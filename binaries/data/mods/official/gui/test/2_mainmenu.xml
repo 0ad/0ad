@@ -43,6 +43,35 @@
 
 		<!--
 		==========================================
+		- MAIN MENU - PROFILE MANAGER
+		==========================================
+		-->
+
+		<object	name="pgProfile">
+			<object	name="pgProfileHeading"
+				style="wheatTextLabelWhite"
+				type="text"
+				size="3% 78% 20% 80%"
+				font="verdana12i"
+			>Current Profile:
+			</object>
+
+			<object	name="pgProfileName"
+				style="wheatDropDown"
+				type="dropdown"
+				size="3% 80% 20% 85%"
+			>
+				<action on="Load"><![CDATA[
+					pushItem (this.name, "Player");
+					pushItem (this.name, "Fire Giant");
+					pushItem (this.name, "Acumen");
+					getGUIObjectByName (this.name).selected = 0;
+				]]></action>
+			</object>
+		</object>
+
+		<!--
+		==========================================
 		- MAIN MENU - PARCHMENT BUTTONS
 		==========================================
 		-->
@@ -67,8 +96,9 @@
 			tooltip="Want to move some Dudes around or test something? Click here to start a new game on the default map."
 		>
 			<action on="Press"><![CDATA[
-				// Open Skirmish Map Selection Window.
-				openMainMenuSubWindow ("pgSPMapSel");
+				// Open Session Setup window.
+				sessionType = "Skirmish"
+				openSessionSetup ("");
 			]]></action>
 		</object>
 
@@ -267,16 +297,267 @@
 
                 <!--
                 ===============================================
+                - GAME SESSION SETUP SCREEN -
+                ===============================================
+                -->
+
+		<object name="pgSessionSetup" 
+			style="wheatWindow"
+			type="image"
+			hidden="true"
+			size="50%-400 50%-300 50%+400 50%+300"
+		>
+			<object name="pgSessionSetupTitleBar"
+				style="wheatWindowTitleBar"
+				type="button"
+			>
+			</object>
+
+			<object name="pgSessionSetupExitButton"
+				style="wheatExit"
+				type="button"
+				tooltip_style="snToolTip"
+			>
+				<action on="Press"><![CDATA[
+					closeSessionSetup();
+				]]></action>
+			</object>
+
+			<!--
+			==========================================
+			- MULTIPLAYER OBJECTS
+			- Not visible to Skirmish.
+			==========================================
+			-->
+
+			<object name="pgSessionSetupMP"
+				hidden="true"
+			>
+
+				<!--
+				==========================================
+				- HOST OBJECTS
+				- Not visible to Skirmish or Client.
+				==========================================
+				-->
+
+				<object	name="pgSessionSetupMPHost"
+					hidden="true"
+				>
+				</object>
+
+				<!--
+				==========================================
+				- CLIENT OBJECTS
+				- Not visible to Skirmish or Host.
+				==========================================
+				-->
+
+				<object	name="pgSessionSetupMPClient"
+					hidden="true"
+				>
+				</object>
+
+			</object>
+
+			<!--
+			==========================================
+			- HOST/SKIRMISH OBJECTS
+			- Not visible to Client.
+			==========================================
+			-->
+
+			<object	name="pgSessionSetupMaster"
+				hidden="true"
+			>
+
+				<!--
+				==========================================
+				- MAP SELECTION
+				==========================================
+				-->
+
+				<object name="pgSessionSetupMapNameTxt" 
+					type="text"
+					size="400 32 590 52"
+				>Map name:
+				</object>
+
+	                        <object name="pgSessionSetupMapName"
+					style="wheatList"
+					type="list"
+					size="100%-200 0%+10 100%-10 0%+150"
+				>
+					<action on="Load"><![CDATA[
+						// Note: We should set this in a .cfg or initialisation area, as it's used again later.
+						mapPath = "maps/scenarios/"
+	
+						// Get a list of map names.
+						mapArray = buildFileList (mapPath, "*.pmp", false);
+						
+						for (mapIndex = 0; mapIndex < mapArray.length; mapIndex++)
+						{
+							// Remove the path and extension from each name, since we just want the filename.
+							// (Is there an equivalent "basename" function for that in JS?)
+							mapArray[mapIndex] = mapArray[mapIndex].substring (mapPath.length, mapArray[mapIndex].length-4)
+
+							// Add map name to the end of the object's list.
+							pushItem (this.name, mapArray[mapIndex]);
+						}
+	
+						// Set default value (pick whatever's at the top of the list).
+						getGUIObjectByName(this.name).selected = 0;
+					]]></action>
+				</object>
+
+			</object>
+
+			<!--
+			==========================================
+			- SKIRMISH OBJECTS
+			- Not visible to Host or Client.
+			==========================================
+			-->
+
+			<object name="pgSessionSetupSkirmish"
+				hidden="true"
+			>
+			</object>
+
+			<!-- 
+			If objects are only supposed to be visible in multiplayer, or are only available to hosts,
+			please put them in the containers above. 
+			-->
+
+			<!--
+			==========================================
+			- MAIN MENU - PLAYER SLOTS
+			==========================================
+			-->
+
+			<object name="pgSessionSetupPlayerHead"
+				style="wheatTextHeadMaxBlack"
+				type="text"
+				size="30 10 320 40"
+			>Player Slots
+			</object>
+
+			<object name="pgSessionSetupP1Txt"
+				style="wheatTextHeadBlack"
+				type="text"
+				size="30 50 320 80"
+			>
+			</object>
+
+			<object name="pgSessionSetupP2Txt"
+				style="wheatTextHeadBlack"
+				type="text"
+				size="30 90 320 120"
+			>
+				<action on="Load"><![CDATA[
+					this.caption = "P2: Open";
+				]]></action>
+			</object>
+
+			<object name="pgSessionSetupP3Txt"
+				style="wheatTextHeadBlack"
+				type="text"
+				size="30 130 320 160"
+			>
+				<action on="Load"><![CDATA[
+					this.caption = "P3: Open";
+				]]></action>
+			</object>
+
+			<object name="pgSessionSetupP4Txt"
+				style="wheatTextHeadBlack"
+				type="text"
+				size="30 170 320 200"
+			>
+				<action on="Load"><![CDATA[
+					this.caption = "P4: Open";
+				]]></action>
+			</object>
+
+			<object name="pgSessionSetupP5Txt"
+				style="wheatTextHeadBlack"
+				type="text"
+				size="30 210 320 240"
+			>
+				<action on="Load"><![CDATA[
+					this.caption = "P5: Open";
+				]]></action>
+			</object>
+
+			<object name="pgSessionSetupP6Txt"
+				style="wheatTextHeadBlack"
+				type="text"
+				size="30 250 320 280"
+			>
+				<action on="Load"><![CDATA[
+					this.caption = "P6: Open";
+				]]></action>
+			</object>
+
+			<object name="pgSessionSetupP7Txt"
+				style="wheatTextHeadBlack"
+				type="text"
+				size="30 290 320 320"
+			>
+				<action on="Load"><![CDATA[
+					this.caption = "P7: Open";
+				]]></action>
+			</object>
+
+			<object name="pgSessionSetupP8Txt"
+				style="wheatTextHeadBlack"
+				type="text"
+				size="30 330 320 360"
+			>
+				<action on="Load"><![CDATA[
+					this.caption = "P8: Open";
+				]]></action>
+			</object>
+
+			<!--
+			==========================================
+			- MAIN MENU - BUTTONS
+			==========================================
+			-->
+                              
+			<object name="pgSessionSetupStartButton" 
+				style="wheatButton"
+				type="button"
+				size="50%-125 540 50%-25 570" 
+			>Start!
+				<action on="Press"><![CDATA[
+					startMap (getCurrItemValue ("pgSessionSetupMapName"), "pgSessionSetup");
+				]]></action>
+			</object>
+
+			<object name="pgSessionSetupCancelButton"
+				style="wheatButton"
+				type="button"
+				size="50%+25 540 50%+125 570"
+			>Cancel
+				<action on="Press"><![CDATA[
+					closeSessionSetup();
+				]]></action>
+			</object>
+		</object>
+
+                <!--
+                ===============================================
                 - MULTIPLAYER MODE SELECTION SCREEN -
                 ===============================================
                 -->
 
 		<object name="pgMPModeSel"
 			style="wheatWindow"
-			type="image"
+			type="text"
 			hidden="true"
 			size="50%-200 50%-90 50%+200 50%+90"
-		>
+		>Please select whether you want to join a game or host your own game. 
 			<object name="pgMPModeSelTitleBar"
 				style="wheatWindowTitleBar"
 				type="button"
@@ -294,59 +575,21 @@
 
 			<!--
 			==========================================
-			- MAIN MENU - PLAYER NAME CONTROLS
-			==========================================
-			-->
-
-			<object	name="pgMPModeSelTxt1"
-				type="text"
-				size="0 0 400 30"
-			>Please enter the Player name you would like to use during the game.
-			</object>
-
-			<object name="pgMPModeSelPlayerNameTxt"
-				type="text"
-				size="0 40 200 60"
-			>Player Name (temporary):
-			</object>
-
-			<object name="pgMPModeSelPlayerName"
-				style="wheatBorderBlack"
-				type="input"
-				size="220 40 350 60"
-			>Player
-			</object>
-
-			<object name="pgMPModeSelDivider1"
-				style="wheatDividerBlack"
-				type="image"
-				size="10 80 100%-10 80"
-			/>
-
-			<!--
-			==========================================
 			- MAIN MENU - HOST / JOIN CONTROLS
 			==========================================
 			-->
 
-			<object name="pgMPModeSelTxt"
-				type="text"
-				size="0 100 400 120" 
-			>Please select whether you want to join a game or host your own game.
-			</object>
-                              
 			<object name="pgMPModeSelHostJoinTxt"
 				style="wheatTextHeadBlack"
 				type="text"
-				size="0 140 200 170"
-				text_valign="center"
+				size="0 100%-70 200 199%-40"
 			>Game Mode
 			</object>
 
 			<object name="pgMPModeSelJoinButton"
 				style="wheatButton"
 				type="button"
-				size="130 140 230 170" 
+				size="130 100%-70 230 100%-40" 
 			>Join Game
 				<action on="Press"><![CDATA[
 					// rudimentary client connection code; finally working now :)
@@ -359,7 +602,7 @@
 			<object name="pgMPModeSelHostButton"
 				style="wheatButton"
 				type="button"
-				size="250 140 350 170" 
+				size="250 100%-70 350 100%-40" 
 			>Host Game
 				<action on="Press"><![CDATA[
 					guiSwitch ("pgMPModeSel", "pgMPHost");
@@ -436,14 +679,14 @@
 
 			<object name="pgMPHostTxt2"
 				type="text"
-				size="0 100 200 180"
+				size="0 100 370 180"
 			>You can enter some message which is displayed to new players upon joining here.
 			</object>
 
 			<object name="pgMPHostWelcomeMsg" 
 				style="wheatBorderBlackNote"
 				type="input"
-				size="220 70 370 180"
+				size="5 150 370 180"
 			>Uhm, welcome to my game. Have fun!
 			</object>
 
@@ -453,14 +696,16 @@
 			==========================================
 			-->
 
-			<object name="pgMPHostSetupButton"
+			<object name="pgMPHostContinueButton"
 				style="wheatButton"
 				type="button"
 				size="50%-125 200 50%-25 230"
 			>Continue
 				<action on="Press"><![CDATA[
-					//initMPSessionHost();
-					console.write ("initMPSessionHost() was supposed to be called here.");
+					initMPHost ("pgMPHost",
+						getGUIObjectByName ("pgMPHostGameName").caption,
+						getGUIObjectByName ("pgMPHostWelcomeMsg").caption,
+						getCurrItemValue ("pgProfileName"));
 				]]></action>
 			</object>
 
@@ -540,29 +785,9 @@
 				size="50%-125 200 50%-25 230"
 			>Continue
 				<action on="Press"><![CDATA[
-					// creating the client instance
-					client = createClient();
-					client.playerName = getGUIObjectByName ("pgMPModeSelPlayerName").caption;
-					// we've got a fixed IP (bound to localhost) here for testing purposes
-					// success = client.beginConnect ("127.0.0.1");
-					ipAddress = getGUIObjectByName ("pgMPJoinServerIP").caption;
-					success = client.beginConnect (ipAddress);
-					if (!success)
-					{
-					// need proper message box code here later
-						console.write ("Failed to connect to server. Please check the network connection.");
-					}
-					else
-					{
-						// see above
-						console.write ("Client successfully started to connect.");
-					}
-					
-					client.onConnectComplete = 
-					function (event)
-					{
-						messageBox (400, 200, "Result message: "+event.message, "Connect complete", 2, new Array(), new Array());
-					}
+					initMPClient ("pgMPJoin", 
+						getGUIObjectByName ("pgMPJoinServerIP").caption,
+						getCurrItemValue ("pgProfileName"));
 				]]></action>
 			</object>
 
@@ -576,275 +801,6 @@
 				]]></action>
 			</object>
 		</object>
-
-                <!--
-                ===============================================
-                - MULTIPLAYER SESSION SETUP SCREEN -
-                ===============================================
-                -->
-
-		<object name="pgMPSetupHost" 
-			style="wheatWindow"
-			type="image"
-			hidden="true"
-			size="50%-400 50%-300 50%+400 50%+300"
-		>
-			<object name="pgMPSetupHostTitleBar"
-				style="wheatWindowTitleBar"
-				type="button"
-			>
-			</object>
-
-			<object name="pgMPSetupHostExitButton"
-				style="wheatExit"
-				type="button"
-				tooltip_style="snToolTip"
-			>
-				<action on="Press"><![CDATA[
-					closeMainMenuSubWindow ("pgMPSetupHost");
-					guiUnHide ("pgVersionNumber");
-				]]></action>
-			</object>
-
-			<!--
-			==========================================
-			- MAIN MENU - PLAYER SLOTS
-			==========================================
-			-->
-
-			<object name="pgMPSetupHostPlayerHead"
-				style="wheatTextHeadMaxBlack"
-				type="text"
-				size="30 10 320 40"
-			>Player Slots
-			</object>
-
-			<object name="pgMPSetupHostP1Txt"
-				style="wheatTextHeadBlack"
-				type="text"
-				size="30 50 320 80"
-			>
-			</object>
-
-			<object name="pgMPSetupHostP2Txt"
-				style="wheatTextHeadBlack"
-				type="text"
-				size="30 90 320 120"
-			>
-				<action on="Load"><![CDATA[
-					this.caption = "P2: Open";
-				]]></action>
-			</object>
-
-			<object name="pgMPSetupHostP3Txt"
-				style="wheatTextHeadBlack"
-				type="text"
-				size="30 130 320 160"
-			>
-				<action on="Load"><![CDATA[
-					this.caption = "P3: Open";
-				]]></action>
-			</object>
-
-			<object name="pgMPSetupHostP4Txt"
-				style="wheatTextHeadBlack"
-				type="text"
-				size="30 170 320 200"
-			>
-				<action on="Load"><![CDATA[
-					this.caption = "P4: Open";
-				]]></action>
-			</object>
-
-			<object name="pgMPSetupHostP5Txt"
-				style="wheatTextHeadBlack"
-				type="text"
-				size="30 210 320 240"
-			>
-				<action on="Load"><![CDATA[
-					this.caption = "P5: Open";
-				]]></action>
-			</object>
-
-			<object name="pgMPSetupHostP6Txt"
-				style="wheatTextHeadBlack"
-				type="text"
-				size="30 250 320 280"
-			>
-				<action on="Load"><![CDATA[
-					this.caption = "P6: Open";
-				]]></action>
-			</object>
-
-			<object name="pgMPSetupHostP7Txt"
-				style="wheatTextHeadBlack"
-				type="text"
-				size="30 290 320 320"
-			>
-				<action on="Load"><![CDATA[
-					this.caption = "P7: Open";
-				]]></action>
-			</object>
-
-			<object name="pgMPSetupHostP8Txt"
-				style="wheatTextHeadBlack"
-				type="text"
-				size="30 330 320 360"
-			>
-				<action on="Load"><![CDATA[
-					this.caption = "P8: Open";
-				]]></action>
-			</object>
-
-			<!--
-			==========================================
-			- MAIN MENU - MAP NAME CONTROLS (TEMPORARY)
-			==========================================
-			-->
-
-			<object name="pgMPSetupHostMapNameTxt" 
-				type="text"
-				size="400 32 590 52"
-			>Map name:
-			</object>
-
-			<object name="pgMPSetupHostMapName" 
-				style="wheatBorderBlack"
-				type="input"
-				size="600 32 750 52"
-			>gathertest2
-			</object>
-
-			<!--
-			==========================================
-			- MAIN MENU - BUTTONS
-			==========================================
-			-->
-                              
-			<object name="pgMPSetupHostStartButton" 
-				style="wheatButton"
-				type="button"
-				size="50%-125 540 50%-25 570" 
-			>Start!
-				<action on="Press"><![CDATA[
-					startMap (getGUIObjectByName("pgMPSetupHostMapName").caption,
-						"pgMPSetupHost", 1);
-				]]></action>
-			</object>
-
-			<object name="pgMPSetupHostCancelButton"
-				style="wheatButton"
-				type="button"
-				size="50%+25 540 50%+125 570"
-			>Cancel
-				<action on="Press"><![CDATA[
-					// terminate the multiplayer server session
-					endGame();
-					guiSwitch ("pgMPSetupHost", "pgMPModeSel");
-				]]></action>
-			</object>
-		</object>
-
-		<!-- (Insert rewritten SESSION SETUP SCREEN here (in two variants: HOST and JOIN)) -->
-
-		<!--
-		===============================================
-		- SINGLEPLAYER TEMPORARY MAP SELECTION DIALOG -
-		===============================================
-		-->
-
-		<object name="pgSPMapSel" 
-			style="wheatWindow"
-			type="image"
-			hidden="true"
-			size="50%-150 50%-120 50%+150 50%+120"
-		>
-			<object name="pgSPMapSelTitleBar"
-				style="wheatWindowTitleBar"
-				type="button"
-			>Map selection
-			</object>
-
-			<object name="pgSPMapSelExitButton"
-				style="wheatExit"
-				type="button"
-			>
-				<action on="Press"><![CDATA[
-					closeMainMenuSubWindow ("pgSPMapSel");
-				]]></action>
-			</object>
-
-			<!--
-			==========================================
-			- MAIN MENU - MAP SELECTION
-			==========================================
-			-->
-
-                        <object name="pgSPMapSelInfoText"
-				type="text"
-				size="10 10 290 60"
-			>Type the name of the map you want to start into the box. The name is relative to /data/mods/official/maps/scenarios/.
-                        </object>
-
-                        <object name="pgSPMapSelMapNameTxt"
-				type="text"
-				size="10 90 120 110"
-			>Map Name:
-                        </object>
-
-                        <object name="pgSPMapSelMapName"
-				style="wheatList"
-				type="list"
-				size="0%+100 0%+80 100%-10 100%-60"
-			>
-				<action on="Load"><![CDATA[
-					// Note: We should set this in a .cfg or initialisation area, as it's used again later.
-					mapPath = "maps/scenarios/"
-
-					// Get a list of map names.
-					mapArray = buildFileList (mapPath, "*.pmp", false);
-					
-					for (mapIndex = 0; mapIndex < mapArray.length; mapIndex++)
-					{
-						// Remove the path and extension from each name, since we just want the filename.
-						// (Is there an equivalent "basename" function for that in JS?)
-						mapArray[mapIndex] = mapArray[mapIndex].substring (mapPath.length, mapArray[mapIndex].length-4)
-
-						// Add map name to the end of the object's list.
-						pushItem (this.name, mapArray[mapIndex]);
-					}
-
-					// Set default value (pick whatever's at the top of the list).
-					getGUIObjectByName(this.name).selected = 0;
-				]]></action>
-			</object>
-
-			<!--
-			==========================================
-			- MAIN MENU - BUTTONS
-			==========================================
-			-->
-
-			<object name="pgSPMapSelStartBt" 
-				style="wheatButton"
-				type="button"
-				size="50%-100 100%-50 50%-10 100%-20" 
-			>Start Game
-				<action on="Press"><![CDATA[
-					startMap ( getCurrItemValue ("pgSPMapSelMapName"), "pgSPMapSel", 0);
-				]]></action>
-			</object>
-
-			<object name="pgSPMapSelAbortButton"
-				style="wheatButton"
-				type="button"
-				size="50%+10 100%-50 50%+90 100%-20"
-			>Abort
-				<action on="Press"><![CDATA[
-					closeMainMenuSubWindow ("pgSPMapSel");
-				]]></action>
-			</object>
-                </object>
 
 		<!--
 		===============================================

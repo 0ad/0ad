@@ -5,20 +5,17 @@
 
 // ====================================================================
 
-function startMap (mapName, openWindow, gameMode)
+function startMap (mapName, openWindow)
 {
 	// Starts the map, closing the current window.
 	// mapName: 	.pmp to load.
 	// openWindow: 	Window group (usually parent string) of control that called the function. It'll be hidden.
-	// gameMode: 	0: SP
-	//		1: MP
 
 	// Check whether we have a correct file extension, to avoid crashes
 	extension = mapName.substring (mapName.length, mapName.length-4);
-                                        
 	if (extension != ".pmp")
 	{
-		// Add .pmp to the file name - shouldn't help if the name is mistyped, but may be useful in some cases.
+		// Add .pmp to the file name.
 		mapName =  mapName + ".pmp";
 	}
 
@@ -106,19 +103,16 @@ function reallyStartGame()
 
 // ====================================================================
 
-function setupSession (GameMode)
+function setupSession ()
 {
-	// GameMode: 	0: SP
-	//		1: MP
-
         // Do essentials that can only be done when the session has been loaded ...
         // For example, create the resource types, scores, etc, for each player.
 
         // Initialise Resource Pools by attaching them to the Player object.
         // (CPlayer code takes care of giving a copy to each player.)
         createResources();
-
-	if (GameMode == "0")
+/*
+	if (sessionType == "Skirmish")
 	{
 		// Set up a bunch of players so we can see them pretty colours. :P
 		console.write ("Setting Up Temporary Single Players");
@@ -130,7 +124,7 @@ function setupSession (GameMode)
 			console.write ("Slot "+(i+1)+" is assigned: " + g_GameAttributes.slots[i+1].assignment);
 		}
 	}
-
+*/
 	// Set starting UI layout.
 	GUIType=rb;
         flipGUI (GUIType);

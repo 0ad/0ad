@@ -31,10 +31,16 @@
 
 	<style 	name="wheatWindow"
 		sprite="wheatWindowSand"
+		buffer_zone="10"
+		text_align="left"
+		text_valign="top"
 	/>
 
 	<style 	name="wheatWindowGranite"
 		sprite="wheatWindowGranite"
+		buffer_zone="10"
+		text_align="left"
+		text_valign="top"
 	/>
 
 	<style 	name="wheatWindowTitleBar"
@@ -72,7 +78,7 @@
 
 	<style 	name="wheatTabButton"
 		sprite="wheatButton"
-		sprite_disabled="wheatButtonTabbed"
+		sprite_disabled="wheatButtonGlow"
 		sprite_over="wheatButtonOver"
 		sprite_pressed="wheatButtonTabbed"
 		text_align="center"
@@ -132,24 +138,48 @@
 		text_align="left"
 		text_valign="center"
 	/>
+	
+	<!--
+	This control is new, so here's a summary:
+	* dropdown_buffer: vertical gap between dropdown and list
+	Dropdown button:
+		* size=shape
+		* sprite=bkg
+		* textcolor=text color
+	Dropdown arrow button:
+		* button_width=shape
+		* sprite2=bkg
+		* sprite2_pressed=bkg clicked
+	Dropdown list:
+		* buffer_zone=margin
+		* dropdown_size=height
+		* sprite_list=bkg
+		* sprite_selectarea=bkg hovered item
+		* textcolor_selected=text color hobered item
+	-->
 
 	<style 	name="wheatDropDown"
-		buffer_zone="5"
-		dropdown_buffer="6"
-		dropdown_size="130"
+		dropdown_buffer="1"
 		font="verdana12"
+		textcolor="black"
+		text_align="center"
+		text_valign="center"
+
+		sprite="wheatButton"
+		sprite_over="wheatButtonOver"
+
+		button_width="15"
+		sprite2="wheatArrowDn"
+		sprite2_pressed="wheatArrowDnOver"
+
+		buffer_zone="15"
+		dropdown_size="100"
+		sprite_list="textureGranite"
+		sprite_selectarea="bkGrayBorderBlack"
+		textcolor_selected="white"
+
 		scrollbar="true"
 		scrollbar_style="wheatScrollBar"
-		sprite="wheatButton"
-		sprite_list="wheatButton"
-		sprite_over="wheatButtonOver"
-		sprite_selectarea="bkFillGray"
-		sprite2="wheatButtonOver"
-		sprite2_pressed="wheatButtonOver"
-		textcolor="black"
-		textcolor_selected="white"
-		text_align="left"
-		text_valign="center"
 	/>
 
 	<!--
@@ -221,6 +251,12 @@
 			ghost="true"
 			font="verdana12"
 			textcolor="black"
+		/>
+
+		<style 	name="wheatTextLabelWhite"
+			ghost="true"
+			font="verdana12"
+			textcolor="white"
 		/>
 
 		<!--
