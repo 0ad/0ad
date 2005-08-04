@@ -13,8 +13,7 @@
 #include "Bound.h"
 #include "Model.h"
 
-#define VR_XMOVE (24)
-#define VR_YMOVE (24.5)
+
 
 extern bool mouseButtons[5];
 extern int g_mouse_x, g_mouse_y;
@@ -119,7 +118,7 @@ void CMiniMap::Draw()
 		
 //================================================================	
               //INTERACTIVE MINIMAP STARTS
-		
+		//Have questions on ^.  Send email to ajdecker1022@msn.com		
 
 		//Get Camera handle
 		CCamera &g_Camera=*g_Game->GetView()->GetCamera();
@@ -140,24 +139,36 @@ void CMiniMap::Draw()
 				&& g_mouse_y > m_CachedActualSize.top && g_mouse_y < m_CachedActualSize.bottom)
 				{
 					
-					CVector3D mm_CurrentPos=g_Camera.m_Orientation.GetTranslation();
 					
-					//X and Z according to proportion of mouse position and minimap
-						CVector3D mm_Destination;
-					mm_Destination.X=(CELL_SIZE*m_MapSize)*
+					
+					//get center point of screen
+					CVector3D ScreenMiddle=g_Camera.GetWorldCoordinates(
+						g_Renderer.GetWidth()/2,g_Renderer.GetHeight()/2);
+					
+					//Get Vector required to go from camera position to ScreenMiddle
+					CVector3D TransVector;
+					TransVector.X=CamOrient.X-ScreenMiddle.X;
+					TransVector.Z=CamOrient.Z-ScreenMiddle.Z;
+					
+						//world position of where mouse clicked
+						CVector3D Destination;
+					
+						//X and Z according to proportion of mouse position and minimap
+					
+						Destination.X=(CELL_SIZE*m_MapSize)*
 						((g_mouse_x-m_CachedActualSize.left)/m_CachedActualSize.GetWidth());
-					mm_Destination.Y=mm_CurrentPos.Y;
-					mm_Destination.Z=(CELL_SIZE*m_MapSize)*
-					((m_CachedActualSize.bottom-g_mouse_y)/m_CachedActualSize.GetHeight());
-
-				//Extra constants for compensating for inaccurate conversion
-				//Decimal multiplied for ratio of constant/zoom so it works on all zooms
-					mm_Destination.X+=.7*mm_Destination.Y;
-					mm_Destination.Z-=.7*mm_Destination.Y;
+						
+						Destination.Z=(CELL_SIZE*m_MapSize)*((m_CachedActualSize.bottom-g_mouse_y)
+						/m_CachedActualSize.GetHeight()),Destination;
 					
-					//Move lower left side of frustum to mouse
-					g_Camera.m_Orientation._14=mm_Destination.X;
-					g_Camera.m_Orientation._34=mm_Destination.Z;
+						
+					g_Camera.m_Orientation._14=Destination.X;
+					g_Camera.m_Orientation._34=Destination.Z;
+					
+					g_Camera.m_Orientation._14+=TransVector.X;
+					g_Camera.m_Orientation._34+=TransVector.Z;
+					
+					
 									
 					g_Camera.UpdateFrustum();
 					
@@ -166,7 +177,6 @@ void CMiniMap::Draw()
 		}
 							//END OF INTERACTIVE MINIMAP
 	//====================================================================
-		
 		
 		// render view rect : John M. Mena
 		// This sets up and draws the rectangle on the mini-map
