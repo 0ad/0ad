@@ -140,6 +140,7 @@ void CMiniMap::Draw()
 				{
 					
 					
+					CVector3D CamOrient=g_Camera.m_Orientation.GetTranslation();
 					
 					//get center point of screen
 					CVector3D ScreenMiddle=g_Camera.GetWorldCoordinates(
@@ -159,7 +160,7 @@ void CMiniMap::Draw()
 						((g_mouse_x-m_CachedActualSize.left)/m_CachedActualSize.GetWidth());
 						
 						Destination.Z=(CELL_SIZE*m_MapSize)*((m_CachedActualSize.bottom-g_mouse_y)
-						/m_CachedActualSize.GetHeight()),Destination;
+						/m_CachedActualSize.GetHeight());
 					
 						
 					g_Camera.m_Orientation._14=Destination.X;
