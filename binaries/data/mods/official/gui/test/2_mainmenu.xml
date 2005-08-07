@@ -370,6 +370,86 @@
 			<object	name="pgSessionSetupMaster"
 				hidden="true"
 			>
+			</object>
+
+			<!--
+			==========================================
+			- SKIRMISH OBJECTS
+			- Not visible to Host or Client.
+			==========================================
+			-->
+
+			<object name="pgSessionSetupSkirmish"
+				hidden="true"
+			>
+			</object>
+
+			<!-- 
+			If objects are only supposed to be visible in multiplayer, or are only available to hosts,
+			please put them in the containers above. 
+			-->
+
+				<!--
+				==========================================
+				- MAIN MENU - PLAYER SLOTS
+				==========================================
+				-->
+
+				<object name="pgSessionSetupPlayerHead"
+					style="wheatTextHeadMaxBlack"
+					type="text"
+					size="30 10 320 40"
+				>Player Slots
+				</object>
+
+				<object name="pgSessionSetupP1"
+					style="wheatDropDown"
+					type="dropdown"
+					enabled="false"
+					size="30 50 320 90"
+				/>
+
+				<object name="pgSessionSetupP2"
+					style="wheatDropDown"
+					type="dropdown"
+					size="30 100 320 140"
+				/>
+
+				<object name="pgSessionSetupP3"
+					style="wheatDropDown"
+					type="dropdown"
+					size="30 150 320 190"
+				/>
+
+				<object name="pgSessionSetupP4"
+					style="wheatDropDown"
+					type="dropdown"
+					size="30 200 320 240"
+				/>
+
+				<object name="pgSessionSetupP5"
+					style="wheatDropDown"
+					type="dropdown"
+					size="30 250 320 290"
+				/>
+
+				<object name="pgSessionSetupP6"
+					style="wheatDropDown"
+					type="dropdown"
+					size="30 300 320 340"
+				/>
+
+				<object name="pgSessionSetupP7"
+					style="wheatDropDown"
+					type="dropdown"
+					size="30 350 320 390"
+				/>
+
+				<object name="pgSessionSetupP8"
+					style="wheatDropDown"
+					type="dropdown"
+					size="30 400 320 440"
+				/>
 
 				<!--
 				==========================================
@@ -409,115 +489,6 @@
 						getGUIObjectByName(this.name).selected = 0;
 					]]></action>
 				</object>
-
-			</object>
-
-			<!--
-			==========================================
-			- SKIRMISH OBJECTS
-			- Not visible to Host or Client.
-			==========================================
-			-->
-
-			<object name="pgSessionSetupSkirmish"
-				hidden="true"
-			>
-			</object>
-
-			<!-- 
-			If objects are only supposed to be visible in multiplayer, or are only available to hosts,
-			please put them in the containers above. 
-			-->
-
-			<!--
-			==========================================
-			- MAIN MENU - PLAYER SLOTS
-			==========================================
-			-->
-
-			<object name="pgSessionSetupPlayerHead"
-				style="wheatTextHeadMaxBlack"
-				type="text"
-				size="30 10 320 40"
-			>Player Slots
-			</object>
-
-			<object name="pgSessionSetupP1Txt"
-				style="wheatTextHeadBlack"
-				type="text"
-				size="30 50 320 80"
-			>
-			</object>
-
-			<object name="pgSessionSetupP2Txt"
-				style="wheatTextHeadBlack"
-				type="text"
-				size="30 90 320 120"
-			>
-				<action on="Load"><![CDATA[
-					this.caption = "P2: Open";
-				]]></action>
-			</object>
-
-			<object name="pgSessionSetupP3Txt"
-				style="wheatTextHeadBlack"
-				type="text"
-				size="30 130 320 160"
-			>
-				<action on="Load"><![CDATA[
-					this.caption = "P3: Open";
-				]]></action>
-			</object>
-
-			<object name="pgSessionSetupP4Txt"
-				style="wheatTextHeadBlack"
-				type="text"
-				size="30 170 320 200"
-			>
-				<action on="Load"><![CDATA[
-					this.caption = "P4: Open";
-				]]></action>
-			</object>
-
-			<object name="pgSessionSetupP5Txt"
-				style="wheatTextHeadBlack"
-				type="text"
-				size="30 210 320 240"
-			>
-				<action on="Load"><![CDATA[
-					this.caption = "P5: Open";
-				]]></action>
-			</object>
-
-			<object name="pgSessionSetupP6Txt"
-				style="wheatTextHeadBlack"
-				type="text"
-				size="30 250 320 280"
-			>
-				<action on="Load"><![CDATA[
-					this.caption = "P6: Open";
-				]]></action>
-			</object>
-
-			<object name="pgSessionSetupP7Txt"
-				style="wheatTextHeadBlack"
-				type="text"
-				size="30 290 320 320"
-			>
-				<action on="Load"><![CDATA[
-					this.caption = "P7: Open";
-				]]></action>
-			</object>
-
-			<object name="pgSessionSetupP8Txt"
-				style="wheatTextHeadBlack"
-				type="text"
-				size="30 330 320 360"
-			>
-				<action on="Load"><![CDATA[
-					this.caption = "P8: Open";
-				]]></action>
-			</object>
 
 			<!--
 			==========================================

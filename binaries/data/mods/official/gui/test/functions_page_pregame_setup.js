@@ -10,10 +10,26 @@ function openSessionSetup (sessionReturnWindow)
 {
 	profileName 	= getCurrItemValue ("pgProfileName");
 	titleBar	= getGUIObjectByName ("pgSessionSetupTitleBar");
-	slotP1		= getGUIObjectByName ("pgSessionSetupP1Txt");
 
-	// Set the host player's name on the setup screen.
-	slotP1.caption 	= "P1: " + profileName + " (Host)";
+	// Setup remaining slots.
+	for (i = 1; i <= g_GameAttributes.numSlots; i++)
+	{
+		if (i == 1)
+		{
+			// Set the host player's name on the setup screen.
+			pushItem ("pgSessionSetupP" + i, profileName + " (Host)");
+		}
+		else
+		{
+			pushItem ("pgSessionSetupP" + i, "Open");
+			pushItem ("pgSessionSetupP" + i, "Closed");
+			pushItem ("pgSessionSetupP" + i, "AI");
+		}
+		getGUIObjectByName ("pgSessionSetupP" + i).selected = 0;
+
+		// Make objects non-interactive to client.
+		if (sessionType == "Client") guiDisable ("pgSessionSetupP" + i);
+	}
 
 	// Set the title for the setup screen
 	switch (sessionType)
@@ -26,10 +42,14 @@ function openSessionSetup (sessionReturnWindow)
 			guiUnHide ("pgSessionSetupMaster");
 		break;
 		case "Client":
-			titleBar.caption = "Joining: " + g_NetServer.serverName;
+			titleBar.caption = "Joining: " // + g_NetClient.session[0].name;
 			// Reveal type-specific Session Setup objects.
 			guiUnHide ("pgSessionSetupMP");
 			guiUnHide ("pgSessionSetupMPClient");
+
+			// Disable objects that clients shouldn't be able to modify.
+			guiDisable ("pgSessionSetupMapName");
+			guiDisable ("pgSessionSetupStartButton");
 		break;
 		case "Skirmish":
 			titleBar.caption = "Skirmish";
