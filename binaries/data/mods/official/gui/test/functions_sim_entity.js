@@ -46,6 +46,8 @@ function worldClickHandler(event)
 			{
 				cmd = NMT_AddWaypoint;
 			}
+			args[0]=event.x;
+			args[1]=event.y;
 		break;
 		case NMT_AddWaypoint:
 			args[0]=event.x;

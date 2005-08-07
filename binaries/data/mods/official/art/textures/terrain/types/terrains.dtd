@@ -1,10 +1,7 @@
-<!ELEMENT Terrains (Terrain+)>
+<!ELEMENT Terrains (Terrain)>
 
 <!ELEMENT Terrain (Passable*,Doodad*,Event*)>
 <!ATTLIST Terrain
-	tag CDATA #REQUIRED
-	skin CDATA ""
-	parent CDATA ""
 	mmap CDATA #IMPLIED
 	groups CDATA ""
 	properties CDATA "">
