@@ -630,7 +630,7 @@ bool CAS_(uintptr_t* location, uintptr_t expected, uintptr_t new_value)
 {
 	uintptr_t prev;
 
-	ASSERT(location >= (uintptr_t*)0x10000);
+	debug_assert(location >= (uintptr_t*)0x10000);
 
 	__asm__ __volatile__("lock; cmpxchgl %1,%2"
 				 : "=a"(prev) // %0: Result in eax should be stored in prev

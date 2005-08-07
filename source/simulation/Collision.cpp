@@ -72,7 +72,7 @@ HEntity getCollisionObject( CEntity* entity )
 #ifndef NDEBUG
 	debug_assert( entity->m_bounds ); 
 #else
-	if( !entity->m_bounds ) return( HEntity() );
+	if( !entity->m_bounds ) return HEntity();
 #endif
 
 	std::vector<HEntity>* entities = g_EntityManager.getExtant();

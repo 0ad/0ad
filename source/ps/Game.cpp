@@ -74,7 +74,7 @@ PSRETURN CGame::ReallyStartGame()
 	if (ok && !JSVAL_IS_VOID(fval))
 	{
 		ok = JS_CallFunctionValue(g_ScriptingHost.getContext(), g_GUI.GetScriptObject(), fval, 0, NULL, &rval);
-		assert(ok);
+		debug_assert(ok);
 	}
 #endif
 

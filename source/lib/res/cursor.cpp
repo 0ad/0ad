@@ -92,6 +92,8 @@ static void Cursor_dtor(Cursor* c)
 	}
 }
 
+#ifdef _WIN32
+
 static void* ptr_from_HICON(HICON hIcon)
 {
 	return (void*)(uintptr_t)hIcon;
@@ -179,6 +181,7 @@ fail:
 	return 0;
 }
 
+#endif
 
 static int Cursor_reload(Cursor* c, const char* name, Handle)
 {

@@ -5,6 +5,7 @@
 
 #include "TextureManager.h"
 #include "TextureEntry.h"
+#include "TerrainProperties.h"
 
 #include "res/res.h"
 #include "res/ogl_tex.h"
@@ -12,12 +13,13 @@
 #include "timer.h"
 
 #include "CLogger.h"
-#include "Xeromyces.h"
-#include "XeroXMB.h"
 
 #define LOG_CATEGORY "graphics"
 
 using namespace std;
+
+// filter for vfs_next_dirent
+static const char* SupportedTextureFormats[] = { "*.png", "*.dds", "*.tga", "*.bmp" };
 
 CTextureManager::CTextureManager():
 	m_LastGroupIndex(0)
@@ -29,8 +31,8 @@ CTextureManager::~CTextureManager()
 		delete m_TextureEntries[i];
 	}
 	
-	TerrainTypeGroupMap::iterator it=m_TerrainTypeGroups.begin();
-	while (it != m_TerrainTypeGroups.end())
+	TerrainGroupMap::iterator it=m_TerrainGroups.begin();
+	while (it != m_TerrainGroups.end())
 	{
 		delete it->second;
 		++it;
@@ -39,6 +41,12 @@ CTextureManager::~CTextureManager()
 
 CTextureEntry* CTextureManager::FindTexture(CStr tag)
 {
+	// Strip extension off of tag
+	long pos=tag.ReverseFind(".");
+	if (pos != -1)
+	{
+		tag = tag.GetSubstring(0, pos);
+	}
 	for (uint i=0;i<m_TextureEntries.size();i++)
 	{
 		if (m_TextureEntries[i]->GetTag() == tag)
@@ -50,87 +58,20 @@ CTextureEntry* CTextureManager::FindTexture(CStr tag)
 
 CTextureEntry* CTextureManager::FindTexture(Handle handle)
 {
-	for (uint i=0;i<m_TextureEntries.size();i++)
-	{
-		// Don't bother looking at textures that haven't been loaded yet - since
-		// the caller has given us a Handle to the texture, it must be loaded.
-		// (This matters because GetHandle would load the texture, even though
-		// there's no need to.)
-		if (m_TextureEntries[i]->IsLoaded()
-			&& handle==m_TextureEntries[i]->GetHandle())
-		{
-			return m_TextureEntries[i];
-		}
-	}
-
-	return 0;
+	return CTextureEntry::GetByHandle(handle);
 }
 
-void CTextureManager::LoadTerrainsFromXML(const char *filename)
+CTerrainProperties *CTextureManager::GetPropertiesFromFile(CTerrainProperties *props, CStr path)
 {
-	CXeromyces XeroFile;
-	if (XeroFile.Load(filename) != PSRETURN_OK)
-		return;
-
-	XMBElement root = XeroFile.getRoot();
-	CStr rootName = XeroFile.getElementString(root.getNodeName());
-
-	// Check that we've got the right kind of xml document
-	if (rootName != "terrains")
-	{
-		LOG(ERROR,
-			LOG_CATEGORY,
-			"TextureManager: Loading %s: Root node is not terrains (found \"%s\")",
-			filename,
-			rootName.c_str());
-		return;
-	}
-	
-	#define ELMT(x) int el_##x = XeroFile.getElementID(#x)
-	#define ATTR(x) int at_##x = XeroFile.getAttributeID(#x)
-	ELMT(terrain);
-	#undef ELMT
-	#undef ATTR
-	
-	// Load terrains
-
-	// Iterate main children
-	//  they should all be <object> or <script> elements
-	XMBElementList children = root.getChildNodes();
-	for (int i=0; i<children.Count; ++i)
-	{
-		//debug_printf("Object %d\n", i);
-		XMBElement child = children.item(i);
-
-		if (child.getNodeName() == el_terrain)
-		{
-			CTextureEntry *pEntry = CTextureEntry::FromXML(child, &XeroFile);
-			if (pEntry)
-				m_TextureEntries.push_back(pEntry);
-		}
-		else
-		{
-			LOG(WARNING, LOG_CATEGORY, 
-				"TextureManager: Loading %s: Unexpected node %s\n",
-				filename,
-				XeroFile.getElementString(child.getNodeName()).c_str());
-			// Keep reading - typos shouldn't be showstoppers
-		}
-	}
+	return CTerrainProperties::FromXML(props, path);
 }
 
-/*CTextureEntry* CTextureManager::AddTexture(const char* filename,int type)
+CTextureEntry *CTextureManager::AddTexture(CTerrainProperties *props, CStr path)
 {
-	debug_assert((uint)type<m_TerrainTextures.size());
-
-	// create new texture entry
-	CTextureEntry* texentry=new CTextureEntry(filename,type);
-
-	// add entry to list ..
-	m_TerrainTextures[type].m_Textures.push_back(texentry);
-
-	return texentry;
-}*/
+	CTextureEntry *entry = new CTextureEntry(props, path);
+	m_TextureEntries.push_back(entry);
+	return entry;
+}
 
 void CTextureManager::DeleteTexture(CTextureEntry* entry)
 {
@@ -142,9 +83,62 @@ void CTextureManager::DeleteTexture(CTextureEntry* entry)
 	delete entry;
 }
 
-void CTextureManager::RecurseDirectory(CStr path)
+// FIXME This could be effectivized by surveying the xml files in the directory
+// instead of trial-and-error checking for existence of the xml file through
+// the VFS.
+void CTextureManager::LoadTextures(CTerrainProperties *props, CStr path, const char* fileext_filter)
+{
+	Handle dir=vfs_open_dir(path.c_str());
+ 	vfsDirEnt dent;
+ 
+ 	if (dir > 0)
+ 	{
+		while (vfs_next_dirent(dir, &dent, fileext_filter) == 0)
+ 		{
+			// Strip extension off of dent.name, add .xml, check if the file
+			// exists
+			CStr xmlname=path+dent.name;
+			xmlname=xmlname.GetSubstring(0, xmlname.size() - (strlen(fileext_filter) - 1));
+			xmlname += ".xml";
+			
+			CTerrainProperties *myprops = NULL;
+			// Has XML file -> attempt to load properties
+			if (vfs_exists(xmlname.c_str()))
+				myprops=GetPropertiesFromFile(props, xmlname);
+			
+			if (myprops)
+				LOG(NORMAL, LOG_CATEGORY, "CTextureManager: Successfully loaded override xml %s for texture %s\n", xmlname.c_str(), dent.name);
+			
+			// Error or non-existant xml file -> use parent props
+			if (!myprops)
+				myprops = props;
+			
+			AddTexture(myprops, path+dent.name);
+ 		}
+
+ 		vfs_close_dir(dir);
+ 	}
+}
+
+void CTextureManager::RecurseDirectory(CTerrainProperties *parentProps, CStr path)
 {
 	LOG(NORMAL, LOG_CATEGORY, "CTextureManager::RecurseDirectory(%s)", path.c_str());
+	
+	// Load terrains.xml first, if it exists
+	CTerrainProperties *props=NULL;
+	CStr xmlpath=path+"terrains.xml";
+	if (vfs_exists(xmlpath.c_str()))
+		props=GetPropertiesFromFile(parentProps, xmlpath);
+	
+	// No terrains.xml, or read failures -> use parent props (i.e. 
+	if (!props)
+	{
+		LOG(NORMAL, LOG_CATEGORY,
+			"CTextureManager::RecurseDirectory(%s): no terrains.xml (or errors while loading) - using parent properties", path.c_str());
+		props = parentProps;
+	}
+
+	// Recurse once for each subdirectory
 
 	Handle dir=vfs_open_dir(path.c_str());
 	vfsDirEnt dent;
@@ -153,45 +147,32 @@ void CTextureManager::RecurseDirectory(CStr path)
 	{
 		while (vfs_next_dirent(dir, &dent, "/") == 0)
 		{
-			RecurseDirectory(path+dent.name+"/");
+			RecurseDirectory(props, path+dent.name+"/");
 		}
 		
 		vfs_close_dir(dir);
 	}
 
-	dir=vfs_open_dir(path.c_str());
-
-	if (dir > 0)
+	for (int i=0;i<ARRAY_SIZE(SupportedTextureFormats);i++)
 	{
-		while (vfs_next_dirent(dir, &dent, "*.xml") == 0)
-		{
-			CStr xmlFileName = path+dent.name;
-			LOG(NORMAL, LOG_CATEGORY, "CTextureManager::LoadTerrainTextures(): loading terrain XML %s", xmlFileName.c_str());
-			LoadTerrainsFromXML(xmlFileName);
-		}
-		
-		vfs_close_dir(dir);
+		LoadTextures(props, path, SupportedTextureFormats[i]);
 	}
 }
 
 int CTextureManager::LoadTerrainTextures()
 {
-	RecurseDirectory("art/textures/terrain/types/");
-	
-	std::vector<CTextureEntry *>::iterator it=m_TextureEntries.begin();
-	for (;it != m_TextureEntries.end();++it)
-		(*it)->LoadParent();
+	RecurseDirectory(NULL, "art/textures/terrain/types/");
 	
 	return 0;
 }
 
-CTerrainTypeGroup *CTextureManager::FindGroup(CStr name)
+CTerrainGroup *CTextureManager::FindGroup(CStr name)
 {
-	TerrainTypeGroupMap::const_iterator it=m_TerrainTypeGroups.find(name);
-	if (it != m_TerrainTypeGroups.end())
+	TerrainGroupMap::const_iterator it=m_TerrainGroups.find(name);
+	if (it != m_TerrainGroups.end())
 		return it->second;
 	else
-		return m_TerrainTypeGroups[name] = new CTerrainTypeGroup(name, ++m_LastGroupIndex);
+		return m_TerrainGroups[name] = new CTerrainGroup(name, ++m_LastGroupIndex);
 }
 
 /* There was a GetRandomTexture in MainFrm.cpp (sced) previously that gave compile errors...
@@ -206,12 +187,12 @@ CTextureEntry* CTextureManager::GetRandomTexture()
 	return m_TextureEntries[type];
 }
 
-void CTerrainTypeGroup::AddTerrain(CTextureEntry *pTerrain)
+void CTerrainGroup::AddTerrain(CTextureEntry *pTerrain)
 {
 	m_Terrains.push_back(pTerrain);
 }
 
-void CTerrainTypeGroup::RemoveTerrain(CTextureEntry *pTerrain)
+void CTerrainGroup::RemoveTerrain(CTextureEntry *pTerrain)
 {
 	vector<CTextureEntry *>::iterator it;
 	it=find(m_Terrains.begin(), m_Terrains.end(), pTerrain);

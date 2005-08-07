@@ -9,7 +9,7 @@
 // the additional u8 cast ensures each character is treated as unsigned
 // (otherwise, they'd be promoted to signed int before the u32 cast,
 // which would break things).
-#ifdef BIG_ENDIAN
+#ifdef IS_BIG_ENDIAN
 #define FOURCC(a,b,c,d) ( ((u32)(u8)a) << 24 | ((u32)(u8)b) << 16 | \
 	((u32)(u8)c) << 8  | ((u32)(u8)d) << 0  )
 #else

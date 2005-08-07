@@ -85,18 +85,20 @@
 # error "unknown OS - add define here"
 #endif
 
+// If these are already defined by someone else, assume they are also correct :P
+#if !(defined(IS_LITTLE_ENDIAN) || defined(IS_BIG_ENDIAN))
 // byte order
-#if defined(__i386__) || defined(__i386) || defined(_M_IX86) || \
-    defined(__ia64__) || defined(__ia64) || defined(_M_IA64) || \
-	defined(__alpha__) || defined(__alpha) || defined(_M_ALPHA) || \
-	defined(__arm__) || \
-	defined(__MIPSEL__) || \
-	defined(__LITTLE_ENDIAN__)
-# define LITTLE_ENDIAN
-#else
-# define BIG_ENDIAN
+# if defined(__i386__) || defined(__i386) || defined(_M_IX86) || \
+     defined(__ia64__) || defined(__ia64) || defined(_M_IA64) || \
+	 defined(__alpha__) || defined(__alpha) || defined(_M_ALPHA) || \
+	 defined(__arm__) || \
+	 defined(__MIPSEL__) || \
+	 defined(__LITTLE_ENDIAN__)
+#  define IS_LITTLE_ENDIAN
+# else
+#  define IS_BIG_ENDIAN
+# endif
 #endif
-
 
 //-----------------------------------------------------------------------------
 // auto-detect platform features, given the above information

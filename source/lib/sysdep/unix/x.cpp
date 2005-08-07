@@ -24,7 +24,7 @@
 #include <Xatom.h>
 
 #include "lib.h"
-#include "sysdep/debug.h"
+#include "debug.h"
 #include "detect.h"
 
 #include <algorithm>

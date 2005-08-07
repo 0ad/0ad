@@ -17,6 +17,8 @@
 
 #include "precompiled.h"
 
+#include <deque>
+
 #include "debug_stl.h"
 #include "lib.h"	// match_wildcard
 
@@ -229,6 +231,7 @@ public:
 };
 */
 
+#ifndef OS_UNIX
 
 //
 // standard containers
@@ -683,3 +686,4 @@ int stl_get_container_info(const char* type_name, const u8* p, size_t size,
 		return STL_CNT_INVALID;
 	return 0;
 }
+#endif

@@ -12,6 +12,13 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+#include "bfd.h"
+#include <cxxabi.h>
+
+#ifndef bfd_get_section_size
+#define bfd_get_section_size bfd_get_section_size_before_reloc
+#endif
+
 #ifdef OS_LINUX
 #define GNU_SOURCE
 #include <dlfcn.h>
@@ -27,20 +34,13 @@
 # error "port"
 #endif
 
-#ifndef NDEBUG
-
-#include "bfd.h"
-#include <cxxabi.h>
-
-#ifndef bfd_get_section_size
-#define bfd_get_section_size bfd_get_section_size_before_reloc
-#endif
-
 #define PROFILE_RESOLVE_SYMBOL 0
 
 // Hard-coded - yuck :P
-#ifdef TESTING
+#if defined(TESTING)
 #define EXE_NAME "ps_test"
+#elif defined(NDEBUG)
+#define EXE_NAME "ps"
 #else
 #define EXE_NAME "ps_dbg"
 #endif
@@ -64,8 +64,6 @@ struct symbol_lookup_context
 	
 	bool found;
 };
-
-#endif
 
 void unix_debug_break()
 {
@@ -104,15 +102,6 @@ void udbg_launch_debugger()
 	}
 }
 
-
-// notify the user that an assertion failed.
-ErrorReaction debug_assert_failed(const char* file, int line, const char* expr)
-{
-	char buf[200];
-	snprintf(buf, ARRAY_SIZE(buf), "%s:%d: Assertion `%s' failed.\n", file, line, expr);
-	display_error(buf);
-}
-
 void* debug_get_nth_caller(uint n)
 {
 	// bt[0] == debug_get_nth_caller
@@ -123,8 +112,54 @@ void* debug_get_nth_caller(uint n)
 	
 	bt_size=backtrace(bt, n+2);
 	// oops - out of stack frames
-	assert2((bt_size >= n+2) && "Hrmm.. Not enough stack frames to backtrace!");
+	debug_assert((bt_size >= n+2) && "Hrmm.. Not enough stack frames to backtrace!");
 	return bt[n+1]; // n==1 => bt[2], and so forth
+}
+
+const wchar_t* debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* context)
+{
+	++skip; // Skip ourselves too
+
+	// bt[0..skip] == skipped
+	// bt[skip..N_FRAMES+skip] == print
+	static const uint N_FRAMES = 16;
+	void *bt[skip+N_FRAMES];
+	int bt_size;
+	wchar_t *bufpos = buf;
+	wchar_t *bufend = buf + max_chars;
+	
+	bt_size=backtrace(bt, ARRAY_SIZE(bt));
+	// oops - out of stack frames
+	debug_assert((bt_size >= ARRAY_SIZE(bt)) && "Hrmm.. Not enough stack frames to backtrace!");
+
+	// Assumed max length of a single print-out
+	static const uint MAX_OUT_CHARS=1024;
+
+	for (uint i=skip;i<(skip+N_FRAMES) && bufpos+MAX_OUT_CHARS < bufend;i++)
+	{
+		char file[DBG_FILE_LEN];
+		char symbol[DBG_SYMBOL_LEN];
+		int line;
+		uint len;
+		
+		if (debug_resolve_symbol(bt[i], symbol, file, &line) == 0)
+			len = swprintf(bufpos, MAX_OUT_CHARS, L"(%p) %hs:%d %hs\n", bt[i], file, line, symbol);
+		else
+			len = swprintf(bufpos, MAX_OUT_CHARS, L"(%p)\n", bt[i]);
+		
+		if (len < 0)
+		{
+			// MAX_OUT_CHARS exceeded, realistically this was caused by some
+			// mindbogglingly long symbol name... replace the end with an
+			// ellipsis and a newline
+			memcpy(&bufpos[MAX_OUT_CHARS-6], L"...\n", 5*sizeof(wchar_t));
+			len = MAX_OUT_CHARS;
+		}
+		
+		bufpos += len;
+	}
+
+	return buf;
 }
 
 static int slurp_symtab(symbol_file_context *ctx)
@@ -355,24 +390,31 @@ int debug_write_crashlog(const char* file, wchar_t* header, void* context)
 	abort();
 }
 
-
-
+int debug_is_bogus_pointer(const void* p)
+{
+	return false;
+}
 
 void debug_heap_check()
 {
 }
 
-
 // if <full_monty> is true or PARANOIA #defined, all possible checks are
 // performed as often as possible. this is really slow (we are talking x100),
 // but reports errors closer to where they occurred.
-void debug_heap_enable(bool full_monty)
+void debug_heap_enable(DebugHeapChecks what)
 {
-#ifdef PARANOIA
-	full_monty = true;
-#endif
+	// No-op until we find out if glibc has heap debugging
 }
 
+void debug_wprintf(const wchar_t* fmt, ...)
+{
+	va_list args;
+	va_start(args, fmt);
+	vwprintf(fmt, args);
+	va_end(args);
+	fflush(stdout);
+}
 
 // disable all automatic checks until the next debug_heap_enable.
 void debug_heap_disable()

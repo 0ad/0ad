@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <wchar.h>
 
+#include "lib.h"
+#include "sysdep/sysdep.h"
 #include "udbg.h"
 
 // these are basic POSIX-compatible backends for the sysdep.h functions.
@@ -26,10 +28,9 @@ int get_executable_name(char* n_path, size_t buf_size)
 	return -ENOSYS;
 }
 
-
 ErrorReaction display_error_impl(const wchar_t* text, int flags)
 {
-	wprintf("%s\n", text);
+	wprintf(L"%s\n", text);
 
 	const bool manual_break   = flags & DE_MANUAL_BREAK;
 	const bool allow_suppress = flags & DE_ALLOW_SUPPRESS;

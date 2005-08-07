@@ -154,5 +154,6 @@ namespace __gnu_cxx
 # endif	// defined(_MSC_VER) && (_MSC_VER >= 1300)
 #endif	// !__GNUC__
 
+#include "debug.h"
 
 #endif	// #ifndef SYSDEP_H_INCLUDED

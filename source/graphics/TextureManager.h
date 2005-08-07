@@ -15,10 +15,11 @@
 class XMBElement;
 class CXeromyces;
 class CTextureEntry;
+class CTerrainProperties;
 
-class CTerrainTypeGroup
+class CTerrainGroup
 {
-	// name of this terrain type (as referenced in terrain xmls)
+	// name of this terrain group (as specified by the terrain XML)
 	CStr m_Name;
 	// "index".. basically a bogus integer that can be used by ScEd to set texture
 	// priorities
@@ -27,7 +28,7 @@ class CTerrainTypeGroup
 	std::vector<CTextureEntry*> m_Terrains;
 
 public:
-	CTerrainTypeGroup(CStr name, int index):
+	CTerrainGroup(CStr name, int index):
 		m_Name(name),
 		m_Index(index)
 	{}
@@ -51,20 +52,25 @@ public:
 class CTextureManager : public Singleton<CTextureManager>
 {
 public:
-	typedef std::map<CStr, CTerrainTypeGroup *> TerrainTypeGroupMap;
+	typedef std::map<CStr, CTerrainGroup *> TerrainGroupMap;
 
 private:
 	// All texture entries created by this class, for easy freeing now that
 	// textures may be in several STextureType's
 	std::vector<CTextureEntry *> m_TextureEntries;
 
-	TerrainTypeGroupMap m_TerrainTypeGroups;
+	TerrainGroupMap m_TerrainGroups;
 
 	uint m_LastGroupIndex;
 
-	// Find all XML's in the directory (with subdirs) and  try to load them as
-	// terrain XML's
-	void RecurseDirectory(CStr path);
+	// Find all textures in directory matching the file extension, check if
+	// there's an override XML with the same basename (if there is, load it)
+	void LoadTextures(CTerrainProperties *props, CStr path, const char* ext);
+	
+	// Load all terrains below path, using props as the parent property sheet.
+	void RecurseDirectory(CTerrainProperties *props, CStr path);
+	
+	CTerrainProperties *GetPropertiesFromFile(CTerrainProperties *props, CStr path);
 
 public:
 	// constructor, destructor
@@ -72,25 +78,28 @@ public:
 	~CTextureManager();
 	
 	int LoadTerrainTextures();
-	void LoadTerrainsFromXML(const char *filename);
-
+	
 	CTextureEntry* FindTexture(CStr tag);
 	CTextureEntry* FindTexture(Handle handle);
 	CTextureEntry* GetRandomTexture();
-	// TODO How do Atlas/ScEd want to create new terrain types?
-	// CTextureEntry* AddTexture(const char* filename,int type);
+	
+	// Create a texture object for a new terrain texture at path, using the
+	// property sheet props.
+	CTextureEntry *AddTexture(CTerrainProperties *props, CStr path);
+	
+	// Remove the texture from all our maps and lists and delete it afterwards.
 	void DeleteTexture(CTextureEntry* entry);
 	
 	// Find or create a new texture group. All terrain groups are owned by the
 	// texturemanager (TerrainTypeManager)
-	CTerrainTypeGroup *FindGroup(CStr name);
+	CTerrainGroup *FindGroup(CStr name);
 	// Use the default group for all terrain types that don't have their own
 	// ScEd currently relies on every texture having one group (and is happy ignorant of any
 	// extra groups that might exist)
-	CTerrainTypeGroup *GetDefaultGroup();
+	CTerrainGroup *GetDefaultGroup();
 
-	const TerrainTypeGroupMap &GetGroups() const
-	{ return m_TerrainTypeGroups; }
+	const TerrainGroupMap &GetGroups() const
+	{ return m_TerrainGroups; }
 };
 
 

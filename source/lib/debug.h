@@ -18,6 +18,7 @@
 #ifndef DEBUG_H_INCLUDED
 #define DEBUG_H_INCLUDED
 
+#include "lib.h" // STMT
 #include "sysdep/sysdep.h"		// ErrorReaction
 #ifdef _WIN32
 # include "sysdep/win/wdbg.h"
@@ -108,10 +109,11 @@ extern void debug_heap_enable(DebugHeapChecks what);
 //
 // rationale: 0x55 and 0xaa have distinctive bit patterns and thus
 // help debug the symbol engine.
-#define debug_assert(expr)\
+#define debug_assert(expr) \
 STMT(\
 	static unsigned char suppress__ = 0x55;\
-	if(suppress__ == 0x55 && !(expr))\
+	if(suppress__ == 0x55 && !(expr)) \
+	{ \
 		switch(debug_assert_failed(__FILE__, __LINE__, #expr))\
 		{\
 		case ER_SUPPRESS:\
@@ -121,6 +123,7 @@ STMT(\
 			debug_break();\
 			break;\
 		}\
+	} \
 )
 
 // rationale: we call our assert "debug_assert" for the following reasons:

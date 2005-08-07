@@ -14,14 +14,14 @@ by Rich Cross, rich@0ad.wildfiregames.com
 
 #include "types.h"
 
-class CStr;
+class CStr8;
 
 struct CColor
 {
 	CColor() : r(-1.f), g(-1.f), b(-1.f), a(1.f) {}
 	CColor(float cr,float cg,float cb,float ca) : r(cr), g(cg), b(cb), a(ca) {}
 
-	bool ParseString(const CStr& Value, float DefaultAlpha);
+	bool ParseString(const CStr8& Value, float DefaultAlpha);
 
 	bool operator == (const CColor &color) const;
 

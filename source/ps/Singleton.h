@@ -19,6 +19,8 @@
 #ifndef _TEMPLATE_SINGLETON
 #define _TEMPLATE_SINGLETON
 
+#include "lib/debug.h"
+
 template<typename T>
 class Singleton
 {
