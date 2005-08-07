@@ -90,18 +90,14 @@
 			hotkey="fps.toggle"
 			font="verdana16"
 			textcolor="100 100 0"
-			size="18 0 200 35"
+			size="18 18 200 35"
 			z="199"
 		>
+			<action on="Load"><![CDATA[
+				setInterval (updateFPS, 1, 200);
+			]]></action>
 			<action on="Press"><![CDATA[
 				guiToggle (this.name);
-			]]></action>
-			<action on="Tick"><![CDATA[
-				if (this.hidden == "false"){
-					g_mouse_x = mouse.x;
-					g_mouse_y = mouse.y;
-					getGUIObjectByName(this.name).caption = "FPS: " + getFPS() + " " + g_mouse_x + " " + g_mouse_y;
-				}
 			]]></action>
 		</object>
 

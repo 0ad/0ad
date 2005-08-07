@@ -123,3 +123,11 @@ function messageBox (mbWidth, mbHeight, mbMessage, mbTitle, mbMode, mbButtonCapt
 
 }
 
+// ====================================================================
+
+function updateFPS()
+{	
+	getGUIObjectByName("fpsCounter").caption = "FPS: " + getFPS();
+}
+
+// ====================================================================
