@@ -660,7 +660,9 @@ keep:
 		return 0;
 	}
 
-	hWnd = CreateWindowEx(0, (LPCSTR)class_atom, APP_NAME, WS_POPUP|WS_VISIBLE, 0, 0, w, h, 0, 0, hInst, 0);
+	DWORD windowStyle = fullscreen ? (WS_POPUP|WS_VISIBLE) : (WS_CAPTION | WS_POPUPWINDOW | WS_VISIBLE);
+
+	hWnd = CreateWindowEx(0, (LPCSTR)class_atom, APP_NAME, windowStyle, 0, 0, w, h, 0, 0, hInst, 0);
 	if(!hWnd)
 		return 0;
 

@@ -95,12 +95,12 @@ static void ConvertColor(const Color8888* src,Color888* dst)
 	dst->b=src->b;
 }
 
-CTerrainTypeGroup *CTexToolsDlgBar::GetCurrentTerrainType()
+CTerrainGroup *CTexToolsDlgBar::GetCurrentTerrainType()
 {
 	CComboBox* terraintypes=(CComboBox*) GetDlgItem(IDC_COMBO_TERRAINTYPES);
 	int nIndex=terraintypes->GetCurSel();
 	if (nIndex != CB_ERR)
-		return (CTerrainTypeGroup *)terraintypes->GetItemDataPtr(nIndex);
+		return (CTerrainGroup *)terraintypes->GetItemDataPtr(nIndex);
 	else
 		return NULL;
 }
@@ -200,8 +200,8 @@ BOOL CTexToolsDlgBar::OnInitDialog()
 	// build combo box for terrain types
 	CComboBox* terraintypes=(CComboBox*) GetDlgItem(IDC_COMBO_TERRAINTYPES);
 	
-	const CTextureManager::TerrainTypeGroupMap &ttypes=g_TexMan.GetGroups();
-	CTextureManager::TerrainTypeGroupMap::const_iterator it;
+	const CTextureManager::TerrainGroupMap &ttypes=g_TexMan.GetGroups();
+	CTextureManager::TerrainGroupMap::const_iterator it;
 	for (it=ttypes.begin();it!=ttypes.end();++it) {
 		int nIndex=terraintypes->AddString(it->second->GetName().c_str());
 		if (nIndex != CB_ERR)

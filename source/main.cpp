@@ -1546,8 +1546,6 @@ void ScEd_Init()
 void ScEd_Shutdown()
 {
 	Shutdown();
-
-	delete &g_Profiler;
 }
 
 #endif // SCED

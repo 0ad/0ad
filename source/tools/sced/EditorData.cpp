@@ -26,6 +26,7 @@
 #include "XML.h"
 
 #include "Game.h"
+#include "GameAttributes.h"
 
 const int NUM_ALPHA_MAPS = 14;
 Handle AlphaMaps[NUM_ALPHA_MAPS];
