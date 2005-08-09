@@ -18,8 +18,8 @@
 #ifndef WIN_INTERNAL_H
 #define WIN_INTERNAL_H
 
-#ifndef _WIN32
-#error "including win_internal.h without _WIN32 defined"
+#if !OS_WIN
+#error "win_internal.h: do not include if not compiling for Windows"
 #endif
 
 #include "lib/types.h"	// intptr_t
@@ -134,7 +134,7 @@ typedef struct _MEMORYSTATUSEX
 ///////////////////////////////////////////////////////////////////////////////
 
 // MinGW headers are already correct; only change on VC
-#ifdef _MSC_VER
+#if MSC_VERSION
 
 #ifndef NTSTATUS
 #define NTSTATUS long
@@ -244,7 +244,7 @@ typedef struct _SYSTEM_POWER_INFORMATION
 #define PO_TZ_INVALID_MODE 0 // The system does not support CPU throttling,
 	                         // or there is no thermal zone defined [..]
 
-#endif	// #ifdef _MSC_VER
+#endif	// #if MSC_VERSION
 
 // neither VC7.1 nor MinGW define this
 typedef struct _PROCESSOR_POWER_INFORMATION

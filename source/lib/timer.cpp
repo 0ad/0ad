@@ -36,7 +36,7 @@ double get_time()
 {
 	double t;
 
-#ifdef HAVE_CLOCK_GETTIME
+#if HAVE_CLOCK_GETTIME
 
 	static struct timespec start = {0};
 	struct timespec ts;
@@ -47,7 +47,7 @@ double get_time()
 	(void)clock_gettime(CLOCK_REALTIME, &ts);
 	t = (ts.tv_sec - start.tv_sec) + (ts.tv_nsec - start.tv_nsec)*1e-9;
 
-#elif defined(HAVE_GETTIMEOFDAY)
+#elif HAVE_GETTIMEOFDAY
 
 	static struct timeval start;
 	struct timeval cur;
@@ -83,7 +83,7 @@ double timer_res()
 
 	double res = 0.0;
 
-#ifdef HAVE_CLOCK_GETTIME
+#if HAVE_CLOCK_GETTIME
 
 	struct timespec ts;
 	if(clock_getres(CLOCK_REALTIME, &ts) == 0)

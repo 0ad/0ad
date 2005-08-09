@@ -1,5 +1,5 @@
 #include <GL/glext.h>
-#ifdef _WIN32
+#if OS_WIN
 # include <GL/wglext.h>
 #endif
 /*
@@ -66,7 +66,7 @@ FUNC2(void, glCompressedTexSubImage2DARB, glCompressedTexSubImage2D, "1.3", (GLe
 FUNC2(void, glCompressedTexSubImage1DARB, glCompressedTexSubImage1D, "1.3", (GLenum, GLint, GLint, GLsizei, GLenum, GLsizei, const GLvoid*))
 FUNC2(void, glGetCompressedTexImageARB, glGetCompressedTexImage, "1.3", (GLenum, GLint, GLvoid*))
 
-#ifdef _WIN32
+#if OS_WIN
 // WGL_EXT_swap_control
 FUNC(int, wglSwapIntervalEXT, (int))
 
@@ -81,4 +81,4 @@ FUNC(int, wglQueryPbufferARB, (HPBUFFERARB, int, int*))
 FUNC(int, wglGetPixelFormatAttribivARB, (HDC, int, int, unsigned int, const int*, int*))
 FUNC(int, wglGetPixelFormatAttribfvARB, (HDC, int, int, unsigned int, const int*, float*))
 FUNC(int, wglChoosePixelFormatARB, (HDC, const int *, const float*, unsigned int, int*, unsigned int*))
-#endif // _WIN32
+#endif // OS_WIN

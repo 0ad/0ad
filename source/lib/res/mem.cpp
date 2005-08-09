@@ -149,10 +149,8 @@ static void Mem_dtor(Mem* m)
 
 // can't alloc here, because h_alloc needs the key when called
 // (key == pointer we allocate)
-static int Mem_reload(Mem* m, const char* fn, Handle hm)
+static int Mem_reload(Mem* m, const char* UNUSED(fn), Handle hm)
 {
-	UNUSED(fn);
-
 	set_alloc(m->raw_p, hm);
 	return 0;
 }
@@ -168,11 +166,8 @@ static int Mem_reload(Mem* m, const char* fn, Handle hm)
 //////////////////////////////////////////////////////////////////////////////
 
 
-static void heap_free(void* raw_p, size_t raw_size, uintptr_t ctx)
+static void heap_free(void* raw_p, size_t UNUSED(raw_size), uintptr_t UNUSED(ctx))
 {
-	UNUSED(raw_size);
-	UNUSED(ctx);
-
 	free(raw_p);
 }
 
@@ -187,16 +182,14 @@ static void* heap_alloc(size_t raw_size, uintptr_t& ctx)
 
 //////////////////////////////////////////////////////////////////////////////
 
-
+/*
 static u8* pool;
 static size_t pool_pos;
 static const size_t POOL_CAP = 8*MiB;	// TODO: user editable
 
 
-static void pool_free(void* raw_p, size_t raw_size, uintptr_t ctx)
+static void pool_free(void* UNUSED(raw_p), size_t raw_size, uintptr_t ctx)
 {
-	UNUSED(raw_p);
-
 	size_t ofs = (size_t)ctx;
 
 	// at or beyond current next-alloc position: invalid
@@ -213,7 +206,7 @@ static void pool_free(void* raw_p, size_t raw_size, uintptr_t ctx)
 
 static void* pool_alloc(const size_t raw_size, uintptr_t& ctx)
 {
-	ctx = ~0;	// make sure it's invalid if we fail
+	ctx = ~0U;	// make sure it's invalid if we fail
 
 	if(!pool)
 	{
@@ -233,7 +226,7 @@ static void* pool_alloc(const size_t raw_size, uintptr_t& ctx)
 	void* raw_p = (u8*)pool + ctx;
 	return raw_p;
 }
-
+*/
 
 //////////////////////////////////////////////////////////////////////////////
 

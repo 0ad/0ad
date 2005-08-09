@@ -27,7 +27,7 @@
 #include "posix.h"
 #include "error_dialog.h"
 
-#ifdef _MSC_VER
+#if MSC_VERSION
 #pragma comment(lib, "shell32.lib")	// for pick_directory SH* calls
 #endif
 
@@ -46,7 +46,7 @@ static BOOL CALLBACK is_this_our_window(HWND hWnd, LPARAM lParam)
 {
 	DWORD pid;
 	DWORD tid = GetWindowThreadProcessId(hWnd, &pid);
-	UNUSED(tid);	// the function can't fail
+	UNUSED2(tid);	// the function can't fail
 
 	if(pid == GetCurrentProcessId())
 	{
@@ -65,7 +65,7 @@ HWND win_get_app_main_window()
 {
 	HWND our_window = 0;
 	DWORD ret = EnumWindows(is_this_our_window, (LPARAM)&our_window);
-	UNUSED(ret);
+	UNUSED2(ret);
 		// the callback returns FALSE when it has found the window
 		// (so as not to waste time); EnumWindows then returns 0.
 		// therefore, we can't check this; just return our_window.
@@ -140,9 +140,8 @@ wchar_t* get_module_filename(void* addr, wchar_t* path)
 
 
 
-static int CALLBACK browse_cb(HWND hWnd, unsigned int msg, LPARAM lParam, LPARAM ldata)
+static int CALLBACK browse_cb(HWND hWnd, unsigned int msg, LPARAM UNUSED(lParam), LPARAM ldata)
 {
-	UNUSED(lParam);
 	if(msg == BFFM_INITIALIZED)
 	{
 		const char* cur_dir = (const char*)ldata;
@@ -397,15 +396,31 @@ static int CALLBACK error_dialog_proc(HWND hDlg, unsigned int msg, WPARAM wParam
 // exits directly if 'exit' is clicked.
 ErrorReaction display_error_impl(const wchar_t* text, int flags)
 {
-	const DialogParams params = { text, flags };
+	// temporarily remove any pending quit message from the queue because
+	// it would prevent the dialog from being displayed (DialogBoxParam
+	// returns IDOK without doing anything). will be restored below.
+	// notes:
+	// - this isn't only relevant at exit - Windows also posts one if
+	//   window init fails. therefore, it is important that errors can be
+	//   displayed regardless.
+	// - by passing hWnd=0, we check all windows belonging to the current
+	//   thread. there is no reason to use hWndParent below.
+	MSG msg;
+	BOOL quit_pending = PeekMessage(&msg, 0, WM_QUIT, WM_QUIT, PM_REMOVE);
 
 	const HINSTANCE hInstance = GetModuleHandle(0);
 	LPCSTR lpTemplateName = MAKEINTRESOURCE(IDD_DIALOG1);
+	const DialogParams params = { text, flags };
+	// get the enclosing app's window handle. we can't just pass 0 or
+	// the desktop window because the dialog must be modal (the app
+	// must not crash/continue to run before it has been displayed).
 	const HWND hWndParent = win_get_app_main_window();
-	// can't just pass 0 or desktop because this dialog must be
-	// modal (the app must not crash/continue to run before this is seen).
 
 	INT_PTR ret = DialogBoxParam(hInstance, lpTemplateName, hWndParent, error_dialog_proc, (LPARAM)&params);
+
+	if(quit_pending)
+		PostQuitMessage((int)msg.wParam);
+
 	// failed; warn user and make sure we return an ErrorReaction.
 	if(ret == 0 || ret == -1)
 	{
@@ -496,6 +511,127 @@ int clipboard_free(wchar_t* copy)
 {
 	free(copy);
 	return 0;
+}
+
+
+//-----------------------------------------------------------------------------
+// mouse cursor
+//-----------------------------------------------------------------------------
+
+static void* ptr_from_HICON(HICON hIcon)
+{
+	return (void*)(uintptr_t)hIcon;
+}
+
+static void* ptr_from_HCURSOR(HCURSOR hCursor)
+{
+	return (void*)(uintptr_t)hCursor;
+}
+
+static HICON HICON_from_ptr(void* p)
+{
+	return (HICON)(uintptr_t)p;
+}
+
+static HCURSOR HCURSOR_from_ptr(void* p)
+{
+	return (HCURSOR)(uintptr_t)p;
+}
+
+
+// creates a cursor from the given 32 bpp RGBA texture. hotspot (hx,hy) is
+// the offset from its upper-left corner to the position where mouse clicks
+// are registered.
+// the cursor must be cursor_free-ed when no longer needed.
+int cursor_create(int w, int h, void* img, int hx, int hy,
+	void** cursor)
+{
+	*cursor = 0;
+
+	// convert to BGRA (required by BMP).
+	// don't do this in-place so we don't spoil someone else's
+	// use of the texture (however unlikely that may be).
+	void* img_bgra = malloc(w*h*4);
+	if(!img_bgra)
+		return ERR_NO_MEM;
+	const u8* src = (const u8*)img;
+	u8* dst = (u8*)img_bgra;
+	for(int i = 0; i < w*h; i++)
+	{
+		const u8 r = src[0], g = src[1], b = src[2], a = src[3];
+		dst[0] = b; dst[1] = g; dst[2] = r; dst[3] = a;
+		dst += 4;
+		src += 4;
+	}
+	img = img_bgra;
+
+	// MSDN says selecting this HBITMAP into a DC is slower since we use
+	// CreateBitmap; bpp/format must be checked against those of the DC.
+	// this is the simplest way and we don't care about slight performance
+	// differences because this is typically only called once.
+	HBITMAP hbmColor = CreateBitmap(w, h, 1, 32, img_bgra);
+
+	free(img_bgra);
+
+	// CreateIconIndirect doesn't access it; we just need to pass
+	// an empty bitmap.
+	HBITMAP hbmMask = CreateBitmap(w, h, 1, 1, 0);
+
+	// create the cursor (really an icon; they differ only in
+	// fIcon and the hotspot definitions).
+	ICONINFO ii;
+	ii.fIcon = FALSE;  // cursor
+	ii.xHotspot = hx;
+	ii.yHotspot = hy;
+	ii.hbmMask  = hbmMask;
+	ii.hbmColor = hbmColor;
+	HICON hIcon = CreateIconIndirect(&ii);
+
+	// CreateIconIndirect makes copies, so we no longer need these.
+	DeleteObject(hbmMask);
+	DeleteObject(hbmColor);
+
+	if(!hIcon)	// not INVALID_HANDLE_VALUE
+	{
+		debug_warn("cursor CreateIconIndirect failed");
+		return -1;
+	}
+
+	*cursor = ptr_from_HICON(hIcon);
+	return 0;
+}
+
+
+// replaces the current system cursor with the one indicated. need only be
+// called once per cursor; pass 0 to restore the default.
+int cursor_set(void* cursor)
+{
+	// restore default cursor.
+	if(!cursor)
+		cursor = ptr_from_HCURSOR(LoadCursor(0, MAKEINTRESOURCE(IDC_ARROW)));
+
+	(void)SetCursor(HCURSOR_from_ptr(cursor));
+		// return value (previous cursor) is useless.
+
+	return 0;
+}
+
+
+// destroys the indicated cursor and frees its resources. if it is
+// currently the system cursor, the default cursor is restored first.
+int cursor_free(void* cursor)
+{
+	// bail now to prevent potential confusion below; there's nothing to do.
+	if(!cursor)
+		return 0;
+
+	// if the cursor being freed is active, restore the default arrow
+	// (just for safety).
+	if(ptr_from_HCURSOR(GetCursor()) == cursor)
+		WARN_ERR(cursor_set(0));
+
+	BOOL ok = DestroyIcon(HICON_from_ptr(cursor));
+	return ok? 0 : -1;
 }
 
 
@@ -659,9 +795,15 @@ static
 #endif
 void win_pre_main_init()
 {
+	// enable FPU exceptions
+#if CPU_IA32
+	const int bits = _EM_INVALID|_EM_DENORMAL|_EM_ZERODIVIDE|_EM_OVERFLOW|_EM_UNDERFLOW|_EM_INEXACT;
+	_control87(bits, _MCW_EM);
+#endif
+
 	// enable memory tracking and leak detection;
-	// no effect if !defined(HAVE_VC_DEBUG_ALLOC).
-#ifdef PARANOIA
+	// no effect if !HAVE_VC_DEBUG_ALLOC.
+#if CONFIG_PARANOIA
 	debug_heap_enable(DEBUG_HEAP_ALL);
 #elif !defined(NDEBUG)
 	debug_heap_enable(DEBUG_HEAP_NORMAL);

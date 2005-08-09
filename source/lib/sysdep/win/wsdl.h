@@ -136,7 +136,7 @@ extern int SDL_SetGamma(float r, float g, float b);
 
 // Debug-mode ICC doesn't like the intrinsics, so only use them
 // for MSVC and non-debug ICC.
-#if defined(_MSC_VER) && !( defined(__INTEL_COMPILER) && !defined(NDEBUG) )
+#if MSC_VERSION && !( defined(__INTEL_COMPILER) && !defined(NDEBUG) )
 extern unsigned short _byteswap_ushort(unsigned short);
 extern unsigned long _byteswap_ulong(unsigned long);
 extern unsigned __int64 _byteswap_uint64(unsigned __int64);

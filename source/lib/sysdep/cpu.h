@@ -31,6 +31,10 @@ extern void get_cpu_info(void);
 // <new_value> and return true.
 extern bool CAS_(uintptr_t* location, uintptr_t expected, uintptr_t new_value);
 
+// this is often used for pointers, so the macro coerces parameters to
+// uinptr_t. invalid usage unfortunately also goes through without warnings.
+// to catch cases where the caller has passed <expected> as <location> or
+// similar mishaps, the implementation verifies <location> is a valid pointer.
 #define CAS(l,o,n) CAS_((uintptr_t*)l, (uintptr_t)o, (uintptr_t)n)
 
 extern void atomic_add(intptr_t* location, intptr_t increment);
@@ -39,6 +43,19 @@ extern void atomic_add(intptr_t* location, intptr_t increment);
 extern void mfence();
 
 extern void serialize();
+
+// Win32 CONTEXT field abstraction
+// (there's no harm also defining this for other platforms)
+#if CPU_AMD64
+# define PC_ Rip
+# define FP_ Rbp
+# define SP_ Rsp
+#elif CPU_IA32
+# define PC_ Eip
+# define FP_ Ebp
+# define SP_ Esp
+#endif
+
 
 #ifdef __cplusplus
 }

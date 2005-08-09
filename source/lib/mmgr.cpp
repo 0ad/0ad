@@ -21,7 +21,7 @@
 // for easy removal in release builds, so that we don't cause any overhead.
 // note that any application calls to our functions must be removed also,
 // but this is preferable to stubbing them out here ("least surprise").
-#ifdef CONFIG_USE_MMGR
+#if CONFIG_USE_MMGR
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -35,7 +35,7 @@
 #include "mmgr.h"
 #include "lib.h"
 #include "posix.h"
-#include "sysdep/debug.h"
+#include "debug.h"
 
 // remove macro hooks (we need to use the actual malloc/new etc. routines)
 #include "nommgr.h"
@@ -59,27 +59,20 @@ static void lock_init() throw()
 
 static void lock_shutdown() throw()
 {
-	int ret = pthread_mutex_destroy(&mutex);
-	debug_assert(ret == 0);
+	WARN_ERR(pthread_mutex_destroy(&mutex));
 	lock_initialized = false;
 }
 
 static void lock() throw()
 {
 	if(lock_initialized)
-	{
-		int ret = pthread_mutex_lock(&mutex);
-		debug_assert(ret == 0);
-	}
+		WARN_ERR(pthread_mutex_lock(&mutex));
 }
 
 static void unlock() throw()
 {
 	if(lock_initialized)
-	{
-		int ret = pthread_mutex_unlock(&mutex);
-		debug_assert(ret == 0);
-	}
+		WARN_ERR(pthread_mutex_unlock(&mutex));
 }
 
 
@@ -97,7 +90,7 @@ static void unlock() throw()
 // user's buffer. pattern_set assumes it's an integral number of ulongs.
 
 // enable all checks (slow!)
-#ifdef PARANOIA
+#if CONFIG_PARANOIA
 static uint options = MMGR_ALL;
 static const size_t padding_size  = 256 * sizeof(ulong);
 // normal settings
@@ -1135,7 +1128,7 @@ fail:
 void* realloc_dbg(const void* user_p, size_t user_size, AllocType type, const char* file, int line, const char* func, uint stack_frames)
 {
 	void* ret = 0;
-	uint old_size = 0;
+	size_t old_size = 0;
 
 	debug_assert(type == AT_REALLOC);
 
@@ -1388,4 +1381,4 @@ void operator delete[](void* p, const char* file, int line, const char* func) th
 	free_dbg(p, AT_DELETE_ARRAY, file,line,func, 1);
 }
 
-#endif	// #ifdef CONFIG_USE_MMGR
+#endif	// #if CONFIG_USE_MMGR

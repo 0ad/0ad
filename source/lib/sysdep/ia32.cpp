@@ -24,7 +24,7 @@
 #include "timer.h"
 
 // HACK (see call to wtime_reset_impl)
-#ifdef _WIN32
+#if OS_WIN
 #include "win/wtime.h"
 #endif
 
@@ -35,10 +35,10 @@
 #include <vector>
 #include <algorithm>
 
-#ifndef __GNUC__
+#if HAVE_ASM
 
-// replace pathetic MS libc implementation
-#ifdef _WIN32
+// replace pathetic MS libc implementation.
+#if OS_WIN
 double _ceil(double f)
 {
 	double r;
@@ -52,7 +52,7 @@ __asm
 	fstp		[r]
 }
 
-	UNUSED(f);
+	UNUSED2(f);
 
 	return r;
 }
@@ -94,8 +94,8 @@ __asm
 	pop			eax
 }
 
-	UNUSED(new_cw);
-	UNUSED(mask);
+	UNUSED2(new_cw);
+	UNUSED2(mask);
 
 	return 0;
 }
@@ -537,12 +537,12 @@ void ia32_get_cpu_info()
 
 	measure_cpu_freq();
 
-	// HACK: if _WIN32, the HRT makes its final implementation choice
+	// HACK: on Windows, the HRT makes its final implementation choice
 	// in the first calibrate call where cpu info is available.
 	// call wtime_reset_impl here to have that happen now,
 	// so app code isn't surprised by a timer change, although the HRT
 	// does try to keep the timer continuous.
-#ifdef _WIN32
+#if OS_WIN
 	wtime_reset_impl();
 #endif
 }
@@ -575,7 +575,7 @@ bool __cdecl CAS_(uintptr_t* location, uintptr_t expected, uintptr_t new_value)
 {
 	// try to see if caller isn't passing in an address
 	// (CAS's arguments are silently casted)
-	ASSERT(location >= (uintptr_t*)0x10000);
+	ASSERT(!debug_is_pointer_bogus(location));
 
 	bool was_updated;
 __asm
@@ -624,7 +624,7 @@ void serialize()
 	__asm cpuid
 }
 
-#else // #ifndef __GNUC__
+#else // i.e. #if !HAVE_ASM
 
 bool CAS_(uintptr_t* location, uintptr_t expected, uintptr_t new_value)
 {
@@ -669,4 +669,4 @@ void serialize()
 	__asm__ __volatile__ ("cpuid");
 }
 
-#endif	// #ifdef __GNUC__
+#endif	// #if HAVE_ASM

@@ -5,7 +5,7 @@
 #include "precompiled.h"
 #include "config.h"
 
-#ifdef HAVE_ASM
+#if HAVE_ASM
 
 void memcpy_nt(void* dst, void* src, int len)
 {
@@ -65,4 +65,4 @@ write_loop:
 }
 }
 
-#endif	// #ifdef HAVE_ASM
+#endif	// #if HAVE_ASM

@@ -24,7 +24,7 @@
 
 
 
-#ifdef _MSC_VER
+#if MSC_VERSION
 #pragma comment(lib, "ws2_32.lib")
 #endif
 

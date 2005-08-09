@@ -68,7 +68,7 @@ char* stl_simplify_name(char* name)
 	// for each character: (except those skipped as parts of strings)
 	for(;;)
 	{
-		int c = *(++src);
+		char c = *(++src);
 		// preincrement rationale: src++ with no further changes would
 		// require all comparisons to subtract 1. incrementing at the
 		// end of a loop would require a goto, instead of continue
@@ -184,7 +184,7 @@ static bool container_valid(const void* front, size_t el_count)
 	if(el_count > 0x1000000)
 		return false;
 
-	if(debug_is_bogus_pointer(front))
+	if(debug_is_pointer_bogus(front))
 		return false;
 
 	return true;
@@ -212,9 +212,8 @@ public:
 		return true;
 	}
 
-	size_t el_count(size_t el_size) const
+	size_t el_count(size_t UNUSED(el_size)) const
 	{
-		UNUSED(el_size);
 		return size();
 	}
 
@@ -231,7 +230,7 @@ public:
 };
 */
 
-#ifndef OS_UNIX
+#if !OS_UNIX
 
 //
 // standard containers
@@ -270,9 +269,8 @@ public:
 		return true;
 	}
 
-	size_t el_count(size_t el_size) const
+	size_t el_count(size_t UNUSED(el_size)) const
 	{
-		UNUSED(el_size);
 		return size();
 	}
 
@@ -295,23 +293,22 @@ public:
 class Any_list : public std::list<int>
 {
 public:
-	bool valid(size_t el_size) const
+	bool valid(size_t UNUSED(el_size)) const
 	{
 		if(!container_valid(_Myhead, _Mysize))
 			return false;
 		return true;
 	}
 
-	size_t el_count(size_t el_size) const
+	size_t el_count(size_t UNUSED(el_size)) const
 	{
-		UNUSED(el_size);
 		return size();
 	}
 
 	class iter : public const_iterator
 	{
 	public:
-		const u8* deref_and_advance(size_t el_size)
+		const u8* deref_and_advance(size_t UNUSED(el_size))
 		{
 			const u8* p = (const u8*)&operator*();
 			++(*this);
@@ -336,16 +333,17 @@ template<class _Traits> class Any_tree : public std::_Tree<_Traits>
 	}
 
 public:
-	bool valid(size_t el_size) const
+	Any_tree() {}
+
+	bool valid(size_t UNUSED(el_size)) const
 	{
 		if(!container_valid(_Myhead, _Mysize))
 			return false;
 		return true;
 	}
 
-	size_t el_count(size_t el_size) const
+	size_t el_count(size_t UNUSED(el_size)) const
 	{
-		UNUSED(el_size);
 		return size();
 	}
 
@@ -407,7 +405,7 @@ class Any_multiset: public Any_set
 class Any_vector: public std::vector<int>
 {
 public:
-	bool valid(size_t el_size) const
+	bool valid(size_t UNUSED(el_size)) const
 	{
 		if(!container_valid(_Myfirst, _Mylast-_Myfirst))
 			return false;
@@ -465,16 +463,15 @@ public:
 		return true;
 	}
 
-	size_t el_count(size_t el_size) const
+	size_t el_count(size_t UNUSED(el_size)) const
 	{
-		UNUSED(el_size);
 		return size();
 	}
 
 	class iter : public const_iterator
 	{
 	public:
-		const u8* deref_and_advance(size_t el_size)
+		const u8* deref_and_advance(size_t UNUSED(el_size))
 		{
 			const u8* p = (const u8*)&operator*();
 			++(*this);
@@ -506,7 +503,7 @@ class Any_stack : public Any_deque
 // nonstandard containers (will probably be part of C++0x)
 //
 
-#ifdef HAVE_STL_HASH
+#if HAVE_STL_HASH
 
 
 class Any_hash_map: public STL_HASH_MAP<int,int>
@@ -520,16 +517,15 @@ public:
 		return true;
 	}
 
-	size_t el_count(size_t el_size) const
+	size_t el_count(size_t UNUSED(el_size)) const
 	{
-		UNUSED(el_size);
 		return size();
 	}
 
 	class iter : public const_iterator
 	{
 	public:
-		const u8* deref_and_advance(size_t el_size)
+		const u8* deref_and_advance(size_t UNUSED(el_size))
 		{
 			const u8* p = (const u8*)&operator*();
 			++(*this);
@@ -555,16 +551,15 @@ public:
 		return true;
 	}
 
-	size_t el_count(size_t el_size) const
+	size_t el_count(size_t UNUSED(el_size)) const
 	{
-		UNUSED(el_size);
 		return size();
 	}
 
 	class iter : public const_iterator
 	{
 	public:
-		const u8* deref_and_advance(size_t el_size)
+		const u8* deref_and_advance(size_t UNUSED(el_size))
 		{
 			const u8* p = (const u8*)&operator*();
 			++(*this);
@@ -580,7 +575,7 @@ class Any_hash_multiset : public Any_hash_set
 
 #endif	// HAVE_STL_HASH
 
-#ifdef HAVE_STL_SLIST
+#if HAVE_STL_SLIST
 
 
 class Any_slist: public Any_list
@@ -633,7 +628,7 @@ int stl_get_container_info(const char* type_name, const u8* p, size_t size,
 	// HACK: The debug_stl code breaks VS2005's STL badly, causing crashes in
 	// later pieces of code that try to manipulate the STL containers. Presumably
 	// it needs to be altered/rewritten to work happily with the new STL debug iterators.
-#if defined(_MSC_VER) && _MSC_VER >= 1400
+#if MSC_VERSION >= 1400
 	return -1;
 #endif
 
@@ -670,13 +665,13 @@ int stl_get_container_info(const char* type_name, const u8* p, size_t size,
 	CONTAINER(queue, "std::queue<*,std::deque<*> >")
 	CONTAINER(stack, "std::stack<*,std::deque<*> >")
 	// nonstandard containers (will probably be part of C++0x)
-#ifdef HAVE_STL_HASH
+#if HAVE_STL_HASH
 	CONTAINER(hash_map, STRINGIZE(STL_HASH_MAP) "<*>")
 	CONTAINER(hash_multimap, STRINGIZE(STL_HASH_MULTIMAP) "<*>")
 	CONTAINER(hash_set, STRINGIZE(STL_HASH_SET) "<*>")
 	CONTAINER(hash_multiset, STRINGIZE(STL_HASH_MULTISET) "<*>")
 #endif
-#ifdef HAVE_STL_SLIST
+#if HAVE_STL_SLIST
 	CONTAINER(slist, STRINGIZE(STL_SLIST) "<*>")
 #endif
 
@@ -686,4 +681,5 @@ int stl_get_container_info(const char* type_name, const u8* p, size_t size,
 		return STL_CNT_INVALID;
 	return 0;
 }
+
 #endif

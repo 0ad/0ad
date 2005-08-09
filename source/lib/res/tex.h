@@ -28,7 +28,7 @@ enum TexInfoFlags
 	TEX_DXT   = 0x07,	// mask; value = {1,3,5}
 	TEX_BGR   = 0x08,
 	TEX_ALPHA = 0x10,
-	TEX_GRAY  = 0x20,
+	TEX_GREY  = 0x20,
 
 	// orientation - never returned by tex_load, since it automatically
 	// flips to match global orientation. these are passed to tex_write

@@ -78,7 +78,7 @@
 
 // skip the functions on VC2005 (already provided there), but not our
 // self-test and the t* defines (needed for test).
-#if _MSC_VER < 1400
+#if MSC_VERSION < 1400
 
 
 // return length [in characters] of a string, not including the trailing
@@ -200,7 +200,7 @@ int tcat_s(tchar* dst, size_t max_dst_chars, const tchar* src)
 	return tncat_s(dst, max_dst_chars, src, SIZE_MAX);
 }
 
-#endif	// #if _MSC_VER < 1400
+#endif	// #if MSC_VERSION < 1400
 
 
 //////////////////////////////////////////////////////////////////////////////

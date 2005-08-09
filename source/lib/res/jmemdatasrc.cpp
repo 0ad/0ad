@@ -45,7 +45,7 @@ typedef MemSrcMgr* SrcPtr;
  * before any data is actually read.
  */
 
-METHODDEF(void) init_source(j_decompress_ptr cinfo)
+METHODDEF(void) init_source(j_decompress_ptr UNUSED(cinfo))
 {
 }
 
@@ -134,7 +134,7 @@ METHODDEF(void) skip_input_data(j_decompress_ptr cinfo, long num_bytes)
  * for error exit.
  */
 
-METHODDEF(void) term_source(j_decompress_ptr cinfo)
+METHODDEF(void) term_source(j_decompress_ptr UNUSED(cinfo))
 {
 	/*
 	 * no-op (we don't own the buffer and shouldn't,
@@ -318,7 +318,7 @@ METHODDEF(void) term_destination(j_compress_ptr cinfo)
 
 	// make sure any data left in the buffer is written out
 	const size_t bytes_in_buf = OUTPUT_BUF_SIZE - dst->pub.free_in_buffer;
-	if(vfs_io(dst->hf, bytes_in_buf, (void**)&dst->buf) != bytes_in_buf)
+	if(vfs_io(dst->hf, bytes_in_buf, (void**)&dst->buf) != (ssize_t)bytes_in_buf)
 		ERREXIT(cinfo, JERR_FILE_WRITE);
 
 	// flush file, if necessary.

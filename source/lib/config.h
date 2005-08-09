@@ -1,34 +1,70 @@
 #ifndef CONFIG_H_INCLUDED
 #define CONFIG_H_INCLUDED
 
+// the config/have macros are always defined; their values (1 or 0) are
+// tested with #if instead of #ifdef.
+// this protects user code from typos such as #ifdef _MSC_VEER, which
+// would silently remove code. instead, we will at least get "test of
+// undefined macro" warnings here. not including this header also triggers
+// such warnings, but won't happen often because we're included from PCH.
+
 
 //-----------------------------------------------------------------------------
 // user-specified configuration choices
 //-----------------------------------------------------------------------------
 
-#undef CONFIG_DISABLE_EXCEPTIONS
+// allow override via compiler settings by checking #ifndef.
 
-#undef CONFIG_USE_MMGR
+// enable memory tracking (slow). see mmgr.cpp.
+#ifndef CONFIG_USE_MMGR
+# define CONFIG_USE_MMGR 0
+#endif
+
+// enable additional debug checks (very slow).
+#ifndef CONFIG_PARANOIA
+# define CONFIG_PARANOIA 0
+#endif
+
+// try to prevent any exceptions from being thrown - even by the C++
+// standard library. useful only for performance tests.
+#ifndef CONFIG_DISABLE_EXCEPTIONS
+# define CONFIG_DISABLE_EXCEPTIONS 0
+#endif
 
 
 //-----------------------------------------------------------------------------
 // auto-detect OS and platform via predefined macros
 //-----------------------------------------------------------------------------
 
-// get compiler versions with consistent names + format:
-// (major*100 + minor), or 0 if not present. note that more than
+// rationale:
+// - these macros have consistent names and numerical values; using
+//   them saves other code from having to know the obscure predefined macros.
+// - we'd like to use #if/#elif/#endif chains for e.g. OS_* to allow warning
+//   if none is selected, but there's no good way to #define all inapplicable
+//   settings to 0. doing so up front is hard to maintain and would require
+//   #undef before setting any one to 1. #ifndef afterwards for each setting
+//   is ugly and brittle as well. we therefore use #if/#else/#endif.
+
+// compiler
+// 0 if not present, or (major*100 + minor). note that more than
 // one *_VERSION may be non-zero due to interoperability (e.g. ICC with MSC).
-// .. ICC
-#if defined(__INTEL_COMPILER)
-# define ICC_VERSION __INTEL_COMPILER
-#else
-# define ICC_VERSION 0
-#endif
 // .. VC
 #ifdef _MSC_VER
 # define MSC_VERSION _MSC_VER
 #else
 # define MSC_VERSION 0
+#endif
+// .. ICC (VC-compatible)
+#if defined(__INTEL_COMPILER)
+# define ICC_VERSION __INTEL_COMPILER
+#else
+# define ICC_VERSION 0
+#endif
+// .. LCC (VC-compatible)
+#if defined(__LCC__)
+# define LCC_VERSION __LCC__
+#else
+# define LCC_VERSION 0
 #endif
 // .. GCC
 #ifdef __GNUC__
@@ -37,10 +73,12 @@
 # define GCC_VERSION 0
 #endif
 
+
 // STL
-// .. pull in the Dinkumware header that defines _CPPLIB_VER
+// (checked by STL implementation-specific code in debug_stl).
+// .. Dinkumware
 #if MSC_VERSION != 0
-# include <yvals.h>
+# include <yvals.h>	// defines _CPPLIB_VER
 #endif
 #if defined(_CPPLIB_VER)
 # define STL_DINKUMWARE _CPPLIB_VER
@@ -48,57 +86,120 @@
 # define STL_DINKUMWARE 0
 #endif
 
+
 // OS
 // .. Windows
 #if defined(_WIN32) || defined(WIN32)
-# define OS_WIN
-// .. Linux
-#elif defined(linux) || defined(__linux) || defined(__linux__)
-# define OS_LINUX
-# define OS_UNIX
-// .. Mac OS X
-#elif defined(MAC_OS_X
-# define OS_MACOSX
-# define OS_UNIX
-// .. BSD
-#elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
-# define OS_BSD
-# define OS_UNIX
-// .. Solaris
-#elif defined(SOLARIS)
-# define OS_SOLARIS
-# define OS_UNIX
-// .. BeOS
-#elif defined(__BEOS__)
-# define OS_BEOS
-// .. Mac OS 9 or below
-#elif defined(macintosh) || defined(__APPLE__) || defined(__APPLE_CC__)
-# define OS_MAC
-// .. Amiga
-#elif defined(__amigaos__)
-# define OS_AMIGA
-// .. Unix-based
-#elif defined(unix) || defined(__unix) || defined(_XOPEN_SOURCE) || defined(_POSIX_SOURCE)
-# define OS_UNIX
-// .. unknown
+# define OS_WIN 1
 #else
-# error "unknown OS - add define here"
+# define OS_WIN 0
+#endif
+// .. Linux
+#if defined(linux) || defined(__linux) || defined(__linux__)
+# define OS_LINUX 1
+#else
+# define OS_LINUX 0
+#endif
+// .. Mac OS X
+#if defined(MAC_OS_X)
+# define OS_MACOSX 1
+#else
+# define OS_MACOSX 0
+#endif
+// .. BSD
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+# define OS_BSD 1
+#else
+# define OS_BSD 0
+#endif
+// .. Solaris
+#if defined(SOLARIS)
+# define OS_SOLARIS 1
+#else
+# define OS_SOLARIS 0
+#endif
+// .. BeOS
+#if defined(__BEOS__)
+# define OS_BEOS 1
+#else
+# define OS_BEOS 0
+#endif
+// .. Mac OS 9 or below
+#if defined(macintosh) || defined(__APPLE__) || defined(__APPLE_CC__)
+# define OS_MAC 1
+#else
+# define OS_MAC 0
+#endif
+// .. Amiga
+#if defined(__amigaos__)
+# define OS_AMIGA 1
+#else
+# define OS_AMIGA 0
+#endif
+// .. Unix-based
+#if defined(unix) || defined(__unix) || defined(_XOPEN_SOURCE) || defined(_POSIX_SOURCE)
+# define OS_UNIX 1
+#else
+# define OS_UNIX 0
+#endif
+// .. convenience: additionally set OS_UNIX for Unix-based OSes
+#if OS_LINUX || OS_MACOSX || OS_BSD || OS_SOLARIS
+# undef OS_UNIX
+# define OS_UNIX 1
 #endif
 
-// If these are already defined by someone else, assume they are also correct :P
-#if !(defined(IS_LITTLE_ENDIAN) || defined(IS_BIG_ENDIAN))
+
+// CPU
+// .. IA-32
+#if defined(__i386__) || defined(__i386) || defined(_M_IX86)
+# define CPU_IA32 1
+#else
+# define CPU_IA32 0
+#endif
+// .. IA-64
+#if defined(__ia64__) || defined(__ia64) || defined(_M_IA64)
+# define CPU_IA64 1
+#else
+# define CPU_IA64 0
+#endif
+// .. AMD64
+#if defined(__amd64__) || defined(__amd64) || defined(_M_AMD64)
+# define CPU_AMD64 1
+#else
+# define CPU_AMD64 0
+#endif
+// .. Alpha
+#if defined(__alpha__) || defined(__alpha) || defined(_M_ALPHA)
+# define CPU_ALPHA 1
+#else
+# define CPU_ALPHA 0
+#endif
+// .. ARM
+#if defined(__arm__)
+# define CPU_ARM 1
+#else
+# define CPU_ARM 0
+#endif
+// .. MIPS
+#if defined(__MIPSEL__)
+# define CPU_MIPS 1
+#else
+# define CPU_MIPS 0
+#endif
+
+
 // byte order
-# if defined(__i386__) || defined(__i386) || defined(_M_IX86) || \
-     defined(__ia64__) || defined(__ia64) || defined(_M_IA64) || \
-	 defined(__alpha__) || defined(__alpha) || defined(_M_ALPHA) || \
-	 defined(__arm__) || \
-	 defined(__MIPSEL__) || \
-	 defined(__LITTLE_ENDIAN__)
-#  define IS_LITTLE_ENDIAN
+// if already defined by someone else, assume they are also correct :P
+#ifndef BYTE_ORDER
+# define LITTLE_ENDIAN 0x4321
+# define BIG_ENDIAN    0x1234
+# if CPU_IA32 || CPU_IA64 || CPU_AMD64 || CPU_ALPHA || CPU_ARM || CPU_MIPS || defined(__LITTLE_ENDIAN__)
+#  define BYTE_ORDER LITTLE_ENDIAN
 # else
-#  define IS_BIG_ENDIAN
+#  define BYTE_ORDER BIG_ENDIAN
 # endif
 #endif
+
 
 //-----------------------------------------------------------------------------
 // auto-detect platform features, given the above information
@@ -106,61 +207,69 @@
 
 // compiler support for C99
 // (this is more convenient than testing __STDC_VERSION__ directly)
-#undef HAVE_C99
 #if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901L)
-# define HAVE_C99
+# define HAVE_C99 1
+#else
+# define HAVE_C99 0
 #endif
 
 // gettimeofday()
-#undef HAVE_GETTIMEOFDAY
-#ifdef OS_UNIX
-# define HAVE_GETTIMEOFDAY
+#if OS_UNIX
+# define HAVE_GETTIMEOFDAY 1
+#else
+# define HAVE_GETTIMEOFDAY 0
+#endif
+
+// clock_gettime()
+#if OS_LINUX
+# define HAVE_CLOCK_GETTIME 1
+#else
+# define HAVE_CLOCK_GETTIME 0
 #endif
 
 // X server
-#undef HAVE_X
-#ifdef OS_LINUX
-# define HAVE_X
+#if OS_LINUX
+# define HAVE_X 1
+#else
+# define HAVE_X 0
 #endif
 
 // __asm{} blocks (Intel syntax)
-#undef HAVE_ASM
-#if MSC_VERSION != 0
-# define HAVE_ASM
+#if MSC_VERSION
+# define HAVE_ASM 1
+#else
+# define HAVE_ASM 0
 #endif
 
 // precompiled headers (affects what precompiled.h pulls in; see there)
-#undef HAVE_PCH
-#if (MSC_VERSION != 0) || (GCC_VERSION > 304)
-# define HAVE_PCH
+#if MSC_VERSION || (GCC_VERSION > 304)
+# define HAVE_PCH 1
+#else
+# define HAVE_PCH 0
 #endif
 
 // VC debug memory allocator / leak detector
-#undef HAVE_VC_DEBUG_ALLOC
-#if MSC_VERSION != 0
-# define HAVE_VC_DEBUG_ALLOC
-#endif
-// .. only in full-debug mode;
-#if	defined(NDEBUG) || defined(TESTING)
-# undef HAVE_VC_DEBUG_ALLOC
-#endif
-// .. require PCH, because it makes sure system headers are included before
-//    redefining new (otherwise, tons of errors result);
-#if !defined(HAVE_PCH)
-# undef HAVE_VC_DEBUG_ALLOC
-#endif
-// .. disable on ICC9, because the ICC 9.0.006 beta appears to generate
-//    incorrect code when we redefine new.
-//    TODO: remove when no longer necessary
-#if ICC_VERSION == 900
-# undef HAVE_VC_DEBUG_ALLOC
+// notes:
+// - PCH is required because it makes sure system headers are included
+//   before redefining new (otherwise, tons of errors result);
+// - disabled on ICC9 because the ICC 9.0.006 beta appears to generate
+//   incorrect code when we redefine new.
+//   TODO: remove when no longer necessary
+#if MSC_VERSION && \
+	(!defined(NDEBUG) || defined(TESTING)) && \
+	HAVE_PCH && \
+	ICC_VERSION != 900
+# define HAVE_VC_DEBUG_ALLOC 1
+#else
+# define HAVE_VC_DEBUG_ALLOC 0
 #endif
 
 // nonstandard STL containers
-#undef HAVE_STL_HASH
-#undef HAVE_STL_SLIST
+#define HAVE_STL_SLIST 0
 #if STL_DINKUMWARE != 0
-# define HAVE_STL_HASH
+# define HAVE_STL_HASH 1
+#else
+# define HAVE_STL_HASH 0
 #endif
 
 #endif	// #ifndef CONFIG_H_INCLUDED

@@ -7,7 +7,7 @@
 #include <sys/types.h>
 #include <stddef.h>
 
-#ifdef _WIN32
+#if OS_WIN
 # include "sysdep/win/wposix_types.h"
 #else
 // unix/linux/glibc/gcc says that this macro has to be defined when including
@@ -16,4 +16,4 @@
 #  define __STDC_LIMIT_MACROS
 # endif
 # include <stdint.h>
-#endif	// #ifdef _WIN32
+#endif	// #if OS_WIN

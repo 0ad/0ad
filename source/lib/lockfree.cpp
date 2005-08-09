@@ -149,16 +149,14 @@ static void tls_retire(void* tls_)
 // (called via pthread_once from tls_get)
 static void tls_init()
 {
-	int ret = pthread_key_create(&tls_key, tls_retire);
-	debug_assert(ret == 0);
+	WARN_ERR(pthread_key_create(&tls_key, tls_retire));
 }
 
 
 // free all TLS info. called by smr_try_shutdown.
 static void tls_shutdown()
 {
-	int ret = pthread_key_delete(tls_key);
-	debug_assert(ret == 0);
+	WARN_ERR(pthread_key_delete(tls_key));
 	tls_key = 0;
 
 	while(tls_list)
@@ -197,8 +195,7 @@ static TLS* tls_alloc()
 	if(!tls)
 	{
 		tls = (TLS*)-1;
-		int ret = pthread_setspecific(tls_key, tls);
-		debug_assert(ret == 0);
+		WARN_ERR(pthread_setspecific(tls_key, tls));
 		return tls;
 	}
 	tls->active = 1;
@@ -216,8 +213,7 @@ static TLS* tls_alloc()
 have_tls:
 	atomic_add(&active_threads, 1);
 
-	int ret = pthread_setspecific(tls_key, tls);
-	debug_assert(ret == 0);
+	WARN_ERR(pthread_setspecific(tls_key, tls));
 	return tls;
 }
 
@@ -226,8 +222,7 @@ have_tls:
 // called from each lfl_* function, so don't waste any time.
 static TLS* tls_get()
 {
-	int ret = pthread_once(&tls_once, tls_init);
-	debug_assert(ret == 0);
+	WARN_ERR(pthread_once(&tls_once, tls_init));
 
 	// already allocated or tls_alloc failed.
 	TLS* tls = (TLS*)pthread_getspecific(tls_key);
@@ -678,7 +673,7 @@ static LFList* chain(LFHash* hash, uintptr_t key)
 int lfh_init(LFHash* hash, size_t num_entries)
 {
 	hash->tbl  = 0;
-	hash->mask = ~0;
+	hash->mask = ~0u;
 
 	if(!is_pow2((long)num_entries))
 	{
@@ -767,12 +762,10 @@ static void basic_single_threaded_test()
 	int sig = 10;
 
 	LFList list;
-	err = lfl_init(&list);
-	debug_assert(err == 0);
+	WARN_ERR(lfl_init(&list));
 
 	LFHash hash;
-	err = lfh_init(&hash, 8);
-	debug_assert(err == 0);
+	WARN_ERR(lfh_init(&hash, 8));
 
 	// add some entries; store "signatures" (ascending int values)
 	for(uint i = 0; i < ENTRIES; i++)
@@ -825,6 +818,8 @@ static pthread_mutex_t mutex;	// protects <keys>
 
 static void* thread_func(void* arg)
 {
+	debug_set_thread_name("LF_test");
+
 	const uintptr_t thread_number = (uintptr_t)arg;
 
 	atomic_add(&num_active_threads, 1);
@@ -933,12 +928,9 @@ static void multithreaded_torture_test()
 	const double end_time = get_time() + TEST_LENGTH;
 	is_complete = false;
 
-	err = lfl_init(&list);
-	debug_assert(err == 0);
-	err = lfh_init(&hash, 128);
-	debug_assert(err == 0);
-	err = pthread_mutex_init(&mutex, 0);
-	debug_assert(err == 0);
+	WARN_ERR(lfl_init(&list));
+	WARN_ERR(lfh_init(&hash, 128));
+	WARN_ERR(pthread_mutex_init(&mutex, 0));
 
 	// spin off test threads (many, to force preemption)
 	const uint NUM_THREADS = 16;
@@ -957,8 +949,7 @@ static void multithreaded_torture_test()
 
 	lfl_free(&list);
 	lfh_free(&hash);
-	err = pthread_mutex_destroy(&mutex);
-	debug_assert(err == 0);
+	WARN_ERR(pthread_mutex_destroy(&mutex));
 }
 
 

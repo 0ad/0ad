@@ -18,8 +18,8 @@
 #ifndef WIN_H__
 #define WIN_H__
 
-#ifndef _WIN32
-#error "including win.h without _WIN32 defined"
+#if !OS_WIN
+#error "win.h: do not include if not compiling for Windows"
 #endif
 
 #include "config.h"
@@ -28,7 +28,7 @@
 
 // provide C99 *snprintf functions if compiler doesn't already
 // (MinGW does, VC7.1 doesn't).
-#ifndef HAVE_C99
+#if !HAVE_C99
 # define snprintf _snprintf
 # define swprintf _snwprintf
 # define vsnprintf _vsnprintf

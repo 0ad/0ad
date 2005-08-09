@@ -165,7 +165,7 @@ static int choose_impl()
 	if(overrides[impl] == HRT_FORCE)\
 		safe = true;
 
-#if defined(_M_IX86) && !defined(NO_TSC)
+#if CPU_IA32 && !defined(NO_TSC)
 	// CPU Timestamp Counter (incremented every clock)
 	// ns resolution, moderate precision (poor clock crystal?)
 	//
@@ -201,7 +201,7 @@ static int choose_impl()
 	}
 #endif	// TSC
 
-#if defined(_WIN32) && !defined(NO_QPC)
+#if OS_WIN && !defined(NO_QPC)
 	// Windows QueryPerformanceCounter API
 	// implementations:
 	// - PIT on Win2k - 838 ns resolution, slow to read (~3 µs)
@@ -295,13 +295,13 @@ static i64 ticks_lk()
 	switch(hrt_impl)
 	{
 // TSC
-#if defined(_M_IX86) && !defined(NO_TSC)
+#if CPU_IA32 && !defined(NO_TSC)
 	case HRT_TSC:
 		return (i64)rdtsc();
 #endif
 
 // QPC
-#if defined(_WIN32) && !defined(NO_QPC)
+#if OS_WIN && !defined(NO_QPC)
 	case HRT_QPC:
 		{
 		LARGE_INTEGER i;
@@ -312,7 +312,7 @@ static i64 ticks_lk()
 #endif
 
 // TGT
-#ifdef _WIN32
+#if OS_WIN
 	case HRT_GTC:
 		return (i64)GetTickCount();
 #endif
@@ -488,7 +488,7 @@ static const long safe_timer_freq = 1000;
 
 static long safe_time()
 {
-#ifdef _WIN32
+#if OS_WIN
 	return (long)GetTickCount();
 #else
 	return (long)(clock() * 1000.0 / CLOCKS_PER_SEC);
@@ -561,9 +561,9 @@ static void calibrate_lk()
 static pthread_t thread;
 static sem_t exit_flag;
 
-static void* calibration_thread(void* data)
+static void* calibration_thread(void* UNUSED(data))
 {
-	UNUSED(data);
+	debug_set_thread_name("wtime");
 
 	for(;;)
 	{
@@ -808,10 +808,8 @@ int nanosleep(const struct timespec* rqtp, struct timespec* /* rmtp */)
 }
 
 
-int gettimeofday(struct timeval* tv, void* tzp)
+int gettimeofday(struct timeval* tv, void* UNUSED(tzp))
 {
-	UNUSED(tzp);
-
 	const long us = (long)(time_ns() / 1000);
 	tv->tv_sec  = (time_t)     (us / _1e6);
 	tv->tv_usec = (suseconds_t)(us % _1e6);

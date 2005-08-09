@@ -18,17 +18,18 @@
 #ifndef WDBG_H__
 #define WDBG_H__
 
-#include "lib/types.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#ifdef _MSC_VER
+#if MSC_VERSION
 # define debug_break() __asm { int 3 }
 #else
 # error "port this or define to implementation function"
 #endif
+
+// internal use only:
+extern void wdbg_set_thread_name(const char* name);
 
 #ifdef __cplusplus
 }

@@ -28,9 +28,24 @@ static bool fmt_is_s3tc(GLenum fmt)
 	case GL_COMPRESSED_RGBA_S3TC_DXT3_EXT:
 	case GL_COMPRESSED_RGBA_S3TC_DXT5_EXT:
 		return true;
-	default:
-		return false;
 	}
+	return false;
+}
+
+
+static bool filter_is_known(GLint filter)
+{
+	switch(filter)
+	{
+	case GL_NEAREST:
+	case GL_LINEAR:
+	case GL_NEAREST_MIPMAP_NEAREST:
+	case GL_LINEAR_MIPMAP_NEAREST:
+	case GL_NEAREST_MIPMAP_LINEAR:
+	case GL_LINEAR_MIPMAP_LINEAR:
+		return true;
+	}
+	return false;
 }
 
 
@@ -61,7 +76,7 @@ static int get_gl_fmt(int bpp, int flags, GLenum* fmt, GLenum* int_fmt)
 {
 	const bool alpha = (flags & TEX_ALPHA) != 0;
 	const bool bgr   = (flags & TEX_BGR  ) != 0;
-	const bool gray  = (flags & TEX_GRAY ) != 0;
+	const bool grey  = (flags & TEX_GREY ) != 0;
 	const int  dxt   = flags & TEX_DXT;
 
 	// in case we fail
@@ -101,6 +116,7 @@ static int get_gl_fmt(int bpp, int flags, GLenum* fmt, GLenum* int_fmt)
 	switch(bpp)
 	{
 	case 8:
+		debug_assert(grey);
 		*fmt = GL_LUMINANCE;
 		*int_fmt = high_quality? GL_LUMINANCE8 : GL_LUMINANCE4;
 		return 0;
@@ -125,8 +141,7 @@ static int get_gl_fmt(int bpp, int flags, GLenum* fmt, GLenum* int_fmt)
 		return ERR_TEX_FMT_INVALID;
 	}
 
-	// unreachable
-	debug_assert(0);
+	UNREACHABLE;
 }
 
 
@@ -187,10 +202,8 @@ struct Tex
 
 H_TYPE_DEFINE(Tex);
 
-static void Tex_init(Tex* t, va_list args)
+static void Tex_init(Tex* t, va_list UNUSED(args))
 {
-	UNUSED(args);
-
 	// set to default (once)
 	t->filter = tex_filter;
 }
@@ -321,8 +334,10 @@ static int tex_validate(const uint line, const Tex* t)
 
 	// upload parameters, set by tex_upload(Handle), or 0
 	GLint filter  = t->filter;
-	GLenum int_fmt = t->int_fmt;
-	// TODO: check if valid
+	if(filter != 0 && !filter_is_known(filter))
+		msg = "invalid filter";
+	// as with the texel format above, there is not anything we can do
+	// to verify t->int_fmt is correct (even 0 is valid).
 
 	if(msg)
 	{
@@ -367,7 +382,7 @@ int tex_upload(const Handle ht, int filter_ovr, int int_fmt_ovr, int fmt_ovr)
 	GLenum fmt     = t->fmt;
 	GLint filter   = t->filter;
 	GLenum int_fmt = t->int_fmt;
-	void* tex_data = (char*)mem_get_ptr(t->ti.hm) + t->ti.ofs;
+	void* tex_data = (u8*)mem_get_ptr(t->ti.hm) + t->ti.ofs;
 
 	// does filter call for uploading mipmaps?
 	const bool need_mipmaps = filter_uses_mipmaps(filter);
@@ -539,7 +554,7 @@ int tex_info(Handle ht, int* w, int* h, int* fmt, int* bpp, void** p)
 	if(bpp)
 		*bpp = t->ti.bpp;
 	if(p)
-		*p = mem_get_ptr(t->ti.hm);
+		*p = (u8*)mem_get_ptr(t->ti.hm) + t->ti.ofs;
 
 	return 0;
 }

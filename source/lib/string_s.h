@@ -4,10 +4,10 @@
 #include "posix_types.h"	// size_t
 
 // these are already shipped with VC2005
-#if _MSC_VER < 1400
+#if MSC_VERSION < 1400
 
 // Conflicts with glibc definitions
-#ifndef OS_UNIX
+#if !OS_UNIX
 // return length [in characters] of a string, not including the trailing
 // null character. to protect against access violations, only the
 // first <max_len> characters are examined; if the null character is
@@ -53,6 +53,6 @@ extern int strcat_s(char* dst, size_t max_dst_chars, const char* src);
 extern int wcscat_s(wchar_t* dst, size_t max_dst_chars, const wchar_t* src);
 
 
-#endif	// #if _MSC_VER < 1400
+#endif	// #if MSC_VERSION < 1400
 
 #endif	// #ifndef STRINGS_S_H__

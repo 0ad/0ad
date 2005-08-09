@@ -18,6 +18,8 @@
 
 #include "precompiled.h"
 
+#if 0
+
 #include <algorithm>
 #include <limits.h>
 
@@ -580,3 +582,4 @@ bucket = prev_bucket;
 }
 }
 */
+#endif

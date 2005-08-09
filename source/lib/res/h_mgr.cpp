@@ -178,7 +178,7 @@ static i32 last_in_use = -1;	// don't search unused entries
 static HDATA* h_data_from_idx(const i32 idx)
 {
 	// makes things *crawl*!
-#ifdef PARANOIA
+#if CONFIG_PARANOIA
 	debug_heap_check();
 #endif
 
@@ -283,7 +283,7 @@ static int alloc_idx(i32& idx, HDATA*& hd)
 		// add another
 		if(last_in_use >= hdata_cap)
 		{
-			debug_assert(!"alloc_idx: too many open handles (increase IDX_BITS)");
+			debug_warn("alloc_idx: too many open handles (increase IDX_BITS)");
 			return ERR_LIMIT;
 		}
 		idx = last_in_use+1;	// just incrementing idx would start it at 1
@@ -418,11 +418,22 @@ int h_free(Handle& h, H_Type type)
 	i32 idx = h_idx(h);
 	HDATA* hd = h_data_tag_type(h, type);
 
-	// wipe out the handle, to prevent reuse.
+	// wipe out the handle to prevent reuse but keep a copy for below.
+	const Handle h_copy = h;
 	h = 0;
 
+	// h was invalid
 	if(!hd)
-		return ERR_INVALID_HANDLE;
+	{
+		// 0-initialized or an error code; don't complain because this
+		// happens often and is harmless.
+		if(h_copy <= 0)
+			return 0;
+		// this was a valid handle but was probably freed in the meantime.
+		// complain because this probably indicates a bug somewhere.
+		CHECK_ERR(ERR_INVALID_HANDLE);
+	}
+
 	return h_free_idx(idx, hd);
 }
 
@@ -606,18 +617,21 @@ skip_alloc:
 
 	H_VTbl* vtbl = type;
 
+	int err;
+
 	// init
 	va_list args;
 	va_start(args, flags);
 	if(vtbl->init)
+	{
 		vtbl->init(hd->user, args);
+	}
 	va_end(args);
 
 	// reload
 	if(vtbl->reload)
 	{
 		// catch exception to simplify reload funcs - let them use new()
-		int err;
 		try
 		{
 			err = vtbl->reload(hd->user, fn, h);
@@ -626,19 +640,20 @@ skip_alloc:
 		{
 			err = ERR_NO_MEM;
 		}
-
-		// reload failed; free the handle
 		if(err < 0)
-		{
-			// don't cache it - it's not valid
-			hd->keep_open = 0;
-
-			h_free(h, type);
-			return (Handle)err;
-		}
+			goto fail;
 	}
 
 	return h;
+
+fail:
+	// reload failed; free the handle
+	hd->keep_open = 0;	// disallow caching (since contents are invalid)
+	(void)h_free(h, type);	// (h_free already does WARN_ERR)
+
+	// note: since some uses will always fail (e.g. loading sounds if
+	// g_Quickstart), do not complain here.
+	return (Handle)err;
 }
 
 

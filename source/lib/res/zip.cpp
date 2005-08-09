@@ -54,7 +54,7 @@
 # define ZLIB_DLL
 # include <zlib.h>
 
-# ifdef _MSC_VER
+# if MSC_VERSION
 #  ifdef NDEBUG
 #   pragma comment(lib, "zlib1.lib")
 #  else
@@ -884,16 +884,8 @@ int inf_free_ctx(uintptr_t _ctx)
 ///////////////////////////////////////////////////////////////////////////////
 
 
-enum ZFileFlags
-{
-	// the ZFile has been successfully zip_map-ped.
-	// used to make sure the archive's mmap refcount remains balanced,
-	// i.e. no one double-frees the mapping.
-	ZF_HAS_MAPPING = 0x4000
-};
-
 // marker for ZFile struct, to make sure it's valid
-#ifdef PARANOIA
+#if CONFIG_PARANOIA
 static const u32 ZFILE_MAGIC = FOURCC('Z','F','I','L');
 #endif
 
@@ -909,10 +901,6 @@ static int zfile_validate(uint line, ZFile* zf)
 		msg = "ZFile* parameter = 0";
 		err = ERR_INVALID_PARAM;
 	}
-#ifdef PARANOIA
-	else if(zf->magic != ZFILE_MAGIC)
-		msg = "ZFile corrupted (magic field incorrect)";
-#endif
 #ifndef NDEBUG
 //	else if(!h_user_data(zf->ha, H_ZArchive))
 //		msg = "invalid archive handle";
@@ -934,7 +922,7 @@ static int zfile_validate(uint line, ZFile* zf)
 	return err;
 }
 
-#define CHECK_ZFILE(f) CHECK_ERR(zfile_validate(__LINE__, f))
+#define CHECK_ZFILE(f) RETURN_ERR(zfile_validate(__LINE__, f))
 
 
 // convenience function, allows implementation change in ZFile.
@@ -969,7 +957,7 @@ int zip_stat(Handle ha, const char* fn, struct stat* s)
 
 // open file, and fill *zf with information about it.
 // return < 0 on error (output param zeroed). 
-int zip_open(const Handle ha, const char* fn, ZFile* zf)
+int zip_open(const Handle ha, const char* fn, int flags, ZFile* zf)
 {
 	// zero output param in case we fail below.
 	memset(zf, 0, sizeof(ZFile));
@@ -980,20 +968,16 @@ int zip_open(const Handle ha, const char* fn, ZFile* zf)
 	ZLoc loc;
 		// don't want ZFile to contain a ZEnt struct -
 		// its ucsize member must be 'loose' for compatibility with File.
-		// => need to copy ZEnt fields into ZFile.
-	CHECK_ERR(lookup_get_file_info(li, fn, &loc));
+		// => need to copy ZLoc fields into ZFile.
+	RETURN_ERR(lookup_get_file_info(li, fn, &loc));
 
-#ifdef PARANOIA
-	zf->magic    = ZFILE_MAGIC;
-#endif
-
-	zf->ucsize   = loc.ucsize;
-	zf->ofs      = loc.ofs;
-	zf->csize    = loc.csize;
-
-	zf->ha       = ha;
-	zf->inf_ctx  = inf_init_ctx(zfile_compressed(zf));
-
+	zf->flags     = flags;
+	zf->ucsize    = loc.ucsize;
+	zf->ofs       = loc.ofs;
+	zf->csize     = loc.csize;
+	zf->ha        = ha;
+	zf->inf_ctx   = inf_init_ctx(zfile_compressed(zf));
+	zf->is_mapped = 0;
 	CHECK_ZFILE(zf);
 
 	return 0;
@@ -1029,13 +1013,13 @@ static const size_t CHUNK_SIZE = 16*KiB;
 
 // begin transferring <size> bytes, starting at <ofs>. get result
 // with zip_wait_io; when no longer needed, free via zip_discard_io.
-int zip_start_io(ZFile* zf, off_t user_ofs, size_t max_output_size, void* user_buf, ZipIO* io)
+int zip_start_io(ZFile* zf, off_t user_ofs, size_t max_output_size, void* user_buf, ZipIo* io)
 {
 	// not needed, since ZFile tells us the last read offset in the file.
-	UNUSED(user_ofs);
+	UNUSED2(user_ofs);
 
 	// zero output param in case we fail below.
-	memset(io, 0, sizeof(ZipIO));
+	memset(io, 0, sizeof(ZipIo));
 
 	CHECK_ZFILE(zf);
 	H_DEREF(zf->ha, ZArchive, za);
@@ -1089,7 +1073,7 @@ int zip_start_io(ZFile* zf, off_t user_ofs, size_t max_output_size, void* user_b
 
 // indicates if the IO referenced by <io> has completed.
 // return value: 0 if pending, 1 if complete, < 0 on error.
-int zip_io_complete(ZipIO* io)
+int zip_io_complete(ZipIo* io)
 {
 	if(io->already_inflated)
 		return 1;
@@ -1099,7 +1083,7 @@ int zip_io_complete(ZipIO* io)
 
 // wait until the transfer <io> completes, and return its buffer.
 // output parameters are zeroed on error.
-int zip_wait_io(ZipIO* io, void*& buf, size_t& size)
+int zip_wait_io(ZipIo* io, void*& buf, size_t& size)
 {
 	buf  = io->user_buf;
 	size = io->max_output_size;
@@ -1113,9 +1097,11 @@ int zip_wait_io(ZipIO* io, void*& buf, size_t& size)
 	if(io->inf_ctx)
 	{
 		inf_set_dest(io->inf_ctx, buf, size);
-		ssize_t bytes_inflated = inf_inflate(io->inf_ctx, raw_buf, raw_size, true);
-			// true: we allocated the compressed data input buffer, and
-			// want it freed when it's consumed.
+		// we allocated the compressed data input buffer and
+		// want it freed when it's consumed.
+		const bool want_input_buf_freed = true;
+		ssize_t bytes_inflated = inf_inflate(io->inf_ctx, raw_buf, raw_size, want_input_buf_freed);
+		CHECK_ERR(bytes_inflated);
 	}
 	else
 	{
@@ -1128,7 +1114,7 @@ int zip_wait_io(ZipIO* io, void*& buf, size_t& size)
 
 
 // finished with transfer <io> - free its buffer (returned by zip_wait_io)
-int zip_discard_io(ZipIO* io)
+int zip_discard_io(ZipIo* io)
 {
 	if(io->already_inflated)
 		return 0;
@@ -1190,7 +1176,7 @@ ssize_t zip_read(ZFile* zf, off_t ofs, size_t size, void* p, FileIOCB cb, uintpt
 {
 	CHECK_ZFILE(zf);
 
-	const bool compressed = zfile_compressed(zf);
+	//const bool compressed = zfile_compressed(zf);
 
 	H_DEREF(zf->ha, ZArchive, za);
 
@@ -1286,7 +1272,7 @@ int zip_map(ZFile* zf, void*& p, size_t& size)
 	p = (char*)archive_p + zf->ofs;
 	size = zf->ucsize;
 
-	zf->flags |= ZF_HAS_MAPPING;
+	zf->is_mapped = 1;
 	return 0;
 }
 
@@ -1302,9 +1288,9 @@ int zip_unmap(ZFile* zf)
 
 	// make sure archive mapping refcount remains balanced:
 	// don't allow multiple|"false" unmaps.
-	if(!(zf->flags & ZF_HAS_MAPPING))
+	if(!zf->is_mapped)
 		return -1;
-	zf->flags &= ~ZF_HAS_MAPPING;
+	zf->is_mapped = 0;
 
 	H_DEREF(zf->ha, ZArchive, za);
 	return file_unmap(&za->f);

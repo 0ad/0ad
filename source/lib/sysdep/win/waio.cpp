@@ -642,7 +642,7 @@ int aio_cancel(int fd, struct aiocb* cb)
 {
 	// Win32 limitation: can't cancel single transfers -
 	// all pending reads on this file are cancelled.
-	UNUSED(cb);
+	UNUSED2(cb);
 
 	const HANDLE h = aio_h_get(fd);
 	if(h == INVALID_HANDLE_VALUE)
@@ -671,7 +671,7 @@ int aio_write(struct aiocb* cb)
 
 int lio_listio(int mode, struct aiocb* const cbs[], int n, struct sigevent* se)
 {
-	UNUSED(se);
+	UNUSED2(se);
 
 	int err = 0;
 

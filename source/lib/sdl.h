@@ -3,7 +3,7 @@
 
 #define SDL_BUTTON_INDEX_COUNT 5
 
-#if defined(_WIN32) && !defined(NO_WSDL)
+#if OS_WIN && !defined(NO_WSDL)
 # include "sysdep/win/wsdl.h"
 
 // The SDL_BUTTON_* enum is zero-based and in the range [0..4] in wsdl.h

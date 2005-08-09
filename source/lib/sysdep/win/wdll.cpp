@@ -255,14 +255,14 @@ FLoadedAtPreferredAddress(PIMAGE_NT_HEADERS pinh, HMODULE hmod) {
 
 // Do the InterlockedExchange magic
 //
-#ifdef  _M_IX86
+#if CPU_IA32
 
 #undef  InterlockedExchangePointer
 #define InterlockedExchangePointer(Target, Value) \
     (PVOID)(uintptr_t)InterlockedExchange((PLONG)(Target), (LONG)(uintptr_t)(Value))
 
 
-#if (_MSC_VER >= 1300)
+#if MSC_VERSION >= 1300
 typedef __w64 unsigned long *PULONG_PTR;
 #else
 typedef unsigned long *PULONG_PTR;

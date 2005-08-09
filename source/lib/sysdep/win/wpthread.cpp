@@ -209,8 +209,7 @@ again:
 		void* tls = pthread_getspecific(key);
 		if(tls)
 		{
-			int ret = pthread_setspecific(key, 0);
-			debug_assert(ret == 0);
+			WARN_ERR(pthread_setspecific(key, 0));
 
 			dtor(tls);
 			had_valid_tls = true;
@@ -257,10 +256,8 @@ static unsigned __stdcall thread_start(void* param)
 }
 
 
-int pthread_create(pthread_t* thread_id, const void* attr, void*(*func)(void*), void* user_arg)
+int pthread_create(pthread_t* thread_id, const void* UNUSED(attr), void*(*func)(void*), void* user_arg)
 {
-	UNUSED(attr);
-
 	// tell the trampoline above what to call.
 	// note: don't stack-allocate this, since the new thread might
 	// not be executed before we tear down our stack frame.
@@ -387,10 +384,8 @@ int pthread_mutex_unlock(pthread_mutex_t* m)
 
 // not implemented - pthread_mutex is based on CRITICAL_SECTION,
 // which doesn't support timeouts. use sem_timedwait instead.
-int pthread_mutex_timedlock(pthread_mutex_t* m, const struct timespec* abs_timeout)
+int pthread_mutex_timedlock(pthread_mutex_t* UNUSED(m), const struct timespec* UNUSED(abs_timeout))
 {
-	UNUSED(m);
-	UNUSED(abs_timeout);
 	return -ENOSYS;
 }
 
@@ -405,8 +400,9 @@ HANDLE sem_t_to_HANDLE(sem_t* sem)
 
 int sem_init(sem_t* sem, int pshared, unsigned value)
 {
-	UNUSED(pshared);
-	*sem = (uintptr_t)CreateSemaphore(0, (LONG)value, 0x7fffffff, 0);
+	SECURITY_ATTRIBUTES sec = { sizeof(SECURITY_ATTRIBUTES) };
+	sec.bInheritHandle = (BOOL)pshared;
+	*sem = (uintptr_t)CreateSemaphore(&sec, (LONG)value, 0x7fffffff, 0);
 	return 0;
 }
 

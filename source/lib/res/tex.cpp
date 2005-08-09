@@ -51,7 +51,7 @@ extern "C" {
 EXTERN(void) jpeg_mem_src(j_decompress_ptr cinfo, void* p, size_t size);
 EXTERN(void) jpeg_vfs_dst(j_compress_ptr cinfo, Handle hf);
 }
-# ifdef _MSC_VER
+# if MSC_VERSION
 #  ifdef NDEBUG
 #   pragma comment(lib, "jpeg-6b.lib")
 #  else
@@ -62,7 +62,7 @@ EXTERN(void) jpeg_vfs_dst(j_compress_ptr cinfo, Handle hf);
 
 
 #ifndef NO_PNG
-# ifdef _WIN32
+# if OS_WIN
    // to avoid conflicts, windows.h must not be included.
    // libpng pulls it in for WINAPI; we prevent the include
    // and define that here.
@@ -71,19 +71,26 @@ EXTERN(void) jpeg_vfs_dst(j_compress_ptr cinfo, Handle hf);
 #  define WINAPIV __cdecl
    // different header name, too.
 #  include <libpng13/png.h>
-#  ifdef _MSC_VER
+#  if MSC_VERSION
 #   ifdef NDEBUG
 #    pragma comment(lib, "libpng13.lib")
 #   else
 #    pragma comment(lib, "libpng13d.lib")
 #   endif	// NDEBUG
-#  endif	// _MSC_VER
-# else	// _WIN32
+#  endif	// MSC_VERSION
+# else	// i.e. !OS_WIN
 #  include <png.h>
-# endif	// _WIN32
+# endif	// OS_WIN
 #endif	// NO_PNG
 
-
+// squelch "dtor / setjmp interaction" warnings.
+// all attempts to resolve the underlying problem failed; apparently
+// the warning is generated if setjmp is used at all in C++ mode.
+// (png_decode has no code that would trigger ctors/dtors, nor are any
+// called in its prolog/epilog code).
+#if MSC_VERSION
+# pragma warning(disable: 4611)
+#endif
 
 
 #define CODEC(name) { name##_fmt, name##_ext, name##_decode, name##_encode, #name}
@@ -298,23 +305,23 @@ static int write_img(const char* fn, const void* hdr, size_t hdr_size,
 static int fmt_8_or_24_or_32(int bpp, int flags)
 {
 	const bool alpha = (flags & TEX_ALPHA) != 0;
-	const bool gray  = (flags & TEX_GRAY ) != 0;
+	const bool grey  = (flags & TEX_GREY ) != 0;
 	const bool dxt   = (flags & TEX_DXT  ) != 0;
 
 	if(dxt)
 		return ERR_TEX_FMT_INVALID;
 
-	// if gray,
-	if(gray)
+	// if grey..
+	if(grey)
 	{
 		// and 8bpp / no alpha, it's ok.
 		if(bpp == 8 && !alpha)
 			return 0;
 
-		// .. otherwise, it's invalid
+		// otherwise, it's invalid.
 		return ERR_TEX_FMT_INVALID;
 	}
-	// it's not gray.
+	// it's not grey.
 
 	if(bpp == 24 && !alpha)
 		return 0;
@@ -386,7 +393,7 @@ DDSURFACEDESC2;
 
 static inline bool dds_fmt(const u8* ptr, size_t size)
 {
-	UNUSED(size);	// size >= 4, we only need 4 bytes
+	UNUSED2(size);	// size >= 4, we only need 4 bytes
 	
 	return *(u32*)ptr == FOURCC('D','D','S',' ');
 }
@@ -463,8 +470,8 @@ fail:
 	if(mipmaps)
 		flags |= TEX_MIPMAPS;
 
-//	if(file_size != hdr_size + img_size)
-//		err = "file size mismatch";
+	if(file_size < hdr_size + img_size)
+		err = "file size too small";
 	if(w % 4 || h % 4)
 		err = "image dimensions not padded to S3TC block size";
 	if(!w || !h)
@@ -490,7 +497,7 @@ fail:
 }
 
 
-static int dds_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
+static int dds_encode(TexInfo* UNUSED(t), const char* UNUSED(fn), u8* UNUSED(img), size_t UNUSED(img_size))
 {
 	return ERR_NOT_IMPLEMENTED;
 }
@@ -512,7 +519,7 @@ static int dds_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 enum TgaImgType
 {
 	TGA_TRUE_COLOR = 2,		// uncompressed 24 or 32 bit direct RGB
-	TGA_GRAY       = 3		// uncompressed 8 bit direct grayscale
+	TGA_GREY       = 3		// uncompressed 8 bit direct greyscale
 };
 
 enum TgaImgDesc
@@ -550,7 +557,7 @@ TgaHeader;
 // we can only check if the first 4 bytes are valid
 static inline bool tga_fmt(const u8* ptr, size_t size)
 {
-	UNUSED(size);
+	UNUSED2(size);	// size >= 4, we only need 4 bytes
 
 	TgaHeader* hdr = (TgaHeader*)ptr;
 
@@ -558,8 +565,8 @@ static inline bool tga_fmt(const u8* ptr, size_t size)
 	if(hdr->color_map_type != 0)
 		return false;
 
-	// wrong color type (not uncompressed grayscale or RGB)
-	if(hdr->img_type != TGA_TRUE_COLOR && hdr->img_type != TGA_GRAY)
+	// wrong color type (not uncompressed greyscale or RGB)
+	if(hdr->img_type != TGA_TRUE_COLOR && hdr->img_type != TGA_GREY)
 		return false;
 
 	return true;
@@ -604,6 +611,8 @@ fail:
 	int flags = 0;
 	if(alpha_bits != 0)
 		flags |= TEX_ALPHA;
+	if(bpp == 8)
+		flags |= TEX_GREY;
 	if(type == TGA_TRUE_COLOR)
 		flags |= TEX_BGR;
 
@@ -636,8 +645,10 @@ static int tga_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 {
 	CHECK_ERR(fmt_8_or_24_or_32(t->bpp, t->flags));
 
-	TgaImgDesc img_desc = (t->flags & TEX_TOP_DOWN)? TGA_TOP_DOWN : TGA_BOTTOM_UP;
-	TgaImgType img_type = (t->flags & TEX_GRAY)? TGA_GRAY : TGA_TRUE_COLOR;
+	u8 img_desc = (t->flags & TEX_TOP_DOWN)? TGA_TOP_DOWN : TGA_BOTTOM_UP;
+	if(t->bpp == 32)
+		img_desc |= 8;	// size of alpha channel
+	TgaImgType img_type = (t->flags & TEX_GREY)? TGA_GREY : TGA_TRUE_COLOR;
 
 	// transform
 	int transforms = t->flags;
@@ -655,7 +666,7 @@ static int tga_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 		t->w,
 		t->h,
 		t->bpp,
-		(u8)img_desc
+		img_desc
 	};
 	return write_img(fn, &hdr, sizeof(hdr), img, img_size);
 }
@@ -712,7 +723,7 @@ struct BmpHeader
 
 static inline bool bmp_fmt(const u8* p, size_t size)
 {
-	UNUSED(size);	// size >= 4, we only need 2 bytes
+	UNUSED2(size);	// size >= 4, we only need 2 bytes
 
 	// check header signature (bfType == "BM"?).
 	// we compare single bytes to be endian-safe.
@@ -830,11 +841,9 @@ static int bmp_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 
 // assume bottom-up
 
-static inline bool raw_fmt(const u8* p, size_t size)
+// always returns true because this is the last registered codec.
+static inline bool raw_fmt(const u8* UNUSED(p), size_t UNUSED(size))
 {
-	UNUSED(p);
-	UNUSED(size)
-
 	return true;
 }
 
@@ -849,32 +858,33 @@ static int raw_decode(TexInfo* t, const char* fn, u8* file, size_t file_size)
 {
 	// TODO: allow 8 bit format. problem: how to differentiate from 32? filename?
 
-	for(uint i = 2; i <= 4; i++)
+	// find a color depth that matches file_size
+	uint i, dim;
+	for(i = 2; i <= 4; i++)
 	{
-		const u32 dim = (u32)sqrtf((float)file_size/i);
-		if(dim*dim*i != file_size)
-			continue;
-
-		const int orientation = TEX_BOTTOM_UP;
-		u8* const img = file;
-
-		// formats are: GL_LUMINANCE_ALPHA, GL_RGB, GL_RGBA
-		int flags = (i == 3)? 0 : TEX_ALPHA;
-
-		t->ofs = 0;
-		t->w   = dim;
-		t->h   = dim;
-		t->bpp = i*8;
-		t->flags = flags;
-
-		const int transforms = orientation ^ global_orientation;
-		transform(t, img, transforms);
-
-		return 0;
+		dim = (uint)sqrtf((float)file_size/i);
+		if(dim*dim*i == file_size)
+			goto have_bpp;
 	}
 
 	debug_printf("raw_decode: %s: %s\n", fn, "no matching format found");
-	return -1;
+	return ERR_TEX_FMT_INVALID;
+
+have_bpp:
+	const int orientation = TEX_BOTTOM_UP;
+	u8* const img = file;
+
+	// formats are: GL_LUMINANCE_ALPHA, GL_RGB, GL_RGBA
+	int flags = (i == 3)? 0 : TEX_ALPHA;
+
+	t->ofs = 0;
+	t->w   = dim;
+	t->h   = dim;
+	t->bpp = i*8;
+	t->flags = flags;
+
+	const int transforms = orientation ^ global_orientation;
+	return transform(t, img, transforms);
 }
 
 
@@ -904,7 +914,7 @@ static int raw_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 
 static inline bool png_fmt(const u8* ptr, size_t size)
 {
-	UNUSED(size);	// size >= 4, we only need 4 bytes
+	UNUSED2(size);	// size >= 4, we only need 4 bytes
 
 	// don't use png_sig_cmp, so we don't pull in libpng for
 	// this check alone (it might not be used later).
@@ -946,6 +956,67 @@ static void png_read(png_struct* png_ptr, u8* data, png_size_t length)
 }
 
 
+// split out of png_decode to simplify resource cleanup and avoid
+// "dtor / setjmp interaction" warning.
+static png_decode_impl(TexInfo* t, u8* file, size_t file_size,
+	png_structp png_ptr, png_infop info_ptr,
+	u8*& img, RowArray& rows, const char*& msg)
+{
+	PngMemFile f = 	{ file, file_size };
+	png_set_read_fn(png_ptr, &f, png_read);
+
+	// read header and determine format
+	png_read_info(png_ptr, info_ptr);
+	png_uint_32 w, h;
+	int bit_depth, color_type;
+	png_get_IHDR(png_ptr, info_ptr, &w, &h, &bit_depth, &color_type, 0, 0, 0);
+	const size_t pitch = png_get_rowbytes(png_ptr, info_ptr);
+	const u32 bpp = (u32)(pitch / w * 8);
+
+	int flags = 0;
+	if(bpp == 32)
+		flags |= TEX_ALPHA;
+
+	// make sure format is acceptable
+	if(bit_depth != 8)
+		msg = "channel precision != 8 bits";
+	if(color_type & PNG_COLOR_MASK_PALETTE)
+		msg = "color type is invalid (must be direct color)";
+	if(msg)
+		return -1;
+
+	const size_t img_size = pitch * h;
+	Handle img_hm;
+	// cannot free old t->hm until after png_read_end,
+	// but need to set to this handle afterwards => need tmp var.
+	img = (u8*)mem_alloc(img_size, 64*KiB, 0, &img_hm);
+	if(!img)
+		return ERR_NO_MEM;
+
+	const int transforms = TEX_TOP_DOWN ^ global_orientation;
+	CHECK_ERR(alloc_rows(img, h, pitch, transforms, rows));
+
+	png_read_image(png_ptr, (png_bytepp)rows);
+	png_read_end(png_ptr, info_ptr);
+
+	// success; make sure all data was consumed.
+	debug_assert(f.p == file && f.size == file_size && f.pos == f.size);
+
+	// store image info
+	// .. transparently switch handles - free the old (compressed)
+	//    buffer and replace it with the decoded-image memory handle.
+	mem_free_h(t->hm);
+	t->hm    = img_hm;
+	t->ofs   = 0;	// libpng returns decoded image data; no header
+	t->w     = w;
+	t->h     = h;
+	t->bpp   = bpp;
+	t->flags = flags;
+
+	return 0;
+}
+
+
 // limitation: palette images aren't supported
 static int png_decode(TexInfo* t, const char* fn, u8* file, size_t file_size)
 {
@@ -957,9 +1028,8 @@ static int png_decode(TexInfo* t, const char* fn, u8* file, size_t file_size)
 	png_infop info_ptr = 0;
 	RowArray rows = 0;
 
-	// freed when fail is reached:
+	// freed if fail is reached:
 	u8* img = 0;	// decompressed image memory
-
 
 	// allocate PNG structures; use default stderr and longjmp error handlers
 	png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
@@ -972,72 +1042,19 @@ static int png_decode(TexInfo* t, const char* fn, u8* file, size_t file_size)
 	// setup error handling
 	if(setjmp(png_jmpbuf(png_ptr)))
 	{
+		// reached if PNG triggered a longjmp
 fail:
 		mem_free(img);
 
-		debug_printf("png_decode: %s: %s\n", fn, msg? msg : "unknown");
+		if(!msg)
+			msg = "unknown error";
+		debug_printf("png_decode: %s: %s\n", fn, msg);
 		goto ret;
 	}
 
-	{
-		PngMemFile f = { file, file_size };
-		png_set_read_fn(png_ptr, &f, png_read);
-
-		// read header and determine format
-		png_read_info(png_ptr, info_ptr);
-		png_uint_32 w, h;
-		int bit_depth, color_type;
-		png_get_IHDR(png_ptr, info_ptr, &w, &h, &bit_depth, &color_type, 0, 0, 0);
-		const size_t pitch = png_get_rowbytes(png_ptr, info_ptr);
-		const u32 bpp = (u32)(pitch / w * 8);
-
-		int flags = 0;
-		if(bpp == 32)
-			flags |= TEX_ALPHA;
-
-		// make sure format is acceptable
-		if(bit_depth != 8)
-			msg = "channel precision != 8 bits";
-		if(color_type & PNG_COLOR_MASK_PALETTE)
-			msg = "color type is invalid (must be direct color)";
-		if(msg)
-			goto fail;
-
-		const size_t img_size = pitch * h;
-		Handle img_hm;
-			// cannot free old t->hm until after png_read_end,
-			// but need to set to this handle afterwards => need tmp var.
-		img = (u8*)mem_alloc(img_size, 64*KiB, 0, &img_hm);
-		if(!img)
-		{
-			err = ERR_NO_MEM;
-			goto fail;
-		}
-
-		const int transforms = TEX_TOP_DOWN ^ global_orientation;
-		int ret = alloc_rows(img, h, pitch, transforms, rows);
-		if(ret < 0)
-		{
-			err = ret;
-			goto fail;
-		}
-
-		png_read_image(png_ptr, (png_bytepp)rows);
-		png_read_end(png_ptr, info_ptr);
-
-		debug_assert(f.p == file && f.size == file_size && f.pos == f.size);
-
-		// store image info
-		mem_free_h(t->hm);
-		t->hm    = img_hm;
-		t->ofs   = 0;	// libpng returns decoded image data; no header
-		t->w     = w;
-		t->h     = h;
-		t->bpp   = bpp;
-		t->flags = flags;
-
-		err = 0;
-	}
+	err = png_decode_impl(t, file, file_size, png_ptr, info_ptr, img, rows, msg);
+	if(err < 0)
+		goto fail;
 
 	// shared cleanup
 ret:
@@ -1064,11 +1081,57 @@ static void png_flush(png_structp)
 }
 
 
-// limitation: palette images aren't supported
-static int png_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
+// split out of png_encode to simplify resource cleanup and avoid
+// "dtor / setjmp interaction" warning.
+static int png_encode_impl(TexInfo* t, const char* fn, u8* img,
+	png_structp png_ptr, png_infop info_ptr,
+	RowArray& rows, Handle& hf, const char*& msg)
 {
-	UNUSED(img_size);
+	UNUSED2(msg);	// we don't produce any error messages ATM.
 
+	const int png_transforms = (t->flags & TEX_BGR)? PNG_TRANSFORM_BGR : PNG_TRANSFORM_IDENTITY;
+	// PNG is native RGB.
+
+	const png_uint_32 w = t->w, h = t->h;
+	const size_t pitch = w * t->bpp / 8;
+
+	int color_type;
+	switch(t->flags & (TEX_GREY|TEX_ALPHA))
+	{
+	case TEX_GREY|TEX_ALPHA:
+		color_type = PNG_COLOR_TYPE_GRAY_ALPHA;
+		break;
+	case TEX_GREY:
+		color_type = PNG_COLOR_TYPE_GRAY;
+		break;
+	case TEX_ALPHA:
+		color_type = PNG_COLOR_TYPE_RGB_ALPHA;
+		break;
+	default:
+		color_type = PNG_COLOR_TYPE_RGB;
+		break;
+	}
+
+	hf = vfs_open(fn, FILE_WRITE|FILE_NO_AIO);
+	CHECK_ERR(hf);
+	png_set_write_fn(png_ptr, &hf, png_write, png_flush);
+
+	png_set_IHDR(png_ptr, info_ptr, w, h, 8, color_type,
+		PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
+
+	const int transforms = TEX_TOP_DOWN ^ t->flags;
+	CHECK_ERR(alloc_rows(img, h, pitch, transforms, rows));
+
+	png_set_rows(png_ptr, info_ptr, (png_bytepp)rows);
+	png_write_png(png_ptr, info_ptr, png_transforms, 0);
+
+	return 0;
+}
+
+
+// limitation: palette images aren't supported
+static int png_encode(TexInfo* t, const char* fn, u8* img, size_t UNUSED(img_size))
+{
 	const char* msg = 0;
 	int err = -1;
 
@@ -1089,60 +1152,17 @@ static int png_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 	// setup error handling
 	if(setjmp(png_jmpbuf(png_ptr)))
 	{
+		// reached if libpng triggered a longjmp
 fail:
-		debug_printf("png_encode: %s: %s\n", fn, msg? msg : "unknown");
+		if(!msg)
+			msg = "unknown error";
+		debug_printf("png_encode: %s: %s\n", fn, msg);
 		goto ret;
 	}
 
-	{
-		const int png_transforms = (t->flags & TEX_BGR)? PNG_TRANSFORM_BGR : PNG_TRANSFORM_IDENTITY;
-			// PNG is native RGB.
-
-		const png_uint_32 w = t->w, h = t->h;
-		const size_t pitch = w * t->bpp / 8;
-
-		int color_type;
-		switch(t->flags & (TEX_GRAY|TEX_ALPHA))
-		{
-		case TEX_GRAY|TEX_ALPHA:
-			color_type = PNG_COLOR_TYPE_GRAY_ALPHA;
-			break;
-		case TEX_GRAY:
-			color_type = PNG_COLOR_TYPE_GRAY;
-			break;
-		case TEX_ALPHA:
-			color_type = PNG_COLOR_TYPE_RGB_ALPHA;
-			break;
-		default:
-			color_type = PNG_COLOR_TYPE_RGB;
-			break;
-		}
-
-		hf = vfs_open(fn, FILE_WRITE|FILE_NO_AIO);
-		if(hf < 0)
-		{
-			err = (int)hf;
-			goto fail;
-		}
-		png_set_write_fn(png_ptr, &hf, png_write, png_flush);
-
-		png_set_IHDR(png_ptr, info_ptr, w, h, 8, color_type,
-			PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
-
-		const int transforms = TEX_TOP_DOWN ^ t->flags;
-		int ret = alloc_rows(img, h, pitch, transforms, rows);
-		if(ret < 0)
-		{
-			err = ret;
-			goto fail;
-		}
-
-		png_set_rows(png_ptr, info_ptr, (png_bytepp)rows);
-		png_write_png(png_ptr, info_ptr, png_transforms, 0);
-	
-		err = 0;
-
-	}
+	err = png_encode_impl(t, fn, img, png_ptr, info_ptr, rows, hf, msg);
+	if(err < 0)
+		goto fail;
 
 	// shared cleanup
 ret:
@@ -1234,6 +1254,8 @@ fail:
 	for(cmpt = 0; cmpt < num_cmpts; cmpt++)
 		jas_matrix_destroy(matr[cmpt]);
 
+	// .. transparently switch handles - free the old (compressed)
+	//    buffer and replace it with the decoded-image memory handle.
 	mem_free_h(t->hm);
 	t->hm  = img_hm;
 
@@ -1265,7 +1287,7 @@ static int jp2_encode(TexInfo* t, const char* fn, const u8* img, size_t img_size
 
 static inline bool jpg_fmt(const u8* p, size_t size)
 {
-	UNUSED(size);	// size >= 4, we only need 2 bytes
+	UNUSED2(size);	// size >= 4, we only need 2 bytes
 
 	// JFIF requires SOI marker at start of stream.
 	// we compare single bytes to be endian-safe.
@@ -1397,14 +1419,14 @@ fail:
 		// preliminary; set below to reflect output params
 
 	// make sure we get a color format we know
-	// (exception: if bpp = 8, go grayscale below)
+	// (exception: if bpp = 8, go greyscale below)
 	// necessary to support non-standard CMYK files written by Photoshop.
 	cinfo.out_color_space = JCS_RGB;
 
 	int flags = 0;
 	if(bpp == 8)
 	{
-		flags |= TEX_GRAY;
+		flags |= TEX_GREY;
 		cinfo.out_color_space = JCS_GRAYSCALE;
 	}
 
@@ -1472,6 +1494,8 @@ fail:
 		debug_printf("jpg_decode: corrupt-data warning(s) occurred\n");
 
 	// store image info
+	// .. transparently switch handles - free the old (compressed)
+	//    buffer and replace it with the decoded-image memory handle.
 	mem_free_h(t->hm);
 	t->hm    = img_hm;
 	t->ofs   = 0;	// jpeg returns decoded image data; no header
@@ -1497,7 +1521,7 @@ ret:
 
 
 // limitation: palette images aren't supported
-static int jpg_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
+static int jpg_encode(TexInfo* t, const char* fn, u8* img, size_t UNUSED(img_size))
 {
 	const char* msg = 0;
 	int err = -1;
@@ -1675,7 +1699,7 @@ int tex_load_mem(Handle hm, const char* fn, TexInfo* t)
 	size_t size;
 	void* _p = mem_get_ptr(hm, &size);
 
-	// guarantee *_valid routines 4 header bytes
+	// guarantee is_fmt routines 4 header bytes
 	if(size < 4)
 		return ERR_CORRUPTED;
 	t->hm = hm;
@@ -1687,18 +1711,13 @@ int tex_load_mem(Handle hm, const char* fn, TexInfo* t)
 	// find codec that understands the data, and decode
 	const Codec* c = codecs;
 	for(int i = 0; i < num_codecs; i++, c++)
+	{
 		if(c->is_fmt(p, size))
 		{
 			CHECK_ERR(c->decode(t, fn, p, size));
-
-			// HACK: check if the texture's data buffer is the IO buffer
-			// passed to us. if so, need to increment refcount so the
-			// caller's doesn't actually free it.
-			if(hm == t->hm)
-				h_add_ref(t->hm);
-
 			return 0;
 		}
+	}
 
 	return ERR_UNKNOWN_FORMAT;
 }
@@ -1711,7 +1730,8 @@ int tex_load(const char* fn, TexInfo* t)
 	Handle hm = vfs_load(fn, p, size);
 	RETURN_ERR(hm);	// (need handle below; can't test return value directly)
 	int ret = tex_load_mem(hm, fn, t);
-	mem_free_h(hm);
+	// do not free hm! it either still holds the image data (i.e. texture
+	// wasn't compressed) or was replaced by a new buffer for the image data.
 	if(ret < 0)
 		memset(t, 0, sizeof(TexInfo));
 	return ret;

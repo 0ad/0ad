@@ -49,7 +49,7 @@
 // for easy removal of DirectDraw dependency (used to query total video mem)
 #define DDRAW
 
-#ifdef _MSC_VER
+#if MSC_VERSION
 #pragma comment(lib, "user32.lib")
 #pragma comment(lib, "gdi32.lib")
 
@@ -177,9 +177,9 @@ static LRESULT CALLBACK wndproc(HWND hWnd, unsigned int uMsg, WPARAM wParam, LPA
 }
 
 
-int SDL_EnableUNICODE(int enable)
+// always on (we don't care about the extra overhead)
+int SDL_EnableUNICODE(int UNUSED(enable))
 {
-	UNUSED(enable)
 	return 1;
 }
 
@@ -478,13 +478,17 @@ static LRESULT CALLBACK keyboard_ll_hook(int nCode, WPARAM wParam, LPARAM lParam
 	{
 		PKBDLLHOOKSTRUCT p = (PKBDLLHOOKSTRUCT)lParam;
 		DWORD vk = p->vkCode;
+		UNUSED2(vk);
 
+		// disabled - we want the normal Windows printscreen handling to
+		// remain so as not to confuse artists.
+/*
 		// replace Windows PrintScreen handler
 		if(vk == VK_SNAPSHOT)
 		{
 			// check whether PrintScreen should be taking screenshots -- if
 			// not, allow the standard Windows clipboard to work
-			if(/*keyRespondsTo(HOTKEY_SCREENSHOT, SDLK_PRINT) &&*/ app_active)
+			if(app_active)
 			{
 				// send to wndproc
 				UINT msg = (UINT)wParam;
@@ -496,6 +500,7 @@ static LRESULT CALLBACK keyboard_ll_hook(int nCode, WPARAM wParam, LPARAM lParam
 				return 1;
 			}
 		}
+*/
 	}
 
 	// pass it on to other hook handlers
@@ -505,7 +510,6 @@ static LRESULT CALLBACK keyboard_ll_hook(int nCode, WPARAM wParam, LPARAM lParam
 
 static void enable_kbd_hook(bool enable)
 {
-/*
 	if(enable)
 	{
 		debug_assert(hKeyboard_LL_Hook == 0);
@@ -518,7 +522,6 @@ static void enable_kbd_hook(bool enable)
 		UnhookWindowsHookEx(hKeyboard_LL_Hook);
 		hKeyboard_LL_Hook = 0;
 	}
-*/
 }
 
 
@@ -582,10 +585,8 @@ static int wsdl_shutdown()
 }
 
 
-int SDL_Init(Uint32 flags)
+int SDL_Init(Uint32 UNUSED(flags))
 {
-	UNUSED(flags);
-
 	enable_kbd_hook(true);
 
 	return 0;
@@ -843,7 +844,7 @@ void SDL_WM_SetCaption(const char* title, const char* icon)
 {
 	SetWindowText(hWnd, title);
 
-	UNUSED(icon);	// TODO: implement
+	UNUSED2(icon);	// TODO: implement
 }
 
 
@@ -1094,11 +1095,8 @@ void glutMouseFunc(void (*func)(int, int, int, int))
 
 
 
-void glutInit(int* argc, char* argv[])
+void glutInit(int* UNUSED(argc), char* UNUSED(argv)[])
 {
-	UNUSED(argc);
-	UNUSED(argv);
-
 	SDL_Init(0);
 	atexit(SDL_Quit);
 }

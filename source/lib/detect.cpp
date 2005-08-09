@@ -28,11 +28,11 @@
 #include "timer.h"
 #include "sdl.h"
 
-#ifdef _M_IX86
+#if CPU_IA32
 extern void ia32_get_cpu_info();
 #endif
 
-#ifdef _WIN32
+#if OS_WIN
 extern int win_get_gfx_info();
 extern int win_get_cpu_info();
 extern int win_get_snd_info();
@@ -58,13 +58,13 @@ void get_mem_status()
 #endif
 
 // Sys V derived (GNU/Linux, Solaris)
-#ifdef _SC_AVPHYS_PAGES
+#if defined(_SC_AVPHYS_PAGES)
 
 	tot_mem = sysconf(_SC_PHYS_PAGES  ) * page_size;
 	avl_mem = sysconf(_SC_AVPHYS_PAGES) * page_size;
 
 // BSD / Mac OS X
-#elif HAVE_SYSCTL && defined(HW_PHYSMEM)
+#elif defined(HW_PHYSMEM)
 
 	size_t len = sizeof(tot_mem);
 	int mib[2] = { CTL_HW, HW_PHYSMEM };
@@ -99,7 +99,7 @@ void get_gfx_info()
 	// try platform-specific versions first: they return more
 	// detailed information, and don't require OpenGL to be ready.
 
-#ifdef _WIN32
+#if OS_WIN
 	ret = win_get_gfx_info();
 #endif
 
@@ -129,11 +129,11 @@ int cpu_smp = -1;
 
 void get_cpu_info()
 {
-#ifdef _WIN32
+#if OS_WIN
 	win_get_cpu_info();
 #endif
 
-#ifdef _M_IX86
+#if CPU_IA32
 	ia32_get_cpu_info();
 #endif
 }
@@ -148,7 +148,7 @@ char snd_drv_ver[SND_DRV_VER_LEN];
 
 void get_snd_info()
 {
-#ifdef _WIN32
+#if OS_WIN
 	win_get_snd_info();
 #else
 	// At least reset the values for unhandled platforms. Should perhaps do

@@ -12,7 +12,7 @@
 
 #include "ogghack.h"
 
-#ifdef _MSC_VER
+#if MSC_VERSION
 # ifdef NDEBUG
 #  pragma comment(lib, "vorbisfile.lib")
 # else
@@ -78,12 +78,12 @@ size_t read_func(void* ptr, size_t elements, size_t el_size, void* datasource)
 }
 
 
-int seek_func(void* datasource, ogg_int64_t offset, int whence)
+int seek_func(void* UNUSED(datasource), ogg_int64_t UNUSED(offset), int UNUSED(whence))
 {
 	return -1;	// libvorbisfile: indicate "not implemented"
 }
 
-int close_func(void* datasource)
+int close_func(void* UNUSED(datasource))
 {
 	return 0;
 }
@@ -128,7 +128,7 @@ void ogg_open(void* _o, ALenum& fmt, ALsizei& freq)
 	void* datasource = &o->incoming_bufs;
 	if(ov_open_callbacks(datasource, &o->oggStream, NULL, 0, cbs) < 0)
 	{
-		debug_assert(!"ov_open failed");
+		debug_warn("ov_open failed");
 	}
 
 	o->vorbisInfo = ov_info(&o->oggStream, -1);
@@ -166,7 +166,7 @@ size_t ogg_read(void* _o, void* buf, size_t max_size)
 		if(result > 0)
 			bytes_written += result;
 		else if(result < 0)
-			debug_assert(!"ogg read error");
+			debug_warn("ogg read error");
 		// clean break - end of data
 		else
 			break;

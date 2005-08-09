@@ -58,7 +58,7 @@ extern "C" {
 #define PATH_MAX 255
 // Win32 MAX_PATH is 260
 
-#ifdef _WIN32
+#if OS_WIN
 # ifndef SIZE_MAX // VC2005 already defines this in limits.h
 #  define SIZE_MAX 0xffffffff
 # endif
@@ -131,7 +131,7 @@ EWOULDBLOCK    // Operation would block (may be the same value as EAGAIN]).
 //
 
 // already defined by MinGW
-#ifdef _MSC_VER
+#if MSC_VERSION
 typedef unsigned int mode_t;
 #endif
 
@@ -144,7 +144,7 @@ typedef unsigned int mode_t;
 // Extra hack for VC++ 2005, since it defines inline stat/fstat
 // functions inside stat.h (which get confused by the
 // macro-renaming of "stat")
-# if _MSC_VER >= 1400
+# if MSC_VERSION >= 1400
 #  define RC_INVOKED // stat.h only includes stat.inl if "!defined(RC_INVOKED) && !defined(__midl)"
 #  include <sys/stat.h>
 #  undef RC_INVOKED
@@ -178,7 +178,6 @@ typedef void DIR;
 
 struct dirent
 {
-	ino_t d_ino;
 	char d_name[PATH_MAX+1];
 };
 

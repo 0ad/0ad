@@ -48,7 +48,7 @@ need only be renamed (e.g. _open, _stat).
 
 */
 
-#ifdef _WIN32
+#if OS_WIN
 
 #include "sysdep/win/wposix.h"
 #include "sysdep/win/win.h"
@@ -81,4 +81,4 @@ need only be renamed (e.g. _open, _stat).
 #include <netinet/tcp.h>
 #include <arpa/inet.h>
 
-#endif	// #ifdef _WIN32
+#endif	// #if OS_WIN

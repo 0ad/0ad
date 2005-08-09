@@ -20,7 +20,7 @@
 
 #include "lib.h" // STMT
 #include "sysdep/sysdep.h"		// ErrorReaction
-#ifdef _WIN32
+#if OS_WIN
 # include "sysdep/win/wdbg.h"
 #else
 # include "sysdep/unix/udbg.h"
@@ -107,7 +107,7 @@ extern void debug_heap_enable(DebugHeapChecks what);
 // the string can pass more information about the problem on to whomever
 // is seeing the error.
 //
-// rationale: 0x55 and 0xaa have distinctive bit patterns and thus
+// rationale: 0x55 and 0xAA are distinctive values and thus
 // help debug the symbol engine.
 #define debug_assert(expr) \
 STMT(\
@@ -117,7 +117,7 @@ STMT(\
 		switch(debug_assert_failed(__FILE__, __LINE__, #expr))\
 		{\
 		case ER_SUPPRESS:\
-			suppress__ = 0xaa;\
+			suppress__ = 0xAA;\
 			break;\
 		case ER_BREAK:\
 			debug_break();\
@@ -142,8 +142,12 @@ extern enum ErrorReaction debug_assert_failed(const char* source_file, int line,
 //-----------------------------------------------------------------------------
 
 // show a dialog to make sure unexpected states in the program are noticed.
-// this is less error-prone than debug_assert(!"text");
-#define debug_warn(str) debug_assert(0 && (str))
+// this is less error-prone than "debug_assert(0 && "text");" and avoids
+// "conditional expression is constant" warnings. we'd really like to
+// completely eliminate the problem; replacing 0 literals with extern
+// volatile variables fools VC7 but isn't guaranteed to be free of overhead.
+// we therefore just squelch the warning (unfortunately non-portable).
+#define debug_warn(str) debug_assert((str) && 0)
 
 // write to the debugger output window (may take ~1 ms!)
 extern void debug_printf(const char* fmt, ...);
@@ -247,9 +251,28 @@ typedef const u8* (*DebugIterator)(void* internal, size_t el_size);
 extern void* debug_get_nth_caller(uint skip, void* context);
 
 // return 1 if the pointer appears to be totally bogus, otherwise 0.
-// this check is not authoritative in that the pointer may in truth
-// be invalid regardless of the return value here, but can be used
-// to filter out obviously wrong values in a portable manner.
-extern int debug_is_bogus_pointer(const void* p);
+// this check is not authoritative (the pointer may be "valid" but incorrect)
+// but can be used to filter out obviously wrong values in a portable manner.
+extern int debug_is_pointer_bogus(const void* p);
+
+
+// set the current thread's name; it will be returned by subsequent calls to
+// debug_get_thread_name.
+//
+// the string pointed to by <name> MUST remain valid throughout the
+// entire program; best to pass a string literal. allocating a copy
+// would be quite a bit more work due to cleanup issues.
+//
+// if supported on this platform, the debugger is notified of the new name;
+// it will be displayed there instead of just the handle.
+extern void debug_set_thread_name(const char* name);
+
+// return the pointer assigned by debug_set_thread_name or 0 if
+// that hasn't been done yet for this thread.
+extern const char* debug_get_thread_name();
+
+
+// call at exit to avoid leaks (not strictly necessary).
+extern void debug_shutdown();
 
 #endif	// #ifndef DEBUG_H_INCLUDED

@@ -3,9 +3,9 @@
 
 #include "config.h"
 
-#if defined(OS_WIN)
+#if OS_WIN
 # include "win/win.h"
-#elif defined(OS_UNIX)
+#elif OS_UNIX
 # include "unix/unix.h"
 #endif
 
@@ -13,10 +13,20 @@
 extern "C" {
 #endif
 
+// compiling without exceptions (usually for performance reasons);
+// tell STL not to generate any.
+#if CONFIG_DISABLE_EXCEPTIONS
+# if OS_WIN
+#  define _HAS_EXCEPTIONS 0
+# else
+#  define STL_NO_EXCEPTIONS
+# endif
+#endif
+
 
 // vsnprintf2: handles positional parameters and %lld.
 // already available on *nix, emulated on Win32.
-#ifdef _WIN32
+#if OS_WIN
 extern int vsnprintf2(char* buffer, size_t count, const char* format, va_list argptr);
 #else
 #define vsnprintf2 vsnprintf
@@ -24,11 +34,22 @@ extern int vsnprintf2(char* buffer, size_t count, const char* format, va_list ar
 
 // alloca: allocate on stack, automatically free, return 0 if out of mem.
 // already available on *nix, emulated on Win32.
-#ifdef _WIN32
+#if OS_WIN
 #undef alloca	// from malloc.h
 extern void* alloca(size_t size);
 #endif
 
+// finite: return 0 iff the given double is infinite or NaN.
+#if OS_WIN
+# define finite _finite
+#else
+# define finite __finite
+#endif
+
+
+//
+// output
+//
 
 enum DisplayErrorFlags
 {
@@ -74,9 +95,33 @@ extern void display_msg(const char* caption, const char* msg);
 extern void wdisplay_msg(const wchar_t* caption, const wchar_t* msg);
 
 
+//
+// clipboard
+//
+
 extern int clipboard_set(const wchar_t* text);
 extern wchar_t* clipboard_get(void);
 extern int clipboard_free(wchar_t* copy);
+
+
+//
+// mouse cursor
+//
+
+// creates a cursor from the given 32 bpp RGBA texture. hotspot (hx,hy) is
+// the offset from its upper-left corner to the position where mouse clicks
+// are registered.
+// the cursor must be cursor_free-ed when no longer needed.
+extern int cursor_create(int w, int h, void* img, int hx, int hy,
+	void** cursor);
+
+// replaces the current system cursor with the one indicated. need only be
+// called once per cursor; pass 0 to restore the default.
+extern int cursor_set(void* cursor);
+
+// destroys the indicated cursor and frees its resources. if it is
+// currently the system cursor, the default cursor is restored first.
+extern int cursor_free(void* cursor);
 
 
 extern int get_executable_name(char* n_path, size_t buf_size);
@@ -89,16 +134,16 @@ wchar_t* get_module_filename(void* addr, wchar_t* path);
 extern int pick_directory(char* n_path, size_t buf_size);
 
 
-#ifdef _MSC_VER
+#if MSC_VERSION
 extern double round(double);
 #endif
 
-#ifndef HAVE_C99
+#if !HAVE_C99
 extern float fminf(float a, float b);
 extern float fmaxf(float a, float b);
 #endif
 
-#ifndef _MSC_VER
+#if !MSC_VERSION
 #define stricmp strcasecmp
 #define strnicmp strncasecmp
 #endif
@@ -112,7 +157,7 @@ extern float fmaxf(float a, float b);
 // C++ linkage
 
 // STL_HASH_MAP, STL_HASH_MULTIMAP, STL_HASH_SET
-#ifdef __GNUC__
+#if GCC_VERSION
 // GCC
 # include <ext/hash_map>
 # include <ext/hash_set> // Probably?
@@ -139,19 +184,19 @@ namespace __gnu_cxx
 #else	// !__GNUC__
 # include <hash_map>
 # include <hash_set>
-# if defined(_MSC_VER) && (_MSC_VER >= 1300)
 // VC7 or above
+# if MSC_VERSION >= 1300
 #  define STL_HASH_MAP stdext::hash_map
 #  define STL_HASH_MULTIMAP stdext::hash_multimap
 #  define STL_HASH_SET stdext::hash_set
 #  define STL_HASH_MULTISET stdext::hash_multiset
-# else
 // VC6 and anything else (most likely name)
+# else
 #  define STL_HASH_MAP std::hash_map
 #  define STL_HASH_MULTIMAP std::hash_multimap
 #  define STL_HASH_SET std::hash_set
 #  define STL_HASH_MULTISET std::hash_multiset
-# endif	// defined(_MSC_VER) && (_MSC_VER >= 1300)
+# endif	// MSC_VERSION >= 1300
 #endif	// !__GNUC__
 
 #include "debug.h"

@@ -8,17 +8,30 @@
 //
 // this policy yields the best compile performance with or without PCH.
 
-#ifdef _MSC_VER
+// must come before warning disables.
+#include "lib/config.h"
+
+// disable some common and annoying warnings
+// (done as soon as possible so that headers below are covered)
+#if MSC_VERSION
+// .. temporarily disabled W4 (unimportant but ought to be fixed)
+# pragma warning(disable:4201)	// nameless struct (Matrix3D)
+# pragma warning(disable:4244)	// conversion from uintN to uint8
+// .. permanently disabled W4
+# pragma warning(disable:4127)	// conditional expression is constant; rationale: see STMT in lib.h.
 # pragma warning(disable:4996)	// function is deprecated
 # pragma warning(disable:4786)	// identifier truncated to 255 chars
-# if _MSC_VER >= 1400 // VS2005 code analysis warnings - disable the very frequent ones:
+// .. VS2005 code analysis (very frequent ones)
+# if MSC_VERSION >= 1400
 #  pragma warning(disable:6011)	// dereferencing NULL pointer
 #  pragma warning(disable:6246)	// local declaration hides declaration of the same name in outer scope
 # endif
 #endif
 
-// make these available everywhere for convenience:
-#include "lib/config.h"
+//
+// headers made available everywhere for convenience
+//
+
 #include "lib/types.h"
 #include "lib/string_s.h"	// CRT secure string
 #include "lib/debug.h"
@@ -33,15 +46,13 @@
 // come before the memory tracker headers to avoid conflicts with their
 // macros. therefore, they are always included, even if !HAVE_PCH.
 
-#ifdef _WIN32
-#include <crtdbg.h>
+#if OS_WIN
+# include <malloc.h>
 #endif
 
-#include <malloc.h>
 #include <new>
 #include <memory>
-#include <cstring>	// uses placement new
-#include <string>
+#include <valarray>	// free() member function
 
 
 //
@@ -58,7 +69,7 @@
 // not otherwise need some of these headers. therefore, do nothing and rely
 // on all source files (additionally) including everything they need.
 
-#ifdef HAVE_PCH
+#if HAVE_PCH
 
 // all new-form C library headers
 #include <cassert>
@@ -119,7 +130,7 @@
 #include <valarray>
 
 // STL extensions
-#ifdef __GNUC__
+#if GCC_VERSION
 # include <ext/hash_map>
 # include <ext/hash_set>
 #else
@@ -127,19 +138,17 @@
 # include <hash_set>
 #endif
 
-
-// CStr is included very frequently, so a reasonable amount of time is saved
-// by including it here. (~10% in a full rebuild, as of r2365)
+// some other external libraries that are used in several places:
+// .. CStr is included very frequently, so a reasonable amount of time is
+//    saved by including it here. (~10% in a full rebuild, as of r2365)
 #include "ps/CStr.h"
-
-// Some other external libraries that are used in several places:
 #include "scripting/SpiderMonkey.h"
 #include "boost/shared_ptr.hpp"
 #include "boost/weak_ptr.hpp"
 
 // (further headers to be precompiled go here)
 
-#endif // #ifdef HAVE_PCH
+#endif // #if HAVE_PCH
 
 
 //
@@ -150,17 +159,7 @@
 // are hooked. placing in the precompiled header is more convenient than
 // manually #including from every file, but requires that all system
 // headers containing "new", "malloc" etc. come before this (see above).
-
-// use custom memory tracker (lib/mmgr.cpp)
-#if defined(CONFIG_USE_MMGR)
+//
+// note: mmgr.h activates mmgr or the VC debug heap or nothing depending
+// on CONFIG_USE_MMGR and HAVE_VC_DEBUG_ALLOC settings.
 # include "mmgr.h"
-// use VC debug heap (superceded by mmgr; it remains for completeness)
-#elif defined(HAVE_VC_DEBUG_ALLOC)
-  // can't define _CRTDBG_MAP_ALLOC because crtdbg.h has a broken 'new',
-  // so manually redefine the appropriate functions.
-# define new           new(_NORMAL_BLOCK, __FILE__, __LINE__)
-# define malloc(s)     _malloc_dbg(s, _NORMAL_BLOCK, __FILE__, __LINE__)
-# define calloc(c, s)  _calloc_dbg(c, s, _NORMAL_BLOCK, __FILE__, __LINE__)
-# define realloc(p, s) _realloc_dbg(p, s, _NORMAL_BLOCK, __FILE__, __LINE__)
-# define free(p)       _free_dbg(p, _NORMAL_BLOCK)
-#endif

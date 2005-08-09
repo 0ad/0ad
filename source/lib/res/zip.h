@@ -49,16 +49,11 @@ extern int zip_enum(const Handle ha, const FileCB cb, const uintptr_t user);
 
 struct ZFile
 {
-#ifdef PARANOIA
-	u32 magic;
-#endif
-
 	// keep offset of flags and size members in sync with struct File!
 	// it is accessed by VFS and must be the same for both (union).
 	// dirty, but necessary because VFile is pushing the HDATA size limit.
 	uint flags;
-	size_t ucsize;
-		// size of logical file
+	size_t ucsize;	// uncompressed size
 
 	off_t ofs;	// in archive
 	off_t csize;
@@ -66,6 +61,11 @@ struct ZFile
 
 	Handle ha;
 	uintptr_t inf_ctx;
+
+	// this ZFile has been successfully zip_map-ped, i.e. reference
+	// count of the archive's mapping has been increased.
+	// we need to undo that when closing it.
+	uint is_mapped : 1;
 };
 
 // get file status (size, mtime). output param is zeroed on error.
@@ -73,7 +73,7 @@ extern int zip_stat(Handle ha, const char* fn, struct stat* s);
 
 // open file, and fill *zf with information about it.
 // return < 0 on error (output param zeroed). 
-extern int zip_open(Handle ha, const char* fn, ZFile* zf);
+extern int zip_open(Handle ha, const char* fn, int flags, ZFile* zf);
 
 // close file.
 extern int zip_close(ZFile* zf);
@@ -83,9 +83,9 @@ extern int zip_close(ZFile* zf);
 // asynchronous read
 //
 
-struct ZipIO
+struct ZipIo
 {
-	FileIO io;
+	FileIo io;
 
 	uintptr_t inf_ctx;
 
@@ -97,18 +97,18 @@ struct ZipIO
 
 // begin transferring <size> bytes, starting at <ofs>. get result
 // with zip_wait_io; when no longer needed, free via zip_discard_io.
-extern int zip_start_io(ZFile* zf, off_t ofs, size_t size, void* buf, ZipIO* io);
+extern int zip_start_io(ZFile* zf, off_t ofs, size_t size, void* buf, ZipIo* io);
 
 // indicates if the IO referenced by <io> has completed.
 // return value: 0 if pending, 1 if complete, < 0 on error.
-extern int zip_io_complete(ZipIO* io);
+extern int zip_io_complete(ZipIo* io);
 
 // wait until the transfer <io> completes, and return its buffer.
 // output parameters are zeroed on error.
-extern int zip_wait_io(ZipIO* io, void*& p, size_t& size);
+extern int zip_wait_io(ZipIo* io, void*& p, size_t& size);
 
 // finished with transfer <io> - free its buffer (returned by zip_wait_io)
-extern int zip_discard_io(ZipIO* io);
+extern int zip_discard_io(ZipIo* io);
 
 
 //

@@ -5,7 +5,7 @@
 #include <memory.h>
 #include <stdarg.h>
 
-#ifdef _MSC_VER
+#if MSC_VERSION
 
 double round(double x)
 {
@@ -15,7 +15,7 @@ double round(double x)
 #endif
 
 
-#ifndef HAVE_C99
+#if !HAVE_C99
 
 float fminf(float a, float b)
 {

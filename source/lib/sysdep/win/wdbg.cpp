@@ -28,7 +28,7 @@
 #include "byte_order.h"		// FOURCC
 
 // optional: enables translation of the "unhandled exception" dialog.
-#ifdef I18N
+#if HAVE_I18N
 #include "ps/i18n.h"
 #endif
 
@@ -68,7 +68,7 @@ static bool is_locked()
 // program will terminate soon after. fixing this is hard and senseless.
 static const wchar_t* translate(const wchar_t* text)
 {
-#ifdef HAVE_I18N
+#if HAVE_I18N
 	// make sure i18n system is (already|still) initialized.
 	if(g_CurrentLocale)
 	{
@@ -142,6 +142,37 @@ void debug_wprintf(const wchar_t* fmt, ...)
 }
 
 
+// inform the debugger of the current thread's description, which it then
+// displays instead of just the thread handle.
+void wdbg_set_thread_name(const char* name)
+{
+	// we pass information to the debugger via a special exception it
+	// swallows. if not running under one, bail now to avoid
+	// "first chance exception" warnings.
+	if(!IsDebuggerPresent())
+		return;
+
+	// presented by Jay Bazuzi (from the VC debugger team) at TechEd 1999.
+	const struct ThreadNameInfo
+	{
+		DWORD type;
+		const char* name;
+		DWORD thread_id;	// any valid ID or -1 for current thread
+		DWORD flags;
+	}
+	info = { 0x1000, name, (DWORD)-1, 0 };
+	__try
+	{
+		RaiseException(0x406D1388, 0, sizeof(info)/sizeof(DWORD), (DWORD*)&info);
+	}
+	__except(EXCEPTION_EXECUTE_HANDLER)
+	{
+		// if we get here, apparently this hack is not longer supported.
+		debug_warn("TODO: find alternative thread name implementation");
+	}
+}
+
+
 //-----------------------------------------------------------------------------
 // debug memory allocator
 //-----------------------------------------------------------------------------
@@ -169,40 +200,52 @@ void debug_heap_check()
 // if not called, the default is DEBUG_HEAP_NONE, i.e. do nothing.
 void debug_heap_enable(DebugHeapChecks what)
 {
-#ifdef HAVE_VC_DEBUG_ALLOC
+	// note: if MMGR is enabled, crtdbg.h will not have been included.
+	// in that case, we do nothing here - this interface is too basic to
+	// control mmgr; use its API instead.
+#if !CONFIG_USE_MMGR && HAVE_VC_DEBUG_ALLOC
 	uint flags = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
 	switch(what)
 	{
 	case DEBUG_HEAP_NONE:
-		flags = 0;
+		// note: do not set flags to zero because we might trash some
+		// important flag value.
+		flags &= ~(_CRTDBG_CHECK_ALWAYS_DF|_CRTDBG_DELAY_FREE_MEM_DF |
+		           _CRTDBG_ALLOC_MEM_DF|_CRTDBG_LEAK_CHECK_DF);
 		break;
 	case DEBUG_HEAP_NORMAL:
-		flags |= _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF;
+		flags |= _CRTDBG_ALLOC_MEM_DF|_CRTDBG_LEAK_CHECK_DF;
 		break;
 	case DEBUG_HEAP_ALL:
-		flags |= _CRTDBG_CHECK_ALWAYS_DF | _CRTDBG_DELAY_FREE_MEM_DF |
-		         _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF;
+		flags |= (_CRTDBG_CHECK_ALWAYS_DF|_CRTDBG_DELAY_FREE_MEM_DF |
+		          _CRTDBG_ALLOC_MEM_DF|_CRTDBG_LEAK_CHECK_DF);
 		break;
 	default:
 		debug_assert("debug_heap_enable: invalid what");
 	}
 	_CrtSetDbgFlag(flags);
+#else
+	UNUSED2(what);
 #endif // HAVE_DEBUGALLOC
 }
 
 
 // return 1 if the pointer appears to be totally bogus, otherwise 0.
-// this check is not authoritative in that the pointer may in truth
-// be invalid regardless of the return value here, but can be used
-// to filter out obviously wrong values in a portable manner.
-int debug_is_bogus_pointer(const void* p)
+// this check is not authoritative (the pointer may be "valid" but incorrect)
+// but can be used to filter out obviously wrong values in a portable manner.
+int debug_is_pointer_bogus(const void* p)
 {
-#ifdef _M_IX86
+#if CPU_IA32
 	if(p < (void*)0x10000)
 		return true;
 	if(p >= (void*)(uintptr_t)0x80000000)
 		return true;
 #endif
+
+	// note: we don't check alignment because nothing can be assumed about a
+	// pointer to the middle of a string and we mustn't reject valid pointers.
+	// nor do we bother checking the address against known stack/heap areas
+	// because that doesn't cover everything (e.g. DLLs, VirtualAlloc, etc.).
 
 	return IsBadReadPtr(p, 1) != 0;
 }
@@ -225,6 +268,8 @@ struct WhileSuspendedParam
 
 static void* while_suspended_thread_func(void* user_arg)
 {
+	debug_set_thread_name("suspender");
+
 	DWORD err;
 	WhileSuspendedParam* param = (WhileSuspendedParam*)user_arg;
 
@@ -269,8 +314,7 @@ static int call_while_suspended(WhileSuspendedFunc func, void* user_arg)
 	WhileSuspendedParam param = { hThread, func, user_arg };
 
 	pthread_t thread;
-	err = pthread_create(&thread, 0, while_suspended_thread_func, &param);
-	debug_assert(err == 0);
+	WARN_ERR(pthread_create(&thread, 0, while_suspended_thread_func, &param));
 
 	void* ret;
 	err = pthread_join(thread, &ret);
@@ -317,7 +361,7 @@ static const uint MAX_BREAKPOINTS = 4;
 
 // remove all breakpoints enabled by debug_set_break from <context>.
 // called while target is suspended.
-static int brk_disable_all_in_ctx(BreakInfo* bi, CONTEXT* context)
+static int brk_disable_all_in_ctx(BreakInfo* UNUSED(bi), CONTEXT* context)
 {
 	context->Dr7 &= ~brk_all_local_enables;
 	return 0;
@@ -405,20 +449,20 @@ static int brk_do_request(HANDLE hThread, void* arg)
 		goto fail;
 	}
 
-#if defined(_M_IX86)
+#if CPU_IA32
 	if(bi->want_all_disabled)
 		ret = brk_disable_all_in_ctx(bi, &context);
 	else
 		ret = brk_enable_in_ctx     (bi, &context);
+#else
+#error "port"
+#endif
 
 	if(!SetThreadContext(hThread, &context))
 	{
 		debug_warn("brk_do_request: SetThreadContext failed");
 		goto fail;
 	}
-#else
-#error "port"
-#endif
 
 	return 0;
 fail:
@@ -781,7 +825,7 @@ struct XInfo
 // (compiler-specific).
 static bool isCppException(const EXCEPTION_RECORD* er)
 {
-#ifdef _MSC_VER
+#if MSC_VERSION
 	// note: representation of 'msc' isn't specified, so use FOURCC
 	if(er->ExceptionCode != FOURCC(0xe0, 'm','s','c'))
 		return false;
@@ -1026,7 +1070,7 @@ LONG WINAPI wdbg_exception_filter(EXCEPTION_POINTERS* ep)
 	swprintf(fmt, ARRAY_SIZE(fmt), L"%%%ds (%%%dh[^:]:%%d)", DBG_SYMBOL_LEN, DBG_FILE_LEN);
 		// bake in the string limits (future-proof)
 	(void)swscanf(locus, fmt, func_name, file, &line);
-		// don't care if all 3 fields were filled (they default to "?")
+		// don't care whether all 3 fields were filled (they default to "?")
 
 	wchar_t buf[500];
 	const wchar_t* msg_fmt =

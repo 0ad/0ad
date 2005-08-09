@@ -18,9 +18,12 @@
 #ifndef WTIME_H__
 #define WTIME_H__
 
-
-#define HAVE_CLOCK_GETTIME
-#define HAVE_GETTIMEOFDAY
+// advertise support for the timer routines we emulate; used by timer.cpp.
+// #undef to avoid macro redefinition warning.
+#undef HAVE_CLOCK_GETTIME
+#define HAVE_CLOCK_GETTIME 1
+#undef HAVE_GETTIMEOFDAY
+#define HAVE_GETTIMEOFDAY 1
 
 
 //
@@ -70,7 +73,7 @@ extern int clock_gettime(clockid_t clock, struct timespec* ts);
 extern int clock_getres(clockid_t clock, struct timespec* res);
 
 
-// HACK: if _WIN32, the HRT makes its final implementation choice
+// HACK: on Windows, the HRT makes its final implementation choice
 // in the first calibrate call where cpu_freq is available.
 // provide a routine that makes the choice when called,
 // so app code isn't surprised by a timer change, although the HRT

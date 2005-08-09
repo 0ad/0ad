@@ -40,7 +40,7 @@
 #define PERFORM_SELF_TEST 0
 #endif
 
-#ifdef _MSC_VER
+#if MSC_VERSION
 #pragma comment(lib, "dbghelp.lib")
 #pragma comment(lib, "oleaut32.lib")	// VariantChangeType
 #endif
@@ -269,17 +269,8 @@ int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int*
 // but WinXP SP2 and above require it be suspended.
 
 // copy from CONTEXT to STACKFRAME64
-#if defined(_M_AMD64)
-# define PC_ Rip
-# define FP_ Rbp
-# define SP_ Rsp
-#elif defined(_M_IX86)
-# define PC_ Eip
-# define FP_ Ebp
-# define SP_ Esp
-#endif
 
-#ifdef _M_IX86
+#if CPU_IA32
 
 // optimized for size.
 // this is the (so far) only case where __declspec(naked) is absolutely
@@ -288,6 +279,8 @@ int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int*
 // on us returning their correct values.
 static __declspec(naked) void get_current_context(void* pcontext)
 {
+	// squelch W4 unused paramter warning (it's accessed from asm)
+	UNUSED2(pcontext);
 __asm
 {
 	pushad
@@ -357,7 +350,7 @@ rep	stosd
 }
 }
 
-#else	// #ifdef _M_IX86
+#else	// #if CPU_IA32
 
 static void get_current_context(CONTEXT* pcontext)
 {
@@ -810,7 +803,7 @@ static void seq_determine_formatting(size_t el_size, size_t el_count,
 static int dump_sequence(DebugIterator el_iterator, void* internal,
 	size_t el_count, DWORD el_type_id, size_t el_size, DumpState state)
 {
-	const u8* el_p;
+	const u8* el_p = 0;	// avoid "uninitialized" warning
 
 	// special case: display as a string if the sequence looks to be text.
 	// do this only if container isn't empty because the otherwise the
@@ -891,7 +884,7 @@ static int dump_array(const u8* p,
 
 
 
-static int determine_symbol_address(DWORD id, DWORD type_id, const u8** pp)
+static int determine_symbol_address(DWORD id, DWORD UNUSED(type_id), const u8** pp)
 {
 	const STACKFRAME64* sf = current_stackframe64;
 
@@ -1030,6 +1023,11 @@ static int dump_sym_base_type(DWORD type_id, const u8* p, DumpState state)
 		return WDBG_TYPE_INFO_UNAVAILABLE;
 	const size_t size = (size_t)size_;
 
+	// single out() call. note: we pass a single u64 for all sizes,
+	// which will only work on little-endian systems.
+	// must be declared before goto to avoid W4 warning.
+	const wchar_t* fmt = L"";
+
 	u64 data = movzx_64le(p, size);
 	// if value is 0xCC..CC (uninitialized mem), we display as hex. 
 	// the output would otherwise be garbage; this makes it obvious.
@@ -1041,10 +1039,6 @@ static int dump_sym_base_type(DWORD type_id, const u8* p, DumpState state)
 		if(i == size-1)
 			goto display_as_hex;
 	}
-
-	// single out() call. note: we pass a single u64 for all sizes,
-	// which will only work on little-endian systems.
-	const wchar_t* fmt = L"";
 
 	switch(base_type)
 	{
@@ -1171,12 +1165,16 @@ static int dump_sym_base_class(DWORD type_id, const u8* p, DumpState state)
 	if(!SymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_TYPEID, &base_class_type_id))
 		return WDBG_TYPE_INFO_UNAVAILABLE;
 
+	// this is a virtual base class. we can't display those because it'd
+	// require reading the VTbl, which is difficult given lack of documentation
+	// and just not worth it.
+	DWORD vptr_ofs;
+	if(SymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_VIRTUALBASEPOINTEROFFSET, &vptr_ofs))
+		return WDBG_UNSUPPORTED;
+
 	return dump_sym(base_class_type_id, p, state);
 	
 
-	// unsupported: virtual base classes would require reading the VTbl,
-	// which is difficult given lack of documentation and not worth it.
-	return 0;
 }
 
 
@@ -1213,7 +1211,7 @@ static int dump_sym_data(DWORD id, const u8* p, DumpState state)
 
 //-----------------------------------------------------------------------------
 
-static int dump_sym_enum(DWORD type_id, const u8* p, DumpState state)
+static int dump_sym_enum(DWORD type_id, const u8* p, DumpState UNUSED(state))
 {
 	ULONG64 size_ = 0;
 	if(!SymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_LENGTH, &size_))
@@ -1271,7 +1269,8 @@ static int dump_sym_enum(DWORD type_id, const u8* p, DumpState state)
 
 //-----------------------------------------------------------------------------
 
-static int dump_sym_function(DWORD type_id, const u8* p, DumpState state)
+static int dump_sym_function(DWORD UNUSED(type_id), const u8* UNUSED(p),
+	DumpState UNUSED(state))
 {
 	return WDBG_SUPPRESS_OUTPUT;
 }
@@ -1279,7 +1278,7 @@ static int dump_sym_function(DWORD type_id, const u8* p, DumpState state)
 
 //-----------------------------------------------------------------------------
 
-static int dump_sym_function_type(DWORD type_id, const u8* p, DumpState state)
+static int dump_sym_function_type(DWORD UNUSED(type_id), const u8* p, DumpState UNUSED(state))
 {
 	// this symbol gives class parent, return type, and parameter count.
 	// unfortunately the one thing we care about, its name,
@@ -1342,7 +1341,7 @@ static int dump_sym_pointer(DWORD type_id, const u8* p, DumpState state)
 
 	// bail if it's obvious the pointer is bogus
 	// (=> can't display what it's pointing to)
-	if(debug_is_bogus_pointer(p))
+	if(debug_is_pointer_bogus(p))
 		return 0;
 
 	// avoid duplicates and circular references
@@ -1527,8 +1526,8 @@ not_handle:
 }
 
 
-static int udt_dump_suppressed(const wchar_t* type_name, const u8* p, size_t size,
-	DumpState state, ULONG num_children, const DWORD* children)
+static int udt_dump_suppressed(const wchar_t* type_name, const u8* UNUSED(p), size_t UNUSED(size),
+	DumpState state, ULONG UNUSED(num_children), const DWORD* UNUSED(children))
 {
 	if(!udt_should_suppress(type_name))
 		return 1;
@@ -1695,7 +1694,7 @@ done:
 //-----------------------------------------------------------------------------
 
 
-static int dump_sym_vtable(DWORD type_id, const u8* p, DumpState state)
+static int dump_sym_vtable(DWORD UNUSED(type_id), const u8* UNUSED(p), DumpState UNUSED(state))
 {
 	// unsupported (vtable internals are undocumented; too much work).
 	return WDBG_SUPPRESS_OUTPUT;
@@ -1705,7 +1704,7 @@ static int dump_sym_vtable(DWORD type_id, const u8* p, DumpState state)
 //-----------------------------------------------------------------------------
 
 
-static int dump_sym_unknown(DWORD type_id, const u8* p, DumpState state)
+static int dump_sym_unknown(DWORD type_id, const u8* UNUSED(p), DumpState UNUSED(state))
 {
 	// redundant (already done in dump_sym), but this is rare.
 	DWORD type_tag;
@@ -1770,7 +1769,7 @@ static int dump_sym(DWORD type_id, const u8* p, DumpState state)
 
 // output the symbol's name and value via dump_sym*.
 // called from dump_frame_cb for each local symbol; lock is held.
-static BOOL CALLBACK dump_sym_cb(SYMBOL_INFO* sym, ULONG size, void* ctx)
+static BOOL CALLBACK dump_sym_cb(SYMBOL_INFO* sym, ULONG UNUSED(size), void* UNUSED(ctx))
 {
 	out_latch_pos();	// see decl
 	mod_base = sym->ModBase;
@@ -1813,9 +1812,8 @@ struct IMAGEHLP_STACK_FRAME2 : public IMAGEHLP_STACK_FRAME
 };
 
 // called by walk_stack for each stack frame
-static int dump_frame_cb(const STACKFRAME64* sf, void* user_arg)
+static int dump_frame_cb(const STACKFRAME64* sf, void* UNUSED(user_arg))
 {
-	UNUSED(user_arg);
 	current_stackframe64 = sf;
 	void* func = (void*)sf->AddrPC.Offset;
 
@@ -2082,13 +2080,13 @@ static void test_stl()
 	std::vector<double> v_double_empty;
 	std::queue<double> q_double_empty;
 	std::stack<double> st_double_empty;
-#ifdef HAVE_STL_HASH
+#if HAVE_STL_HASH
 	STL_HASH_MAP<double,double> hm_double_empty;
 	STL_HASH_MULTIMAP<double,std::wstring> hmm_double_empty;
 	STL_HASH_SET<double> hs_double_empty;
 	STL_HASH_MULTISET<double> hms_double_empty;
 #endif
-#ifdef HAVE_STL_SLIST
+#if HAVE_STL_SLIST
 	STL_SLIST<double> sl_double_empty;
 #endif
 	std::string str_empty;
@@ -2106,13 +2104,13 @@ static void test_stl()
 	std::vector<double> v_double_uninit;
 	std::queue<double> q_double_uninit;
 	std::stack<double> st_double_uninit;
-#ifdef HAVE_STL_HASH
+#if HAVE_STL_HASH
 	STL_HASH_MAP<double,double> hm_double_uninit;
 	STL_HASH_MULTIMAP<double,std::wstring> hmm_double_uninit;
 	STL_HASH_SET<double> hs_double_uninit;
 	STL_HASH_MULTISET<double> hms_double_uninit;
 #endif
-#ifdef HAVE_STL_SLIST
+#if HAVE_STL_SLIST
 	STL_SLIST<double> sl_double_uninit;
 #endif
 	std::string str_uninit;
@@ -2152,11 +2150,11 @@ static void test_addrs(int p_int, double p_double, char* p_pchar, uintptr_t p_ui
 
 	test_stl();
 
-	int uninit_int; UNUSED(uninit_int);
-	float uninit_float; UNUSED(uninit_float);
-	double uninit_double; UNUSED(uninit_double);
-	bool uninit_bool; UNUSED(uninit_bool);
-	HWND uninit_hwnd; UNUSED(uninit_hwnd);
+	int uninit_int; UNUSED2(uninit_int);
+	float uninit_float; UNUSED2(uninit_float);
+	double uninit_double; UNUSED2(uninit_double);
+	bool uninit_bool; UNUSED2(uninit_bool);
+	HWND uninit_hwnd; UNUSED2(uninit_hwnd);
 }
 
 

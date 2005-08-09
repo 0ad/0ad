@@ -67,21 +67,15 @@ scope
 #define EXTERN_C extern
 #endif
 
-
-// tell STL not to generate exceptions, if compiling without exceptions
-// (usually done for performance reasons).
-#ifdef CONFIG_DISABLE_EXCEPTIONS
-# ifdef _WIN32
-#  define _HAS_EXCEPTIONS 0
-# else
-#  define STL_NO_EXCEPTIONS
-# endif
-#endif
-
-
-
-
-#define STMT(STMT_code__) do { STMT_code__; } while(0)
+// package code into a single statement.
+// notes:
+// - for(;;) { break; } and {} don't work because invocations of macros
+//   implemented with STMT often end with ";", thus breaking if() expressions.
+// - we'd really like to eliminate "conditional expression is constant"
+//   warnings. replacing 0 literals with extern volatile variables fools
+//   VC7 but isn't guaranteed to be free of overhead. we will just
+//   squelch the warning (unfortunately non-portable).
+#define STMT(STMT_code__) do { STMT_code__; } while(false)
 
 // may be called at any time (in particular before main), but is not
 // thread-safe. if that's important, use pthread_once() instead.
@@ -105,7 +99,8 @@ STMT(\
 // therefore known to fit; we still mask with UINT_MAX to avoid
 // VC cast-to-smaller-type warnings.
 
-#ifdef _WIN32
+// if expression evaluates to a negative i64, warn user and return the number.
+#if OS_WIN
 #define CHECK_ERR(expression)\
 STMT(\
 	i64 err__ = (i64)(expression);\
@@ -138,17 +133,40 @@ STMT(\
 		return (int)(err__ & UINT_MAX);\
 )
 
+// if expression evaluates to a negative i64, warn user and throw the number.
 #define THROW_ERR(expression)\
 STMT(\
 	i64 err__ = (i64)(expression);\
 	if(err__ < 0)\
 	{\
-		debug_warn("FYI: CHECK_ERR reports that a function failed."\
+		debug_warn("FYI: THROW_ERR reports that a function failed."\
 		           "feel free to ignore or suppress this warning.");\
 		throw (int)(err__ & UINT_MAX);\
 	}\
 )
 
+// if expression evaluates to a negative i64, warn user and just return
+// (useful for void functions that must bail and complain)
+#define WARN_ERR_RETURN(expression)\
+STMT(\
+	i64 err__ = (i64)(expression);\
+	if(err__ < 0)\
+	{\
+		debug_warn("FYI: WARN_ERR_RETURN reports that a function failed."\
+		           "feel free to ignore or suppress this warning.");\
+		return;\
+	}\
+)
+
+// if expression evaluates to a negative i64, warn user
+// (this is similar to debug_assert but also works in release mode)
+#define WARN_ERR(expression)\
+STMT(\
+	i64 err__ = (i64)(expression);\
+	if(err__ < 0)\
+		debug_warn("FYI: WARN_ERR reports that a function failed."\
+		           "feel free to ignore or suppress this warning.");\
+)
 
 
 
@@ -188,7 +206,7 @@ enum LibError
 	// .. feature won't be supported
 	ERR_NOT_SUPPORTED   = -1025,
 
-	// file contents are damaged
+	// data (e.g. in file) is obviously incorrect
 	ERR_CORRUPTED       = -1040,
 
 	ERR_UNKNOWN_FORMAT  = -1050,
@@ -198,12 +216,13 @@ enum LibError
 	// file + vfs
 	ERR_FILE_NOT_FOUND  = -1200,
 	ERR_PATH_NOT_FOUND  = -1201,
-	ERR_DIR_END         = -1202,
-	ERR_EOF             = -1203,
-	ERR_PATH_LENGTH     = -1204,
-	ERR_NOT_FILE        = -1205,
-	ERR_FILE_ACCESS     = -1206,
-	ERR_IO              = -1207,
+	ERR_PATH_LENGTH     = -1202,
+	ERR_PATH_INVALID    = -1203,
+	ERR_DIR_END         = -1210,
+	ERR_NOT_FILE        = -1220,
+	ERR_FILE_ACCESS     = -1230,
+	ERR_IO              = -1231,
+	ERR_EOF             = -1232,
 
 
 	ERR_TEX_FMT_INVALID = -1300,
@@ -225,10 +244,14 @@ enum LibError
 
 
 // 2 ways of avoiding "unreferenced formal parameter" warnings:
-// .. inside the function body, e.g. void f(int x) { UNUSED(x); }
-#define UNUSED(param) (void)param;
-// .. wrapped around the parameter name, e.g. void f(int UNUSEDPARAM(x))
-#define UNUSEDPARAM(param)
+// .. inside the function body, e.g. void f(int x) { UNUSED2(x); }
+#define UNUSED2(param) (void)param;
+// .. wrapped around the parameter name, e.g. void f(int UNUSED(x))
+#define UNUSED(param)
+
+#if MSC_VERSION
+#define UNREACHABLE __assume(0)
+#endif
 
 
 #define ARRAY_SIZE(name) (sizeof(name) / sizeof(name[0]))
@@ -270,7 +293,7 @@ const size_t MiB = 1ul << 20;
 const size_t GiB = 1ul << 30;
 
 
-#ifdef _WIN32
+#if OS_WIN
 #define DIR_SEP '\\'
 #else
 #define DIR_SEP '/'
@@ -321,6 +344,12 @@ extern uint log2(uint x);
 
 // multiple must be a power of two.
 extern uintptr_t round_up(uintptr_t val, uintptr_t multiple);
+
+// these avoid a common mistake in using >> (ANSI requires shift count be
+// less than the bit width of the type).
+extern u32 u64_hi(u64 x);
+extern u32 u64_lo(u64 x);
+
 
 extern u16 fp_to_u16(double in);
 

@@ -23,10 +23,10 @@
 #include "lib.h"
 #include "debug.h"
 #include "debug_stl.h"
+#include "posix.h"
 #include "nommgr.h"
 	// some functions here are called from within mmgr; disable its hooks
 	// so that our allocations don't cause infinite recursion.
-
 
 // needed when writing crashlog
 static const size_t LOG_CHARS = 16384;
@@ -336,7 +336,7 @@ const char* debug_get_symbol_string(void* symbol, const char* name, const char* 
 
 
 
-
+//-----------------------------------------------------------------------------
 
 ErrorReaction display_error(const wchar_t* description, int flags,
 	uint skip, void* context, const char* file, int line)
@@ -408,7 +408,7 @@ ErrorReaction display_error(const wchar_t* description, int flags,
 		// disable memory-leak reporting to avoid a flood of warnings
 		// (lots of stuff will leak since we exit abnormally).
 		debug_heap_enable(DEBUG_HEAP_NONE);
-#ifdef CONFIG_USE_MMGR
+#if CONFIG_USE_MMGR
 		mmgr_set_options(0);
 #endif
 
@@ -432,4 +432,76 @@ ErrorReaction debug_assert_failed(const char* file, int line, const char* expr)
 	wchar_t buf[200];
 	swprintf(buf, ARRAY_SIZE(buf), L"Assertion failed in %hs, line %d: \"%hs\"", base_name, line, expr);
 	return display_error(buf, DE_ALLOW_SUPPRESS|DE_MANUAL_BREAK, skip, context, base_name, line);
+}
+
+//-----------------------------------------------------------------------------
+// thread naming
+//-----------------------------------------------------------------------------
+
+// when debugging multithreading problems, logging the currently running
+// thread is helpful; a user-specified name is easier to remember than just
+// the thread handle. to that end, we provide a robust TLS mechanism that is
+// much safer than the previous method of hijacking TIB.pvArbitrary.
+//
+// note: on Win9x thread "IDs" are pointers to the TIB xor-ed with an
+// obfuscation value calculated at boot-time.
+//
+// __declspec(thread) et al. are now available on VC and newer GCC but we
+// implement TLS manually (via pthread_setspecific) to ensure compatibility.
+
+static pthread_key_t tls_key;
+static pthread_once_t tls_once = PTHREAD_ONCE_INIT;
+
+
+// provided for completeness and to avoid displaying bogus resource leaks.
+static void tls_shutdown()
+{
+	WARN_ERR(pthread_key_delete(tls_key));
+	tls_key = 0;
+}
+
+
+// (called via pthread_once from debug_set_thread_name)
+static void tls_init()
+{
+	WARN_ERR(pthread_key_create(&tls_key, 0));	// no dtor
+
+	// note: do not use atexit; this may be called before _cinit.
+}
+
+
+
+
+// set the current thread's name; it will be returned by subsequent calls to
+// debug_get_thread_name.
+//
+// the string pointed to by <name> MUST remain valid throughout the
+// entire program; best to pass a string literal. allocating a copy
+// would be quite a bit more work due to cleanup issues.
+//
+// if supported on this platform, the debugger is notified of the new name;
+// it will be displayed there instead of just the handle.
+void debug_set_thread_name(const char* name)
+{
+	WARN_ERR(pthread_once(&tls_once, tls_init));
+
+	WARN_ERR(pthread_setspecific(tls_key, name));
+
+	wdbg_set_thread_name(name);
+}
+
+
+// return the pointer assigned by debug_set_thread_name or 0 if
+// that hasn't been done yet for this thread.
+const char* debug_get_thread_name()
+{
+	return (const char*)pthread_getspecific(tls_key);
+}
+
+
+
+
+void debug_shutdown()
+{
+	tls_shutdown();
 }

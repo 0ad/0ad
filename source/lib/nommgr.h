@@ -1,4 +1,6 @@
-// remove all memory allocation "hooks"
+// remove all of mmgr.h's memory allocation "hooks" -
+// but only if we actually defined them!
+#if CONFIG_USE_MMGR || HAVE_VC_DEBUG_ALLOC
 
 #undef new
 #undef delete
@@ -10,3 +12,5 @@
 #undef strdup
 #undef wcsdup
 #undef getcwd
+
+#endif

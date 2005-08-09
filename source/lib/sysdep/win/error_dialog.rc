@@ -3,6 +3,7 @@
 #include "error_dialog.h"
 #include <windows.h>
 
+
 /////////////////////////////////////////////////////////////////////////////
 // English (U.S.) resources
 
@@ -40,6 +41,7 @@ END
 IDD_DIALOG1 DIALOGEX 0, 0, 328, 260
 STYLE DS_SETFONT | DS_SETFOREGROUND | DS_FIXEDSYS | WS_MINIMIZEBOX | 
     WS_MAXIMIZEBOX | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_TOPMOST | WS_EX_APPWINDOW
 CAPTION "Program Error"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN

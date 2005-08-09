@@ -47,7 +47,7 @@ struct UniFont
 
 H_TYPE_DEFINE(UniFont);
 
-static void UniFont_init(UniFont* f, va_list UNUSEDPARAM(args))
+static void UniFont_init(UniFont* f, va_list UNUSED(args))
 {
 	f->glyphs_id = new glyphmap_id;
 	f->glyphs_size = new glyphmap_size;
@@ -62,7 +62,7 @@ static void UniFont_dtor(UniFont* f)
 }
 
 
-static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSEDPARAM(h))
+static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 {
 	// fn is the base filename, e.g. "console"
 	// The font definition file is "fonts/"+fn+".fnt" and the texture is "fonts/"+fn+".tga"

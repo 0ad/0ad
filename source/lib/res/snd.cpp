@@ -36,12 +36,12 @@
 #endif
 
 // for AL_FORMAT_VORBIS_EXT decl on Linux
-#ifdef OS_LINUX
+#if OS_LINUX
 # include <AL/alexttypes.h>
 #endif
 
 // for DLL-load hack in alc_init
-#ifdef _WIN32
+#if OS_WIN
 # include "sysdep/win/win_internal.h"
 #endif
 
@@ -49,7 +49,7 @@
 #define OGG_HACK
 #include "ogghack.h"
 
-#ifdef _MSC_VER
+#if MSC_VERSION
 # pragma comment(lib, "openal32.lib")
 # pragma comment(lib, "alut.lib")	// alutLoadWAVMemory
 #endif
@@ -201,7 +201,7 @@ static int alc_init()
 	// thus speeding up startup by 100..400 ms. everything works ATM;
 	// hopefully, OpenAL doesn't rely on them actually being unloaded.
 
-#ifdef _WIN32
+#if OS_WIN
 	HMODULE dlls[3];
 	dlls[0] = LoadLibrary("wrap_oal.dll");
 	dlls[1] = LoadLibrary("setupapi.dll");
@@ -213,7 +213,7 @@ static int alc_init()
 	// (it's not caused by the DLL load hack above). everything works and
 	// we can continue normally; we just need to catch it to prevent the
 	// unhandled exception filter from reporting it.
-#ifdef _WIN32
+#if OS_WIN
 	__try
 	{
 		alc_dev = alcOpenDevice((ALubyte*)alc_dev_name);
@@ -245,7 +245,7 @@ static int alc_init()
 	}
 
 	// release DLL references, so BoundsChecker doesn't complain at exit.
-#ifdef _WIN32
+#if OS_WIN
 	for(int i = 0; i < ARRAY_SIZE(dlls); i++)
 		if(dlls[i] != INVALID_HANDLE_VALUE)
 			FreeLibrary(dlls[i]);

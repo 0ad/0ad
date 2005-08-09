@@ -5,13 +5,14 @@
 
 #define USE_WINDOWS_CURSOR
 
-#ifdef _WIN32
+#if OS_WIN
 #include "lib/sysdep/win/win_internal.h"
 #endif
 
 #include "res.h"
 #include "ogl_tex.h"
 #include "lib/ogl.h"
+#include "sysdep/sysdep.h"
 
 struct ogl_cursor {
 	Handle tex;
@@ -37,7 +38,7 @@ struct ogl_cursor {
 
 extern int g_mouse_x, g_mouse_y;
 
-#ifdef _WIN32
+#if OS_WIN
 // On Windows, allow runtime choice between Windows cursors and OpenGL
 // cursors (Windows = more responsive, OpenGL = more consistent with what
 // the game sees)
@@ -49,18 +50,18 @@ struct Cursor
 	};
 	char type; // 0 for OpenGL cursor, 1 for Windows cursor
 };
-#else // #ifdef _WIN32
+#else // #if OS_WIN
 struct Cursor
 {
 	ogl_cursor* cursor; // font texture
 };
-#endif // #ifdef _WIN32 / #else
+#endif // #if OS_WIN / #else
 
 H_TYPE_DEFINE(Cursor);
 
 static void Cursor_init(Cursor* c, va_list)
 {
-#ifdef _WIN32
+#if OS_WIN
 # ifdef USE_WINDOWS_CURSOR
 	c->type = 1;
 # else
@@ -74,14 +75,14 @@ static void Cursor_init(Cursor* c, va_list)
 
 static void Cursor_dtor(Cursor* c)
 {
-#ifdef _WIN32
+#if OS_WIN
 	if (c->type == 1)
 	{
 		if (c->wincursor)
 			DestroyIcon(c->wincursor);
 	}
 	else
-#endif // _WIN32
+#endif
 	{
 		if (c->cursor)
 		{
@@ -92,100 +93,10 @@ static void Cursor_dtor(Cursor* c)
 	}
 }
 
-#ifdef _WIN32
-
-static void* ptr_from_HICON(HICON hIcon)
-{
-	return (void*)(uintptr_t)hIcon;
-}
-
-static HICON HICON_from_ptr(void* p)
-{
-	return (HICON)(uintptr_t)p;
-}
-
-static int cursor_load(Handle ht, int hotspotx, int hotspoty, void** sysdep_cursor)
-{
-	int ret = -1;
-	*sysdep_cursor = 0;
-
-	void* bgra_mem = 0;
-
-	{
-	// get format
-	int w, h, fmt, bpp;
-	const u8* imgdata;
-	CHECK_ERR(tex_info(ht, &w, &h, &fmt, &bpp, (void**)&imgdata));
-	if(bpp != 32 || (fmt != GL_BGRA && fmt != GL_RGBA))
-	{
-		debug_warn("Cursor texture not 32-bit RGBA/BGRA");
-		ret = ERR_TEX_FMT_INVALID;
-		goto fail;
-	}
-
-	// convert to BGRA if not already in that format (required by BMP)
-	if(fmt != GL_BGRA)
-	{
-		// don't convert in-place so we don't spoil someone else's
-		// use of the texture (however unlikely that may be).
-		bgra_mem = malloc(w*h*4);
-		if(!bgra_mem)
-		{
-			ret = ERR_NO_MEM;
-			goto fail;
-		}
-		const u8* src = imgdata;
-		u8* dst = (u8*)bgra_mem;
-		for(int i = 0; i < w*h; i++)
-		{
-			const u8 r = src[0], g = src[1], b = src[2], a = src[3];
-			dst[0] = b; dst[1] = g; dst[2] = r; dst[3] = a;
-			dst += 4;
-			src += 4;
-		}
-		imgdata = (const u8*)bgra_mem;
-	}
-
-	HBITMAP hbmColor = CreateBitmap(w, h, 1, 32, imgdata);
-
-	// CreateIconIndirect doesn't access it; we just need to pass
-	// an empty bitmap.
-	HBITMAP hbmMask = CreateBitmap(w, h, 1, 1, 0);
-
-	ICONINFO ii;
-	ii.fIcon = FALSE;  // cursor
-	ii.xHotspot = hotspotx;
-	ii.yHotspot = hotspoty;
-	ii.hbmMask  = hbmMask;
-	ii.hbmColor = hbmColor;
-	HICON hIcon = CreateIconIndirect(&ii);
-
-	// CreateIconIndirect makes copies, so we no longer need these.
-	DeleteObject(hbmMask);
-	DeleteObject(hbmColor);
-
-	if(!hIcon)	// not INVALID_HANDLE_VALUE
-	{
-		debug_warn("cursor CreateIconIndirect failed");
-		goto fail;
-	}
-
-	*sysdep_cursor = ptr_from_HICON(hIcon);
-	ret = 0;
-	}
-
-fail:
-	free(bgra_mem);
-
-	CHECK_ERR(ret);
-	return 0;
-}
-
-#endif
-
 static int Cursor_reload(Cursor* c, const char* name, Handle)
 {
 	char filename[VFS_MAX_PATH];
+	int ret;
 
 	// Load the .txt file containing the pixel offset of
 	// the cursor's hotspot (the bit of it that's
@@ -209,18 +120,29 @@ static int Cursor_reload(Cursor* c, const char* name, Handle)
 	Handle ht = tex_load(filename);
 	CHECK_ERR(ht);
 
-#ifdef _WIN32
+#if OS_WIN
 	if (c->type == 1)
 	{
-		int err = cursor_load(ht, hotspotx, hotspoty, (void**)&c->wincursor);
-		if(err < 0)
+		int w, h, gl_fmt, bpp;
+		void* img;
+		if(tex_info(ht, &w, &h, &gl_fmt, &bpp, &img) < 0 ||
+		  (bpp != 32 || gl_fmt != GL_RGBA))
 		{
+			debug_warn("Cursor_reload: invalid texture format");
+			ret = ERR_TEX_FMT_INVALID;
+			goto fail;
+		}
+
+		ret = cursor_create(w, h, img, hotspotx, hotspoty, (void**)&c->wincursor);
+		if(ret < 0)
+		{
+fail:
 			tex_free(ht);
-			return err;
+			return ret;
 		}
 	}
 	else
-#endif // _WIN32
+#endif
 	{
 		int err = tex_upload(ht, GL_NEAREST);
 		CHECK_ERR(err);
@@ -254,7 +176,7 @@ void cursor_draw(const char* name)
 	// Use 'null' to disable the cursor
 	if (!name)
 	{
-#ifdef _WIN32
+#if OS_WIN
 		SetCursor(LoadCursor(NULL, IDC_ARROW));
 #endif
 		return;
@@ -268,13 +190,13 @@ void cursor_draw(const char* name)
 	if (!c)
 		return;
 
-#ifdef _WIN32
+#if OS_WIN
 	if (c->type == 1)
 	{
 		SetCursor(c->wincursor);
 	}
 	else
-#endif // _WIN32
+#endif
 	{
 		c->cursor->draw(g_mouse_x, g_yres - g_mouse_y);
 	}

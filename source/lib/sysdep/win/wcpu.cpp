@@ -217,7 +217,7 @@ static uintptr_t get_target_pc()
 	if(ret == (DWORD)-1)
 	{
 		debug_warn("get_target_pc: SuspendThread failed");
-		return -1;
+		return 0;
 	}
 	// note: we don't need to call more than once: this increments a DWORD
 	// 'suspend count'; target is guaranteed to be suspended unless
@@ -236,15 +236,7 @@ static uintptr_t get_target_pc()
 	CONTEXT context;
 	context.ContextFlags = CONTEXT_CONTROL;
 	if(GetThreadContext(hThread, &context))
-	{
-#if defined(_M_AMD64)
-		pc = context.Rip;
-#elif defined(_M_IX86)
-		pc = context.Eip;
-#else
-# error "port CONTEXT"
-#endif
-	}
+		pc = context.PC_;
 
 	/////////////////////////////////////////////
 
@@ -259,9 +251,9 @@ static uintptr_t get_target_pc()
 static pthread_t thread;
 static sem_t exit_flag;
 
-static void* prof_thread_func(void* data)
+static void* prof_thread_func(void* UNUSED(data))
 {
-	UNUSED(data);
+	debug_set_thread_name("profiler");
 
 	const long _1e6 = 1000000;
 	const long _1e9 = 1000000000;

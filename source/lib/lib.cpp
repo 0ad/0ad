@@ -146,7 +146,7 @@ bool is_pow2(const long n)
 
 int ilog2(const int n)
 {
-#ifdef _M_IX86
+#if CPU_IA32
 
 	__asm
 	{
@@ -263,6 +263,20 @@ i64 movsx_64le(const u8* p, size_t size)
 	}
 
 	return (i64)data;
+}
+
+
+// these avoid a common mistake in using >> (ANSI requires shift count be
+// less than the bit width of the type).
+
+u32 u64_hi(u64 x)
+{
+	return (u32)(x >> 32);
+}
+
+u32 u64_lo(u64 x)
+{
+	return (u32)(x & 0xffffffff);
 }
 
 
