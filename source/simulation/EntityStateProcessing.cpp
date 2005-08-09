@@ -271,7 +271,7 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 }
 
 // Handles processing common to (at the moment) gather and melee attack actions
-bool CEntity::processContactAction( CEntityOrder* current, size_t timestep_millis, int transition, SEntityAction* action )
+bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timestep_millis), int transition, SEntityAction* action )
 {
 	m_orderQueue.pop_front();
 
@@ -505,9 +505,11 @@ bool CEntity::processGatherNoPathing( CEntityOrder* current, size_t timestep_mil
 	return( processContactActionNoPathing( current, timestep_millis, "gather", &evt, &m_gather ) );
 }
 
-bool CEntity::processGoto( CEntityOrder* current, size_t timestep_millis )
+bool CEntity::processGoto( CEntityOrder* current, size_t UNUSED(timestep_millis) )
 {
-	float timestep=timestep_millis/1000.0f;
+	// float timestep=timestep_millis/1000.0f;
+	// janwas: currently unused
+
 
 	CVector2D pos( m_position.X, m_position.Z );
 	CVector2D path_to = current->m_data[0].location;
@@ -533,9 +535,10 @@ bool CEntity::processGoto( CEntityOrder* current, size_t timestep_millis )
 	return( true );
 }
 
-bool CEntity::processPatrol( CEntityOrder* current, size_t timestep_millis )
+bool CEntity::processPatrol( CEntityOrder* current, size_t UNUSED(timestep_millis) )
 {
-	float timestep=timestep_millis/1000.0f;
+	// float timestep=timestep_millis/1000.0f;
+	// janwas: currently unused
 
 	CEntityOrder this_segment;
 	CEntityOrder repeat_patrol;

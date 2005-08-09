@@ -5,6 +5,7 @@
 #include "scripting/JSInterface_Vector3D.h"
 #include "Parser.h"
 #include "BaseEntity.h"
+#include "lib/sysdep/sysdep.h"	// finite
 
 // HEntity
 
@@ -79,7 +80,7 @@ template<> jsval ToJSVal<CScriptObject>( CScriptObject& Native )
 	return( OBJECT_TO_JSVAL( Native.GetFunctionObject() ) );
 }
 
-template<> bool ToPrimitive<CScriptObject>( JSContext* cx, jsval v, CScriptObject& Storage )
+template<> bool ToPrimitive<CScriptObject>( JSContext* UNUSED(cx), jsval v, CScriptObject& Storage )
 {
 	Storage.SetJSVal( v );
 	return( true );
@@ -97,17 +98,16 @@ template<> jsval ToJSVal<int>( int& Native )
 	return( INT_TO_JSVAL( Native ) );
 }
 
+
+
+
+
+
+
 template<> bool ToPrimitive<int>( JSContext* cx, jsval v, int& Storage )
 {
-	try
-	{
-		Storage = g_ScriptingHost.ValueToInt( v );
-	}
-	catch( PSERROR_Scripting_ConversionFailed )
-	{
-		return( false );
-	}
-	return( true );
+	JSBool ok = JS_ValueToInt32(cx, v, (int32*)&Storage);
+	return ok == JS_TRUE;
 }
 
 // uint
@@ -124,17 +124,13 @@ template<> jsval ToJSVal<uint>( uint& Native )
 
 template<> bool ToPrimitive<uint>( JSContext* cx, jsval v, uint& Storage )
 {
-	try
-	{
-		int t = g_ScriptingHost.ValueToInt( v );
-		if( t < 0 ) return( false );
-		Storage = t;
-	}
-	catch( PSERROR_Scripting_ConversionFailed )
-	{
-		return( false );
-	}
-	return( true );
+	int temp;
+	if(!ToPrimitive<int>(cx, v, temp))
+		return false;
+	if(temp < 0)
+		return false;
+	Storage = temp;
+	return true;
 }
 
 // double
@@ -151,15 +147,10 @@ template<> jsval ToJSVal<double>( double& Native )
 
 template<> bool ToPrimitive<double>( JSContext* cx, jsval v, double& Storage )
 {
-	try
-	{
-		Storage = g_ScriptingHost.ValueToDouble( v );
-	}
-	catch( PSERROR_Scripting_ConversionFailed )
-	{
-		return( false );
-	}
-	return( true );
+	JSBool ok = JS_ValueToNumber(cx, v, &Storage);
+	if (ok == JS_FALSE || !finite( Storage ) )
+		return false;
+	return true;
 }
 
 // float
@@ -176,15 +167,11 @@ template<> jsval ToJSVal<float>( float& Native )
 
 template<> bool ToPrimitive<float>( JSContext* cx, jsval v, float& Storage )
 {
-	try
-	{
-		Storage = (float)g_ScriptingHost.ValueToDouble( v );
-	}
-	catch( PSERROR_Scripting_ConversionFailed )
-	{
-		return( false );
-	}
-	return( true );
+	double temp;
+	if(!ToPrimitive<double>(cx, v, temp))
+		return false;
+	Storage = (float)temp;
+	return true;
 }
 	
 
@@ -202,19 +189,16 @@ template<> jsval ToJSVal<bool>( bool& Native )
 
 template<> bool ToPrimitive<bool>( JSContext* cx, jsval v, bool& Storage )
 {
-	try
-	{
-		Storage = g_ScriptingHost.ValueToBool( v );
-	}
-	catch( PSERROR_Scripting_ConversionFailed )
-	{
-		return( false );
-	}
-	return( true );
+	JSBool temp;
+	JSBool ok = JS_ValueToBoolean(cx, v, &temp);
+	if(ok == JS_FALSE)
+		return false;
+	Storage = (temp == JS_TRUE);
+	return true;
 }
 
 // CStrW
-template<> bool ToPrimitive<CStrW>( JSContext* cx, jsval v, CStrW& Storage )
+template<> bool ToPrimitive<CStrW>( JSContext* UNUSED(cx), jsval v, CStrW& Storage )
 {
 	try
 	{
@@ -239,7 +223,7 @@ template<> jsval ToJSVal<CStrW>( CStrW& Native )
 
 // CStr/CStr8
 
-template<> bool ToPrimitive<CStr8>( JSContext* cx, jsval v, CStr8& Storage )
+template<> bool ToPrimitive<CStr8>( JSContext* UNUSED(cx), jsval v, CStr8& Storage )
 {
 	try
 	{

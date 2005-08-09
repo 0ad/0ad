@@ -452,7 +452,7 @@ bool CParserLine::ParseString(const CParser& Parser, const std::string &strLine)
 										//  found and no further looking is required
 	CParserTaskTypeNode *CurNode=NULL;	// Current node on task type
 	CParserTaskTypeNode *PrevNode=NULL;	// Last node
-	UNUSED(PrevNode);
+	UNUSED2(PrevNode);
 
 	// Iterate all different TaskType, and all TaskTypeElements... 
 	//  start from left and go  to the right (prog), comparing 

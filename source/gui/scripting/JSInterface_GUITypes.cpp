@@ -35,7 +35,7 @@ JSFunctionSpec JSI_GUISize::JSI_methods[] =
 	{ 0 }
 };
 
-JSBool JSI_GUISize::construct(JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* UNUSEDPARAM(rval))
+JSBool JSI_GUISize::construct(JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* UNUSED(rval))
 {
 	if (argc == 8)
 	{
@@ -85,7 +85,7 @@ CStr ToPercentString(double pix, double per)
 		return CStr(per)+CStr("%")+( pix == 0.0 ? CStr() : pix > 0.0 ? CStr("+")+CStr(pix) : CStr(pix) );
 }
 
-JSBool JSI_GUISize::toString(JSContext* cx, JSObject* obj, uintN UNUSEDPARAM(argc), jsval* UNUSEDPARAM(argv), jsval* rval)
+JSBool JSI_GUISize::toString(JSContext* cx, JSObject* obj, uintN UNUSED(argc), jsval* UNUSED(argv), jsval* rval)
 {
 	CStr buffer;
 
@@ -139,7 +139,7 @@ JSFunctionSpec JSI_GUIColor::JSI_methods[] =
 	{ 0 }
 };
 
-JSBool JSI_GUIColor::construct(JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* UNUSEDPARAM(rval))
+JSBool JSI_GUIColor::construct(JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* UNUSED(rval))
 {
 	if (argc == 4)
 	{
@@ -163,7 +163,8 @@ JSBool JSI_GUIColor::construct(JSContext* cx, JSObject* obj, unsigned int argc, 
 	return JS_TRUE;
 }
 
-JSBool JSI_GUIColor::toString(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval)
+JSBool JSI_GUIColor::toString(JSContext* cx, JSObject* obj,
+	uintN UNUSED(argc), jsval* UNUSED(argv), jsval* rval)
 {
 	char buffer[256];
 	// Convert to integers, to be compatible with the GUI's string SetSetting
@@ -202,7 +203,7 @@ JSFunctionSpec JSI_GUIMouse::JSI_methods[] =
 	{ 0 }
 };
 
-JSBool JSI_GUIMouse::construct(JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval)
+JSBool JSI_GUIMouse::construct(JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* UNUSED(rval))
 {
 	if (argc == 3)
 	{
@@ -220,7 +221,7 @@ JSBool JSI_GUIMouse::construct(JSContext* cx, JSObject* obj, unsigned int argc, 
 	return JS_TRUE;
 }
 
-JSBool JSI_GUIMouse::toString(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval)
+JSBool JSI_GUIMouse::toString(JSContext* cx, JSObject* obj, uintN UNUSED(argc), jsval* UNUSED(argv), jsval* rval)
 {
 	char buffer[256];
 	snprintf(buffer, 256, "%i %i %i",

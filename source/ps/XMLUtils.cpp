@@ -21,7 +21,7 @@
 #endif
 */
 
-#ifdef _MSC_VER
+#if MSC_VERSION
 # ifdef XERCES_STATIC_LIB
 #  ifndef NDEBUG
 #   pragma comment(lib, "xerces-c_2D-static.lib")
@@ -35,7 +35,7 @@
 #   pragma comment(lib, "xerces-c_2.lib")
 #  endif	// NDEBUG
 # endif		// XERCES_STATIC_LIB
-#endif		// _MSC_VER
+#endif		// MSC_VERSION
 
 XERCES_CPP_NAMESPACE_USE
 
@@ -108,7 +108,7 @@ const char *prevpathcomp(const char *end, const char *beginning)
 	return end;
 }
 
-InputSource *CVFSEntityResolver::resolveEntity(const XMLCh *const UNUSEDPARAM(publicId),
+InputSource *CVFSEntityResolver::resolveEntity(const XMLCh *const UNUSED(publicId),
 	const XMLCh *const systemId)
 {
 	CVFSInputSource *ret=new CVFSInputSource();

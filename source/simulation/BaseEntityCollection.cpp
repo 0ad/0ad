@@ -21,7 +21,7 @@ void CBaseEntityCollection::LoadFile( const char* path )
 	m_templateFilenames[tag] = path;
 }
 
-static void LoadFileThunk( const char* path, const vfsDirEnt* ent, void* context )
+static void LoadFileThunk( const char* path, const DirEnt* UNUSED(ent), void* context )
 {
 	CBaseEntityCollection* this_ = (CBaseEntityCollection*)context;
 	this_->LoadFile(path);
@@ -30,7 +30,8 @@ static void LoadFileThunk( const char* path, const vfsDirEnt* ent, void* context
 int CBaseEntityCollection::loadTemplates()
 {
 	// Load all files in entities/ and its subdirectories.
-	THROW_ERR( VFSUtil::EnumDirEnts( "entities/", "*.xml", true, LoadFileThunk, this ) );
+	THROW_ERR( VFSUtil::EnumDirEnts( "entities/", VFSUtil::RECURSIVE, "*.xml",
+		LoadFileThunk, this ) );
 	return 0;
 }
 

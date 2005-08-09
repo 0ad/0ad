@@ -32,7 +32,7 @@ CMusicPlayer::~CMusicPlayer(void)
 	release();
 }
 
-void CMusicPlayer::open(char *filename)
+void CMusicPlayer::open(char* UNUSED(filename))
 {
 	// If a new file is opened while another is already in memory,
 	// close the old one first.
@@ -242,7 +242,7 @@ void CMusicPlayer::empty()
 
 
 
-std::string CMusicPlayer::errorString(int errorcode)
+std::string CMusicPlayer::errorString(int UNUSED(errorcode))
 {
 	/*
 	switch(errorcode)

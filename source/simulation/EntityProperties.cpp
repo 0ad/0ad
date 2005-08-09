@@ -38,7 +38,7 @@ void CBoundProperty<int>::set( const jsval value )
 {
 	try
 	{
-		m_data = g_ScriptingHost.ValueToInt( value );
+		m_data = ToPrimitive<int>( value );
 		m_inherited = false;
 	}
 	catch( ... )
@@ -55,7 +55,7 @@ void CBoundProperty<bool>::set( const jsval value )
 {
 	try
 	{
-		m_data = g_ScriptingHost.ValueToBool( value );
+		m_data = ToPrimitive<bool>( value );
 		m_inherited = false;
 	}
 	catch( ... )
@@ -72,7 +72,7 @@ void CBoundProperty<float>::set( const jsval value )
 {
 	try
 	{
-		m_data = (float)g_ScriptingHost.ValueToDouble( value );
+		m_data = ToPrimitive<float>( value );
 		m_inherited = false;
 	}
 	catch( ... )

@@ -107,11 +107,11 @@ void CModelDef::Save(const char* filename,const CModelDef* mdef)
 	CFilePacker packer(FILE_VERSION, "PSMD");
 
 	// pack everything up
-	u32 numVertices=mdef->GetNumVertices();
+	u32 numVertices=(u32)mdef->GetNumVertices();
 	packer.PackRaw(&numVertices,sizeof(numVertices));
 	packer.PackRaw(mdef->GetVertices(),sizeof(SModelVertex)*numVertices);
 	
-	u32 numFaces=mdef->GetNumFaces();
+	u32 numFaces=(u32)mdef->GetNumFaces();
 	packer.PackRaw(&numFaces,sizeof(numFaces));
 	packer.PackRaw(mdef->GetFaces(),sizeof(SModelFace)*numFaces);
 	

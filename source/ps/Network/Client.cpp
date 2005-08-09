@@ -80,7 +80,7 @@ void CNetClient::ScriptingInit()
 	CJSObject<CNetClient>::ScriptingInit("NetClient");
 }
 
-bool CNetClient::JSI_BeginConnect(JSContext *cx, uintN argc, jsval *argv)
+bool CNetClient::JSI_BeginConnect(JSContext* UNUSED(cx), uintN argc, jsval *argv)
 {
 	CStr connectHostName;
 	uint connectPort=PS_DEFAULT_PORT;
@@ -90,7 +90,7 @@ bool CNetClient::JSI_BeginConnect(JSContext *cx, uintN argc, jsval *argv)
 	}
 	if (argc >= 2)
 	{
-		connectPort=g_ScriptingHost.ValueToInt(argv[1]);
+		connectPort=ToPrimitive<int>(argv[1]);
 	}
 	
 	PS_RESULT res=BeginConnect(connectHostName.c_str(), connectPort);
@@ -292,7 +292,7 @@ bool CNetClient::PreGameHandler(CNetMessage *pMsg, CNetSession *pSession)
 			switch (msg->m_Assignment)
 			{
 				case PS_ASSIGN_SESSION:
-					if (msg->m_SessionID == pClient->m_SessionID)
+					if ((int)msg->m_SessionID == (int)pClient->m_SessionID)	// squelch bogus sign mismatch warning
 						pClient->m_pLocalPlayerSlot=pSlot;
 					pSlot->AssignToSessionID(msg->m_SessionID);
 					break;

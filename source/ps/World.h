@@ -45,6 +45,11 @@ public:
 	{	return &m_UnitManager; }
 	inline CProjectileManager *GetProjectileManager()
 	{	return &m_ProjectileManager; }
+
+private:
+	// squelch "unable to generate" warnings
+	CWorld(const CWorld& rhs);
+	const CWorld& operator=(const CWorld& rhs);
 };
 
 #include "Game.h"

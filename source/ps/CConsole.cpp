@@ -470,10 +470,11 @@ void CConsole::SetBuffer(const wchar_t* szMessage, ...)
 	m_iBufferLength = m_iBufferPos = (int)wcslen(m_szBuffer);
 }
 
-void CConsole::UseHistoryFile( CStr filename, unsigned int historysize )
+void CConsole::UseHistoryFile( CStr filename, int max_history_lines )
 {
+	m_MaxHistoryLines = max_history_lines;
+
 	m_sHistoryFile = filename;
-	m_iHistorySize = historysize;
 	LoadHistory();
 }
 
@@ -592,10 +593,11 @@ void CConsole::SaveHistory()
 {
 	CStr buffer;
 	std::deque<std::wstring>::iterator it;
-	unsigned int count = 0;
+	int line_count = 0;
 	for( it = m_deqBufHistory.begin(); it != m_deqBufHistory.end(); ++it )
 	{
-		if( count++ >= m_iHistorySize ) break;
+		if(line_count++ >= m_MaxHistoryLines)
+			break;
 		buffer = CStrW( *it ).ToUTF8() + "\n" + buffer;
 	}
 	vfs_store( m_sHistoryFile, (void*)buffer.c_str(), buffer.Length(), FILE_NO_AIO ); 

@@ -104,7 +104,7 @@ template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::A
 	if( ( index >= 0 ) && ( index < (int)set->size() ) )
 		return( JS_TRUE );
 
-	if( index != set->size() )
+	if( index != (int)set->size() )
 	{
 		// If you add something to the collection, it must be at the
 		// next empty array element; i.e. set->size()
@@ -124,7 +124,8 @@ template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::A
 }
 
 
-template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::RemoveProperty ( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
+template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::RemoveProperty (
+	JSContext* cx, JSObject* obj, jsval id, jsval* UNUSED(vp) )
 {
 	if( !JSVAL_IS_INT( id ) )
 		return( JS_TRUE ); // Accessing a named property; nothing interesting.
@@ -236,7 +237,8 @@ template<typename T, JSClass* ScriptType> bool CJSCollection<T, ScriptType>::Get
 }
 
 
-template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::ToString( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::ToString(
+	JSContext* cx, JSObject* obj, uintN UNUSED(argc), jsval* UNUSED(argv), jsval* rval )
 {
 	std::vector<T>* set = RetrieveSet( cx, obj );
 
@@ -252,7 +254,8 @@ template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::T
 	return( JS_TRUE );
 }
 
-template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::GetLength( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
+template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::GetLength(
+	JSContext* cx, JSObject* obj, jsval UNUSED(id), jsval* vp )
 {
 	std::vector<T>* set = RetrieveSet( cx, obj );
 
@@ -263,7 +266,8 @@ template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::G
 	return( JS_TRUE );
 }
 
-template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::IsEmpty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
+template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::IsEmpty(
+	JSContext* cx, JSObject* obj, jsval UNUSED(id), jsval* vp )
 {
 	std::vector<T>* set = RetrieveSet( cx, obj );
 
@@ -311,7 +315,8 @@ template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::E
 	return( JS_TRUE );
 }
 
-template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::Subset( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::Subset(
+	JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 {
 	debug_assert( argc > 0 );
 
@@ -329,8 +334,6 @@ template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::S
 	JSObject* Collection = JS_NewObject( g_ScriptingHost.GetContext(), &JSI_class, NULL, NULL );
 	JS_SetPrivate( g_ScriptingHost.GetContext(), Collection, CollectionData );
 
-	int i = 0;
-
 	for( it = Set->begin(); it != Set->end(); it++ )
 		if( Predicate.Run( ToScript( (T*)&( *it ) ) ) )
 			CollectionData->m_Data->push_back( *it );
@@ -340,7 +343,8 @@ template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::S
 	return( JS_TRUE );
 }
 
-template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::Clear( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::Clear(
+	JSContext* cx, JSObject* obj, uintN UNUSED(argc), jsval* UNUSED(argv), jsval* rval )
 {
 	std::vector<T>* Set = RetrieveSet( cx, obj );
 	if( !Set )
@@ -372,7 +376,8 @@ template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::P
 	return( JS_TRUE );
 }
 
-template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::Pop( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::Pop(
+	JSContext* cx, JSObject* obj, uintN UNUSED(argc), jsval* UNUSED(argv), jsval* rval )
 {
 	std::vector<T>* Set = RetrieveSet( cx, obj );
 	if( !Set )
@@ -390,7 +395,8 @@ template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::P
 	return( JS_TRUE );
 }
 
-template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::Remove( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::Remove(
+	JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* UNUSED(rval) )
 {
 	debug_assert( argc > 0 );
 
@@ -403,7 +409,7 @@ template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::R
 	int index;
 	try
 	{
-		index = g_ScriptingHost.ValueToInt( argv[0] );
+		index = ToPrimitive<int>( argv[0] );
 	}
 	catch( PSERROR_Scripting_ConversionFailed )
 	{

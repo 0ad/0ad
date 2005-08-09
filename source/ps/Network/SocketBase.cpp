@@ -1,6 +1,6 @@
 #include "precompiled.h"
 
-#ifdef _WIN32
+#if OS_WIN
 #include "sysdep/win/win_internal.h"
 #endif
 
@@ -238,6 +238,8 @@ void CSocketBase::Shutdown()
 
 void *WaitLoopThreadMain(void *)
 {
+	debug_set_thread_name("net_wait");
+
 	GLOBAL_LOCK();
 	CSocketBase::RunWaitLoop();
 	
@@ -313,7 +315,7 @@ void CSocketBase::Destroy()
 
 void CSocketBase::SetNonBlocking(bool nonblocking)
 {
-#ifdef _WIN32
+#if OS_WIN
 	unsigned long nb=nonblocking;
 	int res=ioctlsocket(m_pInternal->m_fd, FIONBIO, &nb);
 	if (res == -1)
@@ -547,7 +549,7 @@ void CSocketBase::Reject()
 }
 
 // UNIX select loop
-#ifndef _WIN32
+#if !OS_WIN
 // ConnectError is called on a socket the first time it selects as ready
 // after the BeginConnect, to check errors on the socket and update the
 // connection status information
@@ -788,11 +790,8 @@ void CSocketBase::SendWaitLoopUpdate()
 	write(g_SocketSetInternal.m_Pipe[1], &msg, 1);
 }
 
-#endif
 // Windows WindowProc for async event notification
-#ifdef _WIN32
-
-
+#else	// i.e. #if OS_WIN
 
 void WaitLoop_SocketUpdateProc(int fd, int error, uint event)
 {
@@ -956,7 +955,7 @@ void CSocketBase::SendWaitLoopUpdate()
 		GLOBAL_UNLOCK();
 	}
 }
-#endif
+#endif	// #if OS_WIN
 
 void CSocketBase::AbortWaitLoop()
 {

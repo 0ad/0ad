@@ -8,7 +8,7 @@ using namespace I18n;
 // Vaguely useful utility function for deleting stuff
 template<typename T> void delete_fn(T* v) { delete v; }
 
-const StrImW TSComponentString::ToString(CLocale* locale, std::vector<BufferVariable*>& vars) const
+const StrImW TSComponentString::ToString(CLocale* UNUSED(locale), std::vector<BufferVariable*>& UNUSED(vars)) const
 {
 	return String;
 }

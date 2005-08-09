@@ -77,6 +77,11 @@ public:
 	jsval ToString( JSContext* cx, uintN argc, jsval* argv );
 
 	static void ScriptingInit();
+
+private:
+	// squelch "unable to generate" warnings
+	CBaseEntity(const CBaseEntity& rhs);
+	const CBaseEntity& operator=(const CBaseEntity& rhs);
 };
 
 #endif

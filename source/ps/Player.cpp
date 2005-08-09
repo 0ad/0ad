@@ -60,7 +60,7 @@ void CPlayer::SetValue(CStrW name, CStrW value)
 	}
 }
 
-bool CPlayer::ValidateCommand(CNetMessage *pMsg)
+bool CPlayer::ValidateCommand(CNetMessage* UNUSED(pMsg))
 {
 	return true;
 }
@@ -75,7 +75,7 @@ std::vector<HEntity>* CPlayer::GetControlledEntities()
 	return( g_EntityManager.matches( ControllerPredicate, this ) );
 }
 
-jsval CPlayer::JSI_ToString( JSContext* cx, uintN argc, jsval* argv )
+jsval CPlayer::JSI_ToString( JSContext* cx, uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	wchar_t buffer[256];
 	swprintf( buffer, 256, L"[object Player: %ls]", m_Name.c_str() );
@@ -92,11 +92,11 @@ jsval CPlayer::JSI_GetControlledEntities()
 	return( vp );
 }
 
-jsval CPlayer::JSI_SetColour( JSContext* cx, uintN argc, jsval* argv )
+jsval CPlayer::JSI_SetColour( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 {
 	if (argc != 1)
 		return JSVAL_NULL;
-	
+
 	m_Colour=*( ToNative<SPlayerColour>(argv[0]) );
 	ISynchedJSProperty *prop=GetSynchedProperty(L"colour");
 	Update(L"colour", prop);

@@ -228,7 +228,7 @@ bool __ParseString<CGUISpriteInstance>(const CStr& Value, CGUISpriteInstance &Ou
 }
 
 template <>
-bool __ParseString<CGUIList>(const CStr& Value, CGUIList &Output)
+bool __ParseString<CGUIList>(const CStr& UNUSED(Value), CGUIList& UNUSED(Output))
 {
 	//LOG(WARNING, LOG_CATEGORY, "Cannot set a 'list' from a string.");
 	return false;

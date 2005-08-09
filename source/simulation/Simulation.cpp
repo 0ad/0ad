@@ -38,7 +38,7 @@ CSimulation::~CSimulation()
 	g_SinglePlayerTurnManager=NULL;
 }
 
-int CSimulation::Initialize(CGameAttributes *pAttribs)
+int CSimulation::Initialize(CGameAttributes* UNUSED(pAttribs))
 {
 	m_pTurnManager->Initialize(m_pGame->GetNumPlayers());
 
@@ -184,7 +184,7 @@ void QueueOrder(CEntityOrder order, const vector <HEntity> &entities, bool clear
 	}
 }
 
-uint CSimulation::TranslateMessage(CNetMessage *pMsg, uint clientMask, void *userdata)
+uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNUSED(userdata))
 {
 	CEntityOrder order;
 	bool clearQueue = true;
@@ -257,9 +257,10 @@ uint CSimulation::TranslateMessage(CNetMessage *pMsg, uint clientMask, void *use
 	return clientMask;
 }
 
-uint CSimulation::GetMessageMask(CNetMessage *pMsg, uint oldMask, void *userdata)
+uint CSimulation::GetMessageMask(CNetMessage* UNUSED(pMsg), uint UNUSED(oldMask), void* UNUSED(userdata))
 {
-	CSimulation *pSimulation=(CSimulation *)userdata;
+	//CSimulation *pSimulation=(CSimulation *)userdata;
+
 	// Pending a complete visibility/minimal-update implementation, we'll
 	// simply select the first 32 connected clients ;-)
 	return 0xffffffff;

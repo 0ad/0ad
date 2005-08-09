@@ -19,7 +19,7 @@ CGame *g_Game=NULL;
 //   members or call member functions on this, the result will be undefined."
 // In this case, the pointers are simply stored for later use, so there
 // should be no problem.
-#ifdef _MSC_VER
+#if MSC_VERSION
 # pragma warning (disable: 4355)
 #endif
 
@@ -33,7 +33,7 @@ CGame::CGame():
 	debug_printf("CGame::CGame(): Game object CREATED; initializing..\n");
 }
 
-#ifdef _MSC_VER
+#if MSC_VERSION
 # pragma warning (default: 4355)
 #endif
 
@@ -140,7 +140,7 @@ CPlayer *CGame::GetPlayer(uint idx)
 		if (m_Players.size() == 0)
 		{
 			// Hmm. This is a bit of a problem.
-			debug_assert(! "### ### ### ### ERROR: Tried to access the players list when there aren't any players. That really isn't going to work, so I'll give up. ### ###");
+			debug_warn("### ### ### ### ERROR: Tried to access the players list when there aren't any players. That really isn't going to work, so I'll give up. ### ###");
 			abort();
 			return NULL; // else VC2005 warns about not returning a value
 		}

@@ -3,14 +3,15 @@
 
 #include <map>
 
-#ifndef _WIN32
+#if !OS_WIN
 
 #define Network_GetErrorString(_error, _buf, _buflen) strerror_r(_error, _buf, _buflen)
 
 #define Network_LastError errno
 
 #define closesocket(_fd) close(_fd)
-#else
+
+#else	// i.e. #if OS_WIN
 
 #define Network_GetErrorString(_error, _buf, _buflen) \
 	FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, NULL, _error+WSABASEERR, 0, _buf, _buflen, NULL)
@@ -36,7 +37,7 @@
 
 #define MSG_SOCKET_READY WM_USER
 
-#endif
+#endif	// #if OS_WIN
 
 typedef int socket_t;
 
@@ -80,7 +81,7 @@ struct CSocketSetInternal
 	uint m_NumSockets;
 
 	std::map <socket_t, CSocketBase * > m_HandleMap;
-#ifdef _WIN32
+#if OS_WIN
 	HWND m_hWnd;
 #else
 	// [0] is for use by RunWaitLoop, [1] for SendWaitLoopAbort and SendWaitLoopUpdate
@@ -93,7 +94,7 @@ struct CSocketSetInternal
 public:
 	inline CSocketSetInternal()
 	{
-#ifdef _WIN32
+#if OS_WIN
 		m_hWnd=NULL;
 #else
 		m_Pipe[0]=-1;

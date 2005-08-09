@@ -54,7 +54,7 @@ private:
 	int	m_iBufferLength;
 
 	CStr m_sHistoryFile;
-	unsigned int m_iHistorySize;
+	int m_MaxHistoryLines;
 
     bool m_bFocus;
 	bool m_bVisible;	// console is to be drawn
@@ -101,7 +101,7 @@ public:
 
 	void SetBuffer(const wchar_t* szMessage, ...);
 
-	void UseHistoryFile( CStr filename, unsigned int historysize );
+	void UseHistoryFile( CStr filename, int historysize );
 
 	// Only returns a pointer to the buffer; copy out of here if you want to keep it.
 	const wchar_t* GetBuffer();

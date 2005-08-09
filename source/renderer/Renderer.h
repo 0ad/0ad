@@ -99,15 +99,15 @@ public:
 			return *this;
 		}
 		// count of the number of stats added together 
-		u32 m_Counter;
+		size_t m_Counter;
 		// number of draw calls per frame - total DrawElements + Begin/End immediate mode loops
-		u32 m_DrawCalls;
+		size_t m_DrawCalls;
 		// number of terrain triangles drawn
-		u32 m_TerrainTris;
+		size_t m_TerrainTris;
 		// number of (non-transparent) model triangles drawn
-		u32 m_ModelTris;
+		size_t m_ModelTris;
 		// number of splat passes for alphamapping
-		u32 m_BlendSplats;
+		size_t m_BlendSplats;
 	};
 
 public:

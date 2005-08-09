@@ -524,7 +524,7 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 }
 
 
-JSBool JSI_IGUIObject::construct(JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* UNUSEDPARAM(rval))
+JSBool JSI_IGUIObject::construct(JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* UNUSED(rval))
 {
 	if (argc == 0)
 	{
@@ -542,7 +542,7 @@ JSBool JSI_IGUIObject::construct(JSContext* cx, JSObject* obj, unsigned int argc
 }
 
 
-JSBool JSI_IGUIObject::getByName(JSContext* cx, JSObject* UNUSEDPARAM(obj), unsigned int argc, jsval* argv, jsval* rval)
+JSBool JSI_IGUIObject::getByName(JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval)
 {
 	debug_assert(argc == 1);
 
@@ -569,7 +569,7 @@ void JSI_IGUIObject::init()
 	g_ScriptingHost.DefineCustomObjectType(&JSI_class, construct, 1, JSI_props, JSI_methods, NULL, NULL);
 }
 
-JSBool JSI_IGUIObject::toString(JSContext* cx, JSObject* obj, uintN UNUSEDPARAM(argc), jsval* UNUSEDPARAM(argv), jsval* rval)
+JSBool JSI_IGUIObject::toString(JSContext* cx, JSObject* obj, uintN UNUSED(argc), jsval* UNUSED(argv), jsval* rval)
 {
 	IGUIObject* e = (IGUIObject*)JS_GetPrivate( cx, obj );
 

@@ -293,16 +293,16 @@ StringBuffer CLocale::Translate(const wchar_t* id)
 		LOG(WARNING, LOG_CATEGORY, "I18n: No translation found for string '%ls'", id);
 
 		// Just use the ID string directly, and remember it for the future
-		return StringBuffer(AddDefaultString(id), this);
+		return StringBuffer(&AddDefaultString(id), this);
 	}
 
-	return StringBuffer(*(*TransStr).second, this);
+	return StringBuffer((*TransStr).second, this);
 }
 
 
 void CLocale::AddToCache(StringBuffer* sb, Str& str)
 {
-	CacheData& d = TranslationCache[&sb->String];
+	CacheData& d = TranslationCache[sb->String];
 
 	// Clean up any earlier cache entry
 	std::for_each(d.vars.begin(), d.vars.end(), delete_fn<BufferVariable>);
@@ -317,7 +317,7 @@ bool CLocale::ReadCached(StringBuffer* sb, Str& str)
 {
 	// Look for a string with the right key in the cache
 	std::map<TranslatedString*, CacheData>::iterator it = 
-		TranslationCache.find(&sb->String);
+		TranslationCache.find(sb->String);
 
 	// See if it actually exists
 	if (it == TranslationCache.end())

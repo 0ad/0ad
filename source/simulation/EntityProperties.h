@@ -22,7 +22,7 @@
 #include "scripting/JSInterface_Entity.h"
 #include "scripting/JSInterface_Vector3D.h"
 
-#ifndef __GNUC__
+#if !GCC_VERSION
 
 
 

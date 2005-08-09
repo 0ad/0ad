@@ -7,12 +7,13 @@
 #include "TextureEntry.h"
 #include "TerrainProperties.h"
 
-#include "res/res.h"
-#include "res/ogl_tex.h"
-#include "ogl.h"
-#include "timer.h"
+#include "lib/res/res.h"
+#include "lib/res/ogl_tex.h"
+#include "lib/ogl.h"
+#include "lib/timer.h"
 
-#include "CLogger.h"
+#include "ps/CLogger.h"
+#include "ps/VFSUtil.h"
 
 #define LOG_CATEGORY "graphics"
 
@@ -88,12 +89,12 @@ void CTextureManager::DeleteTexture(CTextureEntry* entry)
 // the VFS.
 void CTextureManager::LoadTextures(CTerrainProperties *props, CStr path, const char* fileext_filter)
 {
-	Handle dir=vfs_open_dir(path.c_str());
- 	vfsDirEnt dent;
+	Handle dir=vfs_dir_open(path.c_str());
+ 	DirEnt dent;
  
  	if (dir > 0)
  	{
-		while (vfs_next_dirent(dir, &dent, fileext_filter) == 0)
+		while (vfs_dir_next_ent(dir, &dent, fileext_filter) == 0)
  		{
 			// Strip extension off of dent.name, add .xml, check if the file
 			// exists
@@ -116,7 +117,7 @@ void CTextureManager::LoadTextures(CTerrainProperties *props, CStr path, const c
 			AddTexture(myprops, path+dent.name);
  		}
 
- 		vfs_close_dir(dir);
+ 		vfs_dir_close(dir);
  	}
 }
 
@@ -140,17 +141,17 @@ void CTextureManager::RecurseDirectory(CTerrainProperties *parentProps, CStr pat
 
 	// Recurse once for each subdirectory
 
-	Handle dir=vfs_open_dir(path.c_str());
-	vfsDirEnt dent;
+	Handle dir=vfs_dir_open(path.c_str());
+	DirEnt dent;
 
 	if (dir > 0)
 	{
-		while (vfs_next_dirent(dir, &dent, "/") == 0)
+		while (vfs_dir_next_ent(dir, &dent, "/") == 0)
 		{
 			RecurseDirectory(props, path+dent.name+"/");
 		}
 		
-		vfs_close_dir(dir);
+		vfs_dir_close(dir);
 	}
 
 	for (int i=0;i<ARRAY_SIZE(SupportedTextureFormats);i++)
@@ -159,10 +160,10 @@ void CTextureManager::RecurseDirectory(CTerrainProperties *parentProps, CStr pat
 	}
 }
 
+
 int CTextureManager::LoadTerrainTextures()
 {
 	RecurseDirectory(NULL, "art/textures/terrain/types/");
-	
 	return 0;
 }
 

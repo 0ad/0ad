@@ -318,7 +318,7 @@ protected:
 	 *
 	 * @param Message GUI Message
 	 */
-	virtual void HandleMessage(const SGUIMessage& UNUSEDPARAM(Message)) {}
+	virtual void HandleMessage(const SGUIMessage& UNUSED(Message)) {}
 
 	/**
 	 * Draws the object.
@@ -340,7 +340,7 @@ protected:
 	 * the key won't be passed on and processed by other handlers.
 	 * This is used for keys that the GUI uses.
 	 */
-	virtual int ManuallyHandleEvent(const SDL_Event* ev) { return EV_PASS; }
+	virtual int ManuallyHandleEvent(const SDL_Event* UNUSED(ev)) { return EV_PASS; }
 
 	/**
 	 * Loads a style.
@@ -426,8 +426,8 @@ protected:
 	 * Notice 'false' is default, because an object not using this function, should not
 	 * have any additional children (and this function should never be called).
 	 */
-	virtual bool HandleAdditionalChildren(const XMBElement& UNUSEDPARAM(child), 
-										  CXeromyces* UNUSEDPARAM(pFile)) { return false; }
+	virtual bool HandleAdditionalChildren(const XMBElement& UNUSED(child), 
+										  CXeromyces* UNUSED(pFile)) { return false; }
 
 	/**
 	 * Cached size, real size m_Size is actually dependent on resolution
@@ -544,7 +544,7 @@ class CGUIDummyObject : public IGUIObject
 
 public:
 
-	virtual void HandleMessage(const SGUIMessage& UNUSEDPARAM(Message)) {}
+	virtual void HandleMessage(const SGUIMessage& UNUSED(Message)) {}
 	virtual void Draw() {}
 	// Empty can never be hovered. It is only a category.
 	virtual bool MouseOver() { return false; }

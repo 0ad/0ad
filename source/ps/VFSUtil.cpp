@@ -16,7 +16,7 @@ bool VFSUtil::FindFiles (const CStr& dirname, const char* filter, FileList& file
 {
 	files.clear();
 
-	Handle dir = vfs_open_dir(dirname);
+	Handle dir = vfs_dir_open(dirname);
 	if (dir <= 0)
 	{
 		LOG(ERROR, LOG_CATEGORY, "Error opening directory '%s' (%lld)", dirname.c_str(), dir);
@@ -24,8 +24,8 @@ bool VFSUtil::FindFiles (const CStr& dirname, const char* filter, FileList& file
 	}
 
 	int err;
-	vfsDirEnt entry;
-	while ((err = vfs_next_dirent(dir, &entry, filter)) == 0)
+	DirEnt entry;
+	while ((err = vfs_dir_next_ent(dir, &entry, filter)) == 0)
 	{
 		files.push_back(dirname+"/"+entry.name);
 	}
@@ -36,7 +36,7 @@ bool VFSUtil::FindFiles (const CStr& dirname, const char* filter, FileList& file
 		return false;
 	}
 
-	vfs_close_dir(dir);
+	vfs_dir_close(dir);
 
 	return true;
 
@@ -44,13 +44,16 @@ bool VFSUtil::FindFiles (const CStr& dirname, const char* filter, FileList& file
 
 
 // call <cb> for each entry matching <user_filter> (see vfs_next_dirent) in
-// directory <start_path>; if <recursive>, entries in subdirectories are
+// directory <path>; if <recursive>, entries in subdirectories are
 // also returned.
 //
 // note: EnumDirEntsCB path and ent are only valid during the callback.
-int VFSUtil::EnumDirEnts(const CStr start_path, const char* user_filter,
-	bool recursive, EnumDirEntsCB cb, void* context)
+int VFSUtil::EnumDirEnts(const CStr start_path, int flags, const char* user_filter,
+	EnumDirEntsCB cb, void* context)
 {
+	debug_assert((flags & ~(RECURSIVE)) == 0);
+	const bool recursive = (flags & RECURSIVE) != 0;
+
 	// note: currently no need to return subdirectories,
 	// but enabling it isn't hard (we have to check for / anyway).
 
@@ -85,12 +88,12 @@ int VFSUtil::EnumDirEnts(const CStr start_path, const char* user_filter,
 		// note: can't refer to the queue contents - those are invalidated
 		// as soon as a directory is pushed onto it.
 		char path[VFS_MAX_PATH];
-		path_append(path, dir_queue.front().c_str(), "");
+		vfs_path_append(path, dir_queue.front().c_str(), "");
 			// vfs_open_dir checks this, so ignore failure
 		const size_t path_len = strlen(path);
 		dir_queue.pop_front();
 
-		Handle hdir = vfs_open_dir(path);
+		Handle hdir = vfs_dir_open(path);
 		if(hdir <= 0)
 		{
 			debug_warn("EnumFiles: vfs_open_dir failed");
@@ -98,13 +101,13 @@ int VFSUtil::EnumDirEnts(const CStr start_path, const char* user_filter,
 		}
 
 		// for each entry (file, subdir) in directory:
-		vfsDirEnt ent;
-		while(vfs_next_dirent(hdir, &ent, filter) == 0)
+		DirEnt ent;
+		while(vfs_dir_next_ent(hdir, &ent, filter) == 0)
 		{
-			// build complete path (vfsDirEnt only stores entry name)
+			// build complete path (DirEnt only stores entry name)
 			strcpy_s(path+path_len, VFS_MAX_PATH-path_len, ent.name);
 
-			if(VFS_ENT_IS_DIR(ent))
+			if(DIRENT_IS_DIR(&ent))
 			{
 				if(recursive)
 					dir_queue.push_back(path);
@@ -116,7 +119,7 @@ int VFSUtil::EnumDirEnts(const CStr start_path, const char* user_filter,
 				cb(path, &ent, context);
 		}
 
-		vfs_close_dir(hdir);
+		vfs_dir_close(hdir);
 	}
 	while(!dir_queue.empty());
 

@@ -102,7 +102,7 @@ bool IEventTarget::RemoveHandler( CStrW TypeString, DOMEventHandler handler )
 	return( false );
 }
 
-bool IEventTarget::AddHandlerJS( JSContext* cx, uintN argc, jsval* argv )
+bool IEventTarget::AddHandlerJS( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 {
 	debug_assert( argc >= 2 );
 	DOMEventHandler handler = new CScriptObject( argv[1] );
@@ -119,7 +119,7 @@ bool IEventTarget::AddHandlerJS( JSContext* cx, uintN argc, jsval* argv )
 	return( true );
 }
 
-bool IEventTarget::RemoveHandlerJS( JSContext* cx, uintN argc, jsval* argv )
+bool IEventTarget::RemoveHandlerJS( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 {
 	debug_assert( argc >= 2 );
 	DOMEventHandler handler = new CScriptObject( argv[1] );
@@ -160,21 +160,21 @@ void CScriptEvent::ScriptingInit()
 	CJSObject<CScriptEvent>::ScriptingInit( "Event" );
 }
 
-jsval CScriptEvent::PreventDefault( JSContext* cx, uintN argc, jsval* argv )
+jsval CScriptEvent::PreventDefault( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	if( m_Cancelable )
 		m_Cancelled = true;
 	return( JSVAL_VOID );
 }
 
-jsval CScriptEvent::StopPropagation( JSContext* cx, uintN argc, jsval* argv )
+jsval CScriptEvent::StopPropagation( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	if( m_Blockable )
 		m_Blocked = true;
 	return( JSVAL_VOID );
 }
 
-jsval CScriptEvent::ToString( JSContext* cx, uintN argc, jsval* argv )
+jsval CScriptEvent::ToString( JSContext* cx, uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	wchar_t buffer[256];
 	swprintf( buffer, 256, L"[object Event: %ls]", m_Type.c_str() );

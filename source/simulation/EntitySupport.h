@@ -47,7 +47,7 @@ public:
 		AddProperty<float>( L"typeless", &CDamageType::m_Typeless );
 		CJSObject<CDamageType>::ScriptingInit( "DamageType", Construct, 3 );
 	}
-	static JSBool Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
+	static JSBool Construct( JSContext* UNUSED(cx), JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
 	{
 		CDamageType* dt;
 

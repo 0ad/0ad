@@ -69,7 +69,7 @@ namespace JSI_LookedupWord {
 namespace JSI_i18n {
 
 	#define TYPE(x)	\
-	static JSBool Create_##x(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)	\
+	static JSBool Create_##x(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval)	\
 	{																								\
 		/* Set *rval = { type => "Name", value => argv[0] } */			\
 																		\
@@ -77,6 +77,7 @@ namespace JSI_i18n {
 		JS_ASSERT(object, "Failed to create i18n value object");		\
 																		\
 		/* TODO: More error checking */									\
+		JS_ASSERT(argc == 1, "Create_" #x ": not enough params");       \
 		jsval type = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, #x));		\
 		jsval value = STRING_TO_JSVAL(JS_ValueToString(cx, argv[0]));	\
 		JS_SetProperty(cx, object, "type", &type);						\
@@ -164,6 +165,7 @@ static JSBool JSFunc_Translate(JSContext *cx, JSObject *obj, uintN argc, jsval *
 	jsval locale_objval;
 	JS_ASSERT(JS_GetProperty(cx, obj, "i18n", &locale_objval), "translate() failed to find i18n object in current scope");
 	JSObject* locale_obj = JSVAL_TO_OBJECT(locale_objval);
+	UNUSED2(locale_obj);
 	CLocale* locale = (CLocale*)JS_GetPrivate(cx, JSVAL_TO_OBJECT(locale_objval));
 
 	StringBuffer sb = locale->Translate(phrase.c_str());
@@ -364,7 +366,7 @@ ScriptValueString::ScriptValueString(ScriptObject& script, const wchar_t* s)
 	}
 }
 
-jsval ScriptValueString::GetJsval(const std::vector<BufferVariable*>& vars)
+jsval ScriptValueString::GetJsval(const std::vector<BufferVariable*>& UNUSED(vars))
 {
 	return Value;
 }
@@ -386,7 +388,7 @@ ScriptValueInteger::ScriptValueInteger(ScriptObject& script, const int v)
 	Value = INT_TO_JSVAL(v);
 }
 
-jsval ScriptValueInteger::GetJsval(const std::vector<BufferVariable*>& vars)
+jsval ScriptValueInteger::GetJsval(const std::vector<BufferVariable*>& UNUSED(vars))
 {
 	return Value;
 }

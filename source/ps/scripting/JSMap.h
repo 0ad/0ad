@@ -29,7 +29,7 @@ class CJSMap
 		return JS_TRUE;
 	}
 
-	static JSBool SetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
+	static JSBool SetProperty( JSContext* UNUSED(cx), JSObject* UNUSED(obj), jsval UNUSED(id), jsval* UNUSED(vp) )
 	{
 		return JS_FALSE;
 	}

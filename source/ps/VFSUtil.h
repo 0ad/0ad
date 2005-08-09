@@ -18,12 +18,18 @@ extern bool FindFiles(const CStr& dirname, const char* filter, FileList& files);
 // its subdirectories as well), passing their complete path+name, the info
 // that would be returned by vfs_next_dirent, and user-specified context.
 // note: path and ent parameters are only valid during the callback.
-typedef void (*EnumDirEntsCB)(const char* path, const vfsDirEnt* ent,
+typedef void (*EnumDirEntsCB)(const char* path, const DirEnt* ent,
 	void* context);
 
-// call <cb> for each file in the <start_path> directory;
-// if <recursive>, files in subdirectories are also returned.
-extern int EnumDirEnts(const CStr path, const char* filter, bool recursive,
+enum EnumDirEntsFlags
+{
+	RECURSIVE = 1
+};
+
+// call <cb> for each entry matching <user_filter> (see vfs_next_dirent) in
+// directory <path>; if flags & RECURSIVE, entries in subdirectories are
+// also returned.
+extern int EnumDirEnts(const CStr path, int flags, const char* filter,
 	EnumDirEntsCB cb, void* context);
 
 };	// namespace VFSUtil

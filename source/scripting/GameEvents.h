@@ -14,7 +14,7 @@
 class CGameEvents : public IEventTarget, public Singleton<CGameEvents>
 {
 	// Game events don't really run on an object
-	JSObject* GetScriptExecContext( IEventTarget* target ) { return( g_ScriptingHost.GetGlobalObject() ); }
+	JSObject* GetScriptExecContext( IEventTarget* UNUSED(target) ) { return( g_ScriptingHost.GetGlobalObject() ); }
 
 	// Some events
 	class CEventSelectionChanged : public CScriptEvent

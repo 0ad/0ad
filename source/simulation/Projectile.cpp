@@ -124,7 +124,7 @@ void CProjectile::ScriptingInit()
 	CJSObject<CProjectile>::ScriptingInit( "Projectile", Construct, 4 );
 }
 
-JSBool CProjectile::Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
+JSBool CProjectile::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
 {
 	debug_assert( argc >= 4 );
 	CStr ModelString;
@@ -137,7 +137,8 @@ JSBool CProjectile::Construct( JSContext* cx, JSObject* obj, unsigned int argc, 
 	const char* err = NULL;
 
 
-	if( Temp = ToNative<CEntity>( argv[0] ) )
+	Temp = ToNative<CEntity>( argv[0] );
+	if(Temp)
 	{
 		Model = Temp->m_actor->GetObject()->m_ProjectileModel;
 		if( !Model )
@@ -151,7 +152,9 @@ JSBool CProjectile::Construct( JSContext* cx, JSObject* obj, unsigned int argc, 
 		err = "Invalid actor";
 		goto fail;
 	}
-	if( Temp = ToNative<CEntity>( argv[1] ) )
+
+	Temp = ToNative<CEntity>( argv[1] );
+	if(Temp)
 	{
 		// Use the position vector of this entity, add a bit (so the arrow doesn't appear out of the ground)
 		// In future, find the appropriate position from the entity (location of a specific prop point?)
@@ -163,7 +166,9 @@ JSBool CProjectile::Construct( JSContext* cx, JSObject* obj, unsigned int argc, 
 		err = "Invalid vector";
 		goto fail;
 	}
-	if( Temp = ToNative<CEntity>( argv[2] ) )
+
+	Temp = ToNative<CEntity>( argv[2] );
+	if(Temp)
 	{
 		// Use the position vector of this entity.
 		// TODO: Maybe: Correct for the movement of this entity.
@@ -176,7 +181,9 @@ JSBool CProjectile::Construct( JSContext* cx, JSObject* obj, unsigned int argc, 
 		err = "Invalid vector";
 		goto fail;
 	}
-	if( ( Speed = ToPrimitive<float>( cx, argv[3] ) ) == 0.0f )
+
+	Speed = ToPrimitive<float>( cx, argv[3] );
+	if( Speed == 0.0f )
 	{
 		// Either wasn't specified, or was zero. In either case,
 		// can't allow it: div/0 errors in the physics

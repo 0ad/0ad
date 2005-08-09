@@ -195,7 +195,7 @@ public:
 
 	// Script constructor
 
-	static JSBool Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval );
+	static JSBool Construct( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval );
 
 	// Script-bound functions
 
@@ -213,7 +213,7 @@ public:
 	bool Damage( JSContext* cx, uintN argc, jsval* argv );
 	bool Kill( JSContext* cx, uintN argc, jsval* argv );
 	jsval GetSpawnPoint( JSContext* cx, uintN argc, jsval* argv );
-	bool IsIdle( JSContext* cx, uintN argc, jsval* argv )
+	bool IsIdle( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 	{
 		return( m_orderQueue.empty() );
 	}
@@ -223,6 +223,11 @@ public:
 		return( m_classes.IsMember( ToPrimitive<CStrW>( cx, argv[0] ) ) );
 	}
 	static void ScriptingInit();
+
+private:
+	// squelch "unable to generate" warnings
+	CEntity(const CEntity& rhs);
+	const CEntity& operator=(const CEntity& rhs);
 };
 
 // General entity globals

@@ -79,6 +79,10 @@ public:
 
 private:
 	PSRETURN RegisterInit(CGameAttributes* pAttribs);
+
+	// squelch "unable to generate" warnings
+	CGame(const CGame& rhs);
+	const CGame& operator=(const CGame& rhs);
 };
 
 extern CGame *g_Game;

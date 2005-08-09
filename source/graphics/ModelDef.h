@@ -92,15 +92,15 @@ public:
 	
 public:
 	// accessor: get vertex data
-	int GetNumVertices() const { return m_NumVertices; }
+	size_t GetNumVertices() const { return (size_t)m_NumVertices; }
 	SModelVertex* GetVertices() const { return m_pVertices; }
 
 	// accessor: get face data
-	int GetNumFaces() const { return m_NumFaces; }
+	size_t GetNumFaces() const { return (size_t)m_NumFaces; }
 	SModelFace* GetFaces() const { return m_pFaces; }
 
 	// accessor: get bone data
-	int GetNumBones() const { return m_NumBones; }
+	size_t GetNumBones() const { return (size_t)m_NumBones; }
 	CBoneState* GetBones() const { return m_Bones; }
 
 

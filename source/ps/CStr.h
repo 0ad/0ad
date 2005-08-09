@@ -93,7 +93,7 @@ public:
 	
 	// CStr(8|W) construction from utf16strings, except on MSVC CStrW where
 	// CStrW === utf16string
-	#if !(defined(_MSC_VER) && defined(_UNICODE))
+	#if !(MSC_VERSION && defined(_UNICODE))
 		CStr(utf16string String) : std::tstring(String.begin(), String.end()) {}
 	#endif
 
@@ -212,8 +212,8 @@ public:
 	operator const tchar*() const;
 
 	// Do some range checking in debug builds
-	tchar &operator[](size_t n)	{ debug_assert(n < length()); return this->std::tstring::operator[](n); }
-	tchar &operator[](int n)	{ debug_assert(n >= 0 && (size_t)n < length()); return this->std::tstring::operator[](n); }
+	tchar& operator[](size_t n)	{ debug_assert(n < length()); return this->std::tstring::operator[](n); }
+	tchar& operator[](int n)	{ debug_assert((size_t)n < length()); return this->std::tstring::operator[](n); }
 	
 	// Conversion to utf16string
 	inline utf16string utf16() const

@@ -27,5 +27,5 @@ void CServerSocket::OnRead()
 void CServerSocket::OnWrite()
 {}
 
-void CServerSocket::OnClose(PS_RESULT errorCode)
+void CServerSocket::OnClose(PS_RESULT UNUSED(errorCode))
 {}

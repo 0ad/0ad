@@ -50,9 +50,9 @@ struct LoadRequest
 	LoadFunc func;
 	void* param;
 
-	const CStrW description;
+	CStrW description;
 		// rationale for storing as CStrW here:
-		// - needs to be wide because it's user-visible and will be translated.
+		// - needs to be WCS because it's user-visible and will be translated.
 		// - don't just store a pointer - the caller's string may be volatile.
 		// - the module interface must work in C, so we get/set as wchar_t*.
 

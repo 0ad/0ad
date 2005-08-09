@@ -40,7 +40,7 @@ template<typename T> T* ToNative( jsval v )
 	return( ToNative<T>( g_ScriptingHost.GetContext(), JSVAL_TO_OBJECT( v ) ) );
 }
 
-template<typename T> bool ToPrimitive( JSContext* cx, jsval v, T& Storage )
+template<typename T> bool ToPrimitive( JSContext* UNUSED(cx), jsval v, T& Storage )
 {
 	T* Native = ToNative<T>( v );
 	if( !Native ) return( false );
@@ -49,7 +49,7 @@ template<typename T> bool ToPrimitive( JSContext* cx, jsval v, T& Storage )
 }
 
 // Handle pointer-to-objects sensibly (by automatically dereferencing them one level)
-template<typename T> bool ToPrimitive( JSContext* cx, jsval v, T*& Storage )
+template<typename T> bool ToPrimitive( JSContext* UNUSED(cx), jsval v, T*& Storage )
 {
 	T* Native = ToNative<T>( v );
 	if( !Native ) return( false );

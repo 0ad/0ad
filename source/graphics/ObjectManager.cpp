@@ -180,7 +180,7 @@ int CObjectManager::LoadObjects()
 //////////////////////////////////////////////////////////////////////////
 // For ScEd:
 
-static void GetObjectThunk(const char* path, const vfsDirEnt* ent, void* context)
+static void GetObjectName_ThunkCb(const char* path, const DirEnt* UNUSED(ent), void* context)
 {
 	std::vector<CStr>* names = (std::vector<CStr>*)context;
 	CStr name (path);
@@ -188,7 +188,8 @@ static void GetObjectThunk(const char* path, const vfsDirEnt* ent, void* context
 }
 void CObjectManager::GetAllObjectNames(std::vector<CStr>& names)
 {
-	VFSUtil::EnumDirEnts("art/actors/", "*.xml", true, GetObjectThunk, &names);
+	VFSUtil::EnumDirEnts("art/actors/", VFSUtil::RECURSIVE, "*.xml",
+		GetObjectName_ThunkCb, &names);
 }
 
 struct CObjectThing_Entity : public CObjectThing
@@ -231,7 +232,7 @@ struct CObjectThing_Object : public CObjectThing
 	~CObjectThing_Object() {}
 	CObjectEntry* obj;
 	CUnit* unit;
-	void Create(CMatrix3D& transform, int playerID)
+	void Create(CMatrix3D& transform, int UNUSED(playerID))
 	{
 		unit = new CUnit(obj, obj->m_Model->Clone());
 		unit->GetModel()->SetTransform(transform);

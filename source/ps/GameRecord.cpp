@@ -2,7 +2,6 @@
 
 #include "GameRecord.h"
 
-void CGameRecord::WriteMessage(CNetMessage *pMsg)
+void CGameRecord::WriteMessage(CNetMessage* UNUSED(pMsg))
 {
-
 }

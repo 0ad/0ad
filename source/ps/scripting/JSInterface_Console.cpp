@@ -5,6 +5,7 @@
 #include "precompiled.h"
 #include "JSInterface_Console.h"
 #include "CConsole.h"
+#include "scripting/JSConversions.h"
 
 extern CConsole* g_Console;
 
@@ -30,7 +31,7 @@ JSFunctionSpec JSI_Console::JSI_methods[] =
 	{ 0 },
 };
 
-JSBool JSI_Console::getProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
+JSBool JSI_Console::getProperty( JSContext* UNUSED(cx), JSObject* UNUSED(obj), jsval id, jsval* vp )
 {
 	if( !JSVAL_IS_INT( id ) )
 		return( JS_TRUE );
@@ -46,7 +47,7 @@ JSBool JSI_Console::getProperty( JSContext* cx, JSObject* obj, jsval id, jsval* 
 	}	
 }
 
-JSBool JSI_Console::setProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
+JSBool JSI_Console::setProperty( JSContext* UNUSED(cx), JSObject* UNUSED(obj), jsval id, jsval* vp )
 {
 	if( !JSVAL_IS_INT( id ) )
 		return( JS_TRUE );
@@ -58,7 +59,7 @@ JSBool JSI_Console::setProperty( JSContext* cx, JSObject* obj, jsval id, jsval* 
 	case console_visible:
 		try
 		{
-			g_Console->SetVisible( g_ScriptingHost.ValueToBool( *vp ) );
+			g_Console->SetVisible( ToPrimitive<bool>( *vp ) );
 			return( JS_TRUE );
 		}
 		catch( PSERROR_Scripting_ConversionFailed )
@@ -75,14 +76,14 @@ void JSI_Console::init()
 	g_ScriptingHost.DefineCustomObjectType( &JSI_class, NULL, 0, JSI_props, JSI_methods, NULL, NULL );
 }
 
-JSBool JSI_Console::getConsole( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
+JSBool JSI_Console::getConsole( JSContext* cx, JSObject* UNUSED(obj), jsval UNUSED(id), jsval* vp )
 {
 	JSObject* console = JS_NewObject( cx, &JSI_Console::JSI_class, NULL, NULL );
 	*vp = OBJECT_TO_JSVAL( console );
 	return( JS_TRUE );
 }
 
-JSBool JSI_Console::writeConsole( JSContext* UNUSEDPARAM(context), JSObject* UNUSEDPARAM(globalObject), unsigned int argc, jsval* argv, jsval* UNUSEDPARAM(rval) )
+JSBool JSI_Console::writeConsole( JSContext* UNUSED(context), JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* UNUSED(rval) )
 {
 	debug_assert( argc >= 1 );
 	CStrW output;

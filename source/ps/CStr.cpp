@@ -38,7 +38,7 @@ CStr8 CStrW::ToUTF8() const
 {
 	CStr8 result;
 
-	const wchar_t* source = &*begin();
+	//const wchar_t* source = &*begin();	// UNUSED
 	for (size_t i = 0; i < Length(); ++i)
 	{
 		unsigned short bytesToWrite;
@@ -525,7 +525,6 @@ const u8 *CStrW::Deserialize(const u8 *buffer, const u8 *bufferend)
 	if ((const u8 *)strend >= bufferend) return NULL;
 
 	resize(strend - (const u16 *)buffer);
-	size_t i = 0;
 	const u16 *ptr = (const u16 *)buffer;
 
 	std::wstring::iterator str = begin();

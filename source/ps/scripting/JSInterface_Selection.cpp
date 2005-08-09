@@ -7,28 +7,31 @@
 #include "scripting/JSCollection.h"
 #include "Interact.h"
 
-JSBool JSI_Selection::getSelection( JSContext* context, JSObject* globalObject, jsval id, jsval* vp )
+JSBool JSI_Selection::getSelection( JSContext* UNUSED(cx), JSObject* UNUSED(obj),
+	jsval UNUSED(id), jsval* vp )
 {
 	*vp = OBJECT_TO_JSVAL( EntityCollection::CreateReference( &( g_Selection.m_selected ) ) );
 
 	return( JS_TRUE );
 }
 
-JSBool JSI_Selection::setSelection( JSContext* context, JSObject* globalObject, jsval id, jsval* vp )
+JSBool JSI_Selection::setSelection( JSContext* cx, JSObject* UNUSED(obj),
+	jsval UNUSED(id), jsval* vp )
 {
 	if( !JSVAL_IS_OBJECT( *vp ) )
 	{
-		JS_ReportError( context, "Not a valid Collection" );
+		JS_ReportError( cx, "Not a valid Collection" );
 		*vp = JSVAL_NULL;
 		return( JS_TRUE );
 	}
 	
 	JSObject* selectionArray = JSVAL_TO_OBJECT( *vp );
-	EntityCollection::CJSCollectionData* Info = (EntityCollection::CJSCollectionData*)JS_GetInstancePrivate( context, JSVAL_TO_OBJECT( *vp ), &EntityCollection::JSI_class, NULL );
+	UNUSED2(selectionArray);
+	EntityCollection::CJSCollectionData* Info = (EntityCollection::CJSCollectionData*)JS_GetInstancePrivate( cx, JSVAL_TO_OBJECT( *vp ), &EntityCollection::JSI_class, NULL );
 
 	if( !Info )
 	{
-		JS_ReportError( context, "Not a valid Collection" );
+		JS_ReportError( cx, "Not a valid Collection" );
 		*vp = JSVAL_NULL;
 		return( JS_TRUE );
 	}
@@ -42,41 +45,43 @@ JSBool JSI_Selection::setSelection( JSContext* context, JSObject* globalObject, 
 	return( JS_TRUE );
 }
 
-JSBool JSI_Selection::getGroups( JSContext* context, JSObject* obj, jsval id, jsval* vp )
+JSBool JSI_Selection::getGroups( JSContext* cx, JSObject* UNUSED(obj),
+	jsval UNUSED(id), jsval* vp )
 {
-	JSObject* groupsArray = JS_NewArrayObject( context, 0, NULL );
+	JSObject* groupsArray = JS_NewArrayObject( cx, 0, NULL );
 
-	JS_AddRoot( context, &groupsArray );
+	JS_AddRoot( cx, &groupsArray );
 
 	for( i8 groupId = 0; groupId < MAX_GROUPS; groupId++ )
 	{
 		jsval v = OBJECT_TO_JSVAL( EntityCollection::CreateReference( &( g_Selection.m_groups[groupId] ) ) );
-		JS_SetElement( context, groupsArray, groupId, &v );
+		JS_SetElement( cx, groupsArray, groupId, &v );
 	}
 
 	*vp = OBJECT_TO_JSVAL( groupsArray );
 
-	JS_RemoveRoot( context, &groupsArray );
+	JS_RemoveRoot( cx, &groupsArray );
 
 	return( JS_TRUE );
 }
 
-JSBool JSI_Selection::setGroups( JSContext* context, JSObject* obj, jsval id, jsval* vp )
+JSBool JSI_Selection::setGroups( JSContext* cx, JSObject* UNUSED(obj),
+	jsval UNUSED(id), jsval* vp )
 {
 	JSObject* groupsArray;
-	if( !JSVAL_IS_OBJECT( *vp ) || !JS_IsArrayObject( context, groupsArray = JSVAL_TO_OBJECT( *vp ) ) )
+	if( !JSVAL_IS_OBJECT( *vp ) || !JS_IsArrayObject( cx, groupsArray = JSVAL_TO_OBJECT( *vp ) ) )
 	{
-		JS_ReportError( context, "Not a valid group array" );
+		JS_ReportError( cx, "Not a valid group array" );
 		*vp = JSVAL_NULL;
 		return( JS_TRUE );
 	}
 	for( i8 groupId = 0; groupId < MAX_GROUPS; groupId++ )
 	{
 		jsval v;
-		if( JS_GetElement( context, groupsArray, groupId, &v ) && JSVAL_IS_OBJECT( v ) )
+		if( JS_GetElement( cx, groupsArray, groupId, &v ) && JSVAL_IS_OBJECT( v ) )
 		{
 			JSObject* group = JSVAL_TO_OBJECT( v );
-			EntityCollection::CJSCollectionData* Info = (EntityCollection::CJSCollectionData*)JS_GetInstancePrivate( context, group, &EntityCollection::JSI_class, NULL );
+			EntityCollection::CJSCollectionData* Info = (EntityCollection::CJSCollectionData*)JS_GetInstancePrivate( cx, group, &EntityCollection::JSI_class, NULL );
 			if( Info )
 			{
 				g_Selection.m_groups[groupId].clear();

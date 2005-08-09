@@ -319,7 +319,7 @@ void CEntity::update( size_t timestep )
 			m_orderQueue.pop_front();
 			break;
 		default:
-			debug_assert( 0 && "Invalid entity order" );
+			debug_warn("Invalid entity order" );
 		}
 	}
 
@@ -773,18 +773,18 @@ void CEntity::ScriptingInit()
 
 // Script constructor
 
-JSBool CEntity::Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
+JSBool CEntity::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
 {
 	debug_assert( argc >= 2 );
 
-	CBaseEntity* baseEntity = NULL;
 	CVector3D position;
 	float orientation = (float)( PI * ( (double)( rand() & 0x7fff ) / (double)0x4000 ) );
 
 	JSObject* jsBaseEntity = JSVAL_TO_OBJECT( argv[0] );
 	CStrW templateName;
 
-	if( !JSVAL_IS_OBJECT( argv[0] ) || !( baseEntity = ToNative<CBaseEntity>( cx, jsBaseEntity ) ) )
+	CBaseEntity* baseEntity = ToNative<CBaseEntity>( cx, jsBaseEntity );
+	if( !JSVAL_IS_OBJECT( argv[0] ) || !baseEntity )
 	{	
 		try
 		{
@@ -806,16 +806,17 @@ JSBool CEntity::Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsva
 		return( JS_TRUE );
 	}
 
-	JSI_Vector3D::Vector3D_Info* jsVector3D = NULL;
-	if( JSVAL_IS_OBJECT( argv[1] ) && ( jsVector3D = (JSI_Vector3D::Vector3D_Info*)JS_GetInstancePrivate( cx, JSVAL_TO_OBJECT( argv[1] ), &JSI_Vector3D::JSI_class, NULL ) ) )
+	JSI_Vector3D::Vector3D_Info* jsVector3D = (JSI_Vector3D::Vector3D_Info*)JS_GetInstancePrivate( cx, JSVAL_TO_OBJECT( argv[1] ), &JSI_Vector3D::JSI_class, NULL );
+	if( JSVAL_IS_OBJECT( argv[1] ) && jsVector3D )
 	{
 		position = *( jsVector3D->vector );
 	}
+
 	if( argc >= 3 )
 	{
 		try
 		{
-			orientation = (float)g_ScriptingHost.ValueToDouble( argv[2] );
+			orientation = ToPrimitive<float>( argv[2] );
 		}
 		catch( PSERROR_Scripting_ConversionFailed )
 		{
@@ -834,7 +835,7 @@ JSBool CEntity::Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsva
 
 // Script-bound methods
 
-jsval CEntity::ToString( JSContext* cx, uintN argc, jsval* argv )
+jsval CEntity::ToString( JSContext* cx, uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	wchar_t buffer[256];
 	swprintf( buffer, 256, L"[object Entity: %ls]", m_base->m_Tag.c_str() );
@@ -852,7 +853,7 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 
 	try
 	{
-		orderCode = g_ScriptingHost.ValueToInt( argv[0] );
+		orderCode = ToPrimitive<int>( argv[0] );
 	}
 	catch( PSERROR_Scripting_ConversionFailed )
 	{
@@ -875,8 +876,8 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 		}
 		try
 		{
-			newOrder.m_data[0].location.x = (float)g_ScriptingHost.ValueToDouble( argv[1] );
-			newOrder.m_data[0].location.y = (float)g_ScriptingHost.ValueToDouble( argv[2] );
+			newOrder.m_data[0].location.x = ToPrimitive<float>( argv[1] );
+			newOrder.m_data[0].location.y = ToPrimitive<float>( argv[2] );
 		}
 		catch( PSERROR_Scripting_ConversionFailed )
 		{
@@ -951,7 +952,7 @@ bool CEntity::Damage( JSContext* cx, uintN argc, jsval* argv )
 	return( true );
 }
 
-bool CEntity::Kill( JSContext* cx, uintN argc, jsval* argv )
+bool CEntity::Kill( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	// Change this entity's template to the corpse entity - but note
 	// we don't fiddle with the actors or bounding information that we 
@@ -983,7 +984,7 @@ bool CEntity::Kill( JSContext* cx, uintN argc, jsval* argv )
 	return( true );
 }
 
-jsval CEntity::GetSpawnPoint( JSContext* cx, uintN argc, jsval* argv )
+jsval CEntity::GetSpawnPoint( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 {
 	float spawn_clearance = 2.0f;
 	if( argc >= 1 )
@@ -995,14 +996,14 @@ jsval CEntity::GetSpawnPoint( JSContext* cx, uintN argc, jsval* argv )
 			{
 			case CBoundingObject::BOUND_CIRCLE: spawn_clearance = be->m_bound_circle->m_radius; break;
 			case CBoundingObject::BOUND_OABB: spawn_clearance = be->m_bound_box->m_radius; break;
-			default: debug_assert( 0 && "No bounding information for spawned object!" );
+			default: debug_warn("No bounding information for spawned object!" );
 			}
 		}
 		else
 			spawn_clearance = ToPrimitive<float>( argv[0] );
 	}
 	else
-		debug_assert( 0 && "No arguments to Entity::GetSpawnPoint()" );
+		debug_warn("No arguments to Entity::GetSpawnPoint()" );
 	
 	// TODO: Make netsafe.
 	CBoundingCircle spawn( 0.0f, 0.0f, spawn_clearance, 0.0f );
@@ -1092,7 +1093,7 @@ jsval CEntity::GetSpawnPoint( JSContext* cx, uintN argc, jsval* argv )
 		float radius = m_bounds->m_radius + 1.0f + spawn_clearance;
 		float d_ang = spawn_clearance / ( 2.0f * radius );
 		float ang_end = ang + 2.0f * PI;
-		float x, y;
+		float x = 0.0f, y = 0.0f;	// make sure they're initialized
 		for( ; ang < ang_end; ang += d_ang )
 		{
 			x = m_position.X + radius * cos( ang );

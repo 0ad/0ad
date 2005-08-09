@@ -23,8 +23,12 @@
 #define _XercesVFS_H
 
 // Temporarily undefine new, because the Xerces headers don't like it
-#ifdef HAVE_VC_DEBUG_ALLOC
-# undef new
+#include "nommgr.h"
+
+// temporarily go down to W3 because Xerces (in addition to all its other
+// failings) isn't W4-clean.
+#if MSC_VERSION
+#pragma warning(push, 3)
 #endif
 
 #include <xercesc/util/XMLString.hpp>
@@ -37,9 +41,19 @@
 #include <xercesc/sax/SAXParseException.hpp>
 #include <xercesc/sax/ErrorHandler.hpp>
 
-#ifdef HAVE_VC_DEBUG_ALLOC
-# define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
+// for Xeromyces.cpp (moved here so we only have to #undef new and
+// revert to W3 once)
+// The converter uses SAX2, so it should [theoretically]
+// be fairly easy to swap Xerces for something else (if desired)
+#include <xercesc/sax2/XMLReaderFactory.hpp>
+#include <xercesc/sax2/DefaultHandler.hpp>
+
+
+#if MSC_VERSION
+#pragma warning(pop)	// back to W4
 #endif
+
+#include "mmgr.h"		// restore malloc/new macros
 
 #include "lib/res/handle.h"
 #include "lib.h"

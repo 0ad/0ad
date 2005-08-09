@@ -78,7 +78,7 @@ void CModelRData::BuildIndices()
 	u32 base=(u32)m_VB->m_Index;
 	u32 indices=0;
 	SModelFace* faces=mdef->GetFaces();
-	for (int j=0; j<mdef->GetNumFaces(); j++) {
+	for (size_t j=0; j<mdef->GetNumFaces(); j++) {
 		SModelFace& face=faces[j];
 		m_Indices[indices++]=face.m_Verts[0]+base;
 		m_Indices[indices++]=face.m_Verts[1]+base;
@@ -149,14 +149,14 @@ void CModelRData::BuildVertices()
 	}
 
 	// build vertices
-	u32 numVertices=mdef->GetNumVertices();
+	size_t numVertices=mdef->GetNumVertices();
 	SModelVertex* vertices=mdef->GetVertices();
 	const CMatrix3D* bonematrices=m_Model->GetBoneMatrices();
 	if (bonematrices) {
 		// boned model - calculate skinned vertex positions/normals
 		PROFILE( "skinning bones" );
 		const CMatrix3D* invbonematrices=m_Model->GetInvBoneMatrices();
-		for (uint j=0; j<numVertices; j++) {
+		for (size_t j=0; j<numVertices; j++) {
 			SkinPoint(vertices[j],bonematrices,m_Vertices[j].m_Position);
 			SkinNormal(vertices[j],invbonematrices,m_Normals[j]);
 		}
@@ -210,9 +210,9 @@ void CModelRData::RenderStreams(u32 streamflags, bool isplayer)
 	if (streamflags & STREAM_UV0) glTexCoordPointer(2,GL_FLOAT,stride,base+offsetof(SVertex,m_UVs));
 
 	// render the lot
-	u32 numFaces=mdldef->GetNumFaces();
+	size_t numFaces=mdldef->GetNumFaces();
 //	glDrawRangeElements(GL_TRIANGLES,0,mdldef->GetNumVertices(),numFaces*3,GL_UNSIGNED_SHORT,m_Indices);
-	glDrawElements(GL_TRIANGLES,numFaces*3,GL_UNSIGNED_SHORT,m_Indices);
+	glDrawElements(GL_TRIANGLES,(GLsizei)numFaces*3,GL_UNSIGNED_SHORT,m_Indices);
 
     if(streamflags & STREAM_UV0 & !isplayer)
 		m_Model->GetMaterial().Unbind();
@@ -256,7 +256,7 @@ float CModelRData::BackToFrontIndexSort(CMatrix3D& objToCam)
 
 	SModelVertex* vtxs=mdldef->GetVertices();
 	
-	u32 numFaces=mdldef->GetNumFaces();
+	size_t numFaces=mdldef->GetNumFaces();
 	SModelFace* faces=mdldef->GetFaces();
 	
 	IndexSorter.reserve(numFaces);
@@ -312,7 +312,7 @@ void CModelRData::RenderModels(u32 streamflags,u32 flags)
 #if 1
 	// submit batches for each model to the vertex buffer
 	for (i=0;i<m_Models.size();++i) {
-		u32 mflags=m_Models[i]->GetFlags();
+		u32 mflags=m_Models[i]->GetFlags();	// TODO2
 		if (!flags || (m_Models[i]->GetFlags()&flags)) {
 			CModelRData* modeldata=(CModelRData*) m_Models[i]->GetRenderData();
 			modeldata->SubmitBatches();

@@ -21,7 +21,7 @@ JSPropertySpec Point2dProperties[] =
 	{0}
 };
 
-JSBool Point2d_Constructor(JSContext* UNUSEDPARAM(cx), JSObject* obj, uintN argc, jsval* argv, jsval* UNUSEDPARAM(rval))
+JSBool Point2d_Constructor(JSContext* UNUSED(cx), JSObject* obj, uintN argc, jsval* argv, jsval* UNUSED(rval))
 {
 	if (argc == 2)
 	{
@@ -56,7 +56,7 @@ void SColour::ScriptingInit()
 	CJSObject<SColour>::ScriptingInit( "Colour", SColour::Construct, 3 );
 }
 
-jsval SColour::ToString( JSContext* cx, uintN argc, jsval* argv )
+jsval SColour::ToString( JSContext* cx, uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	wchar_t buffer[256];
 	
@@ -68,7 +68,7 @@ jsval SColour::ToString( JSContext* cx, uintN argc, jsval* argv )
 }
 
 
-JSBool SColour::Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
+JSBool SColour::Construct( JSContext* UNUSED(cx), JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
 {
 	debug_assert( argc >= 3 );
 	float alpha = 1.0;

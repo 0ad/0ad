@@ -40,8 +40,10 @@ CStr CNetMessage::GetString() const
 		return CStr("Unknown Message ")+CStr(m_Type);
 }
 
-const u8 *CNetMessage::Deserialize(const u8 *pos, const u8 *end)
-{ return pos; }
+const u8 *CNetMessage::Deserialize(const u8* pos, const u8* UNUSED(end))
+{
+	return pos;
+}
 
 CNetMessage *CNetMessage::Copy() const
 {
@@ -90,7 +92,7 @@ CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSConte
 
 	try
 	{
-		msgType = g_ScriptingHost.ValueToInt( argv[0] );
+		msgType = ToPrimitive<int>( argv[0] );
 	}
 	catch(PSERROR_Scripting_ConversionFailed)
 	{
@@ -110,8 +112,8 @@ CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSConte
 				ArgumentCountError();\
 			if (!JSVAL_IS_INT(argv[argIndex]) || !JSVAL_IS_INT(argv[argIndex+1])) \
 				ArgumentTypeError(); \
-			_msg->_field ## X = g_ScriptingHost.ValueToInt(argv[argIndex++]); \
-			_msg->_field ## Y = g_ScriptingHost.ValueToInt(argv[argIndex++]); \
+			_msg->_field ## X = ToPrimitive<int>(argv[argIndex++]); \
+			_msg->_field ## Y = ToPrimitive<int>(argv[argIndex++]); \
 		} catch (PSERROR_Scripting_ConversionFailed) { \
 			JS_ReportError(cx, "Invalid location"); \
 			return NULL; \

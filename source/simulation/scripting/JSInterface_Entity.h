@@ -23,7 +23,7 @@ namespace JSI_Entity
 	extern JSFunctionSpec JSI_methods[];
 	JSBool getProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
     JSBool setProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
-	JSBool construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval );
+	JSBool construct( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval );
 	void finalize( JSContext* cx, JSObject* obj );
     void init();
 }

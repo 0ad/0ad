@@ -19,7 +19,7 @@ extern void StartGame();
 extern void EndGame();
 // .. other
 extern CLightEnv g_LightEnv;
-#ifdef _WIN32
+#if OS_WIN
 extern int GetVRAMInfo(int&, int&);
 #endif
 

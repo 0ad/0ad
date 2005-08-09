@@ -51,8 +51,8 @@ class CProjectile : public CJSObject<CProjectile>, public IEventTarget
 	// Scripty things.
 public:	
 	static void ScriptingInit();
-	static JSBool Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval );
-	JSObject* GetScriptExecContext( IEventTarget* target ) { return( GetScript() ); }
+	static JSBool Construct( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval );
+	JSObject* GetScriptExecContext( IEventTarget* UNUSED(target) ) { return( GetScript() ); }
 
 	inline CModel* GetModel() const { return( m_Actor ); }
 };

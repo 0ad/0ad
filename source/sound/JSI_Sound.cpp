@@ -76,14 +76,14 @@ bool JSI_Sound::SetPosition( JSContext* cx, uintN argc, jsval* argv )
 
 // start playing the sound (one-shot).
 // it will automatically be freed when done.
-bool JSI_Sound::Play( JSContext* cx, uintN argc, jsval* argv )
+bool JSI_Sound::Play( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	snd_play(m_Handle);
 	return true;
 }
 
 // request the sound be played until free() is called. returns immediately.
-bool JSI_Sound::Loop( JSContext* cx, uintN argc, jsval* argv )
+bool JSI_Sound::Loop( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	snd_set_loop(m_Handle, true);
 	snd_play(m_Handle);
@@ -93,7 +93,7 @@ bool JSI_Sound::Loop( JSContext* cx, uintN argc, jsval* argv )
 // stop sound if currently playing and free resources.
 // doesn't need to be called unless played via loop() -
 // sounds are freed automatically when done playing.
-bool JSI_Sound::Free( JSContext* cx, uintN argc, jsval* argv )
+bool JSI_Sound::Free( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	snd_free(m_Handle);	// resets it to 0
 	return true;
@@ -116,7 +116,7 @@ void JSI_Sound::ScriptingInit()
 	CJSObject<JSI_Sound>::ScriptingInit( "Sound", &JSI_Sound::Construct, 1 );
 }
 
-jsval JSI_Sound::ToString( JSContext* cx, uintN argc, jsval* argv )
+jsval JSI_Sound::ToString( JSContext* cx, uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	const char* Filename = h_filename(m_Handle);
 	wchar_t buffer[256];
@@ -126,7 +126,7 @@ jsval JSI_Sound::ToString( JSContext* cx, uintN argc, jsval* argv )
 	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, str16.c_str() ) ) );
 }
 
-JSBool JSI_Sound::Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
+JSBool JSI_Sound::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
 {
 	debug_assert( argc >= 1 );
 	CStrW filename;

@@ -1,11 +1,11 @@
-#ifndef EVENTTYPES_H__
-#define EVENTTYPES_H__
-
 // EventTypes.h
 // Fairly game-specific event declarations for use with DOMEvent.
 // Creates unique (for the current target) names for each event.
 // DOMEvent currently uses a preallocated array of EVENT_LAST elements,
 // so these must be consecutive integers starting with 0.
+
+#ifndef EVENTTYPES_H__
+#define EVENTTYPES_H__
 
 enum EEventType
 {

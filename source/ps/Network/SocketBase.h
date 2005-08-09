@@ -202,7 +202,7 @@ private:
 	 */
 	friend void *WaitLoopThreadMain(void *);
 
-#ifdef _WIN32
+#if OS_WIN
 	/**
 	 * Used by the winsock AsyncSelect windowproc
 	 */

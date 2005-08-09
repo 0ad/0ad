@@ -76,7 +76,9 @@ public:
 	// constructor, destructor
 	CTextureManager();
 	~CTextureManager();
-	
+
+	// Find all XML's in the directory (with subdirs) and try to load them as
+	// terrain XML's
 	int LoadTerrainTextures();
 	
 	CTextureEntry* FindTexture(CStr tag);

@@ -53,7 +53,7 @@ public:
 
 	bool SetPosition( JSContext* cx, uintN argc, jsval* argv );
 
-	static JSBool Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval );
+	static JSBool Construct( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval );
 
 	static void ScriptingInit();
 

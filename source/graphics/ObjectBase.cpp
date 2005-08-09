@@ -352,7 +352,7 @@ void CObjectBase::CalculateVariation(std::set<CStr>& strings, variation_key& cho
 
 		for (uint i = 0; i < grp->size(); ++i)
 			if (strings.count((*grp)[i].m_VariantName))
-				matches.push_back(i);
+				matches.push_back((u8)i);	// "protected" by debug_assert
 
 		// If there's only one match, choose that one
 		if (matches.size() == 1)
@@ -366,7 +366,7 @@ void CObjectBase::CalculateVariation(std::set<CStr>& strings, variation_key& cho
 		// If none matched the specified strings, choose from all the variants
 		if (matches.size() == 0)
 			for (uint i = 0; i < grp->size(); ++i)
-				matches.push_back(i);
+				matches.push_back((u8)i);	// "protected" by debug_assert
 
 		// Sum the frequencies:
 		int totalFreq = 0;

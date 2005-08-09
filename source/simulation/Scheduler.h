@@ -80,7 +80,7 @@ class CJSProgressTimer : public CJSObject<CJSProgressTimer>
 	JSFunction* m_Callback;
 	JSObject* m_OperateOn;
 	CJSProgressTimer( double Max, double Increment, JSFunction* Callback, JSObject* OperateOn );
-	static JSBool Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval );
+	static JSBool Construct( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval );
 public:
 	static void ScriptingInit();
 };

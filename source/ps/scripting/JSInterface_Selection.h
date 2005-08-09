@@ -18,7 +18,7 @@ namespace JSI_Selection
 	JSBool getGroups( JSContext* context, JSObject* obj, jsval id, jsval* vp );
 	JSBool setGroups( JSContext* context, JSObject* obj, jsval id, jsval* vp );
 
-	JSBool isValidContextOrder( JSContext* context, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval );
+	JSBool isValidContextOrder( JSContext* context, JSObject* obj, uint argc, jsval* argv, jsval* rval );
 	JSBool getContextOrder( JSContext* context, JSObject* obj, jsval id, jsval* vp );
 	JSBool setContextOrder( JSContext* context, JSObject* obj, jsval id, jsval* vp );
 };

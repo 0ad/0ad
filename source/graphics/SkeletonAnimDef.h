@@ -47,7 +47,7 @@ public:
 	~CSkeletonAnimDef();
 
 	// return the number of keys in this animation
-	u32 GetNumKeys() const { return m_NumKeys; }
+	size_t GetNumKeys() const { return (size_t)m_NumKeys; }
 
 	// accessors: get a key for given bone at given time
 	Key& GetKey(u32 frame, u32 bone) { return m_Keys[frame*m_NumKeys+bone]; }
@@ -59,7 +59,7 @@ public:
 	// return length of each frame, in ms
 	float GetFrameTime() const { return m_FrameTime; }
 	// return number of frames in animation
-	u32 GetNumFrames() const { return m_NumFrames; }
+	size_t GetNumFrames() const { return (size_t)m_NumFrames; }
 
 	// build matrices for all bones at the given time (in MS) in this animation
 	void BuildBoneMatrices(float time, CMatrix3D* matrices) const;

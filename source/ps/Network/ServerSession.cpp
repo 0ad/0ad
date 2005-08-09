@@ -136,8 +136,6 @@ bool CNetServerSession::AuthenticateHandler(CNetMessage *pMsg, CNetSession *pNet
 
 bool CNetServerSession::PreGameHandler(CNetMessage *pMsg, CNetSession *pNetSession)
 {
-	CNetServerSession *pSession=(CNetServerSession *)pNetSession;
-
 	return ChatHandler(pMsg, pNetSession);
 }
 
@@ -211,7 +209,7 @@ void CNetServerSession::ScriptingInit()
 	AddProperty( L"name", (CStrW CNetServerSession::*)&CNetServerSession::m_Name );
 }
 
-bool CNetServerSession::JSI_Close(JSContext *cx, uintN argc, jsval *argv)
+bool CNetServerSession::JSI_Close(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
 {
 	return false;
 }

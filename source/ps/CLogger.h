@@ -40,7 +40,7 @@ public:
 	void QuickLog(const char *fmt, ...);
 
 private:
-	
+
 	void LogUsingMethod(ELogMethod method, const char* category, const char* message);
 
 	//the three filestreams
@@ -64,6 +64,10 @@ private:
 
 	// Used to remember LogOnce messages
 	std::set<std::string> m_LoggedOnce;
+
+	// squelch "unable to generate" warnings
+	CLogger(const CLogger& rhs);
+	const CLogger& operator=(const CLogger& rhs);
 };
 
 #endif

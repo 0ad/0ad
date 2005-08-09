@@ -185,32 +185,19 @@ bool CBaseEntity::loadXML( CStr filename )
 	{
 		XMBElement Child = RootChildren.item(i);
 
-		unsigned int ChildName = Child.getNodeName();
-
+		int ChildName = Child.getNodeName();
 		if( ChildName == el_script )
 		{
 			CStr Include = Child.getAttributes().getNamedItem( at_file );
 
-			jsval dy;
-
 			// TODO: Probably try and determine if this file has already been loaded, and skip it.
 
 			if( Include.Length() )
-			{
-				CVFSFile IncludeFile;
-				if( IncludeFile.Load( Include ) != PSRETURN_OK )
-				{
-					LOG( WARNING, LOG_CATEGORY, "CBaseEntity::loadXML: Could not load script file %s specified in file %s; ignored.", Include.c_str(), filename.c_str() );
-				}
-				else
-					JS_EvaluateScript( g_ScriptingHost.getContext(), JS_GetGlobalObject( g_ScriptingHost.GetContext() ), (const char*)IncludeFile.GetBuffer(), (int)IncludeFile.GetBufferSize(), Include, 1, &dy );
-			}
+				g_ScriptingHost.RunScript(Include);
 
 			CStr Inline = Child.getText();
-
 			if( Inline.Length() )
-				JS_EvaluateScript( g_ScriptingHost.getContext(), JS_GetGlobalObject( g_ScriptingHost.GetContext() ), Inline.c_str(), (int)Inline.Length(), filename.c_str(), Child.getLineNumber(), &dy );
-			
+				g_ScriptingHost.RunMemScript(Inline.c_str(), Inline.Length(), filename.c_str(), Child.getLineNumber());
 		}
 		else if (ChildName == el_footprint)
 		{
@@ -358,7 +345,7 @@ JSObject* CBaseEntity::GetScriptExecContext( IEventTarget* target )
 	return( target->GetScriptExecContext( target ) );
 }
 
-jsval CBaseEntity::ToString( JSContext* cx, uintN argc, jsval* argv )
+jsval CBaseEntity::ToString( JSContext* cx, uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	wchar_t buffer[256];
 	swprintf( buffer, 256, L"[object EntityTemplate: %ls]", m_Tag.c_str() );

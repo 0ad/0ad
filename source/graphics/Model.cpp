@@ -64,8 +64,8 @@ bool CModel::InitModel(CModelDefPtr modeldef)
 
 	m_pModelDef = modeldef;
 	
-	u32 numBones=modeldef->GetNumBones();
-	if (numBones>0) {
+	size_t numBones=modeldef->GetNumBones();
+	if (numBones != 0) {
 		// allocate matrices for bone transformations
 		m_BoneMatrices=new CMatrix3D[numBones];
 		m_InvBoneMatrices=new CMatrix3D[numBones];
@@ -150,10 +150,10 @@ void CModel::CalcObjectBounds()
 {
 	m_ObjectBounds.SetEmpty();
 
-	int numverts=m_pModelDef->GetNumVertices();
+	size_t numverts=m_pModelDef->GetNumVertices();
 	SModelVertex* verts=m_pModelDef->GetVertices();
 
-	for (int i=0;i<numverts;i++) {
+	for (size_t i=0;i<numverts;i++) {
 		m_ObjectBounds+=verts[i].m_Coords;
 	}		
 }
@@ -172,7 +172,7 @@ void CModel::CalcAnimatedObjectBound(CSkeletonAnimDef* anim,CBound& result)
 		if (!SetAnimation(&dummyanim)) return;
 	}
 
-	int numverts=m_pModelDef->GetNumVertices();
+	size_t numverts=m_pModelDef->GetNumVertices();
 	SModelVertex* verts=m_pModelDef->GetVertices();
 
 	// Remove any transformations, so that we calculate the bounding box
@@ -188,9 +188,9 @@ void CModel::CalcAnimatedObjectBound(CSkeletonAnimDef* anim,CBound& result)
 	float AnimTime = m_AnimTime;
 
 	// iterate through every frame of the animation
-	for (uint j=0;j<anim->GetNumFrames();j++) {		
+	for (size_t j=0;j<anim->GetNumFrames();j++) {		
 		// extend bounds by vertex positions at the frame
-		for (int i=0;i<numverts;i++) {
+		for (size_t i=0;i<numverts;i++) {
 			CVector3D tmp=SkinPoint(verts[i].m_Coords,verts[i].m_Blend,GetBoneMatrices());
 			result+=tmp;
 		}		
@@ -277,7 +277,7 @@ void CModel::GenerateBoneMatrices()
 	m_Anim->m_AnimDef->BuildBoneMatrices(m_AnimTime,m_BoneMatrices);
 
 	const CMatrix3D& transform=GetTransform();
-	for (int i=0;i<m_pModelDef->GetNumBones();i++) {
+	for (size_t i=0;i<m_pModelDef->GetNumBones();i++) {
 		m_BoneMatrices[i].Concatenate(transform);
 		m_BoneMatrices[i].GetInverse(m_InvBoneMatrices[i]);
 	}
@@ -416,7 +416,7 @@ void CModel::SetTransform(const CMatrix3D& transform)
 	InvalidateBounds();
 
 	// now set transforms on props
-	const CMatrix3D* bonematrices=GetBoneMatrices();
+	const CMatrix3D* bonematrices=GetBoneMatrices();// TODO2: this or m_BoneMatrices?
 	for (size_t i=0;i<m_Props.size();i++) {
 		const Prop& prop=m_Props[i];
 

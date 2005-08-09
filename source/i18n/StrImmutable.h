@@ -48,7 +48,7 @@ namespace I18n
 		}
 
 // On non-MSVC, or on MSVC with a native wchar_t type, define jschar separately
-#if !defined(_MSC_VER) || !defined(_WCHAR_T_DEFINED)
+#if !MSC_VERSION || !defined(_WCHAR_T_DEFINED)
 		StrImW(const jschar* s)
 		{
 			ref = new strImW_data;

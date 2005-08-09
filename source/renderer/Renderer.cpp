@@ -35,70 +35,17 @@
 
 #include "ogl.h"
 #include "res/mem.h"
+#include "res/tex.h"
 #include "res/ogl_tex.h"
 #include "timer.h"
 
 #define LOG_CATEGORY "graphics"
 
-struct TGAHeader {
-	// header stuff
-	unsigned char  iif_size;
-	unsigned char  cmap_type;
-	unsigned char  image_type;
-	unsigned char  pad[5];
-
-	// origin : unused
-	unsigned short d_x_origin;
-	unsigned short d_y_origin;
-
-	// dimensions
-	unsigned short width;
-	unsigned short height;
-
-	// bits per pixel : 16, 24 or 32
-	unsigned char  bpp;
-
-	// image descriptor : Bits 3-0: size of alpha channel
-	//					  Bit 4: must be 0 (reserved)
-	//					  Bit 5: should be 0 (origin)
-	//					  Bits 6-7: should be 0 (interleaving)
-	unsigned char image_descriptor;
-};
-
 static bool saveTGA(const char* filename,int width,int height,int bpp,unsigned char* data)
 {
-	FILE* fp=fopen(filename,"wb");
-	if (!fp) return false;
-
-	// fill file header
-	TGAHeader header;
-	header.iif_size=0;
-	header.cmap_type=0;
-	header.image_type=2;
-	memset(header.pad,0,sizeof(header.pad));
-	header.d_x_origin=0;
-	header.d_y_origin=0;
-	header.width=(unsigned short)width;
-	header.height=(unsigned short)height;
-	header.bpp=(unsigned char)bpp;
-	header.image_descriptor=(bpp==32) ? 8 : 0;
-
-	if (fwrite(&header,sizeof(TGAHeader),1,fp)!=1) {
-		fclose(fp);
-		return false;
-	}
-
-	// write data
-	if (fwrite(data,width*height*bpp/8,1,fp)!=1) {
-		fclose(fp);
-		return false;
-	}
-
-	// return success ..
-	fclose(fp);
-	return true;
+	int err = tex_write(filename, width, height, bpp, TEX_BGR, data);
+	return (err == 0);
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////
 // CRenderer destructor
@@ -1007,15 +954,15 @@ void CRenderer::Submit(CModel* model)
 	CModelRData::Submit(model);
 }
 
-void CRenderer::Submit(CSprite* sprite)
+void CRenderer::Submit(CSprite* UNUSED(sprite))
 {
 }
 
-void CRenderer::Submit(CParticleSys* psys)
+void CRenderer::Submit(CParticleSys* UNUSED(psys))
 {
 }
 
-void CRenderer::Submit(COverlay* overlay)
+void CRenderer::Submit(COverlay* UNUSED(overlay))
 {
 }
 
@@ -1194,7 +1141,6 @@ int CRenderer::LoadAlphaMaps()
 	}
 
 	int base;
-
 	i=tex_info(textures[0], &base, NULL, NULL, NULL, NULL);
 
 	int size=(base+4)*NumAlphaMaps;
@@ -1257,6 +1203,9 @@ int CRenderer::LoadAlphaMaps()
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
+
+	// GL_CLAMP_TO_EDGE
+	oglSquelchError(GL_INVALID_ENUM);
 
 	delete[] data;
 

@@ -84,28 +84,23 @@ void CGameView::ScriptingInit()
 	CJSObject<CGameView>::ScriptingInit("GameView");
 }
 
-int CGameView::Initialize(CGameAttributes *pAttribs)
+int CGameView::Initialize(CGameAttributes* UNUSED(pAttribs))
 {
-	CConfigValue* cfg;
-	
-#define getViewParameter( name, value ) STMT( \
-	cfg = g_ConfigDB.GetValue( CFG_SYSTEM, name );\
-	if( cfg ) cfg->GetFloat( value ); )
+	CFG_GET_SYS_VAL( "view.scroll.speed", Float, m_ViewScrollSpeed );
+	CFG_GET_SYS_VAL( "view.rotate.speed", Float, m_ViewRotateSensitivity );
+	CFG_GET_SYS_VAL( "view.rotate.keyboard.speed", Float, m_ViewRotateSensitivityKeyboard );
+	CFG_GET_SYS_VAL( "view.rotate.abouttarget.speed", Float, m_ViewRotateAboutTargetSensitivity );
+	CFG_GET_SYS_VAL( "view.rotate.keyboard.abouttarget.speed", Float, m_ViewRotateAboutTargetSensitivityKeyboard );
+	CFG_GET_SYS_VAL( "view.drag.speed", Float, m_ViewDragSensitivity );
+	CFG_GET_SYS_VAL( "view.zoom.speed", Float, m_ViewZoomSensitivity );
+	CFG_GET_SYS_VAL( "view.zoom.wheel.speed", Float, m_ViewZoomSensitivityWheel );
+	CFG_GET_SYS_VAL( "view.zoom.smoothness", Float, m_ViewZoomSmoothness );
+	CFG_GET_SYS_VAL( "view.snap.smoothness", Float, m_ViewSnapSmoothness );
 
-	getViewParameter( "view.scroll.speed", m_ViewScrollSpeed );
-	getViewParameter( "view.rotate.speed", m_ViewRotateSensitivity );
-	getViewParameter( "view.rotate.keyboard.speed", m_ViewRotateSensitivityKeyboard );
-	getViewParameter( "view.rotate.abouttarget.speed", m_ViewRotateAboutTargetSensitivity );
-	getViewParameter( "view.rotate.keyboard.abouttarget.speed", m_ViewRotateAboutTargetSensitivityKeyboard );
-	getViewParameter( "view.drag.speed", m_ViewDragSensitivity );
-	getViewParameter( "view.zoom.speed", m_ViewZoomSensitivity );
-	getViewParameter( "view.zoom.wheel.speed", m_ViewZoomSensitivityWheel );
-	getViewParameter( "view.zoom.smoothness", m_ViewZoomSmoothness );
-	getViewParameter( "view.snap.smoothness", m_ViewSnapSmoothness );
-#undef getViewParameter
-
-	if( ( m_ViewZoomSmoothness < 0.0f ) || ( m_ViewZoomSmoothness > 1.0f ) ) m_ViewZoomSmoothness = 0.02f;
-	if( ( m_ViewSnapSmoothness < 0.0f ) || ( m_ViewSnapSmoothness > 1.0f ) ) m_ViewSnapSmoothness = 0.02f;
+	if( ( m_ViewZoomSmoothness < 0.0f ) || ( m_ViewZoomSmoothness > 1.0f ) )
+		m_ViewZoomSmoothness = 0.02f;
+	if( ( m_ViewSnapSmoothness < 0.0f ) || ( m_ViewSnapSmoothness > 1.0f ) )
+		m_ViewSnapSmoothness = 0.02f;
 
 	return 0;
 }
@@ -704,13 +699,15 @@ int game_view_handler(const SDL_Event* ev)
 	return EV_PASS;
 }
 
-bool CGameView::JSI_StartCustomSelection(JSContext* context, unsigned int argc, jsval* argv)
+bool CGameView::JSI_StartCustomSelection(
+	JSContext* UNUSED(context), uint UNUSED(argc), jsval* UNUSED(argv))
 {
 	StartCustomSelection();	
 	return true;
 }
 
-bool CGameView::JSI_EndCustomSelection(JSContext* context, unsigned int argc, jsval* argv)
+bool CGameView::JSI_EndCustomSelection(
+	JSContext* UNUSED(context), uint UNUSED(argc), jsval* UNUSED(argv))
 {
 	ResetInteraction();
 	return true;

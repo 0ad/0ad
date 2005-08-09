@@ -24,7 +24,7 @@ All other methods are used internally by other I18n components.
 #include <algorithm>
 
 // GCC requires an explicit hash function for wide strings
-#ifdef __GNUC__
+#if GCC_VERSION
 namespace __gnu_cxx
 {
 	template<> struct hash<I18n::Str>
@@ -76,11 +76,11 @@ namespace I18n
 		// Disable the "'this' used in base member initializer list" warning: only the
 		// pointer (and not the data it points to) is accessed by ScriptObject's
 		// constructor, so it shouldn't cause any problems.
-#ifdef _MSC_VER
+#if MSC_VERSION
 # pragma warning (disable: 4355)
 #endif
 		CLocale(JSContext* context, JSObject* scope) : Script(this, context, scope), CacheAge(0) {}
-#ifdef _MSC_VER
+#if MSC_VERSION
 # pragma warning (default: 4355)
 #endif
 

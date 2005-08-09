@@ -96,9 +96,9 @@ void CPatchRData::BuildBlends()
 	m_BlendSplats.clear();
 	m_BlendVertices.clear();
 
-	// get index of this patch
-	int px=m_Patch->m_X;
-	int pz=m_Patch->m_Z;
+	// get index of this patch (unused)
+	//int px=m_Patch->m_X;
+	//int pz=m_Patch->m_Z;
 
 	CTerrain* terrain=m_Patch->m_Parent;
 
@@ -375,7 +375,7 @@ void CPatchRData::BuildVertices()
 	u32 pz=m_Patch->m_Z;
 	
 	CTerrain* terrain=m_Patch->m_Parent;
-	u32 mapSize=terrain->GetVerticesPerSide();
+	//u32 mapSize=terrain->GetVerticesPerSide();	// unused
 
 	// build vertices
 	for (int j=0;j<vsize;j++) {
@@ -518,6 +518,7 @@ void CPatchRData::RenderOutline()
 	uint i;
 	uint vsize=PATCH_SIZE+1;
 	u8* base=m_VBBase->m_Owner->Bind();
+	UNUSED2(base);
 
 	glBegin(GL_LINES);
 	for (i=0;i<PATCH_SIZE;i++) {

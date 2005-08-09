@@ -58,7 +58,7 @@ public:
 	{
 		m_Data = Data;
 	}
-	jsval Get( JSContext* cx, IJSObject* owner )
+	jsval Get( JSContext* UNUSED(cx), IJSObject* owner )
 	{
 		return( ToJSVal( owner->*m_Data ) );
 	}
@@ -80,11 +80,11 @@ public:
 	{
 		m_Data = Data;
 	}
-	jsval Get( JSContext* cx, IJSObject* owner )
+	jsval Get( JSContext* UNUSED(cx), IJSObject* UNUSED(owner) )
 	{
 		return( ToJSVal( *m_Data ) );
 	}
-	void Set( JSContext* cx, IJSObject* owner, jsval Value )
+	void Set( JSContext* cx, IJSObject* UNUSED(owner), jsval Value )
 	{
 		if( !ReadOnly )
 			ToPrimitive( cx, Value, *m_Data );
@@ -109,11 +109,11 @@ public:
 		// Must at least be able to read 
 		debug_assert( m_Getter );
 	}
-	jsval Get( JSContext* cx, IJSObject* obj )
+	jsval Get( JSContext* UNUSED(cx), IJSObject* obj )
 	{
 		return( (obj->*m_Getter)() );
 	}
-	void Set( JSContext* cx, IJSObject* obj, jsval value )
+	void Set( JSContext* UNUSED(cx), IJSObject* obj, jsval value )
 	{
 		if( m_Setter )
 			(obj->*m_Setter)( value );
@@ -146,11 +146,11 @@ public:
 		if( JSVAL_IS_GCTHING( m_Data ))
 			JS_RemoveRoot( g_ScriptingHost.GetContext(), (void*)&m_Data );
 	}
-	jsval Get( JSContext* cx, IJSObject* object )
+	jsval Get( JSContext* UNUSED(cx), IJSObject* UNUSED(object))
 	{
 		return( m_Data );
 	}
-	void Set( JSContext* cx, IJSObject* owner, jsval value )
+	void Set( JSContext* UNUSED(cx), IJSObject* UNUSED(owner), jsval value )
 	{
 		Uproot();
 		m_Data = value;
@@ -294,7 +294,7 @@ public:
 	template<typename ReturnType, ReturnType (T::*NativeFunction)( JSContext* cx, uintN argc, jsval* argv )> 
 		static void AddMethod( const char* Name, uintN MinArgs )
 	{
-		JSFunctionSpec FnInfo = { Name, CNativeFunction<T, ReadOnly, ReturnType, NativeFunction>::JSFunction, MinArgs, 0, 0 };
+		JSFunctionSpec FnInfo = { Name, CNativeFunction<T, ReadOnly, ReturnType, NativeFunction>::JSFunction, (uint8)MinArgs, 0, 0 };
 		m_Methods.push_back( FnInfo );
 	}
 	template<typename PropType> static void AddProperty( CStrW PropertyName, PropType T::*Native, bool PropReadOnly = ReadOnly )

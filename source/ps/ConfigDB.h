@@ -120,4 +120,22 @@ public:
 	bool WriteFile(EConfigNamespace ns, bool useVFS, CStr path);
 };
 
+
+// stores the value of the given key into <destination>. this quasi-template
+// convenience wrapper on top of CConfigValue::Get* simplifies user code and
+// avoids "assignment within condition expression" warnings.
+#define CFG_GET_SYS_VAL(name, type, destination)\
+STMT(\
+	CConfigValue* val = g_ConfigDB.GetValue(CFG_SYSTEM, name);\
+	if(val)\
+		val->Get##type(destination);\
+)
+#define CFG_GET_USER_VAL(name, type, destination)\
+STMT(\
+	CConfigValue* val = g_ConfigDB.GetValue(CFG_USER, name);\
+	if(val)\
+		val->Get##type(destination);\
+)
+
+
 #endif

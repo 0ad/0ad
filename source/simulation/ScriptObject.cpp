@@ -96,7 +96,7 @@ bool CScriptObject::Run( JSObject* Context, uintN argc, jsval* argv )
 	jsval Temp;
 	if( !Run( Context, &Temp, argc, argv ) )
 		return( false );
-	return( g_ScriptingHost.ValueToBool( Temp ) );
+	return( ToPrimitive<bool>( Temp ) );
 }
 
 // Treat this as an event handler and dispatch an event to it. Return !evt->m_cancelled, as a convenience.

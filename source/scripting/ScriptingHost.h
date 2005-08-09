@@ -85,7 +85,9 @@ public:
 	inline JSContext *GetContext() { return m_Context; }
 	inline JSObject* GetGlobalObject() { return m_GlobalObject; }
 
-	void LoadScriptFromDisk(const std::string & fileName);
+	void RunMemScript(const char* script, size_t size, const char* filename = 0, int line = 0, JSObject* globalObject = 0);
+	void RunScript(const CStr& filename, JSObject* globalObject = 0);
+
 
 	jsval CallFunction(const std::string & functionName, jsval * params, int numParams);
 

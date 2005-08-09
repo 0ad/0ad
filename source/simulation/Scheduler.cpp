@@ -128,7 +128,7 @@ void CJSProgressTimer::ScriptingInit()
 	CJSObject<CJSProgressTimer>::ScriptingInit( "ProgressTimer", Construct, 2 );
 }
 
-JSBool CJSProgressTimer::Construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
+JSBool CJSProgressTimer::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
 {
 	debug_assert( argc >= 2 );
 	double max = ToPrimitive<double>( argv[0] );

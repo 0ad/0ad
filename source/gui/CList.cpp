@@ -436,7 +436,7 @@ void CList::SelectNextElement()
 	CGUIList *pList;
 	GUI<CGUIList>::GetSettingPointer(this, "list", pList);
 
-	if (selected != pList->m_Items.size()-1)
+	if (selected != (int)pList->m_Items.size()-1)
 	{
 		++selected;
 		GUI<int>::SetSetting(this, "selected", selected);
@@ -474,7 +474,7 @@ void CList::SelectLastElement()
 	CGUIList *pList;
 	GUI<CGUIList>::GetSettingPointer(this, "list", pList);
 
-	if (selected != pList->m_Items.size()-1)
+	if (selected != (int)pList->m_Items.size()-1)
 	{
 		GUI<int>::SetSetting(this, "selected", (int)pList->m_Items.size()-1);
 	}

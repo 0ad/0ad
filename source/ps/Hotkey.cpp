@@ -395,7 +395,7 @@ int hotkeyInputHandler( const SDL_Event* ev )
 
 	// SDL-events bit
 
-	unsigned int closestMap;
+	uint closestMap = 0;	// avoid "uninitialized" warning
 	size_t closestMapMatch = 0;
 
 	for( it = hotkeyMap[keycode].begin(); it < hotkeyMap[keycode].end(); it++ )

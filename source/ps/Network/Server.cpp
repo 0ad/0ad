@@ -43,6 +43,7 @@ void CNetServer::OnAccept(const CSocketAddress &addr)
 
 	CSocketInternal *pInt=Accept();
 	CNetServerSession *pSession=CreateSession(pInt);
+	UNUSED2(pSession);
 }
 
 CNetServer::CNetServer(CGame *pGame, CGameAttributes *pGameAttribs):
@@ -105,7 +106,7 @@ void CNetServer::ScriptingInit()
 	CJSObject<CNetServer>::ScriptingInit("NetServer");
 }
 
-bool CNetServer::JSI_Open(JSContext *cx, uintN argc, jsval *argv)
+bool CNetServer::JSI_Open(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
 {
 	CSocketAddress addr;
 	if (m_Port == -1)
@@ -270,7 +271,7 @@ void CNetServer::PlayerSlotAssignmentCallback(void *userdata, CPlayerSlot *pSlot
 	pInstance->Broadcast(pMsg);
 }
 
-bool CNetServer::AllowObserver(CNetServerSession *pSession)
+bool CNetServer::AllowObserver(CNetServerSession* UNUSED(pSession))
 {
 	return m_Observers.size() < m_MaxObservers;
 }

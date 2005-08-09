@@ -42,7 +42,7 @@ struct BuildFileListState
 };
 
 // called for each matching directory entry; add its full pathname to array.
-static void BuildFileListCB(const char* path, const vfsDirEnt* ent, void* context)
+static void BuildFileListCB(const char* path, const DirEnt* UNUSED(ent), void* context)
 {
 	BuildFileListState* s = (BuildFileListState*)context;
 
@@ -63,7 +63,7 @@ static void BuildFileListCB(const char* path, const vfsDirEnt* ent, void* contex
 //
 // note: full pathnames of each file/subdirectory are returned,
 // ready for use as a "filename" for the other functions.
-JSBool JSI_VFS::BuildFileList( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+JSBool JSI_VFS::BuildFileList( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
 {
 	//
 	// get arguments
@@ -92,11 +92,12 @@ JSBool JSI_VFS::BuildFileList( JSContext* cx, JSObject* obj, uintN argc, jsval* 
 		if( !ToPrimitive<bool>( cx, argv[2], recursive ) )
 			return( JS_FALSE );
 	}
+	int flags = recursive? VFSUtil::RECURSIVE : 0;
 
 
 	// build array in the callback function
 	BuildFileListState state(cx);
-	VFSUtil::EnumDirEnts( path, filter, recursive, BuildFileListCB, &state );
+	VFSUtil::EnumDirEnts( path, flags, filter, BuildFileListCB, &state );
 
 	*rval = OBJECT_TO_JSVAL( state.filename_array );
 	return( JS_TRUE );
@@ -107,7 +108,7 @@ JSBool JSI_VFS::BuildFileList( JSContext* cx, JSObject* obj, uintN argc, jsval* 
 //
 // mtime = getFileMTime(filename);
 //   filename: VFS filename (may include path)
-JSBool JSI_VFS::GetFileMTime( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+JSBool JSI_VFS::GetFileMTime( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
 {
 	debug_assert( argc >= 1 );
 	CStr filename;
@@ -127,7 +128,7 @@ JSBool JSI_VFS::GetFileMTime( JSContext* cx, JSObject* obj, uintN argc, jsval* a
 //
 // size = getFileSize(filename);
 //   filename: VFS filename (may include path)
-JSBool JSI_VFS::GetFileSize( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+JSBool JSI_VFS::GetFileSize( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
 {
 	debug_assert( argc >= 1 );
 	CStr filename;
@@ -147,7 +148,7 @@ JSBool JSI_VFS::GetFileSize( JSContext* cx, JSObject* obj, uintN argc, jsval* ar
 //
 // contents = readFile(filename);
 //   filename: VFS filename (may include path)
-JSBool JSI_VFS::ReadFile( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+JSBool JSI_VFS::ReadFile( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
 {
 	debug_assert( argc >= 1 );
 	CStr filename;
@@ -171,7 +172,7 @@ JSBool JSI_VFS::ReadFile( JSContext* cx, JSObject* obj, uintN argc, jsval* argv,
 //
 // lines = readFileLines(filename);
 //   filename: VFS filename (may include path)
-JSBool JSI_VFS::ReadFileLines( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+JSBool JSI_VFS::ReadFileLines( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
 {
 	debug_assert( argc >= 1 );
 	CStr filename;

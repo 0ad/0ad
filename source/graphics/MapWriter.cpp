@@ -50,9 +50,10 @@ void CMapWriter::SaveMap(const char* filename, CTerrain *pTerrain, CLightEnv *pL
 // handle isn't in list
 static u16 GetHandleIndex(const Handle handle,const std::vector<Handle>& handles)
 {
-	for (uint i=0;i<(uint)handles.size();i++) {
+	const uint limit = MIN((uint)handles.size(), 0xFFFE);	// paranoia
+	for (uint i=0;i<limit;i++) {
 		if (handles[i]==handle) {
-			return i;
+			return (u16)i;
 		}
 	}
 
@@ -111,7 +112,8 @@ void CMapWriter::EnumTerrainTextures(CTerrain *pTerrain,
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // PackMap: pack the current world into a raw data stream
-void CMapWriter::PackMap(CFilePacker& packer, CTerrain *pTerrain, CLightEnv *pLightEnv, CUnitManager *pUnitMan)
+void CMapWriter::PackMap(CFilePacker& packer, CTerrain* pTerrain,
+	CLightEnv* UNUSED(pLightEnv), CUnitManager* UNUSED(pUnitMan))
 {
 	// now pack everything up
 	PackTerrain(packer, pTerrain);

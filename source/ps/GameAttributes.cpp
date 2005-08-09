@@ -64,21 +64,22 @@ jsval CPlayerSlot::JSI_GetAssignment()
 	}
 }
 
-bool CPlayerSlot::JSI_AssignClosed(JSContext *cx, uintN argc, jsval *argv)
+bool CPlayerSlot::JSI_AssignClosed(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
 {
 	AssignClosed();
 	return true;
 }
 
-bool CPlayerSlot::JSI_AssignOpen(JSContext *cx, uintN argc, jsval *argv)
+bool CPlayerSlot::JSI_AssignOpen(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
 {
 	AssignOpen();
 	return true;
 }
 
-bool CPlayerSlot::JSI_AssignToSession(JSContext *cx, uintN argc, jsval *argv)
+bool CPlayerSlot::JSI_AssignToSession(JSContext* UNUSED(cx), uintN argc, jsval* argv)
 {
-	if (argc != 1) return false;
+	if (argc != 1)
+		return false;
 	CNetServerSession *pSession=ToNative<CNetServerSession>(argv[0]);
 	if (pSession)
 	{
@@ -89,7 +90,7 @@ bool CPlayerSlot::JSI_AssignToSession(JSContext *cx, uintN argc, jsval *argv)
 		return true;
 }
 
-bool CPlayerSlot::JSI_AssignLocal(JSContext *cx, uintN argc, jsval *argv)
+bool CPlayerSlot::JSI_AssignLocal(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
 {
 	AssignToSessionID(1);
 	return true;
@@ -144,7 +145,7 @@ namespace PlayerSlotArray_JS
 		CGameAttributes *pInstance=(CGameAttributes *)JS_GetPrivate(cx, obj);
 		if (!JSVAL_IS_INT(id))
 			return JS_FALSE;
-		uint index=g_ScriptingHost.ValueToInt(id);
+		uint index=ToPrimitive<uint>(id);
 		
 		if (index > pInstance->m_NumSlots)
 			return JS_FALSE;
@@ -153,7 +154,7 @@ namespace PlayerSlotArray_JS
 		return JS_TRUE;
 	}
 
-	JSBool SetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
+	JSBool SetProperty( JSContext* UNUSED(cx), JSObject* UNUSED(obj), jsval UNUSED(id), jsval* UNUSED(vp) )
 	{
 		return JS_FALSE;
 	}
@@ -166,7 +167,7 @@ namespace PlayerSlotArray_JS
 		JS_ConvertStub, JS_FinalizeStub
 	};
 
-	JSBool Construct( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval )
+	JSBool Construct( JSContext* cx, JSObject* obj, uint argc, jsval* UNUSED(argv), jsval* rval )
 	{
 		if (argc != 0)
 			return JS_FALSE;
@@ -266,7 +267,7 @@ void CGameAttributes::ScriptingInit()
 	CJSObject<CGameAttributes>::ScriptingInit("GameAttributes");
 }
 
-jsval CGameAttributes::JSI_GetOpenSlot(JSContext *cx, uintN argc, jsval *argv)
+jsval CGameAttributes::JSI_GetOpenSlot(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
 {
 	vector <CPlayerSlot *>::iterator it;
 	for (it = m_PlayerSlots.begin();it != m_PlayerSlots.end();++it)

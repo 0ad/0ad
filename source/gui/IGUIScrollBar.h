@@ -170,7 +170,7 @@ public:
 	 * @param m_y mouse y
 	 * @return True if mouse positions are hovering the button
 	 */
-	virtual bool HoveringButtonMinus(const CPos& UNUSEDPARAM(mouse)) { return false; }
+	virtual bool HoveringButtonMinus(const CPos& UNUSED(mouse)) { return false; }
 
 	/**
 	 * Hovering the scroll plus button
@@ -179,7 +179,7 @@ public:
 	 * @param m_y mouse y
 	 * @return True if mouse positions are hovering the button
 	 */
-	virtual bool HoveringButtonPlus(const CPos& UNUSEDPARAM(mouse)) { return false; }
+	virtual bool HoveringButtonPlus(const CPos& UNUSED(mouse)) { return false; }
 
 	/**
 	 * Get scroll-position

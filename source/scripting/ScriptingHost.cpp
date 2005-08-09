@@ -10,12 +10,6 @@
 
 #include "res/res.h"
 
-#ifdef _WIN32
-# include "float.h" // <- MT: Just for _finite(), converting certain strings was causing weird bugs.
-# define finite _finite
-#else
-# define finite __finite // PT: Need to use _finite in MSVC, __finite in gcc
-#endif
 
 #ifdef NDEBUG
 # pragma comment (lib, "js32.lib")
@@ -93,25 +87,37 @@ ScriptingHost::~ScriptingHost()
 	JS_ShutDown();
 }
 
-// unused
-// TODO: this is valid; replace inlined versions in other code with this.
-void ScriptingHost::LoadScriptFromDisk(const std::string & fileName)
+// filename, line and globalObject default to 0 (in which case we execute
+// the whole script / use our m_GlobalObject)
+void ScriptingHost::RunMemScript(const char* script, size_t size, const char* filename, int line, JSObject* globalObject)
 {
-	const char* fn = fileName.c_str();
+	if(!filename)
+		filename = "unspecified file";
+	if(!globalObject)
+		globalObject = m_GlobalObject;
 
-	void* script;
-	size_t script_len;
-	if(vfs_load(fn, script, script_len) <= 0)	// ERRTODO: translate/pass it on
-		throw PSERROR_Scripting_LoadFile_OpenFailed();
-
-	jsval rval; 
-	JSBool ok = JS_EvaluateScript(m_Context, m_GlobalObject, (const char*)script, (unsigned int)script_len, fn, 0, &rval); 
-
-	int err = mem_free(script);
-	debug_assert(err == 0);
+	jsval rval;
+	JSBool ok = JS_EvaluateScript(m_Context, globalObject, script,
+		(uint)size, filename, line, &rval); 
 
 	if (ok == JS_FALSE)
 		throw PSERROR_Scripting_LoadFile_EvalErrors();
+
+}
+
+// globalObject defaults to 0 (in which case we use our m_GlobalObject).
+void ScriptingHost::RunScript(const CStr& filename, JSObject* globalObject)
+{
+	const char* fn = filename.c_str();
+
+	void* script;
+	size_t size;
+	if(vfs_load(fn, script, size) <= 0)	// ERRTODO: translate/pass it on
+		throw PSERROR_Scripting_LoadFile_OpenFailed();
+
+	RunMemScript((const char*)script, size, fn, 0, globalObject);
+
+	WARN_ERR(mem_free(script));
 }
 
 jsval ScriptingHost::CallFunction(const std::string & functionName, jsval * params, int numParams)
@@ -296,7 +302,7 @@ jsval ScriptingHost::GetGlobal(const std::string &globalName)
 //----------------------------------------------------------------------------
 // conversions
 //----------------------------------------------------------------------------
-
+/*
 int ScriptingHost::ValueToInt(const jsval value)
 {
 	int32 i = 0;
@@ -321,6 +327,21 @@ bool ScriptingHost::ValueToBool(const jsval value)
 	return b == JS_TRUE;
 }
 
+
+double ScriptingHost::ValueToDouble(const jsval value)
+{
+jsdouble d;
+
+JSBool ok = JS_ValueToNumber(m_Context, value, &d);
+
+if (ok == JS_FALSE || !finite( d ) )
+throw PSERROR_Scripting_ConversionFailed();
+
+return d;
+}
+
+
+*/
 std::string ScriptingHost::ValueToString(const jsval value)
 {
 	JSString* string = JS_ValueToString(m_Context, value);
@@ -341,6 +362,8 @@ jsval ScriptingHost::UCStringToValue( const CStrW &str )
 	return UTF16ToValue(utf16);
 }
 
+
+
 utf16string ScriptingHost::ValueToUTF16( const jsval value )
 {
 	JSString* string = JS_ValueToString(m_Context, value);
@@ -357,18 +380,6 @@ jsval ScriptingHost::UTF16ToValue(const utf16string &str)
 	return STRING_TO_JSVAL(JS_NewUCStringCopyZ(m_Context, str.c_str()));
 }
 
-double ScriptingHost::ValueToDouble(const jsval value)
-{
-	jsdouble d;
-
-	JSBool ok = JS_ValueToNumber(m_Context, value, &d);
-
-	if (ok == JS_FALSE || !finite( d ) )
-		throw PSERROR_Scripting_ConversionFailed();
-
-	return d;
-}
-
 //----------------------------------------------------------------------------
 
 
@@ -382,10 +393,8 @@ double ScriptingHost::ValueToDouble(const jsval value)
 
 // called by SpiderMonkey whenever someone does JS_ReportError.
 // prints that message as well as locus to log, debug output and console.
-void ScriptingHost::ErrorReporter(JSContext* context, const char* message, JSErrorReport* report)
+void ScriptingHost::ErrorReporter(JSContext* UNUSED(cx), const char* message, JSErrorReport* report)
 {
-	UNUSED(context);
-
 	const char* file = report->filename;
 	const int line   = report->lineno;
 	// apparently there is no further information in this struct we can use
@@ -408,7 +417,8 @@ void ScriptingHost::ErrorReporter(JSContext* context, const char* message, JSErr
 
 #ifndef NDEBUG
 
-void* ScriptingHost::jshook_script( JSContext* cx, JSStackFrame* fp, JSBool before, JSBool* ok, void* closure )
+void* ScriptingHost::jshook_script( JSContext* UNUSED(cx), JSStackFrame* UNUSED(fp),
+	JSBool before, JSBool* UNUSED(ok), void* closure )
 {
 	if( before )
 	{
@@ -420,7 +430,7 @@ void* ScriptingHost::jshook_script( JSContext* cx, JSStackFrame* fp, JSBool befo
 	return( closure );
 }
 
-void* ScriptingHost::jshook_function( JSContext* cx, JSStackFrame* fp, JSBool before, JSBool* ok, void* closure )
+void* ScriptingHost::jshook_function( JSContext* cx, JSStackFrame* fp, JSBool before, JSBool* UNUSED(ok), void* closure )
 {
 	JSFunction* fn = JS_GetFrameFunction( cx, fp );
 	if( before )

@@ -155,7 +155,7 @@ void CVertexBuffer::ClearBatchIndices()
 
 ///////////////////////////////////////////////////////////////////////////////
 // AppendBatch: add a batch to the render list for this buffer
-void CVertexBuffer::AppendBatch(VBChunk* UNUSEDPARAM(chunk),Handle texture,size_t numIndices,u16* indices)
+void CVertexBuffer::AppendBatch(VBChunk* UNUSED(chunk),Handle texture,size_t numIndices,u16* indices)
 {
 	// try and find a batch using this texture
 	size_t i;

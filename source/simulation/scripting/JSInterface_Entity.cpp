@@ -80,7 +80,7 @@ JSBool JSI_Entity::setProperty( JSContext* cx, JSObject* obj, jsval id, jsval* v
 	return( JS_TRUE );
 }
 
-JSBool JSI_Entity::construct( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
+JSBool JSI_Entity::construct( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval )
 {
 	debug_assert( argc >= 2 );
 	CBaseEntity* baseEntity = NULL;
@@ -118,7 +118,7 @@ JSBool JSI_Entity::construct( JSContext* cx, JSObject* obj, unsigned int argc, j
 	{
 		try
 		{
-			orientation = (float)g_ScriptingHost.ValueToDouble( argv[2] );
+			orientation = ToPrimitive<float>( argv[2] );
 		}
 		catch( PSERROR_Scripting_ConversionFailed )
 		{
@@ -181,7 +181,7 @@ JSBool JSI_Entity::order( JSContext* cx, JSObject* obj, uintN argc, jsval* argv,
 
 	try
 	{
-		orderCode = g_ScriptingHost.ValueToInt( argv[0] );
+		orderCode = ToPrimitive<int>( argv[0] );
 	}
 	catch( PSERROR_Scripting_ConversionFailed )
 	{

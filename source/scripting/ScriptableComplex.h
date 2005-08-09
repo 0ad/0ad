@@ -198,7 +198,7 @@ public:
 		}
 		return( JS_FALSE );
 	}
-	static JSBool JSPrimitive( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+	static JSBool JSPrimitive( JSContext* cx, JSObject* obj, uintN UNUSED(argc), jsval* UNUSED(argv), jsval* rval )
 	{
 		CJSComplexPropertyAccessor* Instance = (CJSComplexPropertyAccessor*)JS_GetPrivate( cx, obj );
 		if( !Instance ) return( JS_TRUE );
@@ -221,7 +221,7 @@ public:
 		
 		return( JS_TRUE );
 	}
-	static JSBool JSToString( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+	static JSBool JSToString( JSContext* cx, JSObject* obj, uintN UNUSED(argc), jsval* UNUSED(argv), jsval* rval )
 	{
 		CJSComplexPropertyAccessor* Instance = (CJSComplexPropertyAccessor*)JS_GetPrivate( cx, obj );
 		if( !Instance ) return( JS_TRUE );
@@ -287,12 +287,12 @@ public:
 		m_Intrinsic = true;
 		m_Inherited = true;
 	}
-	jsval Get( JSContext* cx, IJSComplex* owner )
+	jsval Get( JSContext* UNUSED(cx), IJSComplex* owner )
 	{
 		if( m_Freshen ) (owner->*m_Freshen)();
 		return( ToJSVal( owner->*m_Data ) );
 	}
-	void ImmediateCopy( IJSComplex* CopyTo, IJSComplex* CopyFrom, IJSComplexProperty* CopyProperty )
+	void ImmediateCopy( IJSComplex* UNUSED(CopyTo), IJSComplex* UNUSED(CopyFrom), IJSComplexProperty* UNUSED(CopyProperty) )
 	{
 		debug_warn( "Inheritance not supported for CJSSharedProperties" );
 	}
@@ -327,12 +327,12 @@ public:
 		m_Freshen = Freshen;
 		m_Intrinsic = true;
 	}
-	jsval Get( JSContext* cx, IJSComplex* owner )
+	jsval Get( JSContext* UNUSED(cx), IJSComplex* owner )
 	{
 		if( m_Freshen ) (owner->*m_Freshen)();
 		return( ToJSVal( *m_Data ) );
 	}
-	void ImmediateCopy( IJSComplex* CopyTo, IJSComplex* CopyFrom, IJSComplexProperty* CopyProperty )
+	void ImmediateCopy( IJSComplex* UNUSED(CopyTo), IJSComplex* UNUSED(CopyFrom), IJSComplexProperty* CopyProperty )
 	{
 		*m_Data = *( ( (CJSComplexProperty*)CopyProperty )->m_Data );
 	}
@@ -399,19 +399,20 @@ public:
 		if( JSVAL_IS_GCTHING( m_Data ) )
 			JS_RemoveRoot( g_ScriptingHost.GetContext(), (void*)&m_Data );
 	}
-	jsval Get( JSContext* cx, IJSComplex* owner )
+	jsval Get( JSContext* UNUSED(cx), IJSComplex* UNUSED(owner) )
 	{
 		return( m_Data );
 	}
-	void Set( JSContext* cx, IJSComplex* owner, jsval Value )
+	void Set( JSContext* UNUSED(cx), IJSComplex* UNUSED(owner), jsval Value )
 	{
 		Uproot();
 		m_Data = Value;
 		Root();
 	}
-	void ImmediateCopy( IJSComplex* CopyTo, IJSComplex* CopyFrom, IJSComplexProperty* CopyProperty )
+	void ImmediateCopy( IJSComplex* UNUSED(CopyTo), IJSComplex* UNUSED(CopyFrom),
+		IJSComplexProperty* UNUSED(CopyProperty) )
 	{
-		debug_assert( 0 && "ImmediateCopy called on a CJSValComplexProperty (something's gone wrong with the inheritance on this object)" );
+		debug_warn("ImmediateCopy called on a CJSValComplexProperty (something's gone wrong with the inheritance on this object)" );
 	}
 };
 
@@ -433,18 +434,18 @@ public:
 		// Must at least be able to read 
 		debug_assert( m_Getter );
 	}
-	jsval Get( JSContext* cx, IJSComplex* owner )
+	jsval Get( JSContext* UNUSED(cx), IJSComplex* owner )
 	{
 		return( (owner->*m_Getter)() );
 	}
-	void Set( JSContext* cx, IJSComplex* owner, jsval Value )
+	void Set( JSContext* UNUSED(cx), IJSComplex* owner, jsval Value )
 	{
 		if( m_Setter )
 			(owner->*m_Setter)( Value );
 	}
-	void ImmediateCopy( IJSComplex* CopyTo, IJSComplex* CopyFrom, IJSComplexProperty* CopyProperty )
+	void ImmediateCopy( IJSComplex* UNUSED(CopyTo), IJSComplex* UNUSED(CopyFrom), IJSComplexProperty* UNUSED(CopyProperty) )
 	{
-		debug_assert( 0 && "ImmediateCopy called on a property wrapping getter/setter functions (something's gone wrong with the inheritance for this object)" );
+		debug_warn("ImmediateCopy called on a property wrapping getter/setter functions (something's gone wrong with the inheritance for this object)" );
 	}
 };
 

@@ -43,7 +43,7 @@ CTextureEntry::CTextureEntry(CTerrainProperties *props, CStr path):
 	else
 		slashPos++; // Skip the actual slash
 	if (dotPos == -1)
-		dotPos = m_TexturePath.Length();
+		dotPos = (long)m_TexturePath.Length();
 	m_Tag = m_TexturePath.GetSubstring(slashPos, dotPos-slashPos);
 }
 

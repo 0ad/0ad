@@ -108,13 +108,13 @@ uint HEntity::GetSerializedLength() const
 	return 2;
 }
 
-u8 *HEntity::Serialize(u8 *buffer) const
+u8 *HEntity::Serialize(u8* buffer) const
 {
 	Serialize_int_2(buffer, m_handle);
 	return buffer;
 }
 
-const u8 *HEntity::Deserialize(const u8 *buffer, const u8 *end)
+const u8* HEntity::Deserialize(const u8* buffer, const u8* UNUSED(end))
 {
 	Deserialize_int_2(buffer, m_handle);
 	// We can't let addRef debug_assert just because someone sent us bogus data
@@ -143,7 +143,7 @@ u8 *CEntityList::Serialize(u8 *buffer) const
 	return buffer;
 }
 
-const u8 *CEntityList::Deserialize(const u8 *buffer, const u8 *end)
+const u8 *CEntityList::Deserialize(const u8* buffer, const u8* UNUSED(end))
 {
 	u16 n=0, handle;
 	while (!(n & HANDLE_SENTINEL_BIT))

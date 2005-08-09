@@ -441,7 +441,7 @@ void CSelectedEntities::update()
 void CMouseoverEntities::update( float timestep )
 {
 	CCamera *pCamera=g_Game->GetView()->GetCamera();
-	CTerrain *pTerrain=g_Game->GetWorld()->GetTerrain();
+	//CTerrain *pTerrain=g_Game->GetWorld()->GetTerrain();
 
 	CVector3D origin, dir;
 	pCamera->BuildCameraRay( origin, dir );
@@ -786,8 +786,8 @@ int interactInputHandler( const SDL_Event* ev )
 		return EV_PASS;
 
 	CGameView *pView=g_Game->GetView();
-	CCamera *pCamera=pView->GetCamera();
-	CTerrain *pTerrain=g_Game->GetWorld()->GetTerrain();
+	//CCamera *pCamera=pView->GetCamera();
+	//CTerrain *pTerrain=g_Game->GetWorld()->GetTerrain();
 
 	// One entry for each mouse button
 	static double lastclicktime[SDL_BUTTON_INDEX_COUNT];
@@ -920,7 +920,7 @@ int interactInputHandler( const SDL_Event* ev )
 	return( EV_PASS );
 }
 
-bool isOnScreen( CEntity* ev, void* userdata )
+bool isOnScreen( CEntity* ev, void* UNUSED(userdata) )
 {
 	CCamera *pCamera=g_Game->GetView()->GetCamera();
 
@@ -933,7 +933,7 @@ bool isOnScreen( CEntity* ev, void* userdata )
 		return( frustum.IsBoxVisible( ev->m_graphics_position, CBound() ) );
 }
 
-bool isMouseoverType( CEntity* ev, void* userdata )
+bool isMouseoverType( CEntity* ev, void* UNUSED(userdata) )
 {
 	std::vector<SMouseoverFader>::iterator it;
 	for( it = g_Mouseover.m_mouseover.begin(); it < g_Mouseover.m_mouseover.end(); it++ )

@@ -72,7 +72,7 @@ int CInput::ManuallyHandleEvent(const SDL_Event* ev)
 			wchar_t* text = clipboard_get();
 			if (text)
 			{
-				if (m_iBufferPos == pCaption->Length())
+				if (m_iBufferPos == (int)pCaption->Length())
 					*pCaption += text;
 				else
 					*pCaption = pCaption->Left(m_iBufferPos) + text + 
@@ -113,7 +113,7 @@ int CInput::ManuallyHandleEvent(const SDL_Event* ev)
 						m_iBufferPos == 0)
 						break;
 
-					if (m_iBufferPos == pCaption->Length())
+					if (m_iBufferPos == (int)pCaption->Length())
 						*pCaption = pCaption->Left( (long) pCaption->Length()-1);
 					else
 						*pCaption = pCaption->Left( m_iBufferPos-1 ) + 
@@ -137,7 +137,7 @@ int CInput::ManuallyHandleEvent(const SDL_Event* ev)
 				else
 				{
 					if (pCaption->Length() == 0 ||
-						m_iBufferPos == pCaption->Length())
+						m_iBufferPos == (int)pCaption->Length())
 						break;
 
 					*pCaption = pCaption->Left( m_iBufferPos ) + 
@@ -261,7 +261,7 @@ int CInput::ManuallyHandleEvent(const SDL_Event* ev)
 					}
 
 
-					if (m_iBufferPos != pCaption->Length())
+					if (m_iBufferPos != (int)pCaption->Length())
 						++m_iBufferPos;
 				}
 				else
@@ -430,7 +430,7 @@ int CInput::ManuallyHandleEvent(const SDL_Event* ev)
 					DeleteCurSelection();
 				m_iBufferPos_Tail = -1;
 
-				if (m_iBufferPos == pCaption->Length())
+				if (m_iBufferPos == (int)pCaption->Length())
 					*pCaption += cooked;
 				else
 					*pCaption = pCaption->Left(m_iBufferPos) + CStrW(cooked) + 
@@ -796,7 +796,8 @@ void CInput::Draw()
 				}
 
 				// We might as well use 'i' here to iterate, because we need it
-				for (size_t i=0; i < it->m_ListOfX.size()+2; ++i)
+				// (often compared against ints, so don't make it size_t)
+				for (int i=0; i < (int)it->m_ListOfX.size()+2; ++i)
 				{
 					if (it->m_ListStart + i == VirtualFrom)
 					{
@@ -812,13 +813,14 @@ void CInput::Draw()
 
 					// no else!
 
+					const bool at_end = (i == (int)it->m_ListOfX.size()+1);
+
 					if (drawing_box == true &&
-						(it->m_ListStart + i == VirtualTo ||
-						 i == it->m_ListOfX.size()+1))
+						(it->m_ListStart + i == VirtualTo || at_end))
 					{
 						// Depending on if it's just a row change, or if it's
 						//  the end of the select box, do slightly different things.
-						if (i == it->m_ListOfX.size()+1)
+						if (at_end)
 						{
 							if (it->m_ListStart + i != VirtualFrom)
 							{
@@ -880,7 +882,7 @@ void CInput::Draw()
 						glPopMatrix();
 					}
 
-					if (i < it->m_ListOfX.size())
+					if (i < (int)it->m_ListOfX.size())
                         x_pointer += (float)font.GetCharacterWidth((*pCaption)[it->m_ListStart + i]);
 				}
 
@@ -926,9 +928,10 @@ void CInput::Draw()
 					glTranslatef(-(float)(int)m_HorizontalScroll, 0.f, 0.f);
 
 				// We might as well use 'i' here, because we need it
-				for (size_t i=0; i < it->m_ListOfX.size()+1; ++i)
+				// (often compared against ints, so don't make it size_t)
+				for (int i=0; i < (int)it->m_ListOfX.size()+1; ++i)
 				{
-					if (!multiline && i < it->m_ListOfX.size())
+					if (!multiline && i < (int)it->m_ListOfX.size())
 					{
 						if (it->m_ListOfX[i] - m_HorizontalScroll < -buffer_zone)
 						{
@@ -950,7 +953,7 @@ void CInput::Draw()
 						glColor4f(color.r, color.g, color.b, color.a);
 					}
 
-					if (i != it->m_ListOfX.size() &&
+					if (i != (int)it->m_ListOfX.size() &&
 						it->m_ListStart + i == m_iBufferPos)
 					{
 						// selecting only one, then we need only to draw a vertical line glyph.
@@ -961,26 +964,26 @@ void CInput::Draw()
 
 					// Drawing selected area
 					if (SelectingText() && 
-						it->m_ListStart + (int)i >= VirtualFrom &&
-						it->m_ListStart + (int)i < VirtualTo &&
+						it->m_ListStart + i >= VirtualFrom &&
+						it->m_ListStart + i < VirtualTo &&
 						using_selected_color == false)
 					{
 						using_selected_color = true;
 						glColor4f(color_selected.r, color_selected.g, color_selected.b, color_selected.a);
 					}
 
-					if (i != it->m_ListOfX.size())
+					if (i != (int)it->m_ListOfX.size())
 						glwprintf(L"%lc", (*pCaption)[it->m_ListStart + i]);
 
 					// check it's now outside a one-liner, then we'll break
-					if (!multiline && i < it->m_ListOfX.size())				
+					if (!multiline && i < (int)it->m_ListOfX.size())				
 					{
 						if (it->m_ListOfX[i] - m_HorizontalScroll > m_CachedActualSize.GetWidth()-buffer_zone)
 							break;
 					}
 				}
 
-				if (it->m_ListStart + it->m_ListOfX.size() == m_iBufferPos)
+				if (it->m_ListStart + (int)it->m_ListOfX.size() == m_iBufferPos)
 				{
 					glColor4f(color.r, color.g, color.b, color.a);
 					glwprintf(L"%lc", 0xFE33);
@@ -1027,7 +1030,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 	SRow row;
 	row.m_ListStart = 0;
 	
-	int to;
+	int to = 0;	// make sure it's initialized
 
 	if (to_before == -1)
 		to = (int)caption.Length();
@@ -1180,13 +1183,13 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 			check_point_row_start += delta;
 			check_point_row_end += delta;
 
-			if (to != caption.Length())
+			if (to != (int)caption.Length())
 				to += delta;
 		}
 	}
 	
 	int last_word_started=from;
-	int last_list_start=-1;
+	//int last_list_start=-1;	// unused
 	float x_pos = 0.f;
 
 	//if (to_before != -1)
@@ -1196,7 +1199,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 	{
 		if (caption[i] == L'\n' && multiline)
 		{
-			if (i==to-1 && to != caption.Length())
+			if (i==to-1 && to != (int)caption.Length())
 				break; // it will be added outside
 			
 			CStr c_caption1(caption.GetSubstring(row.m_ListStart, row.m_ListOfX.size()));
@@ -1378,7 +1381,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 	//  we'll add has got the same value as the next row.
 	if (current_line != m_CharacterPositions.end())
 	{
-		if (row.m_ListStart + row.m_ListOfX.size() == current_line->m_ListStart)
+		if (row.m_ListStart + (int)row.m_ListOfX.size() == current_line->m_ListStart)
 			row.m_ListOfX.resize( row.m_ListOfX.size()-1 );
 	}
 
@@ -1432,7 +1435,7 @@ int CInput::GetMouseHoveringTextPosition()
 						// TODO: Get the real font
 		CFont font(font_name);
 		float spacing = (float)font.GetLineSpacing();
-		float height = (float)font.GetHeight();
+		//float height = (float)font.GetHeight();	// unused
 
 		// Change mouse position relative to text.
 		mouse -= m_CachedActualSize.TopLeft();
@@ -1499,7 +1502,7 @@ int CInput::GetXTextPosition(const list<SRow>::iterator &current, const float &x
 	}
 	// If a position wasn't found, we will assume the last
 	//  character of that line.
-	if (i == current->m_ListOfX.size())
+	if (i == (int)current->m_ListOfX.size())
 	{
 		Ret += i;
 		wanted = x;

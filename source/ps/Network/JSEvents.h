@@ -74,9 +74,9 @@ class CClientConnectDisconnectCommon: public CScriptEvent
 	CNetServerSession *m_pSession;
 	
 public:
-	CClientConnectDisconnectCommon(const wchar_t* eventName, int eventType,
-			int sessionID, const CStrW &name, CNetServerSession *pSession):
-		CScriptEvent(L"clientConnect", NET_JS_EVENT_CLIENT_CONNECT, false),
+	CClientConnectDisconnectCommon(const wchar_t* UNUSED(eventName), int UNUSED(eventType),
+		int sessionID, const CStrW &name, CNetServerSession* pSession)
+		: CScriptEvent(L"clientConnect", NET_JS_EVENT_CLIENT_CONNECT, false),
 		m_SessionID(sessionID),
 		m_Name(name),
 		m_pSession(pSession)

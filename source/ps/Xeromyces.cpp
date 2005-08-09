@@ -2,8 +2,6 @@
 
 #include "precompiled.h"
 
-#include "nommgr.h"
-
 #include <vector>
 #include <set>
 #include <map>
@@ -20,21 +18,6 @@
 #define LOG_CATEGORY "xml"
 
 #include "XML.h"
-
-// For Xerces headers:
-#ifdef HAVE_VC_DEBUG_ALLOC
-# undef new
-#endif
-
-// The converter uses SAX2, so it should [theoretically]
-// be fairly easy to swap Xerces for something else (if desired)
-#include <xercesc/sax2/XMLReaderFactory.hpp>
-#include <xercesc/sax2/DefaultHandler.hpp>
-
-// Reenable better memory-leak messages
-#ifdef HAVE_VC_DEBUG_ALLOC
-# define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
-#endif
 
 
 int CXeromyces::XercesLoaded = 0; // for once-only initialisation
@@ -363,7 +346,7 @@ std::string lowercase_ascii(const XMLCh *a)
 	return b;
 }
 
-void XeroHandler::startElement(const XMLCh* const UNUSEDPARAM(uri), const XMLCh* const localname, const XMLCh* const UNUSEDPARAM(qname), const Attributes& attrs)
+void XeroHandler::startElement(const XMLCh* const UNUSED(uri), const XMLCh* const localname, const XMLCh* const UNUSED(qname), const Attributes& attrs)
 {
 	std::string elementName = lowercase_ascii(localname);
 	ElementNames.insert(elementName);
@@ -392,12 +375,12 @@ void XeroHandler::startElement(const XMLCh* const UNUSEDPARAM(uri), const XMLCh*
 	ElementStack.push(e);
 }
 
-void XeroHandler::endElement(const XMLCh* const UNUSEDPARAM(uri), const XMLCh* const UNUSEDPARAM(localname), const XMLCh* const UNUSEDPARAM(qname))
+void XeroHandler::endElement(const XMLCh* const UNUSED(uri), const XMLCh* const UNUSED(localname), const XMLCh* const UNUSED(qname))
 {
 	ElementStack.pop();
 }
 
-void XeroHandler::characters(const XMLCh* const chars, const unsigned int UNUSEDPARAM(length))
+void XeroHandler::characters(const XMLCh* const chars, const unsigned int UNUSED(length))
 {
 	ElementStack.top()->text += utf16string(chars, chars+XMLString::stringLen(chars));
 }

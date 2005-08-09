@@ -61,7 +61,7 @@ void CBoundingCircle::setRadius( float radius )
 	m_radius = radius;
 }
 
-bool CBoundingCircle::_intersects( CBoundingObject* obj, const CVector2D& delta )
+bool CBoundingCircle::_intersects( CBoundingObject* obj, const CVector2D& UNUSED(delta) )
 {
 	debug_assert( obj->m_type == BOUND_CIRCLE );
 	// Easy enough. The only time this gets called is a circle-circle collision,
@@ -69,7 +69,7 @@ bool CBoundingCircle::_intersects( CBoundingObject* obj, const CVector2D& delta 
 	return( true );
 }
 
-bool CBoundingCircle::_contains( const CVector2D& point, const CVector2D& delta )
+bool CBoundingCircle::_contains( const CVector2D& UNUSED(point), const CVector2D& UNUSED(delta) )
 {
 	return( true );
 }
@@ -246,7 +246,7 @@ bool CBoundingBox::_intersects( CBoundingObject* obj, const CVector2D& delta )
 	}
 }
 
-bool CBoundingBox::_contains( const CVector2D& point, const CVector2D& delta )
+bool CBoundingBox::_contains( const CVector2D& UNUSED(point), const CVector2D& delta )
 {
 	float deltad = fabs( delta.dot( m_u ) );
 	if( deltad > m_d ) return( false );

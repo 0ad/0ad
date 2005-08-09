@@ -56,7 +56,7 @@ CVertexBuffer::VBChunk* CVertexBufferManager::Allocate(size_t vertexSize,size_t 
 	if (!result)
 	{
 		LOG(ERROR, LOG_CATEGORY, "Failed to create VBOs");
-		debug_assert(!"Failed to create VBOs");
+		debug_warn("Failed to create VBOs");
 	}
 
 	return result;

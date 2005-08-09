@@ -7,7 +7,7 @@
 
 // On Windows, wchar_t is typedef'ed to unsigned short, which conflicts
 // with uint16_t (which is also an unsigned short), so just use std::wstring
-#ifdef _MSC_VER
+#if MSC_VERSION
 
 typedef wchar_t utf16_t;
 typedef std::wstring utf16string;
@@ -100,6 +100,6 @@ namespace std {
 	};
 }
 
-#endif // #ifdef _MSC_VER / #else
+#endif // #if MSC_VERSION / #else
 
 #endif
