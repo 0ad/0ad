@@ -117,7 +117,7 @@ void JSI_Camera::Camera_Info::FreshenTarget()
 	m_sv_Target = m_Data->GetFocus();
 }
 
-JSBool JSI_Camera::getCamera( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
+JSBool JSI_Camera::getCamera( JSContext* cx, JSObject* UNUSED(obj), jsval UNUSED(id), jsval* vp )
 {
 	JSObject* camera = JS_NewObject( cx, &JSI_Camera::JSI_class, NULL, NULL );
 	JS_SetPrivate( cx, camera, new Camera_Info( g_Game->GetView()->GetCamera() ) );
@@ -125,7 +125,7 @@ JSBool JSI_Camera::getCamera( JSContext* cx, JSObject* obj, jsval id, jsval* vp 
 	return( JS_TRUE );
 }
 
-JSBool JSI_Camera::setCamera( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
+JSBool JSI_Camera::setCamera( JSContext* cx, JSObject* UNUSED(obj), jsval UNUSED(id), jsval* vp )
 {
 	JSObject* camera = JSVAL_TO_OBJECT( *vp );
 	Camera_Info* cameraInfo;
@@ -154,7 +154,7 @@ JSBool JSI_Camera::getProperty( JSContext* cx, JSObject* obj, jsval id, jsval* v
 	
 	CVector3D* d;
 
-	switch( g_ScriptingHost.ValueToInt( id ) )
+	switch( ToPrimitive<int>( id ) )
 	{
 	case vector_position: d = &cameraInfo->m_sv_Position; break;
 	case vector_orientation: d = &cameraInfo->m_sv_Orientation; break;
@@ -187,7 +187,7 @@ JSBool JSI_Camera::setProperty( JSContext* cx, JSObject* obj, jsval id, jsval* v
 	{
 		cameraInfo->Freshen();
 
-		switch( g_ScriptingHost.ValueToInt( id ) )
+		switch( ToPrimitive<int>( id ) )
 		{
 		case vector_position: cameraInfo->m_sv_Position = *( v->vector ); break;
 		case vector_orientation: cameraInfo->m_sv_Orientation = *( v->vector ); break;
@@ -200,16 +200,15 @@ JSBool JSI_Camera::setProperty( JSContext* cx, JSObject* obj, jsval id, jsval* v
 	return( JS_TRUE );
 }
 
-JSBool JSI_Camera::lookAt( JSContext* cx, JSObject* obj, unsigned int argc, jsval* argv, jsval* rval )
-{
-	debug_assert( argc >= 2 );
+#define GETVECTOR( jv ) ( ( JSVAL_IS_OBJECT( jv ) && ( v = (JSI_Vector3D::Vector3D_Info*)JS_GetInstancePrivate( g_ScriptingHost.getContext(), JSVAL_TO_OBJECT( jv ), &JSI_Vector3D::JSI_class, NULL ) ) ) ? *(v->vector) : CVector3D() )
 
+
+JSBool JSI_Camera::lookAt( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval )
+{
 	JSI_Vector3D::Vector3D_Info* v = NULL;
 	Camera_Info* cameraInfo = (Camera_Info*)JS_GetPrivate( cx, obj );
 
-#define GETVECTOR( jv ) ( ( JSVAL_IS_OBJECT( jv ) && ( v = (JSI_Vector3D::Vector3D_Info*)JS_GetInstancePrivate( g_ScriptingHost.getContext(), JSVAL_TO_OBJECT( jv ), &JSI_Vector3D::JSI_class, NULL ) ) ) ? *(v->vector) : CVector3D() )
-
-	if( argc <= 3 )
+	if( 2 <= argc && argc <= 3 )
 	{
 		cameraInfo->m_sv_Position = GETVECTOR( argv[0] );
 		cameraInfo->m_sv_Orientation = ( GETVECTOR( argv[1] ) - GETVECTOR( argv[0] ) );
@@ -217,7 +216,7 @@ JSBool JSI_Camera::lookAt( JSContext* cx, JSObject* obj, unsigned int argc, jsva
 	}
 	else
 	{
-		JS_ReportError( cx, "[Camera] Too many arguments to lookAt" );
+		JS_ReportError( cx, "[Camera] lookAt: incorrect argument count" );
 		*rval = JSVAL_FALSE;
 		return( JS_TRUE );
 	}
@@ -231,15 +230,14 @@ JSBool JSI_Camera::lookAt( JSContext* cx, JSObject* obj, unsigned int argc, jsva
 		cameraInfo->m_sv_Up = GETVECTOR( argv[2] );
 	}
 
-#undef GETVECTOR
-
 	cameraInfo->Update();
 
 	*rval = JSVAL_TRUE;
 	return( JS_TRUE );
 }
 
-JSBool JSI_Camera::getFocus( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+JSBool JSI_Camera::getFocus( JSContext* cx, JSObject* obj,
+	uintN UNUSED(argc), jsval* UNUSED(argv), jsval* rval )
 {
 	// Largely copied from the equivalent method in CCamera
 
@@ -251,13 +249,12 @@ JSBool JSI_Camera::getFocus( JSContext* cx, JSObject* obj, uintN argc, jsval* ar
 	return( JS_TRUE );
 }
 
-JSBool JSI_Camera::construct( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+JSBool JSI_Camera::construct( JSContext* cx, JSObject* UNUSED(obj),
+	uintN argc, jsval* argv, jsval* rval )
 {
 	JSI_Vector3D::Vector3D_Info* v = NULL;
 
 	JSObject* camera = JS_NewObject( cx, &JSI_Camera::JSI_class, NULL, NULL );
-
-#define GETVECTOR( jv ) ( ( JSVAL_IS_OBJECT( jv ) && ( v = (JSI_Vector3D::Vector3D_Info*)JS_GetInstancePrivate( g_ScriptingHost.getContext(), JSVAL_TO_OBJECT( jv ), &JSI_Vector3D::JSI_class, NULL ) ) ) ? *(v->vector) : CVector3D() )
 
 	if( argc == 0 )
 	{

@@ -41,10 +41,17 @@ namespace I18n
 		u32 Hash();
 
 	private:
-		StringBuffer(TranslatedString&, CLocale*);
-		TranslatedString& String;
+		TranslatedString* String;
+			// pointer instead of reference allows assignment.
+			// this class is returned by value, so it's nicer for the
+			// compiler-generated copy ctor to be used.
 		std::vector<BufferVariable*> Variables;
 		CLocale* Locale;
+
+		StringBuffer(TranslatedString* str, CLocale* loc)
+			: String(str), Locale(loc)
+		{
+		}
 	};
 
 }

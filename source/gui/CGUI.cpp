@@ -218,7 +218,7 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 	}
 	catch (PS_RESULT e)
 	{
-		UNUSED(e);
+		UNUSED2(e);
 		debug_warn("CGUI::HandleEvent error");
 		// TODO Gee: Handle
 	}
@@ -433,7 +433,7 @@ void CGUI::Draw()
 	}
 	catch (PS_RESULT e)
 	{
-		UNUSED(e);
+		UNUSED2(e);
 		glPopMatrix();
 
 		// TODO Gee: Report error.
@@ -445,9 +445,9 @@ void CGUI::Draw()
 
 void CGUI::DrawSprite(CGUISpriteInstance& Sprite,
 					  int CellID,
-					  const float &Z,
-					  const CRect &Rect,
-					  const CRect &Clipping)
+					  const float& Z,
+					  const CRect& Rect,
+					  const CRect& UNUSED(Clipping))
 {
 	// If the sprite doesn't exist (name == ""), don't bother drawing anything
 	if (Sprite.IsEmpty())
@@ -477,7 +477,7 @@ void CGUI::Destroy()
 		}
 		catch (PS_RESULT e)
 		{
-			UNUSED(e);
+			UNUSED2(e);
 			debug_warn("CGUI::Destroy error");
 			// TODO Gee: Handle
 		}
@@ -1384,27 +1384,12 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile)
 
 	// If there is a file specified, open and execute it
 	if (file.Length())
-	{
-		CVFSFile scriptfile;
-		if (scriptfile.Load(file) != PSRETURN_OK)
-		{
-			LOG(ERROR, LOG_CATEGORY, "Error opening script file '%s'", file.c_str());
-			throw PSERROR_GUI_JSOpenFailed();
-		}
-
-		jsval result;
-		JS_EvaluateScript(g_ScriptingHost.getContext(), m_ScriptObject, (const char*)scriptfile.GetBuffer(), (int)scriptfile.GetBufferSize(), file, 1, &result);
-	}
+		g_ScriptingHost.RunScript(file, m_ScriptObject);
 
 	// Execute inline scripts
 	CStr code (Element.getText());
-
 	if (code.Length())
-	{
-		jsval result;
-		// TODO: Report the filename
-		JS_EvaluateScript(g_ScriptingHost.getContext(), m_ScriptObject, code.c_str(), (int)code.Length(), "Some XML file", Element.getLineNumber(), &result);
-	}
+		g_ScriptingHost.RunMemScript(code.c_str(), code.Length(), "Some XML file", Element.getLineNumber(), m_ScriptObject);
 }
 
 void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)

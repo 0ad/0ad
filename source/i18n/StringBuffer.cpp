@@ -25,7 +25,7 @@ I18n::StringBuffer::operator Str()
 	g_UsedCache = false;
 	#endif
 
-	if (Variables.size() != String.VarCount)
+	if (Variables.size() != String->VarCount)
 	{
 		LOG(ERROR, LOG_CATEGORY, "I18n: Incorrect number of parameters passed to Translate");
 
@@ -35,9 +35,9 @@ I18n::StringBuffer::operator Str()
 		return L"(translation error)";
 	}
 
-	if (String.VarCount == 0)
-		if (String.Parts.size())
-			return String.Parts[0]->ToString(Locale, Variables).str();
+	if (String->VarCount == 0)
+		if (String->Parts.size())
+			return String->Parts[0]->ToString(Locale, Variables).str();
 		else
 			return Str();
 
@@ -58,8 +58,8 @@ I18n::StringBuffer::operator Str()
 	}
 
 	// Not in cache - construct the string
-	for (std::vector<const TSComponent*>::iterator it = String.Parts.begin(),
-		end = String.Parts.end();
+	for (std::vector<const TSComponent*>::iterator it = String->Parts.begin(),
+		end = String->Parts.end();
 		it != end; ++it)
 	{
 		ret += (*it)->ToString(Locale, Variables).str();
@@ -68,11 +68,6 @@ I18n::StringBuffer::operator Str()
 	Locale->AddToCache(this, ret);
 
 	return ret;
-}
-
-I18n::StringBuffer::StringBuffer(TranslatedString& str, CLocale* loc)
-	: String(str), Locale(loc)
-{
 }
 
 u32 I18n::StringBuffer::Hash()
