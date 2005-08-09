@@ -23,6 +23,7 @@
 #include "lib.h"
 #include "posix.h"
 #include "win_internal.h"
+#include "sysdep/cpu.h"
 
 
 #include <stdio.h>
@@ -74,7 +75,7 @@ int open(const char* fn, int oflag, ...)
 	int fd = _open(fn, oflag, mode);
 	WIN_RESTORE_LAST_ERROR;
 
-#ifdef PARANOIA
+#if CONFIG_PARANOIA
 debug_printf("open %s = %d\n", fn, fd);
 #endif
 
@@ -109,7 +110,7 @@ no_aio:
 
 int close(int fd)
 {
-#ifdef PARANOIA
+#if CONFIG_PARANOIA
 debug_printf("close %d\n", fd);
 #endif
 
@@ -326,7 +327,7 @@ int mkdir(const char* path, mode_t)
 // 
 // we avoid opening directories or returning files that have hidden or system
 // attributes set. this is to prevent returning something like
-// "\system volume information", which raises an error upon opening.
+// "\System Volume Information", which raises an error upon opening.
 
 struct WDIR
 {
@@ -334,8 +335,8 @@ struct WDIR
 	WIN32_FIND_DATA fd;
 
 	struct dirent ent;
-		// can't be global - must not be overwritten
-		// by calls from different DIRs.
+		// can't be global - must not be overwritten by
+		// calls from different DIRs.
 
 	char path[PATH_MAX+1];
 		// can't be stored in fd or ent's path fields -
@@ -343,8 +344,37 @@ struct WDIR
 };
 
 
+// suballocator - satisfies most requests with a reusable static instance.
+// this avoids hundreds of alloc/free which would fragment the heap.
+// to guarantee thread-safety, we fall back to malloc if the instance is
+// already in use. (it's important to avoid suprises since this is such a
+// low-level routine).
+
+static WDIR global_wdir;
+static uintptr_t global_wdir_in_use;
+
+// zero-initializes the WDIR (code below relies on this)
+static inline WDIR* wdir_alloc()
+{
+	// successfully reserved the global instance
+	if(CAS(&global_wdir_in_use, 0, 1))
+	{
+		memset(&global_wdir, 0, sizeof(global_wdir));
+		return &global_wdir;
+	}
+	return (WDIR*)calloc(1, sizeof(WDIR));
+}
+
+static inline void wdir_free(WDIR* d)
+{
+	if(d == &global_wdir)
+		global_wdir_in_use = 0;
+	else
+		free(d);
+}
+
+
 static const DWORD hs = FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM;
-	// convenience
 
 DIR* opendir(const char* path)
 {
@@ -355,8 +385,7 @@ DIR* opendir(const char* path)
 	if((fa == INVALID_FILE_ATTRIBUTES) || !(fa & FILE_ATTRIBUTE_DIRECTORY) || (fa & hs))
 		return 0;
 
-	// note: zero-initializes everything (required).
-	WDIR* d = (WDIR*)calloc(1, sizeof(WDIR));
+	WDIR* d = wdir_alloc();
 	if(!d)
 		return 0;
 
@@ -372,46 +401,45 @@ struct dirent* readdir(DIR* d_)
 {
 	WDIR* const d = (WDIR*)d_;
 
+	// avoid polluting the last error.
 	DWORD prev_err = GetLastError();
 
 	// bails if end of dir reached or error.
-	// called (again) if entry was rejected below.
+	// runs again if entry was rejected below.
 get_another_entry:
 
 	// first time
 	if(d->hFind == 0)
 	{
 		d->hFind = FindFirstFile(d->path, &d->fd);
-		if(d->hFind != INVALID_HANDLE_VALUE)    // success
-			goto have_entry;
+		if(d->hFind == INVALID_HANDLE_VALUE)
+			goto fail;
 	}
 	else
-		if(FindNextFile(d->hFind, &d->fd))      // success
-			goto have_entry;
+	{
+		if(!FindNextFile(d->hFind, &d->fd))
+			goto fail;
+	}
 
+	// d->fd is now valid. since we must not return hidden or system entries,
+	// get another one if this one is (see rationale above).
+	if(d->fd.dwFileAttributes & hs)
+		goto get_another_entry;
+
+	// this entry has passed all checks; return information about it.
+	// .. d_ino zero-initialized by opendir
+	// .. POSIX requires d_name to be an array, so we have to copy there.
+	strcpy_s(d->ent.d_name, sizeof(d->ent.d_name), d->fd.cFileName);
+	return &d->ent;
+
+fail:
 	// Find*File failed; determine why and bail.
 	// .. legit, end of dir reached. don't pollute last error code.
 	if(GetLastError() == ERROR_NO_MORE_FILES)
 		SetLastError(prev_err);
 	else
 		debug_warn("readdir: Find*File failed");
-	return 0;
-
-
-	// d->fd holds a valid entry, but we may have to get another below.
-have_entry:
-
-	// we must not return hidden or system entries, so get another.
-	// (see rationale above).
-	if(d->fd.dwFileAttributes & hs)
-		goto get_another_entry;
-
-
-	// this entry has passed all checks; return information about it.
-	// .. d_ino zero-initialized by opendir
-	// .. POSIX requires d_name to be an array, so we copy there.
-	strcpy_s(d->ent.d_name, sizeof(d->ent.d_name), d->fd.cFileName);
-	return &d->ent;
+	return (struct dirent*)0;
 }
 
 
@@ -437,8 +465,7 @@ int closedir(DIR* d_)
 
 	FindClose(d->hFind);
 
-	memset(d, 0, sizeof(WDIR));	// safety
-	free(d);
+	wdir_free(d);
 	return 0;
 }
 
@@ -504,7 +531,7 @@ int poll(struct pollfd /* fds */[], int /* nfds */, int /* timeout */)
 
 
 
-// convert POSIX PROT_* flags to Win32 PAGE_* enumeration.
+// convert POSIX PROT_* flags to their Win32 PAGE_* enumeration equivalents.
 // used by mprotect.
 static DWORD win32_prot(int prot)
 {
@@ -545,6 +572,10 @@ int mprotect(void* addr, size_t len, int prot)
 }
 
 
+// given mmap prot and flags, output protection/access values for use with
+// CreateFileMapping / MapViewOfFile. they only support read-only,
+// read/write and copy-on-write, so we dumb it down to that and later
+// set the correct (and more restrictive) permission via mprotect.
 static int mmap_access(int prot, int flags, DWORD& flProtect, DWORD& dwAccess, SECURITY_ATTRIBUTES*& psec)
 {
 	SECURITY_ATTRIBUTES* saved_psec = psec;
@@ -553,8 +584,10 @@ static int mmap_access(int prot, int flags, DWORD& flProtect, DWORD& dwAccess, S
 	flProtect = PAGE_READONLY;
 	dwAccess  = FILE_MAP_READ;
 	psec = 0;
+		// we go to a bit of trouble and return a NULL pointer in the
+		// default case; this is more efficient.
 
-	if(flags & PROT_WRITE)
+	if(prot & PROT_WRITE)
 	{
 		flProtect = PAGE_READWRITE;
 		dwAccess  = FILE_MAP_WRITE;	// read and write
@@ -587,7 +620,8 @@ static int mmap_access(int prot, int flags, DWORD& flProtect, DWORD& dwAccess, S
 	return 0;
 }
 
-void* mmap(void* user_start, size_t len, int prot, int flags, int fd, off_t offset)
+
+void* mmap(void* user_start, size_t len, int prot, int flags, int fd, off_t ofs)
 {
 	{
 	WIN_SAVE_LAST_ERROR;
@@ -616,40 +650,37 @@ void* mmap(void* user_start, size_t len, int prot, int flags, int fd, off_t offs
 			goto fail;
 	}
 
-	// figure out protection and access rights.
+	// choose protection and access rights for CreateFileMapping /
+	// MapViewOfFile. these are weaker than what PROT_* allows and
+	// are augmented below by subsequently mprotect-ing.
 	DWORD flProtect; DWORD dwAccess;
-	SECURITY_ATTRIBUTES sec; SECURITY_ATTRIBUTES* psec = &sec;
+	SECURITY_ATTRIBUTES sec_; SECURITY_ATTRIBUTES* psec = &sec_;
 	err = mmap_access(prot, flags, flProtect, dwAccess, psec);
 	if(err < 0)
 		goto fail;
 
-	// now actually map.
-	const DWORD len_hi = (DWORD)((u64)len >> 32);
-		// careful! language doesn't allow shifting 32-bit types by 32 bits.
-	const DWORD len_lo = (DWORD)len & 0xffffffff;
+	// enough foreplay; now actually map.
+	// .. split size/offset into 32 bit values for the API.
+	//    careful! C++ doesn't allow shifting 32-bit types by 32 bits.
+	const DWORD len_hi = u64_hi(len), len_lo = u64_lo(len);
+	const DWORD ofs_hi = u64_hi(ofs), ofs_lo = u64_lo(ofs);
 	const HANDLE hMap = CreateFileMapping(hFile, psec, flProtect, len_hi, len_lo, (LPCSTR)0);
-	if(hMap == INVALID_HANDLE_VALUE)
-		// bail now so that MapView.. doesn't overwrite the last error value.
+	// .. create failed; bail now to avoid overwriting the last error value.
+	if(!hMap)
 		goto fail;
-	void* addr = MapViewOfFileEx(hMap, dwAccess, len_hi, offset, len_lo, start);
-	// TODO: MapViewOfFileEx wants offset_hi rather than len_hi
-
-	// free the mapping object now, so that we don't have to hold on to its
-	// handle until munmap(). it's not actually released yet due to the
-	// reference held by MapViewOfFileEx (if it succeeded).
-	if(hMap != INVALID_HANDLE_VALUE)	// avoid "invalid handle" error
-		CloseHandle(hMap);
-
-	if(!addr)
-		// bail now, before the last error value is restored,
-		// but after freeing the mapping object.
-		goto fail;
-
-	// make sure we got the requested address if MAP_FIXED was passed.
+	void* addr = MapViewOfFileEx(hMap, dwAccess, ofs_hi, ofs_lo, (SIZE_T)len, start);
+	// .. make sure we got the requested address if MAP_FIXED was passed.
 	debug_assert(!(flags & MAP_FIXED) || (addr == start));
+	// .. free the mapping object now, so that we don't have to hold on to its
+	//    handle until munmap(). it's not actually released yet due to the
+	//    reference held by MapViewOfFileEx (if it succeeded).
+	CloseHandle(hMap);
+	// .. map failed; bail now to avoid "restoring" the last error value.
+	if(!addr)
+		goto fail;
 
-	err = mprotect(addr, len, prot);
-	debug_assert(err == 0);
+	// slap on correct (more restrictive) permissions. 
+	WARN_ERR(mprotect(addr, len, prot));
 
 	WIN_RESTORE_LAST_ERROR;
 	return addr;
@@ -660,9 +691,8 @@ fail:
 }
 
 
-int munmap(void* start, size_t len)
+int munmap(void* start, size_t UNUSED(len))
 {
-	UNUSED(len);
 	BOOL ok = UnmapViewOfFile(start);
 	return ok? 0 : -1;
 }

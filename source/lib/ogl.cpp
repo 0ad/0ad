@@ -29,7 +29,7 @@
 #include "detect.h"
 #include "debug.h"
 
-#ifdef _MSC_VER
+#if MSC_VERSION
 #pragma comment(lib, "opengl32.lib")
 #pragma comment(lib, "glu32.lib")
 	// glu32 is required - it is apparently pulled in by opengl32,
@@ -241,31 +241,75 @@ static void importExtensionFunctions()
 
 //----------------------------------------------------------------------------
 
+static void dump_gl_error(GLenum err)
+{
+	debug_printf("GL error: ");
+#define E(e) case e: debug_printf("%s\n", #e); break;
+	switch (err)
+	{
+	E(GL_INVALID_ENUM)
+	E(GL_INVALID_VALUE)
+	E(GL_INVALID_OPERATION)
+	E(GL_STACK_OVERFLOW)
+	E(GL_STACK_UNDERFLOW)
+	E(GL_OUT_OF_MEMORY)
+	default:;
+	}
+#undef E
+}
+
 #ifndef oglCheck
 	// don't include this function if it has been defined (in ogl.h) as a no-op
 void oglCheck()
 {
-	GLenum err = glGetError();
-	if(err != GL_NO_ERROR)
-	{
-		debug_printf("GL error: ");
+	// glGetError may return multiple errors, so we poll it in a loop.
+	// the debug_warn should only happen once (if this is set), though.
+	bool error_enountered = false;
 
-		#define E(e) case e: debug_printf("%s\n", #e); break;
-		switch (err)
-		{
-			E(GL_INVALID_ENUM)
-			E(GL_INVALID_VALUE)
-			E(GL_INVALID_OPERATION)
-			E(GL_STACK_OVERFLOW)
-			E(GL_STACK_UNDERFLOW)
-			E(GL_OUT_OF_MEMORY)
-		default:;
-		}
-		#undef E
-		debug_break();
+	for(;;)
+	{
+		GLenum err = glGetError();
+		if(err == GL_NO_ERROR)
+			break;
+
+		error_enountered = true;
+		dump_gl_error(err);
 	}
+
+	if(error_enountered)
+		debug_warn("oglCheck reports error(s)");
 }
 #endif
+
+
+// ignore and reset the specified error (as returned by glGetError).
+// any other errors that have occurred are reported as oglCheck would.
+//
+// this is useful for suppressing annoying error messages, e.g.
+// "invalid enum" for GL_CLAMP_TO_EDGE even though we've already
+// warned the user that their OpenGL implementation is too old.
+void oglSquelchError(GLenum err_to_ignore)
+{
+	// glGetError may return multiple errors, so we poll it in a loop.
+	// the debug_warn should only happen once (if this is set), though.
+	bool error_enountered = false;
+
+	for(;;)
+	{
+		GLenum err = glGetError();
+		if(err == GL_NO_ERROR)
+			break;
+
+		if(err == err_to_ignore)
+			continue;
+
+		error_enountered = true;
+		dump_gl_error(err);
+	}
+
+	if(error_enountered)
+		debug_warn("oglSquelchError reports other error(s)");
+}
 
 
 //----------------------------------------------------------------------------
@@ -383,6 +427,7 @@ static void CALL_CONV emulate_glCompressedTexImage2D(
 	GLsizei blocks = blocks_w * blocks_h;
 	GLsizei size = blocks * 16 * (base_fmt == GL_RGB ? 3 : 4);
 	GLsizei pitch = size / (blocks_h*4);
+	UNUSED2(pitch);
 	void* rgb_data = malloc(size);
 
 	bool dxt1 = (internalformat == GL_COMPRESSED_RGB_S3TC_DXT1_EXT || internalformat == GL_COMPRESSED_RGBA_S3TC_DXT1_EXT);
@@ -483,7 +528,7 @@ static void CALL_CONV emulate_glCompressedTexImage2D(
 				u8* out = (u8*)rgb_data + ((block_y*4+y)*blocks_w*4 + block_x*4) * 4;
 				for(int x = 0; x < 4; ++x, ++i)
 				{
-					int a;
+					int a = 0;	// squelch bogus uninitialized warning
 					switch((bits >> (2*i)) & 3) {
 						case 0: *out++ = c0_r; *out++ = c0_g; *out++ = c0_b; a = c0_a; break;
 						case 1: *out++ = c1_r; *out++ = c1_g; *out++ = c1_b; a = c1_a; break;

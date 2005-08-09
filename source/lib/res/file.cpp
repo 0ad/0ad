@@ -62,6 +62,34 @@ const size_t SECTOR_SIZE = 4096;
 
 
 
+// convenience "class" that simplifies successively appending a filename to
+// its parent directory. this avoids needing to allocate memory and calling
+// strlen/strcat. used by wdetect and dir_next_ent.
+// we want to maintain C compatibility, so this isn't a C++ class.
+
+// write the given directory path into our buffer and set end/chars_left
+// accordingly. <dir> need and should not end with a directory separator.
+int pp_set_dir(PathPackage* pp, const char* dir)
+{
+	const int len = snprintf(pp->path, ARRAY_SIZE(pp->path), "%s%c", dir, DIR_SEP);
+	if(len < 0)
+		return ERR_PATH_LENGTH;
+	pp->end = pp->path+len;
+	pp->chars_left = ARRAY_SIZE(pp->path)-len;
+	return 0;
+}
+
+
+// append the given filename to the directory established by the last
+// pp_set_dir on this package. the whole path is accessible at pp->path.
+int pp_append_file(PathPackage* pp, const char* fn)
+{
+	return strcpy_s(pp->end, pp->chars_left, fn);
+}
+
+//-----------------------------------------------------------------------------
+
+
 // is s2 a subpath of s1, or vice versa? used by VFS and wdir_watch.
 // works for portable and native paths.
 bool file_is_subpath(const char* s1, const char* s2)
@@ -162,6 +190,8 @@ int file_make_portable_path(const char* n_path, char* path)
 // makes sure length < PATH_MAX.
 int file_make_full_native_path(const char* path, char* n_full_path)
 {
+	debug_assert(path != n_full_path);	// doesn't work in-place
+
 	strcpy_s(n_full_path, PATH_MAX, n_root_dir);
 	return convert_path(n_full_path+n_root_dir_len, path, TO_NATIVE);
 }
@@ -173,6 +203,8 @@ int file_make_full_native_path(const char* path, char* n_full_path)
 // makes sure length < PATH_MAX.
 int file_make_full_portable_path(const char* n_full_path, char* path)
 {
+	debug_assert(path != n_full_path);	// doesn't work in-place
+
 	if(strncmp(n_full_path, n_root_dir, n_root_dir_len) != 0)
 		return -1;
 	return convert_path(path, n_full_path+n_root_dir_len, TO_PORTABLE);
@@ -260,43 +292,126 @@ fail:
 }
 
 
-// need to store entries returned by readdir so they can be sorted.
-struct DirEnt
+//-----------------------------------------------------------------------------
+
+// layer on top of POSIX opendir/readdir/closedir that handles
+// portable -> native path conversion, ignores non-file/directory entries,
+// and additionally returns the file status (size and mtime).
+//
+// all functions return an int error code to allow CHECK_ERR.
+
+// rationale: see DirIterator definition in header.
+struct DirIterator_
 {
-	const std::string name;
+	DIR* os_dir;
 
-	// store only required fields from struct stat to save space.
-	// in order of decl in VC2003 sys/stat.h.
-	mode_t st_mode;
-	off_t  st_size;
-// glibc compat hack - they have st_mtime #defined to st_mtim.tv_sec
-#ifdef st_mtime
-	struct timespec st_mtim;
-#else
-	time_t st_mtime;
-#endif
-
-	DirEnt(const char* _name, mode_t _st_mode, off_t _st_size, time_t _st_mtime)
-		: name(_name)
-	{
-		st_mode  = _st_mode;
-		st_size  = _st_size;
-		st_mtime = _st_mtime;
-	}
-
-	// no copy ctor, since some members are const
-private:
-	DirEnt& operator=(const DirEnt&);
+	// to support stat(), we need to either chdir or store the complete path.
+	// the former is unacceptable because it isn't thread-safe. therefore,
+	// we latch dir_open's path and append entry name every dir_next_ent call.
+	// this is also the storage to which DirEnt.name points!
+	// PathPackage avoids repeated memory allocs and strlen() overhead.
+	PathPackage pp;
 };
 
-// pointer to DirEnt: faster sorting, but more allocs.
-typedef std::vector<const DirEnt*> DirEnts;
-typedef DirEnts::const_iterator DirEntCIt;
-typedef DirEnts::reverse_iterator DirEntRIt;
+cassert(sizeof(DirIterator_) <= sizeof(DirIterator));
+
+
+// prepare to iterate (once) over entries in the given directory.
+// returns a negative error code or 0 on success, in which case <d> is
+// ready for subsequent dir_next_ent calls and must be freed via dir_close.
+int dir_open(const char* P_path, DirIterator* d_)
+{
+	DirIterator_* d = (DirIterator_*)d_;
+
+	// note: copying to n_path and then pp.path is inefficient but
+	// more clear/robust. this is only called a few hundred times anyway.
+	char n_path[PATH_MAX];
+	CHECK_ERR(file_make_native_path(P_path, n_path));
+
+	d->os_dir = opendir(n_path);
+	if(!d->os_dir)
+	{
+		switch(errno)
+		{
+		case ENOMEM:
+			return ERR_NO_MEM;
+		//case ENOENT:
+		//	return ERR_PATH_NOT_FOUND;
+		default:
+			return -1;	
+		}
+	}
+
+	// (see pp declaration)
+	WARN_ERR(pp_set_dir(&d->pp, n_path));
+	return 0;
+}
+
+
+// return ERR_DIR_END if all entries have already been returned once,
+// another negative error code, or 0 on success, in which case <ent>
+// describes the next (order is unspecified) directory entry.
+int dir_next_ent(DirIterator* d_, DirEnt* ent)
+{
+	DirIterator_* d = (DirIterator_*)d_;
+
+get_another_entry:
+	struct dirent* os_ent = readdir(d->os_dir);
+	if(!os_ent)
+		return ERR_DIR_END;
+
+	// copy os_ent.name[]; we need it for stat() #if !OS_WIN and
+	// return it as ent.name (since os_ent.name[] is volatile).
+	pp_append_file(&d->pp, os_ent->d_name);
+	const char* name = d->pp.end;
+
+	// get file information (mode, size, mtime)
+	struct stat s;
+#if OS_WIN
+	// .. wposix readdir has enough information to return dirent
+	//    status directly (much faster than calling stat).
+	CHECK_ERR(readdir_stat_np(d->os_dir, &s));
+#else
+	// .. call regular stat().
+	//    we need the full pathname for this. don't use vfs_path_append because
+	//    it would unnecessarily call strlen.
+
+	CHECK_ERR(stat(d->pp.path, &s));
+#endif
+
+	// skip "undesirable" entries that POSIX readdir returns:
+	if(S_ISDIR(s.st_mode))
+	{
+		// .. dummy directory entries ("." and "..")
+		if(name[0] == '.' && (name[1] == '\0' || (name[1] == '.' && name[2] == '\0')))
+			goto get_another_entry;
+
+		s.st_size = -1;	// our way of indicating it's a directory
+	}
+	// .. neither dir nor file
+	else if(!S_ISREG(s.st_mode))
+		goto get_another_entry;
+
+	ent->size  = s.st_size;
+	ent->mtime = s.st_mtime;
+	ent->name  = name;
+	return 0;
+}
+
+
+// indicate the directory iterator is no longer needed; all resources it
+// held are freed.
+int dir_close(DirIterator* d_)
+{
+	DirIterator_* d = (DirIterator_*)d_;
+	WARN_ERR(closedir(d->os_dir));
+	return 0;
+}
+
 
 static bool dirent_less(const DirEnt* d1, const DirEnt* d2)
 {
-	return d1->name.compare(d2->name) < 0;
+	return strcmp(d1->name, d2->name) < 0;
 }
 
 
@@ -309,111 +424,80 @@ static bool dirent_less(const DirEnt* d1, const DirEnt* d2)
 //
 // rationale:
 //   this makes file_enum and zip_enum slightly incompatible, since zip_enum
-//   returns the full path. that's necessary because VFS add_dirent_cb
+//   returns the full path. that's necessary because VFS zip_cb
 //   has no other way of determining what VFS dir a Zip file is in,
 //   since zip_enum enumerates all files in the archive (not only those
-//   in a given dir). no big deal though, since add_dirent_cb has to
+//   in a given dir). no big deal though, since add_ent has to
 //   special-case Zip files anyway.
 //   the advantage here is simplicity, and sparing callbacks the trouble
 //   of converting from/to native path (we just give 'em the dirent name).
-int file_enum(const char* dir, const FileCB cb, const uintptr_t user)
+int file_enum(const char* P_path, const FileCB cb, const uintptr_t user)
 {
-	// full path for stat
-	char n_path[PATH_MAX];
-	n_path[PATH_MAX-1] = '\0';
-		// will append filename to this, hence "path".
-		// 0-terminate simplifies filename strncpy below.
-	CHECK_ERR(file_make_native_path(dir, n_path));
-
+	// pointer to DirEnt: faster sorting, but more allocs.
+	typedef std::vector<const DirEnt*> DirEnts;
+	typedef DirEnts::const_iterator DirEntCIt;
+	typedef DirEnts::reverse_iterator DirEntRIt;
 	// all entries are enumerated (adding to this container),
 	// std::sort-ed, then all passed to cb.
 	DirEnts dirents;
+	dirents.reserve(125);	// preallocate for efficiency
 
 	int stat_err = 0;	// first error encountered by stat()
 	int cb_err = 0;		// first error returned by cb
-	int ret;
 
-	// [16.6ms]
-	DIR* os_dir = opendir(n_path);
-	if(!os_dir)
-		return ERR_PATH_NOT_FOUND;
+	DirIterator d;
+	CHECK_ERR(dir_open(P_path, &d));
 
-	// will append file names here
-	const size_t n_path_len = strlen(n_path);
-	char* fn_start = n_path + n_path_len;
-	*fn_start++ = DIR_SEP;
-
-	struct dirent* os_ent;
-	while((os_ent = readdir(os_dir)))
+	DirEnt ent;
+	for(;;)	// instead of while() to avoid warnings
 	{
-		const char* fn = os_ent->d_name;
+		int ret = dir_next_ent(&d, &ent);
+		if(ret == ERR_DIR_END)
+			break;
+		if(!stat_err)
+			stat_err = ret;
 
-		strncpy(fn_start, fn, PATH_MAX-n_path_len-1);	// safe
-			// need path for stat (we only have filename ATM).
-			// this is actually minimally faster than changing directory!
-			// BTW, direct strcpy is faster than path_append -
-			// we save a strlen every iteration.
-
-		struct stat s;
-#ifdef _WIN32
-		// wposix readdir has enough information to return dirent
-		// status directly (much faster than calling stat).
-		ret = readdir_stat_np(os_dir, &s);
-#else
-		// no need to go through file_stat - we already have the native path.
-		// [290ms]
-		ret = stat(n_path, &s);
-#endif
-		if(ret < 0)
+		const size_t size = sizeof(DirEnt)+strlen(ent.name)+1;
+		DirEnt* p_ent = (DirEnt*)malloc(size);
+		if(!p_ent)
 		{
-			if(stat_err == 0)
-				stat_err = ret;	// first error (see decl)
-			continue;
+			stat_err = ERR_NO_MEM;
+			goto fail;
 		}
-
-		// dir
-		if(S_ISDIR(s.st_mode))
-		{
-			// skip . and ..
-			if(fn[0] == '.' && (fn[1] == '\0' || (fn[1] == '.' && fn[2] == '\0')))
-				continue;
-		}
-		// skip if neither dir nor file
-		else if(!S_ISREG(s.st_mode))
-			continue;
-
-		// [21ms]
-		dirents.push_back(new DirEnt(fn, s.st_mode, s.st_size, s.st_mtime));
+		p_ent->size  = ent.size;
+		p_ent->mtime = ent.mtime;
+		p_ent->name  = (const char*)p_ent + sizeof(DirEnt);
+		strcpy((char*)p_ent->name, ent.name);	// safe
+		dirents.push_back(p_ent);
 	}
 
-	// [2.5ms]
-	closedir(os_dir);
-
-	// [5.8ms]
 	std::sort(dirents.begin(), dirents.end(), dirent_less);
 
+	// call back for each entry (now sorted)
+	{
 	struct stat s;
 	memset(&s, 0, sizeof(s));
 	for(DirEntCIt it = dirents.begin(); it != dirents.end(); ++it)
 	{
 		const DirEnt* ent = *it;
-		const char* name_c = ent->name.c_str();
-		s.st_mode  = ent->st_mode;
-		s.st_size  = ent->st_size;
-		s.st_mtime = ent->st_mtime;
-		ret = cb(name_c, &s, user);
+		s.st_mode  = (ent->size == -1)? S_IFDIR : S_IFREG;
+		s.st_size  = ent->size;
+		s.st_mtime = ent->mtime;
+		int ret = cb(ent->name, &s, user);
 		if(ret != 0)
 		{
 			cb_err = ret;	// first error (since we now abort)
 			break;
 		}
 	}
+	}
 
+fail:
+	WARN_ERR(dir_close(&d));
 
-	// free all memory (can't do in loop above because it can be aborted).
-	// [10.4ms]
+	// free all memory (can't do in loop above because it may be aborted).
 	for(DirEntRIt rit = dirents.rbegin(); rit != dirents.rend(); ++rit)
-		delete *rit;
+		free((void*)(*rit));
 
 	if(cb_err != 0)
 		return cb_err;
@@ -421,7 +505,7 @@ int file_enum(const char* dir, const FileCB cb, const uintptr_t user)
 }
 
 
-// get file status. output param is zeroed on error.
+// get file information. output param is zeroed on error.
 int file_stat(const char* path, struct stat* s)
 {
 	memset(s, 0, sizeof(struct stat));
@@ -464,7 +548,7 @@ int file_stat(const char* path, struct stat* s)
 
 
 // marker for File struct, to make sure it's valid
-#ifdef PARANOIA
+#if CONFIG_PARANOIA
 static const u32 FILE_MAGIC = FOURCC('F','I','L','E');
 #endif
 
@@ -479,10 +563,6 @@ static int file_validate(const uint line, File* f)
 		msg = "File* parameter = 0";
 		err = ERR_INVALID_PARAM;
 	}
-#ifdef PARANOIA
-	else if(f->magic != FILE_MAGIC)
-		msg = "File corrupted (magic field incorrect)";
-#endif
 	else if(f->fd < 0)
 		msg = "File fd invalid (< 0)";
 	else if((f->mapping != 0) ^ (f->map_refs != 0))
@@ -503,14 +583,7 @@ static int file_validate(const uint line, File* f)
 }
 
 
-#define CHECK_FILE(f)\
-do\
-{\
-	int err = file_validate(__LINE__, f);\
-	if(err < 0)\
-		return err;\
-}\
-while(0);
+#define CHECK_FILE(f) RETURN_ERR(file_validate(__LINE__, f))
 
 
 int file_open(const char* p_fn, const uint flags, File* f)
@@ -518,8 +591,11 @@ int file_open(const char* p_fn, const uint flags, File* f)
 	// zero output param in case we fail below.
 	memset(f, 0, sizeof(File));
 
+	if(flags > FILE_FLAG_MAX)
+		return ERR_INVALID_PARAM;
+
 	char n_fn[PATH_MAX];
-	CHECK_ERR(file_make_native_path(p_fn, n_fn));
+	RETURN_ERR(file_make_native_path(p_fn, n_fn));
 
 	if(!f)
 		goto invalid_f;
@@ -555,7 +631,7 @@ int file_open(const char* p_fn, const uint flags, File* f)
 			return ERR_NOT_FILE;
 	}
 
-#ifdef _WIN32
+#if OS_WIN
 	if(flags & FILE_TEXT)
 		oflag |= O_TEXT_NP;
 	else
@@ -570,10 +646,6 @@ int file_open(const char* p_fn, const uint flags, File* f)
 	int fd = open(n_fn, oflag, S_IRWXO|S_IRWXU|S_IRWXG);
 	if(fd < 0)
 		return ERR_FILE_ACCESS;
-
-#ifdef PARANOIA
-	f->magic = FILE_MAGIC;
-#endif
 
 	f->flags    = flags;
 	f->size     = size;
@@ -651,12 +723,12 @@ int file_close(File* f)
 
 // starts transferring to/from the given buffer.
 // no attempt is made at aligning or padding the transfer.
-int file_start_io(File* f, off_t ofs, size_t size, void* p, FileIO* io)
+int file_start_io(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 {
 	// zero output param in case we fail below.
-	memset(io, 0, sizeof(FileIO));
+	memset(io, 0, sizeof(FileIo));
 
-#ifdef PARANOIA
+#if CONFIG_PARANOIA
 	debug_printf("file_start_io: ofs=%d size=%d\n", ofs, size);
 #endif
 
@@ -706,13 +778,13 @@ int file_start_io(File* f, off_t ofs, size_t size, void* p, FileIO* io)
 	cb->aio_fildes     = f->fd;
 	cb->aio_offset     = ofs;
 	cb->aio_nbytes     = size;
-#ifdef PARANOIA
+#if CONFIG_PARANOIA
 	debug_printf("file_start_io: io=%p nbytes=%d\n", io, cb->aio_nbytes);
 #endif
 	int err = lio_listio(LIO_NOWAIT, &cb, 1, (struct sigevent*)0);
 	if(err < 0)
 	{
-#ifdef PARANOIA
+#if CONFIG_PARANOIA
 		debug_printf("file_start_io: lio_listio: %d, %d[%s]\n", err, errno, strerror(errno));
 #endif
 		file_discard_io(io);
@@ -725,7 +797,7 @@ int file_start_io(File* f, off_t ofs, size_t size, void* p, FileIO* io)
 
 // indicates if the IO referenced by <io> has completed.
 // return value: 0 if pending, 1 if complete, < 0 on error.
-int file_io_complete(FileIO* io)
+int file_io_complete(FileIo* io)
 {
 	aiocb* cb = (aiocb*)io->cb;
 	int ret = aio_error(cb);
@@ -739,9 +811,9 @@ int file_io_complete(FileIO* io)
 }
 
 
-int file_wait_io(FileIO* io, void*& p, size_t& size)
+int file_wait_io(FileIo* io, void*& p, size_t& size)
 {
-#ifdef PARANOIA
+#if CONFIG_PARANOIA
 debug_printf("file_wait_io: hio=%p\n", io);
 #endif
 
@@ -758,7 +830,7 @@ debug_printf("file_wait_io: hio=%p\n", io);
 
 	// query number of bytes transferred (-1 if the transfer failed)
 	const ssize_t bytes_transferred = aio_return(cb);
-#ifdef PARANOIA
+#if CONFIG_PARANOIA
 	debug_printf("file_wait_io: bytes_transferred=%d aio_nbytes=%d\n",
 		bytes_transferred, cb->aio_nbytes);
 #endif
@@ -772,7 +844,7 @@ debug_printf("file_wait_io: hio=%p\n", io);
 }
 
 
-int file_discard_io(FileIO* io)
+int file_discard_io(FileIo* io)
 {
 	memset(io->cb, 0, sizeof(aiocb));
 		// discourage further use.
@@ -857,7 +929,7 @@ static BlockCache block_cache;
 
 struct IOSlot
 {
-	FileIO io;
+	FileIo io;
 	void* temp_buf;
 
 	u64 block_id;
@@ -977,7 +1049,7 @@ int file_invalidate_cache(const char* fn)
 ssize_t file_io(File* f, off_t data_ofs, size_t data_size, void* data_buf,
 	FileIOCB cb, uintptr_t ctx) // optional
 {
-#ifdef PARANOIA
+#if CONFIG_PARANOIA
 debug_printf("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 #endif
 
@@ -1084,7 +1156,7 @@ debug_printf("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 
 			void* buf = (temp)? 0 : (char*)actual_buf + issue_cnt;
 			ssize_t issued = block_issue(f, slot, issue_ofs, buf);
-#ifdef PARANOIA
+#if CONFIG_PARANOIA
 			debug_printf("file_io: block_issue: %d\n", issued);
 #endif
 			if(issued < 0)
@@ -1176,7 +1248,7 @@ if(from_cache && !temp)
 			break;
 	}
 
-#ifdef PARANOIA
+#if CONFIG_PARANOIA
 	debug_printf("file_io: err=%d, actual_transferred_cnt=%d\n", err, actual_transferred_cnt);
 #endif
 

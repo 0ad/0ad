@@ -61,7 +61,7 @@
 
 // these are all delay-loaded - they're not needed if
 // system information is never queried.
-#ifdef _MSC_VER
+#if MSC_VERSION
 #pragma comment(lib, "version.lib")		// DLL version
 #pragma comment(lib, "advapi32.lib")	// registry
 #pragma comment(lib, "dsound.lib")		// sound card name
@@ -374,48 +374,39 @@ int win_get_gfx_info()
 // note: OpenAL alGetString is worthless: it only returns OpenAL API version
 // and renderer (e.g. "Software").
 
-
-// file_enum only passes add_if_oal_dll the filename, so we need to append
-// that to the directory. this is done is a buffer allocated by
-// add_oal_dlls_in_dir for efficiency.
-
+// ensures each OpenAL DLL is only listed once (even if present in several
+// directories on our search path).
 typedef std::set<std::string> DllSet;
 
-struct PathInfo
-{
-	const char* path;	// PATH_MAX
-	char* end;
-	size_t remaining;
-	DllSet* dlls;
-};
-
-// if this file is an OpenAL DLL, add it to our list.
+// if this directory entry is an OpenAL DLL, add it to our list.
 // (matches "*oal.dll" and "*OpenAL*", as with OpenAL router's search)
-// called via file_enum.
-static int add_if_oal_dll(const char* fn, const struct stat* s, uintptr_t user)
+// called by add_oal_dlls_in_dir.
+//
+// note: we need the full DLL path for dll_list_add but DirEnt only gives us
+// the name. for efficiency, we append this in a PathPackage allocated by
+// add_oal_dlls_in_dir.
+static void add_if_oal_dll(const DirEnt* ent, PathPackage* pp, DllSet* dlls)
 {
+	const char* fn = ent->name;
+
 	// skip non-files.
-	if(!S_ISREG(s->st_mode))
-		goto skip;
+	if(!DIRENT_IS_DIR(ent))
+		return;
 
-	{
-	PathInfo* pi = (PathInfo*)user;
-	strncpy(pi->end, fn, pi->remaining);	// safe
-
-	// make sure this DLL hasn't been added yet.
-	if(pi->dlls->find(fn) != pi->dlls->end())
-		goto skip;
-	pi->dlls->insert(fn);
-
+	// skip if not an OpenAL DLL.
 	const size_t len = strlen(fn);
 	const bool oal = len >= 7 && !stricmp(fn+len-7, "oal.dll");
 	const bool openal = strstr(fn, "OpenAL") != 0;
-	if(oal || openal)
-		dll_list_add(pi->path);
-	}
+	if(!oal && !openal)
+		return;
 
-skip:
-	return 0;	// continue calling
+	// skip if already in DllSet (i.e. has already been dll_list_add-ed)
+	std::pair<DllSet::iterator, bool> ret = dlls->insert(fn);
+	if(!ret.second)	// insert failed - element already there
+		return;
+
+	WARN_ERR_RETURN(pp_append_file(pp, fn));
+	dll_list_add(pp->path);
 }
 
 
@@ -424,18 +415,28 @@ skip:
 // DLLs in the executable's starting directory hide those of the
 // same name in the system directory.
 //
-// dir: no trailing '\\'.
+// <dir>: no trailing.
 static void add_oal_dlls_in_dir(const char* dir, DllSet* dlls)
 {
-	char path[MAX_PATH+1]; path[MAX_PATH] = '\0';
-	const int len = snprintf(path, MAX_PATH, "%s\\", dir);
-	if(len < 0)
+	int err;
+
+	PathPackage pp;
+	WARN_ERR_RETURN(pp_set_dir(&pp, dir));
+
+	DirIterator d;
+	WARN_ERR_RETURN(dir_open(dir, &d));
+
+	DirEnt ent;
+	for(;;)	// instead of while to avoid warning
 	{
-		debug_assert(0);
-		return;
+		err = dir_next_ent(&d, &ent);
+		if(err == ERR_DIR_END)
+			break;
+		debug_assert(err == 0);
+		add_if_oal_dll(&ent, &pp, dlls);
 	}
-	PathInfo pi = { path, path+len, MAX_PATH-len, dlls };
-	file_enum(path, add_if_oal_dll, (uintptr_t)&pi);
+
+	WARN_ERR(dir_close(&d));
 }
 
 
@@ -445,11 +446,9 @@ static char ds_drv_path[MAX_PATH+1];
 
 // store sound card name and path to DirectSound driver.
 // called for each DirectSound driver, but aborts after first valid driver.
-static BOOL CALLBACK ds_enum(void* guid, const char* description, const char* module, void* ctx)
+static BOOL CALLBACK ds_enum(void* UNUSED(guid), const char* description,
+	const char* module, void* UNUSED(ctx))
 {
-	UNUSED(guid);
-	UNUSED(ctx);
-
 	// skip first (dummy) entry, where description == "Primary Sound Driver".
 	if(module[0] == '\0')
 		return TRUE;	// continue calling

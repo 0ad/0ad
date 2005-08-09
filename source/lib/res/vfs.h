@@ -17,19 +17,193 @@
 //   Jan.Wassenberg@stud.uni-karlsruhe.de
 //   http://www.stud.uni-karlsruhe.de/~urkt/
 
+/*
+
+[KEEP IN SYNC WITH WIKI!]
+
+
+Introduction
+------------
+
+The VFS (Virtual File System) is a layer between the application and
+file.cpp's API. Its main purpose is to decrease the cost of file access;
+also provided for are "hotloading" and "modding" via overriding files
+(explained below).
+The interface is almost identical to that of file.cpp, except that
+it works with Handles for safety (see h_mgr.h).
+
+
+File Access Cost
+----------------
+
+Games typically encompass thousands of files. Such heavy loads expose
+2 problems with current file systems:
+- wasted disk space. An average of half a cluster (>= 1 sector, typically
+  512 bytes) is lost per file due to internal fragmentation.
+- lengthy file open times. Permissions checks and overhead added by
+  antivirus scanners combine to make these slow. Additionally, files are
+  typically not arranged in order of access, which induces costly
+  disk seeks.
+
+The solution is to put all files in archives: internal fragmentation is
+eliminated since they are packed end-to-end; open is much faster;
+seeks are avoided by arranging in order of access.
+
+For more information, see 'Archive Details' below.
+
+Note that a good file system (Reiser3 comes close) could also deliver the
+above. However, this code is available now on all platforms; there is
+no disadvantage to using it and the other features remain.
+
+
+Hotloading
+----------
+
+During development, artists and programmers typically follow a edit/
+see how it looks in-game/repeat methodology. Unfortunately, changes to a
+file are not immediately noticed by the game; the usual workaround is to
+restart the map (or worse, entire game) to make sure they are reloaded.
+Since decreases in edit cycle time improve productivity, we want changes to
+files to be picked up immediately. To that end, we support hotloading -
+as soon as the OS reports changes, all Handle objects that ensued from that
+file are reloaded.
+
+Since the file notification backend (currently SGI FAM and a Win32 port)
+can only reports events for a single directory (not its subtree), we need
+to register a "watch" for each game data directory. The VFS takes care of
+this since it must traverse and store data for each of them anyway.
+
+
+Modding
+-------
+
+1) Motivation
+
+When users tweak game parameters or even create an entirely new game
+principle with the same underlying engine, it is called modding.
+As evidenced by the Counterstrike mod for Half-Life, this can greatly
+prolong the life of a game. Additionally, since we started out as a
+mod group, great value is placed on giving users all the tools to make
+modding easy.
+
+2) Means
+
+The actual method of overriding game data is quite simple: a mod directory
+is mounted into the file system with a higher priority than original data.
+These files therefore temporarily (as long as the mod is active) replace the
+originals. This allows multiple (non-overlapping!) mods to be active at the
+same time and also makes switching between them easy.
+The same mechanism is also used for patches to game data.
+
+3) Rationale
+
+Older games did not provide any support for modding other than
+directly editing game data. Obviously this is risky and insufficient.
+Requiring mods to provide a entire new copy of all game logic/scripts
+would obviate support from the file system, but is too much work for the
+modder (since all files would first have to be copied somewhere).
+Allowing overriding individual files is much safer (since game data is
+never touched) and easier (more fine-grained control for modders).
+
+Alternatives to the patch archive approach would be to completely replace
+the game data archive (infeasible due to size) or apply a binary patch
+(complicated and brittle WRT versioning). We are therefore happy to
+use the already existing mod mechanism.
+
+Note however that multiple patches do impact performance (despite
+constant-time VFS path -> file location lookup) simply due to locality;
+files are no longer arranged in order of access. Fortunately there is an
+easy way to avoid this: simply run the archive builder script; all
+patched files will be merged into the archive.
+
+
+For more information, see 'Mount Details' below.
+
+
+Mount Details
+-------------
+
+"Mounting" is understood to mean populating a given VFS directory (the
+"mount point") with the contents of e.g. a real directory or archive
+(the "mounted object" - for a list of supported types, see enum MountType).
+
+It is important to note that the VFS is a full-fledged tree storing
+information about each file, e.g. its last-modified time or actual location.
+The advantage is that file open time does not increase with the number of
+mounts, which is important because multiple patches and mods may be active.
+This is in contrast to e.g. PhysicsFS, which just maintains a list of
+mountings and scans it when opening each file.
+
+Each file object in the VFS tree stores its current location; there is no
+way to access files of the same name but lower priority residing in other
+mounted objects. For this reason, the entire VFS must be rebuilt (i.e.
+repopulating all mount points) when a mounting is removed. Fortunately
+this is rare and does not happen in-game; we optimize for the common case.
+
+
+Archive Details
+---------------
+
+1) Rationale
+
+An open format (.zip) was chosen instead of a proprietary solution for the
+following reasons:
+- interoperability: anyone can view or add files without the need for
+  special tools, which is important for modding.
+- less work: freely available decompression code (ZLib) eases implementation.
+Disadvantages are efficiency (only adequate; an in-house format would offer
+more potential for optimization) and lacking protection of data files.
+Interoperability is a double-edged sword, since anyone can change critical
+files or use game assets. However, obfuscating archive contents doesn't
+solve anything, because the application needs to access them and a cracker
+need only reverse-engineer that. Regardless, the application can call its
+archives e.g. ".pk3" (as does Quake III) for minimal protection.
+
+2) Archive Builder
+
+Arranging archive contents in order of access was mentioned above. To that
+end, the VFS can log all file open calls into a text file (one per line).
+This is then processed by an archive builder script, which needs to
+collect all files by VFS lookup rules, then add them to the archive in
+the order specified in that file (all remaining files that weren't triggered
+in the logging test run should be added thereafter).
+
+Note that the script need only be a simple frontend for e.g. infozip, and
+that a plain user-created archive will work as well (advantage of using Zip);
+this is just an optimization.
+
+3) Misc. Notes
+
+To ease development, files may additionally be stored in normal directories.
+The VFS transparently provides access to the correct (newest) version.
+
+One additional advantage of archives over loose files is that I/O throughput
+is increased - since files are compressed, there is less to read from disk.
+Decompression is free because it is done in parallel with IOs.
+
+
+*/
+
 #ifndef __VFS_H__
 #define __VFS_H__
 
 #include "handle.h"	// Handle def
 #include "posix.h"	// struct stat
-#include "file.h"	// file open flags (renamed)
+#include "file.h"	// file open flags
 
-
-//
-// VFS tree
-//
-
+// make the VFS tree ready for use. must be called before all other
+// functions below unless explicitly mentioned to be allowed.
 extern void vfs_init();
+extern void vfs_shutdown(void);
+
+// enable/disable logging each file open event - used by the archive builder.
+// this should only be done when necessary for performance reasons and is
+// typically triggered via command line param. safe to call before vfs_init.
+extern void vfs_enable_file_listing(bool want_enabled);
+
+//
+// mount
+//
 
 // the VFS doesn't require this length restriction - VFS internal storage
 // is not fixed-length. the purpose here is to give an indication of how
@@ -60,7 +234,7 @@ enum VfsMountFlags
 	VFS_MOUNT_WATCH = 4
 };
 
-// mount <p_real_dir> into the VFS at <vfs_mount_point>,
+// mount <p_real_dir> into the VFS at <V_mount_point>,
 //   which is created if it does not yet exist.
 // files in that directory override the previous VFS contents if
 //   <pri>(ority) is not lower.
@@ -69,7 +243,7 @@ enum VfsMountFlags
 // flags determines extra actions to perform; see VfsMountFlags.
 //
 // p_real_dir = "." or "./" isn't allowed - see implementation for rationale.
-extern int vfs_mount(const char* v_mount_point, const char* p_real_dir, int flags = 0, uint pri = 0);
+extern int vfs_mount(const char* V_mount_point, const char* P_real_dir, int flags = 0, uint pri = 0);
 
 // rebuild the VFS, i.e. re-mount everything. open files are not affected.
 // necessary after loose files or directories change, so that the VFS
@@ -95,31 +269,15 @@ extern void vfs_display(void);
 // directory entry
 //
 
-// information about a directory entry, returned by vfs_next_dirent.
-struct vfsDirEnt
-{
-	// name of directory entry - does not include path.
-	// valid until the next VFS rebuild. must not be modified!
-	const char* name;
-
-	off_t size;
-
-	time_t mtime;
-};
-
-#define VFS_ENT_IS_DIR(ent) ((ent).size == -1)
-
 // open the directory for reading its entries via vfs_next_dirent.
 // <v_dir> need not end in '/'; we add it if not present.
-// directory contents are cached here; subsequent changes to the dir
-// are not returned by this handle. rationale: see VDir definition.
-extern Handle vfs_open_dir(const char* dir);
+extern Handle vfs_dir_open(const char* dir);
 
 // close the handle to a directory.
-// all vfsDirEnt.name strings are now invalid.
-extern int vfs_close_dir(Handle& hd);
+// all DirEnt.name strings are now invalid.
+extern int vfs_dir_close(Handle& hd);
 
-// retrieve the next dir entry (in alphabetical order) matching <filter>.
+// retrieve the next (order is unspecified) dir entry matching <filter>.
 // return 0 on success, ERR_DIR_END if no matching entry was found,
 // or a negative error code on failure.
 // filter values:
@@ -132,11 +290,13 @@ extern int vfs_close_dir(Handle& hd);
 // end is reached (-> ERR_DIR_END returned), no further entries can
 // be retrieved, even if filter changes (which shouldn't happen - see impl).
 //
-// rationale for returning a pointer to the name string: we're trying to
-// avoid arbitrary name length limits, so fixed-size buffers are out.
-// allocating a copy isn't good because it has to be freed by the user
-// (won't happen). that leaves a (const!) pointer to the internal storage.
-extern int vfs_next_dirent(Handle hd, vfsDirEnt* ent, const char* filter = 0);
+// see also the definition of DirEnt in file.h.
+//
+// rationale: we do not sort directory entries alphabetically here.
+// most callers don't need it and the overhead is considerable
+// (we'd have to store all entries in a vector). it is left up to
+// higher-level code such as VfsUtil.
+extern int vfs_dir_next_ent(Handle hd, DirEnt* ent, const char* filter = 0);
 
 
 //
@@ -254,11 +414,5 @@ extern int vfs_map(Handle hf, uint flags, void*& p, size_t& size);
 // however, map/unmap calls should still be paired so that the mapping
 // may be removed when no longer needed.
 extern int vfs_unmap(Handle hf);
-
-
-
-extern void vfs_enable_file_listing(bool want_enabled);
-
-extern void vfs_shutdown(void);
 
 #endif	// #ifndef __VFS_H__

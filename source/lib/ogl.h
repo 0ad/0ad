@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-#ifdef _WIN32
+#if OS_WIN
 #include "sysdep/win/wgl.h"
 #endif
 
@@ -36,7 +36,7 @@ extern "C" {
 # include <OpenGL/glext.h>
 #else
 # include <GL/glext.h>
-# ifdef _WIN32
+# if OS_WIN
 #  include <GL/wglext.h>
 # endif
 #endif
@@ -73,7 +73,7 @@ extern const char* oglHaveExtensions(int dummy, ...);
 extern const char* oglExtList(void);
 
 
-#ifdef _WIN32
+#if OS_WIN
 # define CALL_CONV __stdcall
 #else
 # define CALL_CONV
@@ -112,13 +112,25 @@ extern int ogl_get_gfx_info(void);
 // in non-release builds, enable oglCheck, which breaks into the debugger
 // if an OpenGL error was raised since the last call.
 // add these calls everywhere to close in on the error cause.
+//
+// reports a bogus invalid_operation error if called before OpenGL is
+// initialized, so don't!
 #ifndef NDEBUG
 extern void oglCheck(void);
 #else
 # define oglCheck()
 #endif
 
-// call before using any of the above, and after each mode change.
+// ignore and reset the specified error (as returned by glGetError).
+// any other errors that have occurred are reported as oglCheck would.
+//
+// this is useful for suppressing annoying error messages, e.g.
+// "invalid enum" for GL_CLAMP_TO_EDGE even though we've already
+// warned the user that their OpenGL implementation is too old.
+extern void oglSquelchError(GLenum err_to_ignore);
+
+
+// call before using any of the above, and after each video mode change.
 //
 // fails if OpenGL not ready for use.
 extern void oglInit(void);

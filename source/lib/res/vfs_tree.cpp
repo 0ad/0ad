@@ -14,14 +14,71 @@
 #include "hotload.h"	// see NO_DIR_WATCH
 
 
-// TMountPoint  = location of a file in the tree.
+// we add/cancel directory watches from the VFS mount code for convenience -
+// it iterates through all subdirectories anyway (*) and provides storage for
+// a key to identify the watch (obviates separate TDir -> watch mapping).
+//
+// define this to strip out that code - removes .watch from struct TDir,
+// and calls to res_watch_dir / res_cancel_watch.
+//
+// *: the add_watch code would need to iterate through subdirs and watch
+//    each one, because the monitor API (e.g. FAM) may only be able to
+//    watch single directories, instead of a whole subdirectory tree.
+//#define NO_DIR_WATCH
+
+
+// Mount  = location of a file in the tree.
 // TFile = all information about a file stored in the tree.
 // TDir  = container holding TFile-s representing a dir. in the tree.
 
 
 
+//-----------------------------------------------------------------------------
+// locking
+// these are exported to protect the vfs_mount list; apart from that, it is
+// sufficient for VFS thread-safety to lock all of this module's APIs.
+
+static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+
+void tree_lock()
+{
+	pthread_mutex_lock(&mutex);
+}
+
+void tree_unlock()
+{
+	pthread_mutex_unlock(&mutex);
+}
+
 
 // CONTAINER RATIONALE (see philip discussion)
+
+
+struct Mount;
+
+// these must be defined before TNode because it puts them in a union.
+// some TDir member functions access TNode members, so we have to define
+// those later.
+
+struct TFile
+{
+	// required:
+	const Mount* m;
+	// allocated and owned by caller (mount code)
+
+	time_t mtime;
+	off_t size;
+
+	// note: this is basically the constructor (C++ can't call it directly
+	// since this object is stored in a union)
+	void init()
+	{
+		m = 0;
+		mtime = 0;
+		size = 0;
+	}
+};
+
 
 
 struct TNode;
@@ -290,37 +347,39 @@ typedef DynHashTbl::iterator TChildIt;
 
 
 
-
-
-
-
-class TDir
+enum TDirFlags
 {
-public:
+	TD_POPULATED = 1
+};
 
+// must be declared before TNode
+struct TDir
+{
 	// if exactly one real directory is mounted into this virtual dir,
 	// this points to its location. used to add files to VFS when writing.
 	//
-	// the TMountPoint is actually in the mount info and is invalid when
+	// the Mount is actually in the mount info and is invalid when
 	// that's unmounted, but the VFS would then be rebuilt anyway.
 	//
 	// = 0 if no real dir mounted here; = -1 if more than one.
-	const TMountPoint* mount_point;
+	const Mount* m;
+
+	int flags;	// enum TDirFlags
 
 #ifndef NO_DIR_WATCH
 	intptr_t watch;
 #endif
 	DynHashTbl children;
 
-	// documented below
 	void init();
-	TNode* find(const char* fn, TNodeType desired_type);
-	TNode* add(const char* fn, TNodeType new_type);
-	int mount(const char* path, const TMountPoint*, bool watch);
+	TNode* find(const char* name, TNodeType desired_type);
+	int add(const char* name, TNodeType new_type, TNode** pnode);
+	int attach_real_dir(const char* path, int flags, const Mount* new_m);
 	int lookup(const char* path, uint flags, TNode** pnode, char* exact_path);
 	void clearR();
 	void displayR(int indent_level);
 };
+
 
 
 
@@ -373,33 +432,33 @@ static inline Key GetKey(const T t)
 //
 //////////////////////////////////////////////////////////////////////////////
 
+
 void TDir::init()
 {
-	mount_point = 0;
+	m = 0;
 	children.init();
 }
 
-
-TNode* TDir::find(const char* fn, TNodeType desired_type)
+TNode* TDir::find(const char* name, TNodeType desired_type)
 {
-	TNode* node = children.find(fn);
+	TNode* node = children.find(name);
 	if(node && node->type != desired_type)
 		return 0;
 	return node;
 }
 
-
-TNode* TDir::add(const char* name, TNodeType new_type)
+int TDir::add(const char* name, TNodeType new_type, TNode** pnode)
 {
-	if(!path_component_valid(name))
-		return 0;
+	if(!vfs_path_component_valid(name))
+		return ERR_PATH_INVALID;
 
 	// this is legit - when looking up a directory, LF_CREATE_IF_MISSING
 	// calls this *instead of* find (as opposed to only if not found)
 	TNode* node = children.find(name);
 	if(node)
-		return node;
+		goto done;
 
+	{
 	const size_t size = sizeof(TNode)+strnlen(name, VFS_MAX_PATH)+1;
 	node = node_alloc(size);
 	if(!node)
@@ -420,29 +479,30 @@ TNode* TDir::add(const char* name, TNodeType new_type)
 		node->u.file.init();
 	else
 		node->u.dir.init();
+	}
 
-	return node;
+done:
+	*pnode = node;
+	return 0;
 }
 
-
-// note: full VFS path is needed for the dir watch.
-int TDir::mount(const char* path, const TMountPoint* mp, bool watch)
+// note: full path is needed for the dir watch.
+int TDir::attach_real_dir(const char* P_path, int flags, const Mount* new_m)
 {
 	// more than one real dir mounted into VFS dir
 	// (=> can't create files for writing here)
-	if(mount_point)
-		mount_point = (TMountPoint*)-1;
+	if(m)
+		m = (Mount*)-1;
 	else
-		mount_point = mp;
+		m = new_m;
 
 #ifndef NO_DIR_WATCH
-	if(watch)
-		CHECK_ERR(res_watch_dir(path, &this->watch));
+	if(flags & VFS_MOUNT_WATCH)
+		CHECK_ERR(res_watch_dir(P_path, &watch));
 #endif
 
 	return 0;
 }
-
 
 int TDir::lookup(const char* path, uint flags, TNode** pnode, char* exact_path)
 {
@@ -459,7 +519,7 @@ int TDir::lookup(const char* path, uint flags, TNode** pnode, char* exact_path)
 
 	CHECK_PATH(path);
 	debug_assert( (flags & ~(LF_CREATE_MISSING|LF_START_DIR)) == 0 );
-		// no undefined bits set
+	// no undefined bits set
 
 	const bool create_missing = !!(flags & LF_CREATE_MISSING);
 
@@ -469,7 +529,7 @@ int TDir::lookup(const char* path, uint flags, TNode** pnode, char* exact_path)
 	strcpy_s(v_path, sizeof(v_path), path);
 	char* cur_component = v_path;
 
-	TDir* dir = this;
+	TDir* td = this;
 	TNodeType type = N_DIR;
 
 	// successively navigate to the next component in <path>.
@@ -495,28 +555,38 @@ int TDir::lookup(const char* path, uint flags, TNode** pnode, char* exact_path)
 		}
 		// normal operation (cur_component is a directory)
 		else
+		{
+			// the caller may potentially access this directory.
+			// make sure it has been populated with loose files/directories.
+			if(!(td->flags & TD_POPULATED))
+			{
+				WARN_ERR(mount_populate(td, td->m));
+				td->flags |= TD_POPULATED;
+			}
+
 			*slash = '\0';
+		}
 
 		// create <cur_component> (no-op if it already exists)
 		if(create_missing)
 		{
-			node = dir->add(cur_component, type);
-			if(!node)
-				return ERR_NO_MEM;
-			if(type == N_FILE)	// xxx move to ctor i.e. init()?
+			RETURN_ERR(td->add(cur_component, type, &node));
+			// this is a hack, but I don't see a better way.
+			// tree_add_file does special "should override" checks and
+			// we are creating a TNode (not TFile or TDir) here,
+			// so we special-case its init.
+			if(type == N_FILE)
 			{
-				node->u.file.mount_point = dir->mount_point;
-				node->u.file.pri = 0;
-				node->u.file.in_archive = 0;
+				node->u.file.m = td->m;
 			}
 		}
 		else
 		{
-			node = dir->find(cur_component, type);
+			node = td->find(cur_component, type);
 			if(!node)
 				return slash? ERR_PATH_NOT_FOUND : ERR_FILE_NOT_FOUND;
 		}
-		dir = &node->u.dir;
+		td = &node->u.dir;
 
 		if(exact_path)
 			exact_path += sprintf(exact_path, "%s/", node->exact_name);
@@ -539,7 +609,6 @@ int TDir::lookup(const char* path, uint flags, TNode** pnode, char* exact_path)
 	return 0;
 }
 
-
 // empty this directory and all subdirectories; used when rebuilding VFS.
 void TDir::clearR()
 {
@@ -560,7 +629,6 @@ void TDir::clearR()
 #endif
 }
 
-
 void TDir::displayR(int indent_level)
 {
 	const char indent[] = "    ";
@@ -576,7 +644,7 @@ void TDir::displayR(int indent_level)
 
 		TFile& file = node->u.file;
 		const char* name = node->exact_name;
-		char is_archive = file.in_archive? 'A' : 'L';
+		char type = mount_get_type(file.m);
 		char* timestamp = ctime(&file.mtime);
 		timestamp[24] = '\0';	// remove '\n'
 		const off_t size = file.size;
@@ -588,7 +656,7 @@ void TDir::displayR(int indent_level)
 		sprintf(fmt, "%%-%d.%ds (%%c; %%6d; %%s)\n", chars, chars);
 		// build format string: tell it how long the filename may be,
 		// so that it takes up all space before file info column.
-		printf(fmt, name, is_archive, size, timestamp);
+		printf(fmt, name, type, size, timestamp);
 	}
 
 	// recurse over all subdirs
@@ -625,44 +693,63 @@ static TNode tree_root;
 static TDir* tree_root_dir = &tree_root.u.dir;
 
 
-// rationale: can't do this in tree_clear - we'd leak at exit.
+void tree_clear()
+{
+	tree_root_dir->clearR();
+}
+
+// rationale: can't do this in tree_shutdown - we'd leak at exit.
 // calling from tree_add* is ugly as well, so require manual init.
 void tree_init()
 {
 	tree_root_dir->init();
 }
 
-void tree_clear()
-{
-	tree_root_dir->clearR();
-}
-
 
 // write a representation of the VFS tree to stdout.
-void tree_display()
+void vfs_display()
 {
 	tree_root_dir->displayR(0);
 }
 
 
-TFile* tree_add_file(TDir* dir, const char* name)
+
+
+
+int tree_add_file(TDir* dir, const char* name, const Mount* m,
+	off_t size, time_t mtime)
 {
-	TNode* node = dir->add(name, N_FILE);
-	return node? &node->u.file : 0;
+	TNode* node;
+	RETURN_ERR(dir->add(name, N_FILE, &node));
+	TFile* tf = &node->u.file;
+
+	// assume they're the same if size and last-modified time match.
+	// note: FAT timestamp only has 2 second resolution
+	const bool is_same = (tf->size == size) &&
+		fabs(difftime(tf->mtime, mtime)) <= 2.0;
+	if(!mount_should_replace(tf->m, m, is_same))
+		return 1;
+
+	tf->m     = m;
+	tf->mtime = mtime;
+	tf->size  = size;
+	return 0;
 }
 
 
-TDir* tree_add_dir(TDir* dir, const char* name)
+int tree_add_dir(TDir* dir, const char* name, TDir** ptd)
 {
-	TNode* node = dir->add(name, N_DIR);
-	return node? &node->u.dir: 0;
+	TNode* node;
+	RETURN_ERR(dir->add(name, N_DIR, &node));
+	*ptd = &node->u.dir;
+	return 0;
 }
 
 
 
-int tree_mount(TDir* dir, const char* path, const TMountPoint* mount_point, bool watch)
+int tree_attach_real_dir(TDir* dir, const char* path, int flags, const Mount* m)
 {
-	return dir->mount(path, mount_point, watch);
+	return dir->attach_real_dir(path, flags, m);
 }
 
 
@@ -697,105 +784,111 @@ int tree_lookup(const char* path, TFile** pfile, uint flags, char* exact_path)
 
 //////////////////////////////////////////////////////////////////////////////
 
-struct NodeLatch
+
+
+
+// rationale: see DirIterator definition in file.h.
+struct TreeDirIterator_
 {
-	size_t i;
-	std::vector<const TNode*> v;
+	DynHashTbl::iterator it;
 
-	static bool ci_less(const TNode* n1, const TNode* n2)
-	{
-		return stricmp(n1->exact_name, n2->exact_name) < 0;
-	}
+	// cache end() to avoid needless copies
+	DynHashTbl::iterator end;
 
-	NodeLatch(DynHashTbl& c)
-	{
-		i = 0;
-
-		v.reserve(c.size());
-		std::copy(c.begin(), c.end(), std::back_inserter(v));
-		std::sort(v.begin(), v.end(), ci_less);
-	}
-
-	bool empty() const
-	{
-		return i == v.size();
-	}
-
-	const TNode* get_next()
-	{
-		debug_assert(!empty());
-		return v[i++];
-	}
+	// the directory we're iterating over; this is used to lock/unlock it,
+	// i.e. prevent modifications that would invalidate the iterator.
+	TDir* td;
 };
 
+cassert(sizeof(TreeDirIterator_) <= sizeof(TreeDirIterator));
 
-// must not be held across rebuild! refcount to make sure
-int tree_open_dir(const char* path_slash, void** latch)
+
+int tree_dir_open(const char* path_slash, TreeDirIterator* d_)
 {
-	TDir* dir;
-	CHECK_ERR(tree_lookup_dir(path_slash, &dir));
-	*latch = new NodeLatch(dir->children);
+	TreeDirIterator_* d = (TreeDirIterator_*)d_;
+
+	TDir* td;
+	CHECK_ERR(tree_lookup_dir(path_slash, &td));
+
+	// we need to prevent modifications to this directory while an iterator is
+	// active, otherwise entries may be skipped or no longer valid addresses
+	// accessed. blocking other threads is much more convenient for callers
+	// than having to check for ERR_AGAIN on every call, so we use a mutex
+	// instead of a simple refcount. we don't bother with fine-grained locking
+	// (e.g. per directory or read/write locks) because it would result in
+	// more overhead (we have hundreds of directories) and is unnecessary.
+	tree_lock();
+
+	d->it  = td->children.begin();
+	d->end = td->children.end();
+	d->td  = td;
 	return 0;
 }
 
 
-int tree_next_dirent(void* latch_, const char* filter, vfsDirEnt* dirent)
+int tree_dir_next_ent(TreeDirIterator* d_, DirEnt* ent)
 {
-	bool want_dir = true;
-	if(filter)
+	TreeDirIterator_* d = (TreeDirIterator_*)d_;
+
+	if(d->it == d->end)
+		return ERR_DIR_END;
+
+	const TNode* node = *(d->it++);
+	ent->name = node->exact_name;
+
+	// set size and mtime fields depending on node type:
+	switch(node->type)
 	{
-		if(filter[0] == '/')
-		{
-			if(filter[1] == '|')
-				filter += 2;
-		}
-		else
-			want_dir = false;
+	case N_DIR:
+		ent->size = -1;
+		ent->mtime = 0;	// not currently supported for dirs
+		break;
+	case N_FILE:
+		ent->size  = node->u.file.size;
+		ent->mtime = node->u.file.mtime;
+		break;
+	default:
+		debug_warn("invalid TNode type");
 	}
 
-	// loop until a TNode matches what is requested, or end of list.
-	NodeLatch* latch = (NodeLatch*)latch_;
-	const TNode* node;
-	for(;;)
-	{
-		if(latch->empty())
-			return ERR_DIR_END;
-		node = latch->get_next();
+	return 0;	// success
+}
 
-		if(node->type == N_DIR)
-		{
-			if(want_dir)
-			{
-				dirent->size = -1;
-				dirent->mtime = 0;	// not currently supported for dirs
-				break;
-			}
-		}
-		else if(node->type == N_FILE)
-		{
-			// (note: filter = 0 matches anything)
-			if(match_wildcard(node->exact_name, filter))
-			{
-				dirent->size  = node->u.file.size;
-				dirent->mtime = node->u.file.mtime;
-				break;
-			}
-		}
-#ifndef NDEBUG
-		else
-			debug_warn("invalid TNode type");
-#endif
-	}
 
-	// success; set shared fields
-	dirent->name = node->exact_name;
+int tree_dir_close(TreeDirIterator* UNUSED(d))
+{
+	tree_unlock();
+
+	// no further cleanup needed. we could zero out d but that might
+	// hide bugs; the iterator is safe (will not go beyond end) anyway.
 	return 0;
 }
 
 
-int tree_close_dir(void* latch_)
+//-----------------------------------------------------------------------------
+// get/set for TFile
+
+const Mount* tree_get_mount(const TFile* tf)
 {
-	NodeLatch* latch = (NodeLatch*)latch_;
-	delete latch;
+	return tf->m;
+}
+
+
+void tree_update_file(TFile* tf, off_t size, time_t mtime)
+{
+	tf->size  = size;
+	tf->mtime = mtime;
+}
+
+
+// get file status (mode, size, mtime). output param is undefined on error.
+int tree_stat(const TFile* tf, struct stat* s)
+{
+	// all stat members currently supported are stored in TFile, so we
+	// can return them directly without having to call file|zip_stat.
+	s->st_mode  = S_IFREG;
+	s->st_size  = tf->size;
+	s->st_mtime = tf->mtime;
+
 	return 0;
 }

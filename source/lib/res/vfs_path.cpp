@@ -26,7 +26,7 @@
 // if path is invalid (see source for criteria), print a diagnostic message
 // (indicating line number of the call that failed) and
 // return a negative error code. used by CHECK_PATH.
-int path_validate(const uint line, const char* path)
+int vfs_path_validate(const uint line, const char* path)
 {
 	size_t path_len = 0;	// counted as we go; checked against max.
 
@@ -89,10 +89,8 @@ ok:
 	return 0;
 }
 
-#define CHECK_PATH(path) CHECK_ERR(path_validate(__LINE__, path))
 
-
-bool path_component_valid(const char* name)
+bool vfs_path_component_valid(const char* name)
 {
 	// disallow empty strings
 	if(*name == '\0')
@@ -119,7 +117,7 @@ bool path_component_valid(const char* name)
 
 
 // convenience function
-void path_copy(char* dst, const char* src)
+void vfs_path_copy(char* dst, const char* src)
 {
 	strcpy_s(dst, VFS_MAX_PATH, src);
 }
@@ -129,7 +127,7 @@ void path_copy(char* dst, const char* src)
 // if necessary, a directory separator is added between the paths.
 // each may be empty, filenames, or full paths.
 // total path length (including '\0') must not exceed VFS_MAX_PATH.
-int path_append(char* dst, const char* path1, const char* path2)
+int vfs_path_append(char* dst, const char* path1, const char* path2)
 {
 	const size_t len1 = strlen(path1);
 	const size_t len2 = strlen(path2);
@@ -159,7 +157,7 @@ int path_append(char* dst, const char* path1, const char* path2)
 // strip <remove> from the start of <src>, prepend <replace>,
 // and write to <dst>.
 // used when converting VFS <--> real paths.
-int path_replace(char* dst, const char* src, const char* remove, const char* replace)
+int vfs_path_replace(char* dst, const char* src, const char* remove, const char* replace)
 {
 	// remove doesn't match start of <src>
 	const size_t remove_len = strlen(remove);
@@ -172,6 +170,6 @@ int path_replace(char* dst, const char* src, const char* remove, const char* rep
 		start++;
 
 	// prepend replace.
-	CHECK_ERR(path_append(dst, replace, start));
+	CHECK_ERR(vfs_path_append(dst, replace, start));
 	return 0;
 }
