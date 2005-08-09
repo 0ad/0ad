@@ -783,8 +783,11 @@ JSBool CEntity::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsva
 	JSObject* jsBaseEntity = JSVAL_TO_OBJECT( argv[0] );
 	CStrW templateName;
 
-	CBaseEntity* baseEntity = ToNative<CBaseEntity>( cx, jsBaseEntity );
-	if( !JSVAL_IS_OBJECT( argv[0] ) || !baseEntity )
+	CBaseEntity* baseEntity = NULL;
+	if( JSVAL_IS_OBJECT( argv[0] ) ) // only set baseEntity if jsBaseEntity is a valid object
+		baseEntity = ToNative<CBaseEntity>( cx, jsBaseEntity );
+
+	if( !baseEntity )
 	{	
 		try
 		{
@@ -806,8 +809,11 @@ JSBool CEntity::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsva
 		return( JS_TRUE );
 	}
 
-	JSI_Vector3D::Vector3D_Info* jsVector3D = (JSI_Vector3D::Vector3D_Info*)JS_GetInstancePrivate( cx, JSVAL_TO_OBJECT( argv[1] ), &JSI_Vector3D::JSI_class, NULL );
-	if( JSVAL_IS_OBJECT( argv[1] ) && jsVector3D )
+	JSI_Vector3D::Vector3D_Info* jsVector3D = NULL;
+	if( JSVAL_IS_OBJECT( argv[1] ) )
+		jsVector3D = (JSI_Vector3D::Vector3D_Info*)JS_GetInstancePrivate( cx, JSVAL_TO_OBJECT( argv[1] ), &JSI_Vector3D::JSI_class, NULL );
+
+	if( jsVector3D )
 	{
 		position = *( jsVector3D->vector );
 	}

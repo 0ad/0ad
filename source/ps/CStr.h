@@ -70,7 +70,7 @@ class CStr8;
 class CStrW;
 
 // CStr class, the mother of all strings
-class CStr: public std::tstring, public ISerializable
+class CStr: public std::tstring
 {
 	// The two variations must be friends with each other
 #ifdef _UNICODE
@@ -223,9 +223,11 @@ public:
 	size_t GetHashCode() const;
 
 	// Serialization functions
-	virtual uint GetSerializedLength() const;
-	virtual u8 *Serialize(u8 *buffer) const;
-	virtual const u8 *Deserialize(const u8 *buffer, const u8 *bufferend);
+	// (These are not virtual or inherited from ISerializable, to avoid
+	// adding a vtable and making the strings larger than std::string)
+	uint GetSerializedLength() const;
+	u8 *Serialize(u8 *buffer) const;
+	const u8 *Deserialize(const u8 *buffer, const u8 *bufferend);
 };
 
 // Hash function (for STL_HASH_MAP, etc)

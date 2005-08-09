@@ -279,7 +279,7 @@ int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int*
 // on us returning their correct values.
 static __declspec(naked) void get_current_context(void* pcontext)
 {
-	// squelch W4 unused paramter warning (it's accessed from asm)
+	// squelch W4 unused parameter warning (it's accessed from asm)
 	UNUSED2(pcontext);
 __asm
 {

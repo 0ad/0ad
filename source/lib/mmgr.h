@@ -247,4 +247,3 @@ extern void operator delete[](void* p, const char* file, int line, const char* f
 #define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
 
 #endif	// #if CONFIG_USE_MMGR
-

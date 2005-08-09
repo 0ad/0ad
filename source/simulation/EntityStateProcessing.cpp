@@ -523,7 +523,8 @@ bool CEntity::processGoto( CEntityOrder* current, size_t UNUSED(timestep_millis)
 	{
 
 		CSkeletonAnim* walk = m_actor->GetRandomAnimation( "walk" );
-		m_actor->GetModel()->SetAnimation( walk, false, m_speed * walk->m_AnimDef->GetDuration() );
+		if( walk )
+			m_actor->GetModel()->SetAnimation( walk, false, m_speed * walk->m_AnimDef->GetDuration() );
 		// Animation desync
 		m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
 	}

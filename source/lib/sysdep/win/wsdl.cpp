@@ -418,6 +418,7 @@ return_char:
 	// sensitivity settings. Windows messages are laggy, so poll instead.
 	POINT p;
 	GetCursorPos(&p);
+	ScreenToClient(hWnd, &p);
 	if(mouse_x != p.x || mouse_y != p.y)
 	{
 		ev->type = SDL_MOUSEMOTION;
@@ -662,6 +663,17 @@ keep:
 	}
 
 	DWORD windowStyle = fullscreen ? (WS_POPUP|WS_VISIBLE) : (WS_CAPTION | WS_POPUPWINDOW | WS_VISIBLE);
+
+	// Calculate the size of the outer window, so that the client area has
+	// the desired dimensions.
+	RECT r;
+	r.left = r.top = 0;
+	r.right = w; r.bottom = h;
+	if (AdjustWindowRectEx(&r, windowStyle, false, 0))
+	{
+		w = r.right - r.left;
+		h = r.bottom - r.top;
+	}
 
 	hWnd = CreateWindowEx(0, (LPCSTR)class_atom, APP_NAME, windowStyle, 0, 0, w, h, 0, 0, hInst, 0);
 	if(!hWnd)

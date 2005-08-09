@@ -38,7 +38,6 @@ CStr8 CStrW::ToUTF8() const
 {
 	CStr8 result;
 
-	//const wchar_t* source = &*begin();	// UNUSED
 	for (size_t i = 0; i < Length(); ++i)
 	{
 		unsigned short bytesToWrite;

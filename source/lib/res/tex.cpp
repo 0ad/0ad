@@ -958,7 +958,7 @@ static void png_read(png_struct* png_ptr, u8* data, png_size_t length)
 
 // split out of png_decode to simplify resource cleanup and avoid
 // "dtor / setjmp interaction" warning.
-static png_decode_impl(TexInfo* t, u8* file, size_t file_size,
+static int png_decode_impl(TexInfo* t, u8* file, size_t file_size,
 	png_structp png_ptr, png_infop info_ptr,
 	u8*& img, RowArray& rows, const char*& msg)
 {

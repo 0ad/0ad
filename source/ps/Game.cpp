@@ -137,15 +137,11 @@ CPlayer *CGame::GetPlayer(uint idx)
 		debug_warn("Invalid player ID");
 		LOG(ERROR, "", "Invalid player ID %d (not <=%d - internal error?)", idx, m_Players.size());
 
-		if (m_Players.size() == 0)
-		{
-			// Hmm. This is a bit of a problem.
-			debug_warn("### ### ### ### ERROR: Tried to access the players list when there aren't any players. That really isn't going to work, so I'll give up. ### ###");
-			abort();
-			return NULL; // else VC2005 warns about not returning a value
-		}
-		else
+		if (m_Players.size() != 0)
 			return m_Players[0];
+		else
+			return NULL; // the caller will probably crash because of this,
+			             // but at least we've reported the error
 	}
 	else
 		return m_Players[idx];

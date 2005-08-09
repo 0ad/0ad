@@ -164,8 +164,6 @@ static JSBool JSFunc_Translate(JSContext *cx, JSObject *obj, uintN argc, jsval *
 
 	jsval locale_objval;
 	JS_ASSERT(JS_GetProperty(cx, obj, "i18n", &locale_objval), "translate() failed to find i18n object in current scope");
-	JSObject* locale_obj = JSVAL_TO_OBJECT(locale_objval);
-	UNUSED2(locale_obj);
 	CLocale* locale = (CLocale*)JS_GetPrivate(cx, JSVAL_TO_OBJECT(locale_objval));
 
 	StringBuffer sb = locale->Translate(phrase.c_str());

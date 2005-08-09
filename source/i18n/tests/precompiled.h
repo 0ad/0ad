@@ -30,6 +30,8 @@
 #define debug_assert assert
 
 #define XP_WIN
+#define MSC_VERSION _MSC_VER
+#define UNUSED(x)
 
 #include "ps/Errors.h"
 

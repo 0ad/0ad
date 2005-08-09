@@ -96,6 +96,8 @@ void ScriptingHost::RunMemScript(const char* script, size_t size, const char* fi
 	if(!globalObject)
 		globalObject = m_GlobalObject;
 
+	// Maybe TODO: support Unicode input formats?
+
 	jsval rval;
 	JSBool ok = JS_EvaluateScript(m_Context, globalObject, script,
 		(uint)size, filename, line, &rval); 
@@ -303,6 +305,8 @@ jsval ScriptingHost::GetGlobal(const std::string &globalName)
 // conversions
 //----------------------------------------------------------------------------
 /*
+// These have been removed in favour of ToPrimitive<int>(value)
+
 int ScriptingHost::ValueToInt(const jsval value)
 {
 	int32 i = 0;
@@ -330,14 +334,14 @@ bool ScriptingHost::ValueToBool(const jsval value)
 
 double ScriptingHost::ValueToDouble(const jsval value)
 {
-jsdouble d;
+	jsdouble d;
 
-JSBool ok = JS_ValueToNumber(m_Context, value, &d);
+	JSBool ok = JS_ValueToNumber(m_Context, value, &d);
 
-if (ok == JS_FALSE || !finite( d ) )
-throw PSERROR_Scripting_ConversionFailed();
+	if (ok == JS_FALSE || !finite(d))
+		throw PSERROR_Scripting_ConversionFailed();
 
-return d;
+	return d;
 }
 
 
