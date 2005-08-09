@@ -154,8 +154,7 @@ const wchar_t* HardcodedErrorString(int err)
 const wchar_t* ErrorString(int err)
 {
 	// language file not available (yet)
-	if(1)
-		return HardcodedErrorString(err);
+	return HardcodedErrorString(err);
 
 	// TODO: load from language file
 }
@@ -170,6 +169,162 @@ void Testing (void)
 {
 	g_Console->InsertMessage(L"Testing Function Registration");
 }
+
+
+
+
+
+
+//----------------------------------------------------------------------------
+// config and profile
+//----------------------------------------------------------------------------
+
+static void CFG_LoadProfile( CStr profile )
+{
+	CStr base = CStr( "profiles/" ) + profile;
+	g_ConfigDB.SetConfigFile(CFG_USER, true, base +  "/settings/user.cfg");
+	g_ConfigDB.Reload(CFG_USER);
+
+	int max_history_lines = 50;
+	CFG_GET_USER_VAL("console.history.size", Int, max_history_lines);
+	g_Console->UseHistoryFile(base+"/settings/history", max_history_lines);
+}
+
+
+// Fill in the globals from the config files.
+static void CFG_LoadGlobals()
+{
+	CFG_GET_SYS_VAL("profile", String, g_ActiveProfile);
+
+	// Now load the profile before trying to retrieve the values of the rest of these.
+
+	CFG_LoadProfile( g_ActiveProfile );
+
+	CFG_GET_USER_VAL("xres", Int, g_xres);
+	CFG_GET_USER_VAL("yres", Int, g_yres);
+
+	CFG_GET_USER_VAL("vsync", Bool, g_VSync);
+	CFG_GET_USER_VAL("novbo", Bool, g_NoGLVBO);
+	CFG_GET_USER_VAL("shadows", Bool, g_Shadows);
+
+	CFG_GET_USER_VAL("lodbias", Float, g_LodBias);
+
+	float gain = -1.0f;
+	CFG_GET_USER_VAL("sound.mastergain", Float, gain);
+	if(gain > 0.0f)
+		WARN_ERR(snd_set_master_gain(gain));
+
+	LOG(NORMAL, LOG_CATEGORY, "g_x/yres is %dx%d", g_xres, g_yres);
+	LOG(NORMAL, LOG_CATEGORY, "Active profile is %s", g_ActiveProfile.c_str());
+}
+
+
+static void CFG_ParseCommandLineArgs(int argc, char* argv[])
+{
+	for(int i = 1; i < argc; i++)
+	{
+		// this arg isn't an option; skip
+		if(argv[i][0] != '-')
+			continue;
+
+		char* name = argv[i]+1;	// no leading '-'
+
+		// switch first letter of option name
+		switch(argv[i][1])
+		{
+		case 'c':
+			if(strcmp(name, "conf") == 0)
+			{
+				if(argc-i >= 1) // at least one arg left
+				{
+					i++;
+					char* arg = argv[i];
+					char* equ = strchr(arg, '=');
+					if(equ)
+					{
+						*equ = 0;
+						g_ConfigDB.CreateValue(CFG_COMMAND, arg)
+							->m_String = (equ+1);
+					}
+				}
+			}
+			break;
+		case 'e':
+			g_EntGraph = true;
+			break;
+		case 'f':
+			if(strncmp(name, "fixedframe", 10) == 0)
+				g_FixedFrameTiming=true;
+			break;
+		case 'g':
+			if(strncmp(name, "g=", 2) == 0)
+			{
+				g_Gamma = (float)atof(argv[i] + 3);
+				if(g_Gamma == 0.0f)
+					g_Gamma = 1.0f;
+			}
+			break;
+		case 'l':
+			if(strncmp(name, "listfiles", 9) == 0)
+				vfs_enable_file_listing(true);
+			break;
+		case 'n':
+			if(strncmp(name, "novbo", 5) == 0)
+				g_ConfigDB.CreateValue(CFG_COMMAND, "novbo")->m_String="true";
+			else if(strncmp(name, "nopbuffer", 9) == 0)
+				g_NoPBuffer = true;
+			break;
+		case 'q':
+			if(strncmp(name, "quickstart", 10) == 0)
+				g_Quickstart = true;
+			break;
+		case 's':
+			if(strncmp(name, "shadows", 7) == 0)
+				g_ConfigDB.CreateValue(CFG_COMMAND, "shadows")->m_String="true";
+			break;
+		case 'v':
+			g_ConfigDB.CreateValue(CFG_COMMAND, "vsync")->m_String="true";
+			break;
+		case 'x':
+			if(strncmp(name, "xres=", 6) == 0)
+				g_ConfigDB.CreateValue(CFG_COMMAND, "xres")->m_String=argv[i]+6;
+			break;
+		case 'y':
+			if(strncmp(name, "yres=", 6) == 0)
+				g_ConfigDB.CreateValue(CFG_COMMAND, "yres")->m_String=argv[i]+6;
+			break;
+		case 'p':
+			if(strncmp(name, "profile=", 8) == 0 )
+				g_ConfigDB.CreateValue(CFG_COMMAND, "profile")->m_String = argv[i]+9;
+			break;
+		}	// switch
+	}
+}
+
+
+static void CFG_Init(int argc, char* argv[])
+{
+	debug_printf("CFG_Init &argc=%p &argv=%p\n", &argc, &argv);
+
+	TIMER(CFG_Init);
+	MICROLOG(L"init config");
+
+	new CConfigDB;
+
+	g_ConfigDB.SetConfigFile(CFG_SYSTEM, false, "config/system.cfg");
+	g_ConfigDB.Reload(CFG_SYSTEM);
+
+	g_ConfigDB.SetConfigFile(CFG_MOD, true, "config/mod.cfg");
+	// No point in reloading mod.cfg here - we haven't mounted mods yet
+
+	CFG_ParseCommandLineArgs(argc, argv);
+
+	// Collect information from system.cfg, the profile file,
+	// and any command-line overrides to fill in the globals.
+	CFG_LoadGlobals();
+}
+
+//----------------------------------------------------------------------------
 
 
 
@@ -488,9 +643,7 @@ static void Render()
 
 #ifndef NO_GUI // HACK: because colour-parsing requires the GUI
 	CStr skystring = "61 193 255";
-	CConfigValue* val;
-	if ((val=g_ConfigDB.GetValue(CFG_USER, "skycolor")))
-		val->GetString(skystring);
+	CFG_GET_USER_VAL("skycolor", String, skystring);
 	CColor skycol;
 	GUI<CColor>::ParseString(skystring, skycol);
 	g_Renderer.SetClearColor(skycol.Int());
@@ -631,169 +784,6 @@ static void Render()
 }
 
 
-//----------------------------------------------------------------------------
-// config and profile
-//----------------------------------------------------------------------------
-
-static void LoadProfile( CStr profile )
-{
-	CStr base = CStr( "profiles/" ) + profile;
-	g_ConfigDB.SetConfigFile( CFG_USER, true, base +  "/settings/user.cfg" );
-	g_ConfigDB.Reload( CFG_USER );
-	int history_size = 50;
-	CConfigValue* config_value = g_ConfigDB.GetValue( CFG_USER, "console.history.size" );
-	if( config_value )
-		config_value->GetInt( history_size );
-	g_Console->UseHistoryFile( base + "/settings/history", ( history_size >= 0 ) ? history_size : 50 );
-}
-
-
-// Fill in the globals from the config files.
-static void LoadGlobals()
-{
-	CConfigValue *val;
-
-	if ((val=g_ConfigDB.GetValue(CFG_SYSTEM, "profile")))
-		val->GetString( g_ActiveProfile );
-
-	// Now load the profile before trying to retrieve the values of the rest of these.
-
-	LoadProfile( g_ActiveProfile );
-
-	if ((val=g_ConfigDB.GetValue(CFG_USER, "xres")))
-		val->GetInt(g_xres);
-	if ((val=g_ConfigDB.GetValue(CFG_USER, "yres")))
-		val->GetInt(g_yres);
-
-	if ((val=g_ConfigDB.GetValue(CFG_USER, "vsync")))
-		val->GetBool(g_VSync);
-	if ((val=g_ConfigDB.GetValue(CFG_USER, "novbo")))
-		val->GetBool(g_NoGLVBO);
-	if ((val=g_ConfigDB.GetValue(CFG_USER, "shadows")))
-		val->GetBool(g_Shadows);
-
-	if ((val=g_ConfigDB.GetValue(CFG_USER, "lodbias")))
-		val->GetFloat(g_LodBias);
-
-	if ((val=g_ConfigDB.GetValue(CFG_USER, "sound.mastergain")))
-	{
-		float gain;
-		val->GetFloat(gain);
-		int ret = snd_set_master_gain(gain);
-		debug_assert(ret == 0);
-	}
-
-	LOG(NORMAL, LOG_CATEGORY, "g_x/yres is %dx%d", g_xres, g_yres);
-	LOG(NORMAL, LOG_CATEGORY, "Active profile is %s", g_ActiveProfile.c_str());
-}
-
-
-static void ParseArgs(int argc, char* argv[])
-{
-	for(int i = 1; i < argc; i++)
-	{
-		// this arg isn't an option; skip
-		if(argv[i][0] != '-')
-			continue;
-
-		char* name = argv[i]+1;	// no leading '-'
-
-		// switch first letter of option name
-		switch(argv[i][1])
-		{
-		case 'c':
-			if(strcmp(name, "conf") == 0)
-			{
-				if(argc-i >= 1) // at least one arg left
-				{
-					i++;
-					char* arg = argv[i];
-					char* equ = strchr(arg, '=');
-					if(equ)
-					{
-						*equ = 0;
-						g_ConfigDB.CreateValue(CFG_COMMAND, arg)
-							->m_String = (equ+1);
-					}
-				}
-			}
-			break;
-		case 'e':
-			g_EntGraph = true;
-			break;
-		case 'f':
-			if(strncmp(name, "fixedframe", 10) == 0)
-				g_FixedFrameTiming=true;
-			break;
-		case 'g':
-			if(strncmp(name, "g=", 2) == 0)
-			{
-				g_Gamma = (float)atof(argv[i] + 3);
-				if(g_Gamma == 0.0f)
-					g_Gamma = 1.0f;
-			}
-			break;
-		case 'l':
-			if(strncmp(name, "listfiles", 9) == 0)
-				vfs_enable_file_listing(true);
-			break;
-		case 'n':
-			if(strncmp(name, "novbo", 5) == 0)
-				g_ConfigDB.CreateValue(CFG_COMMAND, "novbo")->m_String="true";
-			else if(strncmp(name, "nopbuffer", 9) == 0)
-				g_NoPBuffer = true;
-			break;
-		case 'q':
-			if(strncmp(name, "quickstart", 10) == 0)
-				g_Quickstart = true;
-			break;
-		case 's':
-			if(strncmp(name, "shadows", 7) == 0)
-				g_ConfigDB.CreateValue(CFG_COMMAND, "shadows")->m_String="true";
-			break;
-		case 'v':
-			g_ConfigDB.CreateValue(CFG_COMMAND, "vsync")->m_String="true";
-			break;
-		case 'x':
-			if(strncmp(name, "xres=", 6) == 0)
-				g_ConfigDB.CreateValue(CFG_COMMAND, "xres")->m_String=argv[i]+6;
-			break;
-		case 'y':
-			if(strncmp(name, "yres=", 6) == 0)
-				g_ConfigDB.CreateValue(CFG_COMMAND, "yres")->m_String=argv[i]+6;
-			break;
-		case 'p':
-			if(strncmp(name, "profile=", 8) == 0 )
-				g_ConfigDB.CreateValue(CFG_COMMAND, "profile")->m_String = argv[i]+9;
-			break;
-		}	// switch
-	}
-}
-
-
-static void InitConfig(int argc, char* argv[])
-{
-	debug_printf("INITCONFIG &argc=%p &argv=%p\n", &argc, &argv);
-
-	TIMER(InitConfig);
-	MICROLOG(L"init config");
-
-	new CConfigDB;
-
-	g_ConfigDB.SetConfigFile(CFG_SYSTEM, false, "config/system.cfg");
-	g_ConfigDB.Reload(CFG_SYSTEM);
-
-	g_ConfigDB.SetConfigFile(CFG_MOD, true, "config/mod.cfg");
-	// No point in reloading mod.cfg here - we haven't mounted mods yet
-
-	ParseArgs(argc, argv);
-
-	LoadGlobals(); // Collects information from system.cfg, the profile file, and any command-line overrides
-	// to fill in the globals.
-}
-
-//----------------------------------------------------------------------------
-
 
 static void InitScripting()
 {
@@ -866,12 +856,13 @@ TIMER(InitVfs);
 		throw err;
 
 	{
-	TIMER(VFS_INIT);
 	vfs_init();
 	vfs_mount("", "mods/official", VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES|VFS_MOUNT_WATCH);
 	vfs_mount("screenshots/", "screenshots");
 	vfs_mount("profiles/", "profiles", VFS_MOUNT_RECURSIVE);
 	}
+extern void vfs_dump_stats();
+vfs_dump_stats();
 	// don't try vfs_display yet: SDL_Init hasn't yet redirected stdout
 }
 
@@ -895,10 +886,8 @@ static void InitPs()
 	{
 	TIMER(ps_lang_hotkeys);
 
-		CConfigValue* val = g_ConfigDB.GetValue(CFG_SYSTEM, "language");
 		std::string lang = "english";
-		if (val)
-			val->GetString(lang);
+		CFG_GET_SYS_VAL("language", String, lang);
 		I18n::LoadLanguage(lang.c_str());
 
 		loadHotkeys();
@@ -1081,6 +1070,8 @@ u64 PREVTSC;
 
 static void Shutdown()
 {
+	MICROLOG(L"Shutdown");
+
 	psShutdown(); // Must delete g_GUI before g_ScriptingHost
 
 	if (g_Game)
@@ -1134,6 +1125,8 @@ static void Shutdown()
 	h_mgr_shutdown();
 	mem_shutdown();
 
+	debug_shutdown();
+
 	delete &g_Logger;
 
 	delete &g_Profiler;
@@ -1141,7 +1134,7 @@ static void Shutdown()
 
 
 // workaround for VC7 EBP-trashing bug, which confuses the stack trace code.
-#ifdef _MSC_VER
+#if MSC_VERSION
 #pragma optimize("", off)
 #endif
 
@@ -1149,7 +1142,9 @@ static void Init(int argc, char* argv[], bool setup_gfx = true)
 {
 debug_printf("INIT &argc=%p &argv=%p\n", &argc, &argv);
 
-	MICROLOG(L"In init");
+	MICROLOG(L"Init");
+
+	debug_set_thread_name("main");
 
 	// If you ever want to catch a particular allocation:
 	//_CrtSetBreakAlloc(187);
@@ -1208,18 +1203,17 @@ debug_printf("INIT &argc=%p &argv=%p\n", &argc, &argv);
 
 	MICROLOG(L"init scripting");
 	InitScripting();	// before GUI
-	
+
 	// g_ConfigDB, command line args, globals
-	InitConfig(argc, argv);
+	CFG_Init(argc, argv);
 
 	// GUI is notified in SetVideoMode, so this must come before that.
 #ifndef NO_GUI
 	new CGUI;
 #endif
 
-	CConfigValue *val=g_ConfigDB.GetValue(CFG_SYSTEM, "windowed");
-	bool windowed=false;
-	if (val) val->GetBool(windowed);
+	bool windowed = false;
+	CFG_GET_SYS_VAL("windowed", Bool, windowed);
 
 	if (setup_gfx)
 	{
@@ -1232,6 +1226,8 @@ debug_printf("INIT &argc=%p &argv=%p\n", &argc, &argv);
 		}
 		SDL_WM_SetCaption("0 A.D.", "0 A.D.");
 	}
+
+	oglCheck();
 
 	if(!g_Quickstart)
 	{
@@ -1262,7 +1258,7 @@ debug_printf("INIT &argc=%p &argv=%p\n", &argc, &argv);
 
 	// enable/disable VSync
 	// note: "GL_EXT_SWAP_CONTROL" is "historical" according to dox.
-#ifdef OS_WIN
+#if OS_WIN
 	if(oglHaveExtension("WGL_EXT_swap_control"))
 		wglSwapIntervalEXT(g_VSync? 1 : 0);
 #endif
@@ -1270,6 +1266,7 @@ debug_printf("INIT &argc=%p &argv=%p\n", &argc, &argv);
 	MICROLOG(L"init ps");
 	InitPs();
 
+	oglCheck();
 	InitRenderer();
 
 TIMER(init_after_InitRenderer);
@@ -1322,6 +1319,8 @@ TIMER(init_after_InitRenderer);
 		in_add_handler(handler); // must be after gui_handler. Should mayhap even be last.
 	}
 
+	oglCheck();
+
 #ifndef NO_GUI
 	g_GUI.SendEventToAll("load");
 #endif
@@ -1352,7 +1351,7 @@ TIMER(init_after_InitRenderer);
 	g_Console->RegisterFunc(Testing, L"Testing");
 }
 
-#ifdef _MSC_VER
+#if MSC_VERSION
 #pragma optimize("", on)	// restore; see above.
 #endif
 
@@ -1360,8 +1359,9 @@ TIMER(init_after_InitRenderer);
 
 static void Frame()
 {
-	MICROLOG(L"In frame");
+	MICROLOG(L"Frame");
 
+	oglCheck();
 
 	PROFILE_START( "update music" );
 	MusicPlayer.update();
@@ -1380,6 +1380,8 @@ static void Frame()
 	res_reload_changed_files(); 
 	PROFILE_END( "reload changed files" );
 
+	oglCheck();
+
 	PROFILE_START( "progressive load" );
 	ProgressiveLoad();
 	PROFILE_END( "progressive load" );
@@ -1390,12 +1392,16 @@ static void Frame()
 	g_SessionManager.Poll();
 	PROFILE_END( "input" );
 
+	oglCheck();
+
 	PROFILE_START( "gui tick" );
 #ifndef NO_GUI
 	g_GUI.TickObjects();
 #endif
 	PROFILE_END( "gui tick" );
 	
+	oglCheck();
+
 	PROFILE_START( "game logic" );
 	if (g_Game && g_Game->IsGameStarted())
 	{
@@ -1457,6 +1463,8 @@ static void Frame()
 	mouseButtons[SDL_BUTTON_WHEELUP] = false;
 	mouseButtons[SDL_BUTTON_WHEELDOWN] = false;
 
+	oglCheck();
+
 	PROFILE_START( "render" );
 	if(g_active)
 	{
@@ -1497,7 +1505,6 @@ int main(int argc, char* argv[])
 	else
 #endif
 	{
-		MICROLOG(L"Init");
 		Init(argc, argv, true);
 
 		// Optionally, do some simple tests to ensure things aren't broken
@@ -1505,12 +1512,8 @@ int main(int argc, char* argv[])
 		//	PerformTests();
 
 		while(!quit)
-		{
-			MICROLOG(L"(Simulation) Frame");
 			Frame();
-		}
 
-		MICROLOG(L"Shutdown");
 		Shutdown();
 	}
 
