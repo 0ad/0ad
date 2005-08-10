@@ -28,12 +28,12 @@
 #include "../cpu.h"	// CAS
 
 
-static HANDLE pthread_t_to_HANDLE(pthread_t p)
+static HANDLE HANDLE_from_pthread(pthread_t p)
 {
 	return (HANDLE)((char*)0 + p);
 }
 
-static pthread_t HANDLE_to_pthread_t(HANDLE h)
+static pthread_t pthread_from_HANDLE(HANDLE h)
 {
 	return (pthread_t)(uintptr_t)h;
 }
@@ -47,7 +47,7 @@ static pthread_t HANDLE_to_pthread_t(HANDLE h)
 
 pthread_t pthread_self(void)
 {
-	return HANDLE_to_pthread_t(GetCurrentThread());
+	return pthread_from_HANDLE(GetCurrentThread());
 }
 
 
@@ -68,7 +68,7 @@ int pthread_getschedparam(pthread_t thread, int* policy, struct sched_param* par
 	}
 	if(param)
 	{
-		const HANDLE hThread = pthread_t_to_HANDLE(thread);
+		const HANDLE hThread = HANDLE_from_pthread(thread);
 		param->sched_priority = GetThreadPriority(hThread);
 	}
 
@@ -90,7 +90,7 @@ int pthread_setschedparam(pthread_t thread, int policy, const struct sched_param
 	SetPriorityClass(GetCurrentProcess(), pri_class);
 
 	// choose fixed Windows values from pri
-	const HANDLE hThread = pthread_t_to_HANDLE(thread);
+	const HANDLE hThread = HANDLE_from_pthread(thread);
 	SetThreadPriority(hThread, pri);
 	return 0;
 }
@@ -128,18 +128,20 @@ int pthread_key_create(pthread_key_t* key, void (*dtor)(void*))
 	debug_assert(idx < TLS_LIMIT);
 	*key = (pthread_key_t)idx;
 
-	// store dtor
+	// acquire a free dtor slot
 	for(uint i = 0; i < MAX_DTORS; i++)
-		// .. successfully acquired the slot
+	{
 		if(CAS(&dtors[i].dtor, 0, dtor))
-		{
-			dtors[i].key = *key;
-			return 0;
-		}
+			goto have_slot;
+	}
 
 	// not enough slots; we have a valid key, but its dtor won't be called.
 	debug_warn("increase pthread MAX_DTORS");
 	return -1;
+
+have_slot:
+	dtors[i].key = *key;
+	return 0;
 }
 
 
@@ -229,51 +231,50 @@ again:
 //
 //////////////////////////////////////////////////////////////////////////////
 
-// POD (allocated via malloc - see below)
-struct ThreadFunc
+// _beginthreadex cannot call the user's thread function directly due to
+// differences in calling convention; we need to pass its address and
+// the user-specified data pointer to our trampoline.
+// a) a local variable in pthread_create isn't safe because the
+//    new thread might not start before pthread_create returns.
+// b) allocating on the heap would work but we're trying to keep that
+//    to a minimum.
+// c) we therefore use static data protected by a critical section.
+static struct FuncAndArg
 {
 	void*(*func)(void*);
-	void* user_arg;
-};
+	void* arg;
+}
+func_and_arg;
 
 
-// trampoline to switch calling convention.
-// param points to a heap-allocated ThreadFunc (see pthread_create).
+// bridge calling conventions required by _beginthreadex and POSIX.
 static unsigned __stdcall thread_start(void* param)
 {
-	ThreadFunc* f = (ThreadFunc*)param;
-	void*(*func)(void*) = f->func;
-	void* user_arg      = f->user_arg;
-	free(f);
+	void*(*func)(void*) = func_and_arg.func;
+	void* arg           = func_and_arg.arg;
+	win_unlock(WPTHREAD_CS);
 
-	// workaround for stupid "void* -> unsigned cast" warning
-	union { void* p; unsigned u; } v;
-	v.p = func(user_arg);
+	void* ret = func(arg);
 
 	call_tls_dtors();
 
-	return v.u;
+	return (unsigned)(uintptr_t)ret;
 }
 
 
-int pthread_create(pthread_t* thread_id, const void* UNUSED(attr), void*(*func)(void*), void* user_arg)
+int pthread_create(pthread_t* thread_id, const void* UNUSED(attr), void*(*func)(void*), void* arg)
 {
-	// tell the trampoline above what to call.
-	// note: don't stack-allocate this, since the new thread might
-	// not be executed before we tear down our stack frame.
-	ThreadFunc* const f = (ThreadFunc*)malloc(sizeof(ThreadFunc));
-	if(!f)
-		return -EAGAIN;	// SUSv3
-	f->func     = func;
-	f->user_arg = user_arg;
+	win_lock(WPTHREAD_CS);
+	func_and_arg.func = func;
+	func_and_arg.arg  = arg;
 
 	// _beginthreadex has more overhead and no value added vs.
 	// CreateThread, but it avoids small memory leaks in
 	// ExitThread when using the statically-linked CRT (-> MSDN).
-	const uintptr_t id = _beginthreadex(0, 0, thread_start, f, 0, 0);
+	const uintptr_t id = _beginthreadex(0, 0, thread_start, 0, 0, 0);
 	if(!id)
 	{
-		free(f);
+		win_unlock(WPTHREAD_CS);
 		debug_warn("_beginthreadex failed");
 		return -1;
 	}
@@ -288,7 +289,7 @@ int pthread_create(pthread_t* thread_id, const void* UNUSED(attr), void*(*func)(
 
 int pthread_cancel(pthread_t thread)
 {
-	HANDLE hThread = pthread_t_to_HANDLE(thread);
+	HANDLE hThread = HANDLE_from_pthread(thread);
 	TerminateThread(hThread, 0);
 	debug_printf("WARNING: pthread_cancel is unsafe\n");
 	return 0;
@@ -297,7 +298,7 @@ int pthread_cancel(pthread_t thread)
 
 int pthread_join(pthread_t thread, void** value_ptr)
 {
-	HANDLE hThread = pthread_t_to_HANDLE(thread);
+	HANDLE hThread = HANDLE_from_pthread(thread);
 
 	// note: pthread_join doesn't call for a timeout. if this wait
 	// locks up the process, at least it'll be easy to see why.

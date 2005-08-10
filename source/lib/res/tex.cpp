@@ -518,8 +518,8 @@ static int dds_encode(TexInfo* UNUSED(t), const char* UNUSED(fn), u8* UNUSED(img
 
 enum TgaImgType
 {
-	TGA_TRUE_COLOR = 2,		// uncompressed 24 or 32 bit direct RGB
-	TGA_GREY       = 3		// uncompressed 8 bit direct greyscale
+	TGA_TRUE_COLOUR = 2,	// uncompressed 24 or 32 bit direct RGB
+	TGA_GREY        = 3		// uncompressed 8 bit direct greyscale
 };
 
 enum TgaImgDesc
@@ -532,9 +532,9 @@ enum TgaImgDesc
 typedef struct
 {
 	u8 img_id_len;			// 0 - no image identifier present
-	u8 color_map_type;		// 0 - no color map present
+	u8 colour_map_type;		// 0 - no colour map present
 	u8 img_type;			// see TgaImgType
-	u8 color_map[5];		// unused
+	u8 colour_map[5];		// unused
 
 	u16 x_origin;			// unused
 	u16 y_origin;			// unused
@@ -547,7 +547,7 @@ typedef struct
 }
 TgaHeader;
 
-// TGA file: header [img id] [color map] image data
+// TGA file: header [img id] [colour map] image data
 
 
 #pragma pack(pop)
@@ -561,12 +561,12 @@ static inline bool tga_fmt(const u8* ptr, size_t size)
 
 	TgaHeader* hdr = (TgaHeader*)ptr;
 
-	// not direct color
-	if(hdr->color_map_type != 0)
+	// not direct colour
+	if(hdr->colour_map_type != 0)
 		return false;
 
-	// wrong color type (not uncompressed greyscale or RGB)
-	if(hdr->img_type != TGA_TRUE_COLOR && hdr->img_type != TGA_GREY)
+	// wrong colour type (not uncompressed greyscale or RGB)
+	if(hdr->img_type != TGA_TRUE_COLOUR && hdr->img_type != TGA_GREY)
 		return false;
 
 	return true;
@@ -579,7 +579,7 @@ static inline bool tga_ext(const char* ext)
 }
 
 
-// requirements: uncompressed, direct color, bottom up
+// requirements: uncompressed, direct colour, bottom up
 static int tga_decode(TexInfo* t, const char* fn, u8* file, size_t file_size)
 {
 	const char* err = 0;
@@ -613,7 +613,7 @@ fail:
 		flags |= TEX_ALPHA;
 	if(bpp == 8)
 		flags |= TEX_GREY;
-	if(type == TGA_TRUE_COLOR)
+	if(type == TGA_TRUE_COLOUR)
 		flags |= TEX_BGR;
 
 	// storing right-to-left is just stupid;
@@ -648,7 +648,7 @@ static int tga_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 	u8 img_desc = (t->flags & TEX_TOP_DOWN)? TGA_TOP_DOWN : TGA_BOTTOM_UP;
 	if(t->bpp == 32)
 		img_desc |= 8;	// size of alpha channel
-	TgaImgType img_type = (t->flags & TEX_GREY)? TGA_GREY : TGA_TRUE_COLOR;
+	TgaImgType img_type = (t->flags & TEX_GREY)? TGA_GREY : TGA_TRUE_COLOUR;
 
 	// transform
 	int transforms = t->flags;
@@ -659,9 +659,9 @@ static int tga_encode(TexInfo* t, const char* fn, u8* img, size_t img_size)
 	TgaHeader hdr =
 	{
 		0,				// no image identifier present
-		0,				// no color map present
+		0,				// no colour map present
 		(u8)img_type,
-		{0,0,0,0,0},	// unused (color map)
+		{0,0,0,0,0},	// unused (colour map)
 		0, 0,			// unused (origin)
 		t->w,
 		t->h,
@@ -737,7 +737,7 @@ static inline bool bmp_ext(const char* ext)
 }
 
 
-// requirements: uncompressed, direct color, bottom up
+// requirements: uncompressed, direct colour, bottom up
 static int bmp_decode(TexInfo* t, const char* fn, u8* file, size_t file_size)
 {
 	const char* err = 0;
@@ -774,7 +774,7 @@ fail:
 	if(compress != BI_RGB)
 		err = "compressed";
 	if(bpp != 24 && bpp != 32)
-		err = "invalid bpp (not direct color)";
+		err = "invalid bpp (not direct colour)";
 	if(file_size < ofs+img_size)
 		err = "image not completely read";
 	if(err)
@@ -858,7 +858,7 @@ static int raw_decode(TexInfo* t, const char* fn, u8* file, size_t file_size)
 {
 	// TODO: allow 8 bit format. problem: how to differentiate from 32? filename?
 
-	// find a color depth that matches file_size
+	// find a colour depth that matches file_size
 	uint i, dim;
 	for(i = 2; i <= 4; i++)
 	{
@@ -968,8 +968,8 @@ static int png_decode_impl(TexInfo* t, u8* file, size_t file_size,
 	// read header and determine format
 	png_read_info(png_ptr, info_ptr);
 	png_uint_32 w, h;
-	int bit_depth, color_type;
-	png_get_IHDR(png_ptr, info_ptr, &w, &h, &bit_depth, &color_type, 0, 0, 0);
+	int bit_depth, colour_type;
+	png_get_IHDR(png_ptr, info_ptr, &w, &h, &bit_depth, &colour_type, 0, 0, 0);
 	const size_t pitch = png_get_rowbytes(png_ptr, info_ptr);
 	const u32 bpp = (u32)(pitch / w * 8);
 
@@ -980,8 +980,8 @@ static int png_decode_impl(TexInfo* t, u8* file, size_t file_size,
 	// make sure format is acceptable
 	if(bit_depth != 8)
 		msg = "channel precision != 8 bits";
-	if(color_type & PNG_COLOR_MASK_PALETTE)
-		msg = "color type is invalid (must be direct color)";
+	if(colour_type & PNG_COLOR_MASK_PALETTE)
+		msg = "colour type is invalid (must be direct colour)";
 	if(msg)
 		return -1;
 
@@ -1095,20 +1095,20 @@ static int png_encode_impl(TexInfo* t, const char* fn, u8* img,
 	const png_uint_32 w = t->w, h = t->h;
 	const size_t pitch = w * t->bpp / 8;
 
-	int color_type;
+	int colour_type;
 	switch(t->flags & (TEX_GREY|TEX_ALPHA))
 	{
 	case TEX_GREY|TEX_ALPHA:
-		color_type = PNG_COLOR_TYPE_GRAY_ALPHA;
+		colour_type = PNG_COLOR_TYPE_GRAY_ALPHA;
 		break;
 	case TEX_GREY:
-		color_type = PNG_COLOR_TYPE_GRAY;
+		colour_type = PNG_COLOR_TYPE_GRAY;
 		break;
 	case TEX_ALPHA:
-		color_type = PNG_COLOR_TYPE_RGB_ALPHA;
+		colour_type = PNG_COLOR_TYPE_RGB_ALPHA;
 		break;
 	default:
-		color_type = PNG_COLOR_TYPE_RGB;
+		colour_type = PNG_COLOR_TYPE_RGB;
 		break;
 	}
 
@@ -1116,7 +1116,7 @@ static int png_encode_impl(TexInfo* t, const char* fn, u8* img,
 	CHECK_ERR(hf);
 	png_set_write_fn(png_ptr, &hf, png_write, png_flush);
 
-	png_set_IHDR(png_ptr, info_ptr, w, h, 8, color_type,
+	png_set_IHDR(png_ptr, info_ptr, w, h, 8, colour_type,
 		PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
 
 	const int transforms = TEX_TOP_DOWN ^ t->flags;
@@ -1418,7 +1418,7 @@ fail:
 	int bpp = cinfo.num_components * 8;
 		// preliminary; set below to reflect output params
 
-	// make sure we get a color format we know
+	// make sure we get a colour format we know
 	// (exception: if bpp = 8, go greyscale below)
 	// necessary to support non-standard CMYK files written by Photoshop.
 	cinfo.out_color_space = JCS_RGB;

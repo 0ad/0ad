@@ -687,11 +687,11 @@ keep:
 	//
 
 	const DWORD dwFlags = PFD_SUPPORT_OPENGL|PFD_DRAW_TO_WINDOW|PFD_DOUBLEBUFFER;
-	BYTE cColorBits = (BYTE)bpp;
+	BYTE cColourBits = (BYTE)bpp;
 	BYTE cAlphaBits = 0;
 	if(bpp == 32)
 	{
-		cColorBits = 24;
+		cColourBits = 24;
 		cAlphaBits = 8;
 	}
 	const BYTE cAccumBits   = 0;
@@ -705,7 +705,7 @@ keep:
 		1,								// version
 		dwFlags,
 		PFD_TYPE_RGBA,
-		cColorBits,	0, 0, 0, 0, 0, 0,	// c*Bits, c*Shift are unused
+		cColourBits, 0, 0, 0, 0, 0, 0,	// c*Bits, c*Shift are unused
 		cAlphaBits, 0,					// cAlphaShift is unused
 		cAccumBits,	0, 0, 0, 0,			// cAccum*Bits are unused
 		cDepthBits,
