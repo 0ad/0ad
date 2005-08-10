@@ -129,7 +129,8 @@ int pthread_key_create(pthread_key_t* key, void (*dtor)(void*))
 	*key = (pthread_key_t)idx;
 
 	// acquire a free dtor slot
-	for(uint i = 0; i < MAX_DTORS; i++)
+	uint i;
+	for(i = 0; i < MAX_DTORS; i++)
 	{
 		if(CAS(&dtors[i].dtor, 0, dtor))
 			goto have_slot;

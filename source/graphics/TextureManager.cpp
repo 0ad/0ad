@@ -109,22 +109,15 @@ void CTextureManager::LoadTextures(CTerrainProperties *props, CStr path, const c
 			// Has XML file -> attempt to load properties
 			if (vfs_exists(xmlname.c_str()))
 				myprops=GetPropertiesFromFile(props, xmlname);
-
-			CTerrainProperties *usedProps = NULL;
-			if (myprops)
-			{
-				LOG(NORMAL, LOG_CATEGORY, "CTextureManager: Successfully loaded override xml %s for texture %s\n", xmlname.c_str(), dent.name);
-				usedProps = myprops;
-			}
-			else
-			{
-				// Error or non-existant xml file -> use parent props
-				usedProps = props;
-			}
 			
-			AddTexture(usedProps, path+dent.name);
-
-			delete myprops;
+			if (myprops)
+				LOG(NORMAL, LOG_CATEGORY, "CTextureManager: Successfully loaded override xml %s for texture %s\n", xmlname.c_str(), dent.name);
+			
+			// Error or non-existant xml file -> use parent props
+			if (!myprops)
+				myprops = props;
+			
+			AddTexture(myprops, path+dent.name);
  		}
 
  		vfs_dir_close(dir);
@@ -136,17 +129,14 @@ void CTextureManager::RecurseDirectory(CTerrainProperties *parentProps, CStr pat
 	LOG(NORMAL, LOG_CATEGORY, "CTextureManager::RecurseDirectory(%s)", path.c_str());
 	
 	// Load terrains.xml first, if it exists
-	CTerrainProperties *loadedProps=NULL;
+	CTerrainProperties *props=NULL;
 	CStr xmlpath=path+"terrains.xml";
 	if (vfs_exists(xmlpath.c_str()))
-		loadedProps=GetPropertiesFromFile(parentProps, xmlpath);
+		props=GetPropertiesFromFile(parentProps, xmlpath);
 	
-	CTerrainProperties *props=NULL;
-	if (loadedProps)
-		props = loadedProps;
-	else
+	// No terrains.xml, or read failures -> use parent props (i.e. 
+	if (!props)
 	{
-		// No terrains.xml, or read failures -> use parent props
 		LOG(NORMAL, LOG_CATEGORY,
 			"CTextureManager::RecurseDirectory(%s): no terrains.xml (or errors while loading) - using parent properties", path.c_str());
 		props = parentProps;
@@ -171,8 +161,6 @@ void CTextureManager::RecurseDirectory(CTerrainProperties *parentProps, CStr pat
 	{
 		LoadTextures(props, path, SupportedTextureFormats[i]);
 	}
-
-	delete loadedProps;
 }
 
 
