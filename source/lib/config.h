@@ -77,7 +77,7 @@
 // STL
 // (checked by STL implementation-specific code in debug_stl).
 // .. Dinkumware
-#if MSC_VERSION != 0
+#if MSC_VERSION
 # include <yvals.h>	// defines _CPPLIB_VER
 #endif
 #if defined(_CPPLIB_VER)
@@ -85,23 +85,37 @@
 #else
 # define STL_DINKUMWARE 0
 #endif
+// .. GCC
+#if defined(__GLIBCPP__)
+# define STL_GCC __GLIBCPP__
+#elif defined(__GLIBCXX__)
+# define STL_GCC __GLIBCXX__
+#else
+# define STL_GCC 0
+#endif
+// .. ICC
+#if defined(__INTEL_CXXLIB_ICC)
+# define STL_ICC __INTEL_CXXLIB_ICC
+#else
+# define STL_ICC 0
+#endif
 
 
 // OS
 // .. Windows
-#if defined(_WIN32) || defined(WIN32)
+#if defined(_WIN32)
 # define OS_WIN 1
 #else
 # define OS_WIN 0
 #endif
 // .. Linux
-#if defined(linux) || defined(__linux) || defined(__linux__)
+#if defined(linux) || defined(__linux)
 # define OS_LINUX 1
 #else
 # define OS_LINUX 0
 #endif
 // .. Mac OS X
-#if defined(MAC_OS_X)
+#if defined(__MACOSX__)
 # define OS_MACOSX 1
 #else
 # define OS_MACOSX 0
@@ -113,7 +127,7 @@
 # define OS_BSD 0
 #endif
 // .. Solaris
-#if defined(SOLARIS)
+#if defined(sun) || defined(__sun)
 # define OS_SOLARIS 1
 #else
 # define OS_SOLARIS 0
@@ -125,24 +139,25 @@
 # define OS_BEOS 0
 #endif
 // .. Mac OS 9 or below
-#if defined(macintosh) || defined(__APPLE__) || defined(__APPLE_CC__)
+#if defined(macintosh)
 # define OS_MAC 1
 #else
 # define OS_MAC 0
 #endif
 // .. Amiga
-#if defined(__amigaos__)
+#if defined(AMIGA)
 # define OS_AMIGA 1
 #else
 # define OS_AMIGA 0
 #endif
 // .. Unix-based
-#if defined(unix) || defined(__unix) || defined(_XOPEN_SOURCE) || defined(_POSIX_SOURCE)
+#if defined(unix) || defined(__unix) || defined(__unix__) || defined(_XOPEN_SOURCE) || defined(_POSIX_SOURCE)
 # define OS_UNIX 1
 #else
 # define OS_UNIX 0
 #endif
-// .. convenience: additionally set OS_UNIX for Unix-based OSes
+
+// convenience: additionally set OS_UNIX for Unix-based OSes
 #if OS_LINUX || OS_MACOSX || OS_BSD || OS_SOLARIS
 # undef OS_UNIX
 # define OS_UNIX 1
@@ -151,25 +166,25 @@
 
 // CPU
 // .. IA-32
-#if defined(__i386__) || defined(__i386) || defined(_M_IX86)
+#if defined(_M_IX86) || defined(i386) || defined(_X86_)
 # define CPU_IA32 1
 #else
 # define CPU_IA32 0
 #endif
 // .. IA-64
-#if defined(__ia64__) || defined(__ia64) || defined(_M_IA64)
+#if defined(_M_IA64) || defined(__ia64__)
 # define CPU_IA64 1
 #else
 # define CPU_IA64 0
 #endif
 // .. AMD64
-#if defined(__amd64__) || defined(__amd64) || defined(_M_AMD64)
+#if defined(_M_AMD64) || defined(__amd64__) || defined(__amd64)
 # define CPU_AMD64 1
 #else
 # define CPU_AMD64 0
 #endif
 // .. Alpha
-#if defined(__alpha__) || defined(__alpha) || defined(_M_ALPHA)
+#if defined(_M_ALPHA) || defined(__alpha__) || defined(__alpha)
 # define CPU_ALPHA 1
 #else
 # define CPU_ALPHA 0
@@ -181,7 +196,7 @@
 # define CPU_ARM 0
 #endif
 // .. MIPS
-#if defined(__MIPSEL__)
+#if defined(__MIPS__) || defined(__mips__) || defined(__mips)
 # define CPU_MIPS 1
 #else
 # define CPU_MIPS 0
@@ -266,7 +281,7 @@
 
 // nonstandard STL containers
 #define HAVE_STL_SLIST 0
-#if STL_DINKUMWARE != 0
+#if STL_DINKUMWARE
 # define HAVE_STL_HASH 1
 #else
 # define HAVE_STL_HASH 0

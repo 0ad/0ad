@@ -396,6 +396,14 @@ static int CALLBACK error_dialog_proc(HWND hDlg, unsigned int msg, WPARAM wParam
 // exits directly if 'exit' is clicked.
 ErrorReaction display_error_impl(const wchar_t* text, int flags)
 {
+	// note: other threads might still be running, crash and take down the
+	// process before we have a chance to display this error message.
+	// ideally we would suspend them all and resume when finished; however,
+	// they may be holding systemwide locks (e.g. heap or loader) that
+	// are potentially needed by DialogBoxParam. in that case, deadlock
+	// would result; this is much worse than a crash because no error
+	// at all is displayed to the end-user. therefore, do nothing here.
+
 	// temporarily remove any pending quit message from the queue because
 	// it would prevent the dialog from being displayed (DialogBoxParam
 	// returns IDOK without doing anything). will be restored below.

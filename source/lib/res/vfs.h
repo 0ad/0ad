@@ -70,7 +70,7 @@ file are reloaded.
 The VFS's part in this is registering "watches" that report changes to
 any mounted real directory. Since the file notification backend
 (currently SGI FAM and a Win32 port) cannot watch an entire directory tree,
-we need to do so for every single directory. Since the VFS traverses and
+we need to do so for every single directory. The VFS traverses and
 stores data for them anyway, we do so here.
 
 
