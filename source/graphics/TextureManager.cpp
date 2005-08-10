@@ -87,6 +87,9 @@ void CTextureManager::DeleteTexture(CTextureEntry* entry)
 // FIXME This could be effectivized by surveying the xml files in the directory
 // instead of trial-and-error checking for existence of the xml file through
 // the VFS.
+// jw: indeed this is inefficient and RecurseDirectory should be implemented
+// via VFSUtil::EnumFiles, but it works fine and "only" takes 25ms for
+// typical maps. therefore, we'll leave it for now.
 void CTextureManager::LoadTextures(CTerrainProperties *props, CStr path, const char* fileext_filter)
 {
 	Handle dir=vfs_dir_open(path.c_str());

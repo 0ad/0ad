@@ -77,7 +77,7 @@ void CTextureEntry::LoadTexture()
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// BuildBaseColor: calculate the root color of the texture, used for coloring minimap, and store
+// BuildBaseColor: calculate the root colour of the texture, used for coloring minimap, and store
 // in m_BaseColor member
 void CTextureEntry::BuildBaseColor()
 {
@@ -91,7 +91,7 @@ void CTextureEntry::BuildBaseColor()
 	Handle handle=GetHandle();
 	g_Renderer.BindTexture(0,tex_id(handle));
 
-	// get root color for coloring minimap by querying root level of the texture 
+	// get root colour for coloring minimap by querying root level of the texture 
 	// (this should decompress any compressed textures for us),
 	// then scaling it down to a 1x1 size 
 	//	- an alternative approach of just grabbing the top level of the mipmap tree fails 

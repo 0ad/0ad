@@ -28,14 +28,14 @@
 #define REPLACE(what, with)\
 	else if(!strncmp(src, (what), sizeof(what)-1))\
 	{\
-	src += sizeof(what)-1-1; /* see preincrement rationale*/\
-	strcpy(dst, (with)); /* safe - see above */\
-	dst += sizeof(with)-1;\
+		src += sizeof(what)-1-1; /* see preincrement rationale*/\
+		strcpy(dst, (with)); /* safe - see above */\
+		dst += sizeof(with)-1;\
 	}
 #define STRIP(what)\
 	else if(!strncmp(src, (what), sizeof(what)-1))\
 	{\
-	src += sizeof(what)-1-1;/* see preincrement rationale*/\
+		src += sizeof(what)-1-1;/* see preincrement rationale*/\
 	}
 #define STRIP_NESTED(what)\
 	else if(!strncmp(src, (what), sizeof(what)-1))\
@@ -230,14 +230,19 @@ public:
 };
 */
 
-#if !OS_UNIX
 
 //
 // standard containers
 //
 
+// it is rather difficult to abstract away implementation details of various
+// STL versions. we currently only support Dinkumware (that shipped with VC7)
+// chiefly due to set/map- (i.e. tree) and string-specific code.
+#if STL_DINKUMWARE
+
 class Any_deque : public std::deque<int>
 {
+#if STL_DINKUMWARE
 	// being declared as friend isn't enough;
 	// our iterator still doesn't get access to std::deque.
 	const u8* get_item(size_t i, size_t el_size) const
@@ -250,14 +255,14 @@ class Any_deque : public std::deque<int>
 		const u8* p = bucket + idx_in_bucket*el_size;
 		return p;
 	}
+#endif
 
 public:
 	bool valid(size_t el_size) const
 	{
+#if STL_DINKUMWARE
 		if(!container_valid(_Map, _Mysize))
 			return false;
-
-#if STL_DINKUMWARE != 0
 		const size_t el_per_bucket = MAX(16 / el_size, 1);	// see _DEQUESIZ
 		// initial element is beyond end of first bucket
 		if(_Myoff >= el_per_bucket)
@@ -281,8 +286,13 @@ public:
 	public:
 		const u8* deref_and_advance(size_t el_size)
 		{
+			const u8* p;
+#if STL_DINKUMWARE
 			Any_deque* d = (Any_deque*)_Mycont;
-			const u8* p = d->get_item(_Myoff, el_size);
+			p = d->get_item(_Myoff, el_size);
+#else
+			p = (const u8*)&operator*();
+#endif
 			++(*this);
 			return p;
 		}
@@ -295,8 +305,10 @@ class Any_list : public std::list<int>
 public:
 	bool valid(size_t UNUSED(el_size)) const
 	{
+#if STL_DINKUMWARE
 		if(!container_valid(_Myhead, _Mysize))
 			return false;
+#endif
 		return true;
 	}
 
@@ -407,8 +419,10 @@ class Any_vector: public std::vector<int>
 public:
 	bool valid(size_t UNUSED(el_size)) const
 	{
+#if STL_DINKUMWARE
 		if(!container_valid(_Myfirst, _Mylast-_Myfirst))
 			return false;
+#endif
 		// more elements reported than reserved
 		if(size() > capacity())
 			return false;
@@ -452,7 +466,7 @@ public:
 	{
 		if(!container_valid(ptr(el_size), _Mysize))
 			return false;
-#if STL_DINKUMWARE != 0
+#if STL_DINKUMWARE
 		// less than the small buffer reserved - impossible
 		if(_Myres < (16/el_size)-1)
 			return false;

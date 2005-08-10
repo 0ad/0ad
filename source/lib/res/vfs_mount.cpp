@@ -667,7 +667,7 @@ int vfs_make_vfs_path(const char* P_path, char* V_path)
 		const char* remove = m.P_name.c_str();
 		const char* replace = m.V_mount_point.c_str();
 
-		if(vfs_path_replace(V_path, P_path, remove, replace) == 0)
+		if(path_replace(V_path, P_path, remove, replace) == 0)
 			return 0;
 	}
 
@@ -732,7 +732,7 @@ int x_realpath(const Mount* m, const char* V_exact_path, char* P_real_path)
 
 	const char* remove = m->V_mount_point.c_str();
 	const char* replace = P_parent_path;
-	return vfs_path_replace(P_real_path, V_exact_path, remove, replace);
+	return path_replace(P_real_path, V_exact_path, remove, replace);
 }
 
 

@@ -67,11 +67,11 @@ Since decreases in edit cycle time improve productivity, we want changes to
 files to be picked up immediately. To that end, we support hotloading -
 as soon as the OS reports changes, all Handle objects that ensued from that
 file are reloaded.
-
-Since the file notification backend (currently SGI FAM and a Win32 port)
-can only reports events for a single directory (not its subtree), we need
-to register a "watch" for each game data directory. The VFS takes care of
-this since it must traverse and store data for each of them anyway.
+The VFS's part in this is registering "watches" that report changes to
+any mounted real directory. Since the file notification backend
+(currently SGI FAM and a Win32 port) cannot watch an entire directory tree,
+we need to do so for every single directory. Since the VFS traverses and
+stores data for them anyway, we do so here.
 
 
 Modding
@@ -181,7 +181,6 @@ One additional advantage of archives over loose files is that I/O throughput
 is increased - since files are compressed, there is less to read from disk.
 Decompression is free because it is done in parallel with IOs.
 
-
 */
 
 #ifndef __VFS_H__
@@ -201,8 +200,12 @@ extern void vfs_shutdown(void);
 // typically triggered via command line param. safe to call before vfs_init.
 extern void vfs_enable_file_listing(bool want_enabled);
 
+// write a representation of the VFS tree to stdout.
+extern void vfs_display(void);
+
+
 //
-// mount
+// paths
 //
 
 // the VFS doesn't require this length restriction - VFS internal storage
@@ -210,10 +213,23 @@ extern void vfs_enable_file_listing(bool want_enabled);
 // large fixed-size user buffers should be. length includes trailing '\0'.
 #define VFS_MAX_PATH 256
 
+// convenience function
+extern void vfs_path_copy(char* dst, const char* src);
+
+// combine <path1> and <path2> into one path, and write to <dst>.
+// if necessary, a directory separator is added between the paths.
+// each may be empty, filenames, or full paths.
+// total path length (including '\0') must not exceed VFS_MAX_PATH.
+extern int vfs_path_append(char* dst, const char* path1, const char* path2);
 
 // VFS paths are of the form: "(dir/)*file?"
 // in English: '/' as path separator; trailing '/' required for dir names;
 // no leading '/', since "" is the root dir.
+
+
+//
+// mount
+//
 
 enum VfsMountFlags
 {
@@ -260,9 +276,6 @@ extern int vfs_unmount(const char* name);
 // return a VFS path that accesses it.
 // used when receiving paths from external code.
 extern int vfs_make_vfs_path(const char* path, char* vfs_path);
-
-// write a representation of the VFS tree to stdout.
-extern void vfs_display(void);
 
 
 //
@@ -331,7 +344,6 @@ extern int vfs_close(Handle& h);
 //
 
 // low-level file routines - no caching or alignment.
-// 
 
 // begin transferring <size> bytes, starting at <ofs>. get result
 // with vfs_wait_read; when no longer needed, free via vfs_discard_io.

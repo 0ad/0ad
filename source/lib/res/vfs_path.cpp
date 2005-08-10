@@ -26,7 +26,7 @@
 // if path is invalid (see source for criteria), print a diagnostic message
 // (indicating line number of the call that failed) and
 // return a negative error code. used by CHECK_PATH.
-int vfs_path_validate(const uint line, const char* path)
+int path_validate(const uint line, const char* path)
 {
 	size_t path_len = 0;	// counted as we go; checked against max.
 
@@ -90,7 +90,7 @@ ok:
 }
 
 
-bool vfs_path_component_valid(const char* name)
+bool path_component_valid(const char* name)
 {
 	// disallow empty strings
 	if(*name == '\0')
@@ -157,7 +157,7 @@ int vfs_path_append(char* dst, const char* path1, const char* path2)
 // strip <remove> from the start of <src>, prepend <replace>,
 // and write to <dst>.
 // used when converting VFS <--> real paths.
-int vfs_path_replace(char* dst, const char* src, const char* remove, const char* replace)
+int path_replace(char* dst, const char* src, const char* remove, const char* replace)
 {
 	// remove doesn't match start of <src>
 	const size_t remove_len = strlen(remove);

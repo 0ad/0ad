@@ -768,7 +768,7 @@ static void Render()
 	oglCheck();
 
 	// Draw the cursor (or set the Windows cursor, on Windows)
-	cursor_draw(g_CursorName);
+	cursor_draw(g_CursorName, g_mouse_x, g_mouse_y);
 
 	// restore
 	glMatrixMode(GL_PROJECTION);
@@ -951,7 +951,7 @@ static void psShutdown()
 	delete g_Console;
 
 	// disable the special Windows cursor, or free textures for OGL cursors
-	cursor_draw(NULL);
+	cursor_draw(0, g_mouse_x, g_mouse_y);
 
 	// close down Xerces if it was loaded
 	CXeromyces::Terminate();

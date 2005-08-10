@@ -54,7 +54,7 @@ const size_t SECTOR_SIZE = 4096;
 //   in smaller chunks. this leads to much higher transfer rates.
 // - memory: when used with VFS, aio makes better use of a file cache.
 //   data is generally compressed in an archive. a cache should store the
-//   decompressed and decoded (e.g. TGA color swapping) data; mmap would
+//   decompressed and decoded (e.g. TGA colour swapping) data; mmap would
 //   keep the original, compressed data in memory, which doesn't help.
 //   we bypass the OS file cache via aio, and store partial blocks here (*);
 //   higher level routines will cache the actual useful data.

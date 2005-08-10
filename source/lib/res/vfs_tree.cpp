@@ -449,7 +449,7 @@ TNode* TDir::find(const char* name, TNodeType desired_type)
 
 int TDir::add(const char* name, TNodeType new_type, TNode** pnode)
 {
-	if(!vfs_path_component_valid(name))
+	if(!path_component_valid(name))
 		return ERR_PATH_INVALID;
 
 	// this is legit - when looking up a directory, LF_CREATE_IF_MISSING
