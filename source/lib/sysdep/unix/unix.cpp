@@ -79,3 +79,29 @@ ErrorReaction display_error_impl(const wchar_t* text, int flags)
 		}
 	}
 }
+
+
+// mouse cursor stubs (required by lib/res/cursor.cpp)
+// note: do not return ERR_NOT_IMPLEMENTED or similar because that
+// would result in WARN_ERRs.
+//
+// TODO: implementing these would be nice because then the game can
+// take advantage of hardware mouse cursors instead of the (jerky when
+// loading) OpenGL cursor.
+
+int sys_cursor_create(int UNUSED(w), int UNUSED(h), void* UNUSED(img),
+	int UNUSED(hx), UNUSED(int hy), void** cursor)
+{
+	*cursor = 0;
+	return 0;
+}
+
+int sys_cursor_set(void* cursor)
+{
+	return 0;
+}
+
+int sys_cursor_free(void* cursor)
+{
+	return 0;
+}

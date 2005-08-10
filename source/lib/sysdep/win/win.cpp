@@ -543,7 +543,7 @@ static HCURSOR HCURSOR_from_ptr(void* p)
 // the offset from its upper-left corner to the position where mouse clicks
 // are registered.
 // the cursor must be cursor_free-ed when no longer needed.
-int cursor_create(int w, int h, void* img, int hx, int hy,
+int sys_cursor_create(int w, int h, void* img, int hx, int hy,
 	void** cursor)
 {
 	*cursor = 0;
@@ -569,7 +569,7 @@ int cursor_create(int w, int h, void* img, int hx, int hy,
 	// CreateBitmap; bpp/format must be checked against those of the DC.
 	// this is the simplest way and we don't care about slight performance
 	// differences because this is typically only called once.
-	HBITMAP hbmColor = CreateBitmap(w, h, 1, 32, img_bgra);
+	HBITMAP hbmColour = CreateBitmap(w, h, 1, 32, img_bgra);
 
 	free(img_bgra);
 
@@ -584,18 +584,15 @@ int cursor_create(int w, int h, void* img, int hx, int hy,
 	ii.xHotspot = hx;
 	ii.yHotspot = hy;
 	ii.hbmMask  = hbmMask;
-	ii.hbmColor = hbmColor;
+	ii.hbmColor = hbmColour;
 	HICON hIcon = CreateIconIndirect(&ii);
 
 	// CreateIconIndirect makes copies, so we no longer need these.
 	DeleteObject(hbmMask);
-	DeleteObject(hbmColor);
+	DeleteObject(hbmColour);
 
 	if(!hIcon)	// not INVALID_HANDLE_VALUE
-	{
-		debug_warn("cursor CreateIconIndirect failed");
 		return -1;
-	}
 
 	*cursor = ptr_from_HICON(hIcon);
 	return 0;
@@ -604,7 +601,7 @@ int cursor_create(int w, int h, void* img, int hx, int hy,
 
 // replaces the current system cursor with the one indicated. need only be
 // called once per cursor; pass 0 to restore the default.
-int cursor_set(void* cursor)
+int sys_cursor_set(void* cursor)
 {
 	// restore default cursor.
 	if(!cursor)
@@ -619,7 +616,7 @@ int cursor_set(void* cursor)
 
 // destroys the indicated cursor and frees its resources. if it is
 // currently the system cursor, the default cursor is restored first.
-int cursor_free(void* cursor)
+int sys_cursor_free(void* cursor)
 {
 	// bail now to prevent potential confusion below; there's nothing to do.
 	if(!cursor)
@@ -628,7 +625,7 @@ int cursor_free(void* cursor)
 	// if the cursor being freed is active, restore the default arrow
 	// (just for safety).
 	if(ptr_from_HCURSOR(GetCursor()) == cursor)
-		WARN_ERR(cursor_set(0));
+		WARN_ERR(sys_cursor_set(0));
 
 	BOOL ok = DestroyIcon(HICON_from_ptr(cursor));
 	return ok? 0 : -1;

@@ -108,20 +108,22 @@ extern int clipboard_free(wchar_t* copy);
 // mouse cursor
 //
 
+// note: these do not warn on error; that is left to the caller.
+
 // creates a cursor from the given 32 bpp RGBA texture. hotspot (hx,hy) is
 // the offset from its upper-left corner to the position where mouse clicks
 // are registered.
 // the cursor must be cursor_free-ed when no longer needed.
-extern int cursor_create(int w, int h, void* img, int hx, int hy,
+extern int sys_cursor_create(int w, int h, void* img, int hx, int hy,
 	void** cursor);
 
 // replaces the current system cursor with the one indicated. need only be
 // called once per cursor; pass 0 to restore the default.
-extern int cursor_set(void* cursor);
+extern int sys_cursor_set(void* cursor);
 
 // destroys the indicated cursor and frees its resources. if it is
 // currently the system cursor, the default cursor is restored first.
-extern int cursor_free(void* cursor);
+extern int sys_cursor_free(void* cursor);
 
 
 extern int get_executable_name(char* n_path, size_t buf_size);
