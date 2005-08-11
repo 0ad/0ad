@@ -25,11 +25,15 @@
 
 #include "sysdep/sysdep.h"
 
+#ifndef PERFORM_SELF_TEST
+#define PERFORM_SELF_TEST 0
+#endif
+
 
 // FNV1-A hash - good for strings.
 // if len = 0 (default), treat buf as a C-string;
 // otherwise, hash <len> bytes of buf.
-u32 fnv_hash(const void* buf, const size_t len)
+u32 fnv_hash(const void* buf, size_t len)
 {
 	u32 h = 0x811c9dc5u;
 		// give distinct values for different length 0 buffers.
@@ -65,7 +69,7 @@ u32 fnv_hash(const void* buf, const size_t len)
 // FNV1-A hash - good for strings.
 // if len = 0 (default), treat buf as a C-string;
 // otherwise, hash <len> bytes of buf.
-u64 fnv_hash64(const void* buf, const size_t len)
+u64 fnv_hash64(const void* buf, size_t len)
 {
 	u64 h = 0xCBF29CE484222325ull;
 		// give distinct values for different length 0 buffers.
@@ -101,7 +105,7 @@ u64 fnv_hash64(const void* buf, const size_t len)
 // special version for strings: first converts to lowercase
 // (useful for comparing mixed-case filenames).
 // note: still need <len>, e.g. to support non-0-terminated strings
-u32 fnv_lc_hash(const char* str, const size_t len)
+u32 fnv_lc_hash(const char* str, size_t len)
 {
 	u32 h = 0x811c9dc5u;
 		// give distinct values for different length 0 buffers.
@@ -135,44 +139,53 @@ u32 fnv_lc_hash(const char* str, const size_t len)
 
 
 
-bool is_pow2(const long n)
+bool is_pow2(uint n)
 {
-	return (n != 0l) && !(n & (n-1l));
+	// 0 would pass the test below but isn't a POT.
+	if(n == 0)
+		return false;
+	return (n & (n-1l)) == 0;
 }
 
 
 // return -1 if not an integral power of 2,
 // otherwise the base2 logarithm
 
-int ilog2(const int n)
+int ilog2(uint n)
 {
+	int bit_index;	// return value
+
 #if CPU_IA32
 
 	__asm
 	{
 		mov		ecx, [n]
-		or		eax, -1			// return value
+		or		eax, -1			// return value if not a POT
+		test	ecx, ecx
+		jz		not_pot
 		lea		edx, [ecx-1]
-		test	ecx, edx		// power of 2?
-		jnz		skip
+		test	ecx, edx
+		jnz		not_pot
 		bsf		eax, ecx
-	skip:
-		mov		[n], eax
+	not_pot:
+		mov		[bit_index], eax
 	}
-
-	return n;
 
 #else
 
-	if(n || n & (n-1))
+	if(!is_pow2(n))
 		return -1;
 
-	int i = 1, j = 0;
-	for(; i != n; i += i, j++)
-		;
-	return j;
+	bit_index = 0;
+	// note: compare against n directly because it is known to be a POT.
+	for(uint bit_value = 1; bit_value != n; bit_value *= 2)
+		bit_index++;
 
 #endif
+
+	debug_assert(-1 <= bit_index && bit_index < sizeof(int)*CHAR_BIT);
+	debug_assert(bit_index == -1 || n == (1u << bit_index));
+	return bit_index;
 }
 
 
@@ -193,7 +206,7 @@ uint log2(uint x)
 
 int ilog2(const float x)
 {
-	const u32 i = (u32&)x;
+	const u32 i = *(u32*)&x;
 	u32 biased_exp = (i >> 23) & 0xff;
 	return (int)biased_exp - 127;
 }
@@ -454,3 +467,35 @@ int match_wildcardw(const wchar_t* s, const wchar_t* w)
 
 	return (*w == '\0');
 }
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// built-in self test
+//
+//////////////////////////////////////////////////////////////////////////////
+
+#if PERFORM_SELF_TEST
+namespace test {
+
+static void test_log2()
+{
+	debug_assert(ilog2(0) == -1);
+	debug_assert(ilog2(3) == -1);
+	debug_assert(ilog2(0xffffffff) == -1);
+	debug_assert(ilog2(1) == 0);
+	debug_assert(ilog2(256) == 8);
+	debug_assert(ilog2(0x80000000) == 31);
+}
+
+static int run_tests()
+{
+	test_log2();
+	return 0;
+}
+
+static int dummy = run_tests();
+
+}	// namespace test
+#endif	// #if PERFORM_SELF_TEST

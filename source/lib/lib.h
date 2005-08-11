@@ -309,12 +309,12 @@ const size_t GiB = 1ul << 30;
 // FNV1-A hash - good for strings.
 // if len = 0 (default), treat buf as a C-string;
 // otherwise, hash <len> bytes of buf.
-extern u32 fnv_hash(const void* buf, const size_t len = 0);
-extern u64 fnv_hash64(const void* buf, const size_t len = 0);
+extern u32 fnv_hash(const void* buf, size_t len = 0);
+extern u64 fnv_hash64(const void* buf, size_t len = 0);
 
 // special version for strings: first converts to lowercase
 // (useful for comparing mixed-case filenames)
-extern u32 fnv_lc_hash(const char* str, const size_t len = 0);
+extern u32 fnv_lc_hash(const char* str, size_t len = 0);
 
 // hash (currently FNV) of a filename
 typedef u32 FnHash;
@@ -332,11 +332,11 @@ extern u64 movzx_64le(const u8* p, size_t size);
 extern i64 movsx_64le(const u8* p, size_t size);
 
 
-extern bool is_pow2(long n);
+extern bool is_pow2(uint n);
 
 // return -1 if not an integral power of 2,
 // otherwise the base2 logarithm
-extern int ilog2(const int n);
+extern int ilog2(uint n);
 
 // return log base 2, rounded up.
 extern uint log2(uint x);

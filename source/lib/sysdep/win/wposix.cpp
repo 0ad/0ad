@@ -535,9 +535,9 @@ int poll(struct pollfd /* fds */[], int /* nfds */, int /* timeout */)
 // used by mprotect.
 static DWORD win32_prot(int prot)
 {
-	// this covers all possible combinations of read|write|exec
+	// this covers all 8 combinations of read|write|exec
 	// (note that "none" means all flags are 0).
-	switch(prot)
+	switch(prot & (PROT_READ|PROT_WRITE|PROT_EXEC))
 	{
 	case PROT_NONE:
 		return PAGE_NOACCESS;
@@ -558,7 +558,7 @@ static DWORD win32_prot(int prot)
 	case PROT_READ|PROT_WRITE|PROT_EXEC:
 		return PAGE_EXECUTE_READWRITE;
 	default:
-		return 0;
+		UNREACHABLE;
 	}
 }
 
@@ -687,7 +687,7 @@ void* mmap(void* user_start, size_t len, int prot, int flags, int fd, off_t ofs)
 	}
 
 fail:
-	return MAP_FAILED;
+	return (void*)MAP_FAILED;
 }
 
 
