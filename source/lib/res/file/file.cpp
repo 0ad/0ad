@@ -335,8 +335,8 @@ int dir_open(const char* P_path, DirIterator* d_)
 		{
 		case ENOMEM:
 			return ERR_NO_MEM;
-		//case ENOENT:
-		//	return ERR_PATH_NOT_FOUND;
+		case ENOENT:
+			return ERR_PATH_NOT_FOUND;
 		default:
 			return -1;	
 		}

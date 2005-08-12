@@ -307,29 +307,28 @@ int mkdir(const char* path, mode_t)
 
 // opendir/readdir/closedir
 //
-// implementation rationale:
-//
-// opendir only performs minimal error checks (does directory exist?);
-// readdir calls FindFirstFile. this is to ensure correct handling
-// of empty directories. we need to store the path in WDIR anyway
-// for filetime_to_time_t.
-// 
-// we avoid opening directories or returning files that have hidden or system
-// attributes set. this is to prevent returning something like
-// "\System Volume Information", which raises an error upon opening.
+// note: we avoid opening directories or returning entries that have
+// hidden or system attributes set. this is to prevent returning something
+// like "\System Volume Information", which raises an error upon opening.
 
+// 0-initialized by wdir_alloc for safety; this is required for
+// num_entries_scanned.
 struct WDIR
 {
 	HANDLE hFind;
+
+	// the dirent returned by readdir.
+	// note: having only one global instance is not possible because
+	// multiple independent opendir/readdir sequences must be supported.
+	struct dirent ent;
+
 	WIN32_FIND_DATA fd;
 
-	struct dirent ent;
-		// can't be global - must not be overwritten by
-		// calls from different DIRs.
-
-	char path[PATH_MAX+1];
-		// can't be stored in fd or ent's path fields -
-		// needed by each readdir_stat_np (for filetime_to_time_t).
+	// since opendir calls FindFirstFile, we need a means of telling the
+	// first call to readdir that we already have a file.
+	// that's the case iff this is == 0; we use a counter rather than a
+	// flag because that allows keeping statistics.
+	int num_entries_scanned;
 };
 
 
@@ -345,13 +344,18 @@ static uintptr_t global_wdir_is_in_use;
 // zero-initializes the WDIR (code below relies on this)
 static inline WDIR* wdir_alloc()
 {
+	WDIR* d;
+
 	// successfully reserved the global instance
 	if(CAS(&global_wdir_is_in_use, 0, 1))
 	{
-		memset(&global_wdir, 0, sizeof(global_wdir));
-		return &global_wdir;
+		d = &global_wdir;
+		memset(d, 0, sizeof(*d));
 	}
-	return (WDIR*)calloc(1, sizeof(WDIR));
+	else
+		d = (WDIR*)calloc(1, sizeof(WDIR));
+
+	return d;
 }
 
 static inline void wdir_free(WDIR* d)
@@ -365,24 +369,69 @@ static inline void wdir_free(WDIR* d)
 
 static const DWORD hs = FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM;
 
+// make sure path exists and is a normal (according to attributes) directory.
+static bool is_normal_dir(const char* path)
+{
+	const DWORD fa = GetFileAttributes(path);
+	// .. path not found
+	if(fa == INVALID_FILE_ATTRIBUTES)
+		return false;
+	// .. not a directory
+	if((fa & FILE_ATTRIBUTE_DIRECTORY) == 0)
+		return false;
+	// .. hidden or system attribute(s) set
+	if((fa & hs) != 0)
+		return false;
+	return true;
+}
+
+
 DIR* opendir(const char* path)
 {
-	// make sure path exists and is a normal directory (see rationale above).
-	// note: this is the only error check we can do here -
-	// FindFirstFile is called in readdir (see rationale above).
-	DWORD fa = GetFileAttributes(path);
-	if((fa == INVALID_FILE_ATTRIBUTES) || !(fa & FILE_ATTRIBUTE_DIRECTORY) || (fa & hs))
-		return 0;
+	if(!is_normal_dir(path))
+	{
+		errno = ENOENT;
+		goto fail;
+	}
 
-	WDIR* d = wdir_alloc();
-	if(!d)
-		return 0;
+	{
+		WDIR* d = wdir_alloc();
+		if(!d)
+		{
+			errno = ENOMEM;
+			goto fail;
+		}
 
-	// note: "path\\dir" only returns information about that directory;
-	// trailing slashes aren't allowed. we have to append "\\*" to find files.
-	snprintf(d->path, sizeof(d->path)-1, "%s\\*", path);
+		// build search path for FindFirstFile. note: "path\\dir" only returns
+		// information about that directory; trailing slashes aren't allowed.
+		// for dir entries to be returned, we have to append "\\*".
+		char search_path[PATH_MAX];
+		snprintf(search_path, ARRAY_SIZE(search_path), "%s\\*", path);
 
-	return d;
+		// note: we could store search_path and defer FindFirstFile until
+		// readdir. this way is a bit more complex but required for
+		// correctness (we must return a valid DIR iff <path> is valid).
+		d->hFind = FindFirstFileA(search_path, &d->fd);
+		if(d->hFind == INVALID_HANDLE_VALUE)
+		{
+			// actual failure (not just an empty directory)
+			if(GetLastError() != ERROR_NO_MORE_FILES)
+			{
+				// unfortunately there's no way around this; we need to allocate
+				// d before FindFirstFile because it uses d->fd.
+				wdir_free(d);
+				errno = 0;	// unknown
+				goto fail;
+			}
+		}
+
+		// success
+		return d;
+	}
+
+fail:
+	debug_warn("opendir failed");
+	return 0;
 }
 
 
@@ -393,42 +442,42 @@ struct dirent* readdir(DIR* d_)
 	// avoid polluting the last error.
 	DWORD prev_err = GetLastError();
 
-	// bails if end of dir reached or error.
-	// runs again if entry was rejected below.
-get_another_entry:
-
-	// first time
-	if(d->hFind == 0)
+	// first call - skip FindNextFile (see opendir).
+	if(d->num_entries_scanned == 0)
 	{
-		d->hFind = FindFirstFile(d->path, &d->fd);
+		// this directory is empty.
 		if(d->hFind == INVALID_HANDLE_VALUE)
-			goto fail;
-	}
-	else
-	{
-		if(!FindNextFile(d->hFind, &d->fd))
-			goto fail;
+			return 0;
+		goto already_have_file;
 	}
 
-	// d->fd is now valid. since we must not return hidden or system entries,
-	// get another one if this one is (see rationale above).
-	if(d->fd.dwFileAttributes & hs)
-		goto get_another_entry;
+	// until end of directory or a valid entry was found:
+	for(;;)
+	{
+		if(!FindNextFileA(d->hFind, &d->fd))
+			goto fail;
+already_have_file:
+
+		d->num_entries_scanned++;
+
+		// not a hidden or system entry -> it's valid.
+		if((d->fd.dwFileAttributes & hs) == 0)
+			break;
+	}
 
 	// this entry has passed all checks; return information about it.
-	// .. d_ino zero-initialized by opendir
-	// .. POSIX requires d_name to be an array, so we have to copy there.
-	strcpy_s(d->ent.d_name, sizeof(d->ent.d_name), d->fd.cFileName);
+	// (note: d_name is a pointer; see struct dirent definition)
+	d->ent.d_name = d->fd.cFileName;
 	return &d->ent;
 
 fail:
-	// Find*File failed; determine why and bail.
+	// FindNextFile failed; determine why and bail.
 	// .. legit, end of dir reached. don't pollute last error code.
 	if(GetLastError() == ERROR_NO_MORE_FILES)
 		SetLastError(prev_err);
 	else
-		debug_warn("readdir: Find*File failed");
-	return (struct dirent*)0;
+		debug_warn("readdir: FindNextFile failed");
+	return 0;
 }
 
 

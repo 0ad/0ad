@@ -178,7 +178,10 @@ typedef void DIR;
 
 struct dirent
 {
-	char d_name[PATH_MAX+1];
+	// note: SUSv3 describes this as a "char array" but of unspecified size.
+	// since that precludes using sizeof(), we may as well declare as a
+	// pointer to avoid copying in the implementation.
+	char* d_name;
 };
 
 extern DIR* opendir(const char* name);
