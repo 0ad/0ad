@@ -8,8 +8,8 @@
 
 #include "precompiled.h"
 
-#include "res/ogl_tex.h"
-#include "res/mem.h"
+#include "lib/res/graphics/ogl_tex.h"
+#include "lib/res/mem.h"
 
 #include <string.h>
 #include "Terrain.h"

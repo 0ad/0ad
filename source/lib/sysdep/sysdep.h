@@ -81,14 +81,16 @@ enum ErrorReaction
 	ER_EXIT
 };
 
-extern ErrorReaction display_error_impl(const wchar_t* text, int flags);
-
-extern ErrorReaction display_error(const wchar_t* text, int flags,
+extern ErrorReaction display_error(const wchar_t* description, int flags,
 	uint skip, void* context, const char* file, int line);
 
 // convenience version, in case the advanced parameters aren't needed.
 // done this way instead of with default values so that it also works in C.
 #define DISPLAY_ERROR(text) display_error(text, 0, 0, 0, __FILE__, __LINE__)
+
+// internal use only (used by display_error)
+extern ErrorReaction display_error_impl(const wchar_t* text, int flags);
+
 
 
 extern void display_msg(const char* caption, const char* msg);

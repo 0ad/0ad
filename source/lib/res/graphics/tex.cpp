@@ -25,7 +25,7 @@
 #include <algorithm>
 
 #include "lib.h"
-#include "res.h"
+#include "../res.h"
 #include "tex.h"
 #include "byte_order.h"
 

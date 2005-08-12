@@ -1,5 +1,5 @@
 /*
-	XMLUtils.h - Xerces wrappers & convenience functions
+	XML.h - Xerces wrappers & convenience functions
 	
 	AUTHOR	:	Simon Brenner <simon@wildfiregames.com>, <simon.brenner@home.se>
 	EXAMPLE	:

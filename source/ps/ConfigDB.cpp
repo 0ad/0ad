@@ -4,11 +4,9 @@
 #include "Parser.h"
 #include "ConfigDB.h"
 #include "CLogger.h"
-#include "res/vfs.h"
-#include "res/file.h"
-#include "res/mem.h"
+#include "lib/res/file/vfs.h"
+#include "lib/res/mem.h"
 #include "scripting/ScriptingHost.h"
-#include "lib/types.h"
 
 #define LOG_CATEGORY "config"
 

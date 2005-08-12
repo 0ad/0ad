@@ -3,7 +3,7 @@
 #include "CVFSFile.h"
 
 #include "lib/res/mem.h"
-#include "lib/res/vfs.h"
+#include "lib/res/file/vfs.h"
 #include "ps/CLogger.h"
 
 #define LOG_CATEGORY "file"

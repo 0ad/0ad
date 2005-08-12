@@ -16,7 +16,7 @@
 #include "SkeletonAnimDef.h"
 #include "SkeletonAnimManager.h"
 #include "MeshManager.h"
-#include "lib/res/ogl_tex.h"
+#include "lib/res/graphics/ogl_tex.h"
 #include "lib/res/h_mgr.h"
 #include "Profile.h"
 

@@ -1,5 +1,5 @@
 #include "ps/CStr.h"
-#include "res/vfs.h"
+#include "lib/res/file/vfs.h"
 
 namespace VFSUtil
 {

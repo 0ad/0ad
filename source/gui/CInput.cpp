@@ -13,7 +13,7 @@ gee@pyro.nu
 
 // TODO Gee: new
 #include "OverlayText.h"
-#include "lib/res/unifont.h"
+#include "lib/res/graphics/unifont.h"
 
 #include "ps/Hotkey.h"
 

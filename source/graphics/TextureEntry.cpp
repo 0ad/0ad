@@ -3,7 +3,7 @@
 #include <map>
 
 #include "ogl.h"
-#include "res/ogl_tex.h"
+#include "lib/res/graphics/ogl_tex.h"
 
 #include "CLogger.h"
 

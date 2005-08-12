@@ -2,7 +2,7 @@
 
 
 #include <algorithm>
-#include "res/ogl_tex.h"
+#include "lib/res/graphics/ogl_tex.h"
 #include "Renderer.h"
 #include "TransparencyRenderer.h"
 #include "PlayerRenderer.h"

@@ -3,7 +3,8 @@
 #include "precompiled.h"
 
 #include "lib.h"
-#include "res.h"
+#include "h_mgr.h"
+#include "mem.h"
 
 #include <stdlib.h>
 

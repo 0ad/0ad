@@ -4,7 +4,7 @@
 #include <vector>
 #include <map>
 
-#include "res/handle.h"
+#include "lib/res/handle.h"
 
 #include "CStr.h"
 #include "Singleton.h"

@@ -2,7 +2,7 @@
 #include "ProfileViewer.h"
 #include "Profile.h"
 #include "Renderer.h"
-#include "res/unifont.h"
+#include "lib/res/graphics/unifont.h"
 #include "Hotkey.h"
 
 bool profileVisible = false;

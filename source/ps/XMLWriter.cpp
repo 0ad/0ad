@@ -3,7 +3,7 @@
 #include "XMLWriter.h"
 
 #include "ps/CLogger.h"
-#include "lib/res/vfs.h"
+#include "lib/res/file/vfs.h"
 
 // TODO (maybe): Write to the VFS handle frequently, instead of buffering
 // the entire file, so that large files get written faster.

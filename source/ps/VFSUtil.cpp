@@ -1,8 +1,7 @@
 #include "precompiled.h"
 
 #include "VFSUtil.h"
-#include "lib/res/vfs.h"
-#include "lib/res/vfs_path.h"
+#include "lib/res/file/vfs.h"
 
 #include "CLogger.h"
 #define LOG_CATEGORY "vfs"

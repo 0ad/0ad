@@ -8,7 +8,7 @@
 
 #include "precompiled.h"
 
-#include "res/res.h"
+#include "lib/res/res.h"
 #include "Model.h"
 #include "CLogger.h"
 #include "SkeletonAnimManager.h"

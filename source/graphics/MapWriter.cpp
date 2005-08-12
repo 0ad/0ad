@@ -1,7 +1,7 @@
 #include "precompiled.h"
 
 #include "lib/types.h"
-#include "lib/res/vfs.h"
+#include "lib/res/file/vfs.h"
 
 #include "MapWriter.h"
 #include "MapReader.h"

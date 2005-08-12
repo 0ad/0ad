@@ -19,7 +19,7 @@
 #ifndef ZIP_H__
 #define ZIP_H__
 
-#include "handle.h"
+#include "../handle.h"
 #include "file.h"	// FileCB for zip_enum
 
 

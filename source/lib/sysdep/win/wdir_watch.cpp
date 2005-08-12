@@ -19,7 +19,7 @@
 
 #include "lib.h"
 #include "win_internal.h"
-#include "lib/res/file.h"	// file_is_subpath
+#include "lib/res/file/file.h"	// file_is_subpath
 
 
 

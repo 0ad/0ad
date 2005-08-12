@@ -64,8 +64,6 @@ enum PS_TRIM_MODE { PS_TRIM_LEFT, PS_TRIM_RIGHT, PS_TRIM_BOTH };
 #include <string>
 #include "ps/utf16string.h"
 
-#include "Network/Serialization.h"
-
 class CStr8;
 class CStrW;
 

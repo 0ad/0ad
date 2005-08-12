@@ -2,7 +2,7 @@
 #define _MAPREADER_H
 
 #include "MapIO.h"
-#include "res/handle.h"
+#include "lib/res/handle.h"
 #include "CStr.h"
 #include "LightEnv.h"
 #include "FileUnpacker.h"

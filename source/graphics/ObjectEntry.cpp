@@ -15,7 +15,7 @@
 #include "ps/Xeromyces.h"
 #include "ps/XMLWriter.h"
 
-#include "lib/res/vfs.h"
+#include "lib/res/file/vfs.h"
 
 #include <sstream>
 

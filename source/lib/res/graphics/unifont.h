@@ -5,7 +5,7 @@
 
 #include <stdarg.h>	// va_list
 
-#include "handle.h"
+#include "../handle.h"
 
 // Load and return a handle to the font defined
 // in fn+".fnt" with texture fn+".tga"

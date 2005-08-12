@@ -34,9 +34,9 @@
 #include "ModelDef.h"
 
 #include "ogl.h"
-#include "res/mem.h"
-#include "res/tex.h"
-#include "res/ogl_tex.h"
+#include "lib/res/mem.h"
+#include "lib/res/graphics/tex.h"
+#include "lib/res/graphics/ogl_tex.h"
 #include "timer.h"
 
 #define LOG_CATEGORY "graphics"

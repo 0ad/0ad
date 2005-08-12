@@ -4,7 +4,7 @@
 #include <set>
 #include <algorithm>
 #include "Pyrogenesis.h"
-#include "res/ogl_tex.h"
+#include "lib/res/graphics/ogl_tex.h"
 #include "Renderer.h"
 #include "PatchRData.h"
 #include "AlphaMapCalculator.h"

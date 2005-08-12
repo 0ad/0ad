@@ -8,7 +8,7 @@
 #include "Profile.h"
 #include "ps/CLogger.h"
 
-#include "res/res.h"
+#include "lib/res/res.h"
 
 
 #ifdef NDEBUG

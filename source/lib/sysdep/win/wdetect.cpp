@@ -20,7 +20,7 @@
 
 #include "detect.h"
 #include "lib.h"
-#include "lib/res/file.h"	// file_enum
+#include "lib/res/file/file.h"	// file_enum
 
 #include "win_internal.h"
 

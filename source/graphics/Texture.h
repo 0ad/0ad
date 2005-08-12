@@ -12,7 +12,7 @@
 #ifndef _TEXTURE_H
 #define _TEXTURE_H
 
-#include "res/handle.h"
+#include "lib/res/handle.h"
 #include "CStr.h"
 
 class CTexture

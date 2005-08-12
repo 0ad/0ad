@@ -3,7 +3,7 @@
 
 #include <map>
 
-#include "res/handle.h"
+#include "lib/res/handle.h"
 #include "CStr.h"
 
 #include "TextureManager.h"

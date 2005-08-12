@@ -1,7 +1,7 @@
 #include "precompiled.h"
 
 #include "res.h"
-#include "file.h"		// file_make_native_path, file_invalidate_cache
+#include "file/file.h"		// file_make_native_path, file_invalidate_cache
 #include "timer.h"
 #include "hotload.h"	// we implement that interface
 

@@ -15,7 +15,7 @@
 #include <deque>
 #include <map>
 
-#include "res/unifont.h"
+#include "lib/res/graphics/unifont.h"
 #include "ogl.h"
 #include "lib.h"
 #include "sdl.h"

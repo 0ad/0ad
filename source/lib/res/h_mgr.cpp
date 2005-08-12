@@ -19,7 +19,7 @@
 #include "precompiled.h"
 
 #include "lib.h"
-#include "res.h"
+#include "h_mgr.h"
 
 
 #include <limits.h>	// CHAR_BIT

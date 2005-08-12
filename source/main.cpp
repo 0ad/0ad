@@ -18,10 +18,10 @@
 #include "lib/timer.h"
 #include "lib/input.h"
 #include "lib/res/res.h"
-#include "lib/res/tex.h"
-#include "lib/res/snd.h"
-#include "lib/res/hotload.h"
-#include "lib/res/cursor.h"
+#include "lib/res/hotload.h"		// xxx
+#include "lib/res/sound/snd.h"
+#include "lib/res/graphics/tex.h"
+#include "lib/res/graphics/cursor.h"
 
 #include "ps/Profile.h"
 #include "ps/ProfileViewer.h"

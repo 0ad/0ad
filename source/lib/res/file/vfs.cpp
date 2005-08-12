@@ -33,7 +33,7 @@
 #include <algorithm>
 
 #include "lib.h"
-#include "res.h"
+#include "../res.h"
 #include "zip.h"
 #include "file.h"
 #include "adts.h"

@@ -20,7 +20,7 @@
 #include "precompiled.h"
 
 #include "lib.h"
-#include "res.h"
+#include "../res.h"
 #include "file.h"
 #include "detect.h"
 #include "adts.h"

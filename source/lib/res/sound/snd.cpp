@@ -18,9 +18,6 @@
 
 #include "precompiled.h"
 
-#include "res/res.h"
-#include "res/snd.h"
-
 #include <sstream>	// to extract snd_open's definition file contents
 #include <string>
 #include <vector>
@@ -44,6 +41,10 @@
 #if OS_WIN
 # include "sysdep/win/win_internal.h"
 #endif
+
+#include "../res.h"
+#include "snd.h"
+
 
 
 #define OGG_HACK

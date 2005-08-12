@@ -203,9 +203,20 @@ extern int readdir_stat_np(DIR*, struct stat*);
 #define PROT_EXEC   0x04
 
 // mmap flags
-#define MAP_SHARED	0x01	// share changes across processes
-#define MAP_PRIVATE	0x02	// private copy-on-write mapping
+#define MAP_SHARED	0x01	// writes change the underlying file
+#define MAP_PRIVATE	0x02	// writes do not affect the file (copy-on-write)
 #define MAP_FIXED	0x04
+// .. non-portable
+#define MAP_ANONYMOUS 0x10 
+#define MAP_NORESERVE 0x20
+
+// note: we need a means of only "reserving" virtual address ranges
+// for the fixed-address expandable array mechanism. the non-portable
+// MAP_NORESERVE flag says that no space in the page file need be reserved.
+// the caller can still try to access the entire mapping, but might get
+// SIGBUS if there isn't enough room to commit a page. Linux currently
+// doesn't commit mmap-ed regions anyway, but we specify this flag to
+// make sure of that in the future.
 
 #define MAP_FAILED 0
 

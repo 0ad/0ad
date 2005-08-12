@@ -10,7 +10,7 @@
 
 #include "lib/ogl.h"
 #include "sysdep/sysdep.h"	// sys_cursor_*
-#include "res.h"
+#include "../res.h"
 #include "ogl_tex.h"
 #include "cursor.h"
 

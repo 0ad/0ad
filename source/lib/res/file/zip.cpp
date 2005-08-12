@@ -36,7 +36,7 @@
 
 #include "lib.h"
 #include "zip.h"
-#include "res.h"
+#include "../res.h"
 #include "byte_order.h"
 
 #include "timer.h"

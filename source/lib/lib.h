@@ -350,6 +350,8 @@ extern uintptr_t round_up(uintptr_t val, uintptr_t multiple);
 extern u32 u64_hi(u64 x);
 extern u32 u64_lo(u64 x);
 
+extern u64 u64_from_u32(u32 hi, u32 lo);
+
 
 extern u16 fp_to_u16(double in);
 

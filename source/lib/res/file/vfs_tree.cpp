@@ -8,10 +8,10 @@
 #include <algorithm>
 
 #include "lib.h"
-#include "res.h"
+#include "../res.h"
 #include "vfs_path.h"
 #include "vfs_tree.h"
-#include "hotload.h"	// see NO_DIR_WATCH
+#include "../hotload.h"	// see NO_DIR_WATCH
 
 
 // we add/cancel directory watches from the VFS mount code for convenience -

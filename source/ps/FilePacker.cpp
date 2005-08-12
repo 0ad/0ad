@@ -14,7 +14,7 @@
 # include <stdio.h>
 #endif
 #include <string.h>
-#include "lib/res/vfs.h"
+#include "lib/res/file/vfs.h"
 
  
 ////////////////////////////////////////////////////////////////////////////////////////

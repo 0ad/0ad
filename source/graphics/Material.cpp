@@ -1,7 +1,7 @@
 #include "precompiled.h"
 
 #include "ogl.h"
-#include "res/res.h"
+#include "lib/res/res.h"
 #include "Material.h"
 #include "Player.h"
 #include "Game.h"

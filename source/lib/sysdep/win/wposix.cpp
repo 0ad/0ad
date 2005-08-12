@@ -1,6 +1,6 @@
 // misc. POSIX routines for Win32
 //
-// Copyright (c) 2004 Jan Wassenberg
+// Copyright (c) 2004-2005 Jan Wassenberg
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -16,9 +16,10 @@
 //   Jan.Wassenberg@stud.uni-karlsruhe.de
 //   http://www.stud.uni-karlsruhe.de/~urkt/
 
-// collection of hacks :P
-
 #include "precompiled.h"
+
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "lib.h"
 #include "posix.h"
@@ -26,13 +27,9 @@
 #include "sysdep/cpu.h"
 
 
-#include <stdio.h>
-#include <stdlib.h>
-
-
 // cast intptr_t to HANDLE; centralized for easier changing, e.g. avoiding
 // warnings. i = -1 converts to INVALID_HANDLE_VALUE (same value).
-static HANDLE cast_to_HANDLE(intptr_t i)
+static HANDLE HANDLE_from_intptr(intptr_t i)
 {
 	return (HANDLE)((char*)0 + i);
 }
@@ -75,10 +72,6 @@ int open(const char* fn, int oflag, ...)
 	int fd = _open(fn, oflag, mode);
 	WIN_RESTORE_LAST_ERROR;
 
-#if CONFIG_PARANOIA
-debug_printf("open %s = %d\n", fn, fd);
-#endif
-
 	// cases when we don't want to open a second AIO-capable handle:
 	// .. stdin/stdout/stderr
 	if(fd <= 2)
@@ -93,7 +86,7 @@ debug_printf("open %s = %d\n", fn, fd);
 
 	// none of the above apply; now re-open the file.
 	// note: this is possible because _open defaults to DENY_NONE sharing.
-	aio_reopen(fd, fn, oflag);
+	WARN_ERR(aio_reopen(fd, fn, oflag));
 
 no_aio:
 
@@ -110,17 +103,13 @@ no_aio:
 
 int close(int fd)
 {
-#if CONFIG_PARANOIA
-debug_printf("close %d\n", fd);
-#endif
-
 	debug_assert(3 <= fd && fd < 256);
 
 	// note: there's no good way to notify us that <fd> wasn't opened for
 	// AIO, so we could skip aio_close. storing a bit in the fd is evil and
 	// a fd -> info map is redundant (waio already has one).
 	// therefore, we require aio_close to fail gracefully.
-	aio_close(fd);
+	WARN_ERR(aio_close(fd));
 
 	return _close(fd);
 }
@@ -144,7 +133,7 @@ int write(int fd, void* buf, size_t nbytes)
 
 int ioctl(int fd, int op, int* data)
 {
-	const HANDLE h = cast_to_HANDLE(_get_osfhandle(fd));
+	const HANDLE h = HANDLE_from_intptr(_get_osfhandle(fd));
 
 	switch(op)
 	{
@@ -351,13 +340,13 @@ struct WDIR
 // low-level routine).
 
 static WDIR global_wdir;
-static uintptr_t global_wdir_in_use;
+static uintptr_t global_wdir_is_in_use;
 
 // zero-initializes the WDIR (code below relies on this)
 static inline WDIR* wdir_alloc()
 {
 	// successfully reserved the global instance
-	if(CAS(&global_wdir_in_use, 0, 1))
+	if(CAS(&global_wdir_is_in_use, 0, 1))
 	{
 		memset(&global_wdir, 0, sizeof(global_wdir));
 		return &global_wdir;
@@ -368,7 +357,7 @@ static inline WDIR* wdir_alloc()
 static inline void wdir_free(WDIR* d)
 {
 	if(d == &global_wdir)
-		global_wdir_in_use = 0;
+		global_wdir_is_in_use = 0;
 	else
 		free(d);
 }
@@ -452,7 +441,7 @@ int readdir_stat_np(DIR* d_, struct stat* s)
 	WDIR* d = (WDIR*)d_;
 
 	memset(s, 0, sizeof(struct stat));
-	s->st_size  = (off_t)((((u64)d->fd.nFileSizeHigh) << 32) | d->fd.nFileSizeLow);
+	s->st_size  = (off_t)u64_from_u32(d->fd.nFileSizeHigh, d->fd.nFileSizeLow);
 	s->st_mode  = (d->fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)? S_IFDIR : S_IFREG;
 	s->st_mtime = filetime_to_time_t(&d->fd.ftLastWriteTime);
 	return 0;
@@ -572,48 +561,58 @@ int mprotect(void* addr, size_t len, int prot)
 }
 
 
+// called when flags & MAP_ANONYMOUS
+static int map_mem(void* start, size_t len, int prot, int flags, int fd, void** pp)
+{
+	// sanity checks. we don't care about these but enforce them to
+	// ensure callers are compatible with mmap.
+	// .. MAP_ANONYMOUS is documented to require this.
+	debug_assert(fd == -1);
+	// .. if MAP_SHARED, writes are to change "the underlying [mapped]
+	//    object", but there is none here (we're backed by the page file).
+	debug_assert(flags & MAP_PRIVATE);
+
+	// see explanation at MAP_NORESERVE definition.
+	DWORD flAllocationType = (flags & MAP_NORESERVE)? MEM_RESERVE : MEM_COMMIT;
+	DWORD flProtect = win32_prot(prot);
+	void* p = VirtualAlloc(start, len, flAllocationType, flProtect);
+	if(!p)
+		return ERR_NO_MEM;
+	*pp = p;
+	return 0;
+}
+
+
 // given mmap prot and flags, output protection/access values for use with
 // CreateFileMapping / MapViewOfFile. they only support read-only,
 // read/write and copy-on-write, so we dumb it down to that and later
 // set the correct (and more restrictive) permission via mprotect.
-static int mmap_access(int prot, int flags, DWORD& flProtect, DWORD& dwAccess, SECURITY_ATTRIBUTES*& psec)
+static int map_file_access(int prot, int flags, DWORD& flProtect, DWORD& dwAccess)
 {
-	SECURITY_ATTRIBUTES* saved_psec = psec;
-
-	// assume read-only with default security; other cases handled below.
+	// assume read-only; other cases handled below.
 	flProtect = PAGE_READONLY;
 	dwAccess  = FILE_MAP_READ;
-	psec = 0;
-		// we go to a bit of trouble and return a NULL pointer in the
-		// default case; this is more efficient.
 
 	if(prot & PROT_WRITE)
 	{
-		flProtect = PAGE_READWRITE;
-		dwAccess  = FILE_MAP_WRITE;	// read and write
-
 		// determine write behavior: (whether they change the underlying file)
 		switch(flags & (MAP_SHARED|MAP_PRIVATE))
 		{
-		// .. POSIX says asking for both isn't allowed.
-		case MAP_SHARED|MAP_PRIVATE:
-			return ERR_INVALID_PARAM;
-		// .. changes are written to file and shared between processes.
+		// .. changes are written to file.
 		case MAP_SHARED:
-			psec = saved_psec;
-			psec->nLength = sizeof(SECURITY_ATTRIBUTES);
-			psec->lpSecurityDescriptor = 0;
-			psec->bInheritHandle = TRUE;
+			flProtect = PAGE_READWRITE;
+			dwAccess  = FILE_MAP_WRITE;	// read and write
 			break;
-		// .. copy-on-write mapping; writes do not affect the file or
-		//    other processes.
+		// .. copy-on-write mapping; writes do not affect the file.
 		case MAP_PRIVATE:
 			flProtect = PAGE_WRITECOPY;
 			dwAccess  = FILE_MAP_COPY;
 			break;
-		// .. changes are written to file but the handle isn't shareable.
+		// .. either none or both of the flags are set. the latter is
+		//    definitely illegal according to POSIX and some man pages
+		//    say exactly one must be set, so abort.
 		default:
-			break;
+			return ERR_INVALID_PARAM;
 		}
 	}
 
@@ -621,80 +620,88 @@ static int mmap_access(int prot, int flags, DWORD& flProtect, DWORD& dwAccess, S
 }
 
 
-void* mmap(void* user_start, size_t len, int prot, int flags, int fd, off_t ofs)
+static int map_file(void* start, size_t len, int prot, int flags,
+	int fd, off_t ofs, void** pp)
 {
-	{
+	debug_assert(fd != -1);	// handled by mmap_mem
+
 	WIN_SAVE_LAST_ERROR;
-	int err;
 
-	// assume fd = -1 (requesting mapping backed by page file),
-	// so that we notice invalid file handles below.
-	HANDLE hFile = INVALID_HANDLE_VALUE;
-	if(fd != -1)
-	{
-		hFile = cast_to_HANDLE(_get_osfhandle(fd));
-		if(hFile == INVALID_HANDLE_VALUE)
-		{
-			debug_warn("mmap: invalid file handle");
-			goto fail;
-		}
-	}
+	HANDLE hFile = HANDLE_from_intptr(_get_osfhandle(fd));
+	if(hFile == INVALID_HANDLE_VALUE)
+		return ERR_INVALID_PARAM;
 
-	// if MAP_FIXED, user_start is the start address; otherwise,
-	// MapViewOfFileEx will choose an address.
-	void* start = 0;
-	if(flags & MAP_FIXED)
-	{
-		start = user_start;
-		if(start == 0)	// debug_assert below would fire
-			goto fail;
-	}
+	// MapViewOfFileEx will fail if the "suggested" base address is
+	// nonzero but cannot be honored, so wipe out <start> unless MAP_FIXED.
+	if(!(flags & MAP_FIXED))
+		start = 0;
 
 	// choose protection and access rights for CreateFileMapping /
 	// MapViewOfFile. these are weaker than what PROT_* allows and
 	// are augmented below by subsequently mprotect-ing.
 	DWORD flProtect; DWORD dwAccess;
-	SECURITY_ATTRIBUTES sec_; SECURITY_ATTRIBUTES* psec = &sec_;
-	err = mmap_access(prot, flags, flProtect, dwAccess, psec);
-	if(err < 0)
-		goto fail;
+	RETURN_ERR(map_file_access(prot, flags, flProtect, dwAccess));
 
 	// enough foreplay; now actually map.
-	// .. split size/offset into 32 bit values for the API.
-	//    careful! C++ doesn't allow shifting 32-bit types by 32 bits.
-	const DWORD len_hi = u64_hi(len), len_lo = u64_lo(len);
-	const DWORD ofs_hi = u64_hi(ofs), ofs_lo = u64_lo(ofs);
-	const HANDLE hMap = CreateFileMapping(hFile, psec, flProtect, len_hi, len_lo, (LPCSTR)0);
+	const HANDLE hMap = CreateFileMapping(hFile, 0, flProtect, 0, 0, (LPCSTR)0);
 	// .. create failed; bail now to avoid overwriting the last error value.
 	if(!hMap)
-		goto fail;
-	void* addr = MapViewOfFileEx(hMap, dwAccess, ofs_hi, ofs_lo, (SIZE_T)len, start);
+		return ERR_NO_MEM;
+	const DWORD ofs_hi = u64_hi(ofs), ofs_lo = u64_lo(ofs);
+	void* p = MapViewOfFileEx(hMap, dwAccess, ofs_hi, ofs_lo, (SIZE_T)len, start);
 	// .. make sure we got the requested address if MAP_FIXED was passed.
-	debug_assert(!(flags & MAP_FIXED) || (addr == start));
+	debug_assert(!(flags & MAP_FIXED) || (p == start));
 	// .. free the mapping object now, so that we don't have to hold on to its
 	//    handle until munmap(). it's not actually released yet due to the
 	//    reference held by MapViewOfFileEx (if it succeeded).
 	CloseHandle(hMap);
 	// .. map failed; bail now to avoid "restoring" the last error value.
-	if(!addr)
-		goto fail;
+	if(!p)
+		return ERR_NO_MEM;
 
 	// slap on correct (more restrictive) permissions. 
-	WARN_ERR(mprotect(addr, len, prot));
+	WARN_ERR(mprotect(p, len, prot));
 
 	WIN_RESTORE_LAST_ERROR;
-	return addr;
+	*pp = p;
+	return 0;
+}
+
+
+void* mmap(void* start, size_t len, int prot, int flags, int fd, off_t ofs)
+{
+	void* p;
+	int err;
+	if(flags & MAP_ANONYMOUS)
+		err = map_mem(start, len, prot, flags, fd, &p);
+	else
+		err = map_file(start, len, prot, flags, fd, ofs, &p);
+	if(err < 0)
+	{
+		WARN_ERR(err);
+		return MAP_FAILED;
 	}
 
-fail:
-	return (void*)MAP_FAILED;
+	return p;
 }
 
 
 int munmap(void* start, size_t UNUSED(len))
 {
+	// UnmapViewOfFile checks if start was returned by MapViewOfFile*;
+	// if not, it will fail.
 	BOOL ok = UnmapViewOfFile(start);
-	return ok? 0 : -1;
+	if(!ok)
+		// VirtualFree requires dwSize to be 0 (entire region is released).
+		ok = VirtualFree(start, 0, MEM_RELEASE);
+
+	// both failed
+	if(!ok)
+	{
+		debug_warn("munmap failed");
+		return -1;
+	}
+	return 0;
 }
 
 

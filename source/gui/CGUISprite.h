@@ -28,7 +28,7 @@ gee@pyro.nu
 #include "GUIutil.h"
 
 #include "Overlay.h"
-#include "lib/res/ogl_tex.h"
+#include "lib/res/graphics/ogl_tex.h"
 
 //--------------------------------------------------------
 //  Macros

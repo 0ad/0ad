@@ -1,8 +1,6 @@
 #ifndef VFS_MOUNT_H__
 #define VFS_MOUNT_H__
 
-#include "handle.h"
-
 extern void mount_init();
 extern void mount_shutdown();
 

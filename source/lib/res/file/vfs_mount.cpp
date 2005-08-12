@@ -4,7 +4,7 @@
 #include "vfs_path.h"
 #include "vfs_tree.h"
 #include "zip.h"
-#include "res.h"
+#include "../res.h"
 
 struct Stats
 {

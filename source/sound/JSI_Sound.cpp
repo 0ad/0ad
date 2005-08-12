@@ -2,7 +2,7 @@
 #include "JSI_Sound.h"
 #include "Vector3D.h"
 
-#include "lib/res/snd.h"
+#include "lib/res/sound/snd.h"
 #include "lib/res/h_mgr.h"	// h_filename
 
 

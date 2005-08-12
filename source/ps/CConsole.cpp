@@ -13,7 +13,7 @@
 #include "Network/Client.h"
 #include "Network/Server.h"
 
-#include "lib/res/vfs.h"
+#include "lib/res/file/vfs.h"
 
 #include "Interact.h"
 

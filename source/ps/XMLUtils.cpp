@@ -1,15 +1,12 @@
 #include "precompiled.h"
 
-#include "nommgr.h"
 #include "XML.h"
-#include "nommgr.h" // undefine 'new' a lot, because Xerces doesn't like it
-
 #include "CStr.h"
 #include "CLogger.h"
 #include "posix.h"		// ptrdiff_t
 
-#include "res/vfs.h"
-#include "res/mem.h"
+#include "lib/res/file/vfs.h"
+#include "lib/res/mem.h"
 
 #define LOG_CATEGORY "xml"
 
@@ -89,8 +86,10 @@ BinInputStream *CVFSInputSource::makeStream() const
 {
 	if (m_pBuffer > 0)
 	{
+#include "nommgr.h"
 		return new BinMemInputStream((XMLByte *)m_pBuffer, (unsigned int)m_BufferSize,
 			BinMemInputStream::BufOpt_Reference);
+#include "mmgr.h"
 	}
 	else
 		return NULL;
@@ -111,7 +110,9 @@ const char *prevpathcomp(const char *end, const char *beginning)
 InputSource *CVFSEntityResolver::resolveEntity(const XMLCh *const UNUSED(publicId),
 	const XMLCh *const systemId)
 {
+#include "nommgr.h"
 	CVFSInputSource *ret=new CVFSInputSource();
+#include "mmgr.h"
 	char *path=XMLString::transcode(systemId);
 	char *orgpath=path;
 	
@@ -156,8 +157,9 @@ InputSource *CVFSEntityResolver::resolveEntity(const XMLCh *const UNUSED(publicI
 		path=abspath;
 	}
 
+	// janwas: removed for less spew
 //	LOG(NORMAL, LOG_CATEGORY, "EntityResolver: path \"%s\" translated to \"%s\"", orgpath, path);
-// janwas: less spew
+
 
 	char *pos=path;		
 	if ((pos=strchr(pos, '\\')) != NULL)

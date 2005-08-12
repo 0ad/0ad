@@ -10,7 +10,7 @@
 
 #include "ps/Xeromyces.h"
 #include "ps/CLogger.h"
-#include "lib/res/vfs.h"
+#include "lib/res/file/vfs.h"
 
 #define ZLIB_DLL
 #include "zlib.h" // for crc32

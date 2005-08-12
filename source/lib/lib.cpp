@@ -292,6 +292,14 @@ u32 u64_lo(u64 x)
 	return (u32)(x & 0xffffffff);
 }
 
+u64 u64_from_u32(u32 hi, u32 lo)
+{
+	u64 x = (u64)hi;
+	x <<= 32;
+	x |= lo;
+	return x;
+}
+
 
 
 // input in [0, 1); convert to u8 range

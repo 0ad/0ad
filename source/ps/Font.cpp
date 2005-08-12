@@ -3,7 +3,7 @@
 #include "Font.h"
 
 #include "ps/ConfigDB.h"
-#include "lib/res/unifont.h"
+#include "lib/res/graphics/unifont.h"
 
 #include "ps/CLogger.h"
 #define LOG_CATEGORY "graphics"

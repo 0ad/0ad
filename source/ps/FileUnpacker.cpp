@@ -9,7 +9,7 @@
 #include "precompiled.h"
 
 #include "FileUnpacker.h"
-#include "res/res.h"
+#include "lib/res/res.h"
  
 ////////////////////////////////////////////////////////////////////////////////////////
 // CFileUnpacker constructor

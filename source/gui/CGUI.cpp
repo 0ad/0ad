@@ -10,7 +10,7 @@ gee@pyro.nu
 
 #include <stdarg.h>
 
-#include "lib/res/unifont.h"
+#include "lib/res/graphics/unifont.h"
 
 #include "GUI.h"
 

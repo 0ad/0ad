@@ -8,7 +8,7 @@
 #include "TerrainProperties.h"
 
 #include "lib/res/res.h"
-#include "lib/res/ogl_tex.h"
+#include "lib/res/graphics/ogl_tex.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
 

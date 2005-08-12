@@ -10,7 +10,7 @@ Unicode OpenGL texture font
 #include "precompiled.h"
 
 #include "lib.h"
-#include "res.h"
+#include "../res.h"
 #include "ogl.h"
 #include "ogl_tex.h"
 

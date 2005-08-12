@@ -1,5 +1,6 @@
 // virtual file system - transparent access to files in archives;
 // allows multiple mount points
+// this is the public interface.
 //
 // Copyright (c) 2004 Jan Wassenberg
 //
@@ -20,7 +21,6 @@
 /*
 
 [KEEP IN SYNC WITH WIKI!]
-
 
 Introduction
 ------------
@@ -47,9 +47,8 @@ Games typically encompass thousands of files. Such heavy loads expose
 
 The solution is to put all files in archives: internal fragmentation is
 eliminated since they are packed end-to-end; open is much faster;
-seeks are avoided by arranging in order of access.
-
-For more information, see 'Archive Details' below.
+seeks are avoided by arranging in order of access. For more information,
+see 'Archive Details' below.
 
 Note that a good file system (Reiser3 comes close) could also deliver the
 above. However, this code is available now on all platforms; there is
@@ -67,11 +66,12 @@ Since decreases in edit cycle time improve productivity, we want changes to
 files to be picked up immediately. To that end, we support hotloading -
 as soon as the OS reports changes, all Handle objects that ensued from that
 file are reloaded.
+
 The VFS's part in this is registering "watches" that report changes to
 any mounted real directory. Since the file notification backend
 (currently SGI FAM and a Win32 port) cannot watch an entire directory tree,
-we need to do so for every single directory. The VFS traverses and
-stores data for them anyway, we do so here.
+we need to do so for every single directory. The VFS traverses each and
+stores information anyway, so we do that here.
 
 
 Modding
@@ -186,9 +186,9 @@ Decompression is free because it is done in parallel with IOs.
 #ifndef __VFS_H__
 #define __VFS_H__
 
-#include "handle.h"	// Handle def
-#include "posix.h"	// struct stat
-#include "file.h"	// file open flags
+#include "../handle.h"	// Handle def
+#include "lib/posix.h"	// struct stat
+#include "file.h"		// file open flags
 
 // make the VFS tree ready for use. must be called before all other
 // functions below unless explicitly mentioned to be allowed.

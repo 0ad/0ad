@@ -13,7 +13,7 @@
 #include "precompiled.h"
 
 #include "lib.h"
-#include "lib/res/vfs.h"
+#include "lib/res/file/vfs.h"
 
 
 // must come before jpeg-6b headers.
