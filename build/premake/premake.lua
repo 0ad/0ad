@@ -59,6 +59,9 @@ function setuppackage (projectname)
 		"lib",
 		"lib/sysdep",
 		"lib/res",
+		"lib/res/file",
+		"lib/res/graphics",
+		"lib/res/sound",
 
 		"graphics",
 		"graphics/scripting",
