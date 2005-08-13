@@ -57,8 +57,20 @@ template<typename T> bool ToPrimitive( JSContext* UNUSED(cx), jsval v, T*& Stora
 	return( true );
 }
 
-template<typename T> inline T ToPrimitive( JSContext* cx, jsval v ) { T Temp; ToPrimitive( cx, v, Temp ); return( Temp ); }
-template<typename T> inline T ToPrimitive( jsval v ) { return( ToPrimitive<T>( g_ScriptingHost.GetContext(), v ) ); }
+// Throws PSERROR_Scripting_ConversionFailed on failure.
+template<typename T> inline T ToPrimitive( JSContext* cx, jsval v )
+{
+	T Temp;
+	bool ok = ToPrimitive( cx, v, Temp );
+	if( !ok ) throw PSERROR_Scripting_ConversionFailed();
+	return( Temp );
+}
+
+// Throws PSERROR_Scripting_ConversionFailed on failure.
+template<typename T> inline T ToPrimitive( jsval v )
+{
+	return( ToPrimitive<T>( g_ScriptingHost.GetContext(), v ) );
+}
 
 template<typename T> jsval ToJSVal( T& Native )
 {
