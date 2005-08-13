@@ -45,10 +45,7 @@ function setuppackage (projectname)
 	sourceroot = "../../../source/"
 	librariesroot = "../../../libraries/"
 
-
-	source_dirs = {}
-
-	tconcat(source_dirs, {
+	source_dirs = {
 		"ps",
 		"ps/scripting",
 		"ps/Network",
@@ -70,7 +67,12 @@ function setuppackage (projectname)
 		"maths/scripting",
 
 		"renderer"
-	})
+		"terrain",
+		"sound",
+		"scripting",
+		"i18n",
+		"tests"
+	}
 
 	if (projectname ~= "sced") then tconcat(source_dirs, {
 		"gui",
@@ -81,18 +83,6 @@ function setuppackage (projectname)
 		"tools/atlas/GameInterface",
 		"tools/atlas/GameInterface/Handlers"
 	}) end
-
-	tconcat(source_dirs, {
-		"terrain",
-
-		"sound",
-
-		"scripting",
-
-		"i18n",
-
-		"tests"
-	})
 
 	if (projectname == "sced") then tconcat(source_dirs, {
 		"tools/sced",
@@ -120,7 +110,6 @@ function setuppackage (projectname)
 	end
 
 	package.includepaths = {}
-
 	foreach(include_dirs, function (i,v)
 		tinsert(package.includepaths, sourceroot .. v)
 	end)
@@ -129,6 +118,7 @@ function setuppackage (projectname)
 
 	if (OS == "windows") then
 		package.buildflags = { "no-rtti" }
+		package.buildoptions = { "/W4" }
 	else
 		package.buildflags = { }
 	end
