@@ -424,6 +424,7 @@ static inline Key GetKey(const T t)
 void TDir::init()
 {
 	rd.m = 0;
+	rd.watch = 0;
 	children.init();
 }
 
