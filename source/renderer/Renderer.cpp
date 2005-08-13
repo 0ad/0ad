@@ -41,11 +41,14 @@
 
 #define LOG_CATEGORY "graphics"
 
+/*
+// jw: unused
 static bool saveTGA(const char* filename,int width,int height,int bpp,unsigned char* data)
 {
 	int err = tex_write(filename, width, height, bpp, TEX_BGR, data);
 	return (err == 0);
 }
+*/
 
 ///////////////////////////////////////////////////////////////////////////////////
 // CRenderer destructor

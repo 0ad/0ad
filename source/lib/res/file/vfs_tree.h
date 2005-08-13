@@ -42,7 +42,6 @@ extern int tree_add_file(TDir* td, const char* fn, const Mount* m,
 	off_t size, time_t mtime);
 
 extern int tree_add_dir(TDir* dir, const char* name, TDir** ptd);
-extern int tree_attach_real_dir(TDir* dir, const char* path, int flags, const Mount* m);
 
 enum TreeLookupFlags
 {
@@ -103,6 +102,10 @@ extern int tree_stat(const TFile* tf, struct stat* s);
 extern const Mount* tree_get_mount(const TFile* tf);
 
 extern void tree_update_file(TFile* tf, off_t size, time_t mtime);
+
+struct RealDir;
+extern RealDir* tree_get_real_dir(TDir* td);
+
 
 // for use in vfs_mount
 extern void tree_lock();

@@ -77,9 +77,6 @@ extern int x_io_close(XIo* xio);
 
 
 
-struct TDir;
-extern int mount_populate(TDir* td, const Mount* m);
-
 
 //
 // accessor routines that obviate the need to access Mount fields directly:
@@ -89,5 +86,30 @@ extern bool mount_should_replace(const Mount* m_old, const Mount* m_new,
 	bool files_are_identical);
 
 extern char mount_get_type(const Mount* m);
+
+
+
+// stored by vfs_tree in TDir
+struct RealDir
+{
+	// if exactly one real directory is mounted into this virtual dir,
+	// this points to its location. used to add files to VFS when writing.
+	//
+	// the Mount is actually in the mount info and is invalid when
+	// that's unmounted, but the VFS would then be rebuilt anyway.
+	//
+	// = 0 if no real dir mounted here; = -1 if more than one.
+	const Mount* m;
+#ifndef NO_DIR_WATCH
+	intptr_t watch;
+#endif
+};
+
+extern int mount_attach_real_dir(RealDir* rd, const char* P_path, const Mount* m, int flags);
+extern void mount_detach_real_dir(RealDir* rd);
+
+struct TDir;
+extern int mount_populate(TDir* td, RealDir* rd);
+
 
 #endif	// #ifndef VFS_MOUNT_H__

@@ -1082,7 +1082,6 @@ debug_printf("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 
 	// only align if we allocate the buffer and in AIO mode
 	const bool do_align = temp;
-	const bool cache = temp;
 
 
 	//

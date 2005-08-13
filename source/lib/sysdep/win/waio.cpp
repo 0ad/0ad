@@ -233,8 +233,10 @@ fail:
 int aio_close(int fd)
 {
 	// early out for files that were never re-opened for AIO.
+	// since there is no way for wposix close to know this, we mustn't
+	// return an error (which would cause it to WARN_ERR).
 	if(!aio_h_is_set(fd))
-		return -1;
+		return 0;
 
 	HANDLE h = aio_h_get(fd);
 	// out of bounds or already closed

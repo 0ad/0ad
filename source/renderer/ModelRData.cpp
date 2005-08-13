@@ -312,7 +312,6 @@ void CModelRData::RenderModels(u32 streamflags,u32 flags)
 #if 1
 	// submit batches for each model to the vertex buffer
 	for (i=0;i<m_Models.size();++i) {
-		u32 mflags=m_Models[i]->GetFlags();	// TODO2
 		if (!flags || (m_Models[i]->GetFlags()&flags)) {
 			CModelRData* modeldata=(CModelRData*) m_Models[i]->GetRenderData();
 			modeldata->SubmitBatches();

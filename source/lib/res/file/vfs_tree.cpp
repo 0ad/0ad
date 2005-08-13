@@ -7,11 +7,9 @@
 #include <vector>
 #include <algorithm>
 
-#include "lib.h"
 #include "../res.h"
 #include "vfs_path.h"
 #include "vfs_tree.h"
-#include "../hotload.h"	// see NO_DIR_WATCH
 
 
 // we add/cancel directory watches from the VFS mount code for convenience -
@@ -355,20 +353,10 @@ enum TDirFlags
 // must be declared before TNode
 struct TDir
 {
-	// if exactly one real directory is mounted into this virtual dir,
-	// this points to its location. used to add files to VFS when writing.
-	//
-	// the Mount is actually in the mount info and is invalid when
-	// that's unmounted, but the VFS would then be rebuilt anyway.
-	//
-	// = 0 if no real dir mounted here; = -1 if more than one.
-	const Mount* m;
-
 	int flags;	// enum TDirFlags
 
-#ifndef NO_DIR_WATCH
-	intptr_t watch;
-#endif
+	RealDir rd;
+
 	DynHashTbl children;
 
 	void init();
@@ -435,7 +423,7 @@ static inline Key GetKey(const T t)
 
 void TDir::init()
 {
-	m = 0;
+	rd.m = 0;
 	children.init();
 }
 
@@ -483,24 +471,6 @@ int TDir::add(const char* name, TNodeType new_type, TNode** pnode)
 
 done:
 	*pnode = node;
-	return 0;
-}
-
-// note: full path is needed for the dir watch.
-int TDir::attach_real_dir(const char* P_path, int flags, const Mount* new_m)
-{
-	// more than one real dir mounted into VFS dir
-	// (=> can't create files for writing here)
-	if(m)
-		m = (Mount*)-1;
-	else
-		m = new_m;
-
-#ifndef NO_DIR_WATCH
-	if(flags & VFS_MOUNT_WATCH)
-		CHECK_ERR(res_watch_dir(P_path, &watch));
-#endif
-
 	return 0;
 }
 
@@ -560,7 +530,7 @@ int TDir::lookup(const char* path, uint flags, TNode** pnode, char* exact_path)
 			// make sure it has been populated with loose files/directories.
 			if(!(td->flags & TD_POPULATED))
 			{
-				WARN_ERR(mount_populate(td, td->m));
+				WARN_ERR(mount_populate(td, &td->rd));
 				td->flags |= TD_POPULATED;
 			}
 
@@ -577,7 +547,7 @@ int TDir::lookup(const char* path, uint flags, TNode** pnode, char* exact_path)
 			// so we special-case its init.
 			if(type == N_FILE)
 			{
-				node->u.file.m = td->m;
+				node->u.file.m = td->rd.m;
 			}
 		}
 		else
@@ -623,10 +593,10 @@ void TDir::clearR()
 
 	// wipe out this directory
 	children.clear();
-#ifndef NO_DIR_WATCH
-	res_cancel_watch(watch);
-	watch = 0;
-#endif
+
+	// the watch is restored when this directory is repopulated; we must
+	// remove it in case the real directory backing this one was deleted.
+	mount_detach_real_dir(&rd);
 }
 
 void TDir::displayR(int indent_level)
@@ -716,11 +686,11 @@ void vfs_display()
 
 
 
-int tree_add_file(TDir* dir, const char* name, const Mount* m,
+int tree_add_file(TDir* td, const char* name, const Mount* m,
 	off_t size, time_t mtime)
 {
 	TNode* node;
-	RETURN_ERR(dir->add(name, N_FILE, &node));
+	RETURN_ERR(td->add(name, N_FILE, &node));
 	TFile* tf = &node->u.file;
 
 	// assume they're the same if size and last-modified time match.
@@ -737,33 +707,29 @@ int tree_add_file(TDir* dir, const char* name, const Mount* m,
 }
 
 
-int tree_add_dir(TDir* dir, const char* name, TDir** ptd)
+int tree_add_dir(TDir* td, const char* name, TDir** ptd)
 {
 	TNode* node;
-	RETURN_ERR(dir->add(name, N_DIR, &node));
+	RETURN_ERR(td->add(name, N_DIR, &node));
 	*ptd = &node->u.dir;
 	return 0;
 }
 
 
 
-int tree_attach_real_dir(TDir* dir, const char* path, int flags, const Mount* m)
-{
-	return dir->attach_real_dir(path, flags, m);
-}
 
 
-int tree_lookup_dir(const char* path, TDir** pdir, uint flags, char* exact_path)
+int tree_lookup_dir(const char* path, TDir** ptd, uint flags, char* exact_path)
 {
 	// TDir::lookup would return a file node
 	if(path[0] != '\0' && path[strlen(path)-1] != '/')
 		return -1;
 
-	TDir* dir = (flags & LF_START_DIR)? *pdir : tree_root_dir;
+	TDir* td = (flags & LF_START_DIR)? *ptd : tree_root_dir;
 	TNode* node;
-	CHECK_ERR(dir->lookup(path, flags, &node, exact_path));
+	CHECK_ERR(td->lookup(path, flags, &node, exact_path));
 		// directories should exist, so warn if this fails
-	*pdir = &node->u.dir;
+	*ptd = &node->u.dir;
 	return 0;
 }
 
@@ -866,7 +832,7 @@ int tree_dir_close(TreeDirIterator* UNUSED(d))
 
 
 //-----------------------------------------------------------------------------
-// get/set for TFile
+// get/set
 
 const Mount* tree_get_mount(const TFile* tf)
 {
@@ -891,4 +857,10 @@ int tree_stat(const TFile* tf, struct stat* s)
 	s->st_mtime = tf->mtime;
 
 	return 0;
+}
+
+
+RealDir* tree_get_real_dir(TDir* td)
+{
+	return &td->rd;
 }

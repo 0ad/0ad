@@ -280,6 +280,7 @@ static void* prof_thread_func(void* UNUSED(data))
 			debug_warn("wpcu prof_thread_func: sem_timedwait failed");
 
 		uintptr_t pc = get_target_pc();
+		UNUSED2(pc);
 
 		// ADD TO LIST
 	}

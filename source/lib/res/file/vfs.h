@@ -244,38 +244,24 @@ enum VfsMountFlags
 	VFS_MOUNT_RECURSIVE = 2,
 
 	// all real directories mounted during this operation will be watched
-	// for changes (using hotload.h). this flag is provided to avoid
-	// watches in output-only directories, e.g. screenshots/
-	// (only causes unnecessary overhead).
+	// for changes. this flag is provided to avoid watches in output-only
+	// directories, e.g. screenshots/ (only causes unnecessary overhead).
 	VFS_MOUNT_WATCH = 4
 };
 
-// mount <p_real_dir> into the VFS at <V_mount_point>,
+// mount <P_real_dir> into the VFS at <V_mount_point>,
 //   which is created if it does not yet exist.
 // files in that directory override the previous VFS contents if
 //   <pri>(ority) is not lower.
-// all archives in <p_real_dir> are also mounted, in alphabetical order.
+// all archives in <P_real_dir> are also mounted, in alphabetical order.
 //
 // flags determines extra actions to perform; see VfsMountFlags.
 //
-// p_real_dir = "." or "./" isn't allowed - see implementation for rationale.
+// P_real_dir = "." or "./" isn't allowed - see implementation for rationale.
 extern int vfs_mount(const char* V_mount_point, const char* P_real_dir, int flags = 0, uint pri = 0);
-
-// rebuild the VFS, i.e. re-mount everything. open files are not affected.
-// necessary after loose files or directories change, so that the VFS
-// "notices" the changes and updates file locations. res calls this after
-// dir_watch reports changes; can also be called from the console after a
-// rebuild command. there is no provision for updating single VFS dirs -
-// it's not worth the trouble.
-extern int vfs_rebuild(void);
 
 // unmount a previously mounted item, and rebuild the VFS afterwards.
 extern int vfs_unmount(const char* name);
-
-// if <path> or its ancestors are mounted,
-// return a VFS path that accesses it.
-// used when receiving paths from external code.
-extern int vfs_make_vfs_path(const char* path, char* vfs_path);
 
 
 //
@@ -426,5 +412,15 @@ extern int vfs_map(Handle hf, uint flags, void*& p, size_t& size);
 // however, map/unmap calls should still be paired so that the mapping
 // may be removed when no longer needed.
 extern int vfs_unmap(Handle hf);
+
+
+//
+// hotloading
+//
+
+extern int vfs_reload(const char* fn);
+
+// this must be called from the main thread? (wdir_watch problem)
+extern int vfs_reload_changed_files(void);
 
 #endif	// #ifndef __VFS_H__

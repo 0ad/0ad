@@ -249,7 +249,7 @@ func_and_arg;
 
 
 // bridge calling conventions required by _beginthreadex and POSIX.
-static unsigned __stdcall thread_start(void* param)
+static unsigned __stdcall thread_start(void* UNUSED(param))
 {
 	void*(*func)(void*) = func_and_arg.func;
 	void* arg           = func_and_arg.arg;

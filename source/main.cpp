@@ -18,7 +18,6 @@
 #include "lib/timer.h"
 #include "lib/input.h"
 #include "lib/res/res.h"
-#include "lib/res/hotload.h"		// xxx
 #include "lib/res/sound/snd.h"
 #include "lib/res/graphics/tex.h"
 #include "lib/res/graphics/cursor.h"
@@ -1377,7 +1376,7 @@ static void Frame()
 
 	PROFILE_START( "reload changed files" );
 	MICROLOG(L"reload files");
-	res_reload_changed_files(); 
+	vfs_reload_changed_files(); 
 	PROFILE_END( "reload changed files" );
 
 	oglCheck();
