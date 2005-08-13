@@ -7,8 +7,8 @@
 #include "Renderer.h"
 
 #include "ogl.h"
-#include "res/tex.h"
-#include "res/vfs.h"
+#include "lib/res/graphics/tex.h"
+#include "lib/res/file/vfs.h"
 #undef _IGNORE_WGL_H_
 
 BEGIN_MESSAGE_MAP(CTexToolsDlgBar, CDialogBar)

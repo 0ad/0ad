@@ -20,7 +20,7 @@
 #include "SelectObjectTool.h"
 #include "Game.h"
 
-#include "res/vfs.h"
+#include "lib/res/file/vfs.h"
 
 #undef CRect // because it was redefined to PS_Rect in Overlay.h
 

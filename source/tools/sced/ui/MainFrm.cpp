@@ -6,9 +6,9 @@
 
 #define _IGNORE_WGL_H_
 #include "ogl.h"
-#include "res/tex.h"
-#include "res/mem.h"
-#include "res/vfs.h"
+#include "lib/res/graphics/tex.h"
+#include "lib/res/mem.h"
+#include "lib/res/file/vfs.h"
 #undef _IGNORE_WGL_H_
 
 #include "ScEd.h"

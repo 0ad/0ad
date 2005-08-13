@@ -976,6 +976,8 @@ static int png_decode_impl(TexInfo* t, u8* file, size_t file_size,
 	int flags = 0;
 	if(bpp == 32)
 		flags |= TEX_ALPHA;
+	if(colour_type == PNG_COLOR_TYPE_GRAY)
+		flags |= TEX_GREY;
 
 	// make sure format is acceptable
 	if(bit_depth != 8)

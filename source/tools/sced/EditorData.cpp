@@ -12,7 +12,7 @@
 #include "Unit.h"
 
 #include "ogl.h"
-#include "res/tex.h"
+#include "lib/res/graphics/tex.h"
 #include "time.h"
 
 #include "BaseEntityCollection.h"

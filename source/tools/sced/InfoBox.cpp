@@ -190,7 +190,7 @@ void CInfoBox::RenderInfo()
 		render(&fttext);
 		y-=dy;
 
-		u32 totalTris=m_LastStats.m_TerrainTris+m_LastStats.m_ModelTris;
+		u32 totalTris=(u32)(m_LastStats.m_TerrainTris+m_LastStats.m_ModelTris);
 		sprintf(buf,"TPF: %d",int(totalTris/m_LastStats.m_Counter));
 		COverlayText tpftext(5,y,0,DefaultFontName,buf,CColor(1,1,1,1));	
 		render(&tpftext);

@@ -18,6 +18,7 @@
 #define _SIZE_T_DEFINED
 #include "posix.h"
 #include "CStr.h"
+#pragma push_macro("UNUSED") // remember the original version, so we can revert to it later
 #undef UNUSED
 
 #undef _WINDOWS_
@@ -32,7 +33,7 @@
 #include <afxcmn.h>			// MFC support for Windows Common Controls
 #endif // _AFX_NO_AFXCMN_SUPPORT
 
-#undef UNUSED
+#pragma pop_macro("UNUSED")
 
 #include "resource.h"
 
