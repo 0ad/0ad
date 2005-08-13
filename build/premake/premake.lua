@@ -66,7 +66,7 @@ function setuppackage (projectname)
 		"maths",
 		"maths/scripting",
 
-		"renderer"
+		"renderer",
 		"terrain",
 		"sound",
 		"scripting",
