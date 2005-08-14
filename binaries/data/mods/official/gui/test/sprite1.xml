@@ -491,6 +491,54 @@
 			/>
 		</sprite>
 
+		<sprite name="pgSinglePlayerDisabled">
+			<effect grayscale="" />
+			<image 	texture="pregame/shell/parchment/singleplayer_over.dds"
+				real_texture_placement="0 0 256 256"
+				size="0 0 100% 100%" 
+			/>
+		</sprite>
+
+		<sprite name="pgMultiPlayerDisabled">
+			<effect grayscale="" />
+			<image 	texture="pregame/shell/parchment/multiplayer_over.dds"
+				real_texture_placement="0 0 256 256"
+				size="0 0 100% 100%" 
+			/>
+		</sprite>
+
+		<sprite name="pgEditorDisabled">
+			<effect grayscale="" />
+			<image 	texture="pregame/shell/parchment/scenarioeditor_over.dds"
+				real_texture_placement="0 0 256 256"
+				size="0 0 100% 100%" 
+			/>
+		</sprite>
+
+		<sprite name="pgCampaignsDisabled">
+			<effect grayscale="" />
+			<image 	texture="pregame/shell/parchment/campaigns_over.dds"
+				real_texture_placement="0 0 256 256"
+				size="0 0 100% 100%" 
+			/>
+		</sprite>
+
+		<sprite name="pgOptionsDisabled">
+			<effect grayscale="" />
+			<image 	texture="pregame/shell/parchment/options_over.dds"
+				real_texture_placement="0 0 256 256"
+				size="0 0 100% 100%" 
+			/>
+		</sprite>
+
+		<sprite name="pgHistoryDisabled">
+			<effect grayscale="" />
+			<image 	texture="pregame/shell/parchment/history_over.dds"
+				real_texture_placement="0 0 256 256"
+				size="0 0 100% 100%" 
+			/>
+		</sprite>
+
 		<!--
 		==========================================
 		PREGAME GUI - LOADING SCREEN

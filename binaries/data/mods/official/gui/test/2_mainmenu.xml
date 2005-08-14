@@ -81,6 +81,7 @@
 			type="button"
 			size="24.609375% 28.90625% 49.609375% 62.2395833%"
 			sprite_over="pgCampaignsOver"
+			sprite_disabled="pgCampaignsDisabled"
                         tooltip="Want to play a campaign? Tough luck, buddy!  That's right, go cry on your mamma's shoulder."
 		>
 			<action on="Press"><![CDATA[
@@ -93,6 +94,7 @@
 			type="button"
 			size="51.2695312% 10.9275% 76.2695312% 44.270833%"
 			sprite_over="pgSinglePlayerOver"
+			sprite_disabled="pgSinglePlayerDisabled"
 			tooltip="Want to move some Dudes around or test something? Click here to start a new game on the default map."
 		>
 			<action on="Press"><![CDATA[
@@ -107,6 +109,7 @@
 			type="button"
 			size="57.5195312% 38.28125% 82.5195312% 71.6145833%"
 			sprite_over="pgMultiPlayerOver"
+			sprite_disabled="pgMultiPlayerDisabled"
 			tooltip="Tired of playing with yourself? Fight against one or more human players in a multiplayer game."
 		>
 			<action on="Press"><![CDATA[
@@ -120,21 +123,33 @@
 			type="button"
 			size="40.234375% 60.15625% 65.234375% 93.4895833%"
 			sprite_over="pgEditorOver"
-                        tooltip="The Scenario Editor link has been temporarily disabled, since Atlas will be handled through a wxWidgets UI."
+			sprite_disabled="pgEditorDisabled"
 		>
-                        <action on="Press"><![CDATA[
+			<action on="Load"><![CDATA[
+				// Disable the Editor button if the Atlas DLL is not active.
+				if (ATLAS_IsAvailable() == true)
+				{
+					this.enabled == true;
+					this.tooltip = "Open 'Atlas', 0 A.D.'s Scenario Editor.";
+				}
+				else
+				{
+					this.enabled == false;
+					this.tooltip = "The Scenario Editor is not currently available.";
+				}
+			</action>
+			<action on="Press"><![CDATA[
 				// Open Atlas Editor.
-				// *** Defunct; use this button to toggle the wxWidgets Atlas UI.
-//                              guiHide		("pg");
-//                              guiUnHide	("atlas");
-                        ]]></action>
-                </object>
+				ATLAS_Run();
+			]]></action>
+		</object>
 
 		<object name="pgOptionsBt"
 			style="pgButton"
 			type="button"
 			size="74.7070312% 42.0572916% 99.7070312% 75.390625%"
 			sprite_over="pgOptionsOver"
+			sprite_disabled="pgOptionsDisabled"
                         tooltip="This will take you to the options menu.  It does not work now, but someday it might."
 		>
 			<action on="Press"><![CDATA[
@@ -148,6 +163,7 @@
 			type="button"
 			size="72.265625% 66.5364583% 97.265625% 99.8697916%"
 			sprite_over="pgHistoryOver"
+			sprite_disabled="pgHistoryDisabled"
                         tooltip="One day you will click this button and learn more about ancient history than any history teach ever taught you."
 		>
 			<action on="Press"><![CDATA[
