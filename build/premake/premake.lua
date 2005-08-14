@@ -118,7 +118,6 @@ function setuppackage (projectname)
 
 	if (OS == "windows") then
 		package.buildflags = { "no-rtti" }
-		package.buildoptions = { "/W4" }
 	else
 		package.buildflags = { }
 	end

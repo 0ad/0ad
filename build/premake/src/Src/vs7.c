@@ -455,7 +455,7 @@ static int writeVcProject(int version, Package* package)
 		else
 			fprintf(file, "                UsePrecompiledHeader=\"0\"\n");
 
-		fprintf(file, "                WarningLevel=\"3\"\n");
+		fprintf(file, "                WarningLevel=\"4\"\n");
 		if (!managed) fprintf(file, "                Detect64BitPortabilityProblems=\"%s\"\n", check64bit ? "TRUE" : "FALSE");
 		fprintf(file, "                DebugInformationFormat=\"%d\"/>\n", symbols);
 
