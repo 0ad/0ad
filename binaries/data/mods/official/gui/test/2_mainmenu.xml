@@ -474,6 +474,9 @@
 	
 						// Get a list of map names.
 						mapArray = buildFileList (mapPath, "*.pmp", false);
+
+						// Alphabetically sort the list.
+						mapArray.sort();
 						
 						for (mapIndex = 0; mapIndex < mapArray.length; mapIndex++)
 						{
