@@ -17,7 +17,7 @@
 #include "VFSUtil.h"
 #include "Loader.h"
 
-#include "ps/XMLWriter.h"
+#include "ps/XML/XMLWriter.h"
 #include "simulation/Entity.h"
 #include "simulation/BaseEntity.h"
 #include "simulation/BaseEntityCollection.h"

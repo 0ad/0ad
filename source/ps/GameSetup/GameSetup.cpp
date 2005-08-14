@@ -70,7 +70,7 @@
 
 #include "Atlas.h"
 #include "Config.h"
-#include "ps/System.h"
+#include "ps/Util.h"
 
 ERROR_GROUP(System);
 ERROR_TYPE(System, SDLInitFailed);

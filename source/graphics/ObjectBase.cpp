@@ -3,7 +3,7 @@
 #include "ObjectBase.h"
 
 #include "ObjectManager.h"
-#include "Xeromyces.h"
+#include "XML/Xeromyces.h"
 #include "CLogger.h"
 
 #define LOG_CATEGORY "graphics"

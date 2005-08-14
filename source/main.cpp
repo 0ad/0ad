@@ -29,7 +29,7 @@ that of Atlas depending on commandline parameters.
 #include "gui/GUI.h"
 #include "ps/CConsole.h"
 #include "ps/Profile.h"
-#include "ps/System.h"
+#include "ps/Util.h"
 #include "ps/Game.h"
 #include "ps/Hotkey.h"
 #include "ps/Interact.h"

@@ -49,6 +49,8 @@ function setuppackage (projectname)
 		"ps",
 		"ps/scripting",
 		"ps/Network",
+		"ps/GameSetup",
+		"ps/XML",
 
 		"simulation",
 		"simulation/scripting",
@@ -70,8 +72,7 @@ function setuppackage (projectname)
 		"terrain",
 		"sound",
 		"scripting",
-		"i18n",
-		"tests"
+		"i18n"
 	}
 
 	if (projectname ~= "sced") then tconcat(source_dirs, {

@@ -7,8 +7,8 @@
 #include "Overlay.h"
 
 #include "Parser.h"
-#include "XeroXMB.h"
-#include "Xeromyces.h"
+#include "ps/XML/XeroXMB.h"
+#include "XML/Xeromyces.h"
 
 #include "CLogger.h"
 #define LOG_CATEGORY "graphics"

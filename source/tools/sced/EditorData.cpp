@@ -23,7 +23,7 @@
 #include "Scheduler.h"
 #include "Loader.h"
 
-#include "XML.h"
+#include "XML/XML.h"
 
 #include "Game.h"
 #include "GameAttributes.h"

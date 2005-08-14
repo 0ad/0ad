@@ -37,7 +37,7 @@ gee@pyro.nu
 #include <vector>
 #include "lib/input.h" // just for EV_PASS
 
-#include "ps/Xeromyces.h"
+#include "ps/XML/Xeromyces.h"
 
 #include "gui/scripting/JSInterface_IGUIObject.h"
 

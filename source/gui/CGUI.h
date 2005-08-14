@@ -30,7 +30,7 @@ ERROR_TYPE(GUI, JSOpenFailed);
 #include "Singleton.h"
 #include "lib/input.h"
 
-#include "Xeromyces.h"
+#include "XML/Xeromyces.h"
 
 extern int gui_handler(const SDL_Event* ev);
 

@@ -4,7 +4,7 @@
 #include "ObjectManager.h"
 #include "CStr.h"
 
-#include "ps/Xeromyces.h"
+#include "ps/XML/Xeromyces.h"
 
 #include "CLogger.h"
 #define LOG_CATEGORY "entity"

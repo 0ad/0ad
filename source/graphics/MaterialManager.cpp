@@ -1,6 +1,6 @@
 #include "precompiled.h"
 #include "ogl.h"
-#include "Xeromyces.h"
+#include "XML/Xeromyces.h"
 #include "MaterialManager.h"
 
 #define SAFE_DELETE(x) \

@@ -25,7 +25,7 @@
 #include "EventHandlers.h"
 #include "EntitySupport.h"
 #include "ScriptObject.h"
-#include "Xeromyces.h"
+#include "XML/Xeromyces.h"
 
 class CBaseEntity : public CJSComplex<CBaseEntity>, public IEventTarget
 {

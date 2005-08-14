@@ -8,9 +8,9 @@
 #include <stack>
 #include <algorithm>
 
-#include "ps/Xeromyces.h"
 #include "ps/CLogger.h"
 #include "lib/res/file/vfs.h"
+#include "Xeromyces.h"
 
 #define ZLIB_DLL
 #include "zlib.h" // for crc32

@@ -16,7 +16,7 @@ ERROR_GROUP(Xeromyces);
 ERROR_TYPE(Xeromyces, XMLOpenFailed);
 ERROR_TYPE(Xeromyces, XMLParseError);
 
-#include "ps/XeroXMB.h"
+#include "XeroXMB.h"
 #include "CVFSFile.h"
 
 class CXeromyces : public XMBFile

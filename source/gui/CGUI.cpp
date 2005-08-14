@@ -27,7 +27,7 @@ gee@pyro.nu
 #include "CTooltip.h"
 #include "MiniMap.h"
 
-#include "ps/Xeromyces.h"
+#include "ps/XML/Xeromyces.h"
 #include "ps/Font.h"
 
 #include "Pyrogenesis.h"
