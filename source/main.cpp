@@ -127,10 +127,6 @@ CStr g_ActiveProfile = "default";
 extern size_t frameCount;
 static bool quit = false;	// break out of main loop
 
-#ifdef ATLAS
-static bool g_Atlas = true; // allows optional startup in Atlas vs non-Atlas (game) modes
-#endif
-
 
 const wchar_t* HardcodedErrorString(int err)
 {
@@ -164,14 +160,186 @@ ERROR_TYPE(System, SDLInitFailed);
 ERROR_TYPE(System, VmodeFailed);
 ERROR_TYPE(System, RequiredExtensionsMissing);
 
-void Testing (void)
+
+//----------------------------------------------------------------------------
+// Atlas (map editor) integration
+//----------------------------------------------------------------------------
+
+static void* const ATLAS_SO_UNAVAILABLE = (void*)-1;
+static void* atlas_so_handle;
+
+
+// free reference to Atlas UI SO (avoids resource leak report)
+static void ATLAS_Shutdown()
 {
-	g_Console->InsertMessage(L"Testing Function Registration");
+	// (avoid dlclose warnings)
+	if(atlas_so_handle != 0 && atlas_so_handle != ATLAS_SO_UNAVAILABLE)
+		dlclose(atlas_so_handle);
 }
 
 
+// return true if the Atlas UI shared object is available;
+// used to disable the main menu editor button if not.
+// note: this actually loads the SO, but that isn't expected to be slow.
+//       call ATLAS_Shutdown at exit to avoid leaking it.
+static bool ATLAS_IsAvailable()
+{
+	// first time: try to open Atlas UI shared object
+	// postcondition: atlas_so_handle valid or == ATLAS_SO_UNAVAILABLE.
+	if(atlas_so_handle == 0)
+	{
+		// since this SO exports a C++ interface, it is critical that
+		// compiler options are the same between app and SO; therefore,
+		// we need to go with the debug version in debug builds.
+		// note: on Windows, the extension is replaced with .dll by dlopen.
+#ifndef NDEBUG
+		const char* so_name = "AtlasUI_d.so";
+#else
+		const char* so_name = "AtlasUI.so";
+#endif
+		// we don't care when relocations take place because this SO contains
+		// very few symbols, so RTLD_LAZY or RTLD_NOW aren't needed.
+		const int flags = RTLD_LOCAL;
+		atlas_so_handle = dlopen(so_name, flags);
+		// open failed (mostly likely SO not found)
+		if(!atlas_so_handle)
+			atlas_so_handle = ATLAS_SO_UNAVAILABLE;
+	}
+
+	return atlas_so_handle != ATLAS_SO_UNAVAILABLE;
+}
 
 
+static bool atlas_is_running;
+
+// if Atlas is running, some parts of the GUI need not be loaded
+// (reduces startup time).
+static bool ATLAS_IsRunning()
+{
+	return atlas_is_running;
+}
+
+
+enum AtlasRunFlags
+{
+	// used by ATLAS_RunIfOnCmdLine; makes any error output go through
+	// DISPLAY_ERROR rather than a GUI dialog box (because GUI init was
+	// skipped to reduce load time).
+	ATLAS_NO_GUI = 1
+};
+
+// starts the Atlas UI.
+static void ATLAS_Run(int argc, char* argv[], int flags = 0)
+{
+	// first check if we can run at all
+	if(!ATLAS_IsAvailable())
+	{
+		if(flags & ATLAS_NO_GUI)
+			DISPLAY_ERROR(L"The Atlas UI was not successfully loaded and therefore cannot be started as requested.");
+		else
+			DISPLAY_ERROR(L"The Atlas UI was not successfully loaded and therefore cannot be started as requested.");// TODO: implement GUI error message
+		return;
+	}
+
+	void(*pStartWindow)(int argc, char* argv[]);
+	*(void**)&pStartWindow = dlsym(atlas_so_handle, "_StartWindow");
+	pStartWindow(argc, argv);
+
+	atlas_is_running = true;
+}
+
+
+// starts the Atlas UI if an "-editor" switch is found on the command line.
+// this is the alternative to starting the main menu and clicking on
+// the editor button; it is much faster because it's called during early
+// init and therefore skips GUI setup.
+// notes:
+// - GUI init still runs, but some GUI setup will be skipped since
+//   ATLAS_IsRunning() will return true.
+// - could be merged into CFG_ParseCommandLineArgs, because that appears
+//   to be called early enough. it's not really worth it because this
+//   code is quite simple and we thus avoid startup order dependency.
+static void ATLAS_RunIfOnCmdLine(int argc, char* argv[])
+{
+	for(int i = 1; i < argc; i++)	// skip program name argument
+	{
+		if(!strcmp(argv[i], "-editor"))
+		{
+			// don't bother removing this param (unnecessary)
+
+			ATLAS_Run(argc, argv, ATLAS_NO_GUI);
+			break;
+		}
+	}
+}
+
+
+//----------------------------------------------------------------------------
+// GUI integration
+//----------------------------------------------------------------------------
+
+
+static void GUI_Init()
+{
+#ifndef NO_GUI
+	{TIMER(ps_gui_init);
+	g_GUI.Initialize();}
+
+	{TIMER(ps_gui_setup_xml);
+	g_GUI.LoadXMLFile("gui/test/setup.xml");}
+	{TIMER(ps_gui_styles_xml);
+	g_GUI.LoadXMLFile("gui/test/styles.xml");}
+	{TIMER(ps_gui_sprite1_xml);
+	g_GUI.LoadXMLFile("gui/test/sprite1.xml");}
+
+	// Atlas is running, we won't need these GUI pages (for now!
+	// what if Atlas switches to in-game mode?!)
+	// TODO: temporary hack until revised GUI structure is completed.
+	if(ATLAS_IsRunning())
+		return;
+
+	{TIMER(ps_gui_1);
+	g_GUI.LoadXMLFile("gui/test/1_init.xml");}
+	{TIMER(ps_gui_2);
+	g_GUI.LoadXMLFile("gui/test/2_mainmenu.xml");}
+	{TIMER(ps_gui_3);
+	g_GUI.LoadXMLFile("gui/test/3_loading.xml");}
+	{TIMER(ps_gui_4);
+	g_GUI.LoadXMLFile("gui/test/4_session.xml");}
+	{TIMER(ps_gui_6);
+	g_GUI.LoadXMLFile("gui/test/6_subwindows.xml");}
+	{TIMER(ps_gui_6_1);
+	g_GUI.LoadXMLFile("gui/test/6_1_manual.xml");}
+	{TIMER(ps_gui_6_2);
+	g_GUI.LoadXMLFile("gui/test/6_2_jukebox.xml");}
+	{TIMER(ps_gui_7);
+	g_GUI.LoadXMLFile("gui/test/7_atlas.xml");}
+	{TIMER(ps_gui_9);
+	g_GUI.LoadXMLFile("gui/test/9_global.xml");}
+#endif
+}
+
+
+static void GUI_Shutdown()
+{
+#ifndef NO_GUI
+	g_GUI.Destroy();
+	delete &g_GUI;
+#endif
+}
+
+
+// display progress / description in loading screen
+static void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task)
+{
+#ifndef NO_GUI
+	CStrW i18n_description = I18n::translate(pending_task);
+	JSString* js_desc = StringConvert::wstring_to_jsstring(g_ScriptingHost.getContext(), i18n_description);
+	g_ScriptingHost.SetGlobal("g_Progress", INT_TO_JSVAL(percent)); 
+	g_ScriptingHost.SetGlobal("g_LoadDescription", STRING_TO_JSVAL(js_desc));
+	g_GUI.SendEventToAll("progress");
+#endif
+}
 
 
 //----------------------------------------------------------------------------
@@ -525,7 +693,7 @@ void kill_mainloop()
 	quit = true;
 }
 
-static int handler(const SDL_Event* ev)
+static int MainInputHandler(const SDL_Event* ev)
 {
 	int c;
 
@@ -621,7 +789,7 @@ void EndGame()
 /////////////////////////////////////////////////////////////////////////////////////////////
 // RenderNoCull: render absolutely everything to a blank frame to force renderer
 // to load required assets
-void RenderNoCull()
+static void RenderNoCull()
 {
 	g_Renderer.BeginFrame();
 
@@ -892,60 +1060,44 @@ static void InitPs()
 		loadHotkeys();
 	}
 
-#ifndef NO_GUI
-	{
-		// GUI uses VFS, so this must come after VFS init.
-		{TIMER(ps_gui_init);
-		g_GUI.Initialize();}
-
-		{TIMER(ps_gui_setup_xml);
-		g_GUI.LoadXMLFile("gui/test/setup.xml");}
-		{TIMER(ps_gui_styles_xml);
-		g_GUI.LoadXMLFile("gui/test/styles.xml");}
-		{TIMER(ps_gui_sprite1_xml);
-		g_GUI.LoadXMLFile("gui/test/sprite1.xml");}
-	}
-
-	// Temporary hack until revised GUI structure is completed.
-#ifdef ATLAS
-	if (! g_Atlas)
-#endif
-	{
-//	TIMER(ps_gui_hack)
-
-		{TIMER(ps_gui_1);
-		g_GUI.LoadXMLFile("gui/test/1_init.xml");}
-		{TIMER(ps_gui_2);
-		g_GUI.LoadXMLFile("gui/test/2_mainmenu.xml");}
-		{TIMER(ps_gui_3);
-		g_GUI.LoadXMLFile("gui/test/3_loading.xml");}
-		{TIMER(ps_gui_4);
-		g_GUI.LoadXMLFile("gui/test/4_session.xml");}
-		{TIMER(ps_gui_6);
-		g_GUI.LoadXMLFile("gui/test/6_subwindows.xml");}
-		{TIMER(ps_gui_6_1);
-		g_GUI.LoadXMLFile("gui/test/6_1_manual.xml");}
-		{TIMER(ps_gui_6_2);
-		g_GUI.LoadXMLFile("gui/test/6_2_jukebox.xml");}
-		{TIMER(ps_gui_7);
-		g_GUI.LoadXMLFile("gui/test/7_atlas.xml");}
-		{TIMER(ps_gui_9);
-		g_GUI.LoadXMLFile("gui/test/9_global.xml");}
-	}
-
-//	{
-//	TIMER(ps_gui_hello_xml);
-//		g_GUI.LoadXMLFile("gui/test/hello.xml");
-//	}
-#endif
+	// GUI uses VFS, so this must come after VFS init.
+	GUI_Init();
 }
 
-static void psShutdown()
+
+static void InitInput()
 {
+	// register input handlers
+	// This stack is constructed so the first added, will be the last
+	//  one called. This is important, because each of the handlers
+	//  has the potential to block events to go further down
+	//  in the chain. I.e. the last one in the list added, is the
+	//  only handler that can block all messages before they are
+	//  processed.
+	in_add_handler(game_view_handler);
+
+	in_add_handler(interactInputHandler);
+
+	in_add_handler(conInputHandler);
+
+	in_add_handler(profilehandler);
+
+	in_add_handler(hotkeyInputHandler); 
+
+	// gui_handler needs to be after (i.e. called before!) the hotkey handler
+	// so that input boxes can be typed in without setting off hotkeys.
 #ifndef NO_GUI
-	g_GUI.Destroy();
-	delete &g_GUI;
+	in_add_handler(gui_handler);
 #endif
+
+	// must be after gui_handler. Should mayhap even be last.
+	in_add_handler(MainInputHandler);
+}
+
+
+static void ShutdownPs()
+{
+	GUI_Shutdown();
 
 	delete g_Console;
 
@@ -1051,27 +1203,19 @@ static int ProgressiveLoad()
 		break;
 	}
 
-#ifndef NO_GUI
-	// display progress / description in loading screen
-	CStrW i18n_description = I18n::translate(description);
-	JSString* js_desc = StringConvert::wstring_to_jsstring(g_ScriptingHost.getContext(), i18n_description);
-	g_ScriptingHost.SetGlobal("g_Progress", INT_TO_JSVAL(progress_percent)); 
-	g_ScriptingHost.SetGlobal("g_LoadDescription", STRING_TO_JSVAL(js_desc));
-	g_GUI.SendEventToAll("progress");
-#endif
-
+	GUI_DisplayLoadProgress(progress_percent, description);
 	return 0;
 }
 
 
 
-u64 PREVTSC;
-
 static void Shutdown()
 {
 	MICROLOG(L"Shutdown");
 
-	psShutdown(); // Must delete g_GUI before g_ScriptingHost
+	ATLAS_Shutdown();
+
+	ShutdownPs(); // Must delete g_GUI before g_ScriptingHost
 
 	if (g_Game)
 		EndGame();
@@ -1134,7 +1278,7 @@ static void Shutdown()
 
 // workaround for VC7 EBP-trashing bug, which confuses the stack trace code.
 #if MSC_VERSION
-#pragma optimize("", off)
+# pragma optimize("", off)
 #endif
 
 static void Init(int argc, char* argv[], bool setup_gfx = true)
@@ -1185,6 +1329,9 @@ debug_printf("INIT &argc=%p &argv=%p\n", &argc, &argv);
 	MICROLOG(L"init i18n");
 	I18n::LoadLanguage(NULL);
 
+	// should be done before the bulk of GUI init because it prevents
+	// most loads from happening (since ATLAS_IsRunning will return true).
+	ATLAS_RunIfOnCmdLine(argc, argv);
 
 	// Set up the console early, so that debugging
 	// messages can be logged to it. (The console's size
@@ -1290,33 +1437,7 @@ TIMER(init_after_InitRenderer);
 	// so you need to run it again and tell it to break on the one before.)
 //	debug_heap_enable(DEBUG_HEAP_ALL);
 
-	// register input handlers
-	{
-		// This stack is constructed so the first added, will be the last
-		//  one called. This is important, because each of the handlers
-		//  has the potential to block events to go further down
-		//  in the chain. I.e. the last one in the list added, is the
-		//  only handler that can block all messages before they are
-		//  processed.
-		in_add_handler(game_view_handler);
-
-		in_add_handler(interactInputHandler);
-
-		in_add_handler(conInputHandler);
-
-		in_add_handler(profilehandler);
-
-		in_add_handler(hotkeyInputHandler); 
-
-		// I don't know how much this screws up, but the gui_handler needs
-		//  to be after the hotkey, so that input boxes can be typed in
-		//  without setting off hotkeys.
-#ifndef NO_GUI
-		in_add_handler(gui_handler);
-#endif
-
-		in_add_handler(handler); // must be after gui_handler. Should mayhap even be last.
-	}
+	InitInput();
 
 	oglCheck();
 
@@ -1346,12 +1467,10 @@ TIMER(init_after_InitRenderer);
 #endif
 		g_Camera.UpdateFrustum();
 	}
-
-	g_Console->RegisterFunc(Testing, L"Testing");
 }
 
 #if MSC_VERSION
-#pragma optimize("", on)	// restore; see above.
+# pragma optimize("", on)	// restore; see above.
 #endif
 
 
@@ -1495,26 +1614,16 @@ int main(int argc, char* argv[])
 {
 	debug_printf("MAIN &argc=%p &argv=%p\n", &argc, &argv);
 
-#ifdef ATLAS
-	if (g_Atlas)
-	{
-		extern void BeginAtlas(int, char**);
-		BeginAtlas(argc, argv);
-	}
-	else
-#endif
-	{
-		Init(argc, argv, true);
+	Init(argc, argv, true);
 
-		// Optionally, do some simple tests to ensure things aren't broken
-		//	extern void PerformTests();
-		//	PerformTests();
+	// Optionally, do some simple tests to ensure things aren't broken
+	//	extern void PerformTests();
+	//	PerformTests();
 
-		while(!quit)
-			Frame();
+	while(!quit)
+		Frame();
 
-		Shutdown();
-	}
+	Shutdown();
 
 	exit(0);
 }

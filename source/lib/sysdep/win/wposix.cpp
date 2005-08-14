@@ -754,6 +754,67 @@ int munmap(void* start, size_t UNUSED(len))
 }
 
 
+//-----------------------------------------------------------------------------
+// DLL
+//-----------------------------------------------------------------------------
+
+static HMODULE HMODULE_from_void(void* handle)
+{
+	return (HMODULE)handle;
+}
+
+static void* void_from_HMODULE(HMODULE hModule)
+{
+	return (void*)hModule;
+}
+
+
+int dlclose(void* handle)
+{
+	BOOL ok = FreeLibrary(HMODULE_from_void(handle));
+	if(!ok)
+		debug_warn("dlclose failed");
+	return ok? 0 : -1;
+}
+
+
+char* dlerror(void)
+{
+	return 0;
+}
+
+
+void* dlopen(const char* so_name, int flags)
+{
+	if(flags & RTLD_GLOBAL)
+		debug_warn("dlopen: unsupported flag(s)");
+
+	// if present, strip .so extension; add .dll extension
+	char dll_name[MAX_PATH];
+	strcpy_s(dll_name, ARRAY_SIZE(dll_name)-4, so_name);
+	char* ext = strrchr(dll_name, '.');
+	if(!ext)
+		ext = dll_name + strlen(dll_name);
+	strcpy(ext, ".dll");	// safe
+
+	HMODULE hModule = LoadLibrary(dll_name);
+	if(!hModule)
+		debug_warn("dlopen failed");
+	return void_from_HMODULE(hModule);
+}
+
+
+void* dlsym(void* handle, const char* sym_name)
+{
+	HMODULE hModule = HMODULE_from_void(handle);
+	void* sym = GetProcAddress(hModule, sym_name);
+	if(!sym)
+		debug_warn("dlsym failed");
+	return sym;
+}
+
+
+//-----------------------------------------------------------------------------
 
 
 int uname(struct utsname* un)
