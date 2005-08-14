@@ -14,6 +14,11 @@
 #include "Matrix3D.h"
 #include "Quaternion.h"
 
+#ifndef PERFORM_SELF_TEST
+#define PERFORM_SELF_TEST 0
+#endif
+
+
 CMatrix3D::CMatrix3D ()
 {
 }
@@ -477,3 +482,38 @@ void CMatrix3D::SetRotation(const CQuaternion& quat)
 }
 
 
+//----------------------------------------------------------------------------
+// built-in self test
+//----------------------------------------------------------------------------
+
+#if PERFORM_SELF_TEST
+namespace test {
+
+static void test1()
+{
+	CMatrix3D m;
+	srand(0);
+	for (int i = 0; i < 4; ++i)
+	{
+		for (int j = 0; j < 16; ++j)
+			m._data[j] = -1.0f + 2.0f*(rand()/(float)RAND_MAX);
+		CMatrix3D n;
+		m.GetInverse(n);
+		m *= n;
+		for (int x = 0; x < 4; ++x)
+			for (int y = 0; y < 4; ++y)
+				debug_assert(abs(m(x,y) - (x==y ? 1.0f : 0.0f)) < 0.0001f);
+	}
+}
+
+
+static int run_tests()
+{
+	test1();
+	return 0;
+}
+
+static int dummy = run_tests();
+
+}	// namespace test
+#endif	// #if PERFORM_SELF_TEST

@@ -5,6 +5,11 @@
 #include "ps/CLogger.h"
 #include "lib/res/file/vfs.h"
 
+#ifndef PERFORM_SELF_TEST
+#define PERFORM_SELF_TEST 0
+#endif
+
+
 // TODO (maybe): Write to the VFS handle frequently, instead of buffering
 // the entire file, so that large files get written faster.
 
@@ -171,3 +176,71 @@ template <> void XMLWriter_File::ElementAttribute<CStrW>(const char* name, const
 {
 	ElementAttribute(name, value.ToUTF8(), newelement);
 }
+
+
+//----------------------------------------------------------------------------
+// built-in self test
+//----------------------------------------------------------------------------
+
+#if PERFORM_SELF_TEST
+namespace test {
+
+static void test1()
+{
+	XML_Start("utf-8");
+	XML_Doctype("Scenario", "/maps/scenario.dtd");
+
+	{
+		XML_Element("Scenario");
+		{
+			XML_Comment("Comment test.");
+			XML_Comment("Comment test again.");
+			{
+				XML_Element("a");
+				XML_Attribute("one", 1);
+				XML_Attribute("two", "TWO");
+				XML_Text("b");
+				XML_Text(" (etc)");
+			}
+			{
+				XML_Element("c");
+				XML_Text("d");
+			}
+			XML_Setting("c2", "d2");
+			{
+				XML_Element("e");
+				{
+					{
+						XML_Element("f");
+						XML_Text("g");
+					}
+					{
+						XML_Element("h");
+					}
+					{
+						XML_Element("i");
+						XML_Attribute("j", 1.23);
+						{
+							XML_Element("k");
+							XML_Attribute("l", 2.34);
+							XML_Text("m");
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// For this test to be useful, it should actually test something.
+}
+
+static int run_tests()
+{
+	test1();
+	return 0;
+}
+
+static int dummy = run_tests();
+
+}	// namespace test
+#endif	// #if PERFORM_SELF_TEST
