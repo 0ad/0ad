@@ -127,20 +127,20 @@
 		>
 			<action on="Load"><![CDATA[
 				// Disable the Editor button if the Atlas DLL is not active.
-				if (ATLAS_IsAvailable() == true)
-				{
-					this.enabled == true;
-					this.tooltip = "Open 'Atlas', 0 A.D.'s Scenario Editor.";
-				}
-				else
-				{
-					this.enabled == false;
+//				if (ATLAS_IsAvailable() == true)
+//				{
+//					this.enabled = true;
+//					this.tooltip = "Open 'Atlas', 0 A.D.'s Scenario Editor.";
+//				}
+//				else
+//				{
+					this.enabled = false;
 					this.tooltip = "The Scenario Editor is not currently available.";
-				}
-			</action>
+//				}
+			]]></action>
 			<action on="Press"><![CDATA[
 				// Open Atlas Editor.
-				ATLAS_Run();
+//				ATLAS_Run();
 			]]></action>
 		</object>
 
