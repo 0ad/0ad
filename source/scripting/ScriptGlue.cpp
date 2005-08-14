@@ -641,7 +641,7 @@ JSBool _rewriteMaps( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UN
 {
 	REQUIRE_NO_PARAMS(_rewriteMaps);
 
-	CMapWriter::RewriteAllMaps(g_Game->GetWorld()->GetTerrain(), g_Game->GetWorld()->GetUnitManager(), &g_LightEnv);
+	g_Game->GetWorld()->RewriteMap();
 	return JS_TRUE;
 }
 

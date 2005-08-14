@@ -49,7 +49,7 @@ int in_add_handler(EventHandler handler)
 
 
 // send event to each handler (newest first) until one returns true
-static void dispatch_event(const SDL_Event* event)
+void dispatch_event(const SDL_Event* event)
 {
 	for(int i = handler_stack_top-1; i >= 0; i--)
 	{
@@ -140,7 +140,20 @@ int in_playback(const char* fn)
 }
 
 
-void in_get_events()
+
+void in_dispatch_event(const SDL_Event* event)
+{
+	if(state == RECORD)
+	{
+		fwrite(&game_ticks, sizeof(u32), 1, f);
+		fwrite(event, sizeof(SDL_Event), 1, f);
+	}
+
+	dispatch_event(event);
+}
+
+
+void in_dispatch_recorded_events()
 {
 	SDL_Event event;
 
@@ -158,22 +171,6 @@ exit(0x73c07d);
 }
 		next_event_time += time_adjust;			
 
-		dispatch_event(&event);	
-	}
-
-	// get new events
-	while(SDL_PollEvent(&event))
-	{
-		if(state == RECORD)
-		{
-			fwrite(&game_ticks, sizeof(u32), 1, f);
-			fwrite(&event, sizeof(SDL_Event), 1, f);
-		}
-
-		if(state == PLAYBACK)
-			if(event.type == SDL_KEYDOWN)
-				in_stop();
-
-		dispatch_event(&event);
+		in_dispatch_event(&event);	
 	}
 }

@@ -4,8 +4,6 @@
 
 #include "ScriptingHost.h"
 
-#include "LightEnv.h"	// required by g_LightEnv declaration below.
-
 // referenced by ScriptingHost.cpp
 extern JSFunctionSpec ScriptFunctionTable[];
 extern JSPropertySpec ScriptGlobalTable[];
@@ -18,7 +16,6 @@ extern CStr g_CursorName;
 extern void StartGame();
 extern void EndGame();
 // .. other
-extern CLightEnv g_LightEnv;
 #if OS_WIN
 extern int GetVRAMInfo(int&, int&);
 #endif

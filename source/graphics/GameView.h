@@ -6,6 +6,11 @@
 
 #include "scripting/ScriptableObject.h"
 
+// note: cannot forward declare "struct SDL_Event" - that triggers an
+// internal error in VC7.1 at msc1.cpp(2701).
+// we include the full header instead. *sigh*
+#include "sdl.h"
+
 class CGame;
 class CGameAttributes;
 class CWorld;
@@ -96,5 +101,7 @@ public:
 	inline CCamera *GetCamera()
 	{	return &m_Camera; }
 };
+
+extern int game_view_handler(const SDL_Event* ev);
 
 #endif

@@ -1,0 +1,847 @@
+#include "precompiled.h"
+
+#include "lib.h"
+#include "lib/sdl.h"
+#include "lib/ogl.h"
+#include "lib/detect.h"
+#include "lib/timer.h"
+#include "lib/input.h"
+#include "lib/res/res.h"
+#include "lib/res/sound/snd.h"
+#include "lib/res/graphics/tex.h"
+#include "lib/res/graphics/cursor.h"
+
+#include "ps/Profile.h"
+#include "ps/ProfileViewer.h"
+#include "ps/Loader.h"
+#include "ps/Font.h"
+#include "ps/CConsole.h"
+#include "ps/Game.h"
+#include "ps/Interact.h"
+#include "ps/Hotkey.h"
+#include "ps/ConfigDB.h"
+#include "ps/CLogger.h"
+#include "ps/i18n.h"
+#include "ps/Overlay.h"
+#include "ps/StringConvert.h"
+
+#include "graphics/MapReader.h"
+#include "graphics/Terrain.h"
+#include "graphics/TextureManager.h"
+#include "graphics/ObjectManager.h"
+#include "graphics/SkeletonAnimManager.h"
+#include "graphics/LightEnv.h"
+#include "graphics/Model.h"
+#include "graphics/UnitManager.h"
+#include "graphics/MaterialManager.h"
+#include "graphics/MeshManager.h"
+#include "renderer/Renderer.h"
+
+#include "simulation/BaseEntityCollection.h"
+#include "simulation/Entity.h"
+#include "simulation/EntityHandles.h"
+#include "simulation/EntityManager.h"
+#include "simulation/PathfindEngine.h"
+#include "simulation/Scheduler.h"
+#include "simulation/Projectile.h"
+
+#include "scripting/ScriptingHost.h"
+#include "scripting/GameEvents.h"
+#include "scripting/JSInterface_Entity.h"
+#include "scripting/JSInterface_BaseEntity.h"
+#include "scripting/JSInterface_Vector3D.h"
+#include "scripting/JSInterface_Camera.h"
+#include "scripting/JSInterface_Selection.h"
+#include "scripting/JSInterface_Console.h"
+#include "scripting/JSCollection.h"
+#include "scripting/DOMEvent.h"
+#ifndef NO_GUI
+# include "gui/scripting/JSInterface_IGUIObject.h"
+# include "gui/scripting/JSInterface_GUITypes.h"
+# include "gui/GUI.h"
+#endif
+
+#include "sound/CMusicPlayer.h"
+#include "sound/JSI_Sound.h"
+
+#include "Network/SessionManager.h"
+#include "Network/Server.h"
+#include "Network/Client.h"
+
+#include "Atlas.h"
+#include "Config.h"
+#include "ps/System.h"
+
+ERROR_GROUP(System);
+ERROR_TYPE(System, SDLInitFailed);
+ERROR_TYPE(System, VmodeFailed);
+ERROR_TYPE(System, RequiredExtensionsMissing);
+
+#define LOG_CATEGORY "gamesetup"
+
+
+
+
+
+static int SetVideoMode(int w, int h, int bpp, bool fullscreen)
+{
+	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+
+	ulong flags = SDL_OPENGL;
+	if(fullscreen)
+		flags |= SDL_FULLSCREEN;
+	if(!SDL_SetVideoMode(w, h, bpp, flags))
+		return -1;
+
+	glViewport(0, 0, w, h);
+
+#ifndef NO_GUI
+	g_GUI.UpdateResolution();
+#endif
+
+	oglInit();	// required after each mode change
+
+	if(SDL_SetGamma(g_Gamma, g_Gamma, g_Gamma) < 0)
+		debug_warn("SDL_SetGamma failed");
+
+	return 0;
+}
+
+//----------------------------------------------------------------------------
+// GUI integration
+//----------------------------------------------------------------------------
+
+
+void GUI_Init()
+{
+#ifndef NO_GUI
+	{TIMER(ps_gui_init);
+	g_GUI.Initialize();}
+
+	{TIMER(ps_gui_setup_xml);
+	g_GUI.LoadXMLFile("gui/test/setup.xml");}
+	{TIMER(ps_gui_styles_xml);
+	g_GUI.LoadXMLFile("gui/test/styles.xml");}
+	{TIMER(ps_gui_sprite1_xml);
+	g_GUI.LoadXMLFile("gui/test/sprite1.xml");}
+
+	// Atlas is running, we won't need these GUI pages (for now!
+	// what if Atlas switches to in-game mode?!)
+	// TODO: temporary hack until revised GUI structure is completed.
+//	if(ATLAS_IsRunning())
+//		return;
+
+	{TIMER(ps_gui_1);
+	g_GUI.LoadXMLFile("gui/test/1_init.xml");}
+	{TIMER(ps_gui_2);
+	g_GUI.LoadXMLFile("gui/test/2_mainmenu.xml");}
+	{TIMER(ps_gui_3);
+	g_GUI.LoadXMLFile("gui/test/3_loading.xml");}
+	{TIMER(ps_gui_4);
+	g_GUI.LoadXMLFile("gui/test/4_session.xml");}
+	{TIMER(ps_gui_6);
+	g_GUI.LoadXMLFile("gui/test/6_subwindows.xml");}
+	{TIMER(ps_gui_6_1);
+	g_GUI.LoadXMLFile("gui/test/6_1_manual.xml");}
+	{TIMER(ps_gui_6_2);
+	g_GUI.LoadXMLFile("gui/test/6_2_jukebox.xml");}
+	{TIMER(ps_gui_7);
+	g_GUI.LoadXMLFile("gui/test/7_atlas.xml");}
+	{TIMER(ps_gui_9);
+	g_GUI.LoadXMLFile("gui/test/9_global.xml");}
+#endif
+}
+
+
+void GUI_Shutdown()
+{
+#ifndef NO_GUI
+	g_GUI.Destroy();
+	delete &g_GUI;
+#endif
+}
+
+
+void GUI_ShowMainMenu()
+{
+
+}
+
+
+// display progress / description in loading screen
+void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task)
+{
+#ifndef NO_GUI
+	CStrW i18n_description = I18n::translate(pending_task);
+	JSString* js_desc = StringConvert::wstring_to_jsstring(g_ScriptingHost.getContext(), i18n_description);
+	g_ScriptingHost.SetGlobal("g_Progress", INT_TO_JSVAL(percent)); 
+	g_ScriptingHost.SetGlobal("g_LoadDescription", STRING_TO_JSVAL(js_desc));
+	g_GUI.SendEventToAll("progress");
+#endif
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+// RenderNoCull: render absolutely everything to a blank frame to force renderer
+// to load required assets
+static void RenderNoCull()
+{
+	g_Renderer.BeginFrame();
+
+	if (g_Game)
+		g_Game->GetView()->RenderNoCull();
+
+	g_Renderer.FlushFrame();
+	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+	g_Renderer.EndFrame();
+}
+
+
+void Render()
+{
+	MICROLOG(L"begin frame");
+
+	oglCheck();
+
+#ifndef NO_GUI // HACK: because colour-parsing requires the GUI
+	CStr skystring = "61 193 255";
+	CFG_GET_USER_VAL("skycolor", String, skystring);
+	CColor skycol;
+	GUI<CColor>::ParseString(skystring, skycol);
+	g_Renderer.SetClearColor(skycol.Int());
+#endif
+
+	// start new frame
+	g_Renderer.BeginFrame();
+
+	oglCheck();
+
+	if (g_Game && g_Game->IsGameStarted())
+	{
+		g_Game->GetView()->Render();
+
+		oglCheck();
+
+		MICROLOG(L"flush frame");
+		PROFILE_START( "flush frame" );
+		g_Renderer.FlushFrame();
+		PROFILE_END( "flush frame" );
+
+		glPushAttrib( GL_ENABLE_BIT );
+		glDisable( GL_LIGHTING );
+		glDisable( GL_TEXTURE_2D );
+		glDisable( GL_DEPTH_TEST );
+
+		if( g_EntGraph )
+		{
+			PROFILE( "render entity overlays" );
+			glColor3f( 1.0f, 0.0f, 1.0f );
+
+			MICROLOG(L"render entities");
+			g_EntityManager.renderAll(); // <-- collision outlines, pathing routes
+		}
+
+		PROFILE_START( "render selection" );
+		g_Mouseover.renderSelectionOutlines();
+		g_Selection.renderSelectionOutlines();
+		PROFILE_END( "render selection" );
+
+		glPopAttrib();
+	}
+	else
+	{
+		PROFILE_START( "flush frame" );
+		g_Renderer.FlushFrame();
+		PROFILE_END( "flush frame" );
+	}
+
+	oglCheck();
+
+	PROFILE_START( "render fonts" );
+	MICROLOG(L"render fonts");
+	// overlay mode
+	glPushAttrib(GL_ENABLE_BIT);
+	glEnable(GL_TEXTURE_2D);
+	glDisable(GL_CULL_FACE);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_BLEND);
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	glOrtho(0.f, (float)g_xres, 0.f, (float)g_yres, -1.f, 1000.f);
+
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+
+	PROFILE_END( "render fonts" );
+
+	oglCheck();
+
+#ifndef NO_GUI
+	// Temp GUI message GeeTODO
+	glLoadIdentity();
+	MICROLOG(L"render GUI");
+	PROFILE_START( "render gui" );
+	g_GUI.Draw();
+	PROFILE_END( "render gui" );
+#endif
+
+	oglCheck();
+
+	// Text:
+
+	// Use the GL_ALPHA texture as the alpha channel with a flat colouring
+	glDisable(GL_ALPHA_TEST);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	// Added --
+	glEnable(GL_TEXTURE_2D);
+	// -- GL
+
+	oglCheck();
+
+	{
+		PROFILE( "render console" );
+		glLoadIdentity();
+
+		MICROLOG(L"render console");
+		CFont font("console");
+		font.Bind();
+		g_Console->Render();
+	}
+
+	oglCheck();
+
+
+	// Profile information
+
+	PROFILE_START( "render profiling" );
+	RenderProfile();
+	PROFILE_END( "render profiling" );
+
+	oglCheck();
+
+	if (g_Game && g_Game->IsGameStarted())
+	{
+		PROFILE( "render selection overlays" );
+		g_Mouseover.renderOverlays();
+		g_Selection.renderOverlays();
+	}
+
+	oglCheck();
+
+	// Draw the cursor (or set the Windows cursor, on Windows)
+	cursor_draw(g_CursorName, g_mouse_x, g_mouse_y);
+
+	// restore
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glPopMatrix();
+	glPopAttrib();
+
+	MICROLOG(L"end frame");
+	g_Renderer.EndFrame();
+
+	oglCheck();
+}
+
+
+
+static void InitScripting()
+{
+	TIMER(InitScripting);
+	// Create the scripting host.  This needs to be done before the GUI is created.
+	new ScriptingHost;
+
+	// It would be nice for onLoad code to be able to access the setTimeout() calls.
+	new CScheduler;
+
+	// Register the JavaScript interfaces with the runtime
+	CEntity::ScriptingInit();
+	CBaseEntity::ScriptingInit();
+	JSI_Sound::ScriptingInit();
+	CProfileNode::ScriptingInit();
+
+#ifndef NO_GUI
+	JSI_IGUIObject::init();
+	JSI_GUITypes::init();
+#endif
+	JSI_Vector3D::init();
+	EntityCollection::Init( "EntityCollection" );
+	SColour::ScriptingInit();
+	CPlayer::ScriptingInit();
+
+	PlayerCollection::Init( "PlayerCollection" );
+	CDamageType::ScriptingInit();
+	CJSComplexPropertyAccessor<CEntity>::ScriptingInit(); // <-- Doesn't really matter which we use, but we know CJSPropertyAccessor<T> is already being compiled for T = CEntity.
+	CScriptEvent::ScriptingInit();
+	CJSProgressTimer::ScriptingInit();
+	CProjectile::ScriptingInit();
+
+	g_ScriptingHost.DefineConstant( "ORDER_NONE", -1 );
+	g_ScriptingHost.DefineConstant( "ORDER_GOTO", CEntityOrder::ORDER_GOTO );
+	g_ScriptingHost.DefineConstant( "ORDER_PATROL", CEntityOrder::ORDER_PATROL );
+	g_ScriptingHost.DefineConstant( "ORDER_ATTACK", CEntityOrder::ORDER_ATTACK_MELEE );
+	g_ScriptingHost.DefineConstant( "ORDER_GATHER", CEntityOrder::ORDER_GATHER );
+
+#define REG_JS_CONSTANT(_name) g_ScriptingHost.DefineConstant(#_name, _name)
+	REG_JS_CONSTANT(SDL_BUTTON_LEFT);
+	REG_JS_CONSTANT(SDL_BUTTON_MIDDLE);
+	REG_JS_CONSTANT(SDL_BUTTON_RIGHT);
+	REG_JS_CONSTANT(SDL_BUTTON_WHEELUP);
+	REG_JS_CONSTANT(SDL_BUTTON_WHEELDOWN);
+#undef REG_JS_CONSTANT
+
+	CNetMessage::ScriptingInit();
+
+	JSI_Camera::init();
+	JSI_Console::init();
+
+	new CGameEvents;
+}
+
+
+static void InitVfs(const char* argv0)
+{
+	TIMER(InitVfs);
+	// set current directory to "$game_dir/data".
+	// this is necessary because it is otherwise unknown,
+	// especially if run from a shortcut / symlink.
+	//
+	// "../data" is relative to the executable (in "$game_dir/system").
+	//
+	// rationale for data/ being root: untrusted scripts must not be
+	// allowed to overwrite critical game (or worse, OS) files.
+	// the VFS prevents any accesses to files above this directory.
+	int err = file_rel_chdir(argv0, "../data");
+	if(err < 0)
+		throw err;
+
+	{
+		vfs_init();
+		vfs_mount("", "mods/official", VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES|VFS_MOUNT_WATCH);
+		vfs_mount("screenshots/", "screenshots");
+		vfs_mount("profiles/", "profiles", VFS_MOUNT_RECURSIVE);
+	}
+	extern void vfs_dump_stats();
+	vfs_dump_stats();
+	// don't try vfs_display yet: SDL_Init hasn't yet redirected stdout
+}
+
+
+static void InitPs()
+{
+	// console
+	{
+		TIMER(ps_console);
+
+		g_Console->UpdateScreenSize(g_xres, g_yres);
+
+		// Calculate and store the line spacing
+		CFont font("console");
+		g_Console->m_iFontHeight = font.GetLineSpacing();
+		// Offset by an arbitrary amount, to make it fit more nicely
+		g_Console->m_iFontOffset = 9;
+	}
+
+	// language and hotkeys
+	{
+		TIMER(ps_lang_hotkeys);
+
+		std::string lang = "english";
+		CFG_GET_SYS_VAL("language", String, lang);
+		I18n::LoadLanguage(lang.c_str());
+
+		loadHotkeys();
+	}
+
+	// GUI uses VFS, so this must come after VFS init.
+	GUI_Init();
+}
+
+
+static void InitInput()
+{
+	// register input handlers
+	// This stack is constructed so the first added, will be the last
+	//  one called. This is important, because each of the handlers
+	//  has the potential to block events to go further down
+	//  in the chain. I.e. the last one in the list added, is the
+	//  only handler that can block all messages before they are
+	//  processed.
+	in_add_handler(game_view_handler);
+
+	in_add_handler(interactInputHandler);
+
+	in_add_handler(conInputHandler);
+
+	in_add_handler(profilehandler);
+
+	in_add_handler(hotkeyInputHandler); 
+}
+
+
+static void ShutdownPs()
+{
+	GUI_Shutdown();
+
+	delete g_Console;
+
+	// disable the special Windows cursor, or free textures for OGL cursors
+	cursor_draw(0, g_mouse_x, g_mouse_y);
+
+	// close down Xerces if it was loaded
+	CXeromyces::Terminate();
+
+	// Unload the real language (since it depends on the scripting engine,
+	// which is going to be killed later) and use the English fallback messages
+	I18n::LoadLanguage(NULL);
+}
+
+
+static void InitRenderer()
+{
+	TIMER(InitRenderer);
+	// create renderer
+	new CRenderer;
+
+	// set renderer options from command line options - NOVBO must be set before opening the renderer
+	g_Renderer.SetOptionBool(CRenderer::OPT_NOVBO,g_NoGLVBO);
+	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS,g_Shadows);
+	g_Renderer.SetOptionBool(CRenderer::OPT_NOPBUFFER,g_NoPBuffer);
+	g_Renderer.SetOptionFloat(CRenderer::OPT_LODBIAS, g_LodBias);
+
+	// create terrain related stuff
+	new CTextureManager;
+
+	// create the material manager
+	new CMaterialManager;
+	new CMeshManager;
+
+	// create actor related stuff
+	new CSkeletonAnimManager;
+	new CObjectManager;
+	new CUnitManager;
+
+	MICROLOG(L"init renderer");
+	g_Renderer.Open(g_xres,g_yres,g_bpp);
+
+	// Setup default lighting environment. Since the Renderer accesses the
+	// lighting environment through a pointer, this has to be done before
+	// the first Frame.
+	g_LightEnv.m_SunColor=RGBColor(1,1,1);
+	g_LightEnv.SetRotation(DEGTORAD(270));
+	g_LightEnv.SetElevation(DEGTORAD(45));
+	g_LightEnv.m_TerrainAmbientColor=RGBColor(0,0,0);
+	g_LightEnv.m_UnitsAmbientColor=RGBColor(0.4f,0.4f,0.4f);
+	g_Renderer.SetLightEnv(&g_LightEnv);
+
+	// I haven't seen the camera affecting GUI rendering and such, but the
+	// viewport has to be updated according to the video mode
+	SViewPort vp;
+	vp.m_X=0;
+	vp.m_Y=0;
+	vp.m_Width=g_xres;
+	vp.m_Height=g_yres;
+	g_Renderer.SetViewport(vp);
+}
+
+static void InitSDL()
+{
+	MICROLOG(L"init sdl");
+	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_NOPARACHUTE) < 0)
+	{
+		LOG(ERROR, LOG_CATEGORY, "SDL library initialization failed: %s", SDL_GetError());
+		throw PSERROR_System_SDLInitFailed();
+	}
+	atexit(SDL_Quit);
+	SDL_EnableUNICODE(1);
+}
+
+
+
+void EndGame()
+{
+	if (g_NetServer)
+	{
+		delete g_NetServer;
+		g_NetServer=NULL;
+	}
+	else if (g_NetClient)
+	{
+		delete g_NetClient;
+		g_NetClient=NULL;
+	}
+
+	delete g_Game;
+	g_Game=NULL;
+}
+
+
+void Shutdown()
+{
+	MICROLOG(L"Shutdown");
+
+	ATLAS_Shutdown();
+
+	ShutdownPs(); // Must delete g_GUI before g_ScriptingHost
+
+	if (g_Game)
+		EndGame();
+
+	delete &g_Scheduler;
+
+	delete &g_SessionManager;
+
+	delete &g_Mouseover;
+	delete &g_Selection;
+
+	delete &g_Pathfinder;
+	// Managed by CWorld
+	// delete &g_EntityManager;
+
+	delete &g_GameAttributes;
+	delete &g_JSGameEvents;
+
+	delete &g_EntityTemplateCollection;
+
+	delete &g_ScriptingHost;
+
+	// destroy actor related stuff
+	delete &g_UnitMan;
+	delete &g_ObjMan;
+	delete &g_SkelAnimMan;
+
+	delete &g_MaterialManager;
+	delete &g_MeshManager;
+
+	// destroy terrain related stuff
+	delete &g_TexMan;
+
+	// destroy renderer
+	delete &g_Renderer;
+
+	delete &g_ConfigDB;
+
+	// Shut down the network loop
+	CSocketBase::Shutdown();
+
+	// Really shut down the i18n system. Any future calls
+	// to translate() will crash.
+	I18n::Shutdown();
+
+	snd_shutdown();
+
+	vfs_shutdown();
+
+	h_mgr_shutdown();
+	mem_shutdown();
+
+	debug_shutdown();
+
+	delete &g_Logger;
+
+	delete &g_Profiler;
+}
+
+
+// workaround for VC7 EBP-trashing bug, which confuses the stack trace code.
+#if MSC_VERSION
+# pragma optimize("", off)
+#endif
+
+void Init(int argc, char* argv[], bool setup_gfx = true)
+{
+	debug_printf("INIT &argc=%p &argv=%p\n", &argc, &argv);
+
+	MICROLOG(L"Init");
+
+	debug_set_thread_name("main");
+
+	// If you ever want to catch a particular allocation:
+	//_CrtSetBreakAlloc(187);
+
+	// no longer set 24 bit (float) precision by default: for
+	// very long game uptimes (> 1 day; e.g. dedicated server),
+	// we need full precision when calculating the time.
+	// if there's a spot where we want to speed up divides|sqrts,
+	// we can temporarily change precision there.
+	//	_control87(_PC_24, _MCW_PC);
+
+	// detects CPU clock frequency and capabilities, which are prerequisites
+	// for using the TSC as a timer (desirable due to its high resolution).
+	// do this before lengthy init so we can time those accurately.
+	get_cpu_info();
+
+	// Do this as soon as possible, because it chdirs
+	// and will mess up the error reporting if anything
+	// crashes before the working directory is set.
+	MICROLOG(L"init vfs");
+	const char* argv0 = argc? argv[0] : NULL;
+	// ScEd doesn't have a main(argc, argv), and so it has no argv. In that
+	// case, just pass NULL to InitVfs, which will work out the current
+	// directory for itself.
+	InitVfs(argv0);
+
+	// This must come after VFS init, which sets the current directory
+	// (required for finding our output log files).
+	new CLogger;
+
+	// Call LoadLanguage(NULL) to initialise the I18n system, but
+	// without loading an actual language file - translate() will
+	// just show the English key text, which is better than crashing
+	// from a null pointer when attempting to translate e.g. error messages.
+	// Real languages can only be loaded when the scripting system has
+	// been initialised.
+	//
+	// this uses LOG and must therefore come after CLogger init.
+	MICROLOG(L"init i18n");
+	I18n::LoadLanguage(NULL);
+
+	// should be done before the bulk of GUI init because it prevents
+	// most loads from happening (since ATLAS_IsRunning will return true).
+	ATLAS_RunIfOnCmdLine(argc, argv);
+
+	// Set up the console early, so that debugging
+	// messages can be logged to it. (The console's size
+	// and fonts are set later in InitPs())
+	g_Console = new CConsole();
+
+	if(setup_gfx)
+		InitSDL();
+
+	// preferred video mode = current desktop settings
+	// (command line params may override these)
+	get_cur_vmode(&g_xres, &g_yres, &g_bpp, &g_freq);
+
+	new CProfileManager;	// before any script code
+
+	MICROLOG(L"init scripting");
+	InitScripting();	// before GUI
+
+	// g_ConfigDB, command line args, globals
+	CONFIG_Init(argc, argv);
+
+	// GUI is notified in SetVideoMode, so this must come before that.
+#ifndef NO_GUI
+	new CGUI;
+#endif
+
+	bool windowed = false;
+	CFG_GET_SYS_VAL("windowed", Bool, windowed);
+
+	if (setup_gfx)
+	{
+		MICROLOG(L"set vmode");
+
+		if(SetVideoMode(g_xres, g_yres, 32, !windowed) < 0)
+		{
+			LOG(ERROR, LOG_CATEGORY, "Could not set %dx%d graphics mode: %s", g_xres, g_yres, SDL_GetError());
+			throw PSERROR_System_VmodeFailed();
+		}
+		SDL_WM_SetCaption("0 A.D.", "0 A.D.");
+	}
+
+	oglCheck();
+
+	if(!g_Quickstart)
+	{
+		WriteSystemInfo();
+		vfs_display();
+	}
+	else
+	{
+		// speed up startup by disabling all sound
+		// (OpenAL init will be skipped).
+		// must be called before first snd_open.
+		snd_disable(true);
+	}
+
+	// (must come after SetVideoMode, since it calls oglInit)
+	const char* missing = oglHaveExtensions(0, "GL_ARB_multitexture", "GL_ARB_texture_env_combine", "GL_ARB_texture_env_dot3", 0);
+	if(missing)
+	{
+		wchar_t buf[500];
+		const wchar_t* fmt =
+			L"The %hs extension doesn't appear to be available on your computer. "
+			L"The game may still work, though - you are welcome to try at your own risk. "
+			L"If not or it doesn't look right, upgrade your graphics card.";
+		swprintf(buf, ARRAY_SIZE(buf), fmt, missing);
+		DISPLAY_ERROR(buf);
+		// TODO: i18n
+	}
+
+	// enable/disable VSync
+	// note: "GL_EXT_SWAP_CONTROL" is "historical" according to dox.
+#if OS_WIN
+	if(oglHaveExtension("WGL_EXT_swap_control"))
+		wglSwapIntervalEXT(g_VSync? 1 : 0);
+#endif
+
+	MICROLOG(L"init ps");
+	InitPs();
+
+	oglCheck();
+	InitRenderer();
+
+	TIMER(init_after_InitRenderer);
+
+	// This needs to be done after the renderer has loaded all its actors...
+	new CBaseEntityCollection;
+	// CEntityManager is managed by CWorld
+	//new CEntityManager;
+	new CPathfindEngine;
+	new CSelectedEntities;
+	new CMouseoverEntities;
+
+	new CSessionManager;
+
+	new CGameAttributes;
+
+	// Register a few Game/Network JS globals
+	g_ScriptingHost.SetGlobal("g_GameAttributes", OBJECT_TO_JSVAL(g_GameAttributes.GetScript()));
+
+	// Check for heap corruption after every allocation. Very, very slowly.
+	// (And it highlights the allocation just after the one you care about,
+	// so you need to run it again and tell it to break on the one before.)
+	//	debug_heap_enable(DEBUG_HEAP_ALL);
+
+	InitInput();
+
+	oglCheck();
+
+#ifndef NO_GUI
+	g_GUI.SendEventToAll("load");
+#endif
+
+	if (setup_gfx)
+	{
+		MICROLOG(L"render blank");
+		// render everything to a blank frame to force renderer to load everything
+		RenderNoCull();
+	}
+
+	if (g_FixedFrameTiming) {
+		CCamera &g_Camera=*g_Game->GetView()->GetCamera();
+#if 0		// TOPDOWN
+		g_Camera.SetProjection(1.0f,10000.0f,DEGTORAD(90));
+		g_Camera.m_Orientation.SetIdentity();
+		g_Camera.m_Orientation.RotateX(DEGTORAD(90));
+		g_Camera.m_Orientation.Translate(CELL_SIZE*250*0.5, 250, CELL_SIZE*250*0.5);
+#else		// std view
+		g_Camera.SetProjection(1.0f,10000.0f,DEGTORAD(20));
+		g_Camera.m_Orientation.SetXRotation(DEGTORAD(30));
+		g_Camera.m_Orientation.RotateY(DEGTORAD(-45));
+		g_Camera.m_Orientation.Translate(350, 350, -275);
+#endif
+		g_Camera.UpdateFrustum();
+	}
+}
+
+#if MSC_VERSION
+# pragma optimize("", on)	// restore; see above.
+#endif
+
+

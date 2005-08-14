@@ -21,7 +21,7 @@ gee@pyro.nu
 #define LOG_CATEGORY "gui"
 
 extern bool keys[SDLK_LAST];
-extern bool mouseButtons[5];
+extern bool mouse_buttons[5];
 
 using namespace std;
 
@@ -562,7 +562,7 @@ void CInput::HandleMessage(const SGUIMessage &Message)
 		{
 			// Actually, first we need to re-check that the mouse button is
 			//  really pressed (it can be released while outside the control.
-			if (!mouseButtons[SDL_BUTTON_LEFT])
+			if (!mouse_buttons[SDL_BUTTON_LEFT])
 				m_SelectingText = false;
 			else
 				m_iBufferPos = GetMouseHoveringTextPosition();

@@ -49,7 +49,10 @@ typedef int (*EventHandler)(const SDL_Event*);
 // events are passed to other handlers if handler returns EV_PASS.
 extern int in_add_handler(EventHandler handler);
 
-extern void in_get_events(void);
+// send event to each handler (newest first) until one returns true
+extern void in_dispatch_event(const SDL_Event* event);
+
+extern void in_dispatch_recorded_events();
 
 extern int in_record(const char* fn);
 extern int in_playback(const char* fn);

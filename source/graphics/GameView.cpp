@@ -490,7 +490,7 @@ Just commented out to make it more obvious it's not in use.
 	CVector3D rightwards = upwards.Cross(forwards);
 
 	// Click and drag to look around
-	if (mouseButtons[0])
+	if (mouse_buttons[0])
 	{
 		// Untranslate the camera, so it rotates around the correct point
 		CVector3D position = m_Camera.m_Orientation.GetTranslation();
@@ -532,9 +532,9 @@ Just commented out to make it more obvious it's not in use.
 
 	static float height_delta = 0.0f;
 
-	if (mouseButtons[SDL_BUTTON_WHEELUP])
+	if (mouse_buttons[SDL_BUTTON_WHEELUP])
 		height_delta -= 4.0f;
-	else if (mouseButtons[SDL_BUTTON_WHEELDOWN])
+	else if (mouse_buttons[SDL_BUTTON_WHEELDOWN])
 		height_delta += 4.0f;
 
 	const float height_speed = 0.2f;
@@ -566,8 +566,8 @@ Just commented out to make it more obvious it's not in use.
 	// RC - added ScEd style zoom in and out (actually moving camera, rather than fudging fov)	
 
 	float dir=0;
-	if (mouseButtons[SDL_BUTTON_WHEELUP]) dir=-1;
-	else if (mouseButtons[SDL_BUTTON_WHEELDOWN]) dir=1;	
+	if (mouse_buttons[SDL_BUTTON_WHEELUP]) dir=-1;
+	else if (mouse_buttons[SDL_BUTTON_WHEELDOWN]) dir=1;	
 
 	float factor=dir*dir;
 	if (factor) {

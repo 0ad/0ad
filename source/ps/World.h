@@ -38,6 +38,8 @@ public:
 	*/
 	void Initialize(CGameAttributes *pGameAttributes);
 
+	// provided for JS _rewritemaps function
+	void RewriteMap();
 
 	inline CTerrain *GetTerrain()
 	{	return &m_Terrain; }
@@ -55,5 +57,9 @@ private:
 #include "Game.h"
 ERROR_SUBGROUP(Game, World);
 ERROR_TYPE(Game_World, MapLoadFailed);
+
+// rationale: see definition.
+class CLightEnv;
+extern CLightEnv g_LightEnv;
 
 #endif

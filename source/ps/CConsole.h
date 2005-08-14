@@ -21,6 +21,11 @@
 #include "sdl.h"
 #include "CStr.h"
 
+// note: cannot forward declare "struct SDL_Event" - that triggers an
+// internal error in VC7.1 at msc1.cpp(2701).
+// we include the full header instead. *sigh*
+#include "lib/sdl.h"
+
 #ifndef CCONSOLE_H
 #define CCONSOLE_H
 
@@ -116,5 +121,7 @@ public:
 };
 
 extern CConsole* g_Console;
+
+extern int conInputHandler(const SDL_Event* ev);
 
 #endif

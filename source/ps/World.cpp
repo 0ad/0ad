@@ -15,9 +15,12 @@
 #include "timer.h"
 #include "Loader.h"
 #include "LoaderThunks.h"
+#include "graphics/MapWriter.h"
 
 #define LOG_CATEGORY "world"
 
+// global light settings. this is not a member of CWorld because it is
+// passed to the renderer before CWorld exists.
 CLightEnv g_LightEnv;
 
 void CWorld::Initialize(CGameAttributes *pAttribs)
@@ -62,4 +65,10 @@ CWorld::~CWorld()
 	// clean slate for each game start.
 	delete &m_EntityManager;
 	delete &m_ProjectileManager;
+}
+
+
+void CWorld::RewriteMap()
+{
+	CMapWriter::RewriteAllMaps(&m_Terrain, &m_UnitManager, &g_LightEnv);
 }
