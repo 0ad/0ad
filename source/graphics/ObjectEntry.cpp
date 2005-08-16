@@ -12,9 +12,6 @@
 #include "UnitManager.h"
 #include "Unit.h"
 
-#include "ps/Xeromyces.h"
-#include "ps/XMLWriter.h"
-
 #include "lib/res/file/vfs.h"
 
 #include <sstream>

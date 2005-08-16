@@ -18,9 +18,9 @@
 
 
 // Only include these function definitions in the first instance of CStr.cpp:
+
 CStrW::CStrW(const CStr8 &asciStr) : std::wstring(asciStr.begin(), asciStr.end()) {}
 CStr8::CStr8(const CStrW &wideStr) : std:: string(wideStr.begin(), wideStr.end()) {}
-
 
 // UTF conversion code adapted from http://www.unicode.org/Public/PROGRAMS/CVTUTF/ConvertUTF.c
 
@@ -130,7 +130,40 @@ CStrW CStr8::FromUTF8() const
 }
 
 
+//----------------------------------------------------------------------------
+// built-in self test
+//----------------------------------------------------------------------------
+
+#if PERFORM_SELF_TEST
+namespace test {
+
+	static void test1()
+	{
+		const wchar_t chr_utf16[] = { 0x12, 0xff, 0x1234, 0x3456, 0x5678, 0x7890, 0x9abc, 0xbcde, 0xfffe };
+		const unsigned char chr_utf8[] = { 0x12, 0xc3, 0xbf, 0xe1, 0x88, 0xb4, 0xe3, 0x91, 0x96, 0xe5, 0x99, 0xb8, 0xe7, 0xa2, 0x90, 0xe9, 0xaa, 0xbc, 0xeb, 0xb3, 0x9e, 0xef, 0xbf, 0xbe };
+		CStrW str_utf16 (chr_utf16, sizeof(chr_utf16)/sizeof(wchar_t));
+		CStr8 str_utf8 = str_utf16.ToUTF8();
+		debug_assert(str_utf8.length() == sizeof(chr_utf8));
+		debug_assert(memcmp(str_utf8.data(), chr_utf8, sizeof(chr_utf8)) == 0);
+		debug_assert(str_utf8.FromUTF8() == str_utf16);
+	}
+
+
+	static int run_tests()
+	{
+		test1();
+		return 0;
+	}
+
+	static int dummy = run_tests();
+
+}	// namespace test
+#endif	// #if PERFORM_SELF_TEST
+
+
 #else
+
+// The following code is compiled twice, as CStrW then as CStr8:
 
 #include "CStr.h"
 using namespace std;
@@ -584,38 +617,5 @@ uint CStr::GetSerializedLength() const
 #undef _istspace
 #undef _totlower
 #undef _totupper
-
-
-
-//----------------------------------------------------------------------------
-// built-in self test
-//----------------------------------------------------------------------------
-
-#if PERFORM_SELF_TEST
-namespace test {
-
-static void test1()
-{
-	const wchar_t chr_utf16[] = { 0x12, 0xff, 0x1234, 0x3456, 0x5678, 0x7890, 0x9abc, 0xbcde, 0xfffe };
-	const unsigned char chr_utf8[] = { 0x12, 0xc3, 0xbf, 0xe1, 0x88, 0xb4, 0xe3, 0x91, 0x96, 0xe5, 0x99, 0xb8, 0xe7, 0xa2, 0x90, 0xe9, 0xaa, 0xbc, 0xeb, 0xb3, 0x9e, 0xef, 0xbf, 0xbe };
-	CStrW str_utf16 (chr_utf16, sizeof(chr_utf16)/sizeof(wchar_t));
-	CStr8 str_utf8 = str_utf16.ToUTF8();
-	debug_assert(str_utf8.length() == sizeof(chr_utf8));
-	debug_assert(memcmp(str_utf8.data(), chr_utf8, sizeof(chr_utf8)) == 0);
-	debug_assert(str_utf8.FromUTF8() == str_utf16);
-}
-
-
-static int run_tests()
-{
-	test1();
-	return 0;
-}
-
-static int dummy = run_tests();
-
-}	// namespace test
-#endif	// #if PERFORM_SELF_TEST
-
 
 #endif // CStr_CPP_FIRST
