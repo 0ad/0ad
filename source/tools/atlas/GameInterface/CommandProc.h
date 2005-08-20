@@ -1,0 +1,59 @@
+#include <list>
+
+namespace AtlasMessage
+{
+
+struct Command
+{
+	virtual ~Command() {}
+	virtual void Do() = 0;
+	virtual void Undo() = 0;
+	virtual void Redo() = 0;
+//	virtual void Merge(Command* prev) = 0;
+};
+
+class CommandProc
+{
+public:
+	CommandProc();
+	~CommandProc();
+
+	void Submit(Command* cmd);
+
+	void Undo();
+	void Redo();
+
+private:
+	std::list<Command*> m_Commands;
+	std::list<Command*>::iterator m_CurrentCommand;
+};
+
+typedef Command* (*cmdHandler)(const void*);
+typedef std::map<std::string, cmdHandler> cmdHandlers;
+extern cmdHandlers& GetCmdHandlers();
+
+CommandProc& GetCommandProc();
+
+class DataCommand : public Command // so commands can optionally override (De|Con)struct
+{
+	void Destruct() {};
+	void Construct() {};
+};
+
+#define BEGIN_COMMAND(t) \
+	class c##t : public DataCommand \
+	{ \
+		d##t* d; \
+	public: \
+		c##t(d##t* data) : d(data) { Construct(); } \
+		~c##t() { Destruct(); delete d; } \
+		static Command* Create(const void* data) { return new c##t((d##t*)data); }
+
+#define END_COMMAND(t) \
+	}; \
+	namespace CAT2(hndlr_, __LINE__) { struct init { init() { \
+		bool notAlreadyRegisted = GetCmdHandlers().insert(std::pair<std::string, cmdHandler>("c"#t, &c##t##::Create)).second; \
+		assert(notAlreadyRegisted); \
+	} } init; };
+
+}

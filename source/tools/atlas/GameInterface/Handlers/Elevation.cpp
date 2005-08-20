@@ -2,34 +2,64 @@
 
 #include "MessageHandler.h"
 
+#include "../CommandProc.h"
+
 #include "graphics/Terrain.h"
 #include "ps/Game.h"
 
 namespace AtlasMessage {
 
+BEGIN_COMMAND(AlterElevation)
 
-void fAlterElevation(IMessage* msg)
-{
-	mAlterElevation* cmd = static_cast<mAlterElevation*>(msg);
+	// TODO: much more efficient version of this, and without the memory leaks
+	u16* OldTerrain;
+	u16* NewTerrain;
 
-	// TODO:
-	// Create something like the AtlasCommandProcessor, so that undo is
-	// possible: Push an AlterElevationCommand onto the command stack,
-	// which has Do and Undo methods, and also has Merge (so multiple
-	// consecutive elevation-altering moments can be combined into a single
-	// brush stroke, to conserve memory and also so 'undo' undoes the entire
-	// stroke at once).
+	void Construct()
+	{
+		OldTerrain = NewTerrain = NULL;
+	}
+	void Destruct()
+	{
+		delete OldTerrain;
+		delete NewTerrain;
+	}
 
-	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+	void Do() {
 
-	u16* heightmap = terrain->GetHeightMap();
-	int size = terrain->GetVerticesPerSide();
+		CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 
-	int x = (int)cmd->pos.x;
-	int z = (int)cmd->pos.z;
-	terrain->RaiseVertex(x, z, (int)cmd->amount);
-	terrain->MakeDirty(x, z, x, z);
-}
-REGISTER(AlterElevation);
+		int verts = terrain->GetVerticesPerSide()*terrain->GetVerticesPerSide();
+		OldTerrain = new u16[verts];
+		memcpy(OldTerrain, terrain->GetHeightMap(), verts*sizeof(u16));
+
+		int x = (int)d->pos.x;
+		int z = (int)d->pos.z;
+		terrain->RaiseVertex(x, z, (int)d->amount);
+		terrain->MakeDirty(x, z, x, z);
+
+	}
+
+	void Undo() {
+		CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+		if (! NewTerrain)
+		{
+			int verts = terrain->GetVerticesPerSide()*terrain->GetVerticesPerSide();
+			NewTerrain = new u16[verts];
+			memcpy(NewTerrain, terrain->GetHeightMap(), verts*sizeof(u16));
+		}
+		terrain->SetHeightMap(OldTerrain); // CTerrain duplicates the data
+	}
+
+	void Redo() {
+		CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+		terrain->SetHeightMap(NewTerrain); // CTerrain duplicates the data
+	}
+
+	void MergeWithSelf(cAlterElevation* prev) {
+		debug_warn("TODO");
+	}
+
+END_COMMAND(AlterElevation);
 
 }

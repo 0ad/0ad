@@ -44,7 +44,7 @@ public:
 	{
 		if (m_IsActive)
 		{
-			ADD_COMMAND(AlterElevation(m_Pos, dt*4.096f));
+			ADD_WORLDCOMMAND(AlterElevation, (m_Pos, dt*4.096f));
 		}
 	}
 

@@ -31,8 +31,8 @@ struct IMessage
 struct mCommand : public IMessage {};
 struct mInput : public IMessage {};
 
-#define COMMAND(t) struct m##t : public mCommand { const char* GetType() const { return #t; }
-#define INPUT(t)   struct m##t : public mInput   { const char* GetType() const { return #t; }
+#define COMMAND(t) struct m##t : public mCommand { const char* GetType() const { return #t; }  private: const m##t& operator=(const m##t&); public:
+#define INPUT(t)   struct m##t : public mInput   { const char* GetType() const { return #t; }  private: const m##t& operator=(const m##t&); public:
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -84,11 +84,51 @@ mToolEnd() {}
 };
 */
 
+/*
 COMMAND(AlterElevation)
 mAlterElevation(Position pos_, float amount_) : pos(pos_), amount(amount_) {}
 const Position pos;
 const float amount;
 };
+*/
+
+COMMAND(WorldCommand)
+mWorldCommand() {}
+virtual void* CloneData() const = 0;
+};
+
+COMMAND(DoCommand)
+mDoCommand(mWorldCommand* c) : name(c->GetType()), data(c->CloneData()) {}
+const std::string name;
+const void* data;
+};
+
+COMMAND(UndoCommand)
+};
+
+COMMAND(RedoCommand)
+};
+
+
+#define WORLDCOMMAND(t, merge) struct m##t : public mWorldCommand, public d##t { \
+	m##t(const d##t& d) : d##t(d) {} \
+	const char* GetType() const { return #t; } \
+	bool IsMergeable() { return merge; } \
+	void* CloneData() const { return new d##t(*this); } \
+private: \
+	const m##t& operator=(const m##t&);\
+};
+
+struct dAlterElevation {
+	dAlterElevation(Position pos_, float amount_) : pos(pos_), amount(amount_) {}
+	const Position pos;
+	const float amount;
+private:
+	const dAlterElevation& operator=(const dAlterElevation&);
+};
+WORLDCOMMAND(AlterElevation, true)
+
+#undef WORLDCOMMAND
 
 //////////////////////////////////////////////////////////////////////////
 

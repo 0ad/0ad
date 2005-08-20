@@ -74,9 +74,13 @@ static void ATLAS_Run(int argc, char* argv[], int flags = 0)
 		return;
 	}
 
-	void(*pStartWindow)(int argc, char* argv[]);
-	*(void**)&pStartWindow = dlsym(atlas_so_handle, "_StartWindow");
-	pStartWindow(argc, argv);
+	// TODO (make nicer)
+	extern bool BeginAtlas(int argc, char* argv[], void* dll);
+	if (!BeginAtlas(argc, argv, atlas_so_handle))
+	{
+		debug_warn("Atlas loading failed");
+		return;
+	}
 }
 
 

@@ -41,4 +41,4 @@
 #endif
 
 
-#define ATLASDLLIMPEXP __declspec(dllexport)
+#define ATLASDLLIMPEXP extern "C" __declspec(dllexport)

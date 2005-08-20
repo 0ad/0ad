@@ -431,7 +431,7 @@ static void InitVfs(const char* argv0)
 }
 
 
-static void InitPs()
+static void InitPs(bool setup_gui)
 {
 	// console
 	{
@@ -458,7 +458,8 @@ static void InitPs()
 	}
 
 	// GUI uses VFS, so this must come after VFS init.
-	GUI_Init();
+	if (setup_gui)
+		GUI_Init();
 }
 
 
@@ -584,8 +585,6 @@ void Shutdown()
 {
 	MICROLOG(L"Shutdown");
 
-	ATLAS_Shutdown();
-
 	ShutdownPs(); // Must delete g_GUI before g_ScriptingHost
 
 	if (g_Game)
@@ -652,7 +651,7 @@ void Shutdown()
 # pragma optimize("", off)
 #endif
 
-void Init(int argc, char* argv[], bool setup_gfx = true)
+void Init(int argc, char* argv[], bool setup_gfx, bool setup_gui)
 {
 	debug_printf("INIT &argc=%p &argv=%p\n", &argc, &argv);
 
@@ -700,10 +699,6 @@ void Init(int argc, char* argv[], bool setup_gfx = true)
 	MICROLOG(L"init i18n");
 	I18n::LoadLanguage(NULL);
 
-	// should be done before the bulk of GUI init because it prevents
-	// most loads from happening (since ATLAS_IsRunning will return true).
-	ATLAS_RunIfOnCmdLine(argc, argv);
-
 	// Set up the console early, so that debugging
 	// messages can be logged to it. (The console's size
 	// and fonts are set later in InitPs())
@@ -749,7 +744,7 @@ void Init(int argc, char* argv[], bool setup_gfx = true)
 	if(!g_Quickstart)
 	{
 		WriteSystemInfo();
-		vfs_display();
+//		vfs_display(); // disabled to decrease startup time
 	}
 	else
 	{
@@ -781,7 +776,7 @@ void Init(int argc, char* argv[], bool setup_gfx = true)
 #endif
 
 	MICROLOG(L"init ps");
-	InitPs();
+	InitPs(setup_gui);
 
 	oglCheck();
 	InitRenderer();

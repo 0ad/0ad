@@ -2,10 +2,22 @@
 
 #include "MessagePasserImpl.h"
 
+#define MESSAGE_TRACE 0
+
+#if MESSAGE_TRACE
+#include "Messages.h" // for mCommand implementation
+#endif
+
 using namespace AtlasMessage;
+
 
 template<typename T> void MessagePasserImpl<T>::Add(T* msg)
 {
+	debug_assert(msg);
+
+#if MESSAGE_TRACE
+	debug_printf("Add %s\n", msg->GetType());
+#endif
 	m_Mutex.Lock();
 
 	m_Queue.push(msg);
@@ -29,6 +41,10 @@ template <typename T> T* MessagePasserImpl<T>::Retrieve()
 	}
 
 	m_Mutex.Unlock();
+
+#if MESSAGE_TRACE
+	if (msg) debug_printf("Retrieved %s\n", msg->GetType());
+#endif
 
 	return msg;
 }

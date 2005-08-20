@@ -21,9 +21,6 @@
 
 using namespace AtlasMessage;
 
-extern __declspec(dllimport) void Atlas_StartWindow(wchar_t* type);
-extern __declspec(dllimport) void Atlas_SetMessagePasser(MessagePasser<mCommand>*, MessagePasser<mInput>*);
-
 extern void Render_();
 
 extern "C" { __declspec(dllimport) int __stdcall SwapBuffers(void*); }
@@ -31,7 +28,9 @@ extern "C" { __declspec(dllimport) int __stdcall SwapBuffers(void*); }
 	//
 	// (Er, actually that's what most of this file is. Oh well.)
 
-
+// Loaded from DLL:
+void (*Atlas_StartWindow)(wchar_t* type);
+void (*Atlas_SetMessagePasser)(MessagePasser<mCommand>*, MessagePasser<mInput>*);
 
 static MessagePasserImpl<mCommand> msgPasser_Command;
 static MessagePasserImpl<mInput>   msgPasser_Input;
@@ -49,8 +48,14 @@ static void* LaunchWindow(void*)
 }
 
 
-void BeginAtlas(int argc, char** argv) 
+bool BeginAtlas(int argc, char* argv[], void* dll) 
 {
+	*(void**)&Atlas_StartWindow = dlsym(dll, "Atlas_StartWindow");
+	*(void**)&Atlas_SetMessagePasser = dlsym(dll, "Atlas_SetMessagePasser");
+
+	if (!Atlas_StartWindow || !Atlas_SetMessagePasser)
+		return false;
+
 	// Pass our message handler to Atlas
 	Atlas_SetMessagePasser(&msgPasser_Command, &msgPasser_Input);
 
@@ -92,7 +97,7 @@ void BeginAtlas(int argc, char** argv)
 		// if (!(in interactive-tool mode))
 		{
 			mCommand* msg;
-			while (msg = msgPasser_Command.Retrieve())
+			while ((msg = msgPasser_Command.Retrieve()) != NULL)
 			{
 				recent_activity = true;
 
@@ -110,8 +115,8 @@ void BeginAtlas(int argc, char** argv)
 						// that it's slightly dangerous - we have to just assume that
 						// GetType is correct, since we can't use proper RTTI
 				}
-				handlers::const_iterator it = GetHandlers().find(name);
-				if (it != GetHandlers().end())
+				msgHandlers::const_iterator it = GetMsgHandlers().find(name);
+				if (it != GetMsgHandlers().end())
 				{
 					it->second(msg);
 				}
@@ -133,13 +138,13 @@ void BeginAtlas(int argc, char** argv)
 		// Now do the same (roughly), for input events:
 		{
 			mInput* msg;
-			while (msg = msgPasser_Input.Retrieve())
+			while ((msg = msgPasser_Input.Retrieve()) != NULL)
 			{
 				recent_activity = true;
 
 				std::string name (msg->GetType());
-				handlers::const_iterator it = GetHandlers().find(name);
-				if (it != GetHandlers().end())
+				msgHandlers::const_iterator it = GetMsgHandlers().find(name);
+				if (it != GetMsgHandlers().end())
 				{
 					it->second(msg);
 				}
@@ -175,4 +180,6 @@ void BeginAtlas(int argc, char** argv)
 	// TODO: delete all remaining messages, to avoid memory leak warnings
 
 	pthread_join(gameThread, NULL);
+
+	exit(0);
 }

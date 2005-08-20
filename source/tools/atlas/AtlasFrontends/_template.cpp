@@ -1,7 +1,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
-#define ATLASDLLIMPEXP __declspec(dllimport)
+#define ATLASDLLIMPEXP extern "C" __declspec(dllimport)
 
 #include "AtlasUI/Misc/DLLInterface.h"
 

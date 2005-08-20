@@ -50,6 +50,7 @@ REGISTER(CommandString_init);
 void fCommandString_shutdown(IMessage*)
 {
 	Shutdown_();
+	g_GameLoop->rendering = false;
 }
 REGISTER(CommandString_shutdown);
 

@@ -111,15 +111,70 @@ END_EVENT_TABLE()
 
 //////////////////////////////////////////////////////////////////////////
 
+enum
+{
+	ID_Quit = 1,
+//	ID_New,
+//	//	ID_Import,
+//	//	ID_Export,
+//	ID_Open,
+//	ID_Save,
+//	ID_SaveAs,
+};
+
 BEGIN_EVENT_TABLE(ScenarioEditor, wxFrame)
 	EVT_CLOSE(ScenarioEditor::OnClose)
 	EVT_TIMER(wxID_ANY, ScenarioEditor::OnTimer)
+
+	EVT_MENU(ID_Quit, ScenarioEditor::OnQuit)
+	EVT_MENU(wxID_UNDO, ScenarioEditor::OnUndo)
+	EVT_MENU(wxID_REDO, ScenarioEditor::OnRedo)
 END_EVENT_TABLE()
 
+
+static AtlasWindowCommandProc g_CommandProc;
+AtlasWindowCommandProc& ScenarioEditor::GetCommandProc() { return g_CommandProc; }
 
 ScenarioEditor::ScenarioEditor()
 : wxFrame(NULL, wxID_ANY, _("Atlas - Scenario Editor"), wxDefaultPosition, wxSize(1024, 768))
 {
+	//////////////////////////////////////////////////////////////////////////
+	// Menu
+
+	wxMenuBar* menuBar = new wxMenuBar;
+	SetMenuBar(menuBar);
+
+	wxMenu *menuFile = new wxMenu;
+	menuBar->Append(menuFile, _("&File"));
+	{
+//		menuFile->Append(ID_New, _("&New"));
+//		//		menuFile->Append(ID_Import, _("&Import..."));
+//		//		menuFile->Append(ID_Export, _("&Export..."));
+//		menuFile->Append(ID_Open, _("&Open..."));
+//		menuFile->Append(ID_Save, _("&Save"));
+//		menuFile->Append(ID_SaveAs, _("Save &As..."));
+//		menuFile->AppendSeparator();//-----------
+		menuFile->Append(ID_Quit,   _("E&xit"));
+//		m_FileHistory.UseMenu(menuFile);//-------
+//		m_FileHistory.AddFilesToMenu();
+	}
+
+//	m_menuItem_Save = menuFile->FindItem(ID_Save); // remember this item, to let it be greyed out
+//	wxASSERT(m_menuItem_Save);
+
+	wxMenu *menuEdit = new wxMenu;
+	menuBar->Append(menuEdit, _("&Edit"));
+	{
+		menuEdit->Append(wxID_UNDO, _("&Undo"));
+		menuEdit->Append(wxID_REDO, _("&Redo"));
+	}
+
+	GetCommandProc().SetEditMenu(menuEdit);
+	GetCommandProc().Initialize();
+
+	//////////////////////////////////////////////////////////////////////////
+	// Main window
+
 	SnapSplitterWindow* splitter = new SnapSplitterWindow(this);
 
 	// Set up GL canvas:
@@ -185,6 +240,21 @@ void ScenarioEditor::OnTimer(wxTimerEvent&)
 	wxLongLong time = wxGetLocalTimeMillis();
 	g_CurrentTool->OnTick((time-last).ToLong());
 	last = time;
+}
+
+void ScenarioEditor::OnQuit(wxCommandEvent&)
+{
+	Close();
+}
+
+void ScenarioEditor::OnUndo(wxCommandEvent&)
+{
+	GetCommandProc().Undo();
+}
+
+void ScenarioEditor::OnRedo(wxCommandEvent&)
+{
+	GetCommandProc().Redo();
 }
 
 //////////////////////////////////////////////////////////////////////////

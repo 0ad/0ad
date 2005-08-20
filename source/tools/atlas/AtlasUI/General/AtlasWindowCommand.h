@@ -13,15 +13,18 @@ class AtlasWindowCommand : public wxCommand
 
 public:
 	AtlasWindowCommand(bool canUndoIt, const wxString& name)
-		: wxCommand(canUndoIt, name), m_Finalized(false) {}
+		: wxCommand(canUndoIt, name), m_Finalized(false)
+	{ }
 
-private:
+	virtual bool Redo() { return Do(); }
+
 	// Control merging of this command with a future one (so they
 	// can be undone in a single step). The function should try to merge
 	// with the previous command, by altering that previous command and then
 	// returning true. If it can't, return false.
 	virtual bool Merge(AtlasWindowCommand* WXUNUSED(previousCommand)) { return false; }
 
+private:
 	bool m_Finalized;
 };
 

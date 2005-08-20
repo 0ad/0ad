@@ -1,8 +1,5 @@
 dofile("../functions.lua")
 
-atlas = 0 -- temporarily disabled, until the whole of Atlas
-          -- can be integrated into this build process
-
 -- Set up the Project
 project.name = "pyrogenesis"
 project.bindir = "../../../binaries/system"
@@ -20,7 +17,6 @@ function setuppackage (projectname)
 		exename = "sced"
 		objdirprefix = "obj/ScEd_"
 		package.build = 0   -- Don't build Sced by default
-		atlas = 0  -- Don't build Atlas into ScEd
 	else
 		package.name = "pyrogenesis"
 		exename = "ps"
@@ -72,17 +68,15 @@ function setuppackage (projectname)
 		"terrain",
 		"sound",
 		"scripting",
-		"i18n"
+		"i18n",
+
+		"tools/atlas/GameInterface",
+		"tools/atlas/GameInterface/Handlers"
 	}
 
 	if (projectname ~= "sced") then tconcat(source_dirs, {
 		"gui",
 		"gui/scripting"
-	}) end
-
-	if (atlas == 1) then tconcat(source_dirs, {
-		"tools/atlas/GameInterface",
-		"tools/atlas/GameInterface/Handlers"
 	}) end
 
 	if (projectname == "sced") then tconcat(source_dirs, {
@@ -143,10 +137,6 @@ function setuppackage (projectname)
 		-- Some definitions to make the lib code initialisation work
 		tinsert(package.defines, "USE_WINMAIN")
 		tinsert(package.defines, "NO_MAIN_REDIRECT")
-	end
-
-	if (atlas == 1) then
-		tinsert(package.defines, "ATLAS")
 	end
 
 	-- Platform Specifics

@@ -323,7 +323,7 @@ int main(int argc, char* argv[])
 	ATLAS_RunIfOnCmdLine(argc, argv);
 
 	// ELSE
-	Init(argc, argv, true);
+	Init(argc, argv, true, true);
 	MainControllerInit();
 
 	while(!quit)
@@ -341,7 +341,7 @@ int main(int argc, char* argv[])
 void Init_(int argc, char** argv, bool setup_gfx)
 {
 	g_Quickstart = true;
-	Init(argc, argv, setup_gfx);
+	Init(argc, argv, setup_gfx, false);
 }
 void Shutdown_()
 {

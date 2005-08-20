@@ -19,4 +19,4 @@ extern void Render();
 
 extern void Shutdown();
 
-extern void Init(int argc, char* argv[], bool setup_gfx = true);
+extern void Init(int argc, char* argv[], bool setup_gfx, bool setup_gui);
