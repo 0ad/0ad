@@ -13,12 +13,6 @@
 #include "lib/timer.h"
 #include "ps/CLogger.h"
 
-#ifdef NDEBUG
-#pragma comment(lib, "AtlasUI")
-#else
-#pragma comment(lib, "AtlasUI_d")
-#endif
-
 using namespace AtlasMessage;
 
 extern void Render_();
