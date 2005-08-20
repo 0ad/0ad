@@ -28,7 +28,7 @@ void SetCurrentTool(ITool* tool)
 IMPLEMENT_CLASS(WorldCommand, AtlasWindowCommand);
 
 WorldCommand::WorldCommand(AtlasMessage::mWorldCommand* command)
-: AtlasWindowCommand(true, _("???")), m_Command(command)
+: AtlasWindowCommand(true, wxString::FromAscii(command->GetType())), m_Command(command), m_AlreadyDone(false)
 {
 }
 
@@ -39,7 +39,13 @@ WorldCommand::~WorldCommand()
 
 bool WorldCommand::Do()
 {
-	ADD_COMMAND(DoCommand(m_Command));
+	if (m_AlreadyDone)
+		ADD_COMMAND(RedoCommand());
+	else
+	{
+		ADD_COMMAND(DoCommand(m_Command));
+		m_AlreadyDone = true;
+	}
 	return true;
 }
 
@@ -49,8 +55,19 @@ bool WorldCommand::Undo()
 	return true;
 }
 
-bool WorldCommand::Redo()
+bool WorldCommand::Merge(AtlasWindowCommand* p)
 {
-	ADD_COMMAND(RedoCommand());
+	WorldCommand* prev = wxDynamicCast(p, WorldCommand);
+
+	if (! prev)
+		return false;
+
+	if (m_Command->GetType() != prev->m_Command->GetType()) // comparing char* pointers, because they're unique-per-class constants
+		return false;
+
+	if (! m_Command->IsMergeable())
+		return false;
+
+	ADD_COMMAND(MergeCommand());
 	return true;
 }

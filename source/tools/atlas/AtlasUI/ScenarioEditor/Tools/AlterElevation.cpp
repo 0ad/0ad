@@ -18,11 +18,13 @@ public:
 	{
 		if (evt.LeftDown())
 		{
+			ScenarioEditor::GetCommandProc().FinaliseLastCommand();
 			m_IsActive = true;
 			m_Pos = Position(evt.GetPosition());
 		}
 		else if (evt.LeftUp())
 		{
+			ScenarioEditor::GetCommandProc().FinaliseLastCommand();
 			m_IsActive = false;
 		}
 		else if (evt.Dragging())
@@ -35,7 +37,7 @@ public:
 		}
 	}
 
-	void OnKey(wxKeyEvent& evt, int dir)
+	void OnKey(wxKeyEvent& evt, int WXUNUSED(dir))
 	{
 		evt.Skip();
 	}

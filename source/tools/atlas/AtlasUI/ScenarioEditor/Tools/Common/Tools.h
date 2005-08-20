@@ -30,12 +30,13 @@ class WorldCommand : public AtlasWindowCommand
 {
 	DECLARE_CLASS(WorldCommand);
 
+	bool m_AlreadyDone;
 public:
 	WorldCommand(AtlasMessage::mWorldCommand* command);
 	~WorldCommand();
 	bool Do();
 	bool Undo();
-	bool Redo();
+	bool Merge(AtlasWindowCommand* previousCommand);
 
 private:
 	AtlasMessage::mWorldCommand* m_Command;

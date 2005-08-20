@@ -71,3 +71,43 @@ void CommandProc::Redo()
 		(*m_CurrentCommand)->Redo();
 	}
 }
+
+void CommandProc::Merge()
+{
+	if (m_CurrentCommand == m_Commands.begin())
+	{
+		debug_warn("Merge illogic: no commands");
+		return;
+	}
+
+	if (next(m_CurrentCommand) != m_Commands.end())
+	{
+		debug_warn("Merge illogic: not at stack top");
+		return;
+	}
+
+	cmdIt prev = m_CurrentCommand;
+	--prev;
+
+	if (prev == m_Commands.begin())
+	{
+		debug_warn("Merge illogic: only 1 command");
+		return;
+	}
+
+	if ((*prev)->GetType() != (*m_CurrentCommand)->GetType())
+	{
+		const char* a = (*prev)->GetType();
+		const char* b = (*m_CurrentCommand)->GetType();
+		debug_printf("[incompatible: %s -> %s]\n", a, b);
+		debug_warn("Merge illogic: incompatible command");
+		return;
+	}
+
+	(*m_CurrentCommand)->Merge(*prev);
+
+	delete *m_CurrentCommand;
+	m_Commands.erase(m_CurrentCommand);
+
+	m_CurrentCommand = prev;
+}

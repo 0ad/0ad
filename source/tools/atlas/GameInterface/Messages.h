@@ -34,6 +34,40 @@ struct mInput : public IMessage {};
 #define COMMAND(t) struct m##t : public mCommand { const char* GetType() const { return #t; }  private: const m##t& operator=(const m##t&); public:
 #define INPUT(t)   struct m##t : public mInput   { const char* GetType() const { return #t; }  private: const m##t& operator=(const m##t&); public:
 
+// Messages for doing/undoing/etc world-altering commands
+COMMAND(WorldCommand)
+mWorldCommand() {}
+virtual void* CloneData() const = 0;
+virtual bool IsMergeable() const = 0; \
+};
+COMMAND(DoCommand)
+mDoCommand(mWorldCommand* c) : name(c->GetType()), data(c->CloneData()) {}
+const std::string name;
+const void* data;
+};
+COMMAND(UndoCommand)};
+COMMAND(RedoCommand)};
+COMMAND(MergeCommand)};
+
+const bool MERGE = true;
+const bool NOMERGE = false;
+
+#define WORLDDATA(t) \
+	struct d##t { \
+	private: \
+		const d##t& operator=(const d##t&); \
+	public:
+
+#define WORLDCOMMAND(t, merge) \
+	struct m##t : public mWorldCommand, public d##t { \
+		m##t(const d##t& d) : d##t(d) {} \
+		const char* GetType() const { return #t; } \
+		virtual bool IsMergeable() const { return merge; } \
+		void* CloneData() const { return new d##t(*this); } \
+	private: \
+		const m##t& operator=(const m##t&);\
+	};
+
 //////////////////////////////////////////////////////////////////////////
 
 COMMAND(CommandString)
@@ -72,67 +106,18 @@ enum { FORWARDS, BACKWARDS, LEFT, RIGHT };
 
 //////////////////////////////////////////////////////////////////////////
 
-/*
-// TODO: Proper tool system
-COMMAND(ToolBegin)
-mToolBegin(std::string name_) : name(name_) {}
-const std::string name;
-};
-
-COMMAND(ToolEnd)
-mToolEnd() {}
-};
-*/
-
-/*
-COMMAND(AlterElevation)
-mAlterElevation(Position pos_, float amount_) : pos(pos_), amount(amount_) {}
-const Position pos;
-const float amount;
-};
-*/
-
-COMMAND(WorldCommand)
-mWorldCommand() {}
-virtual void* CloneData() const = 0;
-};
-
-COMMAND(DoCommand)
-mDoCommand(mWorldCommand* c) : name(c->GetType()), data(c->CloneData()) {}
-const std::string name;
-const void* data;
-};
-
-COMMAND(UndoCommand)
-};
-
-COMMAND(RedoCommand)
-};
-
-
-#define WORLDCOMMAND(t, merge) struct m##t : public mWorldCommand, public d##t { \
-	m##t(const d##t& d) : d##t(d) {} \
-	const char* GetType() const { return #t; } \
-	bool IsMergeable() { return merge; } \
-	void* CloneData() const { return new d##t(*this); } \
-private: \
-	const m##t& operator=(const m##t&);\
-};
-
-struct dAlterElevation {
+WORLDDATA(AlterElevation)
 	dAlterElevation(Position pos_, float amount_) : pos(pos_), amount(amount_) {}
 	const Position pos;
 	const float amount;
-private:
-	const dAlterElevation& operator=(const dAlterElevation&);
 };
-WORLDCOMMAND(AlterElevation, true)
-
-#undef WORLDCOMMAND
+WORLDCOMMAND(AlterElevation, MERGE)
 
 //////////////////////////////////////////////////////////////////////////
 
 
+#undef WORLDDATA
+#undef WORLDCOMMAND
 #undef COMMAND
 #undef INPUT
 

@@ -30,6 +30,8 @@ AtlasWindowCommandProc* AtlasWindowCommandProc::GetFromParentFrame(wxWindow* obj
 
 bool AtlasWindowCommandProc::Submit(wxCommand *command, bool storeIt)
 {
+	// (Largely copied from wxCommandProcessor::Submit)
+
 	wxCHECK_MSG(command, false, _T("no command in wxCommandProcessor::Submit"));
 
 	AtlasWindowCommand* previousCommand = wxDynamicCast(GetCurrentCommand(), AtlasWindowCommand);

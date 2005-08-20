@@ -41,4 +41,10 @@ void fRedoCommand(IMessage*)
 }
 REGISTER(RedoCommand);
 
+void fMergeCommand(IMessage*)
+{
+	GetCommandProc().Merge();
+}
+REGISTER(MergeCommand);
+
 }

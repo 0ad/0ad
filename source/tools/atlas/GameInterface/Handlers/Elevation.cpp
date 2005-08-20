@@ -57,7 +57,7 @@ BEGIN_COMMAND(AlterElevation)
 	}
 
 	void MergeWithSelf(cAlterElevation* prev) {
-		debug_warn("TODO");
+		std::swap(prev->NewTerrain, NewTerrain);
 	}
 
 END_COMMAND(AlterElevation);
