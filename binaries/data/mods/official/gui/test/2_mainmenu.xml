@@ -62,10 +62,22 @@
 				size="3% 80% 20% 85%"
 			>
 				<action on="Load"><![CDATA[
-					pushItem (this.name, "Player");
-					pushItem (this.name, "Fire Giant");
-					pushItem (this.name, "Acumen");
-					getGUIObjectByName (this.name).selected = 0;
+					// Get list of profile names (profile folders).
+					profileArray = buildFileList("profiles/", "user.cfg", true);
+
+					// Populate profile list.		
+					for (profileIndex = 0; profileIndex < profileArray.length; profileIndex++)
+					{
+						// Remove path/file information so only profile name remains.
+						profileArray[profileIndex] = profileArray[profileIndex].replace ("profiles/", "");
+						profileArray[profileIndex] = profileArray[profileIndex].replace ("/settings/user.cfg", "");
+						// Add profile name to the end of the object's list.
+						if (profileArray[profileIndex] != "default/settings")
+							pushItem (this.name, profileArray[profileIndex]);
+					}
+
+					// Select default profile (later we'll need to remember the last used profile).
+					setCurrItemValue (this.name, "Player");
 				]]></action>
 			</object>
 		</object>
@@ -415,14 +427,14 @@
 					style="wheatTextHeadMaxBlack"
 					type="text"
 					size="30 10 320 40"
-				>Player Slots
-				</object>
+				/>
 
 				<object name="pgSessionSetupP1"
-					style="wheatDropDown"
-					type="dropdown"
+					style="wheatButton"
+					type="button"
 					enabled="false"
 					size="30 50 320 90"
+					text_align="left"
 				/>
 
 				<object name="pgSessionSetupP2"
@@ -1027,6 +1039,7 @@
 			ghost="false"
 			hidden="true"
 			size="0 0 100% 100%"
+			font="verdana12i"
 			text_align="center"
 		>
 			<action on="SelectionChange"><![CDATA[

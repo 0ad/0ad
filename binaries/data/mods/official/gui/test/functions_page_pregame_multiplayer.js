@@ -38,18 +38,22 @@ function initMPHost (parentWindow, gameName, welcomeMessage, profileName)
 	server.onClientConnect = function (event) 
 	{
 		console.write ("Client connected.");
-		//console.write("A new client has successfully connected! ID: " + event.id + ", Name: " + event.name + ", Session: " + event.session);
-		//console.write("New client.");
+		console.write("A new client has successfully connected! ID: " + event.id + ", Name: " + event.name + ", Session: " + event.session);
+
+		// Assign newly connected client to next available slot.	
 		var playerSlot = g_GameAttributes.getOpenSlot();
-		// assign a slot
 		playerSlot.assignToSession (event.session);
-		//console.write("slot: " + playerSlot.player);
-		//console.write("got here");
-		// need to refresh the dialog control data here
+console.write (event.id);
+		// Set player slot to new player's name.
+		pushItem ("pgSessionSetupP" + (event.id), event.name);
 	}
 	
 	server.onClientDisconnect = function (event) 
 	{
+		// Client has disconnected; free their slot.
+		g_GameAttributes.slots[event.id].assignOpen();
+		result = setCurrItemValue ("pgSessionSetupP" + event.id, "Open");
+
 		messageBox(400, 200, "Client " + event.name + "(" + event.id + ") disconnected from " + event.session + ".", "Client Disconnected", 2, new Array(), new Array());
 	}	
         
@@ -80,6 +84,12 @@ function initMPClient (mpParentWindow, ipAddress, profileName)
 	else
 	{
 		console.write ("Client successfully started to connect to " + ipAddress + ".");
+	}
+
+	client.onClientConnect = function (event)
+	{
+		// Set player slot to new player's name.
+		pushItem ("pgSessionSetupP" + (event.id), event.name);
 	}
 
 	client.onConnectComplete = function (event)

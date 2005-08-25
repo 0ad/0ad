@@ -17,15 +17,59 @@ function openSessionSetup (sessionReturnWindow)
 		if (i == 1)
 		{
 			// Set the host player's name on the setup screen.
-			pushItem ("pgSessionSetupP" + i, profileName + " (Host)");
+			getGUIObjectByName ("pgSessionSetupP" + i).caption = "(Host)";
 		}
 		else
 		{
+//			pushItem ("pgSessionSetupP" + i, "session");
 			pushItem ("pgSessionSetupP" + i, "Open");
 			pushItem ("pgSessionSetupP" + i, "Closed");
-			pushItem ("pgSessionSetupP" + i, "AI");
+//			pushItem ("pgSessionSetupP" + i, "local");
+//			pushItem ("pgSessionSetupP" + i, "AI");
+
+			// Set other slots to Open.
+			result = setCurrItemValue ("pgSessionSetupP" + i, "Open");
+
+			// Setup onchange event (closing and opening affects host slots).
+			getGUIObjectByName ("pgSessionSetupP" + i).onSelectionChange = function (event)
+			{
+				slotNumber = this.name.substring (this.name.length-1, this.name.length);
+				switch (getCurrItemValue (this.name))
+				{
+					case "Open":
+						// If "Open" selected, 				
+
+						// Open the slot.
+						g_GameAttributes.slots[slotNumber-1].assignOpen();
+
+						console.write ("Opened slot " + this.name);
+					break;
+					case "Closed":
+						// If "Closed" selected,
+
+						// And slot is occupied,
+						if (g_GameAttributes.slots[slotNumber-1].assignment == "session")
+						{
+							// Remove player name from slot list.
+							removeItem (this.name, g_GameAttributes.slots[slotNumber-1].player);
+
+							// Prompt that player was kicked.
+							// (Change this to a chat message when functionality available.)
+							console.write (g_GameAttributes.slots[slotNumber-1].player + " was kicked by the host.");
+						}	
+	
+						// Close the slot.
+						g_GameAttributes.slots[slotNumber-1].assignClosed();
+
+						console.write ("Closed slot " + this.name);
+					break;
+					default:
+					break;
+				}
+			}
+
+
 		}
-		getGUIObjectByName ("pgSessionSetupP" + i).selected = 0;
 
 		// Make objects non-interactive to client.
 		if (sessionType == "Client") guiDisable ("pgSessionSetupP" + i);
@@ -42,7 +86,7 @@ function openSessionSetup (sessionReturnWindow)
 			guiUnHide ("pgSessionSetupMaster");
 		break;
 		case "Client":
-			titleBar.caption = "Joining: " // + g_NetClient.session[0].name;
+			titleBar.caption = "Joining: " // g_NetServer.serverName;
 			// Reveal type-specific Session Setup objects.
 			guiUnHide ("pgSessionSetupMP");
 			guiUnHide ("pgSessionSetupMPClient");
@@ -104,3 +148,4 @@ function closeSessionSetup ()
 }
 
 // ====================================================================
+
