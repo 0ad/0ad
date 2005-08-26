@@ -5,12 +5,11 @@
 
   <group>
     <variant frequency="100" name="Base">
-      <mesh>structural/hele_cc.pmd</mesh>
-      <props>
-        <prop actor="props/hellenes/hele_cc.xml" attachpoint="props_main"/>
-      </props>
+      <mesh>props/hele_ho_a.pmd</mesh>
       <texture>structural/hele_struct_2.dds</texture>
     </variant>
   </group>
+
+  <material>player_trans.xml</material>
 
 </actor>

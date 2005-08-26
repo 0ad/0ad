@@ -2,24 +2,24 @@
 <actor version="1">
 
   <group>
-    <variant frequency="10" name="House A">
-      <mesh>structural/hele_ho_1.pmd</mesh>
+    <variant name="House A">
+      <mesh>structural/hele_ho_a.pmd</mesh>
       <props>
-        <item actor="props/hellenes/hellenes_house1_prop.xml" attachpoint="prop1"/>
+        <prop actor="props/hellenes/hele_ho_a.xml" attachpoint="props_main"/>
       </props>
       <texture>structural/hele_struct_1.dds</texture>
     </variant>
-    <variant frequency="10" name="House B">
-      <mesh>structural/hele_ho_2.pmd</mesh>
+    <variant name="House B">
+      <mesh>structural/hele_ho_b.pmd</mesh>
       <props>
-        <item actor="props/hellenes/hellenes_house2_prop.xml" attachpoint="prop1"/>
+        <prop actor="props/hellenes/hele_ho_b.xml" attachpoint="props_main"/>
       </props>
       <texture>structural/hele_struct_1.dds</texture>
     </variant>
-    <variant frequency="10" name="House C">
-      <mesh>structural/hele_ho_3.pmd</mesh>
+    <variant name="House C">
+      <mesh>structural/hele_ho_c.pmd</mesh>
       <props>
-        <item actor="props/hellenes/hellenes_house3_prop.xml" attachpoint="prop1"/>
+        <prop actor="props/hellenes/hele_ho_c.xml" attachpoint="props_main"/>
       </props>
       <texture>structural/hele_struct_1.dds</texture>
     </variant>
