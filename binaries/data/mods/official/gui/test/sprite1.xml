@@ -394,13 +394,15 @@
 
 	<sprite	name="watermarkProduct">
 		<image	texture="global/watermark/product.png"
+			real_texture_placement="0 0 200 98" 
 			size="0 0 100% 100%" 
 		/>
 	</sprite>
 
 	<sprite	name="watermarkCompany">
 		<image	texture="global/watermark/company.png"
-		size="0 0 100% 100%" 
+			real_texture_placement="0 0 207 28" 
+			size="0 0 100% 100%" 
 		/>
 	</sprite>
 

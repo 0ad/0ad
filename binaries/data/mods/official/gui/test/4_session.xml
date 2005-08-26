@@ -12,11 +12,19 @@
 
 	<object name="sn"
 		hidden="true"
-		hotkey="flipgui.toggle"
+		hotkey="session.gui.toggle"
 	>
 		<action on="Press"><![CDATA[
-			flipGUI();
+			guiToggle (this.name);
 		]]></action>
+
+		<object name="snFlip"
+			hotkey="session.gui.flip"
+		>
+			<action on="Press"><![CDATA[
+				flipGUI();
+			]]></action>
+		</object>
 
 		<object name="snMiniMap"
 			style="session_minimap"
