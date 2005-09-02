@@ -421,7 +421,7 @@ static void add_oal_dlls_in_dir(const char* dir, DllSet* dlls)
 	int err;
 
 	PathPackage pp;
-	WARN_ERR_RETURN(pp_set_dir(&pp, dir));
+	(void)pp_set_dir(&pp, dir);
 
 	DirIterator d;
 	WARN_ERR_RETURN(dir_open(dir, &d));

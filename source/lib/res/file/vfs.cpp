@@ -741,6 +741,10 @@ static void vfs_init_once(void)
 	mount_init();
 }
 
+
+// make the VFS tree ready for use. must be called before all other
+// functions below, barring explicit mentions to the contrary.
+//
 // rationale: initialization could be done implicitly by calling this
 // from all VFS APIs. we refrain from that and require the user to
 // call this because a central point of initialization (file_rel_chdir)

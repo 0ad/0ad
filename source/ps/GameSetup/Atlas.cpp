@@ -40,9 +40,10 @@ static bool ATLAS_IsAvailable()
 #else
 		const char* so_name = "AtlasUI.so";
 #endif
-		// we don't care when relocations take place because this SO contains
-		// very few symbols, so RTLD_LAZY or RTLD_NOW aren't needed.
-		const int flags = RTLD_LOCAL;
+		// we don't really care when relocations take place, but one of
+		// {RTLD_NOW, RTLD_LAZY} must be passed. go with the former because
+		// it is safer and matches the Windows load behavior.
+		const int flags = RTLD_LOCAL|RTLD_NOW;
 		atlas_so_handle = dlopen(so_name, flags);
 		// open failed (mostly likely SO not found)
 		if(!atlas_so_handle)

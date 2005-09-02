@@ -71,11 +71,18 @@ const size_t SECTOR_SIZE = 4096;
 // accordingly. <dir> need and should not end with a directory separator.
 int pp_set_dir(PathPackage* pp, const char* dir)
 {
-	const int len = snprintf(pp->path, ARRAY_SIZE(pp->path), "%s%c", dir, DIR_SEP);
+	// note: use / instead of DIR_SEP because pp->path is portable.
+	const int len = snprintf(pp->path, ARRAY_SIZE(pp->path), "%s/", dir);
+	// (need len below and must return an error code, not -1)
 	if(len < 0)
-		return ERR_PATH_LENGTH;
+		CHECK_ERR(ERR_PATH_LENGTH);
 	pp->end = pp->path+len;
 	pp->chars_left = ARRAY_SIZE(pp->path)-len;
+
+	// check if <dir> actually did end with '/' (this will cause problems
+	// when attempting to vfs_open the file).
+	if(len >= 2)	// protect against underrun
+		debug_assert(pp->end[-2] != '/' && pp->end[-2] != DIR_SEP);
 	return 0;
 }
 
@@ -84,7 +91,8 @@ int pp_set_dir(PathPackage* pp, const char* dir)
 // pp_set_dir on this package. the whole path is accessible at pp->path.
 int pp_append_file(PathPackage* pp, const char* fn)
 {
-	return strcpy_s(pp->end, pp->chars_left, fn);
+	CHECK_ERR(strcpy_s(pp->end, pp->chars_left, fn));
+	return 0;
 }
 
 //-----------------------------------------------------------------------------
@@ -331,20 +339,20 @@ int dir_open(const char* P_path, DirIterator* d_)
 	d->os_dir = opendir(n_path);
 	if(!d->os_dir)
 	{
+		int err = -1;
 		switch(errno)
 		{
 		case ENOMEM:
-			return ERR_NO_MEM;
+			err = ERR_NO_MEM;
 		case ENOENT:
-			return ERR_PATH_NOT_FOUND;
-		default:
-			return -1;	
+			err = ERR_PATH_NOT_FOUND;
+		// default: err already set
 		}
+		CHECK_ERR(err);
 	}
 
 	// (see pp declaration)
-	WARN_ERR(pp_set_dir(&d->pp, n_path));
-	return 0;
+	return pp_set_dir(&d->pp, n_path);
 }
 
 

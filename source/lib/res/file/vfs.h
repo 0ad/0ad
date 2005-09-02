@@ -191,7 +191,7 @@ Decompression is free because it is done in parallel with IOs.
 #include "file.h"		// file open flags
 
 // make the VFS tree ready for use. must be called before all other
-// functions below unless explicitly mentioned to be allowed.
+// functions below, barring explicit mentions to the contrary.
 extern void vfs_init();
 extern void vfs_shutdown(void);
 

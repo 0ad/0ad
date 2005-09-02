@@ -391,47 +391,56 @@ DIR* opendir(const char* path)
 	if(!is_normal_dir(path))
 	{
 		errno = ENOENT;
+fail:
+		debug_warn("opendir failed");
+		return 0;
+	}
+
+	WDIR* d = wdir_alloc();
+	if(!d)
+	{
+		errno = ENOMEM;
 		goto fail;
 	}
 
+	// build search path for FindFirstFile. note: "path\\dir" only returns
+	// information about that directory; trailing slashes aren't allowed.
+	// for dir entries to be returned, we have to append "\\*".
+	char search_path[PATH_MAX];
+	snprintf(search_path, ARRAY_SIZE(search_path), "%s\\*", path);
+
+	// note: we could store search_path and defer FindFirstFile until
+	// readdir. this way is a bit more complex but required for
+	// correctness (we must return a valid DIR iff <path> is valid).
+	d->hFind = FindFirstFileA(search_path, &d->fd);
+	if(d->hFind == INVALID_HANDLE_VALUE)
 	{
-		WDIR* d = wdir_alloc();
-		if(!d)
+		switch(GetLastError())
 		{
+		// not an error - the directory is just empty.
+		case ERROR_NO_MORE_FILES:
+			goto success;
+		case ERROR_FILE_NOT_FOUND:
+		case ERROR_PATH_NOT_FOUND:
+			errno = ENOENT;
+			break;
+		case ERROR_NOT_ENOUGH_MEMORY:
 			errno = ENOMEM;
-			goto fail;
+			break;
+		default:
+			errno = EINVAL;
+			break;
 		}
 
-		// build search path for FindFirstFile. note: "path\\dir" only returns
-		// information about that directory; trailing slashes aren't allowed.
-		// for dir entries to be returned, we have to append "\\*".
-		char search_path[PATH_MAX];
-		snprintf(search_path, ARRAY_SIZE(search_path), "%s\\*", path);
-
-		// note: we could store search_path and defer FindFirstFile until
-		// readdir. this way is a bit more complex but required for
-		// correctness (we must return a valid DIR iff <path> is valid).
-		d->hFind = FindFirstFileA(search_path, &d->fd);
-		if(d->hFind == INVALID_HANDLE_VALUE)
-		{
-			// actual failure (not just an empty directory)
-			if(GetLastError() != ERROR_NO_MORE_FILES)
-			{
-				// unfortunately there's no way around this; we need to allocate
-				// d before FindFirstFile because it uses d->fd.
-				wdir_free(d);
-				errno = 0;	// unknown
-				goto fail;
-			}
-		}
-
-		// success
-		return d;
+		// unfortunately there's no way around this; we need to allocate
+		// d before FindFirstFile because it uses d->fd. copying from a
+		// temporary isn't nice either (this free doesn't happen often)
+		wdir_free(d);
+		goto fail;
 	}
 
-fail:
-	debug_warn("opendir failed");
-	return 0;
+success:
+	return d;
 }
 
 

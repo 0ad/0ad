@@ -1472,7 +1472,7 @@ static int VSrc_reload(VSrc* vs, const char* fn, Handle hvs)
 		// declare here so that it doesn't go out of scope below.
 
 	const char* ext = strchr(fn, '.');
-	if(ext && !strcmp(ext, ".txt"))
+	if(ext && !stricmp(ext, ".txt"))
 	{
 		void* def_file;
 		size_t def_size;

@@ -818,11 +818,11 @@ int vfs_reload_changed_files()
 			continue;
 		// .. compiled XML files the engine writes out by the hundreds;
 		//    skipping them is a big performance gain.
-		if(!strcmp(ext, ".xmb"))
+		if(!stricmp(ext, ".xmb"))
 			continue;
 		// .. temp files, usually created when an editor saves a file
 		//    (delete, create temp, rename temp); no need to reload those.
-		if(!strcmp(ext, ".tmp"))
+		if(!stricmp(ext, ".tmp"))
 			continue;
 		// .. more than one notification for a file; only reload once.
 		//    note: this doesn't suffer from the 'reloaded too early'
