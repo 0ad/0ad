@@ -4,6 +4,7 @@
 
 #include "lib/ogl.h"
 #include "lib/res/h_mgr.h"
+#include "lib/res/graphics/tex.h"
 
 #include "ps/CLogger.h"
 #define LOG_CATEGORY "gui"
@@ -16,7 +17,7 @@ void DrawCalls::clear()
 	for (iterator it = begin(); it != end(); ++it)
 	{
 		delete it->m_Effects;
-		tex_free(it->m_TexHandle);
+		ogl_tex_free(it->m_TexHandle);
 	}
 	std::vector<SDrawCall>::clear();
 }
@@ -123,7 +124,7 @@ public:
 		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_ALPHA, GL_PREVIOUS);
 		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_ALPHA, GL_SRC_ALPHA);
 
-		tex_bind(tex);
+		ogl_tex_bind(tex);
 	}
 
 	void Unset()
@@ -200,7 +201,7 @@ public:
 				glTexEnviv(GL_TEXTURE_ENV, GL_RGB_SCALE, TexScale4);
 		}
 
-		tex_bind(tex);
+		ogl_tex_bind(tex);
 	}
 	void Unset()
 	{
@@ -267,7 +268,7 @@ public:
 		// Texture unit 0:
 
 		glEnable(GL_TEXTURE_2D);
-		tex_bind(tex);
+		ogl_tex_bind(tex);
 
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 
@@ -289,7 +290,7 @@ public:
 
 		glActiveTextureARB(GL_TEXTURE1);
 		glEnable(GL_TEXTURE_2D);
-		tex_bind(tex);
+		ogl_tex_bind(tex);
 
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 
@@ -384,14 +385,14 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 
 		if (cit->m_TextureName.Length())
 		{
-			Handle h = tex_load(cit->m_TextureName);
+			Handle h = ogl_tex_load(cit->m_TextureName);
 			if (h <= 0)
 			{
 				LOG(ERROR, LOG_CATEGORY, "Error reading texture '%s': %lld", (const char*)cit->m_TextureName, h);
 				return;
 			}
 
-			int err = tex_upload(h, GL_LINEAR);
+			int err = ogl_tex_upload(h, GL_LINEAR);
 			if (err < 0)
 			{
 				LOG(ERROR, LOG_CATEGORY, "Error uploading texture '%s': %d", (const char*)cit->m_TextureName, err);
@@ -400,25 +401,13 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 
 			Call.m_TexHandle = h;
 
-			int TexFormat, t_w, t_h;
-			tex_info(h, &t_w, &t_h, &TexFormat, NULL, NULL);
-			float TexWidth = (float)t_w, TexHeight = (float)t_h;
-			
-			// TODO: Detect the presence of an alpha channel in a more precise way
-			// (particularly for no-alpha DXT1 textures)
-			switch (TexFormat)
-			{
-			case GL_RGBA:
-			case GL_BGRA:
-			case GL_COMPRESSED_RGBA_S3TC_DXT1_EXT:
-			case GL_COMPRESSED_RGBA_S3TC_DXT3_EXT:
-			case GL_COMPRESSED_RGBA_S3TC_DXT5_EXT:
-				Call.m_EnableBlending = true;
-				break;
-			default:
-				Call.m_EnableBlending = false;
-				break;
-			}
+			int t_w = 0, t_h = 0;
+			(void)ogl_tex_get_size(h, &t_w, &t_h, 0);
+			float TexWidth = t_w, TexHeight = t_h;
+
+			int flags = 0;	// assume no alpha on failure
+			(void)ogl_tex_get_format(h, &flags, 0);
+			Call.m_EnableBlending = (flags & TEX_ALPHA) != 0;
 
 			// Textures are positioned by defining a rectangular block of the
 			// texture (usually the whole texture), and a rectangular block on
@@ -551,7 +540,7 @@ void GUIRenderer::Draw(DrawCalls &Calls)
 			{
 				glEnable(GL_TEXTURE_2D);
 				glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-				tex_bind(cit->m_TexHandle);
+				ogl_tex_bind(cit->m_TexHandle);
 			}
 			
 			glBegin(GL_QUADS);

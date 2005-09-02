@@ -51,7 +51,7 @@ void CModel::ReleaseData()
 	m_pModelDef = CModelDefPtr();
 
 	Handle h = m_Texture.GetHandle();
-	tex_free(h);
+	ogl_tex_free(h);
 	m_Texture.SetHandle(0);
 }
 

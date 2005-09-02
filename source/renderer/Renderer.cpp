@@ -34,7 +34,7 @@
 #include "ModelDef.h"
 
 #include "ogl.h"
-#include "lib/res/mem.h"
+#include "lib/res/file/file.h"
 #include "lib/res/graphics/tex.h"
 #include "lib/res/graphics/ogl_tex.h"
 #include "timer.h"
@@ -1000,25 +1000,22 @@ bool CRenderer::LoadTexture(CTexture* texture,u32 wrapflags)
 		// to whether this is a valid handle or not
 		return h==errorhandle ? true : false;
 	} else {
-		h=tex_load(texture->GetName());
+		h=ogl_tex_load(texture->GetName());
 		if (h <= 0) {
 			LOG(ERROR, LOG_CATEGORY, "LoadTexture failed on \"%s\"",(const char*) texture->GetName());
 			texture->SetHandle(errorhandle);
 			return false;
 		} else {
-			int tw,th;
-			tex_info(h, &tw, &th, NULL, NULL, NULL);
-
-			tw&=(tw-1);
-			th&=(th-1);
-			if (tw || th) {
+			int tw=0,th=0;
+			(void)ogl_tex_get_size(h, &tw, &th, 0);
+			if(!is_pow2(tw) || !is_pow2(th)) {
 				LOG(ERROR, LOG_CATEGORY, "LoadTexture failed on \"%s\" : not a power of 2 texture",(const char*) texture->GetName());
-				tex_free(h);
+				ogl_tex_free(h);
 				texture->SetHandle(errorhandle);
 				return false;
 			} else {
-				BindTexture(0,tex_id(h));
-				tex_upload(h,GL_LINEAR_MIPMAP_LINEAR);
+				ogl_tex_bind(h);
+				ogl_tex_upload(h,GL_LINEAR_MIPMAP_LINEAR);
 
 				if (wrapflags) {
 					glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrapflags);
@@ -1069,12 +1066,8 @@ void CRenderer::BindTexture(int unit,GLuint tex)
 // SetTexture: set the given unit to reference the given texture; pass a null texture to disable texturing on any unit
 void CRenderer::SetTexture(int unit,CTexture* texture)
 {
-	if (texture) {
-		Handle h=texture->GetHandle();
-		BindTexture(unit,tex_id(h));
-	} else {
-		BindTexture(unit,0);
-	}
+	Handle h = texture? texture->GetHandle() : 0;
+	ogl_tex_bind(h, unit);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1083,18 +1076,11 @@ void CRenderer::SetTexture(int unit,CTexture* texture)
 bool CRenderer::IsTextureTransparent(CTexture* texture)
 {
 	if (!texture) return false;
-
 	Handle h=texture->GetHandle();
-	if (h<=0) return false;
 
-	int fmt;
-	int bpp;
-
-	tex_info(h, NULL, NULL, &fmt, &bpp, NULL);
-	if (bpp==24 || fmt == GL_COMPRESSED_RGB_S3TC_DXT1_EXT) {
-		return false;
-	}
-	return true;
+	int flags = 0;	// assume no alpha on failure
+	(void)ogl_tex_get_format(h, &flags, 0);
+	return (flags & TEX_ALPHA) != 0;
 }
 
 
@@ -1109,61 +1095,74 @@ inline void CopyTriple(unsigned char* dst,const unsigned char* src)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // LoadAlphaMaps: load the 14 default alpha maps, pack them into one composite texture and
-// calculate the coordinate of each alphamap within this packed texture .. need to add
-// validation that all maps are the same size
+// calculate the coordinate of each alphamap within this packed texture
 int CRenderer::LoadAlphaMaps()
 {
+	//
+	// load all textures and store Handle in array
+	//
 	Handle textures[NumAlphaMaps];
-
-
-	const char* fnames[CRenderer::NumAlphaMaps] = {
-		"art/textures/terrain/alphamaps/special/blendcircle.png",
-			"art/textures/terrain/alphamaps/special/blendlshape.png",
-			"art/textures/terrain/alphamaps/special/blendedge.png",
-			"art/textures/terrain/alphamaps/special/blendedgecorner.png",
-			"art/textures/terrain/alphamaps/special/blendedgetwocorners.png",
-			"art/textures/terrain/alphamaps/special/blendfourcorners.png",
-			"art/textures/terrain/alphamaps/special/blendtwooppositecorners.png",
-			"art/textures/terrain/alphamaps/special/blendlshapecorner.png",
-			"art/textures/terrain/alphamaps/special/blendtwocorners.png",
-			"art/textures/terrain/alphamaps/special/blendcorner.png",
-			"art/textures/terrain/alphamaps/special/blendtwoedges.png",
-			"art/textures/terrain/alphamaps/special/blendthreecorners.png",
-			"art/textures/terrain/alphamaps/special/blendushape.png",
-			"art/textures/terrain/alphamaps/special/blendbad.png"
+	PathPackage pp;
+	(void)pp_set_dir(&pp, "art/textures/terrain/alphamaps/special");
+	const char* fnames[NumAlphaMaps] = {
+		"blendcircle.png",
+		"blendlshape.png",
+		"blendedge.png",
+		"blendedgecorner.png",
+		"blendedgetwocorners.png",
+		"blendfourcorners.png",
+		"blendtwooppositecorners.png",
+		"blendlshapecorner.png",
+		"blendtwocorners.png",
+		"blendcorner.png",
+		"blendtwoedges.png",
+		"blendthreecorners.png",
+		"blendushape.png",
+		"blendbad.png"
 	};
+	int base = 0;	// texture width/height (see below)
+	// for convenience, we require all alpha maps to be of the same BPP
+	// (avoids another ogl_tex_get_size call, and doesn't hurt)
+	int bpp = 0;
+	for(int i=0;i<NumAlphaMaps;i++)
+	{
+		(void)pp_append_file(&pp, fnames[i]);
+		textures[i] = ogl_tex_load(pp.path);
+		WARN_ERR(textures[i]);
 
-
-	int i;
-
-	for (i=0;i<NumAlphaMaps;i++) {
-		textures[i]=tex_load(fnames[i]);
-		if (textures[i] <= 0) {
-			throw textures[i];	// FIXTHROW
+		// get its size and make sure they are all equal.
+		// (the packing algo assumes this)
+		int this_width = 0, this_bpp = 0;	// fail-safe
+		(void)ogl_tex_get_size(textures[i], &this_width, 0, &this_bpp);
+		// .. first iteration: establish size
+		if(i == 0)
+		{
+			base = this_width;
+			bpp  = this_bpp;
 		}
+		// .. not first: make sure texture size matches
+		else if(base != this_width || bpp != this_bpp)
+			DISPLAY_ERROR(L"Alpha maps are not identically sized (including pixel depth)");
 	}
 
-	int base;
-	i=tex_info(textures[0], &base, NULL, NULL, NULL, NULL);
-
-	int size=(base+4)*NumAlphaMaps;
-	int texsize=RoundUpToPowerOf2(size);
-
-	unsigned char* data=new unsigned char[texsize*base*3];
-
+	//
+	// copy each alpha map (tile) into one buffer, arrayed horizontally.
+	//
+	int tile_w = 2+base+2;	// 2 pixel border (avoids bilinear filtering artifacts)
+	int total_w = RoundUpToPowerOf2(tile_w * NumAlphaMaps);
+	int total_h = base; debug_assert(is_pow2(total_h));
+	u8* data=new u8[total_w*total_h*3];
 	// for each tile on row
-	for (i=0;i<NumAlphaMaps;i++) {
-
-		int bpp;
+	for(int i=0;i<NumAlphaMaps;i++)
+	{
 		// get src of copy
-		const u8* src;
-
-		tex_info(textures[i], NULL, NULL, NULL, &bpp, (void **)&src);
+		const u8* src = 0;
+		(void)ogl_tex_get_data(textures[i], (void**)&src);
 
 		int srcstep=bpp/8;
 
 		// get destination of copy
-		u8* dst=data+3*(i*(base+4));
+		u8* dst=data+3*(i*tile_w);
 
 		// for each row of image
 		for (int j=0;j<base;j++) {
@@ -1186,30 +1185,27 @@ int CRenderer::LoadAlphaMaps()
 			dst+=3;
 
 			// advance write pointer for next row
-			dst+=3*(texsize-(base+4));
+			dst+=3*(total_w-tile_w);
 		}
 
-		m_AlphaMapCoords[i].u0=float(i*(base+4)+2)/float(texsize);
-		m_AlphaMapCoords[i].u1=float((i+1)*(base+4)-2)/float(texsize);
+		m_AlphaMapCoords[i].u0=float(i*tile_w+2)/float(total_w);
+		m_AlphaMapCoords[i].u1=float((i+1)*tile_w-2)/float(total_w);
 		m_AlphaMapCoords[i].v0=0.0f;
 		m_AlphaMapCoords[i].v1=1.0f;
 	}
 
 	for (i=0;i<NumAlphaMaps;i++)
-		tex_free(textures[i]);
+		ogl_tex_free(textures[i]);
 
+	// upload the composite texture
 	glGenTextures(1,(GLuint*) &m_CompositeAlphaMap);
 	BindTexture(0,m_CompositeAlphaMap);
-	glTexImage2D(GL_TEXTURE_2D,0,GL_INTENSITY,texsize,base,0,GL_RGB,GL_UNSIGNED_BYTE,data);
-
+	glTexImage2D(GL_TEXTURE_2D,0,GL_INTENSITY,total_w,total_h,0,GL_RGB,GL_UNSIGNED_BYTE,data);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
-
-	// GL_CLAMP_TO_EDGE
-	oglSquelchError(GL_INVALID_ENUM);
-
+	oglSquelchError(GL_INVALID_ENUM);	// GL_CLAMP_TO_EDGE
 	delete[] data;
 
 	return 0;

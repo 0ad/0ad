@@ -15,7 +15,7 @@
 |
 |
 | Usage: The functions speak for themselves. Instantiate, then be
-|        sure to pass a loaded (using tex_load()) texture before 
+|        sure to pass a loaded (using ogl_tex_load()) texture before 
 |        calling Render().
 |
 | To do: TBA

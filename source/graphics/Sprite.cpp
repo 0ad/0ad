@@ -15,7 +15,7 @@
 |
 |
 | Usage: The functions speak for themselves. Instantiate, then be
-|        sure to pass a loaded (using tex_load()) texture before 
+|        sure to pass a loaded (using ogl_tex_load()) texture before 
 |        calling Render().
 |
 | To do: TBA
@@ -61,7 +61,7 @@ void CSprite::Render()
 	glTranslatef(m_translation.X, m_translation.Y, m_translation.Z);
 	glScalef(m_scale.X, m_scale.Y, m_scale.Z);
 
-	g_Renderer.BindTexture(0,tex_id(m_texture->GetHandle()));
+	ogl_tex_bind(m_texture->GetHandle());
 
 	glColor4fv(m_colour);
 

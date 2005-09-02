@@ -8,8 +8,8 @@
 #include "lib.h"
 
 
-int tex_filter = GL_LINEAR;
-uint tex_bpp = 32;				// 16 or 32
+GLint ogl_tex_filter = GL_LINEAR;
+uint ogl_tex_bpp = 32;				// 16 or 32
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -64,15 +64,15 @@ static bool filter_uses_mipmaps(GLint filter)
 }
 
 
-// determine OpenGL texture format, given <bpp> and TexInfo <flags>.
-// also choose an internal format based on the global <tex_bpp>
+// determine OpenGL texture format, given <bpp> and Tex <flags>.
+// also choose an internal format based on the global <ogl_tex_bpp>
 // performance vs. quality setting.
 //
 // rationale: we override the user's previous internal format preference.
 // this is reasonable: 1) internal format is mostly performance optimization
 // 2) if it does turn out to be significant, better to reevaluate the
 // format decision after a reload than keep the user's setting.
-static int get_gl_fmt(int bpp, int flags, GLenum* fmt, GLenum* int_fmt)
+static int get_gl_fmt(int bpp, int flags, GLenum* fmt, GLint* int_fmt)
 {
 	const bool alpha = (flags & TEX_ALPHA) != 0;
 	const bool bgr   = (flags & TEX_BGR  ) != 0;
@@ -111,7 +111,7 @@ static int get_gl_fmt(int bpp, int flags, GLenum* fmt, GLenum* int_fmt)
 
 
 	// true => 8 bits per component; otherwise, 4
-	const bool high_quality = (tex_bpp == 32);
+	const bool high_quality = (ogl_tex_bpp == 32);
 
 	switch(bpp)
 	{
@@ -175,135 +175,174 @@ static GLint detect_auto_mipmap_gen()
 //
 //////////////////////////////////////////////////////////////////////////////
 
-struct Tex
+struct OglTex
 {
-	TexInfo ti;
+	Tex t;
 
 	// allocated by Tex_reload; indicates the texture is currently uploaded.
 	GLuint id;
 
-	// determined from TexInfo by gl_get_fmt (called from Tex_reload);
-	// user settings passed to tex_upload will override this until the
+	// determined from Tex by gl_get_fmt (called from Tex_reload);
+	// user settings passed to ogl_tex_upload will override this until the
 	// next actual reload.
 	GLenum fmt;
-	GLenum int_fmt;
+	GLint int_fmt;
 
-	// set to default <tex_filter> by Tex_init; user settings passed to
-	// tex_upload will permanently override this.
+	// set to default <ogl_tex_filter> by Tex_init; user settings passed to
+	// ogl_tex_upload will permanently override this.
 	GLint filter;
 
 	// flags influencing reload behavior
 	bool is_loaded;
-		// either we have the texture in memory (referenced by ti.hm),
+		// either we have the texture in memory (referenced by t.hm),
 		// or it's already been uploaded to OpenGL => no reload necessary.
 		// needs to be a flag so it can be reset in Tex_dtor.
 	bool has_been_uploaded;
 };
 
-H_TYPE_DEFINE(Tex);
+H_TYPE_DEFINE(OglTex);
 
-static void Tex_init(Tex* t, va_list UNUSED(args))
+static void OglTex_init(OglTex* ot, va_list UNUSED(args))
 {
 	// set to default (once)
-	t->filter = tex_filter;
+	ot->filter = ogl_tex_filter;
 }
 
-static void Tex_dtor(Tex* t)
+static void OglTex_dtor(OglTex* ot)
 {
-	tex_free(&t->ti);
+	tex_free(&ot->t);
 
-	glDeleteTextures(1, &t->id);
-	t->id = 0;
+	glDeleteTextures(1, &ot->id);
+	ot->id = 0;
 
 	// need to clear this so actual reloads (triggered by h_reload)
 	// actually reload.
-	t->is_loaded = false;
+	ot->is_loaded = false;
 }
 
 
-static int Tex_reload(Tex* t, const char* fn, Handle h)
+static int OglTex_reload(OglTex* ot, const char* fn, Handle h)
 {
-	if(t->is_loaded)
+	if(ot->is_loaded)
 		return 0;
 
-	TexInfo* const ti = &t->ti;
-	CHECK_ERR(tex_load(fn, ti));
-	CHECK_ERR(get_gl_fmt(ti->bpp, ti->flags, &t->fmt, &t->int_fmt));
+	Tex* const t = &ot->t;
+	CHECK_ERR(tex_load(fn, t));
+	CHECK_ERR(get_gl_fmt(t->bpp, t->flags, &ot->fmt, &ot->int_fmt));
 		// always override previous settings, since format in
 		// texture file may have changed (e.g. 24 -> 32 bpp).
 
-	t->is_loaded = true;
+	ot->is_loaded = true;
 
-	glGenTextures(1, &t->id);
+	glGenTextures(1, &ot->id);
 
 	// re-upload if necessary
-	if(t->has_been_uploaded)
-		CHECK_ERR(tex_upload(h, t->filter, t->int_fmt));
+	if(ot->has_been_uploaded)
+		CHECK_ERR(ogl_tex_upload(h, ot->filter, ot->int_fmt));
 
 	return 0;
 }
 
 
-Handle tex_load(const char* fn, int scope)
+Handle ogl_tex_load(const char* fn, int scope)
 {
-	return h_alloc(H_Tex, fn, scope);
+	return h_alloc(H_OglTex, fn, scope);
 }
 
 
-int tex_free(Handle& ht)
+int ogl_tex_free(Handle& ht)
 {
-	return h_free(ht, H_Tex);
+	return h_free(ht, H_OglTex);
 }
 
 
-int tex_bind(const Handle h)
+/*
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// BindTexture: bind a GL texture object to current active unit
+void CRenderer::BindTexture(int unit,GLuint tex)
 {
-	Tex* t = H_USER_DATA(h, Tex);
-	if(!t)
+#if 0
+glActiveTextureARB(GL_TEXTURE0+unit);
+if (tex==m_ActiveTextures[unit]) return;
+
+if (tex) {
+glBindTexture(GL_TEXTURE_2D,tex);
+if (!m_ActiveTextures[unit]) {
+glEnable(GL_TEXTURE_2D);
+}
+} else if (m_ActiveTextures[unit]) {
+glDisable(GL_TEXTURE_2D);
+}
+m_ActiveTextures[unit]=tex;
+#endif
+
+glActiveTextureARB(GL_TEXTURE0+unit);
+
+glBindTexture(GL_TEXTURE_2D,tex);
+if (tex) {
+glEnable(GL_TEXTURE_2D);
+} else {
+glDisable(GL_TEXTURE_2D);
+}
+m_ActiveTextures[unit]=tex;
+}
+*/
+
+int ogl_tex_bind(const Handle h, GLenum unit)
+{
+	int id = 0;
+
+	// special case: avoid dereference and disable texturing directly.
+	if(h == 0)
+		goto disable_texturing;
+
+	{
+	OglTex* ot = H_USER_DATA(h, OglTex);
+	if(!ot)
 	{
 		glBindTexture(GL_TEXTURE_2D, 0);
 		return ERR_INVALID_HANDLE;
 	}
 
 #ifndef NDEBUG
-	if(!t->id)
+	if(!ot->id)
 	{
-		debug_warn("tex_bind: Tex.id is not a valid texture");
+		debug_warn("ogl_tex_bind: OglTex.id is not a valid texture");
 		return -1;
 	}
 #endif
+	id = ot->id;
+	}
 
-	glBindTexture(GL_TEXTURE_2D, t->id);
+disable_texturing:
+	glActiveTextureARB(GL_TEXTURE0+unit);
+	glBindTexture(GL_TEXTURE_2D, id);
+	if(id)
+		glEnable(GL_TEXTURE_2D);
+	else
+		glDisable(GL_TEXTURE_2D);
 	return 0;
 }
 
-int tex_id(const Handle h)
-{
-	Tex* t = H_USER_DATA(h, Tex);
-	return t ? t->id : 0;
-}
 
-
-
-
-static int tex_validate(const uint line, const Tex* t)
+static int ogl_tex_validate(const uint line, const OglTex* ot)
 {
 	const char* msg = 0;
 	int err = -1;
 
 	// pointer to texture data
 	size_t tex_file_size;
-	void* tex_file = mem_get_ptr(t->ti.hm, &tex_file_size);
+	void* tex_file = mem_get_ptr(ot->t.hm, &tex_file_size);
 	if(!tex_file)
 		msg = "texture file not loaded";
 	// possible causes: texture file header is invalid,
 	// or file wasn't loaded completely.
-	if(t->ti.ofs > tex_file_size)
+	if(ot->t.ofs > tex_file_size)
 		msg = "offset to texture data exceeds file size";
 
 	// width, height
-	GLsizei w = (GLsizei)t->ti.w;
-	GLsizei h = (GLsizei)t->ti.h;
+	GLsizei w = (GLsizei)ot->t.w;
+	GLsizei h = (GLsizei)ot->t.h;
 	// if w or h is 0, texture file probably not loaded successfully.
 	if(w == 0 || h == 0)
 		msg = "width or height is 0 - texture probably not loaded successfully";
@@ -318,7 +357,7 @@ static int tex_validate(const uint line, const Tex* t)
 		msg = "width or height is not a power-of-2";
 
 	// texel format
-	GLenum fmt = (GLenum)t->fmt;
+	GLenum fmt = (GLenum)ot->fmt;
 	if(!fmt)
 		msg = "texel format is 0";
 	// can't really check against a list of valid formats - loaders
@@ -326,18 +365,18 @@ static int tex_validate(const uint line, const Tex* t)
 	// loader knows what it's doing, and that the format is valid.
 
 	// bits per pixel
-	u32 bpp = t->ti.bpp;
+	u32 bpp = ot->t.bpp;
 	// half-hearted sanity check: must be divisible by 4.
 	// don't bother checking all values.
 	if(bpp % 4 || bpp > 32)
 		msg = "invalid bpp? should be one of {4,8,16,24,32}";
 
-	// upload parameters, set by tex_upload(Handle), or 0
-	GLint filter  = t->filter;
+	// upload parameters, set by ogl_tex_upload(Handle), or 0
+	GLint filter  = ot->filter;
 	if(filter != 0 && !filter_is_known(filter))
 		msg = "invalid filter";
 	// as with the texel format above, there is not anything we can do
-	// to verify t->int_fmt is correct (even 0 is valid).
+	// to verify ot->int_fmt is correct (even 0 is valid).
 
 	if(msg)
 	{
@@ -349,40 +388,40 @@ static int tex_validate(const uint line, const Tex* t)
 	return 0;
 }
 
-#define CHECK_TEX(t) CHECK_ERR(tex_validate(__LINE__, t))
+#define CHECK_OGL_TEX(t) CHECK_ERR(ogl_tex_validate(__LINE__, t))
 
 
-int tex_upload(const Handle ht, int filter_ovr, int int_fmt_ovr, int fmt_ovr)
+int ogl_tex_upload(const Handle ht, GLint filter_ovr, GLint int_fmt_ovr, GLenum fmt_ovr)
 {
-	H_DEREF(ht, Tex, t);
+	H_DEREF(ht, OglTex, ot);
 
 	// someone's requesting upload, but has already been uploaded.
 	// this happens if a cached texture is "loaded". no work to do.
-	if(t->id && t->ti.hm <= 0)
+	if(ot->id && ot->t.hm <= 0)
 		return 0;
 
-	CHECK_TEX(t);	// must come after check above to avoid false alarms
+	CHECK_OGL_TEX(ot);	// must come after check above to avoid false alarms
 
 	const char* fn = h_filename(ht);
 	if(!fn)
 	{
 		fn = "(could not determine filename)";
-		debug_warn("tex_upload(Handle): h_filename failed");
+		debug_warn("ogl_tex_upload(Handle): h_filename failed");
 	}
 
 	// allow user override of format/settings
-	if(filter_ovr) t->filter = filter_ovr;
-	if(int_fmt_ovr) t->int_fmt = int_fmt_ovr;
-	if(fmt_ovr) t->fmt = fmt_ovr;
+	if(filter_ovr) ot->filter = filter_ovr;
+	if(int_fmt_ovr) ot->int_fmt = int_fmt_ovr;
+	if(fmt_ovr) ot->fmt = fmt_ovr;
 
 	// convenient local copies. note: have been validated by CHECK_TEX.
-	GLsizei w      = (GLsizei)t->ti.w;
-	GLsizei h      = (GLsizei)t->ti.h;
-	u32 bpp        = t->ti.bpp;	// used for S3TC/mipmap size calc
-	GLenum fmt     = t->fmt;
-	GLint filter   = t->filter;
-	GLenum int_fmt = t->int_fmt;
-	void* tex_data = (u8*)mem_get_ptr(t->ti.hm) + t->ti.ofs;
+	GLsizei w      = (GLsizei)ot->t.w;
+	GLsizei h      = (GLsizei)ot->t.h;
+	u32 bpp        = ot->t.bpp;	// used for S3TC/mipmap size calc
+	GLenum fmt     = ot->fmt;
+	GLint filter   = ot->filter;
+	GLint int_fmt  = ot->int_fmt;
+	void* tex_data = tex_get_data(&ot->t);
 
 	// does filter call for uploading mipmaps?
 	const bool need_mipmaps = filter_uses_mipmaps(filter);
@@ -390,9 +429,9 @@ int tex_upload(const Handle ht, int filter_ovr, int int_fmt_ovr, int fmt_ovr)
 	ONCE(auto_mipmap_gen = detect_auto_mipmap_gen());
 
 
-	CHECK_ERR(tex_bind(ht));
-		// we know ht is valid (H_DEREF above), but tex_bind can
-		// fail in debug builds if Tex.id isn't a valid texture name
+	CHECK_ERR(ogl_tex_bind(ht));
+		// we know ht is valid (H_DEREF above), but ogl_tex_bind can
+		// fail in debug builds if OglTex.id isn't a valid texture name
 
 	// set upload params
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filter);
@@ -452,7 +491,7 @@ int tex_upload(const Handle ht, int filter_ovr, int int_fmt_ovr, int fmt_ovr)
 	*/
 
 	bool is_compressed = fmt_is_s3tc(fmt);
-	bool has_mipmaps = (t->ti.flags & TEX_MIPMAPS ? true : false);
+	bool has_mipmaps = (ot->t.flags & TEX_MIPMAPS ? true : false);
 
 	enum UploadState
 	{
@@ -527,11 +566,11 @@ int tex_upload(const Handle ht, int filter_ovr, int int_fmt_ovr, int fmt_ovr)
 		}
 	}
 	else
-		debug_warn("Invalid state in tex_upload");
+		debug_warn("Invalid state in ogl_tex_upload");
 
-	mem_free_h(t->ti.hm);
+	mem_free_h(ot->t.hm);
 
-	t->has_been_uploaded = true;
+	ot->has_been_uploaded = true;
 
 	oglCheck();
 
@@ -539,22 +578,33 @@ int tex_upload(const Handle ht, int filter_ovr, int int_fmt_ovr, int fmt_ovr)
 }
 
 
-
-
-int tex_info(Handle ht, int* w, int* h, int* fmt, int* bpp, void** p)
+int ogl_tex_get_size(Handle ht, int* w, int* h, int* bpp)
 {
-	H_DEREF(ht, Tex, t);
-
+	H_DEREF(ht, OglTex, ot);
 	if(w)
-		*w = t->ti.w;
+		*w = ot->t.w;
 	if(h)
-		*h = t->ti.h;
-	if(fmt)
-		*fmt = t->fmt;
+		*h = ot->t.h;
 	if(bpp)
-		*bpp = t->ti.bpp;
-	if(p)
-		*p = (u8*)mem_get_ptr(t->ti.hm) + t->ti.ofs;
+		*bpp = ot->t.bpp;
+	return 0;
+}
 
+
+int ogl_tex_get_format(Handle ht, int* flags, GLenum* fmt)
+{
+	H_DEREF(ht, OglTex, ot);
+	if(flags)
+		*flags = ot->t.flags;
+	if(fmt)
+		*fmt = ot->fmt;
+	return 0;
+}
+
+
+int ogl_tex_get_data(Handle ht, void** p)
+{
+	H_DEREF(ht, OglTex, ot);
+	*p = tex_get_data(&ot->t);
 	return 0;
 }

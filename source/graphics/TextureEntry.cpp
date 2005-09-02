@@ -56,7 +56,7 @@ CTextureEntry::~CTextureEntry()
 		m_LoadedTextures.erase(it);
 	
 	if (m_Handle > 0)
-		tex_free(m_Handle);
+		ogl_tex_free(m_Handle);
 
 	for (GroupVector::iterator it=m_Groups.begin();it!=m_Groups.end();++it)
 		(*it)->RemoveTerrain(this);
@@ -88,8 +88,7 @@ void CTextureEntry::BuildBaseColor()
 		return;
 	}
 
-	Handle handle=GetHandle();
-	g_Renderer.BindTexture(0,tex_id(handle));
+	ogl_tex_bind(GetHandle());
 
 	// get root colour for coloring minimap by querying root level of the texture 
 	// (this should decompress any compressed textures for us),
