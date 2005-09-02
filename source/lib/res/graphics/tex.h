@@ -23,14 +23,16 @@
 
 
 
-enum TexInfoFlags
+enum TexFlags
 {
-	TEX_DXT   = 0x07,	// mask; value = {1,3,5}
-	TEX_BGR   = 0x08,
+	TEX_DXT   = 0x7,	// mask; value = {1,3,5}
+
 	TEX_ALPHA = 0x10,
 	TEX_GREY  = 0x20,
 
-	// orientation - never returned by tex_load, since it automatically
+	TEX_BGR   = 0x08,
+
+	// orientation - never returned by ogl_tex_load, since it automatically
 	// flips to match global orientation. these are passed to tex_write
 	// to indicate the image orientation, or to tex_set_global_orientation.
 	TEX_BOTTOM_UP = 0x40,
@@ -43,25 +45,41 @@ enum TexInfoFlags
 };
 
 // minimize size - stored in ogl tex resource control block
-struct TexInfo
+struct Tex
 {
 	Handle hm;			// H_Mem handle to loaded file
 	size_t ofs;			// offset to image data in file
 	uint w : 16;
 	uint h : 16;
-	uint bpp : 16;		// average bits per pixel
+	uint bpp : 16;
+
+	// describes the image format; indicates deviations from the
+	// plain image format (e.g. BGR layout, upside-down).
+	//
+	// we don't want to just load as-is and set flags, thereby dumping the
+	// burden of conversion on apps. instead, we convert as much as is
+	// convenient and necessary at load-time. however, we do not go
+	// overboard and support all<->all conversions (too complex) or
+	// encourage transforms at runtime.
+	// in release builds, prefer formats optimized for their intended use
+	// that don't require any preprocessing (minimize load time!)
 	uint flags : 16;
 };
 
-extern int tex_load(const char* fn, TexInfo* ti);
-extern int tex_load_mem(Handle hm, const char* fn, TexInfo* t);
-extern int tex_free(TexInfo* ti);
+
+extern int tex_load(const char* fn, Tex* t);
+extern int tex_load_mem(Handle hm, const char* fn, Tex* t);
+extern int tex_free(Tex* t);
+
+extern u8* tex_get_data(const Tex* t);
+extern int tex_transform(Tex* t, uint new_flags);
 
 extern int tex_write(const char* fn, uint w, uint h, uint bpp, uint flags, void* img);
 
-extern int tex_is_known_fmt(void* p, size_t size_t);
-
+// rationale: some libraries can flip images for free when loading, so set a
+// global orientation rather than only flipping at upload time.
 // param: either TEX_BOTTOM_UP or TEX_TOP_DOWN
 extern void tex_set_global_orientation(int orientation);
+
 
 #endif	// __TEX_H__
