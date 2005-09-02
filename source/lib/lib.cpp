@@ -488,12 +488,12 @@ namespace test {
 
 static void test_log2()
 {
-	debug_assert(ilog2(0) == -1);
-	debug_assert(ilog2(3) == -1);
-	debug_assert(ilog2(0xffffffff) == -1);
-	debug_assert(ilog2(1) == 0);
-	debug_assert(ilog2(256) == 8);
-	debug_assert(ilog2(0x80000000) == 31);
+	TEST(ilog2(0) == -1);
+	TEST(ilog2(3) == -1);
+	TEST(ilog2(0xffffffff) == -1);
+	TEST(ilog2(1) == 0);
+	TEST(ilog2(256) == 8);
+	TEST(ilog2(0x80000000) == 31);
 }
 
 static void self_test()

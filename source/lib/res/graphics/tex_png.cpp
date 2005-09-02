@@ -39,24 +39,16 @@
 //-----------------------------------------------------------------------------
 
 
-struct PngMemFile
-{
-	const u8* p;
-	size_t size;
-
-	size_t pos;		// 0-initialized if no initializer
-};
-
 // pass data from PNG file in memory to libpng
-static void png_io_read(png_struct* png_ptr, u8* data, png_size_t length)
+static void io_read(png_struct* png_ptr, u8* data, png_size_t length)
 {
-	PngMemFile* f = (PngMemFile*)png_ptr->io_ptr;
+	MemSource* ms = (MemSource*)png_ptr->io_ptr;
 
-	void* src = (u8*)(f->p + f->pos);
+	void* src = (u8*)(ms->p + ms->pos);
 
 	// make sure there's enough new data remaining in the buffer
-	f->pos += length;
-	if(f->pos > f->size)
+	ms->pos += length;
+	if(ms->pos > ms->size)
 		png_error(png_ptr, "png_read: not enough data to satisfy request!");
 
 	memcpy(data, src, length);
@@ -64,7 +56,7 @@ static void png_io_read(png_struct* png_ptr, u8* data, png_size_t length)
 
 
 // write libpng output to PNG file
-static void png_io_write(png_struct* png_ptr, u8* data, png_size_t length)
+static void io_write(png_struct* png_ptr, u8* data, png_size_t length)
 {
 	void* p = (void*)data;
 	Handle hf = *(Handle*)png_ptr->io_ptr;
@@ -73,7 +65,7 @@ static void png_io_write(png_struct* png_ptr, u8* data, png_size_t length)
 }
 
 
-static void png_io_flush(png_structp)
+static void io_flush(png_structp)
 {
 }
 
@@ -94,10 +86,10 @@ static int png_transform(Tex* t, int new_flags)
 // "dtor / setjmp interaction" warning.
 static int png_decode_impl(Tex* t, u8* file, size_t file_size,
 	png_structp png_ptr, png_infop info_ptr,
-	u8*& img, RowArray& rows, const char** perr_msg)
+	Handle& img_hm, RowArray& rows, const char** perr_msg)
 {
-	PngMemFile f = 	{ file, file_size };
-	png_set_read_fn(png_ptr, &f, png_io_read);
+	MemSource ms = 	{ file, file_size, 0 };
+	png_set_read_fn(png_ptr, &ms, io_read);
 
 	// read header and determine format
 	png_read_info(png_ptr, info_ptr);
@@ -126,10 +118,7 @@ static int png_decode_impl(Tex* t, u8* file, size_t file_size,
 	}
 
 	const size_t img_size = pitch * h;
-	Handle img_hm;
-	// cannot free old t->hm until after png_read_end,
-	// but need to set to this handle afterwards => need tmp var.
-	img = (u8*)mem_alloc(img_size, 64*KiB, 0, &img_hm);
+	u8* img = (u8*)mem_alloc(img_size, 64*KiB, 0, &img_hm);
 	if(!img)
 		return ERR_NO_MEM;
 
@@ -139,12 +128,12 @@ static int png_decode_impl(Tex* t, u8* file, size_t file_size,
 	png_read_end(png_ptr, info_ptr);
 
 	// success; make sure all data was consumed.
-	debug_assert(f.p == file && f.size == file_size && f.pos == f.size);
+	debug_assert(ms.p == file && ms.size == file_size && ms.pos == ms.size);
 
 	// store image info
 	// .. transparently switch handles - free the old (compressed)
 	//    buffer and replace it with the decoded-image memory handle.
-	mem_free_h(t->hm);
+	mem_free_h(t->hm);	// must come after png_read_end
 	t->hm    = img_hm;
 	t->ofs   = 0;	// libpng returns decoded image data; no header
 	t->w     = w;
@@ -160,7 +149,7 @@ static int png_decode_impl(Tex* t, u8* file, size_t file_size,
 // "dtor / setjmp interaction" warning.
 static int png_encode_impl(Tex* t,
 	png_structp png_ptr, png_infop info_ptr,
-	RowArray& rows, Handle& hf, const char** perr_msg)
+	RowArray& rows, const char** perr_msg)
 {
 	UNUSED2(perr_msg);	// we don't produce any error messages ATM.
 
@@ -189,7 +178,7 @@ static int png_encode_impl(Tex* t,
 /*
 	hf = vfs_open(fn, FILE_WRITE|FILE_NO_AIO);
 	CHECK_ERR(hf);
-	png_set_write_fn(png_ptr, &hf, png_io_write, png_io_flush);
+	png_set_write_fn(png_ptr, &hf, io_write, io_flush);
 */
 	png_set_IHDR(png_ptr, info_ptr, w, h, 8, colour_type,
 		PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
@@ -213,15 +202,13 @@ static int png_decode(u8* file, size_t file_size, Tex* t, const char** perr_msg)
 	if(*(u32*)file != FOURCC('\x89','P','N','G'))
 		return TEX_CODEC_CANNOT_HANDLE;
 
-	int err = -1;
-
 	// freed when ret is reached:
 	png_structp png_ptr = 0;
 	png_infop info_ptr = 0;
 	RowArray rows = 0;
 
 	// freed if fail is reached:
-	u8* img = 0;	// decompressed image memory
+	Handle img_hm = 0;	// decompressed image memory
 
 	// allocate PNG structures; use default stderr and longjmp error handlers
 	png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
@@ -234,23 +221,20 @@ static int png_decode(u8* file, size_t file_size, Tex* t, const char** perr_msg)
 	// setup error handling
 	if(setjmp(png_jmpbuf(png_ptr)))
 	{
-		// reached if PNG triggered a longjmp
+		// libpng longjmp-ed here after an error, or code below failed.
 fail:
-		mem_free(img);
+		mem_free_h(img_hm);
 		goto ret;
 	}
 
-	err = png_decode_impl(t, file, file_size, png_ptr, info_ptr, img, rows, perr_msg);
+	int err = png_decode_impl(t, file, file_size, png_ptr, info_ptr, img_hm, rows, perr_msg);
 	if(err < 0)
 		goto fail;
 
-	// shared cleanup
 ret:
-	free(rows);
-
 	if(png_ptr)
 		png_destroy_read_struct(&png_ptr, &info_ptr, 0);
-
+	free(rows);
 	return err;
 }
 
@@ -261,13 +245,13 @@ static int png_encode(const char* ext, Tex* t, u8** out, size_t* UNUSED(out_size
 	if(stricmp(ext, "png"))
 		return TEX_CODEC_CANNOT_HANDLE;
 
-	int err = -1;
-
-	// freed when ret is reached.
+	// freed when ret is reached:
 	png_structp png_ptr = 0;
 	png_infop info_ptr = 0;
-	RowArray rows = 0; 
-	Handle hf = 0;
+	RowArray rows = 0;
+
+	// free when fail is reached:
+	// (mem buffer)
 
 	// allocate PNG structures; use default stderr and longjmp error handlers
 	png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
@@ -280,13 +264,12 @@ static int png_encode(const char* ext, Tex* t, u8** out, size_t* UNUSED(out_size
 	// setup error handling
 	if(setjmp(png_jmpbuf(png_ptr)))
 	{
-		// reached if libpng triggered a longjmp
 fail:
-		// currently no extra resources that need to be freed
+		// libjpg longjmp-ed here after an error, or code below failed.
 		goto ret;
 	}
 
-	err = png_encode_impl(t, png_ptr, info_ptr, rows, hf, perr_msg);
+	int err = png_encode_impl(t, png_ptr, info_ptr, rows, perr_msg);
 	if(err < 0)
 		goto fail;
 
@@ -295,7 +278,6 @@ ret:
 	png_destroy_write_struct(&png_ptr, &info_ptr);
 
 	free(rows);
-	vfs_close(hf);
 
 	return err;
 }

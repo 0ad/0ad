@@ -44,7 +44,11 @@ extern int tex_codec_register(const TexCodecVTbl* c);
 // <file_orientation> indicates whether the file format is top-down or
 // bottom-up; the row array is inverted if necessary to match global
 // orienatation. (this is more efficient than "transforming" later)
+//
 // used by PNG and JPG codecs; caller must free() rows when done.
+//
+// note: we don't allocate the data param ourselves because this function is
+// needed for encoding, too (where data is already present).
 typedef const u8* RowPtr;
 typedef RowPtr* RowArray;
 extern int tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
@@ -52,11 +56,12 @@ extern int tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
 
 extern int tex_codec_set_orientation(Tex* t, int file_orientation);
 
-// check if the given texture format is acceptable: 8bpp grey,
-// 24bpp color or 32bpp color+alpha (BGR / upside down are permitted).
-// basically, this is the "plain" format understood by all codecs and
-// tex_codec_plain_transform.
-// return 0 if ok or a negative error code.
-extern int tex_codec_validate_format(uint bpp, uint flags);
+
+struct MemSource
+{
+	u8* p;
+	size_t size;
+	size_t pos;
+};
 
 #endif	// #ifndef TEX_CODEC_H__

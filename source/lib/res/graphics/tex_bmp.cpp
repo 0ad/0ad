@@ -7,21 +7,14 @@
 
 struct BmpHeader
 { 
-	//
 	// BITMAPFILEHEADER
-	//
-
 	u16 bfType;			// "BM"
 	u32 bfSize;			// of file
 	u16 bfReserved1;
 	u16 bfReserved2;
 	u32 bfOffBits;		// offset to image data
 
-
-	//
 	// BITMAPINFOHEADER
-	//
-
 	u32 biSize;
 	long biWidth;
 	long biHeight;
@@ -29,7 +22,6 @@ struct BmpHeader
 	u16 biBitCount;
 	u32 biCompression;
 	u32 biSizeImage;
-
 	// the following are unused and zeroed when writing:
 	long biXPelsPerMeter;
 	long biYPelsPerMeter;
@@ -113,17 +105,17 @@ static int bmp_encode(const char* ext, Tex* t, u8** out, size_t* out_size, const
 {
 	if(stricmp(ext, "bmp"))
 		return TEX_CODEC_CANNOT_HANDLE;
-/*
-	CHECK_ERR(fmt_8_or_24_or_32(t->bpp, t->flags));
+
+size_t img_size = t->w * t->h * t->bpp/8;
 
 	const size_t hdr_size = sizeof(BmpHeader);	// needed for BITMAPFILEHEADER
 	const size_t file_size = hdr_size + img_size;
-	const long h = (t->flags & TEX_TOP_DOWN)? -(int)t->h : t->h;
+	const long h = (t->flags & TEX_TOP_DOWN)? -(long)t->h : t->h;
 
 	int transforms = t->flags;
 	transforms &= ~TEX_ORIENTATION;	// no flip needed - we can set top-down bit.
 	transforms ^= TEX_BGR;			// BMP is native BGR.
-	transform(t, img, transforms);
+	tex_transform(t, transforms);
 
 	const BmpHeader hdr =
 	{
@@ -144,8 +136,6 @@ static int bmp_encode(const char* ext, Tex* t, u8** out, size_t* out_size, const
 		0, 0, 0, 0			// unused (bi?PelsPerMeter, biClr*)
 	};
 
-	return write_img(fn, &hdr, sizeof(hdr), img, img_size);
-*/
 	return 0;
 }
 

@@ -33,6 +33,39 @@
 static int global_orientation = TEX_TOP_DOWN;
 
 
+
+// check if the given texture format is acceptable: 8bpp grey,
+// 24bpp color or 32bpp color+alpha (BGR / upside down are permitted).
+// basically, this is the "plain" format understood by all codecs and
+// tex_codec_plain_transform.
+// return 0 if ok or a negative error code.
+static int validate_format(uint bpp, uint flags)
+{
+	const bool alpha   = (flags & TEX_ALPHA  ) != 0;
+	const bool grey    = (flags & TEX_GREY   ) != 0;
+	const bool dxt     = (flags & TEX_DXT    ) != 0;
+	const bool mipmaps = (flags & TEX_MIPMAPS) != 0;
+
+	if(dxt || mipmaps)
+		return ERR_TEX_FMT_INVALID;
+
+	// grey must be 8bpp without alpha, or it's invalid.
+	if(grey)
+	{
+		if(bpp == 8 && !alpha)
+			return 0;
+		return ERR_TEX_FMT_INVALID;
+	}
+
+	if(bpp == 24 && !alpha)
+		return 0;
+	if(bpp == 32 && alpha)
+		return 0;
+
+	return ERR_TEX_FMT_INVALID;
+}
+
+
 // handles BGR and row flipping in "plain" format (see below).
 //
 // called by codecs after they get their format-specific transforms out of
@@ -52,7 +85,7 @@ static int plain_transform(Tex* t, uint new_format)
 	if(pending_transforms & ~(TEX_BGR|TEX_ORIENTATION))
 		return TEX_CODEC_CANNOT_HANDLE;
 	// .. img is not in "plain" format
-	if(tex_codec_validate_format(bpp, flags) != 0)
+	if(validate_format(bpp, flags) != 0)
 		return TEX_CODEC_CANNOT_HANDLE;
 	// .. nothing to do
 	if(!pending_transforms)
@@ -167,7 +200,11 @@ int tex_codec_register(const TexCodecVTbl* c)
 // <file_orientation> indicates whether the file format is top-down or
 // bottom-up; the row array is inverted if necessary to match global
 // orienatation. (this is more efficient than "transforming" later)
+//
 // used by PNG and JPG codecs; caller must free() rows when done.
+//
+// note: we don't allocate the data param ourselves because this function is
+// needed for encoding, too (where data is already present).
 int tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
 	int file_orientation, RowArray& rows)
 {
@@ -197,38 +234,6 @@ int tex_codec_set_orientation(Tex* t, int file_orientation)
 	int pending_transforms = file_orientation ^ global_orientation;
 	int new_flags = t->flags ^ pending_transforms;
 	return plain_transform(t, new_flags);
-}
-
-
-// check if the given texture format is acceptable: 8bpp grey,
-// 24bpp color or 32bpp color+alpha (BGR / upside down are permitted).
-// basically, this is the "plain" format understood by all codecs and
-// tex_codec_plain_transform.
-// return 0 if ok or a negative error code.
-int tex_codec_validate_format(uint bpp, uint flags)
-{
-	const bool alpha   = (flags & TEX_ALPHA  ) != 0;
-	const bool grey    = (flags & TEX_GREY   ) != 0;
-	const bool dxt     = (flags & TEX_DXT    ) != 0;
-	const bool mipmaps = (flags & TEX_MIPMAPS) != 0;
-
-	if(dxt || mipmaps)
-		return ERR_TEX_FMT_INVALID;
-
-	// grey must be 8bpp without alpha, or it's invalid.
-	if(grey)
-	{
-		if(bpp == 8 && !alpha)
-			return 0;
-		return ERR_TEX_FMT_INVALID;
-	}
-
-	if(bpp == 24 && !alpha)
-		return 0;
-	if(bpp == 32 && alpha)
-		return 0;
-
-	return ERR_TEX_FMT_INVALID;
 }
 
 
@@ -339,6 +344,9 @@ int tex_transform(Tex* t, uint new_flags)
 
 int tex_write(const char* fn, uint w, uint h, uint bpp, uint flags, void* in_img)
 {
+	if(validate_format(bpp, flags) != 0)
+		return ERR_TEX_FMT_INVALID;
+
 	const size_t in_img_size = w * h * bpp / 8;
 
 	const char* ext = strrchr(fn, '.');
@@ -353,6 +361,7 @@ int tex_write(const char* fn, uint w, uint h, uint bpp, uint flags, void* in_img
 		0,	// image data offset
 		w, h, bpp, flags
 	};
+
 	u8* out; size_t out_size;
 	for(int i = 0; i < MAX_CODECS; i++)
 	{

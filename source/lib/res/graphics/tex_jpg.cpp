@@ -37,9 +37,9 @@ typedef struct
 	size_t size;	/* total size (bytes) */
 	size_t pos;		/* offset (bytes) to new data */
 }
-MemSrcMgr;
+SrcMgr;
 
-typedef MemSrcMgr* SrcPtr;
+typedef SrcMgr* SrcPtr;
 
 
 /*
@@ -47,7 +47,7 @@ typedef MemSrcMgr* SrcPtr;
 * before any data is actually read.
 */
 
-METHODDEF(void) init_source(j_decompress_ptr UNUSED(cinfo))
+METHODDEF(void) src_init(j_decompress_ptr UNUSED(cinfo))
 {
 }
 
@@ -70,7 +70,7 @@ METHODDEF(void) init_source(j_decompress_ptr UNUSED(cinfo))
 * input file, so we handle that case specially.
 */
 
-METHODDEF(boolean) fill_input_buffer(j_decompress_ptr cinfo)
+METHODDEF(boolean) src_fill_buffer(j_decompress_ptr cinfo)
 {
 	SrcPtr src = (SrcPtr)cinfo->src;
 	static const JOCTET eoi[2] = { 0xFF, JPEG_EOI };
@@ -95,7 +95,7 @@ METHODDEF(boolean) fill_input_buffer(j_decompress_ptr cinfo)
 * uninteresting data (such as an APPn marker).
 */
 
-METHODDEF(void) skip_input_data(j_decompress_ptr cinfo, long num_bytes)
+METHODDEF(void) src_skip_data(j_decompress_ptr cinfo, long num_bytes)
 {
 	SrcPtr src = (SrcPtr)cinfo->src;
 	size_t skip_count = (size_t)num_bytes;
@@ -136,7 +136,7 @@ METHODDEF(void) skip_input_data(j_decompress_ptr cinfo, long num_bytes)
 * for error exit.
 */
 
-METHODDEF(void) term_source(j_decompress_ptr UNUSED(cinfo))
+METHODDEF(void) src_term(j_decompress_ptr UNUSED(cinfo))
 {
 	/*
 	* no-op (we don't own the buffer and shouldn't,
@@ -150,7 +150,7 @@ METHODDEF(void) term_source(j_decompress_ptr UNUSED(cinfo))
 * The caller is responsible for freeing it after finishing decompression.
 */
 
-GLOBAL(void) jpeg_mem_src(j_decompress_ptr cinfo, void* p, size_t size)
+GLOBAL(void) src_prepare(j_decompress_ptr cinfo, void* p, size_t size)
 {
 	SrcPtr src;
 
@@ -170,15 +170,15 @@ GLOBAL(void) jpeg_mem_src(j_decompress_ptr cinfo, void* p, size_t size)
 	if(!cinfo->src)
 		cinfo->src = (struct jpeg_source_mgr*)
 		(*cinfo->mem->alloc_small) ((j_common_ptr)cinfo, JPOOL_PERMANENT,
-		sizeof(MemSrcMgr));
+		sizeof(SrcMgr));
 	/* (takes care of raising error if out of memory) */
 
 	src = (SrcPtr)cinfo->src;
-	src->pub.init_source       = init_source;
-	src->pub.fill_input_buffer = fill_input_buffer;
-	src->pub.skip_input_data   = skip_input_data;
+	src->pub.init_source       = src_init;
+	src->pub.fill_input_buffer = src_fill_buffer;
+	src->pub.skip_input_data   = src_skip_data;
 	src->pub.resync_to_restart = jpeg_resync_to_restart; /* default */
-	src->pub.term_source       = term_source;
+	src->pub.term_source       = src_term;
 
 	/*
 	* fill buffer with everything we have.
@@ -193,16 +193,15 @@ GLOBAL(void) jpeg_mem_src(j_decompress_ptr cinfo, void* p, size_t size)
 // mem destination manager
 //-----------------------------------------------------------------------------
 
-/* Expanded data destination object for VFS output */
+/* Expanded data destination object for memory output */
 typedef struct {
 	struct jpeg_destination_mgr pub; /* public fields */
 
-	Handle hf;
 	JOCTET* buf;
 	// jpeg-6b interface needs a memory buffer
-} VfsDstMgr;
+} DstMgr;
 
-typedef VfsDstMgr* DstPtr;
+typedef DstMgr* DstPtr;
 
 #define OUTPUT_BUF_SIZE  16*KiB	/* choose an efficiently writeable size */
 
@@ -212,7 +211,7 @@ typedef VfsDstMgr* DstPtr;
 * before any data is actually written.
 */
 
-METHODDEF(void) init_destination(j_compress_ptr cinfo)
+METHODDEF(void) dst_init(j_compress_ptr cinfo)
 {
 	DstPtr dst = (DstPtr)cinfo->dest;
 
@@ -248,14 +247,14 @@ METHODDEF(void) init_destination(j_compress_ptr cinfo)
 * write it out when emptying the buffer externally.
 */
 
-METHODDEF(boolean) empty_output_buffer(j_compress_ptr cinfo)
+METHODDEF(boolean) dst_empty_output_buffer(j_compress_ptr cinfo)
 {
 	DstPtr dst = (DstPtr)cinfo->dest;
 
 	// writing out OUTPUT_BUF_SIZE-dst->pub.free_in_buffer bytes
-	// sounds reasonable, but make for broken output.
-	if(vfs_io(dst->hf, OUTPUT_BUF_SIZE, (void**)&dst->buf) != OUTPUT_BUF_SIZE)
-		ERREXIT(cinfo, JERR_FILE_WRITE);
+	// sounds reasonable, but makes for broken output.
+//	if(vfs_io(dst->hf, OUTPUT_BUF_SIZE, (void**)&dst->buf) != OUTPUT_BUF_SIZE)
+//		ERREXIT(cinfo, JERR_FILE_WRITE);
 
 	dst->pub.next_output_byte = dst->buf;
 	dst->pub.free_in_buffer = OUTPUT_BUF_SIZE;
@@ -273,14 +272,14 @@ METHODDEF(boolean) empty_output_buffer(j_compress_ptr cinfo)
 * for error exit.
 */
 
-METHODDEF(void) term_destination(j_compress_ptr cinfo)
+METHODDEF(void) dst_term(j_compress_ptr cinfo)
 {
 	DstPtr dst = (DstPtr)cinfo->dest;
 
 	// make sure any data left in the buffer is written out
 	const size_t bytes_in_buf = OUTPUT_BUF_SIZE - dst->pub.free_in_buffer;
-	if(vfs_io(dst->hf, bytes_in_buf, (void**)&dst->buf) != (ssize_t)bytes_in_buf)
-		ERREXIT(cinfo, JERR_FILE_WRITE);
+//	if(vfs_io(dst->hf, bytes_in_buf, (void**)&dst->buf) != (ssize_t)bytes_in_buf)
+//		ERREXIT(cinfo, JERR_FILE_WRITE);
 
 	// flush file, if necessary.
 }
@@ -292,7 +291,7 @@ METHODDEF(void) term_destination(j_compress_ptr cinfo)
 * for closing it after finishing compression.
 */
 
-GLOBAL(void) jpeg_vfs_dst(j_compress_ptr cinfo, Handle hf)
+GLOBAL(void) dst_prepare(j_compress_ptr cinfo)
 {
 	/* The destination object is made permanent so that multiple JPEG images
 	* can be written to the same file without re-executing jpeg_stdio_dest.
@@ -302,14 +301,13 @@ GLOBAL(void) jpeg_vfs_dst(j_compress_ptr cinfo, Handle hf)
 	*/
 	if (cinfo->dest == NULL) {	/* first time for this JPEG object? */
 		cinfo->dest = (struct jpeg_destination_mgr*)(*cinfo->mem->alloc_small)
-			((j_common_ptr)cinfo, JPOOL_PERMANENT, sizeof(VfsDstMgr));
+			((j_common_ptr)cinfo, JPOOL_PERMANENT, sizeof(DstMgr));
 	}
 
 	DstPtr dst = (DstPtr)cinfo->dest;
-	dst->pub.init_destination    = init_destination;
-	dst->pub.empty_output_buffer = empty_output_buffer;
-	dst->pub.term_destination    = term_destination;
-	dst->hf = hf;
+	dst->pub.init_destination    = dst_init;
+	dst->pub.empty_output_buffer = dst_empty_output_buffer;
+	dst->pub.term_destination    = dst_term;
 }
 
 
@@ -329,22 +327,27 @@ GLOBAL(void) jpeg_vfs_dst(j_compress_ptr cinfo, Handle hf)
 // setjmp return point. it needs access to the jmp_buf,
 // so we store it in a "subclass" of jpeg_error_mgr.
 
-struct JpgErrMgr
+struct JpgErrorMgr
 {
 	struct jpeg_error_mgr pub;	// "public" fields
 
-	jmp_buf call_site; // jump here (back to JPEG lib caller) on error 
-	char msg[JMSG_LENGTH_MAX];	// description of first error encountered
-	// must store per JPEG context for thread safety.
-	// initialized as part of JPEG context error setup.
+	// jump here (back to JPEG lib caller) on error 
+	jmp_buf call_site;
+
+	// description of first error encountered; must store in JPEG context
+	// for thread safety. initialized in setup_err_mgr.
+	char msg[JMSG_LENGTH_MAX];
+
+	JpgErrorMgr(j_common_ptr cinfo);
 };
 
-METHODDEF(void) jpg_error_exit(j_common_ptr cinfo)
+
+METHODDEF(void) err_error_exit(j_common_ptr cinfo)
 {
 	// get subclass
-	JpgErrMgr* err_mgr = (JpgErrMgr*)cinfo->err;
+	JpgErrorMgr* err_mgr = (JpgErrorMgr*)cinfo->err;
 
-	// "output" error message (i.e. store in JpgErrMgr;
+	// "output" error message (i.e. store in JpgErrorMgr;
 	// call_site is responsible for displaying it via debug_printf)
 	(*cinfo->err->output_message)(cinfo);
 
@@ -353,22 +356,40 @@ METHODDEF(void) jpg_error_exit(j_common_ptr cinfo)
 }
 
 
-// stores message in JpgErrMgr for later output by jpg_(de|en)code.
+// stores message in JpgErrorMgr for later output by jpg_(de|en)code.
 // note: don't display message here, so the caller can
 //   add some context (whether encoding or decoding, and filename).
-METHODDEF(void) jpg_output_message(j_common_ptr cinfo)
+METHODDEF(void) err_output_message(j_common_ptr cinfo)
 {
 	// get subclass
-	JpgErrMgr* err_mgr = (JpgErrMgr*)cinfo->err;
+	JpgErrorMgr* err_mgr = (JpgErrorMgr*)cinfo->err;
 
 	// this context already had an error message; don't overwrite it.
 	// (subsequent errors probably aren't related to the real problem).
-	// note: was set to '\0' by JPEG context error setup.
+	// note: was set to '\0' by ctor.
 	if(err_mgr->msg[0] != '\0')
 		return;
 
 	// generate the message and store it
 	(*cinfo->err->format_message)(cinfo, err_mgr->msg);
+}
+
+
+JpgErrorMgr::JpgErrorMgr(j_common_ptr cinfo)
+{
+	// fill in pub fields
+	jpeg_std_error(&pub);
+	// .. and override some methods:
+	pub.error_exit = err_error_exit;
+	pub.output_message = err_output_message;
+
+	// required for "already have message" check in err_output_message
+	msg[0] = '\0';
+
+	// hack: register this error manager with cinfo.
+	// must be done before jpeg_create_* in case that fails
+	// (unlikely, but possible if out of memory).
+	cinfo->err = &pub;
 }
 
 
@@ -381,6 +402,148 @@ static int jpg_transform(Tex* t, int new_flags)
 }
 
 
+// note: jpg_encode and jpg_decode cannot be combined due to
+// libjpg interface differences.
+// we do split them up into interface and impl to simplify
+// resource cleanup and avoid "dtor / setjmp interaction" warnings.
+//
+// rationale for row array: jpeg won't output more than a few
+// scanlines at a time, so we need an output loop anyway. however,
+// passing at least 2..4 rows is more efficient in low-quality modes
+// due to less copying.
+
+
+static int jpg_decode_impl(Tex* t, u8* file, size_t file_size,
+	jpeg_decompress_struct* cinfo,
+	Handle& img_hm, RowArray& rows, const char** perr_msg)
+{
+	src_prepare(cinfo, file, file_size);
+
+	// ignore return value since:
+	// - suspension is not possible with the mem data source
+	// - we passed TRUE to raise an error if table-only JPEG file
+	(void)jpeg_read_header(cinfo, TRUE);
+
+	// set libjpg output format. we cannot go with the default because
+	// Photoshop writes non-standard CMYK files that must be converted to RGB.
+	int flags = 0;
+	cinfo->out_color_space = JCS_RGB;
+	if(cinfo->num_components == 1)
+	{
+		flags |= TEX_GREY;
+		cinfo->out_color_space = JCS_GRAYSCALE;
+	}
+
+	// lower quality, but faster
+	cinfo->dct_method = JDCT_IFAST;
+	cinfo->do_fancy_upsampling = FALSE;
+
+	// ignore return value since suspension is not possible with the
+	// mem data source.
+	// note: since we've set out_color_space, JPEG will always
+	// return an acceptable image format; no need to check.
+	(void)jpeg_start_decompress(cinfo);
+
+	// scaled output image dimensions and final bpp are now available.
+	int w = cinfo->output_width;
+	int h = cinfo->output_height;
+	int bpp = cinfo->output_components * 8;
+
+	// alloc destination buffer
+	const size_t pitch = w * bpp / 8;
+	const size_t img_size = pitch * h;	// for allow_rows
+	u8* img = (u8*)mem_alloc(img_size, 64*KiB, 0, &img_hm);
+	if(!img)
+		return ERR_NO_MEM;
+
+	// read rows
+	RETURN_ERR(tex_codec_alloc_rows(img, h, pitch, TEX_TOP_DOWN, rows));
+	// could use cinfo->output_scanline to keep track of progress,
+	// but we need to count lines_left anyway (paranoia).
+	JSAMPARRAY row = (JSAMPARRAY)rows;
+	JDIMENSION lines_left = h;
+	while(lines_left != 0)
+	{
+		JDIMENSION lines_read = jpeg_read_scanlines(cinfo, row, lines_left);
+		row += lines_read;
+		lines_left -= lines_read;
+
+		// we've decoded in-place; no need to further process
+	}
+
+	// ignore return value since suspension is not possible with the
+	// mem data source.
+	(void)jpeg_finish_decompress(cinfo);
+
+	if(cinfo->err->num_warnings != 0)
+		*perr_msg = "warning: corrupt image data";
+
+	// store image info
+	// .. transparently switch handles - free the old (compressed)
+	//    buffer and replace it with the decoded-image memory handle.
+	mem_free_h(t->hm);	// must come after jpeg_finish_decompress
+	t->hm    = img_hm;
+	t->ofs   = 0;	// jpeg returns decoded image data; no header
+	t->w     = w;
+	t->h     = h;
+	t->bpp   = bpp;
+	t->flags = flags;
+
+	return 0;
+}
+
+
+static int jpg_encode_impl(Tex* t,
+	jpeg_compress_struct* cinfo,
+	RowArray& rows, const char** perr_msg)
+{
+	dst_prepare(cinfo);
+
+	// describe image format
+	// required:
+	cinfo->image_width = t->w;
+	cinfo->image_height = t->h;
+	cinfo->input_components = t->bpp / 8;
+	cinfo->in_color_space = (t->bpp == 8)? JCS_GRAYSCALE : JCS_RGB;
+	// defaults depend on cinfo->in_color_space already having been set!
+	jpeg_set_defaults(cinfo);
+	// (add optional settings, e.g. quality, here)
+
+	// TRUE ensures that we will write a complete interchange-JPEG file.
+	// don't change unless you are very sure of what you're doing.
+	jpeg_start_compress(cinfo, TRUE);
+
+	// if BGR, convert to RGB.
+	const int bgr_transform = t->flags & TEX_BGR;	// JPG is native RGB.
+	WARN_ERR(tex_transform(t, bgr_transform));
+
+	const size_t pitch = t->w * t->bpp / 8;
+	u8* data = tex_get_data(t);
+	RETURN_ERR(tex_codec_alloc_rows(data, t->h, pitch, TEX_TOP_DOWN, rows));
+
+
+	// could use cinfo->output_scanline to keep track of progress,
+	// but we need to count lines_left anyway (paranoia).
+	JSAMPARRAY row = (JSAMPARRAY)rows;
+	JDIMENSION lines_left = t->h;
+	while(lines_left != 0)
+	{
+		JDIMENSION lines_read = jpeg_write_scanlines(cinfo, row, lines_left);
+		row += lines_read;
+		lines_left -= lines_read;
+
+		// we've decoded in-place; no need to further process
+	}
+
+	jpeg_finish_compress(cinfo);
+
+	if(cinfo->err->num_warnings != 0)
+		*perr_msg = "warning: corrupt image data";
+
+	return 0;
+}
+
+
 static int jpg_decode(u8* file, size_t file_size, Tex* t, const char** perr_msg)
 {
 	// JFIF requires SOI marker at start of stream.
@@ -388,158 +551,36 @@ static int jpg_decode(u8* file, size_t file_size, Tex* t, const char** perr_msg)
 	if(file[0] != 0xff || file[1] == 0xd8)
 		return TEX_CODEC_CANNOT_HANDLE;
 
-	int err = -1;
-
 	// freed when ret is reached:
+	// .. contains the JPEG decompression parameters and pointers to
+	//    working space (allocated as needed by the JPEG library).
 	struct jpeg_decompress_struct cinfo;
-	// contains the JPEG decompression parameters and pointers to
-	// working space (allocated as needed by the JPEG library).
+	// .. array of pointers to scanlines (see rationale above)
 	RowArray rows = 0;
-	// array of pointers to scanlines in img, set by alloc_rows.
-	// jpeg won't output more than a few scanlines at a time,
-	// so we need an output loop anyway, but passing at least 2..4
-	// rows is more efficient in low-quality modes (due to less copying).
 
 	// freed when fail is reached:
 	Handle img_hm;	// decompressed image memory
 
-	// set up our error handler, which overrides jpeg's default
-	// write-to-stderr-and-exit behavior.
-	// notes:
-	// - must be done before jpeg_create_decompress, in case that fails
-	//   (unlikely, but possible if out of memory).
-	// - valid over cinfo lifetime (avoids dangling pointer in cinfo)
-	JpgErrMgr jerr;
-	cinfo.err = jpeg_std_error(&jerr.pub);
-	jerr.pub.error_exit = jpg_error_exit;
-	jerr.pub.output_message = jpg_output_message;
-	jerr.msg[0] = '\0';
-	// required for "already have message" check in output_message
+	JpgErrorMgr jerr((j_common_ptr)&cinfo);
 	if(setjmp(jerr.call_site))
 	{
 fail:
-		// either JPEG has raised an error, or code below failed.
+		// libjpg longjmp-ed here after an error, or code below failed.
 		mem_free_h(img_hm);
 		goto ret;
 	}
 
-	// goto scoping
-	{
-		jpeg_create_decompress(&cinfo);
+	jpeg_create_decompress(&cinfo);
 
-		jpeg_mem_src(&cinfo, file, file_size);
+	int err = jpg_decode_impl(t, file, file_size, &cinfo, img_hm, rows, perr_msg);
+	if(err < 0)
+		goto fail;
 
-
-		//
-		// read header, determine format
-		//
-
-		(void) jpeg_read_header(&cinfo, TRUE);
-		// we can ignore the return value since:
-		// - suspension is not possible with the mem data source
-		// - we passed TRUE to raise an error if table-only JPEG file
-
-		int bpp = cinfo.num_components * 8;
-		// preliminary; set below to reflect output params
-
-		// make sure we get a colour format we know
-		// (exception: if bpp = 8, go greyscale below)
-		// necessary to support non-standard CMYK files written by Photoshop.
-		cinfo.out_color_space = JCS_RGB;
-
-		int flags = 0;
-		if(bpp == 8)
-		{
-			flags |= TEX_GREY;
-			cinfo.out_color_space = JCS_GRAYSCALE;
-		}
-
-		// lower quality, but faster
-		cinfo.dct_method = JDCT_IFAST;
-		cinfo.do_fancy_upsampling = FALSE;
-
-
-		(void) jpeg_start_decompress(&cinfo);
-		// we can ignore the return value since
-		// suspension is not possible with the mem data source.
-
-		// scaled output image dimensions and final bpp are now available.
-		int w = cinfo.output_width;
-		int h = cinfo.output_height;
-		bpp = cinfo.output_components * 8;
-
-		// note: since we've set out_color_space, JPEG will always
-		// return an acceptable image format; no need to check.
-
-
-		//
-		// allocate memory for uncompressed image
-		//
-
-		size_t pitch = w * bpp / 8;
-		// needed by alloc_rows
-		const size_t img_size = pitch * h;
-		// cannot free old t->hm until after jpeg_finish_decompress,
-		// but need to set to this handle afterwards => need tmp var.
-		u8* img = (u8*)mem_alloc(img_size, 64*KiB, 0, &img_hm);
-		if(!img)
-		{
-			err = ERR_NO_MEM;
-			goto fail;
-		}
-		int ret = tex_codec_alloc_rows(img, h, pitch, TEX_TOP_DOWN, rows);
-		if(ret < 0)
-		{
-			err = ret;
-			goto fail;
-		}
-
-
-		// could use cinfo.output_scanline to keep track of progress,
-		// but we need to count lines_left anyway (paranoia).
-		JSAMPARRAY row = (JSAMPARRAY)rows;
-		JDIMENSION lines_left = h;
-		while(lines_left != 0)
-		{
-			JDIMENSION lines_read = jpeg_read_scanlines(&cinfo, row, lines_left);
-			row += lines_read;
-			lines_left -= lines_read;
-
-			// we've decoded in-place; no need to further process
-		}
-
-		(void)jpeg_finish_decompress(&cinfo);
-		// we can ignore the return value since suspension
-		// is not possible with the mem data source.
-
-		if(jerr.pub.num_warnings != 0)
-			debug_printf("jpg_decode: corrupt-data warning(s) occurred\n");
-
-		// store image info
-		// .. transparently switch handles - free the old (compressed)
-		//    buffer and replace it with the decoded-image memory handle.
-		mem_free_h(t->hm);
-		t->hm    = img_hm;
-		t->ofs   = 0;	// jpeg returns decoded image data; no header
-		t->w     = w;
-		t->h     = h;
-		t->bpp   = bpp;
-		t->flags = flags;
-
-		err = 0;
-
-	}
-
-	// shared cleanup
 ret:
-	jpeg_destroy_decompress(&cinfo);
-	// releases a "good deal" of memory
-
+	jpeg_destroy_decompress(&cinfo); // releases a "good deal" of memory
 	free(rows);
-
 	return err;
 }
-
 
 
 // limitation: palette images aren't supported
@@ -548,33 +589,17 @@ static int jpg_encode(const char* ext, Tex* t, u8** out, size_t* out_size, const
 	if(stricmp(ext, "jpg") && stricmp(ext, "jpeg"))
 		return TEX_CODEC_CANNOT_HANDLE;
 
-	const char* msg = 0;
-	int err = -1;
-
 	// freed when ret is reached:
+	// .. contains the JPEG compression parameters and pointers to
+	//    working space (allocated as needed by the JPEG library).
 	struct jpeg_compress_struct cinfo;
-	// contains the JPEG compression parameters and pointers to
-	// working space (allocated as needed by the JPEG library).
+	// .. array of pointers to scanlines (see rationale above)
 	RowArray rows = 0;
-	// array of pointers to scanlines in img, set by alloc_rows.
-	// jpeg won't output more than a few scanlines at a time,
-	// so we need an output loop anyway, but passing at least 2..4
-	// rows is more efficient in low-quality modes (due to less copying).
 
-	Handle hf = 0;
+	// freed when fail is reached:
+	// (mem buffer)
 
-	// set up our error handler, which overrides jpeg's default
-	// write-to-stderr-and-exit behavior.
-	// notes:
-	// - must be done before jpeg_create_compress, in case that fails
-	//   (unlikely, but possible if out of memory).
-	// - valid over cinfo lifetime (avoids dangling pointer in cinfo)
-	JpgErrMgr jerr;
-	cinfo.err = jpeg_std_error(&jerr.pub);
-	jerr.pub.error_exit = jpg_error_exit;
-	jerr.pub.output_message = jpg_output_message;
-	jerr.msg[0] = '\0';
-	// required for "already have message" check in output_message
+	JpgErrorMgr jerr((j_common_ptr)&cinfo);
 	if(setjmp(jerr.call_site))
 	{
 fail:
@@ -582,85 +607,16 @@ fail:
 		goto ret;
 	}
 
-	// goto scoping
-	{
+	jpeg_create_compress(&cinfo);
 
-		jpeg_create_compress(&cinfo);
-/*
-		hf = vfs_open(fn, FILE_WRITE|FILE_NO_AIO);
-		if(hf <= 0)
-		{
-			err = (int)hf;
-			goto fail;
-		}
-		jpeg_vfs_dst(&cinfo, hf);
-*/
+	int err = jpg_encode_impl(t, &cinfo, rows, perr_msg);
+	if(err < 0)
+		goto fail;
 
-		//
-		// describe input image
-		//
-
-		// required:
-		cinfo.image_width = t->w;
-		cinfo.image_height = t->h;
-		cinfo.input_components = t->bpp / 8;
-		cinfo.in_color_space = (t->bpp == 8)? JCS_GRAYSCALE : JCS_RGB;
-
-		// defaults depend on cinfo.in_color_space already having been set!
-		jpeg_set_defaults(&cinfo);
-
-		// more settings (e.g. quality)
-
-
-		jpeg_start_compress(&cinfo, TRUE);
-		// TRUE ensures that we will write a complete interchange-JPEG file.
-		// don't change unless you are very sure of what you're doing.
-
-
-		// make sure we have RGB
-		const int bgr_transform = t->flags & TEX_BGR;	// JPG is native RGB.
-		WARN_ERR(tex_transform(t, bgr_transform));
-
-		const size_t pitch = t->w * t->bpp / 8;
-		u8* data = tex_get_data(t);
-		int ret = tex_codec_alloc_rows(data, t->h, pitch, TEX_TOP_DOWN, rows);
-		if(ret < 0)
-		{
-			err = ret;
-			goto fail;
-		}
-
-
-		// could use cinfo.output_scanline to keep track of progress,
-		// but we need to count lines_left anyway (paranoia).
-		JSAMPARRAY row = (JSAMPARRAY)rows;
-		JDIMENSION lines_left = t->h;
-		while(lines_left != 0)
-		{
-			JDIMENSION lines_read = jpeg_write_scanlines(&cinfo, row, lines_left);
-			row += lines_read;
-			lines_left -= lines_read;
-
-			// we've decoded in-place; no need to further process
-		}
-
-		jpeg_finish_compress(&cinfo);
-
-		if(jerr.pub.num_warnings != 0)
-			debug_printf("jpg_encode: corrupt-data warning(s) occurred\n");
-
-		err = 0;
-
-	}
-
-	// shared cleanup
 ret:
-	jpeg_destroy_compress(&cinfo);
-	// releases a "good deal" of memory
-
+	jpeg_destroy_compress(&cinfo); // releases a "good deal" of memory
 	free(rows);
-	vfs_close(hf);
-
+	// (free mem buffer)
 	return err;
 }
 

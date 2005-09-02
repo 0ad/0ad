@@ -1,9 +1,111 @@
+// helpers for built-in self tests
+//
+// Copyright (c) 2005 Jan Wassenberg
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License as
+// published by the Free Software Foundation; either version 2 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// General Public License for more details.
+//
+// Contact info:
+//   Jan.Wassenberg@stud.uni-karlsruhe.de
+//   http://www.stud.uni-karlsruhe.de/~urkt/
 
+/*
+
+[KEEP IN SYNC WITH WIKI!]
+
+Introduction
+------------
+
+Self-tests as advocated by eXtreme Programming have proven to be useful.
+By embedding test code into modules, we can be confident that boundary
+cases are handled correctly and everything still works correctly after edits.
+We give guidelines for their use and explain several helper mechanisms below.
+
+
+Guidelines
+----------
+
+What makes a good self-test?
+- They belong in the module being tested to ensure they are kept in
+  sync with it.
+- It is easiest to attach them to low-level functions, e.g. ilog2, rather
+  than verifying the module's final result (e.g. checking renderer output by
+  comparing pictures).
+- You should cover all cases: expected failures ("does it fail as expected?"),
+  bad inputs ("does it reject those?"), and successes ("did it have the
+  expected result?").
+- Tests should be non-intrusive (only bother user if something fails) and
+  very quick. This is because we run them automatically at startup,
+  which solves the common problem of making sure they actually run.
+
+
+Example Usage
+-------------
+
+The following is a working example of a built-in self test using
+our facilities. Further notes below are referenced with (1) etc.
+
+>>>
+
+#if SELF_TEST_ENABLED							// (1)
+namespace test {								// (2)
+
+static void test_log2()
+{
+	TEST(ilog2(0) == -1);
+	// further test cases..
+}
+
+static void self_test()
+{
+	test_log2();
+	// further test groups..
+}
+
+RUN_SELF_TEST;									// (3)
+
+}	// namespace test
+#endif	// #if SELF_TEST_ENABLED
+
+<<<
+
+(1) when not enabled, self-tests are completely removed so as
+    not to bloat the executable.
+
+(2) wrapping in a namespace is optional and must be removed for C programs.
+    it avoids possible name collisions with the module being tested.
+
+(3) automatically calls your self_test function at non-local static object
+    init time (i.e. before main is entered).
+
+For further details, see below.
+
+*/
+
+#ifndef SELF_TEST_H__
+#define SELF_TEST_H__
+
+// this is the global default for enabling/disabling all tests.
+// you can override it in individual files by defining to 0 or 1 before
+// including this header.
 #ifndef SELF_TEST_ENABLED
 #define SELF_TEST_ENABLED 1
 #endif
 
-// each test case should use this to verify conditions.
+// each test case should use this (instead of assert et al.) to verify
+// conditions.
+// rationale: some code checks boundary conditions via assert. these are
+// often triggered deliberately in self-tests to verify error behavior.
+// we therefore squelch asserts while tests are active (see mechanism below),
+// and this is the only error reporter guaranteed to work.
+//
 // note: could also stringize condition and display that, but it'd require
 // macro magic (stringize+prepend L) and we already get file+line.
 #define TEST(condition) STMT(\
@@ -11,7 +113,27 @@
 		DISPLAY_ERROR(L"Self-test failed");\
 )
 
+
+// your source file should contain a void function "self_test" that
+// performs all tests or calls out to individual test functions.
+// this macro calls it at static init time and takes care of setting
+// self_test_active (see above).
+//
+// rationale: since compiler optimizations may mess with the dummy variable,
+// best to put this in a macro so we won't have to change each occurrence.
+#define RUN_SELF_TEST static int dummy = run_self_test(self_test)
+
+
+//
+// internal use only:
+//
+
+// trampoline that sets self_test_active and returns a dummy value;
+// used by RUN_SELF_TEST.
+extern int run_self_test(void(*test_func)());
+
+// checked by debug_assert_failed; disables asserts if true (see above).
+// set/cleared by run_self_test.
 extern bool self_test_active;
 
-extern int run_self_test(void(*test_func)());
-#define RUN_SELF_TEST static int dummy = run_self_test(self_test)
+#endif	// #ifndef SELF_TEST_H__

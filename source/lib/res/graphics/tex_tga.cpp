@@ -16,7 +16,6 @@ enum TgaImgDesc
 {
 	TGA_RIGHT_TO_LEFT = BIT(4),
 	TGA_TOP_DOWN      = BIT(5),
-	TGA_BOTTOM_UP     = 0	// opposite of TGA_TOP_DOWN
 };
 
 typedef struct
@@ -123,10 +122,10 @@ static int tga_encode(const char* ext, Tex* t, u8** out, size_t* out_size, const
 {
 	if(stricmp(ext, "tga"))
 		return TEX_CODEC_CANNOT_HANDLE;
-/*
-	CHECK_ERR(tex_codec_validate_format(t->bpp, t->flags));
 
-	u8 img_desc = (t->flags & TEX_TOP_DOWN)? TGA_TOP_DOWN : TGA_BOTTOM_UP;
+	u8 img_desc = 0;
+	if(t->flags & TEX_TOP_DOWN)
+		img_desc |= TGA_TOP_DOWN;
 	if(t->bpp == 32)
 		img_desc |= 8;	// size of alpha channel
 	TgaImgType img_type = (t->flags & TEX_GREY)? TGA_GREY : TGA_TRUE_COLOUR;
@@ -135,9 +134,9 @@ static int tga_encode(const char* ext, Tex* t, u8** out, size_t* out_size, const
 	int transforms = t->flags;
 	transforms &= ~TEX_ORIENTATION;	// no flip needed - we can set top-down bit.
 	transforms ^= TEX_BGR;			// TGA is native BGR.
-	transform(t, transforms);
+	tex_transform(t, transforms);
 
-	TgaHeader hdr =
+	const TgaHeader hdr =
 	{
 		0,				// no image identifier present
 		0,				// no colour map present
@@ -149,8 +148,7 @@ static int tga_encode(const char* ext, Tex* t, u8** out, size_t* out_size, const
 		t->bpp,
 		img_desc
 	};
-	return write_img(fn, &hdr, sizeof(hdr), img, img_size);
-*/
+
 	return 0;
 }
 
