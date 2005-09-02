@@ -25,8 +25,8 @@
 
 #include "sysdep/sysdep.h"
 
-#ifndef PERFORM_SELF_TEST
-#define PERFORM_SELF_TEST 0
+#ifndef SELF_TEST_ENABLED
+#define SELF_TEST_ENABLED 0
 #endif
 
 
@@ -477,14 +477,13 @@ int match_wildcardw(const wchar_t* s, const wchar_t* w)
 }
 
 
-
 //////////////////////////////////////////////////////////////////////////////
 //
 // built-in self test
 //
 //////////////////////////////////////////////////////////////////////////////
 
-#if PERFORM_SELF_TEST
+#if SELF_TEST_ENABLED
 namespace test {
 
 static void test_log2()
@@ -497,13 +496,12 @@ static void test_log2()
 	debug_assert(ilog2(0x80000000) == 31);
 }
 
-static int run_tests()
+static void self_test()
 {
 	test_log2();
-	return 0;
 }
 
-static int dummy = run_tests();
+RUN_SELF_TEST;
 
 }	// namespace test
-#endif	// #if PERFORM_SELF_TEST
+#endif	// #if SELF_TEST_ENABLED

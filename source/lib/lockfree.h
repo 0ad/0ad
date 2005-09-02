@@ -76,7 +76,7 @@ useful "payload" in the data structures is allocated when inserting each
 item: additional_bytes are appended. rationale: see struct Node definition.
 
 since lock-free algorithms are subtle and easy to get wrong, an extensive
-self-test is included; #define PERFORM_SELF_TEST 1 to activate.
+self-test is included; #define SELF_TEST_ENABLED 1 to activate.
 
 
 terminology

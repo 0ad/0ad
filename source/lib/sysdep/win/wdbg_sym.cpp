@@ -31,14 +31,14 @@
 #include "wdbg.h"
 #include "debug_stl.h"
 
+#define SELF_TEST_ENABLED 0	// raises an an annoying exception
+#include "self_test.h"
+
 // optional: enables translation of the "unhandled exception" dialog.
 #ifdef I18N
 #include "ps/i18n.h"
 #endif
 
-#ifndef PERFORM_SELF_TEST
-#define PERFORM_SELF_TEST 0
-#endif
 
 #if MSC_VERSION
 #pragma comment(lib, "dbghelp.lib")
@@ -1939,7 +1939,7 @@ static int wdbg_sym_shutdown()
 // built-in self test
 //----------------------------------------------------------------------------
 
-#if PERFORM_SELF_TEST
+#if SELF_TEST_ENABLED
 namespace test {
 #pragma optimize("", off)
 
@@ -1961,13 +1961,13 @@ static void test_array()
 		double d4;
 	};
 
-	Large large_array_of_large_structs[8] = { { 0.0,0.0,0.0,0.0 } };
-	Large small_array_of_large_structs[2] = { { 0.0,0.0,0.0,0.0 } };
-	Small large_array_of_small_structs[8] = { { 1,2 } };
-	Small small_array_of_small_structs[2] = { { 1,2 } };
+	Large large_array_of_large_structs[8] = { { 0.0,0.0,0.0,0.0 } }; UNUSED2(large_array_of_large_structs);
+	Large small_array_of_large_structs[2] = { { 0.0,0.0,0.0,0.0 } }; UNUSED2(small_array_of_large_structs);
+	Small large_array_of_small_structs[8] = { { 1,2 } }; UNUSED2(large_array_of_small_structs);
+	Small small_array_of_small_structs[2] = { { 1,2 } }; UNUSED2(small_array_of_small_structs);
 
-	int ints[] = { 1,2,3,4,5	};
-	wchar_t chars[] = { 'w','c','h','a','r','s',0 };
+	int ints[] = { 1,2,3,4,5 };	UNUSED2(ints);
+	wchar_t chars[] = { 'w','c','h','a','r','s',0 }; UNUSED2(chars);
 
 	//DISPLAY_ERROR(L"wdbg_sym self test: check if stack trace below is ok.");
 	RaiseException(0xf001,0,0,0);
@@ -1991,7 +1991,7 @@ static void test_udt()
 		char s3;
 	}
 	Small;
-	Small small__ = { 0x55, 0xaa, -1 };
+	Small small__ = { 0x55, 0xaa, -1 }; UNUSED2(small__);
 
 	struct Large
 	{
@@ -1999,7 +1999,7 @@ static void test_udt()
 		std::string large_member_string;
 		double large_member_double;
 	}
-	large = { 0xff, "large struct string", 123456.0 };
+	large = { 0xff, "large struct string", 123456.0 }; UNUSED2(large);
 
 
 	class Base
@@ -2125,7 +2125,7 @@ static void test_addrs(int p_int, double p_double, char* p_pchar, uintptr_t p_ui
 	debug_printf("\nTEST_ADDRS\n");
 
 	uint l_uint = 0x1234;
-	bool l_bool = true;
+	bool l_bool = true; UNUSED2(l_bool);
 	wchar_t l_wchars[] = L"wchar string";
 	enum TestEnum { VAL1=1, VAL2=2 } l_enum = VAL1;
 	u8 l_u8s[] = { 1,2,3,4 };
@@ -2158,14 +2158,13 @@ static void test_addrs(int p_int, double p_double, char* p_pchar, uintptr_t p_ui
 }
 
 
-static int run_tests()
+static void self_test()
 {
 	test_addrs(123, 3.1415926535897932384626, "pchar string", 0xf00d);
-	return 0;
 }
 
-static int dummy = run_tests();
+RUN_SELF_TEST;
 
 #pragma optimize("", on)
 }	// namespace test
-#endif	// #if PERFORM_SELF_TEST
+#endif	// #if SELF_TEST_ENABLED

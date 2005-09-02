@@ -27,6 +27,7 @@
 #include "nommgr.h"
 	// some functions here are called from within mmgr; disable its hooks
 	// so that our allocations don't cause infinite recursion.
+#include "self_test.h"
 
 // needed when writing crashlog
 static const size_t LOG_CHARS = 16384;
@@ -423,6 +424,15 @@ ErrorReaction display_error(const wchar_t* description, int flags,
 // local variables.
 ErrorReaction debug_assert_failed(const char* file, int line, const char* expr)
 {
+	// for edge cases in some functions, warnings (=asserts) are raised in
+	// addition to returning an error code. self-tests deliberately trigger
+	// these cases and check for the latter but shouldn't cause the former.
+	// we therefore squelch them here.
+	// (note: don't do so in lib.h's CHECK_ERR or debug_assert to reduce
+	// compile-time dependency on self_test.h)
+	if(self_test_active)
+		return ER_CONTINUE;
+
 	// __FILE__ evaluates to the full path (albeit without drive letter)
 	// which is rather long. we only display the base name for clarity.
 	const char* slash = strrchr(file, DIR_SEP);

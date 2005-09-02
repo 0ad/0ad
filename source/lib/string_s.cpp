@@ -22,10 +22,8 @@
 
 #include "lib.h"
 #include "posix.h"	// SIZE_MAX
+#include "self_test.h"
 
-#ifndef PERFORM_SELF_TEST
-#define PERFORM_SELF_TEST 0
-#endif
 
 
 // written against http://std.dkuug.dk/jtc1/sc22/wg14/www/docs/n1031.pdf .
@@ -62,7 +60,7 @@
 #define ENFORCE(condition, retval) STMT(\
 	if(!(condition))                    \
 	{                                   \
-		debug_assert(condition);             \
+		debug_assert(condition);        \
 		return retval;                  \
 	}                                   \
 )
@@ -211,7 +209,7 @@ int tcat_s(tchar* dst, size_t max_dst_chars, const tchar* src)
 
 namespace test {
 
-#if PERFORM_SELF_TEST
+#if SELF_TEST_ENABLED
 
 // note: avoid 4-byte strings - they would trigger WARN_IF_PTR_LEN.
 
@@ -233,54 +231,52 @@ static tchar no_null[] = { 'n','o','_','n','u','l','l'};
 
 
 #define TEST_LEN(string, limit, expected)                                 \
-STMT(                                                                     \
-	debug_assert(tnlen((string), (limit)) == (expected));                     \
-)
+	TEST(tnlen((string), (limit)) == (expected));
 
 #define TEST_CPY(dst, dst_max, src, expected_ret, expected_dst)           \
 STMT(                                                                     \
 	int ret = tcpy_s((dst), dst_max, (src));                              \
-	debug_assert(ret == expected_ret);                                         \
+	TEST(ret == expected_ret);                                            \
 	if(dst != 0)                                                          \
-		debug_assert(!tcmp(dst, T(expected_dst)));                             \
+		TEST(!tcmp(dst, T(expected_dst)));                                \
 )
 #define TEST_CPY2(dst, src, expected_ret, expected_dst)                   \
 STMT(                                                                     \
 	int ret = tcpy_s((dst), ARRAY_SIZE(dst), (src));                      \
-	debug_assert(ret == expected_ret);                                         \
+	TEST(ret == expected_ret);                                            \
 	if(dst != 0)                                                          \
-		debug_assert(!tcmp(dst, T(expected_dst)));                             \
+		TEST(!tcmp(dst, T(expected_dst)));                                \
 )
 #define TEST_NCPY(dst, src, max_src_chars, expected_ret, expected_dst)    \
 STMT(                                                                     \
 	int ret = tncpy_s((dst), ARRAY_SIZE(dst), (src), (max_src_chars));    \
-	debug_assert(ret == expected_ret);                                         \
+	TEST(ret == expected_ret);                                            \
 	if(dst != 0)                                                          \
-		debug_assert(!tcmp(dst, T(expected_dst)));                             \
+		TEST(!tcmp(dst, T(expected_dst)));                                \
 )
 
 #define TEST_CAT(dst, dst_max, src, expected_ret, expected_dst)           \
 STMT(                                                                     \
 	int ret = tcat_s((dst), dst_max, (src));                              \
-	debug_assert(ret == expected_ret);                                         \
+	TEST(ret == expected_ret);                                            \
 	if(dst != 0)                                                          \
-		debug_assert(!tcmp(dst, T(expected_dst)));                             \
+		TEST(!tcmp(dst, T(expected_dst)));                                \
 )
 #define TEST_CAT2(dst, dst_val, src, expected_ret, expected_dst)          \
 STMT(                                                                     \
 	tcpy(dst, T(dst_val));                                                \
 	int ret = tcat_s((dst), ARRAY_SIZE(dst), (src));                      \
-	debug_assert(ret == expected_ret);                                         \
+	TEST(ret == expected_ret);                                            \
 	if(dst != 0)                                                          \
-		debug_assert(!tcmp(dst, T(expected_dst)));                             \
+		TEST(!tcmp(dst, T(expected_dst)));                                \
 )
 #define TEST_NCAT(dst, dst_val, src, max_src_chars, expected_ret, expected_dst)\
 STMT(                                                                     \
 	tcpy(dst, T(dst_val));                                                \
 	int ret = tncat_s((dst), ARRAY_SIZE(dst), (src), (max_src_chars));    \
-	debug_assert(ret == expected_ret);                                         \
+	TEST(ret == expected_ret);                                            \
 	if(dst != 0)                                                          \
-		debug_assert(!tcmp(dst, T(expected_dst)));                             \
+		TEST(!tcmp(dst, T(expected_dst)));                                \
 )
 
 
@@ -371,16 +367,15 @@ static void test_concatenate()
 }
 
 
-static int run_tests()
+static void self_test()
 {
 	test_length();
 	test_copy();
 	test_concatenate();
-	return 0;
 }
 
-static int dummy = run_tests();
+RUN_SELF_TEST;
 
-#endif	// #if PERFORM_SELF_TEST
+#endif	// #if SELF_TEST_ENABLED
 
 }	// namespace test

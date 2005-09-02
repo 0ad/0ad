@@ -27,9 +27,8 @@
 #include "lockfree.h"
 #include "timer.h"
 
-#ifndef PERFORM_SELF_TEST
-#define PERFORM_SELF_TEST 0
-#endif
+#define SELF_TEST_ENABLED 0	// known to fail on P4 due to mem reordering and lack of membars.
+#include "self_test.h"
 
 /*
 liberties taken:
@@ -747,25 +746,26 @@ int lfh_erase(LFHash* hash, uintptr_t key)
 //
 //////////////////////////////////////////////////////////////////////////////
 
-#if PERFORM_SELF_TEST
+#if SELF_TEST_ENABLED
 namespace test {
+
+#define TEST_CALL(expr) TEST(expr == 0)
 
 // make sure the data structures work at all; doesn't test thread-safety.
 static void basic_single_threaded_test()
 {
-	int err;
 	void* user_data;
 
 	const uint ENTRIES = 50;
 	// should be more than max # retired nodes to test release..() code
 	uintptr_t key = 0x1000;
-	int sig = 10;
+	uint sig = 10;
 
 	LFList list;
-	WARN_ERR(lfl_init(&list));
+	TEST_CALL(lfl_init(&list));
 
 	LFHash hash;
-	WARN_ERR(lfh_init(&hash, 8));
+	TEST_CALL(lfh_init(&hash, 8));
 
 	// add some entries; store "signatures" (ascending int values)
 	for(uint i = 0; i < ENTRIES; i++)
@@ -773,24 +773,24 @@ static void basic_single_threaded_test()
 		int was_inserted;
 
 		user_data = lfl_insert(&list, key+i, sizeof(int), &was_inserted);
-		debug_assert(user_data != 0 && was_inserted);
-		*(int*)user_data = sig+i;
+		TEST(user_data != 0 && was_inserted);
+		*(uint*)user_data = sig+i;
 
 		user_data = lfh_insert(&hash, key+i, sizeof(int), &was_inserted);
-		debug_assert(user_data != 0 && was_inserted);
-		*(int*)user_data = sig+i;
+		TEST(user_data != 0 && was_inserted);
+		*(uint*)user_data = sig+i;
 	}
 
 	// make sure all "signatures" are present in list
 	for(uint i = 0; i < ENTRIES; i++)
 	{
 		user_data = lfl_find(&list, key+i);
-		debug_assert(user_data != 0);
-		debug_assert(*(int*)user_data == sig+i);
+		TEST(user_data != 0);
+		TEST(*(uint*)user_data == sig+i);
 
 		user_data = lfh_find(&hash, key+i);
-		debug_assert(user_data != 0);
-		debug_assert(*(int*)user_data == sig+i);
+		TEST(user_data != 0);
+		TEST(*(uint*)user_data == sig+i);
 
 	}
 
@@ -860,15 +860,15 @@ static void* thread_func(void* arg)
 		case TA_FIND:
 			{
 			user_data = lfl_find(&list, key);
-			debug_assert(was_in_set == (user_data != 0));
+			TEST(was_in_set == (user_data != 0));
 			if(user_data)
-				debug_assert(*(uintptr_t*)user_data == ~key);
+				TEST(*(uintptr_t*)user_data == ~key);
 
 			user_data = lfh_find(&hash, key);
 			// typical failure site if lockfree data structure has bugs.
-			debug_assert(was_in_set == (user_data != 0));
+			TEST(was_in_set == (user_data != 0));
 			if(user_data)
-				debug_assert(*(uintptr_t*)user_data == ~key);
+				TEST(*(uintptr_t*)user_data == ~key);
 			}
 			break;
 
@@ -877,14 +877,14 @@ static void* thread_func(void* arg)
 			int was_inserted;
 
 			user_data = lfl_insert(&list, key, sizeof(uintptr_t), &was_inserted);
-			debug_assert(user_data != 0);	// only triggers if out of memory
+			TEST(user_data != 0);	// only triggers if out of memory
 			*(uintptr_t*)user_data = ~key;	// checked above
-			debug_assert(was_in_set == !was_inserted);
+			TEST(was_in_set == !was_inserted);
 
 			user_data = lfh_insert(&hash, key, sizeof(uintptr_t), &was_inserted);
-			debug_assert(user_data != 0);	// only triggers if out of memory
+			TEST(user_data != 0);	// only triggers if out of memory
 			*(uintptr_t*)user_data = ~key;	// checked above
-			debug_assert(was_in_set == !was_inserted);
+			TEST(was_in_set == !was_inserted);
 			}
 			break;
 
@@ -893,10 +893,10 @@ static void* thread_func(void* arg)
 			int err;
 
 			err = lfl_erase(&list, key);
-			debug_assert(was_in_set == (err == 0));
+			TEST(was_in_set == (err == 0));
 
 			err = lfh_erase(&hash, key);
-			debug_assert(was_in_set == (err == 0));
+			TEST(was_in_set == (err == 0));
 			}
 			break;
 
@@ -905,13 +905,13 @@ static void* thread_func(void* arg)
 			break;
 
 		default:
-			debug_warn("invalid TA_* action");
+			DISPLAY_ERROR(L"invalid TA_* action");
 			break;
 		}	// switch
 	}	// while !is_complete
 
 	atomic_add(&num_active_threads, -1);
-	debug_assert(num_active_threads >= 0);
+	TEST(num_active_threads >= 0);
 
 	return 0;
 }
@@ -919,8 +919,6 @@ static void* thread_func(void* arg)
 
 static void multithreaded_torture_test()
 {
-	int err;
-
 	// this test is randomized; we need deterministic results.
 	srand(1);
 
@@ -953,14 +951,13 @@ static void multithreaded_torture_test()
 }
 
 
-static int run_tests()
+static void self_test()
 {
 	basic_single_threaded_test();
 	multithreaded_torture_test();
-	return 0;
 }
 
-static int dummy = run_tests();
+RUN_SELF_TEST;
 
 }	// namespace test
-#endif	// #if PERFORM_SELF_TEST
+#endif	// #if SELF_TEST_ENABLED

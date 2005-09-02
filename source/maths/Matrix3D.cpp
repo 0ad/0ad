@@ -13,10 +13,7 @@
 
 #include "Matrix3D.h"
 #include "Quaternion.h"
-
-#ifndef PERFORM_SELF_TEST
-#define PERFORM_SELF_TEST 0
-#endif
+#include "self_test.h"
 
 
 CMatrix3D::CMatrix3D ()
@@ -486,10 +483,10 @@ void CMatrix3D::SetRotation(const CQuaternion& quat)
 // built-in self test
 //----------------------------------------------------------------------------
 
-#if PERFORM_SELF_TEST
+#if SELF_TEST_ENABLED
 namespace test {
 
-static void test1()
+static void test_inverse()
 {
 	CMatrix3D m;
 	srand(0);
@@ -502,18 +499,20 @@ static void test1()
 		m *= n;
 		for (int x = 0; x < 4; ++x)
 			for (int y = 0; y < 4; ++y)
-				debug_assert(abs(m(x,y) - (x==y ? 1.0f : 0.0f)) < 0.0001f);
+			{
+				float expected = (x==y)? 1.0f : 0.0f;	// identity should have 1s on diagonal
+				TEST(fabs(m(x,y) - expected) < 0.0001f);
+			}
 	}
 }
 
 
-static int run_tests()
+static void self_test()
 {
-	test1();
-	return 0;
+	test_inverse();
 }
 
-static int dummy = run_tests();
+RUN_SELF_TEST;
 
 }	// namespace test
-#endif	// #if PERFORM_SELF_TEST
+#endif	// #if SELF_TEST_ENABLED

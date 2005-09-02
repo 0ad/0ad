@@ -4,10 +4,7 @@
 
 #include "ps/CLogger.h"
 #include "lib/res/file/vfs.h"
-
-#ifndef PERFORM_SELF_TEST
-#define PERFORM_SELF_TEST 0
-#endif
+#include "self_test.h"
 
 
 // TODO (maybe): Write to the VFS handle frequently, instead of buffering
@@ -182,7 +179,7 @@ template <> void XMLWriter_File::ElementAttribute<CStrW>(const char* name, const
 // built-in self test
 //----------------------------------------------------------------------------
 
-#if PERFORM_SELF_TEST
+#if SELF_TEST_ENABLED
 namespace test {
 
 static void test1()
@@ -234,13 +231,12 @@ static void test1()
 	// For this test to be useful, it should actually test something.
 }
 
-static int run_tests()
+static void self_test()
 {
 	test1();
-	return 0;
 }
 
-static int dummy = run_tests();
+RUN_SELF_TEST;
 
 }	// namespace test
-#endif	// #if PERFORM_SELF_TEST
+#endif	// #if SELF_TEST_ENABLED
