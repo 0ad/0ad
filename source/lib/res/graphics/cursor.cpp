@@ -29,17 +29,17 @@ public:
 		w = w_; h = h_;
 		hotspotx = hotspotx_; hotspoty = hotspoty_;
 
-		WARN_ERR(tex_upload(ht, GL_NEAREST));
+		WARN_ERR(ogl_tex_upload(ht, GL_NEAREST));
 	}
 
 	void destroy()
 	{
-		WARN_ERR(tex_free(ht));
+		WARN_ERR(ogl_tex_free(ht));
 	}
 
 	void draw(int x, int y)
 	{
-		WARN_ERR(tex_bind(ht));
+		WARN_ERR(ogl_tex_bind(ht));
 		glEnable(GL_TEXTURE_2D);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glEnable(GL_BLEND);
@@ -103,13 +103,15 @@ static int Cursor_reload(Cursor* c, const char* name, Handle)
 	}
 
 	snprintf(filename, ARRAY_SIZE(filename), "art/textures/cursors/%s.png", name);
-	Handle ht = tex_load(filename);
+	Handle ht = ogl_tex_load(filename);
 	RETURN_ERR(ht);
 
-	int w = 0, h = 0;
-	int gl_fmt = 0, bpp = 0;
+	int w = 0, h = 0, bpp = 0;	// remain 0 on failure
+	GLenum gl_fmt = 0;			// (caught below)
 	void* img = 0;
-	WARN_ERR(tex_info(ht, &w, &h, &gl_fmt, &bpp, &img));
+	(void)ogl_tex_get_size(ht, &w, &h, &bpp);
+	(void)ogl_tex_get_format(ht, 0, &gl_fmt);
+	(void)ogl_tex_get_data(ht, &img);
 
 #if USE_WINDOWS_CURSOR
 	// verify texture format (this isn't done in sys_cursor_create to

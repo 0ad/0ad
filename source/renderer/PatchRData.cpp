@@ -435,7 +435,7 @@ void CPatchRData::RenderBase()
 	// render each splat
 	for (uint i=0;i<(uint)m_Splats.size();i++) {
 		SSplat& splat=m_Splats[i];
-		g_Renderer.BindTexture(0,tex_id(splat.m_Texture));
+		ogl_tex_bind(splat.m_Texture);
 		glDrawElements(GL_QUADS,splat.m_IndexCount,GL_UNSIGNED_SHORT,&m_Indices[splat.m_IndexStart]);
 		// bump stats
 		g_Renderer.m_Stats.m_DrawCalls++;
@@ -487,7 +487,7 @@ void CPatchRData::RenderBlends()
 
 	for (uint i=0;i<(uint)m_BlendSplats.size();i++) {
 		SSplat& splat=m_BlendSplats[i];
-		g_Renderer.BindTexture(0,tex_id(splat.m_Texture));
+		ogl_tex_bind(splat.m_Texture);
 		glDrawElements(GL_QUADS,splat.m_IndexCount,GL_UNSIGNED_SHORT,&m_BlendIndices[splat.m_IndexStart]);
 
 		// bump stats
@@ -630,7 +630,7 @@ void CPatchRData::RenderBaseSplats()
 			for (i=0;i<batches.size();++i) {
 				const CVertexBuffer::Batch* batch=batches[i];
 				if (batch->m_IndexData.size()>0) {
-					g_Renderer.BindTexture(0,tex_id(batch->m_Texture));
+					ogl_tex_bind(batch->m_Texture);
 					for (uint j=0;j<batch->m_IndexData.size();j++) {
 						glDrawElements(GL_QUADS,(GLsizei)batch->m_IndexData[j].first,GL_UNSIGNED_SHORT,batch->m_IndexData[j].second);
 						g_Renderer.m_Stats.m_DrawCalls++;
@@ -724,7 +724,7 @@ void CPatchRData::RenderBlendSplats()
 			for (i=0;i<batches.size();++i) {
 				const CVertexBuffer::Batch* batch=batches[i];
 				if (batch->m_IndexData.size()>0) {
-					g_Renderer.BindTexture(0,tex_id(batch->m_Texture));
+					ogl_tex_bind(batch->m_Texture);
 					for (uint j=0;j<batch->m_IndexData.size();j++) {
 						glDrawElements(GL_QUADS,(GLsizei)batch->m_IndexData[j].first,GL_UNSIGNED_SHORT,batch->m_IndexData[j].second);
 						g_Renderer.m_Stats.m_DrawCalls++;

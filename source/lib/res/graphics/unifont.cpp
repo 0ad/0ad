@@ -55,7 +55,7 @@ static void UniFont_init(UniFont* f, va_list UNUSED(args))
 
 static void UniFont_dtor(UniFont* f)
 {
-	tex_free(f->ht);
+	ogl_tex_free(f->ht);
 	glDeleteLists(f->ListBase, (GLsizei)f->glyphs_id->size());
 	delete f->glyphs_id;
 	delete f->glyphs_size;
@@ -159,11 +159,11 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 	// Load glyph texture
 	std::string FilenameTex = FilenameBase+".tga";  
 	const char* tex_fn = FilenameTex.c_str();   
-	const Handle ht = tex_load(tex_fn);
+	const Handle ht = ogl_tex_load(tex_fn);
 	if (ht <= 0)
 		return (int)ht;
 
-	tex_upload(ht, GL_NEAREST, GL_ALPHA8, GL_ALPHA);
+	ogl_tex_upload(ht, GL_NEAREST, GL_ALPHA8, GL_ALPHA);
 
 	f->ht = ht;
 
@@ -187,7 +187,7 @@ int unifont_bind(const Handle h)
 {
 	H_DEREF(h, UniFont, f);
 
-	tex_bind(f->ht);
+	ogl_tex_bind(f->ht);
 	glListBase(f->ListBase);
 	BoundGlyphs = f->glyphs_id;
 

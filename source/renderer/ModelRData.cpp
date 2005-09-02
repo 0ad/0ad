@@ -340,7 +340,7 @@ void CModelRData::RenderModels(u32 streamflags,u32 flags)
 				const CVertexBuffer::Batch* batch=batches[i];
 				if (batch->m_IndexData.size()>0) {
 					if (streamflags & STREAM_UV0) 
-						g_Renderer.BindTexture(0,tex_id(batch->m_Texture));
+						ogl_tex_bind(batch->m_Texture);
 
 					for (uint j=0;j<batch->m_IndexData.size();j++) {
 						glDrawElements(GL_TRIANGLES,(GLsizei)batch->m_IndexData[j].first,GL_UNSIGNED_SHORT,batch->m_IndexData[j].second);

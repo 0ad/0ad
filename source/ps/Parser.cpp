@@ -2,13 +2,10 @@
 
 #include "Parser.h"
 #include "lib.h"
+#include "self_test.h"
 
 #pragma warning(disable:4786)
 using namespace std;
-
-#ifndef PERFORM_SELF_TEST
-#define PERFORM_SELF_TEST 0
-#endif
 
 //-------------------------------------------------
 // Macros
@@ -1098,7 +1095,7 @@ CParser& CParserCache::Get(const char* str)
 // built-in self test
 //----------------------------------------------------------------------------
 
-#if PERFORM_SELF_TEST
+#if SELF_TEST_ENABLED
 namespace test {
 
 static void test1()
@@ -1111,10 +1108,10 @@ static void test1()
 
 	CParserLine Line;
 
-	debug_assert(Line.ParseString(Parser, "value=23"));
+	TEST(Line.ParseString(Parser, "value=23"));
 
-	debug_assert(Line.GetArgString(0, str) && str == "value");
-	debug_assert(Line.GetArgInt(1, i) && i == 23);
+	TEST(Line.GetArgString(0, str) && str == "value");
+	TEST(Line.GetArgInt(1, i) && i == 23);
 }
 
 
@@ -1127,16 +1124,16 @@ static void test2()
 
 	CParserLine Line;
 
-	debug_assert(Line.ParseString(Parser, "12 34"));
-	debug_assert(Line.GetArgCount() == 2);
-	debug_assert(Line.GetArgString(0, str) && str == "12");
-	debug_assert(Line.GetArgString(1, str) && str == "34");
+	TEST(Line.ParseString(Parser, "12 34"));
+	TEST(Line.GetArgCount() == 2);
+	TEST(Line.GetArgString(0, str) && str == "12");
+	TEST(Line.GetArgString(1, str) && str == "34");
 
-	debug_assert(Line.ParseString(Parser, "56"));
-	debug_assert(Line.GetArgCount() == 1);
-	debug_assert(Line.GetArgString(0, str) && str == "56");
+	TEST(Line.ParseString(Parser, "56"));
+	TEST(Line.GetArgCount() == 1);
+	TEST(Line.GetArgString(0, str) && str == "56");
 
-	debug_assert(! Line.ParseString(Parser, " "));
+	TEST(! Line.ParseString(Parser, " "));
 }
 
 
@@ -1149,23 +1146,23 @@ static void test3()
 
 	CParserLine Line;
 
-	debug_assert(Line.ParseString(Parser, "12 34 56"));
-	debug_assert(Line.GetArgCount() == 3);
-	debug_assert(Line.GetArgString(0, str) && str == "12");
-	debug_assert(Line.GetArgString(1, str) && str == "34");
-	debug_assert(Line.GetArgString(2, str) && str == "56");
+	TEST(Line.ParseString(Parser, "12 34 56"));
+	TEST(Line.GetArgCount() == 3);
+	TEST(Line.GetArgString(0, str) && str == "12");
+	TEST(Line.GetArgString(1, str) && str == "34");
+	TEST(Line.GetArgString(2, str) && str == "56");
 
-	debug_assert(Line.ParseString(Parser, "78 90"));
-	debug_assert(Line.GetArgCount() == 2);
-	debug_assert(Line.GetArgString(0, str) && str == "78");
-	debug_assert(Line.GetArgString(1, str) && str == "90");
+	TEST(Line.ParseString(Parser, "78 90"));
+	TEST(Line.GetArgCount() == 2);
+	TEST(Line.GetArgString(0, str) && str == "78");
+	TEST(Line.GetArgString(1, str) && str == "90");
 
-	debug_assert(Line.ParseString(Parser, "ab"));
-	debug_assert(Line.GetArgCount() == 1);
-	debug_assert(Line.GetArgString(0, str) && str == "ab");
+	TEST(Line.ParseString(Parser, "ab"));
+	TEST(Line.GetArgCount() == 1);
+	TEST(Line.GetArgString(0, str) && str == "ab");
 
-	debug_assert(Line.ParseString(Parser, " "));
-	debug_assert(Line.GetArgCount() == 0);
+	TEST(Line.ParseString(Parser, " "));
+	TEST(Line.GetArgCount() == 0);
 }
 
 
@@ -1177,28 +1174,27 @@ static void test4()
 	std::string str;
 
 	CParserLine Line;
-	debug_assert(Line.ParseString(Parser, "a b x a b x"));
-	debug_assert(Line.ParseString(Parser, "a x b x"));
-	debug_assert(Line.ParseString(Parser, "a x"));
-	debug_assert(Line.ParseString(Parser, "b x"));
-	debug_assert(Line.ParseString(Parser, "x"));
-	debug_assert(! Line.ParseString(Parser, "a x c x"));
-	debug_assert(! Line.ParseString(Parser, "a b a x"));
-	debug_assert(! Line.ParseString(Parser, "a"));
-	debug_assert(! Line.ParseString(Parser, "a a x"));
-	debug_assert(Line.ParseString(Parser, "a x a b x a x b x b x b x b x a x a x a b x a b x b x a x"));
+	TEST(Line.ParseString(Parser, "a b x a b x"));
+	TEST(Line.ParseString(Parser, "a x b x"));
+	TEST(Line.ParseString(Parser, "a x"));
+	TEST(Line.ParseString(Parser, "b x"));
+	TEST(Line.ParseString(Parser, "x"));
+	TEST(! Line.ParseString(Parser, "a x c x"));
+	TEST(! Line.ParseString(Parser, "a b a x"));
+	TEST(! Line.ParseString(Parser, "a"));
+	TEST(! Line.ParseString(Parser, "a a x"));
+	TEST(Line.ParseString(Parser, "a x a b x a x b x b x b x b x a x a x a b x a b x b x a x"));
 }
 
-static int run_tests()
+static void self_test()
 {
 	test1();
 	test2();
 	test3();
 	test4();
-	return 0;
 }
 
-static int dummy = run_tests();
+RUN_SELF_TEST;
 
 }	// namespace test
-#endif	// #if PERFORM_SELF_TEST
+#endif	// #if SELF_TEST_ENABLED
