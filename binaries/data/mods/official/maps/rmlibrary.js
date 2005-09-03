@@ -1,15 +1,18 @@
 // Object type constants
 
 const 
-TYPE_RECT_PLACER = 1,
-TYPE_TERRAIN_PAINTER = 2,
-TYPE_NULL_CONSTRAINT = 3,
-TYPE_LAYERED_PAINTER = 4,
-TYPE_AVOID_AREA_CONSTRAINT = 5,
-TYPE_CLUMP_PLACER = 6,
-TYPE_AVOID_TEXTURE_CONSTRAINT = 7,
-TYPE_ELEVATION_PAINTER = 8,
-TYPE_SMOOTH_ELEVATION_PAINTER = 9;
+	TYPE_RECT_PLACER = 1,
+	TYPE_TERRAIN_PAINTER = 2,
+	TYPE_NULL_CONSTRAINT = 3,
+	TYPE_LAYERED_PAINTER = 4,
+	TYPE_AVOID_AREA_CONSTRAINT = 5,
+	TYPE_CLUMP_PLACER = 6,
+	TYPE_AVOID_TEXTURE_CONSTRAINT = 7,
+	TYPE_ELEVATION_PAINTER = 8,
+	TYPE_SMOOTH_ELEVATION_PAINTER = 9,
+	TYPE_SIMPLE_GROUP = 10,
+	TYPE_AVOID_TILE_CLASS_CONSTRAINT = 11,
+	TYPE_TILE_CLASS_PAINTER = 12;
 
 // SmoothElevationPainter constants
 
@@ -53,6 +56,10 @@ function chooseRand() {
 }
 
 function createAreas(centeredPlacer, painter, constraint, num, maxFail) {
+	if(maxFail == undefined) {
+		maxFail = 2*num;
+	}
+	
 	var good = 0;
 	var bad = 0;
 	var ret = new Array();
@@ -69,6 +76,27 @@ function createAreas(centeredPlacer, painter, constraint, num, maxFail) {
 		}
 	}
 	return ret;
+}
+
+function createObjectGroups(placer, constraint, num, maxFail) {
+	if(maxFail == undefined) {
+		maxFail = 2*num;
+	}
+	
+	var good = 0;
+	var bad = 0;
+	while(good < num && bad <= maxFail) {
+		placer.x = randInt(SIZE);
+		placer.y = randInt(SIZE);
+		var r = createObjectGroup(placer, constraint);
+		if(r) {
+			good++;
+		}
+		else {
+			bad++;
+		}
+	}
+	return good;
 }
 
 // Area placers
@@ -91,8 +119,8 @@ function ClumpPlacer(size, coherence, smoothness, x, y) {
 	this.size = size;
 	this.coherence = coherence;
 	this.smoothness = smoothness;
-	this.x = x ? x : -1;
-	this.y = y ? y : -1;
+	this.x = x==undefined ? x : -1;
+	this.y = y==undefined ? y : -1;
 }
 
 // Area painters
@@ -106,6 +134,11 @@ function LayeredPainter(widths, terrains) {
 function ElevationPainter(elevation) {
 	this.TYPE = TYPE_ELEVATION_PAINTER;
 	this.elevation = elevation;
+}
+
+function TileClassPainter(tileClass) {
+	this.TYPE = TYPE_TILE_CLASS_PAINTER;
+	this.tileClass = tileClass;
 }
 
 function SmoothElevationPainter(type, elevation, blendRadius) {
@@ -129,4 +162,26 @@ function AvoidAreaConstraint(area) {
 function AvoidTextureConstraint(texture) {
 	this.TYPE = TYPE_AVOID_TEXTURE_CONSTRAINT;
 	this.texture = texture;
+}
+
+function AvoidTileClassConstraint(tileClass, distance) {
+	this.TYPE = TYPE_AVOID_TILE_CLASS_CONSTRAINT;
+	this.tileClass = tileClass;
+	this.distance = distance;
+}
+
+// Object groups
+
+function SimpleObject(type, count, distance) {
+	this.type = type;
+	this.count = count;
+	this.distance = distance;
+}
+
+function SimpleGroup(elements, tileClass, x, y) {
+	this.TYPE = TYPE_SIMPLE_GROUP;
+	this.elements = elements;
+	this.tileClass = tileClass==undefined ? tileClass : null;
+	this.x = x==undefined ? x : -1;
+	this.y = x==undefined ? y : -1;
 }
