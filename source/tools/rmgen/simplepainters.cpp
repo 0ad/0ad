@@ -52,3 +52,19 @@ void MultiPainter::paint(Map* m, Area* a)
 		painters[i]->paint(m, a);
 	}
 }
+
+
+// TileClassPainter
+
+TileClassPainter::TileClassPainter(TileClass* tc)
+{
+	this->tileClass = tc;
+}
+
+void TileClassPainter::paint(Map* m, Area* a) 
+{
+	for (int i=0; i<a->points.size(); i++) {
+		Point p = a->points[i];
+		tileClass->add(p.x, p.y);
+	}
+}

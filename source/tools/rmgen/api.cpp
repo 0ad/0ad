@@ -27,12 +27,9 @@ JSFunctionSpec globalFunctions[] = {
 	{"placeObject", placeObject, 5},
 	{"createArea", createArea, 3},
 	{"createObjectGroup", createObjectGroup, 2},
+	{"createTileClass", createTileClass, 0},
 	{0, 0, 0}
 };
-
-// Some global variables used for the API
-map<Area*, int> areaToId;
-vector<Area*> areas;
 
 // Helper function to validate argument types; the types string can contain the following:
 // i (integers), s (strings), n (numbers), . (anything); for example ValidateArgs("iin",...)
@@ -279,10 +276,7 @@ JSBool createArea(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *
 		*rval = INT_TO_JSVAL(0);
 	}
 	else {
-		areas.push_back(area);
-		int id = areas.size();
-		areaToId[area] = id;
-		*rval = INT_TO_JSVAL(id);
+		*rval = INT_TO_JSVAL(theMap->areas.size());
 	}
 	return JS_TRUE;
 }
@@ -309,16 +303,24 @@ JSBool createObjectGroup(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, 
 		constr = new NullConstraint();
 	}
 
-	vector<Object*>* ret = theMap->createObjectGroup(placer, constr);
+	bool ret = theMap->createObjectGroup(placer, constr);
 
 	delete placer;
 	delete constr;
 
-	if(!ret) {
-		*rval = INT_TO_JSVAL(0);
+	*rval = ret;
+	return JS_TRUE;
+}
+
+JSBool createTileClass(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval) 
+{
+	CheckInit(true, cx, __FUNCTION__);
+	if(argc != 0) {
+		JS_ReportError(cx, "createTileClass: expected 0 arguments but got %d", argc);
 	}
-	else {
-		*rval = INT_TO_JSVAL(1);
-	}
+
+	int id = theMap->createTileClass();
+
+	*rval = INT_TO_JSVAL(id);
 	return JS_TRUE;
 }

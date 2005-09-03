@@ -11,6 +11,20 @@
 
 using namespace std;
 
+bool GetTileClassField(JSContext* cx, jsval obj, const char* name, TileClass*& ret) {
+	jsval val;
+	if(!GetJsvalField(cx, obj, name, val)) return false;
+	if(JSVAL_IS_NULL(val)) {
+		ret = 0;
+		return true;
+	}
+	if(!JSVAL_IS_INT(val)) return false;
+	int id = JSVAL_TO_INT(val);
+	if(id < 0 || id > theMap->tileClasses.size()) return false;
+	ret = (id==0? 0 : theMap->tileClasses[id-1]);
+	return true;
+}
+
 int GetType(JSContext* cx, jsval val) {
 	int ret;
 	if(!GetIntField(cx, val, "TYPE", ret)) return 0;
@@ -87,6 +101,7 @@ AreaPainter* ParseAreaPainter(JSContext* cx, jsval val) {
 	float elevation;
 	int type;
 	int blendRadius;
+	TileClass* tileClass;
 	vector<Terrain*> terrains;
 	vector<int> widths;
 
@@ -110,6 +125,10 @@ AreaPainter* ParseAreaPainter(JSContext* cx, jsval val) {
 		case TYPE_ELEVATION_PAINTER:
 			if(!GetFloatField(cx, val, "elevation", elevation)) return 0;
 			return new ElevationPainter(elevation);
+
+		case TYPE_TILE_CLASS_PAINTER:
+			if(!GetTileClassField(cx, val, "tileClass", tileClass)) return 0;
+			return new TileClassPainter(tileClass);
 
 		case TYPE_SMOOTH_ELEVATION_PAINTER:
 			if(!GetIntField(cx, val, "type", type)) return 0;
@@ -168,6 +187,7 @@ ObjectGroupPlacer* ParseObjectGroupPlacer(JSContext* cx, jsval val) {
 	jsval jsv;
 	vector<jsval> array;
 	int x, y;
+	TileClass* tileClass;
 	vector<SimpleGroup::Element*> elements;
 
 	switch(GetType(cx, val)) {
@@ -175,6 +195,7 @@ ObjectGroupPlacer* ParseObjectGroupPlacer(JSContext* cx, jsval val) {
 			// convert x and y
 			if(!GetIntField(cx, val, "x", x)) return 0;
 			if(!GetIntField(cx, val, "y", y)) return 0;
+			if(!GetTileClassField(cx, val, "tileClass", tileClass)) return 0;
 			// convert the elements (which will be JS SimpleElement objects)
 			if(!GetJsvalField(cx, val, "elements", jsv)) return 0;
 			if(!ParseArray(cx, jsv, array)) return 0;
@@ -188,7 +209,7 @@ ObjectGroupPlacer* ParseObjectGroupPlacer(JSContext* cx, jsval val) {
 				if(!GetFloatField(cx, array[i], "distance", distance)) return 0;
 				elements[i] = new SimpleGroup::Element(type, count, distance);
 			}
-			return new SimpleGroup(elements, x, y);
+			return new SimpleGroup(elements, tileClass, x, y);
 
 		default:
 			return 0;
@@ -198,6 +219,8 @@ ObjectGroupPlacer* ParseObjectGroupPlacer(JSContext* cx, jsval val) {
 Constraint* ParseConstraint(JSContext* cx, jsval val) {
 	vector<jsval> array;
 	int areaId;
+	TileClass* tileClass;
+	float distance;
 	string texture;
 	jsval jsv, jsv2;
 
@@ -228,6 +251,11 @@ Constraint* ParseConstraint(JSContext* cx, jsval val) {
 		case TYPE_AVOID_TEXTURE_CONSTRAINT:
 			if(!GetStringField(cx, val, "texture", texture)) return 0;
 			return new AvoidTextureConstraint(theMap->getId(texture));
+
+		case TYPE_AVOID_TILE_CLASS_CONSTRAINT:
+			if(!GetFloatField(cx, val, "distance", distance)) return 0;
+			if(!GetTileClassField(cx, val, "tileClass", tileClass)) return 0;
+			return new AvoidTileClassConstraint(tileClass, distance);
 
 		default:
 			return 0;

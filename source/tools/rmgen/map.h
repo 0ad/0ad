@@ -8,6 +8,7 @@
 #include "object.h"
 #include "terrain.h"
 #include "objectgroupplacer.h"
+#include "tileclass.h"
 
 class Map {
 public:
@@ -20,6 +21,7 @@ public:
 	std::map<int, std::string> idToName;
 	std::vector<Object*> objects;
 	std::vector<Area*> areas;
+	std::vector<TileClass*> tileClasses;
 
 	Map(int size, Terrain* baseTerrain, float baseHeight);
 	Map(std::string fileName, int loadLevel);
@@ -44,7 +46,9 @@ public:
 	void addObject(class Object* ent);
 
 	Area* createArea(AreaPlacer* placer, AreaPainter* painter, Constraint* constr);
-	std::vector<Object*>* createObjectGroup(ObjectGroupPlacer* placer, Constraint* constr);
+	bool createObjectGroup(ObjectGroupPlacer* placer, Constraint* constr);
+
+	int createTileClass();	// returns ID of the new class
 };
 
 #endif

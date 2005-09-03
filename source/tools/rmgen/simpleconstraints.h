@@ -4,9 +4,19 @@
 #include "constraint.h"
 #include "map.h"
 #include "area.h"
+#include "tileclass.h"
 
 class NullConstraint : public Constraint {
 public:
+	virtual bool allows(Map* m, int x, int y);
+};
+
+class AndConstraint : public Constraint {
+private:
+	std::vector<Constraint*> constraints;
+public:
+	AndConstraint(const std::vector<Constraint*>& constraints);
+	~AndConstraint();
 	virtual bool allows(Map* m, int x, int y);
 };
 
@@ -26,13 +36,14 @@ public:
 	virtual bool allows(Map* m, int x, int y);
 };
 
-class AndConstraint : public Constraint {
+class AvoidTileClassConstraint : public Constraint {
 private:
-	std::vector<Constraint*> constraints;
+	TileClass* tileClass;
+	float distance;
 public:
-	AndConstraint(const std::vector<Constraint*>& constraints);
-	~AndConstraint();
+	AvoidTileClassConstraint(TileClass* tileClass, float distance);
 	virtual bool allows(Map* m, int x, int y);
 };
+
 
 #endif

@@ -5,6 +5,7 @@
 #include "map.h"
 #include "area.h"
 #include "terrain.h"
+#include "tileclass.h"
 
 class TerrainPainter : public AreaPainter {
 	Terrain* terrain;
@@ -17,6 +18,13 @@ class ElevationPainter : public AreaPainter {
 	float elevation;
 public:
 	ElevationPainter(float elevation);
+	virtual void paint(Map* m, Area* a);
+};
+
+class TileClassPainter : public AreaPainter {
+	TileClass* tileClass;
+public:
+	TileClassPainter(TileClass* tc);
 	virtual void paint(Map* m, Area* a);
 };
 

@@ -30,4 +30,7 @@ JSBool placeObject(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval 
 JSBool createArea(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval);
 JSBool createObjectGroup(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval);
 
+// Tile class functions
+JSBool createTileClass(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval);
+
 #endif

@@ -4,7 +4,6 @@
 #include "object.h"
 #include "pmp_file.h"
 
-
 using namespace std;
 
 Map::Map(int size, Terrain* baseTerrain, float baseHeight) {
@@ -280,13 +279,12 @@ Area* Map::createArea(AreaPlacer* placer, AreaPainter* painter, Constraint* cons
 	return a;
 }
 
-vector<Object*>* Map::createObjectGroup(ObjectGroupPlacer* placer, Constraint* constr) {
-	vector<Object*>* objects = new vector<Object*>;
-	if(!placer->place(this, constr, *objects)) {
-		return 0;
-	}
-	for(int i=0; i<objects->size(); i++) {
-		addObject((*objects)[i]);
-	}
-	return objects;
+bool Map::createObjectGroup(ObjectGroupPlacer* placer, Constraint* constr) {
+	return placer->place(this, constr);
 }
+
+int Map::createTileClass() {
+	tileClasses.push_back(new TileClass(size));
+	return tileClasses.size();
+}
+

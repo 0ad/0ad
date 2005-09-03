@@ -3,36 +3,16 @@
 
 using namespace std;
 
-// NullConstraint
+// NullConstraint /////////////////////////////////////////////////////////////////////////
 
 bool NullConstraint::allows(Map* m, int x, int y)
 {
 	return true;
 }
 
-// AvoidAreaConstraint
 
-AvoidAreaConstraint::AvoidAreaConstraint(Area* area) {
-	this->area = area;
-}
 
-bool AvoidAreaConstraint::allows(Map* m, int x, int y)
-{
-	return m->area[x][y] != area;
-}
-
-// AvoidTextureConstraint
-
-AvoidTextureConstraint::AvoidTextureConstraint(int textureId) {
-	this->textureId = textureId;
-}
-
-bool AvoidTextureConstraint::allows(Map* m, int x, int y)
-{
-	return m->texture[x][y] != textureId;
-}
-
-// AndConstraint
+// AndConstraint /////////////////////////////////////////////////////////////////////////
 
 AndConstraint::AndConstraint(const vector<Constraint*>& constraints) {
 	this->constraints = constraints;
@@ -53,3 +33,46 @@ bool AndConstraint::allows(Map* m, int x, int y)
 	}
 	return true;
 }
+
+
+
+// AvoidAreaConstraint //////////////////////////////////////////////////////////////////
+
+AvoidAreaConstraint::AvoidAreaConstraint(Area* area) {
+	this->area = area;
+}
+
+bool AvoidAreaConstraint::allows(Map* m, int x, int y)
+{
+	return m->area[x][y] != area;
+}
+
+
+
+// AvoidTextureConstraint ///////////////////////////////////////////////////////////////
+
+AvoidTextureConstraint::AvoidTextureConstraint(int textureId) {
+	this->textureId = textureId;
+}
+
+bool AvoidTextureConstraint::allows(Map* m, int x, int y)
+{
+	return m->texture[x][y] != textureId;
+}
+
+
+
+// AvoidTileClassConstraint /////////////////////////////////////////////////////////////
+
+AvoidTileClassConstraint::AvoidTileClassConstraint(TileClass* tileClass, float distance) {
+	this->tileClass = tileClass;
+	this->distance = distance;
+}
+
+bool AvoidTileClassConstraint::allows(Map* m, int x, int y)
+{
+	return !tileClass->hasTilesInRadius(x, y, distance);
+}
+
+
+
