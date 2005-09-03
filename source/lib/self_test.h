@@ -25,7 +25,7 @@ Introduction
 
 Self-tests as advocated by eXtreme Programming have proven to be useful.
 By embedding test code into modules, we can be confident that boundary
-cases are handled correctly and everything still works correctly after edits.
+cases are handled correctly and everything still works after edits.
 We give guidelines for their use and explain several helper mechanisms below.
 
 
@@ -44,6 +44,11 @@ What makes a good self-test?
 - Tests should be non-intrusive (only bother user if something fails) and
   very quick. This is because we run them automatically at startup,
   which solves the common problem of making sure they actually run.
+
+  If the test is unavoidably slow or annoying (example: wdbg_sym's
+  stack trace), then best to disable it by default; see below for how.
+  It can then be enabled manually after changes, and that is better than
+  no test at all.
 
 
 Example Usage
@@ -77,7 +82,8 @@ RUN_SELF_TEST;									// (3)
 <<<
 
 (1) when not enabled, self-tests are completely removed so as
-    not to bloat the executable.
+    not to bloat the executable. for details on how to enable/disable them
+	globally or override in single files, see below.
 
 (2) wrapping in a namespace is optional and must be removed for C programs.
     it avoids possible name collisions with the module being tested.
@@ -92,9 +98,10 @@ For further details, see below.
 #ifndef SELF_TEST_H__
 #define SELF_TEST_H__
 
-// this is the global default for enabling/disabling all tests.
-// you can override it in individual files by defining to 0 or 1 before
-// including this header.
+// a self test is enabled if at the point of its definition
+// SELF_TEST_ENABLED evaluates to 1 (non-zero).
+// the value #defined below is the global default. you can override it
+// in individual files by defining to 0 or 1 before including this header.
 #ifndef SELF_TEST_ENABLED
 #define SELF_TEST_ENABLED 1
 #endif
