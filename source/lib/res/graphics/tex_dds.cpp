@@ -241,34 +241,41 @@ fail:
 	if(!(sd_flags & DDSD_MIPMAPCOUNT))
 		mipmaps = 0;
 
-	// MS DXTex tool doesn't set the required dwPitchOrLinearSize field -
-	// they can't even write out their own file format correctly. *sigh*
-	// we need to pass it to OpenGL; it's calculated from w, h, and bpp,
-	// which we determine from the pixel format.
+
+	// determine flags and bpp.
+	// we store DXT format (one of {1,3,5}) in flags & TEX_DXT.
+	//
+	// unfortunately there are problems with some DDS headers:
+	// - DXTex doesn't set the required dwPitchOrLinearSize field -
+	//   MS can't even write out their own file format correctly. *sigh*
+	//   it's needed by OpenGL, so we calculate it from w, h, and bpp.
+	// - pf_flags & DDPF_ALPHAPIXELS can only be used to check for
+	//   DXT1a (the only way to detect it); we have observed some DXT3 files
+	//   that don't have it set. grr
 	int bpp = 0;
 	int flags = 0;
-
-	if(pf_flags & DDPF_ALPHAPIXELS)
-		flags |= TEX_ALPHA;
-
 	switch(fourcc)
 	{
 	case FOURCC('D','X','T','1'):
 		bpp = 4;
-		flags |= 1;	// bits in TEX_DXT mask indicate format
+		flags |= 1;
+		if(pf_flags & DDPF_ALPHAPIXELS)
+			flags |= TEX_ALPHA;
 		break;
 	case FOURCC('D','X','T','3'):
 		bpp = 8;
-		flags |= 3;	// "
+		flags |= 3;
+		flags |= TEX_ALPHA;
 		break;
 	case FOURCC('D','X','T','5'):
 		bpp = 8;
-		flags |= 5;	// "
+		flags |= 5;
+		flags |= TEX_ALPHA;
 		break;
 	}
-
 	if(mipmaps)
 		flags |= TEX_MIPMAPS;
+
 
 	// sanity checks
 	const char* err = 0;
@@ -301,7 +308,7 @@ fail:
 }
 
 
-static int dds_encode(const char* UNUSED(ext), Tex* UNUSED(t), u8** UNUSED(out), size_t* UNUSED(out_size), const char** perr_msg)
+static int dds_encode(const char* UNUSED(ext), Tex* UNUSED(t), u8** UNUSED(out), size_t* UNUSED(out_size), const char** UNUSED(perr_msg))
 {
 	return ERR_NOT_IMPLEMENTED;
 }
