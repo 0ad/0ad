@@ -198,6 +198,10 @@ struct OglTex
 		// or it's already been uploaded to OpenGL => no reload necessary.
 		// needs to be a flag so it can be reset in Tex_dtor.
 	bool has_been_uploaded;
+
+	// to which Texture Mapping Unit was this bound?
+	// used when re-binding after reload.
+	uint tmu : 8;
 };
 
 H_TYPE_DEFINE(OglTex);
@@ -288,6 +292,9 @@ m_ActiveTextures[unit]=tex;
 }
 */
 
+
+// note: there are many call sites of glActiveTextureARB, so caching
+// those and ignoring redundant sets isn't feasible.
 int ogl_tex_bind(const Handle h, GLenum unit)
 {
 	int id = 0;
@@ -297,6 +304,7 @@ int ogl_tex_bind(const Handle h, GLenum unit)
 		goto disable_texturing;
 
 	{
+	// (we can't use H_DEREF because it exits immediately)
 	OglTex* ot = H_USER_DATA(h, OglTex);
 	if(!ot)
 	{
@@ -311,7 +319,9 @@ int ogl_tex_bind(const Handle h, GLenum unit)
 		return -1;
 	}
 #endif
+
 	id = ot->id;
+	ot->tmu = unit;
 	}
 
 disable_texturing:
@@ -377,6 +387,8 @@ static int ogl_tex_validate(const uint line, const OglTex* ot)
 		msg = "invalid filter";
 	// as with the texel format above, there is not anything we can do
 	// to verify ot->int_fmt is correct (even 0 is valid).
+	if(ot->tmu >= 128)
+		msg = "TMU invalid? it's >= 128!";
 
 	if(msg)
 	{
@@ -429,9 +441,9 @@ int ogl_tex_upload(const Handle ht, GLint filter_ovr, GLint int_fmt_ovr, GLenum 
 	ONCE(auto_mipmap_gen = detect_auto_mipmap_gen());
 
 
-	CHECK_ERR(ogl_tex_bind(ht));
-		// we know ht is valid (H_DEREF above), but ogl_tex_bind can
-		// fail in debug builds if OglTex.id isn't a valid texture name
+	// we know ht is valid (H_DEREF above), but ogl_tex_bind can
+	// fail in debug builds if OglTex.id isn't a valid texture name
+	CHECK_ERR(ogl_tex_bind(ht, ot->tmu));
 
 	// set upload params
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filter);

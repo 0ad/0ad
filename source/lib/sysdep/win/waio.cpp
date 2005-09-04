@@ -711,7 +711,13 @@ static int waio_init()
 {
 	req_init();
 
-	const UINT old_err_mode = SetErrorMode(SEM_FAILCRITICALERRORS);
+	// temporarily disable the "insert disk into drive" error box; we are
+	// only interested in fixed drives anyway.
+	//
+	// note: use SetErrorMode (crappy interface, grr) twice so as not to
+	// stomp on other flags (e.g. alignment exception).
+	const UINT old_err_mode = SetErrorMode(0);
+	SetErrorMode(old_err_mode|SEM_FAILCRITICALERRORS);
 
 	// Win32 requires transfers to be sector aligned.
 	// find maximum of all drive's sector sizes, then use that.
@@ -741,7 +747,6 @@ static int waio_init()
 	SetErrorMode(old_err_mode);
 
 	debug_assert(is_pow2((long)sector_size));
-
 	return 0;
 }
 
