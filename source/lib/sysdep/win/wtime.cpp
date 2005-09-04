@@ -649,7 +649,16 @@ static int hrt_shutdown()
 //
 
 // hectonanoseconds between Windows and POSIX epoch
-static const i64 posix_epoch_hns = 0x019DB1DED53E8000;
+static const u64 posix_epoch_hns = 0x019DB1DED53E8000;
+
+// this function avoids the pitfall of casting FILETIME* to u64*,
+// which is not safe due to differing alignment guarantees!
+// on some platforms, that would result in an exception.
+static u64 u64_from_FILETIME(const FILETIME* ft)
+{
+	return u64_from_u32(ft->dwHighDateTime, ft->dwLowDateTime);
+}
+
 
 // convert UTC FILETIME to seconds-since-1970 UTC:
 // we just have to subtract POSIX epoch and scale down to units of seconds.
@@ -658,8 +667,8 @@ static const i64 posix_epoch_hns = 0x019DB1DED53E8000;
 // so don't use that.
 time_t utc_filetime_to_time_t(FILETIME* ft)
 {
-	i64 hns = *(i64*)ft;
-	i64 s = (hns - posix_epoch_hns) / _1e7;
+	u64 hns = u64_from_FILETIME(ft);
+	u64 s = (hns - posix_epoch_hns) / _1e7;
 	return (time_t)(s & 0xffffffff);
 }
 
@@ -699,7 +708,7 @@ static i64 st_time_ns()
 {
 	FILETIME ft;
 	GetSystemTimeAsFileTime(&ft);
-	i64 hns = *(i64*)&ft;
+	u64 hns = u64_from_FILETIME(&ft);
 	return (hns - posix_epoch_hns) * 100;
 }
 

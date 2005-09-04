@@ -267,8 +267,7 @@ public:
 
 		// Texture unit 0:
 
-		glEnable(GL_TEXTURE_2D);
-		ogl_tex_bind(tex);
+		ogl_tex_bind(tex, 0);
 
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 
@@ -288,9 +287,7 @@ public:
 
 		// Texture unit 1:
 
-		glActiveTextureARB(GL_TEXTURE1);
-		glEnable(GL_TEXTURE_2D);
-		ogl_tex_bind(tex);
+		ogl_tex_bind(tex, 1);
 
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 

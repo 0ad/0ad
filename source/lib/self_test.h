@@ -64,7 +64,7 @@ namespace test {								// (2)
 
 static void test_log2()
 {
-	TEST(ilog2(0) == -1);
+	TEST(ilog2(0) == -1);						// (3)
 	// further test cases..
 }
 
@@ -74,7 +74,7 @@ static void self_test()
 	// further test groups..
 }
 
-RUN_SELF_TEST;									// (3)
+RUN_SELF_TEST;									// (4)
 
 }	// namespace test
 #endif	// #if SELF_TEST_ENABLED
@@ -88,7 +88,10 @@ RUN_SELF_TEST;									// (3)
 (2) wrapping in a namespace is optional and must be removed for C programs.
     it avoids possible name collisions with the module being tested.
 
-(3) automatically calls your self_test function at non-local static object
+(3) TEST *must* be used instead of debug_assert et al.! this is
+    explained below.
+
+(4) automatically calls your self_test function at non-local static object
     init time (i.e. before main is entered).
 
 For further details, see below.
