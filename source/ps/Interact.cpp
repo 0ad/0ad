@@ -14,6 +14,7 @@
 #include "BoundingObjects.h"
 #include "Unit.h"
 #include "Model.h"
+#include "simulation/BaseEntityCollection.h"
 #include "scripting/GameEvents.h"
 
 extern CConsole* g_Console;
@@ -748,6 +749,12 @@ void MouseButtonUpHandler(const SDL_Event *ev, int clicks)
 	switch( ev->button.button )
 	{
 	case SDL_BUTTON_LEFT:
+		if( g_BuildingPlacer.m_active )
+		{
+			g_BuildingPlacer.mouseReleased();
+			break;
+		}
+
 		if (customSelectionMode)
 			break;
 	
@@ -777,6 +784,12 @@ void MouseButtonUpHandler(const SDL_Event *ev, int clicks)
 		else
 			g_Mouseover.setSelection();
 		break;
+	case SDL_BUTTON_RIGHT:
+		if( g_BuildingPlacer.m_active )
+		{
+			g_BuildingPlacer.cancel();
+			break;
+		}
 	}
 }
 
@@ -904,11 +917,15 @@ int interactInputHandler( const SDL_Event* ev )
 			button_down_x = ev->button.x;
 			button_down_y = ev->button.y;
 			button_down_time = get_time();
+			if( g_BuildingPlacer.m_active )
+			{
+				g_BuildingPlacer.mousePressed();
+			}
 			break;
 		}
 		break;
 	case SDL_MOUSEMOTION:
-		if( !g_Mouseover.isBandbox() && button_down )
+		if( !g_Mouseover.isBandbox() && button_down && !g_BuildingPlacer.m_active )
 		{
 			int deltax = ev->motion.x - button_down_x;
 			int deltay = ev->motion.y - button_down_y;
@@ -952,4 +969,98 @@ void StartCustomSelection()
 void ResetInteraction()
 {
 	customSelectionMode = false;
+}
+
+
+bool CBuildingPlacer::activate(CStrW& templateName)
+{
+	if(m_active)
+	{
+		return false;
+	}
+
+	m_templateName = templateName;
+	m_active = true;
+	m_clicked = false;
+	m_dragged = false;
+	m_angle = 0;
+	m_timeSinceClick = 0;
+	//g_Console->InsertMessage( L"BuildingPlacer: Activated with %ls", m_templateName.c_str() );
+	return true;
+}
+
+void CBuildingPlacer::mousePressed()
+{
+	CCamera &g_Camera=*g_Game->GetView()->GetCamera();
+	clickPos = g_Camera.GetWorldCoordinates();
+	m_clicked = true;
+	//g_Console->InsertMessage( L"BuildingPlacer: Clicked (%f, %f, %f)", clickPos.X, clickPos.Y, clickPos.Z );
+}
+
+void CBuildingPlacer::mouseReleased()
+{
+	m_active = false;	// do it first in case we fail
+	CBaseEntity* baseEntity = g_EntityTemplateCollection.getTemplate( m_templateName );
+	//g_Console->InsertMessage( L"BuildingPlacer: Created %ls at (%f, %f, %f) [%f]", 
+	//	m_templateName.c_str(), clickPos.X, clickPos.Y, clickPos.Z, m_angle );
+	HEntity ent = g_EntityManager.create( baseEntity, clickPos, m_angle );
+	ent->SetPlayer(g_Game->GetLocalPlayer());
+}
+
+void CBuildingPlacer::cancel()
+{
+	//g_Console->InsertMessage( L"BuildingPlacer: Cancelled");
+	m_active = false;
+}
+
+void CBuildingPlacer::update( float timeStep )
+{
+	if(!m_active)
+		return;
+
+	if(m_clicked)
+	{
+		m_timeSinceClick += timeStep;
+		CCamera &g_Camera=*g_Game->GetView()->GetCamera();
+		CVector3D pos = g_Camera.GetWorldCoordinates();
+		CVector3D dif = pos - clickPos;
+		float x = dif.X, z = dif.Z;
+		if(x*x + z*z < 3*3) {
+			if(m_dragged || m_timeSinceClick > 0.2f) 
+			{
+				m_angle += timeStep * PI;
+			}
+		}
+		else
+		{
+			m_dragged = true;
+			m_angle = atan2(x, z);
+		}
+	}
+}
+
+void CBuildingPlacer::render()
+{
+	if(!m_active)
+		return;
+
+	CVector3D pos;
+	if(m_clicked) 
+	{
+		pos = clickPos;
+	}
+	else
+	{
+		CCamera &g_Camera=*g_Game->GetView()->GetCamera();
+		pos = g_Camera.GetWorldCoordinates();
+	}
+
+	glBegin(GL_LINE_STRIP);
+	glColor3f(1,1,1);
+	glVertex3f(pos.X, pos.Y+6, pos.Z);
+	glColor3f(1,1,1);
+	glVertex3f(pos.X, pos.Y, pos.Z);
+	glColor3f(1,1,1);
+	glVertex3f(pos.X + 3*sin(m_angle), pos.Y, pos.Z + 3*cos(m_angle));
+	glEnd();
 }

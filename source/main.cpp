@@ -214,6 +214,7 @@ static void Frame()
 		// TODO Where does GameView end and other things begin?
 		g_Mouseover.update( TimeSinceLastFrame );
 		g_Selection.update();
+		g_BuildingPlacer.update( TimeSinceLastFrame );
 		PROFILE_END( "selection and interaction ui" );
 
 		PROFILE_START( "sound update" );

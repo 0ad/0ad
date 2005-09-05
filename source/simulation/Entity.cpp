@@ -664,7 +664,7 @@ void CEntity::renderSelectionOutline( float alpha )
 		const SPlayerColour& col = m_player->GetColour();
 		glColor3f( col.r, col.g, col.b );
 	}
-	
+
 	glBegin( GL_LINE_LOOP );
 
 	CVector3D pos = m_graphics_position;

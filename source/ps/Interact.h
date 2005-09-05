@@ -113,6 +113,29 @@ struct CMouseoverEntities : public Singleton<CMouseoverEntities>
 	void stopBandbox();
 };
 
+struct CBuildingPlacer : public Singleton<CBuildingPlacer>
+{
+	CBuildingPlacer()
+	{
+		m_active = false;
+	}
+
+	CStrW m_templateName;
+	bool m_active;
+	bool m_clicked;
+	bool m_dragged;
+	float m_angle;
+	float m_timeSinceClick;
+	CVector3D clickPos;
+
+	bool activate( CStrW& templateName );
+	void mousePressed();
+	void mouseReleased();
+	void cancel();
+	void update( float timeStep );
+	void render();
+};
+
 bool isMouseoverType( CEntity* ev, void* userdata );
 bool isOnScreen( CEntity* ev, void* userdata );
 
@@ -123,4 +146,5 @@ int interactInputHandler( const SDL_Event* ev );
 
 #define g_Selection CSelectedEntities::GetSingleton()
 #define g_Mouseover CMouseoverEntities::GetSingleton()
+#define g_BuildingPlacer CBuildingPlacer::GetSingleton()
 

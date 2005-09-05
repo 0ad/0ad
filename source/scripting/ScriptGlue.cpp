@@ -741,6 +741,33 @@ JSBool getGlobal( JSContext* cx, JSObject* globalObject, uint argc, jsval* argv,
 	return( JS_TRUE );
 }
 
+// Activates the building placement cursor for placing a building.
+// params: templateName - the name of the entity to place.
+// returns: true if cursor was activated, false if cursor was already active.
+JSBool startPlacing( JSContext* cx, JSObject* globalObject, uint argc, jsval* argv, jsval* rval )
+{
+	CStrW name;
+	if(argc == 0) {
+		name = L"hele_ho";			// save some typing during testing
+	}
+	else {
+		try
+		{
+			name = g_ScriptingHost.ValueToUCString( argv[0] );
+		}
+		catch( PSERROR_Scripting_ConversionFailed )
+		{
+			*rval = JSVAL_NULL;
+			JS_ReportError( cx, "Invalid template name argument" );
+			return( JS_TRUE );
+		}
+	}
+
+	*rval = g_BuildingPlacer.activate(name) ? JS_TRUE : JS_FALSE;
+
+	return( JS_TRUE );
+}
+
 
 //-----------------------------------------------------------------------------
 // function table
@@ -765,6 +792,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC(getEntityByHandle, getEntityByHandle, 1)
 	JS_FUNC(getEntityTemplate, getEntityTemplate, 1)
 	JS_FUNC(issueCommand, issueCommand, 2)
+	JS_FUNC(startPlacing, startPlacing, 1)
 
 	// Camera
 	JS_FUNC(setCameraTarget, setCameraTarget, 1)

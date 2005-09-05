@@ -244,9 +244,20 @@ void Render()
 		}
 
 		PROFILE_START( "render selection" );
+		glEnable( GL_DEPTH_TEST );
 		g_Mouseover.renderSelectionOutlines();
 		g_Selection.renderSelectionOutlines();
+		glDisable( GL_DEPTH_TEST );
 		PROFILE_END( "render selection" );
+
+		PROFILE_START( "render building placement cursor" );
+		if( g_BuildingPlacer.m_active ) 
+		{
+			//glEnable( GL_DEPTH_TEST );
+			g_BuildingPlacer.render();
+			//glDisable( GL_DEPTH_TEST );
+		}
+		PROFILE_END( "render building placement cursor" );
 
 		glPopAttrib();
 	}
@@ -790,6 +801,7 @@ void Init(int argc, char* argv[], bool setup_gfx, bool setup_gui)
 	new CPathfindEngine;
 	new CSelectedEntities;
 	new CMouseoverEntities;
+	new CBuildingPlacer;
 
 	new CSessionManager;
 
