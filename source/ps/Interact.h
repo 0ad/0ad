@@ -129,12 +129,13 @@ struct CBuildingPlacer : public Singleton<CBuildingPlacer>
 	bool m_dragged;
 	float m_angle;
 	float m_timeSinceClick;
+	CUnit* m_actor;
 	CVector3D clickPos;
 
 	bool activate( CStrW& templateName );
+	void deactivate();
 	void mousePressed();
 	void mouseReleased();
-	void cancel();
 	void update( float timeStep );
 	void render();
 };

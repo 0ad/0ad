@@ -16,6 +16,7 @@
 #include "Model.h"
 #include "simulation/BaseEntityCollection.h"
 #include "scripting/GameEvents.h"
+#include "UnitManager.h"
 
 extern CConsole* g_Console;
 extern int g_mouse_x, g_mouse_y;
@@ -818,7 +819,7 @@ void MouseButtonUpHandler(const SDL_Event *ev, int clicks)
 	case SDL_BUTTON_RIGHT:
 		if( g_BuildingPlacer.m_active )
 		{
-			g_BuildingPlacer.cancel();
+			g_BuildingPlacer.deactivate();
 			break;
 		}
 	}
@@ -1016,6 +1017,12 @@ bool CBuildingPlacer::activate(CStrW& templateName)
 	m_dragged = false;
 	m_angle = 0;
 	m_timeSinceClick = 0;
+
+	CBaseEntity* base = g_EntityTemplateCollection.getTemplate( m_templateName );
+	CStr actorName ( base->m_actorName );	// convert CStrW->CStr8
+	m_actor = g_UnitMan.CreateUnit( actorName, 0 );
+	m_actor->GetModel()->SetPlayerID(g_Game->GetLocalPlayer()->GetPlayerID());
+
 	//g_Console->InsertMessage( L"BuildingPlacer: Activated with %ls", m_templateName.c_str() );
 	return true;
 }
@@ -1030,18 +1037,22 @@ void CBuildingPlacer::mousePressed()
 
 void CBuildingPlacer::mouseReleased()
 {
-	m_active = false;	// do it first in case we fail
-	CBaseEntity* baseEntity = g_EntityTemplateCollection.getTemplate( m_templateName );
+	deactivate();	// do it first in case we fail for any reason
+
+	CBaseEntity* base = g_EntityTemplateCollection.getTemplate( m_templateName );
+	HEntity ent = g_EntityManager.create( base, clickPos, m_angle );
+	ent->SetPlayer(g_Game->GetLocalPlayer());
+
 	//g_Console->InsertMessage( L"BuildingPlacer: Created %ls at (%f, %f, %f) [%f]", 
 	//	m_templateName.c_str(), clickPos.X, clickPos.Y, clickPos.Z, m_angle );
-	HEntity ent = g_EntityManager.create( baseEntity, clickPos, m_angle );
-	ent->SetPlayer(g_Game->GetLocalPlayer());
 }
 
-void CBuildingPlacer::cancel()
+void CBuildingPlacer::deactivate()
 {
-	//g_Console->InsertMessage( L"BuildingPlacer: Cancelled");
 	m_active = false;
+	g_UnitMan.RemoveUnit( m_actor );
+	delete m_actor;
+	m_actor = 0;
 }
 
 void CBuildingPlacer::update( float timeStep )
@@ -1068,11 +1079,33 @@ void CBuildingPlacer::update( float timeStep )
 			m_angle = atan2(x, z);
 		}
 	}
+
+	CVector3D pos;
+	if(m_clicked) 
+	{
+		pos = clickPos;
+	}
+	else
+	{
+		CCamera &g_Camera=*g_Game->GetView()->GetCamera();
+		pos = g_Camera.GetWorldCoordinates();
+	}
+
+	CMatrix3D m;
+	float s = sin( m_angle );
+	float c = cos( m_angle );
+	m._11 = -c;		m._12 = 0.0f;	m._13 = -s;		m._14 = pos.X;
+	m._21 = 0.0f;	m._22 = 1.0f;	m._23 = 0.0f;	m._24 = pos.Y;
+	m._31 = s;		m._32 = 0.0f;	m._33 = -c;		m._34 = pos.Z;
+	m._41 = 0.0f;	m._42 = 0.0f;	m._43 = 0.0f;	m._44 = 1.0f;
+	m_actor->GetModel()->SetTransform( m );
 }
 
 void CBuildingPlacer::render()
 {
-	if(!m_active)
+	// do nothing special - our CUnit will get rendered by the UnitManager
+
+	/*if(!m_active)
 		return;
 
 	CVector3D pos;
@@ -1093,5 +1126,5 @@ void CBuildingPlacer::render()
 	glVertex3f(pos.X, pos.Y, pos.Z);
 	glColor3f(1,1,1);
 	glVertex3f(pos.X + 3*sin(m_angle), pos.Y, pos.Z + 3*cos(m_angle));
-	glEnd();
+	glEnd();*/
 }
