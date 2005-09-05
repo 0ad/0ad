@@ -137,7 +137,7 @@ function setupSession ()
 			// will be replaced soon by native version that doesn't block.
 
         // Start refreshing the session controls.
-//        setInterval( getObjectInfo, 1, 100 );
+        setInterval( snRefresh, 1, 100 );
 }
 
 // ====================================================================
@@ -159,6 +159,9 @@ function endSession (closeType)
                         crossFade(curr_session_playlist_1, curr_music, 0.1);
                                 // janwas: greatly accelerate this timesink;
                                 // will be replaced soon by native version that doesn't block.
+
+			// Stop refreshing the session controls.
+			cancelInterval();
 
                         // Swap GUIs to display main menu.
                         guiSwitch ("sn", "pg");

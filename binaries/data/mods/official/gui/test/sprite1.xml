@@ -99,6 +99,14 @@
 		/>
 	</sprite>
 
+        <sprite name="bkGraniteBorderBlack">
+                <image 	texture="global/tile/granite.png"
+			size="0 0 100% 100%"
+			border="true"
+			bordercolor="black"
+		/>
+        </sprite>
+
 	<sprite name="textureSand">
 		<image	texture="global/tile/sandstone.png"
 			size="0 0 100% 100%" 

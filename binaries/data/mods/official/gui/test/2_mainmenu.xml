@@ -95,10 +95,7 @@
 			sprite_over="pgCampaignsOver"
 			sprite_disabled="pgCampaignsDisabled"
                         tooltip="Want to play a campaign? Tough luck, buddy!  That's right, go cry on your mamma's shoulder."
-
-			font="verdana12"
-			textcolor="white"
-		>Iš Kidón RakhúvÀÁÂÃÄÅÈÉÊËÒÓÔÕÖàáâãäåèéêëìíî
+		>
 			<action on="Press"><![CDATA[
 				openMainMenuSubWindow ("pgCampaigns");
 			]]></action>

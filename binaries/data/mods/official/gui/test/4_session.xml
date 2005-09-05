@@ -18,6 +18,7 @@
 			guiToggle (this.name);
 		]]></action>
 
+		<!-- EMPTY OBJECT USED TO FLIP THE GUI TO VARIOUS ORIENTATIONS. -->
 		<object name="snFlip"
 			hotkey="session.gui.flip"
 		>
@@ -26,9 +27,11 @@
 			]]></action>
 		</object>
 
+		<!-- GROUP: MINIMAP -->
 		<object name="snMiniMap"
 			style="session_minimap"
 			type="minimap"
+			hotkey="session.minimap.toggle"
 		>
 			<action on="Load"><![CDATA[
 				addCrd (this.name, rb, 100, 100, 0, 0, 180, 180);
@@ -36,6 +39,43 @@
 				addCrd (this.name, lt, 0, 0);
 				addCrd (this.name, rt, 100, 0);
 			]]></action>
+
+			<action on="Press"><![CDATA[
+				guiToggle (this.name);
+			]]></action>
+		</object>
+
+		<!-- GROUP: STATUS PANE -->
+		<object	name="snStatusPane"
+			style="skin*Hele*Window"
+			type="image"
+			hotkey="session.statuspane.toggle"
+		>
+			<action on="Load"><![CDATA[
+				addCrd (this.name, rb, 0, 100, 0, 0, 200, 120);
+				addCrd (this.name, lb, 100, 100);	
+				addCrd (this.name, lt, 100, 0);
+				addCrd (this.name, rt, 0, 0);
+			]]></action>
+
+			<action on="Press"><![CDATA[
+				guiToggle (this.name);
+			]]></action>
+
+			<object	name="snStatusPanePortrait"
+				style="portrait" 
+				type="button"
+				hotkey="selection.snap"
+			>
+				<action on="Load"><![CDATA[
+					addCrd (this.name, rb, 0, 0, 5, 5, 64, 64);
+				]]></action>
+				<action on="Press"><![CDATA[
+					// Focus the camera on the unit when his portrait is clicked.
+					if (selection[0].position)
+						setCameraTarget(selection[0].position); 
+				]]></action>
+			</object>
 		</object>
 	</object>
 

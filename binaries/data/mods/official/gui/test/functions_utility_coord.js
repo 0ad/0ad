@@ -25,7 +25,7 @@ function initCoord()
 function addCrd (name, group, rx, ry, x, y, width, height)
 {
 	// Create new coordinate if necessary (it doesn't exist, or we have a new name).
-	if (!Crd[Crd.last])
+	if (group == rb || !Crd[Crd.last])
 	{
 		Crd.last++;
 		Crd[Crd.last]				= new Object();

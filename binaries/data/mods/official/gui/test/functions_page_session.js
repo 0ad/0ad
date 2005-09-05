@@ -124,65 +124,6 @@ function setPortrait(objectName, portraitString, portraitSuffix, portraitCell)
 
 // ====================================================================
 
-function getObjectInfo() 
-{
-        // Updated each tick to extract entity information from selected unit(s).
-
-        // Don't process GUI when we're full-screen.
-        if (GUIType != "none")
-        {
-                if (!selection.length)         // If no entity selected,
-                {
-                        // Hide Status Orb
-                        getGUIObjectByName("session_status_orb").hidden = true;
-
-                        // Hide Group Pane.
-                        getGUIObjectByName("session_group_pane").hidden = true;
-
-                        getGlobal().MultipleEntitiesSelected = 0;
-                }
-                else                        // If at least one entity selected,
-                {
-                        // Store globals for entity information.
-//                        strString = "" + selection[0].position;
-//                        EntityPos = strString.substring(20,strString.length-3);
-
-                        UpdateStatusOrb(); // (later, we need to base this on the selected unit's stats changing)
-
-                        // Check if a group of entities selected
-                        if (selection.length > 1) 
-                        {
-                                // If a group pane isn't already open, and we don't have the same set as last time,
-                                // NOTE: This "if" is an optimisation because the game crawls if this set of processing occurs every frame.
-                                // It's quite possible for the player to select another group of the same size and for it to not be recognised.
-                                // Best solution would be to base this off a "new entities selected" instead of an on-tick.
-                                if (
-                                        // getGUIObjectByName("session_group_pane").hidden == true || 
-                                        selection.length != getGlobal().MultipleEntitiesSelected)
-                                {
-                                        UpdateGroupPane(); // (later, we need to base this on the selection changing)
-                                        getGlobal().MultipleEntitiesSelected = selection.length;
-                                }
-                        } 
-                        else
-                        {
-                                getGlobal().MultipleEntitiesSelected = 0;
-
-                                // Hide Group Pane.
-                                getGUIObjectByName("session_group_pane").hidden = true;
-                        }
-                }
-
-                // Modify any resources given/taken (later, we need to base this on a resource-changing event).
-                UpdateResourcePool();
-
-                // Update Team Tray (later, we need to base this on the player creating a group).
-                UpdateTeamTray();
-        }
-}
-
-// ====================================================================
-
 function flipGUI (NewGUIType)
 {
 	// Changes GUI to a different layout.
@@ -222,3 +163,169 @@ function flipGUI (NewGUIType)
 
 // ====================================================================
 
+// Update-on-alteration trickery...
+
+// We don't really want to update every single time we get a
+// selection-changed or property-changed event; that could happen
+// a lot. Instead, use this bunch of globals to cache any changes
+// that happened between GUI updates.
+
+// This boolean determines whether the selection has been changed.
+var selectionChanged = false;
+
+// This boolean determines what the template of the selected object
+// was when last we looked
+var selectionTemplate = null;
+
+// This array holds the name of all properties that need to be updated
+var selectionPropertiesChanged = new Array();
+
+// This array holds a list of all the objects we hold property-change 
+// watches on
+var propertyWatches = new Array();
+
+// ====================================================================
+ 
+// This function resets all the update variables, above
+
+function resetUpdateVars()
+{
+	if( selectionChanged )
+	{
+		for( watchedObject in propertyWatches )
+			propertyWatches[watchedObject].unwatchAll( selectionWatchHandler ); // Remove the handler
+		
+		propertyWatches = new Array();
+		if( selection[0] )
+		{
+			// Watch the object itself
+			selection[0].watchAll( selectionWatchHandler );
+			propertyWatches.push( selection[0] );
+			// And every parent back up the tree (changes there will affect
+			// displayed properties via inheritance)
+			var parent = selection[0].template
+			while( parent )
+			{
+				parent.watchAll( selectionWatchHandler );
+				propertyWatches.push( selection[0] );
+				parent = parent.parent;
+			}
+		}
+	}
+	selectionChanged = false;
+	if( selection[0] ) 
+	{
+		selectionTemplate = selection[0].template;
+	}
+	else
+		selectionTemplate = null;
+		
+	selectionPropertiesChanged = new Array();
+}
+
+// ====================================================================
+
+// This function returns whether we should update a particular statistic
+// in the GUI (e.g. "actions.attack") - this should happen if: the selection
+// changed, the selection had its template altered (changing lots of stuff)
+// or an assignment has been made to that stat or any property within that
+// stat. 
+
+function shouldUpdateStat( statname )
+{
+	if( selectionChanged || ( selectionTemplate != selection[0].template ) )
+		return( true );
+	for( var property in selectionPropertiesChanged )
+	{
+		// If property starts with statname
+		if( selectionPropertiesChanged[property].substring( 0, statname.length ) == statname )
+			return( true );
+	}
+	return( false );	
+}
+
+// ====================================================================
+
+// This function is a handler for the 'selectionChanged' event,
+// it updates the selectionChanged flag
+
+function selectionChangedHandler()
+{
+	selectionChanged = true;
+}
+
+// ====================================================================
+
+// Register it.
+addGlobalHandler( "selectionChanged", selectionChangedHandler );
+
+// ====================================================================
+
+// This function is a handler for a watch event; it updates the
+// selectionPropertiesChanged array.
+
+function selectionWatchHandler( propname, oldvalue, newvalue )
+{
+	selectionPropertiesChanged.push( propname );
+	// This bit's important (watches allow the handler to change the value
+	// before it gets written; we don't want to affect things, so make sure
+	// the value we send back is the one that was going to be written)
+	return( newvalue ); 
+}
+
+// ====================================================================
+
+function snRefresh() 
+{
+	// Updated each tick to refresh session controls if necessary.
+
+	// Don't process GUI when we're full-screen.
+	if (getGUIObjectByName ("sn").hidden == false)
+	{
+		if (!selection.length)         // If no entity selected,
+		{
+			// Hide Status Orb
+			guiHide ("snStatusPane");
+
+			// Hide Group Pane.
+//			guiHide ("snGroupPane");
+
+			getGlobal().MultipleEntitiesSelected = 0;
+		}
+		else                        // If at least one entity selected,
+		{
+			// Reveal Status Orb
+			guiUnHide ("snStatusPane");
+
+// (later, we need to base this on the selected unit's stats changing)
+			refreshStatusPane(); 
+
+			// Check if a group of entities selected
+			if (selection.length > 1) 
+			{
+				// If a group pane isn't already open, and we don't have the same set as last time,
+				if (selection.length != getGlobal().MultipleEntitiesSelected)
+				{
+// (later, we need to base this on the selection changing)
+//					refreshGroupPane(); 
+					getGlobal().MultipleEntitiesSelected = selection.length;
+				}
+			} 
+			else
+			{
+				getGlobal().MultipleEntitiesSelected = 0;
+
+				// Hide Group Pane.
+//				guiHide ("snGroupPane");
+			}
+		}
+
+		// Modify any resources given/taken
+// (later, we need to base this on a resource-changing event).
+//		refreshResourcePool();
+
+		// Update Team Tray
+// (later, we need to base this on the player creating a group).
+//		refreshTeamTray();
+	}
+}
