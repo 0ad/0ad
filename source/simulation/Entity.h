@@ -78,6 +78,10 @@ public:
 	// If this unit is still active in the gameworld - i.e. not a corpse.
 	bool m_extant;
 
+	// HP properties
+	float m_healthCurr;
+	float m_healthMax;
+
 	//-- Interpolated property
 	CVector3D m_position;
 	CVector3D m_position_previous;
@@ -174,6 +178,7 @@ public:
 	// Things like selection circles and debug info - possibly move to gui if/when it becomes responsible for (and capable of) it.
 	void render();
 	void renderSelectionOutline( float alpha = 1.0f );
+	void renderHitpointBar( float alpha = 1.0f );
 
 	// After a collision, recalc the path to the next fixed waypoint.
 	void repath();

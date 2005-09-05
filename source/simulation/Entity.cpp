@@ -21,6 +21,10 @@
 
 #include "scripting/JSInterface_Vector3D.h"
 
+#include "CConsole.h"
+extern CConsole* g_Console;
+extern int g_xres, g_yres;
+
 CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 {
 	m_position = position;
@@ -33,6 +37,8 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	AddProperty( L"group", &m_grouped, false, (NotifyFn)&CEntity::checkGroup );
 	AddProperty( L"traits.extant", &m_extant );
 	AddProperty( L"traits.corpse", &m_corpse );
+	AddProperty( L"traits.health.curr", &m_healthCurr );
+	AddProperty( L"traits.health.max", &m_healthMax );
 	AddProperty( L"actions.move.turningradius", &m_turningRadius );
 	AddProperty( L"actions.attack.range", &( m_melee.m_MaxRange ) );
 	AddProperty( L"actions.attack.rangemin", &( m_melee.m_MinRange ) );
@@ -744,8 +750,46 @@ void CEntity::renderSelectionOutline( float alpha )
 	}
 
 	glEnd();
-	
 }
+
+void CEntity::renderHitpointBar( float alpha )
+{
+	if( !m_bounds ) return;
+
+	CCamera &g_Camera=*g_Game->GetView()->GetCamera();
+
+	float sx, sy;
+	float height = 5;	// TODO: change this to m_bounds->m_height when that is working properly for most units
+	CVector3D pos = m_graphics_position;
+	CVector3D above = pos;
+	above.Y += height;
+	g_Camera.GetScreenCoordinates(above, sx, sy);
+	float fraction = this->m_healthCurr / this->m_healthMax;
+
+	const float SIZE = 20;
+	float x1 = sx - SIZE/2;
+	float x2 = sx + SIZE/2;
+	float y = g_yres - sy;
+
+	glBegin(GL_LINES);
+
+	// green part of bar
+	glColor3f( 0, 1, 0 );
+	glVertex3f( x1, y, 0 );
+	glColor3f( 0, 1, 0 );
+	glVertex3f( x1 + SIZE*fraction, y, 0 );
+
+	// red part of bar
+	glColor3f( 1, 0, 0 );
+	glVertex3f( x1 + SIZE*fraction, y, 0 );
+	glColor3f( 1, 0, 0 );
+	glVertex3f( x2, y, 0 );
+
+	glEnd();
+}
+
+
+
 /*
 
 	Scripting interface

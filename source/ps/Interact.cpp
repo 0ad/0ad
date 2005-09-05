@@ -73,6 +73,25 @@ void CSelectedEntities::renderSelectionOutlines()
 	}
 }
 
+void CSelectedEntities::renderHitpointBars()
+{
+	std::vector<HEntity>::iterator it;
+	for( it = m_selected.begin(); it < m_selected.end(); it++ )
+		(*it)->renderHitpointBar();
+
+	if( m_group_highlight != -1 )
+	{
+		glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+		glEnable( GL_BLEND );
+
+		std::vector<HEntity>::iterator it;
+		for( it = m_groups[m_group_highlight].begin(); it < m_groups[m_group_highlight].end(); it++ )
+			(*it)->renderHitpointBar( 0.5f );
+
+		glDisable( GL_BLEND );
+	}
+}
+
 void CSelectedEntities::renderOverlays()
 {
 	CTerrain *pTerrain=g_Game->GetWorld()->GetTerrain();
@@ -667,6 +686,18 @@ void CMouseoverEntities::renderSelectionOutlines()
 	std::vector<SMouseoverFader>::iterator it;
 	for( it = m_mouseover.begin(); it < m_mouseover.end(); it++ )
 		it->entity->renderSelectionOutline( it->fade );
+
+	glDisable( GL_BLEND );
+}
+
+void CMouseoverEntities::renderHitpointBars()
+{
+	glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+	glEnable( GL_BLEND );
+
+	std::vector<SMouseoverFader>::iterator it;
+	for( it = m_mouseover.begin(); it < m_mouseover.end(); it++ )
+		it->entity->renderHitpointBar( it->fade );
 
 	glDisable( GL_BLEND );
 }

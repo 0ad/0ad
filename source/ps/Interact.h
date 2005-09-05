@@ -60,6 +60,7 @@ struct CSelectedEntities : public Singleton<CSelectedEntities>
 
 	void renderSelectionOutlines();
 	void renderOverlays();
+	void renderHitpointBars();
 };
 
 // CMouseoverEntities: the singleton containing entities the mouse is currently hovering over or bandboxing
@@ -108,6 +109,8 @@ struct CMouseoverEntities : public Singleton<CMouseoverEntities>
 
 	void renderSelectionOutlines();
 	void renderOverlays();
+	void renderHitpointBars();
+
 	bool isBandbox() { return( m_bandbox ); }
 	void startBandbox( u16 x, u16 y );
 	void stopBandbox();
