@@ -52,7 +52,7 @@ void CSHCoeffs::AddDirectionalLight(const CVector3D& lightDir,const RGBColor& li
 	_data[8]+=lightColor*c5*(SQR(dirToLight.X)-SQR(dirToLight.Y));
 }
 
-void CSHCoeffs::Evaluate(const CVector3D& normal,RGBColor& color) const
+void CSHCoeffs::Evaluate(const CVector3D& normal,RGBColor& color,RGBColor mod) const
 {
 #if 1
 	float c4=normal.X*normal.Z;
@@ -62,7 +62,7 @@ void CSHCoeffs::Evaluate(const CVector3D& normal,RGBColor& color) const
 	float c8=(SQR(normal.X)-SQR(normal.Y));
 
 #define DO(C) \
-		color.C = \
+		color.C = mod.C * (\
 		  _data[0].C \
 		+ _data[1].C*normal.X \
 		+ _data[2].C*normal.Y \
@@ -71,7 +71,7 @@ void CSHCoeffs::Evaluate(const CVector3D& normal,RGBColor& color) const
 		+ _data[5].C*c5 \
 		+ _data[6].C*c6 \
 		+ _data[7].C*c7 \
-		+ _data[8].C*c8
+		+ _data[8].C*c8)
 	DO(X);
 	DO(Y);
 	DO(Z);

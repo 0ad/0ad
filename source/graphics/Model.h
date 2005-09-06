@@ -16,6 +16,7 @@
 #include "RenderableObject.h"
 #include "SkeletonAnim.h"
 #include "Material.h"
+#include "Overlay.h"
 struct SPropPoint;
 
 #define MODELFLAG_CASTSHADOWS		(1<<0)
@@ -58,10 +59,14 @@ public:
 	void SetPlayerID(int id);
 	// set the model's player colour
 	void SetPlayerColor(CColor& colour);
+	// set the models mod color
+	void SetShadingColor(CColor& colour);
 	// get the model's texture
 	CTexture* GetTexture() { return &m_Texture; }
 	// get the models material
 	CMaterial &GetMaterial() { return m_Material; }
+	// get the model's texture
+	CColor GetShadingColor() { return m_ShadingColor; }
 
 	// set the given animation as the current animation on this model
 	bool SetAnimation(CSkeletonAnim* anim, bool once = false, float speed = 1000.0f, CSkeletonAnim* next = NULL );
@@ -150,6 +155,9 @@ private:
 	CMatrix3D* m_InvBoneMatrices;
 	// list of current props on model
 	std::vector<Prop> m_Props;
+
+	// modulating color
+	CColor m_ShadingColor;
 };
 
 #endif

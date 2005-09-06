@@ -850,6 +850,7 @@ int interactInputHandler( const SDL_Event* ev )
 	static u16 button_down_x, button_down_y;
 	static double button_down_time;
 	static bool button_down = false;
+	static bool right_button_down = false;
 	
 	if (customSelectionMode && ev->type != SDL_MOUSEBUTTONUP)
 		return EV_PASS;
@@ -934,8 +935,10 @@ int interactInputHandler( const SDL_Event* ev )
 			lastclicktime[button] = time;
 			lastclickobject[button] = g_Mouseover.m_target;
 
-			if (ev->button.button == SDL_BUTTON_LEFT)
+			if(ev->button.button == SDL_BUTTON_LEFT )
 				button_down = false;
+			if(ev->button.button == SDL_BUTTON_RIGHT )
+				right_button_down = false;
 
 			MouseButtonUpHandler(ev, clicks[button]);
 		}
@@ -954,10 +957,12 @@ int interactInputHandler( const SDL_Event* ev )
 				g_BuildingPlacer.mousePressed();
 			}
 			break;
+		case SDL_BUTTON_RIGHT:
+			right_button_down = true;
 		}
 		break;
 	case SDL_MOUSEMOTION:
-		if( !g_Mouseover.isBandbox() && button_down && !g_BuildingPlacer.m_active )
+		if( !g_Mouseover.isBandbox() && button_down && !g_BuildingPlacer.m_active && !right_button_down )
 		{
 			int deltax = ev->motion.x - button_down_x;
 			int deltay = ev->motion.y - button_down_y;
@@ -1017,13 +1022,26 @@ bool CBuildingPlacer::activate(CStrW& templateName)
 	m_dragged = false;
 	m_angle = 0;
 	m_timeSinceClick = 0;
+	m_totalTime = 0;
+	m_valid = false;
 
 	CBaseEntity* base = g_EntityTemplateCollection.getTemplate( m_templateName );
+
+	// m_actor
 	CStr actorName ( base->m_actorName );	// convert CStrW->CStr8
 	m_actor = g_UnitMan.CreateUnit( actorName, 0 );
 	m_actor->GetModel()->SetPlayerID(g_Game->GetLocalPlayer()->GetPlayerID());
+	
+	// m_bounds
+	if( base->m_bound_type == CBoundingObject::BOUND_CIRCLE )
+	{
+ 		m_bounds = new CBoundingCircle( 0, 0, base->m_bound_circle );
+	}
+	else if( base->m_bound_type == CBoundingObject::BOUND_OABB )
+	{
+		m_bounds = new CBoundingBox( 0, 0, CVector2D(1, 0), base->m_bound_box );
+	}
 
-	//g_Console->InsertMessage( L"BuildingPlacer: Activated with %ls", m_templateName.c_str() );
 	return true;
 }
 
@@ -1032,19 +1050,18 @@ void CBuildingPlacer::mousePressed()
 	CCamera &g_Camera=*g_Game->GetView()->GetCamera();
 	clickPos = g_Camera.GetWorldCoordinates();
 	m_clicked = true;
-	//g_Console->InsertMessage( L"BuildingPlacer: Clicked (%f, %f, %f)", clickPos.X, clickPos.Y, clickPos.Z );
 }
 
 void CBuildingPlacer::mouseReleased()
 {
 	deactivate();	// do it first in case we fail for any reason
 
-	CBaseEntity* base = g_EntityTemplateCollection.getTemplate( m_templateName );
-	HEntity ent = g_EntityManager.create( base, clickPos, m_angle );
-	ent->SetPlayer(g_Game->GetLocalPlayer());
-
-	//g_Console->InsertMessage( L"BuildingPlacer: Created %ls at (%f, %f, %f) [%f]", 
-	//	m_templateName.c_str(), clickPos.X, clickPos.Y, clickPos.Z, m_angle );
+	if(m_valid) 
+	{
+		CBaseEntity* base = g_EntityTemplateCollection.getTemplate( m_templateName );
+		HEntity ent = g_EntityManager.create( base, clickPos, m_angle );
+		ent->SetPlayer(g_Game->GetLocalPlayer());
+	}
 }
 
 void CBuildingPlacer::deactivate()
@@ -1053,6 +1070,8 @@ void CBuildingPlacer::deactivate()
 	g_UnitMan.RemoveUnit( m_actor );
 	delete m_actor;
 	m_actor = 0;
+	delete m_bounds;
+	m_bounds = 0;
 }
 
 void CBuildingPlacer::update( float timeStep )
@@ -1060,12 +1079,14 @@ void CBuildingPlacer::update( float timeStep )
 	if(!m_active)
 		return;
 
+	m_totalTime += timeStep;
+
 	if(m_clicked)
 	{
 		m_timeSinceClick += timeStep;
 		CCamera &g_Camera=*g_Game->GetView()->GetCamera();
-		CVector3D pos = g_Camera.GetWorldCoordinates();
-		CVector3D dif = pos - clickPos;
+		CVector3D mousePos = g_Camera.GetWorldCoordinates();
+		CVector3D dif = mousePos - clickPos;
 		float x = dif.X, z = dif.Z;
 		if(x*x + z*z < 3*3) {
 			if(m_dragged || m_timeSinceClick > 0.2f) 
@@ -1099,6 +1120,30 @@ void CBuildingPlacer::update( float timeStep )
 	m._31 = s;		m._32 = 0.0f;	m._33 = -c;		m._34 = pos.Z;
 	m._41 = 0.0f;	m._42 = 0.0f;	m._43 = 0.0f;	m._44 = 1.0f;
 	m_actor->GetModel()->SetTransform( m );
+
+	m_bounds->setPosition(pos.X, pos.Z);
+
+	if(m_bounds->m_type == CBoundingObject::BOUND_OABB) 
+	{
+		CBoundingBox* box = (CBoundingBox*) m_bounds;
+		box->setOrientation(m_angle);
+	}
+
+	CTerrain *pTerrain=g_Game->GetWorld()->GetTerrain();
+	int mapSize = pTerrain->GetVerticesPerSide() * 4;		// is this a constant somewhere?
+	m_valid = pos.X>=0 && pos.Z>=0 && pos.X<=mapSize && pos.Z<=mapSize && getCollisionObject(m_bounds)==0;
+
+	CColor col;
+	if(m_valid)
+	{
+		col = CColor(1.0f, 1.0f, 1.0f, 1.0f);
+	}
+	else 
+	{
+		float add = (sin(4*PI*m_totalTime) + 1.0f) * 0.08f;
+		col = CColor(1.4f+add, 0.4f+add, 0.4f+add, 1.0f);
+	}
+	m_actor->GetModel()->SetShadingColor(col);
 }
 
 void CBuildingPlacer::render()

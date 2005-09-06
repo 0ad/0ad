@@ -360,7 +360,8 @@ void Render()
 	oglCheck();
 
 	// Draw the cursor (or set the Windows cursor, on Windows)
-	cursor_draw(g_CursorName, g_mouse_x, g_mouse_y);
+	CStr8 cursorName = g_BuildingPlacer.m_active ? "action-build" : g_CursorName;
+	cursor_draw(cursorName, g_mouse_x, g_mouse_y);
 
 	// restore
 	glMatrixMode(GL_PROJECTION);

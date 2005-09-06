@@ -24,7 +24,7 @@ public:
 	void AddAmbientLight(const RGBColor& color);
 	void AddDirectionalLight(const CVector3D& lightDir,const RGBColor& lightColor);
 
-	void Evaluate(const CVector3D& normal,RGBColor& color) const;
+	void Evaluate(const CVector3D& normal, RGBColor& color, RGBColor mod=RGBColor(1,1,1)) const;
 
 	const RGBColor* GetCoefficients() const { return _data; }
 

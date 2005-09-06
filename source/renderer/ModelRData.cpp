@@ -175,7 +175,9 @@ void CModelRData::BuildVertices()
 	for (uint j=0; j<numVertices; j++) {
 		m_Vertices[j].m_UVs[0]=vertices[j].m_U;
 		m_Vertices[j].m_UVs[1]=1-vertices[j].m_V;
-		g_Renderer.m_SHCoeffsUnits.Evaluate(m_Normals[j],m_Vertices[j].m_Color);
+		CColor sc = m_Model->GetShadingColor();
+		g_Renderer.m_SHCoeffsUnits.Evaluate(m_Normals[j], m_Vertices[j].m_Color, 
+			RGBColor(sc.r, sc.g, sc.b));
 	}
 	PROFILE_END( "lighting vertices" );
 

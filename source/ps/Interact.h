@@ -12,6 +12,7 @@
 #include "Entity.h"
 #include "EntityManager.h"
 #include "EntityMessage.h"
+#include "Collision.h"
 #include "Scheduler.h"
 #include "Camera.h"
 #include "lib/input.h"
@@ -128,9 +129,12 @@ struct CBuildingPlacer : public Singleton<CBuildingPlacer>
 	bool m_clicked;
 	bool m_dragged;
 	float m_angle;
+	bool m_valid;
 	float m_timeSinceClick;
-	CUnit* m_actor;
+	float m_totalTime;
 	CVector3D clickPos;
+	CUnit* m_actor;
+	CBoundingObject* m_bounds;
 
 	bool activate( CStrW& templateName );
 	void deactivate();
