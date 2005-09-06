@@ -242,12 +242,15 @@ int debug_is_pointer_bogus(const void* p)
 		return true;
 #endif
 
-	// note: we don't check alignment because nothing can be assumed about a
-	// pointer to the middle of a string and we mustn't reject valid pointers.
-	// nor do we bother checking the address against known stack/heap areas
-	// because that doesn't cover everything (e.g. DLLs, VirtualAlloc, etc.).
+	// notes:
+	// - we don't check alignment because nothing can be assumed about a
+	//   string pointer and we mustn't reject any actually valid pointers.
+	// - nor do we bother checking the address against known stack/heap areas
+	//   because that doesn't cover everything (e.g. DLLs, VirtualAlloc).
+	// - cannot use IsBadReadPtr because it accesses the mem
+	//   (false alarm for reserved address space).
 
-	return IsBadReadPtr(p, 1) != 0;
+	return false;
 }
 
 

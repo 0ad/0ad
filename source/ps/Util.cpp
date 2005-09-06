@@ -169,12 +169,12 @@ void WriteScreenshot(const char* extension)
 	// could fix via enumerating all files, but it's not worth it ATM.
 	char fn[VFS_MAX_PATH];
 
-	const char* file_format_string = "screenshots/screenshot%04d.%s";
 	// %04d -> always 4 digits, so sorting by filename works correctly.
+	const char* file_format_string = "screenshots/screenshot%04d.%s";
 
 	static int next_num = 1;
 	do
-	sprintf(fn, file_format_string, next_num++, extension);
+		sprintf(fn, file_format_string, next_num++, extension);
 	while(vfs_exists(fn));
 
 	const int w = g_xres, h = g_yres;

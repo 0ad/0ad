@@ -625,8 +625,10 @@ void Shutdown()
 
 	delete &g_Mouseover;
 	delete &g_Selection;
+	delete &g_BuildingPlacer;
 
 	delete &g_Pathfinder;
+
 	// Managed by CWorld
 	// delete &g_EntityManager;
 

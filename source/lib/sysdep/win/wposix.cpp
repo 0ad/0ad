@@ -615,12 +615,17 @@ int mprotect(void* addr, size_t len, int prot)
 	const DWORD flNewProtect = win32_prot(prot);
 	DWORD flOldProtect;	// required by VirtualProtect
 	BOOL ok = VirtualProtect(addr, len, flNewProtect, &flOldProtect);
-	return ok? 0 : -1;
+	if(!ok)
+	{
+		debug_warn("mprotect failed");	// todo4
+		return -1;
+	}
+	return 0;
 }
 
 
 // called when flags & MAP_ANONYMOUS
-static int map_mem(void* start, size_t len, int prot, int flags, int fd, void** pp)
+static int mmap_mem(void* start, size_t len, int prot, int flags, int fd, void** pp)
 {
 	// sanity checks. we don't care about these but enforce them to
 	// ensure callers are compatible with mmap.
@@ -631,9 +636,27 @@ static int map_mem(void* start, size_t len, int prot, int flags, int fd, void** 
 	debug_assert(flags & MAP_PRIVATE);
 
 	// see explanation at MAP_NORESERVE definition.
-	DWORD flAllocationType = (flags & MAP_NORESERVE)? MEM_RESERVE : MEM_COMMIT;
+	bool want_commit = (prot != PROT_NONE && !(flags & MAP_NORESERVE));
+
+	if(!want_commit && start != 0 && flags & MAP_FIXED)
+	{
+		MEMORY_BASIC_INFORMATION mbi;
+		BOOL ok = VirtualQuery(start, &mbi, len);
+		debug_assert(ok);	// todo4
+		DWORD state = mbi.State;
+		if(state == MEM_COMMIT)
+		{
+			ok = VirtualFree(start, len, MEM_DECOMMIT);
+			debug_assert(ok);
+			*pp = 0;
+			return 0;
+		}
+	}
+
+	DWORD op = want_commit? MEM_COMMIT : MEM_RESERVE;
+
 	DWORD flProtect = win32_prot(prot);
-	void* p = VirtualAlloc(start, len, flAllocationType, flProtect);
+	void* p = VirtualAlloc(start, len, op, flProtect);
 	if(!p)
 		return ERR_NO_MEM;
 	*pp = p;
@@ -645,7 +668,7 @@ static int map_mem(void* start, size_t len, int prot, int flags, int fd, void** 
 // CreateFileMapping / MapViewOfFile. they only support read-only,
 // read/write and copy-on-write, so we dumb it down to that and later
 // set the correct (and more restrictive) permission via mprotect.
-static int map_file_access(int prot, int flags, DWORD& flProtect, DWORD& dwAccess)
+static int mmap_file_access(int prot, int flags, DWORD& flProtect, DWORD& dwAccess)
 {
 	// assume read-only; other cases handled below.
 	flProtect = PAGE_READONLY;
@@ -678,7 +701,7 @@ static int map_file_access(int prot, int flags, DWORD& flProtect, DWORD& dwAcces
 }
 
 
-static int map_file(void* start, size_t len, int prot, int flags,
+static int mmap_file(void* start, size_t len, int prot, int flags,
 	int fd, off_t ofs, void** pp)
 {
 	debug_assert(fd != -1);	// handled by mmap_mem
@@ -698,7 +721,7 @@ static int map_file(void* start, size_t len, int prot, int flags,
 	// MapViewOfFile. these are weaker than what PROT_* allows and
 	// are augmented below by subsequently mprotect-ing.
 	DWORD flProtect; DWORD dwAccess;
-	RETURN_ERR(map_file_access(prot, flags, flProtect, dwAccess));
+	RETURN_ERR(mmap_file_access(prot, flags, flProtect, dwAccess));
 
 	// enough foreplay; now actually map.
 	const HANDLE hMap = CreateFileMapping(hFile, 0, flProtect, 0, 0, (LPCSTR)0);
@@ -718,7 +741,7 @@ static int map_file(void* start, size_t len, int prot, int flags,
 		return ERR_NO_MEM;
 
 	// slap on correct (more restrictive) permissions. 
-	WARN_ERR(mprotect(p, len, prot));
+	(void)mprotect(p, len, prot);
 
 	WIN_RESTORE_LAST_ERROR;
 	*pp = p;
@@ -731,9 +754,9 @@ void* mmap(void* start, size_t len, int prot, int flags, int fd, off_t ofs)
 	void* p;
 	int err;
 	if(flags & MAP_ANONYMOUS)
-		err = map_mem(start, len, prot, flags, fd, &p);
+		err = mmap_mem(start, len, prot, flags, fd, &p);
 	else
-		err = map_file(start, len, prot, flags, fd, ofs, &p);
+		err = mmap_file(start, len, prot, flags, fd, ofs, &p);
 	if(err < 0)
 	{
 		WARN_ERR(err);
@@ -756,7 +779,7 @@ int munmap(void* start, size_t UNUSED(len))
 	// both failed
 	if(!ok)
 	{
-		debug_warn("munmap failed");
+		debug_warn("munmap failed");	// todo4
 		return -1;
 	}
 	return 0;
@@ -925,6 +948,8 @@ long sysconf(int name)
 	switch(name)
 	{
 	case _SC_PAGESIZE:
+	// note: don't add _SC_PAGE_SIZE - they are different names but
+	// have the same value.
 		return page_size;
 
 	case _SC_PHYS_PAGES:

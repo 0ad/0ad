@@ -42,30 +42,22 @@
 // pass data from PNG file in memory to libpng
 static void io_read(png_struct* png_ptr, u8* data, png_size_t length)
 {
-	MemSource* ms = (MemSource*)png_ptr->io_ptr;
-
-	void* src = (u8*)(ms->p + ms->pos);
-
-	// make sure there's enough new data remaining in the buffer
-	ms->pos += length;
-	if(ms->pos > ms->size)
-		png_error(png_ptr, "png_read: not enough data to satisfy request!");
-
-	memcpy(data, src, length);
+	DynArray* da = (DynArray*)png_ptr->io_ptr;
+	if(da_read(da, data, length) != 0)
+		png_error(png_ptr, "io_read failed");
 }
 
 
 // write libpng output to PNG file
 static void io_write(png_struct* png_ptr, u8* data, png_size_t length)
 {
-	void* p = (void*)data;
-	Handle hf = *(Handle*)png_ptr->io_ptr;
-	if(vfs_io(hf, length, &p) != (ssize_t)length)
-		png_error(png_ptr, "png_write: !");
+	DynArray* da = (DynArray*)png_ptr->io_ptr;
+	if(da_append(da, data, length) != 0)
+		png_error(png_ptr, "io_write failed");
 }
 
 
-static void io_flush(png_structp)
+static void io_flush(png_structp UNUSED(png_ptr))
 {
 }
 
@@ -73,7 +65,7 @@ static void io_flush(png_structp)
 
 //-----------------------------------------------------------------------------
 
-static int png_transform(Tex* t, int new_flags)
+static int png_transform(Tex* UNUSED(t), uint UNUSED(transforms))
 {
 	return TEX_CODEC_CANNOT_HANDLE;
 }
@@ -88,8 +80,13 @@ static int png_decode_impl(Tex* t, u8* file, size_t file_size,
 	png_structp png_ptr, png_infop info_ptr,
 	Handle& img_hm, RowArray& rows, const char** perr_msg)
 {
-	MemSource ms = 	{ file, file_size, 0 };
-	png_set_read_fn(png_ptr, &ms, io_read);
+DynArray da;
+da.base = file;
+da.max_size_pa = round_up(file_size, 4096);
+da.cur_size = file_size;
+da.pos = 0;
+da.prot = PROT_READ|PROT_WRITE;
+	png_set_read_fn(png_ptr, &da, io_read);
 
 	// read header and determine format
 	png_read_info(png_ptr, info_ptr);
@@ -97,7 +94,7 @@ static int png_decode_impl(Tex* t, u8* file, size_t file_size,
 	int bit_depth, colour_type;
 	png_get_IHDR(png_ptr, info_ptr, &w, &h, &bit_depth, &colour_type, 0, 0, 0);
 	const size_t pitch = png_get_rowbytes(png_ptr, info_ptr);
-	const u32 bpp = (u32)(pitch / w * 8);
+	const u32 bpp = (u32)(pitch/w * 8);
 
 	int flags = 0;
 	if(bpp == 32)
@@ -122,13 +119,13 @@ static int png_decode_impl(Tex* t, u8* file, size_t file_size,
 	if(!img)
 		return ERR_NO_MEM;
 
-	CHECK_ERR(tex_codec_alloc_rows(img, h, pitch, TEX_TOP_DOWN, rows));
+	RETURN_ERR(tex_codec_alloc_rows(img, h, pitch, TEX_TOP_DOWN, 0, rows));
 
 	png_read_image(png_ptr, (png_bytepp)rows);
 	png_read_end(png_ptr, info_ptr);
 
 	// success; make sure all data was consumed.
-	debug_assert(ms.p == file && ms.size == file_size && ms.pos == ms.size);
+	debug_assert(da.base == file && da.cur_size == file_size && da.pos == da.cur_size);
 
 	// store image info
 	// .. transparently switch handles - free the old (compressed)
@@ -149,12 +146,9 @@ static int png_decode_impl(Tex* t, u8* file, size_t file_size,
 // "dtor / setjmp interaction" warning.
 static int png_encode_impl(Tex* t,
 	png_structp png_ptr, png_infop info_ptr,
-	RowArray& rows, const char** perr_msg)
+	RowArray& rows, DynArray* da, const char** perr_msg)
 {
 	UNUSED2(perr_msg);	// we don't produce any error messages ATM.
-
-	const int png_transforms = (t->flags & TEX_BGR)? PNG_TRANSFORM_BGR : PNG_TRANSFORM_IDENTITY;
-	// PNG is native RGB.
 
 	const png_uint_32 w = t->w, h = t->h;
 	const size_t pitch = w * t->bpp / 8;
@@ -175,16 +169,16 @@ static int png_encode_impl(Tex* t,
 		colour_type = PNG_COLOR_TYPE_RGB;
 		break;
 	}
-/*
-	hf = vfs_open(fn, FILE_WRITE|FILE_NO_AIO);
-	CHECK_ERR(hf);
-	png_set_write_fn(png_ptr, &hf, io_write, io_flush);
-*/
+
+	png_set_write_fn(png_ptr, da, io_write, io_flush);
 	png_set_IHDR(png_ptr, info_ptr, w, h, 8, colour_type,
 		PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
 
 	u8* data = tex_get_data(t);
-	CHECK_ERR(tex_codec_alloc_rows(data, h, pitch, TEX_TOP_DOWN, rows));
+	RETURN_ERR(tex_codec_alloc_rows(data, h, pitch, t->flags, TEX_TOP_DOWN, rows));
+
+	// PNG is native RGB.
+	const int png_transforms = (t->flags & TEX_BGR)? PNG_TRANSFORM_BGR : PNG_TRANSFORM_IDENTITY;
 
 	png_set_rows(png_ptr, info_ptr, (png_bytepp)rows);
 	png_write_png(png_ptr, info_ptr, png_transforms, 0);
@@ -202,6 +196,7 @@ static int png_decode(u8* file, size_t file_size, Tex* t, const char** perr_msg)
 	if(*(u32*)file != FOURCC('\x89','P','N','G'))
 		return TEX_CODEC_CANNOT_HANDLE;
 
+	int err = -1;
 	// freed when ret is reached:
 	png_structp png_ptr = 0;
 	png_infop info_ptr = 0;
@@ -221,13 +216,13 @@ static int png_decode(u8* file, size_t file_size, Tex* t, const char** perr_msg)
 	// setup error handling
 	if(setjmp(png_jmpbuf(png_ptr)))
 	{
-		// libpng longjmp-ed here after an error, or code below failed.
+		// libpng longjmps here after an error
 fail:
 		mem_free_h(img_hm);
 		goto ret;
 	}
 
-	int err = png_decode_impl(t, file, file_size, png_ptr, info_ptr, img_hm, rows, perr_msg);
+	err = png_decode_impl(t, file, file_size, png_ptr, info_ptr, img_hm, rows, perr_msg);
 	if(err < 0)
 		goto fail;
 
@@ -240,18 +235,16 @@ ret:
 
 
 // limitation: palette images aren't supported
-static int png_encode(const char* ext, Tex* t, u8** out, size_t* UNUSED(out_size), const char** perr_msg)
+static int png_encode(const char* ext, Tex* t, DynArray* da, const char** perr_msg)
 {
 	if(stricmp(ext, "png"))
 		return TEX_CODEC_CANNOT_HANDLE;
 
+	int err = -1;
 	// freed when ret is reached:
 	png_structp png_ptr = 0;
 	png_infop info_ptr = 0;
 	RowArray rows = 0;
-
-	// free when fail is reached:
-	// (mem buffer)
 
 	// allocate PNG structures; use default stderr and longjmp error handlers
 	png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
@@ -264,21 +257,20 @@ static int png_encode(const char* ext, Tex* t, u8** out, size_t* UNUSED(out_size
 	// setup error handling
 	if(setjmp(png_jmpbuf(png_ptr)))
 	{
+		// libpng longjmps here after an error
 fail:
-		// libjpg longjmp-ed here after an error, or code below failed.
+		// currently no cleanup to be done.
 		goto ret;
 	}
 
-	int err = png_encode_impl(t, png_ptr, info_ptr, rows, perr_msg);
+	err = png_encode_impl(t, png_ptr, info_ptr, rows, da, perr_msg);
 	if(err < 0)
 		goto fail;
 
 	// shared cleanup
 ret:
 	png_destroy_write_struct(&png_ptr, &info_ptr);
-
 	free(rows);
-
 	return err;
 }
 

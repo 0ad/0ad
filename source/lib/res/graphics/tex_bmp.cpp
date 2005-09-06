@@ -34,7 +34,7 @@ struct BmpHeader
 #define BI_RGB 0		// biCompression
 
 
-static int bmp_transform(Tex* t, int new_flags)
+static int bmp_transform(Tex* UNUSED(t), uint UNUSED(transforms))
 {
 	return TEX_CODEC_CANNOT_HANDLE;
 }
@@ -67,9 +67,7 @@ fail:
 
 	const int orientation = (h_ < 0)? TEX_TOP_DOWN : TEX_BOTTOM_UP;
 	const long h = abs(h_);
-	const size_t pitch = w * bpp/8;
-	const size_t img_size = h * pitch;
-	u8* const img = file + ofs;
+	const size_t img_size = tex_img_size(t);
 
 	int flags = TEX_BGR;
 	if(bpp == 32)
@@ -101,21 +99,19 @@ fail:
 }
 
 
-static int bmp_encode(const char* ext, Tex* t, u8** out, size_t* out_size, const char** perr_msg)
+static int bmp_encode(const char* ext, Tex* t, DynArray* da, const char** UNUSED(perr_msg))
 {
 	if(stricmp(ext, "bmp"))
 		return TEX_CODEC_CANNOT_HANDLE;
 
-size_t img_size = t->w * t->h * t->bpp/8;
-
 	const size_t hdr_size = sizeof(BmpHeader);	// needed for BITMAPFILEHEADER
+	const size_t img_size = tex_img_size(t);
 	const size_t file_size = hdr_size + img_size;
 	const long h = (t->flags & TEX_TOP_DOWN)? -(long)t->h : t->h;
 
 	int transforms = t->flags;
 	transforms &= ~TEX_ORIENTATION;	// no flip needed - we can set top-down bit.
 	transforms ^= TEX_BGR;			// BMP is native BGR.
-	tex_transform(t, transforms);
 
 	const BmpHeader hdr =
 	{
@@ -135,8 +131,7 @@ size_t img_size = t->w * t->h * t->bpp/8;
 		(u32)img_size,		// biSizeImage
 		0, 0, 0, 0			// unused (bi?PelsPerMeter, biClr*)
 	};
-
-	return 0;
+	return tex_codec_write(t, transforms, &hdr, hdr_size, da);
 }
 
 TEX_CODEC_REGISTER(bmp);

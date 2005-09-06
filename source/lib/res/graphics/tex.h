@@ -72,7 +72,9 @@ extern int tex_load_mem(Handle hm, const char* fn, Tex* t);
 extern int tex_free(Tex* t);
 
 extern u8* tex_get_data(const Tex* t);
-extern int tex_transform(Tex* t, uint new_flags);
+extern size_t tex_img_size(const Tex* t);
+
+extern int tex_transform(Tex* t, uint transforms);
 
 extern int tex_write(const char* fn, uint w, uint h, uint bpp, uint flags, void* img);
 

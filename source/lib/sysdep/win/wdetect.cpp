@@ -244,8 +244,8 @@ static int dll_list_add(const char* name)
 
 	// didn't fit; complain
 	sprintf(dll_list_pos, "...");	// (room was reserved above)
-	debug_warn("dll_list_add: not enough room");
 	dll_list_pos = 0;	// poison pill, prevent further calls
+	debug_warn("dll_list_add: not enough room");
 	return ERR_BUF_SIZE;
 }
 
@@ -376,7 +376,7 @@ int win_get_gfx_info()
 
 // ensures each OpenAL DLL is only listed once (even if present in several
 // directories on our search path).
-typedef std::set<std::string> DllSet;
+typedef std::set<std::string> StringSet;
 
 // if this directory entry is an OpenAL DLL, add it to our list.
 // (matches "*oal.dll" and "*OpenAL*", as with OpenAL router's search)
@@ -385,7 +385,7 @@ typedef std::set<std::string> DllSet;
 // note: we need the full DLL path for dll_list_add but DirEnt only gives us
 // the name. for efficiency, we append this in a PathPackage allocated by
 // add_oal_dlls_in_dir.
-static void add_if_oal_dll(const DirEnt* ent, PathPackage* pp, DllSet* dlls)
+static void add_if_oal_dll(const DirEnt* ent, PathPackage* pp, StringSet* dlls)
 {
 	const char* fn = ent->name;
 
@@ -400,13 +400,13 @@ static void add_if_oal_dll(const DirEnt* ent, PathPackage* pp, DllSet* dlls)
 	if(!oal && !openal)
 		return;
 
-	// skip if already in DllSet (i.e. has already been dll_list_add-ed)
-	std::pair<DllSet::iterator, bool> ret = dlls->insert(fn);
+	// skip if already in StringSet (i.e. has already been dll_list_add-ed)
+	std::pair<StringSet::iterator, bool> ret = dlls->insert(fn);
 	if(!ret.second)	// insert failed - element already there
 		return;
 
-	WARN_ERR_RETURN(pp_append_file(pp, fn));
-	dll_list_add(pp->path);
+	WARN_ERR_RETURN(pp_append_file(pp, fn));	// todo4
+	(void)dll_list_add(pp->path);
 }
 
 
@@ -416,7 +416,7 @@ static void add_if_oal_dll(const DirEnt* ent, PathPackage* pp, DllSet* dlls)
 // same name in the system directory.
 //
 // <dir>: no trailing.
-static void add_oal_dlls_in_dir(const char* dir, DllSet* dlls)
+static void add_oal_dlls_in_dir(const char* dir, StringSet* dlls)
 {
 	int err;
 
@@ -424,7 +424,7 @@ static void add_oal_dlls_in_dir(const char* dir, DllSet* dlls)
 	(void)pp_set_dir(&pp, dir);
 
 	DirIterator d;
-	WARN_ERR_RETURN(dir_open(dir, &d));
+	WARN_ERR_RETURN(dir_open(dir, &d));	// TODO4
 
 	DirEnt ent;
 	for(;;)	// instead of while to avoid warning
@@ -432,11 +432,10 @@ static void add_oal_dlls_in_dir(const char* dir, DllSet* dlls)
 		err = dir_next_ent(&d, &ent);
 		if(err == ERR_DIR_END)
 			break;
-		debug_assert(err == 0);
 		add_if_oal_dll(&ent, &pp, dlls);
 	}
 
-	WARN_ERR(dir_close(&d));
+	(void)dir_close(&d);
 }
 
 
@@ -483,7 +482,7 @@ int win_get_snd_info()
 	// and store in snd_drv_ver string.
 	dll_list_init(snd_drv_ver, SND_DRV_VER_LEN);
 	dll_list_add(ds_drv_path);
-	std::set<std::string> dlls;	// ensures uniqueness
+	StringSet dlls;	// ensures uniqueness
 	add_oal_dlls_in_dir(win_exe_dir, &dlls);
 	add_oal_dlls_in_dir(win_sys_dir, &dlls);
 	return 0;

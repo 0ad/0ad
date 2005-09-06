@@ -191,11 +191,11 @@ static int dds_decompress(Tex* t)
 	return 0;
 }
 
-static int dds_transform(Tex* t, int new_flags)
+static int dds_transform(Tex* t, uint transforms)
 {
-	const int dxt = t->flags & TEX_DXT, new_dxt = new_flags & TEX_DXT;
+	const int is_dxt = t->flags & TEX_DXT, transform_dxt = transforms & TEX_DXT;
 	// requesting decompression
-	if(dxt && !new_dxt)
+	if(is_dxt && transform_dxt)
 		return dds_decompress(t);
 	// both are DXT (unsupported; there are no flags we can change while
 	// compressed) or requesting compression (not implemented) or
@@ -308,9 +308,12 @@ fail:
 }
 
 
-static int dds_encode(const char* UNUSED(ext), Tex* UNUSED(t), u8** UNUSED(out), size_t* UNUSED(out_size), const char** UNUSED(perr_msg))
+static int dds_encode(const char* UNUSED(ext), Tex* UNUSED(t), DynArray* UNUSED(da), const char** UNUSED(perr_msg))
 {
-	return ERR_NOT_IMPLEMENTED;
+	// note: do not return ERR_NOT_IMPLEMENTED et al. because that would
+	// break tex_write (which assumes either this, 0 or errors are returned).
+	return TEX_CODEC_CANNOT_HANDLE;
+	
 }
 
 TEX_CODEC_REGISTER(dds);

@@ -197,30 +197,37 @@ GLOBAL(void) src_prepare(j_decompress_ptr cinfo, void* p, size_t size)
 typedef struct {
 	struct jpeg_destination_mgr pub; /* public fields */
 
-	JOCTET* buf;
-	// jpeg-6b interface needs a memory buffer
+	DynArray* da;
 } DstMgr;
 
 typedef DstMgr* DstPtr;
 
-#define OUTPUT_BUF_SIZE  16*KiB	/* choose an efficiently writeable size */
+#define OUTPUT_BUF_SIZE  64*KiB	/* choose an efficiently writeable size */
+
+// note: can't call dst_empty_output_buffer from dst_init or vice versa
+// because only the former must advance da->pos.
+static void make_room_in_buffer(j_compress_ptr cinfo)
+{
+	DstPtr dst = (DstPtr)cinfo->dest;
+	DynArray* da = dst->da;
+
+	void* start = da->base + da->cur_size;
+
+	if(da_set_size(da, da->cur_size+OUTPUT_BUF_SIZE) != 0)
+		ERREXIT(cinfo, JERR_FILE_WRITE);
+
+	dst->pub.next_output_byte = (JOCTET*)start;
+	dst->pub.free_in_buffer = OUTPUT_BUF_SIZE;
+}
 
 
 /*
 * Initialize destination --- called by jpeg_start_compress
 * before any data is actually written.
 */
-
 METHODDEF(void) dst_init(j_compress_ptr cinfo)
 {
-	DstPtr dst = (DstPtr)cinfo->dest;
-
-	/* Allocate the output buffer --- it will be released when done with image */
-	dst->buf = (JOCTET*)(*cinfo->mem->alloc_small)((j_common_ptr)cinfo, JPOOL_IMAGE,
-		OUTPUT_BUF_SIZE * sizeof(JOCTET));
-
-	dst->pub.next_output_byte = dst->buf;
-	dst->pub.free_in_buffer = OUTPUT_BUF_SIZE;
+	make_room_in_buffer(cinfo);
 }
 
 
@@ -232,34 +239,20 @@ METHODDEF(void) dst_init(j_compress_ptr cinfo)
 * reset the pointer & count to the start of the buffer, and return TRUE
 * indicating that the buffer has been dumped.
 *
-* In applications that need to be able to suspend compression due to output
-* overrun, a FALSE return indicates that the buffer cannot be emptied now.
-* In this situation, the compressor will return to its caller (possibly with
-* an indication that it has not accepted all the supplied scanlines).  The
-* application should resume compression after it has made more room in the
-* output buffer.  Note that there are substantial restrictions on the use of
-* suspension --- see the documentation.
-*
-* When suspending, the compressor will back up to a convenient restart point
-* (typically the start of the current MCU). next_output_byte & free_in_buffer
-* indicate where the restart point will be if the current call returns FALSE.
-* Data beyond this point will be regenerated after resumption, so do not
-* write it out when emptying the buffer externally.
+* <snip comments on suspended IO>
 */
-
 METHODDEF(boolean) dst_empty_output_buffer(j_compress_ptr cinfo)
 {
 	DstPtr dst = (DstPtr)cinfo->dest;
+	DynArray* da = dst->da;
 
 	// writing out OUTPUT_BUF_SIZE-dst->pub.free_in_buffer bytes
 	// sounds reasonable, but makes for broken output.
-//	if(vfs_io(dst->hf, OUTPUT_BUF_SIZE, (void**)&dst->buf) != OUTPUT_BUF_SIZE)
-//		ERREXIT(cinfo, JERR_FILE_WRITE);
+	da->pos += OUTPUT_BUF_SIZE;
 
-	dst->pub.next_output_byte = dst->buf;
-	dst->pub.free_in_buffer = OUTPUT_BUF_SIZE;
+	make_room_in_buffer(cinfo);
 
-	return TRUE;
+	return TRUE;	// not suspended
 }
 
 
@@ -271,17 +264,13 @@ METHODDEF(boolean) dst_empty_output_buffer(j_compress_ptr cinfo)
 * application must deal with any cleanup that should happen even
 * for error exit.
 */
-
 METHODDEF(void) dst_term(j_compress_ptr cinfo)
 {
 	DstPtr dst = (DstPtr)cinfo->dest;
+	DynArray* da = dst->da;
 
-	// make sure any data left in the buffer is written out
-	const size_t bytes_in_buf = OUTPUT_BUF_SIZE - dst->pub.free_in_buffer;
-//	if(vfs_io(dst->hf, bytes_in_buf, (void**)&dst->buf) != (ssize_t)bytes_in_buf)
-//		ERREXIT(cinfo, JERR_FILE_WRITE);
-
-	// flush file, if necessary.
+	// account for nbytes left in buffer
+	da->pos += OUTPUT_BUF_SIZE - dst->pub.free_in_buffer;
 }
 
 
@@ -291,7 +280,7 @@ METHODDEF(void) dst_term(j_compress_ptr cinfo)
 * for closing it after finishing compression.
 */
 
-GLOBAL(void) dst_prepare(j_compress_ptr cinfo)
+GLOBAL(void) dst_prepare(j_compress_ptr cinfo, DynArray* da)
 {
 	/* The destination object is made permanent so that multiple JPEG images
 	* can be written to the same file without re-executing jpeg_stdio_dest.
@@ -308,6 +297,7 @@ GLOBAL(void) dst_prepare(j_compress_ptr cinfo)
 	dst->pub.init_destination    = dst_init;
 	dst->pub.empty_output_buffer = dst_empty_output_buffer;
 	dst->pub.term_destination    = dst_term;
+	dst->da = da;
 }
 
 
@@ -396,7 +386,7 @@ JpgErrorMgr::JpgErrorMgr(j_common_ptr cinfo)
 //-----------------------------------------------------------------------------
 
 
-static int jpg_transform(Tex* t, int new_flags)
+static int jpg_transform(Tex* UNUSED(t), uint UNUSED(transforms))
 {
 	return TEX_CODEC_CANNOT_HANDLE;
 }
@@ -457,7 +447,7 @@ static int jpg_decode_impl(Tex* t, u8* file, size_t file_size,
 		return ERR_NO_MEM;
 
 	// read rows
-	RETURN_ERR(tex_codec_alloc_rows(img, h, pitch, TEX_TOP_DOWN, rows));
+	RETURN_ERR(tex_codec_alloc_rows(img, h, pitch, TEX_TOP_DOWN, 0, rows));
 	// could use cinfo->output_scanline to keep track of progress,
 	// but we need to count lines_left anyway (paranoia).
 	JSAMPARRAY row = (JSAMPARRAY)rows;
@@ -495,9 +485,9 @@ static int jpg_decode_impl(Tex* t, u8* file, size_t file_size,
 
 static int jpg_encode_impl(Tex* t,
 	jpeg_compress_struct* cinfo,
-	RowArray& rows, const char** perr_msg)
+	RowArray& rows, DynArray* da, const char** perr_msg)
 {
-	dst_prepare(cinfo);
+	dst_prepare(cinfo, da);
 
 	// describe image format
 	// required:
@@ -514,12 +504,12 @@ static int jpg_encode_impl(Tex* t,
 	jpeg_start_compress(cinfo, TRUE);
 
 	// if BGR, convert to RGB.
-	const int bgr_transform = t->flags & TEX_BGR;	// JPG is native RGB.
-	WARN_ERR(tex_transform(t, bgr_transform));
+	const int transform_bgr = t->flags & TEX_BGR;	// JPG is native RGB.
+	WARN_ERR(tex_transform(t, transform_bgr));
 
 	const size_t pitch = t->w * t->bpp / 8;
 	u8* data = tex_get_data(t);
-	RETURN_ERR(tex_codec_alloc_rows(data, t->h, pitch, TEX_TOP_DOWN, rows));
+	RETURN_ERR(tex_codec_alloc_rows(data, t->h, pitch, t->flags, TEX_TOP_DOWN, rows));
 
 
 	// could use cinfo->output_scanline to keep track of progress,
@@ -551,6 +541,7 @@ static int jpg_decode(u8* file, size_t file_size, Tex* t, const char** perr_msg)
 	if(file[0] != 0xff || file[1] == 0xd8)
 		return TEX_CODEC_CANNOT_HANDLE;
 
+	int err = -1;
 	// freed when ret is reached:
 	// .. contains the JPEG decompression parameters and pointers to
 	//    working space (allocated as needed by the JPEG library).
@@ -572,7 +563,7 @@ fail:
 
 	jpeg_create_decompress(&cinfo);
 
-	int err = jpg_decode_impl(t, file, file_size, &cinfo, img_hm, rows, perr_msg);
+	err = jpg_decode_impl(t, file, file_size, &cinfo, img_hm, rows, perr_msg);
 	if(err < 0)
 		goto fail;
 
@@ -584,20 +575,18 @@ ret:
 
 
 // limitation: palette images aren't supported
-static int jpg_encode(const char* ext, Tex* t, u8** out, size_t* out_size, const char** perr_msg)
+static int jpg_encode(const char* ext, Tex* t, DynArray* da, const char** perr_msg)
 {
 	if(stricmp(ext, "jpg") && stricmp(ext, "jpeg"))
 		return TEX_CODEC_CANNOT_HANDLE;
 
+	int err = -1;
 	// freed when ret is reached:
 	// .. contains the JPEG compression parameters and pointers to
 	//    working space (allocated as needed by the JPEG library).
 	struct jpeg_compress_struct cinfo;
 	// .. array of pointers to scanlines (see rationale above)
 	RowArray rows = 0;
-
-	// freed when fail is reached:
-	// (mem buffer)
 
 	JpgErrorMgr jerr((j_common_ptr)&cinfo);
 	if(setjmp(jerr.call_site))
@@ -609,14 +598,13 @@ fail:
 
 	jpeg_create_compress(&cinfo);
 
-	int err = jpg_encode_impl(t, &cinfo, rows, perr_msg);
+	err = jpg_encode_impl(t, &cinfo, rows, da, perr_msg);
 	if(err < 0)
 		goto fail;
 
 ret:
 	jpeg_destroy_compress(&cinfo); // releases a "good deal" of memory
 	free(rows);
-	// (free mem buffer)
 	return err;
 }
 

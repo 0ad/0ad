@@ -94,9 +94,12 @@ extern int file_rel_chdir(const char* argv0, const char* rel_path);
 // rationale: some private storage apart from opendir's DIR* is required
 // to support stat(). we prefer having the caller reserve room (on the stack)
 // rather than allocating dynamically (less efficient or more complicated).
+//
 // this is an opaque struct to avoid exposing our internals and insulate
 // user code against changes; we verify at compile-time that the
 // public/private definitions match.
+// note: cannot just typedef to DirIterator_ because other modules
+// instantiate this.
 struct DirIterator
 {
 	char opaque[512];
@@ -244,6 +247,10 @@ extern int file_discard_io(FileIo* io);
 //
 // synchronous IO
 //
+
+// user-specified offsets and transfer lengths must be multiples of this!
+// (simplifies file_io)
+const size_t FILE_BLOCK_SIZE = 64*KiB;
 
 // return value:
 // < 0: failed; abort transfer.

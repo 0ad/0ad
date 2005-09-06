@@ -351,7 +351,6 @@ int dir_open(const char* P_path, DirIterator* d_)
 		CHECK_ERR(err);
 	}
 
-	// (see pp declaration)
 	return pp_set_dir(&d->pp, n_path);
 }
 
@@ -1109,12 +1108,8 @@ debug_printf("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 	const size_t ofs_misalign = data_ofs % BLOCK_SIZE;
 	const size_t lead_padding = do_align? ofs_misalign : 0;
 		// for convenience; used below.
-
-	if(do_align)
-	{
-		actual_ofs -= (off_t)ofs_misalign;
-		actual_size = round_up(ofs_misalign + data_size, BLOCK_SIZE);
-	}
+	actual_ofs -= (off_t)lead_padding;
+	actual_size = round_up(lead_padding + data_size, BLOCK_SIZE);
 
 
 	// skip aio code, use lowio

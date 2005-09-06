@@ -744,7 +744,7 @@ JSBool getGlobal( JSContext* cx, JSObject* globalObject, uint argc, jsval* argv,
 // Activates the building placement cursor for placing a building.
 // params: templateName - the name of the entity to place.
 // returns: true if cursor was activated, false if cursor was already active.
-JSBool startPlacing( JSContext* cx, JSObject* globalObject, uint argc, jsval* argv, jsval* rval )
+JSBool startPlacing( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
 	CStrW name;
 	if(argc == 0) {

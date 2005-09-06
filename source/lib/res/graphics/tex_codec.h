@@ -2,6 +2,7 @@
 #define TEX_CODEC_H__
 
 #include "tex.h"
+#include "dyn_array.h"
 
 // rationale: no C++ to allow us to store const char* name in vtbl.
 
@@ -17,9 +18,9 @@ struct TexCodecVTbl
 	// rationale: some codecs cannot calculate the output size beforehand
 	// (e.g. PNG output via libpng); we therefore require each one to
 	// allocate memory itself and return the pointer.
-	int (*encode)(const char* ext, Tex* t, u8** out, size_t* out_size, const char** perr_msg);
+	int (*encode)(const char* ext, Tex* t, DynArray* da, const char** perr_msg);
 
-	int (*transform)(Tex* t, int new_flags);
+	int (*transform)(Tex* t, uint transforms);
 
 	const char* name;
 };
@@ -52,9 +53,11 @@ extern int tex_codec_register(const TexCodecVTbl* c);
 typedef const u8* RowPtr;
 typedef RowPtr* RowArray;
 extern int tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
-	int file_orientation, RowArray& rows);
+	uint src_flags, uint dst_orientation, RowArray& rows);
 
-extern int tex_codec_set_orientation(Tex* t, int file_orientation);
+extern int tex_codec_set_orientation(Tex* t, uint file_orientation);
+
+extern int tex_codec_write(Tex* t, uint transforms, const void* hdr, size_t hdr_size, DynArray* da);
 
 
 struct MemSource

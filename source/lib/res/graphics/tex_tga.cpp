@@ -41,7 +41,7 @@ TgaHeader;
 #pragma pack(pop)
 
 
-static int tga_transform(Tex* t, int new_flags)
+static int tga_transform(Tex* UNUSED(t), uint UNUSED(transforms))
 {
 	return TEX_CODEC_CANNOT_HANDLE;
 }
@@ -78,9 +78,7 @@ fail:
 
 	const u8 alpha_bits = desc & 0x0f;
 	const int orientation = (desc & TGA_TOP_DOWN)? TEX_TOP_DOWN : TEX_BOTTOM_UP;
-	u8* const img = file + hdr_size;
-	const size_t img_size = w * h * bpp/8;
-
+	const size_t img_size = tex_img_size(t);
 
 	int flags = 0;
 	if(alpha_bits != 0)
@@ -118,7 +116,7 @@ fail:
 }
 
 
-static int tga_encode(const char* ext, Tex* t, u8** out, size_t* out_size, const char** perr_msg)
+static int tga_encode(const char* ext, Tex* t, DynArray* da, const char** UNUSED(perr_msg))
 {
 	if(stricmp(ext, "tga"))
 		return TEX_CODEC_CANNOT_HANDLE;
@@ -130,11 +128,9 @@ static int tga_encode(const char* ext, Tex* t, u8** out, size_t* out_size, const
 		img_desc |= 8;	// size of alpha channel
 	TgaImgType img_type = (t->flags & TEX_GREY)? TGA_GREY : TGA_TRUE_COLOUR;
 
-	// transform
 	int transforms = t->flags;
 	transforms &= ~TEX_ORIENTATION;	// no flip needed - we can set top-down bit.
 	transforms ^= TEX_BGR;			// TGA is native BGR.
-	tex_transform(t, transforms);
 
 	const TgaHeader hdr =
 	{
@@ -148,8 +144,8 @@ static int tga_encode(const char* ext, Tex* t, u8** out, size_t* out_size, const
 		t->bpp,
 		img_desc
 	};
-
-	return 0;
+	const size_t hdr_size = sizeof(hdr);
+	return tex_codec_write(t, transforms, &hdr, hdr_size, da);
 }
 
 TEX_CODEC_REGISTER(tga);

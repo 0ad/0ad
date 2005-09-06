@@ -73,22 +73,21 @@ static int validate_format(uint bpp, uint flags)
 // but is much easier to maintain than providing all<->all conversion paths.
 //
 // somewhat optimized (loops are hoisted, cache associativity accounted for)
-static int plain_transform(Tex* t, uint new_format)
+static int plain_transform(Tex* t, uint transforms)
 {
 	// extract texture info
-	const int pending_transforms = t->flags ^ new_format;
 	const uint w = t->w, h = t->h, bpp = t->bpp, flags = t->flags;
 	u8* const img = tex_get_data(t);
 
 	// sanity checks (not errors, we just can't handle these cases)
 	// .. unknown transform
-	if(pending_transforms & ~(TEX_BGR|TEX_ORIENTATION))
+	if(transforms & ~(TEX_BGR|TEX_ORIENTATION))
 		return TEX_CODEC_CANNOT_HANDLE;
 	// .. img is not in "plain" format
 	if(validate_format(bpp, flags) != 0)
 		return TEX_CODEC_CANNOT_HANDLE;
 	// .. nothing to do
-	if(!pending_transforms)
+	if(!transforms)
 		return 0;
 
 	// setup row source/destination pointers (simplifies outer loop)
@@ -99,7 +98,7 @@ static int plain_transform(Tex* t, uint new_format)
 	// avoid y*pitch multiply in row loop; instead, add row_ofs.
 	void* clone_img = 0;
 	// flipping rows (0,1,2 -> 2,1,0)
-	if(pending_transforms & TEX_ORIENTATION)
+	if(transforms & TEX_ORIENTATION)
 	{
 		// L1 cache is typically A2 => swapping in-place with a line buffer
 		// leads to thrashing. we'll assume the whole texture*2 fits in cache,
@@ -117,7 +116,7 @@ static int plain_transform(Tex* t, uint new_format)
 	}
 
 	// no BGR convert necessary
-	if(!(pending_transforms & TEX_BGR))
+	if(!(transforms & TEX_BGR))
 	{
 		for(uint y = 0; y < h; y++)
 		{
@@ -206,18 +205,22 @@ int tex_codec_register(const TexCodecVTbl* c)
 // note: we don't allocate the data param ourselves because this function is
 // needed for encoding, too (where data is already present).
 int tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
-	int file_orientation, RowArray& rows)
+	uint src_flags, uint dst_orientation, RowArray& rows)
 {
-	debug_assert((file_orientation & ~TEX_ORIENTATION) == 0);
+	// convenience for caller: allow passing all flags.
+	const uint src_orientation = src_flags & TEX_ORIENTATION;
+	if(dst_orientation == 0)
+		dst_orientation = global_orientation;
 
 	rows = (RowArray)malloc(h * sizeof(RowPtr));
 	if(!rows)
 		return ERR_NO_MEM;
 
 	// determine start position and direction
-	const bool flip = (file_orientation ^ global_orientation) != 0;
-	RowPtr pos = flip? data+pitch*(h-1) : data;
-	ssize_t add = flip? -(ssize_t)pitch : (ssize_t)pitch;
+	const bool flip = (src_orientation ^ dst_orientation) != 0;
+	RowPtr pos        = flip? data+pitch*(h-1) : data;
+	const ssize_t add = flip? -(ssize_t)pitch : (ssize_t)pitch;
+	const RowPtr end  = flip? data-pitch : data+pitch*h;
 
 	for(size_t i = 0; i < h; i++)
 	{
@@ -225,15 +228,26 @@ int tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
 		pos += add;
 	}
 
+	debug_assert(pos == end);
 	return 0;
 }
 
 
-int tex_codec_set_orientation(Tex* t, int file_orientation)
+int tex_codec_set_orientation(Tex* t, uint file_orientation)
 {
-	int pending_transforms = file_orientation ^ global_orientation;
-	int new_flags = t->flags ^ pending_transforms;
-	return plain_transform(t, new_flags);
+	uint transforms = file_orientation ^ global_orientation;
+	return plain_transform(t, transforms);
+}
+
+
+int tex_codec_write(Tex* t, uint transforms, const void* hdr, size_t hdr_size, DynArray* da)
+{
+	RETURN_ERR(tex_transform(t, transforms));
+
+	void* img_data = tex_get_data(t); const size_t img_size = tex_img_size(t);
+	RETURN_ERR(da_append(da, hdr, hdr_size));
+	RETURN_ERR(da_append(da, img_data, img_size));
+	return 0;
 }
 
 
@@ -277,6 +291,9 @@ int tex_load_mem(Handle hm, const char* fn, Tex* t)
 	// find codec that understands the data, and decode
 	for(int i = 0; i < MAX_CODECS; i++)
 	{
+		// MAX_CODECS isn't a tight bound and we have hit a 0 entry
+		if(!codecs[i])
+			continue;
 		const char* err_msg = 0;
 		int err = codecs[i]->decode(p, size, t, &err_msg);
 		if(err == TEX_CODEC_CANNOT_HANDLE)
@@ -321,14 +338,21 @@ u8* tex_get_data(const Tex* t)
 	return p + t->ofs;
 }
 
+size_t tex_img_size(const Tex* t)
+{
+	return t->w * t->h * t->bpp/8;
+}
 
-int tex_transform(Tex* t, uint new_flags)
+
+int tex_transform(Tex* t, uint transforms)
 {
 	// find codec that understands the data, and transform
 	for(int i = 0; i < MAX_CODECS; i++)
 	{
-		const char* err_msg = 0;
-		int err = codecs[i]->transform(t, new_flags);
+		// MAX_CODECS isn't a tight bound and we have hit a 0 entry
+		if(!codecs[i])
+			continue;
+		int err = codecs[i]->transform(t, transforms);
 		if(err == TEX_CODEC_CANNOT_HANDLE)
 			continue;
 		if(err == 0)
@@ -338,12 +362,14 @@ int tex_transform(Tex* t, uint new_flags)
 	}
 
 	// last chance
-	return plain_transform(t, new_flags);
+	return plain_transform(t, transforms);
 }
 
 
 int tex_write(const char* fn, uint w, uint h, uint bpp, uint flags, void* in_img)
 {
+	int err = -1;
+
 	if(validate_format(bpp, flags) != 0)
 		return ERR_TEX_FMT_INVALID;
 
@@ -362,24 +388,37 @@ int tex_write(const char* fn, uint w, uint h, uint bpp, uint flags, void* in_img
 		w, h, bpp, flags
 	};
 
-	u8* out; size_t out_size;
+	DynArray da;
+	const size_t max_out_size = (w*h*4 + 256*KiB)*2;
+	CHECK_ERR(da_alloc(&da, max_out_size));
+
 	for(int i = 0; i < MAX_CODECS; i++)
 	{
+		// MAX_CODECS isn't a tight bound and we have hit a 0 entry
+		if(!codecs[i])
+			continue;
 		const char* err_msg = 0;
-		int err = codecs[i]->encode(ext, &t, &out, &out_size, &err_msg);
+		err = codecs[i]->encode(ext, &t, &da, &err_msg);
 		if(err == TEX_CODEC_CANNOT_HANDLE)
 			continue;
-		if(err == 0)
-			goto have_codec;
-		debug_printf("tex_write(%s): %s: %s", codecs[i]->name, fn, err_msg);
-		CHECK_ERR(err);
+		if(err < 0)
+		{
+			debug_printf("tex_write(%s): %s: %s", codecs[i]->name, fn, err_msg);
+			WARN_ERR(err);
+			goto ret;
+		}
+		goto have_codec;	// success
 	}
 
 	// no codec found
 	return ERR_UNKNOWN_FORMAT;
 
 have_codec:
-	WARN_ERR(vfs_store(fn, out, out_size));
-	free(out);
-	return 0;
+	size_t rounded_size = round_up(da.cur_size, FILE_BLOCK_SIZE);
+	CHECK_ERR(da_set_size(&da, rounded_size));
+	WARN_ERR(vfs_store(fn, da.base, da.pos));
+	err = 0;
+ret:
+	WARN_ERR(da_free(&da));
+	return err;
 }
