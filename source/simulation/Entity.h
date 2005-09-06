@@ -81,6 +81,7 @@ public:
 	// HP properties
 	float m_healthCurr;
 	float m_healthMax;
+	float m_healthBarHeight;
 
 	//-- Interpolated property
 	CVector3D m_position;
@@ -178,7 +179,7 @@ public:
 	// Things like selection circles and debug info - possibly move to gui if/when it becomes responsible for (and capable of) it.
 	void render();
 	void renderSelectionOutline( float alpha = 1.0f );
-	void renderHitpointBar( float alpha = 1.0f );
+	void renderHealthBar();
 
 	// After a collision, recalc the path to the next fixed waypoint.
 	void repath();

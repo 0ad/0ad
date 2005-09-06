@@ -74,11 +74,11 @@ void CSelectedEntities::renderSelectionOutlines()
 	}
 }
 
-void CSelectedEntities::renderHitpointBars()
+void CSelectedEntities::renderHealthBars()
 {
 	std::vector<HEntity>::iterator it;
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
-		(*it)->renderHitpointBar();
+		(*it)->renderHealthBar();
 
 	if( m_group_highlight != -1 )
 	{
@@ -87,7 +87,7 @@ void CSelectedEntities::renderHitpointBars()
 
 		std::vector<HEntity>::iterator it;
 		for( it = m_groups[m_group_highlight].begin(); it < m_groups[m_group_highlight].end(); it++ )
-			(*it)->renderHitpointBar( 0.5f );
+			(*it)->renderHealthBar();
 
 		glDisable( GL_BLEND );
 	}
@@ -691,14 +691,14 @@ void CMouseoverEntities::renderSelectionOutlines()
 	glDisable( GL_BLEND );
 }
 
-void CMouseoverEntities::renderHitpointBars()
+void CMouseoverEntities::renderHealthBars()
 {
 	glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 	glEnable( GL_BLEND );
 
 	std::vector<SMouseoverFader>::iterator it;
 	for( it = m_mouseover.begin(); it < m_mouseover.end(); it++ )
-		it->entity->renderHitpointBar( it->fade );
+		it->entity->renderHealthBar();
 
 	glDisable( GL_BLEND );
 }

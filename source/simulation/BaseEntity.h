@@ -69,6 +69,10 @@ public:
 	void setClassSet( jsval value );
 	void rebuildClassSet();
 
+	float m_healthCurr;
+	float m_healthMax;
+	float m_healthBarHeight;
+
 	// Script-bound functions
 
 	// Get script execution contexts - always run in the context of the entity that fired it.

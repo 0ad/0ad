@@ -260,7 +260,7 @@ void Render()
 		PROFILE_END( "render building placement cursor" );
 
 		
-		PROFILE_START( "render hitpoint bars" );
+		PROFILE_START( "render health bars" );
 		glMatrixMode(GL_PROJECTION);
 		glPushMatrix();
 		glLoadIdentity();
@@ -268,13 +268,13 @@ void Render()
 		glMatrixMode(GL_MODELVIEW);
 		glPushMatrix();
 		glLoadIdentity();
-		g_Mouseover.renderHitpointBars();
-		g_Selection.renderHitpointBars();
+		g_Mouseover.renderHealthBars();
+		g_Selection.renderHealthBars();
 		glPopMatrix();
 		glMatrixMode(GL_PROJECTION);
 		glPopMatrix();
 		glMatrixMode(GL_MODELVIEW);
-		PROFILE_END( "render hitpoint bars" );
+		PROFILE_END( "render health bars" );
 
 		glPopAttrib();
 	}

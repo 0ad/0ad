@@ -37,8 +37,6 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	AddProperty( L"group", &m_grouped, false, (NotifyFn)&CEntity::checkGroup );
 	AddProperty( L"traits.extant", &m_extant );
 	AddProperty( L"traits.corpse", &m_corpse );
-	AddProperty( L"traits.health.curr", &m_healthCurr );
-	AddProperty( L"traits.health.max", &m_healthMax );
 	AddProperty( L"actions.move.turningradius", &m_turningRadius );
 	AddProperty( L"actions.attack.range", &( m_melee.m_MaxRange ) );
 	AddProperty( L"actions.attack.rangemin", &( m_melee.m_MinRange ) );
@@ -49,6 +47,9 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	AddProperty( L"position", &m_graphics_position, false, (NotifyFn)&CEntity::teleport );
 	AddProperty( L"orientation", &m_graphics_orientation, false, (NotifyFn)&CEntity::reorient );
 	AddProperty( L"player", &m_player );
+	AddProperty( L"traits.health.curr", &m_healthCurr );
+	AddProperty( L"traits.health.max", &m_healthMax );
+	AddProperty( L"traits.health.bar_height", &m_healthBarHeight );
 
 	for( int t = 0; t < EVENT_LAST; t++ )
 	{
@@ -752,19 +753,19 @@ void CEntity::renderSelectionOutline( float alpha )
 	glEnd();
 }
 
-void CEntity::renderHitpointBar( float alpha )
+void CEntity::renderHealthBar()
 {
 	if( !m_bounds ) return;
+	if( m_healthBarHeight < 0 ) return;		// negative bar height means don't display health bar
 
 	CCamera &g_Camera=*g_Game->GetView()->GetCamera();
 
 	float sx, sy;
-	float height = 5;	// TODO: change this to m_bounds->m_height when that is working properly for most units
 	CVector3D pos = m_graphics_position;
 	CVector3D above = pos;
-	above.Y += height;
+	above.Y += m_healthBarHeight;
 	g_Camera.GetScreenCoordinates(above, sx, sy);
-	float fraction = this->m_healthCurr / this->m_healthMax;
+	float fraction = clamp(m_healthCurr / m_healthMax, 0.0f, 1.0f);
 
 	const float SIZE = 20;
 	float x1 = sx - SIZE/2;

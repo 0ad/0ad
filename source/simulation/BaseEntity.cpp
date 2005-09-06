@@ -26,6 +26,9 @@ CBaseEntity::CBaseEntity()
 	AddProperty( L"actor", &m_actorName );
 	AddProperty( L"traits.extant", &m_extant );
 	AddProperty( L"traits.corpse", &m_corpse );	
+	AddProperty( L"traits.health.curr", &m_healthCurr );
+	AddProperty( L"traits.health.max", &m_healthMax );
+	AddProperty( L"traits.health.bar_height", &m_healthBarHeight );
 
 	for( int t = 0; t < EVENT_LAST; t++ )
 	{
