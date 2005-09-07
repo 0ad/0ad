@@ -57,7 +57,7 @@ function chooseRand() {
 
 function createAreas(centeredPlacer, painter, constraint, num, maxFail) {
 	if(maxFail == undefined) {
-		maxFail = 2*num;
+		maxFail = 10 * num;
 	}
 	
 	var good = 0;
@@ -80,7 +80,7 @@ function createAreas(centeredPlacer, painter, constraint, num, maxFail) {
 
 function createObjectGroups(placer, constraint, num, maxFail) {
 	if(maxFail == undefined) {
-		maxFail = 2*num;
+		maxFail = 10 * num;
 	}
 	
 	var good = 0;
@@ -114,13 +114,14 @@ function TerrainPainter(terrain) {
 	this.terrain = terrain;
 }
 
-function ClumpPlacer(size, coherence, smoothness, x, y) {
+function ClumpPlacer(size, coherence, smoothness, failFraction, x, y) {
 	this.TYPE = TYPE_CLUMP_PLACER;
 	this.size = size;
 	this.coherence = coherence;
 	this.smoothness = smoothness;
-	this.x = x==undefined ? x : -1;
-	this.y = y==undefined ? y : -1;
+	this.failFraction = failFraction!=undefined ? failFraction : 0;
+	this.x = x!=undefined ? x : -1;
+	this.y = y!=undefined ? y : -1;
 }
 
 // Area painters
@@ -181,7 +182,7 @@ function SimpleObject(type, count, distance) {
 function SimpleGroup(elements, tileClass, x, y) {
 	this.TYPE = TYPE_SIMPLE_GROUP;
 	this.elements = elements;
-	this.tileClass = tileClass==undefined ? tileClass : null;
-	this.x = x==undefined ? x : -1;
-	this.y = x==undefined ? y : -1;
+	this.tileClass = tileClass!=undefined ? tileClass : null;
+	this.x = x!=undefined ? x : -1;
+	this.y = x!=undefined ? y : -1;
 }
