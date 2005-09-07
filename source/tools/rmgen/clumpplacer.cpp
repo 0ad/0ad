@@ -4,13 +4,14 @@
 
 using namespace std;
 
-ClumpPlacer::ClumpPlacer(float size, float coherence, float smoothness, int x, int y)
+ClumpPlacer::ClumpPlacer(float size, float coherence, float smoothness, float failFraction, int x, int y)
 {
 	this->size = size;
 	this->coherence = coherence;
 	this->smoothness = smoothness;
 	this->x = x;
 	this->y = y;
+	this->failFraction = failFraction;
 }
 
 ClumpPlacer::~ClumpPlacer()
@@ -80,7 +81,7 @@ bool ClumpPlacer::place(class Map* m, Constraint* constr, std::vector<Point>& re
 		}
 	}
 
-	return failed > 0 ? false : true;
+	return failed > size * failFraction ? false : true;
 	
 	/*if(m->validT(x,y)) {
 		ret.push_back(Point(x,y));

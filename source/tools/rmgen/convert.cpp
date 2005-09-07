@@ -160,7 +160,7 @@ AreaPainter* ParseAreaPainter(JSContext* cx, jsval val) {
 
 AreaPlacer* ParseAreaPlacer(JSContext* cx, jsval val) {
 	int x, y, x1, y1, x2, y2, num, maxFail;
-	float size, coherence, smoothness;
+	float size, coherence, smoothness, failFraction;
 
 	switch(GetType(cx, val)) {
 		case TYPE_RECT_PLACER:
@@ -174,9 +174,10 @@ AreaPlacer* ParseAreaPlacer(JSContext* cx, jsval val) {
 			if(!GetFloatField(cx, val, "size", size)) return 0;
 			if(!GetFloatField(cx, val, "coherence", coherence)) return 0;
 			if(!GetFloatField(cx, val, "smoothness", smoothness)) return 0;
+			if(!GetFloatField(cx, val, "failFraction", failFraction)) return 0;
 			if(!GetIntField(cx, val, "x", x)) return 0;
 			if(!GetIntField(cx, val, "y", y)) return 0;
-			return new ClumpPlacer(size, coherence, smoothness, x, y);
+			return new ClumpPlacer(size, coherence, smoothness, failFraction, x, y);
 
 		default:
 			return 0;
