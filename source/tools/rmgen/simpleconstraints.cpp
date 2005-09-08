@@ -71,8 +71,37 @@ AvoidTileClassConstraint::AvoidTileClassConstraint(TileClass* tileClass, float d
 
 bool AvoidTileClassConstraint::allows(Map* m, int x, int y)
 {
-	return !tileClass->hasTilesInRadius(x, y, distance);
+	return tileClass->countMembersInRadius(x, y, distance) == 0;
 }
 
 
+
+// StayInTileClassConstraint /////////////////////////////////////////////////////////////
+
+StayInTileClassConstraint::StayInTileClassConstraint(TileClass* tileClass, float distance) {
+	this->tileClass = tileClass;
+	this->distance = distance;
+}
+
+bool StayInTileClassConstraint::allows(Map* m, int x, int y)
+{
+	return tileClass->countNonMembersInRadius(x, y, distance) == 0;
+}
+
+
+
+// BorderTileClassConstraint /////////////////////////////////////////////////////////////
+
+BorderTileClassConstraint::BorderTileClassConstraint(TileClass* tileClass, float distanceInside, 
+												float distanceOutside) {
+	this->tileClass = tileClass;
+	this->distanceInside = distanceInside;
+	this->distanceOutside = distanceOutside;
+}
+
+bool BorderTileClassConstraint::allows(Map* m, int x, int y)
+{
+	return tileClass->countMembersInRadius(x, y, distanceOutside) > 0 
+		&& tileClass->countNonMembersInRadius(x, y, distanceInside) > 0;
+}
 

@@ -17,16 +17,18 @@ public:
 		Element::Element(const std::string& type, int count, float distance);
 		Element::~Element();
 
-		bool place(int cx, int cy, class Map* m, Constraint* constr, std::vector<Object*>& ret);
+		bool place(int cx, int cy, class Map* m, int player, bool avoidSelf,
+			Constraint* constr, std::vector<Object*>& ret);
 	};
 
 	std::vector<Element*> elements;
+	bool avoidSelf;
 	int x, y;
 	TileClass* tileClass;
 
-	virtual bool place(class Map* m, Constraint* constr);
+	virtual bool place(class Map* m, int player, Constraint* constr);
 
-	SimpleGroup(std::vector<Element*>& elements, TileClass* tileClass, int x, int y);
+	SimpleGroup(std::vector<Element*>& elements, TileClass* tileClass, bool avoidSelf, int x, int y);
 	virtual ~SimpleGroup(void);
 };
 

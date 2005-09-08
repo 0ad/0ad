@@ -5,45 +5,51 @@ using namespace std;
 
 TileClass::TileClass(int mapSize) {
 	this->mapSize = mapSize;
+	inclusionCount = new int*[mapSize];
 	for(int i=0; i<mapSize; i++) {
+		inclusionCount[i] = new int[mapSize];
+		memset(inclusionCount[i], 0, mapSize*sizeof(int));
 		rc.push_back(new RangeCount(mapSize));
 	}
 }
 
 TileClass::~TileClass() {
 	for(int i=0; i<mapSize; i++) {
+		delete inclusionCount[i];
 		delete rc[i];
 	}
+	delete inclusionCount;
 }
 
 void TileClass::add(int x, int y) {
-	rc[y]->add(x, 1);
-
-	tiles.insert(Point(x, y));
+	if(!inclusionCount[x][y]) {
+		rc[y]->add(x,1);
+	}
+	inclusionCount[x][y]++;
 }
 
 void TileClass::remove(int x, int y) {
-	rc[y]->add(x, -1);
-
-	if(rc[y]->get(x) == 0) {
-		tiles.erase(Point(x, y));
+	inclusionCount[x][y]--;
+	if(!inclusionCount[x][y]) {
+		rc[y]->add(x, -1);
 	}
 }
 
-bool TileClass::hasTilesInRadius(float cx, float cy, float r) {
-	// special check for really small classes
-	if(tiles.size() < 4*r) {
-		for(set<Point>::iterator it = tiles.begin(); it != tiles.end(); it++) {
-			Point p = *it;
-			float dx = p.x - cx;
-			float dy = p.y - cy;
-			if(dx*dx + dy*dy <= r*r) {
-				return true;
-			}
-		}
+int TileClass::countMembersInRadius(float cx, float cy, float r) {
+	int mem, nonMem;
+	countInRadius(cx, cy, r, mem, nonMem);
+	return mem;
+}
 
-		return false;
-	}
+int TileClass::countNonMembersInRadius(float cx, float cy, float r) {
+	int mem, nonMem;
+	countInRadius(cx, cy, r, mem, nonMem);
+	return nonMem;
+}
+
+void TileClass::countInRadius(float cx, float cy, float r, int& members, int& nonMembers) {
+	members = 0;
+	nonMembers = 0;
 
 	for(float y = cy-r; y <= cy+r; y++) {
 		int iy = (int) y;
@@ -57,10 +63,9 @@ bool TileClass::hasTilesInRadius(float cx, float cy, float r) {
 		float x2 = cx + dx;
 		int minX = max(0, (int) x1);
 		int maxX = min(mapSize-1, (int) x2);
-		if(rc[iy]->get(minX, maxX+1) > 0) {
-			return true;
-		}
+		int total = maxX - minX + 1;
+		int mem = rc[iy]->get(minX, maxX+1);
+		members += mem;
+		nonMembers += total - mem;
 	}
-
-	return false;
 }

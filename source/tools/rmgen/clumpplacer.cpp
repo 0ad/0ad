@@ -18,10 +18,12 @@ ClumpPlacer::~ClumpPlacer()
 {
 }
 
-bool ClumpPlacer::place(class Map* m, Constraint* constr, std::vector<Point>& ret) {
+bool ClumpPlacer::place(class Map* m, Constraint* constr, std::vector<Point>& retVec) {
 	if(!m->validT(x, y) || !constr->allows(m, x, y)) {
 		return false;
 	}
+
+	set<Point> ret;
 
 	float radius = sqrt(size / PI);
 	float perim = 3 * radius * 2 * PI;
@@ -71,7 +73,7 @@ bool ClumpPlacer::place(class Map* m, Constraint* constr, std::vector<Point>& re
 		for(float k=0; k<r; k++) {
 			int i = (int)xx, j = (int)yy;
 			if(m->validT(i, j) && constr->allows(m, i, j)) {
-				ret.push_back(Point(i, j));
+				ret.insert(Point(i, j));
 			}
 			else {
 				failed++;
@@ -79,6 +81,10 @@ bool ClumpPlacer::place(class Map* m, Constraint* constr, std::vector<Point>& re
 			xx += s;
 			yy += c;
 		}
+	}
+
+	for(set<Point>::iterator it = ret.begin(); it != ret.end(); it++) {
+		retVec.push_back(*it);
 	}
 
 	return failed > size * failFraction ? false : true;

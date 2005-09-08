@@ -21,6 +21,7 @@ JSBool getTexture(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *
 JSBool setTexture(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval);
 JSBool getHeight(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval);
 JSBool setHeight(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval);
+JSBool getMapSize(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval);
 
 // Low-level placement functions
 JSBool placeTerrain(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval);

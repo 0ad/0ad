@@ -17,34 +17,50 @@ SimpleGroup::Element::Element(const std::string& t, int c, float d):
 SimpleGroup::Element::~Element() {
 }
 
-bool SimpleGroup::Element::place(int cx, int cy, Map* m, Constraint* constr, vector<Object*>& ret) {
+bool SimpleGroup::Element::place(int cx, int cy, Map* m, int player, bool avoidSelf,
+								 Constraint* constr, vector<Object*>& ret) {
 	int failCount = 0;
 	for(int i=0; i<count; i++) {
 		while(true) {
 			float ang = RandFloat()*2*PI;
-			float x = cx + distance*cos(ang) + 0.5f;
-			float y = cy + distance*sin(ang) + 0.5f;
-			int ix = (int) x;
-			int iy = (int) y;
-			if(m->validT(ix, iy) && constr->allows(m, ix, iy)) {
-				ret.push_back(new Object(type, 0, x, 0, y, RandFloat()*2*PI));
-				break;
+			float x = cx + 0.5f + distance*cos(ang);
+			float y = cy + 0.5f + distance*sin(ang);
+
+			if(x<0 || y<0 || x>m->size || y>m->size) {
+				goto bad;
 			}
-			else {
-				failCount++;
-				if(failCount > 20) {
-					return false;
+
+			if(avoidSelf) {
+				for(int i=0; i<ret.size(); i++) {
+					float dx = x - ret[i]->x;
+					float dy = y - ret[i]->y;
+					if(dx*dx + dy*dy < 1) {
+						goto bad;
+					}
 				}
+			}
+
+			if(!constr->allows(m, (int)x, (int)y)) {
+				goto bad;
+			}
+
+			// if we got here, we're good
+			ret.push_back(new Object(type, player, x, y, RandFloat()*2*PI));
+			break;
+
+bad:		failCount++;
+			if(failCount > 20) {
+				return false;
 			}
 		}
 	}
 	return true;
 }
 
-bool SimpleGroup::place(Map* m, Constraint* constr) {
+bool SimpleGroup::place(Map* m, int player, Constraint* constr) {
 	vector<Object*> ret;
 	for(int i=0; i<elements.size(); i++) {
-		if(!elements[i]->place(x, y, m, constr, ret)) {
+		if(!elements[i]->place(x, y, m, player, avoidSelf, constr, ret)) {
 			return false;
 		}
 	}
@@ -57,8 +73,8 @@ bool SimpleGroup::place(Map* m, Constraint* constr) {
 	return true;
 }
 
-SimpleGroup::SimpleGroup(vector<SimpleGroup::Element*>& e, TileClass* tc, int _x, int _y):
-	elements(e), x(_x), y(_y), tileClass(tc)	
+SimpleGroup::SimpleGroup(vector<SimpleGroup::Element*>& e, TileClass* tc, bool as, int _x, int _y):
+	elements(e), x(_x), y(_y), tileClass(tc), avoidSelf(as)
 {
 }
 

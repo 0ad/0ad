@@ -7,13 +7,15 @@
 
 using namespace std;
 
-void OutputObject(Object* e, ostringstream& xml) {
+void OutputObject(Map* m, Object* e, ostringstream& xml) {
+	float height = m->getExactHeight(e->x, e->y);
+
 	if(e->isEntity()) {
 		xml << "\
 		<Entity>\n\
 			<Template>" << e->name << "</Template>\n\
 			<Player>" << e->player << "</Player>\n\
-			<Position x=\"" << 4*e->x << "\" y=\"" << 4*e->y << "\" z=\"" << 4*e->z << "\" />\n\
+			<Position x=\"" << 4*e->x << "\" y=\"" << height << "\" z=\"" << 4*e->y << "\" />\n\
 			<Orientation angle=\"" << e->orientation << "\" />\n\
 		</Entity>\n";
 	}
@@ -21,7 +23,7 @@ void OutputObject(Object* e, ostringstream& xml) {
 		xml << "\
 		<Nonentity>\n\
 			<Actor>" << e->name << "</Actor>\n\
-			<Position x=\"" << 4*e->x << "\" y=\"" << 4*e->y << "\" z=\"" << 4*e->z << "\" />\n\
+			<Position x=\"" << 4*e->x << "\" y=\"" << height << "\" z=\"" << 4*e->y << "\" />\n\
 			<Orientation angle=\"" << e->orientation << "\" />\n\
 		</Nonentity>\n";
 	}
@@ -30,7 +32,7 @@ void OutputObject(Object* e, ostringstream& xml) {
 void OutputObjects(ostringstream& xml, Map* m, bool entities) {
 	for(int i=0; i<m->objects.size(); i++) {
 		if(m->objects[i]->isEntity() == entities) {
-			OutputObject(m->objects[i], xml);
+			OutputObject(m, m->objects[i], xml);
 		}
 	}
 
@@ -39,7 +41,7 @@ void OutputObjects(ostringstream& xml, Map* m, bool entities) {
 			vector<Object*>& vec = m->terrainObjects[x][y];
 			for(int i=0; i<vec.size(); i++) {
 				if(vec[i]->isEntity() == entities) {
-					OutputObject(vec[i], xml);
+					OutputObject(m, vec[i], xml);
 				}
 			}
 		}

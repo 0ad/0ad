@@ -45,5 +45,23 @@ public:
 	virtual bool allows(Map* m, int x, int y);
 };
 
+class StayInTileClassConstraint : public Constraint {
+private:
+	TileClass* tileClass;
+	float distance;
+public:
+	StayInTileClassConstraint(TileClass* tileClass, float distance);
+	virtual bool allows(Map* m, int x, int y);
+};
+
+class BorderTileClassConstraint : public Constraint {
+private:
+	TileClass* tileClass;
+	float distanceInside;
+	float distanceOutside;
+public:
+	BorderTileClassConstraint(TileClass* tileClass, float distanceInside, float distanceOutside);
+	virtual bool allows(Map* m, int x, int y);
+};
 
 #endif

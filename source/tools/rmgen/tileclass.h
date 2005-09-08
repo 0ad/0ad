@@ -13,7 +13,7 @@ class TileClass {
 private:
 	int mapSize;
 	std::vector<RangeCount*> rc;	// range count on each row
-	std::set<Point> tiles;		// the distinct tiles in the class
+	int** inclusionCount;			// the inclusion count for each tile
 public:
 	TileClass(int mapSize);
 	~TileClass();
@@ -21,7 +21,9 @@ public:
 	void add(int x, int y);
 	void remove(int x, int y);
 
-	bool hasTilesInRadius(float cx, float cy, float r);
+	void countInRadius(float cx, float cy, float r, int& members, int& nonMembers);
+	int countMembersInRadius(float cx, float cy, float r);
+	int countNonMembersInRadius(float cx, float cy, float r);
 };
 
 #endif

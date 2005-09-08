@@ -39,7 +39,7 @@ SimpleTerrain::SimpleTerrain(const std::string& texture, const std::string& tree
 void SimpleTerrain::placeNew(Map* m, int x, int y) {
 	vector<Object*>& vec = m->terrainObjects[x][y];
 	if(treeType != "") {
-		vec.push_back(new Object(treeType, 0, x+0.5f, 0, y+0.5f, RandFloat()*PI));
+		vec.push_back(new Object(treeType, 0, x+0.5f, y+0.5f, RandFloat()*PI));
 	}
 	m->texture[x][y] = m->getId(texture);
 }

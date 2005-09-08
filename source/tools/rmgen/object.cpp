@@ -6,12 +6,11 @@ using namespace std;
 Object::Object() {
 }
 
-Object::Object(const string& name, int player, float x, float y, float z, float orientation) {
+Object::Object(const string& name, int player, float x, float y, float orientation) {
 	this->name = name;
 	this->player = player;
 	this->x = x;
 	this->y = y;
-	this->z = z;
 	this->orientation = orientation;
 }
 

@@ -279,8 +279,8 @@ Area* Map::createArea(AreaPlacer* placer, AreaPainter* painter, Constraint* cons
 	return a;
 }
 
-bool Map::createObjectGroup(ObjectGroupPlacer* placer, Constraint* constr) {
-	return placer->place(this, constr);
+bool Map::createObjectGroup(ObjectGroupPlacer* placer, int player, Constraint* constr) {
+	return placer->place(this, player, constr);
 }
 
 int Map::createTileClass() {
@@ -288,3 +288,18 @@ int Map::createTileClass() {
 	return tileClasses.size();
 }
 
+float Map::getExactHeight(float x, float y) {
+	// copied & modified from ScEd
+
+	int xi = min((int) floor(x), size);
+	int yi = min((int) floor(y), size);
+	float xf = x - xi;
+	float yf = y - yi;
+
+	float h00 = height[xi][yi];
+	float h01 = height[xi][yi+1];
+	float h10 = height[xi+1][yi];
+	float h11 = height[xi+1][yi+1];
+
+	return ( 1 - yf ) * ( ( 1 - xf ) * h00 + xf * h10 ) + yf * ( ( 1 - xf ) * h01 + xf * h11 ) ;
+}

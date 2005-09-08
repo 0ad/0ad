@@ -7,7 +7,7 @@
 class ObjectGroupPlacer
 {
 public:
-	virtual bool place(class Map* m, Constraint* constr) = 0;
+	virtual bool place(class Map* m, int player, Constraint* constr) = 0;
 
 	ObjectGroupPlacer(void);
 	virtual ~ObjectGroupPlacer(void);

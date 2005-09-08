@@ -22,11 +22,12 @@ JSFunctionSpec globalFunctions[] = {
 	{"setTexture", setTexture, 3},
 	{"getHeight", getHeight, 2},
 	{"setHeight", setHeight, 3},
+	{"getMapSize", getMapSize, 0},
 	{"randInt", randInt, 1},
 	{"randFloat", randFloat, 0},
-	{"placeObject", placeObject, 5},
+	{"placeObject", placeObject, 4},
 	{"createArea", createArea, 3},
-	{"createObjectGroup", createObjectGroup, 2},
+	{"createObjectGroup", createObjectGroup, 3},
 	{"createTileClass", createTileClass, 0},
 	{0, 0, 0}
 };
@@ -220,7 +221,7 @@ JSBool placeObject(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval 
 	JS_ValueToNumber(cx, argv[3], &y);
 	JS_ValueToNumber(cx, argv[4], &orientation);
 
-	theMap->addObject(new Object(type, player, x,0,y, orientation));
+	theMap->addObject(new Object(type, player, x,y, orientation));
 	
 	return JS_TRUE;
 }
@@ -284,7 +285,7 @@ JSBool createArea(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *
 JSBool createObjectGroup(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval) 
 {
 	CheckInit(true, cx, __FUNCTION__);
-	if(argc != 1 && argc != 2) {
+	if(argc != 2 && argc != 3) {
 		JS_ReportError(cx, "createObjectGroup: expected 1 or 2 arguments but got %d", argc);
 	}
 
@@ -294,16 +295,22 @@ JSBool createObjectGroup(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, 
 	if(!(placer = ParseObjectGroupPlacer(cx, argv[0]))) {
 		JS_ReportError(cx, "createObjectGroup: argument 1 must be a valid object group placer");
 	}
-	if(argc == 2) {
-		if(!(constr = ParseConstraint(cx, argv[1]))) {
-			JS_ReportError(cx, "createObjectGroup: argument 2 must be a valid constraint");
+	if(!JSVAL_IS_INT(argv[1])) {
+		JS_ReportError(cx, "createObjectGroup: argument 2 must be a valid player number");
+	}
+
+	if(argc == 3) {
+		if(!(constr = ParseConstraint(cx, argv[2]))) {
+			JS_ReportError(cx, "createObjectGroup: argument 3 must be a valid constraint");
 		}
 	}
 	else {
 		constr = new NullConstraint();
 	}
 
-	bool ret = theMap->createObjectGroup(placer, constr);
+	int player = JSVAL_TO_INT(argv[1]);
+
+	bool ret = theMap->createObjectGroup(placer, player, constr);
 
 	delete placer;
 	delete constr;
@@ -322,5 +329,16 @@ JSBool createTileClass(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, js
 	int id = theMap->createTileClass();
 
 	*rval = INT_TO_JSVAL(id);
+	return JS_TRUE;
+}
+
+JSBool getMapSize(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval) 
+{
+	CheckInit(true, cx, __FUNCTION__);
+	if(argc != 0) {
+		JS_ReportError(cx, "getMapSize: expected 0 arguments but got %d", argc);
+	}
+
+	*rval = INT_TO_JSVAL(theMap->size);
 	return JS_TRUE;
 }

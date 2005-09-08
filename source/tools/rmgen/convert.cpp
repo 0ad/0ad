@@ -39,7 +39,7 @@ bool GetIntField(JSContext* cx, jsval obj, const char* name, int& ret) {
 	return true;
 }
 
-bool GetBoolField(JSContext* cx, jsval obj, const char* name, int& ret) {
+bool GetBoolField(JSContext* cx, jsval obj, const char* name, bool& ret) {
 	jsval val;
 	if(!GetJsvalField(cx, obj, name, val)) return false;
 	if(!JSVAL_IS_BOOLEAN(val)) return false;
@@ -188,6 +188,7 @@ ObjectGroupPlacer* ParseObjectGroupPlacer(JSContext* cx, jsval val) {
 	jsval jsv;
 	vector<jsval> array;
 	int x, y;
+	bool avoidSelf;
 	TileClass* tileClass;
 	vector<SimpleGroup::Element*> elements;
 
@@ -196,6 +197,7 @@ ObjectGroupPlacer* ParseObjectGroupPlacer(JSContext* cx, jsval val) {
 			// convert x and y
 			if(!GetIntField(cx, val, "x", x)) return 0;
 			if(!GetIntField(cx, val, "y", y)) return 0;
+			if(!GetBoolField(cx, val, "avoidSelf", avoidSelf)) return 0;
 			if(!GetTileClassField(cx, val, "tileClass", tileClass)) return 0;
 			// convert the elements (which will be JS SimpleElement objects)
 			if(!GetJsvalField(cx, val, "elements", jsv)) return 0;
@@ -210,7 +212,7 @@ ObjectGroupPlacer* ParseObjectGroupPlacer(JSContext* cx, jsval val) {
 				if(!GetFloatField(cx, array[i], "distance", distance)) return 0;
 				elements[i] = new SimpleGroup::Element(type, count, distance);
 			}
-			return new SimpleGroup(elements, tileClass, x, y);
+			return new SimpleGroup(elements, tileClass, avoidSelf, x, y);
 
 		default:
 			return 0;
@@ -222,6 +224,7 @@ Constraint* ParseConstraint(JSContext* cx, jsval val) {
 	int areaId;
 	TileClass* tileClass;
 	float distance;
+	float distance2;
 	string texture;
 	jsval jsv, jsv2;
 
@@ -257,6 +260,17 @@ Constraint* ParseConstraint(JSContext* cx, jsval val) {
 			if(!GetFloatField(cx, val, "distance", distance)) return 0;
 			if(!GetTileClassField(cx, val, "tileClass", tileClass)) return 0;
 			return new AvoidTileClassConstraint(tileClass, distance);
+
+		case TYPE_STAY_IN_TILE_CLASS_CONSTRAINT:
+			if(!GetFloatField(cx, val, "distance", distance)) return 0;
+			if(!GetTileClassField(cx, val, "tileClass", tileClass)) return 0;
+			return new StayInTileClassConstraint(tileClass, distance);
+
+		case TYPE_BORDER_TILE_CLASS_CONSTRAINT:
+			if(!GetFloatField(cx, val, "distanceInside", distance)) return 0;
+			if(!GetFloatField(cx, val, "distanceOutside", distance2)) return 0;
+			if(!GetTileClassField(cx, val, "tileClass", tileClass)) return 0;
+			return new BorderTileClassConstraint(tileClass, distance, distance2);
 
 		default:
 			return 0;

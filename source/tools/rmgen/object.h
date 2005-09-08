@@ -5,11 +5,11 @@ class Object {
 public:
 	std::string name;	// "template" field for objects, "actor" field for nonobjects
 	int player;			// -1 for nonobjects
-	float x, y, z;
+	float x, y;
 	float orientation;
 
 	Object();
-	Object(const std::string& name, int player, float x, float y, float z, float orientation);
+	Object(const std::string& name, int player, float x, float y, float orientation);
 	bool isEntity();
 };
 

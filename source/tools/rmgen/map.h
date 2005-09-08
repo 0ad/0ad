@@ -46,9 +46,11 @@ public:
 	void addObject(class Object* ent);
 
 	Area* createArea(AreaPlacer* placer, AreaPainter* painter, Constraint* constr);
-	bool createObjectGroup(ObjectGroupPlacer* placer, Constraint* constr);
+	bool createObjectGroup(ObjectGroupPlacer* placer, int player, Constraint* constr);
 
 	int createTileClass();	// returns ID of the new class
+	
+	float getExactHeight(float x, float y);		// get height taking into account terrain curvature
 };
 
 #endif
