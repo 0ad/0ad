@@ -18,7 +18,7 @@ extern int da_set_size(DynArray* da, size_t new_size);
 
 extern int da_set_prot(DynArray* da, int prot);
 
-
+extern int da_wrap_fixed(DynArray* da, u8* p, size_t size);
 
 extern int da_read(DynArray* da, void* data_dst, size_t size);
 

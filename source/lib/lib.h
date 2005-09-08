@@ -183,6 +183,13 @@ STMT(\
 		ptr = 0;\
 	}
 
+#define SAFE_DELETE(p) STMT(\
+	if((p))\
+	{\
+		delete (p);\
+		(p) = 0;\
+	}\
+)
 
 
 enum LibError

@@ -68,7 +68,6 @@ struct Tex
 
 
 extern int tex_load(const char* fn, Tex* t);
-extern int tex_load_mem(Handle hm, const char* fn, Tex* t);
 extern int tex_free(Tex* t);
 
 extern u8* tex_get_data(const Tex* t);

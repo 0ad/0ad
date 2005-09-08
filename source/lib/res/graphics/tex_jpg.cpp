@@ -32,13 +32,9 @@ cassert(sizeof(JOCTET) == 1 && CHAR_BIT	== 8);
 typedef struct
 {
 	struct jpeg_source_mgr pub;	/* public fields */
-
-	JOCTET* buf;
-	size_t size;	/* total size (bytes) */
-	size_t pos;		/* offset (bytes) to new data */
+	DynArray* da;
 }
 SrcMgr;
-
 typedef SrcMgr* SrcPtr;
 
 
@@ -82,7 +78,6 @@ METHODDEF(boolean) src_fill_buffer(j_decompress_ptr cinfo)
 	*/
 
 	WARNMS(cinfo, JWRN_JPEG_EOF);
-
 
 	src->pub.next_input_byte = eoi;
 	src->pub.bytes_in_buffer = 2;
@@ -150,9 +145,12 @@ METHODDEF(void) src_term(j_decompress_ptr UNUSED(cinfo))
 * The caller is responsible for freeing it after finishing decompression.
 */
 
-GLOBAL(void) src_prepare(j_decompress_ptr cinfo, void* p, size_t size)
+GLOBAL(void) src_prepare(j_decompress_ptr cinfo, DynArray* da)
 {
 	SrcPtr src;
+
+	const u8* p = da->base;
+	const size_t size = da->cur_size;
 
 	/* Treat 0-length buffer as fatal error */
 	if(size == 0)
@@ -196,12 +194,14 @@ GLOBAL(void) src_prepare(j_decompress_ptr cinfo, void* p, size_t size)
 /* Expanded data destination object for memory output */
 typedef struct {
 	struct jpeg_destination_mgr pub; /* public fields */
-
 	DynArray* da;
 } DstMgr;
 
 typedef DstMgr* DstPtr;
 
+// this affects how often dst_empty_output_buffer is called (which
+// efficiently expands the DynArray) and how much tail memory we waste
+// (not an issue because it is freed immediately after compression).
 #define OUTPUT_BUF_SIZE  64*KiB	/* choose an efficiently writeable size */
 
 // note: can't call dst_empty_output_buffer from dst_init or vice versa
@@ -275,15 +275,15 @@ METHODDEF(void) dst_term(j_compress_ptr cinfo)
 
 
 /*
-* Prepare for output to a stdio stream.
-* The caller must have already opened the stream, and is responsible
-* for closing it after finishing compression.
+* Prepare for output to a buffer.
+* The caller is responsible for allocating and writing out to disk after
+* compression is complete.
 */
 
 GLOBAL(void) dst_prepare(j_compress_ptr cinfo, DynArray* da)
 {
 	/* The destination object is made permanent so that multiple JPEG images
-	* can be written to the same file without re-executing jpeg_stdio_dest.
+	* can be written to the same file without re-executing dst_prepare.
 	* This makes it dangerous to use this manager and a different destination
 	* manager serially with the same JPEG object, because their private object
 	* sizes may be different.  Caveat programmer.
@@ -403,11 +403,11 @@ static int jpg_transform(Tex* UNUSED(t), uint UNUSED(transforms))
 // due to less copying.
 
 
-static int jpg_decode_impl(Tex* t, u8* file, size_t file_size,
+static int jpg_decode_impl(DynArray* da,
 	jpeg_decompress_struct* cinfo,
-	Handle& img_hm, RowArray& rows, const char** perr_msg)
+	Handle& img_hm, RowArray& rows, Tex* t, const char** perr_msg)
 {
-	src_prepare(cinfo, file, file_size);
+	src_prepare(cinfo, da);
 
 	// ignore return value since:
 	// - suspension is not possible with the mem data source
@@ -473,12 +473,10 @@ static int jpg_decode_impl(Tex* t, u8* file, size_t file_size,
 	//    buffer and replace it with the decoded-image memory handle.
 	mem_free_h(t->hm);	// must come after jpeg_finish_decompress
 	t->hm    = img_hm;
-	t->ofs   = 0;	// jpeg returns decoded image data; no header
 	t->w     = w;
 	t->h     = h;
 	t->bpp   = bpp;
 	t->flags = flags;
-
 	return 0;
 }
 
@@ -534,14 +532,28 @@ static int jpg_encode_impl(Tex* t,
 }
 
 
-static int jpg_decode(u8* file, size_t file_size, Tex* t, const char** perr_msg)
+
+static bool jpg_is_hdr(const u8* file)
 {
 	// JFIF requires SOI marker at start of stream.
 	// we compare single bytes to be endian-safe.
-	if(file[0] != 0xff || file[1] == 0xd8)
-		return TEX_CODEC_CANNOT_HANDLE;
+	return (file[0] == 0xff && file[1] == 0xd8);
+}
 
-	int err = -1;
+
+static size_t jpg_hdr_size(const u8* UNUSED(file))
+{
+	return 0;	// libjpg returns decoded image data; no header
+}
+
+
+static int jpg_decode(DynArray* da, Tex* t, const char** perr_msg)
+{
+	u8* const file         = da->base;
+	const size_t file_size = da->cur_size;
+
+	int err;
+
 	// freed when ret is reached:
 	// .. contains the JPEG decompression parameters and pointers to
 	//    working space (allocated as needed by the JPEG library).
@@ -555,15 +567,13 @@ static int jpg_decode(u8* file, size_t file_size, Tex* t, const char** perr_msg)
 	JpgErrorMgr jerr((j_common_ptr)&cinfo);
 	if(setjmp(jerr.call_site))
 	{
-fail:
-		// libjpg longjmp-ed here after an error, or code below failed.
-		mem_free_h(img_hm);
-		goto ret;
+		err = -1;
+		goto fail;
 	}
 
 	jpeg_create_decompress(&cinfo);
 
-	err = jpg_decode_impl(t, file, file_size, &cinfo, img_hm, rows, perr_msg);
+	err = jpg_decode_impl(da, &cinfo, img_hm, rows, t, perr_msg);
 	if(err < 0)
 		goto fail;
 
@@ -571,6 +581,10 @@ ret:
 	jpeg_destroy_decompress(&cinfo); // releases a "good deal" of memory
 	free(rows);
 	return err;
+
+fail:
+	mem_free_h(img_hm);
+	goto ret;
 }
 
 
@@ -580,7 +594,8 @@ static int jpg_encode(const char* ext, Tex* t, DynArray* da, const char** perr_m
 	if(stricmp(ext, "jpg") && stricmp(ext, "jpeg"))
 		return TEX_CODEC_CANNOT_HANDLE;
 
-	int err = -1;
+	int err;
+
 	// freed when ret is reached:
 	// .. contains the JPEG compression parameters and pointers to
 	//    working space (allocated as needed by the JPEG library).
@@ -591,9 +606,8 @@ static int jpg_encode(const char* ext, Tex* t, DynArray* da, const char** perr_m
 	JpgErrorMgr jerr((j_common_ptr)&cinfo);
 	if(setjmp(jerr.call_site))
 	{
-fail:
-		// either JPEG has raised an error, or code below failed.
-		goto ret;
+		err = -1;
+		goto fail;
 	}
 
 	jpeg_create_compress(&cinfo);
@@ -606,6 +620,10 @@ ret:
 	jpeg_destroy_compress(&cinfo); // releases a "good deal" of memory
 	free(rows);
 	return err;
+
+fail:
+	// currently no extra cleanup needed
+	goto ret;
 }
 
 TEX_CODEC_REGISTER(jpg);

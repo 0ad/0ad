@@ -3,9 +3,6 @@
 #include "XML/Xeromyces.h"
 #include "MaterialManager.h"
 
-#define SAFE_DELETE(x) \
-    if((x)) { delete (x); (x) = NULL; }
-
 static float ClampFloat(float value, float min, float max)
 {
     if(value < min)

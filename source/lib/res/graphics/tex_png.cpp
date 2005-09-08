@@ -76,17 +76,11 @@ static int png_transform(Tex* UNUSED(t), uint UNUSED(transforms))
 
 // split out of png_decode to simplify resource cleanup and avoid
 // "dtor / setjmp interaction" warning.
-static int png_decode_impl(Tex* t, u8* file, size_t file_size,
+static int png_decode_impl(DynArray* da,
 	png_structp png_ptr, png_infop info_ptr,
-	Handle& img_hm, RowArray& rows, const char** perr_msg)
+	Handle& img_hm, RowArray& rows, Tex* t, const char** perr_msg)
 {
-DynArray da;
-da.base = file;
-da.max_size_pa = round_up(file_size, 4096);
-da.cur_size = file_size;
-da.pos = 0;
-da.prot = PROT_READ|PROT_WRITE;
-	png_set_read_fn(png_ptr, &da, io_read);
+	png_set_read_fn(png_ptr, da, io_read);
 
 	// read header and determine format
 	png_read_info(png_ptr, info_ptr);
@@ -125,14 +119,13 @@ da.prot = PROT_READ|PROT_WRITE;
 	png_read_end(png_ptr, info_ptr);
 
 	// success; make sure all data was consumed.
-	debug_assert(da.base == file && da.cur_size == file_size && da.pos == da.cur_size);
+	debug_assert(da->pos == da->cur_size);
 
 	// store image info
 	// .. transparently switch handles - free the old (compressed)
 	//    buffer and replace it with the decoded-image memory handle.
 	mem_free_h(t->hm);	// must come after png_read_end
 	t->hm    = img_hm;
-	t->ofs   = 0;	// libpng returns decoded image data; no header
 	t->w     = w;
 	t->h     = h;
 	t->bpp   = bpp;
@@ -188,13 +181,25 @@ static int png_encode_impl(Tex* t,
 
 
 
-// limitation: palette images aren't supported
-static int png_decode(u8* file, size_t file_size, Tex* t, const char** perr_msg)
+static bool png_is_hdr(const u8* file)
 {
 	// don't use png_sig_cmp, so we don't pull in libpng for
 	// this check alone (it might not actually be used).
-	if(*(u32*)file != FOURCC('\x89','P','N','G'))
-		return TEX_CODEC_CANNOT_HANDLE;
+	return *(u32*)file == FOURCC('\x89','P','N','G');
+}
+
+
+static size_t png_hdr_size(const u8* UNUSED(file))
+{
+	return 0;	// libpng returns decoded image data; no header
+}
+
+
+// limitation: palette images aren't supported
+static int png_decode(DynArray* da, Tex* t, const char** perr_msg)
+{
+	u8* const file         = da->base;
+	const size_t file_size = da->cur_size;
 
 	int err = -1;
 	// freed when ret is reached:
@@ -222,7 +227,7 @@ fail:
 		goto ret;
 	}
 
-	err = png_decode_impl(t, file, file_size, png_ptr, info_ptr, img_hm, rows, perr_msg);
+	err = png_decode_impl(da, png_ptr, info_ptr, img_hm, rows, t, perr_msg);
 	if(err < 0)
 		goto fail;
 

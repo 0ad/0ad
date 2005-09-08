@@ -47,8 +47,7 @@ static int tga_transform(Tex* UNUSED(t), uint UNUSED(transforms))
 }
 
 
-// requirements: uncompressed, direct colour, bottom up
-static int tga_decode(u8* file, size_t file_size, Tex* t, const char** perr_msg)
+static bool tga_is_hdr(const u8* file)
 {
 	TgaHeader* hdr = (TgaHeader*)file;
 
@@ -56,32 +55,46 @@ static int tga_decode(u8* file, size_t file_size, Tex* t, const char** perr_msg)
 	// we can only check if the first 4 bytes are valid
 	// .. not direct colour
 	if(hdr->colour_map_type != 0)
-		return TEX_CODEC_CANNOT_HANDLE;
+		return false;
 	// .. wrong colour type (not uncompressed greyscale or RGB)
 	if(hdr->img_type != TGA_TRUE_COLOUR && hdr->img_type != TGA_GREY)
-		return TEX_CODEC_CANNOT_HANDLE;
+		return false;
 
-	// make sure we can access all header fields
-	const size_t hdr_size = sizeof(TgaHeader) + hdr->img_id_len;
-	if(file_size < hdr_size)
+	// note: we can't check img_id_len or colour_map[0] - they are
+	// undefined and may assume any value.
+
+	return true;
+}
+
+
+static size_t tga_hdr_size(const u8* file)
+{
+	size_t hdr_size = sizeof(TgaHeader);
+	if(file)
 	{
-		*perr_msg = "header not completely read";
-fail:
-		return ERR_CORRUPTED;
+		TgaHeader* hdr = (TgaHeader*)file;
+		hdr_size += hdr->img_id_len;
 	}
+	return hdr_size;
+}
 
+
+// requirements: uncompressed, direct colour, bottom up
+static int tga_decode(DynArray* da, Tex* t, const char** perr_msg)
+{
+	u8* file         = da->base;
+	size_t file_size = da->cur_size;
+
+	TgaHeader* hdr = (TgaHeader*)file;
 	const u8 type  = hdr->img_type;
 	const uint w   = read_le16(&hdr->w);
 	const uint h   = read_le16(&hdr->h);
 	const uint bpp = hdr->bpp;
 	const u8 desc  = hdr->img_desc;
 
-	const u8 alpha_bits = desc & 0x0f;
-	const int orientation = (desc & TGA_TOP_DOWN)? TEX_TOP_DOWN : TEX_BOTTOM_UP;
-	const size_t img_size = tex_img_size(t);
-
 	int flags = 0;
-	if(alpha_bits != 0)
+	flags |= (desc & TGA_TOP_DOWN)? TEX_TOP_DOWN : TEX_BOTTOM_UP;
+	if(desc & 0x0f != 0)	// alpha bits
 		flags |= TEX_ALPHA;
 	if(bpp == 8)
 		flags |= TEX_GREY;
@@ -94,24 +107,16 @@ fail:
 	//    we're not going to bother converting it.
 	if(desc & TGA_RIGHT_TO_LEFT)
 		err = "image is stored right-to-left";
-	if(bpp != 8 && bpp != 16 && bpp != 24 && bpp != 32)
-		err = "invalid bpp";
-	if(file_size < hdr_size + img_size)
-		err = "size < image size";
 	if(err)
 	{
 		*perr_msg = err;
-		goto fail;
+		return ERR_CORRUPTED;
 	}
 
-	t->ofs   = hdr_size;
 	t->w     = w;
 	t->h     = h;
 	t->bpp   = bpp;
 	t->flags = flags;
-
-	tex_codec_set_orientation(t, orientation);
-
 	return 0;
 }
 

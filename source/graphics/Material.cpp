@@ -7,9 +7,6 @@
 #include "Game.h"
 #include "Overlay.h" // for CColor
 
-#define SAFE_DELETE(x) \
-	if((x)) { delete (x); (x) = NULL; }
-
 CMaterial NullMaterial;
 CMaterial IdentityMaterial;
 

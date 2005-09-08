@@ -390,6 +390,18 @@ void* mem_get_ptr(Handle hm, size_t* user_size /* = 0 */)
 }
 
 
+int mem_get(Handle hm, u8** pp, size_t* psize)
+{
+	H_DEREF(hm, Mem, m);
+	if(pp)
+		*pp = (u8*)m->p;
+	if(psize)
+		*psize = m->size;
+	// leave hm locked
+	return 0;
+}
+
+
 /*
 ssize_t mem_size(void* p)
 {

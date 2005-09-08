@@ -205,31 +205,32 @@ static int dds_transform(Tex* t, uint transforms)
 }
 
 
-static int dds_decode(u8* file, size_t file_size, Tex* t, const char** perr_msg)
+static bool dds_is_hdr(const u8* file)
 {
-	if(*(u32*)file != FOURCC('D','D','S',' '))
-		return TEX_CODEC_CANNOT_HANDLE;
+	return *(u32*)file == FOURCC('D','D','S',' ');
+}
 
-	const DDSURFACEDESC2* surf = (const DDSURFACEDESC2*)(file+4);
-	const size_t hdr_size = 4+sizeof(DDSURFACEDESC2);
 
-	// make sure we can access all header fields
-	if(file_size < hdr_size)
-	{
-		*perr_msg = "header not completely read";
-fail:
-		return ERR_CORRUPTED;
-	}
+static size_t dds_hdr_size(const u8* UNUSED(file))
+{
+	return 4+sizeof(DDSURFACEDESC2);
+}
 
-	const u32 sd_size   = read_le32(&surf->dwSize);
-	const u32 sd_flags  = read_le32(&surf->dwFlags);
-	const u32 h         = read_le32(&surf->dwHeight);
-	const u32 w         = read_le32(&surf->dwWidth);
-	const u32 img_size  = read_le32(&surf->dwLinearSize);
-	      u32 mipmaps   = read_le32(&surf->dwMipMapCount);
-	const u32 pf_size   = read_le32(&surf->ddpfPixelFormat.dwSize);
-	const u32 pf_flags  = read_le32(&surf->ddpfPixelFormat.dwFlags);
-	const u32 fourcc    = surf->ddpfPixelFormat.dwFourCC;
+
+static int dds_decode(DynArray* da, Tex* t, const char** perr_msg)
+{
+	u8* file         = da->base;
+	size_t file_size = da->cur_size;
+
+	const DDSURFACEDESC2* hdr = (const DDSURFACEDESC2*)(file+4);
+	const u32 sd_size   = read_le32(&hdr->dwSize);
+	const u32 sd_flags  = read_le32(&hdr->dwFlags);
+	const u32 h         = read_le32(&hdr->dwHeight);
+	const u32 w         = read_le32(&hdr->dwWidth);
+	      u32 mipmaps   = read_le32(&hdr->dwMipMapCount);
+	const u32 pf_size   = read_le32(&hdr->ddpfPixelFormat.dwSize);
+	const u32 pf_flags  = read_le32(&hdr->ddpfPixelFormat.dwFlags);
+	const u32 fourcc    = hdr->ddpfPixelFormat.dwFourCC;
 		// compared against FOURCC, which takes care of endian conversion.
 
 	// we'll use these fields; make sure they're present below.
@@ -279,13 +280,9 @@ fail:
 
 	// sanity checks
 	const char* err = 0;
-	if(file_size < hdr_size + img_size)
-		err = "file size too small";
 	if(w % 4 || h % 4)
 		err = "image dimensions not padded to S3TC block size";
-	if(!w || !h)
-		err = "width or height = 0";
-	if(bpp == 0)
+	if(flags & TEX_DXT == 0)
 		err = "invalid pixel format (not DXT{1,3,5})";
 	if((sd_flags & sd_req_flags) != sd_req_flags)
 		err = "missing one or more required fields (w, h, pixel format)";
@@ -296,10 +293,9 @@ fail:
 	if(err)
 	{
 		*perr_msg = err;
-		goto fail;
+		return ERR_CORRUPTED;
 	}
 
-	t->ofs   = hdr_size;
 	t->w     = w;
 	t->h     = h;
 	t->bpp   = bpp;

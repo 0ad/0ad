@@ -40,23 +40,33 @@ static int bmp_transform(Tex* UNUSED(t), uint UNUSED(transforms))
 }
 
 
-// requirements: uncompressed, direct colour, bottom up
-static int bmp_decode(u8* file, size_t file_size, Tex* t, const char** perr_msg)
+static bool bmp_is_hdr(const u8* file)
 {
 	// check header signature (bfType == "BM"?).
 	// we compare single bytes to be endian-safe.
-	if(file[0] != 'B' || file[1] != 'M')
-		return TEX_CODEC_CANNOT_HANDLE;
+	return (file[0] == 'B' && file[1] == 'M');
+}
 
+
+static size_t bmp_hdr_size(const u8* file)
+{
 	const size_t hdr_size = sizeof(BmpHeader);
-
-	// make sure we can access all header fields
-	if(file_size < hdr_size)
+	if(file)
 	{
-		*perr_msg = "header not completely read";
-fail:
-		return ERR_CORRUPTED;
+		BmpHeader* hdr = (BmpHeader*)file;
+		const u32 ofs = read_le32(&hdr->bfOffBits);
+		debug_assert(ofs >= hdr_size && "bmp_hdr_size invalid");
+		return ofs;
 	}
+	return hdr_size;
+}
+
+
+// requirements: uncompressed, direct colour, bottom up
+static int bmp_decode(DynArray* da, Tex* t, const char** perr_msg)
+{
+	u8* file         = da->base;
+	size_t file_size = da->cur_size;
 
 	const BmpHeader* hdr = (const BmpHeader*)file;
 	const long w       = (long)read_le32(&hdr->biWidth);
@@ -65,11 +75,12 @@ fail:
 	const u32 compress = read_le32(&hdr->biCompression);
 	const u32 ofs      = read_le32(&hdr->bfOffBits);
 
-	const int orientation = (h_ < 0)? TEX_TOP_DOWN : TEX_BOTTOM_UP;
 	const long h = abs(h_);
-	const size_t img_size = tex_img_size(t);
 
-	int flags = TEX_BGR;
+	int flags = 0;
+	flags |= (h_ < 0)? TEX_TOP_DOWN : TEX_BOTTOM_UP;
+	if(bpp > 16)
+		flags |= TEX_BGR;
 	if(bpp == 32)
 		flags |= TEX_ALPHA;
 
@@ -77,24 +88,16 @@ fail:
 	const char* err = 0;
 	if(compress != BI_RGB)
 		err = "compressed";
-	if(bpp != 24 && bpp != 32)
-		err = "invalid bpp (not direct colour)";
-	if(file_size < ofs+img_size)
-		err = "image not completely read";
 	if(err)
 	{
 		*perr_msg = err;
-		goto fail;
+		return ERR_CORRUPTED;
 	}
 
-	t->ofs   = ofs;
 	t->w     = w;
 	t->h     = h;
 	t->bpp   = bpp;
 	t->flags = flags;
-
-	tex_codec_set_orientation(t, orientation);
-
 	return 0;
 }
 

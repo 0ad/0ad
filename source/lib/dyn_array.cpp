@@ -16,6 +16,10 @@ static size_t round_up_to_page(size_t size)
 	return round_up(size, page_size);
 }
 
+// indicates that this DynArray must not be resized or freed
+// (e.g. because it merely wraps an existing memory range).
+// stored in da->prot to reduce size; doesn't conflict with any PROT_* flags.
+const int DA_NOT_OUR_MEM = 0x40000000;
 
 static int validate_da(DynArray* da)
 {
@@ -37,7 +41,7 @@ static int validate_da(DynArray* da)
 		return -4;
 	if(pos > cur_size || pos > max_size_pa)
 		return -5;
-	if(prot & ~(PROT_READ|PROT_WRITE|PROT_EXEC))
+	if(prot & ~(PROT_READ|PROT_WRITE|PROT_EXEC|DA_NOT_OUR_MEM))
 		return -6;
 
 	return 0;
@@ -108,9 +112,27 @@ int da_alloc(DynArray* da, size_t max_size)
 }
 
 
+int da_wrap_fixed(DynArray* da, u8* p, size_t size)
+{
+	da->base        = p;
+	da->max_size_pa = round_up_to_page(size);
+	da->cur_size    = size;
+	da->pos         = 0;
+	da->prot        = PROT_READ|PROT_WRITE|DA_NOT_OUR_MEM;
+	CHECK_DA(da);
+	return 0;
+}
+
+
 int da_free(DynArray* da)
 {
 	CHECK_DA(da);
+
+	if(da->prot & DA_NOT_OUR_MEM)
+	{
+		debug_warn("da_free: da is marked DA_NOT_OUR_MEM, must not be altered");
+		return -1;
+	}
 
 	// latch pointer; wipe out the DynArray for safety
 	// (must be done here because mem_release may fail)
@@ -126,6 +148,12 @@ int da_free(DynArray* da)
 int da_set_size(DynArray* da, size_t new_size)
 {
 	CHECK_DA(da);
+
+	if(da->prot & DA_NOT_OUR_MEM)
+	{
+		debug_warn("da_set_size: da is marked DA_NOT_OUR_MEM, must not be altered");
+		return -1;
+	}
 
 	// determine how much to add/remove
 	const size_t cur_size_pa = round_up_to_page(da->cur_size);
@@ -153,6 +181,14 @@ int da_set_size(DynArray* da, size_t new_size)
 int da_set_prot(DynArray* da, int prot)
 {
 	CHECK_DA(da);
+
+	// somewhat more subtle: POSIX mprotect requires the memory have been
+	// mmap-ed, which it probably wasn't here.
+	if(da->prot & DA_NOT_OUR_MEM)
+	{
+		debug_warn("da_set_prot: da is marked DA_NOT_OUR_MEM, must not be altered");
+		return -1;
+	}
 
 	da->prot = prot;
 	CHECK_ERR(mem_protect(da->base, da->cur_size, prot));

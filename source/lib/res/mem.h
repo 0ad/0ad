@@ -28,6 +28,7 @@ extern int mem_free_h(Handle& hm);
 // returns 0 if the handle is invalid
 extern void* mem_get_ptr(Handle h, size_t* size = 0);
 
+extern int mem_get(Handle hm, u8** pp, size_t* psize);
 
 extern void mem_shutdown(void);
 

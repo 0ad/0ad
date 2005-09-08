@@ -8,12 +8,14 @@
 
 struct TexCodecVTbl
 {
+	// 'template method' to increase code reuse and simplify writing new codecs
+
 	// pointers aren't const, because the textures
 	// may have to be flipped in-place - see "texture orientation".
 	// size is guaranteed to be >= 4.
 	// (usually enough to compare the header's "magic" field;
 	// anyway, no legitimate file will be smaller)
-	int (*decode)(u8* data, size_t data_size, Tex* t, const char** perr_msg);
+	int (*decode)(DynArray* da, Tex* t, const char** perr_msg);
 
 	// rationale: some codecs cannot calculate the output size beforehand
 	// (e.g. PNG output via libpng); we therefore require each one to
@@ -22,12 +24,17 @@ struct TexCodecVTbl
 
 	int (*transform)(Tex* t, uint transforms);
 
+	// only guaranteed 4 bytes!
+	bool (*is_hdr)(const u8* file);
+
+	size_t (*hdr_size)(const u8* file);
+
 	const char* name;
 };
 
 
 #define TEX_CODEC_REGISTER(name)\
-	static const TexCodecVTbl vtbl = { name##_decode, name##_encode, name##_transform, #name};\
+	static const TexCodecVTbl vtbl = { name##_decode, name##_encode, name##_transform, name##_is_hdr, name##_hdr_size, #name};\
 	static int dummy = tex_codec_register(&vtbl);
 
 

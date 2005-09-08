@@ -179,6 +179,8 @@ static const TexCodecVTbl* codecs[MAX_CODECS];
 // can handle the given format, this is not a problem.
 int tex_codec_register(const TexCodecVTbl* c)
 {
+	debug_assert(c != 0 && "tex_codec_register(0) - why?");
+
 	for(int i = 0; i < MAX_CODECS; i++)
 	{
 		// slot available
@@ -233,13 +235,6 @@ int tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
 }
 
 
-int tex_codec_set_orientation(Tex* t, uint file_orientation)
-{
-	uint transforms = file_orientation ^ global_orientation;
-	return plain_transform(t, transforms);
-}
-
-
 int tex_codec_write(Tex* t, uint transforms, const void* hdr, size_t hdr_size, DynArray* da)
 {
 	RETURN_ERR(tex_transform(t, transforms));
@@ -274,37 +269,67 @@ void tex_set_global_orientation(int o)
 }
 
 
-int tex_load_mem(Handle hm, const char* fn, Tex* t)
+int tex_load_mem(Handle hm, Tex* t)
 {
-	size_t size;
-	void* _p = mem_get_ptr(hm, &size);
+#define ERR_TOO_SHORT -4
 
-	// guarantee is_fmt routines 4 header bytes
-	if(size < 4)
-		return ERR_CORRUPTED;
-	t->hm = hm;
+	u8* file; size_t file_size;
+	CHECK_ERR(mem_get(hm, &file, &file_size));
 
-	// more convenient to pass loaders u8 - less casting.
-	// not const, because image may have to be flipped (in-place).
-	u8* p = (u8*)_p;
-
-	// find codec that understands the data, and decode
-	for(int i = 0; i < MAX_CODECS; i++)
+	// find codec that recognizes the header's magic field
+	const TexCodecVTbl* c = 0;
+	// .. we guarantee at least 4 bytes for is_hdr to look at
+	if(file_size < 4)
+		return ERR_TOO_SHORT;
+	for(uint i = 0; i < MAX_CODECS; i++)
 	{
-		// MAX_CODECS isn't a tight bound and we have hit a 0 entry
-		if(!codecs[i])
-			continue;
-		const char* err_msg = 0;
-		int err = codecs[i]->decode(p, size, t, &err_msg);
-		if(err == TEX_CODEC_CANNOT_HANDLE)
-			continue;
-		if(err == 0)
-			return 0;
-		debug_printf("tex_load_mem (%s): %s: %s", codecs[i]->name, fn, err_msg);
-		CHECK_ERR(err);
+		c = codecs[i];	// may be 0 (e.g. if MAX_CODECS != num codecs)
+		if(c && c->is_hdr(file))
+			goto found_codec;
+	}
+	return ERR_UNKNOWN_FORMAT;
+found_codec:
+
+	// make sure enough of the file has been read
+	const size_t min_hdr_size = c->hdr_size(0);
+	if(file_size < min_hdr_size)
+		return ERR_TOO_SHORT;
+	const size_t hdr_size = c->hdr_size(file);
+	if(file_size < hdr_size)
+		return ERR_TOO_SHORT;
+
+
+	DynArray da;
+	CHECK_ERR(da_wrap_fixed(&da, file, file_size));
+	t->hm = hm;
+	t->ofs = hdr_size;
+
+	const char* err_msg = 0;
+	int err = c->decode(&da, t, &err_msg);
+	if(err < 0)
+	{
+		debug_printf("tex_load_mem (%s): %s", c->name, err_msg);
+		debug_warn("tex_load_mem failed");
+		return err;
 	}
 
-	return ERR_UNKNOWN_FORMAT;
+	// sanity checks
+	if(!t->w || !t->h || t->bpp > 32)
+		return ERR_TEX_FMT_INVALID;
+	// TODO: need to compare against the new t->hm (file may be compressed, cannot use file_size)
+	//if(mem_size < t->ofs + tex_img_size(t))
+	//	return ERR_TOO_SHORT;
+
+	// flip image to global orientation
+	uint orientation = t->flags & TEX_ORIENTATION;
+	// .. but only if it knows which way around it is (DDS doesn't)
+	if(orientation)
+	{
+		uint transforms = orientation ^ global_orientation;
+		WARN_ERR(plain_transform(t, transforms));
+	}
+
+	return 0;
 }
 
 
@@ -314,7 +339,7 @@ int tex_load(const char* fn, Tex* t)
 	void* p; size_t size;	// unused
 	Handle hm = vfs_load(fn, p, size);
 	RETURN_ERR(hm);	// (need handle below; can't test return value directly)
-	int ret = tex_load_mem(hm, fn, t);
+	int ret = tex_load_mem(hm, t);
 	// do not free hm! it either still holds the image data (i.e. texture
 	// wasn't compressed) or was replaced by a new buffer for the image data.
 	if(ret < 0)
