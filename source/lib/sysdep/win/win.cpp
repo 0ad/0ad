@@ -682,7 +682,7 @@ int sys_cursor_free(void* cursor)
 typedef int(*_PIFV)(void);
 
 // pointers to start and end of function tables.
-// note: COFF throws out empty segments, so we have to put in one value
+// note: COFF tosses out empty segments, so we have to put in one value
 // (zero, because call_func_tbl has to ignore NULL entries anyway).
 #pragma data_seg(WIN_CALLBACK_PRE_LIBC(a))
 _PIFV pre_libc_begin[] = { 0 };

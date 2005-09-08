@@ -26,8 +26,7 @@ void CPlayList::load(const char* file)
 	void* p;
 	size_t size;
 	Handle hm = vfs_load(file, p, size);
-	if(hm <= 0)
-		throw "CPlaylist::Load failed";
+	WARN_ERR_RETURN(hm);
 
 	const char* playlist = (const char*)p;
 	const char* track;

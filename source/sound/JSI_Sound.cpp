@@ -24,9 +24,8 @@ JSI_Sound::JSI_Sound( const CStr& Filename )
 	// open failed. raising an exception is the only way to report errors,
 	// since we're in the ctor and don't want to move the open call elsewhere
 	// (by requiring an explicit open() call).
-	// will be caught by JSI_Sound::Construct.
 	if(m_Handle <= 0)
-		throw (int)m_Handle;
+		throw (int)m_Handle;	// caught by JSI_Sound::Construct.
 
 	snd_set_pos( m_Handle, 0,0,0, true);
 }

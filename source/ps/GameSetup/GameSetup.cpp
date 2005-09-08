@@ -445,15 +445,13 @@ static void InitVfs(const char* argv0)
 	// allowed to overwrite critical game (or worse, OS) files.
 	// the VFS prevents any accesses to files above this directory.
 	int err = file_rel_chdir(argv0, "../data");
-	if(err < 0)
-		throw err;
+	WARN_ERR(err);
 
-	{
-		vfs_init();
-		vfs_mount("", "mods/official", VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES|VFS_MOUNT_WATCH);
-		vfs_mount("screenshots/", "screenshots");
-		vfs_mount("profiles/", "profiles", VFS_MOUNT_RECURSIVE);
-	}
+	vfs_init();
+	vfs_mount("", "mods/official", VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES|VFS_MOUNT_WATCH);
+	vfs_mount("screenshots/", "screenshots");
+	vfs_mount("profiles/", "profiles", VFS_MOUNT_RECURSIVE);
+
 	extern void vfs_dump_stats();
 	vfs_dump_stats();
 	// don't try vfs_display yet: SDL_Init hasn't yet redirected stdout
