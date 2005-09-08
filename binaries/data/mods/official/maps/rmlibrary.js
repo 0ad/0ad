@@ -12,12 +12,18 @@ const
 	TYPE_SMOOTH_ELEVATION_PAINTER = 9,
 	TYPE_SIMPLE_GROUP = 10,
 	TYPE_AVOID_TILE_CLASS_CONSTRAINT = 11,
-	TYPE_TILE_CLASS_PAINTER = 12;
+	TYPE_TILE_CLASS_PAINTER = 12,
+	TYPE_STAY_IN_TILE_CLASS_CONSTRAINT = 13,
+	TYPE_BORDER_TILE_CLASS_CONSTRAINT = 14;
 
 // SmoothElevationPainter constants
 
 const ELEVATION_SET = 0;
 const ELEVATION_MODIFY = 1;
+
+// PI
+
+const PI = Math.PI;
 
 // initFromScenario constants
 
@@ -28,6 +34,38 @@ const LOAD_NON_INTERACTIVES = 4;
 const LOAD_ALL = LOAD_TERRAIN | LOAD_INTERACTIVES | LOAD_NON_INTERACTIVES;
 
 // Utility functions
+
+function fractionToTiles(f) {
+	return getMapSize() * f;
+}
+
+function tilesToFraction(t) {
+	return t / getMapSize();
+}
+
+function fractionToSize(f) {
+	return getMapSize() * getMapSize() * f;
+}
+
+function sizeToFraction(s) {
+	return s / getMapSize() / getMapSize();
+}
+
+function cos(x) {
+	return Math.cos(x);
+}
+
+function sin(x) {
+	return Math.sin(x);
+}
+
+function tan(x) {
+	return Math.sin(x);
+}
+
+function round(x) {
+	return Math.round(x);
+}
 
 function println(x) {
 	print(x);
@@ -55,11 +93,12 @@ function chooseRand() {
 	return ar[randInt(ar.length)];
 }
 
-function createAreas(centeredPlacer, painter, constraint, num, maxFail) {
-	if(maxFail == undefined) {
-		maxFail = 10 * num;
+function createAreas(centeredPlacer, painter, constraint, num, retryFactor) {
+	if(retryFactor == undefined) {
+		retryFactor = 10;
 	}
 	
+	var maxFail = num * retryFactor;
 	var good = 0;
 	var bad = 0;
 	var ret = new Array();
@@ -75,20 +114,22 @@ function createAreas(centeredPlacer, painter, constraint, num, maxFail) {
 			bad++;
 		}
 	}
+	
 	return ret;
 }
 
-function createObjectGroups(placer, constraint, num, maxFail) {
-	if(maxFail == undefined) {
-		maxFail = 10 * num;
+function createObjectGroups(placer, player, constraint, num, retryFactor) {
+	if(retryFactor == undefined) {
+		retryFactor = 10;
 	}
 	
+	var maxFail = num * retryFactor;
 	var good = 0;
 	var bad = 0;
 	while(good < num && bad <= maxFail) {
 		placer.x = randInt(SIZE);
 		placer.y = randInt(SIZE);
-		var r = createObjectGroup(placer, constraint);
+		var r = createObjectGroup(placer, player, constraint);
 		if(r) {
 			good++;
 		}
@@ -171,6 +212,19 @@ function AvoidTileClassConstraint(tileClass, distance) {
 	this.distance = distance;
 }
 
+function StayInTileClassConstraint(tileClass, distance) {
+	this.TYPE = TYPE_STAY_IN_TILE_CLASS_CONSTRAINT;
+	this.tileClass = tileClass;
+	this.distance = distance;
+}
+
+function BorderTileClassConstraint(tileClass, distanceInside, distanceOutside) {
+	this.TYPE = TYPE_BORDER_TILE_CLASS_CONSTRAINT;
+	this.tileClass = tileClass;
+	this.distanceInside = distanceInside;
+	this.distanceOutside = distanceOutside;
+}
+
 // Object groups
 
 function SimpleObject(type, count, distance) {
@@ -179,9 +233,10 @@ function SimpleObject(type, count, distance) {
 	this.distance = distance;
 }
 
-function SimpleGroup(elements, tileClass, x, y) {
+function SimpleGroup(elements, avoidSelf, tileClass, x, y) {
 	this.TYPE = TYPE_SIMPLE_GROUP;
 	this.elements = elements;
+	this.avoidSelf = avoidSelf!=undefined ? avoidSelf : false;
 	this.tileClass = tileClass!=undefined ? tileClass : null;
 	this.x = x!=undefined ? x : -1;
 	this.y = x!=undefined ? y : -1;
