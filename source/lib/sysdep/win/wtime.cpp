@@ -185,8 +185,7 @@ static int choose_impl()
 	//   this happens on notebooks now, but eventually desktop systems
 	//   will do this as well (if not to save power, for heat reasons).
 	//   frequency changes are too often and drastic to correct,
-	//   and we don't want to mess with the system power settings.
-	//   => unsafe.
+	//   and we don't want to mess with the system power settings => unsafe.
 	if(cpu_freq > 0.0 && ia32_cap(TSC))
 	{
 		safe = (cpu_smp == 0 && cpu_speedstep == 0);
@@ -294,13 +293,13 @@ static i64 ticks_lk()
 {
 	switch(hrt_impl)
 	{
-// TSC
+	// TSC
 #if CPU_IA32 && !defined(NO_TSC)
 	case HRT_TSC:
 		return (i64)rdtsc();
 #endif
 
-// QPC
+	// QPC
 #if OS_WIN && !defined(NO_QPC)
 	case HRT_QPC:
 		{
@@ -311,7 +310,7 @@ static i64 ticks_lk()
 		}
 #endif
 
-// TGT
+	// TGT
 #if OS_WIN
 	case HRT_GTC:
 		return (i64)GetTickCount();
@@ -681,7 +680,7 @@ time_t utc_filetime_to_time_t(FILETIME* ft)
 //   and ourselves adding the appropriate bias.
 //
 // called for FAT file times; see wposix filetime_to_time_t.
-time_t local_filetime_to_time_t(FILETIME* ft)
+time_t time_t_from_local_filetime(FILETIME* ft)
 {
 	SYSTEMTIME st;
 	FileTimeToSystemTime(ft, &st);
@@ -752,12 +751,6 @@ static int wtime_shutdown()
 	return hrt_shutdown();
 }
 
-// Called by the crash code to kill the thread,
-// because it disrupts debugging.
-void abort_timer()
-{    
-	wtime_shutdown();
-}
 
 void wtime_reset_impl()
 {
@@ -828,14 +821,14 @@ int gettimeofday(struct timeval* tv, void* UNUSED(tzp))
 
 uint sleep(uint sec)
 {
-	Sleep(sec * 1000);
+	Sleep(sec * 1000);	// don't bother checking for overflow (user's fault)
 	return sec;
 }
 
 
 int usleep(useconds_t us)
 {
-	// can't overflow, because us < 1e6
-	sleep_ns(us * 1000);
+	debug_assert(us < _1e6);
+	sleep_ns(us * 1000);	// can't overflow due to <us> limit
 	return 0;
 }

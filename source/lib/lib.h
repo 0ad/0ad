@@ -170,6 +170,34 @@ STMT(\
 
 
 
+// if ok evaluates to false or FALSE, warn user and return -1.
+#define WARN_RETURN_IF_FALSE(ok)\
+STMT(\
+	if(!(ok))\
+	{\
+		debug_warn("FYI: WARN_RETURN_IF_FALSE reports that a function failed."\
+		           "feel free to ignore or suppress this warning.");\
+		return -1;\
+	}\
+)
+
+// if ok evaluates to false or FALSE, return -1.
+#define RETURN_IF_FALSE(ok)\
+STMT(\
+	if(!(ok))\
+		return -1;\
+)
+
+// if ok evaluates to false or FALSE, warn user.
+#define WARN_IF_FALSE(ok)\
+STMT(\
+	if(!(ok))\
+		debug_warn("FYI: WARN_IF_FALSE reports that a function failed."\
+		           "feel free to ignore or suppress this warning.");\
+)
+
+
+
 // useful because VC6 may return 0 on failure, instead of throwing.
 // this wraps the exception handling, and creates a NULL pointer on failure.
 #define SAFE_NEW(type, ptr)\
@@ -183,7 +211,8 @@ STMT(\
 		ptr = 0;\
 	}
 
-#define SAFE_DELETE(p) STMT(\
+#define SAFE_DELETE(p)\
+STMT(\
 	if((p))\
 	{\
 		delete (p);\

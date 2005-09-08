@@ -225,7 +225,7 @@ static void detect_filesystem()
 
 
 // from wtime
-extern time_t local_filetime_to_time_t(FILETIME* ft);
+extern time_t time_t_from_local_filetime(FILETIME* ft);
 extern time_t utc_filetime_to_time_t(FILETIME* ft);
 
 // convert Windows FILETIME to POSIX time_t (seconds-since-1970 UTC);
@@ -246,7 +246,7 @@ static time_t filetime_to_time_t(FILETIME* ft)
 	{
 		FILETIME local_ft;
 		FileTimeToLocalFileTime(ft, &local_ft);
-		return local_filetime_to_time_t(&local_ft);
+		return time_t_from_local_filetime(&local_ft);
 	}
 
 	return utc_filetime_to_time_t(ft);
@@ -615,11 +615,7 @@ int mprotect(void* addr, size_t len, int prot)
 	const DWORD flNewProtect = win32_prot(prot);
 	DWORD flOldProtect;	// required by VirtualProtect
 	BOOL ok = VirtualProtect(addr, len, flNewProtect, &flOldProtect);
-	if(!ok)
-	{
-		debug_warn("mprotect failed");	// todo4
-		return -1;
-	}
+	WARN_RETURN_IF_FALSE(ok);
 	return 0;
 }
 
@@ -776,12 +772,7 @@ int munmap(void* start, size_t UNUSED(len))
 		// VirtualFree requires dwSize to be 0 (entire region is released).
 		ok = VirtualFree(start, 0, MEM_RELEASE);
 
-	// both failed
-	if(!ok)
-	{
-		debug_warn("munmap failed");	// todo4
-		return -1;
-	}
+	WARN_RETURN_IF_FALSE(ok);	// both failed
 	return 0;
 }
 
@@ -804,9 +795,8 @@ static void* void_from_HMODULE(HMODULE hModule)
 int dlclose(void* handle)
 {
 	BOOL ok = FreeLibrary(HMODULE_from_void(handle));
-	if(!ok)
-		debug_warn("dlclose failed");
-	return ok? 0 : -1;
+	WARN_RETURN_IF_FALSE(ok);
+	return 0;
 }
 
 

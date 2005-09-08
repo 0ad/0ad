@@ -385,28 +385,28 @@ typedef std::set<std::string> StringSet;
 // note: we need the full DLL path for dll_list_add but DirEnt only gives us
 // the name. for efficiency, we append this in a PathPackage allocated by
 // add_oal_dlls_in_dir.
-static void add_if_oal_dll(const DirEnt* ent, PathPackage* pp, StringSet* dlls)
+static int add_if_oal_dll(const DirEnt* ent, PathPackage* pp, StringSet* dlls)
 {
 	const char* fn = ent->name;
 
 	// skip non-files.
 	if(!DIRENT_IS_DIR(ent))
-		return;
+		return 0;
 
 	// skip if not an OpenAL DLL.
 	const size_t len = strlen(fn);
 	const bool oal = len >= 7 && !stricmp(fn+len-7, "oal.dll");
 	const bool openal = strstr(fn, "OpenAL") != 0;
 	if(!oal && !openal)
-		return;
+		return 0;
 
 	// skip if already in StringSet (i.e. has already been dll_list_add-ed)
 	std::pair<StringSet::iterator, bool> ret = dlls->insert(fn);
 	if(!ret.second)	// insert failed - element already there
-		return;
+		return 0;
 
-	WARN_ERR_RETURN(pp_append_file(pp, fn));	// todo4
-	(void)dll_list_add(pp->path);
+	RETURN_ERR(pp_append_file(pp, fn));
+	return dll_list_add(pp->path);
 }
 
 
@@ -416,26 +416,25 @@ static void add_if_oal_dll(const DirEnt* ent, PathPackage* pp, StringSet* dlls)
 // same name in the system directory.
 //
 // <dir>: no trailing.
-static void add_oal_dlls_in_dir(const char* dir, StringSet* dlls)
+static int add_oal_dlls_in_dir(const char* dir, StringSet* dlls)
 {
-	int err;
-
 	PathPackage pp;
-	(void)pp_set_dir(&pp, dir);
+	RETURN_ERR(pp_set_dir(&pp, dir));
 
 	DirIterator d;
-	WARN_ERR_RETURN(dir_open(dir, &d));	// TODO4
+	RETURN_ERR(dir_open(dir, &d));
 
 	DirEnt ent;
 	for(;;)	// instead of while to avoid warning
 	{
-		err = dir_next_ent(&d, &ent);
-		if(err == ERR_DIR_END)
+		int err = dir_next_ent(&d, &ent);
+		if(err != 0)
 			break;
-		add_if_oal_dll(&ent, &pp, dlls);
+		(void)add_if_oal_dll(&ent, &pp, dlls);
 	}
 
 	(void)dir_close(&d);
+	return 0;
 }
 
 
@@ -481,9 +480,9 @@ int win_get_snd_info()
 	// find all DLLs related to OpenAL, retrieve their versions,
 	// and store in snd_drv_ver string.
 	dll_list_init(snd_drv_ver, SND_DRV_VER_LEN);
-	dll_list_add(ds_drv_path);
+	(void)dll_list_add(ds_drv_path);
 	StringSet dlls;	// ensures uniqueness
-	add_oal_dlls_in_dir(win_exe_dir, &dlls);
-	add_oal_dlls_in_dir(win_sys_dir, &dlls);
+	(void)add_oal_dlls_in_dir(win_exe_dir, &dlls);
+	(void)add_oal_dlls_in_dir(win_sys_dir, &dlls);
 	return 0;
 }
