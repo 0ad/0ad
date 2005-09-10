@@ -211,13 +211,19 @@ static bool dds_is_hdr(const u8* file)
 }
 
 
+static bool dds_is_ext(const char* ext)
+{
+	return !stricmp(ext, "dds");
+}
+
+
 static size_t dds_hdr_size(const u8* UNUSED(file))
 {
 	return 4+sizeof(DDSURFACEDESC2);
 }
 
 
-static int dds_decode(DynArray* da, Tex* t, const char** perr_msg)
+static int dds_decode(DynArray* da, Tex* t)
 {
 	u8* file         = da->base;
 	size_t file_size = da->cur_size;
@@ -279,22 +285,19 @@ static int dds_decode(DynArray* da, Tex* t, const char** perr_msg)
 
 
 	// sanity checks
-	const char* err = 0;
+	// .. dimensions not padded to S3TC block size
 	if(w % 4 || h % 4)
-		err = "image dimensions not padded to S3TC block size";
-	if(flags & TEX_DXT == 0)
-		err = "invalid pixel format (not DXT{1,3,5})";
+		return ERR_TEX_INVALID_SIZE;
+	// .. unknown FOURCC
+	if((flags & TEX_DXT) == 0)
+		return ERR_UNKNOWN_FORMAT;
+	// .. missing required field(s)
 	if((sd_flags & sd_req_flags) != sd_req_flags)
-		err = "missing one or more required fields (w, h, pixel format)";
+		return ERR_INCOMPLETE_HEADER;
 	if(sizeof(DDPIXELFORMAT) != pf_size)
-		err = "DDPIXELFORMAT size mismatch";
-	if(sizeof(DDSURFACEDESC2) != sd_size)
-		err = "DDSURFACEDESC2 size mismatch";
-	if(err)
-	{
-		*perr_msg = err;
 		return ERR_CORRUPTED;
-	}
+	if(sizeof(DDSURFACEDESC2) != sd_size)
+		return ERR_CORRUPTED;
 
 	t->w     = w;
 	t->h     = h;
@@ -304,7 +307,7 @@ static int dds_decode(DynArray* da, Tex* t, const char** perr_msg)
 }
 
 
-static int dds_encode(const char* UNUSED(ext), Tex* UNUSED(t), DynArray* UNUSED(da), const char** UNUSED(perr_msg))
+static int dds_encode(Tex* UNUSED(t), DynArray* UNUSED(da))
 {
 	// note: do not return ERR_NOT_IMPLEMENTED et al. because that would
 	// break tex_write (which assumes either this, 0 or errors are returned).

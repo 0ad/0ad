@@ -189,8 +189,11 @@ void WriteScreenshot(const char* extension)
 		flags |= TEX_BGR;
 	}
 
-	const size_t size = w * h * bpp;
-	void* img = mem_alloc(size);
+	const size_t img_size = w * h * bpp/8;
+	const size_t hdr_size = tex_hdr_size(fn);
+	void* data = mem_alloc(hdr_size+img_size, FILE_BLOCK_SIZE);
+	GLvoid* img = (u8*)data + hdr_size;
+
 
 	glReadPixels(0, 0, w, h, fmt, GL_UNSIGNED_BYTE, img);
 

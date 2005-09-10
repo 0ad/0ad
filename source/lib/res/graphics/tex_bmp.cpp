@@ -48,6 +48,12 @@ static bool bmp_is_hdr(const u8* file)
 }
 
 
+static bool bmp_is_ext(const char* ext)
+{
+	return !stricmp(ext, "bmp");
+}
+
+
 static size_t bmp_hdr_size(const u8* file)
 {
 	const size_t hdr_size = sizeof(BmpHeader);
@@ -63,7 +69,7 @@ static size_t bmp_hdr_size(const u8* file)
 
 
 // requirements: uncompressed, direct colour, bottom up
-static int bmp_decode(DynArray* da, Tex* t, const char** perr_msg)
+static int bmp_decode(DynArray* da, Tex* t)
 {
 	u8* file         = da->base;
 	size_t file_size = da->cur_size;
@@ -73,7 +79,6 @@ static int bmp_decode(DynArray* da, Tex* t, const char** perr_msg)
 	const long h_      = (long)read_le32(&hdr->biHeight);
 	const u16 bpp      = read_le16(&hdr->biBitCount);
 	const u32 compress = read_le32(&hdr->biCompression);
-	const u32 ofs      = read_le32(&hdr->bfOffBits);
 
 	const long h = abs(h_);
 
@@ -85,14 +90,8 @@ static int bmp_decode(DynArray* da, Tex* t, const char** perr_msg)
 		flags |= TEX_ALPHA;
 
 	// sanity checks
-	const char* err = 0;
 	if(compress != BI_RGB)
-		err = "compressed";
-	if(err)
-	{
-		*perr_msg = err;
-		return ERR_CORRUPTED;
-	}
+		return ERR_TEX_COMPRESSED;
 
 	t->w     = w;
 	t->h     = h;
@@ -102,11 +101,8 @@ static int bmp_decode(DynArray* da, Tex* t, const char** perr_msg)
 }
 
 
-static int bmp_encode(const char* ext, Tex* t, DynArray* da, const char** UNUSED(perr_msg))
+static int bmp_encode(Tex* t, DynArray* da)
 {
-	if(stricmp(ext, "bmp"))
-		return TEX_CODEC_CANNOT_HANDLE;
-
 	const size_t hdr_size = sizeof(BmpHeader);	// needed for BITMAPFILEHEADER
 	const size_t img_size = tex_img_size(t);
 	const size_t file_size = hdr_size + img_size;

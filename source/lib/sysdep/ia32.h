@@ -42,6 +42,8 @@ extern uint ia32_control87(uint new_cw, uint mask);
 
 extern void ia32_debug_break(void);
 
+extern void ia32_memcpy(void* dst, const void* src, size_t nbytes);
+
 
 
 // CPU caps (128 bits)

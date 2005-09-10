@@ -67,6 +67,12 @@ static bool tga_is_hdr(const u8* file)
 }
 
 
+static bool tga_is_ext(const char* ext)
+{
+	return !stricmp(ext, "tga");
+}
+
+
 static size_t tga_hdr_size(const u8* file)
 {
 	size_t hdr_size = sizeof(TgaHeader);
@@ -80,7 +86,7 @@ static size_t tga_hdr_size(const u8* file)
 
 
 // requirements: uncompressed, direct colour, bottom up
-static int tga_decode(DynArray* da, Tex* t, const char** perr_msg)
+static int tga_decode(DynArray* da, Tex* t)
 {
 	u8* file         = da->base;
 	size_t file_size = da->cur_size;
@@ -94,7 +100,7 @@ static int tga_decode(DynArray* da, Tex* t, const char** perr_msg)
 
 	int flags = 0;
 	flags |= (desc & TGA_TOP_DOWN)? TEX_TOP_DOWN : TEX_BOTTOM_UP;
-	if(desc & 0x0f != 0)	// alpha bits
+	if(desc & 0x0f)	// alpha bits
 		flags |= TEX_ALPHA;
 	if(bpp == 8)
 		flags |= TEX_GREY;
@@ -102,16 +108,10 @@ static int tga_decode(DynArray* da, Tex* t, const char** perr_msg)
 		flags |= TEX_BGR;
 
 	// sanity checks
-	const char* err = 0;
 	// .. storing right-to-left is just stupid;
 	//    we're not going to bother converting it.
 	if(desc & TGA_RIGHT_TO_LEFT)
-		err = "image is stored right-to-left";
-	if(err)
-	{
-		*perr_msg = err;
-		return ERR_CORRUPTED;
-	}
+		return ERR_TEX_INVALID_LAYOUT;
 
 	t->w     = w;
 	t->h     = h;
@@ -121,11 +121,8 @@ static int tga_decode(DynArray* da, Tex* t, const char** perr_msg)
 }
 
 
-static int tga_encode(const char* ext, Tex* t, DynArray* da, const char** UNUSED(perr_msg))
+static int tga_encode(Tex* t, DynArray* da)
 {
-	if(stricmp(ext, "tga"))
-		return TEX_CODEC_CANNOT_HANDLE;
-
 	u8 img_desc = 0;
 	if(t->flags & TEX_TOP_DOWN)
 		img_desc |= TGA_TOP_DOWN;

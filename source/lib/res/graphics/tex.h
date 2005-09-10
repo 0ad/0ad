@@ -72,6 +72,7 @@ extern int tex_free(Tex* t);
 
 extern u8* tex_get_data(const Tex* t);
 extern size_t tex_img_size(const Tex* t);
+extern size_t tex_hdr_size(const char* fn);
 
 extern int tex_transform(Tex* t, uint transforms);
 

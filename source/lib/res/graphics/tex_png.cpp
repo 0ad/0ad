@@ -78,7 +78,7 @@ static int png_transform(Tex* UNUSED(t), uint UNUSED(transforms))
 // "dtor / setjmp interaction" warning.
 static int png_decode_impl(DynArray* da,
 	png_structp png_ptr, png_infop info_ptr,
-	Handle& img_hm, RowArray& rows, Tex* t, const char** perr_msg)
+	Handle& img_hm, RowArray& rows, Tex* t)
 {
 	png_set_read_fn(png_ptr, da, io_read);
 
@@ -97,16 +97,10 @@ static int png_decode_impl(DynArray* da,
 		flags |= TEX_GREY;
 
 	// make sure format is acceptable
-	const char* err = 0;
 	if(bit_depth != 8)
-		err = "channel precision != 8 bits";
+		return ERR_TEX_NOT_8BIT_PRECISION;
 	if(colour_type & PNG_COLOR_MASK_PALETTE)
-		err = "colour type is invalid (must be direct colour)";
-	if(err)
-	{
-		*perr_msg = err;
-		return -1;
-	}
+		return ERR_TEX_INVALID_COLOR_TYPE;
 
 	const size_t img_size = pitch * h;
 	u8* img = (u8*)mem_alloc(img_size, 64*KiB, 0, &img_hm);
@@ -139,10 +133,8 @@ static int png_decode_impl(DynArray* da,
 // "dtor / setjmp interaction" warning.
 static int png_encode_impl(Tex* t,
 	png_structp png_ptr, png_infop info_ptr,
-	RowArray& rows, DynArray* da, const char** perr_msg)
+	RowArray& rows, DynArray* da)
 {
-	UNUSED2(perr_msg);	// we don't produce any error messages ATM.
-
 	const png_uint_32 w = t->w, h = t->h;
 	const size_t pitch = w * t->bpp / 8;
 
@@ -189,6 +181,12 @@ static bool png_is_hdr(const u8* file)
 }
 
 
+static bool png_is_ext(const char* ext)
+{
+	return !stricmp(ext, "png");
+}
+
+
 static size_t png_hdr_size(const u8* UNUSED(file))
 {
 	return 0;	// libpng returns decoded image data; no header
@@ -196,7 +194,7 @@ static size_t png_hdr_size(const u8* UNUSED(file))
 
 
 // limitation: palette images aren't supported
-static int png_decode(DynArray* da, Tex* t, const char** perr_msg)
+static int png_decode(DynArray* da, Tex* t)
 {
 	u8* const file         = da->base;
 	const size_t file_size = da->cur_size;
@@ -227,7 +225,7 @@ fail:
 		goto ret;
 	}
 
-	err = png_decode_impl(da, png_ptr, info_ptr, img_hm, rows, t, perr_msg);
+	err = png_decode_impl(da, png_ptr, info_ptr, img_hm, rows, t);
 	if(err < 0)
 		goto fail;
 
@@ -240,11 +238,8 @@ ret:
 
 
 // limitation: palette images aren't supported
-static int png_encode(const char* ext, Tex* t, DynArray* da, const char** perr_msg)
+static int png_encode(Tex* t, DynArray* da)
 {
-	if(stricmp(ext, "png"))
-		return TEX_CODEC_CANNOT_HANDLE;
-
 	int err = -1;
 	// freed when ret is reached:
 	png_structp png_ptr = 0;
@@ -268,7 +263,7 @@ fail:
 		goto ret;
 	}
 
-	err = png_encode_impl(t, png_ptr, info_ptr, rows, da, perr_msg);
+	err = png_encode_impl(t, png_ptr, info_ptr, rows, da);
 	if(err < 0)
 		goto fail;
 

@@ -207,7 +207,7 @@ int da_read(DynArray* da, void* data, size_t size)
 	if(da->pos > da->cur_size)
 		return -1;
 
-	memcpy(data, src, size);
+	memcpy2(data, src, size);
 	return 0;
 }
 
@@ -215,7 +215,7 @@ int da_read(DynArray* da, void* data, size_t size)
 int da_append(DynArray* da, const void* data, size_t size)
 {
 	RETURN_ERR(da_set_size(da, da->pos+size));
-	memcpy(da->base+da->pos, data, size);
+	memcpy2(da->base+da->pos, data, size);
 	da->pos += size;
 	return 0;
 }

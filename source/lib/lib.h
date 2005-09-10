@@ -230,24 +230,19 @@ enum LibError
 
 	// system limitations
 	// .. out of memory
-	ERR_NO_MEM          = -1020,
+	ERR_NO_MEM           = -1020,
 	// .. try again later
-	ERR_AGAIN           = -1021,
+	ERR_AGAIN            = -1021,
 	// .. fixed limit exceeded
-	ERR_LIMIT           = -1022,
+	ERR_LIMIT            = -1022,
 	// .. the OS doesn't provide an API we need
-	ERR_NO_SYS          = -1023,
+	ERR_NO_SYS           = -1023,
 	// .. feature not currently implemented (will probably change)
-	ERR_NOT_IMPLEMENTED = -1024,
+	ERR_NOT_IMPLEMENTED  = -1024,
 	// .. feature won't be supported
-	ERR_NOT_SUPPORTED   = -1025,
+	ERR_NOT_SUPPORTED    = -1025,
 
-	// data (e.g. in file) is obviously incorrect
-	ERR_CORRUPTED       = -1040,
-
-	ERR_UNKNOWN_FORMAT  = -1050,
-
-	ERR_TIMED_OUT       = -1060,
+	ERR_TIMED_OUT         = -1060,
 
 	// file + vfs
 	ERR_FILE_NOT_FOUND  = -1200,
@@ -260,8 +255,20 @@ enum LibError
 	ERR_IO              = -1231,
 	ERR_EOF             = -1232,
 
+	// file format
+	ERR_UNKNOWN_FORMAT    = -1400,
+	ERR_INCOMPLETE_HEADER = -1401,
+	// .. data (e.g. in file) is obviously incorrect
+	ERR_CORRUPTED         = -1402,
 
-	ERR_TEX_FMT_INVALID = -1300,
+	// texture
+	ERR_TEX_FMT_INVALID         = -1500,
+	ERR_TEX_INVALID_COLOR_TYPE  = -1501,
+	ERR_TEX_NOT_8BIT_PRECISION  = -1502,
+	ERR_TEX_INVALID_LAYOUT      = -1503,
+	ERR_TEX_COMPRESSED          = -1504,
+	WARN_TEX_INVALID_DATA       = +1505,
+	ERR_TEX_INVALID_SIZE        = -1506,
 
 
 	ERR_LAST

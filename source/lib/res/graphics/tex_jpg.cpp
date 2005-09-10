@@ -405,7 +405,7 @@ static int jpg_transform(Tex* UNUSED(t), uint UNUSED(transforms))
 
 static int jpg_decode_impl(DynArray* da,
 	jpeg_decompress_struct* cinfo,
-	Handle& img_hm, RowArray& rows, Tex* t, const char** perr_msg)
+	Handle& img_hm, RowArray& rows, Tex* t)
 {
 	src_prepare(cinfo, da);
 
@@ -465,8 +465,9 @@ static int jpg_decode_impl(DynArray* da,
 	// mem data source.
 	(void)jpeg_finish_decompress(cinfo);
 
+	int ret = 0;
 	if(cinfo->err->num_warnings != 0)
-		*perr_msg = "warning: corrupt image data";
+		ret = WARN_TEX_INVALID_DATA;
 
 	// store image info
 	// .. transparently switch handles - free the old (compressed)
@@ -477,13 +478,14 @@ static int jpg_decode_impl(DynArray* da,
 	t->h     = h;
 	t->bpp   = bpp;
 	t->flags = flags;
-	return 0;
+
+	return ret;
 }
 
 
 static int jpg_encode_impl(Tex* t,
 	jpeg_compress_struct* cinfo,
-	RowArray& rows, DynArray* da, const char** perr_msg)
+	RowArray& rows, DynArray* da)
 {
 	dst_prepare(cinfo, da);
 
@@ -525,10 +527,11 @@ static int jpg_encode_impl(Tex* t,
 
 	jpeg_finish_compress(cinfo);
 
+	int ret = 0;
 	if(cinfo->err->num_warnings != 0)
-		*perr_msg = "warning: corrupt image data";
+		ret = WARN_TEX_INVALID_DATA;
 
-	return 0;
+	return ret;
 }
 
 
@@ -541,13 +544,19 @@ static bool jpg_is_hdr(const u8* file)
 }
 
 
+static bool jpg_is_ext(const char* ext)
+{
+	return !stricmp(ext, "jpg") || !stricmp(ext, "jpeg");
+}
+
+
 static size_t jpg_hdr_size(const u8* UNUSED(file))
 {
 	return 0;	// libjpg returns decoded image data; no header
 }
 
 
-static int jpg_decode(DynArray* da, Tex* t, const char** perr_msg)
+static int jpg_decode(DynArray* da, Tex* t)
 {
 	u8* const file         = da->base;
 	const size_t file_size = da->cur_size;
@@ -573,7 +582,7 @@ static int jpg_decode(DynArray* da, Tex* t, const char** perr_msg)
 
 	jpeg_create_decompress(&cinfo);
 
-	err = jpg_decode_impl(da, &cinfo, img_hm, rows, t, perr_msg);
+	err = jpg_decode_impl(da, &cinfo, img_hm, rows, t);
 	if(err < 0)
 		goto fail;
 
@@ -589,11 +598,8 @@ fail:
 
 
 // limitation: palette images aren't supported
-static int jpg_encode(const char* ext, Tex* t, DynArray* da, const char** perr_msg)
+static int jpg_encode(Tex* t, DynArray* da)
 {
-	if(stricmp(ext, "jpg") && stricmp(ext, "jpeg"))
-		return TEX_CODEC_CANNOT_HANDLE;
-
 	int err;
 
 	// freed when ret is reached:
@@ -612,7 +618,7 @@ static int jpg_encode(const char* ext, Tex* t, DynArray* da, const char** perr_m
 
 	jpeg_create_compress(&cinfo);
 
-	err = jpg_encode_impl(t, &cinfo, rows, da, perr_msg);
+	err = jpg_encode_impl(t, &cinfo, rows, da);
 	if(err < 0)
 		goto fail;
 

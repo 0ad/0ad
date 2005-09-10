@@ -2,6 +2,11 @@
 
 #include "lib.h"
 #include "sysdep.h"
+#if CPU_IA32
+# include "ia32.h"
+#endif
+
+
 #include <memory.h>
 #include <stdarg.h>
 
@@ -28,3 +33,13 @@ float fmaxf(float a, float b)
 }
 
 #endif
+
+
+void memcpy2(void* dst, const void* src, size_t nbytes)
+{
+#if CPU_IA32
+	ia32_memcpy(dst, src, nbytes);
+#else
+	memcpy(dst, src, nbytes);
+#endif
+}

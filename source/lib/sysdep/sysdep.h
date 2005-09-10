@@ -128,6 +128,8 @@ extern int sys_cursor_set(void* cursor);
 extern int sys_cursor_free(void* cursor);
 
 
+extern void memcpy2(void* dst, const void* src, size_t nbytes);
+
 extern int get_executable_name(char* n_path, size_t buf_size);
 
 // return filename of the module which contains address <addr>,

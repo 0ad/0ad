@@ -29,6 +29,10 @@
 #include "tex_codec.h"
 
 
+#define ERR_TOO_SHORT -4
+
+
+
 // rationale for default: see tex_set_global_orientation
 static int global_orientation = TEX_TOP_DOWN;
 
@@ -197,6 +201,50 @@ int tex_codec_register(const TexCodecVTbl* c)
 }
 
 
+// find codec that recognizes the desired output file extension
+int tex_codec_for_filename(const char* fn, const TexCodecVTbl** c)
+{
+	const char* ext = strrchr(fn, '.');
+	if(!ext)
+		return ERR_UNKNOWN_FORMAT;
+	ext++;	// skip '.'
+
+	for(uint i = 0; i < MAX_CODECS; i++)
+	{
+		*c = codecs[i];
+		// skip if 0 (e.g. if MAX_CODECS != num codecs)
+		if(!*c)
+			continue;
+		// we found it
+		if((*c)->is_ext(ext))
+			return 0;
+	}
+
+	return ERR_UNKNOWN_FORMAT;
+}
+
+
+// find codec that recognizes the header's magic field
+int tex_codec_for_header(const u8* file, size_t file_size, const TexCodecVTbl** c)
+{
+	// we guarantee at least 4 bytes for is_hdr to look at
+	if(file_size < 4)
+		return ERR_TOO_SHORT;
+	for(uint i = 0; i < MAX_CODECS; i++)
+	{
+		*c = codecs[i];
+		// skip if 0 (e.g. if MAX_CODECS != num codecs)
+		if(!*c)
+			continue;
+		// we found it
+		if((*c)->is_hdr(file))
+			return 0;
+	}
+
+	return ERR_UNKNOWN_FORMAT;
+}
+
+
 // allocate an array of row pointers that point into the given texture data.
 // <file_orientation> indicates whether the file format is top-down or
 // bottom-up; the row array is inverted if necessary to match global
@@ -269,26 +317,36 @@ void tex_set_global_orientation(int o)
 }
 
 
+u8* tex_get_data(const Tex* t)
+{
+	u8* p = (u8*)mem_get_ptr(t->hm);
+	if(!p)
+		return 0;
+	return p + t->ofs;
+}
+
+size_t tex_img_size(const Tex* t)
+{
+	return t->w * t->h * t->bpp/8;
+}
+
+
+
+size_t tex_hdr_size(const char* fn)
+{
+	const TexCodecVTbl* c;
+	CHECK_ERR(tex_codec_for_filename(fn, &c));
+	return c->hdr_size(0);
+}
+
+
 int tex_load_mem(Handle hm, Tex* t)
 {
-#define ERR_TOO_SHORT -4
-
 	u8* file; size_t file_size;
 	CHECK_ERR(mem_get(hm, &file, &file_size));
 
-	// find codec that recognizes the header's magic field
-	const TexCodecVTbl* c = 0;
-	// .. we guarantee at least 4 bytes for is_hdr to look at
-	if(file_size < 4)
-		return ERR_TOO_SHORT;
-	for(uint i = 0; i < MAX_CODECS; i++)
-	{
-		c = codecs[i];	// may be 0 (e.g. if MAX_CODECS != num codecs)
-		if(c && c->is_hdr(file))
-			goto found_codec;
-	}
-	return ERR_UNKNOWN_FORMAT;
-found_codec:
+	const TexCodecVTbl* c;
+	CHECK_ERR(tex_codec_for_header(file, file_size, &c));
 
 	// make sure enough of the file has been read
 	const size_t min_hdr_size = c->hdr_size(0);
@@ -304,11 +362,10 @@ found_codec:
 	t->hm = hm;
 	t->ofs = hdr_size;
 
-	const char* err_msg = 0;
-	int err = c->decode(&da, t, &err_msg);
+	int err = c->decode(&da, t);
 	if(err < 0)
 	{
-		debug_printf("tex_load_mem (%s): %s", c->name, err_msg);
+		debug_printf("tex_load_mem (%s): %d", c->name, err);
 		debug_warn("tex_load_mem failed");
 		return err;
 	}
@@ -355,20 +412,6 @@ int tex_free(Tex* t)
 }
 
 
-u8* tex_get_data(const Tex* t)
-{
-	u8* p = (u8*)mem_get_ptr(t->hm);
-	if(!p)
-		return 0;
-	return p + t->ofs;
-}
-
-size_t tex_img_size(const Tex* t)
-{
-	return t->w * t->h * t->bpp/8;
-}
-
-
 int tex_transform(Tex* t, uint transforms)
 {
 	// find codec that understands the data, and transform
@@ -393,17 +436,10 @@ int tex_transform(Tex* t, uint transforms)
 
 int tex_write(const char* fn, uint w, uint h, uint bpp, uint flags, void* in_img)
 {
-	int err = -1;
-
 	if(validate_format(bpp, flags) != 0)
 		return ERR_TEX_FMT_INVALID;
 
 	const size_t in_img_size = w * h * bpp / 8;
-
-	const char* ext = strrchr(fn, '.');
-	if(!ext)
-		return -1;
-	ext++;	// skip .
 
 	Handle hm = mem_assign(in_img, in_img_size, 0, 0, 0, 0, 0);
 	Tex t =
@@ -413,37 +449,32 @@ int tex_write(const char* fn, uint w, uint h, uint bpp, uint flags, void* in_img
 		w, h, bpp, flags
 	};
 
+
+	// we could be clever here and avoid the extra alloc if our current
+	// memory block ensued from the same kind of texture file. this is
+	// most likely the case if in_img == <hm's user pointer> + c->hdr_size(0).
+	// advantage is avoiding 
 	DynArray da;
 	const size_t max_out_size = (w*h*4 + 256*KiB)*2;
 	CHECK_ERR(da_alloc(&da, max_out_size));
 
-	for(int i = 0; i < MAX_CODECS; i++)
+	const TexCodecVTbl* c;
+	CHECK_ERR(tex_codec_for_filename(fn, &c));
+
+	// encode
+	int err = c->encode(&t, &da);
+	if(err < 0)
 	{
-		// MAX_CODECS isn't a tight bound and we have hit a 0 entry
-		if(!codecs[i])
-			continue;
-		const char* err_msg = 0;
-		err = codecs[i]->encode(ext, &t, &da, &err_msg);
-		if(err == TEX_CODEC_CANNOT_HANDLE)
-			continue;
-		if(err < 0)
-		{
-			debug_printf("tex_write(%s): %s: %s", codecs[i]->name, fn, err_msg);
-			WARN_ERR(err);
-			goto ret;
-		}
-		goto have_codec;	// success
+		debug_printf("tex_write (%s): %d", c->name, err);
+		debug_warn("tex_writefailed");
+		goto fail;
 	}
-
-	// no codec found
-	return ERR_UNKNOWN_FORMAT;
-
-have_codec:
-	size_t rounded_size = round_up(da.cur_size, FILE_BLOCK_SIZE);
+	const size_t rounded_size = round_up(da.cur_size, FILE_BLOCK_SIZE);
 	CHECK_ERR(da_set_size(&da, rounded_size));
 	WARN_ERR(vfs_store(fn, da.base, da.pos));
 	err = 0;
-ret:
+
+fail:
 	WARN_ERR(da_free(&da));
 	return err;
 }

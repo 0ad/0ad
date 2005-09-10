@@ -15,17 +15,21 @@ struct TexCodecVTbl
 	// size is guaranteed to be >= 4.
 	// (usually enough to compare the header's "magic" field;
 	// anyway, no legitimate file will be smaller)
-	int (*decode)(DynArray* da, Tex* t, const char** perr_msg);
+	int (*decode)(DynArray* da, Tex* t);
 
 	// rationale: some codecs cannot calculate the output size beforehand
 	// (e.g. PNG output via libpng); we therefore require each one to
 	// allocate memory itself and return the pointer.
-	int (*encode)(const char* ext, Tex* t, DynArray* da, const char** perr_msg);
+	int (*encode)(Tex* t, DynArray* da);
 
 	int (*transform)(Tex* t, uint transforms);
 
 	// only guaranteed 4 bytes!
 	bool (*is_hdr)(const u8* file);
+
+	// precondition: ext is valid string
+	// ext doesn't include '.'; just compare against e.g. "png"
+	bool (*is_ext)(const char* ext);
 
 	size_t (*hdr_size)(const u8* file);
 
@@ -34,7 +38,7 @@ struct TexCodecVTbl
 
 
 #define TEX_CODEC_REGISTER(name)\
-	static const TexCodecVTbl vtbl = { name##_decode, name##_encode, name##_transform, name##_is_hdr, name##_hdr_size, #name};\
+	static const TexCodecVTbl vtbl = { name##_decode, name##_encode, name##_transform, name##_is_hdr, name##_is_ext, name##_hdr_size, #name};\
 	static int dummy = tex_codec_register(&vtbl);
 
 

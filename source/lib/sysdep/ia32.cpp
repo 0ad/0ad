@@ -107,6 +107,1075 @@ void ia32_debug_break()
 }
 
 
+static const size_t CHUNK_SIZE = 4096;
+
+// block prefetch memcpy for large, uncached arrays
+//
+// src and len must be multiples of CHUNK_SIZE.
+static void ia32_memcpy_nt(void* dst, const void* src, size_t len)
+{
+	debug_assert((uintptr_t)src % CHUNK_SIZE == 0);
+	debug_assert(len % CHUNK_SIZE == 0);
+__asm
+{
+	push		esi
+
+	mov			edx, [dst]
+	mov			esi, [src]
+	mov			ecx, [len]
+	shr			ecx, 12						; # chunks
+											; smaller than sub	ecx, CHUNK_SIZE below
+
+main_loop:
+
+; prefetch: touch each cache line in chunk
+; (backwards to prevent hardware prefetches)
+;	add			esi, CHUNK_SIZE
+prefetch_loop:
+	mov			eax, [esi-64]
+	mov			eax, [esi-128]
+	sub			esi, 128
+	test		esi, CHUNK_SIZE-1
+	jnz			prefetch_loop
+
+
+; copy the chunk 64 bytes at a time
+write_loop:
+	movq		mm0, [esi]
+	movq		mm1, [esi+8]
+	movq		mm2, [esi+16]
+	movq		mm3, [esi+24]
+	movq		mm4, [esi+32]
+	movq		mm5, [esi+40]
+	movq		mm6, [esi+48]
+	movq		mm7, [esi+56]
+	add			esi, 64
+	test		esi, 4095					; CHUNK_SIZE-1
+	movntq		[edx], mm0
+	movntq		[edx+8], mm1
+	movntq		[edx+16], mm2
+	movntq		[edx+24], mm3
+	movntq		[edx+32], mm4
+	movntq		[edx+40], mm5
+	movntq		[edx+48], mm6
+	movntq		[edx+56], mm7
+	lea			edx, [edx+64]				; leave flags intact
+	jnz			write_loop
+
+	dec			ecx
+	jnz			main_loop
+
+	sfence
+	emms
+
+	pop			esi
+}
+}
+
+
+
+/*
+
+conclusions:
+
+for small (<= 64 byte) memcpy, a table of 16 movsd followed by table of 3 movsb is fastest
+
+dtable_btable:     434176
+dtable_brep:       464001  6.9
+memcpy:            499936 15.1
+
+
+
+*/
+
+
+
+
+
+
+// Very optimized memcpy() routine for all AMD Athlon and Duron family.
+// This code uses any of FOUR different basic copy methods, depending
+// on the transfer size.
+// NOTE:  Since this code uses MOVNTQ (also known as "Non-Temporal MOV" or
+// "Streaming Store"), and also uses the software prefetchnta instructions,
+// be sure you're running on Athlon/Duron or other recent CPU before calling!
+
+#define TINY_BLOCK_COPY 64       // upper limit for movsd type copy
+// The smallest copy uses the X86 "movsd" instruction, in an optimized
+// form which is an "unrolled loop".
+
+#define IN_CACHE_COPY 64 * 1024  // upper limit for movq/movq copy w/SW prefetch
+// Next is a copy that uses the MMX registers to copy 8 bytes at a time,
+// also using the "unrolled loop" optimization.   This code uses
+// the software prefetch instruction to get the data into the cache.
+
+#define UNCACHED_COPY 197 * 1024 // upper limit for movq/movntq w/SW prefetch
+// For larger blocks, which will spill beyond the cache, it's faster to
+// use the Streaming Store instruction MOVNTQ.   This write instruction
+// bypasses the cache and writes straight to main memory.  This code also
+// uses the software prefetch instruction to pre-read the data.
+// USE 64 * 1024 FOR THIS VALUE IF YOU'RE ALWAYS FILLING A "CLEAN CACHE"
+
+#define BLOCK_PREFETCH_COPY  infinity // no limit for movq/movntq w/block prefetch 
+#define CACHEBLOCK 80h // number of 64-byte blocks (cache lines) for block prefetch
+// For the largest size blocks, a special technique called Block Prefetch
+// can be used to accelerate the read operations.   Block Prefetch reads
+// one address per cache line, for a series of cache lines, in a short loop.
+// This is faster than using software prefetch.  The technique is great for
+// getting maximum read bandwidth, especially in DDR memory systems.
+
+
+
+void org_memcpy_amd(u8 *dest, const u8 *src, size_t n)
+{
+  __asm {
+
+	mov		ecx, [n]		; number of bytes to copy
+	mov		edi, [dest]		; destination
+	mov		esi, [src]		; source
+	mov		ebx, ecx		; keep a copy of count
+
+	cld
+	cmp		ecx, TINY_BLOCK_COPY
+	jb		$memcpy_ic_3	; tiny? skip mmx copy
+
+	cmp		ecx, 32*1024		; don't align between 32k-64k because
+	jbe		$memcpy_do_align	;  it appears to be slower
+	cmp		ecx, 64*1024
+	jbe		$memcpy_align_done
+$memcpy_do_align:
+	mov		ecx, 8			; a trick that's faster than rep movsb...
+	sub		ecx, edi		; align destination to qword
+	and		ecx, 111b		; get the low bits
+	sub		ebx, ecx		; update copy count
+	neg		ecx				; set up to jump into the array
+	add		ecx, offset $memcpy_align_done
+	jmp		ecx				; jump to array of movsb's
+
+align 4
+	movsb
+	movsb
+	movsb
+	movsb
+	movsb
+	movsb
+	movsb
+	movsb
+
+$memcpy_align_done:			; destination is dword aligned
+	mov		ecx, ebx		; number of bytes left to copy
+	shr		ecx, 6			; get 64-byte block count
+	jz		$memcpy_ic_2	; finish the last few bytes
+
+	cmp		ecx, IN_CACHE_COPY/64	; too big 4 cache? use uncached copy
+	jae		$memcpy_uc_test
+
+// This is small block copy that uses the MMX registers to copy 8 bytes
+// at a time.  It uses the "unrolled loop" optimization, and also uses
+// the software prefetch instruction to get the data into the cache.
+align 16
+$memcpy_ic_1:			; 64-byte block copies, in-cache copy
+
+	prefetchnta [esi + (200*64/34+192)]		; start reading ahead
+
+	movq	mm0, [esi+0]	; read 64 bits
+	movq	mm1, [esi+8]
+	movq	[edi+0], mm0	; write 64 bits
+	movq	[edi+8], mm1	;    note:  the normal movq writes the
+	movq	mm2, [esi+16]	;    data to cache; a cache line will be
+	movq	mm3, [esi+24]	;    allocated as needed, to store the data
+	movq	[edi+16], mm2
+	movq	[edi+24], mm3
+	movq	mm0, [esi+32]
+	movq	mm1, [esi+40]
+	movq	[edi+32], mm0
+	movq	[edi+40], mm1
+	movq	mm2, [esi+48]
+	movq	mm3, [esi+56]
+	movq	[edi+48], mm2
+	movq	[edi+56], mm3
+
+	add		esi, 64			; update source pointer
+	add		edi, 64			; update destination pointer
+	dec		ecx				; count down
+	jnz		$memcpy_ic_1	; last 64-byte block?
+
+$memcpy_ic_2:
+	mov		ecx, ebx		; has valid low 6 bits of the byte count
+$memcpy_ic_3:
+	shr		ecx, 2			; dword count
+	and		ecx, 1111b		; only look at the "remainder" bits
+	neg		ecx				; set up to jump into the array
+	add		ecx, offset $memcpy_last_few
+	jmp		ecx				; jump to array of movsd's
+
+$memcpy_uc_test:
+	cmp		ecx, UNCACHED_COPY/64	; big enough? use block prefetch copy
+	jae		$memcpy_bp_1
+
+$memcpy_64_test:
+	or		ecx, ecx		; tail end of block prefetch will jump here
+	jz		$memcpy_ic_2	; no more 64-byte blocks left
+
+// For larger blocks, which will spill beyond the cache, it's faster to
+// use the Streaming Store instruction MOVNTQ.   This write instruction
+// bypasses the cache and writes straight to main memory.  This code also
+// uses the software prefetch instruction to pre-read the data.
+align 16
+$memcpy_uc_1:				; 64-byte blocks, uncached copy
+
+	prefetchnta [esi + (200*64/34+192)]		; start reading ahead
+
+	movq	mm0,[esi+0]		; read 64 bits
+	add		edi,64			; update destination pointer
+	movq	mm1,[esi+8]
+	add		esi,64			; update source pointer
+	movq	mm2,[esi-48]
+	movntq	[edi-64], mm0	; write 64 bits, bypassing the cache
+	movq	mm0,[esi-40]	;    note: movntq also prevents the CPU
+	movntq	[edi-56], mm1	;    from READING the destination address
+	movq	mm1,[esi-32]	;    into the cache, only to be over-written
+	movntq	[edi-48], mm2	;    so that also helps performance
+	movq	mm2,[esi-24]
+	movntq	[edi-40], mm0
+	movq	mm0,[esi-16]
+	movntq	[edi-32], mm1
+	movq	mm1,[esi-8]
+	movntq	[edi-24], mm2
+	movntq	[edi-16], mm0
+	dec		ecx
+	movntq	[edi-8], mm1
+	jnz		$memcpy_uc_1	; last 64-byte block?
+
+	jmp		$memcpy_ic_2		; almost done
+
+// For the largest size blocks, a special technique called Block Prefetch
+// can be used to accelerate the read operations.   Block Prefetch reads
+// one address per cache line, for a series of cache lines, in a short loop.
+// This is faster than using software prefetch, in this case.
+// The technique is great for getting maximum read bandwidth,
+// especially in DDR memory systems.
+$memcpy_bp_1:			; large blocks, block prefetch copy
+
+	cmp		ecx, CACHEBLOCK			; big enough to run another prefetch loop?
+	jl		$memcpy_64_test			; no, back to regular uncached copy
+
+	mov		eax, CACHEBLOCK / 2		; block prefetch loop, unrolled 2X
+	add		esi, CACHEBLOCK * 64	; move to the top of the block
+align 16
+$memcpy_bp_2:
+	mov		edx, [esi-64]		; grab one address per cache line
+	mov		edx, [esi-128]		; grab one address per cache line
+	sub		esi, 128			; go reverse order
+	dec		eax					; count down the cache lines
+	jnz		$memcpy_bp_2		; keep grabbing more lines into cache
+
+	mov		eax, CACHEBLOCK		; now that it's in cache, do the copy
+align 16
+$memcpy_bp_3:
+	movq	mm0, [esi   ]		; read 64 bits
+	movq	mm1, [esi+ 8]
+	movq	mm2, [esi+16]
+	movq	mm3, [esi+24]
+	movq	mm4, [esi+32]
+	movq	mm5, [esi+40]
+	movq	mm6, [esi+48]
+	movq	mm7, [esi+56]
+	add		esi, 64				; update source pointer
+	movntq	[edi   ], mm0		; write 64 bits, bypassing cache
+	movntq	[edi+ 8], mm1		;    note: movntq also prevents the CPU
+	movntq	[edi+16], mm2		;    from READING the destination address 
+	movntq	[edi+24], mm3		;    into the cache, only to be over-written,
+	movntq	[edi+32], mm4		;    so that also helps performance
+	movntq	[edi+40], mm5
+	movntq	[edi+48], mm6
+	movntq	[edi+56], mm7
+	add		edi, 64				; update dest pointer
+
+	dec		eax					; count down
+
+	jnz		$memcpy_bp_3		; keep copying
+	sub		ecx, CACHEBLOCK		; update the 64-byte block count
+	jmp		$memcpy_bp_1		; keep processing chunks
+
+// The smallest copy uses the X86 "movsd" instruction, in an optimized
+// form which is an "unrolled loop".   Then it handles the last few bytes.
+align 4
+	movsd
+	movsd			; perform last 1-15 dword copies
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd			; perform last 1-7 dword copies
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+
+$memcpy_last_few:		; dword aligned from before movsd's
+	mov		ecx, ebx	; has valid low 2 bits of the byte count
+	and		ecx, 11b	; the last few cows must come home
+	jz		$memcpy_final	; no more, let's leave
+	rep		movsb		; the last 1, 2, or 3 bytes
+
+$memcpy_final: 
+	emms				; clean up the MMX state
+	sfence				; flush the write buffer
+	mov		eax, [dest]	; ret value = destination pointer
+
+    }
+}
+
+
+
+
+
+
+
+
+
+/*
+ALIGN
+	// this align may be slower in [32kb, 64kb]
+	mov		ecx, 8			; a trick that's faster than rep movsb...
+	sub		ecx, edi		; align destination to qword
+	and		ecx, 111b		; get the low bits
+	sub		ebx, ecx		; update copy count
+	neg		ecx				; set up to jump into the array
+	add		ecx, offset $memcpy_align_done
+	jmp		ecx				; jump to array of movsb's
+
+align 4
+	movsb
+	movsb
+	movsb
+	movsb
+	movsb
+	movsb
+	movsb
+	movsb
+
+
+
+MMX_MOVQ
+
+// This is small block copy that uses the MMX registers to copy 8 bytes
+// at a time.  It uses the "unrolled loop" optimization, and also uses
+// the software prefetch instruction to get the data into the cache.
+align 16
+$memcpy_ic_1:			; 64-byte block copies, in-cache copy
+
+	prefetchnta [esi + (200*64/34+192)]		; start reading ahead
+
+	movq	mm0, [esi+0]	; read 64 bits
+	movq	mm1, [esi+8]
+	movq	[edi+0], mm0	; write 64 bits
+	movq	[edi+8], mm1	;    note:  the normal movq writes the
+	movq	mm2, [esi+16]	;    data to cache; a cache line will be
+	movq	mm3, [esi+24]	;    allocated as needed, to store the data
+	movq	[edi+16], mm2
+	movq	[edi+24], mm3
+	movq	mm0, [esi+32]
+	movq	mm1, [esi+40]
+	movq	[edi+32], mm0
+	movq	[edi+40], mm1
+	movq	mm2, [esi+48]
+	movq	mm3, [esi+56]
+	movq	[edi+48], mm2
+	movq	[edi+56], mm3
+
+	add		esi, 64			; update source pointer
+	add		edi, 64			; update destination pointer
+	dec		ecx				; count down
+	jnz		$memcpy_ic_1	; last 64-byte block?
+
+
+
+PREFETCH_MOVNTQ
+
+// For larger blocks, which will spill beyond the cache, it's faster to
+// use the Streaming Store instruction MOVNTQ.   This write instruction
+// bypasses the cache and writes straight to main memory.  This code also
+// uses the software prefetch instruction to pre-read the data.
+align 16
+$memcpy_uc_1:				; 64-byte blocks, uncached copy
+
+	prefetchnta [esi + (200*64/34+192)]		; start reading ahead
+
+	movq	mm0,[esi+0]		; read 64 bits
+	add		edi,64			; update destination pointer
+	movq	mm1,[esi+8]
+	add		esi,64			; update source pointer
+	movq	mm2,[esi-48]
+	movntq	[edi-64], mm0	; write 64 bits, bypassing the cache
+	movq	mm0,[esi-40]	;    note: movntq also prevents the CPU
+	movntq	[edi-56], mm1	;    from READING the destination address
+	movq	mm1,[esi-32]	;    into the cache, only to be over-written
+	movntq	[edi-48], mm2	;    so that also helps performance
+	movq	mm2,[esi-24]
+	movntq	[edi-40], mm0
+	movq	mm0,[esi-16]
+	movntq	[edi-32], mm1
+	movq	mm1,[esi-8]
+	movntq	[edi-24], mm2
+	movntq	[edi-16], mm0
+	dec		ecx
+	movntq	[edi-8], mm1
+	jnz		$memcpy_uc_1	; last 64-byte block?
+
+
+
+
+BLOCKPREFETCH_MOVNTQ
+
+// For the largest size blocks, a special technique called Block Prefetch
+// can be used to accelerate the read operations.   Block Prefetch reads
+// one address per cache line, for a series of cache lines, in a short loop.
+// This is faster than using software prefetch, in this case.
+// The technique is great for getting maximum read bandwidth,
+// especially in DDR memory systems.
+$memcpy_bp_1:			; large blocks, block prefetch copy
+
+	cmp		ecx, CACHEBLOCK			; big enough to run another prefetch loop?
+	jl		$memcpy_64_test			; no, back to regular uncached copy
+
+	mov		eax, CACHEBLOCK / 2		; block prefetch loop, unrolled 2X
+	add		esi, CACHEBLOCK * 64	; move to the top of the block
+align 16
+$memcpy_bp_2:
+	mov		edx, [esi-64]		; grab one address per cache line
+	mov		edx, [esi-128]		; grab one address per cache line
+	sub		esi, 128			; go reverse order
+	dec		eax					; count down the cache lines
+	jnz		$memcpy_bp_2		; keep grabbing more lines into cache
+
+	mov		eax, CACHEBLOCK		; now that it's in cache, do the copy
+align 16
+$memcpy_bp_3:
+	movq	mm0, [esi   ]		; read 64 bits
+	movq	mm1, [esi+ 8]
+	movq	mm2, [esi+16]
+	movq	mm3, [esi+24]
+	movq	mm4, [esi+32]
+	movq	mm5, [esi+40]
+	movq	mm6, [esi+48]
+	movq	mm7, [esi+56]
+	add		esi, 64				; update source pointer
+	movntq	[edi   ], mm0		; write 64 bits, bypassing cache
+	movntq	[edi+ 8], mm1		;    note: movntq also prevents the CPU
+	movntq	[edi+16], mm2		;    from READING the destination address 
+	movntq	[edi+24], mm3		;    into the cache, only to be over-written,
+	movntq	[edi+32], mm4		;    so that also helps performance
+	movntq	[edi+40], mm5
+	movntq	[edi+48], mm6
+	movntq	[edi+56], mm7
+	add		edi, 64				; update dest pointer
+
+	dec		eax					; count down
+
+	jnz		$memcpy_bp_3		; keep copying
+	sub		ecx, CACHEBLOCK		; update the 64-byte block count
+	jmp		$memcpy_bp_1		; keep processing chunks
+
+
+*/
+
+
+// note: tiny routine isn't entered if size > 64 (protects movsd array)
+
+
+static i64 t0, t1;
+#define BEGIN\
+	__asm pushad\
+	__asm cpuid\
+	__asm rdtsc\
+	__asm mov dword ptr t0, eax\
+	__asm mov dword ptr t0+4, edx\
+	__asm popad
+#define END\
+	__asm pushad\
+	__asm cpuid\
+	__asm rdtsc\
+	__asm mov dword ptr t1, eax\
+	__asm mov dword ptr t1+4, edx\
+	__asm popad
+
+static void dtable_brep(u8* dst, const u8* src, size_t nbytes)
+{
+__asm
+{
+	BEGIN
+
+	mov		esi, [src]
+	mov		edi, [dst]
+	mov		ecx, [nbytes]
+	mov		ebx, ecx
+
+	shr		ecx, 2			; dword count
+	neg		ecx
+	add		ecx, offset $movsd_table_end
+	jmp		ecx				; jump to array of movsd's
+
+
+	// The smallest copy uses the X86 "movsd" instruction, in an optimized
+	// form which is an "unrolled loop".   Then it handles the last few bytes.
+	align 4
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+$movsd_table_end:
+
+	mov		ecx, ebx	; has valid low 2 bits of the byte count
+	and		ecx, 11b	; the last few cows must come home
+	jz		$memcpy_final	; no more, let's leave
+	rep		movsb		; the last 1, 2, or 3 bytes
+$memcpy_final:
+	END
+}
+}
+
+
+
+static void dtable_btable(u8* dst, const u8* src, size_t nbytes)
+{
+__asm
+{
+	BEGIN
+
+	mov		esi, [src]
+	mov		edi, [dst]
+	mov		ecx, [nbytes]
+	mov		ebx, ecx
+
+	shr		ecx, 2			; dword count
+	neg		ecx
+	add		ecx, offset $movsd_table_end
+	jmp		ecx				; jump to array of movsd's
+
+
+	// The smallest copy uses the X86 "movsd" instruction, in an optimized
+	// form which is an "unrolled loop".   Then it handles the last few bytes.
+	align 4
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+$movsd_table_end:
+
+	mov		ecx, ebx	; has valid low 2 bits of the byte count
+	and		ecx, 11b	; the last few cows must come home
+	neg		ecx
+	add		ecx, offset $movsb_table_end
+	jmp		ecx				; jump to array of movsb's
+
+	movsb
+	movsb
+	movsb
+$movsb_table_end:
+	END
+}
+}
+
+
+static void drep_brep(u8* dst, const u8* src, size_t nbytes)
+{
+__asm
+{
+	BEGIN
+
+	mov		esi, [src]
+	mov		edi, [dst]
+	mov		ecx, [nbytes]
+	mov		edx, ecx
+
+	shr		ecx, 2			; dword count
+rep	movsd
+
+	mov		ecx, edx	; has valid low 2 bits of the byte count
+	and		ecx, 11b	; the last few cows must come home
+rep movsb
+	END
+}
+}
+
+
+static void brep(u8* dst, const u8* src, size_t nbytes)
+{
+__asm
+{
+	BEGIN
+
+	mov		esi, [src]
+	mov		edi, [dst]
+	mov		ecx, [nbytes]
+	mov		edx, ecx
+
+rep	movsb
+	END
+}
+}
+
+
+
+static void bloop(u8* dst, const u8* src, size_t nbytes)
+{
+	BEGIN
+	for(int i = 0; i < nbytes; i++)
+		*dst++ = *src++;
+	END
+}
+
+static void dloop_bloop(u8* dst, const u8* src, size_t nbytes)
+{
+	BEGIN
+	int dwords = nbytes/4;
+	for(int i = 0; i < dwords; i++)
+	{
+		*(u32*)dst = *(u32*)src;
+		dst += 4; src += 4;
+	}
+	for(int i = 0; i < nbytes%4; i++)
+		*dst++ = *(u8*)src++;
+	END
+}
+
+static void _memcpy(u8* dst, const u8* src, size_t nbytes)
+{
+	BEGIN
+	memcpy(dst, src, nbytes);
+	END
+}
+
+
+
+
+static u8* setup_tiny_buf(int alignment, int misalign, bool is_dst)
+{
+	u8* p = (u8*)_aligned_malloc(256, alignment);
+	p += misalign;
+	if(is_dst)
+	{
+		for(int i = 0; i < 64; i++)
+			p[i] = 0;
+		for(int i = 0; i < 64; i++)
+			p[i+64] = 0x80|i;
+	}
+	else
+	{
+		for(int i = 0; i < 64; i++)
+			p[i] = i;
+		for(int i = 0; i < 64; i++)
+			p[i+64] = 0;
+	}
+	return p;
+}
+
+static void verify_tiny_buf(u8* p, size_t l, const char* culprit)
+{
+	for(int i = 0; i < l; i++)
+		if(p[i] != i)
+			debug_assert(0);
+
+	for(int i = 0; i < 64; i++)
+		if(p[i+64] != (0x80|i))
+			debug_assert(0);
+}
+
+
+#define TIME(name, d, s, l)\
+	least = 1000000;\
+	for(int i = 0; i < 1000; i++)\
+	{\
+		name(d,s,l);\
+		int clocks=(int)(t1-t0);\
+		if(clocks < least) least=clocks;\
+	}\
+	verify_tiny_buf(d, l, #name);
+
+
+static int brep_total, dtable_brep_total, dtable_btable_total, drep_brep_total;
+static int bloop_total, dloop_bloop_total, _memcpy_total;
+
+static void timeall(u8* d, const u8* s, size_t l)
+{
+	int least;
+
+TIME(brep, d, s, l); brep_total += least;
+TIME(dtable_brep, d, s, l); dtable_brep_total += least;
+TIME(dtable_btable, d, s, l); dtable_btable_total += least;
+TIME(drep_brep, d, s, l); drep_brep_total += least;
+
+TIME(bloop, d, s, l); bloop_total += least;
+TIME(dloop_bloop, d, s, l); dloop_bloop_total += least;
+TIME(_memcpy, d, s, l); _memcpy_total += least;
+}
+
+/*
+misalign 0
+	brep: 8436
+	dtable_brep: 7120
+	dtable_btable: 6670
+	drep_brep: 7384
+8
+	brep: 8436
+	dtable_brep: 7120
+	dtable_btable: 6670
+	drep_brep: 7384
+
+in release mode over all misaligns 0..63
+                   total  difference WRT baseline (%)
+
+dtable_btable:     434176
+dtable_brep:       464001  6.9
+memcpy:            499936 15.1
+drep_brep:         502368 15.7
+brep:              546752 26
+dloop_bloop:       679426 56.5
+bloop:             1537061
+				   
+in debug mode over all misaligns 0..63
+	dtable_btable: 425728 0
+	dtable_brep:   457153 7.3
+	drep_brep:     494368 16.1
+	brep:          538729 26.5
+*/
+
+static void test_with_misalign(int misalign)
+{
+	u8* d = setup_tiny_buf(64, misalign, true);
+	u8* s = setup_tiny_buf(64, misalign, false);
+
+	for(int i = 0; i < 64; i++)
+		timeall(d, s, i);
+}
+
+static void test_tiny()
+{
+	for(int i = 0; i < 64; i++)
+		test_with_misalign(i);
+
+	debug_printf("brep: %d\n", brep_total);
+	debug_printf("dtable_brep: %d\n", dtable_brep_total);
+	debug_printf("dtable_btable: %d\n", dtable_btable_total);
+	debug_printf("drep_brep: %d\n", drep_brep_total);
+
+	debug_printf("bloop: %d\n", bloop_total);
+	debug_printf("dloop_bloop: %d\n", dloop_bloop_total);
+	debug_printf("drep_memcpy_brep: %d\n", _memcpy_total);
+}
+
+static int test()
+{
+	test_tiny();
+	return 0;
+}
+//int dummy = test();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+void* amd_memcpy(void* dst, const void* src, size_t nbytes)
+{
+  __asm {
+
+	mov		ecx, [n]		; number of bytes to copy
+	mov		edi, [dest]		; destination
+	mov		esi, [src]		; source
+	mov		ebx, ecx		; keep a copy of count
+
+	cmp		ecx, TINY_BLOCK_COPY
+	jb		$memcpy_ic_3	; tiny? skip mmx copy
+
+	**ALIGN**
+
+	; destination is dword aligned
+	mov		ecx, ebx		; number of bytes left to copy
+	shr		ecx, 6			; get 64-byte block count
+	jz		$memcpy_ic_2	; finish the last few bytes
+
+	cmp		ecx, IN_CACHE_COPY/64	; too big 4 cache? use uncached copy
+	jae		$memcpy_uc_test
+
+	**MMX_MOVQ**
+
+$memcpy_ic_2:
+	mov		ecx, ebx		; has valid low 6 bits of the byte count
+$memcpy_ic_3:
+	shr		ecx, 2			; dword count
+	and		ecx, 1111b		; only look at the "remainder" bits
+	neg		ecx				; set up to jump into the array
+	add		ecx, offset $memcpy_last_few
+	jmp		ecx				; jump to array of movsd's
+
+$memcpy_uc_test:
+	cmp		ecx, UNCACHED_COPY/64	; big enough? use block prefetch copy
+	jae		$memcpy_bp_1
+
+$memcpy_64_test:
+	or		ecx, ecx		; tail end of block prefetch will jump here
+	jz		$memcpy_ic_2	; no more 64-byte blocks left
+
+	**PREFETCH_MOVNTQ**
+	jmp		$memcpy_ic_2		; almost done
+
+$memcpy_bp_1:
+	**BLOCKPREFETCH_MOVNTQ**
+
+// The smallest copy uses the X86 "movsd" instruction, in an optimized
+// form which is an "unrolled loop".   Then it handles the last few bytes.
+align 4
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+
+$memcpy_last_few:		; dword aligned from before movsd's
+	mov		ecx, ebx	; has valid low 2 bits of the byte count
+	and		ecx, 11b	; the last few cows must come home
+	jz		$memcpy_final	; no more, let's leave
+	rep		movsb		; the last 1, 2, or 3 bytes
+
+$memcpy_final: 
+	emms				; clean up the MMX state
+	sfence				; flush the write buffer
+	mov		eax, [dest]	; ret value = destination pointer
+
+    }
+}
+
+
+
+
+*/
+
+
+void ia32_memcpy(void* dst, const void* src, size_t nbytes)
+{
+	// large
+	if(nbytes >= 64*KiB)
+		ia32_memcpy_nt(dst, src, nbytes);
+	// small
+	// TODO: implement small memcpy
+	else
+		memcpy(dst, src, nbytes);
+}
+
+
+//-----------------------------------------------------------------------------
+// support code for lock-free primitives
+//-----------------------------------------------------------------------------
+
+// CAS does a sanity check on the location parameter to see if the caller
+// actually is passing an address (instead of a value, e.g. 1). this is
+// important because the call is via a macro that coerces parameters.
+//
+// reporting is done with the regular CRT assert instead of debug_assert
+// because the wdbg code relies on CAS internally (e.g. to avoid
+// nested stack traces). a bug such as VC's incorrect handling of params
+// in __declspec(naked) functions would then cause infinite recursion,
+// which is difficult to debug (since wdbg is hosed) and quite fatal.
+#define ASSERT(x) assert(x)
+
+// note: a 486 or later processor is required since we use CMPXCHG.
+// there's no feature flag we can check, and the ia32 code doesn't
+// bother detecting anything < Pentium, so this'll crash and burn if
+// run on 386. we could replace cmpxchg with a simple mov (since 386
+// CPUs aren't MP-capable), but it's not worth the trouble.
+
+// note: don't use __declspec(naked) because we need to access one parameter
+// from C code and VC can't handle that correctly.
+bool __cdecl CAS_(uintptr_t* location, uintptr_t expected, uintptr_t new_value)
+{
+	// try to see if caller isn't passing in an address
+	// (CAS's arguments are silently casted)
+	ASSERT(!debug_is_pointer_bogus(location));
+
+	bool was_updated;
+__asm
+{
+	cmp		byte ptr [cpus], 1
+	mov		eax, [expected]
+	mov		edx, [location]
+	mov		ecx, [new_value]
+	je		$no_lock
+_emit 0xf0	// LOCK prefix
+$no_lock:
+	cmpxchg	[edx], ecx
+	sete	al
+	mov		[was_updated], al
+}
+	return was_updated;
+}
+
+
+void atomic_add(intptr_t* location, intptr_t increment)
+{
+__asm
+{
+	cmp		byte ptr [cpus], 1
+	mov		edx, [location]
+	mov		eax, [increment]
+	je		$no_lock
+_emit 0xf0	// LOCK prefix
+$no_lock:
+	add		[edx], eax
+}
+}
+
+
+// enforce strong memory ordering.
+void mfence()
+{
+	// Pentium IV
+	if(ia32_cap(SSE2))
+		__asm mfence
+}
+
+
+void serialize()
+{
+	__asm cpuid
+}
+
+#else // i.e. #if !HAVE_ASM
+
+bool CAS_(uintptr_t* location, uintptr_t expected, uintptr_t new_value)
+{
+	uintptr_t prev;
+
+	debug_assert(location >= (uintptr_t*)0x10000);
+
+	__asm__ __volatile__("lock; cmpxchgl %1,%2"
+				 : "=a"(prev) // %0: Result in eax should be stored in prev
+				 : "q"(new_value), // %1: new_value -> e[abcd]x
+				   "m"(*location), // %2: Memory operand
+				   "0"(expected) // Stored in same place as %0
+				 : "memory"); // We make changes in memory
+	return prev == expected;
+}
+
+void atomic_add(intptr_t* location, intptr_t increment)
+{
+	__asm__ __volatile__ (
+			"cmpb $1, %1;"
+			"je 1f;"
+			"lock;"
+			"1: addl %3, %0"
+		: "=m" (*location) /* %0: Output into *location */
+		: "m" (cpus), /* %1: Input for cpu check */
+		  "m" (*location), /* %2: *location is also an input */
+		  "r" (increment) /* %3: Increment (store in register) */
+		: "memory"); /* clobbers memory (*location) */
+}
+
+void mfence()
+{
+	// no cpu caps stored in gcc compiles, so we can't check for SSE2 support
+	/*
+	if (ia32_cap(SSE2))
+		__asm__ __volatile__ ("mfence");
+	*/
+}
+
+void serialize()
+{
+	__asm__ __volatile__ ("cpuid");
+}
+
+#endif	// #if HAVE_ASM
+
+
+//-----------------------------------------------------------------------------
+// CPU / feature detect
+//-----------------------------------------------------------------------------
+
 //
 // data returned by cpuid()
 // each function using this data must call cpuid (no-op if already called)
@@ -546,127 +1615,3 @@ void ia32_get_cpu_info()
 	wtime_reset_impl();
 #endif
 }
-
-
-
-
-
-
-// CAS does a sanity check on the location parameter to see if the caller
-// actually is passing an address (instead of a value, e.g. 1). this is
-// important because the call is via a macro that coerces parameters.
-//
-// reporting is done with the regular CRT assert instead of debug_assert
-// because the wdbg code relies on CAS internally (e.g. to avoid
-// nested stack traces). a bug such as VC's incorrect handling of params
-// in __declspec(naked) functions would then cause infinite recursion,
-// which is difficult to debug (since wdbg is hosed) and quite fatal.
-#define ASSERT(x) assert(x)
-
-// note: a 486 or later processor is required since we use CMPXCHG.
-// there's no feature flag we can check, and the ia32 code doesn't
-// bother detecting anything < Pentium, so this'll crash and burn if
-// run on 386. we could replace cmpxchg with a simple mov (since 386
-// CPUs aren't MP-capable), but it's not worth the trouble.
-
-// note: don't use __declspec(naked) because we need to access one parameter
-// from C code and VC can't handle that correctly.
-bool __cdecl CAS_(uintptr_t* location, uintptr_t expected, uintptr_t new_value)
-{
-	// try to see if caller isn't passing in an address
-	// (CAS's arguments are silently casted)
-	ASSERT(!debug_is_pointer_bogus(location));
-
-	bool was_updated;
-__asm
-{
-	cmp		byte ptr [cpus], 1
-	mov		eax, [expected]
-	mov		edx, [location]
-	mov		ecx, [new_value]
-	je		$no_lock
-_emit 0xf0	// LOCK prefix
-$no_lock:
-	cmpxchg	[edx], ecx
-	sete	al
-	mov		[was_updated], al
-}
-	return was_updated;
-}
-
-
-void atomic_add(intptr_t* location, intptr_t increment)
-{
-__asm
-{
-	cmp		byte ptr [cpus], 1
-	mov		edx, [location]
-	mov		eax, [increment]
-	je		$no_lock
-_emit 0xf0	// LOCK prefix
-$no_lock:
-	add		[edx], eax
-}
-}
-
-
-// enforce strong memory ordering.
-void mfence()
-{
-	// Pentium IV
-	if(ia32_cap(SSE2))
-		__asm mfence
-}
-
-
-void serialize()
-{
-	__asm cpuid
-}
-
-#else // i.e. #if !HAVE_ASM
-
-bool CAS_(uintptr_t* location, uintptr_t expected, uintptr_t new_value)
-{
-	uintptr_t prev;
-
-	debug_assert(location >= (uintptr_t*)0x10000);
-
-	__asm__ __volatile__("lock; cmpxchgl %1,%2"
-				 : "=a"(prev) // %0: Result in eax should be stored in prev
-				 : "q"(new_value), // %1: new_value -> e[abcd]x
-				   "m"(*location), // %2: Memory operand
-				   "0"(expected) // Stored in same place as %0
-				 : "memory"); // We make changes in memory
-	return prev == expected;
-}
-
-void atomic_add(intptr_t* location, intptr_t increment)
-{
-	__asm__ __volatile__ (
-			"cmpb $1, %1;"
-			"je 1f;"
-			"lock;"
-			"1: addl %3, %0"
-		: "=m" (*location) /* %0: Output into *location */
-		: "m" (cpus), /* %1: Input for cpu check */
-		  "m" (*location), /* %2: *location is also an input */
-		  "r" (increment) /* %3: Increment (store in register) */
-		: "memory"); /* clobbers memory (*location) */
-}
-
-void mfence()
-{
-	// no cpu caps stored in gcc compiles, so we can't check for SSE2 support
-	/*
-	if (ia32_cap(SSE2))
-		__asm__ __volatile__ ("mfence");
-	*/
-}
-
-void serialize()
-{
-	__asm__ __volatile__ ("cpuid");
-}
-
-#endif	// #if HAVE_ASM
