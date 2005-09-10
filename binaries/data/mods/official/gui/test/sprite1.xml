@@ -591,7 +591,366 @@
 			/>
 		</sprite>
 
+		<!--
+		==========================================
+		SESSION GUI - PORTRAITS - DEFAULT
+		==========================================
+		-->
 
+                <!-- Default (empty) portrait (circular). -->
+                <sprite name="ui_portrait_default_circle">
+                        <image	texture="session/portraits/ui_portrait_default_circle.png"
+				size="0 0 100% 100%" 
+			/>
+                </sprite>
+                <sprite name="ui_portrait_default_circle_lit">
+                        <effect	add_color="42 42 42 0"/>
+                        <image 	texture="session/portraits/ui_portrait_default_circle.png"
+				size="0 0 100% 100%" 
+			/>
+                </sprite>
+                <sprite name="ui_portrait_default_circle_gray">
+                        <effect	grayscale=""/>
+                        <image	texture="session/portraits/ui_portrait_default_circle.png"
+				size="0 0 100% 100%" 
+			/>
+                </sprite>
+
+                <!-- Default (empty) portrait (square). -->
+                <sprite name="ui_portrait_default_square">
+                        <image	texture="session/portraits/ui_portrait_default_square.png"
+				size="1 1 100%-1 100%-1" 
+			/>
+			<!-- Top border -->
+			<image	backcolor="109 122 146"
+				size="0 0 100%-1 1" 
+			/>
+			<!-- Right border -->
+			<image 	backcolor="220 223 228"
+				size="100%-1 0 100% 100%" 
+			/>
+			<!-- Bottom border -->
+			<image 	backcolor="220 223 228"
+				size="0 100%-1 100% 100%" 
+			/>
+			<!-- Left border -->
+			<image 	backcolor="109 122 146"
+				size="0 0 1 100%-1" 
+			/>
+                </sprite>
+
+                <sprite name="ui_portrait_default_square_lit">
+                        <effect	add_color="42 42 42 0"/>
+                        <image	texture="session/portraits/ui_portrait_default_square.png"
+				size="0 0 100% 100%" 
+			/>
+                </sprite>
+                <sprite name="ui_portrait_default_square_gray">
+                        <effect	grayscale=""/>
+                        <image	texture="session/portraits/ui_portrait_default_square.png"
+				size="0 0 100% 100%" 
+			/>
+                </sprite>
+
+                <!--
+                ==========================================
+                ACTION SHEET PORTRAITS - COMMANDS, TABS, STANCES, FORMATIONS, ETC
+                ==========================================
+                -->
+
+                <sprite name="ui_portrait_sheet_action">
+                        <image	texture="session/portraits/ui_portrait_sheet_action.png"
+				cell_size="64 64"
+				size="0 0 100% 100%"
+			/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_action_lit">
+                        <effect	add_color="42 42 42 0"/>
+                        <image	texture="session/portraits/ui_portrait_sheet_action.png"
+				cell_size="64 64"
+				size="0 0 100% 100%"
+			/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_action_gray">
+                        <effect	grayscale=""/>
+                        <image	texture="session/portraits/ui_portrait_sheet_action.png"
+				cell_size="64 64"
+				size="0 0 100% 100%"
+			/>
+                </sprite>
+
+                <!--
+                ==========================================
+                ENTITY SINGLE PORTRAITS
+                ==========================================
+                -->
+
+                <!-- Pyrogenesis Dude portrait. -->
+                <sprite name="ui_portrait_unit_dude">
+                        <image	texture="session/portraits/ui_portrait_unit_dude.png"
+			size="0 0 100% 100%"
+			/>
+                </sprite>
+                <sprite name="ui_portrait_unit_dude_lit">
+                        <effect	add_color="42 42 42 0"/>
+                        <image	texture="session/portraits/ui_portrait_unit_dude.png"
+				size="0 0 100% 100%" 
+			/>
+                </sprite>
+                <sprite name="ui_portrait_unit_dude_gray">
+                        <effect	grayscale=""/>
+                        <image	texture="session/portraits/ui_portrait_unit_dude.png"
+				size="0 0 100% 100%" 
+			/>
+                </sprite>
+
+                <!-- Pyrogenesis Dudette portrait. -->
+                <sprite name="ui_portrait_unit_dudette">
+                        <image	texture="session/portraits/ui_portrait_unit_dudette.png"
+				size="0 0 100% 100%" 
+			/>
+                </sprite>
+                <sprite name="ui_portrait_unit_dudette_lit">
+                        <effect	add_color="42 42 42 0"/>
+                        <image	texture="session/portraits/ui_portrait_unit_dudette.png"
+				size="0 0 100% 100%" 
+			/>
+                </sprite>
+                <sprite name="ui_portrait_unit_dudette_gray">
+                        <effect	grayscale=""/>
+                        <image	texture="session/portraits/ui_portrait_unit_dudette.png" 
+				size="0 0 100% 100%" 
+			/>
+                </sprite>
+
+                <!-- Deciduous Tree portrait. -->
+                <sprite name="ui_portrait_flora_deciduotree_gaia">
+                        <image	texture="session/portraits/ui_portrait_flora_deciduotree_gaia.png"
+				size="0 0 100% 100%" 
+			/>
+                </sprite>
+                <sprite name="ui_portrait_flora_deciduotree_gaia_lit">
+                        <effect	add_color="42 42 42 0"/>
+                        <image	texture="session/portraits/ui_portrait_flora_deciduotree_gaia.png"
+				size="0 0 100% 100%" 
+			/>
+                </sprite>
+                <sprite name="ui_portrait_flora_deciduotree_gaia_gray">
+                        <effect	grayscale=""/>
+                        <image	texture="session/portraits/ui_portrait_flora_deciduotree_gaia.png"
+				size="0 0 100% 100%" 
+			/>
+                </sprite>
+
+                <!--
+                ==========================================
+                ENTITY SHEET PORTRAITS - CELTS
+                ==========================================
+                -->
+
+                <sprite name="ui_portrait_sheet_civ_celt">
+                        <image	texture="session/portraits/ui_portrait_sheet_civ_celt.png"
+				cell_size="64 64"
+				size="0 0 100% 100%"
+			/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_civ_celt_gray">
+                        <effect	grayscale=""/>
+                        <image	texture="session/portraits/ui_portrait_sheet_civ_celt.png"
+				cell_size="64 64"
+				size="0 0 100% 100%"
+			/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_civ_celt_lit">
+                        <effect	add_color="42 42 42 0"/>
+                        <image	texture="session/portraits/ui_portrait_sheet_civ_celt.png"
+				cell_size="64 64"
+				size="0 0 100% 100%"
+			/>
+                </sprite>
+
+                <!--
+                ==========================================
+                ENTITY SHEET PORTRAITS - HELLENES
+                ==========================================
+                -->
+
+                <sprite name="ui_portrait_sheet_civ_hele">
+                        <image	texture="session/portraits/ui_portrait_sheet_civ_hele.png"
+				cell_size="64 64"
+				size="1 1 100%-1 100%-1" 
+			/>
+			<!-- Top border -->
+			<image	backcolor="220 223 228"
+				size="0 0 100%-1 1" 
+			/>
+			<!-- Right border -->
+			<image 	backcolor="109 122 146"
+				size="100%-1 0 100% 100%" 
+			/>
+			<!-- Bottom border -->
+			<image 	backcolor="109 122 146"
+				size="0 100%-1 100% 100%" 
+			/>
+			<!-- Left border -->
+			<image 	backcolor="220 223 228"
+				size="0 0 1 100%-1" 
+			/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_civ_hele_gray">
+                        <effect	grayscale=""/>
+                        <image	texture="session/portraits/ui_portrait_sheet_civ_hele.png"
+				cell_size="64 64"
+				size="1 1 100%-1 100%-1" 
+			/>
+			<!-- Top border -->
+			<image	backcolor="220 223 228"
+				size="0 0 100%-1 1" 
+			/>
+			<!-- Right border -->
+			<image 	backcolor="109 122 146"
+				size="100%-1 0 100% 100%" 
+			/>
+			<!-- Bottom border -->
+			<image 	backcolor="109 122 146"
+				size="0 100%-1 100% 100%" 
+			/>
+			<!-- Left border -->
+			<image 	backcolor="220 223 228"
+				size="0 0 1 100%-1"
+			/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_civ_hele_lit">
+                        <effect	add_color="42 42 42 0"/>
+                        <image	texture="session/portraits/ui_portrait_sheet_civ_hele.png"
+				cell_size="64 64"
+				size="1 1 100%-1 100%-1" 
+			/>
+			<!-- Top border -->
+			<image	backcolor="220 223 228"
+				size="0 0 100%-1 1" 
+			/>
+			<!-- Right border -->
+			<image 	backcolor="109 122 146"
+				size="100%-1 0 100% 100%" 
+			/>
+			<!-- Bottom border -->
+			<image 	backcolor="109 122 146"
+				size="0 100%-1 100% 100%" 
+			/>
+			<!-- Left border -->
+			<image 	backcolor="220 223 228"
+				size="0 0 1 100%-1"
+			/>
+		</sprite>
+
+                <!--
+                ==========================================
+                ENTITY SHEET PORTRAITS - IBERIANS
+                ==========================================
+                -->
+
+                <sprite name="ui_portrait_sheet_civ_iber">
+                        <image	texture="session/portraits/ui_portrait_sheet_civ_iber.png"
+				cell_size="64 64"
+				size="0 0 100% 100%"
+			/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_civ_iber_gray">
+                        <effect	grayscale=""/>
+                        <image	texture="session/portraits/ui_portrait_sheet_civ_iber.png"
+				cell_size="64 64"
+				size="0 0 100% 100%"
+			/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_civ_iber_lit">
+                        <effect	add_color="42 42 42 0"/>
+                        <image	texture="session/portraits/ui_portrait_sheet_civ_iber.png"
+				cell_size="64 64"
+				size="0 0 100% 100%"
+			/>
+                </sprite>
+
+                <!--
+                ==========================================
+                ENTITY SHEET PORTRAITS - CARTHAGINIANS
+                ==========================================
+                -->
+
+                <sprite name="ui_portrait_sheet_civ_kart">
+                        <image	texture="session/portraits/ui_portrait_sheet_civ_kart.png"
+				cell_size="64 64"
+				size="0 0 100% 100%"
+			/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_civ_kart_gray">
+                        <effect	grayscale=""/>
+                        <image	texture="session/portraits/ui_portrait_sheet_civ_kart.png"
+				cell_size="64 64"
+				size="0 0 100% 100%"
+			/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_civ_kart_lit">
+                        <effect	add_color="42 42 42 0"/>
+                        <image	texture="session/portraits/ui_portrait_sheet_civ_kart.png"
+				cell_size="64 64"
+				size="0 0 100% 100%"
+			/>
+                </sprite>
+
+                <!--
+                ==========================================
+                ENTITY SHEET PORTRAITS - PERSIANS
+                ==========================================
+                -->
+
+                <sprite name="ui_portrait_sheet_civ_pers">
+                        <image	texture="session/portraits/ui_portrait_sheet_civ_pers.png"
+				cell_size="64 64"
+				size="0 0 100% 100%"
+			/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_civ_pers_gray">
+                        <effect	grayscale=""/>
+                        <image	texture="session/portraits/ui_portrait_sheet_civ_pers.png"
+				cell_size="64 64"
+				size="0 0 100% 100%"
+			/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_civ_pers_lit">
+                        <effect	add_color="42 42 42 0"/>
+                        <image	texture="session/portraits/ui_portrait_sheet_civ_pers.png"
+				cell_size="64 64"
+				size="0 0 100% 100%"
+			/>
+                </sprite>
+
+                <!--
+                ==========================================
+                ENTITY SHEET PORTRAITS - ROMANS
+                ==========================================
+                -->
+
+                <sprite name="ui_portrait_sheet_civ_rome">
+                        <image	texture="session/portraits/ui_portrait_sheet_civ_rome.png"
+				cell_size="64 64"
+				size="0 0 100% 100%"
+			/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_civ_rome_gray">
+                        <effect	grayscale=""/>
+                        <image	texture="session/portraits/ui_portrait_sheet_civ_rome.png"
+				cell_size="64 64"
+				size="0 0 100% 100%"
+			/>
+                </sprite>
+                <sprite name="ui_portrait_sheet_civ_rome_lit">
+                        <effect	add_color="42 42 42 0"/>
+                        <image	texture="session/portraits/ui_portrait_sheet_civ_rome.png"
+				cell_size="64 64"
+				size="0 0 100% 100%"
+			/>
+                </sprite>
 
 
 
@@ -653,7 +1012,7 @@ NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET 
                 <image backcolor="212 208 200" size="1 1 100%-1 100%-1" z_level="1" />
         </sprite>
 
-        <sprite name="grey">
+        <sprite name="gray">
                 <image backcolor="243 242 240" size="0 0 100% 100%" />
         </sprite>
 
@@ -909,209 +1268,6 @@ NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET 
                         <image texture="session/icons/ui_icon_sheet_statistic.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
-                <!--
-                ==========================================
-                BACKDROP SINGLE PORTRAITS
-                ==========================================
-                -->
-
-                <!-- Default (empty) portrait (circular). -->
-                <sprite name="ui_portrait_default_circle">
-                        <image texture="session/portraits/ui_portrait_default_circle.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_default_circle_lit">
-                        <effect add_color="42 42 42 0"/>
-                        <image texture="session/portraits/ui_portrait_default_circle.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_default_circle_grey">
-                        <effect grayscale=""/>
-                        <image texture="session/portraits/ui_portrait_default_circle.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-
-                <!-- Default (empty) portrait (square). -->
-                <sprite name="ui_portrait_default_square">
-                        <image texture="session/portraits/ui_portrait_default_square.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_default_square_lit">
-                        <effect add_color="42 42 42 0"/>
-                        <image texture="session/portraits/ui_portrait_default_square.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_default_square_grey">
-                        <effect grayscale=""/>
-                        <image texture="session/portraits/ui_portrait_default_square.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-
-                <!--
-                ==========================================
-                ACTION SHEET PORTRAITS - COMMANDS, TABS, STANCES, FORMATIONS, ETC
-                ==========================================
-                -->
-
-                <sprite name="ui_portrait_sheet_action">
-                        <image texture="session/portraits/ui_portrait_sheet_action.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-                </sprite>
-                <sprite name="ui_portrait_sheet_action_lit">
-                        <effect add_color="42 42 42 0"/>
-                        <image texture="session/portraits/ui_portrait_sheet_action.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-                </sprite>
-                <sprite name="ui_portrait_sheet_action_grey">
-                        <effect grayscale=""/>
-                        <image texture="session/portraits/ui_portrait_sheet_action.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-                </sprite>
-
-                <!--
-                ==========================================
-                ENTITY SINGLE PORTRAITS
-                ==========================================
-                -->
-
-                <!-- Pyrogenesis Dude portrait. -->
-                <sprite name="ui_portrait_unit_dude">
-                        <image texture="session/portraits/ui_portrait_unit_dude.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_unit_dude_lit">
-                        <effect add_color="42 42 42 0"/>
-                        <image texture="session/portraits/ui_portrait_unit_dude.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_unit_dude_grey">
-                        <effect grayscale=""/>
-                        <image texture="session/portraits/ui_portrait_unit_dude.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-
-                <!-- Pyrogenesis Dudette portrait. -->
-                <sprite name="ui_portrait_unit_dudette">
-                        <image texture="session/portraits/ui_portrait_unit_dudette.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_unit_dudette_lit">
-                        <effect add_color="42 42 42 0"/>
-                        <image texture="session/portraits/ui_portrait_unit_dudette.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_unit_dudette_grey">
-                        <effect grayscale=""/>
-                        <image texture="session/portraits/ui_portrait_unit_dudette.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-
-                <!-- Deciduous Tree portrait. -->
-                <sprite name="ui_portrait_flora_deciduotree_gaia">
-                        <image texture="session/portraits/ui_portrait_flora_deciduotree_gaia.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_flora_deciduotree_gaia_lit">
-                        <effect add_color="42 42 42 0"/>
-                        <image texture="session/portraits/ui_portrait_flora_deciduotree_gaia.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-                <sprite name="ui_portrait_flora_deciduotree_gaia_grey">
-                        <effect grayscale=""/>
-                        <image texture="session/portraits/ui_portrait_flora_deciduotree_gaia.png" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
-                </sprite>
-
-                <!--
-                ==========================================
-                ENTITY SHEET PORTRAITS - CELTS
-                ==========================================
-                -->
-
-                <sprite name="ui_portrait_sheet_civ_celt">
-                        <image texture="session/portraits/ui_portrait_sheet_civ_celt.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-                </sprite>
-                <sprite name="ui_portrait_sheet_civ_celt_grey">
-                        <effect grayscale=""/>
-                        <image texture="session/portraits/ui_portrait_sheet_civ_celt.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-                </sprite>
-                <sprite name="ui_portrait_sheet_civ_celt_lit">
-                        <effect add_color="42 42 42 0"/>
-                        <image texture="session/portraits/ui_portrait_sheet_civ_celt.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-                </sprite>
-
-                <!--
-                ==========================================
-                ENTITY SHEET PORTRAITS - HELLENES
-                ==========================================
-                -->
-
-                <sprite name="ui_portrait_sheet_civ_hele">
-                        <image texture="session/portraits/ui_portrait_sheet_civ_hele.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-                </sprite>
-                <sprite name="ui_portrait_sheet_civ_hele_grey">
-                        <effect grayscale=""/>
-                        <image texture="session/portraits/ui_portrait_sheet_civ_hele.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-                </sprite>
-                <sprite name="ui_portrait_sheet_civ_hele_lit">
-                        <effect add_color="42 42 42 0"/>
-                        <image texture="session/portraits/ui_portrait_sheet_civ_hele.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-                </sprite>
-
-                <!--
-                ==========================================
-                ENTITY SHEET PORTRAITS - IBERIANS
-                ==========================================
-                -->
-
-                <sprite name="ui_portrait_sheet_civ_iber">
-                        <image texture="session/portraits/ui_portrait_sheet_civ_iber.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-                </sprite>
-                <sprite name="ui_portrait_sheet_civ_iber_grey">
-                        <effect grayscale=""/>
-                        <image texture="session/portraits/ui_portrait_sheet_civ_iber.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-                </sprite>
-                <sprite name="ui_portrait_sheet_civ_iber_lit">
-                        <effect add_color="42 42 42 0"/>
-                        <image texture="session/portraits/ui_portrait_sheet_civ_iber.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-                </sprite>
-
-                <!--
-                ==========================================
-                ENTITY SHEET PORTRAITS - CARTHAGINIANS
-                ==========================================
-                -->
-
-                <sprite name="ui_portrait_sheet_civ_kart">
-                        <image texture="session/portraits/ui_portrait_sheet_civ_kart.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-                </sprite>
-                <sprite name="ui_portrait_sheet_civ_kart_grey">
-                        <effect grayscale=""/>
-                        <image texture="session/portraits/ui_portrait_sheet_civ_kart.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-                </sprite>
-                <sprite name="ui_portrait_sheet_civ_kart_lit">
-                        <effect add_color="42 42 42 0"/>
-                        <image texture="session/portraits/ui_portrait_sheet_civ_kart.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-                </sprite>
-
-                <!--
-                ==========================================
-                ENTITY SHEET PORTRAITS - PERSIANS
-                ==========================================
-                -->
-
-                <sprite name="ui_portrait_sheet_civ_pers">
-                        <image texture="session/portraits/ui_portrait_sheet_civ_pers.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-                </sprite>
-                <sprite name="ui_portrait_sheet_civ_pers_grey">
-                        <effect grayscale=""/>
-                        <image texture="session/portraits/ui_portrait_sheet_civ_pers.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-                </sprite>
-                <sprite name="ui_portrait_sheet_civ_pers_lit">
-                        <effect add_color="42 42 42 0"/>
-                        <image texture="session/portraits/ui_portrait_sheet_civ_pers.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-                </sprite>
-
-                <!--
-                ==========================================
-                ENTITY SHEET PORTRAITS - ROMANS
-                ==========================================
-                -->
-
-                <sprite name="ui_portrait_sheet_civ_rome">
-                        <image texture="session/portraits/ui_portrait_sheet_civ_rome.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-                </sprite>
-                <sprite name="ui_portrait_sheet_civ_rome_grey">
-                        <effect grayscale=""/>
-                        <image texture="session/portraits/ui_portrait_sheet_civ_rome.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-                </sprite>
-                <sprite name="ui_portrait_sheet_civ_rome_lit">
-                        <effect add_color="42 42 42 0"/>
-                        <image texture="session/portraits/ui_portrait_sheet_civ_rome.png" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
-                </sprite>
-
         <!--
         ==========================================
         EDITOR GUI - BACKCOLOR SPRITES
@@ -1191,7 +1347,7 @@ NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET 
                 <image backcolor="255 255 255" size="3 3 100%-3 100%-3"/>
         </sprite>
 
-        <sprite name="atlas_window_grey">
+        <sprite name="atlas_window_gray">
                 <!-- Starting with top left corner continuing in a clockwise manner -->
                 <!-- Top border -->
                 <image backcolor="129 134 142" size="0%-3 0%-3 100%+2 0%+1" />

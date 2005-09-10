@@ -424,8 +424,49 @@
 
 		<style 	name="pgButton"
 			tooltip_style="pgToolTip"
+			tooltip=""
 		/>
 
+		<!--
+		==========================================
+		- STYLE - UNIQUE - SESSION
+		==========================================
+		-->
+
+		<style name="snObject"
+			tooltip_style="snToolTip"
+			tooltip=""
+		/>
+
+		<style name="snAction"
+			sprite="ui_portrait_defaultcircle"
+			sprite_over="ui_portrait_defaultcircle_lit"
+			sprite_disabled="ui_portrait_defaultcircle_gray"
+			text_align="right"
+			textcolor="255 255 255"
+			tooltip_style="snToolTip"
+			tooltip="(TBA)"
+		/>
+
+		<style 	name="snPortrait"
+			sprite="ui_portrait_default_square"
+			sprite_over="ui_portrait_default_square_lit"
+			sprite_disabled="ui_portrait_default_square_Gray"
+			text_align="right"
+			textcolor="255 255 255"
+			tooltip_style="snToolTip"
+			tooltip="(TBA)"
+		/>
+
+		<style name="snPortraitProgress"
+			sprite_background=""
+			sprite_bar="bkTranslucent"
+			text_align="center"
+			text_valign="center"
+			textcolor="255 255 255"
+			tooltip_style="snToolTip"
+			tooltip="(TBA)"
+		/>
 
         <!--
 NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED 

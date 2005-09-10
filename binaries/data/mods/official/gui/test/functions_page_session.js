@@ -9,15 +9,21 @@ function initSession()
 {
 	// ============================================= CONSTANTS =================================================
 
-	// Standard portrait widths.
-	crd_portrait_lrg_width = 64;
-	crd_portrait_lrg_height = crd_portrait_lrg_width;
-	crd_portrait_sml_width = 32;
-	crd_portrait_sml_height = crd_portrait_sml_width;
+	snConst = new Object();
+
+	// Portraits (large and small).
+	snConst.Portrait = new Object();
+	snConst.Portrait.Sml = new Object();
+	snConst.Portrait.Sml.Width = 36;
+	snConst.Portrait.Sml.Height = snConst.Portrait.Sml.Width;
+	snConst.Portrait.Lrg = new Object();
+	snConst.Portrait.Lrg.Width = 64;
+	snConst.Portrait.Lrg.Height = snConst.Portrait.Lrg.Width;
 
 	// Small icons (eg Movement Rate, Food).
-	crd_mini_icon_width = 20;
-	crd_mini_icon_height = crd_mini_icon_width;
+	snConst.MiniIcon = new Object();
+	snConst.MiniIcon.Width = 20;
+	snConst.MiniIcon.Height = snConst.MiniIcon.Width;
 
 	// ============================================= GLOBALS =================================================
 
@@ -97,14 +103,21 @@ function setPortrait(objectName, portraitString, portraitSuffix, portraitCell)
 {
         // Use this function as a shortcut to change a portrait object to a different portrait image. 
 
-        // Accepts an object and specifies its default, rollover (lit) and disabled (grey) sprites.
+        // Accepts an object and specifies its default, rollover (lit) and disabled (gray) sprites.
         // Sprite Format: "ui_portrait_"portraitString"_"portraitSuffix
         // Sprite Format: "ui_portrait_"portraitString"_"portraitSuffix"_lit"
-        // Sprite Format: "ui_portrait_"portraitString"_"portraitSuffix"_grey"
+        // Sprite Format: "ui_portrait_"portraitString"_"portraitSuffix"_gray"
         // Note: Make sure the file follows this naming convention or bad things could happen.
 
         // Get GUI object
         setPortraitGUIObject = getGUIObjectByName(objectName);
+
+	// Report error if object not found.
+	if (!setPortraitGUIObject)
+	{
+		console.write ("setPortrait(): Failed to find object " + objectName + ".");
+		return 1;
+	}
 
         // Set the three portraits.
 	if (portraitSuffix && portraitSuffix != "")
@@ -113,13 +126,15 @@ function setPortrait(objectName, portraitString, portraitSuffix, portraitCell)
 	        setPortraitGUIObject.sprite = "ui_portrait_" + portraitString;
 
         setPortraitGUIObject.sprite_over = setPortraitGUIObject.sprite + "_lit";
-        setPortraitGUIObject.sprite_disabled = setPortraitGUIObject.sprite + "_grey";
+        setPortraitGUIObject.sprite_disabled = setPortraitGUIObject.sprite + "_gray";
 
         // If the source texture is a multi-frame image (icon sheet), specify correct cell.
         if (portraitCell && portraitCell != "")
                 setPortraitGUIObject.cell_id = portraitCell;
 	else
 		setPortraitGUIObject.cell_id = "";
+
+	return 0;
 }
 
 // ====================================================================
@@ -329,3 +344,5 @@ function snRefresh()
 //		refreshTeamTray();
 	}
 }
+
+// ====================================================================
