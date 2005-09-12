@@ -9,6 +9,8 @@ extern "C" {
 #include "lib.h"
 #include "lib/res/res.h"
 #include "tex_codec.h"
+#include <setjmp.h>
+
 
 #if MSC_VERSION
 # ifdef NDEBUG

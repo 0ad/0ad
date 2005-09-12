@@ -296,6 +296,9 @@ enum LibError
 #define UNREACHABLE __assume(0)
 #endif
 
+#ifdef __GNUC__
+#define UNREACHABLE 0
+#endif
 
 #define ARRAY_SIZE(name) (sizeof(name) / sizeof(name[0]))
 

@@ -5,6 +5,8 @@
 #include "ps/Game.h"
 #include "graphics/Camera.h"
 
+#include <assert.h>
+
 bool InputProcessor::ProcessInput(GameLoopState* state)
 {
 	if (! g_Game)
@@ -24,9 +26,9 @@ bool InputProcessor::ProcessInput(GameLoopState* state)
 
 	float l;
 	l = forwards.GetLength();
-	assert(abs(l - 1.f) < 0.0001f);
+	assert(fabsf(l - 1.f) < 0.0001f);
 	l = leftwards.GetLength();
-	assert(abs(l - 1.f) < 0.0001f);
+	assert(fabsf(l - 1.f) < 0.0001f);
 
 
 	bool moved = false;

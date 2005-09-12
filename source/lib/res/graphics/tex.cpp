@@ -461,6 +461,7 @@ int tex_write(const char* fn, uint w, uint h, uint bpp, uint flags, void* in_img
 	const TexCodecVTbl* c;
 	CHECK_ERR(tex_codec_for_filename(fn, &c));
 
+	const size_t rounded_size = round_up(da.cur_size, FILE_BLOCK_SIZE);
 	// encode
 	int err = c->encode(&t, &da);
 	if(err < 0)
@@ -469,7 +470,6 @@ int tex_write(const char* fn, uint w, uint h, uint bpp, uint flags, void* in_img
 		debug_warn("tex_writefailed");
 		goto fail;
 	}
-	const size_t rounded_size = round_up(da.cur_size, FILE_BLOCK_SIZE);
 	CHECK_ERR(da_set_size(&da, rounded_size));
 	WARN_ERR(vfs_store(fn, da.base, da.pos));
 	err = 0;

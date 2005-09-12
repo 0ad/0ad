@@ -35,10 +35,12 @@
 #include <vector>
 #include <algorithm>
 
-#if HAVE_ASM
+#if !HAVE_MS_ASM && !HAVE_GNU_ASM
+#error ia32.cpp needs inline assembly support!
+#endif
 
 // replace pathetic MS libc implementation.
-#if OS_WIN
+#if HAVE_MS_ASM
 double _ceil(double f)
 {
 	double r;
@@ -64,6 +66,7 @@ __asm
 inline u64 rdtsc()
 {
 	u64 c;
+#if HAVE_MS_ASM
 __asm
 {
 	cpuid
@@ -71,6 +74,13 @@ __asm
 	mov			dword ptr [c], eax
 	mov			dword ptr [c+4], edx
 }
+#elif HAVE_GNU_ASM
+	__asm__ __volatile__ (
+		"cpuid; rdtsc"
+		: "=A" (c)
+		: /* no input */
+		: "ebx", "ecx" /* cpuid clobbers ebx and ecx */);
+#endif
 	return c;
 }
 
@@ -78,6 +88,7 @@ __asm
 // change FPU control word (used to set precision)
 uint ia32_control87(uint new_cw, uint mask)
 {
+#if HAVE_MS_ASM
 __asm
 {
 	push		eax
@@ -93,19 +104,23 @@ __asm
 	fldcw		[esp]
 	pop			eax
 }
-
 	UNUSED2(new_cw);
 	UNUSED2(mask);
+#elif HAVE_GNU_ASM
+	uint cw;
+	asm ("fnstcw %0": "=m" (cw));
+	cw = (cw & ~mask) | (new_cw & mask);
+	asm ("fldcw %0": : "m" (cw));
+#endif
 
 	return 0;
 }
 
-
+#if OS_WIN && HAVE_MS_ASM
 void ia32_debug_break()
 {
 	__asm int 3
 }
-
 
 
 /*
@@ -173,18 +188,18 @@ void org_memcpy_amd(u8 *dest, const u8 *src, size_t n)
 	cmp		ecx, TINY_BLOCK_COPY
 	jb		$memcpy_ic_3	; tiny? skip mmx copy
 
-	cmp		ecx, 32*1024		; don't align between 32k-64k because
+	cmp		ecx, 32*1024		;// don't align between 32k-64k because
 	jbe		$memcpy_do_align	;  it appears to be slower
 	cmp		ecx, 64*1024
 	jbe		$memcpy_align_done
 $memcpy_do_align:
-	mov		ecx, 8			; a trick that's faster than rep movsb...
+	mov		ecx, 8			;// a trick that's faster than rep movsb...
 	sub		ecx, edi		; align destination to qword
 	and		ecx, 111b		; get the low bits
 	sub		ebx, ecx		; update copy count
 	neg		ecx				; set up to jump into the array
 	add		ecx, offset $memcpy_align_done
-	jmp		ecx				; jump to array of movsb's
+	jmp		ecx				;// jump to array of movsb's
 
 align 4
 	movsb
@@ -241,7 +256,7 @@ $memcpy_ic_3:
 	and		ecx, 1111b		; only look at the "remainder" bits
 	neg		ecx				; set up to jump into the array
 	add		ecx, offset $memcpy_last_few
-	jmp		ecx				; jump to array of movsd's
+	jmp		ecx				;// jump to array of movsd's
 
 $memcpy_uc_test:
 	cmp		ecx, UNCACHED_COPY/64	; big enough? use block prefetch copy
@@ -304,7 +319,7 @@ $memcpy_bp_2:
 	dec		eax					; count down the cache lines
 	jnz		$memcpy_bp_2		; keep grabbing more lines into cache
 
-	mov		eax, CACHEBLOCK		; now that it's in cache, do the copy
+	mov		eax, CACHEBLOCK		; now that it is in cache, do the copy
 align 16
 $memcpy_bp_3:
 	movq	mm0, [esi   ]		; read 64 bits
@@ -352,10 +367,10 @@ align 4
 	movsd
 	movsd
 
-$memcpy_last_few:		; dword aligned from before movsd's
+$memcpy_last_few:		;// dword aligned from before movsd's
 	mov		ecx, ebx	; has valid low 2 bits of the byte count
 	and		ecx, 11b	; the last few cows must come home
-	jz		$memcpy_final	; no more, let's leave
+	jz		$memcpy_final	; no more, just leave
 	rep		movsb		; the last 1, 2, or 3 bytes
 
 $memcpy_final: 
@@ -365,14 +380,6 @@ $memcpy_final:
 
     }
 }
-
-
-
-
-
-
-
-
 
 
 	// align to 8 bytes
@@ -711,7 +718,7 @@ __asm
 	shr		ecx, 2			; dword count
 	neg		ecx
 	add		ecx, offset $movsd_table_end
-	jmp		ecx				; jump to array of movsd's
+	jmp		ecx				; jump to array of movsd:s
 
 
 	// The smallest copy uses the X86 "movsd" instruction, in an optimized
@@ -737,7 +744,7 @@ $movsd_table_end:
 
 	mov		ecx, ebx	; has valid low 2 bits of the byte count
 	and		ecx, 11b	; the last few cows must come home
-	jz		$memcpy_final	; no more, let's leave
+	jz		$memcpy_final	; no more, skip tail
 	rep		movsb		; the last 1, 2, or 3 bytes
 $memcpy_final:
 	END
@@ -760,7 +767,7 @@ __asm
 	shr		ecx, 2			; dword count
 	neg		ecx
 	add		ecx, offset $movsd_table_end
-	jmp		ecx				; jump to array of movsd's
+	jmp		ecx				; jump to array of movsd:s
 
 
 	// The smallest copy uses the X86 "movsd" instruction, in an optimized
@@ -788,7 +795,7 @@ $movsd_table_end:
 	and		ecx, 11b	; the last few cows must come home
 	neg		ecx
 	add		ecx, offset $movsb_table_end
-	jmp		ecx				; jump to array of movsb's
+	jmp		ecx				; jump to array of movsb:s
 
 	movsb
 	movsb
@@ -1013,54 +1020,22 @@ static int test()
 }
 //int dummy = test();
 
+#endif // OS_WIN && HAVE_MS_ASM
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+void ia32_memcpy(void* dst, const void* src, size_t nbytes)
+{
+#if OS_WIN
+	// large
+	if(nbytes >= 64*KiB)
+		ia32_memcpy_nt(dst, src, nbytes);
+	// small
+	// TODO: implement small memcpy
+	else
+		memcpy(dst, src, nbytes);
+#else
+	memcpy(dst, src, nbytes);
+#endif
+}
 
 
 //-----------------------------------------------------------------------------
@@ -1086,6 +1061,8 @@ static int test()
 
 // note: don't use __declspec(naked) because we need to access one parameter
 // from C code and VC can't handle that correctly.
+#if HAVE_MS_ASM
+
 bool __cdecl CAS_(uintptr_t* location, uintptr_t expected, uintptr_t new_value)
 {
 	// try to see if caller isn't passing in an address
@@ -1124,35 +1101,21 @@ $no_lock:
 }
 }
 
-
-// enforce strong memory ordering.
-void mfence()
-{
-	// Pentium IV
-	if(ia32_cap(SSE2))
-		__asm mfence
-}
-
-
-void serialize()
-{
-	__asm cpuid
-}
-
-#else // i.e. #if !HAVE_ASM
+#else // #if HAVE_MS_ASM
 
 bool CAS_(uintptr_t* location, uintptr_t expected, uintptr_t new_value)
 {
 	uintptr_t prev;
 
-	debug_assert(location >= (uintptr_t*)0x10000);
+	ASSERT(location >= (uintptr_t*)0x10000);
 
-	__asm__ __volatile__("lock; cmpxchgl %1,%2"
-				 : "=a"(prev) // %0: Result in eax should be stored in prev
-				 : "q"(new_value), // %1: new_value -> e[abcd]x
-				   "m"(*location), // %2: Memory operand
-				   "0"(expected) // Stored in same place as %0
-				 : "memory"); // We make changes in memory
+	__asm__ __volatile__(
+		"lock; cmpxchgl %1,%2"
+		: "=a"(prev) // %0: Result in eax should be stored in prev
+		: "q"(new_value), // %1: new_value -> e[abcd]x
+		  "m"(*location), // %2: Memory operand
+		  "0"(expected) // Stored in same place as %0
+		: "memory"); // We make changes in memory
 	return prev == expected;
 }
 
@@ -1170,21 +1133,29 @@ void atomic_add(intptr_t* location, intptr_t increment)
 		: "memory"); /* clobbers memory (*location) */
 }
 
+#endif	// #if HAVE_MS_ASM
+
+
+// enforce strong memory ordering.
 void mfence()
 {
-	// no cpu caps stored in gcc compiles, so we can't check for SSE2 support
-	/*
-	if (ia32_cap(SSE2))
+	// Pentium IV
+	if(ia32_cap(SSE2))
+#if HAVE_MS_ASM
+		__asm mfence
+#elif HAVE_GNU_ASM
 		__asm__ __volatile__ ("mfence");
-	*/
+#endif
 }
 
 void serialize()
 {
+#if HAVE_MS_ASM
+	__asm cpuid
+#elif HAVE_GNU_ASM
 	__asm__ __volatile__ ("cpuid");
+#endif
 }
-
-#endif	// #if HAVE_ASM
 
 
 //-----------------------------------------------------------------------------
@@ -1231,6 +1202,7 @@ static bool cpuid(u32 func, u32* regs)
 		return false;
 
 	// (optimized for size)
+#if HAVE_MS_ASM
 __asm
 {
 	mov			eax, [func]
@@ -1244,11 +1216,20 @@ __asm
 	xchg		eax, edx
 	stosd
 }
+#elif HAVE_GNU_ASM
+	asm("cpuid"
+		: "=a" (regs[0]),
+		  "=b" (regs[1]),
+		  "=c" (regs[2]),
+		  "=d" (regs[3])
+		: "a" (func));
+#endif
 
 	return true;
 }
 
 
+#if HAVE_MS_ASM
 // (optimized for size)
 static void cpuid()
 {
@@ -1327,7 +1308,7 @@ $1:	lea			eax, [0x80000004+esi]			;// 0x80000002 .. 4
 no_brand_str:
 
 ;// get extended feature flags
-	mov			eax, [0x80000001]
+	mov			eax, 0x80000001
 	cpuid
 	mov			[caps+8], ecx
 	mov			[caps+12], edx
@@ -1339,6 +1320,60 @@ no_cpuid:
 	popad
 }	// __asm
 }	// cpuid()
+
+#elif HAVE_GNU_ASM
+
+// optimized for readability ;-)
+static void cpuid()
+{
+	u32 regs[4];
+	u32 flags;
+
+	/*
+		Try to set bit 21 in flags, and check if the cpu implemented the 
+	*/
+	asm("pushfl; "
+		"orb	$32, 2(%%esp); " /* bit 16+5 = 21 */
+		"popfl; "
+		"pushfl; "
+		"popl %%eax; "
+		: "=a" (flags));
+	if (!(flags & (1<<21))) // bit 21 reset? don't have cpuid -> abort
+		return;
+
+	// weird register ordering for vendor string (12 chars in b/d/cx)
+	// eax is ignored here
+	asm("xorl %%eax, %%eax; cpuid"
+		: "=b" (((u32 *)vendor_str)[0]),
+		  "=d" (((u32 *)vendor_str)[1]),
+		  "=c" (((u32 *)vendor_str)[2])
+		:
+		: "eax");
+	
+	cpuid(1, regs);
+	memcpy(caps, &regs[2], 8);
+	model = (regs[0] & 0xff) >> 4; // eax[7:4]
+	family = (regs[0] & 0xf00) >> 8; // eax[11:8]
+	ext_family = (regs[0] & 0xf000) >> 20; // eax[23:20]
+	
+	cpuid(0x80000000, regs);
+	max_ext_func=regs[0];
+	if (max_ext_func < 0x80000000)
+		return; /* no ext functions - skip remaining tests */
+		
+	if (max_ext_func >= 0x80000004)
+	{
+		/* get brand string */
+		cpuid(0x80000002, (u32*)cpu_type);
+		cpuid(0x80000003, (u32*)(cpu_type+16));
+		cpuid(0x80000004, (u32*)(cpu_type+32));
+		have_brand_string = true;
+	}
+
+	cpuid(0x80000001, regs);
+	memcpy(&caps[2], &regs[2], 8);
+}	// cpuid()
+#endif
 
 
 bool ia32_cap(CpuCap cap)
@@ -1520,6 +1555,7 @@ static void measure_cpu_freq()
 int get_cur_processor_id()
 {
 	int apic_id;
+#if HAVE_MS_ASM
 	__asm {
 	push		1
 	pop			eax
@@ -1527,6 +1563,13 @@ int get_cur_processor_id()
 	shr			ebx, 24
 	mov			[apic_id], ebx					; ebx[31:24]
 	}
+#elif HAVE_GNU_ASM
+	asm("cpuid; "
+		"shr $24, %%ebx"
+		: "=b" (apic_id)
+		: "a" (1)
+		: "ecx", "edx");
+#endif
 
 	return apic_id;
 }
@@ -1563,6 +1606,7 @@ static void check_smp()
 	// get number of logical CPUs per package
 	// (the same for all packages on this system)
 	int log_cpus_per_package;
+#if HAVE_MS_ASM
 	__asm {
 	push		1
 	pop			eax
@@ -1571,11 +1615,19 @@ static void check_smp()
 	and			ebx, 0xff
 	mov			log_cpus_per_package, ebx		; ebx[23:16]
 	}
+#elif HAVE_GNU_ASM
+	asm("cpuid; "
+		"shrl	$16, %%ebx; "
+		"andl	$0xff, %%ebx"
+		: "=b" (log_cpus_per_package)
+		: "a" (1)
+		: "ecx", "edx");
+#endif
 
 	// logical CPUs are initialized after one another =>
 	// they have the same physical ID.
 	const int id = get_cur_processor_id();
-	const int phys_shift = log2(log_cpus_per_package);
+	const int phys_shift = ilog2(log_cpus_per_package);
 	const int phys_id = id >> phys_shift;
 
 	// more than 1 physical CPU found
@@ -1617,7 +1669,10 @@ void ia32_get_cpu_info()
 
 	get_cpu_type();
 	check_speedstep();
+	// linux doesn't have CPU affinity API:s (that we've found...)
+#if OS_WIN
 	on_each_cpu(check_smp);
+#endif
 
 	measure_cpu_freq();
 

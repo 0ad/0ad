@@ -13,8 +13,6 @@
 #include "lib/res/res.h"
 #include "tex_codec.h"
 
-
-
 #if MSC_VERSION
 
 // squelch "dtor / setjmp interaction" warnings.

@@ -24,10 +24,12 @@ void fCommandString_init(IMessage*)
 	oglInit();
 	Init_(g_GameLoop->argc, g_GameLoop->argv, false);
 
+#if OS_WIN
 	// HACK (to stop things looking very ugly when scrolling) - should
 	// use proper config system.
 	if(oglHaveExtension("WGL_EXT_swap_control"))
 		wglSwapIntervalEXT(1);
+#endif
 
 	// Set attributes for the game:
 	//  Start without a map
@@ -80,9 +82,10 @@ REGISTER(CommandString_render_disable);
 void fSetContext(IMessage* msg)
 {
 	mSetContext* cmd = static_cast<mSetContext*>(msg);
-	// TODO: portability
+#if OS_WIN
 	wglMakeCurrent((HDC)cmd->hdc, (HGLRC)cmd->hglrc);
 	g_GameLoop->currentDC = cmd->hdc;
+#endif
 }
 REGISTER(SetContext);
 

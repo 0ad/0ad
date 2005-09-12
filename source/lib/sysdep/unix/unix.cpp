@@ -90,7 +90,7 @@ ErrorReaction display_error_impl(const wchar_t* text, int flags)
 // loading) OpenGL cursor.
 
 int sys_cursor_create(int UNUSED(w), int UNUSED(h), void* UNUSED(img),
-	int UNUSED(hx), UNUSED(int hy), void** cursor)
+	int UNUSED(hx), int UNUSED(hy), void** cursor)
 {
 	*cursor = 0;
 	return 0;

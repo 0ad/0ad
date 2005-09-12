@@ -4,7 +4,7 @@
 #include <string>
 
 #include "lib.h"
-#include "res/file.h"
+#include "res/file/file.h"
 
 #include <fam.h>
 

@@ -1194,7 +1194,7 @@ int CRenderer::LoadAlphaMaps()
 		m_AlphaMapCoords[i].v1=1.0f;
 	}
 
-	for (i=0;i<NumAlphaMaps;i++)
+	for (int i=0;i<NumAlphaMaps;i++)
 		ogl_tex_free(textures[i]);
 
 	// upload the composite texture

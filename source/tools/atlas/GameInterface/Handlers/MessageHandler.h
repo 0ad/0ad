@@ -1,5 +1,7 @@
 #include "../Messages.h"
 
+#include <map>
+
 namespace AtlasMessage
 {
 

@@ -155,7 +155,7 @@ int ilog2(uint n)
 {
 	int bit_index;	// return value
 
-#if CPU_IA32
+#if CPU_IA32 && HAVE_MS_ASM
 
 	__asm
 	{

@@ -29,7 +29,7 @@
 #include "sdl.h"
 
 #if CPU_IA32
-extern void ia32_get_cpu_info();
+#include "sysdep/ia32.h"
 #endif
 
 #if OS_WIN

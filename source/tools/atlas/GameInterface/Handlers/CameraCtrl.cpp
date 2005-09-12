@@ -3,6 +3,8 @@
 #include "MessageHandler.h"
 #include "../GameLoop.h"
 
+#include <assert.h>
+
 namespace AtlasMessage {
 
 

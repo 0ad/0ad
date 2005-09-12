@@ -102,7 +102,7 @@ extern int file_rel_chdir(const char* argv0, const char* rel_path);
 // instantiate this.
 struct DirIterator
 {
-	char opaque[512];
+	char opaque[PATH_MAX+32];
 };
 
 // information about a directory entry filled by dir_next_ent.

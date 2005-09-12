@@ -54,6 +54,7 @@ CTextureEntry* CTextureManager::FindTexture(CStr tag)
 			return m_TextureEntries[i];
 	}
 
+	LOG(WARNING, LOG_CATEGORY, "TextureManager: Couldn't find terrain %s\n", tag.c_str());
 	return 0;
 }
 
@@ -94,7 +95,9 @@ void CTextureManager::LoadTextures(CTerrainProperties *props, CStr path, const c
 {
 	Handle dir=vfs_dir_open(path.c_str());
  	DirEnt dent;
- 
+	
+	path += '/';
+	
  	if (dir > 0)
  	{
 		while (vfs_dir_next_ent(dir, &dent, fileext_filter) == 0)
@@ -126,7 +129,7 @@ void CTextureManager::LoadTextures(CTerrainProperties *props, CStr path, const c
 
 void CTextureManager::RecurseDirectory(CTerrainProperties *parentProps, CStr path)
 {
-	LOG(NORMAL, LOG_CATEGORY, "CTextureManager::RecurseDirectory(%s)", path.c_str());
+	//LOG(NORMAL, LOG_CATEGORY, "CTextureManager::RecurseDirectory(%s)", path.c_str());
 	
 	// Load terrains.xml first, if it exists
 	CTerrainProperties *props=NULL;
@@ -144,17 +147,12 @@ void CTextureManager::RecurseDirectory(CTerrainProperties *parentProps, CStr pat
 
 	// Recurse once for each subdirectory
 
-	Handle dir=vfs_dir_open(path.c_str());
-	DirEnt dent;
+	vector<CStr> folders;
+	VFSUtil::FindFiles(path.c_str(), "/", folders);
 
-	if (dir > 0)
+	for (uint i=0;i<folders.size();i++)
 	{
-		while (vfs_dir_next_ent(dir, &dent, "/") == 0)
-		{
-			RecurseDirectory(props, path+dent.name+"/");
-		}
-		
-		vfs_dir_close(dir);
+		RecurseDirectory(props, folders[i]);
 	}
 
 	for (int i=0;i<ARRAY_SIZE(SupportedTextureFormats);i++)
@@ -166,7 +164,7 @@ void CTextureManager::RecurseDirectory(CTerrainProperties *parentProps, CStr pat
 
 int CTextureManager::LoadTerrainTextures()
 {
-	RecurseDirectory(NULL, "art/textures/terrain/types/");
+	RecurseDirectory(NULL, "art/textures/terrain/types");
 	return 0;
 }
 

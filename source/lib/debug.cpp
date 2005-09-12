@@ -497,7 +497,9 @@ void debug_set_thread_name(const char* name)
 
 	WARN_ERR(pthread_setspecific(tls_key, name));
 
+#if OS_WIN
 	wdbg_set_thread_name(name);
+#endif
 }
 
 

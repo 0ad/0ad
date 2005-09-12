@@ -4,7 +4,7 @@
 
 #include "MessagePasserImpl.h"
 #include "Messages.h"
-#include "handlers/MessageHandler.h"
+#include "Handlers/MessageHandler.h"
 
 #include "InputProcessor.h"
 
@@ -13,9 +13,14 @@
 #include "lib/timer.h"
 #include "ps/CLogger.h"
 
+#include <assert.h>
+
 using namespace AtlasMessage;
 
 extern void Render_();
+
+#define __declspec(spec_)
+#define __stdcall
 
 extern "C" { __declspec(dllimport) int __stdcall SwapBuffers(void*); }
 	// HACK (and not exactly portable)
@@ -159,7 +164,9 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 		{
 			Render_();
 			glFinish();
+#if OS_WIN
 			SwapBuffers((void*)state.currentDC);
+#endif
 		}
 
 		// Be nice to the processor if we're not doing anything useful, but

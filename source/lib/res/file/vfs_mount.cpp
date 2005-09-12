@@ -7,6 +7,9 @@
 #include "zip.h"
 #include "sysdep/dir_watch.h"
 
+#include <deque>
+#include <list>
+
 struct Stats
 {
 	size_t mounted_dirs;
@@ -28,17 +31,6 @@ void vfs_dump_stats()
 	stats.dump();
 }
 
-
-enum MountType
-{
-	// the relative ordering of values expresses efficiency of the sources
-	// (e.g. archives are faster than loose files). mount_should_replace
-	// makes use of this.
-
-	MT_NONE    = 0,
-	MT_FILE    = 1,
-	MT_ARCHIVE = 2
-};
 
 // location of a file: either archive or a real directory.
 // not many instances => don't worry about efficiency.

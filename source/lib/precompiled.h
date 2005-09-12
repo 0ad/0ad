@@ -38,7 +38,7 @@
 #include "lib/string_s.h"	// CRT secure string
 #include "lib/debug.h"
 #include "ps/Pyrogenesis.h"	// MICROLOG and old error system
-
+#include <assert.h> // assert()
 
 //
 // memory headers

@@ -249,11 +249,18 @@
 # define HAVE_X 0
 #endif
 
-// __asm{} blocks (Intel syntax)
+// MSVC/ICC-style __asm{} blocks (Intel syntax)
 #if MSC_VERSION
-# define HAVE_ASM 1
+# define HAVE_MS_ASM 1
 #else
-# define HAVE_ASM 0
+# define HAVE_MS_ASM 0
+#endif
+
+// GNU-style __asm() blocks (AT&T syntax)
+#if __GNUC__
+# define HAVE_GNU_ASM 1
+#else
+# define HAVE_GNU_ASM 0
 #endif
 
 // precompiled headers (affects what precompiled.h pulls in; see there)

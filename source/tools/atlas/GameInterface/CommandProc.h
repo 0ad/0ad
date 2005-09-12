@@ -1,4 +1,5 @@
 #include <list>
+#include <map>
 
 namespace AtlasMessage
 {
@@ -57,8 +58,8 @@ struct DataCommand : public Command // so commands can optionally override (De|C
 
 #define END_COMMAND(t) \
 	}; \
-	namespace CAT2(hndlr_, __LINE__) { struct init { init() { \
-		bool notAlreadyRegisted = GetCmdHandlers().insert(std::pair<std::string, cmdHandler>("c"#t, &c##t##::Create)).second; \
+	namespace CAT2(t, __LINE__) { struct init { init() { \
+		bool notAlreadyRegisted = GetCmdHandlers().insert(std::pair<std::string, cmdHandler>("c"#t, &c##t ::Create)).second; \
 		assert(notAlreadyRegisted); \
 	} } init; };
 

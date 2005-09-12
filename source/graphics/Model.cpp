@@ -413,11 +413,11 @@ void CModel::SetTransform(const CMatrix3D& transform)
 {
 	// call base class to set transform on this object
 	CRenderableObject::SetTransform(transform);
-	m_BoneMatricesValid=false;
 	InvalidateBounds();
+	
+	GenerateBoneMatrices();
 
 	// now set transforms on props
-	const CMatrix3D* bonematrices=GetBoneMatrices();// TODO2: this or m_BoneMatrices? // (GetBoneMatrices updates m_BoneMatrices (when necessary) and returns it)
 	for (size_t i=0;i<m_Props.size();i++) {
 		const Prop& prop=m_Props[i];
 

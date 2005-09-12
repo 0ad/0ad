@@ -19,7 +19,7 @@
 #define IA32_H
 
 #if !CPU_IA32
-#error "including ia32.h without CPU_IA32=1
+#error "including ia32.h without CPU_IA32=1"
 #endif
 
 #include "lib/types.h"

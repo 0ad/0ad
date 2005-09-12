@@ -64,7 +64,7 @@ bool CObjectEntry::BuildRandomVariant(const CObjectBase::variation_key& vars, CO
 
 		// Get the correct variant
 		u8 var_id = *vars_it++;
-		if (var_id < 0 || var_id >= grp->size())
+		if (var_id >= grp->size())
 		{
 			LOG(ERROR, LOG_CATEGORY, "Internal error (BuildRandomVariant: %d not in 0..%d)", var_id, grp->size()-1);
 			// Carry on as best we can, by using some arbitrary variant (rather

@@ -3,6 +3,7 @@
 #include "lib.h"
 #include "timer.h"
 #include "sysdep/sysdep.h"
+#include "debug.h"
 
 #include <stdarg.h>
 #include <sys/types.h>
@@ -102,7 +103,7 @@ void udbg_launch_debugger()
 	}
 }
 
-void* debug_get_nth_caller(uint n)
+void* debug_get_nth_caller(uint n, void *context)
 {
 	// bt[0] == debug_get_nth_caller
 	// bt[1] == caller of get_nth_caller
@@ -390,7 +391,7 @@ int debug_write_crashlog(const char* file, wchar_t* header, void* context)
 	abort();
 }
 
-int debug_is_bogus_pointer(const void* p)
+int debug_is_pointer_bogus(const void* p)
 {
 	return false;
 }

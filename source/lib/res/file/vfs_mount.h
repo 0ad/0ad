@@ -7,8 +7,19 @@ extern void mount_shutdown();
 struct Mount;
 
 
+// If it was possible to forward-declare enums in gcc, this one wouldn't be in
+// the header. Don't use.
+enum MountType
+{
+	// the relative ordering of values expresses efficiency of the sources
+	// (e.g. archives are faster than loose files). mount_should_replace
+	// makes use of this.
 
-enum MountType;
+	MT_NONE    = 0,
+	MT_FILE    = 1,
+	MT_ARCHIVE = 2
+};
+
 
 struct TFile;
 #include "file.h"
