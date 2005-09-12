@@ -107,72 +107,6 @@ void ia32_debug_break()
 }
 
 
-static const size_t CHUNK_SIZE = 4096;
-
-// block prefetch memcpy for large, uncached arrays
-//
-// src and len must be multiples of CHUNK_SIZE.
-static void ia32_memcpy_nt(void* dst, const void* src, size_t len)
-{
-	debug_assert((uintptr_t)src % CHUNK_SIZE == 0);
-	debug_assert(len % CHUNK_SIZE == 0);
-__asm
-{
-	push		esi
-
-	mov			edx, [dst]
-	mov			esi, [src]
-	mov			ecx, [len]
-	shr			ecx, 12						; # chunks
-											; smaller than sub	ecx, CHUNK_SIZE below
-
-main_loop:
-
-; prefetch: touch each cache line in chunk
-; (backwards to prevent hardware prefetches)
-;	add			esi, CHUNK_SIZE
-prefetch_loop:
-	mov			eax, [esi-64]
-	mov			eax, [esi-128]
-	sub			esi, 128
-	test		esi, CHUNK_SIZE-1
-	jnz			prefetch_loop
-
-
-; copy the chunk 64 bytes at a time
-write_loop:
-	movq		mm0, [esi]
-	movq		mm1, [esi+8]
-	movq		mm2, [esi+16]
-	movq		mm3, [esi+24]
-	movq		mm4, [esi+32]
-	movq		mm5, [esi+40]
-	movq		mm6, [esi+48]
-	movq		mm7, [esi+56]
-	add			esi, 64
-	test		esi, 4095					; CHUNK_SIZE-1
-	movntq		[edx], mm0
-	movntq		[edx+8], mm1
-	movntq		[edx+16], mm2
-	movntq		[edx+24], mm3
-	movntq		[edx+32], mm4
-	movntq		[edx+40], mm5
-	movntq		[edx+48], mm6
-	movntq		[edx+56], mm7
-	lea			edx, [edx+64]				; leave flags intact
-	jnz			write_loop
-
-	dec			ecx
-	jnz			main_loop
-
-	sfence
-	emms
-
-	pop			esi
-}
-}
-
-
 
 /*
 
@@ -732,28 +666,28 @@ jl		$bp_process_chunk
 
 _movntq:
 	// we have >= 64, 64B BLOCKS
-	align 16\
-$movntq_loop:\
-prefetchnta [esi + (200*64/34+192)]\
-movq	mm0,[esi+0]\
-add		edi,64\
-movq	mm1,[esi+8]\
-add		esi,64\
-movq	mm2,[esi-48]\
-movntq	[edi-64], mm0\
-movq	mm0,[esi-40]\
-movntq	[edi-56], mm1\
-movq	mm1,[esi-32]\
-movntq	[edi-48], mm2\
-movq	mm2,[esi-24]\
-movntq	[edi-40], mm0\
-movq	mm0,[esi-16]\
-movntq	[edi-32], mm1\
-movq	mm1,[esi-8]\
-movntq	[edi-24], mm2\
-movntq	[edi-16], mm0\
-dec		ecx\
-movntq	[edi-8], mm1\
+	align 16
+$movntq_loop:
+prefetchnta [esi + (200*64/34+192)]
+movq	mm0,[esi+0]
+add		edi,64
+movq	mm1,[esi+8]
+add		esi,64
+movq	mm2,[esi-48]
+movntq	[edi-64], mm0
+movq	mm0,[esi-40]
+movntq	[edi-56], mm1
+movq	mm1,[esi-32]
+movntq	[edi-48], mm2
+movq	mm2,[esi-24]
+movntq	[edi-40], mm0
+movq	mm0,[esi-16]
+movntq	[edi-32], mm1
+movq	mm1,[esi-8]
+movntq	[edi-24], mm2
+movntq	[edi-16], mm0
+dec		ecx
+movntq	[edi-8], mm1
 jnz		$movntq_loop
 	sfence
 	emms
