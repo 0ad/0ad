@@ -124,6 +124,7 @@ public:
 	void add(const char* key, AtObj& data);
 	void set(const char* key, const wchar_t* value);
 	void set(const char* key, AtObj& data);
+	void setString(const wchar_t* value);
 
 	AtSmartPtr<const AtNode> p;
 };

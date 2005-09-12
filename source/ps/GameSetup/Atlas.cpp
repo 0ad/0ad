@@ -75,6 +75,7 @@ static void ATLAS_Run(int argc, char* argv[], int flags = 0)
 		return;
 	}
 
+#ifndef SCED // because ScEd's easier to compile with the Atlas code removed
 	// TODO (make nicer)
 	extern bool BeginAtlas(int argc, char* argv[], void* dll);
 	if (!BeginAtlas(argc, argv, atlas_so_handle))
@@ -82,6 +83,7 @@ static void ATLAS_Run(int argc, char* argv[], int flags = 0)
 		debug_warn("Atlas loading failed");
 		return;
 	}
+#endif
 }
 
 

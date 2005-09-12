@@ -26,6 +26,9 @@
 
 #include <vector>
 #include <string>
+#include <set>
+#include <stack>
+#include <map>
 
 // Nicer memory-leak detection:
 #ifdef _DEBUG

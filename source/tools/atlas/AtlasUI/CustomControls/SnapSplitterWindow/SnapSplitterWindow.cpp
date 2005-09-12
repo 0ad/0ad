@@ -6,9 +6,9 @@ BEGIN_EVENT_TABLE(SnapSplitterWindow, wxSplitterWindow)
 	EVT_SPLITTER_SASH_POS_CHANGING(wxID_ANY, SnapSplitterWindow::OnSashPosChanging)
 END_EVENT_TABLE()
 
-SnapSplitterWindow::SnapSplitterWindow(wxWindow* parent)
+SnapSplitterWindow::SnapSplitterWindow(wxWindow* parent, long style)
 	: wxSplitterWindow(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-					   wxSP_3D | wxSP_LIVE_UPDATE),
+					   style | wxSP_LIVE_UPDATE),
 					   m_SnapTolerance(16)
 {
 	// Set min size, to disable unsplitting

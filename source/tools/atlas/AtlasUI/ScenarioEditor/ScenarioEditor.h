@@ -6,13 +6,15 @@
 class ScenarioEditor : public wxFrame
 {
 public:
-	ScenarioEditor();
+	ScenarioEditor(wxWindow* parent);
 	void OnClose(wxCloseEvent& event);
 	void OnTimer(wxTimerEvent& event);
 	
 	void OnQuit(wxCommandEvent& event);
 	void OnUndo(wxCommandEvent& event);
 	void OnRedo(wxCommandEvent& event);
+
+	void OnWireframe(wxCommandEvent& event);
 
 	static AtlasWindowCommandProc& GetCommandProc();
 

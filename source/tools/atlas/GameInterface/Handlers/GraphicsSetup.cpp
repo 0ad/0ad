@@ -105,4 +105,15 @@ void fResizeScreen(IMessage* msg)
 }
 REGISTER(ResizeScreen);
 
+//////////////////////////////////////////////////////////////////////////
+
+void fRenderStyle(IMessage* msg)
+{
+	mRenderStyle* cmd = static_cast<mRenderStyle*>(msg);
+
+	g_Renderer.SetTerrainRenderMode(cmd->wireframe ? EDGED_FACES : SOLID);
+	g_Renderer.SetModelRenderMode(cmd->wireframe ? EDGED_FACES : SOLID);
+}
+REGISTER(RenderStyle);
+
 }

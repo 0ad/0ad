@@ -47,4 +47,5 @@ void fMergeCommand(IMessage*)
 }
 REGISTER(MergeCommand);
 
+
 }

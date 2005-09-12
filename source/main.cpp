@@ -305,8 +305,6 @@ static void MainControllerShutdown()
 	music_player.release();
 }
 
-#ifndef SCED
-
 
 static bool quit = false;	// break out of main loop
 
@@ -316,6 +314,8 @@ void kill_mainloop()
 	quit = true;
 }
 
+
+#ifndef SCED
 
 int main(int argc, char* argv[])
 {
@@ -360,7 +360,7 @@ void ScEd_Init()
 {
 	g_Quickstart = true;
 
-	Init(0, NULL, false);
+	Init(0, NULL, false, false);
 }
 
 void ScEd_Shutdown()

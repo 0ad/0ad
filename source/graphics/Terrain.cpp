@@ -81,6 +81,15 @@ void CTerrain::CalcPosition(u32 i,u32 j,CVector3D& pos)
 
 
 ///////////////////////////////////////////////////////////////////////////////
+// CalcFromPosition: calculate the vertex underneath the world space position
+void CTerrain::CalcFromPosition(CVector3D& pos, u32& i, u32& j)
+{
+	i = pos.X / CELL_SIZE;
+	j = pos.Z / CELL_SIZE;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
 // CalcNormal: calculate the world space normal of the vertex at (i,j)
 void CTerrain::CalcNormal(u32 i,u32 j,CVector3D& normal)
 {

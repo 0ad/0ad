@@ -1,9 +1,12 @@
+#ifndef ATLASWINDOW_H__
+#define ATLASWINDOW_H__
+
 #include "AtlasWindowCommandProc.h"
 
 #include "IAtlasSerialiser.h"
+#include "CustomControls/FileHistory/FileHistory.h"
 
 #include "wx/filename.h"
-#include "wx/docview.h"
 
 class AtObj;
 
@@ -71,7 +74,9 @@ private:
 	wxFileName m_CurrentFilename;
 	wxString m_WindowTitle;
 
-	wxFileHistory m_FileHistory;
+	FileHistory m_FileHistory;
 
 	DECLARE_EVENT_TABLE();
 };
+
+#endif // ATLASWINDOW_H__

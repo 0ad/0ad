@@ -42,6 +42,7 @@ private:
 
 	void complain(const SAXParseException& err, const char* severity)
 	{
+		fSawErrors = true;
 		char* systemId = XMLString::transcode(err.getSystemId());
 		char* message = XMLString::transcode(err.getMessage());
 		// TODO: do something
@@ -238,7 +239,7 @@ bool AtlasObject::SaveToXML(AtObj& obj, const wchar_t* filename)
 	XMLPlatformUtils::Initialize();
 
 	// Why does it take so much work just to create a DOMWriter? :-(
-	XMLCh domFeatures[100];
+	XMLCh domFeatures[100] = { 0 };
 	XMLString::transcode("LS", domFeatures, 99); // maybe "LS" means "load/save", but I really don't know
 	DOMImplementation* impl = DOMImplementationRegistry::getDOMImplementation(domFeatures);
 	DOMWriter* writer = ((DOMImplementationLS*)impl)->createDOMWriter();

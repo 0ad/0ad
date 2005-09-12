@@ -120,6 +120,8 @@ enum
 //	ID_Open,
 //	ID_Save,
 //	ID_SaveAs,
+
+	ID_Wireframe,
 };
 
 BEGIN_EVENT_TABLE(ScenarioEditor, wxFrame)
@@ -129,14 +131,16 @@ BEGIN_EVENT_TABLE(ScenarioEditor, wxFrame)
 	EVT_MENU(ID_Quit, ScenarioEditor::OnQuit)
 	EVT_MENU(wxID_UNDO, ScenarioEditor::OnUndo)
 	EVT_MENU(wxID_REDO, ScenarioEditor::OnRedo)
+
+	EVT_MENU(ID_Wireframe, ScenarioEditor::OnWireframe)
 END_EVENT_TABLE()
 
 
 static AtlasWindowCommandProc g_CommandProc;
 AtlasWindowCommandProc& ScenarioEditor::GetCommandProc() { return g_CommandProc; }
 
-ScenarioEditor::ScenarioEditor()
-: wxFrame(NULL, wxID_ANY, _("Atlas - Scenario Editor"), wxDefaultPosition, wxSize(1024, 768))
+ScenarioEditor::ScenarioEditor(wxWindow* parent)
+: wxFrame(parent, wxID_ANY, _("Atlas - Scenario Editor"), wxDefaultPosition, wxSize(1024, 768))
 {
 	//////////////////////////////////////////////////////////////////////////
 	// Menu
@@ -171,6 +175,13 @@ ScenarioEditor::ScenarioEditor()
 
 	GetCommandProc().SetEditMenu(menuEdit);
 	GetCommandProc().Initialize();
+
+
+	wxMenu *menuMisc = new wxMenu;
+	menuBar->Append(menuMisc, _("&Misc hacks"));
+	{
+		menuMisc->AppendCheckItem(ID_Wireframe, _("&Wireframe"));
+	}
 
 	//////////////////////////////////////////////////////////////////////////
 	// Main window
@@ -259,10 +270,16 @@ void ScenarioEditor::OnRedo(wxCommandEvent&)
 
 //////////////////////////////////////////////////////////////////////////
 
-AtlasMessage::Position::Position(const wxPoint& pt)
+void ScenarioEditor::OnWireframe(wxCommandEvent& event)
 {
-	// TODO: convert to world space (via the engine)
-	x = pt.x/32.f;
-	y = 0.f;
-	z = pt.y/32.f;
+	ADD_COMMAND(RenderStyle(event.IsChecked()));
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+AtlasMessage::Position::Position(const wxPoint& pt)
+: type(1)
+{
+	type1.x = pt.x;
+	type1.y = pt.y;
 }

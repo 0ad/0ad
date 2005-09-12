@@ -2,6 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 8.00
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AtlasUI", "AtlasUI\AtlasUI.vcproj", "{E99BA969-D540-4F23-822E-37C499E8F704}"
 	ProjectSection(ProjectDependencies) = postProject
 		{228B468D-3C2E-45BF-9833-C626E1A35B04} = {228B468D-3C2E-45BF-9833-C626E1A35B04}
+		{8C9BF4E2-AE5A-4404-AD8A-0418508A737C} = {8C9BF4E2-AE5A-4404-AD8A-0418508A737C}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AtlasObject", "AtlasObject\AtlasObject.vcproj", "{228B468D-3C2E-45BF-9833-C626E1A35B04}"
@@ -19,6 +20,20 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ColourTester", "AtlasFronte
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pyrogenesis", "..\..\..\build\workspaces\vc2003\pyrogenesis.vcproj", "{CDA14ADB-57CA-DB49-A474-E7605D7922BD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E99BA969-D540-4F23-822E-37C499E8F704} = {E99BA969-D540-4F23-822E-37C499E8F704}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DatafileIO", "DatafileIO\DatafileIO.vcproj", "{8C9BF4E2-AE5A-4404-AD8A-0418508A737C}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ArchiveViewer", "AtlasFrontends\ArchiveViewer.vcproj", "{9F10EC81-4AD5-4AD9-A837-78F25E0C8938}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E99BA969-D540-4F23-822E-37C499E8F704} = {E99BA969-D540-4F23-822E-37C499E8F704}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileConverter", "AtlasFrontends\FileConverter.vcproj", "{65124F90-05DB-4B9C-9C69-7E22632359C4}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E99BA969-D540-4F23-822E-37C499E8F704} = {E99BA969-D540-4F23-822E-37C499E8F704}
 	EndProjectSection
@@ -43,13 +58,11 @@ Global
 		{228B468D-3C2E-45BF-9833-C626E1A35B04}.Testing.ActiveCfg = Release|Win32
 		{228B468D-3C2E-45BF-9833-C626E1A35B04}.Testing.Build.0 = Release|Win32
 		{E859DDC0-224A-41F6-B09F-E320EC8DDA35}.Debug.ActiveCfg = Debug|Win32
-		{E859DDC0-224A-41F6-B09F-E320EC8DDA35}.Debug.Build.0 = Debug|Win32
 		{E859DDC0-224A-41F6-B09F-E320EC8DDA35}.Release.ActiveCfg = Release|Win32
 		{E859DDC0-224A-41F6-B09F-E320EC8DDA35}.Release.Build.0 = Release|Win32
 		{E859DDC0-224A-41F6-B09F-E320EC8DDA35}.Testing.ActiveCfg = Debug|Win32
 		{E859DDC0-224A-41F6-B09F-E320EC8DDA35}.Testing.Build.0 = Debug|Win32
 		{C018BE85-EBFE-428E-8626-3CCB77052715}.Debug.ActiveCfg = Debug|Win32
-		{C018BE85-EBFE-428E-8626-3CCB77052715}.Debug.Build.0 = Debug|Win32
 		{C018BE85-EBFE-428E-8626-3CCB77052715}.Release.ActiveCfg = Release|Win32
 		{C018BE85-EBFE-428E-8626-3CCB77052715}.Release.Build.0 = Release|Win32
 		{C018BE85-EBFE-428E-8626-3CCB77052715}.Testing.ActiveCfg = Debug|Win32
@@ -57,9 +70,23 @@ Global
 		{CDA14ADB-57CA-DB49-A474-E7605D7922BD}.Debug.ActiveCfg = Debug|Win32
 		{CDA14ADB-57CA-DB49-A474-E7605D7922BD}.Debug.Build.0 = Debug|Win32
 		{CDA14ADB-57CA-DB49-A474-E7605D7922BD}.Release.ActiveCfg = Release|Win32
-		{CDA14ADB-57CA-DB49-A474-E7605D7922BD}.Release.Build.0 = Release|Win32
 		{CDA14ADB-57CA-DB49-A474-E7605D7922BD}.Testing.ActiveCfg = Testing|Win32
 		{CDA14ADB-57CA-DB49-A474-E7605D7922BD}.Testing.Build.0 = Testing|Win32
+		{8C9BF4E2-AE5A-4404-AD8A-0418508A737C}.Debug.ActiveCfg = Debug|Win32
+		{8C9BF4E2-AE5A-4404-AD8A-0418508A737C}.Release.ActiveCfg = Release|Win32
+		{8C9BF4E2-AE5A-4404-AD8A-0418508A737C}.Release.Build.0 = Release|Win32
+		{8C9BF4E2-AE5A-4404-AD8A-0418508A737C}.Testing.ActiveCfg = Release|Win32
+		{8C9BF4E2-AE5A-4404-AD8A-0418508A737C}.Testing.Build.0 = Release|Win32
+		{9F10EC81-4AD5-4AD9-A837-78F25E0C8938}.Debug.ActiveCfg = Debug|Win32
+		{9F10EC81-4AD5-4AD9-A837-78F25E0C8938}.Release.ActiveCfg = Release|Win32
+		{9F10EC81-4AD5-4AD9-A837-78F25E0C8938}.Release.Build.0 = Release|Win32
+		{9F10EC81-4AD5-4AD9-A837-78F25E0C8938}.Testing.ActiveCfg = Debug|Win32
+		{9F10EC81-4AD5-4AD9-A837-78F25E0C8938}.Testing.Build.0 = Debug|Win32
+		{65124F90-05DB-4B9C-9C69-7E22632359C4}.Debug.ActiveCfg = Debug|Win32
+		{65124F90-05DB-4B9C-9C69-7E22632359C4}.Release.ActiveCfg = Release|Win32
+		{65124F90-05DB-4B9C-9C69-7E22632359C4}.Release.Build.0 = Release|Win32
+		{65124F90-05DB-4B9C-9C69-7E22632359C4}.Testing.ActiveCfg = Debug|Win32
+		{65124F90-05DB-4B9C-9C69-7E22632359C4}.Testing.Build.0 = Debug|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

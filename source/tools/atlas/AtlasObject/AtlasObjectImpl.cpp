@@ -137,6 +137,14 @@ void AtObj::set(const char* key, const wchar_t* value)
 	p = p->setChild(key, AtNode::Ptr(o));
 }
 
+void AtObj::setString(const wchar_t* value)
+{
+	if (!p)
+		p = new AtNode();
+
+	p = p->setValue(value);
+}
+
 bool AtObj::hasContent() const
 {
 	if (!p)

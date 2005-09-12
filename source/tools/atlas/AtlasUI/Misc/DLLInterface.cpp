@@ -6,10 +6,13 @@
 #include "ActorEditor/ActorEditor.h"
 #include "ColourTester/ColourTester.h"
 #include "ScenarioEditor/ScenarioEditor.h"
+#include "FileConverter/FileConverter.h"
+#include "ArchiveViewer/ArchiveViewer.h"
 
 #include "GameInterface/MessagePasser.h"
 
 #include "wx/config.h"
+#include "wx/debugrpt.h"
 
 // Global variables, to remember state between DllMain and StartWindow and OnInit
 wxString g_InitialWindowType;
@@ -60,6 +63,9 @@ class wxDLLApp : public wxApp
 public:
 	virtual bool OnInit()
 	{
+		if (! wxIsDebuggerRunning())
+			wxHandleFatalExceptions();
+
 		// Initialise the global config file
 		wxConfigBase::Set(new wxConfig(_T("Atlas Editor"), _T("Wildfire Games")));
 
@@ -68,15 +74,16 @@ public:
 		// dragging-and-dropping onto the program in Explorer.)
 		Datafile::SetSystemDirectory(argv[0]);
 
-		// Display the Actor Editor window
+		// Display the appropriate window
 		wxFrame* frame;
-		if (g_InitialWindowType == _T("ActorEditor"))
-			frame = new ActorEditor(NULL);
-		else if (g_InitialWindowType == _T("ColourTester"))
-			frame = new ColourTester(NULL);
-		else if (g_InitialWindowType == _T("ScenarioEditor"))
-			frame = new ScenarioEditor();
-		else
+#define MAYBE(t) if (g_InitialWindowType == _T(#t)) frame = new t(NULL); else
+		MAYBE(ActorEditor)
+		MAYBE(ColourTester)
+		MAYBE(ScenarioEditor)
+		MAYBE(FileConverter)
+		MAYBE(ArchiveViewer)
+#undef MAYBE
+		// else
 		{
 			wxFAIL_MSG(_("Internal error: invalid window type"));
 			return false;
@@ -85,25 +92,79 @@ public:
 		frame->Show();
 		SetTopWindow(frame);
 
-		// One argument => argv[1] is probably a filename to open
-		if (argc > 1)
+		AtlasWindow* win = wxDynamicCast(frame, AtlasWindow);
+		if (win)
 		{
-			wxChar* filename = argv[1];
-
-			if (filename[0] != _T('-')) // ignore -options
+			// One argument => argv[1] is probably a filename to open
+			if (argc > 1)
 			{
-				if (wxFile::Exists(filename))
+				wxChar* filename = argv[1];
+
+				if (filename[0] != _T('-')) // ignore -options
 				{
-					AtlasWindow* win = wxDynamicCast(frame, AtlasWindow);
-					if (win)
+					if (wxFile::Exists(filename))
+					{
 						win->OpenFile(filename);
+					}
+					else
+						wxLogError(_("Cannot find file '%s'"), filename);
 				}
-				else
-					wxLogError(_("Cannot find file '%s'"), filename);
 			}
 		}
 
 		return true;
+	}
+
+
+	bool OpenDirectory(const wxString& dir)
+	{
+		// Code largely copied from wxLaunchDefaultBrowser:
+		// (TODO: portability)
+
+		typedef HINSTANCE (WINAPI *LPShellExecute)(HWND hwnd, const wxChar* lpOperation,
+			const wxChar* lpFile,
+			const wxChar* lpParameters,
+			const wxChar* lpDirectory,
+			INT nShowCmd);
+
+		HINSTANCE hShellDll = ::LoadLibrary(_T("shell32.dll"));
+		if (hShellDll == NULL)
+			return false;
+
+		LPShellExecute lpShellExecute =
+			(LPShellExecute) ::GetProcAddress(hShellDll,
+			wxString(_T("ShellExecute")
+#ifdef _UNICODE
+			  _T("W")
+#else
+			  _T("A")
+#endif
+			).mb_str(wxConvLocal));
+
+		if (lpShellExecute == NULL)
+			return false;
+
+		/*HINSTANCE nResult =*/ (*lpShellExecute)(NULL, _T("explore"), dir.c_str(), NULL, NULL, SW_SHOWNORMAL);
+			// ignore return value, since we're not going to do anything if this fails
+
+		::FreeLibrary(hShellDll);
+
+		return true;
+	}
+
+	virtual void OnFatalException()
+	{
+		wxDebugReport report;
+		wxDebugReportPreviewStd preview;
+
+		report.AddAll();
+
+		if (preview.Show(report))
+		{
+			wxString dir = report.GetDirectory(); // save the string, since it gets cleared by Process
+			report.Process();
+			OpenDirectory(dir);
+		}
 	}
 };
 

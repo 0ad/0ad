@@ -20,11 +20,12 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;..;.\General;.\CustomControls\Buttons;.\CustomControls\DraggableListCtrl;.\CustomControls\EditableListCtrl;.\CustomControls\Windows;.\Misc;E:\wx\wxWidgets\include;E:\wx\wxWidgets\include\msvc;..\..\..\..\libraries\devil\src\include"
+				AdditionalIncludeDirectories=".;..;.\General;.\CustomControls\Buttons;.\CustomControls\DraggableListCtrl;.\CustomControls\EditableListCtrl;.\CustomControls\Windows;.\Misc;E:\wx\wxWidgets-2.6.1\include;E:\wx\wxWidgets-2.6.1\include\msvc;..\..\..\..\libraries\devil\src\include;..\..\..\..\libraries\xerces\include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
+				BufferSecurityCheck="TRUE"
 				UsePrecompiledHeader="3"
 				WarningLevel="4"
 				Detect64BitPortabilityProblems="TRUE"
@@ -33,13 +34,14 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="comctl32.lib rpcrt4.lib wxmsw25ud_gl.lib"
+				AdditionalDependencies="winmm.lib comctl32.lib rpcrt4.lib wxmsw26ud_gl.lib"
 				OutputFile="$(OutDir)/AtlasUI_d.dll"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="E:\wx\wxWidgets\lib\vc_lib;..\..\..\..\libraries\xerces\lib;..\..\..\..\libraries\devil\src\lib"
+				AdditionalLibraryDirectories="E:\wx\wxWidgets-2.6.1\lib\vc_lib;..\..\..\..\libraries\xerces\lib;..\..\..\..\libraries\devil\src\lib"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile="$(OutDir)/AtlasUI_d.pdb"
 				SubSystem="2"
+				BaseAddress="0x14000000"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -72,10 +74,11 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="1"
-				AdditionalIncludeDirectories=".;..;.\General;.\CustomControls\Buttons;.\CustomControls\DraggableListCtrl;.\CustomControls\EditableListCtrl;.\CustomControls\Windows;.\Misc;E:\wx\wxWidgets\include;E:\wx\wxWidgets\include\msvc;..\..\..\..\libraries\devil\src\include"
+				AdditionalIncludeDirectories=".;..;.\General;.\CustomControls\Buttons;.\CustomControls\DraggableListCtrl;.\CustomControls\EditableListCtrl;.\CustomControls\Windows;.\Misc;E:\wx\wxWidgets-2.6.1\include;E:\wx\wxWidgets-2.6.1\include\msvc;..\..\..\..\libraries\devil\src\include;..\..\..\..\libraries\xerces\include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
+				BufferSecurityCheck="TRUE"
 				UsePrecompiledHeader="3"
 				WarningLevel="4"
 				Detect64BitPortabilityProblems="TRUE"
@@ -84,16 +87,18 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="comctl32.lib rpcrt4.lib"
+				AdditionalDependencies="winmm.lib comctl32.lib rpcrt4.lib wxmsw26u_gl.lib"
 				OutputFile="$(OutDir)/AtlasUI.dll"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="E:\wx\wxWidgets\lib\vc_lib;..\..\..\..\libraries\xerces\lib;..\..\..\..\libraries\devil\src\lib"
+				AdditionalLibraryDirectories="E:\wx\wxWidgets-2.6.1\lib\vc_lib;..\..\..\..\libraries\xerces\lib;..\..\..\..\libraries\devil\src\lib"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile="$(OutDir)/AtlasUI.pdb"
+				GenerateMapFile="TRUE"
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
 				OptimizeForWindows98="1"
+				BaseAddress="0x14000000"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -266,34 +271,16 @@
 						RelativePath=".\CustomControls\Buttons\ActionButton.h">
 					</File>
 				</Filter>
-			</Filter>
-			<Filter
-				Name="ActorEditor"
-				Filter="">
-				<File
-					RelativePath=".\ActorEditor\ActorEditor.cpp">
-				</File>
-				<File
-					RelativePath=".\ActorEditor\ActorEditor.h">
-				</File>
-				<File
-					RelativePath=".\ActorEditor\ActorEditorListCtrl.cpp">
-				</File>
-				<File
-					RelativePath=".\ActorEditor\ActorEditorListCtrl.h">
-				</File>
-				<File
-					RelativePath=".\ActorEditor\AnimListEditor.cpp">
-				</File>
-				<File
-					RelativePath=".\ActorEditor\AnimListEditor.h">
-				</File>
-				<File
-					RelativePath=".\ActorEditor\PropListEditor.cpp">
-				</File>
-				<File
-					RelativePath=".\ActorEditor\PropListEditor.h">
-				</File>
+				<Filter
+					Name="FileHistory"
+					Filter="">
+					<File
+						RelativePath=".\CustomControls\FileHistory\FileHistory.cpp">
+					</File>
+					<File
+						RelativePath=".\CustomControls\FileHistory\FileHistory.h">
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="Misc"
@@ -325,33 +312,8 @@
 				<File
 					RelativePath=".\Misc\stdafx.h">
 				</File>
-			</Filter>
-			<Filter
-				Name="ColourTester"
-				Filter="">
 				<File
-					RelativePath=".\ColourTester\ColourTester.cpp">
-				</File>
-				<File
-					RelativePath=".\ColourTester\ColourTester.h">
-				</File>
-				<File
-					RelativePath=".\ColourTester\ColourTesterColourCtrl.cpp">
-				</File>
-				<File
-					RelativePath=".\ColourTester\ColourTesterColourCtrl.h">
-				</File>
-				<File
-					RelativePath=".\ColourTester\ColourTesterFileCtrl.cpp">
-				</File>
-				<File
-					RelativePath=".\ColourTester\ColourTesterFileCtrl.h">
-				</File>
-				<File
-					RelativePath=".\ColourTester\ColourTesterImageCtrl.cpp">
-				</File>
-				<File
-					RelativePath=".\ColourTester\ColourTesterImageCtrl.h">
+					RelativePath=".\Misc\Version.h">
 				</File>
 			</Filter>
 			<Filter
@@ -403,6 +365,92 @@
 							RelativePath=".\ScenarioEditor\Tools\Common\Tools.h">
 						</File>
 					</Filter>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="Utilities"
+				Filter="">
+				<Filter
+					Name="FileConverter"
+					Filter="">
+					<File
+						RelativePath=".\FileConverter\FileConverter.cpp">
+					</File>
+					<File
+						RelativePath=".\FileConverter\FileConverter.h">
+					</File>
+				</Filter>
+				<Filter
+					Name="ArchiveViewer"
+					Filter="">
+					<File
+						RelativePath=".\ArchiveViewer\ArchiveViewer.cpp">
+					</File>
+					<File
+						RelativePath=".\ArchiveViewer\ArchiveViewer.h">
+					</File>
+					<File
+						RelativePath=".\ArchiveViewer\FilePreviewer.cpp">
+					</File>
+					<File
+						RelativePath=".\ArchiveViewer\FilePreviewer.h">
+					</File>
+				</Filter>
+				<Filter
+					Name="ColourTester"
+					Filter="">
+					<File
+						RelativePath=".\ColourTester\ColourTester.cpp">
+					</File>
+					<File
+						RelativePath=".\ColourTester\ColourTester.h">
+					</File>
+					<File
+						RelativePath=".\ColourTester\ColourTesterColourCtrl.cpp">
+					</File>
+					<File
+						RelativePath=".\ColourTester\ColourTesterColourCtrl.h">
+					</File>
+					<File
+						RelativePath=".\ColourTester\ColourTesterFileCtrl.cpp">
+					</File>
+					<File
+						RelativePath=".\ColourTester\ColourTesterFileCtrl.h">
+					</File>
+					<File
+						RelativePath=".\ColourTester\ColourTesterImageCtrl.cpp">
+					</File>
+					<File
+						RelativePath=".\ColourTester\ColourTesterImageCtrl.h">
+					</File>
+				</Filter>
+				<Filter
+					Name="ActorEditor"
+					Filter="">
+					<File
+						RelativePath=".\ActorEditor\ActorEditor.cpp">
+					</File>
+					<File
+						RelativePath=".\ActorEditor\ActorEditor.h">
+					</File>
+					<File
+						RelativePath=".\ActorEditor\ActorEditorListCtrl.cpp">
+					</File>
+					<File
+						RelativePath=".\ActorEditor\ActorEditorListCtrl.h">
+					</File>
+					<File
+						RelativePath=".\ActorEditor\AnimListEditor.cpp">
+					</File>
+					<File
+						RelativePath=".\ActorEditor\AnimListEditor.h">
+					</File>
+					<File
+						RelativePath=".\ActorEditor\PropListEditor.cpp">
+					</File>
+					<File
+						RelativePath=".\ActorEditor\PropListEditor.h">
+					</File>
 				</Filter>
 			</Filter>
 		</Filter>

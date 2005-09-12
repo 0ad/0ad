@@ -57,9 +57,11 @@ public:
 	CMiniPatch* GetTile(int32_t x,int32_t z);
 
 	// calculate the position of a given vertex
-	void CalcPosition(u32 i,u32 j,CVector3D& pos);
+	void CalcPosition(u32 i,u32 j, CVector3D& pos);
+	// calculate the vertex under a given position (rounding down coordinates)
+	void CalcFromPosition(CVector3D& pos, u32& i, u32& j);
 	// calculate the normal at a given vertex
-	void CalcNormal(u32 i,u32 j,CVector3D& normal);
+	void CalcNormal(u32 i, u32 j, CVector3D& normal);
 
 	// flatten out an area of terrain (specified in world space coords); return
 	// the average height of the flattened area

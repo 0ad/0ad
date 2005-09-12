@@ -29,7 +29,7 @@ public:
 		buttons->AddButton(new wxButton(this, wxID_NO, _("&Discard changes")));
 		if (allowCancel)
 			buttons->AddButton(new wxButton(this, wxID_CANCEL, _("&Cancel")));
-		buttons->Finalise();
+		buttons->Realize();
 
 		wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 		sizer->Add(topsizer, wxSizerFlags().Proportion(1).Centre().Border(wxLEFT|wxRIGHT|wxTOP, 10));
@@ -72,7 +72,7 @@ END_EVENT_TABLE()
 
 AtlasWindow::AtlasWindow(wxWindow* parent, const wxString& title, const wxSize& size)
 	: wxFrame(parent, wxID_ANY, _T(""), wxDefaultPosition, size),
-	m_WindowTitle(title), m_FileHistory(9)
+	m_WindowTitle(title), m_FileHistory(title)
 {
 
 	m_MenuBar = new wxMenuBar;
@@ -109,7 +109,6 @@ AtlasWindow::AtlasWindow(wxWindow* parent, const wxString& title, const wxSize& 
 	m_FileHistory.Load(*wxConfigBase::Get());
 
 	CreateStatusBar();
-	//SetStatusText(_("Welcome to wxWidgets!"));
 
 	SetCurrentFilename();
 }

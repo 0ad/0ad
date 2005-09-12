@@ -16,6 +16,18 @@ my @progs = (
 		EXE_NAME		=> "ColourTester",
 		WINDOW_NAME		=> "ColourTester",
 	},
+	{
+		PROJECT_NAME	=> "FileConverter",
+		GUID			=> "",
+		EXE_NAME		=> "FileConverter",
+		WINDOW_NAME		=> "FileConverter",
+	},
+	{
+		PROJECT_NAME	=> "ArchiveViewer",
+		GUID			=> "",
+		EXE_NAME		=> "ArchiveViewer",
+		WINDOW_NAME		=> "ArchiveViewer",
+	},
 
 );
 

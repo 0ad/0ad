@@ -33,8 +33,10 @@ BEGIN_COMMAND(AlterElevation)
 		OldTerrain = new u16[verts];
 		memcpy(OldTerrain, terrain->GetHeightMap(), verts*sizeof(u16));
 
-		int x = (int)d->pos.x;
-		int z = (int)d->pos.z;
+		CVector3D vec;
+		d->pos.GetWorldSpace(vec);
+		uint32_t x, z;
+		terrain->CalcFromPosition(vec, x, z);
 		terrain->RaiseVertex(x, z, (int)d->amount);
 		terrain->MakeDirty(x, z, x, z);
 
