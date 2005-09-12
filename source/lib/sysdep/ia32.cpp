@@ -440,99 +440,35 @@ $memcpy_final:
 
 
 
-/*
-ALIGN
+
+	// align to 8 bytes
 	// this align may be slower in [32kb, 64kb]
-	mov		ecx, 8			; a trick that's faster than rep movsb...
-	sub		ecx, edi		; align destination to qword
-	and		ecx, 111b		; get the low bits
-	sub		ebx, ecx		; update copy count
-	neg		ecx				; set up to jump into the array
-	add		ecx, offset $memcpy_align_done
-	jmp		ecx				; jump to array of movsb's
-
-align 4
-	movsb
-	movsb
-	movsb
-	movsb
-	movsb
-	movsb
-	movsb
-	movsb
+	// rationale: always called - it may speed up TINY as well
+	// => we have to be careful to only copy min(8, 8-edi, size)
+#define MEMCPY_ALIGN
 
 
 
-MMX_MOVQ
 
+// temporal (in-cache) copy; 64 bytes per iter
 // This is small block copy that uses the MMX registers to copy 8 bytes
 // at a time.  It uses the "unrolled loop" optimization, and also uses
 // the software prefetch instruction to get the data into the cache.
-align 16
-$memcpy_ic_1:			; 64-byte block copies, in-cache copy
-
-	prefetchnta [esi + (200*64/34+192)]		; start reading ahead
-
-	movq	mm0, [esi+0]	; read 64 bits
-	movq	mm1, [esi+8]
-	movq	[edi+0], mm0	; write 64 bits
-	movq	[edi+8], mm1	;    note:  the normal movq writes the
-	movq	mm2, [esi+16]	;    data to cache; a cache line will be
-	movq	mm3, [esi+24]	;    allocated as needed, to store the data
-	movq	[edi+16], mm2
-	movq	[edi+24], mm3
-	movq	mm0, [esi+32]
-	movq	mm1, [esi+40]
-	movq	[edi+32], mm0
-	movq	[edi+40], mm1
-	movq	mm2, [esi+48]
-	movq	mm3, [esi+56]
-	movq	[edi+48], mm2
-	movq	[edi+56], mm3
-
-	add		esi, 64			; update source pointer
-	add		edi, 64			; update destination pointer
-	dec		ecx				; count down
-	jnz		$memcpy_ic_1	; last 64-byte block?
+#define MEMCPY_MOVQ
 
 
 
-PREFETCH_MOVNTQ
 
+// 64 bytes per iter; uncached non-temporal
 // For larger blocks, which will spill beyond the cache, it's faster to
 // use the Streaming Store instruction MOVNTQ.   This write instruction
 // bypasses the cache and writes straight to main memory.  This code also
 // uses the software prefetch instruction to pre-read the data.
-align 16
-$memcpy_uc_1:				; 64-byte blocks, uncached copy
-
-	prefetchnta [esi + (200*64/34+192)]		; start reading ahead
-
-	movq	mm0,[esi+0]		; read 64 bits
-	add		edi,64			; update destination pointer
-	movq	mm1,[esi+8]
-	add		esi,64			; update source pointer
-	movq	mm2,[esi-48]
-	movntq	[edi-64], mm0	; write 64 bits, bypassing the cache
-	movq	mm0,[esi-40]	;    note: movntq also prevents the CPU
-	movntq	[edi-56], mm1	;    from READING the destination address
-	movq	mm1,[esi-32]	;    into the cache, only to be over-written
-	movntq	[edi-48], mm2	;    so that also helps performance
-	movq	mm2,[esi-24]
-	movntq	[edi-40], mm0
-	movq	mm0,[esi-16]
-	movntq	[edi-32], mm1
-	movq	mm1,[esi-8]
-	movntq	[edi-24], mm2
-	movntq	[edi-16], mm0
-	dec		ecx
-	movntq	[edi-8], mm1
-	jnz		$memcpy_uc_1	; last 64-byte block?
+#define MEMCPY_MOVNTQ
 
 
 
 
-BLOCKPREFETCH_MOVNTQ
 
 // For the largest size blocks, a special technique called Block Prefetch
 // can be used to accelerate the read operations.   Block Prefetch reads
@@ -540,54 +476,80 @@ BLOCKPREFETCH_MOVNTQ
 // This is faster than using software prefetch, in this case.
 // The technique is great for getting maximum read bandwidth,
 // especially in DDR memory systems.
+#define MEMCPY_BP_MOVNTQ
+
+
+
+
+
+
+
+
+/*
+
+
+
+void amd_memcpy_skeleton(u8 *dest, const u8 *src, size_t n)
+{
+  __asm {
+
+	mov		ecx, [n]		; number of bytes to copy
+	mov		edi, [dest]		; destination
+	mov		esi, [src]		; source
+	mov		ebx, ecx		; keep a copy of count
+
+	cmp		ecx, TINY_BLOCK_COPY
+	jb		$memcpy_ic_3	; tiny? skip mmx copy
+
+	ALIGN
+
+	mov		ecx, ebx		; number of bytes left to copy
+	shr		ecx, 6			; get 64-byte block count
+	jz		$memcpy_ic_2	; finish the last few bytes
+
+	cmp		ecx, IN_CACHE_COPY/64	; too big 4 cache? use uncached copy
+	jae		$memcpy_uc_test
+
+	MMX_MOVQ
+
+$memcpy_ic_2:
+	mov		ecx, ebx		; has valid low 6 bits of the byte count
+$memcpy_ic_3:
+	TINY(<=64)
+
+	emms				; clean up the MMX state
+	sfence				; flush the write buffer
+	ret
+
+$memcpy_uc_test:
+	cmp		ecx, UNCACHED_COPY/64	; big enough? use block prefetch copy
+	jae		$memcpy_bp_1
+
+$memcpy_64_test:
+	or		ecx, ecx		; tail end of block prefetch will jump here
+	jz		$memcpy_ic_2	; no more 64-byte blocks left
+
+align 16
+$memcpy_uc_1:				; 64-byte blocks, uncached copy
+	PREFETCH_MOVNTQ
+
+	jmp		$memcpy_ic_2		; almost done
+
 $memcpy_bp_1:			; large blocks, block prefetch copy
+	BLOCKPREFETCH_MOVNTQ
+	// jumps to $memcpy_64_test when done
+    }
+}
 
-	cmp		ecx, CACHEBLOCK			; big enough to run another prefetch loop?
-	jl		$memcpy_64_test			; no, back to regular uncached copy
-
-	mov		eax, CACHEBLOCK / 2		; block prefetch loop, unrolled 2X
-	add		esi, CACHEBLOCK * 64	; move to the top of the block
-align 16
-$memcpy_bp_2:
-	mov		edx, [esi-64]		; grab one address per cache line
-	mov		edx, [esi-128]		; grab one address per cache line
-	sub		esi, 128			; go reverse order
-	dec		eax					; count down the cache lines
-	jnz		$memcpy_bp_2		; keep grabbing more lines into cache
-
-	mov		eax, CACHEBLOCK		; now that it's in cache, do the copy
-align 16
-$memcpy_bp_3:
-	movq	mm0, [esi   ]		; read 64 bits
-	movq	mm1, [esi+ 8]
-	movq	mm2, [esi+16]
-	movq	mm3, [esi+24]
-	movq	mm4, [esi+32]
-	movq	mm5, [esi+40]
-	movq	mm6, [esi+48]
-	movq	mm7, [esi+56]
-	add		esi, 64				; update source pointer
-	movntq	[edi   ], mm0		; write 64 bits, bypassing cache
-	movntq	[edi+ 8], mm1		;    note: movntq also prevents the CPU
-	movntq	[edi+16], mm2		;    from READING the destination address 
-	movntq	[edi+24], mm3		;    into the cache, only to be over-written,
-	movntq	[edi+32], mm4		;    so that also helps performance
-	movntq	[edi+40], mm5
-	movntq	[edi+48], mm6
-	movntq	[edi+56], mm7
-	add		edi, 64				; update dest pointer
-
-	dec		eax					; count down
-
-	jnz		$memcpy_bp_3		; keep copying
-	sub		ecx, CACHEBLOCK		; update the 64-byte block count
-	jmp		$memcpy_bp_1		; keep processing chunks
+									total taken jmp (no ret, no tbl)+unconditional
+	0..64		tiny							0
+	64..64k		mmx								1+1
+	64k..192k	movntq							1+1
+	192k..inf	blockprefetch					1+1
 
 
 */
 
-
-// note: tiny routine isn't entered if size > 64 (protects movsd array)
 
 
 static i64 t0, t1;
@@ -605,6 +567,201 @@ static i64 t0, t1;
 	__asm mov dword ptr t1, eax\
 	__asm mov dword ptr t1+4, edx\
 	__asm popad
+static const size_t MOVNTQ_MIN_THRESHOLD_64 = 64*KiB / 64;// upper limit for movq/movq copy w/SW prefetch
+
+static const size_t BP_MIN_THRESHOLD_64 = 192*KiB / 64; // upper limit for movq/movntq w/SW prefetch
+
+// rationale:
+// - prefer "jnz loop" style vs "jz end; jmp loop" to make it
+//   better for the branch prediction unit.
+// - need declspec naked because we ret in the middle of the function (avoids jmp)
+//   disadvantage: compiler cannot optimize param passing
+
+void __declspec(naked) ia32_memcpy(void* dst, const void* src, size_t nbytes)
+{
+__asm {
+	BEGIN
+	mov		ecx, [esp+4+8]		;// nbytes
+	mov		esi, [esp+4+4]		;// src
+	mov		edi, [esp+4+0]		;// dst
+
+mov		eax, 8
+sub		eax, edi
+and		eax, 0x07
+cmp		eax, ecx
+cmova	eax, ecx
+sub		ecx, eax
+neg		eax
+add		eax, offset $align_table_end
+jmp		eax
+align 4
+movsb
+movsb
+movsb
+movsb
+movsb
+movsb
+movsb
+movsb
+$align_table_end:
+
+	mov		ebx, ecx
+	shr		ecx, 6			; # blocks
+
+tiny:
+	and		ebx, 63
+	mov		edx, ebx
+	shr		edx, 2			; dword count
+	neg		edx
+	add		edx, offset $movsd_table_end
+
+	mov		eax, _bp
+	cmp		ecx, BP_MIN_THRESHOLD_64
+	cmovb	eax, _movntq
+	cmp		ecx, MOVNTQ_MIN_THRESHOLD_64
+	cmovb	eax, _mmx
+	cmp		ecx, 64
+	cmovbe	eax, edx
+	jmp		eax
+
+align 8
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+	movsd
+$movsd_table_end:
+
+// TODO: move this calc into register
+	mov		eax, ebx
+	and		eax, 11b
+	neg		eax
+	add		eax, offset $movsb_table_end
+	jmp		eax
+
+	movsb
+	movsb
+	movsb
+$movsb_table_end:
+	END
+	ret
+
+_mmx:
+	// we have >= 64
+	align 16
+$movq_loop:
+prefetchnta [esi + (200*64/34+192)]
+movq	mm0, [esi+0]
+movq	mm1, [esi+8]
+movq	[edi+0], mm0
+movq	[edi+8], mm1
+movq	mm2, [esi+16]
+movq	mm3, [esi+24]
+movq	[edi+16], mm2
+movq	[edi+24], mm3
+movq	mm0, [esi+32]
+movq	mm1, [esi+40]
+movq	[edi+32], mm0
+movq	[edi+40], mm1
+movq	mm2, [esi+48]
+movq	mm3, [esi+56]
+movq	[edi+48], mm2
+movq	[edi+56], mm3
+add		esi, 64
+add		edi, 64
+dec		ecx
+jnz		$movq_loop
+	emms
+	jmp		tiny
+
+_bp:
+	// we have >= 8kb// until no more 8kb blocks
+	$bp_process_chunk:
+mov		eax, CACHEBLOCK / 2		; block prefetch loop, unrolled 2X
+add		esi, CACHEBLOCK * 64	; move to the top of the block
+align 16
+/* touch each cache line in reverse order (prevents HW prefetch) */
+$bp_prefetch_chunk:
+mov		edx, [esi-64]
+mov		edx, [esi-128]
+sub		esi, 128
+dec		eax
+jnz		$bp_prefetch_chunk
+mov		eax, CACHEBLOCK		/*; now that it's in cache, do the copy*/
+align 16
+$bp_copy_block:
+movq	mm0, [esi+ 0]
+movq	mm1, [esi+ 8]
+movq	mm2, [esi+16]
+movq	mm3, [esi+24]
+movq	mm4, [esi+32]
+movq	mm5, [esi+40]
+movq	mm6, [esi+48]
+movq	mm7, [esi+56]
+add		esi, 64
+movntq	[edi+ 0], mm0
+movntq	[edi+ 8], mm1
+movntq	[edi+16], mm2
+movntq	[edi+24], mm3
+movntq	[edi+32], mm4
+movntq	[edi+40], mm5
+movntq	[edi+48], mm6
+movntq	[edi+56], mm7
+add		edi, 64
+dec		eax
+jnz		$bp_copy_block
+sub		ecx, CACHEBLOCK		/*; update the 64-byte block count*/
+cmp		ecx, CACHEBLOCK
+jl		$bp_process_chunk
+	sfence
+	emms
+	// protect routine below
+	cmp		ecx, 0
+	jz		tiny
+
+_movntq:
+	// we have >= 64, 64B BLOCKS
+	align 16\
+$movntq_loop:\
+prefetchnta [esi + (200*64/34+192)]\
+movq	mm0,[esi+0]\
+add		edi,64\
+movq	mm1,[esi+8]\
+add		esi,64\
+movq	mm2,[esi-48]\
+movntq	[edi-64], mm0\
+movq	mm0,[esi-40]\
+movntq	[edi-56], mm1\
+movq	mm1,[esi-32]\
+movntq	[edi-48], mm2\
+movq	mm2,[esi-24]\
+movntq	[edi-40], mm0\
+movq	mm0,[esi-16]\
+movntq	[edi-32], mm1\
+movq	mm1,[esi-8]\
+movntq	[edi-24], mm2\
+movntq	[edi-16], mm0\
+dec		ecx\
+movntq	[edi-8], mm1\
+jnz		$movntq_loop
+	sfence
+	emms
+	jmp		tiny
+}	// __asm
+}	// ia32_memcpy
+
+
 
 static void dtable_brep(u8* dst, const u8* src, size_t nbytes)
 {
@@ -751,7 +908,7 @@ rep	movsb
 static void bloop(u8* dst, const u8* src, size_t nbytes)
 {
 	BEGIN
-	for(int i = 0; i < nbytes; i++)
+	for(size_t i = 0; i < nbytes; i++)
 		*dst++ = *src++;
 	END
 }
@@ -759,8 +916,8 @@ static void bloop(u8* dst, const u8* src, size_t nbytes)
 static void dloop_bloop(u8* dst, const u8* src, size_t nbytes)
 {
 	BEGIN
-	int dwords = nbytes/4;
-	for(int i = 0; i < dwords; i++)
+	size_t dwords = nbytes/4;
+	for(size_t i = 0; i < dwords; i++)
 	{
 		*(u32*)dst = *(u32*)src;
 		dst += 4; src += 4;
@@ -803,7 +960,7 @@ static u8* setup_tiny_buf(int alignment, int misalign, bool is_dst)
 
 static void verify_tiny_buf(u8* p, size_t l, const char* culprit)
 {
-	for(int i = 0; i < l; i++)
+	for(size_t i = 0; i < l; i++)
 		if(p[i] != i)
 			debug_assert(0);
 
@@ -853,7 +1010,7 @@ misalign 0
 	dtable_btable: 6670
 	drep_brep: 7384
 
-in release mode over all misaligns 0..63
+in release mode over all misaligns 0..63 and all sizes 1..64
                    total  difference WRT baseline (%)
 
 dtable_btable:     434176
@@ -864,11 +1021,31 @@ brep:              546752 26
 dloop_bloop:       679426 56.5
 bloop:             1537061
 				   
-in debug mode over all misaligns 0..63
+in debug mode over all misaligns 0..63 and all sizes 1..64
 	dtable_btable: 425728 0
 	dtable_brep:   457153 7.3
 	drep_brep:     494368 16.1
 	brep:          538729 26.5
+
+p3, debug mode over all misaligns 0..63 and all sizes 1..64
+	dtable_btable: 1099605
+	dtable_brep:   1111757	1.1
+	memcpy:        1124093	2.2
+	drep_brep:     1138089
+	brep:          1313728
+	dloop_bloop:   1756000
+	bloop:         2405315
+
+p3, release mode over all misaligns 0..63 and all sizes 1..64
+	dtable_btable: 1092784
+	dtable_brep:   1109136	1.5
+	memcpy:        1116306	2.2
+	drep_brep:     1127606
+	dloop_bloop:   1129105
+	brep:          1308052
+	bloop:         1588062
+
+
 */
 
 static void test_with_misalign(int misalign)
@@ -948,104 +1125,8 @@ static int test()
 
 
 
-/*
-void* amd_memcpy(void* dst, const void* src, size_t nbytes)
-{
-  __asm {
-
-	mov		ecx, [n]		; number of bytes to copy
-	mov		edi, [dest]		; destination
-	mov		esi, [src]		; source
-	mov		ebx, ecx		; keep a copy of count
-
-	cmp		ecx, TINY_BLOCK_COPY
-	jb		$memcpy_ic_3	; tiny? skip mmx copy
-
-	**ALIGN**
-
-	; destination is dword aligned
-	mov		ecx, ebx		; number of bytes left to copy
-	shr		ecx, 6			; get 64-byte block count
-	jz		$memcpy_ic_2	; finish the last few bytes
-
-	cmp		ecx, IN_CACHE_COPY/64	; too big 4 cache? use uncached copy
-	jae		$memcpy_uc_test
-
-	**MMX_MOVQ**
-
-$memcpy_ic_2:
-	mov		ecx, ebx		; has valid low 6 bits of the byte count
-$memcpy_ic_3:
-	shr		ecx, 2			; dword count
-	and		ecx, 1111b		; only look at the "remainder" bits
-	neg		ecx				; set up to jump into the array
-	add		ecx, offset $memcpy_last_few
-	jmp		ecx				; jump to array of movsd's
-
-$memcpy_uc_test:
-	cmp		ecx, UNCACHED_COPY/64	; big enough? use block prefetch copy
-	jae		$memcpy_bp_1
-
-$memcpy_64_test:
-	or		ecx, ecx		; tail end of block prefetch will jump here
-	jz		$memcpy_ic_2	; no more 64-byte blocks left
-
-	**PREFETCH_MOVNTQ**
-	jmp		$memcpy_ic_2		; almost done
-
-$memcpy_bp_1:
-	**BLOCKPREFETCH_MOVNTQ**
-
-// The smallest copy uses the X86 "movsd" instruction, in an optimized
-// form which is an "unrolled loop".   Then it handles the last few bytes.
-align 4
-	movsd
-	movsd
-	movsd
-	movsd
-	movsd
-	movsd
-	movsd
-	movsd
-	movsd
-	movsd
-	movsd
-	movsd
-	movsd
-	movsd
-	movsd
-	movsd
-
-$memcpy_last_few:		; dword aligned from before movsd's
-	mov		ecx, ebx	; has valid low 2 bits of the byte count
-	and		ecx, 11b	; the last few cows must come home
-	jz		$memcpy_final	; no more, let's leave
-	rep		movsb		; the last 1, 2, or 3 bytes
-
-$memcpy_final: 
-	emms				; clean up the MMX state
-	sfence				; flush the write buffer
-	mov		eax, [dest]	; ret value = destination pointer
-
-    }
-}
 
 
-
-
-*/
-
-
-void ia32_memcpy(void* dst, const void* src, size_t nbytes)
-{
-	// large
-	if(nbytes >= 64*KiB)
-		ia32_memcpy_nt(dst, src, nbytes);
-	// small
-	// TODO: implement small memcpy
-	else
-		memcpy(dst, src, nbytes);
-}
 
 
 //-----------------------------------------------------------------------------
