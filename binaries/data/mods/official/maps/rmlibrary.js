@@ -63,6 +63,10 @@ function tan(x) {
 	return Math.sin(x);
 }
 
+function abs(x) {
+	return Math.abs(x);
+}
+
 function round(x) {
 	return Math.round(x);
 }
@@ -227,10 +231,12 @@ function BorderTileClassConstraint(tileClass, distanceInside, distanceOutside) {
 
 // Object groups
 
-function SimpleObject(type, count, distance) {
+function SimpleObject(type, minCount, maxCount, minDistance, maxDistance) {
 	this.type = type;
-	this.count = count;
-	this.distance = distance;
+	this.minCount = minCount;
+	this.maxCount = maxCount;
+	this.minDistance = minDistance;
+	this.maxDistance = maxDistance;
 }
 
 function SimpleGroup(elements, avoidSelf, tileClass, x, y) {
