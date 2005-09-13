@@ -15,6 +15,7 @@ extern msgHandlers& GetMsgHandlers();
 #define CAT1(a,b) a##b
 #define CAT2(a,b) CAT1(a,b)
 
+// TODO quite urgently: Fix this, because it's broken and not very helpful anyway
 #define REGISTER(t) namespace CAT2(hndlr_, __LINE__) { struct init { init() { \
 	bool notAlreadyRegisted = GetMsgHandlers().insert(std::pair<std::string, msgHandler>(#t, &f##t)).second; \
 	assert(notAlreadyRegisted); \

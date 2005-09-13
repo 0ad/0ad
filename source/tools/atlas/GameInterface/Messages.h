@@ -90,9 +90,8 @@ COMMAND(CommandString)
 //////////////////////////////////////////////////////////////////////////
 
 COMMAND(SetContext)
-	mSetContext(void* /* HDC */ hdc_, void* /* HGLRC */ hglrc_) : hdc(hdc_), hglrc(hglrc_) {};
-	const void* hdc;
-	const void* hglrc;
+	mSetContext(void* /* wxGLContext */ context_) : context(context_) {};
+	const void* context;
 };
 
 COMMAND(ResizeScreen)

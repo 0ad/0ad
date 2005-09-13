@@ -9,6 +9,7 @@ public:
 	ScenarioEditor(wxWindow* parent);
 	void OnClose(wxCloseEvent& event);
 	void OnTimer(wxTimerEvent& event);
+	void OnIdle(wxIdleEvent& event);
 	
 	void OnQuit(wxCommandEvent& event);
 	void OnUndo(wxCommandEvent& event);

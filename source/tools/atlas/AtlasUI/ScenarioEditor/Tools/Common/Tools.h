@@ -14,7 +14,7 @@ public:
 
 	virtual void OnMouse(wxMouseEvent& evt) = 0;
 	virtual void OnKey(wxKeyEvent& evt, int dir) = 0;
-	virtual void OnTick(float dt) = 0;
+	virtual void OnTick(float dt) = 0; // dt in seconds
 
 	virtual ~ITool() {};
 };

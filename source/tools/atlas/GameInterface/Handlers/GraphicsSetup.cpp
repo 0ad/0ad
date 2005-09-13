@@ -82,10 +82,8 @@ REGISTER(CommandString_render_disable);
 void fSetContext(IMessage* msg)
 {
 	mSetContext* cmd = static_cast<mSetContext*>(msg);
-#if OS_WIN
-	wglMakeCurrent((HDC)cmd->hdc, (HGLRC)cmd->hglrc);
-	g_GameLoop->currentDC = cmd->hdc;
-#endif
+	g_GameLoop->glContext = cmd->context;
+	Atlas_GLSetCurrent((void*)g_GameLoop->glContext);
 }
 REGISTER(SetContext);
 

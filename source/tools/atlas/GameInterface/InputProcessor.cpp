@@ -5,8 +5,6 @@
 #include "ps/Game.h"
 #include "graphics/Camera.h"
 
-#include <assert.h>
-
 bool InputProcessor::ProcessInput(GameLoopState* state)
 {
 	if (! g_Game)
@@ -23,13 +21,6 @@ bool InputProcessor::ProcessInput(GameLoopState* state)
 		forwards = CVector3D(1.f, 0.f, 0.f);
 	else
 		forwards.Normalize();
-
-	float l;
-	l = forwards.GetLength();
-	assert(fabsf(l - 1.f) < 0.0001f);
-	l = leftwards.GetLength();
-	assert(fabsf(l - 1.f) < 0.0001f);
-
 
 	bool moved = false;
 

@@ -8,9 +8,7 @@ template <typename T> class MessagePasserImpl : public AtlasMessage::MessagePass
 public:
 	virtual void Add(T* msg);
 	virtual T* Retrieve();
-
-	virtual void Query(T&);
-	virtual void QueryDone();
+	virtual bool IsEmpty();
 
 private:
 	CMutex m_Mutex;

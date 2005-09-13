@@ -49,12 +49,12 @@ template <typename T> T* MessagePasserImpl<T>::Retrieve()
 	return msg;
 }
 
-template <typename T> void MessagePasserImpl<T>::Query(T&)
+template <typename T> bool MessagePasserImpl<T>::IsEmpty()
 {
-}
-
-template <typename T> void MessagePasserImpl<T>::QueryDone()
-{
+	m_Mutex.Lock();
+	bool empty = m_Queue.empty();
+	m_Mutex.Unlock();
+	return empty;
 }
 
 MessagePasser<mCommand>* g_MessagePasser_Command = NULL;

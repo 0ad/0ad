@@ -1,13 +1,15 @@
 #ifndef GAMELOOP_H__
 #define GAMELOOP_H__
 
+extern void (*Atlas_GLSetCurrent)(void* context);
+
 struct GameLoopState
 {
 	int argc;
 	char** argv;
 	bool running;
 	bool rendering;
-	const void* currentDC;
+	const void* glContext;
 	float frameLength; // smoothed to avoid large jumps
 
 	struct

@@ -9,9 +9,6 @@ template <typename T> class MessagePasser
 public:
 	virtual void Add(T*)=0;
 	virtual T* Retrieve()=0;
-	
-	virtual void Query(T&)=0;
-	virtual void QueryDone()=0;
 };
 
 struct mCommand;
@@ -23,14 +20,5 @@ extern MessagePasser<mInput>*   g_MessagePasser_Input;
 #define ADD_INPUT(type)   AtlasMessage::g_MessagePasser_Input -> Add(new AtlasMessage::m##type)
 
 }
-
-
-/*
-
-atlas->game command ("initialise now", "render now")
-atlas->game->atlas query ("what is at position (x,y)?")
-game->atlas notification ("game ended")  ??
-
-*/
 
 #endif // MESSAGEPASSER_H__

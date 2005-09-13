@@ -4,6 +4,7 @@
 
 #include "wx/glcanvas.h"
 #include "CustomControls/SnapSplitterWindow/SnapSplitterWindow.h"
+#include "CustomControls/HighResTimer/HighResTimer.h"
 
 #include "GameInterface/MessagePasser.h"
 #include "GameInterface/Messages.h"
@@ -13,6 +14,8 @@
 #include "tools/Common/Tools.h"
 
 //#define UI_ONLY
+
+static HighResTimer g_Timer;
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -100,16 +103,39 @@ private:
 	DECLARE_EVENT_TABLE();
 };
 BEGIN_EVENT_TABLE(Canvas, wxGLCanvas)
-	EVT_SIZE(Canvas::OnResize)
-	EVT_KEY_DOWN(Canvas::OnKeyDown)
-	EVT_KEY_UP(Canvas::OnKeyUp)
+	EVT_SIZE      (Canvas::OnResize)
+	EVT_KEY_DOWN  (Canvas::OnKeyDown)
+	EVT_KEY_UP    (Canvas::OnKeyUp)
 	
-	EVT_LEFT_DOWN(Canvas::OnMouse)
-	EVT_LEFT_UP  (Canvas::OnMouse)
-	EVT_MOTION   (Canvas::OnMouse)
+	EVT_LEFT_DOWN (Canvas::OnMouse)
+	EVT_LEFT_UP   (Canvas::OnMouse)
+	EVT_RIGHT_DOWN(Canvas::OnMouse)
+	EVT_RIGHT_UP  (Canvas::OnMouse)
+	EVT_MOTION    (Canvas::OnMouse)
 END_EVENT_TABLE()
 
+// GL functions exported from DLL, and called by game (in a separate
+// thread to the standard wx one)
+ATLASDLLIMPEXP void Atlas_GLSetCurrent(void* context)
+{
+	((wxGLContext*)context)->SetCurrent();
+}
+
+ATLASDLLIMPEXP void Atlas_GLSwapBuffers(void* context)
+{
+	((wxGLContext*)context)->SwapBuffers();
+}
+
+
 //////////////////////////////////////////////////////////////////////////
+
+
+volatile bool g_FrameHasEnded;
+// Called from game thread
+ATLASDLLIMPEXP void Atlas_NotifyEndOfFrame()
+{
+	g_FrameHasEnded = true;
+}
 
 enum
 {
@@ -133,6 +159,8 @@ BEGIN_EVENT_TABLE(ScenarioEditor, wxFrame)
 	EVT_MENU(wxID_REDO, ScenarioEditor::OnRedo)
 
 	EVT_MENU(ID_Wireframe, ScenarioEditor::OnWireframe)
+
+	EVT_IDLE(ScenarioEditor::OnIdle)
 END_EVENT_TABLE()
 
 
@@ -213,7 +241,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	// Send setup messages to game engine:
 
 #ifndef UI_ONLY
-	ADD_COMMAND(SetContext(canvas->GetHDC(), canvas->GetContext()->GetGLRC()));
+	ADD_COMMAND(SetContext(canvas->GetContext()));
 
 	ADD_COMMAND(CommandString("init"));
 
@@ -225,8 +253,9 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	// XXX
 	USE_TOOL(AlterElevation);
 
+	// Set up a timer to make sure tool-updates happen even when there's no idle time
 	m_Timer.SetOwner(this);
-	m_Timer.Start(50);
+	m_Timer.Start(20);
 }
 
 
@@ -244,13 +273,26 @@ void ScenarioEditor::OnClose(wxCloseEvent&)
 }
 
 
+static void UpdateTool()
+{
+	// Don't keep posting events if the game can't keep up
+	if (g_FrameHasEnded)
+	{
+		g_FrameHasEnded = false; // (threadiness doesn't matter here)
+		// TODO: Smoother timing stuff?
+		static double last = g_Timer.GetTime();
+		double time = g_Timer.GetTime();
+		g_CurrentTool->OnTick(time-last);
+		last = time;
+	}
+}
 void ScenarioEditor::OnTimer(wxTimerEvent&)
 {
-	// TODO: Improve timer stuff - smoother, etc
-	static wxLongLong last = wxGetLocalTimeMillis();
-	wxLongLong time = wxGetLocalTimeMillis();
-	g_CurrentTool->OnTick((time-last).ToLong());
-	last = time;
+	UpdateTool();
+}
+void ScenarioEditor::OnIdle(wxIdleEvent&)
+{
+	UpdateTool();
 }
 
 void ScenarioEditor::OnQuit(wxCommandEvent&)

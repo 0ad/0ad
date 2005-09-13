@@ -13,23 +13,17 @@
 #include "lib/timer.h"
 #include "ps/CLogger.h"
 
-#include <assert.h>
-
 using namespace AtlasMessage;
 
 extern void Render_();
 
-#define __declspec(spec_)
-#define __stdcall
-
-extern "C" { __declspec(dllimport) int __stdcall SwapBuffers(void*); }
-	// HACK (and not exactly portable)
-	//
-	// (Er, actually that's what most of this file is. Oh well.)
-
 // Loaded from DLL:
 void (*Atlas_StartWindow)(wchar_t* type);
 void (*Atlas_SetMessagePasser)(MessagePasser<mCommand>*, MessagePasser<mInput>*);
+void (*Atlas_GLSetCurrent)(void* context);
+void (*Atlas_GLSwapBuffers)(void* context);
+void (*Atlas_NotifyEndOfFrame)();
+
 
 static MessagePasserImpl<mCommand> msgPasser_Command;
 static MessagePasserImpl<mInput>   msgPasser_Input;
@@ -49,11 +43,14 @@ static void* LaunchWindow(void*)
 
 bool BeginAtlas(int argc, char* argv[], void* dll) 
 {
-	*(void**)&Atlas_StartWindow = dlsym(dll, "Atlas_StartWindow");
-	*(void**)&Atlas_SetMessagePasser = dlsym(dll, "Atlas_SetMessagePasser");
-
-	if (!Atlas_StartWindow || !Atlas_SetMessagePasser)
-		return false;
+	// Load required symbols from the DLL
+#define GET(x) *(void**)&x = dlsym(dll, #x); if (! x) return false;
+	GET(Atlas_StartWindow);
+	GET(Atlas_SetMessagePasser);
+	GET(Atlas_GLSetCurrent);
+	GET(Atlas_GLSwapBuffers);
+	GET(Atlas_NotifyEndOfFrame);
+#undef GET
 
 	// Pass our message handler to Atlas
 	Atlas_SetMessagePasser(&msgPasser_Command, &msgPasser_Input);
@@ -66,7 +63,9 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 	state.argv = argv;
 	state.running = true;
 	state.rendering = false;
-	state.currentDC = NULL;
+	state.glContext = NULL;
+
+	double last_activity = get_time();
 
 	while (state.running)
 	{
@@ -82,18 +81,18 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 			static double last_time = time;
 			const float length = (float)(time-last_time);
 			last_time = time;
-			assert(length >= 0.0f);
+			debug_assert(length >= 0.0f);
 			// TODO: filter out big jumps, e.g. when having done a lot of slow
 			// processing in the last frame
 			state.frameLength = length;
 		}
 
+		// Process the input that was received in the past
 		if (g_Input.ProcessInput(&state))
 			recent_activity = true;
 
 		//////////////////////////////////////////////////////////////////////////
 		
-		// if (!(in interactive-tool mode))
 		{
 			mCommand* msg;
 			while ((msg = msgPasser_Command.Retrieve()) != NULL)
@@ -164,18 +163,36 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 		{
 			Render_();
 			glFinish();
-#if OS_WIN
-			SwapBuffers((void*)state.currentDC);
-#endif
+			Atlas_GLSwapBuffers((void*)state.glContext);
 		}
 
-		// Be nice to the processor if we're not doing anything useful, but
-		// nice to the user if we are
-		if (! recent_activity)
-			SDL_Delay(100);
+		Atlas_NotifyEndOfFrame();
+
+		double time = get_time();
+		if (recent_activity)
+			last_activity = time;
+
+		// Be nice to the processor (by sleeping) if we're not doing anything
+		// useful, but nice to the user (by just yielding to other threads) if we are
+		
+		if (time - last_activity > 0.5) // if there was no recent activity...
+		{
+			double sleepUntil = time + 0.5; // only redraw at 2fps
+			while (time < sleepUntil)
+			{
+				// To minimise latency when the user starts doing stuff, only
+				// sleep for a short while, then check if anything's happened,
+				// then go back to sleep
+				SDL_Delay(50);
+				if (!msgPasser_Input.IsEmpty() || !msgPasser_Command.IsEmpty())
+					break;
+				time = get_time();
+			}
+		}
 		else
+		{
 			SDL_Delay(0);
-		// Probable TODO: allow interruption of sleep by incoming messages
+		}
 	}
 
 	// TODO: delete all remaining messages, to avoid memory leak warnings

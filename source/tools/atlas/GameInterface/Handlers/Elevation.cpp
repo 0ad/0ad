@@ -9,6 +9,7 @@
 
 namespace AtlasMessage {
 
+
 BEGIN_COMMAND(AlterElevation)
 
 	// TODO: much more efficient version of this, and without the memory leaks
@@ -25,7 +26,8 @@ BEGIN_COMMAND(AlterElevation)
 		delete NewTerrain;
 	}
 
-	void Do() {
+	void Do()
+	{
 
 		CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 
@@ -33,16 +35,29 @@ BEGIN_COMMAND(AlterElevation)
 		OldTerrain = new u16[verts];
 		memcpy(OldTerrain, terrain->GetHeightMap(), verts*sizeof(u16));
 
+		int amount = (int)d->amount;
+//		debug_printf("%d\n", amount);
+
+		// If the thing's being updated very fast, 'amount' is often very
+		// small (even zero) so the integer truncation is significant
+		static float roundingError = 0.0;
+		roundingError += d->amount - (float)amount;
+		if (roundingError >= 1.f)
+		{
+			amount += (int)roundingError;
+			roundingError -= (float)(int)roundingError;
+		}
+
 		CVector3D vec;
 		d->pos.GetWorldSpace(vec);
 		uint32_t x, z;
 		terrain->CalcFromPosition(vec, x, z);
-		terrain->RaiseVertex(x, z, (int)d->amount);
+		terrain->RaiseVertex(x, z, amount);
 		terrain->MakeDirty(x, z, x, z);
-
 	}
 
-	void Undo() {
+	void Undo()
+	{
 		CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 		if (! NewTerrain)
 		{
@@ -53,12 +68,14 @@ BEGIN_COMMAND(AlterElevation)
 		terrain->SetHeightMap(OldTerrain); // CTerrain duplicates the data
 	}
 
-	void Redo() {
+	void Redo()
+	{
 		CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 		terrain->SetHeightMap(NewTerrain); // CTerrain duplicates the data
 	}
 
-	void MergeWithSelf(cAlterElevation* prev) {
+	void MergeWithSelf(cAlterElevation* prev)
+	{
 		std::swap(prev->NewTerrain, NewTerrain);
 	}
 
