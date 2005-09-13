@@ -615,11 +615,6 @@ static void measure_cpu_freq()
 }
 
 
-
-
-// int get_cur_processor_id() - in asm
-
-
 // set cpu_smp if there's more than 1 physical CPU -
 // need to know this for wtime's TSC safety check.
 // called on each CPU by on_each_cpu.
@@ -657,7 +652,8 @@ static void check_smp()
 
 	// logical CPUs are initialized after one another =>
 	// they have the same physical ID.
-	const int id = get_cur_processor_id();
+//	const int id = get_cur_processor_id();
+const int id = 0;	// HACK: until build system can assemble .asm correctly
 	const int phys_shift = ilog2(log_cpus_per_package);
 	const int phys_id = id >> phys_shift;
 
