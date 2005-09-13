@@ -9,7 +9,7 @@
 // $Id: util.h,v 1.13 2004/03/27 13:42:24 jason379 Exp $
 //-----------------------------------------------------------------------------
 
-static char* CPP_EXT[] = { ".cc", ".cpp", ".cxx", ".c", NULL };
+static char* CPP_EXT[] = { ".cc", ".cpp", ".cxx", ".c", ".asm", NULL };
 
 enum { UNIX, WIN32, NATIVE };
 extern char nativePathSep;

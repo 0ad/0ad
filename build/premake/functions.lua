@@ -1,7 +1,10 @@
 function sourcesfromdirs(root, dirs)
 	local res = {}
 	for i=1, getn(dirs) do
-		local files = matchfiles(root..dirs[i].."/*.cpp", root..dirs[i].."/*.h")
+		local files = matchfiles(
+			root..dirs[i].."/*.cpp",
+			root..dirs[i].."/*.h",
+			root..dirs[i].."/*.asm")
 		tconcat(res, files)
 	end
 	return res

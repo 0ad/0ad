@@ -360,13 +360,20 @@ static int writeCppPackage(Package* package)
 		{
 			if (strcmp(CPP_EXT[i], ".c") == 0)
 				fprintf(file, "\t%sdmc $(CFLAGS) -o $@ -c $<\n", prefix);
-			else
+			else if (strcmp(CPP_EXT[i], ".asm") != 0)
 				fprintf(file, "\t%sdmc -cpp -Ae -Ar -mn -D_WINDOWS $(CXXFLAGS) -o $@ -c $<\n", prefix);
 		}
 		else
 		{
 			if (strcmp(CPP_EXT[i], ".c") == 0)
 				fprintf(file, "\t%s$(CC) $(CFLAGS) -MD -o $@ -c $<\n", prefix);
+			else if (strcmp(CPP_EXT[i], ".asm") == 0)
+			{
+				/*	nasm -f elf -o $@ $<
+					nasm -M -o $@ $< >OBJ_DIR/$*.P */
+				fprintf(file, "\t%snasm -f elf -o $@ $<\n", prefix);
+				fprintf(file, "\t%snasm -M -o $@ $< >$*.d\n", prefix);
+			}
 			else
 				fprintf(file, "\t%s$(CXX) $(CXXFLAGS) -MD -o $@ -c $<\n", prefix);
 		}
@@ -377,7 +384,7 @@ static int writeCppPackage(Package* package)
 		fprintf(file, "\t -e '/^$$/ d' -e 's/$$/ :/' < %s/$*.d >> %s/$*.P; \\\n", OBJECTS_DIR, OBJECTS_DIR);
 		fprintf(file, "\trm -f %s/$*.d\n\n", OBJECTS_DIR);
 	}
-
+	
 	// Write out the list of object file targets for all C/C++ sources
 
 	fprintf(file, "OBJECTS = \\\n");

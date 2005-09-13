@@ -230,12 +230,21 @@ function setuppackage (projectname)
 			-- Audio
 			"openal", "vorbisfile",
 			-- Utilities
-			"xerces-c", "z", "pthread", "rt", "js"
+			"xerces-c", "z", "pthread", "rt", "js",
+			-- Debugging
+			"bfd", "iberty"
 		}
+		-- For debug_resolve_symbol
+--		package.config["Debug"].links = { "bfd", "iberty" }
+--		package.config["Testing"].links = { "bfd", "iberty" }
+		package.config["Debug"].linkoptions = { "-rdynamic" }
+		package.config["Testing"].linkoptions = { "-rdynamic" }
+
 		tinsert(package.libpaths, { "/usr/X11R6/lib" } )
 		-- Defines
 		package.defines = {
-			"__STDC_VERSION__=199901L" }
+			"__STDC_VERSION__=199901L",
+			"CONFIG_USE_MMGR" }
 		-- Includes
 		tinsert(package.includepaths, { "/usr/X11R6/include/X11" } )
 	end
