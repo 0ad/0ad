@@ -1,8 +1,10 @@
+section .text use32
+
 CACHEBLOCK equ 128
 BP_MIN_THRESHOLD_64 equ 192*1024
 MOVNTQ_MIN_THRESHOLD_64 equ 64*1024
 
-section .text
+
 
 %macro MC_UNROLLED_MOVSD 0
 	and	ebx, 63
@@ -219,32 +221,84 @@ _movntq:
 
 
 
+[section .data use32]
+cpuid_available	dd	-1
 
+; max supported CPUID functions. initialized to 
+max_func	dd	0x7FFFFFFF
+max_ext_func	dd	0xFFFFFFFF
+__SECT__
 
+; extern "C" bool __cdecl cpuid(u32 func, u32* regs)
+global _cpuid
+_cpuid:
+	; if unknown, detect; if not available, fail.
+	xor		eax, eax				; return val on failure
+	cmp		[cpuid_available], eax
+	jl		.one_time_init
+	je		.ret
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-; extern "C" int __cdecl get_cur_processor_id();
-global _get_cur_processor_id
-_get_cur_processor_id:
 	push		ebx
-	push		1
-	pop		eax
+	push		edi
+	mov		ecx, [esp+8+4+0]			; func
+	mov		edi, [esp+8+4+4]			; -> regs
+
+	; compare against max supported func and fail if above
+	test		ecx, ecx
+	mov		edx, [max_ext_func]
+	js		.is_ext_func
+	mov		edx, [max_func]
+.is_ext_func:
+	cmp		ecx, edx
+	ja		.ret
+
+	; issue CPUID and store result registers in array
+	mov		eax, ecx
 	cpuid
-	shr		ebx, 24
-	mov		eax, ebx					; ebx[31:24]
+	stosd
+	xchg		eax, ebx
+	stosd
+	xchg		eax, ecx
+	stosd
+	xchg		eax, edx
+	stosd
+
+	; success
+	xor		eax, eax
+	inc		eax
+.ret:
+	pop		edi
 	pop		ebx
+	ret
+
+.one_time_init:
+	; check if CPUID is supported
+	pushfd
+	or		byte [esp+2], 32
+	popfd
+	pushfd
+	pop		eax
+	xor		edx, edx
+	shr		eax, 22					; bit 21 toggled?
+	adc		edx, 0
+	mov		[cpuid_available], edx
+
+	; determine max supported function
+	xor		eax, eax
+	cpuid
+	mov		[max_func], eax
+	mov		eax, 0x80000000
+	cpuid
+	mov		[max_ext_func], eax
+
+	jmp		_cpuid					; now try again
+
+
+
+
+
+
+
 
 
 

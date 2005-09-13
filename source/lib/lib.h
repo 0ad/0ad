@@ -270,6 +270,8 @@ enum LibError
 	WARN_TEX_INVALID_DATA       = +1505,
 	ERR_TEX_INVALID_SIZE        = -1506,
 
+	ERR_CPU_FEATURE_MISSING     = -1600,
+
 
 	ERR_LAST
 };

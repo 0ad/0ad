@@ -56,6 +56,8 @@ extern void serialize();
 # define SP_ Esp
 #endif
 
+// internal use only
+extern bool cpuid(u32 func, u32* regs);
 
 #ifdef __cplusplus
 }

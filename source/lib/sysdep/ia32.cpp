@@ -232,20 +232,19 @@ void serialize()
 
 static char vendor_str[13];
 static int family, model, ext_family;
-	// used in manual cpu_type detect
-static u32 max_ext_func;
+static int num_cores;
 
 // caps
 // treated as 128 bit field; order: std ecx, std edx, ext ecx, ext edx
 // keep in sync with enum CpuCap and cpuid() code!
 u32 caps[4];
 
-static int have_brand_string = 0;
-	// if false, need to detect cpu_type manually.
-	// int instead of bool for easier setting from asm
+static bool have_brand_string;	// if false, need to detect cpu_type manually.
+
 
 // order in which registers are stored in regs array
-enum Regs
+// (do not change! brand string relies on this ordering)
+enum IA32Regs
 {
 	EAX,
 	EBX,
@@ -259,184 +258,52 @@ enum MiscCpuCapBits
 	POWERNOW_FREQ_ID_CTRL = 2
 };
 
-static bool cpuid(u32 func, u32* regs)
-{
-	if(func > max_ext_func)
-		return false;
 
-	// (optimized for size)
-#if HAVE_MS_ASM
-__asm
-{
-	mov			eax, [func]
-	cpuid
-	mov			edi, [regs]
-	stosd
-	xchg		eax, ebx
-	stosd
-	xchg		eax, ecx
-	stosd
-	xchg		eax, edx
-	stosd
-}
-#elif HAVE_GNU_ASM
-	asm("cpuid"
-		: "=a" (regs[0]),
-		  "=b" (regs[1]),
-		  "=c" (regs[2]),
-		  "=d" (regs[3])
-		: "a" (func));
-#endif
-
-	return true;
-}
-
-
-#if HAVE_MS_ASM
-// (optimized for size)
-static void cpuid()
-{
-__asm
-{
-	pushad										;// save ebx, esi, edi, ebp
-		;// ICC7: pusha is the 16-bit form!
-
-;// make sure CPUID is supported
-	pushfd
-	or			byte ptr [esp+2], 32
-	popfd
-	pushfd
-	pop			eax
-	shr			eax, 22							;// bit 21 toggled?
-	jnc			no_cpuid
-
-;// get vendor string
-	xor			eax, eax
-	cpuid
-	mov			edi, offset vendor_str
-	xchg		eax, ebx
-	stosd
-	xchg		eax, edx
-	stosd
-	xchg		eax, ecx
-	stosd
-	;// (already 0 terminated)
-
-;// get CPU signature and std feature bits
-	push		1
-	pop			eax
-	cpuid
-	mov			[caps+0], ecx
-	mov			[caps+4], edx
-	movzx		edx, al
-	shr			edx, 4
-	mov			[model], edx					;// eax[7:4]
-	movzx		edx, ah
-	and			edx, 0x0f
-	mov			[family], edx					;// eax[11:8]
-	shr			eax, 20
-	and			eax, 0x0f
-	mov			[ext_family], eax				;// eax[23:20]
-
-;// make sure CPUID ext functions are supported
-	mov			esi, 0x80000000
-	mov			eax, esi
-	cpuid
-	mov			[max_ext_func], eax
-	cmp			eax, esi						;// max ext <= 0x80000000?
-	jbe			no_ext_funcs					;// yes - no ext funcs at all
-	lea			esi, [esi+4]					;// esi = 0x80000004
-	cmp			eax, esi						;// max ext < 0x80000004?
-	jb			no_brand_str					;// yes - brand string not available, skip
-
-;// get CPU brand string (>= Athlon XP, P4)
-	mov			edi, offset cpu_type
-	push		-2
-	pop			esi								;// loop counter: [-2, 0]
-$1:	lea			eax, [0x80000004+esi]			;// 0x80000002 .. 4
-	cpuid
-	stosd
-	xchg		eax, ebx
-	stosd
-	xchg		eax, ecx
-	stosd
-	xchg		eax, edx
-	stosd
-	inc			esi
-	jle			$1
-	;// (already 0 terminated)
-
-	mov			[have_brand_string], esi		;// esi = 1 = true
-
-no_brand_str:
-
-;// get extended feature flags
-	mov			eax, 0x80000001
-	cpuid
-	mov			[caps+8], ecx
-	mov			[caps+12], edx
-
-no_ext_funcs:
-
-no_cpuid:
-
-	popad
-}	// __asm
-}	// cpuid()
-
-#elif HAVE_GNU_ASM
-
-// optimized for readability ;-)
-static void cpuid()
+static int retrieve_cpuid_info()
 {
 	u32 regs[4];
-	u32 flags;
 
-	/*
-		Try to set bit 21 in flags, and check if the cpu implemented the 
-	*/
-	asm("pushfl; "
-		"orb	$32, 2(%%esp); " /* bit 16+5 = 21 */
-		"popfl; "
-		"pushfl; "
-		"popl %%eax; "
-		: "=a" (flags));
-	if (!(flags & (1<<21))) // bit 21 reset? don't have cpuid -> abort
-		return;
+	// vendor string
+	// notes:
+	// - vendor_str is already 0-terminated because it's static.
+	// - 'strange' ebx,edx,ecx reg order is due to ModR/M encoding order.
+	if(!cpuid(0, regs))
+		return ERR_CPU_FEATURE_MISSING;	// we need CPUID, i.e. Pentium+
+	u32* vendor_str_u32 = (u32*)vendor_str;
+	vendor_str_u32[0] = regs[EBX];
+	vendor_str_u32[1] = regs[EDX];
+	vendor_str_u32[2] = regs[ECX];
 
-	// weird register ordering for vendor string (12 chars in b/d/cx)
-	// eax is ignored here
-	asm("xorl %%eax, %%eax; cpuid"
-		: "=b" (((u32 *)vendor_str)[0]),
-		  "=d" (((u32 *)vendor_str)[1]),
-		  "=c" (((u32 *)vendor_str)[2])
-		:
-		: "eax");
-	
-	cpuid(1, regs);
-	memcpy(caps, &regs[2], 8);
-	model = (regs[0] & 0xff) >> 4; // eax[7:4]
-	family = (regs[0] & 0xf00) >> 8; // eax[11:8]
-	ext_family = (regs[0] & 0xf000) >> 20; // eax[23:20]
-	
-	cpuid(0x80000000, regs);
-	max_ext_func=regs[0];
-	if (max_ext_func < 0x80000000)
-		return; /* no ext functions - skip remaining tests */
-		
-	if (max_ext_func >= 0x80000004)
+	// processor signature, feature flags
+	// (note: HT/SMP query is nontrivial and done below)
+	if(!cpuid(1, regs))
+		debug_warn("cpuid 1 failed");
+	model      = bits(regs[EAX], 4, 7);
+	family     = bits(regs[EAX], 8, 11);
+	ext_family = bits(regs[EAX], 20, 23);
+	caps[0] = regs[ECX];
+	caps[1] = regs[EDX];
+
+	// multicore count
+	if(cpuid(4, regs))
+		num_cores = bits(regs[EBX], 26, 31)+1;
+
+	// extended feature flags
+	if(cpuid(0x80000001, regs))
 	{
-		/* get brand string */
-		cpuid(0x80000002, (u32*)cpu_type);
-		cpuid(0x80000003, (u32*)(cpu_type+16));
-		cpuid(0x80000004, (u32*)(cpu_type+32));
-		have_brand_string = true;
+		caps[2] = regs[ECX];
+		caps[3] = regs[EDX];
 	}
 
-	cpuid(0x80000001, regs);
-	memcpy(&caps[2], &regs[2], 8);
-}	// cpuid()
-#endif
+	// CPU brand string (AthlonXP/P4 or above)
+	u32* cpu_type_u32 = (u32*)cpu_type;
+	if(cpuid(0x80000002, cpu_type_u32+0 ) &&
+	   cpuid(0x80000003, cpu_type_u32+16) &&
+	   cpuid(0x80000004, cpu_type_u32+32))
+		have_brand_string = true;
+
+	return 0;
+}
 
 
 bool ia32_cap(CpuCap cap)
@@ -454,9 +321,9 @@ bool ia32_cap(CpuCap cap)
 
 
 
+// (for easier comparison)
 enum Vendor { UNKNOWN, INTEL, AMD };
 static Vendor vendor = UNKNOWN;
-
 
 
 
@@ -649,13 +516,12 @@ static void check_smp()
 	if(!cpuid(1, regs))
 		debug_warn("cpuid 1 failed");
 	const uint log_cpus_per_package = bits(regs[EBX], 16, 23);
-
 	// logical CPUs are initialized after one another =>
 	// they have the same physical ID.
-//	const int id = get_cur_processor_id();
-const int id = 0;	// HACK: until build system can assemble .asm correctly
+	const uint cur_id = bits(regs[EBX], 24, 31);
+
 	const int phys_shift = ilog2(log_cpus_per_package);
-	const int phys_id = id >> phys_shift;
+	const int phys_id = cur_id >> phys_shift;
 
 	// more than 1 physical CPU found
 	static int last_phys_id = -1;
@@ -684,11 +550,8 @@ static void check_speedstep()
 
 void ia32_get_cpu_info()
 {
-	cpuid();
-	if(family == 0)	// cpuid not supported - can't do the rest
-		return;
+	WARN_ERR_RETURN(retrieve_cpuid_info());
 
-	// (for easier comparison)
 	if(!strcmp(vendor_str, "AuthenticAMD"))
 		vendor = AMD;
 	else if(!strcmp(vendor_str, "GenuineIntel"))
