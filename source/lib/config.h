@@ -109,7 +109,7 @@
 # define OS_WIN 0
 #endif
 // .. Linux
-#if defined(linux) || defined(__linux)
+#if defined(linux) || defined(__linux) || defined(__linux__)
 # define OS_LINUX 1
 #else
 # define OS_LINUX 0

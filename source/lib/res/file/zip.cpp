@@ -187,17 +187,6 @@ found_ecdr:
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-static uint bits(uint num, uint lo_idx, uint hi_idx)
-{
-	uint result = num;
-	result >>= lo_idx;
-	const uint count = (hi_idx - lo_idx)+1;
-	// number of bits to return
-	result &= (1u << count)-1;
-	return result;
-}
-
-
 static time_t convert_dos_date(u16 fatdate, u16 fattime)
 {
 	struct tm t;							// struct tm format:

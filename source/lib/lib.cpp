@@ -212,6 +212,17 @@ int ilog2(const float x)
 }
 
 
+uint bits(uint num, uint lo_idx, uint hi_idx)
+{
+	uint result = num;
+	result >>= lo_idx;
+	const uint count = (hi_idx - lo_idx)+1;	// # bits to return
+	result &= (1u << count)-1;
+	return result;
+}
+
+
+
 // multiple must be a power of two.
 uintptr_t round_up(const uintptr_t n, const uintptr_t multiple)
 {

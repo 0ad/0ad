@@ -24,6 +24,12 @@
 
 #include "lib/types.h"
 
+// some of these are implemented in asm, so make sure name mangling is
+// disabled.
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 
 extern double _ceil(double);
 
@@ -38,7 +44,7 @@ extern u64 rdtsc(void);
 #endif
 
 #define _control87 ia32_control87
-extern uint ia32_control87(uint new_cw, uint mask);
+extern uint ia32_control87(uint new_cw, uint mask);	// asm
 
 extern void ia32_debug_break(void);
 
@@ -77,5 +83,12 @@ extern bool ia32_cap(CpuCap cap);
 
 extern void ia32_get_cpu_info(void);
 
+
+// internal use only
+extern int get_cur_processor_id();
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif	// #ifndef IA32_H

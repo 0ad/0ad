@@ -347,7 +347,7 @@ const size_t GiB = 1ul << 30;
 
 
 #define BIT(n) (1ul << (n))
-
+extern uint bits(uint x, uint from, uint to);
 
 
 
