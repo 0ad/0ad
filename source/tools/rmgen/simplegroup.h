@@ -10,11 +10,12 @@ public:
 	class Element {
 	public:
 		std::string type;
-		int count;
-		float distance;
+		int minCount, maxCount;
+		float minDistance, maxDistance;
 		
 		Element::Element();
-		Element::Element(const std::string& type, int count, float distance);
+		Element::Element(const std::string& type, int minCount, int maxCount,
+			float minDistance, float maxDistance);
 		Element::~Element();
 
 		bool place(int cx, int cy, class Map* m, int player, bool avoidSelf,

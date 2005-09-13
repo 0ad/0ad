@@ -23,8 +23,8 @@ JSFunctionSpec globalFunctions[] = {
 	{"getHeight", getHeight, 2},
 	{"setHeight", setHeight, 3},
 	{"getMapSize", getMapSize, 0},
-	{"randInt", randInt, 1},
-	{"randFloat", randFloat, 0},
+	{"randInt", randInt, 2},
+	{"randFloat", randFloat, 1},
 	{"placeObject", placeObject, 4},
 	{"createArea", createArea, 3},
 	{"createObjectGroup", createObjectGroup, 3},
@@ -38,7 +38,7 @@ JSFunctionSpec globalFunctions[] = {
 void ValidateArgs(const char* types, JSContext* cx, uintN argc, jsval* argv, const char* function) {
 	int num = strlen(types);
 	if(argc != num) {
-		JS_ReportError(cx, "%s: expected %d arguments but got %d", function, num, argc);
+		JS_ReportError(cx, "%s: requires %d arguments but got %d", function, num, argc);
 	}
 	JSObject* obj;
 	for(int i=0; i<num; i++) {
@@ -189,22 +189,57 @@ JSBool setHeight(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *r
 
 JSBool randInt(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
-	ValidateArgs("i", cx, argc, argv, __FUNCTION__);
-	
-	int x = JSVAL_TO_INT(argv[0]);
-	if(x<=0) {
-		JS_ReportError(cx, "randInt: argument must be positive");
+	if(argc!=1 && argc!=2) {
+		JS_ReportError(cx, "randInt: requires 1 or 2 arguments but got %d", argc);
 	}
-	int r = RandInt(x);
+	if(!JSVAL_IS_INT(argv[0])) {
+		JS_ReportError(cx, "randInt: argument 1 must be an integer");
+	}
+	if(argc==2 && !JSVAL_IS_INT(argv[1])) {
+		JS_ReportError(cx, "randInt: argument 2 must be an integer");
+	}
+	
+	int minVal = argc==1 ? 0 : JSVAL_TO_INT(argv[0]);
+	int maxVal = argc==1 ? JSVAL_TO_INT(argv[0]) : JSVAL_TO_INT(argv[1])-1;
+	if(maxVal < minVal) {
+		JS_ReportError(cx, argc==1 ? "randInt: argument must be positive" 
+								   : "randInt: argument 2 must be greater than or equal to argument 1");
+	}
+	int r = RandInt(minVal, maxVal);
 	*rval = INT_TO_JSVAL(r);
 	return JS_TRUE;
 }
 
 JSBool randFloat(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
-	ValidateArgs("", cx, argc, argv, __FUNCTION__);
+	if(argc!=0 && argc!=2) {
+		JS_ReportError(cx, "randFloat: requires 0 or 2 arguments but got %d", argc);
+	}
+
+	jsdouble r;
+
+	if(argc==0) {
+		r = RandFloat();
+	}
+	else {
+		if(!JSVAL_IS_NUMBER(argv[0])) {
+			JS_ReportError(cx, "randFloat: argument 1 must be a number");
+		}
+		if(!JSVAL_IS_NUMBER(argv[1])) {
+			JS_ReportError(cx, "randFloat: argument 2 must be a number");
+		}
+
+		jsdouble minVal, maxVal;
+		JS_ValueToNumber(cx, argv[0], &minVal);
+		JS_ValueToNumber(cx, argv[1], &maxVal);
+		
+		if(maxVal < minVal) {
+			JS_ReportError(cx, "randFloat: argument 2 must be greater than or equal to argument 1");
+		}
+
+		r = RandFloat(minVal, maxVal);
+	}
 	
-	jsdouble r = RandFloat();
 	JS_NewDoubleValue(cx, r, rval);
 	return JS_TRUE;
 }
@@ -315,7 +350,7 @@ JSBool createObjectGroup(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, 
 	delete placer;
 	delete constr;
 
-	*rval = ret;
+	*rval = BOOLEAN_TO_JSVAL(ret);
 	return JS_TRUE;
 }
 

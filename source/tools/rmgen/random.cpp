@@ -17,4 +17,12 @@ float RandFloat() {
 	return float(rng()) * (1.0f/4294967296.0f);
 }
 
+float RandFloat(float minVal, float maxVal) {
+	return minVal + RandFloat() * (maxVal - minVal);
+}
+
+int RandInt(int minVal, int maxVal) {
+	return minVal + RandInt(maxVal - minVal + 1);
+}
+
 

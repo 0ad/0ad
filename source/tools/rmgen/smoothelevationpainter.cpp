@@ -28,6 +28,8 @@ bool SmoothElevationPainter::checkInArea(Map* m, Area* a, int x, int y) {
 }
 
 void SmoothElevationPainter::paint(Map* m, Area* a) {
+	// TODO: Use a 2D array instead of STL maps and sets for speed
+
 	map<Point, int> saw;
 	map<Point, int> dist;
 

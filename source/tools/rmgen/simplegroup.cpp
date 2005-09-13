@@ -3,15 +3,22 @@
 #include "point.h"
 #include "random.h"
 #include "map.h"
+#include "rmgen.h"
 
 using namespace std;
 
 SimpleGroup::Element::Element(){
 }
 
-SimpleGroup::Element::Element(const std::string& t, int c, float d):
-	type(t), count(c), distance(d)
+SimpleGroup::Element::Element(const std::string& t, int minC, int maxC, float minD, float maxD):
+	type(t), minCount(minC), maxCount(maxC), minDistance(minD), maxDistance(maxD)
 {
+	if(minCount > maxCount) {
+		JS_ReportError(cx, "SimpleObject: minCount must be less than or equal to maxCount");
+	}
+	if(minDistance > maxDistance) {
+		JS_ReportError(cx, "SimpleObject: minDistance must be less than or equal to maxDistance");
+	}
 }
 
 SimpleGroup::Element::~Element() {
@@ -20,11 +27,14 @@ SimpleGroup::Element::~Element() {
 bool SimpleGroup::Element::place(int cx, int cy, Map* m, int player, bool avoidSelf,
 								 Constraint* constr, vector<Object*>& ret) {
 	int failCount = 0;
+	int count = RandInt(minCount, maxCount);
 	for(int i=0; i<count; i++) {
 		while(true) {
-			float ang = RandFloat()*2*PI;
-			float x = cx + 0.5f + distance*cos(ang);
-			float y = cy + 0.5f + distance*sin(ang);
+			float distance = RandFloat(minDistance, maxDistance);
+			float angle = RandFloat(0, 2*PI);
+
+			float x = cx + 0.5f + distance*cos(angle);
+			float y = cy + 0.5f + distance*sin(angle);
 
 			if(x<0 || y<0 || x>m->size || y>m->size) {
 				goto bad;

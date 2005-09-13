@@ -19,6 +19,8 @@ ClumpPlacer::~ClumpPlacer()
 }
 
 bool ClumpPlacer::place(class Map* m, Constraint* constr, std::vector<Point>& retVec) {
+	// TODO: use a 2D array or hash set instead of a STL set for speed
+
 	if(!m->validT(x, y) || !constr->allows(m, x, y)) {
 		return false;
 	}
