@@ -265,8 +265,8 @@ static int alc_init()
 ///////////////////////////////////////////////////////////////////////////////
 
 static float al_listener_gain = 1.0;
-static float al_listener_pos[3];
-static float al_listener_orientation[6];
+static float al_listener_pos[3] = { 0, 0, 0 };
+static float al_listener_orientation[6] = {0, 0, -1, 0, 1, 0};
 	// float view_direction[3], up_vector[3]; passed directly to OpenAL
 
 
@@ -276,9 +276,11 @@ static void al_listener_latch()
 	if(al_initialized)
 	{
 		alListenerf(AL_GAIN, al_listener_gain);
+		al_check("al_listener_latch: gain");
 		alListenerfv(AL_POSITION, al_listener_pos);
+		al_check("al_listener_latch: pos");
 		alListenerfv(AL_ORIENTATION, al_listener_orientation);
-		al_check("al_listener_latch");
+		al_check("al_listener_latch: orientation");
 	}
 }
 

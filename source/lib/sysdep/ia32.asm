@@ -2,7 +2,7 @@ CACHEBLOCK equ 128
 BP_MIN_THRESHOLD_64 equ 192*1024
 MOVNTQ_MIN_THRESHOLD_64 equ 64*1024
 
-
+section .text
 
 %macro MC_UNROLLED_MOVSD 0
 	and	ebx, 63
