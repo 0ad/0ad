@@ -33,7 +33,6 @@ static int  getArray(int ref, const char* name);
 static int  getArraySize(int ref);
 static int  getDeepArraySize(int ref);
 static int  getObjectFromArray(int ref, int i);
-static const char* getString(int ref, char* name);
 static const char* getStringFromArray(int ref, int index);
 static double getNumber(int ref, char* name);
 
@@ -287,7 +286,7 @@ static int finishProject()
 	project->binaries = getString(getProject(), "bindir");
 	project->libraries = getString(getProject(), "libdir");
 	project->debugfiles = getString(getProject(), "debugdir");
-
+	
 	optlist = getArray(-1, "options");
 	project->numOptions = getArraySize(optlist);
 	project->option = (Option**)malloc(sizeof(Option*) * (project->numOptions + 1));
@@ -369,6 +368,14 @@ static int finishProject()
 			config->pchSource = getString(cfg, "pchSource");
 			if (!config->pchSource)
 				config->pchSource = getString(pkg, "pchSource");
+
+			config->nasmPath = getString(cfg, "nasmpath");
+			if (!config->nasmPath)
+				config->nasmPath = getString(pkg, "nasmpath");
+			if (!config->nasmPath)
+				config->nasmPath = getString(getProject(), "nasmpath");
+			if (!config->nasmPath)
+				config->nasmPath = "nasm";
 
 			if (getString(cfg, "build"))
 				config->build = (getNumber(cfg, "build") != 0.0);
@@ -494,7 +501,7 @@ static int getObjectFromArray(int ref, int i)
 
 //-----------------------------------------------------------------------------
 
-static const char* getString(int ref, char* name)
+const char* getString(int ref, char* name)
 {
 	const char* str;
 	lua_getref(L, ref);

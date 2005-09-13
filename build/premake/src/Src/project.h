@@ -23,6 +23,7 @@ typedef struct _Config
 	const char** links;
 	const char* pchHeader;
 	const char* pchSource;
+	const char* nasmPath;
 	char* objdir;
 	int build; // 0 or 1, to indicate whether to include it in the default build
 	int numBuildFlags;
@@ -82,3 +83,7 @@ extern void handleCommand(char* args[], int i);
 extern Package* getPackage(const char* name);
 extern void configureProject();
 extern void setProjectOption(char* option);
+
+// Access to the lua objects
+extern int getProject();
+extern const char* getString(int ref, char* name);

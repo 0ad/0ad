@@ -280,8 +280,19 @@ static void vcFiles(FILE* file, const char* path, int stage)
 			for (j=0;j<package->numConfigs;j++)
 			{
 				Config *config=package->config[j];
+				const char *nasmPath = translatePath(config->nasmPath, WIN32);
 				
-				if (config->pchSource && strcmp(ptr, config->pchSource)==0)
+				if (endsWith(path, ".asm"))
+				{
+					fprintf(file, "%s    <FileConfiguration Name=\"%s|Win32\">\n", indent, config->name);
+					fprintf(file, "%s        <Tool Name=\"VCCustomBuildTool\" "
+						"Description=\"Assembling $(InputPath)\" "
+						"CommandLine=\"%s -f win32 -o $(IntDir)\\$(InputName).obj $(InputPath)\" "
+						"Outputs=\"$(IntDir)\\$(InputName).obj\" />", indent, nasmPath);
+					fprintf(file, "%s    </FileConfiguration>", indent);
+				}
+				// Skip PCH for assembler files
+				else if (config->pchSource && strcmp(ptr, config->pchSource)==0)
 				{
 					fprintf(file, "%s    <FileConfiguration Name=\"%s|Win32\">\n", indent, config->name);
 					fprintf(file, "%s        <Tool Name=\"VCCLCompilerTool\" UsePrecompiledHeader=\"1\" />\n", indent);

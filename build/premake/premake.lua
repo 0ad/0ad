@@ -7,6 +7,10 @@ project.libdir = "../../../binaries/system"
 project.debugdir = "../../../binaries/data"
 project.configs = { "Debug", "Release", "Testing" }
 
+if (OS == "windows") then
+	project.nasmpath = "../../../build/bin/nasm"
+end
+
 function setuppackage (projectname)
 
 	-- Start the package part
