@@ -66,3 +66,13 @@ function addArrayElement(Array)
 } 
 
 // ====================================================================
+
+function toTitleCase (string)
+{
+	// Returns the title-case version of a given string.
+
+	string = string.substring(0,1).toUpperCase() + string.substring(1, string.length).toLowerCase();
+	return (string);
+}
+
+// ====================================================================

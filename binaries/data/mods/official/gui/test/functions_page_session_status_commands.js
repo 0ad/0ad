@@ -5,7 +5,7 @@
 
 // ====================================================================
 
-function defineCommandButtons()
+function defineCommandButtons(command)
 {
 	snStatusPaneCommand = new Array();
 	snStatusPaneCommand.tab = new Object();
@@ -13,9 +13,10 @@ function defineCommandButtons()
 	snStatusPaneCommand.button = new Object();
 
 	// Maximum number of buttons (either single or lists).
-	snStatusPaneCommand.tab.max = 10;		
+	snStatusPaneCommand.tab.max = command.substring (command.lastIndexOf ("d")+1, command.lastIndexOf ("_")); // 10
 	// Maximum number of entries in a list.
-	snStatusPaneCommand.list.max = 12;		
+	snStatusPaneCommand.list.max = command.substring (command.lastIndexOf ("_")+1, command.length); // 12
+
 	// Number of tabs that are single buttons (no list).
 	snStatusPaneCommand.button.max = 5;		
 	// When we reach this button, split the rows (remainder are vertical, not horizontal).
@@ -156,13 +157,13 @@ function UpdateList(listIcon, listCol)
 			guiUnHide("snStatusPaneCommand" + listCol + "_1");
 
 			// Store content info in tab button for future reference.
-			snStatusPaneCommand[1][listCol].type = "list";
+			snStatusPaneCommand[listCol][1].type = "list";
 
 			// Extract entity list into an array.
 			listArray = parseDelimiterString(listName, ";");
 
 			// Reset list length.
-			snStatusPaneCommand[1][listCol].last = 0;
+			snStatusPaneCommand[listCol][1].last = 0;
 
 			// Populate appropriate command buttons.
 			for (createLoop = 1; createLoop < snStatusPaneCommand.list.max; createLoop++)
@@ -215,9 +216,9 @@ function UpdateCommand(listIcon, listCol)
 		guiHide("snStatusPaneCommand" + "Group" + listCol);
 
 		// Store content info in tab button for future reference.
-		snStatusPaneCommand[1][listCol].type = "command";
-		snStatusPaneCommand[1][listCol].last = 0;
-		snStatusPaneCommand[1][listCol].name = listIcon;
+		snStatusPaneCommand[listCol][1].type = "command";
+		snStatusPaneCommand[listCol][1].last = 0;
+		snStatusPaneCommand[listCol][1].name = listIcon;
 
 		return (listCol-1);
 	}
@@ -227,25 +228,29 @@ function UpdateCommand(listIcon, listCol)
 
 // ====================================================================
 
-function pressCommandButton(GUIObject, tab, list)
+function pressCommandButton(commandButton, tab, list)
 {
+console.write ("Button pressed. " + commandButton + " " + tab + " " + list);
+console.write (snStatusPaneCommand[tab][list].type);
 	switch (list)
 	{
 		case 1:
-			GUIObject.caption = "";
+			commandButton.caption = "";
 			if (snStatusPaneCommand[tab][list].type == "list")
 			{
 				// Click the tab button to toggle visibility of its list (if it's of a list type).
-				GUIObjectToggle ("snStatusPaneCommand" + "Group" + tab);
+				guiToggle ("snStatusPaneCommand" + "Group" + tab);
+console.write ("Toggled " + "snStatusPaneCommand" + "Group" + tab);
 			}
 			else
 			{
+console.write ("Some weird action.");
 				// Perform appropriate actions for different command buttons.
 
 				switch (snStatusPaneCommand[tab][list].name)
 				{
 					case action_patrol:
-						setCursor("action-patrol");
+						setCursor ("action-patrol");
 						selectLocation(
 							function (x, y) {
 								issueCommand (selection, NMT_Patrol, x, y);
@@ -253,7 +258,7 @@ function pressCommandButton(GUIObject, tab, list)
 						);
 					break;
 					case action_attack:
-						setCursor("action-attack");
+						setCursor ("action-attack");
 						selectEntity(
 							function (target) {
 								issueCommand (selection, NMT_AttackMelee, target);
@@ -342,7 +347,7 @@ function refreshCommandButtons()
 		// Set position of progress bar.
 		GUIObject.size = getGUIObjectByName("snStatusPaneCommand" + selection[0].actions.create.queue.valueOf()[0].tab + "_" + selection[0].actions.create.queue.valueOf()[0].list).size;
 		// Set progress bar tooltip.
-		GUIObject.tooltip = "Training " + selection[0].actions.create.queue.valueOf()[0].traits.id.generic + " ... " + (Math.round(selection[0].actions.create.queue.valueOf()[0].traits.creation.time-Math.round(selection[0].actions.create.progress.valueOf().current)) + " seconds remaining.");
+		GUIObject.tooltip = "Training " + selection[0].actions.create.queue.valueOf()[0].traits.id.generic + " ... " + (Math.round(selection[0].actions.create.queue.valueOf()[0].traits.creation.time-Math.round(selection[0].actions.create.progress.valueOf().current)) + " seconds remaining.";
 		// Reveal progressbar.
 		GUIObject.hidden  = false;
 		

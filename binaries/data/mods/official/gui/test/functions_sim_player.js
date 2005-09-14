@@ -8,11 +8,12 @@
 function createResources()
 {
 	// Defines all resource types for future use.
+	// Assigns the value of game setup resource values as starting values.
 
-	addResource ("Food", 0);
-	addResource ("Wood", 0);
-	addResource ("Stone", 0);
-	addResource ("Ore", 0);
+	addResource ("Food", getGUIObjectByName ("pgSessionSetupResourceFoodCounter").caption);
+	addResource ("Wood", getGUIObjectByName ("pgSessionSetupResourceWoodCounter").caption);
+	addResource ("Stone", getGUIObjectByName ("pgSessionSetupResourceStoneCounter").caption);
+	addResource ("Ore", getGUIObjectByName ("pgSessionSetupResourceOreCounter").caption);
 	addResource ("Population", 0);
 	addResource ("Housing", 0);
 }
@@ -23,7 +24,10 @@ function addResource (resourceName, resourceQty)
 {
 	// Creates a resource type.
 
-	// MT: Rewritten to use JavaScript's nice associative-array-alikes. Requires the valueOf() hack - I'm looking into this.
+	// Ensure resource name is title-case.
+	resourceName = toTitleCase (resourceName);
+	// Create uppercase name.
+	resourceNameU = resourceName.toUpperCase();
 
 	if (!localPlayer.resource)
 	{
@@ -31,13 +35,40 @@ function addResource (resourceName, resourceQty)
 		localPlayer.resource = new Array();
 	}
 	
-	// Set resource name to upper-case to ensure it matches resource control name.
-	resourceName = resourceName.toUpperCase();
-
 	// Store resource's name and starting value.
-	localPlayer.resource.valueOf()[resourceName] = resourceQty;
+	localPlayer.resource.valueOf()[resourceNameU] = resourceQty;
+	// Update GUI resource counter.
+	if (resourceName != "Housing")
+		getGUIObjectByName ("snResourceCounter_" + resourceName).caption = resourceQty;
 	
-	console.write("Added " + resourceName );
+	console.write( "Added " + resourceName + " (" + resourceQty + ")" );
+}
+
+// ====================================================================
+
+function setResources (resourceName, resourceQty)
+{
+	// Generic function to set the value of a resource in the player's pool.
+
+	// Ensure resource name is title-case.
+	resourceName = toTitleCase (resourceName);
+	// Create uppercase name.
+	resourceNameU = resourceName.toUpperCase();
+
+	if ( localPlayer.resource.valueOf()[resourceNameU] )
+	{
+		// Set resource value.
+		localPlayer.resource.valueOf()[resourceNameU] = resourceQty;
+		// Update GUI resource counter.
+		getGUIObjectByName ("snResourceCounter_" + resourceName).caption = localPlayer.resource.valueOf()[resourceNameU];
+
+		console.write ("Resource set to " + resourceQty + " " + resourceName + ".");
+		return ( true );
+	}
+
+	// If the resource wasn't in the list, report an error.
+	console.write ("Failed to set resource " + resourceName + " to " + resourceQty);
+	return ( false ) ;
 }
 
 // ====================================================================
@@ -46,15 +77,25 @@ function giveResources (resourceName, resourceQty)
 {
 	// Generic function to add resources to the player's Pool.
 
-	if ( localPlayer.resource.valueOf()[resourceName] )
+	// Ensure resource name is title-case.
+	resourceName = toTitleCase (resourceName);
+	// Create uppercase name.
+	resourceNameU = resourceName.toUpperCase();
+
+	if ( localPlayer.resource.valueOf()[resourceNameU] )
 	{
-	    localPlayer.resource.valueOf()[resourceName] += resourceQty;
-	    console.write ("Earned " + resourceQty + " resources.");
-	    return ( true );
+		// Set resource value.
+		localPlayer.resource.valueOf()[resourceNameU] += resourceQty;
+		// Update GUI resource counter.
+		getGUIObjectByName ("snResourceCounter_" + resourceName).caption = localPlayer.resource.valueOf()[resourceNameU];
+
+		console.write ("Earned " + resourceQty + " " + resourceName + ".");
+		return ( true );
 	}
 
 	// If the resource wasn't in the list, report an error.
-	return false;
+	console.write ("Failed to add " + resourceQty + " to resource " + resourceName);
+	return ( false );
 }
 
 // ====================================================================
@@ -63,14 +104,24 @@ function deductResources (resourceName, resourceQty)
 {
 	// Generic function to remove resources from the player's Pool.
 
-	if( localPlayer.resource.valueOf()[resourceName] )
+	// Ensure resource name is title-case.
+	resourceName = toTitleCase (resourceName);
+	// Create uppercase name.
+	resourceNameU = resourceName.toUpperCase();
+
+	if( localPlayer.resource.valueOf()[resourceNameU] )
 	{
-	    localPlayer.resource.valueOf()[resourceName] -= resourceQty;
-	    console.write("Deducted " + resourceQty + " resources.");
-	    return( true );
+		// Set resource value.
+		localPlayer.resource.valueOf()[resourceNameU] -= resourceQty;
+		// Update GUI resource counter.
+		getGUIObjectByName ("snResourceCounter_" + resourceName).caption = localPlayer.resource.valueOf()[resourceNameU];
+
+		console.write("Deducted " + resourceQty + " " + resourceName + ".");
+		return( true );
 	}
 
 	// If the resource wasn't in the list, report an error.
+	console.write ("Failed to deduct " + resourceQty + " from resource " + resourceName);
 	return false;
 }
 

@@ -111,6 +111,7 @@ function setupSession ()
         // Initialise Resource Pools by attaching them to the Player object.
         // (CPlayer code takes care of giving a copy to each player.)
         createResources();
+
 /*
 	if (sessionType == "Skirmish")
 	{
@@ -137,7 +138,7 @@ function setupSession ()
 			// will be replaced soon by native version that doesn't block.
 
         // Start refreshing the session controls.
-        setInterval( snRefresh, 1, 100 );
+	setInterval( snRefresh, 1, 100 );
 }
 
 // ====================================================================

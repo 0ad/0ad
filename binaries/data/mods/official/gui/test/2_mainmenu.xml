@@ -523,6 +523,74 @@
 					]]></action>
 				</object>
 
+				<!--
+				==========================================
+				- RESOURCES
+				==========================================
+				-->
+
+				<object name="pgSessionSetupResourceGroup"
+					type="image"
+					style="wheatBorderBlack"
+					size="100%-200 0%+165 100%-10 0%+300"
+				>
+					<object name="pgSessionSetupResourceFoodLabel" 
+						type="text"
+						style="wheatTextLabelBlack"
+						size="0%+5 0%+5 40%-5 25%-5"
+					>Food:
+					</object>
+
+					<object name="pgSessionSetupResourceFoodCounter" 
+						type="input"
+						style="wheatBorderBlack"
+						size="60%+5 0%+5 100%-5 25%-5"
+					>1000
+					</object>
+
+					<object name="pgSessionSetupResourceWoodLabel" 
+						type="text"
+						style="wheatTextLabelBlack"
+						size="0%+5 25%+5 40%-5 50%-5"
+					>Wood:
+					</object>
+
+					<object name="pgSessionSetupResourceWoodCounter" 
+						type="input"
+						style="wheatBorderBlack"
+						size="60%+5 25%+5 100%-5 50%-5"
+					>1000
+					</object>
+
+					<object name="pgSessionSetupResourceStoneLabel" 
+						type="text"
+						style="wheatTextLabelBlack"
+						size="0%+5 50%+5 40%-5 75%-5"
+					>Stone:
+					</object>
+
+					<object name="pgSessionSetupResourceStoneCounter" 
+						type="input"
+						style="wheatBorderBlack"
+						size="60%+5 50%+5 100%-5 75%-5"
+					>1000
+					</object>
+
+					<object name="pgSessionSetupResourceOreLabel" 
+						type="text"
+						style="wheatTextLabelBlack"
+						size="0%+5 75%+5 40%-5 100%-5"
+					>Ore:
+					</object>
+
+					<object name="pgSessionSetupResourceOreCounter" 
+						type="input"
+						style="wheatBorderBlack"
+						size="60%+5 75%+5 100%-5 100%-5"
+					>1000
+					</object>
+				</object>
+
 			<!--
 			==========================================
 			- MAIN MENU - BUTTONS

@@ -95,13 +95,16 @@ function entity_event_gather( evt )
 
 	if( evt.target.traits.supply.max > 0 )
 	{
-	    if( evt.target.traits.supply.curr <= gather_amt )
-	    {
+		if( evt.target.traits.supply.curr <= gather_amt )
+		{
 			gather_amt = evt.target.traits.supply.curr;
 			evt.target.kill();
-	    }
-	    evt.target.traits.supply.curr -= gather_amt;
-	    this.player.resource[evt.target.traits.supply.type.toString().toUpperCase()] += gather_amt;
+		}
+
+		// Remove amount from target.
+		evt.target.traits.supply.curr -= gather_amt;
+		// Add extracted resources to player's resource pool.
+		getGUIGlobal().giveResources(evt.target.traits.supply.type.toString(), parseInt(gather_amt));
 	}
 }
 
@@ -160,17 +163,22 @@ function entity_event_takesdamage( evt )
 		}
 
 		// If the fallen is worth any loot,
-		if (this.traits.loot && (this.traits.loot.food || this.traits.loot.wood || this.traits.loot.stone || this.traits.loot.ore))
+		if (this.traits.loot)
 		{
-			// Give the inflictor his resources.
-			if (this.traits.loot.food)
-				getGUIGlobal().GiveResources("Food", parseInt(this.traits.loot.food));
-			if (this.traits.loot.wood)
-				getGUIGlobal().GiveResources("Wood", parseInt(this.traits.loot.wood));
-			if (this.traits.loot.stone)
-				getGUIGlobal().GiveResources("Stone", parseInt(this.traits.loot.stone));
-			if (this.traits.loot.ore)
-				getGUIGlobal().GiveResources("Ore", parseInt(this.traits.loot.ore));
+			// Cycle through all loot on this entry.
+			pool = this.traits.loot;
+			for( loot in pool )
+			{
+				switch( loot.toString().toUpperCase() )
+				{
+					default:
+						// Give the inflictor his resources.
+						getGUIGlobal().giveResources( loot.toString(), parseInt(pool[loot]) );
+						// Notify player.
+						console.write ("Spoils of war! " + pool[loot] + " " + loot.toString() + "!");
+					break;
+				}
+			}
 		}
 
 		// Notify player.
@@ -372,9 +380,9 @@ function attempt_add_to_build_queue( entity, create_tag, list, tab )
 				break;
 				default:
 					// Deduct the given quantity of resources.
-					localPlayer.resource[resource.toString().toUpperCase()] -= pool[resource].cost;
+					getGUIGlobal().deductResources(resource.toString(), parseInt(pool[resource].cost));
 
-					console.write("Spent " + pool[resource].cost + " " + resource + ".");
+					console.write("Spent " + pool[resource].cost + " " + resource + " to purchase " + entity.traits.id.generic);
 				break;
 			}
 		}
