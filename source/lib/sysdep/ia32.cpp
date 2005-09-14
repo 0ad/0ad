@@ -312,11 +312,13 @@ static void get_cpu_type()
 	const uint family = bits(regs[EAX], 8, 11);
 
 	// get brand string (if available)
+	// note: ia32_cpuid writes 4 u32s directly to cpu_type -
+	// be very careful with pointer arithmetic!
 	u32* cpu_type_u32 = (u32*)cpu_type;
 	bool have_brand_string = false;
 	if(ia32_cpuid(0x80000002, cpu_type_u32+0 ) &&
-	   ia32_cpuid(0x80000003, cpu_type_u32+16) &&
-	   ia32_cpuid(0x80000004, cpu_type_u32+32))
+	   ia32_cpuid(0x80000003, cpu_type_u32+4) &&
+	   ia32_cpuid(0x80000004, cpu_type_u32+8))
 		have_brand_string = true;
 
 

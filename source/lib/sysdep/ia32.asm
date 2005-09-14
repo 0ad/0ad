@@ -232,14 +232,17 @@ __SECT__
 ; extern "C" bool __cdecl ia32_cpuid(u32 func, u32* regs)
 global _ia32_cpuid
 _ia32_cpuid:
+	; note: must preserve before .one_time_init because it does cpuid
+	push		ebx
+	push		edi
+
+.retry:
 	; if unknown, detect; if not available, fail.
 	xor		eax, eax				; return val on failure
 	cmp		[cpuid_available], eax
 	jl		.one_time_init
 	je		.ret
 
-	push		ebx
-	push		edi
 	mov		ecx, [esp+8+4+0]			; func
 	mov		edi, [esp+8+4+4]			; -> regs
 
@@ -291,7 +294,7 @@ _ia32_cpuid:
 	cpuid
 	mov		[max_ext_func], eax
 
-	jmp		_ia32_cpuid					; now try again
+	jmp		.retry
 
 
 
