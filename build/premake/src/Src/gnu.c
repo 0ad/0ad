@@ -170,11 +170,17 @@ static int writeRootMakefile()
 
 //-----------------------------------------------------------------------------
 
+char buffer[4096];
 static const char* checkCppSources(const char* file, void* data)
 {
 	if (isCppFile(file))
-		return replaceExtension(getFilename(file,0), OBJECTS_EXT);
-	return NULL;
+	{
+		strcpy(buffer, getFilename(file, 0));
+		strcat(buffer, ".o");
+		return buffer;
+	}
+	else
+		return NULL;
 }
 
 static const char* checkCppFlags(const char* flag, void* data)
@@ -351,7 +357,7 @@ static int writeCppPackage(Package* package)
 
 	for (i = 0; CPP_EXT[i]; ++i)
 	{
-		fprintf(file, "%s/%%.o : %%%s\n", OBJECTS_DIR, CPP_EXT[i]);
+		fprintf(file, "%s/%%%s.o : %%%s\n", OBJECTS_DIR, CPP_EXT[i], CPP_EXT[i]);
 		fprintf(file, "\t-%sif [ ! -d %s ]; then mkdir %s; fi\n", prefix, OBJECTS_DIR, OBJECTS_DIR);
 		if (!verbose)
 			fprintf(file, "\t@echo $(notdir $<)\n");
@@ -372,17 +378,17 @@ static int writeCppPackage(Package* package)
 				/*	nasm -f elf -o $@ $<
 					nasm -M -o $@ $< >OBJ_DIR/$*.P */
 				fprintf(file, "\t%snasm -f elf -o $@ $<\n", prefix);
-				fprintf(file, "\t%snasm -M -o $@ $< >$*.d\n", prefix);
+				fprintf(file, "\t%snasm -M -o $@ $< >$(<F).d\n", prefix);
 			}
 			else
 				fprintf(file, "\t%s$(CXX) $(CXXFLAGS) -MD -o $@ -c $<\n", prefix);
 		}
 
-		fprintf(file, "\t-%sif [ -f $*.d ]; then mv $*.d obj/$*.d; fi\n", prefix);
-		fprintf(file, "\t%scp %s/$*.d %s/$*.P; \\\n", prefix, OBJECTS_DIR, OBJECTS_DIR);
+		fprintf(file, "\t-%sif [ -f $(<F).d ]; then mv $(<F).d %s/$(<F).d; fi\n", prefix, OBJECTS_DIR);
+		fprintf(file, "\t%scp %s/$(<F).d %s/$(<F).P; \\\n", prefix, OBJECTS_DIR, OBJECTS_DIR);
 		fprintf(file, "\t sed -e 's/#.*//' -e 's/^[^:]*: *//' -e 's/ *\\\\$$//' \\\n");
-		fprintf(file, "\t -e '/^$$/ d' -e 's/$$/ :/' < %s/$*.d >> %s/$*.P; \\\n", OBJECTS_DIR, OBJECTS_DIR);
-		fprintf(file, "\trm -f %s/$*.d\n\n", OBJECTS_DIR);
+		fprintf(file, "\t -e '/^$$/ d' -e 's/$$/ :/' < %s/$(<F).d >> %s/$(<F).P; \\\n", OBJECTS_DIR, OBJECTS_DIR);
+		fprintf(file, "\trm -f %s/$(<F).d\n\n", OBJECTS_DIR);
 	}
 	
 	// Write out the list of object file targets for all C/C++ sources
