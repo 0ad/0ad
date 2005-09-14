@@ -229,9 +229,9 @@ max_func	dd	0x7FFFFFFF
 max_ext_func	dd	0xFFFFFFFF
 __SECT__
 
-; extern "C" bool __cdecl cpuid(u32 func, u32* regs)
-global _cpuid
-_cpuid:
+; extern "C" bool __cdecl ia32_cpuid(u32 func, u32* regs)
+global _ia32_cpuid
+_ia32_cpuid:
 	; if unknown, detect; if not available, fail.
 	xor		eax, eax				; return val on failure
 	cmp		[cpuid_available], eax
@@ -291,7 +291,7 @@ _cpuid:
 	cpuid
 	mov		[max_ext_func], eax
 
-	jmp		_cpuid					; now try again
+	jmp		_ia32_cpuid					; now try again
 
 
 

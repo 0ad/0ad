@@ -53,13 +53,12 @@ extern void ia32_memcpy(void* dst, const void* src, size_t nbytes);
 
 
 // CPU caps (128 bits)
-// do not change the order! (breaks cpuid())
+// do not change the order!
 enum CpuCap
 {
-	// standard (ecx)
-	// currently only defined by Intel
-	SSE3 = 0+0,	// Streaming SIMD Extensions 3
-	EST  = 0+7,	// Enhanced Speedstep Technology
+	// standard (ecx) - currently only defined by Intel
+	INTEL_SSE3 = 0+0,	// Streaming SIMD Extensions 3
+	INTEL_EST  = 0+7,	// Enhanced Speedstep Technology
 
 	// standard (edx)
 	TSC  = 32+4,	// TimeStamp Counter
@@ -71,11 +70,10 @@ enum CpuCap
 
 	// extended (ecx)
 
-	// extended (edx)
-	// currently only defined by AMD
-	MP         = 96+19,	// MultiProcessing capable; reserved on AMD64
-	_3DNOW_PRO = 96+30,
-	_3DNOW     = 96+31
+	// extended (edx) - currently only defined by AMD
+	AMD_MP        = 96+19,	// MultiProcessing capable; reserved on AMD64
+	AMD_3DNOW_PRO = 96+30,
+	AMD_3DNOW     = 96+31
 };
 
 extern bool ia32_cap(CpuCap cap);
@@ -85,7 +83,17 @@ extern void ia32_get_cpu_info(void);
 
 
 // internal use only
-extern int get_cur_processor_id();
+
+// order in which registers are stored in regs array
+// (do not change! brand string relies on this ordering)
+enum IA32Regs
+{
+	EAX,
+	EBX,
+	ECX,
+	EDX
+};
+extern bool ia32_cpuid(u32 func, u32* regs);
 
 #ifdef __cplusplus
 }

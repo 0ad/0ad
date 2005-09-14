@@ -255,7 +255,14 @@ static unsigned __stdcall thread_start(void* UNUSED(param))
 	void* arg           = func_and_arg.arg;
 	win_unlock(WPTHREAD_CS);
 
-	void* ret = func(arg);
+	void* ret = (void*)-1;
+	__try
+	{
+		ret = func(arg);
+	}
+	__except(wdbg_exception_filter(GetExceptionInformation()))
+	{
+	}
 
 	call_tls_dtors();
 

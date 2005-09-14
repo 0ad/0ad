@@ -40,12 +40,13 @@
 #endif
 
 // replace pathetic MS libc implementation.
+// not needed on non-Win32, so don't bother converting from MS inline asm.
 #if HAVE_MS_ASM
 double _ceil(double f)
 {
-	double r;
-
+	UNUSED2(f);	// avoid bogus warning
 	const float _49 = 0.499999f;
+	double r;
 __asm
 {
 	fld			[f]
@@ -53,16 +54,17 @@ __asm
 	frndint
 	fstp		[r]
 }
-
-	UNUSED2(f);
-
 	return r;
 }
 #endif
 
 
-// return convention for 64 bits with VC7.1, ICC8 is in edx:eax,
-// so temp variable is unnecessary, but we play it safe.
+// rationale: this function should return its output (instead of setting
+// out params) to simplify its callers. it is written in inline asm
+// (instead of moving to ia32.asm) to insulate from changing compiler
+// calling conventions.
+// MSC, ICC and GCC currently return 64 bits in edx:eax, which even
+// matches rdtsc output, but we play it safe and return a temporary.
 inline u64 rdtsc()
 {
 	u64 c;
@@ -85,14 +87,17 @@ __asm
 }
 
 
-
-
-#if OS_WIN && HAVE_MS_ASM
 void ia32_debug_break()
 {
+#if HAVE_MS_ASM
 	__asm int 3
-}
+// note: this probably isn't necessary, since unix_debug_break
+// (SIGTRAP) is most probably available if HAVE_GNU_ASM.
+// we include it for completeness, though.
+#elif HAVE_GNU_ASM
+	__asm__ __volatile__ ("mfence");
 #endif
+}
 
 
 void ia32_memcpy(void* dst, const void* src, size_t nbytes)
@@ -225,32 +230,45 @@ void serialize()
 // CPU / feature detect
 //-----------------------------------------------------------------------------
 
-//
-// data returned by cpuid()
-// each function using this data must call cpuid (no-op if already called)
-//
-
-static char vendor_str[13];
-static int family, model, ext_family;
-static int num_cores;
-
-// caps
-// treated as 128 bit field; order: std ecx, std edx, ext ecx, ext edx
-// keep in sync with enum CpuCap and cpuid() code!
-u32 caps[4];
-
-static bool have_brand_string;	// if false, need to detect cpu_type manually.
-
-
-// order in which registers are stored in regs array
-// (do not change! brand string relies on this ordering)
-enum IA32Regs
+bool ia32_cap(CpuCap cap)
 {
-	EAX,
-	EBX,
-	ECX,
-	EDX
-};
+	// treated as 128 bit field; order: std ecx, std edx, ext ecx, ext edx
+	// keep in sync with enum CpuCap!
+	static u32 caps[4];
+	ONCE(\
+		u32 regs[4];
+		if(ia32_cpuid(1, regs))\
+		{\
+			caps[0] = regs[ECX];\
+			caps[1] = regs[EDX];\
+		}\
+		if(ia32_cpuid(0x80000001, regs))\
+		{\
+			caps[2] = regs[ECX];\
+			caps[3] = regs[EDX];\
+		}\
+	);
+
+	const uint tbl_idx = cap >> 5;
+	const uint bit_idx = cap & 0x1f;
+	if(tbl_idx > 3)
+	{
+		debug_warn("cap invalid");
+		return false;
+	}
+	return (caps[tbl_idx] & BIT(bit_idx)) != 0;
+}
+
+
+
+
+
+// we only store enum Vendor rather than the string because that
+// is easier to compare.
+enum Vendor { UNKNOWN, INTEL, AMD };
+static Vendor vendor = UNKNOWN;
+
+
 
 enum MiscCpuCapBits
 {
@@ -259,90 +277,60 @@ enum MiscCpuCapBits
 };
 
 
-static int retrieve_cpuid_info()
+
+static void get_cpu_vendor()
 {
 	u32 regs[4];
+	if(!ia32_cpuid(0, regs))
+		return;
 
-	// vendor string
-	// notes:
-	// - vendor_str is already 0-terminated because it's static.
-	// - 'strange' ebx,edx,ecx reg order is due to ModR/M encoding order.
-	if(!cpuid(0, regs))
-		return ERR_CPU_FEATURE_MISSING;	// we need CPUID, i.e. Pentium+
+	// copy regs to string
+	// note: 'strange' ebx,edx,ecx reg order is due to ModR/M encoding order.
+	char vendor_str[13];
 	u32* vendor_str_u32 = (u32*)vendor_str;
 	vendor_str_u32[0] = regs[EBX];
 	vendor_str_u32[1] = regs[EDX];
 	vendor_str_u32[2] = regs[ECX];
+	vendor_str[12] = '\0';	// 0-terminate
 
-	// processor signature, feature flags
-	// (note: HT/SMP query is nontrivial and done below)
-	if(!cpuid(1, regs))
-		debug_warn("cpuid 1 failed");
-	model      = bits(regs[EAX], 4, 7);
-	family     = bits(regs[EAX], 8, 11);
-	ext_family = bits(regs[EAX], 20, 23);
-	caps[0] = regs[ECX];
-	caps[1] = regs[EDX];
-
-	// multicore count
-	if(cpuid(4, regs))
-		num_cores = bits(regs[EBX], 26, 31)+1;
-
-	// extended feature flags
-	if(cpuid(0x80000001, regs))
-	{
-		caps[2] = regs[ECX];
-		caps[3] = regs[EDX];
-	}
-
-	// CPU brand string (AthlonXP/P4 or above)
-	u32* cpu_type_u32 = (u32*)cpu_type;
-	if(cpuid(0x80000002, cpu_type_u32+0 ) &&
-	   cpuid(0x80000003, cpu_type_u32+16) &&
-	   cpuid(0x80000004, cpu_type_u32+32))
-		have_brand_string = true;
-
-	return 0;
+	if(!strcmp(vendor_str, "AuthenticAMD"))
+		vendor = AMD;
+	else if(!strcmp(vendor_str, "GenuineIntel"))
+		vendor = INTEL;
+	else
+		debug_warn("unknown vendor");
 }
-
-
-bool ia32_cap(CpuCap cap)
-{
-	u32 idx = cap >> 5;
-	if(idx > 3)
-	{
-		debug_warn("cap invalid");
-		return false;
-	}
-	u32 bit = BIT(cap & 0x1f);
-
-	return (caps[idx] & bit) != 0;
-}
-
-
-
-// (for easier comparison)
-enum Vendor { UNKNOWN, INTEL, AMD };
-static Vendor vendor = UNKNOWN;
-
-
-
 
 
 static void get_cpu_type()
 {
+	// get processor signature
+	u32 regs[4];
+	if(!ia32_cpuid(1, regs))
+		debug_warn("cpuid 1 failed");
+	const uint model  = bits(regs[EAX], 4, 7);
+	const uint family = bits(regs[EAX], 8, 11);
+
+	// get brand string (if available)
+	u32* cpu_type_u32 = (u32*)cpu_type;
+	bool have_brand_string = false;
+	if(ia32_cpuid(0x80000002, cpu_type_u32+0 ) &&
+	   ia32_cpuid(0x80000003, cpu_type_u32+16) &&
+	   ia32_cpuid(0x80000004, cpu_type_u32+32))
+		have_brand_string = true;
+
+
 	// note: cpu_type is guaranteed to hold 48+1 chars, since that's the
 	// length of the CPU brand string. strcpy(cpu_type, literal) is safe.
+#define SAFE_STRCPY strcpy
 
-	// fall back to manual detect of CPU type if it didn't supply
-	// a brand string, or if the brand string is useless (i.e. "Unknown").
+	// fall back to manual detect of CPU type because either:
+	// - CPU doesn't support brand string (we use a flag to indicate this
+	//   rather than comparing against a default value because it is safer);
+	// - the brand string is useless, e.g. "Unknown". this happens on
+	//   some older boards whose BIOS reprograms the string for CPUs it
+	//   doesn't recognize.
 	if(!have_brand_string || strncmp(cpu_type, "Unknow", 6) == 0)
-		// we use an extra flag to detect if we got the brand string:
-		// safer than comparing against the default name, which may change.
-		//
-		// some older boards reprogram the brand string with
-		// "Unknow[n] CPU Type" on CPUs the BIOS doesn't recognize.
-		// in that case, we ignore the brand string and detect manually.
 	{
 		if(vendor == AMD)
 		{
@@ -350,15 +338,15 @@ static void get_cpu_type()
 			if(family == 6)
 			{
 				if(model == 3 || model == 7)
-					strcpy(cpu_type, "AMD Duron");	// safe
+					SAFE_STRCPY(cpu_type, "AMD Duron");
 				else if(model <= 5)
-					strcpy(cpu_type, "AMD Athlon");	// safe
+					SAFE_STRCPY(cpu_type, "AMD Athlon");
 				else
 				{
-					if(ia32_cap(MP))
-						strcpy(cpu_type, "AMD Athlon MP");	// safe
+					if(ia32_cap(AMD_MP))
+						SAFE_STRCPY(cpu_type, "AMD Athlon MP");
 					else
-						strcpy(cpu_type, "AMD Athlon XP");	// safe
+						SAFE_STRCPY(cpu_type, "AMD Athlon XP");
 				}
 			}
 		}
@@ -368,17 +356,17 @@ static void get_cpu_type()
 			if(family == 6)
 			{
 				if(model == 1)
-					strcpy(cpu_type, "Intel Pentium Pro");	// safe
+					SAFE_STRCPY(cpu_type, "Intel Pentium Pro");
 				else if(model == 3 || model == 5)
-					strcpy(cpu_type, "Intel Pentium II");	// safe
+					SAFE_STRCPY(cpu_type, "Intel Pentium II");
 				else if(model == 6)
-					strcpy(cpu_type, "Intel Celeron");		// safe
+					SAFE_STRCPY(cpu_type, "Intel Celeron");	
 				else
-					strcpy(cpu_type, "Intel Pentium III");	// safe
+					SAFE_STRCPY(cpu_type, "Intel Pentium III");
 			}
 		}
 	}
-	// we have a valid brand string; try to pretty it up some
+	// cpu_type already holds a valid brand string; pretty it up.
 	else
 	{
 		// strip (tm) from Athlon string
@@ -387,13 +375,14 @@ static void get_cpu_type()
 
 		// remove 2x (R) and CPU freq from P4 string
 		float freq;
-		// the indicated frequency isn't necessarily correct - the CPU may be
-		// overclocked. need to pass a variable though, since scanf returns
-		// the number of fields actually stored.
+		// we can't use this because it isn't necessarily correct - the CPU
+		// may be overclocked. a variable must be passed, though, since
+		// scanf returns the number of fields actually stored.
 		if(sscanf(cpu_type, " Intel(R) Pentium(R) 4 CPU %fGHz", &freq) == 1)
-			strcpy(cpu_type, "Intel Pentium 4");	// safe
+			SAFE_STRCPY(cpu_type, "Intel Pentium 4");
 	}
 }
+
 
 
 static void measure_cpu_freq()
@@ -487,7 +476,18 @@ static void measure_cpu_freq()
 // called on each CPU by on_each_cpu.
 static void check_smp()
 {
+	u32 regs[4];
+
 	debug_assert(cpus > 0 && "must know # CPUs (call OS-specific detect first)");
+
+/*
+	if single-core and no HT
+		no change
+	if multi-core and no HT
+		phys = windows_cpus / cores_per_package
+
+
+*/
 
 	// we don't check if it's Intel and P4 or above - HT may be supported
 	// on other CPUs in future. haven't come across a processor that
@@ -504,6 +504,12 @@ static void check_smp()
 	if(cpu_smp == -1)
 		cpu_smp = 0;
 
+	// multicore count
+	uint num_cores_per_package = 1;
+	if(ia32_cpuid(4, regs))
+		num_cores_per_package = bits(regs[EBX], 26, 31)+1;
+
+
 
 	//
 	// still need to check if HT is actually enabled (BIOS and OS);
@@ -512,8 +518,7 @@ static void check_smp()
 
 	// get number of logical CPUs per package
 	// (the same for all packages on this system)
-	u32 regs[4];
-	if(!cpuid(1, regs))
+	if(!ia32_cpuid(1, regs))
 		debug_warn("cpuid 1 failed");
 	const uint log_cpus_per_package = bits(regs[EBX], 16, 23);
 	// logical CPUs are initialized after one another =>
@@ -535,13 +540,13 @@ static void check_speedstep()
 {
 	if(vendor == INTEL)
 	{
-		if(ia32_cap(EST))
+		if(ia32_cap(INTEL_EST))
 			cpu_speedstep = 1;
 	}
 	else if(vendor == AMD)
 	{
 		u32 regs[4];
-		if(cpuid(0x80000007, regs))
+		if(ia32_cpuid(0x80000007, regs))
 			if(regs[EDX] & POWERNOW_FREQ_ID_CTRL)
 				cpu_speedstep = 1;
 	}
@@ -550,14 +555,9 @@ static void check_speedstep()
 
 void ia32_get_cpu_info()
 {
-	WARN_ERR_RETURN(retrieve_cpuid_info());
-
-	if(!strcmp(vendor_str, "AuthenticAMD"))
-		vendor = AMD;
-	else if(!strcmp(vendor_str, "GenuineIntel"))
-		vendor = INTEL;
-
+	get_cpu_vendor();
 	get_cpu_type();
+
 	check_speedstep();
 	// linux doesn't have CPU affinity API:s (that we've found...)
 #if OS_WIN
