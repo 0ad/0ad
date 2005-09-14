@@ -51,11 +51,21 @@ public:
 
 	CStrW m_actorName;
 	
-
 	CStrW m_Tag;
 	CBoundingCircle* m_bound_circle;
 	CBoundingBox* m_bound_box;
 	CBoundingObject::EBoundingType m_bound_type;
+
+	// HP properties
+	float m_healthCurr;
+	float m_healthMax;
+	float m_healthBarHeight;
+
+	// Minimap properties
+	CStrW m_minimapType;
+	int m_minimapR;
+	int m_minimapG;
+	int m_minimapB;
 
 	float m_speed;
 	SEntityAction m_melee;
@@ -68,10 +78,6 @@ public:
 	jsval getClassSet();
 	void setClassSet( jsval value );
 	void rebuildClassSet();
-
-	float m_healthCurr;
-	float m_healthMax;
-	float m_healthBarHeight;
 
 	// Script-bound functions
 

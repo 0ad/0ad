@@ -29,6 +29,10 @@ CBaseEntity::CBaseEntity()
 	AddProperty( L"traits.health.curr", &m_healthCurr );
 	AddProperty( L"traits.health.max", &m_healthMax );
 	AddProperty( L"traits.health.bar_height", &m_healthBarHeight );
+	AddProperty( L"traits.minimap.type", &m_minimapType );
+	AddProperty( L"traits.minimap.red", &m_minimapR );
+	AddProperty( L"traits.minimap.green", &m_minimapG );
+	AddProperty( L"traits.minimap.blue", &m_minimapB );
 
 	for( int t = 0; t < EVENT_LAST; t++ )
 	{

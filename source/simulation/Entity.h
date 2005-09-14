@@ -82,6 +82,12 @@ public:
 	float m_healthCurr;
 	float m_healthMax;
 	float m_healthBarHeight;
+	
+	// Minimap properties
+	CStrW m_minimapType;
+	int m_minimapR;
+	int m_minimapG;
+	int m_minimapB;
 
 	//-- Interpolated property
 	CVector3D m_position;

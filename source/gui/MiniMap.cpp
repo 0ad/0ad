@@ -101,9 +101,18 @@ void CMiniMap::Draw()
 			unit = (CUnit *)(*iter);
 			if(unit && unit->GetEntity())
 			{
-				// Set the player colour
-				const SPlayerColour& colour = unit->GetEntity()->GetPlayer()->GetColour();
-				glColor3f(colour.r, colour.g, colour.b);
+				CEntity* entity = unit->GetEntity();
+				CStrW& type = entity->m_minimapType;
+
+				if(type==L"Unit" || type==L"Structure" || type==L"Hero") {
+					// Set the player colour
+					const SPlayerColour& colour = unit->GetEntity()->GetPlayer()->GetColour();
+					glColor3f(colour.r, colour.g, colour.b);
+				}
+				else {
+					glColor3f(entity->m_minimapR/255.0f, entity->m_minimapG/255.0f, entity->m_minimapB/255.0f);
+				}
+
 
 				pos = GetMapSpaceCoords(unit->GetEntity()->m_position);
 
