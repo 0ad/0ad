@@ -106,6 +106,11 @@ COMMAND(GenerateMap)
 	const int size; // size in number of patches
 };
 
+COMMAND(LoadMap)
+	mLoadMap(std::wstring filename_) : filename(filename_) {}
+	const std::wstring filename;
+};
+
 //////////////////////////////////////////////////////////////////////////
 
 COMMAND(RenderStyle)

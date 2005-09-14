@@ -58,9 +58,11 @@ struct DataCommand : public Command // so commands can optionally override (De|C
 
 #define END_COMMAND(t) \
 	}; \
-	namespace CAT2(t, __LINE__) { struct init { init() { \
-		bool notAlreadyRegisted = GetCmdHandlers().insert(std::pair<std::string, cmdHandler>("c"#t, &c##t ::Create)).second; \
-		assert(notAlreadyRegisted); \
-	} } init; };
+	namespace register_command_##t { \
+		struct init { init() { \
+			bool notAlreadyRegisted = GetCmdHandlers().insert(std::pair<std::string, cmdHandler>("c"#t, &c##t ::Create)).second; \
+			debug_assert(notAlreadyRegisted); \
+		} } init; \
+	};
 
 }

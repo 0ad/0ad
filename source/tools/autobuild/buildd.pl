@@ -15,7 +15,7 @@ use HTTP::Response;
 use Win32::Process;
 
 my $build_process;       # stores Win32::Process handle
-my $build_required = 0;  # set by commits, cleared by builds
+my $build_required = 0;  # set by commits, cleared by builds; 1 for normal build, 2 for forced build (even if no source was changed)
 my $commit_required = 0; # stores the time when it should happen, or 0 if never
 my $build_start_time;    # time that the most recent build started
 my $last_exit_code;      # exit code of the most recent completed build
@@ -59,6 +59,13 @@ POE::Component::Server::TCP->new(
 			abort_build();
 			$response->push_header('Content-type', 'text/plain');
 			$response->content("Build initiated.");
+		}
+		elsif ($url eq '/force_build.html')
+		{
+			$build_required = 2;
+			abort_build();
+			$response->push_header('Content-type', 'text/plain');
+			$response->content("Forced build initiated.");
 		}
 		elsif ($url eq '/commit_latest.html')
 		{
@@ -212,7 +219,7 @@ POE::Session->create(
 
 			if ($build_required and not $build_active)
 			{
-				start_build();
+				start_build(force => ($build_required == 2));
 			}
 			elsif ($commit_required and time() >= $commit_required)
 			{
@@ -263,7 +270,7 @@ sub start_build
 	Win32::Process::Create(
 		$build_process,
 		"c:\\perl\\bin\\perl.exe",
-		"perl build.pl" . ($params{commit} ? ' --commitlatest' : ''),
+		"perl build.pl" . ($params{commit} ? ' --commitlatest' : '') . ($params{force} ? ' --force' : ''),
 		0,
 		CREATE_NO_WINDOW,
 		"c:\\0ad\\autobuild") or die "Error spawning build script: ".Win32::FormatMessage(Win32::GetLastError());

@@ -12,13 +12,30 @@ typedef void     (*msgHandler)(IMessage*);
 typedef std::map<std::string, msgHandler> msgHandlers;
 extern msgHandlers& GetMsgHandlers();
 
-#define CAT1(a,b) a##b
-#define CAT2(a,b) CAT1(a,b)
+#define MESSAGEHANDLER(t) \
+	void f##t(m##t*); \
+	namespace register_handler_##t { \
+		void wrapper(IMessage* msg) { \
+			f##t (static_cast<m##t*>(msg)); \
+		} \
+		struct init { init() { \
+			bool notAlreadyRegisted = GetMsgHandlers().insert(std::pair<std::string, msgHandler>(#t, &wrapper)).second; \
+			debug_assert(notAlreadyRegisted); \
+		} } init; \
+	}; \
+	void f##t(m##t* msg)
 
-// TODO quite urgently: Fix this, because it's broken and not very helpful anyway
-#define REGISTER(t) namespace CAT2(hndlr_, __LINE__) { struct init { init() { \
-	bool notAlreadyRegisted = GetMsgHandlers().insert(std::pair<std::string, msgHandler>(#t, &f##t)).second; \
-	assert(notAlreadyRegisted); \
-  } } init; };
+#define MESSAGEHANDLER_STR(t) \
+	void fCommandString_##t(); \
+	namespace register_handler_##t { \
+		void wrapper(IMessage*) { \
+			fCommandString_##t (); \
+		} \
+		struct init { init() { \
+			bool notAlreadyRegisted = GetMsgHandlers().insert(std::pair<std::string, msgHandler>("CommandString_"#t, &wrapper)).second; \
+			debug_assert(notAlreadyRegisted); \
+		} } init; \
+	}; \
+	void fCommandString_##t()
 
 }

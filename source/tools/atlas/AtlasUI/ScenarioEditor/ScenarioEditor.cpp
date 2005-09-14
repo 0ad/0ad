@@ -247,6 +247,8 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 
 	canvas->InitSize();
 
+	ADD_COMMAND(GenerateMap(9));
+
 	ADD_COMMAND(CommandString("render_enable"));
 #endif
 

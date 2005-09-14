@@ -7,15 +7,13 @@
 namespace AtlasMessage {
 
 
-void fDoCommand(IMessage* msg)
+MESSAGEHANDLER(DoCommand)
 {
-	mDoCommand* cmd = static_cast<mDoCommand*>(msg);
-
 	Command* c = NULL;
-	cmdHandlers::const_iterator it = GetCmdHandlers().find("c" + cmd->name);
+	cmdHandlers::const_iterator it = GetCmdHandlers().find("c" + msg->name);
 	if (it != GetCmdHandlers().end())
 	{
-		c = (it->second)(cmd->data);
+		c = (it->second)(msg->data);
 	}
 	else
 	{
@@ -25,27 +23,24 @@ void fDoCommand(IMessage* msg)
 
 	GetCommandProc().Submit(c);
 }
-REGISTER(DoCommand);
 
-
-void fUndoCommand(IMessage*)
+MESSAGEHANDLER(UndoCommand)
 {
+	UNUSED2(msg);
 	GetCommandProc().Undo();
 }
-REGISTER(UndoCommand);
 
-
-void fRedoCommand(IMessage*)
+MESSAGEHANDLER(RedoCommand)
 {
+	UNUSED2(msg);
 	GetCommandProc().Redo();
 }
-REGISTER(RedoCommand);
 
-void fMergeCommand(IMessage*)
+MESSAGEHANDLER(MergeCommand)
 {
+	UNUSED2(msg);
 	GetCommandProc().Merge();
 }
-REGISTER(MergeCommand);
 
 
 }

@@ -72,15 +72,15 @@ function setuppackage (projectname)
 		"terrain",
 		"sound",
 		"scripting",
-		"i18n",
-
-		"tools/atlas/GameInterface",
-		"tools/atlas/GameInterface/Handlers"
+		"i18n"
 	}
 
 	if (projectname ~= "sced") then tconcat(source_dirs, {
 		"gui",
-		"gui/scripting"
+		"gui/scripting",
+
+		"tools/atlas/GameInterface",
+		"tools/atlas/GameInterface/Handlers"
 	}) end
 
 	if (projectname == "sced") then tconcat(source_dirs, {

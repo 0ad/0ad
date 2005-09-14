@@ -6,26 +6,52 @@
 #include "graphics/TextureManager.h"
 #include "graphics/TextureEntry.h"
 #include "ps/Game.h"
+#include "ps/GameAttributes.h"
+#include "ps/Loader.h"
 
 namespace AtlasMessage {
 
-
-void fGenerateMap(IMessage* msg)
+static void InitGame(std::wstring map)
 {
-	mGenerateMap* cmd = static_cast<mGenerateMap*>(msg);
+	if (g_Game)
+		delete g_Game;
+
+	// Set attributes for the game:
+	//  Start without a map
+	g_GameAttributes.m_MapFile = map;
+	//  Make all players locally controlled
+	for (int i=1; i<8; ++i) 
+		g_GameAttributes.GetSlot(i)->AssignLocal();
+
+	// Start the game:
+	g_Game = new CGame();
+	PSRETURN ret = g_Game->StartGame(&g_GameAttributes);
+	debug_assert(ret == PSRETURN_OK);
+	LDR_NonprogressiveLoad();
+	ret = g_Game->ReallyStartGame();
+	debug_assert(ret == PSRETURN_OK);
+
+	// Make sure entities get rendered in the correct location
+	g_Game->GetSimulation()->Update(0.0);
+}
+
+MESSAGEHANDLER(GenerateMap)
+{
+	InitGame(L"");
 
 	// Convert size in patches to number of vertices
-	int vertices = cmd->size * PATCH_SIZE + 1;
+	int vertices = msg->size * PATCH_SIZE + 1;
 
 	// Generate flat heightmap
 	u16* heightmap = new u16[vertices*vertices];
 	for (int z = 0; z < vertices; ++z)
 		for (int x = 0; x < vertices; ++x)
-			heightmap[x + z*vertices] = 32768 +(int)(2048.f*(rand()/(float)RAND_MAX-0.5f));
+//			heightmap[x + z*vertices] = 32768 +(int)(2048.f*(rand()/(float)RAND_MAX-0.5f));
+			heightmap[x + z*vertices] = 32768;
 
 	// Initialise terrain using the heightmap
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-	terrain->Initialize(cmd->size, heightmap);
+	terrain->Initialize(msg->size, heightmap);
 
 	delete[] heightmap;
 
@@ -47,6 +73,10 @@ void fGenerateMap(IMessage* msg)
 	}
 
 }
-REGISTER(GenerateMap);
+
+MESSAGEHANDLER(LoadMap)
+{
+	InitGame(msg->filename);
+}
 
 }

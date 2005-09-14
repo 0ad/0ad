@@ -111,11 +111,12 @@ static void ParseCommandLineArgs(int argc, char* argv[])
 			}
 			break;
 		case 'e':
-			g_EntGraph = true;
+			if(strncmp(name, "entgraph", 8) == 0)
+				g_EntGraph = true;
 			break;
 		case 'f':
 			if(strncmp(name, "fixedframe", 10) == 0)
-				g_FixedFrameTiming=true;
+				g_FixedFrameTiming = true;
 			break;
 		case 'g':
 			if(strncmp(name, "g=", 2) == 0)

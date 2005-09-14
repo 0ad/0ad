@@ -8,19 +8,16 @@
 namespace AtlasMessage {
 
 
-void fScrollConstant(IMessage* msg)
+MESSAGEHANDLER(ScrollConstant)
 {
-	mScrollConstant* cmd = static_cast<mScrollConstant*>(msg);
-
-	if (cmd->dir < 0 || cmd->dir > 3)
+	if (msg->dir < 0 || msg->dir > 3)
 	{
 		debug_warn("ScrollConstant: invalid direction");
 	}
 	else
 	{
-		g_GameLoop->input.scrollSpeed[cmd->dir] = cmd->speed;
+		g_GameLoop->input.scrollSpeed[msg->dir] = msg->speed;
 	}
 }
-REGISTER(ScrollConstant);
 
 }

@@ -5,9 +5,6 @@
 
 #include "renderer/Renderer.h"
 #include "gui/GUI.h"
-#include "ps/Game.h"
-#include "ps/GameAttributes.h"
-#include "ps/Loader.h"
 #include "ps/CConsole.h"
 
 extern int g_xres, g_yres;
@@ -19,7 +16,7 @@ extern void Shutdown_();
 namespace AtlasMessage {
 
 
-void fCommandString_init(IMessage*)
+MESSAGEHANDLER_STR(init)
 {
 	oglInit();
 	Init_(g_GameLoop->argc, g_GameLoop->argv, false);
@@ -30,69 +27,46 @@ void fCommandString_init(IMessage*)
 	if(oglHaveExtension("WGL_EXT_swap_control"))
 		wglSwapIntervalEXT(1);
 #endif
-
-	// Set attributes for the game:
-	//  Start without a map
-	g_GameAttributes.m_MapFile = L"";
-	//  Make all players locally controlled
-	for (int i=1; i<8; ++i) 
-		g_GameAttributes.GetSlot(i)->AssignLocal();
-
-	// Start the game:
-	g_Game = new CGame();
-	PSRETURN ret = g_Game->StartGame(&g_GameAttributes);
-	assert(ret == PSRETURN_OK);
-	LDR_NonprogressiveLoad();
-	ret = g_Game->ReallyStartGame();
-	assert(ret == PSRETURN_OK);
 }
-REGISTER(CommandString_init);
 
 
-void fCommandString_shutdown(IMessage*)
+MESSAGEHANDLER_STR(shutdown)
 {
 	Shutdown_();
 	g_GameLoop->rendering = false;
 }
-REGISTER(CommandString_shutdown);
 
 
-void fCommandString_exit(IMessage*)
+MESSAGEHANDLER_STR(exit)
 {
 	g_GameLoop->running = false;
 }
-REGISTER(CommandString_exit);
 
 
-void fCommandString_render_enable(IMessage*)
+MESSAGEHANDLER_STR(render_enable)
 {
 	g_GameLoop->rendering = true;
 }
-REGISTER(CommandString_render_enable);
 
 
-void fCommandString_render_disable(IMessage*)
+MESSAGEHANDLER_STR(render_disable)
 {
 	g_GameLoop->rendering = false;
 }
-REGISTER(CommandString_render_disable);
 
 //////////////////////////////////////////////////////////////////////////
 
-void fSetContext(IMessage* msg)
+MESSAGEHANDLER(SetContext)
 {
-	mSetContext* cmd = static_cast<mSetContext*>(msg);
-	g_GameLoop->glContext = cmd->context;
+	g_GameLoop->glContext = msg->context;
 	Atlas_GLSetCurrent((void*)g_GameLoop->glContext);
 }
-REGISTER(SetContext);
 
 
-void fResizeScreen(IMessage* msg)
+MESSAGEHANDLER(ResizeScreen)
 {
-	mResizeScreen* cmd = static_cast<mResizeScreen*>(msg);
-	g_xres = cmd->width;
-	g_yres = cmd->height;
+	g_xres = msg->width;
+	g_yres = msg->height;
 	if (g_xres <= 2) g_xres = 2; // avoid GL errors caused by invalid sizes
 	if (g_yres <= 2) g_yres = 2;
 //	SViewPort vp;
@@ -104,17 +78,13 @@ void fResizeScreen(IMessage* msg)
 	g_GUI.UpdateResolution();
 	g_Console->UpdateScreenSize(g_xres, g_yres);
 }
-REGISTER(ResizeScreen);
 
 //////////////////////////////////////////////////////////////////////////
 
-void fRenderStyle(IMessage* msg)
+MESSAGEHANDLER(RenderStyle)
 {
-	mRenderStyle* cmd = static_cast<mRenderStyle*>(msg);
-
-	g_Renderer.SetTerrainRenderMode(cmd->wireframe ? EDGED_FACES : SOLID);
-	g_Renderer.SetModelRenderMode(cmd->wireframe ? EDGED_FACES : SOLID);
+	g_Renderer.SetTerrainRenderMode(msg->wireframe ? EDGED_FACES : SOLID);
+	g_Renderer.SetModelRenderMode(msg->wireframe ? EDGED_FACES : SOLID);
 }
-REGISTER(RenderStyle);
 
 }
