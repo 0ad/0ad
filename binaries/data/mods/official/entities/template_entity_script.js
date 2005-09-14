@@ -274,7 +274,7 @@ function entity_event_prepareorder( evt )
 
 // ====================================================================
 
-function entity_add_create_queue( template, list, tab )
+function entity_add_create_queue( template, tab, list )
 {
 	// Make sure we have a queue to put things in...
 	if( !this.actions.create.queue )
@@ -364,7 +364,7 @@ function entity_create_complete()
 
 // ====================================================================
 
-function attempt_add_to_build_queue( entity, create_tag, list, tab )
+function attempt_add_to_build_queue( entity, create_tag, tab, list )
 {
 	result = entity_CheckQueueReq (entity);
 
@@ -382,14 +382,14 @@ function attempt_add_to_build_queue( entity, create_tag, list, tab )
 					// Deduct the given quantity of resources.
 					getGUIGlobal().deductResources(resource.toString(), parseInt(pool[resource].cost));
 
-					console.write("Spent " + pool[resource].cost + " " + resource + " to purchase " + entity.traits.id.generic);
+					console.write("Spent " + pool[resource].cost + " " + resource + " to purchase " + getEntityTemplate( create_tag ).traits.id.generic);
 				break;
 			}
 		}
 
 		// Add entity to queue.
 		console.write( "Adding ", create_tag, " to build queue..." );
-		entity.add_create_queue( getEntityTemplate( create_tag ), list, tab );
+		entity.add_create_queue( getEntityTemplate( create_tag ), tab, list );
 	}
 	else		// If not, output the error message.
 		console.write(result);

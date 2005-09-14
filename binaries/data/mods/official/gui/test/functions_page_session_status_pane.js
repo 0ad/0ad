@@ -15,7 +15,8 @@ function refreshStatusPane()
 				selection[0].traits.id.civ_code, selection[0].traits.id.icon_cell);
 	}
 
-	refreshCommandButtons();
+	if( shouldUpdateStat( "actions" ) )
+		refreshCommandButtons();
 }
 
 // ====================================================================
