@@ -386,6 +386,108 @@ static void get_cpu_type()
 }
 
 
+//-----------------------------------------------------------------------------
+
+static uint log_id_bits;	// bit index; divides APIC ID into log and phys
+
+static const uint INVALID_ID = ~0u;
+static uint last_phys_id = INVALID_ID, last_log_id = INVALID_ID;
+static uint phys_ids = 0, log_ids = 0;
+
+// count # distinct physical and logical APIC IDs for get_cpu_count.
+// called on each OS-visible "CPU" by on_each_cpu.
+static void count_ids()
+{
+	// get APIC id
+	u32 regs[4];
+	if(!ia32_cpuid(1, regs))
+		debug_warn("cpuid 1 failed");
+	const uint id = bits(regs[EBX], 24, 31);
+
+	// partition into physical and logical ID
+	const uint phys_id = bits(id, 0, log_id_bits-1);
+	const uint log_id  = bits(id, log_id_bits, 7);
+
+	// note: APIC IDs are assigned sequentially, so we compare against the
+	// last one encountered.
+	if(last_phys_id != INVALID_ID && last_phys_id != phys_id)
+		cpus++;
+	if(last_log_id  != INVALID_ID && last_log_id  != log_id )
+		cpus++;
+	last_phys_id = phys_id;
+	last_log_id  = log_id;
+}
+
+
+// fix CPU count reported by OS (incorrect if HT active or multicore);
+// also separates it into cpu_ht_units and cpu_cores.
+static void get_cpu_count()
+{
+	debug_assert(cpus > 0 && "must know # 'CPU's (call OS-specific detect first)");
+
+	// get # "logical CPUs" per package (uniform over all packages).
+	// TFM is unclear but seems to imply this includes HT units *and* cores!
+	u32 regs[4];
+	if(!ia32_cpuid(1, regs))
+		debug_warn("ia32_cpuid(1) failed");
+	const uint log_cpu_per_package = bits(regs[EBX], 16, 23);
+	// .. and # cores
+	if(ia32_cpuid(4, regs))
+		cpu_cores = bits(regs[EBX], 26, 31)+1;
+	else
+		cpu_cores = 1;
+
+	// if HT is active (enabled in BIOS and OS), we have a problem:
+	// OSes (Windows at least) report # CPUs as packages * cores * HT_units.
+	// there is no direct way to determine if HT is actually enabled,
+	// so if it is supported, we have to examine all APIC IDs and
+	// figure out what kind of "CPU" each one is. *sigh*
+	//
+	// note: we don't check if it's Intel and P4 or above - HT may be
+	// supported on other CPUs in future. all processors should set this
+	// feature bit correctly, so it's not a problem.
+	if(ia32_cap(HT))
+	{
+		log_id_bits = log2(log_cpu_per_package);	// see above
+		last_phys_id = last_log_id = INVALID_ID;
+		phys_ids = log_ids = 0;
+		if(on_each_cpu(count_ids) == 0)
+		{
+			cpus         = phys_ids;
+			cpu_ht_units = log_ids / cpu_cores;
+			return;	// this is authoritative
+		}
+		// OS apparently doesn't support CPU affinity.
+		// HT might be disabled, but return # units anyway.
+		else
+			cpu_ht_units = log_cpu_per_package / cpu_cores;
+	}
+	// not HT-capable; return 1 to allow total = cpus * HT_units * cores.
+	else
+		cpu_ht_units = 1;
+
+	cpus /= cpu_cores;
+}
+
+
+
+
+static void check_for_speedstep()
+{
+	if(vendor == INTEL)
+	{
+		if(ia32_cap(EST))
+			cpu_speedstep = 1;
+	}
+	else if(vendor == AMD)
+	{
+		u32 regs[4];
+		if(ia32_cpuid(0x80000007, regs))
+			if(regs[EDX] & POWERNOW_FREQ_ID_CTRL)
+				cpu_speedstep = 1;
+	}
+}
+
 
 static void measure_cpu_freq()
 {
@@ -396,10 +498,10 @@ static void measure_cpu_freq()
 	max_param.sched_priority = sched_get_priority_max(SCHED_FIFO);
 	pthread_setschedparam(pthread_self(), SCHED_FIFO, &max_param);
 
+	// make sure the TSC is available, because we're going to
+	// measure actual CPU clocks per known time interval.
+	// counting loop iterations ("bogomips") is unreliable.
 	if(ia32_cap(TSC))
-		// make sure the TSC is available, because we're going to
-		// measure actual CPU clocks per known time interval.
-		// counting loop iterations ("bogomips") is unreliable.
 	{
 		// note: no need to "warm up" cpuid - it will already have been
 		// called several times by the time this code is reached.
@@ -419,8 +521,8 @@ static void measure_cpu_freq()
 		{
 			double dt;
 			i64 dc;
-				// i64 because VC6 can't convert u64 -> double,
-				// and we don't need all 64 bits.
+			// i64 because VC6 can't convert u64 -> double,
+			// and we don't need all 64 bits.
 
 			// count # of clocks in max{1 tick, 1 ms}:
 			// .. wait for start of tick.
@@ -473,99 +575,13 @@ static void measure_cpu_freq()
 }
 
 
-// set cpu_smp if there's more than 1 physical CPU -
-// need to know this for wtime's TSC safety check.
-// called on each CPU by on_each_cpu.
-static void check_smp()
-{
-	u32 regs[4];
-
-	debug_assert(cpus > 0 && "must know # CPUs (call OS-specific detect first)");
-
-/*
-	if single-core and no HT
-		no change
-	if multi-core and no HT
-		phys = windows_cpus / cores_per_package
-
-
-*/
-
-	// we don't check if it's Intel and P4 or above - HT may be supported
-	// on other CPUs in future. haven't come across a processor that
-	// incorrectly sets the HT feature bit.
-	if(!ia32_cap(HT))
-	{
-		// no HT supported, just check number of CPUs as reported by OS.
-		cpu_smp = (cpus > 1);
-		return;
-	}
-
-	// first call. we set cpu_smp below if more than 1 physical CPU is found,
-	// so clear it until then.
-	if(cpu_smp == -1)
-		cpu_smp = 0;
-
-	// multicore count
-	uint num_cores_per_package = 1;
-	if(ia32_cpuid(4, regs))
-		num_cores_per_package = bits(regs[EBX], 26, 31)+1;
-
-
-
-	//
-	// still need to check if HT is actually enabled (BIOS and OS);
-	// there might be 2 CPUs with HT supported but disabled.
-	//
-
-	// get number of logical CPUs per package
-	// (the same for all packages on this system)
-	if(!ia32_cpuid(1, regs))
-		debug_warn("cpuid 1 failed");
-	const uint log_cpus_per_package = bits(regs[EBX], 16, 23);
-	// logical CPUs are initialized after one another =>
-	// they have the same physical ID.
-	const uint cur_id = bits(regs[EBX], 24, 31);
-
-	const int phys_shift = ilog2(log_cpus_per_package);
-	const int phys_id = cur_id >> phys_shift;
-
-	// more than 1 physical CPU found
-	static int last_phys_id = -1;
-	if(last_phys_id != -1 && last_phys_id != phys_id)
-		cpu_smp = 1;
-	last_phys_id = phys_id;
-}
-
-
-static void check_speedstep()
-{
-	if(vendor == INTEL)
-	{
-		if(ia32_cap(INTEL_EST))
-			cpu_speedstep = 1;
-	}
-	else if(vendor == AMD)
-	{
-		u32 regs[4];
-		if(ia32_cpuid(0x80000007, regs))
-			if(regs[EDX] & POWERNOW_FREQ_ID_CTRL)
-				cpu_speedstep = 1;
-	}
-}
-
 
 void ia32_get_cpu_info()
 {
 	get_cpu_vendor();
 	get_cpu_type();
-
-	check_speedstep();
-	// linux doesn't have CPU affinity API:s (that we've found...)
-#if OS_WIN
-	on_each_cpu(check_smp);
-#endif
-
+	get_cpu_count();
+	check_for_speedstep();
 	measure_cpu_freq();
 
 	// HACK: on Windows, the HRT makes its final implementation choice

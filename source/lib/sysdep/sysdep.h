@@ -128,7 +128,7 @@ extern int sys_cursor_set(void* cursor);
 extern int sys_cursor_free(void* cursor);
 
 
-extern void memcpy2(void* dst, const void* src, size_t nbytes);
+
 
 extern int get_executable_name(char* n_path, size_t buf_size);
 
@@ -137,7 +137,16 @@ extern int get_executable_name(char* n_path, size_t buf_size);
 wchar_t* get_module_filename(void* addr, wchar_t* path);
 
 
+
+
 extern int pick_directory(char* n_path, size_t buf_size);
+
+extern void memcpy2(void* dst, const void* src, size_t nbytes);
+
+// not possible with POSIX calls.
+// called from ia32.cpp get_cpu_count
+extern int on_each_cpu(void(*cb)());
+
 
 
 #if MSC_VERSION

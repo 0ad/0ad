@@ -23,6 +23,7 @@
 #include "win_internal.h"
 
 #include "sysdep/cpu.h"
+#include "wcpu.h"
 
 // limit allows statically allocated per-CPU structures (for simplicity).
 // we're Windows-specific anyway; such systems won't foreseeably have more.
@@ -30,9 +31,7 @@
 static const int MAX_CPUS = 32;
 
 
-// not possible with POSIX calls.
-// called from ia32.cpp check_smp
-int on_each_cpu(void(*cb)())
+int wcpu_on_each_cpu(void(*cb)())
 {
 	const HANDLE hProcess = GetCurrentProcess();
 

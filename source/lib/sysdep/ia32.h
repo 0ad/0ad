@@ -57,8 +57,8 @@ extern void ia32_memcpy(void* dst, const void* src, size_t nbytes);
 enum CpuCap
 {
 	// standard (ecx) - currently only defined by Intel
-	INTEL_SSE3 = 0+0,	// Streaming SIMD Extensions 3
-	INTEL_EST  = 0+7,	// Enhanced Speedstep Technology
+	SSE3 = 0+0,		// Streaming SIMD Extensions 3
+	EST  = 0+7,		// Enhanced Speedstep Technology
 
 	// standard (edx)
 	TSC  = 32+4,	// TimeStamp Counter
