@@ -19,8 +19,13 @@ CQuaternion::CQuaternion()
 	m_W = 1;
 }
 
+CQuaternion::CQuaternion(float x, float y, float z, float w)
+: m_V(x, y, z), m_W(w)
+{
+}
+
 //quaternion addition
-CQuaternion CQuaternion::operator + (CQuaternion &quat)
+CQuaternion CQuaternion::operator + (const CQuaternion &quat) const
 {
 	CQuaternion Temp;
 
@@ -31,7 +36,7 @@ CQuaternion CQuaternion::operator + (CQuaternion &quat)
 }
 
 //quaternion addition/assignment
-CQuaternion &CQuaternion::operator += (CQuaternion &quat)
+CQuaternion &CQuaternion::operator += (const CQuaternion &quat)
 {
 	m_W += quat.m_W;
 	m_V += quat.m_V;
@@ -40,7 +45,7 @@ CQuaternion &CQuaternion::operator += (CQuaternion &quat)
 }
 
 //quaternion multiplication
-CQuaternion CQuaternion::operator * (CQuaternion &quat)
+CQuaternion CQuaternion::operator * (const CQuaternion &quat) const
 {
 	CQuaternion Temp;
 
@@ -51,7 +56,7 @@ CQuaternion CQuaternion::operator * (CQuaternion &quat)
 }
 
 //quaternion multiplication/assignment
-CQuaternion &CQuaternion::operator *= (CQuaternion &quat)
+CQuaternion &CQuaternion::operator *= (const CQuaternion &quat)
 {
 	(*this) = (*this) * quat;
 
@@ -59,7 +64,7 @@ CQuaternion &CQuaternion::operator *= (CQuaternion &quat)
 }
 
 
-void CQuaternion::FromEularAngles (float x, float y, float z)
+void CQuaternion::FromEulerAngles (float x, float y, float z)
 {
 	float cr, cp, cy;
 	float sr, sp, sy;
@@ -214,4 +219,20 @@ void CQuaternion::Normalize()
 		m_V*=invlen;
 		m_W*=invlen;
 	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+CVector3D CQuaternion::Rotate(const CVector3D& vec) const
+{
+	// v' = q * v * q^-1
+	// (where v is the quat. with w=0, xyz=vec)
+	
+	return (*this * CQuaternion(vec.X, vec.Y, vec.Z, 0.f) * GetInverse()).m_V;
+}
+
+CQuaternion CQuaternion::GetInverse() const
+{
+	float lensqrd = SQR(m_V.X) + SQR(m_V.Y) + SQR(m_V.Z) + SQR(m_W);
+	return CQuaternion(-m_V.X/lensqrd, -m_V.Y/lensqrd, -m_V.Z/lensqrd, m_W/lensqrd);
 }

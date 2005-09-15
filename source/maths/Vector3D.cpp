@@ -24,6 +24,11 @@ int CVector3D::operator ! () const
 	return 1;
 }
 
+bool CVector3D::operator== (const CVector3D &vector) const
+{
+	return (X == vector.X && Y == vector.Y && Z == vector.Z);
+}
+
 //vector addition
 CVector3D CVector3D::operator + (const CVector3D &vector) const 
 {

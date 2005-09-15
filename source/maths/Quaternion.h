@@ -10,6 +10,7 @@
 #define QUATERNION_H
 
 #include "Matrix3D.h"
+#include "Vector3D.h"
 
 class CQuaternion
 {
@@ -19,18 +20,19 @@ public:
 
 public:
 	CQuaternion();
+	CQuaternion(float x, float y, float z, float w);
 	
 	//quaternion addition
-	CQuaternion operator + (CQuaternion &quat);
+	CQuaternion operator + (const CQuaternion &quat) const;
 	//quaternion addition/assignment
-	CQuaternion &operator += (CQuaternion &quat);
+	CQuaternion &operator += (const CQuaternion &quat);
 
 	//quaternion multiplication
-	CQuaternion operator * (CQuaternion &quat);
+	CQuaternion operator * (const CQuaternion &quat) const;
 	//quaternion multiplication/assignment
-	CQuaternion &operator *= (CQuaternion &quat);
+	CQuaternion &operator *= (const CQuaternion &quat);
 	
-	void FromEularAngles (float x, float y, float z);
+	void FromEulerAngles (float x, float y, float z);
 	
 	//convert the quaternion to matrix
 	CMatrix3D ToMatrix() const;
@@ -44,6 +46,12 @@ public:
 
 	// normalize this quaternion
 	void Normalize();
+
+	// rotate a vector by this quaternion
+	CVector3D Rotate(const CVector3D& vec) const;
+
+	// calculate q^-1
+	CQuaternion GetInverse() const;
 };
 
 #endif

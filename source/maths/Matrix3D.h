@@ -13,7 +13,7 @@ class CMatrix3D
 {
 public:
 	// the matrix data itself - accessible as either longhand names
-	// or via a flat array
+	// or via a flat or 2d array
 	union {
 		struct {
 			float _11, _21, _31, _41;
@@ -22,6 +22,8 @@ public:
 			float _14, _24, _34, _44;
 		};
 		float _data[16];
+		float _data2d[4][4];
+			// (Be aware that _data2d[3][1] is _13, etc. This is to be considered a feature.)
 	};
 		
 public:
@@ -105,6 +107,8 @@ public:
 	CVector3D GetUp() const;
 	// return forward vector, derived from rotation 
 	CVector3D GetIn() const;
+	// return a quaternion representing the matrix's rotation
+	CQuaternion GetRotation() const;
 
 	// transform a 3D vector by this matrix
 	void Transform(const CVector3D &vector,CVector3D& result) const;

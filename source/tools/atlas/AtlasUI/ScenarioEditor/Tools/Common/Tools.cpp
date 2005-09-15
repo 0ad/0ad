@@ -40,10 +40,10 @@ WorldCommand::~WorldCommand()
 bool WorldCommand::Do()
 {
 	if (m_AlreadyDone)
-		ADD_COMMAND(RedoCommand());
+		POST_COMMAND(RedoCommand());
 	else
 	{
-		ADD_COMMAND(DoCommand(m_Command));
+		POST_COMMAND(DoCommand(m_Command));
 		m_AlreadyDone = true;
 	}
 	return true;
@@ -51,7 +51,7 @@ bool WorldCommand::Do()
 
 bool WorldCommand::Undo()
 {
-	ADD_COMMAND(UndoCommand());
+	POST_COMMAND(UndoCommand());
 	return true;
 }
 
@@ -68,6 +68,6 @@ bool WorldCommand::Merge(AtlasWindowCommand* p)
 	if (! m_Command->IsMergeable())
 		return false;
 
-	ADD_COMMAND(MergeCommand());
+	POST_COMMAND(MergeCommand());
 	return true;
 }

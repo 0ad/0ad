@@ -25,7 +25,8 @@ class Canvas : public wxGLCanvas
 public:
 	Canvas(wxWindow* parent, int* attribList)
 		: wxGLCanvas(parent, -1, wxDefaultPosition, wxDefaultSize, wxWANTS_CHARS, _T("GLCanvas"), attribList),
-		m_SuppressResize(true)
+		m_SuppressResize(true),
+		m_MouseState(NONE), m_LastMouseState(NONE)
 	{
 	}
 
@@ -34,7 +35,7 @@ public:
 		// Be careful not to send 'resize' messages to the game before we've
 		// told it that this canvas exists
 		if (! m_SuppressResize)
-			ADD_COMMAND(ResizeScreen(GetClientSize().GetWidth(), GetClientSize().GetHeight()));
+			POST_COMMAND(ResizeScreen(GetClientSize().GetWidth(), GetClientSize().GetHeight()));
 			// TODO: fix flashing
 	}
 
@@ -57,18 +58,22 @@ public:
 		default: return false;
 		}
 
-		float speed = wxGetKeyState(WXK_SHIFT) ? 240.0f : 120.0f;
+		float speed = 120.f;
+		if (wxGetKeyState(WXK_SHIFT))
+			speed *= 4.f;
+		else if (wxGetKeyState(WXK_CONTROL))
+			speed /= 4.f;
 
 		if (dir == -1) // changed modifier keys - update all currently-scrolling directions
 		{
-			if (wxGetKeyState(WXK_LEFT))  ADD_INPUT(ScrollConstant(AtlasMessage::mScrollConstant::LEFT, speed));
-			if (wxGetKeyState(WXK_RIGHT)) ADD_INPUT(ScrollConstant(AtlasMessage::mScrollConstant::RIGHT, speed));
-			if (wxGetKeyState(WXK_UP))    ADD_INPUT(ScrollConstant(AtlasMessage::mScrollConstant::FORWARDS, speed));
-			if (wxGetKeyState(WXK_DOWN))  ADD_INPUT(ScrollConstant(AtlasMessage::mScrollConstant::BACKWARDS, speed));
+			if (wxGetKeyState(WXK_LEFT))  POST_INPUT(ScrollConstant(AtlasMessage::mScrollConstant::LEFT, speed));
+			if (wxGetKeyState(WXK_RIGHT)) POST_INPUT(ScrollConstant(AtlasMessage::mScrollConstant::RIGHT, speed));
+			if (wxGetKeyState(WXK_UP))    POST_INPUT(ScrollConstant(AtlasMessage::mScrollConstant::FORWARDS, speed));
+			if (wxGetKeyState(WXK_DOWN))  POST_INPUT(ScrollConstant(AtlasMessage::mScrollConstant::BACKWARDS, speed));
 		}
 		else
 		{
-			ADD_INPUT(ScrollConstant(dir, enable ? speed : 0.0f));
+			POST_INPUT(ScrollConstant(dir, enable ? speed : 0.0f));
 		}
 		return true;
 	}
@@ -96,10 +101,60 @@ public:
 	void OnMouse(wxMouseEvent& evt)
 	{
 		g_CurrentTool->OnMouse(evt);
+
+		// TODO: what should happen if the tool and camera both respond to the
+		// same buttons? (e.g. left+right for rotating)
+
+		if (evt.GetWheelRotation())
+		{
+			float speed = 16.f;
+			if (wxGetKeyState(WXK_SHIFT))
+				speed *= 4.f;
+			else if (wxGetKeyState(WXK_CONTROL))
+				speed /= 4.f;
+
+			POST_INPUT(SmoothZoom(evt.GetWheelRotation() * speed / evt.GetWheelDelta()));
+		}
+		else
+		{
+			if (evt.LeftIsDown() && evt.RightIsDown())
+				m_MouseState = ROTATEAROUND;
+			else if (evt.MiddleIsDown())
+				m_MouseState = SCROLL;
+			else
+				m_MouseState = NONE;
+
+			if (m_MouseState != m_LastMouseState)
+			{
+				switch (m_MouseState)
+				{
+				case NONE: break;
+				case SCROLL: POST_INPUT(Scroll(AtlasMessage::mScroll::FROM, evt.GetPosition())); break;
+				case ROTATEAROUND: POST_INPUT(RotateAround(AtlasMessage::mRotateAround::FROM, evt.GetPosition())); break;
+				default: wxFAIL;
+				}
+				m_LastMouseState = m_MouseState;
+			}
+			else if (evt.Dragging())
+			{
+				switch (m_MouseState)
+				{
+				case NONE: break;
+				case SCROLL: POST_INPUT(Scroll(AtlasMessage::mScroll::TO, evt.GetPosition())); break;
+				case ROTATEAROUND: POST_INPUT(RotateAround(AtlasMessage::mRotateAround::TO, evt.GetPosition())); break;
+				default: wxFAIL;
+				}
+			}
+		}
+
 	}
 
 private:
 	bool m_SuppressResize;
+
+	enum { NONE, SCROLL, ROTATEAROUND };
+	int m_MouseState, m_LastMouseState;
+
 	DECLARE_EVENT_TABLE();
 };
 BEGIN_EVENT_TABLE(Canvas, wxGLCanvas)
@@ -107,11 +162,14 @@ BEGIN_EVENT_TABLE(Canvas, wxGLCanvas)
 	EVT_KEY_DOWN  (Canvas::OnKeyDown)
 	EVT_KEY_UP    (Canvas::OnKeyUp)
 	
-	EVT_LEFT_DOWN (Canvas::OnMouse)
-	EVT_LEFT_UP   (Canvas::OnMouse)
-	EVT_RIGHT_DOWN(Canvas::OnMouse)
-	EVT_RIGHT_UP  (Canvas::OnMouse)
-	EVT_MOTION    (Canvas::OnMouse)
+	EVT_LEFT_DOWN  (Canvas::OnMouse)
+	EVT_LEFT_UP    (Canvas::OnMouse)
+	EVT_RIGHT_DOWN (Canvas::OnMouse)
+	EVT_RIGHT_UP   (Canvas::OnMouse)
+	EVT_MIDDLE_DOWN(Canvas::OnMouse)
+	EVT_MIDDLE_UP  (Canvas::OnMouse)
+	EVT_MOUSEWHEEL (Canvas::OnMouse)
+	EVT_MOTION     (Canvas::OnMouse)
 END_EVENT_TABLE()
 
 // GL functions exported from DLL, and called by game (in a separate
@@ -221,7 +279,9 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	int glAttribList[] = {
 		WX_GL_RGBA,
 		WX_GL_DOUBLEBUFFER,
-		WX_GL_DEPTH_SIZE, 24, // TODO: wx documentation doesn't say this is valid
+		WX_GL_DEPTH_SIZE, 24, // TODO: wx documentation doesn't say 24 is valid
+		WX_GL_BUFFER_SIZE, 24, // colour bits
+		WX_GL_MIN_ALPHA, 8, // alpha bits
 		0
 	};
 	Canvas* canvas = new Canvas(splitter, glAttribList);
@@ -241,21 +301,25 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	// Send setup messages to game engine:
 
 #ifndef UI_ONLY
-	ADD_COMMAND(SetContext(canvas->GetContext()));
+	POST_COMMAND(SetContext(canvas->GetContext()));
 
-	ADD_COMMAND(CommandString("init"));
+	POST_COMMAND(CommandString("init"));
 
 	canvas->InitSize();
 
-	ADD_COMMAND(GenerateMap(9));
+	// Start with a blank map (so that the editor can assume there's always
+	// a valid map loaded)
+	POST_COMMAND(GenerateMap(9));
 
-	ADD_COMMAND(CommandString("render_enable"));
+	POST_COMMAND(CommandString("render_enable"));
 #endif
 
 	// XXX
 	USE_TOOL(AlterElevation);
 
-	// Set up a timer to make sure tool-updates happen even when there's no idle time
+	// Set up a timer to make sure tool-updates happen frequently (in addition
+	// to the idle handler (which makes then happen more frequently if there's nothing
+	// else to do))
 	m_Timer.SetOwner(this);
 	m_Timer.Start(20);
 }
@@ -264,9 +328,9 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 void ScenarioEditor::OnClose(wxCloseEvent&)
 {
 #ifndef UI_ONLY
-	ADD_COMMAND(CommandString("shutdown"));
+	POST_COMMAND(CommandString("shutdown"));
 #endif
-	ADD_COMMAND(CommandString("exit"));
+	POST_COMMAND(CommandString("exit"));
 
 	SetCurrentTool(NULL);
 
@@ -316,7 +380,7 @@ void ScenarioEditor::OnRedo(wxCommandEvent&)
 
 void ScenarioEditor::OnWireframe(wxCommandEvent& event)
 {
-	ADD_COMMAND(RenderStyle(event.IsChecked()));
+	POST_COMMAND(RenderStyle(event.IsChecked()));
 }
 
 //////////////////////////////////////////////////////////////////////////

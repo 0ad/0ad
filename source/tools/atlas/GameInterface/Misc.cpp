@@ -24,3 +24,22 @@ void AtlasMessage::Position::GetWorldSpace(CVector3D& vec) const
 		vec.Set(0.f, 0.f, 0.f);
 	}
 }
+
+void AtlasMessage::Position::GetScreenSpace(float& x, float& y) const
+{
+	switch (type)
+	{
+	case 0:
+		g_Game->GetView()->GetCamera()->GetScreenCoordinates(CVector3D(type0.x, type0.y, type0.x), x, y);
+		break;
+
+	case 1:
+		x = type1.x;
+		y = type1.y;
+		break;
+
+	default:
+		debug_warn("Invalid Position type");
+		x = y = 0.f;
+	}
+}

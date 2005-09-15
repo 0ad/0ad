@@ -12,9 +12,10 @@ struct GameLoopState
 	const void* glContext;
 	float frameLength; // smoothed to avoid large jumps
 
-	struct
+	struct Input
 	{
 		float scrollSpeed[4]; // [fwd, bwd, left, right]. 0.0f for disabled.
+		float zoomDelta;
 	} input;
 };
 

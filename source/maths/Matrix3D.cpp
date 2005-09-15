@@ -473,6 +473,44 @@ void CMatrix3D::Rotate(const CQuaternion& quat)
 	Concatenate(rotationMatrix);
 }
 
+CQuaternion CMatrix3D::GetRotation() const
+{
+	float tr = _data2d[0][0] + _data2d[1][1] + _data2d[2][2];
+
+	int next[] = { 1, 2, 0 };
+
+	float quat[4];
+
+	if (tr > 0.f)
+	{
+		float s = sqrtf(tr + 1.f);
+		quat[3] = s * 0.5f;
+		s = 0.5f / s;
+		quat[0] = (_data2d[1][2] - _data2d[2][1]) * s;
+		quat[1] = (_data2d[2][0] - _data2d[0][2]) * s;
+		quat[2] = (_data2d[0][1] - _data2d[1][0]) * s;
+	}
+	else
+	{
+		int i = 0;
+		if (_data2d[1][1] > _data2d[0][0]) i = 1;
+		if (_data2d[2][2] > _data2d[i][i]) i = 2;
+		int j = next[i];
+		int k = next[j];
+
+		float s = sqrtf((_data2d[i][i] - (_data2d[j][j] + _data2d[k][k])) + 1.f);
+		quat[i] = s * 0.5f;
+
+		if (s != 0.f) s = 0.5f / s;
+
+		quat[3] = (_data2d[j][k] - _data2d[k][j]) * s;
+		quat[j] = (_data2d[i][j] + _data2d[j][i]) * s;
+		quat[k] = (_data2d[i][k] + _data2d[k][i]) * s;
+	}
+
+	return CQuaternion(quat[0], quat[1], quat[2], quat[3]);
+}
+
 void CMatrix3D::SetRotation(const CQuaternion& quat)
 {
 	quat.ToMatrix(*this);
@@ -506,10 +544,43 @@ static void test_inverse()
 	}
 }
 
+static void test_quats()
+{
+	srand(0);
+	for (int i = 0; i < 4; ++i)
+	{
+		CQuaternion q;
+		q.FromEulerAngles(
+			-6.28f + 12.56f*(rand()/(float)RAND_MAX),
+			-6.28f + 12.56f*(rand()/(float)RAND_MAX),
+			-6.28f + 12.56f*(rand()/(float)RAND_MAX)
+		);
+		CMatrix3D m;
+		q.ToMatrix(m);
+		CQuaternion q2 = m.GetRotation();
+
+		float epsilon = 0.0001f;
+		// I hope there's a good reason why they're sometimes negated, and
+		// it's not just a bug...
+		bool ok_oneway = 
+			fabs(q2.m_W - q.m_W) < epsilon &&
+			fabs(q2.m_V.X - q.m_V.X) < epsilon &&
+			fabs(q2.m_V.Y - q.m_V.Y) < epsilon &&
+			fabs(q2.m_V.Z - q.m_V.Z) < epsilon;
+		bool ok_otherway =
+			fabs(q2.m_W + q.m_W) < epsilon &&
+			fabs(q2.m_V.X + q.m_V.X) < epsilon &&
+			fabs(q2.m_V.Y + q.m_V.Y) < epsilon &&
+			fabs(q2.m_V.Z + q.m_V.Z) < epsilon;
+		TEST(ok_oneway ^ ok_otherway);
+	}
+}
+
 
 static void self_test()
 {
 	test_inverse();
+	test_quats();
 }
 
 RUN_SELF_TEST;

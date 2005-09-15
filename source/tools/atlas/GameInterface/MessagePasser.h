@@ -16,8 +16,8 @@ struct mInput;
 extern MessagePasser<mCommand>* g_MessagePasser_Command;
 extern MessagePasser<mInput>*   g_MessagePasser_Input;
 
-#define ADD_COMMAND(type) AtlasMessage::g_MessagePasser_Command->Add(new AtlasMessage::m##type)
-#define ADD_INPUT(type)   AtlasMessage::g_MessagePasser_Input -> Add(new AtlasMessage::m##type)
+#define POST_COMMAND(type) AtlasMessage::g_MessagePasser_Command->Add(new AtlasMessage::m##type)
+#define POST_INPUT(type)   AtlasMessage::g_MessagePasser_Input -> Add(new AtlasMessage::m##type)
 
 }
 

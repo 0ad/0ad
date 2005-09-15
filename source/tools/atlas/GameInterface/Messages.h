@@ -28,6 +28,7 @@ struct Position
 
 	// Only for use in the game, not the UI.
 	void GetWorldSpace(CVector3D& vec) const; // (implementation in Misc.cpp)
+	void GetScreenSpace(float& x, float& y) const; // (implementation in Misc.cpp)
 };
 
 
@@ -82,6 +83,10 @@ const bool NOMERGE = false;
 
 //////////////////////////////////////////////////////////////////////////
 
+// TODO: Make the command definitions less inelegant.
+
+//////////////////////////////////////////////////////////////////////////
+
 COMMAND(CommandString)
 	mCommandString(const std::string& name_) : name(name_) {}
 	const std::string name;
@@ -125,6 +130,25 @@ INPUT(ScrollConstant)
 	const int dir; // as in enum below
 	const float speed; // set speed 0.0f to stop scrolling
 	enum { FORWARDS, BACKWARDS, LEFT, RIGHT };
+};
+
+INPUT(Scroll)
+	mScroll(int type_, Position pos_) : type(type_), pos(pos_) {}
+	const int type;
+	const Position pos;
+	enum { FROM, TO };
+};
+
+INPUT(SmoothZoom)
+	mSmoothZoom(float amount_) : amount(amount_) {}
+	const float amount;
+};
+
+INPUT(RotateAround)
+	mRotateAround(int type_, Position pos_) : type(type_), pos(pos_) {}
+	const int type;
+	const Position pos;
+	enum { FROM, TO };
 };
 
 //////////////////////////////////////////////////////////////////////////

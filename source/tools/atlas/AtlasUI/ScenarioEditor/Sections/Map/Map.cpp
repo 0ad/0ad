@@ -14,7 +14,7 @@ static void LoadMap()
 	if (dlg.ShowModal() == wxID_OK)
 	{
 		std::wstring map = dlg.GetFilename().c_str();
-		ADD_COMMAND(LoadMap(map));
+		POST_COMMAND(LoadMap(map));
 	}
 
 	// TODO: Make this a non-undoable command
@@ -22,12 +22,15 @@ static void LoadMap()
 
 static void GenerateMap()
 {
-	ADD_COMMAND(GenerateMap(9));
+	POST_COMMAND(GenerateMap(9));
 }
 
 MapSidebar::MapSidebar(wxWindow* parent)
 	: Sidebar(parent)
 {
+	// TODO: Less ugliness
+	// TODO: Intercept arrow keys and send them to the GL window
+
 	m_MainSizer->Add(new ActionButton(this, _T("Load existing map"), &LoadMap));
 	m_MainSizer->Add(new ActionButton(this, _T("Generate empty map"), &GenerateMap));
 }

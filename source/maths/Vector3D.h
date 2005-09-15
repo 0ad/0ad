@@ -30,6 +30,10 @@ class CVector3D
 		float& operator[](int index) { return *((&X)+index); }
 		const float& operator[](int index) const { return *((&X)+index); }
 
+		//vector equality (testing float equality, so please be careful if necessary)
+		bool operator== (const CVector3D &vector) const;
+		bool operator!= (const CVector3D &vector) const { return !operator==(vector); }
+
 		//vector addition
 		CVector3D operator + (const CVector3D &vector) const ;
 		//vector addition/assignment
