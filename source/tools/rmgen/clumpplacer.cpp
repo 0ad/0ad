@@ -28,7 +28,7 @@ bool ClumpPlacer::place(class Map* m, Constraint* constr, std::vector<Point>& re
 	set<Point> ret;
 
 	float radius = sqrt(size / PI);
-	float perim = 3 * radius * 2 * PI;
+	float perim = 4 * radius * 2 * PI;
 	int intPerim = (int)(ceil(perim));
 	vector<float> noise(intPerim);
 
