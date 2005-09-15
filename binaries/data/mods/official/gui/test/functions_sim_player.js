@@ -10,10 +10,10 @@ function createResources()
 	// Defines all resource types for future use.
 	// Assigns the value of game setup resource values as starting values.
 
-	addResource ("Food", getGUIObjectByName ("pgSessionSetupResourceFoodCounter").caption);
-	addResource ("Wood", getGUIObjectByName ("pgSessionSetupResourceWoodCounter").caption);
-	addResource ("Stone", getGUIObjectByName ("pgSessionSetupResourceStoneCounter").caption);
-	addResource ("Ore", getGUIObjectByName ("pgSessionSetupResourceOreCounter").caption);
+	addResource ("Food", Number(getGUIObjectByName ("pgSessionSetupResourceFoodCounter").caption));
+	addResource ("Wood", Number(getGUIObjectByName ("pgSessionSetupResourceWoodCounter").caption));
+	addResource ("Stone", Number(getGUIObjectByName ("pgSessionSetupResourceStoneCounter").caption));
+	addResource ("Ore", Number(getGUIObjectByName ("pgSessionSetupResourceOreCounter").caption));
 	addResource ("Population", 0);
 	addResource ("Housing", 0);
 }
