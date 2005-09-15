@@ -100,12 +100,6 @@ void ia32_debug_break()
 }
 
 
-void ia32_memcpy(void* dst, const void* src, size_t nbytes)
-{
-	memcpy(dst, src, nbytes);
-}
-
-
 //-----------------------------------------------------------------------------
 // support code for lock-free primitives
 //-----------------------------------------------------------------------------

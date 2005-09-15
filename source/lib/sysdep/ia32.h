@@ -93,6 +93,10 @@ enum IA32Regs
 	ECX,
 	EDX
 };
+
+// try to call the specified CPUID sub-function. returns true on success or
+// false on failure (i.e. CPUID or the specific function not supported).
+// returns eax, ebx, ecx, edx registers in above order.
 extern bool ia32_cpuid(u32 func, u32* regs);
 
 #ifdef __cplusplus
