@@ -72,9 +72,9 @@ for(i=0; i<NUM_PLAYERS; i++) {
 	println("Creating base for player " + i + "...");
 	
 	// some constants
-	radius = 18;
-	cliffRadius = 3;
-	elevation = 32;
+	radius = 17;
+	cliffRadius = 2;
+	elevation = 30;
 	
 	// get the x and y in tiles
 	fx = fractionToTiles(playerX[i]);
@@ -195,7 +195,7 @@ createAreas(placer, [terrainPainter, elevationPainter, paintClass(clHill)],
 
 // create forests
 println("Creating forests...");
-placer = new ClumpPlacer(30, 0.2, 0.06, 0);
+placer = new ClumpPlacer(25, 0.2, 0.05, 0);
 painter = new LayeredPainter([2], [[tGrass, tForest], tForest]);
 createAreas(placer, [painter, paintClass(clForest)], 
 	avoidClasses(clPlayer, 1, clWater, 3, clForest, 10, clHill, 0),
@@ -223,7 +223,7 @@ createObjectGroups(group, 0,
 	3 * NUM_PLAYERS, 100
 );
 
-// create decorative rocks
+// create decorative rocks for hills
 println("Creating decorative rocks...");
 group = new SimpleGroup([new SimpleObject(oDecorativeRock, 1,1, 0,0)], true);
 createObjectGroups(group, 0,
@@ -252,7 +252,7 @@ println("Creating straggler trees...");
 group = new SimpleGroup([new SimpleObject(oTree, 1,1, 0,0)], true);
 createObjectGroups(group, 0,
 	avoidClasses(clWater, 1, clForest, 0, clHill, 0, clPlayer, 0),
-	SIZE*SIZE/800
+	SIZE*SIZE/700
 );
 
 // create grass tufts
