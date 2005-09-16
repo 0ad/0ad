@@ -89,7 +89,6 @@ static size_t tga_hdr_size(const u8* file)
 static int tga_decode(DynArray* da, Tex* t)
 {
 	u8* file         = da->base;
-	size_t file_size = da->cur_size;
 
 	TgaHeader* hdr = (TgaHeader*)file;
 	const u8 type  = hdr->img_type;

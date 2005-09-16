@@ -213,15 +213,20 @@ align 16
 ; void __declspec(naked) ia32_memcpy(void* dst, const void* src, size_t nbytes)
 global _ia32_memcpy
 _ia32_memcpy:
-	mov		ecx, [esp+4+8]		; nbytes
-	mov		esi, [esp+4+4]		; src
-	mov		edi, [esp+4+0]		; dst
+	push		edi
+	push		esi
+
+	mov		edi, [esp+8+4+0]	; dst
+	mov		esi, [esp+8+4+4]	; src
+	mov		ecx, [esp+8+4+8]	; nbytes
 
 	cmp		ecx, byte IC_SIZE
 	ja		.choose_large_method
 
 .ic_movsd:
 	IC_MOVSD
+	pop		esi
+	pop		edi
 	ret
 
 .choose_large_method:

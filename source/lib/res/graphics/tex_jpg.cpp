@@ -13,11 +13,21 @@ extern "C" {
 
 
 #if MSC_VERSION
+
+// squelch "dtor / setjmp interaction" warnings.
+// all attempts to resolve the underlying problem failed; apparently
+// the warning is generated if setjmp is used at all in C++ mode.
+// (png_*_impl have no code that would trigger ctors/dtors, nor are any
+// called in their prolog/epilog code).
+# pragma warning(disable: 4611)
+
+// pull in the appropriate debug/release library
 # ifdef NDEBUG
 #  pragma comment(lib, "jpeg-6b.lib")
 # else
-# pragma comment(lib, "jpeg-6bd.lib")
+#  pragma comment(lib, "jpeg-6bd.lib")
 # endif	// #ifdef NDEBUG
+
 #endif	// #ifdef MSC_VERSION
 
 
@@ -560,9 +570,6 @@ static size_t jpg_hdr_size(const u8* UNUSED(file))
 
 static int jpg_decode(DynArray* da, Tex* t)
 {
-	u8* const file         = da->base;
-	const size_t file_size = da->cur_size;
-
 	int err;
 
 	// freed when ret is reached:

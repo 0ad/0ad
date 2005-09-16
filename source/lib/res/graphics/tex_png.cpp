@@ -18,8 +18,8 @@
 // squelch "dtor / setjmp interaction" warnings.
 // all attempts to resolve the underlying problem failed; apparently
 // the warning is generated if setjmp is used at all in C++ mode.
-// (png_decode has no code that would trigger ctors/dtors, nor are any
-// called in its prolog/epilog code).
+// (png_*_impl have no code that would trigger ctors/dtors, nor are any
+// called in their prolog/epilog code).
 # pragma warning(disable: 4611)
 
 // pull in the appropriate debug/release library
@@ -194,9 +194,6 @@ static size_t png_hdr_size(const u8* UNUSED(file))
 // limitation: palette images aren't supported
 static int png_decode(DynArray* da, Tex* t)
 {
-	u8* const file         = da->base;
-	const size_t file_size = da->cur_size;
-
 	int err = -1;
 	// freed when ret is reached:
 	png_structp png_ptr = 0;

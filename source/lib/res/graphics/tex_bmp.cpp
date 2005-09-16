@@ -72,7 +72,6 @@ static size_t bmp_hdr_size(const u8* file)
 static int bmp_decode(DynArray* da, Tex* t)
 {
 	u8* file         = da->base;
-	size_t file_size = da->cur_size;
 
 	const BmpHeader* hdr = (const BmpHeader*)file;
 	const long w       = (long)read_le32(&hdr->biWidth);

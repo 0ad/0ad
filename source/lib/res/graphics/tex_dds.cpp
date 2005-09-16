@@ -226,7 +226,6 @@ static size_t dds_hdr_size(const u8* UNUSED(file))
 static int dds_decode(DynArray* da, Tex* t)
 {
 	u8* file         = da->base;
-	size_t file_size = da->cur_size;
 
 	const DDSURFACEDESC2* hdr = (const DDSURFACEDESC2*)(file+4);
 	const u32 sd_size   = read_le32(&hdr->dwSize);
