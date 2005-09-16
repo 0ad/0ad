@@ -11,6 +11,7 @@
 #include "lib/sdl.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
+#include "lib/res/file/vfs.h"
 #include "ps/CLogger.h"
 
 using namespace AtlasMessage;
@@ -158,6 +159,8 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 		}
 
 		//////////////////////////////////////////////////////////////////////////
+
+		vfs_reload_changed_files();
 
 		if (state.rendering)
 		{
