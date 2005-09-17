@@ -53,8 +53,130 @@ DDSURFACEDESC2;
 #pragma pack(pop)
 
 
+enum RGBA {	R, G, B };
+
+
+static inline void mix_2_3(uint dst[4], uint c0[4], uint c1[4])
+{
+	for(int i = 0; i < 3; i++) dst[i] = (c0[i]*2 + c1[i] + 1)/3;
+}
+
+static inline void mix_avg(uint dst[4], uint c0[4], uint c1[4])
+{
+	for(int i = 0; i < 3; i++) dst[i] = (c0[i]+c1[i])/2;
+}
+
+static inline uint access_bit_tbl(const u8* ptbl, uint idx, uint bit_width)
+{
+	const u32 tbl = *(const u32*)ptbl;
+	uint val = tbl >> (idx*bit_width);
+	val &= (1u << bit_width)-1;
+	return val;
+}
+
+static inline uint access_bit_tbl64(const u8* ptbl, uint idx, uint bit_width)
+{
+	const u64 tbl = *(const u64*)ptbl;
+	uint val = (uint)(tbl >> (idx*bit_width));
+	val &= (1u << bit_width)-1;
+	return val;
+}
+
+
+// c = color_tbl (shorthand)
+static void precalc_color(int dxt, const u8* color_block, uint c[4][4])
+{
+	const u16 c0 = *(u16*)(color_block+0);
+	const u16 c1 = *(u16*)(color_block+2);
+
+	// Unpack 565, and copy high bits to low bits
+	c[0][R] = ((c0>>8)&0xF8) | ((c0>>13)&7);
+	c[0][G] = ((c0>>3)&0xFC) | ((c0>>9 )&3);
+	c[0][B] = ((c0<<3)&0xF8) | ((c0>>2 )&7);
+	c[1][R] = ((c1>>8)&0xF8) | ((c1>>13)&7);
+	c[1][G] = ((c1>>3)&0xFC) | ((c1>>9 )&3);
+	c[1][B] = ((c1<<3)&0xF8) | ((c1>>2 )&7);
+
+	if((dxt != 1 || c0 > c1))
+	{
+		mix_2_3(c[2], c[0], c[1]);				// c2 = 2/3*c0 + 1/3*c1
+		mix_2_3(c[3], c[1], c[0]);				// c3 = 1/3*c0 + 2/3*c1
+	}
+	// DXT1 special case: 
+	else
+	{
+		mix_avg(c[2], c[0], c[1]);				// c2 = (c0+c1)/2
+		for(int i = 0; i < 4; i++) c[3][i] = 0;	// c3 = black
+	}
+}
+
+
+static void precalc_dxt5_alpha(const u8* alpha_block, u8 dxt5_alpha_tbl[8])
+{
+	const uint a0 = alpha_block[0], a1 = alpha_block[1];
+
+	dxt5_alpha_tbl[0] = a0;
+	dxt5_alpha_tbl[1] = a1;
+	if(a0 > a1)
+	{
+		dxt5_alpha_tbl[2] = (6*a0 + 1*a1 + 3)/7;
+		dxt5_alpha_tbl[3] = (5*a0 + 2*a1 + 3)/7;
+		dxt5_alpha_tbl[4] = (4*a0 + 3*a1 + 3)/7;
+		dxt5_alpha_tbl[5] = (3*a0 + 4*a1 + 3)/7;
+		dxt5_alpha_tbl[6] = (2*a0 + 5*a1 + 3)/7;
+		dxt5_alpha_tbl[7] = (1*a0 + 6*a1 + 3)/7;
+	}
+	else
+	{
+		dxt5_alpha_tbl[2] = (4*a0 + 1*a1 + 2)/5;
+		dxt5_alpha_tbl[3] = (3*a0 + 2*a1 + 2)/5;
+		dxt5_alpha_tbl[4] = (2*a0 + 3*a1 + 2)/5;
+		dxt5_alpha_tbl[5] = (1*a0 + 4*a1 + 2)/5;
+		dxt5_alpha_tbl[6] = 0;
+		dxt5_alpha_tbl[7] = 255;
+	}
+}
+
+
+static const uint* choose_color(uint pixel_idx, const u8* color_block, const uint c_tbl[4][4])
+{
+	debug_assert(pixel_idx < 16);
+
+	// pixel index -> color selector (2 bit) -> color
+	const uint c_idx = access_bit_tbl(color_block+4, pixel_idx, 2);
+	return c_tbl[c_idx];
+}
+
+
+static uint choose_alpha(int dxt, uint pixel_idx, const u8* alpha_block, const u8 dxt5_alpha_tbl[8])
+{
+	debug_assert(pixel_idx < 16);
+
+	uint a = 255;
+	if(dxt == 3)
+	{
+		// table of 4-bit alpha entries
+		a = access_bit_tbl64(alpha_block, pixel_idx, 4);
+		a |= a << 4; // copy low bits to high bits
+	}
+	else if(dxt == 5)
+	{
+		// pixel index -> alpha selector (3 bit) -> alpha
+		const uint a_idx = access_bit_tbl(alpha_block+2, pixel_idx, 3);
+		a = dxt5_alpha_tbl[a_idx];
+	}
+	return a;
+}
+
+
+
+// in ogl_emulate_dds:	debug_assert(compressedimageSize == blocks * (dxt1? 8 : 16));
+
+
 static int dds_decompress(Tex* t)
 {
+return ERR_NOT_IMPLEMENTED;
+
 	uint w = t->w, h = t->h;
 	if(w==0 || h==0 || w%4 || h%4)
 		return ERR_TEX_FMT_INVALID;
@@ -62,134 +184,64 @@ static int dds_decompress(Tex* t)
 	int dxt = t->flags & TEX_DXT;
 	debug_assert(dxt == 1 || dxt == 3 || dxt == 5);
 
-	u8* data = tex_get_data(t);
-/*
-	GLsizei blocks_w = (GLsizei)(round_up(w, 4) / 4);
-	GLsizei blocks_h = (GLsizei)(round_up(h, 4) / 4);
-	GLsizei blocks = blocks_w * blocks_h;
-	GLsizei size = blocks * 16 * (base_fmt == GL_RGB ? 3 : 4);
-	GLsizei pitch = size / (blocks_h*4);
-	UNUSED2(pitch);
-	void* rgb_data = malloc(size);
+bool output_rgb = true;
 
-	debug_assert(imageSize == blocks * (dxt1? 8 : 16));
+	const u8* data = (const u8*)tex_get_data(t);
+
+	uint blocks_w = (uint)(round_up(w, 4) / 4);
+	uint blocks_h = (uint)(round_up(h, 4) / 4);
+	uint blocks = blocks_w * blocks_h;
+	size_t rgb_size = blocks * 16 * (output_rgb? 3 : 4);
+	void* rgb_data = malloc(rgb_size);
 
 	// This code is inefficient, but I don't care:
-
-	for(GLsizei block_y = 0; block_y < blocks_h; ++block_y)
-		for(GLsizei block_x = 0; block_x < blocks_w; ++block_x)
+	for(uint block_y = 0; block_y < blocks_h; block_y++)
+		for(uint block_x = 0; block_x < blocks_w; block_x++)
 		{
-			int c0_a = 255, c1_a = 255, c2_a = 255, c3_a = 255;
-			u8* alpha = NULL;
-			u8 dxt5alpha[8];
+			const u8* alpha_block = data;
+			u8 dxt5_alpha_tbl[8];
+			if(dxt == 5)
+				precalc_dxt5_alpha(alpha_block, dxt5_alpha_tbl);
+			if(dxt != 1)
+				data += 8;
 
-			if(!dxt1)
-			{
-				alpha = (u8*)data;
-				data = (char*)data + 8;
+			const u8* color_block = data;
+			uint color_tbl[4][4];	// c[i][RGBA_component]
+			precalc_color(dxt, color_block, color_tbl);
+			data += 8;
 
-				if(dxt5)
-				{
-					dxt5alpha[0] = alpha[0];
-					dxt5alpha[1] = alpha[1];
-					if(alpha[0] > alpha[1])
-					{
-						dxt5alpha[2] = (6*alpha[0] + 1*alpha[1] + 3)/7;
-						dxt5alpha[3] = (5*alpha[0] + 2*alpha[1] + 3)/7;
-						dxt5alpha[4] = (4*alpha[0] + 3*alpha[1] + 3)/7;
-						dxt5alpha[5] = (3*alpha[0] + 4*alpha[1] + 3)/7;
-						dxt5alpha[6] = (2*alpha[0] + 5*alpha[1] + 3)/7;
-						dxt5alpha[7] = (1*alpha[0] + 6*alpha[1] + 3)/7;
-					}
-					else
-					{
-						dxt5alpha[2] = (4*alpha[0] + 1*alpha[1] + 2)/5;
-						dxt5alpha[3] = (3*alpha[0] + 2*alpha[1] + 2)/5;
-						dxt5alpha[4] = (2*alpha[0] + 3*alpha[1] + 2)/5;
-						dxt5alpha[5] = (1*alpha[0] + 4*alpha[1] + 2)/5;
-						dxt5alpha[6] = 0;
-						dxt5alpha[7] = 255;
-					}
-				}
-			}
-
-			u16 c0   = *(u16*)( (char*)data + 0 );
-			u16 c1   = *(u16*)( (char*)data + 2 );
-			u32 bits = *(u32*)( (char*)data + 4 );
-
-			data = (char*)data + 8;
-
-			// Unpack 565, and copy high bits to low bits
-			int c0_r = ((c0>>8)&0xF8) | ((c0>>13)&7);
-			int c1_r = ((c1>>8)&0xF8) | ((c1>>13)&7);
-			int c0_g = ((c0>>3)&0xFC) | ((c0>>9 )&3);
-			int c1_g = ((c1>>3)&0xFC) | ((c1>>9 )&3);
-			int c0_b = ((c0<<3)&0xF8) | ((c0>>2 )&7);
-			int c1_b = ((c1<<3)&0xF8) | ((c1>>2 )&7);
-			int c2_r, c2_g, c2_b;
-			int c3_r, c3_g, c3_b;
-			if(!dxt1 || c0 > c1)
-			{
-				c2_r = (c0_r*2+c1_r+1)/3; c2_g = (c0_g*2+c1_g+1)/3; c2_b = (c0_b*2+c1_b+1)/3;
-				c3_r = (c0_r+2*c1_r+1)/3; c3_g = (c0_g+2*c1_g+1)/3; c3_b = (c0_b+2*c1_b+1)/3;
-			}
-			else
-			{
-				c2_r = (c0_r+c1_r)/2; c2_g = (c0_g+c1_g)/2; c2_b = (c0_b+c1_b)/2;
-				c3_r = c3_g = c3_b = c3_a = 0;
-			}
-
-			if(base_fmt == GL_RGB)
-			{
-				int i = 0;
-				for(int y = 0; y < 4; ++y)
+			uint pixel_idx = 0;
+			if(output_rgb)
+				for(int y = 0; y < 4; y++)
 				{
 					u8* out = (u8*)rgb_data + ((block_y*4+y)*blocks_w*4 + block_x*4) * 3;
-					for(int x = 0; x < 4; ++x, ++i)
+					for(int x = 0; x < 4; x++)
 					{
-						switch((bits >> (2*i)) & 3) {
-						case 0: *out++ = c0_r; *out++ = c0_g; *out++ = c0_b; break;
-						case 1: *out++ = c1_r; *out++ = c1_g; *out++ = c1_b; break;
-						case 2: *out++ = c2_r; *out++ = c2_g; *out++ = c2_b; break;
-						case 3: *out++ = c3_r; *out++ = c3_g; *out++ = c3_b; break;
-						}
+						const uint* c = choose_color(pixel_idx, color_block, color_tbl);
+						*out++ = c[R]; *out++ = c[G]; *out++ = c[B];
+						pixel_idx++;
 					}
 				}
-
-			}
 			else
-			{
-				int i = 0;
 				for(int y = 0; y < 4; ++y)
 				{
 					u8* out = (u8*)rgb_data + ((block_y*4+y)*blocks_w*4 + block_x*4) * 4;
-					for(int x = 0; x < 4; ++x, ++i)
+					for(int x = 0; x < 4; ++x)
 					{
-						int a = 0;	// squelch bogus uninitialized warning
-						switch((bits >> (2*i)) & 3) {
-						case 0: *out++ = c0_r; *out++ = c0_g; *out++ = c0_b; a = c0_a; break;
-						case 1: *out++ = c1_r; *out++ = c1_g; *out++ = c1_b; a = c1_a; break;
-						case 2: *out++ = c2_r; *out++ = c2_g; *out++ = c2_b; a = c2_a; break;
-						case 3: *out++ = c3_r; *out++ = c3_g; *out++ = c3_b; a = c3_a; break;
-						}
-						if(dxt3)
-						{
-							a = (int)((*(u64*)alpha >> (4*i)) & 0xF);
-							a |= a<<4; // copy low bits to high bits
-						}
-						else if(dxt5)
-						{
-							a = dxt5alpha[(*(u64*)(alpha+2) >> (3*i)) & 0x7];
-						}
+						const uint* c = choose_color(pixel_idx, color_block, color_tbl);
+						*out++ = c[R]; *out++ = c[G]; *out++ = c[B];
+
+						const uint a = choose_alpha(dxt, pixel_idx, alpha_block, dxt5_alpha_tbl);
 						*out++ = a;
+
+						pixel_idx++;
 					}
 				}
-			}
-		}
-	*/
+		}	// for block_x
 
 	return 0;
 }
+
 
 static int dds_transform(Tex* t, uint transforms)
 {
