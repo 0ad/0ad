@@ -20,5 +20,7 @@
 
 extern u16 read_le16(const void* p);
 extern u32 read_le32(const void* p);
+extern u64 read_le64(const void* p);
 extern u16 read_be16(const void* p);
 extern u32 read_be32(const void* p);
+extern u64 read_be64(const void* p);

@@ -212,14 +212,21 @@ int ilog2(const float x)
 }
 
 
+
+uint bit_mask(uint num_bits)
+{
+	return (1u << num_bits)-1;
+}
+
 uint bits(uint num, uint lo_idx, uint hi_idx)
 {
-	uint result = num;
-	result >>= lo_idx;
 	const uint count = (hi_idx - lo_idx)+1;	// # bits to return
-	result &= (1u << count)-1;
+	uint result = num >> lo_idx;
+	result &= bit_mask(count);
 	return result;
 }
+
+
 
 
 

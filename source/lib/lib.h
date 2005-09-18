@@ -349,8 +349,8 @@ const size_t GiB = 1ul << 30;
 
 
 #define BIT(n) (1ul << (n))
+extern uint bit_mask(uint num_bits);
 extern uint bits(uint x, uint lo_idx, uint hi_idx);
-
 
 
 

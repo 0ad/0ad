@@ -1,6 +1,7 @@
 #include "precompiled.h"
 
 #include "lib/byte_order.h"
+#include "lib/res/mem.h"
 #include "tex_codec.h"
 
 // NOTE: the convention is bottom-up for DDS, but there's no way to tell.
@@ -53,7 +54,17 @@ DDSURFACEDESC2;
 #pragma pack(pop)
 
 
-enum RGBA {	R, G, B };
+// pixel colors are stored as uint[4]. uint rather than u8 protects from
+// overflow during calculations, and padding to an even size is a bit
+// more efficient (even though we don't need the alpha component).
+enum RGBA {	R, G, B, A };
+
+// DXT1a requires special handling in precalc_color (alpha cannot
+// be determined later because it depends on the color block).
+// we encode this as another value in <dxt> because it's easier than
+// passing around the TEX_ALPHA flag.
+const int DXT1A = 11;
+
 
 
 static inline void mix_2_3(uint dst[4], uint c0[4], uint c1[4])
@@ -66,106 +77,169 @@ static inline void mix_avg(uint dst[4], uint c0[4], uint c1[4])
 	for(int i = 0; i < 3; i++) dst[i] = (c0[i]+c1[i])/2;
 }
 
-static inline uint access_bit_tbl(const u8* ptbl, uint idx, uint bit_width)
+static inline uint access_bit_tbl(u32 tbl, uint idx, uint bit_width)
 {
-	const u32 tbl = *(const u32*)ptbl;
 	uint val = tbl >> (idx*bit_width);
 	val &= (1u << bit_width)-1;
 	return val;
 }
 
-static inline uint access_bit_tbl64(const u8* ptbl, uint idx, uint bit_width)
+static inline uint access_bit_tbl64(u64 tbl, uint idx, uint bit_width)
 {
-	const u64 tbl = *(const u64*)ptbl;
 	uint val = (uint)(tbl >> (idx*bit_width));
 	val &= (1u << bit_width)-1;
 	return val;
 }
 
-
-// c = color_tbl (shorthand)
-static void precalc_color(int dxt, const u8* color_block, uint c[4][4])
+// extract a range of bits and expand to 8 bits (by replicating
+// MS bits - see http://www.mindcontrol.org/~hplus/graphics/expand-bits.html ;
+// this is also the algorithm used by graphics cards when decompressing S3TC).
+// used to convert 565 to 32bpp RGB.
+static uint unpack_to_8(u16 c, uint bits_below, uint num_bits)
 {
-	const u16 c0 = *(u16*)(color_block+0);
-	const u16 c1 = *(u16*)(color_block+2);
+	const uint num_filler_bits = 8-num_bits;
+	const uint field = bits(c, bits_below, bits_below+num_bits-1);
+	const uint filler = field >> (8-num_bits);
+	return (field << num_filler_bits) | filler;
+}
 
-	// Unpack 565, and copy high bits to low bits
-	c[0][R] = ((c0>>8)&0xF8) | ((c0>>13)&7);
-	c[0][G] = ((c0>>3)&0xFC) | ((c0>>9 )&3);
-	c[0][B] = ((c0<<3)&0xF8) | ((c0>>2 )&7);
-	c[1][R] = ((c1>>8)&0xF8) | ((c1>>13)&7);
-	c[1][G] = ((c1>>3)&0xFC) | ((c1>>9 )&3);
-	c[1][B] = ((c1<<3)&0xF8) | ((c1>>2 )&7);
 
-	if((dxt != 1 || c0 > c1))
+// for efficiency, we precalculate as much as possible about a block
+// and store it here.
+struct S3tcBlock
+{
+	// the 4 color choices for each pixel (RGBA)
+	uint c[4][4];	// c[i][RGBA_component]
+
+	// (DXT5 only) the 8 alpha choices
+	u8 dxt5_a_tbl[8];
+
+	// alpha block; interpretation depends on dxt.
+	u64 a_bits;
+
+	// table of 2-bit color selectors
+	u32 c_selectors;
+};
+
+
+static void precalc_alpha(int dxt, const u8* a_block, S3tcBlock* b)
+{
+	// read block contents
+	const uint a0 = a_block[0], a1 = a_block[1];
+	b->a_bits = read_le64(a_block);	// see below
+
+	if(dxt == 5)
 	{
-		mix_2_3(c[2], c[0], c[1]);				// c2 = 2/3*c0 + 1/3*c1
-		mix_2_3(c[3], c[1], c[0]);				// c3 = 1/3*c0 + 2/3*c1
-	}
-	// DXT1 special case: 
-	else
-	{
-		mix_avg(c[2], c[0], c[1]);				// c2 = (c0+c1)/2
-		for(int i = 0; i < 4; i++) c[3][i] = 0;	// c3 = black
+		// skip a0,a1 bytes (data is little endian)
+		b->a_bits >>= 16;
+
+		const bool is_dxt5_special_combination = (a0 <= a1);
+		u8* a = b->dxt5_a_tbl;	// shorthand
+		if(is_dxt5_special_combination)
+		{
+			a[0] = a0;
+			a[1] = a1;
+			a[2] = (4*a0 + 1*a1 + 2)/5;
+			a[3] = (3*a0 + 2*a1 + 2)/5;
+			a[4] = (2*a0 + 3*a1 + 2)/5;
+			a[5] = (1*a0 + 4*a1 + 2)/5;
+			a[6] = 0;
+			a[7] = 255;
+		}
+		else
+		{
+			a[0] = a0;
+			a[1] = a1;
+			a[2] = (6*a0 + 1*a1 + 3)/7;
+			a[3] = (5*a0 + 2*a1 + 3)/7;
+			a[4] = (4*a0 + 3*a1 + 3)/7;
+			a[5] = (3*a0 + 4*a1 + 3)/7;
+			a[6] = (2*a0 + 5*a1 + 3)/7;
+			a[7] = (1*a0 + 6*a1 + 3)/7;
+		}
 	}
 }
 
 
-static void precalc_dxt5_alpha(const u8* alpha_block, u8 dxt5_alpha_tbl[8])
+static void precalc_color(int dxt, const u8* c_block, S3tcBlock* b)
 {
-	const uint a0 = alpha_block[0], a1 = alpha_block[1];
+	// read block contents
+	// .. S3TC reference colors (565 format). the color table is generated
+	//    from some combination of these, depending on their ordering.
+	u16 rc[2];
+	for(int i = 0; i < 2; i++)
+		rc[i] = read_le16(c_block + 2*i);
+	// .. table of 2-bit color selectors
+	b->c_selectors = read_le32(c_block+4);
 
-	dxt5_alpha_tbl[0] = a0;
-	dxt5_alpha_tbl[1] = a1;
-	if(a0 > a1)
+	const bool is_dxt1_special_combination =
+		(dxt == 1 || dxt == DXT1A) && rc[0] <= rc[1];
+
+	// c0 and c1 are the values of rc[], converted to 32bpp
+	for(int i = 0; i < 2; i++)
 	{
-		dxt5_alpha_tbl[2] = (6*a0 + 1*a1 + 3)/7;
-		dxt5_alpha_tbl[3] = (5*a0 + 2*a1 + 3)/7;
-		dxt5_alpha_tbl[4] = (4*a0 + 3*a1 + 3)/7;
-		dxt5_alpha_tbl[5] = (3*a0 + 4*a1 + 3)/7;
-		dxt5_alpha_tbl[6] = (2*a0 + 5*a1 + 3)/7;
-		dxt5_alpha_tbl[7] = (1*a0 + 6*a1 + 3)/7;
+		b->c[i][R] = unpack_to_8(rc[i], 11, 5);
+		b->c[i][G] = unpack_to_8(rc[i],  5, 6);
+		b->c[i][B] = unpack_to_8(rc[i],  0, 5);
+	}
+
+	// c2 and c3 are combinations of c0 and c1:
+	if(is_dxt1_special_combination)
+	{
+		mix_avg(b->c[2], b->c[0], b->c[1]);			// c2 = (c0+c1)/2
+		for(int i = 0; i < 3; i++) b->c[3][i] = 0;	// c3 = black
+		b->c[3][A] = (dxt == DXT1A)? 0 : 255;		// (transparent iff DXT1a)
 	}
 	else
 	{
-		dxt5_alpha_tbl[2] = (4*a0 + 1*a1 + 2)/5;
-		dxt5_alpha_tbl[3] = (3*a0 + 2*a1 + 2)/5;
-		dxt5_alpha_tbl[4] = (2*a0 + 3*a1 + 2)/5;
-		dxt5_alpha_tbl[5] = (1*a0 + 4*a1 + 2)/5;
-		dxt5_alpha_tbl[6] = 0;
-		dxt5_alpha_tbl[7] = 255;
+		mix_2_3(b->c[2], b->c[0], b->c[1]);			// c2 = 2/3*c0 + 1/3*c1
+		mix_2_3(b->c[3], b->c[1], b->c[0]);			// c3 = 1/3*c0 + 2/3*c1
 	}
 }
 
 
-static const uint* choose_color(uint pixel_idx, const u8* color_block, const uint c_tbl[4][4])
+static void block_precalc(int dxt, const u8* block, S3tcBlock* b)
+{
+	// (careful, 'dxt != 1' doesn't work)
+	const u8* a_block = block;
+	const u8* c_block = (dxt == 3 || dxt == 5)? block+8 : block;
+
+	precalc_alpha(dxt, a_block, b);
+	precalc_color(dxt, c_block, b);
+}
+
+
+static void write_pixel(int dxt, uint pixel_idx, const S3tcBlock* b, u8* out)
 {
 	debug_assert(pixel_idx < 16);
 
 	// pixel index -> color selector (2 bit) -> color
-	const uint c_idx = access_bit_tbl(color_block+4, pixel_idx, 2);
-	return c_tbl[c_idx];
-}
+	const uint c_selector = access_bit_tbl(b->c_selectors, pixel_idx, 2);
+	const uint* c = b->c[c_selector];
+	for(int i = 0; i < 3; i++)
+		out[i] = c[i];
 
+	// if no alpha, done
+	if(dxt == 1)
+		return;
 
-static uint choose_alpha(int dxt, uint pixel_idx, const u8* alpha_block, const u8 dxt5_alpha_tbl[8])
-{
-	debug_assert(pixel_idx < 16);
-
-	uint a = 255;
+	uint a;
 	if(dxt == 3)
 	{
 		// table of 4-bit alpha entries
-		a = access_bit_tbl64(alpha_block, pixel_idx, 4);
-		a |= a << 4; // copy low bits to high bits
+		a = access_bit_tbl64(b->a_bits, pixel_idx, 4);
+		a |= a << 4; // expand to 8 bits (replicate high into low!)
 	}
 	else if(dxt == 5)
 	{
 		// pixel index -> alpha selector (3 bit) -> alpha
-		const uint a_idx = access_bit_tbl(alpha_block+2, pixel_idx, 3);
-		a = dxt5_alpha_tbl[a_idx];
+		const uint a_selector = access_bit_tbl64(b->a_bits, pixel_idx, 3);
+		a = b->dxt5_a_tbl[a_selector];
 	}
-	return a;
+	// (dxt == DXT1A)
+	else
+		a = c[A];
+	out[A] = a;
 }
 
 
@@ -173,72 +247,63 @@ static uint choose_alpha(int dxt, uint pixel_idx, const u8* alpha_block, const u
 // in ogl_emulate_dds:	debug_assert(compressedimageSize == blocks * (dxt1? 8 : 16));
 
 
+// note: this code is grossly inefficient (mostly due to splitting it up
+// into function calls for readability). that's because it's only used to
+// emulate hardware S3TC support - if that isn't available, everything will
+// be dog-slow anyway due to increased vmem usage.
 static int dds_decompress(Tex* t)
 {
-return ERR_NOT_IMPLEMENTED;
-
-	uint w = t->w, h = t->h;
-	if(w==0 || h==0 || w%4 || h%4)
-		return ERR_TEX_FMT_INVALID;
-
 	int dxt = t->flags & TEX_DXT;
 	debug_assert(dxt == 1 || dxt == 3 || dxt == 5);
+	if(t->flags & TEX_ALPHA)
+		dxt = DXT1A;
+	// due to the above, dxt == 1 is the only non-alpha case.
+	// note: adding or stripping alpha channels during transform is not
+	// our job; we merely output the same pixel format as given
+	// (tex.cpp's plain transform could cover it, if ever needed).
+	const uint bpp = (dxt != 1)? 32 : 24;
 
-bool output_rgb = true;
+	// note: 1x1 images are legitimate (e.g. in mipmaps). they report their
+	// width as such for glTexImage, but the S3TC data is padded to
+	// 4x4 pixel block boundaries.
+	const uint blocks_w = (uint)(round_up(t->w, 4) / 4);
+	const uint blocks_h = (uint)(round_up(t->h, 4) / 4);
+	const uint blocks = blocks_w * blocks_h;
+	const size_t img_size = blocks * 16 * bpp/8;
+	Handle hm;
+	void* img_data = mem_alloc(img_size, 64*KiB, 0, &hm);
 
-	const u8* data = (const u8*)tex_get_data(t);
+	const u8* s3tc_data = (const u8*)tex_get_data(t);
+	const size_t s3tc_size = tex_img_size(t);
 
-	uint blocks_w = (uint)(round_up(w, 4) / 4);
-	uint blocks_h = (uint)(round_up(h, 4) / 4);
-	uint blocks = blocks_w * blocks_h;
-	size_t rgb_size = blocks * 16 * (output_rgb? 3 : 4);
-	void* rgb_data = malloc(rgb_size);
-
-	// This code is inefficient, but I don't care:
 	for(uint block_y = 0; block_y < blocks_h; block_y++)
 		for(uint block_x = 0; block_x < blocks_w; block_x++)
 		{
-			const u8* alpha_block = data;
-			u8 dxt5_alpha_tbl[8];
-			if(dxt == 5)
-				precalc_dxt5_alpha(alpha_block, dxt5_alpha_tbl);
-			if(dxt != 1)
-				data += 8;
-
-			const u8* color_block = data;
-			uint color_tbl[4][4];	// c[i][RGBA_component]
-			precalc_color(dxt, color_block, color_tbl);
-			data += 8;
+			S3tcBlock b;
+			block_precalc(dxt, s3tc_data, &b);
+			s3tc_data += 16 * t->bpp/8;
 
 			uint pixel_idx = 0;
-			if(output_rgb)
-				for(int y = 0; y < 4; y++)
+			for(int y = 0; y < 4; y++)
+			{
+				u8* out = (u8*)img_data + ((block_y*4+y)*blocks_w*4 + block_x*4) * bpp/8;
+				for(int x = 0; x < 4; x++)
 				{
-					u8* out = (u8*)rgb_data + ((block_y*4+y)*blocks_w*4 + block_x*4) * 3;
-					for(int x = 0; x < 4; x++)
-					{
-						const uint* c = choose_color(pixel_idx, color_block, color_tbl);
-						*out++ = c[R]; *out++ = c[G]; *out++ = c[B];
-						pixel_idx++;
-					}
+					write_pixel(dxt, pixel_idx, &b, out);
+					out += bpp/8;
+					pixel_idx++;
 				}
-			else
-				for(int y = 0; y < 4; ++y)
-				{
-					u8* out = (u8*)rgb_data + ((block_y*4+y)*blocks_w*4 + block_x*4) * 4;
-					for(int x = 0; x < 4; ++x)
-					{
-						const uint* c = choose_color(pixel_idx, color_block, color_tbl);
-						*out++ = c[R]; *out++ = c[G]; *out++ = c[B];
-
-						const uint a = choose_alpha(dxt, pixel_idx, alpha_block, dxt5_alpha_tbl);
-						*out++ = a;
-
-						pixel_idx++;
-					}
-				}
+			}
 		}	// for block_x
 
+
+	debug_assert(tex_get_data(t) == s3tc_data - s3tc_size);
+
+	mem_free_h(t->hm);
+	t->hm  = hm;
+	t->ofs = 0;
+	t->bpp = bpp;
+	t->flags &= ~TEX_DXT;
 	return 0;
 }
 
