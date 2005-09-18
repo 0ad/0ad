@@ -10,6 +10,17 @@
 			specific="Temporary Ship"
 			history="This is a 'female' temporary ship, feel free to delete/tweak this entity file at any time."
 		/>
+	
+		<Anchor
+			type="Water"
+		/>
+	
+		<Health
+			bar_height="12.0"
+		/>
 	</Traits>
+
+	<Footprint radius="5.0" height="5.0"/>
+
 	<Actor>special/ship.xml</Actor>
 </Entity>

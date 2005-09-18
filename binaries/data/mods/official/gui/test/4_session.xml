@@ -27,6 +27,33 @@
 			]]></action>
 		</object>
 
+		<!-- EMPTY OBJECT USED TO TOGGLE WATER RENDERING. -->
+		<object name="snWaterToggle"
+			hotkey="water.toggle"
+		>
+			<action on="Press"><![CDATA[		
+				toggleWater();
+			]]></action>
+		</object>
+
+		<!-- EMPTY OBJECT USED TO RAISE WATER PLANE. -->
+		<object name="snWaterRaise"
+			hotkey="water.raise"
+		>
+			<action on="Press"><![CDATA[		
+				setWaterHeight(getWaterHeight() + 0.25);
+			]]></action>
+		</object>
+
+		<!-- EMPTY OBJECT USED TO LOWER WATER PLANE. -->
+		<object name="snWaterLower"
+			hotkey="water.lower"
+		>
+			<action on="Press"><![CDATA[	
+				setWaterHeight(getWaterHeight() - 0.25);
+			]]></action>
+		</object>
+
 		<!-- GROUP: MINIMAP -->
 		<object name="snMiniMap"
 			style="snObject"
