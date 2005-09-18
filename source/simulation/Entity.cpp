@@ -586,8 +586,6 @@ void CEntity::interpolate( float relativeoffset )
 
 void CEntity::render()
 {	
-	CTerrain *pTerrain = g_Game->GetWorld()->GetTerrain();
-	
 	if( !m_orderQueue.empty() )
 	{
 		std::deque<CEntityOrder>::iterator it;
@@ -680,8 +678,6 @@ float CEntity::getAnchorLevel( float x, float z ) {
 
 void CEntity::renderSelectionOutline( float alpha )
 {
-	CTerrain *pTerrain = g_Game->GetWorld()->GetTerrain();
-	
 	if( !m_bounds ) return;
 
 	if( getCollisionObject( this ) )

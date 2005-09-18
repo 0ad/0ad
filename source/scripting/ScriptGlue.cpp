@@ -798,6 +798,72 @@ JSBool getWaterHeight( JSContext* cx, JSObject* UNUSED(globalObject), uint argc,
 	return( JS_TRUE );
 }
 
+// Sets the water color
+JSBool setWaterColor( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+{
+	REQUIRE_PARAMS( 3, setWaterColor );
+	float r,g,b;
+	if(!ToPrimitive( g_ScriptingHost.GetContext(), argv[0], r )
+		|| !ToPrimitive( g_ScriptingHost.GetContext(), argv[1], g )
+		|| !ToPrimitive( g_ScriptingHost.GetContext(), argv[2], b ))
+	{
+		JS_ReportError( cx, "Invalid arguments" );
+		*rval = JSVAL_VOID;
+		return( JS_FALSE );
+	}
+	g_Renderer.m_WaterColor = CColor(r, g, b, 1.0f);
+	*rval = JSVAL_VOID;
+	return( JS_TRUE );
+}
+
+// Sets the max water alpha (achieved when it is at WaterFullDepth or deeper)
+JSBool setWaterMaxAlpha( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+{
+	REQUIRE_PARAMS( 1, setWaterMaxAlpha );
+	float val;
+	if(!ToPrimitive( g_ScriptingHost.GetContext(), argv[0], val ))
+	{
+		JS_ReportError( cx, "Invalid argument" );
+		*rval = JSVAL_VOID;
+		return( JS_FALSE );
+	}
+	g_Renderer.m_WaterMaxAlpha = val;
+	*rval = JSVAL_VOID;
+	return( JS_TRUE );
+}
+
+// Sets the water full depth (when it is colored WaterMaxAlpha)
+JSBool setWaterFullDepth( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+{
+	REQUIRE_PARAMS( 1, setWaterFullDepth );
+	float val;
+	if(!ToPrimitive( g_ScriptingHost.GetContext(), argv[0], val ))
+	{
+		JS_ReportError( cx, "Invalid argument" );
+		*rval = JSVAL_VOID;
+		return( JS_FALSE );
+	}
+	g_Renderer.m_WaterFullDepth = val;
+	*rval = JSVAL_VOID;
+	return( JS_TRUE );
+}
+
+// Sets the water alpha offset (added to tweak water alpha near the shore)
+JSBool setWaterAlphaOffset( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+{
+	REQUIRE_PARAMS( 1, setWaterAlphaOffset );
+	float val;
+	if(!ToPrimitive( g_ScriptingHost.GetContext(), argv[0], val ))
+	{
+		JS_ReportError( cx, "Invalid argument" );
+		*rval = JSVAL_VOID;
+		return( JS_FALSE );
+	}
+	g_Renderer.m_WaterAlphaOffset = val;
+	*rval = JSVAL_VOID;
+	return( JS_TRUE );
+}
+
 //-----------------------------------------------------------------------------
 // function table
 //-----------------------------------------------------------------------------
@@ -830,6 +896,10 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC(toggleWater, toggleWater, 0)
 	JS_FUNC(setWaterHeight, setWaterHeight, 1)
 	JS_FUNC(getWaterHeight, getWaterHeight, 0)
+	JS_FUNC(setWaterColor, setWaterColor, 0)
+	JS_FUNC(setWaterMaxAlpha, setWaterMaxAlpha, 0)
+	JS_FUNC(setWaterFullDepth, setWaterFullDepth, 0)
+	JS_FUNC(setWaterAlphaOffset, setWaterAlphaOffset, 0)
 
 	// GUI	
 #ifndef NO_GUI

@@ -74,6 +74,10 @@ CRenderer::CRenderer()
 
 	m_RenderWater = true;
 	m_WaterHeight = 5.0f;
+	m_WaterColor = CColor(2.0f/255.0f, 154.0f/255.0f, 187.0f/255.0f, 1.0f);
+	m_WaterFullDepth = 6.0f;
+	m_WaterMaxAlpha = 0.8f;
+	m_WaterAlphaOffset = -0.05f;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -807,8 +811,9 @@ void CRenderer::RenderWater()
 					float vertX = x + DX[j]*CELL_SIZE;
 					float vertZ = z + DZ[j]*CELL_SIZE;
 					float terrainHeight = terrain->getExactGroundLevel(vertX, vertZ);
-					float alpha = clamp((m_WaterHeight - terrainHeight) / 6.0f - 0.1f, -100.0f, 0.95f);
-					glColor4f(0.1f, 0.3f, 0.8f, alpha);
+					float alpha = clamp((m_WaterHeight - terrainHeight) / m_WaterFullDepth + m_WaterAlphaOffset,
+										-100.0f, m_WaterMaxAlpha);
+					glColor4f(m_WaterColor.r, m_WaterColor.g, m_WaterColor.b, alpha);
 					glVertex3f(vertX, m_WaterHeight, vertZ);
 				}
 			}

@@ -22,6 +22,7 @@
 #include "SHCoeffs.h"
 #include "Terrain.h"
 #include "Singleton.h"
+#include "overlay.h"
 
 // necessary declarations
 class CCamera;
@@ -79,6 +80,10 @@ private:
 public:
 	bool m_RenderWater;
 	float m_WaterHeight;
+	CColor m_WaterColor;
+	float m_WaterMaxAlpha;
+	float m_WaterFullDepth;
+	float m_WaterAlphaOffset;
 
 public:
 	// various enumerations and renderer related constants
