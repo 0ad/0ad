@@ -25,15 +25,13 @@ bool ClumpPlacer::place(class Map* m, Constraint* constr, std::vector<Point>& re
 		return false;
 	}
 
-	set<Point> ret;
+	map<Point, bool> gotRet;
 
 	float radius = sqrt(size / PI);
 	float perim = 4 * radius * 2 * PI;
 	int intPerim = (int)(ceil(perim));
 	vector<float> noise(intPerim);
 
-	//cout << "Starting with s=" << smoothness << ", p=" << perim << endl;
-	//cout << "Ctrl Vals: " << endl;
 	int ctrlPts = 1 + (int)(1.0/max(smoothness,1.0f/intPerim));
 	if(ctrlPts > radius * 2 * PI) ctrlPts = (int) (radius * 2 * PI) + 1;
 	vector<float> ctrlCoords(ctrlPts+1);
@@ -41,9 +39,8 @@ bool ClumpPlacer::place(class Map* m, Constraint* constr, std::vector<Point>& re
 	for(int i=0; i<ctrlPts; i++) {
 		ctrlCoords[i] = i * perim / ctrlPts;
 		ctrlVals[i] = 2.0*RandFloat();
-		//cout << ctrlCoords[i] << " " << ctrlVals[i] << endl;
 	}
-	//cout << "Noise Vals: " << endl;
+
 	int c = 0;
 	int looped = 0;
 	for(int i=0; i<intPerim; i++) {
@@ -61,8 +58,6 @@ bool ClumpPlacer::place(class Map* m, Constraint* constr, std::vector<Point>& re
 		float R = v2 - v0;
 		float S = v1;
 		noise[i] = P*t*t*t + Q*t*t + R*t + S;
-		//noise[i] = ctrlVals[(c+1)%ctrlPts] * t + ctrlVals[c] * (1-t);
-		//cout << i << " " << c << " " << noise[i] << endl;
 	}
 
 	int failed = 0;
@@ -75,7 +70,11 @@ bool ClumpPlacer::place(class Map* m, Constraint* constr, std::vector<Point>& re
 		for(float k=0; k<r; k++) {
 			int i = (int)xx, j = (int)yy;
 			if(m->validT(i, j) && constr->allows(m, i, j)) {
-				ret.insert(Point(i, j));
+				Point p(i,j);
+				if(!gotRet[p]) {
+					gotRet[p] = true;
+					retVec.push_back(p);
+				}
 			}
 			else {
 				failed++;
@@ -85,17 +84,5 @@ bool ClumpPlacer::place(class Map* m, Constraint* constr, std::vector<Point>& re
 		}
 	}
 
-	for(set<Point>::iterator it = ret.begin(); it != ret.end(); it++) {
-		retVec.push_back(*it);
-	}
-
-	return failed > size * failFraction ? false : true;
-	
-	/*if(m->validT(x,y)) {
-		ret.push_back(Point(x,y));
-	}
-	else {
-		return false;
-	}
-	return true;*/
+	return (failed > size*failFraction ? false : true);
 }

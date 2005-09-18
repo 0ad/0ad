@@ -89,6 +89,9 @@ public:
 	int m_minimapG;
 	int m_minimapB;
 
+	// Y anchor
+	CStrW m_anchorType;
+
 	//-- Interpolated property
 	CVector3D m_position;
 	CVector3D m_position_previous;
@@ -173,6 +176,8 @@ public:
 
 	// Process damage
 	void Damage( CDamageType& damage, CEntity* inflictor = NULL );
+
+	float getAnchorLevel( float x, float z );
 
 	void snapToGround();
 	void updateActorTransforms();

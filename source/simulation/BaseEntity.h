@@ -67,6 +67,9 @@ public:
 	int m_minimapG;
 	int m_minimapB;
 
+	// Y anchor
+	CStrW m_anchorType;
+
 	float m_speed;
 	SEntityAction m_melee;
 	SEntityAction m_gather;

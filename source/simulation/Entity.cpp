@@ -25,6 +25,9 @@
 extern CConsole* g_Console;
 extern int g_xres, g_yres;
 
+#include <algorithm>
+using namespace std;
+
 CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 {
 	m_position = position;
@@ -54,6 +57,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	AddProperty( L"traits.minimap.red", &m_minimapR );
 	AddProperty( L"traits.minimap.green", &m_minimapG );
 	AddProperty( L"traits.minimap.blue", &m_minimapB );
+	AddProperty( L"traits.anchor.type", &m_anchorType );
 
 	for( int t = 0; t < EVENT_LAST; t++ )
 	{
@@ -181,8 +185,7 @@ void CEntity::updateActorTransforms()
 
 void CEntity::snapToGround()
 {
-	CTerrain *pTerrain = g_Game->GetWorld()->GetTerrain();
-	m_graphics_position.Y = pTerrain->getExactGroundLevel( m_graphics_position.X, m_graphics_position.Z );
+	m_graphics_position.Y = getAnchorLevel( m_graphics_position.X, m_graphics_position.Z );
 }
 
 jsval CEntity::getClassSet()
@@ -629,11 +632,11 @@ void CEntity::render()
 				glEnd();
 				glBegin( GL_LINES );
 				glColor3f( 1.0f, 0.0f, 0.0f );
-				glVertex3f( x0 + fwd.x * r.distance, pTerrain->getExactGroundLevel( x0 + fwd.x * r.distance, y0 + fwd.y * r.distance ) + 0.25f, y0 + fwd.y * r.distance );
-				glVertex3f( r.position.x, pTerrain->getExactGroundLevel( r.position.x, r.position.y ) + 0.25f, r.position.y );
+				glVertex3f( x0 + fwd.x * r.distance, getAnchorLevel( x0 + fwd.x * r.distance, y0 + fwd.y * r.distance ) + 0.25f, y0 + fwd.y * r.distance );
+				glVertex3f( r.position.x, getAnchorLevel( r.position.x, r.position.y ) + 0.25f, r.position.y );
 				glEnd();
 				glBegin( GL_LINE_STRIP );
-				glVertex3f( x0, pTerrain->getExactGroundLevel( x0, y0 ), y0 );
+				glVertex3f( x0, getAnchorLevel( x0, y0 ), y0 );
 			}
 			switch( it->m_type )
 			{
@@ -650,7 +653,7 @@ void CEntity::render()
 				continue;
 			}
 			
-			glVertex3f( x, pTerrain->getExactGroundLevel( x, y ) + 0.25f, y );
+			glVertex3f( x, getAnchorLevel( x, y ) + 0.25f, y );
 		}
 
 		glEnd();
@@ -659,7 +662,20 @@ void CEntity::render()
 	
 	glColor3f( 1.0f, 1.0f, 1.0f );
 	if( getCollisionObject( this ) ) glColor3f( 0.5f, 0.5f, 1.0f );
-	m_bounds->render( pTerrain->getExactGroundLevel( m_position.X, m_position.Z ) + 0.25f ); //m_position.Y + 0.25f );
+	m_bounds->render( getAnchorLevel( m_position.X, m_position.Z ) + 0.25f ); //m_position.Y + 0.25f );
+}
+
+float CEntity::getAnchorLevel( float x, float z ) {
+	CTerrain *pTerrain = g_Game->GetWorld()->GetTerrain();
+	float groundLevel = pTerrain->getExactGroundLevel( x, z );
+	if( m_anchorType==L"Ground" ) 
+	{
+		return groundLevel;
+	}
+	else 
+	{
+		return max( groundLevel, g_Renderer.m_WaterHeight );
+	}
 }
 
 void CEntity::renderSelectionOutline( float alpha )
@@ -691,7 +707,7 @@ void CEntity::renderSelectionOutline( float alpha )
 			float x = pos.X + radius * sin( ang );
 			float y = pos.Z + radius * cos( ang );
 #ifdef SELECTION_TERRAIN_CONFORMANCE
-			glVertex3f( x, pTerrain->getExactGroundLevel( x, y ) + 0.25f, y );
+			glVertex3f( x, getAnchorLevel( x, y ) + 0.25f, y );
 #else
 			glVertex3f( x, pos.Y + 0.25f, y );
 #endif
@@ -715,38 +731,38 @@ void CEntity::renderSelectionOutline( float alpha )
 		for( int i = SELECTION_BOX_POINTS; i > -SELECTION_BOX_POINTS; i-- )
 		{
 			p = q + u * d + v * ( w * (float)i / (float)SELECTION_BOX_POINTS );
-			glVertex3f( p.x, pTerrain->getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
+			glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
 		}
 
 		for( int i = SELECTION_BOX_POINTS; i > -SELECTION_BOX_POINTS; i-- )
 		{
 			p = q + u * ( d * (float)i / (float)SELECTION_BOX_POINTS ) - v * w;
-			glVertex3f( p.x, pTerrain->getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
+			glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
 		}
 
 		for( int i = -SELECTION_BOX_POINTS; i < SELECTION_BOX_POINTS; i++ )
 		{
 			p = q - u * d + v * ( w * (float)i / (float)SELECTION_BOX_POINTS );
-			glVertex3f( p.x, pTerrain->getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
+			glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
 		}
 
 		for( int i = -SELECTION_BOX_POINTS; i < SELECTION_BOX_POINTS; i++ )
 		{
 			p = q + u * ( d * (float)i / (float)SELECTION_BOX_POINTS ) + v * w;
-			glVertex3f( p.x, pTerrain->getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
+			glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
 		}
 #else
 			p = q + u * h + v * w;
-			glVertex3f( p.x, pTerrain->getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
+			glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
 
 			p = q + u * h - v * w;
-			glVertex3f( p.x, getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
+			glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
 
 			p = q - u * h + v * w;
-			glVertex3f( p.x, getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
+			glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
 
 			p = q + u * h + v * w;
-			glVertex3f( p.x, getExactGroundLevel( p.x, p.y ) + 0.25f, p.y );
+			glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
 #endif
 
 
@@ -1137,7 +1153,7 @@ jsval CEntity::GetSpawnPoint( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 				return( JSVAL_NULL );
 			spawn.m_pos = pos;
 		}
-		CVector3D rval( pos.x, g_Game->GetWorld()->GetTerrain()->getExactGroundLevel( pos.x, pos.y ), pos.y );
+		CVector3D rval( pos.x, getAnchorLevel( pos.x, pos.y ), pos.y );
 		return( ToJSVal( rval ) );
 	}
 	else if( m_bounds->m_type == CBoundingObject::BOUND_CIRCLE )
@@ -1161,7 +1177,7 @@ jsval CEntity::GetSpawnPoint( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 		{
 			// Found a satisfactory position...
 			CVector3D pos( x, 0, y );
-			pos.Y = g_Game->GetWorld()->GetTerrain()->getExactGroundLevel( x, y );
+			pos.Y = getAnchorLevel( x, y );
 			return( ToJSVal( pos ) );
 		}
 		else

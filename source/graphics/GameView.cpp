@@ -136,6 +136,10 @@ void CGameView::Render()
 	PROFILE_START( "render models" );
 	RenderModels(m_pWorld->GetUnitManager(), m_pWorld->GetProjectileManager());
 	PROFILE_END( "render models" );
+	MICROLOG(L"render water");
+	PROFILE_START( "render water" );
+	RenderWater(m_pWorld->GetTerrain());
+	PROFILE_END( "render water" );
 }
 
 void CGameView::RenderTerrain(CTerrain *pTerrain)
@@ -147,6 +151,20 @@ void CGameView::RenderTerrain(CTerrain *pTerrain)
 			CPatch* patch=pTerrain->GetPatch(i,j);
 			if (frustum.IsBoxVisible (CVector3D(0,0,0),patch->GetBounds())) {
 				g_Renderer.Submit(patch);
+			}
+		}
+	}
+}
+
+void CGameView::RenderWater(CTerrain *pTerrain)
+{
+	CFrustum frustum=m_Camera.GetFrustum();
+	u32 patchesPerSide=pTerrain->GetPatchesPerSide();
+	for (uint j=0; j<patchesPerSide; j++) {
+		for (uint i=0; i<patchesPerSide; i++) {
+			CPatch* patch=pTerrain->GetPatch(i,j);
+			if (frustum.IsBoxVisible (CVector3D(0,0,0),patch->GetBounds())) {
+				g_Renderer.SubmitWater(patch);
 			}
 		}
 	}

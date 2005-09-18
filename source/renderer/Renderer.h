@@ -73,6 +73,13 @@ struct SVertex2D
 // CRenderer: base renderer class - primary interface to the rendering engine
 class CRenderer : public Singleton<CRenderer>
 {
+private:
+	std::vector<CPatch*> m_WaterPatches;
+
+public:
+	bool m_RenderWater;
+	float m_WaterHeight;
+
 public:
 	// various enumerations and renderer related constants
 	enum { NumAlphaMaps=14 };
@@ -160,6 +167,7 @@ public:
 	// submission of objects for rendering; the passed matrix indicating the transform must be scoped such that it is valid beyond
 	// the call to frame end, as must the object itself
 	void Submit(CPatch* patch);
+	void SubmitWater(CPatch* patch);
 	void Submit(CModel* model);
 	void Submit(CSprite* sprite);
 	void Submit(CParticleSys* psys);
@@ -229,6 +237,7 @@ protected:
 	// patch rendering stuff
 	void RenderPatchSubmissions();
 	void RenderPatches();
+	void RenderWater();
 
 	// model rendering stuff
 	void RenderModelSubmissions();

@@ -26,6 +26,7 @@
 #include "PatchRData.h"
 #include "Texture.h"
 #include "LightEnv.h"
+#include "Terrain.h"
 #include "CLogger.h"
 #include "ps/Game.h"
 #include "Profile.h"
@@ -70,6 +71,9 @@ CRenderer::CRenderer()
 	for (uint i=0;i<MaxTextureUnits;i++) {
 		m_ActiveTextures[i]=0;
 	}
+
+	m_RenderWater = true;
+	m_WaterHeight = 5.0f;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -745,6 +749,78 @@ void CRenderer::RenderPatches()
 	}
 }
 
+void CRenderer::RenderWater()
+{
+	PROFILE(" render water ");
+
+	if(!m_RenderWater) 
+	{
+		return;
+	}
+
+	const int DX[] = {1,1,0,0};
+	const int DZ[] = {0,1,1,0};
+
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+	glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE);
+	glDisable(GL_TEXTURE_2D);
+	glDepthMask(false);
+
+	glBegin(GL_QUADS);
+
+	for(size_t i=0; i<m_WaterPatches.size(); i++) 
+	{
+		CPatch* patch = m_WaterPatches[i];
+
+		for(int dx=0; dx<PATCH_SIZE; dx++) 
+		{
+			for(int dz=0; dz<PATCH_SIZE; dz++) 
+			{
+				int x = (patch->m_X*PATCH_SIZE + dx) * CELL_SIZE;
+				int z = (patch->m_Z*PATCH_SIZE + dz) * CELL_SIZE;
+
+				// is any corner of the tile below the water height? if not, no point rendering it
+				bool shouldRender = false;
+				for(int j=0; j<4; j++) 
+				{
+					float vertX = x + DX[j]*CELL_SIZE;
+					float vertZ = z + DZ[j]*CELL_SIZE;
+					float terrainHeight = terrain->getExactGroundLevel(vertX, vertZ);
+					if(terrainHeight < m_WaterHeight) 
+					{
+						shouldRender = true;
+						break;
+					}
+				}
+				if(!shouldRender) 
+				{
+					continue;
+				}
+
+				for(int j=0; j<4; j++) 
+				{
+					float vertX = x + DX[j]*CELL_SIZE;
+					float vertZ = z + DZ[j]*CELL_SIZE;
+					float terrainHeight = terrain->getExactGroundLevel(vertX, vertZ);
+					float alpha = clamp((m_WaterHeight - terrainHeight) / 6.0f - 0.1f, -100.0f, 0.95f);
+					glColor4f(0.1f, 0.3f, 0.8f, alpha);
+					glVertex3f(vertX, m_WaterHeight, vertZ);
+				}
+			}
+		}
+	}
+
+	glEnd();
+
+	glDepthMask(true);
+	glDisable(GL_BLEND);
+}
+
 
 void CRenderer::RenderModelSubmissions()
 {
@@ -871,6 +947,7 @@ void CRenderer::FlushFrame()
 	RenderPatches();
 	oglCheck();
 
+
 	MICROLOG(L"render models");
 	RenderModels();
 	oglCheck();
@@ -891,12 +968,20 @@ void CRenderer::FlushFrame()
 	g_TransparencyRenderer.Render();
 	oglCheck();
 
+	// render water (note: we're assuming there's no transparent stuff over water...
+	// we could also do this above render transparent if we assume there's no transparent
+	// stuff underwater)
+	MICROLOG(L"render water");
+	RenderWater();
+	oglCheck();
+
 	// empty lists
 	MICROLOG(L"empty lists");
 	g_TransparencyRenderer.Clear();
 	g_PlayerRenderer.Clear();
 	CPatchRData::ClearSubmissions();
 	CModelRData::ClearSubmissions();
+	m_WaterPatches.clear();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -945,6 +1030,11 @@ void CRenderer::SetViewport(const SViewPort &vp)
 void CRenderer::Submit(CPatch* patch)
 {
 	CPatchRData::Submit(patch);
+}
+
+void CRenderer::SubmitWater(CPatch* patch)
+{
+	m_WaterPatches.push_back(patch);
 }
 
 void CRenderer::Submit(CModel* model)

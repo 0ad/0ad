@@ -123,7 +123,10 @@ static SHotkeyInfo hotkeyInfo[] =
 	{ HOTKEY_CONTEXTORDER_PREVIOUS, "contextorder.previous", SDLK_LEFTBRACKET, 0 },
 	{ HOTKEY_HIGHLIGHTALL, "highlightall", SDLK_o, 0 },
 	{ HOTKEY_PROFILE_TOGGLE, "profile.toggle", SDLK_F11, 0 },
-	{ HOTKEY_PLAYMUSIC, "playmusic", SDLK_p, 0 }
+	{ HOTKEY_PLAYMUSIC, "playmusic", SDLK_p, 0 },
+	{ HOTKEY_WATER_TOGGLE, "water.toggle", SDLK_q, 0 },
+	{ HOTKEY_WATER_RAISE, "water.toggle", SDLK_a, 0 },
+	{ HOTKEY_WATER_LOWER, "water.toggle", SDLK_z, 0 }
 };
 
 /* SDL-type ends */

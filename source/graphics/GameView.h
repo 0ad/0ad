@@ -46,9 +46,13 @@ class CGameView: public CJSObject<CGameView>
 	std::vector<CVector3D> m_CameraTargets;
 
 	// RenderTerrain: iterate through all terrain patches and submit all patches
-	// in viewing frustum to the renderer
+	// in viewing frustum to the renderer, for terrain painting
 	void RenderTerrain(CTerrain *pTerrain);
 	
+	// RenderWater: iterate through all terrain patches and submit all patches
+	// in viewing frustum to the renderer, for water painting
+	void RenderWater(CTerrain *pTerrain);
+
 	// RenderModels: iterate through model list and submit all models in viewing
 	// frustum to the Renderer
 	void RenderModels(CUnitManager *pUnitMan, CProjectileManager *pProjectileManager);

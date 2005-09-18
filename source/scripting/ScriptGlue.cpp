@@ -751,15 +751,11 @@ JSBool startPlacing( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, j
 		name = L"hele_ho";			// save some typing during testing
 	}
 	else {
-		try
+		if(!ToPrimitive( g_ScriptingHost.GetContext(), argv[0], name ))
 		{
-			name = g_ScriptingHost.ValueToUCString( argv[0] );
-		}
-		catch( PSERROR_Scripting_ConversionFailed )
-		{
-			*rval = JSVAL_NULL;
 			JS_ReportError( cx, "Invalid template name argument" );
-			return( JS_TRUE );
+			*rval = JSVAL_NULL;
+			return( JS_FALSE );
 		}
 	}
 
@@ -768,6 +764,39 @@ JSBool startPlacing( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, j
 	return( JS_TRUE );
 }
 
+// Toggles drawing the water plane
+JSBool toggleWater( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+{
+	REQUIRE_NO_PARAMS( toggleWater );
+	debug_printf("Toggling water!");
+	g_Renderer.m_RenderWater = !g_Renderer.m_RenderWater;
+	*rval = JSVAL_VOID;
+	return( JS_TRUE );
+}
+
+// Sets the water plane height
+JSBool setWaterHeight( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+{
+	REQUIRE_PARAMS( 1, setWaterHeight );
+	float newHeight;
+	if(!ToPrimitive( g_ScriptingHost.GetContext(), argv[0], newHeight ))
+	{
+		JS_ReportError( cx, "Invalid water height argument" );
+		*rval = JSVAL_VOID;
+		return( JS_FALSE );
+	}
+	g_Renderer.m_WaterHeight = newHeight;
+	*rval = JSVAL_VOID;
+	return( JS_TRUE );
+}
+
+// Gets the water plane height
+JSBool getWaterHeight( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+{
+	REQUIRE_NO_PARAMS( getWaterHeight );
+	*rval = ToJSVal(g_Renderer.m_WaterHeight);
+	return( JS_TRUE );
+}
 
 //-----------------------------------------------------------------------------
 // function table
@@ -796,6 +825,11 @@ JSFunctionSpec ScriptFunctionTable[] =
 
 	// Camera
 	JS_FUNC(setCameraTarget, setCameraTarget, 1)
+
+	// Water
+	JS_FUNC(toggleWater, toggleWater, 0)
+	JS_FUNC(setWaterHeight, setWaterHeight, 1)
+	JS_FUNC(getWaterHeight, getWaterHeight, 0)
 
 	// GUI	
 #ifndef NO_GUI
