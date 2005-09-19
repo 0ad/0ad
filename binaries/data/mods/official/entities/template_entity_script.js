@@ -210,8 +210,8 @@ function entity_event_targetchanged( evt )
 	// unit is selected) - use it to tell the engine what context cursor should be displayed, given
 	// the target.
 
-	// Attack iff there's a target, it's our enemy, and we're armed. Otherwise, if we can gather, and
-	// the target supplies, gather. If all else fails, move.
+	// If we can gather, and the target supplies, gather. If it's our enemy, and we're armed, attack. 
+	// If all else fails, move.
 	// ToString is needed because every property is actually an object (though that's usually
 	// hidden from you) and comparing an object to any other object in JavaScript (1.5, at least)
 	// yields false. ToString converts them to their actual values (i.e. the four character
@@ -222,7 +222,6 @@ function entity_event_targetchanged( evt )
 	if( evt.target )
 	{
 	    if( this.actions.attack && 
-			( evt.target.player != gaiaPlayer ) &&
 			( evt.target.player != this.player ) )
 		{
 			evt.defaultAction = NMT_AttackMelee;
