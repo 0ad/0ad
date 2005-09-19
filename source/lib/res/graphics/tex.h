@@ -91,4 +91,7 @@ extern int tex_write(const char* fn, uint w, uint h, uint bpp, uint flags, void*
 extern void tex_set_global_orientation(int orientation);
 
 
+// internal use only:
+extern int tex_validate(uint line, const Tex* t);
+
 #endif	// __TEX_H__

@@ -349,9 +349,23 @@ const size_t GiB = 1ul << 30;
 
 
 #define BIT(n) (1ul << (n))
-extern uint bit_mask(uint num_bits);
-extern uint bits(uint x, uint lo_idx, uint hi_idx);
 
+
+// these are declared in the header and inlined to aid compiler optimizations
+// (they can easily end up being time-critical).
+
+inline uint bit_mask(uint num_bits)
+{
+	return (1u << num_bits)-1;
+}
+
+inline uint bits(uint num, uint lo_idx, uint hi_idx)
+{
+	const uint count = (hi_idx - lo_idx)+1;	// # bits to return
+	uint result = num >> lo_idx;
+	result &= bit_mask(count);
+	return result;
+}
 
 
 // FNV1-A hash - good for strings.

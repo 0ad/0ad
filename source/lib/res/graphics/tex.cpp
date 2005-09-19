@@ -32,6 +32,53 @@
 #define ERR_TOO_SHORT -4
 
 
+// be careful not to use other tex_* APIs here because they call us.
+int tex_validate(const uint line, const Tex* t)
+{
+	const char* msg = 0;
+	int err = -1;
+
+	// texture data
+	size_t tex_file_size;
+	void* tex_file = mem_get_ptr(t->hm, &tex_file_size);
+	// .. only check validity if the image is still in memory.
+	//    (e.g. ogl_tex frees the data after uploading to GL)
+	if(tex_file)
+	{
+		// possible causes: texture file header is invalid,
+		// or file wasn't loaded completely.
+		if(tex_file_size < t->ofs + t->w*t->h*t->bpp/8)
+			msg = "file size smaller than header+texels";
+	}
+
+	// bits per pixel
+	// (we don't bother checking all values; a sanity check is enough)
+	if(t->bpp % 4 || t->bpp > 32)
+		msg = "invalid bpp? should be one of {4,8,16,24,32}";
+
+	// flags
+	// .. DXT
+	const uint dxt = t->flags & TEX_DXT;
+	if(dxt != 0 && dxt != 1 && dxt != DXT1A && dxt != 3 && dxt != 5)
+		msg = "invalid DXT in flags";
+	// .. orientation
+	const uint orientation = t->flags & TEX_ORIENTATION;
+	if(orientation == (TEX_BOTTOM_UP|TEX_TOP_DOWN))
+		msg = "invalid orientation in flags";
+
+	if(msg)
+	{
+		debug_printf("tex_validate at line %d failed: %s (error code %d)\n", line, msg, err);
+		debug_warn("tex_validate failed");
+		return err;
+	}
+
+	return 0;
+}
+
+#define CHECK_TEX(t) CHECK_ERR(tex_validate(__LINE__, t))
+
+
 
 // rationale for default: see tex_set_global_orientation
 static int global_orientation = TEX_TOP_DOWN;
@@ -79,6 +126,8 @@ static int validate_format(uint bpp, uint flags)
 // somewhat optimized (loops are hoisted, cache associativity accounted for)
 static int plain_transform(Tex* t, uint transforms)
 {
+	CHECK_TEX(t);
+
 	// extract texture info
 	const uint w = t->w, h = t->h, bpp = t->bpp, flags = t->flags;
 	u8* const img = tex_get_data(t);
@@ -285,6 +334,8 @@ int tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
 
 int tex_codec_write(Tex* t, uint transforms, const void* hdr, size_t hdr_size, DynArray* da)
 {
+	CHECK_TEX(t);
+
 	RETURN_ERR(tex_transform(t, transforms));
 
 	void* img_data = tex_get_data(t); const size_t img_size = tex_img_size(t);
@@ -319,6 +370,9 @@ void tex_set_global_orientation(int o)
 
 u8* tex_get_data(const Tex* t)
 {
+	if(tex_validate(__LINE__, t) < 0)
+		return 0;
+
 	u8* p = (u8*)mem_get_ptr(t->hm);
 	if(!p)
 		return 0;
@@ -327,6 +381,9 @@ u8* tex_get_data(const Tex* t)
 
 size_t tex_img_size(const Tex* t)
 {
+	if(tex_validate(__LINE__, t) < 0)
+		return 0;
+
 	return t->w * t->h * t->bpp/8;
 }
 
@@ -386,6 +443,7 @@ int tex_load_mem(Handle hm, Tex* t)
 		WARN_ERR(plain_transform(t, transforms));
 	}
 
+	CHECK_TEX(t);
 	return 0;
 }
 
@@ -401,12 +459,15 @@ int tex_load(const char* fn, Tex* t)
 	// wasn't compressed) or was replaced by a new buffer for the image data.
 	if(ret < 0)
 		memset(t, 0, sizeof(Tex));
+
+	// <t> has already been validated.
 	return ret;
 }
 
 
 int tex_free(Tex* t)
 {
+	CHECK_TEX(t);
 	mem_free_h(t->hm);
 	return 0;
 }
@@ -414,6 +475,8 @@ int tex_free(Tex* t)
 
 int tex_transform(Tex* t, uint transforms)
 {
+	CHECK_TEX(t);
+
 	// find codec that understands the data, and transform
 	for(int i = 0; i < MAX_CODECS; i++)
 	{
@@ -441,8 +504,11 @@ int tex_wrap(uint w, uint h, uint bpp, uint flags, void* img, Tex* t)
 	t->bpp   = bpp;
 	t->flags = flags;
 
-	const size_t img_size = tex_img_size(t);
+	// note: we can't use tex_img_size because that requires all
+	// Tex fields to be valid, but this calculation must be done first.
+	const size_t img_size = w*h*bpp/8;
 	t->hm = mem_assign(img, img_size, 0, 0, 0, 0, 0);
+	RETURN_ERR(t->hm);
 
 	// the exact value of img is lost, since the handle references the
 	// allocation and disregards the offset within it given by <img>.
@@ -450,7 +516,7 @@ int tex_wrap(uint w, uint h, uint bpp, uint flags, void* img, Tex* t)
 	void* reported_ptr = mem_get_ptr(t->hm);
 	t->ofs = (u8*)img - (u8*)reported_ptr;
 
-	RETURN_ERR(t->hm);
+	CHECK_TEX(t);
 	return 0;
 }
 

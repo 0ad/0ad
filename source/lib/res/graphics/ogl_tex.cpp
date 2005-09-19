@@ -207,7 +207,7 @@ static void OglTex_init(OglTex* ot, va_list args)
 
 static void OglTex_dtor(OglTex* ot)
 {
-	tex_free(&ot->t);
+	(void)tex_free(&ot->t);
 
 	glDeleteTextures(1, &ot->id);
 	ot->id = 0;
@@ -343,17 +343,11 @@ static int ogl_tex_validate(const uint line, const OglTex* ot)
 	const char* msg = 0;
 	int err = -1;
 
-	// pointer to texture data
-	size_t tex_file_size;
-	void* tex_file = mem_get_ptr(ot->t.hm, &tex_file_size);
-	if(!tex_file)
-		msg = "texture file not loaded";
-	// possible causes: texture file header is invalid,
-	// or file wasn't loaded completely.
-	if(ot->t.ofs > tex_file_size)
-		msg = "offset to texture data exceeds file size";
+	RETURN_ERR(tex_validate(line, &ot->t));
 
 	// width, height
+	// (note: this is done here because tex.cpp doesn't impose any
+	// restrictions on dimensions, while OpenGL does).
 	GLsizei w = (GLsizei)ot->t.w;
 	GLsizei h = (GLsizei)ot->t.h;
 	// if w or h is 0, texture file probably not loaded successfully.
@@ -377,13 +371,6 @@ static int ogl_tex_validate(const uint line, const OglTex* ot)
 	// may define their own. not necessary anyway - if non-0, assume
 	// loader knows what it's doing, and that the format is valid.
 
-	// bits per pixel
-	u32 bpp = ot->t.bpp;
-	// half-hearted sanity check: must be divisible by 4.
-	// don't bother checking all values.
-	if(bpp % 4 || bpp > 32)
-		msg = "invalid bpp? should be one of {4,8,16,24,32}";
-
 	// upload parameters, set by ogl_tex_upload(Handle), or 0
 	GLint filter  = ot->filter;
 	if(filter != 0 && !filter_is_known(filter))
@@ -395,8 +382,8 @@ static int ogl_tex_validate(const uint line, const OglTex* ot)
 
 	if(msg)
 	{
-		debug_printf("tex_validate at line %d failed: %s (error code %d)\n", line, msg, err);
-		debug_warn("tex_validate failed");
+		debug_printf("ogl_tex_validate at line %d failed: %s (error code %d)\n", line, msg, err);
+		debug_warn("ogl_tex_validate failed");
 		return err;
 	}
 

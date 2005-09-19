@@ -88,7 +88,7 @@ static inline uint access_bit_tbl64(u64 tbl, uint idx, uint bit_width)
 // MS bits - see http://www.mindcontrol.org/~hplus/graphics/expand-bits.html ;
 // this is also the algorithm used by graphics cards when decompressing S3TC).
 // used to convert 565 to 32bpp RGB.
-static uint unpack_to_8(u16 c, uint bits_below, uint num_bits)
+static inline uint unpack_to_8(u16 c, uint bits_below, uint num_bits)
 {
 	const uint num_filler_bits = 8-num_bits;
 	const uint field = bits(c, bits_below, bits_below+num_bits-1);
