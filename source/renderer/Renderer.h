@@ -285,8 +285,8 @@ protected:
 	CSHCoeffs m_SHCoeffsUnits;
 	// current spherical harmonic coefficients (for terrain lighting), derived from lightenv
 	CSHCoeffs m_SHCoeffsTerrain;
-	// handle of composite alpha map (all the alpha maps packed into one texture)
-	u32 m_CompositeAlphaMap;
+	// ogl_tex handle of composite alpha map (all the alpha maps packed into one texture)
+	Handle m_hCompositeAlphaMap;
 	// handle of shadow map
 	u32 m_ShadowMap;
 	// width, height of shadow map

@@ -1293,11 +1293,10 @@ int CRenderer::LoadAlphaMaps()
 		ogl_tex_free(textures[i]);
 
 	// upload the composite texture
-	glGenTextures(1,(GLuint*) &m_CompositeAlphaMap);
-	BindTexture(0,m_CompositeAlphaMap);
-	glTexImage2D(GL_TEXTURE_2D,0,GL_INTENSITY,total_w,total_h,0,GL_RGB,GL_UNSIGNED_BYTE,data);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+	Tex t;
+	(void)tex_wrap(total_w, total_h, 24, 0, data, &t);
+	m_hCompositeAlphaMap = ogl_tex_wrap("(alpha map composite)", &t);
+	(void)ogl_tex_upload(m_hCompositeAlphaMap, GL_LINEAR, GL_INTENSITY);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
 	oglSquelchError(GL_INVALID_ENUM);	// GL_CLAMP_TO_EDGE
@@ -1310,5 +1309,5 @@ int CRenderer::LoadAlphaMaps()
 // UnloadAlphaMaps: frees the resources allocates by LoadAlphaMaps
 void CRenderer::UnloadAlphaMaps()
 {
-	glDeleteTextures(1, (GLuint*) &m_CompositeAlphaMap);
+	ogl_tex_free(m_hCompositeAlphaMap);
 }

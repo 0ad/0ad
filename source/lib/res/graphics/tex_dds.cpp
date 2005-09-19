@@ -59,13 +59,6 @@ DDSURFACEDESC2;
 // more efficient (even though we don't need the alpha component).
 enum RGBA {	R, G, B, A };
 
-// DXT1a requires special handling in precalc_color (alpha cannot
-// be determined later because it depends on the color block).
-// we encode this as another value in <dxt> because it's easier than
-// passing around the TEX_ALPHA flag.
-const int DXT1A = 11;
-
-
 
 static inline void mix_2_3(uint dst[4], uint c0[4], uint c1[4])
 {
@@ -272,9 +265,13 @@ static int dds_decompress(Tex* t)
 	const size_t img_size = blocks * 16 * bpp/8;
 	Handle hm;
 	void* img_data = mem_alloc(img_size, 64*KiB, 0, &hm);
+	if(!img_data)
+		return ERR_NO_MEM;
 
 	const u8* s3tc_data = (const u8*)tex_get_data(t);
-	const size_t s3tc_size = tex_img_size(t);
+	// note: do not use tex_img_size! we must take into account padding
+	// to 4x4 blocks, which is relevant for high mipmap levels (e.g. 2x2).
+	const size_t s3tc_size = blocks * 16 * t->bpp/8;
 
 	for(uint block_y = 0; block_y < blocks_h; block_y++)
 		for(uint block_x = 0; block_x < blocks_w; block_x++)

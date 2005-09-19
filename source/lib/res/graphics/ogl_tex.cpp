@@ -18,21 +18,6 @@ uint ogl_tex_bpp = 32;				// 16 or 32
 //
 //////////////////////////////////////////////////////////////////////////////
 
-static bool fmt_is_s3tc(GLenum fmt)
-{
-	// specified to be contiguous, but this is safer.
-	switch(fmt)
-	{
-	case GL_COMPRESSED_RGB_S3TC_DXT1_EXT:
-	case GL_COMPRESSED_RGBA_S3TC_DXT1_EXT:
-	case GL_COMPRESSED_RGBA_S3TC_DXT3_EXT:
-	case GL_COMPRESSED_RGBA_S3TC_DXT5_EXT:
-		return true;
-	}
-	return false;
-}
-
-
 static bool filter_is_known(GLint filter)
 {
 	switch(filter)
@@ -193,11 +178,12 @@ struct OglTex
 	GLint filter;
 
 	// flags influencing reload behavior
+	// .. either we have the texture in memory (referenced by t.hm),
+	//    or it's already been uploaded to OpenGL => no reload necessary.
+	//    needs to be a flag so it can be reset in Tex_dtor.
 	bool is_loaded;
-		// either we have the texture in memory (referenced by t.hm),
-		// or it's already been uploaded to OpenGL => no reload necessary.
-		// needs to be a flag so it can be reset in Tex_dtor.
 	bool has_been_uploaded;
+	bool was_wrapped;
 
 	// to which Texture Mapping Unit was this bound?
 	// used when re-binding after reload.
@@ -206,8 +192,15 @@ struct OglTex
 
 H_TYPE_DEFINE(OglTex);
 
-static void OglTex_init(OglTex* ot, va_list UNUSED(args))
+static void OglTex_init(OglTex* ot, va_list args)
 {
+	Tex* wrapped_tex = va_arg(args, Tex*);
+	if(wrapped_tex)
+	{
+		ot->t = *wrapped_tex;
+		ot->was_wrapped = true;
+	}
+
 	// set to default (once)
 	ot->filter = ogl_tex_filter;
 }
@@ -231,10 +224,13 @@ static int OglTex_reload(OglTex* ot, const char* fn, Handle h)
 		return 0;
 
 	Tex* const t = &ot->t;
-	CHECK_ERR(tex_load(fn, t));
+
+	if(!ot->was_wrapped)
+		CHECK_ERR(tex_load(fn, t));
+
+	// always override previous settings, since format in
+	// texture file may have changed (e.g. 24 -> 32 bpp).
 	CHECK_ERR(get_gl_fmt(t->bpp, t->flags, &ot->fmt, &ot->int_fmt));
-		// always override previous settings, since format in
-		// texture file may have changed (e.g. 24 -> 32 bpp).
 
 	ot->is_loaded = true;
 
@@ -250,7 +246,14 @@ static int OglTex_reload(OglTex* ot, const char* fn, Handle h)
 
 Handle ogl_tex_load(const char* fn, int scope)
 {
-	return h_alloc(H_OglTex, fn, scope);
+	Tex* wrapped_tex = 0;	// we're loading from file
+	return h_alloc(H_OglTex, fn, scope, wrapped_tex);
+}
+
+
+Handle ogl_tex_wrap(const char* fn, Tex* wrapped_tex)
+{
+	return h_alloc(H_OglTex, fn, 0, wrapped_tex);
 }
 
 
@@ -502,7 +505,7 @@ int ogl_tex_upload(const Handle ht, GLint filter_ovr, GLint int_fmt_ovr, GLenum 
 		hopefully it'll prevent the logic getting horribly tangled...]
 	*/
 
-	bool is_compressed = fmt_is_s3tc(fmt);
+	bool is_s3tc = ogl_dxt_from_fmt(fmt) != 0;
 	bool has_mipmaps = (ot->t.flags & TEX_MIPMAPS ? true : false);
 
 	enum UploadState
@@ -519,8 +522,8 @@ int ogl_tex_upload(const Handle ht, GLint filter_ovr, GLint int_fmt_ovr, GLenum 
 		{ broken_comp, mipped_comp,   normal_comp,   normal_comp   },
 		{ glubuild,    mipped_uncomp, normal_uncomp, normal_uncomp }
 	};
-	int state = states[auto_mipmap_gen ? (is_compressed ? 1 : 0) : (is_compressed ? 2 : 3)]  // row
-	                  [need_mipmaps    ? (has_mipmaps   ? 1 : 0) : (has_mipmaps   ? 2 : 3)]; // column
+	int state = states[auto_mipmap_gen ? (is_s3tc     ? 1 : 0) : (is_s3tc     ? 2 : 3)]  // row
+	                  [need_mipmaps    ? (has_mipmaps ? 1 : 0) : (has_mipmaps ? 2 : 3)]; // column
 
 	if(state == auto_uncomp || state == auto_comp)
 	{

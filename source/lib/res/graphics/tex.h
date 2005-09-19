@@ -23,6 +23,11 @@
 
 
 
+// flags & TEX_DXT stores the DXT number (1, 3, or 5). we need a special
+// value for DXT1a to obviate passing around an extra TEX_ALPHA flag.
+// value is arbitrary; do not rely on its relative ordering!
+const int DXT1A = 11;
+
 enum TexFlags
 {
 	TEX_DXT   = 0x7,	// mask; value = {1,3,5}
@@ -69,6 +74,8 @@ struct Tex
 
 extern int tex_load(const char* fn, Tex* t);
 extern int tex_free(Tex* t);
+
+extern int tex_wrap(uint w, uint h, uint bpp, uint flags, void* img, Tex* t);
 
 extern u8* tex_get_data(const Tex* t);
 extern size_t tex_img_size(const Tex* t);

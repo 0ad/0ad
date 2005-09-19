@@ -664,7 +664,7 @@ void CPatchRData::RenderBlendSplats()
 	glClientActiveTextureARB(GL_TEXTURE0);
 
 	// switch on the composite alpha map texture
-	g_Renderer.BindTexture(1,g_Renderer.m_CompositeAlphaMap);
+	(void)ogl_tex_bind(g_Renderer.m_hCompositeAlphaMap, 1);
 
 	// setup additional texenv required by blend pass
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);

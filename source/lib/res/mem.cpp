@@ -271,8 +271,7 @@ Handle mem_assign(void* p, size_t size, uint flags, void* raw_p, size_t raw_size
 	}
 
 	hm = h_alloc(H_Mem, (const char*)p, flags|RES_KEY|RES_NO_CACHE, raw_p);
-	if(!hm)
-		return 0;
+	RETURN_ERR(hm);
 
 	H_DEREF(hm, Mem, m);
 	m->p         = p;

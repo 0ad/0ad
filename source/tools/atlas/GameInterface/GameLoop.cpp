@@ -37,6 +37,7 @@ GameLoopState* g_GameLoop = &state;
 
 static void* LaunchWindow(void*)
 {
+	debug_set_thread_name("atlas_window");
 	Atlas_StartWindow(L"ScenarioEditor");
 	return NULL;
 }

@@ -28,6 +28,8 @@
 #include "ogl.h"
 #include "detect.h"
 #include "debug.h"
+#include "lib/res/h_mgr.h"
+#include "lib/res/graphics/tex.h"
 
 #if MSC_VERSION
 #pragma comment(lib, "opengl32.lib")
@@ -408,150 +410,65 @@ void oglInit()
 }
 
 
-static void CALL_CONV emulate_glCompressedTexImage2D(
-	GLenum target, GLint level, GLenum internalformat,
-	GLsizei width, GLsizei height, GLint border,
-	GLsizei imageSize, const GLvoid* data)
+uint ogl_dxt_from_fmt(GLenum fmt)
 {
-	// Software emulation of compressed-texture support, for really old
-	// cards/drivers that can't do it (but which do support everything else
-	// we strictly require). They probably don't have enough VRAM for all the
-	// textures, and are slow anyway, so it's not going to be a pleasant way
-	// of playing; but at least it's better than nothing.
-
-	GLenum base_fmt = (internalformat == GL_COMPRESSED_RGB_S3TC_DXT1_EXT)? GL_RGB : GL_RGBA;
-	
-	// TODO: handle small (<4x4) images correctly
-	GLsizei blocks_w = (GLsizei)(round_up(width, 4) / 4);
-	GLsizei blocks_h = (GLsizei)(round_up(height, 4) / 4);
-	GLsizei blocks = blocks_w * blocks_h;
-	GLsizei size = blocks * 16 * (base_fmt == GL_RGB ? 3 : 4);
-	GLsizei pitch = size / (blocks_h*4);
-	UNUSED2(pitch);
-	void* rgb_data = malloc(size);
-
-	bool dxt1 = (internalformat == GL_COMPRESSED_RGB_S3TC_DXT1_EXT || internalformat == GL_COMPRESSED_RGBA_S3TC_DXT1_EXT);
-	bool dxt3 = (internalformat == GL_COMPRESSED_RGBA_S3TC_DXT3_EXT);
-	bool dxt5 = (internalformat == GL_COMPRESSED_RGBA_S3TC_DXT5_EXT);
-	debug_assert(dxt1 || dxt3 || dxt5);
-
-	debug_assert(imageSize == blocks * (dxt1? 8 : 16));
-
-	// This code is inefficient, but I don't care:
-
-	for(GLsizei block_y = 0; block_y < blocks_h; ++block_y)
-	for(GLsizei block_x = 0; block_x < blocks_w; ++block_x)
+	switch(fmt)
 	{
-		int c0_a = 255, c1_a = 255, c2_a = 255, c3_a = 255;
-		u8* alpha = NULL;
-		u8 dxt5alpha[8];
+	case GL_COMPRESSED_RGB_S3TC_DXT1_EXT:
+		return 1;
+	case GL_COMPRESSED_RGBA_S3TC_DXT1_EXT:
+		return DXT1A;
+	case GL_COMPRESSED_RGBA_S3TC_DXT3_EXT:
+		return 3;
+	case GL_COMPRESSED_RGBA_S3TC_DXT5_EXT:
+		return 5;
+	default:
+		return 0;
+	}
+}
 
-		if(!dxt1)
-		{
-			alpha = (u8*)data;
-			data = (char*)data + 8;
 
-			if(dxt5)
-			{
-				dxt5alpha[0] = alpha[0];
-				dxt5alpha[1] = alpha[1];
-				if(alpha[0] > alpha[1])
-				{
-					dxt5alpha[2] = (6*alpha[0] + 1*alpha[1] + 3)/7;
-					dxt5alpha[3] = (5*alpha[0] + 2*alpha[1] + 3)/7;
-					dxt5alpha[4] = (4*alpha[0] + 3*alpha[1] + 3)/7;
-					dxt5alpha[5] = (3*alpha[0] + 4*alpha[1] + 3)/7;
-					dxt5alpha[6] = (2*alpha[0] + 5*alpha[1] + 3)/7;
-					dxt5alpha[7] = (1*alpha[0] + 6*alpha[1] + 3)/7;
-				}
-				else
-				{
-					dxt5alpha[2] = (4*alpha[0] + 1*alpha[1] + 2)/5;
-					dxt5alpha[3] = (3*alpha[0] + 2*alpha[1] + 2)/5;
-					dxt5alpha[4] = (2*alpha[0] + 3*alpha[1] + 2)/5;
-					dxt5alpha[5] = (1*alpha[0] + 4*alpha[1] + 2)/5;
-					dxt5alpha[6] = 0;
-					dxt5alpha[7] = 255;
-				}
-			}
-		}
+// Software emulation of compressed-texture support, for really old
+// cards/drivers that can't do it (but which do support everything else
+// we strictly require). They probably don't have enough VRAM for all the
+// textures, and are slow anyway, so it's not going to be a pleasant way
+// of playing; but at least it's better than nothing.
+static void CALL_CONV emulate_glCompressedTexImage2D(
+	GLenum target_, GLint level_, GLenum int_fmt,
+	GLsizei w, GLsizei h, GLint border,
+	GLsizei data_size, const GLvoid* data)
+{
+	debug_assert(border == 0);	// not supported by glCompressedTexImage2D
 
-		u16 c0   = *(u16*)( (char*)data + 0 );
-		u16 c1   = *(u16*)( (char*)data + 2 );
-		u32 bits = *(u32*)( (char*)data + 4 );
+	// S3TC format info
+	const uint dxt = ogl_dxt_from_fmt(int_fmt);
+	debug_assert(dxt != 0 && "invalid internal format");
+	const uint s3tc_bpp = (dxt == 3 || dxt == 5)? 8 : 4;
+	const size_t s3tc_size = round_up(w,4)*round_up(h,4)*s3tc_bpp/8;
+	debug_assert(s3tc_size == (size_t)data_size);
 
-		data = (char*)data + 8;
+	// decompress DDS to RGB[A]
+	Tex t;
+	const uint flags = dxt;
+	(void)tex_wrap((uint)w, (uint)h, s3tc_bpp, flags, (void*)data, &t);
+	// .. hack: prevent <data> from being freed when tex_transform
+	//    replaces previous hm with the new transformed buffer.
+	//    (important because mipmapped images share the same mem alloc and
+	//    there's no way we know when to free that)
+	h_add_ref(t.hm);
+	(void)tex_transform(&t, TEX_DXT);
 
-		// Unpack 565, and copy high bits to low bits
-		int c0_r = ((c0>>8)&0xF8) | ((c0>>13)&7);
-		int c1_r = ((c1>>8)&0xF8) | ((c1>>13)&7);
-		int c0_g = ((c0>>3)&0xFC) | ((c0>>9 )&3);
-		int c1_g = ((c1>>3)&0xFC) | ((c1>>9 )&3);
-		int c0_b = ((c0<<3)&0xF8) | ((c0>>2 )&7);
-		int c1_b = ((c1<<3)&0xF8) | ((c1>>2 )&7);
-		int c2_r, c2_g, c2_b;
-		int c3_r, c3_g, c3_b;
-		if(!dxt1 || c0 > c1)
-		{
-			c2_r = (c0_r*2+c1_r+1)/3; c2_g = (c0_g*2+c1_g+1)/3; c2_b = (c0_b*2+c1_b+1)/3;
-			c3_r = (c0_r+2*c1_r+1)/3; c3_g = (c0_g+2*c1_g+1)/3; c3_b = (c0_b+2*c1_b+1)/3;
-		}
-		else
-		{
-			c2_r = (c0_r+c1_r)/2; c2_g = (c0_g+c1_g)/2; c2_b = (c0_b+c1_b)/2;
-			c3_r = c3_g = c3_b = c3_a = 0;
-		}
-
-		if(base_fmt == GL_RGB)
-		{
-			int i = 0;
-			for(int y = 0; y < 4; ++y)
-			{
-				u8* out = (u8*)rgb_data + ((block_y*4+y)*blocks_w*4 + block_x*4) * 3;
-				for(int x = 0; x < 4; ++x, ++i)
-				{
-					switch((bits >> (2*i)) & 3) {
-						case 0: *out++ = c0_r; *out++ = c0_g; *out++ = c0_b; break;
-						case 1: *out++ = c1_r; *out++ = c1_g; *out++ = c1_b; break;
-						case 2: *out++ = c2_r; *out++ = c2_g; *out++ = c2_b; break;
-						case 3: *out++ = c3_r; *out++ = c3_g; *out++ = c3_b; break;
-					}
-				}
-			}
-
-		}
-		else
-		{
-			int i = 0;
-			for(int y = 0; y < 4; ++y)
-			{
-				u8* out = (u8*)rgb_data + ((block_y*4+y)*blocks_w*4 + block_x*4) * 4;
-				for(int x = 0; x < 4; ++x, ++i)
-				{
-					int a = 0;	// squelch bogus uninitialized warning
-					switch((bits >> (2*i)) & 3) {
-						case 0: *out++ = c0_r; *out++ = c0_g; *out++ = c0_b; a = c0_a; break;
-						case 1: *out++ = c1_r; *out++ = c1_g; *out++ = c1_b; a = c1_a; break;
-						case 2: *out++ = c2_r; *out++ = c2_g; *out++ = c2_b; a = c2_a; break;
-						case 3: *out++ = c3_r; *out++ = c3_g; *out++ = c3_b; a = c3_a; break;
-					}
-					if(dxt3)
-					{
-						a = (int)((*(u64*)alpha >> (4*i)) & 0xF);
-						a |= a<<4; // copy low bits to high bits
-					}
-					else if(dxt5)
-					{
-						a = dxt5alpha[(*(u64*)(alpha+2) >> (3*i)) & 0x7];
-					}
-					*out++ = a;
-				}
-			}
-		}
+	// uncompressed RGB[A] format info
+	u8* const uc_data = tex_get_data(&t);
+	GLenum uc_fmt    = GL_RGB;
+	GLint uc_int_fmt = GL_RGB8;
+	if(dxt != 1)
+	{
+		uc_fmt     = GL_RGBA;
+		uc_int_fmt = GL_RGBA8;
 	}
 
-	const GLint int_fmt = (base_fmt == GL_RGB)? GL_RGB8 : GL_RGBA8;
-	glTexImage2D(target, level, int_fmt, width, height, border, base_fmt, GL_UNSIGNED_BYTE, rgb_data);
+	glTexImage2D(target_, level_, uc_int_fmt, w, h, 0, uc_fmt, GL_UNSIGNED_BYTE, uc_data);
 
-	free(rgb_data);
+	(void)tex_free(&t);
 }

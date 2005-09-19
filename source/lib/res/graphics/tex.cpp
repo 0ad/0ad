@@ -434,21 +434,34 @@ int tex_transform(Tex* t, uint transforms)
 }
 
 
+int tex_wrap(uint w, uint h, uint bpp, uint flags, void* img, Tex* t)
+{
+	t->w     = w;
+	t->h     = h;
+	t->bpp   = bpp;
+	t->flags = flags;
+
+	const size_t img_size = tex_img_size(t);
+	t->hm = mem_assign(img, img_size, 0, 0, 0, 0, 0);
+
+	// the exact value of img is lost, since the handle references the
+	// allocation and disregards the offset within it given by <img>.
+	// fix that up by setting t->ofs.
+	void* reported_ptr = mem_get_ptr(t->hm);
+	t->ofs = (u8*)img - (u8*)reported_ptr;
+
+	RETURN_ERR(t->hm);
+	return 0;
+}
+
+
 int tex_write(const char* fn, uint w, uint h, uint bpp, uint flags, void* in_img)
 {
 	if(validate_format(bpp, flags) != 0)
 		return ERR_TEX_FMT_INVALID;
 
-	const size_t in_img_size = w * h * bpp / 8;
-
-	Handle hm = mem_assign(in_img, in_img_size, 0, 0, 0, 0, 0);
-	Tex t =
-	{
-		hm,
-		0,	// image data offset
-		w, h, bpp, flags
-	};
-
+	Tex t;
+	RETURN_ERR(tex_wrap(w, h, bpp, flags, in_img, &t));
 
 	// we could be clever here and avoid the extra alloc if our current
 	// memory block ensued from the same kind of texture file. this is
@@ -476,5 +489,6 @@ int tex_write(const char* fn, uint w, uint h, uint bpp, uint flags, void* in_img
 
 fail:
 	WARN_ERR(da_free(&da));
+	WARN_ERR(mem_free_h(t.hm));
 	return err;
 }

@@ -136,6 +136,9 @@ extern void oglSquelchError(GLenum err_to_ignore);
 extern void oglInit(void);
 
 
+// internal use only:
+extern uint ogl_dxt_from_fmt(GLenum fmt);
+
 #ifdef __cplusplus
 }
 #endif
