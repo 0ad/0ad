@@ -6,6 +6,9 @@
 #include "lib/detect.h"
 #include "lib/timer.h"
 #include "lib/input.h"
+#if CPU_IA32
+# include "lib/sysdep/ia32.h"
+#endif
 #include "lib/res/res.h"
 #include "lib/res/sound/snd.h"
 #include "lib/res/graphics/tex.h"
@@ -687,6 +690,10 @@ void Init(int argc, char* argv[], bool setup_gfx, bool setup_gui)
 	MICROLOG(L"Init");
 
 	debug_set_thread_name("main");
+
+#if CPU_IA32
+	ia32_init();
+#endif
 
 	// If you ever want to catch a particular allocation:
 	//_CrtSetBreakAlloc(187);

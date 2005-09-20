@@ -31,6 +31,9 @@ extern "C" {
 #endif
 
 
+// call before any of the following functions
+extern void ia32_init();
+
 extern double _ceil(double);
 
 extern u64 rdtsc(void);
