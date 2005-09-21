@@ -477,7 +477,7 @@ void h_mgr_shutdown()
 }
 
 
-
+//----------------------------------------------------------------------------
 
 static int type_validate(H_Type type)
 {
@@ -507,14 +507,130 @@ fail:
 }
 
 
+static u32 gen_tag()
+{
+	static u32 tag;
+	if(++tag >= TAG_MASK)
+	{
+		debug_warn("h_mgr: tag overflow - allocations are no longer unique."\
+			"may not notice stale handle reuse. increase TAG_BITS.");
+		tag = 1;
+	}
+	return tag;
+}
+
+
+static Handle reuse_existing_handle(uintptr_t key, H_Type type, uint flags)
+{
+	if(flags & RES_NO_CACHE)
+		return 0;
+
+	// object of specified key and type doesn't exist yet
+	Handle h = h_find(type, key);
+	if(h <= 0)	// "failure" is meaningless; we only care if found or not
+		return 0;
+
+	HDATA* hd = h_data_tag_type(h, type);
+	if(hd->refs == REF_MAX)
+	{
+		debug_warn("reuse_existing: too many references to a handle - increase REF_BITS");
+		return ERR_LIMIT;
+	}
+
+	hd->refs++;
+
+	// we are reactivating a closed but cached handle.
+	// need to generate a new tag so that copies of the
+	// previous handle can no longer access the resource.
+	// (we don't need to reset the tag in h_free, because
+	// use before this fails due to refs > 0 check in h_user_data).
+	if(hd->refs == 1)
+	{
+		const u32 tag = gen_tag();
+		hd->tag = tag;
+		h = handle(h_idx(h), tag);	// can't fail
+	}
+
+	return h;
+}
+
+
+static int call_init_and_reload(Handle h, H_Type type, HDATA* hd, const char* fn, va_list* init_args)
+{
+	int err = 0;
+	H_VTbl* vtbl = type;	// exact same thing but for clarity
+
+	// init
+	if(vtbl->init)
+		vtbl->init(hd->user, *init_args);
+
+	// reload
+	if(vtbl->reload)
+	{
+		// catch exception to simplify reload funcs - let them use new()
+		try
+		{
+			err = vtbl->reload(hd->user, fn, h);
+		}
+		catch(std::bad_alloc)
+		{
+			err = ERR_NO_MEM;
+		}
+	}
+
+	return err;
+}
+
+
+static Handle alloc_new_handle(H_Type type, const char* fn, uintptr_t key,
+	uint flags, va_list* init_args)
+{
+	i32 idx;
+	HDATA* hd;
+	CHECK_ERR(alloc_idx(idx, hd));
+
+	// (don't want to do this before the add-reference exit,
+	// so as not to waste tags for often allocated handles.)
+	const u32 tag = gen_tag();
+	Handle h = handle(idx, tag);	// can't fail.
+
+	hd->tag  = tag;
+	hd->key  = key;
+	hd->type = type;
+	hd->refs = 1;
+	if(!(flags & RES_NO_CACHE))
+		hd->keep_open = 1;
+	hd->unique = (flags & RES_UNIQUE) != 0;
+	hd->fn = 0;
+	// .. filename is valid - store in hd
+	// note: if the original fn param was a key, it was reset to 0 above.
+	if(fn)
+		hd->fn = strdup(fn);
+
+	if(key && !hd->unique)
+		add_key(key, h);
+
+	int err = call_init_and_reload(h, type, hd, fn, init_args);
+	if(err < 0)
+		goto fail;
+
+	return h;
+
+fail:
+	// reload failed; free the handle
+	hd->keep_open = 0;	// disallow caching (since contents are invalid)
+	(void)h_free(h, type);	// (h_free already does WARN_ERR)
+
+	// note: since some uses will always fail (e.g. loading sounds if
+	// g_Quickstart), do not complain here.
+	return (Handle)err;
+}
+
+
 // any further params are passed to type's init routine
 Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 {
 	CHECK_ERR(type_validate(type));
-
-	Handle h = 0;
-	i32 idx;
-	HDATA* hd;
 
 	// get key (either hash of filename, or fn param)
 	uintptr_t key = 0;
@@ -531,129 +647,24 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 	}
 
 //debug_printf("alloc %s %s\n", type->name, fn);
-	
+
 	// no key => can never be found. disallow caching
 	if(!key)
-		flags |= RES_NO_CACHE;	// changes scope to RES_TEMP
-	// check if already loaded (cached)
-	else if(!(flags & RES_UNIQUE))
-	{
-		// object already loaded?
-		h = h_find(type, key);
-		if(h > 0)
-		{
-			hd = h_data_tag_type(h, type);
-			if(hd->refs == REF_MAX)
-			{
-				debug_warn("h_alloc: too many references to a handle - increase REF_BITS");
-				return 0;
-			}
-			hd->refs++;
+		flags |= RES_NO_CACHE;
 
-			// adding reference; already in-use
-			if(hd->refs > 1)
-			{
-//				debug_warn("adding reference to handle (undermines tag security check)");
-				return h;
-			}
-
-			// we re-activated a cached resource. still need to reset tag:
-			idx = h_idx(h);
-			goto skip_alloc;
-		}
-	}
-
-	CHECK_ERR(alloc_idx(idx, hd));
-skip_alloc:
-
-	const uint scope = flags & RES_SCOPE_MASK;
-
-	// generate next tag value.
-	// don't want to do this before the add-reference exit,
-	// so as not to waste tags for often allocated handles.
-	static u32 tag;
-	if(++tag >= TAG_MASK)
-	{
-		debug_warn("h_alloc: tag overflow - allocations are no longer unique."\
-			"may not notice stale handle reuse. increase TAG_BITS.");
-		tag = 1;
-	}
-
-	h = handle(idx, tag);
-		// can't fail.
-
-	// we are reactivating a closed but cached handle.
-	// need to reset tag, so that copies of the previous
-	// handle can no longer access the resource.
-	// (we don't need to reset the tag in h_free, because
-	// use before this fails due to refs > 0 check in h_user_data).
-	if(hd->refs == 1)
-	{
-		hd->tag = tag;
+	// see if we can reuse an existing handle
+	Handle h = reuse_existing_handle(key, type, flags);
+	// .. error
+	CHECK_ERR(h);
+	// .. successfully reused the handle; refcount increased
+	if(h > 0)
 		return h;
-	}
-
-	//
-	// now adding a new handle
-	//
-	hd->unique = (flags & RES_UNIQUE) != 0;
-
-	if(key && !hd->unique)
-		add_key(key, h);
-
-	// one-time init
-	hd->tag  = tag;
-	hd->key  = key;
-	hd->type = type;
-	hd->refs = 1;
-	if(scope != RES_TEMP)
-		hd->keep_open = 1;
-	hd->fn = 0;
-	// .. filename is valid - store in hd
-	// note: if the original fn param was a key, it was reset to 0 above.
-	if(fn)
-		hd->fn = strdup(fn);
-		
-
-	H_VTbl* vtbl = type;
-
-	int err;
-
-	// init
+	// .. need to allocate a new one:
 	va_list args;
 	va_start(args, flags);
-	if(vtbl->init)
-	{
-		vtbl->init(hd->user, args);
-	}
+	h = alloc_new_handle(type, fn, key, flags, &args);
 	va_end(args);
-
-	// reload
-	if(vtbl->reload)
-	{
-		// catch exception to simplify reload funcs - let them use new()
-		try
-		{
-			err = vtbl->reload(hd->user, fn, h);
-		}
-		catch(std::bad_alloc)
-		{
-			err = ERR_NO_MEM;
-		}
-		if(err < 0)
-			goto fail;
-	}
-
-	return h;
-
-fail:
-	// reload failed; free the handle
-	hd->keep_open = 0;	// disallow caching (since contents are invalid)
-	(void)h_free(h, type);	// (h_free already does WARN_ERR)
-
-	// note: since some uses will always fail (e.g. loading sounds if
-	// g_Quickstart), do not complain here.
-	return (Handle)err;
+	return h;	// alloc_new_handle already does CHECK_ERR
 }
 
 
@@ -756,7 +767,7 @@ int h_force_free(Handle h, H_Type type)
 }
 
 
-// increment Handle <h>'s refcount.
+// increment Handle <h>'s reference count.
 // only meant to be used for objects that free a Handle in their dtor,
 // so that they are copy-equivalent and can be stored in a STL container.
 // do not use this to implement refcounting on top of the Handle scheme,
@@ -771,11 +782,32 @@ void h_add_ref(Handle h)
 		return;
 	}
 
+	// if there are no refs, how did the caller manage to keep a Handle?!
 	if(!hd->refs)
 		debug_warn("h_add_ref: no refs open - resource is cached");
+
 	hd->refs++;
 }
 
 
-int res_cur_scope;
+// retrieve the internal reference count or a negative error code.
+// background: since h_alloc has no way of indicating whether it
+// allocated a new handle or reused an existing one, counting references
+// within resource control blocks is impossible. since that is sometimes
+// necessary (always wrapping objects in Handles is excessive), we
+// provide access to the internal reference count.
+int h_get_refcnt(Handle h)
+{
+	HDATA* hd = h_data_tag(h);
+	if(!hd)
+	{
+		debug_warn("h_get_refcnt: invalid handle");
+		return ERR_INVALID_PARAM;
+	}
 
+	// if there are no refs, how did the caller manage to keep a Handle?!
+	if(!hd->refs)
+		debug_warn("h_get_refcnt: no refs open - resource is cached");
+
+	return hd->refs;
+}

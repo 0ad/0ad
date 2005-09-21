@@ -8,15 +8,12 @@
 #include "lib.h"
 
 
-GLint ogl_tex_filter = GL_LINEAR;
-uint ogl_tex_bpp = 32;				// 16 or 32
+static GLint default_filter = GL_LINEAR;	// all legal GL *minify* values
+static uint default_bpp = 32;				// 16 or 32
 
-
-//////////////////////////////////////////////////////////////////////////////
-//
+//----------------------------------------------------------------------------
 // OpenGL helper routines
-//
-//////////////////////////////////////////////////////////////////////////////
+//----------------------------------------------------------------------------
 
 static bool filter_is_known(GLint filter)
 {
@@ -50,7 +47,7 @@ static bool filter_uses_mipmaps(GLint filter)
 
 
 // determine OpenGL texture format, given <bpp> and Tex <flags>.
-// also choose an internal format based on the global <ogl_tex_bpp>
+// also choose an internal format based on the global <default_bpp>
 // performance vs. quality setting.
 //
 // rationale: we override the user's previous internal format preference.
@@ -96,7 +93,7 @@ static int get_gl_fmt(int bpp, int flags, GLenum* fmt, GLint* int_fmt)
 
 
 	// true => 8 bits per component; otherwise, 4
-	const bool high_quality = (ogl_tex_bpp == 32);
+	const bool high_quality = (default_bpp == 32);
 
 	switch(bpp)
 	{
@@ -112,14 +109,14 @@ static int get_gl_fmt(int bpp, int flags, GLenum* fmt, GLint* int_fmt)
 	case 24:
 		debug_assert(!alpha);
 		*fmt = bgr? GL_BGR : GL_RGB;
+		// note: BGR can't be used as internal format
 		*int_fmt = high_quality? GL_RGB8 : GL_RGB4;
-			// note: BGR can't be used as internal format
 		return 0;
 	case 32:
 		debug_assert(alpha);
 		*fmt = bgr? GL_BGRA : GL_RGBA;
+		// note: BGR can't be used as internal format
 		*int_fmt = high_quality? GL_RGBA8 : GL_RGBA4;
-			// note: BGR can't be used as internal format
 		return 0;
 	default:
 		debug_warn("get_gl_fmt: invalid bpp");
@@ -154,26 +151,70 @@ static GLint detect_auto_mipmap_gen()
 }
 
 
-//////////////////////////////////////////////////////////////////////////////
-//
+
+
+// change default upload settings - these affect performance vs. quality.
+// may be overridden for individual textures via ogl_tex_upload parameters.
+// pass 0 to keep the current setting; defaults and legal values are:
+// - filter: GL_LINEAR; any valid OpenGL minification filter
+// - bpp   : 32; 16 or 32 (this toggles between RGBA4 and RGBA8)
+void ogl_tex_set_default_upload(GLint filter, uint bpp)
+{
+	if(filter)
+	{
+		debug_assert(filter_is_known(filter));
+		default_filter = filter;
+	}
+	if(bpp)
+	{
+		debug_assert(bpp == 16 || bpp == 32);
+		default_bpp = bpp;
+	}
+}
+
+
+//----------------------------------------------------------------------------
 // texture resource implementation
+//----------------------------------------------------------------------------
+
+// ideally we would split OglTex into data and state objects as in
+// snd.cpp's SndData / VSrc. this gives us the benefits of caching while 
+// still leaving each "instance" (state object, which owns a data reference)
+// free to change its state. however, unlike in OpenAL, there is no state
+// independent of the data object - all parameters are directly tied to the
+// GL texture object. therefore, splitting them up is impossible.
+// (we shouldn't even keep the texel data in memory since that's already
+// covered by the FS cache).
 //
-//////////////////////////////////////////////////////////////////////////////
+// given that multiple "instances" share the state stored here, we conclude:
+// - a refcount is necessary to prevent ogl_tex_upload from freeing
+//   <t> as long as other instances are active.
+// - concurrent use risks cross-talk (if the 2nd "instance" changes state and
+//   the first is reloaded, its state may change to that of the 2nd)
+//
+// as bad as it sounds, the latter issue isn't a problem:
+// multiple instances of the same texture where someone changes its
+// internal format aren't expected. even if it is reloaded, the differing
+// state is not critical.
+// the alternative is even worse: disabling *all* caching/reuse would
+// really hurt performance and h_mgr doesn't support disallowing reuse of
+// active objects only (would break the index lookup code, since
+// multiple instances may exist).
 
 struct OglTex
 {
 	Tex t;
 
-	// allocated by Tex_reload; indicates the texture is currently uploaded.
+	// allocated by OglTex_reload; indicates the texture is currently uploaded.
 	GLuint id;
 
-	// determined from Tex by gl_get_fmt (called from Tex_reload);
+	// determined from Tex by gl_get_fmt (called from OglTex_reload);
 	// user settings passed to ogl_tex_upload will override this until the
 	// next actual reload.
 	GLenum fmt;
 	GLint int_fmt;
 
-	// set to default <ogl_tex_filter> by Tex_init; user settings passed to
+	// set to <default_filter> by OglTex_init; user settings passed to
 	// ogl_tex_upload will permanently override this.
 	GLint filter;
 
@@ -181,9 +222,9 @@ struct OglTex
 	// .. either we have the texture in memory (referenced by t.hm),
 	//    or it's already been uploaded to OpenGL => no reload necessary.
 	//    needs to be a flag so it can be reset in Tex_dtor.
-	bool is_loaded;
-	bool has_been_uploaded;
-	bool was_wrapped;
+	uint is_loaded : 1;
+	uint has_been_uploaded : 1;
+	uint was_wrapped : 1;
 
 	// to which Texture Mapping Unit was this bound?
 	// used when re-binding after reload.
@@ -198,12 +239,13 @@ static void OglTex_init(OglTex* ot, va_list args)
 	if(wrapped_tex)
 	{
 		ot->t = *wrapped_tex;
-		ot->was_wrapped = true;
+		ot->was_wrapped = 1;
 	}
 
 	// set to default (once)
-	ot->filter = ogl_tex_filter;
+	ot->filter = default_filter;
 }
+
 
 static void OglTex_dtor(OglTex* ot)
 {
@@ -214,7 +256,7 @@ static void OglTex_dtor(OglTex* ot)
 
 	// need to clear this so actual reloads (triggered by h_reload)
 	// actually reload.
-	ot->is_loaded = false;
+	ot->is_loaded = 0;
 }
 
 
@@ -226,13 +268,13 @@ static int OglTex_reload(OglTex* ot, const char* fn, Handle h)
 	Tex* const t = &ot->t;
 
 	if(!ot->was_wrapped)
-		CHECK_ERR(tex_load(fn, t));
+		RETURN_ERR(tex_load(fn, &ot->t));
 
 	// always override previous settings, since format in
 	// texture file may have changed (e.g. 24 -> 32 bpp).
 	CHECK_ERR(get_gl_fmt(t->bpp, t->flags, &ot->fmt, &ot->int_fmt));
 
-	ot->is_loaded = true;
+	ot->is_loaded = 1;
 
 	glGenTextures(1, &ot->id);
 
@@ -244,106 +286,46 @@ static int OglTex_reload(OglTex* ot, const char* fn, Handle h)
 }
 
 
-Handle ogl_tex_load(const char* fn, int scope)
+// load and return a handle to the texture given in <fn>.
+// for a list of supported formats, see tex.h's tex_load.
+Handle ogl_tex_load(const char* fn, uint flags)
 {
 	Tex* wrapped_tex = 0;	// we're loading from file
-	return h_alloc(H_OglTex, fn, scope, wrapped_tex);
+	return h_alloc(H_OglTex, fn, flags, wrapped_tex);
 }
 
 
-Handle ogl_tex_wrap(const char* fn, Tex* wrapped_tex)
+// make the given Tex object ready for use as an OpenGL texture
+// and return a handle to it. this will be as if its contents
+// had been loaded by ogl_tex_load.
+//
+// we need only add bookkeeping information and "wrap" it in
+// a resource object (accessed via Handle), hence the name.
+//
+// <fn> isn't strictly needed but should describe the texture so that
+// h_filename will return a meaningful comment for debug purposes.
+Handle ogl_tex_wrap(Tex* t, const char* fn, uint flags)
 {
-	return h_alloc(H_OglTex, fn, 0, wrapped_tex);
+	return h_alloc(H_OglTex, fn, flags, t);
 }
 
 
+// free all resources associated with the texture and make further
+// use of it impossible. (subject to refcount)
 int ogl_tex_free(Handle& ht)
 {
 	return h_free(ht, H_OglTex);
 }
 
 
-/*
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// BindTexture: bind a GL texture object to current active unit
-void CRenderer::BindTexture(int unit,GLuint tex)
-{
-#if 0
-glActiveTextureARB(GL_TEXTURE0+unit);
-if (tex==m_ActiveTextures[unit]) return;
-
-if (tex) {
-glBindTexture(GL_TEXTURE_2D,tex);
-if (!m_ActiveTextures[unit]) {
-glEnable(GL_TEXTURE_2D);
-}
-} else if (m_ActiveTextures[unit]) {
-glDisable(GL_TEXTURE_2D);
-}
-m_ActiveTextures[unit]=tex;
-#endif
-
-glActiveTextureARB(GL_TEXTURE0+unit);
-
-glBindTexture(GL_TEXTURE_2D,tex);
-if (tex) {
-glEnable(GL_TEXTURE_2D);
-} else {
-glDisable(GL_TEXTURE_2D);
-}
-m_ActiveTextures[unit]=tex;
-}
-*/
-
-
-// note: there are many call sites of glActiveTextureARB, so caching
-// those and ignoring redundant sets isn't feasible.
-int ogl_tex_bind(const Handle h, GLenum unit)
-{
-	int id = 0;
-
-	// special case: avoid dereference and disable texturing directly.
-	if(h == 0)
-		goto disable_texturing;
-
-	{
-	// (we can't use H_DEREF because it exits immediately)
-	OglTex* ot = H_USER_DATA(h, OglTex);
-	if(!ot)
-	{
-		glBindTexture(GL_TEXTURE_2D, 0);
-		return ERR_INVALID_HANDLE;
-	}
-
-#ifndef NDEBUG
-	if(!ot->id)
-	{
-		debug_warn("ogl_tex_bind: OglTex.id is not a valid texture");
-		return -1;
-	}
-#endif
-
-	id = ot->id;
-	ot->tmu = unit;
-	}
-
-disable_texturing:
-	glActiveTextureARB(GL_TEXTURE0+unit);
-	glBindTexture(GL_TEXTURE_2D, id);
-	if(id)
-		glEnable(GL_TEXTURE_2D);
-	else
-		glDisable(GL_TEXTURE_2D);
-	return 0;
-}
 
 
 static int ogl_tex_validate(const uint line, const OglTex* ot)
 {
+	RETURN_ERR(tex_validate(line, &ot->t));
+
 	const char* msg = 0;
 	int err = -1;
-
-	RETURN_ERR(tex_validate(line, &ot->t));
 
 	// width, height
 	// (note: this is done here because tex.cpp doesn't impose any
@@ -390,12 +372,20 @@ static int ogl_tex_validate(const uint line, const OglTex* ot)
 	return 0;
 }
 
-#define CHECK_OGL_TEX(t) CHECK_ERR(ogl_tex_validate(__LINE__, t))
+#define CHECK_OGL_TEX(ot) CHECK_ERR(ogl_tex_validate(__LINE__, ot))
 
 
+
+
+// upload the texture to OpenGL. texture filter and [internal] format
+// may be specified to override the global defaults (see below).
+// side effects:
+// - enables texturing on TMU 0 and binds the texture to it;
+// - frees the texel data! see ogl_tex_get_data.
 int ogl_tex_upload(const Handle ht, GLint filter_ovr, GLint int_fmt_ovr, GLenum fmt_ovr)
 {
 	H_DEREF(ht, OglTex, ot);
+	CHECK_OGL_TEX(ot);
 
 	// someone's requesting upload, but has already been uploaded.
 	// this happens if a cached texture is "loaded". no work to do.
@@ -446,10 +436,10 @@ int ogl_tex_upload(const Handle ht, GLint filter_ovr, GLint int_fmt_ovr, GLenum 
 		(and whether) mipmaps should be generated. Currently there are only
 		2^4 such combinations:
 
-		    /mipmaps available in texture
-		    #######
-		/mipmaps needed
-		#######
+		     /mipmaps available in texture
+		     #######
+		 /mipmaps needed
+		 #######
 		.---+---+---+---.
 		| Au| Mu| Nu| Nu|#-auto mipmap generation available
 		|---+---+---+---|#
@@ -492,8 +482,8 @@ int ogl_tex_upload(const Handle ht, GLint filter_ovr, GLint int_fmt_ovr, GLenum 
 		hopefully it'll prevent the logic getting horribly tangled...]
 	*/
 
-	bool is_s3tc = ogl_dxt_from_fmt(fmt) != 0;
-	bool has_mipmaps = (ot->t.flags & TEX_MIPMAPS ? true : false);
+	const bool is_s3tc = ogl_dxt_from_fmt(fmt) != 0;
+	const bool has_mipmaps = (ot->t.flags & TEX_MIPMAPS) != 0;
 
 	enum UploadState
 	{
@@ -570,9 +560,12 @@ int ogl_tex_upload(const Handle ht, GLint filter_ovr, GLint int_fmt_ovr, GLenum 
 	else
 		debug_warn("Invalid state in ogl_tex_upload");
 
-	mem_free_h(ot->t.hm);
+	// see rationale at declaration of OglTex
+	int refs = h_get_refcnt(ht);
+	if(refs > 0)
+		tex_free(&ot->t);
 
-	ot->has_been_uploaded = true;
+	ot->has_been_uploaded = 1;
 
 	oglCheck();
 
@@ -580,9 +573,99 @@ int ogl_tex_upload(const Handle ht, GLint filter_ovr, GLint int_fmt_ovr, GLenum 
 }
 
 
+/*
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// BindTexture: bind a GL texture object to current active unit
+void CRenderer::BindTexture(int unit,GLuint tex)
+{
+#if 0
+glActiveTextureARB(GL_TEXTURE0+unit);
+if (tex==m_ActiveTextures[unit]) return;
+
+if (tex) {
+glBindTexture(GL_TEXTURE_2D,tex);
+if (!m_ActiveTextures[unit]) {
+glEnable(GL_TEXTURE_2D);
+}
+} else if (m_ActiveTextures[unit]) {
+glDisable(GL_TEXTURE_2D);
+}
+m_ActiveTextures[unit]=tex;
+#endif
+
+glActiveTextureARB(GL_TEXTURE0+unit);
+
+glBindTexture(GL_TEXTURE_2D,tex);
+if (tex) {
+glEnable(GL_TEXTURE_2D);
+} else {
+glDisable(GL_TEXTURE_2D);
+}
+m_ActiveTextures[unit]=tex;
+}
+*/
+
+
+// bind the texture to the specified unit [number] in preparation for
+// using it in rendering. assumes multitexturing is available.
+// side effects:
+// - enables (or disables, if <ht> == 0) texturing on the given unit.
+//
+// note: there are many call sites of glActiveTextureARB, so caching
+// those and ignoring redundant sets isn't feasible.
+int ogl_tex_bind(const Handle ht, GLenum unit)
+{
+	int id = 0;
+
+	// special case: avoid dereference and disable texturing directly.
+	if(ht == 0)
+		goto disable_texturing;
+
+	{
+		// (we can't use H_DEREF because it exits immediately)
+		OglTex* ot = H_USER_DATA(ht, OglTex);
+		if(!ot)
+		{
+			glBindTexture(GL_TEXTURE_2D, 0);
+			CHECK_ERR(ERR_INVALID_HANDLE);
+			UNREACHABLE;
+		}
+
+		CHECK_OGL_TEX(ot);
+
+#ifndef NDEBUG
+		if(!ot->id)
+		{
+			debug_warn("ogl_tex_bind: OglTex.id is not a valid texture");
+			return -1;
+		}
+#endif
+
+		id = ot->id;
+		ot->tmu = unit;
+	}
+
+disable_texturing:
+	glActiveTextureARB(GL_TEXTURE0+unit);
+	glBindTexture(GL_TEXTURE_2D, id);
+	if(id)
+		glEnable(GL_TEXTURE_2D);
+	else
+		glDisable(GL_TEXTURE_2D);
+	return 0;
+}
+
+
+//----------------------------------------------------------------------------
+
+
+// retrieve texture dimensions and bits per pixel.
+// all params are optional and filled if non-NULL.
 int ogl_tex_get_size(Handle ht, int* w, int* h, int* bpp)
 {
 	H_DEREF(ht, OglTex, ot);
+	CHECK_OGL_TEX(ot);
+
 	if(w)
 		*w = ot->t.w;
 	if(h)
@@ -593,9 +676,13 @@ int ogl_tex_get_size(Handle ht, int* w, int* h, int* bpp)
 }
 
 
+// retrieve Tex.flags and the corresponding OpenGL format.
+// all params are optional and filled if non-NULL.
 int ogl_tex_get_format(Handle ht, int* flags, GLenum* fmt)
 {
 	H_DEREF(ht, OglTex, ot);
+	CHECK_OGL_TEX(ot);
+
 	if(flags)
 		*flags = ot->t.flags;
 	if(fmt)
@@ -604,9 +691,18 @@ int ogl_tex_get_format(Handle ht, int* flags, GLenum* fmt)
 }
 
 
+// retrieve pointer to texel data.
+//
+// note: this memory is freed after a successful ogl_tex_upload for
+// this texture. after that, the pointer we retrieve is NULL but
+// the function doesn't fail (negative return value) by design.
+// if you still need to get at the data, add a reference before
+// uploading it or read directly from OpenGL (discouraged).
 int ogl_tex_get_data(Handle ht, void** p)
 {
 	H_DEREF(ht, OglTex, ot);
+	CHECK_OGL_TEX(ot);
+
 	*p = tex_get_data(&ot->t);
 	return 0;
 }

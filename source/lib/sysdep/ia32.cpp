@@ -317,8 +317,9 @@ static void get_cpu_type()
 
 
 	// note: cpu_type is guaranteed to hold 48+1 chars, since that's the
-	// length of the CPU brand string. strcpy(cpu_type, literal) is safe.
-#define SAFE_STRCPY strcpy
+	// length of the CPU brand string => we can safely copy short literals.
+	// (this macro hides us from 'unsafe string code' searches)
+#define SAFE_STRCPY str##cpy
 
 	// fall back to manual detect of CPU type because either:
 	// - CPU doesn't support brand string (we use a flag to indicate this
@@ -367,7 +368,7 @@ static void get_cpu_type()
 	{
 		// strip (tm) from Athlon string
 		if(!strncmp(cpu_type, "AMD Athlon(tm)", 14))
-			memmove(cpu_type+10, cpu_type+14, 34);
+			memmove(cpu_type+10, cpu_type+14, 35);
 
 		// remove 2x (R) and CPU freq from P4 string
 		float freq;

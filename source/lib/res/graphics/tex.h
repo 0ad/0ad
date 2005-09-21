@@ -1,6 +1,6 @@
-// OpenGL texturing
+// texture loaders and support functions
 //
-// Copyright (c) 2003 Jan Wassenberg
+// Copyright (c) 2003-2005 Jan Wassenberg
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -72,6 +72,7 @@ struct Tex
 };
 
 
+// supports BMP, TGA, JPG, JP2, PNG, DDS.
 extern int tex_load(const char* fn, Tex* t);
 extern int tex_free(Tex* t);
 

@@ -317,14 +317,6 @@ void* mem_alloc(size_t size, const size_t align, uint flags, Handle* phm)
 	if(size == 0)
 		size = 1;
 
-	// no scope indicated
-	if(!flags)
-		// in a handle _reload function - default to its scope
-		if(res_cur_scope)
-			flags = res_cur_scope;
-		// otherwise, assume global scope
-
-
 	void* raw_p;
 	const size_t raw_size = size + align-1;
 
