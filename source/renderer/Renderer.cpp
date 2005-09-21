@@ -1295,7 +1295,7 @@ int CRenderer::LoadAlphaMaps()
 	// upload the composite texture
 	Tex t;
 	(void)tex_wrap(total_w, total_h, 24, 0, data, &t);
-	m_hCompositeAlphaMap = ogl_tex_wrap("(alpha map composite)", &t);
+	m_hCompositeAlphaMap = ogl_tex_wrap(&t, "(alpha map composite)");
 	(void)ogl_tex_upload(m_hCompositeAlphaMap, GL_LINEAR, GL_INTENSITY);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);

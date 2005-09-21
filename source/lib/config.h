@@ -294,4 +294,12 @@
 # define HAVE_STL_HASH 0
 #endif
 
+// safe string functions: strcpy_s et al.
+#if MSC_VERSION >= 1400
+# define HAVE_STRING_S 1
+#else
+# define HAVE_STRING_S 0
+#endif
+
+
 #endif	// #ifndef CONFIG_H_INCLUDED

@@ -49,7 +49,7 @@ int CSimulation::Initialize(CGameAttributes* UNUSED(pAttribs))
 
 void CSimulation::RegisterInit(CGameAttributes *pAttribs)
 {
-	RegMemFun1(this, &CSimulation::Initialize, pAttribs, L"CSimulation", 31);
+	RegMemFun1(this, &CSimulation::Initialize, pAttribs, L"CSimulation", 50);
 }
 
 

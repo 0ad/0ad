@@ -74,9 +74,9 @@
 )
 
 
-// skip the functions on VC2005 (already provided there), but not our
+// skip our implementation if already available, but not the
 // self-test and the t* defines (needed for test).
-#if MSC_VERSION < 1400
+#if !HAVE_STRING_S
 
 
 // return length [in characters] of a string, not including the trailing
@@ -198,7 +198,7 @@ int tcat_s(tchar* dst, size_t max_dst_chars, const tchar* src)
 	return tncat_s(dst, max_dst_chars, src, SIZE_MAX);
 }
 
-#endif	// #if MSC_VERSION < 1400
+#endif	// #if !HAVE_STRING_S
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -280,6 +280,51 @@ STMT(                                                                     \
 )
 
 
+// contains all tests that verify correct behavior for bogus input.
+// our implementation suppresses error dialogs while the self-test is active,
+// but others (e.g. the functions shipped with VC8) do not.
+// since we have no control over their error reporting (which ends up taking
+// down the program), we must skip this part of the test if using them.
+// this is still preferable to completely disabling the self-test.
+static void test_param_validation()
+{
+#if !HAVE_STRING_S
+	TEST_CPY(0 ,0,0 , EINVAL,"");	// all invalid
+	TEST_CPY(0 ,0,s1, EINVAL,"");	// dst = 0, max = 0
+	TEST_CPY(0 ,1,s1, EINVAL,"");	// dst = 0, max > 0
+	TEST_CPY(d1,1,0 , EINVAL,"");	// src = 0
+	TEST_CPY(d1,0,s1, ERANGE,"");	// max_dst_chars = 0
+
+	TEST_CPY2(d1 ,s1, ERANGE,"");
+	TEST_CPY2(d1 ,s5, ERANGE,"");
+	TEST_CPY2(d5 ,s5, ERANGE,"");
+
+	TEST_NCPY(d1 ,s1,1, ERANGE,"");
+	TEST_NCPY(d1 ,s5,1, ERANGE,"");
+	TEST_NCPY(d5 ,s5,5, ERANGE,"");
+
+	TEST_CAT(0 ,0,0 , EINVAL,"");	// all invalid
+	TEST_CAT(0 ,0,s1, EINVAL,"");	// dst = 0, max = 0
+	TEST_CAT(0 ,1,s1, EINVAL,"");	// dst = 0, max > 0
+	TEST_CAT(d1,1,0 , EINVAL,"");	// src = 0
+	TEST_CAT(d1,0,s1, ERANGE,"");	// max_dst_chars = 0
+	TEST_CAT(no_null,5,s1, ERANGE,"");	// dst not terminated
+
+	TEST_CAT2(d1 ,"" ,s1, ERANGE,"");
+	TEST_CAT2(d1 ,"" ,s5, ERANGE,"");
+	TEST_CAT2(d10,"" ,s10, ERANGE,"");		// empty, total overflow
+	TEST_CAT2(d10,"12345",s5 , ERANGE,"");	// not empty, overflow
+	TEST_CAT2(d10,"12345",s10, ERANGE,"");	// not empty, total overflow
+
+	TEST_NCAT(d1 ,"" ,s1,1, ERANGE,"");
+	TEST_NCAT(d1 ,"" ,s5,5, ERANGE,"");
+	TEST_NCAT(d10,"" ,s10,10, ERANGE,"");		// empty, total overflow
+	TEST_NCAT(d10,"12345",s5 ,5 , ERANGE,"");	// not empty, overflow
+	TEST_NCAT(d10,"12345",s10,10, ERANGE,"");	// not empty, total overflow
+#endif
+}
+
+
 static void test_length()
 {
 	TEST_LEN(s0, 0 , 0 );
@@ -299,22 +344,10 @@ static void test_length()
 
 static void test_copy()
 {
-	TEST_CPY(0 ,0,0 , EINVAL,"");	// all invalid
-	TEST_CPY(0 ,0,s1, EINVAL,"");	// dst = 0, max = 0
-	TEST_CPY(0 ,1,s1, EINVAL,"");	// dst = 0, max > 0
-	TEST_CPY(d1,1,0 , EINVAL,"");	// src = 0
-	TEST_CPY(d1,0,s1, ERANGE,"");	// max_dst_chars = 0
-
-	TEST_CPY2(d1 ,s1, ERANGE,"");
-	TEST_CPY2(d1 ,s5, ERANGE,"");
-	TEST_CPY2(d5 ,s5, ERANGE,"");
 	TEST_CPY2(d2 ,s1, 0,"a");
 	TEST_CPY2(d6 ,s5, 0,"abcde");
 	TEST_CPY2(d11,s5, 0,"abcde");
 
-	TEST_NCPY(d1 ,s1,1, ERANGE,"");
-	TEST_NCPY(d1 ,s5,1, ERANGE,"");
-	TEST_NCPY(d5 ,s5,5, ERANGE,"");
 	TEST_NCPY(d2 ,s1,1, 0,"a");
 	TEST_NCPY(d6 ,s5,5, 0,"abcde");
 	TEST_NCPY(d11,s5,5, 0,"abcde");
@@ -330,33 +363,16 @@ static void test_copy()
 
 static void test_concatenate()
 {
-	TEST_CAT(0 ,0,0 , EINVAL,"");	// all invalid
-	TEST_CAT(0 ,0,s1, EINVAL,"");	// dst = 0, max = 0
-	TEST_CAT(0 ,1,s1, EINVAL,"");	// dst = 0, max > 0
-	TEST_CAT(d1,1,0 , EINVAL,"");	// src = 0
-	TEST_CAT(d1,0,s1, ERANGE,"");	// max_dst_chars = 0
-	TEST_CAT(no_null,5,s1, ERANGE,"");	// dst not terminated
-
-	TEST_CAT2(d1 ,"" ,s1, ERANGE,"");
-	TEST_CAT2(d1 ,"" ,s5, ERANGE,"");
 	TEST_CAT2(d3 ,"1",s1, 0,"1a");
 	TEST_CAT2(d5 ,"1",s1, 0,"1a");
 	TEST_CAT2(d6 ,"" ,s5, 0,"abcde");
 	TEST_CAT2(d10,"" ,s5, 0,"abcde");
-	TEST_CAT2(d10,"" ,s10, ERANGE,"");		// empty, total overflow
-	TEST_CAT2(d10,"12345",s5 , ERANGE,"");	// not empty, overflow
-	TEST_CAT2(d10,"12345",s10, ERANGE,"");	// not empty, total overflow
 	TEST_CAT2(d10,"1234" ,s5 , 0,"1234abcde");
 
-	TEST_NCAT(d1 ,"" ,s1,1, ERANGE,"");
-	TEST_NCAT(d1 ,"" ,s5,5, ERANGE,"");
 	TEST_NCAT(d3 ,"1",s1,1, 0,"1a");
 	TEST_NCAT(d5 ,"1",s1,1, 0,"1a");
 	TEST_NCAT(d6 ,"" ,s5,5, 0,"abcde");
 	TEST_NCAT(d10,"" ,s5,5, 0,"abcde");
-	TEST_NCAT(d10,"" ,s10,10, ERANGE,"");		// empty, total overflow
-	TEST_NCAT(d10,"12345",s5 ,5 , ERANGE,"");	// not empty, overflow
-	TEST_NCAT(d10,"12345",s10,10, ERANGE,"");	// not empty, total overflow
 	TEST_NCAT(d10,"1234" ,s5 ,5 , 0,"1234abcde");
 
 	TEST_NCAT(d5,"----",s5,0 , 0,"----");
@@ -369,6 +385,7 @@ static void test_concatenate()
 
 static void self_test()
 {
+	test_param_validation();
 	test_length();
 	test_copy();
 	test_concatenate();
