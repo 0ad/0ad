@@ -810,27 +810,27 @@
 	</Entities>
 	<Nonentities>
 		<Nonentity>
-			<Actor>structures/celt_ff_a.xml</Actor>
+			<Actor>structures/celts/fortress_a.xml</Actor>
 			<Position x="45.9956" y="44.8" z="169.309" />
 			<Orientation angle="-3.12908" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>structures/celt_ff_a.xml</Actor>
+			<Actor>structures/celts/fortress_a.xml</Actor>
 			<Position x="69.0775" y="44.8" z="168.739" />
 			<Orientation angle="-3.01191" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>structures/iber_ho_a.xml</Actor>
+			<Actor>structures/iberians/house_a.xml</Actor>
 			<Position x="133.382" y="44.8" z="237.565" />
 			<Orientation angle="-2.96126" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>structures/iber_ho_b.xml</Actor>
+			<Actor>structures/iberians/house_b.xml</Actor>
 			<Position x="134.678" y="44.8" z="261.627" />
 			<Orientation angle="-2.97609" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>structures/iber_ho_c.xml</Actor>
+			<Actor>structures/iberians/house_c.xml</Actor>
 			<Position x="133.963" y="44.8" z="287.883" />
 			<Orientation angle="-2.95573" />
 		</Nonentity>
@@ -840,12 +840,12 @@
 			<Orientation angle="-2.96844" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>structures/rome_fc.xml</Actor>
+			<Actor>structures/romans/farmstead.xml</Actor>
 			<Position x="193.021" y="44.8" z="136.855" />
 			<Orientation angle="-2.99054" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>structures/rome_mc.xml</Actor>
+			<Actor>structures/romans/barracks.xml</Actor>
 			<Position x="195.714" y="44.8" z="323.002" />
 			<Orientation angle="-3.04699" />
 		</Nonentity>
@@ -975,57 +975,57 @@
 			<Orientation angle="-1.96856" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>geology/rock_gray1.xml</Actor>
+			<Actor>geology/gray1.xml</Actor>
 			<Position x="143.573" y="44.8" z="31.9335" />
 			<Orientation angle="-2.31299" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/celt_ijv_a.xml</Actor>
+			<Actor>units/celts/infantry_javelinist_a.xml</Actor>
 			<Position x="62.0956" y="44.8" z="62.3311" />
 			<Orientation angle="-2.99354" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/celt_ijv_e.xml</Actor>
+			<Actor>units/celts/infantry_javelinist_e.xml</Actor>
 			<Position x="64.9415" y="44.8" z="62.8601" />
 			<Orientation angle="-3.0138" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/celt_isp_a.xml</Actor>
+			<Actor>units/celts/infantry_spearman_a.xml</Actor>
 			<Position x="68.3292" y="44.8" z="63.2684" />
 			<Orientation angle="-2.99497" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/celt_isp_e.xml</Actor>
+			<Actor>units/celts/infantry_spearman_e.xml</Actor>
 			<Position x="71.2464" y="44.8" z="63.7936" />
 			<Orientation angle="-2.9602" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/celt_isp_a.xml</Actor>
+			<Actor>units/celts/infantry_spearman_a.xml</Actor>
 			<Position x="74.6665" y="44.8" z="63.4363" />
 			<Orientation angle="-2.98963" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/celt_isp_e.xml</Actor>
+			<Actor>units/celts/infantry_spearman_e.xml</Actor>
 			<Position x="77.9432" y="44.8" z="63.3386" />
 			<Orientation angle="-3.0026" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/hele_csw_a.xml</Actor>
+			<Actor>units/hellenes/cavalry_swordsman_a.xml</Actor>
 			<Position x="56.0976" y="44.8" z="52.9902" />
 			<Orientation angle="-3.1404" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/hele_csw_e.xml</Actor>
+			<Actor>units/hellenes/cavalry_swordsman_e.xml</Actor>
 			<Position x="59.4061" y="44.8" z="53.2707" />
 			<Orientation angle="-3.07758" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/hele_ijv_a.xml</Actor>
+			<Actor>units/hellenes/infantry_javelinist_a.xml</Actor>
 			<Position x="63.3762" y="44.8" z="53.7848" />
 			<Orientation angle="-3.08662" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/hele_ijv_e.xml</Actor>
+			<Actor>units/hellenes/infantry_javelinist_e.xml</Actor>
 			<Position x="66.0773" y="44.8" z="53.8902" />
 			<Orientation angle="-3.00944" />
 		</Nonentity>
@@ -1040,12 +1040,12 @@
 			<Orientation angle="-2.79964" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/hele_isp_a.xml</Actor>
+			<Actor>units/hellenes/infantry_spearman_a.xml</Actor>
 			<Position x="74.6209" y="44.8" z="55.1087" />
 			<Orientation angle="-3.08238" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/hele_isp_e.xml</Actor>
+			<Actor>units/hellenes/infantry_spearman_e.xml</Actor>
 			<Position x="77.1339" y="44.8" z="55.374" />
 			<Orientation angle="-3.02074" />
 		</Nonentity>
@@ -1060,252 +1060,252 @@
 			<Orientation angle="-2.99951" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/iber_cjv_a.xml</Actor>
+			<Actor>units/iberians/cavalry_javelinist_a.xml</Actor>
 			<Position x="55.2942" y="44.8" z="46.4315" />
 			<Orientation angle="-3.14045" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/iber_cjv_e.xml</Actor>
+			<Actor>units/iberians/cavalry_javelinist_e.xml</Actor>
 			<Position x="62.3914" y="44.8" z="46.6897" />
 			<Orientation angle="-3.07308" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/iber_csw_a.xml</Actor>
+			<Actor>units/iberians/cavalry_swordsman_a.xml</Actor>
 			<Position x="65.7532" y="44.8" z="46.6988" />
 			<Orientation angle="-3.068" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/iber_csw_e.xml</Actor>
+			<Actor>units/iberians/cavalry_swordsman_e.xml</Actor>
 			<Position x="68.7784" y="44.8" z="46.6089" />
 			<Orientation angle="-3.05364" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/iber_ijv_a.xml</Actor>
+			<Actor>units/iberians/infantry_javelinist_a.xml</Actor>
 			<Position x="72.1547" y="44.8" z="47.2399" />
 			<Orientation angle="-3.05966" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/iber_ijv_e.xml</Actor>
+			<Actor>units/iberians/infantry_javelinist_e.xml</Actor>
 			<Position x="74.7174" y="44.8" z="47.0211" />
 			<Orientation angle="-2.98703" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/iber_isl_a.xml</Actor>
+			<Actor>units/iberians/infantry_slinger_a.xml</Actor>
 			<Position x="76.72" y="44.8" z="47.2823" />
 			<Orientation angle="-3.05448" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/iber_isl_e.xml</Actor>
+			<Actor>units/iberians/infantry_slinger_e.xml</Actor>
 			<Position x="78.7593" y="44.8" z="47.1416" />
 			<Orientation angle="-3.05295" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/iber_isp_a.xml</Actor>
+			<Actor>units/iberians/infantry_spearman_a.xml</Actor>
 			<Position x="80.9243" y="44.8" z="47.4899" />
 			<Orientation angle="-3.04489" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/iber_isp_e.xml</Actor>
+			<Actor>units/iberians/infantry_spearman_e.xml</Actor>
 			<Position x="83.1979" y="44.8" z="47.8281" />
 			<Orientation angle="-3.04576" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/iber_isw_a.xml</Actor>
+			<Actor>units/iberians/infantry_swordsman_a.xml</Actor>
 			<Position x="85.4724" y="44.8" z="47.9278" />
 			<Orientation angle="-3.14088" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/iber_isw_e.xml</Actor>
+			<Actor>units/iberians/infantry_swordsman_e.xml</Actor>
 			<Position x="87.8908" y="44.8" z="48.3859" />
 			<Orientation angle="-3.04481" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/kart_csp_a.xml</Actor>
+			<Actor>units/carthaginians/cavalry_spearman_a.xml</Actor>
 			<Position x="54.9913" y="44.8" z="39.8943" />
 			<Orientation angle="-3.14042" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/kart_csp_e.xml</Actor>
+			<Actor>units/carthaginians/cavalry_spearman_e.xml</Actor>
 			<Position x="61.4493" y="44.8" z="40.056" />
 			<Orientation angle="-2.98423" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/kart_csw_a.xml</Actor>
+			<Actor>units/carthaginians/cavalry_swordsman_a.xml</Actor>
 			<Position x="64.7315" y="44.8" z="39.9817" />
 			<Orientation angle="-3.05765" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/kart_csw_e.xml</Actor>
+			<Actor>units/carthaginians/cavalry_swordsman_e.xml</Actor>
 			<Position x="67.5036" y="44.8" z="40.342" />
 			<Orientation angle="-2.97437" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/kart_iar_a.xml</Actor>
+			<Actor>units/carthaginians/infantry_archer_a.xml</Actor>
 			<Position x="70.5381" y="44.8" z="40.7459" />
 			<Orientation angle="-3.04254" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/kart_iar_e.xml</Actor>
+			<Actor>units/carthaginians/infantry_archer_e.xml</Actor>
 			<Position x="73.0227" y="44.8" z="40.7757" />
 			<Orientation angle="-3.0492" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/kart_ijv_a.xml</Actor>
+			<Actor>units/carthaginians/infantry_javelinist_a.xml</Actor>
 			<Position x="75.0955" y="44.8" z="41.1103" />
 			<Orientation angle="-3.03588" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/kart_ijv_e.xml</Actor>
+			<Actor>units/carthaginians/infantry_javelinist_e.xml</Actor>
 			<Position x="77.2228" y="44.8" z="41.457" />
 			<Orientation angle="-3.14069" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/kart_isl_a.xml</Actor>
+			<Actor>units/carthaginians/infantry_slinger_a.xml</Actor>
 			<Position x="79.253" y="44.8" z="41.8338" />
 			<Orientation angle="-3.03321" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/kart_isl_e.xml</Actor>
+			<Actor>units/carthaginians/infantry_slinger_e.xml</Actor>
 			<Position x="81.0967" y="44.8" z="42.2234" />
 			<Orientation angle="-3.01845" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/kart_isp_a.xml</Actor>
+			<Actor>units/carthaginians/infantry_spearman_a.xml</Actor>
 			<Position x="82.907" y="44.8" z="42.221" />
 			<Orientation angle="-3.02866" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/kart_isp_e.xml</Actor>
+			<Actor>units/carthaginians/infantry_spearman_e.xml</Actor>
 			<Position x="85.2347" y="44.8" z="42.4079" />
 			<Orientation angle="-3.1409" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/kart_isw_a.xml</Actor>
+			<Actor>units/carthaginians/infantry_swordsman_a.xml</Actor>
 			<Position x="87.2901" y="44.8" z="42.903" />
 			<Orientation angle="-3.14077" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/kart_isw_e.xml</Actor>
+			<Actor>units/carthaginians/infantry_swordsman_e.xml</Actor>
 			<Position x="89.4832" y="44.8" z="43.0738" />
 			<Orientation angle="-3.14089" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/pers_car_a.xml</Actor>
+			<Actor>units/persians/cavalry_archer_a.xml</Actor>
 			<Position x="54.0872" y="44.8" z="32.5625" />
 			<Orientation angle="-3.14046" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/pers_car_e.xml</Actor>
+			<Actor>units/persians/cavalry_archer_e.xml</Actor>
 			<Position x="57.4242" y="44.8" z="32.6996" />
 			<Orientation angle="-3.02718" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/pers_cjv_a.xml</Actor>
+			<Actor>units/persians/cavalry_javelinist_a.xml</Actor>
 			<Position x="61.0999" y="44.8" z="32.7483" />
 			<Orientation angle="-3.14043" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/pers_cjv_e.xml</Actor>
+			<Actor>units/persians/cavalry_javelinist_e.xml</Actor>
 			<Position x="64.3183" y="44.8" z="32.6034" />
 			<Orientation angle="-3.03357" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/pers_csp_a.xml</Actor>
+			<Actor>units/persians/cavalry_spearman_a.xml</Actor>
 			<Position x="66.8069" y="44.8" z="33.0799" />
 			<Orientation angle="-3.14042" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/pers_csp_e.xml</Actor>
+			<Actor>units/persians/cavalry_spearman_e.xml</Actor>
 			<Position x="69.3487" y="44.8" z="33.2489" />
 			<Orientation angle="-3.00688" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/pers_csw_a.xml</Actor>
+			<Actor>units/persians/cavalry_swordsman_a.xml</Actor>
 			<Position x="72.055" y="44.8" z="33.6628" />
 			<Orientation angle="-3.02325" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/pers_csw_e.xml</Actor>
+			<Actor>units/persians/cavalry_swordsman_e.xml</Actor>
 			<Position x="74.3127" y="44.8" z="33.9384" />
 			<Orientation angle="-3.14033" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/pers_iar_a.xml</Actor>
+			<Actor>units/persians/infantry_archer_a.xml</Actor>
 			<Position x="77.0236" y="44.8" z="34.4228" />
 			<Orientation angle="-3.02534" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/pers_iar_e.xml</Actor>
+			<Actor>units/persians/infantry_archer_e.xml</Actor>
 			<Position x="78.9085" y="44.8" z="34.7604" />
 			<Orientation angle="-2.97157" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/pers_ijv_a.xml</Actor>
+			<Actor>units/persians/infantry_javelinist_a.xml</Actor>
 			<Position x="81.0131" y="44.8" z="34.7235" />
 			<Orientation angle="-3.14094" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/pers_ijv_e.xml</Actor>
+			<Actor>units/persians/infantry_javelinist_e.xml</Actor>
 			<Position x="83.0313" y="44.8" z="34.8238" />
 			<Orientation angle="-3.14095" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/pers_isp_a.xml</Actor>
+			<Actor>units/persians/infantry_spearman_a.xml</Actor>
 			<Position x="85.0368" y="44.8" z="35.2728" />
 			<Orientation angle="-2.85939" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/pers_isp_e.xml</Actor>
+			<Actor>units/persians/infantry_spearman_e.xml</Actor>
 			<Position x="86.9685" y="44.8" z="35.6843" />
 			<Orientation angle="-3.14088" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/rome_csp_a.xml</Actor>
+			<Actor>units/romans/cavalry_spearman_a.xml</Actor>
 			<Position x="54.5666" y="44.8" z="25.5472" />
 			<Orientation angle="-3.14034" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/rome_csp_e.xml</Actor>
+			<Actor>units/romans/cavalry_spearman_e.xml</Actor>
 			<Position x="57.6867" y="44.8" z="25.808" />
 			<Orientation angle="-3.1404" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/rome_ijv_a.xml</Actor>
+			<Actor>units/romans/infantry_javelinist_a.xml</Actor>
 			<Position x="60.761" y="44.8" z="26.224" />
 			<Orientation angle="-3.0435" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/rome_ijv_e.xml</Actor>
+			<Actor>units/romans/infantry_javelinist_e.xml</Actor>
 			<Position x="62.9187" y="44.8" z="26.5416" />
 			<Orientation angle="-3.03701" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/rome_isl_a.xml</Actor>
+			<Actor>units/romans/infantry_slinger_a.xml</Actor>
 			<Position x="64.6998" y="44.8" z="26.7064" />
 			<Orientation angle="-3.04071" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/rome_isl_e.xml</Actor>
+			<Actor>units/romans/infantry_slinger_e.xml</Actor>
 			<Position x="66.3263" y="44.8" z="26.9271" />
 			<Orientation angle="-2.99671" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/rome_isp_a.xml</Actor>
+			<Actor>units/romans/infantry_spearman_a.xml</Actor>
 			<Position x="68.5753" y="44.8" z="27.035" />
 			<Orientation angle="-3.03693" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/rome_isp_e.xml</Actor>
+			<Actor>units/romans/infantry_spearman_e.xml</Actor>
 			<Position x="70.6567" y="44.8" z="27.3685" />
 			<Orientation angle="-3.03588" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/rome_isw_a.xml</Actor>
+			<Actor>units/romans/infantry_swordsman_a.xml</Actor>
 			<Position x="72.8336" y="44.8" z="27.5222" />
 			<Orientation angle="-3.14084" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/rome_isw_e.xml</Actor>
+			<Actor>units/romans/infantry_swordsman_e.xml</Actor>
 			<Position x="74.7067" y="44.8" z="27.898" />
 			<Orientation angle="-3.14088" />
 		</Nonentity>

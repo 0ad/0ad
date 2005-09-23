@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>structural/hele_pc.pmd</mesh>
+      <props>
+        <prop actor="props/structures/hellenes/dock.xml" attachpoint="props_main"/>
+      </props>
+      <texture>structural/hele_struct_1.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

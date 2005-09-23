@@ -21,9 +21,9 @@ const oBerryBush = "wrld_flora_berrybush";
 const oSheep = "wrld_fauna_sheep";
 const oDeer = "wrld_fauna_deer";
 const oMine = "wrld_rock_light";
-const oGrass = "foliage/grass_tufts_a.xml";
-const oReeds = "foliage/reeds_a.xml";
-const oDecorativeRock = "geology/rock_gray1.xml";
+const oGrass = "props/flora/grass_tufts_a.xml";
+const oReeds = "props/flora/reeds_a.xml";
+const oDecorativeRock = "geology/gray1.xml";
 
 // some utility functions to save typing
 

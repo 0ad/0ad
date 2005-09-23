@@ -7,7 +7,7 @@ const tSand = "desert_rough";
 const tDunes = "desert_wave";
 const tFineSand = "desert_sahara";
 const tCliff = "cliff_desert";
-const tForest = "grass_sand_75|flora/wrld_palm_b.xml";
+const tForest = "grass_sand_75|flora/trees/palm_b.xml";
 const tGrassSand75 = "grass_sand_75";
 const tGrassSand50 = "grass_sand_50";
 const tGrassSand25 = "grass_sand_25_2";
@@ -17,13 +17,13 @@ const tShore = "sand";
 const tWater = "water_2";
 const tWaterDeep = "water_3";
 
-const oTree = "flora/wrld_palm_b.xml";
+const oTree = "flora/trees/palm_b.xml";
 const oBerryBush = "wrld_flora_berrybush";
-const oBush = "foliage/bush_dry_a.xml";
+const oBush = "props/flora/bush_dry_a.xml";
 const oSheep = "wrld_fauna_sheep";
 const oDeer = "wrld_fauna_deer";
 const oMine = "wrld_rock_light";
-const oDecorativeRock = "geology/rock_gray1.xml";
+const oDecorativeRock = "geology/gray1.xml";
 
 // some utility functions to save typing
 

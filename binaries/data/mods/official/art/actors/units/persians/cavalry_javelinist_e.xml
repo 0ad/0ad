@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <animations>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
+        <animation file="quadraped/horse_gallop.psa" name="Walk" speed="17"/>
+      </animations>
+      <mesh>skeletal/horse.pmd</mesh>
+      <props>
+        <prop actor="units/persians/cavalry_javelinist_e_r.xml" attachpoint="rider"/>
+      </props>
+      <texture>skeletal/horse_black_a.dds</texture>
+    </variant>
+  </group>
+
+</actor>

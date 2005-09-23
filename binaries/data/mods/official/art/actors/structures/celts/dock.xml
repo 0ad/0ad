@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <animations/>
+      <mesh>structural/celt_pc.pmd</mesh>
+      <props>
+        <prop actor="props/structures/celts/portcentre_prop.xml" attachpoint="PropCandyA"/>
+      </props>
+      <texture>structural/celt_struct_1.dds</texture>
+    </variant>
+  </group>
+
+</actor>

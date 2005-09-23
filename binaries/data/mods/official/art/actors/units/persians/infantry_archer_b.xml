@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <animations>
+        <animation file="biped/dudeidle.psa" name="Idle" speed="200"/>
+        <animation file="biped/dudewalk_swordshield.psa" name="Walk" speed="20"/>
+        <animation event="0.50" file="biped/dudebuild.psa" name="Build" speed="150"/>
+        <animation event="0.50" file="biped/dudechop.psa" name="Chop" speed="150"/>
+        <animation file="biped/inf_death_a.psa" name="Death" speed="200"/>
+        <animation file="biped/inf_death_b.psa" name="Death" speed="200"/>
+        <animation file="biped/inf_death_c.psa" name="Death" speed="200"/>
+        <animation file="biped/inf_death_d.psa" name="Death" speed="200"/>
+        <animation file="biped/inf_death_e.psa" name="Death" speed="200"/>
+        <animation event="0.86" file="biped/inf_arch_atk_a.psa" load="0.16" name="Attack" speed="100"/>
+      </animations>
+      <mesh>skeletal/m_tunic_b.pmd</mesh>
+      <props>
+        <prop actor="props/temp/pers_sign_infantry_archer_b.xml" attachpoint="head_extra"/>
+        <prop actor="props/units/heads/placeholder_head_pers.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="l_hand"/>
+        <prop actor="props/temp/quiver.xml" attachpoint="back"/>
+        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-r_hand"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+      </props>
+      <texture>skeletal/plac_pers_b.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="100" name="Default"/>
+    <variant frequency="0" name="Build">
+      <prop actor="props/units/tools/prop_mallet.xml" attachpoint="r_hand"/>
+      <prop actor="" attachpoint="l_hand"/>
+    </variant>
+    <variant frequency="0" name="Chop">
+      <prop actor="props/units/tools/handaxe.xml" attachpoint="r_hand"/>
+      <prop actor="" attachpoint="l_hand"/>
+    </variant>
+  </group>
+
+  <loading attachpoint="r_hand"/>
+
+</actor>

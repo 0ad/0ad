@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <group>
+    <variant name="base">
+      <mesh>props/shield/pelta_a_f.pmd</mesh>
+      <props>
+        <prop actor="props/units/shields/pelta_a_back.xml" attachpoint="back"/>
+      </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant name="D">
+      <texture>props/shield/hele_pelta_d.dds</texture>
+    </variant>
+    <variant name="I">
+      <texture>props/shield/hele_pelta_i.dds</texture>
+    </variant>
+    <variant name="L">
+      <texture>props/shield/hele_pelta_l.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

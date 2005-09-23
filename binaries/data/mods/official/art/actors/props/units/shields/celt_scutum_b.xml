@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <group>
+    <variant name="Base">
+      <mesh>props/shield/scutum_c_f.pmd</mesh>
+      <props>
+        <prop actor="props/units/shields/scutum_back.xml" attachpoint="back"/>
+      </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant name="A">
+      <texture>props/shield/celt_oval1_a.dds</texture>
+    </variant>
+    <variant name="B">
+      <texture>props/shield/celt_oval1_b.dds</texture>
+    </variant>
+    <variant name="C">
+      <texture>props/shield/celt_oval1_c.dds</texture>
+    </variant>
+    <variant name="D">
+      <texture>props/shield/celt_oval1_d.dds</texture>
+    </variant>
+    <variant name="E">
+      <texture>props/shield/celt_oval1_e.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant name="Base">
+      <animations>
+        <animation file="biped/dudeidle.psa" name="Idle" speed="200"/>
+        <animation file="biped/dudewalk_swordshield.psa" name="Walk" speed="20"/>
+        <animation file="biped/dudebuild.psa" name="Build" speed="150"/>
+        <animation file="biped/dudechop.psa" name="Chop" speed="150"/>
+        <animation file="biped/dudedeath_sword.psa" name="Death" speed="200"/>
+        <animation file="biped/dudedecay_sword.psa" name="Decay" speed="100"/>
+        <animation event="0.5" file="biped/inf_sword_shield_atk_a.psa" name="Attack" speed="100"/>
+        <animation event="0.5" file="biped/inf_sword_shield_atk_b.psa" name="Attack" speed="100"/>
+        <animation event="0.5" file="biped/inf_sword_shield_atk_c.psa" name="Attack" speed="100"/>
+      </animations>
+      <mesh>skeletal/m_pants_c.pmd</mesh>
+      <props>
+        <prop actor="props/units/heads/head_celt.xml" attachpoint="head"/>
+        <prop actor="props/units/shields/celt_scutum.xml" attachpoint="shield"/>
+        <prop actor="props/units/weapons/csword.xml" attachpoint="r_hand"/>
+      </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant>
+      <texture>skeletal/celt_isw_b_01.dds</texture>
+    </variant>
+    <variant>
+      <texture>skeletal/celt_isw_b_02.dds</texture>
+    </variant>
+    <variant>
+      <texture>skeletal/celt_isw_b_03.dds</texture>
+    </variant>
+    <variant>
+      <texture>skeletal/celt_isw_b_04.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>
