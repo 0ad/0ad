@@ -22,7 +22,7 @@
 #include "SHCoeffs.h"
 #include "Terrain.h"
 #include "Singleton.h"
-#include "overlay.h"
+#include "Overlay.h"
 
 // necessary declarations
 class CCamera;
