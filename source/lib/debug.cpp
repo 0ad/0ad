@@ -350,7 +350,7 @@ ErrorReaction display_error(const wchar_t* description, int flags,
 	// display in output window; double-click will navigate to error location.
 	const char* slash = strrchr(file, DIR_SEP);
 	const char* filename = slash? slash+1 : file;
-	debug_wprintf(L"%hs(%d): %s\n", filename, line, description);
+	debug_wprintf(L"%hs(%d): %ls\n", filename, line, description);
 
 	// allocate memory for the stack trace. this needs to be quite large,
 	// so preallocating is undesirable. it must work even if the heap is

@@ -421,10 +421,39 @@ void debug_heap_enable(DebugHeapChecks what)
 
 void debug_wprintf(const wchar_t* fmt, ...)
 {
+	wchar_t buf[512];
+	int ret;
+	
 	va_list args;
 	va_start(args, fmt);
-	vwprintf(fmt, args);
+	ret = vswprintf(buf, ARRAY_SIZE(buf), fmt, args);
 	va_end(args);
+	
+	if (ret < 0)
+	{
+		char errbuf[256];
+		strerror_r(errno, errbuf, ARRAY_SIZE(errbuf));
+		printf("debug_wprintf: %s (%ls)\n", errbuf, fmt);
+		fflush(stdout);
+		return;
+	}
+	
+	// According to fwide(3) and assorted manpage, FILEs are in single character or in
+	// wide character mode. When a FILE is in single character mode, wide character writes
+	// will fail, and no conversion is done automatically. Thus the manual conversion.
+	size_t convbuflen = wcstombs(NULL, buf, 0)+1;
+	char* convbuf = (char*)malloc(convbuflen);
+	ret = wcstombs(convbuf, buf, convbuflen);
+	
+	if (ret < 0 || ret >= convbuflen) {
+		printf("debug_wprintf: wcstombs failed\n");
+		free(convbuf);
+		fflush(stdout);
+		return;
+	}
+	
+	fputs(convbuf, stdout);
+	free(convbuf);
 	fflush(stdout);
 }
 
