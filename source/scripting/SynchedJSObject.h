@@ -142,8 +142,8 @@ protected:
 	template <typename T> void AddSynchedProperty(CStrW name, T *native, UpdateFn update=NULL)
 	{
 		ISynchedJSProperty *prop=new CSynchedJSProperty<T>(name, native, this, update);
-		m_NonsharedProperties[name]=prop;
-		m_SynchedProperties[name]=prop;
+		this->m_NonsharedProperties[name]=prop;
+		this->m_SynchedProperties[name]=prop;
 	}
 };
 

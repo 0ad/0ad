@@ -237,7 +237,7 @@ private:
 		typedef typename std::map<T,P>::iterator iterator;
 		~SDMap()
 		{
-			for (iterator it = begin(); it != end(); ++it) delete it->second;
+			for (iterator it = this->begin(); it != this->end(); ++it) delete it->second;
 		}
 	};
 
