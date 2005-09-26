@@ -377,8 +377,11 @@ static int writeCppPackage(Package* package)
 			{
 				/*	nasm -f elf -o $@ $<
 					nasm -M -o $@ $< >OBJ_DIR/$*.P */
-				fprintf(file, "\t%snasm -f elf -o $@ $<\n", prefix);
-				fprintf(file, "\t%snasm -M -o $@ $< >$(<F).d\n", prefix);
+				const char *extraOpts="";
+				if (strcmp(osIdent, "windows"))
+					extraOpts="-dDONT_USE_UNDERLINE=1";
+				fprintf(file, "\t%snasm %s -f elf -o $@ $<\n", prefix, extraOpts);
+				fprintf(file, "\t%snasm %s -M -o $@ $< >$(<F).d\n", prefix, extraOpts);
 			}
 			else
 				fprintf(file, "\t%s$(CXX) $(CXXFLAGS) -MD -o $@ -c $<\n", prefix);
