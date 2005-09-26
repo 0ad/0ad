@@ -333,7 +333,6 @@ function refreshCommandButtons()
 			guiHide("snStatusPaneCommand" + "Group" + commandClearLoop);
 		}
 	}
-
 /*
 	// Update production queue.
 	GUIObject = getGUIObjectByName("snStatusPaneCommandProgress");

@@ -60,10 +60,10 @@ function addCrd (name, group, rx, ry, x, y, width, height)
 // Return coordinate object with a given name.
 function getCrd (name)
 {
-	for (loop = 0; loop < Crd.last; loop++)
+	for (getCrdLoop = 0; getCrdLoop <= Crd.last; getCrdLoop++)
 	{
-		if (Crd[loop].name == name)
-			return Crd[loop];
+		if (Crd[getCrdLoop].name == name)
+			return Crd[getCrdLoop];
 	}
 
 	console.write ("Coordinate " + name + " not found in call to getCrd().");

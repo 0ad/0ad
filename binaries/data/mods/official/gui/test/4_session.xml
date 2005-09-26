@@ -55,21 +55,98 @@
 		</object>
 
 		<!-- GROUP: MINIMAP -->
-		<object name="snMiniMap"
-			style="snObject"
-			type="minimap"
+		<object	name="snMiniMap"
 			hotkey="session.minimap.toggle"
 		>
-			<action on="Load"><![CDATA[
-				addCrd (this.name, rb, 100, 100, 0, 0, 180, 180);
-				addCrd (this.name, lb, 0, 100);	
-				addCrd (this.name, lt, 0, 0);
-				addCrd (this.name, rt, 100, 0);
-			]]></action>
-
 			<action on="Press"><![CDATA[
 				guiToggle (this.name);
 			]]></action>
+
+			<object	name="snMiniMapBorder"
+				style="skin*Hele*Window"
+				type="image"
+			>
+				<action on="Load"><![CDATA[
+					addCrd (this.name, rb, 100, 100, 0, 0, 180, 180);
+					addCrd (this.name, lb, 0, 100);	
+					addCrd (this.name, lt, 0, 0);
+					addCrd (this.name, rt, 100, 0);
+				]]></action>
+
+				<object name="snMiniMapDisplay"
+					style="snObject"
+					type="minimap"
+				>
+					<action on="Load"><![CDATA[
+						addCrd (this.name, rb, 100, 100, 5, 5, 170, 170);
+						addCrd (this.name, lb, 0, 100);	
+						addCrd (this.name, lt, 0, 0);
+						addCrd (this.name, rt, 100, 0);
+					]]></action>
+
+					<object	name="snMiniMapEdge"
+						style="skin*Hele*BorderBlack"
+						type="image"
+						ghost="true"
+					/>
+				</object>
+			</object>
+
+			<object name="snMiniMapButtonGroup"
+				style="skin*Hele*BorderBlack"
+				type="image"
+				ghost="true"
+			>
+				<action on="Load"><![CDATA[
+					addCrd (this.name, rb, 100, 100, getCrd ("snMiniMapBorder").coord[rb].width+1, 0,
+						20, getCrd ("snMiniMapBorder").coord[rb].height);
+					addCrd (this.name, lb, 0, 100);	
+					addCrd (this.name, lt, 0, 0);
+					addCrd (this.name, rt, 100, 0);
+				]]></action>
+
+				<object name="snMiniMapButton1"
+					style="skin*Hele*Button"
+					type="button"
+				>
+				</object>
+				<object name="snMiniMapButton2"
+					style="skin*Hele*Button"
+					type="button"
+				>
+				</object>
+				<object name="snMiniMapButton3"
+					style="skin*Hele*Button"
+					type="button"
+				>
+				</object>
+				<object name="snMiniMapButton4"
+					style="skin*Hele*Button"
+					type="button"
+				>
+					<action on="Load"><![CDATA[
+						// Seek through this group of buttons (determining length from last object's name).
+						max = this.name.substring (this.name.lastIndexOf ("n")+1, this.name.length);
+						for (loop = 1; loop <= max; loop++)
+						{
+							tempName = this.name.substring (0, this.name.lastIndexOf ("n")+1) + loop;
+							// Set size/position.
+							addCrd (tempName,
+								rb, 100, 100, 0,
+								getCrd ("snMiniMapButtonGroup").coord[rb].y+(getCrd ("snMiniMapButtonGroup").coord[rb].height/max)*(loop-1),
+								getCrd ("snMiniMapButtonGroup").coord[rb].width,
+								getCrd ("snMiniMapButtonGroup").coord[rb].height/max);
+							addCrd (tempName, lb, 0, 100);	
+							addCrd (tempName, lt, 0, 0);
+							addCrd (tempName, rt, 100, 0);
+							// Set tooltip.
+							getGUIObjectByName (tempName).tooltip = "This button doesn't do anything ... yet.";
+							getGUIObjectByName (tempName).tooltip_style = "snToolTip";
+						}
+					]]></action>
+				</object>
+			</object>
+
 		</object>
 
 		<!-- GROUP: RESOURCE COUNTER -->
@@ -180,6 +257,9 @@
 					<action on="Load"><![CDATA[
 						addCrd (this.name, rb, 0, 0, 5, 5, 
 							snConst.Portrait.Lrg.Width, snConst.Portrait.Lrg.Height);
+						addCrd (this.name, lb, 100, 100);	
+						addCrd (this.name, lt, 100, 0);
+						addCrd (this.name, rt, 0, 0);
 					]]></action>
 					<action on="Press"><![CDATA[
 						// Focus the camera on the unit when his portrait is clicked.
@@ -356,7 +436,7 @@
 					]]></action>
 				</object>
 			</object>
-
+<!--
 			<object	name="snStatusPaneCommandProgress"
 				style="snPortraitProgress"
 				type="progressbar"
@@ -366,14 +446,14 @@
 					addCrd (this.name, rb, 0, 100,
 						getCrd ("snStatusPaneBkg").coord[rb].x
 							+getCrd ("snStatusPaneBkg").coord[rb].width,
-							getCrd ("snStatusPaneBkg").coord[rb].y, 
+							getCrd ("snStatusPaneBkg").coord[rb].y+getCrd ("snStatusPaneBkg").coord[rb].height, 
 								snConst.Portrait.Sml.Width, snConst.Portrait.Sml.Height);
 					addCrd (this.name, lb, 100, 100);	
 					addCrd (this.name, lt, 100, 0);
 					addCrd (this.name, rt, 0, 0);
 				]]></action>
 			</object>
-
+-->
 		</object>
 	</object>
 

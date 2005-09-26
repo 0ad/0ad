@@ -64,6 +64,22 @@
 		text_valign="top"
 	/>
 
+	<style	name="skin*Hele*BorderBlack"
+		sprite="bkBorderBlack"
+		sprite_selectarea="bkFillGray"
+		textcolor="black"
+		textcolor_selected="white"
+	/>
+
+	<style 	name="skin*Hele*Button"
+		sprite="bkGrayBorderBlack"
+		sprite_disabled="wheatButtonDisabled"
+		sprite_over="wheatButtonOver"
+		sprite_pressed="wheatButtonOver"
+		text_align="center"
+		text_valign="center"
+	/>
+
 	<!--
 	==========================================
 	- STYLE - GLOBAL - WHEAT SKIN - CONTROLS
