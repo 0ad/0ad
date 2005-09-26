@@ -106,7 +106,7 @@ int debug_write_crashlog(const wchar_t* text)
 
 	fputwc(0xfeff, f);	// BOM
 
-	fwprintf(f, L"%s\n", text);
+	fwprintf(f, L"%ls\n", text);
 	WRITE_DIVIDER
 
 
@@ -120,7 +120,7 @@ int debug_write_crashlog(const wchar_t* text)
 	cat_atow(f, "../logs/mainlog.html");
 	WRITE_DIVIDER
 
-	fwprintf(f, L"Last known activity:\n\n %s\n", debug_log);
+	fwprintf(f, L"Last known activity:\n\n %ls\n", debug_log);
 
 	fclose(f);
 	return 0;
@@ -372,7 +372,7 @@ ErrorReaction display_error(const wchar_t* description, int flags,
 	// alloc succeeded; proceed
 	if(text)
 	{
-		static const wchar_t fmt[] = L"%s\r\n\r\nCall stack:\r\n\r\n";
+		static const wchar_t fmt[] = L"%ls\r\n\r\nCall stack:\r\n\r\n";
 		int len = swprintf(text, max_chars, fmt, description);
 		// paranoia - only dump stack if this string output succeeded.
 		if(len >= 0)
