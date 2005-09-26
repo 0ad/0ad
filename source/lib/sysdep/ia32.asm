@@ -3,6 +3,16 @@ section .data use32
 section .bss use32
 section .text use32
 
+; Usage:
+; use sym(ia32_cap) instead of _ia32_cap - on relevant platforms, sym() will add
+; the underlines automagically, on others it won't
+
+%ifdef DONT_USE_UNDERLINE
+%define sym(a) a
+%else
+%define sym(a) _ %+ a
+%endif
+
 ;-------------------------------------------------------------------------------
 ; fast general memcpy
 ;-------------------------------------------------------------------------------
@@ -225,8 +235,8 @@ sse_mask		resd	1
 __SECT__
 
 ; void __declspec(naked) ia32_memcpy(void* dst, const void* src, size_t nbytes)
-global _ia32_memcpy
-_ia32_memcpy:
+global sym(ia32_memcpy)
+sym(ia32_memcpy):
 	push	edi
 	push	esi
 
@@ -288,8 +298,8 @@ __SECT__
 
 
 ; extern "C" bool __cdecl ia32_cpuid(u32 func, u32* regs)
-global _ia32_cpuid
-_ia32_cpuid:
+global sym(ia32_cpuid)
+sym(ia32_cpuid):
 	push	ebx
 	push	edi
 
@@ -331,8 +341,8 @@ _ia32_cpuid:
 ;-------------------------------------------------------------------------------
 
 ; extern "C" uint __cdecl ia32_control87(uint new_cw, uint mask)
-global _ia32_control87
-_ia32_control87:
+global sym(ia32_control87)
+sym(ia32_control87):
 	push	eax
 	fnstcw	[esp]
 	pop		eax							; old_cw
@@ -353,8 +363,8 @@ _ia32_control87:
 ;-------------------------------------------------------------------------------
 	
 ; extern "C" bool __cdecl ia32_init()
-global _ia32_init
-_ia32_init:
+global sym(ia32_init)
+sym(ia32_init):
 	push	ebx
 
 	; check if CPUID is supported
@@ -379,9 +389,9 @@ _ia32_init:
 .no_cpuid:
 
 	; check if SSE is supported (used by memcpy code)
-extern _ia32_cap
+extern sym(ia32_cap)
 	push	byte 32+25					; ia32.h's SSE cap (won't change)
-	call	_ia32_cap
+	call	sym(ia32_cap)
 	pop		edx							; remove stack param
 	neg		eax							; SSE? ~0 : 0
 	mov		[sse_mask], eax

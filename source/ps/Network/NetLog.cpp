@@ -51,7 +51,7 @@ void CNetLog::Open(const char *filename)
 		
 		fprintf(m_pFile, "\n\n***************************************************\n");
 		fprintf(m_pFile, "LOG STARTED: %04d-%02d-%02d at %02d:%02d:%02d\n",
-			1900+now->tm_year, now->tm_mon, now->tm_mday, now->tm_hour,
+			1900+now->tm_year, now->tm_mon+1, now->tm_mday, now->tm_hour,
 			now->tm_min, now->tm_sec);
 		fprintf(m_pFile, "Timestamps are in seconds since engine startup\n\n");
 	}

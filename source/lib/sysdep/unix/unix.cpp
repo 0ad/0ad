@@ -1,11 +1,15 @@
 #include "precompiled.h"
 
+#include <unistd.h>
 #include <stdio.h>
 #include <wchar.h>
 
 #include "lib.h"
 #include "sysdep/sysdep.h"
 #include "udbg.h"
+
+#define GNU_SOURCE
+#include <dlfcn.h>
 
 // these are basic POSIX-compatible backends for the sysdep.h functions.
 // Win32 has better versions which override these.
@@ -23,14 +27,33 @@ void wdisplay_msg(const wchar_t* caption, const wchar_t* msg)
 
 int get_executable_name(char* n_path, size_t buf_size)
 {
-	UNUSED(n_path);
-	UNUSED(buf_size);
-	return -ENOSYS;
+	Dl_info dl_info;
+
+	memset(&dl_info, 0, sizeof(dl_info));
+	if (!dladdr((void *)get_executable_name, &dl_info) ||
+		!dl_info.dli_fname )
+	{
+		return -ENOSYS;
+	}
+
+	strncpy(n_path, dl_info.dli_fname, buf_size);
+	return 0;
+}
+
+extern int cpus;
+int unix_get_cpu_info()
+{
+	long res = sysconf(_SC_NPROCESSORS_CONF);
+	if (res == -1)
+		cpus = 1;
+	else
+		cpus = (int)res;
+	return 0;
 }
 
 ErrorReaction display_error_impl(const wchar_t* text, int flags)
 {
-	wprintf(L"%s\n", text);
+	printf("%ls\n\n", text);
 
 	const bool manual_break   = flags & DE_MANUAL_BREAK;
 	const bool allow_suppress = flags & DE_ALLOW_SUPPRESS;

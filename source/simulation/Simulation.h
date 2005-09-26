@@ -39,9 +39,12 @@ public:
 	// Perform all CSimulation updates for the specified elapsed time.
 	void Update(double frameTime);
 
-	static uint GetMessageMask(CNetMessage *, uint, void *);
+	// Calculate the message mask of a message to be queued
+	static uint GetMessageMask(CNetMessage *, uint oldMask, void *userdata);
+	
 	// Translate the command message into an entity order and queue it
-	static uint TranslateMessage(CNetMessage *, uint, void *);
+	// Returns oldMask
+	static uint TranslateMessage(CNetMessage *, uint oldMask, void *userdata);
 
 	void QueueLocalCommand(CNetMessage *pMsg);
 };

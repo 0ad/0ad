@@ -112,8 +112,7 @@ void* debug_get_nth_caller(uint n, void *context)
 	int bt_size;
 	
 	bt_size=backtrace(bt, n+2);
-	// oops - out of stack frames
-	debug_assert((bt_size >= n+2) && "Hrmm.. Not enough stack frames to backtrace!");
+	assert(bt_size >= n+2 && "Need at least n+2 frames in get_nth_caller");
 	return bt[n+1]; // n==1 => bt[2], and so forth
 }
 
@@ -130,13 +129,13 @@ const wchar_t* debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void*
 	wchar_t *bufend = buf + max_chars;
 	
 	bt_size=backtrace(bt, ARRAY_SIZE(bt));
-	// oops - out of stack frames
-	debug_assert((bt_size >= ARRAY_SIZE(bt)) && "Hrmm.. Not enough stack frames to backtrace!");
+	// did we get enough backtraced frames?
+	assert((bt_size >= skip) && "Need at least <skip> frames in the backtrace");
 
 	// Assumed max length of a single print-out
 	static const uint MAX_OUT_CHARS=1024;
 
-	for (uint i=skip;i<(skip+N_FRAMES) && bufpos+MAX_OUT_CHARS < bufend;i++)
+	for (uint i=skip;i<bt_size && bufpos+MAX_OUT_CHARS < bufend;i++)
 	{
 		char file[DBG_FILE_LEN];
 		char symbol[DBG_SYMBOL_LEN];
@@ -144,9 +143,9 @@ const wchar_t* debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void*
 		uint len;
 		
 		if (debug_resolve_symbol(bt[i], symbol, file, &line) == 0)
-			len = swprintf(bufpos, MAX_OUT_CHARS, L"(%p) %hs:%d %hs\n", bt[i], file, line, symbol);
+			len = swprintf(bufpos, MAX_OUT_CHARS, L"(0x%08x) %hs:%d %hs\n", bt[i], file, line, symbol);
 		else
-			len = swprintf(bufpos, MAX_OUT_CHARS, L"(%p)\n", bt[i]);
+			len = swprintf(bufpos, MAX_OUT_CHARS, L"(0x%08x)\n", bt[i]);
 		
 		if (len < 0)
 		{
@@ -176,7 +175,19 @@ static int slurp_symtab(symbol_file_context *ctx)
 		return -1;
 	}
 
-	symcount = bfd_read_minisymbols (abfd, FALSE, (void **)syms, &size);
+	size = bfd_get_symtab_upper_bound(abfd);
+	if (size < 0)
+	{
+		bfd_perror("symtab_upper_bound");
+		return -1;
+	}
+	*syms = (asymbol **)malloc(size);
+	if (!syms)
+		return -1;
+	symcount = bfd_canonicalize_symtab(abfd, *syms);
+
+	if (symcount == 0)
+		symcount = bfd_read_minisymbols (abfd, FALSE, (void **)syms, &size);
 	if (symcount == 0)
 		symcount = bfd_read_minisymbols (abfd, TRUE /* dynamic */, (void **)syms, &size);
 

@@ -36,6 +36,8 @@
 extern int win_get_gfx_info();
 extern int win_get_cpu_info();
 extern int win_get_snd_info();
+#elif OS_UNIX
+extern int unix_get_cpu_info();
 #endif
 
 extern "C" int ogl_get_gfx_info();
@@ -130,6 +132,8 @@ void get_cpu_info()
 {
 #if OS_WIN
 	win_get_cpu_info();
+#elif OS_UNIX
+	unix_get_cpu_info();
 #endif
 
 #if CPU_IA32
