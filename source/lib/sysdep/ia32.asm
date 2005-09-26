@@ -356,7 +356,7 @@ sym(ia32_control87):
 	fldcw	[esp]
 	pop		edx
 	xor		eax, eax					; return value
-	
+	ret
 	
 ;-------------------------------------------------------------------------------
 ; init
