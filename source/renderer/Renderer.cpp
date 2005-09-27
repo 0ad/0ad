@@ -74,7 +74,7 @@ CRenderer::CRenderer()
 
 	m_RenderWater = true;
 	m_WaterHeight = 5.0f;
-	m_WaterColor = CColor(0.34f, 0.56f, 0.73f, 1.0f);
+	m_WaterColor = CColor(0.40f, 0.68f, 0.95f, 1.0f);
 	m_WaterFullDepth = 6.0f;
 	m_WaterMaxAlpha = 0.9f;
 	m_WaterAlphaOffset = -0.05f;
@@ -90,7 +90,7 @@ CRenderer::CRenderer()
 	for (int x=0; x<60; x++)
 	{
 		char waterName[1000];
-		sprintf(waterName, "art/textures/terrain/types/water/animation1/water%02d.dds", x+1);
+		sprintf(waterName, "art/textures/terrain/types/water/animation2/water%02d.dds", x+1);
 		m_WaterTexture[x]=ogl_tex_load(waterName);
 		if (m_WaterTexture[x] <= 0)
 		{
@@ -828,8 +828,9 @@ void CRenderer::RenderWater()
 	glEnable(GL_TEXTURE_2D);
 
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR_ARB);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PRIMARY_COLOR_ARB);
