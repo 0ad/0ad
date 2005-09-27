@@ -451,11 +451,6 @@ static void CALL_CONV emulate_glCompressedTexImage2D(
 	Tex t;
 	const uint flags = dxt;
 	(void)tex_wrap((uint)w, (uint)h, s3tc_bpp, flags, (void*)data, &t);
-	// .. hack: prevent <data> from being freed when tex_transform
-	//    replaces previous hm with the new transformed buffer.
-	//    (important because mipmapped images share the same mem alloc and
-	//    there's no way we know when to free that)
-	h_add_ref(t.hm);
 	(void)tex_transform(&t, TEX_DXT);
 
 	// uncompressed RGB[A] format info

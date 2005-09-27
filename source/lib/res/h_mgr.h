@@ -320,6 +320,7 @@ typedef H_VTbl* H_Type;
 
 // resource scope
 // used together with flags (e.g. in mem), so no separate type
+/*
 enum
 {
 	RES_TEMP   = 1,
@@ -328,19 +329,24 @@ enum
 };
 
 #define RES_SCOPE_MASK 7
+*/
 
 // h_alloc flags
 enum
 {
 	// alias for RES_TEMP scope. the handle will not be kept open.
-	RES_NO_CACHE = 1,
+	RES_NO_CACHE = 0x01,
 
 	// not cached, and will never reuse a previous instance
-	RES_UNIQUE = RES_NO_CACHE|16,
+	RES_UNIQUE = RES_NO_CACHE|0x10,
 
 	// the resource isn't backed by a file. the fn parameter is treated as the search key (uintptr_t)
 	// currently only used by mem manager
-	RES_KEY = 8
+	RES_KEY = 0x08,
+
+	// object is requesting it never be reloaded (e.g. because it's not
+	// backed by a file)
+	RES_DISALLOW_RELOAD = 0x20
 };
 
 

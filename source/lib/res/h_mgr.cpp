@@ -131,14 +131,15 @@ struct HDATA
 	// smaller bitfields combined into 1
 	u32 refs : REF_BITS;
 	u32 type_idx : TYPE_BITS;
+	// .. if set, do not actually release the resource (i.e. call dtor)
+	//    when the handle is h_free-d, regardless of the refcount.
+	//    set by h_alloc; reset on exit and by housekeeping.
 	u32 keep_open : 1;
-		// if set, do not actually release the resource (i.e. call dtor)
-		// when the handle is h_free-d, regardless of the refcount.
-		// set by h_alloc; reset on exit and by housekeeping.
+	// .. HACK: prevent adding to h_find lookup index if flags & RES_UNIQUE
+	//    (because those handles might have several instances open,
+	//    which the index can't currently handle)
 	u32 unique : 1;
-		// HACK: prevent adding to h_find lookup index if flags & RES_UNIQUE
-		// (because those handles might have several instances open,
-		// which the index can't currently handle)
+	u32 disallow_reload : 1;
 
 	H_Type type;
 	
@@ -600,6 +601,8 @@ static Handle alloc_new_handle(H_Type type, const char* fn, uintptr_t key,
 	hd->refs = 1;
 	if(!(flags & RES_NO_CACHE))
 		hd->keep_open = 1;
+	if(flags & RES_DISALLOW_RELOAD)
+		hd->disallow_reload = 1;
 	hd->unique = (flags & RES_UNIQUE) != 0;
 	hd->fn = 0;
 	// .. filename is valid - store in hd
@@ -694,6 +697,7 @@ const char* h_filename(const Handle h)
 }
 
 
+// TODO: what if iterating through all handles is too slow?
 int h_reload(const char* fn)
 {
 	if(!fn)
@@ -704,26 +708,25 @@ int h_reload(const char* fn)
 
 	const u32 key = fnv_hash(fn);
 
-	i32 i;
 	// destroy (note: not free!) all handles backed by this file.
 	// do this before reloading any of them, because we don't specify reload
 	// order (the parent resource may be reloaded first, and load the child,
 	// whose original data would leak).
-	for(i = 0; i <= last_in_use; i++)
+	for(i32 i = 0; i <= last_in_use; i++)
 	{
 		HDATA* hd = h_data_from_idx(i);
-		if(hd && hd->key == key)
-			hd->type->dtor(hd->user);
+		if(!hd || hd->key != key || hd->disallow_reload)
+			continue;
+		hd->type->dtor(hd->user);
 	}
 
 	int ret = 0;
 
 	// now reload all affected handles
-	// TODO: what if iterating through all handles is too slow?
-	for(i = 0; i <= last_in_use; i++)
+	for(i32 i = 0; i <= last_in_use; i++)
 	{
 		HDATA* hd = h_data_from_idx(i);
-		if(!hd || hd->key != key)
+		if(!hd || hd->key != key || hd->disallow_reload)
 			continue;
 
 		Handle h = handle(i, hd->tag);
