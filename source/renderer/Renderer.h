@@ -78,12 +78,23 @@ private:
 	std::vector<CPatch*> m_WaterPatches;
 
 public:
-	bool m_RenderWater;
-	float m_WaterHeight;
+	Handle m_WaterTexture[60];
+	int m_WaterCurrentTex;
 	CColor m_WaterColor;
+	bool m_RenderWater;
+	bool m_WaterScroll;
+	float m_WaterHeight;
 	float m_WaterMaxAlpha;
 	float m_WaterFullDepth;
 	float m_WaterAlphaOffset;
+
+	float m_SWaterSpeed;
+	float m_TWaterSpeed;
+	float m_SWaterTrans;
+	float m_TWaterTrans;
+	float m_SWaterScrollCounter;
+	float m_TWaterScrollCounter;
+	float m_WaterTexTimer;
 
 public:
 	// various enumerations and renderer related constants

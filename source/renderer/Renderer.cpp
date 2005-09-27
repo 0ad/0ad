@@ -74,10 +74,48 @@ CRenderer::CRenderer()
 
 	m_RenderWater = true;
 	m_WaterHeight = 5.0f;
-	m_WaterColor = CColor(2.0f/255.0f, 154.0f/255.0f, 187.0f/255.0f, 1.0f);
+	m_WaterColor = CColor(0.34f, 0.56f, 0.73f, 1.0f);
 	m_WaterFullDepth = 6.0f;
-	m_WaterMaxAlpha = 0.8f;
+	m_WaterMaxAlpha = 0.9f;
 	m_WaterAlphaOffset = -0.05f;
+
+	m_SWaterTrans=0;
+	m_TWaterTrans=0;
+	m_SWaterSpeed=0.0015f;
+	m_TWaterSpeed=0.0015f;
+	m_SWaterScrollCounter=0;
+	m_TWaterScrollCounter=0;
+	m_WaterCurrentTex=0;
+	
+	for (int x=0; x<60; x++)
+	{
+		char waterName[1000];
+		sprintf(waterName, "art/textures/terrain/types/water/animation1/water%02d.dds", x+1);
+		m_WaterTexture[x]=ogl_tex_load(waterName);
+		if (m_WaterTexture[x] <= 0)
+		{
+			LOG(ERROR, LOG_CATEGORY, "LoadTexture failed on \"%s\"", waterName);
+			ogl_tex_free(m_WaterTexture[x]);
+		} 
+		else
+		{
+			int tw=0,th=0;
+			(void)ogl_tex_get_size(m_WaterTexture[x], &tw, &th, 0);
+			if(!is_pow2(tw) || !is_pow2(th)) 
+			{
+				LOG(ERROR, LOG_CATEGORY, "LoadTexture failed on \"%s\" : not a power of 2 texture",waterName);
+				ogl_tex_free(m_WaterTexture[x]);
+			}
+			else 
+			{
+				ogl_tex_bind(m_WaterTexture[x]);
+				ogl_tex_upload(m_WaterTexture[x], GL_LINEAR_MIPMAP_LINEAR);
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+			}
+		}
+	}
+		
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -772,8 +810,34 @@ void CRenderer::RenderWater()
 	glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
-	glDisable(GL_TEXTURE_2D);
 	glDepthMask(false);
+
+	float time = (float) get_time();
+
+	float period = 1.6f;
+	int curTex = (int)(fmod(time, period)*(60/period));
+	ogl_tex_bind(m_WaterTexture[curTex], 0);
+
+	glMatrixMode(GL_TEXTURE);
+	glLoadIdentity();
+	float tx = -fmod(time, 20.0f)/20.0f;
+	float ty = fmod(time, 35.0f)/35.0f;
+	glTranslatef(tx, ty, 0);
+
+	glActiveTextureARB(GL_TEXTURE0);
+	glEnable(GL_TEXTURE_2D);
+
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PRIMARY_COLOR_ARB);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+	
+	// Set the proper LOD bias
+	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, m_Options.m_LodBias);
+
 
 	glBegin(GL_QUADS);
 
@@ -813,17 +877,56 @@ void CRenderer::RenderWater()
 					float terrainHeight = terrain->getExactGroundLevel(vertX, vertZ);
 					float alpha = clamp((m_WaterHeight - terrainHeight) / m_WaterFullDepth + m_WaterAlphaOffset,
 										-100.0f, m_WaterMaxAlpha);
-					glColor4f(m_WaterColor.r, m_WaterColor.g, m_WaterColor.b, alpha);
+					glColor4f(m_WaterColor.r, m_WaterColor.g, m_WaterColor.b, alpha);	
+					glMultiTexCoord2fARB(GL_TEXTURE0, vertX/16.0f, vertZ/16.0f);
 					glVertex3f(vertX, m_WaterHeight, vertZ);
 				}
-			}
+			}	//end of x loop
+		}	//end of z loop
+	}
+	
+	glEnd();
+
+	/*
+	//Don't add of we don't need to
+	if (m_WaterScroll == true)
+	{
+		m_SWaterScrollCounter+=get_time();
+		m_TWaterScrollCounter+=get_time();
+	
+		if(m_SWaterScrollCounter >=.02)
+		{	
+			m_SWaterScrollCounter=0;
+			m_SWaterTrans+=m_SWaterSpeed;
+		}
+		
+		if(m_TWaterScrollCounter >=.02)
+		{	
+			m_TWaterScrollCounter=0;
+			m_TWaterTrans+=m_TWaterSpeed;
 		}
 	}
 
-	glEnd();
+	//--------Reset counters--------
+	//will someone play this long though?
+	
+	if(m_SWaterTrans >= 4)	
+	{
+		m_SWaterTrans=0;
+	}
+	
+	if(m_TWaterTrans >= 4)
+	{
+		m_TWaterTrans=0;
+	}*/
+
+	
+	glLoadIdentity();
+	glMatrixMode(GL_MODELVIEW);
 
 	glDepthMask(true);
 	glDisable(GL_BLEND);
+	glDisable(GL_TEXTURE_2D);
 }
 
 
