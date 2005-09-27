@@ -638,12 +638,12 @@ static int mmap_mem(void* start, size_t len, int prot, int flags, int fd, void**
 	{
 		MEMORY_BASIC_INFORMATION mbi;
 		BOOL ok = VirtualQuery(start, &mbi, len);
-		debug_assert(ok);	// todo4
+debug_assert(ok);	// todo4
 		DWORD state = mbi.State;
 		if(state == MEM_COMMIT)
 		{
 			ok = VirtualFree(start, len, MEM_DECOMMIT);
-			debug_assert(ok);
+debug_assert(ok);
 			*pp = 0;
 			return 0;
 		}

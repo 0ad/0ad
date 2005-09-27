@@ -305,7 +305,7 @@ static i64 ticks_lk()
 		{
 		LARGE_INTEGER i;
 		BOOL ok = QueryPerformanceCounter(&i);
-		debug_assert(ok);	// shouldn't fail if it was chosen above
+		WARN_IF_FALSE(ok);	// shouldn't fail if it was chosen above
 		return i.QuadPart;
 		}
 #endif

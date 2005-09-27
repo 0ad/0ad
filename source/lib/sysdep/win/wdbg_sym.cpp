@@ -125,8 +125,6 @@ static ULONG64 mod_base;
 // for StackWalk64; taken from PE header by wdbg_init.
 static WORD machine;
 
-static const STACKFRAME64* current_stackframe64;
-
 // call on-demand (allows handling exceptions raised before win.cpp
 // init functions are called); no effect if already initialized.
 static int sym_init()
@@ -138,10 +136,24 @@ static int sym_init()
 
 	hProcess = GetCurrentProcess();
 
-	SymSetOptions(SYMOPT_DEFERRED_LOADS/*/*|SYMOPT_DEBUG*/);
-	// loads symbols for all active modules.
-	BOOL ok = SymInitialize(hProcess, 0, TRUE);
-	debug_assert(ok);
+	// set options
+	// notes:
+	// - can be done before SymInitialize; we do so in case
+	//   any of the options affect it.
+	// - do not set directly - that would zero any existing flags.
+	DWORD opts = SymGetOptions();
+	opts |= SYMOPT_DEFERRED_LOADS;	// the "fastest, most efficient way"
+	//opts |= SYMOPT_DEBUG;	// lots of debug spew in output window
+	SymSetOptions(opts);
+
+	// initialize dbghelp.
+	// .. request symbols from all currently active modules be loaded.
+	const BOOL fInvadeProcess = TRUE;
+	// .. use default *symbol* search path. we don't use this to locate
+	//    our PDB file because its absolute path is stored inside the EXE.
+	const char* UserSearchPath = 0;
+	BOOL ok = SymInitialize(hProcess, UserSearchPath, fInvadeProcess);
+	WARN_IF_FALSE(ok);
 
 	mod_base = SymGetModuleBase64(hProcess, (u64)&sym_init);
 	IMAGE_NT_HEADERS* header = ImageNtHeader((void*)mod_base);
@@ -882,7 +894,7 @@ static int dump_array(const u8* p,
 }
 
 
-
+static const STACKFRAME64* current_stackframe64;
 
 static int determine_symbol_address(DWORD id, DWORD UNUSED(type_id), const u8** pp)
 {

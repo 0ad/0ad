@@ -294,12 +294,13 @@ enum LibError
 // .. wrapped around the parameter name, e.g. void f(int UNUSED(x))
 #define UNUSED(param)
 
+// indicates a piece of code cannot be reached (e.g. because all
+// control paths before it end up returning). this is mostly for
+// human benefit, but it may also help optimization.
 #if MSC_VERSION
-#define UNREACHABLE __assume(0)
-#endif
-
-#ifdef __GNUC__
-#define UNREACHABLE 0
+# define UNREACHABLE __assume(0)
+#else
+# define UNREACHABLE
 #endif
 
 #define ARRAY_SIZE(name) (sizeof(name) / sizeof(name[0]))

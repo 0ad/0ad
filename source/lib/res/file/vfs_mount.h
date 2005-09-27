@@ -1,6 +1,9 @@
 #ifndef VFS_MOUNT_H__
 #define VFS_MOUNT_H__
 
+#include "file.h"
+#include "zip.h"
+
 extern void mount_init();
 extern void mount_shutdown();
 
@@ -21,10 +24,6 @@ enum MountType
 };
 
 
-struct TFile;
-#include "file.h"
-#include "zip.h"
-
 struct XIo
 {
 	enum MountType type;	// internal use only
@@ -36,6 +35,8 @@ struct XIo
 	u;
 };
 
+
+struct TFile;
 
 struct XFile
 {

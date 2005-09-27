@@ -191,7 +191,13 @@ void WriteScreenshot(const char* extension)
 
 	const size_t img_size = w * h * bpp/8;
 	const size_t hdr_size = tex_hdr_size(fn);
-	void* data = mem_alloc(hdr_size+img_size, FILE_BLOCK_SIZE);
+	Handle img_hm;
+	void* data = mem_alloc(hdr_size+img_size, FILE_BLOCK_SIZE, 0, &img_hm);
+	if(!data)
+	{
+		debug_warn("not enough memory to write screenshot");
+		return;
+	}
 	GLvoid* img = (u8*)data + hdr_size;
 
 
@@ -200,5 +206,5 @@ void WriteScreenshot(const char* extension)
 	if(tex_write(fn, w, h, bpp, flags, img) < 0)
 		debug_warn("WriteScreenshot: tex_write failed");
 
-	mem_free(img);
+	mem_free_h(img_hm);
 }

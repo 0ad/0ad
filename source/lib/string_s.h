@@ -1,12 +1,14 @@
-#ifndef STRINGS_S_H__
-#define STRINGS_S_H__
+#ifndef STRING_S_H__
+#define STRING_S_H__
 
 #include "posix_types.h"	// size_t
+#include "config.h"
 
-// these are already shipped with VC2005
-#if MSC_VERSION < 1400
+// only declare these functions if using our implementation
+// (otherwise, we risk incompatibilities)
+#if !HAVE_STRING_S
 
-// Conflicts with glibc definitions
+// (conflicts with glibc definitions)
 #if !OS_UNIX
 // return length [in characters] of a string, not including the trailing
 // null character. to protect against access violations, only the
@@ -52,7 +54,6 @@ extern int wcsncat_s(wchar_t* dst, size_t max_dst_chars, const wchar_t* src, siz
 extern int strcat_s(char* dst, size_t max_dst_chars, const char* src);
 extern int wcscat_s(wchar_t* dst, size_t max_dst_chars, const wchar_t* src);
 
+#endif	// #if !HAVE_STRING_S
 
-#endif	// #if MSC_VERSION < 1400
-
-#endif	// #ifndef STRINGS_S_H__
+#endif	// #ifndef STRING_S_H__
