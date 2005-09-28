@@ -48,6 +48,9 @@ class CGameView: public CJSObject<CGameView>
 	//float m_CameraZoom;
 	std::vector<CVector3D> m_CameraTargets;
 
+	// Accumulate zooming changes across frames for smoothness
+	float m_ZoomDelta;
+	
 	// RenderTerrain: iterate through all terrain patches and submit all patches
 	// in viewing frustum to the renderer, for terrain painting
 	void RenderTerrain(CTerrain *pTerrain);
@@ -91,6 +94,8 @@ public:
 	
 	// Render: Render the World
 	void Render();
+
+	int HandleEvent(const SDL_Event* ev);
 
 	//Keep the camera in between boundaries/smooth camera scrolling/translating
 	//Should call this whenever moving (translating) the camera

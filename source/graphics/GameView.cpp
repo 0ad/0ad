@@ -57,7 +57,8 @@ CGameView::CGameView(CGame *pGame):
 	m_ViewZoomSmoothness(0.02f),
 	m_ViewSnapSmoothness(0.02f),
 	m_CameraPivot(),
-	m_CameraDelta()
+	m_CameraDelta(),
+	m_ZoomDelta(0)
 {
 	SViewPort vp;
 	vp.m_X=0;
@@ -527,24 +528,18 @@ void CGameView::Update(float DeltaTime)
 	}
 
 	// Smoothed zooming (move a certain percentage towards the desired zoom distance every frame)
-
-	static float zoom_delta = 0.0f;
-
-	if( hotkeys[HOTKEY_CAMERA_ZOOM_WHEEL_IN] )
-		zoom_delta += m_ViewZoomSensitivityWheel;
-	else if( hotkeys[HOTKEY_CAMERA_ZOOM_WHEEL_OUT] )
-		zoom_delta -= m_ViewZoomSensitivityWheel;
+	// Note that scroll wheel zooming is event-based and handled in game_view_handler
 
 	if( hotkeys[HOTKEY_CAMERA_ZOOM_IN] )
-		zoom_delta += m_ViewZoomSensitivity*DeltaTime;
+		m_ZoomDelta += m_ViewZoomSensitivity*DeltaTime;
 	else if( hotkeys[HOTKEY_CAMERA_ZOOM_OUT] )
-		zoom_delta -= m_ViewZoomSensitivity*DeltaTime;
+		m_ZoomDelta -= m_ViewZoomSensitivity*DeltaTime;
 
-	if (fabsf(zoom_delta) > 0.1f) // use a fairly high limit to avoid nasty flickering when zooming
+	if (fabsf(m_ZoomDelta) > 0.1f) // use a fairly high limit to avoid nasty flickering when zooming
 	{
 		float zoom_proportion = powf(m_ViewZoomSmoothness, DeltaTime);
-		CameraLock(forwards * (zoom_delta * (1.0f-zoom_proportion)), false);
-		zoom_delta *= zoom_proportion;
+		CameraLock(forwards * (m_ZoomDelta * (1.0f-zoom_proportion)), false);
+		m_ZoomDelta *= zoom_proportion;
 	}
 
 
@@ -700,6 +695,11 @@ int game_view_handler(const SDL_Event* ev)
 
 	CGameView *pView=g_Game->GetView();
 
+	return pView->HandleEvent(ev);
+}
+
+int CGameView::HandleEvent(const SDL_Event* ev)
+{
 	switch(ev->type)
 	{
 
@@ -715,15 +715,26 @@ int game_view_handler(const SDL_Event* ev)
 			return( EV_HANDLED );
 
 		case HOTKEY_CAMERA_RESET_ORIGIN:
-			pView->ResetCamera();
+			ResetCamera();
 			return( EV_HANDLED );
 
 		case HOTKEY_CAMERA_RESET:
-			pView->ResetCameraOrientation();
+			ResetCameraOrientation();
 			return( EV_HANDLED );
 
 		case HOTKEY_CAMERA_ROTATE_ABOUT_TARGET:
-			pView->RotateAboutTarget();
+			RotateAboutTarget();
+			return( EV_HANDLED );
+
+		// Mouse wheel must be treated using events instead of polling,
+		// because SDL auto-generates a sequence of mousedown/mouseup events automatically 
+		// on Linux, and we never get to see the "down" state inside Update().
+		case HOTKEY_CAMERA_ZOOM_WHEEL_IN:
+			m_ZoomDelta += m_ViewZoomSensitivityWheel;
+			return( EV_HANDLED );
+				
+		case HOTKEY_CAMERA_ZOOM_WHEEL_OUT:
+			m_ZoomDelta -= m_ViewZoomSensitivityWheel;
 			return( EV_HANDLED );
 
 		default:
@@ -736,21 +747,21 @@ int game_view_handler(const SDL_Event* ev)
 				if( hotkeys[HOTKEY_CAMERA_BOOKMARK_SAVE] )
 				{
 					// Attempt to track the ground we're looking at
-					cameraBookmarks[id] = pView->GetCamera()->GetFocus();
+					cameraBookmarks[id] = GetCamera()->GetFocus();
 					bookmarkInUse[id] = true;
 				}
 				else if( hotkeys[HOTKEY_CAMERA_BOOKMARK_SNAP] )
 				{
 					if( bookmarkInUse[id] && ( currentBookmark == -1 ) )
 					{
-						pView->PushCameraTarget( cameraBookmarks[id] );
+						PushCameraTarget( cameraBookmarks[id] );
 						currentBookmark = id;
 					}
 				}
 				else
 				{
 					if( bookmarkInUse[id] )
-						pView->SetCameraTarget( cameraBookmarks[id] );
+						SetCameraTarget( cameraBookmarks[id] );
 				}
 				return( EV_HANDLED );
 			}
@@ -760,7 +771,7 @@ int game_view_handler(const SDL_Event* ev)
 		{
 			case HOTKEY_CAMERA_BOOKMARK_SNAP:
 				if( currentBookmark != -1 )
-					pView->PopCameraTarget();
+					PopCameraTarget();
 				currentBookmark = -1;
 				break;
 			default:

@@ -53,7 +53,7 @@ void kill_mainloop();
 //
 
 bool keys[SDLK_LAST];
-bool mouse_buttons[5];	// CAN REMOVE AFTER MOVING RESET TO WSDL
+bool mouse_buttons[6];	// CAN REMOVE AFTER MOVING RESET TO WSDL
 
 bool g_active = true;
 int g_mouse_x = 50, g_mouse_y = 50;
