@@ -17,6 +17,7 @@
 
 extern bool mouse_buttons[5];
 extern int g_mouse_x, g_mouse_y;
+extern float g_MaxZoomHeight, g_YMinOffset;
 bool HasClicked=false;
 
 static unsigned int ScaleColor(unsigned int color,float x)
@@ -147,8 +148,7 @@ void CMiniMap::Draw()
 			if(g_mouse_x > m_CachedActualSize.left && g_mouse_x < m_CachedActualSize.right
 				&& g_mouse_y > m_CachedActualSize.top && g_mouse_y < m_CachedActualSize.bottom)
 				{
-					
-					
+					CTerrain *MMTerrain=g_Game->GetWorld()->GetTerrain();
 					CVector3D CamOrient=g_Camera.m_Orientation.GetTranslation();
 					
 					//get center point of screen
@@ -159,27 +159,27 @@ void CMiniMap::Draw()
 					CVector3D TransVector;
 					TransVector.X=CamOrient.X-ScreenMiddle.X;
 					TransVector.Z=CamOrient.Z-ScreenMiddle.Z;
-					
 						//world position of where mouse clicked
 						CVector3D Destination;
-					
 						//X and Z according to proportion of mouse position and minimap
-					
 						Destination.X=(CELL_SIZE*m_MapSize)*
 						((g_mouse_x-m_CachedActualSize.left)/m_CachedActualSize.GetWidth());
-						
 						Destination.Z=(CELL_SIZE*m_MapSize)*((m_CachedActualSize.bottom-g_mouse_y)
 						/m_CachedActualSize.GetHeight());
 					
-						
 					g_Camera.m_Orientation._14=Destination.X;
 					g_Camera.m_Orientation._34=Destination.Z;
-					
 					g_Camera.m_Orientation._14+=TransVector.X;
 					g_Camera.m_Orientation._34+=TransVector.Z;
 					
+					//Lock Y coord.  No risk of zoom exceeding limit-Y does not increase  
+					float Height=MMTerrain->getExactGroundLevel(
+					   g_Camera.m_Orientation._14, g_Camera.m_Orientation._34) + g_YMinOffset;
 					
-									
+					if (g_Camera.m_Orientation._24 < Height)	
+					{
+						g_Camera.m_Orientation._24=Height;
+					}
 					g_Camera.UpdateFrustum();
 					
 				}
