@@ -368,11 +368,13 @@ static int writeCppPackage(Package* package)
 				fprintf(file, "\t%sdmc $(CFLAGS) -o $@ -c $<\n", prefix);
 			else if (strcmp(CPP_EXT[i], ".asm") != 0)
 				fprintf(file, "\t%sdmc -cpp -Ae -Ar -mn -D_WINDOWS $(CXXFLAGS) -o $@ -c $<\n", prefix);
+		
+			fprintf(file, "\t-%sif [ -f $(<F).d ]; then mv $(<F).d %s/$(<F).d; fi\n", prefix, OBJECTS_DIR);
 		}
 		else
 		{
 			if (strcmp(CPP_EXT[i], ".c") == 0)
-				fprintf(file, "\t%s$(CC) $(CFLAGS) -MD -o $@ -c $<\n", prefix);
+				fprintf(file, "\t%s$(CC) $(CFLAGS) -MD -MF obj/$(<F).d -o $@ -c $<\n", prefix);
 			else if (strcmp(CPP_EXT[i], ".asm") == 0)
 			{
 				/*	nasm -f elf -o $@ $<
@@ -381,13 +383,12 @@ static int writeCppPackage(Package* package)
 				if (strcmp(osIdent, "windows"))
 					extraOpts="-dDONT_USE_UNDERLINE=1";
 				fprintf(file, "\t%snasm %s -f elf -o $@ $<\n", prefix, extraOpts);
-				fprintf(file, "\t%snasm %s -M -o $@ $< >$(<F).d\n", prefix, extraOpts);
+				fprintf(file, "\t%snasm %s -M -o $@ $< >obj/$(<F).d\n", prefix, extraOpts);
 			}
 			else
-				fprintf(file, "\t%s$(CXX) $(CXXFLAGS) -MD -o $@ -c $<\n", prefix);
+				fprintf(file, "\t%s$(CXX) $(CXXFLAGS) -MD -MF obj/$(<F).d -o $@ -c $<\n", prefix);
 		}
 
-		fprintf(file, "\t-%sif [ -f $(<F).d ]; then mv $(<F).d %s/$(<F).d; fi\n", prefix, OBJECTS_DIR);
 		fprintf(file, "\t%scp %s/$(<F).d %s/$(<F).P; \\\n", prefix, OBJECTS_DIR, OBJECTS_DIR);
 		fprintf(file, "\t sed -e 's/#.*//' -e 's/^[^:]*: *//' -e 's/ *\\\\$$//' \\\n");
 		fprintf(file, "\t -e '/^$$/ d' -e 's/$$/ :/' < %s/$(<F).d >> %s/$(<F).P; \\\n", OBJECTS_DIR, OBJECTS_DIR);
