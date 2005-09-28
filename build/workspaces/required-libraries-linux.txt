@@ -6,6 +6,12 @@ makefile in the gcc subdirectory. The makefile supports the standard targets
 Note that if you have previously built a Debug config you must 'make clean'
 before building a Release config.
 
+The Makefile supports Icecream for distributed builds, so if you have two or
+more reasonably homogenous (both Linux, but they may even use different
+distributions) machines on a LAN, you can significantly reduce build times.
+
+See URL: http://wiki.kde.org/tiki-editpage.php?page=icecream
+
 Required Libraries
 
 $lib := directory where the compiler looks for lib files;
