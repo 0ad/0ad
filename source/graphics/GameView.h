@@ -23,7 +23,9 @@ class CGameView: public CJSObject<CGameView>
 {
 	CGame *m_pGame;
 	CWorld *m_pWorld;
+	CTerrain *m_Terrain;
 	CCamera m_Camera;
+
 	
 	////////////////////////////////////////
 	// Settings
@@ -37,6 +39,7 @@ class CGameView: public CJSObject<CGameView>
 	float m_ViewZoomSensitivity;
 	float m_ViewZoomSmoothness; // 0.0 = instantaneous zooming, 1.0 = so slow it never moves
 	float m_ViewSnapSmoothness; // Just the same.
+
 
 	////////////////////////////////////////
 	// Camera Controls State
@@ -88,7 +91,12 @@ public:
 	
 	// Render: Render the World
 	void Render();
-	
+
+	//Keep the camera in between boundaries/smooth camera scrolling/translating
+	//Should call this whenever moving (translating) the camera
+	void CameraLock(CVector3D Trans, bool smooth=true);
+	void CameraLock(float x, float y, float z, bool smooth=true);
+
 	// RenderNoCull: render absolutely everything to a blank frame to force
 	// renderer to load required assets
 	void RenderNoCull();
@@ -105,7 +113,6 @@ public:
 	inline CCamera *GetCamera()
 	{	return &m_Camera; }
 };
-
 extern int game_view_handler(const SDL_Event* ev);
 
 #endif

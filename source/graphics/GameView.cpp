@@ -1,3 +1,5 @@
+
+
 #include "precompiled.h"
 
 #include "Terrain.h"
@@ -31,6 +33,8 @@
 #include "lib.h"
 #include "timer.h"
 
+extern float g_MaxZoomHeight;
+extern float g_YMinOffset;
 extern int g_xres, g_yres;
 extern bool g_active;
 
@@ -67,7 +71,7 @@ CGameView::CGameView(CGame *pGame):
 	m_Camera.m_Orientation.RotateY(DEGTORAD(-45));
 	m_Camera.m_Orientation.Translate (100, 150, -100);
 	g_Renderer.SetCamera(m_Camera);
-	
+
 	ONCE( ScriptingInit(); );
 }
 
@@ -191,6 +195,55 @@ void CGameView::RenderModels(CUnitManager *pUnitMan, CProjectileManager *pProjec
 	}
 }
 
+	
+//locks the camera in place
+void CGameView::CameraLock(CVector3D Trans, bool smooth)
+{
+	m_Terrain=g_Game->GetWorld()->GetTerrain();
+	float height=m_Terrain->getExactGroundLevel(
+			m_Camera.m_Orientation._14 + Trans.X, m_Camera.m_Orientation._34 + Trans.Z) + 
+			g_YMinOffset;
+	//is requested position within limits?
+	if (m_Camera.m_Orientation._24 + Trans.Y <= g_MaxZoomHeight)
+	{
+		if( m_Camera.m_Orientation._24 + Trans.Y >= height)
+		{
+			m_Camera.m_Orientation.Translate(Trans);
+		}
+		else if (m_Camera.m_Orientation._24 + Trans.Y < height && smooth == true)
+		{
+			m_Camera.m_Orientation.Translate(Trans);
+			m_Camera.m_Orientation._24=height;
+		}
+
+
+	}     
+}
+
+void CGameView::CameraLock(float x, float y, float z, bool smooth)
+{
+	m_Terrain=g_Game->GetWorld()->GetTerrain();
+	float height=m_Terrain->getExactGroundLevel(
+			m_Camera.m_Orientation._14 + x, m_Camera.m_Orientation._34 + z) + 
+			g_YMinOffset;
+	//is requested position within limits?
+	if (m_Camera.m_Orientation._24 + y <= g_MaxZoomHeight)
+	{
+		if( m_Camera.m_Orientation._24 + y >= height)
+		{
+			m_Camera.m_Orientation.Translate(x, y, z);
+		}
+		else if (m_Camera.m_Orientation._24 + y < height && smooth == true)
+		{
+			m_Camera.m_Orientation.Translate(x, y, z);
+			m_Camera.m_Orientation._24=height;
+		}
+
+
+	}
+}
+		
+	
 void CGameView::SubmitModelRecursive(CModel* model)
 {
 	g_Renderer.Submit(model);
@@ -437,39 +490,40 @@ void CGameView::Update(float DeltaTime)
 	else if( hotkeys[HOTKEY_CAMERA_PAN] )
 	{
 		// Middle-drag to pan
-		m_Camera.m_Orientation.Translate(rightwards * (m_ViewDragSensitivity * mouse_dx));
-		m_Camera.m_Orientation.Translate(forwards_horizontal * (-m_ViewDragSensitivity * mouse_dy));
+		//keep camera in bounds
+			CameraLock(rightwards * (m_ViewDragSensitivity * mouse_dx));
+			CameraLock(forwards_horizontal * (-m_ViewDragSensitivity * mouse_dy));
 	}
-
+	
 	// Mouse movement
-
 	if( !hotkeys[HOTKEY_CAMERA_ROTATE] && !hotkeys[HOTKEY_CAMERA_ROTATE_ABOUT_TARGET] )
 	{
 		if (g_mouse_x >= g_xres-2 && g_mouse_x < g_xres)
-			m_Camera.m_Orientation.Translate(rightwards * (m_ViewScrollSpeed * DeltaTime));
+			CameraLock(rightwards * (m_ViewScrollSpeed * DeltaTime));	
 		else if (g_mouse_x <= 3 && g_mouse_x >= 0)
-			m_Camera.m_Orientation.Translate(-rightwards * (m_ViewScrollSpeed * DeltaTime));
-
+			CameraLock(-rightwards * (m_ViewScrollSpeed * DeltaTime));
+		
 		if (g_mouse_y >= g_yres-2 && g_mouse_y < g_yres)
-			m_Camera.m_Orientation.Translate(-forwards_horizontal * (m_ViewScrollSpeed * DeltaTime));
+			CameraLock(-forwards_horizontal * (m_ViewScrollSpeed * DeltaTime));
 		else if (g_mouse_y <= 3 && g_mouse_y >= 0)
-			m_Camera.m_Orientation.Translate(forwards_horizontal * (m_ViewScrollSpeed * DeltaTime));
-	}
+			CameraLock(forwards_horizontal * (m_ViewScrollSpeed * DeltaTime));
 
+	}
 
 	// Keyboard movement (added to mouse movement, so you can go faster if you want)
 
 	if( hotkeys[HOTKEY_CAMERA_PAN_KEYBOARD] )
 	{
 		if( hotkeys[HOTKEY_CAMERA_RIGHT] )
-			m_Camera.m_Orientation.Translate(rightwards * (m_ViewScrollSpeed * DeltaTime));
+			CameraLock(rightwards * (m_ViewScrollSpeed * DeltaTime));
 		if( hotkeys[HOTKEY_CAMERA_LEFT] )
-			m_Camera.m_Orientation.Translate(-rightwards * (m_ViewScrollSpeed * DeltaTime));
-
+			CameraLock(-rightwards * (m_ViewScrollSpeed * DeltaTime));
+			
 		if( hotkeys[HOTKEY_CAMERA_DOWN] )
-			m_Camera.m_Orientation.Translate(-forwards_horizontal * (m_ViewScrollSpeed * DeltaTime));
+			CameraLock(-forwards_horizontal * (m_ViewScrollSpeed * DeltaTime));
 		if( hotkeys[HOTKEY_CAMERA_UP] )
-			m_Camera.m_Orientation.Translate(forwards_horizontal * (m_ViewScrollSpeed * DeltaTime));
+			CameraLock(forwards_horizontal * (m_ViewScrollSpeed * DeltaTime));
+
 	}
 
 	// Smoothed zooming (move a certain percentage towards the desired zoom distance every frame)
@@ -489,9 +543,10 @@ void CGameView::Update(float DeltaTime)
 	if (fabsf(zoom_delta) > 0.1f) // use a fairly high limit to avoid nasty flickering when zooming
 	{
 		float zoom_proportion = powf(m_ViewZoomSmoothness, DeltaTime);
-		m_Camera.m_Orientation.Translate(forwards * (zoom_delta * (1.0f-zoom_proportion)));
+		CameraLock(forwards * (zoom_delta * (1.0f-zoom_proportion)), false);
 		zoom_delta *= zoom_proportion;
 	}
+
 
 /*
 Just commented out to make it more obvious it's not in use.
