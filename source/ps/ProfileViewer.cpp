@@ -60,6 +60,21 @@ void RenderProfile()
 	if( !profileVisible ) return;
 	if( !currentNode ) currentNode = g_Profiler.GetRoot();
 
+	int estimate_height;
+	 
+	estimate_height = 6 + currentNode->GetChildren()->size() + currentNode->GetScriptChildren()->size();
+	estimate_height = 20*estimate_height;
+	
+	glDisable(GL_TEXTURE_2D);
+	glColor4ub(0,0,0,128);
+	glBegin(GL_QUADS);
+		glVertex2i(0, g_yres);
+		glVertex2i(660, g_yres);
+		glVertex2i(660, g_yres-estimate_height);
+		glVertex2i(0, g_yres-estimate_height);
+	glEnd();
+	glEnable(GL_TEXTURE_2D);
+	
 	glPushMatrix();
 	glColor3f(1.0f, 1.0f, 1.0f);
 
