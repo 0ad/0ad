@@ -74,9 +74,9 @@ CRenderer::CRenderer()
 
 	m_RenderWater = true;
 	m_WaterHeight = 5.0f;
-	m_WaterColor = CColor(0.40f, 0.68f, 0.95f, 1.0f);
-	m_WaterFullDepth = 6.0f;
-	m_WaterMaxAlpha = 0.9f;
+	m_WaterColor = CColor(0.2f, 0.3f, 0.6f, 1.0f);
+	m_WaterFullDepth = 8.0f;
+	m_WaterMaxAlpha = 0.95f;
 	m_WaterAlphaOffset = -0.05f;
 
 	m_SWaterTrans=0;
