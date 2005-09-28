@@ -57,7 +57,8 @@ bool mouse_buttons[5];	// CAN REMOVE AFTER MOVING RESET TO WSDL
 
 bool g_active = true;
 int g_mouse_x = 50, g_mouse_y = 50;
-
+float g_MaxZoomHeight=350.0f;	//note:  Max terrain height is this minus YMinOffset
+float g_YMinOffset=50.0f;	
 
 static int MainInputHandler(const SDL_Event* ev)
 {
