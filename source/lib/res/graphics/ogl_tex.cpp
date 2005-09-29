@@ -77,6 +77,54 @@ static bool filter_uses_mipmaps(GLint filter)
 }
 
 
+// determine OpenGL texture format, given <bpp> and Tex <flags>.
+static GLint choose_fmt(uint bpp, uint flags)
+{
+	const bool alpha = (flags & TEX_ALPHA) != 0;
+	const bool bgr   = (flags & TEX_BGR  ) != 0;
+	const bool grey  = (flags & TEX_GREY ) != 0;
+	const uint dxt   = flags & TEX_DXT;
+
+	// S3TC
+	if(dxt != 0)
+	{
+		switch(dxt)
+		{
+		case 1:
+			return alpha? GL_COMPRESSED_RGBA_S3TC_DXT1_EXT : GL_COMPRESSED_RGB_S3TC_DXT1_EXT;
+		case 3:
+			return GL_COMPRESSED_RGBA_S3TC_DXT3_EXT;
+		case 5:
+			return GL_COMPRESSED_RGBA_S3TC_DXT5_EXT;
+		default:
+			debug_warn("choose_fmt: invalid DXT value");
+			return 0;
+		}
+	}
+
+	// uncompressed
+	switch(bpp)
+	{
+	case 8:
+		debug_assert(grey);
+		return GL_LUMINANCE;
+	case 16:
+		return GL_LUMINANCE_ALPHA;
+	case 24:
+		debug_assert(!alpha);
+		return bgr? GL_BGR : GL_RGB;
+	case 32:
+		debug_assert(alpha);
+		return bgr? GL_BGRA : GL_RGBA;
+	default:
+		debug_warn("choose_fmt: invalid bpp");
+		return 0;
+	}
+
+	UNREACHABLE;
+}
+
+
 //----------------------------------------------------------------------------
 // quality mechanism
 //----------------------------------------------------------------------------
@@ -84,7 +132,6 @@ static bool filter_uses_mipmaps(GLint filter)
 static GLint default_filter = GL_LINEAR;	// one of the GL *minify* filters
 static uint default_q_flags = OGL_TEX_FULL_QUALITY;	// OglTexQualityFlags
 
-// are the given q_flags valid? (used when checking parameter validity)
 static bool q_flags_valid(uint q_flags)
 {
 	const uint bits = OGL_TEX_FULL_QUALITY|OGL_TEX_HALF_BPP|OGL_TEX_HALF_RES;
@@ -121,75 +168,46 @@ void ogl_tex_set_defaults(uint q_flags, GLint filter)
 }
 
 
-// determine OpenGL texture format, given <bpp> and Tex <flags>.
-// also choose an internal format based on the given q_flags.
-static int get_gl_fmt(uint bpp, uint flags, uint q_flags, GLenum* fmt, GLint* int_fmt)
+// choose an internal format for <fmt> based on the given q_flags.
+static GLint choose_int_fmt(GLenum fmt, uint q_flags)
 {
-	const bool alpha = (flags & TEX_ALPHA) != 0;
-	const bool bgr   = (flags & TEX_BGR  ) != 0;
-	const bool grey  = (flags & TEX_GREY ) != 0;
-	const uint dxt   = flags & TEX_DXT;
-
 	// true => 4 bits per component; otherwise, 8
 	const bool half_bpp = (q_flags & OGL_TEX_HALF_BPP) != 0;
 
-	// in case we fail
-	*fmt     = 0;
-	*int_fmt = 0;
+	// early-out for S3TC textures. they don't need an internal format
+	// (because upload is via glCompressedTexImage2DARB), but we return
+	// a meaningful value anyway and avoid triggering the warning below.
+	if(ogl_dxt_from_fmt(fmt))
+		return fmt;
 
-	// S3TC
-	if(dxt != 0)
+	switch(fmt)
 	{
-		switch(dxt)
-		{
-		case 1:
-			*fmt = alpha? GL_COMPRESSED_RGBA_S3TC_DXT1_EXT : GL_COMPRESSED_RGB_S3TC_DXT1_EXT;
-			break;
-		case 3:
-			*fmt = GL_COMPRESSED_RGBA_S3TC_DXT3_EXT;
-			break;
-		case 5:
-			*fmt = GL_COMPRESSED_RGBA_S3TC_DXT5_EXT;
-			break;
-		default:
-			debug_warn("get_gl_fmt: invalid DXT value");
-			return ERR_TEX_FMT_INVALID;
-		}
+	// 8bpp
+	case GL_LUMINANCE:
+		return half_bpp? GL_LUMINANCE4 : GL_LUMINANCE8;
+	case GL_INTENSITY:
+		return half_bpp? GL_INTENSITY4 : GL_INTENSITY8;
+	case GL_ALPHA:
+		return half_bpp? GL_ALPHA4 : GL_ALPHA8;
 
-		// note: S3TC textures don't need an internal format, since they're
-		// uploaded via glCompressedTexImage2DARB. we'll set it anyway for
-		// consistency.
-		*int_fmt = *fmt;
-		return 0;
-	}
+	// 16bpp
+	case GL_LUMINANCE_ALPHA:
+		return half_bpp? GL_LUMINANCE4_ALPHA4 : GL_LUMINANCE8_ALPHA8;
 
-	// uncompressed
-	switch(bpp)
-	{
-	case 8:
-		debug_assert(grey);
-		*fmt = GL_LUMINANCE;
-		*int_fmt = half_bpp? GL_LUMINANCE4 : GL_LUMINANCE8;
-		return 0;
-	case 16:
-		*fmt = GL_LUMINANCE_ALPHA;
-		*int_fmt = half_bpp? GL_LUMINANCE4_ALPHA4 : GL_LUMINANCE8_ALPHA8;
-		return 0;
-	case 24:
-		debug_assert(!alpha);
-		*fmt = bgr? GL_BGR : GL_RGB;
-		// note: BGR can't be used as internal format
-		*int_fmt = half_bpp? GL_RGB4 : GL_RGB8;
-		return 0;
-	case 32:
-		debug_assert(alpha);
-		*fmt = bgr? GL_BGRA : GL_RGBA;
-		// note: BGR can't be used as internal format
-		*int_fmt = half_bpp? GL_RGBA4 : GL_RGBA8;
-		return 0;
+	// 24bpp
+	case GL_RGB:
+	case GL_BGR:	// note: BGR can't be used as internal format
+		return half_bpp? GL_RGB4 : GL_RGB8;
+
+	// 32bpp
+	case GL_RGBA:
+	case GL_BGRA:	// note: BGRA can't be used as internal format
+		return half_bpp? GL_RGBA4 : GL_RGBA8;
+
 	default:
-		debug_warn("get_gl_fmt: invalid bpp");
-		return ERR_TEX_FMT_INVALID;
+		debug_warn("choose_int_fmt doesn't cover the given fmt! please add it.");
+		// fall back to a reasonable default
+		return half_bpp? GL_RGB4 : GL_RGB8;
 	}
 
 	UNREACHABLE;
@@ -290,7 +308,7 @@ struct OglTex
 	// allocated by OglTex_reload; indicates the texture is currently uploaded.
 	GLuint id;
 
-	// ogl_tex_upload calls get_gl_fmt to determine these from <t>.
+	// ogl_tex_upload calls choose_fmt to determine these from <t>.
 	// however, its caller may override those values via parameters.
 	// note: these are stored here to allow retrieving via ogl_tex_get_format;
 	// they are only used within ogl_tex_upload.
@@ -305,21 +323,22 @@ struct OglTex
 	// to which Texture Mapping Unit was this bound?
 	uint tmu : 8;
 
-	// flags influencing reload behavior
-	// .. either we have the texture in memory (referenced by t.hm),
-	//    or it's already been uploaded to OpenGL => no reload necessary.
-	//    needs to be a flag so it can be reset in Tex_dtor.
+	// flags influencing reload() behavior
+	// .. reload() should be a no-op, because we either have the texture in
+	//    memory or it's been uploaded to OpenGL. reset in dtor.
 	uint is_loaded : 1;
-	// .. texture has been uploaded to OpenGL => that needs to be done
-	//    when reloading it.
-	uint has_been_uploaded : 1;
-	// ..
-	uint is_currently_uploaded : 1;
-	// .. this texture wasn't actually loaded from disk - we just
-	//    copied a Tex object into t. if set, actual reloads are disallowed
-	//    (see ogl_tex_load), but we still need this to avoid calling
-	//    tex_load in reload() triggered by h_alloc.
+	// .. reload() should automatically re-upload the texture, because
+	//    it had been uploaded before the reload.
+	uint need_auto_upload : 1;
+	// .. reload() doesn't need to load from disk, because <t> already
+	//    contains the texture data. note: in this case, actual reloads are
+	//    disallowed by ogl_tex_wrap, but we still need this flag to
+	//    correctly handle the reload() triggered by h_alloc.
 	uint was_wrapped : 1;
+
+	// indicates if this texture is currently uploaded.
+	// used by state setters; reset in dtor.
+	uint is_currently_uploaded : 1;
 };
 
 H_TYPE_DEFINE(OglTex);
@@ -369,7 +388,7 @@ static int OglTex_reload(OglTex* ot, const char* fn, Handle h)
 
 	// if it had already been uploaded before this reload,
 	// re-upload it (this also does state_latch).
-	if(ot->has_been_uploaded)
+	if(ot->need_auto_upload)
 		(void)ogl_tex_upload(h);
 
 	return 0;
@@ -442,13 +461,15 @@ static int ogl_tex_validate(const uint line, const OglTex* ot)
 	if(!is_pow2(w) || !is_pow2(h))
 		msg = "width or height is not a power-of-2";
 
-	// upload parameters, set by ogl_tex_upload(Handle), or 0
+	// texture state
 	GLint filter = ot->state.filter;
 	GLint wrap   = ot->state.wrap;
-	if(filter != 0 && !filter_valid(filter))
+	if(!filter_valid(filter))
 		msg = "invalid filter";
-	if(wrap != 0 && !wrap_valid(wrap))
+	if(!wrap_valid(wrap))
 		msg = "invalid wrap mode";
+
+	// misc
 	if(!q_flags_valid(ot->q_flags))
 		msg = "invalid q_flags";
 	if(ot->tmu >= 128)
@@ -472,14 +493,37 @@ static int ogl_tex_validate(const uint line, const OglTex* ot)
 //----------------------------------------------------------------------------
 // state setters (see "Texture Parameters" in docs)
 
-// rationale: these must be called before uploading; this simplifies
-// things and avoids calling glTexParameter twice.
+// we require the below functions be called before uploading; this avoids
+// redundant glTexParameter calls (we'd otherwise need to always
+// set defaults because we don't know if an override is forthcoming).
+//
+// this raises a warning for purposes of debugging if the texture has
+// already been uploaded (in violation of the above requirement).
 static void warn_if_uploaded(Handle ht, const OglTex* ot)
 {
+#ifndef NDEBUG
+	// note: if a texture is ogl_tex_load-ed several times, each caller
+	// (typically a higher-level LoadTexture) will want to set
+	// e.g. its filter. however, after the first time, the texture will
+	// have been uploaded, making this pointless (and illegal).
+	//
+	// we do not want to complain, though, since the caller's intent is
+	// legitimate. ideally LoadTexture would take care of this by
+	// skipping the set/upload calls if the texture wasn't newly loaded,
+	// but we'll also have to work around this here to be safe.
+	//
+	// unfortunately, h_alloc provides no direct way of notifying its
+	// caller whether it actually loaded anew or reactivated a
+	// cached resource. we have to check the reference count.
 	int refs = h_get_refcnt(ht);
-
 	if(refs == 1 && ot->is_currently_uploaded)
 		debug_warn("ogl_tex_set_*: texture already uploaded and shouldn't be changed");
+#else
+	// (prevent warnings; the alternative of wrapping all call sites in
+	// #ifndef is worse)
+	UNUSED2(ht);
+	UNUSED2(ot);
+#endif
 }
 
 
@@ -780,12 +824,15 @@ static void upload_impl(const Tex* t, GLenum fmt, GLint int_fmt, GLint filter, u
 
 
 // upload the texture to OpenGL.
-// if q_flags_ovr != 0, it overrides the default quality vs. perf. flags;
-// if (int_)fmt_over != 0, it overrides the texture loader's decision.
+// if not 0, parameters override the following:
+//   fmt_ovr     : OpenGL format (e.g. GL_RGB) decided from bpp / Tex flags;
+//   q_flags_ovr : global default "quality vs. performance" flags;
+//   int_fmt_ovr : internal format (e.g. GL_RGB8) decided from fmt / q_flags.
+//
 // side effects:
 // - enables texturing on TMU 0 and binds the texture to it;
 // - frees the texel data! see ogl_tex_get_data.
-int ogl_tex_upload(const Handle ht, uint q_flags_ovr, GLint int_fmt_ovr, GLenum fmt_ovr)
+int ogl_tex_upload(const Handle ht, GLenum fmt_ovr, uint q_flags_ovr, GLint int_fmt_ovr)
 {
 	H_DEREF(ht, OglTex, ot);
 	CHECK_OGL_TEX(ot);
@@ -795,10 +842,7 @@ int ogl_tex_upload(const Handle ht, uint q_flags_ovr, GLint int_fmt_ovr, GLenum 
 
 	const char* fn = h_filename(ht);
 	if(!fn)
-	{
 		fn = "(could not determine filename)";
-		debug_warn("ogl_tex_upload(Handle): h_filename failed");
-	}
 
 	// someone's requesting upload, but has already been uploaded.
 	// this happens if a cached texture is "loaded". no work to do.
@@ -806,10 +850,11 @@ int ogl_tex_upload(const Handle ht, uint q_flags_ovr, GLint int_fmt_ovr, GLenum 
 		return 0;
 
 	// determine fmt and int_fmt, allowing for user override.
-	if(q_flags_ovr) ot->q_flags = q_flags_ovr;
-	CHECK_ERR(get_gl_fmt(ot->t.bpp, ot->t.flags, ot->q_flags, &ot->fmt, &ot->int_fmt));
-	if(int_fmt_ovr) ot->int_fmt = int_fmt_ovr;
+	ot->fmt = choose_fmt(ot->t.bpp, ot->t.flags);
 	if(fmt_ovr) ot->fmt = fmt_ovr;
+	if(q_flags_ovr) ot->q_flags = q_flags_ovr;
+	ot->int_fmt = choose_int_fmt(ot->fmt, ot->q_flags);
+	if(int_fmt_ovr) ot->int_fmt = int_fmt_ovr;
 
 	// we know ht is valid (H_DEREF above), but ogl_tex_bind can
 	// fail in debug builds if OglTex.id isn't a valid texture name
@@ -828,7 +873,7 @@ int ogl_tex_upload(const Handle ht, uint q_flags_ovr, GLint int_fmt_ovr, GLenum 
 	if(refs == 1)
 		tex_free(&ot->t);
 
-	ot->has_been_uploaded = 1;
+	ot->need_auto_upload = 1;
 	ot->is_currently_uploaded = 1;
 
 #ifndef NDEBUG
@@ -870,7 +915,7 @@ int ogl_tex_get_format(Handle ht, uint* flags, GLenum* fmt)
 		*flags = ot->t.flags;
 	if(fmt)
 	{
-		if(!ot->has_been_uploaded)
+		if(!ot->is_currently_uploaded)
 			debug_warn("ogl_tex_get_format: hasn't been defined yet!");
 		*fmt = ot->fmt;
 	}

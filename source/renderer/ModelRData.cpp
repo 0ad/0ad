@@ -86,6 +86,8 @@ void CModelRData::BuildIndices()
 	}
 }
 
+/* JW: function is apparently currently unused
+
 static SColor4ub ConvertColor(const RGBColor& src)
 {
 	SColor4ub result;
@@ -95,6 +97,8 @@ static SColor4ub ConvertColor(const RGBColor& src)
 	result.A=0xff;
 	return result;
 }
+
+*/
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // SkinPoint: skin the vertex position using it's blend data and given bone matrices

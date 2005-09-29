@@ -87,6 +87,8 @@ bool CModel::InitModel(CModelDefPtr modeldef)
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // SkinPoint: skin the given point using the given blend and bonestate data
+/* JW: function is apparently currently unused
+
 static CVector3D SkinPoint(const CVector3D& pos,const SVertexBlend& blend,
 						   const CBoneState* bonestates)
 {
@@ -103,6 +105,7 @@ static CVector3D SkinPoint(const CVector3D& pos,const SVertexBlend& blend,
 
 	return result;
 }
+*/
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // SkinPoint: skin the given point using the given blend and matrix data

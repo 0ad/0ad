@@ -20,10 +20,6 @@ Unicode OpenGL texture font
 
 #include <stdio.h>
 
-
-/*/*#include <ps/CLogger.h>
-#define LOG_CATEGORY "graphics"*/
-
 // This isn't particularly efficient - it can be improved if we
 // (a) care enough, and (b) know about fixed ranges of characters
 // that the fonts usually contain
@@ -66,33 +62,23 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 {
 	// fn is the base filename, e.g. "console"
 	// The font definition file is "fonts/"+fn+".fnt" and the texture is "fonts/"+fn+".tga"
-
 	std::string FilenameBase = "fonts/"; FilenameBase += fn;
 
+	// Read font definition file into a stringstream
 	void* RawFNT;
 	size_t FNTSize;
-
 	std::string FilenameFnt = FilenameBase+".fnt";
 	const char* fnt_fn = FilenameFnt.c_str();
-
-	// Fail quietly if the file simply doesn't exist
-// //	if (! vfs_exists(fnt_fn))
-// //		return ERR_FILE_NOT_FOUND;
-
 	Handle hm = vfs_load(fnt_fn, RawFNT, FNTSize);
 	RETURN_ERR(hm);
-
-	// Get the data in a nicer object
 	std::istringstream FNTStream (std::string((const char*)RawFNT, (int)FNTSize));
-
-	// Unload the file
 	mem_free_h(hm);
 
 	int Version;
 	FNTStream >> Version;
 	if (Version != 100) // Make sure this is from a recent version of the font builder
 	{
-//		LOG(ERROR, LOG_CATEGORY, "Invalid .fnt version number");
+		debug_warn("Invalid .fnt version number");
 		return -1;
 	}
 
@@ -112,7 +98,7 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 	f->ListBase = glGenLists(NumGlyphs);
 	if (f->ListBase == 0) // My Voodoo2 drivers didn't support display lists (although I'd be surprised if they got this far)
 	{
-//		LOG(ERROR, LOG_CATEGORY, "Display list creation failed");
+		debug_warn("Display list creation failed");
 		return -1;
 	}
 
@@ -159,23 +145,23 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 	// Load glyph texture
 	std::string FilenameTex = FilenameBase+".tga";  
 	const char* tex_fn = FilenameTex.c_str();   
-	const Handle ht = ogl_tex_load(tex_fn);
-	if (ht <= 0)
-		return (int)ht;
+	Handle ht = ogl_tex_load(tex_fn);
+	RETURN_ERR(ht);
 
-	// the GL format is chosen as LUMINANCE, but we want ALPHA.
-/*/*
-There doesn't seem to be much difference between ALPHA4 and ALPHA8.
-I can't notice an increase/decrease in visual quality when quantising to 4-bit values,
-and it's more space-efficient; but it'd need run-time conversion or 4-bit TGAs,
-and the memory difference is probably insignificant [assuming only active fonts are cached,
-and it doesn't keep in memory every font that's ever been displayed], so it's probably easiest to just use ALPHA8 always.
-*/
 	(void)ogl_tex_set_filter(ht, GL_NEAREST);
-	ogl_tex_upload(ht, 0, GL_ALPHA8, GL_ALPHA);
+
+	// override is necessary because the GL format is chosen as LUMINANCE,
+	// but we want ALPHA. there is no way of knowing what format
+	// 8bpp textures are in - we could adopt a naming convention and
+	// add some TEX_ flags, but that's overkill.
+	int err = ogl_tex_upload(ht, GL_ALPHA);
+	if(err < 0)
+	{
+		(void)ogl_tex_free(ht);
+		return err;
+	}
 
 	f->ht = ht;
-
 	return 0;
 }
 

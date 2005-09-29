@@ -690,10 +690,15 @@ void* h_user_data(const Handle h, const H_Type type)
 
 const char* h_filename(const Handle h)
 {
+	// don't require type check: should be useable for any handle,
+	// even if the caller doesn't know its type.
 	HDATA* hd = h_data_tag(h);
-		// don't require type check: should be useable for any handle,
-		// even if the caller doesn't know its type.
-	return hd? hd->fn : 0;
+	if(!hd)
+	{
+		debug_warn("h_filename failed");
+		return 0;
+	}
+	return hd->fn;
 }
 
 

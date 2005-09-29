@@ -1376,7 +1376,7 @@ int CRenderer::LoadAlphaMaps()
 	m_hCompositeAlphaMap = ogl_tex_wrap(&t, "(alpha map composite)");
 	(void)ogl_tex_set_filter(m_hCompositeAlphaMap, GL_LINEAR);
 	(void)ogl_tex_set_wrap  (m_hCompositeAlphaMap, GL_CLAMP_TO_EDGE);
-	(void)ogl_tex_upload(m_hCompositeAlphaMap, 0, GL_INTENSITY);
+	(void)ogl_tex_upload(m_hCompositeAlphaMap, 0, 0, GL_INTENSITY);
 	delete[] data;
 
 	return 0;

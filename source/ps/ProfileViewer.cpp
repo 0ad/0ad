@@ -62,7 +62,7 @@ void RenderProfile()
 
 	int estimate_height;
 	 
-	estimate_height = 6 + currentNode->GetChildren()->size() + currentNode->GetScriptChildren()->size();
+	estimate_height = 6 + (int)currentNode->GetChildren()->size() + (int)currentNode->GetScriptChildren()->size();
 	estimate_height = 20*estimate_height;
 	
 	glDisable(GL_TEXTURE_2D);

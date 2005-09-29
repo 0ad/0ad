@@ -110,7 +110,7 @@ void* data = [pre-existing image]
 (void)tex_wrap(w, h, 24, flags, data, &t);
 Handle hCompositeAlphaMap = ogl_tex_wrap(&t, "(alpha map composite)");
 (void)ogl_tex_set_filter(hCompositeAlphaMap, GL_LINEAR);
-(void)ogl_tex_upload(hCompositeAlphaMap, 0, GL_INTENSITY);
+(void)ogl_tex_upload(hCompositeAlphaMap, 0, 0, GL_INTENSITY);
 // (your responsibility! tex_wrap attaches a reference but it is
 // removed by ogl_tex_upload.)
 free(data);
@@ -232,13 +232,15 @@ extern int ogl_tex_set_wrap(Handle ht, GLint wrap);
 extern int ogl_tex_bind(Handle ht, GLenum unit = 0);
 
 // upload the texture to OpenGL.
-// if q_flags_ovr != 0, it overrides the default quality vs. perf. flags;
-// if (int_)fmt_over != 0, it overrides the texture loader's decision.
+// if not 0, parameters override the following:
+//   fmt_ovr     : OpenGL format (e.g. GL_RGB) decided from bpp / Tex flags;
+//   q_flags_ovr : global default "quality vs. performance" flags;
+//   int_fmt_ovr : internal format (e.g. GL_RGB8) decided from fmt / q_flags.
+//
 // side effects:
 // - enables texturing on TMU 0 and binds the texture to it;
 // - frees the texel data! see ogl_tex_get_data.
-extern int ogl_tex_upload(Handle ht, uint q_flags_override = 0,
-	GLint internal_fmt_override = 0, GLenum fmt_override = 0);
+extern int ogl_tex_upload(const Handle ht, GLenum fmt_ovr = 0, uint q_flags_ovr = 0, GLint int_fmt_ovr = 0);
 
 
 //
