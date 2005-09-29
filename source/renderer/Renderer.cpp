@@ -42,15 +42,6 @@
 
 #define LOG_CATEGORY "graphics"
 
-/*
-// jw: unused
-static bool saveTGA(const char* filename,int width,int height,int bpp,unsigned char* data)
-{
-	int err = tex_write(filename, width, height, bpp, TEX_BGR, data);
-	return (err == 0);
-}
-*/
-
 ///////////////////////////////////////////////////////////////////////////////////
 // CRenderer destructor
 CRenderer::CRenderer()
@@ -86,7 +77,7 @@ CRenderer::CRenderer()
 	m_SWaterScrollCounter=0;
 	m_TWaterScrollCounter=0;
 	m_WaterCurrentTex=0;
-	
+
 	for (int x=0; x<60; x++)
 	{
 		char waterName[1000];
@@ -98,22 +89,7 @@ CRenderer::CRenderer()
 			ogl_tex_free(m_WaterTexture[x]);
 		} 
 		else
-		{
-			int tw=0,th=0;
-			(void)ogl_tex_get_size(m_WaterTexture[x], &tw, &th, 0);
-			if(!is_pow2(tw) || !is_pow2(th)) 
-			{
-				LOG(ERROR, LOG_CATEGORY, "LoadTexture failed on \"%s\" : not a power of 2 texture",waterName);
-				ogl_tex_free(m_WaterTexture[x]);
-			}
-			else 
-			{
-				ogl_tex_bind(m_WaterTexture[x]);
-				ogl_tex_upload(m_WaterTexture[x], GL_LINEAR_MIPMAP_LINEAR);
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-			}
-		}
+			ogl_tex_upload(m_WaterTexture[x]);
 	}
 		
 }
@@ -1194,40 +1170,38 @@ bool CRenderer::LoadTexture(CTexture* texture,u32 wrapflags)
 	const Handle errorhandle = -1;
 
 	Handle h=texture->GetHandle();
-	if (h) {
-		// already tried to load this texture, nothing to do here - just return success according
-		// to whether this is a valid handle or not
+	// already tried to load this texture
+	if (h)
+	{
+		// nothing to do here - just return success according to
+		// whether this is a valid handle or not
 		return h==errorhandle ? true : false;
-	} else {
-		h=ogl_tex_load(texture->GetName());
-		if (h <= 0) {
-			LOG(ERROR, LOG_CATEGORY, "LoadTexture failed on \"%s\"",(const char*) texture->GetName());
-			texture->SetHandle(errorhandle);
-			return false;
-		} else {
-			int tw=0,th=0;
-			(void)ogl_tex_get_size(h, &tw, &th, 0);
-			if(!is_pow2(tw) || !is_pow2(th)) {
-				LOG(ERROR, LOG_CATEGORY, "LoadTexture failed on \"%s\" : not a power of 2 texture",(const char*) texture->GetName());
-				ogl_tex_free(h);
-				texture->SetHandle(errorhandle);
-				return false;
-			} else {
-				ogl_tex_bind(h);
-				ogl_tex_upload(h,GL_LINEAR_MIPMAP_LINEAR);
-
-				if (wrapflags) {
-					glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrapflags);
-					glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrapflags);
-				} else {
-					glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-					glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-				}
-				texture->SetHandle(h);
-				return true;
-			}
-		}
 	}
+
+	h=ogl_tex_load(texture->GetName());
+	if (h <= 0)
+	{
+		LOG(ERROR, LOG_CATEGORY, "LoadTexture failed on \"%s\"",(const char*) texture->GetName());
+		texture->SetHandle(errorhandle);
+		return false;
+	}
+
+	if(!wrapflags)
+		wrapflags = GL_CLAMP_TO_EDGE;
+	(void)ogl_tex_set_wrap(h, wrapflags);
+	(void)ogl_tex_set_filter(h, GL_LINEAR_MIPMAP_LINEAR);
+
+	// (this also verifies that the texture is a power-of-two)
+	if(ogl_tex_upload(h) < 0)
+	{
+		LOG(ERROR, LOG_CATEGORY, "LoadTexture failed on \"%s\" : upload failed",(const char*) texture->GetName());
+		ogl_tex_free(h);
+		texture->SetHandle(errorhandle);
+		return false;
+	}
+
+	texture->SetHandle(h);
+	return true;
 }
 
 
@@ -1277,7 +1251,7 @@ bool CRenderer::IsTextureTransparent(CTexture* texture)
 	if (!texture) return false;
 	Handle h=texture->GetHandle();
 
-	int flags = 0;	// assume no alpha on failure
+	uint flags = 0;	// assume no alpha on failure
 	(void)ogl_tex_get_format(h, &flags, 0);
 	return (flags & TEX_ALPHA) != 0;
 }
@@ -1319,11 +1293,11 @@ int CRenderer::LoadAlphaMaps()
 		"blendushape.png",
 		"blendbad.png"
 	};
-	int base = 0;	// texture width/height (see below)
+	uint base = 0;	// texture width/height (see below)
 	// for convenience, we require all alpha maps to be of the same BPP
 	// (avoids another ogl_tex_get_size call, and doesn't hurt)
-	int bpp = 0;
-	for(int i=0;i<NumAlphaMaps;i++)
+	uint bpp = 0;
+	for(uint i=0;i<NumAlphaMaps;i++)
 	{
 		(void)pp_append_file(&pp, fnames[i]);
 		textures[i] = ogl_tex_load(pp.path);
@@ -1331,7 +1305,7 @@ int CRenderer::LoadAlphaMaps()
 
 		// get its size and make sure they are all equal.
 		// (the packing algo assumes this)
-		int this_width = 0, this_bpp = 0;	// fail-safe
+		uint this_width = 0, this_bpp = 0;	// fail-safe
 		(void)ogl_tex_get_size(textures[i], &this_width, 0, &this_bpp);
 		// .. first iteration: establish size
 		if(i == 0)
@@ -1347,24 +1321,24 @@ int CRenderer::LoadAlphaMaps()
 	//
 	// copy each alpha map (tile) into one buffer, arrayed horizontally.
 	//
-	int tile_w = 2+base+2;	// 2 pixel border (avoids bilinear filtering artifacts)
-	int total_w = RoundUpToPowerOf2(tile_w * NumAlphaMaps);
-	int total_h = base; debug_assert(is_pow2(total_h));
+	uint tile_w = 2+base+2;	// 2 pixel border (avoids bilinear filtering artifacts)
+	uint total_w = RoundUpToPowerOf2(tile_w * NumAlphaMaps);
+	uint total_h = base; debug_assert(is_pow2(total_h));
 	u8* data=new u8[total_w*total_h*3];
 	// for each tile on row
-	for(int i=0;i<NumAlphaMaps;i++)
+	for(uint i=0;i<NumAlphaMaps;i++)
 	{
 		// get src of copy
 		const u8* src = 0;
 		(void)ogl_tex_get_data(textures[i], (void**)&src);
 
-		int srcstep=bpp/8;
+		uint srcstep=bpp/8;
 
 		// get destination of copy
 		u8* dst=data+3*(i*tile_w);
 
 		// for each row of image
-		for (int j=0;j<base;j++) {
+		for (uint j=0;j<base;j++) {
 			// duplicate first pixel
 			CopyTriple(dst,src);
 			dst+=3;
@@ -1372,7 +1346,7 @@ int CRenderer::LoadAlphaMaps()
 			dst+=3;
 
 			// copy a row
-			for (int k=0;k<base;k++) {
+			for (uint k=0;k<base;k++) {
 				CopyTriple(dst,src);
 				dst+=3;
 				src+=srcstep;
@@ -1393,17 +1367,16 @@ int CRenderer::LoadAlphaMaps()
 		m_AlphaMapCoords[i].v1=1.0f;
 	}
 
-	for (int i=0;i<NumAlphaMaps;i++)
+	for (uint i=0;i<NumAlphaMaps;i++)
 		ogl_tex_free(textures[i]);
 
 	// upload the composite texture
 	Tex t;
 	(void)tex_wrap(total_w, total_h, 24, 0, data, &t);
 	m_hCompositeAlphaMap = ogl_tex_wrap(&t, "(alpha map composite)");
-	(void)ogl_tex_upload(m_hCompositeAlphaMap, GL_LINEAR, GL_INTENSITY);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
-	oglSquelchError(GL_INVALID_ENUM);	// GL_CLAMP_TO_EDGE
+	(void)ogl_tex_set_filter(m_hCompositeAlphaMap, GL_LINEAR);
+	(void)ogl_tex_set_wrap  (m_hCompositeAlphaMap, GL_CLAMP_TO_EDGE);
+	(void)ogl_tex_upload(m_hCompositeAlphaMap, 0, GL_INTENSITY);
 	delete[] data;
 
 	return 0;

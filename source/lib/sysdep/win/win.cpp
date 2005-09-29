@@ -26,6 +26,7 @@
 #include "lib.h"
 #include "posix.h"
 #include "error_dialog.h"
+#include "lib/res/graphics/tex.h"
 
 #if MSC_VERSION
 #pragma comment(lib, "shell32.lib")	// for pick_directory SH* calls
@@ -547,39 +548,29 @@ static HCURSOR HCURSOR_from_ptr(void* p)
 }
 
 
-// creates a cursor from the given 32 bpp RGBA texture. hotspot (hx,hy) is
-// the offset from its upper-left corner to the position where mouse clicks
-// are registered.
+// creates a cursor from the given texture file.
+// hotspot (hx,hy) is the offset from its upper-left corner to the
+// position where mouse clicks are registered.
 // the cursor must be cursor_free-ed when no longer needed.
-int sys_cursor_create(int w, int h, void* img, int hx, int hy,
-	void** cursor)
+int sys_cursor_load(const char* filename,
+	uint hx, uint hy, void** cursor)
 {
-	*cursor = 0;
+	Tex t;
+	RETURN_ERR(tex_load(filename, &t));
+	uint w = t.w, h = t.h;
 
-	// convert to BGRA (required by BMP).
-	// don't do this in-place so we don't spoil someone else's
-	// use of the texture (however unlikely that may be).
-	void* img_bgra = malloc(w*h*4);
-	if(!img_bgra)
-		return ERR_NO_MEM;
-	const u8* src = (const u8*)img;
-	u8* dst = (u8*)img_bgra;
-	for(int i = 0; i < w*h; i++)
-	{
-		const u8 r = src[0], g = src[1], b = src[2], a = src[3];
-		dst[0] = b; dst[1] = g; dst[2] = r; dst[3] = a;
-		dst += 4;
-		src += 4;
-	}
-	img = img_bgra;
+	// convert to BGRA (required by CreateBitmap).
+	const uint transforms = (t.flags & TEX_BGR) ^ TEX_BGR;
+	RETURN_ERR(tex_transform(&t, transforms));
+	void* tex_bgra = tex_get_data(&t);
 
 	// MSDN says selecting this HBITMAP into a DC is slower since we use
 	// CreateBitmap; bpp/format must be checked against those of the DC.
 	// this is the simplest way and we don't care about slight performance
 	// differences because this is typically only called once.
-	HBITMAP hbmColour = CreateBitmap(w, h, 1, 32, img_bgra);
+	HBITMAP hbmColour = CreateBitmap(w, h, 1, 32, tex_bgra);
 
-	free(img_bgra);
+	tex_free(&t);
 
 	// CreateIconIndirect doesn't access it; we just need to pass
 	// an empty bitmap.
@@ -605,6 +596,7 @@ int sys_cursor_create(int w, int h, void* img, int hx, int hy,
 	*cursor = ptr_from_HICON(hIcon);
 	return 0;
 }
+
 
 
 // replaces the current system cursor with the one indicated. need only be

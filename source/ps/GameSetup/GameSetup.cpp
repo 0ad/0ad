@@ -592,6 +592,65 @@ static void InitSDL()
 }
 
 
+static const uint SANE_TEX_QUALITY_DEFAULT = 5;	// keep in sync with code
+
+static void SetTextureQuality(uint quality)
+{
+	uint q_flags;
+	GLint filter;
+
+retry:
+	// keep this in sync with SANE_TEX_QUALITY_DEFAULT
+	switch(quality)
+	{
+	// worst quality
+	case 0:
+		q_flags = OGL_TEX_HALF_RES|OGL_TEX_HALF_BPP;
+		filter = GL_NEAREST;
+		break;
+	// [perf] add bilinear filtering
+	case 1:
+		q_flags = OGL_TEX_HALF_RES|OGL_TEX_HALF_BPP;
+		filter = GL_LINEAR;
+		break;
+	// [vmem] no longer reduce resolution
+	case 2:
+		q_flags = OGL_TEX_HALF_BPP;
+		filter = GL_LINEAR;
+		break;
+	// [vmem] add mipmaps
+	case 3:
+		q_flags = OGL_TEX_HALF_BPP;
+		filter = GL_NEAREST_MIPMAP_LINEAR;
+		break;
+	// [perf] better filtering
+	case 4:
+		q_flags = OGL_TEX_HALF_BPP;
+		filter = GL_LINEAR_MIPMAP_LINEAR;
+		break;
+	// [vmem] no longer reduce bpp
+	case SANE_TEX_QUALITY_DEFAULT:
+		q_flags = OGL_TEX_FULL_QUALITY;
+		filter = GL_LINEAR_MIPMAP_LINEAR;
+		break;
+	// [perf] add anisotropy
+	case 6:
+		// TODO: add anisotropic filtering
+		q_flags = OGL_TEX_FULL_QUALITY;
+		filter = GL_LINEAR_MIPMAP_LINEAR;
+		break;
+	// invalid
+	default:
+		debug_warn("SetTextureQuality: invalid quality");
+		quality = SANE_TEX_QUALITY_DEFAULT;
+		// careful: recursion doesn't work and we don't want to duplicate
+		// the "sane" default values.
+		goto retry;
+	}
+
+	ogl_tex_set_defaults(q_flags, filter);
+}
+
 
 void EndGame()
 {
@@ -793,14 +852,17 @@ void Init(int argc, char* argv[], bool setup_gfx, bool setup_gui)
 
 	if (setup_gfx)
 	{
-		MICROLOG(L"set vmode");
+		SDL_WM_SetCaption("0 A.D.", "0 A.D.");
 
+		MICROLOG(L"SetVideoMode");
 		if(SetVideoMode(g_xres, g_yres, 32, !windowed) < 0)
 		{
 			LOG(ERROR, LOG_CATEGORY, "Could not set %dx%d graphics mode: %s", g_xres, g_yres, SDL_GetError());
 			throw PSERROR_System_VmodeFailed();
 		}
-		SDL_WM_SetCaption("0 A.D.", "0 A.D.");
+
+		uint quality = 	SANE_TEX_QUALITY_DEFAULT;	// TODO: set value from config file
+		SetTextureQuality(quality);
 	}
 
 	oglCheck();

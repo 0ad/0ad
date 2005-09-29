@@ -163,7 +163,16 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 	if (ht <= 0)
 		return (int)ht;
 
-	ogl_tex_upload(ht, GL_NEAREST, GL_ALPHA8, GL_ALPHA);
+	// the GL format is chosen as LUMINANCE, but we want ALPHA.
+/*/*
+There doesn't seem to be much difference between ALPHA4 and ALPHA8.
+I can't notice an increase/decrease in visual quality when quantising to 4-bit values,
+and it's more space-efficient; but it'd need run-time conversion or 4-bit TGAs,
+and the memory difference is probably insignificant [assuming only active fonts are cached,
+and it doesn't keep in memory every font that's ever been displayed], so it's probably easiest to just use ALPHA8 always.
+*/
+	(void)ogl_tex_set_filter(ht, GL_NEAREST);
+	ogl_tex_upload(ht, 0, GL_ALPHA8, GL_ALPHA);
 
 	f->ht = ht;
 

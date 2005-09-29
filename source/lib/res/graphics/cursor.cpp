@@ -6,7 +6,7 @@
 // On Windows, allow runtime choice between system cursors and OpenGL
 // cursors (Windows = more responsive, OpenGL = more consistent with what
 // the game sees)
-#define USE_WINDOWS_CURSOR 1
+#define ALLOW_SYS_CURSOR 1
 
 #include "lib/ogl.h"
 #include "sysdep/sysdep.h"	// sys_cursor_*
@@ -19,27 +19,32 @@
 class GLCursor
 {
 	Handle ht;
-	int w, h;
-	int hotspotx, hotspoty;
+	uint w, h;
+	uint hotspotx, hotspoty;
 
 public:
-	void create(Handle ht_, int w_, int h_, int hotspotx_, int hotspoty_)
+	int create(const char* filename, uint hotspotx_, uint hotspoty_)
 	{
-		ht = ht_;
-		w = w_; h = h_;
+		ht = ogl_tex_load(filename);
+		RETURN_ERR(ht);
+
+		(void)ogl_tex_get_size(ht, &w, &h, 0);
+
 		hotspotx = hotspotx_; hotspoty = hotspoty_;
 
-		WARN_ERR(ogl_tex_upload(ht, GL_NEAREST));
+		(void)ogl_tex_set_filter(ht, GL_NEAREST);
+		(void)ogl_tex_upload(ht);
+		return 0;
 	}
 
 	void destroy()
 	{
-		WARN_ERR(ogl_tex_free(ht));
+		(void)ogl_tex_free(ht);
 	}
 
-	void draw(int x, int y)
+	void draw(uint x, uint y)
 	{
-		WARN_ERR(ogl_tex_bind(ht));
+		(void)ogl_tex_bind(ht);
 		glEnable(GL_TEXTURE_2D);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glEnable(GL_BLEND);
@@ -85,46 +90,28 @@ static int Cursor_reload(Cursor* c, const char* name, Handle)
 {
 	char filename[VFS_MAX_PATH];
 
-	// Load the .txt file containing the pixel offset of the cursor's
-	// hotspot (the bit of it that's drawn at (g_mouse_x,g_mouse_y) )
-	snprintf(filename, ARRAY_SIZE(filename), "art/textures/cursors/%s.txt", name);
-	int hotspotx = 0, hotspoty = 0;
+	// read pixel offset of the cursor's hotspot [the bit of it that's
+	// drawn at (g_mouse_x,g_mouse_y)] from file.
+	uint hotspotx = 0, hotspoty = 0;
 	{
+		snprintf(filename, ARRAY_SIZE(filename), "art/textures/cursors/%s.txt", name);
 		void* p; size_t size;
 		Handle hm = vfs_load(filename, p, size);
-		WARN_ERR(hm);
-		if(hm > 0)
-		{
-			std::stringstream s(std::string((const char*)p, size));
-			s >> hotspotx >> hotspoty;
-
-			WARN_ERR(mem_free_h(hm));
-		}
+		RETURN_ERR(hm);
+		std::stringstream s(std::string((const char*)p, size));
+		s >> hotspotx >> hotspoty;
+		(void)mem_free_h(hm);
 	}
 
+	// load actual cursor
 	snprintf(filename, ARRAY_SIZE(filename), "art/textures/cursors/%s.png", name);
-	Handle ht = ogl_tex_load(filename);
-	RETURN_ERR(ht);
-
-	int w = 0, h = 0, bpp = 0;	// remain 0 on failure
-	GLenum gl_fmt = 0;			// (caught below)
-	void* img = 0;
-	(void)ogl_tex_get_size(ht, &w, &h, &bpp);
-	(void)ogl_tex_get_format(ht, 0, &gl_fmt);
-	(void)ogl_tex_get_data(ht, &img);
-
-#if USE_WINDOWS_CURSOR
-	// verify texture format (this isn't done in sys_cursor_create to
-	// avoid needing to pass gl_fmt and bpp; it assumes 32-bit RGBA).
-	if(bpp != 32 || gl_fmt != GL_RGBA)
-		debug_warn("Cursor_reload: invalid texture format");
-	else
-		WARN_ERR(sys_cursor_create(w, h, img, hotspotx, hotspoty, &c->sys_cursor));
+	// .. system cursor (2d, hardware accelerated)
+#if ALLOW_SYS_CURSOR
+	WARN_ERR(sys_cursor_load(filename, hotspotx, hotspoty, &c->sys_cursor));
 #endif
-
-	// if the system cursor code is disabled or failed, fall back to GLCursor.
+	// .. fall back to GLCursor (system cursor code is disabled or failed)
 	if(!c->sys_cursor)
-		c->gl_cursor.create(ht, w, h, hotspotx, hotspoty);
+		RETURN_ERR(c->gl_cursor.create(filename, hotspotx, hotspoty));
 
 	return 0;
 }
@@ -160,7 +147,7 @@ int cursor_draw(const char* name, int x, int y)
 	}
 
 	Handle hc = cursor_load(name);
-	RETURN_ERR(hc);
+	CHECK_ERR(hc);
 	H_DEREF(hc, Cursor, c);
 
 	if(c->sys_cursor)

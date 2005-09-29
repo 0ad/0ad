@@ -1,21 +1,35 @@
+// OpenGL texture API
+//
+// Copyright (c) 2003-2005 Jan Wassenberg
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License as
+// published by the Free Software Foundation; either version 2 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// General Public License for more details.
+//
+// Contact info:
+//   Jan.Wassenberg@stud.uni-karlsruhe.de
+//   http://www.stud.uni-karlsruhe.de/~urkt/
+
 #include "precompiled.h"
 
+#include "lib.h"
 #include "../res.h"
 #include "ogl.h"
 #include "tex.h"
 #include "ogl_tex.h"
 
-#include "lib.h"
-
-
-static GLint default_filter = GL_LINEAR;	// all legal GL *minify* values
-static uint default_bpp = 32;				// 16 or 32
 
 //----------------------------------------------------------------------------
 // OpenGL helper routines
 //----------------------------------------------------------------------------
 
-static bool filter_is_known(GLint filter)
+static bool filter_valid(GLint filter)
 {
 	switch(filter)
 	{
@@ -26,8 +40,25 @@ static bool filter_is_known(GLint filter)
 	case GL_NEAREST_MIPMAP_LINEAR:
 	case GL_LINEAR_MIPMAP_LINEAR:
 		return true;
+	default:
+		return false;
 	}
-	return false;
+}
+
+
+static bool wrap_valid(GLint wrap)
+{
+	switch(wrap)
+	{
+	case GL_CLAMP:
+	case GL_CLAMP_TO_EDGE:
+	case GL_CLAMP_TO_BORDER:
+	case GL_REPEAT:
+	case GL_MIRRORED_REPEAT:
+		return true;
+	default:
+		return false;
+	}
 }
 
 
@@ -46,20 +77,61 @@ static bool filter_uses_mipmaps(GLint filter)
 }
 
 
+//----------------------------------------------------------------------------
+// quality mechanism
+//----------------------------------------------------------------------------
+
+static GLint default_filter = GL_LINEAR;	// one of the GL *minify* filters
+static uint default_q_flags = OGL_TEX_FULL_QUALITY;	// OglTexQualityFlags
+
+// are the given q_flags valid? (used when checking parameter validity)
+static bool q_flags_valid(uint q_flags)
+{
+	const uint bits = OGL_TEX_FULL_QUALITY|OGL_TEX_HALF_BPP|OGL_TEX_HALF_RES;
+	// unrecognized bits are set - invalid
+	if((q_flags & ~bits) != 0)
+		return false;
+	// "full quality" but other reduction bits are set - invalid
+	if(q_flags & OGL_TEX_FULL_QUALITY && q_flags & ~OGL_TEX_FULL_QUALITY)
+		return false;
+	return true;
+}
+
+
+// change default settings - these affect performance vs. quality.
+// may be overridden for individual textures via parameter to
+// ogl_tex_upload or ogl_tex_set_filter, respectively.
+// 
+// pass 0 to keep the current setting; defaults and legal values are:
+// - q_flags: OGL_TEX_FULL_QUALITY; combination of OglTexQualityFlags 
+// - filter: GL_LINEAR; any valid OpenGL minification filter
+void ogl_tex_set_defaults(uint q_flags, GLint filter)
+{
+	if(q_flags)
+	{
+		debug_assert(q_flags_valid(q_flags));
+		default_q_flags = q_flags;
+	}
+
+	if(filter)
+	{
+		debug_assert(filter_valid(filter));
+		default_filter = filter;
+	}
+}
+
+
 // determine OpenGL texture format, given <bpp> and Tex <flags>.
-// also choose an internal format based on the global <default_bpp>
-// performance vs. quality setting.
-//
-// rationale: we override the user's previous internal format preference.
-// this is reasonable: 1) internal format is mostly performance optimization
-// 2) if it does turn out to be significant, better to reevaluate the
-// format decision after a reload than keep the user's setting.
-static int get_gl_fmt(int bpp, int flags, GLenum* fmt, GLint* int_fmt)
+// also choose an internal format based on the given q_flags.
+static int get_gl_fmt(uint bpp, uint flags, uint q_flags, GLenum* fmt, GLint* int_fmt)
 {
 	const bool alpha = (flags & TEX_ALPHA) != 0;
 	const bool bgr   = (flags & TEX_BGR  ) != 0;
 	const bool grey  = (flags & TEX_GREY ) != 0;
-	const int  dxt   = flags & TEX_DXT;
+	const uint dxt   = flags & TEX_DXT;
+
+	// true => 4 bits per component; otherwise, 8
+	const bool half_bpp = (q_flags & OGL_TEX_HALF_BPP) != 0;
 
 	// in case we fail
 	*fmt     = 0;
@@ -91,32 +163,29 @@ static int get_gl_fmt(int bpp, int flags, GLenum* fmt, GLint* int_fmt)
 		return 0;
 	}
 
-
-	// true => 8 bits per component; otherwise, 4
-	const bool high_quality = (default_bpp == 32);
-
+	// uncompressed
 	switch(bpp)
 	{
 	case 8:
 		debug_assert(grey);
 		*fmt = GL_LUMINANCE;
-		*int_fmt = high_quality? GL_LUMINANCE8 : GL_LUMINANCE4;
+		*int_fmt = half_bpp? GL_LUMINANCE4 : GL_LUMINANCE8;
 		return 0;
 	case 16:
 		*fmt = GL_LUMINANCE_ALPHA;
-		*int_fmt = high_quality? GL_LUMINANCE8_ALPHA8 : GL_LUMINANCE4_ALPHA4;
+		*int_fmt = half_bpp? GL_LUMINANCE4_ALPHA4 : GL_LUMINANCE8_ALPHA8;
 		return 0;
 	case 24:
 		debug_assert(!alpha);
 		*fmt = bgr? GL_BGR : GL_RGB;
 		// note: BGR can't be used as internal format
-		*int_fmt = high_quality? GL_RGB8 : GL_RGB4;
+		*int_fmt = half_bpp? GL_RGB4 : GL_RGB8;
 		return 0;
 	case 32:
 		debug_assert(alpha);
 		*fmt = bgr? GL_BGRA : GL_RGBA;
 		// note: BGR can't be used as internal format
-		*int_fmt = high_quality? GL_RGBA8 : GL_RGBA4;
+		*int_fmt = half_bpp? GL_RGBA4 : GL_RGBA8;
 		return 0;
 	default:
 		debug_warn("get_gl_fmt: invalid bpp");
@@ -127,54 +196,68 @@ static int get_gl_fmt(int bpp, int flags, GLenum* fmt, GLint* int_fmt)
 }
 
 
-// return a token for glTexParameteri that will enable automatic mipmap
-// generation, or GL_FALSE if the GL implementation doesn't support it.
-// does not cache the result.
-//
-// rationale: we don't assume GL_GENERATE_MIPMAP and GL_GENERATE_MIPMAP_SGIS
-// have the same values, although this is implied by the spec governing
-// 'promoted' ARB extensions. checking for both the old extension and
-// core 1.4 is future-proof.
-static GLint detect_auto_mipmap_gen()
+//----------------------------------------------------------------------------
+// texture state to allow seamless reload
+//----------------------------------------------------------------------------
+
+// see "Texture Parameters" in docs.
+
+// all GL state tied to the texture that must be reapplied after reload.
+// (this mustn't get too big, as it's stored in the already sizeable OglTex)
+struct OglTexState
 {
-	// OpenGL 1.4 core. we don't assume this is supported by the driver,
-	// since software implementations usually only have 1.1.
-	if(oglHaveVersion("1.4"))
-		return GL_GENERATE_MIPMAP;
+	// glTexParameter
+	// note: there are more options, but they do not look to
+	//       be important and will not be applied after a reload!
+	//       in particular, LOD_BIAS isn't needed because that is set for
+	//       the entire texturing unit via glTexEnv.
+	// .. texture filter
+	//    note: this is the minification filter value; magnification filter
+	//          is GL_NEAREST if it's GL_NEAREST, otherwise GL_LINEAR.
+	//          we don't store mag_filter explicitly because it
+	//          doesn't appear useful - either apps can tolerate LINEAR, or
+	//          mipmaps aren't called for and filter could be NEAREST anyway).
+	GLint filter;
+	// .. wrap mode
+	//    note: to simplify things, we assume that apps will never want to
+	//          set S/T modes independently. it that becomes necessary,
+	//          it's easy to add.
+	GLint wrap;
+};
 
-	// widespread extension
-	if(oglHaveExtension("GL_SGIS_generate_mipmap"))
-		return GL_GENERATE_MIPMAP_SGIS;
 
-	// neither supported; need to build manually, e.g. with gluBuild2DMipmaps.
-	return GL_FALSE;
+// fill the given state object with default values.
+static void state_set_to_defaults(OglTexState* ots)
+{
+	ots->filter = default_filter;
+	ots->wrap = GL_REPEAT;
 }
 
 
-
-
-// change default upload settings - these affect performance vs. quality.
-// may be overridden for individual textures via ogl_tex_upload parameters.
-// pass 0 to keep the current setting; defaults and legal values are:
-// - filter: GL_LINEAR; any valid OpenGL minification filter
-// - bpp   : 32; 16 or 32 (this toggles between RGBA4 and RGBA8)
-void ogl_tex_set_default_upload(GLint filter, uint bpp)
+// send all state to OpenGL (actually the currently bound texture).
+// called from ogl_tex_upload.
+static void state_latch(OglTexState* ots)
 {
-	if(filter)
-	{
-		debug_assert(filter_is_known(filter));
-		default_filter = filter;
-	}
-	if(bpp)
-	{
-		debug_assert(bpp == 16 || bpp == 32);
-		default_bpp = bpp;
-	}
+	// filter
+	const GLint filter = ots->filter;
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filter);
+	const GLint mag_filter = (filter == GL_NEAREST)? GL_NEAREST : GL_LINEAR;
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, mag_filter);
+
+	// wrap
+	const GLint wrap = ots->wrap;
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrap);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrap);
+	// .. only CLAMP and REPEAT are guaranteed to be available.
+	//    if we're using one of the others, we squelch the error that
+	//    may have resulted if this GL implementation is old.
+	if(wrap != GL_CLAMP && wrap != GL_REPEAT)
+		oglSquelchError(GL_INVALID_ENUM);
 }
 
 
 //----------------------------------------------------------------------------
-// texture resource implementation
+// texture resource object
 //----------------------------------------------------------------------------
 
 // ideally we would split OglTex into data and state objects as in
@@ -192,14 +275,13 @@ void ogl_tex_set_default_upload(GLint filter, uint bpp)
 // - concurrent use risks cross-talk (if the 2nd "instance" changes state and
 //   the first is reloaded, its state may change to that of the 2nd)
 //
-// as bad as it sounds, the latter issue isn't a problem:
-// multiple instances of the same texture where someone changes its
-// internal format aren't expected. even if it is reloaded, the differing
-// state is not critical.
+// as bad as it sounds, the latter issue isn't a problem: we do not expect
+// multiple instances of the same texture where someone changes its filter.
+// even if it is reloaded, the differing state is not critical.
 // the alternative is even worse: disabling *all* caching/reuse would
-// really hurt performance and h_mgr doesn't support disallowing reuse of
-// active objects only (would break the index lookup code, since
-// multiple instances may exist).
+// really hurt performance and h_mgr doesn't support only disallowing
+// reuse of active objects (this would break the index lookup code, since
+// multiple instances may then exist).
 
 struct OglTex
 {
@@ -208,27 +290,36 @@ struct OglTex
 	// allocated by OglTex_reload; indicates the texture is currently uploaded.
 	GLuint id;
 
-	// determined from Tex by gl_get_fmt (called from OglTex_reload);
-	// user settings passed to ogl_tex_upload will override this until the
-	// next actual reload.
+	// ogl_tex_upload calls get_gl_fmt to determine these from <t>.
+	// however, its caller may override those values via parameters.
+	// note: these are stored here to allow retrieving via ogl_tex_get_format;
+	// they are only used within ogl_tex_upload.
 	GLenum fmt;
 	GLint int_fmt;
 
-	// set to <default_filter> by OglTex_init; user settings passed to
-	// ogl_tex_upload will permanently override this.
-	GLint filter;
+	OglTexState state;
+
+	// OglTexQualityFlags
+	uint q_flags : 8;
+
+	// to which Texture Mapping Unit was this bound?
+	uint tmu : 8;
 
 	// flags influencing reload behavior
 	// .. either we have the texture in memory (referenced by t.hm),
 	//    or it's already been uploaded to OpenGL => no reload necessary.
 	//    needs to be a flag so it can be reset in Tex_dtor.
 	uint is_loaded : 1;
+	// .. texture has been uploaded to OpenGL => that needs to be done
+	//    when reloading it.
 	uint has_been_uploaded : 1;
+	// ..
+	uint is_currently_uploaded : 1;
+	// .. this texture wasn't actually loaded from disk - we just
+	//    copied a Tex object into t. if set, actual reloads are disallowed
+	//    (see ogl_tex_load), but we still need this to avoid calling
+	//    tex_load in reload() triggered by h_alloc.
 	uint was_wrapped : 1;
-
-	// to which Texture Mapping Unit was this bound?
-	// used when re-binding after reload.
-	uint tmu : 8;
 };
 
 H_TYPE_DEFINE(OglTex);
@@ -238,14 +329,15 @@ static void OglTex_init(OglTex* ot, va_list args)
 	Tex* wrapped_tex = va_arg(args, Tex*);
 	if(wrapped_tex)
 	{
+		// note: this only happens once; ogl_tex_wrap makes sure
+		// this OglTex cannot be reloaded, so it's safe.
 		ot->t = *wrapped_tex;
 		ot->was_wrapped = 1;
 	}
 
-	// set to default (once)
-	ot->filter = default_filter;
+	state_set_to_defaults(&ot->state);
+	ot->q_flags = default_q_flags;
 }
-
 
 static void OglTex_dtor(OglTex* ot)
 {
@@ -254,33 +346,31 @@ static void OglTex_dtor(OglTex* ot)
 	glDeleteTextures(1, &ot->id);
 	ot->id = 0;
 
+	ot->is_currently_uploaded = 0;
+
 	// need to clear this so actual reloads (triggered by h_reload)
 	// actually reload.
 	ot->is_loaded = 0;
 }
 
-
 static int OglTex_reload(OglTex* ot, const char* fn, Handle h)
 {
+	// make sure the texture has been loaded
+	// .. already done (<h> had been freed but not yet unloaded)
 	if(ot->is_loaded)
 		return 0;
-
-	Tex* const t = &ot->t;
-
+	// .. load from file - but only if we weren't wrapping an existing
+	//    Tex object (i.e. copy its values and be done).
 	if(!ot->was_wrapped)
 		RETURN_ERR(tex_load(fn, &ot->t));
-
-	// always override previous settings, since format in
-	// texture file may have changed (e.g. 24 -> 32 bpp).
-	CHECK_ERR(get_gl_fmt(t->bpp, t->flags, &ot->fmt, &ot->int_fmt));
-
 	ot->is_loaded = 1;
 
 	glGenTextures(1, &ot->id);
 
-	// re-upload if necessary
+	// if it had already been uploaded before this reload,
+	// re-upload it (this also does state_latch).
 	if(ot->has_been_uploaded)
-		CHECK_ERR(ogl_tex_upload(h, ot->filter, ot->int_fmt));
+		(void)ogl_tex_upload(h);
 
 	return 0;
 }
@@ -306,6 +396,13 @@ Handle ogl_tex_load(const char* fn, uint flags)
 // h_filename will return a meaningful comment for debug purposes.
 Handle ogl_tex_wrap(Tex* t, const char* fn, uint flags)
 {
+	// this object may not be backed by a file ("may", because
+	// someone could do tex_load and then ogl_tex_wrap).
+	// if h_mgr asks for a reload, the dtor will be called but
+	// we won't be able to reconstruct it. therefore, disallow reloads.
+	// (they are improbable anyway since caller is supposed to pass a
+	// 'descriptive comment' instead of filename, but don't rely on that)
+	flags |= RES_DISALLOW_RELOAD;
 	return h_alloc(H_OglTex, fn, flags, t);
 }
 
@@ -332,35 +429,32 @@ static int ogl_tex_validate(const uint line, const OglTex* ot)
 	// restrictions on dimensions, while OpenGL does).
 	GLsizei w = (GLsizei)ot->t.w;
 	GLsizei h = (GLsizei)ot->t.h;
-	// if w or h is 0, texture file probably not loaded successfully.
+	// .. if w or h is 0, texture file probably not loaded successfully.
 	if(w == 0 || h == 0)
 		msg = "width or height is 0 - texture probably not loaded successfully";
-	// greater than max supported tex dimension?
-	// no-op if oglInit not yet called
+	// .. greater than max supported tex dimension?
+	//    no-op if oglInit not yet called
 	if(w > (GLsizei)ogl_max_tex_size || h > (GLsizei)ogl_max_tex_size)
 		msg = "texture dimensions exceed OpenGL implementation limit";
-	// both NV_texture_rectangle and subtexture require work for the client
-	// (changing tex coords) => we'll just disallow non-power of 2 textures.
-	// TODO: ARB_texture_non_power_of_two
+	// .. both NV_texture_rectangle and subtexture require work for the client
+	//    (changing tex coords) => we'll just disallow non-power of 2 textures.
+	//    TODO: ARB_texture_non_power_of_two
 	if(!is_pow2(w) || !is_pow2(h))
 		msg = "width or height is not a power-of-2";
 
-	// texel format
-	GLenum fmt = (GLenum)ot->fmt;
-	if(!fmt)
-		msg = "texel format is 0";
-	// can't really check against a list of valid formats - loaders
-	// may define their own. not necessary anyway - if non-0, assume
-	// loader knows what it's doing, and that the format is valid.
-
 	// upload parameters, set by ogl_tex_upload(Handle), or 0
-	GLint filter  = ot->filter;
-	if(filter != 0 && !filter_is_known(filter))
+	GLint filter = ot->state.filter;
+	GLint wrap   = ot->state.wrap;
+	if(filter != 0 && !filter_valid(filter))
 		msg = "invalid filter";
-	// as with the texel format above, there is not anything we can do
-	// to verify ot->int_fmt is correct (even 0 is valid).
+	if(wrap != 0 && !wrap_valid(wrap))
+		msg = "invalid wrap mode";
+	if(!q_flags_valid(ot->q_flags))
+		msg = "invalid q_flags";
 	if(ot->tmu >= 128)
 		msg = "TMU invalid? it's >= 128!";
+	// .. note: don't check ot->fmt and ot->int_fmt - they aren't set
+	//    until during ogl_tex_upload.
 
 	if(msg)
 	{
@@ -375,66 +469,132 @@ static int ogl_tex_validate(const uint line, const OglTex* ot)
 #define CHECK_OGL_TEX(ot) CHECK_ERR(ogl_tex_validate(__LINE__, ot))
 
 
+//----------------------------------------------------------------------------
+// state setters (see "Texture Parameters" in docs)
+
+// rationale: these must be called before uploading; this simplifies
+// things and avoids calling glTexParameter twice.
+static void warn_if_uploaded(Handle ht, const OglTex* ot)
+{
+	int refs = h_get_refcnt(ht);
+
+	if(refs == 1 && ot->is_currently_uploaded)
+		debug_warn("ogl_tex_set_*: texture already uploaded and shouldn't be changed");
+}
 
 
-// upload the texture to OpenGL. texture filter and [internal] format
-// may be specified to override the global defaults (see below).
-// side effects:
-// - enables texturing on TMU 0 and binds the texture to it;
-// - frees the texel data! see ogl_tex_get_data.
-int ogl_tex_upload(const Handle ht, GLint filter_ovr, GLint int_fmt_ovr, GLenum fmt_ovr)
+// override default filter (as set above) for this texture.
+// must be called before uploading (raises a warning if called afterwards).
+// filter is as defined by OpenGL; it is applied for both minification and
+// magnification (for rationale and details, see OglTexState)
+int ogl_tex_set_filter(Handle ht, GLint filter)
 {
 	H_DEREF(ht, OglTex, ot);
 	CHECK_OGL_TEX(ot);
 
-	// someone's requesting upload, but has already been uploaded.
-	// this happens if a cached texture is "loaded". no work to do.
-	if(ot->id && ot->t.hm <= 0)
-		return 0;
+	if(!filter_valid(filter))
+		CHECK_ERR(ERR_INVALID_PARAM);
 
-	CHECK_OGL_TEX(ot);	// must come after check above to avoid false alarms
+	warn_if_uploaded(ht, ot);
+	ot->state.filter = filter;
+	return 0;
+}
 
-	const char* fn = h_filename(ht);
-	if(!fn)
+
+// override default wrap mode (GL_REPEAT) for this texture.
+// must be called before uploading (raises a warning if called afterwards).
+// wrap is as defined by OpenGL and applies to both S and T coordinates
+// (rationale: see OglTexState).
+int ogl_tex_set_wrap(Handle ht, GLint wrap)
+{
+	H_DEREF(ht, OglTex, ot);
+	CHECK_OGL_TEX(ot);
+
+	if(!wrap_valid(wrap))
+		CHECK_ERR(ERR_INVALID_PARAM);
+
+	warn_if_uploaded(ht, ot);
+	ot->state.wrap = wrap;
+	return 0;
+}
+
+
+//----------------------------------------------------------------------------
+// upload
+
+// bind the texture to the specified unit [number] in preparation for
+// using it in rendering. assumes multitexturing is available.
+// not necessary before calling ogl_tex_upload!
+// side effects:
+// - enables (or disables, if <ht> == 0) texturing on the given unit.
+//
+// note: there are many call sites of glActiveTextureARB, so caching
+// those and ignoring redundant sets isn't feasible.
+int ogl_tex_bind(const Handle ht, GLenum unit)
+{
+	int id = 0;
+
+	// special case: avoid dereference and disable texturing directly.
+	if(ht == 0)
+		goto disable_texturing;
+
 	{
-		fn = "(could not determine filename)";
-		debug_warn("ogl_tex_upload(Handle): h_filename failed");
+		// (we can't use H_DEREF because it exits immediately)
+		OglTex* ot = H_USER_DATA(ht, OglTex);
+		if(!ot)
+		{
+			glBindTexture(GL_TEXTURE_2D, 0);
+			CHECK_ERR(ERR_INVALID_HANDLE);
+			UNREACHABLE;
+		}
+
+		CHECK_OGL_TEX(ot);
+
+#ifndef NDEBUG
+		if(!ot->id)
+		{
+			debug_warn("ogl_tex_bind: OglTex.id is not a valid texture");
+			return -1;
+		}
+#endif
+
+		id = ot->id;
+		ot->tmu = unit;
 	}
 
-	// allow user override of format/settings
-	if(filter_ovr) ot->filter = filter_ovr;
-	if(int_fmt_ovr) ot->int_fmt = int_fmt_ovr;
-	if(fmt_ovr) ot->fmt = fmt_ovr;
-
-	// convenient local copies. note: have been validated by CHECK_TEX.
-	GLsizei w      = (GLsizei)ot->t.w;
-	GLsizei h      = (GLsizei)ot->t.h;
-	u32 bpp        = ot->t.bpp;	// used for S3TC/mipmap size calc
-	GLenum fmt     = ot->fmt;
-	GLint filter   = ot->filter;
-	GLint int_fmt  = ot->int_fmt;
-	void* tex_data = tex_get_data(&ot->t);
-
-	// does filter call for uploading mipmaps?
-	const bool need_mipmaps = filter_uses_mipmaps(filter);
-	static GLint auto_mipmap_gen;
-	ONCE(auto_mipmap_gen = detect_auto_mipmap_gen());
+disable_texturing:
+	glActiveTextureARB(GL_TEXTURE0+unit);
+	if(id)
+	{
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, id);
+	}
+	else
+		glDisable(GL_TEXTURE_2D);
+	return 0;
+}
 
 
-	// we know ht is valid (H_DEREF above), but ogl_tex_bind can
-	// fail in debug builds if OglTex.id isn't a valid texture name
-	CHECK_ERR(ogl_tex_bind(ht, ot->tmu));
+// this has gotten to be quite complex. due to various fallbacks, we
+// implement this as an automaton with the following states:
+enum UploadState
+{
+	auto_uncomp, auto_comp,
+	mipped_uncomp, mipped_comp,
+	normal_uncomp, normal_comp,
+	broken_comp,
+	glubuild
+};
 
-	// set upload params
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filter);
-	const GLint mag_filter = (filter == GL_NEAREST)? GL_NEAREST : GL_LINEAR;
-		// magnify can only be linear or nearest
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, mag_filter);
 
+// use parameters describing a texture to decide which upload method is
+// called for; returns one of the above "states".
+static UploadState determine_upload_state(GLenum fmt, GLint filter, uint tex_flags)
+{
 	/*
 		There are various combinations of desires/abilities, relating to how
 		(and whether) mipmaps should be generated. Currently there are only
-		2^4 such combinations:
+		2^4 of them:
 
 		     /mipmaps available in texture
 		     #######
@@ -482,30 +642,118 @@ int ogl_tex_upload(const Handle ht, GLint filter_ovr, GLint int_fmt_ovr, GLenum 
 		hopefully it'll prevent the logic getting horribly tangled...]
 	*/
 
+	// decisions:
+	// .. does filter call for uploading mipmaps?
+	const bool need_mipmaps = filter_uses_mipmaps(filter);
+	// .. does this OpenGL implementation support auto mipmap generation?
+	static const bool auto_mipmap_gen = oglHaveVersion("1.4") || oglHaveExtension("GL_SGIS_generate_mipmap");
+	// .. is this texture in S3TC format? (more generally, "compressed")
 	const bool is_s3tc = ogl_dxt_from_fmt(fmt) != 0;
-	const bool has_mipmaps = (ot->t.flags & TEX_MIPMAPS) != 0;
+	// .. does the image data include mipmaps? (stored as separate
+	//    images after the regular texels)
+	const bool includes_mipmaps = (tex_flags & TEX_MIPMAPS) != 0;
 
-	enum UploadState
+	static const UploadState states[4][4] =
 	{
-		auto_uncomp, auto_comp,
-		mipped_uncomp, mipped_comp,
-		normal_uncomp, normal_comp,
-		broken_comp,
-		glubuild
-	};
-	static const int states[4][4] = {
 		{ auto_uncomp, mipped_uncomp, normal_uncomp, normal_uncomp },
 		{ auto_comp,   mipped_comp,   normal_comp,   normal_comp   },
 		{ broken_comp, mipped_comp,   normal_comp,   normal_comp   },
 		{ glubuild,    mipped_uncomp, normal_uncomp, normal_uncomp }
 	};
-	int state = states[auto_mipmap_gen ? (is_s3tc     ? 1 : 0) : (is_s3tc     ? 2 : 3)]  // row
-	                  [need_mipmaps    ? (has_mipmaps ? 1 : 0) : (has_mipmaps ? 2 : 3)]; // column
+	const int row = auto_mipmap_gen ? (is_s3tc          ? 1 : 0) : (is_s3tc          ? 2 : 3);
+	const int col = need_mipmaps    ? (includes_mipmaps ? 1 : 0) : (includes_mipmaps ? 2 : 3);
+	return states[row][col];
+}
+
+
+// <data> holds the image as well as all mip levels (stored consecutively).
+// upload them with the given internal format and quality flags.
+//
+// this is called whenever possible because pregenerated mipmaps are
+// higher-quality and faster than gluBuildMipmaps resp. automatic generation.
+//
+// pre: w, h > 0; texture is bound.
+static void upload_mipmaps(uint w, uint h, uint bpp, const u8* data,
+	UploadState state, GLenum fmt, GLint int_fmt, uint q_flags)
+{
+	GLsizei level_w = w;
+	GLsizei level_h = h;
+
+	// resolution reduction (see OGL_TEX_HALF_RES for rationale).
+	// this effectively reduces resolution by skipping some of the
+	// lower (high-resolution) mip levels.
+	//
+	// we iterate through the loop (necessary to skip over image data),
+	// but do not actually upload until the requisite number of
+	// levels have been skipped (i.e. level == 0).
+	//
+	// note: we don't just use GL_TEXTURE_BASE_LEVEL because it would
+	// require uploading unused levels, which is wasteful.
+	// .. can be expanded to reduce to 1/4, 1/8 by encoding factor in q_flags.
+	const uint reduce = (q_flags & OGL_TEX_HALF_RES)? 2 : 1;
+	const uint levels_to_skip = log2(reduce);
+	int level = -(int)levels_to_skip;
+
+	// until at level 1x1:
+	for(;;)
+	{
+		GLsizei mip_size;	// used to skip past this mip level in <data>
+		if(state == mipped_uncomp)
+		{
+			mip_size = level_w * level_h * bpp/8;
+			if(level >= 0)
+				glTexImage2D(GL_TEXTURE_2D, level, int_fmt, level_w, level_h, 0, fmt, GL_UNSIGNED_BYTE, data);
+		}
+		else // state == mipped_comp
+		{
+			mip_size = (GLsizei)(round_up(level_w, 4) * round_up(level_h, 4) * bpp/8);
+			if(level >= 0)
+				glCompressedTexImage2DARB(GL_TEXTURE_2D, level, fmt, level_w, level_h, 0, mip_size, data);
+		}
+		data += mip_size;
+
+		// 1x1 reached - done
+		if(level_w == 1 && level_h == 1)
+			break;
+		level_w /= 2;
+		level_h /= 2;
+		// if the texture is non-square, one of the dimensions will become
+		// 0 before the other. to satisfy OpenGL's expectations, change it
+		// back to 1.
+		if(level_w == 0) level_w = 1;
+		if(level_h == 0) level_h = 1;
+		level++;
+	}
+}
+
+
+// upload manager: given all texture format details, determines the
+// initial "state" and runs through the upload automaton.
+//
+// split out of ogl_tex_upload because it was too big.
+//
+// pre: <t> is valid for OpenGL use; texture is bound.
+static void upload_impl(const Tex* t, GLenum fmt, GLint int_fmt, GLint filter, uint q_flags)
+{
+	// convenient local copies (t has been validated already).
+	const GLsizei w  = (GLsizei)t->w;
+	const GLsizei h  = (GLsizei)t->h;
+	const uint bpp   = t->bpp;		// used for S3TC/mipmap size calc
+	const uint flags = t->flags;	// tells us if img holds mipmaps
+	const u8* data = (const u8*)tex_get_data(t);
+
+	UploadState state = determine_upload_state(fmt, filter, flags);
 
 	if(state == auto_uncomp || state == auto_comp)
 	{
-		glTexParameteri(GL_TEXTURE_2D, auto_mipmap_gen, GL_TRUE);
-		state = (state == auto_uncomp)? normal_uncomp : normal_comp;
+		// notes:
+		// - if this state is reached, OpenGL supports auto mipmap gen
+		//   (we check for that above)
+		// - we assume GL_GENERATE_MIPMAP and GL_GENERATE_MIPMAP_SGIS
+		//   have the same values - it's heavily implied by the spec
+		//   governing 'promoted' ARB extensions and just plain makes sense.
+		glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
+		state = (state == auto_comp)? normal_comp : normal_uncomp;
 	}
 
 	if(state == broken_comp)
@@ -515,153 +763,87 @@ int ogl_tex_upload(const Handle ht, GLint filter_ovr, GLint int_fmt_ovr, GLenum 
 	}
 
 	if(state == glubuild)
-		gluBuild2DMipmaps(GL_TEXTURE_2D, int_fmt, w, h, fmt, GL_UNSIGNED_BYTE, tex_data);
+		gluBuild2DMipmaps(GL_TEXTURE_2D, int_fmt, w, h, fmt, GL_UNSIGNED_BYTE, data);
 	else if(state == normal_uncomp)
-		glTexImage2D(GL_TEXTURE_2D, 0, int_fmt, w, h, 0, fmt, GL_UNSIGNED_BYTE, tex_data);
+		glTexImage2D(GL_TEXTURE_2D, 0, int_fmt, w, h, 0, fmt, GL_UNSIGNED_BYTE, data);
 	else if(state == normal_comp)
 	{
 		const GLsizei tex_size = w * h * bpp / 8;
-		glCompressedTexImage2DARB(GL_TEXTURE_2D, 0, fmt, w, h, 0, tex_size, tex_data);
+		glCompressedTexImage2DARB(GL_TEXTURE_2D, 0, fmt, w, h, 0, tex_size, data);
 	}
 	else if(state == mipped_uncomp || state == mipped_comp)
-	{
-		int level = 0;
-		GLsizei level_w = w;
-		GLsizei level_h = h;
-		char* mipmap_data = (char*)tex_data;
-
-		while(level_w || level_h) // loop until the 1x1 mipmap level has just been processed
-		{
-			// If the texture is non-square, one of the dimensions will become
-			// 0 before the other. To satisfy OpenGL's expectations, change it
-			// back to 1.
-			if(level_w == 0) level_w = 1;
-			if(level_h == 0) level_h = 1;
-
-			GLsizei tex_size;
-			if(state == mipped_uncomp)
-			{
-				tex_size = level_w * level_h * bpp/8;
-				glTexImage2D(GL_TEXTURE_2D, level, int_fmt, level_w, level_h, 0, fmt, GL_UNSIGNED_BYTE, mipmap_data);
-			}
-			else // state == mipped_comp
-			{
-				// Round up to an integer number of 4x4 blocks
-				tex_size = (GLsizei)(round_up(level_w, 4) * round_up(level_h, 4) * bpp/8);
-				glCompressedTexImage2DARB(GL_TEXTURE_2D, level, fmt, level_w, level_h, 0, tex_size, mipmap_data);
-			}
-
-			mipmap_data += tex_size;
-			level++;
-			level_w /= 2;
-			level_h /= 2;
-		}
-	}
+		upload_mipmaps(w, h, bpp, data, state, fmt, int_fmt, q_flags);
 	else
-		debug_warn("Invalid state in ogl_tex_upload");
+		debug_warn("invalid state in ogl_tex_upload");
 
-	// see rationale at declaration of OglTex
+}
+
+
+// upload the texture to OpenGL.
+// if q_flags_ovr != 0, it overrides the default quality vs. perf. flags;
+// if (int_)fmt_over != 0, it overrides the texture loader's decision.
+// side effects:
+// - enables texturing on TMU 0 and binds the texture to it;
+// - frees the texel data! see ogl_tex_get_data.
+int ogl_tex_upload(const Handle ht, uint q_flags_ovr, GLint int_fmt_ovr, GLenum fmt_ovr)
+{
+	H_DEREF(ht, OglTex, ot);
+	CHECK_OGL_TEX(ot);
+
+	debug_assert(q_flags_valid(q_flags_ovr));
+	// we don't bother verifying *fmt_ovr - there are too many values
+
+	const char* fn = h_filename(ht);
+	if(!fn)
+	{
+		fn = "(could not determine filename)";
+		debug_warn("ogl_tex_upload(Handle): h_filename failed");
+	}
+
+	// someone's requesting upload, but has already been uploaded.
+	// this happens if a cached texture is "loaded". no work to do.
+	if(ot->is_currently_uploaded)
+		return 0;
+
+	// determine fmt and int_fmt, allowing for user override.
+	if(q_flags_ovr) ot->q_flags = q_flags_ovr;
+	CHECK_ERR(get_gl_fmt(ot->t.bpp, ot->t.flags, ot->q_flags, &ot->fmt, &ot->int_fmt));
+	if(int_fmt_ovr) ot->int_fmt = int_fmt_ovr;
+	if(fmt_ovr) ot->fmt = fmt_ovr;
+
+	// we know ht is valid (H_DEREF above), but ogl_tex_bind can
+	// fail in debug builds if OglTex.id isn't a valid texture name
+	CHECK_ERR(ogl_tex_bind(ht, ot->tmu));
+
+	// if first time: apply our defaults/previous overrides;
+	// otherwise, replays all state changes.
+	state_latch(&ot->state);
+
+	upload_impl(&ot->t, ot->fmt, ot->int_fmt, ot->state.filter, ot->q_flags);
+
+	// see rationale for <refs> at declaration of OglTex.
+	// note: tex_free is safe even if this OglTex was wrapped -
+	//       the Tex contains a mem handle.
 	int refs = h_get_refcnt(ht);
-	if(refs > 0)
+	if(refs == 1)
 		tex_free(&ot->t);
 
 	ot->has_been_uploaded = 1;
-
-	oglCheck();
-
-	return 0;
-}
-
-
-/*
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// BindTexture: bind a GL texture object to current active unit
-void CRenderer::BindTexture(int unit,GLuint tex)
-{
-#if 0
-glActiveTextureARB(GL_TEXTURE0+unit);
-if (tex==m_ActiveTextures[unit]) return;
-
-if (tex) {
-glBindTexture(GL_TEXTURE_2D,tex);
-if (!m_ActiveTextures[unit]) {
-glEnable(GL_TEXTURE_2D);
-}
-} else if (m_ActiveTextures[unit]) {
-glDisable(GL_TEXTURE_2D);
-}
-m_ActiveTextures[unit]=tex;
-#endif
-
-glActiveTextureARB(GL_TEXTURE0+unit);
-
-glBindTexture(GL_TEXTURE_2D,tex);
-if (tex) {
-glEnable(GL_TEXTURE_2D);
-} else {
-glDisable(GL_TEXTURE_2D);
-}
-m_ActiveTextures[unit]=tex;
-}
-*/
-
-
-// bind the texture to the specified unit [number] in preparation for
-// using it in rendering. assumes multitexturing is available.
-// side effects:
-// - enables (or disables, if <ht> == 0) texturing on the given unit.
-//
-// note: there are many call sites of glActiveTextureARB, so caching
-// those and ignoring redundant sets isn't feasible.
-int ogl_tex_bind(const Handle ht, GLenum unit)
-{
-	int id = 0;
-
-	// special case: avoid dereference and disable texturing directly.
-	if(ht == 0)
-		goto disable_texturing;
-
-	{
-		// (we can't use H_DEREF because it exits immediately)
-		OglTex* ot = H_USER_DATA(ht, OglTex);
-		if(!ot)
-		{
-			glBindTexture(GL_TEXTURE_2D, 0);
-			CHECK_ERR(ERR_INVALID_HANDLE);
-			UNREACHABLE;
-		}
-
-		CHECK_OGL_TEX(ot);
+	ot->is_currently_uploaded = 1;
 
 #ifndef NDEBUG
-		if(!ot->id)
-		{
-			debug_warn("ogl_tex_bind: OglTex.id is not a valid texture");
-			return -1;
-		}
+	oglCheck();
 #endif
-
-		id = ot->id;
-		ot->tmu = unit;
-	}
-
-disable_texturing:
-	glActiveTextureARB(GL_TEXTURE0+unit);
-	glBindTexture(GL_TEXTURE_2D, id);
-	if(id)
-		glEnable(GL_TEXTURE_2D);
-	else
-		glDisable(GL_TEXTURE_2D);
 	return 0;
 }
 
 
 //----------------------------------------------------------------------------
-
+// getters
 
 // retrieve texture dimensions and bits per pixel.
 // all params are optional and filled if non-NULL.
-int ogl_tex_get_size(Handle ht, int* w, int* h, int* bpp)
+int ogl_tex_get_size(Handle ht, uint* w, uint* h, uint* bpp)
 {
 	H_DEREF(ht, OglTex, ot);
 	CHECK_OGL_TEX(ot);
@@ -677,8 +859,9 @@ int ogl_tex_get_size(Handle ht, int* w, int* h, int* bpp)
 
 
 // retrieve Tex.flags and the corresponding OpenGL format.
+// the latter is determined during ogl_tex_upload and is 0 before that.
 // all params are optional and filled if non-NULL.
-int ogl_tex_get_format(Handle ht, int* flags, GLenum* fmt)
+int ogl_tex_get_format(Handle ht, uint* flags, GLenum* fmt)
 {
 	H_DEREF(ht, OglTex, ot);
 	CHECK_OGL_TEX(ot);
@@ -686,7 +869,11 @@ int ogl_tex_get_format(Handle ht, int* flags, GLenum* fmt)
 	if(flags)
 		*flags = ot->t.flags;
 	if(fmt)
+	{
+		if(!ot->has_been_uploaded)
+			debug_warn("ogl_tex_get_format: hasn't been defined yet!");
 		*fmt = ot->fmt;
+	}
 	return 0;
 }
 
@@ -694,7 +881,8 @@ int ogl_tex_get_format(Handle ht, int* flags, GLenum* fmt)
 // retrieve pointer to texel data.
 //
 // note: this memory is freed after a successful ogl_tex_upload for
-// this texture. after that, the pointer we retrieve is NULL but
+// this texture. after that, the pointer we retrieve is NULL but 	ps_dbg.exe!ogl_tex_set_filter(__int64 ht=476741374144, int filter=9729)  Line 490 + 0x4a	C++
+
 // the function doesn't fail (negative return value) by design.
 // if you still need to get at the data, add a reference before
 // uploading it or read directly from OpenGL (discouraged).
@@ -705,4 +893,18 @@ int ogl_tex_get_data(Handle ht, void** p)
 
 	*p = tex_get_data(&ot->t);
 	return 0;
+}
+
+
+//----------------------------------------------------------------------------
+// misc API
+
+// apply the specified transforms (as in tex_transform) to the image.
+// must be called before uploading (raises a warning if called afterwards).
+int ogl_tex_transform(Handle ht, uint transforms)
+{
+	H_DEREF(ht, OglTex, ot);
+	CHECK_OGL_TEX(ot);
+	int ret = tex_transform(&ot->t, transforms);
+	return ret;
 }

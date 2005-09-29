@@ -389,7 +389,9 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 				return;
 			}
 
-			int err = ogl_tex_upload(h, GL_LINEAR);
+			(void)ogl_tex_set_filter(h, GL_LINEAR);
+
+			int err = ogl_tex_upload(h);
 			if (err < 0)
 			{
 				LOG(ERROR, LOG_CATEGORY, "Error uploading texture '%s': %d", (const char*)cit->m_TextureName, err);
@@ -398,11 +400,11 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 
 			Call.m_TexHandle = h;
 
-			int t_w = 0, t_h = 0;
+			uint t_w = 0, t_h = 0;
 			(void)ogl_tex_get_size(h, &t_w, &t_h, 0);
 			float TexWidth = t_w, TexHeight = t_h;
 
-			int flags = 0;	// assume no alpha on failure
+			uint flags = 0;	// assume no alpha on failure
 			(void)ogl_tex_get_format(h, &flags, 0);
 			Call.m_EnableBlending = (flags & TEX_ALPHA) != 0;
 
