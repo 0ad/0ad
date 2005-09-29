@@ -2,9 +2,9 @@ dofile("../functions.lua")
 
 -- Set up the Project
 project.name = "pyrogenesis"
-project.bindir = "../../../binaries/system"
-project.libdir = "../../../binaries/system"
-project.debugdir = "../../../binaries/data"
+project.bindir   = "../../../binaries/system"
+project.libdir   = "../../../binaries/system"
+project.debugdir = "../../../binaries/system"
 project.configs = { "Debug", "Release", "Testing" }
 
 if (OS == "windows") then
