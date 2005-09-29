@@ -73,7 +73,9 @@ static int MainInputHandler(const SDL_Event* ev)
 	case SDL_KEYDOWN:
 	case SDL_KEYUP:
 		c = ev->key.keysym.sym;
-		keys[c] = (ev->type == SDL_KEYDOWN);
+		// Prevent out-of-range writes on faked key events
+		if (c < SDLK_LAST)
+			keys[c] = (ev->type == SDL_KEYDOWN);
 		break;
 
 	case SDL_MOUSEBUTTONDOWN:
