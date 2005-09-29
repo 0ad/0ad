@@ -112,13 +112,6 @@ ErrorReaction display_error_impl(const wchar_t* text, int flags)
 // take advantage of hardware mouse cursors instead of the (jerky when
 // loading) OpenGL cursor.
 
-int sys_cursor_create(int UNUSED(w), int UNUSED(h), void* UNUSED(img),
-	int UNUSED(hx), int UNUSED(hy), void** cursor)
-{
-	*cursor = 0;
-	return 0;
-}
-
 int sys_cursor_set(void* cursor)
 {
 	return 0;

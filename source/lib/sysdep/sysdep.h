@@ -112,13 +112,6 @@ extern int clipboard_free(wchar_t* copy);
 
 // note: these do not warn on error; that is left to the caller.
 
-// creates a cursor from the given 32 bpp texture (described by tex.h flags).
-// hotspot (hx,hy) is the offset from its upper-left corner to the
-// position where mouse clicks are registered.
-// the cursor must be cursor_free-ed when no longer needed.
-extern int sys_cursor_create(uint w, uint h, uint flags, void* img,
-	uint hx, uint hy, void** cursor);
-
 // creates a cursor from the given texture file.
 // hotspot (hx,hy) is the offset from its upper-left corner to the
 // position where mouse clicks are registered.

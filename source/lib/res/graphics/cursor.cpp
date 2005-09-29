@@ -6,7 +6,9 @@
 // On Windows, allow runtime choice between system cursors and OpenGL
 // cursors (Windows = more responsive, OpenGL = more consistent with what
 // the game sees)
+#if OS_WIN
 #define ALLOW_SYS_CURSOR 1
+#endif
 
 #include "lib/ogl.h"
 #include "sysdep/sysdep.h"	// sys_cursor_*
@@ -108,6 +110,8 @@ static int Cursor_reload(Cursor* c, const char* name, Handle)
 	// .. system cursor (2d, hardware accelerated)
 #if ALLOW_SYS_CURSOR
 	WARN_ERR(sys_cursor_load(filename, hotspotx, hotspoty, &c->sys_cursor));
+#else
+	c->sys_cursor = 0;
 #endif
 	// .. fall back to GLCursor (system cursor code is disabled or failed)
 	if(!c->sys_cursor)
