@@ -28,7 +28,7 @@ extern "C" {
 #define REAL_GL_1_2
 #endif
 #ifdef GL_VERSION_1_3
-//#define REAL_GL_1_3
+#define REAL_GL_1_3
 #endif
 
 #undef GL_GLEXT_PROTOTYPES

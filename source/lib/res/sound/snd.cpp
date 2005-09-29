@@ -184,17 +184,12 @@ static void alc_shutdown()
 {
 	if(alc_ctx)
 	{
-		debug_printf("alcMakeContextCurrent(0)\n");
 		alcMakeContextCurrent(0);
-		debug_printf("alcDestroyContext\n");
 		alcDestroyContext(alc_ctx);
 	}
 
 	if(alc_dev)
-	{
-		debug_printf("alcCloseDevice\n");
 		alcCloseDevice(alc_dev);
-	}
 }
 
 
@@ -520,22 +515,16 @@ static void al_shutdown()
 	// .. free all active sounds so that they release their source.
 	//    the SndData reference is also removed,
 	//    but these remain open, since they are cached.
-	debug_printf("list_free_all\n");
 	list_free_all();
 
 	// .. actually free all (still cached) SndData instances.
-	debug_printf("hsd_list_free_all\n");
 	hsd_list_free_all();
 
 	// .. all sources and buffers have been returned to their suballocators.
 	//    now free them all.
-	debug_printf("al_src_shutdown\n");
 	al_src_shutdown();
-	
-	debug_printf("al_buf_shutdown\n");
 	al_buf_shutdown();
 
-	debug_printf("alc_shutdown\n");
 	alc_shutdown();
 
 	al_initialized = false;
