@@ -425,12 +425,19 @@ int hotkeyInputHandler( const SDL_Event* ev )
 			{
 				if( keys[keyCode] != rqdState ) accept = false;
 			}
-			else if( *itKey < UNIFIED_SHIFT )
+			else if( keyCode < UNIFIED_SHIFT )
 			{
 				if( mouse_buttons[keyCode-SDLK_LAST] != rqdState ) accept = false;
 			}
-			else
+			else if( keyCode-UNIFIED_SHIFT < ARRAY_SIZE(unified) )
+			{
 				if( unified[keyCode-UNIFIED_SHIFT] != rqdState ) accept = false;
+			}
+			else
+			{
+				debug_printf("keyCode = %i\n", keyCode);
+				debug_warn("keyCode out of range in GUI hotkey requirements");
+			}
 
 			// If this event requires a multiple keypress (with the exception
 			// of shift+key combinations) the console won't inhibit it.
@@ -485,12 +492,19 @@ int hotkeyInputHandler( const SDL_Event* ev )
 			{
 				if( keys[keyCode] != rqdState ) accept = false;
 			}
-			else if( *itKey < UNIFIED_SHIFT )
+			else if( keyCode < UNIFIED_SHIFT )
 			{
 				if( mouse_buttons[keyCode-SDLK_LAST] != rqdState ) accept = false;
 			}
-			else
+			else if( keyCode-UNIFIED_SHIFT < ARRAY_SIZE(unified) )
+			{
 				if( unified[keyCode-UNIFIED_SHIFT] != rqdState ) accept = false;
+			}
+			else
+			{
+				debug_printf("keyCode = %i\n", keyCode);
+				debug_warn("keyCode out of range in GUI hotkey requirements");
+			}
 
 			// If this event requires a multiple keypress (with the exception
 			// of shift+key combinations) the console won't inhibit it.
