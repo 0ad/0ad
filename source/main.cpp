@@ -334,6 +334,8 @@ int main(int argc, char* argv[])
 	Shutdown();
 	MainControllerShutdown();
 
+	debug_printf("Shutdown complete, calling exit() now\n");
+	
 	exit(0);
 }
 

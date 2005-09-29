@@ -620,53 +620,80 @@ void Shutdown()
 	if (g_Game)
 		EndGame();
 
+	TIMER_START("shutdown Scheduler");
 	delete &g_Scheduler;
+	TIMER_END("shutdown Scheduler");
 
+	TIMER_START("shutdown SessionManager");
 	delete &g_SessionManager;
+	TIMER_END("shutdown SessionManager");
 
+	TIMER_START("shutdown mouse stuff");
 	delete &g_Mouseover;
 	delete &g_Selection;
 	delete &g_BuildingPlacer;
+	TIMER_END("shutdown mouse stuff");
 
+	TIMER_START("shutdown Pathfinder");
 	delete &g_Pathfinder;
+	TIMER_END("shutdown Pathfinder");
 
 	// Managed by CWorld
 	// delete &g_EntityManager;
 
+	TIMER_START("shutdown scripting stuff");
 	delete &g_GameAttributes;
 	delete &g_JSGameEvents;
 
 	delete &g_EntityTemplateCollection;
 
 	delete &g_ScriptingHost;
+	TIMER_END("shutdown scripting stuff");
 
 	// destroy actor related stuff
+	TIMER_START("shutdown actor stuff");
 	delete &g_UnitMan;
 	delete &g_ObjMan;
 	delete &g_SkelAnimMan;
 
 	delete &g_MaterialManager;
 	delete &g_MeshManager;
+	TIMER_END("shutdown actor stuff");
 
 	// destroy terrain related stuff
+	TIMER_START("shutdown TexMan");
 	delete &g_TexMan;
+	TIMER_END("shutdown TexMan");
 
 	// destroy renderer
+	TIMER_START("shutdown Renderer");
 	delete &g_Renderer;
+	TIMER_END("shutdown Renderer");
 
+	TIMER_START("shutdown ConfigDB");
 	delete &g_ConfigDB;
+	TIMER_END("shutdown ConfigDB");
 
 	// Shut down the network loop
+	TIMER_START("shutdown CSocketBase");
 	CSocketBase::Shutdown();
+	TIMER_END("shutdown CSocketBase");
 
 	// Really shut down the i18n system. Any future calls
 	// to translate() will crash.
+	TIMER_START("shutdown I18N");
 	I18n::Shutdown();
+	TIMER_END("shutdown I18N");
 
+	TIMER_START("shutdown sound");
 	snd_shutdown();
+	TIMER_END("shutdown sound");
 
+	TIMER_START("shutdown vfs");
 	vfs_shutdown();
+	TIMER_END("shutdown vfs");
 
+	TIMER_START("shutdown misc");
 	h_mgr_shutdown();
 	mem_shutdown();
 
@@ -675,6 +702,7 @@ void Shutdown()
 	delete &g_Logger;
 
 	delete &g_Profiler;
+	TIMER_END("shutdown misc");
 }
 
 

@@ -27,7 +27,7 @@
 extern "C" {
 #endif
 
-// high resolution (> 1 µs) timestamp [s], starting at or near 0 s.
+// high resolution (> 1 us) timestamp [s], starting at or near 0 s.
 extern double get_time(void);
 
 extern double timer_res(void);
@@ -64,7 +64,7 @@ public:
 
 		// assume microseconds
 		double scale = 1e6;
-		char unit = 'µ';
+		char unit = 'u';
 		if(dt > 1.0)
 			scale = 1, unit = ' ';
 		// milli
@@ -80,5 +80,8 @@ private:
 };
 
 #define TIMER(name) ScopedTimer st##name##instance(#name)
+// Cheat a bit to make things slightly easier on the user
+#define TIMER_START(name) { ScopedTimer __timer( name )
+#define TIMER_END(name) }
 
 #endif	// #ifndef TIMER_H

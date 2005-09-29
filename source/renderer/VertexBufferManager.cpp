@@ -19,11 +19,15 @@ CVertexBufferManager g_VBMan;
 
 CVertexBufferManager::~CVertexBufferManager()
 {
+	debug_printf("CVertexBufferManager shutdown\n");
+	
 	typedef std::list<CVertexBuffer*>::iterator Iter;
 	for (Iter iter=m_Buffers.begin();iter!=m_Buffers.end();++iter)
 		delete *iter;
 
 	CVertexBuffer::Shutdown();
+
+	debug_printf("CVertexBufferManager shutdown finished\n");
 }
 
 
