@@ -282,12 +282,14 @@ static void vcFiles(FILE* file, const char* path, int stage)
 				Config *config=package->config[j];
 				const char *nasmPath = translatePath(config->nasmPath, WIN32);
 				
+				// JW 2005-09-29: fixed CommandLine to work with paths
+				// containing spaces.
 				if (endsWith(path, ".asm"))
 				{
 					fprintf(file, "%s    <FileConfiguration Name=\"%s|Win32\">\n", indent, config->name);
 					fprintf(file, "%s        <Tool Name=\"VCCustomBuildTool\" "
 						"Description=\"Assembling $(InputPath)\" "
-						"CommandLine=\"%s -f win32 -o $(IntDir)\\$(InputName).asm.obj $(InputPath)\" "
+						"CommandLine=\"%s -f win32 -o \"$(IntDir)\\$(InputName).asm.obj\" \"$(InputPath)\"\" "
 						"Outputs=\"$(IntDir)\\$(InputName).asm.obj\" />", indent, nasmPath);
 					fprintf(file, "%s    </FileConfiguration>", indent);
 				}
