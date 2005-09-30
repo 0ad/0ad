@@ -55,7 +55,7 @@ extern "C"
 
 
 static const char* exts = NULL;
-static bool have_14, have_13, have_12;
+static bool have_20, have_14, have_13, have_12;
 
 
 // return a C string of unspecified length containing a space-separated
@@ -80,6 +80,15 @@ static bool isImplementedInCore(const char* ext)
 	if(!strcmp(ext, #known_ext))\
 		return true;
 
+	if(have_20)
+	{
+		MATCH(GL_ARB_shader_objects);
+		MATCH(GL_ARB_vertex_shader);
+		MATCH(GL_ARB_fragment_shader);
+		MATCH(GL_ARB_draw_buffers);
+		MATCH(GL_ARB_texture_non_power_of_two);
+		MATCH(GL_ARB_point_sprite);
+	}
 	if(have_14)
 	{
 		MATCH(GL_SGIS_generate_mipmap);
@@ -403,6 +412,7 @@ void oglInit()
 	have_12 = oglHaveVersion("1.2");
 	have_13 = oglHaveVersion("1.3");
 	have_14 = oglHaveVersion("1.4");
+	have_20 = oglHaveVersion("2.0");
 
 	importExtensionFunctions();
 

@@ -146,16 +146,22 @@ static void SkinNormal(const SModelVertex& vertex,const CMatrix3D* invmatrices,C
 void CModelRData::BuildVertices()
 {
 	CModelDefPtr mdef=m_Model->GetModelDef();
+	size_t numVertices=mdef->GetNumVertices();
+	SModelVertex* vertices=mdef->GetVertices();
 
-	// allocate vertices if we haven't got any already
+	// allocate vertices if we haven't got any already and 
+	// fill in data that never changes
 	if (!m_Vertices) {
 		m_Vertices=new SVertex[mdef->GetNumVertices()];
 		m_Normals=new CVector3D[mdef->GetNumVertices()];
+	
+		for (uint j=0; j<numVertices; j++) {
+			m_Vertices[j].m_UVs[0]=vertices[j].m_U;
+			m_Vertices[j].m_UVs[1]=1-vertices[j].m_V;
+		}
 	}
 
 	// build vertices
-	size_t numVertices=mdef->GetNumVertices();
-	SModelVertex* vertices=mdef->GetVertices();
 	const CMatrix3D* bonematrices=m_Model->GetBoneMatrices();
 	if (bonematrices) {
 		// boned model - calculate skinned vertex positions/normals
@@ -178,8 +184,6 @@ void CModelRData::BuildVertices()
 	PROFILE_START( "lighting vertices" );
 	// now fill in UV and vertex colour data
 	for (uint j=0; j<numVertices; j++) {
-		m_Vertices[j].m_UVs[0]=vertices[j].m_U;
-		m_Vertices[j].m_UVs[1]=1-vertices[j].m_V;
 		CColor sc = m_Model->GetShadingColor();
 		g_Renderer.m_SHCoeffsUnits.Evaluate(m_Normals[j], m_Vertices[j].m_Color, 
 			RGBColor(sc.r, sc.g, sc.b));

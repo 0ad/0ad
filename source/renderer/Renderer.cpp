@@ -110,6 +110,7 @@ void CRenderer::EnumCaps()
 	m_Caps.m_VBO=false;
 	m_Caps.m_TextureBorderClamp=false;
 	m_Caps.m_GenerateMipmaps=false;
+	m_Caps.m_VertexShader=false;
 
 	// now start querying extensions
 	if (!m_Options.m_NoVBO) {
@@ -123,7 +124,13 @@ void CRenderer::EnumCaps()
 	if (oglHaveExtension("GL_SGIS_generate_mipmap")) {
 		m_Caps.m_GenerateMipmaps=true;
 	}
+	if (0 == oglHaveExtensions(0, "GL_ARB_shader_objects", "GL_ARB_shading_language_100", 0))
+	{
+		if (oglHaveExtension("GL_ARB_vertex_shader"))
+			m_Caps.m_VertexShader=true;
+	}
 }
+
 
 bool CRenderer::Open(int width, int height, int depth)
 {

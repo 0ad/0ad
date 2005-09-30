@@ -319,6 +319,7 @@ protected:
 		bool m_VBO;
 		bool m_TextureBorderClamp;
 		bool m_GenerateMipmaps;
+		bool m_VertexShader;
 	} m_Caps;
 	// renderer options 
 	struct Options {
