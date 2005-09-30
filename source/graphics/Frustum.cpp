@@ -16,6 +16,7 @@
 #include "precompiled.h"
 
 #include "Frustum.h"
+#include "Bound.h"
 
 CFrustum::CFrustum ()
 {

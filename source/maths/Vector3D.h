@@ -12,10 +12,6 @@
 #ifndef VECTOR3D_H
 #define VECTOR3D_H
 
-#include <math.h>
-#include "MathUtil.h"
-
-
 class CVector3D
 {
 	public:

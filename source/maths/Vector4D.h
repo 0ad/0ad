@@ -89,7 +89,7 @@ public:
 	}
 
 	float lengthSquared() const {
-	    return SQR(m_X)+SQR(m_Y)+SQR(m_Z)+SQR(m_W);
+	    return dot(*this);
 	}
 
     float length() const {

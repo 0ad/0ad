@@ -133,8 +133,12 @@ public:
 // Miscellaneous utility functions:
 namespace AtlasObject
 {
+	// Returns AtObj() on failure - test with AtObj::defined()
 	AtObj LoadFromXML(const wchar_t* filename);
+
+	// Returns false on failure
 	bool SaveToXML(AtObj& obj, const wchar_t* filename);
+
 	AtObj TrimEmptyChildren(AtObj& obj);
 };
 

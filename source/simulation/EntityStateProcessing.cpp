@@ -8,6 +8,7 @@
 #include "ObjectEntry.h"
 #include "SkeletonAnimDef.h" // Animation duration
 #include "Unit.h"
+#include "MathUtil.h"
 
 #include "Collision.h"
 #include "PathfindEngine.h"

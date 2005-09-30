@@ -16,6 +16,7 @@
 #include "TextureEntry.h"
 #include "VFSUtil.h"
 #include "Loader.h"
+#include "MathUtil.h"
 
 #include "ps/XML/XMLWriter.h"
 #include "simulation/Entity.h"

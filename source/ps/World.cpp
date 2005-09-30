@@ -16,12 +16,24 @@
 #include "Loader.h"
 #include "LoaderThunks.h"
 #include "graphics/MapWriter.h"
+#include "UnitManager.h"
+#include "EntityManager.h"
+#include "Projectile.h"
 
 #define LOG_CATEGORY "world"
 
 // global light settings. this is not a member of CWorld because it is
 // passed to the renderer before CWorld exists.
 CLightEnv g_LightEnv;
+
+
+CWorld::CWorld(CGame *pGame):
+	m_pGame(pGame),
+	m_Terrain(),
+	m_UnitManager(g_UnitMan),
+	m_EntityManager(*(new CEntityManager())),
+	m_ProjectileManager(*(new CProjectileManager()))
+{}
 
 void CWorld::Initialize(CGameAttributes *pAttribs)
 {

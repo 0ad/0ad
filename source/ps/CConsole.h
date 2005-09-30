@@ -21,9 +21,9 @@
 #include "sdl.h"
 #include "CStr.h"
 
-// note: cannot forward declare "struct SDL_Event" - that triggers an
-// internal error in VC7.1 at msc1.cpp(2701).
-// we include the full header instead. *sigh*
+// note: cannot forward declare SDL_Event since it is a nameless union
+// in the standard SDL library and a nameless struct in wsdl, so
+// include the full SDL header instead.
 #include "lib/sdl.h"
 
 #ifndef CCONSOLE_H

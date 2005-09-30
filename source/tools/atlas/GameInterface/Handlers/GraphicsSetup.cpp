@@ -69,13 +69,14 @@ MESSAGEHANDLER(ResizeScreen)
 	g_yres = msg->height;
 	if (g_xres <= 2) g_xres = 2; // avoid GL errors caused by invalid sizes
 	if (g_yres <= 2) g_yres = 2;
-//	SViewPort vp;
-//	vp.m_X = vp.m_Y = 0;
-//	vp.m_Width = g_xres;
-//	vp.m_Height = g_yres;
-//	g_Renderer.SetViewport(vp); // TODO: what does this do?
+
+	SViewPort vp = { 0, 0, g_xres, g_yres };
+	g_Renderer.SetViewport(vp);
+
 	g_Renderer.Resize(g_xres, g_yres);
+
 	g_GUI.UpdateResolution();
+
 	g_Console->UpdateScreenSize(g_xres, g_yres);
 }
 

@@ -21,6 +21,8 @@
 
 #include "scripting/JSInterface_Vector3D.h"
 
+#include "MathUtil.h"
+
 #include "CConsole.h"
 extern CConsole* g_Console;
 extern int g_xres, g_yres;

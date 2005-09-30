@@ -20,7 +20,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;..;.\General;.\CustomControls\Buttons;.\CustomControls\DraggableListCtrl;.\CustomControls\EditableListCtrl;.\CustomControls\Windows;.\Misc;E:\wx\wxWidgets-2.6.1\include;E:\wx\wxWidgets-2.6.1\include\msvc;..\..\..\..\libraries\devil\src\include;..\..\..\..\libraries\xerces\include"
+				AdditionalIncludeDirectories=".;..;.\General;.\CustomControls\Buttons;.\CustomControls\DraggableListCtrl;.\CustomControls\EditableListCtrl;.\CustomControls\Windows;.\Misc;E:\wx\wxWidgets-2.6.1\include;E:\wx\wxWidgets-2.6.1\include\msvc;..\..\..\..\libraries\devil\src\include;..\..\..\..\libraries\xerces\include;..\..\..\..\libraries\boost\include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
@@ -74,7 +74,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="1"
-				AdditionalIncludeDirectories=".;..;.\General;.\CustomControls\Buttons;.\CustomControls\DraggableListCtrl;.\CustomControls\EditableListCtrl;.\CustomControls\Windows;.\Misc;E:\wx\wxWidgets-2.6.1\include;E:\wx\wxWidgets-2.6.1\include\msvc;..\..\..\..\libraries\devil\src\include;..\..\..\..\libraries\xerces\include"
+				AdditionalIncludeDirectories=".;..;.\General;.\CustomControls\Buttons;.\CustomControls\DraggableListCtrl;.\CustomControls\EditableListCtrl;.\CustomControls\Windows;.\Misc;E:\wx\wxWidgets-2.6.1\include;E:\wx\wxWidgets-2.6.1\include\msvc;..\..\..\..\libraries\devil\src\include;..\..\..\..\libraries\xerces\include;..\..\..\..\libraries\boost\include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
 				StringPooling="TRUE"
 				RuntimeLibrary="2"

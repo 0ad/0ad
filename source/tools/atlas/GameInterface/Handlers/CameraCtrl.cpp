@@ -39,12 +39,12 @@ MESSAGEHANDLER(Scroll)
 	if (lastCameraPos != camera.GetTranslation())
 		targetPos += camera.GetTranslation() - lastCameraPos;
 
-	if (msg->type == mScroll::FROM)
+	if (msg->type == eScrollType::FROM)
 	{
 		msg->pos.GetWorldSpace(targetPos);
 		targetDistance = (targetPos - camera.GetTranslation()).GetLength();
 	}
-	else if (msg->type == mScroll::TO)
+	else if (msg->type == eScrollType::TO)
 	{
 		CVector3D origin, dir;
 		float x, y;
@@ -72,20 +72,18 @@ MESSAGEHANDLER(RotateAround)
 
 	CMatrix3D& camera = g_Game->GetView()->GetCamera()->m_Orientation;
 
-	if (msg->type == mRotateAround::FROM)
+	if (msg->type == eRotateAroundType::FROM)
 	{
 		msg->pos.GetScreenSpace(lastX, lastY);
 		msg->pos.GetWorldSpace(focusPos);
 	}
-	else if (msg->type == mRotateAround::TO)
+	else if (msg->type == eRotateAroundType::TO)
 	{
 		float x, y;
 		msg->pos.GetScreenSpace(x, y);
 
 		float rotX = 6.f * (y-lastY) / g_Renderer.GetHeight();
 		float rotY = 6.f * (x-lastX) / g_Renderer.GetWidth();
-
-		// TODO: Stop the camera tilting
 
 		CQuaternion q0, q1;
 		q0.FromAxisAngle(camera.GetLeft(), -rotX);
@@ -96,8 +94,14 @@ MESSAGEHANDLER(RotateAround)
 		CVector3D offset = q.Rotate(origin - focusPos);
 
 		q *= camera.GetRotation();
-		q.Normalize(); // to avoid things blowing up for some reason when turning upside-down
+		q.Normalize(); // to avoid things blowing up when turning upside-down, for some reason I don't understand
 		q.ToMatrix(camera);
+
+		// Make sure up is still pointing up, regardless of any rounding errors.
+		// (Maybe this distorts the camera in other ways, but at least the errors
+		// are far less noticeable to me.)
+		camera._21 = 0.f; // (_21 = Y component returned by GetUp())
+
 		camera.Translate(focusPos + offset);
 
 		lastX = x;

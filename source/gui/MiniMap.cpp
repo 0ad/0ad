@@ -9,6 +9,8 @@
 #include "graphics/TextureEntry.h"
 #include "graphics/TextureManager.h"
 #include "graphics/Unit.h"
+#include "UnitManager.h"
+#include "Entity.h"
 
 #include "Bound.h"
 #include "Model.h"

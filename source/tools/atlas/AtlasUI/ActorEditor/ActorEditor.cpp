@@ -4,9 +4,10 @@
 
 #include "ActorEditorListCtrl.h"
 #include "AtlasObject/AtlasObject.h"
+#include "AtlasObject/AtlasObjectText.h"
 #include "Datafile.h"
 
-#include "wx/file.h"
+#include "wx/ffile.h"
 
 BEGIN_EVENT_TABLE(ActorEditor, AtlasWindow)
 	EVT_MENU(ID_CreateEntity, OnCreateEntity)
@@ -80,6 +81,8 @@ ActorEditor::ActorEditor(wxWindow* parent)
 
 	//////////////////////////////////////////////////////////////////////////
 
+//	void convert_actors();
+//	convert_actors();
 }
 
 void ActorEditor::ThawData(AtObj& in)
@@ -111,7 +114,7 @@ AtObj ActorEditor::FreezeData()
 }
 
 
-void ActorEditor::ImportData(AtObj& in)
+static AtObj ConvertToLatestFormat(AtObj in)
 {
 	if (! in.defined())
 	{
@@ -138,8 +141,8 @@ void ActorEditor::ImportData(AtObj& in)
 	}
 	else
 	{
-		// TODO: report error
-		return;
+		wxLogError(_("Failed to determine actor file format version"));
+		return AtObj();
 	}
 
 
@@ -156,33 +159,50 @@ void ActorEditor::ImportData(AtObj& in)
 		if (wxString(in["Object"]["Properties"]["@castshadows"]) == _T("1"))
 			actor.add("castshadow", L"");
 
-		// Create a single variant to contain all this data
+		// Things to strip leading strings (for converting filenames, since the
+		// new format doesn't store the entire path)
+		#define THING1(out,outname, in,inname, prefix) \
+			wxASSERT( wxString(in["Object"][inname]).StartsWith(_T(prefix)) ); \
+			out.add(outname, wxString(in["Object"][inname]).Mid(wxString(_T(prefix)).Length()))
+		#define THING2(out,outname, in,inname, prefix) \
+			wxASSERT( wxString(in[inname]).StartsWith(_T(prefix)) ); \
+			out.add(outname, wxString(in[inname]).Mid(wxString(_T(prefix)).Length()))
+
+		if (wxString(in["Object"]["Material"]).Len())
+		{
+			THING1(actor,"material", in,"Material", "art/materials/");
+		}
+
+		// Create a single variant to contain all the old data
 		AtObj var;
 		var.add("@name", L"Base");
 		var.add("@frequency", L"100"); // 100 == default frequency
 
-		// Things to strip leading strings (for converting filenames, since the
-		// new format doesn't store the entire path)
-		#define THING1(out,outname, in,inname, prefix) \
-			assert( wxString(in["Object"][inname]).StartsWith(_T(prefix)) ); \
-			out.add(outname, wxString(in["Object"][inname]).Mid(wxString(_T(prefix)).Length()))
-		#define THING2(out,outname, in,inname, prefix) \
-			assert( wxString(in[inname]).StartsWith(_T(prefix)) ); \
-			out.add(outname, wxString(in[inname]).Mid(wxString(_T(prefix)).Length()))
-
 		THING1(var,"mesh",    in,"ModelName",   "art/meshes/");
-		THING1(var,"texture", in,"TextureName", "art/textures/skins/");
+
+		// XXX
+		if (wxString(in["Object"]["TextureName"]).StartsWith(_T("art/textures/ui/session/portraits/ui_portrait_sheet_civ_")))
+		{
+			var.add("texture", L"temp/" + wxString(in["Object"]["TextureName"]).Mid(strlen("art/textures/ui/session/portraits/")));
+		}
+		else
+		{
+			THING1(var,"texture", in,"TextureName", "art/textures/skins/");
+		}
 
 		AtObj anims;
 		for (AtIter animit = in["Object"]["Animations"]["Animation"]; animit.defined(); ++animit)
 		{
-			AtObj anim;
-			anim.add("@name", animit["@name"]);
-			anim.add("@speed", animit["@speed"]);
+			if (wcslen(animit["@file"]))
+			{
+				AtObj anim;
+				anim.add("@name", animit["@name"]);
+				anim.add("@speed", animit["@speed"]);
 
-			THING2(anim,"@file", animit,"@file",  "art/animation/");
+				THING2(anim,"@file", animit,"@file",  "art/animation/");
 
-			anims.add("animation", anim);
+				anims.add("animation", anim);
+			}
 		}
 		var.add("animations", anims);
 
@@ -203,6 +223,8 @@ void ActorEditor::ImportData(AtObj& in)
 		#undef THING1
 		#undef THING2
 
+		actor.set("@version", L"1");
+		in = AtObj();
 		in.set("actor", actor);
 	}
 	else if (version == 0)
@@ -251,6 +273,7 @@ void ActorEditor::ImportData(AtObj& in)
 			actor.add("group", grp);
 		}
 
+		actor.set("@version", L"1");
 		in.set("actor", actor);
 	}
 	else if (version == 1)
@@ -263,9 +286,19 @@ void ActorEditor::ImportData(AtObj& in)
 		wxFAIL_MSG(_T("Invalid actor format"));
 	}
 
+	return in;
+}
+
+
+void ActorEditor::ImportData(AtObj& in)
+{
+	AtObj data = ConvertToLatestFormat(in);
+	if (! data.defined())
+		return;
+
 	// Copy the data into the appropriate UI controls:
 
-	AtObj actor (in["actor"]);
+	AtObj actor (data["actor"]);
 	m_ActorEditorListCtrl->ImportData(actor);
 
 	if (actor["castshadow"].defined())
@@ -386,3 +419,49 @@ wxString ActorEditor::GetDefaultOpenDirectory()
 	dir.MakeAbsolute(Datafile::GetDataDirectory());
 	return dir.GetPath();
 }
+
+
+#if 0
+// TODO: delete this
+void merge_actors(const char* newFn, const char* oldFn_b, const char* oldFn_a, const char* oldFn_e)
+{
+wxFAIL;
+	/*
+	wxLogDebug(L"Converting %s -> %s", wxString::FromAscii(oldFn_b), wxString::FromAscii(newFn));
+
+	AtObj obj0 = AtlasObject::LoadFromXML(L"e:/0ad/svnc/trunk/binaries/data/mods/official/art/actors_clean/" + wxString::FromAscii(oldFn_b));
+	AtObj obj1 = AtlasObject::LoadFromXML(L"e:/0ad/svnc/trunk/binaries/data/mods/official/art/actors_clean/" + wxString::FromAscii(oldFn_a));
+	AtObj obj2 = AtlasObject::LoadFromXML(L"e:/0ad/svnc/trunk/binaries/data/mods/official/art/actors_clean/" + wxString::FromAscii(oldFn_e));
+	wxASSERT(obj0.defined());
+	wxASSERT(obj2.defined());
+	wxASSERT(obj1.defined());
+	obj0 = ConvertToLatestFormat(obj0);
+	obj1 = ConvertToLatestFormat(obj1);
+	obj2 = ConvertToLatestFormat(obj2);
+//	wxString x = AtlasObject::ConvertToString(obj).c_str();
+//	wxLogDebug(x);
+	bool ok = AtlasObject::SaveToXML(obj, L"e:/0ad/svnc/trunk/binaries/data/mods/official/art/actors_new/" + wxString::FromAscii(newFn));
+	wxASSERT(ok);
+*/
+}
+
+void convert_file(const char* newFn, const char* oldFn)
+{
+//*
+	wxLogDebug(L"Converting %s -> %s", wxString::FromAscii(oldFn), wxString::FromAscii(newFn));
+	AtObj obj = AtlasObject::LoadFromXML(L"e:/0ad/svnc/trunk/binaries/data/mods/official/art/actors_clean/" + wxString::FromAscii(oldFn));
+	wxASSERT(obj.defined());
+	obj = ConvertToLatestFormat(obj);
+//	wxString x = AtlasObject::ConvertToString(obj).c_str();
+//	wxLogDebug(x);
+	bool ok = AtlasObject::SaveToXML(obj, L"e:/0ad/svnc/trunk/binaries/data/mods/official/art/actors_new/" + wxString::FromAscii(newFn));
+	wxASSERT(ok);
+//*/
+}
+
+void convert_actors()
+{
+//	convert_file("fauna/deer1.xml", "fauna/temp_deer1.xml");
+#include "e:/0ad/svnc/trunk/binaries/data/mods/official/art/convert.cpp"
+}
+#endif

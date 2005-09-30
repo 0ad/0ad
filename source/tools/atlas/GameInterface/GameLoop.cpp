@@ -170,8 +170,6 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 			Atlas_GLSwapBuffers((void*)state.glContext);
 		}
 
-		Atlas_NotifyEndOfFrame();
-
 		double time = get_time();
 		if (recent_activity)
 			last_activity = time;
@@ -187,6 +185,7 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 				// To minimise latency when the user starts doing stuff, only
 				// sleep for a short while, then check if anything's happened,
 				// then go back to sleep
+				Atlas_NotifyEndOfFrame(); // (TODO: rename to NotifyEndOfQuiteShortProcessingPeriodSoPleaseSendMeNewMessages or something)
 				SDL_Delay(50);
 				if (!msgPasser_Input.IsEmpty() || !msgPasser_Command.IsEmpty())
 					break;
@@ -195,6 +194,7 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 		}
 		else
 		{
+			Atlas_NotifyEndOfFrame();
 			SDL_Delay(0);
 		}
 	}

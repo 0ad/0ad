@@ -12,6 +12,7 @@
 #include "precompiled.h"
 
 #include "SHCoeffs.h"
+#include "MathUtil.h"
 
 CSHCoeffs::CSHCoeffs()
 {

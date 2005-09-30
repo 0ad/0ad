@@ -39,6 +39,7 @@
 #include "graphics/MaterialManager.h"
 #include "graphics/MeshManager.h"
 #include "renderer/Renderer.h"
+#include "maths/MathUtil.h"
 
 #include "simulation/BaseEntityCollection.h"
 #include "simulation/Entity.h"

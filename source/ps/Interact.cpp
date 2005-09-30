@@ -17,6 +17,7 @@
 #include "simulation/BaseEntityCollection.h"
 #include "scripting/GameEvents.h"
 #include "UnitManager.h"
+#include "MathUtil.h"
 
 extern CConsole* g_Console;
 extern int g_mouse_x, g_mouse_y;

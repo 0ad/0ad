@@ -36,9 +36,8 @@ BEGIN_COMMAND(AlterElevation)
 		memcpy(OldTerrain, terrain->GetHeightMap(), verts*sizeof(u16));
 
 		int amount = (int)d->amount;
-//		debug_printf("%d\n", amount);
 
-		// If the thing's being updated very fast, 'amount' is often very
+		// If the framerate is very high, 'amount' is often very
 		// small (even zero) so the integer truncation is significant
 		static float roundingError = 0.0;
 		roundingError += d->amount - (float)amount;

@@ -9,6 +9,7 @@
 #include "PatchRData.h"
 #include "AlphaMapCalculator.h"
 #include "ps/CLogger.h"
+#include "MathUtil.h"
 
 ///////////////////////////////////////////////////////////////////
 // shared list of all submitted patches this frame

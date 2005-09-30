@@ -5,6 +5,7 @@
 #include "Camera.h"
 #include "Vector3D.h"
 #include "Matrix3D.h"
+#include "MathUtil.h"
 #include "Terrain.h"
 #include "Game.h"
 

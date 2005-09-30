@@ -13,6 +13,9 @@
 
 #include "Vector3D.h"
 
+#include <math.h>
+#include "MathUtil.h"
+
 int CVector3D::operator ! () const 
 {
 	if (X != 0.0f ||

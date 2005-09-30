@@ -30,6 +30,10 @@
 #include <stack>
 #include <map>
 
+#include <boost/preprocessor/seq/for_each_i.hpp>
+#include <boost/preprocessor/tuple/elem.hpp>
+#include <boost/preprocessor/punctuation/comma_if.hpp>
+
 // Nicer memory-leak detection:
 #ifdef _DEBUG
 #include <crtdbg.h>

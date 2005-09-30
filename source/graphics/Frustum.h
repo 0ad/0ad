@@ -17,11 +17,11 @@
 #define FRUSTUM_H
 
 #include "Plane.h"
-#include "Bound.h"
 
 //10 planes should be enough
 #define MAX_NUM_FRUSTUM_PLANES		(10)
 
+class CBound;
 
 class CFrustum
 {

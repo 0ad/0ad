@@ -10,6 +10,7 @@
 #include "Interact.h"
 
 #include "Matrix3D.h"
+#include "MathUtil.h"
 #include "Renderer.h"
 #include "Terrain.h"
 #include "LightEnv.h"

@@ -22,6 +22,7 @@
 #include "PlayerRenderer.h"
 #include "Terrain.h"
 #include "Matrix3D.h"
+#include "MathUtil.h"
 #include "Camera.h"
 #include "PatchRData.h"
 #include "Texture.h"

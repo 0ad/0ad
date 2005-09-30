@@ -11,12 +11,19 @@ static void LoadMap(void*)
 {
 	wxFileDialog dlg (NULL, wxFileSelectorPromptStr, Datafile::GetDataDirectory()+_T("/mods/official/maps/scenarios"),
 		_T(""), _T("PMP files (*.pmp)|*.pmp|All files (*.*)|*.*"), wxOPEN);
+
+	wxString cwd = wxFileName::GetCwd();
+	
 	if (dlg.ShowModal() == wxID_OK)
 	{
 		// TODO: Work when the map is not in .../maps/scenarios/
 		std::wstring map = dlg.GetFilename().c_str();
 		POST_COMMAND(LoadMap(map));
 	}
+	
+	wxCHECK_RET(cwd == wxFileName::GetCwd(), _T("cwd changed"));
+		// paranoia - MSDN says "OFN_NOCHANGEDIR ... is ineffective for GetOpenFileName"
+		// but it seems to work anyway
 
 	// TODO: Make this a non-undoable command
 }

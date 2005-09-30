@@ -9,6 +9,7 @@
 #include "precompiled.h"
 
 #include "Quaternion.h"
+#include "MathUtil.h"
 
 const float EPSILON=0.0001f;
 

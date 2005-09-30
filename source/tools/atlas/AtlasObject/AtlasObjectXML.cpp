@@ -11,8 +11,8 @@
 # endif
 
 // Disable some warnings:
-//   "warning C4673: throwing 'blahblahException' the following types will not be considered at the catch site
-//    warning C4671: 'XMemory' : the copy constructor is inaccessible"
+//   "warning C4673: throwing 'blahblahException' the following types will not be considered at the catch site ..."
+//   "warning C4671: 'XMemory' : the copy constructor is inaccessible"
 # pragma warning(disable: 4673 4671)
 
 #endif // _MSC_VER
@@ -26,6 +26,16 @@
 
 XERCES_CPP_NAMESPACE_USE
 
+class XercesInitialiser
+{
+	 XercesInitialiser() { XMLPlatformUtils::Initialize(); }
+	~XercesInitialiser() { XMLPlatformUtils::Terminate (); }
+public:
+	static void enable()
+	{
+		static XercesInitialiser x;
+	}
+};
 
 class XercesErrorHandler : public ErrorHandler
 {
@@ -61,7 +71,7 @@ AtObj AtlasObject::LoadFromXML(const wchar_t* filename)
 	assert(sizeof(wchar_t) == sizeof(XMLCh));
 
 
-	XMLPlatformUtils::Initialize();
+	XercesInitialiser::enable();
 
 	XercesDOMParser* parser = new XercesDOMParser();
 
@@ -89,9 +99,6 @@ AtObj AtlasObject::LoadFromXML(const wchar_t* filename)
 	char* rootName = XMLString::transcode(root->getNodeName());
 	rootObj.set(rootName, obj);
 	XMLString::release(&rootName);
-
-	// TODO: Initialise/terminate properly
-//	XMLPlatformUtils::Terminate();
 
 	return rootObj;
 }
@@ -236,9 +243,9 @@ bool AtlasObject::SaveToXML(AtObj& obj, const wchar_t* filename)
 	assert(sizeof(wchar_t) == sizeof(XMLCh));
 
 
-	XMLPlatformUtils::Initialize();
+	XercesInitialiser::enable();
 
-	// Why does it take so much work just to create a DOMWriter? :-(
+	// Why does it take so much work just to create a standard DOMWriter? :-(
 	XMLCh domFeatures[100] = { 0 };
 	XMLString::transcode("LS", domFeatures, 99); // maybe "LS" means "load/save", but I really don't know
 	DOMImplementation* impl = DOMImplementationRegistry::getDOMImplementation(domFeatures);
@@ -275,20 +282,16 @@ bool AtlasObject::SaveToXML(AtObj& obj, const wchar_t* filename)
 		char* message = XMLString::transcode(e.getMessage());
 		assert(! "XML exception - maybe failed while writing the file");
 		XMLString::release(&message);
-//		XMLPlatformUtils::Terminate();
 		return false;
 	}
 	catch (const DOMException& e) {
 		char* message = XMLString::transcode(e.msg);
 		assert(! "DOM exception");
 		XMLString::release(&message);
-//		XMLPlatformUtils::Terminate();
 		return false;
 	}
 
 	writer->release();
-
-//	XMLPlatformUtils::Terminate();
 
 	return true;
 }

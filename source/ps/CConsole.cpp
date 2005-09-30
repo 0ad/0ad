@@ -9,6 +9,7 @@
 #include "input.h"
 #include "Hotkey.h"
 #include "scripting/ScriptingHost.h"
+#include "MathUtil.h"
 
 #include "Network/Client.h"
 #include "Network/Server.h"

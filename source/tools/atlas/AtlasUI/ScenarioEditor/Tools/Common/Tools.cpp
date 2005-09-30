@@ -6,7 +6,7 @@
 class DummyTool : public ITool
 {
 	void OnMouse(wxMouseEvent& evt) { evt.Skip(); }
-	void OnKey(wxKeyEvent& evt, int) { evt.Skip(); }
+	void OnKey(wxKeyEvent& evt, KeyEventType) { evt.Skip(); }
 	void OnTick(float) {}
 } dummy;
 

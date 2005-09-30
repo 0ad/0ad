@@ -26,7 +26,7 @@ public:
 	Canvas(wxWindow* parent, int* attribList)
 		: wxGLCanvas(parent, -1, wxDefaultPosition, wxDefaultSize, wxWANTS_CHARS, _T("GLCanvas"), attribList),
 		m_SuppressResize(true),
-		m_MouseState(NONE), m_LastMouseState(NONE)
+		m_MouseState(NONE), m_LastMouseState(NONE), m_MouseCaptured(false)
 	{
 	}
 
@@ -50,26 +50,28 @@ public:
 		int dir;
 		switch (evt.GetKeyCode())
 		{
-		case WXK_LEFT:  dir = AtlasMessage::mScrollConstant::LEFT; break;
-		case WXK_RIGHT: dir = AtlasMessage::mScrollConstant::RIGHT; break;
-		case WXK_UP:    dir = AtlasMessage::mScrollConstant::FORWARDS; break;
-		case WXK_DOWN:  dir = AtlasMessage::mScrollConstant::BACKWARDS; break;
+		case WXK_LEFT:  dir = AtlasMessage::eScrollConstantDir::LEFT; break;
+		case WXK_RIGHT: dir = AtlasMessage::eScrollConstantDir::RIGHT; break;
+		case WXK_UP:    dir = AtlasMessage::eScrollConstantDir::FORWARDS; break;
+		case WXK_DOWN:  dir = AtlasMessage::eScrollConstantDir::BACKWARDS; break;
 		case WXK_SHIFT: dir = -1; break;
 		default: return false;
 		}
 
 		float speed = 120.f;
-		if (wxGetKeyState(WXK_SHIFT))
-			speed *= 4.f;
+		if (wxGetKeyState(WXK_SHIFT) && wxGetKeyState(WXK_CONTROL))
+			speed /= 64.f;
 		else if (wxGetKeyState(WXK_CONTROL))
 			speed /= 4.f;
+		else if (wxGetKeyState(WXK_SHIFT))
+			speed *= 4.f;
 
 		if (dir == -1) // changed modifier keys - update all currently-scrolling directions
 		{
-			if (wxGetKeyState(WXK_LEFT))  POST_INPUT(ScrollConstant(AtlasMessage::mScrollConstant::LEFT, speed));
-			if (wxGetKeyState(WXK_RIGHT)) POST_INPUT(ScrollConstant(AtlasMessage::mScrollConstant::RIGHT, speed));
-			if (wxGetKeyState(WXK_UP))    POST_INPUT(ScrollConstant(AtlasMessage::mScrollConstant::FORWARDS, speed));
-			if (wxGetKeyState(WXK_DOWN))  POST_INPUT(ScrollConstant(AtlasMessage::mScrollConstant::BACKWARDS, speed));
+			if (wxGetKeyState(WXK_LEFT))  POST_INPUT(ScrollConstant(AtlasMessage::eScrollConstantDir::LEFT, speed));
+			if (wxGetKeyState(WXK_RIGHT)) POST_INPUT(ScrollConstant(AtlasMessage::eScrollConstantDir::RIGHT, speed));
+			if (wxGetKeyState(WXK_UP))    POST_INPUT(ScrollConstant(AtlasMessage::eScrollConstantDir::FORWARDS, speed));
+			if (wxGetKeyState(WXK_DOWN))  POST_INPUT(ScrollConstant(AtlasMessage::eScrollConstantDir::BACKWARDS, speed));
 		}
 		else
 		{
@@ -100,6 +102,21 @@ public:
 
 	void OnMouse(wxMouseEvent& evt)
 	{
+		// Capture on button-down
+		if (!m_MouseCaptured && evt.ButtonDown())
+		{
+			m_MouseCaptured = true;
+			CaptureMouse();
+		}
+		// Un-capture when all buttons are up
+		else if (m_MouseCaptured && evt.ButtonUp() &&
+			! (evt.ButtonIsDown(wxMOUSE_BTN_LEFT) || evt.ButtonIsDown(wxMOUSE_BTN_MIDDLE) || evt.ButtonIsDown(wxMOUSE_BTN_RIGHT))
+			)
+		{
+			m_MouseCaptured = false;
+			ReleaseMouse();
+		}
+
 		g_CurrentTool->OnMouse(evt);
 
 		// TODO: what should happen if the tool and camera both respond to the
@@ -108,19 +125,24 @@ public:
 		if (evt.GetWheelRotation())
 		{
 			float speed = 16.f;
-			if (wxGetKeyState(WXK_SHIFT))
-				speed *= 4.f;
+			if (wxGetKeyState(WXK_SHIFT) && wxGetKeyState(WXK_CONTROL))
+				speed /= 64.f;
 			else if (wxGetKeyState(WXK_CONTROL))
 				speed /= 4.f;
+			else if (wxGetKeyState(WXK_SHIFT))
+				speed *= 4.f;
 
 			POST_INPUT(SmoothZoom(evt.GetWheelRotation() * speed / evt.GetWheelDelta()));
 		}
 		else
 		{
-			if (evt.LeftIsDown() && evt.RightIsDown())
-				m_MouseState = ROTATEAROUND;
-			else if (evt.MiddleIsDown())
-				m_MouseState = SCROLL;
+			if (evt.MiddleIsDown())
+			{
+				if (wxGetKeyState(WXK_CONTROL))
+					m_MouseState = ROTATEAROUND;
+				else
+					m_MouseState = SCROLL;
+			}
 			else
 				m_MouseState = NONE;
 
@@ -129,8 +151,8 @@ public:
 				switch (m_MouseState)
 				{
 				case NONE: break;
-				case SCROLL: POST_INPUT(Scroll(AtlasMessage::mScroll::FROM, evt.GetPosition())); break;
-				case ROTATEAROUND: POST_INPUT(RotateAround(AtlasMessage::mRotateAround::FROM, evt.GetPosition())); break;
+				case SCROLL: POST_INPUT(Scroll(AtlasMessage::eScrollType::FROM, evt.GetPosition())); break;
+				case ROTATEAROUND: POST_INPUT(RotateAround(AtlasMessage::eRotateAroundType::FROM, evt.GetPosition())); break;
 				default: wxFAIL;
 				}
 				m_LastMouseState = m_MouseState;
@@ -140,8 +162,8 @@ public:
 				switch (m_MouseState)
 				{
 				case NONE: break;
-				case SCROLL: POST_INPUT(Scroll(AtlasMessage::mScroll::TO, evt.GetPosition())); break;
-				case ROTATEAROUND: POST_INPUT(RotateAround(AtlasMessage::mRotateAround::TO, evt.GetPosition())); break;
+				case SCROLL: POST_INPUT(Scroll(AtlasMessage::eScrollType::TO, evt.GetPosition())); break;
+				case ROTATEAROUND: POST_INPUT(RotateAround(AtlasMessage::eRotateAroundType::TO, evt.GetPosition())); break;
 				default: wxFAIL;
 				}
 			}
@@ -154,6 +176,7 @@ private:
 
 	enum { NONE, SCROLL, ROTATEAROUND };
 	int m_MouseState, m_LastMouseState;
+	bool m_MouseCaptured;
 
 	DECLARE_EVENT_TABLE();
 };
@@ -334,7 +357,11 @@ void ScenarioEditor::OnClose(wxCloseEvent&)
 
 	SetCurrentTool(NULL);
 
-	// TODO: What if it's still rendering while we're destroying the canvas?
+	// TODO: If it's still rendering while we're destroying the canvas, things
+	// often crash.
+	// HACK: Instead of actually solving the problem, just sleep.
+	wxSleep(1);
+
 	Destroy();
 }
 
@@ -344,7 +371,7 @@ static void UpdateTool()
 	// Don't keep posting events if the game can't keep up
 	if (g_FrameHasEnded)
 	{
-		g_FrameHasEnded = false; // (threadiness doesn't matter here)
+		g_FrameHasEnded = false; // (thread safety doesn't matter here)
 		// TODO: Smoother timing stuff?
 		static double last = g_Timer.GetTime();
 		double time = g_Timer.GetTime();

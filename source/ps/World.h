@@ -2,12 +2,12 @@
 #define _ps_World_H
 
 #include "Terrain.h"
-#include "UnitManager.h"
-#include "EntityManager.h"
-#include "Projectile.h"
 
 class CGame;
 class CGameAttributes;
+class CUnitManager;
+class CEntityManager;
+class CProjectileManager;
 
 class CWorld
 {
@@ -22,14 +22,7 @@ class CWorld
 	CProjectileManager &m_ProjectileManager;
 
 public:
-	inline CWorld(CGame *pGame):
-		m_pGame(pGame),
-		m_Terrain(),
-		m_UnitManager(g_UnitMan),
-		m_EntityManager(*(new CEntityManager())),
-		m_ProjectileManager( *(new CProjectileManager()))
-	{}
-
+	CWorld(CGame *pGame);
 	~CWorld();
 
 	void RegisterInit(CGameAttributes *pGameAttributes);

@@ -2,10 +2,12 @@
 #define _Network_NetServer_H
 
 #include "Network/Session.h"
-#include "Game.h"
 #include "GameAttributes.h"
 #include "TurnManager.h"
 #include "scripting/JSMap.h"
+#include "ScriptObject.h"
+
+class CGame;
 
 enum ENetServerState
 {

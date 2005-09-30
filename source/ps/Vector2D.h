@@ -36,7 +36,7 @@ public:
 	{
 		// Beta-dot product. I have no idea if that's its correct name
 		// but use of it tends to simplify collision formulae.
-		// At the moment I think all of my code uses seperate vectors
+		// At the moment I think all of my code uses separate vectors
 		// and dots them together, though.
 		return( u.x * v.y - u.y * v.x );
 	}

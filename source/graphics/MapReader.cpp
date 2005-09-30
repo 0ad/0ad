@@ -10,6 +10,7 @@
 #include "BaseEntityCollection.h"
 #include "EntityManager.h"
 #include "CLogger.h"
+#include "MathUtil.h"
 
 #include "Model.h"
 #include "Terrain.h"

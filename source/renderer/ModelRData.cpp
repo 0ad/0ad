@@ -2,6 +2,7 @@
 
 
 #include <algorithm>
+#include "MathUtil.h"
 #include "lib/res/graphics/ogl_tex.h"
 #include "Renderer.h"
 #include "TransparencyRenderer.h"
