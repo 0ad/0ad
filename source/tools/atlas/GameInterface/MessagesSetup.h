@@ -90,8 +90,8 @@ const bool NOMERGE = false;
 #include <boost/preprocessor/seq/for_each_i.hpp>
 #define B_TYPE(elem) BOOST_PP_TUPLE_ELEM(2, 0, elem)
 #define B_NAME(elem) BOOST_PP_TUPLE_ELEM(2, 1, elem)
-#define B_CONSTRUCTORARGS(r, data, n, elem) BOOST_PP_COMMA_IF(n) B_TYPE(elem) B_NAME(elem)##_
-#define B_CONSTRUCTORINIT(r, data, n, elem) BOOST_PP_COMMA_IF(n) B_NAME(elem)(B_NAME(elem)##_)
+#define B_CONSTRUCTORARGS(r, data, n, elem) BOOST_PP_COMMA_IF(n) B_TYPE(elem) BOOST_PP_CAT(B_NAME(elem),_)
+#define B_CONSTRUCTORINIT(r, data, n, elem) BOOST_PP_COMMA_IF(n) B_NAME(elem)(BOOST_PP_CAT(B_NAME(elem),_))
 #define B_MEMBERS(r, data, n, elem) const B_TYPE(elem) B_NAME(elem);
 
 #define B_MESSAGE(name, vals, base) \
