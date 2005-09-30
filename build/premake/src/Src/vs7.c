@@ -289,7 +289,7 @@ static void vcFiles(FILE* file, const char* path, int stage)
 					fprintf(file, "%s    <FileConfiguration Name=\"%s|Win32\">\n", indent, config->name);
 					fprintf(file, "%s        <Tool Name=\"VCCustomBuildTool\" "
 						"Description=\"Assembling $(InputPath)\" "
-						"CommandLine=\"%s -f win32 -o \"$(IntDir)\\$(InputName).asm.obj\" \"$(InputPath)\"\" "
+						"CommandLine=\"%s -f win32 -o &quot;$(IntDir)\\$(InputName).asm.obj&quot; &quot;$(InputPath)&quot;\" "
 						"Outputs=\"$(IntDir)\\$(InputName).asm.obj\" />", indent, nasmPath);
 					fprintf(file, "%s    </FileConfiguration>", indent);
 				}
