@@ -380,8 +380,11 @@ static bool is_normal_dir(const char* path)
 	if((fa & FILE_ATTRIBUTE_DIRECTORY) == 0)
 		return false;
 	// .. hidden or system attribute(s) set
-	if((fa & hs) != 0)
-		return false;
+	//    this check is now disabled because wdetect's add_oal_dlls_in_dir
+	//    needs to open the Windows system directory, which sometimes has
+	//    these attributes set.
+	//if((fa & hs) != 0)
+	//	return false;
 	return true;
 }
 
