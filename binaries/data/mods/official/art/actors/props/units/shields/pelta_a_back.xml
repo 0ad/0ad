@@ -5,10 +5,16 @@
 
   <group>
     <variant frequency="100" name="Base">
-      <animations/>
       <mesh>props/shield/pelta_a_b.pmd</mesh>
-      <props/>
-      <texture>props/wrld_wood_3.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant>
+      <texture>props/shield/hele_pelta_i.dds</texture>
+    </variant>
+    <variant>
+      <texture>props/shield/hele_pelta_d.dds</texture>
     </variant>
   </group>
 

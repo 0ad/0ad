@@ -6,6 +6,9 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>structural/rome_mc.pmd</mesh>
+      <props>
+        <prop actor="props/structures/romans/barracks.xml" attachpoint="props_main"/>
+      </props>
       <texture>structural/rome_struct_1.dds</texture>
     </variant>
   </group>

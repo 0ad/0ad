@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
 
+  <castshadow/>
+
   <group>
     <variant name="base">
       <mesh>props/shield/pelta_a_f.pmd</mesh>
@@ -11,20 +13,15 @@
   </group>
 
   <group>
-    <variant name="A">
-      <texture>props/shield/hele_pelta_a.dds</texture>
+    <variant name="h">
+      <texture>props/shield/hele_pelta_h.dds</texture>
     </variant>
-    <variant name="B">
-      <texture>props/shield/hele_pelta_b.dds</texture>
+    <variant name="j">
+      <texture>props/shield/hele_pelta_j.dds</texture>
     </variant>
-    <variant name="E">
-      <texture>props/shield/hele_pelta_e.dds</texture>
-    </variant>
-    <variant name="G">
-      <texture>props/shield/hele_pelta_g.dds</texture>
+    <variant name="k">
+      <texture>props/shield/hele_pelta_k.dds</texture>
     </variant>
   </group>
-
-  <material>player_trans.xml</material>
 
 </actor>
