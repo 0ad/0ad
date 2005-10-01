@@ -56,11 +56,11 @@ if (grep { $_ eq '--commitlatest' } @ARGV)
 	### Copy ps.exe and ps.pdb over the SVN copy ###	
 	`copy $output_dir\\$rev\\ps.exe $svn_trunk\\binaries\\system\\`;
 	die $? if $?;
-	`copy $output_dir\\$rev\\ps.pdb $svn_trunk\\binaries\\data\\`;
+	`copy $output_dir\\$rev\\ps.pdb $svn_trunk\\binaries\\system\\`;
 	die $? if $?;
 	
 	### Commit ps.exe and ps.pdb ###
-	my $svn_output = `svn commit binaries\\system\\ps.exe binaries\\data\\ps.pdb --username $username --password $password --message "Automated build." 2>&1`;
+	my $svn_output = `svn commit binaries\\system\\ps.exe binaries\\system\\ps.pdb --username $username --password $password --message "Automated build." 2>&1`;
 	add_to_buildlog($svn_output);
 	die $? if $?;
 	
@@ -134,7 +134,6 @@ die $? if $?;
 
 mkdir "$temp_trunk\\binaries" or die $!;
 mkdir "$temp_trunk\\binaries\\system" or die $!;
-mkdir "$temp_trunk\\binaries\\data" or die $!;
 
 allow_abort();
 
@@ -153,7 +152,7 @@ allow_abort();
 
 `copy $temp_trunk\\binaries\\system\\ps_test.exe $output_dir\\temp\\`;
 die $? if $?;
-`copy $temp_trunk\\binaries\\data\\ps_test.pdb $output_dir\\temp\\`;
+`copy $temp_trunk\\binaries\\system\\ps_test.pdb $output_dir\\temp\\`;
 die $? if $?;
 
 ### Clean up unnecessary files to save space ###
@@ -169,7 +168,6 @@ allow_abort();
 
 mkdir "$temp_trunk\\binaries" or die $!;
 mkdir "$temp_trunk\\binaries\\system" or die $!;
-mkdir "$temp_trunk\\binaries\\data" or die $!;
 
 ### Do the Release build ###
 
@@ -181,7 +179,7 @@ die $? if ($? and $? != 32768);
 
 `copy $temp_trunk\\binaries\\system\\ps.exe $output_dir\\temp\\`;
 die $? if $?;
-`copy $temp_trunk\\binaries\\data\\ps.pdb $output_dir\\temp\\`;
+`copy $temp_trunk\\binaries\\system\\ps.pdb $output_dir\\temp\\`;
 die $? if $?;
 
 ### Store the output permanently ###
@@ -191,7 +189,7 @@ rename "$output_dir\\temp", "$output_dir\\$svn_revision" or die $!;
 ### and make a compressed archive ###
 
 chdir "$output_dir\\$svn_revision" or die $!;
-`$sevenz a -mx9 -bd -sfx7zC.sfx ..\\$svn_revision.exe`;
+`$sevenz a -mx7 -bd -sfx7zC.sfx ..\\$svn_revision.exe`;
 die $? if $?;
 
 # (TODO: delete the non-archived data when it's not needed, to save disk space)
