@@ -69,6 +69,17 @@ struct SModelFace
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
+// CSharedRenderData: render data for a CModelDef, shared between all model render data
+// instances that refer to the same CModelDef.
+class CSharedRenderData
+{
+public:
+	CSharedRenderData() { }
+	virtual ~CSharedRenderData() { }
+};
+
+
+////////////////////////////////////////////////////////////////////////////////////////
 // CModelDef: a raw 3D model; describes the vertices, faces, skinning and skeletal 
 // information of a model
 class CModelDef
@@ -112,6 +123,10 @@ public:
 	// null if no match (case insensitive search)
 	SPropPoint* FindPropPoint(const char* name) const;
 
+	// accessor: render data
+	CSharedRenderData* GetRenderData() const { return m_RenderData; }
+	void SetRenderData(CSharedRenderData* data);
+
 public:
 	// vertex data
 	u32 m_NumVertices;
@@ -125,6 +140,9 @@ public:
 	// prop point data
 	u32 m_NumPropPoints;
 	SPropPoint* m_PropPoints;
+
+	// renderdata shared by models of the same modeldef
+	CSharedRenderData* m_RenderData;
 
 protected:
 	static CModelDef* Load(const char* filename);

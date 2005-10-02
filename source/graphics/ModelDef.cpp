@@ -16,7 +16,7 @@
 // CModelDef Constructor
 CModelDef::CModelDef()	
 	: m_pVertices(0), m_NumVertices(0), m_pFaces(0), m_NumFaces(0), m_Bones(0), m_NumBones(0),
-	m_NumPropPoints(0), m_PropPoints(0)
+	m_NumPropPoints(0), m_PropPoints(0), m_RenderData(0)
 {
 }
 
@@ -24,6 +24,7 @@ CModelDef::CModelDef()
 // CModelDef Destructor
 CModelDef::~CModelDef()
 {
+	delete m_RenderData;
 	delete[] m_pVertices;
 	delete[] m_pFaces;
 	delete[] m_Bones;
@@ -130,5 +131,14 @@ void CModelDef::Save(const char* filename,const CModelDef* mdef)
 	
 	// flush everything out to file
 	packer.Write(filename);
+}
+
+
+// Set render data. This can only be done once at the moment.
+// TODO: Is there a need to re-create render data? Perhaps reacting to render path changes?
+void CModelDef::SetRenderData(CSharedRenderData* data)
+{
+	debug_assert(m_RenderData == 0);
+	m_RenderData = data;
 }
 

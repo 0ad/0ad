@@ -33,8 +33,7 @@ void CVertexBuffer::Shutdown()
 CVertexBuffer::CVertexBuffer(size_t vertexSize,bool dynamic) 
 	: m_VertexSize(vertexSize), m_Dynamic(dynamic), m_SysMem(0), m_Handle(0)
 {
-	// store max/free vertex counts
-	m_MaxVertices=m_FreeVertices=MAX_VB_SIZE_BYTES/vertexSize;
+	size_t size = MAX_VB_SIZE_BYTES;
 
 	// allocate raw buffer
 	if (g_Renderer.m_Caps.m_VBO) {
@@ -49,13 +48,16 @@ CVertexBuffer::CVertexBuffer(size_t vertexSize,bool dynamic)
 		glBindBufferARB(GL_ARRAY_BUFFER_ARB,m_Handle);
 		if (glGetError() != GL_NO_ERROR) throw PSERROR_Renderer_VBOFailed();
 
-		glBufferDataARB(GL_ARRAY_BUFFER_ARB,MAX_VB_SIZE_BYTES,0,m_Dynamic ? GL_STREAM_DRAW_ARB : GL_STATIC_DRAW_ARB);
+		glBufferDataARB(GL_ARRAY_BUFFER_ARB,size,0,m_Dynamic ? GL_DYNAMIC_DRAW_ARB : GL_STATIC_DRAW_ARB);
 		if (glGetError() != GL_NO_ERROR) throw PSERROR_Renderer_VBOFailed();
 
 	} else {
-		m_SysMem=new u8[MAX_VB_SIZE_BYTES];
+		m_SysMem=new u8[size];
 	}
 
+	// store max/free vertex counts
+	m_MaxVertices=m_FreeVertices=size/vertexSize;
+	
 	// create sole free chunk
 	VBChunk* chunk=new VBChunk;
 	chunk->m_Owner=this;

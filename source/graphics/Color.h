@@ -18,6 +18,14 @@
 typedef CVector3D RGBColor;
 typedef CVector4D RGBAColor;
 
+// SColor3ub: structure for packed RGB colors
+struct SColor3ub
+{
+	u8 R;
+	u8 G;
+	u8 B;
+};
+
 // SColor4ub: structure for packed RGBA colors
 struct SColor4ub
 {

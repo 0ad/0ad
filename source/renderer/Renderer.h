@@ -40,13 +40,13 @@ class CTerrain;
 enum ERenderMode { WIREFRAME, SOLID, EDGED_FACES };
 
 // stream flags
-#define STREAM_POS		0x01
-#define STREAM_NORMAL	0x02
-#define STREAM_COLOR	0x04
-#define STREAM_UV0		0x08
-#define STREAM_UV1		0x10
-#define STREAM_UV2		0x20
-#define STREAM_UV3		0x40
+#define STREAM_POS 0x01
+#define STREAM_NORMAL 0x02
+#define STREAM_COLOR 0x04
+#define STREAM_UV0 0x08
+#define STREAM_UV1 0x10
+#define STREAM_UV2 0x20
+#define STREAM_UV3 0x40
 #define STREAM_POSTOUV0 0x80
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -246,9 +246,6 @@ protected:
 	friend class CModelRData;
 	friend class CTransparencyRenderer;
 	friend class CPlayerRenderer;
-
-	// update renderdata of everything submitted
-	void UpdateSubmittedObjectData();
 
 	// patch rendering stuff
 	void RenderPatchSubmissions();

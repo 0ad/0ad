@@ -16,7 +16,7 @@
 #include <vector>
 
 // absolute maximum (bytewise) size of each GL vertex buffer object
-#define MAX_VB_SIZE_BYTES		(32*8192)
+#define MAX_VB_SIZE_BYTES		(512*1024)
 
 ///////////////////////////////////////////////////////////////////////////////
 // CVertexBuffer: encapsulation of ARB_vertex_buffer_object, also supplying 
@@ -47,7 +47,7 @@ public:
 
 public:
 	// constructor, destructor
-	CVertexBuffer(size_t vertexSize,bool dynamic);
+	CVertexBuffer(size_t vertexSize, bool dynamic);
 	~CVertexBuffer();
 
 	// bind to this buffer; return pointer to address required as parameter

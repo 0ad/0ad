@@ -12,15 +12,14 @@
 #include "ModelDef.h"
 #include "MaterialManager.h"
 #include "Profile.h"
+#include "renderer/ModelDefRData.h"
 
-///////////////////////////////////////////////////////////////////
-// shared list of all submitted models this frame
-std::vector<CModel*> CModelRData::m_Models;
+
 
 ///////////////////////////////////////////////////////////////////
 // CModelRData constructor
 CModelRData::CModelRData(CModel* model) 
-	: m_Model(model), m_Vertices(0), m_Normals(0), m_Indices(0), m_VB(0), m_Flags(0)
+	: m_Model(model), m_Normals(0), m_DynamicArray(true), m_Indices(0), m_Flags(0)
 {
 	debug_assert(model);
 	// build all data now
@@ -33,17 +32,35 @@ CModelRData::~CModelRData()
 {
 	// clean up system copies of data
 	delete[] m_Indices;
-	delete[] m_Vertices;
 	delete[] m_Normals;
-	if (m_VB) {
-		// release vertex buffer chunks
-		g_VBMan.Release(m_VB);
-	}
 }
 
 void CModelRData::Build()
 {
+	CModelDefPtr mdef = m_Model->GetModelDef();
+
+	if (!mdef->GetRenderData())
+	{
+		mdef->SetRenderData(new CModelDefRData(&*mdef));
+	}
+	
+	m_Position.type = GL_FLOAT;
+	m_Position.elems = 3;
+	m_DynamicArray.AddAttribute(&m_Position);
+
+	m_UV.type = GL_FLOAT;
+	m_UV.elems = 2;
+	m_DynamicArray.AddAttribute(&m_UV);
+
+	m_Color.type = GL_FLOAT;
+	m_Color.elems = 3;
+	m_DynamicArray.AddAttribute(&m_Color);
+	
+	m_DynamicArray.SetNumVertices(mdef->GetNumVertices());
+	m_DynamicArray.Layout();
+	
 	// build data
+	BuildStaticVertices();
 	BuildVertices();
 	BuildIndices();
 	// force a texture load on model's texture
@@ -56,9 +73,9 @@ void CModelRData::Build()
 	{
 		m_Flags |= MODELRDATA_FLAG_PLAYERCOLOR;
 	}
-    else if(m_Model->GetMaterial().UsesAlpha())
+	else if(m_Model->GetMaterial().UsesAlpha())
 	{
-        m_Flags |= MODELRDATA_FLAG_TRANSPARENT;
+		m_Flags |= MODELRDATA_FLAG_TRANSPARENT;
 	}
 }
 
@@ -67,39 +84,30 @@ void CModelRData::BuildIndices()
 	CModelDefPtr mdef=m_Model->GetModelDef();
 	debug_assert(mdef);
 	
-	// must have a valid vertex buffer by this point so we know where indices are supposed to start
-	debug_assert(m_VB);
-	
 	// allocate indices if we haven't got any already
 	if (!m_Indices) {
 		m_Indices=new u16[mdef->GetNumFaces()*3];
 	}
 
 	// build indices
-	u32 base=(u32)m_VB->m_Index;
 	u32 indices=0;
 	SModelFace* faces=mdef->GetFaces();
 	for (size_t j=0; j<mdef->GetNumFaces(); j++) {
 		SModelFace& face=faces[j];
-		m_Indices[indices++]=face.m_Verts[0]+base;
-		m_Indices[indices++]=face.m_Verts[1]+base;
-		m_Indices[indices++]=face.m_Verts[2]+base;
+		m_Indices[indices++]=face.m_Verts[0];
+		m_Indices[indices++]=face.m_Verts[1];
+		m_Indices[indices++]=face.m_Verts[2];
 	}
 }
 
-/* JW: function is apparently currently unused
-
-static SColor4ub ConvertColor(const RGBColor& src)
+static SColor3ub ConvertColor(const RGBColor& src)
 {
-	SColor4ub result;
+	SColor3ub result;
 	result.R=clamp(int(src.X*255),0,255);
 	result.G=clamp(int(src.Y*255),0,255);
 	result.B=clamp(int(src.Z*255),0,255);
-	result.A=0xff;
 	return result;
 }
-
-*/
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // SkinPoint: skin the vertex position using it's blend data and given bone matrices
@@ -143,6 +151,19 @@ static void SkinNormal(const SModelVertex& vertex,const CMatrix3D* invmatrices,C
 	}
 }
 
+void CModelRData::BuildStaticVertices()
+{
+	CModelDefPtr mdef = m_Model->GetModelDef();
+	size_t numVertices = mdef->GetNumVertices();
+	SModelVertex* vertices = mdef->GetVertices();
+	VertexArrayIterator<float[]> UVit = m_UV.GetIterator<float[]>();
+	
+	for (uint j=0; j < numVertices; ++j, ++UVit) {
+		(*UVit)[0] = vertices[j].m_U;
+		(*UVit)[1] = 1.0-vertices[j].m_V;
+	}
+}
+
 void CModelRData::BuildVertices()
 {
 	CModelDefPtr mdef=m_Model->GetModelDef();
@@ -151,24 +172,19 @@ void CModelRData::BuildVertices()
 
 	// allocate vertices if we haven't got any already and 
 	// fill in data that never changes
-	if (!m_Vertices) {
-		m_Vertices=new SVertex[mdef->GetNumVertices()];
+	if (!m_Normals)
 		m_Normals=new CVector3D[mdef->GetNumVertices()];
-	
-		for (uint j=0; j<numVertices; j++) {
-			m_Vertices[j].m_UVs[0]=vertices[j].m_U;
-			m_Vertices[j].m_UVs[1]=1-vertices[j].m_V;
-		}
-	}
 
 	// build vertices
+	VertexArrayIterator<CVector3D> Position = m_Position.GetIterator<CVector3D>();
+	VertexArrayIterator<CVector3D> Color = m_Color.GetIterator<CVector3D>();
 	const CMatrix3D* bonematrices=m_Model->GetBoneMatrices();
 	if (bonematrices) {
 		// boned model - calculate skinned vertex positions/normals
 		PROFILE( "skinning bones" );
 		const CMatrix3D* invbonematrices=m_Model->GetInvBoneMatrices();
 		for (size_t j=0; j<numVertices; j++) {
-			SkinPoint(vertices[j],bonematrices,m_Vertices[j].m_Position);
+			SkinPoint(vertices[j],bonematrices,Position[j]);
 			SkinNormal(vertices[j],invbonematrices,m_Normals[j]);
 		}
 	} else {
@@ -176,7 +192,7 @@ void CModelRData::BuildVertices()
 		const CMatrix3D& transform=m_Model->GetTransform();
 		const CMatrix3D& invtransform=m_Model->GetInvTransform();
 		for (uint j=0; j<numVertices; j++) {
-			transform.Transform(vertices[j].m_Coords,m_Vertices[j].m_Position);
+			transform.Transform(vertices[j].m_Coords,Position[j]);
 			invtransform.RotateTransposed(vertices[j].m_Norm,m_Normals[j]);
 		}
 	}
@@ -185,16 +201,15 @@ void CModelRData::BuildVertices()
 	// now fill in UV and vertex colour data
 	for (uint j=0; j<numVertices; j++) {
 		CColor sc = m_Model->GetShadingColor();
-		g_Renderer.m_SHCoeffsUnits.Evaluate(m_Normals[j], m_Vertices[j].m_Color, 
+		RGBColor tempcolor;
+		g_Renderer.m_SHCoeffsUnits.Evaluate(m_Normals[j], tempcolor, 
 			RGBColor(sc.r, sc.g, sc.b));
+		Color[j] = tempcolor;//ConvertColor(tempcolor);
 	}
 	PROFILE_END( "lighting vertices" );
 
-	// upload everything to vertex buffer - create one if necessary
-	if (!m_VB) {
-		m_VB=g_VBMan.Allocate(sizeof(SVertex),mdef->GetNumVertices(),mdef->GetNumBones() ? true : false);
-	}
-	m_VB->m_Owner->UpdateChunkVertices(m_VB,m_Vertices);
+	// upload everything to vertex buffer
+	m_DynamicArray.Upload();
 }
 
 
@@ -203,29 +218,38 @@ void CModelRData::RenderStreams(u32 streamflags, bool isplayer)
 	CModelDefPtr mdldef=m_Model->GetModelDef();
 	
 	if (streamflags & STREAM_UV0)
-    {
+	{
 		if(!isplayer)
 			m_Model->GetMaterial().Bind();
 		else
 			g_Renderer.SetTexture(1,m_Model->GetTexture());
 
-        g_Renderer.SetTexture(0,m_Model->GetTexture());
-    }
+		g_Renderer.SetTexture(0,m_Model->GetTexture());
+	}
 
-	u8* base=m_VB->m_Owner->Bind();
-
-	// set vertex pointers
-	u32 stride=sizeof(SVertex);
-	glVertexPointer(3,GL_FLOAT,stride,base+offsetof(SVertex,m_Position));
-	if (streamflags & STREAM_COLOR) glColorPointer(3,GL_FLOAT,stride,base+offsetof(SVertex,m_Color));
-	if (streamflags & STREAM_UV0) glTexCoordPointer(2,GL_FLOAT,stride,base+offsetof(SVertex,m_UVs));
+	u8* base = m_DynamicArray.Bind();
+	size_t stride = m_DynamicArray.GetStride();
+	
+	glVertexPointer(3, GL_FLOAT, stride, base + m_Position.offset);
+	if (streamflags & STREAM_COLOR) glColorPointer(3, m_Color.type, stride, base + m_Color.offset);
+#if 0
+	{
+		uint a = (uint)this;
+		uint b = (uint)m_Model->GetTexture();
+		uint hash = ((a >> 16) ^ (b & 0xffff)) | ((a & 0xffff0000) ^ (b << 16));
+		hash = (hash * 65537) + 17;
+		hash |= 0xff000000;
+		glColor4ubv((GLubyte*)&hash);
+		glDisableClientState(GL_COLOR_ARRAY);
+	}
+#endif
+	if (streamflags & STREAM_UV0) glTexCoordPointer(2, GL_FLOAT, stride, base + m_UV.offset);
 
 	// render the lot
 	size_t numFaces=mdldef->GetNumFaces();
-//	glDrawRangeElements(GL_TRIANGLES,0,mdldef->GetNumVertices(),numFaces*3,GL_UNSIGNED_SHORT,m_Indices);
-	glDrawElements(GL_TRIANGLES,(GLsizei)numFaces*3,GL_UNSIGNED_SHORT,m_Indices);
+	glDrawRangeElements(GL_TRIANGLES,0,mdldef->GetNumVertices(),numFaces*3,GL_UNSIGNED_SHORT,m_Indices);
 
-    if(streamflags & STREAM_UV0 & !isplayer)
+	if(streamflags & STREAM_UV0 & !isplayer)
 		m_Model->GetMaterial().Unbind();
 	
 	// bump stats
@@ -295,9 +319,9 @@ float CModelRData::BackToFrontIndexSort(CMatrix3D& objToCam)
 	u32 indices=0;
 	for (i=0;i<numFaces;i++) {
 		SModelFace& face=faces[IndexSorter[i].first];
-		m_Indices[indices++]=(u16)(face.m_Verts[0]+m_VB->m_Index);
-		m_Indices[indices++]=(u16)(face.m_Verts[1]+m_VB->m_Index);
-		m_Indices[indices++]=(u16)(face.m_Verts[2]+m_VB->m_Index);
+		m_Indices[indices++]=(u16)(face.m_Verts[0]);
+		m_Indices[indices++]=(u16)(face.m_Verts[1]);
+		m_Indices[indices++]=(u16)(face.m_Verts[2]);
 	}
 
 	// clear list for next call
@@ -306,73 +330,34 @@ float CModelRData::BackToFrontIndexSort(CMatrix3D& objToCam)
 	return mindist;
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-// SubmitBatches: submit batches for this model to the vertex buffer
-void CModelRData::SubmitBatches()
-{
-	debug_assert(m_VB);
-	m_VB->m_Owner->AppendBatch(m_VB,m_Model->GetTexture()->GetHandle(),m_Model->GetModelDef()->GetNumFaces()*3,m_Indices);
-}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 // RenderModels: render all submitted models; assumes necessary client states already enabled,
 // and texture environment already setup as required
-void CModelRData::RenderModels(u32 streamflags,u32 flags)
+void CModelRData::RenderModels(u32 streamflags, u32 flags)
 {
-	uint i;
-#if 1
-	// submit batches for each model to the vertex buffer
-	for (i=0;i<m_Models.size();++i) {
-		if (!flags || (m_Models[i]->GetFlags()&flags)) {
-			CModelRData* modeldata=(CModelRData*) m_Models[i]->GetRenderData();
-			modeldata->SubmitBatches();
-		}
-	}
-
-	// step through all accumulated batches
-	const std::list<CVertexBuffer*>& buffers=g_VBMan.GetBufferList();
-	std::list<CVertexBuffer*>::const_iterator iter;
-	for (iter=buffers.begin();iter!=buffers.end();++iter) {
-		CVertexBuffer* buffer=*iter;
-		
-		// any batches in this VB?
-		const std::vector<CVertexBuffer::Batch*>& batches=buffer->GetBatches();
-		if (batches.size()>0) {
-			u8* base=buffer->Bind();
-
-			// setup data pointers
-			u32 stride=sizeof(SVertex);
-			glVertexPointer(3,GL_FLOAT,stride,base+offsetof(SVertex,m_Position));
-			if (streamflags & STREAM_COLOR) glColorPointer(3,GL_FLOAT,stride,base+offsetof(SVertex,m_Color));
-			if (streamflags & STREAM_UV0) glTexCoordPointer(2,GL_FLOAT,stride,base+offsetof(SVertex,m_UVs[0]));
-
-			// render each batch
-			for (i=0;i<batches.size();++i) {
-				const CVertexBuffer::Batch* batch=batches[i];
-				if (batch->m_IndexData.size()>0) {
-					if (streamflags & STREAM_UV0) 
-						ogl_tex_bind(batch->m_Texture);
-
-					for (uint j=0;j<batch->m_IndexData.size();j++) {
-						glDrawElements(GL_TRIANGLES,(GLsizei)batch->m_IndexData[j].first,GL_UNSIGNED_SHORT,batch->m_IndexData[j].second);
-						g_Renderer.m_Stats.m_DrawCalls++;
-						g_Renderer.m_Stats.m_ModelTris+=(u32)batch->m_IndexData[j].first/2;
-					}
-				}
+	for(CModelDefRData* mdefdata = CModelDefRData::m_Submissions; 
+	    mdefdata;
+	    mdefdata = mdefdata->m_SubmissionNext)
+	{
+		for(uint idx = 0; idx < mdefdata->m_SubmissionSlots; ++idx)
+		{
+			if (!mdefdata->m_SubmissionModels[idx])
+				break;
+			
+			for(CModelRData* modeldata = mdefdata->m_SubmissionModels[idx]; 
+			    modeldata; 
+			    modeldata = modeldata->m_SubmissionNext)
+			{
+				if (flags && !(modeldata->GetModel()->GetFlags()&flags))
+					continue;
+				
+				modeldata->RenderStreams(streamflags, false);
 			}
 		}
 	}
-	// everything rendered; empty out batch lists
-	g_VBMan.ClearBatchIndices();
-#else 
-	for (i=0;i<m_Models.size();++i) {
-		if (!flags || (m_Models[i]->GetFlags()&flags)) {
-			CModelRData* modeldata=(CModelRData*) m_Models[i]->GetRenderData();
-			modeldata->RenderStreams(streamflags);
-		}
-	}
-#endif
 }
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Submit: submit a model to render this frame
@@ -397,7 +382,24 @@ void CModelRData::Submit(CModel* model)
 		// add this model to the player renderer
 		g_PlayerRenderer.Add(model);
 	} else {
-		// add to regular model list
-		m_Models.push_back(model);
+		CModelDefPtr mdldef = model->GetModelDef();
+		CModelDefRData* mdefdata = (CModelDefRData*)mdldef->GetRenderData();
+		
+		debug_assert(mdefdata != 0);
+		
+		mdefdata->Submit(data);
 	}
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+// ClearSubmissions: Clear the submissions list
+// TODO: This is asymmetrical: It only clears CModelRData lists, but no player/transparency renderer lists
+void CModelRData::ClearSubmissions()
+{
+	for(CModelDefRData* mdefdata = CModelDefRData::m_Submissions; mdefdata; mdefdata = mdefdata->m_SubmissionNext)
+	{
+		mdefdata->ClearSubmissions();
+	}
+	CModelDefRData::m_Submissions = 0;
 }
