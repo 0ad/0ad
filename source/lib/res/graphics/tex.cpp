@@ -574,6 +574,7 @@ int tex_write(Tex* t, const char* fn)
 	// encode into <da>
 	int err;
 	size_t rounded_size;
+	ssize_t bytes_written;
 	err = c->encode(t, &da);
 	if(err < 0)
 	{
@@ -585,7 +586,7 @@ int tex_write(Tex* t, const char* fn)
 	// write to disk
 	rounded_size = round_up(da.cur_size, FILE_BLOCK_SIZE);
 	(void)da_set_size(&da, rounded_size);
-	ssize_t bytes_written = vfs_store(fn, da.base, da.pos);
+	bytes_written = vfs_store(fn, da.base, da.pos);
 	debug_assert(bytes_written == (ssize_t)da.pos);
 
 fail:
