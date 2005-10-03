@@ -461,7 +461,7 @@ static void CALL_CONV emulate_glCompressedTexImage2D(
 	Tex t;
 	const uint flags = dxt;
 	(void)tex_wrap((uint)w, (uint)h, s3tc_bpp, flags, (void*)data, &t);
-	(void)tex_transform(&t, TEX_DXT);
+	(void)tex_transform_to(&t, flags & ~TEX_DXT);
 
 	// uncompressed RGB[A] format info
 	u8* const uc_data = tex_get_data(&t);

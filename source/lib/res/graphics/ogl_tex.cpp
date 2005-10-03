@@ -413,6 +413,9 @@ Handle ogl_tex_load(const char* fn, uint flags)
 //
 // <fn> isn't strictly needed but should describe the texture so that
 // h_filename will return a meaningful comment for debug purposes.
+// note: because we cannot guarantee that callers will pass distinct
+// "filenames", caching is disabled for the created object. this avoids
+// mistakenly reusing previous objects that share the same comment.
 Handle ogl_tex_wrap(Tex* t, const char* fn, uint flags)
 {
 	// this object may not be backed by a file ("may", because
@@ -421,7 +424,8 @@ Handle ogl_tex_wrap(Tex* t, const char* fn, uint flags)
 	// we won't be able to reconstruct it. therefore, disallow reloads.
 	// (they are improbable anyway since caller is supposed to pass a
 	// 'descriptive comment' instead of filename, but don't rely on that)
-	flags |= RES_DISALLOW_RELOAD;
+	// also disable caching as explained above.
+	flags |= RES_DISALLOW_RELOAD|RES_NO_CACHE;
 	return h_alloc(H_OglTex, fn, flags, t);
 }
 

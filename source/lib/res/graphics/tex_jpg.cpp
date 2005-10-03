@@ -516,8 +516,7 @@ static int jpg_encode_impl(Tex* t,
 	jpeg_start_compress(cinfo, TRUE);
 
 	// if BGR, convert to RGB.
-	const int transform_bgr = t->flags & TEX_BGR;	// JPG is native RGB.
-	WARN_ERR(tex_transform(t, transform_bgr));
+	WARN_ERR(tex_transform_to(t, t->flags & ~TEX_BGR));
 
 	const size_t pitch = t->w * t->bpp / 8;
 	u8* data = tex_get_data(t);

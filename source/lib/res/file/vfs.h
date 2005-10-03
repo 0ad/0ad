@@ -382,7 +382,7 @@ extern ssize_t vfs_io(Handle hf, size_t size, void** p, FileIOCB cb = 0, uintptr
 // if flags & FILE_CACHE.
 extern Handle vfs_load(const char* fn, void*& p, size_t& size, uint flags = 0);
 
-extern int vfs_store(const char* fn, void* p, size_t size, uint flags = 0);
+extern ssize_t vfs_store(const char* fn, void* p, size_t size, uint flags = 0);
 
 
 //

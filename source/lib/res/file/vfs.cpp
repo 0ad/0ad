@@ -593,7 +593,7 @@ ret:
 // caveat: pads file to next max(4kb, sector_size) boundary
 // (due to limitation of Win32 FILE_FLAG_NO_BUFFERING I/O).
 // if that's a problem, specify FILE_NO_AIO when opening.
-int vfs_store(const char* v_fn, void* p, const size_t size, uint flags /* default 0 */)
+ssize_t vfs_store(const char* v_fn, void* p, const size_t size, uint flags /* default 0 */)
 {
 	Handle hf = vfs_open(v_fn, flags|FILE_WRITE);
 	RETURN_ERR(hf);
@@ -601,7 +601,7 @@ int vfs_store(const char* v_fn, void* p, const size_t size, uint flags /* defaul
 		// error, we get "invalid handle" instead of vfs_open's error code.
 		// don't CHECK_ERR because vfs_open already did.
 	H_DEREF(hf, VFile, vf);
-	const int ret = vfs_io(hf, size, &p);
+	const ssize_t ret = vfs_io(hf, size, &p);
 	WARN_ERR(vfs_close(hf));
 	return ret;
 }

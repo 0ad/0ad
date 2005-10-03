@@ -64,7 +64,7 @@ static PtrToH& get_ptr_to_h()
 #define ptr_to_h get_ptr_to_h()
 
 
-// not needed by other modules - mem_get_size and mem_assign is enough.
+// not needed by other modules - mem_get_size and mem_wrap is enough.
 static Handle find_alloc(void* target_p, It* out_it = 0)
 {
 	// early out optimization (don't pay for full subset check)
@@ -256,19 +256,24 @@ int mem_free_p(void*& p)
 
 // create a H_MEM handle of type MEM_USER,
 // and assign it the specified memory range.
-// dtor is called when the handle is freed, if non-NULL.
-Handle mem_assign(void* p, size_t size, uint flags, void* raw_p, size_t raw_size, MEM_DTOR dtor, uintptr_t ctx)
+// if dtor is non-NULL, it is called (passing ctx) when the handle is freed.
+Handle mem_wrap(void* p, size_t size, uint flags, void* raw_p, size_t raw_size, MEM_DTOR dtor, uintptr_t ctx)
 {
+	if(!p || !size)
+		CHECK_ERR(ERR_INVALID_PARAM);
+
 	// we've already allocated that pointer - returns its handle
 	Handle hm = find_alloc(p);
 	if(hm > 0)
 		return hm;
 
-	if(!p || !size)
-	{
-		debug_warn("mem_assign: invalid p or size");
-		return 0;
-	}
+	// <p> wasn't allocated via mem_alloc, or we would've found its Handle.
+	// it is therefore some user-allocated mem and might therefore not have
+	// a valid <raw_p> set. since that's our search key, we set it to <p>.
+	if(!raw_p)
+		raw_p = p;
+	if(!raw_size)
+		raw_size = size;
 
 	hm = h_alloc(H_Mem, (const char*)p, flags|RES_KEY|RES_NO_CACHE, raw_p);
 	RETURN_ERR(hm);
@@ -280,7 +285,6 @@ Handle mem_assign(void* p, size_t size, uint flags, void* raw_p, size_t raw_size
 	m->raw_size  = raw_size;
 	m->dtor      = dtor;
 	m->ctx       = ctx;
-
 	return hm;
 }
 
@@ -339,10 +343,10 @@ void* mem_alloc(size_t size, const size_t align, uint flags, Handle* phm)
 	void* p = (void*)round_up((uintptr_t)raw_p, align);
 
 
-	Handle hm = mem_assign(p, size, flags, raw_p, raw_size, dtor, ctx);
+	Handle hm = mem_wrap(p, size, flags, raw_p, raw_size, dtor, ctx);
 	if(!hm)			// failed to allocate a handle
 	{
-		debug_warn("mem_alloc: mem_assign failed");
+		debug_warn("mem_alloc: mem_wrap failed");
 		dtor(p, size, ctx);
 		return 0;
 	}

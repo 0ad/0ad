@@ -560,8 +560,7 @@ int sys_cursor_load(const char* filename,
 	uint w = t.w, h = t.h;
 
 	// convert to BGRA (required by CreateBitmap).
-	const uint transforms = (t.flags & TEX_BGR) ^ TEX_BGR;
-	RETURN_ERR(tex_transform(&t, transforms));
+	RETURN_ERR(tex_transform_to(&t, t.flags|TEX_BGR));
 	void* tex_bgra = tex_get_data(&t);
 
 	// MSDN says selecting this HBITMAP into a DC is slower since we use

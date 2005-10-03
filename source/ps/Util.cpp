@@ -199,12 +199,11 @@ void WriteScreenshot(const char* extension)
 		return;
 	}
 	GLvoid* img = (u8*)data + hdr_size;
-
-
+	Tex t;
+	if(tex_wrap(w, h, bpp, flags, img, &t) < 0)
+		return;
 	glReadPixels(0, 0, w, h, fmt, GL_UNSIGNED_BYTE, img);
-
-	if(tex_write(fn, w, h, bpp, flags, img) < 0)
-		debug_warn("WriteScreenshot: tex_write failed");
-
+	(void)tex_write(&t, fn);
+	(void)tex_free(&t);
 	mem_free_h(img_hm);
 }

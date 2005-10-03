@@ -29,9 +29,6 @@
 #include "tex_codec.h"
 
 
-#define ERR_TOO_SHORT -4
-
-
 // be careful not to use other tex_* APIs here because they call us.
 int tex_validate(const uint line, const Tex* t)
 {
@@ -77,12 +74,6 @@ int tex_validate(const uint line, const Tex* t)
 }
 
 #define CHECK_TEX(t) CHECK_ERR(tex_validate(__LINE__, t))
-
-
-
-// rationale for default: see tex_set_global_orientation
-static int global_orientation = TEX_TOP_DOWN;
-
 
 
 // check if the given texture format is acceptable: 8bpp grey,
@@ -218,6 +209,61 @@ static int plain_transform(Tex* t, uint transforms)
 }
 
 
+
+
+//-----------------------------------------------------------------------------
+// image orientation
+//-----------------------------------------------------------------------------
+
+// rationale for default: see tex_set_global_orientation
+static int global_orientation = TEX_TOP_DOWN;
+
+// switch between top-down and bottom-up orientation.
+//
+// the default top-down is to match the Photoshop DDS plugin's output.
+// DDS is the optimized format, so we don't want to have to flip that.
+// notes:
+// - there's no way to tell which orientation a DDS file has;
+//   we have to go with what the DDS encoder uses.
+// - flipping DDS is possible without re-encoding; we'd have to shuffle
+//   around the pixel values inside the 4x4 blocks.
+//
+// the app can change orientation, e.g. to speed up loading
+// "upside-down" formats, or to match OpenGL's bottom-up convention.
+void tex_set_global_orientation(int o)
+{
+	debug_assert(o == TEX_TOP_DOWN || o == TEX_BOTTOM_UP);
+	global_orientation = o;
+}
+
+
+static void flip_to_global_orientation(Tex* t)
+{
+	uint orientation = t->flags & TEX_ORIENTATION;
+	// only if it knows which way around it is (DDS doesn't)
+	if(orientation)
+	{
+		uint transforms = orientation ^ global_orientation;
+		WARN_ERR(plain_transform(t, transforms));
+	}
+
+	t->flags = (t->flags & ~TEX_ORIENTATION) | global_orientation;
+}
+
+
+// indicate if the orientation specified by <src_flags> matches
+// dst_orientation (if the latter is 0, then the global_orientation).
+// (we ask for src_flags instead of src_orientation so callers don't
+// have to mask off TEX_ORIENTATION)
+static bool orientations_match(uint src_flags, uint dst_orientation)
+{
+	const uint src_orientation = src_flags & TEX_ORIENTATION;
+	if(dst_orientation == 0)
+		dst_orientation = global_orientation;
+	return (src_orientation == dst_orientation);
+}
+
+
 //-----------------------------------------------------------------------------
 // support routines for codecs
 //-----------------------------------------------------------------------------
@@ -278,7 +324,7 @@ int tex_codec_for_header(const u8* file, size_t file_size, const TexCodecVTbl** 
 {
 	// we guarantee at least 4 bytes for is_hdr to look at
 	if(file_size < 4)
-		return ERR_TOO_SHORT;
+		return ERR_TEX_HEADER_NOT_COMPLETE;
 	for(uint i = 0; i < MAX_CODECS; i++)
 	{
 		*c = codecs[i];
@@ -306,17 +352,13 @@ int tex_codec_for_header(const u8* file, size_t file_size, const TexCodecVTbl** 
 int tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
 	uint src_flags, uint dst_orientation, RowArray& rows)
 {
-	// convenience for caller: allow passing all flags.
-	const uint src_orientation = src_flags & TEX_ORIENTATION;
-	if(dst_orientation == 0)
-		dst_orientation = global_orientation;
+	const bool flip = !orientations_match(src_flags, dst_orientation);
 
 	rows = (RowArray)malloc(h * sizeof(RowPtr));
 	if(!rows)
 		return ERR_NO_MEM;
 
 	// determine start position and direction
-	const bool flip = (src_orientation ^ dst_orientation) != 0;
 	RowPtr pos        = flip? data+pitch*(h-1) : data;
 	const ssize_t add = flip? -(ssize_t)pitch : (ssize_t)pitch;
 	const RowPtr end  = flip? data-pitch : data+pitch*h;
@@ -334,8 +376,6 @@ int tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
 
 int tex_codec_write(Tex* t, uint transforms, const void* hdr, size_t hdr_size, DynArray* da)
 {
-	CHECK_TEX(t);
-
 	RETURN_ERR(tex_transform(t, transforms));
 
 	void* img_data = tex_get_data(t); const size_t img_size = tex_img_size(t);
@@ -349,23 +389,105 @@ int tex_codec_write(Tex* t, uint transforms, const void* hdr, size_t hdr_size, D
 // API
 //-----------------------------------------------------------------------------
 
-// switch between top-down and bottom-up orientation.
-//
-// the default top-down is to match the Photoshop DDS plugin's output.
-// DDS is the optimized format, so we don't want to have to flip that.
-// notes:
-// - there's no way to tell which orientation a DDS file has;
-//   we have to go with what the DDS encoder uses.
-// - flipping DDS is possible without re-encoding; we'd have to shuffle
-//   around the pixel values inside the 4x4 blocks.
-//
-// the app can change orientation, e.g. to speed up loading
-// "upside-down" formats, or to match OpenGL's bottom-up convention.
-void tex_set_global_orientation(int o)
+
+static int tex_load_impl(void* file_, size_t file_size, Tex* t)
 {
-	debug_assert(o == TEX_TOP_DOWN || o == TEX_BOTTOM_UP);
-	global_orientation = o;
+	u8* file = (u8*)file_;
+
+	const TexCodecVTbl* c;
+	RETURN_ERR(tex_codec_for_header(file, file_size, &c));
+
+	// get header make sure enough of the file has been read
+	const size_t min_hdr_size = c->hdr_size(0);
+	if(file_size < min_hdr_size)
+		return ERR_TEX_HEADER_NOT_COMPLETE;
+	const size_t hdr_size = c->hdr_size(file);
+	if(file_size < hdr_size)
+		return ERR_TEX_HEADER_NOT_COMPLETE;
+	t->ofs = hdr_size;
+
+	DynArray da;
+	RETURN_ERR(da_wrap_fixed(&da, file, file_size));
+
+	RETURN_ERR(c->decode(&da, t));
+
+	// sanity checks
+	if(!t->w || !t->h || t->bpp > 32)
+		return ERR_TEX_FMT_INVALID;
+	// TODO: need to compare against the new t->hm (file may be compressed, cannot use file_size)
+	//if(mem_size < t->ofs + tex_img_size(t))
+	//	return ERR_TEX_INVALID_SIZE;
+
+	flip_to_global_orientation(t);
+
+	CHECK_TEX(t);
+	return 0;
 }
+
+
+int tex_load(const char* fn, Tex* t)
+{
+	// load file
+	void* file; size_t file_size;
+	Handle hm = vfs_load(fn, file, file_size);
+	RETURN_ERR(hm);	// (need handle below; can't test return value directly)
+	t->hm = hm;
+	int ret = tex_load_impl(file, file_size, t);
+	// do not free hm! it either still holds the image data (i.e. texture
+	// wasn't compressed) or was replaced by a new buffer for the image data.
+	if(ret < 0)
+	{
+		// note: don't use tex_free - we don't want its CHECK_TEX to
+		// complain that t wasn't successfully loaded (duh).
+		mem_free_h(hm);
+		memset(t, 0, sizeof(Tex));
+		debug_printf("tex_load(%s): %d", fn, ret);
+		debug_warn("tex_load failed");
+	}
+
+	return ret;
+}
+
+
+int tex_wrap(uint w, uint h, uint bpp, uint flags, void* img, Tex* t)
+{
+	t->w     = w;
+	t->h     = h;
+	t->bpp   = bpp;
+	t->flags = flags;
+
+	// note: we can't use tex_img_size because that requires all
+	// Tex fields to be valid, but this calculation must be done first.
+	const size_t img_size = w*h*bpp/8;
+	t->hm = mem_wrap(img, img_size, 0, 0, 0, 0, 0);
+	RETURN_ERR(t->hm);
+
+	// the exact value of img is lost, since the handle references the
+	// allocation and disregards the offset within it given by <img>.
+	// fix that up by setting t->ofs.
+	void* reported_ptr = mem_get_ptr(t->hm);
+	t->ofs = (u8*)img - (u8*)reported_ptr;
+
+	// TODO: remove when mem_wrap / mem_get_ptr add a reference correctly
+	h_add_ref(t->hm);
+
+	CHECK_TEX(t);
+	return 0;
+}
+
+
+int tex_free(Tex* t)
+{
+	CHECK_TEX(t);
+	mem_free_h(t->hm);
+	// do not zero out the fields! that could lead to trouble since
+	// ogl_tex_upload followed by ogl_tex_free is legit, but would
+	// cause OglTex_validate to fail (since its Tex.w is == 0).
+	return 0;
+}
+
+
+//-----------------------------------------------------------------------------
 
 
 u8* tex_get_data(const Tex* t)
@@ -388,89 +510,7 @@ size_t tex_img_size(const Tex* t)
 }
 
 
-
-size_t tex_hdr_size(const char* fn)
-{
-	const TexCodecVTbl* c;
-	CHECK_ERR(tex_codec_for_filename(fn, &c));
-	return c->hdr_size(0);
-}
-
-
-int tex_load_mem(Handle hm, Tex* t)
-{
-	u8* file; size_t file_size;
-	CHECK_ERR(mem_get(hm, &file, &file_size));
-
-	const TexCodecVTbl* c;
-	CHECK_ERR(tex_codec_for_header(file, file_size, &c));
-
-	// make sure enough of the file has been read
-	const size_t min_hdr_size = c->hdr_size(0);
-	if(file_size < min_hdr_size)
-		return ERR_TOO_SHORT;
-	const size_t hdr_size = c->hdr_size(file);
-	if(file_size < hdr_size)
-		return ERR_TOO_SHORT;
-
-
-	DynArray da;
-	CHECK_ERR(da_wrap_fixed(&da, file, file_size));
-	t->hm = hm;
-	t->ofs = hdr_size;
-
-	int err = c->decode(&da, t);
-	if(err < 0)
-	{
-		debug_printf("tex_load_mem (%s): %d", c->name, err);
-		debug_warn("tex_load_mem failed");
-		return err;
-	}
-
-	// sanity checks
-	if(!t->w || !t->h || t->bpp > 32)
-		return ERR_TEX_FMT_INVALID;
-	// TODO: need to compare against the new t->hm (file may be compressed, cannot use file_size)
-	//if(mem_size < t->ofs + tex_img_size(t))
-	//	return ERR_TOO_SHORT;
-
-	// flip image to global orientation
-	uint orientation = t->flags & TEX_ORIENTATION;
-	// .. but only if it knows which way around it is (DDS doesn't)
-	if(orientation)
-	{
-		uint transforms = orientation ^ global_orientation;
-		WARN_ERR(plain_transform(t, transforms));
-	}
-
-	CHECK_TEX(t);
-	return 0;
-}
-
-
-int tex_load(const char* fn, Tex* t)
-{
-	// load file
-	void* p; size_t size;	// unused
-	Handle hm = vfs_load(fn, p, size);
-	RETURN_ERR(hm);	// (need handle below; can't test return value directly)
-	int ret = tex_load_mem(hm, t);
-	// do not free hm! it either still holds the image data (i.e. texture
-	// wasn't compressed) or was replaced by a new buffer for the image data.
-	if(ret < 0)
-		memset(t, 0, sizeof(Tex));
-
-	// <t> has already been validated.
-	return ret;
-}
-
-
-int tex_free(Tex* t)
-{
-	CHECK_TEX(t);
-	mem_free_h(t->hm);
-	return 0;
-}
+//-----------------------------------------------------------------------------
 
 
 int tex_transform(Tex* t, uint transforms)
@@ -497,70 +537,58 @@ int tex_transform(Tex* t, uint transforms)
 }
 
 
-int tex_wrap(uint w, uint h, uint bpp, uint flags, void* img, Tex* t)
+int tex_transform_to(Tex* t, uint new_flags)
 {
-	t->w     = w;
-	t->h     = h;
-	t->bpp   = bpp;
-	t->flags = flags;
-
-	// note: we can't use tex_img_size because that requires all
-	// Tex fields to be valid, but this calculation must be done first.
-	const size_t img_size = w*h*bpp/8;
-	t->hm = mem_assign(img, img_size, 0, 0, 0, 0, 0);
-	RETURN_ERR(t->hm);
-
-	// the exact value of img is lost, since the handle references the
-	// allocation and disregards the offset within it given by <img>.
-	// fix that up by setting t->ofs.
-	void* reported_ptr = mem_get_ptr(t->hm);
-	t->ofs = (u8*)img - (u8*)reported_ptr;
-
-// TODO: remove when mem_assign / mem_get_ptr add a reference correctly
-h_add_ref(t->hm);
-
-	CHECK_TEX(t);
-	return 0;
+	const uint transforms = t->flags ^ new_flags;
+	return tex_transform(t, transforms);
 }
 
 
-int tex_write(const char* fn, uint w, uint h, uint bpp, uint flags, void* in_img)
-{
-	if(validate_format(bpp, flags) != 0)
-		return ERR_TEX_FMT_INVALID;
+//-----------------------------------------------------------------------------
 
-	Tex t;
-	RETURN_ERR(tex_wrap(w, h, bpp, flags, in_img, &t));
+
+size_t tex_hdr_size(const char* fn)
+{
+	const TexCodecVTbl* c;
+	CHECK_ERR(tex_codec_for_filename(fn, &c));
+	return c->hdr_size(0);
+}
+
+
+int tex_write(Tex* t, const char* fn)
+{
+	CHECK_ERR(validate_format(t->bpp, t->flags));
 
 	// we could be clever here and avoid the extra alloc if our current
 	// memory block ensued from the same kind of texture file. this is
 	// most likely the case if in_img == <hm's user pointer> + c->hdr_size(0).
-	// advantage is avoiding 
+	// this would make for zero-copy IO.
+
 	DynArray da;
-	const size_t max_out_size = (w*h*4 + 256*KiB)*2;
-	CHECK_ERR(da_alloc(&da, max_out_size));
+	const size_t max_out_size = tex_img_size(t)*4 + 256*KiB;
+	RETURN_ERR(da_alloc(&da, max_out_size));
 
 	const TexCodecVTbl* c;
 	CHECK_ERR(tex_codec_for_filename(fn, &c));
 
-	// encode
+	// encode into <da>
 	int err;
 	size_t rounded_size;
-	
-	err = c->encode(&t, &da);
+	err = c->encode(t, &da);
 	if(err < 0)
 	{
 		debug_printf("tex_write (%s): %d", c->name, err);
 		debug_warn("tex_writefailed");
 		goto fail;
 	}
+
+	// write to disk
 	rounded_size = round_up(da.cur_size, FILE_BLOCK_SIZE);
-	CHECK_ERR(da_set_size(&da, rounded_size));
-	WARN_ERR(vfs_store(fn, da.base, da.pos));
-	err = 0;
+	(void)da_set_size(&da, rounded_size);
+	ssize_t bytes_written = vfs_store(fn, da.base, da.pos);
+	debug_assert(bytes_written == (ssize_t)da.pos);
 
 fail:
-	(void)tex_free(&t);
 	(void)da_free(&da);
 	return err;
 }

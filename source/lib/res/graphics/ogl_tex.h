@@ -193,6 +193,9 @@ extern Handle ogl_tex_load(const char* fn, uint flags = 0);
 //
 // <fn> isn't strictly needed but should describe the texture so that
 // h_filename will return a meaningful comment for debug purposes.
+// note: because we cannot guarantee that callers will pass distinct
+// "filenames", caching is disabled for the created object. this avoids
+// mistakenly reusing previous objects that share the same comment.
 extern Handle ogl_tex_wrap(Tex* t, const char* fn = 0, uint flags = 0);
 
 // free all resources associated with the texture and make further

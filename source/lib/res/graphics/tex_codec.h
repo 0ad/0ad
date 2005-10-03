@@ -20,6 +20,9 @@ struct TexCodecVTbl
 	// rationale: some codecs cannot calculate the output size beforehand
 	// (e.g. PNG output via libpng); we therefore require each one to
 	// allocate memory itself and return the pointer.
+	//
+	// note: <t> cannot be made const because encoding may require a
+	// tex_transform.
 	int (*encode)(Tex* t, DynArray* da);
 
 	int (*transform)(Tex* t, uint transforms);
@@ -52,6 +55,15 @@ const int TEX_CODEC_CANNOT_HANDLE = 1;
 // can handle the given format, this is not a problem.
 extern int tex_codec_register(const TexCodecVTbl* c);
 
+
+// find codec that recognizes the desired output file extension
+extern int tex_codec_for_filename(const char* fn, const TexCodecVTbl** c);
+
+// find codec that recognizes the header's magic field
+extern int tex_codec_for_header(const u8* file, size_t file_size, const TexCodecVTbl** c);
+
+
+
 // allocate an array of row pointers that point into the given texture data.
 // <file_orientation> indicates whether the file format is top-down or
 // bottom-up; the row array is inverted if necessary to match global
@@ -69,13 +81,5 @@ extern int tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
 extern int tex_codec_set_orientation(Tex* t, uint file_orientation);
 
 extern int tex_codec_write(Tex* t, uint transforms, const void* hdr, size_t hdr_size, DynArray* da);
-
-
-struct MemSource
-{
-	u8* p;
-	size_t size;
-	size_t pos;
-};
 
 #endif	// #ifndef TEX_CODEC_H__
