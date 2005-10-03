@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity Parent="template_unit_superunit_siu">
+<Entity Parent="template_unit_infantry_melee_isp">
 	<Traits>
-		<Id
-			civ_code="hele"
-			civ="Hellenes"
-			internal_only="false"
-
-			specific="Athenian Gastraphetes"
-
-			history="The gastraphetes was a large crossbow braced against the soldier’s stomach, hence the name 'belly-bow'. It was used to launch darts too large for conventional bows and was used mainly in siege situations by either side. Over time it developed into the oxybeles, which is essentially a large version of the gastraphetes on a mount."
-		/>
 	</Traits>
 	<Actor>units/hellenes/super_unit_1.xml</Actor>
 </Entity>
