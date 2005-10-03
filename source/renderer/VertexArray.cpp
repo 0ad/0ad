@@ -87,12 +87,13 @@ VertexArrayIterator<CVector4D> VertexArray::Attribute::GetIterator<CVector4D>() 
 }
 
 template<>
-VertexArrayIterator<float[]> VertexArray::Attribute::GetIterator<float[]>() const
+VertexArrayIterator<float[2]> VertexArray::Attribute::GetIterator<float[2]>() const
 {
 	debug_assert(vertexArray);
 	debug_assert(type == GL_FLOAT);
+	debug_assert(elems >= 2);
 	
-	return vertexArray->MakeIterator<float[]>(this);
+	return vertexArray->MakeIterator<float[2]>(this);
 }
 
 template<>

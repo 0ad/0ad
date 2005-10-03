@@ -21,7 +21,7 @@ extern int cpu_cores;		// cores per package, typically 2
 extern int cpu_speedstep;
 
 
-extern void get_cpu_info(void);
+extern void cpu_init(void);
 
 
 // atomic "compare and swap". compare the machine word at <location> against

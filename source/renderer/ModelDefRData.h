@@ -18,6 +18,9 @@ public:
 	CModelDefRData(CModelDef* mdef);
 	virtual ~CModelDefRData();
 
+	// Setup shared vertex arrays required by streamflags
+	void PrepareStream(uint streamflags);
+	
 	// Submit one model
 	void Submit(CModelRData* data);
 	// Clear all submissions for this CModelDef
@@ -29,6 +32,9 @@ private:
 
 private:
 	CModelDef* m_ModelDef;
+	
+	VertexArray m_Array;
+	VertexArray::Attribute m_UV;
 	
 	CModelDefRData* m_SubmissionNext;
 	uint m_SubmissionSlots;

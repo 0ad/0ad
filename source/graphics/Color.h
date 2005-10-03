@@ -35,5 +35,7 @@ struct SColor4ub
 	u8 A;
 };
 
+extern u32 (*ConvertRGBColorTo4ub)(const RGBColor& src);
+
 
 #endif

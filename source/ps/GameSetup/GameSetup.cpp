@@ -779,25 +779,9 @@ void Init(int argc, char* argv[], bool setup_gfx, bool setup_gui)
 
 	debug_set_thread_name("main");
 
-#if CPU_IA32
-	ia32_init();
-#endif
-
-	// If you ever want to catch a particular allocation:
-	//_CrtSetBreakAlloc(187);
-
-	// no longer set 24 bit (float) precision by default: for
-	// very long game uptimes (> 1 day; e.g. dedicated server),
-	// we need full precision when calculating the time.
-	// if there's a spot where we want to speed up divides|sqrts,
-	// we can temporarily change precision there.
-	//	_control87(_PC_24, _MCW_PC);
-
-	// detects CPU clock frequency and capabilities, which are prerequisites
-	// for using the TSC as a timer (desirable due to its high resolution).
-	// do this before lengthy init so we can time those accurately.
-	get_cpu_info();
-
+	// Query CPU capabilities, possibly set some CPU-dependent flags
+	cpu_init();
+	
 	// Do this as soon as possible, because it chdirs
 	// and will mess up the error reporting if anything
 	// crashes before the working directory is set.

@@ -128,7 +128,7 @@ int cpu_ht_units = -1;
 int cpu_cores = -1;
 int cpu_speedstep = -1;
 
-void get_cpu_info()
+static void get_cpu_info()
 {
 #if OS_WIN
 	win_get_cpu_info();
@@ -138,6 +138,34 @@ void get_cpu_info()
 
 #if CPU_IA32
 	ia32_get_cpu_info();
+#endif
+}
+
+
+void cpu_init()
+{
+#if CPU_IA32
+	ia32_init();
+#endif
+
+	// If you ever want to catch a particular allocation:
+	//_CrtSetBreakAlloc(187);
+
+	// no longer set 24 bit (float) precision by default: for
+	// very long game uptimes (> 1 day; e.g. dedicated server),
+	// we need full precision when calculating the time.
+	// if there's a spot where we want to speed up divides|sqrts,
+	// we can temporarily change precision there.
+	//	_control87(_PC_24, _MCW_PC);
+
+	// detects CPU clock frequency and capabilities, which are prerequisites
+	// for using the TSC as a timer (desirable due to its high resolution).
+	// do this before lengthy init so we can time those accurately.
+	get_cpu_info();
+
+#if CPU_IA32
+	// If possible, hook up capability-sensitive assembler routines
+	ia32_hook_capabilities();
 #endif
 }
 

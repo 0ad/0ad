@@ -28,6 +28,7 @@
 #include "win/wtime.h"
 #endif
 
+#include "graphics/Color.h"
 
 #include <string.h>
 #include <stdio.h>
@@ -525,7 +526,7 @@ static void measure_cpu_freq()
 			u64 c1; double t1;
 			do
 			{
-				// note: get_time effectively has a long delay (up to 5 µs)
+				// note: get_time effectively has a long delay (up to 5 s)
 				// before returning the time. we call it before rdtsc to
 				// minimize the delay between actually sampling time / TSC,
 				// thus decreasing the chance for interference.
@@ -587,4 +588,22 @@ void ia32_get_cpu_info()
 #if OS_WIN
 	wtime_reset_impl();
 #endif
+}
+
+
+// Assembler-optimized function for color conversion
+extern "C" {
+u32 sse_ConvertRGBColorTo4ub(const RGBColor& src);
+}
+
+void ia32_hook_capabilities()
+{
+	if (ia32_cap(SSE))
+	{
+		ConvertRGBColorTo4ub = sse_ConvertRGBColorTo4ub;
+	}
+	else
+	{
+		debug_printf("No SSE available. Slow fallback routines will be used.\n");
+	}
 }

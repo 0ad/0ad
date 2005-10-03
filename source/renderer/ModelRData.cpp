@@ -47,12 +47,12 @@ void CModelRData::Build()
 	m_Position.type = GL_FLOAT;
 	m_Position.elems = 3;
 	m_DynamicArray.AddAttribute(&m_Position);
-
+/*
 	m_UV.type = GL_FLOAT;
 	m_UV.elems = 2;
 	m_DynamicArray.AddAttribute(&m_UV);
-
-	m_Color.type = GL_FLOAT;
+*/
+	m_Color.type = GL_UNSIGNED_BYTE;
 	m_Color.elems = 3;
 	m_DynamicArray.AddAttribute(&m_Color);
 	
@@ -80,7 +80,7 @@ void CModelRData::Build()
 }
 
 void CModelRData::BuildIndices()
-{	
+{
 	CModelDefPtr mdef=m_Model->GetModelDef();
 	debug_assert(mdef);
 	
@@ -100,14 +100,7 @@ void CModelRData::BuildIndices()
 	}
 }
 
-static SColor3ub ConvertColor(const RGBColor& src)
-{
-	SColor3ub result;
-	result.R=clamp(int(src.X*255),0,255);
-	result.G=clamp(int(src.Y*255),0,255);
-	result.B=clamp(int(src.Z*255),0,255);
-	return result;
-}
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // SkinPoint: skin the vertex position using it's blend data and given bone matrices
@@ -153,6 +146,7 @@ static void SkinNormal(const SModelVertex& vertex,const CMatrix3D* invmatrices,C
 
 void CModelRData::BuildStaticVertices()
 {
+/*
 	CModelDefPtr mdef = m_Model->GetModelDef();
 	size_t numVertices = mdef->GetNumVertices();
 	SModelVertex* vertices = mdef->GetVertices();
@@ -162,6 +156,7 @@ void CModelRData::BuildStaticVertices()
 		(*UVit)[0] = vertices[j].m_U;
 		(*UVit)[1] = 1.0-vertices[j].m_V;
 	}
+*/
 }
 
 void CModelRData::BuildVertices()
@@ -177,7 +172,7 @@ void CModelRData::BuildVertices()
 
 	// build vertices
 	VertexArrayIterator<CVector3D> Position = m_Position.GetIterator<CVector3D>();
-	VertexArrayIterator<CVector3D> Color = m_Color.GetIterator<CVector3D>();
+	VertexArrayIterator<SColor3ub> Color = m_Color.GetIterator<SColor3ub>();
 	const CMatrix3D* bonematrices=m_Model->GetBoneMatrices();
 	if (bonematrices) {
 		// boned model - calculate skinned vertex positions/normals
@@ -199,12 +194,13 @@ void CModelRData::BuildVertices()
 	
 	PROFILE_START( "lighting vertices" );
 	// now fill in UV and vertex colour data
+	CSHCoeffs& shcoeffs = g_Renderer.m_SHCoeffsUnits;
+	CColor sc = m_Model->GetShadingColor();
+	RGBColor shadingcolor(sc.r, sc.g, sc.b);
+	RGBColor tempcolor;
 	for (uint j=0; j<numVertices; j++) {
-		CColor sc = m_Model->GetShadingColor();
-		RGBColor tempcolor;
-		g_Renderer.m_SHCoeffsUnits.Evaluate(m_Normals[j], tempcolor, 
-			RGBColor(sc.r, sc.g, sc.b));
-		Color[j] = tempcolor;//ConvertColor(tempcolor);
+		shcoeffs.Evaluate(m_Normals[j], tempcolor, shadingcolor);
+		*(u32*)&Color[j] = ConvertRGBColorTo4ub(tempcolor);
 	}
 	PROFILE_END( "lighting vertices" );
 
@@ -227,6 +223,8 @@ void CModelRData::RenderStreams(u32 streamflags, bool isplayer)
 		g_Renderer.SetTexture(0,m_Model->GetTexture());
 	}
 
+	((CModelDefRData*)mdldef->GetRenderData())->PrepareStream(streamflags);
+	
 	u8* base = m_DynamicArray.Bind();
 	size_t stride = m_DynamicArray.GetStride();
 	
@@ -243,7 +241,6 @@ void CModelRData::RenderStreams(u32 streamflags, bool isplayer)
 		glDisableClientState(GL_COLOR_ARRAY);
 	}
 #endif
-	if (streamflags & STREAM_UV0) glTexCoordPointer(2, GL_FLOAT, stride, base + m_UV.offset);
 
 	// render the lot
 	size_t numFaces=mdldef->GetNumFaces();
@@ -340,19 +337,39 @@ void CModelRData::RenderModels(u32 streamflags, u32 flags)
 	    mdefdata;
 	    mdefdata = mdefdata->m_SubmissionNext)
 	{
+		mdefdata->PrepareStream(streamflags);
+		
 		for(uint idx = 0; idx < mdefdata->m_SubmissionSlots; ++idx)
 		{
-			if (!mdefdata->m_SubmissionModels[idx])
-				break;
+			CModelRData* modeldata = mdefdata->m_SubmissionModels[idx];
 			
-			for(CModelRData* modeldata = mdefdata->m_SubmissionModels[idx]; 
-			    modeldata; 
-			    modeldata = modeldata->m_SubmissionNext)
+			if (streamflags & STREAM_UV0)
+				g_Renderer.SetTexture(0, modeldata->GetModel()->GetTexture());
+
+			for(; modeldata; modeldata = modeldata->m_SubmissionNext)
 			{
 				if (flags && !(modeldata->GetModel()->GetFlags()&flags))
 					continue;
 				
-				modeldata->RenderStreams(streamflags, false);
+				CModelDefPtr mdldef = modeldata->GetModel()->GetModelDef();
+	
+				u8* base = modeldata->m_DynamicArray.Bind();
+				size_t stride = modeldata->m_DynamicArray.GetStride();
+	
+				glVertexPointer(3, GL_FLOAT, stride, 
+						base + modeldata->m_Position.offset);
+				if (streamflags & STREAM_COLOR)
+					glColorPointer(3, modeldata->m_Color.type, stride, 
+							base + modeldata->m_Color.offset);
+			
+				// render the lot
+				size_t numFaces=mdldef->GetNumFaces();
+				glDrawRangeElements(GL_TRIANGLES, 0, mdldef->GetNumVertices(),
+						numFaces*3, GL_UNSIGNED_SHORT, modeldata->m_Indices);
+			
+				// bump stats
+				g_Renderer.m_Stats.m_DrawCalls++;
+				g_Renderer.m_Stats.m_ModelTris+=numFaces;
 			}
 		}
 	}
