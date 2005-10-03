@@ -143,14 +143,14 @@ void VertexArray::Layout()
 	
 	//debug_printf("Layouting VertexArray\n");
 	
-	for(int idx = m_Attributes.size()-1; idx >= 0; --idx)
+	for(int idx = (int)m_Attributes.size()-1; idx >= 0; --idx)
 	{
 		Attribute* attr = m_Attributes[idx];
 		
 		if (!attr->type || !attr->elems)
 			continue;
 	
-		size_t attrSize;
+		size_t attrSize = 0;
 		
 		switch(attr->type) {
 		case GL_UNSIGNED_BYTE: attrSize = sizeof(GLubyte); break;

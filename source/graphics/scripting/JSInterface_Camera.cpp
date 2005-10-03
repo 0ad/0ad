@@ -130,7 +130,7 @@ JSBool JSI_Camera::setCamera( JSContext* cx, JSObject* UNUSED(obj), jsval UNUSED
 {
 	JSObject* camera = JSVAL_TO_OBJECT( *vp );
 	Camera_Info* cameraInfo;
-	if( !JSVAL_IS_OBJECT( *vp ) || !( cameraInfo = (Camera_Info*)JS_GetInstancePrivate( cx, camera, &JSI_Camera::JSI_class, NULL ) ) )
+	if( !JSVAL_IS_OBJECT( *vp ) || NULL == ( cameraInfo = (Camera_Info*)JS_GetInstancePrivate( cx, camera, &JSI_Camera::JSI_class, NULL ) ) )
 	{
 		JS_ReportError( cx, "[Camera] Invalid object" );
 	}
@@ -184,7 +184,7 @@ JSBool JSI_Camera::setProperty( JSContext* cx, JSObject* obj, jsval id, jsval* v
 	JSObject* vector3d = JSVAL_TO_OBJECT( *vp );
 	JSI_Vector3D::Vector3D_Info* v = NULL;
 
-	if( JSVAL_IS_OBJECT( *vp ) && ( v = (JSI_Vector3D::Vector3D_Info*)JS_GetInstancePrivate( g_ScriptingHost.getContext(), vector3d, &JSI_Vector3D::JSI_class, NULL ) ) )
+	if( JSVAL_IS_OBJECT( *vp ) && NULL != ( v = (JSI_Vector3D::Vector3D_Info*)JS_GetInstancePrivate( g_ScriptingHost.getContext(), vector3d, &JSI_Vector3D::JSI_class, NULL ) ) )
 	{
 		cameraInfo->Freshen();
 
@@ -201,7 +201,7 @@ JSBool JSI_Camera::setProperty( JSContext* cx, JSObject* obj, jsval id, jsval* v
 	return( JS_TRUE );
 }
 
-#define GETVECTOR( jv ) ( ( JSVAL_IS_OBJECT( jv ) && ( v = (JSI_Vector3D::Vector3D_Info*)JS_GetInstancePrivate( g_ScriptingHost.getContext(), JSVAL_TO_OBJECT( jv ), &JSI_Vector3D::JSI_class, NULL ) ) ) ? *(v->vector) : CVector3D() )
+#define GETVECTOR( jv ) ( ( JSVAL_IS_OBJECT( jv ) && NULL != ( v = (JSI_Vector3D::Vector3D_Info*)JS_GetInstancePrivate( g_ScriptingHost.getContext(), JSVAL_TO_OBJECT( jv ), &JSI_Vector3D::JSI_class, NULL ) ) ) ? *(v->vector) : CVector3D() )
 
 
 JSBool JSI_Camera::lookAt( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval )

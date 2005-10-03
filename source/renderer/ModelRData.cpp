@@ -244,7 +244,7 @@ void CModelRData::RenderStreams(u32 streamflags, bool isplayer)
 
 	// render the lot
 	size_t numFaces=mdldef->GetNumFaces();
-	glDrawRangeElements(GL_TRIANGLES,0,mdldef->GetNumVertices(),numFaces*3,GL_UNSIGNED_SHORT,m_Indices);
+	glDrawRangeElementsEXT(GL_TRIANGLES,0,mdldef->GetNumVertices(),numFaces*3,GL_UNSIGNED_SHORT,m_Indices);
 
 	if(streamflags & STREAM_UV0 & !isplayer)
 		m_Model->GetMaterial().Unbind();
@@ -364,7 +364,7 @@ void CModelRData::RenderModels(u32 streamflags, u32 flags)
 			
 				// render the lot
 				size_t numFaces=mdldef->GetNumFaces();
-				glDrawRangeElements(GL_TRIANGLES, 0, mdldef->GetNumVertices(),
+				glDrawRangeElementsEXT(GL_TRIANGLES, 0, mdldef->GetNumVertices(),
 						numFaces*3, GL_UNSIGNED_SHORT, modeldata->m_Indices);
 			
 				// bump stats

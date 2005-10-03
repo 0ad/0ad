@@ -526,7 +526,7 @@ static void measure_cpu_freq()
 			u64 c1; double t1;
 			do
 			{
-				// note: get_time effectively has a long delay (up to 5 s)
+				// note: get_time effectively has a long delay (up to 5 us)
 				// before returning the time. we call it before rdtsc to
 				// minimize the delay between actually sampling time / TSC,
 				// thus decreasing the chance for interference.
