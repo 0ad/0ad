@@ -32,13 +32,6 @@
 			type="Ground"
 		/>
 	</Traits>
-	<Script File="entities/template_entity_script.js" />
-
-	<Event On="Attack" Function="entity_event_attack" />
-	<Event On="Gather" Function="entity_event_gather" />
-	<Event On="TakesDamage" Function="entity_event_takesdamage" />
-	<Event On="TargetChanged" Function="entity_event_targetchanged" />
-	<Event On="PrepareOrder" Function="entity_event_prepareorder" />
 
 	<Actions />	
 </Entity>
