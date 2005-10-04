@@ -20,6 +20,9 @@ public:
 	CVertexBufferManager() {}
 	~CVertexBufferManager();
 
+	// Explicit shutdown of the vertex buffer subsystem
+	void Shutdown();
+	
 	// try to allocate a buffer of given number of vertices (each of given size), 
 	// and with the given type - return null if no free chunks available
 	CVertexBuffer::VBChunk* Allocate(size_t vertexSize,size_t numVertices,bool dynamic);

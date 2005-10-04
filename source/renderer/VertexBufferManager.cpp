@@ -19,6 +19,14 @@ CVertexBufferManager g_VBMan;
 
 CVertexBufferManager::~CVertexBufferManager()
 {
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Explicit shutdown of the vertex buffer subsystem.
+// This avoids the ordering issues that arise when using destructors of
+// global instances.
+void CVertexBufferManager::Shutdown()
+{
 	debug_printf("CVertexBufferManager shutdown\n");
 	
 	typedef std::list<CVertexBuffer*>::iterator Iter;

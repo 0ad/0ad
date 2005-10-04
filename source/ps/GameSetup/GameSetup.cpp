@@ -728,6 +728,7 @@ void Shutdown()
 	// destroy renderer
 	TIMER_START("shutdown Renderer");
 	delete &g_Renderer;
+	g_VBMan.Shutdown();
 	TIMER_END("shutdown Renderer");
 
 	TIMER_START("shutdown ConfigDB");
