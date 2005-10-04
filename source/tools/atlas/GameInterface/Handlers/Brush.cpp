@@ -1,0 +1,20 @@
+#include "precompiled.h"
+
+#include "MessageHandler.h"
+
+#include "../Brushes.h"
+
+namespace AtlasMessage {
+
+MESSAGEHANDLER(SetBrush)
+{
+	g_CurrentBrush.SetData(msg->width, msg->height, msg->data);
+}
+
+MESSAGEHANDLER(BrushPreview)
+{
+	g_CurrentBrush.SetRenderEnabled(msg->enable);
+	msg->pos.GetWorldSpace(g_CurrentBrush.m_Centre);
+}
+
+}

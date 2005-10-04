@@ -8,22 +8,35 @@ using AtlasMessage::Position;
 
 class AlterElevation : public StateDrivenTool<AlterElevation>
 {
+private:
+
+	int m_Direction; // +1 = raise, -1 = lower
+	Position m_Pos;
+
 public:
 	AlterElevation()
 	{
 		SetState(&Waiting);
 	}
 
-private:
 
-	int m_Direction; // +1 = raise, -1 = lower
-	Position m_Pos;
-
-protected:
-
-	struct Waiting : public State
+	void OnEnable(AlterElevation*)
 	{
-		bool mouse(AlterElevation* obj, wxMouseEvent& evt)
+		int w = 2, h = 3;
+		float* data = new float[w*h];
+		for (int i = 0; i < w*h; ++i) data[i] = 1.f;
+		POST_COMMAND(SetBrush(w, h, data));
+	}
+
+	void OnDisable(AlterElevation*)
+	{
+		POST_COMMAND(BrushPreview(false, Position()));
+	}
+
+
+	struct sWaiting : public State
+	{
+		bool OnMouse(AlterElevation* obj, wxMouseEvent& evt)
 		{
 			if (evt.LeftDown())
 			{
@@ -37,25 +50,26 @@ protected:
 				SET_STATE(Lowering);
 				return true;
 			}
-			else
+			else if (evt.Moving())
 			{
-				return false;
+				POST_COMMAND(BrushPreview(true, Position(evt.GetPosition())));
 			}
+			return false;
 		}
 	}
 	Waiting;
 
 
-	struct Altering_common : public State
+	struct sAltering_common : public State
 	{
-		void leave(AlterElevation*)
+		void OnLeave(AlterElevation*)
 		{
 			ScenarioEditor::GetCommandProc().FinaliseLastCommand();
 		}
 
-		bool mouse(AlterElevation* obj, wxMouseEvent& evt)
+		bool OnMouse(AlterElevation* obj, wxMouseEvent& evt)
 		{
-			if (isMouseUp(evt))
+			if (IsMouseUp(evt))
 			{
 				SET_STATE(Waiting);
 				return true;
@@ -63,6 +77,7 @@ protected:
 			else if (evt.Dragging())
 			{
 				obj->m_Pos = Position(evt.GetPosition());
+				POST_COMMAND(BrushPreview(true, obj->m_Pos));
 				return true;
 			}
 			else
@@ -71,26 +86,26 @@ protected:
 			}
 		}
 
-		void tick(AlterElevation* obj, float dt)
+		void OnTick(AlterElevation* obj, float dt)
 		{
-			ADD_WORLDCOMMAND(AlterElevation, (obj->m_Pos, dt*4096.f*getDirection()));
+			ADD_WORLDCOMMAND(AlterElevation, (obj->m_Pos, dt*4096.f*GetDirection()));
 		}
 
-		virtual bool isMouseUp(wxMouseEvent& evt) = 0;
-		virtual int getDirection() = 0;
+		virtual bool IsMouseUp(wxMouseEvent& evt) = 0;
+		virtual int GetDirection() = 0;
 	};
 
-	struct Raising : public Altering_common
+	struct sRaising : public sAltering_common
 	{
-		bool isMouseUp(wxMouseEvent& evt) { return evt.LeftUp(); }
-		int getDirection() { return +1; }
+		bool IsMouseUp(wxMouseEvent& evt) { return evt.LeftUp(); }
+		int GetDirection() { return +1; }
 	}
 	Raising;
 
-	struct Lowering : public Altering_common
+	struct sLowering : public sAltering_common
 	{
-		bool isMouseUp(wxMouseEvent& evt) { return evt.RightUp(); }
-		int getDirection() { return -1; }
+		bool IsMouseUp(wxMouseEvent& evt) { return evt.RightUp(); }
+		int GetDirection() { return -1; }
 	}
 	Lowering;
 };

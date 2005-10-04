@@ -4,6 +4,7 @@
 
 #include "MessagePasserImpl.h"
 #include "Messages.h"
+#include "Brushes.h"
 #include "Handlers/MessageHandler.h"
 
 #include "InputProcessor.h"
@@ -16,7 +17,14 @@
 
 using namespace AtlasMessage;
 
+
 extern void Render_();
+void AtlasRender()
+{
+	Render_();
+	g_CurrentBrush.Render();
+}
+
 
 // Loaded from DLL:
 void (*Atlas_StartWindow)(wchar_t* type);
@@ -46,7 +54,7 @@ static void* LaunchWindow(void*)
 bool BeginAtlas(int argc, char* argv[], void* dll) 
 {
 	// Load required symbols from the DLL
-#define GET(x) *(void**)&x = dlsym(dll, #x); if (! x) return false;
+#define GET(x) *(void**)&x = dlsym(dll, #x); debug_assert(x); if (! x) return false;
 	GET(Atlas_StartWindow);
 	GET(Atlas_SetMessagePasser);
 	GET(Atlas_GLSetCurrent);
@@ -165,8 +173,7 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 
 		if (state.rendering)
 		{
-			Render_();
-			glFinish();
+			AtlasRender();
 			Atlas_GLSwapBuffers((void*)state.glContext);
 		}
 
@@ -174,8 +181,8 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 		if (recent_activity)
 			last_activity = time;
 
-		// Be nice to the processor (by sleeping) if we're not doing anything
-		// useful, but nice to the user (by just yielding to other threads) if we are
+		// Be nice to the processor (by sleeping lots) if we're not doing anything
+		// useful, and nice to the user (by just yielding to other threads) if we are
 		
 		if (time - last_activity > 0.5) // if there was no recent activity...
 		{
@@ -185,6 +192,7 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 				// To minimise latency when the user starts doing stuff, only
 				// sleep for a short while, then check if anything's happened,
 				// then go back to sleep
+				// (TODO: This should probably be done with something like semaphores)
 				Atlas_NotifyEndOfFrame(); // (TODO: rename to NotifyEndOfQuiteShortProcessingPeriodSoPleaseSendMeNewMessages or something)
 				SDL_Delay(50);
 				if (!msgPasser_Input.IsEmpty() || !msgPasser_Command.IsEmpty())

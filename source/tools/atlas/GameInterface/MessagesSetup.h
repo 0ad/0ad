@@ -14,6 +14,8 @@ class CVector3D;
 namespace AtlasMessage
 {
 
+//////////////////////////////////////////////////////////////////////////
+
 struct Position
 {
 	Position() : type(0) { type0.x = type0.y = type0.z = 0.f;  }
@@ -31,6 +33,7 @@ struct Position
 	void GetScreenSpace(float& x, float& y) const; // (implementation in Misc.cpp)
 };
 
+//////////////////////////////////////////////////////////////////////////
 
 struct IMessage
 {

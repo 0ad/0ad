@@ -100,9 +100,23 @@ public:
 		evt.Skip();
 	}
 
+	void OnMouseCapture(wxMouseCaptureChangedEvent& WXUNUSED(evt))
+	{
+		if (m_MouseCaptured)
+		{
+			// unexpected loss of capture (i.e. not through ReleaseMouse)
+			m_MouseCaptured = false;
+			
+			// (Note that this can be made to happen easily, by alt-tabbing away,
+			// and mouse events will be missed; so it is never guaranteed that e.g.
+			// two LeftDown events will be separated by a LeftUp.)
+		}
+	}
+
 	void OnMouse(wxMouseEvent& evt)
 	{
-		// Capture on button-down
+		// Capture on button-down, so we can respond even when the mouse
+		// moves off the window
 		if (!m_MouseCaptured && evt.ButtonDown())
 		{
 			m_MouseCaptured = true;
@@ -117,10 +131,14 @@ public:
 			ReleaseMouse();
 		}
 
+		if (evt.ButtonDown())
+			SetFocus();
+
 		g_CurrentTool->OnMouse(evt);
 
-		// TODO: what should happen if the tool and camera both respond to the
-		// same buttons? (e.g. left+right for rotating)
+		// TODO: if the tool responded to the mouse action, should we avoid moving
+		// the camera too? (This is mostly avoided by not sharing buttons between
+		// camera and tools, so maybe it's not a problem.)
 
 		if (evt.GetWheelRotation())
 		{
@@ -193,6 +211,7 @@ BEGIN_EVENT_TABLE(Canvas, wxGLCanvas)
 	EVT_MIDDLE_UP  (Canvas::OnMouse)
 	EVT_MOUSEWHEEL (Canvas::OnMouse)
 	EVT_MOTION     (Canvas::OnMouse)
+	EVT_MOUSE_CAPTURE_CHANGED(Canvas::OnMouseCapture)
 END_EVENT_TABLE()
 
 // GL functions exported from DLL, and called by game (in a separate

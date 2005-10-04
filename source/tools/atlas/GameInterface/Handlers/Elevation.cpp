@@ -7,6 +7,8 @@
 #include "graphics/Terrain.h"
 #include "ps/Game.h"
 
+#include "../Brushes.h"
+
 namespace AtlasMessage {
 
 
@@ -47,12 +49,15 @@ BEGIN_COMMAND(AlterElevation)
 			roundingError -= (float)(int)roundingError;
 		}
 
-		CVector3D vec;
-		d->pos.GetWorldSpace(vec);
-		uint32_t x, z;
-		terrain->CalcFromPosition(vec, x, z);
-		terrain->RaiseVertex(x, z, amount);
-		terrain->MakeDirty(x, z, x, z);
+		int x0, y0;
+		d->pos.GetWorldSpace(g_CurrentBrush.m_Centre);
+		g_CurrentBrush.GetBottomRight(x0, y0);
+		for (int dy = 0; dy < g_CurrentBrush.m_H; ++dy)
+			for (int dx = 0; dx < g_CurrentBrush.m_W; ++dx)
+				if (g_CurrentBrush.Get(dx, dy)) // TODO: variable raise amount?
+					terrain->RaiseVertex(x0+dx, y0+dy, amount);
+
+		terrain->MakeDirty(x0, y0, x0+g_CurrentBrush.m_W-1, y0+g_CurrentBrush.m_H-1);
 	}
 
 	void Undo()

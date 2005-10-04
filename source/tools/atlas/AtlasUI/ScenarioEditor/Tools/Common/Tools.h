@@ -56,38 +56,7 @@ private:
 template <typename T>
 class StateDrivenTool : public ITool
 {
-protected:
-
-	struct State
-	{
-		virtual void enter(T* WXUNUSED(obj)) {}
-		virtual void leave(T* WXUNUSED(obj)) {}
-		virtual void tick (T* WXUNUSED(obj), float WXUNUSED(dt)) {}
-
-		virtual bool mouse(T* WXUNUSED(obj), wxMouseEvent& WXUNUSED(evt))
-		{
-			return false;
-		}
-		virtual bool key(T* WXUNUSED(obj), wxKeyEvent& WXUNUSED(evt), KeyEventType WXUNUSED(type))
-		{
-			return false;
-		}
-	};
-
-	struct Disabled : public State
-	{
-	}
-	Disabled;
-
-	State* m_CurrentState;
-	void SetState(State* state)
-	{
-		m_CurrentState->leave(static_cast<T*>(this));
-			// this cast is safe as long as the class is used as in
-			// "class Something : public StateDrivenTool<Something> { ... }"
-		m_CurrentState = state;
-		m_CurrentState->enter(static_cast<T*>(this));
-	}
+public:
 	StateDrivenTool()
 		: m_CurrentState(&Disabled)
 	{
@@ -98,20 +67,56 @@ protected:
 		SetState(&Disabled);
 	}
 
+protected:
+	// Called when the tool is enabled/disabled; always called in zero or
+	// more enable-->disable pairs per object instance.
+	virtual void OnEnable(T* WXUNUSED(obj)) {}
+	virtual void OnDisable(T* WXUNUSED(obj)) {}
+
+	struct State
+	{
+		virtual void OnEnter(T* WXUNUSED(obj)) {}
+		virtual void OnLeave(T* WXUNUSED(obj)) {}
+		virtual void OnTick (T* WXUNUSED(obj), float WXUNUSED(dt)) {}
+
+		// Should return true if the event has been handled (else the event will
+		// be passed to a lower-priority level)
+		virtual bool OnMouse(T* WXUNUSED(obj), wxMouseEvent& WXUNUSED(evt)) { return false; }
+		virtual bool OnKey(T* WXUNUSED(obj), wxKeyEvent& WXUNUSED(evt), KeyEventType WXUNUSED(type)) { return false; }
+	};
+
+
+	struct sDisabled : public State
+	{
+		void OnEnter(T* obj) { obj->OnDisable(obj); }
+		void OnLeave(T* obj) { obj->OnEnable(obj); }
+	}
+	Disabled;
+
+	void SetState(State* state)
+	{
+		m_CurrentState->OnLeave(static_cast<T*>(this));
+		// this cast is safe as long as the class is used as in
+		// "class Something : public StateDrivenTool<Something> { ... }"
+		m_CurrentState = state;
+		m_CurrentState->OnEnter(static_cast<T*>(this));
+	}
 private:
+	State* m_CurrentState;
+
 	virtual void OnMouse(wxMouseEvent& evt)
 	{
-		m_CurrentState->mouse(static_cast<T*>(this), evt);
+		m_CurrentState->OnMouse(static_cast<T*>(this), evt);
 	}
 
 	virtual void OnKey(wxKeyEvent& evt, KeyEventType dir)
 	{
-		m_CurrentState->key(static_cast<T*>(this), evt, dir);
+		m_CurrentState->OnKey(static_cast<T*>(this), evt, dir);
 	}
 
 	virtual void OnTick(float dt)
 	{
-		m_CurrentState->tick(static_cast<T*>(this), dt);
+		m_CurrentState->OnTick(static_cast<T*>(this), dt);
 	}
 };
 
