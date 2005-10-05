@@ -10,7 +10,7 @@ vec3 lighting(vec3 normal)
 	color += SHCoefficients[4]*(normal.x*normal.z);
 	color += SHCoefficients[5]*(normal.z*normal.y);
 	color += SHCoefficients[6]*(normal.y*normal.x);
-	color += SHCoefficients[7]*(3*normalsq.z-1);
+	color += SHCoefficients[7]*(3.0*normalsq.z-1.0);
 	color += SHCoefficients[8]*(normalsq.x-normalsq.y);
 	return color;
 }
