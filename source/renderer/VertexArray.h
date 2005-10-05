@@ -30,6 +30,7 @@ public:
 	{
 		m_Data = rhs.m_Data;
 		m_Stride = rhs.m_Stride;
+		return *this;
 	}
 
 	// Accessors
