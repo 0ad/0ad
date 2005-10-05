@@ -34,6 +34,7 @@ class CMaterial;
 class CLightEnv;
 class CTexture;
 class CTerrain;
+class RenderPathVertexShader;
 
 
 // rendering modes
@@ -107,7 +108,19 @@ public:
 		OPT_SHADOWCOLOR,
 		OPT_LODBIAS
 	};
-
+	
+	enum RenderPath {
+		// If no rendering path is configured explicitly, the renderer
+		// will choose the path when Open() is called.
+		RP_DEFAULT,
+		
+		// Classic fixed function.
+		RP_FIXED,
+		
+		// Use (GL 2.0) vertex shaders for T&L when possible.
+		RP_VERTEXSHADER
+	};
+	
 	// stats class - per frame counts of number of draw calls, poly counts etc
 	struct Stats {
 		// set all stats to zero
@@ -153,7 +166,11 @@ public:
 	void SetOptionColor(enum Option opt,const RGBAColor& value);
 	void SetOptionFloat(enum Option opt, float val);
 	const RGBAColor& GetOptionColor(enum Option opt) const;
-
+	void SetRenderPath(RenderPath rp);
+	RenderPath GetRenderPath() const { return m_Options.m_RenderPath; }
+	static CStr GetRenderPathName(RenderPath rp);
+	static RenderPath GetRenderPathByName(CStr name);
+	
 	// return view width
 	int GetWidth() const { return m_Width; }
 	// return view height
@@ -238,14 +255,15 @@ public:
 	// return stats accumulated for current frame
 	const Stats& GetStats() { return m_Stats; }
 
-    // return the current light environment
-    const CLightEnv &GetLightEnv() { return *m_LightEnv; }
+	// return the current light environment
+	const CLightEnv &GetLightEnv() { return *m_LightEnv; }
 protected:
 	friend class CVertexBuffer;
 	friend class CPatchRData;
 	friend class CModelRData;
 	friend class CTransparencyRenderer;
 	friend class CPlayerRenderer;
+	friend class RenderPathVertexShader;
 
 	// patch rendering stuff
 	void RenderPatchSubmissions();
@@ -266,6 +284,11 @@ protected:
 	void CalcShadowMatrices();
 	void CalcShadowBounds(CBound& bounds);
 
+	// render path stuff
+	bool InitRenderPathVertexShader();
+	void ShutdownRenderPathVertexShader();
+	void InitRenderPath();
+	
 	// RENDERER DATA:
 	// view width
 	int m_Width;
@@ -324,6 +347,7 @@ protected:
 		bool m_Shadows;
 		RGBAColor m_ShadowColor;
 		float m_LodBias;
+		RenderPath m_RenderPath;
 	} m_Options;
 	// build card cap bits
 	void EnumCaps();
@@ -331,6 +355,10 @@ protected:
 	Stats m_Stats;
 	// active textures on each unit
 	GLuint m_ActiveTextures[MaxTextureUnits];
+	
+	// Additional state that is only available when the vertex shader
+	// render path is used (according to m_Options.m_RenderPath)
+	RenderPathVertexShader* m_VertexShader;
 };
 
 

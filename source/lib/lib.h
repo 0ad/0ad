@@ -273,6 +273,12 @@ enum LibError
 
 	ERR_CPU_FEATURE_MISSING     = -1600,
 
+	// shaders
+	ERR_SHDR_CREATE             = -1700,
+	ERR_SHDR_COMPILE            = -1701,
+	ERR_SHDR_NO_SHADER          = -1702,
+	ERR_SHDR_LINK               = -1703,
+	ERR_SHDR_NO_PROGRAM         = -1704,
 
 	ERR_LAST
 };

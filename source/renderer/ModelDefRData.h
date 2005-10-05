@@ -34,7 +34,7 @@ private:
 	CModelDef* m_ModelDef;
 	
 	VertexArray m_Array;
-	VertexArray::Attribute m_UV;
+	VertexArray::Attribute m_UV; // only used in RP_FIXED
 	
 	CModelDefRData* m_SubmissionNext;
 	uint m_SubmissionSlots;

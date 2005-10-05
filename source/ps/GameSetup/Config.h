@@ -13,6 +13,9 @@ extern bool g_VSync;
 extern float g_LodBias;
 extern float g_Gamma;
 extern bool g_EntGraph;
+// name of configured render path (depending on OpenGL extensions, this may not be
+// the render path that is actually in use right now)
+extern CStr g_RenderPath;
 
 
 extern int g_xres, g_yres;

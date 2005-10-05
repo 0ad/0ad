@@ -41,6 +41,8 @@
 #include "lib/res/graphics/ogl_tex.h"
 #include "timer.h"
 
+#include "renderer/RenderPathVertexShader.h"
+
 #define LOG_CATEGORY "graphics"
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -56,9 +58,12 @@ CRenderer::CRenderer()
 	m_ClearColor[0]=m_ClearColor[1]=m_ClearColor[2]=m_ClearColor[3]=0;
 	m_ShadowMap=0;
 
+	m_VertexShader = 0;
+	
 	m_Options.m_NoVBO=false;
 	m_Options.m_Shadows=true;
 	m_Options.m_ShadowColor=RGBAColor(0.4f,0.4f,0.4f,1.0f);
+	m_Options.m_RenderPath = RP_DEFAULT;
 
 	for (uint i=0;i<MaxTextureUnits;i++) {
 		m_ActiveTextures[i]=0;
@@ -132,6 +137,31 @@ void CRenderer::EnumCaps()
 }
 
 
+// Select the render path we're going to use based on config preferrences and
+// on available extensions.
+void CRenderer::InitRenderPath()
+{
+	RenderPath desired = m_Options.m_RenderPath;
+	
+	if (m_Options.m_RenderPath == RP_DEFAULT)
+		m_Options.m_RenderPath = RP_VERTEXSHADER;
+	
+	if (m_Options.m_RenderPath == RP_VERTEXSHADER)
+	{
+		m_VertexShader = new RenderPathVertexShader;
+		if (!m_VertexShader->Init())
+		{
+			delete m_VertexShader;
+			m_VertexShader = 0;
+			m_Options.m_RenderPath = RP_FIXED;
+		}
+	}
+	
+	LOG(NORMAL, LOG_CATEGORY, "Selected render path: %hs (configuration value: %hs)",
+	    GetRenderPathName(m_Options.m_RenderPath).c_str(),
+	    GetRenderPathName(desired).c_str());
+}
+
 bool CRenderer::Open(int width, int height, int depth)
 {
 	m_Width = width;
@@ -160,11 +190,15 @@ bool CRenderer::Open(int width, int height, int depth)
 	glGetIntegerv(GL_ALPHA_BITS,&bits);
 	LOG(NORMAL, LOG_CATEGORY, "CRenderer::Open: alpha bits %d",bits);
 
+	InitRenderPath();
+	
 	return true;
 }
 
 void CRenderer::Close()
 {
+	delete m_VertexShader;
+	m_VertexShader = 0;
 }
 
 // resize renderer view
@@ -241,6 +275,47 @@ const RGBAColor& CRenderer::GetOptionColor(enum Option opt) const
 	return defaultColor;
 }
 
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// SetRenderPath: Select the preferred render path.
+// This may only be called before Open(), because the layout of vertex arrays and other
+// data may depend on the chosen render path.
+void CRenderer::SetRenderPath(RenderPath rp)
+{
+	if (m_Options.m_RenderPath != RP_DEFAULT && rp != m_Options.m_RenderPath)
+	{
+		debug_warn("Cannot change RenderPath after the fact");
+		return;
+	}
+	
+	m_Options.m_RenderPath = rp;
+}
+
+
+CStr CRenderer::GetRenderPathName(RenderPath rp)
+{
+	switch(rp) {
+	case RP_DEFAULT: return "default";
+	case RP_FIXED: return "fixed";
+	case RP_VERTEXSHADER: return "vertexshader";
+	default: return "(invalid)";
+	}
+}
+
+CRenderer::RenderPath CRenderer::GetRenderPathByName(CStr name)
+{
+	if (name == "fixed")
+		return RP_FIXED;
+	if (name == "vertexshader")
+		return RP_VERTEXSHADER;
+	if (name == "default")
+		return RP_DEFAULT;
+	
+	LOG(WARNING, LOG_CATEGORY, "Unknown render path name '%hs', assuming 'default'", name.c_str());
+	return RP_DEFAULT;
+}
+
+
 //////////////////////////////////////////////////////////////////////////////////////////
 // BeginFrame: signal frame start
 void CRenderer::BeginFrame()
@@ -253,9 +328,12 @@ void CRenderer::BeginFrame()
 	// bump frame counter
 	m_FrameCounter++;
 
+	if (m_VertexShader)
+		m_VertexShader->BeginFrame();
+	
 	// zero out all the per-frame stats
 	m_Stats.Reset();
-
+	
 	// calculate coefficients for terrain and unit lighting
 	m_SHCoeffsUnits.Clear();
 	m_SHCoeffsTerrain.Clear();
@@ -628,9 +706,6 @@ void CRenderer::RenderShadowMap()
 	glEnd();
 #endif // 0
 
-	// setup client states
-	glEnableClientState(GL_VERTEX_ARRAY);
-
 	glEnable(GL_SCISSOR_TEST);
 	glScissor(1,1,m_Width-2,m_Height-2);
 
@@ -650,6 +725,8 @@ void CRenderer::RenderShadowMap()
 
 	glDisable(GL_CULL_FACE);
 
+	CModelRData::SetupRender(STREAM_POS);
+
 	// render models
 	CModelRData::RenderModels(STREAM_POS,MODELFLAG_CASTSHADOWS);
 
@@ -659,12 +736,13 @@ void CRenderer::RenderShadowMap()
 	// call on the transparency renderer to render all the transparent stuff
 	g_TransparencyRenderer.RenderShadows();
 
+	CModelRData::FinishRender(STREAM_POS);
+	
 	glEnable(GL_CULL_FACE);
 
 	glColor3f(1.0f,1.0f,1.0f);
 
 	glDisable(GL_SCISSOR_TEST);
-	glDisableClientState(GL_VERTEX_ARRAY);
 
 	// copy result into shadow map texture
 	BindTexture(0,m_ShadowMap);
@@ -938,18 +1016,10 @@ void CRenderer::RenderModelSubmissions()
 	float color[] = { 1.0, 1.0, 1.0, 1.0 };
 	glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, color);
 
-	// setup client states
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
-
 	// render models
+	CModelRData::SetupRender(STREAM_POS|STREAM_COLOR|STREAM_UV0);
 	CModelRData::RenderModels(STREAM_POS|STREAM_COLOR|STREAM_UV0);
-
-	// switch off client states
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);
+	CModelRData::FinishRender(STREAM_POS|STREAM_COLOR|STREAM_UV0);
 }
 
 void CRenderer::RenderModels()
@@ -981,14 +1051,10 @@ void CRenderer::RenderModels()
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
 
-		// .. and some client states
-		glEnableClientState(GL_VERTEX_ARRAY);
-
-		// render each model
+		// render all non-transparent, non-player models
+		CModelRData::SetupRender(STREAM_POS);
 		CModelRData::RenderModels(STREAM_POS);
-
-		// .. and switch off the client states
-		glDisableClientState(GL_VERTEX_ARRAY);
+		CModelRData::FinishRender(STREAM_POS);
 
 		// .. and restore the renderstates
 		glDisable(GL_BLEND);

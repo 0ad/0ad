@@ -26,6 +26,7 @@ bool g_VSync = false;
 float g_LodBias = 0.0f;
 float g_Gamma = 1.0f;
 bool g_EntGraph = false;
+CStr g_RenderPath = "default";
 
 // graphics mode
 int g_xres, g_yres;
@@ -67,6 +68,7 @@ static void LoadGlobals()
 	CFG_GET_USER_VAL("vsync", Bool, g_VSync);
 	CFG_GET_USER_VAL("novbo", Bool, g_NoGLVBO);
 	CFG_GET_USER_VAL("shadows", Bool, g_Shadows);
+	CFG_GET_USER_VAL("renderpath", String, g_RenderPath);
 
 	CFG_GET_USER_VAL("lodbias", Float, g_LodBias);
 

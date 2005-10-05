@@ -49,11 +49,6 @@ void CTransparencyRenderer::Render()
 		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 	} 
 
-	// switch on client states
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_CONSTANT);
@@ -69,7 +64,9 @@ void CTransparencyRenderer::Render()
 
 	// render everything with color writes off to setup depth buffer correctly
 	glColorMask(0,0,0,0);
+	CModelRData::SetupRender(STREAM_POS|STREAM_UV0);
 	RenderObjectsStreams(STREAM_POS|STREAM_UV0);
+	CModelRData::FinishRender(STREAM_POS|STREAM_UV0);
 	glColorMask(1,1,1,1);
 
 	glEnable(GL_BLEND);
@@ -88,7 +85,9 @@ void CTransparencyRenderer::Render()
 	// Set the proper LOD bias
 	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
 
+	CModelRData::SetupRender(STREAM_POS|STREAM_COLOR|STREAM_UV0);
 	RenderObjectsStreams(STREAM_POS|STREAM_COLOR|STREAM_UV0);
+	CModelRData::FinishRender(STREAM_POS|STREAM_COLOR|STREAM_UV0);
 
 	glDisable(GL_BLEND);
 	glDisable(GL_ALPHA_TEST);
@@ -116,11 +115,10 @@ void CTransparencyRenderer::Render()
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
 
-		// .. and some client states
-		glEnableClientState(GL_VERTEX_ARRAY);
-
 		// render each model
+		CModelRData::SetupRender(STREAM_POS);
 		RenderObjectsStreams(STREAM_POS);
+		CModelRData::FinishRender(STREAM_POS);
 
 		// .. and switch off the client states
 		glDisableClientState(GL_VERTEX_ARRAY);
@@ -163,9 +161,6 @@ void CTransparencyRenderer::RenderShadows()
 {
 	if (m_Objects.size()==0) return;
 
-	// switch on client states
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-
 	glDepthMask(0);
 
 	glEnable(GL_BLEND);
@@ -182,13 +177,12 @@ void CTransparencyRenderer::RenderShadows()
 	// Set the proper LOD bias
 	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
 
+	CModelRData::SetupRender(STREAM_POS|STREAM_UV0);
 	RenderObjectsStreams(STREAM_POS|STREAM_UV0,MODELFLAG_CASTSHADOWS);
+	CModelRData::FinishRender(STREAM_POS|STREAM_UV0);
 
 	glDepthMask(1);
 	glDisable(GL_BLEND);
-
-	// switch off client states
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////

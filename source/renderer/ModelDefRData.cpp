@@ -32,34 +32,42 @@ CModelDefRData::~CModelDefRData()
 
 
 // Create and upload shared vertex arrays
+//
+// UV is only shared for fixed function at the moment.
+// Rationale: The non-shared vertex structure has enough space left for UV
+// coordinates due to alignment, so we slightly *reduce* vertex buffer space by
+// not sharing UV.
 void CModelDefRData::Build()
 {
-	size_t numVertices = m_ModelDef->GetNumVertices();
-
-	m_UV.type = GL_FLOAT;
-	m_UV.elems = 2;
-	m_Array.AddAttribute(&m_UV);
+	if (g_Renderer.GetRenderPath() == CRenderer::RP_FIXED)
+	{
+		size_t numVertices = m_ModelDef->GetNumVertices();
 	
-	m_Array.SetNumVertices(numVertices);
-	m_Array.Layout();
+		m_UV.type = GL_FLOAT;
+		m_UV.elems = 2;
+		m_Array.AddAttribute(&m_UV);
+		
+		m_Array.SetNumVertices(numVertices);
+		m_Array.Layout();
+		
+		SModelVertex* vertices = m_ModelDef->GetVertices();
+		VertexArrayIterator<float[2]> UVit = m_UV.GetIterator<float[2]>();
+		
+		for (uint j=0; j < numVertices; ++j, ++UVit) {
+			(*UVit)[0] = vertices[j].m_U;
+			(*UVit)[1] = 1.0-vertices[j].m_V;
+		}
 	
-	SModelVertex* vertices = m_ModelDef->GetVertices();
-	VertexArrayIterator<float[2]> UVit = m_UV.GetIterator<float[2]>();
-	
-	for (uint j=0; j < numVertices; ++j, ++UVit) {
-		(*UVit)[0] = vertices[j].m_U;
-		(*UVit)[1] = 1.0-vertices[j].m_V;
+		m_Array.Upload();
+		m_Array.FreeBackingStore();
 	}
-
-	m_Array.Upload();
-	m_Array.FreeBackingStore();
 }
 
 
 // Setup shared vertex arrays as needed.
 void CModelDefRData::PrepareStream(uint streamflags)
 {
-	if (!(streamflags & STREAM_UV0))
+	if (!(streamflags & STREAM_UV0) || !m_UV.type)
 		return;
 
 	u8* base = m_Array.Bind();

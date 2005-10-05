@@ -89,9 +89,7 @@ void CPlayerRenderer::Render()
 	// supports register combiners / fragment programs / etc (since it
 	// would only need a single pass and no blending)
 
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
+	CModelRData::SetupRender(STREAM_POS|STREAM_COLOR|STREAM_UV0);
 
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_CONSTANT);
@@ -122,10 +120,7 @@ void CPlayerRenderer::Render()
 
 	glActiveTextureARB(GL_TEXTURE0);
 
-	// switch off client states
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);
+	CModelRData::FinishRender(STREAM_POS|STREAM_COLOR|STREAM_UV0);
 
 	if (g_Renderer.m_ModelRenderMode==WIREFRAME) {
 		// switch wireframe off again
@@ -144,14 +139,10 @@ void CPlayerRenderer::Render()
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
 
-		// .. and some client states
-		glEnableClientState(GL_VERTEX_ARRAY);
-
 		// render each model
+		CModelRData::SetupRender(STREAM_POS);
 		RenderObjectsStreams(STREAM_POS);
-
-		// .. and switch off the client states
-		glDisableClientState(GL_VERTEX_ARRAY);
+		CModelRData::FinishRender(STREAM_POS);
 
 		// .. and restore the renderstates
 		glDisable(GL_BLEND);

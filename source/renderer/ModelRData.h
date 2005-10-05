@@ -38,6 +38,11 @@ public:
 	// clear per frame model list
 	static void ClearSubmissions();
 
+	// prepare for rendering of models
+	static void SetupRender(u32 streamflags);
+	// reset state prepared by SetupRender
+	static void FinishRender(u32 streamflags);
+	
 	// render all submitted models
 	static void RenderModels(u32 streamflags,u32 flags=0);
 
@@ -52,12 +57,14 @@ private:
 	// owner model
 	CModel* m_Model;
 	// transformed vertex normals - required for recalculating lighting on skinned models
-	CVector3D* m_Normals;
+	// only used in render path RP_FIXED
+	CVector3D* m_TempNormals;
 	// vertex array
 	VertexArray m_DynamicArray;
 	VertexArray::Attribute m_Position;
-	VertexArray::Attribute m_UV;
-	VertexArray::Attribute m_Color;
+	VertexArray::Attribute m_UV; // only used in RP_VERTEXSHADER (shared otherwise)
+	VertexArray::Attribute m_Color; // only used in RP_FIXED
+	VertexArray::Attribute m_Normal; // only used in RP_VERTEXSHADER
 	// model render indices
 	u16* m_Indices;
 	// model render flags

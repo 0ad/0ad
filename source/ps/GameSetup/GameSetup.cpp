@@ -543,6 +543,7 @@ static void InitRenderer()
 	g_Renderer.SetOptionBool(CRenderer::OPT_NOVBO,g_NoGLVBO);
 	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS,g_Shadows);
 	g_Renderer.SetOptionBool(CRenderer::OPT_NOPBUFFER,g_NoPBuffer);
+	g_Renderer.SetRenderPath(CRenderer::GetRenderPathByName(g_RenderPath));
 	g_Renderer.SetOptionFloat(CRenderer::OPT_LODBIAS, g_LodBias);
 
 	// create terrain related stuff

@@ -11,6 +11,11 @@ public:
 	typedef T Type;
 
 public:
+	VertexArrayIterator() :
+		m_Data(0), m_Stride(0)
+	{
+	}
+	
 	VertexArrayIterator(char* data, size_t stride) :
 		m_Data(data), m_Stride(stride)
 	{
