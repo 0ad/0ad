@@ -6,23 +6,26 @@
   <group>
     <variant frequency="100" name="Base">
       <animations>
-        <animation file="biped/dudeidle.psa" name="Idle" speed="200"/>
-        <animation file="biped/dudewalk_swordshield.psa" name="Walk" speed="20"/>
+        <animation file="biped/inf_idle_spear.psa" name="Idle" speed="200"/>
+        <animation file="biped/walk_spearshield.psa" name="Walk" speed="20"/>
         <animation file="biped/dudebuild.psa" name="Build" speed="150"/>
         <animation file="biped/dudechop.psa" name="Chop" speed="150"/>
         <animation file="biped/dudedeath_sword.psa" name="Death" speed="200"/>
         <animation file="biped/dudedecay_sword.psa" name="Decay" speed="100"/>
-        <animation file="biped/dudeattack.psa" name="Attack" speed="100"/>
-        <animation file="biped/dudeattack1.psa" name="Attack" speed="100"/>
+        <animation event="0.5" file="biped/inf_spear_shield_atk_a.psa" name="Attack" speed="100"/>
+        <animation event="0.5" file="biped/inf_spear_shield_atk_b.psa" name="Attack" speed="100"/>
       </animations>
-      <mesh>skeletal/m_tunic_b.pmd</mesh>
+      <mesh>skeletal/m_tunic_a.pmd</mesh>
       <props>
-        <prop actor="props/temp/hele_sign_super_unit2.xml" attachpoint="head_extra"/>
         <prop actor="props/temp/placeholder_helmet_e.xml" attachpoint="helmet"/>
-        <prop actor="props/units/heads/placeholder_head_hele.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/head_hele_a.xml" attachpoint="head"/>
+        <prop actor="props/units/shields/hele_round_su2.xml" attachpoint="shield"/>
+        <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
       </props>
-      <texture>skeletal/plac_hele_e.dds</texture>
+      <texture>skeletal/hele_isp_b.dds</texture>
     </variant>
   </group>
+
+  <material>player_trans.xml</material>
 
 </actor>
