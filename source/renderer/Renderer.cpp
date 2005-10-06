@@ -104,6 +104,8 @@ CRenderer::CRenderer()
 // CRenderer destructor
 CRenderer::~CRenderer()
 {
+	delete m_VertexShader;
+	m_VertexShader = 0;
 }
 
 
@@ -193,12 +195,6 @@ bool CRenderer::Open(int width, int height, int depth)
 	InitRenderPath();
 	
 	return true;
-}
-
-void CRenderer::Close()
-{
-	delete m_VertexShader;
-	m_VertexShader = 0;
 }
 
 // resize renderer view

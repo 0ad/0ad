@@ -153,8 +153,6 @@ public:
 
 	// open up the renderer: performs any necessary initialisation
 	bool Open(int width,int height,int depth);
-	// shutdown the renderer: performs any necessary cleanup
-	void Close();
 
 	// resize renderer view
 	void Resize(int width,int height);
