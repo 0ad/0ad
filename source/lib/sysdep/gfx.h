@@ -13,7 +13,7 @@ extern int get_monitor_size(int& width_mm, int& height_mm);
 
 const size_t GFX_CARD_LEN = 128;
 extern char gfx_card[GFX_CARD_LEN];		// default: ""
-const size_t GFX_DRV_VER_LEN = 64;
+const size_t GFX_DRV_VER_LEN = 256;		// increased from 64 by joe cocovich to accomodate unused drivers still in registry
 extern char gfx_drv_ver[GFX_DRV_VER_LEN];	// default: ""
 
 extern int gfx_mem;	// [MiB]; approximate
