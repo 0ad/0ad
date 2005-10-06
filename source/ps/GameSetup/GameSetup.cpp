@@ -98,6 +98,16 @@ static int SetVideoMode(int w, int h, int bpp, bool fullscreen)
 	if(!SDL_SetVideoMode(w, h, bpp, flags))
 		return -1;
 
+	// Work around a bug in the proprietary Linux ATI driver (at least versions 8.16.20 and 8.14.13).
+	// The driver appears to register its own atexit hook on context creation.
+	// If this atexit hook is called before SDL_Quit destroys the OpenGL context,
+	// some kind of double-free problem causes a crash and lockup in the driver.
+	// Calling SDL_Quit twice appears to be harmless, though, and avoids the problem
+	// by destroying the context *before* the driver's atexit hook is called.
+	// (Note that atexit hooks are guarantueed to be called in reverse order of their registration.)
+	atexit(SDL_Quit);
+	// End work around.
+	
 	glViewport(0, 0, w, h);
 
 #ifndef NO_GUI
