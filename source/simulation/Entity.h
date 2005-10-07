@@ -106,6 +106,10 @@ public:
 	float m_orientation_previous;
 	float m_graphics_orientation;
 
+	// If the actor's current transform data is valid (i.e. the entity hasn't
+	// moved since it was last calculated).
+	bool m_actor_transform_valid;
+
 	//-- Scripts
 
 	// Get script execution contexts - always run in the context of the entity that fired it.

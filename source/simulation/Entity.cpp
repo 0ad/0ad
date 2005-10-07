@@ -87,6 +87,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 
 	m_graphics_position = m_position;
 	m_graphics_orientation = m_orientation;
+	m_actor_transform_valid = false;
 
 	m_destroyed = false;
 
@@ -573,6 +574,9 @@ void CEntity::checkGroup()
 
 void CEntity::interpolate( float relativeoffset )
 {
+	CVector3D old_graphics_position = m_graphics_position;
+	float old_graphics_orientation = m_graphics_orientation;
+
 	m_graphics_position = Interpolate<CVector3D>( m_position_previous, m_position, relativeoffset );
 	
 	// Avoid wraparound glitches for interpolating angles.
@@ -582,8 +586,24 @@ void CEntity::interpolate( float relativeoffset )
 		m_orientation_previous += 2 * PI;
 
 	m_graphics_orientation = Interpolate<float>( m_orientation_previous, m_orientation, relativeoffset );
-	snapToGround();
-	updateActorTransforms();
+
+	// Mark the actor transform data as invalid if the entity has moved since
+	// the last call to 'interpolate'.
+	// position.Y is ignored because we can't determine the new value without
+	// calling snapToGround, which is slow. TODO: This may need to be adjusted to
+	// handle flying units or moving terrain.
+	if( m_graphics_orientation != old_graphics_orientation ||
+		m_graphics_position.X != old_graphics_position.X ||
+		m_graphics_position.Z != old_graphics_position.Z )
+			m_actor_transform_valid = false;
+
+	// Update the actor transform data when necessary.
+	if( !m_actor_transform_valid )
+	{
+		snapToGround();
+		updateActorTransforms();
+		m_actor_transform_valid = true;
+	}
 }
 
 void CEntity::render()
