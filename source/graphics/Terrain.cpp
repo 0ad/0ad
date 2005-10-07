@@ -85,8 +85,13 @@ void CTerrain::CalcPosition(u32 i,u32 j,CVector3D& pos)
 // CalcFromPosition: calculate the vertex underneath the world space position
 void CTerrain::CalcFromPosition(CVector3D& pos, u32& i, u32& j)
 {
-	i = pos.X / CELL_SIZE;
-	j = pos.Z / CELL_SIZE;
+	float x = pos.X / CELL_SIZE;
+	float z = pos.Z / CELL_SIZE;
+	
+	debug_assert(x >= 0 && z >= 0);
+	
+	i = (u32)x;
+	j = (u32)z;
 }
 
 

@@ -90,6 +90,7 @@ static bool ParseUsage(CStr temp)
     return false;
 }
 
+#if 0 // unused
 static GLenum ParseAlphaFunc(CStr temp)
 {
     temp = temp.LCase().Trim(PS_TRIM_BOTH);
@@ -147,6 +148,7 @@ static GLenum ParseBlendFunc(CStr temp)
 
     return GL_NONE;
 }
+#endif
 
 CMaterialManager::CMaterialManager()
 {
@@ -190,7 +192,7 @@ CMaterial &CMaterialManager::LoadMaterial(const char *file)
 	AT(diffuse);
 	AT(ambient);
 	AT(specular);
-	AT(emissive);
+	//AT(emissive);
 	AT(specularpower);
 
 	EL(alpha);

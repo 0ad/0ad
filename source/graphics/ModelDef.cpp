@@ -15,7 +15,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // CModelDef Constructor
 CModelDef::CModelDef()	
-	: m_pVertices(0), m_NumVertices(0), m_pFaces(0), m_NumFaces(0), m_Bones(0), m_NumBones(0),
+	: m_NumVertices(0), m_pVertices(0), m_NumFaces(0), m_pFaces(0), m_NumBones(0), m_Bones(0),
 	m_NumPropPoints(0), m_PropPoints(0), m_RenderData(0)
 {
 }

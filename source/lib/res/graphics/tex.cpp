@@ -280,7 +280,7 @@ int tex_codec_register(const TexCodecVTbl* c)
 {
 	debug_assert(c != 0 && "tex_codec_register(0) - why?");
 
-	for(int i = 0; i < MAX_CODECS; i++)
+	for(uint i = 0; i < MAX_CODECS; i++)
 	{
 		// slot available
 		if(codecs[i] == 0)
@@ -518,7 +518,7 @@ int tex_transform(Tex* t, uint transforms)
 	CHECK_TEX(t);
 
 	// find codec that understands the data, and transform
-	for(int i = 0; i < MAX_CODECS; i++)
+	for(uint i = 0; i < MAX_CODECS; i++)
 	{
 		// MAX_CODECS isn't a tight bound and we have hit a 0 entry
 		if(!codecs[i])

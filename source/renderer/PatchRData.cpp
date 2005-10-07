@@ -46,7 +46,7 @@ static SColor4ub ConvertColor(const RGBColor& src)
 
 ///////////////////////////////////////////////////////////////////
 // CPatchRData constructor
-CPatchRData::CPatchRData(CPatch* patch) : m_Patch(patch), m_Vertices(0), m_VBBase(0), m_VBBlends(0) 
+CPatchRData::CPatchRData(CPatch* patch) : m_Patch(patch), m_VBBase(0), m_VBBlends(0), m_Vertices(0)
 {
 	debug_assert(patch);
 	Build();
@@ -516,9 +516,9 @@ void CPatchRData::RenderStreamsAll(u32 streamflags)
 
 void CPatchRData::RenderOutline()
 {
-	uint i;
+	int i;
 	uint vsize=PATCH_SIZE+1;
-	u8* base=m_VBBase->m_Owner->Bind();
+	u8* base=m_VBBase->m_Owner->Bind(); //TODO: this makes no sense, get rid of it
 	UNUSED2(base);
 
 	glBegin(GL_LINES);

@@ -21,7 +21,6 @@ namespace JSI_Vector3D
 		component_y,
 		component_z
 	};
-	static CVector3D* GetVector( JSContext* cx, JSObject* obj );
 	JSBool toString( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
 	JSBool add( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
 	JSBool subtract( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );

@@ -78,8 +78,9 @@ struct SGUIText
 	struct STextCall
 	{
 		STextCall() : 
+			m_UseCustomColor(false),
 			m_Bold(false), m_Italic(false), m_Underlined(false),
-			m_UseCustomColor(false), m_pSpriteCall(NULL) {}
+			m_pSpriteCall(NULL) {}
 
 		/**
 		 * Position

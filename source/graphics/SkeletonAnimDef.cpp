@@ -15,7 +15,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 // CSkeletonAnimDef constructor
-CSkeletonAnimDef::CSkeletonAnimDef() : m_Keys(0), m_NumKeys(0), m_NumFrames(0), m_FrameTime(0)
+CSkeletonAnimDef::CSkeletonAnimDef() : m_FrameTime(0), m_NumKeys(0), m_NumFrames(0), m_Keys(0)
 {
 }
 

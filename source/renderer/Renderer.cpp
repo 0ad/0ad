@@ -219,6 +219,12 @@ void CRenderer::SetOptionBool(enum Option opt,bool value)
 		case OPT_SHADOWS:
 			m_Options.m_Shadows=value;
 			break;
+		case OPT_NOPBUFFER:
+			// NOT IMPLEMENTED
+			break;
+		default:
+			debug_warn("CRenderer::SetOptionBool: unknown option");
+			break;
 	}
 }
 
@@ -231,6 +237,9 @@ bool CRenderer::GetOptionBool(enum Option opt) const
 			return m_Options.m_NoVBO;
 		case OPT_SHADOWS:
 			return m_Options.m_Shadows;
+		default:
+			debug_warn("CRenderer::GetOptionBool: unknown option");
+			break;
 	}
 
 	return false;
@@ -244,6 +253,9 @@ void CRenderer::SetOptionColor(enum Option opt,const RGBAColor& value)
 		case OPT_SHADOWCOLOR:
 			m_Options.m_ShadowColor=value;
 			break;
+		default:
+			debug_warn("CRenderer::SetOptionColor: unknown option");
+			break;
 	}
 }
 
@@ -253,6 +265,9 @@ void CRenderer::SetOptionFloat(enum Option opt, float val)
 	{
 	case OPT_LODBIAS:
 		m_Options.m_LodBias = val;
+		break;
+	default:
+		debug_warn("CRenderer::SetOptionFloat: unknown option");
 		break;
 	}
 }
@@ -266,6 +281,9 @@ const RGBAColor& CRenderer::GetOptionColor(enum Option opt) const
 	switch (opt) {
 		case OPT_SHADOWCOLOR:
 			return m_Options.m_ShadowColor;
+		default:
+			debug_warn("CRenderer::GetOptionColor: unknown option");
+			break;
 	}
 
 	return defaultColor;

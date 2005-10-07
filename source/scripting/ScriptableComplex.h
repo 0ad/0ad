@@ -72,6 +72,9 @@ public:
 	// Objects that inherit from this
 	InheritorsList m_Inheritors;
 
+	// Destructor
+	virtual ~IJSComplex() { }
+	
 	// Set the base, and rebuild
 	void SetBase( IJSComplex* m_Parent );
 

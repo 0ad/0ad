@@ -44,7 +44,7 @@ public:
 	// accessor for character data
 	const CharData& chardata(char c) const { 
 		debug_assert( !(c&0x80) ); // only allow 7-bit ASCII
-		return _chars[c]; 
+		return _chars[(unsigned char)c]; 
 	}
 
 	void GetOutputStringSize(const char* str,int& sx,int& sy);

@@ -17,7 +17,7 @@ COverlayText::COverlayText()
 
 
 COverlayText::COverlayText(float x,float y,int z,const char* fontname,const char* string,const CColor& color)
-	: m_X(x), m_Y(y), m_Z(z), m_String(string), m_Color(color)
+	: m_X(x), m_Y(y), m_Z(z), m_Color(color), m_String(string)
 {
 	m_Font=NPFontManager::instance().add(fontname);
 }

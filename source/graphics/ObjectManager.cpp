@@ -194,7 +194,7 @@ void CObjectManager::GetAllObjectNames(std::vector<CStr>& names)
 
 struct CObjectThing_Entity : public CObjectThing
 {
-	CObjectThing_Entity(CBaseEntity* b)	: base(b), obj(g_ObjMan.FindObject((CStr)b->m_actorName)), ent(NULL) {}
+	CObjectThing_Entity(CBaseEntity* b) : base(b), ent(NULL), obj(g_ObjMan.FindObject((CStr)b->m_actorName)) {}
 	~CObjectThing_Entity() {}
 	CBaseEntity* base;
 	CEntity* ent;

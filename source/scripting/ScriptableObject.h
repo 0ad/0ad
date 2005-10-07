@@ -13,8 +13,6 @@
 
 #define ALLOW_NONSHARED_NATIVES
 
-static int pcount = 0;
-
 class IJSObject;
 
 class IJSProperty

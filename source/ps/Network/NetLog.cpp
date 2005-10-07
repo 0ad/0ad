@@ -14,8 +14,8 @@ CNetLog g_NetLog;
 #define LOG_ARGS_SUFFIX 
 
 CNetLog::CNetLog():
-	m_Initialized(false),
 	m_Flush(true),
+	m_Initialized(false),
 	m_pFile(NULL)
 {}
 

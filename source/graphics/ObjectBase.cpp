@@ -34,7 +34,7 @@ bool CObjectBase::Load(const char* filename)
 	#define EL(x) int el_##x = XeroFile.getElementID(#x)
 	#define AT(x) int at_##x = XeroFile.getAttributeID(#x)
 	EL(actor);
-	EL(castshadow);
+	//EL(castshadow);
 	EL(material);
 	EL(group);
 	EL(variant);

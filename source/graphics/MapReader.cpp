@@ -127,7 +127,7 @@ int CMapReader::UnpackTerrain()
 		// unpack map size
 		unpacker.UnpackRaw(&m_MapSize, sizeof(m_MapSize));
 
-		// unpack heightmap [600µs]
+		// unpack heightmap [600s]
 		u32 verticesPerSide = m_MapSize*PATCH_SIZE+1;
 		m_Heightmap.resize(SQR(verticesPerSide));
 		unpacker.UnpackRaw(&m_Heightmap[0], SQR(verticesPerSide)*sizeof(u16));
@@ -178,8 +178,8 @@ int CMapReader::ApplyData()
 	STileDesc* tileptr = &m_Tiles[0];
 	for (u32 j=0; j<m_MapSize; j++) {
 		for (u32 i=0; i<m_MapSize; i++) {
-			for (u32 m=0; m<PATCH_SIZE; m++) {
-				for (u32 k=0; k<PATCH_SIZE; k++) {
+			for (u32 m=0; m<(u32)PATCH_SIZE; m++) {
+				for (u32 k=0; k<(u32)PATCH_SIZE; k++) {
 					CMiniPatch& mp = pTerrain->GetPatch(i,j)->m_MiniPatches[m][k];
 
 					mp.Tex1 = m_TerrainTextures[tileptr->m_Tex1Index];

@@ -53,8 +53,10 @@ bool CNetServerSession::BaseHandler(CNetMessage *pMsg, CNetSession *pNetSession)
 				LOG(WARNING, LOG_CAT_NET, "CNetServerSession::BaseHandler(): NMT_ERROR: %s", msg->GetString().c_str());
 			HANDLED(pMsg);
 		}
+		
+		default:
+			UNHANDLED(pMsg);
 	}
-	UNHANDLED(pMsg);
 }
 
 bool CNetServerSession::HandshakeHandler(CNetMessage *pMsg, CNetSession *pNetSession)
@@ -83,8 +85,10 @@ bool CNetServerSession::HandshakeHandler(CNetMessage *pMsg, CNetSession *pNetSes
 
 			HANDLED(pMsg);
 		}
+	
+	default:
+		return BaseHandler(pMsg, pNetSession);
 	}
-	return BaseHandler(pMsg, pNetSession);
 }
 
 bool CNetServerSession::AuthenticateHandler(CNetMessage *pMsg, CNetSession *pNetSession)

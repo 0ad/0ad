@@ -79,8 +79,8 @@ void CMapWriter::EnumTerrainTextures(CTerrain *pTerrain,
 	u32 mapsize=pTerrain->GetPatchesPerSide();
 	for (u32 j=0;j<mapsize;j++) {
 		for (u32 i=0;i<mapsize;i++) {
-			for (u32 m=0;m<PATCH_SIZE;m++) {
-				for (u32 k=0;k<PATCH_SIZE;k++) {
+			for (u32 m=0;m<(u32)PATCH_SIZE;m++) {
+				for (u32 k=0;k<(u32)PATCH_SIZE;k++) {
 					CMiniPatch& mp=pTerrain->GetPatch(i,j)->m_MiniPatches[m][k];
 					u16 index=u16(GetHandleIndex(mp.Tex1,handles));
 					if (index==0xffff) {

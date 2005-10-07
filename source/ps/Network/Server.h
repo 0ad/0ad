@@ -49,13 +49,13 @@ private:
 	*/
 	std::vector <CNetServerSession *> m_Observers;
 	
-	uint m_MaxObservers;
-	int m_LastSessionID;
-
 	ENetServerState m_ServerState;
 
 	CGame *m_pGame;
 	CGameAttributes *m_pGameAttributes;
+
+	uint m_MaxObservers;
+	int m_LastSessionID;
 
 	CPlayer *m_pServerPlayer;
 

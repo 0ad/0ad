@@ -4,6 +4,11 @@
 #include "scripting/JSConversions.h"
 #include "scripting/ScriptingHost.h"
 
+namespace JSI_Vector3D
+{
+	static CVector3D* GetVector( JSContext* cx, JSObject* obj );
+}
+
 JSClass JSI_Vector3D::JSI_class = {
 	"Vector3D", JSCLASS_HAS_PRIVATE,
 	JS_PropertyStub, JS_PropertyStub,

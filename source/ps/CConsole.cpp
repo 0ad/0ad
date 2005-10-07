@@ -574,10 +574,10 @@ void CConsole::LoadHistory()
 		CStr bytes( (char*)buffer, buflen );
 		CStrW str( bytes.FromUTF8() );
 		size_t pos = 0;
-		while( pos != -1 )
+		while( pos != CStrW::npos )
 		{
 			pos = str.find( '\n' );
-			if( pos != -1 )
+			if( pos != CStrW::npos )
 			{
 				if( pos > 0 )
 					m_deqBufHistory.push_front( str.Left( str[pos-1] == '\r' ? pos - 1 : pos ) );

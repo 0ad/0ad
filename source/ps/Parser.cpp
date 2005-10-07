@@ -4,7 +4,10 @@
 #include "lib.h"
 #include "self_test.h"
 
+#if MSC_VERSION
 #pragma warning(disable:4786)
+#endif
+
 using namespace std;
 
 //-------------------------------------------------
@@ -833,7 +836,7 @@ bool CParser::InputTaskType(const string& strName, const string& strSyntax)
 
 	// Loop through the string and construct nodes in the binary tree
 	//  when applicable
-	for (i=0; i<(int)strSyntax.size(); ++i)
+	for (i=0; i<strSyntax.size(); ++i)
 	{
 		// Extract is a variable that is true when we want to extract
 		//  parts that is longer than one character.

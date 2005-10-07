@@ -13,7 +13,7 @@
 enum { EL_ATTR, EL_TEXT, EL_SUBEL };
 
 XMLWriter_File::XMLWriter_File(const char* encoding)
-	: m_LastElement(NULL), m_Indent(0)
+	: m_Indent(0), m_LastElement(NULL)
 {
 	m_Data = "<?xml version=\"1.0\" encoding=\"";
 	m_Data += encoding;

@@ -51,7 +51,7 @@ private:
 	SOggFile memFile;
 
 	Handle hf;
-/*
+
 	struct IOSlot
 	{
 		ALuint al_buffer;

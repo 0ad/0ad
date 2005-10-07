@@ -74,6 +74,8 @@ CSocketAddress::CSocketAddress(int port, ESocketProtocol proto)
 		memcpy(&m_Union.m_IPv6.sin6_addr, &in6addr_any, sizeof(in6addr_any));
 		m_Union.m_IPv6.sin6_port=htons(port);
 		break;
+	default:
+		debug_warn("CSocketAddress::CSocketAddress: Bad proto");
 	}
 }
 
@@ -92,6 +94,8 @@ CSocketAddress CSocketAddress::Loopback(int port, ESocketProtocol proto)
 		memcpy(&ret.m_Union.m_IPv6.sin6_addr, &in6addr_loopback, sizeof(in6addr_loopback));
 		ret.m_Union.m_IPv6.sin6_port=htons(port);
 		break;
+	default:
+		debug_warn("CSocketAddress::CSocketAddress: Bad proto");
 	}
 	return ret;
 }

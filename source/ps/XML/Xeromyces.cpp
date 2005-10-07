@@ -98,7 +98,7 @@ typedef struct XMLElement {
 class XeroHandler : public DefaultHandler
 {
 public:
-	XeroHandler() : Root(NULL), m_locator(NULL) {}
+	XeroHandler() : m_locator(NULL), Root(NULL) {}
 	~XeroHandler()
 	{
 		if (Root)

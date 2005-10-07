@@ -318,9 +318,11 @@ bool CNetClient::PreGameHandler(CNetMessage *pMsg, CNetSession *pSession)
 			}
 			HANDLED(pMsg);
 		}
+		default:
+		{
+			UNHANDLED(pMsg);
+		}
 	}
-
-	UNHANDLED(pMsg);
 }
 
 bool CNetClient::InGameHandler(CNetMessage *pMsg, CNetSession *pSession)
@@ -340,6 +342,7 @@ bool CNetClient::InGameHandler(CNetMessage *pMsg, CNetSession *pSession)
 	switch (msgType)
 	{
 	case NMT_EndCommandBatch:
+	{
 		CEndCommandBatch *msg=(CEndCommandBatch *)pMsg;
 		pClient->SetTurnLength(1, msg->m_TurnLength);
 	
@@ -356,8 +359,10 @@ bool CNetClient::InGameHandler(CNetMessage *pMsg, CNetSession *pSession)
 
 		HANDLED(pMsg);
 	}
-
-	UNHANDLED(pMsg);
+		
+	default:
+		UNHANDLED(pMsg);
+	}
 }
 
 bool CNetClient::ChatHandler(CNetMessage *pMsg, CNetSession *pSession)

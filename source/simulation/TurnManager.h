@@ -91,6 +91,7 @@ protected:
 
 public:
 	CTurnManager();
+	virtual ~CTurnManager() { }
 
 	void Initialize(size_t numClients);
 

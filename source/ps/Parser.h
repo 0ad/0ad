@@ -27,7 +27,9 @@ will exist, and it's up to the system to figure out which one acquired.
 
 #include "Pyrogenesis.h"
 
+#if MSC_VERSION
 #pragma warning(disable:4786)
+#endif
 
 //--------------------------------------------------------
 //  Includes / Compiler directives

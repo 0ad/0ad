@@ -429,7 +429,7 @@ int hotkeyInputHandler( const SDL_Event* ev )
 			{
 				if( mouse_buttons[keyCode-SDLK_LAST] != rqdState ) accept = false;
 			}
-			else if( keyCode-UNIFIED_SHIFT < ARRAY_SIZE(unified) )
+			else if( (uint)(keyCode-UNIFIED_SHIFT) < ARRAY_SIZE(unified) )
 			{
 				if( unified[keyCode-UNIFIED_SHIFT] != rqdState ) accept = false;
 			}
@@ -496,7 +496,7 @@ int hotkeyInputHandler( const SDL_Event* ev )
 			{
 				if( mouse_buttons[keyCode-SDLK_LAST] != rqdState ) accept = false;
 			}
-			else if( keyCode-UNIFIED_SHIFT < ARRAY_SIZE(unified) )
+			else if( (uint)(keyCode-UNIFIED_SHIFT) < ARRAY_SIZE(unified) )
 			{
 				if( unified[keyCode-UNIFIED_SHIFT] != rqdState ) accept = false;
 			}

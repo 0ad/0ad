@@ -22,8 +22,8 @@
 #define LOG_CATEGORY "graphics"
 
 CObjectEntry::CObjectEntry(int type, CObjectBase* base)
-: m_Model(NULL), m_Type(type), m_Base(base), m_Color(1.0f, 1.0f, 1.0f, 1.0f),
-  m_ProjectileModel(NULL), m_AmmunitionPoint(NULL), m_AmmunitionModel(NULL)
+: m_Base(base), m_Color(1.0f, 1.0f, 1.0f, 1.0f),
+  m_ProjectileModel(NULL), m_AmmunitionModel(NULL), m_AmmunitionPoint(NULL), m_Model(NULL), m_Type(type)
 {
 }
 

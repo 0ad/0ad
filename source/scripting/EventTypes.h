@@ -32,7 +32,7 @@ enum EEventType
 };
 
 // Only used for entity events... (adds them as a property)
-static const wchar_t* EventNames[EVENT_LAST] =
+static const wchar_t* const EventNames[EVENT_LAST] =
 {
 	/* EVENT_INITIALIZE */ L"onInitialize",
 	/* EVENT_TICK */ L"onTick",

@@ -57,8 +57,8 @@ CGameView::CGameView(CGame *pGame):
 	m_ViewZoomSensitivity(256.0f),
 	m_ViewZoomSmoothness(0.02f),
 	m_ViewSnapSmoothness(0.02f),
-	m_CameraPivot(),
 	m_CameraDelta(),
+	m_CameraPivot(),
 	m_ZoomDelta(0)
 {
 	SViewPort vp;
@@ -626,12 +626,12 @@ Just commented out to make it more obvious it's not in use.
 	if (g_mouse_y <= 3)
 		m_Camera.m_Orientation.Translate(Up*-1);
 
-	/*
-	janwas: grr, plotted the zoom vector on paper twice, but it appears
-	to be completely wrong. sticking with the FOV hack for now.
-	if anyone sees what's wrong, or knows how to correctly implement zoom,
-	please put this code out of its misery :)
-	*//*
+	
+	// janwas: grr, plotted the zoom vector on paper twice, but it appears
+	// to be completely wrong. sticking with the FOV hack for now.
+	// if anyone sees what's wrong, or knows how to correctly implement zoom,
+	// please put this code out of its misery :)
+	
 	// RC - added ScEd style zoom in and out (actually moving camera, rather than fudging fov)	
 
 	float dir=0;

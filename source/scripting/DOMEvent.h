@@ -40,7 +40,7 @@ public:
 		before = NULL;
 		after = NULL;
 	}
-	~IEventTarget();
+	virtual ~IEventTarget();
 	// Set target that will receive each event after it is processed.
 	// unused
 	inline void SetPriorObject( IEventTarget* obj )

@@ -122,6 +122,8 @@ struct CSynchedJSObjectBase
 	SynchedPropertyTable m_SynchedProperties;
 
 protected:
+	virtual ~CSynchedJSObjectBase() { }
+	
 	// Called every time a property changes.
 	// This is where the individual callbacks are dispatched from.
 	virtual void Update(CStrW name, ISynchedJSProperty *prop)=0;

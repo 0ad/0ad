@@ -31,7 +31,7 @@ void CVertexBuffer::Shutdown()
 ///////////////////////////////////////////////////////////////////////////////
 // CVertexBuffer constructor 
 CVertexBuffer::CVertexBuffer(size_t vertexSize,bool dynamic) 
-	: m_VertexSize(vertexSize), m_Dynamic(dynamic), m_SysMem(0), m_Handle(0)
+	: m_VertexSize(vertexSize), m_Handle(0), m_SysMem(0), m_Dynamic(dynamic)
 {
 	size_t size = MAX_VB_SIZE_BYTES;
 
