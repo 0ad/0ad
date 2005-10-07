@@ -222,7 +222,7 @@ const size_t DBG_FILE_LEN = 100;
 // retrieved and stored.
 // sym_name and file must hold at least the number of chars above;
 // file is the base name only, not path (see rationale in wdbg_sym).
-// the PDB implementation is rather slow (~500s).
+// the PDB implementation is rather slow (~500us).
 extern int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line);
 
 // write a complete stack trace (including values of local variables) into

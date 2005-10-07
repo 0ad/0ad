@@ -72,9 +72,13 @@ bool CTerrain::Initialize(u32 size,const u16* data)
 
 ///////////////////////////////////////////////////////////////////////////////
 // CalcPosition: calculate the world space position of the vertex at (i,j)
-void CTerrain::CalcPosition(u32 i,u32 j,CVector3D& pos)
+void CTerrain::CalcPosition(i32 i, i32 j, CVector3D& pos)
 {
-	u16 height=m_Heightmap[j*m_MapSize + i];
+	u16 height;
+	if ((u32)i < m_MapSize && (u32)j < m_MapSize) // will reject negative coordinates
+		height = m_Heightmap[j*m_MapSize + i];
+	else
+		height = 0;
 	pos.X = float(i)*CELL_SIZE;
 	pos.Y = float(height)*HEIGHT_SCALE;
 	pos.Z = float(j)*CELL_SIZE;
@@ -83,21 +87,16 @@ void CTerrain::CalcPosition(u32 i,u32 j,CVector3D& pos)
 
 ///////////////////////////////////////////////////////////////////////////////
 // CalcFromPosition: calculate the vertex underneath the world space position
-void CTerrain::CalcFromPosition(CVector3D& pos, u32& i, u32& j)
+void CTerrain::CalcFromPosition(const CVector3D& pos, i32& i, i32& j)
 {
-	float x = pos.X / CELL_SIZE;
-	float z = pos.Z / CELL_SIZE;
-	
-	debug_assert(x >= 0 && z >= 0);
-	
-	i = (u32)x;
-	j = (u32)z;
+	i = pos.X / CELL_SIZE;
+	j = pos.Z / CELL_SIZE;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////
 // CalcNormal: calculate the world space normal of the vertex at (i,j)
-void CTerrain::CalcNormal(u32 i,u32 j,CVector3D& normal)
+void CTerrain::CalcNormal(u32 i, u32 j, CVector3D& normal)
 {
 	CVector3D left, right, up, down;
 	
@@ -145,10 +144,10 @@ void CTerrain::CalcNormal(u32 i,u32 j,CVector3D& normal)
 ///////////////////////////////////////////////////////////////////////////////
 // GetPatch: return the patch at (x,z) in patch space, or null if the patch is 
 // out of bounds
-CPatch* CTerrain::GetPatch(int32_t x,int32_t z)
+CPatch* CTerrain::GetPatch(i32 x, i32 z)
 {
-	if (x<0 || x>=int32_t(m_MapSizePatches)) return 0;	
-	if (z<0 || z>=int32_t(m_MapSizePatches)) return 0;
+	if (x<0 || x>=i32(m_MapSizePatches)) return 0;
+	if (z<0 || z>=i32(m_MapSizePatches)) return 0;
 	return &m_Patches[(z*m_MapSizePatches)+x]; 
 }
 
@@ -156,41 +155,43 @@ CPatch* CTerrain::GetPatch(int32_t x,int32_t z)
 ///////////////////////////////////////////////////////////////////////////////
 // GetPatch: return the tile at (x,z) in tile space, or null if the tile is out 
 // of bounds
-CMiniPatch* CTerrain::GetTile(int32_t x,int32_t z)
+CMiniPatch* CTerrain::GetTile(i32 x, i32 z)
 {
-	if (x<0 || x>=int32_t(m_MapSize)-1) return 0;	
-	if (z<0 || z>=int32_t(m_MapSize)-1) return 0;
+	if (x<0 || x>=i32(m_MapSize)-1) return 0;
+	if (z<0 || z>=i32(m_MapSize)-1) return 0;
 
 	CPatch* patch=GetPatch(x/PATCH_SIZE,z/PATCH_SIZE);
 	return &patch->m_MiniPatches[z%PATCH_SIZE][x%PATCH_SIZE];
 }
 
-float CTerrain::getExactGroundLevel( float x, float y ) const
+float CTerrain::getExactGroundLevel(float x, float y) const
 {
 	x /= (float)CELL_SIZE;
 	y /= (float)CELL_SIZE;
 
-	int xi = (int)floor( x );
-	int yi = (int)floor( y );
+	int xi = (int)floor(x);
+	int yi = (int)floor(y);
 	float xf = x - (float)xi;
 	float yf = y - (float)yi;
 
-	if( xi < 0 )
+	if (xi < 0)
 	{
 		xi = 0; xf = 0.0f;
 	}
-	if( xi >= (int)m_MapSize )
+	else if (xi >= (int)m_MapSize)
 	{
 		xi = m_MapSize - 1; xf = 1.0f;
 	}
-	if( yi < 0 )
+
+	if (yi < 0)
 	{
 		yi = 0; yf = 0.0f;
 	}
-	if( yi >= (int)m_MapSize )
+	else if (yi >= (int)m_MapSize)
 	{
 		yi = m_MapSize - 1; yf = 1.0f;
 	}
+
 	/*
 	debug_assert( isOnMap( x, y ) );
 
@@ -202,7 +203,9 @@ float CTerrain::getExactGroundLevel( float x, float y ) const
 	float h01 = m_Heightmap[yi*m_MapSize + xi + m_MapSize];
 	float h10 = m_Heightmap[yi*m_MapSize + xi + 1];
 	float h11 = m_Heightmap[yi*m_MapSize + xi + m_MapSize + 1];
-	return( HEIGHT_SCALE * ( ( 1 - yf ) * ( ( 1 - xf ) * h00 + xf * h10 ) + yf * ( ( 1 - xf ) * h01 + xf * h11 ) ) );
+	return (HEIGHT_SCALE * (
+		(1 - yf) * ((1 - xf) * h00 + xf * h10)
+		   + yf  * ((1 - xf) * h01 + xf * h11)));
 }
 
 ///////////////////////////////////////////////////////////////////////////////

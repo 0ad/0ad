@@ -331,9 +331,6 @@ void CGameView::Update(float DeltaTime)
 	m_Camera.m_Orientation.Translate( m_CameraDelta * ( 1.0f - delta ) );
 	m_CameraDelta *= delta;
 
-#define CAMERASTYLE 2 // 0 = old style, 1 = relatively new style, 2 = newest style
-
-// #if CAMERASTYLE == 2
 
 	// This could be rewritten much more reliably, so it doesn't e.g. accidentally tilt
 	// the camera, assuming we know exactly what limits the camera should have.
@@ -542,122 +539,6 @@ void CGameView::Update(float DeltaTime)
 		CameraLock(forwards * (m_ZoomDelta * (1.0f-zoom_proportion)), false);
 		m_ZoomDelta *= zoom_proportion;
 	}
-
-
-/*
-Just commented out to make it more obvious it's not in use.
-
-#elif CAMERASTYLE == 1
-
-	// Remember previous mouse position, to calculate changes
-	static mouse_last_x = 0;
-	static mouse_last_y = 0;
-
-	// Miscellaneous vectors
-	CVector3D forwards = m_Camera.m_Orientation.GetIn();
-	CVector3D upwards (0.0f, 1.0f, 0.0f);
-	CVector3D rightwards = upwards.Cross(forwards);
-
-	// Click and drag to look around
-	if (mouse_buttons[0])
-	{
-		// Untranslate the camera, so it rotates around the correct point
-		CVector3D position = m_Camera.m_Orientation.GetTranslation();
-		m_Camera.m_Orientation.Translate(position*-1);
-
-		// Sideways rotation
-		m_Camera.m_Orientation.RotateY(m_ViewRotateSpeed*(float)(g_mouse_x-mouse_last_x));
-
-		// Up/down rotation
-		CQuaternion temp;
-		temp.FromAxisAngle(rightwards, m_ViewRotateSpeed*(float)(g_mouse_y-mouse_last_y));
-		m_Camera.m_Orientation.Rotate(temp);
-
-		// Retranslate back to the right position
-		m_Camera.m_Orientation.Translate(position);
-	}
-	mouse_last_x = g_mouse_x;
-	mouse_last_y = g_mouse_y;
-
-	// Calculate the necessary vectors for movement
-
-	rightwards.Normalize();
-	CVector3D forwards_horizontal = upwards.Cross(rightwards);
-	forwards_horizontal.Normalize();
-
-	// Move when desirable
-
-	if (g_mouse_x >= g_xres-2)
-		m_Camera.m_Orientation.Translate(rightwards);
-	else if (g_mouse_x <= 3)
-		m_Camera.m_Orientation.Translate(-rightwards);
-
-	if (g_mouse_y >= g_yres-2)
-		m_Camera.m_Orientation.Translate(forwards_horizontal);
-	else if (g_mouse_y <= 3)
-		m_Camera.m_Orientation.Translate(-forwards_horizontal);
-
-	// Smoothed height-changing (move a certain percentage towards the desired height every frame)
-
-	static float height_delta = 0.0f;
-
-	if (mouse_buttons[SDL_BUTTON_WHEELUP])
-		height_delta -= 4.0f;
-	else if (mouse_buttons[SDL_BUTTON_WHEELDOWN])
-		height_delta += 4.0f;
-
-	const float height_speed = 0.2f;
-	m_Camera.m_Orientation.Translate(0.0f, height_delta*height_speed, 0.0f);
-	height_delta *= (1.0f - height_speed);
-
-#else // CAMERASTYLE == 0
-
-	const float dx = m_ViewScrollSpeed * DeltaTime;
-	const CVector3D Right(dx,0, dx);
-	const CVector3D Up   (dx,0,-dx);
-
-	if (g_mouse_x >= g_xres-2)
-		m_Camera.m_Orientation.Translate(Right);
-	if (g_mouse_x <= 3)
-		m_Camera.m_Orientation.Translate(Right*-1);
-
-	if (g_mouse_y >= g_yres-2)
-		m_Camera.m_Orientation.Translate(Up);
-	if (g_mouse_y <= 3)
-		m_Camera.m_Orientation.Translate(Up*-1);
-
-	
-	// janwas: grr, plotted the zoom vector on paper twice, but it appears
-	// to be completely wrong. sticking with the FOV hack for now.
-	// if anyone sees what's wrong, or knows how to correctly implement zoom,
-	// please put this code out of its misery :)
-	
-	// RC - added ScEd style zoom in and out (actually moving camera, rather than fudging fov)	
-
-	float dir=0;
-	if (mouse_buttons[SDL_BUTTON_WHEELUP]) dir=-1;
-	else if (mouse_buttons[SDL_BUTTON_WHEELDOWN]) dir=1;	
-
-	float factor=dir*dir;
-	if (factor) {
-		if (dir<0) factor=-factor;
-		CVector3D forward=m_Camera.m_Orientation.GetIn();
-
-		// check we're not going to zoom into the terrain, or too far out into space
-		float h=m_Camera.m_Orientation.GetTranslation().Y+forward.Y*factor*m_Camera.Zoom;
-		float minh=65536*HEIGHT_SCALE*1.05f;
-		
-		if (h<minh || h>1500) {
-			// yup, we will; don't move anywhere (do clamped move instead, at some point)
-		} else {
-			// do a full move
-			m_Camera.Zoom-=(factor)*0.1f;
-			if (m_Camera.Zoom<0.01f) m_Camera.Zoom=0.01f;
-			m_Camera.m_Orientation.Translate(forward*(factor*m_Camera.Zoom));
-		}
-	}
-#endif // CAMERASTYLE
-*/
 
 	m_Camera.UpdateFrustum ();
 }

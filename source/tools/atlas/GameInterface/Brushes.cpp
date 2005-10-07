@@ -31,7 +31,7 @@ void Brush::GetBottomRight(int& x, int& y) const
 	if (m_W % 2) c.X += CELL_SIZE/2.f;
 	if (m_H % 2) c.Z += CELL_SIZE/2.f;
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-	u32 cx, cy;
+	i32 cx, cy;
 	terrain->CalcFromPosition(c, cx, cy);
 
 	x = cx - (m_W-1)/2;
@@ -66,6 +66,7 @@ void Brush::Render()
 			CVector3D pos;
 			terrain->CalcPosition(x0+dx, y0+dy, pos);
 			glVertex3f(pos.X, pos.Y, pos.Z);
+			//debug_printf("%f %f %f\n", pos.X, pos.Y, pos.Z);
 		}
 	}
 

@@ -127,7 +127,7 @@ int CMapReader::UnpackTerrain()
 		// unpack map size
 		unpacker.UnpackRaw(&m_MapSize, sizeof(m_MapSize));
 
-		// unpack heightmap [600s]
+		// unpack heightmap [600us]
 		u32 verticesPerSide = m_MapSize*PATCH_SIZE+1;
 		m_Heightmap.resize(SQR(verticesPerSide));
 		unpacker.UnpackRaw(&m_Heightmap[0], SQR(verticesPerSide)*sizeof(u16));

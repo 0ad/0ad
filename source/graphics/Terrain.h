@@ -51,15 +51,15 @@ public:
 
 	// get patch at given coordinates, expressed in patch-space; return 0 if
 	// coordinates represent patch off the edge of the map
-	CPatch* GetPatch(int32_t x,int32_t z); 
+	CPatch* GetPatch(i32 x, i32 z); 
 	// get tile at given coordinates, expressed in tile-space; return 0 if
 	// coordinates represent tile off the edge of the map
-	CMiniPatch* GetTile(int32_t x,int32_t z);
+	CMiniPatch* GetTile(i32 x, i32 z);
 
 	// calculate the position of a given vertex
-	void CalcPosition(u32 i,u32 j, CVector3D& pos);
+	void CalcPosition(i32 i, i32 j, CVector3D& pos);
 	// calculate the vertex under a given position (rounding down coordinates)
-	void CalcFromPosition(CVector3D& pos, u32& i, u32& j);
+	void CalcFromPosition(const CVector3D& pos, i32& i, i32& j);
 	// calculate the normal at a given vertex
 	void CalcNormal(u32 i, u32 j, CVector3D& normal);
 
