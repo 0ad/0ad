@@ -4,18 +4,15 @@
 	<Traits extant="true" corpse="template_corpse">
 		<Id
 		/>
+		<Anchor
+			type="Ground"
+		/>
 		<!-- Defaults to no armour -->
 		<Armour
 			Value="0"
 			Crush="0.0"
 			Hack="0.0"
 			Pierce="0.0"
-		/>
-		<Health 
-			bar_height="-1.0"
-		/>
-		<Up
-			rank="0"
 		/>
 		<Creation>
 			<Time>20</Time>
@@ -25,13 +22,16 @@
 				<Stone cost="2" />
 			</Resource>
 		</Creation>
+		<Health 
+			bar_height="-1.0"
+		/>
 		<MiniMap
 			type="Unit"
 		/>
-		<Anchor
-			type="Ground"
+		<Up
+			rank="0"
 		/>
 	</Traits>
 
-	<Actions />	
+	<Actions />
 </Entity>
