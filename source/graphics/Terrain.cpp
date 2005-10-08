@@ -236,7 +236,7 @@ void CTerrain::Resize(u32 size)
 
 	// now copy over rows of data
 	u32 j;
-  	u16* src=m_Heightmap;
+	u16* src=m_Heightmap;
 	u16* dst=newHeightmap;
 	u32 copysize=newMapSize>m_MapSize ? m_MapSize : newMapSize;
 	for (j=0;j<copysize;j++) {

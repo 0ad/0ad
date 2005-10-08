@@ -10,6 +10,7 @@
 #include "GameInterface/Messages.h"
 
 #include "Sections/Map/Map.h"
+#include "Sections/Terrain/Terrain.h"
 
 #include "tools/Common/Tools.h"
 
@@ -270,6 +271,8 @@ AtlasWindowCommandProc& ScenarioEditor::GetCommandProc() { return g_CommandProc;
 ScenarioEditor::ScenarioEditor(wxWindow* parent)
 : wxFrame(parent, wxID_ANY, _("Atlas - Scenario Editor"), wxDefaultPosition, wxSize(1024, 768))
 {
+//	wxLog::SetTraceMask(wxTraceMessages);
+
 	//////////////////////////////////////////////////////////////////////////
 	// Menu
 
@@ -334,7 +337,11 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 
 	// Set up sidebars:
 
-	Sidebar* sidebar = new MapSidebar(splitter);
+	// TODO: wxWidgets bug (http://sourceforge.net/tracker/index.php?func=detail&aid=1298803&group_id=9863&atid=109863)
+	// - pressing menu keys (e.g. alt+f) with notebook tab focussed causes application to freeze
+	wxNotebook* sidebar = new wxNotebook(splitter, wxID_ANY);
+	sidebar->AddPage(new MapSidebar(sidebar), _("Map"), false);
+	sidebar->AddPage(new TerrainSidebar(sidebar), _("Terrain"), false);
 
 	// Build layout:
 
@@ -360,7 +367,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	USE_TOOL(AlterElevation);
 
 	// Set up a timer to make sure tool-updates happen frequently (in addition
-	// to the idle handler (which makes then happen more frequently if there's nothing
+	// to the idle handler (which makes them happen more frequently if there's nothing
 	// else to do))
 	m_Timer.SetOwner(this);
 	m_Timer.Start(20);

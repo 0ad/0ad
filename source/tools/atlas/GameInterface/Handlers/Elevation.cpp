@@ -54,10 +54,14 @@ BEGIN_COMMAND(AlterElevation)
 		g_CurrentBrush.GetBottomRight(x0, y0);
 		for (int dy = 0; dy < g_CurrentBrush.m_H; ++dy)
 			for (int dx = 0; dx < g_CurrentBrush.m_W; ++dx)
-				if (g_CurrentBrush.Get(dx, dy)) // TODO: variable raise amount?
-					terrain->RaiseVertex(x0+dx, y0+dy, amount);
+			{
+				// TODO: proper variable raise amount (store floats in terrain delta array?)
+				float b = g_CurrentBrush.Get(dx, dy);
+				if (b)
+					terrain->RaiseVertex(x0+dx, y0+dy, amount*b);
+			}
 
-		terrain->MakeDirty(x0, y0, x0+g_CurrentBrush.m_W-1, y0+g_CurrentBrush.m_H-1);
+		terrain->MakeDirty(x0, y0, x0+g_CurrentBrush.m_W, y0+g_CurrentBrush.m_H);
 	}
 
 	void Undo()

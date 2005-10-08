@@ -23,6 +23,7 @@
 #include "wx/regex.h"
 #include "wx/image.h"
 #include "wx/splitter.h"
+#include "wx/spinctrl.h"
 
 #include <vector>
 #include <string>

@@ -358,6 +358,16 @@
 							RelativePath=".\ScenarioEditor\Sections\Common\Sidebar.h">
 						</File>
 					</Filter>
+					<Filter
+						Name="Terrain"
+						Filter="">
+						<File
+							RelativePath=".\ScenarioEditor\Sections\Terrain\Terrain.cpp">
+						</File>
+						<File
+							RelativePath=".\ScenarioEditor\Sections\Terrain\Terrain.h">
+						</File>
+					</Filter>
 				</Filter>
 				<Filter
 					Name="Tools"
@@ -368,6 +378,12 @@
 					<Filter
 						Name="Common"
 						Filter="">
+						<File
+							RelativePath=".\ScenarioEditor\Tools\Common\Brushes.cpp">
+						</File>
+						<File
+							RelativePath=".\ScenarioEditor\Tools\Common\Brushes.h">
+						</File>
 						<File
 							RelativePath=".\ScenarioEditor\Tools\Common\Tools.cpp">
 						</File>

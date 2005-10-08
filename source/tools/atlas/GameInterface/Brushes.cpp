@@ -5,6 +5,7 @@
 #include "ps/Game.h"
 #include "graphics/Terrain.h"
 #include "lib/ogl.h"
+#include "maths/MathUtil.h"
 
 using namespace AtlasMessage;
 
@@ -22,6 +23,8 @@ void Brush::SetData(int w, int h, const float* data)
 {
 	m_W = w;
 	m_H = h;
+
+	delete[] m_Data;
 	m_Data = data;
 }
 
@@ -52,7 +55,6 @@ void Brush::Render()
 	glDisable(GL_DEPTH_TEST);
 
 	glBegin(GL_POINTS);
-	glColor3f(0.f, 1.f, 0.f);
 
 	int x0, y0;
 	GetBottomRight(x0, y0);
@@ -63,6 +65,8 @@ void Brush::Render()
 	{
 		for (int dx = 0; dx < m_W; ++dx)
 		{
+			glColor3f(0.f, clamp(m_Data[dx + dy*m_W], 0.f, 1.f), 0.f);
+
 			CVector3D pos;
 			terrain->CalcPosition(x0+dx, y0+dy, pos);
 			glVertex3f(pos.X, pos.Y, pos.Z);

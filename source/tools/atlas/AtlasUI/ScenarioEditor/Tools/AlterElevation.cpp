@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 #include "Common/Tools.h"
-
+#include "Common/Brushes.h"
 #include "GameInterface/Messages.h"
 
 using AtlasMessage::Position;
@@ -22,10 +22,7 @@ public:
 
 	void OnEnable(AlterElevation*)
 	{
-		int w = 2, h = 3;
-		float* data = new float[w*h];
-		for (int i = 0; i < w*h; ++i) data[i] = 1.f;
-		POST_COMMAND(SetBrush(w, h, data));
+		g_Brush_Elevation.MakeActive();
 	}
 
 	void OnDisable(AlterElevation*)
