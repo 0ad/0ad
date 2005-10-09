@@ -16,6 +16,7 @@
 #include "CConsole.h"
 #include "Unit.h"
 #include "Model.h"
+#include "LOSManager.h"
 #include "Loader.h"
 #include "LoaderThunks.h"
 
@@ -43,6 +44,9 @@ int CSimulation::Initialize(CGameAttributes* UNUSED(pAttribs))
 	m_pTurnManager->Initialize(m_pGame->GetNumPlayers());
 
 	g_EntityManager.InitializeAll();
+
+	m_pWorld->GetLOSManager()->Initialize();
+
 	return 0;
 }
 
@@ -116,6 +120,10 @@ void CSimulation::Simulate()
 	PROFILE_START( "projectile updates" );
 	g_ProjectileManager.UpdateAll( m_pTurnManager->GetTurnLength() );
 	PROFILE_END( "projectile updates" );
+
+	PROFILE_START( "los update" );
+	m_pWorld->GetLOSManager()->Update();
+	PROFILE_END( "los update" );
 
 	PROFILE_START( "turn manager update" );
 	m_pTurnManager->NewTurn();

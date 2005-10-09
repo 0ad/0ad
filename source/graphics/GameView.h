@@ -52,12 +52,8 @@ class CGameView: public CJSObject<CGameView>
 	float m_ZoomDelta;
 	
 	// RenderTerrain: iterate through all terrain patches and submit all patches
-	// in viewing frustum to the renderer, for terrain painting
+	// in viewing frustum to the renderer, for terrain, water and LOS painting
 	void RenderTerrain(CTerrain *pTerrain);
-	
-	// RenderWater: iterate through all terrain patches and submit all patches
-	// in viewing frustum to the renderer, for water painting
-	void RenderWater(CTerrain *pTerrain);
 
 	// RenderModels: iterate through model list and submit all models in viewing
 	// frustum to the Renderer

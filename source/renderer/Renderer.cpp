@@ -31,6 +31,10 @@
 #include "CLogger.h"
 #include "ps/Game.h"
 #include "Profile.h"
+#include "Game.h"
+#include "World.h"
+#include "Player.h"
+#include "LOSManager.h"
 
 #include "Model.h"
 #include "ModelDef.h"
@@ -814,6 +818,8 @@ void CRenderer::ApplyShadowMap()
 
 void CRenderer::RenderPatches()
 {
+	//return;	//TODO: remove this, lol
+
 	PROFILE(" render patches ");
 
 	// switch on wireframe if we need it
@@ -918,24 +924,22 @@ void CRenderer::RenderWater()
 
 	glBegin(GL_QUADS);
 
-	for(size_t i=0; i<m_WaterPatches.size(); i++) 
+	for(size_t i=0; i<m_VisiblePatches.size(); i++) 
 	{
-		CPatch* patch = m_WaterPatches[i];
+		CPatch* patch = m_VisiblePatches[i];
 
 		for(int dx=0; dx<PATCH_SIZE; dx++) 
 		{
 			for(int dz=0; dz<PATCH_SIZE; dz++) 
 			{
-				int x = (patch->m_X*PATCH_SIZE + dx) * CELL_SIZE;
-				int z = (patch->m_Z*PATCH_SIZE + dz) * CELL_SIZE;
+				int x = (patch->m_X*PATCH_SIZE + dx);
+				int z = (patch->m_Z*PATCH_SIZE + dz);
 
 				// is any corner of the tile below the water height? if not, no point rendering it
 				bool shouldRender = false;
 				for(int j=0; j<4; j++) 
 				{
-					float vertX = x + DX[j]*CELL_SIZE;
-					float vertZ = z + DZ[j]*CELL_SIZE;
-					float terrainHeight = terrain->getExactGroundLevel(vertX, vertZ);
+					float terrainHeight = terrain->getVertexGroundLevel(x + DX[j], z + DZ[j]);
 					if(terrainHeight < m_WaterHeight) 
 					{
 						shouldRender = true;
@@ -949,9 +953,9 @@ void CRenderer::RenderWater()
 
 				for(int j=0; j<4; j++) 
 				{
-					float vertX = x + DX[j]*CELL_SIZE;
-					float vertZ = z + DZ[j]*CELL_SIZE;
-					float terrainHeight = terrain->getExactGroundLevel(vertX, vertZ);
+					float vertX = (x + DX[j]) * CELL_SIZE;
+					float vertZ = (z + DZ[j]) * CELL_SIZE;
+					float terrainHeight = terrain->getVertexGroundLevel(x + DX[j], z + DZ[j]);
 					float alpha = clamp((m_WaterHeight - terrainHeight) / m_WaterFullDepth + m_WaterAlphaOffset,
 										-100.0f, m_WaterMaxAlpha);
 					glColor4f(m_WaterColor.r, m_WaterColor.g, m_WaterColor.b, alpha);	
@@ -964,40 +968,6 @@ void CRenderer::RenderWater()
 	
 	glEnd();
 
-	/*
-	//Don't add of we don't need to
-	if (m_WaterScroll == true)
-	{
-		m_SWaterScrollCounter+=get_time();
-		m_TWaterScrollCounter+=get_time();
-	
-		if(m_SWaterScrollCounter >=.02)
-		{	
-			m_SWaterScrollCounter=0;
-			m_SWaterTrans+=m_SWaterSpeed;
-		}
-		
-		if(m_TWaterScrollCounter >=.02)
-		{	
-			m_TWaterScrollCounter=0;
-			m_TWaterTrans+=m_TWaterSpeed;
-		}
-	}
-
-	//--------Reset counters--------
-	//will someone play this long though?
-	
-	if(m_SWaterTrans >= 4)	
-	{
-		m_SWaterTrans=0;
-	}
-	
-	if(m_TWaterTrans >= 4)
-	{
-		m_TWaterTrans=0;
-	}*/
-
-	
 	glLoadIdentity();
 	glMatrixMode(GL_MODELVIEW);
 
@@ -1006,6 +976,76 @@ void CRenderer::RenderWater()
 	glDisable(GL_TEXTURE_2D);
 }
 
+void CRenderer::RenderLOS()
+{
+	PROFILE(" render los ");
+
+	const int DX[] = {1,1,0,0};
+	const int DZ[] = {0,1,1,0};
+
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
+
+	int mapSize = terrain->GetVerticesPerSide();
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+	glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE);
+
+	glBegin(GL_TRIANGLES);
+
+	for(size_t i=0; i<m_VisiblePatches.size(); i++) 
+	{
+		CPatch* patch = m_VisiblePatches[i];
+
+		for(int dx=0; dx<PATCH_SIZE; dx++) 
+		{
+			for(int dz=0; dz<PATCH_SIZE; dz++) 
+			{
+				int x = patch->m_X*PATCH_SIZE + dx;
+				int z = patch->m_Z*PATCH_SIZE + dz;
+
+				// UGLY: This assumes that quads are always split up into triangles in this particular order;
+				// this happens to be true on Matei's GeforceFX 5200, but it's undefined by OpenGL; using
+				// GL_QUADS *didn't* work even though the terrain renderer uses GL_QUADS so there's something
+				// wierd going on.
+				const int INDICES[6] = {0,1,3, 1,2,3};
+
+				for(int j=0; j<6; j++) 
+				{
+					int vx = x + DX[INDICES[j]];
+					int vz = z + DZ[INDICES[j]];
+
+					float terrainHeight = terrain->getVertexGroundLevel(vx, vz);
+
+					float alpha = 0.0f;
+
+					for(int k=0; k<4; k++)
+					{
+						int tx = vx - DX[k];
+						int tz = vz - DZ[k];
+
+						if(tx >= 0 && tz >= 0 && tx <= mapSize-2 && tz <= mapSize-2)
+						{
+							ELOSStatus s = losMgr->GetStatus(tx, tz, g_Game->GetLocalPlayer());
+							if(s==LOS_EXPLORED && alpha < 0.3f) 
+								alpha = 0.25f;
+							else if(s==LOS_UNEXPLORED && alpha < 1.0f)
+								alpha = 1.0f;
+						}
+					}
+
+					glColor4f(0, 0, 0, alpha);	
+					glVertex3f(vx*CELL_SIZE, terrainHeight, vz*CELL_SIZE);
+				}
+			}	//end of x loop
+		}	//end of z loop
+	}
+
+	glEnd();
+}
 
 void CRenderer::RenderModelSubmissions()
 {
@@ -1148,13 +1188,18 @@ void CRenderer::FlushFrame()
 	RenderWater();
 	oglCheck();
 
+	// render darkness/fog due to LOS, above the actual terrain
+	MICROLOG(L"render los");
+	RenderLOS();
+	oglCheck();
+
 	// empty lists
 	MICROLOG(L"empty lists");
 	g_TransparencyRenderer.Clear();
 	g_PlayerRenderer.Clear();
 	CPatchRData::ClearSubmissions();
 	CModelRData::ClearSubmissions();
-	m_WaterPatches.clear();
+	m_VisiblePatches.clear();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1203,11 +1248,7 @@ void CRenderer::SetViewport(const SViewPort &vp)
 void CRenderer::Submit(CPatch* patch)
 {
 	CPatchRData::Submit(patch);
-}
-
-void CRenderer::SubmitWater(CPatch* patch)
-{
-	m_WaterPatches.push_back(patch);
+	m_VisiblePatches.push_back(patch);
 }
 
 void CRenderer::Submit(CModel* model)

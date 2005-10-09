@@ -19,6 +19,7 @@
 #include "UnitManager.h"
 #include "EntityManager.h"
 #include "Projectile.h"
+#include "LOSManager.h"
 
 #define LOG_CATEGORY "world"
 
@@ -32,7 +33,8 @@ CWorld::CWorld(CGame *pGame):
 	m_Terrain(),
 	m_UnitManager(g_UnitMan),
 	m_EntityManager(*(new CEntityManager())),
-	m_ProjectileManager(*(new CProjectileManager()))
+	m_ProjectileManager(*(new CProjectileManager())),
+	m_LOSManager(*(new CLOSManager()))
 {}
 
 void CWorld::Initialize(CGameAttributes *pAttribs)

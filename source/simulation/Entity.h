@@ -92,6 +92,10 @@ public:
 	// Y anchor
 	CStrW m_anchorType;
 
+	// LOS
+	int m_los;
+	bool m_permanent;
+
 	//-- Interpolated property
 	CVector3D m_position;
 	CVector3D m_position_previous;

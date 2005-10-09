@@ -38,6 +38,7 @@ public:
 	{
 		return( ( v.x >= 0.0f ) && ( v.x <= (float)( m_MapSize * CELL_SIZE ) ) && ( v.y >= 0.0f ) && ( v.y <= (float)( m_MapSize * CELL_SIZE ) ) );
 	}
+	float getVertexGroundLevel( int x, int y ) const ;
 	float getExactGroundLevel( float x, float y ) const ;
 	inline float getExactGroundLevel( const CVector2D& v ) const { return( getExactGroundLevel( v.x, v.y ) ); }
 

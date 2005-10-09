@@ -4,6 +4,7 @@
 #include "EntityManager.h"
 #include "BaseEntityCollection.h"
 #include "ConfigDB.h"
+#include "Profile.h"
 
 int SELECTION_CIRCLE_POINTS;
 int SELECTION_BOX_POINTS;
@@ -135,16 +136,23 @@ void CEntityManager::TickAll()
 
 void CEntityManager::updateAll( size_t timestep )
 {
+	PROFILE_START( "reaper" );
 	std::vector<CEntity*>::iterator it;
 	for( it = m_reaper.begin(); it < m_reaper.end(); it++ )
 		delete( *it );
 	m_reaper.clear();
+	PROFILE_END( "reaper" );
 
+	PROFILE_START( "tick all" );
 	TickAll();
+	PROFILE_END( "tick all" );
 
+	
+	PROFILE_START( "update all" );
 	for( int i = 0; i < MAX_HANDLES; i++ )
 		if( m_entities[i].m_refcount && !m_entities[i].m_entity->m_destroyed )
 			m_entities[i].m_entity->update( timestep );
+	PROFILE_END( "update all" );
 }
 
 void CEntityManager::interpolateAll( float relativeoffset )

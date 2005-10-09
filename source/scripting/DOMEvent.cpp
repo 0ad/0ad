@@ -13,10 +13,14 @@ IEventTarget::~IEventTarget()
 
 bool IEventTarget::_DispatchEvent( CScriptEvent* evt, IEventTarget* target )
 {	
+	PROFILE_START( "_DispatchEvent" );
+
 	// TODO: Deal correctly with multiple handlers
 
 	if( before && before->_DispatchEvent( evt, target ) )
+	{
 		return( true ); // Stop propagation.
+	}
 
 	evt->m_CurrentTarget = this;
 	
@@ -25,7 +29,9 @@ bool IEventTarget::_DispatchEvent( CScriptEvent* evt, IEventTarget* target )
 	{
 		DOMEventHandler id = *it;
 		if( id && id->DispatchEvent( GetScriptExecContext( target ), evt ) )
+		{
 			return( true );
+		}
 	}
 
 	HandlerRange range = m_Handlers_name.equal_range( evt->m_Type );
@@ -34,20 +40,29 @@ bool IEventTarget::_DispatchEvent( CScriptEvent* evt, IEventTarget* target )
 	{
 		DOMEventHandler id = itm->second;
 		if( id && id->DispatchEvent( GetScriptExecContext( target ), evt ) )
+		{
 			return( true );
+		}
 	}
 	
 	if( after && after->_DispatchEvent( evt, target ) )
+	{
 		return( true ); // Stop propagation.
+	}
 
 	return( false );
+
+	PROFILE_END( "_DispatchEvent" );
 }
 
 // Dispatch an event to its handler.
 // returns: whether the event arrived (i.e. wasn't cancelled) [bool]
 bool IEventTarget::DispatchEvent( CScriptEvent* evt )
 {
-	const char* data = g_Profiler.InternString( "script: " + (CStr8)evt->m_Type );
+	char* data;
+	PROFILE_START( "intern string" );
+	data = (char*) g_Profiler.InternString( "script: " + (CStr8)evt->m_Type );
+	PROFILE_END( "intern string" );
 	g_Profiler.StartScript( data );
 	evt->m_Target = this;
 	_DispatchEvent( evt, this );

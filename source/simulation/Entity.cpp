@@ -60,6 +60,8 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	AddProperty( L"traits.minimap.green", &m_minimapG );
 	AddProperty( L"traits.minimap.blue", &m_minimapB );
 	AddProperty( L"traits.anchor.type", &m_anchorType );
+	AddProperty( L"traits.vision.los", &m_los );
+	AddProperty( L"traits.vision.permanent", &m_permanent );
 
 	for( int t = 0; t < EVENT_LAST; t++ )
 	{
@@ -799,9 +801,10 @@ void CEntity::renderHealthBar()
 	CCamera &g_Camera=*g_Game->GetView()->GetCamera();
 
 	float sx, sy;
-	CVector3D pos = m_graphics_position;
-	CVector3D above = pos;
-	above.Y += m_healthBarHeight;
+	CVector3D above;
+	above.X = m_position.X;
+	above.Z = m_position.Z;
+	above.Y = getAnchorLevel(m_position.X, m_position.Z) + m_healthBarHeight;
 	g_Camera.GetScreenCoordinates(above, sx, sy);
 	float fraction = clamp(m_healthCurr / m_healthMax, 0.0f, 1.0f);
 

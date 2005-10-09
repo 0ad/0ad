@@ -11,9 +11,11 @@
 #include "graphics/Unit.h"
 #include "UnitManager.h"
 #include "Entity.h"
-
 #include "Bound.h"
 #include "Model.h"
+#include "Terrain.h"
+#include "Profile.h"
+#include "LOSManager.h"
 
 
 
@@ -22,11 +24,11 @@ extern int g_mouse_x, g_mouse_y;
 extern float g_MaxZoomHeight, g_YMinOffset;
 bool HasClicked=false;
 
-static unsigned int ScaleColor(unsigned int color,float x)
+static unsigned int ScaleColor(unsigned int color, float x)
 {
-	unsigned int r=uint(float(color & 0xff)*x);
-	unsigned int g=uint(float((color>>8) & 0xff)*x);
-	unsigned int b=uint(float((color>>16) & 0xff)*x);
+	unsigned int r = uint(float(color & 0xff) * x);
+	unsigned int g = uint(float((color>>8) & 0xff) * x);
+	unsigned int b = uint(float((color>>16) & 0xff) * x);
 	return (0xff000000 | r | g<<8 | b<<16);
 }
 
@@ -63,6 +65,8 @@ void CMiniMap::Draw()
 		if(!m_Handle)
 			GenerateMiniMapTexture();
 
+		Rebuild();
+
 		g_Renderer.BindTexture(0, m_Handle);
 		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -93,6 +97,8 @@ void CMiniMap::Draw()
 		CUnit *unit = NULL;
 		CVector2D pos;
 
+		CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
+
 		glDisable(GL_DEPTH_TEST);
 		glEnable(GL_POINT_SMOOTH);
 		glDisable(GL_TEXTURE_2D);
@@ -102,13 +108,13 @@ void CMiniMap::Draw()
 		for(; iter != units.end(); ++iter)
 		{
 			unit = (CUnit *)(*iter);
-			if(unit && unit->GetEntity())
+			if(unit && unit->GetEntity() && losMgr->GetUnitStatus(unit, g_Game->GetLocalPlayer()) != UNIT_HIDDEN)
 			{
 				CEntity* entity = unit->GetEntity();
 				CStrW& type = entity->m_minimapType;
 
 				if(type==L"Unit" || type==L"Structure" || type==L"Hero") {
-					// Set the player colour
+					// Use the player colour
 					const SPlayerColour& colour = unit->GetEntity()->GetPlayer()->GetColour();
 					glColor3f(colour.r, colour.g, colour.b);
 				}
@@ -278,6 +284,11 @@ void CMiniMap::GenerateMiniMapTexture()
 
 void CMiniMap::Rebuild()
 {
+	PROFILE_START("rebuild minimap");
+
+	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
+	CPlayer* player = g_Game->GetLocalPlayer();
+
 	u32 mapSize = m_Terrain->GetVerticesPerSide();
 	u32 x = 0;
 	u32 y = 0;
@@ -289,23 +300,55 @@ void CMiniMap::Rebuild()
 		u32 *dataPtr = m_Data + ((y + j) * (mapSize - 1)) + x;
 		for(u32 i = 0; i < w; i++)
 		{
-			int hmap = ((int)m_Terrain->GetHeightMap()[(y + j) * mapSize + x + i]) >> 8;
-			int val = (hmap / 3) + 170;
-			CMiniPatch *mp = m_Terrain->GetTile(x + i, y + j);
-			u32 color = 0;
-			if(mp)
+			ELOSStatus status = losMgr->GetStatus((int) i, (int) j, player);
+			if(status == LOS_UNEXPLORED)
 			{
-				CTextureEntry *tex = mp->Tex1 ? g_TexMan.FindTexture(mp->Tex1) : 0;
-				color = tex ? tex->GetBaseColor() : 0xffffffff;
+				*dataPtr++ = 0xff000000;
 			}
 			else
-				color = 0xffffffff;
+			{
+				u32 color = 0;
 
-			*dataPtr++ = ScaleColor(color, ((float)val) / 255.0f);
+				float avgHeight = ( m_Terrain->getVertexGroundLevel((int)i, (int)j)
+					  + m_Terrain->getVertexGroundLevel((int)i+1, (int)j)
+					  + m_Terrain->getVertexGroundLevel((int)i, (int)j+1)
+					  + m_Terrain->getVertexGroundLevel((int)i+1, (int)j+1)
+					) / 4.0f;
+
+				if(avgHeight < g_Renderer.m_WaterHeight)
+				{
+					color = 0xff304080;
+				}
+				else
+				{
+					int hmap = ((int)m_Terrain->GetHeightMap()[(y + j) * mapSize + x + i]) >> 8;
+					int val = (hmap / 3) + 170;
+
+					CMiniPatch *mp = m_Terrain->GetTile(x + i, y + j);
+					if(mp)
+					{
+						CTextureEntry *tex = mp->Tex1 ? g_TexMan.FindTexture(mp->Tex1) : 0;
+						color = tex ? tex->GetBaseColor() : 0xffffffff;
+					}
+					else
+					{
+						color = 0xffffffff;
+					}
+
+					color = ScaleColor(color, float(val) / 255.0f);
+				}
+
+				float losFactor = (status==LOS_VISIBLE ? 1.0f : 0.7f);
+
+				*dataPtr++ = ScaleColor(color, losFactor);
+			}
+
 		}
 	}
 
 	UploadTexture();
+
+	PROFILE_END("rebuild minimap");
 }
 
 void CMiniMap::UploadTexture()

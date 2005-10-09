@@ -76,7 +76,7 @@ struct SVertex2D
 class CRenderer : public Singleton<CRenderer>
 {
 private:
-	std::vector<CPatch*> m_WaterPatches;
+	std::vector<CPatch*> m_VisiblePatches;
 
 public:
 	Handle m_WaterTexture[60];
@@ -198,7 +198,6 @@ public:
 	// submission of objects for rendering; the passed matrix indicating the transform must be scoped such that it is valid beyond
 	// the call to frame end, as must the object itself
 	void Submit(CPatch* patch);
-	void SubmitWater(CPatch* patch);
 	void Submit(CModel* model);
 	void Submit(CSprite* sprite);
 	void Submit(CParticleSys* psys);
@@ -266,7 +265,8 @@ protected:
 	// patch rendering stuff
 	void RenderPatchSubmissions();
 	void RenderPatches();
-	void RenderWater();
+	void RenderWater();		// should this and RenderLOS be moved into the terrain renderer?
+	void RenderLOS();
 
 	// model rendering stuff
 	void RenderModelSubmissions();

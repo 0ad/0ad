@@ -70,6 +70,10 @@ public:
 	// Y anchor
 	CStrW m_anchorType;
 
+	// LOS
+	int m_los;
+	bool m_permanent;
+
 	float m_speed;
 	SEntityAction m_melee;
 	SEntityAction m_gather;

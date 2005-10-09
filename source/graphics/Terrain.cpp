@@ -164,6 +164,29 @@ CMiniPatch* CTerrain::GetTile(i32 x, i32 z)
 	return &patch->m_MiniPatches[z%PATCH_SIZE][x%PATCH_SIZE];
 }
 
+float CTerrain::getVertexGroundLevel(int x, int z) const
+{	
+	if (x < 0)
+	{
+		x = 0;
+	}
+	else if (x >= (int) m_MapSize)
+	{
+		x = m_MapSize - 1;
+	}
+
+	if (z < 0)
+	{
+		z = 0;
+	}
+	else if (z >= (int) m_MapSize)
+	{
+		z = m_MapSize - 1;
+	}
+
+	return HEIGHT_SCALE * m_Heightmap[z*m_MapSize + x];
+}
+
 float CTerrain::getExactGroundLevel(float x, float y) const
 {
 	x /= (float)CELL_SIZE;

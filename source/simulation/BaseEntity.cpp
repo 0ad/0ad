@@ -34,6 +34,8 @@ CBaseEntity::CBaseEntity()
 	AddProperty( L"traits.minimap.green", &m_minimapG );
 	AddProperty( L"traits.minimap.blue", &m_minimapB );
 	AddProperty( L"traits.anchor.type", &m_anchorType );
+	AddProperty( L"traits.vision.los", &m_los );
+	AddProperty( L"traits.vision.permanent", &m_permanent );
 
 	for( int t = 0; t < EVENT_LAST; t++ )
 	{

@@ -21,8 +21,8 @@
 #include "GameEvents.h"
 #include "Interact.h"
 #include "Renderer.h"
-
 #include "Game.h"
+#include "LOSManager.h"
 #include "Network/Server.h"
 #include "Network/Client.h"
 #include "gui/CGUI.h"
@@ -864,6 +864,29 @@ JSBool setWaterAlphaOffset( JSContext* cx, JSObject* UNUSED(globalObject), uint 
 	return( JS_TRUE );
 }
 
+// Reveal map
+JSBool revealMap( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+{
+	REQUIRE_MIN_PARAMS( 0, revealMap );
+	REQUIRE_MAX_PARAMS( 1, revealMap );
+
+	bool newValue;
+	if(argc == 0)
+	{
+		newValue = true;
+	}
+	else if(!ToPrimitive( g_ScriptingHost.GetContext(), argv[0], newValue ))
+	{
+		JS_ReportError( cx, "Invalid boolean argument" );
+		*rval = JSVAL_VOID;
+		return( JS_FALSE );
+	}
+
+	g_Game->GetWorld()->GetLOSManager()->m_MapRevealed = newValue;
+	*rval = JSVAL_VOID;
+	return( JS_TRUE );
+}
+
 //-----------------------------------------------------------------------------
 // function table
 //-----------------------------------------------------------------------------
@@ -938,6 +961,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 	// Debug
 	JS_FUNC(crash, crash, 0)
 	JS_FUNC(forceGC, forceGC, 0)
+	JS_FUNC(revealMap, revealMap, 1)
 
 	// Misc. Engine Interface
 	JS_FUNC(writeLog, WriteLog, 1)

@@ -15,6 +15,7 @@
 #include "CConsole.h"
 #include "ObjectManager.h"
 #include "ObjectEntry.h"
+#include "LOSManager.h"
 
 extern CConsole* g_Console;
 
@@ -78,6 +79,8 @@ void CUnitManager::DeleteAll()
 // unit; return the closest unit, or null if everything missed
 CUnit* CUnitManager::PickUnit(const CVector3D& origin,const CVector3D& dir) const
 {
+	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
+
 	// closest object found so far
 	CUnit* hit = 0;
 	// distance to closest object found so far
@@ -89,7 +92,8 @@ CUnit* CUnitManager::PickUnit(const CVector3D& origin,const CVector3D& dir) cons
 		CUnit* unit=m_Units[i];
 		float tmin,tmax;
 		
-		if (unit->GetModel()->GetBounds().RayIntersect(origin,dir,tmin,tmax))
+		if (unit->GetModel()->GetBounds().RayIntersect(origin,dir,tmin,tmax)
+			&& losMgr->GetUnitStatus(unit, g_Game->GetLocalPlayer()) != UNIT_HIDDEN)
 		{
 			// Point of closest approach
 			CVector3D obj;
