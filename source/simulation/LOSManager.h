@@ -5,7 +5,12 @@
 // Maintains and updates line of sight data (including Shroud of Darkness
 // and Fog of War).
 //
-// Usage: Doesn't do anything useful right now.
+// Usage: 
+//    - Initialize() is called when the game is started to allocate the visibility arrays
+//    - Update() is called each frame by CSimulation::Update() to update the visibility arrays
+//    - m_MapRevealed can be set to true to reveal the entire map (remove both LOS and FOW)
+//    - GetStatus can be used to obtain the LOS status of a tile or a world-space point
+//    - GetUnitStatus returns the LOS status of an entity or actor
 
 
 #ifndef LOS_MANAGER_INCLUDED

@@ -87,7 +87,6 @@ private:
 		Handle m_Handle;
 		int m_Priority;
 	};
-
 	
 	// build this renderdata object
 	void Build();
@@ -98,26 +97,46 @@ private:
 
 	// owner patch
 	CPatch* m_Patch;
+
 	// vertex buffer handle for base vertices
 	CVertexBuffer::VBChunk* m_VBBase;
+
 	// vertex buffer handle for blend vertices
 	CVertexBuffer::VBChunk* m_VBBlends;
+
 	// patch render vertices
 	SBaseVertex* m_Vertices;
+
+	// precomputed lighting colors at each vertex; these are the multiplied by a LOS modifier
+	// (black for shroud of darkness, half-darkened for fog of war), to compute the colors in
+	// m_Vertices, which are passed to the graphics card
+	RGBColor* m_LightingColors;
+
 	// indices into base vertices for the base splats
 	std::vector<unsigned short> m_Indices;
+
 	// indices into base vertices for the shadow map pass
 	std::vector<unsigned short> m_ShadowMapIndices;
+
 	// list of base splats to apply to this patch
 	std::vector<SSplat> m_Splats;
+
 	// vertices to use for blending transition texture passes
 	std::vector<SBlendVertex> m_BlendVertices;
+
+	// remembers the index in the m_Vertices array of each blend vertex, so that we can
+	// properly update its color for fog of war and shroud of darkness
+	std::vector<uint> m_BlendVertexIndices;
+
 	// indices into blend vertices for the blend splats
 	std::vector<unsigned short> m_BlendIndices;
+
 	// splats used in blend pass
 	std::vector<SSplat> m_BlendSplats;
+
 	// index of the next blend splat to render 
 	u32 m_NextBlendSplat;
+
 	// list of all submitted patches
 	static std::vector<CPatch*> m_Patches;
 };

@@ -47,7 +47,7 @@ static SColor4ub ConvertColor(const RGBColor& src)
 
 ///////////////////////////////////////////////////////////////////
 // CPatchRData constructor
-CPatchRData::CPatchRData(CPatch* patch) : m_Patch(patch), m_VBBase(0), m_VBBlends(0), m_Vertices(0)
+CPatchRData::CPatchRData(CPatch* patch) : m_Patch(patch), m_VBBase(0), m_VBBlends(0), m_Vertices(0), m_LightingColors(0)
 {
 	debug_assert(patch);
 	Build();
@@ -59,6 +59,7 @@ CPatchRData::~CPatchRData()
 {
 	// delete copy of vertex data
 	delete[] m_Vertices;
+	delete[] m_LightingColors;
 	// release vertex buffer chunks
 	if (m_VBBase) g_VBMan.Release(m_VBBase);
 	if (m_VBBlends) g_VBMan.Release(m_VBBlends);
@@ -213,6 +214,7 @@ void CPatchRData::BuildBlends()
 						dst.m_Color=vtx0.m_Color;
 						dst.m_Position=vtx0.m_Position;
 						m_BlendVertices.push_back(dst);
+						m_BlendVertexIndices.push_back((j*vsize)+i);
 
 						const SBaseVertex& vtx1=m_Vertices[(j*vsize)+i+1];
 						dst.m_UVs[0]=(i+1)*0.125f;
@@ -222,6 +224,7 @@ void CPatchRData::BuildBlends()
 						dst.m_Color=vtx1.m_Color;
 						dst.m_Position=vtx1.m_Position;
 						m_BlendVertices.push_back(dst);
+						m_BlendVertexIndices.push_back((j*vsize)+i+1);
 
 						const SBaseVertex& vtx2=m_Vertices[((j+1)*vsize)+i+1];
 						dst.m_UVs[0]=(i+1)*0.125f;
@@ -231,6 +234,7 @@ void CPatchRData::BuildBlends()
 						dst.m_Color=vtx2.m_Color;
 						dst.m_Position=vtx2.m_Position;
 						m_BlendVertices.push_back(dst);
+						m_BlendVertexIndices.push_back(((j+1)*vsize)+i+1);
 
 						const SBaseVertex& vtx3=m_Vertices[((j+1)*vsize)+i];
 						dst.m_UVs[0]=i*0.125f;
@@ -240,6 +244,7 @@ void CPatchRData::BuildBlends()
 						dst.m_Color=vtx3.m_Color;
 						dst.m_Position=vtx3.m_Position;
 						m_BlendVertices.push_back(dst);
+						m_BlendVertexIndices.push_back(((j+1)*vsize)+i);
 
 						// build a splat for this quad
 						STmpSplat splat;
@@ -360,14 +365,17 @@ void CPatchRData::BuildIndices()
 
 void CPatchRData::BuildVertices()
 {
+	// create both vertices and lighting colors
+
 	CVector3D normal;
-	RGBColor c;
+	SColor4ub black = ConvertColor(RGBColor(0,0,0));
 
 	// number of vertices in each direction in each patch
 	int vsize=PATCH_SIZE+1;
 	
 	if (!m_Vertices) {
 		m_Vertices=new SBaseVertex[vsize*vsize];
+		m_LightingColors=new RGBColor[vsize*vsize];
 	}
 	SBaseVertex* vertices=m_Vertices;
 	
@@ -377,9 +385,6 @@ void CPatchRData::BuildVertices()
 	u32 pz=m_Patch->m_Z;
 	
 	CTerrain* terrain=m_Patch->m_Parent;
-	int mapSize=terrain->GetVerticesPerSide();
-
-	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
 
 	// build vertices
 	for (int j=0;j<vsize;j++) {
@@ -388,37 +393,20 @@ void CPatchRData::BuildVertices()
 			int iz=pz*PATCH_SIZE+j;
 			int v=(j*vsize)+i;
 
-			terrain->CalcPosition(ix,iz,vertices[v].m_Position);			
-			terrain->CalcNormal(ix,iz,normal);
-
-			const int DX[] = {1,1,0,0};
-			const int DZ[] = {0,1,1,0};
-			float losMod = 1.0f;
-			for(int k=0; k<4; k++)
-			{
-				int tx = ix - DX[k];
-				int tz = iz - DZ[k];
-
-				if(tx >= 0 && tz >= 0 && tx <= mapSize-2 && tz <= mapSize-2)
-				{
-					ELOSStatus s = losMgr->GetStatus(tx, tz, g_Game->GetLocalPlayer());
-					if(s==LOS_EXPLORED && losMod > 0.7f) 
-						losMod = 0.7f;
-					else if(s==LOS_UNEXPLORED && losMod > 0.0f)
-						losMod = 0.0f;
-				}
-			}
-			RGBColor losModColor(losMod, losMod, losMod);
-
-			g_Renderer.m_SHCoeffsTerrain.Evaluate(normal, c, losModColor);
-
-			vertices[v].m_Color=ConvertColor(c);
-
+			// calculate vertex data
+			terrain->CalcPosition(ix,iz,vertices[v].m_Position);		
+			vertices[v].m_Color=black;		// will be set to the proper value in Update()
 			vertices[v].m_UVs[0]=i*0.125f;
 			vertices[v].m_UVs[1]=j*0.125f;
+				
+			// calculate lighting into the separate m_LightingColors array, which will
+			// be used to set the vertex colors in Update()
+			terrain->CalcNormal(ix,iz,normal);
+			g_Renderer.m_SHCoeffsTerrain.Evaluate(normal, m_LightingColors[v]);
 		}
 	}
 	
+	// upload to vertex buffer
 	if (!m_VBBase) {
 		m_VBBase=g_VBMan.Allocate(sizeof(SBaseVertex),vsize*vsize,false);
 	} 
@@ -438,16 +426,69 @@ void CPatchRData::Update()
 		// TODO,RC 11/04/04 - need to only rebuild necessary bits of renderdata rather
 		// than everything; it's complicated slightly because the blends are dependent
 		// on both vertex and index data
-		//BuildVertices();
+		BuildVertices();
 		BuildIndices();
-		///BuildBlends();
+		BuildBlends();
 
 		m_UpdateFlags=0;
 	}
 
-	// Always build vertices (due to LOS)
-	BuildVertices();
-	BuildBlends();
+	// Update vertex colors, which are affected by LOS
+	
+	u32 px=m_Patch->m_X;
+	u32 pz=m_Patch->m_Z;
+
+	CTerrain* terrain=m_Patch->m_Parent;
+	int mapSize=terrain->GetVerticesPerSide();
+	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
+	int vsize=PATCH_SIZE+1;
+
+	// this is very similar to BuildVertices(), but just for color
+	for (int j=0;j<vsize;j++) {
+		for (int i=0;i<vsize;i++) {
+			int ix=px*PATCH_SIZE+i;
+			int iz=pz*PATCH_SIZE+j;
+			int v=(j*vsize)+i;
+
+			const int DX[] = {1,1,0,0};
+			const int DZ[] = {0,1,1,0};
+			float losMod = 1.0f;
+			for(int k=0; k<4; k++)
+			{
+				int tx = ix - DX[k];
+				int tz = iz - DZ[k];
+
+				if(tx >= 0 && tz >= 0 && tx <= mapSize-2 && tz <= mapSize-2)
+				{
+					ELOSStatus s = losMgr->GetStatus(tx, tz, g_Game->GetLocalPlayer());
+					if(s==LOS_EXPLORED && losMod > 0.7f) 
+						losMod = 0.7f;
+					else if(s==LOS_UNEXPLORED && losMod > 0.0f)
+						losMod = 0.0f;
+				}
+			}
+
+			RGBColor c = m_LightingColors[v];
+			c *= losMod;
+
+			m_Vertices[v].m_Color=ConvertColor(c);
+		}
+	}
+
+	// upload base vertices into their vertex buffer
+	m_VBBase->m_Owner->UpdateChunkVertices(m_VBBase,m_Vertices);
+
+	// update blend colors by copying them from vertex colors
+	for(uint i=0; i<m_BlendVertices.size(); i++) 
+	{
+		m_BlendVertices[i].m_Color = m_Vertices[m_BlendVertexIndices[i]].m_Color;
+	}
+	
+	// upload blend vertices into their vertex buffer too
+	if(m_BlendVertices.size())
+	{
+		m_VBBlends->m_Owner->UpdateChunkVertices(m_VBBlends,&m_BlendVertices[0]);
+	}
 }
 
 void CPatchRData::RenderBase()

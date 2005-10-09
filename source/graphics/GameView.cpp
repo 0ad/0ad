@@ -172,16 +172,19 @@ void CGameView::RenderModels(CUnitManager *pUnitMan, CProjectileManager *pProjec
 		if (frustum.IsBoxVisible(CVector3D(0,0,0), units[i]->GetModel()->GetBounds())
 			&& status != UNIT_HIDDEN) 
 		{
-			CColor color;
-			if(status == UNIT_VISIBLE)
+			if(units[i] != g_BuildingPlacer.m_actor)
 			{
-				color = CColor(1.0f, 1.0f, 1.0f, 1.0f);
+				CColor color;
+				if(status == UNIT_VISIBLE)
+				{
+					color = CColor(1.0f, 1.0f, 1.0f, 1.0f);
+				}
+				else	// status == UNIT_REMEMBERED
+				{
+					color = CColor(0.7f, 0.7f, 0.7f, 1.0f);
+				}
+				units[i]->GetModel()->SetShadingColor(color);
 			}
-			else	// status == UNIT_REMEMBERED
-			{
-				color = CColor(0.7f, 0.7f, 0.7f, 1.0f);
-			}
-			units[i]->GetModel()->SetShadingColor(color);
 
 			PROFILE( "submit models" );
 			SubmitModelRecursive(units[i]->GetModel());

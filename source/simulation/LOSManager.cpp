@@ -151,9 +151,15 @@ EUnitLOSStatus CLOSManager::GetUnitStatus(CUnit* unit, CPlayer* player)
 	}
 	else if(status == LOS_EXPLORED)
 	{
-		if(unit->GetEntity() != 0 && unit->GetEntity()->m_permanent)
+		if(unit->GetEntity() == 0 || unit->GetEntity()->m_permanent)
 		{
+			// both actors (which are usually for decoration) and units with the 
+			// permanent flag should be remembered
 			return UNIT_REMEMBERED;
+
+			// TODO: the unit status system will have to be replaced with a "ghost actor"
+			// system so that we can't remember units that we haven't seen and so we can 
+			// see permanent units that have died but that we haven't been near lately
 		}
 		else
 		{
