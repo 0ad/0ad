@@ -265,8 +265,7 @@ protected:
 	// patch rendering stuff
 	void RenderPatchSubmissions();
 	void RenderPatches();
-	void RenderWater();		// should this and RenderLOS be moved into the terrain renderer?
-	void RenderLOS();
+	void RenderWater();
 
 	// model rendering stuff
 	void RenderModelSubmissions();

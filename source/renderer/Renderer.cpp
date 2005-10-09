@@ -818,8 +818,6 @@ void CRenderer::ApplyShadowMap()
 
 void CRenderer::RenderPatches()
 {
-	//return;	//TODO: remove this, lol
-
 	PROFILE(" render patches ");
 
 	// switch on wireframe if we need it
@@ -886,6 +884,8 @@ void CRenderer::RenderWater()
 	const int DZ[] = {0,1,1,0};
 
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+	int mapSize = terrain->GetVerticesPerSide();
+	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
@@ -921,7 +921,6 @@ void CRenderer::RenderWater()
 	// Set the proper LOD bias
 	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, m_Options.m_LodBias);
 
-
 	glBegin(GL_QUADS);
 
 	for(size_t i=0; i<m_VisiblePatches.size(); i++) 
@@ -953,12 +952,34 @@ void CRenderer::RenderWater()
 
 				for(int j=0; j<4; j++) 
 				{
-					float vertX = (x + DX[j]) * CELL_SIZE;
-					float vertZ = (z + DZ[j]) * CELL_SIZE;
-					float terrainHeight = terrain->getVertexGroundLevel(x + DX[j], z + DZ[j]);
+					int ix = x + DX[j];
+					int iz = z + DZ[j];
+
+					float vertX = ix * CELL_SIZE;
+					float vertZ = iz * CELL_SIZE;
+
+					float terrainHeight = terrain->getVertexGroundLevel(ix, iz);
+
 					float alpha = clamp((m_WaterHeight - terrainHeight) / m_WaterFullDepth + m_WaterAlphaOffset,
 										-100.0f, m_WaterMaxAlpha);
-					glColor4f(m_WaterColor.r, m_WaterColor.g, m_WaterColor.b, alpha);	
+
+					float losMod = 1.0f;
+					for(int k=0; k<4; k++)
+					{
+						int tx = ix - DX[k];
+						int tz = iz - DZ[k];
+
+						if(tx >= 0 && tz >= 0 && tx <= mapSize-2 && tz <= mapSize-2)
+						{
+							ELOSStatus s = losMgr->GetStatus(tx, tz, g_Game->GetLocalPlayer());
+							if(s==LOS_EXPLORED && losMod > 0.7f) 
+								losMod = 0.7f;
+							else if(s==LOS_UNEXPLORED && losMod > 0.0f)
+								losMod = 0.0f;
+						}
+					}
+
+					glColor4f(m_WaterColor.r*losMod, m_WaterColor.g*losMod, m_WaterColor.b*losMod, alpha);	
 					glMultiTexCoord2fARB(GL_TEXTURE0, vertX/16.0f, vertZ/16.0f);
 					glVertex3f(vertX, m_WaterHeight, vertZ);
 				}
@@ -974,77 +995,6 @@ void CRenderer::RenderWater()
 	glDepthMask(true);
 	glDisable(GL_BLEND);
 	glDisable(GL_TEXTURE_2D);
-}
-
-void CRenderer::RenderLOS()
-{
-	PROFILE(" render los ");
-
-	const int DX[] = {1,1,0,0};
-	const int DZ[] = {0,1,1,0};
-
-	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
-
-	int mapSize = terrain->GetVerticesPerSide();
-
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
-	glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
-	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);
-
-	glBegin(GL_TRIANGLES);
-
-	for(size_t i=0; i<m_VisiblePatches.size(); i++) 
-	{
-		CPatch* patch = m_VisiblePatches[i];
-
-		for(int dx=0; dx<PATCH_SIZE; dx++) 
-		{
-			for(int dz=0; dz<PATCH_SIZE; dz++) 
-			{
-				int x = patch->m_X*PATCH_SIZE + dx;
-				int z = patch->m_Z*PATCH_SIZE + dz;
-
-				// UGLY: This assumes that quads are always split up into triangles in this particular order;
-				// this happens to be true on Matei's GeforceFX 5200, but it's undefined by OpenGL; using
-				// GL_QUADS *didn't* work even though the terrain renderer uses GL_QUADS so there's something
-				// wierd going on.
-				const int INDICES[6] = {0,1,3, 1,2,3};
-
-				for(int j=0; j<6; j++) 
-				{
-					int vx = x + DX[INDICES[j]];
-					int vz = z + DZ[INDICES[j]];
-
-					float terrainHeight = terrain->getVertexGroundLevel(vx, vz);
-
-					float alpha = 0.0f;
-
-					for(int k=0; k<4; k++)
-					{
-						int tx = vx - DX[k];
-						int tz = vz - DZ[k];
-
-						if(tx >= 0 && tz >= 0 && tx <= mapSize-2 && tz <= mapSize-2)
-						{
-							ELOSStatus s = losMgr->GetStatus(tx, tz, g_Game->GetLocalPlayer());
-							if(s==LOS_EXPLORED && alpha < 0.3f) 
-								alpha = 0.25f;
-							else if(s==LOS_UNEXPLORED && alpha < 1.0f)
-								alpha = 1.0f;
-						}
-					}
-
-					glColor4f(0, 0, 0, alpha);	
-					glVertex3f(vx*CELL_SIZE, terrainHeight, vz*CELL_SIZE);
-				}
-			}	//end of x loop
-		}	//end of z loop
-	}
-
-	glEnd();
 }
 
 void CRenderer::RenderModelSubmissions()
@@ -1186,11 +1136,6 @@ void CRenderer::FlushFrame()
 	// stuff underwater)
 	MICROLOG(L"render water");
 	RenderWater();
-	oglCheck();
-
-	// render darkness/fog due to LOS, above the actual terrain
-	MICROLOG(L"render los");
-	RenderLOS();
 	oglCheck();
 
 	// empty lists

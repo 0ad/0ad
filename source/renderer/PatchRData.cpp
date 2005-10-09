@@ -10,6 +10,7 @@
 #include "AlphaMapCalculator.h"
 #include "ps/CLogger.h"
 #include "MathUtil.h"
+#include "LOSManager.h"
 
 ///////////////////////////////////////////////////////////////////
 // shared list of all submitted patches this frame
@@ -376,7 +377,9 @@ void CPatchRData::BuildVertices()
 	u32 pz=m_Patch->m_Z;
 	
 	CTerrain* terrain=m_Patch->m_Parent;
-	//u32 mapSize=terrain->GetVerticesPerSide();	// unused
+	int mapSize=terrain->GetVerticesPerSide();
+
+	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
 
 	// build vertices
 	for (int j=0;j<vsize;j++) {
@@ -387,8 +390,30 @@ void CPatchRData::BuildVertices()
 
 			terrain->CalcPosition(ix,iz,vertices[v].m_Position);			
 			terrain->CalcNormal(ix,iz,normal);
-			g_Renderer.m_SHCoeffsTerrain.Evaluate(normal,c);
+
+			const int DX[] = {1,1,0,0};
+			const int DZ[] = {0,1,1,0};
+			float losMod = 1.0f;
+			for(int k=0; k<4; k++)
+			{
+				int tx = ix - DX[k];
+				int tz = iz - DZ[k];
+
+				if(tx >= 0 && tz >= 0 && tx <= mapSize-2 && tz <= mapSize-2)
+				{
+					ELOSStatus s = losMgr->GetStatus(tx, tz, g_Game->GetLocalPlayer());
+					if(s==LOS_EXPLORED && losMod > 0.7f) 
+						losMod = 0.7f;
+					else if(s==LOS_UNEXPLORED && losMod > 0.0f)
+						losMod = 0.0f;
+				}
+			}
+			RGBColor losModColor(losMod, losMod, losMod);
+
+			g_Renderer.m_SHCoeffsTerrain.Evaluate(normal, c, losModColor);
+
 			vertices[v].m_Color=ConvertColor(c);
+
 			vertices[v].m_UVs[0]=i*0.125f;
 			vertices[v].m_UVs[1]=j*0.125f;
 		}
@@ -413,12 +438,16 @@ void CPatchRData::Update()
 		// TODO,RC 11/04/04 - need to only rebuild necessary bits of renderdata rather
 		// than everything; it's complicated slightly because the blends are dependent
 		// on both vertex and index data
-		BuildVertices();
+		//BuildVertices();
 		BuildIndices();
-		BuildBlends();
+		///BuildBlends();
 
 		m_UpdateFlags=0;
 	}
+
+	// Always build vertices (due to LOS)
+	BuildVertices();
+	BuildBlends();
 }
 
 void CPatchRData::RenderBase()
