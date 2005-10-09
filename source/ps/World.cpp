@@ -79,6 +79,7 @@ CWorld::~CWorld()
 	// clean slate for each game start.
 	delete &m_EntityManager;
 	delete &m_ProjectileManager;
+	delete &m_LOSManager;
 }
 
 

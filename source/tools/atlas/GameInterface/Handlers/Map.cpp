@@ -8,6 +8,7 @@
 #include "ps/Game.h"
 #include "ps/GameAttributes.h"
 #include "ps/Loader.h"
+#include "simulation/LOSManager.h"
 
 namespace AtlasMessage {
 
@@ -17,14 +18,20 @@ static void InitGame(std::wstring map)
 		delete g_Game;
 
 	// Set attributes for the game:
-	//  Start without a map
+
 	g_GameAttributes.m_MapFile = map;
-	//  Make all players locally controlled
+	// Make all players locally controlled
 	for (int i=1; i<8; ++i) 
 		g_GameAttributes.GetSlot(i)->AssignLocal();
 
-	// Start the game:
+	// Initialise the game:
 	g_Game = new CGame();
+	// Make the whole world visible
+	g_Game->GetWorld()->GetLOSManager()->m_MapRevealed = true;
+}
+
+static void StartGame()
+{
 	PSRETURN ret = g_Game->StartGame(&g_GameAttributes);
 	debug_assert(ret == PSRETURN_OK);
 	LDR_NonprogressiveLoad();
@@ -55,6 +62,11 @@ MESSAGEHANDLER(GenerateMap)
 
 	delete[] heightmap;
 
+	// Start the game, load data files - this must be done before initialising
+	// the terrain texture below, since the terrains must be loaded before being
+	// used.
+	StartGame();
+
 	// Cover terrain with default texture
 	// TODO: split into fCoverWithTexture
 	CTextureEntry* texentry = g_TexMan.FindTexture("grass1_spring.dds"); // TODO: make default customisable
@@ -77,6 +89,7 @@ MESSAGEHANDLER(GenerateMap)
 MESSAGEHANDLER(LoadMap)
 {
 	InitGame(msg->filename);
+	StartGame();
 }
 
 }
