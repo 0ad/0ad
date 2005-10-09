@@ -1,23 +1,25 @@
 #include "precompiled.h"
 
 #include "MessagePasserImpl.h"
+#include "Messages.h"
 
-#define MESSAGE_TRACE 0
-
-#if MESSAGE_TRACE
-#include "Messages.h" // for mCommand implementation
-#endif
+#include "lib/timer.h"
 
 using namespace AtlasMessage;
 
+
+template<typename T> MessagePasserImpl<T>::MessagePasserImpl()
+: m_Trace(false)
+{
+}
 
 template<typename T> void MessagePasserImpl<T>::Add(T* msg)
 {
 	debug_assert(msg);
 
-#if MESSAGE_TRACE
-	debug_printf("Add %s\n", msg->GetType());
-#endif
+	if (m_Trace)
+		debug_printf("%8.3f add message: %s\n", get_time(), msg->GetType());
+
 	m_Mutex.Lock();
 
 	m_Queue.push(msg);
@@ -42,9 +44,7 @@ template <typename T> T* MessagePasserImpl<T>::Retrieve()
 
 	m_Mutex.Unlock();
 
-#if MESSAGE_TRACE
-	if (msg) debug_printf("Retrieved %s\n", msg->GetType());
-#endif
+//	if (m_Trace && msg) debug_printf("%8.3f retrieved message: %s\n", get_time(), msg->GetType());
 
 	return msg;
 }
@@ -57,8 +57,10 @@ template <typename T> bool MessagePasserImpl<T>::IsEmpty()
 	return empty;
 }
 
-MessagePasser<mCommand>* g_MessagePasser_Command = NULL;
-MessagePasser<mInput>*   g_MessagePasser_Input = NULL;
+template <typename T> void MessagePasserImpl<T>::SetTrace(bool t)
+{
+	m_Trace = t;
+}
 
 // Explicit instantiation:
 template MessagePasserImpl<mCommand>;

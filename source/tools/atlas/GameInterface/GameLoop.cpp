@@ -37,6 +37,10 @@ void (*Atlas_NotifyEndOfFrame)();
 static MessagePasserImpl<mCommand> msgPasser_Command;
 static MessagePasserImpl<mInput>   msgPasser_Input;
 
+MessagePasser<mCommand>* AtlasMessage::g_MessagePasser_Command = &msgPasser_Command;
+MessagePasser<mInput>*   AtlasMessage::g_MessagePasser_Input = &msgPasser_Input;
+
+
 static InputProcessor g_Input;
 
 static GameLoopState state;

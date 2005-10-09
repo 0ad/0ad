@@ -49,9 +49,13 @@ BEGIN_COMMAND(AlterElevation)
 			roundingError -= (float)(int)roundingError;
 		}
 
+		static CVector3D previousPosition;
+		d->pos.GetWorldSpace(g_CurrentBrush.m_Centre, previousPosition);
+		previousPosition = g_CurrentBrush.m_Centre;
+
 		int x0, y0;
-		d->pos.GetWorldSpace(g_CurrentBrush.m_Centre);
 		g_CurrentBrush.GetBottomRight(x0, y0);
+
 		for (int dy = 0; dy < g_CurrentBrush.m_H; ++dy)
 			for (int dx = 0; dx < g_CurrentBrush.m_W; ++dx)
 			{

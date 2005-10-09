@@ -6,7 +6,7 @@
 
 namespace AtlasMessage {
 
-MESSAGEHANDLER(SetBrush)
+MESSAGEHANDLER(Brush)
 {
 	g_CurrentBrush.SetData(msg->width, msg->height, msg->data);
 }

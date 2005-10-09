@@ -16,6 +16,7 @@ public:
 	void OnRedo(wxCommandEvent& event);
 
 	void OnWireframe(wxCommandEvent& event);
+	void OnMessageTrace(wxCommandEvent& event);
 
 	static AtlasWindowCommandProc& GetCommandProc();
 

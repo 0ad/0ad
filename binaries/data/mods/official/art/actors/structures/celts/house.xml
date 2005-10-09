@@ -5,21 +5,21 @@
     <variant frequency="10" name="House A">
       <mesh>structural/celt_ho_1.pmd</mesh>
       <props>
-        <item actor="props/celts/celt_house1_prop.xml" attachpoint="PropCandyA"/>
+        <prop actor="props/celts/celt_house1_prop.xml" attachpoint="PropCandyA"/>
       </props>
       <texture>structural/celt_struct_1.dds</texture>
     </variant>
     <variant frequency="10" name="House B">
       <mesh>structural/celt_ho_2.pmd</mesh>
       <props>
-        <item actor="props/celts/celt_house2_prop.xml" attachpoint="PropCandyA"/>
+        <prop actor="props/celts/celt_house2_prop.xml" attachpoint="PropCandyA"/>
       </props>
       <texture>structural/celt_struct_1.dds</texture>
     </variant>
     <variant frequency="10" name="House C">
       <mesh>structural/celt_ho_3.pmd</mesh>
       <props>
-        <item actor="props/celts/celt_house3_prop.xml" attachpoint="PropCandyA"/>
+        <prop actor="props/celts/celt_house3_prop.xml" attachpoint="PropCandyA"/>
       </props>
       <texture>structural/celt_struct_1.dds</texture>
     </variant>

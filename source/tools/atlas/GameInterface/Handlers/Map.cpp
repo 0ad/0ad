@@ -47,7 +47,7 @@ MESSAGEHANDLER(GenerateMap)
 	for (int z = 0; z < vertices; ++z)
 		for (int x = 0; x < vertices; ++x)
 //			heightmap[x + z*vertices] = 32768 +(int)(2048.f*(rand()/(float)RAND_MAX-0.5f));
-			heightmap[x + z*vertices] = 32768;
+			heightmap[x + z*vertices] = 16384;
 
 	// Initialise terrain using the heightmap
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();

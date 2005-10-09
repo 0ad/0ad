@@ -26,11 +26,18 @@ struct Position
 	union {
 		struct { float x, y, z; } type0; // world-space coordinates
 		struct { int x, y; } type1; // screen-space coordinates, to be projected onto terrain
+		// type2: "same as previous" (e.g. for elevation-editing when the mouse hasn't moved)
 	};
 
+	// Constructs a position with the meaning "same as previous", which is handled
+	// in an unspecified way by various message handlers.
+	static Position Unchanged() { Position p; p.type = 2; return p; }
+
 	// Only for use in the game, not the UI.
-	void GetWorldSpace(CVector3D& vec) const; // (implementation in Misc.cpp)
-	void GetScreenSpace(float& x, float& y) const; // (implementation in Misc.cpp)
+	// Implementations in Misc.cpp.
+	void GetWorldSpace(CVector3D& vec) const;
+	void GetWorldSpace(CVector3D& vec, const CVector3D& prev) const;
+	void GetScreenSpace(float& x, float& y) const;
 };
 
 //////////////////////////////////////////////////////////////////////////

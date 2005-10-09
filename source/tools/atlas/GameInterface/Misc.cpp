@@ -19,9 +19,26 @@ void AtlasMessage::Position::GetWorldSpace(CVector3D& vec) const
 		vec = g_Game->GetView()->GetCamera()->GetWorldCoordinates(type1.x, type1.y);
 		break;
 
+	case 2:
+		debug_warn("Invalid Position acquisition (unchanged without previous)");
+		vec.Set(0.f, 0.f, 0.f);
+		break;
+
 	default:
 		debug_warn("Invalid Position type");
 		vec.Set(0.f, 0.f, 0.f);
+	}
+}
+
+void AtlasMessage::Position::GetWorldSpace(CVector3D& vec, const CVector3D& prev) const
+{
+	switch (type)
+	{
+	case 2:
+		vec = prev;
+		break;
+	default:
+		GetWorldSpace(vec);
 	}
 }
 

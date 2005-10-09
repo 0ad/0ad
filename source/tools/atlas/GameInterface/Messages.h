@@ -36,9 +36,13 @@ COMMAND(RenderStyle,
 		((bool, wireframe))
 		);
 
+COMMAND(MessageTrace,
+		((bool, enable))
+		);
+
 //////////////////////////////////////////////////////////////////////////
 
-COMMAND(SetBrush,
+COMMAND(Brush,
 		((int, width)) // number of vertices
 		((int, height))
 		((float*, data)) // width*height array, allocated with new[]

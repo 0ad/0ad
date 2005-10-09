@@ -555,7 +555,7 @@ void CGameView::SetCameraTarget( const CVector3D& target )
 {
 	// Maintain the same orientation and level of zoom, if we can
 	// (do this by working out the point the camera is looking at, saving
-	//  the difference beteen that position and the camera point, and restoring
+	//  the difference between that position and the camera point, and restoring
 	//  that difference to our new target)
 
 	CVector3D CurrentTarget = m_Camera.GetFocus();

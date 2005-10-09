@@ -3,18 +3,22 @@
 
 class BrushShapeCtrl;
 class BrushSizeCtrl;
+class BrushStrengthCtrl;
 
 class Brush
 {
 	friend class BrushShapeCtrl;
 	friend class BrushSizeCtrl;
+	friend class BrushStrengthCtrl;
 public:
 	Brush();
 	~Brush();
 
-	int GetWidth();
-	int GetHeight();
-	float* GetNewedData(); // freshly allocated via new[]
+	int GetWidth() const;
+	int GetHeight() const;
+	float* GetNewedData() const; // freshly allocated via new[]
+
+	float GetStrength() const;
 
 	void CreateUI(wxWindow* parent, wxSizer* sizer);
 
@@ -27,8 +31,9 @@ private:
 	void Send();
 
 	enum BrushShape { SQUARE = 0, CIRCLE };
-	BrushShape m_BrushShape;
-	int m_BrushSize;
+	BrushShape m_Shape;
+	int m_Size;
+	float m_Strength;
 	bool m_IsActive;
 };
 

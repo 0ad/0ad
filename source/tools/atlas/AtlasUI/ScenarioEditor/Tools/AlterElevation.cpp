@@ -50,8 +50,12 @@ public:
 			else if (evt.Moving())
 			{
 				POST_COMMAND(BrushPreview(true, Position(evt.GetPosition())));
+				return true;
 			}
-			return false;
+			else
+			{
+				return false;
+			}
 		}
 	}
 	Waiting;
@@ -59,6 +63,11 @@ public:
 
 	struct sAltering_common : public State
 	{
+		void OnEnter(AlterElevation* obj)
+		{
+			POST_COMMAND(BrushPreview(true, obj->m_Pos));
+		}
+
 		void OnLeave(AlterElevation*)
 		{
 			ScenarioEditor::GetCommandProc().FinaliseLastCommand();
@@ -73,7 +82,8 @@ public:
 			}
 			else if (evt.Dragging())
 			{
-				obj->m_Pos = Position(evt.GetPosition());
+				wxPoint pos = evt.GetPosition();
+				obj->m_Pos = Position(pos);
 				POST_COMMAND(BrushPreview(true, obj->m_Pos));
 				return true;
 			}
@@ -85,7 +95,8 @@ public:
 
 		void OnTick(AlterElevation* obj, float dt)
 		{
-			ADD_WORLDCOMMAND(AlterElevation, (obj->m_Pos, dt*4096.f*GetDirection()));
+			ADD_WORLDCOMMAND(AlterElevation, (obj->m_Pos, dt*4096.f*GetDirection()*g_Brush_Elevation.GetStrength()));
+			obj->m_Pos = Position::Unchanged();
 		}
 
 		virtual bool IsMouseUp(wxMouseEvent& evt) = 0;

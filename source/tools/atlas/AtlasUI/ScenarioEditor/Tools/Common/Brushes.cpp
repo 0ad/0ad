@@ -5,7 +5,7 @@
 #include "GameInterface/Messages.h"
 
 Brush::Brush()
-: m_BrushShape(SQUARE), m_BrushSize(4), m_IsActive(false)
+: m_Shape(SQUARE), m_Size(4), m_Strength(1.f), m_IsActive(false)
 {
 }
 
@@ -13,55 +13,58 @@ Brush::~Brush()
 {
 }
 
-int Brush::GetWidth()
+int Brush::GetWidth() const
 {
-	switch (m_BrushShape)
+	switch (m_Shape)
 	{
 	case CIRCLE:
-		return m_BrushSize*2 + 1;
+		return m_Size;
 	case SQUARE:
-		return m_BrushSize;
+		return m_Size;
 	default:
 		wxFAIL;
 		return -1;
 	}
 }
 
-int Brush::GetHeight()
+int Brush::GetHeight() const
 {
-	switch (m_BrushShape)
+/*
+	switch (m_Shape)
 	{
-	case CIRCLE:
-		return m_BrushSize*2 + 1;
-	case SQUARE:
-		return m_BrushSize;
+	case RECTANGLE or something:
 	default:
-		wxFAIL;
-		return -1;
+		return GetWidth();
 	}
+*/
+	return GetWidth();
 }
 
-float* Brush::GetNewedData()
+float* Brush::GetNewedData() const
 {
 	int width = GetWidth();
 	int height = GetHeight();
 	
 	float* data = new float[width*height];
 	
-	switch (m_BrushShape)
+	switch (m_Shape)
 	{
 	case CIRCLE:
 		{
 			int i = 0;
-			for (int y = -m_BrushSize; y <= m_BrushSize; ++y)
+			// All calculations are done in units of half-tiles, since that
+			// is the required precision
+			int mid_x = m_Size-1;
+			int mid_y = m_Size-1;
+			for (int y = 0; y < m_Size; ++y)
 			{
-				for (int x = -m_BrushSize; x <= m_BrushSize; ++x)
+				for (int x = 0; x < m_Size; ++x)
 				{
-					// TODO: proper circle rasterization, with variable smoothness etc
-					if (x*x + y*y <= m_BrushSize*m_BrushSize - 4)
-						data[i++] = 1.f;
-					else if (x*x + y*y <= m_BrushSize*m_BrushSize)
-						data[i++] = 0.5f;
+					float dist_sq = // scaled to 0 in centre, 1 on edge
+						((2*x - mid_x)*(2*x - mid_x) +
+						 (2*y - mid_y)*(2*y - mid_y)) / (float)(m_Size*m_Size);
+					if (dist_sq <= 1.f)
+						data[i++] = (sqrtf(2.f - dist_sq) - 1.f) / (sqrt(2.f) - 1.f);
 					else
 						data[i++] = 0.f;
 				}
@@ -82,6 +85,11 @@ float* Brush::GetNewedData()
 	return data;
 }
 
+float Brush::GetStrength() const
+{
+	return m_Strength;
+}
+
 //////////////////////////////////////////////////////////////////////////
 
 class BrushShapeCtrl : public wxRadioBox
@@ -91,7 +99,7 @@ public:
 		: wxRadioBox(parent, wxID_ANY, _("Shape"), wxDefaultPosition, wxDefaultSize, shapes, 0, wxRA_SPECIFY_ROWS),
 		m_Brush(brush)
 	{
-		SetSelection(m_Brush.m_BrushShape);
+		SetSelection(m_Brush.m_Shape);
 	}
 
 private:
@@ -99,7 +107,7 @@ private:
 
 	void OnChange(wxCommandEvent& WXUNUSED(evt))
 	{
-		m_Brush.m_BrushShape = (Brush::BrushShape)GetSelection();
+		m_Brush.m_Shape = (Brush::BrushShape)GetSelection();
 		m_Brush.Send();
 	}
 
@@ -114,7 +122,7 @@ class BrushSizeCtrl: public wxSpinCtrl
 {
 public:
 	BrushSizeCtrl(wxWindow* parent, Brush& brush)
-		: wxSpinCtrl(parent, wxID_ANY, wxString::Format(_T("%d"), brush.m_BrushSize), wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 50, brush.m_BrushSize),
+		: wxSpinCtrl(parent, wxID_ANY, wxString::Format(_T("%d"), brush.m_Size), wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 100, brush.m_Size),
 		m_Brush(brush)
 	{
 	}
@@ -124,7 +132,7 @@ private:
 
 	void OnChange(wxSpinEvent& WXUNUSED(evt))
 	{
-		m_Brush.m_BrushSize = GetValue();
+		m_Brush.m_Size = GetValue();
 		m_Brush.Send();
 	}
 
@@ -132,6 +140,31 @@ private:
 };
 BEGIN_EVENT_TABLE(BrushSizeCtrl, wxSpinCtrl)
 	EVT_SPINCTRL(wxID_ANY, BrushSizeCtrl::OnChange)
+END_EVENT_TABLE()
+
+
+class BrushStrengthCtrl : public wxSpinCtrl
+{
+public:
+	BrushStrengthCtrl(wxWindow* parent, Brush& brush)
+		: wxSpinCtrl(parent, wxID_ANY, wxString::Format(_T("%d"), (int)(10.f*brush.m_Strength)), wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 100, (int)(10.f*brush.m_Strength)),
+		m_Brush(brush)
+	{
+	}
+
+private:
+	Brush& m_Brush;
+
+	void OnChange(wxSpinEvent& WXUNUSED(evt))
+	{
+		m_Brush.m_Strength = GetValue()/10.f;
+		m_Brush.Send();
+	}
+
+	DECLARE_EVENT_TABLE();
+};
+BEGIN_EVENT_TABLE(BrushStrengthCtrl, wxSpinCtrl)
+	EVT_SPINCTRL(wxID_ANY, BrushStrengthCtrl::OnChange)
 END_EVENT_TABLE()
 
 
@@ -144,9 +177,12 @@ void Brush::CreateUI(wxWindow* parent, wxSizer* sizer)
 	// TODO (maybe): get rid of the extra static box, by not using wxRadioBox
 	sizer->Add(new BrushShapeCtrl(parent, shapes, *this));
 
-	wxSizer* spinnerSizer = new wxBoxSizer(wxHORIZONTAL);
+	// TODO: These are yucky
+	wxSizer* spinnerSizer = new wxFlexGridSizer(2);
 	spinnerSizer->Add(new wxStaticText(parent, wxID_ANY, _("Size")));
 	spinnerSizer->Add(new BrushSizeCtrl(parent, *this));
+	spinnerSizer->Add(new wxStaticText(parent, wxID_ANY, _("Strength")));
+	spinnerSizer->Add(new BrushStrengthCtrl(parent, *this));
 	sizer->Add(spinnerSizer);
 }
 
@@ -164,7 +200,7 @@ void Brush::MakeActive()
 void Brush::Send()
 {
 	if (m_IsActive)
-		POST_COMMAND(SetBrush(GetWidth(), GetHeight(), GetNewedData()));
+		POST_COMMAND(Brush(GetWidth(), GetHeight(), GetNewedData()));
 }
 
 

@@ -27,7 +27,8 @@ public:
 	Canvas(wxWindow* parent, int* attribList)
 		: wxGLCanvas(parent, -1, wxDefaultPosition, wxDefaultSize, wxWANTS_CHARS, _T("GLCanvas"), attribList),
 		m_SuppressResize(true),
-		m_MouseState(NONE), m_LastMouseState(NONE), m_MouseCaptured(false)
+		m_MouseState(NONE), m_LastMouseState(NONE), m_MouseCaptured(false),
+		m_LastMousePos(-1, -1)
 	{
 	}
 
@@ -132,8 +133,28 @@ public:
 			ReleaseMouse();
 		}
 
+		// Set focus when clicking
 		if (evt.ButtonDown())
 			SetFocus();
+
+		// TODO or at least to think about: When using other controls in the
+		// editor, it's annoying that keyboard/scrollwheel no longer navigate
+		// around the world until you click on it.
+		// Setting focus back whenever the mouse moves over the GL window
+		// feels like a fairly natural solution to me, since I can use
+		// e.g. brush-editing controls normally, and then move the mouse to
+		// see the brush outline and magically get given back full control
+		// of the camera.
+		if (evt.Moving())
+			SetFocus();
+
+		// Reject motion events if the mouse has not actually moved
+		if (evt.Moving() || evt.Dragging())
+		{
+			if (m_LastMousePos == evt.GetPosition())
+				return;
+			m_LastMousePos = evt.GetPosition();
+		}
 
 		g_CurrentTool->OnMouse(evt);
 
@@ -197,6 +218,8 @@ private:
 	int m_MouseState, m_LastMouseState;
 	bool m_MouseCaptured;
 
+	wxPoint m_LastMousePos;
+
 	DECLARE_EVENT_TABLE();
 };
 BEGIN_EVENT_TABLE(Canvas, wxGLCanvas)
@@ -249,6 +272,7 @@ enum
 //	ID_SaveAs,
 
 	ID_Wireframe,
+	ID_MessageTrace,
 };
 
 BEGIN_EVENT_TABLE(ScenarioEditor, wxFrame)
@@ -260,6 +284,7 @@ BEGIN_EVENT_TABLE(ScenarioEditor, wxFrame)
 	EVT_MENU(wxID_REDO, ScenarioEditor::OnRedo)
 
 	EVT_MENU(ID_Wireframe, ScenarioEditor::OnWireframe)
+	EVT_MENU(ID_MessageTrace, ScenarioEditor::OnMessageTrace)
 
 	EVT_IDLE(ScenarioEditor::OnIdle)
 END_EVENT_TABLE()
@@ -312,6 +337,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	menuBar->Append(menuMisc, _("&Misc hacks"));
 	{
 		menuMisc->AppendCheckItem(ID_Wireframe, _("&Wireframe"));
+		menuMisc->AppendCheckItem(ID_MessageTrace, _("Message debug trace"));
 	}
 
 	//////////////////////////////////////////////////////////////////////////
@@ -434,6 +460,11 @@ void ScenarioEditor::OnRedo(wxCommandEvent&)
 void ScenarioEditor::OnWireframe(wxCommandEvent& event)
 {
 	POST_COMMAND(RenderStyle(event.IsChecked()));
+}
+
+void ScenarioEditor::OnMessageTrace(wxCommandEvent& event)
+{
+	POST_COMMAND(MessageTrace(event.IsChecked()));
 }
 
 //////////////////////////////////////////////////////////////////////////
