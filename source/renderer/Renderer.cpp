@@ -68,6 +68,7 @@ CRenderer::CRenderer()
 	m_Options.m_Shadows=true;
 	m_Options.m_ShadowColor=RGBAColor(0.4f,0.4f,0.4f,1.0f);
 	m_Options.m_RenderPath = RP_DEFAULT;
+	m_NicePlayerColor = true;
 
 	for (uint i=0;i<MaxTextureUnits;i++) {
 		m_ActiveTextures[i]=0;
@@ -101,7 +102,8 @@ CRenderer::CRenderer()
 		else
 			ogl_tex_upload(m_WaterTexture[x]);
 	}
-		
+
+	ONCE( ScriptingInit(); );
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -1462,3 +1464,15 @@ void CRenderer::UnloadAlphaMaps()
 {
 	ogl_tex_free(m_hCompositeAlphaMap);
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Scripting Interface
+
+void CRenderer::ScriptingInit()
+{
+	AddProperty(L"nicePlayerColor", &CRenderer::m_NicePlayerColor);
+
+	CJSObject<CRenderer>::ScriptingInit("Renderer");
+}
+

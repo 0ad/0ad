@@ -283,18 +283,19 @@ void CModelRData::FinishRender(u32 streamflags)
 // Render one indiviual model.
 // Try to use RenderModels instead wherever possible.
 // Must be bracketed by calls to CModelRData::SetupRender/FinishRender
-void CModelRData::RenderStreams(u32 streamflags, bool isplayer)
+void CModelRData::RenderStreams(u32 streamflags, int tmus)
 {	
 	CModelDefPtr mdldef=m_Model->GetModelDef();
 	
 	if (streamflags & STREAM_UV0)
 	{
-		if(!isplayer)
-			m_Model->GetMaterial().Bind();
-		else
-			g_Renderer.SetTexture(1,m_Model->GetTexture());
-
-		g_Renderer.SetTexture(0,m_Model->GetTexture());
+		if (tmus > 1)
+		{
+			for(int i = 1; i < tmus; ++i)
+				g_Renderer.SetTexture(i, m_Model->GetTexture());
+		}
+		
+		g_Renderer.SetTexture(0, m_Model->GetTexture());
 	}
 
 	u8* base = m_DynamicArray.Bind();
@@ -325,9 +326,6 @@ void CModelRData::RenderStreams(u32 streamflags, bool isplayer)
 	size_t numFaces=mdldef->GetNumFaces();
 	glDrawRangeElementsEXT(GL_TRIANGLES,0,mdldef->GetNumVertices(),numFaces*3,GL_UNSIGNED_SHORT,m_Indices);
 
-	if(streamflags & STREAM_UV0 & !isplayer)
-		m_Model->GetMaterial().Unbind();
-	
 	// bump stats
 	g_Renderer.m_Stats.m_DrawCalls++;
 	g_Renderer.m_Stats.m_ModelTris+=numFaces;

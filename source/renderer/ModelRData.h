@@ -22,7 +22,7 @@ public:
 	~CModelRData();
 
 	void Update();
-	void RenderStreams(u32 streamflags, bool isplayer = false);
+	void RenderStreams(u32 streamflags, int tmus = 1);
 
 	// return render flags for this model
 	u32 GetFlags() const { return m_Flags; }

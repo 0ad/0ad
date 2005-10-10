@@ -24,6 +24,8 @@
 #include "Singleton.h"
 #include "Overlay.h"
 
+#include "scripting/ScriptableObject.h"
+
 // necessary declarations
 class CCamera;
 class CPatch;
@@ -73,7 +75,7 @@ struct SVertex2D
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 // CRenderer: base renderer class - primary interface to the rendering engine
-class CRenderer : public Singleton<CRenderer>
+class CRenderer : public Singleton<CRenderer>, public CJSObject<CRenderer>
 {
 private:
 	std::vector<CPatch*> m_VisiblePatches;
@@ -262,6 +264,9 @@ protected:
 	friend class CPlayerRenderer;
 	friend class RenderPathVertexShader;
 
+	// scripting
+	static void ScriptingInit();
+	
 	// patch rendering stuff
 	void RenderPatchSubmissions();
 	void RenderPatches();
@@ -356,6 +361,9 @@ protected:
 	// Additional state that is only available when the vertex shader
 	// render path is used (according to m_Options.m_RenderPath)
 	RenderPathVertexShader* m_VertexShader;
+
+	// If false, use a simpler, two-texture unit fallback for player colors.
+	bool m_NicePlayerColor;
 };
 
 

@@ -31,8 +31,6 @@ public:
 private:
 	// render given streams on all objects
 	void RenderObjectsStreams(u32 streamflags, bool iscolorpass=false, u32 mflags=0);
-	// setup the second pass for the player color
-	void SetupColorRenderStates();
 	// list of objects to render
 	std::vector<CModel*> m_Objects;
 };

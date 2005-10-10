@@ -1047,6 +1047,16 @@ JSBool GetGameView( JSContext* UNUSED(cx), JSObject* UNUSED(obj), jsval UNUSED(i
 }
 
 
+JSBool GetRenderer( JSContext* UNUSED(cx), JSObject* UNUSED(obj), jsval UNUSED(id), jsval* vp )
+{
+	if (CRenderer::IsInitialised())
+		*vp = OBJECT_TO_JSVAL( g_Renderer.GetScript() );
+	else
+		*vp = JSVAL_NULL;
+	return( JS_TRUE );
+}
+
+
 enum ScriptGlobalTinyIDs
 {
 	GLOBAL_SELECTION,
@@ -1070,6 +1080,7 @@ JSPropertySpec ScriptGlobalTable[] =
 	{ "localPlayer", 0,                  PERM        , GetLocalPlayer,              SetLocalPlayer },
 	{ "gaiaPlayer" , 0,                  PERM | CONST, GetGaiaPlayer,               0 },
 	{ "gameView"   , 0,                  PERM | CONST, GetGameView,                 0 },
+	{ "renderer"   , 0,                  PERM | CONST, GetRenderer,                 0 },
 
 	// end of table marker
 	{ 0, 0, 0, 0, 0 },

@@ -712,14 +712,12 @@ void Shutdown()
 	// Managed by CWorld
 	// delete &g_EntityManager;
 
-	TIMER_START("shutdown scripting stuff");
+	TIMER_START("shutdown game scripting stuff");
 	delete &g_GameAttributes;
 	delete &g_JSGameEvents;
 
 	delete &g_EntityTemplateCollection;
-
-	delete &g_ScriptingHost;
-	TIMER_END("shutdown scripting stuff");
+	TIMER_END("shutdown game scripting stuff");
 
 	// destroy actor related stuff
 	TIMER_START("shutdown actor stuff");
@@ -741,6 +739,10 @@ void Shutdown()
 	delete &g_Renderer;
 	g_VBMan.Shutdown();
 	TIMER_END("shutdown Renderer");
+
+	TIMER_START("shutdown ScriptingHost");
+	delete &g_ScriptingHost;
+	TIMER_END("shutdown ScriptingHost");
 
 	TIMER_START("shutdown ConfigDB");
 	delete &g_ConfigDB;
@@ -878,7 +880,7 @@ void Init(int argc, char* argv[], bool setup_gfx, bool setup_gui)
 	}
 
 	// (must come after SetVideoMode, since it calls oglInit)
-	const char* missing = oglHaveExtensions(0, "GL_ARB_multitexture", "GL_ARB_texture_env_combine", "GL_ARB_texture_env_dot3", 0);
+	const char* missing = oglHaveExtensions(0, "GL_ARB_multitexture", "GL_ARB_texture_env_combine", "GL_ARB_texture_env_dot3", "GL_ARB_texture_env_crossbar", 0);
 	if(missing)
 	{
 		wchar_t buf[500];
