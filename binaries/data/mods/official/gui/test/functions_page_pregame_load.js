@@ -5,7 +5,7 @@
 
 // ====================================================================
 
-function startMap (mapName, openWindow)
+function startMap (mapName, losSetting, openWindow)
 {
 	// Starts the map, closing the current window.
 	// mapName: 	.pmp to load.
@@ -21,6 +21,7 @@ function startMap (mapName, openWindow)
 
 	// Set up game
 	g_GameAttributes.mapFile = mapName;
+	g_GameAttributes.losSetting = losSetting;
 
 	// Close setup window
 	closeMainMenuSubWindow (openWindow);
@@ -111,6 +112,8 @@ function setupSession ()
         // Initialise Resource Pools by attaching them to the Player object.
         // (CPlayer code takes care of giving a copy to each player.)
         createResources();
+		
+		
 
 /*
 	if (sessionType == "Skirmish")

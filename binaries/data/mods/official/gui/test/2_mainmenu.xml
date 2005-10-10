@@ -591,6 +591,33 @@
 					</object>
 				</object>
 
+				<!--
+				==========================================
+				- LINE OF SIGHT
+				==========================================
+				-->
+
+				<object name="pgSessionSetupLosLabel" 
+					type="text"
+					style="wheatTextLabelBlack"
+					size="100%-200 0%+315 100%-35 0%+350"
+				>LOS:
+				</object>
+			
+				<object	name="pgSessionSetupLosSetting"
+					style="wheatDropDown"
+					type="dropdown"
+					size="100%-160 0%+310 100%-10 0%+350"
+				>
+					<item>Normal</item>
+					<item>Explored</item>
+					<item>All Visible</item>
+
+					<action on="Load"><![CDATA[
+						getGUIObjectByName("pgSessionSetupLosSetting").selected = 2;
+				]]></action>
+				</object>
+
 			<!--
 			==========================================
 			- MAIN MENU - BUTTONS
@@ -603,7 +630,10 @@
 				size="50%-125 540 50%-25 570" 
 			>Start!
 				<action on="Press"><![CDATA[
-					startMap (getCurrItemValue ("pgSessionSetupMapName"), "pgSessionSetup");
+						startMap (
+							getCurrItemValue("pgSessionSetupMapName"),
+							getGUIObjectByName("pgSessionSetupLosSetting").selected,
+							"pgSessionSetup");
 				]]></action>
 			</object>
 

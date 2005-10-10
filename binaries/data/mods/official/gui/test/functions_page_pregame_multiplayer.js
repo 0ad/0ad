@@ -137,7 +137,10 @@ function initMPClient (mpParentWindow, ipAddress, profileName)
 	client.onStartGame = function (event)
 	{
 		// The server has called Start Game!, so we better switch to the session GUI and stuff like that.
-		startMap (getCurrItemValue ("pgSessionSetupMapName"), "pgSessionSetup");
+		startMap (
+			getCurrItemValue ("pgSessionSetupMapName"), 
+			getGUIObjectByName("pgSessionSetupLosSetting").selected, 
+			"pgSessionSetup");
 	}
 }
 
