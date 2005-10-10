@@ -40,6 +40,29 @@ extern int fps;
 
 extern void calc_fps(void);
 
+
+//
+// cumulative timer API
+//
+
+struct TimerClient;	// opaque
+
+// allocate a new TimerClient whose total (added to by timer_bill_client)
+// will be displayed by timer_display_client_totals.
+// notes:
+// - uses static data; there is a fixed limit. rationale: see clients[].
+// - may be called at any time;
+// - free() is not needed nor possible.
+// - name must remain valid until exit; passing a string literal is safest.
+extern TimerClient* timer_add_client(const char* name);
+
+// add <dt> [s] to the client's total.
+extern void timer_bill_client(TimerClient* tc, double dt);
+
+// display all clients' totals; does not reset them.
+// typically called at exit.
+extern void timer_display_client_totals();
+
 #ifdef __cplusplus
 }
 #endif
@@ -49,39 +72,85 @@ extern void calc_fps(void);
 class ScopedTimer
 {
 	double t0;
-	const std::string name;
+	const char* name;
 
 public:
 	ScopedTimer(const char* _name)
-		: name(_name)
 	{
 		t0 = get_time();
+		name = _name;
 	}
 	~ScopedTimer()
 	{
 		double t1 = get_time();
 		double dt = t1-t0;
 
-		// assume microseconds
+		// determine scale factor for pretty display
 		double scale = 1e6;
-		char unit = 'u';
+		const char* unit = "us";
 		if(dt > 1.0)
-			scale = 1, unit = ' ';
-		// milli
+			scale = 1, unit = "s";
 		else if(dt > 1e-3)
-			scale = 1e3, unit = 'm';
+			scale = 1e3, unit = "ms";
 
-		debug_printf("TIMER %s: %g %cs\n", name.c_str(), dt*scale, unit);
+		debug_printf("TIMER %s: %g %s\n", name, dt*scale, unit);
 	}
 
-	// no copy ctor, since some members are const
+	// disallow copying (makes no sense)
 private:
 	ScopedTimer& operator=(const ScopedTimer&);
 };
 
-#define TIMER(name) ScopedTimer st##name##instance(#name)
+#define TIMER(name) ScopedTimer ST##name(#name)
 // Cheat a bit to make things slightly easier on the user
 #define TIMER_START(name) { ScopedTimer __timer( name )
 #define TIMER_END(name) }
+
+
+
+
+/*
+Example usage:
+
+	static TimerClient* client = timer_add_client("description");
+
+	void func()
+	{
+		SUM_TIMER(client);
+		(code to be measured)
+	}
+
+	[at exit]
+	timer_display_client_totals();
+
+*/
+
+class ScopedSumTimer
+{
+	double t0;
+	TimerClient* tc;
+
+public:
+	ScopedSumTimer(TimerClient* tc_)
+	{
+		t0 = get_time();
+		tc = tc_;
+	}
+	~ScopedSumTimer()
+	{
+		double t1 = get_time();
+		double dt = t1-t0;
+		timer_bill_client(tc, dt);
+	}
+
+	// disallow copying (makes no sense)
+private:
+	ScopedSumTimer& operator=(const ScopedSumTimer&);
+};
+
+// bills to <client> the time elapsed between execution reaching the
+// point of macro invocation and end of the current basic block.
+// total times for all clients are displayed by timer_display_client_totals.
+#define SUM_TIMER(client) ScopedSumTimer UID__(client)
 
 #endif	// #ifndef TIMER_H

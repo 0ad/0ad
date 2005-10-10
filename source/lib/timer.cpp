@@ -234,3 +234,77 @@ void calc_fps()
 			// C float -> int rounds down; we want to round up to
 			// hit vsync-locked framerates exactly.
 }
+
+
+//-----------------------------------------------------------------------------
+
+// cumulative timer API, useful for profiling.
+// this supplements in-game profiling by providing low-overhead,
+// high resolution time accounting.
+
+struct TimerClient
+{
+	double sum;	// total bill [s]
+
+	// only store a pointer for efficiency.
+	const char* name;
+};
+
+// use static storage to ensure clients can be added at any time,
+// especially before the heap has been initialized.
+// that means there's a fixed limit, but that's not a problem since
+// these timers are added manually for performance measuring.
+static uint num_clients;
+static const uint MAX_CLIENTS = 16;
+static TimerClient clients[MAX_CLIENTS];
+
+
+// allocate a new TimerClient whose total (added to by timer_bill_client)
+// will be displayed by timer_display_client_totals.
+// notes:
+// - uses static data; there is a fixed limit. rationale: see clients[].
+// - may be called at any time;
+// - free() is not needed nor possible.
+// - name must remain valid until exit; passing a string literal is safest.
+TimerClient* timer_add_client(const char* name)
+{
+	if(num_clients == MAX_CLIENTS)
+	{
+		debug_warn("timer: increase MAX_CLIENTS");
+		return 0;
+	}
+	TimerClient* tc = &clients[num_clients++];
+	tc->name = name;
+	// note: tc->sum is already 0 (static data)
+	return tc;
+}
+
+
+// add <dt> [s] to the client's total.
+void timer_bill_client(TimerClient* tc, double dt)
+{
+	tc->sum += dt;
+}
+
+
+// display all clients' totals; does not reset them.
+// typically called at exit.
+void timer_display_client_totals()
+{
+	debug_printf("TIMER TOTALS (%d clients)\n", num_clients);
+	debug_printf("-----------------------------------------------------\n");
+	for(uint i = 0; i < num_clients; i++)
+	{
+		const double sum = clients[i].sum;
+		// determine scale factor for pretty display
+		double scale = 1e6;
+		const char* unit = "us";
+		if(sum > 1.0)
+			scale = 1, unit = "s";
+		else if(sum > 1e-3)
+			scale = 1e3, unit = "ms";
+
+		debug_printf("  %s: %g %s\n", clients[i].name, sum*scale, unit);
+	}
+	debug_printf("-----------------------------------------------------\n");
+}

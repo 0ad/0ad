@@ -771,6 +771,8 @@ void Shutdown()
 	h_mgr_shutdown();
 	mem_shutdown();
 
+	timer_display_client_totals();
+
 	debug_shutdown();
 
 	delete &g_Logger;
@@ -792,6 +794,9 @@ void Init(int argc, char* argv[], bool setup_gfx, bool setup_gui)
 	MICROLOG(L"Init");
 
 	debug_set_thread_name("main");
+
+	// If you ever want to catch a particular allocation:
+	//_CrtSetBreakAlloc(187);
 
 	// Query CPU capabilities, possibly set some CPU-dependent flags
 	cpu_init();
@@ -862,6 +867,9 @@ void Init(int argc, char* argv[], bool setup_gfx, bool setup_gui)
 
 		uint quality = 	SANE_TEX_QUALITY_DEFAULT;	// TODO: set value from config file
 		SetTextureQuality(quality);
+
+		// required by ogl_tex to detect broken gfx card/driver combos
+		get_gfx_info();
 	}
 
 	oglCheck();
@@ -880,7 +888,7 @@ void Init(int argc, char* argv[], bool setup_gfx, bool setup_gui)
 	}
 
 	// (must come after SetVideoMode, since it calls oglInit)
-	const char* missing = oglHaveExtensions(0, "GL_ARB_multitexture", "GL_ARB_texture_env_combine", "GL_ARB_texture_env_dot3", "GL_ARB_texture_env_crossbar", 0);
+	const char* missing = oglHaveExtensions(0, "GL_ARB_multitexture", "GL_EXT_draw_range_elements", "GL_ARB_texture_env_combine", "GL_ARB_texture_env_dot3", "GL_ARB_texture_env_crossbar", 0);
 	if(missing)
 	{
 		wchar_t buf[500];
@@ -906,20 +914,26 @@ void Init(int argc, char* argv[], bool setup_gfx, bool setup_gui)
 	oglCheck();
 	InitRenderer();
 
-	TIMER(init_after_InitRenderer);
-
+	{
+	TIMER(Init_entitiessection);
 	// This needs to be done after the renderer has loaded all its actors...
 	new CBaseEntityCollection;
 	// CEntityManager is managed by CWorld
 	//new CEntityManager;
-	new CPathfindEngine;
 	new CSelectedEntities;
 	new CMouseoverEntities;
+	}
+
+	{
+	TIMER(Init_miscgamesection);
+	new CPathfindEngine;
 	new CBuildingPlacer;
-
 	new CSessionManager;
-
 	new CGameAttributes;
+	}
+
+	{
+	TIMER(Init_misc);
 
 	// Register a few Game/Network JS globals
 	g_ScriptingHost.SetGlobal("g_GameAttributes", OBJECT_TO_JSVAL(g_GameAttributes.GetScript()));
@@ -932,13 +946,18 @@ void Init(int argc, char* argv[], bool setup_gfx, bool setup_gui)
 	InitInput();
 
 	oglCheck();
+	}
 
 #ifndef NO_GUI
+	{
+	TIMER(Init_guiload);
 	g_GUI.SendEventToAll("load");
+	}
 #endif
 
 	if (setup_gfx)
 	{
+		TIMER(Init_renderblank);
 		MICROLOG(L"render blank");
 		// render everything to a blank frame to force renderer to load everything
 		RenderNoCull();
