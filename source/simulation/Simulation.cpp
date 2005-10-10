@@ -74,6 +74,7 @@ void CSimulation::Update(double frameTime)
 		{
 			// The desired sim frame rate can't be achieved. Settle for process & render
 			// frames as fast as possible.
+			frameTime -= m_DeltaTime; // so the animation stays in sync with the sim
 			m_DeltaTime = 0.0;
 		}
 
