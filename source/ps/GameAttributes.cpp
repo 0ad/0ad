@@ -195,6 +195,7 @@ CGameAttributes::CGameAttributes():
 
 	AddSynchedProperty(L"mapFile", &m_MapFile);
 	AddSynchedProperty(L"numSlots", &m_NumSlots, &CGameAttributes::OnNumSlotsUpdate);
+	AddSynchedProperty(L"losSetting", &m_LOSSetting);
 
 	m_Players.resize(9);
 	for (int i=0;i<9;i++)

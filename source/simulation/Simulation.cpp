@@ -19,6 +19,7 @@
 #include "LOSManager.h"
 #include "Loader.h"
 #include "LoaderThunks.h"
+#include "GameAttributes.h"
 
 #include "gui/CGUI.h"
 
@@ -39,13 +40,13 @@ CSimulation::~CSimulation()
 	g_SinglePlayerTurnManager=NULL;
 }
 
-int CSimulation::Initialize(CGameAttributes* UNUSED(pAttribs))
+int CSimulation::Initialize(CGameAttributes* pAttribs)
 {
 	m_pTurnManager->Initialize(m_pGame->GetNumPlayers());
 
 	g_EntityManager.InitializeAll();
 
-	m_pWorld->GetLOSManager()->Initialize();
+	m_pWorld->GetLOSManager()->Initialize(pAttribs->m_LOSSetting);
 
 	return 0;
 }

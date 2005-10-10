@@ -47,12 +47,16 @@ class CLOSManager : public Singleton<CLOSManager>
 	// of a certain player that can see a certain tile if we want to use incremental LOS.
 
 public:
-	bool m_MapRevealed;		// Set to true to ignore LOS
+	static const int NORMAL = 0;
+	static const int EXPLORED = 1;
+	static const int ALL_VISIBLE = 2;
+
+	int m_LOSSetting;
 
 	CLOSManager();
 	~CLOSManager();
 
-	void Initialize();
+	void Initialize(uint losSetting);	// 0 = normal, 1 = explored, 2 = all visible
 	void Update();
 
 	// Get LOS status for a tile (in tile coordinates)

@@ -24,10 +24,11 @@ static void InitGame(std::wstring map)
 	for (int i=1; i<8; ++i) 
 		g_GameAttributes.GetSlot(i)->AssignLocal();
 
+	// Make the whole world visible
+	g_GameAttributes.m_LOSSetting = 2;
+
 	// Initialise the game:
 	g_Game = new CGame();
-	// Make the whole world visible
-	g_Game->GetWorld()->GetLOSManager()->m_MapRevealed = true;
 }
 
 static void StartGame()

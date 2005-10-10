@@ -117,6 +117,8 @@ public:
 
 	CStrW m_MapFile;
 
+	uint m_LOSSetting;
+
 private:
 	friend JSBool PlayerSlotArray_JS::GetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
 

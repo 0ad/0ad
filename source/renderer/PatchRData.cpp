@@ -844,9 +844,8 @@ void CPatchRData::Submit(CPatch* patch)
 		// no renderdata for patch, create it now
 		data=new CPatchRData(patch);
 		patch->SetRenderData(data);
-	} else {
-		data->Update();
 	}
+	data->Update();
 
 	m_Patches.push_back(patch);
 }

@@ -13,16 +13,15 @@
 
 using namespace std;
 
-CLOSManager::CLOSManager() 
+CLOSManager::CLOSManager() : m_LOSSetting(0), m_Explored(0), m_Visible(0)
 {
-	m_MapRevealed = false;
 }
 
 CLOSManager::~CLOSManager() 
 {
 }
 
-void CLOSManager::Initialize() 
+void CLOSManager::Initialize(uint losSetting) 
 {
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 	int tilesPerSide = terrain->GetVerticesPerSide() - 1;
@@ -54,6 +53,9 @@ void CLOSManager::Initialize()
 	// NOTE: this will have to be changed if we decide to use incremental LOS
 
 	Update();
+
+	// Set special LOS setting
+	m_LOSSetting = losSetting;
 }
 
 // NOTE: this will have to be changed if we decide to use incremental LOS
@@ -107,26 +109,20 @@ void CLOSManager::Update()
 
 ELOSStatus CLOSManager::GetStatus(int tx, int tz, CPlayer* player) 
 {
+	// TODO: Make the mask depend on the player's diplomacy (just OR all his allies' masks)
 	int mask = (1 << player->GetPlayerID());
 
-	if(m_MapRevealed)
+	if((m_Visible[tx][tz] & mask) || m_LOSSetting == ALL_VISIBLE) 
 	{
 		return LOS_VISIBLE;
 	}
+	else if((m_Explored[tx][tz] & mask) || m_LOSSetting == EXPLORED)
+	{
+		return LOS_EXPLORED;
+	}
 	else
 	{
-		if(m_Visible[tx][tz] & mask) 
-		{
-			return LOS_VISIBLE;
-		}
-		else if(m_Explored[tx][tz] & mask)
-		{
-			return LOS_EXPLORED;
-		}
-		else
-		{
-			return LOS_UNEXPLORED;
-		}
+		return LOS_UNEXPLORED;
 	}
 }
 

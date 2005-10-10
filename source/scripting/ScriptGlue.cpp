@@ -870,19 +870,19 @@ JSBool revealMap( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsva
 	REQUIRE_MIN_PARAMS( 0, revealMap );
 	REQUIRE_MAX_PARAMS( 1, revealMap );
 
-	bool newValue;
+	uint newValue;
 	if(argc == 0)
 	{
-		newValue = true;
+		newValue = 2;
 	}
-	else if(!ToPrimitive( g_ScriptingHost.GetContext(), argv[0], newValue ))
+	else if(!ToPrimitive( g_ScriptingHost.GetContext(), argv[0], newValue ) || newValue > 2 || newValue < 0)
 	{
-		JS_ReportError( cx, "Invalid boolean argument" );
+		JS_ReportError( cx, "Invalid argument (should be 0, 1 or 2)" );
 		*rval = JSVAL_VOID;
 		return( JS_FALSE );
 	}
 
-	g_Game->GetWorld()->GetLOSManager()->m_MapRevealed = newValue;
+	g_Game->GetWorld()->GetLOSManager()->m_LOSSetting = newValue;
 	*rval = JSVAL_VOID;
 	return( JS_TRUE );
 }
