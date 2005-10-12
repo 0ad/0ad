@@ -242,7 +242,7 @@ static int choose_impl()
 			{
 				// compare QPC freq to CPU clock freq - can't rule out HPET,
 				// because its frequency isn't known (it's at least 10 MHz).
-				double freq_dist = fabs(cpu_freq / qpc_freq - 1.0);
+				double freq_dist = fabs(cpu_freq/qpc_freq - 1.0);
 				safe = freq_dist > 0.05;
 					// safe if freqs not within 5% (i.e. it doesn't use TSC)
 			}
@@ -528,9 +528,9 @@ static void calibrate_lk()
 	typedef RingBuf<double, 8> SampleBuf;
 	static SampleBuf samples;
 
-	if(fabs(hrt_est_freq / hrt_nominal_freq - 1.0) < 0.10)
-		// only add to buffer if within 10% of nominal
-		// (don't want to pollute buffer with flukes / incorrect results)
+	// only add to buffer if within 10% of nominal
+	// (don't want to pollute buffer with flukes / incorrect results)
+	if(fabs(hrt_est_freq/hrt_nominal_freq - 1.0) < 0.10)
 	{
 		samples.push_back(hrt_est_freq);
 

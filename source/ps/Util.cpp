@@ -36,8 +36,7 @@ void WriteSystemInfo()
 {
 	TIMER(write_sys_info);
 
-	get_gfx_info();
-	// get_cpu_info already called during init - see call site
+	// get_cpu_info and get_gfx_info already called during init - see call site
 	get_snd_info();
 	get_mem_status();
 

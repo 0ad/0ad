@@ -130,6 +130,7 @@ static WORD machine;
 static int sym_init()
 {
 	// bail if already initialized (there's nothing to do).
+	// don't use pthread_once because we need to return success/error code.
 	static uintptr_t already_initialized = 0;
 	if(!CAS(&already_initialized, 0, 1))
 		return 0;

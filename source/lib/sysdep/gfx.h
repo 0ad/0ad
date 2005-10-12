@@ -1,6 +1,9 @@
 #ifndef GFX_H__
 #define GFX_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 // useful for choosing a video mode.
 // if we fail, outputs are unchanged (assumed initialized to defaults)
@@ -21,5 +24,9 @@ extern int gfx_mem;	// [MiB]; approximate
 // attempt to detect graphics card without OpenGL (in case ogl init fails,
 // or we want more detailed info). gfx_card[] is unchanged on failure.
 extern void get_gfx_info(void);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif	// #ifndef GFX_H__

@@ -259,9 +259,6 @@ static int dll_list_add(const char* name)
 
 static int win_get_gfx_card()
 {
-	if(gfx_card[0] != '\0')
-		return -1;
-
 	// make sure EnumDisplayDevices is available (as pEnumDisplayDevicesA)
 	if(import_EnumDisplayDevices() >= 0)
 	{

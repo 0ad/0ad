@@ -2,11 +2,6 @@
 #if OS_WIN
 # include <GL/wglext.h>
 #endif
-/*
-typedef void* HDC;
-typedef void* HGLRC;
-typedef void* HPBUFFERARB;
-*/
 
 /*
 

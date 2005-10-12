@@ -234,6 +234,9 @@ const char* oglHaveExtensions(int dummy, ...)
 
 static void importExtensionFunctions()
 {
+	// It should be safe to load the ARB function pointers even if the
+	// extension isn't advertised, since we won't actually use them without
+	// checking for the extension.
 #define FUNC(ret, name, params) *(void**)&name = SDL_GL_GetProcAddress(#name);
 #define FUNC2(ret, nameARB, nameCore, version, params) \
 	nameARB = NULL; \
@@ -244,9 +247,6 @@ static void importExtensionFunctions()
 #include "glext_funcs.h"
 #undef FUNC2
 #undef FUNC
-		// It should be safe to load the ARB function pointers even if the
-		// extension isn't advertised, since we won't actually use them without
-		// checking for the extension.
 }
 
 
@@ -329,8 +329,6 @@ void oglSquelchError(GLenum err_to_ignore)
 
 int ogl_max_tex_size = -1;				// [pixels]
 int ogl_max_tex_units = -1;				// limit on GL_TEXTUREn
-int ogl_max_VAR_elements = -1;			// GF2: 64K; GF3: 1M
-int ogl_tex_compression_supported = -1;	// S3TC / DXT{1,3,5}
 
 
 // gfx_card and gfx_drv_ver are unchanged on failure.
@@ -339,61 +337,17 @@ int ogl_get_gfx_info()
 	const char* vendor   = (const char*)glGetString(GL_VENDOR);
 	const char* renderer = (const char*)glGetString(GL_RENDERER);
 	const char* version  = (const char*)glGetString(GL_VERSION);
-
 	// can fail if OpenGL not yet initialized,
 	// or if called between glBegin and glEnd.
 	if(!vendor || !renderer || !version)
 		return -1;
 
-	strcpy_s(gfx_card, sizeof(gfx_card), vendor);
+	snprintf(gfx_card, ARRAY_SIZE(gfx_card), "%s %s", vendor, renderer);
 
-	// reduce string to "ATI" or "NVIDIA"
-	if(!strcmp(gfx_card, "ATI Technologies Inc."))
-		gfx_card[3] = 0;
-	if(!strcmp(gfx_card, "NVIDIA Corporation"))
-		gfx_card[6] = 0;
-
-	strcat_s(gfx_card, sizeof(gfx_card), renderer);
-		// don't bother cutting off the crap at the end.
-		// too risky, and too many different strings.
-
-	snprintf(gfx_drv_ver, sizeof(gfx_drv_ver), "OpenGL %s", version);
-		// add "OpenGL" to differentiate this from the real driver version
-		// (returned by platform-specific detect routines).
-
+	// add "OpenGL" to differentiate this from the real driver version
+	// (returned by platform-specific detect routines).
+	snprintf(gfx_drv_ver, ARRAY_SIZE(gfx_drv_ver), "OpenGL %s", version);
 	return 0;
-}
-
-
-static void CALL_CONV emulate_glCompressedTexImage2D(GLenum, GLint, GLenum, GLsizei, GLsizei, GLint, GLsizei, const GLvoid*);
-
-static void detectFeatures()
-{
-	glGetIntegerv(GL_MAX_TEXTURE_SIZE, &ogl_max_tex_size);
-	glGetIntegerv(GL_MAX_TEXTURE_UNITS, &ogl_max_tex_units);
-	// make sure value remains -1 if not supported
-	if(oglHaveExtension("GL_NV_vertex_array_range"))
-		glGetIntegerv(GL_MAX_VERTEX_ARRAY_RANGE_ELEMENT_NV, &ogl_max_VAR_elements);
-
-	ogl_tex_compression_supported = oglHaveExtensions(0, "GL_ARB_texture_compression", "GL_EXT_texture_compression_s3tc", 0) == 0;
-	// TODO: GL_S3_s3tc? It uses different enumerants (GL_RGB_S3TC etc), so the
-	// texture loading code would need to be changed; and it is not clear whether
-	// it supports the full range of DXT1/3/5. (There seems to be no specification;
-	// and many header files don't have GL_RGBA_DXT5_S3TC, suggesting that the
-	// drivers don't all support that.)
-
-	if(!ogl_tex_compression_supported)
-	{
-		// If there's no hardware support for compressed textures, do the
-		// decompression in software (but first let the user know it's probably not
-		// going to be very fast).
-		DISPLAY_ERROR(L"Performance warning: your graphics card does not support compressed textures. The game will try to continue anyway, but may be slower than expected. Please try updating your graphics drivers; if that doesn't help, please try upgrading your hardware.");
-		// TODO: i18n
-		glCompressedTexImage2DARB = emulate_glCompressedTexImage2D;
-
-		// Leave ogl_tex_compression_supported == 0, so that it indicates the presence
-		// of hardware-supported texture compression.
-	}
 }
 
 
@@ -406,9 +360,7 @@ void oglInit()
 	// time-critical) than centralizing the 'OpenGL is ready' check.
 	exts = (const char*)glGetString(GL_EXTENSIONS);
 	if(!exts)
-	{
 		debug_warn("oglInit called before OpenGL is ready for use");
-	}
 	have_12 = oglHaveVersion("1.2");
 	have_13 = oglHaveVersion("1.3");
 	have_14 = oglHaveVersion("1.4");
@@ -416,64 +368,6 @@ void oglInit()
 
 	importExtensionFunctions();
 
-	detectFeatures();
-}
-
-
-uint ogl_dxt_from_fmt(GLenum fmt)
-{
-	switch(fmt)
-	{
-	case GL_COMPRESSED_RGB_S3TC_DXT1_EXT:
-		return 1;
-	case GL_COMPRESSED_RGBA_S3TC_DXT1_EXT:
-		return DXT1A;
-	case GL_COMPRESSED_RGBA_S3TC_DXT3_EXT:
-		return 3;
-	case GL_COMPRESSED_RGBA_S3TC_DXT5_EXT:
-		return 5;
-	default:
-		return 0;
-	}
-}
-
-
-// Software emulation of compressed-texture support, for really old
-// cards/drivers that can't do it (but which do support everything else
-// we strictly require). They probably don't have enough VRAM for all the
-// textures, and are slow anyway, so it's not going to be a pleasant way
-// of playing; but at least it's better than nothing.
-static void CALL_CONV emulate_glCompressedTexImage2D(
-	GLenum target_, GLint level_, GLenum int_fmt,
-	GLsizei w, GLsizei h, GLint border,
-	GLsizei data_size, const GLvoid* data)
-{
-	debug_assert(border == 0);	// not supported by glCompressedTexImage2D
-
-	// S3TC format info
-	const uint dxt = ogl_dxt_from_fmt(int_fmt);
-	debug_assert(dxt != 0 && "invalid internal format");
-	const uint s3tc_bpp = (dxt == 3 || dxt == 5)? 8 : 4;
-	const size_t s3tc_size = round_up(w,4)*round_up(h,4)*s3tc_bpp/8;
-	debug_assert(s3tc_size == (size_t)data_size);
-
-	// decompress DDS to RGB[A]
-	Tex t;
-	const uint flags = dxt;
-	(void)tex_wrap((uint)w, (uint)h, s3tc_bpp, flags, (void*)data, &t);
-	(void)tex_transform_to(&t, flags & ~TEX_DXT);
-
-	// uncompressed RGB[A] format info
-	u8* const uc_data = tex_get_data(&t);
-	GLenum uc_fmt    = GL_RGB;
-	GLint uc_int_fmt = GL_RGB8;
-	if(dxt != 1)
-	{
-		uc_fmt     = GL_RGBA;
-		uc_int_fmt = GL_RGBA8;
-	}
-
-	glTexImage2D(target_, level_, uc_int_fmt, w, h, 0, uc_fmt, GL_UNSIGNED_BYTE, uc_data);
-
-	(void)tex_free(&t);
+	glGetIntegerv(GL_MAX_TEXTURE_SIZE, &ogl_max_tex_size);
+	glGetIntegerv(GL_MAX_TEXTURE_UNITS, &ogl_max_tex_units);
 }

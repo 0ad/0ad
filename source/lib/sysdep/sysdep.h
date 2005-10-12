@@ -46,6 +46,15 @@ extern void* alloca(size_t size);
 # define finite __finite
 #endif
 
+// restrict
+#if HAVE_C99
+// .. already available
+#else
+// .. unsupported
+# define restrict
+#endif
+
+
 
 //
 // output

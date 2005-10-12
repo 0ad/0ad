@@ -14,7 +14,7 @@ extern "C" {
 // bring in the platform's OpenGL headers (with fixes, if necessary)
 //
 
-#ifdef __APPLE__
+#if OS_MACOSX || OS_MAC
 # include <OpenGL/gl.h>
 # include <OpenGL/glu.h>
 #else
@@ -31,17 +31,19 @@ extern "C" {
 #define REAL_GL_1_3
 #endif
 
+// this must come after GL/gl.h include, so we can't combine the
+// including GL/glext.h.
 #undef GL_GLEXT_PROTOTYPES
-#ifdef __APPLE__
+
+#if OS_MACOSX || OS_MAC
 # include <OpenGL/glext.h>
 #else
 # include <GL/glext.h>
 # if OS_WIN
 #  include <GL/wglext.h>
+#  define GL_TEXTURE_IMAGE_SIZE_ARB 0x86A0
 # endif
 #endif
-
-#define GL_TEXTURE_IMAGE_SIZE_ARB 0x86A0
 
 
 //
@@ -89,13 +91,11 @@ extern const char* oglExtList(void);
 
 
 //
-// limit / feature detect
+// implementation limits / feature detect
 //
 
 extern int ogl_max_tex_size;				// [pixels]
 extern int ogl_max_tex_units;				// limit on GL_TEXTUREn
-extern int ogl_max_VAR_elements;			// GF2: 64K; GF3: 1M
-extern int ogl_tex_compression_supported;	// S3TC / DXT{1,3,5}
 
 // set detect.cpp gfx_card[] and gfx_drv_ver[].
 // (called by detect.cpp get_gfx_info()).
@@ -135,9 +135,6 @@ extern void oglSquelchError(GLenum err_to_ignore);
 // fails if OpenGL not ready for use.
 extern void oglInit(void);
 
-
-// internal use only:
-extern uint ogl_dxt_from_fmt(GLenum fmt);
 
 #ifdef __cplusplus
 }

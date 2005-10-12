@@ -92,26 +92,30 @@ int gfx_mem = -1;	// [MiB]; approximate
 // or we want more detailed info). gfx_card[] is unchanged on failure.
 void get_gfx_info()
 {
-	int ret = -1;
-
+	// TODO: add sizeof(FB)?
 	gfx_mem = (SDL_GetVideoInfo()->video_mem) / 1048576;	// [MiB]
-		// TODO: add sizeof(FB)?
 
-
-	// try platform-specific versions first: they return more
+	// try platform-specific version: they return more
 	// detailed information, and don't require OpenGL to be ready.
-
 #if OS_WIN
-	ret = win_get_gfx_info();
+	if(win_get_gfx_info() < 0)
 #endif
+	{
+		// the OpenGL version should always work, unless OpenGL isn't ready for use,
+		// or we were called between glBegin and glEnd.
+		ogl_get_gfx_info();
+	}
 
-	// success; done.
-	if(ret == 0)
-		return;
-
-	// the OpenGL version should always work, unless OpenGL isn't ready for use,
-	// or we were called between glBegin and glEnd.
-	ogl_get_gfx_info();
+	// remove crap from vendor names. (don't dare touch the model name -
+	// it's too risky, there are too many different strings)
+#define SHORTEN(what, chars_to_keep)\
+	if(!strncmp(gfx_card, what, ARRAY_SIZE(what)-1))\
+		memmove(gfx_card+chars_to_keep, gfx_card+ARRAY_SIZE(what)-1, strlen(gfx_card)-(ARRAY_SIZE(what)-1)+1);
+	SHORTEN("ATI Technologies Inc.", 3);
+	SHORTEN("NVIDIA Corporation", 6);
+	SHORTEN("S3 Graphics", 2);					// EnumDisplayDevices
+	SHORTEN("S3 Graphics, Incorporated", 2);	// GL_VENDOR
+#undef SHORTEN
 }
 
 
@@ -147,9 +151,6 @@ void cpu_init()
 #if CPU_IA32
 	ia32_init();
 #endif
-
-	// If you ever want to catch a particular allocation:
-	//_CrtSetBreakAlloc(187);
 
 	// no longer set 24 bit (float) precision by default: for
 	// very long game uptimes (> 1 day; e.g. dedicated server),

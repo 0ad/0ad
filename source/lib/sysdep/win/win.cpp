@@ -336,6 +336,8 @@ static int CALLBACK error_dialog_proc(HWND hDlg, unsigned int msg, WPARAM wParam
 		{
 		case IDC_COPY:
 		{
+			// (allocating on the stack would be easier+safer, but this is
+			// too big.)
 			const size_t max_chars = 128*KiB;
 			wchar_t* buf = (wchar_t*)malloc(max_chars*sizeof(wchar_t));
 			if(buf)
@@ -499,7 +501,7 @@ wchar_t* clipboard_get()
 		if(text)
 		{
 			SIZE_T size = GlobalSize(hMem);
-			wchar_t* copy = (wchar_t*)malloc(size);
+			wchar_t* copy = (wchar_t*)malloc(size);	// unavoidable
 			if(copy)
 			{
 				wcscpy(copy, text);
