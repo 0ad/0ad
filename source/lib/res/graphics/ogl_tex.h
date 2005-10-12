@@ -23,13 +23,15 @@
 Introduction
 ------------
 
-This module simplifies use of textures in OpenGL. It provides an
-easy-to-use load/upload/bind/free API that completely replaces
+This module simplifies use of textures in OpenGL. An easy-to-use
+load/upload/bind/free API is provided, which completely replaces
 direct access to OpenGL's texturing calls.
 
 It basically wraps tex.cpp's texture info in a resource object
 (see h_mgr.h) that maintains associated GL state and provides for
 reference counting, caching, hotloading and safe access.
+Additionally, the upload step provides for trading quality vs. speed
+and works around older hardware/drivers.
 
 
 Texture Parameters
@@ -68,6 +70,13 @@ older graphics cards without requiring anything else to be changed.
 Textures with specific quality needs can override this via
 ogl_tex_set_* or ogl_tex_upload parameters.
 
+Finally, provision is made for coping with hardware/drivers lacking support
+for S3TC decompression or mipmap generation: that can be done in software,
+if necessary. This avoids the need for alternate asset formats and
+lowers hardware requirements. While such cards probably won't run
+the app very well (due to their age and lack of other capabilities),
+this does make possible developing/testing on older machines/laptops.
+
 
 Caching and Texture Instances
 -----------------------------
@@ -90,38 +99,39 @@ the next function to fail, but real apps should check and report errors.
 
 1) Basic usage: load texture from file.
 
-Handle hTexture = ogl_tex_load("filename.dds");
-(void)ogl_tex_upload(hTexture);
+	Handle hTexture = ogl_tex_load("filename.dds");
+	(void)ogl_tex_upload(hTexture);
 
-[when rendering:]
-(void)ogl_tex_bind(hTexture);
-[.. do something with OpenGL that uses the currently bound texture]
+	[when rendering:]
+	(void)ogl_tex_bind(hTexture);
+	[.. do something with OpenGL that uses the currently bound texture]
 
-[at exit:]
-// (done automatically, but this avoids it showing up as a leak)
-(void)ogl_tex_free(hTexture);
+	[at exit:]
+	// (done automatically, but this avoids it showing up as a leak)
+	(void)ogl_tex_free(hTexture);
 
 
 2) Advanced usage: wrap existing texture data, override filter,
    specify internal_format and use multitexturing.
-Tex t;
-const uint flags = 0;	// image is plain RGB, default orientation
-void* data = [pre-existing image]
-(void)tex_wrap(w, h, 24, flags, data, &t);
-Handle hCompositeAlphaMap = ogl_tex_wrap(&t, "(alpha map composite)");
-(void)ogl_tex_set_filter(hCompositeAlphaMap, GL_LINEAR);
-(void)ogl_tex_upload(hCompositeAlphaMap, 0, 0, GL_INTENSITY);
-// (your responsibility! tex_wrap attaches a reference but it is
-// removed by ogl_tex_upload.)
-free(data);
 
-[when rendering:]
-(void)ogl_tex_bind(hCompositeAlphaMap, 1);
-[.. do something with OpenGL that uses the currently bound texture]
+	Tex t;
+	const uint flags = 0;	// image is plain RGB, default orientation
+	void* data = [pre-existing image]
+	(void)tex_wrap(w, h, 24, flags, data, &t);
+	Handle hCompositeAlphaMap = ogl_tex_wrap(&t, "(alpha map composite)");
+	(void)ogl_tex_set_filter(hCompositeAlphaMap, GL_LINEAR);
+	(void)ogl_tex_upload(hCompositeAlphaMap, 0, 0, GL_INTENSITY);
+	// (your responsibility! tex_wrap attaches a reference but it is
+	// removed by ogl_tex_upload.)
+	free(data);
 
-[at exit:]
-// (done automatically, but this avoids it showing up as a leak)
-(void)ogl_tex_free(hCompositeAlphaMap);
+	[when rendering:]
+	(void)ogl_tex_bind(hCompositeAlphaMap, 1);
+	[.. do something with OpenGL that uses the currently bound texture]
+
+	[at exit:]
+	// (done automatically, but this avoids it showing up as a leak)
+	(void)ogl_tex_free(hCompositeAlphaMap);
 
 */
 

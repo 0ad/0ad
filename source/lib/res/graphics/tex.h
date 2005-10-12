@@ -57,12 +57,15 @@ close to the final pixel format.
 Default Orientation
 -------------------
 
-After loading, all images (2) are automatically converted to the
-default row orientation: top-down or bottom-up, as specified by
-tex_set_global_orientation.
-
-2) except those loaded from a file format whose orientation is
-   indeterminate (currently only DDS); we leave those alone.
+After loading, all images (except DDS, because its orientation is
+indeterminate) are automatically converted to the global row
+orientation: top-down or bottom-up, as specified by
+tex_set_global_orientation. If that isn't called, the default is top-down
+to match Photoshop's DDS output (since this is meant to be the
+no-preprocessing-required optimized format).
+Reasons to change it might be to speed up loading bottom-up
+BMP or TGA images, or to match OpenGL's convention for convenience;
+however, be aware of the abovementioned issues with DDS.
 
 Rationale: it is not expected that this will happen at the renderer layer
 (a 'flip all texcoords' flag is too much trouble), so the
@@ -70,19 +73,14 @@ application would have to do the same anyway. By taking care of it here,
 we unburden the app and save time, since some codecs (e.g. PNG) can
 flip for free when loading.
 
-As to what value is best: if using DDS, set the default to match your
-renderer and the orientation output by your DDS authoring tool (since this
-is the only format that doesn't reliably specify its orientation).
-Otherwise, it doesn't much matter unless using many images where
-flipping isn't free (BMP or TGA) - in that case, go with their orientation.
-
 
 Codecs / IO Implementation
 --------------------------
 
 To ease adding support for new formats, they are organized as codecs.
-The interface aims to minimize code duplication, so it's organized similar
-to "Template Method".
+The interface aims to minimize code duplication, so it's organized
+following the principle of "Template Method" - this module both
+calls into codecs, and provides helper functions that they use.
 
 IO is done via VFS, but the codecs are decoupled from this and
 work with memory buffers. Access to them is endian-safe.
@@ -106,7 +104,8 @@ enum TexFlags
 	// flags & TEX_DXT is a field indicating compression.
 	// if 0, the texture is uncompressed;
 	// otherwise, it holds the S3TC type: 1,3,5 or DXT1A.
-	// not converted by default - glCompressedTexImage2D takes it as-is.
+	// not converted by default - glCompressedTexImage2D receives
+	// the compressed data.
 	TEX_DXT = 0x7,	// mask
 	// we need a special value for DXT1a to avoid having to consider
 	// flags & TEX_ALPHA to determine S3TC type.
@@ -126,7 +125,7 @@ enum TexFlags
 
 	// indicates the image is 8bpp greyscale. this is required to
 	// differentiate between alpha-only and intensity formats.
-	// (conversion is not applicable here)
+	// not converted by default - it's an acceptable format for OpenGL.
 	TEX_GREY = 0x20,
 
 	// flags & TEX_ORIENTATION is a field indicating orientation,
@@ -134,7 +133,7 @@ enum TexFlags
 	//
 	// tex_load always sets this to the global orientation
 	// (and flips the image accordingly).
-	// texture codecs may (in intermediate steps during loading) set this
+	// texture codecs may in intermediate steps during loading set this
 	// to 0 if they don't know which way around they are (e.g. DDS),
 	// or to whatever their file contains.
 	TEX_BOTTOM_UP = 0x40,
@@ -176,6 +175,7 @@ struct Tex
 // set the orientation (either TEX_BOTTOM_UP or TEX_TOP_DOWN) to which
 // all loaded images will automatically be converted
 // (excepting file formats that don't specify their orientation, i.e. DDS).
+// see "Default Orientation" in docs.
 extern void tex_set_global_orientation(int orientation);
 
 
@@ -216,6 +216,7 @@ extern int tex_free(Tex* t);
 extern int tex_transform(Tex* t, uint transforms);
 
 // change <t>'s pixel format to the new format specified by <new_flags>.
+// (note: this is equivalent to tex_transform(t, t->flags^new_flags).
 extern int tex_transform_to(Tex* t, uint new_flags);
 
 
@@ -232,8 +233,8 @@ extern int tex_transform_to(Tex* t, uint new_flags);
 // header(s) that may come before it. see Tex.hm comment above.
 extern u8* tex_get_data(const Tex* t);
 
-// return total byte size of the image pixels. this is preferable to
-// calculating manually via num_pixels * pixel_size because it's
+// return total byte size of the image pixels. (including mipmaps!)
+// this is preferable to calculating manually because it's
 // less error-prone (e.g. confusing bits_per_pixel with bytes).
 extern size_t tex_img_size(const Tex* t);
 
@@ -242,9 +243,9 @@ extern size_t tex_img_size(const Tex* t);
 // image writing
 //
 
-// returns the minimum header size (i.e. offset to pixel data) of the
+// return the minimum header size (i.e. offset to pixel data) of the
 // file format indicated by <fn>'s extension (that is all it need contain:
-// e.g. ".bmp").
+// e.g. ".bmp"). returns 0 on error (i.e. no codec found).
 // this can be used to optimize calls to tex_write: when allocating the
 // buffer that will hold the image, allocate this much extra and
 // pass the pointer as base+hdr_size. this allows writing the header
@@ -258,6 +259,17 @@ extern int tex_write(Tex* t, const char* fn);
 
 
 // internal use only:
-extern int tex_validate(uint line, const Tex* t);
+extern int tex_validate(const Tex* t);
+
+typedef void(*MipmapCB)(uint level, uint level_w, uint level_h,
+	const u8* level_data, size_t level_data_size, void* ctx);
+
+// special value for levels_to_skip: the callback will only be called
+// for the base mipmap level (i.e. 100%)
+const int TEX_BASE_LEVEL_ONLY = -1;
+
+extern void tex_util_foreach_mipmap(uint w, uint h, uint bpp, const u8* restrict data,
+	int levels_to_skip, uint data_padding, MipmapCB cb, void* restrict ctx);
+
 
 #endif	// TEX_H__

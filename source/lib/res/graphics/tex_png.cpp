@@ -105,7 +105,7 @@ static int png_decode_impl(DynArray* da,
 	if(!img)
 		return ERR_NO_MEM;
 
-	RETURN_ERR(tex_codec_alloc_rows(img, h, pitch, TEX_TOP_DOWN, 0, rows));
+	RETURN_ERR(tex_util_alloc_rows(img, h, pitch, TEX_TOP_DOWN, 0, rows));
 
 	png_read_image(png_ptr, (png_bytepp)rows);
 	png_read_end(png_ptr, info_ptr);
@@ -158,7 +158,7 @@ static int png_encode_impl(Tex* t,
 		PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
 
 	u8* data = tex_get_data(t);
-	RETURN_ERR(tex_codec_alloc_rows(data, h, pitch, t->flags, TEX_TOP_DOWN, rows));
+	RETURN_ERR(tex_util_alloc_rows(data, h, pitch, t->flags, TEX_TOP_DOWN, rows));
 
 	// PNG is native RGB.
 	const int png_transforms = (t->flags & TEX_BGR)? PNG_TRANSFORM_BGR : PNG_TRANSFORM_IDENTITY;
@@ -192,7 +192,7 @@ static size_t png_hdr_size(const u8* UNUSED(file))
 
 
 // limitation: palette images aren't supported
-static int png_decode(DynArray* da, Tex* t)
+static int png_decode(DynArray* restrict da, Tex* restrict t)
 {
 	int err = -1;
 	// freed when ret is reached:
@@ -233,7 +233,7 @@ ret:
 
 
 // limitation: palette images aren't supported
-static int png_encode(Tex* t, DynArray* da)
+static int png_encode(Tex* restrict t, DynArray* restrict da)
 {
 	int err = -1;
 	// freed when ret is reached:

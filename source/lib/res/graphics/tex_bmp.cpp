@@ -69,7 +69,7 @@ static size_t bmp_hdr_size(const u8* file)
 
 
 // requirements: uncompressed, direct colour, bottom up
-static int bmp_decode(DynArray* da, Tex* t)
+static int bmp_decode(DynArray* restrict da, Tex* restrict t)
 {
 	u8* file         = da->base;
 
@@ -100,7 +100,7 @@ static int bmp_decode(DynArray* da, Tex* t)
 }
 
 
-static int bmp_encode(Tex* t, DynArray* da)
+static int bmp_encode(Tex* restrict t, DynArray* restrict da)
 {
 	const size_t hdr_size = sizeof(BmpHeader);	// needed for BITMAPFILEHEADER
 	const size_t img_size = tex_img_size(t);
@@ -129,7 +129,7 @@ static int bmp_encode(Tex* t, DynArray* da)
 		(u32)img_size,		// biSizeImage
 		0, 0, 0, 0			// unused (bi?PelsPerMeter, biClr*)
 	};
-	return tex_codec_write(t, transforms, &hdr, hdr_size, da);
+	return tex_util_write(t, transforms, &hdr, hdr_size, da);
 }
 
 TEX_CODEC_REGISTER(bmp);

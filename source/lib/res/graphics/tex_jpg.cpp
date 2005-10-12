@@ -459,7 +459,7 @@ static int jpg_decode_impl(DynArray* da,
 		return ERR_NO_MEM;
 
 	// read rows
-	RETURN_ERR(tex_codec_alloc_rows(img, h, pitch, TEX_TOP_DOWN, 0, rows));
+	RETURN_ERR(tex_util_alloc_rows(img, h, pitch, TEX_TOP_DOWN, 0, rows));
 	// could use cinfo->output_scanline to keep track of progress,
 	// but we need to count lines_left anyway (paranoia).
 	JSAMPARRAY row = (JSAMPARRAY)rows;
@@ -520,7 +520,7 @@ static int jpg_encode_impl(Tex* t,
 
 	const size_t pitch = t->w * t->bpp / 8;
 	u8* data = tex_get_data(t);
-	RETURN_ERR(tex_codec_alloc_rows(data, t->h, pitch, t->flags, TEX_TOP_DOWN, rows));
+	RETURN_ERR(tex_util_alloc_rows(data, t->h, pitch, t->flags, TEX_TOP_DOWN, rows));
 
 
 	// could use cinfo->output_scanline to keep track of progress,
@@ -567,7 +567,7 @@ static size_t jpg_hdr_size(const u8* UNUSED(file))
 }
 
 
-static int jpg_decode(DynArray* da, Tex* t)
+static int jpg_decode(DynArray* restrict da, Tex* restrict t)
 {
 	int err;
 
@@ -606,7 +606,7 @@ fail:
 
 
 // limitation: palette images aren't supported
-static int jpg_encode(Tex* t, DynArray* da)
+static int jpg_encode(Tex* restrict t, DynArray* restrict da)
 {
 	int err;
 

@@ -112,10 +112,12 @@ struct S3tcBlock
 
 	// table of 2-bit color selectors
 	u32 c_selectors;
+
+	uint dxt;
 };
 
 
-static void precalc_alpha(int dxt, const u8* a_block, S3tcBlock* b)
+static void precalc_alpha(uint dxt, const u8* restrict a_block, S3tcBlock* restrict b)
 {
 	// read block contents
 	const uint a0 = a_block[0], a1 = a_block[1];
@@ -154,7 +156,7 @@ static void precalc_alpha(int dxt, const u8* a_block, S3tcBlock* b)
 }
 
 
-static void precalc_color(int dxt, const u8* c_block, S3tcBlock* b)
+static void precalc_color(uint dxt, const u8* restrict c_block, S3tcBlock* restrict b)
 {
 	// read block contents
 	// .. S3TC reference colors (565 format). the color table is generated
@@ -191,8 +193,10 @@ static void precalc_color(int dxt, const u8* c_block, S3tcBlock* b)
 }
 
 
-static void block_precalc(int dxt, const u8* block, S3tcBlock* b)
+static void precalc_block(uint dxt, const u8* restrict block, S3tcBlock* restrict b)
 {
+	b->dxt = dxt;
+
 	// (careful, 'dxt != 1' doesn't work)
 	const u8* a_block = block;
 	const u8* c_block = (dxt == 3 || dxt == 5)? block+8 : block;
@@ -202,7 +206,7 @@ static void block_precalc(int dxt, const u8* block, S3tcBlock* b)
 }
 
 
-static void write_pixel(int dxt, uint pixel_idx, const S3tcBlock* b, u8* out)
+static void write_pixel(const S3tcBlock* restrict b, uint pixel_idx, u8* restrict out)
 {
 	debug_assert(pixel_idx < 16);
 
@@ -213,17 +217,17 @@ static void write_pixel(int dxt, uint pixel_idx, const S3tcBlock* b, u8* out)
 		out[i] = c[i];
 
 	// if no alpha, done
-	if(dxt == 1)
+	if(b->dxt == 1)
 		return;
 
 	uint a;
-	if(dxt == 3)
+	if(b->dxt == 3)
 	{
 		// table of 4-bit alpha entries
 		a = access_bit_tbl64(b->a_bits, pixel_idx, 4);
 		a |= a << 4; // expand to 8 bits (replicate high into low!)
 	}
-	else if(dxt == 5)
+	else if(b->dxt == 5)
 	{
 		// pixel index -> alpha selector (3 bit) -> alpha
 		const uint a_selector = access_bit_tbl64(b->a_bits, pixel_idx, 3);
@@ -236,81 +240,113 @@ static void write_pixel(int dxt, uint pixel_idx, const S3tcBlock* b, u8* out)
 }
 
 
-
-// in ogl_emulate_dds:	debug_assert(compressedimageSize == blocks * (dxt1? 8 : 16));
-
-
-// note: this code is grossly inefficient (mostly due to splitting it up
+// note: this code is not so efficient (mostly due to splitting it up
 // into function calls for readability). that's because it's only used to
 // emulate hardware S3TC support - if that isn't available, everything will
 // be dog-slow anyway due to increased vmem usage.
-static int dds_decompress(Tex* t)
+
+struct DecompressInfo
 {
-	int dxt = t->flags & TEX_DXT;
-	debug_assert(dxt == 1 || dxt == 3 || dxt == 5);
-	if(t->flags & TEX_ALPHA)
-		dxt = DXT1A;
-	// due to the above, dxt == 1 is the only non-alpha case.
-	// note: adding or stripping alpha channels during transform is not
-	// our job; we merely output the same pixel format as given
-	// (tex.cpp's plain transform could cover it, if ever needed).
-	const uint bpp = (dxt != 1)? 32 : 24;
+	uint dxt;
+	uint s3tc_block_size;
+	uint out_Bpp;
+	u8* out;
+};
+
+static void decompress_level(uint UNUSED(level), uint level_w, uint level_h,
+	const u8* restrict level_data, size_t level_data_size, void* restrict ctx)
+{
+	DecompressInfo* di = (DecompressInfo*)ctx;
+	const uint dxt             = di->dxt;
+	const uint s3tc_block_size = di->s3tc_block_size;
 
 	// note: 1x1 images are legitimate (e.g. in mipmaps). they report their
 	// width as such for glTexImage, but the S3TC data is padded to
 	// 4x4 pixel block boundaries.
-	const uint blocks_w = (uint)(round_up(t->w, 4) / 4);
-	const uint blocks_h = (uint)(round_up(t->h, 4) / 4);
-	const uint blocks = blocks_w * blocks_h;
-	const size_t img_size = blocks * 16 * bpp/8;
-	Handle hm;
-	void* img_data = mem_alloc(img_size, 64*KiB, 0, &hm);
-	if(!img_data)
-		return ERR_NO_MEM;
-
-	const u8* s3tc_data = (const u8*)tex_get_data(t);
-	// note: do not use tex_img_size! we must take into account padding
-	// to 4x4 blocks, which is relevant for high mipmap levels (e.g. 2x2).
-	const size_t s3tc_size = blocks * 16 * t->bpp/8;
+	const uint blocks_w = (uint)round_up(level_w, 4) / 4;
+	const uint blocks_h = (uint)round_up(level_h, 4) / 4;
+	const u8* s3tc_data = level_data;
+	debug_assert(level_data_size % s3tc_block_size == 0);
 
 	for(uint block_y = 0; block_y < blocks_h; block_y++)
 		for(uint block_x = 0; block_x < blocks_w; block_x++)
 		{
 			S3tcBlock b;
-			block_precalc(dxt, s3tc_data, &b);
-			s3tc_data += 16 * t->bpp/8;
+			precalc_block(dxt, s3tc_data, &b);
+			s3tc_data += s3tc_block_size;
 
 			uint pixel_idx = 0;
 			for(int y = 0; y < 4; y++)
 			{
-				u8* out = (u8*)img_data + ((block_y*4+y)*blocks_w*4 + block_x*4) * bpp/8;
+				// this is ugly, but advancing after x, y and block_y loops
+				// is no better.
+				u8* out = (u8*)di->out + ((block_y*4+y)*blocks_w*4 + block_x*4) * di->out_Bpp;
 				for(int x = 0; x < 4; x++)
 				{
-					write_pixel(dxt, pixel_idx, &b, out);
-					out += bpp/8;
+					write_pixel(&b, pixel_idx, out);
+					out += di->out_Bpp;
 					pixel_idx++;
 				}
 			}
 		}	// for block_x
 
-
-	debug_assert(tex_get_data(t) == s3tc_data - s3tc_size);
-
-	mem_free_h(t->hm);
-	t->hm  = hm;
-	t->ofs = 0;
-	t->bpp = bpp;
-	t->flags &= ~TEX_DXT;
-	return 0;
+	debug_assert(s3tc_data == level_data + level_data_size);
+	di->out += blocks_w*blocks_h * 16 * di->out_Bpp;
 }
 
 
+static bool is_valid_dxt(uint dxt)
+{
+	switch(dxt)
+	{
+	case 0:
+	case 1:
+	case DXT1A:
+	case 3:
+	case 5:
+		return true;
+	default:
+		return false;
+	}
+	UNREACHABLE;
+}
+
 static int dds_transform(Tex* t, uint transforms)
 {
-	const int is_dxt = t->flags & TEX_DXT, transform_dxt = transforms & TEX_DXT;
+	uint dxt = t->flags & TEX_DXT;
+	debug_assert(is_valid_dxt(dxt));
+	const uint s3tc_block_size = (dxt == 3 || dxt == 5)? 16 : 8;
+	if(t->flags & TEX_ALPHA)
+		dxt = DXT1A;
+
+	const uint transform_dxt = transforms & TEX_DXT;
 	// requesting decompression
-	if(is_dxt && transform_dxt)
-		return dds_decompress(t);
+	if(dxt && transform_dxt)
+	{
+		// alloc new image memory
+		// notes:
+		// - due to the above, dxt == 1 is the only non-alpha case.
+		// - adding or stripping alpha channels during transform is not
+		//   our job; we merely output the same pixel format as given
+		//   (tex.cpp's plain transform could cover it, if ever needed).
+		const uint out_bpp = (dxt != 1)? 32 : 24;
+		Handle hm;
+		const size_t out_size = tex_img_size(t) * out_bpp / t->bpp;
+		void* out_data = mem_alloc(out_size, 64*KiB, 0, &hm);
+		if(!out_data)
+			return ERR_NO_MEM;
+
+		DecompressInfo di = { dxt, s3tc_block_size, out_bpp/8, (u8*)out_data };
+		const u8* s3tc_data = tex_get_data(t);
+		const int levels_to_skip = (t->flags & TEX_MIPMAPS)? 0 : TEX_BASE_LEVEL_ONLY;
+		tex_util_foreach_mipmap(t->w, t->h, t->bpp, s3tc_data, levels_to_skip, 4, decompress_level, &di);
+		mem_free_h(t->hm);
+		t->hm  = hm;
+		t->ofs = 0;
+		t->bpp = out_bpp;
+		t->flags &= ~TEX_DXT;
+		return 0;
+	}
 	// both are DXT (unsupported; there are no flags we can change while
 	// compressed) or requesting compression (not implemented) or
 	// both not DXT (nothing we can do) - bail.
@@ -337,7 +373,7 @@ static size_t dds_hdr_size(const u8* UNUSED(file))
 }
 
 
-static int dds_decode(DynArray* da, Tex* t)
+static int dds_decode(DynArray* restrict da, Tex* restrict t)
 {
 	u8* file         = da->base;
 
@@ -420,7 +456,7 @@ static int dds_decode(DynArray* da, Tex* t)
 }
 
 
-static int dds_encode(Tex* UNUSED(t), DynArray* UNUSED(da))
+static int dds_encode(Tex* restrict UNUSED(t), DynArray* restrict UNUSED(da))
 {
 	// note: do not return ERR_NOT_IMPLEMENTED et al. because that would
 	// break tex_write (which assumes either this, 0 or errors are returned).

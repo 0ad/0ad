@@ -15,7 +15,7 @@ struct TexCodecVTbl
 	// size is guaranteed to be >= 4.
 	// (usually enough to compare the header's "magic" field;
 	// anyway, no legitimate file will be smaller)
-	int (*decode)(DynArray* da, Tex* t);
+	int (*decode)(DynArray* restrict da, Tex* restrict t);
 
 	// rationale: some codecs cannot calculate the output size beforehand
 	// (e.g. PNG output via libpng); we therefore require each one to
@@ -23,7 +23,7 @@ struct TexCodecVTbl
 	//
 	// note: <t> cannot be made const because encoding may require a
 	// tex_transform.
-	int (*encode)(Tex* t, DynArray* da);
+	int (*encode)(Tex* restrict t, DynArray* restrict da);
 
 	int (*transform)(Tex* t, uint transforms);
 
@@ -75,11 +75,9 @@ extern int tex_codec_for_header(const u8* file, size_t file_size, const TexCodec
 // needed for encoding, too (where data is already present).
 typedef const u8* RowPtr;
 typedef RowPtr* RowArray;
-extern int tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
+extern int tex_util_alloc_rows(const u8* data, size_t h, size_t pitch,
 	uint src_flags, uint dst_orientation, RowArray& rows);
 
-extern int tex_codec_set_orientation(Tex* t, uint file_orientation);
-
-extern int tex_codec_write(Tex* t, uint transforms, const void* hdr, size_t hdr_size, DynArray* da);
+extern int tex_util_write(Tex* t, uint transforms, const void* hdr, size_t hdr_size, DynArray* da);
 
 #endif	// #ifndef TEX_CODEC_H__

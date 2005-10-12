@@ -86,7 +86,7 @@ static size_t tga_hdr_size(const u8* file)
 
 
 // requirements: uncompressed, direct colour, bottom up
-static int tga_decode(DynArray* da, Tex* t)
+static int tga_decode(DynArray* restrict da, Tex* restrict t)
 {
 	u8* file         = da->base;
 
@@ -120,7 +120,7 @@ static int tga_decode(DynArray* da, Tex* t)
 }
 
 
-static int tga_encode(Tex* t, DynArray* da)
+static int tga_encode(Tex* restrict t, DynArray* restrict da)
 {
 	u8 img_desc = 0;
 	if(t->flags & TEX_TOP_DOWN)
@@ -146,7 +146,7 @@ static int tga_encode(Tex* t, DynArray* da)
 		img_desc
 	};
 	const size_t hdr_size = sizeof(hdr);
-	return tex_codec_write(t, transforms, &hdr, hdr_size, da);
+	return tex_util_write(t, transforms, &hdr, hdr_size, da);
 }
 
 TEX_CODEC_REGISTER(tga);

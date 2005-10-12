@@ -24,56 +24,46 @@
 #include <algorithm>
 
 #include "lib.h"
+#include "timer.h"
 #include "../res.h"
 #include "tex.h"
 #include "tex_codec.h"
 
 
 // be careful not to use other tex_* APIs here because they call us.
-int tex_validate(const uint line, const Tex* t)
+int tex_validate(const Tex* t)
 {
-	const char* msg = 0;
-	int err = -1;
-
-	// texture data
+	// pixel data
 	size_t tex_file_size;
 	void* tex_file = mem_get_ptr(t->hm, &tex_file_size);
 	// .. only check validity if the image is still in memory.
 	//    (e.g. ogl_tex frees the data after uploading to GL)
 	if(tex_file)
 	{
+		// file size smaller than header+pixels.
 		// possible causes: texture file header is invalid,
 		// or file wasn't loaded completely.
 		if(tex_file_size < t->ofs + t->w*t->h*t->bpp/8)
-			msg = "file size smaller than header+texels";
+			return -2;
 	}
 
 	// bits per pixel
 	// (we don't bother checking all values; a sanity check is enough)
 	if(t->bpp % 4 || t->bpp > 32)
-		msg = "invalid bpp? should be one of {4,8,16,24,32}";
+		return -3;
 
 	// flags
-	// .. DXT
+	// .. DXT value
 	const uint dxt = t->flags & TEX_DXT;
 	if(dxt != 0 && dxt != 1 && dxt != DXT1A && dxt != 3 && dxt != 5)
-		msg = "invalid DXT in flags";
+		return -4;
 	// .. orientation
 	const uint orientation = t->flags & TEX_ORIENTATION;
 	if(orientation == (TEX_BOTTOM_UP|TEX_TOP_DOWN))
-		msg = "invalid orientation in flags";
-
-	if(msg)
-	{
-		debug_printf("tex_validate at line %d failed: %s (error code %d)\n", line, msg, err);
-		debug_warn("tex_validate failed");
-		return err;
-	}
+		return -5;
 
 	return 0;
 }
-
-#define CHECK_TEX(t) CHECK_ERR(tex_validate(__LINE__, t))
 
 
 // check if the given texture format is acceptable: 8bpp grey,
@@ -108,6 +98,77 @@ static int validate_format(uint bpp, uint flags)
 }
 
 
+struct CreateLevelData
+{
+	uint num_components;
+
+	uint prev_level_w;
+	uint prev_level_h;
+	const u8* prev_level_data;
+	size_t prev_level_data_size;
+};
+
+// uses 2x2 box filter
+static void create_level(uint level, uint level_w, uint level_h,
+	const u8* restrict level_data, size_t level_data_size, void* restrict ctx)
+{
+	CreateLevelData* cld = (CreateLevelData*)ctx;
+	const u8* src = cld->prev_level_data;
+	u8* dst = (u8*)level_data;
+
+	// base level - must be copied over from source buffer
+	if(level == 0)
+	{
+		debug_assert(level_data_size == cld->prev_level_data_size);
+		memcpy(dst, src, level_data_size);
+	}
+	else
+	{
+		const uint num_components = cld->num_components;
+		const size_t dx = num_components, dy = dx*level_w*2;
+
+		// special case: image is too small for 2x2 filter
+		if(cld->prev_level_w == 1 || cld->prev_level_h == 1)
+		{
+			for(uint y = 0; y < level_h; y++)
+			{
+				for(uint i = 0; i < num_components; i++)
+				{
+					*dst++ = (src[0]+src[dy]+1)/2;
+					src += 1;
+				}
+				src += dy;
+			}
+		}
+		// normal
+		else
+		{
+			for(uint y = 0; y < level_h; y++)
+			{
+				for(uint x = 0; x < level_w; x++)
+				{
+					for(uint i = 0; i < num_components; i++)
+					{
+						*dst++ = (src[0]+src[dx]+src[dy]+src[dx+dy]+2)/4;
+						src += 1;
+					}
+					src += dx;
+				}
+				src += dy;
+			}
+		}
+
+		debug_assert(dst == level_data + level_data_size);
+		debug_assert(src == cld->prev_level_data + cld->prev_level_data_size);
+	}
+
+	cld->prev_level_data = level_data;
+	cld->prev_level_data_size = level_data_size;
+	cld->prev_level_w = level_w;
+	cld->prev_level_h = level_h;
+}
+
+
 // handles BGR and row flipping in "plain" format (see below).
 //
 // called by codecs after they get their format-specific transforms out of
@@ -117,17 +178,20 @@ static int validate_format(uint bpp, uint flags)
 // somewhat optimized (loops are hoisted, cache associativity accounted for)
 static int plain_transform(Tex* t, uint transforms)
 {
-	CHECK_TEX(t);
+	// (this is also called directly instead of through ogl_tex, so
+	// we need to validate)
+	CHECK_ERR(tex_validate(t));
 
 	// extract texture info
 	const uint w = t->w, h = t->h, bpp = t->bpp, flags = t->flags;
-	u8* const img = tex_get_data(t);
+	u8* const data = tex_get_data(t);
+	const size_t data_size = tex_img_size(t);
 
 	// sanity checks (not errors, we just can't handle these cases)
 	// .. unknown transform
-	if(transforms & ~(TEX_BGR|TEX_ORIENTATION))
+	if(transforms & ~(TEX_BGR|TEX_ORIENTATION|TEX_MIPMAPS))
 		return TEX_CODEC_CANNOT_HANDLE;
-	// .. img is not in "plain" format
+	// .. data is not in "plain" format
 	if(validate_format(bpp, flags) != 0)
 		return TEX_CODEC_CANNOT_HANDLE;
 	// .. nothing to do
@@ -135,12 +199,12 @@ static int plain_transform(Tex* t, uint transforms)
 		return 0;
 
 	// setup row source/destination pointers (simplifies outer loop)
-	u8* dst = img;
-	const u8* src = img;
+	u8* dst = data;
+	const u8* src = data;
 	const size_t pitch = w * bpp/8;
 	ssize_t row_ofs = (ssize_t)pitch;
 	// avoid y*pitch multiply in row loop; instead, add row_ofs.
-	void* clone_img = 0;
+	void* clone_data = 0;
 	// flipping rows (0,1,2 -> 2,1,0)
 	if(transforms & TEX_ORIENTATION)
 	{
@@ -150,12 +214,11 @@ static int plain_transform(Tex* t, uint transforms)
 		//
 		// note: we don't want to return a new buffer: the user assumes
 		// buffer address will remain unchanged.
-		const size_t size = h*pitch;
-		clone_img = mem_alloc(size, 32*KiB);
-		if(!clone_img)
+		clone_data = mem_alloc(data_size, 4*KiB);
+		if(!clone_data)
 			return ERR_NO_MEM;
-		memcpy(clone_img, img, size);
-		src = (const u8*)clone_img+size-pitch;	// last row
+		memcpy(clone_data, data, data_size);
+		src = (const u8*)clone_data+data_size-pitch;	// last row
 		row_ofs = -(ssize_t)pitch;
 	}
 
@@ -202,34 +265,43 @@ static int plain_transform(Tex* t, uint transforms)
 		}
 	}
 
-	if(clone_img)
-		mem_free(clone_img);
+	if(clone_data)
+		(void)mem_free(clone_data);
+
+	if(!(t->flags & TEX_MIPMAPS) && transforms & TEX_MIPMAPS)
+	{
+		// this code assumes the image is of POT dimension; we don't
+		// go to the trouble of implememting image scaling because
+		// the only place this is used (ogl_tex_upload) requires POT anyway.
+		if(!is_pow2(w) || !is_pow2(h))
+			return ERR_TEX_INVALID_SIZE;
+		t->flags |= TEX_MIPMAPS;	// must come before tex_img_size!
+		const size_t mipmap_size = tex_img_size(t);
+		Handle hm;
+		const u8* mipmap_data = (const u8*)mem_alloc(mipmap_size, 4*KiB, 0, &hm);
+		if(!mipmap_data)
+			return ERR_NO_MEM;
+		CreateLevelData cld = { bpp/8, w, h, data, data_size };
+		tex_util_foreach_mipmap(w, h, bpp, mipmap_data, 0, 1, create_level, &cld);
+		mem_free_h(t->hm);
+		t->hm = hm;
+	}
 
 	return 0;
 }
-
-
 
 
 //-----------------------------------------------------------------------------
 // image orientation
 //-----------------------------------------------------------------------------
 
-// rationale for default: see tex_set_global_orientation
+// see "Default Orientation" in docs.
+
 static int global_orientation = TEX_TOP_DOWN;
 
-// switch between top-down and bottom-up orientation.
-//
-// the default top-down is to match the Photoshop DDS plugin's output.
-// DDS is the optimized format, so we don't want to have to flip that.
-// notes:
-// - there's no way to tell which orientation a DDS file has;
-//   we have to go with what the DDS encoder uses.
-// - flipping DDS is possible without re-encoding; we'd have to shuffle
-//   around the pixel values inside the 4x4 blocks.
-//
-// the app can change orientation, e.g. to speed up loading
-// "upside-down" formats, or to match OpenGL's bottom-up convention.
+// set the orientation (either TEX_BOTTOM_UP or TEX_TOP_DOWN) to which
+// all loaded images will automatically be converted
+// (excepting file formats that don't specify their orientation, i.e. DDS).
 void tex_set_global_orientation(int o)
 {
 	debug_assert(o == TEX_TOP_DOWN || o == TEX_BOTTOM_UP);
@@ -240,13 +312,17 @@ void tex_set_global_orientation(int o)
 static void flip_to_global_orientation(Tex* t)
 {
 	uint orientation = t->flags & TEX_ORIENTATION;
-	// only if it knows which way around it is (DDS doesn't)
+	// if codec knows which way around the image is (i.e. not DDS):
 	if(orientation)
 	{
+		// flip image if necessary
 		uint transforms = orientation ^ global_orientation;
 		WARN_ERR(plain_transform(t, transforms));
 	}
 
+	// indicate image is at global orientation. this is still done even
+	// if the codec doesn't know: the default orientation should be chosen
+	// to make that work correctly (see "Default Orientation" in docs).
 	t->flags = (t->flags & ~TEX_ORIENTATION) | global_orientation;
 }
 
@@ -261,6 +337,99 @@ static bool orientations_match(uint src_flags, uint dst_orientation)
 	if(dst_orientation == 0)
 		dst_orientation = global_orientation;
 	return (src_orientation == dst_orientation);
+}
+
+
+//-----------------------------------------------------------------------------
+// util
+//-----------------------------------------------------------------------------
+
+// allocate an array of row pointers that point into the given texture data.
+// <file_orientation> indicates whether the file format is top-down or
+// bottom-up; the row array is inverted if necessary to match global
+// orienatation. (this is more efficient than "transforming" later)
+//
+// used by PNG and JPG codecs; caller must free() rows when done.
+//
+// note: we don't allocate the data param ourselves because this function is
+// needed for encoding, too (where data is already present).
+int tex_util_alloc_rows(const u8* data, size_t h, size_t pitch,
+	uint src_flags, uint dst_orientation, RowArray& rows)
+{
+	const bool flip = !orientations_match(src_flags, dst_orientation);
+
+	rows = (RowArray)malloc(h * sizeof(RowPtr));
+	if(!rows)
+		return ERR_NO_MEM;
+
+	// determine start position and direction
+	RowPtr pos        = flip? data+pitch*(h-1) : data;
+	const ssize_t add = flip? -(ssize_t)pitch : (ssize_t)pitch;
+	const RowPtr end  = flip? data-pitch : data+pitch*h;
+
+	for(size_t i = 0; i < h; i++)
+	{
+		rows[i] = pos;
+		pos += add;
+	}
+
+	debug_assert(pos == end);
+	return 0;
+}
+
+
+int tex_util_write(Tex* t, uint transforms, const void* hdr, size_t hdr_size, DynArray* da)
+{
+	RETURN_ERR(tex_transform(t, transforms));
+
+	void* img_data = tex_get_data(t); const size_t img_size = tex_img_size(t);
+	RETURN_ERR(da_append(da, hdr, hdr_size));
+	RETURN_ERR(da_append(da, img_data, img_size));
+	return 0;
+}
+
+
+void tex_util_foreach_mipmap(uint w, uint h, uint bpp, const u8* restrict data,
+	int levels_to_skip, uint data_padding, MipmapCB cb, void* restrict ctx)
+{
+	uint level_w = w, level_h = h;
+	const u8* level_data = data;
+
+	// we iterate through the loop (necessary to skip over image data),
+	// but do not actually call back until the requisite number of
+	// levels have been skipped (i.e. level == 0).
+	int level = -(int)levels_to_skip;
+	if(levels_to_skip == -1)
+		level = 0;
+
+	// until at level 1x1:
+	for(;;)
+	{
+		// used to skip past this mip level in <data>
+		const size_t level_data_size = (size_t)(round_up(level_w, data_padding) * round_up(level_h, data_padding) * bpp/8);
+
+		if(level >= 0)
+			cb((uint)level, level_w, level_h, level_data, level_data_size, ctx);
+
+		level_data += level_data_size;
+
+		// 1x1 reached - done
+		if(level_w == 1 && level_h == 1)
+			break;
+		level_w /= 2;
+		level_h /= 2;
+		// if the texture is non-square, one of the dimensions will become
+		// 0 before the other. to satisfy OpenGL's expectations, change it
+		// back to 1.
+		if(level_w == 0) level_w = 1;
+		if(level_h == 0) level_h = 1;
+		level++;
+
+		// special case: no mipmaps, we were only supposed to call for
+		// the base level
+		if(levels_to_skip == -1)
+			break;
+	}
 }
 
 
@@ -340,48 +509,30 @@ int tex_codec_for_header(const u8* file, size_t file_size, const TexCodecVTbl** 
 }
 
 
-// allocate an array of row pointers that point into the given texture data.
-// <file_orientation> indicates whether the file format is top-down or
-// bottom-up; the row array is inverted if necessary to match global
-// orienatation. (this is more efficient than "transforming" later)
-//
-// used by PNG and JPG codecs; caller must free() rows when done.
-//
-// note: we don't allocate the data param ourselves because this function is
-// needed for encoding, too (where data is already present).
-int tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
-	uint src_flags, uint dst_orientation, RowArray& rows)
+static int tex_codec_transform(Tex* t, uint transforms)
 {
-	const bool flip = !orientations_match(src_flags, dst_orientation);
+	int ret = TEX_CODEC_CANNOT_HANDLE;
 
-	rows = (RowArray)malloc(h * sizeof(RowPtr));
-	if(!rows)
-		return ERR_NO_MEM;
-
-	// determine start position and direction
-	RowPtr pos        = flip? data+pitch*(h-1) : data;
-	const ssize_t add = flip? -(ssize_t)pitch : (ssize_t)pitch;
-	const RowPtr end  = flip? data-pitch : data+pitch*h;
-
-	for(size_t i = 0; i < h; i++)
+	// find codec that understands the data, and transform
+	for(int i = 0; i < MAX_CODECS; i++)
 	{
-		rows[i] = pos;
-		pos += add;
+		// MAX_CODECS isn't a tight bound and we have hit a 0 entry
+		if(!codecs[i])
+			continue;
+
+		int err = codecs[i]->transform(t, transforms);
+		if(err == 0)
+			return 0;
+		else if(err == TEX_CODEC_CANNOT_HANDLE)
+			continue;
+		else
+		{
+			ret = err;
+			debug_warn("tex_codec_transform: codec indicates error");
+		}
 	}
 
-	debug_assert(pos == end);
-	return 0;
-}
-
-
-int tex_codec_write(Tex* t, uint transforms, const void* hdr, size_t hdr_size, DynArray* da)
-{
-	RETURN_ERR(tex_transform(t, transforms));
-
-	void* img_data = tex_get_data(t); const size_t img_size = tex_img_size(t);
-	RETURN_ERR(da_append(da, hdr, hdr_size));
-	RETURN_ERR(da_append(da, img_data, img_size));
-	return 0;
+	return ret;
 }
 
 
@@ -389,7 +540,7 @@ int tex_codec_write(Tex* t, uint transforms, const void* hdr, size_t hdr_size, D
 // API
 //-----------------------------------------------------------------------------
 
-
+// split out of tex_load to ease resource cleanup
 static int tex_load_impl(void* file_, size_t file_size, Tex* t)
 {
 	u8* file = (u8*)file_;
@@ -420,11 +571,12 @@ static int tex_load_impl(void* file_, size_t file_size, Tex* t)
 
 	flip_to_global_orientation(t);
 
-	CHECK_TEX(t);
 	return 0;
 }
 
 
+// load the specified image from file into the given Tex object.
+// currently supports BMP, TGA, JPG, JP2, PNG, DDS.
 int tex_load(const char* fn, Tex* t)
 {
 	// load file
@@ -433,22 +585,32 @@ int tex_load(const char* fn, Tex* t)
 	RETURN_ERR(hm);	// (need handle below; can't test return value directly)
 	t->hm = hm;
 	int ret = tex_load_impl(file, file_size, t);
-	// do not free hm! it either still holds the image data (i.e. texture
-	// wasn't compressed) or was replaced by a new buffer for the image data.
 	if(ret < 0)
 	{
-		// note: don't use tex_free - we don't want its CHECK_TEX to
-		// complain that t wasn't successfully loaded (duh).
-		mem_free_h(hm);
-		memset(t, 0, sizeof(Tex));
-		debug_printf("tex_load(%s): %d", fn, ret);
+		(void)tex_free(t);
 		debug_warn("tex_load failed");
 	}
+
+	// do not free hm! it either still holds the image data (i.e. texture
+	// wasn't compressed) or was replaced by a new buffer for the image data.
 
 	return ret;
 }
 
 
+// store the given image data into a Tex object; this will be as if
+// it had been loaded via tex_load.
+//
+// rationale: support for in-memory images is necessary for
+//   emulation of glCompressedTexImage2D and useful overall.
+//   however, we don't want to  provide an alternate interface for each API;
+//   these would have to be changed whenever fields are added to Tex.
+//   instead, provide one entry point for specifying images.
+// note: since we do not know how <img> was allocated, the caller must do
+//   so (after calling tex_free, which is required regardless of alloc type).
+//
+// we need only add bookkeeping information and "wrap" it in
+// our Tex struct, hence the name.
 int tex_wrap(uint w, uint h, uint bpp, uint flags, void* img, Tex* t)
 {
 	t->w     = w;
@@ -471,72 +633,56 @@ int tex_wrap(uint w, uint h, uint bpp, uint flags, void* img, Tex* t)
 	// TODO: remove when mem_wrap / mem_get_ptr add a reference correctly
 	h_add_ref(t->hm);
 
-	CHECK_TEX(t);
 	return 0;
 }
 
 
+// free all resources associated with the image and make further
+// use of it impossible.
 int tex_free(Tex* t)
 {
-	CHECK_TEX(t);
-	mem_free_h(t->hm);
+	// do not validate <t> - this is called from tex_load if loading
+	// failed, so not all fields may be valid.
+
+	int ret = mem_free_h(t->hm);
+
 	// do not zero out the fields! that could lead to trouble since
 	// ogl_tex_upload followed by ogl_tex_free is legit, but would
 	// cause OglTex_validate to fail (since its Tex.w is == 0).
+	return ret;
+}
+
+
+//-----------------------------------------------------------------------------
+
+static TimerClient* tc_transform = timer_add_client("tex_transform");
+
+// change <t>'s pixel format by flipping the state of all TEX_* flags
+// that are set in transforms.
+int tex_transform(Tex* t, uint transforms)
+{
+	SUM_TIMER(tc_transform);
+
+	const uint target_flags = t->flags ^ transforms;
+	for(;;)
+	{
+		// we're finished (all required transforms have been done)
+		if(t->flags == target_flags)
+			return 0;
+
+		int ret = tex_codec_transform(t, transforms);
+		if(ret != 0)
+			break;
+	}
+
+	// last chance
+	CHECK_ERR(plain_transform(t, transforms));
 	return 0;
 }
 
 
-//-----------------------------------------------------------------------------
-
-
-u8* tex_get_data(const Tex* t)
-{
-	if(tex_validate(__LINE__, t) < 0)
-		return 0;
-
-	u8* p = (u8*)mem_get_ptr(t->hm);
-	if(!p)
-		return 0;
-	return p + t->ofs;
-}
-
-size_t tex_img_size(const Tex* t)
-{
-	if(tex_validate(__LINE__, t) < 0)
-		return 0;
-
-	return t->w * t->h * t->bpp/8;
-}
-
-
-//-----------------------------------------------------------------------------
-
-
-int tex_transform(Tex* t, uint transforms)
-{
-	CHECK_TEX(t);
-
-	// find codec that understands the data, and transform
-	for(uint i = 0; i < MAX_CODECS; i++)
-	{
-		// MAX_CODECS isn't a tight bound and we have hit a 0 entry
-		if(!codecs[i])
-			continue;
-		int err = codecs[i]->transform(t, transforms);
-		if(err == TEX_CODEC_CANNOT_HANDLE)
-			continue;
-		if(err == 0)
-			return 0;
-		debug_printf("tex_transform (%s): failed, error %d", codecs[i]->name, err);
-		CHECK_ERR(err);
-	}
-
-	// last chance
-	return plain_transform(t, transforms);
-}
-
-
+// change <t>'s pixel format to the new format specified by <new_flags>.
+// (note: this is equivalent to tex_transform(t, t->flags^new_flags).
 int tex_transform_to(Tex* t, uint new_flags)
 {
 	const uint transforms = t->flags ^ new_flags;
@@ -546,7 +692,53 @@ int tex_transform_to(Tex* t, uint new_flags)
 
 //-----------------------------------------------------------------------------
 
+// returns a pointer to the image data (pixels), taking into account any
+// header(s) that may come before it. see Tex.hm comment above.
+u8* tex_get_data(const Tex* t)
+{
+	if(tex_validate(t) < 0)
+		return 0;
 
+	u8* p = (u8*)mem_get_ptr(t->hm);
+	if(!p)
+		return 0;
+	return p + t->ofs;
+}
+
+
+static void add_level_size(uint UNUSED(level), uint UNUSED(level_w), uint UNUSED(level_h),
+	const u8* restrict UNUSED(level_data), size_t level_data_size, void* restrict ctx)
+{
+	size_t* ptotal_size = (size_t*)ctx;
+	*ptotal_size += level_data_size;
+}
+
+// return total byte size of the image pixels. (including mipmaps!)
+// this is preferable to calculating manually because it's
+// less error-prone (e.g. confusing bits_per_pixel with bytes).
+size_t tex_img_size(const Tex* t)
+{
+	if(tex_validate(t) < 0)
+		return 0;
+
+	const int levels_to_skip = (t->flags & TEX_MIPMAPS)? 0 : TEX_BASE_LEVEL_ONLY;
+	const uint data_padding = (t->flags & TEX_DXT)? 4 : 1;
+	size_t out_size = 0;
+	tex_util_foreach_mipmap(t->w, t->h, t->bpp, 0, levels_to_skip,
+		data_padding, add_level_size, &out_size);
+	return out_size;
+}
+
+
+//-----------------------------------------------------------------------------
+
+// return the minimum header size (i.e. offset to pixel data) of the
+// file format indicated by <fn>'s extension (that is all it need contain:
+// e.g. ".bmp"). returns 0 on error (i.e. no codec found).
+// this can be used to optimize calls to tex_write: when allocating the
+// buffer that will hold the image, allocate this much extra and
+// pass the pointer as base+hdr_size. this allows writing the header
+// directly into the output buffer and makes for zero-copy IO.
 size_t tex_hdr_size(const char* fn)
 {
 	const TexCodecVTbl* c;
@@ -555,6 +747,9 @@ size_t tex_hdr_size(const char* fn)
 }
 
 
+// write the specified texture to disk.
+// note: <t> cannot be made const because the image may have to be
+// transformed to write it out in the format determined by <fn>'s extension.
 int tex_write(Tex* t, const char* fn)
 {
 	CHECK_ERR(validate_format(t->bpp, t->flags));
