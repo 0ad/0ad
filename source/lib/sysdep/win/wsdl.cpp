@@ -101,11 +101,89 @@ static int depth_bits = 24;	// depth buffer size; set via SDL_GL_SetAttribute
 static u16 mouse_x, mouse_y;
 
 
-static void gamma_swap(bool restore_org);
+//----------------------------------------------------------------------------
+// gamma
+//----------------------------------------------------------------------------
 
+static bool gamma_changed;
+static u16 org_ramp[3][256];
+static u16 cur_ramp[3][256];
+
+
+// ramp: 8.8 fixed point
+static int calc_gamma_ramp(float gamma, u16* ramp)
+{
+	// assume identity if invalid
+	if(gamma <= 0.0f)
+		gamma = 1.0f;
+
+	// identity: special-case to make sure we get exact values
+	if(gamma == 1.0f)
+	{
+		for(u16 i = 0; i < 256; i++)
+			ramp[i] = (i << 8);
+		return 0;
+	}
+
+	const double inv_gamma = 1.0 / gamma;
+	for(int i = 0; i < 256; i++)
+	{
+		const double frac = i / 256.0;
+		// don't add 1/256 - this isn't time-critical and
+		// accuracy is more important.
+		// need a temp variable to disambiguate pow() argument type.
+		ramp[i] = fp_to_u16(pow(frac, inv_gamma));
+	}
+
+	return 0;
+}
+
+
+enum GammaAction
+{
+	GAMMA_LATCH_NEW_RAMP,
+	GAMMA_RESTORE_ORIGINAL
+};
+
+static void gamma_swap(GammaAction action)
+{
+	if(gamma_changed)
+	{
+		void* ramp = (action == GAMMA_LATCH_NEW_RAMP)? cur_ramp : org_ramp;
+		SetDeviceGammaRamp(hDC, ramp);
+	}
+}
+
+
+// note: any component gamma = 0 is assumed to be identity.
+int SDL_SetGamma(float r, float g, float b)
+{
+	// if we haven't successfully changed gamma yet,
+	// get current ramp so we can later restore it.
+	if(!gamma_changed)
+		if(!GetDeviceGammaRamp(hDC, org_ramp))
+			return -1;
+
+	CHECK_ERR(calc_gamma_ramp(r, cur_ramp[0]));
+	CHECK_ERR(calc_gamma_ramp(g, cur_ramp[1]));
+	CHECK_ERR(calc_gamma_ramp(b, cur_ramp[2]));
+
+	if(!SetDeviceGammaRamp(hDC, cur_ramp))
+		return -1;
+
+	gamma_changed = true;
+	return 0;
+}
+
+
+//----------------------------------------------------------------------------
 
 // shared msg handler
 // SDL and GLUT have separate pumps; messages are handled there
+
+// evil no-good hack: this msg is apparently sent directly to the wndproc,
+// so we have to pass it on to SDL_PollEvent.
+static bool got_quit_msg;
 
 static LRESULT CALLBACK wndproc(HWND hWnd, unsigned int uMsg, WPARAM wParam, LPARAM lParam)
 {
@@ -114,6 +192,10 @@ static LRESULT CALLBACK wndproc(HWND hWnd, unsigned int uMsg, WPARAM wParam, LPA
 
 	switch(uMsg)
 	{
+	case WM_DESTROY:
+		got_quit_msg = true;
+		return 0;
+
 	case WM_PAINT:
 		PAINTSTRUCT ps;
 		BeginPaint(hWnd, &ps);
@@ -126,7 +208,7 @@ static LRESULT CALLBACK wndproc(HWND hWnd, unsigned int uMsg, WPARAM wParam, LPA
 	case WM_ACTIVATE:
 		app_active = (wParam & 0xffff) != 0;
 
-		gamma_swap(!app_active);
+		gamma_swap(app_active? GAMMA_LATCH_NEW_RAMP : GAMMA_RESTORE_ORIGINAL);
 
 		if(fullscreen)
 			// (re)activating
@@ -143,25 +225,6 @@ static LRESULT CALLBACK wndproc(HWND hWnd, unsigned int uMsg, WPARAM wParam, LPA
 			}
 		break;
 
-	case WM_CLOSE:
-		exit(0);
-		break;
-
-	// prevent moving, sizing, screensaver, and power-off in fullscreen mode
-	case WM_SYSCOMMAND:
-		switch(wParam)
-		{
-			case SC_MOVE:
-			case SC_SIZE:
-			case SC_MAXIMIZE:
-			case SC_MONITORPOWER:
-				if(fullscreen)
-					return 1;
-			default:;
-		}
-		break;
-
-		
 	// prevent selecting menu in fullscreen mode
 	case WM_NCHITTEST:
 		if(fullscreen)
@@ -329,9 +392,28 @@ return_char:
 
 		int sdl_btn = -1;
 
-
 		switch(msg.message)
 		{
+		case WM_SYSCOMMAND:
+			switch(msg.wParam)
+			{
+			// prevent moving, sizing, screensaver, and power-off in fullscreen mode
+			case SC_MOVE:
+			case SC_SIZE:
+			case SC_MAXIMIZE:
+			case SC_MONITORPOWER:
+				if(fullscreen)
+					return 1;
+				break;
+
+			case SC_CLOSE:
+				ev->type = SDL_QUIT;
+				return 1;
+
+			default:
+				break;
+			}
+			break;
 
 		case WM_SYSKEYDOWN:
 		case WM_KEYDOWN:
@@ -412,6 +494,14 @@ return_char:
 		}
 	}
 
+	if(got_quit_msg)
+	{
+		got_quit_msg = false;
+		ev->type = SDL_QUIT;
+		return 1;
+	}
+
+
 	// mouse motion
 	//
 	// don't use DirectInput, because we want to respect the user's mouse
@@ -479,14 +569,13 @@ static LRESULT CALLBACK keyboard_ll_hook(int nCode, WPARAM wParam, LPARAM lParam
 	{
 		PKBDLLHOOKSTRUCT p = (PKBDLLHOOKSTRUCT)lParam;
 		DWORD vk = p->vkCode;
-		UNUSED2(vk);
 
-		// disabled - we want the normal Windows printscreen handling to
-		// remain so as not to confuse artists.
-/*
 		// replace Windows PrintScreen handler
 		if(vk == VK_SNAPSHOT)
 		{
+			// disabled - we want the normal Windows printscreen handling to
+			// remain so as not to confuse artists.
+			/*		
 			// check whether PrintScreen should be taking screenshots -- if
 			// not, allow the standard Windows clipboard to work
 			if(app_active)
@@ -500,8 +589,8 @@ static LRESULT CALLBACK keyboard_ll_hook(int nCode, WPARAM wParam, LPARAM lParam
 				// don't pass it on to other handlers
 				return 1;
 			}
-		}
-*/
+			*/
+		}	// vk == VK_SNAPSHOT
 	}
 
 	// pass it on to other hook handlers
@@ -545,6 +634,8 @@ static int wsdl_init()
 		debug_warn("stdout freopen failed");
 	setvbuf(stdout, 0, _IONBF, 0);
 
+	enable_kbd_hook(true);
+
 	return 0;
 }
 
@@ -557,50 +648,48 @@ static int wsdl_shutdown()
 	// close to avoid BoundsChecker warning.
 	fclose(stdout);
 
-	gamma_swap(true);
+	gamma_swap(GAMMA_RESTORE_ORIGINAL);
 
 	if(fullscreen)
-		ChangeDisplaySettings(0, 0);
+		if(ChangeDisplaySettings(0, 0) != DISP_CHANGE_SUCCESSFUL)
+			debug_warn("ChangeDisplaySettings failed");
 
 	if(hGLRC != INVALID_HANDLE_VALUE)
 	{
-		wglMakeCurrent(0, 0);
-		wglDeleteContext(hGLRC);
+		WARN_IF_FALSE(wglMakeCurrent(0, 0));
+		WARN_IF_FALSE(wglDeleteContext(hGLRC));
 		hGLRC = (HGLRC)INVALID_HANDLE_VALUE;
 	}
 
 	if(hDC != INVALID_HANDLE_VALUE)
 	{
-		ReleaseDC(hWnd, hDC);
+		WARN_IF_FALSE(ReleaseDC(hWnd, hDC));
 		hDC = (HDC)INVALID_HANDLE_VALUE;
 	}
 
 	if(hWnd != INVALID_HANDLE_VALUE)
 	{
-		DestroyWindow(hWnd);
+		WARN_IF_FALSE(DestroyWindow(hWnd));
 		hWnd = (HWND)INVALID_HANDLE_VALUE;
 	}
 
+	enable_kbd_hook(false);
 
 	return 0;
 }
 
+
+// these are placebos. since some init needs to happen before main(),
+// we take care of it all in the module init/shutdown hooks.
 
 int SDL_Init(Uint32 UNUSED(flags))
 {
-	enable_kbd_hook(true);
-
 	return 0;
 }
 
-
 void SDL_Quit()
 {
-	enable_kbd_hook(false);
 }
-
-
-
 
 
 
@@ -742,74 +831,6 @@ fail:
 void SDL_GL_SwapBuffers()
 {
 	SwapBuffers(hDC);
-}
-
-
-//////////////////////////////////////////////////////////////////////////////
-
-
-static bool gamma_changed;
-static u16 org_ramp[3][256];
-static u16 cur_ramp[3][256];
-
-
-// ramp: 8.8 fixed point
-static int calc_gamma_ramp(float gamma, u16* ramp)
-{
-	// assume identity if invalid
-	if(gamma <= 0.0f)
-		gamma = 1.0f;
-
-	// identity: special-case to make sure we get exact values
-	if(gamma == 1.0f)
-	{
-		for(u16 i = 0; i < 256; i++)
-			ramp[i] = (i << 8);
-		return 0;
-	}
-
-	const double inv_gamma = 1.0 / gamma;
-	for(int i = 0; i < 256; i++)
-	{
-		const double frac = i / 256.0;
-			// don't add 1/256 - this isn't time-critical and
-			// accuracy is more important.
-			// need a temp variable to disambiguate pow() argument type.
-		ramp[i] = fp_to_u16(pow(frac, inv_gamma));
-	}
-
-	return 0;
-}
-
-
-static void gamma_swap(bool restore_org)
-{
-	if(gamma_changed)
-	{
-		void* ramp = (restore_org)? org_ramp : cur_ramp;
-		SetDeviceGammaRamp(hDC, ramp);
-	}
-}
-
-
-// note: any component gamma = 0 is assumed to be identity.
-int SDL_SetGamma(float r, float g, float b)
-{
-	// if we haven't successfully changed gamma yet,
-	// get current ramp so we can later restore it.
-	if(!gamma_changed)
-		if(!GetDeviceGammaRamp(hDC, org_ramp))
-			return -1;
-
-	CHECK_ERR(calc_gamma_ramp(r, cur_ramp[0]));
-	CHECK_ERR(calc_gamma_ramp(g, cur_ramp[1]));
-	CHECK_ERR(calc_gamma_ramp(b, cur_ramp[2]));
-
-	if(!SetDeviceGammaRamp(hDC, cur_ramp))
-		return -1;
-
-	gamma_changed = true;
-	return 0;
 }
 
 
@@ -1070,7 +1091,7 @@ int SDL_KillThread(SDL_Thread* thread)
 
 
 
-
+/*
 
 
 static bool need_redisplay;	// display callback should be called in next main loop iteration
@@ -1229,3 +1250,4 @@ void glutMainLoop()
 		}
 	}
 }
+*/

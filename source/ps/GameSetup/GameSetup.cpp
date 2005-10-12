@@ -770,6 +770,7 @@ void Shutdown()
 	TIMER_START("shutdown misc");
 	h_mgr_shutdown();
 	mem_shutdown();
+	file_shutdown();
 
 	timer_display_client_totals();
 

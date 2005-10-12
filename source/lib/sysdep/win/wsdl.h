@@ -31,7 +31,10 @@
 extern "C" {
 #endif
 
-#define Uint32 u32
+typedef u8  Uint8;
+typedef u16 Uint16;
+typedef u32 Uint32;
+
 
 // SDL_Init flags
 #define SDL_INIT_VIDEO 0
@@ -173,6 +176,7 @@ extern u64 SDL_Swap64(u64);
 
 typedef struct
 {
+	Uint8 type;
 	SDLKey sym;
 	u16 unicode;
 }
@@ -180,15 +184,23 @@ SDL_keysym;
 
 typedef struct
 {
+	Uint8 type;
 	SDL_keysym keysym;
 }
 SDL_KeyboardEvent;
 
 typedef struct
 {
+	Uint8 type;
 	u16 x, y;
 }
 SDL_MouseMotionEvent;
+
+typedef struct
+{
+	Uint8 type;
+}
+SDL_QuitEvent;
 
 // SDL_MouseButtonEvent.button
 enum
@@ -206,6 +218,7 @@ enum
 
 typedef struct
 {
+	Uint8 type;
 	u8 button;
 	u8 state;
 	u16 x, y;
@@ -222,6 +235,7 @@ enum
 
 typedef struct
 {
+	Uint8 type;
 	u8 gain;
 	u8 state;
 }
@@ -229,6 +243,7 @@ SDL_ActiveEvent;
 
 typedef struct
 {
+	Uint8 type;
 	intptr_t code;
 }
 SDL_UserEvent;
@@ -242,20 +257,18 @@ enum
 	SDL_MOUSEBUTTONDOWN,
 	SDL_MOUSEBUTTONUP,
 	SDL_ACTIVEEVENT,
-	SDL_USEREVENT,
+	SDL_QUIT,
+	SDL_USEREVENT
 };
 
-typedef struct
+typedef union
 {
-	u8 type;
-	union
-	{
-		SDL_KeyboardEvent key;
-		SDL_MouseMotionEvent motion;
-		SDL_MouseButtonEvent button;
-		SDL_ActiveEvent active;
-		SDL_UserEvent user;
-	};
+	Uint8 type;
+	SDL_KeyboardEvent key;
+	SDL_MouseMotionEvent motion;
+	SDL_MouseButtonEvent button;
+	SDL_ActiveEvent active;
+	SDL_UserEvent user;
 }
 SDL_Event;
 

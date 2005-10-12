@@ -66,6 +66,10 @@ static int MainInputHandler(const SDL_Event* ev)
 
 	switch(ev->type)
 	{
+	case SDL_QUIT:
+		kill_mainloop();
+		break;
+
 	case SDL_ACTIVEEVENT:
 		g_active = (ev->active.gain != 0);
 		break;
@@ -194,11 +198,15 @@ static void Frame()
 	g_SessionManager.Poll();
 	PROFILE_END( "input" );
 
+	oglCheck();
+
 	PROFILE_START( "gui tick" );
 #ifndef NO_GUI
 	g_GUI.TickObjects();
 #endif
 	PROFILE_END( "gui tick" );
+
+	oglCheck();
 
 	PROFILE_START( "game logic" );
 	if (g_Game && g_Game->IsGameStarted())
@@ -263,6 +271,8 @@ static void Frame()
 	mouse_buttons[SDL_BUTTON_WHEELDOWN] = false;
 
 	PROFILE_START( "render" );
+	oglCheck();
+
 	if(g_active)
 	{
 		MICROLOG(L"render");
@@ -277,6 +287,7 @@ static void Frame()
 	else
 		SDL_Delay(10);
 
+	oglCheck();
 	PROFILE_END( "render" );
 
 	g_Profiler.Frame();

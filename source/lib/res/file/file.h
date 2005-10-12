@@ -217,6 +217,8 @@ extern int file_open(const char* fn, uint flags, File* f);
 // see implementation for rationale.
 extern int file_close(File* f);
 
+extern int file_validate(const File* f);
+
 
 // remove all blocks loaded from the file <fn>. used when reloading the file.
 extern int file_invalidate_cache(const char* fn);
@@ -233,15 +235,17 @@ struct FileIo
 
 // rationale: this interface is more convenient than implicitly advancing a
 // file pointer because zip.cpp often accesses random offsets.
-extern int file_start_io(File* f, off_t ofs, size_t size, void* buf, FileIo* io);
+extern int file_io_issue(File* f, off_t ofs, size_t size, void* buf, FileIo* io);
 
 // indicates if the given IO has completed.
 // return value: 0 if pending, 1 if complete, < 0 on error.
-extern int file_io_complete(FileIo* io);
+extern int file_io_has_completed(FileIo* io);
 
-extern int file_wait_io(FileIo* io, void*& p, size_t& size);
+extern int file_io_wait(FileIo* io, void*& p, size_t& size);
 
-extern int file_discard_io(FileIo* io);
+extern int file_io_discard(FileIo* io);
+
+extern int file_io_validate(const FileIo* io);
 
 
 //
@@ -299,5 +303,8 @@ extern int file_map(File* f, void*& p, size_t& size);
 // however, map/unmap calls should still be paired so that the mapping
 // may be removed when no longer needed.
 extern int file_unmap(File* f);
+
+
+extern int file_shutdown();
 
 #endif	// #ifndef FILE_H

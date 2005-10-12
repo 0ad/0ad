@@ -26,6 +26,8 @@
 #include "adts.h"
 #include "sysdep/sysdep.h"
 #include "byte_order.h"
+#include "timer.h"
+#include "dyn_array.h"
 
 #include <vector>
 #include <algorithm>
@@ -465,7 +467,9 @@ int file_enum(const char* P_path, const FileCB cb, const uintptr_t user)
 			stat_err = ret;
 
 		const size_t size = sizeof(DirEnt)+strlen(ent.name)+1;
-		DirEnt* p_ent = (DirEnt*)malloc(size);
+		DirEnt* p_ent;
+		{static TimerClient* tc = timer_add_client("file_enum_malloc");	SUM_TIMER(tc);
+		p_ent = (DirEnt*)malloc(size);}
 		if(!p_ent)
 		{
 			stat_err = ERR_NO_MEM;
@@ -554,43 +558,26 @@ int file_stat(const char* path, struct stat* s)
 //   close(our_fd_value) directly, either.
 
 
-// marker for File struct, to make sure it's valid
-#if CONFIG_PARANOIA
-static const u32 FILE_MAGIC = FOURCC('F','I','L','E');
-#endif
-
-
-static int file_validate(const uint line, File* f)
+int file_validate(const File* f)
 {
-	const char* msg = "";
-	int err = -1;
-
 	if(!f)
-	{
-		msg = "File* parameter = 0";
-		err = ERR_INVALID_PARAM;
-	}
+		return ERR_INVALID_PARAM;
 	else if(f->fd < 0)
-		msg = "File fd invalid (< 0)";
+		return -2;
+	// mapped but refcount is invalid
 	else if((f->mapping != 0) ^ (f->map_refs != 0))
-		msg = "File mapping without refs";
+		return -3;
+	// fn_hash not set
 #ifndef NDEBUG
 	else if(!f->fn_hash)
-		msg = "File fn_hash not set";
+		return -4;
 #endif
-	// everything is OK
-	else
-		return 0;
 
-	// failed somewhere - err is the error code,
-	// or -1 if not set specifically above.
-	debug_printf("file_validate at line %d failed: %s\n", line, msg);
-	debug_warn("file_validate failed");
-	return err;
+	return 0;
 }
 
 
-#define CHECK_FILE(f) RETURN_ERR(file_validate(__LINE__, f))
+#define CHECK_FILE(f) RETURN_ERR(file_validate(f))
 
 
 int file_open(const char* p_fn, const uint flags, File* f)
@@ -726,17 +713,39 @@ int file_close(File* f)
 //   and rearranging files in the archive in order of access.
 
 
+static Pool aiocb_pool;
+
+static inline void aiocb_pool_init()
+{
+	(void)pool_create(&aiocb_pool, 32*sizeof(aiocb), sizeof(aiocb));
+}
+
+static inline void aiocb_pool_shutdown()
+{
+	(void)pool_destroy(&aiocb_pool);
+}
+
+static inline aiocb* aiocb_pool_alloc()
+{
+	ONCE(aiocb_pool_init());
+	return (aiocb*)pool_alloc(&aiocb_pool);
+}
+
+static inline void aiocb_pool_free(void* cb)
+{
+	pool_free(&aiocb_pool, cb);
+}
 
 
 // starts transferring to/from the given buffer.
 // no attempt is made at aligning or padding the transfer.
-int file_start_io(File* f, off_t ofs, size_t size, void* p, FileIo* io)
+int file_io_issue(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 {
 	// zero output param in case we fail below.
 	memset(io, 0, sizeof(FileIo));
 
 #if CONFIG_PARANOIA
-	debug_printf("file_start_io: ofs=%d size=%d\n", ofs, size);
+	debug_printf("file_io_issue: ofs=%d size=%d\n", ofs, size);
 #endif
 
 
@@ -758,7 +767,7 @@ int file_start_io(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 		const off_t bytes_left = f->size - ofs;
 		if(bytes_left < 0)
 		{
-			debug_warn("file_start_io: EOF");
+			debug_warn("file_io_issue: EOF");
 			return ERR_EOF;
 		}
 		if((off_t)size > bytes_left)
@@ -767,17 +776,13 @@ int file_start_io(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 	}
 
 
-	// set the "I/O context", a pointer to the (newly allocated) aiocb.
-	// we can't store the whole aiocb in a struct - glibc's version is
-	// 144 bytes large. we don't currently need anything else (since this
-	// code is only a thin aio wrapper); if that changes, instead return a
-	// pointer to a struct containing the aiocb*.
-
-	aiocb* cb = (aiocb*)malloc(sizeof(aiocb));
-	memset(cb, 0, sizeof(aiocb));
+	// (we can't store the whole aiocb directly - glibc's version is
+	// 144 bytes large)
+	aiocb* cb = aiocb_pool_alloc();
+	io->cb = cb;
 	if(!cb)
 		return ERR_NO_MEM;
-	io->cb = cb;
+	memset(cb, 0, sizeof(aiocb));
 
 	// send off async read/write request
 	cb->aio_lio_opcode = is_write? LIO_WRITE : LIO_READ;
@@ -786,15 +791,15 @@ int file_start_io(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 	cb->aio_offset     = ofs;
 	cb->aio_nbytes     = size;
 #if CONFIG_PARANOIA
-	debug_printf("file_start_io: io=%p nbytes=%d\n", io, cb->aio_nbytes);
+	debug_printf("file_io_issue: io=%p nbytes=%d\n", io, cb->aio_nbytes);
 #endif
 	int err = lio_listio(LIO_NOWAIT, &cb, 1, (struct sigevent*)0);
 	if(err < 0)
 	{
 #if CONFIG_PARANOIA
-		debug_printf("file_start_io: lio_listio: %d, %d[%s]\n", err, errno, strerror(errno));
+		debug_printf("file_io_issue: lio_listio: %d, %d[%s]\n", err, errno, strerror(errno));
 #endif
-		file_discard_io(io);
+		file_io_discard(io);
 		return err;
 	}
 
@@ -804,7 +809,7 @@ int file_start_io(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 
 // indicates if the IO referenced by <io> has completed.
 // return value: 0 if pending, 1 if complete, < 0 on error.
-int file_io_complete(FileIo* io)
+int file_io_has_completed(FileIo* io)
 {
 	aiocb* cb = (aiocb*)io->cb;
 	int ret = aio_error(cb);
@@ -813,15 +818,15 @@ int file_io_complete(FileIo* io)
 	if(ret == 0)
 		return 1;
 
-	debug_warn("file_io_complete: unexpected aio_error return");
+	debug_warn("file_io_has_completed: unexpected aio_error return");
 	return -1;
 }
 
 
-int file_wait_io(FileIo* io, void*& p, size_t& size)
+int file_io_wait(FileIo* io, void*& p, size_t& size)
 {
 #if CONFIG_PARANOIA
-debug_printf("file_wait_io: hio=%p\n", io);
+debug_printf("file_io_wait: hio=%p\n", io);
 #endif
 
 	// zero output params in case something (e.g. H_DEREF) fails.
@@ -838,7 +843,7 @@ debug_printf("file_wait_io: hio=%p\n", io);
 	// query number of bytes transferred (-1 if the transfer failed)
 	const ssize_t bytes_transferred = aio_return(cb);
 #if CONFIG_PARANOIA
-	debug_printf("file_wait_io: bytes_transferred=%d aio_nbytes=%d\n",
+	debug_printf("file_io_wait: bytes_transferred=%d aio_nbytes=%d\n",
 		bytes_transferred, cb->aio_nbytes);
 #endif
 	// (size was clipped to EOF in file_io => this is an actual IO error)
@@ -851,16 +856,30 @@ debug_printf("file_wait_io: hio=%p\n", io);
 }
 
 
-int file_discard_io(FileIo* io)
+int file_io_discard(FileIo* io)
 {
 	memset(io->cb, 0, sizeof(aiocb));
 		// discourage further use.
-	free(io->cb);
+	aiocb_pool_free(io->cb);
 	io->cb = 0;
 	return 0;
 }
 
 
+int file_io_validate(const FileIo* io)
+{
+	const aiocb* cb = (const aiocb*)io->cb;
+	// >= 0x100 is not necessarily bogus, but suspicious.
+	// this also catches negative values.
+	if((uint)cb->aio_fildes >= 0x100)
+		return -2;
+	if(debug_is_pointer_bogus((void*)cb->aio_buf))
+		return -3;
+	if(cb->aio_lio_opcode != LIO_WRITE && cb->aio_lio_opcode != LIO_READ && cb->aio_lio_opcode != LIO_NOP)
+		return -4;
+    // all other aiocb fields have no invariants we could check.
+	return 0;
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -997,7 +1016,7 @@ static ssize_t block_issue(File* f, IOSlot* slot, const off_t issue_ofs, void* b
 
 
 	// if using buffer, set position in it; otherwise, use temp buffer
-	CHECK_ERR(file_start_io(f, issue_ofs, BLOCK_SIZE, buf, &slot->io));
+	CHECK_ERR(file_io_issue(f, issue_ofs, BLOCK_SIZE, buf, &slot->io));
 
 skip_issue:
 
@@ -1188,7 +1207,7 @@ debug_printf("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 			{
 				from_cache = false;
 
-				int ret = file_wait_io(&slot->io, block, size);
+				int ret = file_io_wait(&slot->io, block, size);
 				if(ret < 0)
 					err = (ssize_t)ret;
 			}
@@ -1235,7 +1254,7 @@ if(from_cache && !temp)
 				actual_transferred_cnt += size;
 
 			if(!from_cache)
-				file_discard_io(&slot->io);
+				file_io_discard(&slot->io);
 
 			if(temp)
 			{
@@ -1355,4 +1374,11 @@ int file_unmap(File* f)
 	// don't clear f->size - the file is still open.
 
 	return munmap(p, f->size);
+}
+
+
+int file_shutdown()
+{
+	aiocb_pool_shutdown();
+	return 0;
 }

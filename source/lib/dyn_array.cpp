@@ -221,6 +221,118 @@ int da_append(DynArray* da, const void* data, size_t size)
 }
 
 
+//-----------------------------------------------------------------------------
+
+// pool allocator
+// design goals: O(1) alloc and free; doesn't preallocate the entire pool;
+// returns sequential addresses.
+//
+// (note: this allocator returns fixed-size blocks, the size of which is
+// specified at pool_create time. this makes O(1) time possible.) 
+
+// "freelist" is a pointer to the first unused element (0 if there are none);
+// its memory holds a pointer to the next free one in list.
+
+static void freelist_push(void** pfreelist, void* el)
+{
+	debug_assert(el != 0);
+	void* prev_el = *pfreelist;
+	*pfreelist = el;
+	*(void**)el = prev_el;
+}
+
+static void* freelist_pop(void** pfreelist)
+{
+	void* el = *pfreelist;
+	// nothing in list
+	if(!el)
+		return 0;
+	*pfreelist = *(void**)el;
+	return el;
+}
+
+
+static const size_t POOL_CHUNK = 4*KiB;
+
+
+// ready <p> for use. pool_alloc will return chunks of memory that
+// are exactly <el_size> bytes. <max_size> is the upper limit [bytes] on
+// pool size (this is how much address space is reserved).
+//
+// note: el_size must at least be enough for a pointer (due to freelist
+// implementation) but not exceed the expand-by amount.
+int pool_create(Pool* p, size_t max_size, size_t el_size)
+{
+	if(el_size < sizeof(void*) || el_size > POOL_CHUNK)
+		CHECK_ERR(ERR_INVALID_PARAM);
+
+	RETURN_ERR(da_alloc(&p->da, max_size));
+	p->pos = 0;
+	p->el_size = el_size;
+	return 0;
+}
+
+
+// free all memory that ensued from <p>. all elements are made unusable
+// (it doesn't matter if they were "allocated" or in freelist or unused);
+// future alloc and free calls on this pool will fail.
+int pool_destroy(Pool* p)
+{
+	// don't be picky and complain if the freelist isn't empty;
+	// we don't care since it's all part of the da anyway.
+	// however, zero it to prevent further allocs from succeeding.
+	p->freelist = 0;
+	return da_free(&p->da);
+}
+
+
+// indicate whether <el> was allocated from the given pool.
+// this is useful for callers that use several types of allocators.
+bool pool_contains(Pool* p, void* el)
+{
+	// outside of our range
+	if(!(p->da.base <= el && el < p->da.base+p->pos))
+		return false;
+	// sanity check: it should be aligned
+	debug_assert((uintptr_t)((u8*)el - p->da.base) % p->el_size == 0);
+	return true;
+}
+
+
+// return an entry from the pool, or 0 if it cannot be expanded as necessary.
+// exhausts the freelist before returning new entries to improve locality.
+void* pool_alloc(Pool* p)
+{
+	void* el = freelist_pop(&p->freelist);
+	if(el)
+		goto have_el;
+
+	// alloc a new entry
+	{
+		// expand, if necessary
+		if(p->pos + p->el_size > p->da.cur_size)
+			if(da_set_size(&p->da, p->da.cur_size + POOL_CHUNK) < 0)
+				return 0;
+
+		el = p->da.base + p->pos;
+		p->pos += p->el_size;
+	}
+
+have_el:
+	debug_assert(pool_contains(p, el));	// paranoia
+	return el;
+}
+
+
+// make <el> available for reuse in the given pool.
+void pool_free(Pool* p, void* el)
+{
+	if(pool_contains(p, el))
+		freelist_push(&p->freelist, el);
+	else
+		debug_warn("pool_free: invalid pointer (not in pool)");
+}
+
 
 //-----------------------------------------------------------------------------
 // built-in self test
