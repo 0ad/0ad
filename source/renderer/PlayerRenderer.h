@@ -29,6 +29,10 @@ public:
 	void Clear();
 
 private:
+	// fast render path
+	void RenderFast();
+	// slow render path
+	void RenderSlow();
 	// render given streams on all objects
 	void RenderObjectsStreams(u32 streamflags, bool iscolorpass=false, u32 mflags=0);
 	// list of objects to render

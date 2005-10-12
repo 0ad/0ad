@@ -26,6 +26,152 @@ CPlayerRenderer g_PlayerRenderer;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// RenderFast: Use single-pass, three-TMU rendering technique
+void CPlayerRenderer::RenderFast()
+{
+	// Nice player color uses a single pass with three texture environments
+	// Note: This uses ARB_texture_env_crossbar (which is checked in GameSetup)
+	//
+	// We calculate: Result = Color*Texture*(PlayerColor*(1-Texture.a) + 1.0*Texture.a)
+	// Algebra gives us:
+	// Result = (1 - ((1 - PlayerColor) * (1 - Texture.a)))*Texture*Color
+	
+	// TexEnv #0
+	glActiveTextureARB(GL_TEXTURE0);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE0);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_ONE_MINUS_SRC_ALPHA);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_CONSTANT);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_ONE_MINUS_SRC_COLOR);
+	
+	// Don't care about alpha; set it to something harmless
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE0);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+	
+	// TexEnv #1
+	glActiveTextureARB(GL_TEXTURE0+1);
+	glEnable(GL_TEXTURE_2D);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_ONE_MINUS_SRC_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
+
+	// Don't care about alpha; set it to something harmless
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+	
+	// TexEnv #2
+	glActiveTextureARB(GL_TEXTURE0+2);
+	glEnable(GL_TEXTURE_2D);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_TEXTURE0);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
+
+	// Don't care about alpha; set it to something harmless
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+	
+	glActiveTextureARB(GL_TEXTURE0);
+
+	// Render it!
+	RenderObjectsStreams(STREAM_POS|STREAM_COLOR|STREAM_UV0, true);
+
+	// Restore state
+	glActiveTextureARB(GL_TEXTURE1);
+	glDisable(GL_TEXTURE_2D);
+	glActiveTextureARB(GL_TEXTURE2);
+	glDisable(GL_TEXTURE_2D);
+	glActiveTextureARB(GL_TEXTURE0);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// RenderSlow: Use multi-pass rendering technique, using two TMUs
+void CPlayerRenderer::RenderSlow()
+{
+	// We calculate: Result = (Color*Texture)*Texture.a + (Color*Texture*PlayerColor)*(1-Texture.a)
+	// Modulation is done via texture environments, the final interpolation is done via blending
+	
+	// FIRST PASS
+	
+	// TexEnv #0
+	glActiveTextureARB(GL_TEXTURE0);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
+	
+	// Don't care about alpha; set it to something harmless
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+	
+	// Render it!
+	RenderObjectsStreams(STREAM_POS|STREAM_COLOR|STREAM_UV0, false);
+	
+	
+	// SECOND PASS
+	
+	// TexEnv #0
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_CONSTANT);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
+	
+	// Alpha = Opacity of non-player colored layer
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+	
+	// TexEnv #1
+	glActiveTextureARB(GL_TEXTURE1);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
+
+	// Pass alpha unchanged
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+	glActiveTextureARB(GL_TEXTURE0);
+	
+	// Setup blending
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_ONE_MINUS_SRC_ALPHA, GL_SRC_ALPHA);
+	glEnable(GL_ALPHA_TEST);
+	glAlphaFunc(GL_LESS, 1.0);
+	glDepthMask(0);
+
+	// Render it!
+	RenderObjectsStreams(STREAM_POS|STREAM_COLOR|STREAM_UV0, true);
+
+	// Restore state
+	glActiveTextureARB(GL_TEXTURE1);
+	glDisable(GL_TEXTURE_2D);
+	glActiveTextureARB(GL_TEXTURE0);
+	glDisable(GL_BLEND);
+	glDisable(GL_ALPHA_TEST);
+	glDepthMask(1);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // Render: render all deferred passes; call Sort before using to ensure passes
 // are drawn in correct order
 void CPlayerRenderer::Render()
@@ -34,9 +180,9 @@ void CPlayerRenderer::Render()
 
 	if (m_Objects.size()==0) return;
 
-	if (g_Renderer.m_NicePlayerColor && ogl_max_tex_units < 3)
+	if (g_Renderer.m_FastPlayerColor && ogl_max_tex_units < 3)
 	{
-		g_Renderer.m_NicePlayerColor = false;
+		g_Renderer.m_FastPlayerColor = false;
 		LOG(WARNING, LOG_CATEGORY, "Using fallback player color rendering (not enough TMUs).");
 	}
 	
@@ -45,119 +191,17 @@ void CPlayerRenderer::Render()
 		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 	}
 
-	if (g_Renderer.m_NicePlayerColor)
+	CModelRData::SetupRender(STREAM_POS|STREAM_COLOR|STREAM_UV0);
+
+	if (g_Renderer.m_FastPlayerColor)
 	{
-		// Nice player color uses a single pass with three texture environments
-		// Note: This uses ARB_texture_env_crossbar (which is checked in GameSetup)
-		//
-		// We calculate: Result = Color*Texture*(PlayerColor*(1-Texture.a) + 1.0*Texture.a)
-		// Algebra gives us:
-		// Result = (1 - ((1 - PlayerColor) * (1 - Texture.a)))*Texture*Color
-		
-		// TexEnv #0
-		glActiveTextureARB(GL_TEXTURE0);
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE0);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_ONE_MINUS_SRC_ALPHA);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_CONSTANT);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_ONE_MINUS_SRC_COLOR);
-		
-		// Don't care about alpha; set it to something harmless
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE0);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-		
-		// TexEnv #1
-		glActiveTextureARB(GL_TEXTURE0+1);
-		glEnable(GL_TEXTURE_2D);
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_ONE_MINUS_SRC_COLOR);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
-	
-		// Don't care about alpha; set it to something harmless
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-		
-		// TexEnv #2
-		glActiveTextureARB(GL_TEXTURE0+2);
-		glEnable(GL_TEXTURE_2D);
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_TEXTURE0);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
-	
-		// Don't care about alpha; set it to something harmless
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-		
-		glActiveTextureARB(GL_TEXTURE0);
+		RenderFast();
 	}
 	else
 	{
-		// Non-nice player color uses a single pass with two texture environments,
-		// but has a different result than Nice player color.
-		//
-		// Rationale: Any graphics card that only has 2 TMUs is likely to be
-		// slow; I don't want to bog it down even more with multipass.
-		//
-		// We calculate: Result = Color*(Texture.rgb*Texture.a + PlayerColor*(1-Texture.a))
-		
-		// TexEnv #0
-		glActiveTextureARB(GL_TEXTURE0);
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_INTERPOLATE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_CONSTANT);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE2_RGB_ARB, GL_TEXTURE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND2_RGB_ARB, GL_SRC_ALPHA);
-	
-		// Don't care about alpha; set it to something harmless
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-	
-		// TexEnv #1
-		glActiveTextureARB(GL_TEXTURE0+1);
-		glEnable(GL_TEXTURE_2D);
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
-	
-		// Don't care about alpha; set it to something harmless
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-	
-		glActiveTextureARB(GL_TEXTURE0);
+		RenderSlow();
 	}
 	
-	CModelRData::SetupRender(STREAM_POS|STREAM_COLOR|STREAM_UV0);
-
-	RenderObjectsStreams(STREAM_POS|STREAM_COLOR|STREAM_UV0, true);
-
-	// Restore states
-	glActiveTextureARB(GL_TEXTURE1);
-	glDisable(GL_TEXTURE_2D);
-	if (g_Renderer.m_NicePlayerColor)
-	{
-		glActiveTextureARB(GL_TEXTURE2);
-		glDisable(GL_TEXTURE_2D);
-	}
-	glActiveTextureARB(GL_TEXTURE0);
-
 	CModelRData::FinishRender(STREAM_POS|STREAM_COLOR|STREAM_UV0);
 
 	if (g_Renderer.m_ModelRenderMode==WIREFRAME) {
@@ -218,7 +262,7 @@ void CPlayerRenderer::RenderObjectsStreams(u32 streamflags, bool iscolorpass, u3
 	
 	if (iscolorpass)
 	{
-		if (g_Renderer.m_NicePlayerColor)
+		if (g_Renderer.m_FastPlayerColor)
 			tmus = 3;
 		else
 			tmus = 2;

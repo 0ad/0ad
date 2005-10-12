@@ -362,8 +362,8 @@ protected:
 	// render path is used (according to m_Options.m_RenderPath)
 	RenderPathVertexShader* m_VertexShader;
 
-	// If false, use a simpler, two-texture unit fallback for player colors.
-	bool m_NicePlayerColor;
+	// If false, use a multipass fallback for player colors.
+	bool m_FastPlayerColor;
 };
 
 

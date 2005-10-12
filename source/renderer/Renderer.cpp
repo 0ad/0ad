@@ -68,7 +68,7 @@ CRenderer::CRenderer()
 	m_Options.m_Shadows=true;
 	m_Options.m_ShadowColor=RGBAColor(0.4f,0.4f,0.4f,1.0f);
 	m_Options.m_RenderPath = RP_DEFAULT;
-	m_NicePlayerColor = true;
+	m_FastPlayerColor = true;
 
 	for (uint i=0;i<MaxTextureUnits;i++) {
 		m_ActiveTextures[i]=0;
@@ -1471,7 +1471,7 @@ void CRenderer::UnloadAlphaMaps()
 
 void CRenderer::ScriptingInit()
 {
-	AddProperty(L"nicePlayerColor", &CRenderer::m_NicePlayerColor);
+	AddProperty(L"fastPlayerColor", &CRenderer::m_FastPlayerColor);
 
 	CJSObject<CRenderer>::ScriptingInit("Renderer");
 }
