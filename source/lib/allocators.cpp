@@ -4,6 +4,10 @@
 #include "dyn_array.h"
 
 
+//-----------------------------------------------------------------------------
+// expandable array
+//-----------------------------------------------------------------------------
+
 static const size_t page_size = sysconf(_SC_PAGE_SIZE);
 
 static bool is_page_multiple(uintptr_t x)
@@ -92,8 +96,9 @@ static int mem_protect(u8* p, size_t size, int prot)
 	return mprotect(p, size, prot);
 }
 
-//-----------------------------------------------------------------------------
 
+//-----------------------------------------------------------------------------
+// API
 
 int da_alloc(DynArray* da, size_t max_size)
 {
@@ -222,8 +227,9 @@ int da_append(DynArray* da, const void* data, size_t size)
 
 
 //-----------------------------------------------------------------------------
-
 // pool allocator
+//-----------------------------------------------------------------------------
+
 // design goals: O(1) alloc and free; doesn't preallocate the entire pool;
 // returns sequential addresses.
 //
@@ -331,6 +337,65 @@ void pool_free(Pool* p, void* el)
 		freelist_push(&p->freelist, el);
 	else
 		debug_warn("pool_free: invalid pointer (not in pool)");
+}
+
+
+//-----------------------------------------------------------------------------
+// matrix allocator
+//-----------------------------------------------------------------------------
+
+// takes care of the dirty work of allocating 2D matrices:
+// - aligns data
+// - only allocates one memory block, which is more efficient than
+//   malloc/new for each row.
+
+// allocate a 2D cols x rows matrix of <el_size> byte cells.
+// this must be freed via matrix_free. returns 0 if out of memory.
+//
+// the returned pointer should be cast to the target type (e.g. int**) and
+// can then be accessed by matrix[col][row].
+void** matrix_alloc(uint cols, uint rows, size_t el_size)
+{
+	const size_t initial_align = 64;
+	// note: no provision for padding rows. this is a bit more work and
+	// if el_size isn't a power-of-2, performance is going to suck anyway.
+	// otherwise, the initial alignment will take care of it.
+
+	const size_t ptr_array_size = cols*sizeof(void*);
+	const size_t row_size = cols*el_size;
+	const size_t data_size = rows*row_size;
+	const size_t total_size = ptr_array_size + initial_align + data_size;
+
+	void* p = malloc(total_size);
+	if(!p)
+		return 0;
+
+	uintptr_t data_addr = (uintptr_t)p + ptr_array_size + initial_align;
+	data_addr -= data_addr % initial_align;
+
+	// alignment check didn't set address to before allocation
+	debug_assert(data_addr >= (uintptr_t)p+ptr_array_size);
+
+	void** ptr_array = (void**)p;
+	for(uint i = 0; i < cols; i++)
+	{
+		ptr_array[i] = (void*)data_addr;
+		data_addr += row_size;
+	}
+
+	// didn't overrun total allocation
+	debug_assert(data_addr <= (uintptr_t)p+total_size);
+
+	return ptr_array;
+}
+
+
+// free the given matrix (allocated by matrix_alloc). no-op if matrix == 0.
+// callers will likely want to pass variables of a different type
+// (e.g. int**); they must be cast to void**.
+void matrix_free(void** matrix)
+{
+	free(matrix);
 }
 
 

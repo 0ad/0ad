@@ -72,3 +72,26 @@ extern void* pool_alloc(Pool* p);
 
 // make <el> available for reuse in the given pool.
 extern void pool_free(Pool* p, void* el);
+
+
+//
+// matrix allocator
+//
+
+// takes care of the dirty work of allocating 2D matrices:
+// - aligns data
+// - only allocates one memory block, which is more efficient than
+//   malloc/new for each row.
+
+// allocate a 2D cols x rows matrix of <el_size> byte cells.
+// this must be freed via matrix_free. returns 0 if out of memory.
+//
+// the returned pointer should be cast to the target type (e.g. int**) and
+// can then be accessed by matrix[col][row].
+//
+extern void** matrix_alloc(uint cols, uint rows, size_t el_size);
+
+// free the given matrix (allocated by matrix_alloc). no-op if matrix == 0.
+// callers will likely want to pass variables of a different type
+// (e.g. int**); they must be cast to void**.
+extern void matrix_free(void** matrix);

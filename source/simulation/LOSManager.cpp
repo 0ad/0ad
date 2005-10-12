@@ -10,6 +10,7 @@
 #include "Unit.h"
 #include "Bound.h"
 #include "Model.h"
+#include "dyn_array.h"
 
 using namespace std;
 
@@ -19,6 +20,10 @@ CLOSManager::CLOSManager() : m_LOSSetting(0), m_Explored(0), m_Visible(0)
 
 CLOSManager::~CLOSManager() 
 {
+	matrix_free((void**)m_Explored);
+	m_Explored = 0;
+	matrix_free((void**)m_Visible);
+	m_Visible = 0;
 }
 
 void CLOSManager::Initialize(uint losSetting) 
@@ -27,21 +32,12 @@ void CLOSManager::Initialize(uint losSetting)
 	int tilesPerSide = terrain->GetVerticesPerSide() - 1;
 
 	// Create the LOS data arrays
-
-	m_Explored = new int*[tilesPerSide];
-	for(int i=0; i<tilesPerSide; i++) 
-	{
-		m_Explored[i] = new int[tilesPerSide];
-	}
-
-	m_Visible = new int*[tilesPerSide];
-	for(int i=0; i<tilesPerSide; i++) 
-	{
-		m_Visible[i] = new int[tilesPerSide];
-	}
+	m_Explored = (int**)matrix_alloc(tilesPerSide, tilesPerSide, sizeof(int));
+	m_Visible  = (int**)matrix_alloc(tilesPerSide, tilesPerSide, sizeof(int));
 
 	// TODO: This memory should be freed somewhere when the engine supports 
 	// multiple sessions without restarting the program.
+	// JW: currently free it in the dtor
 
 	// Clear everything to unexplored
 	for(int x=0; x<tilesPerSide; x++)
@@ -51,7 +47,6 @@ void CLOSManager::Initialize(uint losSetting)
 
 	// Just Update() to set the visible array and also mark currently visible tiles as explored.
 	// NOTE: this will have to be changed if we decide to use incremental LOS
-
 	Update();
 
 	// Set special LOS setting
