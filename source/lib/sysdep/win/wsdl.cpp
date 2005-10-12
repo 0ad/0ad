@@ -194,7 +194,7 @@ static LRESULT CALLBACK wndproc(HWND hWnd, unsigned int uMsg, WPARAM wParam, LPA
 	{
 	case WM_DESTROY:
 		got_quit_msg = true;
-		return 0;
+		break;
 
 	case WM_PAINT:
 		PAINTSTRUCT ps;
@@ -671,7 +671,9 @@ static int wsdl_shutdown()
 
 	if(hWnd != INVALID_HANDLE_VALUE)
 	{
-		WARN_IF_FALSE(DestroyWindow(hWnd));
+		// this also seems to fail spuriously with GetLastError == 0,
+		// so don't complain.
+		(void)DestroyWindow(hWnd);
 		hWnd = (HWND)INVALID_HANDLE_VALUE;
 	}
 

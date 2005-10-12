@@ -1,7 +1,7 @@
 #include "precompiled.h"
 #include "posix.h"
 
-#include "dyn_array.h"
+#include "allocators.h"
 
 
 //-----------------------------------------------------------------------------

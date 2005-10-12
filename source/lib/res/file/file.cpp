@@ -27,7 +27,7 @@
 #include "sysdep/sysdep.h"
 #include "byte_order.h"
 #include "timer.h"
-#include "dyn_array.h"
+#include "lib/allocators.h"
 
 #include <vector>
 #include <algorithm>

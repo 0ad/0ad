@@ -2,7 +2,7 @@
 #define TEX_CODEC_H__
 
 #include "tex.h"
-#include "dyn_array.h"
+#include "lib/allocators.h"
 
 // rationale: no C++ to allow us to store const char* name in vtbl.
 

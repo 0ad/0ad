@@ -20,7 +20,7 @@
 
 #include "lib.h"
 #include "h_mgr.h"
-#include "dyn_array.h"
+#include "lib/allocators.h"
 
 #include <limits.h>	// CHAR_BIT
 #include <string.h>
@@ -403,20 +403,19 @@ static void fn_store(HDATA* hd, const char* fn)
 	ONCE(fn_init());
 
 	const size_t len = strlen(fn);
-debug_printf("FN_STORE %d %s\n", len, fn);
 
 	hd->fn = 0;
-	// this is disabled until it's determined that strings are actually likely
-	// to fit there (unlikely)
+	// stuff it in unused space at the end of HDATA
 	if(hd->type->user_size + len < HDATA_USER_SIZE)
 		hd->fn = (const char*)hd->user + hd->type->user_size;
 	else if(len+1 <= FN_POOL_EL_SIZE)
 		hd->fn = (const char*)pool_alloc(&fn_pool);
 
-	// in case none of the above applied and were successful:
+	// in case none of the above applied and/or were successful:
 	// fall back to heap alloc.
 	if(!hd->fn)
 	{
+		debug_printf("fn_store: very long filename (%d) %s\n", len, fn);
 		hd->fn = (const char*)malloc(len+1);
 		// still failed - bail (avoid strcpy to 0)
 		if(!hd->fn)

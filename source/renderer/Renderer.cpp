@@ -44,7 +44,7 @@
 #include "lib/res/graphics/tex.h"
 #include "lib/res/graphics/ogl_tex.h"
 #include "lib/res/file/vfs.h"
-#include "timer.h"
+#include "ps/Loader.h"
 
 #include "renderer/RenderPathVertexShader.h"
 
@@ -1461,14 +1461,19 @@ void CRenderer::UnloadAlphaMaps()
 
 int CRenderer::LoadWaterTextures()
 {
-	int i;
+	uint i;
+	const uint num_textures = ARRAY_SIZE(m_WaterTexture);
+
+	// yield after this time is reached. balances increased progress bar
+	// smoothness vs. slowing down loading.
+	const double end_time = get_time() + 50e-3;
 
 	// initialize to 0 in case something fails below
 	// (we then abort the loop, but don't want undefined values in here)
-	for (i = 0; i < ARRAY_SIZE(m_WaterTexture); i++)
+	for (i = 0; i < num_textures; i++)
 		m_WaterTexture[i] = 0;
 
-	for (i = 0; i < ARRAY_SIZE(m_WaterTexture); i++)
+	for (i = 0; i < num_textures; i++)
 	{
 		char waterName[VFS_MAX_PATH];
 		// TODO: add a member variable and setter for this. (can't make this
@@ -1483,6 +1488,8 @@ int CRenderer::LoadWaterTextures()
 		}
 		m_WaterTexture[i]=ht;
 		RETURN_ERR(ogl_tex_upload(ht));
+
+		LDR_CHECK_TIMEOUT(i, num_textures);
 	}
 
 	return 0;

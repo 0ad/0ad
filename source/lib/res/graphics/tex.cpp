@@ -544,11 +544,10 @@ static int tex_codec_transform(Tex* t, uint transforms)
 static int tex_load_impl(void* file_, size_t file_size, Tex* t)
 {
 	u8* file = (u8*)file_;
-
 	const TexCodecVTbl* c;
 	RETURN_ERR(tex_codec_for_header(file, file_size, &c));
 
-	// get header make sure enough of the file has been read
+	// make sure the entire header has been read
 	const size_t min_hdr_size = c->hdr_size(0);
 	if(file_size < min_hdr_size)
 		return ERR_TEX_HEADER_NOT_COMPLETE;

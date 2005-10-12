@@ -10,7 +10,7 @@
 #include "Unit.h"
 #include "Bound.h"
 #include "Model.h"
-#include "dyn_array.h"
+#include "lib/allocators.h"
 
 using namespace std;
 

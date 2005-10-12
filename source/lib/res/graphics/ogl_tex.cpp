@@ -741,7 +741,7 @@ int ogl_tex_upload(const Handle ht, GLenum fmt_ovr, uint q_flags_ovr, GLint int_
 	static const bool have_s3tc = detect_s3tc();
 	if((t->flags & TEX_DXT) && !have_s3tc)
 	{
-		//ONCE(DISPLAY_ERROR(L"Performance warning: your graphics card does not support compressed textures. The game will try to continue anyway, but may be slower than expected. Please try updating your graphics drivers; if that doesn't help, please try upgrading your hardware."));
+		ONCE(DISPLAY_ERROR(L"Performance warning: your graphics card does not support compressed textures. The game will try to continue anyway, but may be slower than expected. Please try updating your graphics drivers; if that doesn't help, please try upgrading your hardware."));
 		(void)tex_transform_to(t, t->flags & ~TEX_DXT);
 	}
 
