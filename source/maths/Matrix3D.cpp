@@ -539,7 +539,7 @@ static void test_inverse()
 			for (int y = 0; y < 4; ++y)
 			{
 				float expected = (x==y)? 1.0f : 0.0f;	// identity should have 1s on diagonal
-				TEST(fabs(m(x,y) - expected) < 0.0001f);
+				TEST(feq(m(x,y), expected));
 			}
 	}
 }
@@ -559,19 +559,18 @@ static void test_quats()
 		q.ToMatrix(m);
 		CQuaternion q2 = m.GetRotation();
 
-		float epsilon = 0.0001f;
 		// I hope there's a good reason why they're sometimes negated, and
 		// it's not just a bug...
 		bool ok_oneway = 
-			fabs(q2.m_W - q.m_W) < epsilon &&
-			fabs(q2.m_V.X - q.m_V.X) < epsilon &&
-			fabs(q2.m_V.Y - q.m_V.Y) < epsilon &&
-			fabs(q2.m_V.Z - q.m_V.Z) < epsilon;
+			feq(q2.m_W, q.m_W) &&
+			feq(q2.m_V.X, q.m_V.X) &&
+			feq(q2.m_V.Y, q.m_V.Y) &&
+			feq(q2.m_V.Z, q.m_V.Z);
 		bool ok_otherway =
-			fabs(q2.m_W + q.m_W) < epsilon &&
-			fabs(q2.m_V.X + q.m_V.X) < epsilon &&
-			fabs(q2.m_V.Y + q.m_V.Y) < epsilon &&
-			fabs(q2.m_V.Z + q.m_V.Z) < epsilon;
+			feq(q2.m_W, -q.m_W) &&
+			feq(q2.m_V.X, -q.m_V.X) &&
+			feq(q2.m_V.Y, -q.m_V.Y) &&
+			feq(q2.m_V.Z, -q.m_V.Z);
 		TEST(ok_oneway ^ ok_otherway);
 	}
 }

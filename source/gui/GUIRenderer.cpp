@@ -261,10 +261,6 @@ public:
 		// the number of times the following code is called - it looks like
 		// a rather worrying amount of work for rendering a single button...
 
-		// Also TODO: DOT3_RGB requires GL_(EXT|ARB)_texture_env_dot3. What should
-		// we do if that's not supported? (Probable answer: blindly ignore the problem,
-		// since it's only relevant for TNT2 / RAGE 128 / etc.)
-
 		// Texture unit 0:
 
 		ogl_tex_bind(tex, 0);
@@ -297,6 +293,16 @@ public:
 		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA, GL_SRC_ALPHA);
 
 		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_DOT3_RGB);
+
+		// GL_DOT3_RGB requires GL_(EXT|ARB)_texture_env_dot3.
+		// We currently don't bother implementing a fallback because it's
+		// only lacking on Riva-class HW, but at least want the rest of the
+		// game to run there without errors. Therefore, squelch the
+		// OpenGL error that's raised if they aren't actually present.
+		// Note: higher-level code checks for this extension, but
+		// allows users the choice of continuing even if not present.
+		oglSquelchError(GL_INVALID_ENUM);
+
 		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_REPLACE);
 
 		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB, GL_CONSTANT);

@@ -246,10 +246,17 @@ public:
 	// query transparency of given texture
 	bool IsTextureTransparent(CTexture* texture);
 
-	// load the default set of alphamaps; return false if any alphamap fails to load, true otherwise
+	// load the default set of alphamaps.
+	// return a negative error code if anything along the way fails.
+	// called via delay-load mechanism.
 	int LoadAlphaMaps();
-
 	void UnloadAlphaMaps();
+
+	// load textures for the active water type.
+	// return a negative error code if anything along the way fails.
+	// called via delay-load mechanism.
+	int LoadWaterTextures();
+	void UnloadWaterTextures();
 
 	// return stats accumulated for current frame
 	const Stats& GetStats() { return m_Stats; }

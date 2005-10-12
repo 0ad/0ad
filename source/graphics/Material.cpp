@@ -81,11 +81,11 @@ bool CMaterial::operator ==(const CMaterial &material)
 
 void CMaterial::Bind()
 {
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, &m_Diffuse.r);
+    glMaterialf(GL_FRONT, GL_SHININESS, m_SpecularPower);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, &m_Diffuse.r);
     glMaterialfv(GL_FRONT, GL_AMBIENT, &m_Ambient.r);
     glMaterialfv(GL_FRONT, GL_SPECULAR, &m_Specular.r);
     glMaterialfv(GL_FRONT, GL_EMISSION, &m_Emissive.r);
-    glMaterialf(GL_FRONT, GL_SHININESS, m_SpecularPower);
 
     oglCheck();
 }

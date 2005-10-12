@@ -151,13 +151,19 @@ void VertexArray::Layout()
 			continue;
 	
 		size_t attrSize = 0;
-		
-		switch(attr->type) {
-		case GL_UNSIGNED_BYTE: attrSize = sizeof(GLubyte); break;
-		case GL_FLOAT: attrSize = sizeof(GLfloat); break;
-		default: debug_warn("Bad AttributeInfo::Type"); break;
+		switch(attr->type)
+		{
+		case GL_UNSIGNED_BYTE:
+			attrSize = sizeof(GLubyte);
+			break;
+		case GL_FLOAT:
+			attrSize = sizeof(GLfloat);
+			break;
+		default:
+			attrSize = 0;
+			debug_warn("Bad AttributeInfo::Type"); break;
 		}
-		
+
 		attrSize *= attr->elems;
 		
 		attr->offset = m_Stride;

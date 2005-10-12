@@ -53,6 +53,7 @@ scope
 #define LIB_H__
 
 #include <stddef.h>
+#include <math.h>	// fabsf
 
 
 #include "config.h"
@@ -213,11 +214,8 @@ STMT(\
 
 #define SAFE_DELETE(p)\
 STMT(\
-	if((p))\
-	{\
-		delete (p);\
-		(p) = 0;\
-	}\
+	delete (p);	/* if p == 0, delete is a no-op */ \
+	(p) = 0;\
 )
 
 
@@ -421,6 +419,16 @@ extern u32 u64_hi(u64 x);
 extern u32 u64_lo(u64 x);
 
 extern u64 u64_from_u32(u32 hi, u32 lo);
+
+
+inline bool feq(float f1, float f2)
+{
+	// the requisite value will change with the magnitude of f1 and f2!
+	// this is a sane default, but don't use this routine for very
+	// large/small comparands.
+	const float epsilon = 0.00001f;
+	return fabsf(f1 - f2) < epsilon;
+}
 
 
 extern u16 fp_to_u16(double in);

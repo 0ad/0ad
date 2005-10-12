@@ -43,6 +43,7 @@
 #include "lib/res/file/file.h"
 #include "lib/res/graphics/tex.h"
 #include "lib/res/graphics/ogl_tex.h"
+#include "lib/res/file/vfs.h"
 #include "timer.h"
 
 #include "renderer/RenderPathVertexShader.h"
@@ -74,13 +75,13 @@ CRenderer::CRenderer()
 		m_ActiveTextures[i]=0;
 	}
 
+	// water
 	m_RenderWater = true;
 	m_WaterHeight = 5.0f;
 	m_WaterColor = CColor(0.3f, 0.35f, 0.7f, 1.0f);
 	m_WaterFullDepth = 4.0f;
 	m_WaterMaxAlpha = 0.85f;
 	m_WaterAlphaOffset = -0.05f;
-
 	m_SWaterTrans=0;
 	m_TWaterTrans=0;
 	m_SWaterSpeed=0.0015f;
@@ -88,20 +89,6 @@ CRenderer::CRenderer()
 	m_SWaterScrollCounter=0;
 	m_TWaterScrollCounter=0;
 	m_WaterCurrentTex=0;
-
-	for (int x=0; x<60; x++)
-	{
-		char waterName[1000];
-		sprintf(waterName, "art/textures/terrain/types/water/animation2/water%02d.dds", x+1);
-		m_WaterTexture[x]=ogl_tex_load(waterName);
-		if (m_WaterTexture[x] <= 0)
-		{
-			LOG(ERROR, LOG_CATEGORY, "LoadTexture failed on \"%s\"", waterName);
-			ogl_tex_free(m_WaterTexture[x]);
-		} 
-		else
-			ogl_tex_upload(m_WaterTexture[x]);
-	}
 
 	ONCE( ScriptingInit(); );
 }
@@ -112,6 +99,9 @@ CRenderer::~CRenderer()
 {
 	delete m_VertexShader;
 	m_VertexShader = 0;
+
+	UnloadAlphaMaps();
+	UnloadWaterTextures();
 }
 
 
@@ -737,6 +727,7 @@ void CRenderer::RenderShadowMap()
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PRIMARY_COLOR_ARB);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+	oglSquelchError(GL_INVALID_ENUM);
 	
 	// Set the proper LOD bias
 	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, m_Options.m_LodBias);
@@ -1377,7 +1368,7 @@ int CRenderer::LoadAlphaMaps()
 	{
 		(void)pp_append_file(&pp, fnames[i]);
 		textures[i] = ogl_tex_load(pp.path);
-		WARN_ERR(textures[i]);
+		RETURN_ERR(textures[i]);
 
 		// get its size and make sure they are all equal.
 		// (the packing algo assumes this)
@@ -1452,10 +1443,10 @@ int CRenderer::LoadAlphaMaps()
 	m_hCompositeAlphaMap = ogl_tex_wrap(&t, "(alpha map composite)");
 	(void)ogl_tex_set_filter(m_hCompositeAlphaMap, GL_LINEAR);
 	(void)ogl_tex_set_wrap  (m_hCompositeAlphaMap, GL_CLAMP_TO_EDGE);
-	(void)ogl_tex_upload(m_hCompositeAlphaMap, 0, 0, GL_INTENSITY);
+	int ret = ogl_tex_upload(m_hCompositeAlphaMap, 0, 0, GL_INTENSITY);
 	delete[] data;
 
-	return 0;
+	return ret;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1463,6 +1454,45 @@ int CRenderer::LoadAlphaMaps()
 void CRenderer::UnloadAlphaMaps()
 {
 	ogl_tex_free(m_hCompositeAlphaMap);
+}
+
+
+
+
+int CRenderer::LoadWaterTextures()
+{
+	int i;
+
+	// initialize to 0 in case something fails below
+	// (we then abort the loop, but don't want undefined values in here)
+	for (i = 0; i < ARRAY_SIZE(m_WaterTexture); i++)
+		m_WaterTexture[i] = 0;
+
+	for (i = 0; i < ARRAY_SIZE(m_WaterTexture); i++)
+	{
+		char waterName[VFS_MAX_PATH];
+		// TODO: add a member variable and setter for this. (can't make this
+		// a parameter because this function is called via delay-load code)
+		const char* water_type = "animation2";
+		snprintf(waterName, ARRAY_SIZE(waterName), "art/textures/terrain/types/water/%s/water%02d.dds", water_type, i+1);
+		Handle ht = ogl_tex_load(waterName);
+		if (ht <= 0)
+		{
+			LOG(ERROR, LOG_CATEGORY, "LoadWaterTextures failed on \"%s\"", waterName);
+			return ht;
+		}
+		m_WaterTexture[i]=ht;
+		RETURN_ERR(ogl_tex_upload(ht));
+	}
+
+	return 0;
+}
+
+
+void CRenderer::UnloadWaterTextures()
+{
+	for (int i = 0; i < ARRAY_SIZE(m_WaterTexture); i++)
+		ogl_tex_free(m_WaterTexture[i]);
 }
 
 

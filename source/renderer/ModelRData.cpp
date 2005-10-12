@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include "MathUtil.h"
+#include "lib/ogl.h"
 #include "lib/res/graphics/ogl_tex.h"
 #include "lib/res/graphics/ogl_shader.h"
 #include "Renderer.h"
@@ -284,7 +285,7 @@ void CModelRData::FinishRender(u32 streamflags)
 // Try to use RenderModels instead wherever possible.
 // Must be bracketed by calls to CModelRData::SetupRender/FinishRender
 void CModelRData::RenderStreams(u32 streamflags, int tmus)
-{	
+{
 	CModelDefPtr mdldef=m_Model->GetModelDef();
 	
 	if (streamflags & STREAM_UV0)
@@ -299,7 +300,7 @@ void CModelRData::RenderStreams(u32 streamflags, int tmus)
 	}
 
 	u8* base = m_DynamicArray.Bind();
-	size_t stride = m_DynamicArray.GetStride();
+	GLsizei stride = (GLsizei)m_DynamicArray.GetStride();
 	
 	glVertexPointer(3, GL_FLOAT, stride, base + m_Position.offset);
 	if (streamflags & STREAM_COLOR)
@@ -432,7 +433,7 @@ void CModelRData::RenderModels(u32 streamflags, u32 flags)
 				CModelDefPtr mdldef = modeldata->GetModel()->GetModelDef();
 	
 				u8* base = modeldata->m_DynamicArray.Bind();
-				size_t stride = modeldata->m_DynamicArray.GetStride();
+				GLsizei stride = (GLsizei)modeldata->m_DynamicArray.GetStride();
 	
 				glVertexPointer(3, GL_FLOAT, stride, 
 						base + modeldata->m_Position.offset);

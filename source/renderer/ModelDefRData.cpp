@@ -71,7 +71,7 @@ void CModelDefRData::PrepareStream(uint streamflags)
 		return;
 
 	u8* base = m_Array.Bind();
-	size_t stride = m_Array.GetStride();
+	GLsizei stride = (GLsizei)m_Array.GetStride();
 	
 	glTexCoordPointer(2, GL_FLOAT, stride, base + m_UV.offset);
 }
