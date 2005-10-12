@@ -332,19 +332,19 @@ extern int vfs_close(Handle& h);
 // low-level file routines - no caching or alignment.
 
 // begin transferring <size> bytes, starting at <ofs>. get result
-// with vfs_wait_read; when no longer needed, free via vfs_discard_io.
-extern Handle vfs_start_io(Handle hf, size_t size, void* buf);
+// with vfs_wait_read; when no longer needed, free via vfs_io_discard.
+extern Handle vfs_io_issue(Handle hf, size_t size, void* buf);
 
 // indicates if the given IO has completed.
 // return value: 0 if pending, 1 if complete, < 0 on error.
-extern int vfs_io_complete(Handle hio);
+extern int vfs_io_has_completed(Handle hio);
 
 // wait until the transfer <hio> completes, and return its buffer.
 // output parameters are zeroed on error.
-extern int vfs_wait_io(Handle hio, void*& p, size_t& size);
+extern int vfs_io_wait(Handle hio, void*& p, size_t& size);
 
 // finished with transfer <hio> - free its buffer (returned by vfs_wait_read).
-extern int vfs_discard_io(Handle& hio);
+extern int vfs_io_discard(Handle& hio);
 
 
 //

@@ -21,6 +21,7 @@
 class GLCursor
 {
 	Handle ht;
+
 	uint w, h;
 	uint hotspotx, hotspoty;
 
@@ -41,10 +42,12 @@ public:
 
 	void destroy()
 	{
+		// note: we're stored in a resource => ht is initially 0 =>
+		// this is safe, no need for an is_valid flag
 		(void)ogl_tex_free(ht);
 	}
 
-	void draw(uint x, uint y)
+	void draw(uint x, uint y) const
 	{
 		(void)ogl_tex_bind(ht);
 		glEnable(GL_TEXTURE_2D);
@@ -62,6 +65,16 @@ public:
 		glTexCoord2i(1, 1); glVertex2i( x-hotspotx+w, y+hotspoty-h );
 		glTexCoord2i(0, 1); glVertex2i( x-hotspotx,   y+hotspoty-h );
 		glEnd();
+	}
+
+	int validate() const
+	{
+		const uint A = 128;	// no cursor is expected to get this big
+		if(w > A || h > A || hotspotx > A || hotspoty > A)
+			return -2;
+		if(ht < 0)
+			return -3;
+		return 0;
 	}
 };
 
@@ -82,6 +95,8 @@ static void Cursor_init(Cursor* UNUSED(c), va_list UNUSED(args))
 
 static void Cursor_dtor(Cursor* c)
 {
+	// (note: these are safe, no need for an is_valid flag)
+
 	if(c->sys_cursor)
 		WARN_ERR(sys_cursor_free(c->sys_cursor));
 	else
@@ -119,6 +134,17 @@ static int Cursor_reload(Cursor* c, const char* name, Handle)
 
 	return 0;
 }
+
+static int Cursor_validate(const Cursor* c)
+{
+	// note: system cursors have no state to speak of, so we don't need to
+	// validate them.
+
+	if(!c->sys_cursor)
+		RETURN_ERR(c->gl_cursor.validate());
+	return 0;
+}
+
 
 // note: these standard resource interface functions are not exposed to the
 // caller. all we need here is storage for the sys_cursor / GLCursor and

@@ -72,10 +72,10 @@ static void Ogl_Shader_init(Ogl_Shader* shdr, va_list args)
 // have absolutely no effect on a program object that contains these shaders
 // when the program object is already linked.
 // So, how can we inform the "parent object" (i.e. the program object) of our change?
-static int Ogl_Shader_reload(Ogl_Shader* shdr, const char* filename, Handle h)
+static int Ogl_Shader_reload(Ogl_Shader* shdr, const char* filename, Handle UNUSED(h))
 {
 	int err = -666;
-	
+
 	if (shdr->id)
 		return 0;
 
@@ -162,6 +162,11 @@ static void Ogl_Shader_dtor(Ogl_Shader* shdr)
 	}
 }
 
+static int Ogl_Shader_validate(const Ogl_Shader* shdr)
+{
+	// TODO
+	return 0;
+}
 
 
 //----------------------------------------------------------------------------
@@ -212,7 +217,7 @@ H_TYPE_DEFINE(Ogl_Program);
 
 // One-time initialization, called once by h_alloc, which is
 // in turn called by ogl_program_load
-static void Ogl_Program_init(Ogl_Program* p, va_list args)
+static void Ogl_Program_init(Ogl_Program* UNUSED(p), va_list UNUSED(args))
 {
 }
 
@@ -372,6 +377,12 @@ static void Ogl_Program_dtor(Ogl_Program* p)
 		glDeleteObjectARB(p->id);
 		p->id = 0;
 	}
+}
+
+static int Ogl_Program_validate(const Ogl_Program* p)
+{
+	// TODO
+	return 0;
 }
 
 

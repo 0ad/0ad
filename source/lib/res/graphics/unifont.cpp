@@ -43,23 +43,31 @@ struct UniFont
 
 H_TYPE_DEFINE(UniFont);
 
-static void UniFont_init(UniFont* f, va_list UNUSED(args))
+static void UniFont_init(UniFont* UNUSED(f), va_list UNUSED(args))
 {
-	f->glyphs_id = new glyphmap_id;
-	f->glyphs_size = new glyphmap_size;
 }
 
 static void UniFont_dtor(UniFont* f)
 {
-	ogl_tex_free(f->ht);
-	glDeleteLists(f->ListBase, (GLsizei)f->glyphs_id->size());
-	delete f->glyphs_id;
-	delete f->glyphs_size;
-}
+	// these are all safe, no is_valid flags needed
+	(void)ogl_tex_free(f->ht);
 
+	glDeleteLists(f->ListBase, (GLsizei)f->glyphs_id->size());
+	f->ListBase = 0;
+
+	SAFE_DELETE(f->glyphs_id);
+	SAFE_DELETE(f->glyphs_size);
+}
 
 static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 {
+	// already loaded
+	if(f->ht > 0)
+		return 0;
+
+	f->glyphs_id = new glyphmap_id;
+	f->glyphs_size = new glyphmap_size;
+
 	// fn is the base filename, e.g. "console"
 	// The font definition file is "fonts/"+fn+".fnt" and the texture is "fonts/"+fn+".tga"
 	std::string FilenameBase = "fonts/"; FilenameBase += fn;
@@ -79,7 +87,7 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 	if (Version != 100) // Make sure this is from a recent version of the font builder
 	{
 		debug_warn("Invalid .fnt version number");
-		return -1;
+		return ERR_UNKNOWN_FORMAT;
 	}
 
 	int TextureWidth, TextureHeight;
@@ -162,6 +170,21 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 	}
 
 	f->ht = ht;
+	return 0;
+}
+
+static int UniFont_validate(const UniFont* f)
+{
+	if(f->ht < 0)
+		return -2;
+	if(debug_is_pointer_bogus(f->glyphs_id) || debug_is_pointer_bogus(f->glyphs_size))
+		return -3;
+	// <LineSpacing> and <Height> are read directly from font file.
+	// negative values don't make sense, but that's all we can check.
+	if(f->LineSpacing < 0 || f->Height < 0)
+		return -4;
+	if(f->ListBase == 0 || f->ListBase > 1000000)	// suspicious
+		return -5;
 	return 0;
 }
 

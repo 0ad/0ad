@@ -703,7 +703,7 @@ static int stream_issue(Stream* s)
 	if(!buf)
 		return ERR_NO_MEM;
 
-	Handle h = vfs_start_io(s->hf, STREAM_BUF_SIZE, buf);
+	Handle h = vfs_io_issue(s->hf, STREAM_BUF_SIZE, buf);
 	CHECK_ERR(h);
 	s->ios[s->active_ios++] = h;
 	return 0;
@@ -720,14 +720,14 @@ static int stream_buf_get(Stream* s, void*& data, size_t& size)
 	Handle hio = s->ios[0];
 
 	// has it finished? if not, bail.
-	int is_complete = vfs_io_complete(hio);
+	int is_complete = vfs_io_has_completed(hio);
 	CHECK_ERR(is_complete);
 	if(is_complete == 0)
 		return ERR_AGAIN;
 
 	// get its buffer.
-	CHECK_ERR(vfs_wait_io(hio, data, size));
-		// no delay, since vfs_io_complete == 1
+	CHECK_ERR(vfs_io_wait(hio, data, size));
+		// no delay, since vfs_io_has_completed == 1
 
 	s->last_buf = data;
 		// (next stream_buf_discard will free this buffer)
@@ -743,7 +743,7 @@ static int stream_buf_discard(Stream* s)
 {
 	Handle hio = s->ios[0];
 
-	int ret = vfs_discard_io(hio);
+	int ret = vfs_io_discard(hio);
 
 	// we implement the required 'circular queue' as a stack;
 	// have to shift all items after this one down.
@@ -777,7 +777,7 @@ static int stream_open(Stream* s, const char* fn)
 
 	for(int i = 0; i < MAX_IOS; i++)
 		CHECK_ERR(stream_issue(s));
-	
+
 	return 0;
 }
 
@@ -816,6 +816,15 @@ static int stream_close(Stream* s)
 }
 
 
+static int stream_validate(const Stream* s)
+{
+	if(s->active_ios > MAX_IOS)
+		return -2;
+	// <last_buf> has no invariant we could check.
+	return 0;
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////
 //
 // sound data provider: holds audio data (clip or stream) and returns
@@ -849,7 +858,8 @@ struct SndData
 	// clip
 	ALuint al_buf;
 
-	bool is_stream;
+	uint is_stream : 1;
+	uint is_valid : 1;
 
 #ifdef OGG_HACK
 // pointer to Ogg instance
@@ -859,63 +869,6 @@ void* o;
 
 H_TYPE_DEFINE(SndData);
 
-
-//
-// SndData instance list: ensures all allocated since last al_shutdown
-// are freed when desired (they are cached => extra work needed).
-//
-///////////////////////////////////////////////////////////////////////////////
-
-// rationale: all SndData objects (actually, their OpenAL buffers) must be
-// freed during al_shutdown, to prevent leaks. we can't rely on list*
-// to free all VSrc, and thereby their associated SndData objects -
-// completed sounds are no longer in the list.
-//
-// nor can we use the h_mgr_shutdown automatic leaked resource cleanup:
-// we need to be able to al_shutdown at runtime
-// (when resetting OpenAL, after e.g. device change).
-//
-// h_mgr support is required to forcibly close SndData objects,
-// since they are cached (kept open). it requires that this come after
-// H_TYPE_DEFINE(SndData), since h_force_free needs the handle type.
-//
-// we never need to delete single entries: hsd_list_free_all
-// (called by al_shutdown) frees each entry and clears the entire list.
-
-typedef std::vector<Handle> Handles;
-static Handles hsd_list;
-
-// called from SndData_reload; will later be removed via hsd_list_free_all.
-static void hsd_list_add(Handle hsd)
-{
-	hsd_list.push_back(hsd);
-}
-
-
-// called by al_shutdown (at exit, or when reinitializing OpenAL).
-static void hsd_list_free_all()
-{
-	for(Handles::iterator it = hsd_list.begin(); it != hsd_list.end(); ++it)
-	{
-		Handle& hsd = *it;
-
-		h_force_free(hsd, H_SndData);
-		// ignore errors - if hsd was a stream, and its associated source
-		// was active when al_shutdown was called, it will already have been
-		// freed (list_free_all would free the source; it then releases
-		// its SndData reference, which closes the instance because it's
-		// RES_UNIQUE).
-	}
-
-	// leave its memory intact, so we don't have to reallocate it later
-	// if we are now reinitializing OpenAL (not exiting).
-	hsd_list.resize(0);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////
-
-
 static void SndData_init(SndData* sd, va_list args)
 {
 	// olsner: pass as int instead of bool for GCC compat.
@@ -924,15 +877,22 @@ static void SndData_init(SndData* sd, va_list args)
 
 static void SndData_dtor(SndData* sd)
 {
+	// in case reload failed and the following haven't been initialized yet
+	// (freeing them would fail in that case, so bail)
+	if(!sd->is_valid)
+		return;
+
 	if(sd->is_stream)
 		stream_close(&sd->s);
 	else
 		al_buf_free(sd->al_buf);
+
 #ifdef OGG_HACK
 if(sd->o) ogg_release(sd->o);
 #endif
 }
 
+static void hsd_list_add(Handle hsd);
 
 static int SndData_reload(SndData* sd, const char* fn, Handle hsd)
 {
@@ -1038,6 +998,21 @@ else
 	return 0;
 }
 
+static int SndData_validate(const SndData* sd)
+{
+	if(sd->al_fmt == 0)
+		return -100;
+	if((uint)sd->al_freq > 100000)	// suspicious
+		return -101;
+	if(sd->al_buf == 0)
+		return -102;
+
+	if(sd->is_stream)
+		RETURN_ERR(stream_validate(&sd->s));
+
+	return 0;
+}
+
 
 // open and return a handle to a sound file's data.
 static Handle snd_data_load(const char* fn, bool is_stream)
@@ -1056,6 +1031,61 @@ static int snd_data_free(Handle& hsd)
 {
 	return h_free(hsd, H_SndData);
 }
+
+//
+// SndData instance list: ensures all allocated since last al_shutdown
+// are freed when desired (they are cached => extra work needed).
+//
+///////////////////////////////////////////////////////////////////////////////
+
+// rationale: all SndData objects (actually, their OpenAL buffers) must be
+// freed during al_shutdown, to prevent leaks. we can't rely on list*
+// to free all VSrc, and thereby their associated SndData objects -
+// completed sounds are no longer in the list.
+//
+// nor can we use the h_mgr_shutdown automatic leaked resource cleanup:
+// we need to be able to al_shutdown at runtime
+// (when resetting OpenAL, after e.g. device change).
+//
+// h_mgr support is required to forcibly close SndData objects,
+// since they are cached (kept open). it requires that this come after
+// H_TYPE_DEFINE(SndData), since h_force_free needs the handle type.
+//
+// we never need to delete single entries: hsd_list_free_all
+// (called by al_shutdown) frees each entry and clears the entire list.
+
+typedef std::vector<Handle> Handles;
+static Handles hsd_list;
+
+// called from SndData_reload; will later be removed via hsd_list_free_all.
+static void hsd_list_add(Handle hsd)
+{
+	hsd_list.push_back(hsd);
+}
+
+
+// called by al_shutdown (at exit, or when reinitializing OpenAL).
+static void hsd_list_free_all()
+{
+	for(Handles::iterator it = hsd_list.begin(); it != hsd_list.end(); ++it)
+	{
+		Handle& hsd = *it;
+
+		h_force_free(hsd, H_SndData);
+		// ignore errors - if hsd was a stream, and its associated source
+		// was active when al_shutdown was called, it will already have been
+		// freed (list_free_all would free the source; it then releases
+		// its SndData reference, which closes the instance because it's
+		// RES_UNIQUE).
+	}
+
+	// leave its memory intact, so we don't have to reallocate it later
+	// if we are now reinitializing OpenAL (not exiting).
+	hsd_list.resize(0);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
 
 
 // (need to convert ERR_EOF and ERR_AGAIN to legitimate return values -
@@ -1154,7 +1184,9 @@ enum VSrcFlags
 	// this VSrc was added via list_add and needs to be removed with
 	// list_remove in VSrc_dtor.
 	// not set if load fails somehow (avoids list_remove "not found" error).
-	VS_IN_LIST = 4
+	VS_IN_LIST   = 4,
+
+	VS_ALL_FLAGS = VS_EOF|VS_IS_STREAM|VS_IN_LIST
 };
 
 struct VSrc
@@ -1168,7 +1200,7 @@ struct VSrc
 	Handle hsd;
 
 	// controls vsrc_update behavior
-	uint flags;
+	uint flags;	// VSrcFlags
 
 	// AL source properties (set via snd_set*)
 	ALfloat pos[3];
@@ -1183,6 +1215,135 @@ struct VSrc
 };
 
 H_TYPE_DEFINE(VSrc);
+
+static void VSrc_init(VSrc* vs, va_list args)
+{
+	vs->flags = va_arg(args, uint);
+}
+
+static void list_remove(VSrc* vs);
+static int vsrc_reclaim(VSrc* vs);
+
+static void VSrc_dtor(VSrc* vs)
+{
+	// only remove if added (not the case if load failed)
+	if(vs->flags & VS_IN_LIST)
+	{
+		list_remove(vs);
+		vs->flags &= ~VS_IN_LIST;
+	}
+
+	// these are safe, even if reload (partially) failed:
+	vsrc_reclaim(vs);
+	(void)snd_data_free(vs->hsd);
+}
+
+static int VSrc_reload(VSrc* vs, const char* fn, Handle hvs)
+{
+	// cannot wait till play(), need to init here:
+	// must load OpenAL so that snd_data_load can check for OGG extension.
+	int err = snd_init();
+	// .. don't complain if sound is disabled; fail silently.
+	if(err == ERR_AGAIN)
+		return err;
+	// .. catch genuine errors during init.
+	CHECK_ERR(err);
+
+	//
+	// if extension is .txt, fn is a definition file containing the
+	// sound file name and its gain; otherwise, read directly from fn
+	// and assume default gain (1.0).
+	//
+
+	const char* snd_fn;		// actual sound file name
+	std::string snd_fn_s;
+	// extracted from stringstream;
+	// declare here so that it doesn't go out of scope below.
+
+	const char* ext = strchr(fn, '.');
+	if(ext && !stricmp(ext, ".txt"))
+	{
+		void* def_file;
+		size_t def_size;
+		RETURN_ERR(vfs_load(fn, def_file, def_size));
+		std::istringstream def(std::string((char*)def_file, (int)def_size));
+		mem_free(def_file);
+
+		float gain_percent;
+		def >> snd_fn_s;
+		def >> gain_percent;
+
+		snd_fn = snd_fn_s.c_str();
+		vs->gain = gain_percent / 100.0f;
+	}
+	else
+	{
+		snd_fn = fn;
+		vs->gain = 1.0f;
+	}
+
+	// note: vs->gain can legitimately be > 1.0 - don't clamp.
+
+	vs->pitch = 1.0f;
+
+	vs->hvs = hvs;
+	// needed so we can snd_free ourselves when done playing.
+
+	bool is_stream = (vs->flags & VS_IS_STREAM) != 0;
+	vs->hsd = snd_data_load(snd_fn, is_stream);
+	RETURN_ERR(vs->hsd);
+
+	return 0;
+}
+
+static int VSrc_validate(const VSrc* vs)
+{
+	if(vs->al_src == 0)
+		return -2;
+	if(vs->flags & ~VS_ALL_FLAGS)
+		return -3;
+	// no limitations on <pos>
+	if(!(0.0f <= vs->gain && vs->gain <= 1.0f))
+		return -4;
+	if(!(0.0f < vs->pitch && vs->pitch <= 1.0f))
+		return -5;
+	if(*(u8*)&vs->loop > 1 || *(u8*)&vs->relative > 1)
+		return -6;
+	// <static_pri> and <cur_pri> have no invariant we could check.
+	return 0;
+}
+
+
+// open and return a handle to a sound instance.
+//
+// if <snd_fn> is a text file (extension ".txt"), it is assumed
+// to be a definition file containing the sound file name and
+// its gain (0.0 .. 1.0).
+// otherwise, <snd_fn> is taken to be the sound file name and
+// gain is set to the default of 1.0 (no attenuation).
+//
+// is_stream (default false) forces the sound to be opened as a stream:
+// opening is faster, it won't be kept in memory, but only one instance
+// can be open at a time.
+//
+// note: RES_UNIQUE forces each instance to get a new resource
+// (which is of course what we want).
+Handle snd_open(const char* snd_fn, bool is_stream)
+{
+	uint flags = 0;
+	if(is_stream)
+		flags |= VS_IS_STREAM;
+	return h_alloc(H_VSrc, snd_fn, RES_UNIQUE, flags);
+}
+
+
+// close the sound <hvs> and set hvs to 0. if it was playing,
+// it will be stopped. sounds are closed automatically when done
+// playing; this is provided for completeness only.
+int snd_free(Handle& hvs)
+{
+	return h_free(hvs, H_VSrc);
+}
 
 
 //
@@ -1429,118 +1590,6 @@ static int vsrc_reclaim(VSrc* vs)
 
 
 ///////////////////////////////////////////////////////////////////////////////
-
-
-static void VSrc_init(VSrc* vs, va_list args)
-{
-	vs->flags = va_arg(args, uint);
-}
-
-
-static void VSrc_dtor(VSrc* vs)
-{
-	// only remove if added (not the case if load failed)
-	if(vs->flags & VS_IN_LIST)
-	{
-		list_remove(vs);
-		vs->flags &= ~VS_IN_LIST;
-	}
-
-	vsrc_reclaim(vs);
-	snd_data_free(vs->hsd);
-}
-
-
-static int VSrc_reload(VSrc* vs, const char* fn, Handle hvs)
-{
-	// cannot wait till play(), need to init here:
-	// must load OpenAL so that snd_data_load can check for OGG extension.
-	int err = snd_init();
-	// .. don't complain if sound is disabled; fail silently.
-	if(err == ERR_AGAIN)
-		return err;
-	// .. catch genuine errors during init.
-	CHECK_ERR(err);
-
-	//
-	// if extension is .txt, fn is a definition file containing the
-	// sound file name and its gain; otherwise, read directly from fn
-	// and assume default gain (1.0).
-	//
-
-	const char* snd_fn;		// actual sound file name
-	std::string snd_fn_s;
-		// extracted from stringstream;
-		// declare here so that it doesn't go out of scope below.
-
-	const char* ext = strchr(fn, '.');
-	if(ext && !stricmp(ext, ".txt"))
-	{
-		void* def_file;
-		size_t def_size;
-		RETURN_ERR(vfs_load(fn, def_file, def_size));
-		std::istringstream def(std::string((char*)def_file, (int)def_size));
-		mem_free(def_file);
-
-		float gain_percent;
-		def >> snd_fn_s;
-		def >> gain_percent;
-
-		snd_fn = snd_fn_s.c_str();
-		vs->gain = gain_percent / 100.0f;
-	}
-	else
-	{
-		snd_fn = fn;
-		vs->gain = 1.0f;
-	}
-
-	// note: vs->gain can legitimately be > 1.0 - don't clamp.
-
-	vs->pitch = 1.0f;
-
-	vs->hvs = hvs;
-		// needed so we can snd_free ourselves when done playing.
-
-	bool is_stream = (vs->flags & VS_IS_STREAM) != 0;
-	vs->hsd = snd_data_load(snd_fn, is_stream);
-	CHECK_ERR(vs->hsd);
-
-	return 0;
-}
-
-
-// open and return a handle to a sound instance.
-//
-// if <snd_fn> is a text file (extension ".txt"), it is assumed
-// to be a definition file containing the sound file name and
-// its gain (0.0 .. 1.0).
-// otherwise, <snd_fn> is taken to be the sound file name and
-// gain is set to the default of 1.0 (no attenuation).
-//
-// is_stream (default false) forces the sound to be opened as a stream:
-// opening is faster, it won't be kept in memory, but only one instance
-// can be open at a time.
-//
-// note: RES_UNIQUE forces each instance to get a new resource
-// (which is of course what we want).
-Handle snd_open(const char* snd_fn, bool is_stream)
-{
-	uint flags = 0;
-	if(is_stream)
-		flags |= VS_IS_STREAM;
-	return h_alloc(H_VSrc, snd_fn, RES_UNIQUE, flags);
-}
-
-
-// close the sound <hvs> and set hvs to 0. if it was playing,
-// it will be stopped. sounds are closed automatically when done
-// playing; this is provided for completeness only.
-int snd_free(Handle& hvs)
-{
-	return h_free(hvs, H_VSrc);
-}
-
 
 // request the sound <hs> be played. once done playing, the sound is
 // automatically closed (allows fire-and-forget play code).

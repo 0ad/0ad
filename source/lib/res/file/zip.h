@@ -78,6 +78,8 @@ extern int zip_open(Handle ha, const char* fn, int flags, ZFile* zf);
 // close file.
 extern int zip_close(ZFile* zf);
 
+extern int zip_validate(const ZFile* zf);
+
 
 //
 // asynchronous read
@@ -96,19 +98,21 @@ struct ZipIo
 };
 
 // begin transferring <size> bytes, starting at <ofs>. get result
-// with zip_wait_io; when no longer needed, free via zip_discard_io.
-extern int zip_start_io(ZFile* zf, off_t ofs, size_t size, void* buf, ZipIo* io);
+// with zip_io_wait; when no longer needed, free via zip_io_discard.
+extern int zip_io_issue(ZFile* zf, off_t ofs, size_t size, void* buf, ZipIo* io);
 
 // indicates if the IO referenced by <io> has completed.
 // return value: 0 if pending, 1 if complete, < 0 on error.
-extern int zip_io_complete(ZipIo* io);
+extern int zip_io_has_completed(ZipIo* io);
 
 // wait until the transfer <io> completes, and return its buffer.
 // output parameters are zeroed on error.
-extern int zip_wait_io(ZipIo* io, void*& p, size_t& size);
+extern int zip_io_wait(ZipIo* io, void*& p, size_t& size);
 
-// finished with transfer <io> - free its buffer (returned by zip_wait_io)
-extern int zip_discard_io(ZipIo* io);
+// finished with transfer <io> - free its buffer (returned by zip_io_wait)
+extern int zip_io_discard(ZipIo* io);
+
+extern int zip_io_validate(const ZipIo* io);
 
 
 //

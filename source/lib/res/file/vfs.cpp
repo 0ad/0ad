@@ -95,13 +95,14 @@
 struct VDir
 {
 	TreeDirIterator it;
+	uint it_valid : 1;	// <it> will be closed iff == 1
 
 	// safety check
 #ifndef NDEBUG
 	const char* filter;
 	// has filter been assigned? this flag is necessary because there are no
 	// "invalid" filter values we can use.
-	bool filter_latched;
+	uint filter_latched : 1;
 #endif
 };
 
@@ -113,7 +114,13 @@ static void VDir_init(VDir* UNUSED(vd), va_list UNUSED(args))
 
 static void VDir_dtor(VDir* vd)
 {
-	tree_dir_close(&vd->it);
+	// note: TreeDirIterator has no way of checking if it's valid;
+	// we must therefore only free it if reload() succeeded.
+	if(vd->it_valid)
+	{
+		tree_dir_close(&vd->it);
+		vd->it_valid = 0;
+	}
 }
 
 static int VDir_reload(VDir* vd, const char* path, Handle UNUSED(hvd))
@@ -121,9 +128,20 @@ static int VDir_reload(VDir* vd, const char* path, Handle UNUSED(hvd))
 	// add required trailing slash if not already present to make
 	// caller's life easier.
 	char V_path_slash[PATH_MAX];
-	CHECK_ERR(vfs_path_append(V_path_slash, path, ""));
+	RETURN_ERR(vfs_path_append(V_path_slash, path, ""));
 
-	CHECK_ERR(tree_dir_open(V_path_slash, &vd->it));
+	RETURN_ERR(tree_dir_open(V_path_slash, &vd->it));
+	vd->it_valid = 1;
+	return 0;
+}
+
+static int VDir_validate(const VDir* vd)
+{
+	// note: <it> is opaque and cannot be validated.
+#ifndef NDEBUG
+	if(vd->filter && !isprint(vd->filter[0]))
+		return -2;
+#endif
 	return 0;
 }
 
@@ -175,7 +193,7 @@ int vfs_dir_next_ent(const Handle hd, DirEnt* ent, const char* filter)
 	if(!vd->filter_latched)
 	{
 		vd->filter = filter;
-		vd->filter_latched = true;
+		vd->filter_latched = 1;
 	}
 	if(vd->filter != filter)
 		debug_warn("vfs_dir_next_ent: filter has changed for this directory. are you scanning it twice?");
@@ -335,7 +353,7 @@ struct VFile
 	Handle hm;
 
 	// current file pointer. this is necessary because file.cpp's interface
-	// requires passing an offset for every VIo; see file_start_io.
+	// requires passing an offset for every VIo; see file_io_issue.
 	off_t ofs;
 
 	XFile xf;
@@ -347,23 +365,20 @@ struct VFile
 
 H_TYPE_DEFINE(VFile);
 
-
-
 static void VFile_init(VFile* vf, va_list args)
 {
 	uint flags = va_arg(args, int);
 	x_set_flags(&vf->xf, flags);	// can't fail
 }
 
-
 static void VFile_dtor(VFile* vf)
 {
+	// note: checking if reload() succeeded is unnecessary because
+	// x_close and mem_free_h safely handle 0-initialized data.
 	WARN_ERR(x_close(&vf->xf));
 
-	mem_free_h(vf->hm);
+	(void)mem_free_h(vf->hm);
 }
-
-
 
 static int VFile_reload(VFile* vf, const char* V_path, Handle)
 {
@@ -389,6 +404,13 @@ static int VFile_reload(VFile* vf, const char* V_path, Handle)
 
 	const Mount* m = tree_get_mount(tf);
 	return x_open(m, V_exact_path, flags, tf, &vf->xf);
+}
+
+static int VFile_validate(const VFile* vf)
+{
+	// <ofs> doesn't have any invariant we can check.
+	RETURN_ERR(x_validate(&vf->xf));
+	return 0;
 }
 
 
@@ -467,7 +489,7 @@ debug_printf("vfs_io size=%d\n", size);
 		// we allocate
 		else
 		{
-			buf = mem_alloc(round_up(size, 4096), 4096);
+			buf = mem_alloc(round_up(size, 4096), FILE_BLOCK_SIZE);
 			if(!buf)
 				return ERR_NO_MEM;
 			*p = buf;
@@ -546,7 +568,7 @@ debug_printf("vfs_load v_fn=%s\n", v_fn);
 			debug_warn("vfs_load: invalid MEM attached to vfile (0 pointer)");
 			// happens if someone frees the pointer. not an error!
 	}
-
+/*
 	// allocate memory. does expose implementation details of File
 	// (padding), but it greatly simplifies returning the Handle
 	// (if we allow File to alloc, have to make sure the Handle references
@@ -560,17 +582,19 @@ debug_printf("vfs_load v_fn=%s\n", v_fn);
 			goto ret;
 		}
 	}
-
+*/
 	{
 		ssize_t nread = vfs_timed_io(hf, size, &p);
 		// failed
 		if(nread < 0)
 		{
-			mem_free_h(hm);
+			mem_free(p);
 			hm = nread;	// error code
 		}
 		else
 		{
+			hm = mem_wrap(p, size, 0, 0, 0, 0, 0);
+
 			if(flags & FILE_CACHE)
 				vf->hm = hm;
 		}
@@ -613,6 +637,8 @@ ssize_t vfs_store(const char* v_fn, void* p, const size_t size, uint flags /* de
 //
 ///////////////////////////////////////////////////////////////////////////////
 
+// we don't support forcibly closing files => don't need to keep track of
+// all IOs pending for each file. too much work, little benefit.
 struct VIo
 {
 	Handle hf;
@@ -624,46 +650,51 @@ struct VIo
 
 H_TYPE_DEFINE(VIo);
 
-
-// don't support forcibly closing files => don't need to keep track of
-// all IOs pending for each file. too much work, little benefit.
-
-
-static void VIo_init(VIo* xio, va_list args)
+static void VIo_init(VIo* vio, va_list args)
 {
-	xio->hf   = va_arg(args, Handle);
-	xio->size = va_arg(args, size_t);
-	xio->buf  = va_arg(args, void*);
+	vio->hf   = va_arg(args, Handle);
+	vio->size = va_arg(args, size_t);
+	vio->buf  = va_arg(args, void*);
 }
 
-
-static void VIo_dtor(VIo* xio)
+static void VIo_dtor(VIo* vio)
 {
-	WARN_ERR(x_io_close(&xio->xio));
+	// note: checking if reload() succeeded is unnecessary because
+	// x_io_discard safely handles 0-initialized data.
+	WARN_ERR(x_io_discard(&vio->xio));
 }
-
 
 // we don't support transparent read resume after file invalidation.
 // if the file has changed, we'd risk returning inconsistent data.
 // doesn't look possible without controlling the AIO implementation:
 // when we cancel, we can't prevent the app from calling
 // aio_result, which would terminate the read.
-static int VIo_reload(VIo* xio, const char* UNUSED(fn), Handle UNUSED(h))
+static int VIo_reload(VIo* vio, const char* UNUSED(fn), Handle UNUSED(h))
 {
-	size_t size = xio->size;
-	void* buf   = xio->buf;
+	size_t size = vio->size;
+	void* buf   = vio->buf;
 
-	H_DEREF(xio->hf, VFile, vf);
+	H_DEREF(vio->hf, VFile, vf);
 	off_t ofs = vf->ofs;
 	vf->ofs += (off_t)size;
 
-	return x_io_start(&vf->xf, ofs, size, buf, &xio->xio);
+	return x_io_issue(&vf->xf, ofs, size, buf, &vio->xio);
+}
+
+static int VIo_validate(const VIo* vio)
+{
+	if(vio->hf < 0)
+		return -200;
+	// <size> doesn't have any invariant we can check.
+	if(debug_is_pointer_bogus(vio->buf))
+		return -201;
+	return x_io_validate(&vio->xio);
 }
 
 
 // begin transferring <size> bytes, starting at <ofs>. get result
-// with vfs_wait_io; when no longer needed, free via vfs_discard_io.
-Handle vfs_start_io(Handle hf, size_t size, void* buf)
+// with vfs_io_wait; when no longer needed, free via vfs_io_discard.
+Handle vfs_io_issue(Handle hf, size_t size, void* buf)
 {
 	const char* fn = 0;
 	int flags = 0;
@@ -671,8 +702,8 @@ Handle vfs_start_io(Handle hf, size_t size, void* buf)
 }
 
 
-// finished with transfer <hio> - free its buffer (returned by vfs_wait_io)
-int vfs_discard_io(Handle& hio)
+// finished with transfer <hio> - free its buffer (returned by vfs_io_wait)
+int vfs_io_discard(Handle& hio)
 {
 	return h_free(hio, H_VIo);
 }
@@ -680,19 +711,19 @@ int vfs_discard_io(Handle& hio)
 
 // indicates if the VIo referenced by <xio> has completed.
 // return value: 0 if pending, 1 if complete, < 0 on error.
-int vfs_io_complete(Handle hio)
+int vfs_io_has_completed(Handle hio)
 {
-	H_DEREF(hio, VIo, xio);
-	return x_io_complete(&xio->xio);
+	H_DEREF(hio, VIo, vio);
+	return x_io_has_completed(&vio->xio);
 }
 
 
 // wait until the transfer <hio> completes, and return its buffer.
 // output parameters are zeroed on error.
-int vfs_wait_io(Handle hio, void*& p, size_t& size)
+int vfs_io_wait(Handle hio, void*& p, size_t& size)
 {
-	H_DEREF(hio, VIo, xio);
-	return x_io_wait(&xio->xio, p, size);
+	H_DEREF(hio, VIo, vio);
+	return x_io_wait(&vio->xio, p, size);
 }
 
 

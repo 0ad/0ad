@@ -62,6 +62,8 @@ extern int x_realpath(const Mount* m, const char* V_exact_path, char* P_real_pat
 extern int x_open(const Mount* m, const char* V_exact_path, int flags, TFile* tf, XFile* xf);
 extern int x_close(XFile* xf);
 
+extern int x_validate(const XFile* xf);
+
 extern bool x_is_open(const XFile* xf);
 extern off_t x_size(const XFile* xf);
 extern uint x_flags(const XFile* xf);
@@ -72,11 +74,11 @@ extern int x_io(XFile* xf, off_t ofs, size_t size, void* buf, FileIOCB cb, uintp
 extern int x_map(XFile* xf, void*& p, size_t& size);
 extern int x_unmap(XFile* xf);
 
-extern int x_io_start(XFile* xf, off_t ofs, size_t size, void* buf, XIo* xio);
-extern int x_io_complete(XIo* xio);
+extern int x_io_issue(XFile* xf, off_t ofs, size_t size, void* buf, XIo* xio);
+extern int x_io_has_completed(XIo* xio);
 extern int x_io_wait(XIo* xio, void*& p, size_t& size);
-extern int x_io_close(XIo* xio);
-
+extern int x_io_discard(XIo* xio);
+extern int x_io_validate(const XIo* xio);
 
 
 

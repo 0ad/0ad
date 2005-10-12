@@ -946,6 +946,33 @@ int x_close(XFile* xf)
 }
 
 
+int x_validate(const XFile* xf)
+{
+	switch(xf->type)
+	{
+	case MT_NONE:
+		if(xf->tf != 0)
+			return -100;
+		return 0;	// ok, nothing else to check
+
+	case MT_FILE:
+		if(xf->tf == 0)
+			return -101;
+		return file_validate(&xf->u.f);
+
+	case MT_ARCHIVE:
+		// (archive files can't be written to, so this should be 0)
+		if(xf->tf != 0)
+			return -102;
+		return zip_validate(&xf->u.zf);
+
+	default:
+		return -103;	// invalid type
+	}
+	UNREACHABLE;
+}
+
+
 bool x_is_open(const XFile* xf)
 {
 	return (xf->type != MT_NONE);
@@ -1028,32 +1055,32 @@ int x_unmap(XFile* xf)
 }
 
 
-int x_io_start(XFile* xf, off_t ofs, size_t size, void* buf, XIo* xio)
+int x_io_issue(XFile* xf, off_t ofs, size_t size, void* buf, XIo* xio)
 {
 	xio->type = xf->type;
 	switch(xio->type)
 	{
 	case MT_ARCHIVE:
-		return zip_start_io(&xf->u.zf, ofs, size, buf, &xio->u.zio);
+		return zip_io_issue(&xf->u.zf, ofs, size, buf, &xio->u.zio);
 	case MT_FILE:
-		return file_start_io(&xf->u.f, ofs, size, buf, &xio->u.fio);
+		return file_io_issue(&xf->u.f, ofs, size, buf, &xio->u.fio);
 	default:
-		debug_warn("vfs_start_io: invalid file type");
+		debug_warn("vfs_io_issue: invalid file type");
 		return ERR_CORRUPTED;
 	}
 }
 
 
-int x_io_complete(XIo* xio)
+int x_io_has_completed(XIo* xio)
 {
 	switch(xio->type)
 	{
 	case MT_ARCHIVE:
-		return zip_io_complete(&xio->u.zio);
+		return zip_io_has_completed(&xio->u.zio);
 	case MT_FILE:
-		return file_io_complete(&xio->u.fio);
+		return file_io_has_completed(&xio->u.fio);
 	default:
-		debug_warn("vfs_io_complete: invalid type");
+		debug_warn("vfs_io_has_completed: invalid type");
 		return ERR_CORRUPTED;
 	}
 }
@@ -1064,26 +1091,41 @@ int x_io_wait(XIo* xio, void*& p, size_t& size)
 	switch(xio->type)
 	{
 	case MT_ARCHIVE:
-		return zip_wait_io(&xio->u.zio, p, size);
+		return zip_io_wait(&xio->u.zio, p, size);
 	case MT_FILE:
-		return file_wait_io(&xio->u.fio, p, size);
+		return file_io_wait(&xio->u.fio, p, size);
 	default:
-		debug_warn("vfs_wait_io: invalid type");
+		debug_warn("vfs_io_wait: invalid type");
 		return ERR_CORRUPTED;
 	}
 }
 
 
-int x_io_close(XIo* xio)
+int x_io_discard(XIo* xio)
 {
 	switch(xio->type)
 	{
 	case MT_ARCHIVE:
-		return zip_discard_io(&xio->u.zio);
+		return zip_io_discard(&xio->u.zio);
 	case MT_FILE:
-		return file_discard_io(&xio->u.fio);
+		return file_io_discard(&xio->u.fio);
 	default:
 		debug_warn("VIo_dtor: invalid type");
 		return ERR_CORRUPTED;
 	}
+}
+
+
+int x_io_validate(const XIo* xio)
+{
+	switch(xio->type)
+	{
+	case MT_ARCHIVE:
+		return zip_io_validate(&xio->u.zio);
+	case MT_FILE:
+		return file_io_validate(&xio->u.fio);
+	default:
+		return -103;	// invalid type
+	}
+	UNREACHABLE;
 }

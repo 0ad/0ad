@@ -133,20 +133,28 @@ static void set_alloc(void* raw_p, Handle hm)
 
 static void Mem_init(Mem* m, va_list args)
 {
-	// HACK: we pass along raw_p from h_alloc for use in Mem_reload
-	// (that means add/remove from mapping code is only here)
-	m->raw_p = va_arg(args, void*);
+	// these are passed to h_alloc instead of assigning in mem_wrap after a
+	// H_DEREF so that Mem_validate won't complain about invalid (0) values.
+	//
+	// additional bonus: by setting raw_p before reload, that and the
+	// dtor will be the only call site of set/remove_alloc.
+	m->p         = va_arg(args, void*);
+	m->size      = va_arg(args, size_t);
+	m->raw_p     = va_arg(args, void*);
+	m->raw_size  = va_arg(args, size_t);
+	m->dtor      = va_arg(args, MEM_DTOR);
+	m->ctx       = va_arg(args, uintptr_t);
 }
-
 
 static void Mem_dtor(Mem* m)
 {
+	// (reload can't fail)
+
 	remove_alloc(m->raw_p);
 
 	if(m->dtor)
 		m->dtor(m->raw_p, m->raw_size, m->ctx);
 }
-
 
 // can't alloc here, because h_alloc needs the key when called
 // (key == pointer we allocate)
@@ -155,6 +163,20 @@ static int Mem_reload(Mem* m, const char* UNUSED(fn), Handle hm)
 	set_alloc(m->raw_p, hm);
 	return 0;
 }
+
+static int Mem_validate(const Mem* m)
+{
+	if(debug_is_pointer_bogus(m->p))
+		return -2;
+	if(!m->size)
+		return -3;
+	if(m->raw_p && m->raw_p > m->p)
+		return -4;
+	if(m->raw_size && m->raw_size < m->size)
+		return -5;
+	return 0;
+}
+
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -275,16 +297,8 @@ Handle mem_wrap(void* p, size_t size, uint flags, void* raw_p, size_t raw_size, 
 	if(!raw_size)
 		raw_size = size;
 
-	hm = h_alloc(H_Mem, (const char*)p, flags|RES_KEY|RES_NO_CACHE, raw_p);
-	RETURN_ERR(hm);
-
-	H_DEREF(hm, Mem, m);
-	m->p         = p;
-	m->size      = size;
-	m->raw_p     = raw_p;
-	m->raw_size  = raw_size;
-	m->dtor      = dtor;
-	m->ctx       = ctx;
+	hm = h_alloc(H_Mem, (const char*)p, flags|RES_KEY|RES_NO_CACHE,
+		p, size, raw_p, raw_size, dtor, ctx);
 	return hm;
 }
 

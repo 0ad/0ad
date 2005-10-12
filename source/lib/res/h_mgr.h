@@ -66,7 +66,7 @@ guide to defining and using resources
 -------------------------------------
 
 1) choose a name for the resource, used to represent all resources
-of this type. we will call ours Res1; all occurences of it below
+of this type. we will call ours "Res1"; all below occurences of this
 must be replaced with the actual name (exact spelling).
 why? the vtbl builder defines its functions as e.g. Res1_reload;
 your actual definition must match.
@@ -74,9 +74,15 @@ your actual definition must match.
 2) declare its control block:
 struct Res1
 {
-void* data1;	// data loaded from file
-uint flags;	// set when resource is created
+	void* data;		// data loaded from file
+	uint flags;		// set when resource is created
 };
+
+Note that all control blocks are stored in fixed-size slots
+(HDATA_USER_SIZE bytes), so squeezing the size of your data doesn't
+necessarily help unless yours is the largest. However, if the filename
+passed to h_alloc fits within the remaining space, it is stored there
+(thus saving time+memory). Therefore, do not be extravagant with space.
 
 3) build its vtbl:
 H_TYPE_DEFINE(Res1);
@@ -100,7 +106,7 @@ precondition: control block is initialized to 0.
 
 static void Type_init(Res1* r, va_list args)
 {
-r->flags = va_arg(args, int);
+	r->flags = va_arg(args, int);
 }
 
 if the caller of h_alloc passed additional args, they are available
@@ -121,8 +127,15 @@ called after init; also after dtor every time the file is reloaded.
 
 static int Type_reload(Res1* r, const char* filename, Handle);
 {
-// somehow load stuff from filename, and store it in r->data1.
-return 0;
+	// already loaded; done
+	if(r->data)
+		return 0;
+
+	r->data = malloc(100);
+	if(!r->data)
+		return ERR_NO_MEM;
+	// (read contents of <filename> into r->data)
+	return 0;
 }
 
 reload must abort if the control block data indicates the resource
@@ -143,27 +156,55 @@ example: when uploading a texture, store the upload parameters
 --
 
 dtor:
-frees all data allocated by init and reload. called after h_free,
-or at exit. control block will be zeroed afterwards.
+frees all data allocated by init and reload. called after reload has
+indicated failure, before reloading a resource, after h_free,
+or at exit (if the resource is still extant).
+except when reloading, the control block will be zeroed afterwards.
 
-static void Type_dtor (Res1* r);
+static void Type_dtor(Res1* r);
 {
-// free memory r->data1
+	free(r->data);
 }
 
 again no provision for reporting errors - there's no one to act on it
 if called at exit. you can debug_assert or log the error, though.
 
+be careful to correctly handle the different cases in which this routine
+can be called! some flags should persist across reloads (e.g. choices made
+during resource init time that must remain valid), while everything else
+*should be zeroed manually* (to behave correctly when reloading).
+be advised that this interface may change; a "prepare for reload" method
+or "compact/free extraneous resources" may be added.
+
+--
+
+validate:
+makes sure the resource control block is in a valid state. returns 0 if
+all is well, or a distinct negative value (error code, if appropriate).
+called automatically when the Handle is dereferenced or freed.
+
+static int Type_validate(const Res1* r);
+{
+	const int permissible_flags = 0x01;
+	if(debug_is_pointer_bogus(r->data))
+		return -2;
+	if(r->flags & ~permissible_flags)
+		return -3;
+	return 0;
+}
+
+
 5) provide your layer on top of the handle manager:
 Handle res1_load(const char* filename, int my_flags)
 {
-return h_alloc(H_Res1, filename, 0, my_flags);	// my_flags is passed to init
+	// passes my_flags to init
+	return h_alloc(H_Res1, filename, 0, my_flags);
 }
 
 int res1_free(Handle& h)
 {
-return h_free(h, H_Res1);
-// zeroes h afterwards
+	// control block is automatically zeroed after this.
+	return h_free(h, H_Res1);
 }
 
 (this layer allows a res_load interface on top of all the loaders,
@@ -171,16 +212,17 @@ and is necessary because your module is the only one that knows H_Res1).
 
 6) done. the resource will be freed at exit (if not done already).
 
-here's how to access the control block, given a handle:
-Handle h;
-a) H_DEREF(h, Res1, r);
+here's how to access the control block, given a <Handle h>:
+a)
+	H_DEREF(h, Res1, r);
 
 creates a variable r of type Res1*, which points to the control block
 of the resource referenced by h. returns "invalid handle"
 (a negative error code) on failure.
-b) Res1* r = h_user_data(h, H_Res1);
-if(!r)
-; // bail
+b)
+	Res1* r = h_user_data(h, H_Res1);
+	if(!r)
+		; // bail
 
 useful if H_DEREF's error return (of type signed integer) isn't
 acceptable. otherwise, prefer a) - this is pretty clunky, and
@@ -269,6 +311,7 @@ struct H_VTbl
 	void(*init)(void* user, va_list);
 	int(*reload)(void* user, const char* fn, Handle);
 	void(*dtor)(void* user);
+	int(*validate)(const void* user);
 	size_t user_size;
 	const char* name;
 };
@@ -280,11 +323,13 @@ typedef H_VTbl* H_Type;
 	static void type##_init(type*, va_list);\
 	static int type##_reload(type*, const char*, Handle);\
 	static void type##_dtor(type*);\
+	static int type##_validate(const type*);\
 	static H_VTbl V_##type =\
 	{\
 		(void(*)(void*, va_list))type##_init,\
 		(int(*)(void*, const char*, Handle))type##_reload,\
 		(void(*)(void*))type##_dtor,\
+		(int(*)(const void*))type##_validate,\
 		sizeof(type),	/* control block size */\
 		#type			/* name */\
 	};\

@@ -20,13 +20,14 @@
 
 #include "lib.h"
 #include "h_mgr.h"
-
+#include "dyn_array.h"
 
 #include <limits.h>	// CHAR_BIT
 #include <string.h>
 #include <stdlib.h>
 #include <new>		// std::bad_alloc
 
+static const uint MAX_EXTANT_HANDLES = 10000;
 
 // rationale
 //
@@ -142,6 +143,9 @@ struct HDATA
 	u32 disallow_reload : 1;
 
 	H_Type type;
+
+	// for statistics
+	uint num_derefs;
 	
 	const char* fn;
 
@@ -198,7 +202,9 @@ static HDATA* h_data_from_idx(const i32 idx)
 
 	// note: VC7.1 optimizes the divides to shift and mask.
 
-	return &page[idx % hdata_per_page];
+	HDATA* hd = &page[idx % hdata_per_page];
+	hd->num_derefs++;
+	return hd;
 }
 
 
@@ -251,11 +257,7 @@ static HDATA* h_data_tag_type(const Handle h, const H_Type type)
 }
 
 
-
-
-
-
-
+//-----------------------------------------------------------------------------
 
 // idx and hd are undefined if we fail.
 // called by h_alloc only.
@@ -322,6 +324,8 @@ static int free_idx(i32 idx)
 }
 
 
+//-----------------------------------------------------------------------------
+
 // speed up h_find (called every h_alloc)
 // multimap, because we want to add handles of differing type but same key
 // (e.g. a VFile and Tex object for the same underlying filename hash key)
@@ -364,121 +368,123 @@ static Handle find_key(uintptr_t key, H_Type type, bool remove = false)
 }
 
 
-static void add_key(uintptr_t key, Handle h)
+static void key_add(uintptr_t key, Handle h)
 {
 	const i32 idx = h_idx(h);
 	key2idx.insert(std::make_pair(key, idx));
 }
 
-
-static void remove_key(uintptr_t key, H_Type type)
+static void key_remove(uintptr_t key, H_Type type)
 {
 	Handle ret = find_key(key, type, true);
 	debug_assert(ret > 0);
 }
 
 
-// currently cannot fail.
-static int h_free_idx(i32 idx, HDATA* hd)
+//
+// path string suballocator (they're stored in HDATA)
+//
+
+static Pool fn_pool;
+
+
+// if fn is longer than this, it has to be allocated from the heap.
+// choose this to balance internal fragmentation and accessing the heap.
+static const size_t FN_POOL_EL_SIZE = 64;
+
+static void fn_init()
 {
-	// debug_printf("free %s %s\n", type->name, hd->fn);
-
-	// only decrement if refcount not already 0.
-	if(hd->refs > 0)
-		hd->refs--;
-
-	// still references open or caching requests it stays - do not release.
-	if(hd->refs > 0 || hd->keep_open)
-		return 0;
-
-	// actually release the resource (call dtor, free control block).
-
-	// h_alloc makes sure type != 0; if we get here, it still is
-	H_VTbl* vtbl = hd->type;
-
-	// call its destructor
-	// note: H_TYPE_DEFINE currently always defines a dtor, but play it safe
-	if(vtbl->dtor)
-		vtbl->dtor(hd->user);
-
-	if(hd->key && !hd->unique)
-		remove_key(hd->key, hd->type);
-
-	free((void*)hd->fn);
-
-	memset(hd, 0, sizeof(HDATA));
-
-	free_idx(idx);
-
-	return 0;
+	// (if this fails, so will subsequent fn_stores - no need to complain here)
+	(void)pool_create(&fn_pool, MAX_EXTANT_HANDLES*FN_POOL_EL_SIZE, FN_POOL_EL_SIZE);
 }
 
-
-int h_free(Handle& h, H_Type type)
+static void fn_store(HDATA* hd, const char* fn)
 {
-	i32 idx = h_idx(h);
-	HDATA* hd = h_data_tag_type(h, type);
+	ONCE(fn_init());
 
-	// wipe out the handle to prevent reuse but keep a copy for below.
-	const Handle h_copy = h;
-	h = 0;
+	const size_t len = strlen(fn);
+debug_printf("FN_STORE %d %s\n", len, fn);
 
-	// h was invalid
-	if(!hd)
+	hd->fn = 0;
+	// this is disabled until it's determined that strings are actually likely
+	// to fit there (unlikely)
+	if(hd->type->user_size + len < HDATA_USER_SIZE)
+		hd->fn = (const char*)hd->user + hd->type->user_size;
+	else if(len+1 <= FN_POOL_EL_SIZE)
+		hd->fn = (const char*)pool_alloc(&fn_pool);
+
+	// in case none of the above applied and were successful:
+	// fall back to heap alloc.
+	if(!hd->fn)
 	{
-		// 0-initialized or an error code; don't complain because this
-		// happens often and is harmless.
-		if(h_copy <= 0)
-			return 0;
-		// this was a valid handle but was probably freed in the meantime.
-		// complain because this probably indicates a bug somewhere.
-		CHECK_ERR(ERR_INVALID_HANDLE);
-	}
-
-	return h_free_idx(idx, hd);
-}
-
-
-
-void h_mgr_shutdown()
-{
-	// close open handles
-	for(i32 i = 0; i <= last_in_use; i++)
-	{
-		HDATA* hd = h_data_from_idx(i);
-		// can't fail - i is in bounds by definition, and
-		// each HDATA entry has already been allocated.
-		if(!hd)
+		hd->fn = (const char*)malloc(len+1);
+		// still failed - bail (avoid strcpy to 0)
+		if(!hd->fn)
 		{
-			debug_warn("h_mgr_shutdown: h_data_from_idx failed - why?!");
-			continue;
+			debug_warn("not enough memory to store hd->fn!");
+			return;
 		}
-
-		// it's already been freed; don't free again so that this
-		// doesn't look like an error.
-		if(!hd->tag)
-			continue;
-
-//		if(hd->refs != 0)
-//			debug_printf("leaked %s from %s\n", hd->type->name, hd->fn);
-
-		// disable caching; we need to release the resource now.
-		hd->keep_open = 0;
-		hd->refs = 0;
-
-		h_free_idx(i, hd);	// currently cannot fail
 	}
 
-	// free HDATA array
-	for(uint j = 0; j < num_pages; j++)
+	strcpy((char*)hd->fn, fn);
+}
+
+// TODO: store this in a flag - faster.
+static bool fn_is_in_HDATA(HDATA* hd)
+{
+	u8* p = (u8*)hd->fn;	// needed for type-correct comparison
+	return (hd->user+hd->type->user_size <= p && p <= hd->user+HDATA_USER_SIZE);
+}
+
+static void fn_free(HDATA* hd)
+{
+	void* el = (void*)hd->fn;
+	if(fn_is_in_HDATA(hd))
 	{
-		free(pages[j]);
-		pages[j] = 0;
 	}
+	else if(pool_contains(&fn_pool, el))
+		pool_free(&fn_pool, el);
+	else
+		free(el);
+}
+
+static void fn_shutdown()
+{
+	pool_destroy(&fn_pool);
 }
 
 
 //----------------------------------------------------------------------------
+// h_alloc
+//----------------------------------------------------------------------------
+
+
+static void warn_if_invalid(HDATA* hd)
+{
+#ifndef NDEBUG
+	H_VTbl* vtbl = hd->type;
+
+	// validate HDATA
+	// currently nothing to do; <type> is checked by h_alloc and
+	// the others have no invariants we could check.
+
+	// have the resource validate its user_data
+	int err = vtbl->validate(hd->user);
+	debug_assert(err == 0);
+
+	// make sure empty space in control block isn't touched
+	// .. but only if we're not storing a filename there
+	if(!fn_is_in_HDATA(hd))
+	{
+		const u8* start = hd->user + vtbl->user_size;
+		const u8* end   = hd->user + HDATA_USER_SIZE;
+		for(const u8* p = start; p < end; p++)
+			if(*p != 0)
+				debug_warn("handle user data was overrun!");
+	}
+#endif
+}
+
 
 static int type_validate(H_Type type)
 {
@@ -572,6 +578,8 @@ static int call_init_and_reload(Handle h, H_Type type, HDATA* hd, const char* fn
 		try
 		{
 			err = vtbl->reload(hd->user, fn, h);
+			if(err == 0)
+				warn_if_invalid(hd);
 		}
 		catch(std::bad_alloc)
 		{
@@ -608,10 +616,10 @@ static Handle alloc_new_handle(H_Type type, const char* fn, uintptr_t key,
 	// .. filename is valid - store in hd
 	// note: if the original fn param was a key, it was reset to 0 above.
 	if(fn)
-		hd->fn = strdup(fn);
+		fn_store(hd, fn);
 
 	if(key && !hd->unique)
-		add_key(key, h);
+		key_add(key, h);
 
 	int err = call_init_and_reload(h, type, hd, fn, init_args);
 	if(err < 0)
@@ -671,6 +679,80 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 }
 
 
+//-----------------------------------------------------------------------------
+
+// currently cannot fail.
+static int h_free_idx(i32 idx, HDATA* hd)
+{
+	// debug_printf("free %s %s\n", type->name, hd->fn);
+
+	// only decrement if refcount not already 0.
+	if(hd->refs > 0)
+		hd->refs--;
+
+	// still references open or caching requests it stays - do not release.
+	if(hd->refs > 0 || hd->keep_open)
+		return 0;
+
+	// actually release the resource (call dtor, free control block).
+
+	// h_alloc makes sure type != 0; if we get here, it still is
+	H_VTbl* vtbl = hd->type;
+
+	// call its destructor
+	// note: H_TYPE_DEFINE currently always defines a dtor, but play it safe
+	if(vtbl->dtor)
+		vtbl->dtor(hd->user);
+
+	if(hd->key && !hd->unique)
+		key_remove(hd->key, hd->type);
+
+	const char* fn = "(0)";
+	if(hd->fn)
+	{
+		const char* slash = strrchr(hd->fn, '/');
+		fn = slash? slash+1 : hd->fn;
+	}
+	debug_printf("H_FREE %s %s accesses=%d\n", hd->type->name, fn, hd->num_derefs);
+
+	fn_free(hd);
+
+	memset(hd, 0, sizeof(HDATA));
+
+	free_idx(idx);
+
+	return 0;
+}
+
+
+int h_free(Handle& h, H_Type type)
+{
+	i32 idx = h_idx(h);
+	HDATA* hd = h_data_tag_type(h, type);
+
+	// wipe out the handle to prevent reuse but keep a copy for below.
+	const Handle h_copy = h;
+	h = 0;
+
+	// h was invalid
+	if(!hd)
+	{
+		// 0-initialized or an error code; don't complain because this
+		// happens often and is harmless.
+		if(h_copy <= 0)
+			return 0;
+		// this was a valid handle but was probably freed in the meantime.
+		// complain because this probably indicates a bug somewhere.
+		CHECK_ERR(ERR_INVALID_HANDLE);
+	}
+
+	return h_free_idx(idx, hd);
+}
+
+
+//----------------------------------------------------------------------------
+// remaining API
+
 void* h_user_data(const Handle h, const H_Type type)
 {
 	HDATA* hd = h_data_tag_type(h, type);
@@ -684,6 +766,7 @@ void* h_user_data(const Handle h, const H_Type type)
 		return 0;
 	}
 
+	warn_if_invalid(hd);
 	return hd->user;
 }
 
@@ -744,6 +827,8 @@ int h_reload(const char* fn)
 			if(ret == 0)	// don't overwrite first error
 				ret = err;
 		}
+		else
+			warn_if_invalid(hd);
 	}
 
 	return ret;
@@ -818,4 +903,44 @@ int h_get_refcnt(Handle h)
 		debug_warn("h_get_refcnt: no refs open - resource is cached");
 
 	return hd->refs;
+}
+
+
+void h_mgr_shutdown()
+{
+	// close open handles
+	for(i32 i = 0; i <= last_in_use; i++)
+	{
+		HDATA* hd = h_data_from_idx(i);
+		// can't fail - i is in bounds by definition, and
+		// each HDATA entry has already been allocated.
+		if(!hd)
+		{
+			debug_warn("h_mgr_shutdown: h_data_from_idx failed - why?!");
+			continue;
+		}
+
+		// it's already been freed; don't free again so that this
+		// doesn't look like an error.
+		if(!hd->tag)
+			continue;
+
+		if(hd->refs != 0)
+			debug_printf("leaked %s from %s\n", hd->type->name, hd->fn);
+
+		// disable caching; we need to release the resource now.
+		hd->keep_open = 0;
+		hd->refs = 0;
+
+		h_free_idx(i, hd);	// currently cannot fail
+	}
+
+	// free HDATA array
+	for(uint j = 0; j < num_pages; j++)
+	{
+		free(pages[j]);
+		pages[j] = 0;
+	}
+
+	fn_shutdown();
 }
