@@ -588,7 +588,7 @@ int ogl_tex_set_wrap(Handle ht, GLint wrap)
 //----------------------------------------------------------------------------
 // upload
 
-static get_mipmaps(Tex* t, GLint filter, uint q_flags, int* plevels_to_skip)
+static int get_mipmaps(Tex* t, GLint filter, uint q_flags, int* plevels_to_skip)
 {
 	// decisions:
 	// .. does this OpenGL implementation support auto mipmap generation?

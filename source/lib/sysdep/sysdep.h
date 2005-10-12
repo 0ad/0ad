@@ -47,11 +47,18 @@ extern void* alloca(size_t size);
 #endif
 
 // restrict
+#if GCC_VERSION
+// for some reason, g++-3.3 claims to support C99 (according to __STDC_VERSION__)
+// but doesn't have the restrict keyword.
+// use the extension __restrict__ instead.
+#define restrict __restrict__
+#else
 #if HAVE_C99
 // .. already available
 #else
 // .. unsupported
 # define restrict
+#endif
 #endif
 
 
