@@ -421,6 +421,9 @@ ssize_t mem_size(void* p)
 */
 
 
+// exception to normal resource shutdown: must not be called before
+// h_mgr_shutdown! (this is because h_mgr calls us to free memory, which
+// requires the pointer -> Handle index still be in place)
 void mem_shutdown()
 {
 	ptr_to_h_shutdown();

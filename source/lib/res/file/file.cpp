@@ -424,6 +424,8 @@ static bool dirent_less(const DirEnt* d1, const DirEnt* d2)
 }
 
 
+static TimerClient* tc_file_enum_malloc = timer_add_client("file_enum_malloc");
+
 // call <cb> for each file and subdirectory in <dir> (alphabetical order),
 // passing the entry name (not full path!), stat info, and <user>.
 //
@@ -468,7 +470,7 @@ int file_enum(const char* P_path, const FileCB cb, const uintptr_t user)
 
 		const size_t size = sizeof(DirEnt)+strlen(ent.name)+1;
 		DirEnt* p_ent;
-		{static TimerClient* tc = timer_add_client("file_enum_malloc");	SUM_TIMER(tc);
+		{SUM_TIMER(tc_file_enum_malloc);
 		p_ent = (DirEnt*)malloc(size);}
 		if(!p_ent)
 		{

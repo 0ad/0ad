@@ -856,6 +856,7 @@ int h_force_free(Handle h, H_Type type)
 		return ERR_INVALID_HANDLE;
 	u32 idx = h_idx(h);
 	hd->keep_open = 0;
+	hd->refs = 0;
 	return h_free_idx(idx, hd);
 }
 
@@ -908,7 +909,7 @@ int h_get_refcnt(Handle h)
 
 void h_mgr_shutdown()
 {
-	// close open handles
+	// forcibly close all open handles
 	for(i32 i = 0; i <= last_in_use; i++)
 	{
 		HDATA* hd = h_data_from_idx(i);

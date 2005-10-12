@@ -70,17 +70,20 @@
 
 // EnumDisplayDevices is not available on Win95 or NT.
 // try to import it manually here; return -1 if not available.
-static BOOL (WINAPI *pEnumDisplayDevicesA)(void*, DWORD, void*, DWORD);
+static BOOL (WINAPI *pEnumDisplayDevicesA)(LPCSTR, DWORD, LPDISPLAY_DEVICEA, DWORD);
 static int import_EnumDisplayDevices()
 {
 	if(!pEnumDisplayDevicesA)
 	{
 		static HMODULE hUser32Dll = LoadLibrary("user32.dll");
 		*(void**)&pEnumDisplayDevicesA = GetProcAddress(hUser32Dll, "EnumDisplayDevicesA");
-		//		FreeLibrary(hUser32Dll);
-		// make sure the reference is released so BoundsChecker
-		// doesn't complain. it won't actually be unloaded anyway -
-		// there is at least one other reference.
+
+		// do not free the DLL reference! if this happens to be the first
+		// use of user32 (possible if it's delay-loaded or otherwise unused),
+		// it would actually be unloaded. that apparently breaks the
+		// Windows cursor.
+		// unfortunately there's no way to get at the reference count,
+		// so this resource leak is unavoidable.
 	}
 
 	return pEnumDisplayDevicesA? 0 : -1;
@@ -120,11 +123,10 @@ int get_cur_vmode(int* xres, int* yres, int* bpp, int* freq)
 // if we fail, outputs are unchanged (assumed initialized to defaults)
 int get_monitor_size(int& width_mm, int& height_mm)
 {
-	HDC dc = GetDC(0);	// dc for entire screen
-
+	// (DC for the primary monitor's entire screen)
+	HDC dc = GetDC(0);
 	width_mm = GetDeviceCaps(dc, HORZSIZE);
 	height_mm = GetDeviceCaps(dc, VERTSIZE);
-
 	ReleaseDC(0, dc);
 	return 0;
 }
@@ -262,11 +264,26 @@ static int win_get_gfx_card()
 	// make sure EnumDisplayDevices is available (as pEnumDisplayDevicesA)
 	if(import_EnumDisplayDevices() >= 0)
 	{
-		DISPLAY_DEVICEA dev = { sizeof(dev) };
-		if(pEnumDisplayDevicesA(0, 0, &dev, 0))
+		// loop through all display adapters and put the primary device's
+		// identifier in gfx_card.
+		// (we don't bother returning a list of all of them because it's
+		// likely to be redundant, e.g. "Radeon" and "Radeon Secondary";
+		// we're only interested in the 'main' card anyway)
+		DISPLAY_DEVICEA dd = { sizeof(DISPLAY_DEVICEA) };
+		for(DWORD dev_num = 0; ; dev_num++)
 		{
-			strcpy_s(gfx_card, sizeof(gfx_card), (const char*)dev.DeviceString);
-			return 0;
+			if(!pEnumDisplayDevicesA(0, dev_num, &dd, 0))
+				break;
+
+			// ignore mirror pseudo-devices (installed e.g. by NetMeeting)
+			if(dd.StateFlags & DISPLAY_DEVICE_MIRRORING_DRIVER)
+				continue;
+
+			if(dd.StateFlags & DISPLAY_DEVICE_PRIMARY_DEVICE)
+			{
+				strcpy_s(gfx_card, ARRAY_SIZE(gfx_card), (const char*)dd.DeviceString);
+				return 0;
+			}
 		}
 	}
 

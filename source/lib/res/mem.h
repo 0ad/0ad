@@ -30,10 +30,16 @@ extern void* mem_get_ptr(Handle h, size_t* size = 0);
 
 extern int mem_get(Handle hm, u8** pp, size_t* psize);
 
+
+extern Handle mem_wrap(void* p, size_t size, uint flags, void* raw_p, size_t raw_size, MEM_DTOR dtor, uintptr_t ctx);
+
+// exception to normal resource shutdown: must not be called before
+// h_mgr_shutdown! (this is because h_mgr calls us to free memory, which
+// requires the pointer -> Handle index still be in place)
 extern void mem_shutdown(void);
 
 
-extern Handle mem_wrap(void* p, size_t size, uint flags, void* raw_p, size_t raw_size, MEM_DTOR dtor, uintptr_t ctx);
+
 
 
 #ifdef __cplusplus

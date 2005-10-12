@@ -759,26 +759,30 @@ void Shutdown()
 	I18n::Shutdown();
 	TIMER_END("shutdown I18N");
 
-	TIMER_START("shutdown sound");
-	snd_shutdown();
-	TIMER_END("shutdown sound");
+	// resource
+	// first shut down all resource owners, and then the handle manager.
+	TIMER_START("resource modules");
+		snd_shutdown();
+		vfs_shutdown();
 
-	TIMER_START("shutdown vfs");
-	vfs_shutdown();
-	TIMER_END("shutdown vfs");
+		// this forcibly frees all open handles (thus preventing real leaks),
+		// and makes further access to h_mgr impossible.
+		h_mgr_shutdown();
+
+		// must come after h_mgr_shutdown - it causes memory to be freed,
+		// which requires this module to still be active.
+		mem_shutdown();
+	TIMER_END("resource modules");
 
 	TIMER_START("shutdown misc");
-	h_mgr_shutdown();
-	mem_shutdown();
-	file_shutdown();
+		file_shutdown();
 
-	timer_display_client_totals();
+		timer_display_client_totals();
 
-	debug_shutdown();
-
-	delete &g_Logger;
-
-	delete &g_Profiler;
+		// should be last, since the above use them
+		debug_shutdown();
+		delete &g_Logger;
+		delete &g_Profiler;
 	TIMER_END("shutdown misc");
 }
 

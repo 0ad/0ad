@@ -663,7 +663,9 @@ static int wsdl_shutdown()
 
 	if(hDC != INVALID_HANDLE_VALUE)
 	{
-		WARN_IF_FALSE(ReleaseDC(hWnd, hDC));
+		// return value is whether the DC was actually freed.
+		// this seems to sometimes be 0, so don't warn.
+		(void)ReleaseDC(hWnd, hDC);
 		hDC = (HDC)INVALID_HANDLE_VALUE;
 	}
 

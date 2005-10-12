@@ -944,7 +944,9 @@ static int SndData_reload(SndData* sd, const char* fn, Handle hsd)
 		if(file_type != FT_OGG)
 			return -1;
 
-		return stream_open(&sd->s, fn);
+		RETURN_ERR(stream_open(&sd->s, fn));
+		sd->is_valid = 1;
+		return 0;
 	}
 
 	// else: clip
@@ -992,8 +994,9 @@ else
 #endif
 
 	sd->al_buf = al_buf_alloc(al_data, al_size, sd->al_fmt, sd->al_freq);
+	sd->is_valid = 1;
 
-	mem_free(file);
+	(void)mem_free(file);
 
 	return 0;
 }
@@ -1071,7 +1074,7 @@ static void hsd_list_free_all()
 	{
 		Handle& hsd = *it;
 
-		h_force_free(hsd, H_SndData);
+		(void)h_force_free(hsd, H_SndData);
 		// ignore errors - if hsd was a stream, and its associated source
 		// was active when al_shutdown was called, it will already have been
 		// freed (list_free_all would free the source; it then releases
@@ -1298,17 +1301,16 @@ static int VSrc_reload(VSrc* vs, const char* fn, Handle hvs)
 
 static int VSrc_validate(const VSrc* vs)
 {
-	if(vs->al_src == 0)
-		return -2;
+	// al_src can legitimately be 0 (if vs is low-pri)
 	if(vs->flags & ~VS_ALL_FLAGS)
-		return -3;
+		return -2;
 	// no limitations on <pos>
 	if(!(0.0f <= vs->gain && vs->gain <= 1.0f))
-		return -4;
+		return -3;
 	if(!(0.0f < vs->pitch && vs->pitch <= 1.0f))
-		return -5;
+		return -4;
 	if(*(u8*)&vs->loop > 1 || *(u8*)&vs->relative > 1)
-		return -6;
+		return -5;
 	// <static_pri> and <cur_pri> have no invariant we could check.
 	return 0;
 }
