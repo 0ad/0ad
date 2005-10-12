@@ -14,9 +14,8 @@
         <animation file="biped/dudedecay_sword.psa" name="Decay" speed="100"/>
         <animation event="0.86" file="biped/inf_arch_atk_a.psa" load="0.16" name="Attack" speed="100"/>
       </animations>
-      <mesh>skeletal/m_tunic_b.pmd</mesh>
+      <mesh>skeletal/m_tunic_a.pmd</mesh>
       <props>
-        <prop actor="props/temp/hele_sign_infantry_archer_b.xml" attachpoint="head_extra"/>
         <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/bow_short.xml" attachpoint="l_hand"/>
         <prop actor="props/temp/quiver.xml" attachpoint="back"/>

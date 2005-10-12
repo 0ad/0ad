@@ -8,21 +8,18 @@
       <animations>
         <animation file="biped/dudeidle.psa" name="Idle" speed="200"/>
         <animation file="biped/dudewalk_swordshield.psa" name="Walk" speed="20"/>
-        <animation file="biped/dudebuild.psa" name="Build" speed="150"/>
-        <animation file="biped/dudechop.psa" name="Chop" speed="150"/>
         <animation file="biped/dudedeath_sword.psa" name="Death" speed="200"/>
         <animation file="biped/dudedecay_sword.psa" name="Decay" speed="100"/>
-        <animation file="biped/dudeattack.psa" name="Attack" speed="100"/>
-        <animation file="biped/dudeattack1.psa" name="Attack" speed="100"/>
       </animations>
-      <mesh>skeletal/m_tunic_b.pmd</mesh>
+      <mesh>skeletal/m_dress_a.pmd</mesh>
       <props>
-        <prop actor="props/temp/hele_sign_trader.xml" attachpoint="head_extra"/>
-        <prop actor="props/units/heads/placeholder_head_hele.xml" attachpoint="head"/>
-        <prop actor="props/temp/eyecandy/crate_a.xml" attachpoint="back"/>
+        <prop actor="props/units/heads/head_hele_a.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/hele_straw.xml" attachpoint="helmet"/>
       </props>
-      <texture>skeletal/plac_hele_b.dds</texture>
+      <texture>skeletal/hele_trd.dds</texture>
     </variant>
   </group>
+
+  <material>player_trans.xml</material>
 
 </actor>

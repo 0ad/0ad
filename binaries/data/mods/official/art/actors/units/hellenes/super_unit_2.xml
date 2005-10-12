@@ -15,14 +15,25 @@
         <animation event="0.5" file="biped/inf_spear_shield_atk_a.psa" name="Attack" speed="100"/>
         <animation event="0.5" file="biped/inf_spear_shield_atk_b.psa" name="Attack" speed="100"/>
       </animations>
-      <mesh>skeletal/m_tunic_a.pmd</mesh>
+      <mesh>skeletal/m_tunic_b.pmd</mesh>
       <props>
-        <prop actor="props/temp/placeholder_helmet_e.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/hele_su2.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/head_hele_a.xml" attachpoint="head"/>
         <prop actor="props/units/shields/hele_round_su2.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
       </props>
-      <texture>skeletal/hele_isp_b.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant name="01">
+      <texture>skeletal/hele_su1_01.dds</texture>
+    </variant>
+    <variant name="02">
+      <texture>skeletal/hele_su1_02.dds</texture>
+    </variant>
+    <variant name="03">
+      <texture>skeletal/hele_su1_03.dds</texture>
     </variant>
   </group>
 
