@@ -617,22 +617,31 @@ static void enable_kbd_hook(bool enable)
 
 
 
-// SDL redirects stdout.txt in its WinMain hook. we need to do this
-// here (before main is called), instead of in SDL_Init,
-// to completely emulate SDL; bonus: we don't miss output before SDL_Init.
-
 static int wsdl_init()
 {
 	hInst = GetModuleHandle(0);
 
+	// redirect stdout to file (otherwise it's simply ignored on Win32).
+	// notes:
+	// - use full path for safety (works even if someone does chdir)
+	// - SDL does this in its WinMain hook. we need to do this here
+	//   (before main is called) instead of in SDL_Init to completely
+	//   emulate SDL; bonus: we don't miss any output before SDL_Init.
+	char path[MAX_PATH];
+	snprintf(path, ARRAY_SIZE(path), "%s\\stdout.txt", win_exe_dir);
 	// ignore BoundsChecker warnings here. subsystem is set to "Windows"
 	// to avoid the OS opening a console on startup (ugly). that means
 	// stdout isn't associated with a lowio handle; _close ends up
 	// getting called with fd = -1. oh well, nothing we can do.
-	FILE* ret = freopen("stdout.txt", "w", stdout);
+	FILE* ret = freopen(path, "wt", stdout);
 	if(!ret)
 		debug_warn("stdout freopen failed");
+
+#if CONFIG_PARANOIA
+	// disable buffering, so that no writes are lost even if the program
+	// crashes. only enabled in full debug mode because this is really slow!
 	setvbuf(stdout, 0, _IONBF, 0);
+#endif
 
 	enable_kbd_hook(true);
 
@@ -755,8 +764,8 @@ keep:
 		return 0;
 	}
 
-	DWORD windowStyle = fullscreen ? (WS_POPUP|WS_VISIBLE) : (WS_CAPTION | WS_POPUPWINDOW | WS_VISIBLE);
-
+	DWORD windowStyle = fullscreen ? (WS_POPUP|WS_VISIBLE) : WS_VISIBLE | WS_CAPTION|WS_POPUPWINDOW|WS_MINIMIZEBOX;
+	
 	// Calculate the size of the outer window, so that the client area has
 	// the desired dimensions.
 	RECT r;

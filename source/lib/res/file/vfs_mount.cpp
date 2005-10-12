@@ -281,8 +281,8 @@ static int mount_archive(TDir* td, const Mount& m)
 
 static int mount_archives(TDir* td, Archives* archives, const Mount* mount)
 {
-	// VFS_MOUNT_ARCHIVES flag wasn't set.
-	if(!archives)
+	// VFS_MOUNT_ARCHIVES flag wasn't set, or no archives present
+	if(archives->empty())
 		return 0;
 
 	std::sort(archives->begin(), archives->end(), archive_less);
@@ -451,7 +451,7 @@ static int mount_dir_tree(TDir* td, const Mount& m)
 
 	do
 	{
-		TDir* const td    = dir_queue.front().td;
+		TDir* const td     = dir_queue.front().td;
 		const char* P_path = dir_queue.front().path.c_str();
 
 		int ret = populate_dir(td, P_path, &m, pdir_queue, parchives, m.flags);
@@ -467,7 +467,8 @@ static int mount_dir_tree(TDir* td, const Mount& m)
 	}
 	while(!dir_queue.empty());
 
-	mount_archives(td, parchives, &m);
+	// do not pass parchives because that has been set to 0!
+	mount_archives(td, &archives, &m);
 
 	return 0;
 }
@@ -897,11 +898,11 @@ int x_open(const Mount* m, const char* V_exact_path, int flags, TFile* tf, XFile
 			debug_warn("requesting write access to file in archive");
 			return -1;
 		}
-		CHECK_ERR(zip_open(m->archive, V_exact_path, flags, &xf->u.zf));
+		RETURN_ERR(zip_open(m->archive, V_exact_path, flags, &xf->u.zf));
 		break;
 	case MT_FILE:
 		CHECK_ERR(x_realpath(m, V_exact_path, P_path));
-		CHECK_ERR(file_open(P_path, flags, &xf->u.f));
+		RETURN_ERR(file_open(P_path, flags, &xf->u.f));
 		break;
 	default:
 		debug_warn("VFile_reload: invalid type");
@@ -926,10 +927,10 @@ int x_close(XFile* xf)
 		return 0;
 
 	case MT_ARCHIVE:
-		zip_close(&xf->u.zf);
+		(void)zip_close(&xf->u.zf);
 		break;
 	case MT_FILE:
-		file_close(&xf->u.f);
+		(void)file_close(&xf->u.f);
 		break;
 	default:
 		debug_warn("x_close: invalid type");
@@ -961,8 +962,10 @@ int x_validate(const XFile* xf)
 		return file_validate(&xf->u.f);
 
 	case MT_ARCHIVE:
-		// (archive files can't be written to, so this should be 0)
-		if(xf->tf != 0)
+		// this could be set to 0 in x_open (since it's used to update the
+		// VFS after newly written files are closed, but archive files
+		// cannot be modified), but it's not ATM.
+		if(xf->tf == 0)
 			return -102;
 		return zip_validate(&xf->u.zf);
 

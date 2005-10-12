@@ -237,13 +237,6 @@ extern int ogl_tex_set_wrap(Handle ht, GLint wrap);
 // upload
 //
 
-// bind the texture to the specified unit [number] in preparation for
-// using it in rendering. assumes multitexturing is available.
-// not necessary before calling ogl_tex_upload!
-// side effects:
-// - enables (or disables, if <ht> == 0) texturing on the given unit.
-extern int ogl_tex_bind(Handle ht, GLenum unit = 0);
-
 // upload the texture to OpenGL.
 // if not 0, parameters override the following:
 //   fmt_ovr     : OpenGL format (e.g. GL_RGB) decided from bpp / Tex flags;
@@ -282,6 +275,19 @@ extern int ogl_tex_get_data(Handle ht, void** p);
 //
 // misc
 //
+
+// bind the texture to the specified unit [number] in preparation for
+// using it in rendering. if <ht> is 0, texturing is disabled instead.
+//
+// side effects:
+// - changes the active texture unit;
+// - (if return value is 0:) texturing was enabled/disabled on that unit.
+//
+// notes:
+// - assumes multitexturing is available.
+// - not necessary before calling ogl_tex_upload!
+// - on error, the unit's texture state is unchanged; see implementation.
+extern int ogl_tex_bind(Handle ht, uint unit = 0);
 
 // apply the specified transforms (as in tex_transform) to the image.
 // must be called before uploading (raises a warning if called afterwards).

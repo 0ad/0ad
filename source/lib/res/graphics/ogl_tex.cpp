@@ -827,8 +827,7 @@ int ogl_tex_get_format(Handle ht, uint* flags, GLenum* fmt)
 // retrieve pointer to texel data.
 //
 // note: this memory is freed after a successful ogl_tex_upload for
-// this texture. after that, the pointer we retrieve is NULL but 	ps_dbg.exe!ogl_tex_set_filter(__int64 ht=476741374144, int filter=9729)  Line 490 + 0x4a	C++
-
+// this texture. after that, the pointer we retrieve is NULL but
 // the function doesn't fail (negative return value) by design.
 // if you still need to get at the data, add a reference before
 // uploading it or read directly from OpenGL (discouraged).
@@ -845,52 +844,42 @@ int ogl_tex_get_data(Handle ht, void** p)
 // misc API
 
 // bind the texture to the specified unit [number] in preparation for
-// using it in rendering. assumes multitexturing is available.
-// not necessary before calling ogl_tex_upload!
-// side effects:
-// - enables (or disables, if <ht> == 0) texturing on the given unit.
+// using it in rendering. if <ht> is 0, texturing is disabled instead.
 //
-// note: there are many call sites of glActiveTextureARB, so caching
-// those and ignoring redundant sets isn't feasible.
-int ogl_tex_bind(const Handle ht, GLenum unit)
+// side effects:
+// - changes the active texture unit;
+// - (if return value is 0:) texturing was enabled/disabled on that unit.
+//
+// notes:
+// - assumes multitexturing is available.
+// - not necessary before calling ogl_tex_upload!
+// - on error, the unit's texture state is unchanged; see implementation.
+int ogl_tex_bind(Handle ht, uint unit)
 {
-	int id = 0;
-
-	// special case: avoid dereference and disable texturing directly.
-	if(ht == 0)
-		goto disable_texturing;
-
-	{
-		// (we can't use H_DEREF because it exits immediately)
-		OglTex* ot = H_USER_DATA(ht, OglTex);
-		if(!ot)
-		{
-			glBindTexture(GL_TEXTURE_2D, 0);
-			CHECK_ERR(ERR_INVALID_HANDLE);
-			UNREACHABLE;
-		}
-
-#ifndef NDEBUG
-		if(!ot->id)
-		{
-			debug_warn("ogl_tex_bind: OglTex.id is not a valid texture");
-			return -1;
-		}
-#endif
-
-		id = ot->id;
-		ot->tmu = unit;
-	}
-
-disable_texturing:
+	// note: there are many call sites of glActiveTextureARB, so caching
+	// those and ignoring redundant sets isn't feasible.
 	glActiveTextureARB(GL_TEXTURE0+unit);
-	if(id)
+
+	// special case: disable texturing
+	if(ht == 0)
 	{
-		glEnable(GL_TEXTURE_2D);
-		glBindTexture(GL_TEXTURE_2D, id);
-	}
-	else
 		glDisable(GL_TEXTURE_2D);
+		return 0;
+	}
+
+	// if this fails, the texture unit's state remains unchanged.
+	// we don't bother catching that and disabling texturing because a
+	// debug warning is raised anyway, and it's quite unlikely.
+	H_DEREF(ht, OglTex, ot);
+	ot->tmu = unit;
+
+	// if 0, there's a problem in the OglTex reload/dtor logic.
+	// binding it results in whiteness, which can have many causes;
+	// we therefore complain so this one can be ruled out.
+	debug_assert(ot->id != 0);
+
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, ot->id);
 	return 0;
 }
 
