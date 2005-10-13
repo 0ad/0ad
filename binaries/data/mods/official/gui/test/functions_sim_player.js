@@ -10,10 +10,29 @@ function createResources()
 	// Defines all resource types for future use.
 	// Assigns the value of game setup resource values as starting values.
 
-	addResource ("Food", Number(getGUIObjectByName ("pgSessionSetupResourceFoodCounter").caption));
-	addResource ("Wood", Number(getGUIObjectByName ("pgSessionSetupResourceWoodCounter").caption));
-	addResource ("Stone", Number(getGUIObjectByName ("pgSessionSetupResourceStoneCounter").caption));
-	addResource ("Ore", Number(getGUIObjectByName ("pgSessionSetupResourceOreCounter").caption));
+	// Numbers for resource modes Low/Normal/High - tweak as needed for balancing
+	var resLowValue = Array(100,50,0,0);
+	var resNormalValue = Array(200,200,100,100);
+	var resHighValue = Array(1000,1000,1000,1000);
+	
+	if (getCurrItemValue ("pgSessionSetupResources") == "Low") {
+		// Give low resources
+		var resValue = resLowValue;
+	} else if (getCurrItemValue("pgSessionSetupResources") == "Normal") {
+		// Give normal resources
+		var resValue = resNormalValue;
+	} else if (getCurrItemValue ("pgSessionSetupResources") == "High") {
+		// Give high resources
+		var resValue = resHighValue;
+	} else {
+		// Do not give any resources
+		var resValue = Array(0,0,0,0);
+	}
+	
+	addResource ("Food", Number(resValue[0]));
+	addResource ("Wood", Number(resValue[1]));
+	addResource ("Stone", Number(resValue[2]));
+	addResource ("Ore", Number(resValue[3]));
 	addResource ("Population", 0);
 	addResource ("Housing", 0);
 }

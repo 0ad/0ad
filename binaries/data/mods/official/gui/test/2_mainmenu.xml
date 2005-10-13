@@ -32,7 +32,7 @@
 		==========================================
 		-->
 
-                <object	name="pgToolTip"
+		<object	name="pgToolTip"
 			style="fancyTextHeadWhite"
 			type="text"
 			hidden="true"
@@ -59,7 +59,7 @@
 			<object	name="pgProfileName"
 				style="wheatDropDown"
 				type="dropdown"
-				size="3% 80% 20% 85%"
+				size="3% 80% 20% 80%+40"
 			>
 				<action on="Load"><![CDATA[
 					// Get list of profile names (profile folders).
@@ -94,12 +94,12 @@
 			size="24.609375% 28.90625% 49.609375% 62.2395833%"
 			sprite_over="pgCampaignsOver"
 			sprite_disabled="pgCampaignsDisabled"
-                        tooltip="Want to play a campaign? Tough luck, buddy!  That's right, go cry on your mamma's shoulder."
+			tooltip="Want to play a campaign? Tough luck, buddy!  That's right, go cry on your mamma's shoulder."
 		>
 			<action on="Press"><![CDATA[
 				openMainMenuSubWindow ("pgCampaigns");
 			]]></action>
-                </object>
+		</object>
 
 		<object name="pgSinglePlayerBt"
 			style="pgButton"
@@ -162,13 +162,13 @@
 			size="74.7070312% 42.0572916% 99.7070312% 75.390625%"
 			sprite_over="pgOptionsOver"
 			sprite_disabled="pgOptionsDisabled"
-                        tooltip="This will take you to the options menu.  It does not work now, but someday it might."
+			tooltip="This will take you to the options menu.  It does not work now, but someday it might."
 		>
 			<action on="Press"><![CDATA[
 				// Open Options window.
 				openMainMenuSubWindow ("pgOptions");
 			]]></action>
-                </object>
+		</object>
 
 		<object name="pgHistoryBt"
 			style="pgButton"
@@ -176,12 +176,12 @@
 			size="72.265625% 66.5364583% 97.265625% 99.8697916%"
 			sprite_over="pgHistoryOver"
 			sprite_disabled="pgHistoryDisabled"
-                        tooltip="One day you will click this button and learn more about ancient history than any history teach ever taught you."
+			tooltip="One day you will click this button and learn more about ancient history than any history teach ever taught you."
 		>
 			<action on="Press"><![CDATA[
 				openMainMenuSubWindow ("pgHistory");
 			]]></action>
-                </object>
+		</object>
 
 		<!--
 		==========================================
@@ -206,7 +206,7 @@
 		>
 			<action on="Press"><![CDATA[
 				// Get credits text.
-			        creditsArray  = readFileLines("gui/text/credits.txt");
+				creditsArray  = readFileLines("gui/text/credits.txt");
 
 				// Populate credits list.		
 				for (creditsIndex = 0; creditsIndex < creditsArray.length; creditsIndex++)
@@ -230,16 +230,16 @@
 			]]></action>
 		</object>
 
-                <object name="pgVersionNumber"
+		<object name="pgVersionNumber"
 			style="fancyTextHeadGold"
 			type="text"
 			ghost="true"
 			size="43% 24% 43%+282 24%+25"
 		>
-                        <action on="Load"><![CDATA[
-                                this.caption = "Build: " + buildTime(0) + " " + getLanguageID();
-                        ]]></action>
-                </object>
+			<action on="Load"><![CDATA[
+				this.caption = "Build: " + buildTime(0) + " " + getLanguageID();
+			]]></action>
+		</object>
 
 		<!--
 		==========================================
@@ -321,14 +321,18 @@
 					closeMainMenuSubWindow ("pgCampaigns");
 				]]></action>
 			</object>
+			
+			<!-- Add campaign screen controls here later -->
+			
 		</object>
 
-                <!--
-                ===============================================
-                - GAME SESSION SETUP SCREEN -
-                ===============================================
-                -->
+		<!--
+		===============================================
+		- GAME SESSION SETUP SCREEN -
+		===============================================
+		-->
 
+		<!-- main object; the size of this equals to fullscreen at lowest resolution (800x600) -->
 		<object name="pgSessionSetup" 
 			style="wheatWindow"
 			type="image"
@@ -351,6 +355,14 @@
 				]]></action>
 			</object>
 
+				<object name="pgSessionSetupTitle"
+					style="wheatTextHeadMaxBlack"
+					type="text"
+					size="10 5 140 25"
+				>Game Setup
+				</object>
+
+
 			<!--
 			==========================================
 			- MULTIPLAYER OBJECTS
@@ -372,6 +384,18 @@
 				<object	name="pgSessionSetupMPHost"
 					hidden="true"
 				>
+
+				<!-- controls for lag bars and player kicking -->
+				<object name="pgSessionSetupMPKickP1"
+					style="wheatButton"
+					type="button"
+					size="500 120 520 140"
+				>K
+					<action on="Press"><![CDATA[
+						// Kick player here
+					]]></action>
+				</object>
+				
 				</object>
 
 				<!--
@@ -417,84 +441,91 @@
 			please put them in the containers above. 
 			-->
 
-				<!--
-				==========================================
-				- MAIN MENU - PLAYER SLOTS
-				==========================================
-				-->
 
-				<object name="pgSessionSetupPlayerHead"
+			<!--
+			==========================================
+			- CIV SELECTION CONTROLS
+			==========================================
+			-->
+
+			<object name="pgSessionSetupGrpCivSel"
+				style="wheatBorderBlack"
+				type="image"
+				size="10 30 33% 50%-25"
+			>
+				
+				<object name="pgSessionSetupCivSelTxt"
+					type="text"
+					size="5 5 100%-5 20"
+				>Your Civilization:
+				</object>
+				
+				<object name="pgSessionSetupCivSel"
+					style="wheatBorderBlack"
+					type="button"
+					size="30 35 100%-30 100%-45"
+					sprite="pgSessionSetupCivSelTmp"
+					tooltip_style="pgSessionSetupToolTip"
+					tooltip="Click here to change the civilization you would like to play."
+				/>
+				<object name="pgSessionSetupCivSelName"
 					style="wheatTextHeadMaxBlack"
 					type="text"
-					size="30 10 320 40"
-				/>
+					size="30 100%-35 100%-30 100%-5"
+				>Pink Rabbits   (i)
+				</object>
+				
+			</object>
+			
+			<!--
+			==========================================
+			- MAP CONTROLS
+			==========================================
+			-->
+			
+			<object name="pgSessionSetupGrpMap"
+				style="wheatBorderBlack"
+				type="image"
+				size="10 50%-20 33% 100%-10"
+			>
+			
+				<!-- MAP SELECTION -->
+				<object name="pgSessionSetupMapTxt" 
+					type="text"
+					size="5 5 100%-5 20"
+				>Map:
+				</object>
 
-				<object name="pgSessionSetupP1"
-					style="wheatButton"
-					type="button"
-					enabled="false"
-					size="30 50 320 90"
-					text_align="left"
-				/>
 
-				<object name="pgSessionSetupP2"
+				<object name="pgSessionSetupMapTypeTxt" 
+					type="text"
+					size="5 30 100%-5 55"
+				>Type:
+				</object>
+
+				<object name="pgSessionSetupMapType"
 					style="wheatDropDown"
 					type="dropdown"
-					size="30 100 320 140"
-				/>
+					size="50 25 100%-5 55"
+				>
+					<action on="Load"><![CDATA[
+						pushItem (this.name, "Random Map");
+						pushItem (this.name, "Real World Map");
+						setCurrItemValue (this.name, "Random Map");
+					]]></action>
+				</object>
 
-				<object name="pgSessionSetupP3"
-					style="wheatDropDown"
-					type="dropdown"
-					size="30 150 320 190"
-				/>
-
-				<object name="pgSessionSetupP4"
-					style="wheatDropDown"
-					type="dropdown"
-					size="30 200 320 240"
-				/>
-
-				<object name="pgSessionSetupP5"
-					style="wheatDropDown"
-					type="dropdown"
-					size="30 250 320 290"
-				/>
-
-				<object name="pgSessionSetupP6"
-					style="wheatDropDown"
-					type="dropdown"
-					size="30 300 320 340"
-				/>
-
-				<object name="pgSessionSetupP7"
-					style="wheatDropDown"
-					type="dropdown"
-					size="30 350 320 390"
-				/>
-
-				<object name="pgSessionSetupP8"
-					style="wheatDropDown"
-					type="dropdown"
-					size="30 400 320 440"
-				/>
-
-				<!--
-				==========================================
-				- MAP SELECTION
-				==========================================
-				-->
 
 				<object name="pgSessionSetupMapNameTxt" 
 					type="text"
-					size="400 32 590 52"
-				>Map name:
+					size="5 65 100%-5 90"
+				>Name:
 				</object>
 
-	                        <object name="pgSessionSetupMapName"
-					style="wheatList"
-					type="list"
-					size="100%-200 0%+10 100%-10 0%+150"
+				<object name="pgSessionSetupMapName"
+					style="wheatDropDown"
+					type="dropdown"
+					size="50 60 100%-5 90"
 				>
 					<action on="Load"><![CDATA[
 						// Note: We should set this in a .cfg or initialisation area, as it's used again later.
@@ -523,73 +554,264 @@
 					]]></action>
 				</object>
 
+
+				<object name="pgSessionSetupMapFoWTxt" 
+					type="text"
+					size="5 110 110 130"
+				>Fog of War:
+				</object>
+
+				<object name="pgSessionSetupMapFoWCheck"
+					style="wheatCrossBox"
+					type="checkbox"
+					size="120 110 140 130"
+					checked="true"
+				/>
+
+				<object name="pgSessionSetupMapRevealTxt" 
+					type="text"
+					size="5 135 110 155"
+				>Reveal Map:
+				</object>
+
+				<object name="pgSessionSetupMapRevealCheck"
+					style="wheatCrossBox"
+					type="checkbox"
+					size="120 135 140 155"
+				/>
+
+
+				<object name="pgSessionSetupMapSizeTxt" 
+					type="text"
+					size="5 165 110 180"
+				>Map Size:
+				</object>
+
+				<object name="pgSessionSetupMapSize"
+					style="wheatDropDown"
+					type="dropdown"
+					size="115 160 100%-5 190"
+				>
+					<action on="Load"><![CDATA[
+						pushItem (this.name, "Tiny");
+						pushItem (this.name, "Small");
+						pushItem (this.name, "Medium");
+						pushItem (this.name, "Large");
+						pushItem (this.name, "Very Large");
+						setCurrItemValue (this.name, "Large");
+					]]></action>
+				</object>
+				
+				<object name="pgSessionSetupMapLine1"
+					style="wheatBorderBlack"
+					type="image"
+					size="5 200 100%-5 200"
+				/>
+				
+				<object name="pgSessionSetupMapInfo"
+					style="wheatBorderBlack"
+					type="text"
+					size="5 210 100%-5 100%-35"
+				>
+				Map Info
+Developed by, well, WFG.
+A large landmass with rivers, forests and coastal fishing grounds.
+				</object>
+				
+				<object name="pgSessionSetupMoreMaps"
+					style="wheatButton"
+					type="button"
+					size="100%-135 100%-30 100%-5 100%-5"
+				>
+				Get more maps
+				</object>
+
+			</object>
+
+			<object name="pgSessionSetupTempSq3"
+				style="wheatBorderBlack"
+				type="image"
+				size="33%+10 45 100%-10 50%+20"
+			>
+			
 				<!--
 				==========================================
-				- RESOURCES
+				- MAIN MENU - PLAYER SLOTS
 				==========================================
 				-->
 
-				<object name="pgSessionSetupResourceGroup"
-					type="image"
-					style="wheatBorderBlack"
-					size="100%-200 0%+165 100%-10 0%+300"
-				>
-					<object name="pgSessionSetupResourceFoodLabel" 
-						type="text"
-						style="wheatTextLabelBlack"
-						size="0%+5 0%+5 40%-5 25%-5"
-					>Food:
-					</object>
-
-					<object name="pgSessionSetupResourceFoodCounter" 
-						type="input"
-						style="wheatBorderBlack"
-						size="60%+5 0%+5 100%-5 25%-5"
-					>1000
-					</object>
-
-					<object name="pgSessionSetupResourceWoodLabel" 
-						type="text"
-						style="wheatTextLabelBlack"
-						size="0%+5 25%+5 40%-5 50%-5"
-					>Wood:
-					</object>
-
-					<object name="pgSessionSetupResourceWoodCounter" 
-						type="input"
-						style="wheatBorderBlack"
-						size="60%+5 25%+5 100%-5 50%-5"
-					>1000
-					</object>
-
-					<object name="pgSessionSetupResourceStoneLabel" 
-						type="text"
-						style="wheatTextLabelBlack"
-						size="0%+5 50%+5 40%-5 75%-5"
-					>Stone:
-					</object>
-
-					<object name="pgSessionSetupResourceStoneCounter" 
-						type="input"
-						style="wheatBorderBlack"
-						size="60%+5 50%+5 100%-5 75%-5"
-					>1000
-					</object>
-
-					<object name="pgSessionSetupResourceOreLabel" 
-						type="text"
-						style="wheatTextLabelBlack"
-						size="0%+5 75%+5 40%-5 100%-5"
-					>Ore:
-					</object>
-
-					<object name="pgSessionSetupResourceOreCounter" 
-						type="input"
-						style="wheatBorderBlack"
-						size="60%+5 75%+5 100%-5 100%-5"
-					>1000
-					</object>
+				<object name="pgSessionSetupPlayerHead"
+					type="text"
+					size="5 5 100%-5 20"
+				>Other Players:
 				</object>
+
+				<object name="pgSessionSetupP1"
+					style="wheatBorderBlack"
+					type="button"
+					enabled="false"
+					size="5 30 205 60"
+					text_align="left"
+				/>
+
+				<object name="pgSessionSetupP2"
+					style="wheatDropDown"
+					type="dropdown"
+					size="5 65 205 100"
+				/>
+
+				<object name="pgSessionSetupP3"
+					style="wheatDropDown"
+					type="dropdown"
+					size="5 105 205 140"
+				/>
+
+				<object name="pgSessionSetupP4"
+					style="wheatDropDown"
+					type="dropdown"
+					size="5 145 205 180"
+				/>
+
+				<object name="pgSessionSetupP5"
+					style="wheatDropDown"
+					type="dropdown"
+					size="5 185 205 220"
+				/>
+
+				<object name="pgSessionSetupP6"
+					style="wheatDropDown"
+					type="dropdown"
+					size="5 225 205 260"
+				/>
+
+<!-- Players 7 & 8 disabled for now due to spacing issues -->
+
+				<object name="pgSessionSetupP7"
+					enabled="false"
+					hidden="true"
+					style="wheatDropDown"
+					type="dropdown"
+					size="5 265 205 300"
+				/>
+
+				<object name="pgSessionSetupP8"
+					enabled="false"
+					hidden="true"
+					style="wheatDropDown"
+					type="dropdown"
+					size="5 305 205 340"
+				/>
+			
+			</object>
+
+			<!--
+			==========================================
+			- GAME SETTINGS
+			==========================================
+			-->
+
+			<object name="pgSessionSetupGrpGameSettings"
+				style="wheatBorderBlack"
+				type="image"
+				size="33%+10 50%+30 67%-5 100%-10"
+			>
+
+
+				<object name="pgSessionSetupGameModeTxt"
+					type="text"
+					size="5 10 100 35"
+				>Game Mode:
+				</object>
+
+				<object name="pgSessionSetupGameMode"
+					style="wheatDropDown"
+					type="dropdown"
+					size="110 5 100%-10 35"
+				>
+					<action on="Load"><![CDATA[
+						pushItem (this.name, "Conquest");
+						pushItem (this.name, "Score");
+						setCurrItemValue (this.name, "Conquest");
+					]]></action>
+				</object>
+
+
+				<object name="pgSessionSetupStartPhaseTxt"
+					type="text"
+					size="5 45 110 70"
+				>Starting Phase:
+				</object>
+
+				<object name="pgSessionSetupStartPhase"
+					style="wheatDropDown"
+					type="dropdown"
+					size="110 40 100%-10 70"
+				>
+					<action on="Load"><![CDATA[
+						pushItem (this.name, "Village");
+						pushItem (this.name, "Town");
+						pushItem (this.name, "City");
+						setCurrItemValue (this.name, "Village");
+					]]></action>
+				</object>
+
+
+				<object name="pgSessionSetupResourcesTxt"
+					type="text"
+					size="5 80 110 105"
+				>Resources:
+				</object>
+
+				<object name="pgSessionSetupResources"
+					style="wheatDropDown"
+					type="dropdown"
+					size="110 75 100%-10 105"
+				>
+					<action on="Load"><![CDATA[
+						pushItem (this.name, "Low");
+						pushItem (this.name, "Normal");
+						pushItem (this.name, "High");
+						setCurrItemValue (this.name, "High");
+					]]></action>
+				</object>
+
+
+				<object name="pgSessionSetupSettingsLine1"
+					style="wheatBorderBlack"
+					type="image"
+					size="5 115 100%-5 115"
+				/>
+
+
+			</object>
+
+			<!--
+			==========================================
+			- HELP AND INFO OBJECTS
+			==========================================
+			-->
+
+			<object name="pgSessionSetupGrpHelpInfo"
+				style="wheatBorderBlack"
+				type="image"
+				size="67%+5 50%+30 100%-10 100%-50"
+			>
+				<object name="pgSessionSetupInfoTxt"
+					type="text"
+					size="10 10 100%-10 50%-10"
+				>This is info text.
+				</object>
+				
+				<object name="pgSessionSetupToolTip"
+					style="fancyTextHeadWhite"
+					type="text"
+					hidden="true"
+					sprite="bkTranslucent"
+					size="10 50%-5 100%-10 100%-10"
+				>tooltipText
+				</object>
+				
+			</object>
 
 				<!--
 				==========================================
@@ -620,14 +842,16 @@
 
 			<!--
 			==========================================
-			- MAIN MENU - BUTTONS
+			- GAME SETUP - BUTTONS
 			==========================================
 			-->
-                              
+
 			<object name="pgSessionSetupStartButton" 
 				style="wheatButton"
 				type="button"
-				size="50%-125 540 50%-25 570" 
+				size="83%-125 100%-40 83%-25 100%-10" 
+				tooltip_style="pgSessionSetupToolTip"
+				tooltip="Click this button to start a new game with the current settings."
 			>Start!
 				<action on="Press"><![CDATA[
 						startMap (
@@ -640,7 +864,9 @@
 			<object name="pgSessionSetupCancelButton"
 				style="wheatButton"
 				type="button"
-				size="50%+25 540 50%+125 570"
+				size="83%+25 100%-40 83%+125 100%-10"
+				tooltip_style="pgSessionSetupToolTip"
+				tooltip="Use this button if you are a coward and you don't dare to face the challenge of this game."
 			>Cancel
 				<action on="Press"><![CDATA[
 					closeSessionSetup();
@@ -648,11 +874,11 @@
 			</object>
 		</object>
 
-                <!--
-                ===============================================
-                - MULTIPLAYER MODE SELECTION SCREEN -
-                ===============================================
-                -->
+		<!--
+		===============================================
+		- MULTIPLAYER MODE SELECTION SCREEN -
+		===============================================
+		-->
 
 		<object name="pgMPModeSel"
 			style="wheatWindow"
@@ -1147,5 +1373,5 @@
 			]]></action>
 		</object>
 
-        </object>
+	</object>
 </objects>
