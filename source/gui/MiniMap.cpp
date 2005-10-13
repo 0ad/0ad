@@ -19,7 +19,7 @@
 
 
 
-extern bool mouse_buttons[5];
+extern bool g_mouse_buttons[5];
 extern int g_mouse_x, g_mouse_y;
 extern float g_MaxZoomHeight, g_YMinOffset;
 bool HasClicked=false;
@@ -142,13 +142,13 @@ void CMiniMap::Draw()
 		CCamera &g_Camera=*g_Game->GetView()->GetCamera();
 		
 		//Check for a click
-		if(mouse_buttons[0]==true)
+		if(g_mouse_buttons[0]==true)
 		{  
 			HasClicked=true; 
 		}
 		
 		//Check to see if left button is false (meaning it's been lifted) 
-		if (mouse_buttons[0]==false && HasClicked==true)
+		if (g_mouse_buttons[0]==false && HasClicked==true)
 
 		{
 

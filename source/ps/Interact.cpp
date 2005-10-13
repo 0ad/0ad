@@ -21,7 +21,6 @@
 
 extern CConsole* g_Console;
 extern int g_mouse_x, g_mouse_y;
-extern bool keys[SDLK_LAST];
 extern bool g_active;
 extern CStr g_CursorName;
 

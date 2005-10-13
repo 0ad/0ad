@@ -20,8 +20,8 @@ gee@pyro.nu
 #include "ps/CLogger.h"
 #define LOG_CATEGORY "gui"
 
-extern bool keys[SDLK_LAST];
-extern bool mouse_buttons[5];
+extern bool g_keys[];
+extern bool g_mouse_buttons[];
 
 using namespace std;
 
@@ -151,7 +151,7 @@ int CInput::ManuallyHandleEvent(const SDL_Event* ev)
 
 			case SDLK_HOME:
 				// If there's not a selection, we should create one now
-				if (!keys[SDLK_RSHIFT] && !keys[SDLK_LSHIFT])
+				if (!g_keys[SDLK_RSHIFT] && !g_keys[SDLK_LSHIFT])
 				{
 					// Make sure a selection isn't created.
 					m_iBufferPos_Tail = -1;
@@ -170,7 +170,7 @@ int CInput::ManuallyHandleEvent(const SDL_Event* ev)
 
 			case SDLK_END:
 				// If there's not a selection, we should create one now
-				if (!keys[SDLK_RSHIFT] && !keys[SDLK_LSHIFT])
+				if (!g_keys[SDLK_RSHIFT] && !g_keys[SDLK_LSHIFT])
 				{
 					// Make sure a selection isn't created.
 					m_iBufferPos_Tail = -1;
@@ -213,11 +213,11 @@ int CInput::ManuallyHandleEvent(const SDL_Event* ev)
 				// reset m_WantedX, very important
 				m_WantedX=0.f;
 
-				if (keys[SDLK_RSHIFT] || keys[SDLK_LSHIFT] ||
+				if (g_keys[SDLK_RSHIFT] || g_keys[SDLK_LSHIFT] ||
 					!SelectingText())
 				{
 					// If there's not a selection, we should create one now
-					if (!SelectingText() && !keys[SDLK_RSHIFT] && !keys[SDLK_LSHIFT])
+					if (!SelectingText() && !g_keys[SDLK_RSHIFT] && !g_keys[SDLK_LSHIFT])
 					{
 						// Make sure a selection isn't created.
 						m_iBufferPos_Tail = -1;
@@ -245,11 +245,11 @@ int CInput::ManuallyHandleEvent(const SDL_Event* ev)
 			case SDLK_RIGHT:
 				m_WantedX=0.f;
 
-				if (keys[SDLK_RSHIFT] || keys[SDLK_LSHIFT] || 
+				if (g_keys[SDLK_RSHIFT] || g_keys[SDLK_LSHIFT] || 
 					!SelectingText())
 				{
 					// If there's not a selection, we should create one now
-					if (!SelectingText() && !keys[SDLK_RSHIFT] && !keys[SDLK_LSHIFT])
+					if (!SelectingText() && !g_keys[SDLK_RSHIFT] && !g_keys[SDLK_LSHIFT])
 					{
 						// Make sure a selection isn't created.
 						m_iBufferPos_Tail = -1;
@@ -298,7 +298,7 @@ int CInput::ManuallyHandleEvent(const SDL_Event* ev)
 			case SDLK_UP:
 			{
 				// If there's not a selection, we should create one now
-				if (!keys[SDLK_RSHIFT] && !keys[SDLK_LSHIFT])
+				if (!g_keys[SDLK_RSHIFT] && !g_keys[SDLK_LSHIFT])
 				{
 					// Make sure a selection isn't created.
 					m_iBufferPos_Tail = -1;
@@ -346,7 +346,7 @@ int CInput::ManuallyHandleEvent(const SDL_Event* ev)
 			case SDLK_DOWN:
 			{
 				// If there's not a selection, we should create one now
-				if (!keys[SDLK_RSHIFT] && !keys[SDLK_LSHIFT])
+				if (!g_keys[SDLK_RSHIFT] && !g_keys[SDLK_LSHIFT])
 				{
 					// Make sure a selection isn't created.
 					m_iBufferPos_Tail = -1;
@@ -531,7 +531,7 @@ void CInput::HandleMessage(const SGUIMessage &Message)
 		//  instance, if we press between a and b, the point
 		//  should of course be placed accordingly. Other
 		//  special cases are handled like the input box norms.
-		if (keys[SDLK_RSHIFT] || keys[SDLK_LSHIFT])
+		if (g_keys[SDLK_RSHIFT] || g_keys[SDLK_LSHIFT])
 		{
 			m_iBufferPos = GetMouseHoveringTextPosition();
 		}
@@ -562,7 +562,7 @@ void CInput::HandleMessage(const SGUIMessage &Message)
 		{
 			// Actually, first we need to re-check that the mouse button is
 			//  really pressed (it can be released while outside the control.
-			if (!mouse_buttons[SDL_BUTTON_LEFT])
+			if (!g_mouse_buttons[SDL_BUTTON_LEFT])
 				m_SelectingText = false;
 			else
 				m_iBufferPos = GetMouseHoveringTextPosition();

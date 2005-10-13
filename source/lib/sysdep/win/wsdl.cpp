@@ -178,75 +178,6 @@ int SDL_SetGamma(float r, float g, float b)
 
 //----------------------------------------------------------------------------
 
-// shared msg handler
-// SDL and GLUT have separate pumps; messages are handled there
-
-// evil no-good hack: this msg is apparently sent directly to the wndproc,
-// so we have to pass it on to SDL_PollEvent.
-static bool got_quit_msg;
-
-static LRESULT CALLBACK wndproc(HWND hWnd, unsigned int uMsg, WPARAM wParam, LPARAM lParam)
-{
-	if(is_shutdown)
-		return DefWindowProc(hWnd, uMsg, wParam, lParam);
-
-	switch(uMsg)
-	{
-	case WM_DESTROY:
-		got_quit_msg = true;
-		break;
-
-	case WM_PAINT:
-		PAINTSTRUCT ps;
-		BeginPaint(hWnd, &ps);
-		EndPaint(hWnd, &ps);
-		return 0;
-
-	case WM_ERASEBKGND:
-		return 0;
-
-	case WM_ACTIVATE:
-		app_active = (wParam & 0xffff) != 0;
-
-		gamma_swap(app_active? GAMMA_LATCH_NEW_RAMP : GAMMA_RESTORE_ORIGINAL);
-
-		if(fullscreen)
-			// (re)activating
-			if(app_active)
-			{
-				ChangeDisplaySettings(&dm, CDS_FULLSCREEN);
-				ShowWindow(hWnd, SW_RESTORE);
-			}
-			// deactivating
-			else
-			{
-				ChangeDisplaySettings(0, 0);
-				ShowWindow(hWnd, SW_MINIMIZE);
-			}
-		break;
-
-	// prevent selecting menu in fullscreen mode
-	case WM_NCHITTEST:
-		if(fullscreen)
-			return HTCLIENT;
-		break;
-
-	default:;
-		// can't call DefWindowProc here: some messages
-		// are only conditionally 'grabbed' (e.g. NCHITTEST)
-	}
-
-	return DefWindowProc(hWnd, uMsg, wParam, lParam);
-}
-
-
-// always on (we don't care about the extra overhead)
-int SDL_EnableUNICODE(int UNUSED(enable))
-{
-	return 1;
-}
-
-// Translate Windows VK's into our SDLK's for keys that must be translated
 static void init_vkmap(SDLKey (&VK_keymap)[256])
 {
 	int i;
@@ -342,9 +273,190 @@ inline SDLKey vkmap(int vk)
 }
 
 
+
+//----------------------------------------------------------------------------
+
+typedef std::queue<SDL_Event> Queue;
+static Queue queue;
+
+static void queue_event(const SDL_Event& ev)
+{
+	queue.push(ev);
+}
+
+static bool dequeue_event(SDL_Event* ev)
+{
+	if(queue.empty())
+		return false;
+	*ev = queue.front();
+	queue.pop();
+	return true;
+}
+
+static inline void queue_active_event()
+{
+	// SDL says this event is not generated when the window is created;
+	// therefore, skip the first time.
+	ONCE(return);
+
+	SDL_Event ev;
+	ev.type = SDL_ACTIVEEVENT;
+	ev.active.state = SDL_APPACTIVE;
+	ev.active.gain = (u8)app_active;
+	queue_event(ev);
+}
+
+static void queue_quit_event()
+{
+	SDL_Event ev;
+	ev.type = SDL_QUIT;
+	queue_event(ev);
+}
+
+static void queue_button_event(uint button, uint state, LPARAM lParam)
+{
+	SDL_Event ev;
+	ev.type = (state == SDL_PRESSED)? SDL_MOUSEBUTTONDOWN : SDL_MOUSEBUTTONUP;
+	ev.button.button = (u8)button;
+	ev.button.state  = (u8)state;
+	ev.button.x = LOWORD(lParam);
+	ev.button.y = HIWORD(lParam);
+	queue_event(ev);
+}
+
+
+static LRESULT CALLBACK wndproc(HWND hWnd, uint uMsg, WPARAM wParam, LPARAM lParam)
+{
+	if(is_shutdown)
+		return DefWindowProc(hWnd, uMsg, wParam, lParam);
+
+	switch(uMsg)
+	{
+	case WM_PAINT:
+		PAINTSTRUCT ps;
+		BeginPaint(hWnd, &ps);
+		EndPaint(hWnd, &ps);
+		return 0;
+
+	case WM_ERASEBKGND:
+		return 0;
+
+	// prevent selecting menu in fullscreen mode
+	case WM_NCHITTEST:
+		if(fullscreen)
+			return HTCLIENT;
+		break;
+
+	case WM_ACTIVATE:
+		app_active = LOWORD(wParam) != 0;
+
+		gamma_swap(app_active? GAMMA_LATCH_NEW_RAMP : GAMMA_RESTORE_ORIGINAL);
+
+		if(fullscreen)
+		{
+			// (re)activating
+			if(app_active)
+			{
+				ChangeDisplaySettings(&dm, CDS_FULLSCREEN);
+				ShowWindow(hWnd, SW_RESTORE);
+			}
+			// deactivating
+			else
+			{
+				ChangeDisplaySettings(0, 0);
+				ShowWindow(hWnd, SW_MINIMIZE);
+			}
+		}
+
+		queue_active_event();
+		break;
+
+	case WM_DESTROY:
+		queue_quit_event();
+		break;
+
+	case WM_SYSCOMMAND:
+		switch(wParam)
+		{
+		// prevent moving, sizing, screensaver, and power-off in fullscreen mode
+		case SC_MOVE:
+		case SC_SIZE:
+		case SC_MAXIMIZE:
+		case SC_MONITORPOWER:
+			if(fullscreen)
+				return 1;
+			break;
+
+		// Alt+F4 or system menu doubleclick/exit
+		case SC_CLOSE:
+			queue_quit_event();
+			break;
+		}
+		break;
+
+	case WM_SYSKEYUP:
+	case WM_KEYUP:
+		// TODO Mappings for left/right modifier keys
+		// TODO Modifier statekeeping
+
+		{
+		SDL_Event ev;
+		ev.type = SDL_KEYUP;
+		ev.key.keysym.sym = vkmap((int)wParam);
+		ev.key.keysym.unicode = 0;
+		queue_event(ev);
+		}
+		return 1;
+
+	case WM_MOUSEWHEEL:
+		{
+			short delta = (short)HIWORD(wParam);
+			uint button = (delta < 0)? SDL_BUTTON_WHEELDOWN : SDL_BUTTON_WHEELUP;
+			// SDL says this sends a down message followed by up.
+			queue_button_event(button, SDL_PRESSED, lParam);
+			queue_button_event(button, SDL_RELEASED, lParam);
+		}
+		break;
+
+	case WM_LBUTTONDOWN:
+		queue_button_event(SDL_BUTTON_LEFT, SDL_PRESSED, lParam);
+		break;
+	case WM_LBUTTONUP:
+		queue_button_event(SDL_BUTTON_LEFT, SDL_RELEASED, lParam);
+		break;
+	case WM_RBUTTONDOWN:
+		queue_button_event(SDL_BUTTON_RIGHT, SDL_PRESSED, lParam);
+		break;
+	case WM_RBUTTONUP:
+		queue_button_event(SDL_BUTTON_RIGHT, SDL_RELEASED, lParam);
+		break;
+	case WM_MBUTTONDOWN:
+		queue_button_event(SDL_BUTTON_MIDDLE, SDL_PRESSED, lParam);
+		break;
+	case WM_MBUTTONUP:
+		queue_button_event(SDL_BUTTON_MIDDLE, SDL_RELEASED, lParam);
+		break;
+
+	default:
+		// can't call DefWindowProc here: some messages
+		// are only conditionally 'grabbed' (e.g. NCHITTEST)
+		break;
+	}
+
+	return DefWindowProc(hWnd, uMsg, wParam, lParam);
+}
+
+
+// always on (we don't care about the extra overhead)
+int SDL_EnableUNICODE(int UNUSED(enable))
+{
+	return 1;
+}
+
+// Translate Windows VK's into our SDLK's for keys that must be translated
 int SDL_WaitEvent(SDL_Event* ev)
 {
-	debug_assert(ev == 0 && "can't store event, since wsdl doesn't have a real queue");
+	debug_assert(ev == 0 && "storing ev isn't implemented");
 	WaitMessage();
 	return 0;
 }
@@ -384,123 +496,58 @@ return_char:
 	}
 
 
+	if(dequeue_event(ev))
+		return 1;
+
 	// events that trigger messages (mouse done below)
 	MSG msg;
 	while(PeekMessageW(&msg, 0, 0, 0, PM_REMOVE))
 	{
 		DispatchMessageW(&msg);
 
-		int sdl_btn = -1;
-
 		switch(msg.message)
 		{
-		case WM_SYSCOMMAND:
-			switch(msg.wParam)
-			{
-			// prevent moving, sizing, screensaver, and power-off in fullscreen mode
-			case SC_MOVE:
-			case SC_SIZE:
-			case SC_MAXIMIZE:
-			case SC_MONITORPOWER:
-				if(fullscreen)
-					return 1;
-				break;
-
-			case SC_CLOSE:
-				ev->type = SDL_QUIT;
-				return 1;
-
-			default:
-				break;
-			}
-			break;
-
 		case WM_SYSKEYDOWN:
 		case WM_KEYDOWN:
-		{
-			UINT vk = (UINT)msg.wParam;
-			UINT scancode = (UINT)((msg.lParam >> 16) & 0xff);
-			u8 key_states[256];
-			GetKeyboardState(key_states);
+			{
+				UINT vk = (UINT)msg.wParam;
+				UINT scancode = (UINT)((msg.lParam >> 16) & 0xff);
+				u8 key_states[256];
+				GetKeyboardState(key_states);
 
-			num_chars = ToUnicode(vk, scancode, key_states, char_buf, CHAR_BUF_SIZE, 0);
-			next_char_idx = 0;
-			if(num_chars > 0)
-			{
-				// Translation complete: Produce one or more Unicode chars
-				char_buf[num_chars]=0;
-				translated_keysym=vkmap(vk);
-				//wprintf(L"ToUnicode: Translated %02x to [%s], %d chars, SDLK %02x. Extended flag %d, scancode %d\n", vk, char_buf, num_chars, translated_keysym, msg.lParam & 0x01000000, scancode);
-				goto return_char;
-			}
-			else if (num_chars == -1)
-			{
-				// Dead Key: Don't produce an event for this one
-				//printf("ToUnicode: Dead Key %02x [%c] [%c] SDLK %02x\n", vk, vk, char_buf[0], vkmap(vk));
-				num_chars = 0;
-				break;
+				num_chars = ToUnicode(vk, scancode, key_states, char_buf, CHAR_BUF_SIZE, 0);
+				next_char_idx = 0;
+				if(num_chars > 0)
+				{
+					// Translation complete: Produce one or more Unicode chars
+					char_buf[num_chars]=0;
+					translated_keysym=vkmap(vk);
+					//wprintf(L"ToUnicode: Translated %02x to [%s], %d chars, SDLK %02x. Extended flag %d, scancode %d\n", vk, char_buf, num_chars, translated_keysym, msg.lParam & 0x01000000, scancode);
+					goto return_char;
+				}
+				else if (num_chars == -1)
+				{
+					// Dead Key: Don't produce an event for this one
+					//printf("ToUnicode: Dead Key %02x [%c] [%c] SDLK %02x\n", vk, vk, char_buf[0], vkmap(vk));
+					num_chars = 0;
+					break;
 					// leave the switch statement; get next message.
-			}
-			// num_chars == 0: No translation: Just produce a plain KEYDOWN event
+				}
+				// num_chars == 0: No translation: Just produce a plain KEYDOWN event
 
-			// TODO Mappings for left/right modifier keys
-			// TODO Modifier statekeeping
+				// TODO Mappings for left/right modifier keys
+				// TODO Modifier statekeeping
 
-			ev->type = SDL_KEYDOWN;
-			ev->key.keysym.sym = vkmap(vk);
-			ev->key.keysym.unicode = 0;
+				ev->type = SDL_KEYDOWN;
+				ev->key.keysym.sym = vkmap(vk);
+				ev->key.keysym.unicode = 0;
 
-			//printf("ToUnicode: No translation for %02x, extended flag %d, scancode %d, SDLK %02x [%c]\n", vk, msg.lParam & 0x01000000, scancode, ev->key.keysym.sym, ev->key.keysym.sym);
+				//printf("ToUnicode: No translation for %02x, extended flag %d, scancode %d, SDLK %02x [%c]\n", vk, msg.lParam & 0x01000000, scancode, ev.key.keysym.sym, ev.key.keysym.sym);
 
-			return 1;
-		}
-
-		case WM_SYSKEYUP:
-		case WM_KEYUP:
-			// TODO Mappings for left/right modifier keys
-			// TODO Modifier statekeeping
-
-			ev->type = SDL_KEYUP;
-			ev->key.keysym.sym = vkmap((int)msg.wParam);
-			ev->key.keysym.unicode = 0;
-			return 1;
-
-		case WM_MOUSEWHEEL:
-			sdl_btn = (msg.wParam & BIT(31))? SDL_BUTTON_WHEELUP : SDL_BUTTON_WHEELDOWN;
-			break;	// event filled in mouse code below
-		default:
-			if( ( msg.message >= WM_APP ) && ( msg.message < 0xC000 ) ) // 0xC000 = maximum application message
-			{
-				debug_assert( SDL_USEREVENT+(msg.message-WM_APP) <= 0xff && "Message too far above WM_APP");
-				ev->type = (u8)(SDL_USEREVENT+(msg.message-WM_APP));
-				ev->user.code = (int)msg.wParam;
 				return 1;
 			}
-			break;
-		}
-
-		// mouse button
-		// map Win L(up,down,double),R(),M() to L,R,M with up flag
-		uint btn = msg.message-0x201;	// 0..8 if it's a valid button;
-		if(btn < 9 && btn%3 != 2)		// every third msg is dblclick
-			sdl_btn = SDL_BUTTON_LEFT + btn/3;	// assumes L,R,M
-		if(sdl_btn != -1)
-		{
-			ev->type = (u8)(SDL_MOUSEBUTTONDOWN + btn%3);
-			ev->button.button = (u8)sdl_btn;
-			ev->button.x = (u16)(msg.lParam & 0xffff);
-			ev->button.y = (u16)((msg.lParam >> 16) & 0xffff);
-			return 1;
 		}
 	}
-
-	if(got_quit_msg)
-	{
-		got_quit_msg = false;
-		ev->type = SDL_QUIT;
-		return 1;
-	}
-
 
 	// mouse motion
 	//
@@ -517,30 +564,12 @@ return_char:
 		return 1;
 	}
 
-	// app activate
-	// WM_ACTIVATE is only sent to the wndproc, apparently,
-	// so we have to poll here.
-	static bool last_app_active = true;
-		// true => suppress first event (as documented by SDL)
-	if(app_active != last_app_active)
-	{
-		last_app_active = app_active;
-	
-		ev->type = SDL_ACTIVEEVENT;
-		ev->active.state = SDL_APPACTIVE;
-		ev->active.gain = (u8)app_active;
-		return 1;
-	}
-
 	return 0;
 }
 
 int SDL_PushEvent(SDL_Event* ev)
 {
-	if( ev->type < SDL_USEREVENT )
-		return -1;
-	// Use Windows app-global user events.
-	PostMessage(NULL, WM_APP + ( ev->type - SDL_USEREVENT ), ev->user.code, 0);
+	queue_event(*ev);
 	return 0;
 }
 
@@ -771,7 +800,7 @@ keep:
 	RECT r;
 	r.left = r.top = 0;
 	r.right = w; r.bottom = h;
-	if (AdjustWindowRectEx(&r, windowStyle, false, 0))
+	if (AdjustWindowRectEx(&r, windowStyle, FALSE, 0))
 	{
 		w = r.right - r.left;
 		h = r.bottom - r.top;
@@ -1086,181 +1115,3 @@ int SDL_KillThread(SDL_Thread* thread)
 	return 0;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-
-static bool need_redisplay;	// display callback should be called in next main loop iteration
-
-
-
-// glut callbacks
-static void (*idle)();
-static void (*display)();
-static void (*key)(int, int, int);
-static void (*special)(int, int, int);
-static void (*mouse)(int, int, int, int);
-
-void glutIdleFunc(void (*func)())
-{ idle = func; }
-
-void glutDisplayFunc(void (*func)())
-{ display = func; }
-
-void glutKeyboardFunc(void (*func)(int, int, int))
-{ key = func; }
-
-void glutSpecialFunc(void (*func)(int, int, int))
-{ special = func; }
-
-void glutMouseFunc(void (*func)(int, int, int, int))
-{ mouse = func; }
-
-
-
-
-
-
-
-
-
-void glutInit(int* UNUSED(argc), char* UNUSED(argv)[])
-{
-	SDL_Init(0);
-	atexit(SDL_Quit);
-}
-
-
-int glutGet(int arg)
-{
-	if(arg == GLUT_ELAPSED_TIME)
-		return GetTickCount();
-
-	dm.dmSize = sizeof(DEVMODE);
-	EnumDisplaySettings(0, ENUM_CURRENT_SETTINGS, &dm);
-
-	if(arg == GLUT_SCREEN_WIDTH)
-		return dm.dmPelsWidth;
-	if(arg == GLUT_SCREEN_HEIGHT)
-		return dm.dmPelsHeight;
-
-	return 0;
-}
-
-
-static int w, h, bpp, refresh;
-
-int glutGameModeString(const char* str)
-{
-	// default = "don't care", in case string doesn't specify all values
-	w = 0, h = 0, bpp = 0, refresh = 0;
-
-	sscanf(str, "%dx%d:%d@%d", &w, &h, &bpp, &refresh);
-
-	return 1;
-}
-
-
-
-int glutEnterGameMode()
-{
-	return SDL_SetVideoMode(w, h, bpp, SDL_OPENGL|SDL_FULLSCREEN);
-}
-
-
-
-inline void glutPostRedisplay()
-{
-	need_redisplay = true;
-}
-
-
-void glutSetCursor(int cursor)
-{
-	SetCursor(LoadCursor(NULL, MAKEINTRESOURCE(cursor)));
-}
-
-
-
-
-// GLUT message handler
-// message also goes to the shared wndproc
-//
-// not done in wndproc to separate GLUT and SDL;
-// split out of glutMainLoop for clarity.
-static void glut_process_msg(MSG* msg)
-{
-	switch(msg->message)
-	{
-	case WM_PAINT:
-		need_redisplay = true;
-		break;
-
-	case WM_CHAR:
-		if(key)
-			key((int)msg->wParam, mouse_x, mouse_y);
-		break;
-
-	case WM_KEYDOWN:
-		if(special)
-			special((int)msg->wParam, mouse_x, mouse_y);
-		break;
-
-	case WM_LBUTTONDOWN:
-	case WM_RBUTTONDOWN:	// FIXME: only left/right clicks, assume GLUT_LEFT|RIGHT_BUTTON == 0, 1
-		if(mouse)
-			mouse(msg->message == WM_RBUTTONDOWN, GLUT_DOWN, (int)(msg->lParam & 0xffff), (int)(msg->lParam >> 16));
-		break;
-
-	case WM_MOUSEWHEEL:
-		if(mouse)
-			mouse(GLUT_MIDDLE_BUTTON, ((short)(msg->wParam >> 16) > 0)? GLUT_UP : GLUT_DOWN, 0, 0);
-		break;
-	}
-}
-
-
-void glutMainLoop()
-{
-	for(;;)
-	{
-		if(!app_active)
-			WaitMessage();
-
-		MSG msg;
-		if(PeekMessage(&msg, 0, 0, 0, PM_REMOVE))
-		{
-			glut_process_msg(&msg);
-
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
-
-		if(idle)
-			idle();
-
-		if(need_redisplay)
-		{
-			need_redisplay = false;
-			display();
-		}
-	}
-}
-*/

@@ -8,8 +8,8 @@
 #include "CStr.h"
 
 extern CConsole* g_Console;
-extern bool keys[SDLK_LAST];
-extern bool mouse_buttons[5];
+extern bool g_keys[];
+extern bool g_mouse_buttons[];
 bool unified[5];
 
 /* SDL-type */
@@ -423,11 +423,11 @@ int hotkeyInputHandler( const SDL_Event* ev )
 
 			if( keyCode < SDLK_LAST )
 			{
-				if( keys[keyCode] != rqdState ) accept = false;
+				if( g_keys[keyCode] != rqdState ) accept = false;
 			}
 			else if( keyCode < UNIFIED_SHIFT )
 			{
-				if( mouse_buttons[keyCode-SDLK_LAST] != rqdState ) accept = false;
+				if( g_mouse_buttons[keyCode-SDLK_LAST] != rqdState ) accept = false;
 			}
 			else if( (uint)(keyCode-UNIFIED_SHIFT) < ARRAY_SIZE(unified) )
 			{
@@ -490,11 +490,11 @@ int hotkeyInputHandler( const SDL_Event* ev )
 
 			if( keyCode < SDLK_LAST )
 			{
-				if( keys[keyCode] != rqdState ) accept = false;
+				if( g_keys[keyCode] != rqdState ) accept = false;
 			}
 			else if( keyCode < UNIFIED_SHIFT )
 			{
-				if( mouse_buttons[keyCode-SDLK_LAST] != rqdState ) accept = false;
+				if( g_mouse_buttons[keyCode-SDLK_LAST] != rqdState ) accept = false;
 			}
 			else if( (uint)(keyCode-UNIFIED_SHIFT) < ARRAY_SIZE(unified) )
 			{
@@ -561,11 +561,11 @@ int hotkeyInputHandler( const SDL_Event* ev )
 		{
 			if( *itKey < SDLK_LAST )
 			{
-				if( !keys[*itKey] ) accept = false;
+				if( !g_keys[*itKey] ) accept = false;
 			}
 			else if( *itKey < UNIFIED_SHIFT )
 			{
-				if( !mouse_buttons[(*itKey)-SDLK_LAST] ) accept = false;
+				if( !g_mouse_buttons[(*itKey)-SDLK_LAST] ) accept = false;
 			}
 			else
 				if( !unified[(*itKey)-UNIFIED_SHIFT] ) accept = false;

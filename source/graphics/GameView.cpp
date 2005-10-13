@@ -36,8 +36,9 @@
 #include "lib.h"
 #include "timer.h"
 
-extern float g_MaxZoomHeight;
-extern float g_YMinOffset;
+float g_MaxZoomHeight=350.0f;	//note:  Max terrain height is this minus YMinOffset
+float g_YMinOffset=50.0f;
+
 extern int g_xres, g_yres;
 extern bool g_active;
 
@@ -619,8 +620,8 @@ int CGameView::HandleEvent(const SDL_Event* ev)
 			return( EV_HANDLED );
 
 		// Mouse wheel must be treated using events instead of polling,
-		// because SDL auto-generates a sequence of mousedown/mouseup events automatically 
-		// on Linux, and we never get to see the "down" state inside Update().
+		// because SDL auto-generates a sequence of mousedown/mouseup events
+		// and we never get to see the "down" state inside Update().
 		case HOTKEY_CAMERA_ZOOM_WHEEL_IN:
 			m_ZoomDelta += m_ViewZoomSensitivityWheel;
 			return( EV_HANDLED );

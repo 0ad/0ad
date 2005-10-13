@@ -40,25 +40,21 @@ that of Atlas depending on commandline parameters.
 #define LOG_CATEGORY "main"
 
 
-//////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////
 void kill_mainloop();
-//////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////
-
 
 
 //
 // main app message handler
 //
 
-bool keys[SDLK_LAST];
-bool mouse_buttons[6];	// CAN REMOVE AFTER MOVING RESET TO WSDL
-
 bool g_active = true;
+
+bool g_keys[SDLK_LAST];
 int g_mouse_x = 50, g_mouse_y = 50;
-float g_MaxZoomHeight=350.0f;	//note:  Max terrain height is this minus YMinOffset
-float g_YMinOffset=50.0f;	
+
+// left, right, middle, wheel up, wheel down
+// (order is given by SDL_BUTTON_* constants).
+bool g_mouse_buttons[5];
 
 static int MainInputHandler(const SDL_Event* ev)
 {
@@ -74,26 +70,31 @@ static int MainInputHandler(const SDL_Event* ev)
 		g_active = (ev->active.gain != 0);
 		break;
 
+	case SDL_MOUSEMOTION:
+		g_mouse_x = ev->motion.x;
+		g_mouse_y = ev->motion.y;
+		break;
+
 	case SDL_KEYDOWN:
 	case SDL_KEYUP:
 		c = ev->key.keysym.sym;
-		// Prevent out-of-range writes on faked key events
-		if (c < SDLK_LAST)
-			keys[c] = (ev->type == SDL_KEYDOWN);
+		if(c < ARRAY_SIZE(g_keys))
+			g_keys[c] = (ev->type == SDL_KEYDOWN);
+		else
+		{
+			// don't complain: this happens when the hotkey system
+			// spoofs keys (it assigns values starting from SDLK_LAST)
+			//debug_warn("MainInputHandler: invalid key");
+		}
 		break;
 
 	case SDL_MOUSEBUTTONDOWN:
 	case SDL_MOUSEBUTTONUP:
 		c = ev->button.button;
-		if(c < ARRAY_SIZE(mouse_buttons))
-			mouse_buttons[c] = (ev->type == SDL_MOUSEBUTTONDOWN);
+		if(c < ARRAY_SIZE(g_mouse_buttons))
+			g_mouse_buttons[c] = (ev->type == SDL_MOUSEBUTTONDOWN);
 		else
 			debug_warn("MainInputHandler: invalid mouse button");
-		break;
-
-	case SDL_MOUSEMOTION:
-		g_mouse_x = ev->motion.x;
-		g_mouse_y = ev->motion.y;
 		break;
 
 	case SDL_HOTKEYDOWN:
@@ -101,19 +102,16 @@ static int MainInputHandler(const SDL_Event* ev)
 		{
 		case HOTKEY_EXIT:
 			kill_mainloop();
-			break;
+			return EV_HANDLED;
 
 		case HOTKEY_SCREENSHOT:
 			WriteScreenshot("png");
-			break;
-
-		case HOTKEY_PLAYMUSIC:
-			break;
+			return EV_HANDLED;
 
 		default:
-			return EV_PASS;
+			break;
 		}
-		return EV_HANDLED;
+		break;
 	}
 
 	return EV_PASS;
@@ -255,21 +253,6 @@ static void Frame()
 	g_Console->Update(TimeSinceLastFrame);
 	PROFILE_END( "update console" );
 
-	// TODO: ugly, but necessary. these are one-shot events, have to be reset.
-
-	// Spoof mousebuttonup events for the hotkey system
-	SDL_Event spoof;
-	spoof.type = SDL_MOUSEBUTTONUP;
-	spoof.button.button = SDL_BUTTON_WHEELUP;
-	if( mouse_buttons[SDL_BUTTON_WHEELUP] )
-		hotkeyInputHandler( &spoof );
-	spoof.button.button = SDL_BUTTON_WHEELDOWN;
-	if( mouse_buttons[SDL_BUTTON_WHEELDOWN] )
-		hotkeyInputHandler( &spoof );
-
-	mouse_buttons[SDL_BUTTON_WHEELUP] = false;
-	mouse_buttons[SDL_BUTTON_WHEELDOWN] = false;
-
 	PROFILE_START( "render" );
 	oglCheck();
 
@@ -322,7 +305,8 @@ static void MainControllerShutdown()
 
 static bool quit = false;	// break out of main loop
 
-// HACK: Let code from other files (i.e. the scripting system) quit
+// stop the main loop and trigger orderly shutdown. called from several
+// places: the event handler (SDL_QUIT and hotkey) and JS exitProgram.
 void kill_mainloop()
 {
 	quit = true;

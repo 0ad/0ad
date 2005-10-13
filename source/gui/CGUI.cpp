@@ -55,7 +55,7 @@ JSClass GUIClass = {
 
 // Globals used.
 extern int g_xres, g_yres;
-extern bool keys[SDLK_LAST];
+extern bool g_keys[];
 
 //-------------------------------------------------------------------
 //	called from main loop when (input) events are received.
@@ -164,8 +164,6 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 				}
 				break;
 
-			// TODO Gee (!!!): This is weird, I've tested this, and mousewheelup is
-			//  what I would call mousewheeldown!
 			case SDL_BUTTON_WHEELDOWN: // wheel down
 				if (pNearest)
 				{
@@ -247,8 +245,8 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 		if (
 			(ev->type == SDL_KEYDOWN &&
 				ev->key.keysym.sym != SDLK_ESCAPE &&
-				!keys[SDLK_LCTRL] && !keys[SDLK_RCTRL] &&
-				!keys[SDLK_LALT] && !keys[SDLK_RALT]) 
+				!g_keys[SDLK_LCTRL] && !g_keys[SDLK_RCTRL] &&
+				!g_keys[SDLK_LALT] && !g_keys[SDLK_RALT]) 
 			|| ev->type == SDL_HOTKEYDOWN
 			)
 		{

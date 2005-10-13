@@ -202,8 +202,7 @@ typedef struct
 }
 SDL_QuitEvent;
 
-// SDL_MouseButtonEvent.button
-enum
+enum SDL_MouseButtonEvent_button
 {
 	// do not change order or values
 	// ... but if you do, update lib/sdl.h so that SDL_BUTTON_TO_INDEX still
@@ -216,6 +215,12 @@ enum
 	SDL_BUTTON_WHEELDOWN=4
 };
 
+enum SDL_MouseButtonEvent_state
+{
+	SDL_RELEASED = 0,
+	SDL_PRESSED  = 1
+};
+
 typedef struct
 {
 	Uint8 type;
@@ -225,8 +230,7 @@ typedef struct
 }
 SDL_MouseButtonEvent;
 
-// SDL_ActiveEvent.state
-enum
+enum SDL_ActiveEvent_state
 {
 	SDL_APPACTIVE     = 1,
 	SDL_APPMOUSEFOCUS = 2,
@@ -248,8 +252,7 @@ typedef struct
 }
 SDL_UserEvent;
 
-// SDL_Event.type
-enum
+enum SDL_Event_type
 {
 	SDL_KEYDOWN,
 	SDL_KEYUP,
