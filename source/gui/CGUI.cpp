@@ -73,7 +73,7 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 
 	if (ev->type == SDL_GUIHOTKEYPRESS)
 	{
-		const CStr& objectName = *(CStr*) ev->user.code;
+		const CStr& objectName = *(CStr*) ev->user.data1;
 		IGUIObject* object = FindObjectByName(objectName);
 		if (! object)
 		{

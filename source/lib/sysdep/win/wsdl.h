@@ -248,7 +248,8 @@ SDL_ActiveEvent;
 typedef struct
 {
 	Uint8 type;
-	intptr_t code;
+	int code;
+	void* data1;
 }
 SDL_UserEvent;
 

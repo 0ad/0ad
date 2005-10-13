@@ -23,7 +23,8 @@ CNetLog::~CNetLog()
 {
 	if (m_Initialized)
 	{
-		fclose(m_pFile);
+		if(m_pFile)	// JW: avoid warning
+			fclose(m_pFile);
 	}
 }
 

@@ -236,8 +236,11 @@
 #endif
 
 // clock_gettime()
-#if OS_LINUX
-# define HAVE_CLOCK_GETTIME 1
+#if OS_UNIX
+# include <unistd.h>
+# if (defined(_POSIX_TIMERS) && _POSIX_TIMERS > 0)
+#  define HAVE_CLOCK_GETTIME 1
+# endif
 #else
 # define HAVE_CLOCK_GETTIME 0
 #endif

@@ -156,7 +156,7 @@ static int convert_path(char* dst, const char* src, Conversion conv = TO_NATIVE)
 	{
 		len++;
 		if(len >= PATH_MAX)
-			return ERR_PATH_LENGTH;
+			CHECK_ERR(ERR_PATH_LENGTH);
 
 		char c = *s++;
 
@@ -172,7 +172,7 @@ static int convert_path(char* dst, const char* src, Conversion conv = TO_NATIVE)
 }
 
 
-// set by file_rel_chdir
+// set by file_set_root_dir
 static char n_root_dir[PATH_MAX];
 static size_t n_root_dir_len;
 
@@ -209,7 +209,7 @@ int file_make_full_native_path(const char* path, char* n_full_path)
 // return the portable equivalent of the given relative native path
 // (i.e. convert the platform's directory separators to '/')
 // n_full_path is absolute; if it doesn't match the current dir, fail.
-// (note: portable paths are always relative to file_rel_chdir root).
+// (note: portable paths are always relative to the file root dir).
 // makes sure length < PATH_MAX.
 int file_make_full_portable_path(const char* n_full_path, char* path)
 {
@@ -221,18 +221,20 @@ int file_make_full_portable_path(const char* n_full_path, char* path)
 }
 
 
-// set current directory to rel_path, relative to the path to the executable,
-// which is taken from argv0.
+// establish the root directory from <rel_path>, which is treated as
+// relative to the executable's directory (determined via argv[0]).
+// all relative file paths passed to this module will be based from
+// this root dir. 
 //
 // example: executable in "$install_dir/system"; desired root dir is
 // "$install_dir/data" => rel_path = "../data".
 //
-// this is necessary because the current directory is unknown at startup
+// argv[0] is necessary because the current directory is unknown at startup
 // (e.g. it isn't set when invoked via batch file), and this is the
 // easiest portable way to find our install directory.
 //
 // can only be called once, by design (see below). rel_path is trusted.
-int file_rel_chdir(const char* argv0, const char* rel_path)
+int file_set_root_dir(const char* argv0, const char* rel_path)
 {
 	const char* msg = 0;
 
@@ -265,36 +267,32 @@ int file_rel_chdir(const char* argv0, const char* rel_path)
 	if(access(n_path, X_OK) < 0)
 		goto fail;
 
-	// strip executable name and append rel_path
+	// strip executable name, append rel_path, convert to native
 	char* fn = strrchr(n_path, DIR_SEP);
 	if(!fn)
 	{
 		msg = "realpath returned an invalid path?";
 		goto fail;
 	}
-	CHECK_ERR(file_make_native_path(rel_path, fn+1));
+	RETURN_ERR(file_make_native_path(rel_path, fn+1));
 
-	if(chdir(n_path) < 0)
-		goto fail;
-
-	// get actual root dir - previous n_path may include ..
+	// get actual root dir - previous n_path may include ".."
 	// (slight optimization, speeds up path lookup)
-	if(getcwd(n_root_dir, sizeof(n_root_dir)) == 0)
+	if(!realpath(n_path, n_root_dir))
 		goto fail;
+	// .. append DIR_SEP to simplify code that uses n_root_dir
+	//    (note: already 0-terminated, since it's static)
 	n_root_dir_len = strlen(n_root_dir)+1;	// +1 for trailing DIR_SEP
 	n_root_dir[n_root_dir_len-1] = DIR_SEP;
-		// append to simplify code that uses n_root_dir
-		// already 0-terminated, since it's static
-
 	return 0;
 
 	}
 
 fail:
-	debug_warn("file_rel_chdir failed");
+	debug_warn("file_set_root_dir failed");
 	if(msg)
 	{
-		debug_printf("file_rel_chdir: %s\n", msg);
+		debug_printf("file_set_root_dir: %s\n", msg);
 		return -1;
 	}
 
@@ -336,7 +334,7 @@ int dir_open(const char* P_path, DirIterator* d_)
 	// note: copying to n_path and then pp.path is inefficient but
 	// more clear/robust. this is only called a few hundred times anyway.
 	char n_path[PATH_MAX];
-	CHECK_ERR(file_make_native_path(P_path, n_path));
+	CHECK_ERR(file_make_full_native_path(P_path, n_path));
 
 	d->os_dir = opendir(n_path);
 	if(!d->os_dir)
@@ -524,7 +522,7 @@ int file_stat(const char* path, struct stat* s)
 	memset(s, 0, sizeof(struct stat));
 
 	char n_path[PATH_MAX+1];
-	CHECK_ERR(file_make_native_path(path, n_path));
+	CHECK_ERR(file_make_full_native_path(path, n_path));
 
 	return stat(n_path, s);
 }
@@ -591,7 +589,7 @@ int file_open(const char* p_fn, const uint flags, File* f)
 		return ERR_INVALID_PARAM;
 
 	char n_fn[PATH_MAX];
-	RETURN_ERR(file_make_native_path(p_fn, n_fn));
+	RETURN_ERR(file_make_full_native_path(p_fn, n_fn));
 
 	if(!f)
 		goto invalid_f;
@@ -1031,7 +1029,7 @@ int file_invalidate_cache(const char* fn)
 {
 	// convert to native path to match fn_hash set by file_open
 	char n_fn[PATH_MAX];
-	file_make_native_path(fn, n_fn);
+	file_make_full_native_path(fn, n_fn);
 
 	const u32 fn_hash = fnv_hash(fn);
 	// notes:

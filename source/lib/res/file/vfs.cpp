@@ -778,7 +778,7 @@ static void vfs_init_once(void)
 //
 // rationale: initialization could be done implicitly by calling this
 // from all VFS APIs. we refrain from that and require the user to
-// call this because a central point of initialization (file_rel_chdir)
+// call this because a central point of initialization (file_set_root_dir)
 // is necessary anyway and this way is simpler/easier to maintain.
 void vfs_init()
 {

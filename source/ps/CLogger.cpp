@@ -34,8 +34,6 @@ CLogger::CLogger()
 	m_CurrentPosition = m_MemoryLogBuffer;
 
 	// current directory is $install_dir/data, we want $install_dir/logs.
-	// TODO: make sure we are called after file_rel_chdir,
-	// or else cur dir may be anywhere
 	m_MainLog.open			("../logs/mainlog.html",		ofstream::out | ofstream::trunc);
 	m_InterestingLog.open	("../logs/interestinglog.html",	ofstream::out | ofstream::trunc);
 	m_MemoryLog.open		("../logs/memorylog.html",		ofstream::out | ofstream::trunc);

@@ -56,7 +56,7 @@ extern bool file_is_subpath(const char* s1, const char* s2);
 // verifies path length < PATH_MAX (otherwise return ERR_PATH_LENGTH).
 //
 
-// relative paths (relative to root, established with file_rel_chdir)
+// relative paths (relative to root dir)
 extern int file_make_native_path(const char* path, char* n_path);
 extern int file_make_portable_path(const char* n_path, char* path);
 
@@ -66,18 +66,20 @@ extern int file_make_full_native_path(const char* path, char* n_full_path);
 extern int file_make_full_portable_path(const char* n_full_path, char* path);
 
 
-// set current directory to rel_path, relative to the path to the executable,
-// which is taken from argv0.
+// establish the root directory from <rel_path>, which is treated as
+// relative to the executable's directory (determined via argv[0]).
+// all relative file paths passed to this module will be based from
+// this root dir. 
 //
 // example: executable in "$install_dir/system"; desired root dir is
 // "$install_dir/data" => rel_path = "../data".
 //
-// this is necessary because the current directory is unknown at startup
+// argv[0] is necessary because the current directory is unknown at startup
 // (e.g. it isn't set when invoked via batch file), and this is the
 // easiest portable way to find our install directory.
 //
-// can only be called once, by design (see source). rel_path is trusted.
-extern int file_rel_chdir(const char* argv0, const char* rel_path);
+// can only be called once, by design (see below). rel_path is trusted.
+extern int file_set_root_dir(const char* argv0, const char* rel_path);
 
 
 //

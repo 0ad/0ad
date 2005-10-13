@@ -535,7 +535,7 @@ int hotkeyInputHandler( const SDL_Event* ev )
 			for( obj_it = targets.begin(); obj_it != targets.end(); obj_it++ )
 			{
 				hotkeyNotification.type = SDL_GUIHOTKEYPRESS;
-				hotkeyNotification.user.code = (intptr_t)&(*obj_it);
+				hotkeyNotification.user.data1 = &(*obj_it);
 				SDL_PushEvent( &hotkeyNotification );
 			}
 		}	

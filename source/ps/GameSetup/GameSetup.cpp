@@ -449,16 +449,17 @@ static void InitScripting()
 static void InitVfs(const char* argv0)
 {
 	TIMER(InitVfs);
-	// set current directory to "$game_dir/data".
-	// this is necessary because it is otherwise unknown,
-	// especially if run from a shortcut / symlink.
+	// set root directory to "$game_dir/data". all relative file paths
+	// passed to file.cpp will be based from this dir.
+	// (we don't set current directory because other libraries may
+	// hijack it).
 	//
 	// "../data" is relative to the executable (in "$game_dir/system").
 	//
 	// rationale for data/ being root: untrusted scripts must not be
 	// allowed to overwrite critical game (or worse, OS) files.
 	// the VFS prevents any accesses to files above this directory.
-	int err = file_rel_chdir(argv0, "../data");
+	int err = file_set_root_dir(argv0, "../data");
 	WARN_ERR(err);
 
 	vfs_init();
