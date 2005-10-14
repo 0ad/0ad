@@ -557,18 +557,43 @@
 
 				<object name="pgSessionSetupMapFoWTxt" 
 					type="text"
-					size="5 110 110 130"
+					size="5 100 110 120"
 				>Fog of War:
 				</object>
 
 				<object name="pgSessionSetupMapFoWCheck"
 					style="wheatCrossBox"
 					type="checkbox"
-					size="120 110 140 130"
+					size="120 100 140 120"
 					checked="true"
 				/>
 
-				<object name="pgSessionSetupMapRevealTxt" 
+				<!--
+				- LINE OF SIGHT
+				-->
+
+				<object name="pgSessionSetupLosLabel" 
+					type="text"
+					style="wheatTextLabelBlack"
+					size="5 130 110 155"
+				>LOS:
+				</object>
+			
+				<object	name="pgSessionSetupLosSetting"
+					style="wheatDropDown"
+					type="dropdown"
+					size="115 125 100%-5 155"
+				>
+					<item>Normal</item>
+					<item>Explored</item>
+					<item>All Visible</item>
+
+					<action on="Load"><![CDATA[
+						getGUIObjectByName("pgSessionSetupLosSetting").selected = 2;
+				]]></action>
+				</object>
+				
+<!--				<object name="pgSessionSetupMapRevealTxt" 
 					type="text"
 					size="5 135 110 155"
 				>Reveal Map:
@@ -578,7 +603,7 @@
 					style="wheatCrossBox"
 					type="checkbox"
 					size="120 135 140 155"
-				/>
+				/>-->
 
 
 				<object name="pgSessionSetupMapSizeTxt" 
@@ -813,32 +838,6 @@ A large landmass with rivers, forests and coastal fishing grounds.
 				
 			</object>
 
-				<!--
-				==========================================
-				- LINE OF SIGHT
-				==========================================
-				-->
-
-				<object name="pgSessionSetupLosLabel" 
-					type="text"
-					style="wheatTextLabelBlack"
-					size="100%-200 0%+315 100%-35 0%+350"
-				>LOS:
-				</object>
-			
-				<object	name="pgSessionSetupLosSetting"
-					style="wheatDropDown"
-					type="dropdown"
-					size="100%-160 0%+310 100%-10 0%+350"
-				>
-					<item>Normal</item>
-					<item>Explored</item>
-					<item>All Visible</item>
-
-					<action on="Load"><![CDATA[
-						getGUIObjectByName("pgSessionSetupLosSetting").selected = 2;
-				]]></action>
-				</object>
 
 			<!--
 			==========================================
