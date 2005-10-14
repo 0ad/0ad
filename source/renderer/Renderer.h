@@ -371,6 +371,9 @@ protected:
 
 	// If false, use a multipass fallback for player colors.
 	bool m_FastPlayerColor;
+
+	// State used by LoadWaterTextures with progressive loading
+	uint cur_loading_water_tex;
 };
 
 

@@ -793,7 +793,7 @@ void Shutdown()
 # pragma optimize("", off)
 #endif
 
-void Init(int argc, char* argv[], bool setup_gfx, bool setup_gui)
+void Init(int argc, char* argv[], bool setup_videomode, bool setup_gui)
 {
 	debug_printf("INIT &argc=%p &argv=%p\n", &argc, &argv);
 
@@ -837,7 +837,7 @@ void Init(int argc, char* argv[], bool setup_gfx, bool setup_gui)
 	// and fonts are set later in InitPs())
 	g_Console = new CConsole();
 
-	if(setup_gfx)
+	if(setup_videomode)
 		InitSDL();
 
 	// preferred video mode = current desktop settings
@@ -860,7 +860,7 @@ void Init(int argc, char* argv[], bool setup_gfx, bool setup_gui)
 	bool windowed = false;
 	CFG_GET_SYS_VAL("windowed", Bool, windowed);
 
-	if (setup_gfx)
+	if (setup_videomode)
 	{
 		SDL_WM_SetCaption("0 A.D.", "0 A.D.");
 
@@ -870,13 +870,13 @@ void Init(int argc, char* argv[], bool setup_gfx, bool setup_gui)
 			LOG(ERROR, LOG_CATEGORY, "Could not set %dx%d graphics mode: %s", g_xres, g_yres, SDL_GetError());
 			throw PSERROR_System_VmodeFailed();
 		}
-
-		uint quality = 	SANE_TEX_QUALITY_DEFAULT;	// TODO: set value from config file
-		SetTextureQuality(quality);
-
-		// required by ogl_tex to detect broken gfx card/driver combos
-		get_gfx_info();
 	}
+
+	uint quality = SANE_TEX_QUALITY_DEFAULT;	// TODO: set value from config file
+	SetTextureQuality(quality);
+
+	// required by ogl_tex to detect broken gfx card/driver combos
+	get_gfx_info();
 
 	oglCheck();
 
@@ -961,7 +961,6 @@ void Init(int argc, char* argv[], bool setup_gfx, bool setup_gui)
 	}
 #endif
 
-	if (setup_gfx)
 	{
 		TIMER(Init_renderblank);
 		MICROLOG(L"render blank");

@@ -93,8 +93,8 @@ HWND hWnd = (HWND)INVALID_HANDLE_VALUE;
 											
 
 static DEVMODE dm;			// current video mode
-static HDC hDC;
-static HGLRC hGLRC;
+static HDC hDC = (HDC)INVALID_HANDLE_VALUE;
+static HGLRC hGLRC = (HGLRC)INVALID_HANDLE_VALUE;
 
 static int depth_bits = 24;	// depth buffer size; set via SDL_GL_SetAttribute
 

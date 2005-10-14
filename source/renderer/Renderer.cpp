@@ -90,6 +90,8 @@ CRenderer::CRenderer()
 	m_TWaterScrollCounter=0;
 	m_WaterCurrentTex=0;
 
+	cur_loading_water_tex = 0;
+
 	ONCE( ScriptingInit(); );
 }
 
@@ -1462,7 +1464,6 @@ void CRenderer::UnloadAlphaMaps()
 
 int CRenderer::LoadWaterTextures()
 {
-	uint i;
 	const uint num_textures = ARRAY_SIZE(m_WaterTexture);
 
 	// yield after this time is reached. balances increased progress bar
@@ -1471,26 +1472,30 @@ int CRenderer::LoadWaterTextures()
 
 	// initialize to 0 in case something fails below
 	// (we then abort the loop, but don't want undefined values in here)
-	for (i = 0; i < num_textures; i++)
-		m_WaterTexture[i] = 0;
+	if (cur_loading_water_tex == 0)
+	{
+		for (uint i = 0; i < num_textures; i++)
+			m_WaterTexture[i] = 0;
+	}
 
-	for (i = 0; i < num_textures; i++)
+	while (cur_loading_water_tex < num_textures)
 	{
 		char waterName[VFS_MAX_PATH];
 		// TODO: add a member variable and setter for this. (can't make this
 		// a parameter because this function is called via delay-load code)
 		const char* water_type = "animation2";
-		snprintf(waterName, ARRAY_SIZE(waterName), "art/textures/terrain/types/water/%s/water%02d.dds", water_type, i+1);
+		snprintf(waterName, ARRAY_SIZE(waterName), "art/textures/terrain/types/water/%s/water%02d.dds", water_type, cur_loading_water_tex+1);
 		Handle ht = ogl_tex_load(waterName);
 		if (ht <= 0)
 		{
 			LOG(ERROR, LOG_CATEGORY, "LoadWaterTextures failed on \"%s\"", waterName);
 			return ht;
 		}
-		m_WaterTexture[i]=ht;
+		m_WaterTexture[cur_loading_water_tex]=ht;
 		RETURN_ERR(ogl_tex_upload(ht));
-
-		LDR_CHECK_TIMEOUT(i, num_textures);
+		
+		cur_loading_water_tex++;
+		LDR_CHECK_TIMEOUT(cur_loading_water_tex, num_textures);
 	}
 
 	return 0;
