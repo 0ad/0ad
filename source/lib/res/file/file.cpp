@@ -331,10 +331,19 @@ int dir_open(const char* P_path, DirIterator* d_)
 {
 	DirIterator_* d = (DirIterator_*)d_;
 
-	// note: copying to n_path and then pp.path is inefficient but
-	// more clear/robust. this is only called a few hundred times anyway.
 	char n_path[PATH_MAX];
-	CHECK_ERR(file_make_full_native_path(P_path, n_path));
+	// HACK: allow calling with a full (absolute) native path.
+	// (required by wdetect).
+#if OS_WIN
+	if(P_path[1] == ':' && P_path[2] == '\\')
+		strcpy_s(n_path, ARRAY_SIZE(n_path), P_path);
+	else
+#endif
+	{
+		// note: copying to n_path and then pp.path is inefficient but
+		// more clear/robust. this is only called a few hundred times anyway.
+		RETURN_ERR(file_make_full_native_path(P_path, n_path));
+	}
 
 	d->os_dir = opendir(n_path);
 	if(!d->os_dir)

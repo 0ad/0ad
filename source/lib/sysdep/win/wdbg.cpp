@@ -281,7 +281,7 @@ static void* while_suspended_thread_func(void* user_arg)
 	if(err == (DWORD)-1)
 	{
 		debug_warn("while_suspended_thread_func: SuspendThread failed");
-		goto fail;
+		return (void*)(intptr_t)-1;
 	}
 	// target is now guaranteed to be suspended,
 	// since the Windows counter never goes negative.
@@ -292,9 +292,6 @@ static void* while_suspended_thread_func(void* user_arg)
 	debug_assert(err != 0);
 
 	return (void*)(intptr_t)ret;
-
-fail:
-	return (void*)(intptr_t)-1;
 }
 
 
@@ -357,9 +354,8 @@ brk_info;
 // Local Enable bits of all registers we enabled (used when restoring all).
 static DWORD brk_all_local_enables;
 
+// IA32 limit; will need to update brk_enable_in_ctx if this changes.
 static const uint MAX_BREAKPOINTS = 4;
-	// IA-32 limit; if this changes, make sure brk_enable still works!
-	// (we assume CONTEXT has contiguous Dr0..Dr3 register fields)
 
 
 // remove all breakpoints enabled by debug_set_break from <context>.
@@ -376,7 +372,7 @@ static int brk_disable_all_in_ctx(BreakInfo* UNUSED(bi), CONTEXT* context)
 // called while target is suspended.
 static int brk_enable_in_ctx(BreakInfo* bi, CONTEXT* context)
 {
-	int reg;	// index (0..3) of first free reg
+	uint reg;	// index (0..3) of first free reg
 	uint LE;	// local enable bit for <reg>
 
 	// find free debug register.
@@ -391,12 +387,20 @@ static int brk_enable_in_ctx(BreakInfo* bi, CONTEXT* context)
 	return ERR_LIMIT;
 have_reg:
 
-	// set value and mark as enabled.
-	(&context->Dr0)[reg] = (DWORD)bi->addr;	// see MAX_BREAKPOINTS
-	context->Dr7 |= LE;
-	brk_all_local_enables |= LE;
+	// store breakpoint address in debug register.
+	DWORD addr = (DWORD)bi->addr;
+	// .. note: treating Dr0..Dr3 as an array is unsafe due to
+	//    possible struct member padding.
+	switch(reg)
+	{
+	case 0:	context->Dr0 = addr; break;
+	case 1:	context->Dr1 = addr; break;
+	case 2:	context->Dr2 = addr; break;
+	case 3:	context->Dr3 = addr; break;
+	default: UNREACHABLE;
+	}
 
-	// build Debug Control Register value.
+	// choose breakpoint settings:
 	// .. type
 	uint rw = 0;
 	switch(bi->type)
@@ -410,7 +414,7 @@ have_reg:
 	default:
 		debug_warn("brk_enable_in_ctx: invalid type");
 	}
-	// .. length (determined from addr's alignment).
+	// .. length (determine from addr's alignment).
 	//    note: IA-32 requires len=0 for code breakpoints.
 	uint len = 0;
 	if(bi->type != DBG_BREAK_CODE)
@@ -424,15 +428,18 @@ have_reg:
 			len = 3;
 		// else: 1 byte range; len already set to 0
 	}
+
+	// update Debug Control register
 	const uint shift = (16 + reg*4);
-	const uint field = (len << 2) | rw;
+	// .. clear previous contents of this reg's field
+	//    (in case the previous user didn't do so on disabling).
+	context->Dr7 &= ~(0xFu << shift);
+	// .. write settings
+	context->Dr7 |= ((len << 2)|rw) << shift;
+	// .. mark as enabled
+	context->Dr7 |= LE;
 
-	// clear previous contents of this reg's field
-	// (in case the previous user didn't do so on disabling).
-	const uint mask = 0xFu << shift;
-	context->Dr7 &= ~mask;
-
-	context->Dr7 |= field << shift;
+	brk_all_local_enables |= LE;
 	return 0;
 }
 
@@ -512,288 +519,6 @@ int debug_remove_all_breaks()
 // exception handler
 //
 //////////////////////////////////////////////////////////////////////////////
-
-/*
-
-CSmartHandle hImpersonationToken = NULL;
-if(!GetImpersonationToken(&hImpersonationToken.m_h))
-{
-	return FALSE;
-}
-
-// We need the SeDebugPrivilege to be able to run MiniDumpWriteDump
-TOKEN_PRIVILEGES tp;
-BOOL bPrivilegeEnabled = EnablePriv(SE_DEBUG_NAME, hImpersonationToken, &tp);
-
-// DBGHELP.DLL is not thread safe
-EnterCriticalSection(pCS);
-bRet = pDumpFunction(GetCurrentProcess(), GetCurrentProcessId(), hDumpFile, MiniDumpWithDataSegs, &stInfo, NULL, NULL);
-LeaveCriticalSection(pCS);
-
-if(bPrivilegeEnabled)
-{
-	// Restore the privilege
-	RestorePriv(hImpersonationToken, &tp);
-}
-static BOOL GetImpersonationToken(HANDLE* phToken)
-{
-	*phToken = NULL;
-
-	if(!OpenThreadToken(GetCurrentThread(), TOKEN_QUERY | TOKEN_ADJUST_PRIVILEGES, TRUE, phToken))
-	{
-		if(GetLastError() == ERROR_NO_TOKEN)
-		{
-			// No impersonation token for the curren thread available - go for the process token
-			if(!OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY | TOKEN_ADJUST_PRIVILEGES, phToken))
-			{
-				return FALSE;
-			}
-		}
-		else
-		{
-			return FALSE;
-		}
-	}
-
-	return TRUE;
-}
-
-static BOOL EnablePriv(LPCTSTR pszPriv, HANDLE hToken, TOKEN_PRIVILEGES* ptpOld)
-{
-	BOOL bOk = FALSE;
-
-	TOKEN_PRIVILEGES tp;
-	tp.PrivilegeCount = 1;
-	tp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-	bOk = LookupPrivilegeValue( 0, pszPriv, &tp.Privileges[0].Luid);
-	if(bOk)
-	{
-		DWORD cbOld = sizeof(*ptpOld);
-		bOk = AdjustTokenPrivileges(hToken, FALSE, &tp, cbOld, ptpOld, &cbOld);
-	}
-
-	return (bOk && (ERROR_NOT_ALL_ASSIGNED != GetLastError()));
-}
-
-static BOOL RestorePriv(HANDLE hToken, TOKEN_PRIVILEGES* ptpOld)
-{
-	BOOL bOk = AdjustTokenPrivileges(hToken, FALSE, ptpOld, 0, 0, 0);	
-	return (bOk && (ERROR_NOT_ALL_ASSIGNED != GetLastError()));
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-BOOL SetPrivilege(
-HANDLE hToken,          // token handle
-LPCTSTR Privilege,      // Privilege to enable/disable
-BOOL bEnablePrivilege   // TRUE to enable.  FALSE to disable
-)
-{
-TOKEN_PRIVILEGES tp;
-LUID luid;
-TOKEN_PRIVILEGES tpPrevious;
-DWORD cbPrevious=sizeof(TOKEN_PRIVILEGES);
-
-if(!LookupPrivilegeValue( NULL, Privilege, &luid )) return FALSE;
-
-//
-// first pass.  get current privilege setting
-//
-tp.PrivilegeCount           = 1;
-tp.Privileges[0].Luid       = luid;
-tp.Privileges[0].Attributes = 0;
-
-AdjustTokenPrivileges(
-hToken,
-FALSE,
-&tp,
-sizeof(TOKEN_PRIVILEGES),
-&tpPrevious,
-&cbPrevious
-);
-
-if (GetLastError() != ERROR_SUCCESS) return FALSE;
-
-//
-// second pass.  set privilege based on previous setting
-//
-tpPrevious.PrivilegeCount       = 1;
-tpPrevious.Privileges[0].Luid   = luid;
-
-if(bEnablePrivilege) {
-tpPrevious.Privileges[0].Attributes |= (SE_PRIVILEGE_ENABLED);
-}
-else {
-tpPrevious.Privileges[0].Attributes ^= (SE_PRIVILEGE_ENABLED &
-tpPrevious.Privileges[0].Attributes);
-}
-
-AdjustTokenPrivileges(
-hToken,
-FALSE,
-&tpPrevious,
-cbPrevious,
-NULL,
-NULL
-);
-
-if (GetLastError() != ERROR_SUCCESS) return FALSE;
-
-return TRUE;
-}
-BOOL SetPrivilege2(
-HANDLE hToken,  // token handle
-LPCTSTR Privilege,  // Privilege to enable/disable
-BOOL bEnablePrivilege  // TRUE to enable. FALSE to disable
-)
-{
-TOKEN_PRIVILEGES tp = { 0 };
-// Initialize everything to zero
-LUID luid;
-DWORD cb=sizeof(TOKEN_PRIVILEGES);
-if(!LookupPrivilegeValue( NULL, Privilege, &luid ))
-return FALSE;
-tp.PrivilegeCount = 1;
-tp.Privileges[0].Luid = luid;
-if(bEnablePrivilege) {
-tp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-} else {
-tp.Privileges[0].Attributes = 0;
-}
-AdjustTokenPrivileges( hToken, FALSE, &tp, cb, NULL, NULL );
-if (GetLastError() != ERROR_SUCCESS)
-return FALSE;
-
-return TRUE;
-}
-
-extern WINBASEAPI LANGID WINAPI GetSystemDefaultLangID (void);
-
-void DisplayError(
-LPTSTR szAPI    // pointer to failed API name
-)
-{
-LPTSTR MessageBuffer;
-DWORD dwBufferLength;
-
-fprintf(stderr,"%s() error!\n", szAPI);
-/*
-if(dwBufferLength=FormatMessage(
-FORMAT_MESSAGE_ALLOCATE_BUFFER |
-FORMAT_MESSAGE_FROM_SYSTEM,
-NULL,
-GetLastError(),
-GetSystemDefaultLangID(),
-(LPTSTR) &MessageBuffer,
-0,
-NULL
-))
-{
-DWORD dwBytesWritten;
-
-//
-// Output message string on stderr
-//
-WriteFile(
-GetStdHandle(STD_ERROR_HANDLE),
-MessageBuffer,
-dwBufferLength,
-&dwBytesWritten,
-NULL
-);
-
-//
-// free the buffer allocated by the system
-//
-LocalFree(MessageBuffer);
-}
-}
-
-
-static int screwaround()
-{
-	HANDLE hProcess;
-	HANDLE hToken;
-	int dwRetVal=RTN_OK; // assume success from main()
-
-	if(!OpenThreadToken(GetCurrentThread(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, FALSE, &hToken))
-	{
-		if (GetLastError() == ERROR_NO_TOKEN)
-		{
-			if (!ImpersonateSelf(SecurityImpersonation))
-				return RTN_ERROR;
-
-			if(!OpenThreadToken(GetCurrentThread(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, FALSE, &hToken)){
-				DisplayError("OpenThreadToken");
-				return RTN_ERROR;
-			}
-		}
-		else
-			return RTN_ERROR;
-	}
-
-	// enable SeDebugPrivilege
-	if(!SetPrivilege(hToken, SE_DEBUG_NAME, TRUE))
-	{
-		DisplayError("SetPrivilege");
-
-		// close token handle
-		CloseHandle(hToken);
-
-		// indicate failure
-		return RTN_ERROR;
-	}
-
-	// disable SeDebugPrivilege
-	SetPrivilege(hToken, SE_DEBUG_NAME, FALSE);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*/
-
-
 
 //
 // analyze exceptions; determine their type and locus
