@@ -39,12 +39,13 @@
 float g_MaxZoomHeight=350.0f;	//note:  Max terrain height is this minus YMinOffset
 float g_YMinOffset=50.0f;
 
+
 extern int g_xres, g_yres;
 extern bool g_active;
 
-CVector3D cameraBookmarks[10];
-bool bookmarkInUse[10] = { false, false, false, false, false, false, false, false, false, false };
-i8 currentBookmark = -1;
+static CVector3D cameraBookmarks[10];
+static bool bookmarkInUse[10] = { false, false, false, false, false, false, false, false, false, false };
+static i8 currentBookmark = -1;
 
 CGameView::CGameView(CGame *pGame):
 	m_pGame(pGame),

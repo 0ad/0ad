@@ -12,6 +12,7 @@
 #include "TerrainProperties.h"
 #include "Texture.h"
 #include "Renderer.h"
+#include "timer.h"
 
 #define LOG_CATEGORY "graphics"
 
@@ -76,11 +77,15 @@ void CTextureEntry::LoadTexture()
 	}
 }
 
+static TimerClient* tc_mipmap_basecolor = timer_add_client("mipmap BuildBaseColor");
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BuildBaseColor: calculate the root colour of the texture, used for coloring minimap, and store
 // in m_BaseColor member
 void CTextureEntry::BuildBaseColor()
 {
+SUM_TIMER(tc_mipmap_basecolor);
+
 	if (m_pProperties && m_pProperties->HasBaseColor())
 	{
 		m_BaseColor=m_pProperties->GetBaseColor();

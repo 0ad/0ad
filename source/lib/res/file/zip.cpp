@@ -781,6 +781,9 @@ static void dump()
 }
 
 
+static TimerClient* tc_zip_inflate = timer_add_client("zip inflate");
+static TimerClient* tc_zip_memcpy = timer_add_client("zip memcpy");
+
 // unzip into output buffer. returns bytes written
 // (may be 0, if not enough data is passed in), or < 0 on error.
 ssize_t inf_inflate(uintptr_t _ctx, void* in, size_t in_size, bool free_in_buf = false)
@@ -812,9 +815,13 @@ double t0 = get_time();
 	int err = 0;
 
 	if(ctx->compressed)
+	{
+		SUM_TIMER(tc_zip_inflate);
 		err = inflate(zs, Z_SYNC_FLUSH);
+	}
 	else
 	{
+		SUM_TIMER(tc_zip_memcpy);
 		memcpy(zs->next_out, zs->next_in, zs->avail_in);
 		uInt size = MIN(zs->avail_in, zs->avail_out);
 		zs->avail_out -= size;

@@ -51,8 +51,6 @@ bool g_active = true;
 
 bool g_keys[SDLK_LAST];
 int g_mouse_x = 50, g_mouse_y = 50;
-float g_MaxZoomHeight=350.0f;	//note:  Max terrain height is this minus YMinOffset
-float g_YMinOffset=50.0f;
 
 // left, right, middle, wheel up, wheel down
 // (order is given by SDL_BUTTON_* constants).
