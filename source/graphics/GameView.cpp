@@ -37,7 +37,7 @@
 #include "timer.h"
 
 float g_MaxZoomHeight=350.0f;	//note:  Max terrain height is this minus YMinOffset
-float g_YMinOffset=50.0f;
+float g_YMinOffset=25.0f;
 
 
 extern int g_xres, g_yres;
