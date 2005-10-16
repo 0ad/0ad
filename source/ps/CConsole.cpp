@@ -17,8 +17,8 @@
 #include "lib/res/file/vfs.h"
 
 #include "Interact.h"
+#include "ps/Globals.h"
 
-extern bool g_keys[];
 
 CConsole* g_Console = 0;
 

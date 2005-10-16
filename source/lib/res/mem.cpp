@@ -106,7 +106,7 @@ static void remove_alloc(void* raw_p)
 {
 	size_t num_removed = ptr_to_h.erase(raw_p);
 	if(num_removed != 1)
-		debug_assert(num_removed == 1 && "remove_alloc: not in map");
+		debug_warn("remove_alloc: not in map");
 }
 
 

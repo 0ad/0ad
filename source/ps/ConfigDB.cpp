@@ -351,7 +351,7 @@ bool CConfigDB::WriteFile(EConfigNamespace ns, bool useVFS, CStr path)
 		}
 		filepath=realpath;
 	}
-	file_make_native_path(filepath, nativepath);
+	file_make_full_native_path(filepath, nativepath);
 	if ((fp = fopen(nativepath, "w")) == NULL)
 	{
 		LOG(ERROR, LOG_CATEGORY, "CConfigDB::WriteFile(): fopen for path \"%s\" failed (error: %d)", filepath, errno);

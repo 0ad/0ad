@@ -24,10 +24,12 @@
 #include "debug.h"
 #include "debug_stl.h"
 #include "posix.h"
+// some functions here are called from within mmgr; disable its hooks
+// so that our allocations don't cause infinite recursion.
 #include "nommgr.h"
-	// some functions here are called from within mmgr; disable its hooks
-	// so that our allocations don't cause infinite recursion.
 #include "self_test.h"
+// file_make_full_native_path is needed when bundling game data files.
+#include "lib/res/file/file.h"
 
 // needed when writing crashlog
 static const size_t LOG_CHARS = 16384;
@@ -84,7 +86,7 @@ static void cat_atow(FILE* out, const char* in_filename)
 
 	while(!feof(in))
 	{
-		size_t bytes_read = fread(buf, 1,buf_size, in);
+		size_t bytes_read = fread(buf, 1, buf_size, in);
 		if(!bytes_read)
 			break;
 		buf[bytes_read] = 0;	// 0-terminate
@@ -109,15 +111,15 @@ int debug_write_crashlog(const wchar_t* text)
 	fwprintf(f, L"%ls\n", text);
 	WRITE_DIVIDER
 
-
 	// for user convenience, bundle all logs into this file:
-
+	char N_path[PATH_MAX];
 	fwprintf(f, L"System info:\n\n");
-	cat_atow(f, "../logs/system_info.txt");
+	(void)file_make_full_native_path("../logs/system_info.txt", N_path);
+	cat_atow(f, N_path);
 	WRITE_DIVIDER
-
 	fwprintf(f, L"Main log:\n\n");
-	cat_atow(f, "../logs/mainlog.html");
+	(void)file_make_full_native_path("../logs/mainlog.html", N_path);
+	cat_atow(f, N_path);
 	WRITE_DIVIDER
 
 	fwprintf(f, L"Last known activity:\n\n %ls\n", debug_log);

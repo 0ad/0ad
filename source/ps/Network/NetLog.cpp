@@ -6,6 +6,7 @@
 #include <stdarg.h>
 #include <time.h>
 #include "lib/timer.h"
+#include "lib/res/file/file.h"
 
 CNetLog g_NetLog;
 
@@ -35,16 +36,15 @@ void CNetLog::Initialize()
 	if (m_Initialized)
 		return;
 	
-	char filename[256];
-	snprintf(filename, sizeof(filename), "../logs/net_log.txt");
-	filename[sizeof(filename)-1]=0;
-	Open(filename);
+	char N_path[PATH_MAX];
+	(void)file_make_full_native_path("../logs/net_log.txt", N_path);
+	Open(N_path);
 	m_Initialized=true;
 }
 
-void CNetLog::Open(const char *filename)
+void CNetLog::Open(const char *N_filename)
 {
-	m_pFile=fopen(filename, "a");
+	m_pFile=fopen(N_filename, "a");
 	if (m_pFile)
 	{
 		time_t t = time(NULL);

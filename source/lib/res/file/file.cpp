@@ -26,7 +26,6 @@
 #include "adts.h"
 #include "sysdep/sysdep.h"
 #include "byte_order.h"
-#include "timer.h"
 #include "lib/allocators.h"
 
 #include <vector>
@@ -431,8 +430,6 @@ static bool dirent_less(const DirEnt* d1, const DirEnt* d2)
 }
 
 
-static TimerClient* tc_file_enum_malloc = timer_add_client("file_enum_malloc");
-
 // call <cb> for each file and subdirectory in <dir> (alphabetical order),
 // passing the entry name (not full path!), stat info, and <user>.
 //
@@ -476,9 +473,7 @@ int file_enum(const char* P_path, const FileCB cb, const uintptr_t user)
 			stat_err = ret;
 
 		const size_t size = sizeof(DirEnt)+strlen(ent.name)+1;
-		DirEnt* p_ent;
-		{SUM_TIMER(tc_file_enum_malloc);
-		p_ent = (DirEnt*)malloc(size);}
+		DirEnt* p_ent = (DirEnt*)malloc(size);
 		if(!p_ent)
 		{
 			stat_err = ERR_NO_MEM;

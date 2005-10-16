@@ -27,6 +27,7 @@
 #include "ps/i18n.h"
 #include "ps/Overlay.h"
 #include "ps/StringConvert.h"
+#include "ps/Globals.h"
 
 #include "graphics/MapReader.h"
 #include "graphics/Terrain.h"
@@ -523,6 +524,8 @@ static void InitInput()
 	in_add_handler(profilehandler);
 
 	in_add_handler(hotkeyInputHandler); 
+
+	in_add_handler(GlobalsInputHandler);
 }
 
 

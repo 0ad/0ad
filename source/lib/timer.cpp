@@ -242,40 +242,30 @@ void calc_fps()
 // this supplements in-game profiling by providing low-overhead,
 // high resolution time accounting.
 
-struct TimerClient
-{
-	double sum;	// total bill [s]
-
-	// only store a pointer for efficiency.
-	const char* name;
-};
 
 // use static storage to ensure clients can be added at any time,
 // especially before the heap has been initialized.
-// that means there's a fixed limit, but that's not a problem since
-// these timers are added manually for performance measuring.
 static uint num_clients;
-static const uint MAX_CLIENTS = 16;
-static TimerClient clients[MAX_CLIENTS];
+static TimerClient* clients;
 
 
 // allocate a new TimerClient whose total (added to by timer_bill_client)
 // will be displayed by timer_display_client_totals.
 // notes:
-// - uses static data; there is a fixed limit. rationale: see clients[].
 // - may be called at any time;
+// - always succeeds (there's no fixed limit);
 // - free() is not needed nor possible.
-// - name must remain valid until exit; passing a string literal is safest.
-TimerClient* timer_add_client(const char* name)
+// - description must remain valid until exit; a string literal is safest.
+TimerClient* timer_add_client(TimerClient* tc, const char* description)
 {
-	if(num_clients == MAX_CLIENTS)
-	{
-		debug_warn("timer: increase MAX_CLIENTS");
-		return 0;
-	}
-	TimerClient* tc = &clients[num_clients++];
-	tc->name = name;
-	// note: tc->sum is already 0 (static data)
+	tc->sum = 0.0;
+	tc->description = description;
+
+	// insert at front of list
+	tc->next = clients;
+	clients = tc;
+	num_clients++;
+
 	return tc;
 }
 
@@ -293,9 +283,16 @@ void timer_display_client_totals()
 {
 	debug_printf("TIMER TOTALS (%d clients)\n", num_clients);
 	debug_printf("-----------------------------------------------------\n");
-	for(uint i = 0; i < num_clients; i++)
+
+	while(clients)
 	{
-		const double sum = clients[i].sum;
+		// (make sure list and count are consistent)
+		debug_assert(num_clients != 0);
+		TimerClient* tc = clients;
+		clients = tc->next;
+		num_clients--;
+
+		const double sum = tc->sum;
 		// determine scale factor for pretty display
 		double scale = 1e6;
 		const char* unit = "us";
@@ -304,7 +301,8 @@ void timer_display_client_totals()
 		else if(sum > 1e-3)
 			scale = 1e3, unit = "ms";
 
-		debug_printf("  %s: %g %s\n", clients[i].name, sum*scale, unit);
+		debug_printf("  %s: %g %s\n", tc->description, sum*scale, unit);
 	}
+
 	debug_printf("-----------------------------------------------------\n");
 }

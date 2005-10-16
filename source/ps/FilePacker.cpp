@@ -42,7 +42,9 @@ void CFilePacker::Write(const char* filename)
 		throw CFileWriteError();
 #else
 
-	FILE* fp=fopen(filename,"wb");
+	char N_path[PATH_MAX];
+	(void)file_make_full_native_path(filename, N_path);
+	FILE* fp=fopen(N_path,"wb");
 	if (!fp) {
 		throw CFileOpenError();
 	}

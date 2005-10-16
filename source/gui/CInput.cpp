@@ -16,12 +16,10 @@ gee@pyro.nu
 #include "lib/res/graphics/unifont.h"
 
 #include "ps/Hotkey.h"
-
 #include "ps/CLogger.h"
-#define LOG_CATEGORY "gui"
+#include "ps/Globals.h"
 
-extern bool g_keys[];
-extern bool g_mouse_buttons[];
+#define LOG_CATEGORY "gui"
 
 using namespace std;
 

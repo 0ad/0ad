@@ -38,6 +38,7 @@ gee@pyro.nu
 
 #include "scripting/ScriptingHost.h"
 #include "Hotkey.h"
+#include "ps/Globals.h"
 
 // namespaces used
 using namespace std;
@@ -53,9 +54,6 @@ JSClass GUIClass = {
 	JS_EnumerateStub, JS_ResolveStub, JS_ConvertStub, JS_FinalizeStub,
 };
 
-// Globals used.
-extern int g_xres, g_yres;
-extern bool g_keys[];
 
 //-------------------------------------------------------------------
 //	called from main loop when (input) events are received.

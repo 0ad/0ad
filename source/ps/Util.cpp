@@ -43,7 +43,9 @@ void WriteSystemInfo()
 	struct utsname un;
 	uname(&un);
 
-	FILE* f = fopen("../logs/system_info.txt", "w");
+	char N_path[PATH_MAX];
+	(void)file_make_full_native_path("../logs/system_info.txt", N_path);
+	FILE* f = fopen(N_path, "w");
 	if(!f)
 		return;
 

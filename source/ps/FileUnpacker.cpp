@@ -94,7 +94,9 @@ void CFileUnpacker::Read(const char* filename,const char magicstr[4])
 	}
 	else
 	{
-		FILE* fp=fopen(filename,"rb");
+		char N_path[PATH_MAX];
+		(void)file_make_full_native_path(filename, N_path);
+		FILE* fp=fopen(N_path,"rb");
 		if (!fp)
 			throw CFileOpenError();
 

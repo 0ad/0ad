@@ -45,16 +45,34 @@ extern void calc_fps(void);
 // cumulative timer API
 //
 
-struct TimerClient;	// opaque
+// this is to be considered opaque - do not access its fields!
+// note: must be defined here because clients instantiate them;
+// fields cannot be made private due to C compatibility requirement.
+struct TimerClient
+{
+	double sum;	// total bill [s]
+
+	// only store a pointer for efficiency.
+	const char* description;
+
+	TimerClient* next;
+
+	int dummy;
+};
+
 
 // allocate a new TimerClient whose total (added to by timer_bill_client)
 // will be displayed by timer_display_client_totals.
 // notes:
-// - uses static data; there is a fixed limit. rationale: see clients[].
 // - may be called at any time;
+// - always succeeds (there's no fixed limit);
 // - free() is not needed nor possible.
-// - name must remain valid until exit; passing a string literal is safest.
-extern TimerClient* timer_add_client(const char* name);
+// - description must remain valid until exit; a string literal is safest.
+extern TimerClient* timer_add_client(TimerClient* tc, const char* description);
+
+#define TIMER_ADD_CLIENT(id)\
+	static TimerClient UID__;\
+	TimerClient* id = timer_add_client(&UID__, #id);
 
 // add <dt> [s] to the client's total.
 extern void timer_bill_client(TimerClient* tc, double dt);

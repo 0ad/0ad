@@ -654,7 +654,7 @@ int tex_free(Tex* t)
 
 //-----------------------------------------------------------------------------
 
-static TimerClient* tc_transform = timer_add_client("tex_transform");
+TIMER_ADD_CLIENT(tc_transform);
 
 // change <t>'s pixel format by flipping the state of all TEX_* flags
 // that are set in transforms.

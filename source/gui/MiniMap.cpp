@@ -16,11 +16,10 @@
 #include "Terrain.h"
 #include "Profile.h"
 #include "LOSManager.h"
+#include "ps/Globals.h"
 
 
 
-extern bool g_mouse_buttons[5];
-extern int g_mouse_x, g_mouse_y;
 extern float g_MaxZoomHeight, g_YMinOffset;
 bool HasClicked=false;
 

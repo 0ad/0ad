@@ -77,7 +77,7 @@ void CTextureEntry::LoadTexture()
 	}
 }
 
-static TimerClient* tc_mipmap_basecolor = timer_add_client("mipmap BuildBaseColor");
+TIMER_ADD_CLIENT(tc_mipmap_basecolor);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BuildBaseColor: calculate the root colour of the texture, used for coloring minimap, and store

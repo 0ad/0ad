@@ -6,11 +6,11 @@
 #include "CLogger.h"
 #include "CConsole.h"
 #include "CStr.h"
+#include "ps/Globals.h"
 
 extern CConsole* g_Console;
-extern bool g_keys[];
-extern bool g_mouse_buttons[];
-bool unified[5];
+
+static bool unified[5];
 
 /* SDL-type */
 

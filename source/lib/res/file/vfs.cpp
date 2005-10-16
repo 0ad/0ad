@@ -279,7 +279,9 @@ static void file_listing_add(const char* v_fn)
 
 	if(!file_list)
 	{
-		file_list = fopen("../logs/filelist.txt", "w");
+		char N_path[PATH_MAX];
+		(void)file_make_full_native_path("../logs/filelist.txt", N_path);
+		file_list = fopen(N_path, "w");
 		if(!file_list)
 			return;
 	}
