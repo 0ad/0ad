@@ -40,10 +40,13 @@ extern u64 rdtsc(void);
 
 
 #ifndef _MCW_PC
-#define _MCW_PC		0x0300		// Precision Control
+# define _MCW_PC 0x0300		// Precision Control
 #endif
 #ifndef _PC_24
-#define	_PC_24		0x0000		// 24 bits
+# define _PC_24  0x0000		// 24 bits
+#endif
+#ifndef _MCW_EM
+# define _MCW_EM 0x003f		// Exception Mask
 #endif
 
 #define _control87 ia32_control87

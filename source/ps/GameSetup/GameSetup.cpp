@@ -131,14 +131,14 @@ static int SetVideoMode(int w, int h, int bpp, bool fullscreen)
 void GUI_Init()
 {
 #ifndef NO_GUI
-	{TIMER(ps_gui_init);
+	{TIMER("ps_gui_init");
 	g_GUI.Initialize();}
 
-	{TIMER(ps_gui_setup_xml);
+	{TIMER("ps_gui_setup_xml");
 	g_GUI.LoadXMLFile("gui/test/setup.xml");}
-	{TIMER(ps_gui_styles_xml);
+	{TIMER("ps_gui_styles_xml");
 	g_GUI.LoadXMLFile("gui/test/styles.xml");}
-	{TIMER(ps_gui_sprite1_xml);
+	{TIMER("ps_gui_sprite1_xml");
 	g_GUI.LoadXMLFile("gui/test/sprite1.xml");}
 
 	// Atlas is running, we won't need these GUI pages (for now!
@@ -147,23 +147,23 @@ void GUI_Init()
 //	if(ATLAS_IsRunning())
 //		return;
 
-	{TIMER(ps_gui_1);
+	{TIMER("ps_gui_1");
 	g_GUI.LoadXMLFile("gui/test/1_init.xml");}
-	{TIMER(ps_gui_2);
+	{TIMER("ps_gui_2");
 	g_GUI.LoadXMLFile("gui/test/2_mainmenu.xml");}
-	{TIMER(ps_gui_3);
+	{TIMER("ps_gui_3");
 	g_GUI.LoadXMLFile("gui/test/3_loading.xml");}
-	{TIMER(ps_gui_4);
+	{TIMER("ps_gui_4");
 	g_GUI.LoadXMLFile("gui/test/4_session.xml");}
-	{TIMER(ps_gui_6);
+	{TIMER("ps_gui_6");
 	g_GUI.LoadXMLFile("gui/test/6_subwindows.xml");}
-	{TIMER(ps_gui_6_1);
+	{TIMER("ps_gui_6_1");
 	g_GUI.LoadXMLFile("gui/test/6_1_manual.xml");}
-	{TIMER(ps_gui_6_2);
+	{TIMER("ps_gui_6_2");
 	g_GUI.LoadXMLFile("gui/test/6_2_jukebox.xml");}
-	{TIMER(ps_gui_7);
+	{TIMER("ps_gui_7");
 	g_GUI.LoadXMLFile("gui/test/7_atlas.xml");}
-	{TIMER(ps_gui_9);
+	{TIMER("ps_gui_9");
 	g_GUI.LoadXMLFile("gui/test/9_global.xml");}
 #endif
 }
@@ -395,7 +395,7 @@ void Render()
 
 static void InitScripting()
 {
-	TIMER(InitScripting);
+	TIMER("InitScripting");
 	// Create the scripting host.  This needs to be done before the GUI is created.
 	new ScriptingHost;
 
@@ -449,7 +449,7 @@ static void InitScripting()
 
 static void InitVfs(const char* argv0)
 {
-	TIMER(InitVfs);
+	TIMER("InitVfs");
 	// set root directory to "$game_dir/data". all relative file paths
 	// passed to file.cpp will be based from this dir.
 	// (we don't set current directory because other libraries may
@@ -478,7 +478,7 @@ static void InitPs(bool setup_gui)
 {
 	// console
 	{
-		TIMER(ps_console);
+		TIMER("ps_console");
 
 		g_Console->UpdateScreenSize(g_xres, g_yres);
 
@@ -491,7 +491,7 @@ static void InitPs(bool setup_gui)
 
 	// language and hotkeys
 	{
-		TIMER(ps_lang_hotkeys);
+		TIMER("ps_lang_hotkeys");
 
 		std::string lang = "english";
 		CFG_GET_SYS_VAL("language", String, lang);
@@ -549,7 +549,7 @@ static void ShutdownPs()
 
 static void InitRenderer()
 {
-	TIMER(InitRenderer);
+	TIMER("InitRenderer");
 	// create renderer
 	new CRenderer;
 
@@ -695,28 +695,28 @@ void Shutdown()
 	if (g_Game)
 		EndGame();
 
-	TIMER_START("shutdown Scheduler");
+	TIMER_BEGIN("shutdown Scheduler");
 	delete &g_Scheduler;
 	TIMER_END("shutdown Scheduler");
 
-	TIMER_START("shutdown SessionManager");
+	TIMER_BEGIN("shutdown SessionManager");
 	delete &g_SessionManager;
 	TIMER_END("shutdown SessionManager");
 
-	TIMER_START("shutdown mouse stuff");
+	TIMER_BEGIN("shutdown mouse stuff");
 	delete &g_Mouseover;
 	delete &g_Selection;
 	delete &g_BuildingPlacer;
 	TIMER_END("shutdown mouse stuff");
 
-	TIMER_START("shutdown Pathfinder");
+	TIMER_BEGIN("shutdown Pathfinder");
 	delete &g_Pathfinder;
 	TIMER_END("shutdown Pathfinder");
 
 	// Managed by CWorld
 	// delete &g_EntityManager;
 
-	TIMER_START("shutdown game scripting stuff");
+	TIMER_BEGIN("shutdown game scripting stuff");
 	delete &g_GameAttributes;
 	delete &g_JSGameEvents;
 
@@ -724,7 +724,7 @@ void Shutdown()
 	TIMER_END("shutdown game scripting stuff");
 
 	// destroy actor related stuff
-	TIMER_START("shutdown actor stuff");
+	TIMER_BEGIN("shutdown actor stuff");
 	delete &g_UnitMan;
 	delete &g_ObjMan;
 	delete &g_SkelAnimMan;
@@ -734,38 +734,38 @@ void Shutdown()
 	TIMER_END("shutdown actor stuff");
 
 	// destroy terrain related stuff
-	TIMER_START("shutdown TexMan");
+	TIMER_BEGIN("shutdown TexMan");
 	delete &g_TexMan;
 	TIMER_END("shutdown TexMan");
 
 	// destroy renderer
-	TIMER_START("shutdown Renderer");
+	TIMER_BEGIN("shutdown Renderer");
 	delete &g_Renderer;
 	g_VBMan.Shutdown();
 	TIMER_END("shutdown Renderer");
 
-	TIMER_START("shutdown ScriptingHost");
+	TIMER_BEGIN("shutdown ScriptingHost");
 	delete &g_ScriptingHost;
 	TIMER_END("shutdown ScriptingHost");
 
-	TIMER_START("shutdown ConfigDB");
+	TIMER_BEGIN("shutdown ConfigDB");
 	delete &g_ConfigDB;
 	TIMER_END("shutdown ConfigDB");
 
 	// Shut down the network loop
-	TIMER_START("shutdown CSocketBase");
+	TIMER_BEGIN("shutdown CSocketBase");
 	CSocketBase::Shutdown();
 	TIMER_END("shutdown CSocketBase");
 
 	// Really shut down the i18n system. Any future calls
 	// to translate() will crash.
-	TIMER_START("shutdown I18N");
+	TIMER_BEGIN("shutdown I18N");
 	I18n::Shutdown();
 	TIMER_END("shutdown I18N");
 
 	// resource
 	// first shut down all resource owners, and then the handle manager.
-	TIMER_START("resource modules");
+	TIMER_BEGIN("resource modules");
 		snd_shutdown();
 		vfs_shutdown();
 
@@ -778,7 +778,7 @@ void Shutdown()
 		mem_shutdown();
 	TIMER_END("resource modules");
 
-	TIMER_START("shutdown misc");
+	TIMER_BEGIN("shutdown misc");
 		file_shutdown();
 
 		timer_display_client_totals();
@@ -924,7 +924,7 @@ void Init(int argc, char* argv[], bool setup_videomode, bool setup_gui)
 	InitRenderer();
 
 	{
-	TIMER(Init_entitiessection);
+	TIMER("Init_entitiessection");
 	// This needs to be done after the renderer has loaded all its actors...
 	new CBaseEntityCollection;
 	// CEntityManager is managed by CWorld
@@ -934,7 +934,7 @@ void Init(int argc, char* argv[], bool setup_videomode, bool setup_gui)
 	}
 
 	{
-	TIMER(Init_miscgamesection);
+	TIMER("Init_miscgamesection");
 	new CPathfindEngine;
 	new CBuildingPlacer;
 	new CSessionManager;
@@ -942,7 +942,7 @@ void Init(int argc, char* argv[], bool setup_videomode, bool setup_gui)
 	}
 
 	{
-	TIMER(Init_misc);
+	TIMER("Init_misc");
 
 	// Register a few Game/Network JS globals
 	g_ScriptingHost.SetGlobal("g_GameAttributes", OBJECT_TO_JSVAL(g_GameAttributes.GetScript()));
@@ -959,13 +959,13 @@ void Init(int argc, char* argv[], bool setup_videomode, bool setup_gui)
 
 #ifndef NO_GUI
 	{
-	TIMER(Init_guiload);
+	TIMER("Init_guiload");
 	g_GUI.SendEventToAll("load");
 	}
 #endif
 
 	{
-		TIMER(Init_renderblank);
+		TIMER("Init_renderblank");
 		MICROLOG(L"render blank");
 		// render everything to a blank frame to force renderer to load everything
 		RenderNoCull();

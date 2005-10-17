@@ -30,13 +30,16 @@ extern "C" {
 // high resolution (> 1 us) timestamp [s], starting at or near 0 s.
 extern double get_time(void);
 
+// return resolution (expressed in [s]) of the time source underlying
+// get_time.
 extern double timer_res(void);
 
 // calculate fps (call once per frame)
 // several smooth filters (tuned for ~100 FPS)
 // => less fluctuation, but rapid tracking
 
-extern int fps;
+extern int fps;	// for user display
+extern float spf;	// for time-since-last-frame use
 
 extern void calc_fps(void);
 
@@ -45,7 +48,10 @@ extern void calc_fps(void);
 // cumulative timer API
 //
 
-// this is to be considered opaque - do not access its fields!
+// this supplements in-game profiling by providing low-overhead,
+// high resolution time accounting.
+
+// opaque - do not access its fields!
 // note: must be defined here because clients instantiate them;
 // fields cannot be made private due to C compatibility requirement.
 struct TimerClient
@@ -56,23 +62,19 @@ struct TimerClient
 	const char* description;
 
 	TimerClient* next;
-
-	int dummy;
 };
 
 
-// allocate a new TimerClient whose total (added to by timer_bill_client)
-// will be displayed by timer_display_client_totals.
+// make the given TimerClient (usually instantiated as static data)
+// ready for use. returns its address for TIMER_ADD_CLIENT's convenience.
+// this client's total (added to by timer_bill_client) will be
+// displayed by timer_display_client_totals.
 // notes:
 // - may be called at any time;
 // - always succeeds (there's no fixed limit);
 // - free() is not needed nor possible.
 // - description must remain valid until exit; a string literal is safest.
 extern TimerClient* timer_add_client(TimerClient* tc, const char* description);
-
-#define TIMER_ADD_CLIENT(id)\
-	static TimerClient UID__;\
-	TimerClient* id = timer_add_client(&UID__, #id);
 
 // add <dt> [s] to the client's total.
 extern void timer_bill_client(TimerClient* tc, double dt);
@@ -87,18 +89,21 @@ extern void timer_display_client_totals();
 
 
 
-class ScopedTimer
+
+// used via TIMER* macros below.
+class ScopeTimer
 {
 	double t0;
-	const char* name;
+	const char* description;
 
 public:
-	ScopedTimer(const char* _name)
+	ScopeTimer(const char* _description)
 	{
 		t0 = get_time();
-		name = _name;
+		description = _description;
 	}
-	~ScopedTimer()
+
+	~ScopeTimer()
 	{
 		double t1 = get_time();
 		double dt = t1-t0;
@@ -111,50 +116,70 @@ public:
 		else if(dt > 1e-3)
 			scale = 1e3, unit = "ms";
 
-		debug_printf("TIMER %s: %g %s\n", name, dt*scale, unit);
+		debug_printf("TIMER %s: %g %s\n", description, dt*scale, unit);
 	}
 
 	// disallow copying (makes no sense)
 private:
-	ScopedTimer& operator=(const ScopedTimer&);
+	ScopeTimer& operator=(const ScopeTimer&);
 };
 
-#define TIMER(name) ScopedTimer ST##name(#name)
-// Cheat a bit to make things slightly easier on the user
-#define TIMER_START(name) { ScopedTimer __timer( name )
-#define TIMER_END(name) }
-
-
-
-
 /*
+Measure the time taken to execute code up until end of the current scope; 
+display it via debug_printf. Can safely be nested.
+Useful for measuring time spent in a function or basic block.
+<description> must remain valid over the lifetime of this object;
+a string literal is safest.
+
 Example usage:
-
-	static TimerClient* client = timer_add_client("description");
-
 	void func()
 	{
-		SUM_TIMER(client);
-		(code to be measured)
+		TIMER("description");
+		// code to be measured
 	}
-
-	[at exit]
-	timer_display_client_totals();
-
 */
+#define TIMER(description) ScopeTimer UID__(description)
 
-class ScopedSumTimer
+/*
+Measure the time taken to execute code between BEGIN and END markers;
+display it via debug_printf. Can safely be nested.
+Useful for measuring several pieces of code within the same function/block.
+<description> must remain valid over the lifetime of this object;
+a string literal is safest.
+
+Caveats:
+- this wraps the code to be measured in a basic block, so any
+  variables defined there are invisible to surrounding code.
+- the description passed to END isn't inspected; you are responsible for
+  ensuring correct nesting!
+
+Example usage:
+	void func2()
+	{
+		// uninteresting code
+		TIMER_BEGIN("description2");
+		// code to be measured
+		TIMER_END("description2");
+		// uninteresting code
+	}
+*/
+#define TIMER_BEGIN(description) { ScopeTimer UID__(description)
+#define TIMER_END(description) }
+
+
+// used via TIMER_ACCRUE
+class ScopeTimerAccrue
 {
 	double t0;
 	TimerClient* tc;
 
 public:
-	ScopedSumTimer(TimerClient* tc_)
+	ScopeTimerAccrue(TimerClient* tc_)
 	{
 		t0 = get_time();
 		tc = tc_;
 	}
-	~ScopedSumTimer()
+	~ScopeTimerAccrue()
 	{
 		double t1 = get_time();
 		double dt = t1-t0;
@@ -163,12 +188,39 @@ public:
 
 	// disallow copying (makes no sense)
 private:
-	ScopedSumTimer& operator=(const ScopedSumTimer&);
+	ScopeTimerAccrue& operator=(const ScopeTimerAccrue&);
 };
 
-// bills to <client> the time elapsed between execution reaching the
-// point of macro invocation and end of the current basic block.
-// total times for all clients are displayed by timer_display_client_totals.
-#define SUM_TIMER(client) ScopedSumTimer UID__(client)
+
+// "allocate" a new TimerClient that will keep track of the total time
+// billed to it, along with a description string. These are displayed when
+// timer_display_client_totals is called.
+// Invoke this at file or function scope; a (static) TimerClient pointer of
+// name <id> will be defined, which should be passed to TIMER_ACCRUE.
+#define TIMER_ADD_CLIENT(id)\
+	static TimerClient UID__;\
+	static TimerClient* id = timer_add_client(&UID__, #id);
+
+/*
+Measure the time taken to execute code up until end of the current scope; 
+bill it to the given TimerClient object. Can safely be nested.
+Useful for measuring total time spent in a function or basic block over the
+entire program.
+<description> must remain valid over the lifetime of this object;
+a string literal is safest.
+
+Example usage:
+	TIMER_ADD_CLIENT(identifier)
+
+	void func()
+	{
+		TIMER_ACCRUE(name_of_pointer_to_client);
+		// code to be measured
+	}
+
+	[at exit]
+	timer_display_client_totals();
+*/
+#define TIMER_ACCRUE(client) ScopeTimerAccrue UID__(client)
 
 #endif	// #ifndef TIMER_H

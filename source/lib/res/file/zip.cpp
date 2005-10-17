@@ -674,7 +674,7 @@ static int ZArchive_validate(const ZArchive* za)
 // somewhat slow - each file is added to an internal index.
 Handle zip_archive_open(const char* fn)
 {
-TIMER(zip_archive_open);
+TIMER("zip_archive_open");
 	return h_alloc(H_ZArchive, fn);
 }
 
@@ -816,12 +816,12 @@ double t0 = get_time();
 
 	if(ctx->compressed)
 	{
-		SUM_TIMER(tc_zip_inflate);
+		TIMER_ACCRUE(tc_zip_inflate);
 		err = inflate(zs, Z_SYNC_FLUSH);
 	}
 	else
 	{
-		SUM_TIMER(tc_zip_memcpy);
+		TIMER_ACCRUE(tc_zip_memcpy);
 		memcpy2(zs->next_out, zs->next_in, zs->avail_in);
 		uInt size = MIN(zs->avail_in, zs->avail_out);
 		zs->avail_out -= size;

@@ -128,12 +128,19 @@ static void Frame()
 	music_player.update();
 	PROFILE_END( "update music" );
 
+	calc_fps();
+// old method - "exact" but contains jumps
+#if 0
 	static double last_time;
 	const double time = get_time();
 	const float TimeSinceLastFrame = (float)(time-last_time);
 	last_time = time;
-	ONCE(return);
-			// first call: set last_time and return
+	ONCE(return);	// first call: set last_time and return
+			
+// new method - filtered and more smooth, but errors may accumulate
+#else
+	const float TimeSinceLastFrame = spf;
+#endif
 	debug_assert(TimeSinceLastFrame >= 0.0f);
 
 	PROFILE_START( "reload changed files" );
@@ -230,7 +237,6 @@ static void Frame()
 
 	g_Profiler.Frame();
 
-	calc_fps();
 	if(g_FixedFrameTiming && frameCount==100)
 		kill_mainloop();
 }

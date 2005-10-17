@@ -157,7 +157,10 @@ void cpu_init()
 	// we need full precision when calculating the time.
 	// if there's a spot where we want to speed up divides|sqrts,
 	// we can temporarily change precision there.
-	//	_control87(_PC_24, _MCW_PC);
+	//_control87(_PC_24, _MCW_PC);
+
+	// enable all floating-point exceptions (helps catch bugs)
+	_control87(_MCW_EM, _MCW_EM);
 
 	// detects CPU clock frequency and capabilities, which are prerequisites
 	// for using the TSC as a timer (desirable due to its high resolution).

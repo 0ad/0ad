@@ -84,7 +84,7 @@ TIMER_ADD_CLIENT(tc_mipmap_basecolor);
 // in m_BaseColor member
 void CTextureEntry::BuildBaseColor()
 {
-SUM_TIMER(tc_mipmap_basecolor);
+TIMER_ACCRUE(tc_mipmap_basecolor);
 
 	if (m_pProperties && m_pProperties->HasBaseColor())
 	{

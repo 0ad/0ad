@@ -237,6 +237,20 @@ extern int ogl_tex_set_wrap(Handle ht, GLint wrap);
 // upload
 //
 
+enum OglTexOverrides
+{
+	OGL_TEX_S3TC,
+	OGL_TEX_AUTO_MIPMAP_GEN
+};
+
+enum OglTexAllow
+{
+	OGL_TEX_DISABLE,
+	OGL_TEX_ENABLE
+};
+
+extern void ogl_tex_override(OglTexOverrides what, OglTexAllow allow);
+
 // upload the texture to OpenGL.
 // if not 0, parameters override the following:
 //   fmt_ovr     : OpenGL format (e.g. GL_RGB) decided from bpp / Tex flags;

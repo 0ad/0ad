@@ -170,7 +170,7 @@ void CONFIG_Init(int argc, char* argv[])
 {
 	debug_printf("CFG_Init &argc=%p &argv=%p\n", &argc, &argv);
 
-	TIMER(CONFIG_Init);
+	TIMER("CONFIG_Init");
 	MICROLOG(L"init config");
 
 	new CConfigDB;

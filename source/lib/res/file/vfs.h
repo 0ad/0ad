@@ -105,19 +105,24 @@ modder (since all files would first have to be copied somewhere).
 Allowing overriding individual files is much safer (since game data is
 never touched) and easier (more fine-grained control for modders).
 
-Alternatives to the patch archive approach would be to completely replace
-the game data archive (infeasible due to size) or apply a binary patch
-(complicated and brittle WRT versioning). We are therefore happy to
-use the already existing mod mechanism.
+
+Patching
+--------
+
+As mentioned above, patching is also done via mounting.
+Alternatives would be to completely replace the game data archive
+(infeasible due to size) or apply a binary patch (complicated and
+brittle WRT versioning). We are therefore happy to use the
+already existing mod mechanism.
 
 Note however that multiple patches do impact performance (despite
 constant-time VFS path -> file location lookup) simply due to locality;
 files are no longer arranged in order of access. Fortunately there is an
 easy way to avoid this: simply run the archive builder script; all
-patched files will be merged into the archive.
-
-
-For more information, see 'Mount Details' below.
+patched files will be merged into the archive. However, be warned that
+reverting to previous versions (e.g. to watch old replays) would no longer
+be possible! This is because their changes have been 'baked into' the
+main archive, whereas previously the patch could simply be deleted.
 
 
 Mount Details
@@ -176,6 +181,8 @@ this is just an optimization.
 
 To ease development, files may additionally be stored in normal directories.
 The VFS transparently provides access to the correct (newest) version.
+This is to allow keeping data files in SCM - developers can get the latest
+version without always having to update archives afterwards.
 
 One additional advantage of archives over loose files is that I/O throughput
 is increased - since files are compressed, there is less to read from disk.

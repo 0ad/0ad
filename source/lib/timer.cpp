@@ -37,7 +37,6 @@ double get_time()
 	double t;
 
 #if HAVE_CLOCK_GETTIME
-
 	static struct timespec start = {0};
 	struct timespec ts;
 
@@ -46,9 +45,7 @@ double get_time()
 
 	(void)clock_gettime(CLOCK_REALTIME, &ts);
 	t = (ts.tv_sec - start.tv_sec) + (ts.tv_nsec - start.tv_nsec)*1e-9;
-
 #elif HAVE_GETTIMEOFDAY
-
 	static struct timeval start;
 	struct timeval cur;
 
@@ -57,11 +54,8 @@ double get_time()
 
 	gettimeofday(&cur, 0);
 	t = (cur.tv_sec - start.tv_sec) + (cur.tv_usec - start.tv_usec)*1e-6;
-
 #else
-
 #error "get_time: add timer implementation for this platform!"
-
 #endif
 
 	// make sure time is monotonic (never goes backwards)
@@ -74,6 +68,8 @@ double get_time()
 }
 
 
+// return resolution (expressed in [s]) of the time source underlying
+// get_time.
 double timer_res()
 {
 	// may take a while to determine, so cache it
@@ -110,6 +106,7 @@ double timer_res()
 // filter values are tuned for 100 FPS.
 
 int fps;
+float spf;
 
 void calc_fps()
 {
@@ -225,6 +222,8 @@ void calc_fps()
 	old = cur_fps*gain + old*(1.0-gain);
 	avg_fps = old;
 
+	spf = 1.0 / avg_fps;
+
 	// update fps counter if it differs "enough"
 	// currently, that means off by more than 5 FPS or 5%.
 	const double difference = fabs(avg_fps-fps);
@@ -242,15 +241,20 @@ void calc_fps()
 // this supplements in-game profiling by providing low-overhead,
 // high resolution time accounting.
 
-
-// use static storage to ensure clients can be added at any time,
-// especially before the heap has been initialized.
+// intrusive linked-list of all clients. a fixed-size limit would be
+// acceptable (since timers are added manually), but the list is easy
+// to implement and only has the drawback of exposing TimerClient to users.
+//
+// do not use std::list et al. for this! we must be callable at any time,
+// especially before NLSO ctors run or before heap init.
 static uint num_clients;
 static TimerClient* clients;
 
 
-// allocate a new TimerClient whose total (added to by timer_bill_client)
-// will be displayed by timer_display_client_totals.
+// make the given TimerClient (usually instantiated as static data)
+// ready for use. returns its address for TIMER_ADD_CLIENT's convenience.
+// this client's total (added to by timer_bill_client) will be
+// displayed by timer_display_client_totals.
 // notes:
 // - may be called at any time;
 // - always succeeds (there's no fixed limit);

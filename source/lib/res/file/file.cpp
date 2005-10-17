@@ -347,19 +347,24 @@ int dir_open(const char* P_path, DirIterator* d_)
 	d->os_dir = opendir(n_path);
 	if(!d->os_dir)
 	{
-		int err = -1;
+		int err;
 		switch(errno)
 		{
 		case ENOMEM:
 			err = ERR_NO_MEM;
+			break;
 		case ENOENT:
 			err = ERR_PATH_NOT_FOUND;
-		// default: err already set
+			break;
+		default:
+			err = -1;
+			break;
 		}
 		CHECK_ERR(err);
 	}
 
-	return pp_set_dir(&d->pp, n_path);
+	RETURN_ERR(pp_set_dir(&d->pp, n_path));
+	return 0;
 }
 
 
@@ -371,9 +376,14 @@ int dir_next_ent(DirIterator* d_, DirEnt* ent)
 	DirIterator_* d = (DirIterator_*)d_;
 
 get_another_entry:
+	errno = 0;
 	struct dirent* os_ent = readdir(d->os_dir);
 	if(!os_ent)
+	{
+		if(errno)
+			debug_warn("readdir failed");
 		return ERR_DIR_END;
+	}
 
 	// copy os_ent.name[]; we need it for stat() #if !OS_WIN and
 	// return it as ent.name (since os_ent.name[] is volatile).

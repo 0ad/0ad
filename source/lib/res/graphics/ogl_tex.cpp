@@ -506,6 +506,7 @@ int ogl_tex_free(Handle& ht)
 
 //----------------------------------------------------------------------------
 // state setters (see "Texture Parameters" in docs)
+//----------------------------------------------------------------------------
 
 // we require the below functions be called before uploading; this avoids
 // potentially redundant glTexParameter calls (we'd otherwise need to always
@@ -587,12 +588,84 @@ int ogl_tex_set_wrap(Handle ht, GLint wrap)
 
 //----------------------------------------------------------------------------
 // upload
+//----------------------------------------------------------------------------
 
+// OpenGL has several features that are helpful for uploading but not
+// available in all implementations. we check for their presence but
+// provide for user override (in case they don't work on a card/driver
+// combo we didn't test).
+
+// tristate; -1 is undecided
+static int have_auto_mipmap_gen = -1;
+static int have_s3tc = -1;
+
+// override the default decision and force/disallow use of the
+// given feature. should be called from ah_override_gl_upload_caps.
+void ogl_tex_override(OglTexOverrides what, OglTexAllow allow)
+{
+	debug_assert(allow == OGL_TEX_ENABLE || allow == OGL_TEX_DISABLE);
+	const bool enable = (allow == OGL_TEX_ENABLE);
+
+	switch(what)
+	{
+	case OGL_TEX_S3TC:
+		have_s3tc = enable;
+		break;
+	case OGL_TEX_AUTO_MIPMAP_GEN:
+		have_auto_mipmap_gen = enable;
+		break;
+	default:
+		debug_warn("ogl_tex_override: invalid <what>");
+		break;
+	}
+}
+
+
+// detect caps (via OpenGL extension list) and give an app_hook the chance to
+// override this (e.g. via list of card/driver combos on which S3TC breaks).
+// called once from the first ogl_tex_upload.
+static void detect_gl_upload_caps()
+{
+	// detect features, but only change the variables if they were at
+	// "undecided" (if overrides were set before this, they must remain).
+	if(have_auto_mipmap_gen == -1)
+	{
+		have_auto_mipmap_gen = oglHaveExtension("GL_SGIS_generate_mipmap");
+	}
+	if(have_s3tc == -1)
+	{
+		// note: we don't bother checking for GL_S3_s3tc - it is incompatible
+		// and irrelevant (was never widespread).
+		have_s3tc = oglHaveExtensions(0, "GL_ARB_texture_compression", "GL_EXT_texture_compression_s3tc", 0) == 0;
+	}
+
+//apphook - call back into override if app thinks anything should be disabled
+	// disable features if we're on a card/driver combo on which they
+	// are known to break.
+	if(gfx_card[0] == '\0')
+		debug_warn("ogl_tex requires get_gfx_info be called before ogl_tex_upload");
+	if(!strcmp(gfx_card, "S3 SuperSavage/IXC 1014"))
+	{
+		if(strstr(gfx_drv_ver, "ssicdnt.dll (2.60.115)"))
+			have_s3tc = false;
+	}
+
+	// warn if more-or-less essential features are missing
+	if(!have_s3tc)
+		DISPLAY_ERROR(L"Performance warning: your graphics card does not support compressed textures. The game will try to continue anyway, but may be slower than expected. Please try updating your graphics drivers; if that doesn't help, please try upgrading your hardware.");
+}
+
+
+// take care of mipmaps. if they are called for by <filter>, either
+// arrange for OpenGL to create them, or see to it that the Tex object
+// contains them (if need be, creating them in software).
+// sets *plevels_to_skip to influence upload behavior (depending on
+// whether mipmaps are needed and the quality settings).
+// returns 0 to indicate success; otherwise, caller must disable
+// mipmapping by switching filter to e.g. GL_LINEAR.
 static int get_mipmaps(Tex* t, GLint filter, uint q_flags, int* plevels_to_skip)
 {
 	// decisions:
-	// .. does this OpenGL implementation support auto mipmap generation?
-	static const bool have_auto_mipmap_gen = oglHaveVersion("1.4") || oglHaveExtension("GL_SGIS_generate_mipmap");
 	// .. does filter call for uploading mipmaps?
 	const bool need_mipmaps = filter_uses_mipmaps(filter);
 	// .. does the image data include mipmaps? (stored as separate
@@ -652,6 +725,8 @@ static int get_mipmaps(Tex* t, GLint filter, uint q_flags, int* plevels_to_skip)
 }
 
 
+// tex_util_foreach_mipmap callbacks: upload the given level to OpenGL.
+
 struct UploadParams
 {
 	GLenum fmt;
@@ -693,26 +768,6 @@ static void upload_impl(Tex* t, GLenum fmt, GLint int_fmt, int levels_to_skip)
 }
 
 
-static bool detect_s3tc()
-{
-	// 1. require extensions to be advertised.
-	// note: we don't bother checking for GL_S3_s3tc - it is incompatible
-	// and irrelevant (was never widespread).
-	bool have_s3tc = oglHaveExtensions(0, "GL_ARB_texture_compression", "GL_EXT_texture_compression_s3tc", 0) == 0;
-
-	// 2. exclude any card/driver combos on which it is known to break.
-	if(gfx_card[0] == '\0')
-		debug_warn("ogl_tex requires get_gfx_info be called before ogl_tex_upload");
-	if(!strcmp(gfx_card, "S3 SuperSavage/IXC 1014"))
-	{
-		if(strstr(gfx_drv_ver, "ssicdnt.dll (2.60.115)"))
-			have_s3tc = false;
-	}
-
-	return have_s3tc;
-}
-
-
 // upload the texture to OpenGL.
 // if not 0, parameters override the following:
 //   fmt_ovr     : OpenGL format (e.g. GL_RGB) decided from bpp / Tex flags;
@@ -724,6 +779,8 @@ static bool detect_s3tc()
 // - frees the texel data! see ogl_tex_get_data.
 int ogl_tex_upload(const Handle ht, GLenum fmt_ovr, uint q_flags_ovr, GLint int_fmt_ovr)
 {
+	ONCE(detect_gl_upload_caps());
+
 	H_DEREF(ht, OglTex, ot);
 	Tex* t = &ot->t;
 	const char* fn = h_filename(ht);
@@ -738,12 +795,8 @@ int ogl_tex_upload(const Handle ht, GLenum fmt_ovr, uint q_flags_ovr, GLint int_
 		return 0;
 
 	// decompress S3TC if that's not supported by OpenGL.
-	static const bool have_s3tc = detect_s3tc();
 	if((t->flags & TEX_DXT) && !have_s3tc)
-	{
-		ONCE(DISPLAY_ERROR(L"Performance warning: your graphics card does not support compressed textures. The game will try to continue anyway, but may be slower than expected. Please try updating your graphics drivers; if that doesn't help, please try upgrading your hardware."));
 		(void)tex_transform_to(t, t->flags & ~TEX_DXT);
-	}
 
 	// determine fmt and int_fmt, allowing for user override.
 	ot->fmt = choose_fmt(t->bpp, t->flags);
@@ -788,6 +841,7 @@ int ogl_tex_upload(const Handle ht, GLenum fmt_ovr, uint q_flags_ovr, GLint int_
 
 //----------------------------------------------------------------------------
 // getters
+//----------------------------------------------------------------------------
 
 // retrieve texture dimensions and bits per pixel.
 // all params are optional and filled if non-NULL.
@@ -842,6 +896,7 @@ int ogl_tex_get_data(Handle ht, void** p)
 
 //----------------------------------------------------------------------------
 // misc API
+//----------------------------------------------------------------------------
 
 // bind the texture to the specified unit [number] in preparation for
 // using it in rendering. if <ht> is 0, texturing is disabled instead.

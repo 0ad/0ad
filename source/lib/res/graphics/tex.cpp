@@ -660,7 +660,7 @@ TIMER_ADD_CLIENT(tc_transform);
 // that are set in transforms.
 int tex_transform(Tex* t, uint transforms)
 {
-	SUM_TIMER(tc_transform);
+	TIMER_ACCRUE(tc_transform);
 
 	const uint target_flags = t->flags ^ transforms;
 	for(;;)

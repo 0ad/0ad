@@ -34,7 +34,7 @@ static std::string SplitExts(const char *exts)
 
 void WriteSystemInfo()
 {
-	TIMER(write_sys_info);
+	TIMER("write_sys_info");
 
 	// get_cpu_info and get_gfx_info already called during init - see call site
 	get_snd_info();
