@@ -449,14 +449,14 @@ const char* translatePath(const char* path, int type)
 
 //-----------------------------------------------------------------------------
 
-void walkSourceList(FILE* file, Package* package, const char* path, void (*cb)(FILE*, const char*, int))
+void walkSourceList(FILE* file, Package* package, const char* path, void (*cb)(FILE*, const char*, const char*, int))
 {
 	const char** i;
 
 	// Open the group
 	strcpy(buffer, path);
 	if (buffer[strlen(buffer)-1] == '/') buffer[strlen(buffer)-1] = '\0';
-	cb(file, buffer, WST_OPENGROUP);
+	cb(file, buffer, package->filesprefix, WST_OPENGROUP);
 
 	for (i = package->files; *i; ++i)
 	{
@@ -496,13 +496,13 @@ void walkSourceList(FILE* file, Package* package, const char* path, void (*cb)(F
 		const char* source = (*i);
 		const char* ptr = strrchr(source, '/');
 		if (strncmp(path, source, strlen(path)) == 0 && ptr <= source + strlen(path))
-			cb(file, source, WST_SOURCEFILE);
+			cb(file, source, package->filesprefix, WST_SOURCEFILE);
 	}
 
 	// Close the group
 	strcpy(buffer, path);
 	if (buffer[strlen(buffer)-1] == '/') buffer[strlen(buffer)-1] = '\0';
-	cb(file, buffer, WST_CLOSEGROUP);
+	cb(file, buffer, package->filesprefix, WST_CLOSEGROUP);
 }
 
 //-----------------------------------------------------------------------------

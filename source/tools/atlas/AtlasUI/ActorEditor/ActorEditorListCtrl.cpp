@@ -3,7 +3,7 @@
 #include "ActorEditorListCtrl.h"
 
 #include "AtlasObject/AtlasObject.h"
-#include "FieldEditCtrl.h"
+#include "EditableListCtrl/FieldEditCtrl.h"
 
 ActorEditorListCtrl::ActorEditorListCtrl(wxWindow* parent)
 	: DraggableListCtrl(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize,

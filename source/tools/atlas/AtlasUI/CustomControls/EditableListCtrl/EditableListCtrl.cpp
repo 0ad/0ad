@@ -2,12 +2,12 @@
 
 #include "EditableListCtrl.h"
 
-#include "AtlasWindowCommandProc.h"
 #include "EditableListCtrlCommands.h"
 #include "FieldEditCtrl.h"
+#include "General/AtlasWindowCommandProc.h"
 #include "AtlasObject/AtlasObject.h"
 #include "AtlasObject/AtlasObjectText.h"
-#include "AtlasClipboard.h"
+#include "General/AtlasClipboard.h"
 
 const int BlanksAtEnd = 2;
 

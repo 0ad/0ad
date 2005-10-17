@@ -1,6 +1,6 @@
-#include "AtlasDialog.h"
+#include "Windows/AtlasDialog.h"
 
-#include "DraggableListCtrl.h"
+#include "DraggableListCtrl/DraggableListCtrl.h"
 
 class AnimListEditorListCtrl;
 

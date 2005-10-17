@@ -201,7 +201,7 @@ static const char* checkCppFlags(const char* flag, void* data)
 		return NULL;
 }
 
-static void writeSourcePaths(FILE* file, const char* path, int stage)
+static void writeSourcePaths(FILE* file, const char* path, const char* prefix, int stage)
 {
 	if (stage == WST_OPENGROUP && strlen(path) > 0)
 		fprintf(file, " %s", path);

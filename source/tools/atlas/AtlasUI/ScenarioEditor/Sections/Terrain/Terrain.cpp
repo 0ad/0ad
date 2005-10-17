@@ -2,8 +2,8 @@
 
 #include "Terrain.h"
 
-#include "ActionButton.h"
-#include "Datafile.h"
+#include "Buttons/ActionButton.h"
+#include "General/Datafile.h"
 #include "ScenarioEditor/Tools/Common/Brushes.h"
 
 #include "GameInterface/Messages.h"

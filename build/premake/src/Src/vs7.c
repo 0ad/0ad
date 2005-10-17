@@ -238,8 +238,9 @@ static const char* checkLibs(const char* file, void* data)
 	return package->config[*((int*)data)]->target;
 }
 
-static void vcFiles(FILE* file, const char* path, int stage)
+static void vcFiles(FILE* file, const char* path, const char* prefix, int stage)
 {
+	static char fullpath[4096];
 	char indent[128];
 	char* ptr;
 	int i=0, j=0;
@@ -273,7 +274,9 @@ static void vcFiles(FILE* file, const char* path, int stage)
 
 	case WST_SOURCEFILE:
 		fprintf(file, "%s<File\n", indent);
-		fprintf(file, "%s    RelativePath=\"%s\">\n", indent, translatePath(path, WIN32));
+		strcpy(fullpath, prefix?translatePath(prefix, WIN32):"");
+		strcat(fullpath, translatePath(path, WIN32));
+		fprintf(file, "%s    RelativePath=\"%s\">\n", indent, fullpath);
 		for (i=0;i<project->numPackages;i++)
 		{
 			Package *package=project->package[i];

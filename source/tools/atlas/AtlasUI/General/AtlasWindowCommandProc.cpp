@@ -2,9 +2,9 @@
 
 #include "AtlasWindowCommandProc.h"
 
-#include "AtlasWindow.h"
 #include "AtlasWindowCommand.h"
-#include "AtlasDialog.h"
+#include "Windows/AtlasWindow.h"
+#include "Windows/AtlasDialog.h"
 
 AtlasWindowCommandProc* AtlasWindowCommandProc::GetFromParentFrame(wxWindow* object)
 {

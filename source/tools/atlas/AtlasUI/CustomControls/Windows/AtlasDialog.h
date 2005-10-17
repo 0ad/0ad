@@ -1,7 +1,7 @@
 #include "wx/dialog.h"
 
-#include "AtlasWindowCommandProc.h"
-#include "IAtlasSerialiser.h"
+#include "General/AtlasWindowCommandProc.h"
+#include "General/IAtlasSerialiser.h"
 
 class FieldEditCtrl_Dialog;
 

@@ -155,7 +155,7 @@ static int writeWorkspace()
 
 //-----------------------------------------------------------------------------
 
-static void vcFiles(FILE* file, const char* path, int stage)
+static void vcFiles(FILE* file, const char* path, const char* prefix, int stage)
 {
 	const char* ptr = strrchr(path, '/');
 	int i,j;

@@ -3,7 +3,7 @@
 #include "AtlasWindow.h"
 
 #include "AtlasObject/AtlasObject.h"
-#include "AtlasWindowCommand.h"
+#include "General/AtlasWindowCommand.h"
 
 #include "wx/artprov.h"
 #include "wx/config.h"

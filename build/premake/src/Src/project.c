@@ -321,6 +321,8 @@ static int finishProject()
 		for (j = 0; j < package->numFiles; ++j)
 			package->files[j] = getStringFromArray(files, j);
 
+		package->filesprefix = getString(pkg, "filesprefix");
+
 		package->name = getString(pkg, "name");
 		package->script = getString(pkg, "script");
 		package->path = getString(pkg, "path");

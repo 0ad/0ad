@@ -10,6 +10,12 @@ function sourcesfromdirs(root, dirs)
 	return res
 end
 
+function trimrootdir(root, dirs)
+	for i=1, getn(dirs) do
+		dirs[i] = strsub(dirs[i], strlen(root))
+	end
+end
+
 function tconcat(table, values)
 	for i=1, getn(values) do
 		tinsert(table, values[i])

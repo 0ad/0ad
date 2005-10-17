@@ -18,15 +18,15 @@ cd tmp
 
 REM Just copy *.sln/etc indiscriminately, because it might include both pyrogenesis.sln and sced.sln (or might not)
 
-..\premake --target vs6
+..\premake --target vs6 %*
 move *.dsw ..\..\workspaces\vc6
 move *.dsp ..\..\workspaces\vc6
 
-..\premake --target vs7
+..\premake --target vs7 %*
 move *.sln    ..\..\workspaces\vc7
 move *.vcproj ..\..\workspaces\vc7
 
-..\premake --target vs2003
+..\premake --target vs2003 %*
 move *.sln    ..\..\workspaces\vc2003
 move *.vcproj ..\..\workspaces\vc2003
 

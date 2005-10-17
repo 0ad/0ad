@@ -46,6 +46,7 @@ typedef struct _Package
 	const char* url;
 	const char** files;
 	int numFiles;
+	const char* filesprefix;
 	Config** config;
 	int numConfigs;
 	void* data;

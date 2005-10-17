@@ -2,9 +2,9 @@
 
 #include "ListCtrlValidator.h"
 
-#include "AtlasWindowCommandProc.h"
-#include "EditableListCtrl.h"
-#include "EditableListCtrlCommands.h"
+#include "General/AtlasWindowCommandProc.h"
+#include "EditableListCtrl/EditableListCtrl.h"
+#include "EditableListCtrl/EditableListCtrlCommands.h"
 
 #include "AtlasObject/AtlasObject.h"
 #include "AtlasObject/AtlasObjectText.h"

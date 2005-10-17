@@ -2,8 +2,8 @@
 
 #include "Map.h"
 
-#include "ActionButton.h"
-#include "Datafile.h"
+#include "Buttons/ActionButton.h"
+#include "General/Datafile.h"
 
 #include "GameInterface/Messages.h"
 
@@ -38,7 +38,12 @@ static void GenerateRMS(void* data)
 	wxChar* argv[] = { _T("rmgen.exe"), 0, _T("_atlasrm"), 0 };
 	wxString scriptName = ((wxTextCtrl*)data)->GetValue();
 	argv[1] = const_cast<wxChar*>(scriptName.c_str());
+
+	wxString cwd = wxFileName::GetCwd();
+	wxFileName::SetCwd(Datafile::GetDataDirectory());
 	wxExecute(argv, wxEXEC_SYNC);
+	wxFileName::SetCwd(cwd);
+
 	POST_COMMAND(LoadMap(L"_atlasrm.pmp"));
 }
 

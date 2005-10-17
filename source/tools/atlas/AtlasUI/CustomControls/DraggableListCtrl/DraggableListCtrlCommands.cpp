@@ -3,7 +3,7 @@
 #include "DraggableListCtrlCommands.h"
 
 #include "DraggableListCtrl.h"
-#include "EditableListCtrl.h"
+#include "EditableListCtrl/EditableListCtrl.h"
 
 //////////////////////////////////////////////////////////////////////////
 

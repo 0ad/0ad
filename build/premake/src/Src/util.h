@@ -39,7 +39,7 @@ extern const char* replaceChars(const char* str, const char* replace);
 extern const char* replaceExtension(const char* path, const char* extension);
 extern const char* reversePath(const char* path, const char* subdir, int type);
 extern const char* translatePath(const char* buffer, int type);
-extern void  walkSourceList(FILE* file, Package* package, const char* path, void (*cb)(FILE*, const char*, int));
+extern void  walkSourceList(FILE* file, Package* package, const char* path, void (*cb)(FILE*, const char*, const char*, int));
 extern void  writeList(FILE* file, const char** list, const char* prefix, const char* postfix, const char* infix, const char* (*check)(const char*,void*), void* data);
 extern const char* getCwd();
 extern int   setCwd(const char* path);

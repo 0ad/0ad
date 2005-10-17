@@ -9,11 +9,11 @@
 #include "QuickComboBox.h"
 #include "QuickFileCtrl.h"
 
-#include "AtlasDialog.h"
-#include "EditableListCtrl.h"
+#include "Windows/AtlasDialog.h"
+#include "EditableListCtrl/EditableListCtrl.h"
 #include "AtlasObject/AtlasObject.h"
 #include "AtlasObject/AtlasObjectText.h"
-#include "Datafile.h"
+#include "General/Datafile.h"
 
 #include "wx/colour.h"
 #include "wx/colordlg.h"

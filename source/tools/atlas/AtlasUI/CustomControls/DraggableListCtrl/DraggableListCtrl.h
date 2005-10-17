@@ -5,7 +5,7 @@
 	Use just like a normal listctrl.
 */
 
-#include "EditableListCtrl.h"
+#include "EditableListCtrl/EditableListCtrl.h"
 
 class DragCommand;
 

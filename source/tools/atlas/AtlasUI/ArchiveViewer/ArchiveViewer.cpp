@@ -2,7 +2,7 @@
 
 #include "ArchiveViewer.h"
 
-#include "Version.h"
+#include "Misc/Version.h"
 
 #include <algorithm>
 

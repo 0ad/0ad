@@ -1,4 +1,4 @@
-#include "AtlasWindowCommand.h"
+#include "General/AtlasWindowCommand.h"
 
 #include "AtlasObject/AtlasObject.h"
 

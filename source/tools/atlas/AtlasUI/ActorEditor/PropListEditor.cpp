@@ -2,7 +2,7 @@
 
 #include "PropListEditor.h"
 
-#include "FieldEditCtrl.h"
+#include "EditableListCtrl/FieldEditCtrl.h"
 #include "AtlasObject/AtlasObject.h"
 
 //////////////////////////////////////////////////////////////////////////

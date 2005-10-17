@@ -2,7 +2,7 @@
 
 #include "DraggableListCtrl.h"
 
-#include "AtlasWindowCommandProc.h"
+#include "General/AtlasWindowCommandProc.h"
 #include "DraggableListCtrlCommands.h"
 
 const int ScrollSpeed = 8; // when dragging off the top or bottom of the control

@@ -3,7 +3,7 @@
 #include "ColourTesterColourCtrl.h"
 
 #include "ColourTesterImageCtrl.h"
-#include "Datafile.h"
+#include "General/Datafile.h"
 
 #include <sstream>
 

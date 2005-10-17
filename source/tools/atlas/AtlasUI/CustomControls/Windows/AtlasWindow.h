@@ -1,9 +1,9 @@
 #ifndef ATLASWINDOW_H__
 #define ATLASWINDOW_H__
 
-#include "AtlasWindowCommandProc.h"
+#include "General/AtlasWindowCommandProc.h"
 
-#include "IAtlasSerialiser.h"
+#include "General/IAtlasSerialiser.h"
 #include "CustomControls/FileHistory/FileHistory.h"
 
 #include "wx/filename.h"

@@ -2,7 +2,7 @@
 
 #include "ColourTesterFileCtrl.h"
 
-#include "Datafile.h"
+#include "General/Datafile.h"
 #include "ColourTesterImageCtrl.h"
 
 BEGIN_EVENT_TABLE(ColourTesterFileCtrl, wxVirtualDirTreeCtrl)

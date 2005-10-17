@@ -3,7 +3,7 @@
 
 #include "wx/listctrl.h"
 
-#include "IAtlasSerialiser.h"
+#include "General/IAtlasSerialiser.h"
 
 #include <vector>
 
