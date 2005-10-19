@@ -63,7 +63,7 @@ CTextureEntry* CTextureManager::FindTexture(Handle handle)
 	return CTextureEntry::GetByHandle(handle);
 }
 
-CTerrainProperties *CTextureManager::GetPropertiesFromFile(CTerrainProperties *props, CStr path)
+CTerrainProperties *CTextureManager::GetPropertiesFromFile(CTerrainProperties *props, const char* path)
 {
 	return CTerrainProperties::FromXML(props, path);
 }
@@ -91,73 +91,73 @@ void CTextureManager::DeleteTexture(CTextureEntry* entry)
 // jw: indeed this is inefficient and RecurseDirectory should be implemented
 // via VFSUtil::EnumFiles, but it works fine and "only" takes 25ms for
 // typical maps. therefore, we'll leave it for now.
-void CTextureManager::LoadTextures(CTerrainProperties *props, CStr path, const char* fileext_filter)
+void CTextureManager::LoadTextures(CTerrainProperties *props, const char* dir, const char* fileext_filter)
 {
-	Handle dir=vfs_dir_open(path.c_str());
- 	DirEnt dent;
-	
-	path += '/';
-	
- 	if (dir > 0)
- 	{
-		while (vfs_dir_next_ent(dir, &dent, fileext_filter) == 0)
- 		{
-			// Strip extension off of dent.name, add .xml, check if the file
-			// exists
-			CStr xmlname=path+dent.name;
-			xmlname=xmlname.GetSubstring(0, xmlname.size() - (strlen(fileext_filter) - 1));
-			xmlname += ".xml";
-			
-			CTerrainProperties *myprops = NULL;
-			// Has XML file -> attempt to load properties
-			if (vfs_exists(xmlname.c_str()))
-				myprops=GetPropertiesFromFile(props, xmlname);
-			
-			if (myprops)
-				LOG(NORMAL, LOG_CATEGORY, "CTextureManager: Successfully loaded override xml %s for texture %s\n", xmlname.c_str(), dent.name);
-			
-			// Error or non-existant xml file -> use parent props
-			if (!myprops)
-				myprops = props;
-			
-			AddTexture(myprops, path+dent.name);
- 		}
+	VFSUtil::FileList files;
+	if(!VFSUtil::FindFiles(dir, fileext_filter, files))
+		// FindFiles has already logged the failure
+		return;
 
- 		vfs_dir_close(dir);
- 	}
+	for(VFSUtil::FileList::iterator it = files.begin(); it != files.end(); ++it)
+	{
+		const char* texture_name = it->c_str();
+
+		// build name of associated xml file (i.e. replace extension)
+		char xml_name[PATH_MAX+5];	// add room for .XML
+		strcpy_s(xml_name, PATH_MAX, texture_name);
+		char* ext = strrchr(xml_name, '.');
+		if(ext)
+			strcpy(ext, ".xml");	// safe
+
+		CTerrainProperties *myprops = NULL;
+		// Has XML file -> attempt to load properties
+		if (vfs_exists(xml_name))
+		{
+			myprops=GetPropertiesFromFile(props, xml_name);
+			if (myprops)
+				LOG(NORMAL, LOG_CATEGORY, "CTextureManager: Successfully loaded override xml %s for texture %s\n", xml_name, texture_name);
+		}
+
+		// Error or non-existant xml file -> use parent props
+		if (!myprops)
+			myprops = props;
+
+		AddTexture(myprops, texture_name);
+	}
 }
 
-void CTextureManager::RecurseDirectory(CTerrainProperties *parentProps, CStr path)
+void CTextureManager::RecurseDirectory(CTerrainProperties *parentProps, const char* cur_dir_path)
 {
 	//LOG(NORMAL, LOG_CATEGORY, "CTextureManager::RecurseDirectory(%s)", path.c_str());
-	
-	// Load terrains.xml first, if it exists
+
 	CTerrainProperties *props=NULL;
-	CStr xmlpath=path+"terrains.xml";
-	if (vfs_exists(xmlpath.c_str()))
-		props=GetPropertiesFromFile(parentProps, xmlpath);
+
+	// Load terrains.xml first, if it exists
+	char fn[PATH_MAX];
+	snprintf(fn, PATH_MAX, "%s/%s", cur_dir_path, "terrains.xml");
+	if (vfs_exists(fn))
+		props=GetPropertiesFromFile(parentProps, fn);
 	
 	// No terrains.xml, or read failures -> use parent props (i.e. 
 	if (!props)
 	{
 		LOG(NORMAL, LOG_CATEGORY,
-			"CTextureManager::RecurseDirectory(%s): no terrains.xml (or errors while loading) - using parent properties", path.c_str());
+			"CTextureManager::RecurseDirectory(%s): no terrains.xml (or errors while loading) - using parent properties", cur_dir_path);
 		props = parentProps;
 	}
 
 	// Recurse once for each subdirectory
-
-	vector<CStr> folders;
-	VFSUtil::FindFiles(path.c_str(), "/", folders);
-
-	for (uint i=0;i<folders.size();i++)
+	VFSUtil::FileList subdirs;
+	VFSUtil::FindFiles(cur_dir_path, "/", subdirs);
+	for (uint i=0;i<subdirs.size();i++)
 	{
-		RecurseDirectory(props, folders[i]);
+		RecurseDirectory(props, subdirs[i].c_str());
 	}
 
+	// TODO: just iterate over all files and check if its extension is supported
 	for (int i=0;i<ARRAY_SIZE(SupportedTextureFormats);i++)
 	{
-		LoadTextures(props, path, SupportedTextureFormats[i]);
+		LoadTextures(props, cur_dir_path, SupportedTextureFormats[i]);
 	}
 }
 

@@ -24,7 +24,7 @@ CTerrainProperties::CTerrainProperties(CTerrainProperties *parent):
 		m_Groups = m_pParent->m_Groups;	
 }
 
-CTerrainProperties *CTerrainProperties::FromXML(CTerrainProperties *parent, CStr path)
+CTerrainProperties *CTerrainProperties::FromXML(CTerrainProperties *parent, const char* path)
 {
 	CXeromyces XeroFile;
 	if (XeroFile.Load(path) != PSRETURN_OK)
@@ -39,7 +39,7 @@ CTerrainProperties *CTerrainProperties::FromXML(CTerrainProperties *parent, CStr
 		LOG(ERROR,
 			LOG_CATEGORY,
 			"TextureManager: Loading %s: Root node is not terrains (found \"%s\")",
-			path.c_str(),
+			path,
 			rootName.c_str());
 		return NULL;
 	}
@@ -70,7 +70,7 @@ CTerrainProperties *CTerrainProperties::FromXML(CTerrainProperties *parent, CStr
 		{
 			LOG(WARNING, LOG_CATEGORY, 
 				"TerrainProperties: Loading %s: Unexpected node %s\n",
-				path.c_str(),
+				path,
 				XeroFile.getElementString(child.getNodeName()).c_str());
 			// Keep reading - typos shouldn't be showstoppers
 		}

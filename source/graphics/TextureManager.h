@@ -65,12 +65,12 @@ private:
 
 	// Find all textures in directory matching the file extension, check if
 	// there's an override XML with the same basename (if there is, load it)
-	void LoadTextures(CTerrainProperties *props, CStr path, const char* ext);
+	void LoadTextures(CTerrainProperties *props, const char* dir, const char* ext);
 	
 	// Load all terrains below path, using props as the parent property sheet.
-	void RecurseDirectory(CTerrainProperties *props, CStr path);
+	void RecurseDirectory(CTerrainProperties *props, const char* dir);
 	
-	CTerrainProperties *GetPropertiesFromFile(CTerrainProperties *props, CStr path);
+	CTerrainProperties *GetPropertiesFromFile(CTerrainProperties *props, const char* path);
 
 public:
 	// constructor, destructor

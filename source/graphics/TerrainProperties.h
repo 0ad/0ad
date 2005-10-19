@@ -43,7 +43,7 @@ public:
 	// Create a new object and load the XML file specified. Returns NULL upon
 	// failure
 	// The parent pointer may be NULL, for the "root" terrainproperties object.
-	static CTerrainProperties *FromXML(CTerrainProperties *parent, CStr path);
+	static CTerrainProperties *FromXML(CTerrainProperties *parent, const char* path);
 	
 	// Save the object to an XML file. Implement when needed! ;-)
 	// bool WriteXML(CStr path);
