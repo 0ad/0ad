@@ -58,9 +58,6 @@ protected:
     // map size
     u32 m_MapSize;
 
-	// used by GetMapSpaceCoords (precalculated as an optimization)
-	float m_scaleX, m_scaleY;
-
     // texture size
     u32 m_TextureSize;
 

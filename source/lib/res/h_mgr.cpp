@@ -481,6 +481,8 @@ static void warn_if_invalid(HDATA* hd)
 			if(*p != 0)
 				debug_warn("handle user data was overrun!");
 	}
+#else
+	UNUSED2(hd);
 #endif
 }
 

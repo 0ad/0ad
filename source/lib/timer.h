@@ -62,6 +62,10 @@ struct TimerClient
 	const char* description;
 
 	TimerClient* next;
+
+	// how often timer_bill_client was called (helps measure relative
+	// performance of something that is done indeterminately often).
+	uint num_calls;
 };
 
 

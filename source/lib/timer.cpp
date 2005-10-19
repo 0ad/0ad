@@ -278,6 +278,7 @@ TimerClient* timer_add_client(TimerClient* tc, const char* description)
 void timer_bill_client(TimerClient* tc, double dt)
 {
 	tc->sum += dt;
+	tc->num_calls++;
 }
 
 
@@ -305,7 +306,7 @@ void timer_display_client_totals()
 		else if(sum > 1e-3)
 			scale = 1e3, unit = "ms";
 
-		debug_printf("  %s: %g %s\n", tc->description, sum*scale, unit);
+		debug_printf("  %s: %g %s (%dx)\n", tc->description, sum*scale, unit, tc->num_calls);
 	}
 
 	debug_printf("-----------------------------------------------------\n");

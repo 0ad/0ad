@@ -1428,6 +1428,7 @@ int CInput::GetMouseHoveringTextPosition()
 
 		// Pointer to caption, will come in handy
 		CStrW *pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
+		UNUSED2(pCaption);
 
 		// Now get the height of the font.
 						// TODO: Get the real font

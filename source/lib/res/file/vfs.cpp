@@ -142,6 +142,7 @@ static int VDir_validate(const VDir* vd)
 	if(vd->filter && !isprint(vd->filter[0]))
 		return -2;
 #endif
+	UNUSED2(vd);
 	return 0;
 }
 

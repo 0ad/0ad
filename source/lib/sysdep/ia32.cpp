@@ -40,9 +40,10 @@
 #error ia32.cpp needs inline assembly support!
 #endif
 
+#if HAVE_MS_ASM
+
 // replace pathetic MS libc implementation.
 // not needed on non-Win32, so don't bother converting from MS inline asm.
-#if HAVE_MS_ASM
 double _ceil(double f)
 {
 	UNUSED2(f);	// avoid bogus warning
@@ -57,6 +58,28 @@ __asm
 }
 	return r;
 }
+
+
+// note: declspec naked is significantly faster: it avoids redundant
+// store/load, even though it prevents inlining.
+
+// if on 64-bit systems, [esp+4] will have to change
+cassert(sizeof(int)*CHAR_BIT == 32);
+
+__declspec(naked) float ia32_rintf(float)
+{
+	__asm fld		[esp+4]
+	__asm frndint
+	__asm ret
+}
+
+inline double ia32_rint(double)
+{
+	__asm fld		[esp+4]
+	__asm frndint
+	__asm ret
+}
+
 #endif
 
 

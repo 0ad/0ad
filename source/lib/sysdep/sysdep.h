@@ -39,6 +39,19 @@ extern int vsnprintf2(char* buffer, size_t count, const char* format, va_list ar
 extern void* alloca(size_t size);
 #endif
 
+// rint: round float to nearest integer.
+// provided by C99, otherwise:
+#if !HAVE_C99
+// .. implemented on IA-32; define as macro to avoid jmp overhead
+# if CPU_IA32
+#  define rintf ia32_rintf
+#  define rint ia32_rint
+# endif
+// .. forward-declare either the IA-32 version or portable C emulation.
+extern float rintf(float f);
+extern double rint(double d);
+#endif
+
 // finite: return 0 iff the given double is infinite or NaN.
 #if OS_WIN
 # define finite _finite
@@ -69,6 +82,7 @@ extern void* alloca(size_t size);
 #else
 # define __func__ "(unknown)"
 #endif
+
 
 
 //

@@ -35,7 +35,22 @@ float fmaxf(float a, float b)
 	return (a > b)? a : b;
 }
 
+
+#ifndef rint
+
+inline float rintf(float f)
+{
+	return (float)(int)f;
+}
+
+inline double rint(double d)
+{
+	return (double)(int)d;
+}
+
 #endif
+
+#endif	// !HAVE_C99
 
 
 void memcpy2(void* dst, const void* src, size_t nbytes)

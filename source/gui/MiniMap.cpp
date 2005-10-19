@@ -22,6 +22,13 @@
 
 bool g_TerrainModified = false;
 
+// used by GetMapSpaceCoords (precalculated as an optimization).
+// this was formerly access via inline asm, which required it to be
+// static data instead of a class member. that is no longer the case,
+// but we leave it because this is slightly more efficient.
+static float m_scaleX, m_scaleY;
+
+
 static unsigned int ScaleColor(unsigned int color, float x)
 {
 	unsigned int r = uint(float(color & 0xff) * x);
@@ -167,6 +174,9 @@ void CMiniMap::Draw()
 	m_Height = (u32)(m_CachedActualSize.bottom - m_CachedActualSize.top);
 	m_MapSize = m_Terrain->GetVerticesPerSide();
 	m_TextureSize = round_up_to_pow2(m_MapSize);
+
+	m_scaleX = float(m_Width) / float(m_MapSize - 1);
+	m_scaleY = float(m_Height) / float(m_MapSize - 1);
 
 	if(!m_TerrainTexture)
 		CreateTextures();
@@ -422,23 +432,12 @@ void CMiniMap::Destroy()
 	}
 }
 
-TIMER_ADD_CLIENT(tc_minimap_getmapspacecoords);
-
-/*
-* Calefaction
-* TODO: Speed this up. There has to be some mathematical way to make
-* this more efficient. This works for now.
-*/
 CVector2D CMiniMap::GetMapSpaceCoords(CVector3D worldPos)
 {
-	TIMER_ACCRUE(tc_minimap_getmapspacecoords);
-
-	u32 x = (u32)(worldPos.X / CELL_SIZE);
+	float x = rintf(worldPos.X / CELL_SIZE);
+	float y = rintf(worldPos.Z / CELL_SIZE);
 	// Entity's Z coordinate is really its longitudinal coordinate on the terrain
-	u32 y = (u32)(worldPos.Z / CELL_SIZE);
 
 	// Calculate map space scale
-	float scaleX = float(m_Width) / float(m_MapSize - 1);
-	float scaleY = float(m_Height) / float(m_MapSize - 1);
-	return CVector2D(float(x) * scaleX, float(y) * scaleY);
+	return CVector2D(x * m_scaleX, y * m_scaleY);
 }

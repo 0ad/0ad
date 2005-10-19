@@ -34,7 +34,12 @@ extern "C" {
 // call before any of the following functions
 extern void ia32_init();
 
+
 extern double _ceil(double);
+
+extern float ia32_rintf(float f);
+extern double ia32_rint(double f);
+
 
 extern u64 rdtsc(void);
 

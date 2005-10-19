@@ -162,7 +162,7 @@ static void Ogl_Shader_dtor(Ogl_Shader* shdr)
 	}
 }
 
-static int Ogl_Shader_validate(const Ogl_Shader* shdr)
+static int Ogl_Shader_validate(const Ogl_Shader* UNUSED(shdr))
 {
 	// TODO
 	return 0;
@@ -225,7 +225,7 @@ static void Ogl_Program_init(Ogl_Program* UNUSED(p), va_list UNUSED(args))
 // Load the shader associated with one Shader element,
 // and attach it to our program object.
 static int do_load_shader(
-		Ogl_Program* p, const char* filename, Handle h,
+		Ogl_Program* p, const char* filename, Handle UNUSED(h),
 		const CXeromyces& XeroFile, const XMBElement& Shader)
 {
 #define AT(x) int at_##x = XeroFile.getAttributeID(#x)
@@ -379,7 +379,7 @@ static void Ogl_Program_dtor(Ogl_Program* p)
 	}
 }
 
-static int Ogl_Program_validate(const Ogl_Program* p)
+static int Ogl_Program_validate(const Ogl_Program* UNUSED(p))
 {
 	// TODO
 	return 0;
