@@ -249,6 +249,8 @@ enum OglTexAllow
 	OGL_TEX_ENABLE
 };
 
+// override the default decision and force/disallow use of the
+// given feature. should be called from ah_override_gl_upload_caps.
 extern void ogl_tex_override(OglTexOverrides what, OglTexAllow allow);
 
 // upload the texture to OpenGL.

@@ -129,7 +129,7 @@ static int bmp_encode(Tex* restrict t, DynArray* restrict da)
 		(u32)img_size,		// biSizeImage
 		0, 0, 0, 0			// unused (bi?PelsPerMeter, biClr*)
 	};
-	return tex_util_write(t, transforms, &hdr, hdr_size, da);
+	return tex_codec_write(t, transforms, &hdr, hdr_size, da);
 }
 
 TEX_CODEC_REGISTER(bmp);

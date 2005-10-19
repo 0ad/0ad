@@ -28,8 +28,7 @@
 // so that our allocations don't cause infinite recursion.
 #include "nommgr.h"
 #include "self_test.h"
-// file_make_full_native_path is needed when bundling game data files.
-#include "lib/res/file/file.h"
+#include "app_hooks.h"
 
 // needed when writing crashlog
 static const size_t LOG_CHARS = 16384;
@@ -60,7 +59,7 @@ void debug_wprintf_mem(const wchar_t* fmt, ...)
 	va_end(args);
 	if(len < 0)
 	{
-		debug_warn("debug_wprintf_mem: vswprintf failed");
+		debug_warn(__func__": vswprintf failed");
 		return;
 	}
 	debug_log_pos += len+2;
@@ -68,59 +67,22 @@ void debug_wprintf_mem(const wchar_t* fmt, ...)
 }
 
 
-
-
-// convert contents of file <in_filename> from char to wchar_t and
-// append to <out> file. used by debug_write_crashlog.
-static void cat_atow(FILE* out, const char* in_filename)
-{
-	FILE* in = fopen(in_filename, "rb");
-	if(!in)
-	{
-		fwprintf(out, L"(unavailable)");
-		return;
-	}
-
-	const size_t buf_size = 1024;
-	char buf[buf_size+1]; // include space for trailing '\0'
-
-	while(!feof(in))
-	{
-		size_t bytes_read = fread(buf, 1, buf_size, in);
-		if(!bytes_read)
-			break;
-		buf[bytes_read] = 0;	// 0-terminate
-		fwprintf(out, L"%hs", buf);
-	}
-
-	fclose(in);
-}
-
-
 int debug_write_crashlog(const wchar_t* text)
 {
-	const wchar_t divider[] = L"\n\n====================================\n\n";
-#define WRITE_DIVIDER fwprintf(f, divider);
-
 	FILE* f = fopen("crashlog.txt", "w");
 	if(!f)
+	{
+		DISPLAY_ERROR(L"debug_write_crashlog: unable to open file");
 		return -1;
+	}
 
 	fputwc(0xfeff, f);	// BOM
-
 	fwprintf(f, L"%ls\n", text);
-	WRITE_DIVIDER
+	fwprintf(f, L"\n\n====================================\n\n");
 
-	// for user convenience, bundle all logs into this file:
-	char N_path[PATH_MAX];
-	fwprintf(f, L"System info:\n\n");
-	(void)file_make_full_native_path("../logs/system_info.txt", N_path);
-	cat_atow(f, N_path);
-	WRITE_DIVIDER
-	fwprintf(f, L"Main log:\n\n");
-	(void)file_make_full_native_path("../logs/mainlog.html", N_path);
-	cat_atow(f, N_path);
-	WRITE_DIVIDER
+	// allow user to bundle whatever information they want
+	ah_bundle_logs(f);
+	
 
 	fwprintf(f, L"Last known activity:\n\n %ls\n", debug_log);
 

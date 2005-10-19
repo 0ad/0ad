@@ -118,7 +118,7 @@ static GLint choose_fmt(uint bpp, uint flags)
 		case 5:
 			return GL_COMPRESSED_RGBA_S3TC_DXT5_EXT;
 		default:
-			debug_warn("choose_fmt: invalid DXT value");
+			debug_warn(__func__": invalid DXT value");
 			return 0;
 		}
 	}
@@ -138,7 +138,7 @@ static GLint choose_fmt(uint bpp, uint flags)
 		debug_assert(alpha);
 		return bgr? GL_BGRA : GL_RGBA;
 	default:
-		debug_warn("choose_fmt: invalid bpp");
+		debug_warn(__func__": invalid bpp");
 		return 0;
 	}
 
@@ -227,7 +227,7 @@ static GLint choose_int_fmt(GLenum fmt, uint q_flags)
 		return half_bpp? GL_RGBA4 : GL_RGBA8;
 
 	default:
-		debug_warn("choose_int_fmt doesn't cover the given fmt! please add it.");
+		debug_warn(__func__": given fmt isn't covered! please add it.");
 		// fall back to a reasonable default
 		return half_bpp? GL_RGB4 : GL_RGB8;
 	}
@@ -615,7 +615,7 @@ void ogl_tex_override(OglTexOverrides what, OglTexAllow allow)
 		have_auto_mipmap_gen = enable;
 		break;
 	default:
-		debug_warn("ogl_tex_override: invalid <what>");
+		debug_warn(__func__": invalid <what>");
 		break;
 	}
 }
@@ -640,15 +640,6 @@ static void detect_gl_upload_caps()
 	}
 
 //apphook - call back into override if app thinks anything should be disabled
-	// disable features if we're on a card/driver combo on which they
-	// are known to break.
-	if(gfx_card[0] == '\0')
-		debug_warn("ogl_tex requires get_gfx_info be called before ogl_tex_upload");
-	if(!strcmp(gfx_card, "S3 SuperSavage/IXC 1014"))
-	{
-		if(strstr(gfx_drv_ver, "ssicdnt.dll (2.60.115)"))
-			have_s3tc = false;
-	}
 
 	// warn if more-or-less essential features are missing
 	if(!have_s3tc)
@@ -871,7 +862,7 @@ int ogl_tex_get_format(Handle ht, uint* flags, GLenum* fmt)
 	if(fmt)
 	{
 		if(!ot->is_currently_uploaded)
-			debug_warn("ogl_tex_get_format: hasn't been defined yet!");
+			debug_warn(__func__": hasn't been defined yet!");
 		*fmt = ot->fmt;
 	}
 	return 0;

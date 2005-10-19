@@ -139,7 +139,7 @@ static const u8* z_find_id(const u8* file, size_t size, const u8* start, const c
 		{
 #ifndef NDEBUG
 			if(p != start)
-				debug_warn("z_find_id: archive damaged, but still found next record.");
+				debug_warn(__func__": archive damaged, but still found next record.");
 #endif
 			return p;
 		}
@@ -150,7 +150,7 @@ static const u8* z_find_id(const u8* file, size_t size, const u8* start, const c
 	}
 
 	// passed EOF, didn't find it.
-	debug_warn("z_find_id: archive corrupted, next record not found.");
+	debug_warn(__func__": archive corrupted, next record not found.");
 	return 0;
 }
 
@@ -203,7 +203,7 @@ static time_t convert_dos_date(u16 fatdate, u16 fattime)
 
 	time_t ret = mktime(&t);
 	if(ret == (time_t)-1)
-		debug_warn("convert_dos_date: mktime failed");
+		debug_warn(__func__": mktime failed");
 	return ret;
 }
 
@@ -764,7 +764,7 @@ int inf_set_dest(uintptr_t _ctx, void* out, size_t out_size)
 
 	if(zs->next_out || zs->avail_out)
 	{
-		debug_warn("zip_set_dest: ctx already in use!");
+		debug_warn(__func__": ctx already in use!");
 		return -1;
 	}
 	zs->next_out  = (Byte*)out;
@@ -804,7 +804,7 @@ double t0 = get_time();
 	if(in)
 	{
 		if(ctx->in_buf)
-			debug_warn("inf_inflate: previous input buffer not empty");
+			debug_warn(__func__": previous input buffer not empty");
 		zs->avail_in = (uInt)in_size;
 		zs->next_in = (Byte*)in;
 
@@ -1231,7 +1231,7 @@ int zip_map(ZFile* zf, void*& p, size_t& size)
 	// compression algorithm is unspecified - disallow it.
 	if(zfile_compressed(zf))
 	{
-		debug_warn("zip_map: file is compressed");
+		debug_warn(__func__": file is compressed");
 		return -1;
 	}
 

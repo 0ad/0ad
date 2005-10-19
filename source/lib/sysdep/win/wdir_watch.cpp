@@ -218,7 +218,7 @@ int dir_add_watch(const char* dir, intptr_t* _reqnum)
 	// need it before binding dir to IOCP because it is our "key".
 	if(last_reqnum == INT_MAX)
 	{
-		debug_warn("dir_add_watch: request numbers are no longer unique");
+		debug_warn(__func__": request numbers are no longer unique");
 		CloseHandle(hDir);
 		goto fail;
 	}
@@ -280,7 +280,7 @@ int dir_cancel_watch(const intptr_t reqnum)
 	Watch* w = find_watch(reqnum);
 	if(!w)
 	{
-		debug_warn("dir_cancel_watch: watches[reqnum] invalid");
+		debug_warn(__func__": watches[reqnum] invalid");
 		return -1;
 	}
 

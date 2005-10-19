@@ -174,7 +174,7 @@ bool oglHaveVersion(const char* desired_version)
 	int desired_major, desired_minor;
 	if(sscanf(desired_version, "%d.%d", &desired_major, &desired_minor) != 2)
 	{
-		debug_warn("oglHaveVersion: invalid version string");
+		debug_warn(__func__": invalid version string");
 		return false;
 	}
 
@@ -182,7 +182,7 @@ bool oglHaveVersion(const char* desired_version)
 	const char* version = (const char*)glGetString(GL_VERSION);
 	if(!version || sscanf(version, "%d.%d", &major, &minor) != 2)
 	{
-		debug_warn("oglHaveVersion: GL_VERSION invalid");
+		debug_warn(__func__": GL_VERSION invalid");
 		return false;
 	}
 
@@ -288,7 +288,7 @@ void oglCheck()
 	}
 
 	if(error_enountered)
-		debug_warn("oglCheck reports error(s)");
+		debug_warn(__func__": OpenGL error(s) occurred");
 }
 #endif
 
@@ -319,7 +319,7 @@ void oglSquelchError(GLenum err_to_ignore)
 	}
 
 	if(error_enountered)
-		debug_warn("oglSquelchError reports other error(s)");
+		debug_warn(__func__": OpenGL error(s) occurred");
 }
 
 
@@ -360,7 +360,7 @@ void oglInit()
 	// time-critical) than centralizing the 'OpenGL is ready' check.
 	exts = (const char*)glGetString(GL_EXTENSIONS);
 	if(!exts)
-		debug_warn("oglInit called before OpenGL is ready for use");
+		debug_warn(__func__": called before OpenGL is ready for use");
 	have_12 = oglHaveVersion("1.2");
 	have_13 = oglHaveVersion("1.3");
 	have_14 = oglHaveVersion("1.4");

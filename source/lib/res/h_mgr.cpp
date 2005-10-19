@@ -286,7 +286,7 @@ static int alloc_idx(i32& idx, HDATA*& hd)
 		// add another
 		if(last_in_use >= hdata_cap)
 		{
-			debug_warn("alloc_idx: too many open handles (increase IDX_BITS)");
+			debug_warn(__func__": too many open handles (increase IDX_BITS)");
 			return ERR_LIMIT;
 		}
 		idx = last_in_use+1;	// just incrementing idx would start it at 1
@@ -296,7 +296,7 @@ static int alloc_idx(i32& idx, HDATA*& hd)
 			// can't fail for any other reason - idx is checked above.
 		{	// VC6 goto fix
 		bool is_unused = !hd->tag;
-		debug_assert(is_unused && "alloc_idx: invalid last_in_use");
+		debug_assert(is_unused && __func__": invalid last_in_use");
 		}
 
 have_idx:;
@@ -491,17 +491,17 @@ static int type_validate(H_Type type)
 
 	if(!type)
 	{
-		debug_warn("h_alloc: type is 0");
+		debug_warn(__func__": type is 0");
 		goto fail;
 	}
 	if(type->user_size > HDATA_USER_SIZE)
 	{
-		debug_warn("h_alloc: type's user data is too large for HDATA");
+		debug_warn(__func__": type's user data is too large for HDATA");
 		goto fail;
 	}
 	if(type->name == 0)
 	{
-		debug_warn("h_alloc: type's name field is 0");
+		debug_warn(__func__": type's name field is 0");
 		goto fail;
 	}
 
@@ -539,7 +539,7 @@ static Handle reuse_existing_handle(uintptr_t key, H_Type type, uint flags)
 	HDATA* hd = h_data_tag_type(h, type);
 	if(hd->refs == REF_MAX)
 	{
-		debug_warn("reuse_existing: too many references to a handle - increase REF_BITS");
+		debug_warn(__func__": too many references to a handle - increase REF_BITS");
 		return ERR_LIMIT;
 	}
 
@@ -761,7 +761,7 @@ void* h_user_data(const Handle h, const H_Type type)
 	if(!hd->refs)
 	{
 		// note: resetting the tag is not enough (user might pass in its value)
-		debug_warn("h_user_data: no references to resource (it's cached, but someone is accessing it directly)");
+		debug_warn(__func__": no references to resource (it's cached, but someone is accessing it directly)");
 		return 0;
 	}
 
@@ -777,7 +777,7 @@ const char* h_filename(const Handle h)
 	HDATA* hd = h_data_tag(h);
 	if(!hd)
 	{
-		debug_warn("h_filename failed");
+		debug_warn(__func__" failed");
 		return 0;
 	}
 	return hd->fn;
@@ -789,7 +789,9 @@ int h_reload(const char* fn)
 {
 	if(!fn)
 	{
-		debug_warn("h_reload: fn = 0");
+		debug_warn(__func__": fn = 0");
+		// must not continue - some resources not backed by files have
+		// key = 0 and reloading those would be disastrous.
 		return ERR_INVALID_PARAM;
 	}
 
@@ -871,13 +873,13 @@ void h_add_ref(Handle h)
 	HDATA* hd = h_data_tag(h);
 	if(!hd)
 	{
-		debug_warn("h_add_ref: invalid handle");
+		debug_warn(__func__": invalid handle");
 		return;
 	}
 
 	// if there are no refs, how did the caller manage to keep a Handle?!
 	if(!hd->refs)
-		debug_warn("h_add_ref: no refs open - resource is cached");
+		debug_warn(__func__": no refs open - resource is cached");
 
 	hd->refs++;
 }
@@ -894,13 +896,13 @@ int h_get_refcnt(Handle h)
 	HDATA* hd = h_data_tag(h);
 	if(!hd)
 	{
-		debug_warn("h_get_refcnt: invalid handle");
+		debug_warn(__func__": invalid handle");
 		return ERR_INVALID_PARAM;
 	}
 
 	// if there are no refs, how did the caller manage to keep a Handle?!
 	if(!hd->refs)
-		debug_warn("h_get_refcnt: no refs open - resource is cached");
+		debug_warn(__func__": no refs open - resource is cached");
 
 	return hd->refs;
 }
@@ -916,7 +918,7 @@ void h_mgr_shutdown()
 		// each HDATA entry has already been allocated.
 		if(!hd)
 		{
-			debug_warn("h_mgr_shutdown: h_data_from_idx failed - why?!");
+			debug_warn(__func__": h_data_from_idx failed - why?!");
 			continue;
 		}
 

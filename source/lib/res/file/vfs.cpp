@@ -196,7 +196,7 @@ int vfs_dir_next_ent(const Handle hd, DirEnt* ent, const char* filter)
 		vd->filter_latched = 1;
 	}
 	if(vd->filter != filter)
-		debug_warn("vfs_dir_next_ent: filter has changed for this directory. are you scanning it twice?");
+		debug_warn(__func__": filter has changed for this directory. are you scanning it twice?");
 #endif
 
 	bool want_dir = true;
@@ -269,7 +269,7 @@ static void file_listing_add(const char* v_fn)
 	// we've already shut down - complain.
 	if(file_listing_enabled == -1)
 	{
-		debug_warn("file_listing_add: called after file_listing_shutdown atexit");
+		debug_warn(__func__": called after file_listing_shutdown atexit");
 		return;
 	}
 
@@ -296,7 +296,7 @@ void vfs_enable_file_listing(bool want_enabled)
 	// already shut down - don't allow enabling
 	if(file_listing_enabled == -1 && want_enabled)
 	{
-		debug_warn("vfs_enable_file_listing: enabling after shutdown");
+		debug_warn(__func__": enabling after shutdown");
 		return;
 	}
 
@@ -567,7 +567,7 @@ debug_printf("vfs_load v_fn=%s\n", v_fn);
 			goto ret;
 		}
 		else
-			debug_warn("vfs_load: invalid MEM attached to vfile (0 pointer)");
+			debug_warn(__func__": invalid MEM attached to vfile (0 pointer)");
 			// happens if someone frees the pointer. not an error!
 	}
 /*

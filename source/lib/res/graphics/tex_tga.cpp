@@ -146,7 +146,7 @@ static int tga_encode(Tex* restrict t, DynArray* restrict da)
 		img_desc
 	};
 	const size_t hdr_size = sizeof(hdr);
-	return tex_util_write(t, transforms, &hdr, hdr_size, da);
+	return tex_codec_write(t, transforms, &hdr, hdr_size, da);
 }
 
 TEX_CODEC_REGISTER(tga);

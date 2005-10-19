@@ -149,8 +149,8 @@ static void get_cpu_info()
 void cpu_init()
 {
 #if CPU_IA32
+	// must come before any uses of ia32.asm, e.g. by get_cpu_info
 	ia32_init();
-#endif
 
 	// no longer set 24 bit (float) precision by default: for
 	// very long game uptimes (> 1 day; e.g. dedicated server),
@@ -159,19 +159,19 @@ void cpu_init()
 	// we can temporarily change precision there.
 	//_control87(_PC_24, _MCW_PC);
 
-	// disable all floating-point exceptions except zero-divide
-	// Note that most exceptions are triggered by the JS engine.
+	// to help catch bugs, enable as many floating-point exceptions as
+	// possible. that means only zero-divide, because the JS engine is
+	// triggering the rest.
 	_control87(_MCW_PM|_MCW_IM|_MCW_UM|_MCW_OM|_MCW_DM, _MCW_EM);
+
+	// If possible, hook up capability-sensitive assembler routines
+	ia32_hook_capabilities();
+#endif
 
 	// detects CPU clock frequency and capabilities, which are prerequisites
 	// for using the TSC as a timer (desirable due to its high resolution).
 	// do this before lengthy init so we can time those accurately.
 	get_cpu_info();
-
-#if CPU_IA32
-	// If possible, hook up capability-sensitive assembler routines
-	ia32_hook_capabilities();
-#endif
 }
 
 

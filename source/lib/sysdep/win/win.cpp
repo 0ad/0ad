@@ -793,12 +793,6 @@ static
 #endif
 void win_pre_main_init()
 {
-	// enable FPU exceptions
-#if CPU_IA32
-	const int bits = _EM_INVALID|_EM_DENORMAL|_EM_ZERODIVIDE|_EM_OVERFLOW|_EM_UNDERFLOW|_EM_INEXACT;
-	_control87(bits, _MCW_EM);
-#endif
-
 	// enable memory tracking and leak detection;
 	// no effect if !HAVE_VC_DEBUG_ALLOC.
 #if CONFIG_PARANOIA

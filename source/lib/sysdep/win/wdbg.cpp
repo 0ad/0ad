@@ -26,11 +26,7 @@
 #include "sysdep/cpu.h"
 #include "wdbg.h"
 #include "byte_order.h"		// FOURCC
-
-// optional: enables translation of the "unhandled exception" dialog.
-#if HAVE_I18N
-#include "ps/i18n.h"
-#endif
+#include "app_hooks.h"
 
 
 #pragma data_seg(WIN_CALLBACK_PRE_MAIN(b))
@@ -59,44 +55,6 @@ static bool is_locked()
 {
 	return win_is_locked(WDBG_CS) == 1;
 }
-
-
-
-// return localized version of <text>, if i18n functionality is available.
-// this is used to translate the "unhandled exception" dialog strings.
-// WARNING: leaks memory returned by wcsdup, but that's ok since the
-// program will terminate soon after. fixing this is hard and senseless.
-static const wchar_t* translate(const wchar_t* text)
-{
-#if HAVE_I18N
-	// make sure i18n system is (already|still) initialized.
-	if(g_CurrentLocale)
-	{
-		// be prepared for this to fail, because translation potentially
-		// involves script code and the JS context might be corrupted.
-		__try
-		{
-			const wchar_t* text2 = wcsdup(I18n::translate(text).c_str());
-			// only overwrite if wcsdup succeeded, i.e. not out of memory.
-			if(text2)
-				text = text2;
-		}
-		__except(EXCEPTION_EXECUTE_HANDLER)
-		{
-		}
-	}
-#endif
-
-	return text;
-}
-
-
-// convenience wrapper using translate.
-static void translate_and_display_msg(const wchar_t* caption, const wchar_t* text)
-{
-	wdisplay_msg(translate(caption), translate(text));
-}
-
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -412,7 +370,7 @@ have_reg:
 	case DBG_BREAK_DATA_WRITE:
 		rw = 3; break;
 	default:
-		debug_warn("brk_enable_in_ctx: invalid type");
+		debug_warn(__func__": invalid type");
 	}
 	// .. length (determine from addr's alignment).
 	//    note: IA-32 requires len=0 for code breakpoints.
@@ -641,13 +599,13 @@ static const wchar_t* get_SEH_exception_description(const EXCEPTION_RECORD* er)
 	{
 		const wchar_t* op = (ei[0])? L"writing" : L"reading";
 		const wchar_t* fmt = L"Access violation %s 0x%08X";
-		swprintf(description_buf, ARRAY_SIZE(description_buf), translate(fmt), translate(op), ei[1]);
+		swprintf(description_buf, ARRAY_SIZE(description_buf), ah_translate(fmt), ah_translate(op), ei[1]);
 		return description_buf;
 	}
 
 	// rationale: we don't use FormatMessage because it is unclear whether
 	// NTDLL's symbol table will always include English-language strings
-	// (we don't want crashlogs in foreign gobbledygook).
+	// (we don't want to receive crashlogs in foreign gobbledygook).
 	// it also adds unwanted formatting (e.g. {EXCEPTION} and trailing .).
 
 	switch(code)

@@ -46,7 +46,7 @@ extern void* alloca(size_t size);
 # define finite __finite
 #endif
 
-// restrict
+// C99 restrict
 // .. for some reason, g++-3.3 claims to support C99 (according to
 //    __STDC_VERSION__) but doesn't have the restrict keyword.
 //    use the extension __restrict__ instead.
@@ -59,6 +59,16 @@ extern void* alloca(size_t size);
 # define restrict
 #endif
 
+// C99 __func__
+// .. already available; need do nothing
+#if HAVE_C99
+// .. VC supports something similar
+#elif MSC_VERSION
+# define __func__ __FUNCTION__
+// .. unsupported; remove it from code
+#else
+# define __func__
+#endif
 
 
 //

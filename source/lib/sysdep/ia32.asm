@@ -346,18 +346,18 @@ sym(ia32_control87):
 	push	eax
 	fnstcw	[esp]
 	pop		eax							; old_cw
-	mov		ecx, [esp+4]				; new_cw
+	mov		ecx, [esp+4]				; new_val
 	mov		edx, [esp+8]				; mask
-	and		ecx, edx					; new_cw & mask
+	and		ecx, edx					; new_val & mask
 	not		edx							; ~mask
 	and		eax, edx					; old_cw & ~mask
-	or		eax, ecx					; (old_cw & ~mask) | (new_cw & mask)
-	push	eax
+	or		eax, ecx					; (old_cw & ~mask) | (new_val & mask)
+	push	eax							; = new_cw
 	fldcw	[esp]
 	pop		eax
 	xor		eax, eax					; return value
 	ret
-	
+
 ;-------------------------------------------------------------------------------
 ; init
 ;-------------------------------------------------------------------------------

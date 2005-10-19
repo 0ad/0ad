@@ -60,6 +60,7 @@ scope
 #include "lib/types.h"
 
 #include "sysdep/sysdep.h"
+#include "sysdep/cpu.h"	// CAS
 
 
 #if defined(__cplusplus)
@@ -78,6 +79,8 @@ scope
 //   squelch the warning (unfortunately non-portable).
 #define STMT(STMT_code__) do { STMT_code__; } while(false)
 
+// execute the code passed as a parameter only the first time this is
+// reached.
 // may be called at any time (in particular before main), but is not
 // thread-safe. if that's important, use pthread_once() instead.
 #define ONCE(ONCE_code__)\
@@ -89,6 +92,20 @@ STMT(\
 		ONCE_code__;\
 	}\
 )
+
+// execute the code passed as a parameter except the first time this is
+// reached.
+// may be called at any time (in particular before main), but is not
+// thread-safe.
+#define ONCE_NOT(ONCE_code__)\
+STMT(\
+	static bool ONCE_done__ = false;\
+	if(!ONCE_done__)\
+		ONCE_done__ = true;\
+	else\
+		ONCE_code__;\
+)
+
 
 
 // be careful here. the given expression (e.g. variable or

@@ -331,7 +331,7 @@ static void flip_to_global_orientation(Tex* t)
 // dst_orientation (if the latter is 0, then the global_orientation).
 // (we ask for src_flags instead of src_orientation so callers don't
 // have to mask off TEX_ORIENTATION)
-static bool orientations_match(uint src_flags, uint dst_orientation)
+bool tex_orientations_match(uint src_flags, uint dst_orientation)
 {
 	const uint src_orientation = src_flags & TEX_ORIENTATION;
 	if(dst_orientation == 0)
@@ -343,51 +343,6 @@ static bool orientations_match(uint src_flags, uint dst_orientation)
 //-----------------------------------------------------------------------------
 // util
 //-----------------------------------------------------------------------------
-
-// allocate an array of row pointers that point into the given texture data.
-// <file_orientation> indicates whether the file format is top-down or
-// bottom-up; the row array is inverted if necessary to match global
-// orienatation. (this is more efficient than "transforming" later)
-//
-// used by PNG and JPG codecs; caller must free() rows when done.
-//
-// note: we don't allocate the data param ourselves because this function is
-// needed for encoding, too (where data is already present).
-int tex_util_alloc_rows(const u8* data, size_t h, size_t pitch,
-	uint src_flags, uint dst_orientation, RowArray& rows)
-{
-	const bool flip = !orientations_match(src_flags, dst_orientation);
-
-	rows = (RowArray)malloc(h * sizeof(RowPtr));
-	if(!rows)
-		return ERR_NO_MEM;
-
-	// determine start position and direction
-	RowPtr pos        = flip? data+pitch*(h-1) : data;
-	const ssize_t add = flip? -(ssize_t)pitch : (ssize_t)pitch;
-	const RowPtr end  = flip? data-pitch : data+pitch*h;
-
-	for(size_t i = 0; i < h; i++)
-	{
-		rows[i] = pos;
-		pos += add;
-	}
-
-	debug_assert(pos == end);
-	return 0;
-}
-
-
-int tex_util_write(Tex* t, uint transforms, const void* hdr, size_t hdr_size, DynArray* da)
-{
-	RETURN_ERR(tex_transform(t, transforms));
-
-	void* img_data = tex_get_data(t); const size_t img_size = tex_img_size(t);
-	RETURN_ERR(da_append(da, hdr, hdr_size));
-	RETURN_ERR(da_append(da, img_data, img_size));
-	return 0;
-}
-
 
 void tex_util_foreach_mipmap(uint w, uint h, uint bpp, const u8* restrict data,
 	int levels_to_skip, uint data_padding, MipmapCB cb, void* restrict ctx)
@@ -430,109 +385,6 @@ void tex_util_foreach_mipmap(uint w, uint h, uint bpp, const u8* restrict data,
 		if(levels_to_skip == -1)
 			break;
 	}
-}
-
-
-//-----------------------------------------------------------------------------
-// support routines for codecs
-//-----------------------------------------------------------------------------
-
-// should be a tight bound because we iterate this many times (for convenience)
-static const uint MAX_CODECS = 8;
-static const TexCodecVTbl* codecs[MAX_CODECS];
-
-// add this vtbl to the codec list. called at NLSO init time by the
-// TEX_CODEC_REGISTER in each codec file. note that call order and therefore
-// order in the list is undefined, but since each codec only steps up if it
-// can handle the given format, this is not a problem.
-int tex_codec_register(const TexCodecVTbl* c)
-{
-	debug_assert(c != 0 && "tex_codec_register(0) - why?");
-
-	for(uint i = 0; i < MAX_CODECS; i++)
-	{
-		// slot available
-		if(codecs[i] == 0)
-		{
-			codecs[i] = c;
-			return 0;	// success
-		}
-	}
-
-	// didn't find a free slot.
-	debug_warn("tex_codec_register: increase MAX_CODECS");
-	return 0;	// failure, but caller ignores return value
-}
-
-
-// find codec that recognizes the desired output file extension
-int tex_codec_for_filename(const char* fn, const TexCodecVTbl** c)
-{
-	const char* ext = strrchr(fn, '.');
-	if(!ext)
-		return ERR_UNKNOWN_FORMAT;
-	ext++;	// skip '.'
-
-	for(uint i = 0; i < MAX_CODECS; i++)
-	{
-		*c = codecs[i];
-		// skip if 0 (e.g. if MAX_CODECS != num codecs)
-		if(!*c)
-			continue;
-		// we found it
-		if((*c)->is_ext(ext))
-			return 0;
-	}
-
-	return ERR_UNKNOWN_FORMAT;
-}
-
-
-// find codec that recognizes the header's magic field
-int tex_codec_for_header(const u8* file, size_t file_size, const TexCodecVTbl** c)
-{
-	// we guarantee at least 4 bytes for is_hdr to look at
-	if(file_size < 4)
-		return ERR_TEX_HEADER_NOT_COMPLETE;
-	for(uint i = 0; i < MAX_CODECS; i++)
-	{
-		*c = codecs[i];
-		// skip if 0 (e.g. if MAX_CODECS != num codecs)
-		if(!*c)
-			continue;
-		// we found it
-		if((*c)->is_hdr(file))
-			return 0;
-	}
-
-	return ERR_UNKNOWN_FORMAT;
-}
-
-
-static int tex_codec_transform(Tex* t, uint transforms)
-{
-	int ret = TEX_CODEC_CANNOT_HANDLE;
-
-	// find codec that understands the data, and transform
-	for(int i = 0; i < MAX_CODECS; i++)
-	{
-		// MAX_CODECS isn't a tight bound and we have hit a 0 entry
-		if(!codecs[i])
-			continue;
-
-		int err = codecs[i]->transform(t, transforms);
-		if(err == 0)
-			return 0;
-		else if(err == TEX_CODEC_CANNOT_HANDLE)
-			continue;
-		else
-		{
-			ret = err;
-			debug_warn("tex_codec_transform: codec indicates error");
-		}
-	}
-
-	return ret;
 }
 
 
@@ -587,7 +439,7 @@ int tex_load(const char* fn, Tex* t)
 	if(ret < 0)
 	{
 		(void)tex_free(t);
-		debug_warn("tex_load failed");
+		debug_warn(__func__" failed");
 	}
 
 	// do not free hm! it either still holds the image data (i.e. texture
@@ -772,8 +624,8 @@ int tex_write(Tex* t, const char* fn)
 	err = c->encode(t, &da);
 	if(err < 0)
 	{
-		debug_printf("tex_write (%s): %d", c->name, err);
-		debug_warn("tex_writefailed");
+		debug_printf(__func__" (%s): %d", c->name, err);
+		debug_warn(__func__"failed");
 		goto fail;
 	}
 

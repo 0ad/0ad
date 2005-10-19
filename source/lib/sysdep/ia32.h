@@ -39,15 +39,16 @@ extern double _ceil(double);
 extern u64 rdtsc(void);
 
 
-#ifndef _MCW_PC
-# define _MCW_PC 0x0300		// Precision Control
-#endif
-#ifndef _PC_24
-# define _PC_24  0x0000		// 24 bits
-#endif
-#ifndef _MCW_EM
-# define _MCW_EM 0x003f		// Exception Mask
-#endif
+// these may have been defined by system headers; we redefine them to
+// the real IA-32 values for use with ia32_control87.
+#undef _MCW_PC
+#define _MCW_PC 0x0300		// Precision Control
+#undef _PC_24
+#define _PC_24  0x0000		// 24 bits
+#undef _MCW_EM
+#define _MCW_EM 0x003f		// Exception Mask
+#undef _MCW_PM
+#define _MCW_PM BIT(5)
 #ifndef _MCW_IM
 # define _MCW_IM 0x0001		// Invalid Operation Mask
 #endif
@@ -70,7 +71,6 @@ extern uint ia32_control87(uint new_cw, uint mask);	// asm
 extern void ia32_debug_break(void);
 
 extern void ia32_memcpy(void* dst, const void* src, size_t nbytes);
-
 
 
 // CPU caps (128 bits)

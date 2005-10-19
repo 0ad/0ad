@@ -37,11 +37,15 @@ struct TexCodecVTbl
 	size_t (*hdr_size)(const u8* file);
 
 	const char* name;
+
+	// intrusive linked-list of codecs: more convenient than fixed-size
+	// static storage.
+	const TexCodecVTbl* next;
 };
 
 
 #define TEX_CODEC_REGISTER(name)\
-	static const TexCodecVTbl vtbl = { name##_decode, name##_encode, name##_transform, name##_is_hdr, name##_is_ext, name##_hdr_size, #name};\
+	static TexCodecVTbl vtbl = { name##_decode, name##_encode, name##_transform, name##_is_hdr, name##_is_ext, name##_hdr_size, #name};\
 	static int dummy = tex_codec_register(&vtbl);
 
 
@@ -53,7 +57,7 @@ const int TEX_CODEC_CANNOT_HANDLE = 1;
 // TEX_CODEC_REGISTER in each codec file. note that call order and therefore
 // order in the list is undefined, but since each codec only steps up if it
 // can handle the given format, this is not a problem.
-extern int tex_codec_register(const TexCodecVTbl* c);
+extern int tex_codec_register(TexCodecVTbl* c);
 
 
 // find codec that recognizes the desired output file extension
@@ -62,6 +66,7 @@ extern int tex_codec_for_filename(const char* fn, const TexCodecVTbl** c);
 // find codec that recognizes the header's magic field
 extern int tex_codec_for_header(const u8* file, size_t file_size, const TexCodecVTbl** c);
 
+extern int tex_codec_transform(Tex* t, uint transforms);
 
 
 // allocate an array of row pointers that point into the given texture data.
@@ -75,9 +80,9 @@ extern int tex_codec_for_header(const u8* file, size_t file_size, const TexCodec
 // needed for encoding, too (where data is already present).
 typedef const u8* RowPtr;
 typedef RowPtr* RowArray;
-extern int tex_util_alloc_rows(const u8* data, size_t h, size_t pitch,
+extern int tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
 	uint src_flags, uint dst_orientation, RowArray& rows);
 
-extern int tex_util_write(Tex* t, uint transforms, const void* hdr, size_t hdr_size, DynArray* da);
+extern int tex_codec_write(Tex* t, uint transforms, const void* hdr, size_t hdr_size, DynArray* da);
 
 #endif	// #ifndef TEX_CODEC_H__

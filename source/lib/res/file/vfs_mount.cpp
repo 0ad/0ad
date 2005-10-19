@@ -543,7 +543,7 @@ static int remount(const Mount& m)
 	case MT_FILE:
 		return mount_dir_tree(td, m);
 	default:
-		debug_warn("remount: invalid type");
+		debug_warn(__func__": invalid type");
 		return ERR_CORRUPTED;
 	}
 }
@@ -578,7 +578,7 @@ int vfs_mount(const char* V_mount_point, const char* P_real_path, int flags, uin
 #ifndef NDEBUG
 	const size_t len = strlen(V_mount_point);
 	if(len && V_mount_point[len-1] != '/')
-		debug_warn("vfs_mount: path doesn't end in '/'");
+		debug_warn(__func__": path doesn't end in '/'");
 #endif
 
 	// make sure it's not already mounted, i.e. in mounts.
@@ -591,7 +591,7 @@ int vfs_mount(const char* V_mount_point, const char* P_real_path, int flags, uin
 	{
 		if(file_is_subpath(P_real_path, it->P_name.c_str()))
 		{
-			debug_warn("vfs_mount: already mounted");
+			debug_warn(__func__": already mounted");
 			return -1;
 		}
 	}
@@ -601,7 +601,7 @@ int vfs_mount(const char* V_mount_point, const char* P_real_path, int flags, uin
 	// "./" and "/." are caught by CHECK_PATH.
 	if(!strcmp(P_real_path, "."))
 	{
-		debug_warn("vfs_mount: mounting . not allowed");
+		debug_warn(__func__": mounting . not allowed");
 		return -1;
 	}
 
@@ -874,7 +874,7 @@ int x_realpath(const Mount* m, const char* V_exact_path, char* P_real_path)
 		P_parent_path = m->P_name.c_str();
 		break;
 	default:
-		debug_warn("x_realpath: invalid type");
+		debug_warn(__func__": invalid type");
 		return -1;
 	}
 
@@ -895,7 +895,7 @@ int x_open(const Mount* m, const char* V_exact_path, int flags, TFile* tf, XFile
 	case MT_ARCHIVE:
 		if(flags & FILE_WRITE)
 		{
-			debug_warn("requesting write access to file in archive");
+			debug_warn(__func__": requesting write access to file in archive");
 			return -1;
 		}
 		RETURN_ERR(zip_open(m->archive, V_exact_path, flags, &xf->u.zf));
@@ -905,7 +905,7 @@ int x_open(const Mount* m, const char* V_exact_path, int flags, TFile* tf, XFile
 		RETURN_ERR(file_open(P_path, flags, &xf->u.f));
 		break;
 	default:
-		debug_warn("VFile_reload: invalid type");
+		debug_warn(__func__": invalid type");
 		return ERR_CORRUPTED;
 	}
 
@@ -933,7 +933,7 @@ int x_close(XFile* xf)
 		(void)file_close(&xf->u.f);
 		break;
 	default:
-		debug_warn("x_close: invalid type");
+		debug_warn(__func__": invalid type");
 		break;
 	}
 
@@ -1022,7 +1022,7 @@ int x_io(XFile* xf, off_t ofs, size_t size, void* buf, FileIOCB cb, uintptr_t ct
 		return file_io(&xf->u.f, ofs, size, buf, cb, ctx);
 
 	default:
-		debug_warn("vfs_io: invalid file type");
+		debug_warn(__func__": invalid file type");
 		return ERR_CORRUPTED;
 	}
 }
@@ -1037,7 +1037,7 @@ int x_map(XFile* xf, void*& p, size_t& size)
 	case MT_FILE:
 		return file_map(&xf->u.f, p, size);
 	default:
-		debug_warn("vfs_map: invalid type");
+		debug_warn(__func__": invalid file type");
 		return ERR_CORRUPTED;
 	}
 }
@@ -1052,7 +1052,7 @@ int x_unmap(XFile* xf)
 	case MT_FILE:
 		return file_unmap(&xf->u.f);
 	default:
-		debug_warn("vfs_unmap: invalid type");
+		debug_warn(__func__": invalid file type");
 		return ERR_CORRUPTED;
 	}
 }
@@ -1068,7 +1068,7 @@ int x_io_issue(XFile* xf, off_t ofs, size_t size, void* buf, XIo* xio)
 	case MT_FILE:
 		return file_io_issue(&xf->u.f, ofs, size, buf, &xio->u.fio);
 	default:
-		debug_warn("vfs_io_issue: invalid file type");
+		debug_warn(__func__": invalid file type");
 		return ERR_CORRUPTED;
 	}
 }
@@ -1083,7 +1083,7 @@ int x_io_has_completed(XIo* xio)
 	case MT_FILE:
 		return file_io_has_completed(&xio->u.fio);
 	default:
-		debug_warn("vfs_io_has_completed: invalid type");
+		debug_warn(__func__": invalid file type");
 		return ERR_CORRUPTED;
 	}
 }
@@ -1098,7 +1098,7 @@ int x_io_wait(XIo* xio, void*& p, size_t& size)
 	case MT_FILE:
 		return file_io_wait(&xio->u.fio, p, size);
 	default:
-		debug_warn("vfs_io_wait: invalid type");
+		debug_warn(__func__": invalid file type");
 		return ERR_CORRUPTED;
 	}
 }
@@ -1113,7 +1113,7 @@ int x_io_discard(XIo* xio)
 	case MT_FILE:
 		return file_io_discard(&xio->u.fio);
 	default:
-		debug_warn("VIo_dtor: invalid type");
+		debug_warn(__func__": invalid file type");
 		return ERR_CORRUPTED;
 	}
 }
@@ -1128,7 +1128,7 @@ int x_io_validate(const XIo* xio)
 	case MT_FILE:
 		return file_io_validate(&xio->u.fio);
 	default:
-		return -103;	// invalid type
+		return -100;	// invalid type
 	}
 	UNREACHABLE;
 }

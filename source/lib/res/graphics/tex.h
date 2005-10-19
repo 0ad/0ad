@@ -261,6 +261,12 @@ extern int tex_write(Tex* t, const char* fn);
 // internal use only:
 extern int tex_validate(const Tex* t);
 
+// indicate if the orientation specified by <src_flags> matches
+// dst_orientation (if the latter is 0, then the global_orientation).
+// (we ask for src_flags instead of src_orientation so callers don't
+// have to mask off TEX_ORIENTATION)
+extern bool tex_orientations_match(uint src_flags, uint dst_orientation);
+
 typedef void(*MipmapCB)(uint level, uint level_w, uint level_h,
 	const u8* level_data, size_t level_data_size, void* ctx);
 

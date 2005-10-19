@@ -181,7 +181,7 @@ static int aio_h_set(const int fd, const HANDLE h)
 
 fail:
 	unlock();
-	debug_warn("aio_h_set failed");
+	debug_warn(__func__" failed");
 	return -1;
 }
 
@@ -225,7 +225,7 @@ WIN_RESTORE_LAST_ERROR;
 	return 0;
 
 fail:
-	debug_warn("aio_reopen failed");
+	debug_warn(__func__" failed");
 	return -1;
 }
 
@@ -250,7 +250,7 @@ int aio_close(int fd)
 	return 0;
 
 fail:
-	debug_warn("aio_close failed");
+	debug_warn(__func__" failed");
 	return -1;
 }
 
@@ -382,7 +382,7 @@ static int aio_rw(struct aiocb* cb)
 	// fail if aiocb is already in use (forbidden by SUSv3)
 	if(req_find(cb))
 	{
-		debug_warn("aio_rw: aiocb is already in use");
+		debug_warn(__func__": aiocb is already in use");
 		goto fail;
 	}
 
@@ -398,14 +398,14 @@ static int aio_rw(struct aiocb* cb)
 	r = req_alloc(cb);
 	if(!r)
 	{
-		debug_warn("aio_rw: cannot allocate a Req (too many concurrent IOs)");
+		debug_warn(__func__": cannot allocate a Req (too many concurrent IOs)");
 		goto fail;
 	}
 
 	HANDLE h = aio_h_get(fd);
 	if(h == INVALID_HANDLE_VALUE)
 	{
-		debug_warn("aio_rw: associated handle is invalid");
+		debug_warn(__func__": associated handle is invalid");
 		ret = -EINVAL;
 		goto fail;
 	}
@@ -531,7 +531,7 @@ int aio_error(const struct aiocb* cb)
 	// must not pass 0 to req_find - we'd look for a free cb!
 	if(!cb)
 	{
-		debug_warn("aio_error: invalid cb");
+		debug_warn(__func__": invalid cb");
 		return -1;
 	}
 
@@ -557,14 +557,14 @@ ssize_t aio_return(struct aiocb* cb)
 	// must not pass 0 to req_find - we'd look for a free cb!
 	if(!cb)
 	{
-		debug_warn("aio_return: invalid cb");
+		debug_warn(__func__": invalid cb");
 		return -1;
 	}
 
 	Req* r = req_find(cb);
 	if(!r)
 	{
-		debug_warn("aio_return: cb not found (already called aio_return?)");
+		debug_warn(__func__": cb not found (already called aio_return?)");
 		return -1;
 	}
 
@@ -574,7 +574,7 @@ ssize_t aio_return(struct aiocb* cb)
 	DWORD bytes_transferred;
 	if(!GetOverlappedResult(r->hFile, &r->ovl, &bytes_transferred, wait))
 	{
-		debug_warn("aio_return: GetOverlappedResult failed");
+		debug_warn(__func__": GetOverlappedResult failed");
 		return -1;
 	}
 

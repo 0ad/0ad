@@ -106,7 +106,7 @@ TNode* node_alloc(size_t size)
 	// would overflow a bucket
 	if(size > BUCKET_SIZE-sizeof(u8*))
 	{
-		debug_warn("node_alloc: size doesn't fit in a bucket");
+		debug_warn(__func__": size doesn't fit in a bucket");
 		return 0;
 	}
 
@@ -458,7 +458,7 @@ int TDir::add(const char* name, TNodeType new_type, TNode** pnode)
 
 	if(!children.add(name, node))
 	{
-		debug_warn("failed to expand table");
+		debug_warn(__func__": failed to expand table");
 		// node will be freed by node_free_all
 		return 0;
 	}
@@ -816,7 +816,7 @@ int tree_dir_next_ent(TreeDirIterator* d_, DirEnt* ent)
 		ent->mtime = node->u.file.mtime;
 		break;
 	default:
-		debug_warn("invalid TNode type");
+		debug_warn(__func__": invalid TNode type");
 	}
 
 	return 0;	// success
