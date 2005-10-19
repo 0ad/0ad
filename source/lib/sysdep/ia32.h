@@ -41,32 +41,31 @@ extern u64 rdtsc(void);
 
 // these may have been defined by system headers; we redefine them to
 // the real IA-32 values for use with ia32_control87.
+// Precision Control:
 #undef _MCW_PC
-#define _MCW_PC 0x0300		// Precision Control
+#define _MCW_PC 0x0300
 #undef _PC_24
-#define _PC_24  0x0000		// 24 bits
+#define _PC_24  0x0000
+
+// Exception Mask:
 #undef _MCW_EM
-#define _MCW_EM 0x003f		// Exception Mask
-#undef _MCW_PM
-#define _MCW_PM BIT(5)
-#ifndef _MCW_IM
-# define _MCW_IM 0x0001		// Invalid Operation Mask
-#endif
-#ifndef _MCW_DM
-# define _MCW_DM 0x0002		// Denormal Operand Mask
-#endif
-#ifndef _MCW_OM
-# define _MCW_OM 0x0008		// Overflow Mask
-#endif
-#ifndef _MCW_UM
-# define _MCW_UM 0x00010	// Underflow Mask
-#endif
-#ifndef _MCW_PM
-# define _MCW_PM 0x0020		// Precision Mask
-#endif
+#define _MCW_EM 0x003f
+#undef _EM_INVALID
+#define _EM_INVALID    BIT(0)
+#undef _EM_DENORMAL
+#define _EM_DENORMAL   BIT(1)
+#undef _EM_ZERODIVIDE
+#define _EM_ZERODIVIDE BIT(2)
+#undef _EM_OVERFLOW
+#define _EM_OVERFLOW   BIT(3)
+#undef _EM_UNDERFLOW
+#define _EM_UNDERFLOW  BIT(4)
+#undef _EM_INEXACT
+#define _EM_INEXACT    BIT(5)
 
 #define _control87 ia32_control87
-extern uint ia32_control87(uint new_cw, uint mask);	// asm
+extern uint ia32_control87(uint new_val, uint mask);	// asm
+
 
 extern void ia32_debug_break(void);
 

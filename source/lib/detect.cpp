@@ -162,7 +162,8 @@ void cpu_init()
 	// to help catch bugs, enable as many floating-point exceptions as
 	// possible. that means only zero-divide, because the JS engine is
 	// triggering the rest.
-	_control87(_MCW_PM|_MCW_IM|_MCW_UM|_MCW_OM|_MCW_DM, _MCW_EM);
+	// note: passing a flag *disables* that exception.
+	_control87(_EM_INVALID|_EM_DENORMAL|_EM_OVERFLOW|_EM_UNDERFLOW|_EM_INEXACT, _MCW_EM);
 
 	// If possible, hook up capability-sensitive assembler routines
 	ia32_hook_capabilities();
