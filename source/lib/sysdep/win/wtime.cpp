@@ -278,7 +278,7 @@ static int choose_impl()
 		return 0;
 	}
 
-	debug_warn(__func__": no safe timer found!");
+	debug_warn("no safe timer found!");
 	hrt_impl = HRT_NONE;
 	hrt_nominal_freq = -1.0;
 	return -1;
@@ -320,7 +320,7 @@ static i64 ticks_lk()
 
 	case HRT_NUM_IMPLS:
 	default:
-		debug_warn(__func__": invalid impl");
+		debug_warn("invalid impl");
 		//-fallthrough
 
 	case HRT_NONE:
@@ -460,7 +460,7 @@ static int hrt_override_impl(HRTOverride ovr, HRTImpl impl)
 	if((ovr != HRT_DISABLE && ovr != HRT_FORCE && ovr != HRT_DEFAULT) ||
 	   (impl != HRT_TSC && impl != HRT_QPC && impl != HRT_GTC && impl != HRT_NONE))
 	{
-		debug_warn(__func__": invalid ovr or impl param");
+		debug_warn("invalid ovr or impl param");
 		return -1;
 	}
 

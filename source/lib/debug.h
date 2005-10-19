@@ -114,7 +114,7 @@ STMT(\
 	static unsigned char suppress__ = 0x55;\
 	if(suppress__ == 0x55 && !(expr)) \
 	{ \
-		switch(debug_assert_failed(__FILE__, __LINE__, #expr))\
+		switch(debug_assert_failed(__FILE__, __LINE__, __func__, #expr))\
 		{\
 		case ER_SUPPRESS:\
 			suppress__ = 0xAA;\
@@ -137,7 +137,8 @@ STMT(\
 //   headers) and thereby stomped on our definition.
 
 // called when an assertion has failed; notifies the user via display_error.
-extern enum ErrorReaction debug_assert_failed(const char* source_file, int line, const char* assert_expr);
+extern enum ErrorReaction debug_assert_failed(const char* file, int line,
+	const char* func, const char* assert_expr);
 
 
 //-----------------------------------------------------------------------------

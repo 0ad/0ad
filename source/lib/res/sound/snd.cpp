@@ -291,7 +291,7 @@ int snd_set_master_gain(float gain)
 {
 	if(gain < 0)
 	{
-		debug_warn(__func__": gain < 0");
+		debug_warn("gain < 0");
 		return ERR_INVALID_PARAM;
 	}
 
@@ -373,7 +373,7 @@ static void al_buf_free(ALuint al_buf)
 static void al_buf_shutdown()
 {
 	if(al_bufs_outstanding != 0)
-		debug_warn(__func__": not all buffers freed!");
+		debug_warn("not all buffers freed!");
 }
 
 
@@ -655,9 +655,9 @@ static void* io_buf_alloc()
 	if(!buf)
 	{
 		if(!io_bufs)
-			debug_warn(__func__": not enough memory to allocate buffer pool");
+			debug_warn("not enough memory to allocate buffer pool");
 		else
-			debug_warn(__func__": max #streams exceeded");
+			debug_warn("max #streams exceeded");
 			// can't happen (tm) because stream_open enforces MAX_STREAMS.
 		return 0;
 	}
@@ -766,7 +766,7 @@ static int stream_open(Stream* s, const char* fn)
 {
 	if(active_streams >= MAX_STREAMS)
 	{
-		debug_warn(__func__": MAX_STREAMS exceeded - why?");
+		debug_warn("MAX_STREAMS exceeded - why?");
 		return -1;
 			// fail, because we wouldn't have enough IO buffers for all
 	}
@@ -1418,7 +1418,7 @@ static void list_remove(VSrc* vs)
 			return;
 		}
 
-		debug_warn(__func__": VSrc not found");
+		debug_warn("VSrc not found");
 }
 
 
@@ -1832,7 +1832,7 @@ int snd_disable(bool disabled)
 	if(snd_disabled)
 	{
 		if(al_initialized)
-			debug_warn(__func__": already initialized => disable is pointless");
+			debug_warn("already initialized => disable is pointless");
 		return 0;
 	}
 	else

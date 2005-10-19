@@ -562,7 +562,7 @@ static void out(const wchar_t* fmt, ...)
 		// make sure out_chars_left remains nonnegative
 		if((size_t)len > out_chars_left)
 		{
-			debug_warn(__func__": apparently wrote more than out_chars_left");
+			debug_warn("apparently wrote more than out_chars_left");
 			len = (int)out_chars_left;
 		}
 		out_chars_left -= len;

@@ -106,7 +106,7 @@ static void remove_alloc(void* raw_p)
 {
 	size_t num_removed = ptr_to_h.erase(raw_p);
 	if(num_removed != 1)
-		debug_warn(__func__": not in map");
+		debug_warn("not in map");
 }
 
 
@@ -118,7 +118,7 @@ static void set_alloc(void* raw_p, Handle hm)
 	It it = ptr_to_h.find(raw_p);
 	if(it != ptr_to_h.end())
 	{
-		debug_warn(__func__": already in map");
+		debug_warn("already in map");
 		return;
 	}
 #endif
@@ -360,7 +360,7 @@ void* mem_alloc(size_t size, const size_t align, uint flags, Handle* phm)
 	Handle hm = mem_wrap(p, size, flags, raw_p, raw_size, dtor, ctx);
 	if(!hm)			// failed to allocate a handle
 	{
-		debug_warn(__func__": mem_wrap failed");
+		debug_warn("mem_wrap failed");
 		dtor(p, size, ctx);
 		return 0;
 	}

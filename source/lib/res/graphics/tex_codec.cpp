@@ -76,7 +76,7 @@ int tex_codec_transform(Tex* t, uint transforms)
 		else if(err != TEX_CODEC_CANNOT_HANDLE)
 		{
 			ret = err;
-			debug_warn(__func__": codec indicates error");
+			debug_warn("codec indicates error");
 		}
 	}
 

@@ -203,7 +203,7 @@ static int dll_list_add(const char* name)
 	// make sure we're allowed to be called.
 	if(!dll_list_pos)
 	{
-		debug_warn(__func__": called before dll_list_init or after failure");
+		debug_warn("called before dll_list_init or after failure");
 		return -1;
 	}
 
@@ -247,7 +247,7 @@ static int dll_list_add(const char* name)
 	// didn't fit; complain
 	sprintf(dll_list_pos, "...");	// (room was reserved above)
 	dll_list_pos = 0;	// poison pill, prevent further calls
-	debug_warn(__func__": not enough room");
+	debug_warn("not enough room");
 	return ERR_BUF_SIZE;
 }
 

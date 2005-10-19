@@ -370,7 +370,7 @@ have_reg:
 	case DBG_BREAK_DATA_WRITE:
 		rw = 3; break;
 	default:
-		debug_warn(__func__": invalid type");
+		debug_warn("invalid type");
 	}
 	// .. length (determine from addr's alignment).
 	//    note: IA-32 requires len=0 for code breakpoints.

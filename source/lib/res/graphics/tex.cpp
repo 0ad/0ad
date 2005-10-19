@@ -439,7 +439,7 @@ int tex_load(const char* fn, Tex* t)
 	if(ret < 0)
 	{
 		(void)tex_free(t);
-		debug_warn(__func__" failed");
+		debug_warn("failed");
 	}
 
 	// do not free hm! it either still holds the image data (i.e. texture
@@ -624,8 +624,8 @@ int tex_write(Tex* t, const char* fn)
 	err = c->encode(t, &da);
 	if(err < 0)
 	{
-		debug_printf(__func__" (%s): %d", c->name, err);
-		debug_warn(__func__"failed");
+		debug_printf("%s (%s) failed: %d", __func__, c->name, err);
+		debug_warn("failed");
 		goto fail;
 	}
 

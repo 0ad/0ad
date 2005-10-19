@@ -40,7 +40,7 @@ int in_add_handler(EventHandler handler)
 
 	if(handler_stack_top >= MAX_HANDLERS)
 	{
-		debug_warn(__func__": increase MAX_HANDLERS");
+		debug_warn("increase MAX_HANDLERS");
 		return -1;
 	}
 
@@ -63,7 +63,7 @@ void dispatch_event(const SDL_Event* event)
 			continue;
 		// .. invalid return value
 		else
-			debug_warn(__func__": invalid handler return value");
+			debug_warn("invalid handler return value");
 	}
 }
 

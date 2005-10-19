@@ -147,7 +147,7 @@ static AppHooks ah =
 void set_app_hooks(AppHooks* ah_)
 {
 	debug_assert(ah_);
-	ONCE_NOT(debug_warn(__func__": app hooks already set"));
+	ONCE_NOT(debug_warn("app hooks already set"));
 
 	// override members in <ah> if they are non-zero in <ah_>
 	// (otherwise, we stick with the defaults set above)

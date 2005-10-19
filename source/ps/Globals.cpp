@@ -39,7 +39,7 @@ int GlobalsInputHandler(const SDL_Event* ev)
 		{
 			// don't complain: this happens when the hotkey system
 			// spoofs keys (it assigns values starting from SDLK_LAST)
-			//debug_warn(__func__": invalid key");
+			//debug_warn("invalid key");
 		}
 		return EV_PASS;
 
@@ -49,7 +49,7 @@ int GlobalsInputHandler(const SDL_Event* ev)
 		if(c < ARRAY_SIZE(g_mouse_buttons))
 			g_mouse_buttons[c] = (ev->type == SDL_MOUSEBUTTONDOWN);
 		else
-			debug_warn(__func__": invalid mouse button");
+			debug_warn("invalid mouse button");
 		return EV_PASS;
 
 	default:

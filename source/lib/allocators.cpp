@@ -135,7 +135,7 @@ int da_free(DynArray* da)
 
 	if(da->prot & DA_NOT_OUR_MEM)
 	{
-		debug_warn(__func__": da is marked DA_NOT_OUR_MEM, must not be altered");
+		debug_warn("da is marked DA_NOT_OUR_MEM, must not be altered");
 		return -1;
 	}
 
@@ -156,7 +156,7 @@ int da_set_size(DynArray* da, size_t new_size)
 
 	if(da->prot & DA_NOT_OUR_MEM)
 	{
-		debug_warn(__func__": da is marked DA_NOT_OUR_MEM, must not be altered");
+		debug_warn("da is marked DA_NOT_OUR_MEM, must not be altered");
 		return -1;
 	}
 
@@ -191,7 +191,7 @@ int da_set_prot(DynArray* da, int prot)
 	// mmap-ed, which it probably wasn't here.
 	if(da->prot & DA_NOT_OUR_MEM)
 	{
-		debug_warn(__func__": da is marked DA_NOT_OUR_MEM, must not be altered");
+		debug_warn("da is marked DA_NOT_OUR_MEM, must not be altered");
 		return -1;
 	}
 
@@ -336,7 +336,7 @@ void pool_free(Pool* p, void* el)
 	if(pool_contains(p, el))
 		freelist_push(&p->freelist, el);
 	else
-		debug_warn(__func__": invalid pointer (not in pool)");
+		debug_warn("invalid pointer (not in pool)");
 }
 
 

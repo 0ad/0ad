@@ -81,8 +81,8 @@ int path_validate(const uint line, const char* path)
 	// failed somewhere - err is the error code,
 	// or -1 if not set specifically above.
 fail:
-	debug_printf(__func__" at line %d failed: %s (error code %d)\n", line, msg, err);
-	debug_warn(__func__" failed");
+	debug_printf("%s called from line %d failed: %s (error code %d)\n", __func__, line, msg, err);
+	debug_warn("failed");
 	return err;
 
 ok:

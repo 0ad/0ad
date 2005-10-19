@@ -67,7 +67,7 @@ extern void* alloca(size_t size);
 # define __func__ __FUNCTION__
 // .. unsupported; remove it from code
 #else
-# define __func__
+# define __func__ "(unknown)"
 #endif
 
 

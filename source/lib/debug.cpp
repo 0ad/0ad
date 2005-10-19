@@ -59,7 +59,7 @@ void debug_wprintf_mem(const wchar_t* fmt, ...)
 	va_end(args);
 	if(len < 0)
 	{
-		debug_warn(__func__": vswprintf failed");
+		debug_warn("vswprintf failed");
 		return;
 	}
 	debug_log_pos += len+2;
@@ -386,7 +386,8 @@ ErrorReaction display_error(const wchar_t* description, int flags,
 
 // notify the user that an assertion failed; displays a stack trace with
 // local variables.
-ErrorReaction debug_assert_failed(const char* file, int line, const char* expr)
+ErrorReaction debug_assert_failed(const char* file,	int line,
+	const char* func, const char* expr)
 {
 	// for edge cases in some functions, warnings (=asserts) are raised in
 	// addition to returning an error code. self-tests deliberately trigger
@@ -404,9 +405,10 @@ ErrorReaction debug_assert_failed(const char* file, int line, const char* expr)
 
 	uint skip = 1; void* context = 0;
 	wchar_t buf[200];
-	swprintf(buf, ARRAY_SIZE(buf), L"Assertion failed in %hs, line %d: \"%hs\"", base_name, line, expr);
+	swprintf(buf, ARRAY_SIZE(buf), L"Assertion failed in %hs, %hs(%d): \"%hs\"", func, base_name, line, expr);
 	return display_error(buf, DE_ALLOW_SUPPRESS|DE_MANUAL_BREAK, skip, context, base_name, line);
 }
+
 
 //-----------------------------------------------------------------------------
 // thread naming

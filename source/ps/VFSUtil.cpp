@@ -95,7 +95,7 @@ int VFSUtil::EnumDirEnts(const CStr start_path, int flags, const char* user_filt
 		Handle hdir = vfs_dir_open(path);
 		if(hdir <= 0)
 		{
-			debug_warn(__func__": vfs_open_dir failed");
+			debug_warn("vfs_open_dir failed");
 			continue;
 		}
 

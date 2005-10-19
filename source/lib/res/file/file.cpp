@@ -288,10 +288,10 @@ int file_set_root_dir(const char* argv0, const char* rel_path)
 	}
 
 fail:
-	debug_warn(__func__" failed");
+	debug_warn("failed");
 	if(msg)
 	{
-		debug_printf(__func__": %s\n", msg);
+		debug_printf("%s: %s\n", __func__, msg);
 		return -1;
 	}
 
@@ -781,7 +781,7 @@ int file_io_issue(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 		const off_t bytes_left = f->size - ofs;
 		if(bytes_left < 0)
 		{
-			debug_warn(__func__": EOF");
+			debug_warn("EOF");
 			return ERR_EOF;
 		}
 		if((off_t)size > bytes_left)
@@ -832,7 +832,7 @@ int file_io_has_completed(FileIo* io)
 	if(ret == 0)
 		return 1;
 
-	debug_warn(__func__": unexpected aio_error return");
+	debug_warn("unexpected aio_error return");
 	return -1;
 }
 
@@ -840,7 +840,7 @@ int file_io_has_completed(FileIo* io)
 int file_io_wait(FileIo* io, void*& p, size_t& size)
 {
 #if CONFIG_PARANOIA
-debug_printf(__func__": hio=%p\n", io);
+debug_printf("%s: hio=%p\n", __func__, io);
 #endif
 
 	// zero output params in case something (e.g. H_DEREF) fails.
@@ -857,8 +857,8 @@ debug_printf(__func__": hio=%p\n", io);
 	// query number of bytes transferred (-1 if the transfer failed)
 	const ssize_t bytes_transferred = aio_return(cb);
 #if CONFIG_PARANOIA
-	debug_printf(__func__": bytes_transferred=%d aio_nbytes=%d\n",
-		bytes_transferred, cb->aio_nbytes);
+	debug_printf("%s: bytes_transferred=%d aio_nbytes=%d\n",
+		__func__, bytes_transferred, cb->aio_nbytes);
 #endif
 	// (size was clipped to EOF in file_io => this is an actual IO error)
 	if(bytes_transferred < (ssize_t)cb->aio_nbytes)
@@ -1004,7 +1004,7 @@ static void* block_find(u64 block_id)
 static void block_add(u64 block_id, void* block)
 {
 	if(block_find(block_id))
-		debug_warn(__func__": already in cache");
+		debug_warn("already in cache");
 	else
 		block_cache[block_id] = block;
 }
@@ -1115,7 +1115,7 @@ debug_printf("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 	//    (not reading OR using lowio OR no callback)
 	if(temp && (is_write || no_aio || !cb))
 	{
-		debug_warn(__func__": invalid parameter");
+		debug_warn("invalid parameter");
 		return ERR_INVALID_PARAM;
 	}
 
@@ -1334,7 +1334,7 @@ int file_map(File* f, void*& p, size_t& size)
 		// prevent overflow; if we have this many refs, should find out why.
 		if(f->map_refs >= MAX_MAP_REFS)
 		{
-			debug_warn(__func__": too many references to mapping");
+			debug_warn("too many references to mapping");
 			return -1;
 		}
 		f->map_refs++;
@@ -1374,7 +1374,7 @@ int file_unmap(File* f)
 	// file is not currently mapped
 	if(f->map_refs == 0)
 	{
-		debug_warn(__func__": not currently mapped");
+		debug_warn("not currently mapped");
 		return -1;
 	}
 

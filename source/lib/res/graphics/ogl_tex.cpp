@@ -118,7 +118,7 @@ static GLint choose_fmt(uint bpp, uint flags)
 		case 5:
 			return GL_COMPRESSED_RGBA_S3TC_DXT5_EXT;
 		default:
-			debug_warn(__func__": invalid DXT value");
+			debug_warn("invalid DXT value");
 			return 0;
 		}
 	}
@@ -138,7 +138,7 @@ static GLint choose_fmt(uint bpp, uint flags)
 		debug_assert(alpha);
 		return bgr? GL_BGRA : GL_RGBA;
 	default:
-		debug_warn(__func__": invalid bpp");
+		debug_warn("invalid bpp");
 		return 0;
 	}
 
@@ -227,7 +227,7 @@ static GLint choose_int_fmt(GLenum fmt, uint q_flags)
 		return half_bpp? GL_RGBA4 : GL_RGBA8;
 
 	default:
-		debug_warn(__func__": given fmt isn't covered! please add it.");
+		debug_warn("given fmt isn't covered! please add it.");
 		// fall back to a reasonable default
 		return half_bpp? GL_RGB4 : GL_RGB8;
 	}
@@ -615,7 +615,7 @@ void ogl_tex_override(OglTexOverrides what, OglTexAllow allow)
 		have_auto_mipmap_gen = enable;
 		break;
 	default:
-		debug_warn(__func__": invalid <what>");
+		debug_warn("invalid <what>");
 		break;
 	}
 }
@@ -862,7 +862,7 @@ int ogl_tex_get_format(Handle ht, uint* flags, GLenum* fmt)
 	if(fmt)
 	{
 		if(!ot->is_currently_uploaded)
-			debug_warn(__func__": hasn't been defined yet!");
+			debug_warn("hasn't been defined yet!");
 		*fmt = ot->fmt;
 	}
 	return 0;
