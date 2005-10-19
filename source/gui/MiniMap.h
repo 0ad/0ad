@@ -53,14 +53,13 @@ protected:
     u32 *m_TerrainData;
     u8 *m_LOSData;
 
-    // width
-    u32 m_Width;
-
-    // height
-    u32 m_Height;
+    u32 m_Width, m_Height;
 
     // map size
     u32 m_MapSize;
+
+	// used by GetMapSpaceCoords (precalculated as an optimization)
+	float m_scaleX, m_scaleY;
 
     // texture size
     u32 m_TextureSize;
