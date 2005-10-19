@@ -23,6 +23,8 @@
 extern float g_MaxZoomHeight, g_YMinOffset;
 bool HasClicked=false;
 
+bool g_TerrainModified = false;
+
 static unsigned int ScaleColor(unsigned int color, float x)
 {
 	unsigned int r = uint(float(color & 0xff) * x);
@@ -42,8 +44,8 @@ static int RoundUpToPowerOf2(int x)
 }
 
 CMiniMap::CMiniMap()
-	: m_Handle(0), m_Data(NULL), m_MapSize(0), m_Terrain(0),
-	m_UnitManager(0)
+	: m_TerrainTexture(0), m_TerrainData(0), m_MapSize(0), m_Terrain(0),
+	m_LOSTexture(0), m_LOSData(0), m_UnitManager(0)
 {
 	AddSetting(GUIST_CColor,	"fov_wedge_color");
 	AddSetting(GUIST_CStr,		"tooltip");
@@ -61,23 +63,32 @@ void CMiniMap::Draw()
 	// happens when the game is started
 	if(GetGUI() && g_Game && g_Game->IsGameStarted())
 	{
-		if(!m_Handle)
-			GenerateMiniMapTexture();
+		// Set our globals in case they hadn't been set before
+		m_Terrain = g_Game->GetWorld()->GetTerrain();
+		m_UnitManager = g_Game->GetWorld()->GetUnitManager();
+		m_Width = (u32)(m_CachedActualSize.right - m_CachedActualSize.left);
+		m_Height = (u32)(m_CachedActualSize.bottom - m_CachedActualSize.top);
+		m_MapSize = m_Terrain->GetVerticesPerSide();
+		m_TextureSize = RoundUpToPowerOf2(m_MapSize);
 
-		Rebuild();
+		if(!m_TerrainTexture)
+			CreateTextures();
 
-		g_Renderer.BindTexture(0, m_Handle);
+		if(g_TerrainModified)
+			RebuildTerrainTexture();
+
+		RebuildLOSTexture();
+
+		float texCoordMax = ((float)m_MapSize - 1) / ((float)m_TextureSize);
+		float z = GetBufferedZ();
+
+		// Draw the main textured quad
+
+		g_Renderer.BindTexture(0, m_TerrainTexture);
 		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-		float texCoordMax = ((float)m_MapSize - 1) / ((float)m_TextureSize);
-
-		float z = GetBufferedZ();
-
 		glBegin(GL_QUADS);
-
-		// Draw the main textured quad
 		glTexCoord2f(0.0f, 0.0f);
 		glVertex3f(m_CachedActualSize.left, m_CachedActualSize.bottom, z);
 		glTexCoord2f(texCoordMax, 0.0f);
@@ -86,14 +97,42 @@ void CMiniMap::Draw()
 		glVertex3f(m_CachedActualSize.right, m_CachedActualSize.top, z);
 		glTexCoord2f(0.0f, texCoordMax);
 		glVertex3f(m_CachedActualSize.left, m_CachedActualSize.top, z);
-
 		glEnd();
+
+		// Draw the LOS quad in black, using alpha values from the LOS texture
+
+		g_Renderer.BindTexture(0, m_LOSTexture);
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PRIMARY_COLOR_ARB);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glBegin(GL_QUADS);
+		glColor3f(0.0f, 0.0f, 0.0f);
+		glTexCoord2f(0.0f, 0.0f);
+		glVertex3f(m_CachedActualSize.left, m_CachedActualSize.bottom, z);
+		glTexCoord2f(texCoordMax, 0.0f);
+		glVertex3f(m_CachedActualSize.right, m_CachedActualSize.bottom, z);
+		glTexCoord2f(texCoordMax, texCoordMax);
+		glVertex3f(m_CachedActualSize.right, m_CachedActualSize.top, z);
+		glTexCoord2f(0.0f, texCoordMax);
+		glVertex3f(m_CachedActualSize.left, m_CachedActualSize.top, z);
+		glEnd();
+		glDisable(GL_BLEND);
+
+		// Draw unit points
 
 		float x = m_CachedActualSize.left;
 		float y = m_CachedActualSize.bottom;
 		const std::vector<CUnit *> &units = m_UnitManager->GetUnits();
 		std::vector<CUnit *>::const_iterator iter = units.begin();
-		CUnit *unit = NULL;
+		CUnit *unit = 0;
 		CVector2D pos;
 
 		CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
@@ -230,7 +269,7 @@ void CMiniMap::Draw()
 		glEnable(GL_SCISSOR_TEST);
 		glEnable(GL_LINE_SMOOTH);
 		glLineWidth(2);
-		glColor3f(1.0f,0.3f,0.3f);
+		glColor3f(1.0f, 0.3f, 0.3f);
 		
 		
 		// Draw the viewing rectangle with the ScEd's conversion algorithm
@@ -255,40 +294,39 @@ void CMiniMap::Draw()
 	}
 }
 
-void CMiniMap::GenerateMiniMapTexture()
+void CMiniMap::CreateTextures()
 {
-	m_Terrain = g_Game->GetWorld()->GetTerrain();
-	m_UnitManager = g_Game->GetWorld()->GetUnitManager();
-
-	m_Width = (u32)(m_CachedActualSize.right - m_CachedActualSize.left);
-	m_Height = (u32)(m_CachedActualSize.bottom - m_CachedActualSize.top);
-
 	Destroy();
 
-	glGenTextures(1, (GLuint *)&m_Handle);
-	g_Renderer.BindTexture(0, m_Handle);
-	
-	m_MapSize = m_Terrain->GetVerticesPerSide();
-	m_TextureSize = RoundUpToPowerOf2(m_MapSize);
+	// Create terrain texture
+	glGenTextures(1, (GLuint *)&m_TerrainTexture);
+	g_Renderer.BindTexture(0, m_TerrainTexture);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_TextureSize, m_TextureSize, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, 0);
-
-	m_Data = new u32[(m_MapSize - 1) * (m_MapSize - 1)];
+	m_TerrainData = new u32[(m_MapSize - 1) * (m_MapSize - 1)];
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP);
 
-	Rebuild();
+	// Create LOS texture
+	glGenTextures(1, (GLuint *)&m_LOSTexture);
+	g_Renderer.BindTexture(0, m_LOSTexture);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA8, m_TextureSize, m_TextureSize, 0, GL_ALPHA, GL_UNSIGNED_BYTE, 0);
+	m_LOSData = new u8[(m_MapSize - 1) * (m_MapSize - 1)];
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP);
+
+	// Rebuild and upload both of them
+	RebuildTerrainTexture();
+	RebuildLOSTexture();
 }
 
-void CMiniMap::Rebuild()
+void CMiniMap::RebuildTerrainTexture()
 {
-	PROFILE_START("rebuild minimap");
+	PROFILE_START("rebuild minimap: terrain");
 
-	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
-	CPlayer* player = g_Game->GetLocalPlayer();
-
-	u32 mapSize = m_Terrain->GetVerticesPerSide();
 	u32 x = 0;
 	u32 y = 0;
 	u32 w = m_MapSize - 1;
@@ -296,75 +334,106 @@ void CMiniMap::Rebuild()
 
 	for(u32 j = 0; j < h; j++)
 	{
-		u32 *dataPtr = m_Data + ((y + j) * (mapSize - 1)) + x;
+		u32 *dataPtr = m_TerrainData + ((y + j) * (m_MapSize - 1)) + x;
+		for(u32 i = 0; i < w; i++)
+		{
+			float avgHeight = ( m_Terrain->getVertexGroundLevel((int)i, (int)j)
+					+ m_Terrain->getVertexGroundLevel((int)i+1, (int)j)
+					+ m_Terrain->getVertexGroundLevel((int)i, (int)j+1)
+					+ m_Terrain->getVertexGroundLevel((int)i+1, (int)j+1)
+				) / 4.0f;
+
+			if(avgHeight < g_Renderer.m_WaterHeight)
+			{
+				*dataPtr++ = 0xff304080;		// TODO: perhaps use the renderer's water color?
+			}
+			else
+			{
+				int hmap = ((int)m_Terrain->GetHeightMap()[(y + j) * m_MapSize + x + i]) >> 8;
+				int val = (hmap / 3) + 170;
+
+				u32 color = 0;
+
+				CMiniPatch *mp = m_Terrain->GetTile(x + i, y + j);
+				if(mp)
+				{
+					CTextureEntry *tex = mp->Tex1 ? g_TexMan.FindTexture(mp->Tex1) : 0;
+					color = tex ? tex->GetBaseColor() : 0xffffffff;
+				}
+				else
+				{
+					color = 0xffffffff;
+				}
+
+				*dataPtr++ = ScaleColor(color, float(val) / 255.0f);
+			}
+		}
+	}
+
+	// Upload the texture
+	g_Renderer.BindTexture(0, m_TerrainTexture);
+	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_MapSize - 1, m_MapSize - 1, GL_BGRA_EXT, GL_UNSIGNED_BYTE, m_TerrainData);
+
+	PROFILE_END("rebuild minimap: terrain");
+}
+
+void CMiniMap::RebuildLOSTexture()
+{
+	PROFILE_START("rebuild minimap: los");
+
+	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
+	CPlayer* player = g_Game->GetLocalPlayer();
+
+	u32 x = 0;
+	u32 y = 0;
+	u32 w = m_MapSize - 1;
+	u32 h = m_MapSize - 1;
+
+	for(u32 j = 0; j < h; j++)
+	{
+		u8 *dataPtr = m_LOSData + ((y + j) * (m_MapSize - 1)) + x;
 		for(u32 i = 0; i < w; i++)
 		{
 			ELOSStatus status = losMgr->GetStatus((int) i, (int) j, player);
 			if(status == LOS_UNEXPLORED)
 			{
-				*dataPtr++ = 0xff000000;
+				*dataPtr++ = 0xff;
 			}
-			else
+			else if(status == LOS_EXPLORED)
 			{
-				u32 color = 0;
-
-				float avgHeight = ( m_Terrain->getVertexGroundLevel((int)i, (int)j)
-					  + m_Terrain->getVertexGroundLevel((int)i+1, (int)j)
-					  + m_Terrain->getVertexGroundLevel((int)i, (int)j+1)
-					  + m_Terrain->getVertexGroundLevel((int)i+1, (int)j+1)
-					) / 4.0f;
-
-				if(avgHeight < g_Renderer.m_WaterHeight)
-				{
-					color = 0xff304080;
-				}
-				else
-				{
-					int hmap = ((int)m_Terrain->GetHeightMap()[(y + j) * mapSize + x + i]) >> 8;
-					int val = (hmap / 3) + 170;
-
-					CMiniPatch *mp = m_Terrain->GetTile(x + i, y + j);
-					if(mp)
-					{
-						CTextureEntry *tex = mp->Tex1 ? g_TexMan.FindTexture(mp->Tex1) : 0;
-						color = tex ? tex->GetBaseColor() : 0xffffffff;
-					}
-					else
-					{
-						color = 0xffffffff;
-					}
-
-					color = ScaleColor(color, float(val) / 255.0f);
-				}
-
-				float losFactor = (status==LOS_VISIBLE ? 1.0f : 0.7f);
-
-				*dataPtr++ = ScaleColor(color, losFactor);
+				*dataPtr++ = (u8) (0xff * 0.3f);
 			}
-
+			else {
+				*dataPtr++ = 0;
+			}
 		}
 	}
 
-	UploadTexture();
+	// Upload the texture
+	g_Renderer.BindTexture(0, m_LOSTexture);
+	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_MapSize - 1, m_MapSize - 1, GL_ALPHA, GL_UNSIGNED_BYTE, m_LOSData);
 
-	PROFILE_END("rebuild minimap");
-}
-
-void CMiniMap::UploadTexture()
-{
-	g_Renderer.BindTexture(0, m_Handle);
-	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_MapSize - 1, m_MapSize - 1, GL_BGRA_EXT, GL_UNSIGNED_BYTE, m_Data);
+	PROFILE_END("rebuild minimap: los");
 }
 
 void CMiniMap::Destroy()
 {
-	if(m_Handle)
-		glDeleteTextures(1, (GLuint *)&m_Handle);
+	if(m_TerrainTexture)
+		glDeleteTextures(1, (GLuint *)&m_TerrainTexture);
 
-	if(m_Data)
+	if(m_LOSTexture)
+		glDeleteTextures(1, (GLuint *)&m_LOSTexture);
+
+	if(m_TerrainData)
 	{
-		delete[] m_Data;
-		m_Data = NULL;
+		delete[] m_TerrainData;
+		m_TerrainData = 0;
+	}
+
+	if(m_LOSData)
+	{
+		delete[] m_LOSData;
+		m_LOSData = 0;
 	}
 }
 

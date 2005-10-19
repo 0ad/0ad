@@ -41,6 +41,7 @@
 #endif
 
 extern CConsole* g_Console;
+extern bool g_TerrainModified;
 
 
 // rationale: the function table is now at the end of the source file to
@@ -786,6 +787,7 @@ JSBool setWaterHeight( JSContext* cx, JSObject* UNUSED(globalObject), uint argc,
 		return( JS_FALSE );
 	}
 	g_Renderer.m_WaterHeight = newHeight;
+	g_TerrainModified = true;
 	*rval = JSVAL_VOID;
 	return( JS_TRUE );
 }

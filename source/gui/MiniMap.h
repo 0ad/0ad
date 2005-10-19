@@ -7,6 +7,8 @@
 class CTerrain;
 class CUnitManager;
 
+extern bool g_TerrainModified;
+
 class CMiniMap : public IGUIObject
 {
     GUI_OBJECT(CMiniMap)
@@ -16,14 +18,14 @@ public:
 protected:
     virtual void Draw();
 
-    // generate the mini-map texture
-    void GenerateMiniMapTexture();
+    // create the minimap textures
+    void CreateTextures();
 
-    // rebuild the texture map
-    void Rebuild();
+    // rebuild the terrain texture map
+    void RebuildTerrainTexture();
 
-    // upload the minimap texture
-    void UploadTexture();
+    // rebuild the LOS map
+    void RebuildLOSTexture();
 
     // destroy and free any memory and textures
     void Destroy();
@@ -39,11 +41,13 @@ protected:
     // the unit manager with unit positions
     CUnitManager *m_UnitManager;
     
-    // minimap texture handle
-    u32 m_Handle;
+    // minimap texture handles
+    u32 m_TerrainTexture;
+    u32 m_LOSTexture;
     
     // texture data
-    u32 *m_Data;
+    u32 *m_TerrainData;
+    u8 *m_LOSData;
 
     // width
     u32 m_Width;

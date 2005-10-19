@@ -39,6 +39,7 @@ that of Atlas depending on commandline parameters.
 
 #define LOG_CATEGORY "main"
 
+extern bool g_TerrainModified;
 
 void kill_mainloop();
 
@@ -239,6 +240,9 @@ static void Frame()
 
 	if(g_FixedFrameTiming && frameCount==100)
 		kill_mainloop();
+
+	// clear terrain modified flag
+	g_TerrainModified = false;
 }
 
 
