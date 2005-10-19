@@ -48,6 +48,21 @@ extern u64 rdtsc(void);
 #ifndef _MCW_EM
 # define _MCW_EM 0x003f		// Exception Mask
 #endif
+#ifndef _MCW_IM
+# define _MCW_IM 0x0001		// Invalid Operation Mask
+#endif
+#ifndef _MCW_DM
+# define _MCW_DM 0x0002		// Denormal Operand Mask
+#endif
+#ifndef _MCW_OM
+# define _MCW_OM 0x0008		// Overflow Mask
+#endif
+#ifndef _MCW_UM
+# define _MCW_UM 0x00010	// Underflow Mask
+#endif
+#ifndef _MCW_PM
+# define _MCW_PM 0x0020		// Precision Mask
+#endif
 
 #define _control87 ia32_control87
 extern uint ia32_control87(uint new_cw, uint mask);	// asm

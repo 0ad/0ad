@@ -352,9 +352,9 @@ sym(ia32_control87):
 	not		edx							; ~mask
 	and		eax, edx					; old_cw & ~mask
 	or		eax, ecx					; (old_cw & ~mask) | (new_cw & mask)
-	push	edx
+	push	eax
 	fldcw	[esp]
-	pop		edx
+	pop		eax
 	xor		eax, eax					; return value
 	ret
 	

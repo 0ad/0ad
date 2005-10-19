@@ -159,8 +159,9 @@ void cpu_init()
 	// we can temporarily change precision there.
 	//_control87(_PC_24, _MCW_PC);
 
-	// enable all floating-point exceptions (helps catch bugs)
-	_control87(_MCW_EM, _MCW_EM);
+	// disable all floating-point exceptions except zero-divide
+	// Note that most exceptions are triggered by the JS engine.
+	_control87(_MCW_PM|_MCW_IM|_MCW_UM|_MCW_OM|_MCW_DM, _MCW_EM);
 
 	// detects CPU clock frequency and capabilities, which are prerequisites
 	// for using the TSC as a timer (desirable due to its high resolution).
