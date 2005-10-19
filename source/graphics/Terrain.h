@@ -26,9 +26,9 @@ public:
 	bool Initialize(u32 size,const u16* ptr);
 
 	// return number of vertices along edge of the terrain
-	u32 GetVerticesPerSide() { return m_MapSize; }
+	u32 GetVerticesPerSide() const { return m_MapSize; }
 	// return number of patches along edge of the terrain
-	u32 GetPatchesPerSide() { return m_MapSizePatches; }
+	u32 GetPatchesPerSide() const { return m_MapSizePatches; }
 
 	inline bool isOnMap( float x, float y ) const 
 	{
@@ -52,17 +52,17 @@ public:
 
 	// get patch at given coordinates, expressed in patch-space; return 0 if
 	// coordinates represent patch off the edge of the map
-	CPatch* GetPatch(i32 x, i32 z); 
+	CPatch* GetPatch(i32 x, i32 z) const; 
 	// get tile at given coordinates, expressed in tile-space; return 0 if
 	// coordinates represent tile off the edge of the map
-	CMiniPatch* GetTile(i32 x, i32 z);
+	CMiniPatch* GetTile(i32 x, i32 z) const;
 
 	// calculate the position of a given vertex
-	void CalcPosition(i32 i, i32 j, CVector3D& pos);
+	void CalcPosition(i32 i, i32 j, CVector3D& pos) const;
 	// calculate the vertex under a given position (rounding down coordinates)
-	void CalcFromPosition(const CVector3D& pos, i32& i, i32& j);
+	void CalcFromPosition(const CVector3D& pos, i32& i, i32& j) const;
 	// calculate the normal at a given vertex
-	void CalcNormal(u32 i, u32 j, CVector3D& normal);
+	void CalcNormal(u32 i, u32 j, CVector3D& normal) const;
 
 	// flatten out an area of terrain (specified in world space coords); return
 	// the average height of the flattened area

@@ -72,7 +72,7 @@ bool CTerrain::Initialize(u32 size,const u16* data)
 
 ///////////////////////////////////////////////////////////////////////////////
 // CalcPosition: calculate the world space position of the vertex at (i,j)
-void CTerrain::CalcPosition(i32 i, i32 j, CVector3D& pos)
+void CTerrain::CalcPosition(i32 i, i32 j, CVector3D& pos) const
 {
 	u16 height;
 	if ((u32)i < m_MapSize && (u32)j < m_MapSize) // will reject negative coordinates
@@ -87,7 +87,7 @@ void CTerrain::CalcPosition(i32 i, i32 j, CVector3D& pos)
 
 ///////////////////////////////////////////////////////////////////////////////
 // CalcFromPosition: calculate the vertex underneath the world space position
-void CTerrain::CalcFromPosition(const CVector3D& pos, i32& i, i32& j)
+void CTerrain::CalcFromPosition(const CVector3D& pos, i32& i, i32& j) const
 {
 	i = pos.X / CELL_SIZE;
 	j = pos.Z / CELL_SIZE;
@@ -96,7 +96,7 @@ void CTerrain::CalcFromPosition(const CVector3D& pos, i32& i, i32& j)
 
 ///////////////////////////////////////////////////////////////////////////////
 // CalcNormal: calculate the world space normal of the vertex at (i,j)
-void CTerrain::CalcNormal(u32 i, u32 j, CVector3D& normal)
+void CTerrain::CalcNormal(u32 i, u32 j, CVector3D& normal) const
 {
 	CVector3D left, right, up, down;
 	
@@ -144,7 +144,7 @@ void CTerrain::CalcNormal(u32 i, u32 j, CVector3D& normal)
 ///////////////////////////////////////////////////////////////////////////////
 // GetPatch: return the patch at (x,z) in patch space, or null if the patch is 
 // out of bounds
-CPatch* CTerrain::GetPatch(i32 x, i32 z)
+CPatch* CTerrain::GetPatch(i32 x, i32 z) const
 {
 	if (x<0 || x>=i32(m_MapSizePatches)) return 0;
 	if (z<0 || z>=i32(m_MapSizePatches)) return 0;
@@ -155,7 +155,7 @@ CPatch* CTerrain::GetPatch(i32 x, i32 z)
 ///////////////////////////////////////////////////////////////////////////////
 // GetPatch: return the tile at (x,z) in tile space, or null if the tile is out 
 // of bounds
-CMiniPatch* CTerrain::GetTile(i32 x, i32 z)
+CMiniPatch* CTerrain::GetTile(i32 x, i32 z) const
 {
 	if (x<0 || x>=i32(m_MapSize)-1) return 0;
 	if (z<0 || z>=i32(m_MapSize)-1) return 0;

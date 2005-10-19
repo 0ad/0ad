@@ -426,6 +426,8 @@ extern int ilog2(uint n);
 // return log base 2, rounded up.
 extern uint log2(uint x);
 
+extern uint round_up_to_pow2(uint x);
+
 
 // multiple must be a power of two.
 extern uintptr_t round_up(uintptr_t val, uintptr_t multiple);

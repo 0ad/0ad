@@ -1,9 +1,10 @@
 #ifndef __H_MINIMAP_H__
 #define __H_MINIMAP_H__
 
-#include "GUI.h"
-#include "Vector2D.h"
-#include "Vector3D.h"
+#include "gui/GUI.h"
+#include "ps/Vector2D.h"
+#include "maths/Vector3D.h"
+#include "graphics/Camera.h"
 class CTerrain;
 class CUnitManager;
 
@@ -36,11 +37,14 @@ protected:
     CVector2D GetMapSpaceCoords(CVector3D worldPos);
 
     // the terrain we are mini-mapping
-    CTerrain *m_Terrain;
+    const CTerrain* m_Terrain;
 
     // the unit manager with unit positions
-    CUnitManager *m_UnitManager;
+    const CUnitManager* m_UnitManager;
     
+	// not const: camera is moved by clicking on minimap
+	CCamera* m_Camera;
+
     // minimap texture handles
     u32 m_TerrainTexture;
     u32 m_LOSTexture;
@@ -60,6 +64,9 @@ protected:
 
     // texture size
     u32 m_TextureSize;
+
+	void DrawViewRect();	// split out of Draw
+	void ProcessUserInput();
 };
 
 #endif

@@ -204,6 +204,21 @@ uint log2(uint x)
 }
 
 
+cassert(sizeof(int)*CHAR_BIT == 32);	// otherwise change round_up_to_pow2
+
+uint round_up_to_pow2(uint x)
+{
+	// fold upper bit into lower bits; leaves same MSB set but
+	// everything below it 1. adding 1 yields next POT.
+	x |= (x >> 1);
+	x |= (x >> 2);
+	x |= (x >> 4);
+	x |= (x >> 8);
+	x |= (x >> 16);
+	return x+1;
+}
+
+
 int ilog2(const float x)
 {
 	const u32 i = *(u32*)&x;

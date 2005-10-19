@@ -1,6 +1,11 @@
 #ifndef _GameView_H
 #define _GameView_H
 
+// needed by minimap
+extern float g_MaxZoomHeight;	//note:  Max terrain height is this minus YMinOffset
+extern float g_YMinOffset;
+
+
 #include "Camera.h"
 #include "Vector3D.h"
 
