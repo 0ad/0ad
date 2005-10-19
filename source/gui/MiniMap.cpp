@@ -61,237 +61,237 @@ void CMiniMap::Draw()
 {
 	// The terrain isn't actually initialized until the map is loaded, which
 	// happens when the game is started
-	if(GetGUI() && g_Game && g_Game->IsGameStarted())
+	if(!(GetGUI() && g_Game && g_Game->IsGameStarted()))
+		return;
+	
+	// Set our globals in case they hadn't been set before
+	m_Terrain = g_Game->GetWorld()->GetTerrain();
+	m_UnitManager = g_Game->GetWorld()->GetUnitManager();
+	m_Width = (u32)(m_CachedActualSize.right - m_CachedActualSize.left);
+	m_Height = (u32)(m_CachedActualSize.bottom - m_CachedActualSize.top);
+	m_MapSize = m_Terrain->GetVerticesPerSide();
+	m_TextureSize = RoundUpToPowerOf2(m_MapSize);
+
+	if(!m_TerrainTexture)
+		CreateTextures();
+
+	if(g_TerrainModified)
+		RebuildTerrainTexture();
+
+	RebuildLOSTexture();
+
+	float texCoordMax = ((float)m_MapSize - 1) / ((float)m_TextureSize);
+	float z = GetBufferedZ();
+
+	// Draw the main textured quad
+
+	g_Renderer.BindTexture(0, m_TerrainTexture);
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex3f(m_CachedActualSize.left, m_CachedActualSize.bottom, z);
+	glTexCoord2f(texCoordMax, 0.0f);
+	glVertex3f(m_CachedActualSize.right, m_CachedActualSize.bottom, z);
+	glTexCoord2f(texCoordMax, texCoordMax);
+	glVertex3f(m_CachedActualSize.right, m_CachedActualSize.top, z);
+	glTexCoord2f(0.0f, texCoordMax);
+	glVertex3f(m_CachedActualSize.left, m_CachedActualSize.top, z);
+	glEnd();
+
+	// Draw the LOS quad in black, using alpha values from the LOS texture
+
+	g_Renderer.BindTexture(0, m_LOSTexture);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PRIMARY_COLOR_ARB);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glBegin(GL_QUADS);
+	glColor3f(0.0f, 0.0f, 0.0f);
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex3f(m_CachedActualSize.left, m_CachedActualSize.bottom, z);
+	glTexCoord2f(texCoordMax, 0.0f);
+	glVertex3f(m_CachedActualSize.right, m_CachedActualSize.bottom, z);
+	glTexCoord2f(texCoordMax, texCoordMax);
+	glVertex3f(m_CachedActualSize.right, m_CachedActualSize.top, z);
+	glTexCoord2f(0.0f, texCoordMax);
+	glVertex3f(m_CachedActualSize.left, m_CachedActualSize.top, z);
+	glEnd();
+	glDisable(GL_BLEND);
+
+	// Draw unit points
+
+	float x = m_CachedActualSize.left;
+	float y = m_CachedActualSize.bottom;
+	const std::vector<CUnit *> &units = m_UnitManager->GetUnits();
+	std::vector<CUnit *>::const_iterator iter = units.begin();
+	CUnit *unit = 0;
+	CVector2D pos;
+
+	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
+
+	glDisable(GL_DEPTH_TEST);
+	glEnable(GL_POINT_SMOOTH);
+	glDisable(GL_TEXTURE_2D);
+	glPointSize(3.0f);
+	// REMOVED: glColor3f(1.0f, 1.0f, 1.0f);
+	glBegin(GL_POINTS);
+	for(; iter != units.end(); ++iter)
 	{
-		// Set our globals in case they hadn't been set before
-		m_Terrain = g_Game->GetWorld()->GetTerrain();
-		m_UnitManager = g_Game->GetWorld()->GetUnitManager();
-		m_Width = (u32)(m_CachedActualSize.right - m_CachedActualSize.left);
-		m_Height = (u32)(m_CachedActualSize.bottom - m_CachedActualSize.top);
-		m_MapSize = m_Terrain->GetVerticesPerSide();
-		m_TextureSize = RoundUpToPowerOf2(m_MapSize);
-
-		if(!m_TerrainTexture)
-			CreateTextures();
-
-		if(g_TerrainModified)
-			RebuildTerrainTexture();
-
-		RebuildLOSTexture();
-
-		float texCoordMax = ((float)m_MapSize - 1) / ((float)m_TextureSize);
-		float z = GetBufferedZ();
-
-		// Draw the main textured quad
-
-		g_Renderer.BindTexture(0, m_TerrainTexture);
-		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glBegin(GL_QUADS);
-		glTexCoord2f(0.0f, 0.0f);
-		glVertex3f(m_CachedActualSize.left, m_CachedActualSize.bottom, z);
-		glTexCoord2f(texCoordMax, 0.0f);
-		glVertex3f(m_CachedActualSize.right, m_CachedActualSize.bottom, z);
-		glTexCoord2f(texCoordMax, texCoordMax);
-		glVertex3f(m_CachedActualSize.right, m_CachedActualSize.top, z);
-		glTexCoord2f(0.0f, texCoordMax);
-		glVertex3f(m_CachedActualSize.left, m_CachedActualSize.top, z);
-		glEnd();
-
-		// Draw the LOS quad in black, using alpha values from the LOS texture
-
-		g_Renderer.BindTexture(0, m_LOSTexture);
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PRIMARY_COLOR_ARB);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glBegin(GL_QUADS);
-		glColor3f(0.0f, 0.0f, 0.0f);
-		glTexCoord2f(0.0f, 0.0f);
-		glVertex3f(m_CachedActualSize.left, m_CachedActualSize.bottom, z);
-		glTexCoord2f(texCoordMax, 0.0f);
-		glVertex3f(m_CachedActualSize.right, m_CachedActualSize.bottom, z);
-		glTexCoord2f(texCoordMax, texCoordMax);
-		glVertex3f(m_CachedActualSize.right, m_CachedActualSize.top, z);
-		glTexCoord2f(0.0f, texCoordMax);
-		glVertex3f(m_CachedActualSize.left, m_CachedActualSize.top, z);
-		glEnd();
-		glDisable(GL_BLEND);
-
-		// Draw unit points
-
-		float x = m_CachedActualSize.left;
-		float y = m_CachedActualSize.bottom;
-		const std::vector<CUnit *> &units = m_UnitManager->GetUnits();
-		std::vector<CUnit *>::const_iterator iter = units.begin();
-		CUnit *unit = 0;
-		CVector2D pos;
-
-		CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
-
-		glDisable(GL_DEPTH_TEST);
-		glEnable(GL_POINT_SMOOTH);
-		glDisable(GL_TEXTURE_2D);
-		glPointSize(3.0f);
-		// REMOVED: glColor3f(1.0f, 1.0f, 1.0f);
-		glBegin(GL_POINTS);
-		for(; iter != units.end(); ++iter)
+		unit = (CUnit *)(*iter);
+		if(unit && unit->GetEntity() && losMgr->GetUnitStatus(unit, g_Game->GetLocalPlayer()) != UNIT_HIDDEN)
 		{
-			unit = (CUnit *)(*iter);
-			if(unit && unit->GetEntity() && losMgr->GetUnitStatus(unit, g_Game->GetLocalPlayer()) != UNIT_HIDDEN)
-			{
-				CEntity* entity = unit->GetEntity();
-				CStrW& type = entity->m_minimapType;
+			CEntity* entity = unit->GetEntity();
+			CStrW& type = entity->m_minimapType;
 
-				if(type==L"Unit" || type==L"Structure" || type==L"Hero") {
-					// Use the player colour
-					const SPlayerColour& colour = unit->GetEntity()->GetPlayer()->GetColour();
-					glColor3f(colour.r, colour.g, colour.b);
-				}
-				else {
-					glColor3f(entity->m_minimapR/255.0f, entity->m_minimapG/255.0f, entity->m_minimapB/255.0f);
-				}
-
-
-				pos = GetMapSpaceCoords(unit->GetEntity()->m_position);
-
-				glVertex3f(x + pos.x, y - pos.y, z);
+			if(type==L"Unit" || type==L"Structure" || type==L"Hero") {
+				// Use the player colour
+				const SPlayerColour& colour = unit->GetEntity()->GetPlayer()->GetColour();
+				glColor3f(colour.r, colour.g, colour.b);
 			}
+			else {
+				glColor3f(entity->m_minimapR/255.0f, entity->m_minimapG/255.0f, entity->m_minimapB/255.0f);
+			}
+
+
+			pos = GetMapSpaceCoords(unit->GetEntity()->m_position);
+
+			glVertex3f(x + pos.x, y - pos.y, z);
 		}
+	}
 
-		glEnd();
-
-		
-		
-		
-//================================================================	
-              //INTERACTIVE MINIMAP STARTS
-		//Have questions on ^.  Send email to ajdecker1022@msn.com		
-
-		//Get Camera handle
-		CCamera &g_Camera=*g_Game->GetView()->GetCamera();
-		
-		//Check for a click
-		if(g_mouse_buttons[0]==true)
-		{  
-			HasClicked=true; 
-		}
-		
-		//Check to see if left button is false (meaning it's been lifted) 
-		if (g_mouse_buttons[0]==false && HasClicked==true)
-
-		{
-
-			//Is cursor inside Minimap boundaries? 
-			if(g_mouse_x > m_CachedActualSize.left && g_mouse_x < m_CachedActualSize.right
-				&& g_mouse_y > m_CachedActualSize.top && g_mouse_y < m_CachedActualSize.bottom)
-				{
-					CTerrain *MMTerrain=g_Game->GetWorld()->GetTerrain();
-					CVector3D CamOrient=g_Camera.m_Orientation.GetTranslation();
-					
-					//get center point of screen
-					CVector3D ScreenMiddle=g_Camera.GetWorldCoordinates(
-						g_Renderer.GetWidth()/2,g_Renderer.GetHeight()/2);
-					
-					//Get Vector required to go from camera position to ScreenMiddle
-					CVector3D TransVector;
-					TransVector.X=CamOrient.X-ScreenMiddle.X;
-					TransVector.Z=CamOrient.Z-ScreenMiddle.Z;
-						//world position of where mouse clicked
-						CVector3D Destination;
-						//X and Z according to proportion of mouse position and minimap
-						Destination.X=(CELL_SIZE*m_MapSize)*
-						((g_mouse_x-m_CachedActualSize.left)/m_CachedActualSize.GetWidth());
-						Destination.Z=(CELL_SIZE*m_MapSize)*((m_CachedActualSize.bottom-g_mouse_y)
-						/m_CachedActualSize.GetHeight());
-					
-					g_Camera.m_Orientation._14=Destination.X;
-					g_Camera.m_Orientation._34=Destination.Z;
-					g_Camera.m_Orientation._14+=TransVector.X;
-					g_Camera.m_Orientation._34+=TransVector.Z;
-					
-					//Lock Y coord.  No risk of zoom exceeding limit-Y does not increase  
-					float Height=MMTerrain->getExactGroundLevel(
-					   g_Camera.m_Orientation._14, g_Camera.m_Orientation._34) + g_YMinOffset;
-					
-					if (g_Camera.m_Orientation._24 < Height)	
-					{
-						g_Camera.m_Orientation._24=Height;
-					}
-					g_Camera.UpdateFrustum();
-					
-				}
-			HasClicked=false;
-		}
-							//END OF INTERACTIVE MINIMAP
-	//====================================================================
-		
-		// render view rect : John M. Mena
-		// This sets up and draws the rectangle on the mini-map
-		// which represents the view of the camera in the world.
-		
-		// Get a handle to the camera
-		
-
-		//Get correct world coordinates based off corner of screen start 
-		//at Bottom Left and going CW
-		CVector3D hitPt[4];
-		hitPt[0]=g_Camera.GetWorldCoordinates(0,g_Renderer.GetHeight());
-		hitPt[1]=g_Camera.GetWorldCoordinates(g_Renderer.GetWidth(),g_Renderer.GetHeight());
-		hitPt[2]=g_Camera.GetWorldCoordinates(g_Renderer.GetWidth(),0);
-		hitPt[3]=g_Camera.GetWorldCoordinates(0,0);
-		
-
-		float ViewRect[4][2];
-		for (int i=0;i<4;i++) {
-			// convert to minimap space
-			float px=hitPt[i].X;
-			float pz=hitPt[i].Z;
-			ViewRect[i][0]=(m_CachedActualSize.GetWidth()*px/float(CELL_SIZE*m_MapSize));
-			ViewRect[i][1]=(m_CachedActualSize.GetHeight()*pz/float(CELL_SIZE*m_MapSize));
-		}
+	glEnd();
 
 	
+	
+	
+//================================================================	
+            //INTERACTIVE MINIMAP STARTS
+	//Have questions on ^.  Send email to ajdecker1022@msn.com		
 
-		// Enable Scissoring as to restrict the rectangle
-		// to only the mini-map below by retrieving the mini-maps
-		// screen coords.
-		
-		glScissor((int)m_CachedActualSize.left, 0, (int)m_CachedActualSize.right, (int)m_CachedActualSize.GetHeight());
-		glEnable(GL_SCISSOR_TEST);
-		glEnable(GL_LINE_SMOOTH);
-		glLineWidth(2);
-		glColor3f(1.0f, 0.3f, 0.3f);
-		
-		
-		// Draw the viewing rectangle with the ScEd's conversion algorithm
-		glBegin(GL_LINE_LOOP);
-		glVertex2f(x+ViewRect[0][0], y-ViewRect[0][1]);
-		glVertex2f(x+ViewRect[1][0], y-ViewRect[1][1]);
-		glVertex2f(x+ViewRect[2][0], y-ViewRect[2][1]);
-		glVertex2f(x+ViewRect[3][0], y-ViewRect[3][1]);
-		glEnd();
-
-
-		
-		glDisable(GL_SCISSOR_TEST);
-
-		// Reset everything back to normal
-		glPointSize(1.0f);
-		glDisable(GL_LINE_SMOOTH);
-		glLineWidth(1.0f);
-		glEnable(GL_TEXTURE_2D);
-		glDisable(GL_POINT_SMOOTH);
-		glEnable(GL_DEPTH_TEST);
+	//Get Camera handle
+	CCamera &g_Camera=*g_Game->GetView()->GetCamera();
+	
+	//Check for a click
+	if(g_mouse_buttons[SDL_BUTTON_LEFT]==true)
+	{  
+		HasClicked=true; 
 	}
+	
+	//Check to see if left button is false (meaning it's been lifted) 
+	if (g_mouse_buttons[SDL_BUTTON_LEFT]==false && HasClicked==true)
+
+	{
+
+		//Is cursor inside Minimap boundaries? 
+		if(g_mouse_x > m_CachedActualSize.left && g_mouse_x < m_CachedActualSize.right
+			&& g_mouse_y > m_CachedActualSize.top && g_mouse_y < m_CachedActualSize.bottom)
+			{
+				CTerrain *MMTerrain=g_Game->GetWorld()->GetTerrain();
+				CVector3D CamOrient=g_Camera.m_Orientation.GetTranslation();
+				
+				//get center point of screen
+				CVector3D ScreenMiddle=g_Camera.GetWorldCoordinates(
+					g_Renderer.GetWidth()/2,g_Renderer.GetHeight()/2);
+				
+				//Get Vector required to go from camera position to ScreenMiddle
+				CVector3D TransVector;
+				TransVector.X=CamOrient.X-ScreenMiddle.X;
+				TransVector.Z=CamOrient.Z-ScreenMiddle.Z;
+					//world position of where mouse clicked
+					CVector3D Destination;
+					//X and Z according to proportion of mouse position and minimap
+					Destination.X=(CELL_SIZE*m_MapSize)*
+					((g_mouse_x-m_CachedActualSize.left)/m_CachedActualSize.GetWidth());
+					Destination.Z=(CELL_SIZE*m_MapSize)*((m_CachedActualSize.bottom-g_mouse_y)
+					/m_CachedActualSize.GetHeight());
+				
+				g_Camera.m_Orientation._14=Destination.X;
+				g_Camera.m_Orientation._34=Destination.Z;
+				g_Camera.m_Orientation._14+=TransVector.X;
+				g_Camera.m_Orientation._34+=TransVector.Z;
+				
+				//Lock Y coord.  No risk of zoom exceeding limit-Y does not increase  
+				float Height=MMTerrain->getExactGroundLevel(
+					g_Camera.m_Orientation._14, g_Camera.m_Orientation._34) + g_YMinOffset;
+				
+				if (g_Camera.m_Orientation._24 < Height)	
+				{
+					g_Camera.m_Orientation._24=Height;
+				}
+				g_Camera.UpdateFrustum();
+				
+			}
+		HasClicked=false;
+	}
+						//END OF INTERACTIVE MINIMAP
+//====================================================================
+	
+	// render view rect : John M. Mena
+	// This sets up and draws the rectangle on the mini-map
+	// which represents the view of the camera in the world.
+	
+	// Get a handle to the camera
+	
+
+	//Get correct world coordinates based off corner of screen start 
+	//at Bottom Left and going CW
+	CVector3D hitPt[4];
+	hitPt[0]=g_Camera.GetWorldCoordinates(0,g_Renderer.GetHeight());
+	hitPt[1]=g_Camera.GetWorldCoordinates(g_Renderer.GetWidth(),g_Renderer.GetHeight());
+	hitPt[2]=g_Camera.GetWorldCoordinates(g_Renderer.GetWidth(),0);
+	hitPt[3]=g_Camera.GetWorldCoordinates(0,0);
+	
+
+	float ViewRect[4][2];
+	for (int i=0;i<4;i++) {
+		// convert to minimap space
+		float px=hitPt[i].X;
+		float pz=hitPt[i].Z;
+		ViewRect[i][0]=(m_CachedActualSize.GetWidth()*px/float(CELL_SIZE*m_MapSize));
+		ViewRect[i][1]=(m_CachedActualSize.GetHeight()*pz/float(CELL_SIZE*m_MapSize));
+	}
+
+
+
+	// Enable Scissoring as to restrict the rectangle
+	// to only the mini-map below by retrieving the mini-maps
+	// screen coords.
+	
+	glScissor((int)m_CachedActualSize.left, 0, (int)m_CachedActualSize.right, (int)m_CachedActualSize.GetHeight());
+	glEnable(GL_SCISSOR_TEST);
+	glEnable(GL_LINE_SMOOTH);
+	glLineWidth(2);
+	glColor3f(1.0f, 0.3f, 0.3f);
+	
+	
+	// Draw the viewing rectangle with the ScEd's conversion algorithm
+	glBegin(GL_LINE_LOOP);
+	glVertex2f(x+ViewRect[0][0], y-ViewRect[0][1]);
+	glVertex2f(x+ViewRect[1][0], y-ViewRect[1][1]);
+	glVertex2f(x+ViewRect[2][0], y-ViewRect[2][1]);
+	glVertex2f(x+ViewRect[3][0], y-ViewRect[3][1]);
+	glEnd();
+
+
+	
+	glDisable(GL_SCISSOR_TEST);
+
+	// Reset everything back to normal
+	glPointSize(1.0f);
+	glDisable(GL_LINE_SMOOTH);
+	glLineWidth(1.0f);
+	glEnable(GL_TEXTURE_2D);
+	glDisable(GL_POINT_SMOOTH);
+	glEnable(GL_DEPTH_TEST);
 }
 
 void CMiniMap::CreateTextures()

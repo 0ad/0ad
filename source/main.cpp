@@ -248,15 +248,16 @@ static void Frame()
 
 static void MainControllerInit()
 {
-	// add additional input handlers only needed by this controller.
+	// add additional input handlers only needed by this controller:
 
-	// gui_handler needs to be after (i.e. called before!) the hotkey handler
-	// so that input boxes can be typed in without setting off hotkeys.
+	// gui_handler needs to be registered after (i.e. called before!) the
+	// hotkey handler so that input boxes can be typed in without
+	// setting off hotkeys.
 #ifndef NO_GUI
 	in_add_handler(gui_handler);
 #endif
 
-	// must be after gui_handler. Should mayhap even be last.
+	// must be registered after gui_handler. Should mayhap even be last.
 	in_add_handler(MainInputHandler);
 }
 
@@ -286,7 +287,6 @@ int main(int argc, char* argv[])
 
 	ATLAS_RunIfOnCmdLine(argc, argv);
 
-	// ELSE
 	Init(argc, argv, true, true);
 	MainControllerInit();
 

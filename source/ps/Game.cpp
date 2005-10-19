@@ -95,6 +95,11 @@ PSRETURN CGame::StartGame(CGameAttributes *pAttribs)
 {
 	try
 	{
+		// JW: this loop is taken from ScEd and fixes lack of player color.
+		// TODO: determine proper number of players.
+		for (int i=1; i<8; ++i) 
+			pAttribs->GetSlot(i)->AssignLocal();
+
 		pAttribs->FinalizeSlots();
 		m_NumPlayers=pAttribs->GetSlotCount();
 

@@ -108,7 +108,7 @@ int LDR_Register(LoadFunc func, void* param, const wchar_t* description,
 {
 	if(state != REGISTERING)
 	{
-		debug_warn("LDR_Register: not called between LDR_(Begin|End)Register - why?!");
+		debug_warn(__func__": not called between LDR_(Begin|End)Register - why?!");
 			// warn here instead of relying on the caller to CHECK_ERR because
 			// there will be lots of call sites spread around.
 		return -1;
@@ -128,7 +128,7 @@ int LDR_EndRegistering()
 		return -1;
 
 	if(load_requests.empty())
-		debug_warn("LDR_EndRegistering: no LoadRequests queued");
+		debug_warn(__func__": no LoadRequests queued");
 
 	state = FIRST_LOAD;
 	estimated_duration_tally = 0.0;
@@ -317,7 +317,7 @@ int LDR_NonprogressiveLoad()
 		switch(ret)
 		{
 		case 0:
-			debug_warn("LDR_NonprogressiveLoad: No load in progress");
+			debug_warn(__func__": No load in progress");
 			return 0;		// success
 		case LDR_ALL_FINISHED:
 			return 0;		// success
