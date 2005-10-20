@@ -133,14 +133,14 @@ void CText::HandleMessage(const SGUIMessage &Message)
 		break;
 
 	case GUIM_MOUSE_WHEEL_DOWN:
-		GetScrollBar(0).ScrollMinus();
+		GetScrollBar(0).ScrollPlus();
 		// Since the scroll was changed, let's simulate a mouse movement
 		//  to check if scrollbar now is hovered
 		HandleMessage(SGUIMessage(GUIM_MOUSE_MOTION));
 		break;
 
 	case GUIM_MOUSE_WHEEL_UP:
-		GetScrollBar(0).ScrollPlus();
+		GetScrollBar(0).ScrollMinus();
 		// Since the scroll was changed, let's simulate a mouse movement
 		//  to check if scrollbar now is hovered
 		HandleMessage(SGUIMessage(GUIM_MOUSE_MOTION));

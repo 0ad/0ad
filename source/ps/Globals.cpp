@@ -15,7 +15,7 @@ bool g_mouse_buttons[5];
 
 
 // updates the state of the above; never swallows messages.
-InEventReaction GlobalsInputHandler(const SDL_Event* ev)
+InReaction GlobalsInputHandler(const SDL_Event* ev)
 {
 	int c;
 

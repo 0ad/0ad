@@ -103,7 +103,7 @@ enum
 };
 
 void loadHotkeys();
-InEventReaction hotkeyInputHandler( const SDL_Event* ev );
+InReaction hotkeyInputHandler( const SDL_Event* ev );
 void hotkeyRegisterGUIObject( const CStr& objName, const CStr& hotkeyName );
 
 void initKeyNameMap();

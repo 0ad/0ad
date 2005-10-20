@@ -164,7 +164,7 @@ void RenderProfile()
 	glPopMatrix();
 }
 
-InEventReaction profilehandler( const SDL_Event* ev )
+InReaction profilehandler( const SDL_Event* ev )
 {
 	switch( ev->type )
 	{

@@ -630,7 +630,7 @@ extern CConsole* g_Console;
 
 extern void Die(int err, const wchar_t* fmt, ...);
 
-InEventReaction conInputHandler(const SDL_Event* ev)
+InReaction conInputHandler(const SDL_Event* ev)
 {
 	if( ev->type == SDL_HOTKEYDOWN )
 	{

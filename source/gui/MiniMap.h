@@ -19,6 +19,8 @@ public:
 protected:
     virtual void Draw();
 
+	virtual void HandleMessage(const SGUIMessage &Message);
+
     // create the minimap textures
     void CreateTextures();
 
@@ -62,7 +64,6 @@ protected:
     u32 m_TextureSize;
 
 	void DrawViewRect();	// split out of Draw
-	void ProcessUserInput();
 };
 
 #endif

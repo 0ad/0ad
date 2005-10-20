@@ -60,14 +60,14 @@ JSClass GUIClass = {
 //	event is passed to other handlers if false is returned.
 //	trampoline: we don't want to make the implementation (in CGUI) static
 //-------------------------------------------------------------------
-InEventReaction gui_handler(const SDL_Event* ev)
+InReaction gui_handler(const SDL_Event* ev)
 {
 	return g_GUI.HandleEvent(ev);
 }
 
-InEventReaction CGUI::HandleEvent(const SDL_Event* ev)
+InReaction CGUI::HandleEvent(const SDL_Event* ev)
 {
-	InEventReaction ret = IN_PASS;
+	InReaction ret = IN_PASS;
 
 	if (ev->type == SDL_GUIHOTKEYPRESS)
 	{

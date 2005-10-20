@@ -27,8 +27,8 @@ extern "C" {
 #endif
 
 
-// event handler return values.
-enum InEventReaction
+// input handler return values.
+enum InReaction
 {
 	// (the handlers' return values are checked and these
 	// 'strange' values might bring errors to light)
@@ -40,21 +40,11 @@ enum InEventReaction
 	IN_HANDLED = 2
 };
 
-typedef InEventReaction (*InEventHandler)(const SDL_Event*);
-
-enum InEventOrder
-{
-	// this handler will be added to the front of the queue -
-	// it'll be called first (unless another IN_FIRST is registered).
-	IN_FIRST,
-
-	IN_LAST
-};
-
+typedef InReaction (*InHandler)(const SDL_Event*);
 
 // register an input handler, which will receive all subsequent events first.
 // events are passed to other handlers if handler returns IN_PASS.
-extern void in_add_handler(InEventHandler handler);
+extern void in_add_handler(InHandler handler);
 
 // send event to each handler (newest first) until one returns true
 extern void in_dispatch_event(const SDL_Event* event);

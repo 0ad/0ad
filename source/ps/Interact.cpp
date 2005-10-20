@@ -825,7 +825,7 @@ void MouseButtonUpHandler(const SDL_Event *ev, int clicks)
 	}
 }
 
-InEventReaction interactInputHandler( const SDL_Event* ev )
+InReaction interactInputHandler( const SDL_Event* ev )
 {
 	if (!g_active || !g_Game)
 		return IN_PASS;

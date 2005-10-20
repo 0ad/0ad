@@ -181,7 +181,7 @@ void CDropDown::HandleMessage(const SGUIMessage &Message)
 	CList::HandleMessage(Message);
 }
 
-InEventReaction CDropDown::ManuallyHandleEvent(const SDL_Event* ev)
+InReaction CDropDown::ManuallyHandleEvent(const SDL_Event* ev)
 {
 	int szChar = ev->key.keysym.sym;
 	bool update_highlight = false;

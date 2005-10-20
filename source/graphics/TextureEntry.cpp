@@ -12,7 +12,6 @@
 #include "TerrainProperties.h"
 #include "Texture.h"
 #include "Renderer.h"
-#include "timer.h"
 
 #define LOG_CATEGORY "graphics"
 
@@ -77,15 +76,12 @@ void CTextureEntry::LoadTexture()
 	}
 }
 
-TIMER_ADD_CLIENT(tc_mipmap_basecolor);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BuildBaseColor: calculate the root colour of the texture, used for coloring minimap, and store
 // in m_BaseColor member
 void CTextureEntry::BuildBaseColor()
 {
-TIMER_ACCRUE(tc_mipmap_basecolor);
-
 	if (m_pProperties && m_pProperties->HasBaseColor())
 	{
 		m_BaseColor=m_pProperties->GetBaseColor();
@@ -102,7 +98,11 @@ TIMER_ACCRUE(tc_mipmap_basecolor);
 	//	(or gives an incorrect colour) in some cases: 
 	//		- suspect bug on Radeon cards when SGIS_generate_mipmap is used 
 	//		- any textures without mipmaps
-	// we'll just take the basic approach here:
+	// we'll just take the basic approach here.
+	//
+	// jw: this is horribly inefficient (taking 750ms for 10 texture types),
+	// but it is no longer called, since terrain XML files are supposed to
+	// include a minimap color attribute. therefore, leave it as-is.
 	int width,height;
 	glGetTexLevelParameteriv(GL_TEXTURE_2D,0,GL_TEXTURE_WIDTH,&width);
 	glGetTexLevelParameteriv(GL_TEXTURE_2D,0,GL_TEXTURE_HEIGHT,&height);

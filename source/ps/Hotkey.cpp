@@ -309,7 +309,7 @@ void hotkeyRegisterGUIObject( const CStr& objName, const CStr& hotkeyName )
 	boundTo.push_back( objName );
 }
 
-InEventReaction hotkeyInputHandler( const SDL_Event* ev )
+InReaction hotkeyInputHandler( const SDL_Event* ev )
 {
 	int keycode;
 

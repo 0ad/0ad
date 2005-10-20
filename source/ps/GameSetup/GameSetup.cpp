@@ -28,6 +28,7 @@
 #include "ps/Overlay.h"
 #include "ps/StringConvert.h"
 #include "ps/Globals.h"
+#include "ps/Util.h"
 
 #include "graphics/MapReader.h"
 #include "graphics/Terrain.h"
@@ -74,8 +75,6 @@
 #include "Network/Client.h"
 
 #include "Atlas.h"
-#include "Config.h"
-#include "ps/Util.h"
 
 ERROR_GROUP(System);
 ERROR_TYPE(System, SDLInitFailed);

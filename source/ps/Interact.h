@@ -150,7 +150,7 @@ bool isOnScreen( CEntity* ev, void* userdata );
 void StartCustomSelection();
 void ResetInteraction();
 
-InEventReaction interactInputHandler( const SDL_Event* ev );
+InReaction interactInputHandler( const SDL_Event* ev );
 
 #define g_Selection CSelectedEntities::GetSingleton()
 #define g_Mouseover CMouseoverEntities::GetSingleton()

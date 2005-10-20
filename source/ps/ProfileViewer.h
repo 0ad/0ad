@@ -9,6 +9,6 @@
 
 void ResetProfileViewer();
 void RenderProfile();
-InEventReaction profilehandler( const SDL_Event* ev );
+InReaction profilehandler( const SDL_Event* ev );
 
 #endif

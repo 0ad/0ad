@@ -340,7 +340,7 @@ protected:
 	 * the key won't be passed on and processed by other handlers.
 	 * This is used for keys that the GUI uses.
 	 */
-	virtual InEventReaction ManuallyHandleEvent(const SDL_Event* UNUSED(ev)) { return IN_PASS; }
+	virtual InReaction ManuallyHandleEvent(const SDL_Event* UNUSED(ev)) { return IN_PASS; }
 
 	/**
 	 * Loads a style.

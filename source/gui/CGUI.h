@@ -32,7 +32,7 @@ ERROR_TYPE(GUI, JSOpenFailed);
 
 #include "XML/Xeromyces.h"
 
-extern InEventReaction gui_handler(const SDL_Event* ev);
+extern InReaction gui_handler(const SDL_Event* ev);
 
 //--------------------------------------------------------
 //  Macros
@@ -146,7 +146,7 @@ public:
 	 *
 	 * @param ev SDL Event, like mouse/keyboard input
 	 */
-	InEventReaction HandleEvent(const SDL_Event* ev);
+	InReaction HandleEvent(const SDL_Event* ev);
 
 	/**
 	 * Load a GUI XML file into the GUI.

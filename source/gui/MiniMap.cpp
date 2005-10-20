@@ -16,8 +16,8 @@
 #include "Terrain.h"
 #include "Profile.h"
 #include "LOSManager.h"
-#include "ps/Globals.h"
 #include "graphics/GameView.h"
+
 
 
 bool g_TerrainModified = false;
@@ -51,26 +51,11 @@ CMiniMap::~CMiniMap()
 	Destroy();
 }
 
-void CMiniMap::ProcessUserInput()
+void CMiniMap::HandleMessage(const SGUIMessage &Message)
 {
-	//================================================================	
-	//INTERACTIVE MINIMAP STARTS
-	//Have questions on ^.  Send email to ajdecker1022@msn.com		
-
-	static bool HasClicked=false;	// HACK
-
-	//Check for a click
-	if(g_mouse_buttons[SDL_BUTTON_LEFT]==true)
-	{  
-		HasClicked=true; 
-	}
-
-	//Check to see if left button is false (meaning it's been lifted) 
-	if (g_mouse_buttons[SDL_BUTTON_LEFT]==false && HasClicked==true)
+	switch(Message.type)
 	{
-		//Is cursor inside Minimap boundaries? 
-		if(g_mouse_x > m_CachedActualSize.left && g_mouse_x < m_CachedActualSize.right
-			&& g_mouse_y > m_CachedActualSize.top && g_mouse_y < m_CachedActualSize.bottom)
+	case GUIM_MOUSE_PRESS_LEFT:
 		{
 			CTerrain *MMTerrain=g_Game->GetWorld()->GetTerrain();
 			CVector3D CamOrient=m_Camera->m_Orientation.GetTranslation();
@@ -105,12 +90,12 @@ void CMiniMap::ProcessUserInput()
 				m_Camera->m_Orientation._24=Height;
 			}
 			m_Camera->UpdateFrustum();
-
 		}
-		HasClicked=false;
-	}
-	//END OF INTERACTIVE MINIMAP
-	//====================================================================
+		break;
+
+	default:
+		break;
+	}	// switch
 }
 
 // render view rect : John M. Mena
@@ -269,10 +254,6 @@ void CMiniMap::Draw()
 		}
 	}
 	glEnd();
-
-	// JW: this really doesn't belong here.. tying us to the real GUI
-	// input mechanism is pending.
-	ProcessUserInput();
 
 	DrawViewRect();
 	

@@ -45,7 +45,7 @@ void kill_mainloop();
 
 
 // main app message handler
-static InEventReaction MainInputHandler(const SDL_Event* ev)
+static InReaction MainInputHandler(const SDL_Event* ev)
 {
 	switch(ev->type)
 	{

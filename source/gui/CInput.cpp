@@ -54,7 +54,7 @@ CInput::~CInput()
 {
 }
 
-InEventReaction CInput::ManuallyHandleEvent(const SDL_Event* ev)
+InReaction CInput::ManuallyHandleEvent(const SDL_Event* ev)
 {
 	debug_assert(m_iBufferPos != -1);
 

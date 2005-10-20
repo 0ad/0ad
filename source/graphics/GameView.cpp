@@ -24,7 +24,7 @@
 #include "ConfigDB.h"
 #include "Loader.h"
 #include "Profile.h"
-#include "LoaderThunks.h"
+#include "ps/LoaderThunks.h"
 
 #include "Quaternion.h"
 #include "Unit.h"
@@ -579,7 +579,7 @@ void CGameView::PopCameraTarget()
 	m_CameraTargets.pop_back();
 }
 
-InEventReaction game_view_handler(const SDL_Event* ev)
+InReaction game_view_handler(const SDL_Event* ev)
 {
 	// put any events that must be processed even if inactive here
 
@@ -591,7 +591,7 @@ InEventReaction game_view_handler(const SDL_Event* ev)
 	return pView->HandleEvent(ev);
 }
 
-InEventReaction CGameView::HandleEvent(const SDL_Event* ev)
+InReaction CGameView::HandleEvent(const SDL_Event* ev)
 {
 	switch(ev->type)
 	{

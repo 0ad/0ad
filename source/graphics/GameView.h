@@ -93,7 +93,7 @@ public:
 	// Render: Render the World
 	void Render();
 
-	InEventReaction HandleEvent(const SDL_Event* ev);
+	InReaction HandleEvent(const SDL_Event* ev);
 
 	//Keep the camera in between boundaries/smooth camera scrolling/translating
 	//Should call this whenever moving (translating) the camera
@@ -116,6 +116,6 @@ public:
 	inline CCamera *GetCamera()
 	{	return &m_Camera; }
 };
-extern InEventReaction game_view_handler(const SDL_Event* ev);
+extern InReaction game_view_handler(const SDL_Event* ev);
 
 #endif

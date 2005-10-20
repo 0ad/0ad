@@ -1,22 +1,20 @@
-/*
- * input layer (dispatch events to multiple handlers; record/playback events)
- *
- * Copyright (c) 2002 Jan Wassenberg
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * General Public License for more details.
- *
- * Contact info:
- *   Jan.Wassenberg@stud.uni-karlsruhe.de
- *   http://www.stud.uni-karlsruhe.de/~urkt/
- */
+// input layer (dispatch events to multiple handlers; record/playback events)
+//
+// Copyright (c) 2002 Jan Wassenberg
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License as
+// published by the Free Software Foundation; either version 2 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// General Public License for more details.
+//
+// Contact info:
+//   Jan.Wassenberg@stud.uni-karlsruhe.de
+//   http://www.stud.uni-karlsruhe.de/~urkt/
 
 #include "precompiled.h"
 
@@ -27,32 +25,31 @@
 #include <stdlib.h>
 
 
-#define MAX_HANDLERS 8
+const uint MAX_HANDLERS = 8;
+static InHandler handler_stack[MAX_HANDLERS];
+static uint handler_stack_top = 0;
 
-static InEventHandler handler_stack[MAX_HANDLERS];
-static int handler_stack_top = 0;
-
-
-void in_add_handler(InEventHandler handler)
+void in_add_handler(InHandler handler)
 {
 	debug_assert(handler);
 
 	if(handler_stack_top >= MAX_HANDLERS)
 	{
 		debug_warn("increase MAX_HANDLERS");
-	//	return -1;
+		return;
 	}
 
 	handler_stack[handler_stack_top++] = handler;
 }
 
 
-// send event to each handler (newest first) until one returns true
-void dispatch_event(const SDL_Event* event)
+// send event to each handler until one returns IN_HANDLED
+static void dispatch_event(const SDL_Event* event)
 {
-	for(int i = handler_stack_top-1; i >= 0; i--)
+	for(int i = (int)handler_stack_top-1; i >= 0; i--)
 	{
-		int ret = handler_stack[i](event);
+		debug_assert(handler_stack[i] && event);
+		InReaction ret = handler_stack[i](event);
 		// .. done, return
 		if(ret == IN_HANDLED)
 			return;
@@ -66,6 +63,7 @@ void dispatch_event(const SDL_Event* event)
 }
 
 
+//-----------------------------------------------------------------------------
 
 static enum
 {
