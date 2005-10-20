@@ -309,7 +309,7 @@ void hotkeyRegisterGUIObject( const CStr& objName, const CStr& hotkeyName )
 	boundTo.push_back( objName );
 }
 
-int hotkeyInputHandler( const SDL_Event* ev )
+InEventReaction hotkeyInputHandler( const SDL_Event* ev )
 {
 	int keycode;
 
@@ -324,7 +324,7 @@ int hotkeyInputHandler( const SDL_Event* ev )
 		keycode = SDLK_LAST + (int)ev->button.button;
 		break;
 	default:
-		return( EV_PASS );
+		return( IN_PASS );
 	}
 
 	// Somewhat hackish:
@@ -580,7 +580,7 @@ int hotkeyInputHandler( const SDL_Event* ev )
 		}
 	}
 
-	return( EV_PASS );
+	return( IN_PASS );
 }
 
 

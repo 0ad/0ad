@@ -45,7 +45,7 @@ void kill_mainloop();
 
 
 // main app message handler
-static int MainInputHandler(const SDL_Event* ev)
+static InEventReaction MainInputHandler(const SDL_Event* ev)
 {
 	switch(ev->type)
 	{
@@ -58,11 +58,11 @@ static int MainInputHandler(const SDL_Event* ev)
 		{
 		case HOTKEY_EXIT:
 			kill_mainloop();
-			return EV_HANDLED;
+			return IN_HANDLED;
 
 		case HOTKEY_SCREENSHOT:
 			WriteScreenshot("png");
-			return EV_HANDLED;
+			return IN_HANDLED;
 
 		default:
 			break;
@@ -70,7 +70,7 @@ static int MainInputHandler(const SDL_Event* ev)
 		break;
 	}
 
-	return EV_PASS;
+	return IN_PASS;
 }
 
 

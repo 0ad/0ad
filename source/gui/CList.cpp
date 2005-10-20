@@ -251,7 +251,7 @@ void CList::HandleMessage(const SGUIMessage &Message)
 	IGUITextOwner::HandleMessage(Message);
 }
 
-int CList::ManuallyHandleEvent(const SDL_Event* ev)
+InEventReaction CList::ManuallyHandleEvent(const SDL_Event* ev)
 {
 	int szChar = ev->key.keysym.sym;
 
@@ -289,7 +289,7 @@ int CList::ManuallyHandleEvent(const SDL_Event* ev)
 		break;
 	}
 
-	return EV_HANDLED;
+	return IN_HANDLED;
 }
 
 void CList::Draw() 

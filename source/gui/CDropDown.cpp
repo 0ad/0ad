@@ -181,7 +181,7 @@ void CDropDown::HandleMessage(const SGUIMessage &Message)
 	CList::HandleMessage(Message);
 }
 
-int CDropDown::ManuallyHandleEvent(const SDL_Event* ev)
+InEventReaction CDropDown::ManuallyHandleEvent(const SDL_Event* ev)
 {
 	int szChar = ev->key.keysym.sym;
 	bool update_highlight = false;
@@ -199,7 +199,7 @@ int CDropDown::ManuallyHandleEvent(const SDL_Event* ev)
 	case SDLK_PAGEUP:
 	case SDLK_PAGEDOWN:
 		if (!m_Open)
-			return EV_PASS;
+			return IN_PASS;
 		// Set current selected item to highlighted, before
 		//  then really processing these in CList::ManuallyHandleEvent()
 		GUI<int>::SetSetting(this, "selected", m_ElementHighlight);
@@ -215,7 +215,7 @@ int CDropDown::ManuallyHandleEvent(const SDL_Event* ev)
 	if (update_highlight)
 		GUI<int>::GetSetting(this, "selected", m_ElementHighlight);
 
-	return EV_HANDLED;
+	return IN_HANDLED;
 }
 
 void CDropDown::SetupListRect()

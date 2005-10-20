@@ -60,14 +60,14 @@ JSClass GUIClass = {
 //	event is passed to other handlers if false is returned.
 //	trampoline: we don't want to make the implementation (in CGUI) static
 //-------------------------------------------------------------------
-int gui_handler(const SDL_Event* ev)
+InEventReaction gui_handler(const SDL_Event* ev)
 {
 	return g_GUI.HandleEvent(ev);
 }
 
-int CGUI::HandleEvent(const SDL_Event* ev)
+InEventReaction CGUI::HandleEvent(const SDL_Event* ev)
 {
-	int ret = EV_PASS;
+	InEventReaction ret = IN_PASS;
 
 	if (ev->type == SDL_GUIHOTKEYPRESS)
 	{
@@ -87,7 +87,7 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 	else if (ev->type == SDL_MOUSEMOTION)
 	{
 		// Yes the mouse position is stored as float to avoid
-		//  constant conversations when operating in a
+		//  constant conversions when operating in a
 		//  float-based environment.
 		m_MousePos = CPos((float)ev->motion.x, (float)ev->motion.y);
 
@@ -152,7 +152,7 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 					pNearest->ScriptEvent("mouseleftpress");
 
 					// Block event, so things on the map (behind the GUI) won't be pressed
-					ret = EV_HANDLED;
+					ret = IN_HANDLED;
 				}
 				else if (m_FocusedObject)
 				{
@@ -168,7 +168,7 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 					pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_WHEEL_DOWN));
 					pNearest->ScriptEvent("mousewheeldown");
 
-					ret = EV_HANDLED;
+					ret = IN_HANDLED;
 				}
 				break;
 
@@ -178,7 +178,7 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 					pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_WHEEL_UP));
 					pNearest->ScriptEvent("mousewheelup"); 
 
-					ret = EV_HANDLED;
+					ret = IN_HANDLED;
 				}
 				break;
 
@@ -197,7 +197,7 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 					pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_RELEASE_LEFT));
 					pNearest->ScriptEvent("mouseleftrelease");
 
-					ret = EV_HANDLED;
+					ret = IN_HANDLED;
 				}
 				break;
 			}
@@ -250,7 +250,7 @@ int CGUI::HandleEvent(const SDL_Event* ev)
 		{
 			ret = GetFocusedObject()->ManuallyHandleEvent(ev);
 		}
-		// else will return EV_PASS because we never used the button.
+		// else will return IN_PASS because we never used the button.
 	}
 
 	return ret;

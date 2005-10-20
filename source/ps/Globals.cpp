@@ -15,7 +15,7 @@ bool g_mouse_buttons[5];
 
 
 // updates the state of the above; never swallows messages.
-int GlobalsInputHandler(const SDL_Event* ev)
+InEventReaction GlobalsInputHandler(const SDL_Event* ev)
 {
 	int c;
 
@@ -23,12 +23,12 @@ int GlobalsInputHandler(const SDL_Event* ev)
 	{
 	case SDL_ACTIVEEVENT:
 		g_active = (ev->active.gain != 0);
-		return EV_PASS;
+		return IN_PASS;
 
 	case SDL_MOUSEMOTION:
 		g_mouse_x = ev->motion.x;
 		g_mouse_y = ev->motion.y;
-		return EV_PASS;
+		return IN_PASS;
 
 	case SDL_KEYDOWN:
 	case SDL_KEYUP:
@@ -41,7 +41,7 @@ int GlobalsInputHandler(const SDL_Event* ev)
 			// spoofs keys (it assigns values starting from SDLK_LAST)
 			//debug_warn("invalid key");
 		}
-		return EV_PASS;
+		return IN_PASS;
 
 	case SDL_MOUSEBUTTONDOWN:
 	case SDL_MOUSEBUTTONUP:
@@ -50,10 +50,10 @@ int GlobalsInputHandler(const SDL_Event* ev)
 			g_mouse_buttons[c] = (ev->type == SDL_MOUSEBUTTONDOWN);
 		else
 			debug_warn("invalid mouse button");
-		return EV_PASS;
+		return IN_PASS;
 
 	default:
-		return EV_PASS;
+		return IN_PASS;
 	}
 
 	UNREACHABLE;

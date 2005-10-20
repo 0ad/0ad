@@ -825,10 +825,10 @@ void MouseButtonUpHandler(const SDL_Event *ev, int clicks)
 	}
 }
 
-int interactInputHandler( const SDL_Event* ev )
+InEventReaction interactInputHandler( const SDL_Event* ev )
 {
 	if (!g_active || !g_Game)
-		return EV_PASS;
+		return IN_PASS;
 
 	CGameView *pView=g_Game->GetView();
 	//CCamera *pCamera=pView->GetCamera();
@@ -853,7 +853,7 @@ int interactInputHandler( const SDL_Event* ev )
 	static bool right_button_down = false;
 	
 	if (customSelectionMode && ev->type != SDL_MOUSEBUTTONUP)
-		return EV_PASS;
+		return IN_PASS;
 	
 	switch( ev->type )
 	{	
@@ -895,12 +895,12 @@ int interactInputHandler( const SDL_Event* ev )
 					else
 						g_Selection.loadGroup( id );
 				}
-				return( EV_HANDLED );
+				return( IN_HANDLED );
 			}
 		
-			return( EV_PASS );
+			return( IN_PASS );
 		}
-		return( EV_HANDLED );
+		return( IN_HANDLED );
 	case SDL_HOTKEYUP:
 		switch( ev->user.code )
 		{
@@ -912,9 +912,9 @@ int interactInputHandler( const SDL_Event* ev )
 			g_Mouseover.m_viewall = false;
 			break;
 		default:
-			return( EV_PASS );
+			return( IN_PASS );
 		}
-		return( EV_HANDLED );
+		return( IN_HANDLED );
 	case SDL_MOUSEBUTTONUP:
 	{
 		int button = SDL_BUTTON_TO_INDEX(ev->button.button);
@@ -971,7 +971,7 @@ int interactInputHandler( const SDL_Event* ev )
 		}
 		break;
 	}
-	return( EV_PASS );
+	return( IN_PASS );
 }
 
 bool isOnScreen( CEntity* ev, void* UNUSED(userdata) )

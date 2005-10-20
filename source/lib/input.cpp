@@ -20,9 +20,8 @@
 
 #include "precompiled.h"
 
-#include "input.h"
-#include "sdl.h"
 #include "lib.h"
+#include "input.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -30,22 +29,21 @@
 
 #define MAX_HANDLERS 8
 
-static EventHandler handler_stack[MAX_HANDLERS];
+static InEventHandler handler_stack[MAX_HANDLERS];
 static int handler_stack_top = 0;
 
 
-int in_add_handler(EventHandler handler)
+void in_add_handler(InEventHandler handler)
 {
 	debug_assert(handler);
 
 	if(handler_stack_top >= MAX_HANDLERS)
 	{
 		debug_warn("increase MAX_HANDLERS");
-		return -1;
+	//	return -1;
 	}
 
 	handler_stack[handler_stack_top++] = handler;
-	return 0;
 }
 
 
@@ -56,10 +54,10 @@ void dispatch_event(const SDL_Event* event)
 	{
 		int ret = handler_stack[i](event);
 		// .. done, return
-		if(ret == EV_HANDLED)
+		if(ret == IN_HANDLED)
 			return;
 		// .. next handler
-		else if(ret == EV_PASS)
+		else if(ret == IN_PASS)
 			continue;
 		// .. invalid return value
 		else

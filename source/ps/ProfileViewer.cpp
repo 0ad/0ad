@@ -164,7 +164,7 @@ void RenderProfile()
 	glPopMatrix();
 }
 
-int profilehandler( const SDL_Event* ev )
+InEventReaction profilehandler( const SDL_Event* ev )
 {
 	switch( ev->type )
 	{
@@ -186,15 +186,15 @@ int profilehandler( const SDL_Event* ev )
 					if( (*it)->CanExpand() && !k )
 					{
 						currentNode = (*it);
-						return( EV_HANDLED );
+						return( IN_HANDLED );
 					}
 				for( it = currentNode->GetScriptChildren()->begin(); it != currentNode->GetScriptChildren()->end(); it++, k-- )
 					if( (*it)->CanExpand() && !k )
 					{
 						currentNode = (*it);
-						return( EV_HANDLED );
+						return( IN_HANDLED );
 					}
-				return( EV_HANDLED );
+				return( IN_HANDLED );
 			}
 		}
 		break;
@@ -203,9 +203,9 @@ int profilehandler( const SDL_Event* ev )
 		if( ev->user.code == HOTKEY_PROFILE_TOGGLE )
 		{
 			profileVisible = !profileVisible;
-			return( EV_HANDLED );
+			return( IN_HANDLED );
 		}
 		break;
 	}
-	return( EV_PASS );
+	return( IN_PASS );
 }

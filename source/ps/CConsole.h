@@ -18,13 +18,9 @@
 #include "lib/res/graphics/unifont.h"
 #include "ogl.h"
 #include "lib.h"
-#include "sdl.h"
 #include "CStr.h"
 
-// note: cannot forward declare SDL_Event since it is a nameless union
-// in the standard SDL library and a nameless struct in wsdl, so
-// include the full SDL header instead.
-#include "lib/sdl.h"
+#include "lib/input.h"
 
 #ifndef CCONSOLE_H
 #define CCONSOLE_H
@@ -122,6 +118,6 @@ public:
 
 extern CConsole* g_Console;
 
-extern int conInputHandler(const SDL_Event* ev);
+extern InEventReaction conInputHandler(const SDL_Event* ev);
 
 #endif

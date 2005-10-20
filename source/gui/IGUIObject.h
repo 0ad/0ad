@@ -35,7 +35,7 @@ gee@pyro.nu
 #include "GUItext.h"
 #include <string>
 #include <vector>
-#include "lib/input.h" // just for EV_PASS
+#include "lib/input.h" // just for IN_PASS
 
 #include "ps/XML/Xeromyces.h"
 
@@ -336,11 +336,11 @@ protected:
 	 *
 	 * Only the object with focus will have this function called.
 	 *
-	 * Returns either EV_PASS or EV_HANDLED. If EV_HANDLED, then
+	 * Returns either IN_PASS or IN_HANDLED. If IN_HANDLED, then
 	 * the key won't be passed on and processed by other handlers.
 	 * This is used for keys that the GUI uses.
 	 */
-	virtual int ManuallyHandleEvent(const SDL_Event* UNUSED(ev)) { return EV_PASS; }
+	virtual InEventReaction ManuallyHandleEvent(const SDL_Event* UNUSED(ev)) { return IN_PASS; }
 
 	/**
 	 * Loads a style.

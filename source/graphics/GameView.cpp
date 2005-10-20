@@ -31,7 +31,6 @@
 #include "Model.h"
 #include "Projectile.h"
 
-#include "sdl.h"
 #include "input.h"
 #include "lib.h"
 #include "timer.h"
@@ -580,19 +579,19 @@ void CGameView::PopCameraTarget()
 	m_CameraTargets.pop_back();
 }
 
-int game_view_handler(const SDL_Event* ev)
+InEventReaction game_view_handler(const SDL_Event* ev)
 {
 	// put any events that must be processed even if inactive here
 
 	if(!g_active || !g_Game)
-		return EV_PASS;
+		return IN_PASS;
 
 	CGameView *pView=g_Game->GetView();
 
 	return pView->HandleEvent(ev);
 }
 
-int CGameView::HandleEvent(const SDL_Event* ev)
+InEventReaction CGameView::HandleEvent(const SDL_Event* ev)
 {
 	switch(ev->type)
 	{
@@ -606,30 +605,30 @@ int CGameView::HandleEvent(const SDL_Event* ev)
 			} else {
 				g_Renderer.SetTerrainRenderMode(WIREFRAME);
 			}
-			return( EV_HANDLED );
+			return( IN_HANDLED );
 
 		case HOTKEY_CAMERA_RESET_ORIGIN:
 			ResetCamera();
-			return( EV_HANDLED );
+			return( IN_HANDLED );
 
 		case HOTKEY_CAMERA_RESET:
 			ResetCameraOrientation();
-			return( EV_HANDLED );
+			return( IN_HANDLED );
 
 		case HOTKEY_CAMERA_ROTATE_ABOUT_TARGET:
 			RotateAboutTarget();
-			return( EV_HANDLED );
+			return( IN_HANDLED );
 
 		// Mouse wheel must be treated using events instead of polling,
 		// because SDL auto-generates a sequence of mousedown/mouseup events
 		// and we never get to see the "down" state inside Update().
 		case HOTKEY_CAMERA_ZOOM_WHEEL_IN:
 			m_ZoomDelta += m_ViewZoomSensitivityWheel;
-			return( EV_HANDLED );
+			return( IN_HANDLED );
 				
 		case HOTKEY_CAMERA_ZOOM_WHEEL_OUT:
 			m_ZoomDelta -= m_ViewZoomSensitivityWheel;
-			return( EV_HANDLED );
+			return( IN_HANDLED );
 
 		default:
 
@@ -657,7 +656,7 @@ int CGameView::HandleEvent(const SDL_Event* ev)
 					if( bookmarkInUse[id] )
 						SetCameraTarget( cameraBookmarks[id] );
 				}
-				return( EV_HANDLED );
+				return( IN_HANDLED );
 			}
 		}
 	case SDL_HOTKEYUP:
@@ -669,12 +668,12 @@ int CGameView::HandleEvent(const SDL_Event* ev)
 				currentBookmark = -1;
 				break;
 			default:
-				return( EV_PASS );
+				return( IN_PASS );
 		}
-		return( EV_HANDLED );
+		return( IN_HANDLED );
 	}
 
-	return EV_PASS;
+	return IN_PASS;
 }
 
 bool CGameView::JSI_StartCustomSelection(

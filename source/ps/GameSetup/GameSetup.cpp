@@ -950,7 +950,7 @@ void Init(int argc, char* argv[], bool setup_videomode, bool setup_gui)
 	// Check for heap corruption after every allocation. Very, very slowly.
 	// (And it highlights the allocation just after the one you care about,
 	// so you need to run it again and tell it to break on the one before.)
-	//	debug_heap_enable(DEBUG_HEAP_ALL);
+	//debug_heap_enable(DEBUG_HEAP_ALL);
 
 	InitInput();
 

@@ -11,10 +11,7 @@ extern float g_YMinOffset;
 
 #include "scripting/ScriptableObject.h"
 
-// note: cannot forward declare SDL_Event since it is a nameless union
-// in the standard SDL library and a nameless struct in wsdl, so
-// include the full SDL header instead.
-#include "sdl.h"
+#include "lib/input.h"
 
 class CGame;
 class CGameAttributes;
@@ -96,7 +93,7 @@ public:
 	// Render: Render the World
 	void Render();
 
-	int HandleEvent(const SDL_Event* ev);
+	InEventReaction HandleEvent(const SDL_Event* ev);
 
 	//Keep the camera in between boundaries/smooth camera scrolling/translating
 	//Should call this whenever moving (translating) the camera
@@ -119,6 +116,6 @@ public:
 	inline CCamera *GetCamera()
 	{	return &m_Camera; }
 };
-extern int game_view_handler(const SDL_Event* ev);
+extern InEventReaction game_view_handler(const SDL_Event* ev);
 
 #endif

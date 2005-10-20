@@ -6,7 +6,6 @@
 
 #include "Pyrogenesis.h"
 #include "sysdep/sysdep.h"
-#include "input.h"
 #include "Hotkey.h"
 #include "scripting/ScriptingHost.h"
 #include "MathUtil.h"
@@ -627,20 +626,18 @@ void CConsole::ReceivedChatMessage(const wchar_t *szSender, const wchar_t *szMes
 	InsertMessage(L"%ls: %ls", szSender, szMessage);
 }
 
-#include "sdl.h"
-
 extern CConsole* g_Console;
 
 extern void Die(int err, const wchar_t* fmt, ...);
 
-int conInputHandler(const SDL_Event* ev)
+InEventReaction conInputHandler(const SDL_Event* ev)
 {
 	if( ev->type == SDL_HOTKEYDOWN )
 	{
 		if( ev->user.code == HOTKEY_CONSOLE_TOGGLE )
 		{
 			g_Console->ToggleVisible();
-			return( EV_HANDLED );
+			return( IN_HANDLED );
 		}
 		else if( ev->user.code == HOTKEY_CONSOLE_COPY )
 		{
@@ -660,12 +657,12 @@ int conInputHandler(const SDL_Event* ev)
 	}
 
 	if( ev->type != SDL_KEYDOWN)
-		return EV_PASS;
+		return IN_PASS;
 
 	SDLKey sym = ev->key.keysym.sym;
 	
 	if(!g_Console->IsActive())
-		return EV_PASS;
+		return IN_PASS;
 
 	// Stop unprintable characters (ctrl+, alt+ and escape), 
 	// also prevent ` and/or ~ appearing in console every time it's toggled.
@@ -679,5 +676,5 @@ int conInputHandler(const SDL_Event* ev)
 		!hotkeys[HOTKEY_CONSOLE_TOGGLE] ) 
 		g_Console->InsertChar(sym, (wchar_t)ev->key.keysym.unicode );
 
-	return EV_PASS;
+	return IN_PASS;
 }

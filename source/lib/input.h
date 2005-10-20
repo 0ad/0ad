@@ -1,26 +1,25 @@
-/*
- * input layer (dispatch events to multiple handlers; record/playback events)
- *
- * Copyright (c) 2002 Jan Wassenberg
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * General Public License for more details.
- *
- * Contact info:
- *   Jan.Wassenberg@stud.uni-karlsruhe.de
- *   http://www.stud.uni-karlsruhe.de/~urkt/
- */
+// input layer (dispatch events to multiple handlers; record/playback events)
+//
+// Copyright (c) 2002 Jan Wassenberg
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License as
+// published by the Free Software Foundation; either version 2 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// General Public License for more details.
+//
+// Contact info:
+//   Jan.Wassenberg@stud.uni-karlsruhe.de
+//   http://www.stud.uni-karlsruhe.de/~urkt/
 
 #ifndef INPUT_H__
 #define INPUT_H__
 
+// note: cannot forward-declare SDL_Event since it is a nameless union.
 #include "sdl.h"
 
 #ifdef __cplusplus
@@ -28,26 +27,34 @@ extern "C" {
 #endif
 
 
-// event handler return value defs (int).
-// don't require an enum type - simplifies user function decl;
-// the dispatcher makes sure each return value is correct.
-enum
+// event handler return values.
+enum InEventReaction
 {
+	// (the handlers' return values are checked and these
+	// 'strange' values might bring errors to light)
+
 	// pass the event to the next handler in the chain
-	EV_PASS = 4,
+	IN_PASS = 4,
 
 	// we've handled it; no other handlers will receive this event.
-	EV_HANDLED = 2
+	IN_HANDLED = 2
 };
 
-// declare functions to take SDL_Event*; in_add_handler converts to void*
-// (avoids header dependency on SDL)
-typedef int (*EventHandler)(const SDL_Event*);
+typedef InEventReaction (*InEventHandler)(const SDL_Event*);
+
+enum InEventOrder
+{
+	// this handler will be added to the front of the queue -
+	// it'll be called first (unless another IN_FIRST is registered).
+	IN_FIRST,
+
+	IN_LAST
+};
 
 
 // register an input handler, which will receive all subsequent events first.
-// events are passed to other handlers if handler returns EV_PASS.
-extern int in_add_handler(EventHandler handler);
+// events are passed to other handlers if handler returns IN_PASS.
+extern void in_add_handler(InEventHandler handler);
 
 // send event to each handler (newest first) until one returns true
 extern void in_dispatch_event(const SDL_Event* event);

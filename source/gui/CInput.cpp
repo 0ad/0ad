@@ -54,7 +54,7 @@ CInput::~CInput()
 {
 }
 
-int CInput::ManuallyHandleEvent(const SDL_Event* ev)
+InEventReaction CInput::ManuallyHandleEvent(const SDL_Event* ev)
 {
 	debug_assert(m_iBufferPos != -1);
 
@@ -83,7 +83,7 @@ int CInput::ManuallyHandleEvent(const SDL_Event* ev)
 				clipboard_free(text);
 			}
 
-			return EV_HANDLED;
+			return IN_HANDLED;
 		}
 	}
 	else if (ev->type == SDL_KEYDOWN)
@@ -414,7 +414,7 @@ int CInput::ManuallyHandleEvent(const SDL_Event* ev)
 				{
 				// If there's a selection, delete if first.
 				if (cooked == 0)
-					return EV_PASS; // Important, because we didn't use any key
+					return IN_PASS; // Important, because we didn't use any key
 
 				// check max length
 				int max_length;
@@ -444,7 +444,7 @@ int CInput::ManuallyHandleEvent(const SDL_Event* ev)
 		}
 	}
 
-	return EV_HANDLED;
+	return IN_HANDLED;
 }
 
 void CInput::HandleMessage(const SGUIMessage &Message)

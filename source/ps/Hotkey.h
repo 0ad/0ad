@@ -18,8 +18,8 @@
 // - Add some bindings to the config file.
 
 #include "precompiled.h"
-#include "sdl.h"
 #include "CStr.h"
+#include "lib/input.h"
 
 const int SDL_HOTKEYDOWN = SDL_USEREVENT;
 const int SDL_HOTKEYUP = SDL_USEREVENT + 1;
@@ -103,7 +103,7 @@ enum
 };
 
 void loadHotkeys();
-int hotkeyInputHandler( const SDL_Event* ev );
+InEventReaction hotkeyInputHandler( const SDL_Event* ev );
 void hotkeyRegisterGUIObject( const CStr& objName, const CStr& hotkeyName );
 
 void initKeyNameMap();

@@ -7,4 +7,4 @@ extern int g_mouse_x, g_mouse_y;
 // (order is given by SDL_BUTTON_* constants).
 extern bool g_mouse_buttons[5];
 
-extern int GlobalsInputHandler(const SDL_Event* ev);
+extern InEventReaction GlobalsInputHandler(const SDL_Event* ev);
