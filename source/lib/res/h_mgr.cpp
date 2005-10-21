@@ -708,11 +708,14 @@ static int h_free_idx(i32 idx, HDATA* hd)
 	if(hd->key && !hd->unique)
 		key_remove(hd->key, hd->type);
 
+	// get pretty version of filename: start with "not applicable"
 	const char* fn = "(0)";
 	if(hd->fn)
 	{
+		// if hd->fn is a filename, strip the path. note: some paths end
+		// with '/', so display those unaltered.
 		const char* slash = strrchr(hd->fn, '/');
-		fn = slash? slash+1 : hd->fn;
+		fn = (slash && slash[1] != '\0')? slash+1 : hd->fn;
 	}
 
 	char buf[H_STRING_LEN];

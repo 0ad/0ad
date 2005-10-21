@@ -75,6 +75,7 @@
 #include "Network/Client.h"
 
 #include "Atlas.h"
+#include "GameSetup.h"
 
 ERROR_GROUP(System);
 ERROR_TYPE(System, SDLInitFailed);
@@ -122,10 +123,69 @@ static int SetVideoMode(int w, int h, int bpp, bool fullscreen)
 	return 0;
 }
 
+static const uint SANE_TEX_QUALITY_DEFAULT = 5;	// keep in sync with code
+
+static void SetTextureQuality(uint quality)
+{
+	uint q_flags;
+	GLint filter;
+
+retry:
+	// keep this in sync with SANE_TEX_QUALITY_DEFAULT
+	switch(quality)
+	{
+		// worst quality
+	case 0:
+		q_flags = OGL_TEX_HALF_RES|OGL_TEX_HALF_BPP;
+		filter = GL_NEAREST;
+		break;
+		// [perf] add bilinear filtering
+	case 1:
+		q_flags = OGL_TEX_HALF_RES|OGL_TEX_HALF_BPP;
+		filter = GL_LINEAR;
+		break;
+		// [vmem] no longer reduce resolution
+	case 2:
+		q_flags = OGL_TEX_HALF_BPP;
+		filter = GL_LINEAR;
+		break;
+		// [vmem] add mipmaps
+	case 3:
+		q_flags = OGL_TEX_HALF_BPP;
+		filter = GL_NEAREST_MIPMAP_LINEAR;
+		break;
+		// [perf] better filtering
+	case 4:
+		q_flags = OGL_TEX_HALF_BPP;
+		filter = GL_LINEAR_MIPMAP_LINEAR;
+		break;
+		// [vmem] no longer reduce bpp
+	case SANE_TEX_QUALITY_DEFAULT:
+		q_flags = OGL_TEX_FULL_QUALITY;
+		filter = GL_LINEAR_MIPMAP_LINEAR;
+		break;
+		// [perf] add anisotropy
+	case 6:
+		// TODO: add anisotropic filtering
+		q_flags = OGL_TEX_FULL_QUALITY;
+		filter = GL_LINEAR_MIPMAP_LINEAR;
+		break;
+		// invalid
+	default:
+		debug_warn("SetTextureQuality: invalid quality");
+		quality = SANE_TEX_QUALITY_DEFAULT;
+		// careful: recursion doesn't work and we don't want to duplicate
+		// the "sane" default values.
+		goto retry;
+	}
+
+	ogl_tex_set_defaults(q_flags, filter);
+}
+
+
 //----------------------------------------------------------------------------
 // GUI integration
 //----------------------------------------------------------------------------
-
 
 void GUI_Init()
 {
@@ -467,8 +527,6 @@ static void InitVfs(const char* argv0)
 	vfs_mount("screenshots/", "screenshots");
 	vfs_mount("profiles/", "profiles", VFS_MOUNT_RECURSIVE);
 
-	extern void vfs_dump_stats();
-	vfs_dump_stats();
 	// don't try vfs_display yet: SDL_Init hasn't yet redirected stdout
 }
 
@@ -607,66 +665,6 @@ static void InitSDL()
 }
 
 
-static const uint SANE_TEX_QUALITY_DEFAULT = 5;	// keep in sync with code
-
-static void SetTextureQuality(uint quality)
-{
-	uint q_flags;
-	GLint filter;
-
-retry:
-	// keep this in sync with SANE_TEX_QUALITY_DEFAULT
-	switch(quality)
-	{
-	// worst quality
-	case 0:
-		q_flags = OGL_TEX_HALF_RES|OGL_TEX_HALF_BPP;
-		filter = GL_NEAREST;
-		break;
-	// [perf] add bilinear filtering
-	case 1:
-		q_flags = OGL_TEX_HALF_RES|OGL_TEX_HALF_BPP;
-		filter = GL_LINEAR;
-		break;
-	// [vmem] no longer reduce resolution
-	case 2:
-		q_flags = OGL_TEX_HALF_BPP;
-		filter = GL_LINEAR;
-		break;
-	// [vmem] add mipmaps
-	case 3:
-		q_flags = OGL_TEX_HALF_BPP;
-		filter = GL_NEAREST_MIPMAP_LINEAR;
-		break;
-	// [perf] better filtering
-	case 4:
-		q_flags = OGL_TEX_HALF_BPP;
-		filter = GL_LINEAR_MIPMAP_LINEAR;
-		break;
-	// [vmem] no longer reduce bpp
-	case SANE_TEX_QUALITY_DEFAULT:
-		q_flags = OGL_TEX_FULL_QUALITY;
-		filter = GL_LINEAR_MIPMAP_LINEAR;
-		break;
-	// [perf] add anisotropy
-	case 6:
-		// TODO: add anisotropic filtering
-		q_flags = OGL_TEX_FULL_QUALITY;
-		filter = GL_LINEAR_MIPMAP_LINEAR;
-		break;
-	// invalid
-	default:
-		debug_warn("SetTextureQuality: invalid quality");
-		quality = SANE_TEX_QUALITY_DEFAULT;
-		// careful: recursion doesn't work and we don't want to duplicate
-		// the "sane" default values.
-		goto retry;
-	}
-
-	ogl_tex_set_defaults(q_flags, filter);
-}
-
-
 void EndGame()
 {
 	if (g_NetServer)
@@ -797,10 +795,12 @@ void Shutdown()
 # pragma optimize("", off)
 #endif
 
-void Init(int argc, char* argv[], bool setup_videomode, bool setup_gui)
+void Init(int argc, char* argv[], uint flags)
 {
-	debug_printf("INIT &argc=%p &argv=%p\n", &argc, &argv);
+	const bool setup_vmode = (flags & INIT_HAVE_VMODE) == 0;
+	const bool setup_gui   = (flags & INIT_NO_GUI    ) == 0;
 
+	debug_printf("INIT &argc=%p &argv=%p\n", &argc, &argv);
 	MICROLOG(L"Init");
 
 	debug_set_thread_name("main");
@@ -841,7 +841,7 @@ void Init(int argc, char* argv[], bool setup_videomode, bool setup_gui)
 	// and fonts are set later in InitPs())
 	g_Console = new CConsole();
 
-	if(setup_videomode)
+	if(setup_vmode)
 		InitSDL();
 
 	// preferred video mode = current desktop settings
@@ -864,7 +864,7 @@ void Init(int argc, char* argv[], bool setup_videomode, bool setup_gui)
 	bool windowed = false;
 	CFG_GET_SYS_VAL("windowed", Bool, windowed);
 
-	if (setup_videomode)
+	if(setup_vmode)
 	{
 		SDL_WM_SetCaption("0 A.D.", "0 A.D.");
 

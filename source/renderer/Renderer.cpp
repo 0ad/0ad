@@ -1480,7 +1480,7 @@ int CRenderer::LoadWaterTextures()
 
 	// yield after this time is reached. balances increased progress bar
 	// smoothness vs. slowing down loading.
-	const double end_time = get_time() + 50e-3;
+	const double end_time = get_time() + 100e-3;
 
 	// initialize to 0 in case something fails below
 	// (we then abort the loop, but don't want undefined values in here)

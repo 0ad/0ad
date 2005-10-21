@@ -15,13 +15,14 @@
 #include "lib/res/file/vfs.h"
 #include "ps/CLogger.h"
 
+#include "ps/GameSetup/GameSetup.h"	// Render()
+
 using namespace AtlasMessage;
 
 
-extern void Render_();
 void AtlasRender()
 {
-	Render_();
+	Render();
 	g_CurrentBrush.Render();
 }
 

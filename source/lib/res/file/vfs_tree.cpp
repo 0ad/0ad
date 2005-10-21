@@ -694,7 +694,7 @@ void tree_shutdown()
 
 
 // write a representation of the VFS tree to stdout.
-void vfs_display()
+void tree_display()
 {
 	tree_root_dir->displayR(0);
 }

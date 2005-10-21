@@ -287,7 +287,7 @@ int main(int argc, char* argv[])
 
 	ATLAS_RunIfOnCmdLine(argc, argv);
 
-	Init(argc, argv, true, true);
+	Init(argc, argv, 0);
 	MainControllerInit();
 
 	while(!quit)
@@ -301,31 +301,12 @@ int main(int argc, char* argv[])
 	exit(0);
 }
 
-
-// Public functions for Atlas to use:
-// TODO: Make this far less hacky
-void Init_(int argc, char** argv, bool setup_gfx)
-{
-	g_Quickstart = true;
-	Init(argc, argv, setup_gfx, false);
-}
-void Shutdown_()
-{
-	Shutdown();
-}
-void Render_()
-{
-	Render();
-}
-
-
 #else // SCED:
 
 void ScEd_Init()
 {
 	g_Quickstart = true;
-
-	Init(0, NULL, false, false);
+	Init(0, NULL, INIT_HAVE_VMODE|INIT_NO_GUI);
 }
 
 void ScEd_Shutdown()

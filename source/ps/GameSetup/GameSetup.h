@@ -1,8 +1,7 @@
 
-//----------------------------------------------------------------------------
+//
 // GUI integration
-//----------------------------------------------------------------------------
-
+//
 
 extern void GUI_Init();
 
@@ -19,6 +18,17 @@ extern void Render();
 
 extern void Shutdown();
 
-// If setup_videmode is false, it is assumed that the video mode has already
-// been set up and is ready for rendering.
-extern void Init(int argc, char* argv[], bool setup_videomode, bool setup_gui);
+
+enum InitFlags
+{
+	// avoid setting a video mode / initializing OpenGL; assume that has
+	// already been done and everything is ready for rendering.
+	// needed by map editor because it creates its own window.
+	INIT_HAVE_VMODE = 1,
+
+	// skip initializing the in-game GUI.
+	// needed by map editor because it uses its own GUI.
+	INIT_NO_GUI = 2
+};
+
+extern void Init(int argc, char* argv[], uint flags);

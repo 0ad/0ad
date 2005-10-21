@@ -7,10 +7,8 @@
 #include "gui/GUI.h"
 #include "ps/CConsole.h"
 
-extern int g_xres, g_yres;
-
-extern void Init_(int argc, char** argv, bool setup_gfx);
-extern void Shutdown_();
+#include "ps/GameSetup/Config.h"
+#include "ps/GameSetup/GameSetup.h"
 
 
 namespace AtlasMessage {
@@ -19,7 +17,9 @@ namespace AtlasMessage {
 MESSAGEHANDLER_STR(init)
 {
 	oglInit();
-	Init_(g_GameLoop->argc, g_GameLoop->argv, false);
+
+	g_Quickstart = true;
+	Init(g_GameLoop->argc, g_GameLoop->argv, INIT_HAVE_VMODE|INIT_NO_GUI);
 
 #if OS_WIN
 	// HACK (to stop things looking very ugly when scrolling) - should
@@ -32,7 +32,7 @@ MESSAGEHANDLER_STR(init)
 
 MESSAGEHANDLER_STR(shutdown)
 {
-	Shutdown_();
+	Shutdown();
 	g_GameLoop->rendering = false;
 }
 

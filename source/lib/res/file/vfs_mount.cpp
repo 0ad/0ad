@@ -10,6 +10,7 @@
 #include <deque>
 #include <list>
 
+/*
 struct Stats
 {
 	size_t mounted_dirs;
@@ -26,10 +27,11 @@ struct Stats
 };
 static Stats stats;
 
-void vfs_dump_stats()
+void dump_stats()
 {
 	stats.dump();
 }
+*/
 
 
 // location of a file: either archive or a real directory.
@@ -272,8 +274,6 @@ static int enqueue_archive(const char* name, const char* P_archive_dir, Archives
 
 static int mount_archive(TDir* td, const Mount& m)
 {
-	stats.mounted_archives++;
-
 	ZipCBParams params(td, &m);
 	zip_enum(m.archive, zip_cb, (uintptr_t)&params);
 	return 0;
@@ -616,7 +616,7 @@ int vfs_mount(const char* V_mount_point, const char* P_real_path, int flags, uin
 // dir_watch reports changes; can also be called from the console after a
 // rebuild command. there is no provision for updating single VFS dirs -
 // it's not worth the trouble.
-static int rebuild()
+int mount_rebuild()
 {
 	tree_clear();
 	tree_init();
@@ -641,7 +641,7 @@ int vfs_unmount(const char* P_name)
 	// trim list and actually remove 'invalidated' entries.
 	mounts.erase(last, end);
 
-	return rebuild();
+	return mount_rebuild();
 }
 
 
@@ -652,7 +652,7 @@ int vfs_unmount(const char* P_name)
 // if <path> or its ancestors are mounted,
 // return a VFS path that accesses it.
 // used when receiving paths from external code.
-static int make_vfs_path(const char* P_path, char* V_path)
+int mount_make_vfs_path(const char* P_path, char* V_path)
 {
 	for(MountIt it = mounts.begin(); it != mounts.end(); ++it)
 	{
@@ -726,122 +726,6 @@ int mount_populate(TDir* td, RealDir* rd)
 {
 	UNUSED2(td);
 	UNUSED2(rd);
-	return 0;
-}
-
-
-
-//-----------------------------------------------------------------------------
-// hotloading
-//-----------------------------------------------------------------------------
-
-// called by vfs_reload and vfs_reload_changed_files (which will already
-// have rebuilt the VFS - doing so more than once a frame is unnecessary).
-static int reload_without_rebuild(const char* fn)
-{
-	// invalidate this file's cached blocks to make sure its contents are
-	// loaded anew.
-	CHECK_ERR(file_invalidate_cache(fn));
-
-	CHECK_ERR(h_reload(fn));
-
-	return 0;
-}
-
-
-// called via console command.
-int vfs_reload(const char* fn)
-{
-	// if <fn> currently maps to an archive, the VFS must switch
-	// over to using the loose file (that was presumably changed).
-	CHECK_ERR(rebuild());
-
-	return reload_without_rebuild(fn);
-}
-
-
-
-
-// get directory change notifications, and reload all affected files.
-// must be called regularly (e.g. once a frame). this is much simpler
-// than asynchronous notifications: everything would need to be thread-safe.
-int vfs_reload_changed_files()
-{
-	// array of reloads requested this frame (see 'do we really need to
-	// reload' below). go through gyrations to avoid heap allocs.
-	const size_t MAX_RELOADS_PER_FRAME = 12;
-	typedef char Path[VFS_MAX_PATH];
-	typedef Path PathList[MAX_RELOADS_PER_FRAME];
-	PathList pending_reloads;
-
-	uint num_pending = 0;
-	// process only as many notifications as we have room for; the others
-	// will be handled next frame. it's not imagineable that they'll pile up.
-	while(num_pending < MAX_RELOADS_PER_FRAME)
-	{
-		// get next notification
-		char N_path[PATH_MAX];
-		int ret = dir_get_changed_file(N_path);
-		CHECK_ERR(ret);	// error? (doesn't cover 'none available')
-		if(ret != 0)	// none available; done.
-			break;
-
-		// convert to VFS path
-		char P_path[PATH_MAX];
-		CHECK_ERR(file_make_full_portable_path(N_path, P_path));
-		char* V_path = pending_reloads[num_pending];
-		CHECK_ERR(make_vfs_path(P_path, V_path));
-
-		// do we really need to reload? try to avoid the considerable cost of
-		// rebuilding VFS and scanning all Handles.
-		//
-		// note: be careful to avoid 'race conditions' depending on the
-		// timeframe in which notifications reach us.
-		// example: editor deletes a.tga; we are notified; reload is
-		// triggered but fails since the file isn't found; further
-		// notifications (e.g. renamed a.tmp to a.tga) come within x [ms] and
-		// are ignored due to a time limit.
-		// therefore, we can only check for multiple reload requests a frame;
-		// to that purpose, an array is built and duplicates ignored.
-		const char* ext = strrchr(V_path, '.');
-		// .. directory change notification; ignore because we get
-		//    per-file notifications anyway. (note: assume no extension =>
-		//    it's a directory). this also protects the strcmp calls below.
-		if(!ext)
-			continue;
-		// .. compiled XML files the engine writes out by the hundreds;
-		//    skipping them is a big performance gain.
-		if(!stricmp(ext, ".xmb"))
-			continue;
-		// .. temp files, usually created when an editor saves a file
-		//    (delete, create temp, rename temp); no need to reload those.
-		if(!stricmp(ext, ".tmp"))
-			continue;
-		// .. more than one notification for a file; only reload once.
-		//    note: this doesn't suffer from the 'reloaded too early'
-		//    problem described above; if there's more than one
-		//    request in the array, the file has since been written.
-		for(uint i = 0; i < num_pending; i++)
-			if(!strcmp(pending_reloads[i], V_path))
-				continue;
-
-		// path has already been written to pending_reloads,
-		// so just mark it valid.
-		num_pending++;		
-	}
-
-	// rebuild VFS, in case a file that has been changed is currently
-	// mounted from an archive (reloading would just grab the unchanged
-	// version in the archive). the rebuild sees differing mtimes and
-	// always choses the loose file version. only do this once
-	// (instead of per reload request) because it's slow (> 1s)!
-	if(num_pending != 0)
-		CHECK_ERR(rebuild());
-
-	// now actually reload all files in the array we built
-	for(uint i = 0; i < num_pending; i++)
-		CHECK_ERR(reload_without_rebuild(pending_reloads[i]));
-
 	return 0;
 }
 

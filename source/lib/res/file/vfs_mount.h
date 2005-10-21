@@ -126,4 +126,17 @@ struct TDir;
 extern int mount_populate(TDir* td, RealDir* rd);
 
 
+// rebuild the VFS, i.e. re-mount everything. open files are not affected.
+// necessary after loose files or directories change, so that the VFS
+// "notices" the changes and updates file locations. res calls this after
+// dir_watch reports changes; can also be called from the console after a
+// rebuild command. there is no provision for updating single VFS dirs -
+// it's not worth the trouble.
+extern int mount_rebuild();
+
+// if <path> or its ancestors are mounted,
+// return a VFS path that accesses it.
+// used when receiving paths from external code.
+extern int mount_make_vfs_path(const char* P_path, char* V_path);
+
 #endif	// #ifndef VFS_MOUNT_H__

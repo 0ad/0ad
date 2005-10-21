@@ -28,6 +28,8 @@ struct TDir;
 extern void tree_init();
 extern void tree_shutdown();
 
+extern void tree_display();
+
 // empties the tree and frees all resources. this is used when
 // rebuilding VFS and on exit.
 extern void tree_clear();
