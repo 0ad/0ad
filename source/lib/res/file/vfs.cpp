@@ -607,7 +607,7 @@ debug_printf("vfs_load v_fn=%s\n", v_fn);
 		}
 		else
 		{
-			hm = mem_wrap(p, size, 0, 0, 0, 0, 0, vfs_load);
+			hm = mem_wrap(p, size, 0, 0, 0, 0, 0, (void*)vfs_load);
 
 			if(flags & FILE_CACHE)
 				vf->hm = hm;

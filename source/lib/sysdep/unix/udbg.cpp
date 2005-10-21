@@ -318,18 +318,28 @@ int debug_resolve_symbol_dladdr(void *ptr, char* sym_name, char* file, int* line
 	int res=dladdr(ptr, &syminfo);
 	if (res == 0) return -1;
 	
-	if (syminfo.dli_sname)
-		demangle_buf(sym_name, syminfo.dli_sname, DBG_SYMBOL_LEN);
-	else
+	if (sym_name)
 	{
-		snprintf(sym_name, DBG_SYMBOL_LEN, "0x%08x", ptr);
-		sym_name[DBG_SYMBOL_LEN-1]=0;
+		if (syminfo.dli_sname)
+			demangle_buf(sym_name, syminfo.dli_sname, DBG_SYMBOL_LEN);
+		else
+		{
+			snprintf(sym_name, DBG_SYMBOL_LEN, "0x%08x", ptr);
+			sym_name[DBG_SYMBOL_LEN-1]=0;
+		}
 	}
 	
-	strncpy(file, syminfo.dli_fname, DBG_FILE_LEN);
-	file[DBG_FILE_LEN-1]=0;
+	if (file)
+	{
+		strncpy(file, syminfo.dli_fname, DBG_FILE_LEN);
+		file[DBG_FILE_LEN-1]=0;
+	}
 	
-	*line=0;
+	if (line)
+	{
+		*line=0;
+	}
+	
 	return 0;
 }
 
@@ -344,9 +354,12 @@ int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int*
 	bfd *abfd=file_ctx->abfd;
 
 	// Reset here if we fail later on
-	*sym_name=0;
-	*file=0;
-	*line=0;
+	if (sym_name)
+		*sym_name=0;
+	if (file)
+		*file=0;
+	if (line)
+		*line=0;
 
 	if (!udbg_initialized)
 		return debug_resolve_symbol_dladdr(ptr_of_interest, sym_name, file, line);
@@ -365,21 +378,30 @@ int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int*
 	if (!ctx.found)
 		return debug_resolve_symbol_dladdr(ptr_of_interest, sym_name, file, line);
 
-	demangle_buf(sym_name, ctx.symbol, DBG_SYMBOL_LEN);
-
-	if (ctx.filename != NULL)
+	if (sym_name)
 	{
-		const char *h;
+		demangle_buf(sym_name, ctx.symbol, DBG_SYMBOL_LEN);
+	}
 
-		h = strrchr (ctx.filename, '/');
-		if (h != NULL)
-			ctx.filename = h + 1;
+	if (file)
+	{
+		if (ctx.filename != NULL)
+		{
+			const char *h;
+
+			h = strrchr (ctx.filename, '/');
+			if (h != NULL)
+				ctx.filename = h + 1;
+		}
+	
+		strncpy(file, ctx.filename, DBG_FILE_LEN);
+		file[DBG_FILE_LEN]=0;
 	}
 	
-	strncpy(file, ctx.filename, DBG_FILE_LEN);
-	file[DBG_FILE_LEN]=0;
-	
-	*line = ctx.line;
+	if (line)
+	{
+		*line = ctx.line;
+	}
 	
 	return 0;
 }

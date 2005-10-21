@@ -9,9 +9,9 @@ bool g_active = true;
 bool g_keys[SDLK_LAST];
 int g_mouse_x = 50, g_mouse_y = 50;
 
-// left, right, middle, wheel up, wheel down
+// unused, left, right, middle, wheel up, wheel down
 // (order is given by SDL_BUTTON_* constants).
-bool g_mouse_buttons[5];
+bool g_mouse_buttons[6];
 
 
 // updates the state of the above; never swallows messages.

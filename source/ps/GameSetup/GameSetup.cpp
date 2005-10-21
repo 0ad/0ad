@@ -74,6 +74,8 @@
 #include "Network/Server.h"
 #include "Network/Client.h"
 
+#include "GameSetup/Config.h"
+
 #include "Atlas.h"
 #include "GameSetup.h"
 

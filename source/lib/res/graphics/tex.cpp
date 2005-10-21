@@ -476,7 +476,7 @@ int tex_wrap(uint w, uint h, uint bpp, uint flags, void* img, Tex* t)
 	// note: we can't use tex_img_size because that requires all
 	// Tex fields to be valid, but this calculation must be done first.
 	const size_t img_size = w*h*bpp/8;
-	t->hm = mem_wrap(img, img_size, 0, 0, 0, 0, 0, tex_wrap);
+	t->hm = mem_wrap(img, img_size, 0, 0, 0, 0, 0, (void*)&tex_wrap);
 	RETURN_ERR(t->hm);
 
 	// the exact value of img is lost, since the handle references the

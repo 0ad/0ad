@@ -23,14 +23,6 @@ struct SHotkeyMapping
 
 typedef std::vector<SHotkeyMapping> KeyMapping;
 
-const int HK_MAX_KEYCODES = SDLK_LAST + 10;
-
-// A mapping of keycodes onto sets of SDL event codes
-static KeyMapping hotkeyMap[HK_MAX_KEYCODES];
-
-// An array of the status of virtual keys
-bool hotkeys[HOTKEY_LAST];
-
 // 'Keycodes' for the mouse buttons
 const int MOUSE_LEFT = SDLK_LAST + SDL_BUTTON_LEFT;
 const int MOUSE_RIGHT = SDLK_LAST + SDL_BUTTON_RIGHT;
@@ -44,6 +36,19 @@ const int UNIFIED_CTRL = MOUSE_WHEELDOWN + 2;
 const int UNIFIED_ALT = MOUSE_WHEELDOWN + 3;
 const int UNIFIED_META = MOUSE_WHEELDOWN + 4;
 const int UNIFIED_SUPER = MOUSE_WHEELDOWN + 5;
+
+/**
+ * HK_MAX_KEYCODES: Global maximum number of keycodes, including our "fake" keycodes for
+ * mouse buttons and unified modifiers.
+ */
+const int HK_MAX_KEYCODES = UNIFIED_SUPER + 1;
+
+// A mapping of keycodes onto sets of SDL event codes
+static KeyMapping hotkeyMap[HK_MAX_KEYCODES];
+
+// An array of the status of virtual keys
+bool hotkeys[HOTKEY_LAST];
+
 
 struct SHotkeyInfo
 {
@@ -291,7 +296,9 @@ void loadHotkeys()
 			for( j = it->requires.begin(); j != it->requires.end(); j++ )
 				if( !( *j & HOTKEY_NEGATION_FLAG ) )
 					allNegated = false;
-				
+			
+			debug_assert(it->mapsTo < ARRAY_SIZE(hotkeys));
+			
 			if( allNegated )
 				hotkeys[it->mapsTo] = true;
 		}
@@ -402,7 +409,7 @@ InReaction hotkeyInputHandler( const SDL_Event* ev )
 	size_t closestMapMatch = 0;
 
 	for( it = hotkeyMap[keycode].begin(); it < hotkeyMap[keycode].end(); it++ )
-	{			
+	{
 		// If a key has been pressed, and this event triggers on it's release, skip it.
 		// Similarly, if the key's been released and the event triggers on a keypress, skip it.
 		if( it->negation == typeKeyDown )
@@ -447,6 +454,8 @@ InReaction hotkeyInputHandler( const SDL_Event* ev )
 
 		if( it->mapsTo == HOTKEY_CONSOLE_TOGGLE ) isCapturable = false; // Because that would be silly.
 
+		debug_assert(it->mapsTo < ARRAY_SIZE(hotkeys));
+		
 		if( accept && !( isCapturable && consoleCapture ) )
 		{
 			hotkeys[it->mapsTo] = true;
@@ -571,6 +580,8 @@ InReaction hotkeyInputHandler( const SDL_Event* ev )
 				if( !unified[(*itKey)-UNIFIED_SHIFT] ) accept = false;
 		}
 
+		debug_assert(it->mapsTo < ARRAY_SIZE(hotkeys));
+		
 		if( accept )
 		{
 			hotkeys[it->mapsTo] = false;
