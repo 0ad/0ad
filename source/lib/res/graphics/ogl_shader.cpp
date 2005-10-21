@@ -168,6 +168,12 @@ static int Ogl_Shader_validate(const Ogl_Shader* UNUSED(shdr))
 	return 0;
 }
 
+static int Ogl_Shader_to_string(const Ogl_Shader* UNUSED(shdr), char* buf)
+{
+	snprintf(buf, H_STRING_LEN, "");
+	return 0;
+}
+
 
 //----------------------------------------------------------------------------
 // Public API
@@ -385,6 +391,11 @@ static int Ogl_Program_validate(const Ogl_Program* UNUSED(p))
 	return 0;
 }
 
+static int Ogl_Program_to_string(const Ogl_Program* UNUSED(p), char* buf)
+{
+	snprintf(buf, H_STRING_LEN, "");
+	return 0;
+}
 
 
 //----------------------------------------------------------------------------

@@ -1016,6 +1016,13 @@ static int SndData_validate(const SndData* sd)
 	return 0;
 }
 
+static int SndData_to_string(const SndData* sd, char* buf)
+{
+	const char* type = sd->is_stream? "stream" : "clip";
+	snprintf(buf, H_STRING_LEN, "%s; al_buf=%d", type, sd->al_buf);
+	return 0;
+}
+
 
 // open and return a handle to a sound file's data.
 static Handle snd_data_load(const char* fn, bool is_stream)
@@ -1312,6 +1319,12 @@ static int VSrc_validate(const VSrc* vs)
 	if(*(u8*)&vs->loop > 1 || *(u8*)&vs->relative > 1)
 		return -5;
 	// <static_pri> and <cur_pri> have no invariant we could check.
+	return 0;
+}
+
+static int VSrc_to_string(const VSrc* vs, char* buf)
+{
+	snprintf(buf, H_STRING_LEN, "al_src = %d", vs->al_src);
 	return 0;
 }
 

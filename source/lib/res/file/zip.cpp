@@ -593,6 +593,12 @@ static int lookup_enum_files(LookupInfo* li, FileCB cb, uintptr_t user)
 }
 
 
+static uint lookup_get_num_files(const LookupInfo* li)
+{
+	return li->num_files;
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////
 //
 // ZArchive_*: Handle-based container for archive info
@@ -668,6 +674,13 @@ static int ZArchive_validate(const ZArchive* za)
 	RETURN_ERR(lookup_validate(&za->li));
 	return 0;
 }
+
+static int ZArchive_to_string(const ZArchive* za, char* buf)
+{
+	snprintf(buf, H_STRING_LEN, "(%d files)", lookup_get_num_files(&za->li));
+	return 0;
+}
+
 
 
 // open and return a handle to the zip archive indicated by <fn>.

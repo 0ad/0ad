@@ -194,6 +194,10 @@ extern void ogl_tex_set_defaults(uint q_flags, GLint filter);
 // for a list of supported formats, see tex.h's tex_load.
 extern Handle ogl_tex_load(const char* fn, uint flags = 0);
 
+// return Handle to an existing object, if it has been loaded and
+// is still in memory; otherwise, a negative error code.
+extern Handle ogl_tex_find(const char* fn);
+
 // make the given Tex object ready for use as an OpenGL texture
 // and return a handle to it. this will be as if its contents
 // had been loaded by ogl_tex_load.

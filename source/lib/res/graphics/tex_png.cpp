@@ -12,6 +12,7 @@
 #include "lib/byte_order.h"
 #include "lib/res/res.h"
 #include "tex_codec.h"
+#include "lib/timer.h"
 
 #if MSC_VERSION
 
@@ -191,9 +192,13 @@ static size_t png_hdr_size(const u8* UNUSED(file))
 }
 
 
+TIMER_ADD_CLIENT(tc_png_decode);
+
 // limitation: palette images aren't supported
 static int png_decode(DynArray* restrict da, Tex* restrict t)
 {
+TIMER_ACCRUE(tc_png_decode);
+
 	int err = -1;
 	// freed when ret is reached:
 	png_structp png_ptr = 0;

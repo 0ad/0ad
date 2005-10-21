@@ -99,9 +99,10 @@ enum TNodeType
 const size_t BUCKET_SIZE = 8*KiB;
 
 static u8* bucket_pos;
+static uint num_buckets;
 
 
-TNode* node_alloc(size_t size)
+static TNode* node_alloc(size_t size)
 {
 	// would overflow a bucket
 	if(size > BUCKET_SIZE-sizeof(u8*))
@@ -113,17 +114,22 @@ TNode* node_alloc(size_t size)
 	size = round_up(size, 8);
 	// ensure alignment, since size includes a string
 	const uintptr_t addr = (uintptr_t)bucket_pos;
-	const size_t bytes_used = addr % BUCKET_SIZE;
+	size_t bytes_used = addr % BUCKET_SIZE;
+	// a node fit exactly at the end of a bucket
+	if(!bytes_used)
+		bytes_used = BUCKET_SIZE;
 	// addr = 0 on first call (no bucket yet allocated)
-	// bytes_used == 0 if a node fit exactly into a bucket
-	if(addr == 0 || bytes_used == 0 || bytes_used+size > BUCKET_SIZE)
+	if(addr == 0 || bytes_used+size > BUCKET_SIZE)
 	{
-		u8* const prev_bucket = (u8*)addr - bytes_used;
+		u8* prev_bucket = (u8*)addr - bytes_used;
+		if(addr == 0)
+			prev_bucket = 0;
 		u8* bucket = (u8*)mem_alloc(BUCKET_SIZE, BUCKET_SIZE);
 		if(!bucket)
 			return 0;
 		*(u8**)bucket = prev_bucket;
 		bucket_pos = bucket+round_up(sizeof(u8*), 8);
+		num_buckets++;
 	}
 
 	TNode* node = (TNode*)bucket_pos;
@@ -132,7 +138,7 @@ TNode* node_alloc(size_t size)
 }
 
 
-void node_free_all()
+static void node_free_all()
 {
 	const uintptr_t addr = (uintptr_t)bucket_pos;
 	u8* bucket = bucket_pos - (addr % BUCKET_SIZE);
@@ -143,7 +149,10 @@ void node_free_all()
 		u8* prev_bucket = *(u8**)bucket;
 		mem_free(bucket);
 		bucket = prev_bucket;
+		num_buckets--;
 	}
+
+	debug_assert(num_buckets == 0);
 }
 
 
@@ -675,6 +684,12 @@ void tree_clear()
 void tree_init()
 {
 	tree_root_dir->init();
+}
+
+
+void tree_shutdown()
+{
+	node_free_all();
 }
 
 

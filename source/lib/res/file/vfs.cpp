@@ -98,12 +98,10 @@ struct VDir
 	uint it_valid : 1;	// <it> will be closed iff == 1
 
 	// safety check
-#ifndef NDEBUG
 	const char* filter;
 	// has filter been assigned? this flag is necessary because there are no
 	// "invalid" filter values we can use.
 	uint filter_latched : 1;
-#endif
 };
 
 H_TYPE_DEFINE(VDir);
@@ -138,11 +136,19 @@ static int VDir_reload(VDir* vd, const char* path, Handle UNUSED(hvd))
 static int VDir_validate(const VDir* vd)
 {
 	// note: <it> is opaque and cannot be validated.
-#ifndef NDEBUG
 	if(vd->filter && !isprint(vd->filter[0]))
 		return -2;
-#endif
-	UNUSED2(vd);
+	return 0;
+}
+
+static int VDir_to_string(const VDir* d, char* buf)
+{
+	const char* filter = d->filter;
+	if(!d->filter_latched)
+		filter = "?";
+	if(!filter)
+		filter = "*";
+	snprintf(buf, H_STRING_LEN, "(%s)", filter);
 	return 0;
 }
 
@@ -190,7 +196,6 @@ int vfs_dir_next_ent(const Handle hd, DirEnt* ent, const char* filter)
 	// it is imaginable that someone will want to change it, but until
 	// there's a good reason, leave this check in. note: only comparing
 	// pointers isn't 100% certain, but it's safe enough and easy.
-#ifndef NDEBUG
 	if(!vd->filter_latched)
 	{
 		vd->filter = filter;
@@ -198,7 +203,6 @@ int vfs_dir_next_ent(const Handle hd, DirEnt* ent, const char* filter)
 	}
 	if(vd->filter != filter)
 		debug_warn("filter has changed for this directory. are you scanning it twice?");
-#endif
 
 	bool want_dir = true;
 	if(filter)
@@ -416,6 +420,12 @@ static int VFile_validate(const VFile* vf)
 	return 0;
 }
 
+static int VFile_to_string(const VFile* UNUSED(vf), char* buf)
+{
+	strcpy(buf, "");	// safe
+	return 0;
+}
+
 
 // return the size of an already opened file, or a negative error code.
 ssize_t vfs_size(Handle hf)
@@ -596,7 +606,7 @@ debug_printf("vfs_load v_fn=%s\n", v_fn);
 		}
 		else
 		{
-			hm = mem_wrap(p, size, 0, 0, 0, 0, 0);
+			hm = mem_wrap(p, size, 0, 0, 0, 0, 0, vfs_load);
 
 			if(flags & FILE_CACHE)
 				vf->hm = hm;
@@ -693,6 +703,13 @@ static int VIo_validate(const VIo* vio)
 		return -201;
 	return x_io_validate(&vio->xio);
 }
+
+static int VIo_to_string(const VIo* vio, char* buf)
+{
+	snprintf(buf, H_STRING_LEN, "buf=%p size=%d", vio->buf, vio->size);
+	return 0;
+}
+
 
 
 // begin transferring <size> bytes, starting at <ofs>. get result
@@ -793,4 +810,5 @@ void vfs_shutdown()
 {
 	file_listing_shutdown();
 	mount_shutdown();
+	tree_shutdown();
 }

@@ -169,6 +169,8 @@ static void create_level(uint level, uint level_w, uint level_h,
 }
 
 
+TIMER_ADD_CLIENT(tc_plain_transform);
+
 // handles BGR and row flipping in "plain" format (see below).
 //
 // called by codecs after they get their format-specific transforms out of
@@ -178,6 +180,8 @@ static void create_level(uint level, uint level_w, uint level_h,
 // somewhat optimized (loops are hoisted, cache associativity accounted for)
 static int plain_transform(Tex* t, uint transforms)
 {
+TIMER_ACCRUE(tc_plain_transform);
+
 	// (this is also called directly instead of through ogl_tex, so
 	// we need to validate)
 	CHECK_ERR(tex_validate(t));
@@ -472,7 +476,7 @@ int tex_wrap(uint w, uint h, uint bpp, uint flags, void* img, Tex* t)
 	// note: we can't use tex_img_size because that requires all
 	// Tex fields to be valid, but this calculation must be done first.
 	const size_t img_size = w*h*bpp/8;
-	t->hm = mem_wrap(img, img_size, 0, 0, 0, 0, 0);
+	t->hm = mem_wrap(img, img_size, 0, 0, 0, 0, 0, tex_wrap);
 	RETURN_ERR(t->hm);
 
 	// the exact value of img is lost, since the handle references the

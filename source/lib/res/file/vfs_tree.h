@@ -26,6 +26,7 @@ struct TFile;
 struct TDir;
 
 extern void tree_init();
+extern void tree_shutdown();
 
 // empties the tree and frees all resources. this is used when
 // rebuilding VFS and on exit.

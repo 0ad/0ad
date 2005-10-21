@@ -714,7 +714,11 @@ static int h_free_idx(i32 idx, HDATA* hd)
 		const char* slash = strrchr(hd->fn, '/');
 		fn = slash? slash+1 : hd->fn;
 	}
-	debug_printf("H_FREE %s %s accesses=%d\n", hd->type->name, fn, hd->num_derefs);
+
+	char buf[H_STRING_LEN];
+	if(vtbl->to_string(hd->user, buf) < 0)
+		strcpy(buf, "(error)");	// safe
+	debug_printf("H_FREE %s %s accesses=%d %s\n", hd->type->name, fn, hd->num_derefs, buf);
 
 	fn_free(hd);
 

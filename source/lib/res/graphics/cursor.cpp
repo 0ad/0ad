@@ -145,6 +145,13 @@ static int Cursor_validate(const Cursor* c)
 	return 0;
 }
 
+static int Cursor_to_string(const Cursor* c, char* buf)
+{
+	const char* type = c->sys_cursor? "sys" : "gl";
+	snprintf(buf, H_STRING_LEN, "(%s)", type);
+	return 0;
+}
+
 
 // note: these standard resource interface functions are not exposed to the
 // caller. all we need here is storage for the sys_cursor / GLCursor and

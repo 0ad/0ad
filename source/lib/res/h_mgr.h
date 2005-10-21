@@ -312,6 +312,7 @@ struct H_VTbl
 	int(*reload)(void* user, const char* fn, Handle);
 	void(*dtor)(void* user);
 	int(*validate)(const void* user);
+	int(*to_string)(const void* user, char* buf);
 	size_t user_size;
 	const char* name;
 };
@@ -324,12 +325,14 @@ typedef H_VTbl* H_Type;
 	static int type##_reload(type*, const char*, Handle);\
 	static void type##_dtor(type*);\
 	static int type##_validate(const type*);\
+	static int type##_to_string(const type*, char* buf);\
 	static H_VTbl V_##type =\
 	{\
 		(void(*)(void*, va_list))type##_init,\
 		(int(*)(void*, const char*, Handle))type##_reload,\
 		(void(*)(void*))type##_dtor,\
 		(int(*)(const void*))type##_validate,\
+		(int(*)(const void*, char*))type##_to_string,\
 		sizeof(type),	/* control block size */\
 		#type			/* name */\
 	};\
@@ -393,6 +396,8 @@ enum
 	// backed by a file)
 	RES_DISALLOW_RELOAD = 0x20
 };
+
+const size_t H_STRING_LEN = 256;
 
 
 

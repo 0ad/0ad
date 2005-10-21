@@ -40,10 +40,10 @@
 #include "ModelDef.h"
 
 #include "ogl.h"
+#include "lib/res/res.h"
 #include "lib/res/file/file.h"
 #include "lib/res/graphics/tex.h"
 #include "lib/res/graphics/ogl_tex.h"
-#include "lib/res/file/vfs.h"
 #include "ps/Loader.h"
 
 #include "renderer/RenderPathVertexShader.h"
@@ -1341,6 +1341,16 @@ inline void CopyTriple(unsigned char* dst,const unsigned char* src)
 // calculate the coordinate of each alphamap within this packed texture
 int CRenderer::LoadAlphaMaps()
 {
+	const char* const key = "(alpha map composite)";
+	Handle ht = ogl_tex_find(key);
+	// alpha map texture had already been created and is still in memory:
+	// reuse it, do not load again.
+	if(ht > 0)
+	{
+		m_hCompositeAlphaMap = ht;
+		return 0;
+	}
+
 	//
 	// load all textures and store Handle in array
 	//
@@ -1370,7 +1380,9 @@ int CRenderer::LoadAlphaMaps()
 	for(uint i=0;i<NumAlphaMaps;i++)
 	{
 		(void)pp_append_file(&pp, fnames[i]);
-		textures[i] = ogl_tex_load(pp.path);
+		// note: these individual textures can be discarded afterwards;
+		// we cache the composite.
+		textures[i] = ogl_tex_load(pp.path, RES_NO_CACHE);
 		RETURN_ERR(textures[i]);
 
 		// get its size and make sure they are all equal.
@@ -1443,7 +1455,7 @@ int CRenderer::LoadAlphaMaps()
 	// upload the composite texture
 	Tex t;
 	(void)tex_wrap(total_w, total_h, 24, 0, data, &t);
-	m_hCompositeAlphaMap = ogl_tex_wrap(&t, "(alpha map composite)");
+	m_hCompositeAlphaMap = ogl_tex_wrap(&t, key);
 	(void)ogl_tex_set_filter(m_hCompositeAlphaMap, GL_LINEAR);
 	(void)ogl_tex_set_wrap  (m_hCompositeAlphaMap, GL_CLAMP_TO_EDGE);
 	int ret = ogl_tex_upload(m_hCompositeAlphaMap, 0, 0, GL_INTENSITY);

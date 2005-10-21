@@ -460,6 +460,12 @@ static int OglTex_validate(const OglTex* ot)
 	return 0;
 }
 
+static int OglTex_to_string(const OglTex* ot, char* buf)
+{
+	snprintf(buf, H_STRING_LEN, "id=%d", ot->id);
+	return 0;
+}
+
 
 // load and return a handle to the texture given in <fn>.
 // for a list of supported formats, see tex.h's tex_load.
@@ -467,6 +473,14 @@ Handle ogl_tex_load(const char* fn, uint flags)
 {
 	Tex* wrapped_tex = 0;	// we're loading from file
 	return h_alloc(H_OglTex, fn, flags, wrapped_tex);
+}
+
+
+// return Handle to an existing object, if it has been loaded and
+// is still in memory; otherwise, a negative error code.
+Handle ogl_tex_find(const char* fn)
+{
+	return h_find(H_OglTex, (uintptr_t)fn);
 }
 
 

@@ -1038,6 +1038,14 @@ skip_issue:
 }
 
 
+static void block_shutdown()
+{
+	for(BlockIt it = block_cache.begin(); it != block_cache.end(); ++it)
+		mem_free(it->second);
+}
+
+
+
 // remove all blocks loaded from the file <fn>. used when reloading the file.
 int file_invalidate_cache(const char* fn)
 {
@@ -1394,5 +1402,6 @@ int file_unmap(File* f)
 int file_shutdown()
 {
 	aiocb_pool_shutdown();
+	block_shutdown();
 	return 0;
 }

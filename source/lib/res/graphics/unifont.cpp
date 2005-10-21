@@ -188,6 +188,12 @@ static int UniFont_validate(const UniFont* f)
 	return 0;
 }
 
+static int UniFont_to_string(const UniFont* UNUSED(f), char* buf)
+{
+	snprintf(buf, H_STRING_LEN, "");
+	return 0;
+}
+
 
 Handle unifont_load(const char* fn, int scope)
 {

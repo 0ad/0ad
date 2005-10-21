@@ -768,18 +768,20 @@ void Shutdown()
 		snd_shutdown();
 		vfs_shutdown();
 
+		// must come before h_mgr_shutdown - it frees IO buffers,
+		// which we don't want showing up as leaks.
+		file_shutdown();
+
 		// this forcibly frees all open handles (thus preventing real leaks),
 		// and makes further access to h_mgr impossible.
 		h_mgr_shutdown();
 
-		// must come after h_mgr_shutdown - it causes memory to be freed,
-		// which requires this module to still be active.
+		// must come after h_mgr_shutdown - it causes memory
+		// to be freed, which requires this module to still be active.
 		mem_shutdown();
 	TIMER_END("resource modules");
 
 	TIMER_BEGIN("shutdown misc");
-		file_shutdown();
-
 		timer_display_client_totals();
 
 		// should be last, since the above use them

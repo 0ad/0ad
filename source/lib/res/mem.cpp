@@ -24,6 +24,8 @@ struct Mem
 
 	uintptr_t ctx;
 	MEM_DTOR dtor;	// this allows user-specified dtors.
+
+	void* owner;
 };
 
 H_TYPE_DEFINE(Mem);
@@ -144,6 +146,7 @@ static void Mem_init(Mem* m, va_list args)
 	m->raw_size  = va_arg(args, size_t);
 	m->dtor      = va_arg(args, MEM_DTOR);
 	m->ctx       = va_arg(args, uintptr_t);
+	m->owner     = va_arg(args, void*);
 }
 
 static void Mem_dtor(Mem* m)
@@ -177,6 +180,21 @@ static int Mem_validate(const Mem* m)
 	return 0;
 }
 
+static int Mem_to_string(const Mem* m, char* buf)
+{
+	char owner_sym[DBG_SYMBOL_LEN];
+	if(debug_resolve_symbol(m->owner, owner_sym, 0, 0) < 0)
+	{
+		if(m->owner)
+			snprintf(owner_sym, ARRAY_SIZE(owner_sym), "(%p)", m->owner);
+		else
+			strcpy_s(owner_sym, ARRAY_SIZE(owner_sym), "(?)");
+	}
+
+	snprintf(buf, H_STRING_LEN, "p=%p size=%d owner=%s", m->p, m->size, owner_sym);
+	return 0;
+}
+
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -202,54 +220,6 @@ static void* heap_alloc(size_t raw_size, uintptr_t& ctx)
 	return raw_p;
 }
 
-
-//////////////////////////////////////////////////////////////////////////////
-
-/*
-static u8* pool;
-static size_t pool_pos;
-static const size_t POOL_CAP = 8*MiB;	// TODO: user editable
-
-
-static void pool_free(void* UNUSED(raw_p), size_t raw_size, uintptr_t ctx)
-{
-	size_t ofs = (size_t)ctx;
-
-	// at or beyond current next-alloc position: invalid
-	if(ofs >= pool_pos)
-		debug_warn("pool_free: invalid ctx, beyond end of pool");
-	// at end of pool; 'free' it by moving pos back
-	else if(ofs + raw_size == pool_pos)
-		pool_pos = ofs;
-	else
-		;	// TODO: warn about lost memory in pool;
-			// suggest using a different allocator
-}
-
-
-static void* pool_alloc(const size_t raw_size, uintptr_t& ctx)
-{
-	ctx = ~0U;	// make sure it's invalid if we fail
-
-	if(!pool)
-	{
-		pool = (u8*)mem_alloc(POOL_CAP, 64*KiB, RES_STATIC);
-		if(!pool)
-			return 0;
-	}
-
-	if(pool_pos + raw_size > POOL_CAP)
-	{
-		debug_warn("pool_alloc: not enough memory in pool");
-		return 0;
-	}
-
-	ctx = (uintptr_t)pool_pos;
-	pool_pos += raw_size;
-	void* raw_p = (u8*)pool + ctx;
-	return raw_p;
-}
-*/
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -279,7 +249,7 @@ int mem_free_p(void*& p)
 // create a H_MEM handle of type MEM_USER,
 // and assign it the specified memory range.
 // if dtor is non-NULL, it is called (passing ctx) when the handle is freed.
-Handle mem_wrap(void* p, size_t size, uint flags, void* raw_p, size_t raw_size, MEM_DTOR dtor, uintptr_t ctx)
+Handle mem_wrap(void* p, size_t size, uint flags, void* raw_p, size_t raw_size, MEM_DTOR dtor, uintptr_t ctx, void* owner)
 {
 	if(!p || !size)
 		CHECK_ERR(ERR_INVALID_PARAM);
@@ -298,7 +268,7 @@ Handle mem_wrap(void* p, size_t size, uint flags, void* raw_p, size_t raw_size, 
 		raw_size = size;
 
 	hm = h_alloc(H_Mem, (const char*)p, flags|RES_KEY|RES_NO_CACHE,
-		p, size, raw_p, raw_size, dtor, ctx);
+		p, size, raw_p, raw_size, dtor, ctx, owner);
 	return hm;
 }
 
@@ -330,6 +300,12 @@ void* mem_alloc(size_t size, const size_t align, uint flags, Handle* phm)
 	if(phm)
 		*phm = ERR_NO_MEM;
 
+#ifdef NDEBUG
+	void* owner = 0;
+#else
+	void* owner = debug_get_nth_caller(1, 0);
+#endif
+
 	// note: this is legitimate. vfs_load on 0-length files must return
 	// a valid and unique pointer to an (at least) 0-length buffer.
 	if(size == 0)
@@ -357,7 +333,7 @@ void* mem_alloc(size_t size, const size_t align, uint flags, Handle* phm)
 	void* p = (void*)round_up((uintptr_t)raw_p, align);
 
 
-	Handle hm = mem_wrap(p, size, flags, raw_p, raw_size, dtor, ctx);
+	Handle hm = mem_wrap(p, size, flags, raw_p, raw_size, dtor, ctx, owner);
 	if(!hm)			// failed to allocate a handle
 	{
 		debug_warn("mem_wrap failed");
