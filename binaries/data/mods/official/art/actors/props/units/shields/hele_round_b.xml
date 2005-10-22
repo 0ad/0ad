@@ -11,23 +11,24 @@
   </group>
 
   <group>
-    <variant name="U">
+    <variant name="u">
       <texture>props/shield/hele_round_u.dds</texture>
     </variant>
-    <variant name="A">
+    <variant name="a">
       <texture>props/shield/hele_round_a.dds</texture>
     </variant>
-    <variant name="P">
+    <variant name="p">
       <texture>props/shield/hele_round_p.dds</texture>
     </variant>
-    <variant name="J">
+    <variant name="j">
       <texture>props/shield/hele_round_j.dds</texture>
     </variant>
-    <variant name="X">
+    <variant name="x">
       <texture>props/shield/hele_round_x.dds</texture>
     </variant>
+    <variant name="y">
+      <texture>props/shield/hele_round_y.dds</texture>
+    </variant>
   </group>
-
-  <material>player_trans.xml</material>
 
 </actor>
