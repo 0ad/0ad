@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
 
+  <castshadow/>
+
   <group>
     <variant name="base">
       <mesh>props/shield/round_h_f.pmd</mesh>
@@ -11,17 +13,8 @@
   </group>
 
   <group>
-    <variant name="m">
-      <texture>props/shield/hele_round_m.dds</texture>
-    </variant>
-    <variant name="t">
-      <texture>props/shield/hele_round_t.dds</texture>
-    </variant>
-    <variant name="k">
-      <texture>props/shield/hele_round_k.dds</texture>
-    </variant>
-    <variant name="f">
-      <texture>props/shield/hele_round_f.dds</texture>
+    <variant name="e">
+      <texture>props/shield/hele_round_e.dds</texture>
     </variant>
   </group>
 
