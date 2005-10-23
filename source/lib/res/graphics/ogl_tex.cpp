@@ -18,9 +18,9 @@
 
 #include "precompiled.h"
 
-#include "sysdep/gfx.h"
-
 #include "lib.h"
+#include "app_hooks.h"
+#include "sysdep/gfx.h"
 #include "../res.h"
 #include "ogl.h"
 #include "tex.h"
@@ -653,7 +653,7 @@ static void detect_gl_upload_caps()
 		have_s3tc = oglHaveExtensions(0, "GL_ARB_texture_compression", "GL_EXT_texture_compression_s3tc", 0) == 0;
 	}
 
-//apphook - call back into override if app thinks anything should be disabled
+	ah_override_gl_upload_caps();
 
 	// warn if more-or-less essential features are missing
 	if(!have_s3tc)

@@ -53,9 +53,6 @@ int VFSUtil::EnumDirEnts(const CStr start_path, int flags, const char* user_filt
 	debug_assert((flags & ~(RECURSIVE)) == 0);
 	const bool recursive = (flags & RECURSIVE) != 0;
 
-	// note: currently no need to return subdirectories,
-	// but enabling it isn't hard (we have to check for / anyway).
-
 	char filter_buf[VFS_MAX_PATH];
 	const char* filter = user_filter;
 	bool want_dir = true;

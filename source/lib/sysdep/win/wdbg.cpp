@@ -57,47 +57,19 @@ static bool is_locked()
 }
 
 
+void debug_puts(const char* text)
+{
+	OutputDebugString(text);
+}
+
+void debug_putws(const wchar_t* text)
+{
+	OutputDebugStringW(text);
+}
+
+
+
 //////////////////////////////////////////////////////////////////////////////
-
-
-// need to shoehorn printf-style variable params into
-// the OutputDebugString call.
-// - don't want to split into multiple calls - would add newlines to output.
-// - fixing Win32 _vsnprintf to return # characters that would be written,
-//   as required by C99, looks difficult and unnecessary. if any other code
-//   needs that, implement GNU vasprintf.
-// - fixed size buffers aren't nice, but much simpler than vasprintf-style
-//   allocate+expand_until_it_fits. these calls are for quick debug output,
-//   not loads of data, anyway.
-
-// max # characters (including \0) output by debug_(w)printf in one call.
-static const int MAX_CNT = 512;
-
-void debug_printf(const char* fmt, ...)
-{
-	char buf[MAX_CNT];
-	buf[MAX_CNT-1] = '\0';
-
-	va_list ap;
-	va_start(ap, fmt);
-	vsnprintf(buf, MAX_CNT-1, fmt, ap);
-	va_end(ap);
-
-	OutputDebugStringA(buf);
-}
-
-void debug_wprintf(const wchar_t* fmt, ...)
-{
-	wchar_t buf[MAX_CNT];
-	buf[MAX_CNT-1] = '\0';
-
-	va_list ap;
-	va_start(ap, fmt);
-	vswprintf(buf, MAX_CNT-1, fmt, ap);
-	va_end(ap);
-
-	OutputDebugStringW(buf);
-}
 
 
 // inform the debugger of the current thread's description, which it then

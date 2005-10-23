@@ -91,10 +91,10 @@ void CTextureManager::DeleteTexture(CTextureEntry* entry)
 // jw: indeed this is inefficient and RecurseDirectory should be implemented
 // via VFSUtil::EnumFiles, but it works fine and "only" takes 25ms for
 // typical maps. therefore, we'll leave it for now.
-void CTextureManager::LoadTextures(CTerrainProperties *props, const char* dir, const char* fileext_filter)
+void CTextureManager::LoadTextures(CTerrainProperties *props, const char* dir)
 {
 	VFSUtil::FileList files;
-	if(!VFSUtil::FindFiles(dir, fileext_filter, files))
+	if(!VFSUtil::FindFiles(dir, 0, files))
 		// FindFiles has already logged the failure
 		return;
 
@@ -102,12 +102,20 @@ void CTextureManager::LoadTextures(CTerrainProperties *props, const char* dir, c
 	{
 		const char* texture_name = it->c_str();
 
+		// skip files that obviously aren't textures.
+		// note: this loop runs for each file in dir, even .xml;
+		// we should skip those to avoid spurious "texture load failed".
+		// we can't use FindFile's filter param because new texture formats
+		// may later be added and that interface doesn't support specifying
+		// multiple extensions.
+		const char* ext = strrchr(texture_name, '.');
+		if(!ext || !stricmp(ext, ".xml") || !stricmp(ext, ".xmb") || !stricmp(ext, ".dtd"))
+			continue;
+
 		// build name of associated xml file (i.e. replace extension)
 		char xml_name[PATH_MAX+5];	// add room for .XML
 		strcpy_s(xml_name, PATH_MAX, texture_name);
-		char* ext = strrchr(xml_name, '.');
-		if(ext)
-			strcpy(ext, ".xml");	// safe
+		strcpy(xml_name + (ext-texture_name), ".xml");	// safe
 
 		CTerrainProperties *myprops = NULL;
 		// Has XML file -> attempt to load properties
@@ -154,11 +162,7 @@ void CTextureManager::RecurseDirectory(CTerrainProperties *parentProps, const ch
 		RecurseDirectory(props, subdirs[i].c_str());
 	}
 
-	// TODO: just iterate over all files and check if its extension is supported
-	for (int i=0;i<ARRAY_SIZE(SupportedTextureFormats);i++)
-	{
-		LoadTextures(props, cur_dir_path, SupportedTextureFormats[i]);
-	}
+	LoadTextures(props, cur_dir_path);
 }
 
 

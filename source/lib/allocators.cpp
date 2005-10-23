@@ -236,6 +236,11 @@ int da_append(DynArray* da, const void* data, size_t size)
 // (note: this allocator returns fixed-size blocks, the size of which is
 // specified at pool_create time. this makes O(1) time possible.) 
 
+// parameters:
+// - fixed-size allocations
+// - can free/reuse allocations
+
+
 // "freelist" is a pointer to the first unused element (0 if there are none);
 // its memory holds a pointer to the next free one in list.
 
@@ -341,6 +346,67 @@ void pool_free(Pool* p, void* el)
 
 
 //-----------------------------------------------------------------------------
+// bucket allocator
+//-----------------------------------------------------------------------------
+
+// parameters:
+// - variable-size allocations
+// - can only free all allocations at once
+// - no init necessary
+// - no fixed limit
+
+// must be constant and power-of-2 to allow fast modulo.
+const size_t BUCKET_SIZE = 4*KiB;
+
+
+void* bucket_alloc(Bucket* b, size_t size)
+{
+	// would overflow a bucket
+	if(size > BUCKET_SIZE-sizeof(u8*))
+	{
+		debug_warn("size doesn't fit in a bucket");
+		return 0;
+	}
+
+	// make sure the next item will be aligned
+	size = round_up(size, 8);
+
+	// if there's not enough space left or no bucket yet (first call),
+	// close it and allocate another.
+	if(b->pos+size > BUCKET_SIZE || !b->bucket)
+	{
+		u8* bucket = (u8*)malloc(BUCKET_SIZE);
+		if(!bucket)
+			return 0;
+		*(u8**)bucket = b->bucket;
+		b->bucket = bucket;
+		// skip bucket list field and align to 8 bytes (note: malloc already
+		// aligns to at least 8 bytes, so don't take b->bucket into account)
+		b->pos = round_up(sizeof(u8*), 8);
+		b->num_buckets++;
+	}
+
+	void* ret = b->bucket+b->pos;
+	b->pos += size;
+	return ret;
+}
+
+
+void bucket_free_all(Bucket* b)
+{
+	while(b->bucket)
+	{
+		u8* prev_bucket = *(u8**)b->bucket;
+		free(b->bucket);
+		b->bucket = prev_bucket;
+		b->num_buckets--;
+	}
+
+	debug_assert(b->num_buckets == 0);
+}
+
+
+//-----------------------------------------------------------------------------
 // matrix allocator
 //-----------------------------------------------------------------------------
 
@@ -414,10 +480,23 @@ static void test_expand()
 {
 }
 
+static void test_matrix()
+{
+	// not much we can do here; allocate a matrix and make sure
+	// its memory layout is as expected (C-style row-major).
+	int** m = (int**)matrix_alloc(3, 3, sizeof(int));
+	m[0][0] = 1; debug_assert(((int*)m)[0*3+0] == 1);
+	m[0][1] = 2; debug_assert(((int*)m)[0*3+1] == 2);
+	m[1][0] = 3; debug_assert(((int*)m)[1*3+0] == 3);
+	m[2][2] = 4; debug_assert(((int*)m)[2*3+2] == 4);
+	matrix_free((void**)m);
+}
+
 static void self_test()
 {
 	test_api();
 	test_expand();
+	test_matrix();
 }
 
 RUN_SELF_TEST;

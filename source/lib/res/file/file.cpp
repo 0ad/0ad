@@ -590,14 +590,13 @@ int file_validate(const File* f)
 	return 0;
 }
 
-
-#define CHECK_FILE(f) RETURN_ERR(file_validate(f))
+#define CHECK_FILE(f) CHECK_ERR(file_validate(f))
 
 
 int file_open(const char* p_fn, const uint flags, File* f)
 {
 	// zero output param in case we fail below.
-	memset(f, 0, sizeof(File));
+	memset(f, 0, sizeof(*f));
 
 	if(flags > FILE_FLAG_MAX)
 		return ERR_INVALID_PARAM;
@@ -605,11 +604,6 @@ int file_open(const char* p_fn, const uint flags, File* f)
 	char n_fn[PATH_MAX];
 	RETURN_ERR(file_make_full_native_path(p_fn, n_fn));
 
-	if(!f)
-		goto invalid_f;
-		// jump to CHECK_FILE post-check, which will handle this.
-
-{
 	// don't stat if opening for writing - the file may not exist yet
 	off_t size = 0;
 
@@ -631,8 +625,8 @@ int file_open(const char* p_fn, const uint flags, File* f)
 		// notes:
 		// - up to 32KB can be read by one SCSI request.
 		// - flags are stored below and will influence file_io.
-//		if(size <= 32*KiB)
-//			flags |= FILE_NO_AIO;
+		//if(size <= 32*KiB)
+		//	flags |= FILE_NO_AIO;
 
 		// make sure <n_fn> is a regular file
 		if(!S_ISREG(s.st_mode))
@@ -661,11 +655,7 @@ int file_open(const char* p_fn, const uint flags, File* f)
 	f->mapping  = 0;
 	f->map_refs = 0;
 	f->fd       = fd;
-}
-
-invalid_f:
 	CHECK_FILE(f);
-
 	return 0;
 }
 

@@ -67,6 +67,144 @@ void debug_wprintf_mem(const wchar_t* fmt, ...)
 }
 
 
+
+// need to shoehorn printf-style variable params into
+// the OutputDebugString call.
+// - don't want to split into multiple calls - would add newlines to output.
+// - fixing Win32 _vsnprintf to return # characters that would be written,
+//   as required by C99, looks difficult and unnecessary. if any other code
+//   needs that, implement GNU vasprintf.
+// - fixed size buffers aren't nice, but much simpler than vasprintf-style
+//   allocate+expand_until_it_fits. these calls are for quick debug output,
+//   not loads of data, anyway.
+
+// max # characters (including \0) output by debug_(w)printf in one call.
+static const int MAX_CNT = 512;
+
+
+// rationale: static data instead of std::set to allow setting at any time.
+// note: need only set the pointer, but strcmp when reading (because
+// 2 different call sites may have used equal literals at different addresses).
+static const uint MAX_TAGS = 20;
+static u32 tags[MAX_TAGS];
+static uint num_tags;
+
+static void filter_add(const char* tag)
+{
+	const u32 hash = fnv_hash(tag);
+
+	// make sure it isn't already in the list
+	for(uint i = 0; i < MAX_TAGS; i++)
+		if(tags[i] == hash)
+			return;
+
+	// too many already?
+	if(num_tags == MAX_TAGS)
+	{
+		debug_warn("increase MAX_TAGS");
+		return;
+	}
+
+	tags[num_tags++] = hash;
+}
+
+static void filter_remove(const char* tag)
+{
+	const u32 hash = fnv_hash(tag);
+
+	for(uint i = 0; i < MAX_TAGS; i++)
+		if(tags[i] == hash)
+		{
+			// replace with last element (avoid holes)
+			tags[i] = tags[MAX_TAGS-1];
+			num_tags--;
+
+			// can only happen once, so we're done.
+			return;
+		}
+}
+
+static bool filter_allows(const char* text)
+{
+	uint i;
+	for(i = 0; ; i++)
+	{
+		// .. no colon - should be displayed
+		if(text[i] == ' ' || text[i] == '\0')
+			return true;
+		if(text[i] == ':' && i != 0)
+			break;
+	}
+
+	const u32 hash = fnv_hash(text, i);
+
+	// check if allow-entry is found
+	for(i = 0; i < MAX_TAGS; i++)
+		if(tags[i] == hash)
+			return true;
+
+	return false;
+}
+
+
+static bool filter_allows(const wchar_t* text)
+{
+	// convert to char (ugly, assumes buf contains ASCII up to ':')
+	// default to allowing it if text isn't ASCII (fail-safe).
+	char buf[MAX_CNT];
+	uint i;
+	for(i = 0; ; i++)
+	{
+		// .. no colon - should be displayed
+		if(text[i] == ' ' || text[i] == '\0')
+			return true;
+		if(text[i] == ':' && i != 0)
+			break;
+		buf[i] = text[i];
+	}
+
+	const u32 hash = fnv_hash(buf, i);
+
+	// check if allow-entry is found
+	for(i = 0; i < MAX_TAGS; i++)
+		if(tags[i] == hash)
+			return true;
+
+	return false;
+}
+
+
+void debug_printf(const char* fmt, ...)
+{
+	char buf[MAX_CNT];
+	buf[MAX_CNT-1] = '\0';
+
+	va_list ap;
+	va_start(ap, fmt);
+	vsnprintf(buf, MAX_CNT-1, fmt, ap);
+	va_end(ap);
+
+	if(filter_allows(buf))
+		debug_puts(buf);
+}
+
+void debug_wprintf(const wchar_t* fmt, ...)
+{
+	wchar_t buf[MAX_CNT];
+	buf[MAX_CNT-1] = '\0';
+
+	va_list ap;
+	va_start(ap, fmt);
+	vswprintf(buf, MAX_CNT-1, fmt, ap);
+	va_end(ap);
+
+	if(filter_allows(buf))
+		debug_putws(buf);
+}
+
+
+//-----------------------------------------------------------------------------
+
 int debug_write_crashlog(const wchar_t* text)
 {
 	FILE* f = fopen("crashlog.txt", "w");
@@ -82,7 +220,6 @@ int debug_write_crashlog(const wchar_t* text)
 
 	// allow user to bundle whatever information they want
 	ah_bundle_logs(f);
-	
 
 	fwprintf(f, L"Last known activity:\n\n %ls\n", debug_log);
 
@@ -310,6 +447,9 @@ ErrorReaction display_error(const wchar_t* description, int flags,
 		file = "unknown";
 	if(line <= 0)
 		line = 0;
+
+	// translate
+	description = ah_translate(description);
 
 	// display in output window; double-click will navigate to error location.
 	const char* slash = strrchr(file, DIR_SEP);

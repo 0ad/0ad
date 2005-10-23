@@ -407,14 +407,18 @@ int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int*
 }
 #include "mmgr.h"
 
-void debug_printf(const char* fmt, ...)
+void debug_puts(const char* text)
 {
-	va_list args;
-	va_start(args, fmt);
-	vprintf(fmt, args);
-	va_end(args);
+	fputs(text, stdout);
 	fflush(stdout);
 }
+
+void debug_putws(const wchar_t* text)
+{
+	fputws(text, stdout);
+	fflush(stdout);
+}
+
 
 // TODO: Do these properly. (I don't know what I'm doing; I just
 // know that these functions are required in order to compile...)

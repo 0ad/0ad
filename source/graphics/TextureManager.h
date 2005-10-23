@@ -63,9 +63,9 @@ private:
 
 	uint m_LastGroupIndex;
 
-	// Find all textures in directory matching the file extension, check if
+	// Find+load all textures in directory; check if
 	// there's an override XML with the same basename (if there is, load it)
-	void LoadTextures(CTerrainProperties *props, const char* dir, const char* ext);
+	void LoadTextures(CTerrainProperties *props, const char* dir);
 	
 	// Load all terrains below path, using props as the parent property sheet.
 	void RecurseDirectory(CTerrainProperties *props, const char* dir);

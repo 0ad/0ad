@@ -153,6 +153,9 @@ extern enum ErrorReaction debug_assert_failed(const char* file, int line,
 // we therefore just squelch the warning (unfortunately non-portable).
 #define debug_warn(str) debug_assert((str) && 0)
 
+extern void debug_puts(const char* text);
+extern void debug_putws(const wchar_t* text);
+
 // write to the debugger output window (may take ~1 ms!)
 extern void debug_printf(const char* fmt, ...);
 extern void debug_wprintf(const wchar_t* fmt, ...);

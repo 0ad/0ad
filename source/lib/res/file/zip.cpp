@@ -786,13 +786,6 @@ int inf_set_dest(uintptr_t _ctx, void* out, size_t out_size)
 #endif
 }
 
-static double total_inf_time;
-
-static void dump()
-{
-	debug_printf("TOTAL INFLATE TIME: %g\n", total_inf_time);
-}
-
 
 TIMER_ADD_CLIENT(tc_zip_inflate);
 TIMER_ADD_CLIENT(tc_zip_memcpy);
@@ -804,9 +797,6 @@ ssize_t inf_inflate(uintptr_t _ctx, void* in, size_t in_size, bool free_in_buf =
 #ifdef NO_ZLIB
 	return -1;
 #else
-
-ONCE(atexit(dump));
-double t0 = get_time();
 
 	InfCtx* ctx = (InfCtx*)_ctx;
 	z_stream* zs = &ctx->zs;
@@ -844,9 +834,6 @@ double t0 = get_time();
 		zs->total_in += size;
 		zs->total_out += size;
 	}
-
-double t1 = get_time();
-total_inf_time += t1-t0;
 
 	// check+return how much actual data was read
 	//
@@ -926,6 +913,25 @@ int zip_stat(Handle ha, const char* fn, struct stat* s)
 }
 
 
+
+
+int zip_validate(const ZFile* zf)
+{
+	if(!zf)
+		return ERR_INVALID_PARAM;
+	// note: don't check zf->ha - it may be freed at shutdown before
+	// its files. TODO: revisit once dependency support is added.
+	if(!zf->ucsize)
+		return -2;
+	else if(!zf->inf_ctx)
+		return -3;
+
+	return 0;
+}
+
+#define CHECK_ZFILE(zf) CHECK_ERR(zip_validate(zf))
+
+
 // open file, and fill *zf with information about it.
 // return < 0 on error (output param zeroed). 
 int zip_open(const Handle ha, const char* fn, int flags, ZFile* zf)
@@ -949,6 +955,7 @@ int zip_open(const Handle ha, const char* fn, int flags, ZFile* zf)
 	zf->ha        = ha;
 	zf->inf_ctx   = inf_init_ctx(zfile_compressed(zf));
 	zf->is_mapped = 0;
+	CHECK_ZFILE(zf);
 	return 0;
 }
 
@@ -956,24 +963,11 @@ int zip_open(const Handle ha, const char* fn, int flags, ZFile* zf)
 // close file.
 int zip_close(ZFile* zf)
 {
-	// remaining ZFile fields don't need to be freed/cleared
+	CHECK_ZFILE(zf);
+	// other ZFile fields don't need to be freed/cleared
 	return inf_free_ctx(zf->inf_ctx);
 }
 
-
-int zip_validate(const ZFile* zf)
-{
-	if(!zf)
-		return ERR_INVALID_PARAM;
-	// note: don't check zf->ha - it may be freed at shutdown before
-	// its files. TODO: revisit once dependency support is added.
-	if(!zf->ucsize)
-		return -2;
-	else if(!zf->inf_ctx)
-		return -3;
-
-	return 0;
-}
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -1003,6 +997,7 @@ int zip_io_issue(ZFile* zf, off_t user_ofs, size_t max_output_size, void* user_b
 	// zero output param in case we fail below.
 	memset(io, 0, sizeof(ZipIo));
 
+	CHECK_ZFILE(zf);
 	H_DEREF(zf->ha, ZArchive, za);
 
 	// transfer params that differ if compressed
@@ -1165,8 +1160,7 @@ static ssize_t read_cb(uintptr_t ctx, void* buf, size_t size)
 // return bytes read, or a negative error code.
 ssize_t zip_read(ZFile* zf, off_t ofs, size_t size, void* p, FileIOCB cb, uintptr_t ctx)
 {
-	//const bool compressed = zfile_compressed(zf);
-
+	CHECK_ZFILE(zf);
 	H_DEREF(zf->ha, ZArchive, za);
 
 	ofs += zf->ofs;
@@ -1175,10 +1169,10 @@ ssize_t zip_read(ZFile* zf, off_t ofs, size_t size, void* p, FileIOCB cb, uintpt
 	// if that satisfied the request, we're done
 
 
-
 	// not compressed - just pass it on to file_io
 	// (avoid the Zip inflate start/finish stuff below)
-//	if(!compressed)
+	//const bool compressed = zfile_compressed(zf);
+	//	if(!compressed)
 //		return file_io(&za->f, ofs, csize, p);
 		// no need to set last_raw_ofs - only checked if compressed.
 
@@ -1240,6 +1234,8 @@ int zip_map(ZFile* zf, void*& p, size_t& size)
 	p = 0;
 	size = 0;
 
+	CHECK_ZFILE(zf);
+
 	// mapping compressed files doesn't make sense because the
 	// compression algorithm is unspecified - disallow it.
 	if(zfile_compressed(zf))
@@ -1271,6 +1267,8 @@ int zip_map(ZFile* zf, void*& p, size_t& size)
 // may be removed when no longer needed.
 int zip_unmap(ZFile* zf)
 {
+	CHECK_ZFILE(zf);
+
 	// make sure archive mapping refcount remains balanced:
 	// don't allow multiple|"false" unmaps.
 	if(!zf->is_mapped)

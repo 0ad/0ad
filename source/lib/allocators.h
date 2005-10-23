@@ -75,6 +75,30 @@ extern void pool_free(Pool* p, void* el);
 
 
 //
+// bucket allocator
+//
+
+struct Bucket
+{
+	// currently open bucket. must be initialized to 0.
+	u8* bucket;
+
+	// offset of free space at end of current bucket (i.e. # bytes in use).
+	// must be initialized to 0.
+	size_t pos;
+
+	// records # buckets allocated; used to check if the list of them
+	// isn't corrupted. must be initialized to 0.
+	uint num_buckets;
+};
+
+
+extern void* bucket_alloc(Bucket* b, size_t size);
+
+extern void bucket_free_all(Bucket* b);
+
+
+//
 // matrix allocator
 //
 

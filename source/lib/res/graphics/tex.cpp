@@ -65,6 +65,8 @@ int tex_validate(const Tex* t)
 	return 0;
 }
 
+#define CHECK_TEX(t) CHECK_ERR(tex_validate(t))
+
 
 // check if the given texture format is acceptable: 8bpp grey,
 // 24bpp color or 32bpp color+alpha (BGR / upside down are permitted).
@@ -184,7 +186,7 @@ TIMER_ACCRUE(tc_plain_transform);
 
 	// (this is also called directly instead of through ogl_tex, so
 	// we need to validate)
-	CHECK_ERR(tex_validate(t));
+	CHECK_TEX(t);
 
 	// extract texture info
 	const uint w = t->w, h = t->h, bpp = t->bpp, flags = t->flags;
@@ -291,6 +293,7 @@ TIMER_ACCRUE(tc_plain_transform);
 		t->hm = hm;
 	}
 
+	CHECK_TEX(t);
 	return 0;
 }
 
@@ -315,6 +318,9 @@ void tex_set_global_orientation(int o)
 
 static void flip_to_global_orientation(Tex* t)
 {
+	// (can't use normal CHECK_TEX due to void return)
+	WARN_ERR(tex_validate(t));
+
 	uint orientation = t->flags & TEX_ORIENTATION;
 	// if codec knows which way around the image is (i.e. not DDS):
 	if(orientation)
@@ -328,6 +334,9 @@ static void flip_to_global_orientation(Tex* t)
 	// if the codec doesn't know: the default orientation should be chosen
 	// to make that work correctly (see "Default Orientation" in docs).
 	t->flags = (t->flags & ~TEX_ORIENTATION) | global_orientation;
+
+	// (can't use normal CHECK_TEX due to void return)
+	WARN_ERR(tex_validate(t));
 }
 
 
@@ -444,12 +453,14 @@ int tex_load(const char* fn, Tex* t)
 	{
 		(void)tex_free(t);
 		debug_warn("failed");
+		return ret;
 	}
 
 	// do not free hm! it either still holds the image data (i.e. texture
 	// wasn't compressed) or was replaced by a new buffer for the image data.
 
-	return ret;
+	CHECK_TEX(t);
+	return 0;
 }
 
 
@@ -488,6 +499,7 @@ int tex_wrap(uint w, uint h, uint bpp, uint flags, void* img, Tex* t)
 	// TODO: remove when mem_wrap / mem_get_ptr add a reference correctly
 	h_add_ref(t->hm);
 
+	CHECK_TEX(t);
 	return 0;
 }
 
@@ -516,7 +528,8 @@ TIMER_ADD_CLIENT(tc_transform);
 // that are set in transforms.
 int tex_transform(Tex* t, uint transforms)
 {
-	TIMER_ACCRUE(tc_transform);
+TIMER_ACCRUE(tc_transform);
+	CHECK_TEX(t);
 
 	const uint target_flags = t->flags ^ transforms;
 	for(;;)
@@ -540,6 +553,7 @@ int tex_transform(Tex* t, uint transforms)
 // (note: this is equivalent to tex_transform(t, t->flags^new_flags).
 int tex_transform_to(Tex* t, uint new_flags)
 {
+	// tex_transform takes care of validating <t>
 	const uint transforms = t->flags ^ new_flags;
 	return tex_transform(t, transforms);
 }
@@ -551,8 +565,8 @@ int tex_transform_to(Tex* t, uint new_flags)
 // header(s) that may come before it. see Tex.hm comment above.
 u8* tex_get_data(const Tex* t)
 {
-	if(tex_validate(t) < 0)
-		return 0;
+	// (can't use normal CHECK_TEX due to u8* return value)
+	WARN_ERR(tex_validate(t));
 
 	u8* p = (u8*)mem_get_ptr(t->hm);
 	if(!p)
@@ -573,8 +587,8 @@ static void add_level_size(uint UNUSED(level), uint UNUSED(level_w), uint UNUSED
 // less error-prone (e.g. confusing bits_per_pixel with bytes).
 size_t tex_img_size(const Tex* t)
 {
-	if(tex_validate(t) < 0)
-		return 0;
+	// (can't use normal CHECK_TEX due to size_t return value)
+	WARN_ERR(tex_validate(t));
 
 	const int levels_to_skip = (t->flags & TEX_MIPMAPS)? 0 : TEX_BASE_LEVEL_ONLY;
 	const uint data_padding = (t->flags & TEX_DXT)? 4 : 1;
@@ -607,6 +621,7 @@ size_t tex_hdr_size(const char* fn)
 // transformed to write it out in the format determined by <fn>'s extension.
 int tex_write(Tex* t, const char* fn)
 {
+	CHECK_TEX(t);
 	CHECK_ERR(validate_format(t->bpp, t->flags));
 
 	// we could be clever here and avoid the extra alloc if our current

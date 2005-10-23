@@ -294,7 +294,7 @@ done:
 		new_description = load_requests.front().description.c_str();
 	wcscpy_s(description, max_chars, new_description);
 
-	debug_printf("LDR_ProgressiveLoad RETURNING; desc=%ls progress=%d\n", description, *progress_percent);
+	debug_printf("LOADER: returning; desc=%ls progress=%d\n", description, *progress_percent);
 
 	return ret;
 }

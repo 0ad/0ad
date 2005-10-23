@@ -10,6 +10,7 @@
 #include "../res.h"
 #include "vfs_path.h"
 #include "vfs_tree.h"
+#include "lib/allocators.h"
 
 
 // we add/cancel directory watches from the VFS mount code for convenience -
@@ -89,73 +90,7 @@ enum TNodeType
 };
 
 
-//////////////////////////////////////////////////////////////////////////////
-//
-// "bucket" allocator for TNodes; used by DynHashTbl
-//
-//////////////////////////////////////////////////////////////////////////////
-
-
-const size_t BUCKET_SIZE = 8*KiB;
-
-static u8* bucket_pos;
-static uint num_buckets;
-
-
-static TNode* node_alloc(size_t size)
-{
-	// would overflow a bucket
-	if(size > BUCKET_SIZE-sizeof(u8*))
-	{
-		debug_warn("size doesn't fit in a bucket");
-		return 0;
-	}
-
-	size = round_up(size, 8);
-	// ensure alignment, since size includes a string
-	const uintptr_t addr = (uintptr_t)bucket_pos;
-	size_t bytes_used = addr % BUCKET_SIZE;
-	// a node fit exactly at the end of a bucket
-	if(!bytes_used)
-		bytes_used = BUCKET_SIZE;
-	// addr = 0 on first call (no bucket yet allocated)
-	if(addr == 0 || bytes_used+size > BUCKET_SIZE)
-	{
-		u8* prev_bucket = (u8*)addr - bytes_used;
-		if(addr == 0)
-			prev_bucket = 0;
-		u8* bucket = (u8*)mem_alloc(BUCKET_SIZE, BUCKET_SIZE);
-		if(!bucket)
-			return 0;
-		*(u8**)bucket = prev_bucket;
-		bucket_pos = bucket+round_up(sizeof(u8*), 8);
-		num_buckets++;
-	}
-
-	TNode* node = (TNode*)bucket_pos;
-	bucket_pos = (u8*)node+size;
-	return node;
-}
-
-
-static void node_free_all()
-{
-	const uintptr_t addr = (uintptr_t)bucket_pos;
-	u8* bucket = bucket_pos - (addr % BUCKET_SIZE);
-
-	// covers bucket_pos == 0 case
-	while(bucket)
-	{
-		u8* prev_bucket = *(u8**)bucket;
-		mem_free(bucket);
-		bucket = prev_bucket;
-		num_buckets--;
-	}
-
-	debug_assert(num_buckets == 0);
-}
-
-
+static Bucket node_buckets;
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -429,7 +364,6 @@ static inline Key GetKey(const T t)
 //
 //////////////////////////////////////////////////////////////////////////////
 
-
 void TDir::init()
 {
 	flags = 0;
@@ -459,7 +393,7 @@ int TDir::add(const char* name, TNodeType new_type, TNode** pnode)
 
 	{
 	const size_t size = sizeof(TNode)+strnlen(name, VFS_MAX_PATH)+1;
-	node = node_alloc(size);
+	node = (TNode*)bucket_alloc(&node_buckets, size);
 	if(!node)
 		return 0;
 	strcpy(node->exact_name, name);	// safe
@@ -689,7 +623,7 @@ void tree_init()
 
 void tree_shutdown()
 {
-	node_free_all();
+	bucket_free_all(&node_buckets);
 }
 
 

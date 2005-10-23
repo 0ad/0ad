@@ -22,7 +22,7 @@
 extern "C" {
 #endif
 
-#if MSC_VERSION
+#if HAVE_MS_ASM
 # define debug_break() __asm { int 3 }
 #else
 # error "port this or define to implementation function"
