@@ -204,15 +204,12 @@ SDL_QuitEvent;
 
 enum SDL_MouseButtonEvent_button
 {
-	// do not change order or values
-	// ... but if you do, update lib/sdl.h so that SDL_BUTTON_TO_INDEX still
-	// yields contiguous values
-	SDL_BUTTON_LEFT=0,
-	SDL_BUTTON_RIGHT=1,
-	SDL_BUTTON_MIDDLE=2,
-
-	SDL_BUTTON_WHEELUP=3,
-	SDL_BUTTON_WHEELDOWN=4
+	// to remain compatible with regular SDL, these values must not change!
+	SDL_BUTTON_LEFT      = 1,
+	SDL_BUTTON_MIDDLE    = 2,
+	SDL_BUTTON_RIGHT     = 3,
+	SDL_BUTTON_WHEELUP   = 4,
+	SDL_BUTTON_WHEELDOWN = 5
 };
 
 enum SDL_MouseButtonEvent_state

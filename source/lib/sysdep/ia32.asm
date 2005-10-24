@@ -358,6 +358,81 @@ sym(ia32_control87):
 	xor		eax, eax					; return value
 	ret
 
+
+; write the current execution state (e.g. all register values) into
+; (Win32::CONTEXT*)pcontext (defined as void* to avoid dependency).
+; optimized for size; this must be straight asm because __declspec(naked)
+; is compiler-specific and compiler-generated prolog code inserted before
+; inline asm trashes EBP and ESP (unacceptable).
+; extern "C" void ia32_get_current_context(void* pcontext)
+global sym(ia32_get_current_context)
+sym(ia32_get_current_context):
+	pushad
+	pushfd
+	mov		edi, [esp+4+32+4]	; pcontext
+
+	; ContextFlags
+	mov		eax, 0x10007		; segs, int, control
+	stosd
+
+	; DRx and FloatSave
+	; rationale: we can't access the debug registers from Ring3, and
+	; the FPU save area is irrelevant, so zero them.
+	xor		eax, eax
+	push	byte 6+8+20
+	pop		ecx
+rep	stosd
+
+	; CONTEXT_SEGMENTS
+	mov		ax, gs
+	stosd
+	mov		ax, fs
+	stosd
+	mov		ax, es
+	stosd
+	mov		ax, ds
+	stosd
+
+	; CONTEXT_INTEGER
+	mov		eax, [esp+4+32-32]	; edi
+	stosd
+	xchg	eax, esi
+	stosd
+	xchg	eax, ebx
+	stosd
+	xchg	eax, edx
+	stosd
+	mov		eax, [esp+4+32-8]	; ecx
+	stosd
+	mov		eax, [esp+4+32-4]	; eax
+	stosd
+
+	; CONTEXT_CONTROL
+	xchg	eax, ebp			; ebp restored by POPAD
+	stosd
+	mov		eax, [esp+4+32]		; return address
+	sub		eax, 5				; skip CALL instruction -> call site.
+	stosd
+	xor		eax, eax
+	mov		ax, cs
+	stosd
+	pop		eax					; eflags
+	stosd
+	lea		eax, [esp+32+4+4]	; esp
+	stosd
+	xor		eax, eax
+	mov		ax, ss
+	stosd
+
+	; ExtendedRegisters
+	xor		ecx, ecx
+	mov		cl, 512/4
+rep	stosd
+
+	popad
+	ret
+
+
 ;-------------------------------------------------------------------------------
 ; init
 ;-------------------------------------------------------------------------------

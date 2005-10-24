@@ -76,6 +76,9 @@ extern void ia32_debug_break(void);
 
 extern void ia32_memcpy(void* dst, const void* src, size_t nbytes);
 
+// write the current execution state (e.g. all register values) into
+// (Win32::CONTEXT*)pcontext (defined as void* to avoid dependency).
+extern void ia32_get_current_context(void* pcontext);
 
 // CPU caps (128 bits)
 // do not change the order!

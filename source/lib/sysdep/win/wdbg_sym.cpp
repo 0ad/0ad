@@ -21,7 +21,6 @@
 #include <stdio.h>
 
 #include "lib.h"
-
 #include "win_internal.h"
 #define _NO_CVCONST_H	// request SymTagEnum be defined
 #include "dbghelp.h"
@@ -30,14 +29,12 @@
 #include "sysdep/cpu.h"
 #include "wdbg.h"
 #include "debug_stl.h"
+#if CPU_IA32
+# include "lib/sysdep/ia32.h"
+#endif
 
 #define SELF_TEST_ENABLED 0	// raises an an annoying exception
 #include "self_test.h"
-
-// optional: enables translation of the "unhandled exception" dialog.
-#ifdef I18N
-#include "ps/i18n.h"
-#endif
 
 
 #if MSC_VERSION
@@ -265,122 +262,6 @@ int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int*
 // stack walk via dbghelp
 //----------------------------------------------------------------------------
 
-// rationale: to function properly, StackWalk64 requires a CONTEXT on
-// non-x86 systems (documented) or when in release mode (observed).
-// exception handlers can call walk_stack with their context record;
-// otherwise (e.g. dump_stack from debug_assert), we need to query it.
-// there are 2 platform-independent ways to do so:
-// - intentionally raise an SEH exception, then proceed as above;
-// - GetThreadContext while suspended (*).
-// the latter is more complicated and slower, so we go with the former
-// despite it outputting "first chance exception" on each call.
-//
-// on IA-32, we use ia32_get_win_context instead of the above because
-// it is 100% accurate (noticeable in StackWalk64 results) and simplest.
-//
-// * it used to be common practice not to query the current thread's context,
-// but WinXP SP2 and above require it be suspended.
-
-// copy from CONTEXT to STACKFRAME64
-
-#if CPU_IA32
-
-// optimized for size.
-// this is the (so far) only case where __declspec(naked) is absolutely
-// critical. compiler-generated prolog code trashes EBP and ESP,
-// which is especially bad here because the stack trace code relies
-// on us returning their correct values.
-static __declspec(naked) void get_current_context(void* pcontext)
-{
-	// squelch W4 unused parameter warning (it's accessed from asm)
-	UNUSED2(pcontext);
-__asm
-{
-	pushad
-	pushfd
-	mov		edi, [esp+4+32+4]	;// pcontext
-
-	;// ContextFlags
-	mov		eax, 0x10007		;// segs, int, control
-	stosd
-
-	;// DRx and FloatSave
-	;// rationale: we can't access the debug registers from Ring3, and
-	;// the FPU save area is irrelevant, so zero them.
-	xor		eax, eax
-	push	6+8+20
-	pop		ecx
-rep	stosd
-
-	;// CONTEXT_SEGMENTS
-	mov		ax, gs
-	stosd
-	mov		ax, fs
-	stosd
-	mov		ax, es
-	stosd
-	mov		ax, ds
-	stosd
-
-	;// CONTEXT_INTEGER
-	mov		eax, [esp+4+32-32]	;// edi
-	stosd
-	xchg	eax, esi
-	stosd
-	xchg	eax, ebx
-	stosd
-	xchg	eax, edx
-	stosd
-	mov		eax, [esp+4+32-8]	;// ecx
-	stosd
-	mov		eax, [esp+4+32-4]	;// eax
-	stosd
-
-	;// CONTEXT_CONTROL
-	xchg	eax, ebp			;// ebp restored by POPAD
-	stosd
-	mov		eax, [esp+4+32]		;// return address
-	sub		eax, 5				;// skip CALL instruction -> call site.
-	stosd
-	xor		eax, eax
-	mov		ax, cs
-	stosd
-	pop		eax					;// eflags
-	stosd
-	lea		eax, [esp+32+4+4]	;// esp
-	stosd
-	xor		eax, eax
-	mov		ax, ss
-	stosd
-
-	;// ExtendedRegisters
-	push	512/4
-	pop		ecx
-rep	stosd
-
-	popad
-	ret
-}
-}
-
-#else	// #if CPU_IA32
-
-static void get_current_context(CONTEXT* pcontext)
-{
-	__try
-	{
-		RaiseException(0xF001, 0, 0, 0);
-	}
-	__except(*pcontext = (GetExceptionInformation())->ContextRecord, EXCEPTION_CONTINUE_EXECUTION)
-	{
-	}
-}
-
-#endif
-
-
-
-
 // called for each stack frame found by walk_stack, passing information
 // about the frame and <user_arg>.
 // return <= 0 to stop immediately and have walk_stack return that;
@@ -400,7 +281,10 @@ static int walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip = 0, 
 
 	const HANDLE hThread = GetCurrentThread();
 
-	// get CONTEXT (see above)
+	// to function properly, StackWalk64 requires a CONTEXT on
+	// non-x86 systems (documented) or when in release mode (observed).
+	// exception handlers can call walk_stack with their context record;
+	// otherwise (e.g. dump_stack from debug_assert), we need to query it.
 	CONTEXT context;
 	// .. caller knows the context (most likely from an exception);
 	//    since StackWalk64 may modify it, copy to a local variable.
@@ -409,8 +293,43 @@ static int walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip = 0, 
 	// .. need to determine context ourselves.
 	else
 	{
-		get_current_context(&context);
 		skip++;	// skip this frame
+
+		// there are 4 ways to do so, in order of preference:
+		// - asm (easy to use but currently only implemented on IA32)
+		// - RtlCaptureContext (only available on WinXP or above)
+		// - intentionally raise an SEH exception and capture its context
+		//   (spams us with "first chance exception")
+		// - GetThreadContext while suspended* (a bit tricky + slow).
+		//
+		// * it used to be common practice to query the current thread's context,
+		// but WinXP SP2 and above require it be suspended.
+		//
+		// this MUST be done inline and not in an external function because
+		// compiler-generated prolog code trashes some registers.
+
+#if CPU_IA32
+		ia32_get_current_context(&context);
+#else
+		// try to import RtlCaptureContext (available on WinXP and later)
+		HMODULE hKernel32Dll = LoadLibrary("kernel32.dll");
+		VOID(*pRtlCaptureContext)(PCONTEXT*);
+		*(void**)&pRtlCaptureContext = GetProcAddress(hKernel32Dll, "RtlCaptureContext");
+		FreeLibrary(hKernel32Dll);	// doesn't actually free the lib
+		if(pRtlCaptureContext)
+			pRtlCaptureContext(&context);
+		// not available: raise+handle an exception; grab the reported context.
+		else
+		{
+			__try
+			{
+				RaiseException(0xF001, 0, 0, 0);
+			}
+			__except(context = (GetExceptionInformation())->ContextRecord, EXCEPTION_CONTINUE_EXECUTION)
+			{
+			}
+		}
+#endif
 	}
 	pcontext = &context;
 
@@ -427,7 +346,7 @@ static int walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip = 0, 
 	int ret = WDBG_NO_STACK_FRAMES_FOUND;
 	for(;;)
 	{
-		BOOL ok = StackWalk64(machine, hProcess, hThread, &sf, (void*)pcontext,
+		BOOL ok = StackWalk64(machine, hProcess, hThread, &sf, (PVOID)pcontext,
 			0, SymFunctionTableAccess64, SymGetModuleBase64, 0);
 
 		// no more frames found - abort.
@@ -984,7 +903,7 @@ in_register:
 
 	*pp = (const u8*)addr;
 
-debug_printf("DET_SYM_ADDR %ws at %p  flags=%X dk=%d sym->addr=%I64X addrofs=%X addr2=%I64X ofs2=%X\n", sym->Name, *pp, sym->Flags, data_kind, sym->Address, addrofs, addr2, ofs2);
+debug_printf("SYM: %ws at %p  flags=%X dk=%d sym->addr=%I64X addrofs=%X addr2=%I64X ofs2=%X\n", sym->Name, *pp, sym->Flags, data_kind, sym->Address, addrofs, addr2, ofs2);
 
 	return 0;
 }
@@ -1724,7 +1643,7 @@ static int dump_sym_unknown(DWORD type_id, const u8* UNUSED(p), DumpState UNUSED
 	if(!SymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_SYMTAG, &type_tag))
 		return WDBG_TYPE_INFO_UNAVAILABLE;
 
-	debug_printf("Unknown tag: %d\n", type_tag);
+	debug_printf("SYM: unknown tag: %d\n", type_tag);
 	out(L"(unknown symbol type)");
 	return 0;
 }
@@ -1737,9 +1656,7 @@ static int dump_sym_unknown(DWORD type_id, const u8* UNUSED(p), DumpState UNUSED
 // delegates to dump_sym_* depending on the symbol's tag.
 static int dump_sym(DWORD type_id, const u8* p, DumpState state)
 {
-	int ret = out_check_limit();
-	if(ret != 0)
-		return ret;
+	RETURN_ERR(out_check_limit());
 
 	DWORD type_tag;
 	if(!SymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_SYMTAG, &type_tag))
