@@ -319,10 +319,23 @@ void hotkeyRegisterGUIObject( const CStr& objName, const CStr& hotkeyName )
 
 InReaction hotkeyInputHandler( const SDL_Event* ev )
 {
-	int keycode;
+	int keycode = 0;
 
 	switch( ev->type )
 	{
+	case SDL_ACTIVEEVENT:
+		// tasked out
+		if(ev->active.gain == 0)
+		{
+			// reset all key/button state, so that we don't get any
+			// phantom events when returning to our app.
+			// see CGUI::ClearMouseState.
+			for(uint i = 0; i < ARRAY_SIZE(hotkeys); i++)
+				hotkeys[i] = 0;
+		}
+		// don't continue with the code below (this wasn't an input event)
+		return IN_PASS;
+
 	case SDL_KEYDOWN:
 	case SDL_KEYUP:
 		keycode = (int)ev->key.keysym.sym;
