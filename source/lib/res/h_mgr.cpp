@@ -415,7 +415,7 @@ static void fn_store(HDATA* hd, const char* fn)
 	// fall back to heap alloc.
 	if(!hd->fn)
 	{
-		debug_printf("fn_store: very long filename (%d) %s\n", len, fn);
+		debug_printf("H_MGR: very long filename (%d) %s\n", len, fn);
 		hd->fn = (const char*)malloc(len+1);
 		// still failed - bail (avoid strcpy to 0)
 		if(!hd->fn)
@@ -721,7 +721,7 @@ static int h_free_idx(i32 idx, HDATA* hd)
 	char buf[H_STRING_LEN];
 	if(vtbl->to_string(hd->user, buf) < 0)
 		strcpy(buf, "(error)");	// safe
-	debug_printf("H_FREE %s %s accesses=%d %s\n", hd->type->name, fn, hd->num_derefs, buf);
+	debug_printf("H_MGR: free %s %s accesses=%d %s\n", hd->type->name, fn, hd->num_derefs, buf);
 
 	fn_free(hd);
 
@@ -919,6 +919,8 @@ int h_get_refcnt(Handle h)
 
 void h_mgr_shutdown()
 {
+	debug_printf("==h_mgr_shutdown== (all handle frees after this are leaks)\n");
+
 	// forcibly close all open handles
 	for(i32 i = 0; i <= last_in_use; i++)
 	{
@@ -935,9 +937,6 @@ void h_mgr_shutdown()
 		// doesn't look like an error.
 		if(!hd->tag)
 			continue;
-
-		if(hd->refs != 0)
-			debug_printf("leaked %s from %s\n", hd->type->name, hd->fn);
 
 		// disable caching; we need to release the resource now.
 		hd->keep_open = 0;

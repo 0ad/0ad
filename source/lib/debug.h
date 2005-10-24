@@ -153,19 +153,52 @@ extern enum ErrorReaction debug_assert_failed(const char* file, int line,
 // we therefore just squelch the warning (unfortunately non-portable).
 #define debug_warn(str) debug_assert((str) && 0)
 
-extern void debug_puts(const char* text);
-extern void debug_putws(const wchar_t* text);
-
-// write to the debugger output window (may take ~1 ms!)
+// write a formatted string to the debug channel, subject to filtering
+// (see below). implemented via debug_puts - see performance note there.
 extern void debug_printf(const char* fmt, ...);
+// note: this merely converts to a MBS and calls debug_printf.
 extern void debug_wprintf(const wchar_t* fmt, ...);
+
+
+//
+// filtering
+//
+
+// debug output is very useful, but "too much of a good thing can kill you".
+// we don't want to require different LOGn() macros that are enabled
+// depending on "debug level", because changing that entails lengthy
+// compiles and it's too coarse-grained. instead, we require all
+// strings to start with "tag_string:" (exact case and no quotes;
+// the alphanumeric-only <tag_string> identifies output type).
+// they are then subject to filtering: only if the tag has been
+// "added" via debug_filter_add is the appendant string displayed.
+//
+// this approach is easiest to implement and is fine because we control
+// all logging code. LIMODS falls from consideration since it's not
+// portable and too complex.
+//
+// notes:
+// - filter changes only affect subsequent debug_*printf calls;
+//   output that didn't pass the filter is permanently discarded.
+// - strings not starting with a tag are always displayed.
+// - debug_filter_* can be called at any time and from the debugger.
+
+// in future, allow output with the given tag to proceed.
+// no effect if already added.
+extern void debug_filter_add(const char* tag);
+// in future, discard output with the given tag.
+// no effect if not currently added.
+extern void debug_filter_remove(const char* tag);
+// clear all filter state; equivalent to debug_filter_remove for
+// each tag that was debug_filter_add-ed.
+extern void debug_filter_clear();
+
 
 // write to memory buffer (fast)
 // used for "last activity" reporting in the crashlog.
 extern void debug_wprintf_mem(const wchar_t* fmt, ...);
 
 // write all logs and <text> out to crashlog.txt (unicode format).
-// currently all filenames are hardcoded; this may change.
 extern int debug_write_crashlog(const wchar_t* text);
 
 
@@ -243,6 +276,11 @@ extern const wchar_t* debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip
 //-----------------------------------------------------------------------------
 // helper functions (used by implementation)
 //-----------------------------------------------------------------------------
+
+// [system-dependent] write a string to the debug channel.
+// this can be quite slow (~1 ms)! On Windows, it uses OutputDebugString
+// (entails context switch), otherwise stdout+fflush (waits for IO).
+extern void debug_puts(const char* text);
 
 // abstraction of all STL iterators used by debug_stl.
 typedef const u8* (*DebugIterator)(void* internal, size_t el_size);

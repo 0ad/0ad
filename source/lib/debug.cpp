@@ -83,13 +83,13 @@ static const int MAX_CHARS = 512;
 
 
 // rationale: static data instead of std::set to allow setting at any time.
-// note: need only set the pointer, but strcmp when reading (because
-// 2 different call sites may have used equal literals at different addresses).
+// we store FNV hash of tag strings for fast comparison; collisions are
+// extremely unlikely.
 static const uint MAX_TAGS = 20;
 static u32 tags[MAX_TAGS];
 static uint num_tags;
 
-static void filter_add(const char* tag)
+void debug_filter_add(const char* tag)
 {
 	const u32 hash = fnv_hash(tag);
 
@@ -108,11 +108,12 @@ static void filter_add(const char* tag)
 	tags[num_tags++] = hash;
 }
 
-static void filter_remove(const char* tag)
+void debug_filter_remove(const char* tag)
 {
 	const u32 hash = fnv_hash(tag);
 
 	for(uint i = 0; i < MAX_TAGS; i++)
+		// found it
 		if(tags[i] == hash)
 		{
 			// replace with last element (avoid holes)
@@ -124,12 +125,18 @@ static void filter_remove(const char* tag)
 		}
 }
 
+void debug_filter_clear()
+{
+	for(uint i = 0; i < MAX_TAGS; i++)
+		tags[i] = 0;
+}
+
 static bool filter_allows(const char* text)
 {
 	uint i;
 	for(i = 0; ; i++)
 	{
-		// .. no colon - should be displayed
+		// no colon found => no tag => should always be displayed
 		if(text[i] == ' ' || text[i] == '\0')
 			return true;
 		if(text[i] == ':' && i != 0)
@@ -138,7 +145,7 @@ static bool filter_allows(const char* text)
 
 	const u32 hash = fnv_hash(text, i);
 
-	// check if allow-entry is found
+	// check if entry allowing this tag is found
 	for(i = 0; i < MAX_TAGS; i++)
 		if(tags[i] == hash)
 			return true;
