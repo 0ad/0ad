@@ -64,6 +64,10 @@ static InReaction MainInputHandler(const SDL_Event* ev)
 			WriteScreenshot("png");
 			return IN_HANDLED;
 
+		case HOTKEY_BIGSCREENSHOT:
+			WriteBigScreenshot("bmp", 10);
+			return IN_HANDLED;
+
 		default:
 			break;
 		}

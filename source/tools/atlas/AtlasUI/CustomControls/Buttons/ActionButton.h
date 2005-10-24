@@ -6,7 +6,7 @@ public:
 	ActionButton(wxWindow *parent,
 	             const wxString& label,
 	             actionFun fun,
-				 void* data,
+	             void* data,
 	             const wxSize& size = wxDefaultSize,
 	             long style = 0)
 		: wxButton(parent, wxID_ANY, label, wxDefaultPosition, size, style),

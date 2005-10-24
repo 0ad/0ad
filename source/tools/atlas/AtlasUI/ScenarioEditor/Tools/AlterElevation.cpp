@@ -8,7 +8,7 @@ using AtlasMessage::Position;
 
 class AlterElevation : public StateDrivenTool<AlterElevation>
 {
-private:
+	DECLARE_DYNAMIC_CLASS(AlterElevation);
 
 	int m_Direction; // +1 = raise, -1 = lower
 	Position m_Pos;
@@ -118,5 +118,4 @@ public:
 	Lowering;
 };
 
-DECLARE_TOOL(AlterElevation);
-
+IMPLEMENT_DYNAMIC_CLASS(AlterElevation, StateDrivenTool<AlterElevation>);

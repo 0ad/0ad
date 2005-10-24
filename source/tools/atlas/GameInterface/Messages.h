@@ -40,6 +40,10 @@ COMMAND(MessageTrace,
 		((bool, enable))
 		);
 
+COMMAND(Screenshot,
+		((int, tiles)) // the final image will be (640*tiles)x(480*tiles)
+		);
+
 //////////////////////////////////////////////////////////////////////////
 
 COMMAND(Brush,

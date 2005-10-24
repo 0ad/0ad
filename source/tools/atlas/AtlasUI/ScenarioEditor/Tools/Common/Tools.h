@@ -7,11 +7,12 @@
 class wxMouseEvent;
 class wxKeyEvent;
 
-class ITool
+class ITool : public wxObject
 {
 public:
 	enum KeyEventType { KEY_DOWN, KEY_UP, KEY_CHAR };
 
+	virtual void Shutdown() = 0;
 	virtual void OnMouse(wxMouseEvent& evt) = 0;
 	virtual void OnKey(wxKeyEvent& evt, KeyEventType dir) = 0;
 	virtual void OnTick(float dt) = 0; // dt in seconds
@@ -19,13 +20,8 @@ public:
 	virtual ~ITool() {};
 };
 
-#define DECLARE_TOOL(name) ITool* CreateTool_##name() { return new name(); }
-
-
-#define USE_TOOL(name) { extern ITool* CreateTool_##name(); SetCurrentTool(CreateTool_##name()); }
-
-extern ITool* g_CurrentTool;
-extern void SetCurrentTool(ITool*); // for internal use only
+extern ITool& GetCurrentTool();
+extern void SetCurrentTool(const wxString& name); // should usually only be used by tool buttons
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -62,8 +58,11 @@ public:
 	{
 	}
 
-	~StateDrivenTool()
+	virtual void Shutdown()
 	{
+		// This can't be done in the destructor, because ~StateDrivenTool
+		// is not called until after the subclass has been destroyed and its
+		// vtable (containing OnDisable) has been removed.
 		SetState(&Disabled);
 	}
 

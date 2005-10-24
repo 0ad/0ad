@@ -37,6 +37,7 @@ class CCamera
 		//Methods for projection
 		void SetProjection (CMatrix3D *proj) { m_ProjMat = *proj; }
 		void SetProjection (float nearp, float farp, float fov);
+		void SetProjectionTile (int tiles, int tile_x, int tile_y);
 		CMatrix3D GetProjection () { return m_ProjMat; }
 
 		//Updates the frustum planes. Should be called

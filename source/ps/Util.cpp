@@ -8,6 +8,10 @@
 #include "lib/res/graphics/tex.h"
 
 #include "ps/GameSetup/Config.h"
+#include "ps/GameSetup/GameSetup.h"
+#include "ps/Game.h"
+#include "renderer/Renderer.h"
+#include "maths/MathUtil.h"
 
 static std::string SplitExts(const char *exts)
 {
@@ -206,5 +210,120 @@ void WriteScreenshot(const char* extension)
 	glReadPixels(0, 0, w, h, fmt, GL_UNSIGNED_BYTE, img);
 	(void)tex_write(&t, fn);
 	(void)tex_free(&t);
+	mem_free_h(img_hm);
+}
+
+
+
+// Similar to WriteScreenshot, but generates an image of size 640*tiles x 480*tiles.
+void WriteBigScreenshot(const char* extension, int tiles)
+{
+	// determine next screenshot number.
+
+	char fn[VFS_MAX_PATH];
+
+	// %04d -> always 4 digits, so sorting by filename works correctly.
+	const char* file_format_string = "screenshots/screenshot%04d.%s";
+
+	static int next_num = 1;
+	do
+	sprintf(fn, file_format_string, next_num++, extension);
+	while(vfs_exists(fn));
+
+
+	// Slightly ugly and inflexible: Always draw 640*480 tiles onto the screen, and
+	// hope the screen is actually large enough for that.
+	const int tile_w = 640, tile_h = 480;
+	debug_assert(g_xres >= tile_w && g_yres >= tile_h);
+
+	const int img_w = tile_w*tiles, img_h = tile_h*tiles;
+	const int bpp = 24;
+	GLenum fmt = GL_RGB;
+	int flags = TEX_BOTTOM_UP;
+	// we want writing BMP to be as fast as possible,
+	// so read data from OpenGL in BMP format to obviate conversion.
+	if(!stricmp(extension, "bmp"))
+	{
+		fmt = GL_BGR;
+		flags |= TEX_BGR;
+	}
+
+	const size_t img_size = img_w * img_h * bpp/8;
+	const size_t tile_size = tile_w * tile_h * bpp/8;
+	const size_t hdr_size = tex_hdr_size(fn);
+	Handle tile_hm, img_hm;
+	void* tile_data = mem_alloc(tile_size, 1, 0, &tile_hm);
+	void* img_data = mem_alloc(hdr_size+img_size, FILE_BLOCK_SIZE, 0, &img_hm);
+	if(!tile_data || !img_data)
+	{
+		debug_warn("not enough memory to write screenshot");
+		if (tile_data) mem_free_h(tile_hm);
+		if (img_data) mem_free_h(img_hm);
+		return;
+	}
+
+	Tex t;
+	GLvoid* img = (u8*)img_data + hdr_size;
+	if(tex_wrap(img_w, img_h, bpp, flags, img, &t) < 0)
+		return;
+
+	oglCheck();
+
+	// Resize various things so that the sizes and aspect ratios are correct
+	{
+		g_Renderer.Resize(tile_w, tile_h);
+		SViewPort vp = { 0, 0, tile_w, tile_h };
+		g_Game->GetView()->GetCamera()->SetViewPort(&vp);
+		g_Game->GetView()->GetCamera()->SetProjection (1, 5000, DEGTORAD(20));
+	}
+
+	// Temporarily move everything onto the front buffer, so the user can
+	// see the exciting progress as it renders (and can tell when it's finished).
+	// (It doesn't just use SwapBuffers, because it doesn't know whether to
+	// call the SDL version or the Atlas version.)
+	GLint oldReadBuffer, oldDrawBuffer;
+	glGetIntegerv(GL_READ_BUFFER, &oldReadBuffer);
+	glGetIntegerv(GL_DRAW_BUFFER, &oldDrawBuffer);
+	glDrawBuffer(GL_FRONT);
+	glReadBuffer(GL_FRONT);
+
+	// Render each tile
+	for (int tile_y = 0; tile_y < tiles; ++tile_y)
+	{
+		for (int tile_x = 0; tile_x < tiles; ++tile_x)
+		{
+			// Adjust the camera to render the appropriate region
+			g_Game->GetView()->GetCamera()->SetProjectionTile(tiles, tile_x, tile_y);
+
+			Render();
+
+			// Copy the tile pixels into the main image
+			glReadPixels(0, 0, tile_w, tile_h, fmt, GL_UNSIGNED_BYTE, tile_data);
+			for (int y = 0; y < tile_h; ++y)
+			{
+				void* dest = (char*)img + ((tile_y*tile_h + y) * img_w + (tile_x*tile_w)) * bpp/8;
+				void* src = (char*)tile_data + y * tile_w * bpp/8;
+				memcpy(dest, src, tile_w * bpp/8);
+			}
+		}
+	}
+
+	// Restor the buffer settings
+	glDrawBuffer(oldDrawBuffer);
+	glReadBuffer(oldReadBuffer);
+
+	// Restore the viewport settings
+	{
+		g_Renderer.Resize(g_xres, g_yres);
+		SViewPort vp = { 0, 0, g_xres, g_yres };
+		g_Game->GetView()->GetCamera()->SetViewPort(&vp);
+		g_Game->GetView()->GetCamera()->SetProjection (1, 5000, DEGTORAD(20));
+
+		g_Game->GetView()->GetCamera()->SetProjectionTile(1, 0, 0);
+	}
+
+	(void)tex_write(&t, fn);
+	(void)tex_free(&t);
+	mem_free_h(tile_hm);
 	mem_free_h(img_hm);
 }

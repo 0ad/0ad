@@ -30,27 +30,37 @@ CCamera::CCamera ()
 CCamera::~CCamera ()
 {
 }
-		
+
 void CCamera::SetProjection (float nearp, float farp, float fov)
 {
-	float    h, w, Q;
- 
 	m_NearPlane = nearp;
 	m_FarPlane = farp;
 	m_FOV = fov;
 	
 	float Aspect = (float)m_ViewPort.m_Width/(float)m_ViewPort.m_Height;
 
-    w = 1/tanf (fov*0.5f*Aspect);
-	h = 1/tanf (fov*0.5f);
-    Q = m_FarPlane / (m_FarPlane - m_NearPlane);
- 
-    m_ProjMat.SetZero ();
-	m_ProjMat._11 = w;
-    m_ProjMat._22 = h;
-    m_ProjMat._33 = (m_FarPlane+m_NearPlane)/(m_FarPlane-m_NearPlane);;
-    m_ProjMat._34 = -2*m_FarPlane*m_NearPlane/(m_FarPlane-m_NearPlane);
-    m_ProjMat._43 = 1.0f;
+	float w = tanf (m_FOV*0.5f*Aspect);
+	float h = tanf (m_FOV*0.5f);
+
+	m_ProjMat.SetZero ();
+	m_ProjMat._11 = 1/w;
+	m_ProjMat._22 = 1/h;
+	m_ProjMat._33 = (m_FarPlane+m_NearPlane)/(m_FarPlane-m_NearPlane);
+	m_ProjMat._34 = -2*m_FarPlane*m_NearPlane/(m_FarPlane-m_NearPlane);
+	m_ProjMat._43 = 1.0f;
+}
+
+void CCamera::SetProjectionTile (int tiles, int tile_x, int tile_y)
+{
+	float Aspect = (float)m_ViewPort.m_Width/(float)m_ViewPort.m_Height;
+
+	float w = tanf (m_FOV*0.5f*Aspect) / tiles;
+	float h = tanf (m_FOV*0.5f) / tiles;
+
+	m_ProjMat._11 = 1/w;
+	m_ProjMat._22 = 1/h;
+	m_ProjMat._13 = -(1-tiles + 2*tile_x);
+	m_ProjMat._23 = -(1-tiles + 2*tile_y);
 }
 
 //Updates the frustum planes. Should be called
@@ -183,7 +193,7 @@ void CCamera::GetScreenCoordinates( const CVector3D& world, float& x, float& y )
 
 	CVector3D screenspace = transform.Transform( world );
 
-    x = screenspace.X / screenspace.Z;
+	x = screenspace.X / screenspace.Z;
 	y = screenspace.Y / screenspace.Z;
 	x = ( x + 1 ) * 0.5f * g_Renderer.GetWidth();
 	y = ( 1 - y ) * 0.5f * g_Renderer.GetHeight();

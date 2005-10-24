@@ -120,9 +120,16 @@ void JSI_Camera::Camera_Info::FreshenTarget()
 
 JSBool JSI_Camera::getCamera( JSContext* cx, JSObject* UNUSED(obj), jsval UNUSED(id), jsval* vp )
 {
-	JSObject* camera = JS_NewObject( cx, &JSI_Camera::JSI_class, NULL, NULL );
-	JS_SetPrivate( cx, camera, new Camera_Info( g_Game->GetView()->GetCamera() ) );
-	*vp = OBJECT_TO_JSVAL( camera );
+	if( g_Game && g_Game->GetView()->GetCamera() )
+	{
+		JSObject* camera = JS_NewObject( cx, &JSI_Camera::JSI_class, NULL, NULL );
+		JS_SetPrivate( cx, camera, new Camera_Info( g_Game->GetView()->GetCamera() ) );
+		*vp = OBJECT_TO_JSVAL( camera );
+	}
+	else
+	{
+		*vp = JSVAL_NULL;
+	}
 	return( JS_TRUE );
 }
 

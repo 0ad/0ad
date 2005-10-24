@@ -6,6 +6,8 @@
 #include "renderer/Renderer.h"
 #include "gui/GUI.h"
 #include "ps/CConsole.h"
+#include "ps/Game.h"
+#include "maths/MathUtil.h"
 
 #include "ps/GameSetup/Config.h"
 #include "ps/GameSetup/GameSetup.h"
@@ -71,8 +73,14 @@ MESSAGEHANDLER(ResizeScreen)
 	if (g_yres <= 2) g_yres = 2;
 
 	SViewPort vp = { 0, 0, g_xres, g_yres };
-	g_Renderer.SetViewport(vp);
 
+	if (g_Game)
+	{
+		g_Game->GetView()->GetCamera()->SetViewPort(&vp);
+		g_Game->GetView()->GetCamera()->SetProjection (1, 5000, DEGTORAD(20));
+	}
+
+	g_Renderer.SetViewport(vp);
 	g_Renderer.Resize(g_xres, g_yres);
 
 	g_GUI.UpdateResolution();

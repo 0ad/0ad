@@ -17,6 +17,7 @@ public:
 
 	void OnWireframe(wxCommandEvent& event);
 	void OnMessageTrace(wxCommandEvent& event);
+	void OnScreenshot(wxCommandEvent& event);
 
 	static AtlasWindowCommandProc& GetCommandProc();
 

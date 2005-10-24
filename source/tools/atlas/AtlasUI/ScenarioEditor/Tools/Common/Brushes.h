@@ -30,7 +30,7 @@ private:
 	// If active, send SetBrush message to the game
 	void Send();
 
-	enum BrushShape { SQUARE = 0, CIRCLE };
+	enum BrushShape { CIRCLE = 0, SQUARE};
 	BrushShape m_Shape;
 	int m_Size;
 	float m_Strength;

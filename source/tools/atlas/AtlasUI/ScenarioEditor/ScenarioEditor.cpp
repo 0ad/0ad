@@ -34,11 +34,13 @@ public:
 
 	void OnResize(wxSizeEvent&)
 	{
+#ifndef UI_ONLY
 		// Be careful not to send 'resize' messages to the game before we've
 		// told it that this canvas exists
 		if (! m_SuppressResize)
 			POST_COMMAND(ResizeScreen(GetClientSize().GetWidth(), GetClientSize().GetHeight()));
 			// TODO: fix flashing
+#endif // UI_ONLY
 	}
 
 	void InitSize()
@@ -49,6 +51,7 @@ public:
 
 	bool KeyScroll(wxKeyEvent& evt, bool enable)
 	{
+#ifndef UI_ONLY
 		int dir;
 		switch (evt.GetKeyCode())
 		{
@@ -79,6 +82,7 @@ public:
 		{
 			POST_INPUT(ScrollConstant(dir, enable ? speed : 0.0f));
 		}
+#endif // UI_ONLY
 		return true;
 	}
 
@@ -87,7 +91,7 @@ public:
 		if (KeyScroll(evt, true))
 			return;
 
-		g_CurrentTool->OnKey(evt, ITool::KEY_DOWN);
+		GetCurrentTool().OnKey(evt, ITool::KEY_DOWN);
 
 		evt.Skip();
 	}
@@ -97,7 +101,7 @@ public:
 		if (KeyScroll(evt, false))
 			return;
 
-		g_CurrentTool->OnKey(evt, ITool::KEY_UP);
+		GetCurrentTool().OnKey(evt, ITool::KEY_UP);
 
 		evt.Skip();
 	}
@@ -156,7 +160,9 @@ public:
 			m_LastMousePos = evt.GetPosition();
 		}
 
-		g_CurrentTool->OnMouse(evt);
+#ifndef UI_ONLY
+
+		GetCurrentTool().OnMouse(evt);
 
 		// TODO: if the tool responded to the mouse action, should we avoid moving
 		// the camera too? (This is mostly avoided by not sharing buttons between
@@ -208,7 +214,7 @@ public:
 				}
 			}
 		}
-
+#endif // UI_ONLY
 	}
 
 private:
@@ -273,6 +279,7 @@ enum
 
 	ID_Wireframe,
 	ID_MessageTrace,
+	ID_Screenshot,
 };
 
 BEGIN_EVENT_TABLE(ScenarioEditor, wxFrame)
@@ -285,6 +292,7 @@ BEGIN_EVENT_TABLE(ScenarioEditor, wxFrame)
 
 	EVT_MENU(ID_Wireframe, ScenarioEditor::OnWireframe)
 	EVT_MENU(ID_MessageTrace, ScenarioEditor::OnMessageTrace)
+	EVT_MENU(ID_Screenshot, ScenarioEditor::OnScreenshot)
 
 	EVT_IDLE(ScenarioEditor::OnIdle)
 END_EVENT_TABLE()
@@ -338,6 +346,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	{
 		menuMisc->AppendCheckItem(ID_Wireframe, _("&Wireframe"));
 		menuMisc->AppendCheckItem(ID_MessageTrace, _("Message debug trace"));
+		menuMisc->Append(ID_Screenshot, _("&Screenshot"));
 	}
 
 	//////////////////////////////////////////////////////////////////////////
@@ -389,9 +398,6 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	POST_COMMAND(CommandString("render_enable"));
 #endif
 
-	// XXX
-	USE_TOOL(AlterElevation);
-
 	// Set up a timer to make sure tool-updates happen frequently (in addition
 	// to the idle handler (which makes them happen more frequently if there's nothing
 	// else to do))
@@ -407,7 +413,7 @@ void ScenarioEditor::OnClose(wxCloseEvent&)
 #endif
 	POST_COMMAND(CommandString("exit"));
 
-	SetCurrentTool(NULL);
+	SetCurrentTool(_T(""));
 
 	// TODO: If it's still rendering while we're destroying the canvas, things
 	// often crash.
@@ -427,7 +433,7 @@ static void UpdateTool()
 		// TODO: Smoother timing stuff?
 		static double last = g_Timer.GetTime();
 		double time = g_Timer.GetTime();
-		g_CurrentTool->OnTick(time-last);
+		GetCurrentTool().OnTick(time-last);
 		last = time;
 	}
 }
@@ -465,6 +471,11 @@ void ScenarioEditor::OnWireframe(wxCommandEvent& event)
 void ScenarioEditor::OnMessageTrace(wxCommandEvent& event)
 {
 	POST_COMMAND(MessageTrace(event.IsChecked()));
+}
+
+void ScenarioEditor::OnScreenshot(wxCommandEvent& event)
+{
+	POST_COMMAND(Screenshot(10));
 }
 
 //////////////////////////////////////////////////////////////////////////

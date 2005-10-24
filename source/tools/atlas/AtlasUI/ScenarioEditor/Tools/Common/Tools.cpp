@@ -5,17 +5,33 @@
 
 class DummyTool : public ITool
 {
+	void Shutdown() {}
 	void OnMouse(wxMouseEvent& evt) { evt.Skip(); }
 	void OnKey(wxKeyEvent& evt, KeyEventType) { evt.Skip(); }
 	void OnTick(float) {}
 } dummy;
 
-ITool* g_CurrentTool = &dummy;
+static ITool* g_CurrentTool = &dummy;
 
-void SetCurrentTool(ITool* tool)
+ITool& GetCurrentTool()
+{
+	return *g_CurrentTool;
+}
+
+void SetCurrentTool(const wxString& name)
 {
 	if (g_CurrentTool != &dummy)
+	{
+		g_CurrentTool->Shutdown();
 		delete g_CurrentTool;
+	}
+
+	ITool* tool = NULL;
+	if (name.Len())
+	{
+		tool = wxDynamicCast(wxCreateDynamicObject(name), ITool);
+		wxASSERT(tool);
+	}
 
 	if (tool == NULL)
 		g_CurrentTool = &dummy;

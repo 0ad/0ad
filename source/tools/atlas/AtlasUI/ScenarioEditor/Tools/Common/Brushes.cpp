@@ -5,7 +5,7 @@
 #include "GameInterface/Messages.h"
 
 Brush::Brush()
-: m_Shape(SQUARE), m_Size(4), m_Strength(1.f), m_IsActive(false)
+: m_Shape(CIRCLE), m_Size(4), m_Strength(1.f), m_IsActive(false)
 {
 }
 
@@ -172,8 +172,8 @@ END_EVENT_TABLE()
 void Brush::CreateUI(wxWindow* parent, wxSizer* sizer)
 {
 	wxArrayString shapes; // Must match order of BrushShape enum
-	shapes.Add(_("Square"));
 	shapes.Add(_("Circle"));
+	shapes.Add(_("Square"));
 	// TODO (maybe): get rid of the extra static box, by not using wxRadioBox
 	sizer->Add(new BrushShapeCtrl(parent, shapes, *this));
 
