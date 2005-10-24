@@ -263,7 +263,7 @@ void CGameAttributes::ScriptingInit()
 		PlayerSlotArray_JS::Construct, 0, NULL, NULL, NULL, NULL);
 	
 	AddMethod<jsval, &CGameAttributes::JSI_GetOpenSlot>("getOpenSlot", 0);
-	AddProperty(L"slots", (GetFn)&CGameAttributes::JSI_GetPlayerSlots);
+	AddProperty(L"slots", &CGameAttributes::JSI_GetPlayerSlots);
 
 	CJSObject<CGameAttributes>::ScriptingInit("GameAttributes");
 }
@@ -279,7 +279,7 @@ jsval CGameAttributes::JSI_GetOpenSlot(JSContext* UNUSED(cx), uintN UNUSED(argc)
 	return JSVAL_NULL;
 }
 
-jsval CGameAttributes::JSI_GetPlayerSlots()
+jsval CGameAttributes::JSI_GetPlayerSlots(JSContext* UNUSED(cx))
 {
 	return OBJECT_TO_JSVAL(m_PlayerSlotArrayJS);
 }

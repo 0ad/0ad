@@ -143,7 +143,7 @@ private:
 	virtual void Update(CStrW name, ISynchedJSProperty *attrib);	
 	static void OnNumSlotsUpdate(CSynchedJSObjectBase *owner);
 
-	jsval JSI_GetPlayerSlots();
+	jsval JSI_GetPlayerSlots(JSContext* cx);
 	jsval JSI_GetOpenSlot(JSContext *cx, uintN argc, jsval *argv);
 	static void ScriptingInit();
 
