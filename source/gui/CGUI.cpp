@@ -65,11 +65,28 @@ InReaction gui_handler(const SDL_Event* ev)
 	return g_GUI.HandleEvent(ev);
 }
 
+// This is called after tasking out to another application. It avoids
+// havoc by resetting the state of all mouse buttons to
+// "not currently pressed". Since a button that happened to be pressed
+// before the task switch will most likely be released during that time, we
+// have to do this to prevent phantom mouse events when returing to our app.
+void CGUI::ClearMouseState()
+{
+	// reset all bits to "button is not currently pressed".
+	m_MouseButtons = 0;
+}
+
 InReaction CGUI::HandleEvent(const SDL_Event* ev)
 {
 	InReaction ret = IN_PASS;
 
-	if (ev->type == SDL_GUIHOTKEYPRESS)
+	if (ev->type == SDL_ACTIVEEVENT)
+	{
+		if(ev->active.gain == 0)
+			g_GUI.ClearMouseState();
+	}
+
+	else if (ev->type == SDL_GUIHOTKEYPRESS)
 	{
 		const CStr& objectName = *(CStr*) ev->user.data1;
 		IGUIObject* object = FindObjectByName(objectName);
@@ -99,9 +116,16 @@ InReaction CGUI::HandleEvent(const SDL_Event* ev)
 	// Update m_MouseButtons. (BUTTONUP is handled later.)
 	else if (ev->type == SDL_MOUSEBUTTONDOWN)
 	{
-		// (0,1,2) = (LMB,RMB,MMB)
-		if (ev->button.button < 3)
-			m_MouseButtons |= (1 << ev->button.button);
+		switch (ev->button.button)
+		{
+		case SDL_BUTTON_LEFT:
+		case SDL_BUTTON_RIGHT:
+		case SDL_BUTTON_MIDDLE:
+			m_MouseButtons |= BIT(ev->button.button);
+			break;
+		default:
+			break;
+		}
 	}
 
 // JW: (pre|post)process omitted; what're they for? why would we need any special button_released handling?
@@ -232,9 +256,16 @@ InReaction CGUI::HandleEvent(const SDL_Event* ev)
 	// on button up) see which mouse button had been pressed.
 	if (ev->type == SDL_MOUSEBUTTONUP)
 	{
-		// (0,1,2) = (LMB,RMB,MMB)
-		if (ev->button.button < 3)
-			m_MouseButtons &= ~(1 << ev->button.button);
+		switch (ev->button.button)
+		{
+		case SDL_BUTTON_LEFT:
+		case SDL_BUTTON_RIGHT:
+		case SDL_BUTTON_MIDDLE:
+			m_MouseButtons &= ~BIT(ev->button.button);
+			break;
+		default:
+			break;
+		}
 	}
 
 	// Handle keys for input boxes
