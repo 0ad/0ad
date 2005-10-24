@@ -158,6 +158,6 @@ void set_app_hooks(AppHooks* ah_)
 
 // trampolines used by lib code; they call the hooks or fall back to the
 // default implementation if not set.
-#define FUNC(ret, name, params, param_names, call_prefix) inline ret ah_##name params { call_prefix ah.name param_names; }
+#define FUNC(ret, name, params, param_names, call_prefix) ret ah_##name params { call_prefix ah.name param_names; }
 #include "app_hooks.h"
 #undef FUNC
