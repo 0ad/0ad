@@ -29,8 +29,8 @@ public:
 	typedef STL_HASH_MAP<CStrW, IJSProperty*, CStrW_hash_compare> PropertyTable;
 
 	// Property getters and setters
-	typedef jsval (IJSObject::*GetFn)();
-	typedef void (IJSObject::*SetFn)( jsval value );
+	typedef jsval (IJSObject::*GetFn)( JSContext* cx );
+	typedef void (IJSObject::*SetFn)( JSContext* cx, jsval value );
 
 	// Return a pointer to a property, if it exists
 	virtual IJSProperty* HasProperty( CStrW PropertyName ) = 0;
@@ -107,14 +107,14 @@ public:
 		// Must at least be able to read 
 		debug_assert( m_Getter );
 	}
-	jsval Get( JSContext* UNUSED(cx), IJSObject* obj )
+	jsval Get( JSContext* cx, IJSObject* obj )
 	{
-		return( (obj->*m_Getter)() );
+		return( (obj->*m_Getter)(cx) );
 	}
-	void Set( JSContext* UNUSED(cx), IJSObject* obj, jsval value )
+	void Set( JSContext* cx, IJSObject* obj, jsval value )
 	{
 		if( m_Setter )
-			(obj->*m_Setter)( value );
+			(obj->*m_Setter)( cx, value );
 	}
 };
 
@@ -195,8 +195,8 @@ protected:
 
 public:
 	// Property getters and setters
-	typedef jsval (T::*TGetFn)();
-	typedef void (T::*TSetFn)( jsval value );
+	typedef jsval (T::*TGetFn)( JSContext* );
+	typedef void (T::*TSetFn)( JSContext*, jsval value );
 
 	static JSClass JSI_class;
 

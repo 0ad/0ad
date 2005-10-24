@@ -43,8 +43,8 @@ class CPlayerSlot: public CJSObject<CPlayerSlot>
 // TODO This will wait until there actually is AI to set up
 //	bool JSI_AssignAI(JSContext *cx, uintN argc, jsval *argv);
 
-	jsval JSI_GetSession();
-	jsval JSI_GetAssignment();
+	jsval JSI_GetSession(JSContext* cx);
+	jsval JSI_GetAssignment(JSContext* cx);
 
 	void CallCallback();
 	void SetAssignment(EPlayerSlotAssignment, CNetServerSession *pSession, int sessionID);

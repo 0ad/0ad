@@ -90,7 +90,7 @@ public:
 // Javascript stuff...
 
 	static void ScriptingInit();
-	jsval JS_GetName() { return( ToJSVal( CStrW( name ) ) ); }
+	jsval JS_GetName(JSContext*) { return( ToJSVal( CStrW( name ) ) ); }
 };
 
 class CProfileManager : public Singleton<CProfileManager>

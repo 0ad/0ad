@@ -34,13 +34,13 @@ void CPlayerSlot::ScriptingInit()
 	AddMethod<bool, &CPlayerSlot::JSI_AssignToSession>("assignToSession", 1);
 	AddMethod<bool, &CPlayerSlot::JSI_AssignLocal>("assignLocal", 0);
 	AddMethod<bool, &CPlayerSlot::JSI_AssignOpen>("assignOpen", 0);
-	AddProperty(L"assignment", (GetFn)&CPlayerSlot::JSI_GetAssignment);
+	AddProperty(L"assignment", &CPlayerSlot::JSI_GetAssignment);
 //	AddMethod<bool, &CPlayerSlot::JSI_AssignAI>("assignAI", <num_args>);
 
 	CJSObject<CPlayerSlot>::ScriptingInit("PlayerSlot");
 }
 
-jsval CPlayerSlot::JSI_GetSession()
+jsval CPlayerSlot::JSI_GetSession(JSContext* UNUSED(cx))
 {
 	if (m_pSession)
 		return OBJECT_TO_JSVAL(m_pSession->GetScript());
@@ -48,7 +48,7 @@ jsval CPlayerSlot::JSI_GetSession()
 		return JSVAL_NULL;
 }
 
-jsval CPlayerSlot::JSI_GetAssignment()
+jsval CPlayerSlot::JSI_GetAssignment(JSContext* UNUSED(cx))
 {
 	switch (m_Assignment)
 	{

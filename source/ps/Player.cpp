@@ -40,7 +40,7 @@ void CPlayer::ScriptingInit()
 
 	// AddClassProperty( L"name", &CPlayer::m_Name );
 	// AddClassProperty( L"colour", &CPlayer::m_Colour );
-	AddProperty( L"controlled", (IJSObject::GetFn)&CPlayer::JSI_GetControlledEntities );
+	AddProperty( L"controlled", &CPlayer::JSI_GetControlledEntities );
 
 	CJSObject<CPlayer>::ScriptingInit( "Player" );
 }
@@ -84,7 +84,7 @@ jsval CPlayer::JSI_ToString( JSContext* cx, uintN UNUSED(argc), jsval* UNUSED(ar
 	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, str16.c_str() ) ) );
 }
 
-jsval CPlayer::JSI_GetControlledEntities()
+jsval CPlayer::JSI_GetControlledEntities(JSContext* UNUSED(cx))
 {
 	std::vector<HEntity>* controlledSet = GetControlledEntities();
 	jsval vp = OBJECT_TO_JSVAL( EntityCollection::Create( *controlledSet ) );
