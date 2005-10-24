@@ -380,8 +380,8 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect 
 
 		if (ObjectSize.GetWidth() == 0.0 || ObjectSize.GetHeight() == 0.0)
 		{
-			LOG(ERROR, LOG_CATEGORY, "Error drawing sprite '%s': size %dx%d is partly zero", (const char*)SpriteName, (int)ObjectSize.GetWidth(), (int)ObjectSize.GetHeight());
-			continue; // as in, don't continue with this image
+			// Zero sized object. Don't report as an error, since it's common for e.g. hitpoint bars.
+			continue; // i.e. don't continue with this image
 		}
 
 		Call.m_Vertices = ObjectSize;

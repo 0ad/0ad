@@ -33,12 +33,21 @@
 
 const TCHAR* msgbox_title = _T("Wildfire Games - Texture Converter");
 
-enum OutputFormat { DXTn, DXT1, DXT3, DXT5, BMP, TGA, BEST };
+enum OutputFileFormat { DXTn, DXT1, DXT3, DXT5, BMP, TGA, BEST };
 enum trool { tr_false, tr_true, tr_maybe };
+struct ConversionSettings
+{
+	OutputFileFormat fmt;
+	bool mipmaps;
+	trool alphablock;
+};
+
+
 
 void process_args(int argc, TCHAR** argv);
 
-void convert(std::tstring filename, OutputFormat fmt, trool alphablock);
+void convert(std::tstring filename, ConversionSettings& settings);
+
 
 void msg(const TCHAR* message, int icon)
 {
@@ -89,13 +98,6 @@ void check()
 }
 
 
-struct outputdata
-{
-	OutputFormat fmt;
-	bool mipmaps;
-	trool alphablock;
-};
-
 void process_args(int argc, TCHAR** argv)
 {
 	// Process arguments: Things like "-dxt5" alter the current output format
@@ -106,10 +108,10 @@ void process_args(int argc, TCHAR** argv)
 	// will use default settings for a.bmp and d.bmp, DXT1 for b.bmp, and
 	// DXT3 for c.bmp.
 
-	std::stack<outputdata> formats;
+	std::stack<ConversionSettings> settings;
 
-	outputdata def = { BEST, false, tr_maybe };
-	formats.push(def);
+	ConversionSettings def = { BEST, false, tr_false };
+	settings.push(def);
 
 	for (int i = 0; i < argc; ++i)
 	{
@@ -117,51 +119,51 @@ void process_args(int argc, TCHAR** argv)
 		if(0);
 
 		CASE("(")
-			formats.push(formats.top());
+			settings.push(settings.top());
 		CASE(")")
 		{
-			if (formats.size() <= 1)
+			if (settings.size() <= 1)
 				die(_T("Incorrect command-line parenthesis nesting"));
-			formats.pop();
+			settings.pop();
 		}
 		CASE("-dxt1")
-			formats.top().fmt = DXT1;
+			settings.top().fmt = DXT1;
 		CASE("-dxt3")
-			formats.top().fmt = DXT3;
+			settings.top().fmt = DXT3;
 		CASE("-dxt5")
-			formats.top().fmt = DXT5;
+			settings.top().fmt = DXT5;
 		CASE("-bmp")
-			formats.top().fmt = BMP;
+			settings.top().fmt = BMP;
 		CASE("-tga")
-			formats.top().fmt = TGA;
+			settings.top().fmt = TGA;
 		CASE("-mipmaps")
-			formats.top().mipmaps = true;
+			settings.top().mipmaps = true;
 		CASE("-nomipmaps")
-			formats.top().mipmaps = false;
+			settings.top().mipmaps = false;
 		CASE("-alphablock")
-			formats.top().alphablock = tr_true;
+			settings.top().alphablock = tr_true;
 		CASE("-noalphablock")
-			formats.top().alphablock = tr_false;
+			settings.top().alphablock = tr_false;
 		else
 		{
-			OutputFormat fmt = formats.top().fmt;
-			if (fmt == BEST)
+			ConversionSettings s = settings.top(); // copy
+			if (s.fmt == BEST)
 			{
 				// Convert .dds->BMP, and anything else to DDS
 				const TCHAR* dot = tstrrchr(argv[i], _T('.'));
 				if (dot && tstrcmp(dot, _T(".dds"))==0)
-					fmt = BMP;
+					s.fmt = BMP;
 				else
-					fmt = DXTn;
+					s.fmt = DXTn;
 			}
-			convert(argv[i], fmt, formats.top().alphablock);
+			convert(argv[i], s);
 		}
 #undef CASE
 	}
 }
 
 
-void convert(std::tstring filename, OutputFormat fmt, trool alphablock)
+void convert(std::tstring filename, ConversionSettings& settings)
 {
 	// Generate the output .dds/etc filename:
 	size_t dot = filename.rfind(_T("."));
@@ -171,8 +173,11 @@ void convert(std::tstring filename, OutputFormat fmt, trool alphablock)
 		die(msg.c_str());
 	}
 
+//OutputDebugString(filename.c_str());
+//OutputDebugString(L"\n");
+
 	const TCHAR* extn;
-	switch (fmt)
+	switch (settings.fmt)
 	{
 	case DXTn:
 	case DXT1:
@@ -245,10 +250,10 @@ void convert(std::tstring filename, OutputFormat fmt, trool alphablock)
 	}
 
 
-	if (fmt == DXTn || fmt == DXT1 || fmt == DXT3 || fmt == DXT5)
+	if (settings.fmt == DXTn || settings.fmt == DXT1 || settings.fmt == DXT3 || settings.fmt == DXT5)
 	{
 
-		if (alphablock == tr_true || (alphablock == tr_maybe && info.Height == info.Width*2))
+		if (settings.alphablock == tr_true || (settings.alphablock == tr_maybe && info.Height == info.Width*2))
 		{
 			// Reading from file with special alpha mode: colour stored in top
 			// half, alpha in bottom half (as greyscale)
@@ -272,7 +277,7 @@ void convert(std::tstring filename, OutputFormat fmt, trool alphablock)
 			has_alpha = true;
 		}
 	}
-	else if (fmt == BMP)
+	else if (settings.fmt == BMP)
 	{
 		if (has_alpha)
 		{
@@ -303,11 +308,11 @@ void convert(std::tstring filename, OutputFormat fmt, trool alphablock)
 
 
 
-	switch (fmt)
+	switch (settings.fmt)
 	{
 	case DXTn:
 		if (has_alpha)
-			ilSetInteger(IL_DXTC_FORMAT, IL_DXT3);
+			ilSetInteger(IL_DXTC_FORMAT, IL_DXT5);
 		else
 			ilSetInteger(IL_DXTC_FORMAT, IL_DXT1);
 		break;
@@ -322,16 +327,20 @@ void convert(std::tstring filename, OutputFormat fmt, trool alphablock)
 		break;
 	}
 
-	if (fmt == DXTn || fmt == DXT1 || fmt == DXT3 || fmt == DXT5)
+	if (settings.mipmaps)
 	{
 		iluBuildMipmaps();
+/*
+		// TODO: replace with proper sharp mipmap code
+
 		int num = ilGetInteger(IL_NUM_MIPMAPS);
 		for (int n = 1; n < num; ++n)
 		{
 			ilActiveMipmap(n);
-			iluSharpen(2.0, 1); // TODO: alter these, to make things look as nice as possible
+			iluSharpen(3.0, 1);
 			ilActiveMipmap(0);
 		}
+*/
 		check();
 	}
 
@@ -339,7 +348,7 @@ void convert(std::tstring filename, OutputFormat fmt, trool alphablock)
 
 	check();
 
- 	if (! ilSaveImage((TCHAR*) filename_out.c_str()))
+	if (! ilSaveImage((TCHAR*) filename_out.c_str()))
 	{
 		std::tstring msg = _T("Error saving file '") + filename_out + _T("' - aborting.");
 		die(msg.c_str());

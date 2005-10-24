@@ -15,13 +15,13 @@
 #include "il_dds.h"
 #include "il_manip.h"
 #include <limits.h>
-
+#include <assert.h>
 
 #ifndef IL_NO_DDS
 
 
 #define DXTC_DEBUG
-#define FAST_COMPRESS
+//#define FAST_COMPRESS
 
 #ifdef DXTC_DEBUG
 void debug_out(const wchar_t* fmt, ...)
@@ -300,7 +300,11 @@ ILubyte *CompressTo888(ILimage *Image)
 	return Data;
 }
 
+#ifdef DXTC_DEBUG
 ILuint g_x, g_y, g_score;
+ILuint CalculateAlphaDist(ILubyte Alpha0, ILubyte Alpha1, ILuint Num, ILubyte *Block, ILuint DistLimit);
+#endif
+
 ILuint Compress(ILimage *Image, ILenum DXTCFormat)
 {
 	ILubyte		*Data;
@@ -310,7 +314,7 @@ ILuint Compress(ILimage *Image, ILenum DXTCFormat)
 	ILubyte		*Alpha, AlphaBlock[16], AlphaBitMask[6], AlphaOut[16], a0, a1;
 	ILboolean	HasAlpha;
 	ILuint		Count = 0;
-	ILuint		FinalScore = 0; // mainly for optimising the algorithm, to see how good it is
+	ILuint		FinalScore = 0, FinalScoreA = 0; // mainly used when attempting to improve the algorithm, to measure how good it is
 
 	if (ilNextPower2(iCurImage->Width) != iCurImage->Width ||
 		ilNextPower2(iCurImage->Height) != iCurImage->Height ||
@@ -457,18 +461,19 @@ ILuint Compress(ILimage *Image, ILenum DXTCFormat)
 #endif
 					GetAlphaBlock(AlphaBlock, Alpha, Image, x, y);
 					ChooseAlphaEndpoints(AlphaBlock, &a0, &a1);
-					GenAlphaBitMask(a0, a1, 6, AlphaBlock, AlphaBitMask, AlphaOut);
-					/*Rms2 = RMSAlpha(AlphaBlock, AlphaOut);
-					GenAlphaBitMask(a0, a1, 8, AlphaBlock, AlphaBitMask, AlphaOut);
-					Rms1 = RMSAlpha(AlphaBlock, AlphaOut);
-					if (Rms2 <= Rms1) {  // Yeah, we have to regenerate...
-						GenAlphaBitMask(a0, a1, 6, AlphaBlock, AlphaBitMask, AlphaOut);
-						Rms2 = a1;  // Just reuse Rms2 as a temporary variable...
-						a1 = a0;
-						a0 = Rms2;
-					}*/
 					iputc(a0);
 					iputc(a1);
+					if (a0 <= a1)
+					{
+						FinalScoreA += CalculateAlphaDist(a0, a1, 6, AlphaBlock, UINT_MAX);
+						GenAlphaBitMask(a0, a1, 6, AlphaBlock, AlphaBitMask, AlphaOut);
+					}
+					else
+					{
+						FinalScoreA += CalculateAlphaDist(a0, a1, 8, AlphaBlock, UINT_MAX);
+						GenAlphaBitMask(a0, a1, 8, AlphaBlock, AlphaBitMask, AlphaOut);
+					}
+
 					iwrite(AlphaBitMask, 1, 6);
 
 					GetBlock(Block, Data, Image, x, y);
@@ -489,7 +494,7 @@ ILuint Compress(ILimage *Image, ILenum DXTCFormat)
 	ifree(Data);
 
 #ifdef DXTC_DEBUG
-	debug_out(L"FINAL SCORE: %d  (%dx%d)\n", FinalScore, Image->Width, Image->Height);
+	debug_out(L"FINAL SCORE: %d (%d)  (%dx%d)\n", FinalScore, FinalScoreA, Image->Width, Image->Height);
 #endif
 
 	return Count;
@@ -717,7 +722,8 @@ ILvoid GenAlphaBitMask(ILubyte a0, ILubyte a1, ILuint Num, ILubyte *In, ILubyte 
 	Alphas[1] = a1;
 
 	// 8-alpha or 6-alpha block?    
-	if (Num == 8) {    
+	if (Num == 8) {
+		assert(Alphas[0] > Alphas[1]);
 		// 8-alpha block:  derive the other six alphas.    
 		// Bit code 000 = alpha_0, 001 = alpha_1, others are interpolated.
 		Alphas[2] = (6 * Alphas[0] + 1 * Alphas[1] + 3) / 7;	// bit code 010
@@ -728,6 +734,7 @@ ILvoid GenAlphaBitMask(ILubyte a0, ILubyte a1, ILuint Num, ILubyte *In, ILubyte 
 		Alphas[7] = (1 * Alphas[0] + 6 * Alphas[1] + 3) / 7;	// bit code 111  
 	}    
 	else {  
+		assert(Alphas[0] <= Alphas[1]);
 		// 6-alpha block.    
 		// Bit code 000 = alpha_0, 001 = alpha_1, others are interpolated.
 		Alphas[2] = (4 * Alphas[0] + 1 * Alphas[1] + 2) / 5;	// Bit code 010
@@ -1267,41 +1274,170 @@ ILuint ChooseEndpoints(ILushort *ex0, ILushort *ex1, ILuint NumCols, ILubyte *Bl
 }
 
 
-ILvoid ChooseAlphaEndpoints(ILubyte *Block, ILubyte *a0, ILubyte *a1)
+ILuint CalculateAlphaDist(ILubyte Alpha0, ILubyte Alpha1, ILuint Num, ILubyte *Block, ILuint DistLimit)
 {
-	ILuint	i;
-	ILuint	Lowest = 0xFF, Highest = 0;
-	ILboolean flip = IL_FALSE;
+	ILubyte	Alphas[8];
+	ILuint	i, j, TotalDist = 0;
+	ILuint	ClosestDist, Dist;
 
-	*a1 = Lowest;
-	*a0 = Highest;
+	Alphas[0] = Alpha0;
+	Alphas[1] = Alpha1;
 
-	// TODO: Is this code any good?
+	// 8-alpha or 6-alpha block?    
+	if (Num == 8) {    
+		// 8-alpha block:  derive the other six alphas.    
+		// Bit code 000 = alpha_0, 001 = alpha_1, others are interpolated.
+		Alphas[2] = (6 * Alphas[0] + 1 * Alphas[1] + 3) / 7;	// bit code 010
+		Alphas[3] = (5 * Alphas[0] + 2 * Alphas[1] + 3) / 7;	// bit code 011
+		Alphas[4] = (4 * Alphas[0] + 3 * Alphas[1] + 3) / 7;	// bit code 100
+		Alphas[5] = (3 * Alphas[0] + 4 * Alphas[1] + 3) / 7;	// bit code 101
+		Alphas[6] = (2 * Alphas[0] + 5 * Alphas[1] + 3) / 7;	// bit code 110
+		Alphas[7] = (1 * Alphas[0] + 6 * Alphas[1] + 3) / 7;	// bit code 111  
+	}    
+	else {  
+		// 6-alpha block.    
+		// Bit code 000 = alpha_0, 001 = alpha_1, others are interpolated.
+		Alphas[2] = (4 * Alphas[0] + 1 * Alphas[1] + 2) / 5;	// Bit code 010
+		Alphas[3] = (3 * Alphas[0] + 2 * Alphas[1] + 2) / 5;	// Bit code 011
+		Alphas[4] = (2 * Alphas[0] + 3 * Alphas[1] + 2) / 5;	// Bit code 100
+		Alphas[5] = (1 * Alphas[0] + 4 * Alphas[1] + 2) / 5;	// Bit code 101
+		Alphas[6] = 0x00;										// Bit code 110
+		Alphas[7] = 0xFF;										// Bit code 111
+	}
 
-	for (i = 0; i < 16; i++) {
-		if (Block[i] == 0) // use 0, 255 as endpoints
-			flip = IL_TRUE;
-		else if (Block[i] < Lowest) {
-			*a1 = Block[i];  // a1 is the lower of the two.
-			Lowest = Block[i];
+	if (Num == 6)
+	{
+		for (i = 0; i < 16; ++i)
+		{
+			if (Block[i] == 0 || Block[i] == 255) // handle the common case of max/min regions
+				ClosestDist = 0;
+			else
+			{
+				ClosestDist = UINT_MAX;
+				for (j = 0; j < 6; ++j)
+				{
+					Dist = (Block[i] - Alphas[j]) * (Block[i] - Alphas[j]);
+					if (Dist < ClosestDist)
+						ClosestDist = Dist;
+				}
+				TotalDist += ClosestDist;
+				if (TotalDist >= DistLimit)
+					return UINT_MAX;
+			}
 		}
+	}
+	else
+	{
+		for (i = 0; i < 16; ++i)
+		{
+			ClosestDist = UINT_MAX;
+			for (j = 0; j < 8; ++j)
+			{
+				Dist = (Block[i] - Alphas[j]) * (Block[i] - Alphas[j]);
+				if (Dist < ClosestDist)
+					ClosestDist = Dist;
+			}
+			TotalDist += ClosestDist;
+			if (TotalDist >= DistLimit)
+				return UINT_MAX;
+		}
+	}
+	return TotalDist;
+}
 
-		if (Block[i] == 255) //use 0, 255 as endpoints
-			flip = IL_TRUE;
-		else if (Block[i] > Highest) {
-			*a0 = Block[i];  // a0 is the higher of the two.
-			Highest = Block[i];
+void ChooseAlphaEndpoints(ILubyte *Block, ILubyte *Alpha0, ILubyte *Alpha1)
+{
+	ILint	a0, a1;
+	ILuint	Dist, ClosestDist = UINT_MAX;
+
+
+	// First try every point in a coarse grid, and remember the best.
+	// (This usually gives a pretty decent result by itself.)
+	for (a1 = 0; a1 < 256; a1 += 8)
+	{
+		for (a0 = 0; a0 < a1; a0 += 8)
+		{
+			// Try 6-value (plus 0 and 255) version
+			Dist = CalculateAlphaDist(a0, a1, 6, Block, ClosestDist);
+			if (Dist < ClosestDist)
+			{
+				ClosestDist = Dist;
+				*Alpha0 = a0;
+				*Alpha1 = a1;
+				if (Dist == 0) return;
+			}
+
+			// Try 8-value version
+			Dist = CalculateAlphaDist(a0, a1, 8, Block, ClosestDist);
+			if (Dist < ClosestDist)
+			{
+				ClosestDist = Dist;
+				*Alpha0 = a1;
+				*Alpha1 = a0;
+				if (Dist == 0) return;
+			}
 		}
 	}
 
-	if (flip) {
-		i = *a0;
-		*a0 = *a1;
-		*a1 = i;
+	// Attempt to fine-tune the result, by testing a small grid around the
+	// previously determined 'best' values.
+	{
+		ILint oldAlpha0 = *Alpha0;
+		ILint oldAlpha1 = *Alpha1;
+		const ILint range = 8;
+		for (a1 = oldAlpha1-range; a1 <= oldAlpha1+range; ++a1)
+		{
+			for (a0 = oldAlpha0-range; a0 <= oldAlpha0+range; ++a0)
+			{
+				ILuint num = (ILubyte)a0 <= (ILubyte)a1 ? 6 : 8;
+				Dist = CalculateAlphaDist(a0, a1, num, Block, ClosestDist);
+				if (Dist < ClosestDist)
+				{
+					ClosestDist = Dist;
+					*Alpha0 = a0;
+					*Alpha1 = a1;
+					if (Dist == 0) return;
+				}
+			}
+		}
 	}
 
 
-	return;
+	// Or we could do the very slow but optimal [at least by the specific
+	// 'goodness' criteria used by this code] method:
+#if 0
+	// First try with the 6-value system:
+	for (a1 = 0; a1 < 256; ++a1)
+	{
+		for (a0 = 0; a0 < a1; ++a0)
+		{
+			Dist = CalculateAlphaDist(a0, a1, 6, Block, ClosestDist);
+			if (Dist < ClosestDist)
+			{
+				ClosestDist = Dist;
+				*Alpha0 = a0;
+				*Alpha1 = a1;
+				if (Dist == 0) return; // early finish, e.g. if image is only 0/255
+			}
+		}
+	}
+
+	// Then try with the 8-value system:
+	for (a1 = 0; a1 < 256; ++a1)
+	{
+		for (a0 = 0; a0 < a1; ++a0)
+		{
+			Dist = CalculateAlphaDist(a1, a0, 8, Block, ClosestDist);
+			if (Dist < ClosestDist)
+			{
+				ClosestDist = Dist;
+				*Alpha0 = a1;
+				*Alpha1 = a0;
+				if (Dist == 0) return;
+			}
+		}
+	}
+#endif
 }
 
 
