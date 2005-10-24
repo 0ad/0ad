@@ -79,7 +79,7 @@ void debug_wprintf_mem(const wchar_t* fmt, ...)
 //   not loads of data, anyway.
 
 // max # characters (including \0) output by debug_(w)printf in one call.
-static const int MAX_CNT = 512;
+static const int MAX_CHARS = 512;
 
 
 // rationale: static data instead of std::set to allow setting at any time.
@@ -147,41 +147,13 @@ static bool filter_allows(const char* text)
 }
 
 
-static bool filter_allows(const wchar_t* text)
-{
-	// convert to char (ugly, assumes buf contains ASCII up to ':')
-	// default to allowing it if text isn't ASCII (fail-safe).
-	char buf[MAX_CNT];
-	uint i;
-	for(i = 0; ; i++)
-	{
-		// .. no colon - should be displayed
-		if(text[i] == ' ' || text[i] == '\0')
-			return true;
-		if(text[i] == ':' && i != 0)
-			break;
-		buf[i] = text[i];
-	}
-
-	const u32 hash = fnv_hash(buf, i);
-
-	// check if allow-entry is found
-	for(i = 0; i < MAX_TAGS; i++)
-		if(tags[i] == hash)
-			return true;
-
-	return false;
-}
-
-
 void debug_printf(const char* fmt, ...)
 {
-	char buf[MAX_CNT];
-	buf[MAX_CNT-1] = '\0';
+	char buf[MAX_CHARS]; buf[ARRAY_SIZE(buf)-1] = '\0';
 
 	va_list ap;
 	va_start(ap, fmt);
-	vsnprintf(buf, MAX_CNT-1, fmt, ap);
+	vsnprintf(buf, MAX_CHARS-1, fmt, ap);
 	va_end(ap);
 
 	if(filter_allows(buf))
@@ -190,16 +162,39 @@ void debug_printf(const char* fmt, ...)
 
 void debug_wprintf(const wchar_t* fmt, ...)
 {
-	wchar_t buf[MAX_CNT];
-	buf[MAX_CNT-1] = '\0';
+	wchar_t wcs_buf[MAX_CHARS]; wcs_buf[ARRAY_SIZE(wcs_buf)-1] = '\0';
 
 	va_list ap;
 	va_start(ap, fmt);
-	vswprintf(buf, MAX_CNT-1, fmt, ap);
+	vswprintf(wcs_buf, MAX_CHARS-1, fmt, ap);
 	va_end(ap);
 
-	if(filter_allows(buf))
-		debug_putws(buf);
+	// convert wchar_t to UTF-8.
+	//
+	// rationale: according to fwide(3) and assorted manpage, FILEs are in
+	// single character or in wide character mode. When a FILE is in
+	// single character mode, wide character writes will fail, and no
+	// conversion is done automatically. Thus the manual conversion.
+	//
+	// it's done here (instead of in OS-specific debug_putws) because
+	// filter_allow requires the conversion also.
+	//
+	// jw: MSDN wcstombs dox say 2 bytes per wchar is enough.
+	// not sure about this; to be on the safe side, we check for overflow.
+	const size_t MAX_BYTES = MAX_CHARS*2;
+	char mbs_buf[MAX_BYTES]; mbs_buf[MAX_BYTES-1] = '\0';
+	size_t bytes_written = wcstombs(mbs_buf, wcs_buf, MAX_BYTES);
+	// .. error
+	if(bytes_written == (size_t)-1)
+		debug_warn("invalid wcs character encountered");
+	// .. exact fit, make sure it's 0-terminated
+	if(bytes_written == MAX_BYTES)
+		mbs_buf[MAX_BYTES-1] = '\0';
+	// .. paranoia: overflow is impossible
+	debug_assert(bytes_written <= MAX_BYTES);
+
+	if(filter_allows(mbs_buf))
+		debug_puts(mbs_buf);
 }
 
 

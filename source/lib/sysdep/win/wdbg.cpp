@@ -59,14 +59,8 @@ static bool is_locked()
 
 void debug_puts(const char* text)
 {
-	OutputDebugString(text);
+	OutputDebugStringA(text);
 }
-
-void debug_putws(const wchar_t* text)
-{
-	OutputDebugStringW(text);
-}
-
 
 
 //////////////////////////////////////////////////////////////////////////////

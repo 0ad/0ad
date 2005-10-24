@@ -413,27 +413,6 @@ void debug_puts(const char* text)
 	fflush(stdout);
 }
 
-void debug_putws(const wchar_t* text)
-{
-	// According to fwide(3) and assorted manpage, FILEs are in single character or in
-	// wide character mode. When a FILE is in single character mode, wide character writes
-	// will fail, and no conversion is done automatically. Thus the manual conversion.
-	size_t convbuflen = wcstombs(NULL, text, 0)+1;
-	char* convbuf = (char*)malloc(convbuflen);
-	int ret = wcstombs(convbuf, text, convbuflen);
-
-	if (ret < 0 || ret >= convbuflen) {
-		printf("debug_wprintf: wcstombs failed\n");
-		free(convbuf);
-		fflush(stdout);
-		return;
-	}
-
-	fputs(convbuf, stdout);
-	free(convbuf);
-	fflush(stdout);
-}
-
 
 // TODO: Do these properly. (I don't know what I'm doing; I just
 // know that these functions are required in order to compile...)
