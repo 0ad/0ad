@@ -18,8 +18,6 @@
 #include <set>
 #include <algorithm>
 #include "Renderer.h"
-#include "TransparencyRenderer.h"
-#include "PlayerRenderer.h"
 #include "Terrain.h"
 #include "Matrix3D.h"
 #include "MathUtil.h"
@@ -69,6 +67,8 @@ CRenderer::CRenderer()
 	m_ClearColor[0]=m_ClearColor[1]=m_ClearColor[2]=m_ClearColor[3]=0;
 	m_ShadowMap=0;
 
+	m_SortAllTransparent = false;
+	
 	m_VertexShader = 0;
 	
 	m_Options.m_NoVBO=false;
@@ -94,10 +94,12 @@ CRenderer::CRenderer()
 	// model rendering
 	m_Models.NormalFF = new FixedFunctionModelRenderer;
 	m_Models.PlayerFF = new FixedFunctionModelRenderer;
+	m_Models.TransparentFF = new FixedFunctionModelRenderer;
 	if (HWLightingModelRenderer::IsAvailable())
 	{
 		m_Models.NormalHWLit = new HWLightingModelRenderer;
 		m_Models.PlayerHWLit = new HWLightingModelRenderer;
+		m_Models.TransparentHWLit = new HWLightingModelRenderer;
 	}
 	m_Models.Transparency = new TransparencyRenderer;
 
@@ -135,8 +137,10 @@ CRenderer::~CRenderer()
 	// model rendering
 	delete m_Models.NormalFF;
 	delete m_Models.PlayerFF;
+	delete m_Models.TransparentFF;
 	delete m_Models.NormalHWLit;
 	delete m_Models.PlayerHWLit;
+	delete m_Models.TransparentHWLit;
 	delete m_Models.Transparency;
 
 	// general
@@ -777,6 +781,9 @@ void CRenderer::RenderShadowMap()
 		m_Models.NormalHWLit->Render(m_Models.ModSolidColor, MODELFLAG_CASTSHADOWS);
 	if (m_Models.PlayerHWLit)
 		m_Models.PlayerHWLit->Render(m_Models.ModSolidColor, MODELFLAG_CASTSHADOWS);
+	m_Models.TransparentFF->Render(m_Models.ModTransparentShadow, MODELFLAG_CASTSHADOWS);
+	if (m_Models.TransparentHWLit)
+		m_Models.TransparentHWLit->Render(m_Models.ModTransparentShadow, MODELFLAG_CASTSHADOWS);
 	m_Models.Transparency->Render(m_Models.ModTransparentShadow, MODELFLAG_CASTSHADOWS);
 
 	glEnable(GL_CULL_FACE);
@@ -1059,12 +1066,18 @@ void CRenderer::RenderTransparentModels()
 		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 	}
 
+	m_Models.TransparentFF->Render(m_Models.ModTransparent, 0);
+	if (m_Models.TransparentHWLit)
+		m_Models.TransparentHWLit->Render(m_Models.ModTransparent, 0);
 	m_Models.Transparency->Render(m_Models.ModTransparent, 0);
 
 	if (m_ModelRenderMode==WIREFRAME) {
 		// switch wireframe off again
 		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 	} else if (m_ModelRenderMode==EDGED_FACES) {
+		m_Models.TransparentFF->Render(m_Models.ModWireframe, 0);
+		if (m_Models.TransparentHWLit)
+			m_Models.TransparentHWLit->Render(m_Models.ModWireframe, 0);
 		m_Models.Transparency->Render(m_Models.ModWireframe, 0);
 	}
 }
@@ -1084,10 +1097,13 @@ void CRenderer::FlushFrame()
 	PROFILE_START("prepare models");
 	m_Models.NormalFF->PrepareModels();
 	m_Models.PlayerFF->PrepareModels();
+	m_Models.TransparentFF->PrepareModels();
 	if (m_Models.NormalHWLit)
 		m_Models.NormalHWLit->PrepareModels();
 	if (m_Models.PlayerHWLit)
 		m_Models.PlayerHWLit->PrepareModels();
+	if (m_Models.TransparentHWLit)
+		m_Models.TransparentHWLit->PrepareModels();
 	m_Models.Transparency->PrepareModels();
 	PROFILE_END("prepare models");
 
@@ -1139,10 +1155,13 @@ void CRenderer::FlushFrame()
 	// Finish model renderers
 	m_Models.NormalFF->EndFrame();
 	m_Models.PlayerFF->EndFrame();
+	m_Models.TransparentFF->EndFrame();
 	if (m_Models.NormalHWLit)
 		m_Models.NormalHWLit->EndFrame();
 	if (m_Models.PlayerHWLit)
 		m_Models.PlayerHWLit->EndFrame();
+	if (m_Models.TransparentHWLit)
+		m_Models.TransparentHWLit->EndFrame();
 	m_Models.Transparency->EndFrame();
 }
 
@@ -1211,7 +1230,12 @@ void CRenderer::Submit(CModel* model)
 	}
 	else if(model->GetMaterial().UsesAlpha())
 	{
-		m_Models.Transparency->Submit(model);
+		if (m_SortAllTransparent)
+			m_Models.Transparency->Submit(model);
+		else if (m_Options.m_RenderPath == RP_VERTEXSHADER)
+			m_Models.TransparentHWLit->Submit(model);
+		else
+			m_Models.TransparentFF->Submit(model);
 	}
 	else
 	{
@@ -1563,6 +1587,7 @@ void CRenderer::ScriptingInit()
 {
 	AddProperty(L"fastPlayerColor", &CRenderer::JSI_GetFastPlayerColor, &CRenderer::JSI_SetFastPlayerColor);
 	AddProperty(L"renderpath", &CRenderer::JSI_GetRenderPath, &CRenderer::JSI_SetRenderPath);
+	AddProperty(L"sortAllTransparent", &CRenderer::m_SortAllTransparent);
 
 	CJSObject<CRenderer>::ScriptingInit("Renderer");
 }

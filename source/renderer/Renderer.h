@@ -385,8 +385,17 @@ protected:
 	// render path is used (according to m_Options.m_RenderPath)
 	RenderPathVertexShader* m_VertexShader;
 
-	// If false, use a multipass fallback for player colors.
+	/// If false, use a multipass fallback for player colors.
 	bool m_FastPlayerColor;
+	
+	/**
+	 * m_SortAllTransparent: If true, all transparent models are
+	 * rendered using the TransparencyRenderer which performs sorting.
+	 *
+	 * Otherwise, transparent models are rendered using the faster
+	 * batching renderer when possible.
+	 */
+	bool m_SortAllTransparent;
 
 	// State used by LoadWaterTextures with progressive loading
 	uint cur_loading_water_tex;
@@ -395,8 +404,10 @@ protected:
 	struct Models {
 		ModelRenderer* NormalFF;
 		ModelRenderer* PlayerFF;
+		ModelRenderer* TransparentFF;
 		ModelRenderer* NormalHWLit;
 		ModelRenderer* PlayerHWLit;
+		ModelRenderer* TransparentHWLit;
 		ModelRenderer* Transparency;
 		
 		RenderModifierPtr ModWireframe;

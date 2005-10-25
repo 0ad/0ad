@@ -247,6 +247,9 @@ void TransparencyRenderer::PrepareModels()
 {
 	CMatrix3D worldToCam;
 	
+	if (m->objects.size() == 0)
+		return;
+	
 	g_Renderer.m_Camera.m_Orientation.GetInverse(worldToCam);
 	
 	for(std::vector<SObject>::iterator it = m->objects.begin(); it != m->objects.end(); ++it)
