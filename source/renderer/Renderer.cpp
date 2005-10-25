@@ -46,7 +46,13 @@
 #include "lib/res/graphics/ogl_tex.h"
 #include "ps/Loader.h"
 
+#include "renderer/FixedFunctionModelRenderer.h"
+#include "renderer/HWLightingModelRenderer.h"
+#include "renderer/ModelRenderer.h"
+#include "renderer/PlayerRenderer.h"
+#include "renderer/RenderModifiers.h"
 #include "renderer/RenderPathVertexShader.h"
+#include "renderer/TransparencyRenderer.h"
 
 #define LOG_CATEGORY "graphics"
 
@@ -69,11 +75,38 @@ CRenderer::CRenderer()
 	m_Options.m_Shadows=true;
 	m_Options.m_ShadowColor=RGBAColor(0.4f,0.4f,0.4f,1.0f);
 	m_Options.m_RenderPath = RP_DEFAULT;
-	m_FastPlayerColor = true;
 
 	for (uint i=0;i<MaxTextureUnits;i++) {
 		m_ActiveTextures[i]=0;
 	}
+
+	// Must query card capabilities before creating renderers that depend
+	// on card capabilities.
+	EnumCaps();
+
+	m_VertexShader = new RenderPathVertexShader;
+	if (!m_VertexShader->Init())
+	{
+		delete m_VertexShader;
+		m_VertexShader = 0;
+	}
+
+	// model rendering
+	m_Models.NormalFF = new FixedFunctionModelRenderer;
+	m_Models.PlayerFF = new FixedFunctionModelRenderer;
+	if (HWLightingModelRenderer::IsAvailable())
+	{
+		m_Models.NormalHWLit = new HWLightingModelRenderer;
+		m_Models.PlayerHWLit = new HWLightingModelRenderer;
+	}
+	m_Models.Transparency = new TransparencyRenderer;
+
+	m_Models.ModWireframe = RenderModifierPtr(new WireframeRenderModifier);
+	m_Models.ModPlain = RenderModifierPtr(new PlainRenderModifier);
+	SetFastPlayerColor(true);
+	m_Models.ModSolidColor = RenderModifierPtr(new SolidColorRenderModifier);
+	m_Models.ModTransparent = RenderModifierPtr(new TransparentRenderModifier);
+	m_Models.ModTransparentShadow = RenderModifierPtr(new TransparentShadowRenderModifier);
 
 	// water
 	m_RenderWater = true;
@@ -99,6 +132,14 @@ CRenderer::CRenderer()
 // CRenderer destructor
 CRenderer::~CRenderer()
 {
+	// model rendering
+	delete m_Models.NormalFF;
+	delete m_Models.PlayerFF;
+	delete m_Models.NormalHWLit;
+	delete m_Models.PlayerHWLit;
+	delete m_Models.Transparency;
+
+	// general
 	delete m_VertexShader;
 	m_VertexShader = 0;
 
@@ -137,31 +178,6 @@ void CRenderer::EnumCaps()
 }
 
 
-// Select the render path we're going to use based on config preferrences and
-// on available extensions.
-void CRenderer::InitRenderPath()
-{
-	RenderPath desired = m_Options.m_RenderPath;
-	
-	if (m_Options.m_RenderPath == RP_DEFAULT)
-		m_Options.m_RenderPath = RP_VERTEXSHADER;
-	
-	if (m_Options.m_RenderPath == RP_VERTEXSHADER)
-	{
-		m_VertexShader = new RenderPathVertexShader;
-		if (!m_VertexShader->Init())
-		{
-			delete m_VertexShader;
-			m_VertexShader = 0;
-			m_Options.m_RenderPath = RP_FIXED;
-		}
-	}
-	
-	LOG(NORMAL, LOG_CATEGORY, "Selected render path: %hs (configuration value: %hs)",
-	    GetRenderPathName(m_Options.m_RenderPath).c_str(),
-	    GetRenderPathName(desired).c_str());
-}
-
 bool CRenderer::Open(int width, int height, int depth)
 {
 	m_Width = width;
@@ -179,9 +195,6 @@ bool CRenderer::Open(int width, int height, int depth)
 	glFrontFace(GL_CCW);
 	glEnable(GL_CULL_FACE);
 
-	// query card capabilities
-	EnumCaps();
-
 	GLint bits;
 	glGetIntegerv(GL_DEPTH_BITS,&bits);
 	LOG(NORMAL, LOG_CATEGORY, "CRenderer::Open: depth bits %d",bits);
@@ -190,7 +203,8 @@ bool CRenderer::Open(int width, int height, int depth)
 	glGetIntegerv(GL_ALPHA_BITS,&bits);
 	LOG(NORMAL, LOG_CATEGORY, "CRenderer::Open: alpha bits %d",bits);
 
-	InitRenderPath();
+	if (m_Options.m_RenderPath == RP_DEFAULT)
+		SetRenderPath(m_Options.m_RenderPath);
 	
 	return true;
 }
@@ -294,10 +308,21 @@ const RGBAColor& CRenderer::GetOptionColor(enum Option opt) const
 // data may depend on the chosen render path.
 void CRenderer::SetRenderPath(RenderPath rp)
 {
-	if (m_Options.m_RenderPath != RP_DEFAULT && rp != m_Options.m_RenderPath)
+	if (rp == RP_DEFAULT)
 	{
-		debug_warn("Cannot change RenderPath after the fact");
-		return;
+		if (m_Models.NormalHWLit && m_Models.PlayerHWLit)
+			rp = RP_VERTEXSHADER;
+		else
+			rp = RP_FIXED;
+	}
+	
+	if (rp == RP_VERTEXSHADER)
+	{
+		if (!m_Models.NormalHWLit || !m_Models.PlayerHWLit)
+		{
+			LOG(WARNING, LOG_CATEGORY, "Falling back to fixed function\n");
+			rp = RP_FIXED;
+		}
 	}
 	
 	m_Options.m_RenderPath = rp;
@@ -327,6 +352,27 @@ CRenderer::RenderPath CRenderer::GetRenderPathByName(CStr name)
 	return RP_DEFAULT;
 }
 
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// SetFastPlayerColor
+void CRenderer::SetFastPlayerColor(bool fast)
+{
+	m_FastPlayerColor = fast;
+	
+	if (m_FastPlayerColor)
+	{
+		if (!FastPlayerColorRender::IsAvailable())
+		{
+			LOG(WARNING, LOG_CATEGORY, "Falling back to slower player color rendering.");
+			m_FastPlayerColor = false;
+		}
+	}
+	
+	if (m_FastPlayerColor)
+		m_Models.ModPlayer = RenderModifierPtr(new FastPlayerColorRender);
+	else
+		m_Models.ModPlayer = RenderModifierPtr(new SlowPlayerColorRender);
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // BeginFrame: signal frame start
@@ -721,36 +767,18 @@ void CRenderer::RenderShadowMap()
 	glEnable(GL_SCISSOR_TEST);
 	glScissor(1,1,m_Width-2,m_Height-2);
 
-	glActiveTextureARB(GL_TEXTURE0);
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PRIMARY_COLOR_ARB);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PRIMARY_COLOR_ARB);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-	oglSquelchError(GL_INVALID_ENUM);
-	
-	// Set the proper LOD bias
-	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, m_Options.m_LodBias);
-
 	glColor4fv(m_Options.m_ShadowColor);
 
 	glDisable(GL_CULL_FACE);
 
-	CModelRData::SetupRender(STREAM_POS);
+	m_Models.NormalFF->Render(m_Models.ModSolidColor, MODELFLAG_CASTSHADOWS);
+	m_Models.PlayerFF->Render(m_Models.ModSolidColor, MODELFLAG_CASTSHADOWS);
+	if (m_Models.NormalHWLit)
+		m_Models.NormalHWLit->Render(m_Models.ModSolidColor, MODELFLAG_CASTSHADOWS);
+	if (m_Models.PlayerHWLit)
+		m_Models.PlayerHWLit->Render(m_Models.ModSolidColor, MODELFLAG_CASTSHADOWS);
+	m_Models.Transparency->Render(m_Models.ModTransparentShadow, MODELFLAG_CASTSHADOWS);
 
-	// render models
-	CModelRData::RenderModels(STREAM_POS,MODELFLAG_CASTSHADOWS);
-
-	// call on the player renderer to render all of the player shadows.
-	g_PlayerRenderer.RenderShadows();
-
-	// call on the transparency renderer to render all the transparent stuff
-	g_TransparencyRenderer.RenderShadows();
-
-	CModelRData::FinishRender(STREAM_POS);
-	
 	glEnable(GL_CULL_FACE);
 
 	glColor3f(1.0f,1.0f,1.0f);
@@ -993,35 +1021,6 @@ void CRenderer::RenderWater()
 	glDisable(GL_TEXTURE_2D);
 }
 
-void CRenderer::RenderModelSubmissions()
-{
-	// set up texture environment for base pass - modulate texture and primary color
-	glActiveTextureARB(GL_TEXTURE0);
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
-
-	// Set the proper LOD bias
-	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, m_Options.m_LodBias);
-
-	// pass one through as alpha; transparent textures handled specially by CTransparencyRenderer
-	// (gl_constant means the colour comes from the gl_texture_env_color)
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_CONSTANT);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-
-	float color[] = { 1.0, 1.0, 1.0, 1.0 };
-	glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, color);
-
-	// render models
-	CModelRData::SetupRender(STREAM_POS|STREAM_COLOR|STREAM_UV0);
-	CModelRData::RenderModels(STREAM_POS|STREAM_COLOR|STREAM_UV0);
-	CModelRData::FinishRender(STREAM_POS|STREAM_COLOR|STREAM_UV0);
-}
-
 void CRenderer::RenderModels()
 {
 	PROFILE( "render models ");
@@ -1031,49 +1030,44 @@ void CRenderer::RenderModels()
 		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 	}
 
-	// render all the models
-	RenderModelSubmissions();
+	m_Models.NormalFF->Render(m_Models.ModPlain, 0);
+	m_Models.PlayerFF->Render(m_Models.ModPlayer, 0);
+	if (m_Models.NormalHWLit)
+		m_Models.NormalHWLit->Render(m_Models.ModPlain, 0);
+	if (m_Models.PlayerHWLit)
+		m_Models.PlayerHWLit->Render(m_Models.ModPlayer, 0);
 
 	if (m_ModelRenderMode==WIREFRAME) {
 		// switch wireframe off again
 		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 	} else if (m_ModelRenderMode==EDGED_FACES) {
-		// edged faces: need to make a second pass over the data:
-		// first switch on wireframe
-		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
-
-		// setup some renderstate ..
-		glDepthMask(0);
-		SetTexture(0,0);
-		glColor4f(1,1,1,0.75f);
-		glLineWidth(1.0f);
-
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
-
-		// render all non-transparent, non-player models
-		CModelRData::SetupRender(STREAM_POS);
-		CModelRData::RenderModels(STREAM_POS);
-		CModelRData::FinishRender(STREAM_POS);
-
-		// .. and restore the renderstates
-		glDisable(GL_BLEND);
-		glDepthMask(1);
-
-		// restore fill mode, and we're done
-		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+		m_Models.NormalFF->Render(m_Models.ModWireframe, 0);
+		m_Models.PlayerFF->Render(m_Models.ModWireframe, 0);
+		if (m_Models.NormalHWLit)
+			m_Models.NormalHWLit->Render(m_Models.ModWireframe, 0);
+		if (m_Models.PlayerHWLit)
+			m_Models.PlayerHWLit->Render(m_Models.ModWireframe, 0);
 	}
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// SortModelsByTexture: sorting class used for batching models with identical textures
-struct SortModelsByTexture {
-	typedef CModel* SortObj;
+void CRenderer::RenderTransparentModels()
+{
+	PROFILE( "render transparent models ");
 
-	bool operator()(const SortObj& lhs,const SortObj& rhs) {
-		return lhs->GetTexture()<rhs->GetTexture() ? true : false;
+	// switch on wireframe if we need it
+	if (m_ModelRenderMode==WIREFRAME) {
+		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 	}
-};
+
+	m_Models.Transparency->Render(m_Models.ModTransparent, 0);
+
+	if (m_ModelRenderMode==WIREFRAME) {
+		// switch wireframe off again
+		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+	} else if (m_ModelRenderMode==EDGED_FACES) {
+		m_Models.Transparency->Render(m_Models.ModWireframe, 0);
+	}
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // FlushFrame: force rendering of any batched objects
@@ -1086,8 +1080,14 @@ void CRenderer::FlushFrame()
 
 	oglCheck();
 
-	// sort all the transparent stuff
-	g_TransparencyRenderer.Sort();
+	// Prepare model renderers
+	m_Models.NormalFF->PrepareModels();
+	m_Models.PlayerFF->PrepareModels();
+	if (m_Models.NormalHWLit)
+		m_Models.NormalHWLit->PrepareModels();
+	if (m_Models.PlayerHWLit)
+		m_Models.PlayerHWLit->PrepareModels();
+	m_Models.Transparency->PrepareModels();
 
 	if (!m_ShadowRendered) {
 		if (m_Options.m_Shadows) {
@@ -1106,7 +1106,6 @@ void CRenderer::FlushFrame()
 	RenderPatches();
 	oglCheck();
 
-
 	MICROLOG(L"render models");
 	RenderModels();
 	oglCheck();
@@ -1118,13 +1117,9 @@ void CRenderer::FlushFrame()
 	}
 	m_ShadowRendered=true;
 
-	MICROLOG(L"render player models");
-	g_PlayerRenderer.Render();
-	oglCheck();
-
 	// call on the transparency renderer to render all the transparent stuff
 	MICROLOG(L"render transparent");
-	g_TransparencyRenderer.Render();
+	RenderTransparentModels();
 	oglCheck();
 
 	// render water (note: we're assuming there's no transparent stuff over water...
@@ -1136,11 +1131,17 @@ void CRenderer::FlushFrame()
 
 	// empty lists
 	MICROLOG(L"empty lists");
-	g_TransparencyRenderer.Clear();
-	g_PlayerRenderer.Clear();
 	CPatchRData::ClearSubmissions();
-	CModelRData::ClearSubmissions();
 	m_VisiblePatches.clear();
+	
+	// Finish model renderers
+	m_Models.NormalFF->EndFrame();
+	m_Models.PlayerFF->EndFrame();
+	if (m_Models.NormalHWLit)
+		m_Models.NormalHWLit->EndFrame();
+	if (m_Models.PlayerHWLit)
+		m_Models.PlayerHWLit->EndFrame();
+	m_Models.Transparency->EndFrame();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1199,7 +1200,24 @@ void CRenderer::Submit(CModel* model)
 		m_ShadowBound+=model->GetBounds();
 	}
 
-	CModelRData::Submit(model);
+	if (model->GetMaterial().IsPlayer())
+	{
+		if (m_Options.m_RenderPath == RP_VERTEXSHADER)
+			m_Models.PlayerHWLit->Submit(model);
+		else
+			m_Models.PlayerFF->Submit(model);
+	}
+	else if(model->GetMaterial().UsesAlpha())
+	{
+		m_Models.Transparency->Submit(model);
+	}
+	else
+	{
+		if (m_Options.m_RenderPath == RP_VERTEXSHADER)
+			m_Models.NormalHWLit->Submit(model);
+		else
+			m_Models.NormalFF->Submit(model);
+	}
 }
 
 void CRenderer::Submit(CSprite* UNUSED(sprite))
@@ -1524,9 +1542,40 @@ void CRenderer::UnloadWaterTextures()
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Scripting Interface
 
+jsval CRenderer::JSI_GetFastPlayerColor(JSContext*)
+{
+	return ToJSVal(m_FastPlayerColor);
+}
+
+void CRenderer::JSI_SetFastPlayerColor(JSContext* ctx, jsval newval)
+{
+	bool fast;
+	
+	if (!ToPrimitive(ctx, newval, fast))
+		return;
+	
+	SetFastPlayerColor(fast);
+}
+
+jsval CRenderer::JSI_GetRenderPath(JSContext*)
+{
+	return ToJSVal(GetRenderPathName(m_Options.m_RenderPath));
+}
+
+void CRenderer::JSI_SetRenderPath(JSContext* ctx, jsval newval)
+{
+	CStr name;
+	
+	if (!ToPrimitive(ctx, newval, name))
+		return;
+	
+	SetRenderPath(GetRenderPathByName(name));
+}
+
 void CRenderer::ScriptingInit()
 {
-	AddProperty(L"fastPlayerColor", &CRenderer::m_FastPlayerColor);
+	AddProperty(L"fastPlayerColor", &CRenderer::JSI_GetFastPlayerColor, &CRenderer::JSI_SetFastPlayerColor);
+	AddProperty(L"renderpath", &CRenderer::JSI_GetRenderPath, &CRenderer::JSI_SetRenderPath);
 
 	CJSObject<CRenderer>::ScriptingInit("Renderer");
 }

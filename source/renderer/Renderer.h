@@ -18,13 +18,14 @@
 #include "Camera.h"
 #include "Frustum.h"
 #include "PatchRData.h"
-#include "ModelRData.h"
 #include "SHCoeffs.h"
 #include "Terrain.h"
 #include "Singleton.h"
 #include "Overlay.h"
 
 #include "scripting/ScriptableObject.h"
+
+#include "renderer/ModelRenderer.h"
 
 // necessary declarations
 class CCamera;
@@ -33,9 +34,11 @@ class CSprite;
 class CParticleSys;
 class COverlay;
 class CMaterial;
+class CModel;
 class CLightEnv;
 class CTexture;
 class CTerrain;
+
 class RenderPathVertexShader;
 
 
@@ -147,6 +150,15 @@ public:
 		// number of splat passes for alphamapping
 		size_t m_BlendSplats;
 	};
+
+	// renderer options 
+	struct Options {
+		bool m_NoVBO;
+		bool m_Shadows;
+		RGBAColor m_ShadowColor;
+		float m_LodBias;
+		RenderPath m_RenderPath;
+	} m_Options;
 
 public:
 	// constructor, destructor
@@ -263,15 +275,32 @@ public:
 
 	// return the current light environment
 	const CLightEnv &GetLightEnv() { return *m_LightEnv; }
+	
+	/**
+	 * SetFastPlayerColor: Tell the renderer which path to take for
+	 * player colored models. Both paths should provide the same visual
+	 * quality, however the slow path runs on older hardware using multi-pass.
+	 *
+	 * @param fast true if the fast path should be used from now on. If fast
+	 * is true but the OpenGL implementation does not support it, a warning
+	 * is printed and the slow path is used instead.
+	 */
+	void SetFastPlayerColor(bool fast);
+	
 protected:
 	friend class CVertexBuffer;
 	friend class CPatchRData;
-	friend class CModelRData;
-	friend class CTransparencyRenderer;
-	friend class CPlayerRenderer;
+	friend class FixedFunctionModelRenderer;
+	friend class ModelRenderer;
+	friend class TransparencyRenderer;
 	friend class RenderPathVertexShader;
+	friend class HWLightingModelRenderer;
 
 	// scripting
+	jsval JSI_GetFastPlayerColor(JSContext*);
+	void JSI_SetFastPlayerColor(JSContext* ctx, jsval newval);
+	jsval JSI_GetRenderPath(JSContext*);
+	void JSI_SetRenderPath(JSContext* ctx, jsval newval);
 	static void ScriptingInit();
 	
 	// patch rendering stuff
@@ -280,8 +309,8 @@ protected:
 	void RenderWater();
 
 	// model rendering stuff
-	void RenderModelSubmissions();
 	void RenderModels();
+	void RenderTransparentModels();
 
 	// shadow rendering stuff
 	void CreateShadowMap();
@@ -293,11 +322,6 @@ protected:
 	void CalcShadowMatrices();
 	void CalcShadowBounds(CBound& bounds);
 
-	// render path stuff
-	bool InitRenderPathVertexShader();
-	void ShutdownRenderPathVertexShader();
-	void InitRenderPath();
-	
 	// RENDERER DATA:
 	// view width
 	int m_Width;
@@ -350,14 +374,6 @@ protected:
 		bool m_GenerateMipmaps;
 		bool m_VertexShader;
 	} m_Caps;
-	// renderer options 
-	struct Options {
-		bool m_NoVBO;
-		bool m_Shadows;
-		RGBAColor m_ShadowColor;
-		float m_LodBias;
-		RenderPath m_RenderPath;
-	} m_Options;
 	// build card cap bits
 	void EnumCaps();
 	// per-frame renderer stats
@@ -374,6 +390,22 @@ protected:
 
 	// State used by LoadWaterTextures with progressive loading
 	uint cur_loading_water_tex;
+
+	// Various model renderers
+	struct Models {
+		ModelRenderer* NormalFF;
+		ModelRenderer* PlayerFF;
+		ModelRenderer* NormalHWLit;
+		ModelRenderer* PlayerHWLit;
+		ModelRenderer* Transparency;
+		
+		RenderModifierPtr ModWireframe;
+		RenderModifierPtr ModPlain;
+		RenderModifierPtr ModPlayer;
+		RenderModifierPtr ModSolidColor;
+		RenderModifierPtr ModTransparent;
+		RenderModifierPtr ModTransparentShadow;
+	} m_Models;
 };
 
 

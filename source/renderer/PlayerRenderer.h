@@ -1,44 +1,70 @@
-/***************************************************************************************
-	AUTHOR:			John M. Mena
-	EMAIL:			JohnMMena@hotmail.com
-	FILE:			CConsole.h
-	CREATED:		1/23/05
-	COMPLETED:		NULL
-
-	DESCRIPTION:	Handles rendering all of the player objects.
-					The structure was inherited from Rich Cross' Transparency Renderer.
-****************************************************************************************/
+/**
+ * =========================================================================
+ * File        : PlayerRenderer
+ * Project     : Pyrogenesis
+ * Description : RenderModifier for player color rendering, to be used
+ *             : with e.g. FixedFunctionModelRenderer
+ *
+ * @author John M. Mena <JohnMMena@hotmail.com>
+ * @author Nicolai Hähnle <nicolai@wildfiregames.com>
+ * =========================================================================
+ */
 
 #ifndef __PLAYERRENDERER_H
 #define __PLAYERRENDERER_H
 
-#include <vector>
+#include "RenderModifiers.h"
 
-class CModel;
 
-class CPlayerRenderer
+/**
+ * Class FastPlayerColorRender: Render models fully textured and lit
+ * plus player color in a single pass using multi-texturing (at least 3 TMUs
+ * required).
+ */
+class FastPlayerColorRender : public RenderModifier
 {
 public:
-	// add object to render in deferred transparency pass
-	void Add(CModel* model);
-	// render all deferred objects 
-	void Render();
-	// render shadows from all deferred objects 
-	void RenderShadows();
-	// empty object list
-	void Clear();
+	FastPlayerColorRender();
+	~FastPlayerColorRender();
 
-private:
-	// fast render path
-	void RenderFast();
-	// slow render path
-	void RenderSlow();
-	// render given streams on all objects
-	void RenderObjectsStreams(u32 streamflags, bool iscolorpass=false, u32 mflags=0);
-	// list of objects to render
-	std::vector<CModel*> m_Objects;
+	// Implementation
+	u32 BeginPass(uint pass);
+	bool EndPass(uint pass);
+	void PrepareTexture(uint pass, CTexture* texture);
+	void PrepareModel(uint pass, CModel* model);
+	
+	/**
+	 * IsAvailable: Determines whether this RenderModifier can be used
+	 * given the OpenGL implementation specific limits.
+	 * 
+	 * @note Do not attempt to construct a FastPlayerColorRender object
+	 * when IsAvailable returns false.
+	 * 
+	 * @return true if the OpenGL implementation can support this
+	 * RenderModifier.
+	 */
+	static bool IsAvailable();
 };
 
-extern CPlayerRenderer g_PlayerRenderer;
+
+/**
+ * Class SlowPlayerColorRender: Render models fully textured and lit
+ * plus player color using multi-pass.
+ * 
+ * It has the same visual result as FastPlayerColorRender (except for
+ * potential precision issues due to the multi-passing).
+ */
+class SlowPlayerColorRender : public RenderModifier
+{
+public:
+	SlowPlayerColorRender();
+	~SlowPlayerColorRender();
+
+	// Implementation
+	u32 BeginPass(uint pass);
+	bool EndPass(uint pass);
+	void PrepareTexture(uint pass, CTexture* texture);
+	void PrepareModel(uint pass, CModel* model);
+};
 
 #endif
