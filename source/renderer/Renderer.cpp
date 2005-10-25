@@ -1081,6 +1081,7 @@ void CRenderer::FlushFrame()
 	oglCheck();
 
 	// Prepare model renderers
+	PROFILE_START("prepare models");
 	m_Models.NormalFF->PrepareModels();
 	m_Models.PlayerFF->PrepareModels();
 	if (m_Models.NormalHWLit)
@@ -1088,6 +1089,7 @@ void CRenderer::FlushFrame()
 	if (m_Models.PlayerHWLit)
 		m_Models.PlayerHWLit->PrepareModels();
 	m_Models.Transparency->PrepareModels();
+	PROFILE_END("prepare models");
 
 	if (!m_ShadowRendered) {
 		if (m_Options.m_Shadows) {
@@ -1297,21 +1299,6 @@ bool CRenderer::LoadTexture(CTexture* texture,u32 wrapflags)
 // BindTexture: bind a GL texture object to current active unit
 void CRenderer::BindTexture(int unit,GLuint tex)
 {
-#if 0
-	glActiveTextureARB(GL_TEXTURE0+unit);
-	if (tex==m_ActiveTextures[unit]) return;
-
-	if (tex) {
-		glBindTexture(GL_TEXTURE_2D,tex);
-		if (!m_ActiveTextures[unit]) {
-			glEnable(GL_TEXTURE_2D);
-		}
-	} else if (m_ActiveTextures[unit]) {
-		glDisable(GL_TEXTURE_2D);
-	}
-	m_ActiveTextures[unit]=tex;
-#endif
-
 	glActiveTextureARB(GL_TEXTURE0+unit);
 
 	glBindTexture(GL_TEXTURE_2D,tex);

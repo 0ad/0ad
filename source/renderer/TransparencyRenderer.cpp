@@ -277,6 +277,7 @@ void TransparencyRenderer::PrepareModels()
 			// upload everything to vertex buffer
 			tmdl->m_Array.Upload();
 		}
+		tmdl->m_UpdateFlags = 0;
 	
 		// resort model indices from back to front, according to camera position - and store
 		// the returned sqrd distance to the centre of the nearest triangle

@@ -11,10 +11,13 @@
 
 #include "CStr.h"
 #include "Vector3D.h"
+#include "MeshManager.h"
 #include "SkeletonAnimDef.h"
+#include <map>
 #include <vector>
 
 class CMeshManager;
+class CModelDef;
 
 ///////////////////////////////////////////////////////////////////////////////
 // SPropPoint: structure describing a prop point
@@ -69,13 +72,12 @@ struct SModelFace
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
-// CSharedRenderData: render data for a CModelDef, shared between all model render data
-// instances that refer to the same CModelDef.
-class CSharedRenderData
+// CModelDefRPrivate
+class CModelDefRPrivate
 {
 public:
-	CSharedRenderData() { }
-	virtual ~CSharedRenderData() { }
+	CModelDefRPrivate() { }
+	virtual ~CModelDefRPrivate() { }
 };
 
 
@@ -84,7 +86,7 @@ public:
 // information of a model
 class CModelDef
 {
-friend class CMeshManager;
+	friend class CMeshManager;
 public:
 	// current file version given to saved animations
 	enum { FILE_VERSION = 2 };
@@ -123,9 +125,24 @@ public:
 	// null if no match (case insensitive search)
 	SPropPoint* FindPropPoint(const char* name) const;
 
+	/**
+	 * SetRenderData: Register renderer private data. Use the key to
+	 * distinguish between private data used by different render paths.
+	 * The private data will be managed by this CModelDef object:
+	 * It will be deleted when CModelDef is destructed or when private
+	 * data is registered using the same key.
+	 *
+	 * @param key The opaque key that is used to identify the caller.
+	 * The given private data can be retrieved by passing key to GetRenderData.
+	 * @param data The private data.
+	 *
+	 * postconditions : data is bound to the lifetime of this CModelDef
+	 * object.
+	 */
+	void SetRenderData(const void* key, CModelDefRPrivate* data);
+	
 	// accessor: render data
-	CSharedRenderData* GetRenderData() const { return m_RenderData; }
-	void SetRenderData(CSharedRenderData* data);
+	CModelDefRPrivate* GetRenderData(const void* key) const;
 
 public:
 	// vertex data
@@ -141,8 +158,11 @@ public:
 	u32 m_NumPropPoints;
 	SPropPoint* m_PropPoints;
 
-	// renderdata shared by models of the same modeldef
-	CSharedRenderData* m_RenderData;
+private:
+	// renderdata shared by models of the same modeldef,
+	// by render path
+	typedef std::map<const void*, CModelDefRPrivate*> RenderDataMap;
+	RenderDataMap m_RenderData;
 
 protected:
 	static CModelDef* Load(const char* filename);

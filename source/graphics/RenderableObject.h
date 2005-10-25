@@ -84,13 +84,10 @@ public:
 
 	void InvalidateBounds() { m_BoundsValid = false; }
 
-	// set the object renderdata 
-	// TODO,RC 10/04/04 - need to delete existing renderdata here, or can we
-	// assume the renderer won't set renderdata when an object already has it?
-	// - just debug_assert we've no renderdata at the minute
+	// Set the object renderdata and free previous renderdata, if any.
 	void SetRenderData(CRenderData* renderdata) { 
-		debug_assert(m_RenderData==0);
-		m_RenderData=renderdata; 
+		delete m_RenderData;
+		m_RenderData = renderdata; 
 	}
 
 	// return object renderdata - can be null if renderer hasn't yet

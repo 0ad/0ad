@@ -12,11 +12,12 @@
 #include "FilePacker.h"
 #include "FileUnpacker.h"
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // CModelDef Constructor
 CModelDef::CModelDef()	
 	: m_NumVertices(0), m_pVertices(0), m_NumFaces(0), m_pFaces(0), m_NumBones(0), m_Bones(0),
-	m_NumPropPoints(0), m_PropPoints(0), m_RenderData(0)
+	m_NumPropPoints(0), m_PropPoints(0)
 {
 }
 
@@ -24,7 +25,8 @@ CModelDef::CModelDef()
 // CModelDef Destructor
 CModelDef::~CModelDef()
 {
-	delete m_RenderData;
+	for(RenderDataMap::iterator it = m_RenderData.begin(); it != m_RenderData.end(); ++it)
+		delete it->second;
 	delete[] m_pVertices;
 	delete[] m_pFaces;
 	delete[] m_Bones;
@@ -134,11 +136,24 @@ void CModelDef::Save(const char* filename,const CModelDef* mdef)
 }
 
 
-// Set render data. This can only be done once at the moment.
-// TODO: Is there a need to re-create render data? Perhaps reacting to render path changes?
-void CModelDef::SetRenderData(CSharedRenderData* data)
+///////////////////////////////////////////////////////////////////////////////
+// SetRenderData: Set the render data object for the given key,
+void CModelDef::SetRenderData(const void* key, CModelDefRPrivate* data)
 {
-	debug_assert(m_RenderData == 0);
-	m_RenderData = data;
+	delete m_RenderData[key];
+	m_RenderData[key] = data;
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// GetRenderData: Get the render data object for the given key,
+// or 0 if no such object exists.
+// Reference count of the render data object is automatically increased.
+CModelDefRPrivate* CModelDef::GetRenderData(const void* key) const
+{
+	RenderDataMap::const_iterator it = m_RenderData.find(key);
+	
+	if (it != m_RenderData.end())
+		return it->second;
+	
+	return 0;
+}
