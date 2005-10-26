@@ -65,12 +65,6 @@
 			<Orientation angle="-2.97291" />
 		</Entity>
 		<Entity>
-			<Template>celt_ho</Template>
-			<Player>1</Player>
-			<Position x="247.947" y="12.8729" z="248.663" />
-			<Orientation angle="-3.14108" />
-		</Entity>
-		<Entity>
 			<Template>celt_mc</Template>
 			<Player>1</Player>
 			<Position x="241.556" y="10.6433" z="204.329" />
@@ -705,6 +699,18 @@
 			<Player>2</Player>
 			<Position x="205.316" y="10.5686" z="101.662" />
 			<Orientation angle="2.89465" />
+		</Entity>
+		<Entity>
+			<Template>kart_tf</Template>
+			<Player>1</Player>
+			<Position x="71.6589" y="12.8157" z="130.103" />
+			<Orientation angle="-3.14159" />
+		</Entity>
+		<Entity>
+			<Template>celt_ff_b</Template>
+			<Player>1</Player>
+			<Position x="248.408" y="11.591" z="245.663" />
+			<Orientation angle="-3.09342" />
 		</Entity>
 	</Entities>
 	<Nonentities>
@@ -1597,11 +1603,6 @@
 			<Actor>props/flora/grass_field_lush_tall.xml</Actor>
 			<Position x="248.816" y="11.1304" z="227.211" />
 			<Orientation angle="-2.96372" />
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/flora/grass_field_lush_tall.xml</Actor>
-			<Position x="253.469" y="11.6268" z="247.503" />
-			<Orientation angle="-3.14148" />
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_field_lush_tall.xml</Actor>
@@ -3036,16 +3037,6 @@
 		<Nonentity>
 			<Actor>props/flora/grass_field_lush_short.xml</Actor>
 			<Position x="240.38" y="11.6637" z="249.709" />
-			<Orientation angle="-3.14148" />
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/flora/grass_field_lush_short.xml</Actor>
-			<Position x="252.574" y="11.5923" z="245.78" />
-			<Orientation angle="-2.96374" />
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/flora/grass_field_lush_short.xml</Actor>
-			<Position x="252.877" y="11.6493" z="249.431" />
 			<Orientation angle="-3.14148" />
 		</Nonentity>
 		<Nonentity>
