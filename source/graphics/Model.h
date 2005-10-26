@@ -92,17 +92,22 @@ public:
 	// calculate bounds encompassing all vertex positions for given animation 
 	void CalcAnimatedObjectBound(CSkeletonAnimDef* anim,CBound& result);
 
-	// set transform of this object, and recurse down into props to update their world space transform
+	/**
+	 * SetTransform: Set transform of this object.
+	 * 
+	 * @note In order to ensure that all child props are updated properly,
+	 * you must call ValidatePosition().
+	 */
 	void SetTransform(const CMatrix3D& transform);
 	
 	// return the models bone matrices
 	const CMatrix3D* GetBoneMatrices() { 
-		if (!m_BoneMatricesValid) GenerateBoneMatrices(); 
+		debug_assert(m_PositionValid);
 		return m_BoneMatrices;
 	}
 	// return the models inverted bone matrices
 	const CMatrix3D* GetInvBoneMatrices() { 
-		if (!m_BoneMatricesValid) GenerateBoneMatrices(); 
+		debug_assert(m_PositionValid);
 		return m_InvBoneMatrices; 
 	}
 
@@ -121,11 +126,27 @@ public:
 	// return a clone of this model
 	CModel* Clone() const;
 
+	/**
+	 * ValidatePosition: Ensure that both the transformation and the bone
+	 * matrices are correct for this model and all its props.
+	 */
+	void ValidatePosition();
+
 private:
 	// delete anything allocated by the model
 	void ReleaseData();
-	// calculate necessary bone transformation matrices for skinning
-	void GenerateBoneMatrices();
+
+	/**
+	 * InvalidatePosition: Mark this model's position and bone matrices,
+	 * and all props' positions as invalid.
+	 */
+	void InvalidatePosition();
+	
+	/**
+	 * m_Parent: If non-null, m_Parent points to the model that we
+	 * are attached to.
+	 */
+	CModel* m_Parent;
 
 	// object flags
 	u32 m_Flags;
@@ -147,14 +168,18 @@ private:
 	float m_AnimSpeed;
 	// time (in MS) into the current animation
 	float m_AnimTime;
-	// flag stating whether bone matrices are currently valid
-	bool m_BoneMatricesValid;
 	// current state of all bones on this model; null if associated modeldef isn't skeletal
 	CMatrix3D* m_BoneMatrices;
 	// inverse of the above world space transform of the above matrices 
 	CMatrix3D* m_InvBoneMatrices;
 	// list of current props on model
 	std::vector<Prop> m_Props;
+
+	/**
+	 * m_PositionValid: true if both transform and and bone matrices
+	 * are valid.
+	 */
+	bool m_PositionValid;
 
 	// modulating color
 	CColor m_ShadingColor;

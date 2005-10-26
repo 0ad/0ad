@@ -26,9 +26,9 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Constructor
 CModel::CModel() 
-	: m_Flags(0), m_Anim(0), m_AnimTime(0), 
-	m_BoneMatricesValid(false), m_BoneMatrices(0), m_InvBoneMatrices(0),
-	m_ShadingColor(1,1,1,1)
+	: m_Parent(0), m_Flags(0), m_Anim(0), m_AnimTime(0), 
+	m_BoneMatrices(0), m_InvBoneMatrices(0),
+	m_PositionValid(false), m_ShadingColor(1,1,1,1)
 {
 }
 
@@ -36,6 +36,23 @@ CModel::CModel()
 // Destructor
 CModel::~CModel()
 {
+	// Detach us from our parent
+	if (m_Parent)
+	{
+		for(std::vector<Prop>::iterator iter = m_Parent->m_Props.begin();
+		    iter != m_Parent->m_Props.end();
+		    ++iter)
+		{
+			if (iter->m_Model == this)
+			{
+				m_Parent->m_Props.erase(iter);
+				break;
+			}
+		}
+		
+		m_Parent = 0;
+	}
+	
 	ReleaseData();
 }
 
@@ -79,33 +96,13 @@ bool CModel::InitModel(CModelDefPtr modeldef)
 			m.Translate(defpose[i].m_Translation);
 			m.GetInverse(m_InvBoneMatrices[i]);
 		}
-		m_BoneMatricesValid=true;
 	}
 
+	m_PositionValid = true;
+	
 	return true;
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// SkinPoint: skin the given point using the given blend and bonestate data
-/* JW: function is apparently currently unused
-
-static CVector3D SkinPoint(const CVector3D& pos,const SVertexBlend& blend,
-						   const CBoneState* bonestates)
-{
-	CVector3D result(0,0,0);
-	for (int i=0;i<SVertexBlend::SIZE && blend.m_Bone[i]!=0xff;i++) {
-		CMatrix3D m;
-		m.SetIdentity();
-		m.Rotate(bonestates[blend.m_Bone[i]].m_Rotation);		
-		m.Translate(bonestates[blend.m_Bone[i]].m_Translation);		
-
-		CVector3D tmp=m.Transform(pos);
-		result+=tmp*blend.m_Weight[i];
-	}
-
-	return result;
-}
-*/
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // SkinPoint: skin the given point using the given blend and matrix data
@@ -183,8 +180,11 @@ void CModel::CalcAnimatedObjectBound(CSkeletonAnimDef* anim,CBound& result)
 	// at the origin. The box is later re-transformed onto the object, without
 	// having to recalculate the size of the box.
 	CMatrix3D transform, oldtransform = GetTransform();
+	CModel* oldparent = m_Parent;
+	
+	m_Parent = 0;
 	transform.SetIdentity();
-	SetTransform(transform);
+	CRenderableObject::SetTransform(transform);
 
 	// Following seems to stomp over the current animation time - which, unsurprisingly,
 	// introduces artefacts in the currently playing animation. Save it here and restore it
@@ -192,17 +192,21 @@ void CModel::CalcAnimatedObjectBound(CSkeletonAnimDef* anim,CBound& result)
 	float AnimTime = m_AnimTime;
 
 	// iterate through every frame of the animation
-	for (size_t j=0;j<anim->GetNumFrames();j++) {		
+	for (size_t j=0;j<anim->GetNumFrames();j++) {
+		m_PositionValid = false;
+		ValidatePosition();
+
 		// extend bounds by vertex positions at the frame
 		for (size_t i=0;i<numverts;i++) {
-			CVector3D tmp=SkinPoint(verts[i].m_Coords,verts[i].m_Blend,GetBoneMatrices());
+			CVector3D tmp = SkinPoint(verts[i].m_Coords,verts[i].m_Blend,GetBoneMatrices());
 			result+=tmp;
 		}		
 		// advance to next frame
-		m_AnimTime+=anim->GetFrameTime();
-		m_BoneMatricesValid=false;
+		m_AnimTime += anim->GetFrameTime();
 	}
 
+	m_PositionValid = false;
+	m_Parent = oldparent;
 	SetTransform(oldtransform);
 	m_AnimTime = AnimTime;
 }
@@ -259,52 +263,80 @@ void CModel::Update(float time)
 		SetDirty(RENDERDATA_UPDATE_VERTICES);
 		
 		// mark matrices as dirty
-		m_BoneMatricesValid = false;
+		InvalidatePosition();
 	}
 
 	// update props
-	for (uint i=0; i<m_Props.size(); i++) {
+	for (uint i=0; i<m_Props.size(); i++)
+	{
 		m_Props[i].m_Model->Update(time);
 	}
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// GenerateBoneMatrices: calculate necessary bone transformation matrices for skinning
-void CModel::GenerateBoneMatrices()
+// InvalidatePosition
+void CModel::InvalidatePosition()
 {
-	if (!m_Anim || !m_BoneMatrices) return;
+	m_PositionValid = false;
 
-	PROFILE( "generating bone matrices" );
+	for (uint i = 0; i < m_Props.size(); ++i)
+		m_Props[i].m_Model->InvalidatePosition();
+}
 
-	debug_assert(m_pModelDef->GetNumBones() == m_Anim->m_AnimDef->GetNumKeys());
-
-	m_Anim->m_AnimDef->BuildBoneMatrices(m_AnimTime,m_BoneMatrices);
-
-	const CMatrix3D& transform=GetTransform();
-	for (size_t i=0;i<m_pModelDef->GetNumBones();i++) {
-		m_BoneMatrices[i].Concatenate(transform);
-		m_BoneMatrices[i].GetInverse(m_InvBoneMatrices[i]);
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ValidatePosition: ensure that current transform and bone matrices are both uptodate
+void CModel::ValidatePosition()
+{
+	if (m_PositionValid)
+	{
+		debug_assert(!m_Parent || m_Parent->m_PositionValid);
+		return;
+	}
+	
+	if (m_Parent && !m_Parent->m_PositionValid)
+	{
+		// Make sure we don't base our calculations on
+		// a parent animation state that is out of date.
+		m_Parent->ValidatePosition();
+		
+		// Parent will recursively call our validation.
+		debug_assert(m_PositionValid);
+		return;
 	}
 
-	// update transform of boned props 
-	// TODO, RC - ugh, we'll be doing this twice (for boned props, at least) - once here, 
-	// and once again in SetTransform; better to just do it in Update? 
-	for (size_t j=0;j<m_Props.size();j++) {
+	if (m_Anim && m_BoneMatrices)
+	{
+		PROFILE( "generating bone matrices" );
+	
+		debug_assert(m_pModelDef->GetNumBones() == m_Anim->m_AnimDef->GetNumKeys());
+	
+		m_Anim->m_AnimDef->BuildBoneMatrices(m_AnimTime,m_BoneMatrices);
+	
+		const CMatrix3D& transform=GetTransform();
+		for (size_t i=0;i<m_pModelDef->GetNumBones();i++) {
+			m_BoneMatrices[i].Concatenate(transform);
+			m_BoneMatrices[i].GetInverse(m_InvBoneMatrices[i]);
+		}
+	}
+	
+	m_PositionValid = true;
+	
+	// re-position and validate all props
+	for (size_t j = 0; j < m_Props.size(); ++j)
+	{
 		const Prop& prop=m_Props[j];
 
-		if (prop.m_Point->m_BoneIndex!=0xff) {
-			CMatrix3D proptransform=prop.m_Point->m_Transform;;
-			if (prop.m_Point->m_BoneIndex!=0xff) {
-				proptransform.Concatenate(m_BoneMatrices[prop.m_Point->m_BoneIndex]);
-			} else {			
-				proptransform.Concatenate(transform);
-			}
-			prop.m_Model->SetTransform(proptransform);
-		} 			
+		CMatrix3D proptransform = prop.m_Point->m_Transform;;
+		if (prop.m_Point->m_BoneIndex != 0xff)
+			proptransform.Concatenate(m_BoneMatrices[prop.m_Point->m_BoneIndex]);
+		else
+			proptransform.Concatenate(m_Transform);
+		
+		prop.m_Model->SetTransform(proptransform);
+		prop.m_Model->ValidatePosition();
 	}
-
-	m_BoneMatricesValid=true;
 }
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // SetAnimation: set the given animation as the current animation on this model;
@@ -344,7 +376,7 @@ bool CModel::SetAnimation(CSkeletonAnim* anim, bool once, float speed, CSkeleton
 		m_AnimSpeed = speed * anim->m_Speed;
 	} 
 
-	m_Anim=anim;
+	m_Anim = anim;
 
 	return true;
 }
@@ -355,6 +387,7 @@ void CModel::AddProp(SPropPoint* point, CModel* model)
 {
 	// position model according to prop point position
 	model->SetTransform(point->m_Transform);
+	model->m_Parent = this;
 
 	// check if we're already using this point, and replace
 	// model on it if so
@@ -412,26 +445,12 @@ CModel* CModel::Clone() const
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // SetTransform: set the transform on this object, and reorientate props accordingly
-void CModel::SetTransform(const CMatrix3D& transform) 
+void CModel::SetTransform(const CMatrix3D& transform)
 {
 	// call base class to set transform on this object
 	CRenderableObject::SetTransform(transform);
 	InvalidateBounds();
-	
-	GenerateBoneMatrices();
-
-	// now set transforms on props
-	for (size_t i=0;i<m_Props.size();i++) {
-		const Prop& prop=m_Props[i];
-
-		CMatrix3D proptransform=prop.m_Point->m_Transform;;
-		if (prop.m_Point->m_BoneIndex!=0xff) {
-			proptransform.Concatenate(m_BoneMatrices[prop.m_Point->m_BoneIndex]);
-		} else {
-			proptransform.Concatenate(transform);
-		}
-		prop.m_Model->SetTransform(proptransform);
-	}
+	InvalidatePosition();
 }
 
 //////////////////////////////////////////////////////////////////////////

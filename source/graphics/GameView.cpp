@@ -171,7 +171,11 @@ void CGameView::RenderModels(CUnitManager *pUnitMan, CProjectileManager *pProjec
 	for (uint i=0;i<units.size();++i) 
 	{
 		int status = losMgr->GetUnitStatus(units[i], g_Game->GetLocalPlayer());
-		if (frustum.IsBoxVisible(CVector3D(0,0,0), units[i]->GetModel()->GetBounds())
+		CModel* model = units[i]->GetModel();
+		
+		model->ValidatePosition();
+		
+		if (frustum.IsBoxVisible(CVector3D(0,0,0), model->GetBounds())
 			&& status != UNIT_HIDDEN) 
 		{
 			if(units[i] != g_BuildingPlacer.m_actor)
@@ -185,20 +189,25 @@ void CGameView::RenderModels(CUnitManager *pUnitMan, CProjectileManager *pProjec
 				{
 					color = CColor(0.7f, 0.7f, 0.7f, 1.0f);
 				}
-				units[i]->GetModel()->SetShadingColor(color);
+				model->SetShadingColor(color);
 			}
 
 			PROFILE( "submit models" );
-			SubmitModelRecursive(units[i]->GetModel());
+			SubmitModelRecursive(model);
 		}
 	}
 
 	const std::vector<CProjectile*>& projectiles=pProjectileMan->GetProjectiles();
 	for (uint i=0;i<projectiles.size();++i) 
 	{
-		const CBound& bound = projectiles[i]->GetModel()->GetBounds();
+		CModel* model = projectiles[i]->GetModel();
+		
+		model->ValidatePosition();
+		
+		const CBound& bound = model->GetBounds();
 		CVector3D centre;
 		bound.GetCentre(centre);
+		
 		if (frustum.IsBoxVisible(CVector3D(0,0,0), bound)
 			&& losMgr->GetStatus(centre.X, centre.Z, g_Game->GetLocalPlayer()) == LOS_VISIBLE) 
 		{
@@ -259,6 +268,7 @@ void CGameView::CameraLock(float x, float y, float z, bool smooth)
 	
 void CGameView::SubmitModelRecursive(CModel* model)
 {
+	model->ValidatePosition();
 	g_Renderer.Submit(model);
 
 	const std::vector<CModel::Prop>& props=model->GetProps();
