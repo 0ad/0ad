@@ -610,10 +610,20 @@ InReaction CGameView::HandleEvent(const SDL_Event* ev)
 		switch(ev->user.code)
 		{
 		case HOTKEY_WIREFRAME:
-			if (g_Renderer.GetTerrainRenderMode()==WIREFRAME) {
-				g_Renderer.SetTerrainRenderMode(SOLID);
-			} else {
+			if (g_Renderer.GetModelRenderMode() == SOLID)
+			{
+				g_Renderer.SetTerrainRenderMode(EDGED_FACES);
+				g_Renderer.SetModelRenderMode(EDGED_FACES);
+			}
+			else if (g_Renderer.GetModelRenderMode() == EDGED_FACES)
+			{
 				g_Renderer.SetTerrainRenderMode(WIREFRAME);
+				g_Renderer.SetModelRenderMode(WIREFRAME);
+			}
+			else
+			{
+				g_Renderer.SetTerrainRenderMode(SOLID);
+				g_Renderer.SetModelRenderMode(SOLID);
 			}
 			return( IN_HANDLED );
 
