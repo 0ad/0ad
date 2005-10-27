@@ -72,8 +72,9 @@ int tex_validate(const Tex* t)
 // 24bpp color or 32bpp color+alpha (BGR / upside down are permitted).
 // basically, this is the "plain" format understood by all codecs and
 // tex_codec_plain_transform.
-// return 0 if ok or a negative error code.
-static int validate_format(uint bpp, uint flags)
+// return 0 if ok, otherwise negative error code (but doesn't warn;
+// caller is responsible for using CHECK_ERR et al.)
+int tex_validate_plain_format(uint bpp, uint flags)
 {
 	const bool alpha   = (flags & TEX_ALPHA  ) != 0;
 	const bool grey    = (flags & TEX_GREY   ) != 0;
@@ -198,7 +199,7 @@ TIMER_ACCRUE(tc_plain_transform);
 	if(transforms & ~(TEX_BGR|TEX_ORIENTATION|TEX_MIPMAPS))
 		return TEX_CODEC_CANNOT_HANDLE;
 	// .. data is not in "plain" format
-	if(validate_format(bpp, flags) != 0)
+	if(tex_validate_plain_format(bpp, flags) != 0)
 		return TEX_CODEC_CANNOT_HANDLE;
 	// .. nothing to do
 	if(!transforms)
@@ -622,7 +623,7 @@ size_t tex_hdr_size(const char* fn)
 int tex_write(Tex* t, const char* fn)
 {
 	CHECK_TEX(t);
-	CHECK_ERR(validate_format(t->bpp, t->flags));
+	CHECK_ERR(tex_validate_plain_format(t->bpp, t->flags));
 
 	// we could be clever here and avoid the extra alloc if our current
 	// memory block ensued from the same kind of texture file. this is

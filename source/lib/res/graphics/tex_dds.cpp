@@ -6,53 +6,14 @@
 
 // NOTE: the convention is bottom-up for DDS, but there's no way to tell.
 
-// defs modified from ddraw header
+//-----------------------------------------------------------------------------
+// S3TC decompression
+//-----------------------------------------------------------------------------
 
-
-#pragma pack(push, 1)
-
-// DDPIXELFORMAT.dwFlags
-#define DDPF_ALPHAPIXELS	0x00000001	
-
-typedef struct
-{
-	u32 dwSize;                       // size of structure (32)
-	u32 dwFlags;                      // indicates which fields are valid
-	u32 dwFourCC;                     // (DDPF_FOURCC) FOURCC code, "DXTn"
-	u32 dwReserved1[5];               // reserved
-}
-DDPIXELFORMAT;
-
-typedef struct
-{
-	u32 dwCaps[4];
-}
-DDSCAPS2;
-
-// DDSURFACEDESC2.dwFlags
-#define DDSD_HEIGHT	        0x00000002	
-#define DDSD_WIDTH	        0x00000004	
-#define DDSD_PIXELFORMAT	0x00001000	
-#define DDSD_MIPMAPCOUNT	0x00020000	
-
-typedef struct
-{
-	u32 dwSize;                       // size of structure (124)
-	u32 dwFlags;                      // indicates which fields are valid
-	u32 dwHeight;                     // height of main image (pixels)
-	u32 dwWidth;                      // width of main image (pixels)
-	u32 dwLinearSize;                 // (DDSD_LINEARSIZE): total image size
-	u32 dwDepth;                      // (DDSD_DEPTH) vol. textures: vol. depth
-	u32 dwMipMapCount;                // (DDSD_MIPMAPCOUNT) total # levels
-	u32 dwReserved1[11];              // reserved
-	DDPIXELFORMAT ddpfPixelFormat;    // pixel format description of the surface
-	DDSCAPS2 ddsCaps;                 // direct draw surface capabilities
-	u32 dwReserved2;                  // reserved
-}
-DDSURFACEDESC2;
-
-#pragma pack(pop)
-
+// note: this code is not so efficient (mostly due to splitting it up
+// into function calls for readability). that's because it's only used to
+// emulate hardware S3TC support - if that isn't available, everything will
+// be dog-slow anyway due to increased vmem usage.
 
 // pixel colors are stored as uint[4]. uint rather than u8 protects from
 // overflow during calculations, and padding to an even size is a bit
@@ -117,7 +78,7 @@ struct S3tcBlock
 };
 
 
-static void precalc_alpha(uint dxt, const u8* restrict a_block, S3tcBlock* restrict b)
+static void s3tc_precalc_alpha(uint dxt, const u8* restrict a_block, S3tcBlock* restrict b)
 {
 	// read block contents
 	const uint a0 = a_block[0], a1 = a_block[1];
@@ -156,7 +117,7 @@ static void precalc_alpha(uint dxt, const u8* restrict a_block, S3tcBlock* restr
 }
 
 
-static void precalc_color(uint dxt, const u8* restrict c_block, S3tcBlock* restrict b)
+static void s3tc_precalc_color(uint dxt, const u8* restrict c_block, S3tcBlock* restrict b)
 {
 	// read block contents
 	// .. S3TC reference colors (565 format). the color table is generated
@@ -193,20 +154,20 @@ static void precalc_color(uint dxt, const u8* restrict c_block, S3tcBlock* restr
 }
 
 
-static void precalc_block(uint dxt, const u8* restrict block, S3tcBlock* restrict b)
+static void s3tc_precalc_block(uint dxt, const u8* restrict block, S3tcBlock* restrict b)
 {
 	b->dxt = dxt;
 
-	// (careful, 'dxt != 1' doesn't work)
+	// (careful, 'dxt != 1' doesn't work - there's also DXT1a)
 	const u8* a_block = block;
 	const u8* c_block = (dxt == 3 || dxt == 5)? block+8 : block;
 
-	precalc_alpha(dxt, a_block, b);
-	precalc_color(dxt, c_block, b);
+	s3tc_precalc_alpha(dxt, a_block, b);
+	s3tc_precalc_color(dxt, c_block, b);
 }
 
 
-static void write_pixel(const S3tcBlock* restrict b, uint pixel_idx, u8* restrict out)
+static void s3tc_write_pixel(const S3tcBlock* restrict b, uint pixel_idx, u8* restrict out)
 {
 	debug_assert(pixel_idx < 16);
 
@@ -240,12 +201,7 @@ static void write_pixel(const S3tcBlock* restrict b, uint pixel_idx, u8* restric
 }
 
 
-// note: this code is not so efficient (mostly due to splitting it up
-// into function calls for readability). that's because it's only used to
-// emulate hardware S3TC support - if that isn't available, everything will
-// be dog-slow anyway due to increased vmem usage.
-
-struct DecompressInfo
+struct S3tcDecompressInfo
 {
 	uint dxt;
 	uint s3tc_block_size;
@@ -253,10 +209,10 @@ struct DecompressInfo
 	u8* out;
 };
 
-static void decompress_level(uint UNUSED(level), uint level_w, uint level_h,
+static void s3tc_decompress_level(uint UNUSED(level), uint level_w, uint level_h,
 	const u8* restrict level_data, size_t level_data_size, void* restrict ctx)
 {
-	DecompressInfo* di = (DecompressInfo*)ctx;
+	S3tcDecompressInfo* di = (S3tcDecompressInfo*)ctx;
 	const uint dxt             = di->dxt;
 	const uint s3tc_block_size = di->s3tc_block_size;
 
@@ -272,7 +228,7 @@ static void decompress_level(uint UNUSED(level), uint level_w, uint level_h,
 		for(uint block_x = 0; block_x < blocks_w; block_x++)
 		{
 			S3tcBlock b;
-			precalc_block(dxt, s3tc_data, &b);
+			s3tc_precalc_block(dxt, s3tc_data, &b);
 			s3tc_data += s3tc_block_size;
 
 			uint pixel_idx = 0;
@@ -283,7 +239,7 @@ static void decompress_level(uint UNUSED(level), uint level_w, uint level_h,
 				u8* out = (u8*)di->out + ((block_y*4+y)*blocks_w*4 + block_x*4) * di->out_Bpp;
 				for(int x = 0; x < 4; x++)
 				{
-					write_pixel(&b, pixel_idx, out);
+					s3tc_write_pixel(&b, pixel_idx, out);
 					out += di->out_Bpp;
 					pixel_idx++;
 				}
@@ -293,6 +249,122 @@ static void decompress_level(uint UNUSED(level), uint level_w, uint level_h,
 	debug_assert(s3tc_data == level_data + level_data_size);
 	di->out += blocks_w*blocks_h * 16 * di->out_Bpp;
 }
+
+
+// decompress the given image (which is known to be stored as DXTn)
+// effectively in-place. updates Tex fields.
+static int s3tc_decompress(Tex* t)
+{
+	// alloc new image memory
+	// notes:
+	// - dxt == 1 is the only non-alpha case.
+	// - adding or stripping alpha channels during transform is not
+	//   our job; we merely output the same pixel format as given
+	//   (tex.cpp's plain transform could cover it, if ever needed).
+	const uint dxt = t->flags & TEX_DXT;
+	const uint out_bpp = (dxt != 1)? 32 : 24;
+	Handle hm;
+	const size_t out_size = tex_img_size(t) * out_bpp / t->bpp;
+	void* out_data = mem_alloc(out_size, 64*KiB, 0, &hm);
+	if(!out_data)
+		return ERR_NO_MEM;
+
+	const uint s3tc_block_size = (dxt == 3 || dxt == 5)? 16 : 8;
+	S3tcDecompressInfo di = { dxt, s3tc_block_size, out_bpp/8, (u8*)out_data };
+	const u8* s3tc_data = tex_get_data(t);
+	const int levels_to_skip = (t->flags & TEX_MIPMAPS)? 0 : TEX_BASE_LEVEL_ONLY;
+	tex_util_foreach_mipmap(t->w, t->h, t->bpp, s3tc_data, levels_to_skip, 4, s3tc_decompress_level, &di);
+	(void)mem_free_h(t->hm);
+	t->hm  = hm;
+	t->ofs = 0;
+	t->bpp = out_bpp;
+	t->flags &= ~TEX_DXT;
+	return 0;
+}
+
+
+//-----------------------------------------------------------------------------
+// DDS file format
+//-----------------------------------------------------------------------------
+
+// bit values and structure definitions taken from 
+// http://msdn.microsoft.com/archive/en-us/directx9_c/directx/graphics/reference/DDSFileReference/ddsfileformat.asp
+
+#pragma pack(push, 1)
+
+// DDPIXELFORMAT.dwFlags
+// we've seen some DXT3 files that don't have this set (which is nonsense;
+// any image lacking alpha should be stored as DXT1). it's authoritative
+// if fourcc is DXT1 (there's no other way to tell DXT1 and DXT1a apart)
+// and ignored otherwise.
+#define DDPF_ALPHAPIXELS 0x00000001
+#define DDPF_FOURCC      0x00000004
+#define DDPF_RGB         0x00000040
+
+typedef struct
+{
+	u32 dwSize;                       // size of structure (32)
+	u32 dwFlags;                      // indicates which fields are valid
+	u32 dwFourCC;                     // (DDPF_FOURCC) FOURCC code, "DXTn"
+	u32 dwRGBBitCount;                // (DDPF_RGB) bits per pixel
+	u32 dwRBitMask;
+	u32 dwGBitMask;
+	u32 dwBBitMask;
+	u32 dwRGBAlphaBitMask;
+}
+DDPIXELFORMAT;
+
+// DDCAPS2.dwCaps1
+#define DDSCAPS_COMPLEX 0x00000008
+#define DDSCAPS_TEXTURE 0x00001000
+#define DDSCAPS_MIPMAP  0x00400000
+
+// DDCAPS2.dwCaps2
+#define DDSCAPS2_CUBEMAP           0x00000200
+#define DDSCAPS2_CUBEMAP_POSITIVEX 0x00000400
+#define DDSCAPS2_CUBEMAP_NEGATIVEX 0x00000800
+#define DDSCAPS2_CUBEMAP_POSITIVEY 0x00001000
+#define DDSCAPS2_CUBEMAP_NEGATIVEY 0x00002000
+#define DDSCAPS2_CUBEMAP_POSITIVEZ 0x00004000
+#define DDSCAPS2_CUBEMAP_NEGATIVEZ 0x00008000
+#define DDSCAPS2_VOLUME            0x00200000
+
+typedef struct
+{
+	u32 dwCaps1;
+	u32 dwCaps2;
+	u32 Reserved[2];
+}
+DDCAPS2;
+
+// DDSURFACEDESC2.dwFlags
+#define DDSD_CAPS        0x00000001
+#define DDSD_HEIGHT      0x00000002
+#define DDSD_WIDTH       0x00000004
+#define DDSD_PITCH       0x00000008
+#define DDSD_PIXELFORMAT 0x00001000
+#define DDSD_MIPMAPCOUNT 0x00020000
+#define DDSD_LINEARSIZE  0x00080000
+#define DDSD_DEPTH       0x00800000
+
+typedef struct
+{
+	u32 dwSize;                    // size of structure (124)
+	u32 dwFlags;                   // indicates which fields are valid
+	u32 dwHeight;                  // (DDSD_HEIGHT) height of main image (pixels)
+	u32 dwWidth;                   // (DDSD_WIDTH ) width  of main image (pixels)
+	u32 dwPitchOrLinearSize;       // (DDSD_LINEARSIZE) total image size
+	                               // (DDSD_PITCH) bytes per row (%4 = 0)
+	u32 dwDepth;                   // (DDSD_DEPTH) vol. textures: vol. depth
+	u32 dwMipMapCount;             // (DDSD_MIPMAPCOUNT) total # levels
+	u32 dwReserved1[11];           // reserved
+	DDPIXELFORMAT ddpfPixelFormat; // (DDSD_PIXELFORMAT) surface description
+	DDCAPS2 ddsCaps;               // (DDSD_CAPS) misc. surface flags
+	u32 dwReserved2;               // reserved
+}
+DDSURFACEDESC2;
+
+#pragma pack(pop)
 
 
 static bool is_valid_dxt(uint dxt)
@@ -311,49 +383,165 @@ static bool is_valid_dxt(uint dxt)
 	UNREACHABLE;
 }
 
-static int dds_transform(Tex* t, uint transforms)
+
+// extract all information from DDS pixel format and store in bpp, flags.
+// pf points to the DDS file's header; all fields must be endian-converted
+// before use.
+// output parameters invalid on failure.
+static int decode_pf(const DDPIXELFORMAT* pf, uint* bpp_, uint* flags_)
 {
-	uint dxt = t->flags & TEX_DXT;
-	debug_assert(is_valid_dxt(dxt));
-	const uint s3tc_block_size = (dxt == 3 || dxt == 5)? 16 : 8;
-	if(t->flags & TEX_ALPHA)
-		dxt = DXT1A;
+	uint bpp = 0;
+	uint flags = 0;
 
-	const uint transform_dxt = transforms & TEX_DXT;
-	// requesting decompression
-	if(dxt && transform_dxt)
+	// check struct size
+	if(read_le32(&pf->dwSize) != sizeof(DDPIXELFORMAT))
+		return ERR_TEX_INVALID_SIZE;
+
+	// determine type
+	const u32 pf_flags = read_le32(&pf->dwFlags);
+	// .. uncompressed
+	if(pf_flags & DDPF_RGB)
 	{
-		// alloc new image memory
-		// notes:
-		// - due to the above, dxt == 1 is the only non-alpha case.
-		// - adding or stripping alpha channels during transform is not
-		//   our job; we merely output the same pixel format as given
-		//   (tex.cpp's plain transform could cover it, if ever needed).
-		const uint out_bpp = (dxt != 1)? 32 : 24;
-		Handle hm;
-		const size_t out_size = tex_img_size(t) * out_bpp / t->bpp;
-		void* out_data = mem_alloc(out_size, 64*KiB, 0, &hm);
-		if(!out_data)
-			return ERR_NO_MEM;
+		const u32 pf_bpp = read_le32(&pf->dwRGBBitCount);
+		bpp = pf_bpp;	// checked below
 
-		DecompressInfo di = { dxt, s3tc_block_size, out_bpp/8, (u8*)out_data };
-		const u8* s3tc_data = tex_get_data(t);
-		const int levels_to_skip = (t->flags & TEX_MIPMAPS)? 0 : TEX_BASE_LEVEL_ONLY;
-		tex_util_foreach_mipmap(t->w, t->h, t->bpp, s3tc_data, levels_to_skip, 4, decompress_level, &di);
-		mem_free_h(t->hm);
-		t->hm  = hm;
-		t->ofs = 0;
-		t->bpp = out_bpp;
-		t->flags &= ~TEX_DXT;
-		return 0;
+		// check for alpha channel
+		const u32 alpha_mask = read_le32(&pf->dwRGBAlphaBitMask);
+		if(alpha_mask && pf_flags & DDPF_ALPHAPIXELS)
+			flags |= TEX_ALPHA;
+
+		// note: we don't bother validating *BitMask.
+
+		CHECK_ERR(tex_validate_plain_format(bpp, flags));
 	}
-	// both are DXT (unsupported; there are no flags we can change while
-	// compressed) or requesting compression (not implemented) or
-	// both not DXT (nothing we can do) - bail.
+	// .. compressed
+	else if(pf_flags & DDPF_FOURCC)
+	{
+		// set effective bpp and store DXT format in flags & TEX_DXT.
+		// no endian conversion necessary - FOURCC() takes care of that.
+		switch(pf->dwFourCC)
+		{
+		case FOURCC('D','X','T','1'):
+			bpp = 4;
+			if(pf_flags & DDPF_ALPHAPIXELS)
+				flags |= DXT1A | TEX_ALPHA;
+			else
+				flags |= 1;
+			break;
+		case FOURCC('D','X','T','3'):
+			bpp = 8;
+			flags |= 3;
+			flags |= TEX_ALPHA;	// see DDPF_ALPHAPIXELS decl
+			break;
+		case FOURCC('D','X','T','5'):
+			bpp = 8;
+			flags |= 5;
+			flags |= TEX_ALPHA;	// see DDPF_ALPHAPIXELS decl
+			break;
+
+		default:
+			return ERR_TEX_FMT_INVALID;
+		}
+	}
+	// .. neither uncompressed nor compressed - invalid
 	else
-		return TEX_CODEC_CANNOT_HANDLE;
+		return ERR_TEX_FMT_INVALID;
+
+	*bpp_ = bpp;
+	*flags_ = flags;
+	return 0;
 }
 
+
+// extract all information from DDS header and store in w, h, bpp, flags.
+// sd points to the DDS file's header; all fields must be endian-converted
+// before use.
+// output parameters invalid on failure.
+static int decode_sd(const DDSURFACEDESC2* sd, uint* w_, uint* h_,
+	uint* bpp_, uint* flags_)
+{
+	// check header size
+	if(read_le32(&sd->dwSize) != sizeof(*sd))
+		return ERR_CORRUPTED;
+
+	// flags (indicate which fields are valid)
+	const u32 sd_flags = read_le32(&sd->dwFlags);
+	// .. not all required fields are present
+	// note: we can't guess dimensions - the image may not be square.
+	const u32 sd_req_flags = DDSD_CAPS|DDSD_HEIGHT|DDSD_WIDTH|DDSD_PIXELFORMAT;
+	if((sd_flags & sd_req_flags) != sd_req_flags)
+		return ERR_INCOMPLETE_HEADER;
+
+	// image dimensions
+	const u32 h = read_le32(&sd->dwHeight);
+	const u32 w = read_le32(&sd->dwWidth);
+	// .. not padded to S3TC block size
+	if(w % 4 || h % 4)
+		return ERR_TEX_INVALID_SIZE;
+
+	// pixel format
+	uint bpp, flags;
+	RETURN_ERR(decode_pf(&sd->ddpfPixelFormat, &bpp, &flags));
+
+	// verify pitch or linear size, if given
+	const size_t pitch = w*bpp/8;
+	const u32 sd_pitch_or_size = read_le32(&sd->dwPitchOrLinearSize);
+	if(sd_flags & DDSD_PITCH)
+	{
+		if(sd_pitch_or_size != round_up(pitch, 4))
+			return ERR_CORRUPTED;
+	}
+	if(sd_flags & DDSD_LINEARSIZE)
+	{
+		if(sd_pitch_or_size != pitch*h)
+			return ERR_CORRUPTED;
+	}
+	// note: both flags set would be invalid; no need to check for that,
+	// though, since one of the above tests would fail.
+
+	// mipmaps
+	if(sd_flags & DDSD_MIPMAPCOUNT)
+	{
+		const u32 mipmap_count = read_le32(&sd->dwMipMapCount);
+		if(mipmap_count)
+		{
+			// mipmap chain is incomplete
+			// note: DDS includes the base level in its count, hence +1.
+			if(mipmap_count != log2(MAX(w,h))+1)
+				return ERR_TEX_FMT_INVALID;
+			flags |= TEX_MIPMAPS;
+		}
+	}
+
+	// check for volume textures
+	if(sd_flags & DDSD_DEPTH)
+	{
+		const u32 depth = read_le32(&sd->dwDepth);
+		if(depth)
+			return ERR_NOT_IMPLEMENTED;
+	}
+
+	// check caps
+	const DDCAPS2* caps = &sd->ddsCaps;
+	// .. this is supposed to be set, but don't bail if not (pointless)
+	debug_assert(caps->dwCaps1 & DDSCAPS_TEXTURE);
+	// .. sanity check: warn if mipmap flag not set (don't bail if not
+	// because we've already made the decision).
+	const bool mipmap_cap = (caps->dwCaps1 & DDSCAPS_MIPMAP) != 0;
+	const bool mipmap_flag = (flags & TEX_MIPMAPS) != 0;
+	debug_assert(mipmap_cap == mipmap_flag);
+	// note: we do not check for cubemaps and volume textures (not supported)
+	// because the file may still have useful data we can read.
+
+	*w_ = w;
+	*h_ = h;
+	*bpp_ = bpp;
+	*flags_ = flags;
+	return 0;
+}
+
+
+//-----------------------------------------------------------------------------
 
 static bool dds_is_hdr(const u8* file)
 {
@@ -376,78 +564,13 @@ static size_t dds_hdr_size(const u8* UNUSED(file))
 static int dds_decode(DynArray* restrict da, Tex* restrict t)
 {
 	u8* file         = da->base;
+	const DDSURFACEDESC2* sd = (const DDSURFACEDESC2*)(file+4);
 
-	const DDSURFACEDESC2* hdr = (const DDSURFACEDESC2*)(file+4);
-	const u32 sd_size   = read_le32(&hdr->dwSize);
-	const u32 sd_flags  = read_le32(&hdr->dwFlags);
-	const u32 h         = read_le32(&hdr->dwHeight);
-	const u32 w         = read_le32(&hdr->dwWidth);
-	      u32 mipmaps   = read_le32(&hdr->dwMipMapCount);
-	const u32 pf_size   = read_le32(&hdr->ddpfPixelFormat.dwSize);
-	const u32 pf_flags  = read_le32(&hdr->ddpfPixelFormat.dwFlags);
-	const u32 fourcc    = hdr->ddpfPixelFormat.dwFourCC;
-		// compared against FOURCC, which takes care of endian conversion.
-
-	// we'll use these fields; make sure they're present below.
-	// note: we can't guess image dimensions if not specified -
-	//       the image isn't necessarily square.
-	const u32 sd_req_flags = DDSD_WIDTH | DDSD_HEIGHT | DDSD_PIXELFORMAT;
-
-	// make sure fields that aren't indicated as valid are zeroed.
-	if(!(sd_flags & DDSD_MIPMAPCOUNT))
-		mipmaps = 0;
-
-
-	// determine flags and bpp.
-	// we store DXT format (one of {1,3,5}) in flags & TEX_DXT.
-	//
-	// unfortunately there are problems with some DDS headers:
-	// - DXTex doesn't set the required dwPitchOrLinearSize field -
-	//   MS can't even write out their own file format correctly. *sigh*
-	//   it's needed by OpenGL, so we calculate it from w, h, and bpp.
-	// - pf_flags & DDPF_ALPHAPIXELS can only be used to check for
-	//   DXT1a (the only way to detect it); we have observed some DXT3 files
-	//   that don't have it set. grr
-	int bpp = 0;
-	int flags = 0;
-	switch(fourcc)
-	{
-	case FOURCC('D','X','T','1'):
-		bpp = 4;
-		flags |= 1;
-		if(pf_flags & DDPF_ALPHAPIXELS)
-			flags |= TEX_ALPHA;
-		break;
-	case FOURCC('D','X','T','3'):
-		bpp = 8;
-		flags |= 3;
-		flags |= TEX_ALPHA;
-		break;
-	case FOURCC('D','X','T','5'):
-		bpp = 8;
-		flags |= 5;
-		flags |= TEX_ALPHA;
-		break;
-	}
-	if(mipmaps)
-		flags |= TEX_MIPMAPS;
-
-
-	// sanity checks
-	// .. dimensions not padded to S3TC block size
-	if(w % 4 || h % 4)
-		return ERR_TEX_INVALID_SIZE;
-	// .. unknown FOURCC
-	if((flags & TEX_DXT) == 0)
-		return ERR_UNKNOWN_FORMAT;
-	// .. missing required field(s)
-	if((sd_flags & sd_req_flags) != sd_req_flags)
-		return ERR_INCOMPLETE_HEADER;
-	if(sizeof(DDPIXELFORMAT) != pf_size)
-		return ERR_CORRUPTED;
-	if(sizeof(DDSURFACEDESC2) != sd_size)
-		return ERR_CORRUPTED;
-
+	uint w, h;
+	uint bpp, flags;
+	RETURN_ERR(decode_sd(sd, &w, &h, &bpp, &flags));
+	// note: cannot pass address of these directly to decode_sd because
+	// they are bitfields.
 	t->w     = w;
 	t->h     = h;
 	t->bpp   = bpp;
@@ -461,7 +584,27 @@ static int dds_encode(Tex* restrict UNUSED(t), DynArray* restrict UNUSED(da))
 	// note: do not return ERR_NOT_IMPLEMENTED et al. because that would
 	// break tex_write (which assumes either this, 0 or errors are returned).
 	return TEX_CODEC_CANNOT_HANDLE;
-	
 }
+
+
+static int dds_transform(Tex* t, uint transforms)
+{
+	uint dxt = t->flags & TEX_DXT;
+	debug_assert(is_valid_dxt(dxt));
+
+	const uint transform_dxt = transforms & TEX_DXT;
+	// requesting decompression
+	if(dxt && transform_dxt)
+	{
+		RETURN_ERR(s3tc_decompress(t));
+		return 0;
+	}
+	// both are DXT (unsupported; there are no flags we can change while
+	// compressed) or requesting compression (not implemented) or
+	// both not DXT (nothing we can do) - bail.
+	else
+		return TEX_CODEC_CANNOT_HANDLE;
+}
+
 
 TEX_CODEC_REGISTER(dds);

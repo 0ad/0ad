@@ -261,6 +261,15 @@ extern int tex_write(Tex* t, const char* fn);
 // internal use only:
 extern int tex_validate(const Tex* t);
 
+// check if the given texture format is acceptable: 8bpp grey,
+// 24bpp color or 32bpp color+alpha (BGR / upside down are permitted).
+// basically, this is the "plain" format understood by all codecs and
+// tex_codec_plain_transform.
+// return 0 if ok, otherwise negative error code (but doesn't warn;
+// caller is responsible for using CHECK_ERR et al.)
+extern int tex_validate_plain_format(uint bpp, uint flags);
+
+
 // indicate if the orientation specified by <src_flags> matches
 // dst_orientation (if the latter is 0, then the global_orientation).
 // (we ask for src_flags instead of src_orientation so callers don't
