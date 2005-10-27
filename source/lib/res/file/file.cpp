@@ -748,9 +748,7 @@ int file_io_issue(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 	// zero output param in case we fail below.
 	memset(io, 0, sizeof(FileIo));
 
-#if CONFIG_PARANOIA
-	debug_printf("file_io_issue: ofs=%d size=%d\n", ofs, size);
-#endif
+	debug_printf("FILE| issue ofs=%d size=%d\n", ofs, size);
 
 
 	//
@@ -794,15 +792,11 @@ int file_io_issue(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 	cb->aio_fildes     = f->fd;
 	cb->aio_offset     = ofs;
 	cb->aio_nbytes     = size;
-#if CONFIG_PARANOIA
-	debug_printf("file_io_issue: io=%p nbytes=%d\n", io, cb->aio_nbytes);
-#endif
+debug_printf("FILE| issue2 io=%p nbytes=%d\n", io, cb->aio_nbytes);
 	int err = lio_listio(LIO_NOWAIT, &cb, 1, (struct sigevent*)0);
 	if(err < 0)
 	{
-#if CONFIG_PARANOIA
-		debug_printf("file_io_issue: lio_listio: %d, %d[%s]\n", err, errno, strerror(errno));
-#endif
+		debug_printf("lio_listio: %d, %d[%s]\n", err, errno, strerror(errno));
 		file_io_discard(io);
 		return err;
 	}
@@ -829,9 +823,7 @@ int file_io_has_completed(FileIo* io)
 
 int file_io_wait(FileIo* io, void*& p, size_t& size)
 {
-#if CONFIG_PARANOIA
-debug_printf("%s: hio=%p\n", __func__, io);
-#endif
+	debug_printf("FILE| wait io=%p\n", io);
 
 	// zero output params in case something (e.g. H_DEREF) fails.
 	p = 0;
@@ -846,10 +838,7 @@ debug_printf("%s: hio=%p\n", __func__, io);
 
 	// query number of bytes transferred (-1 if the transfer failed)
 	const ssize_t bytes_transferred = aio_return(cb);
-#if CONFIG_PARANOIA
-	debug_printf("%s: bytes_transferred=%d aio_nbytes=%d\n",
-		__func__, bytes_transferred, cb->aio_nbytes);
-#endif
+	debug_printf("FILE| bytes_transferred=%d aio_nbytes=%d\n", bytes_transferred, cb->aio_nbytes);
 	// (size was clipped to EOF in file_io => this is an actual IO error)
 	if(bytes_transferred < (ssize_t)cb->aio_nbytes)
 		return ERR_IO;
@@ -1087,9 +1076,7 @@ int file_invalidate_cache(const char* fn)
 ssize_t file_io(File* f, off_t data_ofs, size_t data_size, void* data_buf,
 	FileIOCB cb, uintptr_t ctx) // optional
 {
-#if CONFIG_PARANOIA
-debug_printf("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
-#endif
+	debug_printf("FILE| io: fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 
 	CHECK_FILE(f);
 
@@ -1189,9 +1176,7 @@ debug_printf("file_io fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
 
 			void* buf = (temp)? 0 : (char*)actual_buf + issue_cnt;
 			ssize_t issued = block_issue(f, slot, issue_ofs, buf);
-#if CONFIG_PARANOIA
-			debug_printf("file_io: block_issue: %d\n", issued);
-#endif
+			debug_printf("FILE| io2: block_issue: %d\n", issued);
 			if(issued < 0)
 				err = issued;
 				// transfer failed - loop will now terminate after
@@ -1281,9 +1266,7 @@ if(from_cache && !temp)
 			break;
 	}
 
-#if CONFIG_PARANOIA
-	debug_printf("file_io: err=%d, actual_transferred_cnt=%d\n", err, actual_transferred_cnt);
-#endif
+	debug_printf("FILE| err=%d, actual_transferred_cnt=%d\n", err, actual_transferred_cnt);
 
 	// failed (0 means callback reports it's finished)
 	if(err < 0)

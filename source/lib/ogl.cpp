@@ -254,7 +254,7 @@ static void importExtensionFunctions()
 
 static void dump_gl_error(GLenum err)
 {
-	debug_printf("OGL: ");
+	debug_printf("OGL| ");
 #define E(e) case e: debug_printf("%s\n", #e); break;
 	switch (err)
 	{

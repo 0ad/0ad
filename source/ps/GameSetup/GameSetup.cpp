@@ -806,6 +806,8 @@ void Init(int argc, char* argv[], uint flags)
 	MICROLOG(L"Init");
 
 	debug_set_thread_name("main");
+	// add all debug_printf "tags" that we are interested in:
+	debug_filter_add("TIMER");
 
 	// If you ever want to catch a particular allocation:
 	//_CrtSetBreakAlloc(187);

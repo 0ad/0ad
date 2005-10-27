@@ -84,7 +84,7 @@ static const int MAX_CHARS = 512;
 
 // rationale: static data instead of std::set to allow setting at any time.
 // we store FNV hash of tag strings for fast comparison; collisions are
-// extremely unlikely.
+// extremely unlikely and can only result in displaying more/less text.
 static const uint MAX_TAGS = 20;
 static u32 tags[MAX_TAGS];
 static uint num_tags;
@@ -136,10 +136,10 @@ static bool filter_allows(const char* text)
 	uint i;
 	for(i = 0; ; i++)
 	{
-		// no colon found => no tag => should always be displayed
+		// no | found => no tag => should always be displayed
 		if(text[i] == ' ' || text[i] == '\0')
 			return true;
-		if(text[i] == ':' && i != 0)
+		if(text[i] == '|' && i != 0)
 			break;
 	}
 

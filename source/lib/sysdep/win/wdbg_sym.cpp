@@ -903,7 +903,7 @@ in_register:
 
 	*pp = (const u8*)addr;
 
-debug_printf("SYM: %ws at %p  flags=%X dk=%d sym->addr=%I64X addrofs=%X addr2=%I64X ofs2=%X\n", sym->Name, *pp, sym->Flags, data_kind, sym->Address, addrofs, addr2, ofs2);
+debug_printf("SYM| %ws at %p  flags=%X dk=%d sym->addr=%I64X addrofs=%X addr2=%I64X ofs2=%X\n", sym->Name, *pp, sym->Flags, data_kind, sym->Address, addrofs, addr2, ofs2);
 
 	return 0;
 }
@@ -1643,7 +1643,7 @@ static int dump_sym_unknown(DWORD type_id, const u8* UNUSED(p), DumpState UNUSED
 	if(!SymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_SYMTAG, &type_tag))
 		return WDBG_TYPE_INFO_UNAVAILABLE;
 
-	debug_printf("SYM: unknown tag: %d\n", type_tag);
+	debug_printf("SYM| unknown tag: %d\n", type_tag);
 	out(L"(unknown symbol type)");
 	return 0;
 }

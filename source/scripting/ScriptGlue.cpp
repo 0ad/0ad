@@ -769,7 +769,7 @@ JSBool startPlacing( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, j
 JSBool toggleWater( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
 	REQUIRE_NO_PARAMS( toggleWater );
-	debug_printf("Toggling water!");
+	debug_printf("Toggling water!\n");
 	g_Renderer.m_RenderWater = !g_Renderer.m_RenderWater;
 	*rval = JSVAL_VOID;
 	return( JS_TRUE );

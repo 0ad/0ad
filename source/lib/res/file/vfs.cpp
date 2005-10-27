@@ -485,9 +485,7 @@ int vfs_close(Handle& hf)
 // return number of bytes transferred (see above), or a negative error code.
 ssize_t vfs_io(const Handle hf, const size_t size, void** p, FileIOCB cb, uintptr_t ctx)
 {
-#if CONFIG_PARANOIA
-debug_printf("vfs_io size=%d\n", size);
-#endif
+	debug_printf("VFS| io: size=%d\n", size);
 
 	H_DEREF(hf, VFile, vf);
 
@@ -550,9 +548,7 @@ static ssize_t vfs_timed_io(const Handle hf, const size_t size, void** p, FileIO
 // must be protected against being accidentally free-d in that case.
 Handle vfs_load(const char* v_fn, void*& p, size_t& size, uint flags /* default 0 */)
 {
-#if CONFIG_PARANOIA
-debug_printf("vfs_load v_fn=%s\n", v_fn);
-#endif
+	debug_printf("VFS| load: v_fn=%s\n", v_fn);
 
 	p = 0; size = 0;	// zeroed in case vfs_open or H_DEREF fails
 

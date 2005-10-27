@@ -120,7 +120,7 @@ public:
 		else if(dt > 1e-3)
 			scale = 1e3, unit = "ms";
 
-		debug_printf("TIMER %s: %g %s\n", description, dt*scale, unit);
+		debug_printf("TIMER| %s: %g %s\n", description, dt*scale, unit);
 	}
 
 	// disallow copying (makes no sense)
