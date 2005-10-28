@@ -101,6 +101,12 @@ CRenderer::CRenderer()
 		m_Models.PlayerHWLit = new HWLightingModelRenderer;
 		m_Models.TransparentHWLit = new HWLightingModelRenderer;
 	}
+	else
+	{
+		m_Models.NormalHWLit = NULL;
+		m_Models.PlayerHWLit = NULL;
+		m_Models.TransparentHWLit = NULL;
+	}
 	m_Models.Transparency = new TransparencyRenderer;
 
 	m_Models.ModWireframe = RenderModifierPtr(new WireframeRenderModifier);

@@ -24,7 +24,7 @@ private:
 	CStr m_Tag;
 	
 	// The property sheet used by this texture
-	CTerrainProperties *m_pProperties;
+	CTerrainPropertiesPtr m_pProperties;
 	
 	// Path to the texture file
 	CStr m_TexturePath;
@@ -52,13 +52,13 @@ private:
 public:
 	// Most of the texture's data is delay-loaded, so after the constructor has
 	// been called, the texture entry is ready to be used.
-	CTextureEntry(CTerrainProperties *props, CStr path);
+	CTextureEntry(CTerrainPropertiesPtr props, CStr path);
 	~CTextureEntry();
 
 	CStr GetTag() const
 	{ return m_Tag; }
 	
-	CTerrainProperties *GetProperties() const
+	CTerrainPropertiesPtr GetProperties() const
 	{ return m_pProperties; }
 	
 	CStr GetTexturePath() const

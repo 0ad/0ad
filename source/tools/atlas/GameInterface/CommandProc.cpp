@@ -15,6 +15,8 @@ template<typename T, typename I> void delete_erase(T list, I first, I last)
 	}
 }
 
+template<typename T> void delete_fn(T* v) { delete v; }
+
 //////////////////////////////////////////////////////////////////////////
 
 using namespace AtlasMessage;
@@ -43,7 +45,8 @@ CommandProc::CommandProc()
 
 CommandProc::~CommandProc()
 {
-	delete_erase(m_Commands, m_Commands.begin(), m_Commands.end());
+	for_each(m_Commands.begin(), m_Commands.end(), delete_fn<Command>);
+	m_Commands.clear();
 }
 
 void CommandProc::Submit(Command* cmd)

@@ -15,7 +15,7 @@
 
 using namespace std;
 
-CTerrainProperties::CTerrainProperties(CTerrainProperties *parent):
+CTerrainProperties::CTerrainProperties(CTerrainPropertiesPtr parent):
 	m_pParent(parent),
 	m_BaseColor(0),
 	m_HasBaseColor(false)
@@ -24,11 +24,11 @@ CTerrainProperties::CTerrainProperties(CTerrainProperties *parent):
 		m_Groups = m_pParent->m_Groups;	
 }
 
-CTerrainProperties *CTerrainProperties::FromXML(CTerrainProperties *parent, const char* path)
+CTerrainPropertiesPtr CTerrainProperties::FromXML(CTerrainPropertiesPtr parent, const char* path)
 {
 	CXeromyces XeroFile;
 	if (XeroFile.Load(path) != PSRETURN_OK)
-		return NULL;
+		return CTerrainPropertiesPtr();
 
 	XMBElement root = XeroFile.getRoot();
 	CStr rootName = XeroFile.getElementString(root.getNodeName());
@@ -41,7 +41,7 @@ CTerrainProperties *CTerrainProperties::FromXML(CTerrainProperties *parent, cons
 			"TextureManager: Loading %s: Root node is not terrains (found \"%s\")",
 			path,
 			rootName.c_str());
-		return NULL;
+		return CTerrainPropertiesPtr();
 	}
 	
 	#define ELMT(x) int el_##x = XeroFile.getElementID(#x)
@@ -62,7 +62,7 @@ CTerrainProperties *CTerrainProperties::FromXML(CTerrainProperties *parent, cons
 
 		if (child.getNodeName() == el_terrain)
 		{
-			CTerrainProperties *ret=new CTerrainProperties(parent);
+			CTerrainPropertiesPtr ret (new CTerrainProperties(parent));
 			ret->LoadXML(child, &XeroFile);
 			return ret;
 		}
@@ -76,7 +76,7 @@ CTerrainProperties *CTerrainProperties::FromXML(CTerrainProperties *parent, cons
 		}
 	}
 	
-	return NULL;
+	return CTerrainPropertiesPtr();
 }
 
 void CTerrainProperties::LoadXML(XMBElement node, CXeromyces *pFile)

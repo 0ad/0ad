@@ -63,12 +63,12 @@ CTextureEntry* CTextureManager::FindTexture(Handle handle)
 	return CTextureEntry::GetByHandle(handle);
 }
 
-CTerrainProperties *CTextureManager::GetPropertiesFromFile(CTerrainProperties *props, const char* path)
+CTerrainPropertiesPtr CTextureManager::GetPropertiesFromFile(CTerrainPropertiesPtr props, const char* path)
 {
 	return CTerrainProperties::FromXML(props, path);
 }
 
-CTextureEntry *CTextureManager::AddTexture(CTerrainProperties *props, CStr path)
+CTextureEntry *CTextureManager::AddTexture(CTerrainPropertiesPtr props, CStr path)
 {
 	CTextureEntry *entry = new CTextureEntry(props, path);
 	m_TextureEntries.push_back(entry);
@@ -91,7 +91,7 @@ void CTextureManager::DeleteTexture(CTextureEntry* entry)
 // jw: indeed this is inefficient and RecurseDirectory should be implemented
 // via VFSUtil::EnumFiles, but it works fine and "only" takes 25ms for
 // typical maps. therefore, we'll leave it for now.
-void CTextureManager::LoadTextures(CTerrainProperties *props, const char* dir)
+void CTextureManager::LoadTextures(CTerrainPropertiesPtr props, const char* dir)
 {
 	VFSUtil::FileList files;
 	if(!VFSUtil::FindFiles(dir, 0, files))
@@ -111,17 +111,20 @@ void CTextureManager::LoadTextures(CTerrainProperties *props, const char* dir)
 		const char* ext = strrchr(texture_name, '.');
 		if(!ext || !stricmp(ext, ".xml") || !stricmp(ext, ".xmb") || !stricmp(ext, ".dtd"))
 			continue;
+		// Also allow storage of temporary files in the texture directories
+		if(ext[strlen(ext)-1] == '~')
+			continue;
 
 		// build name of associated xml file (i.e. replace extension)
 		char xml_name[PATH_MAX+5];	// add room for .XML
 		strcpy_s(xml_name, PATH_MAX, texture_name);
 		strcpy(xml_name + (ext-texture_name), ".xml");	// safe
 
-		CTerrainProperties *myprops = NULL;
+		CTerrainPropertiesPtr myprops;
 		// Has XML file -> attempt to load properties
 		if (vfs_exists(xml_name))
 		{
-			myprops=GetPropertiesFromFile(props, xml_name);
+			myprops = GetPropertiesFromFile(props, xml_name);
 			if (myprops)
 				LOG(NORMAL, LOG_CATEGORY, "CTextureManager: Successfully loaded override xml %s for texture %s\n", xml_name, texture_name);
 		}
@@ -134,17 +137,17 @@ void CTextureManager::LoadTextures(CTerrainProperties *props, const char* dir)
 	}
 }
 
-void CTextureManager::RecurseDirectory(CTerrainProperties *parentProps, const char* cur_dir_path)
+void CTextureManager::RecurseDirectory(CTerrainPropertiesPtr parentProps, const char* cur_dir_path)
 {
 	//LOG(NORMAL, LOG_CATEGORY, "CTextureManager::RecurseDirectory(%s)", path.c_str());
 
-	CTerrainProperties *props=NULL;
+	CTerrainPropertiesPtr props;
 
 	// Load terrains.xml first, if it exists
 	char fn[PATH_MAX];
 	snprintf(fn, PATH_MAX, "%s/%s", cur_dir_path, "terrains.xml");
 	if (vfs_exists(fn))
-		props=GetPropertiesFromFile(parentProps, fn);
+		props = GetPropertiesFromFile(parentProps, fn);
 	
 	// No terrains.xml, or read failures -> use parent props (i.e. 
 	if (!props)
@@ -168,7 +171,7 @@ void CTextureManager::RecurseDirectory(CTerrainProperties *parentProps, const ch
 
 int CTextureManager::LoadTerrainTextures()
 {
-	RecurseDirectory(NULL, "art/textures/terrain/types");
+	RecurseDirectory(CTerrainPropertiesPtr(), "art/textures/terrain/types");
 	return 0;
 }
 

@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <map>
+#include "boost/shared_ptr.hpp"
 
 #include "lib/res/handle.h"
 
@@ -16,6 +17,8 @@ class XMBElement;
 class CXeromyces;
 class CTextureEntry;
 class CTerrainProperties;
+
+typedef boost::shared_ptr<CTerrainProperties> CTerrainPropertiesPtr;
 
 class CTerrainGroup
 {
@@ -65,12 +68,12 @@ private:
 
 	// Find+load all textures in directory; check if
 	// there's an override XML with the same basename (if there is, load it)
-	void LoadTextures(CTerrainProperties *props, const char* dir);
+	void LoadTextures(CTerrainPropertiesPtr props, const char* dir);
 	
 	// Load all terrains below path, using props as the parent property sheet.
-	void RecurseDirectory(CTerrainProperties *props, const char* dir);
+	void RecurseDirectory(CTerrainPropertiesPtr props, const char* dir);
 	
-	CTerrainProperties *GetPropertiesFromFile(CTerrainProperties *props, const char* path);
+	CTerrainPropertiesPtr GetPropertiesFromFile(CTerrainPropertiesPtr props, const char* path);
 
 public:
 	// constructor, destructor
@@ -87,7 +90,7 @@ public:
 	
 	// Create a texture object for a new terrain texture at path, using the
 	// property sheet props.
-	CTextureEntry *AddTexture(CTerrainProperties *props, CStr path);
+	CTextureEntry *AddTexture(CTerrainPropertiesPtr props, CStr path);
 	
 	// Remove the texture from all our maps and lists and delete it afterwards.
 	void DeleteTexture(CTextureEntry* entry);
