@@ -98,6 +98,14 @@ extern void debug_heap_enable(DebugHeapChecks what);
 // debug_assert
 //-----------------------------------------------------------------------------
 
+// rationale: we call this "debug_assert" instead of "assert" for the
+// following reasons:
+// - consistency (everything here is prefixed with debug_) and
+// - to avoid inadvertent use of the much less helpful built-in CRT assert.
+//   if we were to override assert, it would be difficult to tell whether
+//   user source has included <assert.h> (possibly indirectly via other
+//   headers) and thereby stomped on our definition.
+
 // make sure the expression <expr> evaluates to non-zero. used to validate
 // invariants in the program during development and thus gives a
 // very helpful warning if something isn't going as expected.
@@ -112,8 +120,8 @@ extern void debug_heap_enable(DebugHeapChecks what);
 #define debug_assert(expr) \
 STMT(\
 	static unsigned char suppress__ = 0x55;\
-	if(suppress__ == 0x55 && !(expr)) \
-	{ \
+	if(suppress__ == 0x55 && !(expr))\
+	{\
 		switch(debug_assert_failed(__FILE__, __LINE__, __func__, #expr))\
 		{\
 		case ER_SUPPRESS:\
@@ -126,24 +134,12 @@ STMT(\
 			debug_break();\
 			break;\
 		}\
-	} \
+	}\
 )
-
-// rationale: we call our assert "debug_assert" for the following reasons:
-// - consistency (everything here is prefixed with debug_) and
-// - to avoid inadvertent use of the much less helpful built-in CRT assert.
-//   if we were to override assert, it would be difficult to tell whether
-//   user source has included <assert.h> (possibly indirectly via other
-//   headers) and thereby stomped on our definition.
 
 // called when an assertion has failed; notifies the user via display_error.
 extern enum ErrorReaction debug_assert_failed(const char* file, int line,
 	const char* func, const char* assert_expr);
-
-
-//-----------------------------------------------------------------------------
-// output
-//-----------------------------------------------------------------------------
 
 // show a dialog to make sure unexpected states in the program are noticed.
 // this is less error-prone than "debug_assert(0 && "text");" and avoids
@@ -152,6 +148,35 @@ extern enum ErrorReaction debug_assert_failed(const char* file, int line,
 // volatile variables fools VC7 but isn't guaranteed to be free of overhead.
 // we therefore just squelch the warning (unfortunately non-portable).
 #define debug_warn(str) debug_assert((str) && 0)
+
+
+#define DEBUG_WARN_ERR(err) \
+STMT(\
+	static unsigned char suppress__ = 0x55;\
+	if(suppress__ == 0x55)\
+	{\
+		switch(debug_warn_err(err, __FILE__, __LINE__, __func__))\
+		{\
+		case ER_SUPPRESS:\
+			suppress__ = 0xAA;\
+			break;\
+		case ER_CONTINUE:\
+			break;\
+		default:\
+		case ER_BREAK:\
+			debug_break();\
+			break;\
+		}\
+	}\
+)
+
+extern enum ErrorReaction debug_warn_err(int err, const char* file, int line,
+	const char* func);
+
+
+//-----------------------------------------------------------------------------
+// logging
+//-----------------------------------------------------------------------------
 
 // write a formatted string to the debug channel, subject to filtering
 // (see below). implemented via debug_puts - see performance note there.

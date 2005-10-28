@@ -124,8 +124,7 @@ STMT(\
 	i64 err__ = (i64)(expression);\
 	if(err__ < 0)\
 	{\
-		debug_warn("FYI: CHECK_ERR reports that a function failed."\
-		           "feel free to ignore or suppress this warning.");\
+		DEBUG_WARN_ERR(err__);\
 		return (int)(err__ & UINT_MAX);\
 	}\
 )
@@ -135,8 +134,7 @@ STMT(\
 	i64 err__ = (i64)(expression);\
 	if(err__ < 0)\
 	{\
-		debug_printf("%s:%d: FYI: CHECK_ERR reports that a function failed."\
-		            "feel free to ignore or suppress this warning.\n", __FILE__, __LINE__);\
+		DEBUG_WARN_ERR(err__);\
 		return (int)(err__ & UINT_MAX);\
 	}\
 )
@@ -157,8 +155,7 @@ STMT(\
 	i64 err__ = (i64)(expression);\
 	if(err__ < 0)\
 	{\
-		debug_warn("FYI: THROW_ERR reports that a function failed."\
-		           "feel free to ignore or suppress this warning.");\
+		DEBUG_WARN_ERR(err__);\
 		throw (int)(err__ & UINT_MAX);\
 	}\
 )
@@ -170,8 +167,7 @@ STMT(\
 	i64 err__ = (i64)(expression);\
 	if(err__ < 0)\
 	{\
-		debug_warn("FYI: WARN_ERR_RETURN reports that a function failed."\
-		           "feel free to ignore or suppress this warning.");\
+		DEBUG_WARN_ERR(err__);\
 		return;\
 	}\
 )
@@ -182,8 +178,7 @@ STMT(\
 STMT(\
 	i64 err__ = (i64)(expression);\
 	if(err__ < 0)\
-		debug_warn("FYI: WARN_ERR reports that a function failed."\
-		           "feel free to ignore or suppress this warning.");\
+		DEBUG_WARN_ERR(err__);\
 )
 
 

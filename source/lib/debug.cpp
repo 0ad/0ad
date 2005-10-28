@@ -528,7 +528,7 @@ ErrorReaction display_error(const wchar_t* description, int flags,
 
 // notify the user that an assertion failed; displays a stack trace with
 // local variables.
-ErrorReaction debug_assert_failed(const char* file,	int line,
+ErrorReaction debug_assert_failed(const char* file, int line,
 	const char* func, const char* expr)
 {
 	// for edge cases in some functions, warnings (=asserts) are raised in
@@ -546,8 +546,32 @@ ErrorReaction debug_assert_failed(const char* file,	int line,
 	const char* base_name = slash? slash+1 : file;
 
 	uint skip = 1; void* context = 0;
-	wchar_t buf[200];
-	swprintf(buf, ARRAY_SIZE(buf), L"Assertion failed in %hs, %hs(%d): \"%hs\"", func, base_name, line, expr);
+	wchar_t buf[400];
+	swprintf(buf, ARRAY_SIZE(buf), L"Assertion failed at %hs:%d (%hs): \"%hs\"", base_name, line, func, expr);
+	return display_error(buf, DE_ALLOW_SUPPRESS|DE_MANUAL_BREAK, skip, context, base_name, line);
+}
+
+
+ErrorReaction debug_warn_err(int err, const char* file, int line,
+	const char* func)
+{
+	// for edge cases in some functions, warnings (=asserts) are raised in
+	// addition to returning an error code. self-tests deliberately trigger
+	// these cases and check for the latter but shouldn't cause the former.
+	// we therefore squelch them here.
+	// (note: don't do so in lib.h's CHECK_ERR or debug_assert to reduce
+	// compile-time dependency on self_test.h)
+	if(self_test_active)
+		return ER_CONTINUE;
+
+	// __FILE__ evaluates to the full path (albeit without drive letter)
+	// which is rather long. we only display the base name for clarity.
+	const char* slash = strrchr(file, DIR_SEP);
+	const char* base_name = slash? slash+1 : file;
+
+	uint skip = 1; void* context = 0;
+	wchar_t buf[400];
+	swprintf(buf, ARRAY_SIZE(buf), L"Function call failed at %hs:%d (%hs): return value was %d", base_name, line, func, err);
 	return display_error(buf, DE_ALLOW_SUPPRESS|DE_MANUAL_BREAK, skip, context, base_name, line);
 }
 
@@ -586,8 +610,6 @@ static void tls_init()
 
 	// note: do not use atexit; this may be called before _cinit.
 }
-
-
 
 
 // set the current thread's name; it will be returned by subsequent calls to
