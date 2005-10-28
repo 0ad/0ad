@@ -52,7 +52,7 @@ static void SkinPoint(const SModelVertex& vertex,const CMatrix3D* matrices,CVect
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // SkinPoint: skin the vertex normal using it's blend data and given bone matrices
-static void SkinNormal(const SModelVertex& vertex,const CMatrix3D* invmatrices,CVector3D& result)
+static void SkinNormal(const SModelVertex& vertex, const CMatrix3D* invtranspmatrices, CVector3D& result)
 {
 	CVector3D tmp;
 	const SVertexBlend& blend=vertex.m_Blend;
@@ -60,13 +60,13 @@ static void SkinNormal(const SModelVertex& vertex,const CMatrix3D* invmatrices,C
 	// must have at least one valid bone if we're using SkinNormal
 	debug_assert(blend.m_Bone[0]!=0xff);
 
-	const CMatrix3D& m=invmatrices[blend.m_Bone[0]];
-	m.RotateTransposed(vertex.m_Norm,result);
+	const CMatrix3D& m = invtranspmatrices[blend.m_Bone[0]];
+	m.Rotate(vertex.m_Norm, result);
 	result*=blend.m_Weight[0];
 
 	for (u32 i=1; i<SVertexBlend::SIZE && vertex.m_Blend.m_Bone[i]!=0xff; i++) {
-		const CMatrix3D& m=invmatrices[blend.m_Bone[i]];
-		m.RotateTransposed(vertex.m_Norm,tmp);
+		const CMatrix3D& m = invtranspmatrices[blend.m_Bone[i]];
+		m.Rotate(vertex.m_Norm,tmp);
 		result+=tmp*blend.m_Weight[i];
 	}
 }
@@ -89,11 +89,27 @@ void ModelRenderer::BuildPositionAndNormals(
 	{
 		// boned model - calculate skinned vertex positions/normals
 		PROFILE( "skinning bones" );
-		const CMatrix3D* invbonematrices = model->GetInvBoneMatrices();
+		const CMatrix3D* invtranspbonematrices;
+		
+		// Analytic geometry tells us that normal vectors need to be
+		// multiplied by the inverse of the transpose. However, calculating
+		// the inverse is slow, and analytic geometry also tells us that
+		// for orthogonal matrices, the inverse is equal to the transpose,
+		// so the inverse of the transpose is, in fact, the original matrix.
+		//
+		// The "fast normals" code assumes that bone transformation contain
+		// no "weird" transformations like shears or non-uniform scaling
+		// (actually, the entire code assumes no scaling) and thus gets
+		// around the slow calculation of the inverse.
+		if (g_Renderer.m_FastNormals)
+			invtranspbonematrices = bonematrices;
+		else
+			invtranspbonematrices = model->GetInvTranspBoneMatrices();
+		
 		for (size_t j=0; j<numVertices; j++)
 		{
 			SkinPoint(vertices[j],bonematrices,Position[j]);
-			SkinNormal(vertices[j],invbonematrices,Normal[j]);
+			SkinNormal(vertices[j],invtranspbonematrices,Normal[j]);
 		}
 	}
 	else

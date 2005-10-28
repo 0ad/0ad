@@ -68,6 +68,7 @@ CRenderer::CRenderer()
 	m_ShadowMap=0;
 
 	m_SortAllTransparent = false;
+	m_FastNormals = true;
 	
 	m_VertexShader = 0;
 	
@@ -1594,6 +1595,7 @@ void CRenderer::ScriptingInit()
 	AddProperty(L"fastPlayerColor", &CRenderer::JSI_GetFastPlayerColor, &CRenderer::JSI_SetFastPlayerColor);
 	AddProperty(L"renderpath", &CRenderer::JSI_GetRenderPath, &CRenderer::JSI_SetRenderPath);
 	AddProperty(L"sortAllTransparent", &CRenderer::m_SortAllTransparent);
+	AddProperty(L"fastNormals", &CRenderer::m_FastNormals);
 
 	CJSObject<CRenderer>::ScriptingInit("Renderer");
 }

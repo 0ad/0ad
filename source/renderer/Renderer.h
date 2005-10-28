@@ -396,6 +396,14 @@ protected:
 	 * batching renderer when possible.
 	 */
 	bool m_SortAllTransparent;
+	
+	
+	/**
+	 * m_FastNormals: Use faster normal transformation in the
+	 * software transform by multiplying with the bone matrix itself
+	 * instead of the transpose of the inverse.
+	 */
+	bool m_FastNormals;
 
 	// State used by LoadWaterTextures with progressive loading
 	uint cur_loading_water_tex;

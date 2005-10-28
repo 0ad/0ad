@@ -105,10 +105,12 @@ public:
 		debug_assert(m_PositionValid);
 		return m_BoneMatrices;
 	}
-	// return the models inverted bone matrices
-	const CMatrix3D* GetInvBoneMatrices() { 
+	// return the models inverted transposed bone matrices for normal transformation
+	const CMatrix3D* GetInvTranspBoneMatrices() { 
 		debug_assert(m_PositionValid);
-		return m_InvBoneMatrices; 
+		if (!m_InvTranspValid)
+			CalcInvTranspBoneMatrices();
+		return m_InvTranspBoneMatrices; 
 	}
 
 	// load raw animation frame animation from given file, and build a 
@@ -143,6 +145,12 @@ private:
 	void InvalidatePosition();
 	
 	/**
+	 * CalcInvTranspBoneMatrices: Calc inverse transpose bone matrices 
+	 * from bone matrices.
+	 */
+	void CalcInvTranspBoneMatrices();
+	
+	/**
 	 * m_Parent: If non-null, m_Parent points to the model that we
 	 * are attached to.
 	 */
@@ -170,8 +178,8 @@ private:
 	float m_AnimTime;
 	// current state of all bones on this model; null if associated modeldef isn't skeletal
 	CMatrix3D* m_BoneMatrices;
-	// inverse of the above world space transform of the above matrices 
-	CMatrix3D* m_InvBoneMatrices;
+	// inverse of the transpose of the above matrices 
+	CMatrix3D* m_InvTranspBoneMatrices;
 	// list of current props on model
 	std::vector<Prop> m_Props;
 
@@ -181,6 +189,12 @@ private:
 	 */
 	bool m_PositionValid;
 
+	/**
+	 * m_InvTranspValid: true if m_InvTranspBoneMatrices match the current
+	 * m_BoneMatrices
+	 */
+	bool m_InvTranspValid;
+	
 	// modulating color
 	CColor m_ShadingColor;
 };

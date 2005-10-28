@@ -27,8 +27,8 @@
 // Constructor
 CModel::CModel() 
 	: m_Parent(0), m_Flags(0), m_Anim(0), m_AnimTime(0), 
-	m_BoneMatrices(0), m_InvBoneMatrices(0),
-	m_PositionValid(false), m_ShadingColor(1,1,1,1)
+	m_BoneMatrices(0), m_InvTranspBoneMatrices(0),
+	m_PositionValid(false), m_InvTranspValid(false), m_ShadingColor(1,1,1,1)
 {
 }
 
@@ -61,7 +61,7 @@ CModel::~CModel()
 void CModel::ReleaseData()
 {
 	delete[] m_BoneMatrices;
-	delete[] m_InvBoneMatrices;
+	delete[] m_InvTranspBoneMatrices;
 	for (size_t i=0;i<m_Props.size();i++) {
 		delete m_Props[i].m_Model;
 	}
@@ -86,7 +86,7 @@ bool CModel::InitModel(CModelDefPtr modeldef)
 	if (numBones != 0) {
 		// allocate matrices for bone transformations
 		m_BoneMatrices=new CMatrix3D[numBones];
-		m_InvBoneMatrices=new CMatrix3D[numBones];
+		m_InvTranspBoneMatrices=new CMatrix3D[numBones];
 		// store default pose until animation assigned
 		CBoneState* defpose=modeldef->GetBones();
 		for (uint i=0;i<numBones;i++) {
@@ -94,7 +94,7 @@ bool CModel::InitModel(CModelDefPtr modeldef)
 			m.SetIdentity();
 			m.Rotate(defpose[i].m_Rotation);
 			m.Translate(defpose[i].m_Translation);
-			m.GetInverse(m_InvBoneMatrices[i]);
+			m_InvTranspValid = false;
 		}
 	}
 
@@ -315,11 +315,11 @@ void CModel::ValidatePosition()
 		const CMatrix3D& transform=GetTransform();
 		for (size_t i=0;i<m_pModelDef->GetNumBones();i++) {
 			m_BoneMatrices[i].Concatenate(transform);
-			m_BoneMatrices[i].GetInverse(m_InvBoneMatrices[i]);
 		}
 	}
 	
 	m_PositionValid = true;
+	m_InvTranspValid = false;
 	
 	// re-position and validate all props
 	for (size_t j = 0; j < m_Props.size(); ++j)
@@ -337,6 +337,24 @@ void CModel::ValidatePosition()
 	}
 }
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// CalcInvTranspBoneMatrices
+void CModel::CalcInvTranspBoneMatrices()
+{
+	debug_assert(m_BoneMatrices);
+	
+	PROFILE( "invert transpose bone matrices" );
+	
+	CMatrix3D tmp;
+	for(size_t i = 0; i < m_pModelDef->GetNumBones(); ++i)
+	{
+		m_BoneMatrices[i].GetInverse(tmp);
+		tmp.GetTranspose(m_InvTranspBoneMatrices[i]);
+	}
+	
+	m_InvTranspValid = true;
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // SetAnimation: set the given animation as the current animation on this model;
