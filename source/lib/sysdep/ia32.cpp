@@ -613,6 +613,67 @@ void ia32_get_cpu_info()
 #endif
 }
 
+//-----------------------------------------------------------------------------
+
+
+
+int ia32_get_call_target(void* ret_addr, void** target)
+{
+	*target = 0;
+
+	// points to end of the CALL instruction (which is of unknown length)
+	const u8* c = (const u8*)ret_addr;
+	// this would allow for avoiding exceptions when accessing ret_addr
+	// close to the beginning of the code segment. it's not currently set
+	// because this is really unlikely and not worth the trouble.
+	const size_t len = ~0u;
+
+	// CALL rel32 (E8 cd)
+	if(len >= 5 && c[-5] == 0xE8)
+	{
+		*target = (u8*)ret_addr + *(i32*)(c-4);
+		return 0;
+	}
+
+	// CALL r/m32 (FF /2)
+	// .. CALL [r32 + r32*s]          => FF 14 SIB
+	if(len >= 3 && c[-3] == 0xFF && c[-2] == 0x14)
+		return 1;
+	// .. CALL [disp32]               => FF 15 disp32
+	if(len >= 6 && c[6] == 0xFF && c[-5] == 0x15)
+	{
+		void* addr_of_target = *(void**)(c-4);
+		if(!debug_is_pointer_bogus(addr_of_target))
+		{
+			*target = *(void**)addr_of_target;
+			return 0;
+		}
+	}
+	// .. CALL [r32]                  => FF 00-3F(!14/15)
+	if(len >= 2 && c[-2] == 0xFF && c[-1] < 0x40 && c[-1] != 0x14 && c[-1] != 0x15)
+		return 1;
+	// .. CALL [r32 + r32*s + disp8]  => FF 54 SIB disp8
+	if(len >= 4 && c[-4] == 0xFF && c[-3] == 0x54)
+		return 1;
+	// .. CALL [r32 + disp8]          => FF 50-57(!54) disp8
+	if(len >= 3 && c[-3] == 0xFF && (c[-2] & 0xF8) == 0x50 && c[-2] != 0x54)
+		return 1;
+	// .. CALL [r32 + r32*s + disp32] => FF 94 SIB disp32
+	if(len >= 7 && c[-7] == 0xFF && c[-6] == 0x94)
+		return 1;
+	// .. CALL [r32 + disp32]         => FF 90-97(!94) disp32
+	if(len >= 6 && c[-6] == 0xFF && (c[-5] & 0xF8) == 0x90 && c[-5] != 0x94)
+		return 1;
+	// .. CALL r32                    => FF D0-D7                 
+	if(len >= 2 && c[-2] == 0xFF && (c[-1] & 0xF8) == 0xD0)
+		return 1;
+
+	return -3;
+}
+
+
+//-----------------------------------------------------------------------------
+
 
 // Assembler-optimized function for color conversion
 extern "C" {

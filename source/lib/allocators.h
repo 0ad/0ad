@@ -1,4 +1,8 @@
+#ifndef ALLOCATORS_H__
+#define ALLOCATORS_H__
+
 #include "lib/types.h"
+#include "lib/posix.h"	// PROT_* constants for da_set_prot
 
 struct DynArray
 {
@@ -119,3 +123,5 @@ extern void** matrix_alloc(uint cols, uint rows, size_t el_size);
 // callers will likely want to pass variables of a different type
 // (e.g. int**); they must be cast to void**.
 extern void matrix_free(void** matrix);
+
+#endif	// #ifndef ALLOCATORS_H__

@@ -325,6 +325,9 @@ extern void* debug_get_nth_caller(uint skip, void* context);
 // but can be used to filter out obviously wrong values in a portable manner.
 extern int debug_is_pointer_bogus(const void* p);
 
+extern bool debug_is_code_ptr(void* p);
+extern bool debug_is_stack_ptr(void* p);
+
 
 // set the current thread's name; it will be returned by subsequent calls to
 // debug_get_thread_name.

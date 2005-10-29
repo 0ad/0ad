@@ -113,6 +113,8 @@ extern void ia32_hook_capabilities(void);
 
 // internal use only
 
+extern int ia32_get_call_target(void* ret_addr, void** target);
+
 // order in which registers are stored in regs array
 // (do not change! brand string relies on this ordering)
 enum IA32Regs

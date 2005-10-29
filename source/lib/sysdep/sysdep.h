@@ -13,6 +13,17 @@
 extern "C" {
 #endif
 
+// pass "omit frame pointer" setting on to the compiler
+#if MSC_VERSION
+# if CONFIG_OMIT_FP
+#  pragma optimize("y", on)
+# else
+#  pragma optimize("y", off)
+# endif
+#elif GCC_VERSION
+// TODO
+#endif
+
 // compiling without exceptions (usually for performance reasons);
 // tell STL not to generate any.
 #if CONFIG_DISABLE_EXCEPTIONS

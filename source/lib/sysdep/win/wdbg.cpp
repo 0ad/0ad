@@ -154,30 +154,6 @@ void debug_heap_enable(DebugHeapChecks what)
 }
 
 
-// return 1 if the pointer appears to be totally bogus, otherwise 0.
-// this check is not authoritative (the pointer may be "valid" but incorrect)
-// but can be used to filter out obviously wrong values in a portable manner.
-int debug_is_pointer_bogus(const void* p)
-{
-#if CPU_IA32
-	if(p < (void*)0x10000)
-		return true;
-	if(p >= (void*)(uintptr_t)0x80000000)
-		return true;
-#endif
-
-	// notes:
-	// - we don't check alignment because nothing can be assumed about a
-	//   string pointer and we mustn't reject any actually valid pointers.
-	// - nor do we bother checking the address against known stack/heap areas
-	//   because that doesn't cover everything (e.g. DLLs, VirtualAlloc).
-	// - cannot use IsBadReadPtr because it accesses the mem
-	//   (false alarm for reserved address space).
-
-	return false;
-}
-
-
 //-----------------------------------------------------------------------------
 
 
@@ -779,3 +755,74 @@ static int wdbg_init(void)
 
 	return 0;
 }
+
+
+
+
+// return 1 if the pointer appears to be totally bogus, otherwise 0.
+// this check is not authoritative (the pointer may be "valid" but incorrect)
+// but can be used to filter out obviously wrong values in a portable manner.
+int debug_is_pointer_bogus(const void* p)
+{
+#if CPU_IA32
+	if(p < (void*)0x10000)
+		return true;
+	if(p >= (void*)(uintptr_t)0x80000000)
+		return true;
+#endif
+
+	// notes:
+	// - we don't check alignment because nothing can be assumed about a
+	//   string pointer and we mustn't reject any actually valid pointers.
+	// - nor do we bother checking the address against known stack/heap areas
+	//   because that doesn't cover everything (e.g. DLLs, VirtualAlloc).
+	// - cannot use IsBadReadPtr because it accesses the mem
+	//   (false alarm for reserved address space).
+
+	return false;
+}
+
+
+bool debug_is_code_ptr(void* p)
+{
+	uintptr_t addr = (uintptr_t)p;
+	// totally invalid pointer
+	if(debug_is_pointer_bogus(p))
+		return false;
+	// comes before load address
+	static const HMODULE base = GetModuleHandle(0);
+	if(addr < (uintptr_t)base)
+		return false;
+
+	return true;
+}
+
+
+static NT_TIB* get_tib()
+{
+	NT_TIB* tib;
+	__asm
+	{
+		mov		eax, fs:[NT_TIB.Self]
+		mov		[tib], eax
+	}
+	return tib;
+}
+
+bool debug_is_stack_ptr(void* p)
+{
+	uintptr_t addr = (uintptr_t)p;
+	// totally invalid pointer
+	if(debug_is_pointer_bogus(p))
+		return false;
+	// not aligned
+	if(addr % sizeof(void*))
+		return false;
+	// out of bounds (note: IA32 stack grows downwards)
+	NT_TIB* tib = get_tib();
+	if(!(tib->StackLimit < p && p < tib->StackBase))
+		return false;
+
+	return true;
+}
+

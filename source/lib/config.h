@@ -15,6 +15,17 @@
 
 // allow override via compiler settings by checking #ifndef.
 
+// omit frame pointers - stack frames will not be generated, which
+// improves performance but makes walking the stack harder.
+// this is acted upon by #pragmas in sysdep.h.
+#ifndef CONFIG_OMIT_FP
+# ifdef NDEBUG
+#  define CONFIG_OMIT_FP 1
+# else
+#  define CONFIG_OMIT_FP 0
+# endif
+#endif
+
 // enable memory tracking (slow). see mmgr.cpp.
 #ifndef CONFIG_USE_MMGR
 # define CONFIG_USE_MMGR 0

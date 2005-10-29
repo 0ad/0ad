@@ -26,6 +26,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <new>		// std::bad_alloc
+#include "lib/allocators.h"
 
 static const uint MAX_EXTANT_HANDLES = 10000;
 
@@ -121,8 +122,6 @@ static const uint TYPE_BITS = 8;
 static const size_t HDATA_USER_SIZE = 44+64;
 
 
-// 64 bytes
-// TODO: not anymore, fix later
 struct HDATA
 {
 	uintptr_t key;
@@ -340,13 +339,68 @@ static int free_idx(i32 idx)
 
 typedef STL_HASH_MULTIMAP<uintptr_t, i32> Key2Idx;
 typedef Key2Idx::iterator It;
-static Key2Idx key2idx;
 
+static DynArray key2idx_da;
+static Key2Idx* key2idx_;
 
-
-static Handle find_key(uintptr_t key, H_Type type, bool remove = false)
+static void key2idx_lock()
 {
-	std::pair<It, It> range = key2idx.equal_range(key);
+	da_set_prot(&key2idx_da, PROT_NONE);
+}
+
+static void key2idx_unlock()
+{
+	da_set_prot(&key2idx_da, PROT_READ|PROT_WRITE);
+}
+
+static void key2idx_init(void)
+{
+	const size_t size = 4096;
+	cassert(sizeof(Key2Idx) <= size);
+	if(da_alloc(&key2idx_da, size) < 0)
+		goto fail;
+	if(da_set_size(&key2idx_da, size) < 0)
+		goto fail;
+
+	key2idx_ = new(key2idx_da.base) Key2Idx;
+	key2idx_lock();
+	return;	// success
+
+fail:
+	debug_warn("key2idx mem alloc failed");
+}
+
+static void key2idx_shutdown()
+{
+	key2idx_ = 0;
+	(void)da_free(&key2idx_da);
+}
+
+
+static Key2Idx* key2idx_get()
+{
+	static pthread_once_t key2idx_once = PTHREAD_ONCE_INIT;
+	pthread_once(&key2idx_once, key2idx_init);
+	key2idx_unlock();
+	return key2idx_;
+}
+
+
+enum KeyRemoveFlag { KEY_NOREMOVE, KEY_REMOVE };
+
+static Handle key_find(uintptr_t key, H_Type type, KeyRemoveFlag remove_option = KEY_NOREMOVE)
+{
+	Key2Idx* key2idx = key2idx_get();
+	if(!key2idx)
+		return ERR_NO_MEM;
+
+	// initial return value: "not found at all, or it's of the
+	// wrong type". the latter happens when called by h_alloc to
+	// check if e.g. a Tex object already exists; at that time,
+	// only the corresponding VFile exists.
+	Handle ret = -1;
+
+	std::pair<It, It> range = key2idx->equal_range(key);
 	for(It it = range.first; it != range.second; ++it)
 	{
 		i32 idx = it->second;
@@ -354,32 +408,41 @@ static Handle find_key(uintptr_t key, H_Type type, bool remove = false)
 		// found match
 		if(hd && hd->type == type && hd->key == key)
 		{
-			if(remove)
-				key2idx.erase(it);
-			return handle(idx, hd->tag);
+			if(remove_option == KEY_REMOVE)
+				key2idx->erase(it);
+			ret = handle(idx, hd->tag);
+			break;
 		}
 	}
 
-	// not found at all, or it's of the wrong type.
-	// the latter happens when called by h_alloc to check
-	// if e.g. a Tex object already exists; at that time,
-	// only the corresponding VFile exists.
-	return -1;
+	key2idx_lock();
+	return ret;
 }
 
 
 static void key_add(uintptr_t key, Handle h)
 {
+	Key2Idx* key2idx = key2idx_get();
+	if(!key2idx)
+		return;
+
 	const i32 idx = h_idx(h);
-	key2idx.insert(std::make_pair(key, idx));
+	// note: MSDN documentation of stdext::hash_multimap is incorrect;
+	// there is no overload of insert() that returns pair<iterator, bool>.
+	(void)key2idx->insert(std::make_pair(key, idx));
+
+	key2idx_lock();
 }
+
 
 static void key_remove(uintptr_t key, H_Type type)
 {
-	Handle ret = find_key(key, type, true);
+	Handle ret = key_find(key, type, KEY_REMOVE);
 	debug_assert(ret > 0);
 }
 
+
+//-----------------------------------------------------------------------------
 
 //
 // path string suballocator (they're stored in HDATA)
@@ -718,10 +781,12 @@ static int h_free_idx(i32 idx, HDATA* hd)
 		fn = (slash && slash[1] != '\0')? slash+1 : hd->fn;
 	}
 
+#ifndef NDEBUG
 	char buf[H_STRING_LEN];
 	if(vtbl->to_string(hd->user, buf) < 0)
 		strcpy(buf, "(error)");	// safe
 	debug_printf("H_MGR| free %s %s accesses=%d %s\n", hd->type->name, fn, hd->num_derefs, buf);
+#endif
 
 	fn_free(hd);
 
@@ -847,7 +912,7 @@ int h_reload(const char* fn)
 
 Handle h_find(H_Type type, uintptr_t key)
 {
-	return find_key(key, type);
+	return key_find(key, type);
 }
 
 
@@ -953,4 +1018,6 @@ void h_mgr_shutdown()
 	}
 
 	fn_shutdown();
+
+	key2idx_shutdown();
 }

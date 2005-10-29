@@ -259,8 +259,86 @@ int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int*
 
 
 //----------------------------------------------------------------------------
-// stack walk via dbghelp
+// stack walk
 //----------------------------------------------------------------------------
+
+
+/*
+Subroutine linkage example code:
+
+	push	param2
+	push	param1
+	call	func
+ret_addr:
+	[..]
+
+func:
+	push	ebp
+	mov		ebp, esp
+	sub		esp, local_size
+	[..]
+
+Stack contents (down = decreasing address)
+	[param2]
+	[param1]
+	ret_addr
+	prev_ebp         (<- current ebp points at this value)
+	[local_variables]
+*/
+
+
+/*
+	call	func1
+ret1:
+
+func1:
+	push	ebp
+	mov		ebp, esp
+	call	func2
+ret2:
+
+func2:
+	push	ebp
+	mov		ebp, esp
+	STARTHERE
+
+	*/
+
+static int ia32_walk_stack(STACKFRAME64* sf)
+{
+	// read previous values from STACKFRAME64
+	void* prev_fp  = (void*)sf->AddrFrame .Offset;
+	void* prev_ip  = (void*)sf->AddrPC    .Offset;
+	void* prev_ret = (void*)sf->AddrReturn.Offset;
+	if(!debug_is_stack_ptr(prev_fp))
+		return -100;
+	if(prev_ip && !debug_is_code_ptr(prev_ip))
+		return -101;
+	if(prev_ret && !debug_is_code_ptr(prev_ret))
+		return -102;
+
+	// read stack frame
+	void* fp       = ((void**)prev_fp)[0];
+	void* ret_addr = ((void**)prev_fp)[1];
+	if(!debug_is_stack_ptr(fp))
+		return -103;
+	if(!debug_is_code_ptr(ret_addr))
+		return -104;
+
+	void* target;
+	int err = ia32_get_call_target(ret_addr, &target);
+	RETURN_ERR(err);
+	if(err == 0)
+		debug_assert(debug_is_code_ptr(target));
+
+	sf->AddrFrame .Offset = (DWORD64)fp;
+	sf->AddrPC    .Offset = (DWORD64)target;
+	sf->AddrReturn.Offset = (DWORD64)ret_addr;
+
+	return 0;
+}
+
+
 
 // called for each stack frame found by walk_stack, passing information
 // about the frame and <user_arg>.
@@ -274,13 +352,10 @@ typedef int (*StackFrameCallback)(const STACKFRAME64*, void*);
 // iterate over a call stack, calling back for each frame encountered.
 // if <pcontext> != 0, we start there; otherwise, at the current context.
 // return an error if callback never succeeded (returned 0).
+//
 // lock must be held.
 static int walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip = 0, const CONTEXT* pcontext = 0)
 {
-	sym_init();
-
-	const HANDLE hThread = GetCurrentThread();
-
 	// to function properly, StackWalk64 requires a CONTEXT on
 	// non-x86 systems (documented) or when in release mode (observed).
 	// exception handlers can call walk_stack with their context record;
@@ -342,18 +417,52 @@ static int walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip = 0, 
 	sf.AddrStack.Offset = pcontext->SP_;
 	sf.AddrStack.Mode   = AddrModeFlat;
 
+	const HANDLE hThread = GetCurrentThread();
+
 	// for each stack frame found:
 	int ret = WDBG_NO_STACK_FRAMES_FOUND;
 	for(;;)
 	{
+		// rationale:
+		// - provide a separate ia32 implementation so that simple
+		//   stack walks (e.g. to determine callers of malloc) do not
+		//   require firing up dbghelp. that takes tens of seconds when
+		//   OS symbols are installed (because symserv is wanting to access
+		//   inet), which is entirely unacceptable.
+		// - VC7.1 sometimes generates stack frames despite /Oy ;
+		//   ia32_walk_stack may appear to work, but it isn't reliable in
+		//   this case and therefore must not be used!
+		// - don't switch between ia32_stack_walk and StackWalk64 when one
+		//   of them fails: this needlessly complicates things. the ia32
+		//   code is authoritative provided its prerequisite (FP not omitted)
+		//   is met, otherwise totally unusable.
+		int err;
+#if CPU_IA32 && !CONFIG_OMIT_FP
+		err = ia32_walk_stack(&sf);
+#else
+		sym_init();
+		// note: unfortunately StackWalk64 doesn't always SetLastError,
+		// so we have to reset it and check for 0. *sigh*
+		SetLastError(0);
 		BOOL ok = StackWalk64(machine, hProcess, hThread, &sf, (PVOID)pcontext,
 			0, SymFunctionTableAccess64, SymGetModuleBase64, 0);
+		if(ok)
+			err = 0;
+		else
+		{
+			err = GetLastError();
+			if(err == 0)
+				err = -1;
+		}
+#endif
 
-		// no more frames found - abort.
-		// note: also test FP because StackWalk64 sometimes erroneously
-		// reports success. unfortunately it doesn't SetLastError either,
-		// so we can't indicate the cause of failure. *sigh*
-		if(!ok || !sf.AddrFrame.Offset)
+		void* ret_addr = (void*)(uintptr_t)sf.AddrReturn.Offset;
+		void* fp       = (void*)(uintptr_t)sf.AddrFrame .Offset;
+		void* pc       = (void*)(uintptr_t)sf.AddrPC    .Offset;
+
+		// no more frames found - abort. note: also test FP because
+		// StackWalk64 sometimes erroneously reports success.
+		if(err < 0 || !fp)
 			return ret;
 
 		if(skip)
