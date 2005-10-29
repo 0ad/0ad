@@ -497,9 +497,6 @@ int tex_wrap(uint w, uint h, uint bpp, uint flags, void* img, Tex* t)
 	void* reported_ptr = mem_get_ptr(t->hm);
 	t->ofs = (u8*)img - (u8*)reported_ptr;
 
-	// TODO: remove when mem_wrap / mem_get_ptr add a reference correctly
-	h_add_ref(t->hm);
-
 	CHECK_TEX(t);
 	return 0;
 }

@@ -214,6 +214,7 @@ int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int*
 	if(sym_name)
 	{
 		sym_name[0] = '\0';
+
 		SYMBOL_INFO_PACKAGEW2 sp;
 		SYMBOL_INFOW* sym = &sp.si;
 		if(SymFromAddrW(hProcess, addr, 0, sym))
@@ -226,6 +227,9 @@ int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int*
 	// get source file and/or line number (if requested)
 	if(file || line)
 	{
+		file[0] = '\0';
+		*line = 0;
+
 		IMAGEHLP_LINE64 line_info = { sizeof(IMAGEHLP_LINE64) };
 		DWORD displacement; // unused but required by SymGetLineFromAddr64!
 		if(SymGetLineFromAddr64(hProcess, addr, &displacement, &line_info))
@@ -304,6 +308,8 @@ func2:
 
 	*/
 
+#if CPU_IA32 && !CONFIG_OMIT_FP
+
 static int ia32_walk_stack(STACKFRAME64* sf)
 {
 	// read previous values from STACKFRAME64
@@ -338,6 +344,7 @@ static int ia32_walk_stack(STACKFRAME64* sf)
 	return 0;
 }
 
+#endif	// #if CPU_IA32 && !CONFIG_OMIT_FP
 
 
 // called for each stack frame found by walk_stack, passing information
@@ -456,12 +463,9 @@ static int walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip = 0, 
 		}
 #endif
 
-		void* ret_addr = (void*)(uintptr_t)sf.AddrReturn.Offset;
-		void* fp       = (void*)(uintptr_t)sf.AddrFrame .Offset;
-		void* pc       = (void*)(uintptr_t)sf.AddrPC    .Offset;
-
 		// no more frames found - abort. note: also test FP because
 		// StackWalk64 sometimes erroneously reports success.
+		void* fp = (void*)(uintptr_t)sf.AddrFrame .Offset;
 		if(err < 0 || !fp)
 			return ret;
 

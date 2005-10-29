@@ -1365,7 +1365,7 @@ bool CRenderer::IsTextureTransparent(CTexture* texture)
 
 
 
-inline void CopyTriple(unsigned char* dst,const unsigned char* src)
+static inline void CopyTriple(unsigned char* dst,const unsigned char* src)
 {
 	dst[0]=src[0];
 	dst[1]=src[1];
@@ -1390,7 +1390,7 @@ int CRenderer::LoadAlphaMaps()
 	//
 	// load all textures and store Handle in array
 	//
-	Handle textures[NumAlphaMaps];
+	Handle textures[NumAlphaMaps] = {0};
 	PathPackage pp;
 	(void)pp_set_dir(&pp, "art/textures/terrain/alphamaps/special");
 	const char* fnames[NumAlphaMaps] = {
@@ -1486,7 +1486,7 @@ int CRenderer::LoadAlphaMaps()
 	}
 
 	for (uint i=0;i<NumAlphaMaps;i++)
-		ogl_tex_free(textures[i]);
+		(void)ogl_tex_free(textures[i]);
 
 	// upload the composite texture
 	Tex t;

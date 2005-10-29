@@ -260,10 +260,14 @@ Handle mem_wrap(void* p, size_t size, uint flags, void* raw_p, size_t raw_size, 
 
 	SCOPED_LOCK;
 
-	// we've already allocated that pointer - returns its handle
+	// we've already allocated that pointer; return its handle and
+	// increment refcnt.
 	Handle hm = find_alloc(p);
 	if(hm > 0)
+	{
+		h_add_ref(hm);
 		return hm;
+	}
 
 	// <p> wasn't allocated via mem_alloc, or we would've found its Handle.
 	// it is therefore some user-allocated mem and might therefore not have
