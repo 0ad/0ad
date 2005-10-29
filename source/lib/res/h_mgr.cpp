@@ -362,7 +362,9 @@ static void key2idx_init(void)
 	if(da_set_size(&key2idx_da, size) < 0)
 		goto fail;
 
+#include "nommgr.h"
 	key2idx_ = new(key2idx_da.base) Key2Idx;
+#include "mmgr.h"
 	key2idx_lock();
 	return;	// success
 
