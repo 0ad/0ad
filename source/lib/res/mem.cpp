@@ -3,14 +3,23 @@
 #include "precompiled.h"
 
 #include "lib.h"
+#include "posix.h"
 #include "h_mgr.h"
+#include "lib/allocators.h"	// OverrunProtector
 #include "mem.h"
 
 #include <stdlib.h>
 
-
 #include <map>
 
+
+static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+struct ScopedLock
+{
+	ScopedLock() { pthread_mutex_lock(&mutex); }
+	~ScopedLock() { pthread_mutex_unlock(&mutex); }	
+};
+#define SCOPED_LOCK ScopedLock UID__;
 
 struct Mem
 {
@@ -34,98 +43,86 @@ H_TYPE_DEFINE(Mem);
 //////////////////////////////////////////////////////////////////////////////
 
 
-static bool has_shutdown = false;
-
 // raw pointer -> Handle
-typedef std::map<void*, Handle> PtrToH;
-typedef PtrToH::iterator It;
-static PtrToH* _ptr_to_h;
-
-
-static void ptr_to_h_shutdown()
-{
-	has_shutdown = true;
-	delete _ptr_to_h;
-	_ptr_to_h = 0;
-}
-
-
-// undefined NLSO init order fix
-static PtrToH& get_ptr_to_h()
-{
-	if(!_ptr_to_h)
-	{
-		if(has_shutdown)
-			debug_warn("mem.cpp: ptr -> handle lookup used after module shutdown");
-		// crash + burn
-
-		_ptr_to_h = new PtrToH;
-	}
-	return *_ptr_to_h;
-}
-#define ptr_to_h get_ptr_to_h()
-
+typedef std::map<void*, Handle> Ptr2H;
+typedef Ptr2H::iterator It;
+static OverrunProtector<Ptr2H> ptr2h_wrapper;
 
 // not needed by other modules - mem_get_size and mem_wrap is enough.
-static Handle find_alloc(void* target_p, It* out_it = 0)
+static Handle find_alloc(void* target_raw_p, It* out_it = 0)
 {
+	Ptr2H* ptr2h = ptr2h_wrapper.get();
+	if(!ptr2h)
+		return ERR_NO_MEM;
+
 	// early out optimization (don't pay for full subset check)
-	It it = ptr_to_h.find(target_p);
-	if(it != ptr_to_h.end())
+	It it = ptr2h->find(target_raw_p);
+	if(it != ptr2h->end())
 		return it->second;
 
-	// not found; now check if target_p is within one of the mem ranges
-	for(it = ptr_to_h.begin(); it != ptr_to_h.end(); ++it)
+	// initial return value: "not found"
+	Handle ret = -1;
+
+	// not found; now check if target_raw_p is within one of the mem ranges
+	for(it = ptr2h->begin(); it != ptr2h->end(); ++it)
 	{
-		std::pair<void*, Handle> item = *it;
-		void* p = item.first;
-		Handle hm = item.second;
+		void* raw_p = it->first;
+		Handle hm   = it->second;
 
 		// not before this alloc's p; could be it. now do range check.
-		if(target_p >= p)
+		if(target_raw_p >= raw_p)
 		{
 			Mem* m = (Mem*)h_user_data(hm, H_Mem);
 			if(m)
 			{
 				// found it within this mem range.
-				if(target_p <= (char*)m->raw_p + m->raw_size)
+				if(target_raw_p <= (char*)m->raw_p + m->raw_size)
 				{
 					if(out_it)
 						*out_it = it;
-					return hm;
+					ret = hm;
+					break;
 				}
 			}
 		}
 	}
 
-	// not found
-	return 0;
+	ptr2h_wrapper.lock();
+	return ret;
 }
 
 
 // raw_p must be in map!
 static void remove_alloc(void* raw_p)
 {
-	size_t num_removed = ptr_to_h.erase(raw_p);
+	Ptr2H* ptr2h = ptr2h_wrapper.get();
+	if(!ptr2h)
+		return;
+
+//debug_printf("REMOVE   raw_p=%p\n", raw_p);
+
+	size_t num_removed = ptr2h->erase(raw_p);
 	if(num_removed != 1)
 		debug_warn("not in map");
+
+	ptr2h_wrapper.lock();
 }
 
 
 // raw_p must not already be in map!
 static void set_alloc(void* raw_p, Handle hm)
 {
-	// verify it's not already in the mapping
-#ifndef NDEBUG
-	It it = ptr_to_h.find(raw_p);
-	if(it != ptr_to_h.end())
-	{
-		debug_warn("already in map");
+	Ptr2H* ptr2h = ptr2h_wrapper.get();
+	if(!ptr2h)
 		return;
-	}
-#endif
 
-	ptr_to_h[raw_p] = hm;
+//debug_printf("SETALLOC raw_p=%p hm=%I64x\n", raw_p, hm);
+
+	std::pair<It, bool> ret = ptr2h->insert(std::make_pair(raw_p, hm));
+	if(!ret.second)
+		debug_warn("already in map");
+
+	ptr2h_wrapper.lock();
 }
 
 
@@ -226,6 +223,7 @@ static void* heap_alloc(size_t raw_size, uintptr_t& ctx)
 
 int mem_free_h(Handle& hm)
 {
+	SCOPED_LOCK;
 	return h_free(hm, H_Mem);
 }
 
@@ -235,7 +233,12 @@ int mem_free_p(void*& p)
 	if(!p)
 		return 0;
 
-	Handle hm = find_alloc(p);
+	Handle hm;
+	{
+	SCOPED_LOCK;
+	hm = find_alloc(p);
+	}
+
 	p = 0;
 	if(hm <= 0)
 	{
@@ -253,6 +256,8 @@ Handle mem_wrap(void* p, size_t size, uint flags, void* raw_p, size_t raw_size, 
 {
 	if(!p || !size)
 		CHECK_ERR(ERR_INVALID_PARAM);
+
+	SCOPED_LOCK;
 
 	// we've already allocated that pointer - returns its handle
 	Handle hm = find_alloc(p);
@@ -297,6 +302,8 @@ int mem_assign_user(Handle hm, void* user_p, size_t user_size)
 
 void* mem_alloc(size_t size, const size_t align, uint flags, Handle* phm)
 {
+	SCOPED_LOCK;
+
 	if(phm)
 		*phm = ERR_NO_MEM;
 
@@ -309,7 +316,10 @@ void* mem_alloc(size_t size, const size_t align, uint flags, Handle* phm)
 	// note: this is legitimate. vfs_load on 0-length files must return
 	// a valid and unique pointer to an (at least) 0-length buffer.
 	if(size == 0)
+	{
+		debug_printf("MEM 0 byte alloc\n");
 		size = 1;
+	}
 
 	void* raw_p;
 	const size_t raw_size = size + align-1;
@@ -332,7 +342,7 @@ void* mem_alloc(size_t size, const size_t align, uint flags, Handle* phm)
 		return 0;
 	void* p = (void*)round_up((uintptr_t)raw_p, align);
 
-
+//debug_printf("MEMWRAP  p=%p size=%x raw_p=%p raw_size=%x owner=%p\n", p, size, raw_p, raw_size, owner);
 	Handle hm = mem_wrap(p, size, flags, raw_p, raw_size, dtor, ctx, owner);
 	if(!hm)			// failed to allocate a handle
 	{
@@ -359,6 +369,8 @@ void* mem_alloc(size_t size, const size_t align, uint flags, Handle* phm)
 
 void* mem_get_ptr(Handle hm, size_t* user_size /* = 0 */)
 {
+	SCOPED_LOCK;
+
 	Mem* m = H_USER_DATA(hm, Mem);
 	if(!m)
 	{
@@ -377,6 +389,8 @@ void* mem_get_ptr(Handle hm, size_t* user_size /* = 0 */)
 
 int mem_get(Handle hm, u8** pp, size_t* psize)
 {
+	SCOPED_LOCK;
+
 	H_DEREF(hm, Mem, m);
 	if(pp)
 		*pp = (u8*)m->p;
@@ -390,6 +404,7 @@ int mem_get(Handle hm, u8** pp, size_t* psize)
 /*
 ssize_t mem_size(void* p)
 {
+	SCOPED_LOCK;
 	Handle hm = find_alloc(p);
 	H_DEREF(hm, Mem, m);
 	return (ssize_t)m->size;
@@ -402,5 +417,6 @@ ssize_t mem_size(void* p)
 // requires the pointer -> Handle index still be in place)
 void mem_shutdown()
 {
-	ptr_to_h_shutdown();
+	// ptr2h_wrapper is currently freed at NLSO dtor time.
+	// if that's a problem, add a shutdown() method to OverrunProtector.
 }

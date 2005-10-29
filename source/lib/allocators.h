@@ -144,6 +144,7 @@ public:
 	~OverrunProtector()
 	{
 		initialized = 2;
+		unlock();
 		cached_ptr->~T();	// call dtor (since we used placement new)
 		cached_ptr = 0;
 		(void)da_free(&da);
