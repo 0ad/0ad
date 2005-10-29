@@ -339,60 +339,13 @@ static int free_idx(i32 idx)
 
 typedef STL_HASH_MULTIMAP<uintptr_t, i32> Key2Idx;
 typedef Key2Idx::iterator It;
-
-static DynArray key2idx_da;
-static Key2Idx* key2idx_;
-
-static void key2idx_lock()
-{
-	da_set_prot(&key2idx_da, PROT_NONE);
-}
-
-static void key2idx_unlock()
-{
-	da_set_prot(&key2idx_da, PROT_READ|PROT_WRITE);
-}
-
-static void key2idx_init(void)
-{
-	const size_t size = 4096;
-	cassert(sizeof(Key2Idx) <= size);
-	if(da_alloc(&key2idx_da, size) < 0)
-		goto fail;
-	if(da_set_size(&key2idx_da, size) < 0)
-		goto fail;
-
-#include "nommgr.h"
-	key2idx_ = new(key2idx_da.base) Key2Idx;
-#include "mmgr.h"
-	key2idx_lock();
-	return;	// success
-
-fail:
-	debug_warn("key2idx mem alloc failed");
-}
-
-static void key2idx_shutdown()
-{
-	key2idx_ = 0;
-	(void)da_free(&key2idx_da);
-}
-
-
-static Key2Idx* key2idx_get()
-{
-	static pthread_once_t key2idx_once = PTHREAD_ONCE_INIT;
-	pthread_once(&key2idx_once, key2idx_init);
-	key2idx_unlock();
-	return key2idx_;
-}
-
+static OverrunProtector<Key2Idx> key2idx_wrapper;
 
 enum KeyRemoveFlag { KEY_NOREMOVE, KEY_REMOVE };
 
 static Handle key_find(uintptr_t key, H_Type type, KeyRemoveFlag remove_option = KEY_NOREMOVE)
 {
-	Key2Idx* key2idx = key2idx_get();
+	Key2Idx* key2idx = key2idx_wrapper.get();
 	if(!key2idx)
 		return ERR_NO_MEM;
 
@@ -417,14 +370,14 @@ static Handle key_find(uintptr_t key, H_Type type, KeyRemoveFlag remove_option =
 		}
 	}
 
-	key2idx_lock();
+	key2idx_wrapper.lock();
 	return ret;
 }
 
 
 static void key_add(uintptr_t key, Handle h)
 {
-	Key2Idx* key2idx = key2idx_get();
+	Key2Idx* key2idx = key2idx_wrapper.get();
 	if(!key2idx)
 		return;
 
@@ -433,7 +386,7 @@ static void key_add(uintptr_t key, Handle h)
 	// there is no overload of insert() that returns pair<iterator, bool>.
 	(void)key2idx->insert(std::make_pair(key, idx));
 
-	key2idx_lock();
+	key2idx_wrapper.lock();
 }
 
 
@@ -1020,6 +973,4 @@ void h_mgr_shutdown()
 	}
 
 	fn_shutdown();
-
-	key2idx_shutdown();
 }

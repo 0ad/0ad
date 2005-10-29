@@ -124,4 +124,70 @@ extern void** matrix_alloc(uint cols, uint rows, size_t el_size);
 // (e.g. int**); they must be cast to void**.
 extern void matrix_free(void** matrix);
 
+
+
+
+template<class T> class OverrunProtector
+{
+	DynArray da;
+	T* cached_ptr;
+	uintptr_t initialized;
+
+public:
+	OverrunProtector()
+	{
+		memset(&da, 0, sizeof(da));
+		cached_ptr = 0;
+		initialized = 0;
+	}
+
+	~OverrunProtector()
+	{
+		initialized = 2;
+		cached_ptr->~T();	// call dtor (since we used placement new)
+		cached_ptr = 0;
+		(void)da_free(&da);
+	}
+
+	void lock()
+	{
+		da_set_prot(&da, PROT_NONE);
+	}
+
+private:
+	void unlock()
+	{
+		da_set_prot(&da, PROT_READ|PROT_WRITE);
+	}
+
+	void init()
+	{
+		const size_t size = 4096;
+		cassert(sizeof(T) <= size);
+		if(da_alloc(&da, size) < 0)
+			goto fail;
+		if(da_set_size(&da, size) < 0)
+			goto fail;
+
+#include "nommgr.h"
+		cached_ptr = new(da.base) T();
+#include "mmgr.h"
+		lock();
+		return;	// success
+
+fail:
+		debug_warn("OverrunProtector mem alloc failed");
+	}
+
+public:
+	T* get()
+	{
+		if(CAS(&initialized, 0, 1))
+			init();
+		debug_assert(initialized != 2 && "OverrunProtector: used after dtor called:");
+		unlock();
+		return cached_ptr;
+	}
+};
+
 #endif	// #ifndef ALLOCATORS_H__
