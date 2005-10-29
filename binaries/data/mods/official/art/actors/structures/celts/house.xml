@@ -2,24 +2,24 @@
 <actor version="1">
 
   <group>
-    <variant frequency="10" name="House A">
-      <mesh>structural/celt_ho_1.pmd</mesh>
+    <variant name="a">
+      <mesh>structural/celt_ho_a.pmd</mesh>
       <props>
-        <prop actor="props/structures/celts/house1_prop.xml" attachpoint="PropCandyA"/>
+        <prop actor="props/structures/celts/house_a.xml" attachpoint="props_main"/>
       </props>
       <texture>structural/celt_struct_1.dds</texture>
     </variant>
-    <variant frequency="10" name="House B">
-      <mesh>structural/celt_ho_2.pmd</mesh>
+    <variant name="b">
+      <mesh>structural/celt_ho_b.pmd</mesh>
       <props>
-        <prop actor="props/structures/celts/house2_prop.xml" attachpoint="PropCandyA"/>
+        <prop actor="props/structures/celts/house_b.xml" attachpoint="props_main"/>
       </props>
       <texture>structural/celt_struct_1.dds</texture>
     </variant>
-    <variant frequency="10" name="House C">
-      <mesh>structural/celt_ho_3.pmd</mesh>
+    <variant name="c">
+      <mesh>structural/celt_ho_c.pmd</mesh>
       <props>
-        <prop actor="props/structures/celts/house3_prop.xml" attachpoint="PropCandyA"/>
+        <prop actor="props/structures/celts/house_c.xml" attachpoint="props_main"/>
       </props>
       <texture>structural/celt_struct_1.dds</texture>
     </variant>

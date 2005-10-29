@@ -5,13 +5,14 @@
 
   <group>
     <variant frequency="100" name="Base">
-      <animations/>
       <mesh>structural/celt_tc.pmd</mesh>
       <props>
-        <prop actor="props/structures/celts/tradecentre_prop.xml" attachpoint="PropCandyA"/>
+        <prop actor="props/structures/celts/market.xml" attachpoint="props_main"/>
       </props>
       <texture>structural/celt_struct_1.dds</texture>
     </variant>
   </group>
+
+  <material>player_trans.xml</material>
 
 </actor>

@@ -5,10 +5,9 @@
 
   <group>
     <variant frequency="100" name="Base">
-      <animations/>
       <mesh>structural/celt_fc.pmd</mesh>
       <props>
-        <prop actor="props/structures/celts/farmcentre_prop.xml" attachpoint="PropCandyA"/>
+        <prop actor="props/structures/celts/farmstead.xml" attachpoint="props_main"/>
       </props>
       <texture>structural/celt_struct_1.dds</texture>
     </variant>
