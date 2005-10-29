@@ -122,6 +122,8 @@ struct CBuildingPlacer : public Singleton<CBuildingPlacer>
 	CBuildingPlacer()
 	{
 		m_active = false;
+		m_actor = 0;
+		m_bounds = 0;
 	}
 
 	CStrW m_templateName;

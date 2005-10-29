@@ -15,6 +15,7 @@ void CGUISpriteInstance::Draw(CRect Size, int CellID, std::map<CStr, CGUISprite>
 void CGUISpriteInstance::Invalidate()
 {
 	m_CachedSize = CRect();
+	m_CachedCellID = -1;
 }
 
 bool CGUISpriteInstance::IsEmpty() const
@@ -27,6 +28,7 @@ bool CGUISpriteInstance::IsEmpty() const
 // of data):
 
 CGUISpriteInstance::CGUISpriteInstance()
+	: m_CachedCellID(-1)
 {
 }
 
