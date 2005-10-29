@@ -26,6 +26,16 @@
 # endif
 #endif
 
+// this enables/disables the actual checking done by OverrunProtector-s
+// (quite slow, entailing mprotect() before/after each access).
+// define to 1 here or in the relevant module if you suspect mem corruption.
+// we provide this option because OverrunProtector requires some changes to
+// the object being wrapped, and we want to leave those intact but not
+// significantly slow things down except when needed.
+#ifndef CONFIG_OVERRUN_PROTECTION
+# define CONFIG_OVERRUN_PROTECTION 0
+#endif
+
 // enable memory tracking (slow). see mmgr.cpp.
 #ifndef CONFIG_USE_MMGR
 # define CONFIG_USE_MMGR 0

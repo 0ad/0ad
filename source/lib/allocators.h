@@ -152,13 +152,17 @@ public:
 
 	void lock()
 	{
+#if CONFIG_OVERRUN_PROTECTION
 		da_set_prot(&da, PROT_NONE);
+#endif
 	}
 
 private:
 	void unlock()
 	{
+#if CONFIG_OVERRUN_PROTECTION
 		da_set_prot(&da, PROT_READ|PROT_WRITE);
+#endif
 	}
 
 	void init()

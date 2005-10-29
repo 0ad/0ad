@@ -324,6 +324,8 @@ static int free_idx(i32 idx)
 
 
 //-----------------------------------------------------------------------------
+// lookup data structure
+//-----------------------------------------------------------------------------
 
 // speed up h_find (called every h_alloc)
 // multimap, because we want to add handles of differing type but same key
@@ -420,21 +422,21 @@ static void fn_store(HDATA* hd, const char* fn)
 {
 	ONCE(fn_init());
 
-	const size_t len = strlen(fn);
+	const size_t size = strlen(fn)+1;
 
 	hd->fn = 0;
 	// stuff it in unused space at the end of HDATA
-	if(hd->type->user_size + len < HDATA_USER_SIZE)
+	if(hd->type->user_size+size <= HDATA_USER_SIZE)
 		hd->fn = (const char*)hd->user + hd->type->user_size;
-	else if(len+1 <= FN_POOL_EL_SIZE)
+	else if(size <= FN_POOL_EL_SIZE)
 		hd->fn = (const char*)pool_alloc(&fn_pool);
 
 	// in case none of the above applied and/or were successful:
 	// fall back to heap alloc.
 	if(!hd->fn)
 	{
-		debug_printf("H_MGR| very long filename (%d) %s\n", len, fn);
-		hd->fn = (const char*)malloc(len+1);
+		debug_printf("H_MGR| very long filename (%d) %s\n", size, fn);
+		hd->fn = (const char*)malloc(size);
 		// still failed - bail (avoid strcpy to 0)
 		if(!hd->fn)
 		{

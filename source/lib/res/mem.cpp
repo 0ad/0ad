@@ -203,6 +203,7 @@ static int Mem_to_string(const Mem* m, char* buf)
 
 //////////////////////////////////////////////////////////////////////////////
 
+// implementation must be thread-safe! (since mem_alloc doesn't take a lock)
 
 static void heap_free(void* raw_p, size_t UNUSED(raw_size), uintptr_t UNUSED(ctx))
 {
@@ -300,10 +301,10 @@ int mem_assign_user(Handle hm, void* user_p, size_t user_size)
 */
 
 
+// implementation note: does not currently take a lock; all the
+// heavy-lifting happens inside mem_wrap.
 void* mem_alloc(size_t size, const size_t align, uint flags, Handle* phm)
 {
-	SCOPED_LOCK;
-
 	if(phm)
 		*phm = ERR_NO_MEM;
 
