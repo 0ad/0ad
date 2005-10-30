@@ -389,7 +389,7 @@ static int writeCppPackage(Package* package)
 				fprintf(file, "\t%s$(CXX) $(CXXFLAGS) -MD -MF obj/$(<F).d -o $@ -c $<\n", prefix);
 		}
 
-		fprintf(file, "\t%scp %s/$(<F).d %s/$(<F).P; \\\n", prefix, OBJECTS_DIR, OBJECTS_DIR);
+		fprintf(file, "\t%ssed -e 's@.*:@%s/$(<F).o:@' < %s/$(<F).d > %s/$(<F).P; \\\n", prefix, OBJECTS_DIR, OBJECTS_DIR, OBJECTS_DIR);
 		fprintf(file, "\t sed -e 's/#.*//' -e 's/^[^:]*: *//' -e 's/ *\\\\$$//' \\\n");
 		fprintf(file, "\t -e '/^$$/ d' -e 's/$$/ :/' < %s/$(<F).d >> %s/$(<F).P; \\\n", OBJECTS_DIR, OBJECTS_DIR);
 		fprintf(file, "\trm -f %s/$(<F).d\n\n", OBJECTS_DIR);
