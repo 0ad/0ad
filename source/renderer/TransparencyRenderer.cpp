@@ -373,7 +373,7 @@ void TransparencyRenderer::Render(RenderModifierPtr modifier, u32 flags)
 
 			// render the lot
 			size_t numFaces = mdef->GetNumFaces();
-			glDrawRangeElementsEXT(GL_TRIANGLES, 0, mdef->GetNumVertices(),
+			pglDrawRangeElementsEXT(GL_TRIANGLES, 0, mdef->GetNumVertices(),
 					       numFaces*3, GL_UNSIGNED_SHORT, tmdl->m_Indices);
 
 			// bump stats

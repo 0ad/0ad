@@ -254,7 +254,7 @@ void FixedFunctionModelRenderer::RenderModel(CModel* model, void* data)
 
 	// render the lot
 	size_t numFaces = mdldef->GetNumFaces();
-	glDrawRangeElementsEXT(GL_TRIANGLES, 0, mdldef->GetNumVertices(),
+	pglDrawRangeElementsEXT(GL_TRIANGLES, 0, mdldef->GetNumVertices(),
 			       numFaces*3, GL_UNSIGNED_SHORT, m->ffmodeldef->m_Indices);
 
 	// bump stats

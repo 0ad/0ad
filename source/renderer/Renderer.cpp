@@ -960,7 +960,7 @@ void CRenderer::RenderWater()
 	float ty = fmod(time, 35.0f)/35.0f;
 	glTranslatef(tx, ty, 0);
 
-	glActiveTextureARB(GL_TEXTURE0);
+	pglActiveTextureARB(GL_TEXTURE0);
 	glEnable(GL_TEXTURE_2D);
 
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
@@ -1035,7 +1035,7 @@ void CRenderer::RenderWater()
 					}
 
 					glColor4f(m_WaterColor.r*losMod, m_WaterColor.g*losMod, m_WaterColor.b*losMod, alpha);
-					glMultiTexCoord2fARB(GL_TEXTURE0, vertX/16.0f, vertZ/16.0f);
+					pglMultiTexCoord2fARB(GL_TEXTURE0, vertX/16.0f, vertZ/16.0f);
 					glVertex3f(vertX, m_WaterHeight, vertZ);
 				}
 			}	//end of x loop
@@ -1381,7 +1381,7 @@ bool CRenderer::LoadTexture(CTexture* texture,u32 wrapflags)
 // BindTexture: bind a GL texture object to current active unit
 void CRenderer::BindTexture(int unit,GLuint tex)
 {
-	glActiveTextureARB(GL_TEXTURE0+unit);
+	pglActiveTextureARB(GL_TEXTURE0+unit);
 
 	glBindTexture(GL_TEXTURE_2D,tex);
 	if (tex) {

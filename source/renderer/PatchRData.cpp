@@ -550,10 +550,10 @@ void CPatchRData::RenderBlends()
 	glVertexPointer(3,GL_FLOAT,stride,base+offsetof(SBlendVertex,m_Position));
 	glColorPointer(4,GL_UNSIGNED_BYTE,stride,base+offsetof(SBlendVertex,m_Color));
 	
-	glClientActiveTextureARB(GL_TEXTURE0);
+	pglClientActiveTextureARB(GL_TEXTURE0);
 	glTexCoordPointer(2,GL_FLOAT,stride,base+offsetof(SBlendVertex,m_UVs[0]));
 
-	glClientActiveTextureARB(GL_TEXTURE1);
+	pglClientActiveTextureARB(GL_TEXTURE1);
 	glTexCoordPointer(2,GL_FLOAT,stride,base+offsetof(SBlendVertex,m_AlphaUVs[0]));
 
 	for (uint i=0;i<(uint)m_BlendSplats.size();i++) {
@@ -652,8 +652,8 @@ void CPatchRData::RenderBaseSplats()
 
 	// set up texture environment for base pass
 	MICROLOG(L"base splat textures");
-	glActiveTextureARB(GL_TEXTURE0);
-	glClientActiveTextureARB(GL_TEXTURE0);
+	pglActiveTextureARB(GL_TEXTURE0);
+	pglClientActiveTextureARB(GL_TEXTURE0);
 	oglCheck();
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
@@ -730,9 +730,9 @@ void CPatchRData::RenderBlendSplats()
 	uint i;
 
 	// switch on second uv set
-	glClientActiveTextureARB(GL_TEXTURE1);
+	pglClientActiveTextureARB(GL_TEXTURE1);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	glClientActiveTextureARB(GL_TEXTURE0);
+	pglClientActiveTextureARB(GL_TEXTURE0);
 
 	// switch on the composite alpha map texture
 	(void)ogl_tex_bind(g_Renderer.m_hCompositeAlphaMap, 1);
@@ -784,10 +784,10 @@ void CPatchRData::RenderBlendSplats()
 			u32 stride=sizeof(SBlendVertex);
 			glVertexPointer(3,GL_FLOAT,stride,base+offsetof(SBlendVertex,m_Position));
 			glColorPointer(4,GL_UNSIGNED_BYTE,stride,base+offsetof(SBlendVertex,m_Color));
-			glClientActiveTextureARB(GL_TEXTURE0);
+			pglClientActiveTextureARB(GL_TEXTURE0);
 			glTexCoordPointer(2,GL_FLOAT,stride,base+offsetof(SBlendVertex,m_UVs[0]));
 		
-			glClientActiveTextureARB(GL_TEXTURE1);
+			pglClientActiveTextureARB(GL_TEXTURE1);
 			glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 			glTexCoordPointer(2,GL_FLOAT,stride,base+offsetof(SBlendVertex,m_AlphaUVs[0]));
 
@@ -822,17 +822,17 @@ void CPatchRData::RenderBlendSplats()
 	glDisable(GL_BLEND);
 
 	// switch off second uv set
-	glClientActiveTextureARB(GL_TEXTURE1);
+	pglClientActiveTextureARB(GL_TEXTURE1);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	glClientActiveTextureARB(GL_TEXTURE0);
+	pglClientActiveTextureARB(GL_TEXTURE0);
 
 	// switch off texture unit 1, make unit 0 active texture
 	g_Renderer.BindTexture(1,0);
-	glActiveTextureARB(GL_TEXTURE0);
+	pglActiveTextureARB(GL_TEXTURE0);
 	
 	// tidy up client states
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	glClientActiveTextureARB(GL_TEXTURE0);
+	pglClientActiveTextureARB(GL_TEXTURE0);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////

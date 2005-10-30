@@ -50,7 +50,7 @@ u32 PlainRenderModifier::BeginPass(uint pass)
 	debug_assert(pass == 0);
 
 	// set up texture environment for base pass - modulate texture and primary color
-	glActiveTextureARB(GL_TEXTURE0);
+	pglActiveTextureARB(GL_TEXTURE0);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);

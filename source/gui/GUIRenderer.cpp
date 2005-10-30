@@ -313,7 +313,7 @@ public:
 	void Unset()
 	{
 		glDisable(GL_TEXTURE_2D);
-		glActiveTextureARB(GL_TEXTURE0);
+		pglActiveTextureARB(GL_TEXTURE0);
 	}
 };
 

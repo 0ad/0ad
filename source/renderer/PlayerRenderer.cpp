@@ -49,7 +49,7 @@ u32 FastPlayerColorRender::BeginPass(uint pass)
 	// Result = (1 - ((1 - PlayerColor) * (1 - Texture.a)))*Texture*Color
 	
 	// TexEnv #0
-	glActiveTextureARB(GL_TEXTURE0);
+	pglActiveTextureARB(GL_TEXTURE0);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE0);
@@ -63,7 +63,7 @@ u32 FastPlayerColorRender::BeginPass(uint pass)
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 	
 	// TexEnv #1
-	glActiveTextureARB(GL_TEXTURE0+1);
+	pglActiveTextureARB(GL_TEXTURE0+1);
 	glEnable(GL_TEXTURE_2D);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
@@ -78,7 +78,7 @@ u32 FastPlayerColorRender::BeginPass(uint pass)
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 	
 	// TexEnv #2
-	glActiveTextureARB(GL_TEXTURE0+2);
+	pglActiveTextureARB(GL_TEXTURE0+2);
 	glEnable(GL_TEXTURE_2D);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
@@ -92,7 +92,7 @@ u32 FastPlayerColorRender::BeginPass(uint pass)
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 	
-	glActiveTextureARB(GL_TEXTURE0);
+	pglActiveTextureARB(GL_TEXTURE0);
 
 	return STREAM_POS|STREAM_COLOR|STREAM_UV0;
 }
@@ -101,11 +101,11 @@ u32 FastPlayerColorRender::BeginPass(uint pass)
 bool FastPlayerColorRender::EndPass(uint pass)
 {
 	// Restore state
-	glActiveTextureARB(GL_TEXTURE1);
+	pglActiveTextureARB(GL_TEXTURE1);
 	glDisable(GL_TEXTURE_2D);
-	glActiveTextureARB(GL_TEXTURE2);
+	pglActiveTextureARB(GL_TEXTURE2);
 	glDisable(GL_TEXTURE_2D);
-	glActiveTextureARB(GL_TEXTURE0);
+	pglActiveTextureARB(GL_TEXTURE0);
 	
 	return true;
 }
@@ -147,7 +147,7 @@ u32 SlowPlayerColorRender::BeginPass(uint pass)
 	if (pass == 0)
 	{
 		// TexEnv #0
-		glActiveTextureARB(GL_TEXTURE0);
+		pglActiveTextureARB(GL_TEXTURE0);
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
 		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
@@ -179,7 +179,7 @@ u32 SlowPlayerColorRender::BeginPass(uint pass)
 		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 		
 		// TexEnv #1
-		glActiveTextureARB(GL_TEXTURE1);
+		pglActiveTextureARB(GL_TEXTURE1);
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
 		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
@@ -191,7 +191,7 @@ u32 SlowPlayerColorRender::BeginPass(uint pass)
 		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
 		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
 		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-		glActiveTextureARB(GL_TEXTURE0);
+		pglActiveTextureARB(GL_TEXTURE0);
 		
 		// Setup blending
 		glEnable(GL_BLEND);
@@ -211,9 +211,9 @@ bool SlowPlayerColorRender::EndPass(uint pass)
 		return false; // need two passes
 
 	// Restore state
-	glActiveTextureARB(GL_TEXTURE1);
+	pglActiveTextureARB(GL_TEXTURE1);
 	glDisable(GL_TEXTURE_2D);
-	glActiveTextureARB(GL_TEXTURE0);
+	pglActiveTextureARB(GL_TEXTURE0);
 	glDisable(GL_BLEND);
 	glDisable(GL_ALPHA_TEST);
 	glDepthMask(1);

@@ -46,8 +46,8 @@
 // define extension function pointers
 extern "C"
 {
-#define FUNC(ret, name, params) ret (CALL_CONV *name) params;
-#define FUNC2(ret, nameARB, nameCore, version, params) ret (CALL_CONV *nameARB) params;
+#define FUNC(ret, name, params) ret (CALL_CONV *pgl##name) params;
+#define FUNC2(ret, nameARB, nameCore, version, params) ret (CALL_CONV *pgl##nameARB) params;
 #include "glext_funcs.h"
 #undef FUNC2
 #undef FUNC
@@ -237,13 +237,13 @@ static void importExtensionFunctions()
 	// It should be safe to load the ARB function pointers even if the
 	// extension isn't advertised, since we won't actually use them without
 	// checking for the extension.
-#define FUNC(ret, name, params) *(void**)&name = SDL_GL_GetProcAddress(#name);
+#define FUNC(ret, name, params) *(void**)&pgl##name = SDL_GL_GetProcAddress("gl" #name);
 #define FUNC2(ret, nameARB, nameCore, version, params) \
-	nameARB = NULL; \
+	pgl##nameARB = NULL; \
 	if(oglHaveVersion(version)) \
-		*(void**)&nameARB = SDL_GL_GetProcAddress(#nameCore); \
-	if(!nameARB) /* use the ARB name if the driver lied about what version it supports */ \
-		*(void**)&nameARB = SDL_GL_GetProcAddress(#nameARB);
+		*(void**)&pgl##nameARB = SDL_GL_GetProcAddress("gl" #nameCore); \
+	if(!pgl##nameARB) /* use the ARB name if the driver lied about what version it supports */ \
+		*(void**)&pgl##nameARB = SDL_GL_GetProcAddress("gl" #nameARB);
 #include "glext_funcs.h"
 #undef FUNC2
 #undef FUNC

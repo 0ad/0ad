@@ -90,7 +90,7 @@ static int Ogl_Shader_reload(Ogl_Shader* shdr, const char* filename, Handle UNUS
 
 	oglCheck();
 
-	shdr->id = glCreateShaderObjectARB(shdr->type);
+	shdr->id = pglCreateShaderObjectARB(shdr->type);
 	if (!shdr->id)
 	{
 		// May be out of memory, but bad shdr->type is also possible.
@@ -102,17 +102,17 @@ static int Ogl_Shader_reload(Ogl_Shader* shdr, const char* filename, Handle UNUS
 		goto fail_fileloaded;
 	}
 	
-	glShaderSourceARB(shdr->id, 1, (const char**)&file, (const GLint*)&file_size);
-	glCompileShaderARB(shdr->id);
+	pglShaderSourceARB(shdr->id, 1, (const char**)&file, (const GLint*)&file_size);
+	pglCompileShaderARB(shdr->id);
 	
-	glGetObjectParameterivARB(shdr->id, GL_OBJECT_COMPILE_STATUS_ARB, &compile_success);
-	glGetObjectParameterivARB(shdr->id, GL_OBJECT_INFO_LOG_LENGTH_ARB, &log_length);
+	pglGetObjectParameterivARB(shdr->id, GL_OBJECT_COMPILE_STATUS_ARB, &compile_success);
+	pglGetObjectParameterivARB(shdr->id, GL_OBJECT_INFO_LOG_LENGTH_ARB, &log_length);
 	if (log_length > 1)
 	{
 		char typenamebuf[32];
 		char* infolog = new char[log_length];
 		
-		glGetInfoLogARB(shdr->id, log_length, 0, infolog);
+		pglGetInfoLogARB(shdr->id, log_length, 0, infolog);
 	
 		debug_printf("Compile log for shader %hs (type %hs):\n%hs",
 			     filename,
@@ -143,7 +143,7 @@ static int Ogl_Shader_reload(Ogl_Shader* shdr, const char* filename, Handle UNUS
 	return 0;
 
 fail_shadercreated:
-	glDeleteObjectARB(shdr->id);
+	pglDeleteObjectARB(shdr->id);
 	shdr->id = 0;
 fail_fileloaded:
 	mem_free_h(hm);
@@ -157,7 +157,7 @@ static void Ogl_Shader_dtor(Ogl_Shader* shdr)
 	// shdr->id is 0 when reload has failed
 	if (shdr->id)
 	{
-		glDeleteObjectARB(shdr->id);
+		pglDeleteObjectARB(shdr->id);
 		shdr->id = 0;
 	}
 }
@@ -202,7 +202,7 @@ int ogl_shader_attach(GLhandleARB program, Handle& h)
 	if (!shdr->id)
 		return ERR_SHDR_NO_SHADER;
 
-	glAttachObjectARB(program, shdr->id);
+	pglAttachObjectARB(program, shdr->id);
 
 	return 0;
 }
@@ -287,7 +287,7 @@ static int Ogl_Program_reload(Ogl_Program* p, const char* filename, Handle h)
 
 	oglCheck();
 	
-	p->id = glCreateProgramObjectARB();
+	p->id = pglCreateProgramObjectARB();
 	if (!p->id)
 	{
 		// The spec doesn't mention any error state that can be set
@@ -349,17 +349,17 @@ static int Ogl_Program_reload(Ogl_Program* p, const char* filename, Handle h)
 		}
 	}
 
-	glLinkProgramARB(p->id);
+	pglLinkProgramARB(p->id);
 
 	GLint log_length;
 	GLint linked;
 	
-	glGetObjectParameterivARB(p->id, GL_OBJECT_LINK_STATUS_ARB, &linked);
-	glGetObjectParameterivARB(p->id, GL_OBJECT_INFO_LOG_LENGTH_ARB, &log_length);
+	pglGetObjectParameterivARB(p->id, GL_OBJECT_LINK_STATUS_ARB, &linked);
+	pglGetObjectParameterivARB(p->id, GL_OBJECT_INFO_LOG_LENGTH_ARB, &log_length);
 	if (log_length > 1)
 	{
 		char* infolog = new char[log_length];
-		glGetInfoLogARB(p->id, log_length, 0, infolog);
+		pglGetInfoLogARB(p->id, log_length, 0, infolog);
 
 		debug_printf("Linker log for %hs:\n%hs\n", filename, infolog);
 		delete[] infolog;
@@ -380,7 +380,7 @@ static void Ogl_Program_dtor(Ogl_Program* p)
 {
 	if (p->id)
 	{
-		glDeleteObjectARB(p->id);
+		pglDeleteObjectARB(p->id);
 		p->id = 0;
 	}
 }
@@ -421,19 +421,19 @@ int ogl_program_use(Handle h)
 {
 	if (!h)
 	{
-		glUseProgramObjectARB(0);
+		pglUseProgramObjectARB(0);
 		return 0;
 	}
 
 	Ogl_Program* p = H_USER_DATA(h, Ogl_Program);
 	if (!p || !p->id)
 	{
-		glUseProgramObjectARB(0);
+		pglUseProgramObjectARB(0);
 		CHECK_ERR(ERR_INVALID_HANDLE);
 		UNREACHABLE;
 	}
 
-	glUseProgramObjectARB(p->id);
+	pglUseProgramObjectARB(p->id);
 	return 0;
 }
 
@@ -443,7 +443,7 @@ GLint ogl_program_get_uniform_location(Handle h, const char* name)
 {
 	H_DEREF(h, Ogl_Program, p);
 	
-	return glGetUniformLocationARB(p->id, name);
+	return pglGetUniformLocationARB(p->id, name);
 }
 
 
@@ -452,5 +452,5 @@ GLint ogl_program_get_attrib_location(Handle h, const char* name)
 {
 	H_DEREF(h, Ogl_Program, p);
 	
-	return glGetAttribLocationARB(p->id, name);
+	return pglGetAttribLocationARB(p->id, name);
 }

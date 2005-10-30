@@ -148,7 +148,7 @@ void InstancingModelRenderer::Render(RenderModifierPtr modifier, u32 flags)
 			
 			ogl_program_use(g_Renderer.m_VertexShader->m_InstancingLight);
 			idx = g_Renderer.m_VertexShader->m_InstancingLight_SHCoefficients;
-			glUniform3fvARB(idx, 9, (float*)coeffs);
+			pglUniform3fvARB(idx, 9, (float*)coeffs);
 
 			glEnableClientState(GL_NORMAL_ARRAY);
 		}
@@ -162,7 +162,7 @@ void InstancingModelRenderer::Render(RenderModifierPtr modifier, u32 flags)
 		if (m->streamflags & STREAM_UV0) glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 		if (m->streamflags & STREAM_COLOR) glDisableClientState(GL_NORMAL_ARRAY);
 	
-		glUseProgramObjectARB(0);
+		pglUseProgramObjectARB(0);
 
 	} while(!modifier->EndPass(m->pass++));
 	
@@ -241,20 +241,20 @@ void InstancingModelRenderer::RenderModel(CModel* model, void* data)
 		CColor sc = model->GetShadingColor();
 		glColor3f(sc.r, sc.g, sc.b);
 		
-		glVertexAttrib4fARB(rpvs->m_InstancingLight_Instancing1, mat._11, mat._12, mat._13, mat._14);
-		glVertexAttrib4fARB(rpvs->m_InstancingLight_Instancing2, mat._21, mat._22, mat._23, mat._24);
-		glVertexAttrib4fARB(rpvs->m_InstancingLight_Instancing3, mat._31, mat._32, mat._33, mat._34);
+		pglVertexAttrib4fARB(rpvs->m_InstancingLight_Instancing1, mat._11, mat._12, mat._13, mat._14);
+		pglVertexAttrib4fARB(rpvs->m_InstancingLight_Instancing2, mat._21, mat._22, mat._23, mat._24);
+		pglVertexAttrib4fARB(rpvs->m_InstancingLight_Instancing3, mat._31, mat._32, mat._33, mat._34);
 	}
 	else
 	{
-		glVertexAttrib4fARB(rpvs->m_Instancing_Instancing1, mat._11, mat._12, mat._13, mat._14);
-		glVertexAttrib4fARB(rpvs->m_Instancing_Instancing2, mat._21, mat._22, mat._23, mat._24);
-		glVertexAttrib4fARB(rpvs->m_Instancing_Instancing3, mat._31, mat._32, mat._33, mat._34);
+		pglVertexAttrib4fARB(rpvs->m_Instancing_Instancing1, mat._11, mat._12, mat._13, mat._14);
+		pglVertexAttrib4fARB(rpvs->m_Instancing_Instancing2, mat._21, mat._22, mat._23, mat._24);
+		pglVertexAttrib4fARB(rpvs->m_Instancing_Instancing3, mat._31, mat._32, mat._33, mat._34);
 	}
 
 	// render the lot
 	size_t numFaces = mdldef->GetNumFaces();
-	glDrawRangeElementsEXT(GL_TRIANGLES, 0, mdldef->GetNumVertices(),
+	pglDrawRangeElementsEXT(GL_TRIANGLES, 0, mdldef->GetNumVertices(),
 			numFaces*3, GL_UNSIGNED_SHORT, m->imodeldef->m_Indices);
 
 	// bump stats

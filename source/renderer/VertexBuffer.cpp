@@ -44,11 +44,11 @@ CVertexBuffer::CVertexBuffer(size_t vertexSize,bool dynamic)
 
 		glGetError(); // clear the error state
 
-		glGenBuffersARB(1,&m_Handle);
-		glBindBufferARB(GL_ARRAY_BUFFER_ARB,m_Handle);
+		pglGenBuffersARB(1,&m_Handle);
+		pglBindBufferARB(GL_ARRAY_BUFFER_ARB,m_Handle);
 		if (glGetError() != GL_NO_ERROR) throw PSERROR_Renderer_VBOFailed();
 
-		glBufferDataARB(GL_ARRAY_BUFFER_ARB,size,0,m_Dynamic ? GL_DYNAMIC_DRAW_ARB : GL_STATIC_DRAW_ARB);
+		pglBufferDataARB(GL_ARRAY_BUFFER_ARB,size,0,m_Dynamic ? GL_DYNAMIC_DRAW_ARB : GL_STATIC_DRAW_ARB);
 		if (glGetError() != GL_NO_ERROR) throw PSERROR_Renderer_VBOFailed();
 
 	} else {
@@ -71,7 +71,7 @@ CVertexBuffer::CVertexBuffer(size_t vertexSize,bool dynamic)
 CVertexBuffer::~CVertexBuffer()
 {
 	if (m_Handle) {
-		glDeleteBuffersARB(1,&m_Handle);
+		pglDeleteBuffersARB(1,&m_Handle);
 	} else if (m_SysMem) {
 		delete[] m_SysMem;
 	}
@@ -192,8 +192,8 @@ void CVertexBuffer::UpdateChunkVertices(VBChunk* chunk,void* data)
 	if (g_Renderer.m_Caps.m_VBO) {
 		debug_assert(m_Handle);
 		glGetError(); // clear the error state
-		glBindBufferARB(GL_ARRAY_BUFFER_ARB,m_Handle);
-		glBufferSubDataARB(GL_ARRAY_BUFFER_ARB,chunk->m_Index*m_VertexSize,chunk->m_Count*m_VertexSize,data);
+		pglBindBufferARB(GL_ARRAY_BUFFER_ARB,m_Handle);
+		pglBufferSubDataARB(GL_ARRAY_BUFFER_ARB,chunk->m_Index*m_VertexSize,chunk->m_Count*m_VertexSize,data);
 		if (glGetError() != GL_NO_ERROR) throw PSERROR_Renderer_VBOFailed();
 	} else {
 		debug_assert(m_SysMem);
@@ -208,7 +208,7 @@ u8* CVertexBuffer::Bind()
 {
 	u8* base;
 	if (g_Renderer.m_Caps.m_VBO) {
-		glBindBufferARB(GL_ARRAY_BUFFER_ARB,m_Handle);
+		pglBindBufferARB(GL_ARRAY_BUFFER_ARB,m_Handle);
 		base=(u8*) 0;
 	} else {
 		base=(u8*) m_SysMem;

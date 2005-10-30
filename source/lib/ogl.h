@@ -81,8 +81,8 @@ extern const char* oglExtList(void);
 # define CALL_CONV
 #endif
 
-#define FUNC(ret, name, params) extern ret (CALL_CONV *name) params;
-#define FUNC2(ret, nameARB, nameCore, version, params) extern ret (CALL_CONV *nameARB) params;
+#define FUNC(ret, name, params) extern ret (CALL_CONV *pgl##name) params;
+#define FUNC2(ret, nameARB, nameCore, version, params) extern ret (CALL_CONV *pgl##nameARB) params;
 #include "glext_funcs.h"
 #undef FUNC2
 #undef FUNC

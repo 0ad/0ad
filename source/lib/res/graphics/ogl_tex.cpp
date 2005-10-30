@@ -750,7 +750,7 @@ static void upload_compressed_level(uint level, uint level_w, uint level_h,
 	const u8* restrict level_data, size_t level_data_size, void* restrict ctx)
 {
 	const UploadParams* up = (const UploadParams*)ctx;
-	glCompressedTexImage2DARB(GL_TEXTURE_2D, level, up->fmt,
+	pglCompressedTexImage2DARB(GL_TEXTURE_2D, level, up->fmt,
 		(GLsizei)level_w, (GLsizei)level_h, 0, (GLsizei)level_data_size, level_data);
 }
 
@@ -918,7 +918,7 @@ int ogl_tex_bind(Handle ht, uint unit)
 {
 	// note: there are many call sites of glActiveTextureARB, so caching
 	// those and ignoring redundant sets isn't feasible.
-	glActiveTextureARB(GL_TEXTURE0+unit);
+	pglActiveTextureARB(GL_TEXTURE0+unit);
 
 	// special case: disable texturing
 	if(ht == 0)

@@ -128,7 +128,7 @@ void HWLightingModelRenderer::Render(RenderModifierPtr modifier, u32 flags)
 			
 			ogl_program_use(g_Renderer.m_VertexShader->m_ModelLight);
 			idx = g_Renderer.m_VertexShader->m_ModelLight_SHCoefficients;
-			glUniform3fvARB(idx, 9, (float*)coeffs);
+			pglUniform3fvARB(idx, 9, (float*)coeffs);
 
 			glEnableClientState(GL_NORMAL_ARRAY);
 		}
@@ -138,7 +138,7 @@ void HWLightingModelRenderer::Render(RenderModifierPtr modifier, u32 flags)
 		if (m->streamflags & STREAM_UV0) glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 		if (m->streamflags & STREAM_COLOR)
 		{
-			glUseProgramObjectARB(0);
+			pglUseProgramObjectARB(0);
 
 			glDisableClientState(GL_NORMAL_ARRAY);
 		}
@@ -261,7 +261,7 @@ void HWLightingModelRenderer::RenderModel(CModel* model, void* data)
 
 	// render the lot
 	size_t numFaces = mdldef->GetNumFaces();
-	glDrawRangeElementsEXT(GL_TRIANGLES, 0, mdldef->GetNumVertices(),
+	pglDrawRangeElementsEXT(GL_TRIANGLES, 0, mdldef->GetNumVertices(),
 			       numFaces*3, GL_UNSIGNED_SHORT, m->hwlmodeldef->m_Indices);
 
 	// bump stats
