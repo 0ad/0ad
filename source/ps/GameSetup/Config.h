@@ -23,6 +23,7 @@ extern int g_bpp;
 extern int g_freq;
 extern bool g_active;
 extern bool g_Quickstart;
+extern CStr g_AutostartMap;
 
 extern CStr g_CursorName;
 

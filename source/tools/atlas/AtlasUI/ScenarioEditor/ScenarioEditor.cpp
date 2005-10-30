@@ -3,8 +3,8 @@
 #include "ScenarioEditor.h"
 
 #include "wx/glcanvas.h"
-#include "CustomControls/SnapSplitterWindow/SnapSplitterWindow.h"
-#include "CustomControls/HighResTimer/HighResTimer.h"
+#include "SnapSplitterWindow/SnapSplitterWindow.h"
+#include "HighResTimer/HighResTimer.h"
 
 #include "GameInterface/MessagePasser.h"
 #include "GameInterface/Messages.h"

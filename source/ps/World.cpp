@@ -55,7 +55,7 @@ void CWorld::Initialize(CGameAttributes *pAttribs)
 			reader = new CMapReader;
 			reader->LoadMap(mapfilename, &m_Terrain, &m_UnitManager, &g_LightEnv);
 				// fails immediately, or registers for delay loading
-		} catch (...) {
+		} catch (CFileUnpacker::CError) {
 			delete reader;
 			LOG(ERROR, LOG_CATEGORY, "Failed to load map %s", mapfilename.c_str());
 			throw PSERROR_Game_World_MapLoadFailed();

@@ -800,7 +800,6 @@ void Shutdown()
 void Init(int argc, char* argv[], uint flags)
 {
 	const bool setup_vmode = (flags & INIT_HAVE_VMODE) == 0;
-	const bool setup_gui   = (flags & INIT_NO_GUI    ) == 0;
 
 	debug_printf("INIT &argc=%p &argv=%p\n", &argc, &argv);
 	MICROLOG(L"Init");
@@ -859,6 +858,9 @@ void Init(int argc, char* argv[], uint flags)
 
 	// g_ConfigDB, command line args, globals
 	CONFIG_Init(argc, argv);
+
+	// setup_gui must be set after CONFIG_Init, so command-line parameters can disable it
+	const bool setup_gui = ((flags & INIT_NO_GUI) == 0 && g_AutostartMap.Length() == 0);
 
 	// GUI is notified in SetVideoMode, so this must come before that.
 #ifndef NO_GUI
@@ -991,6 +993,24 @@ void Init(int argc, char* argv[], uint flags)
 #endif
 		g_Camera.UpdateFrustum();
 	}
+
+	if (g_AutostartMap.Length())
+	{
+		// Code copied mostly from atlas/GameInterface/Handlers/Map.cpp -
+		// maybe should be refactored to avoid duplication
+		g_GameAttributes.m_MapFile = g_AutostartMap+".pmp";
+		for (int i=1; i<8; ++i) 
+			g_GameAttributes.GetSlot(i)->AssignLocal();
+		g_GameAttributes.m_LOSSetting = 2;
+		g_Game = new CGame();
+
+		PSRETURN ret = g_Game->StartGame(&g_GameAttributes);
+		debug_assert(ret == PSRETURN_OK);
+		LDR_NonprogressiveLoad();
+		ret = g_Game->ReallyStartGame();
+		debug_assert(ret == PSRETURN_OK);
+	}
+
 }
 
 #if MSC_VERSION

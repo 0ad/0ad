@@ -1,4 +1,4 @@
-#include "CustomControls/VirtualDirTreeCtrl/virtualdirtreectrl.h"
+#include "VirtualDirTreeCtrl/virtualdirtreectrl.h"
 
 // wxGenericDirCtrl could potentially be used instead of this; but it gets
 // indented a long way (since its root is far further back than necessary),

@@ -4,7 +4,7 @@
 #include "General/AtlasWindowCommandProc.h"
 
 #include "General/IAtlasSerialiser.h"
-#include "CustomControls/FileHistory/FileHistory.h"
+#include "FileHistory/FileHistory.h"
 
 #include "wx/filename.h"
 

@@ -398,7 +398,9 @@ void IGUIObject::CheckSettingsValidity()
 		{
 			GUI<IGUIObject*>::RecurseObject(0, this, &IGUIObject::UpdateMouseOver, NULL);
 		}
-		catch (...) {}
+		catch (PS_RESULT)
+		{
+		}
 	}
 
 	try
@@ -407,7 +409,7 @@ void IGUIObject::CheckSettingsValidity()
 		HandleMessage(GUIM_SETTINGS_UPDATED);
 		ScriptEvent("update");
 	}
-	catch (...)
+	catch (PS_RESULT)
 	{
 	}
 }

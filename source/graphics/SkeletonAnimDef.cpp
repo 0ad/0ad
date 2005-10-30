@@ -76,9 +76,9 @@ CSkeletonAnimDef* CSkeletonAnimDef::Load(const char* filename)
 		unpacker.UnpackRaw(&anim->m_NumFrames,sizeof(anim->m_NumFrames));
 		anim->m_Keys=new Key[anim->m_NumKeys*anim->m_NumFrames];
 		unpacker.UnpackRaw(anim->m_Keys,anim->m_NumKeys*anim->m_NumFrames*sizeof(Key));
-	} catch (...) {
+	} catch (CFileUnpacker::CError) {
 		delete anim;
-		throw CFileUnpacker::CFileEOFError();
+		throw;
 	}
 
 	return anim;

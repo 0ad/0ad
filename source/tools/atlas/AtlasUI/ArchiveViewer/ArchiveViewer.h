@@ -1,5 +1,5 @@
-#include "CustomControls/FileHistory/FileHistory.h"
-#include "CustomControls/SnapSplitterWindow/SnapSplitterWindow.h"
+#include "FileHistory/FileHistory.h"
+#include "SnapSplitterWindow/SnapSplitterWindow.h"
 #include "FilePreviewer.h"
 
 namespace DatafileIO

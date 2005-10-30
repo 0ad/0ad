@@ -35,7 +35,8 @@ int g_freq;
 
 bool g_Quickstart=false;
 
-
+// If non-empty, specified map will be automatically loaded
+CStr g_AutostartMap = "";
 
 //----------------------------------------------------------------------------
 // config and profile
@@ -95,6 +96,10 @@ static void ParseCommandLineArgs(int argc, char* argv[])
 		// switch first letter of option name
 		switch(argv[i][1])
 		{
+		case 'a':
+			if(strncmp(name, "autostart=", 10) == 0)
+				 g_AutostartMap = argv[i]+11;
+			break;
 		case 'c':
 			if(strcmp(name, "conf") == 0)
 			{
@@ -138,6 +143,10 @@ static void ParseCommandLineArgs(int argc, char* argv[])
 			else if(strncmp(name, "nopbuffer", 9) == 0)
 				g_NoPBuffer = true;
 			break;
+		case 'p':
+			if(strncmp(name, "profile=", 8) == 0)
+				g_ConfigDB.CreateValue(CFG_COMMAND, "profile")->m_String = argv[i]+9;
+			break;
 		case 'q':
 			if(strncmp(name, "quickstart", 10) == 0)
 				g_Quickstart = true;
@@ -147,19 +156,16 @@ static void ParseCommandLineArgs(int argc, char* argv[])
 				g_ConfigDB.CreateValue(CFG_COMMAND, "shadows")->m_String="true";
 			break;
 		case 'v':
-			g_ConfigDB.CreateValue(CFG_COMMAND, "vsync")->m_String="true";
+			if(strncmp(name, "vsync", 5) == 0)
+				g_ConfigDB.CreateValue(CFG_COMMAND, "vsync")->m_String="true";
 			break;
 		case 'x':
-			if(strncmp(name, "xres=", 6) == 0)
+			if(strncmp(name, "xres=", 5) == 0)
 				g_ConfigDB.CreateValue(CFG_COMMAND, "xres")->m_String=argv[i]+6;
 			break;
 		case 'y':
-			if(strncmp(name, "yres=", 6) == 0)
+			if(strncmp(name, "yres=", 5) == 0)
 				g_ConfigDB.CreateValue(CFG_COMMAND, "yres")->m_String=argv[i]+6;
-			break;
-		case 'p':
-			if(strncmp(name, "profile=", 8) == 0 )
-				g_ConfigDB.CreateValue(CFG_COMMAND, "profile")->m_String = argv[i]+9;
 			break;
 		}	// switch
 	}

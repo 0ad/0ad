@@ -12,6 +12,7 @@
 #include "Model.h"
 #include "CLogger.h"
 #include "SkeletonAnimManager.h"
+#include "FileUnpacker.h"
 #include <algorithm>
 
 #define LOG_CATEGORY "graphics"
@@ -56,7 +57,7 @@ CSkeletonAnimDef* CSkeletonAnimManager::GetAnimation(const char* filename)
 	CSkeletonAnimDef* def;
 	try {
 		def=CSkeletonAnimDef::Load(filename);
-	} catch (...) {
+	} catch (CFileUnpacker::CError) {
 		def=0;
 	}
 
