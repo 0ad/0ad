@@ -47,4 +47,7 @@ int ogl_program_use(Handle h);
 // Query uniform information
 GLint ogl_program_get_uniform_location(Handle h, const char* name);
 
+// Query vertex attribute information
+GLint ogl_program_get_attrib_location(Handle h, const char* name);
+
 #endif // OGL_SHADER_H__

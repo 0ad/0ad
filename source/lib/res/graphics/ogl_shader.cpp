@@ -445,3 +445,12 @@ GLint ogl_program_get_uniform_location(Handle h, const char* name)
 	
 	return glGetUniformLocationARB(p->id, name);
 }
+
+
+// Query vertex attribute information
+GLint ogl_program_get_attrib_location(Handle h, const char* name)
+{
+	H_DEREF(h, Ogl_Program, p);
+	
+	return glGetAttribLocationARB(p->id, name);
+}

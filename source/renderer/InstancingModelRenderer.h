@@ -1,24 +1,24 @@
 /**
  * =========================================================================
- * File        : HWLightingModelRenderer.h
+ * File        : InstancingModelRenderer.h
  * Project     : Pyrogenesis
- * Description : BatchModelRenderer that transforms models on the CPU
- *             : but performs lighting in a vertex shader.
+ * Description : Special BatchModelRenderer that only works for non-animated
+ *             : models, but performs all transformation in a vertex shader.
  *
  * @author Nicolai Hähnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 
-#ifndef HWLIGHTINGMODELRENDERER_H
-#define HWLIGHTINGMODELRENDERER_H
+#ifndef INSTANCINGMODELRENDERER_H
+#define INSTANCINGMODELRENDERER_H
 
 #include "renderer/ModelRenderer.h"
 
-struct HWLightingModelRendererInternals;
+struct InstancingModelRendererInternals;
 
 /**
- * Class HWLightingModelRenderer: Render animated models using vertex
- * shaders for lighting.
+ * Class InstancingModelRenderer: Render non-animated (but potentially
+ * moving models) using vertex shaders.
  * 
  * Use the RenderModifier to enable normal model rendering as well
  * as player colour rendering using this model renderer.
@@ -26,11 +26,11 @@ struct HWLightingModelRendererInternals;
  * @note You should verify hardware capabilities using IsAvailable
  * before creating this model renderer.
  */
-class HWLightingModelRenderer : public BatchModelRenderer
+class InstancingModelRenderer : public BatchModelRenderer
 {
 public:
-	HWLightingModelRenderer();
-	~HWLightingModelRenderer();
+	InstancingModelRenderer();
+	~InstancingModelRenderer();
 	
 	/**
 	 * Render: Render submitted models using the given RenderModifier
@@ -49,7 +49,7 @@ public:
 	 * IsAvailable: Determines whether this model renderer can be used
 	 * given the OpenGL implementation specific limits.
 	 * 
-	 * @note Do not attempt to construct a HWLightingModelRenderer object
+	 * @note Do not attempt to construct a InstancingModelRenderer object
 	 * when IsAvailable returns false.
 	 * 
 	 * @return true if the OpenGL implementation can support this
@@ -62,14 +62,14 @@ protected:
 	void* CreateModelData(CModel* model);
 	void UpdateModelData(CModel* model, void* data, u32 updateflags);
 	void DestroyModelData(CModel* model, void* data);
-	
+
 	void PrepareModelDef(CModelDefPtr def);
 	void PrepareTexture(CTexture* texture);
 	void RenderModel(CModel* model, void* data);
 
 private:
-	HWLightingModelRendererInternals* m;
+	InstancingModelRendererInternals* m;
 };
 
 
-#endif // HWLIGHTINGMODELRENDERER_H
+#endif // INSTANCINGMODELRENDERER_H

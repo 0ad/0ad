@@ -144,6 +144,23 @@ public:
 	virtual void Render(RenderModifierPtr modifier, u32 flags) = 0;
 	
 	/**
+	 * CopyPositionAndNormals: Copy unanimated object-space vertices and
+	 * normals into the given vertex array.
+	 *
+	 * @param mdef The underlying CModelDef that contains mesh data.
+	 * @param Position Points to the array that will receive
+	 * position vectors. The array behind the iterator
+	 * must be large enough to hold model->GetModelDef()->GetNumVertices()
+	 * vertices.
+	 * @param Normal Points to the array that will receive normal vectors.
+	 * The array behind the iterator must be as large as the Position array.
+	 */
+	static void CopyPositionAndNormals(
+			CModelDefPtr mdef,
+			VertexArrayIterator<CVector3D> Position,
+			VertexArrayIterator<CVector3D> Normal);
+	
+	/**
 	 * BuildPositionAndNormals: Build animated vertices and normals, 
 	 * transformed into world space.
 	 *

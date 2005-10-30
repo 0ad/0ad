@@ -74,6 +74,22 @@ static void SkinNormal(const SModelVertex& vertex, const CMatrix3D* invtranspmat
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // ModelRenderer implementation
 
+// Helper function to copy object-space position and normal vectors into arrays.
+void ModelRenderer::CopyPositionAndNormals(
+		CModelDefPtr mdef,
+		VertexArrayIterator<CVector3D> Position,
+		VertexArrayIterator<CVector3D> Normal)
+{
+	size_t numVertices = mdef->GetNumVertices();
+	SModelVertex* vertices = mdef->GetVertices();
+	
+	for(size_t j = 0; j < numVertices; ++j)
+	{
+		Position[j] = vertices[j].m_Coords;
+		Normal[j] = vertices[j].m_Norm;
+	}
+}
+
 // Helper function to transform position and normal vectors into world-space.
 void ModelRenderer::BuildPositionAndNormals(
 		CModel* model,

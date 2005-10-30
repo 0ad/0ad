@@ -268,7 +268,6 @@ void CGameView::CameraLock(float x, float y, float z, bool smooth)
 	
 void CGameView::SubmitModelRecursive(CModel* model)
 {
-	model->ValidatePosition();
 	g_Renderer.Submit(model);
 
 	const std::vector<CModel::Prop>& props=model->GetProps();

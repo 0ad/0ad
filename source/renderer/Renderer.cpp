@@ -46,6 +46,7 @@
 
 #include "renderer/FixedFunctionModelRenderer.h"
 #include "renderer/HWLightingModelRenderer.h"
+#include "renderer/InstancingModelRenderer.h"
 #include "renderer/ModelRenderer.h"
 #include "renderer/PlayerRenderer.h"
 #include "renderer/RenderModifiers.h"
@@ -108,6 +109,16 @@ CRenderer::CRenderer()
 		m_Models.PlayerHWLit = NULL;
 		m_Models.TransparentHWLit = NULL;
 	}
+	if (InstancingModelRenderer::IsAvailable())
+	{
+		m_Models.NormalInstancing = new InstancingModelRenderer;
+		m_Models.PlayerInstancing = new InstancingModelRenderer;
+	}
+	else
+	{
+		m_Models.NormalInstancing = NULL;
+		m_Models.PlayerInstancing = NULL;
+	}
 	m_Models.Transparency = new TransparencyRenderer;
 
 	m_Models.ModWireframe = RenderModifierPtr(new WireframeRenderModifier);
@@ -148,6 +159,8 @@ CRenderer::~CRenderer()
 	delete m_Models.NormalHWLit;
 	delete m_Models.PlayerHWLit;
 	delete m_Models.TransparentHWLit;
+	delete m_Models.NormalInstancing;
+	delete m_Models.PlayerInstancing;
 	delete m_Models.Transparency;
 
 	// general
@@ -788,6 +801,10 @@ void CRenderer::RenderShadowMap()
 		m_Models.NormalHWLit->Render(m_Models.ModSolidColor, MODELFLAG_CASTSHADOWS);
 	if (m_Models.PlayerHWLit)
 		m_Models.PlayerHWLit->Render(m_Models.ModSolidColor, MODELFLAG_CASTSHADOWS);
+	if (m_Models.NormalInstancing)
+		m_Models.NormalInstancing->Render(m_Models.ModSolidColor, MODELFLAG_CASTSHADOWS);
+	if (m_Models.PlayerInstancing)
+		m_Models.PlayerInstancing->Render(m_Models.ModSolidColor, MODELFLAG_CASTSHADOWS);
 	m_Models.TransparentFF->Render(m_Models.ModTransparentShadow, MODELFLAG_CASTSHADOWS);
 	if (m_Models.TransparentHWLit)
 		m_Models.TransparentHWLit->Render(m_Models.ModTransparentShadow, MODELFLAG_CASTSHADOWS);
@@ -1017,7 +1034,7 @@ void CRenderer::RenderWater()
 						}
 					}
 
-					glColor4f(m_WaterColor.r*losMod, m_WaterColor.g*losMod, m_WaterColor.b*losMod, alpha);	
+					glColor4f(m_WaterColor.r*losMod, m_WaterColor.g*losMod, m_WaterColor.b*losMod, alpha);
 					glMultiTexCoord2fARB(GL_TEXTURE0, vertX/16.0f, vertZ/16.0f);
 					glVertex3f(vertX, m_WaterHeight, vertZ);
 				}
@@ -1050,6 +1067,10 @@ void CRenderer::RenderModels()
 		m_Models.NormalHWLit->Render(m_Models.ModPlain, 0);
 	if (m_Models.PlayerHWLit)
 		m_Models.PlayerHWLit->Render(m_Models.ModPlayer, 0);
+	if (m_Models.NormalInstancing)
+		m_Models.NormalInstancing->Render(m_Models.ModPlain, 0);
+	if (m_Models.PlayerInstancing)
+		m_Models.PlayerInstancing->Render(m_Models.ModPlayer, 0);
 
 	if (m_ModelRenderMode==WIREFRAME) {
 		// switch wireframe off again
@@ -1061,6 +1082,10 @@ void CRenderer::RenderModels()
 			m_Models.NormalHWLit->Render(m_Models.ModWireframe, 0);
 		if (m_Models.PlayerHWLit)
 			m_Models.PlayerHWLit->Render(m_Models.ModWireframe, 0);
+		if (m_Models.NormalInstancing)
+			m_Models.NormalInstancing->Render(m_Models.ModWireframe, 0);
+		if (m_Models.PlayerInstancing)
+			m_Models.PlayerInstancing->Render(m_Models.ModWireframe, 0);
 	}
 }
 
@@ -1111,6 +1136,10 @@ void CRenderer::FlushFrame()
 		m_Models.PlayerHWLit->PrepareModels();
 	if (m_Models.TransparentHWLit)
 		m_Models.TransparentHWLit->PrepareModels();
+	if (m_Models.NormalInstancing)
+		m_Models.NormalInstancing->PrepareModels();
+	if (m_Models.PlayerInstancing)
+		m_Models.PlayerInstancing->PrepareModels();
 	m_Models.Transparency->PrepareModels();
 	PROFILE_END("prepare models");
 
@@ -1169,6 +1198,10 @@ void CRenderer::FlushFrame()
 		m_Models.PlayerHWLit->EndFrame();
 	if (m_Models.TransparentHWLit)
 		m_Models.TransparentHWLit->EndFrame();
+	if (m_Models.NormalInstancing)
+		m_Models.NormalInstancing->EndFrame();
+	if (m_Models.PlayerInstancing)
+		m_Models.PlayerInstancing->EndFrame();
 	m_Models.Transparency->EndFrame();
 }
 
@@ -1225,17 +1258,30 @@ void CRenderer::Submit(CModel* model)
 {
 	if (model->GetFlags() & MODELFLAG_CASTSHADOWS) {
 		PROFILE( "updating shadow bounds" );
-		m_ShadowBound+=model->GetBounds();
+		m_ShadowBound += model->GetBounds();
 	}
+
+	// Tricky: The call to GetBounds() above can invalidate the position
+	model->ValidatePosition();
+	
+	bool canUseInstancing = false;
+	
+	if (model->GetModelDef()->GetNumBones() == 0)
+		canUseInstancing = true;
 
 	if (model->GetMaterial().IsPlayer())
 	{
 		if (m_Options.m_RenderPath == RP_VERTEXSHADER)
-			m_Models.PlayerHWLit->Submit(model);
+		{
+			if (canUseInstancing && m_Models.PlayerInstancing)
+				m_Models.PlayerInstancing->Submit(model);
+			else
+				m_Models.PlayerHWLit->Submit(model);
+		}
 		else
 			m_Models.PlayerFF->Submit(model);
 	}
-	else if(model->GetMaterial().UsesAlpha())
+	else if (model->GetMaterial().UsesAlpha())
 	{
 		if (m_SortAllTransparent)
 			m_Models.Transparency->Submit(model);
@@ -1247,7 +1293,12 @@ void CRenderer::Submit(CModel* model)
 	else
 	{
 		if (m_Options.m_RenderPath == RP_VERTEXSHADER)
-			m_Models.NormalHWLit->Submit(model);
+		{
+			if (canUseInstancing && m_Models.NormalInstancing)
+				m_Models.NormalInstancing->Submit(model);
+			else
+				m_Models.NormalHWLit->Submit(model);
+		}
 		else
 			m_Models.NormalFF->Submit(model);
 	}

@@ -295,6 +295,7 @@ protected:
 	friend class TransparencyRenderer;
 	friend class RenderPathVertexShader;
 	friend class HWLightingModelRenderer;
+	friend class InstancingModelRenderer;
 
 	// scripting
 	jsval JSI_GetFastPlayerColor(JSContext*);
@@ -416,6 +417,8 @@ protected:
 		ModelRenderer* NormalHWLit;
 		ModelRenderer* PlayerHWLit;
 		ModelRenderer* TransparentHWLit;
+		ModelRenderer* NormalInstancing;
+		ModelRenderer* PlayerInstancing;
 		ModelRenderer* Transparency;
 		
 		RenderModifierPtr ModWireframe;
