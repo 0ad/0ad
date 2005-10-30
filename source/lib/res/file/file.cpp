@@ -1048,7 +1048,7 @@ int file_invalidate_cache(const char* fn)
 
 // the underlying aio implementation likes buffer and offset to be
 // sector-aligned; if not, the transfer goes through an align buffer,
-// and requires an extra memcpy.
+// and requires an extra memcpy2.
 //
 // if the user specifies an unaligned buffer, there's not much we can
 // do - we can't assume the buffer contains padding. therefore,
@@ -1226,7 +1226,7 @@ ssize_t file_io(File* f, off_t data_ofs, size_t data_size, void* data_buf,
 // we have useable data from a previous temp buffer,
 // but it needs to be copied into the user's buffer
 if(from_cache && !temp)
-	memcpy((char*)data_buf+raw_transferred_cnt, data, size);
+	memcpy2((char*)data_buf+raw_transferred_cnt, data, size);
 
 
 			//// if size comes out short, we must be at EOF

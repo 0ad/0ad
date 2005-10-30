@@ -209,7 +209,7 @@ int CMapReader::ApplyData()
 		if (unit)
 		{
 			CMatrix3D transform;
-			memcpy(&transform._11, m_Objects[i].m_Transform, sizeof(float)*16);
+			memcpy2(&transform._11, m_Objects[i].m_Transform, sizeof(float)*16);
 			unit->GetModel()->SetTransform(transform);
 		}
 	}

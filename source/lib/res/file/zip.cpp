@@ -462,7 +462,7 @@ static int lookup_add_file_cb(uintptr_t user, i32 idx,
 	char* fn_copy = (char*)malloc(fn_len+1);
 	if(!fn_copy)
 		return ERR_NO_MEM;
-	memcpy(fn_copy, fn, fn_len);
+	memcpy2(fn_copy, fn, fn_len);
 	fn_copy[fn_len] = '\0';
 	ent->fn = fn_copy;
 

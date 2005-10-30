@@ -53,16 +53,6 @@ inline double rint(double d)
 #endif	// !HAVE_C99
 
 
-void memcpy2(void* dst, const void* src, size_t nbytes)
-{
-#if CPU_IA32
-	ia32_memcpy(dst, src, nbytes);
-#else
-	memcpy(dst, src, nbytes);
-#endif
-}
-
-
 // not possible with POSIX calls.
 // called from ia32.cpp get_cpu_count
 int on_each_cpu(void(*cb)())

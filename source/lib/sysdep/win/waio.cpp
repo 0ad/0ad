@@ -481,7 +481,7 @@ static int aio_rw(struct aiocb* cb)
 				// unaligned buffer: copy to align buffer and write from there.
 				if(buf_misaligned)
 				{
-					memcpy(r->buf, buf, size);
+					memcpy2(r->buf, buf, size);
 					memset((char*)r->buf + size, 0, actual_size - size);
 						// clear previous contents at end of align buf
 					actual_buf = r->buf;
@@ -580,7 +580,7 @@ ssize_t aio_return(struct aiocb* cb)
 
 	// we read into align buffer - copy to user's buffer
 	if(r->read_into_align_buffer)
-		memcpy((void*)cb->aio_buf, (u8*)r->buf + r->pad, cb->aio_nbytes);
+		memcpy2((void*)cb->aio_buf, (u8*)r->buf + r->pad, cb->aio_nbytes);
 
 	// TODO: this copies data back into original buffer from align buffer
 	// when writing from unaligned buffer. unnecessarily slow.

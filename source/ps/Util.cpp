@@ -303,7 +303,7 @@ void WriteBigScreenshot(const char* extension, int tiles)
 			{
 				void* dest = (char*)img + ((tile_y*tile_h + y) * img_w + (tile_x*tile_w)) * bpp/8;
 				void* src = (char*)tile_data + y * tile_w * bpp/8;
-				memcpy(dest, src, tile_w * bpp/8);
+				memcpy2(dest, src, tile_w * bpp/8);
 			}
 		}
 	}

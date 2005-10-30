@@ -146,7 +146,7 @@ void CFileUnpacker::UnpackRaw(void* rawdata,u32 rawdatalen)
 	{
 		// yes .. copy over
 		void* src = (char*)m_Buf + m_UnpackPos;
-		memcpy(rawdata, src, rawdatalen);
+		memcpy2(rawdata, src, rawdatalen);
 		m_UnpackPos += rawdatalen;
 	}
 	else

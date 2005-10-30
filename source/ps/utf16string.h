@@ -71,7 +71,7 @@ namespace std {
 
 		static char_type* copy(char_type* s1, const char_type* s2, size_t n)
 		{
-			return (char_type *)memcpy(s1, s2, n*sizeof(char_type));
+			return (char_type *)memcpy2(s1, s2, n*sizeof(char_type));
 		}
 
 		static char_type* assign(char_type* s, size_t n, char_type a)

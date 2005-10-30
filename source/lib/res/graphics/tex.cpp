@@ -123,7 +123,7 @@ static void create_level(uint level, uint level_w, uint level_h,
 	if(level == 0)
 	{
 		debug_assert(level_data_size == cld->prev_level_data_size);
-		memcpy(dst, src, level_data_size);
+		memcpy2(dst, src, level_data_size);
 	}
 	else
 	{
@@ -224,7 +224,7 @@ TIMER_ACCRUE(tc_plain_transform);
 		clone_data = mem_alloc(data_size, 4*KiB);
 		if(!clone_data)
 			return ERR_NO_MEM;
-		memcpy(clone_data, data, data_size);
+		memcpy2(clone_data, data, data_size);
 		src = (const u8*)clone_data+data_size-pitch;	// last row
 		row_ofs = -(ssize_t)pitch;
 	}
@@ -234,7 +234,7 @@ TIMER_ACCRUE(tc_plain_transform);
 	{
 		for(uint y = 0; y < h; y++)
 		{
-			memcpy(dst, src, pitch);
+			memcpy2(dst, src, pitch);
 			dst += pitch;
 			src += row_ofs;
 		}

@@ -35,7 +35,7 @@ BEGIN_COMMAND(AlterElevation)
 
 		int verts = terrain->GetVerticesPerSide()*terrain->GetVerticesPerSide();
 		OldTerrain = new u16[verts];
-		memcpy(OldTerrain, terrain->GetHeightMap(), verts*sizeof(u16));
+		memcpy2(OldTerrain, terrain->GetHeightMap(), verts*sizeof(u16));
 
 		int amount = (int)d->amount;
 
@@ -75,7 +75,7 @@ BEGIN_COMMAND(AlterElevation)
 		{
 			int verts = terrain->GetVerticesPerSide()*terrain->GetVerticesPerSide();
 			NewTerrain = new u16[verts];
-			memcpy(NewTerrain, terrain->GetHeightMap(), verts*sizeof(u16));
+			memcpy2(NewTerrain, terrain->GetHeightMap(), verts*sizeof(u16));
 		}
 		terrain->SetHeightMap(OldTerrain); // CTerrain duplicates the data
 	}

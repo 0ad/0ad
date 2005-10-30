@@ -239,7 +239,7 @@ PinhFromImageBase(HMODULE hmod) {
 
 static inline void WINAPI
 OverlayIAT(PImgThunkData pitdDst, PCImgThunkData pitdSrc) {
-    memcpy(pitdDst, pitdSrc, CountOfImports(pitdDst) * sizeof IMAGE_THUNK_DATA);
+    memcpy2(pitdDst, pitdSrc, CountOfImports(pitdDst) * sizeof IMAGE_THUNK_DATA);
     }
 
 static inline DWORD WINAPI

@@ -50,6 +50,13 @@ extern int vsnprintf2(char* buffer, size_t count, const char* format, va_list ar
 extern void* alloca(size_t size);
 #endif
 
+#ifdef CPU_IA32
+# define memcpy2 ia32_memcpy
+extern void ia32_memcpy(void* dst, const void* src, size_t nbytes);
+#else
+# define memcpy2 memcpy
+#endif
+
 // rint: round float to nearest integer.
 // provided by C99, otherwise:
 #if !HAVE_C99
@@ -190,7 +197,6 @@ wchar_t* get_module_filename(void* addr, wchar_t* path);
 
 extern int pick_directory(char* n_path, size_t buf_size);
 
-extern void memcpy2(void* dst, const void* src, size_t nbytes);
 
 // not possible with POSIX calls.
 // called from ia32.cpp get_cpu_count

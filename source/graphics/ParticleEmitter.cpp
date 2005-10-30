@@ -143,12 +143,12 @@ void CParticleEmitter::Update()
 			newParticle->m_gravity = m_gravity;
 
 			// calculate and assign colour
-			memcpy(colour, m_startColour, sizeof(float) * 4);
+			memcpy2(colour, m_startColour, sizeof(float) * 4);
 			colour[0] += (rand() % (int)((m_endColour[0] - m_startColour[0]) * 1000.0f + 1)) / 1000.0f;
 			colour[1] += (rand() % (int)((m_endColour[1] - m_startColour[1]) * 1000.0f + 1)) / 1000.0f;
 			colour[2] += (rand() % (int)((m_endColour[2] - m_startColour[2]) * 1000.0f + 1)) / 1000.0f;
 			colour[3] += (rand() % (int)((m_endColour[3] - m_startColour[3]) * 1000.0f + 1)) / 1000.0f;
-			memcpy(newParticle->m_colour, colour, sizeof(float) * 4);
+			memcpy2(newParticle->m_colour, colour, sizeof(float) * 4);
 
 			// assign sprite
 			newParticle->m_sprite = m_sprite;

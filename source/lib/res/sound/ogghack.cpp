@@ -63,7 +63,7 @@ size_t read_func(void* ptr, size_t elements, size_t el_size, void* datasource)
 		Buf& b = incoming_bufs->front();
 		size_t copy_size = std::min(b.left, size);
 
-		memcpy(ptr, (char*)b.p+b.pos, copy_size);
+		memcpy2(ptr, (char*)b.p+b.pos, copy_size);
 		total_read += copy_size;
 		b.pos += copy_size;
 		b.left -= copy_size;
@@ -109,7 +109,7 @@ void ogg_give_raw(void* _o, void* p, size_t size)
 	IncomingBufs* incoming_bufs = &o->incoming_bufs;
 
 	void* copy = malloc(size);
-	memcpy(copy, p, size);
+	memcpy2(copy, p, size);
 	incoming_bufs->push_back(Buf(copy, size));
 }
 
