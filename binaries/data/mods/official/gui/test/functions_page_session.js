@@ -211,7 +211,7 @@ function resetUpdateVars()
 			propertyWatches[watchedObject].unwatchAll( selectionWatchHandler ); // Remove the handler
 		
 		propertyWatches = new Array();
-		if( selection[0] )
+		if( selection.length > 0 && selection[0] )
 		{
 			// Watch the object itself
 			selection[0].watchAll( selectionWatchHandler );
@@ -228,7 +228,7 @@ function resetUpdateVars()
 		}
 	}
 	selectionChanged = false;
-	if( selection[0] ) 
+	if( selection.length > 0 && selection[0] ) 
 	{
 		selectionTemplate = selection[0].template;
 	}
