@@ -27,7 +27,7 @@ MESSAGEHANDLER_STR(init)
 	// HACK (to stop things looking very ugly when scrolling) - should
 	// use proper config system.
 	if(oglHaveExtension("WGL_EXT_swap_control"))
-		wglSwapIntervalEXT(1);
+		pwglSwapIntervalEXT(1);
 #endif
 }
 

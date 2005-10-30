@@ -919,7 +919,7 @@ void Init(int argc, char* argv[], uint flags)
 	// note: "GL_EXT_SWAP_CONTROL" is "historical" according to dox.
 #if OS_WIN
 	if(oglHaveExtension("WGL_EXT_swap_control"))
-		wglSwapIntervalEXT(g_VSync? 1 : 0);
+		pwglSwapIntervalEXT(g_VSync? 1 : 0);
 #endif
 
 	MICROLOG(L"init ps");
