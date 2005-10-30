@@ -50,7 +50,7 @@ struct IModelDef : public CModelDefRPrivate
 	
 
 	IModelDef(CModelDefPtr mdef);
-	~IModelDef() { delete m_Indices; }
+	~IModelDef() { delete[] m_Indices; }
 };
 
 

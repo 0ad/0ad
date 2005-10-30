@@ -44,7 +44,7 @@ struct FFModelDef : public CModelDefRPrivate
 	VertexArray::Attribute m_UV;
 	
 	FFModelDef(CModelDefPtr mdef);
-	~FFModelDef() { delete m_Indices; }
+	~FFModelDef() { delete[] m_Indices; }
 };
 
 

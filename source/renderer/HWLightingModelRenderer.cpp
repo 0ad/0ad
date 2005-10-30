@@ -42,7 +42,7 @@ struct HWLModelDef : public CModelDefRPrivate
 	
 
 	HWLModelDef(CModelDefPtr mdef);
-	~HWLModelDef() { delete m_Indices; }
+	~HWLModelDef() { delete[] m_Indices; }
 };
 
 

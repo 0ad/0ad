@@ -52,7 +52,7 @@ extern void* alloca(size_t size);
 
 #ifdef CPU_IA32
 # define memcpy2 ia32_memcpy
-extern void ia32_memcpy(void* dst, const void* src, size_t nbytes);
+extern void* ia32_memcpy(void* dst, const void* src, size_t nbytes);
 #else
 # define memcpy2 memcpy
 #endif

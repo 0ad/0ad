@@ -234,7 +234,8 @@ sse_mask		resd	1
 
 __SECT__
 
-; void __declspec(naked) ia32_memcpy(void* dst, const void* src, size_t nbytes)
+; void* __declspec(naked) ia32_memcpy(void* dst, const void* src, size_t nbytes)
+; Return dst to make ia32_memcpy usable as a standard library memcpy drop-in
 global sym(ia32_memcpy)
 sym(ia32_memcpy):
 	push	edi
@@ -249,6 +250,7 @@ sym(ia32_memcpy):
 
 .ic_movsd:
 	IC_MOVSD
+	mov		eax, [esp+8+4+0]			; return dst
 	pop		esi
 	pop		edi
 	ret

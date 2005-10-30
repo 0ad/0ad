@@ -74,7 +74,7 @@ extern uint ia32_control87(uint new_val, uint mask);	// asm
 
 extern void ia32_debug_break(void);
 
-extern void ia32_memcpy(void* dst, const void* src, size_t nbytes);
+extern void* ia32_memcpy(void* dst, const void* src, size_t nbytes);
 
 // write the current execution state (e.g. all register values) into
 // (Win32::CONTEXT*)pcontext (defined as void* to avoid dependency).
