@@ -63,6 +63,7 @@ void CModel::ReleaseData()
 	delete[] m_BoneMatrices;
 	delete[] m_InvTranspBoneMatrices;
 	for (size_t i=0;i<m_Props.size();i++) {
+		m_Props[i].m_Model->m_Parent = 0;
 		delete m_Props[i].m_Model;
 	}
 	m_Props.clear();
@@ -433,6 +434,7 @@ void CModel::RemoveProp(SPropPoint* point)
 	for (Iter iter=m_Props.begin();iter!=m_Props.end();++iter) {
 		const Prop& prop=*iter;
 		if (prop.m_Point==point) {
+			prop.m_Model->m_Parent = 0;
 			delete prop.m_Model;
 			m_Props.erase(iter);
 			return;

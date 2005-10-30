@@ -246,11 +246,11 @@ struct BMRModelDefTracker : public CModelDefRPrivate
 	: m_ModelDef(mdef), m_Next(0), m_Slots(0) { }
 
 	/// Back-link to the CModelDef object
-	CModelDefPtr m_ModelDef;
+	boost::weak_ptr<CModelDef> m_ModelDef;
 
 	/// Pointer to the next ModelDefTracker that has submitted models.
 	BMRModelDefTracker* m_Next;
-	
+
 	/// Number of slots used in m_ModelSlots
 	uint m_Slots;
 	
@@ -431,7 +431,7 @@ void BatchModelRenderer::RenderAllModels(u32 flags)
 	
 	for(BMRModelDefTracker* mdeftracker = m->submissions; mdeftracker; mdeftracker = mdeftracker->m_Next)
 	{
-		PrepareModelDef(mdeftracker->m_ModelDef);
+		PrepareModelDef(mdeftracker->m_ModelDef.lock());
 		
 		for(uint idx = 0; idx < mdeftracker->m_Slots; ++idx)
 		{
