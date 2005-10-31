@@ -306,6 +306,7 @@ void CGameView::UnloadResources()
 	//   g_ObjMan.UnloadObjects();
 
 	g_Renderer.UnloadAlphaMaps();
+	g_Renderer.UnloadWaterTextures();
 }
 
 

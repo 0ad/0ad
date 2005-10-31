@@ -167,8 +167,9 @@ CRenderer::~CRenderer()
 	delete m_VertexShader;
 	m_VertexShader = 0;
 
-	UnloadAlphaMaps();
-	UnloadWaterTextures();
+	// we no longer UnloadAlphaMaps / UnloadWaterTextures here -
+	// that is the responsibility of the module that asked for
+	// them to be loaded (i.e. CGameView).
 }
 
 

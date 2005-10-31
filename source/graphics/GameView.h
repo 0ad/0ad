@@ -67,7 +67,7 @@ class CGameView: public CJSObject<CGameView>
 	
 	// InitResources(): Load all graphics resources (textures, actor objects and
 	// alpha maps) required by the game
-	void InitResources();
+	//void InitResources();
 
 	// UnloadResources(): Unload all graphics resources loaded by InitResources
 	void UnloadResources();

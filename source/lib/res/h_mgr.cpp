@@ -747,7 +747,7 @@ static int h_free_idx(i32 idx, HDATA* hd)
 
 	fn_free(hd);
 
-	memset(hd, 0, sizeof(HDATA));
+	memset(hd, 0, sizeof(*hd));
 
 	free_idx(idx);
 
