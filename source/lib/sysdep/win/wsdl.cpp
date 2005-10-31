@@ -232,7 +232,7 @@ int SDL_SetGamma(float r, float g, float b)
 
 //----------------------------------------------------------------------------
 
-static bool keys[SDLK_LAST];
+static Uint8 keys[SDLK_LAST];
 
 static void init_vkmap(SDLKey (&VK_keymap)[256])
 {
@@ -344,6 +344,16 @@ static void reset_all_keys()
 }
 
 
+Uint8* SDL_GetKeyState(int* num_keys)
+{
+	if(num_keys)
+		*num_keys = SDLK_LAST;
+	return keys;
+}
+
+
+//----------------------------------------------------------------------------
+
 static LRESULT CALLBACK wndproc(HWND hWnd, uint uMsg, WPARAM wParam, LPARAM lParam)
 {
 	if(is_shutdown)
@@ -449,7 +459,7 @@ static LRESULT CALLBACK wndproc(HWND hWnd, uint uMsg, WPARAM wParam, LPARAM lPar
 		{
 		uint sdlk = vkmap((int)wParam);
 		if(sdlk != SDLK_UNKNOWN)
-			keys[sdlk] = false;
+			keys[sdlk] = 0;
 
 		SDL_Event ev;
 		ev.type = SDL_KEYUP;
@@ -464,7 +474,7 @@ static LRESULT CALLBACK wndproc(HWND hWnd, uint uMsg, WPARAM wParam, LPARAM lPar
 		{
 		uint sdlk = vkmap((int)wParam);
 		if(sdlk != SDLK_UNKNOWN)
-			keys[sdlk] = true;
+			keys[sdlk] = 1;
 		break;
 		}
 

@@ -282,7 +282,7 @@ extern int SDL_PushEvent(SDL_Event* ev);
 
 extern void SDL_WM_SetCaption(const char *title, const char *icon);
 
-
+extern Uint8* SDL_GetKeyState(int* num_keys);
 
 
 

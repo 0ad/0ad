@@ -29,7 +29,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // RenderModifier implementation
 
-void RenderModifier::PrepareModel(uint pass, CModel* model)
+void RenderModifier::PrepareModel(uint UNUSED(pass), CModel* UNUSED(model))
 {
 }
 
@@ -73,7 +73,7 @@ u32 PlainRenderModifier::BeginPass(uint pass)
 	return STREAM_POS|STREAM_COLOR|STREAM_UV0;
 }
 
-bool PlainRenderModifier::EndPass(uint pass)
+bool PlainRenderModifier::EndPass(uint UNUSED(pass))
 {
 	// We didn't modify blend state or higher texenvs, so we don't have
 	// to reset OpenGL state here.
@@ -81,12 +81,12 @@ bool PlainRenderModifier::EndPass(uint pass)
 	return true;
 }
 
-void PlainRenderModifier::PrepareTexture(uint pass, CTexture* texture)
+void PlainRenderModifier::PrepareTexture(uint UNUSED(pass), CTexture* texture)
 {
 	g_Renderer.SetTexture(0, texture);
 }
 
-void PlainRenderModifier::PrepareModel(uint pass, CModel* model)
+void PlainRenderModifier::PrepareModel(uint UNUSED(pass), CModel* UNUSED(model))
 {
 }
 
@@ -123,7 +123,7 @@ u32 WireframeRenderModifier::BeginPass(uint pass)
 }
 
 
-bool WireframeRenderModifier::EndPass(uint pass)
+bool WireframeRenderModifier::EndPass(uint UNUSED(pass))
 {
 	// .. restore the renderstates
 	glDisable(GL_BLEND);
@@ -136,12 +136,12 @@ bool WireframeRenderModifier::EndPass(uint pass)
 }
 
 
-void WireframeRenderModifier::PrepareTexture(uint pass, CTexture* texture)
+void WireframeRenderModifier::PrepareTexture(uint UNUSED(pass), CTexture* UNUSED(texture))
 {
 }
 
 
-void WireframeRenderModifier::PrepareModel(uint pass, CModel* model)
+void WireframeRenderModifier::PrepareModel(uint UNUSED(pass), CModel* UNUSED(model))
 {
 }
 
@@ -158,22 +158,22 @@ SolidColorRenderModifier::~SolidColorRenderModifier()
 {
 }
 
-u32 SolidColorRenderModifier::BeginPass(uint pass)
+u32 SolidColorRenderModifier::BeginPass(uint UNUSED(pass))
 {
 	g_Renderer.SetTexture(0,0);
 	
 	return STREAM_POS;
 }
 
-bool SolidColorRenderModifier::EndPass(uint pass)
+bool SolidColorRenderModifier::EndPass(uint UNUSED(pass))
 {
 	return true;
 }
 
-void SolidColorRenderModifier::PrepareTexture(uint pass, CTexture* texture)
+void SolidColorRenderModifier::PrepareTexture(uint UNUSED(pass), CTexture* UNUSED(texture))
 {
 }
 
-void SolidColorRenderModifier::PrepareModel(uint pass, CModel* model)
+void SolidColorRenderModifier::PrepareModel(uint UNUSED(pass), CModel* UNUSED(model))
 {
 }

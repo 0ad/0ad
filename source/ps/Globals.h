@@ -1,6 +1,5 @@
 extern bool g_active;
 
-extern bool g_keys[SDLK_LAST];
 extern int g_mouse_x, g_mouse_y;
 
 

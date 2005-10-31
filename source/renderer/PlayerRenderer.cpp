@@ -98,7 +98,7 @@ u32 FastPlayerColorRender::BeginPass(uint pass)
 }
 
 
-bool FastPlayerColorRender::EndPass(uint pass)
+bool FastPlayerColorRender::EndPass(uint UNUSED(pass))
 {
 	// Restore state
 	pglActiveTextureARB(GL_TEXTURE1);
@@ -110,14 +110,14 @@ bool FastPlayerColorRender::EndPass(uint pass)
 	return true;
 }
 
-void FastPlayerColorRender::PrepareTexture(uint pass, CTexture* texture)
+void FastPlayerColorRender::PrepareTexture(uint UNUSED(pass), CTexture* texture)
 {
 	g_Renderer.SetTexture(2, texture);
 	g_Renderer.SetTexture(1, texture);
 	g_Renderer.SetTexture(0, texture);
 }
 
-void FastPlayerColorRender::PrepareModel(uint pass, CModel* model)
+void FastPlayerColorRender::PrepareModel(uint UNUSED(pass), CModel* model)
 {
 	// Get the player color
 	SMaterialColor colour = model->GetMaterial().GetPlayerColor();

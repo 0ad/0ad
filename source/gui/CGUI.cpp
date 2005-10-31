@@ -255,11 +255,12 @@ InReaction CGUI::HandleEvent(const SDL_Event* ev)
 	// Handle keys for input boxes
 	if (GetFocusedObject())
 	{
+		Uint8* keys = SDL_GetKeyState(0);
 		if (
 			(ev->type == SDL_KEYDOWN &&
 				ev->key.keysym.sym != SDLK_ESCAPE &&
-				!g_keys[SDLK_LCTRL] && !g_keys[SDLK_RCTRL] &&
-				!g_keys[SDLK_LALT] && !g_keys[SDLK_RALT]) 
+				!keys[SDLK_LCTRL] && !keys[SDLK_RCTRL] &&
+				!keys[SDLK_LALT] && !keys[SDLK_RALT]) 
 			|| ev->type == SDL_HOTKEYDOWN
 			)
 		{

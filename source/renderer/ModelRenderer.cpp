@@ -335,7 +335,7 @@ void BatchModelRenderer::Submit(CModel* model)
 		bmrdata->m_Data = CreateModelData(model);
 		rdata = bmrdata;
 		model->SetRenderData(bmrdata);
-		model->SetDirty(~0);
+		model->SetDirty(~0u);
 		g_Renderer.LoadTexture(model->GetTexture(), GL_CLAMP_TO_EDGE);
 	}
 

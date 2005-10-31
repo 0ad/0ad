@@ -101,7 +101,18 @@ void CTerrainProperties::LoadXML(XMBElement node, CXeromyces *pFile)
 	ATTR(on);
 	#undef ELMT
 	#undef ATTR
-	
+
+	// stomp on "unused" warnings
+	UNUSED2(attr_effect);
+	UNUSED2(attr_name);
+	UNUSED2(attr_type);
+	UNUSED2(attr_on);
+	UNUSED2(attr_speed);
+	UNUSED2(attr_max);
+	UNUSED2(elmt_event);
+	UNUSED2(elmt_passable);
+	UNUSED2(elmt_doodad);
+
 	XMBAttributeList attribs = node.getAttributes();
 	for (int i=0;i<attribs.Count;i++)
 	{

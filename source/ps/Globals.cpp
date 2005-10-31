@@ -31,19 +31,6 @@ InReaction GlobalsInputHandler(const SDL_Event* ev)
 		g_mouse_y = ev->motion.y;
 		return IN_PASS;
 
-	case SDL_KEYDOWN:
-	case SDL_KEYUP:
-		c = ev->key.keysym.sym;
-		if(c < ARRAY_SIZE(g_keys))
-			g_keys[c] = (ev->type == SDL_KEYDOWN);
-		else
-		{
-			// don't complain: this happens when the hotkey system
-			// spoofs keys (it assigns values starting from SDLK_LAST)
-			//debug_warn("invalid key");
-		}
-		return IN_PASS;
-
 	case SDL_MOUSEBUTTONDOWN:
 	case SDL_MOUSEBUTTONUP:
 		c = ev->button.button;

@@ -187,13 +187,13 @@ void* InstancingModelRenderer::CreateModelData(CModel* model)
 }
 
 
-void InstancingModelRenderer::UpdateModelData(CModel* model, void* data, u32 updateflags)
+void InstancingModelRenderer::UpdateModelData(CModel* UNUSED(model), void* UNUSED(data), u32 UNUSED(updateflags))
 {
 	// We have no per-CModel data
 }
 
 
-void InstancingModelRenderer::DestroyModelData(CModel* model, void* data)
+void InstancingModelRenderer::DestroyModelData(CModel* UNUSED(model), void* UNUSED(data))
 {
 	// We have no per-CModel data, and per-CModelDef data is deleted by the CModelDef
 }
@@ -229,7 +229,7 @@ void InstancingModelRenderer::PrepareTexture(CTexture* texture)
 
 
 // Render one model
-void InstancingModelRenderer::RenderModel(CModel* model, void* data)
+void InstancingModelRenderer::RenderModel(CModel* model, void* UNUSED(data))
 {
 	m->modifier->PrepareModel(m->pass, model);
 	
@@ -255,8 +255,8 @@ void InstancingModelRenderer::RenderModel(CModel* model, void* data)
 
 	// render the lot
 	size_t numFaces = mdldef->GetNumFaces();
-	pglDrawRangeElementsEXT(GL_TRIANGLES, 0, mdldef->GetNumVertices(),
-			numFaces*3, GL_UNSIGNED_SHORT, m->imodeldef->m_Indices);
+	pglDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)mdldef->GetNumVertices(),
+			(GLsizei)numFaces*3, GL_UNSIGNED_SHORT, m->imodeldef->m_Indices);
 
 	// bump stats
 	g_Renderer.m_Stats.m_DrawCalls++;

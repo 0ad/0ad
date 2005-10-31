@@ -196,6 +196,7 @@ void HWLightingModelRenderer::UpdateModelData(CModel* model, void* data, u32 upd
 	{
 		CModelDefPtr mdef = model->GetModelDef();
 		size_t numVertices = mdef->GetNumVertices();
+		UNUSED2(numVertices);
 	
 		// build vertices
 		VertexArrayIterator<CVector3D> Position = hwlmodel->m_Position.GetIterator<CVector3D>();
@@ -211,7 +212,7 @@ void HWLightingModelRenderer::UpdateModelData(CModel* model, void* data, u32 upd
 
 // Cleanup per-model data.
 // Note that per-CModelDef data is deleted by the CModelDef itself.
-void HWLightingModelRenderer::DestroyModelData(CModel* model, void* data)
+void HWLightingModelRenderer::DestroyModelData(CModel* UNUSED(model), void* data)
 {
 	HWLModel* hwlmodel = (HWLModel*)data;
 	
@@ -261,8 +262,8 @@ void HWLightingModelRenderer::RenderModel(CModel* model, void* data)
 
 	// render the lot
 	size_t numFaces = mdldef->GetNumFaces();
-	pglDrawRangeElementsEXT(GL_TRIANGLES, 0, mdldef->GetNumVertices(),
-			       numFaces*3, GL_UNSIGNED_SHORT, m->hwlmodeldef->m_Indices);
+	pglDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)mdldef->GetNumVertices(),
+			       (GLsizei)numFaces*3, GL_UNSIGNED_SHORT, m->hwlmodeldef->m_Indices);
 
 	// bump stats
 	g_Renderer.m_Stats.m_DrawCalls++;

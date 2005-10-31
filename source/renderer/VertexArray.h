@@ -36,7 +36,7 @@ public:
 	// Accessors
 	T& operator*() const { return *(T*)m_Data; }
 	T* operator->() const { return (T*)m_Data; }
-	T& operator[](ssize_t idx) const { return *(T*)(m_Data + idx*m_Stride); }
+	T& operator[](size_t idx) const { return *(T*)(m_Data + idx*m_Stride); }
 
 	// Walking
 	VertexArrayIterator& operator++()

@@ -17,7 +17,6 @@
 //     For SDL_HOTKEYDOWN, SDL_HOTKEYUP, the constant is passed in as ev->user.code.
 // - Add some bindings to the config file.
 
-#include "precompiled.h"
 #include "CStr.h"
 #include "lib/input.h"
 
@@ -103,14 +102,14 @@ enum
 	HOTKEY_NEGATION_FLAG = 65536
 };
 
-void loadHotkeys();
-InReaction hotkeyInputHandler( const SDL_Event* ev );
-void hotkeyRegisterGUIObject( const CStr& objName, const CStr& hotkeyName );
+extern void loadHotkeys();
+extern InReaction hotkeyInputHandler( const SDL_Event* ev );
+extern void hotkeyRegisterGUIObject( const CStr& objName, const CStr& hotkeyName );
 
-void initKeyNameMap();
-CStr getKeyName( int keycode );
-int getKeyCode( CStr keyname );
+extern void initKeyNameMap();
+extern CStr getKeyName( int keycode );
+extern int getKeyCode( CStr keyname );
 
-bool keyRespondsTo( int hotkey, int sdlkey );
+extern bool keyRespondsTo( int hotkey, int sdlkey );
 
-extern bool hotkeys[HOTKEY_LAST];
+extern Uint8 hotkeys[HOTKEY_LAST];

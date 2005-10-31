@@ -63,6 +63,8 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event* ev)
 	//  pointer and edit that.
 	CStrW *pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
 
+	Uint8* keys = SDL_GetKeyState(0);
+
 	if (ev->type == SDL_HOTKEYDOWN)
 	{
 		if (ev->user.code == HOTKEY_CONSOLE_PASTE)
@@ -149,7 +151,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event* ev)
 
 			case SDLK_HOME:
 				// If there's not a selection, we should create one now
-				if (!g_keys[SDLK_RSHIFT] && !g_keys[SDLK_LSHIFT])
+				if (!keys[SDLK_RSHIFT] && !keys[SDLK_LSHIFT])
 				{
 					// Make sure a selection isn't created.
 					m_iBufferPos_Tail = -1;
@@ -168,7 +170,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event* ev)
 
 			case SDLK_END:
 				// If there's not a selection, we should create one now
-				if (!g_keys[SDLK_RSHIFT] && !g_keys[SDLK_LSHIFT])
+				if (!keys[SDLK_RSHIFT] && !keys[SDLK_LSHIFT])
 				{
 					// Make sure a selection isn't created.
 					m_iBufferPos_Tail = -1;
@@ -211,11 +213,11 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event* ev)
 				// reset m_WantedX, very important
 				m_WantedX=0.f;
 
-				if (g_keys[SDLK_RSHIFT] || g_keys[SDLK_LSHIFT] ||
+				if (keys[SDLK_RSHIFT] || keys[SDLK_LSHIFT] ||
 					!SelectingText())
 				{
 					// If there's not a selection, we should create one now
-					if (!SelectingText() && !g_keys[SDLK_RSHIFT] && !g_keys[SDLK_LSHIFT])
+					if (!SelectingText() && !keys[SDLK_RSHIFT] && !keys[SDLK_LSHIFT])
 					{
 						// Make sure a selection isn't created.
 						m_iBufferPos_Tail = -1;
@@ -243,11 +245,11 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event* ev)
 			case SDLK_RIGHT:
 				m_WantedX=0.f;
 
-				if (g_keys[SDLK_RSHIFT] || g_keys[SDLK_LSHIFT] || 
+				if (keys[SDLK_RSHIFT] || keys[SDLK_LSHIFT] || 
 					!SelectingText())
 				{
 					// If there's not a selection, we should create one now
-					if (!SelectingText() && !g_keys[SDLK_RSHIFT] && !g_keys[SDLK_LSHIFT])
+					if (!SelectingText() && !keys[SDLK_RSHIFT] && !keys[SDLK_LSHIFT])
 					{
 						// Make sure a selection isn't created.
 						m_iBufferPos_Tail = -1;
@@ -296,7 +298,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event* ev)
 			case SDLK_UP:
 			{
 				// If there's not a selection, we should create one now
-				if (!g_keys[SDLK_RSHIFT] && !g_keys[SDLK_LSHIFT])
+				if (!keys[SDLK_RSHIFT] && !keys[SDLK_LSHIFT])
 				{
 					// Make sure a selection isn't created.
 					m_iBufferPos_Tail = -1;
@@ -344,7 +346,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event* ev)
 			case SDLK_DOWN:
 			{
 				// If there's not a selection, we should create one now
-				if (!g_keys[SDLK_RSHIFT] && !g_keys[SDLK_LSHIFT])
+				if (!keys[SDLK_RSHIFT] && !keys[SDLK_LSHIFT])
 				{
 					// Make sure a selection isn't created.
 					m_iBufferPos_Tail = -1;
@@ -452,6 +454,8 @@ void CInput::HandleMessage(const SGUIMessage &Message)
 	// TODO Gee:
 	IGUIScrollBarOwner::HandleMessage(Message);
 
+	Uint8* keys = SDL_GetKeyState(0);
+
 	switch (Message.type)
 	{
 	case GUIM_SETTINGS_UPDATED:
@@ -529,7 +533,7 @@ void CInput::HandleMessage(const SGUIMessage &Message)
 		//  instance, if we press between a and b, the point
 		//  should of course be placed accordingly. Other
 		//  special cases are handled like the input box norms.
-		if (g_keys[SDLK_RSHIFT] || g_keys[SDLK_LSHIFT])
+		if (keys[SDLK_RSHIFT] || keys[SDLK_LSHIFT])
 		{
 			m_iBufferPos = GetMouseHoveringTextPosition();
 		}

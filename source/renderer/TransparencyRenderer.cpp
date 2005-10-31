@@ -146,7 +146,7 @@ float TModel::BackToFrontIndexSort(const CMatrix3D& worldToCam)
 		tmpvtx = worldToCam.Transform(tmpvtx);
 		float distsqrd = SQR(tmpvtx.X)+SQR(tmpvtx.Y)+SQR(tmpvtx.Z);
 
-		IndexSorter[i].first = i;
+		IndexSorter[i].first = (int)i;
 		IndexSorter[i].second = distsqrd;
 	}
 
@@ -228,7 +228,7 @@ void TransparencyRenderer::Submit(CModel* model)
 		tmdl = new TModel(m, model);
 		rdata = tmdl;
 		model->SetRenderData(rdata);
-		model->SetDirty(~0);
+		model->SetDirty(~0u);
 		g_Renderer.LoadTexture(model->GetTexture(), GL_CLAMP_TO_EDGE);
 	}
 	
@@ -373,8 +373,8 @@ void TransparencyRenderer::Render(RenderModifierPtr modifier, u32 flags)
 
 			// render the lot
 			size_t numFaces = mdef->GetNumFaces();
-			pglDrawRangeElementsEXT(GL_TRIANGLES, 0, mdef->GetNumVertices(),
-					       numFaces*3, GL_UNSIGNED_SHORT, tmdl->m_Indices);
+			pglDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)mdef->GetNumVertices(),
+					       (GLsizei)numFaces*3, GL_UNSIGNED_SHORT, tmdl->m_Indices);
 
 			// bump stats
 			g_Renderer.m_Stats.m_DrawCalls++;
@@ -466,12 +466,12 @@ bool TransparentRenderModifier::EndPass(uint pass)
 	return true;
 }
 
-void TransparentRenderModifier::PrepareTexture(uint pass, CTexture* texture)
+void TransparentRenderModifier::PrepareTexture(uint UNUSED(pass), CTexture* texture)
 {
 	g_Renderer.SetTexture(0, texture);
 }
 
-void TransparentRenderModifier::PrepareModel(uint pass, CModel* model)
+void TransparentRenderModifier::PrepareModel(uint UNUSED(pass), CModel* UNUSED(model))
 {
 	// No per-model setup nececssary
 }
@@ -511,7 +511,7 @@ u32 TransparentShadowRenderModifier::BeginPass(uint pass)
 	return STREAM_POS|STREAM_UV0;
 }
 
-bool TransparentShadowRenderModifier::EndPass(uint pass)
+bool TransparentShadowRenderModifier::EndPass(uint UNUSED(pass))
 {
 	glDepthMask(1);
 	glDisable(GL_BLEND);
@@ -519,13 +519,12 @@ bool TransparentShadowRenderModifier::EndPass(uint pass)
 	return true;
 }
 
-void TransparentShadowRenderModifier::PrepareTexture(uint pass, CTexture* texture)
+void TransparentShadowRenderModifier::PrepareTexture(uint UNUSED(pass), CTexture* texture)
 {
 	g_Renderer.SetTexture(0, texture);
 }
 
-void TransparentShadowRenderModifier::PrepareModel(uint pass, CModel* model)
+void TransparentShadowRenderModifier::PrepareModel(uint UNUSED(pass), CModel* UNUSED(model))
 {
 	// No per-model setup nececssary
 }
-

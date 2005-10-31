@@ -301,6 +301,8 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 
 	if (!m_bVisible) return;
 
+	Uint8* keys = SDL_GetKeyState(0);
+
 	switch (szChar){
 		case '\r':
 		case '\n':
@@ -344,7 +346,7 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 			return;
 
 		case SDLK_HOME:
-			if (g_keys[SDLK_RCTRL] || g_keys[SDLK_LCTRL])
+			if (keys[SDLK_RCTRL] || keys[SDLK_LCTRL])
 			{
 				int linesShown = (int)m_fHeight/m_iFontHeight - 4;
 				m_iMsgHistPos = clamp((int)m_deqMsgHistory.size() - linesShown, 1, (int)m_deqMsgHistory.size());
@@ -356,7 +358,7 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 			return;
 
 		case SDLK_END:
-			if (g_keys[SDLK_RCTRL] || g_keys[SDLK_LCTRL])
+			if (keys[SDLK_RCTRL] || keys[SDLK_LCTRL])
 			{
 				m_iMsgHistPos = 1;
 			}
@@ -671,8 +673,8 @@ InReaction conInputHandler(const SDL_Event* ev)
 	// SB: Not safe, really.. Swedish keyboards have {[]} on AltGr (Ctrl-Alt)
 	//     for example, so I commented those tests.
 	if( ( ev->key.keysym.sym != SDLK_ESCAPE ) &&
-		/*!g_keys[SDLK_LCTRL] && !g_keys[SDLK_RCTRL] &&
-		!g_keys[SDLK_LALT] && !g_keys[SDLK_RALT] &&*/
+		/*!keys[SDLK_LCTRL] && !keys[SDLK_RCTRL] &&
+		!keys[SDLK_LALT] && !keys[SDLK_RALT] &&*/
 		!hotkeys[HOTKEY_CONSOLE_TOGGLE] ) 
 		g_Console->InsertChar(sym, (wchar_t)ev->key.keysym.unicode );
 

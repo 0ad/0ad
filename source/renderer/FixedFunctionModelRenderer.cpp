@@ -205,7 +205,7 @@ void FixedFunctionModelRenderer::UpdateModelData(CModel* model, void* data, u32 
 
 // Cleanup per-model data.
 // Note that per-CModelDef data is deleted by the CModelDef itself.
-void FixedFunctionModelRenderer::DestroyModelData(CModel* model, void* data)
+void FixedFunctionModelRenderer::DestroyModelData(CModel* UNUSED(model), void* data)
 {
 	FFModel* ffmodel = (FFModel*)data;
 	
@@ -254,8 +254,8 @@ void FixedFunctionModelRenderer::RenderModel(CModel* model, void* data)
 
 	// render the lot
 	size_t numFaces = mdldef->GetNumFaces();
-	pglDrawRangeElementsEXT(GL_TRIANGLES, 0, mdldef->GetNumVertices(),
-			       numFaces*3, GL_UNSIGNED_SHORT, m->ffmodeldef->m_Indices);
+	pglDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)mdldef->GetNumVertices(),
+			       (GLsizei)numFaces*3, GL_UNSIGNED_SHORT, m->ffmodeldef->m_Indices);
 
 	// bump stats
 	g_Renderer.m_Stats.m_DrawCalls++;
