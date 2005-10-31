@@ -22,19 +22,8 @@ InReaction GlobalsInputHandler(const SDL_Event* ev)
 	switch(ev->type)
 	{
 	case SDL_ACTIVEEVENT:
-		g_active = (ev->active.gain != 0);
-
-		// tasked out
-		if(ev->active.gain == 0)
-		{
-			// reset all key/button state, so that we don't get any
-			// phantom events when returning to our app.
-			// see CGUI::ClearMouseState.
-			for(uint i = 0; i < ARRAY_SIZE(g_mouse_buttons); i++)
-				g_mouse_buttons[i] = 0;
-			for(uint i = 0; i < ARRAY_SIZE(g_keys); i++)
-				g_keys[i] = 0;
-		}
+		if(ev->active.state & SDL_APPACTIVE)
+			g_active = (ev->active.gain != 0);
 		return IN_PASS;
 
 	case SDL_MOUSEMOTION:

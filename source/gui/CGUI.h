@@ -251,8 +251,6 @@ public:
 
 private:
 
-	void ClearMouseState();
-
 	/**
 	 * Updates the object pointers, needs to be called each
 	 * time an object has been added or removed.

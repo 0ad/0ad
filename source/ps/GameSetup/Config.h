@@ -21,7 +21,6 @@ extern CStr g_RenderPath;
 extern int g_xres, g_yres;
 extern int g_bpp;
 extern int g_freq;
-extern bool g_active;
 extern bool g_Quickstart;
 extern CStr g_AutostartMap;
 

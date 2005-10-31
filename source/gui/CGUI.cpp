@@ -65,28 +65,12 @@ InReaction gui_handler(const SDL_Event* ev)
 	return g_GUI.HandleEvent(ev);
 }
 
-// This is called after tasking out to another application. It avoids
-// havoc by resetting the state of all mouse buttons to
-// "not currently pressed". Since a button that happened to be pressed
-// before the task switch will most likely be released during that time, we
-// have to do this to prevent phantom mouse events when returing to our app.
-void CGUI::ClearMouseState()
-{
-	// reset all bits to "button is not currently pressed".
-	m_MouseButtons = 0;
-}
 
 InReaction CGUI::HandleEvent(const SDL_Event* ev)
 {
 	InReaction ret = IN_PASS;
 
-	if (ev->type == SDL_ACTIVEEVENT)
-	{
-		if(ev->active.gain == 0)
-			g_GUI.ClearMouseState();
-	}
-
-	else if (ev->type == SDL_GUIHOTKEYPRESS)
+	if (ev->type == SDL_GUIHOTKEYPRESS)
 	{
 		const CStr& objectName = *(CStr*) ev->user.data1;
 		IGUIObject* object = FindObjectByName(objectName);

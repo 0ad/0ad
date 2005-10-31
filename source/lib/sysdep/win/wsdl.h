@@ -46,6 +46,7 @@ extern int SDL_Init(Uint32 flags);
 
 extern void SDL_Quit(void);
 
+extern Uint8 SDL_GetAppState();
 
 typedef enum
 {

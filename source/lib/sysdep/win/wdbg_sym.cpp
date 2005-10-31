@@ -424,8 +424,6 @@ static int walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip = 0, 
 	sf.AddrStack.Offset = pcontext->SP_;
 	sf.AddrStack.Mode   = AddrModeFlat;
 
-	const HANDLE hThread = GetCurrentThread();
-
 	// for each stack frame found:
 	int ret = WDBG_NO_STACK_FRAMES_FOUND;
 	for(;;)
@@ -451,6 +449,7 @@ static int walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip = 0, 
 		// note: unfortunately StackWalk64 doesn't always SetLastError,
 		// so we have to reset it and check for 0. *sigh*
 		SetLastError(0);
+		const HANDLE hThread = GetCurrentThread();
 		BOOL ok = StackWalk64(machine, hProcess, hThread, &sf, (PVOID)pcontext,
 			0, SymFunctionTableAccess64, SymGetModuleBase64, 0);
 		if(ok)

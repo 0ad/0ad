@@ -69,24 +69,22 @@ WIN_REGISTER_FUNC(wsdl_shutdown);
 #pragma data_seg()
 
 
-static bool app_active;
-	// window is active and visible.
-	// used to send SDL_ACTIVEEVENT messages and in the msgproc.
-	// note: responsibility for yielding lies with SDL apps -
-	// they control the main loop.
+// SDL_APP* bitflags indicating whether we are active.
+// note: responsibility for yielding lies with SDL apps -
+// they control the main loop.
+static uint app_state;
 
+// in fullscreen mode, i.e. not windowed.
+// video mode will be restored when app is deactivated.
 static bool fullscreen;
-	// in fullscreen mode, i.e. not windowed.
-	// video mode must be restored when app is deactivated.
 
+// the app is shutting down.
+// if set, ignore further Windows messages for clean shutdown.
 static bool is_shutdown;
-	// the app is shutting down.
-	// if set, ignore further Windows messages for clean shutdown.
 
-
+// app instance.
+// returned by GetModuleHandle and used in kbd hook and window creation. 
 static HINSTANCE hInst = 0;
-	// app instance.
-	// returned by GetModuleHandle and used in kbd hook and window creation. 
 
 
 HWND hWnd = (HWND)INVALID_HANDLE_VALUE;
@@ -99,6 +97,62 @@ static HGLRC hGLRC = (HGLRC)INVALID_HANDLE_VALUE;
 static int depth_bits = 24;	// depth buffer size; set via SDL_GL_SetAttribute
 
 static u16 mouse_x, mouse_y;
+
+
+Uint8 SDL_GetAppState()
+{
+	return app_state;
+}
+
+
+//----------------------------------------------------------------------------
+
+typedef std::queue<SDL_Event> Queue;
+static Queue queue;
+
+static void queue_event(const SDL_Event& ev)
+{
+	queue.push(ev);
+}
+
+static bool dequeue_event(SDL_Event* ev)
+{
+	if(queue.empty())
+		return false;
+	*ev = queue.front();
+	queue.pop();
+	return true;
+}
+
+static inline void queue_active_event(uint gain, uint changed_app_state)
+{
+	// SDL says this event is not generated when the window is created,
+	// but skipping the first event may confuse things.
+
+	SDL_Event ev;
+	ev.type = SDL_ACTIVEEVENT;
+	ev.active.state = (u8)changed_app_state;
+	ev.active.gain = (u8)gain;
+	queue_event(ev);
+}
+
+static void queue_quit_event()
+{
+	SDL_Event ev;
+	ev.type = SDL_QUIT;
+	queue_event(ev);
+}
+
+static void queue_button_event(uint button, uint state, uint x, uint y)
+{
+	SDL_Event ev;
+	ev.type = (state == SDL_PRESSED)? SDL_MOUSEBUTTONDOWN : SDL_MOUSEBUTTONUP;
+	ev.button.button = (u8)button;
+	ev.button.state  = (u8)state;
+	ev.button.x = x;
+	ev.button.y = y;
+	queue_event(ev);
+}
 
 
 //----------------------------------------------------------------------------
@@ -177,6 +231,8 @@ int SDL_SetGamma(float r, float g, float b)
 
 
 //----------------------------------------------------------------------------
+
+static bool keys[SDLK_LAST];
 
 static void init_vkmap(SDLKey (&VK_keymap)[256])
 {
@@ -273,55 +329,18 @@ inline SDLKey vkmap(int vk)
 }
 
 
-
-//----------------------------------------------------------------------------
-
-typedef std::queue<SDL_Event> Queue;
-static Queue queue;
-
-static void queue_event(const SDL_Event& ev)
+static void reset_all_keys()
 {
-	queue.push(ev);
-}
+	SDL_Event spoofed_up_event;
+	spoofed_up_event.type = SDL_KEYUP;
+	spoofed_up_event.key.keysym.unicode = 0;
 
-static bool dequeue_event(SDL_Event* ev)
-{
-	if(queue.empty())
-		return false;
-	*ev = queue.front();
-	queue.pop();
-	return true;
-}
-
-static inline void queue_active_event()
-{
-	// SDL says this event is not generated when the window is created;
-	// therefore, skip the first time.
-	ONCE(return);
-
-	SDL_Event ev;
-	ev.type = SDL_ACTIVEEVENT;
-	ev.active.state = SDL_APPACTIVE;
-	ev.active.gain = (u8)app_active;
-	queue_event(ev);
-}
-
-static void queue_quit_event()
-{
-	SDL_Event ev;
-	ev.type = SDL_QUIT;
-	queue_event(ev);
-}
-
-static void queue_button_event(uint button, uint state, LPARAM lParam)
-{
-	SDL_Event ev;
-	ev.type = (state == SDL_PRESSED)? SDL_MOUSEBUTTONDOWN : SDL_MOUSEBUTTONUP;
-	ev.button.button = (u8)button;
-	ev.button.state  = (u8)state;
-	ev.button.x = LOWORD(lParam);
-	ev.button.y = HIWORD(lParam);
-	queue_event(ev);
+	for(int i = 0; i < ARRAY_SIZE(keys); i++)
+		if(keys[i])
+		{
+			spoofed_up_event.key.keysym.sym = (SDLKey)i;
+			queue_event(spoofed_up_event);
+		}
 }
 
 
@@ -339,7 +358,9 @@ static LRESULT CALLBACK wndproc(HWND hWnd, uint uMsg, WPARAM wParam, LPARAM lPar
 		return 0;
 
 	case WM_ERASEBKGND:
-		return 0;
+		// this indicates we allegedly erased the background;
+		// PAINTSTRUCT.fErase is then FALSE.
+		return 1;
 
 	// prevent selecting menu in fullscreen mode
 	case WM_NCHITTEST:
@@ -348,28 +369,54 @@ static LRESULT CALLBACK wndproc(HWND hWnd, uint uMsg, WPARAM wParam, LPARAM lPar
 		break;
 
 	case WM_ACTIVATE:
-		app_active = LOWORD(wParam) != 0;
-
-		gamma_swap(app_active? GAMMA_LATCH_NEW_RAMP : GAMMA_RESTORE_ORIGINAL);
-
-		if(fullscreen)
 		{
-			// (re)activating
-			if(app_active)
+		const uint wa_type = LOWORD(wParam);
+		const bool is_minimized = (HIWORD(wParam) != 0);
+		uint changed_app_state;
+		uint gain;
+		if(wa_type != WA_INACTIVE && !is_minimized)
+		{
+			gain = 1;
+			changed_app_state = SDL_APPINPUTFOCUS|SDL_APPACTIVE;
+			app_state |= changed_app_state;
+		}
+		// deactivated (Alt+Tab out) or minimized
+		else
+		{
+			gain = 0;
+			changed_app_state = SDL_APPINPUTFOCUS;
+			if(is_minimized)
+				changed_app_state |= SDL_APPACTIVE;
+			app_state &= ~changed_app_state;
+		}
+
+		if(gain)
+		{
+			gamma_swap(GAMMA_LATCH_NEW_RAMP);
+			if(fullscreen)
 			{
-				ChangeDisplaySettings(&dm, CDS_FULLSCREEN);
 				ShowWindow(hWnd, SW_RESTORE);
+				ChangeDisplaySettings(&dm, CDS_FULLSCREEN);
 			}
-			// deactivating
-			else
+		}
+		else
+		{
+			reset_all_keys();
+
+			gamma_swap(GAMMA_RESTORE_ORIGINAL);
+			if(fullscreen)
 			{
 				ChangeDisplaySettings(0, 0);
 				ShowWindow(hWnd, SW_MINIMIZE);
 			}
 		}
 
-		queue_active_event();
+		queue_active_event(gain, changed_app_state);
+
+		// let DefWindowProc run (gives us keyboard focus if
+		// we're being reactivated)
 		break;
+		}
 
 	case WM_DESTROY:
 		queue_quit_event();
@@ -400,42 +447,99 @@ static LRESULT CALLBACK wndproc(HWND hWnd, uint uMsg, WPARAM wParam, LPARAM lPar
 		// TODO Modifier statekeeping
 
 		{
+		uint sdlk = vkmap((int)wParam);
+		if(sdlk != SDLK_UNKNOWN)
+			keys[sdlk] = false;
+
 		SDL_Event ev;
 		ev.type = SDL_KEYUP;
-		ev.key.keysym.sym = vkmap((int)wParam);
+		ev.key.keysym.sym = (SDLKey)sdlk;
 		ev.key.keysym.unicode = 0;
 		queue_event(ev);
 		}
 		return 1;
 
+	case WM_SYSKEYDOWN:
+	case WM_KEYDOWN:
+		{
+		uint sdlk = vkmap((int)wParam);
+		if(sdlk != SDLK_UNKNOWN)
+			keys[sdlk] = true;
+		break;
+		}
+
 	case WM_MOUSEWHEEL:
 		{
 			short delta = (short)HIWORD(wParam);
 			uint button = (delta < 0)? SDL_BUTTON_WHEELDOWN : SDL_BUTTON_WHEELUP;
+			uint x = LOWORD(lParam);
+			uint y = HIWORD(lParam);
 			// SDL says this sends a down message followed by up.
-			queue_button_event(button, SDL_PRESSED, lParam);
-			queue_button_event(button, SDL_RELEASED, lParam);
+			queue_button_event(button, SDL_PRESSED , x, y);
+			queue_button_event(button, SDL_RELEASED, x, y);
 		}
 		break;
 
+
 	case WM_LBUTTONDOWN:
-		queue_button_event(SDL_BUTTON_LEFT, SDL_PRESSED, lParam);
-		break;
 	case WM_LBUTTONUP:
-		queue_button_event(SDL_BUTTON_LEFT, SDL_RELEASED, lParam);
-		break;
 	case WM_RBUTTONDOWN:
-		queue_button_event(SDL_BUTTON_RIGHT, SDL_PRESSED, lParam);
-		break;
 	case WM_RBUTTONUP:
-		queue_button_event(SDL_BUTTON_RIGHT, SDL_RELEASED, lParam);
-		break;
 	case WM_MBUTTONDOWN:
-		queue_button_event(SDL_BUTTON_MIDDLE, SDL_PRESSED, lParam);
-		break;
 	case WM_MBUTTONUP:
-		queue_button_event(SDL_BUTTON_MIDDLE, SDL_RELEASED, lParam);
+		{
+		uint button;
+		uint state;
+		switch(uMsg)
+		{
+		case WM_LBUTTONDOWN:
+			button = SDL_BUTTON_LEFT;
+			state = SDL_PRESSED;
+			break;
+		case WM_LBUTTONUP:
+			button = SDL_BUTTON_LEFT;
+			state = SDL_RELEASED;
+			break;
+		case WM_RBUTTONDOWN:
+			button = SDL_BUTTON_RIGHT;
+			state = SDL_PRESSED;
+			break;
+		case WM_RBUTTONUP:
+			button = SDL_BUTTON_RIGHT;
+			state = SDL_RELEASED;
+			break;
+		case WM_MBUTTONDOWN:
+			button = SDL_BUTTON_MIDDLE;
+			state = SDL_PRESSED;
+			break;
+		case WM_MBUTTONUP:
+			button = SDL_BUTTON_MIDDLE;
+			state = SDL_RELEASED;
+		default:
+			UNREACHABLE;
+		}
+
+		// mouse capture
+		static int outstanding_press_events;
+		if(state == SDL_PRESSED)
+		{
+			// grab mouse to ensure we get up events
+			if(++outstanding_press_events > 0)
+				SetCapture(hWnd);
+		}
+		else
+			// release after all up events received
+			if(--outstanding_press_events <= 0)
+			{
+				ReleaseCapture();
+				outstanding_press_events = 0;
+			}
+
+		uint x = LOWORD(lParam);
+		uint y = HIWORD(lParam);
+		queue_button_event(button, state, x, y);
 		break;
+		}
 
 	default:
 		// can't call DefWindowProc here: some messages
@@ -604,10 +708,10 @@ static LRESULT CALLBACK keyboard_ll_hook(int nCode, WPARAM wParam, LPARAM lParam
 		{
 			// disabled - we want the normal Windows printscreen handling to
 			// remain so as not to confuse artists.
-			/*		
+			/*
 			// check whether PrintScreen should be taking screenshots -- if
 			// not, allow the standard Windows clipboard to work
-			if(app_active)
+			if(app_state & SDL_APPINPUTFOCUS)
 			{
 				// send to wndproc
 				UINT msg = (UINT)wParam;

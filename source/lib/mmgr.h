@@ -134,7 +134,7 @@ const uint MMGR_TRACE         = 0x008;
 // use debug information to resolve owner address to file/line/function.
 // note: passing owner information to global operator delete via macro
 // isn't reliable, so a stack backtrace (list of function addresses) is all
-// we have there. this costs ~500s per unique call site on Windows.
+// we have there. this costs ~500us per unique call site on Windows.
 const uint MMGR_RESOLVE_OWNER = 0x010;
 
 // force each log line to be written directly to disk. slow!

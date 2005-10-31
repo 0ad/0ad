@@ -129,6 +129,8 @@ static void Frame()
 	MICROLOG(L"Frame");
 	oglCheck();
 
+	const uint app_state = SDL_GetAppState();
+
 	PROFILE_START( "update music" );
 	music_player.update();
 	PROFILE_END( "update music" );
@@ -213,7 +215,6 @@ static void Frame()
 		if(snd_update(0, 0, 0) < 0)
 			debug_printf("snd_update (pos=0 version) failed\n");
 	}
-
 	PROFILE_END( "game logic" );
 
 	PROFILE_START( "update console" );
@@ -223,7 +224,8 @@ static void Frame()
 	PROFILE_START( "render" );
 	oglCheck();
 
-	if(g_active)
+
+	if(app_state & SDL_APPACTIVE)
 	{
 		MICROLOG(L"render");
 		Render();
@@ -235,7 +237,7 @@ static void Frame()
 	// inactive; relinquish CPU for a little while
 	// don't use SDL_WaitEvent: don't want the main loop to freeze until app focus is restored
 	else
-		SDL_Delay(10);
+		SDL_Delay(5);
 
 	oglCheck();
 	PROFILE_END( "render" );
