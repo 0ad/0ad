@@ -213,6 +213,11 @@ enum SDL_MouseButtonEvent_button
 	SDL_BUTTON_WHEELDOWN = 5
 };
 
+#define SDL_BUTTON(b)		(SDL_PRESSED << (b-1))
+#define SDL_BUTTON_LMASK	SDL_BUTTON(SDL_BUTTON_LEFT)
+#define SDL_BUTTON_MMASK	SDL_BUTTON(SDL_BUTTON_MIDDLE)
+#define SDL_BUTTON_RMASK	SDL_BUTTON(SDL_BUTTON_RIGHT)
+
 enum SDL_MouseButtonEvent_state
 {
 	SDL_RELEASED = 0,
@@ -283,94 +288,10 @@ extern int SDL_PushEvent(SDL_Event* ev);
 extern void SDL_WM_SetCaption(const char *title, const char *icon);
 
 extern Uint8* SDL_GetKeyState(int* num_keys);
+extern Uint8 SDL_GetMouseState(int* x, int* y);
 
-
-
-
-
-
-
-
-
-
-
-// glutInitDisplayMode
-#define GLUT_RGB			0
-#define GLUT_DOUBLE			0
-#define GLUT_DEPTH			0
-
-// mouse buttons
-enum
-{
-	GLUT_LEFT_BUTTON,
-	GLUT_RIGHT_BUTTON,
-	GLUT_MIDDLE_BUTTON		// also wheel, if avail
-};
-
-// mouse button state
-enum
-{
-	GLUT_DOWN,
-	GLUT_UP
-};
-
-// keys
-enum
-{
-	GLUT_KEY_LEFT  = 0x25,			// VK_*
-	GLUT_KEY_RIGHT = 0x27,
-	GLUT_KEY_UP    = 0x26,
-	GLUT_KEY_DOWN  = 0x28
-};
-
-
-// glutSetCursor
-#define GLUT_CURSOR_INHERIT	32512	// IDC_*
-#define GLUT_CURSOR_WAIT	32514
-#define GLUT_CURSOR_DESTROY	32648
-#define GLUT_CURSOR_NONE	0
-
-// glutGet
-enum
-{
-GLUT_ELAPSED_TIME,
-GLUT_SCREEN_WIDTH,
-GLUT_SCREEN_HEIGHT,
-
-GLUT_GAME_MODE_WIDTH,
-GLUT_GAME_MODE_HEIGHT,
-GLUT_GAME_MODE_PIXEL_DEPTH,
-GLUT_GAME_MODE_REFRESH_RATE
-};
-
-
-
-extern void glutIdleFunc(void(*)());
-extern void glutDisplayFunc(void(*)());
-extern void glutKeyboardFunc(void(*)(int, int, int));
-extern void glutSpecialFunc(void(*)(int, int, int));
-extern void glutMouseFunc(void(*)(int, int, int, int));
-
-
-#define glutInitDisplayMode(a)	// pixel format is hardwired
-
-extern int glutGameModeString(const char* str);
-
-
-
-extern void glutInit(int* argc, char* argv[]);
-extern int glutGet(int arg);
-extern int glutEnterGameMode(void);
-extern void glutMainLoop(void);
-
-extern void glutPostRedisplay(void);
-
-extern void glutSetCursor(int);
-
-
-
-#define glutSwapBuffers SDL_GL_SwapBuffers
-
+//( SDLMod and KMOD_* already defined by SDL_keysym.h)
+extern SDLMod SDL_GetModState(void);
 
 
 #ifdef __cplusplus

@@ -112,4 +112,4 @@ extern int getKeyCode( CStr keyname );
 
 extern bool keyRespondsTo( int hotkey, int sdlkey );
 
-extern Uint8 hotkeys[HOTKEY_LAST];
+extern bool hotkeys[HOTKEY_LAST];

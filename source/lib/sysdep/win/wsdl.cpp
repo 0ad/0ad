@@ -96,8 +96,6 @@ static HGLRC hGLRC = (HGLRC)INVALID_HANDLE_VALUE;
 
 static int depth_bits = 24;	// depth buffer size; set via SDL_GL_SetAttribute
 
-static u16 mouse_x, mouse_y;
-
 
 Uint8 SDL_GetAppState()
 {
@@ -354,6 +352,22 @@ Uint8* SDL_GetKeyState(int* num_keys)
 
 //----------------------------------------------------------------------------
 
+static u16 mouse_x, mouse_y;
+
+static uint mouse_buttons;
+
+Uint8 SDL_GetMouseState(int* x, int* y)
+{
+	if(x)
+		*x = (int)mouse_x;
+	if(y)
+		*y = (int)mouse_y;
+	return (Uint8)mouse_buttons;
+}
+
+
+//----------------------------------------------------------------------------
+
 static LRESULT CALLBACK wndproc(HWND hWnd, uint uMsg, WPARAM wParam, LPARAM lParam)
 {
 	if(is_shutdown)
@@ -544,6 +558,12 @@ static LRESULT CALLBACK wndproc(HWND hWnd, uint uMsg, WPARAM wParam, LPARAM lPar
 				ReleaseCapture();
 				outstanding_press_events = 0;
 			}
+
+		// update bits
+		if(state == SDL_PRESSED)
+			mouse_buttons |= SDL_BUTTON(button);
+		else
+			mouse_buttons &= ~SDL_BUTTON(button);
 
 		uint x = LOWORD(lParam);
 		uint y = HIWORD(lParam);

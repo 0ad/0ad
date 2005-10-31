@@ -25,6 +25,7 @@
 #include "Loader.h"
 #include "Profile.h"
 #include "ps/LoaderThunks.h"
+#include "ps/Globals.h"
 
 #include "Quaternion.h"
 #include "Unit.h"
@@ -40,7 +41,6 @@ float g_YMinOffset=25.0f;
 
 
 extern int g_xres, g_yres;
-extern bool g_active;
 
 static CVector3D cameraBookmarks[10];
 static bool bookmarkInUse[10] = { false, false, false, false, false, false, false, false, false, false };
@@ -344,7 +344,7 @@ void CGameView::RotateAboutTarget()
 
 void CGameView::Update(float DeltaTime)
 {
-	if (!g_active)
+	if (!g_app_has_focus)
 		return;
 
 	float delta = powf( m_ViewSnapSmoothness, DeltaTime );
@@ -592,7 +592,7 @@ InReaction game_view_handler(const SDL_Event* ev)
 {
 	// put any events that must be processed even if inactive here
 
-	if(!g_active || !g_Game)
+	if(!g_app_has_focus || !g_Game)
 		return IN_PASS;
 
 	CGameView *pView=g_Game->GetView();

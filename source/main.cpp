@@ -26,16 +26,17 @@ that of Atlas depending on commandline parameters.
 #include "ps/GameSetup/Atlas.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/Loader.h"
-#include "gui/GUI.h"
 #include "ps/CConsole.h"
 #include "ps/Profile.h"
 #include "ps/Util.h"
 #include "ps/Game.h"
 #include "ps/Hotkey.h"
+#include "ps/Globals.h"
 #include "ps/Interact.h"
 #include "ps/Network/SessionManager.h"
 #include "simulation/Scheduler.h"
 #include "sound/CMusicPlayer.h"
+#include "gui/GUI.h"
 
 #define LOG_CATEGORY "main"
 
@@ -129,54 +130,87 @@ static void Frame()
 	MICROLOG(L"Frame");
 	oglCheck();
 
-	const uint app_state = SDL_GetAppState();
-
-	PROFILE_START( "update music" );
-	music_player.update();
-	PROFILE_END( "update music" );
-
+	// get elapsed time
 	calc_fps();
-// old method - "exact" but contains jumps
+	// .. old method - "exact" but contains jumps
 #if 0
 	static double last_time;
 	const double time = get_time();
 	const float TimeSinceLastFrame = (float)(time-last_time);
 	last_time = time;
 	ONCE(return);	// first call: set last_time and return
-			
-// new method - filtered and more smooth, but errors may accumulate
+
+	// .. new method - filtered and more smooth, but errors may accumulate
 #else
 	const float TimeSinceLastFrame = spf;
 #endif
 	debug_assert(TimeSinceLastFrame >= 0.0f);
 
-	PROFILE_START( "reload changed files" );
-	MICROLOG(L"reload files");
+	// decide if update/render is necessary
+	bool need_render, need_update;
+	if(g_app_minimized)
+	{
+		// TODO: eventually update ought to be re-enabled so the server host
+		// can Alt+Tab out without the match hanging. however, game updates
+		// are currently really slow and disabling them makes debugging nicer.
+		need_update = false;
+		need_render = false;
+
+		// inactive; relinquish CPU for a little while
+		// don't use SDL_WaitEvent: don't want the main loop to freeze until app focus is restored
+		SDL_Delay(10);
+	}
+	else if(!g_app_has_focus)
+	{
+		need_update = false;	// see above
+		need_render = true;
+
+		SDL_Delay(5);	// see above
+	}
+	// active
+	else
+	{
+		need_update = true;
+		need_render = true;
+	}
+	// TODO: throttling: limit update and render frequency to the minimum.
+	// this is mostly relevant for "inactive" state, so that other windows
+	// get enough CPU time, but it's always nice for power+thermal management.
+
+
+	PROFILE_START( "update music" );
+	music_player.update();
+	PROFILE_END( "update music" );
+
+	PROFILE_START("reload changed files");
+	MICROLOG(L"reload changed files");
 	vfs_reload_changed_files(); 
-	PROFILE_END( "reload changed files" );
+	PROFILE_END( "reload changed files");
 
-	PROFILE_START( "progressive load" );
+	PROFILE_START("progressive load");
+	MICROLOG(L"progressive load");
 	ProgressiveLoad();
-	PROFILE_END( "progressive load" );
+	PROFILE_END( "progressive load");
 
-	PROFILE_START( "input" );
+	PROFILE_START("input");
 	MICROLOG(L"input");
 	PumpEvents();
 	g_SessionManager.Poll();
-	PROFILE_END( "input" );
+	PROFILE_END("input");
 
 	oglCheck();
 
-	PROFILE_START( "gui tick" );
+	PROFILE_START("gui tick");
+	MICROLOG(L"gui tick");
 #ifndef NO_GUI
 	g_GUI.TickObjects();
 #endif
-	PROFILE_END( "gui tick" );
+	PROFILE_END("gui tick");
 
 	oglCheck();
 
 	PROFILE_START( "game logic" );
-	if (g_Game && g_Game->IsGameStarted())
+	if (g_Game && g_Game->IsGameStarted() && need_update)
 	{
 		PROFILE_START( "simulation update" );
 		g_Game->Update(TimeSinceLastFrame);
@@ -221,11 +255,9 @@ static void Frame()
 	g_Console->Update(TimeSinceLastFrame);
 	PROFILE_END( "update console" );
 
-	PROFILE_START( "render" );
+	PROFILE_START("render");
 	oglCheck();
-
-
-	if(app_state & SDL_APPACTIVE)
+	if(need_render)
 	{
 		MICROLOG(L"render");
 		Render();
@@ -234,20 +266,14 @@ static void Frame()
 		SDL_GL_SwapBuffers();
 		PROFILE_END( "swap buffers" );
 	}
-	// inactive; relinquish CPU for a little while
-	// don't use SDL_WaitEvent: don't want the main loop to freeze until app focus is restored
-	else
-		SDL_Delay(5);
-
 	oglCheck();
-	PROFILE_END( "render" );
+	PROFILE_END("render");
 
 	g_Profiler.Frame();
 
 	if(g_FixedFrameTiming && frameCount==100)
 		kill_mainloop();
 
-	// clear terrain modified flag
 	g_TerrainModified = false;
 }
 

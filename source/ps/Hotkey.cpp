@@ -10,7 +10,7 @@
 
 extern CConsole* g_Console;
 
-static Uint8 unified[5];
+static bool unified[5];
 
 /* SDL-type */
 
@@ -47,7 +47,7 @@ const int HK_MAX_KEYCODES = UNIFIED_SUPER + 1;
 static KeyMapping hotkeyMap[HK_MAX_KEYCODES];
 
 // An array of the status of virtual keys
-Uint8 hotkeys[HOTKEY_LAST];
+bool hotkeys[HOTKEY_LAST];
 
 
 struct SHotkeyInfo
@@ -320,7 +320,6 @@ void hotkeyRegisterGUIObject( const CStr& objName, const CStr& hotkeyName )
 InReaction hotkeyInputHandler( const SDL_Event* ev )
 {
 	int keycode = 0;
-	Uint8* keys = SDL_GetKeyState(0);
 
 	switch( ev->type )
 	{
@@ -426,17 +425,17 @@ InReaction hotkeyInputHandler( const SDL_Event* ev )
 		for( itKey = it->requires.begin(); itKey != it->requires.end(); itKey++ )
 		{
 			int keyCode = *itKey & ~HOTKEY_NEGATION_FLAG; // Clear the negation-modifier bit
-			Uint8 rqdState = ( *itKey & HOTKEY_NEGATION_FLAG ) == 0;
+			bool rqdState = ( *itKey & HOTKEY_NEGATION_FLAG ) == 0;
 
 			// debug_assert( !rqdState );
 
 			if( keyCode < SDLK_LAST )
 			{
-				if( keys[keyCode] != rqdState ) accept = false;
+				if( g_keys[keyCode] != rqdState ) accept = false;
 			}
 			else if( keyCode < UNIFIED_SHIFT )
 			{
-				if( (Uint8)g_mouse_buttons[keyCode-SDLK_LAST] != rqdState ) accept = false;
+				if( g_mouse_buttons[keyCode-SDLK_LAST] != rqdState ) accept = false;
 			}
 			else if( (uint)(keyCode-UNIFIED_SHIFT) < ARRAY_SIZE(unified) )
 			{
@@ -497,15 +496,15 @@ InReaction hotkeyInputHandler( const SDL_Event* ev )
 		for( itKey = itGUI->requires.begin(); itKey != itGUI->requires.end(); itKey++ )
 		{
 			int keyCode = *itKey & ~HOTKEY_NEGATION_FLAG; // Clear the negation-modifier bit
-			Uint8 rqdState = ( *itKey & HOTKEY_NEGATION_FLAG ) == 0;
+			bool rqdState = ( *itKey & HOTKEY_NEGATION_FLAG ) == 0;
 
 			if( keyCode < SDLK_LAST )
 			{
-				if( keys[keyCode] != rqdState ) accept = false;
+				if( g_keys[keyCode] != rqdState ) accept = false;
 			}
 			else if( keyCode < UNIFIED_SHIFT )
 			{
-				if( (Uint8)g_mouse_buttons[keyCode-SDLK_LAST] != rqdState ) accept = false;
+				if( g_mouse_buttons[keyCode-SDLK_LAST] != rqdState ) accept = false;
 			}
 			else if( (uint)(keyCode-UNIFIED_SHIFT) < ARRAY_SIZE(unified) )
 			{
@@ -572,7 +571,7 @@ InReaction hotkeyInputHandler( const SDL_Event* ev )
 		{
 			if( *itKey < SDLK_LAST )
 			{
-				if( !keys[*itKey] ) accept = false;
+				if( !g_keys[*itKey] ) accept = false;
 			}
 			else if( *itKey < UNIFIED_SHIFT )
 			{

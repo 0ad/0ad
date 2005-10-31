@@ -10,6 +10,7 @@
 #include "Hotkey.h"
 #include "timer.h"
 #include "Game.h"
+#include "ps/Globals.h"
 #include "Network/NetMessage.h"
 #include "BoundingObjects.h"
 #include "Unit.h"
@@ -20,8 +21,6 @@
 #include "MathUtil.h"
 
 extern CConsole* g_Console;
-extern int g_mouse_x, g_mouse_y;
-extern bool g_active;
 extern CStr g_CursorName;
 
 static const double SELECT_DBLCLICK_RATE = 0.5;
@@ -827,7 +826,7 @@ void MouseButtonUpHandler(const SDL_Event *ev, int clicks)
 
 InReaction interactInputHandler( const SDL_Event* ev )
 {
-	if (!g_active || !g_Game)
+	if (!g_app_has_focus || !g_Game)
 		return IN_PASS;
 
 	CGameView *pView=g_Game->GetView();
