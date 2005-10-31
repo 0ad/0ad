@@ -29,17 +29,14 @@ void AtlasRender()
 
 // Loaded from DLL:
 void (*Atlas_StartWindow)(wchar_t* type);
-void (*Atlas_SetMessagePasser)(MessagePasser<mCommand>*, MessagePasser<mInput>*);
+void (*Atlas_SetMessagePasser)(MessagePasser*);
 void (*Atlas_GLSetCurrent)(void* context);
 void (*Atlas_GLSwapBuffers)(void* context);
 void (*Atlas_NotifyEndOfFrame)();
 
 
-static MessagePasserImpl<mCommand> msgPasser_Command;
-static MessagePasserImpl<mInput>   msgPasser_Input;
-
-MessagePasser<mCommand>* AtlasMessage::g_MessagePasser_Command = &msgPasser_Command;
-MessagePasser<mInput>*   AtlasMessage::g_MessagePasser_Input = &msgPasser_Input;
+static MessagePasserImpl msgPasser;
+MessagePasser* AtlasMessage::g_MessagePasser = &msgPasser;
 
 
 static InputProcessor g_Input;
@@ -68,7 +65,7 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 #undef GET
 
 	// Pass our message handler to Atlas
-	Atlas_SetMessagePasser(&msgPasser_Command, &msgPasser_Input);
+	Atlas_SetMessagePasser(&msgPasser);
 
 	// Create a new thread, and launch the Atlas window inside that thread
 	pthread_t gameThread;
@@ -109,12 +106,12 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 		//////////////////////////////////////////////////////////////////////////
 		
 		{
-			mCommand* msg;
-			while ((msg = msgPasser_Command.Retrieve()) != NULL)
+			IMessage* msg;
+			while ((msg = msgPasser.Retrieve()) != NULL)
 			{
 				recent_activity = true;
 
-				std::string name (msg->GetType());
+				std::string name (msg->GetName());
 
 				if (name == "CommandString")
 				{
@@ -124,10 +121,11 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 					// given string)
 					name += "_";
 					name += static_cast<mCommandString*>(msg)->name;
-						// use 'static_cast' when casting messages, to make it clear
-						// that it's slightly dangerous - we have to just assume that
-						// GetType is correct, since we can't use proper RTTI
+					// use 'static_cast' when casting messages, to make it clear
+					// that it's slightly dangerous - we have to just assume that
+					// GetName is correct, since we can't use proper RTTI
 				}
+
 				msgHandlers::const_iterator it = GetMsgHandlers().find(name);
 				if (it != GetMsgHandlers().end())
 				{
@@ -140,37 +138,25 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 					LOG(ERROR, "atlas", "Unrecognised message (%s)", name.c_str());
 				}
 
-				delete msg;
+				if (msg->GetType() == IMessage::Query)
+				{
+					// For queries, we need to notify MessagePasserImpl::Query
+					// that the query has now been processed.
+					sem_post((sem_t*) static_cast<QueryMessage*>(msg)->m_Semaphore);
+					// (msg may have been destructed at this point, so don't use it again)
+				}
+				else
+				{
+					// For non-queries, we need to delete the object, since we
+					// took ownership of it.
+					delete msg;
+				}
 			}
 		}
 
 		// Exit, if desired
 		if (! state.running)
 			break;
-
-		// Now do the same (roughly), for input events:
-		{
-			mInput* msg;
-			while ((msg = msgPasser_Input.Retrieve()) != NULL)
-			{
-				recent_activity = true;
-
-				std::string name (msg->GetType());
-				msgHandlers::const_iterator it = GetMsgHandlers().find(name);
-				if (it != GetMsgHandlers().end())
-				{
-					it->second(msg);
-				}
-				else
-				{
-					debug_warn("Unrecognised message");
-					// TODO: CLogger might not be initialised
-					LOG(ERROR, "atlas", "Unrecognised message (%s)", name.c_str());
-				}
-
-				delete msg;
-			}
-		}
 
 		//////////////////////////////////////////////////////////////////////////
 
@@ -200,7 +186,7 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 				// (TODO: This should probably be done with something like semaphores)
 				Atlas_NotifyEndOfFrame(); // (TODO: rename to NotifyEndOfQuiteShortProcessingPeriodSoPleaseSendMeNewMessages or something)
 				SDL_Delay(50);
-				if (!msgPasser_Input.IsEmpty() || !msgPasser_Command.IsEmpty())
+				if (!msgPasser.IsEmpty())
 					break;
 				time = get_time();
 			}

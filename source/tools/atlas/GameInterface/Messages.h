@@ -5,54 +5,54 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-COMMAND(CommandString,
+MESSAGE(CommandString,
 		((std::string, name))
 		);
 
 //////////////////////////////////////////////////////////////////////////
 
-COMMAND(SetContext,
+MESSAGE(SetContext,
 		((void*, context))
 		);
 
-COMMAND(ResizeScreen,
+MESSAGE(ResizeScreen,
 		((int, width))
 		((int, height))
 		);
 
 //////////////////////////////////////////////////////////////////////////
 
-COMMAND(GenerateMap,
+MESSAGE(GenerateMap,
 		((int, size)) // size in number of patches
 		);
 
-COMMAND(LoadMap,
+MESSAGE(LoadMap,
 		((std::wstring, filename))
 		);
 
 //////////////////////////////////////////////////////////////////////////
 
-COMMAND(RenderStyle,
+MESSAGE(RenderStyle,
 		((bool, wireframe))
 		);
 
-COMMAND(MessageTrace,
+MESSAGE(MessageTrace,
 		((bool, enable))
 		);
 
-COMMAND(Screenshot,
+MESSAGE(Screenshot,
 		((int, tiles)) // the final image will be (640*tiles)x(480*tiles)
 		);
 
 //////////////////////////////////////////////////////////////////////////
 
-COMMAND(Brush,
+MESSAGE(Brush,
 		((int, width)) // number of vertices
 		((int, height))
 		((float*, data)) // width*height array, allocated with new[]
 		);
 
-COMMAND(BrushPreview,
+MESSAGE(BrushPreview,
 		((bool, enable))
 		((Position, pos)) // only used if enable==true
 		);
@@ -60,36 +60,45 @@ COMMAND(BrushPreview,
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
+QUERY(GetTerrainGroups,
+	  ((int, null)) // urgh - I can't do zero-input queries easily
+	  ,
+	  ((std::vector<std::wstring>, groupnames))
+	  );
+
+//////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+
 
 struct eScrollConstantDir { enum { FORWARDS, BACKWARDS, LEFT, RIGHT }; };
-INPUT(ScrollConstant,
-	  ((int, dir))
-	  ((float, speed)) // set speed 0.0f to stop scrolling
-	  );
+MESSAGE(ScrollConstant,
+		((int, dir))
+		((float, speed)) // set speed 0.0f to stop scrolling
+		);
 
 struct eScrollType { enum { FROM, TO }; };
-INPUT(Scroll, // for scrolling by dragging the mouse FROM somewhere TO elsewhere
-	  ((int, type))
-	  ((Position, pos))
-	  );
+MESSAGE(Scroll, // for scrolling by dragging the mouse FROM somewhere TO elsewhere
+		((int, type))
+		((Position, pos))
+		);
 
-INPUT(SmoothZoom,
-	  ((float, amount))
-	  );
+MESSAGE(SmoothZoom,
+		((float, amount))
+		);
 
 struct eRotateAroundType { enum { FROM, TO }; };
-INPUT(RotateAround,
-	  ((int, type))
-	  ((Position, pos))
-	  );
+MESSAGE(RotateAround,
+		((int, type))
+		((Position, pos))
+		);
 
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-WORLDCOMMAND(AlterElevation, MERGE,
-			 ((Position, pos))
-			 ((float, amount))
-			 );
+COMMAND(AlterElevation, MERGE,
+		((Position, pos))
+		((float, amount))
+		);
 
 //////////////////////////////////////////////////////////////////////////
 

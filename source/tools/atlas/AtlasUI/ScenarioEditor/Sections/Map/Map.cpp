@@ -18,7 +18,7 @@ static void LoadMap(void*)
 	{
 		// TODO: Work when the map is not in .../maps/scenarios/
 		std::wstring map = dlg.GetFilename().c_str();
-		POST_COMMAND(LoadMap(map));
+		POST_MESSAGE(LoadMap(map));
 	}
 	
 	wxCHECK_RET(cwd == wxFileName::GetCwd(), _T("cwd changed"));
@@ -30,7 +30,7 @@ static void LoadMap(void*)
 
 static void GenerateMap(void*)
 {
-	POST_COMMAND(GenerateMap(9));
+	POST_MESSAGE(GenerateMap(9));
 }
 
 static void GenerateRMS(void* data)
@@ -44,7 +44,7 @@ static void GenerateRMS(void* data)
 	wxExecute(argv, wxEXEC_SYNC);
 	wxFileName::SetCwd(cwd);
 
-	POST_COMMAND(LoadMap(L"_atlasrm.pmp"));
+	POST_MESSAGE(LoadMap(L"_atlasrm.pmp"));
 }
 
 //////////////////////////////////////////////////////////////////////////

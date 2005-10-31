@@ -27,7 +27,7 @@ public:
 
 	void OnDisable(AlterElevation*)
 	{
-		POST_COMMAND(BrushPreview(false, Position()));
+		POST_MESSAGE(BrushPreview(false, Position()));
 	}
 
 
@@ -49,7 +49,7 @@ public:
 			}
 			else if (evt.Moving())
 			{
-				POST_COMMAND(BrushPreview(true, Position(evt.GetPosition())));
+				POST_MESSAGE(BrushPreview(true, Position(evt.GetPosition())));
 				return true;
 			}
 			else
@@ -65,7 +65,7 @@ public:
 	{
 		void OnEnter(AlterElevation* obj)
 		{
-			POST_COMMAND(BrushPreview(true, obj->m_Pos));
+			POST_MESSAGE(BrushPreview(true, obj->m_Pos));
 		}
 
 		void OnLeave(AlterElevation*)
@@ -84,7 +84,7 @@ public:
 			{
 				wxPoint pos = evt.GetPosition();
 				obj->m_Pos = Position(pos);
-				POST_COMMAND(BrushPreview(true, obj->m_Pos));
+				POST_MESSAGE(BrushPreview(true, obj->m_Pos));
 				return true;
 			}
 			else
@@ -95,7 +95,7 @@ public:
 
 		void OnTick(AlterElevation* obj, float dt)
 		{
-			ADD_WORLDCOMMAND(AlterElevation, (obj->m_Pos, dt*4096.f*GetDirection()*g_Brush_Elevation.GetStrength()));
+			POST_COMMAND(AlterElevation, (obj->m_Pos, dt*4096.f*GetDirection()*g_Brush_Elevation.GetStrength()));
 			obj->m_Pos = Position::Unchanged();
 		}
 

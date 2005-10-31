@@ -10,8 +10,7 @@ namespace AtlasMessage {
 
 MESSAGEHANDLER(MessageTrace)
 {
-	((MessagePasserImpl<mCommand>*)g_MessagePasser_Command)->SetTrace(msg->enable);
-	((MessagePasserImpl<mInput>*)g_MessagePasser_Input)->SetTrace(msg->enable);
+	((MessagePasserImpl*)g_MessagePasser)->SetTrace(msg->enable);
 }
 
 MESSAGEHANDLER(Screenshot)
@@ -19,5 +18,6 @@ MESSAGEHANDLER(Screenshot)
 	// TODO: allow non-big screenshots too
 	WriteBigScreenshot("bmp", msg->tiles);
 }
+
 
 }

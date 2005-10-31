@@ -8,26 +8,25 @@
 using namespace AtlasMessage;
 
 
-template<typename T> MessagePasserImpl<T>::MessagePasserImpl()
+MessagePasserImpl::MessagePasserImpl()
 : m_Trace(false)
 {
 }
 
-template<typename T> void MessagePasserImpl<T>::Add(T* msg)
+void MessagePasserImpl::Add(IMessage* msg)
 {
 	debug_assert(msg);
+	debug_assert(msg->GetType() == IMessage::Message);
 
 	if (m_Trace)
-		debug_printf("%8.3f add message: %s\n", get_time(), msg->GetType());
+		debug_printf("%8.3f add message: %s\n", get_time(), msg->GetName());
 
 	m_Mutex.Lock();
-
 	m_Queue.push(msg);
-
 	m_Mutex.Unlock();
 }
 
-template <typename T> T* MessagePasserImpl<T>::Retrieve()
+IMessage* MessagePasserImpl::Retrieve()
 {
 	// (It should be fairly easy to use a more efficient thread-safe queue,
 	// since there's only one thread adding items and one thread consuming;
@@ -35,7 +34,7 @@ template <typename T> T* MessagePasserImpl<T>::Retrieve()
 
 	m_Mutex.Lock();
 
-	T* msg = NULL;
+	IMessage* msg = NULL;
 	if (! m_Queue.empty())
 	{
 		msg = m_Queue.front();
@@ -49,7 +48,48 @@ template <typename T> T* MessagePasserImpl<T>::Retrieve()
 	return msg;
 }
 
-template <typename T> bool MessagePasserImpl<T>::IsEmpty()
+void MessagePasserImpl::Query(QueryMessage* qry)
+{
+	debug_assert(qry);
+	debug_assert(qry->GetType() == IMessage::Query);
+
+	if (m_Trace)
+		debug_printf("%8.3f add query: %s\n", get_time(), qry->GetName());
+
+	// Initialise a semaphore, so we can block until the query has been handled
+	int err;
+	sem_t sem;
+	err = sem_init(&sem, 0, 0);
+	if (err != 0)
+	{
+		// Probably-fatal error
+		debug_warn("sem_init failed");
+		return;
+	}
+	qry->m_Semaphore = (void*)&sem;
+
+	m_Mutex.Lock();
+	m_Queue.push(qry);
+	m_Mutex.Unlock();
+
+	// Wait until the query handler has handled the query and called sem_post
+	while (0 != (err = sem_wait(&sem)))
+	{
+		// Keep retrying while EINTR
+		if (errno != EINTR)
+		{
+			// Other errors are probably fatal
+			debug_warn("sem_wait failed");
+			return;
+		}
+	}
+
+	// Clean up
+	qry->m_Semaphore = NULL;
+	sem_destroy(&sem);
+}
+
+bool MessagePasserImpl::IsEmpty()
 {
 	m_Mutex.Lock();
 	bool empty = m_Queue.empty();
@@ -57,11 +97,7 @@ template <typename T> bool MessagePasserImpl<T>::IsEmpty()
 	return empty;
 }
 
-template <typename T> void MessagePasserImpl<T>::SetTrace(bool t)
+void MessagePasserImpl::SetTrace(bool t)
 {
 	m_Trace = t;
 }
-
-// Explicit instantiation:
-template MessagePasserImpl<mCommand>;
-template MessagePasserImpl<mInput>;

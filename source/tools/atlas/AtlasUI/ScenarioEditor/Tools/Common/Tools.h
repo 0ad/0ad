@@ -43,7 +43,7 @@ private:
 	AtlasMessage::mWorldCommand* m_Command;
 };
 
-#define ADD_WORLDCOMMAND(type, data) ScenarioEditor::GetCommandProc().Submit(new WorldCommand(new AtlasMessage::m##type(AtlasMessage::d##type data)))
+#define POST_COMMAND(type, data) ScenarioEditor::GetCommandProc().Submit(new WorldCommand(new AtlasMessage::m##type(AtlasMessage::d##type data)))
 
 //////////////////////////////////////////////////////////////////////////
 

@@ -3,18 +3,20 @@
 #include "ps/ThreadUtil.h"
 #include <queue>
 
-template <typename T> class MessagePasserImpl : public AtlasMessage::MessagePasser<T>
+class MessagePasserImpl : public AtlasMessage::MessagePasser
 {
 public:
 	MessagePasserImpl();
-	virtual void Add(T* msg);
-	virtual T* Retrieve();
-	virtual bool IsEmpty();
+	virtual void Add(AtlasMessage::IMessage* msg);
+	virtual AtlasMessage::IMessage* Retrieve();
+	virtual void Query(AtlasMessage::QueryMessage* qry);
+
+	bool IsEmpty();
 
 	void SetTrace(bool t);
 
 private:
 	CMutex m_Mutex;
-	std::queue<T*> m_Queue;
+	std::queue<AtlasMessage::IMessage*> m_Queue;
 	bool m_Trace;
 };

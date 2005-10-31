@@ -42,13 +42,11 @@ BOOL APIENTRY DllMain(HINSTANCE hModule, DWORD fdwReason, LPVOID WXUNUSED(lpRese
 
 using namespace AtlasMessage;
 
-MessagePasser<mCommand>* AtlasMessage::g_MessagePasser_Command = NULL;
-MessagePasser<mInput>*   AtlasMessage::g_MessagePasser_Input   = NULL;
+MessagePasser* AtlasMessage::g_MessagePasser = NULL;
 
-ATLASDLLIMPEXP void Atlas_SetMessagePasser(MessagePasser<mCommand>* handler_cmd, MessagePasser<mInput>* handler_in)
+ATLASDLLIMPEXP void Atlas_SetMessagePasser(MessagePasser* passer)
 {
-	g_MessagePasser_Command = handler_cmd;
-	g_MessagePasser_Input   = handler_in;
+	g_MessagePasser = passer;
 }
 
 ATLASDLLIMPEXP void Atlas_StartWindow(wchar_t* type)

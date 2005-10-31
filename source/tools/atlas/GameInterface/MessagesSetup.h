@@ -10,6 +10,7 @@
 
 class wxPoint;
 class CVector3D;
+class CMutex;
 
 namespace AtlasMessage
 {
@@ -44,49 +45,70 @@ struct Position
 
 struct IMessage
 {
-	virtual const char* GetType() const = 0;
+	virtual const char* GetName() const = 0;
 	virtual ~IMessage() {}
+
+	enum Type { Message, Query };
+	virtual Type GetType() const = 0;
 };
 
-// High-level message types, as a limited form of type-safety to prevent e.g.
-// adding input message into the command queue
-struct mCommand : public IMessage {};
-struct mInput : public IMessage {};
 
-
-#define MESSAGESTRUCT(t, b) struct m##t : public m##b { const char* GetType() const { return #t; }  private: const m##t& operator=(const m##t&); public:
-#define COMMANDSTRUCT(t) MESSAGESTRUCT(t, Command)
-#define   INPUTSTRUCT(t) MESSAGESTRUCT(t, Input)
+#define MESSAGESTRUCT(t) \
+	struct m##t : public IMessage { \
+		const char* GetName() const { return #t; } \
+		Type GetType() const { return Type::Message; } \
+	private: \
+		const m##t& operator=(const m##t&); \
+	public:
 
 // Messages for doing/undoing/etc world-altering commands
-COMMANDSTRUCT(WorldCommand)
+
+MESSAGESTRUCT(WorldCommand)
 	mWorldCommand() {}
 	virtual void* CloneData() const = 0;
 	virtual bool IsMergeable() const = 0;
 };
-COMMANDSTRUCT(DoCommand)
-	mDoCommand(mWorldCommand* c) : name(c->GetType()), data(c->CloneData()) {}
+MESSAGESTRUCT(DoCommand)
+	mDoCommand(mWorldCommand* c) : name(c->GetName()), data(c->CloneData()) {}
 	const std::string name;
 	const void* data;
 };
-COMMANDSTRUCT(UndoCommand)  };
-COMMANDSTRUCT(RedoCommand)  };
-COMMANDSTRUCT(MergeCommand) };
+MESSAGESTRUCT(UndoCommand)  };
+MESSAGESTRUCT(RedoCommand)  };
+MESSAGESTRUCT(MergeCommand) };
+
+
+struct QueryMessage : public IMessage
+{
+	Type GetType() const { return Type::Query; }
+	void Post() { g_MessagePasser->Query(this); }
+
+	void* m_Semaphore; // for use by MessagePasser implementations (yay encapsulation)
+};
+
+#define QUERYSTRUCT(t) \
+	struct q##t : public QueryMessage { \
+		const char* GetName() const { return #t; } \
+	private: \
+		const q##t& operator=(const q##t&); \
+	public:
+
+
 
 const bool MERGE = true;
 const bool NOMERGE = false;
 
 
-#define WORLDDATASTRUCT(t) \
+#define COMMANDDATASTRUCT(t) \
 	struct d##t { \
 	private: \
 		const d##t& operator=(const d##t&); \
 	public:
 
-#define WORLDCOMMANDSTRUCT(t, merge) \
+#define COMMANDSTRUCT(t, merge) \
 	struct m##t : public mWorldCommand, public d##t { \
 		m##t(const d##t& d) : d##t(d) {} \
-		const char* GetType() const { return #t; } \
+		const char* GetName() const { return #t; } \
 		virtual bool IsMergeable() const { return merge; } \
 		void* CloneData() const { return new d##t(*this); } \
 	private: \
@@ -102,25 +124,31 @@ const bool NOMERGE = false;
 #define B_NAME(elem) BOOST_PP_TUPLE_ELEM(2, 1, elem)
 #define B_CONSTRUCTORARGS(r, data, n, elem) BOOST_PP_COMMA_IF(n) B_TYPE(elem) BOOST_PP_CAT(B_NAME(elem),_)
 #define B_CONSTRUCTORINIT(r, data, n, elem) BOOST_PP_COMMA_IF(n) B_NAME(elem)(BOOST_PP_CAT(B_NAME(elem),_))
-#define B_MEMBERS(r, data, n, elem) const B_TYPE(elem) B_NAME(elem);
+#define B_CONSTMEMBERS(r, data, n, elem) const B_TYPE(elem) B_NAME(elem);
+#define B_MEMBERS(r, data, n, elem) B_TYPE(elem) B_NAME(elem);
 
-#define B_MESSAGE(name, vals, base) \
-	MESSAGESTRUCT(name, base) \
+#define MESSAGE(name, vals) \
+	MESSAGESTRUCT(name) \
 		m##name( BOOST_PP_SEQ_FOR_EACH_I(B_CONSTRUCTORARGS, ~, vals) ) \
-		: BOOST_PP_SEQ_FOR_EACH_I(B_CONSTRUCTORINIT, ~, vals) {} \
-		BOOST_PP_SEQ_FOR_EACH_I(B_MEMBERS, ~, vals) \
+			: BOOST_PP_SEQ_FOR_EACH_I(B_CONSTRUCTORINIT, ~, vals) {} \
+		BOOST_PP_SEQ_FOR_EACH_I(B_CONSTMEMBERS, ~, vals) \
 	};
 
-#define COMMAND(name, vals) B_MESSAGE(name, vals, Command)
-#define   INPUT(name, vals) B_MESSAGE(name, vals, Input)
+#define QUERY(name, in_vals, out_vals) \
+	QUERYSTRUCT(name) \
+		q##name( BOOST_PP_SEQ_FOR_EACH_I(B_CONSTRUCTORARGS, ~, in_vals) ) \
+			: BOOST_PP_SEQ_FOR_EACH_I(B_CONSTRUCTORINIT, ~, in_vals) {} \
+		BOOST_PP_SEQ_FOR_EACH_I(B_CONSTMEMBERS, ~, in_vals) \
+		BOOST_PP_SEQ_FOR_EACH_I(B_MEMBERS, ~, out_vals) \
+	};
 
-#define WORLDCOMMAND(name, merge, vals) \
-	WORLDDATASTRUCT(name) \
+#define COMMAND(name, merge, vals) \
+	COMMANDDATASTRUCT(name) \
 		d##name( BOOST_PP_SEQ_FOR_EACH_I(B_CONSTRUCTORARGS, ~, vals) ) \
 		: BOOST_PP_SEQ_FOR_EACH_I(B_CONSTRUCTORINIT, ~, vals) {} \
-		BOOST_PP_SEQ_FOR_EACH_I(B_MEMBERS, ~, vals) \
+		BOOST_PP_SEQ_FOR_EACH_I(B_CONSTMEMBERS, ~, vals) \
 	}; \
-	WORLDCOMMANDSTRUCT(name, merge);
+	COMMANDSTRUCT(name, merge);
 
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
@@ -128,19 +156,18 @@ const bool NOMERGE = false;
 #else // MESSAGESSETUP_NOTFIRST => clean up the mess
 
 #undef MESSAGESTRUCT
+#undef QUERYSTRUCT
+#undef COMMANDDATASTRUCT
 #undef COMMANDSTRUCT
-#undef INPUTSTRUCT
-#undef WORLDDATASTRUCT
-#undef WORLDCOMMANDSTRUCT
 #undef B_TYPE
 #undef B_NAME
 #undef B_CONSTRUCTORARGS
 #undef B_CONSTRUCTORINIT
+#undef B_CONSTMEMBERS
 #undef B_MEMBERS
-#undef B_MESSAGE
+#undef MESSAGE
+#undef QUERY
 #undef COMMAND
-#undef INPUT
-#undef WORLDCOMMAND
 
 }
 

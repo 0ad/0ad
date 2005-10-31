@@ -38,7 +38,7 @@ public:
 		// Be careful not to send 'resize' messages to the game before we've
 		// told it that this canvas exists
 		if (! m_SuppressResize)
-			POST_COMMAND(ResizeScreen(GetClientSize().GetWidth(), GetClientSize().GetHeight()));
+			POST_MESSAGE(ResizeScreen(GetClientSize().GetWidth(), GetClientSize().GetHeight()));
 			// TODO: fix flashing
 #endif // UI_ONLY
 	}
@@ -73,14 +73,14 @@ public:
 
 		if (dir == -1) // changed modifier keys - update all currently-scrolling directions
 		{
-			if (wxGetKeyState(WXK_LEFT))  POST_INPUT(ScrollConstant(AtlasMessage::eScrollConstantDir::LEFT, speed));
-			if (wxGetKeyState(WXK_RIGHT)) POST_INPUT(ScrollConstant(AtlasMessage::eScrollConstantDir::RIGHT, speed));
-			if (wxGetKeyState(WXK_UP))    POST_INPUT(ScrollConstant(AtlasMessage::eScrollConstantDir::FORWARDS, speed));
-			if (wxGetKeyState(WXK_DOWN))  POST_INPUT(ScrollConstant(AtlasMessage::eScrollConstantDir::BACKWARDS, speed));
+			if (wxGetKeyState(WXK_LEFT))  POST_MESSAGE(ScrollConstant(AtlasMessage::eScrollConstantDir::LEFT, speed));
+			if (wxGetKeyState(WXK_RIGHT)) POST_MESSAGE(ScrollConstant(AtlasMessage::eScrollConstantDir::RIGHT, speed));
+			if (wxGetKeyState(WXK_UP))    POST_MESSAGE(ScrollConstant(AtlasMessage::eScrollConstantDir::FORWARDS, speed));
+			if (wxGetKeyState(WXK_DOWN))  POST_MESSAGE(ScrollConstant(AtlasMessage::eScrollConstantDir::BACKWARDS, speed));
 		}
 		else
 		{
-			POST_INPUT(ScrollConstant(dir, enable ? speed : 0.0f));
+			POST_MESSAGE(ScrollConstant(dir, enable ? speed : 0.0f));
 		}
 #endif // UI_ONLY
 		return true;
@@ -178,7 +178,7 @@ public:
 			else if (wxGetKeyState(WXK_SHIFT))
 				speed *= 4.f;
 
-			POST_INPUT(SmoothZoom(evt.GetWheelRotation() * speed / evt.GetWheelDelta()));
+			POST_MESSAGE(SmoothZoom(evt.GetWheelRotation() * speed / evt.GetWheelDelta()));
 		}
 		else
 		{
@@ -197,8 +197,8 @@ public:
 				switch (m_MouseState)
 				{
 				case NONE: break;
-				case SCROLL: POST_INPUT(Scroll(AtlasMessage::eScrollType::FROM, evt.GetPosition())); break;
-				case ROTATEAROUND: POST_INPUT(RotateAround(AtlasMessage::eRotateAroundType::FROM, evt.GetPosition())); break;
+				case SCROLL: POST_MESSAGE(Scroll(AtlasMessage::eScrollType::FROM, evt.GetPosition())); break;
+				case ROTATEAROUND: POST_MESSAGE(RotateAround(AtlasMessage::eRotateAroundType::FROM, evt.GetPosition())); break;
 				default: wxFAIL;
 				}
 				m_LastMouseState = m_MouseState;
@@ -208,8 +208,8 @@ public:
 				switch (m_MouseState)
 				{
 				case NONE: break;
-				case SCROLL: POST_INPUT(Scroll(AtlasMessage::eScrollType::TO, evt.GetPosition())); break;
-				case ROTATEAROUND: POST_INPUT(RotateAround(AtlasMessage::eRotateAroundType::TO, evt.GetPosition())); break;
+				case SCROLL: POST_MESSAGE(Scroll(AtlasMessage::eScrollType::TO, evt.GetPosition())); break;
+				case ROTATEAROUND: POST_MESSAGE(RotateAround(AtlasMessage::eRotateAroundType::TO, evt.GetPosition())); break;
 				default: wxFAIL;
 				}
 			}
@@ -385,18 +385,25 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	// Send setup messages to game engine:
 
 #ifndef UI_ONLY
-	POST_COMMAND(SetContext(canvas->GetContext()));
+	POST_MESSAGE(SetContext(canvas->GetContext()));
 
-	POST_COMMAND(CommandString("init"));
+	POST_MESSAGE(CommandString("init"));
 
 	canvas->InitSize();
 
 	// Start with a blank map (so that the editor can assume there's always
 	// a valid map loaded)
-	POST_COMMAND(GenerateMap(9));
+	POST_MESSAGE(GenerateMap(9));
 
-	POST_COMMAND(CommandString("render_enable"));
+	POST_MESSAGE(CommandString("render_enable"));
 #endif
+
+//	{
+//		AtlasMessage::qGetTerrainGroups qry(0);
+//		qry.Post();
+//		for (std::vector<std::wstring>::iterator it = qry.groupnames.begin(); it != qry.groupnames.end(); ++it)
+//			wxLogMessage(L"%s", wxString(it->c_str()));
+//	}
 
 	// Set up a timer to make sure tool-updates happen frequently (in addition
 	// to the idle handler (which makes them happen more frequently if there's nothing
@@ -409,9 +416,9 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 void ScenarioEditor::OnClose(wxCloseEvent&)
 {
 #ifndef UI_ONLY
-	POST_COMMAND(CommandString("shutdown"));
+	POST_MESSAGE(CommandString("shutdown"));
 #endif
-	POST_COMMAND(CommandString("exit"));
+	POST_MESSAGE(CommandString("exit"));
 
 	SetCurrentTool(_T(""));
 
@@ -465,17 +472,17 @@ void ScenarioEditor::OnRedo(wxCommandEvent&)
 
 void ScenarioEditor::OnWireframe(wxCommandEvent& event)
 {
-	POST_COMMAND(RenderStyle(event.IsChecked()));
+	POST_MESSAGE(RenderStyle(event.IsChecked()));
 }
 
 void ScenarioEditor::OnMessageTrace(wxCommandEvent& event)
 {
-	POST_COMMAND(MessageTrace(event.IsChecked()));
+	POST_MESSAGE(MessageTrace(event.IsChecked()));
 }
 
-void ScenarioEditor::OnScreenshot(wxCommandEvent& event)
+void ScenarioEditor::OnScreenshot(wxCommandEvent& WXUNUSED(event))
 {
-	POST_COMMAND(Screenshot(10));
+	POST_MESSAGE(Screenshot(10));
 }
 
 //////////////////////////////////////////////////////////////////////////

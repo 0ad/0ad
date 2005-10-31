@@ -183,6 +183,7 @@ void* InstancingModelRenderer::CreateModelData(CModel* model)
 		imodeldef = new IModelDef(mdef);
 		mdef->SetRenderData(m, imodeldef);
 	}
+	return NULL;
 }
 
 

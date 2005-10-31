@@ -7,7 +7,22 @@ BEGIN_EVENT_TABLE(ToolButton, wxButton)
 	EVT_BUTTON(wxID_ANY, ToolButton::OnClick)
 END_EVENT_TABLE()
 
-void ToolButton::OnClick(wxCommandEvent& evt)
+ToolButton::ToolButton
+	(wxWindow *parent,
+	 const wxString& label,
+	 const wxString& toolName,
+	 const wxSize& size,
+	 long style)
+	: wxButton(parent, wxID_ANY, label, wxDefaultPosition, size, style),
+	m_Tool(toolName)
+{
+	// Explicitly set appearance, so that the button is always owner-drawn
+	// (by the wxButton code), rather than initially using the native
+	// (fixed colour) button appearance.
+	SetSelectedAppearance(false);
+}
+
+void ToolButton::OnClick(wxCommandEvent& WXUNUSED(evt))
 {
 	if (g_Current)
 		g_Current->SetSelectedAppearance(false);

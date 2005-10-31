@@ -200,7 +200,7 @@ void Brush::MakeActive()
 void Brush::Send()
 {
 	if (m_IsActive)
-		POST_COMMAND(Brush(GetWidth(), GetHeight(), GetNewedData()));
+		POST_MESSAGE(Brush(GetWidth(), GetHeight(), GetNewedData()));
 }
 
 
