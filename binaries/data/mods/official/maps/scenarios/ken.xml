@@ -337,12 +337,6 @@
 		<Entity>
 			<Template>celt_ho</Template>
 			<Player>1</Player>
-			<Position x="245.516" y="12.2103" z="230.768" />
-			<Orientation angle="-3.1411" />
-		</Entity>
-		<Entity>
-			<Template>celt_ho</Template>
-			<Player>1</Player>
 			<Position x="222.077" y="8.30333" z="193.942" />
 			<Orientation angle="-3.14108" />
 		</Entity>
@@ -509,12 +503,6 @@
 			<Orientation angle="2.28242" />
 		</Entity>
 		<Entity>
-			<Template>celt_cjv_e</Template>
-			<Player>1</Player>
-			<Position x="239.533" y="11.4917" z="240.532" />
-			<Orientation angle="-2.73673" />
-		</Entity>
-		<Entity>
 			<Template>celt_csp_a</Template>
 			<Player>1</Player>
 			<Position x="199.239" y="9.08431" z="207.375" />
@@ -525,12 +513,6 @@
 			<Player>1</Player>
 			<Position x="201.616" y="10.5175" z="228.899" />
 			<Orientation angle="-3.11575" />
-		</Entity>
-		<Entity>
-			<Template>celt_csp_e</Template>
-			<Player>1</Player>
-			<Position x="237.025" y="11.154" z="230.396" />
-			<Orientation angle="-2.67309" />
 		</Entity>
 		<Entity>
 			<Template>celt_csw_a</Template>
@@ -563,18 +545,6 @@
 			<Orientation angle="-2.71214" />
 		</Entity>
 		<Entity>
-			<Template>celt_csw_e</Template>
-			<Player>1</Player>
-			<Position x="235.7" y="10.6062" z="217.754" />
-			<Orientation angle="3.04029" />
-		</Entity>
-		<Entity>
-			<Template>celt_csw_e</Template>
-			<Player>1</Player>
-			<Position x="238.698" y="11.3635" z="235.725" />
-			<Orientation angle="-2.71827" />
-		</Entity>
-		<Entity>
 			<Template>celt_ijv_a</Template>
 			<Player>1</Player>
 			<Position x="199.069" y="11.616" z="250.587" />
@@ -585,12 +555,6 @@
 			<Player>1</Player>
 			<Position x="208.575" y="10.1416" z="221.562" />
 			<Orientation angle="1.5892" />
-		</Entity>
-		<Entity>
-			<Template>celt_ijv_b</Template>
-			<Player>1</Player>
-			<Position x="247.23" y="11.0245" z="224.31" />
-			<Orientation angle="2.45477" />
 		</Entity>
 		<Entity>
 			<Template>celt_ijv_e</Template>
@@ -711,6 +675,54 @@
 			<Player>1</Player>
 			<Position x="213.998" y="9.66163" z="210.613" />
 			<Orientation angle="-3.14105" />
+		</Entity>
+		<Entity>
+			<Template>hele_thermistocles</Template>
+			<Player>1</Player>
+			<Position x="201.075" y="9.93528" z="101.263" />
+			<Orientation angle="2.94825" />
+		</Entity>
+		<Entity>
+			<Template>hele_xenophon</Template>
+			<Player>1</Player>
+			<Position x="209.798" y="11.2348" z="97.8672" />
+			<Orientation angle="3.12081" />
+		</Entity>
+		<Entity>
+			<Template>celt_wc</Template>
+			<Player>1</Player>
+			<Position x="176.251" y="9.06678" z="167.434" />
+			<Orientation angle="-3.14159" />
+		</Entity>
+		<Entity>
+			<Template>celt_wt</Template>
+			<Player>1</Player>
+			<Position x="175.85" y="8.79751" z="167.723" />
+			<Orientation angle="-3.14159" />
+		</Entity>
+		<Entity>
+			<Template>celt_wt</Template>
+			<Player>1</Player>
+			<Position x="196.093" y="9.22825" z="167.708" />
+			<Orientation angle="-3.14101" />
+		</Entity>
+		<Entity>
+			<Template>celt_sb1</Template>
+			<Player>1</Player>
+			<Position x="242.045" y="11.1294" z="228.382" />
+			<Orientation angle="2.78918" />
+		</Entity>
+		<Entity>
+			<Template>celt_csw_e</Template>
+			<Player>1</Player>
+			<Position x="207.281" y="9.75866" z="185.235" />
+			<Orientation angle="3.0637" />
+		</Entity>
+		<Entity>
+			<Template>celt_cjv_e</Template>
+			<Player>1</Player>
+			<Position x="225.82" y="9.54325" z="182.694" />
+			<Orientation angle="-2.77965" />
 		</Entity>
 	</Entities>
 	<Nonentities>
@@ -3923,11 +3935,6 @@
 			<Actor>flora/trees/cypress2.xml</Actor>
 			<Position x="120.202" y="11.548" z="215.511" />
 			<Orientation angle="-1.86002" />
-		</Nonentity>
-		<Nonentity>
-			<Actor>flora/trees/cypress2.xml</Actor>
-			<Position x="171.635" y="10.336" z="172.256" />
-			<Orientation angle="-2.04746" />
 		</Nonentity>
 	</Nonentities>
 </Scenario>
