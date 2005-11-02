@@ -323,6 +323,25 @@ static void state_latch(OglTexState* ots)
 // reuse of active objects (this would break the index lookup code, since
 // multiple instances may then exist).
 
+// note: make sure these values fit inside OglTex.flags (only 16 bits)
+enum OglTexFlags
+{
+	// "the texture is currently uploaded"; reset in dtor.
+	OT_IS_UPLOADED = 1,
+
+	// "the enclosed Tex object is valid and holds a texture";
+	// reset in dtor and after ogl_tex_upload's tex_free.
+	OT_TEX_VALID = 2,
+	//uint tex_valid : 1;
+
+	// "reload() should automatically re-upload the texture" (because
+	// it had been uploaded before the reload); never reset.
+	OT_NEED_AUTO_UPLOAD = 4,
+
+	// (used for validating flags)
+	OT_ALL_FLAGS = OT_IS_UPLOADED|OT_TEX_VALID|OT_NEED_AUTO_UPLOAD
+};
+
 struct OglTex
 {
 	Tex t;
@@ -345,24 +364,7 @@ struct OglTex
 	// to which Texture Mapping Unit was this bound?
 	uint tmu : 8;
 
-	// flags influencing reload() behavior
-	// .. reload() should be a no-op, because we either have the texture in
-	//    memory or it's been uploaded to OpenGL. reset in dtor.
-	uint is_loaded : 1;
-	// .. reload() should automatically re-upload the texture, because
-	//    it had been uploaded before the reload.
-	uint need_auto_upload : 1;
-	// .. reload() doesn't need to load from disk, because <t> already
-	//    contains the texture data. note: in this case, actual reloads are
-	//    disallowed by ogl_tex_wrap, but we still need this flag to
-	//    correctly handle the reload() triggered by h_alloc.
-	uint was_wrapped : 1;
-
-	// indicates if this texture is currently uploaded.
-	// used by state setters; reset in dtor.
-	uint is_currently_uploaded : 1;
-
-	uint tex_valid : 1;
+	uint flags : 16;
 };
 
 H_TYPE_DEFINE(OglTex);
@@ -372,10 +374,10 @@ static void OglTex_init(OglTex* ot, va_list args)
 	Tex* wrapped_tex = va_arg(args, Tex*);
 	if(wrapped_tex)
 	{
-		// note: this only happens once; ogl_tex_wrap makes sure
-		// this OglTex cannot be reloaded, so it's safe.
 		ot->t = *wrapped_tex;
-		ot->was_wrapped = 1;
+		// indicate ot->t is now valid, thus skipping loading from file.
+		// note: ogl_tex_wrap prevents actual reloads from happening.
+		ot->flags |= OT_TEX_VALID;
 	}
 
 	state_set_to_defaults(&ot->state);
@@ -384,37 +386,36 @@ static void OglTex_init(OglTex* ot, va_list args)
 
 static void OglTex_dtor(OglTex* ot)
 {
-	if(ot->tex_valid)
+	if(ot->flags & OT_TEX_VALID)
+	{
 		(void)tex_free(&ot->t);
+		ot->flags &= ~OT_TEX_VALID;
+	}
 
+	// note: do not check if OT_IS_UPLOADED is set, because we allocate
+	// OglTex.id without necessarily having done an upload.
 	glDeleteTextures(1, &ot->id);
 	ot->id = 0;
-
-	ot->is_currently_uploaded = 0;
-
-	// need to clear this so actual reloads (triggered by h_reload)
-	// actually reload.
-	ot->is_loaded = 0;
+	ot->flags &= ~OT_IS_UPLOADED;
 }
 
 static int OglTex_reload(OglTex* ot, const char* fn, Handle h)
 {
-	// make sure the texture has been loaded
-	// .. already done (<h> had been freed but not yet unloaded)
-	if(ot->is_loaded)
+	// we're reusing a freed but still in-memory OglTex object
+	if(ot->flags & OT_IS_UPLOADED)
 		return 0;
-	// .. load from file - but only if we weren't wrapping an existing
-	//    Tex object (i.e. copy its values and be done).
-	if(!ot->was_wrapped)
+
+	// if we don't already have the texture in memory (*), load from file.
+	// * this happens if the texture is "wrapped".
+	if(!(ot->flags & OT_TEX_VALID))
 		RETURN_ERR(tex_load(fn, &ot->t));
-	ot->tex_valid = 1;
-	ot->is_loaded = 1;
+	ot->flags |= OT_TEX_VALID;
 
 	glGenTextures(1, &ot->id);
 
 	// if it had already been uploaded before this reload,
 	// re-upload it (this also does state_latch).
-	if(ot->need_auto_upload)
+	if(ot->flags & OT_NEED_AUTO_UPLOAD)
 		(void)ogl_tex_upload(h);
 
 	return 0;
@@ -454,6 +455,8 @@ static int OglTex_validate(const OglTex* ot)
 		return -105;
 	if(ot->tmu >= 128)	// unexpected that there will ever be this many
 		return -106;
+	if(ot->flags > OT_ALL_FLAGS)
+		return -107;
 	// .. note: don't check ot->fmt and ot->int_fmt - they aren't set
 	//    until during ogl_tex_upload.
 
@@ -549,7 +552,7 @@ static void warn_if_uploaded(Handle ht, const OglTex* ot)
 	if(refs > 1)
 		return;	// don't complain
 
-	if(ot->is_currently_uploaded)
+	if(ot->flags & OT_IS_UPLOADED)
 		debug_warn("ogl_tex_set_*: texture already uploaded and shouldn't be changed");
 #else
 	// (prevent warnings; the alternative of wrapping all call sites in
@@ -796,8 +799,10 @@ int ogl_tex_upload(const Handle ht, GLenum fmt_ovr, uint q_flags_ovr, GLint int_
 
 	// upload already happened; no work to do.
 	// (this also happens if a cached texture is "loaded")
-	if(ot->is_currently_uploaded)
+	if(ot->flags & OT_IS_UPLOADED)
 		return 0;
+
+	debug_assert(ot->flags & OT_TEX_VALID);
 
 	// decompress S3TC if that's not supported by OpenGL.
 	if((t->flags & TEX_DXT) && !have_s3tc)
@@ -827,8 +832,7 @@ int ogl_tex_upload(const Handle ht, GLenum fmt_ovr, uint q_flags_ovr, GLint int_
 	}
 	oglCheck();
 
-	ot->need_auto_upload = 1;
-	ot->is_currently_uploaded = 1;
+	ot->flags |= OT_NEED_AUTO_UPLOAD|OT_IS_UPLOADED;
 
 	// see rationale for <refs> at declaration of OglTex.
 	// note: tex_free is safe even if this OglTex was wrapped -
@@ -836,8 +840,9 @@ int ogl_tex_upload(const Handle ht, GLenum fmt_ovr, uint q_flags_ovr, GLint int_
 	int refs = h_get_refcnt(ht);
 	if(refs == 1)
 	{
-		tex_free(t);
-		ot->tex_valid = 0;
+		// note: we verify above that OT_TEX_VALID is set
+		(void)tex_free(t);
+		ot->flags &= ~OT_TEX_VALID;
 	}
 
 	return 0;
@@ -875,7 +880,7 @@ int ogl_tex_get_format(Handle ht, uint* flags, GLenum* fmt)
 		*flags = ot->t.flags;
 	if(fmt)
 	{
-		if(!ot->is_currently_uploaded)
+		if(!(ot->flags & OT_IS_UPLOADED))
 			debug_warn("hasn't been defined yet!");
 		*fmt = ot->fmt;
 	}
