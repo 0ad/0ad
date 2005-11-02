@@ -105,7 +105,7 @@ extern int SDL_SemWait(SDL_sem* sem);
 extern SDL_Thread* SDL_CreateThread(int(*)(void*), void*);
 extern int SDL_KillThread(SDL_Thread*);
 
-extern int SDL_WarpMouse(int, int);
+extern void SDL_WarpMouse(int, int);
 
 enum ShowCursorToggle
 {
