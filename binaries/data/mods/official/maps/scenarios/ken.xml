@@ -724,6 +724,12 @@
 			<Position x="225.82" y="9.54325" z="182.694" />
 			<Orientation angle="-2.77965" />
 		</Entity>
+		<Entity>
+			<Template>celt_ff_a</Template>
+			<Player>1</Player>
+			<Position x="221.679" y="10.1011" z="151.253" />
+			<Orientation angle="-3.141" />
+		</Entity>
 	</Entities>
 	<Nonentities>
 		<Nonentity>
@@ -848,11 +854,6 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/deci_100percent.xml</Actor>
-			<Position x="222.493" y="10.521" z="140.554" />
-			<Orientation angle="0.149034" />
-		</Nonentity>
-		<Nonentity>
-			<Actor>flora/trees/deci_100percent.xml</Actor>
 			<Position x="202.432" y="9.90633" z="137.484" />
 			<Orientation angle="-0.749495" />
 		</Nonentity>
@@ -962,16 +963,6 @@
 			<Orientation angle="-2.03715" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>flora/trees/oak.xml</Actor>
-			<Position x="227.691" y="10.488" z="145.125" />
-			<Orientation angle="-2.22128" />
-		</Nonentity>
-		<Nonentity>
-			<Actor>flora/trees/l_oak_1.xml</Actor>
-			<Position x="229.503" y="10.1956" z="154.025" />
-			<Orientation angle="-2.03718" />
-		</Nonentity>
-		<Nonentity>
 			<Actor>flora/trees/l_oak_1.xml</Actor>
 			<Position x="187.658" y="11.5319" z="250.073" />
 			<Orientation angle="-1.85308" />
@@ -995,16 +986,6 @@
 			<Actor>flora/trees/l_oak_3.xml</Actor>
 			<Position x="177.511" y="11.6897" z="250.291" />
 			<Orientation angle="-0.936421" />
-		</Nonentity>
-		<Nonentity>
-			<Actor>flora/trees/deci_50percent.xml</Actor>
-			<Position x="232.911" y="10.4887" z="149.102" />
-			<Orientation angle="-2.01042" />
-		</Nonentity>
-		<Nonentity>
-			<Actor>flora/trees/deci_50percent.xml</Actor>
-			<Position x="213.744" y="9.72176" z="154.285" />
-			<Orientation angle="0.727482" />
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/deci_50percent.xml</Actor>
