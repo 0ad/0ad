@@ -402,7 +402,7 @@ int pthread_mutex_timedlock(pthread_mutex_t* UNUSED(m), const struct timespec* U
 //////////////////////////////////////////////////////////////////////////////
 
 
-HANDLE sem_t_to_HANDLE(sem_t* sem)
+static HANDLE HANDLE_from_sem_t(sem_t* sem)
 {
 	return (HANDLE)*sem;
 }
@@ -411,28 +411,32 @@ int sem_init(sem_t* sem, int pshared, unsigned value)
 {
 	SECURITY_ATTRIBUTES sec = { sizeof(SECURITY_ATTRIBUTES) };
 	sec.bInheritHandle = (BOOL)pshared;
-	*sem = (uintptr_t)CreateSemaphore(&sec, (LONG)value, 0x7fffffff, 0);
+	HANDLE h = CreateSemaphore(&sec, (LONG)value, 0x7fffffff, 0);
+	WARN_IF_FALSE(h);
+	*sem = (uintptr_t)h;
 	return 0;
 }
 
 int sem_post(sem_t* sem)
 {
-	HANDLE h = sem_t_to_HANDLE(sem);
-	ReleaseSemaphore(h, 1, 0);
+	HANDLE h = HANDLE_from_sem_t(sem);
+	WARN_IF_FALSE(ReleaseSemaphore(h, 1, 0));
 	return 0;
 }
 
 int sem_wait(sem_t* sem)
 {
-	HANDLE h = sem_t_to_HANDLE(sem);
-	WaitForSingleObject(h, INFINITE);
+	HANDLE h = HANDLE_from_sem_t(sem);
+	DWORD ret = WaitForSingleObject(h, INFINITE);
+	if(ret != WAIT_OBJECT_0)
+		debug_warn("unexpected WaitForSingleObject return value");
 	return 0;
 }
 
 int sem_destroy(sem_t* sem)
 {
-	HANDLE h = sem_t_to_HANDLE(sem);
-	CloseHandle(h);
+	HANDLE h = HANDLE_from_sem_t(sem);
+	WARN_IF_FALSE(CloseHandle(h));
 	return 0;
 }
 
@@ -485,7 +489,7 @@ int sem_timedwait(sem_t* sem, const struct timespec* abs_timeout)
 	bool timeout_is_valid;
 	DWORD timeout_ms = calc_timeout_length_ms(abs_timeout, timeout_is_valid);
 
-	HANDLE h = sem_t_to_HANDLE(sem);
+	HANDLE h = HANDLE_from_sem_t(sem);
 	DWORD ret = WaitForSingleObject(h, timeout_ms);
 	// successfully decremented semaphore; bail.
 	if(ret == WAIT_OBJECT_0)
@@ -500,4 +504,41 @@ int sem_timedwait(sem_t* sem, const struct timespec* abs_timeout)
 		errno = ETIMEDOUT;
 
 	return -1;
+}
+
+
+// wait until semaphore is locked or a message arrives. non-portable.
+//
+// background: on Win32, UI threads must periodically pump messages, or
+// else deadlock may result (see WaitForSingleObject docs). that entails
+// avoiding any blocking functions. when event waiting is needed,
+// one cheap workaround would be to time out periodically and pump messages.
+// that would work, but either wastes CPU time waiting, or introduces
+// message latency. to avoid this, we provide an API similar to sem_wait and
+// sem_timedwait that gives MsgWaitForMultipleObjects functionality.
+//
+// return value: 0 if the semaphore has been locked (SUS terminology),
+// -1 otherwise. errno differentiates what happened: ETIMEDOUT if a
+// message arrived (this is to ease switching between message waiting and
+// periodic timeout), or an error indication.
+int sem_msgwait_np(sem_t* sem)
+{
+	HANDLE h = HANDLE_from_sem_t(sem);
+	DWORD ret = MsgWaitForMultipleObjects(1, &h, FALSE, INFINITE, QS_ALLEVENTS);
+	// semaphore is signalled
+	if(ret == WAIT_OBJECT_0)
+		return 0;
+
+	// something else:
+	// .. message came up
+	if(ret == WAIT_OBJECT_0+1)
+		errno = ETIMEDOUT;
+	// .. error
+	else
+	{
+		errno = EINVAL;
+		debug_warn("unexpected MsgWaitForMultipleObjects return value");
+	}
+	return -1;
+
 }

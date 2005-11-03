@@ -20,21 +20,6 @@
 // i.e. the same error name can be used in winsock and posix
 #define WSABASEERR			10000
 
-#define EWOULDBLOCK          (35)
-#define ENETDOWN             (50)
-#define ENETUNREACH          (51)
-#define ENETRESET            (52)
-#define ENOTCONN             (57)
-#define ESHUTDOWN            (58)
-#define ENOTCONN             (57)
-#define ECONNABORTED         (53)
-#define ECONNRESET           (54)
-#define ETIMEDOUT            (60)
-#define EADDRINUSE           (48)
-#define EADDRNOTAVAIL        (49)
-#define ECONNREFUSED         (61)
-#define EHOSTUNREACH         (65)
-
 #define MSG_SOCKET_READY WM_USER
 
 #endif	// #if OS_WIN

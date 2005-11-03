@@ -99,4 +99,20 @@ extern int sem_wait(sem_t*);
 extern int sem_timedwait(sem_t*, const struct timespec*);
 extern int sem_destroy(sem_t*);
 
+// wait until semaphore is locked or a message arrives. non-portable.
+//
+// background: on Win32, UI threads must periodically pump messages, or
+// else deadlock may result (see WaitForSingleObject docs). that entails
+// avoiding any blocking functions. when event waiting is needed,
+// one cheap workaround would be to time out periodically and pump messages.
+// that would work, but either wastes CPU time waiting, or introduces
+// message latency. to avoid this, we provide an API similar to sem_wait and
+// sem_timedwait that gives MsgWaitForMultipleObjects functionality.
+//
+// return value: 0 if the semaphore has been locked (SUS terminology),
+// -1 otherwise. errno differentiates what happened: ETIMEDOUT if a
+// message arrived (this is to ease switching between message waiting and
+// periodic timeout), or an error indication.
+extern int sem_msgwait_np(sem_t* sem);
+
 #endif	// #ifndef WPTHREAD_H__
