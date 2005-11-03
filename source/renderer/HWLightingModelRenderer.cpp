@@ -195,8 +195,6 @@ void HWLightingModelRenderer::UpdateModelData(CModel* model, void* data, u32 upd
 	if (updateflags & RENDERDATA_UPDATE_VERTICES)
 	{
 		CModelDefPtr mdef = model->GetModelDef();
-		size_t numVertices = mdef->GetNumVertices();
-		UNUSED2(numVertices);
 	
 		// build vertices
 		VertexArrayIterator<CVector3D> Position = hwlmodel->m_Position.GetIterator<CVector3D>();

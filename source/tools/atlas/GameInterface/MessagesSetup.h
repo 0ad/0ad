@@ -56,7 +56,7 @@ struct IMessage
 #define MESSAGESTRUCT(t) \
 	struct m##t : public IMessage { \
 		const char* GetName() const { return #t; } \
-		Type GetType() const { return Type::Message; } \
+		Type GetType() const { return IMessage::Message; } \
 	private: \
 		const m##t& operator=(const m##t&); \
 	public:
@@ -80,7 +80,7 @@ MESSAGESTRUCT(MergeCommand) };
 
 struct QueryMessage : public IMessage
 {
-	Type GetType() const { return Type::Query; }
+	Type GetType() const { return IMessage::Query; }
 	void Post(); // defined in ScenarioEditor.cpp
 
 	void* m_Semaphore; // for use by MessagePasser implementations (yay encapsulation)
