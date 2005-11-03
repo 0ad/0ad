@@ -1,3 +1,20 @@
+// suballocators
+// Copyright (c) 2005 Jan Wassenberg
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License as
+// published by the Free Software Foundation; either version 2 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// General Public License for more details.
+//
+// Contact info:
+//   Jan.Wassenberg@stud.uni-karlsruhe.de
+//   http://www.stud.uni-karlsruhe.de/~urkt/
+
 #include "precompiled.h"
 #include "posix.h"
 
@@ -5,7 +22,7 @@
 
 
 //-----------------------------------------------------------------------------
-// expandable array
+// dynamic (expandable) array
 //-----------------------------------------------------------------------------
 
 static const size_t page_size = sysconf(_SC_PAGE_SIZE);
@@ -100,6 +117,10 @@ static int mem_protect(u8* p, size_t size, int prot)
 //-----------------------------------------------------------------------------
 // API
 
+// ready the DynArray object for use. preallocates max_size bytes
+// (rounded up to the next page size multiple) of address space for the
+// array; it can never grow beyond this.
+// no virtual memory is actually committed until calls to da_set_size.
 int da_alloc(DynArray* da, size_t max_size)
 {
 	const size_t max_size_pa = round_up_to_page(max_size);
@@ -110,46 +131,56 @@ int da_alloc(DynArray* da, size_t max_size)
 	da->base        = p;
 	da->max_size_pa = max_size_pa;
 	da->cur_size    = 0;
-	da->pos         = 0;
 	da->prot        = PROT_READ|PROT_WRITE;
+	da->pos         = 0;
 	CHECK_DA(da);
 	return 0;
 }
 
 
+// "wrap" (i.e. store information about) the given buffer in a
+// DynArray object, preparing it for use with da_read or da_append.
+// da_free should be called when the DynArray is no longer needed,
+// even though it doesn't free this memory (but does zero the DynArray).
 int da_wrap_fixed(DynArray* da, u8* p, size_t size)
 {
 	da->base        = p;
 	da->max_size_pa = round_up_to_page(size);
 	da->cur_size    = size;
-	da->pos         = 0;
 	da->prot        = PROT_READ|PROT_WRITE|DA_NOT_OUR_MEM;
+	da->pos         = 0;
 	CHECK_DA(da);
 	return 0;
 }
 
 
+// free all memory (address space + physical) that constitutes the
+// given array. use-after-free is impossible because the memory is
+// marked not-present via MMU. also zeroes the contents of <da>.
 int da_free(DynArray* da)
 {
 	CHECK_DA(da);
 
-	if(da->prot & DA_NOT_OUR_MEM)
-	{
-		debug_warn("da is marked DA_NOT_OUR_MEM, must not be altered");
-		return -1;
-	}
+	u8* p            = da->base;
+	size_t size      = da->max_size_pa;
+	bool was_wrapped = (da->prot & DA_NOT_OUR_MEM) != 0;
 
-	// latch pointer; wipe out the DynArray for safety
+	// wipe out the DynArray for safety
 	// (must be done here because mem_release may fail)
-	u8* p = da->base;
-	size_t size = da->max_size_pa;
 	memset(da, 0, sizeof(*da));
 
-	CHECK_ERR(mem_release(p, size));
+	// skip mem_release if <da> was allocated via da_wrap_fixed
+	// (i.e. it doesn't actually own any memory). don't complain;
+	// da_free is supposed to be called even in the above case.
+	if(!was_wrapped)
+		CHECK_ERR(mem_release(p, size));
 	return 0;
 }
 
 
+// expand or shrink the array: changes the amount of currently committed
+// (i.e. usable) memory pages. pages are added/removed until
+// new_size (rounded up to the next page size multiple) is met.
 int da_set_size(DynArray* da, size_t new_size)
 {
 	CHECK_DA(da);
@@ -164,7 +195,7 @@ int da_set_size(DynArray* da, size_t new_size)
 	const size_t cur_size_pa = round_up_to_page(da->cur_size);
 	const size_t new_size_pa = round_up_to_page(new_size);
 	if(new_size_pa > da->max_size_pa)
-		CHECK_ERR(ERR_INVALID_PARAM);
+		CHECK_ERR(ERR_LIMIT);
 	const ssize_t size_delta_pa = (ssize_t)new_size_pa - (ssize_t)cur_size_pa;
 
 	u8* end = da->base + cur_size_pa;
@@ -183,6 +214,10 @@ int da_set_size(DynArray* da, size_t new_size)
 }
 
 
+// change access rights of the array memory; used to implement
+// write-protection. affects the currently committed pages as well as
+// all subsequently added pages.
+// prot can be a combination of the PROT_* values used with mprotect.
 int da_set_prot(DynArray* da, int prot)
 {
 	CHECK_DA(da);
@@ -203,20 +238,22 @@ int da_set_prot(DynArray* da, int prot)
 }
 
 
+// "read" from array, i.e. copy into the given buffer.
+// starts at offset DynArray.pos and advances this.
 int da_read(DynArray* da, void* data, size_t size)
 {
-	void* src = da->base + da->pos;
-
 	// make sure we have enough data to read
-	da->pos += size;
-	if(da->pos > da->cur_size)
+	if(da->pos+size > da->cur_size)
 		return -1;
 
-	memcpy2(data, src, size);
+	memcpy2(data, da->base+da->pos, size);
+	da->pos += size;
 	return 0;
 }
 
 
+// "write" to array, i.e. copy from the given buffer.
+// starts at offset DynArray.pos and advances this.
 int da_append(DynArray* da, const void* data, size_t size)
 {
 	RETURN_ERR(da_set_size(da, da->pos+size));
@@ -230,16 +267,11 @@ int da_append(DynArray* da, const void* data, size_t size)
 // pool allocator
 //-----------------------------------------------------------------------------
 
-// design goals: O(1) alloc and free; doesn't preallocate the entire pool;
-// returns sequential addresses.
-//
-// (note: this allocator returns fixed-size blocks, the size of which is
-// specified at pool_create time. this makes O(1) time possible.) 
-
-// parameters:
-// - fixed-size allocations
-// - can free/reuse allocations
-
+// design parameters:
+// - O(1) alloc and free;
+// - fixed-size blocks;
+// - doesn't preallocate the entire pool;
+// - returns sequential addresses.
 
 // "freelist" is a pointer to the first unused element (0 if there are none);
 // its memory holds a pointer to the next free one in list.
@@ -349,16 +381,17 @@ void pool_free(Pool* p, void* el)
 // bucket allocator
 //-----------------------------------------------------------------------------
 
-// parameters:
-// - variable-size allocations
-// - can only free all allocations at once
-// - no init necessary
-// - no fixed limit
+// design goals:
+// - variable-size allocations;
+// - no reuse of allocations, can only free all at once;
+// - no init necessary;
+// - no fixed limit.
 
 // must be constant and power-of-2 to allow fast modulo.
 const size_t BUCKET_SIZE = 4*KiB;
 
-
+// allocate <size> bytes of memory from the given Bucket object.
+// <b> must initially be zeroed (e.g. by defining it as static data).
 void* bucket_alloc(Bucket* b, size_t size)
 {
 	// would overflow a bucket
@@ -392,6 +425,7 @@ void* bucket_alloc(Bucket* b, size_t size)
 }
 
 
+// free all allocations that ensued from the given Bucket.
 void bucket_free_all(Bucket* b)
 {
 	while(b->bucket)
@@ -472,8 +506,24 @@ void matrix_free(void** matrix)
 #if SELF_TEST_ENABLED
 namespace test {
 
-static void test_api()
+static void test_da()
 {
+	DynArray da;
+
+	// basic test of functionality (not really meaningful)
+	TEST(da_alloc(&da, 1000) == 0);
+	TEST(da_set_size(&da, 1000) == 0);
+	TEST(da_set_prot(&da, PROT_NONE) == 0);
+	TEST(da_free(&da) == 0);
+
+	// test wrapping existing mem blocks for use with da_read
+	const u8 data[4] = { 0x12, 0x34, 0x56, 0x78 };
+	TEST(da_wrap_fixed(&da, data, sizeof(data)) == 0);
+	u8 buf[4];
+	TEST(da_read(&da, buf, 4) == 0);	// success
+	TEST(read_le32(buf) == 0x78563412);	// read correct value
+	TEST(da_read(&da, buf, 1) < 0);		// no more data left
+	TEST(da_free(&da) == 0);
 }
 
 static void test_expand()
@@ -494,7 +544,7 @@ static void test_matrix()
 
 static void self_test()
 {
-	test_api();
+	test_da();
 	test_expand();
 	test_matrix();
 }

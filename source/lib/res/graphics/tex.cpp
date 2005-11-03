@@ -427,6 +427,8 @@ static int tex_load_impl(void* file_, size_t file_size, Tex* t)
 
 	RETURN_ERR(c->decode(&da, t));
 
+	(void)da_free(&da);	// for completeness only; just zeros <da>
+
 	// sanity checks
 	if(!t->w || !t->h || t->bpp > 32)
 		return ERR_TEX_FMT_INVALID;
