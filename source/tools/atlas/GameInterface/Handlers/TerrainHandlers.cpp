@@ -20,7 +20,7 @@ QUERYHANDLER(GetTerrainGroups)
 
 QUERYHANDLER(GetTerrainGroupPreviews)
 {
-	CTerrainGroup* group = g_TexMan.FindGroup(msg->groupname);
+	CTerrainGroup* group = g_TexMan.FindGroup(CStrW(msg->groupname));
 	for (std::vector<CTextureEntry*>::const_iterator it = group->GetTerrains().begin(); it != group->GetTerrains().end(); ++it)
 	{
 		msg->previews.push_back(AtlasMessage::sTerrainGroupPreview());
