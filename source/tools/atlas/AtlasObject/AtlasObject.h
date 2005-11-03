@@ -26,7 +26,7 @@ public:
 	AtSmartPtr(const AtSmartPtr<T>& r) : ptr(r.ptr) { inc_ref(); }
 	// Assignment operators
 	AtSmartPtr<T>& operator=(T* p) { dec_ref(); ptr = p; inc_ref(); return *this; }
-	AtSmartPtr<T>& operator=(const AtSmartPtr<T>& r) { dec_ref(); ptr = r.ptr; inc_ref(); return *this; }
+	AtSmartPtr<T>& operator=(const AtSmartPtr<T>& r) { if (&r != this) { dec_ref(); ptr = r.ptr; inc_ref(); } return *this; }
 	// Destructor
 	~AtSmartPtr() { dec_ref(); }
 	// Allow conversion from non-const T* to const T*

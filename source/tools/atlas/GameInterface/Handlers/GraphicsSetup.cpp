@@ -39,8 +39,9 @@ MESSAGEHANDLER_STR(shutdown)
 }
 
 
-MESSAGEHANDLER_STR(exit)
+QUERYHANDLER(Exit)
 {
+	UNUSED2(msg);
 	g_GameLoop->running = false;
 }
 

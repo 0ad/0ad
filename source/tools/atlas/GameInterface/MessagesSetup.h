@@ -81,10 +81,11 @@ MESSAGESTRUCT(MergeCommand) };
 struct QueryMessage : public IMessage
 {
 	Type GetType() const { return Type::Query; }
-	void Post() { g_MessagePasser->Query(this); }
+	void Post(); // defined in ScenarioEditor.cpp
 
 	void* m_Semaphore; // for use by MessagePasser implementations (yay encapsulation)
 };
+
 
 #define QUERYSTRUCT(t) \
 	struct q##t : public QueryMessage { \
@@ -120,12 +121,23 @@ const bool NOMERGE = false;
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/punctuation/comma_if.hpp>
 #include <boost/preprocessor/seq/for_each_i.hpp>
+#include <boost/preprocessor/comparison/equal.hpp>
+
 #define B_TYPE(elem) BOOST_PP_TUPLE_ELEM(2, 0, elem)
 #define B_NAME(elem) BOOST_PP_TUPLE_ELEM(2, 1, elem)
 #define B_CONSTRUCTORARGS(r, data, n, elem) BOOST_PP_COMMA_IF(n) B_TYPE(elem) BOOST_PP_CAT(B_NAME(elem),_)
 #define B_CONSTRUCTORINIT(r, data, n, elem) BOOST_PP_COMMA_IF(n) B_NAME(elem)(BOOST_PP_CAT(B_NAME(elem),_))
 #define B_CONSTMEMBERS(r, data, n, elem) const B_TYPE(elem) B_NAME(elem);
 #define B_MEMBERS(r, data, n, elem) B_TYPE(elem) B_NAME(elem);
+
+/* For each message type, generate something roughly like:
+	struct mBlah : public IMessage {
+		const char* GetName() const { return "Blah"; }
+		mBlah(int in0_, bool in1_) : in0(in0_), in1(in1_) {}
+		const int in0;
+		const bool in1;
+	}
+*/
 
 #define MESSAGE(name, vals) \
 	MESSAGESTRUCT(name) \
@@ -134,7 +146,24 @@ const bool NOMERGE = false;
 		BOOST_PP_SEQ_FOR_EACH_I(B_CONSTMEMBERS, ~, vals) \
 	};
 
-#define QUERY(name, in_vals, out_vals) \
+#define COMMAND(name, merge, vals) \
+	COMMANDDATASTRUCT(name) \
+		d##name( BOOST_PP_SEQ_FOR_EACH_I(B_CONSTRUCTORARGS, ~, vals) ) \
+			: BOOST_PP_SEQ_FOR_EACH_I(B_CONSTRUCTORINIT, ~, vals) {} \
+		BOOST_PP_SEQ_FOR_EACH_I(B_CONSTMEMBERS, ~, vals) \
+	}; \
+	COMMANDSTRUCT(name, merge);
+
+
+// Need different syntax depending on whether there are some input values in the query:
+
+#define QUERY_WITHOUT_INPUTS(name, in_vals, out_vals) \
+	QUERYSTRUCT(name) \
+		q##name() {} \
+		BOOST_PP_SEQ_FOR_EACH_I(B_MEMBERS, ~, out_vals) /* other members */ \
+	};
+
+#define QUERY_WITH_INPUTS(name, in_vals, out_vals) \
 	QUERYSTRUCT(name) \
 		q##name( BOOST_PP_SEQ_FOR_EACH_I(B_CONSTRUCTORARGS, ~, in_vals) ) \
 			: BOOST_PP_SEQ_FOR_EACH_I(B_CONSTRUCTORINIT, ~, in_vals) {} \
@@ -142,13 +171,13 @@ const bool NOMERGE = false;
 		BOOST_PP_SEQ_FOR_EACH_I(B_MEMBERS, ~, out_vals) \
 	};
 
-#define COMMAND(name, merge, vals) \
-	COMMANDDATASTRUCT(name) \
-		d##name( BOOST_PP_SEQ_FOR_EACH_I(B_CONSTRUCTORARGS, ~, vals) ) \
-		: BOOST_PP_SEQ_FOR_EACH_I(B_CONSTRUCTORINIT, ~, vals) {} \
-		BOOST_PP_SEQ_FOR_EACH_I(B_CONSTMEMBERS, ~, vals) \
-	}; \
-	COMMANDSTRUCT(name, merge);
+#define QUERY(name, in_vals, out_vals) \
+	BOOST_PP_IIF( \
+		BOOST_PP_EQUAL(BOOST_PP_SEQ_SIZE((~)in_vals), 1), \
+		QUERY_WITHOUT_INPUTS, \
+		QUERY_WITH_INPUTS) \
+	(name, in_vals, out_vals)
+
 
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
@@ -166,8 +195,10 @@ const bool NOMERGE = false;
 #undef B_CONSTMEMBERS
 #undef B_MEMBERS
 #undef MESSAGE
-#undef QUERY
 #undef COMMAND
+#undef QUERY_WITHOUT_INPUTS
+#undef QUERY_WITH_INPUTS
+#undef QUERY
 
 }
 

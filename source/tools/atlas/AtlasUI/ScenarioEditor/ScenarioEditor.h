@@ -2,6 +2,7 @@
 #define SCENARIOEDITOR_H__
 
 #include "General/AtlasWindowCommandProc.h"
+#include "SectionLayout.h"
 
 class ScenarioEditor : public wxFrame
 {
@@ -23,6 +24,8 @@ public:
 
 private:
 	wxTimer m_Timer;
+
+	SectionLayout m_SectionLayout;
 
 	DECLARE_EVENT_TABLE();
 };

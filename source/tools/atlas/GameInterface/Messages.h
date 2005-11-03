@@ -49,7 +49,7 @@ MESSAGE(Screenshot,
 MESSAGE(Brush,
 		((int, width)) // number of vertices
 		((int, height))
-		((float*, data)) // width*height array, allocated with new[]
+		((float*, data)) // width*height array, allocated with new[] (handler will delete[])
 		);
 
 MESSAGE(BrushPreview,
@@ -61,10 +61,25 @@ MESSAGE(BrushPreview,
 //////////////////////////////////////////////////////////////////////////
 
 QUERY(GetTerrainGroups,
-	  ((int, null)) // urgh - I can't do zero-input queries easily
-	  ,
+	  , // no inputs
 	  ((std::vector<std::wstring>, groupnames))
 	  );
+
+struct sTerrainGroupPreview
+{
+	std::wstring name;
+	unsigned char* imagedata; // RGB*size*size, allocated with malloc (querier should free)
+};
+QUERY(GetTerrainGroupPreviews,
+	  ((std::wstring, groupname))
+	  ((int, imagewidth))
+	  ((int, imageheight))
+	  ,
+	  ((std::vector<sTerrainGroupPreview>, previews))
+	  );
+
+
+QUERY(Exit,,); // no inputs nor outputs
 
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////

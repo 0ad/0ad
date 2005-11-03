@@ -3,14 +3,12 @@
 #include "ScenarioEditor.h"
 
 #include "wx/glcanvas.h"
+#include "wx/evtloop.h"
 #include "SnapSplitterWindow/SnapSplitterWindow.h"
 #include "HighResTimer/HighResTimer.h"
 
 #include "GameInterface/MessagePasser.h"
 #include "GameInterface/Messages.h"
-
-#include "Sections/Map/Map.h"
-#include "Sections/Terrain/Terrain.h"
 
 #include "tools/Common/Tools.h"
 
@@ -352,7 +350,8 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	//////////////////////////////////////////////////////////////////////////
 	// Main window
 
-	SnapSplitterWindow* splitter = new SnapSplitterWindow(this);
+	//SnapSplitterWindow* splitter = new SnapSplitterWindow(this);
+	m_SectionLayout.SetWindow(this);
 
 	// Set up GL canvas:
 
@@ -364,7 +363,8 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 		WX_GL_MIN_ALPHA, 8, // alpha bits
 		0
 	};
-	Canvas* canvas = new Canvas(splitter, glAttribList);
+	Canvas* canvas = new Canvas(m_SectionLayout.GetCanvasParent(), glAttribList);
+	m_SectionLayout.SetCanvas(canvas);
 	// The canvas' context gets made current on creation; but it can only be
 	// current for one thread at a time, and it needs to be current for the
 	// thread that is doing the draw calls, so disable it for this one.
@@ -372,15 +372,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 
 	// Set up sidebars:
 
-	// TODO: wxWidgets bug (http://sourceforge.net/tracker/index.php?func=detail&aid=1298803&group_id=9863&atid=109863)
-	// - pressing menu keys (e.g. alt+f) with notebook tab focussed causes application to freeze
-	wxNotebook* sidebar = new wxNotebook(splitter, wxID_ANY);
-	sidebar->AddPage(new MapSidebar(sidebar), _("Map"), false);
-	sidebar->AddPage(new TerrainSidebar(sidebar), _("Terrain"), false);
-
-	// Build layout:
-
-	splitter->SplitVertically(sidebar, canvas, 200);
+	m_SectionLayout.Build();
 
 	// Send setup messages to game engine:
 
@@ -398,13 +390,6 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	POST_MESSAGE(CommandString("render_enable"));
 #endif
 
-//	{
-//		AtlasMessage::qGetTerrainGroups qry(0);
-//		qry.Post();
-//		for (std::vector<std::wstring>::iterator it = qry.groupnames.begin(); it != qry.groupnames.end(); ++it)
-//			wxLogMessage(L"%s", wxString(it->c_str()));
-//	}
-
 	// Set up a timer to make sure tool-updates happen frequently (in addition
 	// to the idle handler (which makes them happen more frequently if there's nothing
 	// else to do))
@@ -415,17 +400,15 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 
 void ScenarioEditor::OnClose(wxCloseEvent&)
 {
+	SetCurrentTool(_T(""));
+
 #ifndef UI_ONLY
 	POST_MESSAGE(CommandString("shutdown"));
 #endif
-	POST_MESSAGE(CommandString("exit"));
 
-	SetCurrentTool(_T(""));
-
-	// TODO: If it's still rendering while we're destroying the canvas, things
-	// often crash.
-	// HACK: Instead of actually solving the problem, just sleep.
-	wxSleep(1);
+	AtlasMessage::qExit().Post();
+		// blocks until engine has noticed the message, so we won't be
+		// destroying the GLCanvas while it's still rendering
 
 	Destroy();
 }
@@ -492,4 +475,24 @@ AtlasMessage::Position::Position(const wxPoint& pt)
 {
 	type1.x = pt.x;
 	type1.y = pt.y;
+}
+
+static void QueryCallback()
+{
+	// If this thread completely blocked on the semaphore inside Query, it would
+	// never respond to window messages, and the system deadlocks if the
+	// game tries to display an assertion failure dialog. (See
+	// WaitForSingleObject on MSDN.)
+	// So, this callback is called occasionally, and gives wx a change to
+	// handle messages.
+
+	// This is kind of like wxYield, but without the ProcessPendingEvents -
+	// it's enough to make Windows happy and stop deadlocking, without actually
+	// calling the event handlers (which could lead to nasty recursion)
+	while (wxEventLoop::GetActive()->Pending())
+		wxEventLoop::GetActive()->Dispatch();
+}
+void AtlasMessage::QueryMessage::Post()
+{
+	g_MessagePasser->Query(this, &QueryCallback);
 }

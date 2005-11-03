@@ -122,8 +122,9 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 					name += "_";
 					name += static_cast<mCommandString*>(msg)->name;
 					// use 'static_cast' when casting messages, to make it clear
-					// that it's slightly dangerous - we have to just assume that
-					// GetName is correct, since we can't use proper RTTI
+					// that something slightly dangerous is happening - we have
+					// to just assume that GetName is correct, since we can't use
+					// proper RTTI.
 				}
 
 				msgHandlers::const_iterator it = GetMsgHandlers().find(name);
@@ -144,6 +145,13 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 					// that the query has now been processed.
 					sem_post((sem_t*) static_cast<QueryMessage*>(msg)->m_Semaphore);
 					// (msg may have been destructed at this point, so don't use it again)
+
+					// It's quite possible that the querier is going to do a tiny
+					// bit of processing on the query results and then issue another
+					// query, and repeat lots of times in a loop. To avoid slowing
+					// that down by rendering between every query, make this
+					// thread yield now.
+					SDL_Delay(0);
 				}
 				else
 				{

@@ -109,9 +109,14 @@ void CTextureManager::LoadTextures(CTerrainPropertiesPtr props, const char* dir)
 		// may later be added and that interface doesn't support specifying
 		// multiple extensions.
 		const char* ext = strrchr(texture_name, '.');
-		if(!ext || !stricmp(ext, ".xml") || !stricmp(ext, ".xmb") || !stricmp(ext, ".dtd"))
+		if(!ext
+			|| !stricmp(ext, ".xml")
+			|| !stricmp(ext, ".xmb")
+			|| !stricmp(ext, ".dtd")
+			|| !stricmp(ext, ".jbf") // PSP browser files. (This list is getting quite long and ugly...)
+		  )
 			continue;
-		// Also allow storage of temporary files in the texture directories
+		// Also allow storage of other temporary files in the texture directories
 		if(ext[strlen(ext)-1] == '~')
 			continue;
 

@@ -13,7 +13,7 @@
 #include "wx/spinctrl.h"
 
 TerrainSidebar::TerrainSidebar(wxWindow* parent)
-: Sidebar(parent)
+: Sidebar(parent), m_BottomBar(NULL)
 {
 	// TODO: Less ugliness
 
@@ -33,4 +33,118 @@ TerrainSidebar::TerrainSidebar(wxWindow* parent)
 		m_MainSizer->Add(sizer);
 	}
 
+}
+
+wxWindow* TerrainSidebar::GetBottomBar(wxWindow* parent)
+{
+	if (m_BottomBar)
+		return m_BottomBar;
+
+	m_BottomBar = new TerrainBottomBar(parent);
+	return m_BottomBar;
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+class TextureNotebookPage : public wxPanel
+{
+public:
+	TextureNotebookPage(wxWindow* parent, const wxString& name)
+		: wxPanel(parent, wxID_ANY), m_Name(name), m_Loaded(false)
+	{
+	}
+
+	void OnSelected()
+	{
+		if (m_Loaded)
+			return;
+
+		const int imageWidth = 64;
+		const int imageHeight = 32;
+
+		wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+
+		wxListCtrl* list = new wxListCtrl(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_ICON | wxLC_SINGLE_SEL | wxLC_AUTOARRANGE);
+		wxImageList* imglist = new wxImageList(imageWidth, imageHeight, false, 0);
+
+		AtlasMessage::qGetTerrainGroupPreviews qry(m_Name.c_str(), imageWidth, imageHeight);
+		qry.Post();
+
+		int i = 0;
+		for (std::vector<AtlasMessage::sTerrainGroupPreview>::iterator it = qry.previews.begin(); it != qry.previews.end(); ++it)
+		{
+			wxImage img (imageWidth, imageHeight, it->imagedata);
+			imglist->Add(wxBitmap(img));
+
+			// Add spaces into the name, so Windows doesn't just say
+			// "grass_..." in the list ctrl for every terrain
+			wxString name = it->name.c_str();
+			name.Replace(_T("_"), _T(" "));
+
+			list->InsertItem(i, name, i);
+			++i;
+		}
+		list->AssignImageList(imglist, wxIMAGE_LIST_NORMAL);
+
+		sizer->Add(list, wxSizerFlags().Expand().Proportion(1));
+		SetSizer(sizer);
+		Layout(); // required to make things size correctly
+
+		m_Loaded = true;
+	}
+
+private:
+	bool m_Loaded;
+	wxString m_Name;
+};
+
+class TextureNotebook : public wxNotebook
+{
+public:
+	TextureNotebook(wxWindow *parent)
+		: wxNotebook(parent, wxID_ANY/*, wxDefaultPosition, wxDefaultSize, wxNB_FIXEDWIDTH*/)
+	{
+		// Get the list of terrain groups from the engine
+		AtlasMessage::qGetTerrainGroups qry;
+		qry.Post();
+		for (std::vector<std::wstring>::iterator it = qry.groupnames.begin(); it != qry.groupnames.end(); ++it)
+			m_TerrainGroups.Add(it->c_str());
+
+		for (size_t i = 0; i < m_TerrainGroups.GetCount(); ++i)
+		{
+			wxString visibleName = m_TerrainGroups[i];
+			if (visibleName.Len())
+				visibleName[0] = wxToupper(visibleName[0]);
+			AddPage(new TextureNotebookPage(this, m_TerrainGroups[i]), visibleName);
+		}
+	}
+
+protected:
+	void OnPageChanged(wxNotebookEvent& event)
+	{
+		if (event.GetSelection() != -1)
+		{
+			static_cast<TextureNotebookPage*>(GetPage(event.GetSelection()))->OnSelected();
+		}
+		event.Skip();
+	}
+
+private:
+	wxArrayString m_TerrainGroups;
+	DECLARE_EVENT_TABLE();
+};
+
+BEGIN_EVENT_TABLE(TextureNotebook, wxNotebook)
+	EVT_NOTEBOOK_PAGE_CHANGED(wxID_ANY, TextureNotebook::OnPageChanged)
+END_EVENT_TABLE();
+
+//////////////////////////////////////////////////////////////////////////
+
+TerrainBottomBar::TerrainBottomBar(wxWindow* parent)
+	: wxPanel(parent, wxID_ANY)
+{
+	wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+	wxNotebook* notebook = new TextureNotebook(this);
+	sizer->Add(notebook, wxSizerFlags().Expand().Proportion(1));
+	SetSizer(sizer);
 }

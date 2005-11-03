@@ -513,7 +513,8 @@ void ArchiveViewer::OnEnablePreview(wxCommandEvent& event)
 		if (GetSize().GetWidth() < 700)
 			SetSize(-1, -1, 900, -1); // nobody is still using 800x600, are they?
 
-		m_Splitter->SplitVertically(m_Splitter->GetWindow1(), m_PreviewWindow, 600);
+		m_Splitter->SetDefaultSashPosition(600);
+		m_Splitter->SplitVertically(m_Splitter->GetWindow1(), m_PreviewWindow);
 	}
 	else
 		m_Splitter->Unsplit();
