@@ -5,10 +5,6 @@
 
 #include "lib/timer.h"
 
-#if OS_WIN
-#include "sysdep/win/win_internal.h"
-#endif
-
 using namespace AtlasMessage;
 
 
@@ -82,23 +78,11 @@ void MessagePasserImpl::Query(QueryMessage* qry, void(*timeoutCallback)())
 	// loop to avoid deadlocking the system (particularly when the game
 	// tries to show a dialog box); so timeoutCallback is called whenever we
 	// think it's necessary for that to happen.
+
 #if OS_WIN
 	// On Win32, use MsgWaitForMultipleObjects, which waits on the semaphore
 	// but is also interrupted by incoming Windows-messages.
-	extern HANDLE sem_t_to_HANDLE(sem_t* sem);
-	HANDLE h = sem_t_to_HANDLE(&sem);
-	DWORD rc;
-	while (WAIT_OBJECT_0 != (rc = MsgWaitForMultipleObjects(1, &h, FALSE, INFINITE, QS_ALLINPUT)))
-	{
-		// If woken up by a message, call the callback and try again
-		if (rc == WAIT_OBJECT_0 + 1)
-			timeoutCallback();
-		else
-		{
-			debug_warn("MsgWaitForMultipleObjects returned unexpected value");
-			return;
-		}
-	}
+	while (0 != (err = sem_msgwait_np(&sem)))
 #else
 	// TODO: On non-Win32, I have no idea whether the same problem exists; but
 	// it might do, so call the callback every few seconds just in case it helps.
@@ -106,6 +90,7 @@ void MessagePasserImpl::Query(QueryMessage* qry, void(*timeoutCallback)())
 	clock_gettime(CLOCK_REALTIME, &abs_timeout);
 	abs_timeout.tv_sec += 2;
 	while (0 != (err = sem_timedwait(&sem, &abs_timeout)))
+#endif
 	{
 		// If timed out, call callback and try again
 		if (errno == ETIMEDOUT)
@@ -113,11 +98,10 @@ void MessagePasserImpl::Query(QueryMessage* qry, void(*timeoutCallback)())
 		// Keep retrying while EINTR, but other errors are probably fatal
 		else if (errno != EINTR)
 		{
-			debug_warn("sem_wait failed");
+			debug_warn("Semaphore wait failed");
 			return; // (leak the semaphore)
 		}
 	}
-#endif
 
 	// Clean up
 	qry->m_Semaphore = NULL;
