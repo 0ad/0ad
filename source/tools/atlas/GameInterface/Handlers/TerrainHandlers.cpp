@@ -6,8 +6,14 @@
 
 #include "graphics/TextureManager.h"
 #include "graphics/TextureEntry.h"
+#include "graphics/Terrain.h"
+#include "ps/Game.h"
+#include "ps/World.h"
+#include "lib/ogl.h"
+#include "lib/res/graphics/ogl_tex.h"
 
 #include "../Brushes.h"
+#include "../DeltaArray.h"
 
 namespace AtlasMessage {
 
@@ -18,31 +24,207 @@ QUERYHANDLER(GetTerrainGroups)
 		msg->groupnames.push_back(CStrW(it->first));
 }
 
+static bool CompareTerrain(const sTerrainGroupPreview& a, const sTerrainGroupPreview& b) 
+{
+	return (wcscmp(a.name.c_str(), b.name.c_str()) < 0);
+}
+
 QUERYHANDLER(GetTerrainGroupPreviews)
 {
 	CTerrainGroup* group = g_TexMan.FindGroup(CStrW(msg->groupname));
 	for (std::vector<CTextureEntry*>::const_iterator it = group->GetTerrains().begin(); it != group->GetTerrains().end(); ++it)
 	{
-		msg->previews.push_back(AtlasMessage::sTerrainGroupPreview());
+		msg->previews.push_back(sTerrainGroupPreview());
 		msg->previews.back().name = CStrW((*it)->GetTag());
 
-		u32 c = (*it)->GetBaseColor();
 		unsigned char* buf = (unsigned char*)malloc(msg->imagewidth*msg->imageheight*3);
 
-		// TODO: An actual preview of the texture. (There's no need to shrink
-		// the entire texture to fit, since it's the small details in the
-		// texture that are interesting, so we could just crop a chunk out of
-		// the middle.)
-		for (int i = 0; i < msg->imagewidth*msg->imageheight; ++i)
+		// It's not good to shrink the entire texture to fit the small preview
+		// window, since it's the fine details in the texture that are
+		// interesting; so just go down one mipmap level, then crop a chunk
+		// out of the middle.
+
+		// Read the size of the texture. (Usually loads the texture from
+		// disk, which is slow.)
+		GLint w, h;
+		int level = 1; // level 0 is the original size
+		ogl_tex_bind((*it)->GetHandle());
+		glGetTexLevelParameteriv(GL_TEXTURE_2D, level, GL_TEXTURE_WIDTH,  &w);
+		glGetTexLevelParameteriv(GL_TEXTURE_2D, level, GL_TEXTURE_HEIGHT, &h);
+
+		if (w < msg->imagewidth || h < msg->imageheight)
 		{
-			buf[i*3+0] = (c>>16) & 0xff;
-			buf[i*3+1] = (c>>8) & 0xff;
-			buf[i*3+2] = (c>>0) & 0xff;
+			// Oops, too small to preview - just use a flat colour
+			u32 c = (*it)->GetBaseColor();
+			for (int i = 0; i < msg->imagewidth*msg->imageheight; ++i)
+			{
+				buf[i*3+0] = (c>>16) & 0xff;
+				buf[i*3+1] = (c>>8) & 0xff;
+				buf[i*3+2] = (c>>0) & 0xff;
+			}
+		}
+		else
+		{
+			// Read the whole texture into a new buffer
+			unsigned char* texdata = new unsigned char[w*h*3];
+			glGetTexImage(GL_TEXTURE_2D, level, GL_RGB, GL_UNSIGNED_BYTE, texdata);
+
+			// Extract the middle section (as a representative preview),
+			// and copy into buf
+			unsigned char* texdata_ptr = texdata + (w*(h - msg->imageheight)/2 + (w - msg->imagewidth)/2) * 3;
+			unsigned char* buf_ptr = buf;
+			for (int y = 0; y < msg->imageheight; ++y)
+			{
+				memcpy(buf_ptr, texdata_ptr, msg->imagewidth*3);
+				buf_ptr += msg->imagewidth*3;
+				texdata_ptr += w*3;
+			}
+
+			delete[] texdata;
 		}
 
 		msg->previews.back().imagedata = buf;
 	}
 
+	// Sort the list alphabetically by name
+	std::sort(msg->previews.begin(), msg->previews.end(), CompareTerrain);
 }
+
+//////////////////////////////////////////////////////////////////////////
+
+BEGIN_COMMAND(PaintTerrain)
+
+	struct TerrainTile
+	{
+		TerrainTile(Handle t, int p) : tex(t), priority(p) {}
+		Handle tex;
+		int priority;
+	};
+	class TerrainArray : public DeltaArray2D<TerrainTile>
+	{
+	public:
+		void Init()
+		{
+			m_Terrain = g_Game->GetWorld()->GetTerrain();
+			m_VertsPerSide = g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide();
+		}
+
+		void PaintTile(int x, int y, Handle tex, int priority)
+		{
+			// Ignore out-of-bounds tiles
+			if ((unsigned)x >= m_VertsPerSide-1 || (unsigned)y >= m_VertsPerSide-1)
+				return;
+
+			set(x,y, TerrainTile(tex, priority == ePaintTerrainPriority::HIGH ? 1 : -1));
+/* (TODO: fix all this)
+			// Priority system: If the new tile should have a high priority,
+			// set it to one plus the maximum priority of all surrounding tiles
+			// TODO: the blending system is broken when adjacent tiles have
+			// the same priority but different textures
+			int greatestSame = 0;
+			int greatestDiff = 0;
+			int scale = (priority == ePaintTerrainPriority::HIGH ? +1 : -1);
+			CMiniPatch* tile;
+#define TILE(dx, dy) \
+	tile = m_Terrain->GetTile(x dx, y dy); \
+	if (tile) { \
+		if (tile->Tex1 == tex && tile->Tex1Priority*scale > greatestSame) \
+			greatestSame = tile->Tex1Priority*scale; \
+		else if (tile->Tex1 != tex && tile->Tex1Priority*scale > greatestDiff) \
+			greatestDiff = tile->Tex1Priority*scale; \
+	}
+			TILE(-1, -1) TILE(+0, -1) TILE(+1, -1)
+			TILE(-1, +0)              TILE(+1, +0)
+			TILE(-1, +1) TILE(+0, +1) TILE(+1, +1)
+#undef TILE
+			// If the greatest priority is of the same texture as this one,
+			// give this one the same priority (to minimise confusion in the
+			// blending system)
+			if (greatestSame > greatestDiff)
+			{
+				tile = m_Terrain->GetTile(x,y);
+				// Don't bother updating tiles that are exactly the same
+				// (e.g. when dragging big brushes around)
+				if (tile->Tex1 != tex || tile->Tex1Priority != greatestSame)
+					set(x,y, TerrainTile(tex, greatestSame*scale));
+			}
+			// Set this texture to have a priority greater than the surrounding ones
+			else
+				set(x,y, TerrainTile(tex, (greatestDiff+1)*scale));
+*/
+		}
+
+	protected:
+		TerrainTile getOld(int x, int y)
+		{
+			CMiniPatch* mp = m_Terrain->GetTile(x, y);
+			return TerrainTile(mp->Tex1, mp->Tex1Priority);
+		}
+		void setNew(int x, int y, const TerrainTile& val)
+		{
+			CMiniPatch* mp = m_Terrain->GetTile(x, y);
+			mp->Tex1 = val.tex;
+			mp->Tex1Priority = val.priority;
+		}
+
+		CTerrain* m_Terrain;
+		size_t m_VertsPerSide;
+	};
+
+	TerrainArray m_TerrainDelta;
+
+	void Construct()
+	{
+		m_TerrainDelta.Init();
+	}
+	void Destruct()
+	{
+	}
+
+	void Do()
+	{
+
+		d->pos.GetWorldSpace(g_CurrentBrush.m_Centre);
+
+		int x0, y0;
+		g_CurrentBrush.GetBottomRight(x0, y0);
+
+		CTextureEntry* texentry = g_TexMan.FindTexture(CStrW(d->texture));
+		if (! texentry)
+		{
+			debug_warn("Can't find texentry"); // TODO: nicer error handling
+			return;
+		}
+		Handle texture = texentry->GetHandle();
+
+		for (int dy = 0; dy < g_CurrentBrush.m_H; ++dy)
+			for (int dx = 0; dx < g_CurrentBrush.m_W; ++dx)
+			{
+				if (g_CurrentBrush.Get(dx, dy) > 0.5f) // TODO: proper solid brushes
+					m_TerrainDelta.PaintTile(x0+dx, y0+dy, texture, d->priority);
+			}
+
+		g_Game->GetWorld()->GetTerrain()->MakeDirty(x0, y0, x0+g_CurrentBrush.m_W, y0+g_CurrentBrush.m_H);
+	}
+
+	void Undo()
+	{
+		m_TerrainDelta.Undo();
+		g_Game->GetWorld()->GetTerrain()->MakeDirty();
+	}
+
+	void Redo()
+	{
+		m_TerrainDelta.Redo();
+		g_Game->GetWorld()->GetTerrain()->MakeDirty();
+	}
+
+	void MergeWithSelf(cPaintTerrain* prev)
+	{
+		prev->m_TerrainDelta.OverlayWith(m_TerrainDelta);
+	}
+
+END_COMMAND(PaintTerrain);
+
 
 }

@@ -115,6 +115,13 @@ COMMAND(AlterElevation, MERGE,
 		((float, amount))
 		);
 
+struct ePaintTerrainPriority { enum { HIGH, LOW }; };
+COMMAND(PaintTerrain, MERGE,
+		((Position, pos))
+		((std::wstring, texture))
+		((int, priority))
+		);
+
 //////////////////////////////////////////////////////////////////////////
 
 #include "MessagesSetup.h"

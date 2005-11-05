@@ -236,6 +236,7 @@ extern float fmaxf(float a, float b);
 # define STL_HASH_MULTIMAP __gnu_cxx::hash_multimap
 # define STL_HASH_SET __gnu_cxx::hash_set
 # define STL_HASH_MULTISET __gnu_cxx::hash_multiset
+# define STL_HASH_VALUE __gnu_cxx::hash
 # define STL_SLIST __gnu_cxx::slist
 
 // Hack: GCC Doesn't have a hash instance for std::string included (and it looks
@@ -247,7 +248,7 @@ namespace __gnu_cxx
 		size_t operator()(const std::string& __x) const 
 		{
 			return __stl_hash_string(__x.c_str());
-    	}
+		}
 	};
 }
 
@@ -260,12 +261,14 @@ namespace __gnu_cxx
 #  define STL_HASH_MULTIMAP stdext::hash_multimap
 #  define STL_HASH_SET stdext::hash_set
 #  define STL_HASH_MULTISET stdext::hash_multiset
+#  define STL_HASH_VALUE stdext::hash_value
 // VC6 and anything else (most likely name)
 # else
 #  define STL_HASH_MAP std::hash_map
 #  define STL_HASH_MULTIMAP std::hash_multimap
 #  define STL_HASH_SET std::hash_set
 #  define STL_HASH_MULTISET std::hash_multiset
+#  define STL_HASH_VALUE std::hash_value
 # endif	// MSC_VERSION >= 1300
 #endif	// !__GNUC__
 

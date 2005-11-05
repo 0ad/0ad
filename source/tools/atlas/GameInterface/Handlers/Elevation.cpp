@@ -6,36 +6,59 @@
 
 #include "graphics/Terrain.h"
 #include "ps/Game.h"
+#include "maths/MathUtil.h"
 
 #include "../Brushes.h"
+#include "../DeltaArray.h"
 
 namespace AtlasMessage {
 
-
 BEGIN_COMMAND(AlterElevation)
 
-	// TODO: much more efficient version of this, and without the memory leaks
-	u16* OldTerrain;
-	u16* NewTerrain;
+	class TerrainArray : public DeltaArray2D<u16>
+	{
+	public:
+		void Init()
+		{
+			m_Heightmap = g_Game->GetWorld()->GetTerrain()->GetHeightMap();
+			m_VertsPerSide = g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide();
+		}
+
+		void RaiseVertex(int x, int y, int amount)
+		{
+			// Ignore out-of-bounds vertices
+			if ((unsigned)x >= m_VertsPerSide || (unsigned)y >= m_VertsPerSide)
+				return;
+
+			set(x,y, (u16)clamp(get(x,y) + amount, 0, 65535));
+		}
+
+	protected:
+		u16 getOld(int x, int y)
+		{
+			return m_Heightmap[y*m_VertsPerSide + x];
+		}
+		void setNew(int x, int y, const u16& val)
+		{
+			m_Heightmap[y*m_VertsPerSide + x] = val;
+		}
+
+		u16* m_Heightmap;
+		size_t m_VertsPerSide;
+	};
+
+	TerrainArray m_TerrainDelta;
 
 	void Construct()
 	{
-		OldTerrain = NewTerrain = NULL;
+		m_TerrainDelta.Init();
 	}
 	void Destruct()
 	{
-		delete OldTerrain;
-		delete NewTerrain;
 	}
 
 	void Do()
 	{
-
-		CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-
-		int verts = terrain->GetVerticesPerSide()*terrain->GetVerticesPerSide();
-		OldTerrain = new u16[verts];
-		memcpy2(OldTerrain, terrain->GetHeightMap(), verts*sizeof(u16));
 
 		int amount = (int)d->amount;
 
@@ -62,33 +85,27 @@ BEGIN_COMMAND(AlterElevation)
 				// TODO: proper variable raise amount (store floats in terrain delta array?)
 				float b = g_CurrentBrush.Get(dx, dy);
 				if (b)
-					terrain->RaiseVertex(x0+dx, y0+dy, amount*b);
+					m_TerrainDelta.RaiseVertex(x0+dx, y0+dy, amount*b);
 			}
 
-		terrain->MakeDirty(x0, y0, x0+g_CurrentBrush.m_W, y0+g_CurrentBrush.m_H);
+		g_Game->GetWorld()->GetTerrain()->MakeDirty(x0, y0, x0+g_CurrentBrush.m_W, y0+g_CurrentBrush.m_H);
 	}
 
 	void Undo()
 	{
-		CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-		if (! NewTerrain)
-		{
-			int verts = terrain->GetVerticesPerSide()*terrain->GetVerticesPerSide();
-			NewTerrain = new u16[verts];
-			memcpy2(NewTerrain, terrain->GetHeightMap(), verts*sizeof(u16));
-		}
-		terrain->SetHeightMap(OldTerrain); // CTerrain duplicates the data
+		m_TerrainDelta.Undo();
+		g_Game->GetWorld()->GetTerrain()->MakeDirty();
 	}
 
 	void Redo()
 	{
-		CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-		terrain->SetHeightMap(NewTerrain); // CTerrain duplicates the data
+		m_TerrainDelta.Redo();
+		g_Game->GetWorld()->GetTerrain()->MakeDirty();
 	}
 
 	void MergeWithSelf(cAlterElevation* prev)
 	{
-		std::swap(prev->NewTerrain, NewTerrain);
+		prev->m_TerrainDelta.OverlayWith(m_TerrainDelta);
 	}
 
 END_COMMAND(AlterElevation);

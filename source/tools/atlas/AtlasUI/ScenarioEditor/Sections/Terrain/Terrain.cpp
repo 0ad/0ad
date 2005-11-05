@@ -7,6 +7,7 @@
 #include "General/Datafile.h"
 #include "ScenarioEditor/Tools/Common/Brushes.h"
 #include "ScenarioEditor/Tools/Common/Tools.h"
+#include "ScenarioEditor/Tools/Common/MiscState.h"
 
 #include "GameInterface/Messages.h"
 
@@ -22,8 +23,9 @@ TerrainSidebar::TerrainSidebar(wxWindow* parent)
 	{
 		wxSizer* sizer = new wxStaticBoxSizer(wxHORIZONTAL, this, _("Elevation tools"));
 		sizer->Add(new ToolButton(this, _("Modify"), _T("AlterElevation"), wxSize(50,20)));
-		sizer->Add(new ToolButton(this, _("Smooth"), _T(""), wxSize(50,20)));
-		sizer->Add(new ToolButton(this, _("Sample"), _T(""), wxSize(50,20)));
+//		sizer->Add(new ToolButton(this, _("Smooth"), _T(""), wxSize(50,20)));
+//		sizer->Add(new ToolButton(this, _("Sample"), _T(""), wxSize(50,20)));
+		sizer->Add(new ToolButton(this, _("Paint"), _T("PaintTerrain"), wxSize(50,20)));
 		m_MainSizer->Add(sizer);
 	}
 
@@ -54,17 +56,19 @@ public:
 	{
 	}
 
-	void OnSelected()
+	void OnDisplay()
 	{
 		if (m_Loaded)
 			return;
 
-		const int imageWidth = 64;
-		const int imageHeight = 32;
+		m_TextureNames.Clear();
 
 		wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 
 		wxListCtrl* list = new wxListCtrl(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_ICON | wxLC_SINGLE_SEL | wxLC_AUTOARRANGE);
+
+		const int imageWidth = 64;
+		const int imageHeight = 32;
 		wxImageList* imglist = new wxImageList(imageWidth, imageHeight, false, 0);
 
 		AtlasMessage::qGetTerrainGroupPreviews qry(m_Name.c_str(), imageWidth, imageHeight);
@@ -76,12 +80,20 @@ public:
 			wxImage img (imageWidth, imageHeight, it->imagedata);
 			imglist->Add(wxBitmap(img));
 
-			// Add spaces into the name, so Windows doesn't just say
-			// "grass_..." in the list ctrl for every terrain
-			wxString name = it->name.c_str();
-			name.Replace(_T("_"), _T(" "));
+			wxListItem item;
 
-			list->InsertItem(i, name, i);
+			wxString name = it->name.c_str();
+			m_TextureNames.Add(name);
+			// Add spaces into the displayed name, so Windows doesn't just say
+			// "grass_..." in the list ctrl for every terrain
+			name.Replace(_T("_"), _T(" "));
+			item.SetText(name);
+
+			item.SetData(i);
+			item.SetId(i);
+			item.SetImage(i);
+
+			list->InsertItem(item);
 			++i;
 		}
 		list->AssignImageList(imglist, wxIMAGE_LIST_NORMAL);
@@ -93,10 +105,23 @@ public:
 		m_Loaded = true;
 	}
 
+	void OnSelect(wxListEvent& evt)
+	{
+		g_SelectedTexture = m_TextureNames[evt.GetData()];
+	}
+
 private:
 	bool m_Loaded;
 	wxString m_Name;
+	wxArrayString m_TextureNames;
+
+	DECLARE_EVENT_TABLE();
 };
+
+BEGIN_EVENT_TABLE(TextureNotebookPage, wxPanel)
+	EVT_LIST_ITEM_SELECTED(wxID_ANY, TextureNotebookPage::OnSelect)
+END_EVENT_TABLE();
+
 
 class TextureNotebook : public wxNotebook
 {
@@ -124,7 +149,7 @@ protected:
 	{
 		if (event.GetSelection() != -1)
 		{
-			static_cast<TextureNotebookPage*>(GetPage(event.GetSelection()))->OnSelected();
+			static_cast<TextureNotebookPage*>(GetPage(event.GetSelection()))->OnDisplay();
 		}
 		event.Skip();
 	}
