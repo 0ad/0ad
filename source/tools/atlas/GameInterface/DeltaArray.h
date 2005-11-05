@@ -38,7 +38,7 @@ private:
 template<typename T>
 T DeltaArray2D<T>::get(int x, int y)
 {
-	Data::iterator it = m_Data.find(std::make_pair(x, y));
+	typename Data::iterator it = m_Data.find(std::make_pair(x, y));
 	if (it == m_Data.end())
 		return getOld(x, y);
 	else
@@ -48,7 +48,7 @@ T DeltaArray2D<T>::get(int x, int y)
 template<typename T>
 void DeltaArray2D<T>::set(int x, int y, const T& val)
 {
-	Data::iterator it = m_Data.find(std::make_pair(x, y));
+	typename Data::iterator it = m_Data.find(std::make_pair(x, y));
 	if (it == m_Data.end())
 		m_Data.insert(std::make_pair(std::make_pair(x, y), std::make_pair(getOld(x, y), val)));
 	else
@@ -59,9 +59,9 @@ void DeltaArray2D<T>::set(int x, int y, const T& val)
 template <typename T>
 void DeltaArray2D<T>::OverlayWith(const DeltaArray2D<T>& overlayer)
 {
-	for (Data::const_iterator it = overlayer.m_Data.begin(); it != overlayer.m_Data.end(); ++it)
+	for (typename Data::const_iterator it = overlayer.m_Data.begin(); it != overlayer.m_Data.end(); ++it)
 	{
-		Data::iterator it2 = m_Data.find(it->first);
+		typename Data::iterator it2 = m_Data.find(it->first);
 		if (it2 == m_Data.end())
 			m_Data.insert(*it);
 		else
@@ -76,14 +76,14 @@ void DeltaArray2D<T>::OverlayWith(const DeltaArray2D<T>& overlayer)
 template <typename T>
 void DeltaArray2D<T>::Undo()
 {
-	for (Data::iterator it = m_Data.begin(); it != m_Data.end(); ++it)
+	for (typename Data::iterator it = m_Data.begin(); it != m_Data.end(); ++it)
 		setNew(it->first.first, it->first.second, it->second.first);
 }
 
 template <typename T>
 void DeltaArray2D<T>::Redo()
 {
-	for (Data::iterator it = m_Data.begin(); it != m_Data.end(); ++it)
+	for (typename Data::iterator it = m_Data.begin(); it != m_Data.end(); ++it)
 		setNew(it->first.first, it->first.second, it->second.second);
 }
 

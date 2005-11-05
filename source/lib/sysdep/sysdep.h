@@ -236,8 +236,13 @@ extern float fmaxf(float a, float b);
 # define STL_HASH_MULTIMAP __gnu_cxx::hash_multimap
 # define STL_HASH_SET __gnu_cxx::hash_set
 # define STL_HASH_MULTISET __gnu_cxx::hash_multiset
-# define STL_HASH_VALUE __gnu_cxx::hash
 # define STL_SLIST __gnu_cxx::slist
+
+template<typename T>
+size_t STL_HASH_VALUE(T v)
+{
+	return __gnu_cxx::hash<T>()(v);
+}
 
 // Hack: GCC Doesn't have a hash instance for std::string included (and it looks
 // like they won't add it - marked resolved/wontfix in the gcc bugzilla)
