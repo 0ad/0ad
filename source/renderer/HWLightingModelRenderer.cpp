@@ -74,12 +74,6 @@ struct HWLightingModelRendererInternals
 	/// Currently used RenderModifier
 	RenderModifierPtr modifier;
 	
-	/// Current rendering pass
-	uint pass;
-	
-	/// Streamflags required in this pass
-	uint streamflags;
-	
 	/// Previously prepared modeldef
 	HWLModelDef* hwlmodeldef;
 };
@@ -89,6 +83,7 @@ struct HWLightingModelRendererInternals
 HWLightingModelRenderer::HWLightingModelRenderer()
 {
 	m = new HWLightingModelRendererInternals;
+	m->hwlmodeldef = 0;
 }
 
 HWLightingModelRenderer::~HWLightingModelRenderer()
@@ -101,50 +96,6 @@ HWLightingModelRenderer::~HWLightingModelRenderer()
 bool HWLightingModelRenderer::IsAvailable()
 {
 	return g_Renderer.m_VertexShader != 0;
-}
-
-
-// Render submitted models.
-void HWLightingModelRenderer::Render(RenderModifierPtr modifier, u32 flags)
-{
-	if (!HaveSubmissions())
-		return;
-	
-	// Save for later
-	m->modifier = modifier;
-	
-	glEnableClientState(GL_VERTEX_ARRAY);
-	
-	m->pass = 0;
-	do
-	{
-		m->streamflags = modifier->BeginPass(m->pass);
-		
-		if (m->streamflags & STREAM_UV0) glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-		if (m->streamflags & STREAM_COLOR)
-		{
-			const RGBColor* coeffs = g_Renderer.m_SHCoeffsUnits.GetCoefficients();
-			int idx;
-			
-			ogl_program_use(g_Renderer.m_VertexShader->m_ModelLight);
-			idx = g_Renderer.m_VertexShader->m_ModelLight_SHCoefficients;
-			pglUniform3fvARB(idx, 9, (float*)coeffs);
-
-			glEnableClientState(GL_NORMAL_ARRAY);
-		}
-		
-		RenderAllModels(flags);
-
-		if (m->streamflags & STREAM_UV0) glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-		if (m->streamflags & STREAM_COLOR)
-		{
-			pglUseProgramObjectARB(0);
-
-			glDisableClientState(GL_NORMAL_ARRAY);
-		}
-	} while(!modifier->EndPass(m->pass++));
-	
-	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
 
@@ -200,7 +151,7 @@ void HWLightingModelRenderer::UpdateModelData(CModel* model, void* data, u32 upd
 		VertexArrayIterator<CVector3D> Position = hwlmodel->m_Position.GetIterator<CVector3D>();
 		VertexArrayIterator<CVector3D> Normal = hwlmodel->m_Normal.GetIterator<CVector3D>();
 		
-		BuildPositionAndNormals(model, Position, Normal);
+		ModelRenderer::BuildPositionAndNormals(model, Position, Normal);
 	
 		// upload everything to vertex buffer
 		hwlmodel->m_Array.Upload();
@@ -218,8 +169,43 @@ void HWLightingModelRenderer::DestroyModelData(CModel* UNUSED(model), void* data
 }
 
 
+// Setup one rendering pass
+void HWLightingModelRenderer::BeginPass(uint streamflags)
+{
+	glEnableClientState(GL_VERTEX_ARRAY);
+	
+	if (streamflags & STREAM_UV0) glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	if (streamflags & STREAM_COLOR)
+	{
+		const RGBColor* coeffs = g_Renderer.m_SHCoeffsUnits.GetCoefficients();
+		int idx;
+		
+		ogl_program_use(g_Renderer.m_VertexShader->m_ModelLight);
+		idx = g_Renderer.m_VertexShader->m_ModelLight_SHCoefficients;
+		pglUniform3fvARB(idx, 9, (float*)coeffs);
+
+		glEnableClientState(GL_NORMAL_ARRAY);
+	}
+}
+
+
+// Cleanup one rendering pass
+void HWLightingModelRenderer::EndPass(uint streamflags)
+{
+	if (streamflags & STREAM_UV0) glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	if (streamflags & STREAM_COLOR)
+	{
+		pglUseProgramObjectARB(0);
+
+		glDisableClientState(GL_NORMAL_ARRAY);
+	}
+	
+	glDisableClientState(GL_VERTEX_ARRAY);
+}
+
+
 // Prepare UV coordinates for this modeldef
-void HWLightingModelRenderer::PrepareModelDef(CModelDefPtr def)
+void HWLightingModelRenderer::PrepareModelDef(uint UNUSED(streamflags), CModelDefPtr def)
 {
 	m->hwlmodeldef = (HWLModelDef*)def->GetRenderData(m);
 	
@@ -227,18 +213,9 @@ void HWLightingModelRenderer::PrepareModelDef(CModelDefPtr def)
 }
 
 
-// Call the modifier to prepare the given texture
-void HWLightingModelRenderer::PrepareTexture(CTexture* texture)
-{
-	m->modifier->PrepareTexture(m->pass, texture);
-}
-
-
 // Render one model
-void HWLightingModelRenderer::RenderModel(CModel* model, void* data)
+void HWLightingModelRenderer::RenderModel(uint streamflags, CModel* model, void* data)
 {
-	m->modifier->PrepareModel(m->pass, model);
-	
 	CModelDefPtr mdldef = model->GetModelDef();
 	HWLModel* hwlmodel = (HWLModel*)data;
 	
@@ -246,14 +223,14 @@ void HWLightingModelRenderer::RenderModel(CModel* model, void* data)
 	GLsizei stride = (GLsizei)hwlmodel->m_Array.GetStride();
 	
 	glVertexPointer(3, GL_FLOAT, stride, base + hwlmodel->m_Position.offset);
-	if (m->streamflags & STREAM_COLOR)
+	if (streamflags & STREAM_COLOR)
 	{
 		CColor sc = model->GetShadingColor();
 		glColor3f(sc.r, sc.g, sc.b);
 		
 		glNormalPointer(GL_FLOAT, stride, base + hwlmodel->m_Normal.offset);
 	}
-	if (m->streamflags & STREAM_UV0)
+	if (streamflags & STREAM_UV0)
 	{
 		glTexCoordPointer(2, GL_FLOAT, stride, base + hwlmodel->m_UV.offset);
 	}

@@ -22,7 +22,9 @@
 #include "graphics/ModelDef.h"
 
 #include "renderer/ModelRenderer.h"
+#include "renderer/ModelVertexRenderer.h"
 #include "renderer/Renderer.h"
+#include "renderer/RenderModifiers.h"
 #include "renderer/SHCoeffs.h"
 
 
@@ -276,6 +278,9 @@ struct BatchModelRendererInternals
 	/// Back-link to "our" renderer
 	BatchModelRenderer* m_Renderer;
 	
+	/// ModelVertexRenderer used for vertex transformations
+	ModelVertexRendererPtr vertexRenderer;
+	
 	/// Track the current "phase" of the frame (only for debugging purposes)
 	BMRPhase phase;
 	
@@ -285,8 +290,10 @@ struct BatchModelRendererInternals
 	/// Helper functions
 	void ThunkDestroyModelData(CModel* model, void* data)
 	{
-		m_Renderer->DestroyModelData(model, data);
+		vertexRenderer->DestroyModelData(model, data);
 	}
+	
+	void RenderAllModels(RenderModifierPtr modifier, u32 filterflags, uint pass, uint streamflags);
 };
 
 BMRModelData::~BMRModelData()
@@ -296,9 +303,10 @@ BMRModelData::~BMRModelData()
 
 
 // Construction/Destruction
-BatchModelRenderer::BatchModelRenderer()
+BatchModelRenderer::BatchModelRenderer(ModelVertexRendererPtr vertexrenderer)
 {
 	m = new BatchModelRendererInternals(this);
+	m->vertexRenderer = vertexrenderer;
 	m->phase = BMRSubmit;
 	m->submissions = 0;
 }
@@ -332,7 +340,7 @@ void BatchModelRenderer::Submit(CModel* model)
 	else
 	{
 		bmrdata = new BMRModelData(m, model);
-		bmrdata->m_Data = CreateModelData(model);
+		bmrdata->m_Data = m->vertexRenderer->CreateModelData(model);
 		rdata = bmrdata;
 		model->SetRenderData(bmrdata);
 		model->SetDirty(~0u);
@@ -385,9 +393,13 @@ void BatchModelRenderer::PrepareModels()
 		{
 			for(BMRModelData* bmrdata = mdeftracker->m_ModelSlots[idx]; bmrdata; bmrdata = bmrdata->m_Next)
 			{
-				debug_assert(bmrdata->GetModel()->GetRenderData() == bmrdata);
+				CModel* model = bmrdata->GetModel();
 				
-				UpdateModelData(bmrdata->GetModel(), bmrdata->m_Data, bmrdata->m_UpdateFlags);
+				debug_assert(model->GetRenderData() == bmrdata);
+				
+				m->vertexRenderer->UpdateModelData(
+						model, bmrdata->m_Data,
+						bmrdata->m_UpdateFlags);
 				bmrdata->m_UpdateFlags = 0;
 			}
 		}
@@ -424,31 +436,55 @@ bool BatchModelRenderer::HaveSubmissions()
 }
 
 
-// Walk through the submissions list and call PrepareXYZ and RenderModel as necessary
-void BatchModelRenderer::RenderAllModels(u32 flags)
+// Render models, outer loop for multi-passing
+void BatchModelRenderer::Render(RenderModifierPtr modifier, u32 flags)
 {
 	debug_assert(m->phase == BMRRender);
 	
-	for(BMRModelDefTracker* mdeftracker = m->submissions; mdeftracker; mdeftracker = mdeftracker->m_Next)
+	if (!HaveSubmissions())
+		return;
+	
+	uint pass = 0;
+	
+	do
 	{
-		PrepareModelDef(mdeftracker->m_ModelDef.lock());
+		uint streamflags = modifier->BeginPass(pass);
+		
+		m->vertexRenderer->BeginPass(streamflags);
+		
+		m->RenderAllModels(modifier, flags, pass, streamflags);
+
+		m->vertexRenderer->EndPass(streamflags);
+	} while(!modifier->EndPass(pass++));
+}
+
+
+// Render one frame worth of models
+void BatchModelRendererInternals::RenderAllModels(
+		RenderModifierPtr modifier, u32 filterflags,
+		uint pass, uint streamflags)
+{
+	for(BMRModelDefTracker* mdeftracker = submissions; mdeftracker; mdeftracker = mdeftracker->m_Next)
+	{
+		vertexRenderer->PrepareModelDef(streamflags, mdeftracker->m_ModelDef.lock());
 		
 		for(uint idx = 0; idx < mdeftracker->m_Slots; ++idx)
 		{
 			BMRModelData* bmrdata = mdeftracker->m_ModelSlots[idx];
-			
-			PrepareTexture(bmrdata->GetModel()->GetTexture());
+
+			modifier->PrepareTexture(pass, bmrdata->GetModel()->GetTexture());
 
 			for(; bmrdata; bmrdata = bmrdata->m_Next)
 			{
 				CModel* model = bmrdata->GetModel();
 				
-				debug_assert(bmrdata->GetKey() == m);
+				debug_assert(bmrdata->GetKey() == this);
 				
-				if (flags && !(model->GetFlags()&flags))
+				if (filterflags && !(model->GetFlags()&filterflags))
 					continue;
 			
-				RenderModel(model, bmrdata->m_Data);
+				modifier->PrepareModel(pass, model);
+				vertexRenderer->RenderModel(streamflags, model, bmrdata->m_Data);
 			}
 		}
 	}

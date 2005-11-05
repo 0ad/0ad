@@ -2,8 +2,9 @@
  * =========================================================================
  * File        : TransparencyRenderer.h
  * Project     : Pyrogenesis
- * Description : ModelRenderer implementation that sorts polygons based
- *             : on distance from viewer, for transparency rendering.
+ * Description : ModelRenderer implementation that sorts models and/or
+ *             : polygons based on distance from viewer, for transparency
+ *             : rendering.
  *
  * @author Rich Cross <rich@wildfiregames.com>
  * @author Nicolai Hähnle <nicolai@wildfiregames.com>
@@ -14,52 +15,70 @@
 #define __TRANSPARENCYRENDERER_H
 
 #include "renderer/ModelRenderer.h"
+#include "renderer/ModelVertexRenderer.h"
 #include "renderer/RenderModifiers.h"
 
 
-struct TransparencyRendererInternals;
+struct PolygonSortModelRendererInternals;
 
 /**
- * Class TransparencyRenderer: Render transparent models that require
- * Z-based sorting.
+ * Class PolygonSortModelRenderer: Render animated models using only
+ * OpenGL fixed function, sorting polygons from back to front.
  * 
- * This is a lot less efficient than batched model
- * renderers, so it should be used only when really necessary for
- * translucent models. Models that use the alpha channel for masking
- * should probably use a batched model renderer and an appropriate
- * RenderModifier.
- * 
- * Use this renderer together with TransparentRenderModifier and
- * TransparentShadowRenderModifier.
+ * This ModelVertexRenderer should only be used with SortModelRenderer.
+ * However, SortModelRenderer can be used with other ModelVertexRenderers
+ * than this one.
  */
-class TransparencyRenderer : public ModelRenderer
+class PolygonSortModelRenderer : public ModelVertexRenderer
 {
 public:
-	TransparencyRenderer();
-	~TransparencyRenderer();
+	PolygonSortModelRenderer();
+	~PolygonSortModelRenderer();
+
+	// Implementations
+	void* CreateModelData(CModel* model);
+	void UpdateModelData(CModel* model, void* data, u32 updateflags);
+	void DestroyModelData(CModel* model, void* data);
+
+	void BeginPass(uint streamflags);
+	void EndPass(uint streamflags);
+	void PrepareModelDef(uint streamflags, CModelDefPtr def);
+	void RenderModel(uint streamflags, CModel* model, void* data);
+
+private:
+	PolygonSortModelRendererInternals* m;
+};
+
+struct SortModelRendererInternals;
+
+
+/**
+ * Class SortModelRenderer: Render models back-to-front from the
+ * camera's point of view.
+ * 
+ * This is less efficient than batched model renderers, but
+ * necessary for transparent models.
+ * 
+ * TransparencyRenderer can be used with any ModelVertexRenderer.
+ * 
+ * Use this renderer together with TransparentRenderModifier and
+ * TransparentShadowRenderModifier to achieve transparency.
+ */
+class SortModelRenderer : public ModelRenderer
+{
+public:
+	SortModelRenderer(ModelVertexRendererPtr vertexrenderer);
+	~SortModelRenderer();
 	
 	// Transparency renderer implementation
 	void Submit(CModel* model);
 	void PrepareModels();
 	void EndFrame();
 	bool HaveSubmissions();
-	
-	/**
-	 * Render: Render submitted models, using the given RenderModifier to setup
-	 * the fragment stage.
-	 *
-	 * preconditions  : PrepareModels must be called after all models have been
-	 * submitted and before calling Render.
-	 *
-	 * @param modifier The RenderModifier that specifies the fragment stage.
-	 * @param flags If flags is 0, all submitted models are rendered.
-	 * If flags is non-zero, only models that contain flags in their
-	 * CModel::GetFlags() are rendered.
-	 */
 	void Render(RenderModifierPtr modifier, u32 flags);
 
 private:
-	TransparencyRendererInternals* m;
+	SortModelRendererInternals* m;
 };
 
 

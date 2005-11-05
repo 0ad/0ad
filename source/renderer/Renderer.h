@@ -276,6 +276,9 @@ public:
 	// return the current light environment
 	const CLightEnv &GetLightEnv() { return *m_LightEnv; }
 	
+	// return the current camera
+	const CCamera& GetCamera() const { return m_Camera; }
+	
 	/**
 	 * SetFastPlayerColor: Tell the renderer which path to take for
 	 * player colored models. Both paths should provide the same visual
@@ -292,7 +295,8 @@ protected:
 	friend class CPatchRData;
 	friend class FixedFunctionModelRenderer;
 	friend class ModelRenderer;
-	friend class TransparencyRenderer;
+	friend class PolygonSortModelRenderer;
+	friend class SortModelRenderer;
 	friend class RenderPathVertexShader;
 	friend class HWLightingModelRenderer;
 	friend class InstancingModelRenderer;
@@ -413,14 +417,20 @@ protected:
 	struct Models {
 		ModelRenderer* NormalFF;
 		ModelRenderer* PlayerFF;
-		ModelRenderer* TransparentFF;
 		ModelRenderer* NormalHWLit;
 		ModelRenderer* PlayerHWLit;
-		ModelRenderer* TransparentHWLit;
 		ModelRenderer* NormalInstancing;
 		ModelRenderer* PlayerInstancing;
-		ModelRenderer* Transparency;
 		
+		ModelRenderer* TranspFF;
+		ModelRenderer* TranspHWLit;
+		ModelRenderer* TranspSortAll;
+		
+		ModelVertexRendererPtr VertexFF;
+		ModelVertexRendererPtr VertexHWLit;
+		ModelVertexRendererPtr VertexInstancing;
+		ModelVertexRendererPtr VertexPolygonSort;
+
 		RenderModifierPtr ModWireframe;
 		RenderModifierPtr ModPlain;
 		RenderModifierPtr ModPlayer;

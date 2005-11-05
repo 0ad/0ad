@@ -2,8 +2,9 @@
  * =========================================================================
  * File        : TransparencyRenderer.h
  * Project     : Pyrogenesis
- * Description : ModelRenderer implementation that sorts polygons based
- *             : on distance from viewer, for transparency rendering.
+ * Description : ModelRenderer implementation that sorts models and/or 
+ *             : polygons based on distance from viewer, for transparency 
+ *             : rendering.
  *
  * @author Rich Cross <rich@wildfiregames.com>
  * @author Nicolai Hähnle <nicolai@wildfiregames.com>
@@ -31,14 +32,15 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// TransparencyRenderer implementation
+// PolygonSortModelRenderer implementation
+
 
 /**
- * Struct TModelDef: Per-CModelDef data for the transparency renderer
+ * Struct PSModelDef: Per-CModelDef data for the polygon sort vertex renderer
  */
-struct TModelDef : public CModelDefRPrivate
+struct PSModelDef : public CModelDefRPrivate
 {
-	TModelDef(CModelDefPtr mdef);
+	PSModelDef(CModelDefPtr mdef);
 	
 	/// Static vertex array
 	VertexArray m_Array;
@@ -47,7 +49,7 @@ struct TModelDef : public CModelDefRPrivate
 	VertexArray::Attribute m_UV;
 };
 
-TModelDef::TModelDef(CModelDefPtr mdef)
+PSModelDef::PSModelDef(CModelDefPtr mdef)
 	: m_Array(false)
 {
 	m_UV.type = GL_FLOAT;
@@ -67,11 +69,12 @@ TModelDef::TModelDef(CModelDefPtr mdef)
 
 
 /**
- * Struct TModel: Per-CModel data for the transparency renderer
+ * Struct PSModel: Per-CModel data for the polygon sorting renderer
  */
-struct TModel : public CModelRData
+struct PSModel
 {
-	TModel(TransparencyRendererInternals* tri, CModel* model);
+	PSModel(CModel* model);
+	~PSModel();
 	
 	/**
 	 * BackToFrontIndexSort: Sort polygons by distance to camera for
@@ -82,6 +85,9 @@ struct TModel : public CModelRData
 	 * @return Square of the estimated distance to the nearest triangle.
 	 */
 	float BackToFrontIndexSort(const CMatrix3D& objToCam);
+	
+	/// Back-link to the model
+	CModel* m_Model;
 	
 	/// Dynamic per-CModel vertex array
 	VertexArray m_Array;
@@ -94,10 +100,10 @@ struct TModel : public CModelRData
 	u16* m_Indices;
 };
 
-TModel::TModel(TransparencyRendererInternals* tri, CModel* model)
-	: CModelRData(tri, model), m_Array(true)
+PSModel::PSModel(CModel* model)
+	: m_Model(model), m_Array(true)
 {
-	CModelDefPtr mdef = model->GetModelDef();
+	CModelDefPtr mdef = m_Model->GetModelDef();
 	
 	m_Position.type = GL_FLOAT;
 	m_Position.elems = 3;
@@ -113,6 +119,11 @@ TModel::TModel(TransparencyRendererInternals* tri, CModel* model)
 	m_Indices = new u16[mdef->GetNumFaces()*3];
 }
 
+PSModel::~PSModel()
+{
+	delete[] m_Indices;
+}
+
 
 typedef std::pair<int,float> IntFloatPair;
 
@@ -122,11 +133,11 @@ struct SortFacesByDist {
 	}
 };
 
-float TModel::BackToFrontIndexSort(const CMatrix3D& worldToCam)
+float PSModel::BackToFrontIndexSort(const CMatrix3D& worldToCam)
 {
 	static std::vector<IntFloatPair> IndexSorter;
 
-	CModelDefPtr mdef = GetModel()->GetModelDef();
+	CModelDefPtr mdef = m_Model->GetModelDef();
 	size_t numFaces = mdef->GetNumFaces();
 	const SModelFace* faces = mdef->GetFaces();
 	
@@ -166,158 +177,299 @@ float TModel::BackToFrontIndexSort(const CMatrix3D& worldToCam)
 
 
 /**
- * Struct SObject: Pair of model and camera distance.
+ * Struct PolygonSortModelRendererInternals: Internal data structure of
+ * PolygonSortModelRenderer
  */
-struct SObject
+struct PolygonSortModelRendererInternals
 {
-	/// the transparent model
-	TModel* m_Model;
-
-	/// sqrd distance from camera to centre of nearest triangle
-	float m_Dist;
-	
-	SObject(TModel* tmdl) : m_Model(tmdl), m_Dist(0) { }
-};
-
-
-/**
- * Struct TransparencyRendererInternals: Internal data structure of TransparencyRenderer
- */
-struct TransparencyRendererInternals
-{
-	/// List of submitted models.
-	std::vector<SObject> objects;
-	
 	/// Scratch space for normal vector calculation
 	std::vector<CVector3D> normals;
 };
 
 
 // Construction / Destruction
-TransparencyRenderer::TransparencyRenderer()
+PolygonSortModelRenderer::PolygonSortModelRenderer()
 {
-	m = new TransparencyRendererInternals;
+	m = new PolygonSortModelRendererInternals;
 }
 
-TransparencyRenderer::~TransparencyRenderer()
+PolygonSortModelRenderer::~PolygonSortModelRenderer()
+{
+	delete m;
+}
+
+// Create per-CModel data for the model (and per-CModelDef data if necessary)
+void* PolygonSortModelRenderer::CreateModelData(CModel* model)
+{
+	CModelDefPtr mdef = model->GetModelDef();
+	PSModelDef* psmdef = (PSModelDef*)mdef->GetRenderData(m);
+		
+	if (!psmdef)
+	{
+		psmdef = new PSModelDef(mdef);
+		mdef->SetRenderData(m, psmdef);
+	}
+	
+	return new PSModel(model);
+}
+
+
+// Updated transforms
+void PolygonSortModelRenderer::UpdateModelData(CModel* model, void* data, u32 updateflags)
+{
+	PSModel* psmdl = (PSModel*)data;
+
+	if (updateflags & RENDERDATA_UPDATE_VERTICES)
+	{
+		CModelDefPtr mdef = model->GetModelDef();
+		size_t numVertices = mdef->GetNumVertices();
+
+		// build vertices
+		if (m->normals.size() < numVertices)
+			m->normals.resize(numVertices);
+
+		VertexArrayIterator<CVector3D> Position = psmdl->m_Position.GetIterator<CVector3D>();
+		VertexArrayIterator<CVector3D> Normal = VertexArrayIterator<CVector3D>((char*)&m->normals[0], sizeof(CVector3D));
+
+		ModelRenderer::BuildPositionAndNormals(model, Position, Normal);
+
+		VertexArrayIterator<SColor4ub> Color = psmdl->m_Color.GetIterator<SColor4ub>();
+
+		ModelRenderer::BuildColor4ub(model, Normal, Color);
+
+		// upload everything to vertex buffer
+		psmdl->m_Array.Upload();
+	}
+	
+	// resort model indices from back to front, according to camera position - and store
+	// the returned sqrd distance to the centre of the nearest triangle
+	PROFILE_START( "sorting transparent" );
+	
+	CMatrix3D worldToCam;
+	g_Renderer.GetCamera().m_Orientation.GetInverse(worldToCam);
+	
+	psmdl->BackToFrontIndexSort(worldToCam);
+	PROFILE_END( "sorting transparent" );
+}
+
+
+// Cleanup per-CModel data
+void PolygonSortModelRenderer::DestroyModelData(CModel* UNUSED(model), void* data)
+{
+	PSModel* psmdl = (PSModel*)data;
+	
+	delete psmdl;
+}
+
+
+// Prepare for one rendering pass
+void PolygonSortModelRenderer::BeginPass(uint streamflags)
+{
+	glEnableClientState(GL_VERTEX_ARRAY);
+
+	if (streamflags & STREAM_UV0) glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	if (streamflags & STREAM_COLOR) glEnableClientState(GL_COLOR_ARRAY);
+}
+
+
+// Cleanup rendering
+void PolygonSortModelRenderer::EndPass(uint streamflags)
+{
+	if (streamflags & STREAM_UV0) glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	if (streamflags & STREAM_COLOR) glDisableClientState(GL_COLOR_ARRAY);
+	
+	glDisableClientState(GL_VERTEX_ARRAY);
+}
+
+
+// Prepare for rendering models using this CModelDef
+void PolygonSortModelRenderer::PrepareModelDef(uint streamflags, CModelDefPtr def)
+{
+	if (streamflags & STREAM_UV0)
+	{
+		PSModelDef* psmdef = (PSModelDef*)def->GetRenderData(m);
+	
+		debug_assert(psmdef);
+	
+		u8* base = psmdef->m_Array.Bind();
+		GLsizei stride = (GLsizei)psmdef->m_Array.GetStride();
+	
+		glTexCoordPointer(2, GL_FLOAT, stride, base + psmdef->m_UV.offset);
+	}
+}
+
+
+// Render one model
+void PolygonSortModelRenderer::RenderModel(uint streamflags, CModel* model, void* data)
+{
+	CModelDefPtr mdef = model->GetModelDef();
+	PSModel* psmdl = (PSModel*)data;
+	
+	// Setup per-CModel arrays
+	u8* base = psmdl->m_Array.Bind();
+	GLsizei stride = (GLsizei)psmdl->m_Array.GetStride();
+	
+	glVertexPointer(3, GL_FLOAT, stride, base + psmdl->m_Position.offset);
+	if (streamflags & STREAM_COLOR)
+		glColorPointer(3, psmdl->m_Color.type, stride, base + psmdl->m_Color.offset);	
+
+	// render the lot
+	size_t numFaces = mdef->GetNumFaces();
+	pglDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)mdef->GetNumVertices(),
+				(GLsizei)numFaces*3, GL_UNSIGNED_SHORT, psmdl->m_Indices);
+
+			// bump stats
+	g_Renderer.m_Stats.m_DrawCalls++;
+	g_Renderer.m_Stats.m_ModelTris += numFaces;
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// SortModelRenderer implementation
+
+/**
+ * Struct SModel: Per-CModel data for the model-sorting renderer
+ */
+struct SModel : public CModelRData
+{
+	SModel(SortModelRendererInternals* tri, CModel* model);
+	~SModel();
+	
+	// Back-link to the Model renderer
+	SortModelRendererInternals* m_SMRI;
+	
+	// Private data of the ModelVertexRenderer
+	void* m_Data;
+	
+	// Distance to camera (for sorting)
+	float m_Distance;
+};
+
+
+/**
+ * Struct SortModelRendererInternals: Internal data structure of SortModelRenderer
+ */
+struct SortModelRendererInternals
+{
+	/// Vertex renderer used for transform and lighting
+	ModelVertexRendererPtr vertexRenderer;
+	
+	/// List of submitted models.
+	std::vector<SModel*> models;
+};
+
+
+
+SModel::SModel(SortModelRendererInternals* smri, CModel* model)
+	: CModelRData(smri, model), m_SMRI(smri)
+{
+	m_Data = m_SMRI->vertexRenderer->CreateModelData(model);
+	m_Distance = 0;
+}
+
+SModel::~SModel()
+{
+	m_SMRI->vertexRenderer->DestroyModelData(GetModel(), m_Data);
+}
+
+
+
+// Construction / Destruction
+SortModelRenderer::SortModelRenderer(ModelVertexRendererPtr vertexRenderer)
+{
+	m = new SortModelRendererInternals;
+	m->vertexRenderer = vertexRenderer;
+}
+
+SortModelRenderer::~SortModelRenderer()
 {
 	delete m;
 }
 
 // Submit a model: Create, but don't fill in, our own Model and ModelDef structures
-void TransparencyRenderer::Submit(CModel* model)
+void SortModelRenderer::Submit(CModel* model)
 {
 	CModelRData* rdata = (CModelRData*)model->GetRenderData();
-	TModel* tmdl;
+	SModel* smdl;
 	
 	if (rdata && rdata->GetKey() == m)
 	{
-		tmdl = (TModel*)rdata;
+		smdl = (SModel*)rdata;
 	}
 	else
 	{
-		CModelDefPtr mdef = model->GetModelDef();
-		TModelDef* tmdef = (TModelDef*)mdef->GetRenderData(m);
-		
-		if (!tmdef)
-		{
-			tmdef = new TModelDef(mdef);
-			mdef->SetRenderData(m, tmdef);
-		}
-	
-		tmdl = new TModel(m, model);
-		rdata = tmdl;
+		smdl = new SModel(m, model);
+		rdata = smdl;
 		model->SetRenderData(rdata);
 		model->SetDirty(~0u);
 		g_Renderer.LoadTexture(model->GetTexture(), GL_CLAMP_TO_EDGE);
 	}
 	
-	m->objects.push_back(tmdl);
+	m->models.push_back(smdl);
 }
 
 
 // Transform and sort all models
-struct SortObjectsByDist {
-	bool operator()(const SObject& lhs, const SObject& rhs) {
-		return lhs.m_Dist>rhs.m_Dist? true : false;
+struct SortModelsByDist {
+	bool operator()(SModel* lhs, SModel* rhs) {
+		return lhs->m_Distance > rhs->m_Distance ? true : false;
 	}
 };
 
-void TransparencyRenderer::PrepareModels()
+void SortModelRenderer::PrepareModels()
 {
 	CMatrix3D worldToCam;
 	
-	if (m->objects.size() == 0)
+	if (m->models.size() == 0)
 		return;
 	
 	g_Renderer.m_Camera.m_Orientation.GetInverse(worldToCam);
 	
-	for(std::vector<SObject>::iterator it = m->objects.begin(); it != m->objects.end(); ++it)
+	for(std::vector<SModel*>::iterator it = m->models.begin(); it != m->models.end(); ++it)
 	{
-		TModel* tmdl = it->m_Model;
-		CModel* model = tmdl->GetModel();
+		SModel* smdl = *it;
+		CModel* model = smdl->GetModel();
 	
-		debug_assert(model->GetRenderData() == tmdl);
+		debug_assert(model->GetRenderData() == smdl);
 		
-		if (tmdl->m_UpdateFlags & RENDERDATA_UPDATE_VERTICES)
-		{
-			CModelDefPtr mdef = model->GetModelDef();
-			size_t numVertices = mdef->GetNumVertices();
-	
-			// build vertices
-			if (m->normals.size() < numVertices)
-				m->normals.resize(numVertices);
+		m->vertexRenderer->UpdateModelData(model, smdl->m_Data, smdl->m_UpdateFlags);
+		smdl->m_UpdateFlags = 0;
 		
-			VertexArrayIterator<CVector3D> Position = tmdl->m_Position.GetIterator<CVector3D>();
-			VertexArrayIterator<CVector3D> Normal = VertexArrayIterator<CVector3D>((char*)&m->normals[0], sizeof(CVector3D));
+		CVector3D modelpos = model->GetTransform().GetTranslation();
 		
-			BuildPositionAndNormals(model, Position, Normal);
+		modelpos = worldToCam.Transform(modelpos);
 		
-			VertexArrayIterator<SColor4ub> Color = tmdl->m_Color.GetIterator<SColor4ub>();
-		
-			BuildColor4ub(model, Normal, Color);
-	
-			// upload everything to vertex buffer
-			tmdl->m_Array.Upload();
-		}
-		tmdl->m_UpdateFlags = 0;
-	
-		// resort model indices from back to front, according to camera position - and store
-		// the returned sqrd distance to the centre of the nearest triangle
-		PROFILE_START( "sorting transparent" );
-		it->m_Dist = tmdl->BackToFrontIndexSort(worldToCam);
-		PROFILE_END( "sorting transparent" );
+		smdl->m_Distance = modelpos.Z;
 	}
 
 	PROFILE_START( "sorting transparent" );
-	std::sort(m->objects.begin(), m->objects.end(), SortObjectsByDist());
+	std::sort(m->models.begin(), m->models.end(), SortModelsByDist());
 	PROFILE_END( "sorting transparent" );
 }
 
 
-// Render all models in order
-void TransparencyRenderer::EndFrame()
+// Cleanup per-frame model list
+void SortModelRenderer::EndFrame()
 {
-	m->objects.clear();
+	m->models.clear();
 }
 
 
 // Return whether models have been submitted this frame
-bool TransparencyRenderer::HaveSubmissions()
+bool SortModelRenderer::HaveSubmissions()
 {
-	return m->objects.size() != 0;
+	return m->models.size() != 0;
 }
 
 
 // Render submitted models (filtered by flags) using the given modifier
-void TransparencyRenderer::Render(RenderModifierPtr modifier, u32 flags)
+void SortModelRenderer::Render(RenderModifierPtr modifier, u32 flags)
 {
 	uint pass = 0;
 	
-	if (m->objects.size() == 0)
+	if (m->models.size() == 0)
 		return;
-	
-	glEnableClientState(GL_VERTEX_ARRAY);
 	
 	do
 	{
@@ -325,32 +477,25 @@ void TransparencyRenderer::Render(RenderModifierPtr modifier, u32 flags)
 		CModelDefPtr lastmdef;
 		CTexture* lasttex = 0;
 		
-		if (streamflags & STREAM_UV0) glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-		if (streamflags & STREAM_COLOR) glEnableClientState(GL_COLOR_ARRAY);
+		m->vertexRenderer->BeginPass(streamflags);
 		
-		for(std::vector<SObject>::iterator it = m->objects.begin(); it != m->objects.end(); ++it)
+		for(std::vector<SModel*>::iterator it = m->models.begin(); it != m->models.end(); ++it)
 		{
-			if (flags & !(it->m_Model->GetModel()->GetFlags()&flags))
+			SModel* smdl = *it;
+			CModel* mdl = smdl->GetModel();
+			
+			if (flags & !(mdl->GetFlags() & flags))
 				continue;
 			
-			TModel* tmdl = it->m_Model;
-			CModel* mdl = tmdl->GetModel();
+			debug_assert(smdl->GetKey() == m);
+
 			CModelDefPtr mdef = mdl->GetModelDef();
 			CTexture* tex = mdl->GetTexture();
 			
 			// Prepare per-CModelDef data if changed
 			if (mdef != lastmdef)
 			{
-				TModelDef* tmdef = (TModelDef*)mdef->GetRenderData(m);
-				
-				if (streamflags & STREAM_UV0)
-				{
-					u8* base = tmdef->m_Array.Bind();
-					GLsizei stride = (GLsizei)tmdef->m_Array.GetStride();
-	
-					glTexCoordPointer(2, GL_FLOAT, stride, base + tmdef->m_UV.offset);
-				}
-				
+				m->vertexRenderer->PrepareModelDef(streamflags, mdef);
 				lastmdef = mdef;
 			}
 			
@@ -363,29 +508,12 @@ void TransparencyRenderer::Render(RenderModifierPtr modifier, u32 flags)
 			
 			modifier->PrepareModel(pass, mdl);
 		
-			// Setup per-CModel arrays
-			u8* base = tmdl->m_Array.Bind();
-			GLsizei stride = (GLsizei)tmdl->m_Array.GetStride();
-	
-			glVertexPointer(3, GL_FLOAT, stride, base + tmdl->m_Position.offset);
-			if (streamflags & STREAM_COLOR)
-				glColorPointer(3, tmdl->m_Color.type, stride, base + tmdl->m_Color.offset);	
-
-			// render the lot
-			size_t numFaces = mdef->GetNumFaces();
-			pglDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)mdef->GetNumVertices(),
-					       (GLsizei)numFaces*3, GL_UNSIGNED_SHORT, tmdl->m_Indices);
-
-			// bump stats
-			g_Renderer.m_Stats.m_DrawCalls++;
-			g_Renderer.m_Stats.m_ModelTris += numFaces;
+			// Render the model
+			m->vertexRenderer->RenderModel(streamflags, mdl, smdl->m_Data);
 		}
 	
-		if (streamflags & STREAM_UV0) glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-		if (streamflags & STREAM_COLOR) glDisableClientState(GL_COLOR_ARRAY);
+		m->vertexRenderer->EndPass(streamflags);
 	} while(!modifier->EndPass(pass++));
-	
-	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
 

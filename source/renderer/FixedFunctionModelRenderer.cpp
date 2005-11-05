@@ -90,15 +90,6 @@ struct FixedFunctionModelRendererInternals
 	/// Transformed vertex normals - required for recalculating lighting on skinned models
 	std::vector<CVector3D> normals;
 	
-	/// Currently used RenderModifier
-	RenderModifierPtr modifier;
-	
-	/// Current rendering pass
-	uint pass;
-	
-	/// Streamflags required in this pass
-	uint streamflags;
-	
 	/// Previously prepared modeldef
 	FFModelDef* ffmodeldef;
 };
@@ -108,39 +99,12 @@ struct FixedFunctionModelRendererInternals
 FixedFunctionModelRenderer::FixedFunctionModelRenderer()
 {
 	m = new FixedFunctionModelRendererInternals;
+	m->ffmodeldef = 0;
 }
 
 FixedFunctionModelRenderer::~FixedFunctionModelRenderer()
 {
 	delete m;
-}
-
-// Render submitted models.
-void FixedFunctionModelRenderer::Render(RenderModifierPtr modifier, u32 flags)
-{
-	if (!BatchModelRenderer::HaveSubmissions())
-		return;
-	
-	// Save for later
-	m->modifier = modifier;
-	
-	glEnableClientState(GL_VERTEX_ARRAY);
-	
-	m->pass = 0;
-	do
-	{
-		m->streamflags = modifier->BeginPass(m->pass);
-		
-		if (m->streamflags & STREAM_UV0) glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-		if (m->streamflags & STREAM_COLOR) glEnableClientState(GL_COLOR_ARRAY);
-		
-		RenderAllModels(flags);
-
-		if (m->streamflags & STREAM_UV0) glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-		if (m->streamflags & STREAM_COLOR) glDisableClientState(GL_COLOR_ARRAY);
-	} while(!modifier->EndPass(m->pass++));
-	
-	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
 
@@ -191,11 +155,11 @@ void FixedFunctionModelRenderer::UpdateModelData(CModel* model, void* data, u32 
 		VertexArrayIterator<CVector3D> Position = ffmodel->m_Position.GetIterator<CVector3D>();
 		VertexArrayIterator<CVector3D> Normal = VertexArrayIterator<CVector3D>((char*)&m->normals[0], sizeof(CVector3D));
 		
-		BuildPositionAndNormals(model, Position, Normal);
+		ModelRenderer::BuildPositionAndNormals(model, Position, Normal);
 		
 		VertexArrayIterator<SColor4ub> Color = ffmodel->m_Color.GetIterator<SColor4ub>();
 		
-		BuildColor4ub(model, Normal, Color);
+		ModelRenderer::BuildColor4ub(model, Normal, Color);
 	
 		// upload everything to vertex buffer
 		ffmodel->m_Array.Upload();
@@ -213,14 +177,34 @@ void FixedFunctionModelRenderer::DestroyModelData(CModel* UNUSED(model), void* d
 }
 
 
+// Setup one rendering pass
+void FixedFunctionModelRenderer::BeginPass(uint streamflags)
+{
+	glEnableClientState(GL_VERTEX_ARRAY);
+	
+	if (streamflags & STREAM_UV0) glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	if (streamflags & STREAM_COLOR) glEnableClientState(GL_COLOR_ARRAY);
+}
+
+
+// Cleanup one rendering pass
+void FixedFunctionModelRenderer::EndPass(uint streamflags)
+{
+	if (streamflags & STREAM_UV0) glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	if (streamflags & STREAM_COLOR) glDisableClientState(GL_COLOR_ARRAY);
+	
+	glDisableClientState(GL_VERTEX_ARRAY);
+}
+
+
 // Prepare UV coordinates for this modeldef
-void FixedFunctionModelRenderer::PrepareModelDef(CModelDefPtr def)
+void FixedFunctionModelRenderer::PrepareModelDef(uint streamflags, CModelDefPtr def)
 {
 	m->ffmodeldef = (FFModelDef*)def->GetRenderData(m);
 	
 	debug_assert(m->ffmodeldef);
 	
-	if (m->streamflags & STREAM_UV0)
+	if (streamflags & STREAM_UV0)
 	{
 		u8* base = m->ffmodeldef->m_Array.Bind();
 		GLsizei stride = (GLsizei)m->ffmodeldef->m_Array.GetStride();
@@ -230,18 +214,9 @@ void FixedFunctionModelRenderer::PrepareModelDef(CModelDefPtr def)
 }
 
 
-// Call the modifier to prepare the given texture
-void FixedFunctionModelRenderer::PrepareTexture(CTexture* texture)
-{
-	m->modifier->PrepareTexture(m->pass, texture);
-}
-
-
 // Render one model
-void FixedFunctionModelRenderer::RenderModel(CModel* model, void* data)
+void FixedFunctionModelRenderer::RenderModel(uint streamflags, CModel* model, void* data)
 {
-	m->modifier->PrepareModel(m->pass, model);
-	
 	CModelDefPtr mdldef = model->GetModelDef();
 	FFModel* ffmodel = (FFModel*)data;
 	
@@ -249,7 +224,7 @@ void FixedFunctionModelRenderer::RenderModel(CModel* model, void* data)
 	GLsizei stride = (GLsizei)ffmodel->m_Array.GetStride();
 	
 	glVertexPointer(3, GL_FLOAT, stride, base + ffmodel->m_Position.offset);
-	if (m->streamflags & STREAM_COLOR)
+	if (streamflags & STREAM_COLOR)
 		glColorPointer(3, ffmodel->m_Color.type, stride, base + ffmodel->m_Color.offset);	
 
 	// render the lot

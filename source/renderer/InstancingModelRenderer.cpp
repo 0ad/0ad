@@ -94,12 +94,6 @@ struct InstancingModelRendererInternals
 	/// Currently used RenderModifier
 	RenderModifierPtr modifier;
 	
-	/// Current rendering pass
-	uint pass;
-	
-	/// Streamflags required in this pass
-	uint streamflags;
-	
 	/// Previously prepared modeldef
 	IModelDef* imodeldef;
 };
@@ -109,6 +103,7 @@ struct InstancingModelRendererInternals
 InstancingModelRenderer::InstancingModelRenderer()
 {
 	m = new InstancingModelRendererInternals;
+	m->imodeldef = 0;
 }
 
 InstancingModelRenderer::~InstancingModelRenderer()
@@ -121,52 +116,6 @@ InstancingModelRenderer::~InstancingModelRenderer()
 bool InstancingModelRenderer::IsAvailable()
 {
 	return g_Renderer.m_VertexShader != 0;
-}
-
-
-// Render submitted models.
-void InstancingModelRenderer::Render(RenderModifierPtr modifier, u32 flags)
-{
-	if (!HaveSubmissions())
-		return;
-	
-	// Save for later
-	m->modifier = modifier;
-	
-	glEnableClientState(GL_VERTEX_ARRAY);
-	
-	m->pass = 0;
-	do
-	{
-		m->streamflags = modifier->BeginPass(m->pass);
-		
-		if (m->streamflags & STREAM_UV0) glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-		if (m->streamflags & STREAM_COLOR)
-		{
-			const RGBColor* coeffs = g_Renderer.m_SHCoeffsUnits.GetCoefficients();
-			int idx;
-			
-			ogl_program_use(g_Renderer.m_VertexShader->m_InstancingLight);
-			idx = g_Renderer.m_VertexShader->m_InstancingLight_SHCoefficients;
-			pglUniform3fvARB(idx, 9, (float*)coeffs);
-
-			glEnableClientState(GL_NORMAL_ARRAY);
-		}
-		else
-		{
-			ogl_program_use(g_Renderer.m_VertexShader->m_Instancing);
-		}
-		
-		RenderAllModels(flags);
-
-		if (m->streamflags & STREAM_UV0) glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-		if (m->streamflags & STREAM_COLOR) glDisableClientState(GL_NORMAL_ARRAY);
-	
-		pglUseProgramObjectARB(0);
-
-	} while(!modifier->EndPass(m->pass++));
-	
-	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
 
@@ -183,6 +132,7 @@ void* InstancingModelRenderer::CreateModelData(CModel* model)
 		imodeldef = new IModelDef(mdef);
 		mdef->SetRenderData(m, imodeldef);
 	}
+	
 	return NULL;
 }
 
@@ -199,8 +149,42 @@ void InstancingModelRenderer::DestroyModelData(CModel* UNUSED(model), void* UNUS
 }
 
 
+// Setup one rendering pass.
+void InstancingModelRenderer::BeginPass(uint streamflags)
+{
+	glEnableClientState(GL_VERTEX_ARRAY);
+		
+	if (streamflags & STREAM_UV0) glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	if (streamflags & STREAM_COLOR)
+	{
+		const RGBColor* coeffs = g_Renderer.m_SHCoeffsUnits.GetCoefficients();
+		int idx;
+		
+		ogl_program_use(g_Renderer.m_VertexShader->m_InstancingLight);
+		idx = g_Renderer.m_VertexShader->m_InstancingLight_SHCoefficients;
+		pglUniform3fvARB(idx, 9, (float*)coeffs);
+
+		glEnableClientState(GL_NORMAL_ARRAY);
+	}
+	else
+	{
+		ogl_program_use(g_Renderer.m_VertexShader->m_Instancing);
+	}
+}
+
+// Cleanup rendering pass.
+void InstancingModelRenderer::EndPass(uint streamflags)
+{
+	if (streamflags & STREAM_UV0) glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	if (streamflags & STREAM_COLOR) glDisableClientState(GL_NORMAL_ARRAY);
+
+	pglUseProgramObjectARB(0);
+	glDisableClientState(GL_VERTEX_ARRAY);
+}
+
+
 // Prepare UV coordinates for this modeldef
-void InstancingModelRenderer::PrepareModelDef(CModelDefPtr def)
+void InstancingModelRenderer::PrepareModelDef(uint streamflags, CModelDefPtr def)
 {
 	m->imodeldef = (IModelDef*)def->GetRenderData(m);
 	
@@ -210,34 +194,25 @@ void InstancingModelRenderer::PrepareModelDef(CModelDefPtr def)
 	GLsizei stride = (GLsizei)m->imodeldef->m_Array.GetStride();
 	
 	glVertexPointer(3, GL_FLOAT, stride, base + m->imodeldef->m_Position.offset);
-	if (m->streamflags & STREAM_COLOR)
+	if (streamflags & STREAM_COLOR)
 	{
 		glNormalPointer(GL_FLOAT, stride, base + m->imodeldef->m_Normal.offset);
 	}
-	if (m->streamflags & STREAM_UV0)
+	if (streamflags & STREAM_UV0)
 	{
 		glTexCoordPointer(2, GL_FLOAT, stride, base + m->imodeldef->m_UV.offset);
 	}
 }
 
 
-// Call the modifier to prepare the given texture
-void InstancingModelRenderer::PrepareTexture(CTexture* texture)
-{
-	m->modifier->PrepareTexture(m->pass, texture);
-}
-
-
 // Render one model
-void InstancingModelRenderer::RenderModel(CModel* model, void* UNUSED(data))
+void InstancingModelRenderer::RenderModel(uint streamflags, CModel* model, void* UNUSED(data))
 {
-	m->modifier->PrepareModel(m->pass, model);
-	
 	CModelDefPtr mdldef = model->GetModelDef();
 	const CMatrix3D& mat = model->GetTransform();
 	RenderPathVertexShader* rpvs = g_Renderer.m_VertexShader;
 	
-	if (m->streamflags & STREAM_COLOR)
+	if (streamflags & STREAM_COLOR)
 	{
 		CColor sc = model->GetShadingColor();
 		glColor3f(sc.r, sc.g, sc.b);

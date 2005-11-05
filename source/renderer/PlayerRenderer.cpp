@@ -61,7 +61,7 @@ u32 FastPlayerColorRender::BeginPass(uint pass)
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE0);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-	
+
 	// TexEnv #1
 	pglActiveTextureARB(GL_TEXTURE0+1);
 	glEnable(GL_TEXTURE_2D);

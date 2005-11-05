@@ -22,6 +22,9 @@
 class RenderModifier;
 typedef boost::shared_ptr<RenderModifier> RenderModifierPtr;
 
+class ModelVertexRenderer;
+typedef boost::shared_ptr<ModelVertexRenderer> ModelVertexRendererPtr;
+
 class CModel;
 
 
@@ -72,10 +75,17 @@ private:
  * 
  * A ModelRenderer manages a per-frame list of models.
  * 
- * It is supposed to be derived in order to create a new render path
- * for models (e.g. for models using special effects).
- * However, consider deriving from BatchModelRenderer or another
- * specialized base class to use their features.
+ * It is supposed to be derived in order to create new ways in which
+ * the per-frame list of models can be managed (for batching, for
+ * transparent rendering, etc.) or potentially for rarely used special
+ * effects.
+ * 
+ * A typical ModelRenderer will delegate vertex transformation/setup
+ * to a ModelVertexRenderer.
+ * It will delegate fragment stage setup to a RenderModifier.
+ * 
+ * For most purposes, you should use a BatchModelRenderer with
+ * specialized ModelVertexRenderer and RenderModifier implementations.
  * 
  * It is suggested that a derived class implement the provided generic
  * Render function, however in some cases it may be necessary to supply
@@ -222,27 +232,19 @@ public:
 struct BatchModelRendererInternals;
 
 /**
- * Class BatchModelRenderer: Base class for model renderers that sorts
- * submitted models by CModelDef and texture for batching.
+ * Class BatchModelRenderer: Model renderer that sorts submitted models
+ * by CModelDef and texture for batching, and uses a ModelVertexRenderer
+ * (e.g. FixedFunctionModelRenderer) to manage model vertices.
  * 
- * A derived class must provide its own Render function. Depending on
- * the ModelRenderer's purpose, this function may take renderer-dependent
- * arguments and prepare OpenGL state or private data. It should then
- * call RenderAllModels, which will call back into the various PrepareXYZ
- * functions for the actual rendering.
- * 
- * Thus a derived class must also provide implementations for
- * RenderModel and PrepareXYZ.
- * 
- * @note Model renderers that derive from this class MUST NOT set their
- * own per-CModel render data. Use the CreateModelData facility instead.
+ * @note Deriving from this class is highly discouraged. Specialize
+ * using ModelVertexRendererPtr and RenderModifier instead.
  */
 class BatchModelRenderer : public ModelRenderer
 {
 	friend struct BatchModelRendererInternals;
 	
 public:
-	BatchModelRenderer();
+	BatchModelRenderer(ModelVertexRendererPtr vertexrender);
 	virtual ~BatchModelRenderer();
 
 	// Batching implementations
@@ -250,102 +252,7 @@ public:
 	virtual void PrepareModels();
 	virtual void EndFrame();
 	virtual bool HaveSubmissions();
-
-protected:
-	/**
-	 * CreateModelData: Create renderer's internal data for one model.
-	 *
-	 * This function must be implemented by derived classes. It will be
-	 * called once by Submit for every model, and allows derived classes
-	 * to allocate per-model vertex buffers and other data.
-	 *
-	 * @param model The model.
-	 *
-	 * @return A data pointer that is opaque to this class, but will be
-	 * passed to other functions whenever the CModel is passed again.
-	 */
-	virtual void* CreateModelData(CModel* model) = 0;
-	
-	/**
-	 * UpdateModelData: Calculate per-model data for each frame.
-	 *
-	 * This function must be implemented by derived classes. It will be
-	 * called once per frame by PrepareModels, regardless of the value
-	 * of CRenderData::m_UpdateFlags.
-	 * 
-	 * This implies that UpdateModelData will be called at least once
-	 * between the call to CreateModelData and the first call to RenderModel
-	 * for this model.
-	 * 
-	 * @param model The model.
-	 * @param data Private data as returned by CreateModelData.
-	 * @param updateflags Flags indicating which data has changed during
-	 * the frame. The value is the same as the value of the model's
-	 * CRenderData::m_UpdateFlags.
-	 */
-	virtual void UpdateModelData(CModel* model, void* data, u32 updateflags) = 0;
-
-	/**
-	 * DestroyModelData: Release all per-model data that has been allocated
-	 * by CreateModelData or UpdateModelData.
-	 *
-	 * @param model The model.
-	 * @param data Private data as returned by CreateModelData.
-	 */
-	virtual void DestroyModelData(CModel* model, void* data) = 0;
-
-	/**
-	 * RenderAllModels: Loop through submitted models and render them
-	 * by calling the PrepareXYZ functions and RenderModel as appropriate.
-	 *
-	 * @param flags Filter models based on CModel::GetFlags(). If flags
-	 * is 0, all models are rendered. Otherwise, only models are rendered
-	 * for which CModel::GetFlags() & flags returns true.
-	 * 
-	 * postconditions : RenderAllModels does not affect OpenGL state 
-	 * itself. However, it changes OpenGL state indirectly by calling
-	 * the PrepareXYZ and RenderModel functions.
-	 */
-	void RenderAllModels(u32 flags);
-
-	/**
-	 * PrepareModelDef: Setup OpenGL state for rendering of models that
-	 * use the given CModelDef object as base.
-	 * 
-	 * This function is called by RenderAllModels before rendering any
-	 * models using def as base model definition.
-	 *
-	 * @param def The model definition.
-	 */
-	virtual void PrepareModelDef(CModelDefPtr def) = 0;
-
-	/**
-	 * PrepareTexture: Setup OpenGL state for rendering of models that
-	 * use the given texture.
-	 *
-	 * This function is called by RenderAllModels before rendering any
-	 * models using the given texture.
-	 * 
-	 * @param texture The texture.
-	 */
-	virtual void PrepareTexture(CTexture* texture) = 0;
-	
-	/**
-	 * RenderModel: Render the given model.
-	 * 
-	 * This function is called by RenderAllModels.
-	 *
-	 * preconditions  : PrepareModelDef and PrepareTexture are called
-	 * before calling RenderModel.
-	 *
-	 * @param model The model that should be rendered.
-	 * @param data Private data for the model as returned by CreateModelData.
-	 *
-	 * postconditions : Subsequent calls to RenderModel for models
-	 * that use the same CModelDef object and the same texture must
-	 * succeed.
-	 */
-	virtual void RenderModel(CModel* model, void* data) = 0;
+	virtual void Render(RenderModifierPtr modifier, u32 flags);
 
 private:
 	BatchModelRendererInternals* m;

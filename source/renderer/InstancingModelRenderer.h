@@ -2,8 +2,8 @@
  * =========================================================================
  * File        : InstancingModelRenderer.h
  * Project     : Pyrogenesis
- * Description : Special BatchModelRenderer that only works for non-animated
- *             : models, but performs all transformation in a vertex shader.
+ * Description : Special ModelVertexRender that only works for non-animated
+ *             : models, but is very fast for instanced models.
  *
  * @author Nicolai Hähnle <nicolai@wildfiregames.com>
  * =========================================================================
@@ -12,38 +12,32 @@
 #ifndef INSTANCINGMODELRENDERER_H
 #define INSTANCINGMODELRENDERER_H
 
-#include "renderer/ModelRenderer.h"
+#include "renderer/ModelVertexRenderer.h"
 
 struct InstancingModelRendererInternals;
 
 /**
  * Class InstancingModelRenderer: Render non-animated (but potentially
- * moving models) using vertex shaders.
- * 
- * Use the RenderModifier to enable normal model rendering as well
- * as player colour rendering using this model renderer.
+ * moving models) using vertex shaders and minimal state changes.
  * 
  * @note You should verify hardware capabilities using IsAvailable
  * before creating this model renderer.
  */
-class InstancingModelRenderer : public BatchModelRenderer
+class InstancingModelRenderer : public ModelVertexRenderer
 {
 public:
 	InstancingModelRenderer();
 	~InstancingModelRenderer();
 	
-	/**
-	 * Render: Render submitted models using the given RenderModifier
-	 * for fragment stages.
-	 *
-	 * preconditions  : PrepareModels must be called before Render.
-	 *
-	 * @param modifier The RenderModifier that specifies the fragment stage.
-	 * @param flags If flags is 0, all submitted models are rendered.
-	 * If flags is non-zero, only models that contain flags in their
-	 * CModel::GetFlags() are rendered.
-	 */
-	void Render(RenderModifierPtr modifier, u32 flags);
+	// Implementations
+	void* CreateModelData(CModel* model);
+	void UpdateModelData(CModel* model, void* data, u32 updateflags);
+	void DestroyModelData(CModel* model, void* data);
+	
+	void BeginPass(uint streamflags);
+	void EndPass(uint streamflags);
+	void PrepareModelDef(uint streamflags, CModelDefPtr def);
+	void RenderModel(uint streamflags, CModel* model, void* data);
 	
 	/**
 	 * IsAvailable: Determines whether this model renderer can be used
@@ -56,16 +50,6 @@ public:
 	 * model renderer.
 	 */
 	static bool IsAvailable();
-	
-protected:
-	// Implementations
-	void* CreateModelData(CModel* model);
-	void UpdateModelData(CModel* model, void* data, u32 updateflags);
-	void DestroyModelData(CModel* model, void* data);
-
-	void PrepareModelDef(CModelDefPtr def);
-	void PrepareTexture(CTexture* texture);
-	void RenderModel(CModel* model, void* data);
 
 private:
 	InstancingModelRendererInternals* m;
