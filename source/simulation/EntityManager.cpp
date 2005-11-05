@@ -143,9 +143,19 @@ void CEntityManager::updateAll( size_t timestep )
 	m_reaper.clear();
 	PROFILE_END( "reaper" );
 
+	// PT: TickAll (which sends the 'Tick' event to all entities) has been
+	// disabled, because:
+	// * it's very slow (particularly when there are thousands of entities, e.g. trees);
+	// * no entity currently responds to tick events;
+	// * nobody can think of a situation where ticks would be required in the future;
+	// * if they ever are needed, they can be done more efficiently (e.g. by
+	//   adding a per-entity 'wants tick' flag);
+	// * it's very slow.
+/*
 	PROFILE_START( "tick all" );
 	TickAll();
 	PROFILE_END( "tick all" );
+*/
 
 	
 	PROFILE_START( "update all" );
