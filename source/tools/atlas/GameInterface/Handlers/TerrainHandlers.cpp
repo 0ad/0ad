@@ -115,43 +115,19 @@ BEGIN_COMMAND(PaintTerrain)
 			if ((unsigned)x >= m_VertsPerSide-1 || (unsigned)y >= m_VertsPerSide-1)
 				return;
 
-			set(x,y, TerrainTile(tex, priority == ePaintTerrainPriority::HIGH ? 1 : -1));
-/* (TODO: fix all this)
 			// Priority system: If the new tile should have a high priority,
 			// set it to one plus the maximum priority of all surrounding tiles
-			// TODO: the blending system is broken when adjacent tiles have
-			// the same priority but different textures
-			int greatestSame = 0;
-			int greatestDiff = 0;
+			// (so that it's definitely the highest).
+			// Similar for low priority.
+			int greatest = 0;
 			int scale = (priority == ePaintTerrainPriority::HIGH ? +1 : -1);
 			CMiniPatch* tile;
-#define TILE(dx, dy) \
-	tile = m_Terrain->GetTile(x dx, y dy); \
-	if (tile) { \
-		if (tile->Tex1 == tex && tile->Tex1Priority*scale > greatestSame) \
-			greatestSame = tile->Tex1Priority*scale; \
-		else if (tile->Tex1 != tex && tile->Tex1Priority*scale > greatestDiff) \
-			greatestDiff = tile->Tex1Priority*scale; \
-	}
+#define TILE(dx, dy) tile = m_Terrain->GetTile(x dx, y dy); if (tile && tile->Tex1Priority*scale > greatest) greatest = tile->Tex1Priority*scale;
 			TILE(-1, -1) TILE(+0, -1) TILE(+1, -1)
 			TILE(-1, +0)              TILE(+1, +0)
 			TILE(-1, +1) TILE(+0, +1) TILE(+1, +1)
 #undef TILE
-			// If the greatest priority is of the same texture as this one,
-			// give this one the same priority (to minimise confusion in the
-			// blending system)
-			if (greatestSame > greatestDiff)
-			{
-				tile = m_Terrain->GetTile(x,y);
-				// Don't bother updating tiles that are exactly the same
-				// (e.g. when dragging big brushes around)
-				if (tile->Tex1 != tex || tile->Tex1Priority != greatestSame)
-					set(x,y, TerrainTile(tex, greatestSame*scale));
-			}
-			// Set this texture to have a priority greater than the surrounding ones
-			else
-				set(x,y, TerrainTile(tex, (greatestDiff+1)*scale));
-*/
+			set(x,y, TerrainTile(tex, (greatest+1)*scale));
 		}
 
 	protected:
@@ -204,19 +180,19 @@ BEGIN_COMMAND(PaintTerrain)
 					m_TerrainDelta.PaintTile(x0+dx, y0+dy, texture, d->priority);
 			}
 
-		g_Game->GetWorld()->GetTerrain()->MakeDirty(x0, y0, x0+g_CurrentBrush.m_W, y0+g_CurrentBrush.m_H);
+		g_Game->GetWorld()->GetTerrain()->MakeDirty(x0, y0, x0+g_CurrentBrush.m_W, y0+g_CurrentBrush.m_H, RENDERDATA_UPDATE_INDICES);
 	}
 
 	void Undo()
 	{
 		m_TerrainDelta.Undo();
-		g_Game->GetWorld()->GetTerrain()->MakeDirty();
+		g_Game->GetWorld()->GetTerrain()->MakeDirty(RENDERDATA_UPDATE_INDICES);
 	}
 
 	void Redo()
 	{
 		m_TerrainDelta.Redo();
-		g_Game->GetWorld()->GetTerrain()->MakeDirty();
+		g_Game->GetWorld()->GetTerrain()->MakeDirty(RENDERDATA_UPDATE_INDICES);
 	}
 
 	void MergeWithSelf(cPaintTerrain* prev)

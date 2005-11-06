@@ -398,7 +398,7 @@ float CTerrain::FlattenArea(float x0,float x1,float z0,float z1)
 
 ///////////////////////////////////////////////////////////////////////////////
 
-void CTerrain::MakeDirty(int x0, int z0, int x1, int z1)
+void CTerrain::MakeDirty(int x0, int z0, int x1, int z1, int dirtyFlags)
 {
 	// flag vertex data as dirty for affected patches, and rebuild bounds of these patches
 	int px0 = clamp((x0/PATCH_SIZE)-1, 0, (int)m_MapSizePatches);
@@ -408,19 +408,21 @@ void CTerrain::MakeDirty(int x0, int z0, int x1, int z1)
 	for (int j = pz0; j < pz1; j++) {
 		for (int i = px0; i < px1; i++) {
 			CPatch* patch = GetPatch(i,j);
-			patch->CalcBounds();
-			patch->SetDirty(RENDERDATA_UPDATE_VERTICES);
+			if (dirtyFlags & RENDERDATA_UPDATE_VERTICES)
+				patch->CalcBounds();
+			patch->SetDirty(dirtyFlags);
 		}
 	}
 }
 
-void CTerrain::MakeDirty()
+void CTerrain::MakeDirty(int dirtyFlags)
 {
 	for (u32 j = 0; j < m_MapSizePatches; j++) {
 		for (u32 i = 0; i < m_MapSizePatches; i++) {
 			CPatch* patch = GetPatch(i,j);
-			patch->CalcBounds();
-			patch->SetDirty(RENDERDATA_UPDATE_VERTICES);
+			if (dirtyFlags & RENDERDATA_UPDATE_VERTICES)
+				patch->CalcBounds();
+			patch->SetDirty(dirtyFlags);
 		}
 	}
 }

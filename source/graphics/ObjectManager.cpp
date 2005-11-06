@@ -37,19 +37,7 @@ template<typename T, typename S> static void delete_pair_2nd(std::pair<T,S> v) {
 
 CObjectManager::~CObjectManager()
 {
-	for (size_t i = 0; i < m_ObjectTypes.size(); i++) {
-		std::for_each(
-			m_ObjectTypes[i].m_Objects.begin(),
-			m_ObjectTypes[i].m_Objects.end(),
-			delete_pair_2nd<ObjectKey, CObjectEntry*>
-		);
-		std::for_each(
-			m_ObjectTypes[i].m_ObjectBases.begin(),
-			m_ObjectTypes[i].m_ObjectBases.end(),
-			delete_pair_2nd<CStr, CObjectBase*>
-		);
-	}
-	delete m_SelectedThing;
+	UnloadObjects();
 }
 
 
@@ -174,6 +162,26 @@ int CObjectManager::LoadObjects()
 {
 	AddObjectType("");
 	return 0;
+}
+
+void CObjectManager::UnloadObjects()
+{
+	for (size_t i = 0; i < m_ObjectTypes.size(); i++) {
+		std::for_each(
+			m_ObjectTypes[i].m_Objects.begin(),
+			m_ObjectTypes[i].m_Objects.end(),
+			delete_pair_2nd<ObjectKey, CObjectEntry*>
+		);
+		std::for_each(
+			m_ObjectTypes[i].m_ObjectBases.begin(),
+			m_ObjectTypes[i].m_ObjectBases.end(),
+			delete_pair_2nd<CStr, CObjectBase*>
+		);
+	}
+	m_ObjectTypes.clear();
+
+	delete m_SelectedThing;
+	m_SelectedThing = NULL;
 }
 
 

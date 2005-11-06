@@ -63,6 +63,7 @@ MESSAGEHANDLER(Scroll)
 		g_Game->GetView()->GetCamera()->BuildCameraRay(x, y, origin, dir);
 		dir *= targetDistance;
 		camera.Translate(targetPos - dir - origin);
+		g_Game->GetView()->GetCamera()->UpdateFrustum();
 	}
 	else
 	{
@@ -115,6 +116,7 @@ MESSAGEHANDLER(RotateAround)
 		camera._21 = 0.f; // (_21 = Y component returned by GetLeft())
 
 		camera.Translate(focusPos + offset);
+		g_Game->GetView()->GetCamera()->UpdateFrustum();
 
 		lastX = x;
 		lastY = y;

@@ -601,7 +601,7 @@ void TransparentRenderModifier::PrepareTexture(uint UNUSED(pass), CTexture* text
 
 void TransparentRenderModifier::PrepareModel(uint UNUSED(pass), CModel* UNUSED(model))
 {
-	// No per-model setup nececssary
+	// No per-model setup necessary
 }
 
 
@@ -654,5 +654,5 @@ void TransparentShadowRenderModifier::PrepareTexture(uint UNUSED(pass), CTexture
 
 void TransparentShadowRenderModifier::PrepareModel(uint UNUSED(pass), CModel* UNUSED(model))
 {
-	// No per-model setup nececssary
+	// No per-model setup necessary
 }

@@ -28,6 +28,19 @@ static void LoadMap(void*)
 	// TODO: Make this a non-undoable command
 }
 
+static void SaveMap(void*)
+{
+	wxFileDialog dlg (NULL, wxFileSelectorPromptStr, Datafile::GetDataDirectory()+_T("/mods/official/maps/scenarios"),
+		_T(""), _T("PMP files (*.pmp)|*.pmp|All files (*.*)|*.*"), wxSAVE|wxOVERWRITE_PROMPT);
+
+	if (dlg.ShowModal() == wxID_OK)
+	{
+		// TODO: Work when the map is not in .../maps/scenarios/
+		std::wstring map = dlg.GetFilename().c_str();
+		POST_MESSAGE(SaveMap(map));
+	}
+}
+
 static void GenerateMap(void*)
 {
 	POST_MESSAGE(GenerateMap(9));
@@ -56,6 +69,7 @@ MapSidebar::MapSidebar(wxWindow* parent)
 	// TODO: Intercept arrow keys and send them to the GL window
 
 	m_MainSizer->Add(new ActionButton(this, _T("Load existing map"), &LoadMap, NULL));
+	m_MainSizer->Add(new ActionButton(this, _T("Save map"), &SaveMap, NULL));
 	m_MainSizer->Add(new ActionButton(this, _T("Generate empty map"), &GenerateMap, NULL));
 
 	{

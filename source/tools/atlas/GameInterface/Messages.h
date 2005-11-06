@@ -30,6 +30,10 @@ MESSAGE(LoadMap,
 		((std::wstring, filename))
 		);
 
+MESSAGE(SaveMap,
+		((std::wstring, filename))
+		);
+
 //////////////////////////////////////////////////////////////////////////
 
 MESSAGE(RenderStyle,

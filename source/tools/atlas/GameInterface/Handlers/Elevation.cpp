@@ -88,19 +88,19 @@ BEGIN_COMMAND(AlterElevation)
 					m_TerrainDelta.RaiseVertex(x0+dx, y0+dy, amount*b);
 			}
 
-		g_Game->GetWorld()->GetTerrain()->MakeDirty(x0, y0, x0+g_CurrentBrush.m_W, y0+g_CurrentBrush.m_H);
+		g_Game->GetWorld()->GetTerrain()->MakeDirty(x0, y0, x0+g_CurrentBrush.m_W, y0+g_CurrentBrush.m_H, RENDERDATA_UPDATE_VERTICES);
 	}
 
 	void Undo()
 	{
 		m_TerrainDelta.Undo();
-		g_Game->GetWorld()->GetTerrain()->MakeDirty();
+		g_Game->GetWorld()->GetTerrain()->MakeDirty(RENDERDATA_UPDATE_VERTICES);
 	}
 
 	void Redo()
 	{
 		m_TerrainDelta.Redo();
-		g_Game->GetWorld()->GetTerrain()->MakeDirty();
+		g_Game->GetWorld()->GetTerrain()->MakeDirty(RENDERDATA_UPDATE_VERTICES);
 	}
 
 	void MergeWithSelf(cAlterElevation* prev)

@@ -5,6 +5,7 @@
 #include "graphics/Patch.h"
 #include "graphics/TextureManager.h"
 #include "graphics/TextureEntry.h"
+#include "graphics/MapWriter.h"
 #include "ps/Game.h"
 #include "ps/GameAttributes.h"
 #include "ps/Loader.h"
@@ -94,6 +95,12 @@ MESSAGEHANDLER(LoadMap)
 {
 	InitGame(msg->filename);
 	StartGame();
+}
+
+MESSAGEHANDLER(SaveMap)
+{
+	CMapWriter writer;
+	writer.SaveMap(CStr(L"maps/scenarios/" + msg->filename), g_Game->GetWorld()->GetTerrain(), &g_LightEnv, g_Game->GetWorld()->GetUnitManager());
 }
 
 }

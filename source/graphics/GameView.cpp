@@ -301,10 +301,8 @@ void CGameView::RenderNoCull()
 
 void CGameView::UnloadResources()
 {
-	// Should probably do something like:
-	//   g_TexMan.UnloadTerrainTextures();
-	//   g_ObjMan.UnloadObjects();
-
+	g_ObjMan.UnloadObjects();
+	g_TexMan.UnloadTerrainTextures();
 	g_Renderer.UnloadAlphaMaps();
 	g_Renderer.UnloadWaterTextures();
 }

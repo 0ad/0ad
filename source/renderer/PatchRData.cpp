@@ -86,6 +86,7 @@ void CPatchRData::BuildBlends()
 	m_BlendIndices.clear();
 	m_BlendSplats.clear();
 	m_BlendVertices.clear();
+	m_BlendVertexIndices.clear();
 
 	// get index of this patch (unused)
 	//int px=m_Patch->m_X;
@@ -110,7 +111,7 @@ void CPatchRData::BuildBlends()
 			for (int m=-1;m<=1;m++) {					
 				for (int k=-1;k<=1;k++) {
 					CMiniPatch* nmp=terrain->GetTile(gx+k,gz+m);
-					if (nmp) {
+					if (nmp && nmp->Tex1 != mp->Tex1) {
 						if (nmp->Tex1Priority>mp->Tex1Priority || (nmp->Tex1Priority==mp->Tex1Priority && nmp->Tex1>mp->Tex1)) {
 							STex tex;
 							tex.m_Handle=nmp->Tex1;

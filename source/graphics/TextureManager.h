@@ -83,6 +83,8 @@ public:
 	// Find all XML's in the directory (with subdirs) and try to load them as
 	// terrain XML's
 	int LoadTerrainTextures();
+
+	void UnloadTerrainTextures();
 	
 	CTextureEntry* FindTexture(CStr tag);
 	CTextureEntry* FindTexture(Handle handle);

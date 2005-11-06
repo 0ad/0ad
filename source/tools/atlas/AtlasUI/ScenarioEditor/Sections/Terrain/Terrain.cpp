@@ -52,20 +52,25 @@ class TextureNotebookPage : public wxPanel
 {
 public:
 	TextureNotebookPage(wxWindow* parent, const wxString& name)
-		: wxPanel(parent, wxID_ANY), m_Name(name), m_Loaded(false)
+		: wxPanel(parent, wxID_ANY), m_Name(name), m_ListCtrl(NULL)
 	{
 	}
 
 	void OnDisplay()
 	{
-		if (m_Loaded)
+		if (m_ListCtrl)
+		{
+			int sel = m_ListCtrl->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+			if (sel != -1)
+				SetSelection(m_ListCtrl->GetItemData(sel));
 			return;
+		}
 
 		m_TextureNames.Clear();
 
 		wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 
-		wxListCtrl* list = new wxListCtrl(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_ICON | wxLC_SINGLE_SEL | wxLC_AUTOARRANGE);
+		m_ListCtrl = new wxListCtrl(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_ICON | wxLC_SINGLE_SEL | wxLC_AUTOARRANGE);
 
 		const int imageWidth = 64;
 		const int imageHeight = 32;
@@ -93,25 +98,29 @@ public:
 			item.SetId(i);
 			item.SetImage(i);
 
-			list->InsertItem(item);
+			m_ListCtrl->InsertItem(item);
 			++i;
 		}
-		list->AssignImageList(imglist, wxIMAGE_LIST_NORMAL);
+		m_ListCtrl->AssignImageList(imglist, wxIMAGE_LIST_NORMAL);
 
-		sizer->Add(list, wxSizerFlags().Expand().Proportion(1));
+		sizer->Add(m_ListCtrl, wxSizerFlags().Expand().Proportion(1));
 		SetSizer(sizer);
 		Layout(); // required to make things size correctly
-
-		m_Loaded = true;
 	}
 
 	void OnSelect(wxListEvent& evt)
 	{
-		g_SelectedTexture = m_TextureNames[evt.GetData()];
+		SetSelection(evt.GetData());
+	}
+
+	void SetSelection(int n)
+	{
+		if (n >= 0 && n < (int)m_TextureNames.GetCount())
+			g_SelectedTexture = m_TextureNames[n];
 	}
 
 private:
-	bool m_Loaded;
+	wxListCtrl* m_ListCtrl;
 	wxString m_Name;
 	wxArrayString m_TextureNames;
 

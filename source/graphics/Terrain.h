@@ -77,9 +77,9 @@ public:
 	float FlattenArea(float x0,float x1,float z0,float z1);
 
 	// mark a specific square of tiles as dirty - use this after modifying the heightmap
-	void MakeDirty(int x0, int z0, int x1, int z1);
+	void MakeDirty(int x0, int z0, int x1, int z1, int dirtyFlags);
 	// mark the entire map as dirty
-	void MakeDirty();
+	void MakeDirty(int dirtyFlags);
 
 private:
 	// delete any data allocated by this terrain

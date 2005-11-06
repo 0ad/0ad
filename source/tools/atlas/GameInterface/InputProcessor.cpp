@@ -66,5 +66,8 @@ bool InputProcessor::ProcessInput(GameLoopState* state)
 		moved = true;
 	}
 
+	if (moved)
+		camera->UpdateFrustum();
+
 	return moved;
 }

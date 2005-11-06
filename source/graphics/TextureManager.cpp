@@ -28,16 +28,24 @@ CTextureManager::CTextureManager():
 
 CTextureManager::~CTextureManager()
 {
-	for (size_t i=0;i<m_TextureEntries.size();i++) {
+	UnloadTerrainTextures();
+}
+
+void CTextureManager::UnloadTerrainTextures()
+{
+	for (size_t i=0; i < m_TextureEntries.size(); i++)
 		delete m_TextureEntries[i];
-	}
-	
-	TerrainGroupMap::iterator it=m_TerrainGroups.begin();
+	m_TextureEntries.clear();
+
+	TerrainGroupMap::iterator it = m_TerrainGroups.begin();
 	while (it != m_TerrainGroups.end())
 	{
 		delete it->second;
 		++it;
 	}
+	m_TerrainGroups.clear();
+
+	m_LastGroupIndex = 0;
 }
 
 CTextureEntry* CTextureManager::FindTexture(CStr tag)
