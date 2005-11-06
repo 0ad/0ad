@@ -9,6 +9,7 @@
 #include "PatchRData.h"
 #include "AlphaMapCalculator.h"
 #include "ps/CLogger.h"
+#include "ps/Profile.h"
 #include "MathUtil.h"
 #include "LOSManager.h"
 
@@ -31,19 +32,6 @@ const int BlendOffsets[8][2] = {
 
 
 
-
-
-
-
-static SColor4ub ConvertColor(const RGBColor& src)
-{
-	SColor4ub result;
-	result.R=(u8)clamp(int(src.X*255),0,255);
-	result.G=(u8)clamp(int(src.Y*255),0,255);
-	result.B=(u8)clamp(int(src.Z*255),0,255);
-	result.A=0xff;
-	return result;
-}
 
 ///////////////////////////////////////////////////////////////////
 // CPatchRData constructor
@@ -270,7 +258,7 @@ void CPatchRData::BuildBlends()
 		m_VBBlends=0;
 	}
 	if (m_BlendVertices.size())  {
-		m_VBBlends=g_VBMan.Allocate(sizeof(SBlendVertex),m_BlendVertices.size(),false);
+		m_VBBlends=g_VBMan.Allocate(sizeof(SBlendVertex),m_BlendVertices.size(),true);
 		m_VBBlends->m_Owner->UpdateChunkVertices(m_VBBlends,&m_BlendVertices[0]);
 	
 		// now build outgoing splats
@@ -368,7 +356,6 @@ void CPatchRData::BuildVertices()
 	// create both vertices and lighting colors
 
 	CVector3D normal;
-	SColor4ub black = ConvertColor(RGBColor(0,0,0));
 
 	// number of vertices in each direction in each patch
 	int vsize=PATCH_SIZE+1;
@@ -395,7 +382,7 @@ void CPatchRData::BuildVertices()
 
 			// calculate vertex data
 			terrain->CalcPosition(ix,iz,vertices[v].m_Position);		
-			vertices[v].m_Color=black;		// will be set to the proper value in Update()
+			*(uint32_t*)&vertices[v].m_Color = 0;	// will be set to the proper value in Update()
 			vertices[v].m_UVs[0]=i*0.125f;
 			vertices[v].m_UVs[1]=j*0.125f;
 				
@@ -408,7 +395,7 @@ void CPatchRData::BuildVertices()
 	
 	// upload to vertex buffer
 	if (!m_VBBase) {
-		m_VBBase=g_VBMan.Allocate(sizeof(SBaseVertex),vsize*vsize,false);
+		m_VBBase=g_VBMan.Allocate(sizeof(SBaseVertex),vsize*vsize,true);
 	} 
 	m_VBBase->m_Owner->UpdateChunkVertices(m_VBBase,m_Vertices);
 }
@@ -453,6 +440,7 @@ void CPatchRData::Update()
 			const int DX[] = {1,1,0,0};
 			const int DZ[] = {0,1,1,0};
 			float losMod = 1.0f;
+
 			for(int k=0; k<4; k++)
 			{
 				int tx = ix - DX[k];
@@ -471,7 +459,7 @@ void CPatchRData::Update()
 			RGBColor c = m_LightingColors[v];
 			c *= losMod;
 
-			m_Vertices[v].m_Color=ConvertColor(c);
+			*(uint32_t*)&m_Vertices[v].m_Color = ConvertRGBColorTo4ub(c);
 		}
 	}
 
@@ -483,7 +471,7 @@ void CPatchRData::Update()
 	{
 		m_BlendVertices[i].m_Color = m_Vertices[m_BlendVertexIndices[i]].m_Color;
 	}
-	
+
 	// upload blend vertices into their vertex buffer too
 	if(m_BlendVertices.size())
 	{

@@ -169,8 +169,6 @@ TIMER_ADD_CLIENT(tc_getstatus);
 
 ELOSStatus CLOSManager::GetStatus(int tx, int tz, CPlayer* player) 
 {
-TIMER_ACCRUE(tc_getstatus);
-
 	// TODO: Make the mask depend on the player's diplomacy (just OR all his allies' masks)
 
 #ifdef _2_los
