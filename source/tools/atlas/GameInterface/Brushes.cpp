@@ -33,9 +33,8 @@ void Brush::GetBottomRight(int& x, int& y) const
 	CVector3D c = m_Centre;
 	if (m_W % 2) c.X += CELL_SIZE/2.f;
 	if (m_H % 2) c.Z += CELL_SIZE/2.f;
-	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 	i32 cx, cy;
-	terrain->CalcFromPosition(c, cx, cy);
+	CTerrain::CalcFromPosition(c, cx, cy);
 
 	x = cx - (m_W-1)/2;
 	y = cy - (m_H-1)/2;

@@ -225,6 +225,8 @@ function setuppackage_engine (projectname)
 		package.pchHeader = "precompiled.h"
 		package.pchSource = "precompiled.cpp"
 
+		tinsert(package.buildoptions, { "/QIfist" })
+
 	else -- Non-Windows, = Unix
 
 		tinsert(package.files, sourcesfromdirs(sourceroot, {"lib/sysdep/unix"}))

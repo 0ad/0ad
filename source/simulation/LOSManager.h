@@ -54,6 +54,9 @@ class CLOSManager : public Singleton<CLOSManager>
 	u16** m_VisibilityMatrix;
 #endif
 
+	uint m_TilesPerSide;
+	uint m_TilesPerSide_1;	// as above, -1
+
 public:
 	static const int NORMAL = 0;
 	static const int EXPLORED = 1;

@@ -1035,7 +1035,7 @@ void CRenderer::RenderWater()
 						if(tx >= 0 && tz >= 0 && tx <= mapSize-2 && tz <= mapSize-2)
 						{
 							ELOSStatus s = losMgr->GetStatus(tx, tz, g_Game->GetLocalPlayer());
-							if(s==LOS_EXPLORED && losMod > 0.7f) 
+							if(s&LOS_EXPLORED && losMod > 0.7f) 
 								losMod = 0.7f;
 							else if(s==LOS_UNEXPLORED && losMod > 0.0f)
 								losMod = 0.0f;

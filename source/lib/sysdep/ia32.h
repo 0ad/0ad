@@ -46,13 +46,23 @@ extern u64 rdtsc(void);
 
 // these may have been defined by system headers; we redefine them to
 // the real IA-32 values for use with ia32_control87.
-// Precision Control:
+// .. Precision Control:
 #undef _MCW_PC
 #define _MCW_PC 0x0300
 #undef _PC_24
 #define _PC_24  0x0000
-
-// Exception Mask:
+// .. Rounding Control:
+#undef _MCW_RC
+#define _MCW_RC  0x0C00
+#undef _RC_NEAR
+#define _RC_NEAR 0x0000
+#undef _RC_DOWN
+#define _RC_DOWN 0x0400
+#undef _RC_UP
+#define _RC_UP   0x0800
+#undef _RC_CHOP
+#define _RC_CHOP 0x0C00
+// .. Exception Mask:
 #undef _MCW_EM
 #define _MCW_EM 0x003f
 #undef _EM_INVALID

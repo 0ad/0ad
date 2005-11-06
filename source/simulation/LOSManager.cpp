@@ -45,14 +45,16 @@ void CLOSManager::Initialize(uint losSetting)
 	m_LOSSetting = losSetting;
 
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-	int tilesPerSide = terrain->GetVerticesPerSide() - 1;
+	m_TilesPerSide = terrain->GetVerticesPerSide() - 1;
+	m_TilesPerSide_1 = m_TilesPerSide-1;
+
 
 	// Create the LOS data arrays
 #ifdef _2_los
-	m_Explored = (int**)matrix_alloc(tilesPerSide, tilesPerSide, sizeof(int));
-	m_Visible  = (int**)matrix_alloc(tilesPerSide, tilesPerSide, sizeof(int));
+	m_Explored = (int**)matrix_alloc(m_TilesPerSide, m_TilesPerSide, sizeof(int));
+	m_Visible  = (int**)matrix_alloc(m_TilesPerSide, m_TilesPerSide, sizeof(int));
 #else
-	m_VisibilityMatrix = (u16**)matrix_alloc(tilesPerSide, tilesPerSide, sizeof(u16));
+	m_VisibilityMatrix = (u16**)matrix_alloc(m_TilesPerSide, m_TilesPerSide, sizeof(u16));
 #endif
 
 	// TODO: This memory should be freed somewhere when the engine supports 
@@ -70,14 +72,14 @@ void CLOSManager::Initialize(uint losSetting)
 	if(m_LOSSetting == ALL_VISIBLE)
 		for(int i = 0; i < 8; i++) vis_value |= LOS_VISIBLE << (i*2);
 #endif
-	for(int x=0; x<tilesPerSide; x++)
+	for(uint x=0; x<m_TilesPerSide; x++)
 	{
 #ifdef _2_los
-		memset(m_Explored[x], explored_value, tilesPerSide*sizeof(int));
-		memset(m_Visible [x], vis_value     , tilesPerSide*sizeof(int));
+		memset(m_Explored[x], explored_value, m_TilesPerSide*sizeof(int));
+		memset(m_Visible [x], vis_value     , m_TilesPerSide*sizeof(int));
 #else
-		for(int y=0; y<tilesPerSide; y++)
-		for(int x=0; x<tilesPerSide; x++)
+		for(uint y=0; y<m_TilesPerSide; y++)
+		for(uint x=0; x<m_TilesPerSide; x++)
 			m_VisibilityMatrix[y][x] = vis_value;
 #endif
 	}
@@ -93,21 +95,18 @@ void CLOSManager::Update()
 	if(m_LOSSetting == ALL_VISIBLE)
 		return;
 
-	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-	int tilesPerSide = terrain->GetVerticesPerSide() - 1;
-
 	// Clear the visible array
 #ifdef _2_los
-	for(int x=0; x<tilesPerSide; x++)
+	for(int x=0; x<m_TilesPerSide; x++)
 	{
-		memset(m_Visible[x], 0, tilesPerSide*sizeof(int));
+		memset(m_Visible[x], 0, m_TilesPerSide*sizeof(int));
 	}
 #else
 	u16 not_all_vis = 0xFFFF;
 	for(int i = 0; i < 8; i++)
 		not_all_vis &= ~(LOS_VISIBLE << (i*2));
-	for(int y=0; y<tilesPerSide; y++)
-	for(int x=0; x<tilesPerSide; x++)
+	for(uint y=0; y<m_TilesPerSide; y++)
+	for(uint x=0; x<m_TilesPerSide; x++)
 		m_VisibilityMatrix[y][x] &= not_all_vis;
 #endif
 
@@ -130,13 +129,13 @@ void CLOSManager::Update()
 		uint shift = e->GetPlayer()->GetPlayerID()*2;
 #endif
 
-		int cx = min(int(e->m_position.X/CELL_SIZE), tilesPerSide-1);
-		int cz = min(int(e->m_position.Z/CELL_SIZE), tilesPerSide-1);
+		int cx, cz;
+		CTerrain::CalcFromPosition(e->m_position.X, e->m_position.Z, cx, cz);
 
-		int minX = max(cx-los, 0);
-		int minZ = max(cz-los, 0);
-		int maxX = min(cx+los, tilesPerSide-1);
-		int maxZ = min(cz+los, tilesPerSide-1);
+		int minX = MAX(cx-los, 0);
+		int minZ = MAX(cz-los, 0);
+		int maxX = MIN(cx+los, (int)m_TilesPerSide_1);
+		int maxZ = MIN(cz+los, (int)m_TilesPerSide_1);
 
 		for(int x=minX; x<=maxX; x++) 
 		{
@@ -198,11 +197,8 @@ TIMER_ACCRUE(tc_getstatus);
 
 ELOSStatus CLOSManager::GetStatus(float fx, float fz, CPlayer* player) 
 {
-	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-	int tilesPerSide = terrain->GetVerticesPerSide() - 1;
-
-	int ix = min(int(fx/CELL_SIZE), tilesPerSide-1);
-	int iz = min(int(fz/CELL_SIZE), tilesPerSide-1);
+	int ix, iz;
+	CTerrain::CalcFromPosition(fx, fz, ix, iz);
 	return GetStatus(ix, iz, player);
 }
 
@@ -211,11 +207,11 @@ EUnitLOSStatus CLOSManager::GetUnitStatus(CUnit* unit, CPlayer* player)
 	CVector3D centre;
 	unit->GetModel()->GetBounds().GetCentre(centre);
 	ELOSStatus status = GetStatus(centre.X, centre.Z, player);
+
 	if(status & LOS_VISIBLE)
-	{
 		return UNIT_VISIBLE;
-	}
-	else if(status == LOS_EXPLORED)
+
+	if(status & LOS_EXPLORED)
 	{
 		if(unit->GetEntity() == 0 || unit->GetEntity()->m_permanent)
 		{
@@ -227,15 +223,9 @@ EUnitLOSStatus CLOSManager::GetUnitStatus(CUnit* unit, CPlayer* player)
 			// system so that we can't remember units that we haven't seen and so we can 
 			// see permanent units that have died but that we haven't been near lately
 		}
-		else
-		{
-			return UNIT_HIDDEN;
-		}
 	}
-	else
-	{
-		return UNIT_HIDDEN;
-	}
+
+	return UNIT_HIDDEN;
 }
 
 

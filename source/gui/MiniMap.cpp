@@ -375,7 +375,7 @@ void CMiniMap::RebuildLOSTexture()
 			{
 				*dataPtr++ = 0xff;
 			}
-			else if(status == LOS_EXPLORED)
+			else if(status & LOS_EXPLORED)
 			{
 				*dataPtr++ = (u8) (0xff * 0.3f);
 			}
@@ -400,17 +400,8 @@ void CMiniMap::Destroy()
 	if(m_LOSTexture)
 		glDeleteTextures(1, (GLuint *)&m_LOSTexture);
 
-	if(m_TerrainData)
-	{
-		delete[] m_TerrainData;
-		m_TerrainData = 0;
-	}
-
-	if(m_LOSData)
-	{
-		delete[] m_LOSData;
-		m_LOSData = 0;
-	}
+	SAFE_DELETE(m_TerrainData);
+	SAFE_DELETE(m_LOSData);
 }
 
 CVector2D CMiniMap::GetMapSpaceCoords(CVector3D worldPos)

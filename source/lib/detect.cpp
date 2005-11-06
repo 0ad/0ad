@@ -165,6 +165,11 @@ void cpu_init()
 	// note: passing a flag *disables* that exception.
 	_control87(_EM_INVALID|_EM_DENORMAL|_EM_OVERFLOW|_EM_UNDERFLOW|_EM_INEXACT, _MCW_EM);
 
+	// round toward zero (truncate). this is what ANSI C calls for;
+	// if we set it to this (default is round to nearest), the compiler can
+	// generate FISTP (much faster) instead of _ftol2 with the same results.
+	_control87(_RC_CHOP, _MCW_RC);
+
 	// If possible, hook up capability-sensitive assembler routines
 	ia32_hook_capabilities();
 #endif

@@ -60,7 +60,15 @@ public:
 	// calculate the position of a given vertex
 	void CalcPosition(i32 i, i32 j, CVector3D& pos) const;
 	// calculate the vertex under a given position (rounding down coordinates)
-	void CalcFromPosition(const CVector3D& pos, i32& i, i32& j) const;
+	static void CalcFromPosition(const CVector3D& pos, i32& i, i32& j)
+	{
+		i = pos.X / CELL_SIZE; j = pos.Z / CELL_SIZE;
+	}
+	// calculate the vertex under a given position (rounding down coordinates)
+	static void CalcFromPosition(float x, float y, i32& i, i32& j)
+	{
+		i = x / CELL_SIZE; j = y / CELL_SIZE;
+	}
 	// calculate the normal at a given vertex
 	void CalcNormal(u32 i, u32 j, CVector3D& normal) const;
 
