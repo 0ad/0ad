@@ -252,13 +252,21 @@ function setuppackage_engine (projectname)
 		package.config["Debug"].linkoptions = { "-rdynamic" }
 		package.config["Testing"].linkoptions = { "-rdynamic" }
 
+		package.buildoptions = {
+			"-Wall",
+			"-Wno-switch",		-- enumeration value not handled in switch
+			"-Wno-reorder",		-- order of initialization list in constructors
+			"-Wno-non-virtual-dtor",
+		}
+		
 		tinsert(package.libpaths, { "/usr/X11R6/lib" } )
 		-- Defines
 		package.defines = {
 			"__STDC_VERSION__=199901L",
 			"CONFIG_USE_MMGR" }
-		-- Includes
+		-- Includes (X11 include path isn't standard across distributions)
 		tinsert(package.includepaths, { "/usr/X11R6/include/X11" } )
+		tinsert(package.includepaths, { "/usr/include/X11" } )
 
 		-- speed up math functions by inlining. warning: this may result in
 		-- non-IEEE-conformant results, but haven't noticed any trouble so far.
