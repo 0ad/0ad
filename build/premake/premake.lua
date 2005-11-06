@@ -225,6 +225,8 @@ function setuppackage_engine (projectname)
 		package.pchHeader = "precompiled.h"
 		package.pchSource = "precompiled.cpp"
 
+		-- float->int conversion uses IA32 FISTP instruction instead of _ftol2 (slow!)
+		-- since we also change FPU rounding mode, this should be safe
 		tinsert(package.buildoptions, { "/QIfist" })
 
 	else -- Non-Windows, = Unix
@@ -257,6 +259,10 @@ function setuppackage_engine (projectname)
 			"CONFIG_USE_MMGR" }
 		-- Includes
 		tinsert(package.includepaths, { "/usr/X11R6/include/X11" } )
+
+		-- speed up math functions by inlining. warning: this may result in
+		-- non-IEEE-conformant results, but haven't noticed any trouble so far.
+		tinsert(package.buildoptions, { "-ffast-math" })
 	end
 end
 
