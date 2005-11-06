@@ -112,7 +112,7 @@ void* debug_get_nth_caller(uint n, void *context)
 	int bt_size;
 	
 	bt_size=backtrace(bt, n+2);
-	assert(bt_size >= n+2 && "Need at least n+2 frames in get_nth_caller");
+	assert(bt_size >= (int)(n+2) && "Need at least n+2 frames in get_nth_caller");
 	return bt[n+1]; // n==1 => bt[2], and so forth
 }
 
@@ -130,12 +130,12 @@ const wchar_t* debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void*
 	
 	bt_size=backtrace(bt, ARRAY_SIZE(bt));
 	// did we get enough backtraced frames?
-	assert((bt_size >= skip) && "Need at least <skip> frames in the backtrace");
+	assert((bt_size >= (int)skip) && "Need at least <skip> frames in the backtrace");
 
 	// Assumed max length of a single print-out
 	static const uint MAX_OUT_CHARS=1024;
 
-	for (uint i=skip;i<bt_size && bufpos+MAX_OUT_CHARS < bufend;i++)
+	for (uint i=skip;(int)i<bt_size && bufpos+MAX_OUT_CHARS < bufend;i++)
 	{
 		char file[DBG_FILE_LEN];
 		char symbol[DBG_SYMBOL_LEN];
@@ -217,7 +217,7 @@ static int read_symbols(const char *file_name, symbol_file_context *ctx)
 	{
 		if (bfd_get_error () == bfd_error_file_ambiguously_recognized)
 		{
-			printf("Error reading symbols from %s: ambiguous format\n");
+			printf("Error reading symbols from %s: ambiguous format\n", file_name);
 			while (*matching)
 				printf("\tPotential matching format: %s\n", *matching++);
 			free(matching);
@@ -289,7 +289,7 @@ static void find_address_in_section (bfd *abfd, asection *section, void *data)
 
 // BFD functions perform allocs with real malloc - we need to free that data
 #include "nommgr.h"
-int demangle_buf(char *buf, const char *symbol, size_t n)
+void demangle_buf(char *buf, const char *symbol, size_t n)
 {
 	int status=0;
 	char *alloc=NULL;
@@ -324,7 +324,7 @@ int debug_resolve_symbol_dladdr(void *ptr, char* sym_name, char* file, int* line
 			demangle_buf(sym_name, syminfo.dli_sname, DBG_SYMBOL_LEN);
 		else
 		{
-			snprintf(sym_name, DBG_SYMBOL_LEN, "0x%08x", ptr);
+			snprintf(sym_name, DBG_SYMBOL_LEN, "0x%08x", (uint)ptr);
 			sym_name[DBG_SYMBOL_LEN-1]=0;
 		}
 	}
@@ -366,7 +366,7 @@ int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int*
 	
 	symbol_lookup_context ctx;
 	memset(&ctx, 0, sizeof(ctx));
-	ctx.address=(bfd_vma)ptr_of_interest;
+	ctx.address=reinterpret_cast<bfd_vma>(ptr_of_interest);
 	ctx.file_ctx=file_ctx;
 
 	bfd_map_over_sections (abfd, find_address_in_section, &ctx);

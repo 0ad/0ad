@@ -39,7 +39,7 @@ void CMusicPlayer::open(char* UNUSED(filename))
 	if (is_open)
 		release();
 
-/*/*
+/*
 	void* p;
 	size_t sizeOfFile;
 	if(vfs_load(filename, p, sizeOfFile) <= 0)
@@ -118,6 +118,7 @@ bool CMusicPlayer::isPlaying()
 	check();
 	return (state == AL_PLAYING);
 }
+*/
 /*
 
 bool CMusicPlayer::issue(int slot_idx)

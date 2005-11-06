@@ -29,9 +29,9 @@ void CPlayList::load(const char* file)
 	WARN_ERR_RETURN(hm);
 
 	const char* playlist = (const char*)p;
-	const char* track;
-	debug_warn("TODO: This code looks quite suspicious");
-	while(sscanf(playlist, "%s\n", &track) == 1)
+	char track[512];
+
+	while(sscanf(playlist, "%511s\n", track) == 1)
 		tracks.push_back(track);
 
 	mem_free_h(hm);

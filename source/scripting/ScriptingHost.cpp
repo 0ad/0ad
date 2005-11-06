@@ -11,10 +11,12 @@
 #include "lib/res/res.h"
 
 
+#if OS_WIN
 #ifdef NDEBUG
 # pragma comment (lib, "js32.lib")
 #else
 # pragma comment (lib, "js32d.lib")
+#endif
 #endif
 
 #define LOG_CATEGORY "scriptinghost"
