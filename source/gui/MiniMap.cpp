@@ -166,10 +166,22 @@ void CMiniMap::Draw()
 	if(!m_TerrainTexture)
 		CreateTextures();
 
-	if(g_TerrainModified)
-		RebuildTerrainTexture();
+	// only update 10x / second
+	// (note: since units only move a few pixels per second on the minimap,
+	// we can get away with infrequent updates; this is slow, ~20ms)
+	static double last_time;
+	const double cur_time = get_time();
+	if(cur_time - last_time > 100e-3)	// 10 updates/sec
+	{
+		last_time = cur_time;
 
-	RebuildLOSTexture();
+		if(g_TerrainModified)
+			RebuildTerrainTexture();
+
+		CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
+		if(losMgr->m_LOSSetting != CLOSManager::ALL_VISIBLE)
+			RebuildLOSTexture();
+	}
 
 	const float texCoordMax = ((float)m_MapSize - 1) / ((float)m_TextureSize);
 	const float x = m_CachedActualSize.left, y = m_CachedActualSize.bottom;
@@ -293,13 +305,9 @@ void CMiniMap::CreateTextures()
 	RebuildLOSTexture();
 }
 
-TIMER_ADD_CLIENT(tc_minimap_rebuildterrain);
 
 void CMiniMap::RebuildTerrainTexture()
 {
-	PROFILE_START("rebuild minimap: terrain");
-	TIMER_ACCRUE(tc_minimap_rebuildterrain);
-
 	u32 x = 0;
 	u32 y = 0;
 	u32 w = m_MapSize - 1;
@@ -346,8 +354,6 @@ void CMiniMap::RebuildTerrainTexture()
 	// Upload the texture
 	g_Renderer.BindTexture(0, m_TerrainTexture);
 	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_MapSize - 1, m_MapSize - 1, GL_BGRA_EXT, GL_UNSIGNED_BYTE, m_TerrainData);
-
-	PROFILE_END("rebuild minimap: terrain");
 }
 
 TIMER_ADD_CLIENT(tc_minimap_rebuildlos);
@@ -375,7 +381,7 @@ void CMiniMap::RebuildLOSTexture()
 			{
 				*dataPtr++ = 0xff;
 			}
-			else if(status & LOS_EXPLORED)
+			else if(status == LOS_EXPLORED)
 			{
 				*dataPtr++ = (u8) (0xff * 0.3f);
 			}
@@ -400,8 +406,8 @@ void CMiniMap::Destroy()
 	if(m_LOSTexture)
 		glDeleteTextures(1, (GLuint *)&m_LOSTexture);
 
-	SAFE_DELETE(m_TerrainData);
-	SAFE_DELETE(m_LOSData);
+	delete[] m_TerrainData; m_TerrainData = 0;
+	delete[] m_LOSData; m_LOSData = 0;
 }
 
 CVector2D CMiniMap::GetMapSpaceCoords(CVector3D worldPos)
