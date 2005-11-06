@@ -166,6 +166,12 @@ void CMiniMap::Draw()
 	if(!m_TerrainTexture)
 		CreateTextures();
 
+	// do not limit this as with LOS updates below - we must update
+	// immediately after changes are reported because this flag will be
+	// reset at the end of the frame.
+	if(g_TerrainModified)
+		RebuildTerrainTexture();
+
 	// only update 10x / second
 	// (note: since units only move a few pixels per second on the minimap,
 	// we can get away with infrequent updates; this is slow, ~20ms)
@@ -174,9 +180,6 @@ void CMiniMap::Draw()
 	if(cur_time - last_time > 100e-3)	// 10 updates/sec
 	{
 		last_time = cur_time;
-
-		if(g_TerrainModified)
-			RebuildTerrainTexture();
 
 		CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
 		if(losMgr->m_LOSSetting != CLOSManager::ALL_VISIBLE)
