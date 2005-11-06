@@ -6,7 +6,6 @@ section .text use32
 ; Usage:
 ; use sym(ia32_cap) instead of _ia32_cap - on relevant platforms, sym() will add
 ; the underlines automagically, on others it won't
-
 %ifdef DONT_USE_UNDERLINE
 %define sym(a) a
 %else
@@ -24,10 +23,6 @@ section .text use32
 ;
 ; disables specialized large transfer (> 64KiB) implementations if SSE
 ; isn't available; we do assume MMX support, though (quite safe).
-
-; *requires* (and does not verify the presence of) SSE instructions:
-; prefetchnta and movntq. therefore, a P3+ or Athlon XP is required.
-; rationale: older processors are too slow anyway and we don't bother.
 
 ; if memcpy size is greater than this,
 ; .. it's too big for L1. use non-temporal instructions.

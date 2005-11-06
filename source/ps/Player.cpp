@@ -5,6 +5,7 @@
 #include "Entity.h"
 #include "EntityManager.h"
 #include "scripting/JSCollection.h"
+#include "simulation/LOSManager.h"
 
 CPlayer::CPlayer(uint playerID):
 	m_PlayerID(playerID),
@@ -12,6 +13,8 @@ CPlayer::CPlayer(uint playerID):
 	m_Colour(0.7f, 0.7f, 0.7f),
 	m_UpdateCB(0)
 {
+	m_LOSToken = LOS_GetTokenFor(playerID);
+
 	AddSynchedProperty( L"name", &m_Name );
 	// HACK - since we have to use setColour to update this, we don't want to
 	// expose a colour property. Meanwhile, we want to have a property "colour"

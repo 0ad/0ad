@@ -209,7 +209,7 @@ void CGameView::RenderModels(CUnitManager *pUnitMan, CProjectileManager *pProjec
 		bound.GetCentre(centre);
 		
 		if (frustum.IsBoxVisible(CVector3D(0,0,0), bound)
-			&& losMgr->GetStatus(centre.X, centre.Z, g_Game->GetLocalPlayer()) == LOS_VISIBLE) 
+			&& losMgr->GetStatus(centre.X, centre.Z, g_Game->GetLocalPlayer()) & LOS_VISIBLE) 
 		{
 			PROFILE( "submit projectiles" );
 			SubmitModelRecursive(projectiles[i]->GetModel());

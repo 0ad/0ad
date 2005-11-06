@@ -24,6 +24,8 @@
 class CUnit;
 class CPlayer;
 
+#undef _2_los
+
 enum ELOSStatus 
 { 
 	LOS_VISIBLE = 2,		// tile is currently in LOS of one of the player's units
@@ -38,13 +40,19 @@ enum EUnitLOSStatus
 	UNIT_HIDDEN = 0			// unit is either not permanent or was never seen before
 };
 
+extern uint LOS_GetTokenFor(uint player_id);
+
 class CLOSManager : public Singleton<CLOSManager>
 {
+#ifdef _2_los
 	int** m_Explored;		// (m_Explored[x][z] & (1<<p) says whether player p has explored tile (x,z),
 							// i.e. has removed Shroud of Darkness from it.
 	int** m_Visible;		// (m_Visible[x][z] & (1<<p)) says whether player p currently sees tile (x,z).
 	// NOTE: This will have to be changed to a 3D array where each element stores the number of units
 	// of a certain player that can see a certain tile if we want to use incremental LOS.
+#else
+	u16** m_VisibilityMatrix;
+#endif
 
 public:
 	static const int NORMAL = 0;

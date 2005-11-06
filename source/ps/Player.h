@@ -19,6 +19,7 @@ public:
 private:
 	CStrW m_Name;
 	PS_uint m_PlayerID;
+	PS_uint m_LOSToken;
 	SPlayerColour m_Colour;
 	
 	UpdateCallback *m_UpdateCB;
@@ -36,6 +37,9 @@ public:
 	{	return m_PlayerID; }
 	inline void SetPlayerID(PS_uint id)
 	{	m_PlayerID=id; }
+
+	inline PS_uint GetLOSToken() const
+	{	return m_LOSToken; }
 	
 	inline const CStrW &GetName() const
 	{	return m_Name; }
