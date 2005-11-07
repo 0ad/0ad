@@ -73,14 +73,68 @@ __declspec(naked) float ia32_rintf(float)
 	__asm ret
 }
 
-inline double ia32_rint(double)
+__declspec(naked) double ia32_rint(double)
 {
-	__asm fld		[esp+4]
+	__asm fld		QWORD PTR [esp+4]
 	__asm frndint
 	__asm ret
 }
 
-#endif
+#endif	// HAVE_MS_ASM
+
+
+#if USE_IA32_FLOAT_TO_INT	// implies HAVE_MS_ASM
+
+// notes:
+// - PTR is necessary because __declspec(naked) means the assembler
+//   cannot refer to parameter argument type to get it right.
+// - to conform with the fallback implementation (a C cast), we need to
+//   end up with truncate/"chop" rounding. subtracting does the trick,
+//   assuming RC is the IA-32 default round-to-nearest mode.
+
+static const float round_bias = 0.5f;
+
+__declspec(naked) i32 ia32_i32_from_float(float f)
+{
+	UNUSED2(f);
+__asm{
+	push		eax
+	fld			DWORD PTR [esp+8]
+	fsub		[round_bias]
+	fistp		DWORD PTR [esp]
+	pop			eax
+	ret
+}}
+
+__declspec(naked) i32 ia32_i32_from_double(double d)
+{
+	UNUSED2(d);
+__asm{
+	push		eax
+	fld			QWORD PTR [esp+8]
+	fsub		[round_bias]
+	fistp		DWORD PTR [esp]
+	pop			eax
+	ret
+}}
+
+__declspec(naked) i64 ia32_i64_from_double(double d)
+{
+	UNUSED2(d);
+__asm{
+	push		edx
+	push		eax
+	fld			QWORD PTR [esp+12]
+	fsub		[round_bias]
+	fistp		QWORD PTR [esp]
+	pop			eax
+	pop			edx
+	ret
+}}
+
+#endif	// USE_IA32_FLOAT_TO_INT
+
+
 
 
 // rationale: this function should return its output (instead of setting
@@ -691,3 +745,39 @@ void ia32_hook_capabilities()
 		debug_printf("No SSE available. Slow fallback routines will be used.\n");
 	}
 }
+
+
+//----------------------------------------------------------------------------
+// built-in self test
+//----------------------------------------------------------------------------
+
+#if SELF_TEST_ENABLED
+namespace test {
+
+	static void test_float_int()
+	{
+		TEST(i32_from_float(0.99999f) == 0);
+		TEST(i32_from_float(1.0f) == 1);
+		TEST(i32_from_float(1.01f) == 1);
+		TEST(i32_from_float(5.6f) == 5);
+
+		TEST(i32_from_double(0.99999) == 0);
+		TEST(i32_from_double(1.0) == 1);
+		TEST(i32_from_double(1.01) == 1);
+		TEST(i32_from_double(5.6) == 5);
+
+		TEST(i64_from_double(0.99999) == 0i64);
+		TEST(i64_from_double(1.0) == 1i64);
+		TEST(i64_from_double(1.01) == 1i64);
+		TEST(i64_from_double(5.6) == 5i64);
+	}
+
+	static void self_test()
+	{
+		test1();
+	}
+
+	RUN_SELF_TEST;
+
+}	// namespace test
+#endif	// #if SELF_TEST_ENABLED

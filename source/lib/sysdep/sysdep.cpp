@@ -20,7 +20,7 @@ double round(double x)
 	return (long)(x + 0.5);
 }
 
-#endif
+#endif	// MSC_VERSION
 
 
 #if !HAVE_C99
@@ -51,6 +51,26 @@ inline double rint(double d)
 #endif
 
 #endif	// !HAVE_C99
+
+
+#if !USE_IA32_FLOAT_TO_INT
+
+i32 i32_from_float(float f)
+{
+	return (i32)f;
+}
+
+i32 i32_from_double(double d)
+{
+	return (i32)d;
+}
+
+i64 i64_from_double(double d)
+{
+	return (i64)d;
+}
+
+#endif
 
 
 // not possible with POSIX calls.

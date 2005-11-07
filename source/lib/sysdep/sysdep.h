@@ -70,6 +70,18 @@ extern float rintf(float f);
 extern double rint(double d);
 #endif
 
+// fast float->int conversion; does not specify rounding mode,
+// so do not use them if exact values are needed.
+#if USE_IA32_FLOAT_TO_INT
+# define i32_from_float ia32_i32_from_float
+# define i32_from_double ia32_i32_from_double
+# define i64_from_double ia32_i64_from_double
+#endif
+// .. forward-declare either the IA-32 version or portable C emulation.
+extern i32 i32_from_float(float);
+extern i32 i32_from_double(double);
+extern i64 i64_from_double(double);
+
 // finite: return 0 iff the given double is infinite or NaN.
 #if OS_WIN
 # define finite _finite

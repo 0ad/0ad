@@ -730,7 +730,7 @@ static i64 time_ns()
 	}
 
 	const double dt = hrt_time() - hrt_start_time;
-	const i64 ns = st_start + (i64)(dt * _1e9);
+	const i64 ns = st_start + i64_from_double(dt * _1e9);
 	return ns;
 }
 
