@@ -16,7 +16,7 @@
 //   Jan.Wassenberg@stud.uni-karlsruhe.de
 //   http://www.stud.uni-karlsruhe.de/~urkt/
 
- 
+
 // TODO: should use GetMessage when not active to reduce CPU load.
 // where to do this?
 // - force the app to check for SDL's activation messages, and call

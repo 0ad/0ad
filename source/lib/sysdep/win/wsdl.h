@@ -46,7 +46,10 @@ extern int SDL_Init(Uint32 flags);
 
 extern void SDL_Quit(void);
 
-extern Uint8 SDL_GetAppState();
+
+//
+// video
+//
 
 typedef enum
 {
@@ -57,13 +60,11 @@ SDL_GLattr;
 
 extern int SDL_GL_SetAttribute(SDL_GLattr attr, int value);
 
-
 // SDL_SetVideoMode() flags
 #define SDL_OPENGL 0
 #define SDL_FULLSCREEN 1
 
 extern int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags);
-
 
 typedef struct
 {
@@ -73,7 +74,6 @@ SDL_Surface;
 
 extern SDL_Surface* SDL_GetVideoSurface(void);
 
-
 typedef struct
 {
 	int video_mem;
@@ -82,6 +82,10 @@ SDL_VideoInfo;
 
 extern SDL_VideoInfo* SDL_GetVideoInfo(void);
 
+extern void* SDL_GL_GetProcAddress(const char*);
+
+extern void SDL_GL_SwapBuffers(void);
+
 
 //
 // threads / sync
@@ -89,10 +93,6 @@ extern SDL_VideoInfo* SDL_GetVideoInfo(void);
 
 typedef void SDL_sem;
 typedef void SDL_Thread;
-
-extern void* SDL_GL_GetProcAddress(const char*);
-
-extern void SDL_GL_SwapBuffers(void);
 
 extern u32 SDL_GetTicks(void);
 extern void SDL_Delay(u32 ms);
@@ -104,6 +104,7 @@ extern int SDL_SemWait(SDL_sem* sem);
 
 extern SDL_Thread* SDL_CreateThread(int(*)(void*), void*);
 extern int SDL_KillThread(SDL_Thread*);
+
 
 extern void SDL_WarpMouse(int, int);
 
@@ -118,14 +119,10 @@ extern int SDL_ShowCursor(int toggle);
 
 extern int SDL_SetGamma(float r, float g, float b);
 
-// macros
 
-#define SDL_GRAB_ON 0
-#define SDL_WM_GrabInput(a)
-#define SDL_GetError() ""
-
-
-//////////////////////////////////////////////////////////////////////////////
+//
+// byte swapping
+//
 
 
 #ifdef linux
@@ -285,13 +282,28 @@ extern int SDL_WaitEvent(SDL_Event*);
 extern int SDL_PollEvent(SDL_Event* ev);
 extern int SDL_PushEvent(SDL_Event* ev);
 
+
+//
+// misc
+//
+
+#define SDL_GRAB_ON 0
+#define SDL_WM_GrabInput(a)
+
+#define SDL_GetError() ""
+
+// from real SDL, but they're ignored anyway
+#define SDL_DEFAULT_REPEAT_DELAY	500
+#define SDL_DEFAULT_REPEAT_INTERVAL	30
+#define SDL_EnableKeyRepeat(delay, interval)
+
+
 extern void SDL_WM_SetCaption(const char *title, const char *icon);
 
 extern Uint8* SDL_GetKeyState(int* num_keys);
 extern Uint8 SDL_GetMouseState(int* x, int* y);
 
-//( SDLMod and KMOD_* already defined by SDL_keysym.h)
-extern SDLMod SDL_GetModState(void);
+extern Uint8 SDL_GetAppState();
 
 
 #ifdef __cplusplus

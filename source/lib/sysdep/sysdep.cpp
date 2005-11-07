@@ -13,15 +13,6 @@
 #include <memory.h>
 #include <stdarg.h>
 
-#if MSC_VERSION
-
-double round(double x)
-{
-	return (long)(x + 0.5);
-}
-
-#endif	// MSC_VERSION
-
 
 #if !HAVE_C99
 
@@ -35,8 +26,12 @@ float fmaxf(float a, float b)
 	return (a > b)? a : b;
 }
 
+#endif
 
-#ifndef rint
+
+// no C99, and not running on IA-32 (where this is defined to ia32_rint)
+// => need to implement our fallback version.
+#if !HAVE_C99 && !defined(rint)
 
 inline float rintf(float f)
 {
@@ -50,9 +45,9 @@ inline double rint(double d)
 
 #endif
 
-#endif	// !HAVE_C99
 
-
+// float->int conversion: not using the ia32 version; just implement as a
+// cast. (see USE_IA32_FLOAT_TO_INT definition for details)
 #if !USE_IA32_FLOAT_TO_INT
 
 i32 i32_from_float(float f)

@@ -157,20 +157,20 @@ void cpu_init()
 	// we need full precision when calculating the time.
 	// if there's a spot where we want to speed up divides|sqrts,
 	// we can temporarily change precision there.
-	//_control87(_PC_24, _MCW_PC);
+	//ia32_control87(IA32_PC_24, IA32_MCW_PC);
 
 	// to help catch bugs, enable as many floating-point exceptions as
 	// possible. that means only zero-divide, because the JS engine is
 	// triggering the rest.
 	// note: passing a flag *disables* that exception.
-	_control87(_EM_INVALID|_EM_DENORMAL|_EM_OVERFLOW|_EM_UNDERFLOW|_EM_INEXACT, _MCW_EM);
+	ia32_control87(IA32_EM_INVALID|IA32_EM_DENORMAL|IA32_EM_OVERFLOW|IA32_EM_UNDERFLOW|IA32_EM_INEXACT, IA32_MCW_EM);
 
 	// no longer round toward zero (truncate). changing this setting
 	// resulted in much faster float->int casts, because the compiler
 	// could be told (via /QIfist) to use FISTP while still truncating
 	// the result as required by ANSI C. however, FPU calculation
 	// results were changed significantly, so it had to be disabled.
-	//_control87(_RC_CHOP, _MCW_RC);
+	//ia32_control87(IA32_RC_CHOP, IA32_MCW_RC);
 
 	// If possible, hook up capability-sensitive assembler routines
 	ia32_hook_capabilities();

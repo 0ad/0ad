@@ -567,9 +567,7 @@ static void InitPs(bool setup_gui)
 
 static void InitInput()
 {
-#if !OS_WIN
 	SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
-#endif
 
 	// register input handlers
 	// This stack is constructed so the first added, will be the last

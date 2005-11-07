@@ -35,60 +35,46 @@ extern "C" {
 extern void ia32_init();
 
 
-extern double _ceil(double);
+//
+// fast implementations of some sysdep.h functions; see documentation there
+//
 
 extern float ia32_rintf(float f);
 extern double ia32_rint(double f);
 
+extern i32 ia32_i32_from_float(float f);
+extern i32 ia32_i32_from_double(double d);
+extern i64 ia32_i64_from_double(double d);
 
-extern u64 rdtsc(void);
+extern void* ia32_memcpy(void* dst, const void* src, size_t nbytes);	// asm
 
 
-// these may have been defined by system headers; we redefine them to
-// the real IA-32 values for use with ia32_control87.
+// FPU control word
 // .. Precision Control:
-#undef _MCW_PC
-#define _MCW_PC 0x0300
-#undef _PC_24
-#define _PC_24  0x0000
+#define IA32_MCW_PC 0x0300
+#define IA32_PC_24  0x0000
 // .. Rounding Control:
-#undef _MCW_RC
-#define _MCW_RC  0x0C00
-#undef _RC_NEAR
-#define _RC_NEAR 0x0000
-#undef _RC_DOWN
-#define _RC_DOWN 0x0400
-#undef _RC_UP
-#define _RC_UP   0x0800
-#undef _RC_CHOP
-#define _RC_CHOP 0x0C00
+#define IA32_MCW_RC  0x0C00
+#define IA32_RC_NEAR 0x0000
+#define IA32_RC_DOWN 0x0400
+#define IA32_RC_UP   0x0800
+#define IA32_RC_CHOP 0x0C00
 // .. Exception Mask:
-#undef _MCW_EM
-#define _MCW_EM 0x003f
-#undef _EM_INVALID
-#define _EM_INVALID    BIT(0)
-#undef _EM_DENORMAL
-#define _EM_DENORMAL   BIT(1)
-#undef _EM_ZERODIVIDE
-#define _EM_ZERODIVIDE BIT(2)
-#undef _EM_OVERFLOW
-#define _EM_OVERFLOW   BIT(3)
-#undef _EM_UNDERFLOW
-#define _EM_UNDERFLOW  BIT(4)
-#undef _EM_INEXACT
-#define _EM_INEXACT    BIT(5)
+#define IA32_MCW_EM 0x003f
+#define IA32_EM_INVALID    BIT(0)
+#define IA32_EM_DENORMAL   BIT(1)
+#define IA32_EM_ZERODIVIDE BIT(2)
+#define IA32_EM_OVERFLOW   BIT(3)
+#define IA32_EM_UNDERFLOW  BIT(4)
+#define IA32_EM_INEXACT    BIT(5)
 
-#define _control87 ia32_control87
 extern uint ia32_control87(uint new_val, uint mask);	// asm
 
 
+extern u64 rdtsc(void);
+
 extern void ia32_debug_break(void);
 
-extern void* ia32_memcpy(void* dst, const void* src, size_t nbytes);
-
-// write the current execution state (e.g. all register values) into
-// (Win32::CONTEXT*)pcontext (defined as void* to avoid dependency).
-extern void ia32_get_current_context(void* pcontext);
 
 // CPU caps (128 bits)
 // do not change the order!
@@ -121,7 +107,12 @@ extern void ia32_get_cpu_info(void);
 extern void ia32_hook_capabilities(void);
 
 
+//-----------------------------------------------------------------------------
 // internal use only
+
+// write the current execution state (e.g. all register values) into
+// (Win32::CONTEXT*)pcontext (defined as void* to avoid dependency).
+extern void ia32_get_current_context(void* pcontext);
 
 extern int ia32_get_call_target(void* ret_addr, void** target);
 

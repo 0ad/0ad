@@ -40,25 +40,12 @@
 #error ia32.cpp needs inline assembly support!
 #endif
 
+
+//-----------------------------------------------------------------------------
+// fast implementations of some sysdep.h functions; see documentation there
+//-----------------------------------------------------------------------------
+
 #if HAVE_MS_ASM
-
-// replace pathetic MS libc implementation.
-// not needed on non-Win32, so don't bother converting from MS inline asm.
-double _ceil(double f)
-{
-	UNUSED2(f);	// avoid bogus warning
-	const float _49 = 0.499999f;
-	double r;
-__asm
-{
-	fld			[f]
-	fadd		[_49]
-	frndint
-	fstp		[r]
-}
-	return r;
-}
-
 
 // note: declspec naked is significantly faster: it avoids redundant
 // store/load, even though it prevents inlining.
@@ -135,7 +122,7 @@ __asm{
 #endif	// USE_IA32_FLOAT_TO_INT
 
 
-
+//-----------------------------------------------------------------------------
 
 // rationale: this function should return its output (instead of setting
 // out params) to simplify its callers. it is written in inline asm

@@ -3,10 +3,18 @@
 
 #include "config.h"
 
+// some functions among the sysdep API are implemented as macros
+// that redirect to the platform-dependent version. this is done where
+// the cost of a trampoline function would be too great; VC7 does not
+// always inline them.
+// we therefore need to include those headers.
 #if OS_WIN
 # include "win/win.h"
 #elif OS_UNIX
 # include "unix/unix.h"
+#endif
+#if CPU_IA32
+#include "ia32.h"
 #endif
 
 #ifdef __cplusplus
@@ -50,6 +58,9 @@ extern int vsnprintf2(char* buffer, size_t count, const char* format, va_list ar
 extern void* alloca(size_t size);
 #endif
 
+// memcpy2: hand-tuned version; works for all sizes and aligments and is
+// significantly faster. uses SSE-optimized codepath when available.
+// 10% for < 64byte transfers and up to 300% on large sizes.
 #ifdef CPU_IA32
 # define memcpy2 ia32_memcpy
 extern void* ia32_memcpy(void* dst, const void* src, size_t nbytes);
@@ -57,30 +68,33 @@ extern void* ia32_memcpy(void* dst, const void* src, size_t nbytes);
 # define memcpy2 memcpy
 #endif
 
-// rint: round float to nearest integer.
+// rint: round float to nearest integral value.
 // provided by C99, otherwise:
 #if !HAVE_C99
-// .. implemented on IA-32; define as macro to avoid jmp overhead
+// .. fast IA-32 version
 # if CPU_IA32
 #  define rintf ia32_rintf
 #  define rint ia32_rint
+// .. portable C emulation
+# else
+   extern float rintf(float f);
+   extern double rint(double d);
 # endif
-// .. forward-declare either the IA-32 version or portable C emulation.
-extern float rintf(float f);
-extern double rint(double d);
 #endif
 
-// fast float->int conversion; does not specify rounding mode,
-// so do not use them if exact values are needed.
+// i32_from_float et al: convert float to int. much faster than _ftol2,
+// which would normally be used by (int) casts.
+// .. fast IA-32 version: only used in some cases; see macro definition.
 #if USE_IA32_FLOAT_TO_INT
 # define i32_from_float ia32_i32_from_float
 # define i32_from_double ia32_i32_from_double
 # define i64_from_double ia32_i64_from_double
+// .. portable C emulation
+#else
+  extern i32 i32_from_float(float);
+  extern i32 i32_from_double(double);
+  extern i64 i64_from_double(double);
 #endif
-// .. forward-declare either the IA-32 version or portable C emulation.
-extern i32 i32_from_float(float);
-extern i32 i32_from_double(double);
-extern i64 i64_from_double(double);
 
 // finite: return 0 iff the given double is infinite or NaN.
 #if OS_WIN
@@ -216,9 +230,6 @@ extern int on_each_cpu(void(*cb)());
 
 
 
-#if MSC_VERSION
-extern double round(double);
-#endif
 
 #if !HAVE_C99
 extern float fminf(float a, float b);
