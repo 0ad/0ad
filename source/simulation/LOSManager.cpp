@@ -171,6 +171,11 @@ ELOSStatus CLOSManager::GetStatus(int tx, int tz, CPlayer* player)
 {
 //TIMER_ACCRUE(tc_getstatus);
 
+	// Ensure that units off the map don't cause the visibility arrays to be
+	// accessed out of bounds
+	if ((unsigned)tx >= m_TilesPerSide || (unsigned)tz >= m_TilesPerSide)
+		return LOS_UNEXPLORED;
+
 	// TODO: Make the mask depend on the player's diplomacy (just OR all his allies' masks)
 
 #ifdef _2_los
