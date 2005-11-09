@@ -225,10 +225,6 @@ function setuppackage_engine (projectname)
 		package.pchHeader = "precompiled.h"
 		package.pchSource = "precompiled.cpp"
 
-		-- float->int conversion uses IA32 FISTP instruction instead of _ftol2 (slow!)
-		-- since we also change FPU rounding mode, this should be safe
-		tinsert(package.buildoptions, { "/QIfist" })
-
 	else -- Non-Windows, = Unix
 
 		tinsert(package.files, sourcesfromdirs(sourceroot, {"lib/sysdep/unix"}))

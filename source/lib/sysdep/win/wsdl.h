@@ -22,11 +22,6 @@
 #include "lib/types.h"
 #include "SDL_keysym.h"
 
-// allow apps to override window name
-#ifndef APP_NAME
-#define APP_NAME "ogl"
-#endif
-
 #ifdef __cplusplus
 extern "C" {
 #endif

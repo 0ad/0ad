@@ -259,7 +259,8 @@ keep:
 		h = r.bottom - r.top;
 	}
 
-	hWnd = CreateWindowEx(0, (LPCSTR)class_atom, APP_NAME, windowStyle, 0, 0, w, h, 0, 0, hInst, 0);
+	// note: you can override the hardcoded window name via SDL_WM_SetCaption.
+	hWnd = CreateWindowEx(0, (LPCSTR)class_atom, "wsdl", windowStyle, 0, 0, w, h, 0, 0, hInst, 0);
 	if(!hWnd)
 		return 0;
 
