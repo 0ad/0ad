@@ -313,9 +313,13 @@ enum LibError
 
 // indicates a piece of code cannot be reached (e.g. because all
 // control paths before it end up returning). this is mostly for
-// human benefit, but it may also help optimization.
+// human benefit, but it may also help optimization and warns in debug mode.
 #if MSC_VERSION
-# define UNREACHABLE __assume(0)
+# ifndef NDEBUG
+#  define UNREACHABLE debug_warn("hit supposedly unreachable code");
+# else
+#  define UNREACHABLE __assume(0)
+# endif
 #else
 # define UNREACHABLE
 #endif
