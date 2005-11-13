@@ -479,7 +479,7 @@
 			<Orientation angle="1.70264" />
 		</Entity>
 		<Entity>
-			<Template>hele_csw_e</Template>
+			<Template>hele_csw_b</Template>
 			<Player>1</Player>
 			<Position x="216.928" y="18.6937" z="33.8086" />
 			<Orientation angle="-2.35318" />
@@ -629,24 +629,6 @@
 			<Orientation angle="2.61174" />
 		</Entity>
 		<Entity>
-			<Template>hele_tc</Template>
-			<Player>1</Player>
-			<Position x="243.287" y="21.6388" z="16.0242" />
-			<Orientation angle="-3.14108" />
-		</Entity>
-		<Entity>
-			<Template>hele_trd</Template>
-			<Player>1</Player>
-			<Position x="248.374" y="22.8835" z="5.05977" />
-			<Orientation angle="2.62309" />
-		</Entity>
-		<Entity>
-			<Template>hele_trd</Template>
-			<Player>1</Player>
-			<Position x="254.404" y="22.3202" z="11.9016" />
-			<Orientation angle="-3.14096" />
-		</Entity>
-		<Entity>
 			<Template>pers_mc</Template>
 			<Player>1</Player>
 			<Position x="29.2072" y="19.652" z="41.9697" />
@@ -729,6 +711,48 @@
 			<Player>1</Player>
 			<Position x="221.679" y="10.1011" z="151.253" />
 			<Orientation angle="-3.141" />
+		</Entity>
+		<Entity>
+			<Template>hele_csw_a</Template>
+			<Player>1</Player>
+			<Position x="220.768" y="19.8273" z="25.2912" />
+			<Orientation angle="-2.92074" />
+		</Entity>
+		<Entity>
+			<Template>hele_csw_e</Template>
+			<Player>1</Player>
+			<Position x="224.104" y="19.4903" z="30.4588" />
+			<Orientation angle="-3.13999" />
+		</Entity>
+		<Entity>
+			<Template>hele_tf</Template>
+			<Player>1</Player>
+			<Position x="253.105" y="12.7456" z="111.314" />
+			<Orientation angle="-3.14109" />
+		</Entity>
+		<Entity>
+			<Template>hele_sb1</Template>
+			<Player>1</Player>
+			<Position x="214.753" y="20.5878" z="11.0671" />
+			<Orientation angle="-3.14105" />
+		</Entity>
+		<Entity>
+			<Template>hele_sb2</Template>
+			<Player>1</Player>
+			<Position x="243" y="21.5976" z="16.3221" />
+			<Orientation angle="-3.14108" />
+		</Entity>
+		<Entity>
+			<Template>hele_tc</Template>
+			<Player>1</Player>
+			<Position x="245.544" y="19.0864" z="38.8866" />
+			<Orientation angle="-3.14108" />
+		</Entity>
+		<Entity>
+			<Template>hele_trd</Template>
+			<Player>1</Player>
+			<Position x="227.736" y="16.3938" z="57.7678" />
+			<Orientation angle="-3.1406" />
 		</Entity>
 	</Entities>
 	<Nonentities>
@@ -1024,11 +1048,6 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/bush_2.xml</Actor>
-			<Position x="240.08" y="18.2533" z="45.209" />
-			<Orientation angle="-0.064501" />
-		</Nonentity>
-		<Nonentity>
-			<Actor>flora/trees/bush_2.xml</Actor>
 			<Position x="234.261" y="12.418" z="108.695" />
 			<Orientation angle="-1.87459" />
 		</Nonentity>
@@ -1039,11 +1058,6 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/bush_2.xml</Actor>
-			<Position x="252.455" y="20.1059" z="30.8839" />
-			<Orientation angle="-1.51277" />
-		</Nonentity>
-		<Nonentity>
-			<Actor>flora/trees/bush_2.xml</Actor>
 			<Position x="231.561" y="20.0268" z="27.9224" />
 			<Orientation angle="-1.15077" />
 		</Nonentity>
@@ -1051,21 +1065,6 @@
 			<Actor>flora/trees/bush_2.xml</Actor>
 			<Position x="239.398" y="19.4416" z="34.7239" />
 			<Orientation angle="-2.05569" />
-		</Nonentity>
-		<Nonentity>
-			<Actor>flora/trees/deci_50percent.xml</Actor>
-			<Position x="227.709" y="21.753" z="3.94289" />
-			<Orientation angle="-2.23664" />
-		</Nonentity>
-		<Nonentity>
-			<Actor>flora/trees/deci_50percent.xml</Actor>
-			<Position x="244.279" y="23.2564" z="1.59384" />
-			<Orientation angle="-0.627336" />
-		</Nonentity>
-		<Nonentity>
-			<Actor>flora/trees/deci_50percent.xml</Actor>
-			<Position x="209.606" y="20.6324" z="2.05979" />
-			<Orientation angle="1.37974" />
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/palm_c.xml</Actor>
@@ -1093,19 +1092,9 @@
 			<Orientation angle="-1.51258" />
 		</Nonentity>
 		<Nonentity>
-			<Actor>flora/trees/palm_b.xml</Actor>
-			<Position x="204.243" y="19.6527" z="15.1323" />
-			<Orientation angle="1.02156" />
-		</Nonentity>
-		<Nonentity>
 			<Actor>flora/trees/palm_d.xml</Actor>
 			<Position x="202.032" y="18.7631" z="25.1476" />
 			<Orientation angle="-2.41763" />
-		</Nonentity>
-		<Nonentity>
-			<Actor>flora/trees/palm_d.xml</Actor>
-			<Position x="203.072" y="19.7022" z="13.0101" />
-			<Orientation angle="-1.87454" />
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/palm_d.xml</Actor>
@@ -1126,11 +1115,6 @@
 			<Actor>flora/trees/palm_d.xml</Actor>
 			<Position x="194.034" y="19.3105" z="8.61417" />
 			<Orientation angle="-0.785464" />
-		</Nonentity>
-		<Nonentity>
-			<Actor>flora/trees/palm_d.xml</Actor>
-			<Position x="209.365" y="20.2705" z="10.1301" />
-			<Orientation angle="-2.23361" />
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/palm_d.xml</Actor>
@@ -2014,16 +1998,6 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush.xml</Actor>
-			<Position x="239.687" y="18.5334" z="42.6713" />
-			<Orientation angle="-2.23662" />
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/flora/bush.xml</Actor>
-			<Position x="242.77" y="18.1735" z="46.4532" />
-			<Orientation angle="-1.51247" />
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/flora/bush.xml</Actor>
 			<Position x="252.613" y="18.0801" z="48.5684" />
 			<Orientation angle="-2.23661" />
 		</Nonentity>
@@ -2031,11 +2005,6 @@
 			<Actor>props/flora/bush.xml</Actor>
 			<Position x="255.05" y="17.8292" z="50.9986" />
 			<Orientation angle="-2.77977" />
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/flora/bush.xml</Actor>
-			<Position x="241.318" y="19.304" z="36.2837" />
-			<Orientation angle="-2.41808" />
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush.xml</Actor>
@@ -2866,21 +2835,6 @@
 			<Actor>props/flora/reeds_beach_2.xml</Actor>
 			<Position x="231.933" y="12.2989" z="109.098" />
 			<Orientation angle="-2.0592" />
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/flora/reeds_beach_2.xml</Actor>
-			<Position x="241.738" y="18.4895" z="43.458" />
-			<Orientation angle="-2.23098" />
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/flora/reeds_beach_2.xml</Actor>
-			<Position x="238.873" y="18.2641" z="44.8394" />
-			<Orientation angle="-2.77993" />
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/flora/reeds_beach_2.xml</Actor>
-			<Position x="240.025" y="17.8982" z="48.3325" />
-			<Orientation angle="-2.96083" />
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_beach_2.xml</Actor>
