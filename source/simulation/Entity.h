@@ -68,6 +68,7 @@ public:
 	float m_turningRadius;
 	SEntityAction m_melee;
 	SEntityAction m_gather;
+	SEntityAction m_heal;
 	bool m_selected;
 	i32 m_grouped;
 
@@ -148,6 +149,8 @@ private:
 	bool processAttackMeleeNoPathing( CEntityOrder* current, size_t timestep_milli );
 	bool processGather( CEntityOrder* current, size_t timestep_milli );
 	bool processGatherNoPathing( CEntityOrder* current, size_t timestep_milli );
+	bool processHeal( CEntityOrder* current, size_t timestep_milli );
+	bool processHealNoPathing( CEntityOrder* current, size_t timestep_milli );
 	
 	bool processGotoNoPathing( CEntityOrder* current, size_t timestep_milli );
 	bool processGoto( CEntityOrder* current, size_t timestep_milli );

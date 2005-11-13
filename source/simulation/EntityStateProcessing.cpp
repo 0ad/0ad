@@ -505,7 +505,16 @@ bool CEntity::processGatherNoPathing( CEntityOrder* current, size_t timestep_mil
 	if( !m_actor ) return( false );
 	return( processContactActionNoPathing( current, timestep_millis, "gather", &evt, &m_gather ) );
 }
-
+bool CEntity::processHeal( CEntityOrder* current, size_t timestep_millis )
+{
+	return( processContactAction( current, timestep_millis, CEntityOrder::ORDER_HEAL_NOPATHING, &m_heal ) );
+}
+bool CEntity::processHealNoPathing( CEntityOrder* current, size_t timestep_millis )
+{
+	CEventHeal evt( current->m_data[0].entity );
+	if( !m_actor ) return( false );
+	return( processContactActionNoPathing( current, timestep_millis, "heal", &evt, &m_heal ) );
+}
 bool CEntity::processGoto( CEntityOrder* current, size_t UNUSED(timestep_millis) )
 {
 	// float timestep=timestep_millis/1000.0f;
