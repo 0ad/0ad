@@ -51,7 +51,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	AddProperty( L"actions.gather.speed", &( m_gather.m_Speed ) );
 	AddProperty( L"actions.heal.range", &( m_heal.m_MaxRange ) );
 	AddProperty( L"actions.heal.rangemin", &( m_heal.m_MinRange ) );
-	AddProperty( L"actions.heal.speed", &( m_hea;.m_Speed ) );
+	AddProperty( L"actions.heal.speed", &( m_heal.m_Speed ) );
 	AddProperty( L"position", &m_graphics_position, false, (NotifyFn)&CEntity::teleport );
 	AddProperty( L"orientation", &m_graphics_orientation, false, (NotifyFn)&CEntity::reorient );
 	AddProperty( L"player", &m_player );
@@ -334,8 +334,8 @@ void CEntity::update( size_t timestep )
 		case CEntityOrder::ORDER_HEAL:
 			if( processHeal( current, timestep ) ) break;
 			return;
-		case CEntityOrder::ORDER_HEAL_NOTPATHING:
-			if( processHealNoPathing( current, timestamp ) ) break;
+		case CEntityOrder::ORDER_HEAL_NOPATHING:
+			if( processHealNoPathing( current, timestep ) ) break;
 			return;
 		case CEntityOrder::ORDER_GOTO:
 			if( processGoto( current, timestep ) ) break;

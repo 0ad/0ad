@@ -40,7 +40,7 @@ class CEventHeal : public CScriptEvent
 	CEntity* m_target;
 public:
 	CEventHeal( CEntity* target );
-}
+};
 class CEventDamage : public CScriptEvent
 {
 	CEntity* m_inflictor;

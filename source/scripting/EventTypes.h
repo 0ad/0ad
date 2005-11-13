@@ -15,7 +15,7 @@ enum EEventType
 	EVENT_ATTACK,
 	EVENT_GATHER,
 	EVENT_DAMAGE,
-	EVENT_HEAL
+	EVENT_HEAL,
 	EVENT_TARGET_CHANGED,
 	EVENT_PREPARE_ORDER,
 	EVENT_ORDER_TRANSITION,
@@ -40,6 +40,7 @@ static const wchar_t* const EventNames[EVENT_LAST] =
 	/* EVENT_ATTACK */ L"onAttack", /* This unit is the one doing the attacking... */
 	/* EVENT_GATHER */ L"onGather", /* This unit is the one doing the gathering... */
 	/* EVENT_DAMAGE */ L"onTakesDamage",
+	/* EVENT_HEAL */ L"onHeal",
 	/* EVENT_TARGET_CHANGED */ L"onTargetChanged", /* If this unit is selected and the mouseover object changes */
 	/* EVENT_PREPARE_ORDER */ L"onPrepareOrder", /* To check if a unit can execute a given order */
 	/* EVENT_ORDER_TRANSITION */ L"onOrderTransition" /* When we change orders (sometimes...) */
