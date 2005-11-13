@@ -109,6 +109,52 @@ function entity_event_gather( evt )
 }
 
 // ====================================================================
+function entity_event_heal( evt )
+{
+	if ( evt.target.player != this.player )
+	{
+		console.write( "You have a traitor!" );
+		return;
+	}
+	
+	//Make sure we have enough resources
+	if ( this.player.resource["Food"] - evt.target.actions.heal.cost * evt.target.traits.creation.cost.food < 0 )
+	{
+		console.write( "Not enough food for healing." );
+		return;
+	}
+	if ( this.player.resource["Wood"] - evt.target.actions.heal.cost * evt.target.traits.creation.cost.wood < 0 )
+	{
+		console.write( "Not enough wood for healing." );
+		return;
+	}
+	if ( this.player.resource["Stone"] - evt.target.actions.heal.cost * evt.target.traits.creation.cost.stone < 0 )
+	{
+		console.write( "Not enough stone for healing." );
+		return;
+	}
+	if ( this.player.resource["Ore"] - evt.target.actions.heal.cost * evt.target.traits.creation.cost.ore < 0 )
+	{
+		console.write( "Not enough ore for healing." );
+		return;
+	}
+
+	evt.target.traits.health.curr += this.actions.heal.speed;
+	console.write( this.traits.id.specific + "has performed a miracle!" );
+	
+	if (evt.target.traits.health.curr >= evt.target.traits.health.max)
+	{		
+		evt.target.traits.health.curr = evt.target.traits.health.max;
+	}
+	
+	this.player.resource["Food"] -= evt.target.actions.heal.cost * evt.target.traits.creation.cost.food;
+	this.player.resource["Wood"] -= evt.target.actions.heal.cost * evt.target.traits.creation.cost.wood;
+	this.player.resource["Stone"] -= evt.target.actions.heal.cost * evt.target.traits.creation.cost.stone;
+	this.player.resource["Ore"] -= evt.target.actions.heal.cost * evt.target.traits.creation.cost.ore;
+
+
+}
+// ====================================================================
 
 function entity_event_takesdamage( evt )
 {
