@@ -4,26 +4,23 @@
   <castshadow/>
 
   <group>
-    <variant name="Base">
-      <texture>gaia/oak-trees.dds</texture>
+    <variant name="a">
+      <mesh>gaia/tree_oak_a.pmd</mesh>
+      <props>
+        <prop actor="flora/trees/oak_top.xml" attachpoint="tree"/>
+      </props>
+    </variant>
+    <variant name="b">
+      <mesh>gaia/tree_oak_b.pmd</mesh>
+      <props>
+        <prop actor="flora/trees/oak_top.xml" attachpoint="tree"/>
+      </props>
     </variant>
   </group>
 
   <group>
-    <variant name="a">
-      <mesh>gaia/oak1.pmd</mesh>
-    </variant>
-    <variant name="b">
-      <mesh>gaia/oak2.pmd</mesh>
-    </variant>
-    <variant name="c">
-      <mesh>gaia/oak3.pmd</mesh>
-    </variant>
-    <variant name="d">
-      <mesh>gaia/oak4.pmd</mesh>
-    </variant>
-    <variant name="e">
-      <mesh>gaia/oak5.pmd</mesh>
+    <variant>
+      <texture>gaia/trunk_deciduous_b.dds</texture>
     </variant>
   </group>
 
