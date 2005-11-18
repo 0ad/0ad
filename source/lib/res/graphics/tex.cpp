@@ -532,19 +532,21 @@ TIMER_ACCRUE(tc_transform);
 	CHECK_TEX(t);
 
 	const uint target_flags = t->flags ^ transforms;
+	uint remaining_transforms;
 	for(;;)
 	{
+		remaining_transforms = target_flags ^ t->flags;
 		// we're finished (all required transforms have been done)
-		if(t->flags == target_flags)
+		if(remaining_transforms == 0)
 			return 0;
 
-		int ret = tex_codec_transform(t, transforms);
+		int ret = tex_codec_transform(t, remaining_transforms);
 		if(ret != 0)
 			break;
 	}
 
 	// last chance
-	CHECK_ERR(plain_transform(t, transforms));
+	CHECK_ERR(plain_transform(t, remaining_transforms));
 	return 0;
 }
 

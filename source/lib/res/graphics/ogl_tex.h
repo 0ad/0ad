@@ -313,4 +313,8 @@ extern int ogl_tex_bind(Handle ht, uint unit = 0);
 // must be called before uploading (raises a warning if called afterwards).
 extern int ogl_tex_transform(Handle ht, uint flags);
 
+// change the pixel format to that specified by <new_flags>.
+// (note: this is equivalent to ogl_tex_transform(ht, ht_flags^new_flags).
+extern int ogl_tex_transform_to(Handle ht, uint new_flags);
+
 #endif	// #ifndef OGL_TEX_H__

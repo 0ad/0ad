@@ -7,7 +7,9 @@
 // cursors (Windows = more responsive, OpenGL = more consistent with what
 // the game sees)
 #if OS_WIN
-#define ALLOW_SYS_CURSOR 1
+# define ALLOW_SYS_CURSOR 1
+#else
+# define ALLOW_SYS_CURSOR 0
 #endif
 
 #include "lib/ogl.h"
@@ -121,7 +123,7 @@ static int Cursor_reload(Cursor* c, const char* name, Handle)
 	}
 
 	// load actual cursor
-	snprintf(filename, ARRAY_SIZE(filename), "art/textures/cursors/%s.png", name);
+	snprintf(filename, ARRAY_SIZE(filename), "art/textures/cursors/%s.dds", name);
 	// .. system cursor (2d, hardware accelerated)
 #if ALLOW_SYS_CURSOR
 	WARN_ERR(sys_cursor_load(filename, hotspotx, hotspoty, &c->sys_cursor));

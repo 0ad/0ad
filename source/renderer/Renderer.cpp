@@ -1453,20 +1453,20 @@ int CRenderer::LoadAlphaMaps()
 	PathPackage pp;
 	(void)pp_set_dir(&pp, "art/textures/terrain/alphamaps/special");
 	const char* fnames[NumAlphaMaps] = {
-		"blendcircle.png",
-		"blendlshape.png",
-		"blendedge.png",
-		"blendedgecorner.png",
-		"blendedgetwocorners.png",
-		"blendfourcorners.png",
-		"blendtwooppositecorners.png",
-		"blendlshapecorner.png",
-		"blendtwocorners.png",
-		"blendcorner.png",
-		"blendtwoedges.png",
-		"blendthreecorners.png",
-		"blendushape.png",
-		"blendbad.png"
+		"blendcircle.dds",
+		"blendlshape.dds",
+		"blendedge.dds",
+		"blendedgecorner.dds",
+		"blendedgetwocorners.dds",
+		"blendfourcorners.dds",
+		"blendtwooppositecorners.dds",
+		"blendlshapecorner.dds",
+		"blendtwocorners.dds",
+		"blendcorner.dds",
+		"blendtwoedges.dds",
+		"blendthreecorners.dds",
+		"blendushape.dds",
+		"blendbad.dds"
 	};
 	uint base = 0;	// texture width/height (see below)
 	// for convenience, we require all alpha maps to be of the same BPP
@@ -1479,6 +1479,13 @@ int CRenderer::LoadAlphaMaps()
 		// we cache the composite.
 		textures[i] = ogl_tex_load(pp.path, RES_NO_CACHE);
 		RETURN_ERR(textures[i]);
+
+// quick hack: we require plain RGB(A) format, so convert to that.
+// ideally the texture would be in uncompressed form; then this wouldn't
+// be necessary.
+uint flags;
+ogl_tex_get_format(textures[i], &flags, 0);
+ogl_tex_transform_to(textures[i], flags & ~TEX_DXT);
 
 		// get its size and make sure they are all equal.
 		// (the packing algo assumes this)

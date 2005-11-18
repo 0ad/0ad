@@ -957,3 +957,13 @@ int ogl_tex_transform(Handle ht, uint transforms)
 	int ret = tex_transform(&ot->t, transforms);
 	return ret;
 }
+
+
+// change the pixel format to that specified by <new_flags>.
+// (note: this is equivalent to ogl_tex_transform(ht, ht_flags^new_flags).
+int ogl_tex_transform_to(Handle ht, uint new_flags)
+{
+	H_DEREF(ht, OglTex, ot);
+	int ret = tex_transform_to(&ot->t, new_flags);
+	return ret;
+}
