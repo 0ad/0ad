@@ -334,6 +334,60 @@ sym(ia32_cpuid):
 
 
 ;-------------------------------------------------------------------------------
+; lock-free support routines
+;-------------------------------------------------------------------------------
+
+extern sym(cpus)
+
+; extern "C" void __cdecl atomic_add(intptr_t* location, intptr_t increment);
+global sym(atomic_add)
+sym(atomic_add):
+	cmp		byte [sym(cpus)], 1
+	mov		edx, [esp+4]				; location
+	mov		eax, [esp+8]				; increment
+	je		.no_lock
+db		0xf0							; LOCK prefix
+.no_lock:
+	add		[edx], eax
+	ret
+
+
+; notes:
+; - this is called via CAS macro, which silently casts its inputs for
+;   convenience. mixing up the <expected> and <location> parameters would
+;   go unnoticed; we therefore perform a basic sanity check on <location> and
+;   raise a warning if it is invalid.
+; - a 486 or later processor is required since we use CMPXCHG.
+;   there's no feature flag we can check, and the ia32 code doesn't
+;   bother detecting anything < Pentium, so this'll crash and burn if
+;   run on 386. we could fall back to simple MOVs there (since 386 CPUs
+;   aren't MP-capable), but it's not worth the trouble.
+; extern "C" __declspec(naked) bool __cdecl CAS_(uintptr_t* location, uintptr_t expected, uintptr_t new_value);
+global sym(CAS_)
+sym(CAS_):
+	cmp		byte [sym(cpus)], 1
+	mov		eax, [esp+8]				; expected
+	mov		edx, [esp+4]				; location
+	cmp		edx, 0x10000				; .. valid pointer?
+	jb		.invalid_location			;    no - raise warning
+	mov		ecx, [esp+12]				; new_value
+	je		.no_lock
+db		0xf0							; LOCK prefix
+.no_lock:
+	cmpxchg	[edx], ecx
+	sete	al
+	movzx	eax, al
+	ret
+
+; NOTE: nasm 0.98.39 doesn't support generating debug info for win32
+; output format. that means this code may be misattributed to other
+; functions, which makes tracking it down very difficult.
+; we therefore raise an "Invalid Opcode" exception, which is rather distinct.
+.invalid_location:
+	ud2
+
+
+;-------------------------------------------------------------------------------
 ; misc
 ;-------------------------------------------------------------------------------
 
