@@ -293,7 +293,7 @@ public:
 	void SetFastPlayerColor(bool fast);
 	
 protected:
-	friend class CRendererInternals;
+	friend struct CRendererInternals;
 	friend class CVertexBuffer;
 	friend class CPatchRData;
 	friend class FixedFunctionModelRenderer;
