@@ -227,9 +227,14 @@ static GLint choose_int_fmt(GLenum fmt, uint q_flags)
 		return half_bpp? GL_RGBA4 : GL_RGBA8;
 
 	default:
+		{
+		wchar_t buf[100];
+		swprintf(buf, ARRAY_SIZE(buf), L"choose_int_fmt: fmt 0x%x isn't covered! please add it", fmt);
+		DISPLAY_ERROR(buf);
 		debug_warn("given fmt isn't covered! please add it.");
 		// fall back to a reasonable default
 		return half_bpp? GL_RGB4 : GL_RGB8;
+		}
 	}
 
 	UNREACHABLE;

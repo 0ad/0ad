@@ -1,6 +1,7 @@
 #include "precompiled.h"
 
 #include "timer.h"
+#include "MathUtil.h"
 #include "CommandManager.h"
 #include "ObjectEntry.h"
 #include "Unit.h"

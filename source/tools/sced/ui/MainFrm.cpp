@@ -11,6 +11,7 @@
 #include "lib/res/file/vfs.h"
 #undef _IGNORE_WGL_H_
 
+#include "MathUtil.h"
 #include "ScEd.h"
 #include "ScEdView.h"
 #include "MiniMap.h"

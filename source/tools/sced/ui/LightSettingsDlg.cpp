@@ -10,6 +10,7 @@
 
 #include "Terrain.h"
 #include "LightEnv.h"
+#include "MathUtil.h"
 
 #include "CommandManager.h"
 #include "AlterLightEnvCommand.h"

@@ -108,7 +108,7 @@ CTerrainGroup *CTexToolsDlgBar::GetCurrentTerrainType()
 BOOL CTexToolsDlgBar::BuildImageListIcon(CTextureEntry* texentry)
 {
 	// bind to texture
-	g_Renderer.BindTexture(0,tex_id(texentry->GetHandle()));
+	ogl_tex_bind(texentry->GetHandle());
 
 	// get image data in BGRA format
 	int w,h;
@@ -187,6 +187,7 @@ BOOL CTexToolsDlgBar::AddImageListIcon(CTextureEntry* texentry)
 
 BOOL CTexToolsDlgBar::OnInitDialog()
 {
+#undef CRect	// we want MFC's def, not PS_CRect
 	 // get the current window size and position
 	CRect rect;
 	GetWindowRect(rect);

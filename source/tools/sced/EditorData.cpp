@@ -1,5 +1,6 @@
 #include "precompiled.h"
 
+#include "MathUtil.h"
 #include "EditorData.h"
 #include "ui/UIGlobals.h"
 #include "ToolManager.h"
@@ -528,7 +529,7 @@ void CEditorData::OnDraw()
 
 bool CEditorData::LoadTerrain(const char* filename)
 {		
-	Handle h = tex_load(filename);
+	Handle h = ogl_tex_load(filename);
 	if(h<=0) {
 		char buf[1024];
 		sprintf(buf,"Failed to load \"%s\"",filename);
@@ -536,17 +537,13 @@ bool CEditorData::LoadTerrain(const char* filename)
 		return false;
 	} else {
 
-		int width=0;
-		int height=0;
-		int bpp=0;
+		uint width=0;
+		uint height=0;
+		uint bpp=0;
 		void *ptr=0;
 
-		int i=tex_info(h, &width, &height, NULL, &bpp, &ptr);
-		if (i)
-		{
-			printf("tex_info error: %d\n",i);
-			fflush(stdout);
-		}
+		(void)ogl_tex_get_size(h, &width, &height, &bpp);
+		(void)ogl_tex_get_data(h, &ptr);
 
 		// rescale the texture to fit to the nearest of the 4 possible map sizes
 		u32 mapsize=9;	// assume smallest map
