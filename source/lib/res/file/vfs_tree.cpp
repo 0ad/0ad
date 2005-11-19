@@ -166,6 +166,7 @@ public:
 	T* get_slot(Key key)
 	{
 		u32 hash = Hash(key);
+		debug_assert(max_entries != 0);	// otherwise, mask will be incorrect
 		const uint mask = max_entries-1;
 		T* p;
 		for(;;)
