@@ -106,7 +106,7 @@ public:
 	 *
 	 * @return true if the row should be highlighted in a special color.
 	 */
-	virtual bool IsHighlightRow(uint row) { return false; }
+	virtual bool IsHighlightRow(uint row) { UNUSED2(row); return false; }
 };
 
 

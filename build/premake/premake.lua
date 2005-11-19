@@ -250,6 +250,7 @@ function setuppackage_engine (projectname)
 
 		package.buildoptions = {
 			"-Wall",
+			"-Wunused-parameter",	-- needs to be enabled explicitly
 			"-Wno-switch",		-- enumeration value not handled in switch
 			"-Wno-reorder",		-- order of initialization list in constructors
 			"-Wno-non-virtual-dtor",

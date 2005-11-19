@@ -169,7 +169,7 @@ CStr CRendererStatsTable::GetCellText(uint row, uint col)
 	}
 }
 
-AbstractProfileTable* CRendererStatsTable::GetChild(uint row)
+AbstractProfileTable* CRendererStatsTable::GetChild(uint UNUSED(row))
 {
 	return 0;
 }
