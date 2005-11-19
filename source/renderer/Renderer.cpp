@@ -43,6 +43,7 @@
 #include "lib/res/graphics/tex.h"
 #include "lib/res/graphics/ogl_tex.h"
 #include "ps/Loader.h"
+#include "ps/ProfileViewer.h"
 
 #include "renderer/FixedFunctionModelRenderer.h"
 #include "renderer/HWLightingModelRenderer.h"
@@ -55,10 +56,150 @@
 
 #define LOG_CATEGORY "graphics"
 
+
+///////////////////////////////////////////////////////////////////////////////////
+// CRendererStatsTable - Profile display of rendering stats
+
+/**
+ * Class CRendererStatsTable: Implementation of AbstractProfileTable to
+ * display the renderer stats in-game.
+ *
+ * Accesses CRenderer::m_Stats by keeping the reference passed to the
+ * constructor.
+ */
+class CRendererStatsTable : public AbstractProfileTable
+{
+public:
+	CRendererStatsTable(const CRenderer::Stats& st);
+	
+	// Implementation of AbstractProfileTable interface
+	CStr GetName();
+	CStr GetTitle();
+	uint GetNumberRows();
+	const std::vector<ProfileColumn>& GetColumns();
+	CStr GetCellText(uint row, uint col);
+	AbstractProfileTable* GetChild(uint row);
+
+private:
+	/// Reference to the renderer singleton's stats
+	const CRenderer::Stats& Stats;
+	
+	/// Column descriptions
+	std::vector<ProfileColumn> columnDescriptions;
+	
+	enum {
+		Row_Counter = 0,
+		Row_DrawCalls,
+		Row_TerrainTris,
+		Row_ModelTris,
+		Row_BlendSplats,
+		
+		// Must be last to count number of rows
+		NumberRows
+	};
+};
+
+// Construction
+CRendererStatsTable::CRendererStatsTable(const CRenderer::Stats& st)
+	: Stats(st)
+{
+	columnDescriptions.push_back(ProfileColumn("Name", 230));
+	columnDescriptions.push_back(ProfileColumn("Value", 100));
+}
+
+// Implementation of AbstractProfileTable interface
+CStr CRendererStatsTable::GetName()
+{
+	return "renderer";
+}
+
+CStr CRendererStatsTable::GetTitle()
+{
+	return "Renderer statistics";
+}
+
+uint CRendererStatsTable::GetNumberRows()
+{
+	return NumberRows;
+}
+
+const std::vector<ProfileColumn>& CRendererStatsTable::GetColumns()
+{
+	return columnDescriptions;
+}
+
+CStr CRendererStatsTable::GetCellText(uint row, uint col)
+{
+	char buf[256];
+	
+	switch(row)
+	{
+	case Row_Counter:
+		if (col == 0)
+			return "counter";
+		snprintf(buf, sizeof(buf), "%d", Stats.m_Counter);
+		return buf;
+	
+	case Row_DrawCalls:
+		if (col == 0)
+			return "# draw calls";
+		snprintf(buf, sizeof(buf), "%d", Stats.m_DrawCalls);
+		return buf;
+	
+	case Row_TerrainTris:
+		if (col == 0)
+			return "# terrain tris";
+		snprintf(buf, sizeof(buf), "%d", Stats.m_TerrainTris);
+		return buf;
+	
+	case Row_ModelTris:
+		if (col == 0)
+			return "# model tris";
+		snprintf(buf, sizeof(buf), "%d", Stats.m_ModelTris);
+		return buf;
+	
+	case Row_BlendSplats:
+		if (col == 0)
+			return "# blend splats";
+		snprintf(buf, sizeof(buf), "%d", Stats.m_BlendSplats);
+		return buf;
+	
+	default:
+		return "???";
+	}
+}
+
+AbstractProfileTable* CRendererStatsTable::GetChild(uint row)
+{
+	return 0;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////
+// CRenderer implementation
+
+/**
+ * Struct CRendererInternals: Truly hide data that is supposed to be hidden
+ * in this structure so it won't even appear in header files.
+ */
+struct CRendererInternals
+{
+	/// Table to display renderer stats in-game via profile system
+	CRendererStatsTable profileTable;
+	
+	CRendererInternals()
+	: profileTable(g_Renderer.m_Stats)
+	{
+	}
+};
+
 ///////////////////////////////////////////////////////////////////////////////////
 // CRenderer destructor
 CRenderer::CRenderer()
 {
+	m = new CRendererInternals;
+	g_ProfileViewer.AddRootTable(&m->profileTable);
+	
 	m_Width=0;
 	m_Height=0;
 	m_Depth=0;
@@ -177,6 +318,7 @@ CRenderer::~CRenderer()
 	// we no longer UnloadAlphaMaps / UnloadWaterTextures here -
 	// that is the responsibility of the module that asked for
 	// them to be loaded (i.e. CGameView).
+	delete m;
 }
 
 
@@ -1618,7 +1760,7 @@ int CRenderer::LoadWaterTextures()
 
 void CRenderer::UnloadWaterTextures()
 {
-	for (int i = 0; i < ARRAY_SIZE(m_WaterTexture); i++)
+	for (uint i = 0; i < ARRAY_SIZE(m_WaterTexture); i++)
 		ogl_tex_free(m_WaterTexture[i]);
 }
 

@@ -1,26 +1,33 @@
-// Profile.h
-//
-// GPG3-style hierarchical profiler
-//
-// Mark Thompson (mark@wildfiregames.com / mot20@cam.ac.uk)
+/**
+ * =========================================================================
+ * File        : Profile.h
+ * Project     : Pyrogenesis
+ * Description : GPG3-style hierarchical profiler
+ *
+ * @author Mark Thompson (mark@wildfiregames.com / mot20@cam.ac.uk)
+ * =========================================================================
+ */
+
+#ifndef PROFILE_H_INCLUDED
+#define PROFILE_H_INCLUDED
 
 #include <vector>
 #include "Singleton.h"
 #include "scripting/ScriptableObject.h"
 #include "timer.h"
 
-// TODO: Shouldn't depend on this.
-#include "ProfileViewer.h"
 
 #define PROFILE_AMORTIZE
 #define PROFILE_AMORTIZE_FRAMES 50
 
 class CProfileManager;
+class CProfileNodeTable;
 
 class CProfileNode : public CJSObject<CProfileNode, true>
 {
 	friend class CProfileManager;
-
+	friend class CProfileNodeTable;
+	
 	const char* name;
 	int calls_total;
 	int calls_frame_current;
@@ -47,6 +54,7 @@ class CProfileNode : public CJSObject<CProfileNode, true>
 	CProfileNode* parent;
 	std::vector<CProfileNode*> children;
 	std::vector<CProfileNode*> script_children;
+	CProfileNodeTable* display_table;
 	
 public:
 	typedef std::vector<CProfileNode*>::iterator profile_iterator;
@@ -149,3 +157,5 @@ public:
 // Cheat a bit to make things slightly easier on the user
 #define PROFILE_START( name ) { CProfileSample __profile( name )
 #define PROFILE_END( name ) }
+
+#endif // PROFILE_H_INCLUDED

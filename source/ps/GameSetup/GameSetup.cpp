@@ -421,7 +421,7 @@ void Render()
 	// Profile information
 
 	PROFILE_START( "render profiling" );
-	RenderProfile();
+	g_ProfileViewer.RenderProfile();
 	PROFILE_END( "render profiling" );
 
 	oglCheck();
@@ -582,7 +582,7 @@ static void InitInput()
 
 	in_add_handler(conInputHandler);
 
-	in_add_handler(profilehandler);
+	in_add_handler(CProfileViewer::InputThunk);
 
 	in_add_handler(hotkeyInputHandler); 
 
@@ -790,6 +790,7 @@ void Shutdown()
 		debug_shutdown();
 		delete &g_Logger;
 		delete &g_Profiler;
+		delete &g_ProfileViewer;
 	TIMER_END("shutdown misc");
 }
 
@@ -853,6 +854,7 @@ void Init(int argc, char* argv[], uint flags)
 	// (command line params may override these)
 	get_cur_vmode(&g_xres, &g_yres, &g_bpp, &g_freq);
 
+	new CProfileViewer;
 	new CProfileManager;	// before any script code
 
 	MICROLOG(L"init scripting");

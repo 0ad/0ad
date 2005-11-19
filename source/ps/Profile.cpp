@@ -1,6 +1,213 @@
+/**
+ * =========================================================================
+ * File        : Profile.cpp
+ * Project     : Pyrogeneses
+ * Description : GPG3-style hierarchical profiler
+ *
+ * @author Mark Thompson (mark@wildfiregames.com / mot20@cam.ac.uk)
+ * @author Nicolai Haehnle <nicolai@wildfiregames.com>
+ * =========================================================================
+ */
+
 #include "precompiled.h"
 
 #include "Profile.h"
+#include "ProfileViewer.h"
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+// CProfileNodeTable
+
+
+
+/**
+ * Class CProfileNodeTable: Implement ProfileViewer's AbstractProfileTable
+ * interface in order to display profiling data in-game.
+ */
+class CProfileNodeTable : public AbstractProfileTable
+{
+public:
+	CProfileNodeTable(CProfileNode* n);
+	virtual ~CProfileNodeTable();
+
+	// Implementation of AbstractProfileTable interface
+	virtual CStr GetName();
+	virtual CStr GetTitle();
+	virtual uint GetNumberRows();
+	virtual const std::vector<ProfileColumn>& GetColumns();
+	
+	virtual CStr GetCellText(uint row, uint col);
+	virtual AbstractProfileTable* GetChild(uint row);
+	virtual bool IsHighlightRow(uint row);
+	
+private:
+	/**
+	 * struct ColumnDescription: The only purpose of this helper structure
+	 * is to provide the global constructor that sets up the column
+	 * description.
+	 */
+	struct ColumnDescription
+	{
+		std::vector<ProfileColumn> columns;
+		
+		ColumnDescription()
+		{
+			columns.push_back(ProfileColumn("Name", 230));
+			columns.push_back(ProfileColumn("calls/frame", 100));
+			columns.push_back(ProfileColumn("msec/frame", 100));
+			columns.push_back(ProfileColumn("%/frame", 100));
+			columns.push_back(ProfileColumn("%/parent", 100));
+		}
+	};
+	
+	/// The node represented by this table
+	CProfileNode* node;
+	
+	/// Columns description (shared by all instances)
+	static ColumnDescription columnDescription;
+};
+
+CProfileNodeTable::ColumnDescription CProfileNodeTable::columnDescription;
+
+
+// Constructor/Destructor
+CProfileNodeTable::CProfileNodeTable(CProfileNode* n)
+{
+	node = n;
+}
+
+CProfileNodeTable::~CProfileNodeTable()
+{
+}
+
+// Short name (= name of profile node)
+CStr CProfileNodeTable::GetName()
+{
+	return node->GetName();
+}
+
+// Title (= explanatory text plus time totals)
+CStr CProfileNodeTable::GetTitle()
+{
+	char buf[512];
+	
+	snprintf(buf, sizeof(buf), "Profiling Information for: %s (Time in node: %.3f msec/frame)", node->GetName(), node->GetFrameTime() * 1000.0f );
+	
+	return buf;
+}
+
+// Total number of children
+uint CProfileNodeTable::GetNumberRows()
+{
+	return node->GetChildren()->size() + node->GetScriptChildren()->size() + 1;
+}
+
+// Column description
+const std::vector<ProfileColumn>& CProfileNodeTable::GetColumns()
+{
+	return columnDescription.columns;
+}
+
+// Retrieve cell text
+CStr CProfileNodeTable::GetCellText(uint row, uint col)
+{
+	CProfileNode* child;
+	uint nrchildren = node->GetChildren()->size();
+	uint nrscriptchildren = node->GetScriptChildren()->size();
+	char buf[256];
+	
+	if (row < nrchildren)
+		child = (*node->GetChildren())[row];
+	else if (row < nrchildren + nrscriptchildren)
+		child = (*node->GetScriptChildren())[row - nrchildren];
+	else if (row > nrchildren + nrscriptchildren)
+		return "!bad row!";
+	else
+	{
+		// "unlogged" row
+		if (col == 0)
+			return "unlogged";
+		else if (col == 1)
+			return "";
+		
+		float unlogged = node->GetFrameTime();
+		CProfileNode::const_profile_iterator it;
+
+		for(it = node->GetChildren()->begin(); it != node->GetChildren()->end(); ++it)
+			unlogged -= (*it)->GetFrameTime();
+		for(it = node->GetScriptChildren()->begin(); it != node->GetScriptChildren()->end(); ++it)
+			unlogged -= (*it)->GetFrameTime();
+		
+		if (col == 2)
+			snprintf(buf, sizeof(buf), "%.3f", unlogged * 1000.0f);
+		else if (col == 3)
+			snprintf(buf, sizeof(buf), "%.1f", unlogged / g_Profiler.GetRoot()->GetFrameTime());
+		else
+			snprintf(buf, sizeof(buf), "%.1f", unlogged * 100.0f / g_Profiler.GetRoot()->GetFrameTime());
+		
+		return CStr(buf);
+	}
+	
+	switch(col)
+	{
+	default:
+	case 0:
+		return child->GetName();
+		
+	case 1:
+#ifdef PROFILE_AMORTIZE
+		snprintf(buf, sizeof(buf), "%.3f", child->GetFrameCalls());
+#else
+		snprintf(buf, sizeof(buf), "%d", child->GetFrameCalls());
+#endif
+		return CStr(buf);
+	
+	case 2:
+		snprintf(buf, sizeof(buf), "%.3f", child->GetFrameTime() * 1000.0f);
+		return CStr(buf);
+	
+	case 3:
+		snprintf(buf, sizeof(buf), "%.1f", child->GetFrameTime() * 100.0 / g_Profiler.GetRoot()->GetFrameTime());
+		return CStr(buf);
+	
+	case 4:
+		snprintf(buf, sizeof(buf), "%.1f", child->GetFrameTime() * 100.0 / node->GetFrameTime());
+		return CStr(buf);
+	}
+}
+
+// Return a pointer to the child table if the child node is expandable
+AbstractProfileTable* CProfileNodeTable::GetChild(uint row)
+{
+	CProfileNode* child;
+	uint nrchildren = node->GetChildren()->size();
+	uint nrscriptchildren = node->GetScriptChildren()->size();
+	
+	if (row < nrchildren)
+		child = (*node->GetChildren())[row];
+	else if (row < nrchildren + nrscriptchildren)
+		child = (*node->GetScriptChildren())[row - nrchildren];
+	else
+		return 0;
+	
+	if (child->CanExpand())
+		return child->display_table;
+	
+	return 0;
+}
+
+// Highlight all script nodes
+bool CProfileNodeTable::IsHighlightRow(uint row)
+{
+	uint nrchildren = node->GetChildren()->size();
+	uint nrscriptchildren = node->GetScriptChildren()->size();
+	
+	return (row >= nrchildren && row < (nrchildren + nrscriptchildren));
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+// CProfileNode implementation
+
 
 // Note: As with the GPG profiler, name is assumed to be a pointer to a constant string; only pointer equality is checked.
 CProfileNode::CProfileNode( const char* _name, CProfileNode* _parent )
@@ -31,6 +238,8 @@ CProfileNode::CProfileNode( const char* _name, CProfileNode* _parent )
 #endif
 	parent = _parent;
 
+	display_table = new CProfileNodeTable(this);
+
 	Reset();
 }
 
@@ -41,6 +250,8 @@ CProfileNode::~CProfileNode()
 		delete( *it );	
 	for( it = script_children.begin(); it != script_children.end(); it++ )
 		delete( *it );
+	
+	delete display_table;
 }
 
 const CProfileNode* CProfileNode::GetChild( const char* childName ) const
@@ -188,6 +399,7 @@ CProfileManager::CProfileManager()
 	root = new CProfileNode( "root", NULL );
 	current = root;
 	frame_start = 0.0;
+	g_ProfileViewer.AddRootTable(root->display_table);
 }
 
 CProfileManager::~CProfileManager()
@@ -253,7 +465,7 @@ void CProfileManager::StructuralReset()
 	delete( root );
 	root = new CProfileNode( "root", NULL );
 	current = root;
-	ResetProfileViewer();
+	g_ProfileViewer.AddRootTable(root->display_table);
 }
 
 double CProfileManager::GetTime()

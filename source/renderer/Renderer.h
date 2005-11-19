@@ -78,6 +78,8 @@ struct SVertex2D
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 // CRenderer: base renderer class - primary interface to the rendering engine
+struct CRendererInternals;
+
 class CRenderer : public Singleton<CRenderer>, public CJSObject<CRenderer>
 {
 private:
@@ -291,6 +293,7 @@ public:
 	void SetFastPlayerColor(bool fast);
 	
 protected:
+	friend class CRendererInternals;
 	friend class CVertexBuffer;
 	friend class CPatchRData;
 	friend class FixedFunctionModelRenderer;
@@ -328,6 +331,8 @@ protected:
 	void CalcShadowBounds(CBound& bounds);
 
 	// RENDERER DATA:
+	/// Private data that is not needed by inline functions
+	CRendererInternals* m;
 	// view width
 	int m_Width;
 	// view height
