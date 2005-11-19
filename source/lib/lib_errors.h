@@ -1,3 +1,7 @@
+// note: this is called lib_errors.h because we have another
+// errors.cpp; the MS linker isn't smart enough to deal with
+// object files of the same name but in different paths.
+
 // X macros: error code, symbolic name in code, user-visible string.
 // error code is usually negative; positive denotes warnings.
 //   its absolute value must be within [ERR_MIN, ERR_MAX).

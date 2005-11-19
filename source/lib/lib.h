@@ -61,7 +61,7 @@ scope
 
 // define error codes
 #define ERR(err, id, str) const int id = err;
-#include "lib/errors.h"
+#include "lib/lib_errors.h"
 
 #include "sysdep/sysdep.h"
 #include "sysdep/cpu.h"	// CAS

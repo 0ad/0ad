@@ -121,3 +121,11 @@ int sys_cursor_free(void* cursor)
 {
 	return 0;
 }
+
+int sys_error_description_r(int err, char* buf, size_t max_chars)
+{
+	// don't need to do anything: lib/errors.cpp already queries
+	// libc's strerror(). if we ever end up needing translation of
+	// e.g. Qt or X errors, that'd go here.
+	return -1;
+}

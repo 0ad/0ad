@@ -1,6 +1,10 @@
+// note: this is called lib_errors.cpp because we have another
+// errors.cpp; the MS linker isn't smart enough to deal with
+// object files of the same name but in different paths.
+
 #include "precompiled.h"
 
-#include "errors.h"
+#include "lib_errors.h"
 #include "sysdep/sysdep.h"
 
 #include <string.h>
@@ -16,7 +20,7 @@ static const char* lib_error_description(int err)
 	switch(err)
 	{
 #define ERR(err, id, str) case id: return str;
-#include "errors.h"
+#include "lib_errors.h"
 	default: return "Unknown lib error";
 	}
 	UNREACHABLE;
