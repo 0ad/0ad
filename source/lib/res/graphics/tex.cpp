@@ -416,10 +416,10 @@ static int tex_load_impl(void* file_, size_t file_size, Tex* t)
 	// make sure the entire header has been read
 	const size_t min_hdr_size = c->hdr_size(0);
 	if(file_size < min_hdr_size)
-		return ERR_TEX_HEADER_NOT_COMPLETE;
+		return ERR_INCOMPLETE_HEADER;
 	const size_t hdr_size = c->hdr_size(file);
 	if(file_size < hdr_size)
-		return ERR_TEX_HEADER_NOT_COMPLETE;
+		return ERR_INCOMPLETE_HEADER;
 	t->ofs = hdr_size;
 
 	DynArray da;

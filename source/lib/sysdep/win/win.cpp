@@ -37,7 +37,6 @@ char win_sys_dir[MAX_PATH+1];
 char win_exe_dir[MAX_PATH+1];
 
 
-
 // we need to know the app's main window for the error dialog, so that
 // it is modal and actually stops the app. if it keeps running while
 // we're reporting an error, it'll probably crash and take down the
@@ -631,6 +630,27 @@ int sys_cursor_free(void* cursor)
 
 	BOOL ok = DestroyIcon(HICON_from_ptr(cursor));
 	return ok? 0 : -1;
+}
+
+
+//-----------------------------------------------------------------------------
+
+
+int sys_error_description_r(int err, char* buf, size_t max_chars)
+{
+	// not in our range (Win32 error numbers are positive)
+	if(err < 0)
+		return -1;
+
+	const LPCVOID source = 0;	// ignored (we're not using FROM_HMODULE etc.)
+	const DWORD lang_id = 0;	// look for neutral, then current locale
+	va_list* args = 0;			// we don't care about "inserts"
+	DWORD ret = FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, source, (DWORD)err,
+		lang_id, buf, (DWORD)max_chars, args);
+	if(!ret)
+		return -1;
+	debug_assert(ret < max_chars);	// ret = #chars output
+	return 0;
 }
 
 

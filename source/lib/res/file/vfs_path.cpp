@@ -31,7 +31,6 @@ int path_validate(const uint line, const char* path)
 	size_t path_len = 0;	// counted as we go; checked against max.
 
 	const char* msg = 0;	// error occurred <==> != 0
-	int err = -1;			// what we pass to caller
 
 	int c = 0, last_c;		// used for ./ detection
 
@@ -78,12 +77,10 @@ int path_validate(const uint line, const char* path)
 			goto ok;
 	}
 
-	// failed somewhere - err is the error code,
-	// or -1 if not set specifically above.
 fail:
-	debug_printf("%s called from line %d failed: %s (error code %d)\n", __func__, line, msg, err);
+	debug_printf("%s called from line %d failed: %s\n", __func__, line, msg);
 	debug_warn("failed");
-	return err;
+	return -1;
 
 ok:
 	return 0;

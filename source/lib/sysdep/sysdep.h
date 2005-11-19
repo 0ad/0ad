@@ -212,6 +212,8 @@ extern int sys_cursor_free(void* cursor);
 
 
 
+extern int sys_error_description_r(int err, char* buf, size_t max_chars);
+
 extern int get_executable_name(char* n_path, size_t buf_size);
 
 // return filename of the module which contains address <addr>,

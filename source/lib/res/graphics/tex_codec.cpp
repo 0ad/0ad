@@ -48,7 +48,7 @@ int tex_codec_for_header(const u8* file, size_t file_size, const TexCodecVTbl** 
 {
 	// we guarantee at least 4 bytes for is_hdr to look at
 	if(file_size < 4)
-		return ERR_TEX_HEADER_NOT_COMPLETE;
+		return ERR_INCOMPLETE_HEADER;
 
 	for(*c = codecs; *c; *c = (*c)->next)
 	{

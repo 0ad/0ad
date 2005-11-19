@@ -571,7 +571,8 @@ ErrorReaction debug_warn_err(int err, const char* file, int line,
 
 	uint skip = 1; void* context = 0;
 	wchar_t buf[400];
-	swprintf(buf, ARRAY_SIZE(buf), L"Function call failed at %hs:%d (%hs): return value was %d", base_name, line, func, err);
+	char err_buf[200]; error_description_r(err, err_buf, ARRAY_SIZE(err_buf));
+	swprintf(buf, ARRAY_SIZE(buf), L"Function call failed at %hs:%d (%hs): return value was %d (%hs)", base_name, line, func, err, err_buf);
 	return display_error(buf, DE_ALLOW_SUPPRESS|DE_MANUAL_BREAK, skip, context, base_name, line);
 }
 

@@ -59,6 +59,10 @@ scope
 #include "config.h"
 #include "lib/types.h"
 
+// define error codes
+#define ERR(err, id, str) const int id = err;
+#include "lib/errors.h"
+
 #include "sysdep/sysdep.h"
 #include "sysdep/cpu.h"	// CAS
 
@@ -229,70 +233,6 @@ STMT(\
 	delete (p);	/* if p == 0, delete is a no-op */ \
 	(p) = 0;\
 )
-
-
-enum LibError
-{
-	// function arguments
-	ERR_INVALID_PARAM   = -1000,
-	ERR_INVALID_HANDLE  = -1001,
-	ERR_BUF_SIZE        = -1002,
-
-	// system limitations
-	// .. out of memory
-	ERR_NO_MEM           = -1020,
-	// .. try again later
-	ERR_AGAIN            = -1021,
-	// .. fixed limit exceeded
-	ERR_LIMIT            = -1022,
-	// .. the OS doesn't provide an API we need
-	ERR_NO_SYS           = -1023,
-	// .. feature not currently implemented (will probably change)
-	ERR_NOT_IMPLEMENTED  = -1024,
-	// .. feature won't be supported
-	ERR_NOT_SUPPORTED    = -1025,
-
-	ERR_TIMED_OUT         = -1060,
-
-	// file + vfs
-	ERR_FILE_NOT_FOUND  = -1200,
-	ERR_PATH_NOT_FOUND  = -1201,
-	ERR_PATH_LENGTH     = -1202,
-	ERR_PATH_INVALID    = -1203,
-	ERR_DIR_END         = -1210,
-	ERR_NOT_FILE        = -1220,
-	ERR_FILE_ACCESS     = -1230,
-	ERR_IO              = -1231,
-	ERR_EOF             = -1232,
-
-	// file format
-	ERR_UNKNOWN_FORMAT    = -1400,
-	ERR_INCOMPLETE_HEADER = -1401,
-	// .. data (e.g. in file) is obviously incorrect
-	ERR_CORRUPTED         = -1402,
-
-	// texture
-	ERR_TEX_FMT_INVALID         = -1500,
-	ERR_TEX_INVALID_COLOR_TYPE  = -1501,
-	ERR_TEX_NOT_8BIT_PRECISION  = -1502,
-	ERR_TEX_INVALID_LAYOUT      = -1503,
-	ERR_TEX_COMPRESSED          = -1504,
-	WARN_TEX_INVALID_DATA       = +1505,
-	ERR_TEX_INVALID_SIZE        = -1506,
-	ERR_TEX_HEADER_NOT_COMPLETE = -1507,
-
-	ERR_CPU_FEATURE_MISSING     = -1600,
-
-	// shaders
-	ERR_SHDR_CREATE             = -1700,
-	ERR_SHDR_COMPILE            = -1701,
-	ERR_SHDR_NO_SHADER          = -1702,
-	ERR_SHDR_LINK               = -1703,
-	ERR_SHDR_NO_PROGRAM         = -1704,
-
-	ERR_LAST
-};
-
 
 
 
