@@ -169,6 +169,9 @@ uint LOS_GetTokenFor(uint player_id)
 
 ELOSStatus CLOSManager::GetStatus(int tx, int tz, CPlayer* player) 
 {
+#ifdef SCED // HACK
+return LOS_VISIBLE;
+#endif
 //TIMER_ACCRUE(tc_getstatus);
 
 	// Ensure that units off the map don't cause the visibility arrays to be

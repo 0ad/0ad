@@ -278,7 +278,7 @@ TIMER_ACCRUE(tc_plain_transform);
 	if(!(t->flags & TEX_MIPMAPS) && transforms & TEX_MIPMAPS)
 	{
 		// this code assumes the image is of POT dimension; we don't
-		// go to the trouble of implememting image scaling because
+		// go to the trouble of implementing image scaling because
 		// the only place this is used (ogl_tex_upload) requires POT anyway.
 		if(!is_pow2(w) || !is_pow2(h))
 			return ERR_TEX_INVALID_SIZE;

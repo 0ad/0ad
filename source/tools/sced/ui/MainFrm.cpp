@@ -51,6 +51,9 @@
 
 extern CLightEnv g_LightEnv;
 
+bool g_TerrainModified = false;
+	// HACK: normally defined in gui/MiniMap.cpp, but ScEd doesn't compile the GUI code
+
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame
 

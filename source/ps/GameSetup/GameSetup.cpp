@@ -975,12 +975,14 @@ void Init(int argc, char* argv[], uint flags)
 	}
 #endif
 
+#ifndef SCED // HACK: ScEd's init order makes this break
 	{
 		TIMER("Init_renderblank");
 		MICROLOG(L"render blank");
 		// render everything to a blank frame to force renderer to load everything
 		RenderNoCull();
 	}
+#endif
 
 	if (g_FixedFrameTiming) {
 		CCamera &g_Camera=*g_Game->GetView()->GetCamera();

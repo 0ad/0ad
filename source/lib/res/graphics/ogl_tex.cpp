@@ -446,8 +446,10 @@ static int OglTex_validate(const OglTex* ot)
 	//    note: we can't work around this because both NV_texture_rectangle
 	//    and subtexture require work for the client (changing tex coords).
 	//    TODO: ARB_texture_non_power_of_two
+#ifndef SCED // HACK: ScEd needs to load a 321x321 PNG (as a heightmap, not uploaded to OpenGL)
 	if(!is_pow2(w) || !is_pow2(h))
 		return -102;
+#endif
 
 	// texture state
 	if(!filter_valid(ot->state.filter))

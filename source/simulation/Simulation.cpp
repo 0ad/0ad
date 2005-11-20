@@ -46,7 +46,9 @@ int CSimulation::Initialize(CGameAttributes* pAttribs)
 
 	g_EntityManager.InitializeAll();
 
+#ifndef SCED
 	m_pWorld->GetLOSManager()->Initialize(pAttribs->m_LOSSetting);
+#endif
 
 	return 0;
 }
@@ -261,6 +263,9 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 			break;
 		case NMT_Gather:
 			ENTITY_ENTITY(CGather, ORDER_GATHER);
+			break;
+		case NMT_Heal:
+			ENTITY_ENTITY(CHeal, ORDER_HEAL);
 			break;
 	}
 
