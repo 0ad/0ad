@@ -528,65 +528,61 @@ void CEditorData::OnDraw()
 
 
 bool CEditorData::LoadTerrain(const char* filename)
-{		
-	Handle h = ogl_tex_load(filename);
-	if(h<=0) {
+{
+	Tex t;
+	if(tex_load(filename, &t) < 0)
+	{
 		char buf[1024];
 		sprintf(buf,"Failed to load \"%s\"",filename);
 		ErrorBox(buf);
 		return false;
-	} else {
-
-		uint width=0;
-		uint height=0;
-		uint bpp=0;
-		void *ptr=0;
-
-		(void)ogl_tex_get_size(h, &width, &height, &bpp);
-		(void)ogl_tex_get_data(h, &ptr);
-
-		// rescale the texture to fit to the nearest of the 4 possible map sizes
-		u32 mapsize=9;	// assume smallest map
-		if (width>11*PATCH_SIZE+1) mapsize=11;
-		if (width>13*PATCH_SIZE+1) mapsize=13;
-		if (width>17*PATCH_SIZE+1) mapsize=17;
-
-		u32 targetsize=mapsize*PATCH_SIZE+1;
-		unsigned char* data=new unsigned char[targetsize*targetsize*bpp/8];
-		u32 fmt=(bpp==8) ? GL_RED : ((bpp==24) ? GL_RGB : GL_RGBA);
-		gluScaleImage(fmt,width,height,GL_UNSIGNED_BYTE,ptr,
-			targetsize,targetsize,GL_UNSIGNED_BYTE,data);
-
-		// build 16 bit heightmap from red channel of texture
-		u16* heightmap=new u16[targetsize*targetsize];
-		int stride=bpp/8;
-		u16* hmptr=heightmap;
-
-		// get src of copy
-		const u8* dataptr = (bpp==8) ? data : ((bpp==24) ? data+2 : data+3);
-		
-		// build heightmap
-		for (uint j=0;j<targetsize;++j) {
-			for (uint i=0;i<targetsize;++i) {
-				*hmptr=(*dataptr) << 8;
-				hmptr++;
-				dataptr+=stride;
-			}
-		}
-
-		// rebuild terrain
-		g_Game->GetWorld()->GetTerrain()->Resize(mapsize);
-		g_Game->GetWorld()->GetTerrain()->SetHeightMap(heightmap);
-		
-		// clean up
-		delete[] data;
-		delete[] heightmap;
-
-		// re-initialise minimap - terrain size may have changed
-		g_MiniMap.Initialise();
-
-		return true;
 	}
+
+	uint width=t.w, height=t.h, bpp=t.bpp;
+	void *ptr=tex_get_data(&t);
+
+	// rescale the texture to fit to the nearest of the 4 possible map sizes
+	u32 mapsize=9;	// assume smallest map
+	if (width>11*PATCH_SIZE+1) mapsize=11;
+	if (width>13*PATCH_SIZE+1) mapsize=13;
+	if (width>17*PATCH_SIZE+1) mapsize=17;
+
+	u32 targetsize=mapsize*PATCH_SIZE+1;
+	unsigned char* data=new unsigned char[targetsize*targetsize*bpp/8];
+	u32 fmt=(bpp==8) ? GL_RED : ((bpp==24) ? GL_RGB : GL_RGBA);
+	gluScaleImage(fmt,width,height,GL_UNSIGNED_BYTE,ptr,
+		targetsize,targetsize,GL_UNSIGNED_BYTE,data);
+
+	// build 16 bit heightmap from red channel of texture
+	u16* heightmap=new u16[targetsize*targetsize];
+	int stride=bpp/8;
+	u16* hmptr=heightmap;
+
+	// get src of copy
+	const u8* dataptr = (bpp==8) ? data : ((bpp==24) ? data+2 : data+3);
+	
+	// build heightmap
+	for (uint j=0;j<targetsize;++j) {
+		for (uint i=0;i<targetsize;++i) {
+			*hmptr=(*dataptr) << 8;
+			hmptr++;
+			dataptr+=stride;
+		}
+	}
+
+	// rebuild terrain
+	g_Game->GetWorld()->GetTerrain()->Resize(mapsize);
+	g_Game->GetWorld()->GetTerrain()->SetHeightMap(heightmap);
+	
+	// clean up
+	delete[] data;
+	delete[] heightmap;
+	(void)tex_free(&t);
+
+	// re-initialise minimap - terrain size may have changed
+	g_MiniMap.Initialise();
+
+	return true;
 }
 
 // UpdateWorld: update time dependent data in the world to account for changes over 
