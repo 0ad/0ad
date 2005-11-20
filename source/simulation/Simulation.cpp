@@ -264,9 +264,6 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 		case NMT_Gather:
 			ENTITY_ENTITY(CGather, ORDER_GATHER);
 			break;
-		case NMT_Heal:
-			ENTITY_ENTITY(CHeal, ORDER_HEAL);
-			break;
 	}
 
 	return clientMask;
