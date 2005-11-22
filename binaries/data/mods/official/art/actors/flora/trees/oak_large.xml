@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant name="a">
+      <mesh>gaia/tree_oak_large_a.pmd</mesh>
+      <props>
+        <prop actor="flora/trees/oak_large_top.xml" attachpoint="tree"/>
+      </props>
+    </variant>
+    <variant name="b">
+      <mesh>gaia/tree_oak_large_b.pmd</mesh>
+      <props>
+        <prop actor="flora/trees/oak_large_top.xml" attachpoint="tree"/>
+      </props>
+    </variant>
+    <variant name="c">
+      <mesh>gaia/tree_oak_large_c.pmd</mesh>
+      <props>
+        <prop actor="flora/trees/oak_large_top.xml" attachpoint="tree"/>
+      </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant>
+      <texture>gaia/trunk_deciduous_b.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>

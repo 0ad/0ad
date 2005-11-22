@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant name="a">
+      <mesh>gaia/tree_oak_large_top_a.pmd</mesh>
+    </variant>
+    <variant name="b">
+      <mesh>gaia/tree_oak_large_top_b.pmd</mesh>
+    </variant>
+    <variant name="c">
+      <mesh>gaia/tree_oak_large_top_c.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant name="a">
+      <texture>gaia/tree_oak_a.dds</texture>
+    </variant>
+    <variant name="b">
+      <texture>gaia/tree_oak_b.dds</texture>
+    </variant>
+    <variant name="c">
+      <texture>gaia/tree_oak_c.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>
