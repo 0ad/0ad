@@ -89,14 +89,13 @@
 				RuntimeLibrary="2"
 				BufferSecurityCheck="FALSE"
 				EnableFunctionLevelLinking="FALSE"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderFile=".\../src/obj/IL.pch"
 				AssemblerListingLocation=".\../src/obj/"
 				ObjectFile=".\../src/obj/"
 				ProgramDataBaseFileName=".\../src/obj/"
 				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="3"
 				CompileAs="1"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
