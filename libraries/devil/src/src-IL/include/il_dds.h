@@ -197,6 +197,7 @@ ILuint		RMSAlpha(ILubyte *Orig, ILubyte *Test);
 ILuint		Distance(Color888 *c1, Color888 *c2);
 ILuint		ChooseEndpoints(ILushort *ex0, ILushort *ex1, ILuint NumCols, ILubyte *Block, ILubyte *Alpha, ILuint ClosestDist);
 ILvoid		ChooseAlphaEndpoints(ILubyte *Block, ILubyte *a0, ILubyte *a1);
+ILuint		CalculateAlphaDist(ILubyte Alpha0, ILubyte Alpha1, ILuint Num, ILubyte *Block, ILuint DistLimit);
 ILvoid		CorrectEndDXT1(ILushort *ex0, ILushort *ex1, ILboolean HasAlpha);
 ILvoid		PreMult(ILushort *Data, ILubyte *Alpha);
 

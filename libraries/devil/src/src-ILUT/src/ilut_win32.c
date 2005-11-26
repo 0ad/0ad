@@ -15,6 +15,7 @@
 #ifdef ILUT_USE_WIN32
 #include <wininet.h>
 #include <windows.h>
+#include <tchar.h>
 
 // For ilutWinLoadUrl().
 #pragma comment(lib, "wininet.lib")
@@ -619,7 +620,7 @@ ILboolean ILAPIENTRY ilutWinPrint(ILuint XPos, ILuint YPos, ILuint Width, ILuint
 		return (0L);
 
 	Di.cbSize = sizeof(DOCINFO);
-	Di.lpszDocName = "DevIL Print Job";
+	Di.lpszDocName = _T("DevIL Print Job");
 	Di.lpszOutput = NULL;
 	Di.lpszDatatype = NULL;
 	Di.fwType = 0;
@@ -666,7 +667,7 @@ ILboolean ILAPIENTRY ilutWinLoadUrl(const ILstring Url)
 		return IL_FALSE;
 	}
 
-	Handle = InternetOpen("Developer's Image Library", INTERNET_OPEN_TYPE_DIRECT, NULL, NULL, 0);
+	Handle = InternetOpen(_T("Developer's Image Library"), INTERNET_OPEN_TYPE_DIRECT, NULL, NULL, 0);
 	if (Handle == NULL) {
 		ifree(Buffer);
 		ilSetError(ILUT_COULD_NOT_OPEN_FILE);
@@ -677,7 +678,7 @@ ILboolean ILAPIENTRY ilutWinLoadUrl(const ILstring Url)
 	UrlHandle = InternetOpenUrl(Handle, Url, NULL, 0, 0, Context);
 	if (UrlHandle == NULL) {
 		InternetCloseHandle(Handle);
-		Handle = InternetOpen("Developer's Image Library", INTERNET_OPEN_TYPE_DIRECT, NULL, NULL, INTERNET_FLAG_FROM_CACHE);
+		Handle = InternetOpen(_T("Developer's Image Library"), INTERNET_OPEN_TYPE_DIRECT, NULL, NULL, INTERNET_FLAG_FROM_CACHE);
 		if (Handle == NULL) {
 			ifree(Buffer);
 			ilSetError(ILUT_COULD_NOT_OPEN_FILE);

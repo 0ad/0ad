@@ -13,18 +13,18 @@
 	</Platforms>
 	<Configurations>
 		<Configuration
-			Name="Release|Win32"
-			OutputDirectory=".\../../lib"
-			IntermediateDirectory=".\../src/obj"
+			Name="Release Unicode|Win32"
+			OutputDirectory=".\../../../lib"
+			IntermediateDirectory=".\../src/obj/release"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
+			CharacterSet="1">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="1"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="../include;../../include;../../../../PC/_inc/DX"
+				AdditionalIncludeDirectories="../include;../../../include;../../../../PC/_inc/DX"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;ILUT_EXPORTS"
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
@@ -69,17 +69,17 @@
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
-			Name="Debug|Win32"
-			OutputDirectory=".\../../lib"
+			Name="Debug Unicode|Win32"
+			OutputDirectory=".\../../../lib"
 			IntermediateDirectory=".\../src/obj/debug"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
+			CharacterSet="1">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../include;../../include;../../../../PC/_inc/DX"
+				AdditionalIncludeDirectories="../include;../../../include;../../../../PC/_inc/DX"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;ILUT_EXPORTS"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
@@ -89,7 +89,7 @@
 				ProgramDataBaseFileName=".\../src/obj/debug/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="3"/>
+				DebugInformationFormat="0"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
@@ -190,6 +190,116 @@
 			<Tool
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
+		<Configuration
+			Name="Debug ANSI|Win32"
+			OutputDirectory=".\../../../lib"
+			IntermediateDirectory=".\../src/obj/debuga"
+			ConfigurationType="4"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="../include;../../../include;../../../../PC/_inc/DX"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;ILUT_EXPORTS"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile=".\../src/obj/debug/ILUT.pch"
+				AssemblerListingLocation=".\../src/obj/debug/"
+				ObjectFile=".\../src/obj/debug/"
+				ProgramDataBaseFileName=".\../src/obj/debug/"
+				WarningLevel="3"
+				SuppressStartupBanner="TRUE"
+				DebugInformationFormat="0"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLibrarianTool"
+				OutputFile="$(OutDir)/DevILUT_DBG_A.lib"/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="_DEBUG"
+				MkTypLibCompatible="TRUE"
+				SuppressStartupBanner="TRUE"
+				TargetEnvironment="1"
+				TypeLibraryName=".\../../lib/debug/ILUT.tlb"
+				HeaderFileName=""/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="1033"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="Release ANSI|Win32"
+			OutputDirectory=".\../../../lib"
+			IntermediateDirectory=".\../src/obj/releasea"
+			ConfigurationType="4"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="1"
+				InlineFunctionExpansion="1"
+				AdditionalIncludeDirectories="../include;../../../include;../../../../PC/_inc/DX"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;ILUT_EXPORTS"
+				StringPooling="TRUE"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="TRUE"
+				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile=".\../src/obj/ILUT.pch"
+				AssemblerListingLocation=".\../src/obj/"
+				ObjectFile=".\../src/obj/"
+				ProgramDataBaseFileName=".\../src/obj/"
+				WarningLevel="3"
+				SuppressStartupBanner="TRUE"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLibrarianTool"
+				OutputFile="$(OutDir)/DevILUT_A.lib"/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="NDEBUG"
+				MkTypLibCompatible="TRUE"
+				SuppressStartupBanner="TRUE"
+				TargetEnvironment="1"
+				TypeLibraryName=".\../../lib/ILUT.tlb"
+				HeaderFileName=""/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="1033"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>
@@ -200,13 +310,13 @@
 			<File
 				RelativePath="ilut.def">
 				<FileConfiguration
-					Name="Release|Win32"
+					Name="Release Unicode|Win32"
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCCustomBuildTool"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug|Win32"
+					Name="Debug Unicode|Win32"
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCCustomBuildTool"/>
@@ -217,11 +327,23 @@
 					<Tool
 						Name="VCCustomBuildTool"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug ANSI|Win32"
+					ExcludedFromBuild="TRUE">
+					<Tool
+						Name="VCCustomBuildTool"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release ANSI|Win32"
+					ExcludedFromBuild="TRUE">
+					<Tool
+						Name="VCCustomBuildTool"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\src\ilut_directx.c">
 				<FileConfiguration
-					Name="Release|Win32">
+					Name="Release Unicode|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="1"
@@ -229,7 +351,7 @@
 						PreprocessorDefinitions=" "/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug|Win32">
+					Name="Debug Unicode|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -239,6 +361,23 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Dynamic|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=" "/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug ANSI|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=" "
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release ANSI|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="1"
@@ -249,7 +388,7 @@
 			<File
 				RelativePath="..\src\ilut_directx9.c">
 				<FileConfiguration
-					Name="Release|Win32">
+					Name="Release Unicode|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="1"
@@ -257,7 +396,7 @@
 						PreprocessorDefinitions=" "/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug|Win32">
+					Name="Debug Unicode|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -267,6 +406,23 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Dynamic|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=" "/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug ANSI|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=" "
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release ANSI|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="1"
@@ -277,7 +433,7 @@
 			<File
 				RelativePath="..\src\ilut_internal.c">
 				<FileConfiguration
-					Name="Release|Win32">
+					Name="Release Unicode|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="1"
@@ -285,7 +441,7 @@
 						PreprocessorDefinitions=" "/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug|Win32">
+					Name="Debug Unicode|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -295,6 +451,23 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Dynamic|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=" "/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug ANSI|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=" "
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release ANSI|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="1"
@@ -305,7 +478,7 @@
 			<File
 				RelativePath="..\src\ilut_main.c">
 				<FileConfiguration
-					Name="Release|Win32">
+					Name="Release Unicode|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="1"
@@ -313,7 +486,7 @@
 						PreprocessorDefinitions=" "/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug|Win32">
+					Name="Debug Unicode|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -323,6 +496,23 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Dynamic|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=" "/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug ANSI|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=" "
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release ANSI|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="1"
@@ -333,7 +523,7 @@
 			<File
 				RelativePath="..\src\ilut_opengl.c">
 				<FileConfiguration
-					Name="Release|Win32">
+					Name="Release Unicode|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="1"
@@ -341,7 +531,7 @@
 						PreprocessorDefinitions=" "/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug|Win32">
+					Name="Debug Unicode|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -351,6 +541,23 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Dynamic|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=" "/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug ANSI|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=" "
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release ANSI|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="1"
@@ -361,7 +568,7 @@
 			<File
 				RelativePath="..\src\ilut_sdlsurface.c">
 				<FileConfiguration
-					Name="Release|Win32">
+					Name="Release Unicode|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="1"
@@ -369,7 +576,7 @@
 						PreprocessorDefinitions=" "/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug|Win32">
+					Name="Debug Unicode|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -379,6 +586,23 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Dynamic|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=" "/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug ANSI|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=" "
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release ANSI|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="1"
@@ -389,7 +613,7 @@
 			<File
 				RelativePath="..\src\ilut_states.c">
 				<FileConfiguration
-					Name="Release|Win32">
+					Name="Release Unicode|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="1"
@@ -397,7 +621,7 @@
 						PreprocessorDefinitions=" "/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug|Win32">
+					Name="Debug Unicode|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -407,6 +631,23 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Dynamic|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=" "/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug ANSI|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=" "
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release ANSI|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="1"
@@ -417,7 +658,7 @@
 			<File
 				RelativePath="..\src\ilut_win32.c">
 				<FileConfiguration
-					Name="Release|Win32">
+					Name="Release Unicode|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="1"
@@ -425,7 +666,7 @@
 						PreprocessorDefinitions=" "/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug|Win32">
+					Name="Debug Unicode|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -435,6 +676,23 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Dynamic|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=" "/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug ANSI|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=" "
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release ANSI|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="1"
@@ -447,10 +705,10 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
 			<File
-				RelativePath="..\..\include\IL\devil_internal_exports.h">
+				RelativePath="..\..\..\include\IL\devil_internal_exports.h">
 			</File>
 			<File
-				RelativePath="..\..\include\il\ilut.h">
+				RelativePath="..\..\..\include\il\ilut.h">
 			</File>
 			<File
 				RelativePath="..\include\ilut_internal.h">

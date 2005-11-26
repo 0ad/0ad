@@ -466,7 +466,11 @@ ILboolean ILAPIENTRY ilutGLScreen()
 ILboolean ILAPIENTRY ilutGLScreenie()
 {
 	FILE		*File;
+#ifndef _UNICODE
 	char		Buff[255];
+#else
+	wchar_t		Buff[255];
+#endif
 	ILuint		i, CurName;
 	ILboolean	ReturnVal = IL_TRUE;
 
@@ -474,8 +478,13 @@ ILboolean ILAPIENTRY ilutGLScreenie()
 
 	// Could go above 128 easily...
 	for (i = 0; i < 128; i++) {
+#ifndef _UNICODE
 		sprintf(Buff, "screen%d.tga", i);
 		File = fopen(Buff, "rb");
+#else
+		swprintf(Buff, L"screen%d.tga", i);
+		File = _wfopen(Buff, L"rb");
+#endif
 		if (!File)
 			break;
 		fclose(File);

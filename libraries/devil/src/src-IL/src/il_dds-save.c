@@ -20,7 +20,7 @@
 #ifndef IL_NO_DDS
 
 
-#define DXTC_DEBUG
+//#define DXTC_DEBUG
 //#define FAST_COMPRESS
 
 #ifdef DXTC_DEBUG
@@ -32,7 +32,7 @@ void debug_out(const wchar_t* fmt, ...)
 	va_start(ap, fmt);
 	_vsnwprintf(buf, 512-1, fmt, ap);
 	va_end(ap);
-	OutputDebugString(buf);
+	OutputDebugStringW(buf);
 }
 #endif
 
@@ -1015,7 +1015,9 @@ ILuint ChooseEndpoints(ILushort *ex0, ILushort *ex1, ILuint NumCols, ILubyte *Bl
 													*ex1 = Color888ToShort(&ClosestC1);
 													return ClosestDist;
 												} else {
+													#ifdef DXTC_DEBUG
 													debug_out(L"Argh!");
+													#endif
 												}
 											}
 										}

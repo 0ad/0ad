@@ -338,7 +338,7 @@ function setuppackage_atlas(package_name, target_type, source_dirs, include_dirs
 		-- Directories under 'libraries', each containing 'lib' and 'include':
 		external_libraries = {}
 		if (flags["boost"])  then tinsert(external_libraries, "boost") end
-		if (flags["devil"])  then tinsert(external_libraries, "devil/src") end
+		if (flags["devil"])  then tinsert(external_libraries, "devil") end
 		if (flags["xerces"]) then tinsert(external_libraries, "xerces") end
 		if (flags["zlib"])   then tinsert(external_libraries, "zlib") end
 		
@@ -458,6 +458,7 @@ function setuppackages_atlas()
 		"AtlasUI/ScenarioEditor",
 		"AtlasUI/ScenarioEditor/Sections/Common",
 		"AtlasUI/ScenarioEditor/Sections/Map",
+		"AtlasUI/ScenarioEditor/Sections/Object",
 		"AtlasUI/ScenarioEditor/Sections/Terrain",
 		"AtlasUI/ScenarioEditor/Tools",
 		"AtlasUI/ScenarioEditor/Tools/Common"
