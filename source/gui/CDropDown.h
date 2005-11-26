@@ -80,6 +80,8 @@ public:
 	//  or closed.
 	virtual bool MouseOver();
 
+	virtual float GetBufferedZ() const;
+
 protected:
 	/**
 	 * Sets up text, should be called every time changes has been

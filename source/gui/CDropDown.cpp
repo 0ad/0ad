@@ -141,7 +141,7 @@ void CDropDown::HandleMessage(const SGUIMessage &Message)
 		{
 			m_Open = true;
 			GetScrollBar(0).SetPos(0.f);
-			UpdateAutoScroll();
+			GetScrollBar(0).SetZ( GetBufferedZ() );
 			GUI<int>::GetSetting(this, "selected", m_ElementHighlight);
 			return; // overshadow
 		}
@@ -153,6 +153,7 @@ void CDropDown::HandleMessage(const SGUIMessage &Message)
 			if (m_CachedActualSize.PointInside(mouse))
 			{
 				m_Open = false;
+				GetScrollBar(0).SetZ( GetBufferedZ() );
 				return; // overshadow
 			}
 
@@ -161,6 +162,7 @@ void CDropDown::HandleMessage(const SGUIMessage &Message)
 				mouse.y >= GetListRect().top)
 			{
 				m_Open = false;
+				GetScrollBar(0).SetZ( GetBufferedZ() );
 			}
 		}
 	}	break;
@@ -342,4 +344,16 @@ void CDropDown::Draw()
 		if (m_HideScrollBar)
 			*scrollbar = old;
 	}
+}
+
+// When a dropdown list is opened, it needs to be visible above all the other
+// controls on the page. The only way I can think of to do this is to increase
+// its z value when opened, so that it's probably on top.
+float CDropDown::GetBufferedZ() const
+{
+	float bz = CList::GetBufferedZ();
+	if (m_Open)
+		return min(bz + 500.f, 1000.f); // TODO - don't use magic number for max z value
+	else
+		return bz;
 }
