@@ -42,9 +42,8 @@ void CFilePacker::Write(const char* filename)
 		throw CFileWriteError();
 #else
 
-	char N_path[PATH_MAX];
-	(void)file_make_full_native_path(filename, N_path);
-	FILE* fp=fopen(N_path,"wb");
+	// 'filename' is already an absolute path, so don't use file_make_full_native_path
+	FILE* fp=fopen(filename,"wb");
 	if (!fp) {
 		throw CFileOpenError();
 	}

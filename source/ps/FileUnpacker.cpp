@@ -94,9 +94,8 @@ void CFileUnpacker::Read(const char* filename,const char magicstr[4])
 	}
 	else
 	{
-		char N_path[PATH_MAX];
-		(void)file_make_full_native_path(filename, N_path);
-		FILE* fp=fopen(N_path,"rb");
+		// 'filename' is already an absolute path, so don't use file_make_full_native_path
+		FILE* fp=fopen(filename,"rb");
 		if (!fp)
 			throw CFileOpenError();
 
