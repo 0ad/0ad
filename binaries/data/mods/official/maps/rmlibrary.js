@@ -231,12 +231,15 @@ function BorderTileClassConstraint(tileClass, distanceInside, distanceOutside) {
 
 // Object groups
 
-function SimpleObject(type, minCount, maxCount, minDistance, maxDistance) {
+function SimpleObject(type, minCount, maxCount, minDistance, maxDistance, 
+		minAngle, maxAngle) {
 	this.type = type;
 	this.minCount = minCount;
 	this.maxCount = maxCount;
 	this.minDistance = minDistance;
 	this.maxDistance = maxDistance;
+	this.minAngle = minAngle!=undefined ? minAngle : 0;
+	this.maxAngle = maxAngle!=undefined ? maxAngle : 2*PI;
 }
 
 function SimpleGroup(elements, avoidSelf, tileClass, x, y) {
