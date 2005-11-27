@@ -48,7 +48,7 @@ function avoidClasses(/*class1, dist1, class2, dist2, etc*/) {
 // initialize map
 
 println("Initializing map...");
-init(SIZE, tGrass, 7);
+init(SIZE, tGrass, 8);
 
 // create tile classes
 
@@ -185,7 +185,7 @@ terrainPainter = new LayeredPainter(
 	[1,1],									// widths
 	[tShoreBlend, tShore, tWater]		// terrains
 );
-elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -3, 3);
+elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -2, 3);
 createAreas(placer, [terrainPainter, elevationPainter, paintClass(clWater)], 
 	avoidClasses(clPlayer, 2, clWater, 20),
 	round(1.3 * NUM_PLAYERS)
