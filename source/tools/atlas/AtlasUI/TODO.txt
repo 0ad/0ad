@@ -1,3 +1,9 @@
+wxWidgets:
+* alt+f with notebook tab focussed
+* wxLogTrace "%s" wxGetMessage (msw/window.cpp)
+
+==============================
+
 Colour tester:
 
 ==============================
@@ -73,7 +79,6 @@ General and/or unsorted miscellany:
 * Better column widths / window sizes
 
 * Don't create a row when editing a blank one then removing focus without typing anything
-
 
 ======
 

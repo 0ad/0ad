@@ -57,7 +57,7 @@ public:
 		case WXK_RIGHT: dir = AtlasMessage::eScrollConstantDir::RIGHT; break;
 		case WXK_UP:    dir = AtlasMessage::eScrollConstantDir::FORWARDS; break;
 		case WXK_DOWN:  dir = AtlasMessage::eScrollConstantDir::BACKWARDS; break;
-		case WXK_SHIFT: dir = -1; break;
+		case WXK_SHIFT: case WXK_CONTROL: dir = -1; break;
 		default: return false;
 		}
 
@@ -86,22 +86,52 @@ public:
 
 	void OnKeyDown(wxKeyEvent& evt)
 	{
+		if (GetCurrentTool().OnKey(evt, ITool::KEY_DOWN))
+		{
+			// Key event has been handled by the tool, so don't try
+			// to use it for camera motion too
+			return;
+		}
+
 		if (KeyScroll(evt, true))
 			return;
-
-		GetCurrentTool().OnKey(evt, ITool::KEY_DOWN);
 
 		evt.Skip();
 	}
 
 	void OnKeyUp(wxKeyEvent& evt)
 	{
+		if (GetCurrentTool().OnKey(evt, ITool::KEY_UP))
+			return;
+
 		if (KeyScroll(evt, false))
 			return;
 
-		GetCurrentTool().OnKey(evt, ITool::KEY_UP);
-
 		evt.Skip();
+	}
+
+	void OnChar(wxKeyEvent& evt)
+	{
+		if (GetCurrentTool().OnKey(evt, ITool::KEY_CHAR))
+			return;
+
+		int dir = 0;
+		if (evt.GetKeyCode() == '-' || evt.GetKeyCode() == '_')
+			dir = -1;
+		else if (evt.GetKeyCode() == '+' || evt.GetKeyCode() == '=')
+			dir = +1;
+		// TODO: internationalisation (-/_ and +/= don't always share a key)
+
+		if (dir)
+		{
+			float speed = 16.f;
+			if (wxGetKeyState(WXK_SHIFT))
+				speed *= 4.f;
+			POST_MESSAGE(SmoothZoom(speed*dir));
+		}
+		else
+			evt.Skip();
+
 	}
 
 	void OnMouseCapture(wxMouseCaptureChangedEvent& WXUNUSED(evt))
@@ -160,11 +190,12 @@ public:
 
 #ifndef UI_ONLY
 
-		GetCurrentTool().OnMouse(evt);
-
-		// TODO: if the tool responded to the mouse action, should we avoid moving
-		// the camera too? (This is mostly avoided by not sharing buttons between
-		// camera and tools, so maybe it's not a problem.)
+		if (GetCurrentTool().OnMouse(evt))
+		{
+			// Mouse event has been handled by the tool, so don't try
+			// to use it for camera motion too
+			return;
+		}
 
 		if (evt.GetWheelRotation())
 		{
@@ -230,6 +261,7 @@ BEGIN_EVENT_TABLE(Canvas, wxGLCanvas)
 	EVT_SIZE      (Canvas::OnResize)
 	EVT_KEY_DOWN  (Canvas::OnKeyDown)
 	EVT_KEY_UP    (Canvas::OnKeyUp)
+	EVT_CHAR      (Canvas::OnChar)
 	
 	EVT_LEFT_DOWN  (Canvas::OnMouse)
 	EVT_LEFT_UP    (Canvas::OnMouse)

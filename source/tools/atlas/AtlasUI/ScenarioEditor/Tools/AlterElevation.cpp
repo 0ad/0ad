@@ -20,12 +20,12 @@ public:
 	}
 
 
-	void OnEnable(AlterElevation*)
+	void OnEnable()
 	{
 		g_Brush_Elevation.MakeActive();
 	}
 
-	void OnDisable(AlterElevation*)
+	void OnDisable()
 	{
 		POST_MESSAGE(BrushPreview(false, Position()));
 	}

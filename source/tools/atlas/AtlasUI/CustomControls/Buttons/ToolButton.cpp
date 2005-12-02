@@ -26,6 +26,7 @@ void ToolButton::OnClick(wxCommandEvent& WXUNUSED(evt))
 {
 	if (g_Current)
 		g_Current->SetSelectedAppearance(false);
+	// TODO: set disabled when tool is changed via other (non-button) methods
 	
 	// Toggle on/off
 	if (g_Current == this)

@@ -116,7 +116,7 @@ CUnit* CUnitManager::PickUnit(const CVector3D& origin,const CVector3D& dir) cons
 
 ///////////////////////////////////////////////////////////////////////////////
 // CreateUnit: create a new unit and add it to the world
-CUnit* CUnitManager::CreateUnit(CStr& actorName, CEntity* entity)
+CUnit* CUnitManager::CreateUnit(const CStr& actorName, CEntity* entity)
 {
 	CObjectEntry* obj = g_ObjMan.FindObject(actorName);
 

@@ -20,13 +20,13 @@ public:
 	}
 
 
-	void OnEnable(PaintTerrain*)
+	void OnEnable()
 	{
 		// TODO: multiple independent brushes?
 		g_Brush_Elevation.MakeActive();
 	}
 
-	void OnDisable(PaintTerrain*)
+	void OnDisable()
 	{
 		POST_MESSAGE(BrushPreview(false, Position()));
 	}

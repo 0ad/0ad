@@ -6,6 +6,7 @@
 
 #include "Sections/Map/Map.h"
 #include "Sections/Terrain/Terrain.h"
+#include "Sections/Object/Object.h"
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -34,6 +35,9 @@ protected:
 
 		if (event.GetSelection() != -1)
 			newPage = wxDynamicCast(GetPage(event.GetSelection()), Sidebar);
+
+		if (newPage)
+			newPage->OnSwitchTo();
 
 		if (m_Splitter->IsSplit())
 		{
@@ -103,6 +107,7 @@ void SectionLayout::Build()
 	wxNotebook* sidebar = new SidebarNotebook(m_HorizSplitter, m_VertSplitter);
 	sidebar->AddPage(new MapSidebar(sidebar), _("Map"), false);
 	sidebar->AddPage(new TerrainSidebar(sidebar), _("Terrain"), false);
+	sidebar->AddPage(new ObjectSidebar(sidebar), _("Object"), false);
 
 	m_VertSplitter->SetDefaultSashPosition(-165);
 	m_VertSplitter->Initialize(m_Canvas);

@@ -3,6 +3,8 @@
 
 #include "MessagesSetup.h"
 
+// TODO: organisation, documentation, etc
+
 //////////////////////////////////////////////////////////////////////////
 
 MESSAGE(CommandString,
@@ -82,6 +84,28 @@ QUERY(GetTerrainGroupPreviews,
 	  ((std::vector<sTerrainGroupPreview>, previews))
 	  );
 
+
+//////////////////////////////////////////////////////////////////////////
+
+struct sEntitiesListItem
+{
+	std::wstring name;
+	// ...
+};
+QUERY(GetEntitiesList,
+	  , // no inputs
+	  ((std::vector<sEntitiesListItem>, entities))
+	  );
+
+MESSAGE(EntityPreview,
+		((std::wstring, name)) // or empty string => disable
+		((Position, pos))
+		((bool, usetarget)) // true => use 'target' for orientation; false => use 'angle'
+		((Position, target))
+		((float, angle))
+		);
+
+//////////////////////////////////////////////////////////////////////////
 
 QUERY(Exit,,); // no inputs nor outputs
 

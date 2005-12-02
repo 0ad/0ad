@@ -12,16 +12,18 @@ class ITool : public wxObject
 public:
 	enum KeyEventType { KEY_DOWN, KEY_UP, KEY_CHAR };
 
+	virtual void Init(void* initData) = 0;
 	virtual void Shutdown() = 0;
-	virtual void OnMouse(wxMouseEvent& evt) = 0;
-	virtual void OnKey(wxKeyEvent& evt, KeyEventType dir) = 0;
+	virtual bool OnMouse(wxMouseEvent& evt) = 0; // return true if handled
+	virtual bool OnKey(wxKeyEvent& evt, KeyEventType dir) = 0; // return true if handled
 	virtual void OnTick(float dt) = 0; // dt in seconds
 
 	virtual ~ITool() {};
 };
 
 extern ITool& GetCurrentTool();
-extern void SetCurrentTool(const wxString& name); // should usually only be used by tool buttons
+extern void SetCurrentTool(const wxString& name, void* initData = NULL);
+	// should usually only be used by tool buttons. (TODO: not true)
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -58,6 +60,10 @@ public:
 	{
 	}
 
+	virtual void Init(void* WXUNUSED(initData))
+	{
+	}
+
 	virtual void Shutdown()
 	{
 		// This can't be done in the destructor, because ~StateDrivenTool
@@ -69,8 +75,8 @@ public:
 protected:
 	// Called when the tool is enabled/disabled; always called in zero or
 	// more enable-->disable pairs per object instance.
-	virtual void OnEnable(T* WXUNUSED(obj)) {}
-	virtual void OnDisable(T* WXUNUSED(obj)) {}
+	virtual void OnEnable() {}
+	virtual void OnDisable() {}
 
 	struct State
 	{
@@ -87,8 +93,8 @@ protected:
 
 	struct sDisabled : public State
 	{
-		void OnEnter(T* obj) { obj->OnDisable(obj); }
-		void OnLeave(T* obj) { obj->OnEnable(obj); }
+		void OnEnter(T* obj) { obj->OnDisable(); }
+		void OnLeave(T* obj) { obj->OnEnable(); }
 	}
 	Disabled;
 
@@ -103,14 +109,14 @@ protected:
 private:
 	State* m_CurrentState;
 
-	virtual void OnMouse(wxMouseEvent& evt)
+	virtual bool OnMouse(wxMouseEvent& evt)
 	{
-		m_CurrentState->OnMouse(static_cast<T*>(this), evt);
+		return m_CurrentState->OnMouse(static_cast<T*>(this), evt);
 	}
 
-	virtual void OnKey(wxKeyEvent& evt, KeyEventType dir)
+	virtual bool OnKey(wxKeyEvent& evt, KeyEventType dir)
 	{
-		m_CurrentState->OnKey(static_cast<T*>(this), evt, dir);
+		return m_CurrentState->OnKey(static_cast<T*>(this), evt, dir);
 	}
 
 	virtual void OnTick(float dt)
