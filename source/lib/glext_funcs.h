@@ -165,4 +165,7 @@ FUNC(int, wglQueryPbufferARB, (HPBUFFERARB, int, int*))
 FUNC(int, wglGetPixelFormatAttribivARB, (HDC, int, int, unsigned int, const int*, int*))
 FUNC(int, wglGetPixelFormatAttribfvARB, (HDC, int, int, unsigned int, const int*, float*))
 FUNC(int, wglChoosePixelFormatARB, (HDC, const int *, const float*, unsigned int, int*, unsigned int*))
+
+// GL_GREMEDY_string_marker (from gDEBugger)
+FUNC(int, glStringMarkerGREMEDY, (GLsizei len, const GLvoid *string))
 #endif // OS_WIN

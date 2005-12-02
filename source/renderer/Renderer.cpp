@@ -1093,25 +1093,19 @@ void CRenderer::RenderWater()
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
-	glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
-	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);
-	glDepthMask(false);
+	glDepthMask(GL_FALSE);
 
-	float time = (float) get_time();
+	double time = get_time();
 
-	float period = 1.6f;
-	int curTex = (int)(fmod(time, period)*(60/period));
+	double period = 1.6;
+	int curTex = (int)(time*60/period) % 60;
 	ogl_tex_bind(m_WaterTexture[curTex], 0);
 
 	glMatrixMode(GL_TEXTURE);
 	glLoadIdentity();
-	float tx = -fmod(time, 20.0f)/20.0f;
-	float ty = fmod(time, 35.0f)/35.0f;
+	float tx = -fmod(time, 20.0)/20.0;
+	float ty = fmod(time, 35.0)/35.0;
 	glTranslatef(tx, ty, 0);
-
-	pglActiveTextureARB(GL_TEXTURE0);
-	glEnable(GL_TEXTURE_2D);
 
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
@@ -1197,7 +1191,7 @@ void CRenderer::RenderWater()
 	glLoadIdentity();
 	glMatrixMode(GL_MODELVIEW);
 
-	glDepthMask(true);
+	glDepthMask(GL_TRUE);
 	glDisable(GL_BLEND);
 	glDisable(GL_TEXTURE_2D);
 }
@@ -1713,6 +1707,7 @@ ogl_tex_transform_to(textures[i], flags & ~TEX_DXT);
 void CRenderer::UnloadAlphaMaps()
 {
 	ogl_tex_free(m_hCompositeAlphaMap);
+	m_hCompositeAlphaMap = 0;
 }
 
 
@@ -1761,7 +1756,11 @@ int CRenderer::LoadWaterTextures()
 void CRenderer::UnloadWaterTextures()
 {
 	for (uint i = 0; i < ARRAY_SIZE(m_WaterTexture); i++)
+	{
 		ogl_tex_free(m_WaterTexture[i]);
+		m_WaterTexture[i] = 0;
+	}
+	cur_loading_water_tex = 0; // so they will be reloaded if LoadWaterTextures is called again
 }
 
 

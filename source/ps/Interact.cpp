@@ -1134,8 +1134,8 @@ void CBuildingPlacer::update( float timeStep )
 	}
 
 	CTerrain *pTerrain=g_Game->GetWorld()->GetTerrain();
-	int mapSize = pTerrain->GetVerticesPerSide() * 4;		// is this a constant somewhere?
-	m_valid = pos.X>=0 && pos.Z>=0 && pos.X<=mapSize && pos.Z<=mapSize && getCollisionObject(m_bounds)==0;
+	int mapSize = (pTerrain->GetVerticesPerSide() - 1) * CELL_SIZE; // use vertices-1 to get number of tiles
+	m_valid = pos.X>=0 && pos.Z>=0 && pos.X<mapSize && pos.Z<mapSize && getCollisionObject(m_bounds)==0;
 
 	CColor col;
 	if(m_valid)
