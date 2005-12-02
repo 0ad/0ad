@@ -14,7 +14,7 @@ class PlaceObject : public StateDrivenTool<PlaceObject>
 	DECLARE_DYNAMIC_CLASS(PlaceObject);
 
 	Position m_ScreenPos, m_ObjPos, m_Target;
-	wxString m_ObjectName;
+	wxString m_ObjectID;
 
 public:
 	PlaceObject()
@@ -22,21 +22,24 @@ public:
 		SetState(&Waiting);
 	}
 
-	void SendPreviewCommand()
+	void SendObjectMsg(bool preview)
 	{
 		int dragDistSq =
 			  (m_ScreenPos.type1.x-m_Target.type1.x)*(m_ScreenPos.type1.x-m_Target.type1.x)
 			+ (m_ScreenPos.type1.y-m_Target.type1.y)*(m_ScreenPos.type1.y-m_Target.type1.y);
-		bool useTarget = (dragDistSq >= 8*8);
-		POST_MESSAGE(EntityPreview(m_ObjectName.c_str(), m_ObjPos, useTarget, m_Target, g_DefaultAngle));
+		bool useTarget = (dragDistSq >= 16*16);
+		if (preview)
+			POST_MESSAGE(EntityPreview(m_ObjectID.c_str(), m_ObjPos, useTarget, m_Target, g_DefaultAngle));
+		else
+			POST_COMMAND(CreateEntity, (m_ObjectID.c_str(), m_ObjPos, useTarget, m_Target, g_DefaultAngle));
 	}
 
 	virtual void Init(void* initData)
 	{
 		wxASSERT(initData);
-		wxString& name = *static_cast<wxString*>(initData);
-		m_ObjectName = name;
-		SendPreviewCommand();
+		wxString& id = *static_cast<wxString*>(initData);
+		m_ObjectID = id;
+		SendObjectMsg(true);
 	}
 
 	void OnEnable()
@@ -45,54 +48,65 @@ public:
 
 	void OnDisable()
 	{
-		m_ObjectName = _T("");
-		SendPreviewCommand();
+		m_ObjectID = _T("");
+		SendObjectMsg(true);
 	}
 
 	/*
-	Object placement:
-	* Select unit from list
-	* Move mouse around screen; preview of unit follows mouse
-	* Left mouse down -> remember position, fix preview to point
-	* Mouse move -> if moved > 8px, rotate unit to face mouse; else default orientation
-	* Left mouse release -> finalise placement of object on map
+		Object placement:
+		* Select unit from list
+		* Move mouse around screen; preview of unit follows mouse
+		* Left mouse down -> remember position, fix preview to point
+		* Mouse move -> if moved > [limit], rotate unit to face mouse; else default orientation
+		* Left mouse release -> finalise placement of object on map
 
-	* Scroll wheel -> rotate default orientation
+		* Scroll wheel -> rotate default orientation
 
-	* Escape -> cancel placement tool
+		* Escape -> cancel placement tool
 
-	TOOD: what happens if somebody saves while the preview is active?
+		TOOD: what happens if somebody saves while the preview is active?
 	*/
 
-	bool OnMouseOverride(wxMouseEvent& evt)
+	bool OnMouseOverride(wxMouseEvent& WXUNUSED(evt))
 	{
-		if (evt.GetWheelRotation())
+		// This used to let the scroll-wheel rotate units, but that overrides
+		// the camera zoom and makes navigation very awkward, so it doesn't
+		// any more.
+		return false;
+	}
+
+	bool OnKeyOverride(wxKeyEvent& evt, KeyEventType dir)
+	{
+		switch (dir)
 		{
-			float speed = M_PI/36.f;
+		case KEY_CHAR:
+			if (evt.GetKeyCode() == WXK_ESCAPE)
+			{
+				SetState(&Disabled);
+				return true;
+			}
+			break;
+		}
+		return false;
+	}
+
+	void RotateTick(float dt)
+	{
+		int dir = 0;
+		if (wxGetKeyState(WXK_NEXT))  ++dir; // page-down key
+		if (wxGetKeyState(WXK_PRIOR)) --dir; // page-up key
+		if (dir)
+		{
+			float speed = M_PI/2.f; // radians per second
 			if (wxGetKeyState(WXK_SHIFT) && wxGetKeyState(WXK_CONTROL))
 				speed /= 64.f;
 			else if (wxGetKeyState(WXK_CONTROL))
 				speed /= 4.f;
 			else if (wxGetKeyState(WXK_SHIFT))
 				speed *= 4.f;
-			g_DefaultAngle += (evt.GetWheelRotation() * speed / evt.GetWheelDelta());
-			SendPreviewCommand();
-			return true;
+			g_DefaultAngle += (dir * dt * speed);
+			SendObjectMsg(true);
 		}
-		else
-			return false;
-	}
-
-	bool OnKeyOverride(wxKeyEvent& evt, KeyEventType dir)
-	{
-		if (dir == KEY_CHAR && evt.GetKeyCode() == WXK_ESCAPE)
-		{
-			SetState(&Disabled);
-			return true;
-		}
-		// TODO: arrow keys for rotation?
-		else
-			return false;
 	}
 
 
@@ -105,7 +119,7 @@ public:
 			else if (evt.LeftDown())
 			{
 				obj->m_ObjPos = obj->m_ScreenPos = obj->m_Target = Position(evt.GetPosition());
-				obj->SendPreviewCommand();
+				obj->SendObjectMsg(true);
 				obj->m_ObjPos = Position::Unchanged(); // make sure object is stationary even if the camera moves
 				SET_STATE(Placing);
 				return true;
@@ -113,7 +127,7 @@ public:
 			else if (evt.Moving())
 			{
 				obj->m_ObjPos = obj->m_ScreenPos = obj->m_Target = Position(evt.GetPosition());
-				obj->SendPreviewCommand();
+				obj->SendObjectMsg(true);
 				return true;
 			}
 			else
@@ -122,6 +136,10 @@ public:
 		bool OnKey(PlaceObject* obj, wxKeyEvent& evt, KeyEventType dir)
 		{
 			return obj->OnKeyOverride(evt, dir);
+		}
+		void OnTick(PlaceObject* obj, float dt)
+		{
+			obj->RotateTick(dt);
 		}
 	}
 	Waiting;
@@ -135,16 +153,18 @@ public:
 			else if (evt.LeftUp())
 			{
 				obj->m_Target = Position(evt.GetPosition());
-				// TODO: createobject command, so you can actually place an object
+				// Create the actual object
+				obj->SendObjectMsg(false);
+				// Go back to preview mode
 				SET_STATE(Waiting);
 				obj->m_ObjPos = obj->m_ScreenPos = obj->m_Target;
-				obj->SendPreviewCommand();
+				obj->SendObjectMsg(true);
 				return true;
 			}
-			else if (evt.Moving())
+			else if (evt.Dragging())
 			{
 				obj->m_Target = Position(evt.GetPosition());
-				obj->SendPreviewCommand();
+				obj->SendObjectMsg(true);
 				return true;
 			}
 			else
@@ -153,6 +173,10 @@ public:
 		bool OnKey(PlaceObject* obj, wxKeyEvent& evt, KeyEventType dir)
 		{
 			return obj->OnKeyOverride(evt, dir);
+		}
+		void OnTick(PlaceObject* obj, float dt)
+		{
+			obj->RotateTick(dt);
 		}
 	}
 	Placing;

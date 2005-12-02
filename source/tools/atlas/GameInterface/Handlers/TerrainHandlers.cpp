@@ -200,7 +200,7 @@ BEGIN_COMMAND(PaintTerrain)
 		prev->m_TerrainDelta.OverlayWith(m_TerrainDelta);
 	}
 
-END_COMMAND(PaintTerrain);
+END_COMMAND(PaintTerrain)
 
 
 }

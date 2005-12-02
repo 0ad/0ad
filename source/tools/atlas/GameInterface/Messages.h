@@ -89,6 +89,7 @@ QUERY(GetTerrainGroupPreviews,
 
 struct sEntitiesListItem
 {
+	std::wstring id;
 	std::wstring name;
 	// ...
 };
@@ -98,12 +99,21 @@ QUERY(GetEntitiesList,
 	  );
 
 MESSAGE(EntityPreview,
-		((std::wstring, name)) // or empty string => disable
+		((std::wstring, id)) // or empty string => disable
 		((Position, pos))
 		((bool, usetarget)) // true => use 'target' for orientation; false => use 'angle'
 		((Position, target))
 		((float, angle))
 		);
+
+COMMAND(CreateEntity, NOMERGE,
+		((std::wstring, id))
+		((Position, pos))
+		((bool, usetarget)) // true => use 'target' for orientation; false => use 'angle'
+		((Position, target))
+		((float, angle))
+		);
+
 
 //////////////////////////////////////////////////////////////////////////
 

@@ -1,6 +1,7 @@
 #include "precompiled.h"
 
 #include "MessageHandler.h"
+#include "../GameLoop.h"
 
 #include "graphics/Patch.h"
 #include "graphics/TextureManager.h"
@@ -30,6 +31,8 @@ static void InitGame(std::wstring map)
 
 	// Initialise the game:
 	g_Game = new CGame();
+
+	g_GameLoop->worldloaded = true;
 }
 
 static void StartGame()

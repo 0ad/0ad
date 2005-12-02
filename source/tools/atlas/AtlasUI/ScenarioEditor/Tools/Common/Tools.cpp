@@ -80,7 +80,7 @@ bool WorldCommand::Merge(AtlasWindowCommand* p)
 	if (! prev)
 		return false;
 
-	if (m_Command->GetType() != prev->m_Command->GetType()) // comparing char* pointers, because they're unique-per-class constants
+	if (m_Command->GetName() != prev->m_Command->GetName()) // comparing char* pointers, because they're unique-per-class constants
 		return false;
 
 	if (! m_Command->IsMergeable())

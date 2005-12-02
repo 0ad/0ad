@@ -14,8 +14,10 @@
 #include "lib/timer.h"
 #include "lib/res/file/vfs.h"
 #include "ps/CLogger.h"
-
-#include "ps/GameSetup/GameSetup.h"	// Render()
+#include "ps/GameSetup/GameSetup.h"
+#include "ps/Game.h"
+#include "simulation/Simulation.h"
+#include "simulation/EntityManager.h"
 
 using namespace AtlasMessage;
 
@@ -75,6 +77,7 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 	state.argv = argv;
 	state.running = true;
 	state.rendering = false;
+	state.worldloaded = false;
 	state.glContext = NULL;
 
 	double last_activity = get_time();
@@ -168,7 +171,15 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 
 		//////////////////////////////////////////////////////////////////////////
 
+		// Do per-frame processing:
+
 		vfs_reload_changed_files();
+		
+		if (state.worldloaded)
+		{
+			g_EntityManager.updateAll(0);
+			g_Game->GetSimulation()->Update(0.0);
+		}
 
 		if (state.rendering)
 		{

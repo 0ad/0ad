@@ -108,6 +108,6 @@ BEGIN_COMMAND(AlterElevation)
 		prev->m_TerrainDelta.OverlayWith(m_TerrainDelta);
 	}
 
-END_COMMAND(AlterElevation);
+END_COMMAND(AlterElevation)
 
 }

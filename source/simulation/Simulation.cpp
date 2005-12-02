@@ -65,7 +65,7 @@ void CSimulation::Update(double frameTime)
 {
 	m_DeltaTime += frameTime;
 	
-	if( m_DeltaTime >= 0.0 )
+	if( m_DeltaTime >= 0.0 && frameTime )
 	{
 		PROFILE( "simulation turn" );
 		// A new simulation frame is required.

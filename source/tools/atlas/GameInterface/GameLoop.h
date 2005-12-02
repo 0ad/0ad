@@ -9,6 +9,7 @@ struct GameLoopState
 	char** argv;
 	bool running;
 	bool rendering;
+	bool worldloaded;
 	const void* glContext;
 	float frameLength; // smoothed to avoid large jumps
 

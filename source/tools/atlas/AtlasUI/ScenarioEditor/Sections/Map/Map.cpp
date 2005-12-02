@@ -4,6 +4,7 @@
 
 #include "Buttons/ActionButton.h"
 #include "General/Datafile.h"
+#include "ScenarioEditor/Tools/Common/Tools.h"
 
 #include "GameInterface/Messages.h"
 
@@ -18,6 +19,12 @@ static void LoadMap(void*)
 	{
 		// TODO: Work when the map is not in .../maps/scenarios/
 		std::wstring map = dlg.GetFilename().c_str();
+
+		// Deactivate tools, so they don't carry forwards into the new CWorld
+		// and crash.
+		SetCurrentTool(_T(""));
+		// TODO: clear the undo buffer, etc
+
 		POST_MESSAGE(LoadMap(map));
 	}
 	

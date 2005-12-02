@@ -37,6 +37,7 @@ struct Position
 	// Only for use in the game, not the UI.
 	// Implementations in Misc.cpp.
 	void GetWorldSpace(CVector3D& vec) const;
+	void GetWorldSpace(CVector3D& vec, float h) const;
 	void GetWorldSpace(CVector3D& vec, const CVector3D& prev) const;
 	void GetScreenSpace(float& x, float& y) const;
 };
@@ -55,8 +56,8 @@ struct IMessage
 
 #define MESSAGESTRUCT(t) \
 	struct m##t : public IMessage { \
-		const char* GetName() const { return #t; } \
-		Type GetType() const { return IMessage::Message; } \
+		virtual const char* GetName() const { return #t; } \
+		virtual Type GetType() const { return IMessage::Message; } \
 	private: \
 		const m##t& operator=(const m##t&); \
 	public:

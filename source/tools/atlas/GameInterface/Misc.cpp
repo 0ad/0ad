@@ -30,6 +30,19 @@ void AtlasMessage::Position::GetWorldSpace(CVector3D& vec) const
 	}
 }
 
+void AtlasMessage::Position::GetWorldSpace(CVector3D& vec, float h) const
+{
+	switch (type)
+	{
+	case 1:
+		vec = g_Game->GetView()->GetCamera()->GetWorldCoordinates(type1.x, type1.y, h);
+		break;
+
+	default:
+		GetWorldSpace(vec);
+	}
+}
+
 void AtlasMessage::Position::GetWorldSpace(CVector3D& vec, const CVector3D& prev) const
 {
 	switch (type)
@@ -37,6 +50,7 @@ void AtlasMessage::Position::GetWorldSpace(CVector3D& vec, const CVector3D& prev
 	case 2:
 		vec = prev;
 		break;
+
 	default:
 		GetWorldSpace(vec);
 	}

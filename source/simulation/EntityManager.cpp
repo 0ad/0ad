@@ -181,8 +181,11 @@ void CEntityManager::renderAll()
 
 void CEntityManager::destroy( u16 handle )
 {
-	m_reaper.push_back( m_entities[handle].m_entity );
-	m_entities[handle].m_entity->me.m_handle = INVALID_HANDLE;
+	if (m_entities[handle].m_entity->me.m_handle != INVALID_HANDLE)
+	{
+		m_reaper.push_back( m_entities[handle].m_entity );
+		m_entities[handle].m_entity->me.m_handle = INVALID_HANDLE;
+	}
 }
 
 bool CEntityManager::m_extant = false;

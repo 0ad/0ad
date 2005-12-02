@@ -37,6 +37,8 @@ public:
 	int Initialize(CGameAttributes *pGameAttributes);
 
 	// Perform all CSimulation updates for the specified elapsed time.
+	// (If frameTime=0, no simulation updates are done, but the graphics
+	// are interpolated.)
 	void Update(double frameTime);
 
 	// Calculate the message mask of a message to be queued

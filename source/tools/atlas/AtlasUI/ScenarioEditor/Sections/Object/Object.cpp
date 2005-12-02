@@ -53,8 +53,9 @@ void ObjectSidebar::OnFirstDisplay()
 	qry.Post();
 	for (std::vector<AtlasMessage::sEntitiesListItem>::iterator it = qry.entities.begin(); it != qry.entities.end(); ++it)
 	{
+		wxString id = it->id.c_str();
 		wxString name = it->name.c_str();
-		m_ObjectListBox->Append(name, new wxStringClientData(name));
+		m_ObjectListBox->Append(name, new wxStringClientData(id));
 	}
 }
 

@@ -216,6 +216,23 @@ CVector3D CCamera::GetWorldCoordinates( int px, int py )
 	return( origin + dir * ( ( 50.0f - origin.Y ) / dir.Y ) );
 }
 
+CVector3D CCamera::GetWorldCoordinates(int px, int py, float h)
+{
+	CPlane plane;
+	plane.Set(CVector3D(0.f, 1.f, 0.f), CVector3D(0.f, h, 0.f)); // upwards normal, passes through h
+
+	CVector3D origin, dir, delta, currentTarget;
+
+	BuildCameraRay(px, py, origin, dir);
+
+	if (plane.FindRayIntersection(origin, dir, &currentTarget))
+		return currentTarget;
+
+	// No intersection with the infinite plane - nothing sensible can be returned,
+	// so just choose an arbitrary point on the plane
+	return CVector3D(0.f, h, 0.f);
+}
+
 CVector3D CCamera::GetFocus()
 {
 	// Basically the same as GetWorldCoordinates
