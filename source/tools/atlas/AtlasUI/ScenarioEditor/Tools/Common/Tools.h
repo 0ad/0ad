@@ -23,7 +23,10 @@ public:
 
 extern ITool& GetCurrentTool();
 extern void SetCurrentTool(const wxString& name, void* initData = NULL);
-	// should usually only be used by tool buttons. (TODO: not true)
+
+class ToolButton;
+extern void RegisterToolButton(ToolButton* button, const wxString& toolName);
+extern void RegisterToolBarButton(wxToolBar* toolbar, int buttonId, const wxString& toolName);
 
 //////////////////////////////////////////////////////////////////////////
 

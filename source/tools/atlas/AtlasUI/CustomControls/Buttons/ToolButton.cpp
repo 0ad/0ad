@@ -20,35 +20,52 @@ ToolButton::ToolButton
 	// (by the wxButton code), rather than initially using the native
 	// (fixed colour) button appearance.
 	SetSelectedAppearance(false);
+
+	RegisterToolButton(this, toolName);
 }
 
 void ToolButton::OnClick(wxCommandEvent& WXUNUSED(evt))
 {
-	if (g_Current)
-		g_Current->SetSelectedAppearance(false);
-	// TODO: set disabled when tool is changed via other (non-button) methods
-	
 	// Toggle on/off
-	if (g_Current == this)
-	{
-		g_Current = NULL;
-		SetSelectedAppearance(false);
+	if (m_Selected)
 		SetCurrentTool(_T(""));
-	}
 	else
-	{
-		g_Current = this;
-		SetSelectedAppearance(true);
 		SetCurrentTool(m_Tool);
-	}
 }
 
 void ToolButton::SetSelectedAppearance(bool selected)
 {
+	m_Selected = selected;
 	if (selected)
 		SetBackgroundColour(wxColour(0xee, 0xcc, 0x55));
 	else
 		SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE));
 }
 
-ToolButton* ToolButton::g_Current = NULL;
+//////////////////////////////////////////////////////////////////////////
+
+BEGIN_EVENT_TABLE(ToolButtonBar, wxToolBar)
+	EVT_TOOL(wxID_ANY, ToolButtonBar::OnTool)
+END_EVENT_TABLE()
+
+ToolButtonBar::ToolButtonBar(wxWindow* parent, int baseID)
+: wxToolBar(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER|wxTB_FLAT|wxTB_HORIZONTAL), m_Id(baseID)
+{
+}
+
+void ToolButtonBar::AddToolButton(const wxString& shortLabel, const wxString& longLabel, const wxBitmap& bitmap, const wxString& toolName)
+{
+	AddCheckTool(m_Id, shortLabel, bitmap, wxNullBitmap, longLabel);
+	m_Buttons[m_Id] = toolName;
+	
+	RegisterToolBarButton(this, m_Id, toolName);
+
+	++m_Id;
+}
+
+void ToolButtonBar::OnTool(wxCommandEvent& evt)
+{
+	std::map<int, wxString>::iterator it = m_Buttons.find(evt.GetId());
+	wxCHECK_RET(it != m_Buttons.end(), _T("Invalid toolbar button"));
+	SetCurrentTool(it->second);
+}

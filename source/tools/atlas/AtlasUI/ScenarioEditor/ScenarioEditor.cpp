@@ -4,11 +4,18 @@
 
 #include "wx/glcanvas.h"
 #include "wx/evtloop.h"
+#include "wx/tooltip.h"
+
 #include "SnapSplitterWindow/SnapSplitterWindow.h"
 #include "HighResTimer/HighResTimer.h"
+#include "Buttons/ToolButton.h"
 
 #include "GameInterface/MessagePasser.h"
 #include "GameInterface/Messages.h"
+
+#include "Misc/Graphics/Toolbar/default.xpm"
+#include "Misc/Graphics/Toolbar/terrainpaint.xpm"
+#include "Misc/Graphics/Toolbar/elevationedit.xpm"
 
 #include "tools/Common/Tools.h"
 
@@ -310,6 +317,8 @@ enum
 	ID_Wireframe,
 	ID_MessageTrace,
 	ID_Screenshot,
+
+	ID_Toolbar // must be last in the list
 };
 
 BEGIN_EVENT_TABLE(ScenarioEditor, wxFrame)
@@ -335,6 +344,8 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 : wxFrame(parent, wxID_ANY, _("Atlas - Scenario Editor"), wxDefaultPosition, wxSize(1024, 768))
 {
 //	wxLog::SetTraceMask(wxTraceMessages);
+
+	wxToolTip::Enable(true);
 
 	//////////////////////////////////////////////////////////////////////////
 	// Menu
@@ -379,10 +390,18 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 		menuMisc->Append(ID_Screenshot, _("&Screenshot"));
 	}
 
+	// Toolbar:
+
+	ToolButtonBar* toolbar = new ToolButtonBar(this, ID_Toolbar);
+	toolbar->AddToolButton(_("Default"), _("Default"), wxBitmap(xpm_toolbar_default), _T(""));
+	toolbar->AddToolButton(_("Elevation"), _("Alter terrain elevation"), wxBitmap(xpm_toolbar_elevationedit), _T("AlterElevation"));
+	toolbar->AddToolButton(_("Paint Terrain"), _("Paint terrain texture"), wxBitmap(xpm_toolbar_terrainpaint), _T("PaintTerrain"));
+	toolbar->Realize();
+	SetToolBar(toolbar);
+
 	//////////////////////////////////////////////////////////////////////////
 	// Main window
 
-	//SnapSplitterWindow* splitter = new SnapSplitterWindow(this);
 	m_SectionLayout.SetWindow(this);
 
 	// Set up GL canvas:

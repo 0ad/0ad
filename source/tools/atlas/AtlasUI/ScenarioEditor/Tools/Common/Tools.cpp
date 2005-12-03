@@ -2,6 +2,7 @@
 
 #include "Tools.h"
 #include "GameInterface/Messages.h"
+#include "CustomControls/Buttons/ToolButton.h"
 
 class DummyTool : public ITool
 {
@@ -13,6 +14,9 @@ class DummyTool : public ITool
 } dummy;
 
 static ITool* g_CurrentTool = &dummy;
+static wxString g_CurrentToolName;
+
+void SetActive(bool active, const wxString& name);
 
 ITool& GetCurrentTool()
 {
@@ -27,6 +31,8 @@ void SetCurrentTool(const wxString& name, void* initData)
 		delete g_CurrentTool;
 	}
 
+	SetActive(false, g_CurrentToolName);
+
 	ITool* tool = NULL;
 	if (name.Len())
 	{
@@ -39,7 +45,59 @@ void SetCurrentTool(const wxString& name, void* initData)
 		g_CurrentTool = &dummy;
 	else
 		g_CurrentTool = tool;
+
+	g_CurrentToolName = name;
+	SetActive(true, g_CurrentToolName);
 }
+
+//////////////////////////////////////////////////////////////////////////
+
+struct toolbarButton
+{
+	wxString name;
+	wxToolBar* toolbar;
+	int id;
+};
+struct toolButton
+{
+	wxString name;
+	ToolButton* button;
+};
+
+typedef std::vector<toolbarButton> toolbarButtons_t;
+typedef std::vector<toolButton> toolButtons_t;
+
+static toolbarButtons_t toolbarButtons;
+static toolButtons_t toolButtons;
+
+void SetActive(bool active, const wxString& name)
+{
+	for (toolbarButtons_t::iterator it = toolbarButtons.begin(); it != toolbarButtons.end(); ++it)
+		if (it->name == name)
+			it->toolbar->ToggleTool(it->id, active);
+
+	for (toolButtons_t::iterator it = toolButtons.begin(); it != toolButtons.end(); ++it)
+		if (it->name == name)
+			it->button->SetSelectedAppearance(active);
+}
+
+void RegisterToolButton(ToolButton* button, const wxString& toolName)
+{
+	toolButton b;
+	b.name = toolName;
+	b.button = button;
+	toolButtons.push_back(b);
+}
+
+void RegisterToolBarButton(wxToolBar* toolbar, int buttonId, const wxString& toolName)
+{
+	toolbarButton b;
+	b.name = toolName;
+	b.toolbar = toolbar;
+	b.id = buttonId;
+	toolbarButtons.push_back(b);
+}
+
 
 //////////////////////////////////////////////////////////////////////////
 
