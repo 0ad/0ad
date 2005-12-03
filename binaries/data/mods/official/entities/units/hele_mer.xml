@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Parent="template_unit_mechanical_ship_mer">
+	<Traits>
+		<Id
+			civ_code="hele"
+			civ="Hellenes"
+			internal_only="false"
+
+			specific="Emporiko Plio"
+			history="history goes here"
+		/>
+	
+	</Traits>
+
+	<Actor>structures/hellenes/merchant.xml</Actor>
+</Entity>

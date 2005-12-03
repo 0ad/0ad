@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Parent="template_unit_mechanical_ship_bir">
+	<Traits>
+		<Id
+			civ_code="hele"
+			civ="Hellenes"
+			internal_only="false"
+
+			specific="Pentekontor"
+			history="Pentekontors were employed from 800 BC, mostly as a light support unit in the Greek navy. After 600 BC, they were only seen in battle in very limited numbers. They were still in use by small states which could not afford a sufficient number of triremes for their navy."
+		/>
+	
+	</Traits>
+
+	<Actor>structures/hellenes/bireme.xml</Actor>
+</Entity>

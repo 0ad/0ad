@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant>
+      <mesh>structural/hele_tri.pmd</mesh>
+      <props>
+        <prop actor="props/structures/hellenes/hele_tri1.xml" attachpoint="props_main"/>
+        <prop actor="props/structures/hellenes/hele_tri2.xml" attachpoint="mast"/>
+        <prop actor="props/structures/hellenes/hele_tri3.xml" attachpoint="oars"/>
+      </props>
+      <texture>structural/hele_trireme.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>
