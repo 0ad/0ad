@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant name="a">
+      <mesh>gaia/tree_carob_a.pmd</mesh>
+      <props>
+        <prop actor="flora/trees/carob_top.xml" attachpoint="tree"/>
+      </props>
+    </variant>
+    <variant name="b">
+      <mesh>gaia/tree_carob_b.pmd</mesh>
+      <props>
+        <prop actor="flora/trees/carob_top.xml" attachpoint="tree"/>
+      </props>
+    </variant>
+    <variant name="c">
+      <mesh>gaia/tree_carob_c.pmd</mesh>
+      <props>
+        <prop actor="flora/trees/carob_top.xml" attachpoint="tree"/>
+      </props>
+    </variant>
+    <variant name="d">
+      <mesh>gaia/tree_carob_d.pmd</mesh>
+      <props>
+        <prop actor="flora/trees/carob_top.xml" attachpoint="tree"/>
+      </props>
+    </variant>
+    <variant name="e">
+      <mesh>gaia/tree_carob_e.pmd</mesh>
+      <props>
+        <prop actor="flora/trees/carob_top.xml" attachpoint="tree"/>
+      </props>
+    </variant>
+    <variant name="f">
+      <mesh>gaia/tree_carob_f.pmd</mesh>
+      <props>
+        <prop actor="flora/trees/carob_top.xml" attachpoint="tree"/>
+      </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant>
+      <texture>gaia/trunk_deciduous_b.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>
