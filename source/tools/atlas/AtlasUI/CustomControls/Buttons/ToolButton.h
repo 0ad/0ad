@@ -23,13 +23,14 @@ class ToolButtonBar : public wxToolBar
 {
 public:
 	ToolButtonBar(wxWindow* parent, int baseID);
-	void AddToolButton(const wxString& shortLabel, const wxString& longLabel, const wxBitmap& bitmap, const wxString& toolName);
+	void AddToolButton(const wxString& shortLabel, const wxString& longLabel, const wxString& iconPNGFilename, const wxString& toolName);
 
 protected:
 	void OnTool(wxCommandEvent& evt);
 
 private:
 	int m_Id;
+	int m_Size;
 	std::map<int, wxString> m_Buttons;
 
 	DECLARE_EVENT_TABLE();

@@ -13,10 +13,6 @@
 #include "GameInterface/MessagePasser.h"
 #include "GameInterface/Messages.h"
 
-#include "Misc/Graphics/Toolbar/default.xpm"
-#include "Misc/Graphics/Toolbar/terrainpaint.xpm"
-#include "Misc/Graphics/Toolbar/elevationedit.xpm"
-
 #include "tools/Common/Tools.h"
 
 //#define UI_ONLY
@@ -343,9 +339,11 @@ AtlasWindowCommandProc& ScenarioEditor::GetCommandProc() { return g_CommandProc;
 ScenarioEditor::ScenarioEditor(wxWindow* parent)
 : wxFrame(parent, wxID_ANY, _("Atlas - Scenario Editor"), wxDefaultPosition, wxSize(1024, 768))
 {
-//	wxLog::SetTraceMask(wxTraceMessages);
-
+	// Global application initialisation:
+	//	wxLog::SetTraceMask(wxTraceMessages);
+	SetIcon(wxIcon(_T("ICON_ScenarioEditor")));
 	wxToolTip::Enable(true);
+	wxImage::AddHandler(new wxPNGHandler);
 
 	//////////////////////////////////////////////////////////////////////////
 	// Menu
@@ -393,9 +391,11 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	// Toolbar:
 
 	ToolButtonBar* toolbar = new ToolButtonBar(this, ID_Toolbar);
-	toolbar->AddToolButton(_("Default"), _("Default"), wxBitmap(xpm_toolbar_default), _T(""));
-	toolbar->AddToolButton(_("Elevation"), _("Alter terrain elevation"), wxBitmap(xpm_toolbar_elevationedit), _T("AlterElevation"));
-	toolbar->AddToolButton(_("Paint Terrain"), _("Paint terrain texture"), wxBitmap(xpm_toolbar_terrainpaint), _T("PaintTerrain"));
+	// (button label; tooltip text; image; internal tool name)
+	toolbar->AddToolButton(_("Default"), _("Default"), _T("default.png"), _T(""));
+	toolbar->AddToolButton(_("Move"), _("Move/rotate object"), _T("moveobject.png"), _T("MoveObject"));
+	toolbar->AddToolButton(_("Elevation"), _("Alter terrain elevation"), _T("alterelevation.png"), _T("AlterElevation"));
+	toolbar->AddToolButton(_("Paint Terrain"), _("Paint terrain texture"), _T("paintterrain.png"), _T("PaintTerrain"));
 	toolbar->Realize();
 	SetToolBar(toolbar);
 
