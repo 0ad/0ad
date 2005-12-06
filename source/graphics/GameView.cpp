@@ -18,6 +18,7 @@
 #include "TextureManager.h"
 #include "ObjectManager.h"
 #include "LOSManager.h"
+#include "EntityOrders.h"
 #include "Bound.h"
 #include "Pyrogenesis.h"
 #include "Hotkey.h"
@@ -37,7 +38,7 @@
 #include "timer.h"
 
 float g_MaxZoomHeight=350.0f;	//note:  Max terrain height is this minus YMinOffset
-float g_YMinOffset=25.0f;
+float g_YMinOffset=15.0f;
 
 
 extern int g_xres, g_yres;
@@ -76,6 +77,10 @@ CGameView::CGameView(CGame *pGame):
 	m_Camera.m_Orientation.RotateY(DEGTORAD(-45));
 	m_Camera.m_Orientation.Translate (100, 150, -100);
 	g_Renderer.SetCamera(m_Camera);
+
+	m_UnitView=NULL;
+	m_UnitAttach=NULL;
+	
 
 	ONCE( ScriptingInit(); );
 }
@@ -345,7 +350,84 @@ void CGameView::Update(float DeltaTime)
 {
 	if (!g_app_has_focus)
 		return;
+	
+	if (m_UnitView)
+	{
+		CQuaternion ToRotate = m_UnitViewProp->m_Rotation - m_Camera.m_Orientation.GetRotation();
+		ToRotate.m_V.Y += m_UnitView->m_orientation;
+		m_Camera.m_Orientation.Rotate(ToRotate);
+		CVector3D CamTrans = m_Camera.m_Orientation.GetTranslation();
+		CVector3D ToMove = m_UnitView->m_position + m_UnitViewProp->m_Position - CamTrans;
+		//Used to fix incorrect positioning
+		//ToMove.Y += 3.5f;
+		m_Camera.m_Orientation.Translate(ToMove);
+		
 
+		/*if( !m_UnitView->m_orderQueue.empty())
+		{
+			CEntityOrder Order = m_UnitView->m_orderQueue.front();
+		
+			if (Order.m_type == CEntityOrder::ORDER_ATTACK_MELEE_NOPATHING || 
+				Order.m_type == CEntityOrder::ORDER_GATHER_NOPATHING)
+			{
+				CVector3D Focus = m_Camera.GetFocus();
+				CVector3D Target;
+				Target.X = (float) Order.m_data[0].location.x;
+				Target.Y = (float) m_Terrain->getExactGroundLevel( 
+							    Order.m_data[0].location.x, Order.m_data[0].location.y );
+				Target.Z = (float) Order.m_data[0].location.y;
+				
+				CVector3D Distance = Target - Focus;
+				float length = Distance.GetLength();
+				
+				//We're looking too far out. Correct by moving up or down toward the true position.
+				if (length > 1.0f)
+				{
+					Distance.Normalize();
+					CVector3D Down(0.0f, -1.0f, 0.0f);
+					//Find opposite side's length
+					float Angle = tan( acosf(Distance.Dot(Down)) );
+					float opp = length * Angle; 
+					float hyp = 1 / sinf(Angle) * opp; 
+					
+					CVector3D CamFace = m_Camera.m_Orientation.GetIn();
+					CVector3D ToFace = Target - m_Camera.m_Orientation.GetTranslation();
+					ToFace.Normalize();
+					CamFace.Normalize();
+					//Find out if we need to move up or down.  Dot product returns cosine.
+					//Larger cos means smaller angle.  Smaller angle for target means move down.
+					if ( ToFace.Dot(Down) > CamFace.Dot(Down) )
+						m_Camera.m_Orientation.Translate(0.0f, -hyp, 0.0f);
+					else
+						m_Camera.m_Orientation.Translate(0.0f, hyp, 0.0f);
+				}
+			}	//Check order type
+		}	//Is order queue empty?
+	*/
+		
+		m_Camera.UpdateFrustum();
+		return;
+	}
+	
+	if (m_UnitAttach)
+	{
+		CVector3D ToMove = m_UnitAttach->m_position - m_Camera.GetFocus();
+		m_Camera.m_Orientation._14 += ToMove.X;
+		m_Camera.m_Orientation._34 += ToMove.Z;
+		m_Camera.UpdateFrustum();
+		return;
+	}
+	
+	if (!m_TrackManager.m_TrackQueue.empty())
+	{
+		if(!m_TrackManager.Update(DeltaTime))
+		{
+			ResetCamera();
+		}
+			m_Camera.UpdateFrustum();
+		return;
+	}
+	
 	float delta = powf( m_ViewSnapSmoothness, DeltaTime );
 	m_Camera.m_Orientation.Translate( m_CameraDelta * ( 1.0f - delta ) );
 	m_CameraDelta *= delta;
@@ -562,6 +644,19 @@ void CGameView::Update(float DeltaTime)
 	m_Camera.UpdateFrustum ();
 }
 
+void CGameView::ToUnitView(CEntity* target, SPropPoint* prop) 
+{ 
+	if( !target )
+	{
+		//prevent previous zooming
+		m_ZoomDelta = 0.0f;
+		ResetCamera();
+		SetCameraTarget( m_UnitView->m_position );
+	}
+	m_UnitView = target; 
+	m_UnitViewProp = prop;
+
+}
 void CGameView::PushCameraTarget( const CVector3D& target )
 {
 	// Save the current position
@@ -647,7 +742,7 @@ InReaction CGameView::HandleEvent(const SDL_Event* ev)
 		case HOTKEY_CAMERA_ZOOM_WHEEL_OUT:
 			m_ZoomDelta -= m_ViewZoomSensitivityWheel;
 			return( IN_HANDLED );
-
+		
 		default:
 
 			if( ( ev->user.code >= HOTKEY_CAMERA_BOOKMARK_0 ) && ( ev->user.code <= HOTKEY_CAMERA_BOOKMARK_9 ) )

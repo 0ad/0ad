@@ -5,10 +5,10 @@
 extern float g_MaxZoomHeight;	//note:  Max terrain height is this minus YMinOffset
 extern float g_YMinOffset;
 
-
 #include "Camera.h"
+#include "CinemaTrack.h"
+#include "ModelDef.h"
 #include "Vector3D.h"
-
 #include "scripting/ScriptableObject.h"
 
 #include "lib/input.h"
@@ -27,6 +27,8 @@ class CGameView: public CJSObject<CGameView>
 	CWorld *m_pWorld;
 	CTerrain *m_Terrain;
 	CCamera m_Camera;
+	CCinemaManager m_TrackManager;
+
 
 	
 	////////////////////////////////////////
@@ -47,6 +49,10 @@ class CGameView: public CJSObject<CGameView>
 	// Camera Controls State
 	CVector3D m_CameraDelta;
 	CVector3D m_CameraPivot;
+
+	CEntity* m_UnitView;
+	SPropPoint* m_UnitViewProp;
+	CEntity* m_UnitAttach;
 	//float m_CameraZoom;
 	std::vector<CVector3D> m_CameraTargets;
 
@@ -112,6 +118,14 @@ public:
 	void PushCameraTarget( const CVector3D& target );
 	void SetCameraTarget( const CVector3D& target );
 	void PopCameraTarget();
+
+	//First person camera attachment (through the eyes of the unit)
+	void ToUnitView(CEntity* target, SPropPoint* prop);
+	//Keep view the same but follow the unit
+	void AttachToUnit(CEntity* target) { m_UnitAttach = target; }
+	
+	bool IsAttached () { if( m_UnitAttach ) { return true; }  return false; }
+	bool IsUnitView () { if( m_UnitView ) { return true; } return false; }
 	
 	inline CCamera *GetCamera()
 	{	return &m_Camera; }
