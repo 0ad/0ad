@@ -83,6 +83,8 @@ static SHotkeyInfo hotkeyInfo[] =
 	{ HOTKEY_CAMERA_RIGHT, "camera.right", SDLK_RIGHT, 0 },
 	{ HOTKEY_CAMERA_UP, "camera.up", SDLK_UP, 0 },
 	{ HOTKEY_CAMERA_DOWN, "camera.down", SDLK_DOWN, 0 },
+	{ HOTKEY_CAMERA_UNIT_VIEW, "camera.unit.view", SDLK_u, 0 },
+	{ HOTKEY_CAMERA_UNIT_ATTACH, "camera.unit.attach", SDLK_l, 0 },
 	{ HOTKEY_CAMERA_BOOKMARK_0, "camera.bookmark.0", SDLK_F5, 0, },
 	{ HOTKEY_CAMERA_BOOKMARK_1, "camera.bookmark.1", SDLK_F6, 0, },
 	{ HOTKEY_CAMERA_BOOKMARK_2, "camera.bookmark.2", SDLK_F7, 0, },
