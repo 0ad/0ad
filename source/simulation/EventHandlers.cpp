@@ -10,7 +10,7 @@ CEventAttack::CEventAttack( CEntity* target ) : CScriptEvent( L"attack", EVENT_A
 CEventHeal::CEventHeal( CEntity* target ) : CScriptEvent( L"heal", EVENT_HEAL, true)
 {
 	m_target=target;
-	AddLocalProperty( L"target", &target );
+	AddLocalProperty( L"target", &m_target );
 }
 CEventGather::CEventGather( CEntity* target ) : CScriptEvent( L"gather", EVENT_GATHER, true )
 {
