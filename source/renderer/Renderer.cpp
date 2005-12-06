@@ -1083,10 +1083,18 @@ void CRenderer::RenderWater()
 	{
 		return;
 	}
-
+	
+	//Fresnel effect
+	CCamera* Camera=g_Game->GetView()->GetCamera();
+	CVector3D CamFace=Camera->m_Orientation.GetIn();
+	CamFace.Normalize(); 
+	float FresnelScalar = CamFace.Dot( CVector3D(0.0f, -1.0f, 0.0f) );
+	//Invert and set boundaries
+	FresnelScalar = (1 - FresnelScalar) * 0.4f + 0.6f; 
+	
 	const int DX[] = {1,1,0,0};
 	const int DZ[] = {0,1,1,0};
-
+	
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 	int mapSize = terrain->GetVerticesPerSide();
 	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
@@ -1178,7 +1186,7 @@ void CRenderer::RenderWater()
 						}
 					}
 
-					glColor4f(m_WaterColor.r*losMod, m_WaterColor.g*losMod, m_WaterColor.b*losMod, alpha);
+					glColor4f(m_WaterColor.r*losMod, m_WaterColor.g*losMod, m_WaterColor.b*losMod, alpha * FresnelScalar);
 					pglMultiTexCoord2fARB(GL_TEXTURE0, vertX/16.0f, vertZ/16.0f);
 					glVertex3f(vertX, m_WaterHeight, vertZ);
 				}
