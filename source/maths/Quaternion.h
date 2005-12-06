@@ -24,8 +24,10 @@ public:
 	
 	//quaternion addition
 	CQuaternion operator + (const CQuaternion &quat) const;
+	CQuaternion operator - (const CQuaternion &quat) const;
 	//quaternion addition/assignment
 	CQuaternion &operator += (const CQuaternion &quat);
+	
 
 	//quaternion multiplication
 	CQuaternion operator * (const CQuaternion &quat) const;

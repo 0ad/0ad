@@ -35,7 +35,15 @@ CQuaternion CQuaternion::operator + (const CQuaternion &quat) const
 
 	return Temp;
 }
+CQuaternion CQuaternion::operator - (const CQuaternion &quat) const
+{
+	CQuaternion Temp;
 
+	Temp.m_W = m_W - quat.m_W;
+	Temp.m_V = m_V - quat.m_V;
+
+	return Temp;
+}
 //quaternion addition/assignment
 CQuaternion &CQuaternion::operator += (const CQuaternion &quat)
 {
