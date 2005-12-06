@@ -871,6 +871,48 @@ InReaction interactInputHandler( const SDL_Event* ev )
 			if( g_Selection.m_selected.size() )
 				pView->SetCameraTarget( g_Selection.getSelectionPosition() );
 			break;
+		
+		case HOTKEY_CAMERA_UNIT_VIEW:	
+		{
+			if ( pView->IsAttached() )
+				break;	//Should only exit unit view through unit view hotkey
+			if ( pView->IsUnitView() )
+			{
+				//If already in unit view, exit it
+				pView->ToUnitView( NULL, NULL );
+				break;
+			}
+			if ( g_Selection.m_selected.empty() )
+				break;
+			
+			std::vector<CModel::Prop>& Props = g_Selection.m_selected.front()->m_actor->GetModel()->GetProps();
+			
+			for (unsigned int x=0; x<Props.size(); x++)
+			{	
+				if( Props[x].m_Point->m_Name == "head" )
+				{
+					pView->ToUnitView( g_Selection.m_selected.front(), Props[x].m_Point);
+					break;
+				}	
+			}
+			break;
+		}
+		case HOTKEY_CAMERA_UNIT_ATTACH:		
+		{
+			if ( pView->IsUnitView() )
+				break;	//Should only exit unit view through unit view hotkey
+			if ( pView->IsAttached() )
+			{
+				//If already in unit view, exit it
+				pView->AttachToUnit( NULL );
+				break;
+			}
+			if ( g_Selection.m_selected.empty() )
+				break;
+			
+		 pView->AttachToUnit( g_Selection.m_selected.front() );
+		}
+		
 		default:
 			if( ( ev->user.code >= HOTKEY_SELECTION_GROUP_0 ) && ( ev->user.code <= HOTKEY_SELECTION_GROUP_19 ) )
 			{
