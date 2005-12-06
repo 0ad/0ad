@@ -20,6 +20,7 @@ class CTerrain;
 class CUnitManager;
 class CProjectileManager;
 class CModel;
+class CEntity;
 
 class CGameView: public CJSObject<CGameView>
 {
@@ -51,7 +52,7 @@ class CGameView: public CJSObject<CGameView>
 	CVector3D m_CameraPivot;
 
 	CEntity* m_UnitView;
-	SPropPoint* m_UnitViewProp;
+	CModel* m_UnitViewProp;
 	CEntity* m_UnitAttach;
 	//float m_CameraZoom;
 	std::vector<CVector3D> m_CameraTargets;
@@ -120,7 +121,7 @@ public:
 	void PopCameraTarget();
 
 	//First person camera attachment (through the eyes of the unit)
-	void ToUnitView(CEntity* target, SPropPoint* prop);
+	void ToUnitView(CEntity* target, CModel* prop);
 	//Keep view the same but follow the unit
 	void AttachToUnit(CEntity* target) { m_UnitAttach = target; }
 	

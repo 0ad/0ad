@@ -56,13 +56,13 @@ AbstractProfileTable::~AbstractProfileTable()
 // AbstractProfileTable got deleted, make sure we have no dangling pointers
 void CProfileViewerInternals::TableIsDeleted(AbstractProfileTable* table)
 {
-	for(int idx = rootTables.size()-1; idx >= 0; --idx)
+	for(int idx = (int)rootTables.size()-1; idx >= 0; --idx)
 	{
 		if (rootTables[idx] == table)
 			rootTables.erase(rootTables.begin() + idx);
 	}
 	
-	for(int idx = 0; (uint)idx < path.size(); ++idx)
+	for(size_t idx = 0; idx < path.size(); ++idx)
 	{
 		if (path[idx] != table)
 			continue;
@@ -164,7 +164,7 @@ void CProfileViewer::RenderProfile()
 	glColor3ub(255, 255, 255);
 	
 	glPushMatrix();
-	glwprintf(L"%s", table->GetTitle().c_str());
+	glwprintf(L"%hs", table->GetTitle().c_str());
 	glPopMatrix();
 	glTranslatef( 20.0f, 20.0f, 0.0f );
 	
@@ -172,7 +172,7 @@ void CProfileViewer::RenderProfile()
 	for(uint col = 0; col < columns.size(); ++col)
 	{
 		glPushMatrix();
-		glwprintf(L"%s", columns[col].title.c_str());
+		glwprintf(L"%hs", columns[col].title.c_str());
 		glPopMatrix();
 		glTranslatef(columns[col].width, 0, 0);
 	}
@@ -203,7 +203,7 @@ void CProfileViewer::RenderProfile()
 		for(uint col = 0; col < columns.size(); ++col)
 		{
 			glPushMatrix();
-			glwprintf(L"%s", table->GetCellText(row, col).c_str());
+			glwprintf(L"%hs", table->GetCellText(row, col).c_str());
 			glPopMatrix();
 			glTranslatef(columns[col].width, 0, 0);
 		}

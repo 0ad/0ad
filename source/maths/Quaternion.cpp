@@ -35,15 +35,7 @@ CQuaternion CQuaternion::operator + (const CQuaternion &quat) const
 
 	return Temp;
 }
-CQuaternion CQuaternion::operator - (const CQuaternion &quat) const
-{
-	CQuaternion Temp;
 
-	Temp.m_W = m_W - quat.m_W;
-	Temp.m_V = m_V - quat.m_V;
-
-	return Temp;
-}
 //quaternion addition/assignment
 CQuaternion &CQuaternion::operator += (const CQuaternion &quat)
 {
@@ -190,9 +182,9 @@ void CQuaternion::Slerp(const CQuaternion& from,const CQuaternion& to, float rat
 		scale1 = sinf(ratio * omega) / sinom;
 	}
 	else
-	{        
+	{
 		// "from" and "to" quaternions are very close 
-	    //  ... so we can do a linear interpolation
+		//  ... so we can do a linear interpolation
 		scale0 = 1.0f - ratio;
 		scale1 = ratio;
 	}
@@ -206,15 +198,29 @@ void CQuaternion::Slerp(const CQuaternion& from,const CQuaternion& to, float rat
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // FromAxisAngle: create a quaternion from axis/angle representation of a rotation
-void CQuaternion::FromAxisAngle(const CVector3D& axis,float angle)
+void CQuaternion::FromAxisAngle(const CVector3D& axis, float angle)
 {
-    float sinHalfTheta=(float) sin(angle/2);
-    float cosHalfTheta=(float) cos(angle/2);
+	float sinHalfTheta=(float) sin(angle/2);
+	float cosHalfTheta=(float) cos(angle/2);
 
-    m_V.X=axis.X*sinHalfTheta;
-    m_V.Y=axis.Y*sinHalfTheta;
-    m_V.Z=axis.Z*sinHalfTheta;
-    m_W=cosHalfTheta;
+	m_V.X=axis.X*sinHalfTheta;
+	m_V.Y=axis.Y*sinHalfTheta;
+	m_V.Z=axis.Z*sinHalfTheta;
+	m_W=cosHalfTheta;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+// ToAxisAngle: convert the quaternion to axis/angle representation of a rotation
+void CQuaternion::ToAxisAngle(CVector3D& axis, float& angle)
+{
+	CQuaternion q = *this;
+	q.Normalize();
+	angle = acosf(q.m_W) * 2.f;
+	float sin_a = sqrtf(1.f - q.m_W * q.m_W);
+	if (fabsf(sin_a) < 0.0005f) sin_a = 1.f;
+	axis.X = q.m_V.X / sin_a;
+	axis.Y = q.m_V.Y / sin_a;
+	axis.Z = q.m_V.Z / sin_a;
 }
 
 
@@ -224,7 +230,7 @@ void CQuaternion::Normalize()
 {
 	float lensqrd=SQR(m_V.X)+SQR(m_V.Y)+SQR(m_V.Z)+SQR(m_W);
 	if (lensqrd>0) {
-		float invlen=1.0f/float(sqrt(lensqrd));
+		float invlen=1.0f/sqrtf(lensqrd);
 		m_V*=invlen;
 		m_W*=invlen;
 	}

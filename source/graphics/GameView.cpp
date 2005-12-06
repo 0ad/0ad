@@ -353,15 +353,16 @@ void CGameView::Update(float DeltaTime)
 	
 	if (m_UnitView)
 	{
-		CQuaternion ToRotate = m_UnitViewProp->m_Rotation - m_Camera.m_Orientation.GetRotation();
-		ToRotate.m_V.Y += m_UnitView->m_orientation;
-		m_Camera.m_Orientation.Rotate(ToRotate);
-		CVector3D CamTrans = m_Camera.m_Orientation.GetTranslation();
-		CVector3D ToMove = m_UnitView->m_position + m_UnitViewProp->m_Position - CamTrans;
-		//Used to fix incorrect positioning
-		//ToMove.Y += 3.5f;
-		m_Camera.m_Orientation.Translate(ToMove);
-		
+//		CQuaternion ToRotate = m_UnitViewProp->m_Rotation - m_Camera.m_Orientation.GetRotation();
+//		ToRotate.m_V.Y += m_UnitView->m_orientation;
+//		m_Camera.m_Orientation.Rotate(ToRotate);
+//		CVector3D CamTrans = m_Camera.m_Orientation.GetTranslation();
+//		CVector3D ToMove = m_UnitView->m_position + m_UnitViewProp->m_Position - CamTrans;
+//		//Used to fix incorrect positioning
+//		//ToMove.Y += 3.5f;
+//		m_Camera.m_Orientation.Translate(ToMove);
+		m_Camera.m_Orientation.SetYRotation(m_UnitView->m_orientation);
+		m_Camera.m_Orientation.Translate(m_UnitViewProp->GetTransform().GetTranslation());
 
 		/*if( !m_UnitView->m_orderQueue.empty())
 		{
@@ -644,7 +645,7 @@ void CGameView::Update(float DeltaTime)
 	m_Camera.UpdateFrustum ();
 }
 
-void CGameView::ToUnitView(CEntity* target, SPropPoint* prop) 
+void CGameView::ToUnitView(CEntity* target, CModel* prop) 
 { 
 	if( !target )
 	{

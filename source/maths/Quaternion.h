@@ -24,10 +24,8 @@ public:
 	
 	//quaternion addition
 	CQuaternion operator + (const CQuaternion &quat) const;
-	CQuaternion operator - (const CQuaternion &quat) const;
 	//quaternion addition/assignment
 	CQuaternion &operator += (const CQuaternion &quat);
-	
 
 	//quaternion multiplication
 	CQuaternion operator * (const CQuaternion &quat) const;
@@ -41,10 +39,13 @@ public:
 	void ToMatrix(CMatrix3D& result) const;
 
 	//sphere interpolation
-	void Slerp(const CQuaternion& from,const CQuaternion& to, float ratio);
+	void Slerp(const CQuaternion& from, const CQuaternion& to, float ratio);
 
 	// create a quaternion from axis/angle representation of a rotation
-	void FromAxisAngle(const CVector3D& axis,float angle);
+	void FromAxisAngle(const CVector3D& axis, float angle);
+
+	// convert the quaternion to axis/angle representation of a rotation
+	void ToAxisAngle(CVector3D& axis, float& angle);
 
 	// normalize this quaternion
 	void Normalize();
