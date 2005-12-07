@@ -175,7 +175,7 @@ extern enum ErrorReaction debug_warn_err(int err, const char* file, int line,
 
 
 //-----------------------------------------------------------------------------
-// logging
+// output
 //-----------------------------------------------------------------------------
 
 // write a formatted string to the debug channel, subject to filtering
@@ -183,6 +183,14 @@ extern enum ErrorReaction debug_warn_err(int err, const char* file, int line,
 extern void debug_printf(const char* fmt, ...);
 // note: this merely converts to a MBS and calls debug_printf.
 extern void debug_wprintf(const wchar_t* fmt, ...);
+
+
+extern ErrorReaction display_error(const wchar_t* description, int flags,
+	uint skip, void* context, const char* file, int line);
+
+// convenience version, in case the advanced parameters aren't needed.
+// done this way instead of with default values so that it also works in C.
+#define DISPLAY_ERROR(text) display_error(text, 0, 0, 0, __FILE__, __LINE__)
 
 
 //

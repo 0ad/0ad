@@ -1271,7 +1271,7 @@ char* mmgr_getcwd_dbg(char* buf, size_t buf_size, const char* file, int line, co
 //
 
 static void* new_common(size_t size, AllocType type,
-						const char* file, int line, const char* func)
+	const char* file, int line, const char* func)
 {
 	const char* allocator = types[type];
 

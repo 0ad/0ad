@@ -492,7 +492,7 @@ ErrorReaction display_error(const wchar_t* description, int flags,
 		text = L"(insufficient memory to display error message)";
 
 	debug_write_crashlog(text);
-	ErrorReaction er = display_error_impl(text, flags);
+	ErrorReaction er = sys_display_error(text, flags);
 
 	// note: debug_break-ing here to make sure the app doesn't continue
 	// running is no longer necessary. display_error now determines our

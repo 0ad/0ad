@@ -42,8 +42,9 @@ What makes a good self-test?
   bad inputs ("does it reject those?"), and successes ("did it have the
   expected result?").
 - Tests should be non-intrusive (only bother user if something fails) and
-  very quick. This is because we run them automatically at startup,
-  which solves the common problem of making sure they actually run.
+  very quick. This is because they are executed every program run - which
+  is a good thing because it solves the common problem of forgetting to
+  run them after a change.
 
   If the test is unavoidably slow or annoying (example: wdbg_sym's
   stack trace), then best to disable it by default; see below for how.
@@ -74,7 +75,7 @@ static void self_test()
 	// further test groups..
 }
 
-RUN_SELF_TEST;									// (4)
+SELF_TEST_RUN;									// (4)
 
 }	// namespace test
 #endif	// #if SELF_TEST_ENABLED
@@ -117,21 +118,40 @@ For further details, see below.
 // and this is the only error reporter guaranteed to work.
 //
 // note: could also stringize condition and display that, but it'd require
-// macro magic (stringize+prepend L) and we already get file+line.
+// macro magic (stringize+prepend L) and we already display file+line.
 #define TEST(condition) STMT(\
 	if(!(condition))\
 		DISPLAY_ERROR(L"Self-test failed");\
 )
 
 
-// your source file should contain a void function "self_test" that
+// your source file should contain a function: void self_test(void) that
 // performs all tests or calls out to individual test functions.
 // this macro calls it at static init time and takes care of setting
 // self_test_active (see above).
 //
 // rationale: since compiler optimizations may mess with the dummy variable,
 // best to put this in a macro so we won't have to change each occurrence.
-#define RUN_SELF_TEST static int dummy = run_self_test(self_test)
+#define SELF_TEST_RUN\
+	static int dummy = self_test_run(self_test)
+
+// calling at static init time may not always be desirable - some
+// self-tests may require initialization beforehand. this mechanism allows
+// registering self tests automatically, which are then all run when you
+// call self_test_run_all.
+#define SELF_TEST_REGISTER\
+	static SelfTestRecord self_test_record = { self_test, 0 };\
+	static int dummy = self_test_register(&self_test_record)
+
+struct SelfTestRecord
+{
+	void(*func)();
+	const SelfTestRecord* next;
+};
+
+// call all self-tests registered thus far. rationale: see above.
+// also displays a banner+elapsed time via debug_printf.
+extern void self_test_run_all();
 
 
 //
@@ -139,8 +159,10 @@ For further details, see below.
 //
 
 // trampoline that sets self_test_active and returns a dummy value;
-// used by RUN_SELF_TEST.
-extern int run_self_test(void(*test_func)());
+// used by SELF_TEST_RUN.
+extern int self_test_run(void(*func)());
+
+extern int self_test_register(SelfTestRecord* r);
 
 // checked by debug_assert_failed; disables asserts if true (see above).
 // set/cleared by run_self_test.

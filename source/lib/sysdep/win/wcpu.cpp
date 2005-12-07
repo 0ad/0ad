@@ -30,45 +30,6 @@
 // note: int instead of unsigned because <cpus> is also signed (tri-state).
 static const int MAX_CPUS = 32;
 
-
-int wcpu_on_each_cpu(void(*cb)())
-{
-	const HANDLE hProcess = GetCurrentProcess();
-
-	DWORD process_affinity, system_affinity;
-	if(!GetProcessAffinityMask(hProcess, &process_affinity, &system_affinity))
-		return -1;
-
-	// our affinity != system affinity: OS is limiting the CPUs that
-	// this process can run on. fail (cannot call back for each CPU).
-	if(process_affinity != system_affinity)
-		return -1;
-
-	for(DWORD cpu_bit = 1; cpu_bit != 0 && cpu_bit <= process_affinity; cpu_bit *= 2)
-	{
-		// check if we can switch to target CPU
-		if(!(process_affinity & cpu_bit))
-			continue;
-		// .. and do so.
-		if(!SetProcessAffinityMask(hProcess, process_affinity))
-		{
-			debug_warn("SetProcessAffinityMask failed");
-			continue;
-		}
-
-		// reschedule, to make sure we switch CPUs
-		Sleep(0);
-
-		cb();
-	}
-
-	// restore to original value
-	SetProcessAffinityMask(hProcess, process_affinity);
-
-	return 0;
-}
-
-
 static void check_speedstep()
 {
 	WIN_SAVE_LAST_ERROR;

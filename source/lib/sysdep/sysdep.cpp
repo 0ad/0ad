@@ -66,17 +66,3 @@ i64 i64_from_double(double d)
 }
 
 #endif
-
-
-// not possible with POSIX calls.
-// called from ia32.cpp get_cpu_count
-int on_each_cpu(void(*cb)())
-{
-#if OS_WIN
-	return wcpu_on_each_cpu(cb);
-#else
-	// apparently not possible on non-Windows OSes because they seem to lack
-	// a CPU affinity API.
-	return ERR_NO_SYS;
-#endif
-}

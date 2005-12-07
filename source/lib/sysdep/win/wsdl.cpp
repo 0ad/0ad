@@ -16,15 +16,6 @@
 //   Jan.Wassenberg@stud.uni-karlsruhe.de
 //   http://www.stud.uni-karlsruhe.de/~urkt/
 
-
-// TODO: should use GetMessage when not active to reduce CPU load.
-// where to do this?
-// - force the app to check for SDL's activation messages, and call
-//   sdl-wait-message?
-// - do it here, just make SDL_PollEvent block until message received?
-// - have the app use another free-the-cpu method, since it controls the main loop.
-//   this is what's currently happening.
-
 #include "precompiled.h"
 
 #include <stdio.h>
@@ -919,6 +910,12 @@ static LRESULT CALLBACK wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 
 void SDL_PumpEvents(void)
 {
+	// rationale: we would like to reduce CPU usage automatically if
+	// possible. blocking here until a message arrives would accomplish
+	// that, but might potentially freeze the app too long.
+	// instead, they should check active state and call SDL_Delay etc.
+	// if our window is minimized.
+
 	MSG msg;
 	while(PeekMessageW(&msg, 0, 0, 0, PM_REMOVE))
 	{
@@ -1129,7 +1126,7 @@ int SDL_KillThread(SDL_Thread* thread)
 
 void SDL_WM_SetCaption(const char* title, const char* icon)
 {
-	SetWindowText(hWnd, title);
+	WARN_IF_FALSE(SetWindowText(hWnd, title));
 
 	UNUSED2(icon);	// TODO: implement
 }

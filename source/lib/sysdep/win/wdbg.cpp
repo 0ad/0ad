@@ -91,8 +91,8 @@ void wdbg_set_thread_name(const char* name)
 	}
 	__except(EXCEPTION_EXECUTE_HANDLER)
 	{
-		// if we get here, apparently this hack is not longer supported.
-		debug_warn("TODO: find alternative thread name implementation");
+		// if we get here, the debugger didn't handle the exception.
+		debug_warn("thread name hack doesn't work under this debugger");
 	}
 }
 

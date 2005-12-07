@@ -255,7 +255,7 @@ int file_set_root_dir(const char* argv0, const char* rel_path)
 	// get full path to executable
 	char n_path[PATH_MAX];
 	// .. first try safe, but system-dependent version
-	if(get_executable_name(n_path, PATH_MAX) < 0)
+	if(sys_get_executable_name(n_path, PATH_MAX) < 0)
 	{
 		// .. failed; use argv[0]
 		if(!realpath(argv0, n_path))

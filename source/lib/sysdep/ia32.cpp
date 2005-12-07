@@ -25,10 +25,14 @@
 
 // HACK (see call to wtime_reset_impl)
 #if OS_WIN
-#include "win/wtime.h"
+#include "lib/sysdep/win/wtime.h"
 #endif
 
+#define NO_COLOR
+
+#ifndef NO_COLOR
 #include "graphics/Color.h"
+#endif
 
 #include <string.h>
 #include <stdio.h>
@@ -39,6 +43,26 @@
 #if !HAVE_MS_ASM && !HAVE_GNU_ASM
 #error ia32.cpp needs inline assembly support!
 #endif
+
+#define SELF_TEST_ENABLED 1
+#include "self_test.h"
+
+// set by ia32_init, referenced by ia32_memcpy (asm)
+extern "C" u32 ia32_memcpy_size_mask = 0;
+
+void ia32_init()
+{
+	ia32_asm_init();
+
+	// memcpy init: set the mask that is applied to transfer size before
+	// choosing copy technique. this is the mechanism for disabling
+	// codepaths that aren't supported on all CPUs; see article for details.
+	// .. check for PREFETCHNTA and MOVNTQ support. these are part of the SSE
+	// instruction set, but also supported on older Athlons as part of
+	// the extended AMD MMX set.
+	if(ia32_cap(SSE) || ia32_cap(AMD_MMX_EXT))
+		ia32_memcpy_size_mask = ~0u;
+}
 
 
 //-----------------------------------------------------------------------------
@@ -79,7 +103,7 @@ __declspec(naked) double ia32_rint(double)
 //   end up with truncate/"chop" rounding. subtracting does the trick,
 //   assuming RC is the IA-32 default round-to-nearest mode.
 
-static const float round_bias = 0.5f;
+static const float round_bias = 0.4999999f;
 
 __declspec(naked) i32 ia32_i32_from_float(float f)
 {
@@ -417,7 +441,7 @@ static void get_cpu_count()
 		log_id_bits = log2(log_cpu_per_package);	// see above
 		last_phys_id = last_log_id = INVALID_ID;
 		phys_ids = log_ids = 0;
-		if(on_each_cpu(count_ids) == 0)
+		if(sys_on_each_cpu(count_ids) == 0)
 		{
 			cpus         = phys_ids;
 			cpu_ht_units = log_ids / cpu_cores;
@@ -621,14 +645,16 @@ int ia32_get_call_target(void* ret_addr, void** target)
 
 //-----------------------------------------------------------------------------
 
-
+#ifndef NO_COLOR
 // Assembler-optimized function for color conversion
 extern "C" {
 u32 sse_ConvertRGBColorTo4ub(const RGBColor& src);
 }
+#endif
 
 void ia32_hook_capabilities()
 {
+#ifndef NO_COLOR
 	if (ia32_cap(SSE))
 	{
 		ConvertRGBColorTo4ub = sse_ConvertRGBColorTo4ub;
@@ -637,6 +663,7 @@ void ia32_hook_capabilities()
 	{
 		debug_printf("No SSE available. Slow fallback routines will be used.\n");
 	}
+#endif
 }
 
 
@@ -667,10 +694,10 @@ namespace test {
 
 	static void self_test()
 	{
-		test1();
+		test_float_int();
 	}
 
-	RUN_SELF_TEST;
+	SELF_TEST_RUN;
 
 }	// namespace test
 #endif	// #if SELF_TEST_ENABLED

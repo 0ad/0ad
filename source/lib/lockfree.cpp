@@ -957,7 +957,7 @@ static void self_test()
 	multithreaded_torture_test();
 }
 
-RUN_SELF_TEST;
+SELF_TEST_RUN;
 
 }	// namespace test
 #endif	// #if SELF_TEST_ENABLED

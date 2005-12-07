@@ -14,12 +14,12 @@
 // these are basic POSIX-compatible backends for the sysdep.h functions.
 // Win32 has better versions which override these.
 
-void display_msg(const char* caption, const char* msg)
+void sys_display_msg(const char* caption, const char* msg)
 {
 	fprintf(stderr, "%s: %s\n", caption, msg);
 }
 
-void wdisplay_msg(const wchar_t* caption, const wchar_t* msg)
+void sys_display_msgw(const wchar_t* caption, const wchar_t* msg)
 {
 	fwprintf(stderr, L"%ls: %ls\n", caption, msg);
 }
@@ -51,7 +51,14 @@ int unix_get_cpu_info()
 	return 0;
 }
 
-ErrorReaction display_error_impl(const wchar_t* text, int flags)
+// apparently not possible on non-Windows OSes because they seem to lack
+// a CPU affinity API. see sysdep.h comment.
+int sys_on_each_cpu(void(*cb)())
+{
+	return ERR_NO_SYS;
+}
+
+ErrorReaction sys_display_error(const wchar_t* text, int flags)
 {
 	printf("%ls\n\n", text);
 
@@ -111,6 +118,13 @@ ErrorReaction display_error_impl(const wchar_t* text, int flags)
 // TODO: implementing these would be nice because then the game can
 // take advantage of hardware mouse cursors instead of the (jerky when
 // loading) OpenGL cursor.
+
+int sys_cursor_create(uint w, uint h, void* bgra_img,
+	uint hx, uint hy, void** cursor)
+{
+	*cursor = 0;
+	return 0;
+}
 
 int sys_cursor_set(void* cursor)
 {

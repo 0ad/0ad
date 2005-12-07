@@ -46,6 +46,13 @@
 # define CONFIG_PARANOIA 0
 #endif
 
+// enable trace output for low-level code - various functions will
+// debug_printf when they are entered/exited. note that the appropriate
+// TRACEn tags must be debug_filter_add-ed for this to have any effect.
+#ifndef CONFIG_TRACE
+# define CONFIG_TRACE 0
+#endif
+
 // try to prevent any exceptions from being thrown - even by the C++
 // standard library. useful only for performance tests.
 #ifndef CONFIG_DISABLE_EXCEPTIONS

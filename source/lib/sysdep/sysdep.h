@@ -17,10 +17,6 @@
 #include "ia32.h"
 #endif
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 // pass "omit frame pointer" setting on to the compiler
 #if MSC_VERSION
 # if CONFIG_OMIT_FP
@@ -43,6 +39,15 @@ extern "C" {
 #endif
 
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+//-----------------------------------------------------------------------------
+// C99 / SUSv3 emulation where needed
+//-----------------------------------------------------------------------------
+
 // vsnprintf2: handles positional parameters and %lld.
 // already available on *nix, emulated on Win32.
 #if OS_WIN
@@ -51,21 +56,21 @@ extern int vsnprintf2(char* buffer, size_t count, const char* format, va_list ar
 #define vsnprintf2 vsnprintf
 #endif
 
+#if !HAVE_C99
+extern float fminf(float a, float b);
+extern float fmaxf(float a, float b);
+#endif
+
+#if !MSC_VERSION
+#define stricmp strcasecmp
+#define strnicmp strncasecmp
+#endif
+
 // alloca: allocate on stack, automatically free, return 0 if out of mem.
 // already available on *nix, emulated on Win32.
 #if OS_WIN
 #undef alloca	// from malloc.h
 extern void* alloca(size_t size);
-#endif
-
-// memcpy2: hand-tuned version; works for all sizes and aligments and is
-// significantly faster. uses SSE-optimized codepath when available.
-// 10% for < 64byte transfers and up to 300% on large sizes.
-#ifdef CPU_IA32
-# define memcpy2 ia32_memcpy
-extern void* ia32_memcpy(void* dst, const void* src, size_t nbytes);
-#else
-# define memcpy2 memcpy
 #endif
 
 // rint: round float to nearest integral value.
@@ -80,20 +85,6 @@ extern void* ia32_memcpy(void* dst, const void* src, size_t nbytes);
    extern float rintf(float f);
    extern double rint(double d);
 # endif
-#endif
-
-// i32_from_float et al: convert float to int. much faster than _ftol2,
-// which would normally be used by (int) casts.
-// .. fast IA-32 version: only used in some cases; see macro definition.
-#if USE_IA32_FLOAT_TO_INT
-# define i32_from_float ia32_i32_from_float
-# define i32_from_double ia32_i32_from_double
-# define i64_from_double ia32_i64_from_double
-// .. portable C emulation
-#else
-  extern i32 i32_from_float(float);
-  extern i32 i32_from_double(double);
-  extern i64 i64_from_double(double);
 #endif
 
 // finite: return 0 iff the given double is infinite or NaN.
@@ -128,30 +119,29 @@ extern void* ia32_memcpy(void* dst, const void* src, size_t nbytes);
 #endif
 
 
+//-----------------------------------------------------------------------------
+// sysdep API
+//-----------------------------------------------------------------------------
 
 //
 // output
 //
 
-enum DisplayErrorFlags
-{
-	DE_ALLOW_SUPPRESS = 1,
-	DE_NO_CONTINUE = 2,
-	DE_MANUAL_BREAK = 4
-};
-
+extern void sys_display_msg(const char* caption, const char* msg);
+extern void sys_display_msgw(const wchar_t* caption, const wchar_t* msg);
+  
 // choices offered by the shared error dialog
 enum ErrorReaction
 {
 	// ignore, continue as if nothing happened.
 	ER_CONTINUE = 1,
-		// note: don't start at 0 because that is interpreted as a
-		// DialogBoxParam failure.
+	// note: don't start at 0 because that is interpreted as a
+	// DialogBoxParam failure.
 
 	// ignore and do not report again.
 	// only returned if DE_ALLOW_SUPPRESS was passed.
 	ER_SUPPRESS,
-		// note: non-persistent; only applicable during this program run.
+	// note: non-persistent; only applicable during this program run.
 
 	// trigger breakpoint, i.e. enter debugger.
 	// only returned if DE_MANUAL_BREAK was passed; otherwise,
@@ -163,29 +153,33 @@ enum ErrorReaction
 	ER_EXIT
 };
 
-extern ErrorReaction display_error(const wchar_t* description, int flags,
-	uint skip, void* context, const char* file, int line);
-
-// convenience version, in case the advanced parameters aren't needed.
-// done this way instead of with default values so that it also works in C.
-#define DISPLAY_ERROR(text) display_error(text, 0, 0, 0, __FILE__, __LINE__)
+enum SysDisplayErrorFlags
+{
+	DE_ALLOW_SUPPRESS = 1,
+	DE_NO_CONTINUE = 2,
+	DE_MANUAL_BREAK = 4
+};
 
 // internal use only (used by display_error)
-extern ErrorReaction display_error_impl(const wchar_t* text, int flags);
-
-
-
-extern void display_msg(const char* caption, const char* msg);
-extern void wdisplay_msg(const wchar_t* caption, const wchar_t* msg);
+extern ErrorReaction sys_display_error(const wchar_t* text, int flags);
 
 
 //
 // clipboard
 //
 
-extern int clipboard_set(const wchar_t* text);
-extern wchar_t* clipboard_get(void);
-extern int clipboard_free(wchar_t* copy);
+// "copy" text into the clipboard. replaces previous contents.
+extern int sys_clipboard_set(const wchar_t* text);
+
+// allow "pasting" from clipboard. returns the current contents if they
+// can be represented as text, otherwise 0.
+// when it is no longer needed, the returned pointer must be freed via
+// sys_clipboard_free. (NB: not necessary if zero, but doesn't hurt)
+extern wchar_t* sys_clipboard_get(void);
+
+// frees memory used by <copy>, which must have been returned by
+// sys_clipboard_get. see note above.
+extern int sys_clipboard_free(wchar_t* copy);
 
 
 //
@@ -194,11 +188,17 @@ extern int clipboard_free(wchar_t* copy);
 
 // note: these do not warn on error; that is left to the caller.
 
-// creates a cursor from the given texture file.
+// creates a cursor from the given image.
+// w, h specify image dimensions [pixels]. limit is implementation-
+//   dependent; 32x32 is typical and safe.
+// bgra_img is the cursor image (BGRA format, bottom-up).
+//   it is no longer needed and can be freed after this call returns.
 // hotspot (hx,hy) is the offset from its upper-left corner to the
-// position where mouse clicks are registered.
-// the cursor must be cursor_free-ed when no longer needed.
-extern int sys_cursor_load(const char* filename,
+//   position where mouse clicks are registered.
+// return: negative error code, or 0 on success. cursor is filled with
+//   a pointer and undefined on failure. it must be sys_cursor_free-ed
+//   when no longer needed.
+extern int sys_cursor_create(uint w, uint h, void* bgra_img,
 	uint hx, uint hy, void** cursor);
 
 // replaces the current system cursor with the one indicated. need only be
@@ -210,37 +210,67 @@ extern int sys_cursor_set(void* cursor);
 extern int sys_cursor_free(void* cursor);
 
 
+//
+// misc
+//
 
-
+// OS-specific backend for error_description_r.
+// NB: it is expected to be rare that OS return/error codes are actually
+// seen by user code, but we still translate them for completeness.
 extern int sys_error_description_r(int err, char* buf, size_t max_chars);
 
-extern int get_executable_name(char* n_path, size_t buf_size);
+// determine filename of the module to whom the given address belongs.
+// useful for handling exceptions in other modules.
+// <path> receives full path to module; it must hold at least MAX_PATH chars.
+// on error, it is set to L"".
+// return path for convenience.
+wchar_t* sys_get_module_filename(void* addr, wchar_t* path);
 
-// return filename of the module which contains address <addr>,
-// or L"" on failure. path holds the string and must be >= MAX_PATH chars.
-wchar_t* get_module_filename(void* addr, wchar_t* path);
+// store full path to the current executable.
+// returns 0 or a negative error code.
+// useful for determining installation directory, e.g. for VFS.
+extern int sys_get_executable_name(char* n_path, size_t buf_size);
 
+// have the user specify a directory via OS dialog.
+// stores its full path in the given buffer, which must hold at least
+// PATH_MAX chars.
+// returns 0 on success or a negative error code.
+extern int sys_pick_directory(char* n_path, size_t buf_size);
 
-
-
-extern int pick_directory(char* n_path, size_t buf_size);
-
-
-// not possible with POSIX calls.
+// execute the specified function once on each CPU.
+// this includes logical HT units and proceeds serially (function
+// is never re-entered) in order of increasing OS CPU ID.
+// note: implemented by switching thread affinity masks and forcing
+// a reschedule, which is apparently not possible with POSIX.
+// return 0 on success or a negative error code on failure
+// (e.g. if OS is preventing us from running on some CPUs).
 // called from ia32.cpp get_cpu_count
-extern int on_each_cpu(void(*cb)());
+extern int sys_on_each_cpu(void(*cb)());
 
 
-
-
-#if !HAVE_C99
-extern float fminf(float a, float b);
-extern float fmaxf(float a, float b);
+// drop-in replacement for libc memcpy(). only requires CPU support for
+// MMX (by now universal). highly optimized for Athlon and Pentium III
+// microarchitectures; significantly outperforms VC7.1 memcpy and memcpy_amd.
+// for details, see accompanying article.
+#ifdef CPU_IA32
+# define memcpy2 ia32_memcpy
+extern void* ia32_memcpy(void* dst, const void* src, size_t nbytes);
+#else
+# define memcpy2 memcpy
 #endif
 
-#if !MSC_VERSION
-#define stricmp strcasecmp
-#define strnicmp strncasecmp
+// i32_from_float et al: convert float to int. much faster than _ftol2,
+// which would normally be used by (int) casts.
+// .. fast IA-32 version: only used in some cases; see macro definition.
+#if USE_IA32_FLOAT_TO_INT
+# define i32_from_float ia32_i32_from_float
+# define i32_from_double ia32_i32_from_double
+# define i64_from_double ia32_i64_from_double
+// .. portable C emulation
+#else
+extern i32 i32_from_float(float);
+extern i32 i32_from_double(double);
+extern i64 i64_from_double(double);
 #endif
 
 
@@ -249,11 +279,14 @@ extern float fmaxf(float a, float b);
 #endif
 
 
-// C++ linkage
-
+//-----------------------------------------------------------------------------
 // STL_HASH_MAP, STL_HASH_MULTIMAP, STL_HASH_SET
+//-----------------------------------------------------------------------------
+
+// these containers are useful but not part of C++98. most STL vendors
+// provide them in some form; we hide their differences behind macros.
+
 #if GCC_VERSION
-// GCC
 # include <ext/hash_map>
 # include <ext/hash_set> // Probably?
 
@@ -283,6 +316,7 @@ namespace __gnu_cxx
 }
 
 #else	// !__GNUC__
+
 # include <hash_map>
 # include <hash_set>
 // VC7 or above
@@ -300,8 +334,7 @@ namespace __gnu_cxx
 #  define STL_HASH_MULTISET std::hash_multiset
 #  define STL_HASH_VALUE std::hash_value
 # endif	// MSC_VERSION >= 1300
-#endif	// !__GNUC__
 
-#include "debug.h"
+#endif	// !__GNUC__
 
 #endif	// #ifndef SYSDEP_H_INCLUDED

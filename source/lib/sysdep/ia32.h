@@ -96,6 +96,7 @@ enum CpuCap
 
 	// extended (edx) - currently only defined by AMD
 	AMD_MP        = 96+19,	// MultiProcessing capable; reserved on AMD64
+	AMD_MMX_EXT   = 96+22,
 	AMD_3DNOW_PRO = 96+30,
 	AMD_3DNOW     = 96+31
 };
@@ -113,6 +114,8 @@ extern void ia32_hook_capabilities(void);
 // write the current execution state (e.g. all register values) into
 // (Win32::CONTEXT*)pcontext (defined as void* to avoid dependency).
 extern void ia32_get_current_context(void* pcontext);
+
+extern void ia32_asm_init();
 
 extern int ia32_get_call_target(void* ret_addr, void** target);
 

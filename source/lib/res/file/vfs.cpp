@@ -537,14 +537,16 @@ static ssize_t vfs_timed_io(const Handle hf, const size_t size, void** p, FileIO
 }
 
 
-// load the entire file <fn> into memory; return a handle to the memory
-// and the buffer address/size. output parameters are zeroed on failure.
-// in addition to the regular file cache, the entire buffer is kept in memory
-// if flags & FILE_CACHE.
+// load the entire file <fn> into memory.
+// returns a memory handle to the file's contents or a negative error code.
+// p and size are filled with address/size of buffer (0 on failure).
+// flags influences IO mode and is typically 0.
+//   in addition to the regular file cache, the entire buffer is
+//   kept in memory if flags & FILE_CACHE.
+// when the file contents are no longer needed, you can mem_free_h the
+// Handle, or mem_free(p).
 //
-// on failure, a debug_warn is generated and a negative error code returned.
-//
-// note: we need the Handle return value for Tex.hm - the data pointer
+// rationale: we need the Handle return value for Tex.hm - the data pointer
 // must be protected against being accidentally free-d in that case.
 Handle vfs_load(const char* v_fn, void*& p, size_t& size, uint flags /* default 0 */)
 {

@@ -18,6 +18,42 @@
 #include "ogl_tex.h"
 #include "cursor.h"
 
+
+static void* load_sys_cursor(const char* filename, int hx, int hy)
+{
+#if !ALLOW_SYS_CURSOR
+	return 0;
+#else
+	Tex t;
+	if(tex_load(filename, &t) < 0)
+		return 0;
+
+	{
+	void* sys_cursor = 0;	// return value
+
+	// convert to required BGRA format.
+	const uint flags = (t.flags | TEX_BGR) & ~TEX_DXT;
+	if(tex_transform_to(&t, flags) < 0)
+		goto fail;
+	void* bgra_img = tex_get_data(&t);
+	if(!bgra_img)
+		goto fail;
+
+	if(sys_cursor_create(t.w, t.h, bgra_img, hx, hy, &sys_cursor) < 0)
+		goto fail;
+
+	(void)tex_free(&t);
+	return sys_cursor;
+	}
+
+fail:
+	debug_warn("failed");
+	(void)tex_free(&t);
+	return 0;
+#endif
+}
+
+
 // no init is necessary because this is stored in struct Cursor, which
 // is 0-initialized by h_mgr.
 class GLCursor
@@ -124,12 +160,8 @@ static int Cursor_reload(Cursor* c, const char* name, Handle)
 
 	// load actual cursor
 	snprintf(filename, ARRAY_SIZE(filename), "art/textures/cursors/%s.dds", name);
-	// .. system cursor (2d, hardware accelerated)
-#if ALLOW_SYS_CURSOR
-	WARN_ERR(sys_cursor_load(filename, hotspotx, hotspoty, &c->sys_cursor));
-#else
-	c->sys_cursor = 0;
-#endif
+	// .. try loading as system cursor (2d, hardware accelerated)
+	c->sys_cursor = load_sys_cursor(filename, hotspotx, hotspoty);
 	// .. fall back to GLCursor (system cursor code is disabled or failed)
 	if(!c->sys_cursor)
 		RETURN_ERR(c->gl_cursor.create(filename, hotspotx, hotspoty));

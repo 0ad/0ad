@@ -27,6 +27,11 @@ static const char* lib_error_description(int err)
 }
 
 
+// generate textual description of an error code.
+// stores up to <max_chars> in the given buffer.
+// <err> can be one of the above error codes, POSIX ENOENT etc., or
+// an OS-specific errors. if unknown, the string will be something like
+// "Unknown error (65536, 0x10000)".
 void error_description_r(int err, char* buf, size_t max_chars)
 {
 	// lib error
@@ -68,12 +73,4 @@ void error_description_r(int err, char* buf, size_t max_chars)
 	// fallback
 	if(!have_output)
 		snprintf(buf, max_chars, "Unknown error (%d, 0x%X)", err, err);
-}
-
-
-const char* error_description(int err)
-{
-	static char buf[200];
-	error_description_r(err, buf, ARRAY_SIZE(buf));
-	return buf;
 }

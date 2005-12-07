@@ -149,7 +149,7 @@ static int sym_init()
 	const BOOL fInvadeProcess = TRUE;
 	// .. use default *symbol* search path. we don't use this to locate
 	//    our PDB file because its absolute path is stored inside the EXE.
-	const char* UserSearchPath = 0;
+	PCSTR UserSearchPath = 0;
 	BOOL ok = SymInitialize(hProcess, UserSearchPath, fInvadeProcess);
 	WARN_IF_FALSE(ok);
 
@@ -2205,7 +2205,7 @@ static void self_test()
 	test_addrs(123, 3.1415926535897932384626, "pchar string", 0xf00d);
 }
 
-RUN_SELF_TEST;
+SELF_TEST_RUN;
 
 #pragma optimize("", on)
 }	// namespace test

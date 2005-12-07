@@ -383,10 +383,14 @@ extern ssize_t vfs_io(Handle hf, size_t size, void** p, FileIOCB cb = 0, uintptr
 
 // convenience functions that replace vfs_open / vfs_io / vfs_close:
 
-// load the entire file <fn> into memory; return a memory handle to the
-// buffer and its address/size. output parameters are zeroed on failure.
-// in addition to the regular file cache, the entire buffer is kept in memory
-// if flags & FILE_CACHE.
+// load the entire file <fn> into memory.
+// returns a memory handle to the file's contents or a negative error code.
+// p and size are filled with address/size of buffer (0 on failure).
+// flags influences IO mode and is typically 0.
+//   in addition to the regular file cache, the entire buffer is
+//   kept in memory if flags & FILE_CACHE.
+// when the file contents are no longer needed, you can mem_free_h the
+// Handle, or mem_free(p).
 extern Handle vfs_load(const char* fn, void*& p, size_t& size, uint flags = 0);
 
 extern ssize_t vfs_store(const char* fn, void* p, size_t size, uint flags = 0);

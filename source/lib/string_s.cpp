@@ -391,7 +391,7 @@ static void self_test()
 	test_concatenate();
 }
 
-RUN_SELF_TEST;
+SELF_TEST_RUN;
 
 #endif	// #if SELF_TEST_ENABLED
 
