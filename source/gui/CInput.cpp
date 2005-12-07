@@ -67,7 +67,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event* ev)
 	{
 		if (ev->user.code == HOTKEY_CONSOLE_PASTE)
 		{
-			wchar_t* text = clipboard_get();
+			wchar_t* text = sys_clipboard_get();
 			if (text)
 			{
 				if (m_iBufferPos == (int)pCaption->Length())
@@ -80,7 +80,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event* ev)
 
 				m_iBufferPos += (int)wcslen(text);
 
-				clipboard_free(text);
+				sys_clipboard_free(text);
 			}
 
 			return IN_HANDLED;

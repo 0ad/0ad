@@ -642,17 +642,17 @@ InReaction conInputHandler(const SDL_Event* ev)
 		}
 		else if( ev->user.code == HOTKEY_CONSOLE_COPY )
 		{
-			clipboard_set( g_Console->GetBuffer() );
+			sys_clipboard_set( g_Console->GetBuffer() );
 		}
 		else if( ev->user.code == HOTKEY_CONSOLE_PASTE )
 		{
-			wchar_t* text = clipboard_get();
+			wchar_t* text = sys_clipboard_get();
 			if(text)
 			{
 				for(wchar_t* c = text; *c; c++)
 					g_Console->InsertChar(0, *c);
 
-				clipboard_free(text);
+				sys_clipboard_free(text);
 			}
 		}
 	}

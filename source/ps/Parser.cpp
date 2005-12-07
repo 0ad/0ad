@@ -1197,7 +1197,7 @@ static void self_test()
 	test4();
 }
 
-RUN_SELF_TEST;
+SELF_TEST_RUN;
 
 }	// namespace test
 #endif	// #if SELF_TEST_ENABLED

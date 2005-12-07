@@ -432,8 +432,7 @@ void CInternalCGUIAccessorBase::HandleMessage(IGUIObject *pObject, const SGUIMes
 			{	\
 				/* Abort now, to avoid corrupting everything by invalidly \
 					casting pointers */ \
-				debug_warn("FATAL ERROR: Inconsistent types in GUI");	\
-				throw "FATAL ERROR: Inconsistent types in GUI";	/* TODO: better reporting */ \
+				DISPLAY_ERROR(L"FATAL ERROR: Inconsistent types in GUI");	\
 			}	\
 		}
 	#include "GUItypes.h"

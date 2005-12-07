@@ -876,14 +876,14 @@ void Init(int argc, char* argv[], uint flags)
 
 	if(setup_vmode)
 	{
-		SDL_WM_SetCaption("0 A.D.", "0 A.D.");
-
 		MICROLOG(L"SetVideoMode");
 		if(SetVideoMode(g_xres, g_yres, 32, !windowed) < 0)
 		{
 			LOG(ERROR, LOG_CATEGORY, "Could not set %dx%d graphics mode: %s", g_xres, g_yres, SDL_GetError());
 			throw PSERROR_System_VmodeFailed();
 		}
+
+		SDL_WM_SetCaption("0 A.D.", "0 A.D.");
 	}
 
 	uint quality = SANE_TEX_QUALITY_DEFAULT;	// TODO: set value from config file

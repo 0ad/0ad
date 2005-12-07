@@ -582,7 +582,7 @@ static void self_test()
 	test_quats();
 }
 
-RUN_SELF_TEST;
+SELF_TEST_RUN;
 
 }	// namespace test
 #endif	// #if SELF_TEST_ENABLED
