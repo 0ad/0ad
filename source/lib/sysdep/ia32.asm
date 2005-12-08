@@ -1,7 +1,10 @@
-; set 32-bit attribute once for all sections and activate .text
-section .data use32
-section .bss use32
-section .text use32
+; set section attributes
+section .data data align=32 use32
+section .bss  bss  align=16 use32
+section .text code align=64 use32
+; activate .text (needs to be separate because __SECT__ will otherwise
+; complain that the above definition is redeclaring attributes)
+section .text
 
 ; Usage:
 ; use sym(ia32_cap) instead of _ia32_cap - on relevant platforms, sym() will add
@@ -25,7 +28,7 @@ section .text use32
 ; .. it's too big for L1. use non-temporal instructions.
 UC_THRESHOLD	equ	64*1024
 ; .. it also blows L2. pull chunks into L1 ("block prefetch").
-BP_THRESHOLD	equ	192*1024
+BP_THRESHOLD	equ	256*1024
 
 ; maximum that can be copied by IC_TINY.
 IC_TINY_MAX		equ	63
@@ -164,10 +167,6 @@ already_aligned:
 ; x
 %macro IC_MOVQ 0
 
-; see notes below. TODO: if simple addressing is better on Athlons as well, prevent this from happening in setup code when not doing large transfers
-	add		esi, ecx
-	add		edi, ecx
-
 align 16
 %%loop:
 
@@ -175,30 +174,29 @@ align 16
 	; - we can't use prefetch here - this codepath must support all CPUs.
 	;   [p3] that makes us 5..15% slower on 1KiB..4KiB transfers.
 	; - [p3] simple addressing without +ecx is 3.5% faster.
-	; - [p3] there's no difference between RR/WW/RR/WW and R..R/W..W
-	;   with simple addressing and no prefetch.
+	; - difference between RR/WW/RR/WW and R..R/W..W:
+	;   [p3] none (if simple addressing)
+	;   [axp] interleaved is better (with +ecx addressing)
 	; - enough time elapses between first and third pair of reads that we
 	;   could reuse MM0. there is no performance gain either way and
-	;   differing displacements make code compression futile, so
+	;   differing displacements make code compression futile anyway, so
 	;   we'll just use MM4..7 for clarity.
-	movq	mm0, [esi]
-	movq	mm1, [esi+8]
-	movq	[edi], mm0
-	movq	[edi+8], mm1
-	movq	mm2, [esi+16]
-	movq	mm3, [esi+24]
-	movq	[edi+16], mm2
-	movq	[edi+24], mm3
-	movq	mm4, [esi+32]
-	movq	mm5, [esi+40]
-	movq	[edi+32], mm4
-	movq	[edi+40], mm5
-	movq	mm6, [esi+48]
-	movq	mm7, [esi+56]
-	movq	[edi+48], mm6
-	movq	[edi+56], mm7
-	add		esi, byte 64
-	add		edi, byte 64
+	movq	mm0, [esi+ecx]
+	movq	mm1, [esi+ecx+8]
+	movq	[edi+ecx], mm0
+	movq	[edi+ecx+8], mm1
+	movq	mm2, [esi+ecx+16]
+	movq	mm3, [esi+ecx+24]
+	movq	[edi+ecx+16], mm2
+	movq	[edi+ecx+24], mm3
+	movq	mm4, [esi+ecx+32]
+	movq	mm5, [esi+ecx+40]
+	movq	[edi+ecx+32], mm4
+	movq	[edi+ecx+40], mm5
+	movq	mm6, [esi+ecx+48]
+	movq	mm7, [esi+ecx+56]
+	movq	[edi+ecx+48], mm6
+	movq	[edi+ecx+56], mm7
 	add		ecx, byte 64
 	jnz		%%loop
 %endm
@@ -252,9 +250,9 @@ align 16
 ; < eax = 0
 %macro UC_BP_MOVNTQ 0
 	push	edx
+
 align 4
 %%prefetch_and_copy_chunk:
-
 	; pull chunk into cache by touching each cache line
 	; (in reverse order to prevent HW prefetches)
 	mov		eax, BP_SIZE/128			; # iterations
