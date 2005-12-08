@@ -53,6 +53,7 @@ public:
 	void InitializeAll();
 	void TickAll();
 	void renderAll();
+	void invalidateAll();
 
 	void deleteAll();
 

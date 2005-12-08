@@ -2,6 +2,7 @@
 
 #include "MessageHandler.h"
 #include "../GameLoop.h"
+#include "../CommandProc.h"
 
 #include "renderer/Renderer.h"
 #include "gui/GUI.h"
@@ -34,7 +35,12 @@ MESSAGEHANDLER_STR(init)
 
 MESSAGEHANDLER_STR(shutdown)
 {
+	// Empty the CommandProc, to get rid of its references to entities before
+	// we kill the EntityManager
+	GetCommandProc().Destroy();
+
 	Shutdown();
+
 	g_GameLoop->rendering = false;
 }
 

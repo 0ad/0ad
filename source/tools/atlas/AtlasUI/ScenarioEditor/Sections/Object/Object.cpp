@@ -38,7 +38,7 @@ ObjectSidebar::ObjectSidebar(wxWindow* parent)
 	
 }
 
-wxWindow* ObjectSidebar::GetBottomBar(wxWindow* parent)
+wxWindow* ObjectSidebar::GetBottomBar(wxWindow* WXUNUSED(parent))
 {
 	if (m_BottomBar)
 		return m_BottomBar;

@@ -29,6 +29,7 @@ void SetCurrentTool(const wxString& name, void* initData)
 	{
 		g_CurrentTool->Shutdown();
 		delete g_CurrentTool;
+		g_CurrentTool = &dummy;
 	}
 
 	SetActive(false, g_CurrentToolName);
@@ -38,13 +39,13 @@ void SetCurrentTool(const wxString& name, void* initData)
 	{
 		tool = wxDynamicCast(wxCreateDynamicObject(name), ITool);
 		wxASSERT(tool);
-		tool->Init(initData);
 	}
 
-	if (tool == NULL)
-		g_CurrentTool = &dummy;
-	else
+	if (tool)
+	{
 		g_CurrentTool = tool;
+		tool->Init(initData);
+	}
 
 	g_CurrentToolName = name;
 	SetActive(true, g_CurrentToolName);

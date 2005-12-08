@@ -12,6 +12,7 @@ struct Brush
 	void SetRenderEnabled(bool enabled); // initial state is disabled
 	void Render(); // only does anything if enabled
 
+	void GetCentre(int& x, int& y) const;
 	void GetBottomRight(int& x, int& y) const;
 
 	float Get(int x, int y) const

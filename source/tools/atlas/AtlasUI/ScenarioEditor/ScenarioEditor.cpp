@@ -393,8 +393,9 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	ToolButtonBar* toolbar = new ToolButtonBar(this, ID_Toolbar);
 	// (button label; tooltip text; image; internal tool name)
 	toolbar->AddToolButton(_("Default"), _("Default"), _T("default.png"), _T(""));
-	toolbar->AddToolButton(_("Move"), _("Move/rotate object"), _T("moveobject.png"), _T("MoveObject"));
+	toolbar->AddToolButton(_("Move"), _("Move/rotate object"), _T("moveobject.png"), _T("TransformObject"));
 	toolbar->AddToolButton(_("Elevation"), _("Alter terrain elevation"), _T("alterelevation.png"), _T("AlterElevation"));
+	toolbar->AddToolButton(_("Flatten"), _("Flatten terrain elevation"), _T("flattenelevation.png"), _T("FlattenElevation"));
 	toolbar->AddToolButton(_("Paint Terrain"), _("Paint terrain texture"), _T("paintterrain.png"), _T("PaintTerrain"));
 	toolbar->Realize();
 	SetToolBar(toolbar);

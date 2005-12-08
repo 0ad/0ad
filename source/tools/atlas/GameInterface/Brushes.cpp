@@ -28,7 +28,7 @@ void Brush::SetData(int w, int h, const float* data)
 	m_Data = data;
 }
 
-void Brush::GetBottomRight(int& x, int& y) const
+void Brush::GetCentre(int& x, int& y) const
 {
 	CVector3D c = m_Centre;
 	if (m_W % 2) c.X += CELL_SIZE/2.f;
@@ -36,8 +36,15 @@ void Brush::GetBottomRight(int& x, int& y) const
 	i32 cx, cy;
 	CTerrain::CalcFromPosition(c, cx, cy);
 
-	x = cx - (m_W-1)/2;
-	y = cy - (m_H-1)/2;
+	x = cx;
+	y = cy;
+}
+
+void Brush::GetBottomRight(int& x, int& y) const
+{
+	GetCentre(x, y);
+	x -= (m_W-1)/2;
+	y -= (m_H-1)/2;
 }
 
 void Brush::SetRenderEnabled(bool enabled)

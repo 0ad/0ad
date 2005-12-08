@@ -153,11 +153,46 @@ COMMAND(AlterElevation, MERGE,
 		((float, amount))
 		);
 
+COMMAND(FlattenElevation, MERGE,
+		((Position, pos))
+		((float, amount))
+		);
+
 struct ePaintTerrainPriority { enum { HIGH, LOW }; };
 COMMAND(PaintTerrain, MERGE,
 		((Position, pos))
 		((std::wstring, texture))
 		((int, priority))
+		);
+
+//////////////////////////////////////////////////////////////////////////
+
+typedef void* ObjectID;
+
+QUERY(SelectObject,
+	  ((Position, pos))
+	  ,
+	  ((ObjectID, id))
+	  );
+
+COMMAND(MoveObject, MERGE,
+		((ObjectID, id))
+		((Position, pos))
+		);
+
+COMMAND(RotateObject, MERGE,
+		((ObjectID, id))
+		((bool, usetarget)) // true => use 'target' for orientation; false => use 'angle'
+		((Position, target))
+		((float, angle))
+		);
+
+COMMAND(DeleteObject, NOMERGE,
+		((ObjectID, id))
+		);
+
+MESSAGE(SetSelectionPreview,
+		((std::vector<ObjectID>, ids))
 		);
 
 //////////////////////////////////////////////////////////////////////////

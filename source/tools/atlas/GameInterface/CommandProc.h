@@ -20,6 +20,10 @@ public:
 	CommandProc();
 	~CommandProc();
 
+	// Should be called before shutting down, so it can free
+	// references to entities/etc that are stored in commands
+	void Destroy();
+
 	void Submit(Command* cmd);
 
 	void Undo();
@@ -42,6 +46,7 @@ struct DataCommand : public Command // so commands can optionally override (De|C
 {
 	void Destruct() {};
 	void Construct() {};
+	// MergeWithSelf should update 'prev' to include the effects of 'this'
 	void MergeWithSelf(void*) { debug_warn("MergeWithSelf unimplemented in some command"); }
 };
 

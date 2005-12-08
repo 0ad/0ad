@@ -154,7 +154,7 @@ void CEntity::kill()
 	m_bounds = NULL;
 
 	m_destroyed = true;
-	Shutdown();
+	//Shutdown(); // PT: tentatively removed - this seems to be called by ~CJSComplex, and we don't want to do it twice
 
 	if( m_actor )
 	{
@@ -617,6 +617,11 @@ void CEntity::interpolate( float relativeoffset )
 	}
 }
 
+void CEntity::invalidateActor()
+{
+	m_actor_transform_valid = false;
+}
+
 void CEntity::render()
 {	
 	if( !m_orderQueue.empty() )
@@ -988,6 +993,7 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 		break;
 	case CEntityOrder::ORDER_ATTACK_MELEE:
 	case CEntityOrder::ORDER_GATHER:
+	case CEntityOrder::ORDER_HEAL:
 		if( argc < 1 )
 		{
 			JS_ReportError( cx, "Too few parameters" );

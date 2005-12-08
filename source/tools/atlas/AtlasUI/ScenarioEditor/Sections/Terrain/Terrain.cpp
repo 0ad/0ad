@@ -23,6 +23,7 @@ TerrainSidebar::TerrainSidebar(wxWindow* parent)
 	{
 		wxSizer* sizer = new wxStaticBoxSizer(wxHORIZONTAL, this, _("Elevation tools"));
 		sizer->Add(new ToolButton(this, _("Modify"), _T("AlterElevation"), wxSize(50,20)));
+		sizer->Add(new ToolButton(this, _("Flatten"), _T("FlattenElevation"), wxSize(50,20)));
 //		sizer->Add(new ToolButton(this, _("Smooth"), _T(""), wxSize(50,20)));
 //		sizer->Add(new ToolButton(this, _("Sample"), _T(""), wxSize(50,20)));
 		sizer->Add(new ToolButton(this, _("Paint"), _T("PaintTerrain"), wxSize(50,20)));

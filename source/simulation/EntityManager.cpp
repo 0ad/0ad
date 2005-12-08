@@ -36,6 +36,13 @@ CEntityManager::~CEntityManager()
 			m_entities[i].m_entity = 0;
 			m_entities[i].m_refcount = 0;
 		}
+
+	// Delete entities that were killed, but not yet reaped by a call to updateAll,
+	// to avoid memory leak warnings upon exiting
+	std::vector<CEntity*>::iterator it;
+	for( it = m_reaper.begin(); it < m_reaper.end(); it++ )
+		delete( *it );
+	m_reaper.clear();
 }
 
 void CEntityManager::deleteAll()
@@ -45,6 +52,7 @@ void CEntityManager::deleteAll()
 		if( m_entities[i].m_refcount )
 		{
 			delete( m_entities[i].m_entity );
+			m_entities[i].m_entity = 0;
 			m_entities[i].m_refcount = 0;
 		}
 	m_nextalloc = 0;
@@ -179,13 +187,17 @@ void CEntityManager::renderAll()
 			m_entities[i].m_entity->render();
 }
 
+void CEntityManager::invalidateAll()
+{
+	for( int i = 0; i < MAX_HANDLES; i++ )
+		if( m_entities[i].m_refcount && !m_entities[i].m_entity->m_destroyed )
+			m_entities[i].m_entity->invalidateActor();
+}
+
 void CEntityManager::destroy( u16 handle )
 {
-	if (m_entities[handle].m_entity->me.m_handle != INVALID_HANDLE)
-	{
-		m_reaper.push_back( m_entities[handle].m_entity );
-		m_entities[handle].m_entity->me.m_handle = INVALID_HANDLE;
-	}
+	m_reaper.push_back( m_entities[handle].m_entity );
+	m_entities[handle].m_entity->me.m_handle = INVALID_HANDLE;
 }
 
 bool CEntityManager::m_extant = false;

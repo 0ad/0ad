@@ -22,10 +22,16 @@
 using namespace AtlasMessage;
 
 
+namespace AtlasMessage
+{
+	extern void AtlasRenderSelection();
+}
+
 void AtlasRender()
 {
 	Render();
 	g_CurrentBrush.Render();
+	AtlasRenderSelection();
 }
 
 

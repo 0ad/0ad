@@ -45,6 +45,11 @@ CommandProc::CommandProc()
 
 CommandProc::~CommandProc()
 {
+	debug_assert(!m_Commands.size());
+}
+
+void CommandProc::Destroy()
+{
 	for_each(m_Commands.begin(), m_Commands.end(), delete_fn<Command>);
 	m_Commands.clear();
 }

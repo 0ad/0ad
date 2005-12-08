@@ -112,7 +112,7 @@ public:
 	float m_graphics_orientation;
 
 	// If the actor's current transform data is valid (i.e. the entity hasn't
-	// moved since it was last calculated).
+	// moved since it was last calculated, and the terrain hasn't been changed).
 	bool m_actor_transform_valid;
 
 	//-- Scripts
@@ -166,6 +166,10 @@ public:
 	void update( size_t timestep_millis );
 	// Updates graphical information for a point between the last and current simulation frame; 0 < relativeoffset < 1.
 	void interpolate( float relativeoffset );
+
+	// Forces update of actor information during next call to 'interpolate'.
+	// (Necessary when terrain might move underneath the actor.)
+	void invalidateActor();
 
 	// Updates auras
 	void UpdateAuras( size_t timestep_millis );
