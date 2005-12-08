@@ -1,1 +1,0 @@
-for (<*.ppm>) { /(.*)\./; `ppmtoxpm -h -n=xpm_toolbar_$1 $_ > $1.xpm` }
