@@ -22,9 +22,12 @@ template<typename T> void delete_fn(T* v) { delete v; }
 using namespace AtlasMessage;
 
 namespace AtlasMessage {
-	static CommandProc g_CommandProc;
 
-	CommandProc& GetCommandProc() { return g_CommandProc; }
+	CommandProc& GetCommandProc()
+	{
+		static CommandProc commandProc;
+		return commandProc;
+	}
 
 	cmdHandlers& GetCmdHandlers()
 	{
@@ -45,6 +48,8 @@ CommandProc::CommandProc()
 
 CommandProc::~CommandProc()
 {
+	// Make sure Destroy has been called before now (to avoid
+	// problems from the destruction order of static variables)
 	debug_assert(!m_Commands.size());
 }
 
