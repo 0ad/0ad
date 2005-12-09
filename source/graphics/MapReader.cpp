@@ -244,15 +244,12 @@ private:
 
 	CMapReader& m_MapReader;
 
-	int el_scenario, el_entities, el_entity;
+	int el_entity;
 	int el_template, el_player;
 	int el_position, el_orientation;
-	int el_nonentities, el_nonentity;
+	int el_nonentity;
 	int el_actor;
-	int el_environment, el_suncolour, el_sunelevation, el_sunrotation;
-	int el_terrainambientcolour, el_unitsambientcolour;
 	int at_x, at_y, at_z;
-	int at_r, at_g, at_b;
 	int at_angle;
 
 	XMBElementList nodes; // children of root
@@ -295,34 +292,26 @@ void CXMLReader::Init(const CStr& xml_filename)
 		throw CFileUnpacker::CFileReadError();
 #endif
 
-	// define all the elements and attributes used in the XML file.
+	// define the elements and attributes that are frequently used in the XML file,
+	// so we don't need to do lots of string construction and comparison when
+	// reading the data.
 	// (Needs to be synchronised with the list in CXMLReader - ugh)
 #define EL(x) el_##x = xmb_file.getElementID(#x)
 #define AT(x) at_##x = xmb_file.getAttributeID(#x)
-	EL(scenario);
-	EL(entities);
 	EL(entity);
 	EL(template);
 	EL(player);
 	EL(position);
 	EL(orientation);
-	EL(nonentities);
 	EL(nonentity);
 	EL(actor);
-	EL(environment);
-	EL(suncolour);
-	EL(sunelevation);
-	EL(sunrotation);
-	EL(terrainambientcolour);
-	EL(unitsambientcolour);
 	AT(x); AT(y); AT(z);
-	AT(r); AT(g); AT(b);
 	AT(angle);
 #undef AT
 #undef EL
 
 	XMBElement root = xmb_file.getRoot();
-	debug_assert(root.getNodeName() == el_scenario);
+	debug_assert(xmb_file.getElementString(root.getNodeName()) == "scenario");
 	nodes = root.getChildNodes();
 
 	// find out total number of entities+nonentities
@@ -336,6 +325,17 @@ void CXMLReader::Init(const CStr& xml_filename)
 
 void CXMLReader::ReadEnvironment(XMBElement parent)
 {
+#define EL(x) int el_##x = xmb_file.getElementID(#x)
+#define AT(x) int at_##x = xmb_file.getAttributeID(#x)
+	EL(suncolour);
+	EL(sunelevation);
+	EL(sunrotation);
+	EL(terrainambientcolour);
+	EL(unitsambientcolour);
+	AT(r); AT(g); AT(b);
+#undef AT
+#undef EL
+
 	XERO_ITER_EL(parent, element)
 	{
 		int element_name = element.getNodeName();
@@ -524,17 +524,18 @@ int CXMLReader::ProgressiveRead()
 	while (node_idx < nodes.Count)
 	{
 		XMBElement node = nodes.item(node_idx);
-		if (node.getNodeName() == el_environment)
+		CStr name = xmb_file.getElementString(node.getNodeName());
+		if (name == "environment")
 		{
 			ReadEnvironment(node);
 		}
-		else if (node.getNodeName() == el_entities)
+		else if (name == "entities")
 		{
 			ret = ReadEntities(node, end_time);
 			if (ret != 0)	// error or timed out
 				return ret;
 		}
-		else if (node.getNodeName() == el_nonentities)
+		else if (name == "nonentities")
 		{
 			ret = ReadNonEntities(node, end_time);
 			if (ret != 0)	// error or timed out

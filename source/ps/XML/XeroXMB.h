@@ -110,7 +110,7 @@ class XMBFile
 {
 public:
 
-	XMBFile() : m_Pointer(NULL) {};
+	XMBFile() : m_Pointer(NULL) {}
 
 	// Initialise from the contents of an XMB file.
 	// FileData must remain allocated and unchanged while
@@ -207,7 +207,7 @@ class XMBAttributeList
 {
 public:
 	XMBAttributeList(char* offset, int count)
-		: Count(count), m_Pointer(offset), m_LastItemID( -2 ) {};
+		: Count(count), m_Pointer(offset), m_LastItemID(-2) {};
 
 	// Get the attribute value directly (unlike Xerces)
 	utf16string getNamedItem(const int AttributeName) const;

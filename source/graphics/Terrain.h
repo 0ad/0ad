@@ -32,11 +32,11 @@ public:
 
 	inline bool isOnMap( float x, float y ) const 
 	{
-		return( ( x >= 0.0f ) && ( x <= (float)( m_MapSize * CELL_SIZE ) ) && ( y >= 0.0f ) && ( y <= (float)( m_MapSize * CELL_SIZE ) ) );
+		return( ( x >= 0.0f ) && ( x < (float)( (m_MapSize-1) * CELL_SIZE ) ) && ( y >= 0.0f ) && ( y < (float)( (m_MapSize-1) * CELL_SIZE ) ) );
 	}
 	inline bool isOnMap( const CVector2D& v ) const
 	{
-		return( ( v.x >= 0.0f ) && ( v.x <= (float)( m_MapSize * CELL_SIZE ) ) && ( v.y >= 0.0f ) && ( v.y <= (float)( m_MapSize * CELL_SIZE ) ) );
+		return( ( v.x >= 0.0f ) && ( v.x < (float)( (m_MapSize-1) * CELL_SIZE ) ) && ( v.y >= 0.0f ) && ( v.y < (float)( (m_MapSize-1) * CELL_SIZE ) ) );
 	}
 	float getVertexGroundLevel( int x, int y ) const ;
 	float getExactGroundLevel( float x, float y ) const ;

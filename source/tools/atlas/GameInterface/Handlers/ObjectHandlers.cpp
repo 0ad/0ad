@@ -9,6 +9,7 @@
 #include "graphics/UnitManager.h"
 #include "graphics/Model.h"
 #include "maths/Matrix3D.h"
+#include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 #include "ps/Game.h"
 #include "lib/ogl.h"
@@ -43,7 +44,7 @@ void AtlasRenderSelection()
 			CUnit* unit = static_cast<CUnit*>(g_Selection[i]);
 			if (unit->GetEntity())
 				unit->GetEntity()->renderSelectionOutline();
-			else if (unit->GetModel())
+			else
 			{
 				const CBound& bound = unit->GetModel()->GetBounds();
 				// Expand bounds by 10% around the centre
@@ -76,10 +77,26 @@ MESSAGEHANDLER(SetSelectionPreview)
 static CUnit* g_PreviewUnit = NULL;
 static CStrW g_PreviewUnitID;
 
+// Returns roughly the largest number smaller than f (i.e. closer to zero)
+static float flt_minus_epsilon(float f)
+{
+	return f - (FLT_EPSILON * f);
+}
+
 static CVector3D GetUnitPos(const Position& pos)
 {
 	static CVector3D vec;
 	pos.GetWorldSpace(vec, vec); // if msg->pos is 'Unchanged', use the previous pos
+
+	float xOnMap = clamp(vec.X, 0.f, flt_minus_epsilon((g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide()-1)*CELL_SIZE));
+	float zOnMap = clamp(vec.Z, 0.f, flt_minus_epsilon((g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide()-1)*CELL_SIZE));
+	if (xOnMap != vec.X || zOnMap != vec.Z)
+	{
+		vec.X = xOnMap;
+		vec.Z = zOnMap;
+		vec.Y = g_Game->GetWorld()->GetTerrain()->getExactGroundLevel(xOnMap, zOnMap);
+	}
+
 	return vec;
 }
 
@@ -206,6 +223,20 @@ QUERYHANDLER(SelectObject)
 	CUnit* target = g_UnitMan.PickUnit(rayorigin, raydir);
 
 	msg->id = static_cast<void*>(target);
+
+	if (target)
+	{
+		CVector3D centre = target->GetModel()->GetTransform().GetTranslation();
+		centre.Y = g_Game->GetWorld()->GetTerrain()->getExactGroundLevel(centre.X, centre.Z);
+		float cx, cy;
+		g_Game->GetView()->GetCamera()->GetScreenCoordinates(centre, cx, cy);
+		msg->offsetx = (int)(cx - x);
+		msg->offsety = (int)(cy - y);
+	}
+	else
+	{
+		msg->offsetx = msg->offsety = 0;
+	}
 }
 
 
@@ -224,7 +255,7 @@ BEGIN_COMMAND(MoveObject)
 		{
 			m_PosOld = unit->GetEntity()->m_position;
 		}
-		else if (unit->GetModel())
+		else
 		{
 			CMatrix3D m = unit->GetModel()->GetTransform();
 			m_PosOld = m.GetTranslation();
@@ -246,7 +277,7 @@ BEGIN_COMMAND(MoveObject)
 		{
 			unit->GetEntity()->m_position = pos;
 		}
-		else if (unit->GetModel())
+		else
 		{
 			CMatrix3D m = unit->GetModel()->GetTransform();
 			m.Translate(pos - m.GetTranslation());
@@ -301,7 +332,7 @@ BEGIN_COMMAND(RotateObject)
 				m_AngleNew = d->angle;
 			}
 		}
-		else if (unit->GetModel())
+		else
 		{
 			m_TransformOld = unit->GetModel()->GetTransform();
 
@@ -343,7 +374,7 @@ BEGIN_COMMAND(RotateObject)
 		{
 			unit->GetEntity()->m_orientation = angle;
 		}
-		else if (unit->GetModel())
+		else
 		{
 			unit->GetModel()->SetTransform(transform);
 		}

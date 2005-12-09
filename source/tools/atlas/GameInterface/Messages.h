@@ -173,6 +173,8 @@ QUERY(SelectObject,
 	  ((Position, pos))
 	  ,
 	  ((ObjectID, id))
+	  ((int, offsetx))  // offset of object centre from input position
+	  ((int, offsety)) //
 	  );
 
 COMMAND(MoveObject, MERGE,

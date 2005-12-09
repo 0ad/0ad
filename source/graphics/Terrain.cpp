@@ -192,18 +192,18 @@ float CTerrain::getExactGroundLevel(float x, float y) const
 	{
 		xi = 0; xf = 0.0f;
 	}
-	else if (xi >= (int)m_MapSize)
+	else if (xi >= (int)m_MapSize-1)
 	{
-		xi = m_MapSize - 1; xf = 1.0f;
+		xi = m_MapSize - 2; xf = 1.0f;
 	}
 
 	if (yi < 0)
 	{
 		yi = 0; yf = 0.0f;
 	}
-	else if (yi >= (int)m_MapSize)
+	else if (yi >= (int)m_MapSize-1)
 	{
-		yi = m_MapSize - 1; yf = 1.0f;
+		yi = m_MapSize - 2; yf = 1.0f;
 	}
 
 	/*

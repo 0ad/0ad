@@ -177,7 +177,7 @@ return LOS_VISIBLE;
 	// Ensure that units off the map don't cause the visibility arrays to be
 	// accessed out of bounds
 	if ((unsigned)tx >= m_TilesPerSide || (unsigned)tz >= m_TilesPerSide)
-		return LOS_UNEXPLORED;
+		return LOS_VISIBLE; // because we don't want them to be permanently hidden
 
 	// TODO: Make the mask depend on the player's diplomacy (just OR all his allies' masks)
 
@@ -212,8 +212,7 @@ ELOSStatus CLOSManager::GetStatus(float fx, float fz, CPlayer* player)
 
 EUnitLOSStatus CLOSManager::GetUnitStatus(CUnit* unit, CPlayer* player)
 {
-	CVector3D centre;
-	unit->GetModel()->GetBounds().GetCentre(centre);
+	CVector3D centre = unit->GetModel()->GetTransform().GetTranslation();
 	ELOSStatus status = GetStatus(centre.X, centre.Z, player);
 
 	if(status & LOS_VISIBLE)

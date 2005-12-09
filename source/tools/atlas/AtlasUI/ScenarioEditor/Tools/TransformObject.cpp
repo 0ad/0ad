@@ -12,6 +12,7 @@ class TransformObject : public StateDrivenTool<TransformObject>
 	DECLARE_DYNAMIC_CLASS(TransformObject);
 
 	std::vector<AtlasMessage::ObjectID> m_Selection;
+	int m_dx, m_dy;
 
 public:
 	TransformObject()
@@ -39,6 +40,8 @@ public:
 				qry.Post();
 				obj->m_Selection.clear();
 				obj->m_Selection.push_back(qry.id);
+				obj->m_dx = qry.offsetx;
+				obj->m_dy = qry.offsety;
 				POST_MESSAGE(SetSelectionPreview(obj->m_Selection));
 				ScenarioEditor::GetCommandProc().FinaliseLastCommand();
 				SET_STATE(Dragging);
@@ -82,7 +85,7 @@ public:
 			}
 			else if (evt.Dragging())
 			{
-				Position pos (evt.GetPosition());
+				Position pos (evt.GetPosition() + wxPoint(obj->m_dx, obj->m_dy));
 				for (size_t i = 0; i < obj->m_Selection.size(); ++i)
 					POST_COMMAND(MoveObject, (obj->m_Selection[i], pos));
 				return true;

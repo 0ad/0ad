@@ -147,7 +147,7 @@ JSBool CProjectile::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, 
 			goto fail;
 		}
 	}
-	else if( !ToPrimitive<CStr>( cx, argv[0], ModelString ) || !( oe = g_ObjMan.FindObject( ModelString ) ) || !( Model = oe->m_Model ) )
+	else if( !ToPrimitive<CStr>( cx, argv[0], ModelString ) || NULL == ( oe = g_ObjMan.FindObject( ModelString ) ) || NULL == ( Model = oe->m_Model ) )
 	{
 		err = "Invalid actor";
 		goto fail;
