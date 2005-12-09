@@ -391,6 +391,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	// Toolbar:
 
 	ToolButtonBar* toolbar = new ToolButtonBar(this, ID_Toolbar);
+	// TODO: configurable small vs large icon images
 	// (button label; tooltip text; image; internal tool name)
 	toolbar->AddToolButton(_("Default"), _("Default"), _T("default.png"), _T(""));
 	toolbar->AddToolButton(_("Move"), _("Move/rotate object"), _T("moveobject.png"), _T("TransformObject"));

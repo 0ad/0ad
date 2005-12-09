@@ -8,6 +8,9 @@ namespace AtlasMessage
 // (Random note: Be careful not to give handler .cpp files the same name
 // as any other file in the project, because it makes everything very confused)
 
+// TODO: measure how long this static initialisation stuff takes, and if it's
+// non-negligible then make it do as little work as possible if Atlas is not run
+
 typedef void (*msgHandler)(IMessage*);
 typedef std::map<std::string, msgHandler> msgHandlers;
 extern msgHandlers& GetMsgHandlers();

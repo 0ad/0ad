@@ -39,11 +39,13 @@ void AtlasRenderSelection()
 	glDisable(GL_DEPTH_TEST);
 	for (size_t i = 0; i < g_Selection.size(); ++i)
 	{
-		if (g_Selection[i])
+		CUnit* unit = g_UnitMan.FindByID(g_Selection[i]);
+		if (unit)
 		{
-			CUnit* unit = static_cast<CUnit*>(g_Selection[i]);
 			if (unit->GetEntity())
+			{
 				unit->GetEntity()->renderSelectionOutline();
+			}
 			else
 			{
 				const CBound& bound = unit->GetModel()->GetBounds();
@@ -118,7 +120,7 @@ MESSAGEHANDLER(EntityPreview)
 			CBaseEntity* base = g_EntityTemplateCollection.getTemplate(msg->id);
 			if (base) // (ignore errors)
 			{
-				g_PreviewUnit = g_UnitMan.CreateUnit(base->m_actorName, 0);
+				g_PreviewUnit = g_UnitMan.CreateUnit(base->m_actorName, NULL);
 				// TODO: set player (for colour)
 				// TODO: variations
 			}
@@ -159,9 +161,9 @@ MESSAGEHANDLER(EntityPreview)
 
 BEGIN_COMMAND(CreateEntity)
 
-	HEntity m_Entity;
 	CVector3D m_Pos;
 	float m_Angle;
+	int m_ID;
 
 	void Do()
 	{
@@ -179,6 +181,8 @@ BEGIN_COMMAND(CreateEntity)
 			m_Angle = d->angle;
 		}
 
+		m_ID = g_UnitMan.GetNewID();
+
 		Redo();
 	}
 
@@ -195,18 +199,19 @@ BEGIN_COMMAND(CreateEntity)
 				LOG(ERROR, LOG_CATEGORY, "Failed to create entity of type '%ls'", d->id.c_str());
 			else
 			{
-				// TODO: player ID
+				// TODO: proper player ID
 				ent->SetPlayer(g_Game->GetLocalPlayer());
 
-				m_Entity = ent;
+				ent->m_actor->SetID(m_ID);
 			}
 		}
 	}
 
 	void Undo()
 	{
-		m_Entity->kill();
-		m_Entity = HEntity();
+		CUnit* unit = g_UnitMan.FindByID(m_ID);
+		if (unit && unit->GetEntity())
+			unit->GetEntity()->kill();
 	}
 
 END_COMMAND(CreateEntity)
@@ -222,7 +227,10 @@ QUERYHANDLER(SelectObject)
 
 	CUnit* target = g_UnitMan.PickUnit(rayorigin, raydir);
 
-	msg->id = static_cast<void*>(target);
+	if (target)
+		msg->id = target->GetID();
+	else
+		msg->id = -1;
 
 	if (target)
 	{
@@ -246,10 +254,8 @@ BEGIN_COMMAND(MoveObject)
 
 	void Do()
 	{
-		if (! d->id)
-			return;
-
-		CUnit* unit = static_cast<CUnit*>(d->id);
+		CUnit* unit = g_UnitMan.FindByID(d->id);
+		if (! unit) return;
 
 		if (unit->GetEntity())
 		{
@@ -268,10 +274,8 @@ BEGIN_COMMAND(MoveObject)
 
 	void SetPos(CVector3D& pos)
 	{
-		if (! d->id)
-			return;
-
-		CUnit* unit = static_cast<CUnit*>(d->id);
+		CUnit* unit = g_UnitMan.FindByID(d->id);
+		if (! unit) return;
 
 		if (unit->GetEntity())
 		{
@@ -311,10 +315,8 @@ BEGIN_COMMAND(RotateObject)
 
 	void Do()
 	{
-		if (! d->id)
-			return;
-
-		CUnit* unit = static_cast<CUnit*>(d->id);
+		CUnit* unit = g_UnitMan.FindByID(d->id);
+		if (! unit) return;
 
 		if (unit->GetEntity())
 		{
@@ -365,10 +367,8 @@ BEGIN_COMMAND(RotateObject)
 
 	void SetAngle(float angle, CMatrix3D& transform)
 	{
-		if (! d->id)
-			return;
-
-		CUnit* unit = static_cast<CUnit*>(d->id);
+		CUnit* unit = g_UnitMan.FindByID(d->id);
+		if (! unit) return;
 
 		if (unit->GetEntity())
 		{
@@ -402,29 +402,21 @@ END_COMMAND(RotateObject)
 
 BEGIN_COMMAND(DeleteObject)
 
-	bool m_ObjectAlive;
+	CUnit* m_UnitInLimbo;
 
 	void Construct()
 	{
-		m_ObjectAlive = true;
+		m_UnitInLimbo = NULL;
 	}
 
 	void Destruct()
 	{
-		if (! m_ObjectAlive)
+		if (m_UnitInLimbo)
 		{
-			if (! d->id)
-				return;
-
-			CUnit* unit = static_cast<CUnit*>(d->id);
-
-			if (unit->GetEntity())
-				unit->GetEntity()->kill();
+			if (m_UnitInLimbo->GetEntity())
+				m_UnitInLimbo->GetEntity()->kill();
 			else
-			{
-				g_UnitMan.RemoveUnit(unit);
-				delete unit;
-			}
+				delete m_UnitInLimbo;
 		}
 	}
 
@@ -435,33 +427,26 @@ BEGIN_COMMAND(DeleteObject)
 
 	void Redo()
 	{
-		if (! d->id)
-			return;
-
-		CUnit* unit = static_cast<CUnit*>(d->id);
+		CUnit* unit = g_UnitMan.FindByID(d->id);
+		if (! unit) return;
 
 		if (unit->GetEntity())
+		{
 			// HACK: I don't know the proper way of undoably deleting entities...
 			unit->GetEntity()->m_destroyed = true;
+		}
 
 		g_UnitMan.RemoveUnit(unit);
-
-		m_ObjectAlive = false;
+		m_UnitInLimbo = unit;
 	}
 
 	void Undo()
 	{
-		if (! d->id)
-			return;
+		if (m_UnitInLimbo->GetEntity())
+			m_UnitInLimbo->GetEntity()->m_destroyed = false;
 
-		CUnit* unit = static_cast<CUnit*>(d->id);
-
-		if (unit->GetEntity())
-			unit->GetEntity()->m_destroyed = false;
-
-		g_UnitMan.AddUnit(unit);
-
-		m_ObjectAlive = true;
+		g_UnitMan.AddUnit(m_UnitInLimbo);
+		m_UnitInLimbo = NULL;
 	}
 
 END_COMMAND(DeleteObject)

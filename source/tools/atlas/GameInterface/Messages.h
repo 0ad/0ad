@@ -167,7 +167,8 @@ COMMAND(PaintTerrain, MERGE,
 
 //////////////////////////////////////////////////////////////////////////
 
-typedef void* ObjectID;
+typedef int ObjectID;
+inline bool ObjectIDIsValid(ObjectID id) { return (id >= 0); }
 
 QUERY(SelectObject,
 	  ((Position, pos))

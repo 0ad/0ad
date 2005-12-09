@@ -50,6 +50,7 @@ void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain_, CUnitManager
 	g_EntityManager.deleteAll();
 	// delete all remaining non-entity units
 	pUnitMan->DeleteAll();
+	g_UnitMan.SetNextID(0);
 
 	// unpack the data
 	RegMemFun(this, &CMapReader::UnpackMap, L"CMapReader::UnpackMap", 1250);
@@ -437,7 +438,13 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 			if (! ent)
 				LOG(ERROR, LOG_CATEGORY, "Failed to create entity of type '%ls'", TemplateName.c_str());
 			else
+			{
 				ent->SetPlayer(g_Game->GetPlayer(PlayerID));
+
+				// TODO: save object IDs in the map file, and load them again,
+				// so that triggers have a persistent identifier for objects
+				ent->m_actor->SetID(g_UnitMan.GetNewID());
+			}
 		}
 
 		completed_jobs++;
@@ -492,7 +499,7 @@ int CXMLReader::ReadNonEntities(XMBElement parent, double end_time)
 
 		CUnit* unit = g_UnitMan.CreateUnit(ActorName, NULL);
 
-		if (unit && unit->GetModel())
+		if (unit)
 		{
 			// Copied from CEntity::updateActorTransforms():
 			float s = sin(Orientation);
@@ -503,6 +510,10 @@ int CXMLReader::ReadNonEntities(XMBElement parent, double end_time)
 			m._31 = s;      m._32 = 0.0f;   m._33 = -c;     m._34 = Position.Z;
 			m._41 = 0.0f;   m._42 = 0.0f;   m._43 = 0.0f;   m._44 = 1.0f;
 			unit->GetModel()->SetTransform(m);
+
+			// TODO: save object IDs in the map file, and load them again,
+			// so that triggers have a persistent identifier for objects
+			unit->SetID(g_UnitMan.GetNewID());
 		}
 
 		completed_jobs++;

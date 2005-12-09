@@ -47,11 +47,19 @@ public:
 	
 	// iterate through units testing given ray against bounds of each unit; 
 	// return the closest unit, or null if everything missed
-	CUnit* PickUnit(const CVector3D& origin,const CVector3D& dir) const;
+	CUnit* PickUnit(const CVector3D& origin, const CVector3D& dir) const;
+
+	CUnit* FindByID(int id) const;
+
+	int GetNewID() { return m_NextID++; }
+
+	void SetNextID(int n) { m_NextID = n; }
 
 private:
 	// list of all known units
 	std::vector<CUnit*> m_Units;
+	// next ID number to be assigned to a unit created in the editor
+	int m_NextID;
 };
 
 #endif

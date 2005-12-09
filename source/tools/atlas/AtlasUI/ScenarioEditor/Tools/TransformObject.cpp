@@ -39,12 +39,15 @@ public:
 				AtlasMessage::qSelectObject qry(Position(evt.GetPosition()));
 				qry.Post();
 				obj->m_Selection.clear();
-				obj->m_Selection.push_back(qry.id);
-				obj->m_dx = qry.offsetx;
-				obj->m_dy = qry.offsety;
+				if (AtlasMessage::ObjectIDIsValid(qry.id))
+				{
+					obj->m_Selection.push_back(qry.id);
+					obj->m_dx = qry.offsetx;
+					obj->m_dy = qry.offsety;
+					SET_STATE(Dragging);
+				}
 				POST_MESSAGE(SetSelectionPreview(obj->m_Selection));
 				ScenarioEditor::GetCommandProc().FinaliseLastCommand();
-				SET_STATE(Dragging);
 				return true;
 			}
 			else if (evt.Dragging() && evt.RightIsDown() || evt.RightDown())
