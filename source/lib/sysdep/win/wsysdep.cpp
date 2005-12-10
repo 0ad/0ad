@@ -333,8 +333,7 @@ ErrorReaction sys_display_error(const wchar_t* text, int flags)
 	// failed; warn user and make sure we return an ErrorReaction.
 	if(ret == 0 || ret == -1)
 	{
-		sys_display_msgw(L"Error", L"Unable to display detailed error dialog.");
-		// TODO: i18n
+		display_msgw(L"Error", L"Unable to display detailed error dialog.");
 		return ER_CONTINUE;
 	}
 	return (ErrorReaction)ret;

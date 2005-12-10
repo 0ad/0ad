@@ -1,11 +1,46 @@
-// note: this is called lib_errors.h because we have another
-// errors.cpp; the MS linker isn't smart enough to deal with
-// object files of the same name but in different paths.
+// notes:
+// - file is called lib_errors.h because 0ad has another errors.cpp and
+//   the MS linker isn't smart enough to deal with object files
+//   of the same name but in different paths.
+// - the first part of this file is a normal header; the second contains
+//   X macros and is only active if ERR is defined (i.e. someone is
+//   including this header for the purpose of using them).
+
+#ifndef ERRORS_H__
+#define ERRORS_H__
+
+// limits on the errors defined above (used by error_description_r)
+#define ERR_MIN 100000
+#define ERR_MAX 110000
+
+// define error codes.
+enum LibError {
+#define ERR(err, id, str) id = err,
+#include "lib_errors.h"
+	// necessary because the enum would otherwise end with a comma
+	// (which is often tolerated but not standards compliant).
+	// note: we cannot rely on this being the last value (in case the
+	// ERR x-macros aren't arranged in order), so don't use as such.
+	LIB_ERROR_DUMMY
+};
+
+
+// generate textual description of an error code.
+// stores up to <max_chars> in the given buffer.
+// <err> can be one of the above error codes, POSIX ENOENT etc., or
+// an OS-specific errors. if unknown, the string will be something like
+// "Unknown error (65536, 0x10000)".
+extern void error_description_r(int err, char* buf, size_t max_chars);
+
+#endif	// #ifndef ERRORS_H__
+
+//-----------------------------------------------------------------------------
+
+#ifdef ERR
 
 // X macros: error code, symbolic name in code, user-visible string.
 // error code is usually negative; positive denotes warnings.
 //   its absolute value must be within [ERR_MIN, ERR_MAX).
-#ifdef ERR
 
 // function arguments
 ERR(-100000, ERR_INVALID_PARAM, "Invalid function argument")
@@ -58,22 +93,3 @@ ERR(-100704, ERR_SHDR_NO_PROGRAM, "Invalid shader program reference")
 
 #undef ERR
 #endif	// #ifdef ERR
-
-
-//-----------------------------------------------------------------------------
-
-#ifndef ERRORS_H__
-#define ERRORS_H__
-
-// limits on the errors defined above (used by error_description_r)
-#define ERR_MIN 100000
-#define ERR_MAX 110000
-
-// generate textual description of an error code.
-// stores up to <max_chars> in the given buffer.
-// <err> can be one of the above error codes, POSIX ENOENT etc., or
-// an OS-specific errors. if unknown, the string will be something like
-// "Unknown error (65536, 0x10000)".
-extern void error_description_r(int err, char* buf, size_t max_chars);
-
-#endif	// #ifndef ERRORS_H__

@@ -1128,7 +1128,8 @@ void SDL_WM_SetCaption(const char* title, const char* icon)
 {
 	WARN_IF_FALSE(SetWindowText(hWnd, title));
 
-	UNUSED2(icon);	// TODO: implement
+	// real SDL ignores this parameter, so we will follow suit.
+	UNUSED2(icon);
 }
 
 

@@ -59,8 +59,6 @@ scope
 #include "config.h"
 #include "lib/types.h"
 
-// define error codes
-#define ERR(err, id, str) const int id = err;
 #include "lib/lib_errors.h"
 
 #include "sysdep/sysdep.h"
@@ -311,6 +309,12 @@ const size_t GiB = 1ul << 30;
 #else
 #define DIR_SEP '/'
 #endif
+
+
+// translates the given strings and passes them on to sys_display_msgw
+// (see documentation there).
+extern void display_msgw(const wchar_t* caption, const wchar_t* msg);
+
 
 
 #define BIT(n) (1ul << (n))

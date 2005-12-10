@@ -127,6 +127,8 @@ extern void* alloca(size_t size);
 // output
 //
 
+// raise a message box with the given text or (depending on platform)
+// otherwise inform the user.
 extern void sys_display_msg(const char* caption, const char* msg);
 extern void sys_display_msgw(const wchar_t* caption, const wchar_t* msg);
   

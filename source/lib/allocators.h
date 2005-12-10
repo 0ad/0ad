@@ -223,11 +223,7 @@ public:
 
 	~OverrunProtector()
 	{
-		initialized = 2;
-		unlock();
-		cached_ptr->~T();	// call dtor (since we used placement new)
-		cached_ptr = 0;
-		(void)da_free(&da);
+		shutdown();
 	}
 
 	void lock()
@@ -264,9 +260,22 @@ fail:
 		debug_warn("OverrunProtector mem alloc failed");
 	}
 
+	void shutdown()
+	{
+		if(!CAS(&initialized, 1, 2))
+			return;	// never initialized or already shut down - abort
+		unlock();
+		cached_ptr->~T();	// call dtor (since we used placement new)
+		cached_ptr = 0;
+		(void)da_free(&da);
+	}
+
 public:
 	T* get()
 	{
+		// this could theoretically be done in the ctor, but we try to
+		// minimize non-trivial code at NLSO ctor time
+		// (avoids init order problems).
 		if(CAS(&initialized, 0, 1))
 			init();
 		debug_assert(initialized != 2 && "OverrunProtector: used after dtor called:");

@@ -22,12 +22,21 @@
 
 #include "lib/types.h"
 #include "lib.h"
+#include "lib/app_hooks.h"
 
 #include "sysdep/sysdep.h"
 
 #ifndef SELF_TEST_ENABLED
 #define SELF_TEST_ENABLED 0
 #endif
+
+
+// translates the given strings and passes them on to sys_display_msgw
+// (see documentation there).
+void display_msgw(const wchar_t* caption, const wchar_t* msg)
+{
+	sys_display_msgw(ah_translate(caption), ah_translate(msg));
+}
 
 
 // FNV1-A hash - good for strings.
