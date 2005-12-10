@@ -77,6 +77,7 @@ public:
 	float m_speed;
 	SEntityAction m_melee;
 	SEntityAction m_gather;
+	SEntityAction m_heal;
 
 	float m_turningRadius;
 	CScriptObject m_EventHandlers[EVENT_LAST];
