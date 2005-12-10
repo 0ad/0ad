@@ -82,6 +82,7 @@ void CNetMessage::ScriptingInit()
 	def(NMT_AddWaypoint);
 	def(NMT_AttackMelee);
 	def(NMT_Gather);
+	def(NMT_Heal);
 }
 
 CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSContext *cx, uintN argc, jsval *argv)
@@ -163,6 +164,8 @@ CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSConte
 		
 		EntityMessage(AttackMelee)
 		EntityMessage(Gather)
+		EntityMessage(Heal)
+
 		default:
 			JS_ReportError(cx, "Invalid order type");
 			return NULL;

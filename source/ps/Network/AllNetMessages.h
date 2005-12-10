@@ -61,6 +61,7 @@ enum ENetMessageType
 	NMT_AddWaypoint,
 	NMT_AttackMelee,
 	NMT_Gather,
+	NMT_Heal,
 	NMT_COMMAND_LAST,
 	/* Post-Game Stage */
 
@@ -226,6 +227,10 @@ DERIVE_NMT_CLASS_(NetCommand, AttackMelee)
 END_NMT_CLASS()
 
 DERIVE_NMT_CLASS_(NetCommand, Gather)
+	NMT_FIELD(HEntity, m_Target)
+END_NMT_CLASS()
+
+DERIVE_NMT_CLASS_(NetCommand, Heal)
 	NMT_FIELD(HEntity, m_Target)
 END_NMT_CLASS()
 
