@@ -173,15 +173,17 @@ function entity_event_takesdamage( evt )
 	if( totalDamage < 1 ) totalDamage = 1;
 
 	this.traits.health.curr -= totalDamage;
-
+	
 	if( this.traits.health.curr <= 0 )
 	{
 		// If the inflictor gains promotions, and he's capable of earning more ranks,
-		if (evt.inflictor.traits.up && evt.inflictor.traits.up.curr && evt.inflictor.traits.up.req && evt.inflictor.traits.up.newentity && evt.inflictor.traits.up.newentity != "")
+		if (evt.inflictor.traits.up && evt.inflictor.traits.up.curr && evt.inflictor.traits.up.req
+				&& evt.inflictor.traits.up.newentity && evt.inflictor.traits.up.newentity != ""
+				&& this.traits.loot && this.traits.loot.up)
 		{
 			// Give him the fallen's upgrade points (if he has any).
-			if (this.traits.loot.up)
-				evt.inflictor.traits.up.curr = parseInt(evt.inflictor.traits.up.curr) + parseInt(this.traits.loot.up);
+			evt.inflictor.traits.up.curr = parseInt(evt.inflictor.traits.up.curr) + parseInt(this.traits.loot.up);
+			
 			// Notify player.
 			if (this.traits.id.specific)
 				console.write(this.traits.id.specific + " has earned " + this.traits.loot.up + " upgrade points!");
@@ -217,12 +219,14 @@ function entity_event_takesdamage( evt )
 			{
 				switch( loot.toString().toUpperCase() )
 				{
+					case "up":
+						break;
 					default:
 						// Give the inflictor his resources.
 						getGUIGlobal().giveResources( loot.toString(), parseInt(pool[loot]) );
 						// Notify player.
 						console.write ("Spoils of war! " + pool[loot] + " " + loot.toString() + "!");
-					break;
+						break;
 				}
 			}
 		}
@@ -234,10 +238,16 @@ function entity_event_takesdamage( evt )
 			console.write( this.traits.id.generic + " died in mysterious circumstances." );
 
 		// Make him cry out in pain.
-		curr_pain = getGUIGlobal().newRandomSound("voice", "pain", this.traits.audio.path);
-		curr_pain.play();
+		if(this.traits.audio && this.traits.audio.path) {
+			curr_pain = getGUIGlobal().newRandomSound("voice", "pain", this.traits.audio.path);
+			if(curr_pain) curr_pain.play();
+		}
+		else {
+			console.write("Sorry, no death sound for this unit.. you'll just have to imagine it");
+		}
 
 		// We've taken what we need. Kill the swine.
+		console.write("Kill!!");
 		this.kill();
 	}
 	else if( evt.inflictor && this.actions.attack )
@@ -291,10 +301,17 @@ function entity_event_prepareorder( evt )
 	// This event gives us a chance to veto any order we're given before we execute it.
 	// Not sure whether this really belongs here like this: the alternative is to override it in
 	// subtypes - then you wouldn't need to check tags, you could hardcode results.
+
+	if( !this.actions )
+	{
+		evt.preventDefault();
+		return;
+	}
+	
 	switch( evt.orderType )
 	{
 	case ORDER_GOTO:
-		if( !this.actions.move )
+		if( !this.actions.move ) 
 			evt.preventDefault();
 		break;
 	case ORDER_PATROL:
