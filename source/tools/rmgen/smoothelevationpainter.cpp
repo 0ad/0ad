@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "rmgen.h"
 #include "smoothelevationpainter.h"
+#include "pointmap.h"
 
 using namespace std;
 
@@ -30,15 +31,13 @@ bool SmoothElevationPainter::checkInArea(Map* m, Area* a, int x, int y) {
 void SmoothElevationPainter::paint(Map* m, Area* a) {
 	// TODO: Use a 2D array instead of STL maps and sets for speed
 
-	map<Point, int> saw;
-	map<Point, int> dist;
-
+	PointMap<int> saw;
+	PointMap<int> dist;
 	queue<Point> q;
-
 	vector<Point>& pts = a->points;
-
-	set<Point> heightPts;
-	map<Point, float> newHeight;
+	vector<Point> heightPts;
+	PointMap<int> gotHeightPt;
+	PointMap<float> newHeight;
 
 	// get a list of all points
 	for(int i=0; i<pts.size(); i++) {
@@ -47,8 +46,9 @@ void SmoothElevationPainter::paint(Map* m, Area* a) {
 			for(int dy=-1; dy<=2; dy++) {
 				int nx = x+dx, ny = y+dy;
 				Point np(nx, ny);
-				if(m->validH(nx, ny)) {
-					heightPts.insert(np);
+				if(m->validH(nx, ny) && !gotHeightPt[np]) {
+					gotHeightPt[np] = 1;
+					heightPts.push_back(np);
 					newHeight[np] = m->height[nx][ny];
 				}
 			}
@@ -124,7 +124,7 @@ void SmoothElevationPainter::paint(Map* m, Area* a) {
 	}
 
 	// smooth everything out
-	for(set<Point>::iterator it = heightPts.begin(); it != heightPts.end(); it++) {
+	for(vector<Point>::iterator it = heightPts.begin(); it != heightPts.end(); it++) {
 		Point p = *it;
 		int x = p.x, y = p.y;
 		if((checkInArea(m, a, x, y) || checkInArea(m, a, x-1, y) 
@@ -135,7 +135,7 @@ void SmoothElevationPainter::paint(Map* m, Area* a) {
 				for(int dy=-1; dy<=1; dy++) {
 					int nx = x+dx, ny = y+dy;
 					if(m->validH(nx, ny)) {
-						sum += m->height[nx][ny];
+						sum += newHeight[Point(nx,ny)];//m->height[nx][ny];
 						count++;
 					}
 				}

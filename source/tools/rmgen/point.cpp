@@ -17,3 +17,11 @@ Point::~Point(void)
 bool Point::operator <(const Point& p) const {
 	return x<p.x || (x==p.x && y<p.y);
 }
+
+bool Point::operator ==(const Point& p) const {
+	return x==p.x && y==p.y;
+}
+
+Point::operator size_t() const {
+	return (x<<10) ^ y;
+}

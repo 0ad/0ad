@@ -10,14 +10,19 @@ using namespace std;
 SimpleGroup::Element::Element(){
 }
 
-SimpleGroup::Element::Element(const std::string& t, int minC, int maxC, float minD, float maxD):
-	type(t), minCount(minC), maxCount(maxC), minDistance(minD), maxDistance(maxD)
+SimpleGroup::Element::Element(const std::string& t, int minC, int maxC, 
+							  float minD, float maxD, float minA, float maxA):
+	type(t), minCount(minC), maxCount(maxC), minDistance(minD), maxDistance(maxD), 
+		minAngle(minA), maxAngle(maxA)
 {
 	if(minCount > maxCount) {
 		JS_ReportError(cx, "SimpleObject: minCount must be less than or equal to maxCount");
 	}
 	if(minDistance > maxDistance) {
 		JS_ReportError(cx, "SimpleObject: minDistance must be less than or equal to maxDistance");
+	}
+	if(minAngle > maxAngle) {
+		JS_ReportError(cx, "SimpleObject: minAngle must be less than or equal to maxAngle");
 	}
 }
 
@@ -31,10 +36,10 @@ bool SimpleGroup::Element::place(int cx, int cy, Map* m, int player, bool avoidS
 	for(int i=0; i<count; i++) {
 		while(true) {
 			float distance = RandFloat(minDistance, maxDistance);
-			float angle = RandFloat(0, 2*PI);
+			float direction = RandFloat(0, 2*PI);
 
-			float x = cx + 0.5f + distance*cos(angle);
-			float y = cy + 0.5f + distance*sin(angle);
+			float x = cx + 0.5f + distance*cos(direction);
+			float y = cy + 0.5f + distance*sin(direction);
 
 			if(x<0 || y<0 || x>m->size || y>m->size) {
 				goto bad;
@@ -55,7 +60,8 @@ bool SimpleGroup::Element::place(int cx, int cy, Map* m, int player, bool avoidS
 			}
 
 			// if we got here, we're good
-			ret.push_back(new Object(type, player, x, y, RandFloat()*2*PI));
+			float angle = RandFloat()*(maxAngle-minAngle) + minAngle;
+			ret.push_back(new Object(type, player, x, y, angle));
 			break;
 
 bad:		failCount++;

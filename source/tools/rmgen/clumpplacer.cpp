@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "clumpplacer.h"
 #include "random.h"
+#include "pointmap.h"
 
 using namespace std;
 
@@ -19,13 +20,11 @@ ClumpPlacer::~ClumpPlacer()
 }
 
 bool ClumpPlacer::place(class Map* m, Constraint* constr, std::vector<Point>& retVec) {
-	// TODO: use a 2D array or hash set instead of a STL set for speed
-
 	if(!m->validT(x, y) || !constr->allows(m, x, y)) {
 		return false;
 	}
 
-	map<Point, bool> gotRet;
+	PointMap<int> gotRet;
 
 	float radius = sqrt(size / PI);
 	float perim = 4 * radius * 2 * PI;
@@ -72,7 +71,7 @@ bool ClumpPlacer::place(class Map* m, Constraint* constr, std::vector<Point>& re
 			if(m->validT(i, j) && constr->allows(m, i, j)) {
 				Point p(i,j);
 				if(!gotRet[p]) {
-					gotRet[p] = true;
+					gotRet[p] = 1;
 					retVec.push_back(p);
 				}
 			}

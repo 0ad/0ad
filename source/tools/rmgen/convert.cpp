@@ -206,14 +206,16 @@ ObjectGroupPlacer* ParseObjectGroupPlacer(JSContext* cx, jsval val) {
 			for(int i=0; i<array.size(); i++) {
 				string type;
 				int minCount, maxCount;
-				float minDistance, maxDistance;
+				float minDistance, maxDistance, minAngle, maxAngle;
 				if(!GetStringField(cx, array[i], "type", type)) return 0;
 				if(!GetIntField(cx, array[i], "minCount", minCount)) return 0;
 				if(!GetIntField(cx, array[i], "maxCount", maxCount)) return 0;
 				if(!GetFloatField(cx, array[i], "minDistance", minDistance)) return 0;
 				if(!GetFloatField(cx, array[i], "maxDistance", maxDistance)) return 0;
+				if(!GetFloatField(cx, array[i], "minAngle", minAngle)) return 0;
+				if(!GetFloatField(cx, array[i], "maxAngle", maxAngle)) return 0;
 				elements[i] = new SimpleGroup::Element(type, minCount, maxCount, 
-					minDistance, maxDistance);
+					minDistance, maxDistance, minAngle, maxAngle);
 			}
 			return new SimpleGroup(elements, tileClass, avoidSelf, x, y);
 

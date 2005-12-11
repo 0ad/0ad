@@ -153,6 +153,8 @@ void CEntity::kill()
 	if( m_bounds ) delete( m_bounds );
 	m_bounds = NULL;
 
+	m_extant = false;
+
 	m_destroyed = true;
 	//Shutdown(); // PT: tentatively removed - this seems to be called by ~CJSComplex, and we don't want to do it twice
 
@@ -520,7 +522,10 @@ void CEntity::clearOrders()
 			
 void CEntity::pushOrder( CEntityOrder& order )
 {
-	m_orderQueue.push_back( order );
+	if( acceptsOrder( order.m_type, order.m_data[0].entity ) )
+	{
+		m_orderQueue.push_back( order );
+	}
 }
 
 bool CEntity::acceptsOrder( int orderType, CEntity* orderTarget )
@@ -1065,6 +1070,11 @@ bool CEntity::Kill( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(arg
 	// we don't fiddle with the actors or bounding information that we 
 	// usually do when changing templates.
 
+	if(m_corpse == L"null") 
+	{
+		kill();
+	}
+
 	CBaseEntity* corpse = g_EntityTemplateCollection.getTemplate( m_corpse );
 	if( corpse )
 	{
@@ -1072,12 +1082,14 @@ bool CEntity::Kill( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(arg
 		SetBase( m_base );
 	}
 
+	if( m_bounds ) 
+	{
+		delete( m_bounds );
+		m_bounds = NULL;
+	}
+
 	if( m_extant )
 	{
-		if( m_bounds )
-			delete( m_bounds );
-		m_bounds = NULL;
-
 		m_extant = false;
 	}
 	

@@ -22,6 +22,8 @@
 #include <set>
 #include <string>
 #include <vector>
+#include <hash_set>
+#include <hash_map>
 
 #include <boost/random.hpp>
 

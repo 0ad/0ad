@@ -2,7 +2,7 @@
 #define __TILECLASS_H__
 
 #include "point.h"
-#include "rangecount.h"
+#include "rangeop.h"
 
 // Represents a multiset of tiles, used for constraints. That is, each tile 
 // can be in the class one or more times. Provides operations to add/remove a tile
@@ -12,7 +12,7 @@
 class TileClass {
 private:
 	int mapSize;
-	std::vector<RangeCount*> rc;	// range count on each row
+	std::vector<RangeOp*> rc;	// range count on each row
 	int** inclusionCount;			// the inclusion count for each tile
 public:
 	TileClass(int mapSize);

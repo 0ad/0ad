@@ -12,10 +12,11 @@ public:
 		std::string type;
 		int minCount, maxCount;
 		float minDistance, maxDistance;
+		float minAngle, maxAngle;
 		
 		Element::Element();
 		Element::Element(const std::string& type, int minCount, int maxCount,
-			float minDistance, float maxDistance);
+			float minDistance, float maxDistance, float minAngle, float maxAngle);
 		Element::~Element();
 
 		bool place(int cx, int cy, class Map* m, int player, bool avoidSelf,

@@ -9,7 +9,7 @@ TileClass::TileClass(int mapSize) {
 	for(int i=0; i<mapSize; i++) {
 		inclusionCount[i] = new int[mapSize];
 		memset(inclusionCount[i], 0, mapSize*sizeof(int));
-		rc.push_back(new RangeCount(mapSize));
+		rc.push_back(new RangeOp(mapSize));
 	}
 }
 

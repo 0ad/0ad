@@ -3,6 +3,7 @@
 #include "area.h"
 #include "terrain.h"
 #include "map.h"
+#include "pointmap.h"
 
 using namespace std;
 
@@ -17,8 +18,8 @@ LayeredPainter::~LayeredPainter(void)
 }
 
 void LayeredPainter::paint(Map* m, Area* a) {
-	map<Point, int> saw;
-	map<Point, int> dist;
+	PointMap<int> saw;
+	PointMap<int> dist;
 
 	queue<Point> q;
 

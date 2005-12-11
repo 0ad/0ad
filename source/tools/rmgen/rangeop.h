@@ -1,13 +1,13 @@
-#ifndef __RANGECOUNT_H__
-#define __RANGECOUNT_H__
+#ifndef __RANGEOP_H__
+#define __RANGEOP_H__
 
-class RangeCount {
+class RangeOp {
 private:
 	int* vals;	// has size 2*nn
 	int nn;	// smallest power of 2 >= size
 public:
-	RangeCount(int size);
-	~RangeCount();
+	RangeOp(int size);
+	~RangeOp();
 	void set(int pos, int amt);
 	void add(int pos, int amt);
 	int get(int pos);

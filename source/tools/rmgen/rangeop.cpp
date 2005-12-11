@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include "rangecount.h"
+#include "rangeop.h"
 
-RangeCount::RangeCount(int size) {
+RangeOp::RangeOp(int size) {
 	nn = 1;
 	while(nn < size) {
 		nn *= 2;
@@ -10,26 +10,26 @@ RangeCount::RangeCount(int size) {
 	memset(vals, 0, 2*nn*sizeof(int));
 }
 
-RangeCount::~RangeCount() {
+RangeOp::~RangeOp() {
 	delete[] vals;
 }
 
-int RangeCount::get(int pos) {
+int RangeOp::get(int pos) {
 	return vals[nn + pos];
 }
 
-void RangeCount::set(int pos, int amt) {
+void RangeOp::set(int pos, int amt) {
 	add(pos, amt-get(pos));
 }
 
-void RangeCount::add(int pos, int amt) {
+void RangeOp::add(int pos, int amt) {
 	for(int s=nn; s>0; s/=2) {
 		vals[s + pos] += amt;
 		pos /= 2;
 	}
 }
 
-int RangeCount::get(int start, int end) {
+int RangeOp::get(int start, int end) {
 	int ret = 0;
 	int i;
 	for(i=1; start+i<=end; i*=2) {
