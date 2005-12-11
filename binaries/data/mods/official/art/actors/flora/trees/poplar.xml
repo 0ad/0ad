@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant name="a">
+      <mesh>gaia/tree_poplar_a.pmd</mesh>
+      <props>
+        <prop actor="flora/trees/poplar_top.xml" attachpoint="tree"/>
+      </props>
+    </variant>
+    <variant name="b">
+      <mesh>gaia/tree_poplar_b.pmd</mesh>
+      <props>
+        <prop actor="flora/trees/poplar_top.xml" attachpoint="tree"/>
+      </props>
+    </variant>
+    <variant name="c">
+      <mesh>gaia/tree_poplar_c.pmd</mesh>
+      <props>
+        <prop actor="flora/trees/poplar_top.xml" attachpoint="tree"/>
+      </props>
+    </variant>
+    <variant name="d">
+      <mesh>gaia/tree_poplar_d.pmd</mesh>
+      <props>
+        <prop actor="flora/trees/poplar_top.xml" attachpoint="tree"/>
+      </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant>
+      <texture>gaia/trunk_deciduous_b.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>
