@@ -400,7 +400,7 @@ void CEntity::UpdateAuras( size_t timestep_millis )
 				// out of range.
 				for( ; it2 != it_a->m_Influenced.end(); it2++ )
 					UpdateAuras_LeaveRange( *it_a, it2->GetEntity() );
-
+					
 				break;
 			}
 			if( it2 == it_a->m_Influenced.end() )
