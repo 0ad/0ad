@@ -37,4 +37,6 @@
 	</Traits>
 
 	<Actions />
+
+	<Event On="PrepareOrder" Function="entity_event_prepareorder" />
 </Entity>
