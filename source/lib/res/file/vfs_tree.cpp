@@ -306,9 +306,9 @@ struct TDir
 
 	void init();
 	TNode* find(const char* name, TNodeType desired_type);
-	int add(const char* name, TNodeType new_type, TNode** pnode);
-	int attach_real_dir(const char* path, int flags, const Mount* new_m);
-	int lookup(const char* path, uint flags, TNode** pnode, char* exact_path);
+	LibError add(const char* name, TNodeType new_type, TNode** pnode);
+	LibError attach_real_dir(const char* path, int flags, const Mount* new_m);
+	LibError lookup(const char* path, uint flags, TNode** pnode, char* exact_path);
 	void clearR();
 	void displayR(int indent_level);
 };
@@ -381,7 +381,7 @@ TNode* TDir::find(const char* name, TNodeType desired_type)
 	return node;
 }
 
-int TDir::add(const char* name, TNodeType new_type, TNode** pnode)
+LibError TDir::add(const char* name, TNodeType new_type, TNode** pnode)
 {
 	if(!path_component_valid(name))
 		return ERR_PATH_INVALID;
@@ -396,7 +396,7 @@ int TDir::add(const char* name, TNodeType new_type, TNode** pnode)
 	const size_t size = sizeof(TNode)+strnlen(name, VFS_MAX_PATH)+1;
 	node = (TNode*)bucket_alloc(&node_buckets, size);
 	if(!node)
-		return 0;
+		return ERR_OK;
 	strcpy(node->exact_name, name);	// safe
 	node->type = new_type;
 
@@ -404,7 +404,7 @@ int TDir::add(const char* name, TNodeType new_type, TNode** pnode)
 	{
 		debug_warn("failed to expand table");
 		// node will be freed by node_free_all
-		return 0;
+		return ERR_OK;
 	}
 
 	// note: this is called from lookup, which needs to create nodes.
@@ -417,10 +417,10 @@ int TDir::add(const char* name, TNodeType new_type, TNode** pnode)
 
 done:
 	*pnode = node;
-	return 0;
+	return ERR_OK;
 }
 
-int TDir::lookup(const char* path, uint flags, TNode** pnode, char* exact_path)
+LibError TDir::lookup(const char* path, uint flags, TNode** pnode, char* exact_path)
 {
 	// cleared on failure / if returning root dir node (= "")
 	if(exact_path)
@@ -430,7 +430,7 @@ int TDir::lookup(const char* path, uint flags, TNode** pnode, char* exact_path)
 	if(path[0] == '\0')
 	{
 		*pnode = (TNode*)this;	// HACK: TDir is at start of TNode
-		return 0;
+		return ERR_OK;
 	}
 
 	CHECK_PATH(path);
@@ -522,7 +522,7 @@ int TDir::lookup(const char* path, uint flags, TNode** pnode, char* exact_path)
 
 	// success.
 	*pnode = node;
-	return 0;
+	return ERR_OK;
 }
 
 // empty this directory and all subdirectories; used when rebuilding VFS.
@@ -638,7 +638,7 @@ void tree_display()
 
 
 
-int tree_add_file(TDir* td, const char* name, const Mount* m,
+LibError tree_add_file(TDir* td, const char* name, const Mount* m,
 	off_t size, time_t mtime)
 {
 	TNode* node;
@@ -650,53 +650,53 @@ int tree_add_file(TDir* td, const char* name, const Mount* m,
 	const bool is_same = (tf->size == size) &&
 		fabs(difftime(tf->mtime, mtime)) <= 2.0;
 	if(!mount_should_replace(tf->m, m, is_same))
-		return 1;
+		return INFO_NO_REPLACE;
 
 	tf->m     = m;
 	tf->mtime = mtime;
 	tf->size  = size;
-	return 0;
+	return ERR_OK;
 }
 
 
-int tree_add_dir(TDir* td, const char* name, TDir** ptd)
+LibError tree_add_dir(TDir* td, const char* name, TDir** ptd)
 {
 	TNode* node;
 	RETURN_ERR(td->add(name, N_DIR, &node));
 	*ptd = &node->u.dir;
-	return 0;
+	return ERR_OK;
 }
 
 
 
 
 
-int tree_lookup_dir(const char* path, TDir** ptd, uint flags, char* exact_path)
+LibError tree_lookup_dir(const char* path, TDir** ptd, uint flags, char* exact_path)
 {
-	// TDir::lookup would return a file node
+	// path is not a directory; TDir::lookup might return a file node
 	if(path[0] != '\0' && path[strlen(path)-1] != '/')
-		return -1;
+		return ERR_NOT_DIR;
 
 	TDir* td = (flags & LF_START_DIR)? *ptd : tree_root_dir;
 	TNode* node;
 	CHECK_ERR(td->lookup(path, flags, &node, exact_path));
 		// directories should exist, so warn if this fails
 	*ptd = &node->u.dir;
-	return 0;
+	return ERR_OK;
 }
 
 
-int tree_lookup(const char* path, TFile** pfile, uint flags, char* exact_path)
+LibError tree_lookup(const char* path, TFile** pfile, uint flags, char* exact_path)
 {
-	// TDir::lookup would return a directory node
+	// path is not a file; TDir::lookup might return a directory node
 	if(path[0] == '\0' || path[strlen(path)-1] == '/')
-		return -1;
+		return ERR_NOT_FILE;
 
 	TNode* node;
-	int ret = tree_root_dir->lookup(path, flags, &node, exact_path);
+	LibError ret = tree_root_dir->lookup(path, flags, &node, exact_path);
 	RETURN_ERR(ret);
 	*pfile = &node->u.file;
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -721,7 +721,7 @@ struct TreeDirIterator_
 cassert(sizeof(TreeDirIterator_) <= sizeof(TreeDirIterator));
 
 
-int tree_dir_open(const char* path_slash, TreeDirIterator* d_)
+LibError tree_dir_open(const char* path_slash, TreeDirIterator* d_)
 {
 	TreeDirIterator_* d = (TreeDirIterator_*)d_;
 
@@ -740,11 +740,11 @@ int tree_dir_open(const char* path_slash, TreeDirIterator* d_)
 	d->it  = td->children.begin();
 	d->end = td->children.end();
 	d->td  = td;
-	return 0;
+	return ERR_OK;
 }
 
 
-int tree_dir_next_ent(TreeDirIterator* d_, DirEnt* ent)
+LibError tree_dir_next_ent(TreeDirIterator* d_, DirEnt* ent)
 {
 	TreeDirIterator_* d = (TreeDirIterator_*)d_;
 
@@ -769,17 +769,17 @@ int tree_dir_next_ent(TreeDirIterator* d_, DirEnt* ent)
 		debug_warn("invalid TNode type");
 	}
 
-	return 0;	// success
+	return ERR_OK;
 }
 
 
-int tree_dir_close(TreeDirIterator* UNUSED(d))
+LibError tree_dir_close(TreeDirIterator* UNUSED(d))
 {
 	tree_unlock();
 
 	// no further cleanup needed. we could zero out d but that might
 	// hide bugs; the iterator is safe (will not go beyond end) anyway.
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -800,7 +800,7 @@ void tree_update_file(TFile* tf, off_t size, time_t mtime)
 
 
 // get file status (mode, size, mtime). output param is undefined on error.
-int tree_stat(const TFile* tf, struct stat* s)
+LibError tree_stat(const TFile* tf, struct stat* s)
 {
 	// all stat members currently supported are stored in TFile, so we
 	// can return them directly without having to call file|zip_stat.
@@ -808,7 +808,7 @@ int tree_stat(const TFile* tf, struct stat* s)
 	s->st_size  = tf->size;
 	s->st_mtime = tf->mtime;
 
-	return 0;
+	return ERR_OK;
 }
 
 

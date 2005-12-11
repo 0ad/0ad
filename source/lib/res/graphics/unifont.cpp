@@ -59,11 +59,11 @@ static void UniFont_dtor(UniFont* f)
 	SAFE_DELETE(f->glyphs_size);
 }
 
-static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
+static LibError UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 {
 	// already loaded
 	if(f->ht > 0)
-		return 0;
+		return ERR_OK;
 
 	f->glyphs_id = new glyphmap_id;
 	f->glyphs_size = new glyphmap_size;
@@ -107,7 +107,7 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 	if (f->ListBase == 0) // My Voodoo2 drivers didn't support display lists (although I'd be surprised if they got this far)
 	{
 		debug_warn("Display list creation failed");
-		return -1;
+		return ERR_FAIL;
 	}
 
 	for (int i = 0; i < NumGlyphs; ++i)
@@ -162,7 +162,7 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 	// but we want ALPHA. there is no way of knowing what format
 	// 8bpp textures are in - we could adopt a naming convention and
 	// add some TEX_ flags, but that's overkill.
-	int err = ogl_tex_upload(ht, GL_ALPHA);
+	LibError err = ogl_tex_upload(ht, GL_ALPHA);
 	if(err < 0)
 	{
 		(void)ogl_tex_free(ht);
@@ -170,44 +170,44 @@ static int UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 	}
 
 	f->ht = ht;
-	return 0;
+	return ERR_OK;
 }
 
-static int UniFont_validate(const UniFont* f)
+static LibError UniFont_validate(const UniFont* f)
 {
 	if(f->ht < 0)
-		return -2;
+		return ERR_1;
 	if(debug_is_pointer_bogus(f->glyphs_id) || debug_is_pointer_bogus(f->glyphs_size))
-		return -3;
+		return ERR_2;
 	// <LineSpacing> and <Height> are read directly from font file.
 	// negative values don't make sense, but that's all we can check.
 	if(f->LineSpacing < 0 || f->Height < 0)
-		return -4;
+		return ERR_3;
 	if(f->ListBase == 0 || f->ListBase > 1000000)	// suspicious
-		return -5;
-	return 0;
+		return ERR_4;
+	return ERR_OK;
 }
 
-static int UniFont_to_string(const UniFont* UNUSED(f), char* buf)
+static LibError UniFont_to_string(const UniFont* UNUSED(f), char* buf)
 {
 	snprintf(buf, H_STRING_LEN, "");
-	return 0;
+	return ERR_OK;
 }
 
 
-Handle unifont_load(const char* fn, int scope)
+Handle unifont_load(const char* fn, int flags)
 {
-	return h_alloc(H_UniFont, fn, scope);
+	return h_alloc(H_UniFont, fn, flags);
 }
 
 
-int unifont_unload(Handle& h)
+LibError unifont_unload(Handle& h)
 {
 	return h_free(h, H_UniFont);
 }
 
 
-int unifont_bind(const Handle h)
+LibError unifont_bind(const Handle h)
 {
 	H_DEREF(h, UniFont, f);
 
@@ -215,7 +215,7 @@ int unifont_bind(const Handle h)
 	glListBase(f->ListBase);
 	BoundGlyphs = f->glyphs_id;
 
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -233,7 +233,7 @@ int unifont_height(const Handle h)
 }
 
 
-int unifont_character_width(const Handle h, const wchar_t& c)
+int unifont_character_width(const Handle h, wchar_t c)
 {
 	H_DEREF(h, UniFont, f);
 	glyphmap_size::iterator it = f->glyphs_size->find(c);
@@ -296,7 +296,7 @@ void glwprintf(const wchar_t* fmt, ...)
 }
 
 
-int unifont_stringsize(const Handle h, const wchar_t* text, int& width, int& height)
+LibError unifont_stringsize(const Handle h, const wchar_t* text, int& width, int& height)
 {
 	H_DEREF(h, UniFont, f);
 
@@ -315,11 +315,11 @@ int unifont_stringsize(const Handle h, const wchar_t* text, int& width, int& hei
 		if (it == f->glyphs_size->end()) // Missing the missing glyph symbol - give up
 		{
 			debug_warn("Missing the missing glyph in a unifont!\n");
-			return 0;
+			return ERR_OK;
 		}
 
 		width += it->second; // Add the character's advance distance
 	}
 
-	return 0;
+	return ERR_OK;
 }

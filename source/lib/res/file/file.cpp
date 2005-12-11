@@ -70,7 +70,7 @@ const size_t SECTOR_SIZE = 4096;
 
 // write the given directory path into our buffer and set end/chars_left
 // accordingly. <dir> need and should not end with a directory separator.
-int pp_set_dir(PathPackage* pp, const char* dir)
+LibError pp_set_dir(PathPackage* pp, const char* dir)
 {
 	// note: use / instead of DIR_SEP because pp->path is portable.
 	const int len = snprintf(pp->path, ARRAY_SIZE(pp->path), "%s/", dir);
@@ -84,16 +84,16 @@ int pp_set_dir(PathPackage* pp, const char* dir)
 	// when attempting to vfs_open the file).
 	if(len >= 2)	// protect against underrun
 		debug_assert(pp->end[-2] != '/' && pp->end[-2] != DIR_SEP);
-	return 0;
+	return ERR_OK;
 }
 
 
 // append the given filename to the directory established by the last
 // pp_set_dir on this package. the whole path is accessible at pp->path.
-int pp_append_file(PathPackage* pp, const char* fn)
+LibError pp_append_file(PathPackage* pp, const char* fn)
 {
 	CHECK_ERR(strcpy_s(pp->end, pp->chars_left, fn));
-	return 0;
+	return ERR_OK;
 }
 
 //-----------------------------------------------------------------------------
@@ -138,7 +138,7 @@ enum Conversion
 	TO_PORTABLE
 };
 
-static int convert_path(char* dst, const char* src, Conversion conv = TO_NATIVE)
+static LibError convert_path(char* dst, const char* src, Conversion conv = TO_NATIVE)
 {
 	// DIR_SEP is assumed to be a single character!
 
@@ -166,7 +166,7 @@ static int convert_path(char* dst, const char* src, Conversion conv = TO_NATIVE)
 
 		// end of string - done
 		if(c == '\0')
-			return 0;
+			return ERR_OK;
 	}
 }
 
@@ -179,7 +179,7 @@ static size_t n_root_dir_len;
 // return the native equivalent of the given relative portable path
 // (i.e. convert all '/' to the platform's directory separator)
 // makes sure length < PATH_MAX.
-int file_make_native_path(const char* path, char* n_path)
+LibError file_make_native_path(const char* path, char* n_path)
 {
 	return convert_path(n_path, path, TO_NATIVE);
 }
@@ -187,7 +187,7 @@ int file_make_native_path(const char* path, char* n_path)
 // return the portable equivalent of the given relative native path
 // (i.e. convert the platform's directory separators to '/')
 // makes sure length < PATH_MAX.
-int file_make_portable_path(const char* n_path, char* path)
+LibError file_make_portable_path(const char* n_path, char* path)
 {
 	return convert_path(path, n_path, TO_PORTABLE);
 }
@@ -197,7 +197,7 @@ int file_make_portable_path(const char* n_path, char* path)
 // (i.e. convert all '/' to the platform's directory separator).
 // also prepends current directory => n_full_path is absolute.
 // makes sure length < PATH_MAX.
-int file_make_full_native_path(const char* path, char* n_full_path)
+LibError file_make_full_native_path(const char* path, char* n_full_path)
 {
 	debug_assert(path != n_full_path);	// doesn't work in-place
 
@@ -210,12 +210,12 @@ int file_make_full_native_path(const char* path, char* n_full_path)
 // n_full_path is absolute; if it doesn't match the current dir, fail.
 // (note: portable paths are always relative to the file root dir).
 // makes sure length < PATH_MAX.
-int file_make_full_portable_path(const char* n_full_path, char* path)
+LibError file_make_full_portable_path(const char* n_full_path, char* path)
 {
 	debug_assert(path != n_full_path);	// doesn't work in-place
 
 	if(strncmp(n_full_path, n_root_dir, n_root_dir_len) != 0)
-		return -1;
+		return ERR_PATH_NOT_FOUND;
 	return convert_path(path, n_full_path+n_root_dir_len, TO_PORTABLE);
 }
 
@@ -233,7 +233,7 @@ int file_make_full_portable_path(const char* n_full_path, char* path)
 // easiest portable way to find our install directory.
 //
 // can only be called once, by design (see below). rel_path is trusted.
-int file_set_root_dir(const char* argv0, const char* rel_path)
+LibError file_set_root_dir(const char* argv0, const char* rel_path)
 {
 	const char* msg = 0;
 
@@ -259,12 +259,18 @@ int file_set_root_dir(const char* argv0, const char* rel_path)
 	{
 		// .. failed; use argv[0]
 		if(!realpath(argv0, n_path))
+		{
+			msg = "realpath(argv[0]) failed";
 			goto fail;
+		}
 	}
 
 	// make sure it's valid
 	if(access(n_path, X_OK) < 0)
+	{
+		msg = "ERR_FILE_ACCESS";
 		goto fail;
+	}
 
 	// strip executable name, append rel_path, convert to native
 	char* fn = strrchr(n_path, DIR_SEP);
@@ -283,7 +289,7 @@ int file_set_root_dir(const char* argv0, const char* rel_path)
 	//    (note: already 0-terminated, since it's static)
 	n_root_dir_len = strlen(n_root_dir)+1;	// +1 for trailing DIR_SEP
 	n_root_dir[n_root_dir_len-1] = DIR_SEP;
-	return 0;
+	return ERR_OK;
 
 	}
 
@@ -292,10 +298,10 @@ fail:
 	if(msg)
 	{
 		debug_printf("%s: %s\n", __func__, msg);
-		return -1;
+		return ERR_FAIL;
 	}
 
-	return -errno;
+	return LibError_from_errno();
 }
 
 
@@ -304,8 +310,6 @@ fail:
 // layer on top of POSIX opendir/readdir/closedir that handles
 // portable -> native path conversion, ignores non-file/directory entries,
 // and additionally returns the file status (size and mtime).
-//
-// all functions return an int error code to allow CHECK_ERR.
 
 // rationale: see DirIterator definition in header.
 struct DirIterator_
@@ -326,7 +330,7 @@ cassert(sizeof(DirIterator_) <= sizeof(DirIterator));
 // prepare to iterate (once) over entries in the given directory.
 // returns a negative error code or 0 on success, in which case <d> is
 // ready for subsequent dir_next_ent calls and must be freed via dir_close.
-int dir_open(const char* P_path, DirIterator* d_)
+LibError dir_open(const char* P_path, DirIterator* d_)
 {
 	DirIterator_* d = (DirIterator_*)d_;
 
@@ -346,32 +350,17 @@ int dir_open(const char* P_path, DirIterator* d_)
 
 	d->os_dir = opendir(n_path);
 	if(!d->os_dir)
-	{
-		int err;
-		switch(errno)
-		{
-		case ENOMEM:
-			err = ERR_NO_MEM;
-			break;
-		case ENOENT:
-			err = ERR_PATH_NOT_FOUND;
-			break;
-		default:
-			err = -1;
-			break;
-		}
-		CHECK_ERR(err);
-	}
+		CHECK_ERR(LibError_from_errno());
 
 	RETURN_ERR(pp_set_dir(&d->pp, n_path));
-	return 0;
+	return ERR_OK;
 }
 
 
 // return ERR_DIR_END if all entries have already been returned once,
 // another negative error code, or 0 on success, in which case <ent>
 // describes the next (order is unspecified) directory entry.
-int dir_next_ent(DirIterator* d_, DirEnt* ent)
+LibError dir_next_ent(DirIterator* d_, DirEnt* ent)
 {
 	DirIterator_* d = (DirIterator_*)d_;
 
@@ -420,17 +409,17 @@ get_another_entry:
 	ent->size  = s.st_size;
 	ent->mtime = s.st_mtime;
 	ent->name  = name;
-	return 0;
+	return ERR_OK;
 }
 
 
 // indicate the directory iterator is no longer needed; all resources it
 // held are freed.
-int dir_close(DirIterator* d_)
+LibError dir_close(DirIterator* d_)
 {
 	DirIterator_* d = (DirIterator_*)d_;
 	WARN_ERR(closedir(d->os_dir));
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -456,7 +445,7 @@ static bool dirent_less(const DirEnt* d1, const DirEnt* d2)
 //   special-case Zip files anyway.
 //   the advantage here is simplicity, and sparing callbacks the trouble
 //   of converting from/to native path (we just give 'em the dirent name).
-int file_enum(const char* P_path, const FileCB cb, const uintptr_t user)
+LibError file_enum(const char* P_path, const FileCB cb, const uintptr_t user)
 {
 	// pointer to DirEnt: faster sorting, but more allocs.
 	typedef std::vector<const DirEnt*> DirEnts;
@@ -467,8 +456,8 @@ int file_enum(const char* P_path, const FileCB cb, const uintptr_t user)
 	DirEnts dirents;
 	dirents.reserve(125);	// preallocate for efficiency
 
-	int stat_err = 0;	// first error encountered by stat()
-	int cb_err = 0;		// first error returned by cb
+	LibError stat_err = ERR_OK;	// first error encountered by stat()
+	LibError cb_err   = ERR_OK;	// first error returned by cb
 
 	DirIterator d;
 	CHECK_ERR(dir_open(P_path, &d));
@@ -476,7 +465,7 @@ int file_enum(const char* P_path, const FileCB cb, const uintptr_t user)
 	DirEnt ent;
 	for(;;)	// instead of while() to avoid warnings
 	{
-		int ret = dir_next_ent(&d, &ent);
+		LibError ret = dir_next_ent(&d, &ent);
 		if(ret == ERR_DIR_END)
 			break;
 		if(!stat_err)
@@ -508,8 +497,8 @@ int file_enum(const char* P_path, const FileCB cb, const uintptr_t user)
 		s.st_mode  = (ent->size == -1)? S_IFDIR : S_IFREG;
 		s.st_size  = ent->size;
 		s.st_mtime = ent->mtime;
-		int ret = cb(ent->name, &s, user);
-		if(ret != 0)
+		LibError ret = cb(ent->name, &s, user);
+		if(ret != INFO_CB_CONTINUE)
 		{
 			cb_err = ret;	// first error (since we now abort)
 			break;
@@ -524,21 +513,22 @@ fail:
 	for(DirEntRIt rit = dirents.rbegin(); rit != dirents.rend(); ++rit)
 		free((void*)(*rit));
 
-	if(cb_err != 0)
+	if(cb_err != ERR_OK)
 		return cb_err;
 	return stat_err;
 }
 
 
 // get file information. output param is zeroed on error.
-int file_stat(const char* path, struct stat* s)
+LibError file_stat(const char* path, struct stat* s)
 {
 	memset(s, 0, sizeof(struct stat));
 
 	char n_path[PATH_MAX+1];
 	CHECK_ERR(file_make_full_native_path(path, n_path));
 
-	return stat(n_path, s);
+	errno = 0;
+	return LibError_from_posix(stat(n_path, s));
 }
 
 
@@ -572,28 +562,28 @@ int file_stat(const char* path, struct stat* s)
 //   close(our_fd_value) directly, either.
 
 
-int file_validate(const File* f)
+LibError file_validate(const File* f)
 {
 	if(!f)
 		return ERR_INVALID_PARAM;
 	else if(f->fd < 0)
-		return -2;
+		return ERR_1;
 	// mapped but refcount is invalid
 	else if((f->mapping != 0) ^ (f->map_refs != 0))
-		return -3;
+		return ERR_2;
 	// fn_hash not set
 #ifndef NDEBUG
 	else if(!f->fn_hash)
-		return -4;
+		return ERR_3;
 #endif
 
-	return 0;
+	return ERR_OK;
 }
 
 #define CHECK_FILE(f) CHECK_ERR(file_validate(f))
 
 
-int file_open(const char* p_fn, const uint flags, File* f)
+LibError file_open(const char* p_fn, const uint flags, File* f)
 {
 	// zero output param in case we fail below.
 	memset(f, 0, sizeof(*f));
@@ -656,11 +646,11 @@ int file_open(const char* p_fn, const uint flags, File* f)
 	f->map_refs = 0;
 	f->fd       = fd;
 	CHECK_FILE(f);
-	return 0;
+	return ERR_OK;
 }
 
 
-int file_close(File* f)
+LibError file_close(File* f)
 {
 	CHECK_FILE(f);
 
@@ -683,7 +673,7 @@ int file_close(File* f)
 		f->fd = -1;
 	}
 
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -743,7 +733,7 @@ static inline void aiocb_pool_free(void* cb)
 
 // starts transferring to/from the given buffer.
 // no attempt is made at aligning or padding the transfer.
-int file_io_issue(File* f, off_t ofs, size_t size, void* p, FileIo* io)
+LibError file_io_issue(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 {
 	// zero output param in case we fail below.
 	memset(io, 0, sizeof(FileIo));
@@ -798,10 +788,10 @@ debug_printf("FILE| issue2 io=%p nbytes=%d\n", io, cb->aio_nbytes);
 	{
 		debug_printf("lio_listio: %d, %d[%s]\n", err, errno, strerror(errno));
 		file_io_discard(io);
-		return err;
+		return LibError_from_errno();
 	}
 
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -821,7 +811,7 @@ int file_io_has_completed(FileIo* io)
 }
 
 
-int file_io_wait(FileIo* io, void*& p, size_t& size)
+LibError file_io_wait(FileIo* io, void*& p, size_t& size)
 {
 	debug_printf("FILE| wait io=%p\n", io);
 
@@ -845,33 +835,33 @@ int file_io_wait(FileIo* io, void*& p, size_t& size)
 
 	p = (void*)cb->aio_buf;	// cast from volatile void*
 	size = bytes_transferred;
-	return 0;
+	return ERR_OK;
 }
 
 
-int file_io_discard(FileIo* io)
+LibError file_io_discard(FileIo* io)
 {
 	memset(io->cb, 0, sizeof(aiocb));
 		// discourage further use.
 	aiocb_pool_free(io->cb);
 	io->cb = 0;
-	return 0;
+	return ERR_OK;
 }
 
 
-int file_io_validate(const FileIo* io)
+LibError file_io_validate(const FileIo* io)
 {
 	const aiocb* cb = (const aiocb*)io->cb;
 	// >= 0x100 is not necessarily bogus, but suspicious.
 	// this also catches negative values.
 	if((uint)cb->aio_fildes >= 0x100)
-		return -2;
+		return ERR_1;
 	if(debug_is_pointer_bogus((void*)cb->aio_buf))
-		return -3;
+		return ERR_2;
 	if(cb->aio_lio_opcode != LIO_WRITE && cb->aio_lio_opcode != LIO_READ && cb->aio_lio_opcode != LIO_NOP)
-		return -4;
+		return ERR_3;
     // all other aiocb fields have no invariants we could check.
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -1026,7 +1016,7 @@ static void block_shutdown()
 
 
 // remove all blocks loaded from the file <fn>. used when reloading the file.
-int file_invalidate_cache(const char* fn)
+LibError file_invalidate_cache(const char* fn)
 {
 	// convert to native path to match fn_hash set by file_open
 	char n_fn[PATH_MAX];
@@ -1041,7 +1031,7 @@ int file_invalidate_cache(const char* fn)
 		if((it->first >> 32) == fn_hash)
 			block_cache.erase(it);
 
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -1300,7 +1290,7 @@ static const uint MAX_MAP_REFS = 255;
 // rationale: reference counting is required for zip_map: several
 // Zip "mappings" each reference one ZArchive's actual file mapping.
 // implement it here so that we also get refcounting for normal files.
-int file_map(File* f, void*& p, size_t& size)
+LibError file_map(File* f, void*& p, size_t& size)
 {
 	p = 0;
 	size = 0;
@@ -1314,10 +1304,7 @@ int file_map(File* f, void*& p, size_t& size)
 	{
 		// prevent overflow; if we have this many refs, should find out why.
 		if(f->map_refs >= MAX_MAP_REFS)
-		{
-			debug_warn("too many references to mapping");
-			return -1;
-		}
+			CHECK_ERR(ERR_LIMIT);
 		f->map_refs++;
 		goto have_mapping;
 	}
@@ -1327,18 +1314,19 @@ int file_map(File* f, void*& p, size_t& size)
 	// then again, don't complain, because this might happen when mounting
 	// a dir containing empty files; each is opened as a Zip file.
 	if(f->size == 0)
-		return -1;
+		return ERR_FAIL;
 
+	errno = 0;
 	f->mapping = mmap((void*)0, f->size, prot, MAP_PRIVATE, f->fd, (off_t)0);
-	if(!f->mapping)
-		return ERR_NO_MEM;
+	if(f->mapping == MAP_FAILED)
+		return LibError_from_errno();
 
 	f->map_refs = 1;
 
 have_mapping:
 	p = f->mapping;
 	size = f->size;
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -1348,7 +1336,7 @@ have_mapping:
 // the mapping will be removed (if still open) when its file is closed.
 // however, map/unmap calls should still be paired so that the mapping
 // may be removed when no longer needed.
-int file_unmap(File* f)
+LibError file_unmap(File* f)
 {
 	CHECK_FILE(f);
 
@@ -1356,25 +1344,26 @@ int file_unmap(File* f)
 	if(f->map_refs == 0)
 	{
 		debug_warn("not currently mapped");
-		return -1;
+		return ERR_FAIL;
 	}
 
 	// still more than one reference remaining - done.
 	if(--f->map_refs > 0)
-		return 0;
+		return ERR_OK;
 
 	// no more references: remove the mapping
 	void* p = f->mapping;
 	f->mapping = 0;
 	// don't clear f->size - the file is still open.
 
-	return munmap(p, f->size);
+	errno = 0;
+	return LibError_from_posix(munmap(p, f->size));
 }
 
 
-int file_shutdown()
+LibError file_shutdown()
 {
 	aiocb_pool_shutdown();
 	block_shutdown();
-	return 0;
+	return ERR_OK;
 }

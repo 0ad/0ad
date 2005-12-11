@@ -94,7 +94,7 @@ void in_stop()
 }
 
 
-int in_record(const char* fn)
+LibError in_record(const char* fn)
 {
 	if(state == INIT)
 		atexit(in_stop);
@@ -103,17 +103,17 @@ int in_record(const char* fn)
 
 	f = fopen(fn, "wb");
 	if(!f)
-		return -1;
+		return ERR_FILE_ACCESS;
 
 	fwrite(&game_ticks, sizeof(u32), 1, f);
 
 	state = RECORD;
 
-	return 0;
+	return ERR_OK;
 }
 
 
-int in_playback(const char* fn)
+LibError in_playback(const char* fn)
 {
 	if(state == INIT)
 		atexit(in_stop);
@@ -122,7 +122,7 @@ int in_playback(const char* fn)
 
 	f = fopen(fn, "rb");
 	if(!f)
-		return -1;
+		return ERR_FILE_NOT_FOUND;
 
 	u32 rec_start_time;
 	fread(&rec_start_time, sizeof(u32), 1, f);
@@ -133,7 +133,7 @@ int in_playback(const char* fn)
 
 	state = PLAYBACK;
 
-	return 0;
+	return ERR_OK;
 }
 
 

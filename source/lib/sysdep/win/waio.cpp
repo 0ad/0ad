@@ -138,7 +138,7 @@ static HANDLE aio_h_get(const int fd)
 // associate h (an async-capable file handle) with fd;
 // returned by subsequent aio_h_get(fd) calls.
 // setting h = INVALID_HANDLE_VALUE removes the association.
-static int aio_h_set(const int fd, const HANDLE h)
+static LibError aio_h_set(const int fd, const HANDLE h)
 {
 	lock();
 
@@ -177,12 +177,12 @@ static int aio_h_set(const int fd, const HANDLE h)
 	aio_hs[fd] = h;
 
 	unlock();
-	return 0;
+	return ERR_OK;
 
 fail:
 	unlock();
 	debug_warn("failed");
-	return -1;
+	return ERR_FAIL;
 }
 
 
@@ -353,11 +353,11 @@ static Req* req_alloc(aiocb* cb)
 }
 
 
-static int req_free(Req* r)
+static LibError req_free(Req* r)
 {
 	debug_assert(r->cb != 0 && "req_free: not currently in use");
 	r->cb = 0;
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -707,7 +707,7 @@ int aio_fsync(int, struct aiocb*)
 //////////////////////////////////////////////////////////////////////////////
 
 
-static int waio_init()
+static LibError waio_init()
 {
 	req_init();
 
@@ -747,13 +747,13 @@ static int waio_init()
 	SetErrorMode(old_err_mode);
 
 	debug_assert(is_pow2((long)sector_size));
-	return 0;
+	return ERR_OK;
 }
 
 
-static int waio_shutdown()
+static LibError waio_shutdown()
 {
 	req_cleanup();
 	aio_h_cleanup();
-	return 0;
+	return ERR_OK;
 }

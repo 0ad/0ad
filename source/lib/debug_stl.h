@@ -28,22 +28,12 @@ extern char* stl_simplify_name(char* name);
 // no STL iterator is larger than this; see below.
 const size_t DEBUG_STL_MAX_ITERATOR_SIZE = 64;
 
-enum StlContainerError
-{
-	// type_name is not that of a known STL container.
-	STL_CNT_UNKNOWN = -100,
-
-	// the container is of a known type but its contents are invalid.
-	// likely causes: not yet initialized or memory corruption.
-	STL_CNT_INVALID = -101
-};
-
 // if <wtype_name> indicates the object <p, size> to be an STL container,
 // and given the size of its value_type (retrieved via debug information),
 // return number of elements and an iterator (any data it needs is stored in
 // it_mem, which must hold DEBUG_STL_MAX_ITERATOR_SIZE bytes).
 // returns 0 on success or an StlContainerError.
-extern int stl_get_container_info(const char* type_name, const u8* p, size_t size,
+extern LibError stl_get_container_info(const char* type_name, const u8* p, size_t size,
 	size_t el_size, size_t* el_count, DebugIterator* el_iterator, void* it_mem);
 
 #endif	// #ifndef DEBUG_STL_H_INCLUDED

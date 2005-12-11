@@ -82,7 +82,7 @@ static u16 cur_ramp[3][256];
 
 
 // ramp: 8.8 fixed point
-static int calc_gamma_ramp(float gamma, u16* ramp)
+static LibError calc_gamma_ramp(float gamma, u16* ramp)
 {
 	// assume identity if invalid
 	if(gamma <= 0.0f)
@@ -93,7 +93,7 @@ static int calc_gamma_ramp(float gamma, u16* ramp)
 	{
 		for(u16 i = 0; i < 256; i++)
 			ramp[i] = (i << 8);
-		return 0;
+		return ERR_OK;
 	}
 
 	const double inv_gamma = 1.0 / gamma;
@@ -106,7 +106,7 @@ static int calc_gamma_ramp(float gamma, u16* ramp)
 		ramp[i] = fp_to_u16(pow(frac, inv_gamma));
 	}
 
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -1106,10 +1106,10 @@ int SDL_SemWait(SDL_sem* sem)
 // warnings in VC2005, so we coerce values directly.
 cassert(sizeof(pthread_t) == sizeof(SDL_Thread*));
 
-SDL_Thread* SDL_CreateThread(int(*func)(void*), void* param)
+SDL_Thread* SDL_CreateThread(int (*func)(void*), void* param)
 {
 	pthread_t thread = 0;
-	if(pthread_create(&thread, 0, (void*(*)(void*))func, param) < 0)
+	if(pthread_create(&thread, 0, (void* (*)(void*))func, param) < 0)
 		return 0;
 	return *(SDL_Thread**)&thread;
 }
@@ -1154,7 +1154,7 @@ inline void* SDL_GL_GetProcAddress(const char* name)
 //-----------------------------------------------------------------------------
 // init/shutdown
 
-static int wsdl_init()
+static LibError wsdl_init()
 {
 	hInst = GetModuleHandle(0);
 
@@ -1170,8 +1170,8 @@ static int wsdl_init()
 	// to avoid the OS opening a console on startup (ugly). that means
 	// stdout isn't associated with a lowio handle; _close ends up
 	// getting called with fd = -1. oh well, nothing we can do.
-	FILE* ret = freopen(path, "wt", stdout);
-	if(!ret)
+	FILE* f = freopen(path, "wt", stdout);
+	if(!f)
 		debug_warn("stdout freopen failed");
 
 #if CONFIG_PARANOIA
@@ -1182,11 +1182,11 @@ static int wsdl_init()
 
 	enable_kbd_hook(true);
 
-	return 0;
+	return ERR_OK;
 }
 
 
-static int wsdl_shutdown()
+static LibError wsdl_shutdown()
 {
 	is_shutdown = true;
 
@@ -1200,7 +1200,7 @@ static int wsdl_shutdown()
 
 	enable_kbd_hook(false);
 
-	return 0;
+	return ERR_OK;
 }
 
 

@@ -61,7 +61,7 @@ typedef unsigned int pthread_t;
 extern pthread_t pthread_self(void);
 extern int pthread_getschedparam(pthread_t thread, int* policy, struct sched_param* param);
 extern int pthread_setschedparam(pthread_t thread, int policy, const struct sched_param* param);
-extern int pthread_create(pthread_t* thread, const void* attr, void*(*func)(void*), void* arg);
+extern int pthread_create(pthread_t* thread, const void* attr, void* (*func)(void*), void* arg);
 extern int pthread_cancel(pthread_t thread);
 extern int pthread_join(pthread_t thread, void** value_ptr);
 

@@ -117,7 +117,14 @@ extern void ia32_get_current_context(void* pcontext);
 
 extern void ia32_asm_init();
 
-extern int ia32_get_call_target(void* ret_addr, void** target);
+// checks if there is an IA-32 CALL instruction right before ret_addr.
+// returns ERR_OK if so and ERR_FAIL if not.
+// also attempts to determine the call target. if that is possible
+// (directly addressed relative or indirect jumps), it is stored in
+// target, which is otherwise 0.
+//
+// this is useful for walking the stack manually.
+extern LibError ia32_get_call_target(void* ret_addr, void** target);
 
 // order in which registers are stored in regs array
 // (do not change! brand string relies on this ordering)

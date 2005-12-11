@@ -41,9 +41,9 @@ TgaHeader;
 #pragma pack(pop)
 
 
-static int tga_transform(Tex* UNUSED(t), uint UNUSED(transforms))
+static LibError tga_transform(Tex* UNUSED(t), uint UNUSED(transforms))
 {
-	return TEX_CODEC_CANNOT_HANDLE;
+	return ERR_TEX_CODEC_CANNOT_HANDLE;
 }
 
 
@@ -86,7 +86,7 @@ static size_t tga_hdr_size(const u8* file)
 
 
 // requirements: uncompressed, direct colour, bottom up
-static int tga_decode(DynArray* restrict da, Tex* restrict t)
+static LibError tga_decode(DynArray* restrict da, Tex* restrict t)
 {
 	u8* file         = da->base;
 
@@ -116,11 +116,11 @@ static int tga_decode(DynArray* restrict da, Tex* restrict t)
 	t->h     = h;
 	t->bpp   = bpp;
 	t->flags = flags;
-	return 0;
+	return ERR_OK;
 }
 
 
-static int tga_encode(Tex* restrict t, DynArray* restrict da)
+static LibError tga_encode(Tex* restrict t, DynArray* restrict da)
 {
 	u8 img_desc = 0;
 	if(t->flags & TEX_TOP_DOWN)

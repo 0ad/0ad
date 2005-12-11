@@ -5,10 +5,10 @@ extern void wdll_add_notify(DllLoadNotify*);
 struct DllLoadNotify
 {
 	const char* dll_name;
-	int(*func)(void);
+	LibError (*func)(void);
 	DllLoadNotify* next;
 
-	DllLoadNotify(const char* _dll_name, int(*_func)(void))
+	DllLoadNotify(const char* _dll_name, LibError (*_func)(void))
 	{
 		dll_name = _dll_name;
 		func = _func;

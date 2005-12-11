@@ -12,6 +12,8 @@ static const TexCodecVTbl* codecs;
 // TEX_CODEC_REGISTER in each codec file. note that call order and therefore
 // order in the list is undefined, but since each codec only steps up if it
 // can handle the given format, this is not a problem.
+//
+// returns int to alloc calling from a macro at file scope.
 int tex_codec_register(TexCodecVTbl* c)
 {
 	debug_assert(c);
@@ -25,7 +27,7 @@ int tex_codec_register(TexCodecVTbl* c)
 
 
 // find codec that recognizes the desired output file extension
-int tex_codec_for_filename(const char* fn, const TexCodecVTbl** c)
+LibError tex_codec_for_filename(const char* fn, const TexCodecVTbl** c)
 {
 	const char* ext = strrchr(fn, '.');
 	if(!ext)
@@ -36,7 +38,7 @@ int tex_codec_for_filename(const char* fn, const TexCodecVTbl** c)
 	{
 		// we found it
 		if((*c)->is_ext(ext))
-			return 0;
+			return ERR_OK;
 	}
 
 	return ERR_UNKNOWN_FORMAT;
@@ -44,7 +46,7 @@ int tex_codec_for_filename(const char* fn, const TexCodecVTbl** c)
 
 
 // find codec that recognizes the header's magic field
-int tex_codec_for_header(const u8* file, size_t file_size, const TexCodecVTbl** c)
+LibError tex_codec_for_header(const u8* file, size_t file_size, const TexCodecVTbl** c)
 {
 	// we guarantee at least 4 bytes for is_hdr to look at
 	if(file_size < 4)
@@ -54,26 +56,26 @@ int tex_codec_for_header(const u8* file, size_t file_size, const TexCodecVTbl** 
 	{
 		// we found it
 		if((*c)->is_hdr(file))
-			return 0;
+			return ERR_OK;
 	}
 
 	return ERR_UNKNOWN_FORMAT;
 }
 
 
-int tex_codec_transform(Tex* t, uint transforms)
+LibError tex_codec_transform(Tex* t, uint transforms)
 {
-	int ret = TEX_CODEC_CANNOT_HANDLE;
+	LibError ret = ERR_TEX_CODEC_CANNOT_HANDLE;
 
 	// find codec that understands the data, and transform
 	for(const TexCodecVTbl* c = codecs; c; c = c->next)
 	{
-		int err = c->transform(t, transforms);
+		LibError err = c->transform(t, transforms);
 		// success
-		if(err == 0)
-			return 0;
+		if(err == ERR_OK)
+			return ERR_OK;
 		// something went wrong
-		else if(err != TEX_CODEC_CANNOT_HANDLE)
+		else if(err != ERR_TEX_CODEC_CANNOT_HANDLE)
 		{
 			ret = err;
 			debug_warn("codec indicates error");
@@ -97,7 +99,7 @@ int tex_codec_transform(Tex* t, uint transforms)
 //
 // note: we don't allocate the data param ourselves because this function is
 // needed for encoding, too (where data is already present).
-int tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
+LibError tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
 	uint src_flags, uint dst_orientation, RowArray& rows)
 {
 	const bool flip = !tex_orientations_match(src_flags, dst_orientation);
@@ -118,16 +120,16 @@ int tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
 	}
 
 	debug_assert(pos == end);
-	return 0;
+	return ERR_OK;
 }
 
 
-int tex_codec_write(Tex* t, uint transforms, const void* hdr, size_t hdr_size, DynArray* da)
+LibError tex_codec_write(Tex* t, uint transforms, const void* hdr, size_t hdr_size, DynArray* da)
 {
 	RETURN_ERR(tex_transform(t, transforms));
 
 	void* img_data = tex_get_data(t); const size_t img_size = tex_img_size(t);
 	RETURN_ERR(da_append(da, hdr, hdr_size));
 	RETURN_ERR(da_append(da, img_data, img_size));
-	return 0;
+	return ERR_OK;
 }

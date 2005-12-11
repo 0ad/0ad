@@ -44,7 +44,7 @@ struct sigevent
 	int sigev_notify;			// notification mode
 	int sigev_signo;			// signal number
 	union sigval sigev_value;	// signal value
-	void(*sigev_notify_function)(union sigval);
+	void (*sigev_notify_function)(union sigval);
 };
 
 

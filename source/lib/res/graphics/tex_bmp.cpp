@@ -34,9 +34,9 @@ struct BmpHeader
 #define BI_RGB 0		// biCompression
 
 
-static int bmp_transform(Tex* UNUSED(t), uint UNUSED(transforms))
+static LibError bmp_transform(Tex* UNUSED(t), uint UNUSED(transforms))
 {
-	return TEX_CODEC_CANNOT_HANDLE;
+	return ERR_TEX_CODEC_CANNOT_HANDLE;
 }
 
 
@@ -69,7 +69,7 @@ static size_t bmp_hdr_size(const u8* file)
 
 
 // requirements: uncompressed, direct colour, bottom up
-static int bmp_decode(DynArray* restrict da, Tex* restrict t)
+static LibError bmp_decode(DynArray* restrict da, Tex* restrict t)
 {
 	u8* file         = da->base;
 
@@ -96,11 +96,11 @@ static int bmp_decode(DynArray* restrict da, Tex* restrict t)
 	t->h     = h;
 	t->bpp   = bpp;
 	t->flags = flags;
-	return 0;
+	return ERR_OK;
 }
 
 
-static int bmp_encode(Tex* restrict t, DynArray* restrict da)
+static LibError bmp_encode(Tex* restrict t, DynArray* restrict da)
 {
 	const size_t hdr_size = sizeof(BmpHeader);	// needed for BITMAPFILEHEADER
 	const size_t img_size = tex_img_size(t);

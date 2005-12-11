@@ -227,7 +227,7 @@ extern void vfs_path_copy(char* dst, const char* src);
 // if necessary, a directory separator is added between the paths.
 // each may be empty, filenames, or full paths.
 // total path length (including '\0') must not exceed VFS_MAX_PATH.
-extern int vfs_path_append(char* dst, const char* path1, const char* path2);
+extern LibError vfs_path_append(char* dst, const char* path1, const char* path2);
 
 // VFS paths are of the form: "(dir/)*file?"
 // in English: '/' as path separator; trailing '/' required for dir names;
@@ -265,10 +265,10 @@ enum VfsMountFlags
 // flags determines extra actions to perform; see VfsMountFlags.
 //
 // P_real_dir = "." or "./" isn't allowed - see implementation for rationale.
-extern int vfs_mount(const char* V_mount_point, const char* P_real_dir, int flags = 0, uint pri = 0);
+extern LibError vfs_mount(const char* V_mount_point, const char* P_real_dir, int flags = 0, uint pri = 0);
 
 // unmount a previously mounted item, and rebuild the VFS afterwards.
-extern int vfs_unmount(const char* name);
+extern LibError vfs_unmount(const char* name);
 
 
 //
@@ -281,7 +281,7 @@ extern Handle vfs_dir_open(const char* dir);
 
 // close the handle to a directory.
 // all DirEnt.name strings are now invalid.
-extern int vfs_dir_close(Handle& hd);
+extern LibError vfs_dir_close(Handle& hd);
 
 // retrieve the next (order is unspecified) dir entry matching <filter>.
 // return 0 on success, ERR_DIR_END if no matching entry was found,
@@ -302,7 +302,7 @@ extern int vfs_dir_close(Handle& hd);
 // most callers don't need it and the overhead is considerable
 // (we'd have to store all entries in a vector). it is left up to
 // higher-level code such as VfsUtil.
-extern int vfs_dir_next_ent(Handle hd, DirEnt* ent, const char* filter = 0);
+extern LibError vfs_dir_next_ent(Handle hd, DirEnt* ent, const char* filter = 0);
 
 
 //
@@ -311,14 +311,14 @@ extern int vfs_dir_next_ent(Handle hd, DirEnt* ent, const char* filter = 0);
 
 // return actual path to the specified file:
 // "<real_directory>/fn" or "<archive_name>/fn".
-extern int vfs_realpath(const char* fn, char* realpath);
+extern LibError vfs_realpath(const char* fn, char* realpath);
 
 // does the specified file exist? return false on error.
 // useful because a "file not found" warning is not raised, unlike vfs_stat.
 extern bool vfs_exists(const char* fn);
 
 // get file status (size, mtime). output param is zeroed on error.
-extern int vfs_stat(const char* fn, struct stat*);
+extern LibError vfs_stat(const char* fn, struct stat*);
 
 // return the size of an already opened file, or a negative error code.
 extern ssize_t vfs_size(Handle hf);
@@ -329,7 +329,7 @@ extern ssize_t vfs_size(Handle hf);
 extern Handle vfs_open(const char* fn, uint flags = 0);
 
 // close the handle to a file.
-extern int vfs_close(Handle& h);
+extern LibError vfs_close(Handle& h);
 
 
 //
@@ -348,10 +348,10 @@ extern int vfs_io_has_completed(Handle hio);
 
 // wait until the transfer <hio> completes, and return its buffer.
 // output parameters are zeroed on error.
-extern int vfs_io_wait(Handle hio, void*& p, size_t& size);
+extern LibError vfs_io_wait(Handle hio, void*& p, size_t& size);
 
 // finished with transfer <hio> - free its buffer (returned by vfs_wait_read).
-extern int vfs_io_discard(Handle& hio);
+extern LibError vfs_io_discard(Handle& hio);
 
 
 //
@@ -414,7 +414,7 @@ extern ssize_t vfs_store(const char* fn, void* p, size_t size, uint flags = 0);
 // the mapping will be removed (if still open) when its file is closed.
 // however, map/unmap calls should still be paired so that the mapping
 // may be removed when no longer needed.
-extern int vfs_map(Handle hf, uint flags, void*& p, size_t& size);
+extern LibError vfs_map(Handle hf, uint flags, void*& p, size_t& size);
 
 // decrement the reference count for the mapping belonging to file <f>.
 // fail if there are no references; remove the mapping if the count reaches 0.
@@ -422,16 +422,16 @@ extern int vfs_map(Handle hf, uint flags, void*& p, size_t& size);
 // the mapping will be removed (if still open) when its file is closed.
 // however, map/unmap calls should still be paired so that the mapping
 // may be removed when no longer needed.
-extern int vfs_unmap(Handle hf);
+extern LibError vfs_unmap(Handle hf);
 
 
 //
 // hotloading
 //
 
-extern int vfs_reload(const char* fn);
+extern LibError vfs_reload(const char* fn);
 
 // this must be called from the main thread? (wdir_watch problem)
-extern int vfs_reload_changed_files(void);
+extern LibError vfs_reload_changed_files(void);
 
 #endif	// #ifndef __VFS_H__

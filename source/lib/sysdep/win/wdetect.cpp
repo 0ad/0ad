@@ -71,7 +71,7 @@
 // EnumDisplayDevices is not available on Win95 or NT.
 // try to import it manually here; return -1 if not available.
 static BOOL (WINAPI *pEnumDisplayDevicesA)(LPCSTR, DWORD, LPDISPLAY_DEVICEA, DWORD);
-static int import_EnumDisplayDevices()
+static LibError import_EnumDisplayDevices()
 {
 	if(!pEnumDisplayDevicesA)
 	{
@@ -86,13 +86,13 @@ static int import_EnumDisplayDevices()
 		// so this resource leak is unavoidable.
 	}
 
-	return pEnumDisplayDevicesA? 0 : -1;
+	return pEnumDisplayDevicesA? ERR_OK : ERR_FAIL;
 }
 
 
 // useful for choosing a video mode.
 // if we fail, outputs are unchanged (assumed initialized to defaults)
-int get_cur_vmode(int* xres, int* yres, int* bpp, int* freq)
+LibError get_cur_vmode(int* xres, int* yres, int* bpp, int* freq)
 {
 	// don't use EnumDisplaySettingsW - BoundsChecker reports it causes
 	// a memory overrun (even if called as the very first thing, before
@@ -104,7 +104,7 @@ int get_cur_vmode(int* xres, int* yres, int* bpp, int* freq)
 	// dm.dmDriverExtra already set to 0 by memset
 
 	if(!EnumDisplaySettingsA(0, ENUM_CURRENT_SETTINGS, &dm))
-		return -1;
+		return ERR_FAIL;
 
 	if(dm.dmFields & (DWORD)DM_PELSWIDTH && xres)
 		*xres = (int)dm.dmPelsWidth;
@@ -115,20 +115,20 @@ int get_cur_vmode(int* xres, int* yres, int* bpp, int* freq)
 	if(dm.dmFields & (DWORD)DM_DISPLAYFREQUENCY && freq)
 		*freq = (int)dm.dmDisplayFrequency;
 
-	return 0;
+	return ERR_OK;
 }
 
 
 // useful for determining aspect ratio.
 // if we fail, outputs are unchanged (assumed initialized to defaults)
-int get_monitor_size(int& width_mm, int& height_mm)
+LibError get_monitor_size(int& width_mm, int& height_mm)
 {
 	// (DC for the primary monitor's entire screen)
 	HDC dc = GetDC(0);
 	width_mm = GetDeviceCaps(dc, HORZSIZE);
 	height_mm = GetDeviceCaps(dc, VERTSIZE);
 	ReleaseDC(0, dc);
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -136,7 +136,7 @@ int get_monitor_size(int& width_mm, int& height_mm)
 // support routines for getting DLL version
 //----------------------------------------------------------------------------
 
-static int get_ver(const char* module_path, char* out_ver, size_t out_ver_len)
+static LibError get_ver(const char* module_path, char* out_ver, size_t out_ver_len)
 {
 	WIN_SAVE_LAST_ERROR;	// GetFileVersion*, Ver*
 
@@ -144,12 +144,12 @@ static int get_ver(const char* module_path, char* out_ver, size_t out_ver_len)
 	DWORD unused;
 	const DWORD ver_size = GetFileVersionInfoSize(module_path, &unused);
 	if(!ver_size)
-		return -1;
+		return ERR_FAIL;
 	void* buf = malloc(ver_size);
 	if(!buf)
 		return ERR_NO_MEM;
 
-	int ret = -1;	// single point of exit (for free())
+	LibError ret = ERR_FAIL;	// single point of exit (for free())
 
 	if(GetFileVersionInfo(module_path, 0, ver_size, buf))
 	{
@@ -165,7 +165,7 @@ static int get_ver(const char* module_path, char* out_ver, size_t out_ver_len)
 			if(VerQueryValue(buf, subblock, (void**)&in_ver, &in_ver_len))
 			{
 				strcpy_s(out_ver, out_ver_len, in_ver);
-				ret = 0;	// success
+				ret = ERR_OK;
 			}
 		}
 	}
@@ -198,13 +198,13 @@ static void dll_list_init(char* buf, size_t chars)
 // name should preferably be the complete path to DLL, to make sure
 // we don't inadvertently load another one on the library search path.
 // we add the .dll extension if necessary.
-static int dll_list_add(const char* name)
+static LibError dll_list_add(const char* name)
 {
 	// make sure we're allowed to be called.
 	if(!dll_list_pos)
 	{
 		debug_warn("called before dll_list_init or after failure");
-		return -1;
+		return ERR_FAIL;
 	}
 
 	// some driver names are stored in the registry without .dll extension.
@@ -241,7 +241,7 @@ static int dll_list_add(const char* name)
 	if(len > 0)
 	{
 		dll_list_pos += len;
-		return 0;
+		return ERR_OK;
 	}
 
 	// didn't fit; complain
@@ -259,7 +259,7 @@ static int dll_list_add(const char* name)
 //////////////////////////////////////////////////////////////////////////////
 
 
-static int win_get_gfx_card()
+static LibError win_get_gfx_card()
 {
 	// make sure EnumDisplayDevices is available (as pEnumDisplayDevicesA)
 	if(import_EnumDisplayDevices() >= 0)
@@ -282,20 +282,21 @@ static int win_get_gfx_card()
 			if(dd.StateFlags & DISPLAY_DEVICE_PRIMARY_DEVICE)
 			{
 				strcpy_s(gfx_card, ARRAY_SIZE(gfx_card), (const char*)dd.DeviceString);
-				return 0;
+				return ERR_OK;
 			}
 		}
 	}
 
-	return -1;
+	return ERR_FAIL;
 }
 
 
 // note: this implementation doesn't require OpenGL to be initialized.
-static int win_get_gfx_drv_ver()
+static LibError win_get_gfx_drv_ver()
 {
+	// don't overwrite existing information
 	if(gfx_drv_ver[0] != '\0')
-		return -1;
+		return ERR_FAIL;
 
 	// rationale:
 	// - we could easily determine the 2d driver via EnumDisplaySettings,
@@ -314,7 +315,7 @@ static int win_get_gfx_drv_ver()
 	//   gfx_card which one is correct; we thus avoid driver-specific
 	//   name checks and reporting incorrectly.
 
-	int ret = -1;	// single point of exit (for RegCloseKey)
+	LibError ret = ERR_FAIL;	// single point of exit (for RegCloseKey)
 	DWORD i;
 	char drv_name[MAX_PATH+1];
 
@@ -323,7 +324,7 @@ static int win_get_gfx_drv_ver()
 	HKEY hkOglDrivers;
 	const char* key = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\OpenGLDrivers";
 	if(RegOpenKeyEx(HKEY_LOCAL_MACHINE, key, 0, KEY_READ, &hkOglDrivers) != 0)
-		return -1;
+		return ERR_FAIL;
 
 	// for each subkey (i.e. set of installed OpenGL drivers):
 	for(i = 0; ; i++)
@@ -367,15 +368,15 @@ static int win_get_gfx_drv_ver()
 }
 
 
-int win_get_gfx_info()
+LibError win_get_gfx_info()
 {
-	int err1 = win_get_gfx_card();
-	int err2 = win_get_gfx_drv_ver();
+	LibError err1 = win_get_gfx_card();
+	LibError err2 = win_get_gfx_drv_ver();
 
 	// don't exit before trying both
 	CHECK_ERR(err1);
 	CHECK_ERR(err2);
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -399,25 +400,25 @@ typedef std::set<std::string> StringSet;
 // note: we need the full DLL path for dll_list_add but DirEnt only gives us
 // the name. for efficiency, we append this in a PathPackage allocated by
 // add_oal_dlls_in_dir.
-static int add_if_oal_dll(const DirEnt* ent, PathPackage* pp, StringSet* dlls)
+static LibError add_if_oal_dll(const DirEnt* ent, PathPackage* pp, StringSet* dlls)
 {
 	const char* fn = ent->name;
 
 	// skip non-files.
 	if(!DIRENT_IS_DIR(ent))
-		return 0;
+		return ERR_OK;
 
 	// skip if not an OpenAL DLL.
 	const size_t len = strlen(fn);
 	const bool oal = len >= 7 && !stricmp(fn+len-7, "oal.dll");
 	const bool openal = strstr(fn, "OpenAL") != 0;
 	if(!oal && !openal)
-		return 0;
+		return ERR_OK;
 
 	// skip if already in StringSet (i.e. has already been dll_list_add-ed)
 	std::pair<StringSet::iterator, bool> ret = dlls->insert(fn);
 	if(!ret.second)	// insert failed - element already there
-		return 0;
+		return ERR_OK;
 
 	RETURN_ERR(pp_append_file(pp, fn));
 	return dll_list_add(pp->path);
@@ -430,7 +431,7 @@ static int add_if_oal_dll(const DirEnt* ent, PathPackage* pp, StringSet* dlls)
 // same name in the system directory.
 //
 // <dir>: no trailing.
-static int add_oal_dlls_in_dir(const char* dir, StringSet* dlls)
+static LibError add_oal_dlls_in_dir(const char* dir, StringSet* dlls)
 {
 	PathPackage pp;
 	RETURN_ERR(pp_set_dir(&pp, dir));
@@ -441,14 +442,14 @@ static int add_oal_dlls_in_dir(const char* dir, StringSet* dlls)
 	DirEnt ent;
 	for(;;)	// instead of while to avoid warning
 	{
-		int err = dir_next_ent(&d, &ent);
-		if(err != 0)
+		LibError err = dir_next_ent(&d, &ent);
+		if(err != ERR_OK)
 			break;
 		(void)add_if_oal_dll(&ent, &pp, dlls);
 	}
 
 	(void)dir_close(&d);
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -476,7 +477,7 @@ static BOOL CALLBACK ds_enum(void* UNUSED(guid), const char* description,
 }
 
 
-int win_get_snd_info()
+LibError win_get_snd_info()
 {
 	// get sound card name and DS driver path.
 	if(DirectSoundEnumerateA((LPDSENUMCALLBACKA)ds_enum, (void*)0) != DS_OK)
@@ -488,7 +489,7 @@ int win_get_snd_info()
 	{
 		strcpy_s(snd_card, SND_CARD_LEN, "(none)");
 		strcpy_s(snd_drv_ver, SND_DRV_VER_LEN, "(none)");
-		return 0;
+		return ERR_OK;
 	}
 
 	// find all DLLs related to OpenAL, retrieve their versions,
@@ -498,5 +499,5 @@ int win_get_snd_info()
 	StringSet dlls;	// ensures uniqueness
 	(void)add_oal_dlls_in_dir(win_exe_dir, &dlls);
 	(void)add_oal_dlls_in_dir(win_sys_dir, &dlls);
-	return 0;
+	return ERR_OK;
 }

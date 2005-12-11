@@ -15,7 +15,7 @@ struct TexCodecVTbl
 	// size is guaranteed to be >= 4.
 	// (usually enough to compare the header's "magic" field;
 	// anyway, no legitimate file will be smaller)
-	int (*decode)(DynArray* restrict da, Tex* restrict t);
+	LibError (*decode)(DynArray* restrict da, Tex* restrict t);
 
 	// rationale: some codecs cannot calculate the output size beforehand
 	// (e.g. PNG output via libpng); we therefore require each one to
@@ -23,9 +23,9 @@ struct TexCodecVTbl
 	//
 	// note: <t> cannot be made const because encoding may require a
 	// tex_transform.
-	int (*encode)(Tex* restrict t, DynArray* restrict da);
+	LibError (*encode)(Tex* restrict t, DynArray* restrict da);
 
-	int (*transform)(Tex* t, uint transforms);
+	LibError (*transform)(Tex* t, uint transforms);
 
 	// only guaranteed 4 bytes!
 	bool (*is_hdr)(const u8* file);
@@ -49,24 +49,22 @@ struct TexCodecVTbl
 	static int dummy = tex_codec_register(&vtbl);
 
 
-// the given texture cannot be handled by this codec; pass the buck on to the next one
-const int TEX_CODEC_CANNOT_HANDLE = 1;
-
-
 // add this vtbl to the codec list. called at NLSO init time by the
 // TEX_CODEC_REGISTER in each codec file. note that call order and therefore
 // order in the list is undefined, but since each codec only steps up if it
 // can handle the given format, this is not a problem.
+//
+// returns int to alloc calling from a macro at file scope.
 extern int tex_codec_register(TexCodecVTbl* c);
 
 
 // find codec that recognizes the desired output file extension
-extern int tex_codec_for_filename(const char* fn, const TexCodecVTbl** c);
+extern LibError tex_codec_for_filename(const char* fn, const TexCodecVTbl** c);
 
 // find codec that recognizes the header's magic field
-extern int tex_codec_for_header(const u8* file, size_t file_size, const TexCodecVTbl** c);
+extern LibError tex_codec_for_header(const u8* file, size_t file_size, const TexCodecVTbl** c);
 
-extern int tex_codec_transform(Tex* t, uint transforms);
+extern LibError tex_codec_transform(Tex* t, uint transforms);
 
 
 // allocate an array of row pointers that point into the given texture data.
@@ -80,9 +78,9 @@ extern int tex_codec_transform(Tex* t, uint transforms);
 // needed for encoding, too (where data is already present).
 typedef const u8* RowPtr;
 typedef RowPtr* RowArray;
-extern int tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
+extern LibError tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
 	uint src_flags, uint dst_orientation, RowArray& rows);
 
-extern int tex_codec_write(Tex* t, uint transforms, const void* hdr, size_t hdr_size, DynArray* da);
+extern LibError tex_codec_write(Tex* t, uint transforms, const void* hdr, size_t hdr_size, DynArray* da);
 
 #endif	// #ifndef TEX_CODEC_H__

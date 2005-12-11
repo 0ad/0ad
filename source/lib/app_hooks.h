@@ -105,7 +105,7 @@ FUNC(void, log, (const wchar_t* text), (text), (void))
 // holds a function pointer for each hook. passed to set_app_hooks.
 struct AppHooks
 {
-#define FUNC(ret, name, params, param_names, call_prefix) ret(*name) params;
+#define FUNC(ret, name, params, param_names, call_prefix) ret (*name) params;
 #include "app_hooks.h"
 #undef FUNC
 

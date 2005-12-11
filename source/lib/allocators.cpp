@@ -42,7 +42,7 @@ static size_t round_up_to_page(size_t size)
 // stored in da->prot to reduce size; doesn't conflict with any PROT_* flags.
 const int DA_NOT_OUR_MEM = 0x40000000;
 
-static int validate_da(DynArray* da)
+static LibError validate_da(DynArray* da)
 {
 	if(!da)
 		return ERR_INVALID_PARAM;
@@ -53,19 +53,19 @@ static int validate_da(DynArray* da)
 	const int prot           = da->prot;
 
 	if(debug_is_pointer_bogus(base))
-		return -1;
+		return ERR_1;
 	if(!is_page_multiple((uintptr_t)base))
-		return -2;
+		return ERR_2;
 	if(!is_page_multiple(max_size_pa))
-		return -3;
+		return ERR_3;
 	if(cur_size > max_size_pa)
-		return -4;
+		return ERR_4;
 	if(pos > cur_size || pos > max_size_pa)
-		return -5;
+		return ERR_5;
 	if(prot & ~(PROT_READ|PROT_WRITE|PROT_EXEC|DA_NOT_OUR_MEM))
-		return -6;
+		return ERR_6;
 
-	return 0;
+	return ERR_OK;
 }
 
 #define CHECK_DA(da) CHECK_ERR(validate_da(da))
@@ -75,42 +75,52 @@ static int validate_da(DynArray* da)
 // very thin wrapper on top of sys/mman.h that makes the intent more obvious
 // (its commit/decommit semantics are difficult to tell apart).
 
+static inline LibError LibError_from_mmap(void* ret)
+{
+	if(ret != MAP_FAILED)
+		return ERR_OK;
+	return LibError_from_errno();
+}
+
 static const int mmap_flags = MAP_PRIVATE|MAP_ANONYMOUS;
 
-static int mem_reserve(size_t size, u8** pp)
+static LibError mem_reserve(size_t size, u8** pp)
 {
+	errno = 0;
 	void* ret = mmap(0, size, PROT_NONE, mmap_flags|MAP_NORESERVE, -1, 0);
-	if(ret == MAP_FAILED)
-		return ERR_NO_MEM;
 	*pp = (u8*)ret;
-	return 0;
+	return LibError_from_mmap(ret);
 }
 
-static int mem_release(u8* p, size_t size)
+static LibError mem_release(u8* p, size_t size)
 {
-	return munmap(p, size);
+	errno = 0;
+	return LibError_from_posix(munmap(p, size));
 }
 
-static int mem_commit(u8* p, size_t size, int prot)
+static LibError mem_commit(u8* p, size_t size, int prot)
 {
 	if(prot == PROT_NONE)
 	{
 		debug_warn("mem_commit: prot=PROT_NONE isn't allowed (misinterpreted by mmap)");
 		return ERR_INVALID_PARAM;
 	}
+	errno = 0;
 	void* ret = mmap(p, size, prot, mmap_flags|MAP_FIXED, -1, 0);
-	return (ret == MAP_FAILED)? -1 : 0;
+	return LibError_from_mmap(ret);
 }
 
-static int mem_decommit(u8* p, size_t size)
+static LibError mem_decommit(u8* p, size_t size)
 {
+	errno = 0;
 	void* ret = mmap(p, size, PROT_NONE, mmap_flags|MAP_NORESERVE|MAP_FIXED, -1, 0);
-	return (ret == MAP_FAILED)? -1 : 0;
+	return LibError_from_mmap(ret);
 }
 
-static int mem_protect(u8* p, size_t size, int prot)
+static LibError mem_protect(u8* p, size_t size, int prot)
 {
-	return mprotect(p, size, prot);
+	errno = 0;
+	return LibError_from_posix(mprotect(p, size, prot));
 }
 
 
@@ -121,7 +131,7 @@ static int mem_protect(u8* p, size_t size, int prot)
 // (rounded up to the next page size multiple) of address space for the
 // array; it can never grow beyond this.
 // no virtual memory is actually committed until calls to da_set_size.
-int da_alloc(DynArray* da, size_t max_size)
+LibError da_alloc(DynArray* da, size_t max_size)
 {
 	const size_t max_size_pa = round_up_to_page(max_size);
 
@@ -134,7 +144,7 @@ int da_alloc(DynArray* da, size_t max_size)
 	da->prot        = PROT_READ|PROT_WRITE;
 	da->pos         = 0;
 	CHECK_DA(da);
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -142,7 +152,7 @@ int da_alloc(DynArray* da, size_t max_size)
 // DynArray object, preparing it for use with da_read or da_append.
 // da_free should be called when the DynArray is no longer needed,
 // even though it doesn't free this memory (but does zero the DynArray).
-int da_wrap_fixed(DynArray* da, u8* p, size_t size)
+LibError da_wrap_fixed(DynArray* da, u8* p, size_t size)
 {
 	da->base        = p;
 	da->max_size_pa = round_up_to_page(size);
@@ -150,14 +160,14 @@ int da_wrap_fixed(DynArray* da, u8* p, size_t size)
 	da->prot        = PROT_READ|PROT_WRITE|DA_NOT_OUR_MEM;
 	da->pos         = 0;
 	CHECK_DA(da);
-	return 0;
+	return ERR_OK;
 }
 
 
 // free all memory (address space + physical) that constitutes the
 // given array. use-after-free is impossible because the memory is
 // marked not-present via MMU. also zeroes the contents of <da>.
-int da_free(DynArray* da)
+LibError da_free(DynArray* da)
 {
 	CHECK_DA(da);
 
@@ -174,21 +184,21 @@ int da_free(DynArray* da)
 	// da_free is supposed to be called even in the above case.
 	if(!was_wrapped)
 		CHECK_ERR(mem_release(p, size));
-	return 0;
+	return ERR_OK;
 }
 
 
 // expand or shrink the array: changes the amount of currently committed
 // (i.e. usable) memory pages. pages are added/removed until
 // new_size (rounded up to the next page size multiple) is met.
-int da_set_size(DynArray* da, size_t new_size)
+LibError da_set_size(DynArray* da, size_t new_size)
 {
 	CHECK_DA(da);
 
 	if(da->prot & DA_NOT_OUR_MEM)
 	{
 		debug_warn("da is marked DA_NOT_OUR_MEM, must not be altered");
-		return -1;
+		return ERR_LOGIC;
 	}
 
 	// determine how much to add/remove
@@ -210,7 +220,7 @@ int da_set_size(DynArray* da, size_t new_size)
 
 	da->cur_size = new_size;
 	CHECK_DA(da);
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -218,7 +228,7 @@ int da_set_size(DynArray* da, size_t new_size)
 // write-protection. affects the currently committed pages as well as
 // all subsequently added pages.
 // prot can be a combination of the PROT_* values used with mprotect.
-int da_set_prot(DynArray* da, int prot)
+LibError da_set_prot(DynArray* da, int prot)
 {
 	CHECK_DA(da);
 
@@ -227,39 +237,39 @@ int da_set_prot(DynArray* da, int prot)
 	if(da->prot & DA_NOT_OUR_MEM)
 	{
 		debug_warn("da is marked DA_NOT_OUR_MEM, must not be altered");
-		return -1;
+		return ERR_LOGIC;
 	}
 
 	da->prot = prot;
 	CHECK_ERR(mem_protect(da->base, da->cur_size, prot));
 
 	CHECK_DA(da);
-	return 0;
+	return ERR_OK;
 }
 
 
 // "read" from array, i.e. copy into the given buffer.
 // starts at offset DynArray.pos and advances this.
-int da_read(DynArray* da, void* data, size_t size)
+LibError da_read(DynArray* da, void* data, size_t size)
 {
 	// make sure we have enough data to read
 	if(da->pos+size > da->cur_size)
-		return -1;
+		return ERR_EOF;
 
 	memcpy2(data, da->base+da->pos, size);
 	da->pos += size;
-	return 0;
+	return ERR_OK;
 }
 
 
 // "write" to array, i.e. copy from the given buffer.
 // starts at offset DynArray.pos and advances this.
-int da_append(DynArray* da, const void* data, size_t size)
+LibError da_append(DynArray* da, const void* data, size_t size)
 {
 	RETURN_ERR(da_set_size(da, da->pos+size));
 	memcpy2(da->base+da->pos, data, size);
 	da->pos += size;
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -304,7 +314,7 @@ static const size_t POOL_CHUNK = 4*KiB;
 //
 // note: el_size must at least be enough for a pointer (due to freelist
 // implementation) but not exceed the expand-by amount.
-int pool_create(Pool* p, size_t max_size, size_t el_size)
+LibError pool_create(Pool* p, size_t max_size, size_t el_size)
 {
 	if(el_size < sizeof(void*) || el_size > POOL_CHUNK)
 		CHECK_ERR(ERR_INVALID_PARAM);
@@ -312,14 +322,14 @@ int pool_create(Pool* p, size_t max_size, size_t el_size)
 	RETURN_ERR(da_alloc(&p->da, max_size));
 	p->pos = 0;
 	p->el_size = el_size;
-	return 0;
+	return ERR_OK;
 }
 
 
 // free all memory that ensued from <p>. all elements are made unusable
 // (it doesn't matter if they were "allocated" or in freelist or unused);
 // future alloc and free calls on this pool will fail.
-int pool_destroy(Pool* p)
+LibError pool_destroy(Pool* p)
 {
 	// don't be picky and complain if the freelist isn't empty;
 	// we don't care since it's all part of the da anyway.
@@ -342,7 +352,8 @@ bool pool_contains(Pool* p, void* el)
 }
 
 
-// return an entry from the pool, or 0 if it cannot be expanded as necessary.
+// return an entry from the pool, or 0 if it would have to be expanded and
+// there isn't enough memory to do so.
 // exhausts the freelist before returning new entries to improve locality.
 void* pool_alloc(Pool* p)
 {

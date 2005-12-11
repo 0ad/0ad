@@ -556,7 +556,7 @@ __HrLoadAllImportsForDll(LPCSTR szDll) {
 */
 
 
-static int wdll_shutdown()
+static LibError wdll_shutdown()
 {
 	PUnloadInfo pui;
 
@@ -579,7 +579,7 @@ static int wdll_shutdown()
 				// changes __puiHead!
 		}
 
-	return 0;
+	return ERR_OK;
 }
 
 

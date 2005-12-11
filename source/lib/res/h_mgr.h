@@ -125,7 +125,7 @@ reload:
 does all initialization of the resource that requires its source file.
 called after init; also after dtor every time the file is reloaded.
 
-static int Type_reload(Res1* r, const char* filename, Handle);
+static LibError Type_reload(Res1* r, const char* filename, Handle);
 {
 	// already loaded; done
 	if(r->data)
@@ -180,16 +180,16 @@ or "compact/free extraneous resources" may be added.
 
 validate:
 makes sure the resource control block is in a valid state. returns 0 if
-all is well, or a distinct negative value (error code, if appropriate).
+all is well, or a negative error code.
 called automatically when the Handle is dereferenced or freed.
 
-static int Type_validate(const Res1* r);
+static LibError Type_validate(const Res1* r);
 {
 	const int permissible_flags = 0x01;
 	if(debug_is_pointer_bogus(r->data))
-		return -2;
+		return ERR_1;
 	if(r->flags & ~permissible_flags)
-		return -3;
+		return ERR_2;
 	return 0;
 }
 
@@ -201,7 +201,7 @@ Handle res1_load(const char* filename, int my_flags)
 	return h_alloc(H_Res1, filename, 0, my_flags);
 }
 
-int res1_free(Handle& h)
+LibError res1_free(Handle& h)
 {
 	// control block is automatically zeroed after this.
 	return h_free(h, H_Res1);
@@ -308,11 +308,11 @@ but- has to handle variable params, a bit ugly
 // dependencies.
 struct H_VTbl
 {
-	void(*init)(void* user, va_list);
-	int(*reload)(void* user, const char* fn, Handle);
-	void(*dtor)(void* user);
-	int(*validate)(const void* user);
-	int(*to_string)(const void* user, char* buf);
+	void (*init)(void* user, va_list);
+	LibError (*reload)(void* user, const char* fn, Handle);
+	void (*dtor)(void* user);
+	LibError (*validate)(const void* user);
+	LibError (*to_string)(const void* user, char* buf);
 	size_t user_size;
 	const char* name;
 };
@@ -322,17 +322,17 @@ typedef H_VTbl* H_Type;
 #define H_TYPE_DEFINE(type)\
 	/* forward decls */\
 	static void type##_init(type*, va_list);\
-	static int type##_reload(type*, const char*, Handle);\
+	static LibError type##_reload(type*, const char*, Handle);\
 	static void type##_dtor(type*);\
-	static int type##_validate(const type*);\
-	static int type##_to_string(const type*, char* buf);\
+	static LibError type##_validate(const type*);\
+	static LibError type##_to_string(const type*, char* buf);\
 	static H_VTbl V_##type =\
 	{\
-		(void(*)(void*, va_list))type##_init,\
-		(int(*)(void*, const char*, Handle))type##_reload,\
-		(void(*)(void*))type##_dtor,\
-		(int(*)(const void*))type##_validate,\
-		(int(*)(const void*, char*))type##_to_string,\
+		(void (*)(void*, va_list))type##_init,\
+		(LibError (*)(void*, const char*, Handle))type##_reload,\
+		(void (*)(void*))type##_dtor,\
+		(LibError (*)(const void*))type##_validate,\
+		(LibError (*)(const void*, char*))type##_to_string,\
 		sizeof(type),	/* control block size */\
 		#type			/* name */\
 	};\
@@ -410,7 +410,7 @@ const size_t H_STRING_LEN = 256;
 // dtor is associated with type and called when the object is freed.
 // handle data is initialized to 0; optionally, a pointer to it is returned.
 extern Handle h_alloc(H_Type type, const char* fn, uint flags = 0, ...);
-extern int h_free(Handle& h, H_Type type);
+extern LibError h_free(Handle& h, H_Type type);
 
 
 // find and return a handle by key (typically filename hash)
@@ -428,7 +428,7 @@ extern void* h_user_data(Handle h, H_Type type);
 extern const char* h_filename(Handle h);
 
 
-extern int h_reload(const char* fn);
+extern LibError h_reload(const char* fn);
 
 // force the resource to be freed immediately, even if cached.
 // tag is not checked - this allows the first Handle returned
@@ -436,7 +436,7 @@ extern int h_reload(const char* fn);
 // to later close the object.
 // this is used when reinitializing the sound engine -
 // at that point, all (cached) OpenAL resources must be freed.
-extern int h_force_free(Handle h, H_Type type);
+extern LibError h_force_free(Handle h, H_Type type);
 
 // increment Handle <h>'s reference count.
 // only meant to be used for objects that free a Handle in their dtor,

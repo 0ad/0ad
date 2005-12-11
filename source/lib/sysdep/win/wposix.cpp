@@ -624,7 +624,7 @@ int mprotect(void* addr, size_t len, int prot)
 
 
 // called when flags & MAP_ANONYMOUS
-static int mmap_mem(void* start, size_t len, int prot, int flags, int fd, void** pp)
+static LibError mmap_mem(void* start, size_t len, int prot, int flags, int fd, void** pp)
 {
 	// sanity checks. we don't care about these but enforce them to
 	// ensure callers are compatible with mmap.
@@ -648,7 +648,7 @@ debug_assert(ok);	// todo4
 			ok = VirtualFree(start, len, MEM_DECOMMIT);
 debug_assert(ok);
 			*pp = 0;
-			return 0;
+			return ERR_OK;
 		}
 	}
 
@@ -659,7 +659,7 @@ debug_assert(ok);
 	if(!p)
 		return ERR_NO_MEM;
 	*pp = p;
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -667,7 +667,7 @@ debug_assert(ok);
 // CreateFileMapping / MapViewOfFile. they only support read-only,
 // read/write and copy-on-write, so we dumb it down to that and later
 // set the correct (and more restrictive) permission via mprotect.
-static int mmap_file_access(int prot, int flags, DWORD& flProtect, DWORD& dwAccess)
+static LibError mmap_file_access(int prot, int flags, DWORD& flProtect, DWORD& dwAccess)
 {
 	// assume read-only; other cases handled below.
 	flProtect = PAGE_READONLY;
@@ -696,11 +696,11 @@ static int mmap_file_access(int prot, int flags, DWORD& flProtect, DWORD& dwAcce
 		}
 	}
 
-	return 0;
+	return ERR_OK;
 }
 
 
-static int mmap_file(void* start, size_t len, int prot, int flags,
+static LibError mmap_file(void* start, size_t len, int prot, int flags,
 	int fd, off_t ofs, void** pp)
 {
 	debug_assert(fd != -1);	// handled by mmap_mem
@@ -744,14 +744,14 @@ static int mmap_file(void* start, size_t len, int prot, int flags,
 
 	WIN_RESTORE_LAST_ERROR;
 	*pp = p;
-	return 0;
+	return ERR_OK;
 }
 
 
 void* mmap(void* start, size_t len, int prot, int flags, int fd, off_t ofs)
 {
 	void* p;
-	int err;
+	LibError err;
 	if(flags & MAP_ANONYMOUS)
 		err = mmap_mem(start, len, prot, flags, fd, &p);
 	else

@@ -26,7 +26,7 @@ void ogl_shader_free(Handle& h);
 
 // Attach a shader to the given OpenGL program.
 // Returns 0 on success and a negative error code otherwise.
-int ogl_shader_attach(GLhandleARB program, Handle& h);
+LibError ogl_shader_attach(GLhandleARB program, Handle& h);
 
 
 /*
@@ -42,7 +42,7 @@ void ogl_program_free(Handle& h);
 
 // Activate the program (glUseProgramObjectARB).
 // h may be 0, in which case program objects are disabled.
-int ogl_program_use(Handle h);
+LibError ogl_program_use(Handle h);
 
 // Query uniform information
 GLint ogl_program_get_uniform_location(Handle h, const char* name);

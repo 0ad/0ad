@@ -51,8 +51,8 @@ extern void in_dispatch_event(const SDL_Event* event);
 
 extern void in_dispatch_recorded_events();
 
-extern int in_record(const char* fn);
-extern int in_playback(const char* fn);
+extern LibError in_record(const char* fn);
+extern LibError in_playback(const char* fn);
 extern void in_stop(void);
 
 

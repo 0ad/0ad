@@ -72,12 +72,12 @@ static void Ogl_Shader_init(Ogl_Shader* shdr, va_list args)
 // have absolutely no effect on a program object that contains these shaders
 // when the program object is already linked.
 // So, how can we inform the "parent object" (i.e. the program object) of our change?
-static int Ogl_Shader_reload(Ogl_Shader* shdr, const char* filename, Handle UNUSED(h))
+static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const char* filename, Handle UNUSED(h))
 {
-	int err = -666;
+	LibError err = ERR_FAIL;
 
 	if (shdr->id)
-		return 0;
+		return ERR_OK;
 
 	void* file;
 	size_t file_size;
@@ -140,7 +140,7 @@ static int Ogl_Shader_reload(Ogl_Shader* shdr, const char* filename, Handle UNUS
 	}
 
 	mem_free_h(hm);
-	return 0;
+	return ERR_OK;
 
 fail_shadercreated:
 	pglDeleteObjectARB(shdr->id);
@@ -162,16 +162,16 @@ static void Ogl_Shader_dtor(Ogl_Shader* shdr)
 	}
 }
 
-static int Ogl_Shader_validate(const Ogl_Shader* UNUSED(shdr))
+static LibError Ogl_Shader_validate(const Ogl_Shader* UNUSED(shdr))
 {
 	// TODO
-	return 0;
+	return ERR_OK;
 }
 
-static int Ogl_Shader_to_string(const Ogl_Shader* UNUSED(shdr), char* buf)
+static LibError Ogl_Shader_to_string(const Ogl_Shader* UNUSED(shdr), char* buf)
 {
 	snprintf(buf, H_STRING_LEN, "");
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -195,7 +195,7 @@ void ogl_shader_free(Handle& h)
 }
 
 // Attach a shader to the given OpenGL program.
-int ogl_shader_attach(GLhandleARB program, Handle& h)
+LibError ogl_shader_attach(GLhandleARB program, Handle& h)
 {
 	H_DEREF(h, Ogl_Shader, shdr);
 
@@ -204,7 +204,7 @@ int ogl_shader_attach(GLhandleARB program, Handle& h)
 
 	pglAttachObjectARB(program, shdr->id);
 
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -230,7 +230,7 @@ static void Ogl_Program_init(Ogl_Program* UNUSED(p), va_list UNUSED(args))
 
 // Load the shader associated with one Shader element,
 // and attach it to our program object.
-static int do_load_shader(
+static LibError do_load_shader(
 		Ogl_Program* p, const char* filename, Handle UNUSED(h),
 		const CXeromyces& XeroFile, const XMBElement& Shader)
 {
@@ -275,15 +275,15 @@ static int do_load_shader(
 	// TODO: How will this work with automatic reload?
 	ogl_shader_free(hshader);
 
-	return 0;
+	return ERR_OK;
 }
 
 
 // Reload the program object from the source file.
-static int Ogl_Program_reload(Ogl_Program* p, const char* filename, Handle h)
+static LibError Ogl_Program_reload(Ogl_Program* p, const char* filename, Handle h)
 {
 	if (p->id)
-		return 0;
+		return ERR_OK;
 
 	oglCheck();
 	
@@ -338,9 +338,7 @@ static int Ogl_Program_reload(Ogl_Program* p, const char* filename, Handle h)
 					return ERR_CORRUPTED;
 				}
 				
-				int ret = do_load_shader(p, filename, h, XeroFile, Shader);
-				if (ret < 0)
-					return ret;
+				RETURN_ERR(do_load_shader(p, filename, h, XeroFile, Shader));
 			}
 		}
 		else
@@ -371,7 +369,7 @@ static int Ogl_Program_reload(Ogl_Program* p, const char* filename, Handle h)
 		return ERR_SHDR_LINK;
 	}
 
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -385,16 +383,16 @@ static void Ogl_Program_dtor(Ogl_Program* p)
 	}
 }
 
-static int Ogl_Program_validate(const Ogl_Program* UNUSED(p))
+static LibError Ogl_Program_validate(const Ogl_Program* UNUSED(p))
 {
 	// TODO
-	return 0;
+	return ERR_OK;
 }
 
-static int Ogl_Program_to_string(const Ogl_Program* UNUSED(p), char* buf)
+static LibError Ogl_Program_to_string(const Ogl_Program* UNUSED(p), char* buf)
 {
 	snprintf(buf, H_STRING_LEN, "");
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -417,12 +415,12 @@ void ogl_program_free(Handle& h)
 
 // Activate the program (glUseProgramObjectARB).
 // h may be 0, in which case program objects are disabled.
-int ogl_program_use(Handle h)
+LibError ogl_program_use(Handle h)
 {
 	if (!h)
 	{
 		pglUseProgramObjectARB(0);
-		return 0;
+		return ERR_OK;
 	}
 
 	Ogl_Program* p = H_USER_DATA(h, Ogl_Program);
@@ -434,7 +432,7 @@ int ogl_program_use(Handle h)
 	}
 
 	pglUseProgramObjectARB(p->id);
-	return 0;
+	return ERR_OK;
 }
 
 

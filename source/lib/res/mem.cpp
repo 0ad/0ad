@@ -158,26 +158,26 @@ static void Mem_dtor(Mem* m)
 
 // can't alloc here, because h_alloc needs the key when called
 // (key == pointer we allocate)
-static int Mem_reload(Mem* m, const char* UNUSED(fn), Handle hm)
+static LibError Mem_reload(Mem* m, const char* UNUSED(fn), Handle hm)
 {
 	set_alloc(m->raw_p, hm);
-	return 0;
+	return ERR_OK;
 }
 
-static int Mem_validate(const Mem* m)
+static LibError Mem_validate(const Mem* m)
 {
 	if(debug_is_pointer_bogus(m->p))
-		return -2;
+		return ERR_1;
 	if(!m->size)
-		return -3;
+		return ERR_2;
 	if(m->raw_p && m->raw_p > m->p)
-		return -4;
+		return ERR_3;
 	if(m->raw_size && m->raw_size < m->size)
-		return -5;
-	return 0;
+		return ERR_4;
+	return ERR_OK;
 }
 
-static int Mem_to_string(const Mem* m, char* buf)
+static LibError Mem_to_string(const Mem* m, char* buf)
 {
 	char owner_sym[DBG_SYMBOL_LEN];
 	if(debug_resolve_symbol(m->owner, owner_sym, 0, 0) < 0)
@@ -189,7 +189,7 @@ static int Mem_to_string(const Mem* m, char* buf)
 	}
 
 	snprintf(buf, H_STRING_LEN, "p=%p size=%d owner=%s", m->p, m->size, owner_sym);
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -222,17 +222,17 @@ static void* heap_alloc(size_t raw_size, uintptr_t& ctx)
 //////////////////////////////////////////////////////////////////////////////
 
 
-int mem_free_h(Handle& hm)
+LibError mem_free_h(Handle& hm)
 {
 	SCOPED_LOCK;
 	return h_free(hm, H_Mem);
 }
 
 
-int mem_free_p(void*& p)
+LibError mem_free_p(void*& p)
 {
 	if(!p)
-		return 0;
+		return ERR_OK;
 
 	Handle hm;
 	{
@@ -244,7 +244,7 @@ int mem_free_p(void*& p)
 	if(hm <= 0)
 	{
 		debug_warn("mem_free_p: not found in map");
-		return -1;
+		return ERR_FAIL;
 	}
 	return mem_free_h(hm);
 }
@@ -284,7 +284,7 @@ Handle mem_wrap(void* p, size_t size, uint flags, void* raw_p, size_t raw_size, 
 
 
 /*
-int mem_assign_user(Handle hm, void* user_p, size_t user_size)
+LibError mem_assign_user(Handle hm, void* user_p, size_t user_size)
 {
 	H_DEREF(hm, Mem, m);
 
@@ -295,12 +295,12 @@ int mem_assign_user(Handle hm, void* user_p, size_t user_size)
 	if(user_p < m->raw_p || user_end > raw_end)
 	{
 		debug_warn("mem_assign_user: user buffer not contained in real buffer");
-		return -EINVAL;
+		return -1;
 	}
 
 	m->p = user_p;
 	m->size = user_size;
-	return 0;
+	return ERR_OK;
 }
 */
 
@@ -392,7 +392,7 @@ void* mem_get_ptr(Handle hm, size_t* user_size /* = 0 */)
 }
 
 
-int mem_get(Handle hm, u8** pp, size_t* psize)
+LibError mem_get(Handle hm, u8** pp, size_t* psize)
 {
 	SCOPED_LOCK;
 
@@ -402,7 +402,7 @@ int mem_get(Handle hm, u8** pp, size_t* psize)
 	if(psize)
 		*psize = m->size;
 	// leave hm locked
-	return 0;
+	return ERR_OK;
 }
 
 

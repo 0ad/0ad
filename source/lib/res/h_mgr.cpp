@@ -260,7 +260,7 @@ static HDATA* h_data_tag_type(const Handle h, const H_Type type)
 
 // idx and hd are undefined if we fail.
 // called by h_alloc only.
-static int alloc_idx(i32& idx, HDATA*& hd)
+static LibError alloc_idx(i32& idx, HDATA*& hd)
 {
 	// we already know the first free entry
 	if(first_free != -1)
@@ -311,15 +311,15 @@ have_idx:;
 	if(idx > last_in_use)
 		last_in_use = idx;
 
-	return 0;
+	return ERR_OK;
 }
 
 
-static int free_idx(i32 idx)
+static LibError free_idx(i32 idx)
 {
 	if(first_free == -1 || idx < first_free)
 		first_free = idx;
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -488,8 +488,8 @@ static void warn_if_invalid(HDATA* hd)
 	// the others have no invariants we could check.
 
 	// have the resource validate its user_data
-	int err = vtbl->validate(hd->user);
-	debug_assert(err == 0);
+	LibError err = vtbl->validate(hd->user);
+	debug_assert(err == ERR_OK);
 
 	// make sure empty space in control block isn't touched
 	// .. but only if we're not storing a filename there
@@ -507,31 +507,25 @@ static void warn_if_invalid(HDATA* hd)
 }
 
 
-static int type_validate(H_Type type)
+static LibError type_validate(H_Type type)
 {
-	int err = ERR_INVALID_PARAM;
-
 	if(!type)
 	{
 		debug_warn("type is 0");
-		goto fail;
+		return ERR_INVALID_PARAM;
 	}
 	if(type->user_size > HDATA_USER_SIZE)
 	{
 		debug_warn("type's user data is too large for HDATA");
-		goto fail;
+		return ERR_LIMIT;
 	}
 	if(type->name == 0)
 	{
 		debug_warn("type's name field is 0");
-		goto fail;
+		return ERR_INVALID_PARAM;
 	}
 
-	// success
-	err = 0;
-
-fail:
-	return err;
+	return ERR_OK;
 }
 
 
@@ -583,9 +577,9 @@ static Handle reuse_existing_handle(uintptr_t key, H_Type type, uint flags)
 }
 
 
-static int call_init_and_reload(Handle h, H_Type type, HDATA* hd, const char* fn, va_list* init_args)
+static LibError call_init_and_reload(Handle h, H_Type type, HDATA* hd, const char* fn, va_list* init_args)
 {
-	int err = 0;
+	LibError err = ERR_OK;
 	H_VTbl* vtbl = type;	// exact same thing but for clarity
 
 	// init
@@ -599,7 +593,7 @@ static int call_init_and_reload(Handle h, H_Type type, HDATA* hd, const char* fn
 		try
 		{
 			err = vtbl->reload(hd->user, fn, h);
-			if(err == 0)
+			if(err == ERR_OK)
 				warn_if_invalid(hd);
 		}
 		catch(std::bad_alloc)
@@ -642,7 +636,7 @@ static Handle alloc_new_handle(H_Type type, const char* fn, uintptr_t key,
 	if(key && !hd->unique)
 		key_add(key, h);
 
-	int err = call_init_and_reload(h, type, hd, fn, init_args);
+	LibError err = call_init_and_reload(h, type, hd, fn, init_args);
 	if(err < 0)
 		goto fail;
 
@@ -703,7 +697,7 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 //-----------------------------------------------------------------------------
 
 // currently cannot fail.
-static int h_free_idx(i32 idx, HDATA* hd)
+static LibError h_free_idx(i32 idx, HDATA* hd)
 {
 	// debug_printf("free %s %s\n", type->name, hd->fn);
 
@@ -713,7 +707,7 @@ static int h_free_idx(i32 idx, HDATA* hd)
 
 	// still references open or caching requests it stays - do not release.
 	if(hd->refs > 0 || hd->keep_open)
-		return 0;
+		return ERR_OK;
 
 	// actually release the resource (call dtor, free control block).
 
@@ -751,11 +745,11 @@ static int h_free_idx(i32 idx, HDATA* hd)
 
 	free_idx(idx);
 
-	return 0;
+	return ERR_OK;
 }
 
 
-int h_free(Handle& h, H_Type type)
+LibError h_free(Handle& h, H_Type type)
 {
 	i32 idx = h_idx(h);
 	HDATA* hd = h_data_tag_type(h, type);
@@ -770,7 +764,7 @@ int h_free(Handle& h, H_Type type)
 		// 0-initialized or an error code; don't complain because this
 		// happens often and is harmless.
 		if(h_copy <= 0)
-			return 0;
+			return ERR_OK;
 		// this was a valid handle but was probably freed in the meantime.
 		// complain because this probably indicates a bug somewhere.
 		CHECK_ERR(ERR_INVALID_HANDLE);
@@ -816,7 +810,7 @@ const char* h_filename(const Handle h)
 
 
 // TODO: what if iterating through all handles is too slow?
-int h_reload(const char* fn)
+LibError h_reload(const char* fn)
 {
 	if(!fn)
 	{
@@ -840,7 +834,7 @@ int h_reload(const char* fn)
 		hd->type->dtor(hd->user);
 	}
 
-	int ret = 0;
+	LibError ret = ERR_OK;
 
 	// now reload all affected handles
 	for(i32 i = 0; i <= last_in_use; i++)
@@ -851,7 +845,7 @@ int h_reload(const char* fn)
 
 		Handle h = handle(i, hd->tag);
 
-		int err = hd->type->reload(hd->user, hd->fn, h);
+		LibError err = hd->type->reload(hd->user, hd->fn, h);
 		// don't stop if an error is encountered - try to reload them all.
 		if(err < 0)
 		{
@@ -880,7 +874,7 @@ Handle h_find(H_Type type, uintptr_t key)
 // to later close the object.
 // this is used when reinitializing the sound engine -
 // at that point, all (cached) OpenAL resources must be freed.
-int h_force_free(Handle h, H_Type type)
+LibError h_force_free(Handle h, H_Type type)
 {
 	// require valid index; ignore tag; type checked below.
 	HDATA* hd = h_data_no_tag(h);

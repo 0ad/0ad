@@ -153,7 +153,7 @@ static Events pending_events;
 	// but that's more complicated, and this way is cleaner anyway.
 
 
-static int wdir_watch_shutdown()
+static LibError wdir_watch_shutdown()
 {
 	CloseHandle(hIOCP);
 	hIOCP = INVALID_HANDLE_VALUE;
@@ -163,12 +163,12 @@ static int wdir_watch_shutdown()
 		delete it->second;
 	watches.clear();
 
-	return 0;
+	return ERR_OK;
 }
 
 
 // HACK - see call site
-static int get_packet();
+static void get_packet();
 
 
 static Watch* find_watch(intptr_t reqnum)
@@ -178,9 +178,9 @@ static Watch* find_watch(intptr_t reqnum)
 
 // path: portable and relative, must add current directory and convert to native
 // better to use a cached string from rel_chdir - secure
-int dir_add_watch(const char* dir, intptr_t* _reqnum)
+LibError dir_add_watch(const char* dir, intptr_t* _reqnum)
 {
-	int err = -1;
+	LibError err = ERR_FAIL;
 	WIN_SAVE_LAST_ERROR;	// Create*
 
 	intptr_t reqnum;
@@ -237,10 +237,10 @@ int dir_add_watch(const char* dir, intptr_t* _reqnum)
 	}
 
 	// allocate watch, add to list, associate with reqnum
+	// note: can't use SAFE_NEW due to ctor params.
 	try
 	{
 		Watch* w = new Watch(reqnum, dir_s, hDir);
-		debug_assert(w != 0);		// happened once; heap corruption?
 
 		// add trailing \ if not already there
 		if(dir_s[dir_s.length()-1] != '\\')
@@ -263,7 +263,7 @@ int dir_add_watch(const char* dir, intptr_t* _reqnum)
 	}
 
 done:
-	err = 0;
+	err = ERR_OK;
 	*_reqnum = reqnum;
 
 fail:
@@ -272,7 +272,7 @@ fail:
 }
 
 
-int dir_cancel_watch(const intptr_t reqnum)
+LibError dir_cancel_watch(const intptr_t reqnum)
 {
 	if(reqnum <= 0)
 		return ERR_INVALID_PARAM;
@@ -281,28 +281,28 @@ int dir_cancel_watch(const intptr_t reqnum)
 	if(!w)
 	{
 		debug_warn("watches[reqnum] invalid");
-		return -1;
+		return ERR_FAIL;
 	}
 
 	// we're freeing a reference - done.
 	debug_assert(w->refs >= 1);
 	if(--w->refs != 0)
-		return 0;
+		return ERR_OK;
 
 	// contrary to dox, the RDC IOs do not issue a completion notification.
 	// no packet was received on the IOCP while or after cancelling in a test.
 	//
 	// if cancel somehow fails though, no matter - the Watch is freed, and
 	// its reqnum isn't reused; if we receive a packet, it's ignored.
-	BOOL ret = CancelIo(w->hDir);
+	BOOL ok = CancelIo(w->hDir);
 
 	delete w;
 	watches[reqnum] = 0;
-	return ret? 0 : -1;
+	return LibError_from_win32(ok);
 }
 
 
-static int extract_events(Watch* w)
+static void extract_events(Watch* w)
 {
 	debug_assert(w);
 
@@ -330,13 +330,12 @@ static int extract_events(Watch* w)
 			break;
 		pos += ofs;
 	}
-
-	return 0;
 }
 
 
-// if a packet is pending, extract its events and re-issue its watch.
-static int get_packet()
+// if a packet is pending, extract its events, post them in the queue and
+// re-issue its watch.
+static void get_packet()
 {
 	// poll for change notifications from all pending watches
 	DWORD bytes_transferred;
@@ -345,13 +344,13 @@ static int get_packet()
 	OVERLAPPED* povl;
 	BOOL got_packet = GetQueuedCompletionStatus(hIOCP, &bytes_transferred, &key, &povl, 0);
 	if(!got_packet)	// no new packet - done
-		return 1;
+		return;
 
 	const intptr_t reqnum = (intptr_t)key;
 	Watch* const w = find_watch(reqnum);
 	// watch was subsequently removed - ignore the error.
 	if(!w)
-		return 1;
+		return;
 
 	// this is an actual packet, not just a kickoff for issuing the watch.
 	// extract the events and push them onto AppState's queue.
@@ -367,29 +366,27 @@ static int get_packet()
 	memset(&w->ovl, 0, sizeof(w->ovl));
 	BOOL watch_subtree = TRUE;
 		// much faster than watching every dir separately. see dir_add_watch.
-	BOOL ret = ReadDirectoryChangesW(w->hDir, w->change_buf, buf_size, watch_subtree, filter, &w->dummy_nbytes, &w->ovl, 0);
-	if(!ret)
-		debug_warn("ReadDirectoryChangesW failed");
-
-	return 0;
+	BOOL ok = ReadDirectoryChangesW(w->hDir, w->change_buf, buf_size, watch_subtree, filter, &w->dummy_nbytes, &w->ovl, 0);
+	WARN_IF_FALSE(ok);
 }
 
 
 // if a file change notification is pending, store its filename in <fn> and
-// return 0; otherwise, return 1 ('none currently pending') or an error code.
+// return ERR_OK; otherwise, return ERR_AGAIN ('none currently pending') or
+// a negative error code.
 // <fn> must hold at least PATH_MAX chars.
-int dir_get_changed_file(char* fn)
+LibError dir_get_changed_file(char* fn)
 {
-	// queue one or more events, or return 1 if none pending.
-	CHECK_ERR(get_packet());
+	// may or may not queue event(s).
+	get_packet();
 
 	// nothing to return; call again later.
 	if(pending_events.empty())
-		return 1;
+		return ERR_AGAIN;
 
 	const std::string& fn_s = pending_events.front();
 	strcpy_s(fn, PATH_MAX, fn_s.c_str());
 	pending_events.pop_front();
 
-	return 0;
+	return ERR_OK;
 }

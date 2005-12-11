@@ -438,7 +438,7 @@ extern void win_free(void* p);
 // to be called via WIN_REGISTER_FUNC, and then restore the previous segment
 // with #pragma data_seg() .
 
-#define WIN_REGISTER_FUNC(func) static int func(void); static int(*p##func)(void) = func
+#define WIN_REGISTER_FUNC(func) static LibError func(void); static LibError (*p##func)(void) = func
 
 #define WIN_CALLBACK_PRE_LIBC(group)    ".LIB$WC" #group
 #define WIN_CALLBACK_PRE_MAIN(group)    ".LIB$WI" #group
@@ -448,6 +448,13 @@ extern void win_free(void* p);
 
 #define WIN_SAVE_LAST_ERROR DWORD last_err__ = GetLastError();
 #define WIN_RESTORE_LAST_ERROR STMT(if(last_err__ != 0 && GetLastError() == 0) SetLastError(last_err__););
+
+
+// return the LibError equivalent of GetLastError(), or ERR_FAIL if
+// there's no equal.
+// you should SetLastError(0) before calling whatever will set ret
+// to make sure we do not return any stale errors.
+extern LibError LibError_from_win32(DWORD ret);
 
 
 extern char win_sys_dir[MAX_PATH+1];

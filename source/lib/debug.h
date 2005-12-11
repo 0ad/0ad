@@ -232,7 +232,7 @@ extern void debug_filter_clear();
 extern void debug_wprintf_mem(const wchar_t* fmt, ...);
 
 // write all logs and <text> out to crashlog.txt (unicode format).
-extern int debug_write_crashlog(const wchar_t* text);
+extern LibError debug_write_crashlog(const wchar_t* text);
 
 
 //-----------------------------------------------------------------------------
@@ -270,11 +270,11 @@ enum DbgBreakType
 // from addr's alignment, and is typically 1 machine word.
 // breakpoints are a limited resource (4 on IA-32); if none are
 // available, we return ERR_LIMIT.
-extern int debug_set_break(void* addr, DbgBreakType type);
+extern LibError debug_set_break(void* addr, DbgBreakType type);
 
 // remove all breakpoints that were set by debug_set_break.
 // important, since these are a limited resource.
-extern int debug_remove_all_breaks();
+extern LibError debug_remove_all_breaks();
 
 
 //-----------------------------------------------------------------------------
@@ -293,7 +293,7 @@ const size_t DBG_FILE_LEN = 100;
 // sym_name and file must hold at least the number of chars above;
 // file is the base name only, not path (see rationale in wdbg_sym).
 // the PDB implementation is rather slow (~500us).
-extern int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line);
+extern LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line);
 
 // write a complete stack trace (including values of local variables) into
 // the specified buffer. if <context> is nonzero, it is assumed to be a

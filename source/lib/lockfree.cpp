@@ -430,7 +430,7 @@ static inline Node* without_mark(Node* p)
 
 // make ready a previously unused(!) list object. if a negative error
 // code (currently only ERR_NO_MEM) is returned, the list can't be used.
-int lfl_init(LFList* list)
+LibError lfl_init(LFList* list)
 {
 	// make sure a TLS slot has been allocated for this thread.
 	// if not (out of memory), the list object must not be used -
@@ -447,7 +447,7 @@ int lfl_init(LFList* list)
 
 	list->head = 0;
 	atomic_add(&active_data_structures, 1);
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -611,7 +611,7 @@ have_node:
 
 
 // remove from list; return -1 if not found, or 0 on success.
-int lfl_erase(LFList* list, uintptr_t key)
+LibError lfl_erase(LFList* list, uintptr_t key)
 {
 	TLS* tls = tls_get();
 	debug_assert(tls != (void*)-1);
@@ -623,7 +623,7 @@ int lfl_erase(LFList* list, uintptr_t key)
 retry:
 	// not found in list - abort.
 	if(!list_lookup(list, key, pos))
-		return -1;
+		return ERR_FAIL;
 	// mark as removed (avoids subsequent linking to it). failure implies
 	// at least of the following happened after list_lookup; we try again.
 	// - next was removed
@@ -639,7 +639,7 @@ retry:
 	// call list_lookup to ensure # non-released nodes < # threads.
 	else
 		list_lookup(list, key, pos);
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -669,7 +669,7 @@ static LFList* chain(LFHash* hash, uintptr_t key)
 // make ready a previously unused(!) hash object. table size will be
 // <num_entries>; this cannot currently be expanded. if a negative error
 // code (currently only ERR_NO_MEM) is returned, the hash can't be used.
-int lfh_init(LFHash* hash, size_t num_entries)
+LibError lfh_init(LFHash* hash, size_t num_entries)
 {
 	hash->tbl  = 0;
 	hash->mask = ~0u;
@@ -697,7 +697,7 @@ int lfh_init(LFHash* hash, size_t num_entries)
 		}
 	}
 
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -734,7 +734,7 @@ void* lfh_insert(LFHash* hash, uintptr_t key, size_t additional_bytes, int* was_
 
 
 // remove from hash; return -1 if not found, or 0 on success.
-int lfh_erase(LFHash* hash, uintptr_t key)
+LibError lfh_erase(LFHash* hash, uintptr_t key)
 {
 	return lfl_erase(chain(hash,key), key);
 }
@@ -893,10 +893,10 @@ static void* thread_func(void* arg)
 			int err;
 
 			err = lfl_erase(&list, key);
-			TEST(was_in_set == (err == 0));
+			TEST(was_in_set == (err == ERR_OK));
 
 			err = lfh_erase(&hash, key);
-			TEST(was_in_set == (err == 0));
+			TEST(was_in_set == (err == ERR_OK));
 			}
 			break;
 

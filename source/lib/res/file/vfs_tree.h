@@ -41,10 +41,10 @@ extern void tree_clear();
 //
 // note: if "priority" is the same, replace!
 // this makes sure mods/patches etc. actually replace files.
-extern int tree_add_file(TDir* td, const char* fn, const Mount* m,
+extern LibError tree_add_file(TDir* td, const char* fn, const Mount* m,
 	off_t size, time_t mtime);
 
-extern int tree_add_dir(TDir* dir, const char* name, TDir** ptd);
+extern LibError tree_add_dir(TDir* dir, const char* name, TDir** ptd);
 
 enum TreeLookupFlags
 {
@@ -63,7 +63,7 @@ enum TreeLookupFlags
 //
 // return 0 on success, or a negative error code
 // (in which case output params are undefined).
-extern int tree_lookup(const char* path, TFile** ptf, uint flags = 0, char* exact_path = 0);
+extern LibError tree_lookup(const char* path, TFile** ptf, uint flags = 0, char* exact_path = 0);
 
 // starting at VFS root, traverse <path> and pass back information
 // for its last directory component.
@@ -81,7 +81,7 @@ extern int tree_lookup(const char* path, TFile** ptf, uint flags = 0, char* exac
 //
 // return 0 on success, or a negative error code
 // (in which case output params are undefined).
-extern int tree_lookup_dir(const char* path, TDir** ptd, uint flags = 0, char* exact_path = 0);
+extern LibError tree_lookup_dir(const char* path, TDir** ptd, uint flags = 0, char* exact_path = 0);
 
 
 // documentation and rationale: see file.h's dir_next_ent interface
@@ -90,17 +90,17 @@ struct TreeDirIterator
 	char opaque[32];
 };
 
-extern int tree_dir_open(const char* path_slash, TreeDirIterator* d);
-extern int tree_dir_next_ent(TreeDirIterator* d, DirEnt* ent);
-extern int tree_dir_close(TreeDirIterator* d);
+extern LibError tree_dir_open(const char* path_slash, TreeDirIterator* d);
+extern LibError tree_dir_next_ent(TreeDirIterator* d, DirEnt* ent);
+extern LibError tree_dir_close(TreeDirIterator* d);
 
 
 // given a file that is stored on disk and its VFS path,
 // return its OS path (for use with file.cpp).
 // used by vfs_realpath and VFile_reopen.
-extern int tree_realpath(TFile* tf, const char* V_path, char* P_real_path);
+extern LibError tree_realpath(TFile* tf, const char* V_path, char* P_real_path);
 
-extern int tree_stat(const TFile* tf, struct stat* s);
+extern LibError tree_stat(const TFile* tf, struct stat* s);
 
 extern const Mount* tree_get_mount(const TFile* tf);
 

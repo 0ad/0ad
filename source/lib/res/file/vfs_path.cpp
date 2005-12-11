@@ -26,7 +26,7 @@
 // if path is invalid (see source for criteria), print a diagnostic message
 // (indicating line number of the call that failed) and
 // return a negative error code. used by CHECK_PATH.
-int path_validate(const uint line, const char* path)
+LibError path_validate(const uint line, const char* path)
 {
 	size_t path_len = 0;	// counted as we go; checked against max.
 
@@ -80,10 +80,10 @@ int path_validate(const uint line, const char* path)
 fail:
 	debug_printf("%s called from line %d failed: %s\n", __func__, line, msg);
 	debug_warn("failed");
-	return -1;
+	return ERR_FAIL;
 
 ok:
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -124,7 +124,7 @@ void vfs_path_copy(char* dst, const char* src)
 // if necessary, a directory separator is added between the paths.
 // each may be empty, filenames, or full paths.
 // total path length (including '\0') must not exceed VFS_MAX_PATH.
-int vfs_path_append(char* dst, const char* path1, const char* path2)
+LibError vfs_path_append(char* dst, const char* path1, const char* path2)
 {
 	const size_t len1 = strlen(path1);
 	const size_t len2 = strlen(path2);
@@ -147,19 +147,19 @@ int vfs_path_append(char* dst, const char* path1, const char* path2)
 	if(need_separator)
 		*dst++ = '/';
 	strcpy(dst, path2);	// safe
-	return 0;
+	return ERR_OK;
 }
 
 
 // strip <remove> from the start of <src>, prepend <replace>,
 // and write to <dst>.
 // used when converting VFS <--> real paths.
-int path_replace(char* dst, const char* src, const char* remove, const char* replace)
+LibError path_replace(char* dst, const char* src, const char* remove, const char* replace)
 {
 	// remove doesn't match start of <src>
 	const size_t remove_len = strlen(remove);
 	if(strncmp(src, remove, remove_len) != 0)
-		return -1;
+		return ERR_FAIL;
 
 	// get rid of trailing / in src (must not be included in remove)
 	const char* start = src+remove_len;
@@ -168,5 +168,5 @@ int path_replace(char* dst, const char* src, const char* remove, const char* rep
 
 	// prepend replace.
 	CHECK_ERR(vfs_path_append(dst, replace, start));
-	return 0;
+	return ERR_OK;
 }

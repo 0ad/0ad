@@ -122,7 +122,7 @@ static void VDir_dtor(VDir* vd)
 	}
 }
 
-static int VDir_reload(VDir* vd, const char* path, Handle UNUSED(hvd))
+static LibError VDir_reload(VDir* vd, const char* path, Handle UNUSED(hvd))
 {
 	// add required trailing slash if not already present to make
 	// caller's life easier.
@@ -131,18 +131,18 @@ static int VDir_reload(VDir* vd, const char* path, Handle UNUSED(hvd))
 
 	RETURN_ERR(tree_dir_open(V_path_slash, &vd->it));
 	vd->it_valid = 1;
-	return 0;
+	return ERR_OK;
 }
 
-static int VDir_validate(const VDir* vd)
+static LibError VDir_validate(const VDir* vd)
 {
 	// note: <it> is opaque and cannot be validated.
 	if(vd->filter && !isprint(vd->filter[0]))
-		return -2;
-	return 0;
+		return ERR_1;
+	return ERR_OK;
 }
 
-static int VDir_to_string(const VDir* d, char* buf)
+static LibError VDir_to_string(const VDir* d, char* buf)
 {
 	const char* filter = d->filter;
 	if(!d->filter_latched)
@@ -150,7 +150,7 @@ static int VDir_to_string(const VDir* d, char* buf)
 	if(!filter)
 		filter = "*";
 	snprintf(buf, H_STRING_LEN, "(\"%s\")", filter);
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -165,7 +165,7 @@ Handle vfs_dir_open(const char* v_dir)
 
 
 // close the handle to a directory.
-int vfs_dir_close(Handle& hd)
+LibError vfs_dir_close(Handle& hd)
 {
 	return h_free(hd, H_VDir);
 }
@@ -188,7 +188,7 @@ int vfs_dir_close(Handle& hd)
 // most callers don't need it and the overhead is considerable
 // (we'd have to store all entries in a vector). it is left up to
 // higher-level code such as VfsUtil.
-int vfs_dir_next_ent(const Handle hd, DirEnt* ent, const char* filter)
+LibError vfs_dir_next_ent(const Handle hd, DirEnt* ent, const char* filter)
 {
 	H_DEREF(hd, VDir, vd);
 
@@ -238,7 +238,7 @@ int vfs_dir_next_ent(const Handle hd, DirEnt* ent, const char* filter)
 		}
 	}
 
-	return 0;	// success
+	return ERR_OK;
 }
 
 
@@ -317,7 +317,7 @@ void vfs_enable_file_listing(bool want_enabled)
 
 // return actual path to the specified file:
 // "<real_directory>/fn" or "<archive_name>/fn".
-int vfs_realpath(const char* v_path, char* realpath)
+LibError vfs_realpath(const char* v_path, char* realpath)
 {
 	TFile* tf;
 	char V_exact_path[VFS_MAX_PATH];
@@ -339,7 +339,7 @@ bool vfs_exists(const char* v_fn)
 
 
 // get file status (mode, size, mtime). output param is zeroed on error.
-int vfs_stat(const char* v_path, struct stat* s)
+LibError vfs_stat(const char* v_path, struct stat* s)
 {
 	memset(s, 0, sizeof(*s));
 
@@ -388,21 +388,21 @@ static void VFile_dtor(VFile* vf)
 	(void)mem_free_h(vf->hm);
 }
 
-static int VFile_reload(VFile* vf, const char* V_path, Handle)
+static LibError VFile_reload(VFile* vf, const char* V_path, Handle)
 {
 	const uint flags = x_flags(&vf->xf);
 
 	// we're done if file is already open. need to check this because
 	// reload order (e.g. if resource opens a file) is unspecified.
 	if(x_is_open(&vf->xf))
-		return 0;
+		return ERR_OK;
 
 	file_listing_add(V_path);
 
 	TFile* tf;
 	char V_exact_path[VFS_MAX_PATH];
 	uint lf = (flags & FILE_WRITE)? LF_CREATE_MISSING : 0;
-	int err = tree_lookup(V_path, &tf, lf, V_exact_path);
+	LibError err = tree_lookup(V_path, &tf, lf, V_exact_path);
 	if(err < 0)
 	{
 		// don't CHECK_ERR - this happens often and the dialog is annoying
@@ -414,17 +414,17 @@ static int VFile_reload(VFile* vf, const char* V_path, Handle)
 	return x_open(m, V_exact_path, flags, tf, &vf->xf);
 }
 
-static int VFile_validate(const VFile* vf)
+static LibError VFile_validate(const VFile* vf)
 {
 	// <ofs> doesn't have any invariant we can check.
 	RETURN_ERR(x_validate(&vf->xf));
-	return 0;
+	return ERR_OK;
 }
 
-static int VFile_to_string(const VFile* UNUSED(vf), char* buf)
+static LibError VFile_to_string(const VFile* UNUSED(vf), char* buf)
 {
 	strcpy(buf, "");	// safe
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -456,7 +456,7 @@ Handle vfs_open(const char* v_fn, uint file_flags)
 
 
 // close the handle to a file.
-int vfs_close(Handle& hf)
+LibError vfs_close(Handle& hf)
 {
 	// h_free already complains on error.
 	return h_free(hf, H_VFile);
@@ -681,7 +681,7 @@ static void VIo_dtor(VIo* vio)
 // doesn't look possible without controlling the AIO implementation:
 // when we cancel, we can't prevent the app from calling
 // aio_result, which would terminate the read.
-static int VIo_reload(VIo* vio, const char* UNUSED(fn), Handle UNUSED(h))
+static LibError VIo_reload(VIo* vio, const char* UNUSED(fn), Handle UNUSED(h))
 {
 	size_t size = vio->size;
 	void* buf   = vio->buf;
@@ -693,20 +693,20 @@ static int VIo_reload(VIo* vio, const char* UNUSED(fn), Handle UNUSED(h))
 	return x_io_issue(&vf->xf, ofs, size, buf, &vio->xio);
 }
 
-static int VIo_validate(const VIo* vio)
+static LibError VIo_validate(const VIo* vio)
 {
 	if(vio->hf < 0)
-		return -200;
+		return ERR_21;
 	// <size> doesn't have any invariant we can check.
 	if(debug_is_pointer_bogus(vio->buf))
-		return -201;
+		return ERR_22;
 	return x_io_validate(&vio->xio);
 }
 
-static int VIo_to_string(const VIo* vio, char* buf)
+static LibError VIo_to_string(const VIo* vio, char* buf)
 {
 	snprintf(buf, H_STRING_LEN, "buf=%p size=%d", vio->buf, vio->size);
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -722,7 +722,7 @@ Handle vfs_io_issue(Handle hf, size_t size, void* buf)
 
 
 // finished with transfer <hio> - free its buffer (returned by vfs_io_wait)
-int vfs_io_discard(Handle& hio)
+LibError vfs_io_discard(Handle& hio)
 {
 	return h_free(hio, H_VIo);
 }
@@ -739,7 +739,7 @@ int vfs_io_has_completed(Handle hio)
 
 // wait until the transfer <hio> completes, and return its buffer.
 // output parameters are zeroed on error.
-int vfs_io_wait(Handle hio, void*& p, size_t& size)
+LibError vfs_io_wait(Handle hio, void*& p, size_t& size)
 {
 	H_DEREF(hio, VIo, vio);
 	return x_io_wait(&vio->xio, p, size);
@@ -760,7 +760,7 @@ int vfs_io_wait(Handle hio, void*& p, size_t& size)
 // the mapping will be removed (if still open) when its file is closed.
 // however, map/unmap calls should still be paired so that the mapping
 // may be removed when no longer needed.
-int vfs_map(const Handle hf, const uint UNUSED(flags), void*& p, size_t& size)
+LibError vfs_map(const Handle hf, const uint UNUSED(flags), void*& p, size_t& size)
 {
 	p = 0;
 	size = 0;
@@ -777,7 +777,7 @@ int vfs_map(const Handle hf, const uint UNUSED(flags), void*& p, size_t& size)
 // the mapping will be removed (if still open) when its file is closed.
 // however, map/unmap calls should still be paired so that the mapping
 // may be removed when no longer needed.
-int vfs_unmap(const Handle hf)
+LibError vfs_unmap(const Handle hf)
 {
 	H_DEREF(hf, VFile, vf);
 	return x_unmap(&vf->xf);
@@ -790,7 +790,7 @@ int vfs_unmap(const Handle hf)
 
 // called by vfs_reload and vfs_reload_changed_files (which will already
 // have rebuilt the VFS - doing so more than once a frame is unnecessary).
-static int reload_without_rebuild(const char* fn)
+static LibError reload_without_rebuild(const char* fn)
 {
 	// invalidate this file's cached blocks to make sure its contents are
 	// loaded anew.
@@ -798,12 +798,12 @@ static int reload_without_rebuild(const char* fn)
 
 	RETURN_ERR(h_reload(fn));
 
-	return 0;
+	return ERR_OK;
 }
 
 
 // called via console command.
-int vfs_reload(const char* fn)
+LibError vfs_reload(const char* fn)
 {
 	// if <fn> currently maps to an archive, the VFS must switch
 	// over to using the loose file (that was presumably changed).
@@ -816,7 +816,7 @@ int vfs_reload(const char* fn)
 // get directory change notifications, and reload all affected files.
 // must be called regularly (e.g. once a frame). this is much simpler
 // than asynchronous notifications: everything would need to be thread-safe.
-int vfs_reload_changed_files()
+LibError vfs_reload_changed_files()
 {
 	// array of reloads requested this frame (see 'do we really need to
 	// reload' below). go through gyrations to avoid heap allocs.
@@ -832,10 +832,10 @@ int vfs_reload_changed_files()
 	{
 		// get next notification
 		char N_path[PATH_MAX];
-		int ret = dir_get_changed_file(N_path);
-		CHECK_ERR(ret);	// error? (doesn't cover 'none available')
-		if(ret != 0)	// none available; done.
+		LibError ret = dir_get_changed_file(N_path);
+		if(ret == ERR_AGAIN)	// none available; done.
 			break;
+		CHECK_ERR(ret);
 
 		// convert to VFS path
 		char P_path[PATH_MAX];
@@ -893,7 +893,7 @@ int vfs_reload_changed_files()
 	for(uint i = 0; i < num_pending; i++)
 		CHECK_ERR(reload_without_rebuild(pending_reloads[i]));
 
-	return 0;
+	return ERR_OK;
 }
 
 

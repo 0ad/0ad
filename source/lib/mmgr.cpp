@@ -350,7 +350,7 @@ static Alloc* allocs_find(const void* user_p)
 	return a;
 }
 
-static void allocs_foreach(void(*cb)(const Alloc*, void*), void* arg)
+static void allocs_foreach(void (*cb)(const Alloc*, void*), void* arg)
 {
 	for(uint i = 0; i < hash_entries; i++)
 	{

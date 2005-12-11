@@ -35,12 +35,12 @@
 extern Handle zip_archive_open(const char* fn);
 
 // close the archive <ha> and set ha to 0
-extern int zip_archive_close(Handle& ha);
+extern LibError zip_archive_close(Handle& ha);
 
 // successively call <cb> for each valid file in the archive <ha>,
 // passing the complete path and <user>.
 // if it returns a nonzero value, abort and return that, otherwise 0.
-extern int zip_enum(const Handle ha, const FileCB cb, const uintptr_t user);
+extern LibError zip_enum(const Handle ha, const FileCB cb, const uintptr_t user);
 
 
 //
@@ -69,16 +69,16 @@ struct ZFile
 };
 
 // get file status (size, mtime). output param is zeroed on error.
-extern int zip_stat(Handle ha, const char* fn, struct stat* s);
+extern LibError zip_stat(Handle ha, const char* fn, struct stat* s);
 
 // open file, and fill *zf with information about it.
 // return < 0 on error (output param zeroed). 
-extern int zip_open(Handle ha, const char* fn, int flags, ZFile* zf);
+extern LibError zip_open(Handle ha, const char* fn, int flags, ZFile* zf);
 
 // close file.
-extern int zip_close(ZFile* zf);
+extern LibError zip_close(ZFile* zf);
 
-extern int zip_validate(const ZFile* zf);
+extern LibError zip_validate(const ZFile* zf);
 
 
 //
@@ -99,7 +99,7 @@ struct ZipIo
 
 // begin transferring <size> bytes, starting at <ofs>. get result
 // with zip_io_wait; when no longer needed, free via zip_io_discard.
-extern int zip_io_issue(ZFile* zf, off_t ofs, size_t size, void* buf, ZipIo* io);
+extern LibError zip_io_issue(ZFile* zf, off_t ofs, size_t size, void* buf, ZipIo* io);
 
 // indicates if the IO referenced by <io> has completed.
 // return value: 0 if pending, 1 if complete, < 0 on error.
@@ -107,12 +107,12 @@ extern int zip_io_has_completed(ZipIo* io);
 
 // wait until the transfer <io> completes, and return its buffer.
 // output parameters are zeroed on error.
-extern int zip_io_wait(ZipIo* io, void*& p, size_t& size);
+extern LibError zip_io_wait(ZipIo* io, void*& p, size_t& size);
 
 // finished with transfer <io> - free its buffer (returned by zip_io_wait)
-extern int zip_io_discard(ZipIo* io);
+extern LibError zip_io_discard(ZipIo* io);
 
-extern int zip_io_validate(const ZipIo* io);
+extern LibError zip_io_validate(const ZipIo* io);
 
 
 //
@@ -152,14 +152,14 @@ extern ssize_t zip_read(ZFile* zf, off_t ofs, size_t size, void* buf, FileIOCB c
 // the mapping will be removed (if still open) when its archive is closed.
 // however, map/unmap calls should still be paired so that the archive mapping
 // may be removed when no longer needed.
-extern int zip_map(ZFile* zf, void*& p, size_t& size);
+extern LibError zip_map(ZFile* zf, void*& p, size_t& size);
 
 // remove the mapping of file <zf>; fail if not mapped.
 //
 // the mapping will be removed (if still open) when its archive is closed.
 // however, map/unmap calls should be paired so that the archive mapping
 // may be removed when no longer needed.
-extern int zip_unmap(ZFile* zf);
+extern LibError zip_unmap(ZFile* zf);
 
 
 #endif	// #ifndef ZIP_H__

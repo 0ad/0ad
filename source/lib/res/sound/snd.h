@@ -92,7 +92,7 @@ terminology
 // message should be presented to the user, and snd_dev_set need not be
 // called; OpenAL will use its default device.
 // may be called each time the device list is needed.
-extern int snd_dev_prepare_enum();
+extern LibError snd_dev_prepare_enum();
 
 // return the next device name, or 0 if all have been returned.
 // do not call unless snd_dev_prepare_enum succeeded!
@@ -120,17 +120,17 @@ extern const char* snd_dev_next();
 // so preferably call this routine before sounds are loaded.
 //
 // return 0 on success, or the status returned by OpenAL re-init.
-extern int snd_dev_set(const char* alc_new_dev_name);
+extern LibError snd_dev_set(const char* alc_new_dev_name);
 
 // set maximum number of voices to play simultaneously,
 // to reduce mixing cost on low-end systems.
 // return 0 on success, or 1 if limit was ignored
 // (e.g. if higher than an implementation-defined limit anyway).
-extern int snd_set_max_voices(uint cap);
+extern LibError snd_set_max_voices(uint cap);
 
 // set amplitude modifier, which is effectively applied to all sounds.
 // must be non-negative; 1 -> unattenuated, 0.5 -> -6 dB, 0 -> silence.
-extern int snd_set_master_gain(float gain);
+extern LibError snd_set_master_gain(float gain);
 
 
 //
@@ -153,7 +153,7 @@ extern Handle snd_open(const char* snd_fn, bool stream = false);
 // close the sound <hs> and set hs to 0. if it was playing,
 // it will be stopped. sounds are closed automatically when done
 // playing; this is provided for completeness only.
-extern int snd_free(Handle& hs);
+extern LibError snd_free(Handle& hs);
 
 // request the sound <hs> be played. once done playing, the sound is
 // automatically closed (allows fire-and-forget play code).
@@ -162,27 +162,27 @@ extern int snd_free(Handle& hs);
 // priority (min 0 .. max 1, default 0) indicates which sounds are
 // considered more important; this is attenuated by distance to the
 // listener (see snd_update).
-extern int snd_play(Handle hs, float priority = 0.0f);
+extern LibError snd_play(Handle hs, float priority = 0.0f);
 
 // change 3d position of the sound source.
 // if relative (default false), (x,y,z) is treated as relative to the
 // listener; otherwise, it is the position in world coordinates.
 // may be called at any time; fails with invalid handle return if
 // the sound has already been closed (e.g. it never played).
-extern int snd_set_pos(Handle hs, float x, float y, float z, bool relative = false);
+extern LibError snd_set_pos(Handle hs, float x, float y, float z, bool relative = false);
 
 // change gain (amplitude modifier) of the sound source.
 // must be non-negative; 1 -> unattenuated, 0.5 -> -6 dB, 0 -> silence.
 // may be called at any time; fails with invalid handle return if
 // the sound has already been closed (e.g. it never played).
-extern int snd_set_gain(Handle hs, float gain);
+extern LibError snd_set_gain(Handle hs, float gain);
 
 // change pitch shift of the sound source.
 // 1.0 means no change; each reduction by 50% equals a pitch shift of
 // -12 semitones (one octave). zero is invalid.
 // may be called at any time; fails with invalid handle return if
 // the sound has already been closed (e.g. it never played).
-extern int snd_set_pitch(Handle hs, float pitch);
+extern LibError snd_set_pitch(Handle hs, float pitch);
 
 // enable/disable looping on the sound source.
 // used to implement variable-length sounds (e.g. while building).
@@ -194,7 +194,7 @@ extern int snd_set_pitch(Handle hs, float pitch);
 //   a hardware voice at the moment play was requested.
 // - once looping is again disabled and the sound has reached its end,
 //   the sound instance is freed automatically (as if never looped).
-extern int snd_set_loop(Handle hs, bool loop);
+extern LibError snd_set_loop(Handle hs, bool loop);
 
 
 //
@@ -212,13 +212,13 @@ extern int snd_set_loop(Handle hs, bool loop);
 //
 // can later be called to reactivate sound; all settings ever changed
 // will be applied and subsequent sound load / play requests will work.
-extern int snd_disable(bool disabled);
+extern LibError snd_disable(bool disabled);
 
 // perform housekeeping (e.g. streaming); call once a frame.
 //
 // additionally, if any parameter is non-NULL, we set the listener
 // position, look direction, and up vector (in world coordinates).
-extern int snd_update(const float* pos, const float* dir, const float* up);
+extern LibError snd_update(const float* pos, const float* dir, const float* up);
 
 // free all resources and shut down the sound system.
 // call before h_mgr_shutdown.

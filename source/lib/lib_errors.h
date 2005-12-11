@@ -32,6 +32,127 @@ enum LibError {
 // "Unknown error (65536, 0x10000)".
 extern void error_description_r(int err, char* buf, size_t max_chars);
 
+
+// return the LibError equivalent of errno, or ERR_FAIL if there's no equal.
+// only call after a POSIX function indicates failure.
+extern LibError LibError_from_errno();
+
+// translate the return value of any POSIX function into LibError.
+// ret is typically to -1 to indicate error and 0 on success.
+// you should set errno to 0 before calling the POSIX function to
+// make sure we do not return any stale errors.
+extern LibError LibError_from_posix(int ret);
+
+
+// be careful here. the given expression (e.g. variable or
+// function return value) may be a Handle (=i64), so it needs to be
+// stored and compared as such. (very large but legitimate Handle values
+// casted to int can end up negative)
+// all functions using this return int (instead of i64) for efficiency and
+// simplicity. if the input was negative, it is an error code and is
+// therefore known to fit; we still mask with UINT_MAX to avoid
+// VC cast-to-smaller-type warnings.
+
+// if expression evaluates to a negative i64, warn user and return the number.
+#if OS_WIN
+#define CHECK_ERR(expression)\
+STMT(\
+	i64 err__ = (i64)(expression);\
+	if(err__ < 0)\
+	{\
+		DEBUG_WARN_ERR(err__);\
+		return (LibError)(err__ & UINT_MAX);\
+	}\
+)
+#else
+#define CHECK_ERR(expression)\
+STMT(\
+	i64 err__ = (i64)(expression);\
+	if(err__ < 0)\
+	{\
+		DEBUG_WARN_ERR(err__);\
+		return (LibError)(err__ & UINT_MAX);\
+	}\
+)
+#endif
+
+// just pass on errors without any kind of annoying warning
+// (useful for functions that can legitimately fail, e.g. vfs_exists).
+#define RETURN_ERR(expression)\
+STMT(\
+	i64 err__ = (i64)(expression);\
+	if(err__ < 0)\
+		return (LibError)(err__ & UINT_MAX);\
+)
+
+// return an error and warn about it (replaces debug_warn+return)
+#define WARN_RETURN(err)\
+STMT(\
+	DEBUG_WARN_ERR(err);\
+	return err;\
+)
+
+// if expression evaluates to a negative i64, warn user and throw the number.
+#define THROW_ERR(expression)\
+STMT(\
+	i64 err__ = (i64)(expression);\
+	if(err__ < 0)\
+	{\
+		DEBUG_WARN_ERR(err__);\
+		throw (LibError)(err__ & UINT_MAX);\
+	}\
+)
+
+// if expression evaluates to a negative i64, warn user and just return
+// (useful for void functions that must bail and complain)
+#define WARN_ERR_RETURN(expression)\
+STMT(\
+	i64 err__ = (i64)(expression);\
+	if(err__ < 0)\
+	{\
+		DEBUG_WARN_ERR(err__);\
+		return;\
+	}\
+)
+
+// if expression evaluates to a negative i64, warn user
+// (this is similar to debug_assert but also works in release mode)
+#define WARN_ERR(expression)\
+STMT(\
+	i64 err__ = (i64)(expression);\
+	if(err__ < 0)\
+		DEBUG_WARN_ERR(err__);\
+)
+
+
+
+// if ok evaluates to false or FALSE, warn user and return -1.
+#define WARN_RETURN_IF_FALSE(ok)\
+STMT(\
+	if(!(ok))\
+	{\
+		debug_warn("FYI: WARN_RETURN_IF_FALSE reports that a function failed."\
+		           "feel free to ignore or suppress this warning.");\
+		return -1;\
+	}\
+)
+
+// if ok evaluates to false or FALSE, return -1.
+#define RETURN_IF_FALSE(ok)\
+STMT(\
+	if(!(ok))\
+		return -1;\
+)
+
+// if ok evaluates to false or FALSE, warn user.
+#define WARN_IF_FALSE(ok)\
+STMT(\
+	if(!(ok))\
+		debug_warn("FYI: WARN_IF_FALSE reports that a function failed."\
+		           "feel free to ignore or suppress this warning.");\
+)
+
+
 #endif	// #ifndef ERRORS_H__
 
 //-----------------------------------------------------------------------------
@@ -42,31 +163,85 @@ extern void error_description_r(int err, char* buf, size_t max_chars);
 // error code is usually negative; positive denotes warnings.
 //   its absolute value must be within [ERR_MIN, ERR_MAX).
 
+// ERR_OK doesn't really need a string, but must be part of enum LibError
+// due to compiler checks. (and calling error_description_r(0) should
+// never happen, but we set the text accordingly..)
+ERR(0, ERR_OK, "(but return value was 0 which indicates success)")
+ERR(-1, ERR_FAIL, "Function failed (no details available)")
+
+ERR(1, INFO_CB_CONTINUE  , "1 (not an error)")
+// these are all basically the same thing
+ERR(2, INFO_CANNOT_HANDLE, "2 (not an error)")
+ERR(3, INFO_NO_REPLACE   , "3 (not an error)")
+ERR(4, INFO_SKIPPED      , "4 (not an error)")
+
+ERR(-100000, ERR_LOGIC, "Logic error in code")
+ERR(-100060, ERR_TIMED_OUT, "Timed out")
+
+// these are for cases where we just want a distinct value to display and
+// a symbolic name + string would be overkill (e.g. the various
+// test cases in a validate() call). they are shared between multiple
+// functions; when something fails, the stack trace will show in which
+// one it was => these errors are unambiguous.
+// there are 3 tiers - 1..9 are used in most functions, 11..19 are
+// used in a function that calls another validator and 21..29 are
+// for for functions that call 2 other validators (this avoids
+// ambiguity as to which error actually happened where)
+ERR(-100101, ERR_1, "Case 1")
+ERR(-100102, ERR_2, "Case 2")
+ERR(-100103, ERR_3, "Case 3")
+ERR(-100104, ERR_4, "Case 4")
+ERR(-100105, ERR_5, "Case 5")
+ERR(-100106, ERR_6, "Case 6")
+ERR(-100107, ERR_7, "Case 7")
+ERR(-100108, ERR_8, "Case 8")
+ERR(-100109, ERR_9, "Case 9")
+ERR(-100111, ERR_11, "Case 11")
+ERR(-100112, ERR_12, "Case 12")
+ERR(-100113, ERR_13, "Case 13")
+ERR(-100114, ERR_14, "Case 14")
+ERR(-100115, ERR_15, "Case 15")
+ERR(-100116, ERR_16, "Case 16")
+ERR(-100117, ERR_17, "Case 17")
+ERR(-100118, ERR_18, "Case 18")
+ERR(-100119, ERR_19, "Case 19")
+ERR(-100121, ERR_21, "Case 21")
+ERR(-100122, ERR_22, "Case 22")
+ERR(-100123, ERR_23, "Case 23")
+ERR(-100124, ERR_24, "Case 24")
+ERR(-100125, ERR_25, "Case 25")
+ERR(-100126, ERR_26, "Case 26")
+ERR(-100127, ERR_27, "Case 27")
+ERR(-100128, ERR_28, "Case 28")
+ERR(-100129, ERR_29, "Case 29")
+
 // function arguments
-ERR(-100000, ERR_INVALID_PARAM, "Invalid function argument")
-ERR(-100001, ERR_INVALID_HANDLE, "Invalid Handle (argument)")
-ERR(-100002, ERR_BUF_SIZE, "Buffer argument too small")
+ERR(-100220, ERR_INVALID_PARAM, "Invalid function argument")
+ERR(-100221, ERR_INVALID_HANDLE, "Invalid Handle (argument)")
+ERR(-100222, ERR_BUF_SIZE, "Buffer argument too small")
 
 // system limitations
-ERR(-100020, ERR_NO_MEM, "Not enough memory")
-ERR(-100021, ERR_AGAIN, "Try again later")
-ERR(-100022, ERR_LIMIT, "Fixed limit exceeded")
-ERR(-100023, ERR_NO_SYS, "OS doesn't provide a required API")
-ERR(-100024, ERR_NOT_IMPLEMENTED, "Feature currently not implemented")
-ERR(-100025, ERR_NOT_SUPPORTED, "Feature isn't and won't be supported")
-
-ERR(-1060, ERR_TIMED_OUT, "Timed out")
+ERR(-100240, ERR_NO_MEM, "Not enough memory")
+ERR(-100241, ERR_AGAIN, "Try again later")
+ERR(-100242, ERR_LIMIT, "Fixed limit exceeded")
+ERR(-100243, ERR_NO_SYS, "OS doesn't provide a required API")
+ERR(-100244, ERR_NOT_IMPLEMENTED, "Feature currently not implemented")
+ERR(-100245, ERR_NOT_SUPPORTED, "Feature isn't and won't be supported")
 
 // file + vfs
-ERR(-100200, ERR_FILE_NOT_FOUND, "VFile not found")
-ERR(-100201, ERR_PATH_NOT_FOUND, "VDir not found")
-ERR(-100202, ERR_PATH_LENGTH, "Path exceeds VFS_MAX_PATH characters")
-ERR(-100203, ERR_PATH_INVALID, "Path is invalid")
-ERR(-100210, ERR_DIR_END, "End of directory reached (no more files)")
-ERR(-100220, ERR_NOT_FILE, "Not a file")
-ERR(-100230, ERR_FILE_ACCESS, "Insufficient access rights to open file")
-ERR(-100231, ERR_IO, "Error during IO")
-ERR(-100232, ERR_EOF, "Reading beyond end of file")
+ERR(-100300, ERR_FILE_NOT_FOUND, "VFile not found")
+ERR(-100301, ERR_PATH_NOT_FOUND, "VDir not found")
+ERR(-100302, ERR_PATH_LENGTH, "Path exceeds VFS_MAX_PATH characters")
+ERR(-100303, ERR_PATH_INVALID, "Path is invalid")
+ERR(-100310, ERR_DIR_END, "End of directory reached (no more files)")
+ERR(-100320, ERR_NOT_FILE, "Not a file")
+ERR(-100321, ERR_NOT_DIR, "Not a directory")
+ERR(-100330, ERR_FILE_ACCESS, "Insufficient access rights to open file")
+ERR(-100331, ERR_IO, "Error during IO")
+ERR(-100332, ERR_EOF, "Reading beyond end of file")
+ERR(-100333, ERR_IS_COMPRESSED, "Invalid operation for a compressed file")
+ERR(-100334, ERR_ALREADY_MOUNTED, "Directory (tree) already mounted")
+ERR(-100335, ERR_INVALID_MOUNT_TYPE, "Invalid mount type (memory corruption?)")
 
 // file format
 ERR(-100400, ERR_UNKNOWN_FORMAT, "Unknown file format")
@@ -81,7 +256,9 @@ ERR(-100503, ERR_TEX_INVALID_LAYOUT, "Unsupported texel layout, e.g. right-to-le
 ERR(-100504, ERR_TEX_COMPRESSED, "Unsupported texture compression")
 ERR(+100505, WARN_TEX_INVALID_DATA, "Warning: invalid texel data encountered")
 ERR(-100506, ERR_TEX_INVALID_SIZE, "Texture size is incorrect")
+ERR(-100507, ERR_TEX_CODEC_CANNOT_HANDLE, "Texture codec cannot handle the given format")
 
+// CPU
 ERR(-100600, ERR_CPU_FEATURE_MISSING, "This CPU doesn't support a required feature")
 
 // shaders
@@ -90,6 +267,29 @@ ERR(-100701, ERR_SHDR_COMPILE, "Shader compile failed")
 ERR(-100702, ERR_SHDR_NO_SHADER, "Invalid shader reference")
 ERR(-100703, ERR_SHDR_LINK, "Shader linking failed")
 ERR(-100704, ERR_SHDR_NO_PROGRAM, "Invalid shader program reference")
+
+// debug symbol engine
+ERR(-100800, ERR_SYM_NO_STACK_FRAMES_FOUND, "No stack frames found")
+ERR(-100801, ERR_SYM_UNRETRIEVABLE_STATIC, "Value unretrievable (stored in external module)")
+ERR(-100802, ERR_SYM_UNRETRIEVABLE_REG, "Value unretrievable (stored in register)")
+ERR(-100803, ERR_SYM_TYPE_INFO_UNAVAILABLE, "Error getting type_info")
+// .. this limit is to prevent infinite recursion.
+ERR(-100804, ERR_SYM_NESTING_LIMIT, "Symbol nesting too deep or infinite recursion")
+// .. this limit is to prevent large symbols (e.g. arrays or linked lists) from
+//    hogging all stack trace buffer space.
+ERR(-100805, ERR_SYM_SINGLE_SYMBOL_LIMIT, "Symbol has produced too much output")
+ERR(-100806, ERR_SYM_INTERNAL_ERROR, "Exception raised while processing a symbol")
+ERR(-100807, ERR_SYM_UNSUPPORTED, "Symbol type not (fully) supported")
+// .. one of the dump_sym* functions decided not to output anything at
+//    all (e.g. for member functions in UDTs - we don't want those).
+//    therefore, skip any post-symbol formatting (e.g. ",") as well.
+ERR(-100808, ERR_SYM_SUPPRESS_OUTPUT, "Symbol was suppressed")
+ERR(-100809, ERR_SYM_CHILD_NOT_FOUND, "Symbol does not have the given child")
+
+// STL debug
+ERR(-100900, ERR_STL_CNT_UNKNOWN, "Unknown STL container type_name")
+// .. likely causes: not yet initialized or memory corruption.
+ERR(-100901, ERR_STL_CNT_INVALID, "Container type is known but contents are invalid")
 
 #undef ERR
 #endif	// #ifdef ERR

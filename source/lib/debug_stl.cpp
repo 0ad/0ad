@@ -636,14 +636,14 @@ template<class T> bool get_container_info(T* t, size_t size, size_t el_size,
 // return number of elements and an iterator (any data it needs is stored in
 // it_mem, which must hold DEBUG_STL_MAX_ITERATOR_SIZE bytes).
 // returns 0 on success or an StlContainerError.
-int stl_get_container_info(const char* type_name, const u8* p, size_t size,
+LibError stl_get_container_info(const char* type_name, const u8* p, size_t size,
 	size_t el_size, size_t* el_count, DebugIterator* el_iterator, void* it_mem)
 {
 	// HACK: The debug_stl code breaks VS2005's STL badly, causing crashes in
 	// later pieces of code that try to manipulate the STL containers. Presumably
 	// it needs to be altered/rewritten to work happily with the new STL debug iterators.
 #if MSC_VERSION >= 1400
-	return -1;
+	return ERR_FAIL;
 #endif
 
 	bool handled = false, valid = false;
@@ -690,10 +690,10 @@ int stl_get_container_info(const char* type_name, const u8* p, size_t size,
 #endif
 
 	if(!handled)
-		return STL_CNT_UNKNOWN;
+		return ERR_STL_CNT_UNKNOWN;
 	if(!valid)
-		return STL_CNT_INVALID;
-	return 0;
+		return ERR_STL_CNT_INVALID;
+	return ERR_OK;
 }
 
 #endif

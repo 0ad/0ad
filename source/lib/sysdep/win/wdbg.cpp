@@ -159,7 +159,7 @@ void debug_heap_enable(DebugHeapChecks what)
 
 // to avoid deadlock, be VERY CAREFUL to avoid anything that may block,
 // including locks taken by the OS (e.g. malloc, GetProcAddress).
-typedef int(*WhileSuspendedFunc)(HANDLE hThread, void* user_arg);
+typedef LibError (*WhileSuspendedFunc)(HANDLE hThread, void* user_arg);
 
 struct WhileSuspendedParam
 {
@@ -173,10 +173,9 @@ static void* while_suspended_thread_func(void* user_arg)
 {
 	debug_set_thread_name("suspender");
 
-	DWORD err;
 	WhileSuspendedParam* param = (WhileSuspendedParam*)user_arg;
 
-	err = SuspendThread(param->hThread);
+	DWORD err = SuspendThread(param->hThread);
 	// abort, since GetThreadContext only works if the target is suspended.
 	if(err == (DWORD)-1)
 	{
@@ -186,16 +185,15 @@ static void* while_suspended_thread_func(void* user_arg)
 	// target is now guaranteed to be suspended,
 	// since the Windows counter never goes negative.
 
-	int ret = param->func(param->hThread, param->user_arg);
+	LibError ret = param->func(param->hThread, param->user_arg);
 
-	err = ResumeThread(param->hThread);
-	debug_assert(err != 0);
+	WARN_IF_FALSE(ResumeThread(param->hThread));
 
 	return (void*)(intptr_t)ret;
 }
 
 
-static int call_while_suspended(WhileSuspendedFunc func, void* user_arg)
+static LibError call_while_suspended(WhileSuspendedFunc func, void* user_arg)
 {
 	int err;
 
@@ -208,7 +206,7 @@ static int call_while_suspended(WhileSuspendedFunc func, void* user_arg)
 	if(hThread == INVALID_HANDLE_VALUE)
 	{
 		debug_warn("OpenThread failed");
-		return -1;
+		return ERR_FAIL;
 	}
 
 	WhileSuspendedParam param = { hThread, func, user_arg };
@@ -220,7 +218,7 @@ static int call_while_suspended(WhileSuspendedFunc func, void* user_arg)
 	err = pthread_join(thread, &ret);
 	debug_assert(err == 0 && ret == 0);
 
-	return (int)(intptr_t)ret;
+	return (LibError)(intptr_t)ret;
 }
 
 
@@ -260,17 +258,17 @@ static const uint MAX_BREAKPOINTS = 4;
 
 // remove all breakpoints enabled by debug_set_break from <context>.
 // called while target is suspended.
-static int brk_disable_all_in_ctx(BreakInfo* UNUSED(bi), CONTEXT* context)
+static LibError brk_disable_all_in_ctx(BreakInfo* UNUSED(bi), CONTEXT* context)
 {
 	context->Dr7 &= ~brk_all_local_enables;
-	return 0;
+	return ERR_OK;
 }
 
 
 // find a free register, set type according to <bi> and
 // mark it as enabled in <context>.
 // called while target is suspended.
-static int brk_enable_in_ctx(BreakInfo* bi, CONTEXT* context)
+static LibError brk_enable_in_ctx(BreakInfo* bi, CONTEXT* context)
 {
 	uint reg;	// index (0..3) of first free reg
 	uint LE;	// local enable bit for <reg>
@@ -340,15 +338,15 @@ have_reg:
 	context->Dr7 |= LE;
 
 	brk_all_local_enables |= LE;
-	return 0;
+	return ERR_OK;
 }
 
 
 // carry out the request stored in the BreakInfo* parameter.
 // called while target is suspended.
-static int brk_do_request(HANDLE hThread, void* arg)
+static LibError brk_do_request(HANDLE hThread, void* arg)
 {
-	int ret;
+	LibError ret;
 	BreakInfo* bi = (BreakInfo*)arg;
 
 	CONTEXT context;
@@ -374,9 +372,9 @@ static int brk_do_request(HANDLE hThread, void* arg)
 		goto fail;
 	}
 
-	return 0;
+	return ret;
 fail:
-	return -1;
+	return ERR_FAIL;
 }
 
 
@@ -386,13 +384,13 @@ fail:
 // derived from addr's alignment, and is typically 1 machine word.
 // breakpoints are a limited resource (4 on IA-32); abort and
 // return ERR_LIMIT if none are available.
-int debug_set_break(void* p, DbgBreakType type)
+LibError debug_set_break(void* p, DbgBreakType type)
 {
 	lock();
 
 	brk_info.addr = (uintptr_t)p;
 	brk_info.type = type;
-	int ret = call_while_suspended(brk_do_request, &brk_info);
+	LibError ret = call_while_suspended(brk_do_request, &brk_info);
 
 	unlock();
 	return ret;
@@ -401,12 +399,12 @@ int debug_set_break(void* p, DbgBreakType type)
 
 // remove all breakpoints that were set by debug_set_break.
 // important, since these are a limited resource.
-int debug_remove_all_breaks()
+LibError debug_remove_all_breaks()
 {
 	lock();
 
 	brk_info.want_all_disabled = true;
-	int ret = call_while_suspended(brk_do_request, &brk_info);
+	LibError ret = call_while_suspended(brk_do_request, &brk_info);
 	brk_info.want_all_disabled = false;
 
 	unlock();
@@ -734,7 +732,7 @@ static LONG WINAPI vectored_exception_handler(EXCEPTION_POINTERS* ep)
 }
 
 
-static int wdbg_init(void)
+static LibError wdbg_init(void)
 {
 	// see decl
 	main_thread_id = GetCurrentThreadId();
@@ -753,7 +751,7 @@ static int wdbg_init(void)
 		pAddVectoredExceptionHandler(TRUE, vectored_exception_handler);
 #endif
 
-	return 0;
+	return ERR_OK;
 }
 
 

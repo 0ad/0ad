@@ -45,37 +45,37 @@ struct DynArray
 // (rounded up to the next page size multiple) of address space for the
 // array; it can never grow beyond this.
 // no virtual memory is actually committed until calls to da_set_size.
-extern int da_alloc(DynArray* da, size_t max_size);
+extern LibError da_alloc(DynArray* da, size_t max_size);
 
 // free all memory (address space + physical) that constitutes the
 // given array. use-after-free is impossible because the memory is
 // marked not-present via MMU. also zeroes the contents of <da>.
-extern int da_free(DynArray* da);
+extern LibError da_free(DynArray* da);
 
 // expand or shrink the array: changes the amount of currently committed
 // (i.e. usable) memory pages. pages are added/removed until
 // new_size (rounded up to the next page size multiple) is met.
-extern int da_set_size(DynArray* da, size_t new_size);
+extern LibError da_set_size(DynArray* da, size_t new_size);
 
 // change access rights of the array memory; used to implement
 // write-protection. affects the currently committed pages as well as
 // all subsequently added pages.
 // prot can be a combination of the PROT_* values used with mprotect.
-extern int da_set_prot(DynArray* da, int prot);
+extern LibError da_set_prot(DynArray* da, int prot);
 
 // "wrap" (i.e. store information about) the given buffer in a
 // DynArray object, preparing it for use with da_read or da_append.
 // da_free should be called when the DynArray is no longer needed,
 // even though it doesn't free this memory (but does zero the DynArray).
-extern int da_wrap_fixed(DynArray* da, u8* p, size_t size);
+extern LibError da_wrap_fixed(DynArray* da, u8* p, size_t size);
 
 // "read" from array, i.e. copy into the given buffer.
 // starts at offset DynArray.pos and advances this.
-extern int da_read(DynArray* da, void* data_dst, size_t size);
+extern LibError da_read(DynArray* da, void* data_dst, size_t size);
 
 // "write" to array, i.e. copy from the given buffer.
 // starts at offset DynArray.pos and advances this.
-extern int da_append(DynArray* da, const void* data_src, size_t size);
+extern LibError da_append(DynArray* da, const void* data_src, size_t size);
 
 
 
@@ -108,18 +108,19 @@ struct Pool
 //
 // note: el_size must at least be enough for a pointer (due to freelist
 // implementation) but not exceed the expand-by amount.
-extern int pool_create(Pool* p, size_t max_size, size_t el_size);
+extern LibError pool_create(Pool* p, size_t max_size, size_t el_size);
 
 // free all memory that ensued from <p>. all elements are made unusable
 // (it doesn't matter if they were "allocated" or in freelist or unused);
 // future alloc and free calls on this pool will fail.
-extern int pool_destroy(Pool* p);
+extern LibError pool_destroy(Pool* p);
 
 // indicate whether <el> was allocated from the given pool.
 // this is useful for callers that use several types of allocators.
 extern bool pool_contains(Pool* p, void* el);
 
-// return an entry from the pool, or 0 if it cannot be expanded as necessary.
+// return an entry from the pool, or 0 if it would have to be expanded and
+// there isn't enough memory to do so.
 // exhausts the freelist before returning new entries to improve locality.
 extern void* pool_alloc(Pool* p);
 

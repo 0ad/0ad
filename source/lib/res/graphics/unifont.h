@@ -9,14 +9,14 @@
 
 // Load and return a handle to the font defined
 // in fn+".fnt" with texture fn+".tga"
-extern Handle unifont_load(const char* fn, int scope = 0);
+extern Handle unifont_load(const char* fn, int flags = 0);
 
 // Release a handle to a previously loaded font
-extern int unifont_unload(Handle& h);
+extern LibError unifont_unload(Handle& h);
 
 // Use the font referenced by h for all subsequent glwprintf() calls.
 // Must be called before any glwprintf().
-extern int unifont_bind(Handle h);
+extern LibError unifont_bind(Handle h);
 
 // Output text at current OpenGL modelview pos.
 extern void glvwprintf(const wchar_t* fmt, va_list args);
@@ -37,13 +37,13 @@ extern void glwprintf(const wchar_t* fmt, ...);
 
 // Intended for the GUI (hence Unicode). 'height' is roughly the height of
 // a capital letter, for use when aligning text in an aesthetically pleasing way.
-int unifont_stringsize(const Handle h, const wchar_t* text, int& width, int& height);
+LibError unifont_stringsize(const Handle h, const wchar_t* text, int& width, int& height);
 
 // Get only the height
 int unifont_height(const Handle h);
 
 // Get only the width of one character
-int unifont_character_width(const Handle h, const wchar_t& c);
+int unifont_character_width(const Handle h, wchar_t c);
 
 // Return spacing in pixels from one line of text to the next
 int unifont_linespacing(const Handle h);

@@ -31,4 +31,6 @@ typedef unsigned int PS_uint;
 # error "check size_t and SIZE_MAX - too small?"
 #endif
 
+enum LibError;
+
 #endif // #ifndef __TYPES_H__

@@ -185,7 +185,7 @@ extern void tex_set_global_orientation(int orientation);
 
 // load the specified image from file into the given Tex object.
 // currently supports BMP, TGA, JPG, JP2, PNG, DDS.
-extern int tex_load(const char* fn, Tex* t);
+extern LibError tex_load(const char* fn, Tex* t);
 
 // store the given image data into a Tex object; this will be as if
 // it had been loaded via tex_load.
@@ -200,11 +200,11 @@ extern int tex_load(const char* fn, Tex* t);
 //
 // we need only add bookkeeping information and "wrap" it in
 // our Tex struct, hence the name.
-extern int tex_wrap(uint w, uint h, uint bpp, uint flags, void* img, Tex* t);
+extern LibError tex_wrap(uint w, uint h, uint bpp, uint flags, void* img, Tex* t);
 
 // free all resources associated with the image and make further
 // use of it impossible.
-extern int tex_free(Tex* t);
+extern LibError tex_free(Tex* t);
 
 
 //
@@ -213,11 +213,11 @@ extern int tex_free(Tex* t);
 
 // change <t>'s pixel format by flipping the state of all TEX_* flags
 // that are set in transforms.
-extern int tex_transform(Tex* t, uint transforms);
+extern LibError tex_transform(Tex* t, uint transforms);
 
 // change <t>'s pixel format to the new format specified by <new_flags>.
 // (note: this is equivalent to tex_transform(t, t->flags^new_flags).
-extern int tex_transform_to(Tex* t, uint new_flags);
+extern LibError tex_transform_to(Tex* t, uint new_flags);
 
 
 //
@@ -255,11 +255,11 @@ extern size_t tex_hdr_size(const char* fn);
 // write the specified texture to disk.
 // note: <t> cannot be made const because the image may have to be
 // transformed to write it out in the format determined by <fn>'s extension.
-extern int tex_write(Tex* t, const char* fn);
+extern LibError tex_write(Tex* t, const char* fn);
 
 
 // internal use only:
-extern int tex_validate(const Tex* t);
+extern LibError tex_validate(const Tex* t);
 
 // check if the given texture format is acceptable: 8bpp grey,
 // 24bpp color or 32bpp color+alpha (BGR / upside down are permitted).
@@ -267,7 +267,7 @@ extern int tex_validate(const Tex* t);
 // tex_codec_plain_transform.
 // return 0 if ok, otherwise negative error code (but doesn't warn;
 // caller is responsible for using CHECK_ERR et al.)
-extern int tex_validate_plain_format(uint bpp, uint flags);
+extern LibError tex_validate_plain_format(uint bpp, uint flags);
 
 
 // indicate if the orientation specified by <src_flags> matches
@@ -276,7 +276,7 @@ extern int tex_validate_plain_format(uint bpp, uint flags);
 // have to mask off TEX_ORIENTATION)
 extern bool tex_orientations_match(uint src_flags, uint dst_orientation);
 
-typedef void(*MipmapCB)(uint level, uint level_w, uint level_h,
+typedef void (*MipmapCB)(uint level, uint level_w, uint level_h,
 	const u8* level_data, size_t level_data_size, void* ctx);
 
 // special value for levels_to_skip: the callback will only be called

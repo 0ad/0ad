@@ -33,14 +33,14 @@
 #endif
 
 #if OS_WIN
-extern int win_get_gfx_info();
-extern int win_get_cpu_info();
-extern int win_get_snd_info();
+extern LibError win_get_gfx_info();
+extern LibError win_get_cpu_info();
+extern LibError win_get_snd_info();
 #elif OS_UNIX
-extern int unix_get_cpu_info();
+extern LibError unix_get_cpu_info();
 #endif
 
-extern "C" int ogl_get_gfx_info();
+extern "C" LibError ogl_get_gfx_info();
 
 
 //

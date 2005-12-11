@@ -92,7 +92,7 @@ static void check_speedstep()
 }
 
 
-int win_get_cpu_info()
+LibError win_get_cpu_info()
 {
 	// get number of CPUs (can't fail)
 	SYSTEM_INFO si;
@@ -114,7 +114,7 @@ int win_get_cpu_info()
 
 	check_speedstep();
 
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -251,7 +251,7 @@ static void* prof_thread_func(void* UNUSED(data))
 
 
 // call from thread that is to be profiled
-int prof_start()
+LibError prof_start()
 {
 	// we need a real HANDLE to the target thread for use with
 	// Suspend|ResumeThread and GetThreadContext.
@@ -262,20 +262,20 @@ int prof_start()
 	if(hThread == INVALID_HANDLE_VALUE)
 	{
 		debug_warn("OpenThread failed");
-		return -1;
+		return ERR_FAIL;
 	}
 
 	prof_target_thread = hThread;
 
 	sem_init(&exit_flag, 0, 0);
 	pthread_create(&thread, 0, prof_thread_func, 0);
-	return 0;
+	return ERR_OK;
 }
 
-int prof_shutdown()
+LibError prof_shutdown()
 {
-	CloseHandle(prof_target_thread);
-	return 0;
+	WARN_IF_FALSE(CloseHandle(prof_target_thread));
+	return ERR_OK;
 }
 
 

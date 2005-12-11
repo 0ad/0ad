@@ -31,7 +31,7 @@
 
 
 // be careful not to use other tex_* APIs here because they call us.
-int tex_validate(const Tex* t)
+LibError tex_validate(const Tex* t)
 {
 	// pixel data
 	size_t tex_file_size;
@@ -44,25 +44,25 @@ int tex_validate(const Tex* t)
 		// possible causes: texture file header is invalid,
 		// or file wasn't loaded completely.
 		if(tex_file_size < t->ofs + t->w*t->h*t->bpp/8)
-			return -2;
+			return ERR_1;
 	}
 
 	// bits per pixel
 	// (we don't bother checking all values; a sanity check is enough)
 	if(t->bpp % 4 || t->bpp > 32)
-		return -3;
+		return ERR_2;
 
 	// flags
 	// .. DXT value
 	const uint dxt = t->flags & TEX_DXT;
 	if(dxt != 0 && dxt != 1 && dxt != DXT1A && dxt != 3 && dxt != 5)
-		return -4;
+		return ERR_3;
 	// .. orientation
 	const uint orientation = t->flags & TEX_ORIENTATION;
 	if(orientation == (TEX_BOTTOM_UP|TEX_TOP_DOWN))
-		return -5;
+		return ERR_4;
 
-	return 0;
+	return ERR_OK;
 }
 
 #define CHECK_TEX(t) CHECK_ERR(tex_validate(t))
@@ -74,7 +74,7 @@ int tex_validate(const Tex* t)
 // tex_codec_plain_transform.
 // return 0 if ok, otherwise negative error code (but doesn't warn;
 // caller is responsible for using CHECK_ERR et al.)
-int tex_validate_plain_format(uint bpp, uint flags)
+LibError tex_validate_plain_format(uint bpp, uint flags)
 {
 	const bool alpha   = (flags & TEX_ALPHA  ) != 0;
 	const bool grey    = (flags & TEX_GREY   ) != 0;
@@ -88,14 +88,14 @@ int tex_validate_plain_format(uint bpp, uint flags)
 	if(grey)
 	{
 		if(bpp == 8 && !alpha)
-			return 0;
+			return ERR_OK;
 		return ERR_TEX_FMT_INVALID;
 	}
 
 	if(bpp == 24 && !alpha)
-		return 0;
+		return ERR_OK;
 	if(bpp == 32 && alpha)
-		return 0;
+		return ERR_OK;
 
 	return ERR_TEX_FMT_INVALID;
 }
@@ -181,7 +181,7 @@ TIMER_ADD_CLIENT(tc_plain_transform);
 // but is much easier to maintain than providing all<->all conversion paths.
 //
 // somewhat optimized (loops are hoisted, cache associativity accounted for)
-static int plain_transform(Tex* t, uint transforms)
+static LibError plain_transform(Tex* t, uint transforms)
 {
 TIMER_ACCRUE(tc_plain_transform);
 
@@ -197,13 +197,13 @@ TIMER_ACCRUE(tc_plain_transform);
 	// sanity checks (not errors, we just can't handle these cases)
 	// .. unknown transform
 	if(transforms & ~(TEX_BGR|TEX_ORIENTATION|TEX_MIPMAPS))
-		return TEX_CODEC_CANNOT_HANDLE;
+		return ERR_TEX_CODEC_CANNOT_HANDLE;
 	// .. data is not in "plain" format
 	if(tex_validate_plain_format(bpp, flags) != 0)
-		return TEX_CODEC_CANNOT_HANDLE;
+		return ERR_TEX_CODEC_CANNOT_HANDLE;
 	// .. nothing to do
 	if(!transforms)
-		return 0;
+		return ERR_OK;
 
 	// setup row source/destination pointers (simplifies outer loop)
 	u8* dst = data;
@@ -295,7 +295,7 @@ TIMER_ACCRUE(tc_plain_transform);
 	}
 
 	CHECK_TEX(t);
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -407,7 +407,7 @@ void tex_util_foreach_mipmap(uint w, uint h, uint bpp, const u8* restrict data,
 //-----------------------------------------------------------------------------
 
 // split out of tex_load to ease resource cleanup
-static int tex_load_impl(void* file_, size_t file_size, Tex* t)
+static LibError tex_load_impl(void* file_, size_t file_size, Tex* t)
 {
 	u8* file = (u8*)file_;
 	const TexCodecVTbl* c;
@@ -438,20 +438,20 @@ static int tex_load_impl(void* file_, size_t file_size, Tex* t)
 
 	flip_to_global_orientation(t);
 
-	return 0;
+	return ERR_OK;
 }
 
 
 // load the specified image from file into the given Tex object.
 // currently supports BMP, TGA, JPG, JP2, PNG, DDS.
-int tex_load(const char* fn, Tex* t)
+LibError tex_load(const char* fn, Tex* t)
 {
 	// load file
 	void* file; size_t file_size;
 	Handle hm = vfs_load(fn, file, file_size);
 	RETURN_ERR(hm);	// (need handle below; can't test return value directly)
 	t->hm = hm;
-	int ret = tex_load_impl(file, file_size, t);
+	LibError ret = tex_load_impl(file, file_size, t);
 	if(ret < 0)
 	{
 		(void)tex_free(t);
@@ -463,7 +463,7 @@ int tex_load(const char* fn, Tex* t)
 	// wasn't compressed) or was replaced by a new buffer for the image data.
 
 	CHECK_TEX(t);
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -480,7 +480,7 @@ int tex_load(const char* fn, Tex* t)
 //
 // we need only add bookkeeping information and "wrap" it in
 // our Tex struct, hence the name.
-int tex_wrap(uint w, uint h, uint bpp, uint flags, void* img, Tex* t)
+LibError tex_wrap(uint w, uint h, uint bpp, uint flags, void* img, Tex* t)
 {
 	t->w     = w;
 	t->h     = h;
@@ -500,18 +500,18 @@ int tex_wrap(uint w, uint h, uint bpp, uint flags, void* img, Tex* t)
 	t->ofs = (u8*)img - (u8*)reported_ptr;
 
 	CHECK_TEX(t);
-	return 0;
+	return ERR_OK;
 }
 
 
 // free all resources associated with the image and make further
 // use of it impossible.
-int tex_free(Tex* t)
+LibError tex_free(Tex* t)
 {
 	// do not validate <t> - this is called from tex_load if loading
 	// failed, so not all fields may be valid.
 
-	int ret = mem_free_h(t->hm);
+	LibError ret = mem_free_h(t->hm);
 
 	// do not zero out the fields! that could lead to trouble since
 	// ogl_tex_upload followed by ogl_tex_free is legit, but would
@@ -526,7 +526,7 @@ TIMER_ADD_CLIENT(tc_transform);
 
 // change <t>'s pixel format by flipping the state of all TEX_* flags
 // that are set in transforms.
-int tex_transform(Tex* t, uint transforms)
+LibError tex_transform(Tex* t, uint transforms)
 {
 TIMER_ACCRUE(tc_transform);
 	CHECK_TEX(t);
@@ -538,22 +538,22 @@ TIMER_ACCRUE(tc_transform);
 		remaining_transforms = target_flags ^ t->flags;
 		// we're finished (all required transforms have been done)
 		if(remaining_transforms == 0)
-			return 0;
+			return ERR_OK;
 
-		int ret = tex_codec_transform(t, remaining_transforms);
+		LibError ret = tex_codec_transform(t, remaining_transforms);
 		if(ret != 0)
 			break;
 	}
 
 	// last chance
 	CHECK_ERR(plain_transform(t, remaining_transforms));
-	return 0;
+	return ERR_OK;
 }
 
 
 // change <t>'s pixel format to the new format specified by <new_flags>.
 // (note: this is equivalent to tex_transform(t, t->flags^new_flags).
-int tex_transform_to(Tex* t, uint new_flags)
+LibError tex_transform_to(Tex* t, uint new_flags)
 {
 	// tex_transform takes care of validating <t>
 	const uint transforms = t->flags ^ new_flags;
@@ -621,7 +621,7 @@ size_t tex_hdr_size(const char* fn)
 // write the specified texture to disk.
 // note: <t> cannot be made const because the image may have to be
 // transformed to write it out in the format determined by <fn>'s extension.
-int tex_write(Tex* t, const char* fn)
+LibError tex_write(Tex* t, const char* fn)
 {
 	CHECK_TEX(t);
 	CHECK_ERR(tex_validate_plain_format(t->bpp, t->flags));
@@ -639,7 +639,7 @@ int tex_write(Tex* t, const char* fn)
 	CHECK_ERR(tex_codec_for_filename(fn, &c));
 
 	// encode into <da>
-	int err;
+	LibError err;
 	size_t rounded_size;
 	ssize_t bytes_written;
 	err = c->encode(t, &da);

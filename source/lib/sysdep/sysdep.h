@@ -171,7 +171,7 @@ extern ErrorReaction sys_display_error(const wchar_t* text, int flags);
 //
 
 // "copy" text into the clipboard. replaces previous contents.
-extern int sys_clipboard_set(const wchar_t* text);
+extern LibError sys_clipboard_set(const wchar_t* text);
 
 // allow "pasting" from clipboard. returns the current contents if they
 // can be represented as text, otherwise 0.
@@ -181,7 +181,7 @@ extern wchar_t* sys_clipboard_get(void);
 
 // frees memory used by <copy>, which must have been returned by
 // sys_clipboard_get. see note above.
-extern int sys_clipboard_free(wchar_t* copy);
+extern LibError sys_clipboard_free(wchar_t* copy);
 
 
 //
@@ -200,16 +200,16 @@ extern int sys_clipboard_free(wchar_t* copy);
 // return: negative error code, or 0 on success. cursor is filled with
 //   a pointer and undefined on failure. it must be sys_cursor_free-ed
 //   when no longer needed.
-extern int sys_cursor_create(uint w, uint h, void* bgra_img,
+extern LibError sys_cursor_create(uint w, uint h, void* bgra_img,
 	uint hx, uint hy, void** cursor);
 
 // replaces the current system cursor with the one indicated. need only be
 // called once per cursor; pass 0 to restore the default.
-extern int sys_cursor_set(void* cursor);
+extern LibError sys_cursor_set(void* cursor);
 
 // destroys the indicated cursor and frees its resources. if it is
 // currently the system cursor, the default cursor is restored first.
-extern int sys_cursor_free(void* cursor);
+extern LibError sys_cursor_free(void* cursor);
 
 
 //
@@ -219,7 +219,7 @@ extern int sys_cursor_free(void* cursor);
 // OS-specific backend for error_description_r.
 // NB: it is expected to be rare that OS return/error codes are actually
 // seen by user code, but we still translate them for completeness.
-extern int sys_error_description_r(int err, char* buf, size_t max_chars);
+extern LibError sys_error_description_r(int err, char* buf, size_t max_chars);
 
 // determine filename of the module to whom the given address belongs.
 // useful for handling exceptions in other modules.
@@ -231,13 +231,13 @@ wchar_t* sys_get_module_filename(void* addr, wchar_t* path);
 // store full path to the current executable.
 // returns 0 or a negative error code.
 // useful for determining installation directory, e.g. for VFS.
-extern int sys_get_executable_name(char* n_path, size_t buf_size);
+extern LibError sys_get_executable_name(char* n_path, size_t buf_size);
 
 // have the user specify a directory via OS dialog.
 // stores its full path in the given buffer, which must hold at least
 // PATH_MAX chars.
 // returns 0 on success or a negative error code.
-extern int sys_pick_directory(char* n_path, size_t buf_size);
+extern LibError sys_pick_directory(char* n_path, size_t buf_size);
 
 // execute the specified function once on each CPU.
 // this includes logical HT units and proceeds serially (function
@@ -247,7 +247,7 @@ extern int sys_pick_directory(char* n_path, size_t buf_size);
 // return 0 on success or a negative error code on failure
 // (e.g. if OS is preventing us from running on some CPUs).
 // called from ia32.cpp get_cpu_count
-extern int sys_on_each_cpu(void(*cb)());
+extern LibError sys_on_each_cpu(void (*cb)());
 
 
 // drop-in replacement for libc memcpy(). only requires CPU support for

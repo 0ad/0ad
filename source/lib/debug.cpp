@@ -207,13 +207,13 @@ void debug_wprintf(const wchar_t* fmt, ...)
 
 //-----------------------------------------------------------------------------
 
-int debug_write_crashlog(const wchar_t* text)
+LibError debug_write_crashlog(const wchar_t* text)
 {
 	FILE* f = fopen("crashlog.txt", "w");
 	if(!f)
 	{
 		DISPLAY_ERROR(L"debug_write_crashlog: unable to open file");
-		return -1;
+		return ERR_FILE_ACCESS;
 	}
 
 	fputwc(0xfeff, f);	// BOM
@@ -226,7 +226,7 @@ int debug_write_crashlog(const wchar_t* text)
 	fwprintf(f, L"Last known activity:\n\n %ls\n", debug_log);
 
 	fclose(f);
-	return 0;
+	return ERR_OK;
 }
 
 

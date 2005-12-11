@@ -97,7 +97,7 @@ extern void SDL_DestroySemaphore(SDL_sem*);
 extern int SDL_SemPost(SDL_sem*);
 extern int SDL_SemWait(SDL_sem* sem);
 
-extern SDL_Thread* SDL_CreateThread(int(*)(void*), void*);
+extern SDL_Thread* SDL_CreateThread(int (*)(void*), void*);
 extern int SDL_KillThread(SDL_Thread*);
 
 

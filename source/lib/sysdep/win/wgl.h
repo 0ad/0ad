@@ -31,7 +31,7 @@ typedef __int64 INT64;
 typedef float FLOAT;
 typedef const char* LPCSTR;
 typedef void* HANDLE;
-typedef int(*PROC)(void);
+typedef int (*PROC)(void);
 #define DECLARE_HANDLE(name) typedef HANDLE name
 DECLARE_HANDLE(HDC);
 DECLARE_HANDLE(HGLRC);

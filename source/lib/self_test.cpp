@@ -27,7 +27,7 @@ bool self_test_active = false;
 
 // trampoline that sets self_test_active and returns a dummy value;
 // used by SELF_TEST_RUN.
-int self_test_run(void(*func)())
+int self_test_run(void (*func)())
 {
 	self_test_active = true;
 	func();

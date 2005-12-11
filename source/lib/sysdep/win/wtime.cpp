@@ -156,7 +156,7 @@ static inline void unlock(void)
 // in case there are unforeseen problems with one of them.
 // order of preference (due to resolution and speed): TSC, QPC, GTC.
 // split out of reset_impl so we can just return when impl is chosen.
-static int choose_impl()
+static LibError choose_impl()
 {
 	bool safe;
 #define SAFETY_OVERRIDE(impl)\
@@ -195,7 +195,7 @@ static int choose_impl()
 			hrt_impl = HRT_TSC;
 			hrt_nominal_freq = cpu_freq;
 			hrt_res = (1.0 / hrt_nominal_freq);
-			return 0;
+			return ERR_OK;
 		}
 	}
 #endif	// TSC
@@ -254,7 +254,7 @@ static int choose_impl()
 			hrt_impl = HRT_QPC;
 			hrt_nominal_freq = (double)qpc_freq;
 			hrt_res = (1.0 / hrt_nominal_freq);
-			return 0;
+			return ERR_OK;
 		}
 	}
 #endif	// QPC
@@ -275,13 +275,13 @@ static int choose_impl()
 		DWORD timer_period;	// [hectonanoseconds]
 		if(GetSystemTimeAdjustment(&adj, &timer_period, &adj_disabled))
 			hrt_res = (timer_period / 1e7);
-		return 0;
+		return ERR_OK;
 	}
 
 	debug_warn("no safe timer found!");
 	hrt_impl = HRT_NONE;
 	hrt_nominal_freq = -1.0;
-	return -1;
+	return ERR_FAIL;
 }
 
 
@@ -364,7 +364,7 @@ static double time_lk()
 //
 // don't want to saddle timer module with the problem of initializing
 // us on first call - it wouldn't otherwise need to be thread-safe.
-static int reset_impl_lk()
+static LibError reset_impl_lk()
 {
 	HRTImpl old_impl = hrt_impl;
 
@@ -390,7 +390,7 @@ static int reset_impl_lk()
 		hrt_cal_ticks = ticks_lk();
 	}
 
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -455,23 +455,20 @@ unlock();
 // the timer may jump after doing so.
 // call with HRT_DEFAULT, HRT_NONE to re-evaluate implementation choice
 // after system info becomes available.
-static int hrt_override_impl(HRTOverride ovr, HRTImpl impl)
+static LibError hrt_override_impl(HRTOverride ovr, HRTImpl impl)
 {
 	if((ovr != HRT_DISABLE && ovr != HRT_FORCE && ovr != HRT_DEFAULT) ||
 	   (impl != HRT_TSC && impl != HRT_QPC && impl != HRT_GTC && impl != HRT_NONE))
-	{
-		debug_warn("invalid ovr or impl param");
-		return -1;
-	}
+		CHECK_ERR(ERR_INVALID_PARAM);
 
 lock();
 
 	overrides[impl] = ovr;
-	reset_impl_lk();
+	LibError ret = reset_impl_lk();
 
 unlock();
 
-	return 0;
+	return ret;
 }
 
 
@@ -594,34 +591,34 @@ static void* calibration_thread(void* UNUSED(data))
 }
 
 
-static inline int init_calibration_thread()
+static inline LibError init_calibration_thread()
 {
 	sem_init(&exit_flag, 0, 0);
 	pthread_create(&thread, 0, calibration_thread, 0);
-	return 0;
+	return ERR_OK;
 }
 
 
-static inline int shutdown_calibration_thread()
+static inline LibError shutdown_calibration_thread()
 {
 	sem_post(&exit_flag);
 	pthread_join(thread, 0);
 	sem_destroy(&exit_flag);
-	return 0;
+	return ERR_OK;
 }
 
 
 
 
-static int hrt_init()
+static LibError hrt_init()
 {
 	// no lock needed - calibration thread hasn't yet been created
-	reset_impl_lk();
+	RETURN_ERR(reset_impl_lk());
 	return init_calibration_thread();
 }
 
 
-static int hrt_shutdown()
+static LibError hrt_shutdown()
 {
 	// don't take a lock here! race condition:
 	// 1) calibration_thread is about to call clock_gettime
@@ -735,18 +732,18 @@ static i64 time_ns()
 }
 
 
-static int wtime_init()
+static LibError wtime_init()
 {
 	hrt_init();
 
 	// first call latches start times
 	time_ns();
 
-	return 0;
+	return ERR_OK;
 }
 
 
-static int wtime_shutdown()
+static LibError wtime_shutdown()
 {
 	return hrt_shutdown();
 }

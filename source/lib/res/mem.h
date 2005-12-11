@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-typedef void(*MEM_DTOR)(void* p, size_t size, uintptr_t ctx);
+typedef void (*MEM_DTOR)(void* p, size_t size, uintptr_t ctx);
 
 // mem_alloc flags
 enum
@@ -21,14 +21,14 @@ enum
 extern void* mem_alloc(size_t size, size_t align = 1, uint flags = 0, Handle* ph = 0);
 
 #define mem_free(p) mem_free_p((void*&)p)
-extern int mem_free_p(void*& p);
+extern LibError mem_free_p(void*& p);
 
-extern int mem_free_h(Handle& hm);
+extern LibError mem_free_h(Handle& hm);
 
 // returns 0 if the handle is invalid
 extern void* mem_get_ptr(Handle h, size_t* size = 0);
 
-extern int mem_get(Handle hm, u8** pp, size_t* psize);
+extern LibError mem_get(Handle hm, u8** pp, size_t* psize);
 
 
 extern Handle mem_wrap(void* p, size_t size, uint flags, void* raw_p, size_t raw_size, MEM_DTOR dtor, uintptr_t ctx, void* owner);

@@ -64,9 +64,9 @@ static void io_flush(png_structp UNUSED(png_ptr))
 
 //-----------------------------------------------------------------------------
 
-static int png_transform(Tex* UNUSED(t), uint UNUSED(transforms))
+static LibError png_transform(Tex* UNUSED(t), uint UNUSED(transforms))
 {
-	return TEX_CODEC_CANNOT_HANDLE;
+	return ERR_TEX_CODEC_CANNOT_HANDLE;
 }
 
 
@@ -75,7 +75,7 @@ static int png_transform(Tex* UNUSED(t), uint UNUSED(transforms))
 
 // split out of png_decode to simplify resource cleanup and avoid
 // "dtor / setjmp interaction" warning.
-static int png_decode_impl(DynArray* da,
+static LibError png_decode_impl(DynArray* da,
 	png_structp png_ptr, png_infop info_ptr,
 	Handle& img_hm, RowArray& rows, Tex* t)
 {
@@ -124,13 +124,13 @@ static int png_decode_impl(DynArray* da,
 	t->bpp   = bpp;
 	t->flags = flags;
 
-	return 0;
+	return ERR_OK;
 }
 
 
 // split out of png_encode to simplify resource cleanup and avoid
 // "dtor / setjmp interaction" warning.
-static int png_encode_impl(Tex* t,
+static LibError png_encode_impl(Tex* t,
 	png_structp png_ptr, png_infop info_ptr,
 	RowArray& rows, DynArray* da)
 {
@@ -167,7 +167,7 @@ static int png_encode_impl(Tex* t,
 	png_set_rows(png_ptr, info_ptr, (png_bytepp)rows);
 	png_write_png(png_ptr, info_ptr, png_transforms, 0);
 
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -195,11 +195,11 @@ static size_t png_hdr_size(const u8* UNUSED(file))
 TIMER_ADD_CLIENT(tc_png_decode);
 
 // limitation: palette images aren't supported
-static int png_decode(DynArray* restrict da, Tex* restrict t)
+static LibError png_decode(DynArray* restrict da, Tex* restrict t)
 {
 TIMER_ACCRUE(tc_png_decode);
 
-	int err = -1;
+	LibError err = ERR_FAIL;
 	// freed when ret is reached:
 	png_structp png_ptr = 0;
 	png_infop info_ptr = 0;
@@ -238,9 +238,9 @@ ret:
 
 
 // limitation: palette images aren't supported
-static int png_encode(Tex* restrict t, DynArray* restrict da)
+static LibError png_encode(Tex* restrict t, DynArray* restrict da)
 {
-	int err = -1;
+	LibError err = ERR_FAIL;
 	// freed when ret is reached:
 	png_structp png_ptr = 0;
 	png_infop info_ptr = 0;

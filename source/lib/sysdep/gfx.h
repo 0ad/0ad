@@ -7,11 +7,11 @@ extern "C" {
 
 // useful for choosing a video mode.
 // if we fail, outputs are unchanged (assumed initialized to defaults)
-extern int get_cur_vmode(int* xres, int* yres, int* bpp, int* freq);
+extern LibError get_cur_vmode(int* xres, int* yres, int* bpp, int* freq);
 
 // useful for determining aspect ratio.
 // if we fail, outputs are unchanged (assumed initialized to defaults)
-extern int get_monitor_size(int& width_mm, int& height_mm);
+extern LibError get_monitor_size(int& width_mm, int& height_mm);
 
 
 const size_t GFX_CARD_LEN = 128;

@@ -57,28 +57,28 @@ struct XFile
 
 // given a Mount, return the actual location (portable path) of
 // <V_path>. used by vfs_realpath and VFile_reopen.
-extern int x_realpath(const Mount* m, const char* V_exact_path, char* P_real_path);
+extern LibError x_realpath(const Mount* m, const char* V_exact_path, char* P_real_path);
 
-extern int x_open(const Mount* m, const char* V_exact_path, int flags, TFile* tf, XFile* xf);
-extern int x_close(XFile* xf);
+extern LibError x_open(const Mount* m, const char* V_exact_path, int flags, TFile* tf, XFile* xf);
+extern LibError x_close(XFile* xf);
 
-extern int x_validate(const XFile* xf);
+extern LibError x_validate(const XFile* xf);
 
 extern bool x_is_open(const XFile* xf);
 extern off_t x_size(const XFile* xf);
 extern uint x_flags(const XFile* xf);
 extern void x_set_flags(XFile* xf, uint flags);
 
-extern int x_io(XFile* xf, off_t ofs, size_t size, void* buf, FileIOCB cb, uintptr_t ctx);;
+extern ssize_t x_io(XFile* xf, off_t ofs, size_t size, void* buf, FileIOCB cb, uintptr_t ctx);;
 
-extern int x_map(XFile* xf, void*& p, size_t& size);
-extern int x_unmap(XFile* xf);
+extern LibError x_map(XFile* xf, void*& p, size_t& size);
+extern LibError x_unmap(XFile* xf);
 
-extern int x_io_issue(XFile* xf, off_t ofs, size_t size, void* buf, XIo* xio);
+extern LibError x_io_issue(XFile* xf, off_t ofs, size_t size, void* buf, XIo* xio);
 extern int x_io_has_completed(XIo* xio);
-extern int x_io_wait(XIo* xio, void*& p, size_t& size);
-extern int x_io_discard(XIo* xio);
-extern int x_io_validate(const XIo* xio);
+extern LibError x_io_wait(XIo* xio, void*& p, size_t& size);
+extern LibError x_io_discard(XIo* xio);
+extern LibError x_io_validate(const XIo* xio);
 
 
 
@@ -119,11 +119,11 @@ struct RealDir
 #endif
 };
 
-extern int mount_attach_real_dir(RealDir* rd, const char* P_path, const Mount* m, int flags);
+extern LibError mount_attach_real_dir(RealDir* rd, const char* P_path, const Mount* m, int flags);
 extern void mount_detach_real_dir(RealDir* rd);
 
 struct TDir;
-extern int mount_populate(TDir* td, RealDir* rd);
+extern LibError mount_populate(TDir* td, RealDir* rd);
 
 
 // rebuild the VFS, i.e. re-mount everything. open files are not affected.
@@ -132,11 +132,11 @@ extern int mount_populate(TDir* td, RealDir* rd);
 // dir_watch reports changes; can also be called from the console after a
 // rebuild command. there is no provision for updating single VFS dirs -
 // it's not worth the trouble.
-extern int mount_rebuild();
+extern LibError mount_rebuild();
 
 // if <path> or its ancestors are mounted,
 // return a VFS path that accesses it.
 // used when receiving paths from external code.
-extern int mount_make_vfs_path(const char* P_path, char* V_path);
+extern LibError mount_make_vfs_path(const char* P_path, char* V_path);
 
 #endif	// #ifndef VFS_MOUNT_H__

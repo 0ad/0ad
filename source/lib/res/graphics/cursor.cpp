@@ -64,7 +64,7 @@ class GLCursor
 	uint hotspotx, hotspoty;
 
 public:
-	int create(const char* filename, uint hotspotx_, uint hotspoty_)
+	LibError create(const char* filename, uint hotspotx_, uint hotspoty_)
 	{
 		ht = ogl_tex_load(filename);
 		RETURN_ERR(ht);
@@ -75,7 +75,7 @@ public:
 
 		(void)ogl_tex_set_filter(ht, GL_NEAREST);
 		(void)ogl_tex_upload(ht);
-		return 0;
+		return ERR_OK;
 	}
 
 	void destroy()
@@ -109,10 +109,10 @@ public:
 	{
 		const uint A = 128;	// no cursor is expected to get this big
 		if(w > A || h > A || hotspotx > A || hotspoty > A)
-			return -2;
+			return ERR_1;
 		if(ht < 0)
-			return -3;
-		return 0;
+			return ERR_2;
+		return ERR_OK;
 	}
 };
 
@@ -141,7 +141,7 @@ static void Cursor_dtor(Cursor* c)
 		c->gl_cursor.destroy();
 }
 
-static int Cursor_reload(Cursor* c, const char* name, Handle)
+static LibError Cursor_reload(Cursor* c, const char* name, Handle)
 {
 	char filename[VFS_MAX_PATH];
 
@@ -166,24 +166,24 @@ static int Cursor_reload(Cursor* c, const char* name, Handle)
 	if(!c->sys_cursor)
 		RETURN_ERR(c->gl_cursor.create(filename, hotspotx, hotspoty));
 
-	return 0;
+	return ERR_OK;
 }
 
-static int Cursor_validate(const Cursor* c)
+static LibError Cursor_validate(const Cursor* c)
 {
 	// note: system cursors have no state to speak of, so we don't need to
 	// validate them.
 
 	if(!c->sys_cursor)
 		RETURN_ERR(c->gl_cursor.validate());
-	return 0;
+	return ERR_OK;
 }
 
-static int Cursor_to_string(const Cursor* c, char* buf)
+static LibError Cursor_to_string(const Cursor* c, char* buf)
 {
 	const char* type = c->sys_cursor? "sys" : "gl";
 	snprintf(buf, H_STRING_LEN, "(%s)", type);
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -198,7 +198,7 @@ static Handle cursor_load(const char* name)
 	return h_alloc(H_Cursor, name, 0);
 }
 
-static int cursor_free(Handle& h)
+static LibError cursor_free(Handle& h)
 {
 	return h_free(h, H_Cursor);
 }
@@ -208,13 +208,13 @@ static int cursor_free(Handle& h)
 // (origin is top-left to match the windowing system).
 // uses a hardware mouse cursor where available, otherwise a
 // portable OpenGL implementation.
-int cursor_draw(const char* name, int x, int y)
+LibError cursor_draw(const char* name, int x, int y)
 {
 	// Use 'null' to disable the cursor
 	if(!name)
 	{
 		WARN_ERR(sys_cursor_set(0));
-		return 0;
+		return ERR_OK;
 	}
 
 	Handle hc = cursor_load(name);
@@ -227,5 +227,5 @@ int cursor_draw(const char* name, int x, int y)
 		c->gl_cursor.draw(x, y);
 
 	(void)cursor_free(hc);
-	return 0;
+	return ERR_OK;
 }

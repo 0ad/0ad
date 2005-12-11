@@ -253,7 +253,7 @@ static void s3tc_decompress_level(uint UNUSED(level), uint level_w, uint level_h
 
 // decompress the given image (which is known to be stored as DXTn)
 // effectively in-place. updates Tex fields.
-static int s3tc_decompress(Tex* t)
+static LibError s3tc_decompress(Tex* t)
 {
 	// alloc new image memory
 	// notes:
@@ -279,7 +279,7 @@ static int s3tc_decompress(Tex* t)
 	t->ofs = 0;
 	t->bpp = out_bpp;
 	t->flags &= ~TEX_DXT;
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -388,7 +388,7 @@ static bool is_valid_dxt(uint dxt)
 // pf points to the DDS file's header; all fields must be endian-converted
 // before use.
 // output parameters invalid on failure.
-static int decode_pf(const DDPIXELFORMAT* pf, uint* bpp_, uint* flags_)
+static LibError decode_pf(const DDPIXELFORMAT* pf, uint* bpp_, uint* flags_)
 {
 	uint bpp = 0;
 	uint flags = 0;
@@ -449,7 +449,7 @@ static int decode_pf(const DDPIXELFORMAT* pf, uint* bpp_, uint* flags_)
 
 	*bpp_ = bpp;
 	*flags_ = flags;
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -457,7 +457,7 @@ static int decode_pf(const DDPIXELFORMAT* pf, uint* bpp_, uint* flags_)
 // sd points to the DDS file's header; all fields must be endian-converted
 // before use.
 // output parameters invalid on failure.
-static int decode_sd(const DDSURFACEDESC2* sd, uint* w_, uint* h_,
+static LibError decode_sd(const DDSURFACEDESC2* sd, uint* w_, uint* h_,
 	uint* bpp_, uint* flags_)
 {
 	// check header size
@@ -537,7 +537,7 @@ static int decode_sd(const DDSURFACEDESC2* sd, uint* w_, uint* h_,
 	*h_ = h;
 	*bpp_ = bpp;
 	*flags_ = flags;
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -561,7 +561,7 @@ static size_t dds_hdr_size(const u8* UNUSED(file))
 }
 
 
-static int dds_decode(DynArray* restrict da, Tex* restrict t)
+static LibError dds_decode(DynArray* restrict da, Tex* restrict t)
 {
 	u8* file         = da->base;
 	const DDSURFACEDESC2* sd = (const DDSURFACEDESC2*)(file+4);
@@ -575,19 +575,19 @@ static int dds_decode(DynArray* restrict da, Tex* restrict t)
 	t->h     = h;
 	t->bpp   = bpp;
 	t->flags = flags;
-	return 0;
+	return ERR_OK;
 }
 
 
-static int dds_encode(Tex* restrict UNUSED(t), DynArray* restrict UNUSED(da))
+static LibError dds_encode(Tex* restrict UNUSED(t), DynArray* restrict UNUSED(da))
 {
 	// note: do not return ERR_NOT_IMPLEMENTED et al. because that would
 	// break tex_write (which assumes either this, 0 or errors are returned).
-	return TEX_CODEC_CANNOT_HANDLE;
+	return ERR_TEX_CODEC_CANNOT_HANDLE;
 }
 
 
-static int dds_transform(Tex* t, uint transforms)
+static LibError dds_transform(Tex* t, uint transforms)
 {
 	uint dxt = t->flags & TEX_DXT;
 	debug_assert(is_valid_dxt(dxt));
@@ -597,13 +597,13 @@ static int dds_transform(Tex* t, uint transforms)
 	if(dxt && transform_dxt)
 	{
 		RETURN_ERR(s3tc_decompress(t));
-		return 0;
+		return ERR_OK;
 	}
 	// both are DXT (unsupported; there are no flags we can change while
 	// compressed) or requesting compression (not implemented) or
 	// both not DXT (nothing we can do) - bail.
 	else
-		return TEX_CODEC_CANNOT_HANDLE;
+		return ERR_TEX_CODEC_CANNOT_HANDLE;
 }
 
 

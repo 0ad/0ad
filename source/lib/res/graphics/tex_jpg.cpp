@@ -398,9 +398,9 @@ JpgErrorMgr::JpgErrorMgr(j_common_ptr cinfo)
 //-----------------------------------------------------------------------------
 
 
-static int jpg_transform(Tex* UNUSED(t), uint UNUSED(transforms))
+static LibError jpg_transform(Tex* UNUSED(t), uint UNUSED(transforms))
 {
-	return TEX_CODEC_CANNOT_HANDLE;
+	return ERR_TEX_CODEC_CANNOT_HANDLE;
 }
 
 
@@ -415,7 +415,7 @@ static int jpg_transform(Tex* UNUSED(t), uint UNUSED(transforms))
 // due to less copying.
 
 
-static int jpg_decode_impl(DynArray* da,
+static LibError jpg_decode_impl(DynArray* da,
 	jpeg_decompress_struct* cinfo,
 	Handle& img_hm, RowArray& rows, Tex* t)
 {
@@ -477,7 +477,7 @@ static int jpg_decode_impl(DynArray* da,
 	// mem data source.
 	(void)jpeg_finish_decompress(cinfo);
 
-	int ret = 0;
+	LibError ret = ERR_OK;
 	if(cinfo->err->num_warnings != 0)
 		ret = WARN_TEX_INVALID_DATA;
 
@@ -495,7 +495,7 @@ static int jpg_decode_impl(DynArray* da,
 }
 
 
-static int jpg_encode_impl(Tex* t,
+static LibError jpg_encode_impl(Tex* t,
 	jpeg_compress_struct* cinfo,
 	RowArray& rows, DynArray* da)
 {
@@ -538,7 +538,7 @@ static int jpg_encode_impl(Tex* t,
 
 	jpeg_finish_compress(cinfo);
 
-	int ret = 0;
+	LibError ret = ERR_OK;
 	if(cinfo->err->num_warnings != 0)
 		ret = WARN_TEX_INVALID_DATA;
 
@@ -567,9 +567,9 @@ static size_t jpg_hdr_size(const u8* UNUSED(file))
 }
 
 
-static int jpg_decode(DynArray* restrict da, Tex* restrict t)
+static LibError jpg_decode(DynArray* restrict da, Tex* restrict t)
 {
-	int err;
+	LibError err;
 
 	// freed when ret is reached:
 	// .. contains the JPEG decompression parameters and pointers to
@@ -584,7 +584,7 @@ static int jpg_decode(DynArray* restrict da, Tex* restrict t)
 	JpgErrorMgr jerr((j_common_ptr)&cinfo);
 	if(setjmp(jerr.call_site))
 	{
-		err = -1;
+		err = ERR_FAIL;
 		goto fail;
 	}
 
@@ -606,9 +606,9 @@ fail:
 
 
 // limitation: palette images aren't supported
-static int jpg_encode(Tex* restrict t, DynArray* restrict da)
+static LibError jpg_encode(Tex* restrict t, DynArray* restrict da)
 {
-	int err;
+	LibError err;
 
 	// freed when ret is reached:
 	// .. contains the JPEG compression parameters and pointers to
@@ -620,7 +620,7 @@ static int jpg_encode(Tex* restrict t, DynArray* restrict da)
 	JpgErrorMgr jerr((j_common_ptr)&cinfo);
 	if(setjmp(jerr.call_site))
 	{
-		err = -1;
+		err = ERR_FAIL;
 		goto fail;
 	}
 

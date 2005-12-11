@@ -114,7 +114,7 @@ static const uint MAX_DTORS = 4;
 static struct
 {
 	pthread_key_t key;
-	void(*dtor)(void*);
+	void (*dtor)(void*);
 }
 dtors[MAX_DTORS];
 
@@ -203,7 +203,7 @@ again:
 	for(uint i = 0; i < MAX_DTORS; i++)
 	{
 		// is slot #i in use?
-		void(*dtor)(void*) = dtors[i].dtor;
+		void (*dtor)(void*) = dtors[i].dtor;
 		if(!dtor)
 			continue;
 
@@ -242,7 +242,7 @@ again:
 // c) we therefore use static data protected by a critical section.
 static struct FuncAndArg
 {
-	void*(*func)(void*);
+	void* (*func)(void*);
 	void* arg;
 }
 func_and_arg;
@@ -251,7 +251,7 @@ func_and_arg;
 // bridge calling conventions required by _beginthreadex and POSIX.
 static unsigned __stdcall thread_start(void* UNUSED(param))
 {
-	void*(*func)(void*) = func_and_arg.func;
+	void* (*func)(void*) = func_and_arg.func;
 	void* arg           = func_and_arg.arg;
 	win_unlock(WPTHREAD_CS);
 
@@ -270,7 +270,7 @@ static unsigned __stdcall thread_start(void* UNUSED(param))
 }
 
 
-int pthread_create(pthread_t* thread_id, const void* UNUSED(attr), void*(*func)(void*), void* arg)
+int pthread_create(pthread_t* thread_id, const void* UNUSED(attr), void* (*func)(void*), void* arg)
 {
 	win_lock(WPTHREAD_CS);
 	func_and_arg.func = func;

@@ -109,7 +109,7 @@ struct LFList
 
 // make ready a previously unused(!) list object. if a negative error
 // code (currently only ERR_NO_MEM) is returned, the list can't be used.
-extern int lfl_init(LFList* list);
+extern LibError lfl_init(LFList* list);
 
 // call when list is no longer needed; should no longer hold any references.
 extern void lfl_free(LFList* list);
@@ -125,7 +125,7 @@ extern void* lfl_find(LFList* list, void* key);
 extern void* lfl_insert(LFList* list, void* key, size_t additional_bytes, int* was_inserted);
 
 // remove from list; return -1 if not found, or 0 on success.
-extern int lfl_erase(LFList* list, void* key);
+extern LibError lfl_erase(LFList* list, void* key);
 
 
 //
@@ -141,7 +141,7 @@ struct LFHash
 // make ready a previously unused(!) hash object. table size will be
 // <num_entries>; this cannot currently be expanded. if a negative error
 // code (currently only ERR_NO_MEM) is returned, the hash can't be used.
-extern int lfh_init(LFHash* hash, size_t num_entries);
+extern LibError lfh_init(LFHash* hash, size_t num_entries);
 
 // call when hash is no longer needed; should no longer hold any references.
 extern void lfh_free(LFHash* hash);
@@ -156,7 +156,7 @@ extern void* lfh_find(LFHash* hash, uintptr_t key);
 extern void* lfh_insert(LFHash* hash, uintptr_t key, size_t additional_bytes, int* was_inserted);
 
 // remove from hash; return -1 if not found, or 0 on success.
-extern int lfh_erase(LFHash* hash, uintptr_t key);
+extern LibError lfh_erase(LFHash* hash, uintptr_t key);
 
 
 #endif	// #ifndef LOCKFREE_H__

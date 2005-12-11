@@ -214,7 +214,7 @@ extern Handle ogl_tex_wrap(Tex* t, const char* fn = 0, uint flags = 0);
 
 // free all resources associated with the texture and make further
 // use of it impossible. (subject to refcount)
-extern int ogl_tex_free(Handle& ht);
+extern LibError ogl_tex_free(Handle& ht);
 
 
 //
@@ -228,13 +228,13 @@ extern int ogl_tex_free(Handle& ht);
 // must be called before uploading (raises a warning if called afterwards).
 // filter is as defined by OpenGL; it is applied for both minification and
 // magnification (for rationale and details, see OglTexState)
-extern int ogl_tex_set_filter(Handle ht, GLint filter);
+extern LibError ogl_tex_set_filter(Handle ht, GLint filter);
 
 // override default wrap mode (GL_REPEAT) for this texture.
 // must be called before uploading (raises a warning if called afterwards).
 // wrap is as defined by OpenGL and applies to both S and T coordinates
 // (rationale: see OglTexState).
-extern int ogl_tex_set_wrap(Handle ht, GLint wrap);
+extern LibError ogl_tex_set_wrap(Handle ht, GLint wrap);
 
 
 //
@@ -266,7 +266,7 @@ extern void ogl_tex_override(OglTexOverrides what, OglTexAllow allow);
 // side effects:
 // - enables texturing on TMU 0 and binds the texture to it;
 // - frees the texel data! see ogl_tex_get_data.
-extern int ogl_tex_upload(const Handle ht, GLenum fmt_ovr = 0, uint q_flags_ovr = 0, GLint int_fmt_ovr = 0);
+extern LibError ogl_tex_upload(const Handle ht, GLenum fmt_ovr = 0, uint q_flags_ovr = 0, GLint int_fmt_ovr = 0);
 
 
 //
@@ -275,12 +275,12 @@ extern int ogl_tex_upload(const Handle ht, GLenum fmt_ovr = 0, uint q_flags_ovr 
 
 // retrieve texture dimensions and bits per pixel.
 // all params are optional and filled if non-NULL.
-extern int ogl_tex_get_size(Handle ht, uint* w, uint* h, uint* bpp);
+extern LibError ogl_tex_get_size(Handle ht, uint* w, uint* h, uint* bpp);
 
 // retrieve Tex.flags and the corresponding OpenGL format.
 // the latter is determined during ogl_tex_upload and is 0 before that.
 // all params are optional and filled if non-NULL.
-extern int ogl_tex_get_format(Handle ht, uint* flags, GLenum* fmt);
+extern LibError ogl_tex_get_format(Handle ht, uint* flags, GLenum* fmt);
 
 // retrieve pointer to texel data.
 //
@@ -289,7 +289,7 @@ extern int ogl_tex_get_format(Handle ht, uint* flags, GLenum* fmt);
 // the function doesn't fail (negative return value) by design.
 // if you still need to get at the data, add a reference before
 // uploading it or read directly from OpenGL (discouraged).
-extern int ogl_tex_get_data(Handle ht, void** p);
+extern LibError ogl_tex_get_data(Handle ht, void** p);
 
 
 //
@@ -307,14 +307,14 @@ extern int ogl_tex_get_data(Handle ht, void** p);
 // - assumes multitexturing is available.
 // - not necessary before calling ogl_tex_upload!
 // - on error, the unit's texture state is unchanged; see implementation.
-extern int ogl_tex_bind(Handle ht, uint unit = 0);
+extern LibError ogl_tex_bind(Handle ht, uint unit = 0);
 
 // apply the specified transforms (as in tex_transform) to the image.
 // must be called before uploading (raises a warning if called afterwards).
-extern int ogl_tex_transform(Handle ht, uint flags);
+extern LibError ogl_tex_transform(Handle ht, uint flags);
 
 // change the pixel format to that specified by <new_flags>.
 // (note: this is equivalent to ogl_tex_transform(ht, ht_flags^new_flags).
-extern int ogl_tex_transform_to(Handle ht, uint new_flags);
+extern LibError ogl_tex_transform_to(Handle ht, uint new_flags);
 
 #endif	// #ifndef OGL_TEX_H__

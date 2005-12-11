@@ -46,7 +46,7 @@ static int dll_refs;
 
 // called from delay loader the first time a wsock function is called
 // (shortly before the actual wsock function is called).
-static int wsock_init()
+static LibError wsock_init()
 {
 	hWs2_32Dll = LoadLibrary("ws2_32.dll");
 
@@ -58,14 +58,14 @@ static int wsock_init()
 			debug_warn("WSAStartup failed");
 	}
 
-	return 0;
+	return ERR_OK;
 }
 
 WDLL_LOAD_NOTIFY("ws2_32", wsock_init);
 
 
 
-static int wsock_shutdown()
+static LibError wsock_shutdown()
 {
 	// call WSACleanup if DLL was used
 	// (this way is easier to understand than ONCE in loop below)
@@ -77,7 +77,7 @@ static int wsock_shutdown()
 	while(dll_refs-- > 0)
 		FreeLibrary(hWs2_32Dll);
 
-	return 0;
+	return ERR_OK;
 }
 
 

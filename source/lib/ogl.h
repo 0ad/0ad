@@ -102,7 +102,7 @@ extern int ogl_max_tex_units;				// limit on GL_TEXTUREn
 // 
 // fails if OpenGL not ready for use.
 // gfx_card and gfx_drv_ver are unchanged on failure.
-extern int ogl_get_gfx_info(void);
+extern LibError ogl_get_gfx_info(void);
 
 
 //

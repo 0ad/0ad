@@ -332,7 +332,7 @@ int ogl_max_tex_units = -1;				// limit on GL_TEXTUREn
 
 
 // gfx_card and gfx_drv_ver are unchanged on failure.
-int ogl_get_gfx_info()
+LibError ogl_get_gfx_info()
 {
 	const char* vendor   = (const char*)glGetString(GL_VENDOR);
 	const char* renderer = (const char*)glGetString(GL_RENDERER);
@@ -340,14 +340,14 @@ int ogl_get_gfx_info()
 	// can fail if OpenGL not yet initialized,
 	// or if called between glBegin and glEnd.
 	if(!vendor || !renderer || !version)
-		return -1;
+		return ERR_AGAIN;
 
 	snprintf(gfx_card, ARRAY_SIZE(gfx_card), "%s %s", vendor, renderer);
 
 	// add "OpenGL" to differentiate this from the real driver version
 	// (returned by platform-specific detect routines).
 	snprintf(gfx_drv_ver, ARRAY_SIZE(gfx_drv_ver), "OpenGL %s", version);
-	return 0;
+	return ERR_OK;
 }
 
 

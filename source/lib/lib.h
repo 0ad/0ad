@@ -59,8 +59,6 @@ scope
 #include "config.h"
 #include "lib/types.h"
 
-#include "lib/lib_errors.h"
-
 #include "sysdep/sysdep.h"
 #include "sysdep/cpu.h"	// CAS
 
@@ -80,6 +78,9 @@ scope
 //   VC7 but isn't guaranteed to be free of overhead. we will just
 //   squelch the warning (unfortunately non-portable).
 #define STMT(STMT_code__) do { STMT_code__; } while(false)
+
+// must come after definition of STMT
+#include "lib/lib_errors.h"
 
 // execute the code passed as a parameter only the first time this is
 // reached.
@@ -107,110 +108,6 @@ STMT(\
 	else\
 		ONCE_code__;\
 )
-
-
-
-// be careful here. the given expression (e.g. variable or
-// function return value) may be a Handle (=i64), so it needs to be
-// stored and compared as such. (very large but legitimate Handle values
-// casted to int can end up negative)
-// all functions using this return int (instead of i64) for efficiency and
-// simplicity. if the input was negative, it is an error code and is
-// therefore known to fit; we still mask with UINT_MAX to avoid
-// VC cast-to-smaller-type warnings.
-
-// if expression evaluates to a negative i64, warn user and return the number.
-#if OS_WIN
-#define CHECK_ERR(expression)\
-STMT(\
-	i64 err__ = (i64)(expression);\
-	if(err__ < 0)\
-	{\
-		DEBUG_WARN_ERR(err__);\
-		return (int)(err__ & UINT_MAX);\
-	}\
-)
-#else
-#define CHECK_ERR(expression)\
-STMT(\
-	i64 err__ = (i64)(expression);\
-	if(err__ < 0)\
-	{\
-		DEBUG_WARN_ERR(err__);\
-		return (int)(err__ & UINT_MAX);\
-	}\
-)
-#endif
-
-// just pass on errors without any kind of annoying warning
-// (useful for functions that can legitimately fail, e.g. vfs_exists).
-#define RETURN_ERR(expression)\
-STMT(\
-	i64 err__ = (i64)(expression);\
-	if(err__ < 0)\
-		return (int)(err__ & UINT_MAX);\
-)
-
-// if expression evaluates to a negative i64, warn user and throw the number.
-#define THROW_ERR(expression)\
-STMT(\
-	i64 err__ = (i64)(expression);\
-	if(err__ < 0)\
-	{\
-		DEBUG_WARN_ERR(err__);\
-		throw (int)(err__ & UINT_MAX);\
-	}\
-)
-
-// if expression evaluates to a negative i64, warn user and just return
-// (useful for void functions that must bail and complain)
-#define WARN_ERR_RETURN(expression)\
-STMT(\
-	i64 err__ = (i64)(expression);\
-	if(err__ < 0)\
-	{\
-		DEBUG_WARN_ERR(err__);\
-		return;\
-	}\
-)
-
-// if expression evaluates to a negative i64, warn user
-// (this is similar to debug_assert but also works in release mode)
-#define WARN_ERR(expression)\
-STMT(\
-	i64 err__ = (i64)(expression);\
-	if(err__ < 0)\
-		DEBUG_WARN_ERR(err__);\
-)
-
-
-
-// if ok evaluates to false or FALSE, warn user and return -1.
-#define WARN_RETURN_IF_FALSE(ok)\
-STMT(\
-	if(!(ok))\
-	{\
-		debug_warn("FYI: WARN_RETURN_IF_FALSE reports that a function failed."\
-		           "feel free to ignore or suppress this warning.");\
-		return -1;\
-	}\
-)
-
-// if ok evaluates to false or FALSE, return -1.
-#define RETURN_IF_FALSE(ok)\
-STMT(\
-	if(!(ok))\
-		return -1;\
-)
-
-// if ok evaluates to false or FALSE, warn user.
-#define WARN_IF_FALSE(ok)\
-STMT(\
-	if(!(ok))\
-		debug_warn("FYI: WARN_IF_FALSE reports that a function failed."\
-		           "feel free to ignore or suppress this warning.");\
-)
-
 
 
 // useful because VC6 may return 0 on failure, instead of throwing.

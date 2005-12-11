@@ -26,6 +26,44 @@
 char win_sys_dir[MAX_PATH+1];
 char win_exe_dir[MAX_PATH+1];
 
+
+// only call after a Win32 function indicates failure.
+static LibError LibError_from_GLE()
+{
+	switch(GetLastError())
+	{
+	case ERROR_OUTOFMEMORY:
+		return ERR_NO_MEM;
+
+	case ERROR_INVALID_PARAMETER:
+		return ERR_INVALID_PARAM;
+	case ERROR_INSUFFICIENT_BUFFER:
+		return ERR_BUF_SIZE;
+
+	case ERROR_ACCESS_DENIED:
+		return ERR_FILE_ACCESS;
+	case ERROR_FILE_NOT_FOUND:
+		return ERR_FILE_NOT_FOUND;
+	case ERROR_PATH_NOT_FOUND:
+		return ERR_PATH_NOT_FOUND;
+
+	default:
+		return ERR_FAIL;
+	}
+	UNREACHABLE;
+}
+
+
+// return the LibError equivalent of GetLastError(), or ERR_FAIL if
+// there's no equal.
+// you should SetLastError(0) before calling whatever will set ret
+// to make sure we do not return any stale errors.
+LibError LibError_from_win32(DWORD ret)
+{
+	return (ret != FALSE)? ERR_OK : LibError_from_GLE();
+}
+
+
 //-----------------------------------------------------------------------------
 
 //
@@ -86,7 +124,7 @@ void win_free(void* p)
 // be placed beyond the table start/end by the linker, since the linker's
 // ordering WRT other source files' data is undefined within a segment.
 
-typedef int(*_PIFV)(void);
+typedef LibError (*_PIFV)(void);
 
 // pointers to start and end of function tables.
 // note: COFF tosses out empty segments, so we have to put in one value

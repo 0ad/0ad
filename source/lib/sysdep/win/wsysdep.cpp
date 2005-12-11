@@ -111,13 +111,13 @@ static HWND get_app_main_window()
 static POINTS dlg_client_origin;
 static POINTS dlg_prev_client_size;
 
-const int ANCHOR_LEFT   = 0x01;
-const int ANCHOR_RIGHT  = 0x02;
-const int ANCHOR_TOP    = 0x04;
-const int ANCHOR_BOTTOM = 0x08;
-const int ANCHOR_ALL    = 0x0f;
+static const uint ANCHOR_LEFT   = 0x01;
+static const uint ANCHOR_RIGHT  = 0x02;
+static const uint ANCHOR_TOP    = 0x04;
+static const uint ANCHOR_BOTTOM = 0x08;
+static const uint ANCHOR_ALL    = 0x0f;
 
-static void dlg_resize_control(HWND hDlg, int dlg_item, int dx,int dy, int anchors)
+static void dlg_resize_control(HWND hDlg, int dlg_item, int dx,int dy, uint anchors)
 {
 	HWND hControl = GetDlgItem(hDlg, dlg_item);
 	RECT r;
@@ -189,7 +189,7 @@ struct DialogParams
 };
 
 
-static int CALLBACK error_dialog_proc(HWND hDlg, unsigned int msg, WPARAM wParam, LPARAM lParam)
+static INT_PTR CALLBACK error_dialog_proc(HWND hDlg, unsigned int msg, WPARAM wParam, LPARAM lParam)
 {
 	switch(msg)
 	{
@@ -345,24 +345,25 @@ ErrorReaction sys_display_error(const wchar_t* text, int flags)
 //-----------------------------------------------------------------------------
 
 // "copy" text into the clipboard. replaces previous contents.
-int sys_clipboard_set(const wchar_t* text)
+LibError sys_clipboard_set(const wchar_t* text)
 {
-	int err = -1;
-
 	const HWND new_owner = 0;
 	// MSDN: passing 0 requests the current task be granted ownership;
 	// there's no need to pass our window handle.
 	if(!OpenClipboard(new_owner))
-		return err;
+		return ERR_FAIL;
 	EmptyClipboard();
 
-	err = 0;
+	LibError err = ERR_FAIL;
 
+	{
 	const size_t len = wcslen(text);
-
 	HGLOBAL hMem = GlobalAlloc(GMEM_MOVEABLE, (len+1) * sizeof(wchar_t));
 	if(!hMem)
+	{
+		err = ERR_NO_MEM;
 		goto fail;
+	}
 
 	wchar_t* copy = (wchar_t*)GlobalLock(hMem);
 	if(copy)
@@ -372,7 +373,8 @@ int sys_clipboard_set(const wchar_t* text)
 		GlobalUnlock(hMem);
 
 		if(SetClipboardData(CF_UNICODETEXT, hMem) != 0)
-			err = 0;	// success
+			err = ERR_OK;
+	}
 	}
 
 fail:
@@ -422,10 +424,10 @@ wchar_t* sys_clipboard_get()
 
 // frees memory used by <copy>, which must have been returned by
 // sys_clipboard_get. see note above.
-int sys_clipboard_free(wchar_t* copy)
+LibError sys_clipboard_free(wchar_t* copy)
 {
 	free(copy);
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -464,7 +466,7 @@ static HCURSOR HCURSOR_from_ptr(void* p)
 // return: negative error code, or 0 on success. cursor is filled with
 //   a pointer and undefined on failure. it must be sys_cursor_free-ed
 //   when no longer needed.
-int sys_cursor_create(uint w, uint h, void* bgra_img,
+LibError sys_cursor_create(uint w, uint h, void* bgra_img,
 	uint hx, uint hy, void** cursor)
 {
 	// MSDN says selecting this HBITMAP into a DC is slower since we use
@@ -492,17 +494,17 @@ int sys_cursor_create(uint w, uint h, void* bgra_img,
 	DeleteObject(hbmColour);
 
 	if(!hIcon)	// not INVALID_HANDLE_VALUE
-		return -1;
+		return ERR_FAIL;
 
 	*cursor = ptr_from_HICON(hIcon);
-	return 0;
+	return ERR_OK;
 }
 
 
 
 // replaces the current system cursor with the one indicated. need only be
 // called once per cursor; pass 0 to restore the default.
-int sys_cursor_set(void* cursor)
+LibError sys_cursor_set(void* cursor)
 {
 	// restore default cursor.
 	if(!cursor)
@@ -511,17 +513,17 @@ int sys_cursor_set(void* cursor)
 	(void)SetCursor(HCURSOR_from_ptr(cursor));
 	// return value (previous cursor) is useless.
 
-	return 0;
+	return ERR_OK;
 }
 
 
 // destroys the indicated cursor and frees its resources. if it is
 // currently the system cursor, the default cursor is restored first.
-int sys_cursor_free(void* cursor)
+LibError sys_cursor_free(void* cursor)
 {
 	// bail now to prevent potential confusion below; there's nothing to do.
 	if(!cursor)
-		return 0;
+		return ERR_OK;
 
 	// if the cursor being freed is active, restore the default arrow
 	// (just for safety).
@@ -529,7 +531,7 @@ int sys_cursor_free(void* cursor)
 		WARN_ERR(sys_cursor_set(0));
 
 	BOOL ok = DestroyIcon(HICON_from_ptr(cursor));
-	return ok? 0 : -1;
+	return LibError_from_win32(ok);
 }
 
 
@@ -540,21 +542,21 @@ int sys_cursor_free(void* cursor)
 // OS-specific backend for error_description_r.
 // NB: it is expected to be rare that OS return/error codes are actually
 // seen by user code, but we still translate them for completeness.
-int sys_error_description_r(int err, char* buf, size_t max_chars)
+LibError sys_error_description_r(int err, char* buf, size_t max_chars)
 {
 	// not in our range (Win32 error numbers are positive)
 	if(err < 0)
-		return -1;
+		return ERR_FAIL;
 
 	const LPCVOID source = 0;	// ignored (we're not using FROM_HMODULE etc.)
 	const DWORD lang_id = 0;	// look for neutral, then current locale
 	va_list* args = 0;			// we don't care about "inserts"
-	DWORD ret = FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, source, (DWORD)err,
+	DWORD chars_output = FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, source, (DWORD)err,
 		lang_id, buf, (DWORD)max_chars, args);
-	if(!ret)
-		return -1;
-	debug_assert(ret < max_chars);	// ret = #chars output
-	return 0;
+	if(!chars_output)
+		return ERR_FAIL;
+	debug_assert(chars_output < max_chars);
+	return ERR_OK;
 }
 
 
@@ -584,10 +586,10 @@ wchar_t* sys_get_module_filename(void* addr, wchar_t* path)
 // store full path to the current executable.
 // returns 0 or a negative error code.
 // useful for determining installation directory, e.g. for VFS.
-inline int sys_get_executable_name(char* n_path, size_t buf_size)
+inline LibError sys_get_executable_name(char* n_path, size_t buf_size)
 {
 	DWORD nbytes = GetModuleFileName(0, n_path, (DWORD)buf_size);
-	return nbytes? 0 : -1;
+	return nbytes? ERR_OK : ERR_FAIL;
 }
 
 
@@ -609,7 +611,7 @@ static int CALLBACK browse_cb(HWND hWnd, unsigned int msg, LPARAM UNUSED(lParam)
 // stores its full path in the given buffer, which must hold at least
 // PATH_MAX chars.
 // returns 0 on success or a negative error code.
-int sys_pick_directory(char* path, size_t buf_size)
+LibError sys_pick_directory(char* path, size_t buf_size)
 {
 	// bring up dialog; set starting directory to current working dir.
 	WARN_IF_FALSE(GetCurrentDirectory((DWORD)buf_size, path));
@@ -631,7 +633,7 @@ int sys_pick_directory(char* path, size_t buf_size)
 	p_malloc->Free(pidl);
 	p_malloc->Release();
 
-	return ok? 0 : -1;
+	return LibError_from_win32(ok);
 }
 
 
@@ -643,16 +645,16 @@ int sys_pick_directory(char* path, size_t buf_size)
 // return 0 on success or a negative error code on failure
 // (e.g. if OS is preventing us from running on some CPUs).
 // called from ia32.cpp get_cpu_count
-int sys_on_each_cpu(void(*cb)())
+LibError sys_on_each_cpu(void (*cb)())
 {
 	const HANDLE hProcess = GetCurrentProcess();
 	DWORD process_affinity, system_affinity;
 	if(!GetProcessAffinityMask(hProcess, &process_affinity, &system_affinity))
-		return -1;
+		return ERR_FAIL;
 	// our affinity != system affinity: OS is limiting the CPUs that
 	// this process can run on. fail (cannot call back for each CPU).
 	if(process_affinity != system_affinity)
-		return -1;
+		return ERR_FAIL;
 
 	for(DWORD cpu_bit = 1; cpu_bit != 0 && cpu_bit <= process_affinity; cpu_bit *= 2)
 	{
@@ -675,5 +677,5 @@ int sys_on_each_cpu(void(*cb)())
 	// restore to original value
 	SetProcessAffinityMask(hProcess, process_affinity);
 
-	return 0;
+	return ERR_OK;
 }
