@@ -430,6 +430,24 @@
 			<Position x="55.6155" y="59.7909" z="22.6904" />
 			<Orientation angle="2.5462" />
 		</Entity>
+		<Entity>
+			<Template>hele_ijv_b</Template>
+			<Player>1</Player>
+			<Position x="54.089" y="59.225" z="18.8644" />
+			<Orientation angle="-3.02258" />
+		</Entity>
+		<Entity>
+			<Template>hele_ijv_a</Template>
+			<Player>1</Player>
+			<Position x="50.4727" y="58.7198" z="24.4051" />
+			<Orientation angle="2.62637" />
+		</Entity>
 	</Entities>
-	<Nonentities />
+	<Nonentities>
+		<Nonentity>
+			<Actor>units/hellenes/infantry_javelinist_a.xml</Actor>
+			<Position x="6.04172" y="55.2914" z="40.0378" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+	</Nonentities>
 </Scenario>
