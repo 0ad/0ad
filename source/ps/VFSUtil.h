@@ -29,7 +29,7 @@ enum EnumDirEntsFlags
 // call <cb> for each entry matching <user_filter> (see vfs_next_dirent) in
 // directory <path>; if flags & RECURSIVE, entries in subdirectories are
 // also returned.
-extern int EnumDirEnts(const CStr path, int flags, const char* filter,
+extern LibError EnumDirEnts(const CStr path, int flags, const char* filter,
 	EnumDirEntsCB cb, void* context);
 
 };	// namespace VFSUtil

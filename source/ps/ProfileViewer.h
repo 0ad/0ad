@@ -70,7 +70,7 @@ public:
 	 *
 	 * @return Number of rows in this table.
 	 */
-	virtual uint GetNumberRows() = 0;
+	virtual size_t GetNumberRows() = 0;
 	
 	/**
 	 * GetColumnDescriptions
@@ -87,7 +87,7 @@ public:
 	 * 
 	 * @return Text to be displayed in the given cell.
 	 */
-	virtual CStr GetCellText(uint row, uint col) = 0;
+	virtual CStr GetCellText(size_t row, size_t col) = 0;
 
 	/**
 	 * GetChild: Return a row's child table if the child is expandable.
@@ -97,7 +97,7 @@ public:
 	 * @return Pointer to the child table if the given row has one.
 	 * Otherwise, return 0.
 	 */
-	virtual AbstractProfileTable* GetChild(uint row) = 0;
+	virtual AbstractProfileTable* GetChild(size_t row) = 0;
 	
 	/**
 	 * IsHighlightRow
@@ -106,7 +106,7 @@ public:
 	 *
 	 * @return true if the row should be highlighted in a special color.
 	 */
-	virtual bool IsHighlightRow(uint row) { UNUSED2(row); return false; }
+	virtual bool IsHighlightRow(size_t row) { UNUSED2(row); return false; }
 };
 
 

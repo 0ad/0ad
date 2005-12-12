@@ -522,8 +522,7 @@ static void InitVfs(const char* argv0)
 	// rationale for data/ being root: untrusted scripts must not be
 	// allowed to overwrite critical game (or worse, OS) files.
 	// the VFS prevents any accesses to files above this directory.
-	int err = file_set_root_dir(argv0, "../data");
-	WARN_ERR(err);
+	WARN_ERR(file_set_root_dir(argv0, "../data"));
 
 	vfs_init();
 	vfs_mount("", "mods/official", VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES|VFS_MOUNT_WATCH);

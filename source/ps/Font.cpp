@@ -64,7 +64,7 @@ int CFont::GetHeight()
 	return unifont_height(h);
 }
 
-int CFont::GetCharacterWidth(const wchar_t& c)
+int CFont::GetCharacterWidth(wchar_t c)
 {
 	return unifont_character_width(h, c);
 }

@@ -47,7 +47,7 @@ bool VFSUtil::FindFiles (const CStr& dirname, const char* filter, FileList& file
 // also returned.
 //
 // note: EnumDirEntsCB path and ent are only valid during the callback.
-int VFSUtil::EnumDirEnts(const CStr start_path, int flags, const char* user_filter,
+LibError VFSUtil::EnumDirEnts(const CStr start_path, int flags, const char* user_filter,
 	EnumDirEntsCB cb, void* context)
 {
 	debug_assert((flags & ~(RECURSIVE)) == 0);
@@ -119,5 +119,5 @@ int VFSUtil::EnumDirEnts(const CStr start_path, int flags, const char* user_filt
 	}
 	while(!dir_queue.empty());
 
-	return 0;
+	return ERR_OK;
 }

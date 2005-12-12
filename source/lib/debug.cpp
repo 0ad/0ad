@@ -30,6 +30,7 @@
 #include "self_test.h"
 #include "app_hooks.h"
 
+
 // needed when writing crashlog
 static const size_t LOG_CHARS = 16384;
 wchar_t debug_log[LOG_CHARS];
@@ -436,14 +437,26 @@ const char* debug_get_symbol_string(void* symbol, const char* name, const char* 
 }
 
 
-
-
-
-
+//-----------------------------------------------------------------------------
+// output
 //-----------------------------------------------------------------------------
 
-ErrorReaction display_error(const wchar_t* description, int flags,
-	uint skip, void* context, const char* file, int line)
+// translates and displays the given strings in a dialog.
+// this is typically only used when debug_display_error has failed or
+// is unavailable because that function is much more capable.
+// implemented via sys_display_msgw; see documentation there.
+void debug_display_msgw(const wchar_t* caption, const wchar_t* msg)
+{
+	sys_display_msgw(ah_translate(caption), ah_translate(msg));
+}
+
+
+// display the error dialog. shows <description> along with a stack trace.
+// context and skip are as with debug_dump_stack.
+// flags: see DisplayErrorFlags. file and line indicate where the error
+// occurred and are typically passed as __FILE__, __LINE__.
+ErrorReaction debug_display_error(const wchar_t* description,
+	int flags, uint skip, void* context, const char* file, int line)
 {
 	if(!file || file[0] == '\0')
 		file = "unknown";
@@ -495,7 +508,7 @@ ErrorReaction display_error(const wchar_t* description, int flags,
 	ErrorReaction er = sys_display_error(text, flags);
 
 	// note: debug_break-ing here to make sure the app doesn't continue
-	// running is no longer necessary. display_error now determines our
+	// running is no longer necessary. debug_display_error now determines our
 	// window handle and is modal.
 
 	// handle "break" request unless the caller wants to (doing so here
@@ -528,8 +541,8 @@ ErrorReaction display_error(const wchar_t* description, int flags,
 
 // notify the user that an assertion failed; displays a stack trace with
 // local variables.
-ErrorReaction debug_assert_failed(const char* file, int line,
-	const char* func, const char* expr)
+ErrorReaction debug_assert_failed(const char* expr,
+	const char* file, int line, const char* func)
 {
 	// for edge cases in some functions, warnings (=asserts) are raised in
 	// addition to returning an error code. self-tests deliberately trigger
@@ -548,12 +561,12 @@ ErrorReaction debug_assert_failed(const char* file, int line,
 	uint skip = 1; void* context = 0;
 	wchar_t buf[400];
 	swprintf(buf, ARRAY_SIZE(buf), L"Assertion failed at %hs:%d (%hs): \"%hs\"", base_name, line, func, expr);
-	return display_error(buf, DE_ALLOW_SUPPRESS|DE_MANUAL_BREAK, skip, context, base_name, line);
+	return debug_display_error(buf, DE_ALLOW_SUPPRESS|DE_MANUAL_BREAK, skip,context, base_name,line);
 }
 
 
-ErrorReaction debug_warn_err(int err, const char* file, int line,
-	const char* func)
+ErrorReaction debug_warn_err(LibError err,
+	const char* file, int line, const char* func)
 {
 	// for edge cases in some functions, warnings (=asserts) are raised in
 	// addition to returning an error code. self-tests deliberately trigger
@@ -573,7 +586,7 @@ ErrorReaction debug_warn_err(int err, const char* file, int line,
 	wchar_t buf[400];
 	char err_buf[200]; error_description_r(err, err_buf, ARRAY_SIZE(err_buf));
 	swprintf(buf, ARRAY_SIZE(buf), L"Function call failed at %hs:%d (%hs): return value was %d (%hs)", base_name, line, func, err, err_buf);
-	return display_error(buf, DE_ALLOW_SUPPRESS|DE_MANUAL_BREAK, skip, context, base_name, line);
+	return debug_display_error(buf, DE_ALLOW_SUPPRESS|DE_MANUAL_BREAK, skip,context, base_name,line);
 }
 
 

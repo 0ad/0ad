@@ -85,9 +85,9 @@ void CProfileViewerInternals::NavigateTree(int id)
 	else
 	{
 		AbstractProfileTable* table = path[path.size() - 1];
-		int numrows = table->GetNumberRows();
+		size_t numrows = table->GetNumberRows();
 		
-		for(int row = 0; row < numrows; ++row)
+		for(size_t row = 0; row < numrows; ++row)
 		{
 			AbstractProfileTable* child = table->GetChild(row);
 			
@@ -132,17 +132,17 @@ void CProfileViewer::RenderProfile()
 
 	AbstractProfileTable* table = m->path[m->path.size() - 1];
 	const std::vector<ProfileColumn>& columns = table->GetColumns();
-	uint numrows = table->GetNumberRows();
+	size_t numrows = table->GetNumberRows();
 	
 	// Render background
-	int estimate_height;
-	int estimate_width;
+	uint estimate_height;
+	uint estimate_width;
 	
 	estimate_width = 50;
 	for(uint i = 0; i < columns.size(); ++i)
 		estimate_width += columns[i].width;
 	
-	estimate_height = 3 + numrows;
+	estimate_height = 3 + (uint)numrows;
 	if (m->path.size() > 1)
 		estimate_height += 2;
 	estimate_height = 20*estimate_height;

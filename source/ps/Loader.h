@@ -87,7 +87,7 @@ registering member functions, which would otherwise be messy.
 // this routine is provided so we can prevent 2 simultaneous load operations,
 // which is bogus. that can happen by clicking the load button quickly,
 // or issuing via console while already loading.
-extern int LDR_BeginRegistering();
+extern LibError LDR_BeginRegistering();
 
 
 // callback function of a task; performs the actual work.
@@ -111,22 +111,20 @@ typedef int (*LoadFunc)(void* param, double time_left);
 // <estimated_duration_ms>: used to calculate progress, and when checking
 //   whether there is enough of the time budget left to process this task
 //   (reduces timeslice overruns, making the main loop more responsive).
-extern int LDR_Register(LoadFunc func, void* param, const wchar_t* description,
+extern LibError LDR_Register(LoadFunc func, void* param, const wchar_t* description,
 	int estimated_duration_ms);
 
 
 // call when finished registering tasks; subsequent calls to
 // LDR_ProgressiveLoad will then work off the queued entries.
-extern int LDR_EndRegistering();
+extern LibError LDR_EndRegistering();
 
 
 // immediately cancel this load; no further tasks will be processed.
 // used to abort loading upon user request or failure.
 // note: no special notification will be returned by LDR_ProgressiveLoad.
-extern int LDR_Cancel();
+extern LibError LDR_Cancel();
 
-
-const int LDR_ALL_FINISHED = 1;
 
 // process as many of the queued tasks as possible within <time_budget> [s].
 // if a task is lengthy, the budget may be exceeded. call from the main loop.
@@ -135,7 +133,7 @@ const int LDR_ALL_FINISHED = 1;
 // ("" if finished) and the current progress value.
 //
 // return semantics:
-// - if the final load task just completed, return LDR_ALL_FINISHED.
+// - if the final load task just completed, return INFO_ALL_COMPLETE.
 // - if loading is in progress but didn't finish, return ERR_TIMED_OUT.
 // - if not currently loading (no-op), return 0.
 // - any other value indicates a failure; the request has been de-queued.
@@ -145,12 +143,12 @@ const int LDR_ALL_FINISHED = 1;
 // persistent, we can't just store a pointer. returning a pointer to
 // our copy of the description doesn't work either, since it's freed when
 // the request is de-queued. that leaves writing into caller's buffer.
-extern int LDR_ProgressiveLoad(double time_budget, wchar_t* next_description,
+extern LibError LDR_ProgressiveLoad(double time_budget, wchar_t* next_description,
 	size_t max_chars, int* progress_percent);
 
 // immediately process all queued load requests.
 // returns 0 on success or a negative error code.
-extern int LDR_NonprogressiveLoad();
+extern LibError LDR_NonprogressiveLoad();
 
 
 // boilerplate check-if-timed-out and return-progress-percent code.

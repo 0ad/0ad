@@ -31,14 +31,6 @@
 #endif
 
 
-// translates the given strings and passes them on to sys_display_msgw
-// (see documentation there).
-void display_msgw(const wchar_t* caption, const wchar_t* msg)
-{
-	sys_display_msgw(ah_translate(caption), ah_translate(msg));
-}
-
-
 // FNV1-A hash - good for strings.
 // if len = 0 (default), treat buf as a C-string;
 // otherwise, hash <len> bytes of buf.

@@ -33,12 +33,12 @@ public:
 	// Implementation of AbstractProfileTable interface
 	virtual CStr GetName();
 	virtual CStr GetTitle();
-	virtual uint GetNumberRows();
+	virtual size_t GetNumberRows();
 	virtual const std::vector<ProfileColumn>& GetColumns();
 	
-	virtual CStr GetCellText(uint row, uint col);
-	virtual AbstractProfileTable* GetChild(uint row);
-	virtual bool IsHighlightRow(uint row);
+	virtual CStr GetCellText(size_t row, size_t col);
+	virtual AbstractProfileTable* GetChild(size_t row);
+	virtual bool IsHighlightRow(size_t row);
 	
 private:
 	/**
@@ -97,7 +97,7 @@ CStr CProfileNodeTable::GetTitle()
 }
 
 // Total number of children
-uint CProfileNodeTable::GetNumberRows()
+size_t CProfileNodeTable::GetNumberRows()
 {
 	return node->GetChildren()->size() + node->GetScriptChildren()->size() + 1;
 }
@@ -109,11 +109,11 @@ const std::vector<ProfileColumn>& CProfileNodeTable::GetColumns()
 }
 
 // Retrieve cell text
-CStr CProfileNodeTable::GetCellText(uint row, uint col)
+CStr CProfileNodeTable::GetCellText(size_t row, size_t col)
 {
 	CProfileNode* child;
-	uint nrchildren = node->GetChildren()->size();
-	uint nrscriptchildren = node->GetScriptChildren()->size();
+	size_t nrchildren = node->GetChildren()->size();
+	size_t nrscriptchildren = node->GetScriptChildren()->size();
 	char buf[256];
 	
 	if (row < nrchildren)
@@ -177,11 +177,11 @@ CStr CProfileNodeTable::GetCellText(uint row, uint col)
 }
 
 // Return a pointer to the child table if the child node is expandable
-AbstractProfileTable* CProfileNodeTable::GetChild(uint row)
+AbstractProfileTable* CProfileNodeTable::GetChild(size_t row)
 {
 	CProfileNode* child;
-	uint nrchildren = node->GetChildren()->size();
-	uint nrscriptchildren = node->GetScriptChildren()->size();
+	size_t nrchildren = node->GetChildren()->size();
+	size_t nrscriptchildren = node->GetScriptChildren()->size();
 	
 	if (row < nrchildren)
 		child = (*node->GetChildren())[row];
@@ -197,10 +197,10 @@ AbstractProfileTable* CProfileNodeTable::GetChild(uint row)
 }
 
 // Highlight all script nodes
-bool CProfileNodeTable::IsHighlightRow(uint row)
+bool CProfileNodeTable::IsHighlightRow(size_t row)
 {
-	uint nrchildren = node->GetChildren()->size();
-	uint nrscriptchildren = node->GetScriptChildren()->size();
+	size_t nrchildren = node->GetChildren()->size();
+	size_t nrscriptchildren = node->GetScriptChildren()->size();
 	
 	return (row >= nrchildren && row < (nrchildren + nrscriptchildren));
 }

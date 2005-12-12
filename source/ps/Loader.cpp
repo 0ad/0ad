@@ -84,14 +84,14 @@ struct DurationAdder: public std::binary_function<double, const LoadRequest&, do
 // this routine is provided so we can prevent 2 simultaneous load operations,
 // which is bogus. that can happen by clicking the load button quickly,
 // or issuing via console while already loading.
-int LDR_BeginRegistering()
+LibError LDR_BeginRegistering()
 {
 	if(state != IDLE)
-		return -1;
+		return ERR_LOGIC;
 
 	state = REGISTERING;
 	load_requests.clear();
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -103,7 +103,7 @@ int LDR_BeginRegistering()
 // <estimated_duration_ms>: used to calculate progress, and when checking
 //   whether there is enough of the time budget left to process this task
 //   (reduces timeslice overruns, making the main loop more responsive).
-int LDR_Register(LoadFunc func, void* param, const wchar_t* description,
+LibError LDR_Register(LoadFunc func, void* param, const wchar_t* description,
 	int estimated_duration_ms)
 {
 	if(state != REGISTERING)
@@ -111,21 +111,21 @@ int LDR_Register(LoadFunc func, void* param, const wchar_t* description,
 		debug_warn("not called between LDR_(Begin|End)Register - why?!");
 			// warn here instead of relying on the caller to CHECK_ERR because
 			// there will be lots of call sites spread around.
-		return -1;
+		return ERR_LOGIC;
 	}
 
 	const LoadRequest lr(func, param, description, estimated_duration_ms);
 	load_requests.push_back(lr);
-	return 0;
+	return ERR_OK;
 }
 
 
 // call when finished registering tasks; subsequent calls to
 // LDR_ProgressiveLoad will then work off the queued entries.
-int LDR_EndRegistering()
+LibError LDR_EndRegistering()
 {
 	if(state != REGISTERING)
-		return -1;
+		return ERR_LOGIC;
 
 	if(load_requests.empty())
 		debug_warn("no LoadRequests queued");
@@ -134,25 +134,25 @@ int LDR_EndRegistering()
 	estimated_duration_tally = 0.0;
 	task_elapsed_time = 0.0;
 	total_estimated_duration = std::accumulate(load_requests.begin(), load_requests.end(), 0.0, DurationAdder());
-	return 0;
+	return ERR_OK;
 }
 
 
 // immediately cancel this load; no further tasks will be processed.
 // used to abort loading upon user request or failure.
 // note: no special notification will be returned by LDR_ProgressiveLoad.
-int LDR_Cancel()
+LibError LDR_Cancel()
 {
 	// note: calling during registering doesn't make sense - that
 	// should be an atomic sequence of begin, register [..], end.
 	if(state != LOADING)
-		return -1;
+		return ERR_LOGIC;
 
 	state = IDLE;
 	// the queue doesn't need to be emptied now; that'll happen during the
 	// next LDR_StartRegistering. for now, it is sufficient to set the
 	// state, so that LDR_ProgressiveLoad is a no-op.
-	return 0;
+	return ERR_OK;
 }
 
 
@@ -186,7 +186,7 @@ static bool HaveTimeForNextTask(double time_left, double time_budget, int estima
 // ("" if finished) and the current progress value.
 //
 // return semantics:
-// - if the final load task just completed, return LDR_ALL_FINISHED.
+// - if the final load task just completed, return INFO_ALL_COMPLETE.
 // - if loading is in progress but didn't finish, return ERR_TIMED_OUT.
 // - if not currently loading (no-op), return 0.
 // - any other value indicates a failure; the request has been de-queued.
@@ -196,10 +196,10 @@ static bool HaveTimeForNextTask(double time_left, double time_budget, int estima
 // persistent, we can't just store a pointer. returning a pointer to
 // our copy of the description doesn't work either, since it's freed when
 // the request is de-queued. that leaves writing into caller's buffer.
-int LDR_ProgressiveLoad(double time_budget, wchar_t* description,
+LibError LDR_ProgressiveLoad(double time_budget, wchar_t* description,
 	size_t max_chars, int* progress_percent)
 {
-	int ret;	// single exit; this is returned
+	LibError ret;	// single exit; this is returned
 	double progress = 0.0;	// used to set progress_percent
 	double time_left = time_budget;
 
@@ -217,7 +217,7 @@ int LDR_ProgressiveLoad(double time_budget, wchar_t* description,
 	// we're called unconditionally from the main loop, so this isn't
 	// an error; there is just nothing to do.
 	if(state != LOADING)
-		return 0;
+		return ERR_OK;
 
 	while(!load_requests.empty())
 	{
@@ -232,13 +232,13 @@ int LDR_ProgressiveLoad(double time_budget, wchar_t* description,
 
 		// call this task's function and bill elapsed time.
 		const double t0 = get_time();
-		ret = lr.func(lr.param, time_left);
+		int status = lr.func(lr.param, time_left);
 		const double elapsed_time = get_time() - t0;
 		time_left -= elapsed_time;
 		task_elapsed_time += elapsed_time;
 
 		// either finished entirely, or failed => remove from queue.
-		if(ret == 0 || ret < 0)
+		if(status <= 0)
 		{
 			debug_printf("LOADER| completed %ls in %g ms; estimate was %g ms\n", lr.description.c_str(), task_elapsed_time*1e3, estimated_duration*1e3);
 			task_elapsed_time = 0.0;
@@ -254,32 +254,37 @@ int LDR_ProgressiveLoad(double time_budget, wchar_t* description,
 			// function interrupted itself; add its estimated progress.
 			// note: monotonicity is guaranteed since we never add more than
 			//   its estimated_duration_ms.
-			if(ret > 0)
+			if(status > 0)
 			{
-				ret = MIN(ret, 100);	// clamp in case estimate is too high
-				current_estimate += estimated_duration * ret/100.0;
+				status = MIN(status, 100);	// clamp in case estimate is too high
+				current_estimate += estimated_duration * status/100.0;
 			}
 
 			progress = current_estimate / total_estimated_duration;
 		}
 
-		// translate return value
-		// (function interrupted itself; need to return ERR_TIMED_OUT)
-		if(ret > 0)
+		// do we need to continue?
+		// .. function interrupted itself, i.e. timed out; abort.
+		if(status > 0)
+		{
 			ret = ERR_TIMED_OUT;
-
-		// failed or timed out => abort immediately; loading will
-		// continue when we're called in the next iteration of the main loop.
-		// rationale: bail immediately instead of remembering the first error
-		// that came up, so that we report can all errors that happen.
-		if(ret != 0)
 			goto done;
-		// else: continue and process next queued task.
+		}
+		// .. failed; abort. loading will continue when we're called in
+		//    the next iteration of the main loop.
+		//    rationale: bail immediately instead of remembering the first
+		//    error that came up so we report can all errors that happen.
+		else if(status < 0)
+		{
+			ret = (LibError)status;
+			goto done;
+		}
+		// .. succeeded; continue and process next queued task.
 	}
 
 	// queue is empty, we just finished.
 	state = IDLE;
-	ret = LDR_ALL_FINISHED;
+	ret = INFO_ALL_COMPLETE;
 
 
 	// set output params (there are several return points above)
@@ -302,7 +307,7 @@ done:
 
 // immediately process all queued load requests.
 // returns 0 on success or a negative error code.
-int LDR_NonprogressiveLoad()
+LibError LDR_NonprogressiveLoad()
 {
 	const double time_budget = 100.0;
 		// large enough so that individual functions won't time out
@@ -312,15 +317,14 @@ int LDR_NonprogressiveLoad()
 
 	for(;;)
 	{
-		int ret = LDR_ProgressiveLoad(time_budget, description, ARRAY_SIZE(description), &progress_percent);
-
+		LibError ret = LDR_ProgressiveLoad(time_budget, description, ARRAY_SIZE(description), &progress_percent);
 		switch(ret)
 		{
-		case 0:
+		case ERR_OK:
 			debug_warn("No load in progress");
-			return 0;		// success
-		case LDR_ALL_FINISHED:
-			return 0;		// success
+			return ERR_OK;
+		case INFO_ALL_COMPLETE:
+			return ERR_OK;
 		case ERR_TIMED_OUT:
 			break;			// continue loading
 		default:

@@ -11,17 +11,18 @@
 #include <stdlib.h>	// abs
 
 
-static const char* lib_error_description(int err)
+static const char* LibError_description(LibError err)
 {
 	// not in our range
-	if(!(ERR_MIN <= abs(err) && abs(err) < ERR_MAX))
+	const int ierr = abs((int)err);
+	if(!(ERR_MIN <= ierr && ierr < ERR_MAX))
 		return 0;
 
 	switch(err)
 	{
 #define ERR(err, id, str) case id: return str;
 #include "lib_errors.h"
-	default: return "Unknown lib error";
+	default: return "Unknown error";
 	}
 	UNREACHABLE;
 }
@@ -29,13 +30,12 @@ static const char* lib_error_description(int err)
 
 // generate textual description of an error code.
 // stores up to <max_chars> in the given buffer.
-// <err> can be one of the above error codes, POSIX ENOENT etc., or
-// an OS-specific errors. if unknown, the string will be something like
+// if error is unknown/invalid, the string will be something like
 // "Unknown error (65536, 0x10000)".
-void error_description_r(int err, char* buf, size_t max_chars)
+void error_description_r(LibError err, char* buf, size_t max_chars)
 {
 	// lib error
-	const char* str = lib_error_description(err);
+	const char* str = LibError_description(err);
 	if(str)
 	{
 		// <err> was one of our error codes (chosen so as not to conflict
@@ -44,35 +44,8 @@ void error_description_r(int err, char* buf, size_t max_chars)
 		return;
 	}
 
-	// Win32 GetLastError and errno both define values in [0,100).
-	// what we'll do is always try the OS-specific translation,
-	// add libc's interpretation if <err> is a valid errno, and
-	// output "Unknown" if none of the above succeeds.
-	const bool should_display_libc_err = (0 <= err && err < sys_nerr);
-	bool have_output = false;
-
-	// OS-specific error
-	if(sys_error_description_r(err, buf, max_chars) == 0)	// success
-	{
-		have_output = true;
-
-		// add a separator text before libc description
-		if(should_display_libc_err)
-			strcat_s(buf, max_chars, "; libc err=");
-	}
-
-	// libc error
-	if(should_display_libc_err)
-	{
-		strcat_s(buf, max_chars, strerror(err));
-		// note: we are sure to get meaningful output (not just "unknown")
-		// because err < sys_nerr.
-		have_output = true;
-	}
-
 	// fallback
-	if(!have_output)
-		snprintf(buf, max_chars, "Unknown error (%d, 0x%X)", err, err);
+	snprintf(buf, max_chars, "Unknown error (%d, 0x%X)", err, err);
 }
 
 
@@ -83,29 +56,20 @@ LibError LibError_from_errno()
 {
 	switch(errno)
 	{
-	case ENOMEM:
-		return ERR_NO_MEM;
+	case ENOMEM: return ERR_NO_MEM;
 
-	case EINVAL:
-		return ERR_INVALID_PARAM;
-	case ENOSYS:
-		return ERR_NOT_IMPLEMENTED;
+	case EINVAL: return ERR_INVALID_PARAM;
+	case ENOSYS: return ERR_NOT_IMPLEMENTED;
 
-	case ENOENT:
-		return ERR_PATH_NOT_FOUND;
-	case EACCES:
-		return ERR_FILE_ACCESS;
-	case EIO:
-		return ERR_IO;
-	case ENAMETOOLONG:
-		return ERR_PATH_LENGTH;
+	case ENOENT: return ERR_PATH_NOT_FOUND;
+	case EACCES: return ERR_FILE_ACCESS;
+	case EIO: return ERR_IO;
+	case ENAMETOOLONG: return ERR_PATH_LENGTH;
 
-	default:
-		return ERR_FAIL;
+	default: return ERR_FAIL;
 	}
 	UNREACHABLE;
 }
-
 
 // translate the return value of any POSIX function into LibError.
 // ret is typically to -1 to indicate error and 0 on success.
@@ -115,4 +79,37 @@ LibError LibError_from_posix(int ret)
 {
 	debug_assert(ret == 0 || ret == -1);
 	return (ret == 0)? ERR_OK : LibError_from_errno();
+}
+
+
+// return the errno.h equivalent of <err>.
+// does not assign to errno (this simplifies code by allowing direct return)
+static int return_errno_from_LibError(LibError err)
+{
+	switch(err)
+	{
+	case ERR_NO_MEM: return ENOMEM;
+
+	case ERR_INVALID_PARAM: return EINVAL;
+	case ERR_NOT_IMPLEMENTED: return ENOSYS;
+
+	case ERR_PATH_NOT_FOUND: return ENOENT;
+	case ERR_FILE_ACCESS: return EACCES;
+	case ERR_IO: return EIO;
+	case ERR_PATH_LENGTH: return ENAMETOOLONG;
+
+	// somewhat of a quandary: the set of errnos in wposix.h doesn't
+	// have an "unknown error". we pick EPERM because we don't expect
+	// that to come up often otherwise.
+	default: return EPERM;
+	}
+}
+
+// set errno to the equivalent of <err>. used in wposix - underlying
+// functions return LibError but must be translated to errno at
+// e.g. the mmap interface level. higher-level code that calls mmap will
+// in turn convert back to LibError.
+void LibError_set_errno(LibError err)
+{
+	errno = return_errno_from_LibError(err);
 }

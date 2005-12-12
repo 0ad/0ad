@@ -20,7 +20,7 @@
 template<class T> struct MemFun_t
 {
 	T* const this_;
-	int(T::*func)(void);
+	int (T::*func)(void);
 	MemFun_t(T* this__, int(T::*func_)(void))
 		: this_(this__), func(func_) {}
 
@@ -53,7 +53,7 @@ template<class T, class Arg> struct MemFun1_t
 {
 	T* const this_;
 	Arg arg;
-	int(T::*func)(Arg);
+	int (T::*func)(Arg);
 	MemFun1_t(T* this__, int(T::*func_)(Arg), Arg arg_)
 		: this_(this__), func(func_), arg(arg_) {}
 

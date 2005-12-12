@@ -19,7 +19,6 @@
 #define DEBUG_H_INCLUDED
 
 #include "lib.h" // STMT
-#include "sysdep/sysdep.h"		// ErrorReaction
 #if OS_WIN
 # include "sysdep/win/wdbg.h"
 #else
@@ -73,7 +72,7 @@ even if debug information is present and assert dialogs are useless.
 //-----------------------------------------------------------------------------
 
 // check heap integrity (independently of mmgr).
-// errors are reported by the CRT or via display_error.
+// errors are reported by the CRT or via debug_display_error.
 extern void debug_heap_check(void);
 
 enum DebugHeapChecks
@@ -122,7 +121,7 @@ STMT(\
 	static unsigned char suppress__ = 0x55;\
 	if(suppress__ == 0x55 && !(expr))\
 	{\
-		switch(debug_assert_failed(__FILE__, __LINE__, __func__, #expr))\
+		switch(debug_assert_failed(#expr, __FILE__, __LINE__, __func__))\
 		{\
 		case ER_SUPPRESS:\
 			suppress__ = 0xAA;\
@@ -137,9 +136,6 @@ STMT(\
 	}\
 )
 
-// called when an assertion has failed; notifies the user via display_error.
-extern enum ErrorReaction debug_assert_failed(const char* file, int line,
-	const char* func, const char* assert_expr);
 
 // show a dialog to make sure unexpected states in the program are noticed.
 // this is less error-prone than "debug_assert(0 && "text");" and avoids
@@ -150,7 +146,10 @@ extern enum ErrorReaction debug_assert_failed(const char* file, int line,
 #define debug_warn(str) debug_assert((str) && 0)
 
 
-#define DEBUG_WARN_ERR(err) \
+// if (LibError)err indicates an function failed, display the error dialog.
+// used by CHECK_ERR et al., which wrap function calls and automatically
+// warn user and return to caller.
+#define DEBUG_WARN_ERR(err)\
 STMT(\
 	static unsigned char suppress__ = 0x55;\
 	if(suppress__ == 0x55)\
@@ -170,8 +169,15 @@ STMT(\
 	}\
 )
 
-extern enum ErrorReaction debug_warn_err(int err, const char* file, int line,
-	const char* func);
+
+// called when an assertion has failed; notifies the user via debug_display_error.
+extern enum ErrorReaction debug_assert_failed(const char* assert_expr,
+	const char* file, int line, const char* func);
+
+// called when a lib function wrapped in DEBUG_WARN_ERR failed;
+// notifies the user via debug_display_error.
+extern enum ErrorReaction debug_warn_err(LibError err,
+	const char* file, int line, const char* func);
 
 
 //-----------------------------------------------------------------------------
@@ -185,12 +191,61 @@ extern void debug_printf(const char* fmt, ...);
 extern void debug_wprintf(const wchar_t* fmt, ...);
 
 
-extern ErrorReaction display_error(const wchar_t* description, int flags,
-	uint skip, void* context, const char* file, int line);
+// translates and displays the given strings in a dialog.
+// this is typically only used when debug_display_error has failed or
+// is unavailable because that function is much more capable.
+// implemented via sys_display_msgw; see documentation there.
+extern void debug_display_msgw(const wchar_t* caption, const wchar_t* msg);
+
+
+// choices offered by the shared error dialog
+enum ErrorReaction
+{
+	// ignore, continue as if nothing happened.
+	// note: don't start at 0 because that is interpreted as a
+	// DialogBoxParam failure.
+	ER_CONTINUE = 1,
+
+	// ignore and do not report again.
+	// only returned if DE_ALLOW_SUPPRESS was passed.
+	// note: non-persistent; only applicable during this program run.
+	ER_SUPPRESS,
+
+	// trigger breakpoint, i.e. enter debugger.
+	// only returned if DE_MANUAL_BREAK was passed; otherwise,
+	// debug_display_error will trigger a breakpoint itself.
+	ER_BREAK,
+
+	// exit the program immediately.
+	// never returned; debug_display_error exits immediately.
+	ER_EXIT
+};
+
+enum DisplayErrorFlags
+{
+	// allow the suppress button (requires calling via macro that
+	// maintains a 'suppress' bool; see debug_assert)
+	DE_ALLOW_SUPPRESS = 1,
+
+	// disallow the continue button. used e.g. if an exception is fatal.
+	DE_NO_CONTINUE    = 2,
+
+	// do not trigger a breakpoint inside debug_display_error; caller
+	// will take care of this if ER_BREAK is returned. this is so that the
+	// debugger can jump directly into the offending function.
+	DE_MANUAL_BREAK   = 4
+};
+
+// display the error dialog. shows <description> along with a stack trace.
+// context and skip are as with debug_dump_stack.
+// flags: see DisplayErrorFlags. file and line indicate where the error
+// occurred and are typically passed as __FILE__, __LINE__.
+extern ErrorReaction debug_display_error(const wchar_t* description,
+	int flags, uint skip, void* context, const char* file, int line);
 
 // convenience version, in case the advanced parameters aren't needed.
-// done this way instead of with default values so that it also works in C.
-#define DISPLAY_ERROR(text) display_error(text, 0, 0, 0, __FILE__, __LINE__)
+// macro instead of providing overload/default values for C compatibility.
+#define DISPLAY_ERROR(text) debug_display_error(text, 0, 0,0, __FILE__,__LINE__)
 
 
 //

@@ -17,6 +17,7 @@
 #include "ia32.h"
 #endif
 
+
 // pass "omit frame pointer" setting on to the compiler
 #if MSC_VERSION
 # if CONFIG_OMIT_FP
@@ -129,40 +130,13 @@ extern void* alloca(size_t size);
 
 // raise a message box with the given text or (depending on platform)
 // otherwise inform the user.
+// called from debug_display_msgw.
 extern void sys_display_msg(const char* caption, const char* msg);
 extern void sys_display_msgw(const wchar_t* caption, const wchar_t* msg);
-  
-// choices offered by the shared error dialog
-enum ErrorReaction
-{
-	// ignore, continue as if nothing happened.
-	ER_CONTINUE = 1,
-	// note: don't start at 0 because that is interpreted as a
-	// DialogBoxParam failure.
 
-	// ignore and do not report again.
-	// only returned if DE_ALLOW_SUPPRESS was passed.
-	ER_SUPPRESS,
-	// note: non-persistent; only applicable during this program run.
-
-	// trigger breakpoint, i.e. enter debugger.
-	// only returned if DE_MANUAL_BREAK was passed; otherwise,
-	// display_error will trigger a breakpoint itself.
-	ER_BREAK,
-
-	// exit the program immediately.
-	// never returned; display_error exits immediately.
-	ER_EXIT
-};
-
-enum SysDisplayErrorFlags
-{
-	DE_ALLOW_SUPPRESS = 1,
-	DE_NO_CONTINUE = 2,
-	DE_MANUAL_BREAK = 4
-};
-
-// internal use only (used by display_error)
+// show the error dialog. flags: see DisplayErrorFlags.
+// called from debug_display_error.
+enum ErrorReaction;
 extern ErrorReaction sys_display_error(const wchar_t* text, int flags);
 
 

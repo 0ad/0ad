@@ -27,7 +27,7 @@ typedef std::map<wchar_t, unsigned short> glyphmap_id;
 // Store the size separately, because it's used separately
 typedef std::map<wchar_t, int> glyphmap_size;
 
-glyphmap_id* BoundGlyphs = NULL;
+static glyphmap_id* BoundGlyphs = NULL;
 
 struct UniFont
 {

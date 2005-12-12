@@ -95,18 +95,18 @@ static int ProgressiveLoad()
 {
 	wchar_t description[100];
 	int progress_percent;
-	int ret = LDR_ProgressiveLoad(10e-3, description, ARRAY_SIZE(description), &progress_percent);
+	LibError ret = LDR_ProgressiveLoad(10e-3, description, ARRAY_SIZE(description), &progress_percent);
 	switch(ret)
 	{
 		// no load active => no-op (skip code below)
-	case 0:
+	case ERR_OK:
 		return 0;
 		// current task didn't complete. we only care about this insofar as the
 		// load process is therefore not yet finished.
 	case ERR_TIMED_OUT:
 		break;
 		// just finished loading
-	case LDR_ALL_FINISHED:
+	case INFO_ALL_COMPLETE:
 		g_Game->ReallyStartGame();
 		wcscpy_s(description, ARRAY_SIZE(description), L"Game is starting..");
 		// LDR_ProgressiveLoad returns L""; set to valid text to

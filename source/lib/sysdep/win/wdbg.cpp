@@ -102,7 +102,7 @@ void wdbg_set_thread_name(const char* name)
 //-----------------------------------------------------------------------------
 
 // check heap integrity (independently of mmgr).
-// errors are reported by the CRT or via display_error.
+// errors are reported by the CRT or via debug_display_error.
 void debug_heap_check()
 {
 	int ret;
@@ -616,7 +616,7 @@ static const wchar_t* get_exception_locus(const EXCEPTION_POINTERS* ep)
 		// no problems with wdbg_exception_filter's "%[^:]" format string.
 
 	// note: keep formatting in sync with wdbg_exception_filter, which
-	// extracts file/line for use with display_error.
+	// extracts file/line for use with debug_display_error.
 	static wchar_t locus[256];
 	swprintf(locus, ARRAY_SIZE(locus), L"%hs (%hs:%d)", func_name, file, line);
 	return locus;
@@ -709,7 +709,7 @@ LONG WINAPI wdbg_exception_filter(EXCEPTION_POINTERS* ep)
 	int flags = 0;
 	if(ep->ExceptionRecord->ExceptionFlags & EXCEPTION_NONCONTINUABLE)
 		flags = DE_NO_CONTINUE;
-	ErrorReaction er = display_error(buf, flags, 1, ep->ContextRecord, file, line);
+	ErrorReaction er = debug_display_error(buf, flags, 1,ep->ContextRecord, file,line);
 	debug_assert(er > 0);
 
 	wdbg_write_minidump(ep);

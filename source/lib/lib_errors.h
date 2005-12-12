@@ -27,10 +27,9 @@ enum LibError {
 
 // generate textual description of an error code.
 // stores up to <max_chars> in the given buffer.
-// <err> can be one of the above error codes, POSIX ENOENT etc., or
-// an OS-specific errors. if unknown, the string will be something like
+// if error is unknown/invalid, the string will be something like
 // "Unknown error (65536, 0x10000)".
-extern void error_description_r(int err, char* buf, size_t max_chars);
+extern void error_description_r(LibError err, char* buf, size_t max_chars);
 
 
 // return the LibError equivalent of errno, or ERR_FAIL if there's no equal.
@@ -43,35 +42,43 @@ extern LibError LibError_from_errno();
 // make sure we do not return any stale errors.
 extern LibError LibError_from_posix(int ret);
 
+// set errno to the equivalent of <err>. used in wposix - underlying
+// functions return LibError but must be translated to errno at
+// e.g. the mmap interface level. higher-level code that calls mmap will
+// in turn convert back to LibError.
+extern void LibError_set_errno(LibError err);
+
 
 // be careful here. the given expression (e.g. variable or
 // function return value) may be a Handle (=i64), so it needs to be
 // stored and compared as such. (very large but legitimate Handle values
 // casted to int can end up negative)
-// all functions using this return int (instead of i64) for efficiency and
-// simplicity. if the input was negative, it is an error code and is
-// therefore known to fit; we still mask with UINT_MAX to avoid
-// VC cast-to-smaller-type warnings.
+// all functions using this return LibError (instead of i64) for
+// efficiency and simplicity. if the input was negative, it is an
+// error code and is therefore known to fit; we still mask with
+// UINT_MAX to avoid VC cast-to-smaller-type warnings.
 
 // if expression evaluates to a negative i64, warn user and return the number.
 #if OS_WIN
 #define CHECK_ERR(expression)\
 STMT(\
-	i64 err__ = (i64)(expression);\
-	if(err__ < 0)\
+	i64 err64 = (i64)(expression);\
+	if(err64 < 0)\
 	{\
-		DEBUG_WARN_ERR(err__);\
-		return (LibError)(err__ & UINT_MAX);\
+		LibError err = (LibError)(err64 & UINT_MAX);\
+		DEBUG_WARN_ERR(err);\
+		return err;\
 	}\
 )
 #else
 #define CHECK_ERR(expression)\
 STMT(\
-	i64 err__ = (i64)(expression);\
-	if(err__ < 0)\
+	i64 err64 = (i64)(expression);\
+	if(err64 < 0)\
 	{\
-		DEBUG_WARN_ERR(err__);\
-		return (LibError)(err__ & UINT_MAX);\
+		LibError err = (LibError)(err64 & UINT_MAX);\
+		DEBUG_WARN_ERR(err);\
+		return (LibError)(err & UINT_MAX);\
 	}\
 )
 #endif
@@ -80,9 +87,12 @@ STMT(\
 // (useful for functions that can legitimately fail, e.g. vfs_exists).
 #define RETURN_ERR(expression)\
 STMT(\
-	i64 err__ = (i64)(expression);\
-	if(err__ < 0)\
-		return (LibError)(err__ & UINT_MAX);\
+	i64 err64 = (i64)(expression);\
+	if(err64 < 0)\
+	{\
+		LibError err = (LibError)(err64 & UINT_MAX);\
+		return err;\
+	}\
 )
 
 // return an error and warn about it (replaces debug_warn+return)
@@ -95,11 +105,12 @@ STMT(\
 // if expression evaluates to a negative i64, warn user and throw the number.
 #define THROW_ERR(expression)\
 STMT(\
-	i64 err__ = (i64)(expression);\
-	if(err__ < 0)\
+	i64 err64 = (i64)(expression);\
+	if(err64 < 0)\
 	{\
-		DEBUG_WARN_ERR(err__);\
-		throw (LibError)(err__ & UINT_MAX);\
+		LibError err = (LibError)(err64 & UINT_MAX);\
+		DEBUG_WARN_ERR(err);\
+		throw err;\
 	}\
 )
 
@@ -107,10 +118,11 @@ STMT(\
 // (useful for void functions that must bail and complain)
 #define WARN_ERR_RETURN(expression)\
 STMT(\
-	i64 err__ = (i64)(expression);\
-	if(err__ < 0)\
+	i64 err64 = (i64)(expression);\
+	if(err64 < 0)\
 	{\
-		DEBUG_WARN_ERR(err__);\
+		LibError err = (LibError)(err64 & UINT_MAX);\
+		DEBUG_WARN_ERR(err);\
 		return;\
 	}\
 )
@@ -119,9 +131,12 @@ STMT(\
 // (this is similar to debug_assert but also works in release mode)
 #define WARN_ERR(expression)\
 STMT(\
-	i64 err__ = (i64)(expression);\
-	if(err__ < 0)\
-		DEBUG_WARN_ERR(err__);\
+	i64 err64 = (i64)(expression);\
+	if(err64 < 0)\
+	{\
+		LibError err = (LibError)(err64 & UINT_MAX);\
+		DEBUG_WARN_ERR(err);\
+	}\
 )
 
 
@@ -133,7 +148,7 @@ STMT(\
 	{\
 		debug_warn("FYI: WARN_RETURN_IF_FALSE reports that a function failed."\
 		           "feel free to ignore or suppress this warning.");\
-		return -1;\
+		return ERR_FAIL;\
 	}\
 )
 
@@ -141,7 +156,7 @@ STMT(\
 #define RETURN_IF_FALSE(ok)\
 STMT(\
 	if(!(ok))\
-		return -1;\
+		return ERR_FAIL;\
 )
 
 // if ok evaluates to false or FALSE, warn user.
@@ -174,6 +189,8 @@ ERR(1, INFO_CB_CONTINUE  , "1 (not an error)")
 ERR(2, INFO_CANNOT_HANDLE, "2 (not an error)")
 ERR(3, INFO_NO_REPLACE   , "3 (not an error)")
 ERR(4, INFO_SKIPPED      , "4 (not an error)")
+//
+ERR(5, INFO_ALL_COMPLETE, "5 (not an error)")
 
 ERR(-100000, ERR_LOGIC, "Logic error in code")
 ERR(-100060, ERR_TIMED_OUT, "Timed out")

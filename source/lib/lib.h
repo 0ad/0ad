@@ -208,10 +208,6 @@ const size_t GiB = 1ul << 30;
 #endif
 
 
-// translates the given strings and passes them on to sys_display_msgw
-// (see documentation there).
-extern void display_msgw(const wchar_t* caption, const wchar_t* msg);
-
 
 
 #define BIT(n) (1ul << (n))

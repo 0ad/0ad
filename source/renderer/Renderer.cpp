@@ -97,6 +97,9 @@ private:
 		// Must be last to count number of rows
 		NumberRows
 	};
+
+	// no copy ctor because some members are const
+	CRendererStatsTable& operator=(const CRendererStatsTable&);
 };
 
 // Construction

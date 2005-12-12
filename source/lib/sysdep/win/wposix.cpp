@@ -579,8 +579,6 @@ int poll(struct pollfd /* fds */[], int /* nfds */, int /* timeout */)
 //
 //////////////////////////////////////////////////////////////////////////////
 
-
-
 // convert POSIX PROT_* flags to their Win32 PAGE_* enumeration equivalents.
 // used by mprotect.
 static DWORD win32_prot(int prot)
@@ -637,25 +635,22 @@ static LibError mmap_mem(void* start, size_t len, int prot, int flags, int fd, v
 	// see explanation at MAP_NORESERVE definition.
 	bool want_commit = (prot != PROT_NONE && !(flags & MAP_NORESERVE));
 
+	// decommit a given area (leaves its address space reserved)
 	if(!want_commit && start != 0 && flags & MAP_FIXED)
 	{
 		MEMORY_BASIC_INFORMATION mbi;
-		BOOL ok = VirtualQuery(start, &mbi, len);
-debug_assert(ok);	// todo4
-		DWORD state = mbi.State;
-		if(state == MEM_COMMIT)
+		WARN_RETURN_IF_FALSE(VirtualQuery(start, &mbi, len));
+		if(mbi.State == MEM_COMMIT)
 		{
-			ok = VirtualFree(start, len, MEM_DECOMMIT);
-debug_assert(ok);
+			WARN_IF_FALSE(VirtualFree(start, len, MEM_DECOMMIT));
 			*pp = 0;
 			return ERR_OK;
 		}
 	}
 
-	DWORD op = want_commit? MEM_COMMIT : MEM_RESERVE;
-
+	DWORD flAllocationType = want_commit? MEM_COMMIT : MEM_RESERVE;
 	DWORD flProtect = win32_prot(prot);
-	void* p = VirtualAlloc(start, len, op, flProtect);
+	void* p = VirtualAlloc(start, len, flAllocationType, flProtect);
 	if(!p)
 		return ERR_NO_MEM;
 	*pp = p;
@@ -759,6 +754,7 @@ void* mmap(void* start, size_t len, int prot, int flags, int fd, off_t ofs)
 	if(err < 0)
 	{
 		WARN_ERR(err);
+		LibError_set_errno(err);
 		return MAP_FAILED;
 	}
 
