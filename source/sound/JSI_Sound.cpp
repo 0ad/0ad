@@ -72,6 +72,31 @@ bool JSI_Sound::SetPosition( JSContext* cx, uintN argc, jsval* argv )
 	return true;
 }
 
+
+bool JSI_Sound::Fade( JSContext* cx, uintN argc, jsval* argv )
+{
+	debug_assert( argc >= 3 );
+	float initial_gain, final_gain;
+	float length;
+	if( !ToPrimitive<float>( cx, argv[0], initial_gain) )
+		return false;
+	if( !ToPrimitive<float>( cx, argv[1], final_gain) )
+		return false;
+	if( !ToPrimitive<float>( cx, argv[2], length) )
+		return false;
+	snd_fade(m_Handle, initial_gain, final_gain, length, FT_S_CURVE);
+
+	// HACK: snd_fade causes <m_Handle> to be automatically freed when a
+	// fade to 0 has completed. however, we're still holding on to a
+	// reference, which will cause a double-free warning when Free() is
+	// called from the dtor. solution is to neuter our Handle by
+	// setting it to 0 (ok since it'll be freed). this does mean that
+	// no further operations can be carried out during that final fade.
+	m_Handle = 0;
+
+	return true;
+}
+
 // start playing the sound (one-shot).
 // it will automatically be freed when done.
 bool JSI_Sound::Play( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
@@ -110,6 +135,7 @@ void JSI_Sound::ScriptingInit()
 	AddMethod<bool, &JSI_Sound::SetGain>( "setGain", 0 );
 	AddMethod<bool, &JSI_Sound::SetPitch>( "setPitch", 0 );
 	AddMethod<bool, &JSI_Sound::SetPosition>( "setPosition", 0 );
+	AddMethod<bool, &JSI_Sound::Fade>( "fade", 0 );
 
 	CJSObject<JSI_Sound>::ScriptingInit( "Sound", &JSI_Sound::Construct, 1 );
 }

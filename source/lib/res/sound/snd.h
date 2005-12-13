@@ -167,25 +167,30 @@ extern LibError snd_play(Handle hs, float priority = 0.0f);
 // change 3d position of the sound source.
 // if relative (default false), (x,y,z) is treated as relative to the
 // listener; otherwise, it is the position in world coordinates.
+//
 // may be called at any time; fails with invalid handle return if
 // the sound has already been closed (e.g. it never played).
 extern LibError snd_set_pos(Handle hs, float x, float y, float z, bool relative = false);
 
 // change gain (amplitude modifier) of the sound source.
 // must be non-negative; 1 -> unattenuated, 0.5 -> -6 dB, 0 -> silence.
-// may be called at any time; fails with invalid handle return if
-// the sound has already been closed (e.g. it never played).
+//
+// should not be called during a fade (see note in implementation);
+// fails with invalid handle return if the sound has already been
+// closed (e.g. it never played).
 extern LibError snd_set_gain(Handle hs, float gain);
 
 // change pitch shift of the sound source.
 // 1.0 means no change; each reduction by 50% equals a pitch shift of
 // -12 semitones (one octave). zero is invalid.
+//
 // may be called at any time; fails with invalid handle return if
 // the sound has already been closed (e.g. it never played).
 extern LibError snd_set_pitch(Handle hs, float pitch);
 
 // enable/disable looping on the sound source.
 // used to implement variable-length sounds (e.g. while building).
+//
 // may be called at any time; fails with invalid handle return if
 // the sound has already been closed (e.g. it never played).
 //
@@ -195,6 +200,43 @@ extern LibError snd_set_pitch(Handle hs, float pitch);
 // - once looping is again disabled and the sound has reached its end,
 //   the sound instance is freed automatically (as if never looped).
 extern LibError snd_set_loop(Handle hs, bool loop);
+
+
+enum FadeType
+{
+	FT_NONE,
+	FT_LINEAR,
+	FT_EXPONENTIAL,
+	FT_S_CURVE,
+
+	FT_ABORT
+};
+
+// fade the sound source in or out over time.
+// its gain starts at <initial_gain> (immediately) and is moved toward
+// <final_gain> over <length> seconds. <type> determines the fade curve:
+// linear, exponential or S-curve. for guidance on which to use, see
+// http://www.transom.org/tools/editing_mixing/200309.stupidfadetricks.html
+// you can also pass FT_ABORT to stop fading (if in progress) and
+// set gain to the current <final_gain> parameter.
+// special cases:
+// - if <initial_gain> < 0 (an otherwise illegal value), the sound's
+//   current gain is used as the start value (useful for fading out).
+// - if <final_gain> is 0, the sound is freed when the fade completes or
+//   is aborted, thus allowing fire-and-forget fadeouts. no cases are
+//   foreseen where this is undesirable, and it is easier to implement
+//   than an extra set-free-after-fade-flag function.
+//
+// may be called at any time; fails with invalid handle return if
+// the sound has already been closed (e.g. it never played).
+//
+// note that this function doesn't busy-wait until the fade is complete;
+// any number of fades may be active at a time (allows cross-fading).
+// each snd_update calculates a new gain value for all pending fades.
+// it is safe to start another fade on the same sound source while
+// one is already in progress; the old one will be discarded.
+extern LibError snd_fade(Handle hvs, float initial_gain, float final_gain,
+	float length, FadeType type);
 
 
 //

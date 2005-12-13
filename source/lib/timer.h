@@ -44,6 +44,31 @@ extern float spf;	// for time-since-last-frame use
 extern void calc_fps(void);
 
 
+// since TIMER_ACCRUE et al. are called so often, we try to keep
+// overhead to an absolute minimum. this flag allows storing
+// raw tick counts (e.g. CPU cycles returned by rdtsc) instead of
+// absolute time. there are two benefits:
+// - no need to convert from raw->time on every call
+//   (instead, it's only done once when displaying the totals)
+// - possibly less overhead to querying the time itself
+//   (get_time may be using slower time sources with ~3us overhead)
+//
+// however, the cycle count is not necessarily a measure of wall-clock time.
+// therefore, on systems with SpeedStep active, measurements of
+// I/O or other non-CPU bound activity may be skewed. this is ok because
+// the timer is only used for profiling; just be aware of the issue.
+// if it's a problem or no raw tick source is available, disable this.
+// 
+// note that overflow isn't an issue either way (63 bit cycle counts
+// at 10 GHz cover intervals of 29 years).
+#define TIMER_USE_RAW_TICKS 1
+#if TIMER_USE_RAW_TICKS
+typedef i64 TimerUnit;
+#else
+typedef double TimerUnit;
+#endif
+
+
 //
 // cumulative timer API
 //
@@ -51,12 +76,13 @@ extern void calc_fps(void);
 // this supplements in-game profiling by providing low-overhead,
 // high resolution time accounting.
 
+
 // opaque - do not access its fields!
 // note: must be defined here because clients instantiate them;
 // fields cannot be made private due to C compatibility requirement.
 struct TimerClient
 {
-	double sum;	// total bill [s]
+	TimerUnit sum;	// total bill
 
 	// only store a pointer for efficiency.
 	const char* description;
@@ -80,8 +106,8 @@ struct TimerClient
 // - description must remain valid until exit; a string literal is safest.
 extern TimerClient* timer_add_client(TimerClient* tc, const char* description);
 
-// add <dt> [s] to the client's total.
-extern void timer_bill_client(TimerClient* tc, double dt);
+// add <dt> to the client's total.
+extern void timer_bill_client(TimerClient* tc, TimerUnit dt);
 
 // display all clients' totals; does not reset them.
 // typically called at exit.
@@ -174,19 +200,35 @@ Example usage:
 // used via TIMER_ACCRUE
 class ScopeTimerAccrue
 {
-	double t0;
+	TimerUnit t0;
 	TimerClient* tc;
 
 public:
 	ScopeTimerAccrue(TimerClient* tc_)
 	{
+#if TIMER_USE_RAW_TICKS
+# if CPU_IA32
+		t0 = rdtsc();
+# else
+#  error "port"
+# endif
+#else
 		t0 = get_time();
+#endif
 		tc = tc_;
 	}
 	~ScopeTimerAccrue()
 	{
-		double t1 = get_time();
-		double dt = t1-t0;
+#if TIMER_USE_RAW_TICKS
+# if CPU_IA32
+		TimerUnit t1 = rdtsc();
+# else
+#  error "port"
+# endif
+#else
+		TimerUnit t1 = get_time();
+#endif
+		TimerUnit dt = t1-t0;
 		timer_bill_client(tc, dt);
 	}
 

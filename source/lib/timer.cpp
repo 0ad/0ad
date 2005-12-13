@@ -274,8 +274,8 @@ TimerClient* timer_add_client(TimerClient* tc, const char* description)
 }
 
 
-// add <dt> [s] to the client's total.
-void timer_bill_client(TimerClient* tc, double dt)
+// add <dt> to the client's total.
+void timer_bill_client(TimerClient* tc, TimerUnit dt)
 {
 	tc->sum += dt;
 	tc->num_calls++;
@@ -297,7 +297,18 @@ void timer_display_client_totals()
 		clients = tc->next;
 		num_clients--;
 
-		const double sum = tc->sum;
+		// convert raw ticks into seconds, if necessary
+		double sum;
+#if TIMER_USE_RAW_TICKS
+# if CPU_IA32
+		sum = tc->sum / cpu_freq;
+# else
+#  error "port"
+# endif
+#else
+		sum = tc->sum;
+#endif
+
 		// determine scale factor for pretty display
 		double scale = 1e6;
 		const char* unit = "us";

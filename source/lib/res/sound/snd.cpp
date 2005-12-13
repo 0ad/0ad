@@ -24,6 +24,11 @@
 #include <algorithm>
 #include <math.h>
 
+// (some math.h versions omit this)
+#ifndef M_PI
+# define M_PI 3.14159265358979323846
+#endif
+
 #ifdef __APPLE__
 # include <OpenAL/alut.h>
 #else
@@ -44,6 +49,7 @@
 
 #include "../res.h"
 #include "snd.h"
+#include "lib/timer.h"
 
 
 
@@ -1163,6 +1169,104 @@ static LibError snd_data_buf_free(Handle hsd, ALuint al_buf)
 }
 
 
+//-----------------------------------------------------------------------------
+// fading
+//-----------------------------------------------------------------------------
+
+struct FadeInfo
+{
+	double start_time;
+	FadeType type;
+	float length;
+	float initial_val;
+	float final_val;
+};
+
+static float fade_factor_linear(float t)
+{
+	return t;
+}
+
+static float fade_factor_exponential(float t)
+{
+	// t**3
+	return t*t*t;
+}
+
+// cosine curve
+static float fade_factor_s_curve(float t)
+{
+	float y = cos(t*M_PI + M_PI);
+	// map [-1,1] to [0,1]
+	return (y + 1.0f) / 2.0f;
+}
+
+
+enum FadeRet
+{
+	FADE_NO_CHANGE,
+	FADE_CHANGED,
+	FADE_TO_0_FINISHED
+};
+
+static FadeRet fade(FadeInfo& fi, double cur_time, float& out_val)
+{
+	// how far into the fade are we? [0,1]
+	const float t = (cur_time - fi.start_time) / fi.length;
+
+	float factor;
+	switch(fi.type)
+	{
+	case FT_NONE:
+		return FADE_NO_CHANGE;
+
+	case FT_LINEAR:
+		factor = fade_factor_linear(t);
+		break;
+	case FT_EXPONENTIAL:
+		factor = fade_factor_exponential(t);
+		break;
+	case FT_S_CURVE:
+		factor = fade_factor_s_curve(t);
+		break;
+
+	// initialize with anything at all, just so that the calculation
+	// below runs through; we reset out_val after that.
+	case FT_ABORT:
+		factor = 0.0f;
+		break;
+
+	default:
+		UNREACHABLE;
+	}
+
+	out_val = fi.initial_val + factor*(fi.final_val - fi.initial_val);
+
+	// end reached
+	if(fi.type == FT_ABORT || (cur_time >= fi.start_time + fi.length))
+	{
+		// make sure exact value is hit
+		out_val = fi.final_val;
+
+		// special case: we were fading out; caller will free the sound.
+		if(fi.final_val == 0.0f)
+			return FADE_TO_0_FINISHED;
+
+		// wipe out all values amd mark as no longer actively fading
+		memset(&fi, 0, sizeof(fi));
+		fi.type = FT_NONE;
+	}
+
+	return FADE_CHANGED;
+}
+
+
+static bool fade_is_active(FadeInfo& fi)
+{
+	return (fi.type != FT_NONE);
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////
 //
 // virtual sound source: a sound the user wants played.
@@ -1193,16 +1297,11 @@ enum VSrcFlags
 
 struct VSrc
 {
-	ALuint al_src;
-
 	// handle to this VSrc, so that it can close itself.
 	Handle hvs;
 
 	// associated sound data
 	Handle hsd;
-
-	// controls vsrc_update behavior
-	uint flags;	// VSrcFlags
 
 	// AL source properties (set via snd_set*)
 	ALfloat pos[3];
@@ -1211,9 +1310,16 @@ struct VSrc
 	ALboolean loop;
 	ALboolean relative;
 
+	// controls vsrc_update behavior
+	uint flags;	// VSrcFlags
+
+	ALuint al_src;
+
 	// priority for voice management
 	float static_pri;	// as given by snd_play
 	float cur_pri;		// holds newly calculated value
+
+	FadeInfo fade;
 };
 
 H_TYPE_DEFINE(VSrc);
@@ -1221,6 +1327,7 @@ H_TYPE_DEFINE(VSrc);
 static void VSrc_init(VSrc* vs, va_list args)
 {
 	vs->flags = va_arg(args, uint);
+	vs->fade.type = FT_NONE;
 }
 
 static void list_remove(VSrc* vs);
@@ -1366,7 +1473,7 @@ LibError snd_free(Handle& hvs)
 // everything that comes after them, so we want those to come last).
 //
 // don't use list, to avoid lots of allocs (expect thousands of VSrcs).
-typedef std::vector<VSrc*> VSrcs;
+typedef std::deque<VSrc*> VSrcs;
 typedef VSrcs::iterator It;
 static VSrcs vsrcs;
 
@@ -1440,14 +1547,15 @@ static void list_prune_removed()
 	vsrcs.erase(new_end, vsrcs.end());
 }
 
-static void free_vs(VSrc* vs)
+
+static void vsrc_free(VSrc* vs)
 {
 	snd_free(vs->hvs);
 }
 
 static LibError list_free_all()
 {
-	list_foreach(free_vs);
+	list_foreach(vsrc_free);
 	return ERR_OK;
 }
 
@@ -1489,10 +1597,27 @@ static int vsrc_deque_finished_bufs(VSrc* vs)
 }
 
 
+// HACK: fade() requires the current time. we don't want to query that
+// anew in every vsrc_update (slow and may mess up crossfades), and passing
+// as a parameter isn't possible due to the list_foreach interface.
+// therefore, static variable (set from snd_update).
+static double snd_update_time;
+
 static LibError vsrc_update(VSrc* vs)
 {
 	if(!vs->al_src)
 		return ERR_OK;
+
+	FadeRet ret = fade(vs->fade, snd_update_time, vs->gain);
+	// auto-free after fadeout.
+	if(ret == FADE_TO_0_FINISHED)
+	{
+		vsrc_free(vs);
+		return ERR_OK;	// don't continue - <vs> has been freed.
+	}
+	// fade in progress; latch current gain value.
+	else if(ret == FADE_CHANGED)
+		vsrc_latch(vs);
 
 	int num_queued;
 	alGetSourcei(vs->al_src, AL_BUFFERS_QUEUED, &num_queued);
@@ -1629,6 +1754,7 @@ LibError snd_play(Handle hs, float static_pri)
 // change 3d position of the sound source.
 // if relative (default false), (x,y,z) is treated as relative to the
 // listener; otherwise, it is the position in world coordinates.
+//
 // may be called at any time; fails with invalid handle return if
 // the sound has already been closed (e.g. it never played).
 LibError snd_set_pos(Handle hvs, float x, float y, float z, bool relative)
@@ -1645,14 +1771,22 @@ LibError snd_set_pos(Handle hvs, float x, float y, float z, bool relative)
 
 // change gain (amplitude modifier) of the sound source.
 // must be non-negative; 1 -> unattenuated, 0.5 -> -6 dB, 0 -> silence.
-// may be called at any time; fails with invalid handle return if
-// the sound has already been closed (e.g. it never played).
+//
+// should not be called during a fade (see note in implementation);
+// fails with invalid handle return if the sound has already been
+// closed (e.g. it never played).
 LibError snd_set_gain(Handle hvs, float gain)
 {
 	H_DEREF(hvs, VSrc, vs);
 
 	if(!(0.0f <= gain && gain <= 1.0f))
-		return ERR_INVALID_PARAM;
+		WARN_RETURN(ERR_INVALID_PARAM);
+
+	// if fading, gain changes would be overridden during the next
+	// snd_update. attempting this indicates a logic error. we abort to
+	// avoid undesired jumps in gain that might surprise (and deafen) user.
+	if(fade_is_active(vs->fade))
+		WARN_RETURN(ERR_LOGIC);
 
 	vs->gain = gain;
 
@@ -1664,6 +1798,7 @@ LibError snd_set_gain(Handle hvs, float gain)
 // change pitch shift of the sound source.
 // 1.0 means no change; each reduction by 50% equals a pitch shift of
 // -12 semitones (one octave). zero is invalid.
+//
 // may be called at any time; fails with invalid handle return if
 // the sound has already been closed (e.g. it never played).
 LibError snd_set_pitch(Handle hvs, float pitch)
@@ -1671,7 +1806,7 @@ LibError snd_set_pitch(Handle hvs, float pitch)
 	H_DEREF(hvs, VSrc, vs);
 
 	if(!(0.0f < pitch && pitch <= 1.0f))
-		return ERR_INVALID_PARAM;
+		WARN_RETURN(ERR_INVALID_PARAM);
 
 	vs->pitch = pitch;
 
@@ -1682,6 +1817,7 @@ LibError snd_set_pitch(Handle hvs, float pitch)
 
 // enable/disable looping on the sound source.
 // used to implement variable-length sounds (e.g. while building).
+//
 // may be called at any time; fails with invalid handle return if
 // the sound has already been closed (e.g. it never played).
 //
@@ -1697,6 +1833,58 @@ LibError snd_set_loop(Handle hvs, bool loop)
 	vs->loop = loop;
 
 	vsrc_latch(vs);
+	return ERR_OK;
+}
+
+
+// fade the sound source in or out over time.
+// its gain starts at <initial_gain> (immediately) and is moved toward
+// <final_gain> over <length> seconds. <type> determines the fade curve:
+// linear, exponential or S-curve. for guidance on which to use, see
+// http://www.transom.org/tools/editing_mixing/200309.stupidfadetricks.html
+// you can also pass FT_ABORT to stop fading (if in progress) and
+// set gain to the current <final_gain> parameter.
+// special cases:
+// - if <initial_gain> < 0 (an otherwise illegal value), the sound's
+//   current gain is used as the start value (useful for fading out).
+// - if <final_gain> is 0, the sound is freed when the fade completes or
+//   is aborted, thus allowing fire-and-forget fadeouts. no cases are
+//   foreseen where this is undesirable, and it is easier to implement
+//   than an extra set-free-after-fade-flag function.
+//
+// may be called at any time; fails with invalid handle return if
+// the sound has already been closed (e.g. it never played).
+//
+// note that this function doesn't busy-wait until the fade is complete;
+// any number of fades may be active at a time (allows cross-fading).
+// each snd_update calculates a new gain value for all pending fades.
+// each snd_update calculates a new gain value for all pending fades.
+// it is safe to start another fade on the same sound source while
+LibError snd_fade(Handle hvs, float initial_gain, float final_gain,
+	float length, FadeType type)
+{
+	H_DEREF(hvs, VSrc, vs);
+
+	if(type != FT_LINEAR && type != FT_EXPONENTIAL && type != FT_S_CURVE &&
+	   type != FT_ABORT)
+		WARN_RETURN(ERR_INVALID_PARAM);
+
+	// special case - set initial value to current gain (see above).
+	if(initial_gain < 0.0f)
+		initial_gain = vs->gain;
+
+	const double cur_time = get_time();
+
+	FadeInfo& fi = vs->fade;
+	fi.type        = type;
+	fi.start_time  = cur_time;
+	fi.initial_val = initial_gain;
+	fi.final_val   = final_gain;
+	fi.length      = length;
+
+	(void)fade(fi, cur_time, vs->gain);
+	vsrc_latch(vs);
+
 	return ERR_OK;
 }
 
@@ -1771,9 +1959,6 @@ static LibError vm_update()
 	list_foreach(reclaim, first_unimportant, 0);
 	list_foreach(grant, 0, first_unimportant);
 
-	// add / remove buffers for each source.
-	list_foreach((void (*)(VSrc*))vsrc_update);
-
 	return ERR_OK;
 }
 
@@ -1800,6 +1985,10 @@ LibError snd_update(const float* pos, const float* dir, const float* up)
 		al_listener_set_pos(pos, dir, up);
 
 	vm_update();
+
+	// for each source: add / remove buffers; carry out fading.
+	snd_update_time = get_time();	// see decl
+	list_foreach((void (*)(VSrc*))vsrc_update);
 
 	return ERR_OK;
 }
