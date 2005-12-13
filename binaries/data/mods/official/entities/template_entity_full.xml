@@ -3,6 +3,7 @@
 <Entity parent="template_entity">
 	<Script File="entities/template_entity_script.js" />
 
+	<Event On="Initialize" Function="entity_event_initialize" />
 	<Event On="Attack" Function="entity_event_attack" />
 	<Event On="Gather" Function="entity_event_gather" />
 	<Event On="Heal" Function="entity_event_heal" />

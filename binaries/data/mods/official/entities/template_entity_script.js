@@ -1,3 +1,35 @@
+
+function entity_event_initialize( evt )
+{
+	if( this.traits.auras )
+	{
+		for( name in this.traits.auras )
+		{
+			console.write( "Creating " + name + " aura for " + this );
+			switch( name )
+			{
+			case "courage":
+				a = this.traits.auras.courage;
+				this.addAura( name, a.radius, new CourageAura( this, true, a.bonus ) );
+				break;
+			case "fear":
+				a = this.traits.auras.fear;
+				this.addAura( name, a.radius, new CourageAura( this, false, -a.bonus ) );
+				break;
+			case "infidelity":
+				a = this.traits.auras.infidelity;
+				this.addAura( name, a.radius, new InfidelityAura( this ) );
+				break;
+			default:
+				console.write( "Unknown aura: " + name + " on " + this + ", ignoring it");
+				break;
+			}
+		}
+	}
+}
+
+// ====================================================================
+
 function entity_event_attack( evt )
 {
 	curr_hit = getGUIGlobal().newRandomSound("voice", "hit", this.traits.audio.path);
@@ -247,7 +279,6 @@ function entity_event_takesdamage( evt )
 		}
 
 		// We've taken what we need. Kill the swine.
-		console.write("Kill!!");
 		this.kill();
 	}
 	else if( evt.inflictor && this.actions.attack )
@@ -507,3 +538,97 @@ function entity_CheckQueueReq (entry)
 }
 
 // ====================================================================
+
+function CourageAura( source, ally, bonus )
+{
+	this.source = source;
+	this.bonus = bonus;
+	this.ally = ally;
+	
+	this.affects = function( e ) 
+	{
+		if( this.ally )
+		{
+			return ( e.player.id == this.source.player.id && e.actions.attack );
+		}
+		else
+		{
+			return ( e.player.id != this.source.player.id && e.actions.attack );
+		}
+	}
+	
+	this.onEnter = function( e ) 
+	{
+		if( this.affects( e ) ) 
+		{
+			console.write( "Courage aura: giving " + this.bonus + " damage to " + e );
+			e.actions.attack.damage += this.bonus;
+		}
+	};
+	
+	this.onExit = function( e ) 
+	{
+		if( this.affects( e ) ) 
+		{
+			console.write( "Courage aura: taking away " + this.bonus + " damage from " + e );
+			e.actions.attack.damage -= this.bonus;
+		}
+	};
+}
+
+// ====================================================================
+
+function InfidelityAura( source )
+{
+	this.source = source;
+	
+	this.count = new Array( 9 );
+	for( i = 1; i <= 8; i++ )
+	{
+		this.count[i] = 0;
+	}
+	
+	this.affects = function( e ) 
+	{
+		return ( e.player.id != 0 );
+	}
+	
+	this.onEnter = function( e ) 
+	{
+		if( this.affects( e ) ) 
+		{
+			console.write( "Infidelity aura: adding +1 count to " + e.player.id );
+			this.count[e.player.id]++;
+			this.changePlayerIfNeeded();
+		}
+	};
+	
+	this.onExit = function( e ) 
+	{
+		if( this.affects( e ) ) 
+		{
+			console.write( "Infidelity aura: adding -1 count to " + e.player.id );
+			this.count[e.player.id]--;
+			this.changePlayerIfNeeded();
+		}
+	};
+	
+	this.changePlayerIfNeeded = function()
+	{
+		numNearby = 0;
+		someoneNearby = 0;
+		for( i = 1; i <= 8; i++ )
+		{
+			if( this.count[i] > 0 )
+			{
+				numNearby++;
+				someoneNearby = i;
+			}
+		}
+		if( numNearby == 1 )
+		{
+			console.write( "Infidelity aura: changing ownership to " + someoneNearby );
+			this.source.player = players[someoneNearby];
+		}
+	}
+}
