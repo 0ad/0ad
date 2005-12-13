@@ -68,12 +68,13 @@ HEntity CEntityManager::create( CBaseEntity* base, CVector3D position, float ori
 	while( m_entities[m_nextalloc].m_refcount )
 	{
 		m_nextalloc++;
-		if( m_nextalloc >= MAX_HANDLES )
+		if(m_nextalloc == MAX_HANDLES)
 		{
 			debug_warn("Ran out of entity handles!");
 			return HEntity();
 		}
 	}
+
 	m_entities[m_nextalloc].m_entity = new CEntity( base, position, orientation );
 	m_entities[m_nextalloc].m_entity->me = HEntity( m_nextalloc );
 	return( HEntity( m_nextalloc++ ) );
@@ -117,6 +118,23 @@ void CEntityManager::GetExtant( std::vector<CEntity*>& results )
 	for( int i = 0; i < MAX_HANDLES; i++ )
 		if( m_entities[i].m_refcount && !m_entities[i].m_entity->m_destroyed && m_entities[i].m_entity->m_extant )
 			results.push_back( m_entities[i].m_entity );
+}
+
+void CEntityManager::GetInRange( float x, float z, float radius, std::vector<CEntity*>& results )
+{
+	results.clear();
+	for( int i = 0; i < MAX_HANDLES; i++ )
+	{
+		if( m_entities[i].m_refcount && !m_entities[i].m_entity->m_destroyed && m_entities[i].m_entity->m_extant )
+		{
+			float dx = x - m_entities[i].m_entity->m_position.X;
+			float dz = z - m_entities[i].m_entity->m_position.Z;
+			if(dx*dx + dz*dz <= radius*radius)
+			{
+				results.push_back( m_entities[i].m_entity );
+			}
+		}
+	}
 }
 
 /*

@@ -75,7 +75,7 @@ public:
 		return( m_extant );
 	}
 	
-	
+	void GetInRange( float x, float z, float radius, std::vector<CEntity*>& results );
 };
 
 #endif

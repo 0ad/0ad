@@ -44,12 +44,17 @@
 class CBaseEntity;
 class CBoundingObject;
 class CUnit;
+class CAura;
 
 // TODO MT: Put this is /some/ sort of order...
 
 class CEntity : public  CJSComplex<CEntity>, public IEventTarget
 {
 	friend class CEntityManager;
+	
+	typedef STL_HASH_MAP<CStrW, CAura*, CStrW_hash_compare> AuraTable;
+	typedef std::set<CAura*> AuraSet;
+
 private:
 	// The player that owns this entity
 	CPlayer* m_player;
@@ -96,6 +101,10 @@ public:
 	// LOS
 	int m_los;
 	bool m_permanent;
+
+	// Auras
+	AuraTable m_auras;
+	AuraSet m_aurasInfluencingMe;
 
 	//-- Interpolated property
 	CVector3D m_position;
@@ -233,6 +242,13 @@ public:
 
 	jsval ToString( JSContext* cx, uintN argc, jsval* argv );
 	
+	bool Damage( JSContext* cx, uintN argc, jsval* argv );
+	bool Kill( JSContext* cx, uintN argc, jsval* argv );
+	jsval GetSpawnPoint( JSContext* cx, uintN argc, jsval* argv );
+
+	jsval AddAura( JSContext* cx, uintN argc, jsval* argv );
+	jsval RemoveAura( JSContext* cx, uintN argc, jsval* argv );
+
 	bool Order( JSContext* cx, uintN argc, jsval* argv, bool Queued );
 	inline bool OrderSingle( JSContext* cx, uintN argc, jsval* argv )
 	{
@@ -242,18 +258,18 @@ public:
 	{
 		return( Order( cx, argc, argv, true ) );
 	}
-	bool Damage( JSContext* cx, uintN argc, jsval* argv );
-	bool Kill( JSContext* cx, uintN argc, jsval* argv );
-	jsval GetSpawnPoint( JSContext* cx, uintN argc, jsval* argv );
+
 	bool IsIdle( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 	{
 		return( m_orderQueue.empty() );
 	}
+
 	bool HasClass( JSContext* cx, uintN argc, jsval* argv )
 	{
 		debug_assert( argc >= 1 );
 		return( m_classes.IsMember( ToPrimitive<CStrW>( cx, argv[0] ) ) );
 	}
+
 	static void ScriptingInit();
 
 private:

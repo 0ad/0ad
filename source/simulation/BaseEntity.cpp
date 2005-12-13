@@ -291,7 +291,7 @@ void CBaseEntity::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement&
 	if( Existing )
 	{	
 		if( !Existing->m_Intrinsic )
-			LOG( WARNING, LOG_CATEGORY, "CBaseEntity::XMLAddProperty: %s already defined for %s. Property trees will be merged.", PropertyName.c_str(), m_Tag.c_str() );
+			LOG( WARNING, LOG_CATEGORY, "CBaseEntity::XMLAddProperty: %ls already defined for %ls. Property trees will be merged.", PropertyName.c_str(), m_Tag.c_str() );
 		Existing->Set( this, JSParseString( Source.getText() ) );
 		Existing->m_Inherited = false;
 	}

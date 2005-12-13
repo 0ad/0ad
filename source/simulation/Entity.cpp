@@ -8,22 +8,18 @@
 #include "EntityManager.h"
 #include "BaseEntityCollection.h"
 #include "Unit.h"
-
+#include "Aura.h"
 #include "Renderer.h"
 #include "Model.h"
 #include "Terrain.h"
 #include "Interact.h"
-
 #include "Collision.h"
 #include "PathfindEngine.h"
-
 #include "Game.h"
-
 #include "scripting/JSInterface_Vector3D.h"
-
 #include "MathUtil.h"
-
 #include "CConsole.h"
+
 extern CConsole* g_Console;
 extern int g_xres, g_yres;
 
@@ -101,6 +97,8 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	m_grouped = -1;
 
 	m_player = g_Game->GetPlayer( 0 );
+
+	Initialize();
 }
 
 CEntity::~CEntity()
@@ -110,7 +108,17 @@ CEntity::~CEntity()
 		g_UnitMan.RemoveUnit( m_actor );
 		delete( m_actor );
 	}
-	if( m_bounds ) delete( m_bounds );
+
+	if( m_bounds ) 
+	{
+		delete( m_bounds );
+	}
+
+	for( AuraTable::iterator it = m_auras.begin(); it != m_auras.end(); it++ )
+	{
+		delete it->second;
+	}
+	m_auras.clear();
 }
 
 void CEntity::loadBase()
@@ -273,6 +281,18 @@ void CEntity::update( size_t timestep )
 	m_position_previous = m_position;
 	m_orientation_previous = m_orientation;
 
+	// Note: aura processing is done before state processing because the state
+	// processing code is filled with all kinds of returns
+
+	PROFILE_START( "aura processing" );
+
+	for( AuraTable::iterator it = m_auras.begin(); it != m_auras.end(); it++ )
+	{
+		it->second->Update( timestep );
+	}
+
+	PROFILE_END( "aura processing" );
+
 	// The process[...] functions return 'true' if the order at the top of the stack
 	// still needs to be (re-)evaluated; else 'false' to terminate the processing of
 	// this entity in this timestep.
@@ -362,7 +382,6 @@ void CEntity::update( size_t timestep )
 		{
 			if( ( m_lastState != -1 ) || !m_actor->GetModel()->GetAnimation() )
 				m_actor->SetRandomAnimation( "idle" );
-
 		}
 		else if( !m_actor->GetModel()->GetAnimation() )
 			m_actor->SetRandomAnimation( "corpse" );
@@ -869,6 +888,8 @@ void CEntity::ScriptingInit()
 	AddMethod<bool, &CEntity::IsIdle>( "isIdle", 0 );
 	AddMethod<bool, &CEntity::HasClass>( "hasClass", 1 );
 	AddMethod<jsval, &CEntity::GetSpawnPoint>( "getSpawnPoint", 1 );
+	AddMethod<jsval, &CEntity::AddAura>( "addAura", 3 );
+	AddMethod<jsval, &CEntity::RemoveAura>( "removeAura", 1 );
 	
 	AddClassProperty( L"template", (CBaseEntity* CEntity::*)&CEntity::m_base, false, (NotifyFn)&CEntity::loadBase );
 	AddClassProperty( L"traits.id.classes", (GetFn)&CEntity::getClassSet, (SetFn)&CEntity::setClassSet );
@@ -937,8 +958,6 @@ JSBool CEntity::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsva
 	}
 
 	HEntity handle = g_EntityManager.create( baseEntity, position, orientation );
-
-	handle->Initialize();
 
 	*rval = ToJSVal<CEntity>( *handle );
 	return( JS_TRUE );
@@ -1066,6 +1085,19 @@ bool CEntity::Damage( JSContext* cx, uintN argc, jsval* argv )
 
 bool CEntity::Kill( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
+	for( AuraTable::iterator it = m_auras.begin(); it != m_auras.end(); it++ )
+	{
+		it->second->RemoveAll();
+		delete it->second;
+	}
+	m_auras.clear();
+
+	for( AuraSet::iterator it = m_aurasInfluencingMe.begin(); it != m_aurasInfluencingMe.end(); it++ )
+	{
+		(*it)->Remove( this );
+	}
+	m_aurasInfluencingMe.clear();
+
 	// Change this entity's template to the corpse entity - but note
 	// we don't fiddle with the actors or bounding information that we 
 	// usually do when changing templates.
@@ -1232,4 +1264,34 @@ jsval CEntity::GetSpawnPoint( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 			return( JSVAL_NULL );
 	}
 	return( JSVAL_NULL );
+}
+
+jsval CEntity::AddAura( JSContext* cx, uintN argc, jsval* argv )
+{
+	debug_assert( argc >= 3 );
+	debug_assert( JSVAL_IS_OBJECT(argv[2]) );
+
+	CStrW name = ToPrimitive<CStrW>( argv[0] );
+	float radius = ToPrimitive<float>( argv[1] );
+	JSObject* handler = JSVAL_TO_OBJECT( argv[2] );
+
+	if(m_auras[name])
+	{
+		delete m_auras[name];
+	}
+	m_auras[name] = new CAura( cx, this, name, radius, handler );
+
+	return JSVAL_VOID;
+}
+
+jsval CEntity::RemoveAura( JSContext* UNUSED(cx), uintN argc, jsval* argv )
+{
+	debug_assert( argc >= 1 );
+	CStrW name = ToPrimitive<CStrW>( argv[0] );
+	if(m_auras[name])
+	{
+		delete m_auras[name];
+		m_auras.erase(name);
+	}
+	return JSVAL_VOID;
 }
