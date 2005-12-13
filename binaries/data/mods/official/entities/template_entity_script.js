@@ -10,11 +10,11 @@ function entity_event_initialize( evt )
 			{
 			case "courage":
 				a = this.traits.auras.courage;
-				this.addAura( name, a.radius, new CourageAura( this, true, a.bonus ) );
+				this.addAura( name, a.radius, new DamageModifyAura( this, true, a.bonus ) );
 				break;
 			case "fear":
 				a = this.traits.auras.fear;
-				this.addAura( name, a.radius, new CourageAura( this, false, -a.bonus ) );
+				this.addAura( name, a.radius, new DamageModifyAura( this, false, -a.bonus ) );
 				break;
 			case "infidelity":
 				a = this.traits.auras.infidelity;
@@ -539,7 +539,7 @@ function entity_CheckQueueReq (entry)
 
 // ====================================================================
 
-function CourageAura( source, ally, bonus )
+function DamageModifyAura( source, ally, bonus )
 {
 	this.source = source;
 	this.bonus = bonus;
@@ -590,7 +590,7 @@ function InfidelityAura( source )
 	
 	this.affects = function( e ) 
 	{
-		return ( e.player.id != 0 );
+		return ( e.player.id != 0 && ( !e.traits.auras || !e.traits.auras.infidelity ) );
 	}
 	
 	this.onEnter = function( e ) 
@@ -615,20 +615,24 @@ function InfidelityAura( source )
 	
 	this.changePlayerIfNeeded = function()
 	{
-		numNearby = 0;
-		someoneNearby = 0;
-		for( i = 1; i <= 8; i++ )
+		if( this.count[this.source.player.id] == 0 )
 		{
-			if( this.count[i] > 0 )
+			// switch ownership to whoever has the most units near us, if any
+			bestPlayer = 0;
+			bestCount = 0;
+			for( i = 1; i <= 8; i++ )
 			{
-				numNearby++;
-				someoneNearby = i;
+				if( this.count[i] > bestCount )
+				{
+					bestCount = this.count[i];
+					bestPlayer = i;
+				}
 			}
-		}
-		if( numNearby == 1 )
-		{
-			console.write( "Infidelity aura: changing ownership to " + someoneNearby );
-			this.source.player = players[someoneNearby];
+			if( bestCount > 0 )
+			{
+				console.write( "Infidelity aura: changing ownership to " + bestPlayer );
+				this.source.player = players[bestPlayer];
+			}
 		}
 	}
 }
