@@ -136,9 +136,7 @@ function setupSession ()
         // Select session peace track.
         curr_session_playlist_1 = newRandomSound("music", "peace");
         // Fade out main theme and fade in session theme.
-        crossFade(curr_music, curr_session_playlist_1, 0.1);
-			// janwas: greatly accelerate this timesink;
-			// will be replaced soon by native version that doesn't block.
+        crossFade(curr_music, curr_session_playlist_1, 1);
 
         // Start refreshing the session controls.
 	setInterval( snRefresh, 1, 100 );
@@ -160,12 +158,10 @@ function endSession (closeType)
                         
                         // Fade out current music and return to playing menu theme.
                         curr_music = newRandomSound('music', 'menu');
-                        crossFade(curr_session_playlist_1, curr_music, 0.1);
-                                // janwas: greatly accelerate this timesink;
-                                // will be replaced soon by native version that doesn't block.
+                        crossFade(curr_session_playlist_1, curr_music, 1);
 
-			// Stop refreshing the session controls.
-			cancelInterval();
+                        // Stop refreshing the session controls.
+                        cancelInterval();
 
                         // Swap GUIs to display main menu.
                         guiSwitch ("sn", "pg");

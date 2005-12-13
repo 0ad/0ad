@@ -64,56 +64,41 @@ function newRandomSound(soundType, soundSubType, soundPrePath)
 
 // ====================================================================
 
-function fadeOut (soundHandle, Rate)
+function fadeOut (soundHandle, fadeDuration)
 {
 	// Adjust the gain of a sound until it is zero.
+	// The sound is automatically freed when finished fading.
+	soundHandle.fade(-1, 0, fadeDuration)
 
-	// (This is a horrible hack, and needs to be replaced with a decent engine function.)
-
-	for (fadeLoop = 1; fadeLoop > 0; fadeLoop = fadeLoop - Rate)
-	{
-		soundHandle.setGain(fadeLoop);
-	}
-	
 	return true;
 }
 
 // ====================================================================
 
-function fadeIn (soundHandle, Gain, Rate)
+function fadeIn (soundHandle, finalGain, fadeDuration)
 {
 	// Adjust the gain of a sound from zero up to the given value.
+	soundHandle.fade(0, finalGain, fadeDuration)
 
-	// (This is a horrible hack, and needs to be replaced with a decent engine function.)
-
-	for (fadeLoop = 0; fadeLoop < Gain; fadeLoop = fadeLoop + Rate)
-	{
-		soundHandle.setGain(fadeLoop);
-	}
-	
 	return true;	
 }
 
 // ====================================================================
 
-function crossFade (outHandle, inHandle, Rate)
+function crossFade (outHandle, inHandle, fadeDuration)
 {
-	// Accepts two sound handles. Fades out the first and fades in the second at the specified rate.
+	// Accepts two sound handles. Over the given duration,
+	// fades out the first while fading in the second.
 	// Note that it plays the in and frees the out while it's at it.
 
-	// (This is a horrible hack, and needs to be replaced with a decent engine function.)
-
 	if (outHandle)
-		fadeOut(outHandle, Rate);
+		fadeOut(outHandle, fadeDuration);
 
 	if (inHandle)
 	{
 		inHandle.play();
-		fadeIn(inHandle, 1, Rate);
+		fadeIn(inHandle, 1, fadeDuration);
 	}
-
-	if (outHandle)
-		outHandle.free();
 
 	return true;
 }
