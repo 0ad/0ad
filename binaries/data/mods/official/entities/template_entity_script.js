@@ -561,7 +561,7 @@ function DamageModifyAura( source, ally, bonus )
 	{
 		if( this.affects( e ) ) 
 		{
-			console.write( "Courage aura: giving " + this.bonus + " damage to " + e );
+			console.write( "Damage mod aura: giving " + this.bonus + " damage to " + e );
 			e.actions.attack.damage += this.bonus;
 		}
 	};
@@ -570,7 +570,7 @@ function DamageModifyAura( source, ally, bonus )
 	{
 		if( this.affects( e ) ) 
 		{
-			console.write( "Courage aura: taking away " + this.bonus + " damage from " + e );
+			console.write( "Damage mod aura: taking away " + this.bonus + " damage from " + e );
 			e.actions.attack.damage -= this.bonus;
 		}
 	};
