@@ -413,10 +413,12 @@ void ScriptingHost::ErrorReporter(JSContext* UNUSED(cx), const char* message, JS
 	if(!message)
 		message = "No error message available";
 
+	// for developer convenience: write to output window so they can
+	// doubleclick on that line and be taken to the error locus.
 	debug_printf("%s(%d): %s\n", file, line, message);
 
-	if (g_Console)
-		g_Console->InsertMessage(L"JavaScript Error (%hs, line %d): %hs", file, line, message);
+	// note: CLogger's LOG already takes care of writing to the console,
+	// so don't do that here.
 
 	LOG(ERROR, LOG_CATEGORY, "JavaScript Error (%s, line %d): %s", file, line, message);
 }

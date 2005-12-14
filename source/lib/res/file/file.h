@@ -36,6 +36,10 @@ struct PathPackage
 
 // write the given directory path into our buffer and set end/chars_left
 // accordingly. <dir> need and should not end with a directory separator.
+//
+// note: <dir> and the filename set via pp_append_file are separated by
+// '/'. this is to allow use on portable paths; the function otherwise
+// does not care if paths are relative/portable/absolute.
 extern LibError pp_set_dir(PathPackage* pp, const char* dir);
 
 // append the given filename to the directory established by the last

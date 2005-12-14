@@ -70,6 +70,10 @@ const size_t SECTOR_SIZE = 4096;
 
 // write the given directory path into our buffer and set end/chars_left
 // accordingly. <dir> need and should not end with a directory separator.
+//
+// note: <dir> and the filename set via pp_append_file are separated by
+// '/'. this is to allow use on portable paths; the function otherwise
+// does not care if paths are relative/portable/absolute.
 LibError pp_set_dir(PathPackage* pp, const char* dir)
 {
 	// note: use / instead of DIR_SEP because pp->path is portable.

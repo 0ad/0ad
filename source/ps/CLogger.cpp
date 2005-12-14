@@ -3,6 +3,7 @@
 #include "CLogger.h"
 #include "ConfigDB.h"
 #include "lib.h"
+#include "lib/res/file/file.h"
 
 #include <time.h>
 
@@ -22,7 +23,7 @@ const char* html_header1 = "</H1></P>\n";
 
 const char* html_footer = "</BODY>\n</HTML>\n";
 
-#define MEMORY_BUFFER_SIZE	240
+#define MEMORY_BUFFER_SIZE	1000
 
 CLogger::CLogger()
 {
@@ -33,10 +34,16 @@ CLogger::CLogger()
 	m_MemoryLogBuffer = (char *)calloc(MEMORY_BUFFER_SIZE, 1);
 	m_CurrentPosition = m_MemoryLogBuffer;
 
-	// current directory is $install_dir/data, we want $install_dir/logs.
-	m_MainLog.open			("../logs/mainlog.html",		ofstream::out | ofstream::trunc);
-	m_InterestingLog.open	("../logs/interestinglog.html",	ofstream::out | ofstream::trunc);
-	m_MemoryLog.open		("../logs/memorylog.html",		ofstream::out | ofstream::trunc);
+	char N_path[PATH_MAX];
+	(void)file_make_full_native_path("../logs", N_path);
+	PathPackage pp;
+	(void)pp_set_dir(&pp, N_path);
+	(void)pp_append_file(&pp, "mainlog.html");
+	m_MainLog.open       (pp.path, ofstream::out | ofstream::trunc);
+	(void)pp_append_file(&pp, "interestinglog.html");
+	m_InterestingLog.open(pp.path, ofstream::out | ofstream::trunc);
+	(void)pp_append_file(&pp, "memorylog.html");
+	m_MemoryLog.open     (pp.path, ofstream::out | ofstream::trunc);
 
 	//Write Headers for the HTML documents
 	m_MainLog << html_header0 << "Main log" << html_header1;
