@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity 
+	Parent="template_gaia_geo"
+>
+	<Traits>
+	
+		<Id>
+			<Internal_Only />
+
+			<Generic>Mineral</Generic>
+
+			<Classes>Mineral</Classes>
+
+			<Rollover>A mineral deposit, providing access to rare forms of precious metal.</Rollover>
+
+		</Id>
+ 
+ 		<MiniMap>
+ 			<Type>Ore</Type>
+ 			<Red>192</Red>
+ 			<Green>192</Green>
+ 			<Blue>0</Blue>
+		</MiniMap>
+
+ 		<Supply>
+ 			<Max>100</Max>
+ 			<Type>ore</Type>
+ 		</Supply>
+
+	</Traits>
+</Entity>

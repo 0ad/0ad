@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_structure_civic"
+>
+	<Traits>
+	
+		<Id>
+		
+			<Internal_Only />
+
+			<Generic>Temple</Generic>
+
+			<Icon_Cell>58</Icon_Cell>
+
+			<Classes>Town</Classes>
+
+			<Rollover>The Temple trains physicians, researches medical technologies, and provides healing to nearby allied organic units.</Rollover>
+		
+		</Id>
+
+ 		<Footprint>
+ 			<Width>12.0</Width>
+ 			<Depth>12.0</Depth>
+ 			<Height>8.0</Height>
+ 		</Footprint>
+
+		<Health>
+ 			<Max>600</Max>
+		</Health>
+
+		<Population>
+			<Add>5</Add>
+		</Population>
+
+	</Traits>
+
+</Entity>

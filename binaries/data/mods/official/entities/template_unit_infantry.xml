@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_unit"
+>
+	<Traits>
+	
+		<Id>
+			<Generic>Infantry</Generic>
+
+			<Classes>Military, Foot, Organic, CitizenSoldier, Worker</Classes>
+		</Id>
+
+		<Armour>
+			<Value>4</Value>
+			<Crush>0.0</Crush>
+			<Hack>0.75</Hack>
+			<Pierce>0.25</Pierce>
+		</Armour>
+
+		<Loot>
+			<XP>800</XP>
+			<Food>1</Food>
+			<wood>1</wood>
+			<Stone>1</Stone>
+			<Ore>1</Ore>
+		</Loot>		
+
+		<Population>
+			<Rem>1</Rem>
+		</Population>
+
+		<Promotion>
+			<Req>600</Req>
+		</Promotion>
+
+	</Traits>
+
+	<Actions>
+
+		<Attack>
+			<Damage>10.0</Damage>
+			<Crush>0.0</Crush>
+			<Hack>0.5</Hack>
+			<Pierce>0.5</Pierce>		
+			<Range>2.0</Range>
+			<Speed>1500</Speed>
+		</Attack>
+
+		<Create>
+			<List>
+				<StructCiv>
+					<Civil_Centre />
+					<Farmstead />
+					<House />
+					<Market />
+					<Mill />
+					<Temple />
+				</StructCiv>
+				<StructMil>
+					<Barracks />
+					<Dock />
+					<Fortress />
+					<Scout_Tower />
+					<Wall />
+					<Wall_Gate />
+					<Wall_Tower />
+				</StructMil>
+			</List>
+		</Create>
+
+ 		<Gather>
+			<Resource>
+				<Food>
+					<Fruit>2</Fruit>
+					<Grain>2</Grain>
+					<Fish>2</Fish>
+					<Milk>2</Milk>
+				</Food>
+				<Wood>1</Wood>
+				<Stone>1</Stone>
+				<Ore>1</Ore>
+			</Resource>
+ 			<Range>2.0</Range>
+			<Speed>3000</Speed>
+ 		</Gather>
+
+		<Repair />
+		
+	</Actions>
+
+</Entity>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_structure_economic"
+>
+	<Traits>
+	
+		<Id>
+		
+			<Internal_Only />
+
+			<Generic>Market</Generic>
+
+			<Icon_Cell>60</Icon_Cell>
+
+			<Classes>Town</Classes>
+
+			<Rollover>The Market creates trade units and allows resources to be bartered. Traders travel between Markets, generating resources on a successful round-trip.</Rollover>
+		
+		</Id>
+
+ 		<Footprint>
+ 			<Width>18.0</Width>
+ 			<Depth>18.0</Depth>
+ 			<Height>8.0</Height>
+ 		</Footprint>
+
+		<Garrison>
+			<Max>10</Max>
+		</Garrison>
+
+		<Health>
+ 			<Max>600</Max>
+		</Health>
+
+		<Population>
+			<Add>10</Add>
+		</Population>
+
+	</Traits>
+
+</Entity>

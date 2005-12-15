@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_structure_civic"
+>
+	<Traits>
+	
+		<Id>
+		
+			<Internal_Only />
+
+			<Generic>Civil Centre</Generic>
+
+			<Icon_Cell>47</Icon_Cell>
+
+			<Classes>Housing, Village</Classes>
+
+			<Rollover>The heart of the player's empire. Trains economic units, and can only be built on settlements.</Rollover>
+		
+		</Id>
+
+ 		<Footprint>
+ 			<Width>24.0</Width>
+ 			<Depth>24.0</Depth>
+ 			<Height>8.0</Height>
+ 		</Footprint>
+
+ 		<Garrison>
+ 			<Max>15</Max>
+		</Garrison>
+
+		<Health>
+ 			<Max>1000</Max>
+		</Health>
+
+		<Population>
+			<Add>10</Add>
+		</Population>
+
+	</Traits>
+
+	<Actions>
+		<Create>
+ 			<List>
+				<Unit>
+					<Female_Citizen />
+				</Unit>
+ 				<Tech>
+					<Fem />
+				</Tech>
+ 			</List>
+ 			<Speed>1</Speed>
+ 		</Create>
+	</Actions>
+
+</Entity>

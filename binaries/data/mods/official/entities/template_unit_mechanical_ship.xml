@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_unit_mechanical"
+>
+	<Traits>
+	
+		<Id>
+		
+			<Generic>Ship</Generic>
+
+			<Classes>Ship, WarShip</Classes>
+		
+		</Id>
+
+		<Anchor>
+			<Type>Water</Type>
+		</Anchor>
+
+		<Footprint>
+			<Radius>5.0</Radius>
+			<Height>5.0</Height>
+		</Footprint>
+
+		<Health>
+			<Bar_Height>12.0</Bar_Height>
+		</Health>
+
+	</Traits>
+
+</Entity>

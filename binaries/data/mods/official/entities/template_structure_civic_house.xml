@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_structure_civic"
+>
+	<Traits>
+	
+		<Id>
+		
+			<Internal_Only />
+
+			<Generic>House</Generic>
+
+			<Icon_Cell>48</Icon_Cell>
+
+			<Classes>Housing, Village</Classes>
+
+			<Rollover>A civic building that increases the player's population.</Rollover>
+		
+		</Id>
+
+ 		<Footprint>
+ 			<Width>9.0</Width>
+ 			<Depth>9.0</Depth>
+ 			<Height>8.0</Height>
+ 		</Footprint>
+
+		<Health>
+ 			<Max>250</Max>
+		</Health>
+
+		<Population>
+			<Add>5</Add>
+		</Population>
+
+	</Traits>
+	
+</Entity>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	parent="template_structure_economic">
+	<Traits
+		extant="true"
+	>
+		<Id>
+			<Internal_Only />
+
+			<Generic>Farmstead</Generic>
+
+			<Icon_Cell>49</Icon_Cell>
+
+			<Classes>Village</Classes>
+
+			<Rollover>The Farmstead is the centre for food gathering operations. Fields and Corrals must be built at lots adjacent to it.</Rollover>
+		
+		</Id>
+
+ 		<Footprint>
+ 			<Width>12.0</Width>
+ 			<Depth>12.0</Depth>
+ 			<Height>8.0</Height>
+ 		</Footprint>
+
+ 		<Garrison>
+ 			<Max>5</Max>
+		</Garrison>
+
+		<Health>
+ 			<Max>50</Max>
+		</Health>
+
+	</Traits>
+
+	<Event On="Attack" Function="entityEAttack" />
+	<Event On="Gather" Function="entityEventGather" />
+	<Event On="TakesDamage" Function="entityEventTakesDamage" />
+	<Event On="TargetChanged" Function="entityEventTargetChanged" />
+	<Event On="PrepareOrder" Function="entityEventPrepareOrder" />
+</Entity>

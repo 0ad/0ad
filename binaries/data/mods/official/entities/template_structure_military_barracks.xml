@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_structure_military"
+>
+	<Traits>
+	
+		<Id>
+		
+			<Internal_Only />
+
+			<Generic>Barracks</Generic>
+
+			<Icon_Cell>59</Icon_Cell>
+
+			<Classes>Town</Classes>
+
+			<Rollover>The Barracks trains military units. Technologies may also be researched to improve their equipment.</Rollover>
+		
+		</Id>
+
+ 		<Footprint>
+ 			<Width>18.0</Width>
+ 			<Depth>18.0</Depth>
+ 			<Height>8.0</Height>
+ 		</Footprint>
+
+		<Health>
+ 			<Max>600</Max>
+		</Health>
+	</Traits>
+
+</Entity>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_structure_norm_civic"
+>
+	<Traits>
+	
+		<Id>
+		
+			<Internal_Only />
+
+			<Generic>Tower</Generic>
+
+			<Icon_Cell>55</Icon_Cell>
+
+			<Classes>Village</Classes>
+
+			<Rollover>Towers can be garrisoned to defend a city wall against attackers.</Rollover>
+		
+		</Id>
+
+ 		<Footprint>
+ 			<Width>6.0</Width>
+ 			<Depth>6.0</Depth>
+ 			<Height>8.0</Height>
+ 		</Footprint>
+
+		<Garrison>
+			<Max>5</Max>
+		</Garrison>
+
+		<Health>
+ 			<Max>80</Max>
+		</Health>
+
+	</Traits>
+
+</Entity>

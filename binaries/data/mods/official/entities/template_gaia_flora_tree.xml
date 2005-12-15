@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity 
+	Parent="template_gaia_flora"
+>
+	<Traits>
+	
+		<Id>
+		
+			<Internal_Only />
+
+			<Generic>Tree</Generic>
+
+ 			<Icon>flora_deciduotree</Icon>
+			
+			<Classes>Tree, Resource</Classes>
+
+ 			<Rollover>Chop these down to accumulate Wood.</Rollover>
+
+		</Id>
+
+  		<Health>
+ 			<Max>100</Max>
+  		</Health>
+
+ 		<MiniMap>
+ 			<Type>Wood</Type>
+ 			<Red>0</Red>
+ 			<Green>64</Green>
+ 			<Blue>0</Blue>
+ 		</MiniMap>
+
+ 		<Supply>
+ 			<Max>200</Max>
+ 			<Type>wood</Type>
+ 		</Supply>
+
+	</Traits>
+</Entity>

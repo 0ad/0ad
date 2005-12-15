@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_structure_military"
+>
+	<Traits>
+	
+		<Id>
+		
+			<Internal_Only />
+
+			<Generic>Fortress</Generic>
+
+			<Icon_Cell>61</Icon_Cell>
+
+			<Classes>City</Classes>
+
+			<Rollover>The Fortress represents the pinnacle of a civilisation's military prowess. Heroes, powerful advanced units, and unique technologies are available from this structure.</Rollover>
+		
+		</Id>
+
+ 		<Footprint>
+ 			<Width>24.0</Width>
+ 			<Depth>24.0</Depth>
+ 			<Height>8.0</Height>
+ 		</Footprint>
+
+ 		<Garrison>
+ 			<Max>30</Max>
+		</Garrison>
+
+		<Health>
+ 			<Max>1000</Max>
+		</Health>
+
+		<Population>
+			<Add>20</Add>
+		</Population>
+	</Traits>
+
+</Entity>

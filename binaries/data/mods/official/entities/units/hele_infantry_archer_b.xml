@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="template_unit_infantry_ranged_archer">
+	<Traits>
+		<Id>
+			<Specific>Toxotes</Specific>
+
+			<Civ>Hellenes</Civ>
+
+			<History>Archers were used in Hellenistic armies to support the phalanx by splitting up enemy formations. The best Greek archers were from Crete, but mercenaries from Scythia and Asia Minor were sometimes employed. Hellenistic archers wore their quivers on their backs and the more successful ones were able to procure armor.</History>
+
+		</Id>
+	</Traits>
+
+	<Actor>units/hellenes/infantry_archer_b.xml</Actor>
+
+</Entity>

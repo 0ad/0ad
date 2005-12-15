@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_structure_military_dock"
+>
+	<Traits>
+	
+		<Id>
+
+			<Specific>Porthladd</Specific>
+
+			<Civ>Celts</Civ>
+
+			<History>I could not find any evidence of a celtic port, but I'm giving them one for gameplay reasons.</History>
+		
+		</Id>
+
+	</Traits>
+
+	<Actor>structures/celts/dock.xml</Actor>
+
+</Entity>

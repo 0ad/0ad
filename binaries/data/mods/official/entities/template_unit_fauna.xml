@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity 
+	Parent="template_unit"
+>
+	<Traits>
+	
+		<Id>
+			<Internal_Only />
+
+			<Generic>Fauna</Generic>
+			
+			<Civ>Gaia</Civ>
+
+			<Classes>Gaia, Fauna</Classes>
+			
+		</Id>
+
+ 		<Footprint>
+ 			<Radius>1.0</Radius>
+ 			<Height>2.5</Height>
+ 		</Footprint>
+		
+		<Loot>
+			<XP>10</XP>
+		</Loot>
+
+ 		<MiniMap>
+ 			<Type>Food</Type>
+ 			<Red>205</Red>
+ 			<Green>115</Green>
+ 			<Blue>16</Blue>
+ 		</MiniMap>
+
+ 		<Supply>
+ 			<Max>100</Max>
+ 			<Type>food</Type>
+ 			<SubType>meat</SubType>
+ 		</Supply>
+		
+	</Traits>
+</Entity>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_unit_cavalry"
+>
+	<Traits>
+	
+		<Id>
+			<Generic>Ranged Cavalry</Generic>
+
+			<Classes>Ranged</Classes>
+		
+		</Id>
+		
+	</Traits>
+
+	<Attack>
+		<Range>16.0</Range>
+		<Speed>1500</Speed>
+	</Attack>
+
+	<Event On="Attack" Function="entityEventAttackRanged" />
+	
+</Entity>

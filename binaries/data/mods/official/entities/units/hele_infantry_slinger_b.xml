@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_unit_infantry_ranged_slinger"
+>
+	<Traits>
+	
+		<Id>
+
+			<Specific>Rhodian Sfendonistis</Specific>
+
+			<Civ>Hellenes</Civ>
+
+			<History>Slingers were supporting light infantry armed with a weapon of simple manufacture but of complex usage. Rhodes was famous for its slingers, who hurled lead shots at ranges that archers could not surpass. The bullets were grooved so that they would whistle as they flew and many were inscribed with insults. Even heavy bronze armor could not withstand a sling cast.</History>
+
+		</Id>
+		
+	</Traits>
+
+	<Actor>units/hellenes/infantry_slinger_b.xml</Actor>
+</Entity>

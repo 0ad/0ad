@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_structure_civic_civil_centre"
+>
+	<Traits>
+	
+		<Id>
+
+			<Specific>Municipium</Specific>
+
+			<Civ>Romans</Civ>
+
+			<History>(Roman History goes here)</History>
+		
+		</Id>
+
+	</Traits>
+
+	<Actor>structures/romans/civil_centre.xml</Actor>
+
+	<Actions>
+		<Create>
+			<List>
+				<Unit>
+					<Infantry_Spearman />
+					<Infantry_Javelinist />
+					<Cavalry_Spearman />
+				</Unit>
+			</List>
+		</Create>
+	</Actions>	
+
+</Entity>

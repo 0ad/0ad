@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_entity_full"
+>
+	<Traits>
+	
+		<Id>
+		
+			<Internal_Only />
+
+			<Generic>Structure</Generic>
+
+			<Icon>sheet_civ</Icon>
+
+			<Classes>Structure</Classes>
+		
+		</Id>
+
+		<Health>
+			<Bar_Height>12.0</Bar_Height>
+		</Health>
+
+		<Vision>
+			<LOS>9</LOS>
+		</Vision>
+
+	</Traits>
+
+</Entity>

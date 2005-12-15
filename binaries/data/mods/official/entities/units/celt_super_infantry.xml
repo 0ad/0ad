@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_unit_super_infantry"
+>
+	<Traits>
+	
+		<Id>
+		
+			<Specific>Briton Cruthni</Specific>
+
+			<Civ>Celts</Civ>
+
+			<History>The Picts were famous for their habit of covering themselves in blue war paint and fighting completely naked long after other peoples had ceased to. While there are serious questions about their origins, the Picts often fought with and against their Briton neighbors armed with primitive crossbows. Their guerilla style of fighting was seen as dishonorable in Celtic eyes but they were renowned for their tenacity.</History>
+		
+		</Id>
+		
+	</Traits>
+
+	<Actor>units/celts/super_unit_1.xml</Actor>
+
+</Entity>

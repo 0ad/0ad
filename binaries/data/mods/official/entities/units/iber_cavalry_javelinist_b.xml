@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_unit_cavalry_ranged_javelinist"
+>
+	<Traits>
+	
+		<Id>
+
+			<Specific>Caballero Turdetano</Specific>
+
+			<Civ>Iberians</Civ>
+
+			<History>While not differing greatly from the other Iberian cavalry, the javelinists gave the horsemen the added sting of long-range attack coupled with brutal close combat. They did not use stirrups or saddles and were renowned for their horsemanship. They were highly sought after as mercenaries, albeit expendable ones.</History>
+
+		</Id>
+		
+	</Traits>
+
+	<Actor>units/iberians/cavalry_javelinist_b.xml</Actor>
+</Entity>

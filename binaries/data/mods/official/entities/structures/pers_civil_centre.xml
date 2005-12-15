@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_structure_civic_civil_centre"
+>
+	<Traits>
+	
+		<Id>
+
+			<Specific>Satrapy</Specific>
+
+			<Civ>Persians</Civ>
+
+			<History>Possibly of Median origin, the word 'satrapy' means province. Soon after coming to the throne, Darius the Great carried out a vast administrative reform, dividing the huge empire into 20 satrapies governed by satraps.</History>
+		
+		</Id>
+
+	</Traits>
+
+	<Actor>structures/persians/civil_centre.xml</Actor>
+
+	<Actions>
+		<Create>
+			<List>
+				<Unit>
+					<Infantry_Spearman />
+					<Infantry_Archer />
+					<Cavalry_Javelinist />
+				</Unit>
+			</List>
+		</Create>
+	</Actions>
+	
+</Entity>

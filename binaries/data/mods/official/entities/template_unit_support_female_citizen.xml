@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_unit_support"
+>
+	<Traits>
+	
+		<Id>
+			<Generic>Female Citizen</Generic>
+
+			<Icon_Cell>32</Icon_Cell>
+
+			<Classes>Worker, Foot</Classes>
+
+			<Rollover>Women in the ancient world took on a variety of roles - from leadership (Celts) to servant (Greeks). Women are hard workers, the economic backbone of any civilisation. In history, it was typical when all the males (capable of fighting) were killed for the females, children, and elderly to be sold as slaves.</Rollover>
+		
+		</Id>
+
+		<Auras>
+			<Infidelity>
+				<Radius>30</Radius>
+			</Infidelity>
+		</Auras>		
+		
+	</Traits>
+
+	<Actions>
+	
+		<Create>
+			<List>
+				<StructCiv>
+					<Civil_Centre />
+					<Farmstead />
+					<House />
+					<Market />
+					<Mill />
+					<Temple />
+				</StructCiv>
+			</List>
+		</Create>	
+
+		<Gather>
+			<Resource>
+				<Food>
+					<Fruit>5</Fruit>
+					<Grain>5</Grain>
+					<Fish>5</Fish>
+					<Milk>5</Milk>
+				</Food>
+			</Resource>
+ 			<Range>2.0</Range>
+			<Speed>3000</Speed>
+		</Gather>
+
+		<Repair />
+	
+	</Actions>	
+	
+</Entity>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_structure_civic"
+>
+	<Traits>
+	
+		<Id>
+		
+			<Internal_Only />
+
+			<Generic>Wall</Generic>
+
+			<Icon_Cell>54</Icon_Cell>
+
+			<Classes>Village</Classes>
+
+			<Rollover>Build walls to protect a town, close off choke points, and defend resource sites.</Rollover>
+		
+		</Id>
+
+ 		<Footprint>
+ 			<Width>6.0</Width>
+ 			<Depth>6.0</Depth>
+ 			<Height>8.0</Height>
+ 		</Footprint>
+
+		<Health>
+ 			<Max>500</Max>
+		</Health>
+
+	</Traits>
+
+</Entity>

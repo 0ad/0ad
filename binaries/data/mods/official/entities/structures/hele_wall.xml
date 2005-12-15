@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_structure_defense_wall"
+>
+	<Traits>
+	
+		<Id>
+
+			<Specific>Teichos</Specific>
+
+			<Civ>Hellenes</Civ>
+
+			<History>All Hellenic cities were surrounded by stone walls for protection against enemy raids. Some of these fortifications, like the Athenian Long Walls, for example, were massive structures.</History>
+		
+		</Id>
+
+	</Traits>
+
+	<Actor>structures/hellenes/wall.xml</Actor>
+
+</Entity>

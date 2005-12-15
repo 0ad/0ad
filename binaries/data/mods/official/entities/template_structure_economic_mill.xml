@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_structure_economic"
+>
+	<Traits>
+	
+		<Id>
+		
+			<Internal_Only />
+
+			<Generic>Mill</Generic>
+
+			<Icon_Cell>52</Icon_Cell>
+
+			<Classes>Village</Classes>
+
+			<Rollover>A Mill must be constructed near a source of Wood, Stone or Ore in order to collect them. It also provides technologies that improve gathering of these resources.</Rollover>
+		
+		</Id>
+
+ 		<Footprint>
+ 			<Width>12.0</Width>
+ 			<Depth>12.0</Depth>
+ 			<Height>8.0</Height>
+ 		</Footprint>
+
+		<Health>
+ 			<Max>50</Max>
+		</Health>
+
+	</Traits>
+
+</Entity>

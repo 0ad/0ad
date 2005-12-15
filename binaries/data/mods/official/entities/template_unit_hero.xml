@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_unit"
+>
+	<Traits>
+	
+		<Id>
+			<Generic>Hero</Generic>
+
+			<Classes>Hero, Military, Organic</Classes>
+		
+		</Id>
+		
+		<Armour>
+			<Value>0</Value>
+			<Crush>0.3</Crush>
+			<Hack>0.3</Hack>
+			<Pierce>0.3</Pierce>
+		</Armour>		
+
+		<Loot>
+			<XP>1000</XP>
+			<Food>1</Food>
+			<wood>1</wood>
+			<Stone>1</Stone>
+			<Ore>1</Ore>
+		</Loot>		
+
+		<MiniMap>
+			<Type>Hero</Type>
+		</MiniMap>
+
+	</Traits>
+	
+	<Actions>
+
+		<Attack>
+			<Damage>20.0</Damage>
+			<Crush>0.0</Crush>
+			<Hack>0.5</Hack>
+			<Pierce>0.5</Pierce>		
+			<Range>2.0</Range>
+			<Speed>1500</Speed>
+		</Attack>
+		
+	</Actions>
+
+</Entity>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_structure"
+>
+	<Traits>
+	
+		<Id>
+		
+			<Internal_Only />
+
+			<Generic>Resource Structure</Generic>
+
+			<Classes>Resource</Classes>
+
+		</Id>
+		
+		<Vision>
+			<LOS>0</LOS>
+			<Permanent />
+		</Vision>		
+
+	</Traits>
+
+</Entity>

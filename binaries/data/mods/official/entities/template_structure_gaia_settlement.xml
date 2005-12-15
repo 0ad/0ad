@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity 
+	Parent="template_structure"
+>
+	<Traits>
+	
+		<Id>
+			<Internal_Only />
+
+			<Generic>Gaia Building</Generic>
+			
+			<Specific>Settlement</Specific>
+			
+			<Civ>Gaia</Civ>
+
+			<Classes>Building, Gaia, Special, Settlement</Classes>
+
+ 			<Rollover>Build a Civil Centre at this location to expand your territory.</Rollover>
+
+		</Id>
+		
+ 		<Footprint>
+ 			<Width>24.0</Width>
+ 			<Depth>24.0</Depth>
+ 			<Height>8.0</Height>
+ 		</Footprint>
+
+ 		<MiniMap>
+ 			<Type>Settlement</Type>
+ 		</MiniMap>		
+
+	</Traits>
+</Entity>

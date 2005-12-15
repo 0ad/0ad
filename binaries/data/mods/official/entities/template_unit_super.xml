@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_unit"
+>
+	<Traits>
+	
+		<Id>
+		
+			<Generic>Super Unit</Generic>
+
+			<Classes>Military, Super</Classes>
+		
+		</Id>
+
+		<Loot>
+			<XP>50</XP>
+			<Food>1</Food>
+			<wood>1</wood>
+			<Stone>1</Stone>
+			<Ore>1</Ore>
+		</Loot>
+		
+	</Traits>
+
+</Entity>

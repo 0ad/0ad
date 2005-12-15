@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_unit"
+>
+	<Traits>
+	
+		<Id>
+		
+			<Generic>Support</Generic>
+
+			<Classes>Support, Organic</Classes>
+		
+		</Id>
+		
+		<Loot>
+			<XP>10</XP>
+			<Food>1</Food>
+			<wood>1</wood>
+			<Stone>1</Stone>
+			<Ore>1</Ore>
+		</Loot>		
+
+		<MiniMap>
+			<Type>Support</Type>
+		</MiniMap>
+
+		<Population>
+			<Rem>1</Rem>
+		</Population>
+
+	</Traits>
+
+</Entity>

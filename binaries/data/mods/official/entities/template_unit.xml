@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_entity_full"
+>
+	<Traits>
+	
+		<Corpse>template_corpse</Corpse>
+	
+		<Id>
+			<Internal_Only />
+
+			<Generic>Unit</Generic>
+
+			<Icon>sheet_civ</Icon>
+
+			<Classes>Unit</Classes>
+		
+		</Id>
+
+		<Audio>
+			<Path>audio/voice/hellenes/soldier</Path>
+		</Audio>
+
+		<Footprint>
+			<Radius>1.5</Radius>
+			<Height>1.5</Height>
+		</Footprint>
+		
+		<Health>
+			<Max>100</Max>
+			<Bar_Height>5.0</Bar_Height>
+		</Health>
+
+		<MiniMap>
+			<Type>Unit</Type>
+		</MiniMap>
+
+		<Vision>
+			<LOS>6</LOS>
+		</Vision>
+
+	</Traits>
+
+	<Actions>
+		<Move>
+			<Speed>6.0</Speed>
+			<TurningRadius>0.0</TurningRadius>
+		</Move>
+
+		<Patrol />
+	</Actions>
+	
+</Entity>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_structure_resource"
+>
+	<Traits>
+	
+		<Id>
+		
+			<Internal_Only />
+
+			<Generic>Field</Generic>
+
+			<Icon_Cell>50</Icon_Cell>
+
+			<Classes>Village</Classes>
+
+			<Rollover>Assign an economic unit to a Field to harvest grain and generate Food.</Rollover>
+		
+		</Id>
+
+ 		<Footprint>
+ 			<Width>12.0</Width>
+ 			<Depth>12.0</Depth>
+ 			<Height>8.0</Height>
+ 		</Footprint>
+
+ 		<Garrison>
+ 			<Max>1</Max>
+		</Garrison>
+
+		<Health>
+ 			<Max>50</Max>
+		</Health>
+
+		<Supply>
+			<Max>200</Max>
+			<Type>food</Type>
+			<SubType>grain</SubType>
+		</Supply>
+
+	</Traits>
+
+</Entity>

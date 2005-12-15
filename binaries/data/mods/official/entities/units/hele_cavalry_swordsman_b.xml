@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_unit_cavalry_melee_swordsman"
+>
+	<Traits>
+	
+		<Id>
+
+			<Specific>Hyppikon</Specific>
+
+			<Civ>Hellenes</Civ>
+
+			<History>Cavalry were made up of the upper class since they were the only ones who could afford horses. Initially they were missile troops who avoided close combat, throwing javelins and spears at enemy troops. Later on thanks to developments by the Macedonians they began to close with enemy troops to use their swords. As with all ancient horsemen the hyppikon did not have stirrups or a saddle.</History>
+		
+		</Id>
+		
+	</Traits>
+
+	<Actor>units/hellenes/cavalry_swordsman_b.xml</Actor>
+</Entity>
