@@ -146,10 +146,10 @@ function entityInit()
 		this.traits.id.personal.name = "";
 */
 	// Log creation of entity to console.
-	if (this.traits.id.personal && this.traits.id.personal.name)
-		console.write ("A new " + this.traits.id.specific + " (" + this.traits.id.generic + ") called " + this.traits.id.personal.name + " has entered your dungeon.")
-	else	
-		console.write ("A new " + this.traits.id.specific + " (" + this.traits.id.generic + ") has entered your dungeon.")
+	//if (this.traits.id.personal && this.traits.id.personal.name)
+	//	console.write ("A new " + this.traits.id.specific + " (" + this.traits.id.generic + ") called " + this.traits.id.personal.name + " has entered your dungeon.")
+	//else	
+	//	console.write ("A new " + this.traits.id.specific + " (" + this.traits.id.generic + ") has entered your dungeon.")
 }
 
 // ====================================================================
