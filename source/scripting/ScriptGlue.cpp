@@ -752,7 +752,7 @@ JSBool startPlacing( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, j
 		name = L"hele_ho";			// save some typing during testing
 	}
 	else {
-		if(!ToPrimitive( g_ScriptingHost.GetContext(), argv[0], name ))
+		if(!ToPrimitive<CStrW>( g_ScriptingHost.GetContext(), argv[0], name ))
 		{
 			JS_ReportError( cx, "Invalid template name argument" );
 			*rval = JSVAL_NULL;

@@ -1074,6 +1074,12 @@ bool CBuildingPlacer::activate(CStrW& templateName)
 
 	CBaseEntity* base = g_EntityTemplateCollection.getTemplate( m_templateName );
 
+	if( !base )
+	{
+		deactivate();
+		return false;
+	}
+
 	// m_actor
 	CStr actorName ( base->m_actorName );	// convert CStrW->CStr8
 	m_actor = g_UnitMan.CreateUnit( actorName, 0 );

@@ -162,6 +162,7 @@ void GetProjectileIntersection( const CVector2D& position, const CVector2D& axis
 	for( it = entities.begin(); it != entities.end(); it++ )
 	{
 		CBoundingObject* obj = (*it)->m_bounds;
+		if( !obj ) continue;
 		delta = obj->m_pos - position;
 		closestApproach = delta.betadot( axis );
 		if( fabs( closestApproach ) > obj->m_radius )

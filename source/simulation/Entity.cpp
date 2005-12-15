@@ -50,7 +50,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	AddProperty( L"actions.heal.speed", &( m_heal.m_Speed ) );
 	AddProperty( L"position", &m_graphics_position, false, (NotifyFn)&CEntity::teleport );
 	AddProperty( L"orientation", &m_graphics_orientation, false, (NotifyFn)&CEntity::reorient );
-	AddProperty( L"player", &m_player );
+	AddProperty( L"player", &m_player, false, (NotifyFn)&CEntity::playerChanged );
 	AddProperty( L"traits.health.curr", &m_healthCurr );
 	AddProperty( L"traits.health.max", &m_healthMax );
 	AddProperty( L"traits.health.bar_height", &m_healthBarHeight );
@@ -584,6 +584,12 @@ void CEntity::teleport()
 	m_position = m_graphics_position;
 	m_bounds->setPosition( m_position.X, m_position.Z );
 	repath();
+}
+
+void CEntity::playerChanged()
+{
+	if( m_actor )
+		m_actor->GetModel()->SetPlayerID( m_player->GetPlayerID() );
 }
 
 void CEntity::checkSelection()

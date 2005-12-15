@@ -222,6 +222,7 @@ public:
 	// Reset properties after the entity-template we use changes.
 	void loadBase();
 
+	void playerChanged(); // Fixes player colour if player is changed by script
 	void reorient(); // Orientation
 	void teleport(); // Fixes things if the position is changed by something externally.
 	void checkSelection(); // In case anyone tries to select/deselect this through JavaScript.

@@ -28,7 +28,7 @@ CBaseEntity::CBaseEntity()
 	AddProperty( L"actions.heal.speed", &( m_heal.m_Speed ) );
 	AddProperty( L"actor", &m_actorName );
 	AddProperty( L"traits.extant", &m_extant );
-	AddProperty( L"traits.corpse", &m_corpse );	
+	AddProperty( L"traits.corpse", &m_corpse );		
 	AddProperty( L"traits.health.curr", &m_healthCurr );
 	AddProperty( L"traits.health.max", &m_healthMax );
 	AddProperty( L"traits.health.bar_height", &m_healthBarHeight );
@@ -167,13 +167,14 @@ bool CBaseEntity::loadXML( CStr filename )
 	// Only the ones we can't load using normal methods.
 	EL(entity);
 	EL(script);
-	EL(footprint);
 	EL(event);
+	EL(traits);
+	EL(footprint);
+	EL(depth);
+	EL(height);
+	EL(radius);
+	EL(width);
 	AT(parent);
-	AT(radius);
-	AT(width);
-	AT(depth);
-	AT(height);
 	AT(on);
 	AT(file);
 	AT(function);
@@ -212,32 +213,62 @@ bool CBaseEntity::loadXML( CStr filename )
 			if( Inline.Length() )
 				g_ScriptingHost.RunMemScript(Inline.c_str(), Inline.Length(), filename.c_str(), Child.getLineNumber());
 		}
-		else if (ChildName == el_footprint)
+		else if (ChildName == el_traits)
 		{
-			if( Child.getAttributes().getNamedItem( at_radius ).length() )
+			XMBElementList TraitChildren = Child.getChildNodes();
+			for(int j = 0; j < TraitChildren.Count; ++j)
 			{
-				// Specifying a circular footprint
-				if( !m_bound_circle )
-					m_bound_circle = new CBoundingCircle();
-				CStrW radius (Child.getAttributes().getNamedItem(at_radius));
-				CStrW height (Child.getAttributes().getNamedItem(at_height));
-				
-				m_bound_circle->setRadius( radius.ToFloat() );
-				m_bound_circle->setHeight( height.ToFloat() );
-				m_bound_type = CBoundingObject::BOUND_CIRCLE;
+				XMBElement TraitChild = TraitChildren.item(j);
+				int TraitChildName = TraitChild.getNodeName();
+				if( TraitChildName == el_footprint )
+				{
+					XMBElementList FootprintChildren = TraitChild.getChildNodes();
+					float radius=0, height=0, width=0, depth=0;
+					bool hadRadius = false, hadDepth = false;
+					for(int k = 0; k < FootprintChildren.Count; ++k)
+					{
+						XMBElement FootprintChild = FootprintChildren.item(k);
+						int FootprintChildName = FootprintChild.getNodeName();
+						if( FootprintChildName == el_radius )
+						{
+							hadRadius = true;
+							radius = CStrW( FootprintChild.getText() ).ToFloat();
+						}
+						else if( FootprintChildName == el_width )
+						{
+							width = CStrW( FootprintChild.getText() ).ToFloat();
+						}
+						else if( FootprintChildName == el_height )
+						{
+							height = CStrW( FootprintChild.getText() ).ToFloat();
+						}
+						else if( FootprintChildName == el_depth )
+						{
+							hadDepth = true;
+							depth = CStrW( FootprintChild.getText() ).ToFloat();
+						}
+					}
+					if( hadRadius ) 
+					{
+						// Specifying a circular footprint
+						if( !m_bound_circle )
+							m_bound_circle = new CBoundingCircle();
+						m_bound_circle->setRadius( radius );
+						m_bound_circle->setHeight( height );
+						m_bound_type = CBoundingObject::BOUND_CIRCLE;
+					}
+					else if( hadDepth )
+					{
+						if( !m_bound_box )
+							m_bound_box = new CBoundingBox();
+						m_bound_box->setDimensions( width, depth );
+						m_bound_box->setHeight( height );
+						m_bound_type = CBoundingObject::BOUND_OABB;
+					}
+				}
 			}
-			else
-			{
-				if( !m_bound_box )
-					m_bound_box = new CBoundingBox();
-				CStrW width (Child.getAttributes().getNamedItem(at_width));
-				CStrW depth (Child.getAttributes().getNamedItem(at_depth));
-				CStrW height (Child.getAttributes().getNamedItem(at_height));
-
-				m_bound_box->setDimensions( width.ToFloat(), depth.ToFloat() );
-				m_bound_box->setHeight( height.ToFloat() );
-				m_bound_type = CBoundingObject::BOUND_OABB;
-			}
+			// important so that scripts can see traits
+			XMLLoadProperty( XeroFile, Child, CStrW() );
 		}
 		else if( ChildName == el_event )
 		{
