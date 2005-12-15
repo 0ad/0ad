@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity Parent="template_structure_norm_special_sb">
+<Entity
+	Parent="template_structure_special"
+>
 	<Traits>
-		<Id
-			civ_code="hele"
-			civ="Hellenes"
-			internal_only="false"
+	
+		<Id>
 
-			specific="Gymnasion"
-			history="The gymnasion was a vital place in Hellenistic polises, where physical exercises were performed and social contacts established."
-		/>
+			<Specific>Gymnasion</Specific>
+
+			<Civ>Hellenes</Civ>
+
+			<History>The gymnasion was a vital place in Hellenistic polises, where physical exercises were performed and social contacts established.</History>
+		
+		</Id>
+
 	</Traits>
-	<Actor>structures/hellenes/special_gym.xml</Actor>
+
+	<Actor>structures/hellenes/gymnasion.xml</Actor>
+
 </Entity>

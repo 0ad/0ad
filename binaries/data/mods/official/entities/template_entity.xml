@@ -1,42 +1,35 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
 <Entity>
-	<Traits extant="true" corpse="null">
-		<Id
-		/>
-		<Anchor
-			type="Ground"
-		/>
-		<!-- Defaults to no armour -->
-		<Armour
-			Value="0"
-			Crush="0.0"
-			Hack="0.0"
-			Pierce="0.0"
-		/>
-		<Creation>
-			<Time>20</Time>
-			<Resource>
-				<Food cost="4" />
-				<Wood cost="3" />
-				<Stone cost="2" />
-			</Resource>
-		</Creation>
-		<Health 
-			bar_height="-1.0"
-		/>
-		<MiniMap
-			type="Unit"
-		/>
-		<Up
-			rank="0"
-		/>
-		<Vision
-			permanent="false"
-		/>
+	<Traits
+		extant="true"
+	>
+		<Id>
+			<Internal_Only />
+		</Id>
+
+		<Corpse>null</Corpse>
+		
+		<!-- All but sea units are attached to the ground plane. -->		
+		<Anchor>
+ 			<Type>Ground</Type>
+ 		</Anchor>
+
+		<!-- Defaults to no armour. -->
+		<Armour>
+ 			<Value>0</Value>
+ 			<Crush>0.0</Crush>
+ 			<Hack>0.0</Hack>
+ 			<Pierce>0.0</Pierce>
+ 		</Armour>
+
+		<Health> 
+			<Bar_Height>-1.0</Bar_Height>
+		</Health>
+
 	</Traits>
 
-	<Actions />
-
-	<Event On="PrepareOrder" Function="entity_event_prepareorder" />
-</Entity>
+	<Script File="entities/template_entity_script.js" />	
+	<Event On="Initialize" Function="entityInit" />
+	<Event On="PrepareOrder" Function="entityEventPrepareOrder" />
+</Entity>	

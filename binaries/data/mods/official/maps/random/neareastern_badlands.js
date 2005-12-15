@@ -18,11 +18,11 @@ const tWater = "water_2";
 const tWaterDeep = "water_3";
 
 const oTree = "flora/trees/palm_b.xml";
-const oBerryBush = "wrld_flora_berrybush";
+const oBerryBush = "gaia_flora_bush_berry";
 const oBush = "props/flora/bush_dry_a.xml";
-const oSheep = "wrld_fauna_sheep";
-const oDeer = "wrld_fauna_deer";
-const oMine = "wrld_rock_light";
+const oSheep = "gaia_fauna_sheep";
+const oDeer = "gaia_fauna_deer";
+const oMine = "gaia_rock_light";
 const oDecorativeRock = "geology/gray1.xml";
 
 // some utility functions to save typing
@@ -99,8 +99,8 @@ for(i=0; i<NUM_PLAYERS; i++) {
 	// create the TC and the villies
 	group = new SimpleGroup(
 		[							// elements (type, count, distance)
-			new SimpleObject("hele_cc", 1,1, 0,0),
-			new SimpleObject("hele_isp_b", 3,3, 5,5)
+			new SimpleObject("hele_civil_centre", 1,1, 0,0),
+			new SimpleObject("hele_infantry_spearman_b", 3,3, 5,5)
 		],
 		true, null,	ix, iy
 	);

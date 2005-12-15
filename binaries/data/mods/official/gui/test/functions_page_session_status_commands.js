@@ -119,6 +119,7 @@ function UpdateList(listIcon, listCol)
 
 	// Build unit list.
 	if ( selection[0].traits.id.civ_code
+	&& selection[0].actions
 	&& selection[0].actions.create
 	&& selection[0].actions.create.list )
 	{
@@ -196,15 +197,20 @@ function UpdateCommand(listIcon, listCol)
 	// Similar to UpdateList, but without the list.
 	// Updates a particular command button with a particular action.
 
-	if (
+	if ( selection[0].actions && (
             (listIcon == action_attack && selection[0].actions.attack)
          || (listIcon == action_patrol && selection[0].actions.patrol)
          || (listIcon == action_repair && selection[0].actions.repair)
-         || (listIcon == action_gather_food && selection[0].actions.gather && selection[0].actions.gather.food)
-         || (listIcon == action_gather_wood && selection[0].actions.gather && selection[0].actions.gather.wood)
-         || (listIcon == action_gather_stone && selection[0].actions.gather && selection[0].actions.gather.stone)
-         || (listIcon == action_gather_ore && selection[0].actions.gather && selection[0].actions.gather.ore)
+         || (listIcon == action_gather_food && selection[0].actions.gather
+				&& selection[0].actions.gather.resource && selection[0].actions.gather.resource.food)
+         || (listIcon == action_gather_wood && selection[0].actions.gather
+				&& selection[0].actions.gather.resource && selection[0].actions.gather.resource.wood)
+         || (listIcon == action_gather_stone && selection[0].actions.gather
+				&& selection[0].actions.gather.resource && selection[0].actions.gather.resource.stone)
+         || (listIcon == action_gather_ore && selection[0].actions.gather
+				&& selection[0].actions.gather.resource && selection[0].actions.gather.resource.ore)
            )
+		)
 	{	
 		// Set appearance of tab.
 		setPortrait("snStatusPaneCommand" + listCol + "_1", "sheet_action", "", listIcon);
@@ -302,10 +308,14 @@ function refreshCommandButtons()
 	
 		// Update train/research/build lists.
 		listCounter	= 1; 
+		
+// This whole section needs to be rewritten (now list of XML attributes instead of semicolon-delimited string).
+
 		unitArray 	= UpdateList(action_tab_train, listCounter); 		if (unitArray != 0)	 listCounter++;
 		structcivArray 	= UpdateList(action_tab_buildciv, listCounter);		if (structcivArray != 0) listCounter++;
 		structmilArray 	= UpdateList(action_tab_buildmil, listCounter);		if (structmilArray != 0) listCounter++;
 		techArray 	= UpdateList(action_tab_research, listCounter);		if (techArray != 0)	 listCounter++;
+		
 		formationArray 	= UpdateList(action_tab_formation, listCounter);	if (formationArray != 0) listCounter++;
 		stanceArray 	= UpdateList(action_tab_stance, listCounter);		if (stanceArray != 0)	 listCounter++;
 	}

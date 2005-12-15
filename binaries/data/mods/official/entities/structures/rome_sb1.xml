@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity Parent="template_structure_norm_special_sb">
+<Entity
+	Parent="template_structure_special"
+>
 	<Traits>
-		<Id
-			civ_code="rome"
-			civ="Pre-Imperial Romans"
-			internal_only="false"
+	
+		<Id>
 
-			specific="Camp"
-			history="Sometimes it was a temporary camp built facing the route by which the army is to march, other times a defensive or offensive (for sieges) structure. Within this gate the tents of the first centuries or cohorts are pitched, and the dragons (ensigns of cohorts) and other ensigns planted. The Decumane gate is directly opposite to the Praetorian in the rear of the camp, and through this the soldiers are conducted to the place appointed for punishment or execution.
-It has a turf wall, and it's surrounded by a canal filled with water whenever possible for extra defence. Many towns started up as bigger military camps to evolve to more complicated cities."
-		/>
+			<Specific>Camp</Specific>
+
+			<Civ>Romans</Civ>
+
+			<History>Sometimes it was a temporary camp built facing the route by which the army is to march, other times a defensive or offensive (for sieges) structure. Within this gate the tents of the first centuries or cohorts are pitched, and the dragons (ensigns of cohorts) and other ensigns planted. The Decumane gate is directly opposite to the Praetorian in the rear of the camp, and through this the soldiers are conducted to the place appointed for punishment or execution.</History>
+		
+		</Id>
+
 	</Traits>
-	<Actor>Roman Camp</Actor>
+
+	<Actor>structures/romans/camp.xml</Actor>
+
 </Entity>

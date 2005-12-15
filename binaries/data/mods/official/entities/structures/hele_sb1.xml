@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity Parent="template_structure_norm_special_sb">
+<Entity
+	Parent="template_structure_special"
+>
 	<Traits>
-		<Id
-			civ_code="hele"
-			civ="Hellenes"
-			internal_only="false"
+	
+		<Id>
 
-			specific="Theatron"
-			history="Greek theatres were places where the immortal tragedies of Aeschylus, Sophocles and many other talented dramatists were staged to the delight of the populace. They were instrumental in enriching Hellenic culture."
-		/>
+			<Specific>Theatron</Specific>
+
+			<Civ>Hellenes</Civ>
+
+			<History>Greek theatres were places where the immortal tragedies of Aeschylus, Sophocles and many other talented dramatists were staged to the delight of the populace. They were instrumental in enriching Hellenic culture.</History>
+		
+		</Id>
+
 	</Traits>
-	<Actor>structures/hellenes/special_theatre.xml</Actor>
+
+	<Actor>structures/hellenes/theatron.xml</Actor>
+
 </Entity>

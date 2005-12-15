@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity Parent="template_structure_norm_special_sb">
+<Entity
+	Parent="template_structure_special"
+>
 	<Traits>
-		<Id
-			civ_code="pers"
-			civ="Persians"
-			internal_only="false"
+	
+		<Id>
 
-			specific="Kakh"
-			history="The annual tribute that the Persians received from their satrapies and vassal states, as regularised by Darius the Great, accounted for incredible annual revenue."
-		/>
+			<Specific>Kakh</Specific>
+
+			<Civ>Persians</Civ>
+
+			<History>The annual tribute that the Persians received from their satrapies and vassal states, as regularised by Darius the Great, accounted for incredible annual revenue.</History>
+		
+		</Id>
+
 	</Traits>
-	<Actor>Persian Kakh</Actor>
+
+	<Actor>structures/persians/kakh.xml</Actor>
+
 </Entity>

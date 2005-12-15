@@ -7,7 +7,7 @@ const NUM_PLAYERS = 4;
 const tGrass = ["grass1_a", "grass_highlands_a", "grass1_a"];
 const tGrassForest = "grass_forest_floor_oak";
 const tCliff = ["cliff_greekb", "cliff_greekb", "cliff_greekb_moss"];
-const tForest = "forrestfloor|wrld_flora_oak";
+const tForest = "forrestfloor|gaia_flora_oak";
 const tGrassDirt75 = "sand_grass_75";
 const tGrassDirt50 = "sand_grass_50";
 const tGrassDirt25 = "sand_grass_25";
@@ -17,12 +17,12 @@ const tShore = "sand_path";
 const tShoreBlend = "sand_grass_50";
 const tWater = "sand_path";
 
-const oTree = "wrld_flora_oak";
+const oTree = "gaia_flora_oak";
 const oTreeLarge = "flora/trees/oak_large.xml";
-const oBerryBush = "wrld_flora_berrybush";
-const oSheep = "wrld_fauna_sheep";
-const oDeer = "wrld_fauna_deer";
-const oMine = "wrld_rock_light";
+const oBerryBush = "gaia_flora_bush_berry";
+const oSheep = "gaia_fauna_sheep";
+const oDeer = "gaia_fauna_deer";
+const oMine = "gaia_rock_light";
 const oGrass = "props/flora/grass_field_lush_tall.xml";
 const oGrassShort = "props/flora/grass_field_lush_short.xml";
 const oReeds = "props/flora/reeds_pond_dry.xml";
@@ -127,8 +127,8 @@ for(i=1; i<=NUM_PLAYERS; i++) {
 	// create the TC and the "villies"
 	group = new SimpleGroup(
 		[							// elements (type, count, distance)
-			new SimpleObject("hele_cc", 1,1, 0,0),
-			new SimpleObject("hele_ijv_b", 3,3, 5,5)
+			new SimpleObject("hele_civil_centre", 1,1, 0,0),
+			new SimpleObject("hele_infantry_javelinist_b", 3,3, 5,5)
 		],
 		true, null,	ix, iy
 	);

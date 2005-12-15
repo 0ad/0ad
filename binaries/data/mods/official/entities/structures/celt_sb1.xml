@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity Parent="template_structure_norm_special_sb">
+<Entity
+	Parent="template_structure_special"
+>
 	<Traits>
-		<Id
-			civ_code="celt"
-			civ="Celts"
-			internal_only="false"
+	
+		<Id>
 
-			specific="Ffactri"
-			history="The Celts developed one of the first rotary flour mills."
-		/>
+			<Specific>Ffactri</Specific>
+
+			<Civ>Celts</Civ>
+
+			<History>The Celts developed the first rotary flour mill.</History>
+		
+		</Id>
+
 	</Traits>
-	<Actor>structures/celts/special.xml</Actor>
+
+	<Actor>structures/celts/Ffactri.xml</Actor>
+
 </Entity>
