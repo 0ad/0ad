@@ -729,7 +729,7 @@ function InfidelityAura ( source )
 	this.source = source;
 	
 	this.count = new Array( 9 );
-	for( i = 1; i <= 8; i++ )
+	for( i = 0; i <= 8; i++ )
 	{
 		this.count[i] = 0;
 	}
@@ -763,7 +763,7 @@ function InfidelityAura ( source )
 	{
 		if( this.count[this.source.player.id] == 0 )
 		{
-			// switch ownership to whoever has the most units near us, if any
+			// switch ownership to whichever non-gaia player has the most units near us, if any
 			bestPlayer = 0;
 			bestCount = 0;
 			for( i = 1; i <= 8; i++ )
