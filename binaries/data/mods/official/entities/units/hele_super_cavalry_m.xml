@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_unit_super_cavalry"
+>
+	<Traits>
+	
+		<Id>
+		
+			<Specific>Hetairoi</Specific>
+
+			<Civ>Hellenes</Civ>
+
+			<History>Macedonian noblemen made up this elite cavalry unit, which was key to victory for Macedonian kings starting with Philip II, whom increased their number from 600 to several thousand. The Companion Cavalry was also a preferred general stand.</History>
+		
+		</Id>
+	</Traits>
+
+	<Actor>units/hellenes/super_unit_4.xml</Actor>
+
+</Entity>
