@@ -249,14 +249,18 @@ function resetUpdateVars()
 function shouldUpdateStat( statname )
 {
 	if( selectionChanged || ( selectionTemplate != selection[0].template ) )
+	{
 		return( true );
+	}
 	for( var property in selectionPropertiesChanged )
 	{
 		// If property starts with statname
 		if( selectionPropertiesChanged[property].substring( 0, statname.length ) == statname )
+		{
 			return( true );
+		}
 	}
-	return( false );	
+	return( false );
 }
 
 // ====================================================================

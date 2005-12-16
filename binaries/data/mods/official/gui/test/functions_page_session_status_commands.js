@@ -123,43 +123,48 @@ function UpdateList(listIcon, listCol)
 	&& selection[0].actions.create
 	&& selection[0].actions.create.list )
 	{
-		listName = "";
+		list = null;
 
 		switch (listIcon)
 		{
 			case action_tab_train:
 				if ( selection[0].actions.create.list.unit && shouldUpdateStat( "actions.create.list.unit" ) )
-					listName = selection[0].actions.create.list.unit.toString();
+					list = selection[0].actions.create.list.unit;
 			break;
 			case action_tab_buildciv:
 				if ( selection[0].actions.create.list.structciv && shouldUpdateStat( "actions.create.list.structciv" ) )
-					listName = selection[0].actions.create.list.structciv.toString();
+					list = selection[0].actions.create.list.structciv;
 			break;
 			case action_tab_buildmil:
 				if ( selection[0].actions.create.list.structmil && shouldUpdateStat( "actions.create.list.structmil" ) )
-					listName = selection[0].actions.create.list.structmil.toString();
+					list = selection[0].actions.create.list.structmil;
 			break;
 			case action_tab_research:
 				if ( selection[0].actions.create.list.tech && shouldUpdateStat( "actions.create.list.tech" ) )
-					listName = selection[0].actions.create.list.tech.toString();
+					list = selection[0].actions.create.list.tech;
 			break;
 			default:
 				return 0;
 			break;
 		}
 
-		if (listName != "")
+		if ( list )
 		{
 			// Enable tab portrait.
-			setPortrait("snStatusPaneCommand" + listCol + "_1", "sheet_action", "", listIcon);
+			guiUnHide("snStatusPaneCommand" + "Group" + listCol);
 			guiUnHide("snStatusPaneCommand" + listCol + "_1");
+			setPortrait("snStatusPaneCommand" + listCol + "_1", "sheet_action", "", listIcon);
 			// Reset list length.
 			snStatusPaneCommand[listCol][1].last = 0;
 			// Store content info in tab button for future reference.
 			snStatusPaneCommand[listCol][1].type = "list";
 
 			// Extract entity list into an array.
-			listArray = parseDelimiterString(listName, ";");
+			listArray = [];
+			for( i in list )
+			{
+				listArray[listArray.length] = i.toString();
+			}
 
 			// Populate appropriate command buttons.
 			for (createLoop = 1; createLoop < snStatusPaneCommand.list.max; createLoop++)
@@ -169,19 +174,24 @@ function UpdateList(listIcon, listCol)
 					// Get name of entity to display in list.
 					UpdateListEntityName = selection[0].traits.id.civ_code + "_" + listArray[createLoop];
 
-					getGUIObjectByName ("snStatusPaneCommand" + listCol + "_" + createLoop).caption = "";
+					getGUIObjectByName ("snStatusPaneCommand" + listCol + "_" + (createLoop+1)).caption = "";
 
-					setPortrait("snStatusPaneCommand" + listCol + "_" + parseInt(createLoop+1), getEntityTemplate(UpdateListEntityName).traits.id.icon, selection[0].traits.id.civ_code, getEntityTemplate(UpdateListEntityName).traits.id.icon_cell);
-					guiUnHide("snStatusPaneCommand" + listCol + "_" + parseInt(createLoop+1));
+					guiUnHide("snStatusPaneCommand" + listCol + "_" + (createLoop+1));
+					setPortrait("snStatusPaneCommand" + listCol + "_" + (createLoop+1), 
+						getEntityTemplate(UpdateListEntityName).traits.id.icon, 
+						selection[0].traits.id.civ_code, 
+						getEntityTemplate(UpdateListEntityName).traits.id.icon_cell);
 					
 					// Store content info in tab button for future reference.
-					snStatusPaneCommand[listCol][parseInt(createLoop+1)].name = listIcon;
-					snStatusPaneCommand[listCol][parseInt(createLoop+1)].object = listArray[createLoop];
-					snStatusPaneCommand[listCol][parseInt(createLoop+1)].type = "list";
-					snStatusPaneCommand[listCol][parseInt(createLoop+1)].last++;
+					snStatusPaneCommand[listCol][createLoop+1].name = listIcon;
+					snStatusPaneCommand[listCol][createLoop+1].object = listArray[createLoop];
+					snStatusPaneCommand[listCol][createLoop+1].type = "list";
+					snStatusPaneCommand[listCol][createLoop+1].last++;
 				}
 				else
+				{
 					guiHide("snStatusPaneCommand" + listCol + "_" + parseInt(createLoop+1));
+				}
 			}
 			return listArray;
 		}
@@ -248,11 +258,11 @@ console.write (snStatusPaneCommand[tab][list].type);
 			{
 				// Click the tab button to toggle visibility of its list (if it's of a list type).
 				guiToggle ("snStatusPaneCommand" + "Group" + tab);
-console.write ("Toggled " + "snStatusPaneCommand" + "Group" + tab);
+				console.write ("Toggled " + "snStatusPaneCommand" + "Group" + tab);
 			}
 			else
 			{
-console.write ("Some weird action.");
+				console.write ("Some weird action.");
 				// Perform appropriate actions for different command buttons.
 
 				switch (snStatusPaneCommand[tab][list].name)
@@ -302,6 +312,8 @@ function refreshCommandButtons()
 {
 	if( shouldUpdateStat( "actions.create.list" ) )
 	{
+		console.write("need to update list!");
+		
 		// Everything in this block is tied to properties in
 		// actions.create.list, the above check should limit the
 		// number of times this update is needlessly made.
@@ -318,6 +330,10 @@ function refreshCommandButtons()
 		
 		formationArray 	= UpdateList(action_tab_formation, listCounter);	if (formationArray != 0) listCounter++;
 		stanceArray 	= UpdateList(action_tab_stance, listCounter);		if (stanceArray != 0)	 listCounter++;
+	}
+	else
+	{
+		console.write("don't need to update list!");
 	}
 	
 	if( shouldUpdateStat( "actions" ) )
