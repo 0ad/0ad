@@ -312,8 +312,6 @@ function refreshCommandButtons()
 {
 	if( shouldUpdateStat( "actions.create.list" ) )
 	{
-		console.write("need to update list!");
-		
 		// Everything in this block is tied to properties in
 		// actions.create.list, the above check should limit the
 		// number of times this update is needlessly made.
@@ -330,10 +328,6 @@ function refreshCommandButtons()
 		
 		formationArray 	= UpdateList(action_tab_formation, listCounter);	if (formationArray != 0) listCounter++;
 		stanceArray 	= UpdateList(action_tab_stance, listCounter);		if (stanceArray != 0)	 listCounter++;
-	}
-	else
-	{
-		console.write("don't need to update list!");
 	}
 	
 	if( shouldUpdateStat( "actions" ) )
