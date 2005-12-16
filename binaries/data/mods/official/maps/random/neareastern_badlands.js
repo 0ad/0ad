@@ -18,11 +18,11 @@ const tWater = "water_2";
 const tWaterDeep = "water_3";
 
 const oTree = "flora/trees/palm_b.xml";
-const oBerryBush = "gaia_flora_bush_berry";
+const oBerryBush = "flora_bush_berry";
 const oBush = "props/flora/bush_dry_a.xml";
-const oSheep = "gaia_fauna_sheep";
-const oDeer = "gaia_fauna_deer";
-const oMine = "gaia_rock_light";
+const oSheep = "fauna_sheep";
+const oDeer = "fauna_deer";
+const oMine = "geology_stone_light";
 const oDecorativeRock = "geology/gray1.xml";
 
 // some utility functions to save typing
