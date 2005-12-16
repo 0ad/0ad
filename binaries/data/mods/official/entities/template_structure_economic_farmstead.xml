@@ -32,10 +32,4 @@
 		</Health>
 
 	</Traits>
-
-	<Event On="Attack" Function="entityEAttack" />
-	<Event On="Gather" Function="entityEventGather" />
-	<Event On="TakesDamage" Function="entityEventTakesDamage" />
-	<Event On="TargetChanged" Function="entityEventTargetChanged" />
-	<Event On="PrepareOrder" Function="entityEventPrepareOrder" />
 </Entity>

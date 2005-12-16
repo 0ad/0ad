@@ -299,7 +299,7 @@ console.write (snStatusPaneCommand[tab][list].type);
 				break;
 				default:
 					// Attempt to add the entry to the queue.
-					attempt_add_to_build_queue( selection[0], selection[0].traits.id.civ_code + "_" + snStatusPaneCommand[tab][list].object, tab, list);
+					attemptAddToBuildQueue( selection[0], selection[0].traits.id.civ_code + "_" + snStatusPaneCommand[tab][list].object, tab, list);
 				break;
 			}
 		break;
