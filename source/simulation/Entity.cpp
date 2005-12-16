@@ -67,7 +67,9 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 		AddProperty( EventNames[t], &m_EventHandlers[t], false );
 		AddHandler( t, &m_EventHandlers[t] );
 	}
-	
+
+	m_collisionPatch = NULL;
+
 	// Set our parent unit and build us an actor.
 	m_actor = NULL;
 	m_bounds = NULL;
@@ -172,6 +174,8 @@ void CEntity::kill()
 		delete( m_actor );
 		m_actor = NULL;
 	}
+
+	updateCollisionPatch();
 
 	me = HEntity(); // will deallocate the entity, assuming nobody else has a reference to it
 }
@@ -340,30 +344,39 @@ void CEntity::update( size_t timestep )
 		case CEntityOrder::ORDER_GOTO_COLLISION:
 		case CEntityOrder::ORDER_GOTO_SMOOTHED:
 			if( processGotoNoPathing( current, timestep ) ) break;
+			updateCollisionPatch();
 			return;
 		case CEntityOrder::ORDER_ATTACK_MELEE:
 			if( processAttackMeleeNoPathing( current, timestep ) ) break;
+			updateCollisionPatch();
 			return;
 		case CEntityOrder::ORDER_ATTACK_MELEE_NOPATHING:
 			if( processAttackMeleeNoPathing( current, timestep ) ) break;
+			updateCollisionPatch();
 			return;
 		case CEntityOrder::ORDER_GATHER:
 			if( processGather( current, timestep ) ) break;
+			updateCollisionPatch();
 			return;
 		case CEntityOrder::ORDER_GATHER_NOPATHING:
 			if( processGatherNoPathing( current, timestep ) ) break;
+			updateCollisionPatch();
 			return;
 		case CEntityOrder::ORDER_HEAL:
 			if( processHeal( current, timestep ) ) break;
+			updateCollisionPatch();
 			return;
 		case CEntityOrder::ORDER_HEAL_NOPATHING:
 			if( processHealNoPathing( current, timestep ) ) break;
+			updateCollisionPatch();
 			return;
 		case CEntityOrder::ORDER_GOTO:
 			if( processGoto( current, timestep ) ) break;
+			updateCollisionPatch();
 			return;
 		case CEntityOrder::ORDER_PATROL:
 			if( processPatrol( current, timestep ) ) break;
+			updateCollisionPatch();
 			return;
 		case CEntityOrder::ORDER_PATH_END_MARKER:
 			m_orderQueue.pop_front();
@@ -396,6 +409,44 @@ void CEntity::update( size_t timestep )
 		DispatchEvent( &evt );
 
 		m_lastState = -1;
+	}
+}
+
+void CEntity::updateCollisionPatch()
+{
+	vector<CEntity*>* newPatch = g_EntityManager.getCollisionPatch( this );
+	if( newPatch != m_collisionPatch )
+	{
+		if( m_collisionPatch )
+		{
+			// remove ourselves from old patch
+			vector<CEntity*>& old = *m_collisionPatch;
+			if( old.size() == 1 )
+			{
+				// we were the only ones there, just pop us
+				old.pop_back();
+			}
+			else 
+			{
+				// find our location and put in the last guy in the patch, then pop back
+				for( size_t i=0; i < old.size(); i++ )
+				{
+					if( old[i] == this )
+					{
+						old[i] = old.back();
+						old.pop_back();
+						break;
+					}
+				}
+			}
+		}
+
+		if( m_extant )
+		{
+			// add ourselves to new patch
+			newPatch->push_back( this );
+			m_collisionPatch = newPatch;
+		}
 	}
 }
 
@@ -583,6 +634,7 @@ void CEntity::teleport()
 {
 	m_position = m_graphics_position;
 	m_bounds->setPosition( m_position.X, m_position.Z );
+	updateCollisionPatch();
 	repath();
 }
 
@@ -1130,6 +1182,8 @@ bool CEntity::Kill( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(arg
 	{
 		m_extant = false;
 	}
+
+	updateCollisionPatch();
 	
 	g_Selection.removeAll( me );
 

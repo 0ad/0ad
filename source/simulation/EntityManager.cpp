@@ -5,13 +5,16 @@
 #include "BaseEntityCollection.h"
 #include "ConfigDB.h"
 #include "Profile.h"
+#include "Terrain.h"
+#include "Game.h"
 
 int SELECTION_CIRCLE_POINTS;
 int SELECTION_BOX_POINTS;
 int SELECTION_SMOOTHNESS_UNIFIED = 9;
 
 CEntityManager::CEntityManager()
-: m_entities()	// janwas: default-initialize entire array;
+: m_collisionPatches(0)
+, m_entities()	// janwas: default-initialize entire array;
 				// CHandle ctor sets m_entity and m_refcount to 0
 {
 	m_nextalloc = 0;
@@ -30,12 +33,14 @@ CEntityManager::~CEntityManager()
 	m_extant = false;
 	
 	for( int i = 0; i < MAX_HANDLES; i++ )
+	{
 		if( m_entities[i].m_refcount )
 		{
 			delete( m_entities[i].m_entity );
 			m_entities[i].m_entity = 0;
 			m_entities[i].m_refcount = 0;
 		}
+	}
 
 	// Delete entities that were killed, but not yet reaped by a call to updateAll,
 	// to avoid memory leak warnings upon exiting
@@ -43,6 +48,9 @@ CEntityManager::~CEntityManager()
 	for( it = m_reaper.begin(); it < m_reaper.end(); it++ )
 		delete( *it );
 	m_reaper.clear();
+
+	delete[] m_collisionPatches;
+	m_collisionPatches = 0;
 }
 
 void CEntityManager::deleteAll()
@@ -123,7 +131,36 @@ void CEntityManager::GetExtant( std::vector<CEntity*>& results )
 void CEntityManager::GetInRange( float x, float z, float radius, std::vector<CEntity*>& results )
 {
 	results.clear();
-	for( int i = 0; i < MAX_HANDLES; i++ )
+
+	int cx = (int) ( x / COLLISION_PATCH_SIZE );
+	int cz = (int) ( z / COLLISION_PATCH_SIZE );
+
+	int r = (int) ( radius / COLLISION_PATCH_SIZE + 1 );
+
+	int minX = MAX(cx-r, 0);
+	int minZ = MAX(cz-r, 0);
+	int maxX = MIN(cx+r, m_collisionPatchesPerSide-1);
+	int maxZ = MIN(cz+r, m_collisionPatchesPerSide-1);
+		
+	for( int px = minX; px <= maxX; px++ ) 
+	{
+		for( int pz = minZ; pz <= maxZ; pz++ ) 
+		{
+			std::vector<CEntity*>& vec = m_collisionPatches[ px * m_collisionPatchesPerSide + pz ];
+			for( std::vector<CEntity*>::iterator it = vec.begin(); it != vec.end(); it++ )
+			{
+				CEntity* e = *it;
+				float dx = x - e->m_position.X;
+				float dz = z - e->m_position.Z;
+				if(dx*dx + dz*dz <= radius*radius)
+				{
+					results.push_back( e );
+				}
+			}
+		}
+	}
+	
+	/*for( int i = 0; i < MAX_HANDLES; i++ )
 	{
 		if( m_entities[i].m_refcount && !m_entities[i].m_entity->m_destroyed && m_entities[i].m_entity->m_extant )
 		{
@@ -134,7 +171,7 @@ void CEntityManager::GetInRange( float x, float z, float radius, std::vector<CEn
 				results.push_back( m_entities[i].m_entity );
 			}
 		}
-	}
+	}*/
 }
 
 /*
@@ -148,15 +185,27 @@ void CEntityManager::dispatchAll( CMessage* msg )
 
 void CEntityManager::InitializeAll()
 {
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+	int unitsPerSide = CELL_SIZE * ( terrain->GetVerticesPerSide() - 1 );
+	m_collisionPatchesPerSide = unitsPerSide / COLLISION_PATCH_SIZE + 1;
+
+	m_collisionPatches = new std::vector<CEntity*>[m_collisionPatchesPerSide * m_collisionPatchesPerSide];
+
 	for( int i = 0; i < MAX_HANDLES; i++ )
+	{
 		if( m_entities[i].m_refcount && !m_entities[i].m_entity->m_destroyed )
-			m_entities[i].m_entity->Initialize();
+		{
+			CEntity* e = m_entities[i].m_entity;
+			e->Initialize();
+			e->updateCollisionPatch();
+		}
+	}
 }
 
 void CEntityManager::TickAll()
 {
 	for( int i = 0; i < MAX_HANDLES; i++ )
-		if( m_entities[i].m_refcount && !m_entities[i].m_entity->m_destroyed )
+		if( m_entities[i].m_refcount && !m_entities[i].m_entity->m_destroyed && m_entities[i].m_entity->m_extant )
 			m_entities[i].m_entity->Tick();
 }
 
@@ -183,7 +232,6 @@ void CEntityManager::updateAll( size_t timestep )
 	PROFILE_END( "tick all" );
 */
 
-	
 	PROFILE_START( "update all" );
 	for( int i = 0; i < MAX_HANDLES; i++ )
 		if( m_entities[i].m_refcount && !m_entities[i].m_entity->m_destroyed )
@@ -219,3 +267,15 @@ void CEntityManager::destroy( u16 handle )
 }
 
 bool CEntityManager::m_extant = false;
+
+std::vector<CEntity*>* CEntityManager::getCollisionPatch( CEntity* e ) 
+{
+	if( !e->m_extant )
+	{
+		return 0;
+	}
+
+	int ix = (int) ( e->m_position.X / COLLISION_PATCH_SIZE );
+	int iz = (int) ( e->m_position.Z / COLLISION_PATCH_SIZE );
+	return &m_collisionPatches[ ix * m_collisionPatchesPerSide + iz ];
+}

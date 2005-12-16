@@ -124,6 +124,9 @@ public:
 	// moved since it was last calculated, and the terrain hasn't been changed).
 	bool m_actor_transform_valid;
 
+	// Our current collision patch in CEntityManager
+	std::vector<CEntity*>* m_collisionPatch;
+
 	//-- Scripts
 
 	// Get script execution contexts - always run in the context of the entity that fired it.
@@ -200,6 +203,9 @@ public:
 
 	// Process damage
 	void Damage( CDamageType& damage, CEntity* inflictor = NULL );
+
+	// Update collision patch (move ourselves to a new one if necessary)
+	void updateCollisionPatch();
 
 	float getAnchorLevel( float x, float z );
 

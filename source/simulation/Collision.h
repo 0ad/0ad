@@ -27,6 +27,9 @@ struct rayIntersectionResults
 	float distance;
 };
 
+// maximum radius at which we check for entities (if some entity is much bigger than this, that's bad)
+#define COLLISION_RANGE 30
+
 typedef std::vector<CEntity*> RayIntersects;
 
 HEntity getCollisionObject( CEntity* entity );

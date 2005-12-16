@@ -27,6 +27,9 @@
 
 #define MAX_HANDLES 4096
 
+// collision patch size, in graphics units, not tiles (1 tile = 4 units)
+#define COLLISION_PATCH_SIZE 8
+
 #define g_EntityManager CEntityManager::GetSingleton()
 
 class CEntityManager : public Singleton<CEntityManager>
@@ -38,6 +41,8 @@ friend class CHandle;
 	int m_nextalloc;
 	static bool m_extant;
 	void destroy( u16 handle );
+	int m_collisionPatchesPerSide;
+	std::vector<CEntity*>* m_collisionPatches;
 public:
 	
 	CEntityManager();
@@ -76,6 +81,8 @@ public:
 	}
 	
 	void GetInRange( float x, float z, float radius, std::vector<CEntity*>& results );
+
+	std::vector<CEntity*>* getCollisionPatch( CEntity* e );
 };
 
 #endif

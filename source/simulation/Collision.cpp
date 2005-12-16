@@ -7,63 +7,61 @@
 
 CBoundingObject* getContainingObject( const CVector2D& point )
 {
-	std::vector<HEntity>* entities = g_EntityManager.getExtant();
-	std::vector<HEntity>::iterator it;
+	std::vector<CEntity*> entities;
+	g_EntityManager.GetInRange( point.x, point.y, COLLISION_RANGE, entities );
+	std::vector<CEntity*>::iterator it;
 
-	for( it = entities->begin(); it != entities->end(); it++ )
+	for( it = entities.begin(); it != entities.end(); it++ )
 	{
 		if( !(*it)->m_bounds ) continue;
 		if( (*it)->m_bounds->contains( point ) )
 		{
 			CBoundingObject* bounds = (*it)->m_bounds;
-			delete( entities );
 			return( bounds );
 		}
 	}
 
-	delete( entities );
 	return( NULL );
 }
 
 CEntity* GetCollisionObject( float x, float y )
 {
 	CVector2D point( x, y );
-	std::vector<HEntity>* entities = g_EntityManager.getExtant();
-	std::vector<HEntity>::iterator it;
 
-	for( it = entities->begin(); it != entities->end(); it++ )
+	std::vector<CEntity*> entities;
+	g_EntityManager.GetInRange( x, y, COLLISION_RANGE, entities );
+	std::vector<CEntity*>::iterator it;
+
+	for( it = entities.begin(); it != entities.end(); it++ )
 	{
 		if( !(*it)->m_bounds ) continue;
 		if( (*it)->m_bounds->contains( point ) )
 		{
 			CEntity* e = (*it);
-			delete( entities );
 			return( e );
 		}
 	}
 
-	delete( entities );
 	return( NULL );
 }
 
 CBoundingObject* getCollisionObject( CBoundingObject* bounds )
 {
-	std::vector<HEntity>* entities = g_EntityManager.getExtant();
-	std::vector<HEntity>::iterator it;
+	std::vector<CEntity*> entities;
+	g_EntityManager.GetInRange( bounds->m_pos.x, bounds->m_pos.y, COLLISION_RANGE, entities );
+	std::vector<CEntity*>::iterator it;
 
-	for( it = entities->begin(); it != entities->end(); it++ )
+	for( it = entities.begin(); it != entities.end(); it++ )
 	{
 		if( !(*it)->m_bounds ) continue;
 		if( (*it)->m_bounds == bounds ) continue;
 		if( bounds->intersects( (*it)->m_bounds ) )
 		{
 			CBoundingObject* obj = (*it)->m_bounds;
-			delete( entities );
 			return( obj );
 		}
 	}
 
-	delete( entities );
 	return( NULL );
 }
 
@@ -75,22 +73,21 @@ HEntity getCollisionObject( CEntity* entity )
 	if( !entity->m_bounds ) return HEntity();
 #endif
 
-	std::vector<HEntity>* entities = g_EntityManager.getExtant();
-	std::vector<HEntity>::iterator it;
+	std::vector<CEntity*> entities;
+	g_EntityManager.GetInRange( entity->m_position.X, entity->m_position.Z, COLLISION_RANGE, entities );
+	std::vector<CEntity*>::iterator it;
 
-	for( it = entities->begin(); it != entities->end(); it++ )
+	for( it = entities.begin(); it != entities.end(); it++ )
 	{
 		if( !(*it)->m_bounds ) continue;
 		if( (*it)->m_bounds == entity->m_bounds ) continue;
 		if( entity->m_bounds->intersects( (*it)->m_bounds ) )
 		{
-			HEntity collisionObject = *it;
-			delete( entities );
+			HEntity collisionObject = HEntity((*it)->me);
 			return( collisionObject );
 		}
 	}
 
-	delete( entities );
 	return HEntity();
 }
 
