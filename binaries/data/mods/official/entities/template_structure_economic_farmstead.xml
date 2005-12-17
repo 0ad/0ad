@@ -30,6 +30,15 @@
 		<Health>
  			<Max>50</Max>
 		</Health>
+		
+		<Auras>
+			<Dropsite>
+				<Radius>50</Radius>
+				<Types>
+					<Food/>
+				</Types>
+			</Dropsite>
+		</Auras>
 
 	</Traits>
 </Entity>

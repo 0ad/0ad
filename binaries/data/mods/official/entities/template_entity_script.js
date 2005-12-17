@@ -29,7 +29,6 @@ function entityInit()
 
 	if (this.traits.supply)
 	{
-
 		// If entity has supply, set current to same.
 		if (this.traits.supply.max)
 			this.traits.supply.curr = this.traits.supply.max
@@ -38,6 +37,17 @@ function entityInit()
 		// (so we don't have to say type="wood", subtype="wood"
 		if (this.traits.supply.type && !this.traits.supply.subtype)
 			this.traits.supply.subtype = this.traits.supply.type
+			
+		// The "dropsitecount" array holds the number of units with gather aura in range of the object;
+		// this is important so that if you have two mills near something and one of them is destroyed,
+		// you can still gather from the thing. Initialize it to 0 (ungatherable) for every player unless
+		// the entity is forageable (e.g. for huntable animals).
+		this.traits.supply.dropsitecount = new Array();
+		initialCount = this.traits.supply.forageable ? 1 : 0;
+		for( i=0; i<=8; i++ )
+		{
+			this.traits.supply.dropsitecount[i] = initialCount;
+		}
 	}
 
 	if (!this.traits.promotion)
@@ -100,18 +110,22 @@ function entityInit()
 				case "courage":
 					a = this.traits.auras.courage;
 					this.addAura ( name, a.radius, new DamageModifyAura( this, true, a.bonus ) );
-				break;
+					break;
 				case "fear":
 					a = this.traits.auras.fear;
 					this.addAura ( name, a.radius, new DamageModifyAura( this, false, -a.bonus ) );
-				break;
+					break;
 				case "infidelity":
 					a = this.traits.auras.infidelity;
 					this.addAura ( name, a.radius, new InfidelityAura( this ) );
-				break;
+					break;
+				case "dropsite":
+					a = this.traits.auras.dropsite;
+					this.addAura ( name, a.radius, new DropsiteAura( this, a.types ) );
+					break;
 				default:
 					console.write ( "Unknown aura: " + name + " on " + this + "; ignoring it." );
-				break;
+					break;
 			}
 		}
 	}		
@@ -246,23 +260,39 @@ function projectileEventImpact( evt )
 
 function entityEventGather( evt )
 {
-	if (this.actions.gather.resource[evt.target.traits.supply.type][evt.target.traits.supply.subtype])
-		gather_amt = parseInt( this.actions.gather.resource[evt.target.traits.supply.type][evt.target.traits.supply.subtype] );
-	else
-		gather_amt = parseInt( this.actions.gather.resource[evt.target.traits.supply.type] );
-
-	if( evt.target.traits.supply.max > 0 )
+	g = this.actions.gather;
+	s = evt.target.traits.supply;
+	
+	if( !s.dropsitecount[this.player.id] )
 	{
-		if( evt.target.traits.supply.curr <= gather_amt )
+		// Entity has become ungatherable for us, probably meaning our mill near it was killed
+		// Get that gather order off the queue (really there should be a stop() method for this)
+		this.order( ORDER_GOTO, this.position.x, this.position.z );
+		return;
+	}
+
+	if( g.resource[s.type][s.subtype])
+		gather_amt = parseInt( g.resource[s.type][s.subtype] );
+	else
+		gather_amt = parseInt( g.resource[s.type] );
+
+	if( s.max > 0 )
+	{
+		if( s.curr <= gather_amt )
 		{
-			gather_amt = evt.target.traits.supply.curr;
-			evt.target.kill();
+			gather_amt = s.curr;
 		}
 
 		// Remove amount from target.
-		evt.target.traits.supply.curr -= gather_amt;
+		s.curr -= gather_amt;
 		// Add extracted resources to player's resource pool.
-		getGUIGlobal().giveResources(evt.target.traits.supply.type.toString(), parseInt(gather_amt));
+		getGUIGlobal().giveResources(s.type.toString(), parseInt(gather_amt));
+		
+		// Kill the target if it's now out of resources
+		if( s.curr == 0 )
+		{
+			evt.target.kill();
+		}
 	}
 }
 
@@ -448,16 +478,14 @@ function entityEventTargetChanged( evt )
 	if( evt.target && this.actions )
 	{
 	    if( this.actions.attack && 
-			( evt.target.player != this.player ) )
+			evt.target.player != this.player &&
+			evt.target.traits.health &&
+			evt.target.traits.health.max != 0 )
 		{
 			evt.defaultAction = NMT_AttackMelee;
 			evt.defaultCursor = "action-attack";
 		}
-		g = this.actions.gather;
-		s = evt.target.traits.supply;
-	    if( g && s && g.resource  && g.resource[s.type] &&
-			( s.subtype==s.type || g.resource[s.type][s.subtype] ) &&
-			( s.curr > 0 || s.max == 0 ) )
+		if( canGather( this, evt.target ) )
 		{
 		    evt.defaultAction = NMT_Gather;
 		    // Set cursor (eg "action-gather-fruit").
@@ -496,9 +524,7 @@ function entityEventPrepareOrder( evt )
 				evt.preventDefault();
 			break;
 		case ORDER_GATHER:
-			if( !this.actions.gather || !this.actions.gather.resource ||
-			    !( this.actions.gather.resource[evt.target.traits.supply.type] ) ||
-			    ( ( evt.target.traits.supply.curr == 0 ) && ( evt.target.traits.supply.max > 0 ) ) )
+			if( !canGather( this, evt.target ) )
 				evt.preventDefault();
 			break;
 		default:
@@ -685,6 +711,20 @@ function entityCheckQueueReq( entity, template )
 
 // ====================================================================
 
+function canGather( source, target )
+{
+	if( !source.actions )
+		return false;
+	g = source.actions.gather;
+	s = target.traits.supply;
+	return ( g && s && g.resource && g.resource[s.type] &&
+		( s.subtype==s.type || g.resource[s.type][s.subtype] ) &&
+		( s.curr > 0 || s.max == 0 ) && 
+		s.dropsitecount[source.player.id] );
+}
+
+// ====================================================================
+
 function DamageModifyAura ( source, ally, bonus )
 {
 	// Defines the effects of the DamageModify Aura. (Adjacent units have modified attack bonus.)
@@ -711,7 +751,7 @@ function DamageModifyAura ( source, ally, bonus )
 	{
 		if( this.affects( e ) ) 
 		{
-			console.write( "DamageModify aura: giving " + this.bonus + " damage to " + e );
+			//console.write( "DamageModify aura: giving " + this.bonus + " damage to " + e );
 			e.actions.attack.damage += this.bonus;
 		}
 	};
@@ -720,8 +760,42 @@ function DamageModifyAura ( source, ally, bonus )
 	{
 		if( this.affects( e ) ) 
 		{
-			console.write( "DamageModify aura: taking away " + this.bonus + " damage from " + e );
+			//console.write( "DamageModify aura: taking away " + this.bonus + " damage from " + e );
 			e.actions.attack.damage -= this.bonus;
+		}
+	};
+}
+
+// ====================================================================
+
+function DropsiteAura ( source, types )
+{
+	// Defines the effects of the Gather aura. Enables resource gathering on entities
+	// near the source for it's owner.
+
+	this.source = source;
+	this.types = types;
+	
+	this.affects = function( e ) 
+	{
+		return( e.traits.supply && this.types[e.traits.supply.type] );
+	}
+	
+	this.onEnter = function( e ) 
+	{
+		if( this.affects( e ) ) 
+		{
+			//console.write( "Dropsite aura: adding +1 for " + this.source.player.id + " on " + e );
+			e.traits.supply.dropsitecount[this.source.player.id]++;
+		}
+	};
+	
+	this.onExit = function( e ) 
+	{
+		if( this.affects( e ) ) 
+		{
+			//console.write( "Dropsite aura: adding -1 for " + this.source.player.id + " on " + e );
+			e.traits.supply.dropsitecount[this.source.player.id]--;
 		}
 	};
 }
@@ -749,7 +823,7 @@ function InfidelityAura ( source )
 	{
 		if( this.affects( e ) ) 
 		{
-			console.write( "Infidelity aura: adding +1 count to " + e.player.id );
+			//console.write( "Infidelity aura: adding +1 count to " + e.player.id );
 			this.count[e.player.id]++;
 			this.changePlayerIfNeeded();
 		}
@@ -759,7 +833,7 @@ function InfidelityAura ( source )
 	{
 		if( this.affects( e ) ) 
 		{
-			console.write( "Infidelity aura: adding -1 count to " + e.player.id );
+			//console.write( "Infidelity aura: adding -1 count to " + e.player.id );
 			this.count[e.player.id]--;
 			this.changePlayerIfNeeded();
 		}
@@ -782,7 +856,7 @@ function InfidelityAura ( source )
 			}
 			if( bestCount > 0 )
 			{
-				console.write( "Infidelity aura: changing ownership to " + bestPlayer );
+				//console.write( "Infidelity aura: changing ownership to " + bestPlayer );
 				this.source.player = players[bestPlayer];
 			}
 		}

@@ -36,6 +36,18 @@
 		<Population>
 			<Add>10</Add>
 		</Population>
+		
+		<Auras>
+			<Dropsite>
+				<Radius>50</Radius>
+				<Types>
+					<Food/>
+					<Wood/>
+					<Stone/>
+					<Ore/>
+				</Types>
+			</Dropsite>
+		</Auras>
 
 	</Traits>
 
