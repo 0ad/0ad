@@ -315,7 +315,7 @@ function snRefresh()
 		{
 			// Reveal Status Orb
 			guiUnHide ("snStatusPane");
-
+			
 // (later, we need to base this on the selected unit's stats changing)
 			refreshStatusPane(); 
 

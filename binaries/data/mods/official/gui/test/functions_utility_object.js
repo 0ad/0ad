@@ -8,10 +8,11 @@
 // Hide GUI object.
 function guiHide (objectName) 
 {
-        var guiObject = getGUIObjectByName (objectName);
-	if (guiObject == "" || guiObject == null || guiObject == undefined || guiObject == "undefined")
+    var guiObject = getGUIObjectByName (objectName);
+	if( guiObject == "" || guiObject == null || guiObject == undefined || guiObject == "undefined" )
 		console.write ("GUI Object not found: " + objectName);
-	guiObject.hidden = true;
+	if( !guiObject.hidden )
+		guiObject.hidden = true;
 }
 
 // ====================================================================
@@ -19,11 +20,11 @@ function guiHide (objectName)
 // Reveal GUI object.
 function guiUnHide (objectName)
 {
-        var guiObject = getGUIObjectByName (objectName);
+    var guiObject = getGUIObjectByName (objectName);
 	if (guiObject == "" || guiObject == null || guiObject == undefined || guiObject == "undefined")
 		console.write ("GUI Object not found: " + objectName);
-        guiObject.hidden = false;
-
+	if( guiObject.hidden )
+		guiObject.hidden = false;
 }
 
 // ====================================================================

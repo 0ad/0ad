@@ -53,7 +53,7 @@
 				setWaterHeight(getWaterHeight() - 0.25);
 			]]></action>
 		</object>
-
+		
 		<!-- GROUP: MINIMAP -->
 		<object	name="snMiniMap"
 			hotkey="session.minimap.toggle"
@@ -250,7 +250,7 @@
 				]]></action>
 
 				<object	name="snStatusPanePortrait"
-					style="portrait" 
+					style="portrait"
 					type="button"
 					hotkey="selection.snap"
 				>
