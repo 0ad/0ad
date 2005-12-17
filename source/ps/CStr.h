@@ -88,6 +88,9 @@ public:
 								: std::tstring(String, Length) {}
 	CStr(const tchar Char)		: std::tstring(1, Char) {} // std::string's constructor is (repeats, chr)
 	CStr(std::tstring String)	: std::tstring(String) {}
+
+	// Named constructor, to avoid overload overload.
+	static CStr Repeat(CStr String, size_t Reps);
 	
 	// CStr(8|W) construction from utf16strings, except on MSVC CStrW where
 	// CStrW === utf16string
@@ -189,6 +192,9 @@ public:
 
 	// Returns a trimmed string, removes whitespace from the left/right/both
 	CStr Trim(PS_TRIM_MODE Mode) const;
+
+	// Returns a padded string, adding spaces to the left/right/both
+	CStr Pad(PS_TRIM_MODE Mode, size_t Length) const;
 
 	// Overloaded operations
 

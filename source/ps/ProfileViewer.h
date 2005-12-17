@@ -162,6 +162,12 @@ public:
 	 * like a normal, global function input handler.
 	 */
 	static InReaction InputThunk(const SDL_Event* ev);
+
+	/**
+	 * SaveToFile: Saves the current profiler data (for all profile tables)
+	 * to a file in the 'logs' directory.
+	 */
+	void SaveToFile();
 	
 private:
 	CProfileViewerInternals* m;

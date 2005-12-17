@@ -15,13 +15,16 @@
 #include "Profile.h"
 #include "Renderer.h"
 #include "lib/res/graphics/unifont.h"
+#include "lib/res/file/file.h"
 #include "Hotkey.h"
-
+#include "ps/CLogger.h"
 
 extern int g_xres, g_yres;
 
 struct CProfileViewerInternals
 {
+	CProfileViewerInternals() {}
+
 	/// Whether the profiling display is currently visible
 	bool profileVisible;
 
@@ -34,6 +37,14 @@ struct CProfileViewerInternals
 	/// Helper functions
 	void TableIsDeleted(AbstractProfileTable* table);
 	void NavigateTree(int id);
+
+	/// File for saved profile output (reset when the game is restarted)
+	std::ofstream outputStream;
+
+private:
+	// Cannot be copied/assigned, because of the ofstream
+	CProfileViewerInternals(const CProfileViewerInternals& rhs);
+	const CProfileViewerInternals& operator=(const CProfileViewerInternals& rhs);
 };
 
 
@@ -281,6 +292,11 @@ InReaction CProfileViewer::Input(const SDL_Event* ev)
 			}
 			return( IN_HANDLED );
 		}
+		else if( ev->user.code == HOTKEY_PROFILE_SAVE )
+		{
+			SaveToFile();
+			return( IN_HANDLED );
+		}
 		break;
 	}
 	return( IN_PASS );
@@ -301,3 +317,122 @@ void CProfileViewer::AddRootTable(AbstractProfileTable* table)
 	m->rootTables.push_back(table);
 }
 
+namespace
+{
+	struct WriteTable
+	{
+		std::ofstream& f;
+		WriteTable(std::ofstream& f) : f(f) {}
+
+		void operator() (AbstractProfileTable* table)
+		{
+			std::vector<CStr> data; // 2d array of (rows+head)*columns elements
+
+			// Add column headers to 'data'
+			for (std::vector<ProfileColumn>::const_iterator col_it = table->GetColumns().begin();
+					col_it != table->GetColumns().end(); ++col_it)
+				data.push_back(col_it->title);
+
+			// Recursively add all profile data to 'data'
+			WriteRows(1, table, data);
+
+			// Calculate the width of each column ( = the maximum width of
+			// any value in that column)
+			std::vector<size_t> columnWidths;
+			size_t cols = table->GetColumns().size();
+			for (size_t c = 0; c < cols; ++c)
+			{
+				size_t max = 0;
+				for (size_t i = c; i < data.size(); i += cols)
+					max = std::max(max, data[i].length());
+				columnWidths.push_back(max);
+			}
+
+			// Output data as a formatted table:
+
+			f << "\n\n" << table->GetTitle() << "\n";
+
+			for (size_t r = 0; r < data.size()/cols; ++r)
+			{
+				for (size_t c = 0; c < cols; ++c)
+					f << (c ? " | " : "\n")
+					  << data[r*cols + c].Pad(PS_TRIM_RIGHT, columnWidths[c]);
+
+				// Add dividers under some rows. (Currently only the first, since
+				// that contains the column headers.)
+				if (r == 0)
+					for (size_t c = 0; c < cols; ++c)
+						f << (c ? "-|-" : "\n")
+						  << CStr::Repeat("-", columnWidths[c]);
+			}
+		}
+
+		void WriteRows(int indent, AbstractProfileTable* table, std::vector<CStr>& data)
+		{
+			for (size_t r = 0; r < table->GetNumberRows(); ++r)
+			{
+				// Do pretty tree-structure indenting
+				CStr indentation = CStr::Repeat("| ", indent-1);
+				if (r+1 == table->GetNumberRows())
+					indentation += "'-";
+				else
+					indentation += "|-";
+
+				for (size_t c = 0; c < table->GetColumns().size(); ++c)
+					if (c == 0)
+						data.push_back(indentation + table->GetCellText(r, c));
+					else
+						data.push_back(table->GetCellText(r, c));
+
+				if (table->GetChild(r))
+					WriteRows(indent+1, table->GetChild(r), data);
+			}
+		}
+
+	private:
+		const WriteTable& operator=(const WriteTable&);
+	};
+
+	bool SortByName(AbstractProfileTable* a, AbstractProfileTable* b)
+	{
+		return (a->GetName() < b->GetName());
+	}
+}
+
+void CProfileViewer::SaveToFile()
+{
+	// Open the file, if necessary. If this method is called several times,
+	// the profile results will be appended to the previous ones from the same
+	// run.
+	if (! m->outputStream.is_open())
+	{
+		// Work out the filename
+		char N_path[PATH_MAX];
+		(void)file_make_full_native_path("../logs", N_path);
+		PathPackage pp;
+		(void)pp_set_dir(&pp, N_path);
+		(void)pp_append_file(&pp, "profile.txt");
+
+		// Open the file. (It will be closed when the CProfileViewer
+		// destructor is called.)
+		m->outputStream.open(pp.path, std::ofstream::out | std::ofstream::trunc);
+
+		if (m->outputStream.fail())
+		{
+			LOG(ERROR, "profiler", "Failed to open profile log file");
+			return;
+		}
+	}
+
+	time_t t;
+	time(&t);
+	m->outputStream << "================================================================\n\n";
+	m->outputStream << "PS profiler snapshot - " << asctime(localtime(&t));
+
+	std::vector<AbstractProfileTable*> tables = m->rootTables;
+	std::sort(tables.begin(), tables.end(), SortByName);
+	std::for_each(tables.begin(), tables.end(), WriteTable(m->outputStream));
+
+	m->outputStream << "\n\n================================================================\n";
+	m->outputStream.flush();
+}

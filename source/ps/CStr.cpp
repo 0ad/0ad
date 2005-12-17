@@ -185,6 +185,14 @@ using namespace std;
  #define _totupper toupper
 #endif
 
+CStr CStr::Repeat(CStr String, size_t Reps)
+{
+	CStr ret;
+	ret.reserve(String.Length() * Reps);
+	while (Reps--) ret += String;
+	return ret;
+}
+
 // Construction and assignment from numbers:
 
 #define NUM_TYPE(T) \
@@ -495,6 +503,37 @@ CStr CStr::Trim(PS_TRIM_MODE Mode) const
 
 
 	return substr(Left, Right-Left+1);
+}
+
+CStr CStr::Pad(PS_TRIM_MODE Mode, size_t Length) const
+{
+	size_t Left = 0, Right = 0;
+
+	if (Length <= length())
+		return *this;
+	
+	// From here: Length-length() >= 1
+
+	switch (Mode)
+	{
+	case PS_TRIM_LEFT:
+		Left = Length - length();
+		break;
+
+	case PS_TRIM_RIGHT:
+		Right = Length - length();
+		break;
+
+	case PS_TRIM_BOTH:
+		Left  = (Length - length() + 1)/2;
+		Right = (Length - length() - 1)/2; // cannot be negative
+		break;
+
+	default:
+		debug_warn("CStr::Trim: invalid Mode");
+	}
+
+	return std::tstring(Left, _T(' ')) + *this + std::tstring(Right, _T(' '));
 }
 
 // Concatenation:
