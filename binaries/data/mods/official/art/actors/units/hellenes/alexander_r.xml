@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <animations>
+        <animation file="biped/cavalryidle.psa" name="Idle" speed="200"/>
+        <animation file="biped/cavalryidle.psa" name="Walk" speed="20"/>
+      </animations>
+      <mesh>skeletal/m_tunic_c.pmd</mesh>
+      <props>
+        <prop actor="props/units/heads/hele_alexander.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/head_alexander.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/xiphos_alexander.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/cape_alexander.xml" attachpoint="back"/>
+      </props>
+      <texture>skeletal/hele_alexander.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>
