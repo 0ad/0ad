@@ -31,11 +31,11 @@
 
 // useful for choosing a video mode. not called by detect().
 // if we fail, outputs are unchanged (assumed initialized to defaults)
-int get_cur_vmode(int* xres, int* yres, int* bpp, int* freq)
+LibError get_cur_vmode(int* xres, int* yres, int* bpp, int* freq)
 {
 	Display* disp = XOpenDisplay(0);
 	if(!disp)
-		return -1;
+		return ERR_FAIL;
 
 	int screen = XDefaultScreen(disp);
 	
@@ -59,17 +59,17 @@ int get_cur_vmode(int* xres, int* yres, int* bpp, int* freq)
 	if(freq)
 		*freq = 0;
 	XCloseDisplay(disp);
-	return 0;
+	return ERR_OK;
 }
 
 
 // useful for determining aspect ratio. not called by detect().
 // if we fail, outputs are unchanged (assumed initialized to defaults)
-int get_monitor_size(int& width_mm, int& height_mm)
+LibError get_monitor_size(int& width_mm, int& height_mm)
 {
 	Display* disp = XOpenDisplay(0);
 	if(!disp)
-		return -1;
+		return ERR_FAIL;
 
 	int screen = XDefaultScreen(disp);
 	
@@ -77,7 +77,7 @@ int get_monitor_size(int& width_mm, int& height_mm)
 	height_mm=XDisplayHeightMM(disp, screen);
 	
 	XCloseDisplay(disp);
-	return 0;
+	return ERR_OK;
 }
 
 /*
@@ -113,7 +113,7 @@ Expansions:
 * Implement UTF-8 format support (should be interresting for international users)
 
 */
-wchar_t *clipboard_get()
+wchar_t *sys_clipboard_get()
 {
 	Display *disp=XOpenDisplay(NULL);
 	if (!disp)
@@ -187,10 +187,10 @@ wchar_t *clipboard_get()
 	return NULL;
 }
 
-int clipboard_free(wchar_t *clip_buf)
+LibError sys_clipboard_free(wchar_t *clip_buf)
 {
 	free(clip_buf);
-	return 0;
+	return ERR_OK;
 }
 
 /*
@@ -202,10 +202,10 @@ Setting the Selection (i.e. "copy")
 	* Tell the X server that we want to own the selection
 	* Listen for Selection events and respond to them as appropriate
 */
-int clipboard_set(const wchar_t *clip_str)
+LibError sys_clipboard_set(const wchar_t *clip_str)
 {
 	// Not Implemented, see comment before clipboard_get, above
-	return -1;
+	return ERR_FAIL;
 }
 
 #endif	// #ifdef HAVE_X

@@ -14,6 +14,8 @@
 #define ES_SINE 4
 
 #include <stdlib.h>
+#include <list>
+#include <map>
 #include "Camera.h"
 #include "CStr.h"
 #include "Vector3D.h"

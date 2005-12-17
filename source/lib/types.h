@@ -4,6 +4,7 @@
 #define __TYPES_H__
 
 #include "posix_types.h"
+#include "lib_errors.h"
 
 // defines instead of typedefs so we can #undef conflicting decls
 
@@ -30,7 +31,5 @@ typedef unsigned int PS_uint;
 #if defined(SIZE_MAX) && SIZE_MAX < 0xFFFFFFFF
 # error "check size_t and SIZE_MAX - too small?"
 #endif
-
-enum LibError;
 
 #endif // #ifndef __TYPES_H__

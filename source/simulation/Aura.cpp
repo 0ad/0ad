@@ -53,7 +53,8 @@ void CAura::Update( size_t UNUSED(timestep) )
 
 	CStrW enterName = L"onEnter";
 	jsval enterFunction;
-	if( JS_GetUCProperty( m_cx, m_handler, enterName.c_str(), enterName.length(), &enterFunction ) )
+	utf16string enterName16 = enterName.utf16();
+	if( JS_GetUCProperty( m_cx, m_handler, enterName16.c_str(), enterName16.length(), &enterFunction ) )
 	{
 		back_insert_iterator<vector<CEntity*> > ins( entered );
 		set_difference( curInfluenced.begin(), curInfluenced.end(), 
@@ -69,7 +70,8 @@ void CAura::Update( size_t UNUSED(timestep) )
 	
 	CStrW exitName = L"onExit";
 	jsval exitFunction;
-	if( JS_GetUCProperty( m_cx, m_handler, exitName.c_str(), exitName.length(), &exitFunction ) )
+	utf16string exitName16 = exitName.utf16();
+	if( JS_GetUCProperty( m_cx, m_handler, exitName16.c_str(), exitName16.length(), &exitFunction ) )
 	{
 		back_insert_iterator<vector<CEntity*> > ins( exited );
 		set_difference( prevInfluenced.begin(), prevInfluenced.end(), 
@@ -90,7 +92,8 @@ void CAura::RemoveAll()
 	jsval argv[1];
 	CStrW exitName = L"onExit";
 	jsval exitFunction;
-	if( JS_GetUCProperty( m_cx, m_handler, exitName.c_str(), exitName.length(), &exitFunction ) )
+	utf16string exitName16 = exitName.utf16();
+	if( JS_GetUCProperty( m_cx, m_handler, exitName16.c_str(), exitName16.length(), &exitFunction ) )
 	{
 		for( vector<HEntity>::iterator it = m_influenced.begin(); it != m_influenced.end(); it++ )
 		{
@@ -112,7 +115,8 @@ void CAura::Remove( CEntity* ent )
 	jsval argv[1];
 	CStrW exitName = L"onExit";
 	jsval exitFunction;
-	if( JS_GetUCProperty( m_cx, m_handler, exitName.c_str(), exitName.length(), &exitFunction ) )
+	utf16string exitName16 = exitName.utf16();
+	if( JS_GetUCProperty( m_cx, m_handler, exitName16.c_str(), exitName16.length(), &exitFunction ) )
 	{
 		argv[0] = OBJECT_TO_JSVAL( ent->GetScript() );
 		JS_CallFunctionValue( m_cx, m_handler, exitFunction, 1, argv, &rval );

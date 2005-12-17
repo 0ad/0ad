@@ -171,12 +171,12 @@ STMT(\
 
 
 // called when an assertion has failed; notifies the user via debug_display_error.
-extern enum ErrorReaction debug_assert_failed(const char* assert_expr,
+extern ErrorReaction debug_assert_failed(const char* assert_expr,
 	const char* file, int line, const char* func);
 
 // called when a lib function wrapped in DEBUG_WARN_ERR failed;
 // notifies the user via debug_display_error.
-extern enum ErrorReaction debug_warn_err(LibError err,
+extern ErrorReaction debug_warn_err(LibError err,
 	const char* file, int line, const char* func);
 
 
@@ -197,29 +197,6 @@ extern void debug_wprintf(const wchar_t* fmt, ...);
 // implemented via sys_display_msgw; see documentation there.
 extern void debug_display_msgw(const wchar_t* caption, const wchar_t* msg);
 
-
-// choices offered by the shared error dialog
-enum ErrorReaction
-{
-	// ignore, continue as if nothing happened.
-	// note: don't start at 0 because that is interpreted as a
-	// DialogBoxParam failure.
-	ER_CONTINUE = 1,
-
-	// ignore and do not report again.
-	// only returned if DE_ALLOW_SUPPRESS was passed.
-	// note: non-persistent; only applicable during this program run.
-	ER_SUPPRESS,
-
-	// trigger breakpoint, i.e. enter debugger.
-	// only returned if DE_MANUAL_BREAK was passed; otherwise,
-	// debug_display_error will trigger a breakpoint itself.
-	ER_BREAK,
-
-	// exit the program immediately.
-	// never returned; debug_display_error exits immediately.
-	ER_EXIT
-};
 
 enum DisplayErrorFlags
 {

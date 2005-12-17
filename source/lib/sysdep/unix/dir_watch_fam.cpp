@@ -57,7 +57,7 @@ int dir_cancel_watch(const intptr_t watch)
 int dir_get_changed_file(char* fn)
 {
 	if(!initialized)
-		return -1;
+		return ERR_FAIL;
 
 	FAMEvent e;
 	while(FAMPending(&fc) > 0)
@@ -69,9 +69,9 @@ int dir_get_changed_file(char* fn)
 				const char* dir = dirs[e.fr.reqnum].c_str();
 				snprintf(n_path, PATH_MAX, "%s%c%s", dir, DIR_SEP, e.filename);
 				CHECK_ERR(file_make_portable_path(n_path, fn));
-				return 0;
+				return ERR_OK;
 			}
 		}
 
-	return 1;
+	return ERR_AGAIN;
 }

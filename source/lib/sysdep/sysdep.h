@@ -119,6 +119,7 @@ extern void* alloca(size_t size);
 # define __func__ "(unknown)"
 #endif
 
+#include "debug.h"
 
 //-----------------------------------------------------------------------------
 // sysdep API
@@ -136,7 +137,6 @@ extern void sys_display_msgw(const wchar_t* caption, const wchar_t* msg);
 
 // show the error dialog. flags: see DisplayErrorFlags.
 // called from debug_display_error.
-enum ErrorReaction;
 extern ErrorReaction sys_display_error(const wchar_t* text, int flags);
 
 

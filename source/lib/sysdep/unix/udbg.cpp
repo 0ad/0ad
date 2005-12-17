@@ -311,12 +311,12 @@ void demangle_buf(char *buf, const char *symbol, size_t n)
 		free(alloc);
 }
 
-int debug_resolve_symbol_dladdr(void *ptr, char* sym_name, char* file, int* line)
+static LibError debug_resolve_symbol_dladdr(void *ptr, char* sym_name, char* file, int* line)
 {
 	Dl_info syminfo;
 	
 	int res=dladdr(ptr, &syminfo);
-	if (res == 0) return -1;
+	if (res == 0) return ERR_FAIL;
 	
 	if (sym_name)
 	{
@@ -340,10 +340,10 @@ int debug_resolve_symbol_dladdr(void *ptr, char* sym_name, char* file, int* line
 		*line=0;
 	}
 	
-	return 0;
+	return ERR_OK;
 }
 
-int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line)
+LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line)
 {
 	ONCE(udbg_init());
 
@@ -403,7 +403,7 @@ int debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int*
 		*line = ctx.line;
 	}
 	
-	return 0;
+	return ERR_OK;
 }
 #include "mmgr.h"
 

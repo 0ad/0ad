@@ -22,6 +22,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <deque>
 #include <math.h>
 
 // (some math.h versions omit this)

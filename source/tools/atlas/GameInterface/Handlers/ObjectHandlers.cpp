@@ -1,5 +1,7 @@
 #include "precompiled.h"
 
+#include <float.h>
+
 #include "MessageHandler.h"
 #include "../CommandProc.h"
 

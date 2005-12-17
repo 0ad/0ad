@@ -25,19 +25,19 @@ void sys_display_msgw(const wchar_t* caption, const wchar_t* msg)
 }
 
 
-int get_executable_name(char* n_path, size_t buf_size)
+LibError sys_get_executable_name(char* n_path, size_t buf_size)
 {
 	Dl_info dl_info;
 
 	memset(&dl_info, 0, sizeof(dl_info));
-	if (!dladdr((void *)get_executable_name, &dl_info) ||
+	if (!dladdr((void *)sys_get_executable_name, &dl_info) ||
 		!dl_info.dli_fname )
 	{
-		return -ENOSYS;
+		return ERR_NO_SYS;
 	}
 
 	strncpy(n_path, dl_info.dli_fname, buf_size);
-	return 0;
+	return ERR_OK;
 }
 
 extern int cpus;
@@ -53,8 +53,10 @@ int unix_get_cpu_info()
 
 // apparently not possible on non-Windows OSes because they seem to lack
 // a CPU affinity API. see sysdep.h comment.
-int sys_on_each_cpu(void(*cb)())
+LibError sys_on_each_cpu(void(*cb)())
 {
+	UNUSED2(cb);
+	
 	return ERR_NO_SYS;
 }
 
@@ -119,27 +121,41 @@ ErrorReaction sys_display_error(const wchar_t* text, int flags)
 // take advantage of hardware mouse cursors instead of the (jerky when
 // loading) OpenGL cursor.
 
-int sys_cursor_create(uint w, uint h, void* bgra_img,
+LibError sys_cursor_create(uint w, uint h, void* bgra_img,
 	uint hx, uint hy, void** cursor)
 {
+	UNUSED2(w);
+	UNUSED2(h);
+	UNUSED2(hx);
+	UNUSED2(hy);
+	UNUSED2(bgra_img);
+
 	*cursor = 0;
-	return 0;
+	return ERR_OK;
 }
 
-int sys_cursor_set(void* cursor)
+LibError sys_cursor_set(void* cursor)
 {
-	return 0;
+	UNUSED2(cursor);
+	
+	return ERR_OK;
 }
 
-int sys_cursor_free(void* cursor)
+LibError sys_cursor_free(void* cursor)
 {
-	return 0;
+	UNUSED2(cursor);
+	
+	return ERR_OK;
 }
 
-int sys_error_description_r(int err, char* buf, size_t max_chars)
+LibError sys_error_description_r(int err, char* buf, size_t max_chars)
 {
+	UNUSED2(err);
+	UNUSED2(buf);
+	UNUSED2(max_chars);
+	
 	// don't need to do anything: lib/errors.cpp already queries
 	// libc's strerror(). if we ever end up needing translation of
 	// e.g. Qt or X errors, that'd go here.
-	return -1;
+	return ERR_FAIL;
 }

@@ -154,7 +154,7 @@ __asm{
 // calling conventions.
 // MSC, ICC and GCC currently return 64 bits in edx:eax, which even
 // matches rdtsc output, but we play it safe and return a temporary.
-inline u64 rdtsc()
+u64 rdtsc()
 {
 	u64 c;
 #if HAVE_MS_ASM
