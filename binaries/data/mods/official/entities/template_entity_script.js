@@ -104,7 +104,7 @@ function entityInit()
 	{
 		for ( name in this.traits.auras )
 		{
-			console.write ( "Creating " + name + " aura for " + this + ".");
+			//console.write ( "Creating " + name + " aura for " + this + ".");
 			switch ( name )
 			{
 				case "courage":
@@ -117,7 +117,7 @@ function entityInit()
 					break;
 				case "infidelity":
 					a = this.traits.auras.infidelity;
-					this.addAura ( name, a.radius, new InfidelityAura( this ) );
+					this.addAura ( name, a.radius, new InfidelityAura( this, a.time ) );
 					break;
 				case "dropsite":
 					a = this.traits.auras.dropsite;
@@ -802,11 +802,13 @@ function DropsiteAura ( source, types )
 
 // ====================================================================
 
-function InfidelityAura ( source )
+function InfidelityAura ( source, time )
 {
 	// Defines the effects of the Infidelity Aura. Changes ownership of entity when only one player's units surrounds them.
 
 	this.source = source;
+	
+	this.time = time;
 	
 	this.count = new Array( 9 );
 	for( i = 0; i <= 8; i++ )
@@ -814,6 +816,8 @@ function InfidelityAura ( source )
 		this.count[i] = 0;
 	}
 	
+	this.convertTimer = 0;
+		
 	this.affects = function( e ) 
 	{
 		return ( e.player.id != 0 && ( !e.traits.auras || !e.traits.auras.infidelity ) );
@@ -843,23 +847,52 @@ function InfidelityAura ( source )
 	{
 		if( this.count[this.source.player.id] == 0 )
 		{
-			// switch ownership to whichever non-gaia player has the most units near us, if any
-			bestPlayer = 0;
-			bestCount = 0;
-			for( i = 1; i <= 8; i++ )
+			// If our owner has nothing near us but someone else does, start a time to convert over if we haven't done so already
+			if( !this.convertTimer )
 			{
-				if( this.count[i] > bestCount )
+				for( i = 1; i <= 8; i++ )
 				{
-					bestCount = this.count[i];
-					bestPlayer = i;
+					if( this.count[i] > 0 )
+					{
+						console.write( "Starting convert timer" );
+						this.convertTimer = setTimeout( this.convert, parseInt( this.time * 1000 ), this );
+						return;
+					}
 				}
 			}
-			if( bestCount > 0 )
+		}
+		
+		// If we had started a convert timer before, cancel it (either we have units from our owner in range, or there are no units from anyone in range)
+		if( this.convertTimer )
+		{
+			console.write( "Cancelling convert timer" );
+			cancelTimer( this.convertTimer );
+			this.convertTimer = 0;
+		}
+	}
+	
+	this.convert = function()
+	{
+		console.write( "Conversion time!" );
+		
+		// Switch ownership to whichever non-gaia player has the most units near us
+		bestPlayer = 0;
+		bestCount = 0;
+		for( i = 1; i <= 8; i++ )
+		{
+			if( this.count[i] > bestCount )
 			{
-				//console.write( "Infidelity aura: changing ownership to " + bestPlayer );
-				this.source.player = players[bestPlayer];
+				bestCount = this.count[i];
+				bestPlayer = i;
 			}
 		}
+		if( bestCount > 0 )
+		{
+			//console.write( "Infidelity aura: changing ownership to " + bestPlayer );
+			this.source.player = players[bestPlayer];
+		}
+		
+		this.convertTimer = 0;
 	}
 }
 
