@@ -264,9 +264,10 @@ JSBool RemoveGlobalHandler( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsv
 //   The called function or script executes in the same scope as the
 //   code that called setTimeout (amongst other things, the
 //   'this' reference is usually maintained)
-JSBool setTimeout( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rval) )
+JSBool setTimeout( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_PARAMS(2, setTimeout);
+	REQUIRE_MIN_PARAMS(2, setTimeout);
+	REQUIRE_MAX_PARAMS(3, setTimeout);
 
 	size_t delay;
 	try
@@ -279,18 +280,35 @@ JSBool setTimeout( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUS
 		return( JS_TRUE );
 	}
 
+	JSObject* scope;
+	if( argc == 3 )
+	{
+		if( !JSVAL_IS_OBJECT( argv[2] ) )
+		{
+			JS_ReportError( cx, "Invalid timer parameters" );
+			return( JS_TRUE );
+		}
+		scope = JSVAL_TO_OBJECT( argv[2] );
+	}
+	else
+	{
+		scope = JS_GetScopeChain( cx );
+	}
+
 	switch( JS_TypeOfValue( cx, argv[0] ) )
 	{
 	case JSTYPE_STRING:
 	{
 		CStrW fragment = g_ScriptingHost.ValueToUCString( argv[0] );
-		g_Scheduler.pushTime( delay, fragment, JS_GetScopeChain( cx ) );
+		int id = g_Scheduler.pushTime( delay, fragment, scope );
+		*rval = INT_TO_JSVAL( id );
 		return( JS_TRUE );
 	}
 	case JSTYPE_FUNCTION:
 	{
 		JSFunction* fn = JS_ValueToFunction( cx, argv[0] );
-		g_Scheduler.pushTime( delay, fn, JS_GetScopeChain( cx ) );
+		int id = g_Scheduler.pushTime( delay, fn, scope );
+		*rval = INT_TO_JSVAL( id );
 		return( JS_TRUE );
 	}
 	default:
@@ -306,7 +324,7 @@ JSBool setTimeout( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUS
 // returns:
 // notes:
 // - setTimeout's notes apply here as well.
-JSBool setInterval( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rval) )
+JSBool setInterval( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
 	REQUIRE_MIN_PARAMS(2, setInterval);
 	REQUIRE_MAX_PARAMS(3, setInterval);
@@ -337,13 +355,15 @@ JSBool setInterval( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNU
 	case JSTYPE_STRING:
 	{
 		CStrW fragment = g_ScriptingHost.ValueToUCString( argv[0] );
-		g_Scheduler.pushInterval( first, interval, fragment, JS_GetScopeChain( cx ) );
+		int id = g_Scheduler.pushInterval( first, interval, fragment, JS_GetScopeChain( cx ) );
+		*rval = INT_TO_JSVAL( id );
 		return( JS_TRUE );
 	}
 	case JSTYPE_FUNCTION:
 	{
 		JSFunction* fn = JS_ValueToFunction( cx, argv[0] );
-		g_Scheduler.pushInterval( first, interval, fn, JS_GetScopeChain( cx ) );
+		int id = g_Scheduler.pushInterval( first, interval, fn, JS_GetScopeChain( cx ) );
+		*rval = INT_TO_JSVAL( id );
 		return( JS_TRUE );
 	}
 	default:
@@ -365,6 +385,33 @@ JSBool cancelInterval( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* 
 	REQUIRE_NO_PARAMS(cancelInterval);
 
 	g_Scheduler.m_abortInterval = true;
+	return( JS_TRUE );
+}
+
+
+// Cause the scheduled task (timeout or interval) with the given ID to 
+//   no longer be called.
+// params:
+// returns:
+// notes:
+// - Execution continues until the end of the triggered function or
+//   script fragment, but is not triggered again.
+JSBool cancelTimer( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rval) )
+{
+	REQUIRE_MIN_PARAMS(1, cancelTimer);
+	REQUIRE_MAX_PARAMS(1, cancelTimer);
+
+	try
+	{
+		int id = ToPrimitive<int>( argv[0] );
+		g_Scheduler.cancelTask( id );
+	}
+	catch( PSERROR_Scripting_ConversionFailed )
+	{
+		JS_ReportError( cx, "Invalid ID parameter" );
+		return( JS_TRUE );
+	}
+
 	return( JS_TRUE );
 }
 
@@ -940,6 +987,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC(setTimeout, setTimeout, 2)
 	JS_FUNC(setInterval, setInterval, 2)
 	JS_FUNC(cancelInterval, cancelInterval, 0)
+	JS_FUNC(cancelTimer, cancelTimer, 0)
 
 	// Game Setup
 	JS_FUNC(startGame, startGame, 0)

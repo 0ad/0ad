@@ -17,39 +17,59 @@ void CScheduler::pushFrame( size_t delay, const HEntity& destination, const CMes
 }
 */
 
-void CScheduler::pushTime( size_t delay, const CStrW& fragment, JSObject* operateOn )
+CScheduler::CScheduler()
 {
-	timeScript.push( SDispatchObjectScript( fragment, simulationTime + delay, operateOn ) );
+	m_nextTaskId = 1;
 }
 
-void CScheduler::pushFrame( size_t delay, const CStrW& fragment, JSObject* operateOn )
+int CScheduler::pushTime( size_t delay, const CStrW& fragment, JSObject* operateOn )
 {
-	frameScript.push( SDispatchObjectScript( fragment, frameCount + delay, operateOn ) );
+	timeScript.push( SDispatchObjectScript( m_nextTaskId, fragment, simulationTime + delay, operateOn ) );
+	return m_nextTaskId++;
 }
 
-void CScheduler::pushInterval( size_t first, size_t interval, const CStrW& fragment, JSObject* operateOn )
+int CScheduler::pushFrame( size_t delay, const CStrW& fragment, JSObject* operateOn )
 {
-	timeScript.push( SDispatchObjectScript( fragment, simulationTime + first, operateOn, interval ) );
+	frameScript.push( SDispatchObjectScript( m_nextTaskId, fragment, frameCount + delay, operateOn ) );
+	return m_nextTaskId++;
 }
 
-void CScheduler::pushTime( size_t delay, JSFunction* script, JSObject* operateOn )
+int CScheduler::pushInterval( size_t first, size_t interval, const CStrW& fragment, JSObject* operateOn, int id )
 {
-	timeFunction.push( SDispatchObjectFunction( script, simulationTime + delay, operateOn ) );
+	if( !id )
+		id = m_nextTaskId++;
+	timeScript.push( SDispatchObjectScript( id, fragment, simulationTime + first, operateOn, interval ) );
+	return id++;
 }
 
-void CScheduler::pushFrame( size_t delay, JSFunction* script, JSObject* operateOn )
+int CScheduler::pushTime( size_t delay, JSFunction* script, JSObject* operateOn )
 {
-	frameFunction.push( SDispatchObjectFunction( script, frameCount + delay, operateOn ) );
+	timeFunction.push( SDispatchObjectFunction( m_nextTaskId, script, simulationTime + delay, operateOn ) );
+	return m_nextTaskId++;
 }
 
-void CScheduler::pushInterval( size_t first, size_t interval, JSFunction* function, JSObject* operateOn )
+int CScheduler::pushFrame( size_t delay, JSFunction* script, JSObject* operateOn )
 {
-	timeFunction.push( SDispatchObjectFunction( function, simulationTime + first, operateOn, interval ) );
+	frameFunction.push( SDispatchObjectFunction( m_nextTaskId, script, frameCount + delay, operateOn ) );
+	return m_nextTaskId++;
+}
+
+int CScheduler::pushInterval( size_t first, size_t interval, JSFunction* function, JSObject* operateOn, int id )
+{
+	if( !id )
+		id = m_nextTaskId++;
+	timeFunction.push( SDispatchObjectFunction( id, function, simulationTime + first, operateOn, interval ) );
+	return id++;
 }
 
 void CScheduler::pushProgressTimer( CJSProgressTimer* progressTimer )
 {
 	progressTimers.push_back( progressTimer );
+}
+
+void CScheduler::cancelTask( int id )
+{
+	tasksToCancel.insert( id );
 }
 
 void CScheduler::update(size_t simElapsed)
@@ -65,9 +85,16 @@ void CScheduler::update(size_t simElapsed)
 			break;
 		timeScript.pop();
 		m_abortInterval = false;
+
+		if( tasksToCancel.find( top.id ) != tasksToCancel.end() )
+		{
+			tasksToCancel.erase( top.id );
+			continue;
+		}
+
 		g_ScriptingHost.ExecuteScript( top.script, CStrW( L"timer" ), top.operateOn );
 		if( top.isRecurrent && !m_abortInterval )
-			pushInterval( top.delay, top.delay, top.script, top.operateOn );
+			pushInterval( top.delay, top.delay, top.script, top.operateOn, top.id );
 	}
 	while( !frameScript.empty() )
 	{
@@ -75,6 +102,13 @@ void CScheduler::update(size_t simElapsed)
 		if( top.deliveryTime > frameCount )
 			break;
 		frameScript.pop();
+
+		if( tasksToCancel.find( top.id ) != tasksToCancel.end() )
+		{
+			tasksToCancel.erase( top.id );
+			continue;
+		}
+
 		g_ScriptingHost.ExecuteScript( top.script, CStrW( L"timer" ), top.operateOn );
 	}
 	while( !timeFunction.empty() )
@@ -85,10 +119,16 @@ void CScheduler::update(size_t simElapsed)
 		timeFunction.pop();
 		m_abortInterval = false;
 		
+		if( tasksToCancel.find( top.id ) != tasksToCancel.end() )
+		{
+			tasksToCancel.erase( top.id );
+			continue;
+		}
+		
 		JS_CallFunction( g_ScriptingHost.getContext(), top.operateOn, top.function, 0, NULL, &rval ); 
 		
 		if( top.isRecurrent && !m_abortInterval )
-			pushInterval( top.delay, top.delay, top.function, top.operateOn );
+			pushInterval( top.delay, top.delay, top.function, top.operateOn, top.id );
 	}
 	while( !frameFunction.empty() )
 	{
@@ -97,6 +137,12 @@ void CScheduler::update(size_t simElapsed)
 			break;
 		frameFunction.pop();
 		
+		if( tasksToCancel.find( top.id ) != tasksToCancel.end() )
+		{
+			tasksToCancel.erase( top.id );
+			continue;
+		}
+
 		JS_CallFunction( g_ScriptingHost.getContext(), top.operateOn, top.function, 0, NULL, &rval ); 
 	}
 
