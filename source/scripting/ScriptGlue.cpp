@@ -264,7 +264,7 @@ JSBool RemoveGlobalHandler( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsv
 //   The called function or script executes in the same scope as the
 //   code that called setTimeout (amongst other things, the
 //   'this' reference is usually maintained)
-JSBool setTimeout( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval )
+JSBool setTimeout( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
 	REQUIRE_MIN_PARAMS(2, setTimeout);
 	REQUIRE_MAX_PARAMS(3, setTimeout);

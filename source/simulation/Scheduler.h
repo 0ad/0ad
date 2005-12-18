@@ -67,7 +67,7 @@ struct CScheduler : public Singleton<CScheduler>
 	std::list<CJSProgressTimer*> progressTimers;
 	int m_nextTaskId;
 	bool m_abortInterval;
-	std::set<int> tasksToCancel;
+	STL_HASH_SET<int> tasksToCancel;
 
 	CScheduler();
 	int pushTime( size_t delay, const CStrW& fragment, JSObject* operateOn = NULL );
