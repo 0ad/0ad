@@ -258,7 +258,7 @@ void CPatchRData::BuildBlends()
 		g_VBMan.Release(m_VBBlends);
 		m_VBBlends=0;
 	}
-	if (m_BlendVertices.size())  {
+	if (m_BlendVertices.size()) {
 		m_VBBlends=g_VBMan.Allocate(sizeof(SBlendVertex),m_BlendVertices.size(),true);
 		m_VBBlends->m_Owner->UpdateChunkVertices(m_VBBlends,&m_BlendVertices[0]);
 	
@@ -619,17 +619,12 @@ void CPatchRData::SubmitBaseBatches()
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 // SubmitBlendBatches: submit next set of blend batches for this patch to the vertex buffer;
-// return true if all blends on this patch have been submitted, else false
-bool CPatchRData::SubmitBlendBatches()
+void CPatchRData::SubmitBlendBatches()
 {
-	if (m_NextBlendSplat<m_BlendSplats.size()) {
-		for (uint i=m_NextBlendSplat;i<m_BlendSplats.size();i++) {
-			const SSplat& splat=m_BlendSplats[i];
-			m_VBBlends->m_Owner->AppendBatch(m_VBBlends,splat.m_Texture,splat.m_IndexCount,&m_BlendIndices[splat.m_IndexStart]);
-		}
-		return true;
+	for (uint i=0;i<m_BlendSplats.size();i++) {
+		const SSplat& splat=m_BlendSplats[i];
+		m_VBBlends->m_Owner->AppendBatch(m_VBBlends, splat.m_Texture, splat.m_IndexCount, &m_BlendIndices[splat.m_IndexStart]);
 	}
-	return true;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -643,14 +638,12 @@ void CPatchRData::RenderBaseSplats()
 	MICROLOG(L"base splat textures");
 	pglActiveTextureARB(GL_TEXTURE0);
 	pglClientActiveTextureARB(GL_TEXTURE0);
-	oglCheck();
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
-	oglCheck();
 
 	// Set alpha to 1.0
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
@@ -658,7 +651,6 @@ void CPatchRData::RenderBaseSplats()
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 	float one[4] = { 1.f, 1.f, 1.f, 1.f };
 	glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, one);
-	oglCheck();
 
 #if 1
 	// submit base batches for each patch to the vertex buffer
@@ -666,7 +658,6 @@ void CPatchRData::RenderBaseSplats()
 		CPatchRData* patchdata=(CPatchRData*) m_Patches[i]->GetRenderData();
 		patchdata->SubmitBaseBatches();
 	}
-	oglCheck();
 
 	// render base passes for each patch
 	const std::list<CVertexBuffer*>& buffers=g_VBMan.GetBufferList();
@@ -692,7 +683,7 @@ void CPatchRData::RenderBaseSplats()
 				if (batch->m_IndexData.size()>0) {
 					ogl_tex_bind(batch->m_Texture);
 					for (uint j=0;j<batch->m_IndexData.size();j++) {
-						glDrawElements(GL_QUADS,(GLsizei)batch->m_IndexData[j].first,GL_UNSIGNED_SHORT,batch->m_IndexData[j].second);
+						glDrawElements(GL_QUADS, (GLsizei)batch->m_IndexData[j].first, GL_UNSIGNED_SHORT, batch->m_IndexData[j].second);
 						g_Renderer.m_Stats.m_DrawCalls++;
 						g_Renderer.m_Stats.m_TerrainTris+=(u32)batch->m_IndexData[j].first/2;
 					}
@@ -718,15 +709,15 @@ void CPatchRData::RenderBlendSplats()
 {
 	uint i;
 
-	// switch on second uv set
-	pglClientActiveTextureARB(GL_TEXTURE1);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	pglClientActiveTextureARB(GL_TEXTURE0);
-
 	// switch on the composite alpha map texture
 	(void)ogl_tex_bind(g_Renderer.m_hCompositeAlphaMap, 1);
 
+	// switch on second uv set
+	pglClientActiveTextureARB(GL_TEXTURE1);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
 	// setup additional texenv required by blend pass
+	pglActiveTextureARB(GL_TEXTURE1);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
@@ -746,17 +737,8 @@ void CPatchRData::RenderBlendSplats()
 	// submit blend batches for each patch to the vertex buffer
 	for (i=0;i<m_Patches.size();++i) {
 		CPatchRData* patchdata=(CPatchRData*) m_Patches[i]->GetRenderData();
-		patchdata->SetupBlendBatches();
+		patchdata->SubmitBlendBatches();
 	}
-
-	bool finished=true;
-	do
-	{
-		for (i=0;i<m_Patches.size();++i) {
-			CPatchRData* patchdata=(CPatchRData*) m_Patches[i]->GetRenderData();
-			if (!patchdata->SubmitBlendBatches()) finished=false;
-		}
-	} while (!finished);
 
 	// render blend passes for each patch
 	const std::list<CVertexBuffer*>& buffers=g_VBMan.GetBufferList();
@@ -773,20 +755,20 @@ void CPatchRData::RenderBlendSplats()
 			u32 stride=sizeof(SBlendVertex);
 			glVertexPointer(3,GL_FLOAT,stride,base+offsetof(SBlendVertex,m_Position));
 			glColorPointer(4,GL_UNSIGNED_BYTE,stride,base+offsetof(SBlendVertex,m_Color));
+			
+			pglClientActiveTextureARB(GL_TEXTURE1);
+			glTexCoordPointer(2,GL_FLOAT,stride,base+offsetof(SBlendVertex,m_AlphaUVs[0]));
+			
 			pglClientActiveTextureARB(GL_TEXTURE0);
 			glTexCoordPointer(2,GL_FLOAT,stride,base+offsetof(SBlendVertex,m_UVs[0]));
 		
-			pglClientActiveTextureARB(GL_TEXTURE1);
-			glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-			glTexCoordPointer(2,GL_FLOAT,stride,base+offsetof(SBlendVertex,m_AlphaUVs[0]));
-
 			// render each batch
 			for (i=0;i<batches.size();++i) {
 				const CVertexBuffer::Batch* batch=batches[i];
 				if (batch->m_IndexData.size()>0) {
 					ogl_tex_bind(batch->m_Texture);
-					for (uint j=0;j<batch->m_IndexData.size();j++) {
-						glDrawElements(GL_QUADS,(GLsizei)batch->m_IndexData[j].first,GL_UNSIGNED_SHORT,batch->m_IndexData[j].second);
+					for (uint j = 0; j < batch->m_IndexData.size(); j++) {
+						glDrawElements(GL_QUADS, (GLsizei)batch->m_IndexData[j].first, GL_UNSIGNED_SHORT, batch->m_IndexData[j].second);
 						g_Renderer.m_Stats.m_DrawCalls++;
 						g_Renderer.m_Stats.m_TerrainTris+=(u32)batch->m_IndexData[j].first/2;
 					}
@@ -810,18 +792,14 @@ void CPatchRData::RenderBlendSplats()
 	// restore default state: switch off blending
 	glDisable(GL_BLEND);
 
-	// switch off second uv set
+	// switch off texture unit 1 and second uv set
 	pglClientActiveTextureARB(GL_TEXTURE1);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	pglClientActiveTextureARB(GL_TEXTURE0);
-
-	// switch off texture unit 1, make unit 0 active texture
 	g_Renderer.BindTexture(1,0);
-	pglActiveTextureARB(GL_TEXTURE0);
 	
-	// tidy up client states
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	// switch back to texture unit 0
 	pglClientActiveTextureARB(GL_TEXTURE0);
+	pglActiveTextureARB(GL_TEXTURE0);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////

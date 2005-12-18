@@ -43,11 +43,7 @@ public:
 	// submit base batches for this patch to the vertex buffer
 	void SubmitBaseBatches();
 	// submit next set of blend batches for this patch to the vertex buffer;
-	// return true if all blends on this patch have been submitted, else false
-	bool SubmitBlendBatches();
-
-	// perform necessary initialisation prior to rendering blend splats
-	void SetupBlendBatches() { m_NextBlendSplat=0; }
+	void SubmitBlendBatches();
 
 private:
 	struct SSplat {
@@ -133,9 +129,6 @@ private:
 
 	// splats used in blend pass
 	std::vector<SSplat> m_BlendSplats;
-
-	// index of the next blend splat to render 
-	u32 m_NextBlendSplat;
 
 	// list of all submitted patches
 	static std::vector<CPatch*> m_Patches;

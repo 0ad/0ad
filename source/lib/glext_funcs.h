@@ -27,17 +27,13 @@ actually supported).
 
 // were these defined as real functions in gl.h already?
 
-#ifndef REAL_GL_1_2
 // GL_EXT_draw_range_elements / GL1.2:
 FUNC2(void, glDrawRangeElementsEXT, glDrawRangeElements, "1.2", (GLenum, GLuint, GLuint, GLsizei, GLenum, GLvoid*))
-#endif
 
-#ifndef REAL_GL_1_3
 // GL_ARB_multitexture / GL1.3:
 FUNC2(void, glMultiTexCoord2fARB, glMultiTexCoord2f, "1.3", (int, float, float))
 FUNC2(void, glActiveTextureARB, glActiveTexture, "1.3", (int))
 FUNC2(void, glClientActiveTextureARB, glClientActiveTexture, "1.3", (int))
-#endif
 
 // GL_ARB_vertex_buffer_object / GL1.5:
 FUNC2(void, glBindBufferARB, glBindBuffer, "1.5", (int target, GLuint buffer))
