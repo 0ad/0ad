@@ -400,6 +400,8 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	toolbar->AddToolButton(_("Paint Terrain"), _("Paint terrain texture"), _T("paintterrain.png"), _T("PaintTerrain"));
 	toolbar->Realize();
 	SetToolBar(toolbar);
+	// Set the default tool to be selected
+	SetCurrentTool(_T(""));
 
 	//////////////////////////////////////////////////////////////////////////
 	// Main window

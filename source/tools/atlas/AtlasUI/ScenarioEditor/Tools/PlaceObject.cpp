@@ -29,9 +29,9 @@ public:
 			+ (m_ScreenPos.type1.y-m_Target.type1.y)*(m_ScreenPos.type1.y-m_Target.type1.y);
 		bool useTarget = (dragDistSq >= 16*16);
 		if (preview)
-			POST_MESSAGE(EntityPreview(m_ObjectID.c_str(), m_ObjPos, useTarget, m_Target, g_DefaultAngle));
+			POST_MESSAGE(ObjectPreview(m_ObjectID.c_str(), m_ObjPos, useTarget, m_Target, g_DefaultAngle));
 		else
-			POST_COMMAND(CreateEntity, (m_ObjectID.c_str(), m_ObjPos, useTarget, m_Target, g_DefaultAngle));
+			POST_COMMAND(CreateObject,(m_ObjectID.c_str(), m_ObjPos, useTarget, m_Target, g_DefaultAngle));
 	}
 
 	virtual void Init(void* initData)
@@ -60,7 +60,7 @@ public:
 		* Mouse move -> if moved > [limit], rotate unit to face mouse; else default orientation
 		* Left mouse release -> finalise placement of object on map
 
-		* Scroll wheel -> rotate default orientation
+		* Page up/down -> rotate default orientation
 
 		* Escape -> cancel placement tool
 

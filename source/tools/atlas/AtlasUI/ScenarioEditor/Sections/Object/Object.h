@@ -1,17 +1,19 @@
 #include "../Common/Sidebar.h"
 
+struct ObjectSidebarImpl;
 class ObjectSidebar : public Sidebar
 {
 public:
 	ObjectSidebar(wxWindow* parent);
+	~ObjectSidebar();
 	wxWindow* GetBottomBar(wxWindow* parent);
+	void SetObjectFilter(int type);
 
 protected:
 	void OnFirstDisplay();
 
 private:
-	wxWindow* m_BottomBar;
-	wxListBox* m_ObjectListBox;
+	ObjectSidebarImpl* p;
 };
 
 class ObjectBottomBar : public wxPanel

@@ -10,6 +10,7 @@
 #include "graphics/Unit.h"
 #include "graphics/UnitManager.h"
 #include "graphics/Model.h"
+#include "graphics/ObjectManager.h"
 #include "maths/Matrix3D.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
@@ -20,18 +21,41 @@
 
 namespace AtlasMessage {
 
-QUERYHANDLER(GetEntitiesList)
+static bool SortObjectsList(const sObjectsListItem& a, const sObjectsListItem& b)
 {
-	std::vector<CStrW> names;
-	g_EntityTemplateCollection.getBaseEntityNames(names);
-	for (std::vector<CStrW>::iterator it = names.begin(); it != names.end(); ++it)
+	return a.name < b.name;
+}
+
+QUERYHANDLER(GetObjectsList)
+{
 	{
-		//CBaseEntity* baseent = g_EntityTemplateCollection.getTemplate(*it);
-		sEntitiesListItem e;
-		e.id = *it;
-		e.name = *it; //baseent->m_Tag
-		msg->entities.push_back(e);
+		std::vector<CStrW> names;
+		g_EntityTemplateCollection.getBaseEntityNames(names);
+		for (std::vector<CStrW>::iterator it = names.begin(); it != names.end(); ++it)
+		{
+			//CBaseEntity* baseent = g_EntityTemplateCollection.getTemplate(*it);
+			sObjectsListItem e;
+			e.id = L"(e) " + *it;
+			e.name = *it; //baseent->m_Tag
+			e.type = 0;
+			msg->objects.push_back(e);
+		}
 	}
+
+	{
+		std::vector<CStr> names;
+		//g_ObjMan.GetPropObjectNames(names);
+		g_ObjMan.GetAllObjectNames(names);
+		for (std::vector<CStr>::iterator it = names.begin(); it != names.end(); ++it)
+		{
+			sObjectsListItem e;
+			e.id = L"(n) " + CStrW(*it);
+			e.name = CStrW(*it).AfterFirst(/*L"props/"*/ L"actors/");
+			e.type = 1;
+			msg->objects.push_back(e);
+		}
+	}
+	std::sort(msg->objects.begin(), msg->objects.end(), SortObjectsList);
 }
 
 
@@ -104,7 +128,27 @@ static CVector3D GetUnitPos(const Position& pos)
 	return vec;
 }
 
-MESSAGEHANDLER(EntityPreview)
+static bool ParseObjectName(const std::wstring& obj, bool& isEntity, std::wstring& name)
+{
+	if (obj.substr(0, 4) == L"(e) ")
+	{
+		isEntity = true;
+		name = obj.substr(4);
+		return true;
+	}
+	else if (obj.substr(0, 4) == L"(n) ")
+	{
+		isEntity = false;
+		name = obj.substr(4);
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+MESSAGEHANDLER(ObjectPreview)
 {
 	if (msg->id != g_PreviewUnitID)
 	{
@@ -116,18 +160,27 @@ MESSAGEHANDLER(EntityPreview)
 			g_PreviewUnit = NULL;
 		}
 
-		if (msg->id.length())
+		bool isEntity;
+		std::wstring name;
+		if (ParseObjectName(msg->id, isEntity, name))
 		{
 			// Create new unit
-			CBaseEntity* base = g_EntityTemplateCollection.getTemplate(msg->id);
-			if (base) // (ignore errors)
+			if (isEntity)
 			{
-				g_PreviewUnit = g_UnitMan.CreateUnit(base->m_actorName, NULL);
-				// TODO: set player (for colour)
-				// TODO: variations
+				CBaseEntity* base = g_EntityTemplateCollection.getTemplate(name);
+				if (base) // (ignore errors)
+				{
+					g_PreviewUnit = g_UnitMan.CreateUnit(base->m_actorName, NULL);
+					// TODO: set player (for colour)
+					// TODO: variations
+				}
 			}
-
+			else
+			{
+				g_PreviewUnit = g_UnitMan.CreateUnit(name, NULL);
+			}
 		}
+
 		g_PreviewUnitID = msg->id;
 	}
 
@@ -161,7 +214,7 @@ MESSAGEHANDLER(EntityPreview)
 	}
 }
 
-BEGIN_COMMAND(CreateEntity)
+BEGIN_COMMAND(CreateObject)
 
 	CVector3D m_Pos;
 	float m_Angle;
@@ -190,21 +243,50 @@ BEGIN_COMMAND(CreateEntity)
 
 	void Redo()
 	{
-		CBaseEntity* base = g_EntityTemplateCollection.getTemplate(d->id);
-		if (! base)
-			LOG(ERROR, LOG_CATEGORY, "Failed to load entity template '%ls'", d->id.c_str());
-		else
+		bool isEntity;
+		std::wstring name;
+		if (ParseObjectName(d->id, isEntity, name))
 		{
-			HEntity ent = g_EntityManager.create(base, m_Pos, m_Angle);
+			if (isEntity)
+			{
+				CBaseEntity* base = g_EntityTemplateCollection.getTemplate(name);
+				if (! base)
+					LOG(ERROR, LOG_CATEGORY, "Failed to load entity template '%ls'", name.c_str());
+				else
+				{
+					HEntity ent = g_EntityManager.create(base, m_Pos, m_Angle);
 
-			if (! ent)
-				LOG(ERROR, LOG_CATEGORY, "Failed to create entity of type '%ls'", d->id.c_str());
+					if (! ent)
+						LOG(ERROR, LOG_CATEGORY, "Failed to create entity of type '%ls'", name.c_str());
+					else
+					{
+						// TODO: proper player ID
+						ent->SetPlayer(g_Game->GetLocalPlayer());
+
+						ent->m_actor->SetID(m_ID);
+					}
+				}
+			}
 			else
 			{
-				// TODO: proper player ID
-				ent->SetPlayer(g_Game->GetLocalPlayer());
+				CUnit* unit = g_UnitMan.CreateUnit(name, NULL);
+				if (! unit)
+					LOG(ERROR, LOG_CATEGORY, "Failed to load nonentity actor '%ls'", name.c_str());
+				else
+				{
+					unit->SetID(m_ID);
 
-				ent->m_actor->SetID(m_ID);
+					float s = sin(m_Angle);
+					float c = cos(m_Angle);
+
+					CMatrix3D m;
+					m._11 = -c;     m._12 = 0.0f;   m._13 = -s;     m._14 = m_Pos.X;
+					m._21 = 0.0f;   m._22 = 1.0f;   m._23 = 0.0f;   m._24 = m_Pos.Y;
+					m._31 = s;      m._32 = 0.0f;   m._33 = -c;     m._34 = m_Pos.Z;
+					m._41 = 0.0f;   m._42 = 0.0f;   m._43 = 0.0f;   m._44 = 1.0f;
+					unit->GetModel()->SetTransform(m);
+
+				}
 			}
 		}
 	}
@@ -212,11 +294,19 @@ BEGIN_COMMAND(CreateEntity)
 	void Undo()
 	{
 		CUnit* unit = g_UnitMan.FindByID(m_ID);
-		if (unit && unit->GetEntity())
-			unit->GetEntity()->kill();
+		if (unit)
+		{
+			if (unit->GetEntity())
+				unit->GetEntity()->kill();
+			else
+			{
+				g_UnitMan.RemoveUnit(unit);
+				delete unit;
+			}
+		}
 	}
 
-END_COMMAND(CreateEntity)
+END_COMMAND(CreateObject)
 
 
 QUERYHANDLER(SelectObject)
