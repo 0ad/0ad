@@ -418,23 +418,15 @@ fail:
 	d->hFind = FindFirstFileA(search_path, &d->fd);
 	if(d->hFind == INVALID_HANDLE_VALUE)
 	{
-		switch(GetLastError())
-		{
 		// not an error - the directory is just empty.
-		case ERROR_NO_MORE_FILES:
+		if(GetLastError() == ERROR_NO_MORE_FILES)
 			goto success;
-		case ERROR_FILE_NOT_FOUND:
-		case ERROR_PATH_NOT_FOUND:
-			errno = ENOENT;
-			break;
-		case ERROR_NOT_ENOUGH_MEMORY:
-			errno = ENOMEM;
-			break;
-		default:
-			errno = EINVAL;
-			break;
-		}
 
+		// translate Win32 error to errno.
+		LibError err = LibError_from_win32(0);
+		LibError_set_errno(err);
+
+		// release the WDIR allocated above.
 		// unfortunately there's no way around this; we need to allocate
 		// d before FindFirstFile because it uses d->fd. copying from a
 		// temporary isn't nice either (this free doesn't happen often)
@@ -501,7 +493,7 @@ int readdir_stat_np(DIR* d_, struct stat* s)
 {
 	WDIR* d = (WDIR*)d_;
 
-	memset(s, 0, sizeof(struct stat));
+	memset(s, 0, sizeof(*s));
 	s->st_size  = (off_t)u64_from_u32(d->fd.nFileSizeHigh, d->fd.nFileSizeLow);
 	s->st_mode  = (d->fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)? S_IFDIR : S_IFREG;
 	s->st_mtime = filetime_to_time_t(&d->fd.ftLastWriteTime);

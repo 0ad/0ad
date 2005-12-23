@@ -72,7 +72,6 @@ HWND hWnd = (HWND)INVALID_HANDLE_VALUE;
 static HDC hDC = (HDC)INVALID_HANDLE_VALUE;	// needed by gamma code
 
 
-
 //----------------------------------------------------------------------------
 // gamma
 
@@ -156,6 +155,25 @@ static HGLRC hGLRC = (HGLRC)INVALID_HANDLE_VALUE;
 
 static int depth_bits = 24;	// depth buffer size; set via SDL_GL_SetAttribute
 
+// check if resolution needs to be changed
+static bool video_need_change(int w, int h, int cur_w, int cur_h, bool fullscreen)
+{
+	// invalid: keep current settings
+	if(w <= 0 || h <= 0)
+		return false;
+
+	// higher resolution mode needed
+	if(w > cur_w || h > cur_h)
+		return true;
+
+	// fullscreen requested and not exact same mode set
+	if(fullscreen && (w != cur_w || h != cur_h))
+		return true;
+
+	return false;
+}
+
+
 static inline void video_enter_game_mode()
 {
 	ShowWindow(hWnd, SW_RESTORE);
@@ -199,22 +217,13 @@ int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
 	dm.dmBitsPerPel = bpp;
 	dm.dmFields = DM_BITSPERPEL;
 
-	// check if resolution needs to be changed
-	// .. invalid: keep current settings
-	if(w <= 0 || h <= 0 || bpp <= 0)
-		goto keep;
-	// .. higher resolution mode needed
-	if(w > cur_w || h > cur_h)
-		goto change;
-	// .. fullscreen requested and not exact same mode set
-	if(fullscreen && (w != cur_w || h != cur_h))
+	if(video_need_change(w,h, cur_w,cur_h, fullscreen))
 	{
-change:
 		dm.dmPelsWidth  = (DWORD)w;
 		dm.dmPelsHeight = (DWORD)h;
 		dm.dmFields |= DM_PELSWIDTH|DM_PELSHEIGHT;
 	}
-keep:
+
 
 	// the (possibly changed) mode will be (re)set at next WM_ACTIVATE
 
@@ -445,17 +454,7 @@ static bool dequeue_event(SDL_Event* ev)
 	return true;
 }
 
-static inline void queue_active_event(uint gain, uint changed_app_state)
-{
-	// SDL says this event is not generated when the window is created,
-	// but skipping the first event may confuse things.
 
-	SDL_Event ev;
-	ev.type = SDL_ACTIVEEVENT;
-	ev.active.state = (u8)changed_app_state;
-	ev.active.gain  = (u8)gain;
-	queue_event(ev);
-}
 
 static void queue_quit_event()
 {
@@ -463,6 +462,97 @@ static void queue_quit_event()
 	ev.type = SDL_QUIT;
 	queue_event(ev);
 }
+
+
+
+
+
+//----------------------------------------------------------------------------
+// app activation
+
+enum SdlActivationType { LOSE = 0, GAIN = 1 };
+
+static inline void queue_active_event(SdlActivationType type, uint changed_app_state)
+{
+	// SDL says this event is not generated when the window is created,
+	// but skipping the first event may confuse things.
+
+	SDL_Event ev;
+	ev.type = SDL_ACTIVEEVENT;
+	ev.active.state = (u8)changed_app_state;
+	ev.active.gain  = (type == GAIN)? 1 : 0;
+	queue_event(ev);
+}
+
+
+// SDL_APP* bitflags indicating whether we are active.
+// note: responsibility for yielding lies with SDL apps -
+// they control the main loop.
+static uint app_state;
+
+static void active_change_state(SdlActivationType type, uint changed_app_state)
+{
+	uint old_app_state = app_state;
+
+	if(type == GAIN)
+		app_state |= changed_app_state;
+	else
+		app_state &= ~changed_app_state;
+
+	// generate an event - but only if the given state flags actually changed.
+	if((old_app_state & changed_app_state) != (app_state & changed_app_state))
+		queue_active_event(type, changed_app_state);
+}
+
+static void reset_all_keys();
+
+static LRESULT OnActivate(HWND hWnd, UINT state, HWND UNUSED(hWndActDeact), BOOL fMinimized)
+{
+	SdlActivationType type;
+	uint changed_app_state;
+
+	// went active and not minimized
+	if(state != WA_INACTIVE && !fMinimized)
+	{
+		type = GAIN;
+		changed_app_state = SDL_APPINPUTFOCUS|SDL_APPACTIVE;
+
+
+		// grab keyboard focus (we previously had DefWindowProc do this).
+		SetFocus(hWnd);
+
+		gamma_swap(GAMMA_LATCH_NEW_RAMP);
+		if(fullscreen)
+			video_enter_game_mode();
+	}
+	// deactivated (Alt+Tab out) or minimized
+	else
+	{
+		type = LOSE;
+		changed_app_state = SDL_APPINPUTFOCUS;
+		if(fMinimized)
+			changed_app_state |= SDL_APPACTIVE;
+
+
+		reset_all_keys();
+
+		gamma_swap(GAMMA_RESTORE_ORIGINAL);
+		if(fullscreen)
+			video_leave_game_mode();
+	}
+
+	active_change_state(type, changed_app_state);
+	return 0;
+}
+
+
+Uint8 SDL_GetAppState()
+{
+	return app_state;
+}
+
+//----------------------------------------------------------------------------
+// keyboard
 
 // note: keysym.unicode is only returned for SDL_KEYDOWN, and is otherwise 0.
 static void queue_key_event(uint type, uint sdlk, WCHAR unicode_char)
@@ -474,20 +564,6 @@ static void queue_key_event(uint type, uint sdlk, WCHAR unicode_char)
 	queue_event(ev);
 }
 
-static void queue_button_event(uint button, uint state, uint x, uint y)
-{
-	SDL_Event ev;
-	ev.type = (state == SDL_PRESSED)? SDL_MOUSEBUTTONDOWN : SDL_MOUSEBUTTONUP;
-	ev.button.button = (u8)button;
-	ev.button.state  = (u8)state;
-	ev.button.x      = x;
-	ev.button.y      = y;
-	queue_event(ev);
-}
-
-
-//----------------------------------------------------------------------------
-// keyboard
 
 static Uint8 keys[SDLK_LAST];
 
@@ -661,7 +737,72 @@ int SDL_EnableUNICODE(int UNUSED(enable))
 //----------------------------------------------------------------------------
 // mouse
 
+static void queue_mouse_event(uint x, uint y)
+{
+	SDL_Event ev;
+	ev.type = SDL_MOUSEMOTION;
+	debug_assert(x <= USHRT_MAX && y <= USHRT_MAX);
+	ev.motion.x = x;
+	ev.motion.y = y;
+	queue_event(ev);
+}
+
+static void queue_button_event(uint button, uint state, uint x, uint y)
+{
+	SDL_Event ev;
+	ev.type = (state == SDL_PRESSED)? SDL_MOUSEBUTTONDOWN : SDL_MOUSEBUTTONUP;
+	ev.button.button = (u8)button;
+	ev.button.state  = (u8)state;
+	debug_assert(x <= USHRT_MAX && y <= USHRT_MAX);
+	ev.button.x = x;
+	ev.button.y = y;
+	queue_event(ev);
+}
+
+
 static uint mouse_x, mouse_y;
+
+// generate a mouse move message and update our notion of the mouse position.
+// x, y are screen pixel coordinates.
+// notes:
+// - does not actually move the OS cursor;
+// - called from mouse_update and SDL_WarpMouse.
+// - coords should never be negative - this would indicate a logic error.
+static void mouse_moved(int x, int y)
+{
+	debug_assert(x >= 0 && y >= 0);
+	mouse_x = (uint)x;
+	mouse_y = (uint)y;
+	queue_mouse_event(mouse_x, mouse_y);
+}
+
+
+static void mouse_update()
+{
+	// don't use DirectInput, because we want to respect the user's mouse
+	// sensitivity settings. Windows messages are laggy, so poll instead.
+
+	POINT pt;
+	WARN_IF_FALSE(GetCursorPos(&pt));
+	WARN_IF_FALSE(ScreenToClient(hWnd, &pt));
+
+	// nothing to do if it hasn't changed since last time
+	if(mouse_x == (uint)pt.x && mouse_y == (uint)pt.y)
+		return;
+
+	// moved within window
+	RECT client_rect;
+	GetClientRect(hWnd, &client_rect);
+	if(PtInRect(&client_rect, pt) && WindowFromPoint(pt) == hWnd)
+	{
+		active_change_state(GAIN, SDL_APPMOUSEFOCUS);
+		mouse_moved((int)pt.x, (int)pt.y);
+	}
+	// moved outside of window
+	else
+		queue_active_event(LOSE, SDL_APPMOUSEFOCUS);
+}
+
 static uint mouse_buttons;
 
 // (we define a new function signature since the windowsx.h message crackers
@@ -751,9 +892,8 @@ Uint8 SDL_GetMouseState(int* x, int* y)
 
 inline void SDL_WarpMouse(int x, int y)
 {
-	mouse_x = (uint)x;
-	mouse_y = (uint)y;
 	WARN_IF_FALSE(SetCursorPos(x, y));
+	mouse_moved(x, y);
 }
 
 
@@ -774,62 +914,6 @@ int SDL_ShowCursor(int toggle)
 }
 
 
-//----------------------------------------------------------------------------
-// app activation
-
-// SDL_APP* bitflags indicating whether we are active.
-// note: responsibility for yielding lies with SDL apps -
-// they control the main loop.
-static uint app_state;
-
-static LRESULT OnActivate(HWND hWnd, UINT state, HWND UNUSED(hWndActDeact), BOOL fMinimized)
-{
-	uint changed_app_state;
-	uint gain;
-	if(state != WA_INACTIVE && !fMinimized)
-	{
-		gain = 1;
-		changed_app_state = SDL_APPINPUTFOCUS|SDL_APPACTIVE;
-		app_state |= changed_app_state;
-	}
-	// deactivated (Alt+Tab out) or minimized
-	else
-	{
-		gain = 0;
-		changed_app_state = SDL_APPINPUTFOCUS;
-		if(fMinimized)
-			changed_app_state |= SDL_APPACTIVE;
-		app_state &= ~changed_app_state;
-	}
-
-	if(gain)
-	{
-		// grab keyboard focus (we previously had DefWindowProc do this).
-		SetFocus(hWnd);
-
-		gamma_swap(GAMMA_LATCH_NEW_RAMP);
-		if(fullscreen)
-			video_enter_game_mode();
-	}
-	else
-	{
-		reset_all_keys();
-
-		gamma_swap(GAMMA_RESTORE_ORIGINAL);
-		if(fullscreen)
-			video_leave_game_mode();
-	}
-
-	queue_active_event(gain, changed_app_state);
-
-	return 0;
-}
-
-
-Uint8 SDL_GetAppState()
-{
-	return app_state;
-}
 
 
 //----------------------------------------------------------------------------
@@ -890,6 +974,7 @@ static LRESULT CALLBACK wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 
 	HANDLE_MSG(hWnd, WM_MOUSEWHEEL, OnMouseWheel);
 
+	// (can't use message crackers: they do not provide for passing uMsg)
 	case WM_LBUTTONDOWN:
 	case WM_LBUTTONUP:
 	case WM_RBUTTONDOWN:
@@ -916,6 +1001,8 @@ void SDL_PumpEvents(void)
 	// instead, they should check active state and call SDL_Delay etc.
 	// if our window is minimized.
 
+	mouse_update();	// polled
+
 	MSG msg;
 	while(PeekMessageW(&msg, 0, 0, 0, PM_REMOVE))
 	{
@@ -924,28 +1011,13 @@ void SDL_PumpEvents(void)
 }
 
 
+
 int SDL_PollEvent(SDL_Event* ev)
 {
 	SDL_PumpEvents();
 
 	if(dequeue_event(ev))
 		return 1;
-
-	// mouse motion
-	//
-	// don't use DirectInput, because we want to respect the user's mouse
-	// sensitivity settings. Windows messages are laggy, so poll instead.
-	POINT p;
-	GetCursorPos(&p);
-	ScreenToClient(hWnd, &p);
-	if(mouse_x != (uint)p.x || mouse_y != (uint)p.y)
-	{
-		// don't use queue_event; we fill the SDL_Event directly here
-		ev->type = SDL_MOUSEMOTION;
-		ev->motion.x = mouse_x = p.x;
-		ev->motion.y = mouse_y = p.y;
-		return 1;
-	}
 
 	return 0;
 }

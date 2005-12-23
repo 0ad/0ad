@@ -330,7 +330,7 @@ static inline void pre_libc_init()
 int entry()
 {
 	int ret = -1;
-//	__try
+	__try
 	{
 		pre_libc_init();
 #ifdef USE_WINMAIN
@@ -339,7 +339,7 @@ int entry()
 		ret = mainCRTStartup();	// calls _cinit and then our main
 #endif
 	}
-//	__except(wdbg_exception_filter(GetExceptionInformation()))
+	__except(wdbg_exception_filter(GetExceptionInformation()))
 	{
 	}
 	return ret;

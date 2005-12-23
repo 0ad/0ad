@@ -308,8 +308,8 @@ static LibError ia32_walk_stack(STACKFRAME64* sf)
 
 // called for each stack frame found by walk_stack, passing information
 // about the frame and <user_arg>.
-// return <= 0 to stop immediately and have walk_stack return that;
-// otherwise, > 0 to continue.
+// return INFO_CB_CONTINUE to continue, anything else to stop immediately
+// and return that value to walk_stack's caller.
 //
 // rationale: we can't just pass function's address to the callback -
 // dump_frame_cb needs the frame pointer for reg-relative variables.
@@ -353,10 +353,11 @@ static LibError walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip 
 		ia32_get_current_context(&context);
 #else
 		// try to import RtlCaptureContext (available on WinXP and later)
-		HMODULE hKernel32Dll = LoadLibrary("kernel32.dll");
+		// .. note: kernel32 is always loaded into every process, so we
+		//    don't need LoadLibrary/FreeLibrary.
+		HMODULE hKernel32Dll = GetModuleHandle("kernel32.dll");
 		VOID (*pRtlCaptureContext)(PCONTEXT*);
 		*(void**)&pRtlCaptureContext = GetProcAddress(hKernel32Dll, "RtlCaptureContext");
-		FreeLibrary(hKernel32Dll);	// doesn't actually free the lib
 		if(pRtlCaptureContext)
 			pRtlCaptureContext(&context);
 		// not available: raise+handle an exception; grab the reported context.

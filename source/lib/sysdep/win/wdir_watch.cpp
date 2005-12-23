@@ -88,30 +88,31 @@ static Watches watches;
 struct Watch
 {
 	intptr_t reqnum;
+
+	// (refcounted, since dir_add_watch reuses existing Watches)
 	int refs;
-		// refcounted, since dir_add_watch reuses existing Watches.
 
 	std::string dir_name;
 	HANDLE hDir;
 
+	// storage for RDC lpBytesReturned to avoid BoundsChecker warning
+	// (dox are unclear on whether the pointer must be valid).
 	DWORD dummy_nbytes;
-		// storage for RDC lpBytesReturned, to avoid BoundsChecker warning
-		// (dox are unclear on whether the pointer must be valid).
 
+	// fields aren't used.
+	// overlapped I/O completation notification is via IOCP.
 	OVERLAPPED ovl;
-		// fields aren't used.
-		// overlapped I/O completation notification is via IOCP.
 
+	// if too small, the current FILE_NOTIFY_INFORMATION is lost!
+	// this is enough for ~7 packets (worst case) - should be enough,
+	// since the app polls once a frame. we don't want to waste too much
+	// memory. size chosen such that sizeof(Watch) = 4KiB.
+	// issue code uses sizeof(change_buf) to determine size.
+	//
+	// note: we can't share one central buffer: the individual watches
+	// are independent, and may be triggered 'simultaneously' before
+	// the next app poll, so they'd overwrite one another.
 	char change_buf[4096-58];
-		// if too small, the current FILE_NOTIFY_INFORMATION is lost!
-		// this is enough for ~7 packets (worst case) - should be enough,
-		// since the app polls once a frame. we don't want to waste too much
-		// memory. size chosen such that sizeof(Watch) = 4KiB.
-		// issue code uses sizeof(change_buf) to determine size.
-		//
-		// note: we can't share one central buffer: the individual watches
-		// are independent, and may be triggered 'simultaneously' before
-		// the next app poll, so they'd overwrite one another.
 
 
 	Watch(intptr_t _reqnum, const std::string& _dir_name, HANDLE _hDir)
