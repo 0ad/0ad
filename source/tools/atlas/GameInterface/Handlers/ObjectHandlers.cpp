@@ -177,7 +177,7 @@ MESSAGEHANDLER(ObjectPreview)
 			}
 			else
 			{
-				g_PreviewUnit = g_UnitMan.CreateUnit(name, NULL);
+				g_PreviewUnit = g_UnitMan.CreateUnit(CStr(name), NULL);
 			}
 		}
 
@@ -269,7 +269,7 @@ BEGIN_COMMAND(CreateObject)
 			}
 			else
 			{
-				CUnit* unit = g_UnitMan.CreateUnit(name, NULL);
+				CUnit* unit = g_UnitMan.CreateUnit(CStr(name), NULL);
 				if (! unit)
 					LOG(ERROR, LOG_CATEGORY, "Failed to load nonentity actor '%ls'", name.c_str());
 				else
