@@ -408,14 +408,13 @@ void CModel::AddProp(SPropPoint* point, CModel* model)
 	model->SetTransform(point->m_Transform);
 	model->m_Parent = this;
 
-	// check if we're already using this point, and replace
-	// model on it if so
+	// check if we're already using this point, and remove it if so
+	// (when a prop is removed it will also remove the prop point)
 	uint i;
 	for (i=0;i<m_Props.size();i++) {
 		if (m_Props[i].m_Point==point) {
 			delete m_Props[i].m_Model;
-			m_Props[i].m_Model=model;
-			return;
+			break;
 		}
 	}
 
@@ -430,14 +429,12 @@ void CModel::AddProp(SPropPoint* point, CModel* model)
 // RemoveProp: remove a prop from the given point
 void CModel::RemoveProp(SPropPoint* point)
 {
-	typedef std::vector<Prop>::iterator Iter;
-	for (Iter iter=m_Props.begin();iter!=m_Props.end();++iter) {
-		const Prop& prop=*iter;
-		if (prop.m_Point==point) {
-			prop.m_Model->m_Parent = 0;
-			delete prop.m_Model;
-			m_Props.erase(iter);
-			return;
+	uint i;
+	for (i=0;i<m_Props.size();i++) {
+		if (m_Props[i].m_Point==point) {
+			delete m_Props[i].m_Model;
+			// (when a prop is removed it will automatically remove its prop point)
+			break;
 		}
 	}
 }
