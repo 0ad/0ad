@@ -726,7 +726,7 @@ static inline void aiocb_pool_shutdown()
 static inline aiocb* aiocb_pool_alloc()
 {
 	ONCE(aiocb_pool_init());
-	return (aiocb*)pool_alloc(&aiocb_pool);
+	return (aiocb*)pool_alloc(&aiocb_pool, 0);
 }
 
 static inline void aiocb_pool_free(void* cb)

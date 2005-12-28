@@ -351,6 +351,10 @@ LibError ogl_get_gfx_info()
 }
 
 
+static void __stdcall emu_glDrawRangeElementsEXT(GLenum, GLuint, GLuint, GLsizei, GLenum, GLvoid*)
+{
+}
+
 // call after each video mode change, since thereafter extension functions
 // may have changed [address].
 void oglInit()
@@ -367,6 +371,9 @@ void oglInit()
 	have_20 = oglHaveVersion("2.0");
 
 	importExtensionFunctions();
+
+if(!pglDrawRangeElementsEXT)
+pglDrawRangeElementsEXT = emu_glDrawRangeElementsEXT;
 
 	glGetIntegerv(GL_MAX_TEXTURE_SIZE, &ogl_max_tex_size);
 	glGetIntegerv(GL_MAX_TEXTURE_UNITS, &ogl_max_tex_units);

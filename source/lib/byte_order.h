@@ -9,12 +9,15 @@
 // the additional u8 cast ensures each character is treated as unsigned
 // (otherwise, they'd be promoted to signed int before the u32 cast,
 // which would break things).
+#define FOURCC_BE(a,b,c,d) ( ((u32)(u8)a) << 24 | ((u32)(u8)b) << 16 | \
+                             ((u32)(u8)c) << 8  | ((u32)(u8)d) << 0  )
+#define FOURCC_LE(a,b,c,d) ( ((u32)(u8)a) << 0  | ((u32)(u8)b) << 8  | \
+                             ((u32)(u8)c) << 16 | ((u32)(u8)d) << 24 )
+
 #if BYTE_ORDER == BIG_ENDIAN
-#define FOURCC(a,b,c,d) ( ((u32)(u8)a) << 24 | ((u32)(u8)b) << 16 | \
-	((u32)(u8)c) << 8  | ((u32)(u8)d) << 0  )
+# define FOURCC FOURCC_BE
 #else
-#define FOURCC(a,b,c,d) ( ((u32)(u8)a) << 0  | ((u32)(u8)b) << 8  | \
-	((u32)(u8)c) << 16 | ((u32)(u8)d) << 24 )
+# define FOURCC FOURCC_LE
 #endif
 
 

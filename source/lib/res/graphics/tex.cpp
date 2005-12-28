@@ -116,6 +116,8 @@ static void create_level(uint level, uint level_w, uint level_h,
 	const u8* restrict level_data, size_t level_data_size, void* restrict ctx)
 {
 	CreateLevelData* cld = (CreateLevelData*)ctx;
+	const size_t src_w = cld->prev_level_w;
+	const size_t src_h = cld->prev_level_h;
 	const u8* src = cld->prev_level_data;
 	u8* dst = (u8*)level_data;
 
@@ -128,36 +130,42 @@ static void create_level(uint level, uint level_w, uint level_h,
 	else
 	{
 		const uint num_components = cld->num_components;
-		const size_t dx = num_components, dy = dx*level_w*2;
+		const size_t dx = num_components, dy = dx*src_w;
 
 		// special case: image is too small for 2x2 filter
 		if(cld->prev_level_w == 1 || cld->prev_level_h == 1)
 		{
-			for(uint y = 0; y < level_h; y++)
+			// image is either a horizontal or vertical line.
+			// their memory layout is the same (packed pixels), so no special
+			// handling is needed; just pick max dimension.
+			for(uint y = 0; y < MAX(src_w, src_h); y += 2)
 			{
 				for(uint i = 0; i < num_components; i++)
 				{
-					*dst++ = (src[0]+src[dy]+1)/2;
+					*dst++ = (src[0]+src[dx]+1)/2;
 					src += 1;
 				}
-				src += dy;
+
+				src += dx;	// skip to next pixel (since box is 2x2)
 			}
 		}
 		// normal
 		else
 		{
-			for(uint y = 0; y < level_h; y++)
+			for(uint y = 0; y < src_h; y += 2)
 			{
-				for(uint x = 0; x < level_w; x++)
+				for(uint x = 0; x < src_w; x += 2)
 				{
 					for(uint i = 0; i < num_components; i++)
 					{
 						*dst++ = (src[0]+src[dx]+src[dy]+src[dx+dy]+2)/4;
 						src += 1;
 					}
-					src += dx;
+
+					src += dx;	// skip to next pixel (since box is 2x2)
 				}
-				src += dy;
+
+				src += dy;	// skip to next row (since box is 2x2)
 			}
 		}
 

@@ -247,6 +247,8 @@ typedef Archives::const_iterator ArchiveCIt;
 // was successfully added to the list. see comments below.
 static LibError enqueue_archive(const char* name, const char* P_archive_dir, Archives* archives)
 {
+archives=0;// HACK HACK HACK: disables zip files (WIP)
+
 	// caller doesn't want us to check if this is a Zip file. this is the
 	// case in all subdirectories of the mount point, since checking for all
 	// mounted files would be slow. see mount_dir_tree.

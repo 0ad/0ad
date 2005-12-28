@@ -24,7 +24,7 @@
 #include "lib.h"
 #include "posix.h"
 #include "win_internal.h"
-#include "sysdep/cpu.h"
+#include "allocators.h"
 
 
 // cast intptr_t to HANDLE; centralized for easier changing, e.g. avoiding
@@ -332,11 +332,9 @@ struct WDIR
 };
 
 
-// suballocator - satisfies most requests with a reusable static instance.
-// this avoids hundreds of alloc/free which would fragment the heap.
-// to guarantee thread-safety, we fall back to malloc if the instance is
-// already in use. (it's important to avoid suprises since this is such a
-// low-level routine).
+// suballocator - satisfies most requests with a reusable static instance,
+// thus speeding up allocation and avoiding heap fragmentation.
+// thread-safe.
 
 static WDIR global_wdir;
 static uintptr_t global_wdir_is_in_use;
@@ -344,26 +342,12 @@ static uintptr_t global_wdir_is_in_use;
 // zero-initializes the WDIR (code below relies on this)
 static inline WDIR* wdir_alloc()
 {
-	WDIR* d;
-
-	// successfully reserved the global instance
-	if(CAS(&global_wdir_is_in_use, 0, 1))
-	{
-		d = &global_wdir;
-		memset(d, 0, sizeof(*d));
-	}
-	else
-		d = (WDIR*)calloc(1, sizeof(WDIR));
-
-	return d;
+	return (WDIR*)single_calloc(&global_wdir, &global_wdir_is_in_use, sizeof(WDIR));
 }
 
 static inline void wdir_free(WDIR* d)
 {
-	if(d == &global_wdir)
-		global_wdir_is_in_use = 0;
-	else
-		free(d);
+	single_free(&global_wdir, &global_wdir_is_in_use, d);
 }
 
 

@@ -16,9 +16,67 @@
 //   http://www.stud.uni-karlsruhe.de/~urkt/
 
 #include "precompiled.h"
+
 #include "posix.h"
+#include "sysdep/cpu.h"	// CAS
 
 #include "allocators.h"
+
+
+//-----------------------------------------------------------------------------
+// allocator optimized for single instances
+//-----------------------------------------------------------------------------
+
+// intended for applications that frequently alloc/free a single
+// fixed-size object. caller provides static storage and an in-use flag;
+// we use that memory if available and otherwise fall back to the heap.
+// if the application only has one object in use at a time, malloc is
+// avoided; this is faster and avoids heap fragmentation.
+//
+// thread-safe.
+
+void* single_calloc(void* storage, volatile uintptr_t* in_use_flag, size_t size)
+{
+	// sanity check
+	debug_assert(*in_use_flag == 0 || *in_use_flag == 1);
+
+	void* p;
+
+	// successfully reserved the single instance
+	if(CAS(in_use_flag, 0, 1))
+		p = storage;
+	// already in use (rare) - allocate from heap
+	else
+		p = malloc(size);
+
+	memset(p, 0, size);
+	return p;
+}
+
+
+void single_free(void* storage, volatile uintptr_t* in_use_flag, void* p)
+{
+	// sanity check
+	debug_assert(*in_use_flag == 0 || *in_use_flag == 1);
+
+	if(p == storage)
+	{
+		if(CAS(in_use_flag, 1, 0))
+		{
+			// ok, flag has been reset to 0
+		}
+		else
+			debug_warn("in_use_flag out of sync (double free?)");
+	}
+	// was allocated from heap
+	else
+	{
+		// single instance may have been freed by now - cannot assume
+		// anything about in_use_flag.
+
+		free(p);
+	}
+}
 
 
 //-----------------------------------------------------------------------------
@@ -224,6 +282,20 @@ LibError da_set_size(DynArray* da, size_t new_size)
 }
 
 
+// make sure at least <size> bytes starting at <pos> are committed and
+// ready for use.
+LibError da_reserve(DynArray* da, size_t size)
+{
+	// default to page size (the OS won't commit less anyway);
+	// grab more if request requires it.
+	const size_t expand_amount = MIN(4*KiB, size);
+
+	if(da->pos + size > da->cur_size)
+		return da_set_size(da, da->cur_size + expand_amount);
+	return ERR_OK;
+}
+
+
 // change access rights of the array memory; used to implement
 // write-protection. affects the currently committed pages as well as
 // all subsequently added pages.
@@ -266,7 +338,7 @@ LibError da_read(DynArray* da, void* data, size_t size)
 // starts at offset DynArray.pos and advances this.
 LibError da_append(DynArray* da, const void* data, size_t size)
 {
-	RETURN_ERR(da_set_size(da, da->pos+size));
+	RETURN_ERR(da_reserve(da, size));
 	memcpy2(da->base+da->pos, data, size);
 	da->pos += size;
 	return ERR_OK;
@@ -279,7 +351,7 @@ LibError da_append(DynArray* da, const void* data, size_t size)
 
 // design parameters:
 // - O(1) alloc and free;
-// - fixed-size blocks;
+// - fixed XOR variable size blocks;
 // - doesn't preallocate the entire pool;
 // - returns sequential addresses.
 
@@ -308,15 +380,18 @@ static void* freelist_pop(void** pfreelist)
 static const size_t POOL_CHUNK = 4*KiB;
 
 
-// ready <p> for use. pool_alloc will return chunks of memory that
-// are exactly <el_size> bytes. <max_size> is the upper limit [bytes] on
+// ready <p> for use. <max_size> is the upper limit [bytes] on
 // pool size (this is how much address space is reserved).
 //
-// note: el_size must at least be enough for a pointer (due to freelist
-// implementation) but not exceed the expand-by amount.
+// <el_size> can be 0 to allow variable-sized allocations
+//  (which cannot be freed individually);
+// otherwise, it specifies the number of bytes that will be
+// returned by pool_alloc (whose size parameter is then ignored).
+// in the latter case, size must at least be enough for a pointer
+//  (due to freelist implementation).
 LibError pool_create(Pool* p, size_t max_size, size_t el_size)
 {
-	if(el_size < sizeof(void*) || el_size > POOL_CHUNK)
+	if(el_size != 0 && el_size < sizeof(void*))
 		CHECK_ERR(ERR_INVALID_PARAM);
 
 	RETURN_ERR(da_alloc(&p->da, max_size));
@@ -355,8 +430,17 @@ bool pool_contains(Pool* p, void* el)
 // return an entry from the pool, or 0 if it would have to be expanded and
 // there isn't enough memory to do so.
 // exhausts the freelist before returning new entries to improve locality.
-void* pool_alloc(Pool* p)
+//
+// if the pool was set up with fixed-size elements, <size> is ignored;
+// otherwise, <size> bytes are allocated.
+void* pool_alloc(Pool* p, size_t size)
 {
+	// if pool allows variable sizes, go with the size parameter,
+	// otherwise the pool el_size setting.
+	const size_t el_size = p->el_size? p->el_size : size;
+
+	// note: this can never happen in pools with variable-sized elements
+	// because they disallow pool_free.
 	void* el = freelist_pop(&p->freelist);
 	if(el)
 		goto have_el;
@@ -364,12 +448,11 @@ void* pool_alloc(Pool* p)
 	// alloc a new entry
 	{
 		// expand, if necessary
-		if(p->pos + p->el_size > p->da.cur_size)
-			if(da_set_size(&p->da, p->da.cur_size + POOL_CHUNK) < 0)
-				return 0;
+		if(da_reserve(&p->da, el_size) < 0)
+			return 0;
 
 		el = p->da.base + p->pos;
-		p->pos += p->el_size;
+		p->pos += el_size;
 	}
 
 have_el:
@@ -379,12 +462,33 @@ have_el:
 
 
 // make <el> available for reuse in the given pool.
+//
+// this is not allowed if the pool was set up for variable-size elements.
+// (copying with fragmentation would defeat the point of a pool - simplicity)
+// we could allow this, but instead warn and bail to make sure it
+// never happens inadvertently (leaking memory in the pool).
 void pool_free(Pool* p, void* el)
 {
+	if(p->el_size == 0)
+	{
+		debug_warn("pool is set up for variable-size items");
+		return;
+	}
+
 	if(pool_contains(p, el))
 		freelist_push(&p->freelist, el);
 	else
 		debug_warn("invalid pointer (not in pool)");
+}
+
+
+// "free" all allocations that ensued from the given Pool.
+// this resets it as if freshly pool_create-d, but doesn't release the
+// underlying memory.
+void pool_free_all(Pool* p)
+{
+	p->pos = 0;
+	p->freelist = 0;
 }
 
 
@@ -396,6 +500,7 @@ void pool_free(Pool* p, void* el)
 // - variable-size allocations;
 // - no reuse of allocations, can only free all at once;
 // - no init necessary;
+// - never relocates;
 // - no fixed limit.
 
 // must be constant and power-of-2 to allow fast modulo.

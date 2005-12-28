@@ -429,7 +429,7 @@ static void fn_store(HDATA* hd, const char* fn)
 	if(hd->type->user_size+size <= HDATA_USER_SIZE)
 		hd->fn = (const char*)hd->user + hd->type->user_size;
 	else if(size <= FN_POOL_EL_SIZE)
-		hd->fn = (const char*)pool_alloc(&fn_pool);
+		hd->fn = (const char*)pool_alloc(&fn_pool, 0);
 
 	// in case none of the above applied and/or were successful:
 	// fall back to heap alloc.

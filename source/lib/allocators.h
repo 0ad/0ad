@@ -23,6 +23,23 @@
 
 
 //
+// allocator optimized for single instances
+//
+
+// intended for applications that frequently alloc/free a single
+// fixed-size object. caller provides static storage and an in-use flag;
+// we use that memory if available and otherwise fall back to the heap.
+// if the application only has one object in use at a time, malloc is
+// avoided; this is faster and avoids heap fragmentation.
+//
+// thread-safe.
+
+extern void* single_calloc(void* storage, volatile uintptr_t* in_use_flag, size_t size);
+
+extern void single_free(void* storage, volatile uintptr_t* in_use_flag, void* p);
+
+
+//
 // dynamic (expandable) array
 //
 
@@ -57,6 +74,10 @@ extern LibError da_free(DynArray* da);
 // new_size (rounded up to the next page size multiple) is met.
 extern LibError da_set_size(DynArray* da, size_t new_size);
 
+// make sure at least <size> bytes starting at <pos> are committed and
+// ready for use.
+extern LibError da_reserve(DynArray* da, size_t size);
+
 // change access rights of the array memory; used to implement
 // write-protection. affects the currently committed pages as well as
 // all subsequently added pages.
@@ -85,7 +106,7 @@ extern LibError da_append(DynArray* da, const void* data_src, size_t size);
 
 // design parameters:
 // - O(1) alloc and free;
-// - fixed-size blocks;
+// - fixed XOR variable size blocks;
 // - doesn't preallocate the entire pool;
 // - returns sequential addresses.
 
@@ -93,21 +114,27 @@ extern LibError da_append(DynArray* da, const void* data_src, size_t size);
 struct Pool
 {
 	DynArray da;
+
+	// size of elements; see pool_create.
 	size_t el_size;
 
 	// all bytes in da up to this mark are in circulation or freelist.
 	size_t pos;
 
 	// pointer to freelist (opaque); see freelist_*.
+	// never used (remains 0) if elements are of variable size.
 	void* freelist;
 };
 
-// ready <p> for use. pool_alloc will return chunks of memory that
-// are exactly <el_size> bytes. <max_size> is the upper limit [bytes] on
+// ready <p> for use. <max_size> is the upper limit [bytes] on
 // pool size (this is how much address space is reserved).
 //
-// note: el_size must at least be enough for a pointer (due to freelist
-// implementation) but not exceed the expand-by amount.
+// <el_size> can be 0 to allow variable-sized allocations
+//  (which cannot be freed individually);
+// otherwise, it specifies the number of bytes that will be
+// returned by pool_alloc (whose size parameter is then ignored).
+// in the latter case, size must at least be enough for a pointer
+//  (due to freelist implementation).
 extern LibError pool_create(Pool* p, size_t max_size, size_t el_size);
 
 // free all memory that ensued from <p>. all elements are made unusable
@@ -122,10 +149,23 @@ extern bool pool_contains(Pool* p, void* el);
 // return an entry from the pool, or 0 if it would have to be expanded and
 // there isn't enough memory to do so.
 // exhausts the freelist before returning new entries to improve locality.
-extern void* pool_alloc(Pool* p);
+//
+// if the pool was set up with fixed-size elements, <size> is ignored;
+// otherwise, <size> bytes are allocated.
+extern void* pool_alloc(Pool* p, size_t size);
 
 // make <el> available for reuse in the given pool.
+//
+// this is not allowed if the pool was set up for variable-size elements.
+// (copying with fragmentation would defeat the point of a pool - simplicity)
+// we could allow this, but instead warn and bail to make sure it
+// never happens inadvertently (leaking memory in the pool).
 extern void pool_free(Pool* p, void* el);
+
+// "free" all allocations that ensued from the given Pool.
+// this resets it as if freshly pool_create-d, but doesn't release the
+// underlying memory.
+extern void pool_free_all(Pool* p);
 
 
 //
@@ -136,6 +176,7 @@ extern void pool_free(Pool* p, void* el);
 // - variable-size allocations;
 // - no reuse of allocations, can only free all at once;
 // - no init necessary;
+// - never relocates;
 // - no fixed limit.
 
 // opaque! do not read/write any fields!
