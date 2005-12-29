@@ -19,6 +19,7 @@ CEntityManager::CEntityManager()
 {
 	m_nextalloc = 0;
 	m_extant = true;
+	m_death = false;
 
 	// Also load a couple of global entity settings
 	CConfigValue* cfg = g_ConfigDB.GetValue( CFG_USER, "selection.outline.quality" );
@@ -99,6 +100,12 @@ HEntity* CEntityManager::getByHandle( u16 index )
 	if( index >= MAX_HANDLES ) return( NULL );
 	if( !m_entities[index].m_refcount ) return( NULL );
 	return( new HEntity( index ) );
+}
+CHandle *CEntityManager::getHandle( int index )
+{
+	if (!m_entities[index].m_refcount )
+		return NULL;
+	return &m_entities[index];
 }
 
 std::vector<HEntity>* CEntityManager::matches( EntityPredicate predicate, void* userdata )
