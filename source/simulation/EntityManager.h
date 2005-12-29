@@ -15,7 +15,6 @@
 //        
 //        Those last two functions - caller has responsibility for deleting the collection when you're done with it.
 
-
 #ifndef ENTITY_MANAGER_INCLUDED
 #define ENTITY_MANAGER_INCLUDED
 
@@ -40,6 +39,7 @@ friend class CHandle;
 	std::vector<CEntity*> m_reaper;
 	int m_nextalloc;
 	static bool m_extant;
+	bool m_death;
 	void destroy( u16 handle );
 	int m_collisionPatchesPerSide;
 	std::vector<CEntity*>* m_collisionPatches;
@@ -52,6 +52,7 @@ public:
 	HEntity create( CStrW templatename, CVector3D position, float orientation );
 
 	HEntity* getByHandle( u16 index );
+	CHandle *getHandle( int index );
 
 	void updateAll( size_t timestep );
 	void interpolateAll( float relativeoffset );
@@ -61,7 +62,10 @@ public:
 	void invalidateAll();
 
 	void deleteAll();
-
+	
+	bool GetDeath() { return m_death; }
+	void SetDeath(bool set) { m_death=set; }
+	
 	// Predicate functions
 	typedef bool (*EntityPredicate)( CEntity* target, void* userdata );
 
