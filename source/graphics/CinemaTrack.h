@@ -8,7 +8,7 @@
 #define EM_OUTIN 3
 
 #define ES_DEFAULT 0
-#define ES_QUAD 1
+#define ES_GROWTH 1
 #define ES_EXPO 2
 #define ES_CIRCLE 3
 #define ES_SINE 4
@@ -16,9 +16,7 @@
 #include <stdlib.h>
 #include <list>
 #include <map>
-#include "Camera.h"
-#include "CStr.h"
-#include "Vector3D.h"
+#include "NUSpline.h"
 
 /*
 	Andrew (aka pyrolink)
@@ -32,7 +30,10 @@
 	for taking care of the queued up Tracks, i.e. when they are to be destroyed/added.
 */
 
-
+class CVector3D;
+class CVector4D;
+class CCamera;
+class CStr;
 
 //For loading data
 class CCinemaData
@@ -55,11 +56,12 @@ public:
 
 };
 
+
 class CCinemaPath : public CCinemaData
 {
 public:
 	CCinemaPath(CCinemaData data);
-	CCinemaPath() { DistStylePtr = NULL;  DistModePtr = NULL; }
+	CCinemaPath() { DistStylePtr = NULL;  DistModePtr = NULL; m_Spline.Init(); }
 	~CCinemaPath() { DistStylePtr = NULL;  DistModePtr = NULL; }
 	
 	float m_TimeElapsed;
@@ -79,7 +81,7 @@ public:
 
 	//Distortion style functions
 	float EaseDefault(float t);
-	float EaseQuad(float t);
+	float EaseGrowth(float t);
 	float EaseExpo(float t);
 	float EaseCircle(float t);
 	float EaseSine(float t);
@@ -87,15 +89,29 @@ public:
 	float (CCinemaPath::*DistStylePtr)(float ratio);
 	float (CCinemaPath::*DistModePtr)(float ratio);
 
-	//returns point on spline
-	CVector3D RetrievePointAt(float t);
-	CVector3D getPoint(int point){ return m_Points[point]; }
-	void SetPoint(int point, CVector3D value) { m_Points[point]=value; }
+public:
+
+	//Used when time and position are already set (usually from loaded file)
+	void AddNode(const CVector3D &pos, float timePeriod) { m_Spline.AddNode(pos, timePeriod); }
+	void PushNode() { m_Spline.Node.push_back( SplineData() ); }
+	void InsertNode(const int index, const CVector3D &pos, float timePeriod) { m_Spline.InsertNode(index, pos, timePeriod); }
+	void RemoveNode(const int index) { m_Spline.RemoveNode(index); }
+	
+	void UpdateNodeTime(const int index, float time) { m_Spline.Node[index].Distance = time; }
+    void UpdateNodePosition(const int index, const CVector3D &pos) { m_Spline.Node[index].Position = pos; }
+	void DrawSpline(CVector4D RGBA, int smoothness);
+
+	int GetNodeCount() { return m_Spline.NodeCount; }
+	CVector3D GetNodePosition(const int index) { return m_Spline.Node[index].Position; }
+	float GetDuration() { return m_Spline.MaxDistance; }
+
+	
+	//Called when nodes have been added
+	void UpdateSpline() { m_Spline.BuildSpline(); }
+	void SetSpline( TNSpline spline ) { m_Spline = spline; }
 	
 private:
-	CVector3D m_Points[4];
-	//coefficents used in equation
-	float Ax, Bx, Cx, Ay, By, Cy, Az, Bz, Cz;  
+	TNSpline m_Spline;
 
 };
 
@@ -104,11 +120,11 @@ class CCinemaTrack
 public: 
 	CCinemaTrack() {}
 	~CCinemaTrack() {}
-
+	
 	std::vector<CCinemaPath> m_Paths;
 	std::vector<CCinemaPath>::iterator m_CPA;	//current path selected (in listbox?)
 	
-	void AddPath(CCinemaData path, CVector3D points[4]);
+	void AddPath(CCinemaData path, TNSpline spline);
 	bool Validate();
 
 	//DOES NOT set CPA to Paths.begin().  Returns-false indicates it's finished, 
