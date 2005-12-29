@@ -605,6 +605,7 @@ void UpdateAuras_Normal( SAura& aura, CEntity* e )
 
     void CEntity::Damage( CDamageType& damage, CEntity* inflictor )
     {
+
         CEventDamage evt( inflictor, &damage );
         DispatchEvent( &evt );
     }
@@ -614,6 +615,27 @@ void UpdateAuras_Normal( SAura& aura, CEntity* e )
         m_orderQueue.clear();
     }
 
+/*void CEntity::RequestNotification( CEntity* target, unsigned long orderType )
+{
+	CEntityListener notify;
+	notify.m_sender = this;
+	notify.m_type = orderType;
+	target->m_listeners.push_back( notify );
+}
+void CEntity::SendNotification( CEntity* target, unsigned long orderType )
+{
+	CEntityListener notify;
+	notify.m_sender = this;
+	notify.m_type =  orderType;
+	target->m_notifications.push_back( notify );
+}
+
+void CEntity::DispatchNotification( CEntityListener notify )
+{
+	CEventNotification evt( notify );
+	DispatchEvent( &evt );
+}
+*/
     void CEntity::pushOrder( CEntityOrder& order )
     {
         if( acceptsOrder( order.m_type, order.m_data[0].entity ) )
@@ -1228,6 +1250,8 @@ void UpdateAuras_Normal( SAura& aura, CEntity* e )
         g_Selection.removeAll( me );
 
         clearOrders();
+
+		g_EntityManager.SetDeath(true);	
 
         if( m_actor )
             m_actor->SetRandomAnimation( "death", true );
