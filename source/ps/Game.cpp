@@ -9,7 +9,11 @@
 #include "timer.h"
 #include "Profile.h"
 #include "Loader.h"
+#include "CStr.h"
+#include "EntityManager.h"
+#include "CConsole.h"
 
+extern CConsole* g_Console;
 CGame *g_Game=NULL;
 
 // Disable "warning C4355: 'this' : used in base member initializer list".
@@ -62,7 +66,6 @@ PSRETURN CGame::RegisterInit(CGameAttributes* pAttribs)
 	LDR_EndRegistering();
 	return 0;
 }
-
 PSRETURN CGame::ReallyStartGame()
 {
 #ifndef NO_GUI
@@ -125,9 +128,75 @@ void CGame::Update(double deltaTime)
 	m_Simulation.Update(deltaTime);
 	
 	// TODO Detect game over and bring up the summary screen or something
+	// ^ Quick game over hack is implemented, no summary screen however
+	if ( m_World.GetEntityManager()->GetDeath() )
+	{
+			UpdateGameStatus();
+		if (GameStatus != 0)
+			EndGame();
+	}
+	//reset death event flag
+	m_World.GetEntityManager()->SetDeath(false);
+}
+void CGame::UpdateGameStatus()
+{
+	bool EOG_lose = true;
+	bool EOG_win = true;
+	CPlayer *local = GetLocalPlayer();
+
+	for (int i=0; i<MAX_HANDLES; i++)
+	{	
+		CHandle *handle = m_World.GetEntityManager()->getHandle(i);
+		if ( !handle )
+			continue;
+		CPlayer *tmpPlayer = handle->m_entity->GetPlayer();
+		
+		//Are we still alive?
+		if ( local == tmpPlayer && handle->m_entity->m_extant )
+		{	
+			EOG_lose = false;
+			if (EOG_win == false)
+				break;
+		}
+		//Are they still alive?
+		else if ( handle->m_entity->m_extant )
+		{
+			EOG_win = false;
+			if (EOG_lose == false)
+				break;
+		}
+	}
+	if (EOG_lose && EOG_win)
+		GameStatus = EOG_SPECIAL_DRAW;
+	else if (EOG_win)
+		GameStatus = EOG_WIN;
+	else if (EOG_lose)	
+		GameStatus = EOG_LOSE;
+	else
+		GameStatus = EOG_NEUTRAL;
 }
 
-
+void CGame::EndGame()
+{
+	g_Console->InsertMessage( L"It's the end of the game as we know it!");
+	switch (GameStatus)
+	{
+	case EOG_DRAW:
+		g_Console->InsertMessage( L"A diplomatic draw ain't so bad, eh?");
+		break;
+	case EOG_SPECIAL_DRAW:
+		g_Console->InsertMessage( L"Amazingly, you managed to draw from dieing at the same time as your opponent...you have my respect.");
+		break;
+	case EOG_LOSE:
+	    g_Console->InsertMessage( L"My condolences on your loss.");
+		break;
+	case EOG_WIN:
+		g_Console->InsertMessage( L"Thou art victorious!");
+		break;
+	default:
+		break;
+	}
+}
 CPlayer *CGame::GetPlayer(uint idx)
 {
 	if (idx > m_NumPlayers)

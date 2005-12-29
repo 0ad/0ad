@@ -30,6 +30,15 @@ class CGame
 	uint m_NumPlayers;
 
 	bool m_GameStarted;
+
+	enum EOG
+	{
+		EOG_NEUTRAL,
+		EOG_DRAW,	//Draw by means of agreement of civilization
+		EOG_SPECIAL_DRAW,	//Theoretically, players could die at the same time...?
+		EOG_LOSE,
+		EOG_WIN
+	} GameStatus;
 	
 public:
 	CGame();
@@ -48,7 +57,9 @@ public:
 		Perform all per-frame updates
 	*/
 	void Update(double deltaTime);
-	
+	void UpdateGameStatus();
+	void EndGame();
+
 	inline CPlayer *GetLocalPlayer()
 	{	return m_pLocalPlayer; }
 	inline void SetLocalPlayer(CPlayer *pLocalPlayer)
