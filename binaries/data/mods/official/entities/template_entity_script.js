@@ -1,3 +1,7 @@
+const ACTION_ATTACK = 1;
+const ACTION_GATHER = 2;
+const ACTION_HEAL = 3;
+
 // ====================================================================
 
 function entityInit()
@@ -97,41 +101,65 @@ function entityInit()
 			this.actor = actorStr.substring (1,actorStr.length-5) + nextSuffix + ".xml";
 	}
 	else
+	{
 		this.traits.promotion.rank="0"
+	}
+	
+	// Register our actions with the generic order system
+	if( this.actions )
+	{
+		if( this.actions.attack )
+		{
+			a = this.actions.attack;
+			minRange = ( a.minRange ? a.minRange : 0.0 );
+			this.setActionParams( ACTION_ATTACK, minRange, a.range, a.speed, "melee" );
+		}
+		if( this.actions.gather )
+		{
+			a = this.actions.gather;
+			this.setActionParams( ACTION_GATHER, 0.0, a.range, a.speed, "gather" );
+		}
+		if( this.actions.heal )
+		{
+			a = this.actions.heal;
+			this.setActionParams( ACTION_HEAL, 0.0, a.range, a.speed, "heal" );
+		}
+	}
+	
+	this.processAttack = entityEventAttack;
+	this.processAttackRanged = entityEventAttackRanged;
+	this.processGather = entityEventGather;
+	this.processHeal = entityEventHeal;
 
 	// Attach Auras if the entity is entitled to them.
-	if ( this.traits.auras )
+	if( this.traits.auras )
 	{
-		for ( name in this.traits.auras )
+		if( this.traits.auras.courage )
 		{
-			//console.write ( "Creating " + name + " aura for " + this + ".");
-			switch ( name )
-			{
-				case "courage":
-					a = this.traits.auras.courage;
-					this.addAura ( name, a.radius, new DamageModifyAura( this, true, a.bonus ) );
-					break;
-				case "fear":
-					a = this.traits.auras.fear;
-					this.addAura ( name, a.radius, new DamageModifyAura( this, false, -a.bonus ) );
-					break;
-				case "infidelity":
-					a = this.traits.auras.infidelity;
-					this.addAura ( name, a.radius, new InfidelityAura( this, a.time ) );
-					break;
-				case "dropsite":
-					a = this.traits.auras.dropsite;
-					this.addAura ( name, a.radius, new DropsiteAura( this, a.types ) );
-					break;
-				default:
-					console.write ( "Unknown aura: " + name + " on " + this + "; ignoring it." );
-					break;
-			}
+			a = this.traits.auras.courage;
+			this.addAura ( "courage", a.radius, new DamageModifyAura( this, true, a.bonus ) );
+		}
+		if( this.traits.auras.fear ) 
+		{
+			a = this.traits.auras.fear;
+			this.addAura ( "fear", a.radius, new DamageModifyAura( this, false, -a.bonus ) );
+		}
+		if( this.traits.auras.infidelity ) 
+		{
+			a = this.traits.auras.infidelity;
+			this.addAura ( "infidelity", a.radius, new InfidelityAura( this, a.time ) );
+		}
+		if( this.traits.auras.dropsite ) 
+		{
+			a = this.traits.auras.dropsite;
+			this.addAura ( "dropsite", a.radius, new DropsiteAura( this, a.types ) );
 		}
 	}		
-
-	if (!this.traits.id)
+	
+	if ( !this.traits.id )
+	{
 		this.traits.id = new Object();
+	}
 
 /*	
 	// Generate entity's personal name (if it needs one).
@@ -172,6 +200,12 @@ function entityInit()
 
 function entityEventAttack( evt )
 {
+	if( this.actions.attack.ranged )
+	{
+		this.processAttackRanged( evt );
+		return;
+	}
+
 	curr_hit = getGUIGlobal().newRandomSound("voice", "hit", this.traits.audio.path);
 	curr_hit.play();
 
@@ -460,6 +494,23 @@ function entityEventTakesDamage( evt )
 
 // ====================================================================
 
+function entityEventGeneric( evt )
+{
+	switch( evt.action )
+	{
+		case ACTION_ATTACK:
+			this.processAttack( evt ); break;
+		case ACTION_GATHER:
+			this.processGather( evt ); break;
+		case ACTION_HEAL:
+			this.processHeal( evt ); break;
+		default:
+			console.write( "Unknown generic action: " + evt.action );
+	}
+}
+
+// ====================================================================
+
 function entityEventTargetChanged( evt )
 {
 	// This event lets us know when the user moves his/her cursor to a different unit (provided this
@@ -473,21 +524,39 @@ function entityEventTargetChanged( evt )
 	// yields false. ToString converts them to their actual values (i.e. the four character
 	// string) first.
 	
-	evt.defaultAction = NMT_Goto;
+	evt.defaultOrder = NMT_Goto;
 	evt.defaultCursor = "arrow-default";
 	if( evt.target && this.actions )
 	{
-	    if( this.actions.attack && 
+	    /*
+		if( this.actions.attack && 
 			evt.target.player != this.player &&
 			evt.target.traits.health &&
 			evt.target.traits.health.max != 0 )
 		{
-			evt.defaultAction = NMT_AttackMelee;
+			evt.defaultOrder = NMT_AttackMelee;
 			evt.defaultCursor = "action-attack";
 		}
 		if( canGather( this, evt.target ) )
 		{
-		    evt.defaultAction = NMT_Gather;
+		    evt.defaultOrder = NMT_Gather;
+		    // Set cursor (eg "action-gather-fruit").
+		    evt.defaultCursor = "action-gather-" + evt.target.traits.supply.subtype;
+		}
+		*/	
+		if( this.actions.attack && 
+			evt.target.player != this.player &&
+			evt.target.traits.health &&
+			evt.target.traits.health.max != 0 )
+		{
+			evt.defaultOrder = NMT_Generic;
+			evt.defaultAction = ACTION_ATTACK;
+			evt.defaultCursor = "action-attack";
+		}
+		if( canGather( this, evt.target ) )
+		{
+			evt.defaultOrder = NMT_Generic;
+			evt.defaultAction = ACTION_GATHER;
 		    // Set cursor (eg "action-gather-fruit").
 		    evt.defaultCursor = "action-gather-" + evt.target.traits.supply.subtype;
 		}
@@ -526,6 +595,9 @@ function entityEventPrepareOrder( evt )
 		case ORDER_GATHER:
 			if( !canGather( this, evt.target ) )
 				evt.preventDefault();
+			break;
+		case ORDER_GENERIC:
+			// TODO: some checking here
 			break;
 		default:
 			evt.preventDefault();
@@ -713,6 +785,8 @@ function entityCheckQueueReq( entity, template )
 
 function canGather( source, target )
 {
+	// Checks whether we're allowed to gather from a target entity (this involves looking at both the type and subtype).
+	
 	if( !source.actions )
 		return false;
 	g = source.actions.gather;

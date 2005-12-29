@@ -15,10 +15,9 @@
 	</Traits>
 
 	<Attack>
+		<Ranged />
 		<Range>16.0</Range>
 		<Speed>1500</Speed>
 	</Attack>
-
-	<Event On="Attack" Function="entityEventAttackRanged" />
 	
 </Entity>

@@ -27,15 +27,17 @@ function worldClickHandler(event)
 	if (event.button == SDL_BUTTON_RIGHT && event.clicks <= 2)
 	{
 		if (event.clicks == 1)
-			cmd = event.command;
+			cmd = event.order;
 		else if (event.clicks == 2)
 		{
-			console.write("Issuing secondary command");
-			cmd = event.secondaryCommand;
+			console.write("Issuing secondary order");
+			cmd = event.secondaryOrder;
 		}
 	}
 	else
+	{
 		return;
+	}
 
 	switch (cmd)
 	{
@@ -56,11 +58,16 @@ function worldClickHandler(event)
 		// entity target commands
 		case NMT_AttackMelee:
 		case NMT_Gather:
+		case NMT_Heal:
 			args[0]=event.entity;
 			args[1]=null;
 		break;
+		case NMT_Generic:
+			args[0]=event.entity;
+			args[1]=event.action;
+		break;
 		default:
-			console.write("worldClickHandler: Unknown command: "+cmd);
+			console.write("worldClickHandler: Unknown order: "+cmd);
 			return;
 		break;
 	}
