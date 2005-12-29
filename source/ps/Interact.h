@@ -31,6 +31,7 @@ struct CSelectedEntities : public Singleton<CSelectedEntities>
 		m_group = -1;
 		m_group_highlight = -1;
 		m_defaultCommand = -1;
+		m_defaultAction = -1;
 		m_selectionChanged = true;
 	}
 	std::vector<HEntity> m_selected;
@@ -38,6 +39,7 @@ struct CSelectedEntities : public Singleton<CSelectedEntities>
 	i8 m_group, m_group_highlight;
 	bool m_selectionChanged;
 	int m_defaultCommand;
+	int m_defaultAction;
 
 	void addSelection( HEntity entity );
 	void removeSelection( HEntity entity );

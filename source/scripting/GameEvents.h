@@ -33,25 +33,32 @@ class CGameEvents : public IEventTarget, public Singleton<CGameEvents>
 	{
 		int m_Button;
 		int m_Clicks;
-		int m_Command;
-		int m_SecondaryCommand;
+		int m_Order;
+		int m_Action;
+		int m_SecondaryOrder;
+		int m_SecondaryAction;
 		CEntity *m_Entity;
 		uint m_X, m_Y;
 	public:
-		CEventWorldClick(int button, int clicks, int command, int secCommand, CEntity *ent, uint x, uint y):
+		CEventWorldClick(int button, int clicks, int order, int action,
+				int secOrder, int secAction, CEntity *ent, uint x, uint y):
 			CScriptEvent(L"worldClick", EVENT_WORLD_CLICK, false),
 			m_Button(button),
 			m_Clicks(clicks),
-			m_Command(command),
-			m_SecondaryCommand(secCommand),
+			m_Order(order),
+			m_Action(action),
+			m_SecondaryOrder(secOrder),
+			m_SecondaryAction(secAction),
 			m_Entity(ent),
 			m_X(x),
 			m_Y(y)
 		{
 			AddLocalProperty(L"button", &m_Button);
 			AddLocalProperty(L"clicks", &m_Clicks);
-			AddLocalProperty(L"command", &m_Command);
-			AddLocalProperty(L"secondaryCommand", &m_SecondaryCommand);
+			AddLocalProperty(L"order", &m_Order);
+			AddLocalProperty(L"action", &m_Action);
+			AddLocalProperty(L"secondaryOrder", &m_SecondaryOrder);
+			AddLocalProperty(L"secondaryAction", &m_SecondaryAction);
 			if (ent)
 				AddLocalProperty(L"entity", &m_Entity);
 			else
@@ -68,9 +75,10 @@ public:
 		DispatchEvent( &evt );
 	}
 	
-	void FireWorldClick(int button, int clicks, int command, int secCommand, CEntity *ent, uint x, uint y)
+	void FireWorldClick(int button, int clicks, int order, int action,
+		int secOrder, int secAction, CEntity *ent, uint x, uint y)
 	{
-		CEventWorldClick evt(button, clicks, command, secCommand, ent, x, y);
+		CEventWorldClick evt(button, clicks, order, action, secOrder, secAction, ent, x, y);
 		DispatchEvent(&evt);
 	}
 };

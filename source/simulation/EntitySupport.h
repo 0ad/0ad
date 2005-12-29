@@ -80,7 +80,10 @@ struct SEntityAction
 	float m_MaxRange;
 	float m_MinRange;
 	size_t m_Speed;
-	SEntityAction() { m_MaxRange = m_MinRange = 0.0f; m_Speed = 1000; }
+	CStr8 m_Animation;
+	SEntityAction() { m_MaxRange = m_MinRange = 0.0f; m_Speed = 1000; m_Animation = "walk"; }
+	SEntityAction(float minRange, float maxRange, size_t speed, CStr8& animation)
+		: m_MinRange(minRange), m_MaxRange(maxRange), m_Speed(speed), m_Animation(animation) {}
 };
 
 struct SClassSet

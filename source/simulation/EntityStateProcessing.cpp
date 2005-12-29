@@ -284,6 +284,7 @@ bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timeste
 	if( ( current->m_data[0].location - m_position ).length() < action->m_MaxRange ) 
 	{
 		(int&)current->m_type = transition;
+		m_orderQueue.push_front(*current);		// Seems to be needed since we do a pop above
 		return( true );
 	}
 
@@ -295,9 +296,10 @@ bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timeste
 		m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
 	}
 
-	// The pathfinder will push its result back into this unit's queue.
-
-	g_Pathfinder.requestContactPath( me, current->m_data[0].entity, transition );
+	// The pathfinder will push its result back into this unit's queue and
+	// add back the current order at the end with the transition type.
+	(int&)current->m_type = transition;
+	g_Pathfinder.requestContactPath( me, current );
 
 	return( true );
 }
@@ -314,7 +316,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 			// few hundred ms, at the 'action point' of the animation we're
 			// now setting.
 
-			m_actor->GetModel()->SetAnimation( m_fsm_animation, true, 1000.0f * m_fsm_animation->m_AnimDef->GetDuration() / (float)action->m_Speed, m_actor->GetRandomAnimation( "idle" ) );
+			m_actor->GetModel()->SetAnimation( m_fsm_animation, true, 1000.0f * m_fsm_animation->m_AnimDef->GetDuration() / (float)action->m_Speed, m_fsm_animation );
 		}
 		if( ( m_fsm_cyclepos <= m_fsm_anipos2 ) &&
 			( nextpos > m_fsm_anipos2 ) )
@@ -487,6 +489,7 @@ bool CEntity::processAttackMelee( CEntityOrder* current, size_t timestep_millis 
 {
 	return( processContactAction( current, timestep_millis, CEntityOrder::ORDER_ATTACK_MELEE_NOPATHING, &m_melee ) );
 }
+
 bool CEntity::processAttackMeleeNoPathing( CEntityOrder* current, size_t timestep_milli )
 {
 	CEventAttack evt( current->m_data[0].entity );
@@ -505,16 +508,37 @@ bool CEntity::processGatherNoPathing( CEntityOrder* current, size_t timestep_mil
 	if( !m_actor ) return( false );
 	return( processContactActionNoPathing( current, timestep_millis, "gather", &evt, &m_gather ) );
 }
+
 bool CEntity::processHeal( CEntityOrder* current, size_t timestep_millis )
 {
 	return( processContactAction( current, timestep_millis, CEntityOrder::ORDER_HEAL_NOPATHING, &m_heal ) );
 }
+
 bool CEntity::processHealNoPathing( CEntityOrder* current, size_t timestep_millis )
 {
 	CEventHeal evt( current->m_data[0].entity );
 	if( !m_actor ) return( false );
 	return( processContactActionNoPathing( current, timestep_millis, "heal", &evt, &m_heal ) );
 }
+
+bool CEntity::processGeneric( CEntityOrder* current, size_t timestep_millis )
+{
+	int id = current->m_data[1].data;
+	debug_assert( m_actions.find( id ) != m_actions.end() );
+	SEntityAction& action = m_actions[id];
+	return( processContactAction( current, timestep_millis, CEntityOrder::ORDER_GENERIC_NOPATHING, &action ) );
+}
+
+bool CEntity::processGenericNoPathing( CEntityOrder* current, size_t timestep_millis )
+{
+	int id = current->m_data[1].data;
+	debug_assert( m_actions.find( id ) != m_actions.end() );
+	SEntityAction& action = m_actions[id];
+	CEventGeneric evt( current->m_data[0].entity, id );
+	if( !m_actor ) return( false );
+	return( processContactActionNoPathing( current, timestep_millis, action.m_Animation, &evt, &action ) );
+}
+
 bool CEntity::processGoto( CEntityOrder* current, size_t UNUSED(timestep_millis) )
 {
 	// float timestep=timestep_millis/1000.0f;

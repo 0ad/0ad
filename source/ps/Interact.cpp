@@ -411,6 +411,7 @@ void CSelectedEntities::update()
 		const int numCommands=NMT_COMMAND_LAST - NMT_COMMAND_FIRST;
 		int defaultPoll[numCommands];
 		std::map<CStrW, int, CStrW_hash_compare> defaultCursor[numCommands];
+		std::map<int, int> defaultAction[numCommands];
 
 		int t, vote;
 		for( t = 0; t < numCommands; t++ )
@@ -421,12 +422,13 @@ void CSelectedEntities::update()
 		{
 			CEventTargetChanged evt( g_Mouseover.m_target );
 			(*it)->DispatchEvent( &evt );
-			vote = evt.m_defaultAction - NMT_COMMAND_FIRST;
+			vote = evt.m_defaultOrder - NMT_COMMAND_FIRST;
 			
 			if( ( vote >= 0 ) && ( vote < numCommands ) )
 			{
 				defaultPoll[vote]++;
 				defaultCursor[vote][evt.m_defaultCursor]++;
+				defaultAction[vote][evt.m_defaultAction]++;
 			}
 		}
 
@@ -438,16 +440,30 @@ void CSelectedEntities::update()
 		}
 
 		std::map<CStrW, int, CStrW_hash_compare>::iterator itv;
+		std::map<int, int>::iterator iti;
 		m_defaultCommand = vote + NMT_COMMAND_FIRST;
 
 		// Now find the most appropriate cursor
 		t = 0;
 		for( itv = defaultCursor[vote].begin(); itv != defaultCursor[vote].end(); itv++ )
+		{
 			if( itv->second > t )
 			{
 				t = itv->second;
 				g_CursorName = itv->first;
 			}
+		}
+
+		// Find the most appropriate action parameter too
+		t = 0;
+		for( iti = defaultAction[vote].begin(); iti != defaultAction[vote].end(); iti++ )
+		{
+			if( iti->second > t )
+			{
+				t = iti->second;
+				m_defaultAction = iti->first;
+			}
+		}
 
 		m_selectionChanged = false;
 		g_Mouseover.m_targetChanged = false;
@@ -767,7 +783,9 @@ void FireWorldClickEvent(uint button, int clicks)
 		button,
 		clicks,
 		g_Selection.m_defaultCommand,
-		-1, // FIXME Secondary command, depends entity scripts etc
+		g_Selection.m_defaultAction,
+		-1, // FIXME Secondary order, depends entity scripts etc
+		-1, // FIXME Secondary action, depends entity scripts etc
 		g_Mouseover.m_target,
 		(uint)g_Mouseover.m_worldposition.x,
 		(uint)g_Mouseover.m_worldposition.y);

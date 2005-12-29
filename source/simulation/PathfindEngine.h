@@ -17,6 +17,8 @@
 
 #define g_Pathfinder CPathfindEngine::GetSingleton()
 
+class CEntityOrder;
+
 enum EPathType
 {
 	PF_STANDARD,
@@ -28,7 +30,7 @@ class CPathfindEngine : public Singleton<CPathfindEngine>
 public:
 	CPathfindEngine();
 	void requestPath( HEntity entity, const CVector2D& destination );
-	void requestContactPath( HEntity entity, HEntity target, int transition );
+	void requestContactPath( HEntity entity, CEntityOrder* current );
 };
 
 #endif

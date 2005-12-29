@@ -75,9 +75,11 @@ public:
 	bool m_permanent;
 
 	float m_speed;
+
 	SEntityAction m_melee;
 	SEntityAction m_gather;
 	SEntityAction m_heal;
+	SEntityAction m_generic;
 
 	float m_turningRadius;
 	CScriptObject m_EventHandlers[EVENT_LAST];
@@ -100,6 +102,8 @@ private:
 	// squelch "unable to generate" warnings
 	CBaseEntity(const CBaseEntity& rhs);
 	const CBaseEntity& operator=(const CBaseEntity& rhs);
+
+	static STL_HASH_SET<CStr, CStr_hash_compare> scriptsLoaded;
 };
 
 #endif

@@ -53,6 +53,7 @@ class CEntity : public  CJSComplex<CEntity>, public IEventTarget
 	friend class CEntityManager;
 	
 	typedef STL_HASH_MAP<CStrW, CAura*, CStrW_hash_compare> AuraTable;
+	typedef STL_HASH_MAP<int, SEntityAction> ActionTable;
 	typedef std::set<CAura*> AuraSet;
 
 private:
@@ -71,9 +72,13 @@ public:
 
 	float m_speed;
 	float m_turningRadius;
+
 	SEntityAction m_melee;
 	SEntityAction m_gather;
 	SEntityAction m_heal;
+
+	ActionTable m_actions;
+
 	bool m_selected;
 	i32 m_grouped;
 
@@ -161,13 +166,19 @@ private:
 
 	bool processAttackMelee( CEntityOrder* current, size_t timestep_milli );
 	bool processAttackMeleeNoPathing( CEntityOrder* current, size_t timestep_milli );
+
 	bool processGather( CEntityOrder* current, size_t timestep_milli );
 	bool processGatherNoPathing( CEntityOrder* current, size_t timestep_milli );
+
 	bool processHeal( CEntityOrder* current, size_t timestep_milli );
 	bool processHealNoPathing( CEntityOrder* current, size_t timestep_milli );
+
+	bool processGeneric( CEntityOrder* current, size_t timestep_milli );
+	bool processGenericNoPathing( CEntityOrder* current, size_t timestep_milli );
 	
 	bool processGotoNoPathing( CEntityOrder* current, size_t timestep_milli );
 	bool processGoto( CEntityOrder* current, size_t timestep_milli );
+
 	bool processPatrol( CEntityOrder* current, size_t timestep_milli );
 
 public:
@@ -261,6 +272,8 @@ public:
 
 	jsval AddAura( JSContext* cx, uintN argc, jsval* argv );
 	jsval RemoveAura( JSContext* cx, uintN argc, jsval* argv );
+
+	jsval SetActionParams( JSContext* cx, uintN argc, jsval* argv );
 
 	bool Order( JSContext* cx, uintN argc, jsval* argv, bool Queued );
 	inline bool OrderSingle( JSContext* cx, uintN argc, jsval* argv )

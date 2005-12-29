@@ -34,7 +34,7 @@
 #ifndef ENTITY_ORDER_INCLUDED
 #define ENTITY_ORDER_INCLUDED
 
-#define ORDER_MAX_DATA 1
+#define ORDER_MAX_DATA 2
 
 #include "EntityHandles.h"
 #include "Vector2D.h"
@@ -63,6 +63,8 @@ public:
 		ORDER_HEAL,
 		ORDER_HEAL_NOPATHING,
 		ORDER_PATH_END_MARKER,
+		ORDER_GENERIC,
+		ORDER_GENERIC_NOPATHING,
 		ORDER_LAST
 	} m_type;
 	SOrderData m_data[ORDER_MAX_DATA];

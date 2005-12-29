@@ -491,6 +491,7 @@ static void InitScripting()
 	g_ScriptingHost.DefineConstant( "ORDER_ATTACK", CEntityOrder::ORDER_ATTACK_MELEE );
 	g_ScriptingHost.DefineConstant( "ORDER_GATHER", CEntityOrder::ORDER_GATHER );
 	g_ScriptingHost.DefineConstant( "ORDER_HEAL", CEntityOrder::ORDER_HEAL );
+	g_ScriptingHost.DefineConstant( "ORDER_GENERIC", CEntityOrder::ORDER_GENERIC );
 
 #define REG_JS_CONSTANT(_name) g_ScriptingHost.DefineConstant(#_name, _name)
 	REG_JS_CONSTANT(SDL_BUTTON_LEFT);

@@ -62,6 +62,7 @@ enum ENetMessageType
 	NMT_AttackMelee,
 	NMT_Gather,
 	NMT_Heal,
+	NMT_Generic,
 	NMT_COMMAND_LAST,
 	/* Post-Game Stage */
 
@@ -232,6 +233,11 @@ END_NMT_CLASS()
 
 DERIVE_NMT_CLASS_(NetCommand, Heal)
 	NMT_FIELD(HEntity, m_Target)
+END_NMT_CLASS()
+
+DERIVE_NMT_CLASS_(NetCommand, Generic)
+	NMT_FIELD(HEntity, m_Target)
+	NMT_FIELD_INT(m_Action, u32, 4)
 END_NMT_CLASS()
 
 END_NMTS()

@@ -7,15 +7,25 @@ CEventAttack::CEventAttack( CEntity* target ) : CScriptEvent( L"attack", EVENT_A
 	m_target = target;
 	AddLocalProperty( L"target", &m_target );
 }
+
+CEventGather::CEventGather( CEntity* target ) : CScriptEvent( L"gather", EVENT_GATHER, true )
+{
+	m_target = target;
+	AddLocalProperty( L"target", &m_target );
+}
+
 CEventHeal::CEventHeal( CEntity* target ) : CScriptEvent( L"heal", EVENT_HEAL, true)
 {
 	m_target = target;
 	AddLocalProperty( L"target", &m_target );
 }
-CEventGather::CEventGather( CEntity* target ) : CScriptEvent( L"gather", EVENT_GATHER, true )
+
+CEventGeneric::CEventGeneric( CEntity* target, int action ) : CScriptEvent( L"generic", EVENT_GENERIC, true)
 {
 	m_target = target;
+	m_action = action;
 	AddLocalProperty( L"target", &m_target );
+	AddLocalProperty( L"action", &m_action );
 }
 
 CEventDamage::CEventDamage( CEntity* inflictor, CDamageType* damage ) : CScriptEvent( L"takesDamage", EVENT_DAMAGE, true )
@@ -29,9 +39,11 @@ CEventDamage::CEventDamage( CEntity* inflictor, CDamageType* damage ) : CScriptE
 CEventTargetChanged::CEventTargetChanged( CEntity* target ) : CScriptEvent( L"targetChanged", EVENT_TARGET_CHANGED, false )
 {
 	m_target = target;
-	m_defaultAction = -1;
+	m_defaultOrder = -1;
+	m_defaultAction = 0;
 	m_defaultCursor = L"arrow-default";
 	AddLocalProperty( L"target", &m_target, true );
+	AddLocalProperty( L"defaultOrder", &m_defaultOrder );
 	AddLocalProperty( L"defaultAction", &m_defaultAction );
 	AddLocalProperty( L"defaultCursor", &m_defaultCursor );
 }

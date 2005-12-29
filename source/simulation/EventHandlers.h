@@ -35,12 +35,7 @@ class CEventGather : public CScriptEvent
 public:
 	CEventGather( CEntity* target );
 };
-class CEventHeal : public CScriptEvent
-{
-	CEntity* m_target;
-public:
-	CEventHeal( CEntity* target );
-};
+
 class CEventDamage : public CScriptEvent
 {
 	CEntity* m_inflictor;
@@ -49,10 +44,26 @@ public:
 	CEventDamage( CEntity* inflictor, CDamageType* damage );
 };
 
+class CEventHeal : public CScriptEvent
+{
+	CEntity* m_target;
+public:
+	CEventHeal( CEntity* target );
+};
+
+class CEventGeneric : public CScriptEvent
+{
+	CEntity* m_target;
+	int m_action;
+public:
+	CEventGeneric( CEntity* target, int m_action );
+};
+
 class CEventTargetChanged : public CScriptEvent
 {
 	CEntity* m_target;
 public:
+	int m_defaultOrder;
 	int m_defaultAction;
 	CStrW m_defaultCursor;
 	CEventTargetChanged( CEntity* target );

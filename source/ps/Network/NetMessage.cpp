@@ -83,6 +83,7 @@ void CNetMessage::ScriptingInit()
 	def(NMT_AttackMelee);
 	def(NMT_Gather);
 	def(NMT_Heal);
+	def(NMT_Generic);
 }
 
 CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSContext *cx, uintN argc, jsval *argv)
@@ -133,6 +134,15 @@ CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSConte
 			} \
 			_msg->_field=ent->me; \
 		)
+	#define ReadInt(_msg, _field) \
+		STMT(\
+			if (argIndex+1 > argc) \
+				ArgumentCountError(); \
+			if (!JSVAL_IS_INT(argv[argIndex])) \
+				ArgumentTypeError(); \
+			int val=ToPrimitive<int>(argv[argIndex++]); \
+			_msg->_field=val; \
+		)
 	
 	#define PositionMessage(_msg) \
 		case NMT_ ## _msg: \
@@ -151,6 +161,16 @@ CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSConte
 			ReadEntity(msg, m_Target); \
 			return msg; \
 		}
+
+	#define EntityIntMessage(_msg) \
+		case NMT_ ## _msg: \
+		{ \
+			C##_msg *msg = new C##_msg(); \
+			msg->m_Entities = entities; \
+			ReadEntity(msg, m_Target); \
+			ReadInt(msg, m_Action); \
+			return msg; \
+		}
 	
 	// argIndex, incremented by reading macros. We have already "eaten" the
 	// first argument (message type)
@@ -165,6 +185,8 @@ CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSConte
 		EntityMessage(AttackMelee)
 		EntityMessage(Gather)
 		EntityMessage(Heal)
+
+		EntityIntMessage(Generic)
 
 		default:
 			JS_ReportError(cx, "Invalid order type");

@@ -9,6 +9,8 @@
 #include "CLogger.h"
 #define LOG_CATEGORY "entity"
 
+STL_HASH_SET<CStr, CStr_hash_compare> CBaseEntity::scriptsLoaded;
+
 CBaseEntity::CBaseEntity()
 {
 	m_base = NULL;
@@ -204,14 +206,17 @@ bool CBaseEntity::loadXML( CStr filename )
 		{
 			CStr Include = Child.getAttributes().getNamedItem( at_file );
 
-			// TODO: Probably try and determine if this file has already been loaded, and skip it.
-
-			if( Include.Length() )
-				g_ScriptingHost.RunScript(Include);
+			if( Include.Length() && scriptsLoaded.find( Include ) == scriptsLoaded.end() )
+			{
+				scriptsLoaded.insert( Include );
+				g_ScriptingHost.RunScript( Include );
+			}
 
 			CStr Inline = Child.getText();
 			if( Inline.Length() )
-				g_ScriptingHost.RunMemScript(Inline.c_str(), Inline.Length(), filename.c_str(), Child.getLineNumber());
+			{
+				g_ScriptingHost.RunMemScript( Inline.c_str(), Inline.Length(), filename.c_str(), Child.getLineNumber() );
+			}
 		}
 		else if (ChildName == el_traits)
 		{
