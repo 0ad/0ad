@@ -350,62 +350,74 @@ void CEntity::update( size_t timestep )
             m_lastState = current->m_type;
         }
         else
+		{
             m_transition = false;
+		}
 
         switch( current->m_type )
         {
             case CEntityOrder::ORDER_GOTO_NOPATHING:
             case CEntityOrder::ORDER_GOTO_COLLISION:
             case CEntityOrder::ORDER_GOTO_SMOOTHED:
-            if( processGotoNoPathing( current, timestep ) )
-                break;
-            updateCollisionPatch();
-            return;
+				if( processGotoNoPathing( current, timestep ) )
+					break;
+				updateCollisionPatch();
+				return;
             case CEntityOrder::ORDER_ATTACK_MELEE:
-            if( processAttackMeleeNoPathing( current, timestep ) )
-                break;
-            updateCollisionPatch();
-            return;
+				if( processAttackMeleeNoPathing( current, timestep ) )
+					break;
+				updateCollisionPatch();
+				return;
             case CEntityOrder::ORDER_ATTACK_MELEE_NOPATHING:
-            if( processAttackMeleeNoPathing( current, timestep ) )
-                break;
-            updateCollisionPatch();
-            return;
+				if( processAttackMeleeNoPathing( current, timestep ) )
+					break;
+				updateCollisionPatch();
+				return;
             case CEntityOrder::ORDER_GATHER:
-            if( processGather( current, timestep ) )
-                break;
-            updateCollisionPatch();
-            return;
+				if( processGather( current, timestep ) )
+					break;
+				updateCollisionPatch();
+				return;
             case CEntityOrder::ORDER_GATHER_NOPATHING:
-            if( processGatherNoPathing( current, timestep ) )
-                break;
-            updateCollisionPatch();
-            return;
+				if( processGatherNoPathing( current, timestep ) )
+					break;
+				updateCollisionPatch();
+				return;
             case CEntityOrder::ORDER_HEAL:
-            if( processHeal( current, timestep ) )
-                break;
-            updateCollisionPatch();
-            return;
+				if( processHeal( current, timestep ) )
+					break;
+				updateCollisionPatch();
+				return;
             case CEntityOrder::ORDER_HEAL_NOPATHING:
-            if( processHealNoPathing( current, timestep ) )
-                break;
-            updateCollisionPatch();
-            return;
+				if( processHealNoPathing( current, timestep ) )
+					break;
+				updateCollisionPatch();
+				return;
+            case CEntityOrder::ORDER_GENERIC:
+				if( processGeneric( current, timestep ) )
+					break;
+				updateCollisionPatch();
+				return;
+            case CEntityOrder::ORDER_GENERIC_NOPATHING:
+				if( processGenericNoPathing( current, timestep ) )
+					break;
+				updateCollisionPatch();
+				return;
             case CEntityOrder::ORDER_GOTO:
-            if( processGoto( current, timestep ) )
-                break;
-            updateCollisionPatch();
-            return;
+				if( processGoto( current, timestep ) )
+					break;
+				updateCollisionPatch();
+				return;
             case CEntityOrder::ORDER_PATROL:
-            if( processPatrol( current, timestep ) )
-                break;
-            updateCollisionPatch();
-            return;
+				if( processPatrol( current, timestep ) )
+					break;
+				updateCollisionPatch();
+				return;
             case CEntityOrder::ORDER_PATH_END_MARKER:
-            m_orderQueue.pop_front();
-            break;
+				m_orderQueue.pop_front();
+				break;
             default:
-            debug_warn("Invalid entity order" );
+				debug_warn("Invalid entity order" );
         }
     }
 
@@ -591,29 +603,43 @@ void UpdateAuras_Normal( SAura& aura, CEntity* e )
 
 #endif
 
-    void CEntity::Initialize()
-    {
-        CEventInitialize evt;
-        DispatchEvent( &evt );
-    }
+void CEntity::Initialize()
+{
+    CEventInitialize evt;
+    DispatchEvent( &evt );
+}
 
-    void CEntity::Tick()
-    {
-        CEventTick evt;
-        DispatchEvent( &evt );
-    }
+void CEntity::Tick()
+{
+    CEventTick evt;
+    DispatchEvent( &evt );
+}
 
-    void CEntity::Damage( CDamageType& damage, CEntity* inflictor )
-    {
+void CEntity::Damage( CDamageType& damage, CEntity* inflictor )
+{
+    CEventDamage evt( inflictor, &damage );
+    DispatchEvent( &evt );
+}
 
-        CEventDamage evt( inflictor, &damage );
-        DispatchEvent( &evt );
-    }
 
-    void CEntity::clearOrders()
+void CEntity::clearOrders()
+{
+    m_orderQueue.clear();
+}
+
+void CEntity::pushOrder( CEntityOrder& order )
+{
+    if( acceptsOrder( order.m_type, order.m_data[0].entity ) )
     {
-        m_orderQueue.clear();
+        m_orderQueue.push_back( order );
     }
+}
+
+bool CEntity::acceptsOrder( int orderType, CEntity* orderTarget )
+{
+    CEventPrepareOrder evt( orderTarget, orderType );
+    return( DispatchEvent( &evt ) );
+}
 
 /*void CEntity::RequestNotification( CEntity* target, unsigned long orderType )
 {
@@ -636,797 +662,822 @@ void CEntity::DispatchNotification( CEntityListener notify )
 	DispatchEvent( &evt );
 }
 */
-    void CEntity::pushOrder( CEntityOrder& order )
+
+void CEntity::repath()
+{
+    CVector2D destination;
+    if( m_orderQueue.empty() )
+        return;
+
+    while( !m_orderQueue.empty() &&
+            ( ( m_orderQueue.front().m_type == CEntityOrder::ORDER_GOTO_COLLISION )
+              || ( m_orderQueue.front().m_type == CEntityOrder::ORDER_GOTO_NOPATHING )
+              || ( m_orderQueue.front().m_type == CEntityOrder::ORDER_GOTO_SMOOTHED ) ) )
     {
-        if( acceptsOrder( order.m_type, order.m_data[0].entity ) )
-        {
-            m_orderQueue.push_back( order );
-        }
+        destination = m_orderQueue.front().m_data[0].location;
+        m_orderQueue.pop_front();
     }
+    g_Pathfinder.requestPath( me, destination );
+}
 
-    bool CEntity::acceptsOrder( int orderType, CEntity* orderTarget )
+void CEntity::reorient()
+{
+    m_orientation = m_graphics_orientation;
+    m_ahead.x = sin( m_orientation );
+    m_ahead.y = cos( m_orientation );
+    if( m_bounds->m_type == CBoundingObject::BOUND_OABB )
+        ((CBoundingBox*)m_bounds)->setOrientation( m_ahead );
+    updateActorTransforms();
+}
+
+void CEntity::teleport()
+{
+    m_position = m_graphics_position;
+    m_bounds->setPosition( m_position.X, m_position.Z );
+    updateCollisionPatch();
+    repath();
+}
+
+void CEntity::playerChanged()
+{
+    if( m_actor )
+        m_actor->GetModel()->SetPlayerID( m_player->GetPlayerID() );
+}
+
+void CEntity::checkSelection()
+{
+    if( m_selected )
     {
-        CEventPrepareOrder evt( orderTarget, orderType );
-        return( DispatchEvent( &evt ) );
+        if( !g_Selection.isSelected( me ) )
+            g_Selection.addSelection( me );
     }
-
-    void CEntity::repath()
+    else
     {
-        CVector2D destination;
-        if( m_orderQueue.empty() )
-            return;
-
-        while( !m_orderQueue.empty() &&
-                ( ( m_orderQueue.front().m_type == CEntityOrder::ORDER_GOTO_COLLISION )
-                  || ( m_orderQueue.front().m_type == CEntityOrder::ORDER_GOTO_NOPATHING )
-                  || ( m_orderQueue.front().m_type == CEntityOrder::ORDER_GOTO_SMOOTHED ) ) )
-        {
-            destination = m_orderQueue.front().m_data[0].location;
-            m_orderQueue.pop_front();
-        }
-        g_Pathfinder.requestPath( me, destination );
+        if( g_Selection.isSelected( me ) )
+            g_Selection.removeSelection( me );
     }
+}
 
-    void CEntity::reorient()
-    {
-        m_orientation = m_graphics_orientation;
-        m_ahead.x = sin( m_orientation );
-        m_ahead.y = cos( m_orientation );
-        if( m_bounds->m_type == CBoundingObject::BOUND_OABB )
-            ((CBoundingBox*)m_bounds)->setOrientation( m_ahead );
-        updateActorTransforms();
-    }
+void CEntity::checkGroup()
+{
+    g_Selection.changeGroup( me, -1 ); // Ungroup
+    if( ( m_grouped >= 0 ) && ( m_grouped < MAX_GROUPS ) )
+        g_Selection.changeGroup( me, m_grouped );
+}
 
-    void CEntity::teleport()
-    {
-        m_position = m_graphics_position;
-        m_bounds->setPosition( m_position.X, m_position.Z );
-        updateCollisionPatch();
-        repath();
-    }
+void CEntity::interpolate( float relativeoffset )
+{
+    CVector3D old_graphics_position = m_graphics_position;
+    float old_graphics_orientation = m_graphics_orientation;
 
-    void CEntity::playerChanged()
-    {
-        if( m_actor )
-            m_actor->GetModel()->SetPlayerID( m_player->GetPlayerID() );
-    }
+    m_graphics_position = Interpolate<CVector3D>( m_position_previous, m_position, relativeoffset );
 
-    void CEntity::checkSelection()
-    {
-        if( m_selected )
-        {
-            if( !g_Selection.isSelected( me ) )
-                g_Selection.addSelection( me );
-        }
-        else
-        {
-            if( g_Selection.isSelected( me ) )
-                g_Selection.removeSelection( me );
-        }
-    }
+    // Avoid wraparound glitches for interpolating angles.
+    while( m_orientation < m_orientation_previous - PI )
+        m_orientation_previous -= 2 * PI;
+    while( m_orientation > m_orientation_previous + PI )
+        m_orientation_previous += 2 * PI;
 
-    void CEntity::checkGroup()
-    {
-        g_Selection.changeGroup( me, -1 ); // Ungroup
-        if( ( m_grouped >= 0 ) && ( m_grouped < MAX_GROUPS ) )
-            g_Selection.changeGroup( me, m_grouped );
-    }
+    m_graphics_orientation = Interpolate<float>( m_orientation_previous, m_orientation, relativeoffset );
 
-    void CEntity::interpolate( float relativeoffset )
-    {
-        CVector3D old_graphics_position = m_graphics_position;
-        float old_graphics_orientation = m_graphics_orientation;
-
-        m_graphics_position = Interpolate<CVector3D>( m_position_previous, m_position, relativeoffset );
-
-        // Avoid wraparound glitches for interpolating angles.
-        while( m_orientation < m_orientation_previous - PI )
-            m_orientation_previous -= 2 * PI;
-        while( m_orientation > m_orientation_previous + PI )
-            m_orientation_previous += 2 * PI;
-
-        m_graphics_orientation = Interpolate<float>( m_orientation_previous, m_orientation, relativeoffset );
-
-        // Mark the actor transform data as invalid if the entity has moved since
-        // the last call to 'interpolate'.
-        // position.Y is ignored because we can't determine the new value without
-        // calling snapToGround, which is slow. TODO: This may need to be adjusted to
-        // handle flying units or moving terrain.
-        if( m_graphics_orientation != old_graphics_orientation ||
-                m_graphics_position.X != old_graphics_position.X ||
-                m_graphics_position.Z != old_graphics_position.Z )
-            m_actor_transform_valid = false;
-
-        // Update the actor transform data when necessary.
-        if( !m_actor_transform_valid )
-        {
-            snapToGround();
-            updateActorTransforms();
-            m_actor_transform_valid = true;
-        }
-    }
-
-    void CEntity::invalidateActor()
-    {
+    // Mark the actor transform data as invalid if the entity has moved since
+    // the last call to 'interpolate'.
+    // position.Y is ignored because we can't determine the new value without
+    // calling snapToGround, which is slow. TODO: This may need to be adjusted to
+    // handle flying units or moving terrain.
+    if( m_graphics_orientation != old_graphics_orientation ||
+            m_graphics_position.X != old_graphics_position.X ||
+            m_graphics_position.Z != old_graphics_position.Z )
         m_actor_transform_valid = false;
+
+    // Update the actor transform data when necessary.
+    if( !m_actor_transform_valid )
+    {
+        snapToGround();
+        updateActorTransforms();
+        m_actor_transform_valid = true;
+    }
+}
+
+void CEntity::invalidateActor()
+{
+    m_actor_transform_valid = false;
+}
+
+void CEntity::render()
+{
+    if( !m_orderQueue.empty() )
+    {
+        std::deque<CEntityOrder>::iterator it;
+        CBoundingObject* destinationCollisionObject;
+        float x0, y0, x, y;
+
+        x = m_orderQueue.front().m_data[0].location.x;
+        y = m_orderQueue.front().m_data[0].location.y;
+
+        for( it = m_orderQueue.begin(); it < m_orderQueue.end(); it++ )
+        {
+            if( it->m_type == CEntityOrder::ORDER_PATROL )
+                break;
+            x = it->m_data[0].location.x;
+            y = it->m_data[0].location.y;
+        }
+        destinationCollisionObject = getContainingObject( CVector2D( x, y ) );
+
+        glShadeModel( GL_FLAT );
+        glBegin( GL_LINE_STRIP );
+
+
+
+        glVertex3f( m_position.X, m_position.Y + 0.25f, m_position.Z );
+
+
+        x = m_position.X;
+        y = m_position.Z;
+
+        for( it = m_orderQueue.begin(); it < m_orderQueue.end(); it++ )
+        {
+            x0 = x;
+            y0 = y;
+            x = it->m_data[0].location.x;
+            y = it->m_data[0].location.y;
+            rayIntersectionResults r;
+            CVector2D fwd( x - x0, y - y0 );
+            float l = fwd.length();
+            fwd = fwd.normalize();
+            CVector2D rgt = fwd.beta();
+            if( getRayIntersection( CVector2D( x0, y0 ), fwd, rgt, l, m_bounds->m_radius, destinationCollisionObject, &r ) )
+            {
+                glEnd();
+                glBegin( GL_LINES );
+                glColor3f( 1.0f, 0.0f, 0.0f );
+                glVertex3f( x0 + fwd.x * r.distance, getAnchorLevel( x0 + fwd.x * r.distance, y0 + fwd.y * r.distance ) + 0.25f, y0 + fwd.y * r.distance );
+                glVertex3f( r.position.x, getAnchorLevel( r.position.x, r.position.y ) + 0.25f, r.position.y );
+                glEnd();
+                glBegin( GL_LINE_STRIP );
+                glVertex3f( x0, getAnchorLevel( x0, y0 ), y0 );
+            }
+            switch( it->m_type )
+            {
+                case CEntityOrder::ORDER_GOTO:
+                glColor3f( 1.0f, 0.0f, 0.0f );
+                break;
+                case CEntityOrder::ORDER_GOTO_COLLISION:
+                glColor3f( 1.0f, 0.5f, 0.5f );
+                break;
+                case CEntityOrder::ORDER_GOTO_NOPATHING:
+                case CEntityOrder::ORDER_GOTO_SMOOTHED:
+                glColor3f( 0.5f, 0.5f, 0.5f );
+                break;
+                case CEntityOrder::ORDER_PATROL:
+                glColor3f( 0.0f, 1.0f, 0.0f );
+                break;
+                default:
+                continue;
+            }
+
+            glVertex3f( x, getAnchorLevel( x, y ) + 0.25f, y );
+        }
+
+        glEnd();
+        glShadeModel( GL_SMOOTH );
     }
 
-    void CEntity::render()
+    glColor3f( 1.0f, 1.0f, 1.0f );
+    if( getCollisionObject( this ) )
+        glColor3f( 0.5f, 0.5f, 1.0f );
+    m_bounds->render( getAnchorLevel( m_position.X, m_position.Z ) + 0.25f ); //m_position.Y + 0.25f );
+}
+
+float CEntity::getAnchorLevel( float x, float z )
+{
+    CTerrain *pTerrain = g_Game->GetWorld()->GetTerrain();
+    float groundLevel = pTerrain->getExactGroundLevel( x, z );
+    if( m_anchorType==L"Ground" )
     {
-        if( !m_orderQueue.empty() )
+        return groundLevel;
+    }
+    else
+    {
+        return max( groundLevel, g_Renderer.m_WaterHeight );
+    }
+}
+
+void CEntity::renderSelectionOutline( float alpha )
+{
+    if( !m_bounds )
+        return;
+
+    if( getCollisionObject( this ) )
+        glColor4f( 1.0f, 0.5f, 0.5f, alpha );
+    else
+    {
+        const SPlayerColour& col = m_player->GetColour();
+        glColor3f( col.r, col.g, col.b );
+    }
+
+    glBegin( GL_LINE_LOOP );
+
+    CVector3D pos = m_graphics_position;
+
+    switch( m_bounds->m_type )
+    {
+        case CBoundingObject::BOUND_CIRCLE:
         {
-            std::deque<CEntityOrder>::iterator it;
-            CBoundingObject* destinationCollisionObject;
-            float x0, y0, x, y;
-
-            x = m_orderQueue.front().m_data[0].location.x;
-            y = m_orderQueue.front().m_data[0].location.y;
-
-            for( it = m_orderQueue.begin(); it < m_orderQueue.end(); it++ )
+            float radius = ((CBoundingCircle*)m_bounds)->m_radius;
+            for( int i = 0; i < SELECTION_CIRCLE_POINTS; i++ )
             {
-                if( it->m_type == CEntityOrder::ORDER_PATROL )
-                    break;
-                x = it->m_data[0].location.x;
-                y = it->m_data[0].location.y;
-            }
-            destinationCollisionObject = getContainingObject( CVector2D( x, y ) );
-
-            glShadeModel( GL_FLAT );
-            glBegin( GL_LINE_STRIP );
-
-
-
-            glVertex3f( m_position.X, m_position.Y + 0.25f, m_position.Z );
-
-
-            x = m_position.X;
-            y = m_position.Z;
-
-            for( it = m_orderQueue.begin(); it < m_orderQueue.end(); it++ )
-            {
-                x0 = x;
-                y0 = y;
-                x = it->m_data[0].location.x;
-                y = it->m_data[0].location.y;
-                rayIntersectionResults r;
-                CVector2D fwd( x - x0, y - y0 );
-                float l = fwd.length();
-                fwd = fwd.normalize();
-                CVector2D rgt = fwd.beta();
-                if( getRayIntersection( CVector2D( x0, y0 ), fwd, rgt, l, m_bounds->m_radius, destinationCollisionObject, &r ) )
-                {
-                    glEnd();
-                    glBegin( GL_LINES );
-                    glColor3f( 1.0f, 0.0f, 0.0f );
-                    glVertex3f( x0 + fwd.x * r.distance, getAnchorLevel( x0 + fwd.x * r.distance, y0 + fwd.y * r.distance ) + 0.25f, y0 + fwd.y * r.distance );
-                    glVertex3f( r.position.x, getAnchorLevel( r.position.x, r.position.y ) + 0.25f, r.position.y );
-                    glEnd();
-                    glBegin( GL_LINE_STRIP );
-                    glVertex3f( x0, getAnchorLevel( x0, y0 ), y0 );
-                }
-                switch( it->m_type )
-                {
-                    case CEntityOrder::ORDER_GOTO:
-                    glColor3f( 1.0f, 0.0f, 0.0f );
-                    break;
-                    case CEntityOrder::ORDER_GOTO_COLLISION:
-                    glColor3f( 1.0f, 0.5f, 0.5f );
-                    break;
-                    case CEntityOrder::ORDER_GOTO_NOPATHING:
-                    case CEntityOrder::ORDER_GOTO_SMOOTHED:
-                    glColor3f( 0.5f, 0.5f, 0.5f );
-                    break;
-                    case CEntityOrder::ORDER_PATROL:
-                    glColor3f( 0.0f, 1.0f, 0.0f );
-                    break;
-                    default:
-                    continue;
-                }
+                float ang = i * 2 * PI / (float)SELECTION_CIRCLE_POINTS;
+                float x = pos.X + radius * sin( ang );
+                float y = pos.Z + radius * cos( ang );
+#ifdef SELECTION_TERRAIN_CONFORMANCE
 
                 glVertex3f( x, getAnchorLevel( x, y ) + 0.25f, y );
-            }
-
-            glEnd();
-            glShadeModel( GL_SMOOTH );
-        }
-
-        glColor3f( 1.0f, 1.0f, 1.0f );
-        if( getCollisionObject( this ) )
-            glColor3f( 0.5f, 0.5f, 1.0f );
-        m_bounds->render( getAnchorLevel( m_position.X, m_position.Z ) + 0.25f ); //m_position.Y + 0.25f );
-    }
-
-    float CEntity::getAnchorLevel( float x, float z )
-    {
-        CTerrain *pTerrain = g_Game->GetWorld()->GetTerrain();
-        float groundLevel = pTerrain->getExactGroundLevel( x, z );
-        if( m_anchorType==L"Ground" )
-        {
-            return groundLevel;
-        }
-        else
-        {
-            return max( groundLevel, g_Renderer.m_WaterHeight );
-        }
-    }
-
-    void CEntity::renderSelectionOutline( float alpha )
-    {
-        if( !m_bounds )
-            return;
-
-        if( getCollisionObject( this ) )
-            glColor4f( 1.0f, 0.5f, 0.5f, alpha );
-        else
-        {
-            const SPlayerColour& col = m_player->GetColour();
-            glColor3f( col.r, col.g, col.b );
-        }
-
-        glBegin( GL_LINE_LOOP );
-
-        CVector3D pos = m_graphics_position;
-
-        switch( m_bounds->m_type )
-        {
-            case CBoundingObject::BOUND_CIRCLE:
-            {
-                float radius = ((CBoundingCircle*)m_bounds)->m_radius;
-                for( int i = 0; i < SELECTION_CIRCLE_POINTS; i++ )
-                {
-                    float ang = i * 2 * PI / (float)SELECTION_CIRCLE_POINTS;
-                    float x = pos.X + radius * sin( ang );
-                    float y = pos.Z + radius * cos( ang );
-#ifdef SELECTION_TERRAIN_CONFORMANCE
-
-                    glVertex3f( x, getAnchorLevel( x, y ) + 0.25f, y );
 #else
 
-                    glVertex3f( x, pos.Y + 0.25f, y );
+                glVertex3f( x, pos.Y + 0.25f, y );
 #endif
 
-                }
-                break;
             }
-            case CBoundingObject::BOUND_OABB:
-            {
-                CVector2D p, q;
-                CVector2D u, v;
-                q.x = pos.X;
-                q.y = pos.Z;
-                float d = ((CBoundingBox*)m_bounds)->m_d;
-                float w = ((CBoundingBox*)m_bounds)->m_w;
+            break;
+        }
+        case CBoundingObject::BOUND_OABB:
+        {
+            CVector2D p, q;
+            CVector2D u, v;
+            q.x = pos.X;
+            q.y = pos.Z;
+            float d = ((CBoundingBox*)m_bounds)->m_d;
+            float w = ((CBoundingBox*)m_bounds)->m_w;
 
-                u.x = sin( m_graphics_orientation );
-                u.y = cos( m_graphics_orientation );
-                v.x = u.y;
-                v.y = -u.x;
+            u.x = sin( m_graphics_orientation );
+            u.y = cos( m_graphics_orientation );
+            v.x = u.y;
+            v.y = -u.x;
 
 #ifdef SELECTION_TERRAIN_CONFORMANCE
 
-                for( int i = SELECTION_BOX_POINTS; i > -SELECTION_BOX_POINTS; i-- )
-                {
-                    p = q + u * d + v * ( w * (float)i / (float)SELECTION_BOX_POINTS );
-                    glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
-                }
+            for( int i = SELECTION_BOX_POINTS; i > -SELECTION_BOX_POINTS; i-- )
+            {
+                p = q + u * d + v * ( w * (float)i / (float)SELECTION_BOX_POINTS );
+                glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
+            }
 
-                for( int i = SELECTION_BOX_POINTS; i > -SELECTION_BOX_POINTS; i-- )
-                {
-                    p = q + u * ( d * (float)i / (float)SELECTION_BOX_POINTS ) - v * w;
-                    glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
-                }
+            for( int i = SELECTION_BOX_POINTS; i > -SELECTION_BOX_POINTS; i-- )
+            {
+                p = q + u * ( d * (float)i / (float)SELECTION_BOX_POINTS ) - v * w;
+                glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
+            }
 
-                for( int i = -SELECTION_BOX_POINTS; i < SELECTION_BOX_POINTS; i++ )
-                {
-                    p = q - u * d + v * ( w * (float)i / (float)SELECTION_BOX_POINTS );
-                    glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
-                }
+            for( int i = -SELECTION_BOX_POINTS; i < SELECTION_BOX_POINTS; i++ )
+            {
+                p = q - u * d + v * ( w * (float)i / (float)SELECTION_BOX_POINTS );
+                glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
+            }
 
-                for( int i = -SELECTION_BOX_POINTS; i < SELECTION_BOX_POINTS; i++ )
-                {
-                    p = q + u * ( d * (float)i / (float)SELECTION_BOX_POINTS ) + v * w;
-                    glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
-                }
+            for( int i = -SELECTION_BOX_POINTS; i < SELECTION_BOX_POINTS; i++ )
+            {
+                p = q + u * ( d * (float)i / (float)SELECTION_BOX_POINTS ) + v * w;
+                glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
+            }
 #else
-                p = q + u * h + v * w;
-                glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
+            p = q + u * h + v * w;
+            glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
 
-                p = q + u * h - v * w;
-                glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
+            p = q + u * h - v * w;
+            glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
 
-                p = q - u * h + v * w;
-                glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
+            p = q - u * h + v * w;
+            glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
 
-                p = q + u * h + v * w;
-                glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
+            p = q + u * h + v * w;
+            glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
 #endif
 
 
-                break;
-            }
+            break;
         }
-
-        glEnd();
     }
 
-    void CEntity::renderHealthBar()
+    glEnd();
+}
+
+void CEntity::renderHealthBar()
+{
+    if( !m_bounds )
+        return;
+    if( m_healthBarHeight < 0 )
+        return;  // negative bar height means don't display health bar
+
+    CCamera &g_Camera=*g_Game->GetView()->GetCamera();
+
+    float sx, sy;
+    CVector3D above;
+    above.X = m_position.X;
+    above.Z = m_position.Z;
+    above.Y = getAnchorLevel(m_position.X, m_position.Z) + m_healthBarHeight;
+    g_Camera.GetScreenCoordinates(above, sx, sy);
+    float fraction = clamp(m_healthCurr / m_healthMax, 0.0f, 1.0f);
+
+    const float SIZE = 20;
+    float x1 = sx - SIZE/2;
+    float x2 = sx + SIZE/2;
+    float y = g_yres - sy;
+
+    glBegin(GL_LINES);
+
+    // green part of bar
+    glColor3f( 0, 1, 0 );
+    glVertex3f( x1, y, 0 );
+    glColor3f( 0, 1, 0 );
+    glVertex3f( x1 + SIZE*fraction, y, 0 );
+
+    // red part of bar
+    glColor3f( 1, 0, 0 );
+    glVertex3f( x1 + SIZE*fraction, y, 0 );
+    glColor3f( 1, 0, 0 );
+    glVertex3f( x2, y, 0 );
+
+    glEnd();
+}
+
+
+
+/*
+
+ Scripting interface
+
+*/
+
+// Scripting initialization
+
+void CEntity::ScriptingInit()
+{
+    AddMethod<jsval, &CEntity::ToString>( "toString", 0 );
+    AddMethod<bool, &CEntity::OrderSingle>( "order", 1 );
+    AddMethod<bool, &CEntity::OrderQueued>( "orderQueued", 1 );
+    AddMethod<bool, &CEntity::Kill>( "kill", 0 );
+    AddMethod<bool, &CEntity::Damage>( "damage", 1 );
+    AddMethod<bool, &CEntity::IsIdle>( "isIdle", 0 );
+    AddMethod<bool, &CEntity::HasClass>( "hasClass", 1 );
+    AddMethod<jsval, &CEntity::GetSpawnPoint>( "getSpawnPoint", 1 );
+    AddMethod<jsval, &CEntity::AddAura>( "addAura", 3 );
+    AddMethod<jsval, &CEntity::RemoveAura>( "removeAura", 1 );
+    AddMethod<jsval, &CEntity::SetActionParams>( "setActionParams", 5 );
+
+    AddClassProperty( L"template", (CBaseEntity* CEntity::*)&CEntity::m_base, false, (NotifyFn)&CEntity::loadBase );
+    AddClassProperty( L"traits.id.classes", (GetFn)&CEntity::getClassSet, (SetFn)&CEntity::setClassSet );
+
+    CJSComplex<CEntity>::ScriptingInit( "Entity", Construct, 2 );
+}
+
+// Script constructor
+
+JSBool CEntity::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
+{
+    debug_assert( argc >= 2 );
+
+    CVector3D position;
+    float orientation = (float)( PI * ( (double)( rand() & 0x7fff ) / (double)0x4000 ) );
+
+    JSObject* jsBaseEntity = JSVAL_TO_OBJECT( argv[0] );
+    CStrW templateName;
+
+    CBaseEntity* baseEntity = NULL;
+    if( JSVAL_IS_OBJECT( argv[0] ) ) // only set baseEntity if jsBaseEntity is a valid object
+        baseEntity = ToNative<CBaseEntity>( cx, jsBaseEntity );
+
+    if( !baseEntity )
     {
-        if( !m_bounds )
-            return;
-        if( m_healthBarHeight < 0 )
-            return;  // negative bar height means don't display health bar
-
-        CCamera &g_Camera=*g_Game->GetView()->GetCamera();
-
-        float sx, sy;
-        CVector3D above;
-        above.X = m_position.X;
-        above.Z = m_position.Z;
-        above.Y = getAnchorLevel(m_position.X, m_position.Z) + m_healthBarHeight;
-        g_Camera.GetScreenCoordinates(above, sx, sy);
-        float fraction = clamp(m_healthCurr / m_healthMax, 0.0f, 1.0f);
-
-        const float SIZE = 20;
-        float x1 = sx - SIZE/2;
-        float x2 = sx + SIZE/2;
-        float y = g_yres - sy;
-
-        glBegin(GL_LINES);
-
-        // green part of bar
-        glColor3f( 0, 1, 0 );
-        glVertex3f( x1, y, 0 );
-        glColor3f( 0, 1, 0 );
-        glVertex3f( x1 + SIZE*fraction, y, 0 );
-
-        // red part of bar
-        glColor3f( 1, 0, 0 );
-        glVertex3f( x1 + SIZE*fraction, y, 0 );
-        glColor3f( 1, 0, 0 );
-        glVertex3f( x2, y, 0 );
-
-        glEnd();
-    }
-
-
-
-    /*
-
-     Scripting interface
-
-    */
-
-    // Scripting initialization
-
-    void CEntity::ScriptingInit()
-    {
-        AddMethod<jsval, &CEntity::ToString>( "toString", 0 );
-        AddMethod<bool, &CEntity::OrderSingle>( "order", 1 );
-        AddMethod<bool, &CEntity::OrderQueued>( "orderQueued", 1 );
-        AddMethod<bool, &CEntity::Kill>( "kill", 0 );
-        AddMethod<bool, &CEntity::Damage>( "damage", 1 );
-        AddMethod<bool, &CEntity::IsIdle>( "isIdle", 0 );
-        AddMethod<bool, &CEntity::HasClass>( "hasClass", 1 );
-        AddMethod<jsval, &CEntity::GetSpawnPoint>( "getSpawnPoint", 1 );
-        AddMethod<jsval, &CEntity::AddAura>( "addAura", 3 );
-        AddMethod<jsval, &CEntity::RemoveAura>( "removeAura", 1 );
-
-        AddClassProperty( L"template", (CBaseEntity* CEntity::*)&CEntity::m_base, false, (NotifyFn)&CEntity::loadBase );
-        AddClassProperty( L"traits.id.classes", (GetFn)&CEntity::getClassSet, (SetFn)&CEntity::setClassSet );
-
-        CJSComplex<CEntity>::ScriptingInit( "Entity", Construct, 2 );
-    }
-
-    // Script constructor
-
-    JSBool CEntity::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
-    {
-        debug_assert( argc >= 2 );
-
-        CVector3D position;
-        float orientation = (float)( PI * ( (double)( rand() & 0x7fff ) / (double)0x4000 ) );
-
-        JSObject* jsBaseEntity = JSVAL_TO_OBJECT( argv[0] );
-        CStrW templateName;
-
-        CBaseEntity* baseEntity = NULL;
-        if( JSVAL_IS_OBJECT( argv[0] ) ) // only set baseEntity if jsBaseEntity is a valid object
-            baseEntity = ToNative<CBaseEntity>( cx, jsBaseEntity );
-
-        if( !baseEntity )
-        {
-            try
-            {
-                templateName = g_ScriptingHost.ValueToUCString( argv[0] );
-            }
-            catch( PSERROR_Scripting_ConversionFailed )
-            {
-                *rval = JSVAL_NULL;
-                JS_ReportError( cx, "Invalid template identifier" );
-                return( JS_TRUE );
-            }
-            baseEntity = g_EntityTemplateCollection.getTemplate( templateName );
-        }
-
-        if( !baseEntity )
-        {
-            *rval = JSVAL_NULL;
-            JS_ReportError( cx, "No such template: %s", CStr8(templateName).c_str() );
-            return( JS_TRUE );
-        }
-
-        JSI_Vector3D::Vector3D_Info* jsVector3D = NULL;
-        if( JSVAL_IS_OBJECT( argv[1] ) )
-            jsVector3D = (JSI_Vector3D::Vector3D_Info*)JS_GetInstancePrivate( cx, JSVAL_TO_OBJECT( argv[1] ), &JSI_Vector3D::JSI_class, NULL );
-
-        if( jsVector3D )
-        {
-            position = *( jsVector3D->vector );
-        }
-
-        if( argc >= 3 )
-        {
-            try
-            {
-                orientation = ToPrimitive<float>( argv[2] );
-            }
-            catch( PSERROR_Scripting_ConversionFailed )
-            {
-                // TODO: Net-safe random for this parameter.
-                orientation = 0.0f;
-            }
-        }
-
-        HEntity handle = g_EntityManager.create( baseEntity, position, orientation );
-
-        *rval = ToJSVal<CEntity>( *handle );
-        return( JS_TRUE );
-    }
-
-    // Script-bound methods
-
-    jsval CEntity::ToString( JSContext* cx, uintN UNUSED(argc), jsval* UNUSED(argv) )
-    {
-        wchar_t buffer[256];
-        swprintf( buffer, 256, L"[object Entity: %ls]", m_base->m_Tag.c_str() );
-        buffer[255] = 0;
-        utf16string str16(buffer, buffer+wcslen(buffer));
-        return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, str16.c_str() ) ) );
-    }
-
-    bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
-    {
-        // This needs to be sorted (uses Scheduler rather than network messaging)
-        debug_assert( argc >= 1 );
-
-        int orderCode;
-
         try
         {
-            orderCode = ToPrimitive<int>( argv[0] );
+            templateName = g_ScriptingHost.ValueToUCString( argv[0] );
         }
         catch( PSERROR_Scripting_ConversionFailed )
         {
-            JS_ReportError( cx, "Invalid order type" );
-            return( false );
+            *rval = JSVAL_NULL;
+            JS_ReportError( cx, "Invalid template identifier" );
+            return( JS_TRUE );
         }
-
-        CEntityOrder newOrder;
-
-        (int&)newOrder.m_type = orderCode;
-
-        switch( orderCode )
-        {
-            case CEntityOrder::ORDER_GOTO:
-            case CEntityOrder::ORDER_PATROL:
-            if( argc < 3 )
-            {
-                JS_ReportError( cx, "Too few parameters" );
-                return( false );
-            }
-            try
-            {
-                newOrder.m_data[0].location.x = ToPrimitive<float>( argv[1] );
-                newOrder.m_data[0].location.y = ToPrimitive<float>( argv[2] );
-            }
-            catch( PSERROR_Scripting_ConversionFailed )
-            {
-                JS_ReportError( cx, "Invalid location" );
-                return( false );
-            }
-            break;
-            case CEntityOrder::ORDER_ATTACK_MELEE:
-            case CEntityOrder::ORDER_GATHER:
-            case CEntityOrder::ORDER_HEAL:
-            if( argc < 1 )
-            {
-                JS_ReportError( cx, "Too few parameters" );
-                return( false );
-            }
-            CEntity* target;
-            target = ToNative<CEntity>( argv[1] );
-            if( !target )
-            {
-                JS_ReportError( cx, "Invalid target" );
-                return( false );
-            }
-            newOrder.m_data[0].entity = target->me;
-            break;
-
-            default:
-            JS_ReportError( cx, "Invalid order type" );
-            return( false );
-        }
-
-        if( !Queued )
-            clearOrders();
-        pushOrder( newOrder );
-
-        return( true );
+        baseEntity = g_EntityTemplateCollection.getTemplate( templateName );
     }
 
-    bool CEntity::Damage( JSContext* cx, uintN argc, jsval* argv )
+    if( !baseEntity )
     {
-        CEntity* inflictor = NULL;
-
-        if( argc >= 4 )
-            inflictor = ToNative<CEntity>( argv[3] );
-
-        if( argc >= 3 )
-        {
-            CDamageType dmgType( ToPrimitive<float>( argv[0] ), ToPrimitive<float>( argv[1] ), ToPrimitive<float>( argv[2] ) );
-            Damage( dmgType, inflictor );
-            return( true );
-        }
-
-        if( argc >= 2 )
-            inflictor = ToNative<CEntity>( argv[1] );
-
-        // If it's a DamageType, use that. Otherwise, see if it's a float, if so, use
-        // that as the 'typeless' unblockable damage type.
-
-        CDamageType* dmg = ToNative<CDamageType>( argv[0] );
-
-        if( !dmg )
-        {
-            float dmgN;
-            if( !ToPrimitive<float>( cx, argv[0], dmgN ) )
-                return( false );
-
-            CDamageType dmgType( dmgN );
-
-            Damage( dmgType, inflictor );
-            return( true );
-        }
-
-        Damage( *dmg, inflictor );
-        return( true );
+        *rval = JSVAL_NULL;
+        JS_ReportError( cx, "No such template: %s", CStr8(templateName).c_str() );
+        return( JS_TRUE );
     }
 
-    bool CEntity::Kill( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+    JSI_Vector3D::Vector3D_Info* jsVector3D = NULL;
+    if( JSVAL_IS_OBJECT( argv[1] ) )
+        jsVector3D = (JSI_Vector3D::Vector3D_Info*)JS_GetInstancePrivate( cx, JSVAL_TO_OBJECT( argv[1] ), &JSI_Vector3D::JSI_class, NULL );
+
+    if( jsVector3D )
     {
-        for( AuraTable::iterator it = m_auras.begin(); it != m_auras.end(); it++ )
+        position = *( jsVector3D->vector );
+    }
+
+    if( argc >= 3 )
+    {
+        try
         {
-            it->second->RemoveAll();
-            delete it->second;
+            orientation = ToPrimitive<float>( argv[2] );
         }
-        m_auras.clear();
-
-        for( AuraSet::iterator it = m_aurasInfluencingMe.begin(); it != m_aurasInfluencingMe.end(); it++ )
+        catch( PSERROR_Scripting_ConversionFailed )
         {
-            (*it)->Remove( this );
+            // TODO: Net-safe random for this parameter.
+            orientation = 0.0f;
         }
-        m_aurasInfluencingMe.clear();
+    }
 
-        // Change this entity's template to the corpse entity - but note
-        // we don't fiddle with the actors or bounding information that we
-        // usually do when changing templates.
+    HEntity handle = g_EntityManager.create( baseEntity, position, orientation );
 
-        if(m_corpse == L"null")
-        {
-            kill();
-        }
+    *rval = ToJSVal<CEntity>( *handle );
+    return( JS_TRUE );
+}
 
-        CBaseEntity* corpse = g_EntityTemplateCollection.getTemplate( m_corpse );
-        if( corpse )
-        {
-            m_base = corpse;
-            SetBase( m_base );
-        }
+// Script-bound methods
 
-        if( m_bounds )
-        {
-            delete( m_bounds );
-            m_bounds = NULL;
-        }
+jsval CEntity::ToString( JSContext* cx, uintN UNUSED(argc), jsval* UNUSED(argv) )
+{
+    wchar_t buffer[256];
+    swprintf( buffer, 256, L"[object Entity: %ls]", m_base->m_Tag.c_str() );
+    buffer[255] = 0;
+    utf16string str16(buffer, buffer+wcslen(buffer));
+    return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, str16.c_str() ) ) );
+}
 
-        if( m_extant )
-        {
-            m_extant = false;
-        }
+bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
+{
+    // This needs to be sorted (uses Scheduler rather than network messaging)
+    debug_assert( argc >= 1 );
 
-        updateCollisionPatch();
+    int orderCode;
 
-        g_Selection.removeAll( me );
+    try
+    {
+        orderCode = ToPrimitive<int>( argv[0] );
+    }
+    catch( PSERROR_Scripting_ConversionFailed )
+    {
+        JS_ReportError( cx, "Invalid order type" );
+        return( false );
+    }
 
+    CEntityOrder newOrder;
+	CEntity* target;
+
+    (int&)newOrder.m_type = orderCode;
+
+    switch( orderCode )
+    {
+        case CEntityOrder::ORDER_GOTO:
+        case CEntityOrder::ORDER_PATROL:
+			if( argc < 3 )
+			{
+				JS_ReportError( cx, "Too few parameters" );
+				return( false );
+			}
+			try
+			{
+				newOrder.m_data[0].location.x = ToPrimitive<float>( argv[1] );
+				newOrder.m_data[0].location.y = ToPrimitive<float>( argv[2] );
+			}
+			catch( PSERROR_Scripting_ConversionFailed )
+			{
+				JS_ReportError( cx, "Invalid location" );
+				return( false );
+			}
+			break;
+        case CEntityOrder::ORDER_ATTACK_MELEE:
+        case CEntityOrder::ORDER_GATHER:
+        case CEntityOrder::ORDER_HEAL:
+			if( argc < 1 )
+			{
+				JS_ReportError( cx, "Too few parameters" );
+				return( false );
+			}
+			target = ToNative<CEntity>( argv[1] );
+			if( !target )
+			{
+				JS_ReportError( cx, "Invalid target" );
+				return( false );
+			}
+			newOrder.m_data[0].entity = target->me;
+			break;
+        case CEntityOrder::ORDER_GENERIC:
+			if( argc < 3 )
+			{
+				JS_ReportError( cx, "Too few parameters" );
+				return( false );
+			}
+			target = ToNative<CEntity>( argv[1] );
+			if( !target )
+			{
+				JS_ReportError( cx, "Invalid target" );
+				return( false );
+			}
+			newOrder.m_data[0].entity = target->me;
+			try
+			{
+				newOrder.m_data[1].data = ToPrimitive<int>( argv[2] );
+			}
+			catch( PSERROR_Scripting_ConversionFailed )
+			{
+				JS_ReportError( cx, "Invalid generic order type" );
+				return( false );
+			}
+			break;
+        default:
+			JS_ReportError( cx, "Invalid order type" );
+			return( false );
+    }
+
+    if( !Queued )
         clearOrders();
+    pushOrder( newOrder );
 
-		g_EntityManager.SetDeath(true);	
+    return( true );
+}
 
-        if( m_actor )
-            m_actor->SetRandomAnimation( "death", true );
+bool CEntity::Damage( JSContext* cx, uintN argc, jsval* argv )
+{
+    CEntity* inflictor = NULL;
 
+    if( argc >= 4 )
+        inflictor = ToNative<CEntity>( argv[3] );
+
+    if( argc >= 3 )
+    {
+        CDamageType dmgType( ToPrimitive<float>( argv[0] ), ToPrimitive<float>( argv[1] ), ToPrimitive<float>( argv[2] ) );
+        Damage( dmgType, inflictor );
         return( true );
     }
 
-    jsval CEntity::GetSpawnPoint( JSContext* UNUSED(cx), uintN argc, jsval* argv )
+    if( argc >= 2 )
+        inflictor = ToNative<CEntity>( argv[1] );
+
+    // If it's a DamageType, use that. Otherwise, see if it's a float, if so, use
+    // that as the 'typeless' unblockable damage type.
+
+    CDamageType* dmg = ToNative<CDamageType>( argv[0] );
+
+    if( !dmg )
     {
-        float spawn_clearance = 2.0f;
-        if( argc >= 1 )
+        float dmgN;
+        if( !ToPrimitive<float>( cx, argv[0], dmgN ) )
+            return( false );
+
+        CDamageType dmgType( dmgN );
+
+        Damage( dmgType, inflictor );
+        return( true );
+    }
+
+    Damage( *dmg, inflictor );
+    return( true );
+}
+
+bool CEntity::Kill( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+{
+    for( AuraTable::iterator it = m_auras.begin(); it != m_auras.end(); it++ )
+    {
+        it->second->RemoveAll();
+        delete it->second;
+    }
+    m_auras.clear();
+
+    for( AuraSet::iterator it = m_aurasInfluencingMe.begin(); it != m_aurasInfluencingMe.end(); it++ )
+    {
+        (*it)->Remove( this );
+    }
+    m_aurasInfluencingMe.clear();
+
+    // Change this entity's template to the corpse entity - but note
+    // we don't fiddle with the actors or bounding information that we
+    // usually do when changing templates.
+
+    if(m_corpse == L"null")
+    {
+        kill();
+    }
+
+    CBaseEntity* corpse = g_EntityTemplateCollection.getTemplate( m_corpse );
+    if( corpse )
+    {
+        m_base = corpse;
+        SetBase( m_base );
+    }
+
+    if( m_bounds )
+    {
+        delete( m_bounds );
+        m_bounds = NULL;
+    }
+
+    if( m_extant )
+    {
+        m_extant = false;
+    }
+
+    updateCollisionPatch();
+
+    g_Selection.removeAll( me );
+
+    clearOrders();
+
+	g_EntityManager.SetDeath(true);	
+
+    if( m_actor )
+        m_actor->SetRandomAnimation( "death", true );
+
+    return( true );
+}
+
+jsval CEntity::GetSpawnPoint( JSContext* UNUSED(cx), uintN argc, jsval* argv )
+{
+    float spawn_clearance = 2.0f;
+    if( argc >= 1 )
+    {
+        CBaseEntity* be = ToNative<CBaseEntity>( argv[0] );
+        if( be )
         {
-            CBaseEntity* be = ToNative<CBaseEntity>( argv[0] );
-            if( be )
+            switch( be->m_bound_type )
             {
-                switch( be->m_bound_type )
-                {
-                    case CBoundingObject::BOUND_CIRCLE:
-                    spawn_clearance = be->m_bound_circle->m_radius;
-                    break;
-                    case CBoundingObject::BOUND_OABB:
-                    spawn_clearance = be->m_bound_box->m_radius;
-                    break;
-                    default:
-                    debug_warn("No bounding information for spawned object!" );
-                }
+                case CBoundingObject::BOUND_CIRCLE:
+                spawn_clearance = be->m_bound_circle->m_radius;
+                break;
+                case CBoundingObject::BOUND_OABB:
+                spawn_clearance = be->m_bound_box->m_radius;
+                break;
+                default:
+                debug_warn("No bounding information for spawned object!" );
             }
-            else
-                spawn_clearance = ToPrimitive<float>( argv[0] );
         }
         else
-            debug_warn("No arguments to Entity::GetSpawnPoint()" );
+            spawn_clearance = ToPrimitive<float>( argv[0] );
+    }
+    else
+        debug_warn("No arguments to Entity::GetSpawnPoint()" );
 
-        // TODO: Make netsafe.
-        CBoundingCircle spawn( 0.0f, 0.0f, spawn_clearance, 0.0f );
+    // TODO: Make netsafe.
+    CBoundingCircle spawn( 0.0f, 0.0f, spawn_clearance, 0.0f );
 
-        if( m_bounds->m_type == CBoundingObject::BOUND_OABB )
+    if( m_bounds->m_type == CBoundingObject::BOUND_OABB )
+    {
+        CBoundingBox* oabb = (CBoundingBox*)m_bounds;
+
+        // Pick a start point
+
+        int edge = rand() & 3;
+        int point;
+
+        double max_w = oabb->m_w + spawn_clearance + 1.0;
+        double max_d = oabb->m_d + spawn_clearance + 1.0;
+        int w_count = (int)( max_w * 2 );
+        int d_count = (int)( max_d * 2 );
+
+        CVector2D w_step = oabb->m_v * (float)( max_w / w_count );
+        CVector2D d_step = oabb->m_u * (float)( max_d / d_count );
+        CVector2D pos( m_position );
+        if( edge & 1 )
         {
-            CBoundingBox* oabb = (CBoundingBox*)m_bounds;
+            point = rand() % ( 2 * d_count ) - d_count;
+            pos += ( oabb->m_v * (float)max_w + d_step * (float)point ) * ( ( edge & 2 ) ? -1.0f : 1.0f );
+        }
+        else
+        {
+            point = rand() % ( 2 * w_count ) - w_count;
+            pos += ( oabb->m_u * (float)max_d + w_step * (float)point ) * ( ( edge & 2 ) ? -1.0f : 1.0f );
+        }
 
-            // Pick a start point
+        int start_edge = edge;
+        int start_point = point;
 
-            int edge = rand() & 3;
-            int point;
+        spawn.m_pos = pos;
 
-            double max_w = oabb->m_w + spawn_clearance + 1.0;
-            double max_d = oabb->m_d + spawn_clearance + 1.0;
-            int w_count = (int)( max_w * 2 );
-            int d_count = (int)( max_d * 2 );
-
-            CVector2D w_step = oabb->m_v * (float)( max_w / w_count );
-            CVector2D d_step = oabb->m_u * (float)( max_d / d_count );
-            CVector2D pos( m_position );
-            if( edge & 1 )
+        // Then step around the edge (clockwise) until a free space is found, or
+        // we've gone all the way around.
+        while( getCollisionObject( &spawn ) )
+        {
+            switch( edge )
             {
-                point = rand() % ( 2 * d_count ) - d_count;
-                pos += ( oabb->m_v * (float)max_w + d_step * (float)point ) * ( ( edge & 2 ) ? -1.0f : 1.0f );
-            }
-            else
-            {
-                point = rand() % ( 2 * w_count ) - w_count;
-                pos += ( oabb->m_u * (float)max_d + w_step * (float)point ) * ( ( edge & 2 ) ? -1.0f : 1.0f );
-            }
-
-            int start_edge = edge;
-            int start_point = point;
-
-            spawn.m_pos = pos;
-
-            // Then step around the edge (clockwise) until a free space is found, or
-            // we've gone all the way around.
-            while( getCollisionObject( &spawn ) )
-            {
-                switch( edge )
+                case 0:
+                point++;
+                pos += w_step;
+                if( point >= w_count )
                 {
-                    case 0:
-                    point++;
-                    pos += w_step;
-                    if( point >= w_count )
-                    {
-                        edge = 1;
-                        point = -d_count;
-                    }
-                    break;
-                    case 1:
-                    point++;
-                    pos -= d_step;
-                    if( point >= d_count )
-                    {
-                        edge = 2;
-                        point = w_count;
-                    }
-                    break;
-                    case 2:
-                    point--;
-                    pos -= w_step;
-                    if( point <= -w_count )
-                    {
-                        edge = 3;
-                        point = d_count;
-                    }
-                    break;
-                    case 3:
-                    point--;
-                    pos += d_step;
-                    if( point <= -d_count )
-                    {
-                        edge = 0;
-                        point = -w_count;
-                    }
-                    break;
+                    edge = 1;
+                    point = -d_count;
                 }
-                if( ( point == start_point ) && ( edge == start_edge ) )
-                    return( JSVAL_NULL );
-                spawn.m_pos = pos;
+                break;
+                case 1:
+                point++;
+                pos -= d_step;
+                if( point >= d_count )
+                {
+                    edge = 2;
+                    point = w_count;
+                }
+                break;
+                case 2:
+                point--;
+                pos -= w_step;
+                if( point <= -w_count )
+                {
+                    edge = 3;
+                    point = d_count;
+                }
+                break;
+                case 3:
+                point--;
+                pos += d_step;
+                if( point <= -d_count )
+                {
+                    edge = 0;
+                    point = -w_count;
+                }
+                break;
             }
-            CVector3D rval( pos.x, getAnchorLevel( pos.x, pos.y ), pos.y );
-            return( ToJSVal( rval ) );
-        }
-        else if( m_bounds->m_type == CBoundingObject::BOUND_CIRCLE )
-        {
-            float ang;
-            ang = (float)( rand() & 0x7fff ) / (float)0x4000; /* 0...2 */
-            ang *= PI;
-            float radius = m_bounds->m_radius + 1.0f + spawn_clearance;
-            float d_ang = spawn_clearance / ( 2.0f * radius );
-            float ang_end = ang + 2.0f * PI;
-            float x = 0.0f, y = 0.0f; // make sure they're initialized
-            for( ; ang < ang_end; ang += d_ang )
-            {
-                x = m_position.X + radius * cos( ang );
-                y = m_position.Z + radius * sin( ang );
-                spawn.setPosition( x, y );
-                if( !getCollisionObject( &spawn ) )
-                    break;
-            }
-            if( ang < ang_end )
-            {
-                // Found a satisfactory position...
-                CVector3D pos( x, 0, y );
-                pos.Y = getAnchorLevel( x, y );
-                return( ToJSVal( pos ) );
-            }
-            else
+            if( ( point == start_point ) && ( edge == start_edge ) )
                 return( JSVAL_NULL );
+            spawn.m_pos = pos;
         }
-        return( JSVAL_NULL );
+        CVector3D rval( pos.x, getAnchorLevel( pos.x, pos.y ), pos.y );
+        return( ToJSVal( rval ) );
     }
-
-    jsval CEntity::AddAura( JSContext* cx, uintN argc, jsval* argv )
+    else if( m_bounds->m_type == CBoundingObject::BOUND_CIRCLE )
     {
-        debug_assert( argc >= 3 );
-        debug_assert( JSVAL_IS_OBJECT(argv[2]) );
-
-        CStrW name = ToPrimitive<CStrW>( argv[0] );
-        float radius = ToPrimitive<float>( argv[1] );
-        JSObject* handler = JSVAL_TO_OBJECT( argv[2] );
-
-        if(m_auras[name])
+        float ang;
+        ang = (float)( rand() & 0x7fff ) / (float)0x4000; /* 0...2 */
+        ang *= PI;
+        float radius = m_bounds->m_radius + 1.0f + spawn_clearance;
+        float d_ang = spawn_clearance / ( 2.0f * radius );
+        float ang_end = ang + 2.0f * PI;
+        float x = 0.0f, y = 0.0f; // make sure they're initialized
+        for( ; ang < ang_end; ang += d_ang )
         {
-            delete m_auras[name];
+            x = m_position.X + radius * cos( ang );
+            y = m_position.Z + radius * sin( ang );
+            spawn.setPosition( x, y );
+            if( !getCollisionObject( &spawn ) )
+                break;
         }
-        m_auras[name] = new CAura( cx, this, name, radius, handler );
-
-        return JSVAL_VOID;
+        if( ang < ang_end )
+        {
+            // Found a satisfactory position...
+            CVector3D pos( x, 0, y );
+            pos.Y = getAnchorLevel( x, y );
+            return( ToJSVal( pos ) );
+        }
+        else
+            return( JSVAL_NULL );
     }
+    return( JSVAL_NULL );
+}
 
-    jsval CEntity::RemoveAura( JSContext* UNUSED(cx), uintN argc, jsval* argv )
+jsval CEntity::AddAura( JSContext* cx, uintN argc, jsval* argv )
+{
+    debug_assert( argc >= 3 );
+    debug_assert( JSVAL_IS_OBJECT(argv[2]) );
+
+    CStrW name = ToPrimitive<CStrW>( argv[0] );
+    float radius = ToPrimitive<float>( argv[1] );
+    JSObject* handler = JSVAL_TO_OBJECT( argv[2] );
+
+    if( m_auras[name] )
     {
-        debug_assert( argc >= 1 );
-        CStrW name = ToPrimitive<CStrW>( argv[0] );
-        if(m_auras[name])
-        {
-            delete m_auras[name];
-            m_auras.erase(name);
-        }
-        return JSVAL_VOID;
+        delete m_auras[name];
     }
+    m_auras[name] = new CAura( cx, this, name, radius, handler );
+
+    return JSVAL_VOID;
+}
+
+jsval CEntity::RemoveAura( JSContext* UNUSED(cx), uintN argc, jsval* argv )
+{
+    debug_assert( argc >= 1 );
+    CStrW name = ToPrimitive<CStrW>( argv[0] );
+    if( m_auras[name] )
+    {
+        delete m_auras[name];
+        m_auras.erase(name);
+    }
+    return JSVAL_VOID;
+}
+
+jsval CEntity::SetActionParams( JSContext* UNUSED(cx), uintN argc, jsval* argv )
+{
+    debug_assert( argc == 5 );
+
+    int id = ToPrimitive<int>( argv[0] );
+    float minRange = ToPrimitive<int>( argv[1] );
+    float maxRange = ToPrimitive<int>( argv[2] );
+    uint speed = ToPrimitive<uint>( argv[3] );
+    CStr8 animation = ToPrimitive<CStr8>( argv[4] );
+
+	m_actions[id] = SEntityAction( minRange, maxRange, speed, animation );
+
+    return JSVAL_VOID;
+}
