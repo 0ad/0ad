@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
 
+  <castshadow/>
+
   <group>
     <variant frequency="100" name="Base">
-      <animations/>
       <mesh>props/dudette_head.pmd</mesh>
-      <props/>
-      <texture>props/dudette_head.dds</texture>
+      <texture>props/head/celt_fem_a.dds</texture>
     </variant>
   </group>
+
+  <group>
+    <variant name="blonde">
+      <colour>224 215 31</colour>
+    </variant>
+    <variant name="brown">
+      <colour>157 151 21</colour>
+    </variant>
+    <variant name="red">
+      <colour>224 120 16</colour>
+    </variant>
+    <variant name="darkbrown">
+      <colour>68 66 30</colour>
+    </variant>
+  </group>
+
+  <material>objectcolor.xml</material>
 
 </actor>
