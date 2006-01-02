@@ -148,7 +148,7 @@ static void Frame()
 
 	// decide if update/render is necessary
 	bool need_render, need_update;
-	if(g_app_minimized)
+	if( g_app_minimized )
 	{
 		// TODO: eventually update ought to be re-enabled so the server host
 		// can Alt+Tab out without the match hanging. however, game updates
@@ -160,15 +160,14 @@ static void Frame()
 		// don't use SDL_WaitEvent: don't want the main loop to freeze until app focus is restored
 		SDL_Delay(10);
 	}
-	else if(!g_app_has_focus)
+	else if( !g_app_has_focus )
 	{
 		need_update = false;	// see above
 		need_render = true;
 
 		SDL_Delay(5);	// see above
 	}
-	// active
-	else
+	else	// active
 	{
 		need_update = true;
 		need_render = true;

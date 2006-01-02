@@ -913,6 +913,29 @@ JSBool setWaterAlphaOffset( JSContext* cx, JSObject* UNUSED(globalObject), uint 
 	return( JS_TRUE );
 }
 
+// Is the game paused?
+JSBool isPaused( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+{
+	REQUIRE_NO_PARAMS( isPaused );
+	*rval = g_Game->m_Paused ? JSVAL_TRUE : JSVAL_FALSE;
+	return( JS_TRUE );
+}
+
+// Pause/unpause the game
+JSBool setPaused( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* UNUSED(rval) )
+{
+	REQUIRE_PARAMS( 1, setPaused );
+	try 
+	{
+		g_Game->m_Paused = ToPrimitive<bool>( argv[0] );
+	}	
+	catch( PSERROR_Scripting_ConversionFailed )
+	{
+		JS_ReportError( cx, "Invalid parameter to setPaused" );
+	}
+	return( JS_TRUE );
+}
+
 // Reveal map
 JSBool revealMap( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
@@ -1016,6 +1039,8 @@ JSFunctionSpec ScriptFunctionTable[] =
 	// Misc. Engine Interface
 	JS_FUNC(writeLog, WriteLog, 1)
 	JS_FUNC(exit, exitProgram, 0)
+	JS_FUNC(isPaused, isPaused, 0)
+	JS_FUNC(setPaused, setPaused, 1)
 	JS_FUNC(vmem, vmem, 0)
 	JS_FUNC(_rewriteMaps, _rewriteMaps, 0)
 	JS_FUNC(_lodbias, _lodbias, 0)

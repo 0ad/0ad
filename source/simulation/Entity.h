@@ -215,7 +215,7 @@ public:
 	CPlayer* GetPlayer() { return m_player; } 
 
 	// Process damage
-	void Damage( CDamageType& damage, CEntity* inflictor = NULL );
+	//void Damage( CDamageType& damage, CEntity* inflictor = NULL );
 
 	// Update collision patch (move ourselves to a new one if necessary)
 	void updateCollisionPatch();
@@ -266,7 +266,7 @@ public:
 
 	jsval ToString( JSContext* cx, uintN argc, jsval* argv );
 	
-	bool Damage( JSContext* cx, uintN argc, jsval* argv );
+	//bool Damage( JSContext* cx, uintN argc, jsval* argv );
 	bool Kill( JSContext* cx, uintN argc, jsval* argv );
 	jsval GetSpawnPoint( JSContext* cx, uintN argc, jsval* argv );
 

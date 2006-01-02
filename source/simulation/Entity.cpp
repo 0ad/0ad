@@ -615,11 +615,11 @@ void CEntity::Tick()
     DispatchEvent( &evt );
 }
 
-void CEntity::Damage( CDamageType& damage, CEntity* inflictor )
+/*void CEntity::Damage( CDamageType& damage, CEntity* inflictor )
 {
     CEventDamage evt( inflictor, &damage );
     DispatchEvent( &evt );
-}
+}*/
 
 
 void CEntity::clearOrders()
@@ -1017,7 +1017,7 @@ void CEntity::ScriptingInit()
     AddMethod<bool, &CEntity::OrderSingle>( "order", 1 );
     AddMethod<bool, &CEntity::OrderQueued>( "orderQueued", 1 );
     AddMethod<bool, &CEntity::Kill>( "kill", 0 );
-    AddMethod<bool, &CEntity::Damage>( "damage", 1 );
+    //AddMethod<bool, &CEntity::Damage>( "damage", 1 );
     AddMethod<bool, &CEntity::IsIdle>( "isIdle", 0 );
     AddMethod<bool, &CEntity::HasClass>( "hasClass", 1 );
     AddMethod<jsval, &CEntity::GetSpawnPoint>( "getSpawnPoint", 1 );
@@ -1201,7 +1201,7 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
     return( true );
 }
 
-bool CEntity::Damage( JSContext* cx, uintN argc, jsval* argv )
+/*bool CEntity::Damage( JSContext* cx, uintN argc, jsval* argv )
 {
     CEntity* inflictor = NULL;
 
@@ -1237,7 +1237,7 @@ bool CEntity::Damage( JSContext* cx, uintN argc, jsval* argv )
 
     Damage( *dmg, inflictor );
     return( true );
-}
+}*/
 
 bool CEntity::Kill( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {

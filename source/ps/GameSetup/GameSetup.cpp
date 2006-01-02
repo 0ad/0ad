@@ -479,7 +479,7 @@ static void InitScripting()
 	CPlayer::ScriptingInit();
 
 	PlayerCollection::Init( "PlayerCollection" );
-	CDamageType::ScriptingInit();
+	//CDamageType::ScriptingInit();
 	CJSComplexPropertyAccessor<CEntity>::ScriptingInit(); // <-- Doesn't really matter which we use, but we know CJSPropertyAccessor<T> is already being compiled for T = CEntity.
 	CScriptEvent::ScriptingInit();
 	CJSProgressTimer::ScriptingInit();

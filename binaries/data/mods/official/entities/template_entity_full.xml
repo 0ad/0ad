@@ -16,12 +16,8 @@
  		</Creation>		
 	</Traits>
 
-	<Script File="entities/template_entity_script.js" />	
-	<Event On="Attack" Function="entityEventAttack" />
-	<Event On="Gather" Function="entityEventGather" />
-	<Event On="Heal" Function="entityEventHeal" />
+	<Script File="entities/template_entity_script.js" />
 	<Event On="Generic" Function="entityEventGeneric" />
-	<Event On="TakesDamage" Function="entityEventTakesDamage" />
 	<Event On="TargetChanged" Function="entityEventTargetChanged" />
 
 </Entity>

@@ -36,13 +36,13 @@ public:
 	CEventGather( CEntity* target );
 };
 
-class CEventDamage : public CScriptEvent
+/*class CEventDamage : public CScriptEvent
 {
 	CEntity* m_inflictor;
 	CDamageType* m_damage;
 public:
 	CEventDamage( CEntity* inflictor, CDamageType* damage );
-};
+};*/
 
 class CEventHeal : public CScriptEvent
 {

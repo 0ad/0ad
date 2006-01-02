@@ -41,7 +41,7 @@
 			hotkey="water.raise"
 		>
 			<action on="Press"><![CDATA[		
-				setWaterHeight(getWaterHeight() + 0.25);
+				setWaterHeight( getWaterHeight() + 0.25 );
 			]]></action>
 		</object>
 
@@ -50,7 +50,16 @@
 			hotkey="water.lower"
 		>
 			<action on="Press"><![CDATA[	
-				setWaterHeight(getWaterHeight() - 0.25);
+				setWaterHeight( getWaterHeight() - 0.25 );
+			]]></action>
+		</object>
+		
+		<!-- EMPTY OBJECT USED TO PAUSE/UNPAUSE GAME. -->
+		<object name="snPause"
+			hotkey="pause"
+		>
+			<action on="Press"><![CDATA[	
+				setPaused( !isPaused() );
 			]]></action>
 		</object>
 		

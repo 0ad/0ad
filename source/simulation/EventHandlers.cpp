@@ -28,13 +28,13 @@ CEventGeneric::CEventGeneric( CEntity* target, int action ) : CScriptEvent( L"ge
 	AddLocalProperty( L"action", &m_action );
 }
 
-CEventDamage::CEventDamage( CEntity* inflictor, CDamageType* damage ) : CScriptEvent( L"takesDamage", EVENT_DAMAGE, true )
+/*CEventDamage::CEventDamage( CEntity* inflictor, CDamageType* damage ) : CScriptEvent( L"takesDamage", EVENT_DAMAGE, true )
 {
 	m_inflictor = inflictor;
 	m_damage = damage;
 	AddLocalProperty( L"inflictor", &m_inflictor, true );
 	AddLocalProperty( L"damage", &m_damage );
-}
+}*/
 
 CEventTargetChanged::CEventTargetChanged( CEntity* target ) : CScriptEvent( L"targetChanged", EVENT_TARGET_CHANGED, false )
 {

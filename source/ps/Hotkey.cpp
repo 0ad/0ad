@@ -135,7 +135,8 @@ static SHotkeyInfo hotkeyInfo[] =
 	{ HOTKEY_PLAYMUSIC, "playmusic", SDLK_p, 0 },
 	{ HOTKEY_WATER_TOGGLE, "water.toggle", SDLK_q, 0 },
 	{ HOTKEY_WATER_RAISE, "water.toggle", SDLK_a, 0 },
-	{ HOTKEY_WATER_LOWER, "water.toggle", SDLK_z, 0 }
+	{ HOTKEY_WATER_LOWER, "water.toggle", SDLK_z, 0 },
+	{ HOTKEY_PAUSE, "pause", SDLK_PAUSE, 0 }
 };
 
 /* SDL-type ends */

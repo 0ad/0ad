@@ -126,10 +126,14 @@ function entityInit()
 		}
 	}
 	
+	// Attach functions to ourselves
+	
 	this.processAttack = entityEventAttack;
 	this.processAttackRanged = entityEventAttackRanged;
 	this.processGather = entityEventGather;
 	this.processHeal = entityEventHeal;
+	
+	this.damage = entityDamage;
 
 	// Attach Auras if the entity is entitled to them.
 	if( this.traits.auras )
@@ -262,14 +266,14 @@ function entityEventAttackRanged( evt )
 	
 	evt.stopPropagation();
 	
-	console.write( "Fire!" );
+	//console.write( "Fire!" );
 }
 
 // ====================================================================
 
 function projectileEventImpact( evt )
 {
-	console.write( "Hit!" );
+	//console.write( "Hit!" );
 	evt.impacted.damage( this.damage, evt.originator );
 	
 	// Just so you know - there's no guarantee that evt.impacted is the thing you were
@@ -385,17 +389,17 @@ function entityEventHeal( evt )
 
 // ====================================================================
 
-function entityEventTakesDamage( evt )
-{
+function entityDamage( damage, inflictor )
+{	
 	// Apply armour and work out how much damage we actually take
-	crushDamage = parseInt(evt.damage.crush - this.traits.armour.value * this.traits.armour.crush);
+	crushDamage = parseInt(damage.crush - this.traits.armour.value * this.traits.armour.crush);
 	if ( crushDamage < 0 ) crushDamage = 0;
-	pierceDamage = parseInt(evt.damage.pierce - this.traits.armour.value * this.traits.armour.pierce);
+	pierceDamage = parseInt(damage.pierce - this.traits.armour.value * this.traits.armour.pierce);
 	if ( pierceDamage < 0 ) pierceDamage = 0;
-	hackDamage = parseInt(evt.damage.hack - this.traits.armour.value * this.traits.armour.hack);
+	hackDamage = parseInt(damage.hack - this.traits.armour.value * this.traits.armour.hack);
 	if ( hackDamage < 0 ) hackDamage = 0;
 
-	totalDamage = parseInt(evt.damage.typeless + crushDamage + pierceDamage + hackDamage);
+	totalDamage = parseInt(damage.typeless + crushDamage + pierceDamage + hackDamage);
 
 	// Minimum of 1 damage
 
@@ -406,13 +410,13 @@ function entityEventTakesDamage( evt )
 	if( this.traits.health.curr <= 0 )
 	{
 		// If the inflictor gains promotions, and he's capable of earning more ranks,
-		if (evt.inflictor.traits.up && evt.inflictor.traits.up.curr && evt.inflictor.traits.up.req
-				&& evt.inflictor.traits.up.newentity && evt.inflictor.traits.up.newentity != ""
+		if (inflictor.traits.up && inflictor.traits.up.curr && inflictor.traits.up.req
+				&& inflictor.traits.up.newentity && inflictor.traits.up.newentity != ""
 				&& this.traits.loot && this.traits.loot.up)
 		{
 			// Give him the fallen's upgrade points (if he has any).
 			if (this.traits.loot.up)
-				evt.inflictor.traits.up.curr = parseInt(evt.inflictor.traits.up.curr) + parseInt(this.traits.loot.up);
+				inflictor.traits.up.curr = parseInt(inflictor.traits.up.curr) + parseInt(this.traits.loot.up);
 
 			// Notify player.
 			if (this.traits.id.specific)
@@ -421,7 +425,7 @@ function entityEventTakesDamage( evt )
 				console.write("One of your units has earned " + this.traits.loot.up + " upgrade points!");
 
 			// If he now has maximum upgrade points for his rank,
-			if (evt.inflictor.traits.up.curr >= evt.inflictor.traits.up.req)
+			if (inflictor.traits.up.curr >= inflictor.traits.up.req)
 			{
 				// Notify the player.
 				if (this.traits.id.specific)
@@ -430,13 +434,13 @@ function entityEventTakesDamage( evt )
 					console.write("One of your units has gained a promotion!");
 				
 				// Reset his upgrade points.
-				evt.inflictor.traits.up.curr = 0; 
+				inflictor.traits.up.curr = 0; 
 
 				// Upgrade his portrait to the next level.
-				evt.inflictor.traits.id.icon_cell++; 
+				inflictor.traits.id.icon_cell++; 
 
 				// Transmogrify him into his next rank.
-				evt.inflictor.template = getEntityTemplate(evt.inflictor.traits.up.newentity);
+				inflictor.template = getEntityTemplate(inflictor.traits.up.newentity);
 			}
 		}
 
@@ -462,8 +466,8 @@ function entityEventTakesDamage( evt )
 		}
 
 		// Notify player.
-		if( evt.inflictor )
-			console.write( this.traits.id.generic + " got the point of " + evt.inflictor.traits.id.generic + "'s weapon." );
+		if( inflictor )
+			console.write( this.traits.id.generic + " got the point of " + inflictor.traits.id.generic + "'s weapon." );
 		else
 			console.write( this.traits.id.generic + " died in mysterious circumstances." );
 
@@ -482,13 +486,13 @@ function entityEventTakesDamage( evt )
 		console.write("Kill!!");
 		this.kill();
 	}
-	else if( evt.inflictor && this.actions.attack )
+	else if( inflictor && this.actions.attack )
 	{
 		// If we're not already doing something else, take a measured response - hit 'em back.
 		// You know, I think this is quite possibly the first AI code the AI divlead has written
 		// for 0 A.D....
 		if( this.isIdle() )
-			this.order( ORDER_ATTACK, evt.inflictor );
+			this.order( ORDER_GENERIC, inflictor, ACTION_ATTACK );
 	}
 }
 
@@ -799,7 +803,17 @@ function canGather( source, target )
 
 // ====================================================================
 
-function DamageModifyAura ( source, ally, bonus )
+function DamageType()
+{
+	this.typeless = 0.0;
+	this.crush = 0.0;
+	this.pierce = 0.0;
+	this.hack = 0.0;
+}
+
+// ====================================================================
+
+function DamageModifyAura( source, ally, bonus )
 {
 	// Defines the effects of the DamageModify Aura. (Adjacent units have modified attack bonus.)
 	// The Courage Aura uses this function to give attack bonus to allies.	
@@ -842,7 +856,7 @@ function DamageModifyAura ( source, ally, bonus )
 
 // ====================================================================
 
-function DropsiteAura ( source, types )
+function DropsiteAura( source, types )
 {
 	// Defines the effects of the Gather aura. Enables resource gathering on entities
 	// near the source for it's owner.
@@ -876,7 +890,7 @@ function DropsiteAura ( source, types )
 
 // ====================================================================
 
-function InfidelityAura ( source, time )
+function InfidelityAura( source, time )
 {
 	// Defines the effects of the Infidelity Aura. Changes ownership of entity when only one player's units surrounds them.
 

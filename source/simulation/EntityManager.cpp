@@ -85,6 +85,8 @@ HEntity CEntityManager::create( CBaseEntity* base, CVector3D position, float ori
 	}
 
 	m_entities[m_nextalloc].m_entity = new CEntity( base, position, orientation );
+	if( m_collisionPatches)
+		m_entities[m_nextalloc].m_entity->updateCollisionPatch();
 	m_entities[m_nextalloc].m_entity->me = HEntity( m_nextalloc );
 	return( HEntity( m_nextalloc++ ) );
 }
@@ -166,19 +168,6 @@ void CEntityManager::GetInRange( float x, float z, float radius, std::vector<CEn
 			}
 		}
 	}
-	
-	/*for( int i = 0; i < MAX_HANDLES; i++ )
-	{
-		if( m_entities[i].m_refcount && !m_entities[i].m_entity->m_destroyed && m_entities[i].m_entity->m_extant )
-		{
-			float dx = x - m_entities[i].m_entity->m_position.X;
-			float dz = z - m_entities[i].m_entity->m_position.Z;
-			if(dx*dx + dz*dz <= radius*radius)
-			{
-				results.push_back( m_entities[i].m_entity );
-			}
-		}
-	}*/
 }
 
 /*

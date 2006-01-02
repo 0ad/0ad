@@ -32,7 +32,8 @@ CGame::CGame():
 	m_Simulation(this),
 	m_GameView(this),
 	m_pLocalPlayer(NULL),
-	m_GameStarted(false)
+	m_GameStarted(false),
+	m_Paused(false)
 {
 	debug_printf("CGame::CGame(): Game object CREATED; initializing..\n");
 }
@@ -125,6 +126,11 @@ PSRETURN CGame::StartGame(CGameAttributes *pAttribs)
 
 void CGame::Update(double deltaTime)
 {
+	if( m_Paused )
+	{
+		return;
+	}
+
 	m_Simulation.Update(deltaTime);
 	
 	// TODO Detect game over and bring up the summary screen or something

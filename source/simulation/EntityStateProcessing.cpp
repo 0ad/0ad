@@ -524,7 +524,10 @@ bool CEntity::processHealNoPathing( CEntityOrder* current, size_t timestep_milli
 bool CEntity::processGeneric( CEntityOrder* current, size_t timestep_millis )
 {
 	int id = current->m_data[1].data;
-	debug_assert( m_actions.find( id ) != m_actions.end() );
+	if( m_actions.find( id ) == m_actions.end() )
+	{	
+		return false;	// we've been tasked as part of a group but we can't do this action
+	}
 	SEntityAction& action = m_actions[id];
 	return( processContactAction( current, timestep_millis, CEntityOrder::ORDER_GENERIC_NOPATHING, &action ) );
 }
@@ -532,7 +535,10 @@ bool CEntity::processGeneric( CEntityOrder* current, size_t timestep_millis )
 bool CEntity::processGenericNoPathing( CEntityOrder* current, size_t timestep_millis )
 {
 	int id = current->m_data[1].data;
-	debug_assert( m_actions.find( id ) != m_actions.end() );
+	if( m_actions.find( id ) == m_actions.end() )
+	{	
+		return false;	// we've been tasked as part of a group but we can't do this action
+	}
 	SEntityAction& action = m_actions[id];
 	CEventGeneric evt( current->m_data[0].entity, id );
 	if( !m_actor ) return( false );

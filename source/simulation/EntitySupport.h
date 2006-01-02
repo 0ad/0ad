@@ -8,7 +8,7 @@
 
 class CEntityManager;
 
-class CDamageType : public CJSObject<CDamageType>
+/*class CDamageType : public CJSObject<CDamageType>
 {
 public:
 	float m_Crush;
@@ -73,7 +73,7 @@ public:
 
 		return( JS_TRUE );
 	}
-};
+};*/
 
 struct SEntityAction
 {

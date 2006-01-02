@@ -44,6 +44,8 @@ public:
 	CGame();
 	~CGame();
 
+	bool m_Paused;
+
 	/*
 		Initialize all local state and members for playing a game described by
 		the attribute class, and start the game.
