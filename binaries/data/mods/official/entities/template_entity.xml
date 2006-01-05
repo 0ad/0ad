@@ -28,7 +28,15 @@
 		</Health>
 
 	</Traits>
-
+	<Actions>
+		<Move>
+			<Run>
+				<Speed>0.0</Speed>
+			</Run>
+		</Move>
+	</Actions>
+	
+	
 	<Script File="entities/template_entity_script.js" />	
 	<Event On="Initialize" Function="entityInit" />
 	<Event On="PrepareOrder" Function="entityEventPrepareOrder" />
