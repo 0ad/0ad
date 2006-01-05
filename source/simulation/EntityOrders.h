@@ -38,6 +38,7 @@
 
 #include "EntityHandles.h"
 #include "Vector2D.h"
+#include "scripting/DOMEvent.h"
 
 struct SOrderData
 {
@@ -46,6 +47,27 @@ struct SOrderData
 	HEntity entity;
 };
 
+class CEntityListener
+{
+public:
+	enum
+	{
+		NOTIFY_GOTO = 0x01,
+		NOTIFY_RUN = 0x02,
+		NOTIFY_FOLLOW = 0x03,	//GOTO | RUN
+		NOTIFY_ATTACK = 0x04,
+		NOTIFY_DAMAGE = 0x08,
+		NOTIFY_ESCORT = 0x0D,	//GOTO | ATTACK | DAMAGE
+		NOTIFY_HEAL = 0x10,
+		NOTIFY_GATHER = 0x20
+
+	}	m_type;
+	
+	CEntity* m_sender;
+};
+
+
+
 class CEntityOrder
 {
 public:
@@ -53,8 +75,9 @@ public:
 	{
 		ORDER_GOTO_NOPATHING,
 		ORDER_GOTO_SMOOTHED,
-		ORDER_GOTO_COLLISION,	
+		ORDER_GOTO_COLLISION,
 		ORDER_GOTO,
+		ORDER_RUN,
 		ORDER_PATROL,
 		ORDER_ATTACK_MELEE,
 		ORDER_ATTACK_MELEE_NOPATHING,

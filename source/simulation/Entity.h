@@ -72,7 +72,9 @@ public:
 
 	float m_speed;
 	float m_turningRadius;
-
+	float m_trampleStart;
+	
+	SEntityAction m_run;
 	SEntityAction m_melee;
 	SEntityAction m_gather;
 	SEntityAction m_heal;
@@ -153,8 +155,7 @@ public:
 	size_t m_fsm_anipos2; // for when there are two animation-related events we need to take care of.
 
 	std::deque<CEntityOrder> m_orderQueue;	
-	//std::deque<CEntityListener> m_notifications;
-	//std::deque<CEntityListener> m_listeners;
+	std::deque<CEntityListener> m_listeners;
 	
 private:
 	CEntity( CBaseEntity* base, CVector3D position, float orientation );
@@ -253,10 +254,9 @@ public:
 
 	void clearOrders();
 	void pushOrder( CEntityOrder& order );
-
-	//void RequestNotification( CEntity* target, unsigned long orderType );
-	//void SendNotification( CEntity* target, unsigned long orderType );
-	//void DispatchNotification( CEntityListener notify );
+	
+	jsval RequestNotification( JSContext* cx, uintN argc, jsval* argv );
+	jsval CheckListeners( JSContext* cx, uintN argc, jsval* argv );
 
 	// Script constructor
 

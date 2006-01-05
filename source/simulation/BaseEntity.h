@@ -75,7 +75,8 @@ public:
 	bool m_permanent;
 
 	float m_speed;
-
+	
+	SEntityAction m_run;
 	SEntityAction m_melee;
 	SEntityAction m_gather;
 	SEntityAction m_heal;

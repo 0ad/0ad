@@ -46,7 +46,7 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 	// Curve smoothing.
 	// Here there be trig.
 
-	float scale = m_speed * timestep;
+	float scale = ( m_run.m_Speed > 0 ? m_run.m_Speed : m_speed ) * timestep;
 
 	// Note: Easy optimization: flag somewhere that this unit
 	// is already pointing the right way, and don't do this
@@ -278,10 +278,10 @@ bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timeste
 
 	if( !current->m_data[0].entity || !current->m_data[0].entity->m_extant )
 		return( false );
-	
 	current->m_data[0].location = current->m_data[0].entity->m_position;
-
-	if( ( current->m_data[0].location - m_position ).length() < action->m_MaxRange ) 
+	float Distance = (current->m_data[0].location - m_position).length();
+	
+	if( Distance < action->m_MaxRange ) 
 	{
 		(int&)current->m_type = transition;
 		m_orderQueue.push_front(*current);		// Seems to be needed since we do a pop above
@@ -290,8 +290,19 @@ bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timeste
 
 	if( m_transition && m_actor )
 	{
-		CSkeletonAnim* walk = m_actor->GetRandomAnimation( "walk" );
-		m_actor->GetModel()->SetAnimation( walk, false, m_speed * walk->m_AnimDef->GetDuration() );
+		if (m_run.m_Speed > 0 )
+		{	
+			if ( Distance > m_run.m_MinRange && Distance < m_run.m_MaxRange )
+			{
+				CSkeletonAnim* run = m_actor->GetRandomAnimation( "run" );
+				m_actor->GetModel()->SetAnimation( run, false, m_run.m_Speed * run->m_AnimDef->GetDuration() );
+			}
+		}
+		else
+		{
+			CSkeletonAnim* walk = m_actor->GetRandomAnimation( "walk" );
+			m_actor->GetModel()->SetAnimation( walk, false, m_speed * walk->m_AnimDef->GetDuration() );
+		}
 		// Animation desync
 		m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
 	}
@@ -353,6 +364,9 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 	// Target's dead (or exhausted)? Then our work here is done.
 	if( !current->m_data[0].entity || !current->m_data[0].entity->m_extant )
 	{
+		//TODO:  eventually when stances/formations are implemented, if applicable (e.g. not 
+		//heal or if defensive stance), the unit should expand and continue the order.
+
 		m_orderQueue.pop_front();
 		return( false );
 	}
@@ -376,9 +390,27 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		// Too far away at the moment, chase after the target...
 		// We're aiming to end up at a location just inside our maximum range
 		// (is this good enough?)
-
+		delta = delta.normalize() * ( adjRange - m_bounds->m_radius );
+		
+		//Determine whether to run or to walk
+		if ( m_run.m_Speed > 0 )
+		{
+			float deltaLength = delta.length();
+			if ( m_actor && ! m_actor->IsPlayingAnimation( "run" ) )
+			{
+				//Are we in range?
+				if ( deltaLength < m_run.m_MaxRange && deltaLength > m_run.m_MinRange ) 
+				{	
+					CSkeletonAnim* run = m_actor->GetRandomAnimation( "run" );
+					m_actor->GetModel()->SetAnimation( run, false, m_run.m_Speed * run->m_AnimDef->GetDuration() );
+					// Animation desync
+					m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
+				}
+			}
+		}
+		
 		// Play walk for a bit.
-		if( m_actor && ! m_actor->IsPlayingAnimation( "walk" ) )
+		else if( m_actor && ! m_actor->IsPlayingAnimation( "walk" ) )
 		{
 			CSkeletonAnim* walk = m_actor->GetRandomAnimation( "walk" );
 			m_actor->GetModel()->SetAnimation( walk, false, m_speed * walk->m_AnimDef->GetDuration() );
@@ -386,7 +418,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 			m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
 		}
 
-		delta = delta.normalize() * ( adjRange - m_bounds->m_radius );
+		
 
 		current->m_data[0].location = (CVector2D)current->m_data[0].entity->m_position - delta;
 
@@ -554,19 +586,30 @@ bool CEntity::processGoto( CEntityOrder* current, size_t UNUSED(timestep_millis)
 	CVector2D pos( m_position.X, m_position.Z );
 	CVector2D path_to = current->m_data[0].location;
 	m_orderQueue.pop_front();
-
+	float Distance = ( path_to - pos ).length();
+	
 	// Let's just check we're going somewhere...
-	if( ( path_to - pos ).length() < 0.1f ) 
+	if( Distance < 0.1f ) 
 		return( false );
 
 	if( m_transition && m_actor )
 	{
-
-		CSkeletonAnim* walk = m_actor->GetRandomAnimation( "walk" );
-		if( walk )
-			m_actor->GetModel()->SetAnimation( walk, false, m_speed * walk->m_AnimDef->GetDuration() );
-		// Animation desync
-		m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
+		if (m_run.m_Speed > 0 )
+		{	
+			if ( Distance > m_run.m_MinRange && Distance < m_run.m_MaxRange )
+			{
+				CSkeletonAnim* run = m_actor->GetRandomAnimation( "run" );
+				m_actor->GetModel()->SetAnimation( run, false, m_run.m_Speed * run->m_AnimDef->GetDuration() );
+			}
+		}
+		else
+		{
+			CSkeletonAnim* walk = m_actor->GetRandomAnimation( "walk" );
+			if( walk )
+				m_actor->GetModel()->SetAnimation( walk, false, m_speed * walk->m_AnimDef->GetDuration() );
+			// Animation desync
+			m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
+		}
 	}
 
 	// The pathfinder will push its result back into this unit's queue.

@@ -34,6 +34,9 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
     m_ahead.y = cos( m_orientation );
 
     AddProperty( L"actions.move.speed", &m_speed );
+	AddProperty( L"actions.move.run.speed", &( m_run.m_Speed ) );
+	AddProperty( L"actions.move.run.rangemin", &( m_run.m_MinRange ) );
+	AddProperty( L"actions.move.run.range", &( m_run.m_MaxRange ) );
     AddProperty( L"selected", &m_selected, false, (NotifyFn)&CEntity::checkSelection );
     AddProperty( L"group", &m_grouped, false, (NotifyFn)&CEntity::checkGroup );
     AddProperty( L"traits.extant", &m_extant );
@@ -404,6 +407,7 @@ void CEntity::update( size_t timestep )
 				updateCollisionPatch();
 				return;
             case CEntityOrder::ORDER_GOTO:
+			case CEntityOrder::ORDER_RUN:
 				if( processGoto( current, timestep ) )
 					break;
 				updateCollisionPatch();
@@ -641,28 +645,43 @@ bool CEntity::acceptsOrder( int orderType, CEntity* orderTarget )
     return( DispatchEvent( &evt ) );
 }
 
-/*void CEntity::RequestNotification( CEntity* target, unsigned long orderType )
+jsval CEntity::RequestNotification( JSContext* cx, uintN argc, jsval* argv )
 {
+	debug_assert( argc >= 3 ); 
 	CEntityListener notify;
+
 	notify.m_sender = this;
-	notify.m_type = orderType;
+	//(Convert from int to enum)
+	CEntity* target = ToPrimitive<CEntity*>( argv[0] );
+	*( (uint*) &(notify.m_type) ) = ToPrimitive<int>( argv[1] );
+	
+	if ( ToPrimitive<bool>( argv[2] ) )
+	{
+		std::deque<CEntityListener>::iterator it = target->m_listeners.begin();
+		for ( ; it != target->m_listeners.end(); it++)
+		{
+			if ( it->m_sender == this )
+				target->m_listeners.erase(it);
+		}
+	}
 	target->m_listeners.push_back( notify );
+	return JSVAL_VOID;
 }
-void CEntity::SendNotification( CEntity* target, unsigned long orderType )
+jsval CEntity::CheckListeners( JSContext *cx, uintN argc, jsval* argv )
 {
-	CEntityListener notify;
-	notify.m_sender = this;
-	notify.m_type =  orderType;
-	target->m_notifications.push_back( notify );
+	debug_assert( argc >= 1);
+	
+	int type = ToPrimitive<int>( argv[0] );
+	for (int i=0; i<m_listeners.size(); i++)
+	{
+		if (m_listeners[i].m_type & type)
+			m_listeners[i].m_sender->pushOrder( this->m_orderQueue.front() );
+	}
+	return JSVAL_VOID;
 }
 
-void CEntity::DispatchNotification( CEntityListener notify )
-{
-	CEventNotification evt( notify );
-	DispatchEvent( &evt );
-}
-*/
 
+	
 void CEntity::repath()
 {
     CVector2D destination;

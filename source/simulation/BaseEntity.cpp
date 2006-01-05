@@ -19,6 +19,9 @@ CBaseEntity::CBaseEntity()
 	AddProperty( L"parent", &m_base, false );
 	AddProperty( L"actions.move.speed", &m_speed );
 	AddProperty( L"actions.move.turningradius", &m_turningRadius );
+	AddProperty( L"actions.move.run.speed", &( m_run.m_Speed ) );
+	AddProperty( L"actions.move.run.rangemin", &( m_run.m_MinRange ) );
+	AddProperty( L"actions.move.run.range", &( m_run.m_MaxRange ) );
 	AddProperty( L"actions.attack.range", &( m_melee.m_MaxRange ) );
 	AddProperty( L"actions.attack.rangemin", &( m_melee.m_MinRange ) );
 	AddProperty( L"actions.attack.speed", &( m_melee.m_Speed ) );
