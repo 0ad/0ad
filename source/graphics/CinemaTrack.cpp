@@ -18,7 +18,6 @@ CCinemaPath::CCinemaPath(CCinemaData data)
 {
 	m_TotalDuration = data.m_TotalDuration;
 	m_TotalRotation = data.m_TotalRotation;
-	m_StartRotation = data.m_StartRotation;
 	m_GrowthCount = data.m_GrowthCount;
 	m_Growth = data.m_Growth;
 	m_Switch = data.m_Switch;
@@ -35,6 +34,8 @@ void CCinemaPath::DrawSpline(CVector4D RGBA, int smoothness)
 	
 	
 	glBegin(GL_LINE_STRIP);
+	tmp = m_Spline.GetPosition(0);
+	glVertex3f( tmp.X, tmp.Y, tmp.Z );
 	for (int i=0; i<smoothness; i++)
 	{
 		//Find distorted time
@@ -244,9 +245,9 @@ bool CCinemaTrack::Play(float DeltaTime)
 			 //Set camera to start at starting rotations
 			 CCamera *Cam=g_Game->GetView()->GetCamera();
 			 Cam->m_Orientation.SetIdentity();
-			 Cam->m_Orientation.SetXRotation(DEGTORAD(m_CPA->m_StartRotation.X));
-			 Cam->m_Orientation.RotateY(DEGTORAD(m_CPA->m_StartRotation.Y));
-			 Cam->m_Orientation.RotateZ(DEGTORAD(m_CPA->m_StartRotation.Z));
+			 Cam->m_Orientation.SetXRotation(DEGTORAD(m_StartRotation.X));
+			 Cam->m_Orientation.RotateY(DEGTORAD(m_StartRotation.Y));
+			 Cam->m_Orientation.RotateZ(DEGTORAD(m_StartRotation.Z));
 			 Cam->SetProjection (1, 5000, DEGTORAD(20));
 		 }
 	}
@@ -320,6 +321,9 @@ int CCinemaManager::LoadTracks()
 		Stream >> Name;
 		Stream >> numPaths;
 		Stream >> numNodes;
+		Stream >> tmpTrack.m_StartRotation.X;
+		Stream >> tmpTrack.m_StartRotation.Y;
+		Stream >> tmpTrack.m_StartRotation.Z;
 		
 		for (int j=0; j < numPaths; j++)
 		{
@@ -329,9 +333,6 @@ int CCinemaManager::LoadTracks()
 			Stream >> tmpData.m_TotalRotation.X;
 			Stream >> tmpData.m_TotalRotation.Y;
 			Stream >> tmpData.m_TotalRotation.Z;
-			Stream >> tmpData.m_StartRotation.X;
-			Stream >> tmpData.m_StartRotation.Y;
-			Stream >> tmpData.m_StartRotation.Z;
 			Stream >> tmpData.m_GrowthCount;
 			Stream >> tmpData.m_Growth;
 			Stream >> tmpData.m_Switch;

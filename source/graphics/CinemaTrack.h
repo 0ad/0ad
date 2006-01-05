@@ -13,7 +13,6 @@
 #define ES_CIRCLE 3
 #define ES_SINE 4
 
-#include <stdlib.h>
 #include <list>
 #include <map>
 #include "NUSpline.h"
@@ -45,7 +44,6 @@ public:
 	float m_TotalDuration;
 	//X=x rotation in degrees...etc
 	CVector3D m_TotalRotation;
-	CVector3D m_StartRotation;
 	
 	//Distortion variables
 	float m_GrowthCount;
@@ -122,7 +120,8 @@ public:
 	~CCinemaTrack() {}
 	
 	std::vector<CCinemaPath> m_Paths;
-	std::vector<CCinemaPath>::iterator m_CPA;	//current path selected (in listbox?)
+	std::vector<CCinemaPath>::iterator m_CPA;	//current path selected
+	CVector3D m_StartRotation;
 	
 	void AddPath(CCinemaData path, TNSpline spline);
 	bool Validate();
