@@ -1,6 +1,10 @@
 //Desc:  Contains classes for smooth splines
 //Borrowed from Game Programming Gems4.  (Slightly changed to better suit our purposes 
 //(and compatability).  Any references to external material can be found there
+
+#ifndef NUSPLINE_H
+#define NUSPLINE_H
+
 #define MAX_SPLINE_NODES 30
 #include <stdlib.h>
 #include "Vector3D.h"
@@ -48,3 +52,5 @@ public:
   void Smooth(){ SNSpline::Smooth(); Constrain(); }
   void Constrain(); 
 };
+
+#endif // NUSPLINE_H

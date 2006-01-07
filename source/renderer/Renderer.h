@@ -5,7 +5,7 @@
 // Contact:		rich@wildfiregames.com
 //
 // Description: OpenGL renderer class; a higher level interface
-//	on top of OpenGL to handle rendering the basic visual games 
+//	on top of OpenGL to handle rendering the basic visual games
 //	types - terrain, models, sprites, particles etc
 //
 ///////////////////////////////////////////////////////////////////////////////
@@ -17,7 +17,6 @@
 #include "ogl.h"
 #include "Camera.h"
 #include "Frustum.h"
-#include "PatchRData.h"
 #include "SHCoeffs.h"
 #include "Terrain.h"
 #include "Singleton.h"
@@ -40,6 +39,7 @@ class CTexture;
 class CTerrain;
 
 class RenderPathVertexShader;
+class WaterManager;
 
 
 // rendering modes
@@ -82,28 +82,6 @@ struct CRendererInternals;
 
 class CRenderer : public Singleton<CRenderer>, public CJSObject<CRenderer>
 {
-private:
-	std::vector<CPatch*> m_VisiblePatches;
-
-public:
-	Handle m_WaterTexture[60];
-	int m_WaterCurrentTex;
-	CColor m_WaterColor;
-	bool m_RenderWater;
-	bool m_WaterScroll;
-	float m_WaterHeight;
-	float m_WaterMaxAlpha;
-	float m_WaterFullDepth;
-	float m_WaterAlphaOffset;
-
-	float m_SWaterSpeed;
-	float m_TWaterSpeed;
-	float m_SWaterTrans;
-	float m_TWaterTrans;
-	float m_SWaterScrollCounter;
-	float m_TWaterScrollCounter;
-	float m_WaterTexTimer;
-
 public:
 	// various enumerations and renderer related constants
 	enum { NumAlphaMaps=14 };
@@ -115,19 +93,19 @@ public:
 		OPT_SHADOWCOLOR,
 		OPT_LODBIAS
 	};
-	
+
 	enum RenderPath {
 		// If no rendering path is configured explicitly, the renderer
 		// will choose the path when Open() is called.
 		RP_DEFAULT,
-		
+
 		// Classic fixed function.
 		RP_FIXED,
-		
+
 		// Use (GL 2.0) vertex shaders for T&L when possible.
 		RP_VERTEXSHADER
 	};
-	
+
 	// stats class - per frame counts of number of draw calls, poly counts etc
 	struct Stats {
 		// set all stats to zero
@@ -141,7 +119,7 @@ public:
 			m_BlendSplats+=rhs.m_BlendSplats;
 			return *this;
 		}
-		// count of the number of stats added together 
+		// count of the number of stats added together
 		size_t m_Counter;
 		// number of draw calls per frame - total DrawElements + Begin/End immediate mode loops
 		size_t m_DrawCalls;
@@ -153,7 +131,7 @@ public:
 		size_t m_BlendSplats;
 	};
 
-	// renderer options 
+	// renderer options
 	struct Options {
 		bool m_NoVBO;
 		bool m_Shadows;
@@ -172,11 +150,11 @@ public:
 
 	// resize renderer view
 	void Resize(int width,int height);
-	
-	// set/get boolean renderer option 
+
+	// set/get boolean renderer option
 	void SetOptionBool(enum Option opt,bool value);
 	bool GetOptionBool(enum Option opt) const;
-	// set/get RGBA color renderer option 
+	// set/get RGBA color renderer option
 	void SetOptionColor(enum Option opt,const RGBAColor& value);
 	void SetOptionFloat(enum Option opt, float val);
 	const RGBAColor& GetOptionColor(enum Option opt) const;
@@ -184,7 +162,7 @@ public:
 	RenderPath GetRenderPath() const { return m_Options.m_RenderPath; }
 	static CStr GetRenderPathName(RenderPath rp);
 	static RenderPath GetRenderPathByName(CStr name);
-	
+
 	// return view width
 	int GetWidth() const { return m_Width; }
 	// return view height
@@ -196,7 +174,7 @@ public:
 	void BeginFrame();
 	// force rendering of any batched objects
 	void FlushFrame();
-	// signal frame end : implicitly flushes batched objects 
+	// signal frame end : implicitly flushes batched objects
 	void EndFrame();
 
 	// set color used to clear screen in BeginFrame()
@@ -219,9 +197,9 @@ public:
 	void Submit(CParticleSys* psys);
 	void Submit(COverlay* overlay);
 
-	// basic primitive rendering operations in 2 and 3D; handy for debugging stuff, but also useful in 
-	// editor tools (eg for highlighting specific terrain patches) 
-	// note: 
+	// basic primitive rendering operations in 2 and 3D; handy for debugging stuff, but also useful in
+	// editor tools (eg for highlighting specific terrain patches)
+	// note:
 	//		* all 3D vertices specified in world space
 	//		* primitive operations rendered immediatedly, never batched
 	//		* primitives rendered in current material (set via SetMaterial)
@@ -266,21 +244,22 @@ public:
 	int LoadAlphaMaps();
 	void UnloadAlphaMaps();
 
-	// load textures for the active water type.
-	// return a negative error code if anything along the way fails.
-	// called via delay-load mechanism.
-	int LoadWaterTextures();
-	void UnloadWaterTextures();
-
 	// return stats accumulated for current frame
 	const Stats& GetStats() { return m_Stats; }
 
 	// return the current light environment
 	const CLightEnv &GetLightEnv() { return *m_LightEnv; }
-	
+
 	// return the current camera
 	const CCamera& GetCamera() const { return m_Camera; }
-	
+
+	/**
+	 * GetWaterManager: Return the renderer's water manager.
+	 *
+	 * @return the WaterManager object used by the renderer
+	 */
+	WaterManager* GetWaterManager() { return m_WaterManager; }
+
 	/**
 	 * SetFastPlayerColor: Tell the renderer which path to take for
 	 * player colored models. Both paths should provide the same visual
@@ -291,7 +270,7 @@ public:
 	 * is printed and the slow path is used instead.
 	 */
 	void SetFastPlayerColor(bool fast);
-	
+
 protected:
 	friend struct CRendererInternals;
 	friend class CVertexBuffer;
@@ -303,6 +282,7 @@ protected:
 	friend class RenderPathVertexShader;
 	friend class HWLightingModelRenderer;
 	friend class InstancingModelRenderer;
+	friend class TerrainRenderer;
 
 	// scripting
 	jsval JSI_GetFastPlayerColor(JSContext*);
@@ -310,25 +290,17 @@ protected:
 	jsval JSI_GetRenderPath(JSContext*);
 	void JSI_SetRenderPath(JSContext* ctx, jsval newval);
 	static void ScriptingInit();
-	
+
 	// patch rendering stuff
-	void RenderPatchSubmissions();
 	void RenderPatches();
-	void RenderWater();
 
 	// model rendering stuff
 	void RenderModels();
 	void RenderTransparentModels();
 
 	// shadow rendering stuff
-	void CreateShadowMap();
 	void RenderShadowMap();
 	void ApplyShadowMap();
-	void BuildTransformation(const CVector3D& pos,const CVector3D& right,const CVector3D& up,
-						 const CVector3D& dir,CMatrix3D& result);
-	void ConstructLightTransform(const CVector3D& pos,const CVector3D& lightdir,CMatrix3D& result);
-	void CalcShadowMatrices();
-	void CalcShadowBounds(CBound& bounds);
 
 	// RENDERER DATA:
 	/// Private data that is not needed by inline functions
@@ -361,18 +333,10 @@ protected:
 	CSHCoeffs m_SHCoeffsTerrain;
 	// ogl_tex handle of composite alpha map (all the alpha maps packed into one texture)
 	Handle m_hCompositeAlphaMap;
-	// handle of shadow map
-	u32 m_ShadowMap;
-	// width, height of shadow map
-	u32 m_ShadowMapWidth,m_ShadowMapHeight;
-	// object space bound of shadow casting objects
-	CBound m_ShadowBound;
 	// per-frame flag: has the shadow map been rendered this frame?
 	bool m_ShadowRendered;
-	// projection matrix of shadow casting light
-	CMatrix3D m_LightProjection;
-	// transformation matrix of shadow casting light
-	CMatrix3D m_LightTransform;
+	// object space bound of shadow casting objects
+	CBound m_ShadowBound;
 	// coordinates of each (untransformed) alpha map within the packed texture
 	struct {
 		float u0,u1,v0,v1;
@@ -390,14 +354,20 @@ protected:
 	Stats m_Stats;
 	// active textures on each unit
 	GLuint m_ActiveTextures[MaxTextureUnits];
-	
+
 	// Additional state that is only available when the vertex shader
 	// render path is used (according to m_Options.m_RenderPath)
 	RenderPathVertexShader* m_VertexShader;
 
 	/// If false, use a multipass fallback for player colors.
 	bool m_FastPlayerColor;
-	
+
+	/**
+	 * m_WaterManager: the WaterManager object used for water textures and settings
+	 * (e.g. water color, water height)
+	 */
+	WaterManager* m_WaterManager;
+
 	/**
 	 * m_SortAllTransparent: If true, all transparent models are
 	 * rendered using the TransparencyRenderer which performs sorting.
@@ -406,17 +376,14 @@ protected:
 	 * batching renderer when possible.
 	 */
 	bool m_SortAllTransparent;
-	
-	
+
+
 	/**
 	 * m_FastNormals: Use faster normal transformation in the
 	 * software transform by multiplying with the bone matrix itself
 	 * instead of the transpose of the inverse.
 	 */
 	bool m_FastNormals;
-
-	// State used by LoadWaterTextures with progressive loading
-	uint cur_loading_water_tex;
 
 	// Various model renderers
 	struct Models {
@@ -426,11 +393,11 @@ protected:
 		ModelRenderer* PlayerHWLit;
 		ModelRenderer* NormalInstancing;
 		ModelRenderer* PlayerInstancing;
-		
+
 		ModelRenderer* TranspFF;
 		ModelRenderer* TranspHWLit;
 		ModelRenderer* TranspSortAll;
-		
+
 		ModelVertexRendererPtr VertexFF;
 		ModelVertexRendererPtr VertexHWLit;
 		ModelVertexRendererPtr VertexInstancing;

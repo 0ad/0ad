@@ -27,6 +27,7 @@
 #include "Profile.h"
 #include "ps/LoaderThunks.h"
 #include "ps/Globals.h"
+#include "renderer/WaterManager.h"
 
 #include "Quaternion.h"
 #include "Unit.h"
@@ -80,7 +81,7 @@ CGameView::CGameView(CGame *pGame):
 
 	m_UnitView=NULL;
 	m_UnitAttach=NULL;
-	
+
 
 	ONCE( ScriptingInit(); );
 }
@@ -135,7 +136,7 @@ void CGameView::RegisterInit(CGameAttributes *pAttribs)
 	RegMemFun(g_TexMan.GetSingletonPtr(), &CTextureManager::LoadTerrainTextures, L"LoadTerrainTextures", 15);
 	RegMemFun(g_ObjMan.GetSingletonPtr(), &CObjectManager::LoadObjects, L"LoadObjects", 1);
 	RegMemFun(g_Renderer.GetSingletonPtr(), &CRenderer::LoadAlphaMaps, L"LoadAlphaMaps", 45);
-	RegMemFun(g_Renderer.GetSingletonPtr(), &CRenderer::LoadWaterTextures, L"LoadWaterTextures", 600);
+	RegMemFun(g_Renderer.GetSingletonPtr()->GetWaterManager(), &WaterManager::LoadWaterTextures, L"LoadWaterTextures", 600);
 }
 
 
@@ -173,15 +174,15 @@ void CGameView::RenderModels(CUnitManager *pUnitMan, CProjectileManager *pProjec
 	CLOSManager* losMgr = m_pWorld->GetLOSManager();
 
 	const std::vector<CUnit*>& units=pUnitMan->GetUnits();
-	for (uint i=0;i<units.size();++i) 
+	for (uint i=0;i<units.size();++i)
 	{
 		int status = losMgr->GetUnitStatus(units[i], g_Game->GetLocalPlayer());
 		CModel* model = units[i]->GetModel();
-		
+
 		model->ValidatePosition();
-		
+
 		if (frustum.IsBoxVisible(CVector3D(0,0,0), model->GetBounds())
-			&& status != UNIT_HIDDEN) 
+			&& status != UNIT_HIDDEN)
 		{
 			if(units[i] != g_BuildingPlacer.m_actor)
 			{
@@ -203,18 +204,18 @@ void CGameView::RenderModels(CUnitManager *pUnitMan, CProjectileManager *pProjec
 	}
 
 	const std::vector<CProjectile*>& projectiles=pProjectileMan->GetProjectiles();
-	for (uint i=0;i<projectiles.size();++i) 
+	for (uint i=0;i<projectiles.size();++i)
 	{
 		CModel* model = projectiles[i]->GetModel();
-		
+
 		model->ValidatePosition();
-		
+
 		const CBound& bound = model->GetBounds();
 		CVector3D centre;
 		bound.GetCentre(centre);
-		
+
 		if (frustum.IsBoxVisible(CVector3D(0,0,0), bound)
-			&& losMgr->GetStatus(centre.X, centre.Z, g_Game->GetLocalPlayer()) & LOS_VISIBLE) 
+			&& losMgr->GetStatus(centre.X, centre.Z, g_Game->GetLocalPlayer()) & LOS_VISIBLE)
 		{
 			PROFILE( "submit projectiles" );
 			SubmitModelRecursive(projectiles[i]->GetModel());
@@ -222,13 +223,13 @@ void CGameView::RenderModels(CUnitManager *pUnitMan, CProjectileManager *pProjec
 	}
 }
 
-	
+
 //locks the camera in place
 void CGameView::CameraLock(CVector3D Trans, bool smooth)
 {
 	m_Terrain=g_Game->GetWorld()->GetTerrain();
 	float height=m_Terrain->getExactGroundLevel(
-			m_Camera.m_Orientation._14 + Trans.X, m_Camera.m_Orientation._34 + Trans.Z) + 
+			m_Camera.m_Orientation._14 + Trans.X, m_Camera.m_Orientation._34 + Trans.Z) +
 			g_YMinOffset;
 	//is requested position within limits?
 	if (m_Camera.m_Orientation._24 + Trans.Y <= g_MaxZoomHeight)
@@ -244,14 +245,14 @@ void CGameView::CameraLock(CVector3D Trans, bool smooth)
 		}
 
 
-	}     
+	}
 }
 
 void CGameView::CameraLock(float x, float y, float z, bool smooth)
 {
 	m_Terrain=g_Game->GetWorld()->GetTerrain();
 	float height=m_Terrain->getExactGroundLevel(
-			m_Camera.m_Orientation._14 + x, m_Camera.m_Orientation._34 + z) + 
+			m_Camera.m_Orientation._14 + x, m_Camera.m_Orientation._34 + z) +
 			g_YMinOffset;
 	//is requested position within limits?
 	if (m_Camera.m_Orientation._24 + y <= g_MaxZoomHeight)
@@ -269,8 +270,8 @@ void CGameView::CameraLock(float x, float y, float z, bool smooth)
 
 	}
 }
-		
-	
+
+
 void CGameView::SubmitModelRecursive(CModel* model)
 {
 	g_Renderer.Submit(model);
@@ -309,7 +310,7 @@ void CGameView::UnloadResources()
 	g_ObjMan.UnloadObjects();
 	g_TexMan.UnloadTerrainTextures();
 	g_Renderer.UnloadAlphaMaps();
-	g_Renderer.UnloadWaterTextures();
+	g_Renderer.GetWaterManager()->UnloadWaterTextures();
 }
 
 
@@ -335,7 +336,7 @@ void CGameView::ResetCameraOrientation()
 	m_Camera.SetProjection (1, 5000, DEGTORAD(20));
 	m_Camera.m_Orientation.SetXRotation(DEGTORAD(30));
 	m_Camera.m_Orientation.RotateY(DEGTORAD(-45));
-	
+
 	target += CVector3D( 100.0f, 150.0f, -100.0f );
 
 	m_Camera.m_Orientation.Translate( target );
@@ -350,7 +351,7 @@ void CGameView::Update(float DeltaTime)
 {
 	if (!g_app_has_focus)
 		return;
-	
+
 	if (m_UnitView)
 	{
 //		CQuaternion ToRotate = m_UnitViewProp->m_Rotation - m_Camera.m_Orientation.GetRotation();
@@ -367,20 +368,20 @@ void CGameView::Update(float DeltaTime)
 		/*if( !m_UnitView->m_orderQueue.empty())
 		{
 			CEntityOrder Order = m_UnitView->m_orderQueue.front();
-		
-			if (Order.m_type == CEntityOrder::ORDER_ATTACK_MELEE_NOPATHING || 
+
+			if (Order.m_type == CEntityOrder::ORDER_ATTACK_MELEE_NOPATHING ||
 				Order.m_type == CEntityOrder::ORDER_GATHER_NOPATHING)
 			{
 				CVector3D Focus = m_Camera.GetFocus();
 				CVector3D Target;
 				Target.X = (float) Order.m_data[0].location.x;
-				Target.Y = (float) m_Terrain->getExactGroundLevel( 
+				Target.Y = (float) m_Terrain->getExactGroundLevel(
 							    Order.m_data[0].location.x, Order.m_data[0].location.y );
 				Target.Z = (float) Order.m_data[0].location.y;
-				
+
 				CVector3D Distance = Target - Focus;
 				float length = Distance.GetLength();
-				
+
 				//We're looking too far out. Correct by moving up or down toward the true position.
 				if (length > 1.0f)
 				{
@@ -388,9 +389,9 @@ void CGameView::Update(float DeltaTime)
 					CVector3D Down(0.0f, -1.0f, 0.0f);
 					//Find opposite side's length
 					float Angle = tan( acosf(Distance.Dot(Down)) );
-					float opp = length * Angle; 
-					float hyp = 1 / sinf(Angle) * opp; 
-					
+					float opp = length * Angle;
+					float hyp = 1 / sinf(Angle) * opp;
+
 					CVector3D CamFace = m_Camera.m_Orientation.GetIn();
 					CVector3D ToFace = Target - m_Camera.m_Orientation.GetTranslation();
 					ToFace.Normalize();
@@ -405,11 +406,11 @@ void CGameView::Update(float DeltaTime)
 			}	//Check order type
 		}	//Is order queue empty?
 	*/
-		
+
 		m_Camera.UpdateFrustum();
 		return;
 	}
-	
+
 	if (m_UnitAttach)
 	{
 		CVector3D ToMove = m_UnitAttach->m_position - m_Camera.GetFocus();
@@ -418,7 +419,7 @@ void CGameView::Update(float DeltaTime)
 		m_Camera.UpdateFrustum();
 		return;
 	}
-	
+
 	if (!m_TrackManager.m_TrackQueue.empty())
 	{
 		if(!m_TrackManager.Update(DeltaTime))
@@ -428,7 +429,7 @@ void CGameView::Update(float DeltaTime)
 			m_Camera.UpdateFrustum();
 		return;
 	}
-	
+
 	float delta = powf( m_ViewSnapSmoothness, DeltaTime );
 	m_Camera.m_Orientation.Translate( m_CameraDelta * ( 1.0f - delta ) );
 	m_CameraDelta *= delta;
@@ -451,7 +452,7 @@ void CGameView::Update(float DeltaTime)
 	CVector3D rightwards = m_Camera.m_Orientation.GetLeft() * -1.0f; // upwards.Cross(forwards);
 	CVector3D upwards( 0.0f, 1.0f, 0.0f );
 	// rightwards.Normalize();
-	
+
 	CVector3D forwards_horizontal = forwards;
 	forwards_horizontal.Y = 0.0f;
 	forwards_horizontal.Normalize();
@@ -465,7 +466,7 @@ void CGameView::Update(float DeltaTime)
 		m_Camera.m_Orientation.Translate(position*-1);
 
 		// Sideways rotation
-		
+
 		float rightways = 0.0f;
 		if( hotkeys[HOTKEY_CAMERA_ROTATE] )
 			rightways = (float)mouse_dx * m_ViewRotateSensitivity;
@@ -494,7 +495,7 @@ void CGameView::Update(float DeltaTime)
 
 		CQuaternion temp;
 		temp.FromAxisAngle(rightwards, upways);
-		
+
 		m_Camera.m_Orientation.Rotate(temp);
 
 		// Retranslate back to the right position
@@ -505,13 +506,13 @@ void CGameView::Update(float DeltaTime)
 	{
 		CVector3D origin = m_Camera.m_Orientation.GetTranslation();
 		CVector3D delta = origin - m_CameraPivot;
-		
+
 		CQuaternion rotateH, rotateV; CMatrix3D rotateM;
 
 		// Sideways rotation
-		
+
 		float rightways = (float)mouse_dx * m_ViewRotateAboutTargetSensitivity;
-		
+
 		rotateH.FromAxisAngle( upwards, rightways );
 
 		// Up/down rotation
@@ -527,7 +528,7 @@ void CGameView::Update(float DeltaTime)
 		// Lock the inclination to a rather arbitrary values (for the sake of graphical decency)
 
 		float scan = sqrt( delta.X * delta.X + delta.Z * delta.Z ) / delta.Y;
-		if( ( scan >= 0.5f ) ) 
+		if( ( scan >= 0.5f ) )
 		{
 			// Move the camera to the origin (in preparation for rotation )
 			m_Camera.m_Orientation.Translate( origin * -1.0f );
@@ -537,7 +538,7 @@ void CGameView::Update(float DeltaTime)
 			// Move the camera back to where it belongs
 			m_Camera.m_Orientation.Translate( m_CameraPivot + delta );
 		}
-		
+
 	}
 	else if( hotkeys[HOTKEY_CAMERA_ROTATE_ABOUT_TARGET_KEYBOARD] )
 	{
@@ -545,17 +546,17 @@ void CGameView::Update(float DeltaTime)
 		CVector3D origin = m_Camera.m_Orientation.GetTranslation();
 		CVector3D pivot = m_Camera.GetFocus();
 		CVector3D delta = origin - pivot;
-		
+
 		CQuaternion rotateH, rotateV; CMatrix3D rotateM;
 
 		// Sideways rotation
-		
+
 		float rightways = 0.0f;
 		if( hotkeys[HOTKEY_CAMERA_LEFT] )
 			rightways -= m_ViewRotateAboutTargetSensitivityKeyboard * DeltaTime;
 		if( hotkeys[HOTKEY_CAMERA_RIGHT] )
 			rightways += m_ViewRotateAboutTargetSensitivityKeyboard * DeltaTime;
-		
+
 		rotateH.FromAxisAngle( upwards, rightways );
 
 		// Up/down rotation
@@ -565,7 +566,7 @@ void CGameView::Update(float DeltaTime)
 			upways -= m_ViewRotateAboutTargetSensitivityKeyboard * DeltaTime;
 		if( hotkeys[HOTKEY_CAMERA_DOWN] )
 			upways += m_ViewRotateAboutTargetSensitivityKeyboard * DeltaTime;
-		
+
 		rotateV.FromAxisAngle( rightwards, upways );
 
 		rotateH *= rotateV;
@@ -576,7 +577,7 @@ void CGameView::Update(float DeltaTime)
 		// Lock the inclination to a rather arbitrary values (for the sake of graphical decency)
 
 		float scan = sqrt( delta.X * delta.X + delta.Z * delta.Z ) / delta.Y;
-		if( ( scan >= 0.5f ) ) 
+		if( ( scan >= 0.5f ) )
 		{
 			// Move the camera to the origin (in preparation for rotation )
 			m_Camera.m_Orientation.Translate( origin * -1.0f );
@@ -586,7 +587,7 @@ void CGameView::Update(float DeltaTime)
 			// Move the camera back to where it belongs
 			m_Camera.m_Orientation.Translate( pivot + delta );
 		}
-		
+
 	}
 	else if( hotkeys[HOTKEY_CAMERA_PAN] )
 	{
@@ -595,15 +596,15 @@ void CGameView::Update(float DeltaTime)
 			CameraLock(rightwards * (m_ViewDragSensitivity * mouse_dx));
 			CameraLock(forwards_horizontal * (-m_ViewDragSensitivity * mouse_dy));
 	}
-	
+
 	// Mouse movement
 	if( !hotkeys[HOTKEY_CAMERA_ROTATE] && !hotkeys[HOTKEY_CAMERA_ROTATE_ABOUT_TARGET] )
 	{
 		if (g_mouse_x >= g_xres-2 && g_mouse_x < g_xres)
-			CameraLock(rightwards * (m_ViewScrollSpeed * DeltaTime));	
+			CameraLock(rightwards * (m_ViewScrollSpeed * DeltaTime));
 		else if (g_mouse_x <= 3 && g_mouse_x >= 0)
 			CameraLock(-rightwards * (m_ViewScrollSpeed * DeltaTime));
-		
+
 		if (g_mouse_y >= g_yres-2 && g_mouse_y < g_yres)
 			CameraLock(-forwards_horizontal * (m_ViewScrollSpeed * DeltaTime));
 		else if (g_mouse_y <= 3 && g_mouse_y >= 0)
@@ -619,7 +620,7 @@ void CGameView::Update(float DeltaTime)
 			CameraLock(rightwards * (m_ViewScrollSpeed * DeltaTime));
 		if( hotkeys[HOTKEY_CAMERA_LEFT] )
 			CameraLock(-rightwards * (m_ViewScrollSpeed * DeltaTime));
-			
+
 		if( hotkeys[HOTKEY_CAMERA_DOWN] )
 			CameraLock(-forwards_horizontal * (m_ViewScrollSpeed * DeltaTime));
 		if( hotkeys[HOTKEY_CAMERA_UP] )
@@ -645,8 +646,8 @@ void CGameView::Update(float DeltaTime)
 	m_Camera.UpdateFrustum ();
 }
 
-void CGameView::ToUnitView(CEntity* target, CModel* prop) 
-{ 
+void CGameView::ToUnitView(CEntity* target, CModel* prop)
+{
 	if( !target )
 	{
 		//prevent previous zooming
@@ -654,7 +655,7 @@ void CGameView::ToUnitView(CEntity* target, CModel* prop)
 		ResetCamera();
 		SetCameraTarget( m_UnitView->m_position );
 	}
-	m_UnitView = target; 
+	m_UnitView = target;
 	m_UnitViewProp = prop;
 
 }
@@ -739,11 +740,11 @@ InReaction CGameView::HandleEvent(const SDL_Event* ev)
 		case HOTKEY_CAMERA_ZOOM_WHEEL_IN:
 			m_ZoomDelta += m_ViewZoomSensitivityWheel;
 			return( IN_HANDLED );
-				
+
 		case HOTKEY_CAMERA_ZOOM_WHEEL_OUT:
 			m_ZoomDelta -= m_ViewZoomSensitivityWheel;
 			return( IN_HANDLED );
-		
+
 		default:
 
 			if( ( ev->user.code >= HOTKEY_CAMERA_BOOKMARK_0 ) && ( ev->user.code <= HOTKEY_CAMERA_BOOKMARK_9 ) )
@@ -793,7 +794,7 @@ InReaction CGameView::HandleEvent(const SDL_Event* ev)
 bool CGameView::JSI_StartCustomSelection(
 	JSContext* UNUSED(context), uint UNUSED(argc), jsval* UNUSED(argv))
 {
-	StartCustomSelection();	
+	StartCustomSelection();
 	return true;
 }
 

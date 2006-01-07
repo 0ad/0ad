@@ -22,7 +22,6 @@
 #include "Matrix3D.h"
 #include "MathUtil.h"
 #include "Camera.h"
-#include "PatchRData.h"
 #include "Texture.h"
 #include "LightEnv.h"
 #include "Terrain.h"
@@ -52,7 +51,10 @@
 #include "renderer/PlayerRenderer.h"
 #include "renderer/RenderModifiers.h"
 #include "renderer/RenderPathVertexShader.h"
+#include "renderer/ShadowMap.h"
+#include "renderer/TerrainRenderer.h"
 #include "renderer/TransparencyRenderer.h"
+#include "renderer/WaterManager.h"
 
 #define LOG_CATEGORY "graphics"
 
@@ -71,7 +73,7 @@ class CRendererStatsTable : public AbstractProfileTable
 {
 public:
 	CRendererStatsTable(const CRenderer::Stats& st);
-	
+
 	// Implementation of AbstractProfileTable interface
 	CStr GetName();
 	CStr GetTitle();
@@ -83,17 +85,17 @@ public:
 private:
 	/// Reference to the renderer singleton's stats
 	const CRenderer::Stats& Stats;
-	
+
 	/// Column descriptions
 	std::vector<ProfileColumn> columnDescriptions;
-	
+
 	enum {
 		Row_Counter = 0,
 		Row_DrawCalls,
 		Row_TerrainTris,
 		Row_ModelTris,
 		Row_BlendSplats,
-		
+
 		// Must be last to count number of rows
 		NumberRows
 	};
@@ -134,7 +136,7 @@ const std::vector<ProfileColumn>& CRendererStatsTable::GetColumns()
 CStr CRendererStatsTable::GetCellText(uint row, uint col)
 {
 	char buf[256];
-	
+
 	switch(row)
 	{
 	case Row_Counter:
@@ -142,31 +144,31 @@ CStr CRendererStatsTable::GetCellText(uint row, uint col)
 			return "counter";
 		snprintf(buf, sizeof(buf), "%d", Stats.m_Counter);
 		return buf;
-	
+
 	case Row_DrawCalls:
 		if (col == 0)
 			return "# draw calls";
 		snprintf(buf, sizeof(buf), "%d", Stats.m_DrawCalls);
 		return buf;
-	
+
 	case Row_TerrainTris:
 		if (col == 0)
 			return "# terrain tris";
 		snprintf(buf, sizeof(buf), "%d", Stats.m_TerrainTris);
 		return buf;
-	
+
 	case Row_ModelTris:
 		if (col == 0)
 			return "# model tris";
 		snprintf(buf, sizeof(buf), "%d", Stats.m_ModelTris);
 		return buf;
-	
+
 	case Row_BlendSplats:
 		if (col == 0)
 			return "# blend splats";
 		snprintf(buf, sizeof(buf), "%d", Stats.m_BlendSplats);
 		return buf;
-	
+
 	default:
 		return "???";
 	}
@@ -189,10 +191,27 @@ struct CRendererInternals
 {
 	/// Table to display renderer stats in-game via profile system
 	CRendererStatsTable profileTable;
+
+	/// Water manager
+	WaterManager waterManager;
+
+	/// Terrain renderer
+	TerrainRenderer* terrainRenderer;
+
+	/// Shadow map
+	ShadowMap* shadow;
 	
 	CRendererInternals()
 	: profileTable(g_Renderer.m_Stats)
 	{
+		terrainRenderer = new TerrainRenderer();
+		shadow = new ShadowMap();
+	}
+
+	~CRendererInternals()
+	{
+		delete shadow;
+		delete terrainRenderer;
 	}
 };
 
@@ -201,8 +220,10 @@ struct CRendererInternals
 CRenderer::CRenderer()
 {
 	m = new CRendererInternals;
+	m_WaterManager = &m->waterManager;
+
 	g_ProfileViewer.AddRootTable(&m->profileTable);
-	
+
 	m_Width=0;
 	m_Height=0;
 	m_Depth=0;
@@ -210,13 +231,12 @@ CRenderer::CRenderer()
 	m_TerrainRenderMode=SOLID;
 	m_ModelRenderMode=SOLID;
 	m_ClearColor[0]=m_ClearColor[1]=m_ClearColor[2]=m_ClearColor[3]=0;
-	m_ShadowMap=0;
 
 	m_SortAllTransparent = false;
 	m_FastNormals = true;
-	
+
 	m_VertexShader = 0;
-	
+
 	m_Options.m_NoVBO=false;
 	m_Options.m_Shadows=true;
 	m_Options.m_ShadowColor=RGBAColor(0.4f,0.4f,0.4f,1.0f);
@@ -278,23 +298,6 @@ CRenderer::CRenderer()
 	m_Models.ModSolidColor = RenderModifierPtr(new SolidColorRenderModifier);
 	m_Models.ModTransparent = RenderModifierPtr(new TransparentRenderModifier);
 	m_Models.ModTransparentShadow = RenderModifierPtr(new TransparentShadowRenderModifier);
-
-	// water
-	m_RenderWater = true;
-	m_WaterHeight = 5.0f;
-	m_WaterColor = CColor(0.3f, 0.35f, 0.7f, 1.0f);
-	m_WaterFullDepth = 4.0f;
-	m_WaterMaxAlpha = 0.85f;
-	m_WaterAlphaOffset = -0.05f;
-	m_SWaterTrans=0;
-	m_TWaterTrans=0;
-	m_SWaterSpeed=0.0015f;
-	m_TWaterSpeed=0.0015f;
-	m_SWaterScrollCounter=0;
-	m_TWaterScrollCounter=0;
-	m_WaterCurrentTex=0;
-
-	cur_loading_water_tex = 0;
 
 	ONCE( ScriptingInit(); );
 }
@@ -382,19 +385,19 @@ bool CRenderer::Open(int width, int height, int depth)
 
 	if (m_Options.m_RenderPath == RP_DEFAULT)
 		SetRenderPath(m_Options.m_RenderPath);
-	
+
 	return true;
 }
 
 // resize renderer view
 void CRenderer::Resize(int width,int height)
 {
-	if (m_ShadowMap && (width>m_Width || height>m_Height)) {
-		glDeleteTextures(1,(GLuint*) &m_ShadowMap);
-		m_ShadowMap=0;
-	}
-	m_Width=width;
-	m_Height=height;
+	// need to recreate the shadow map object to resize the shadow texture
+	delete m->shadow;
+	m->shadow = new ShadowMap;
+
+	m_Width = width;
+	m_Height = height;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -492,7 +495,7 @@ void CRenderer::SetRenderPath(RenderPath rp)
 		else
 			rp = RP_FIXED;
 	}
-	
+
 	if (rp == RP_VERTEXSHADER)
 	{
 		if (!m_Models.NormalHWLit || !m_Models.PlayerHWLit)
@@ -501,7 +504,7 @@ void CRenderer::SetRenderPath(RenderPath rp)
 			rp = RP_FIXED;
 		}
 	}
-	
+
 	m_Options.m_RenderPath = rp;
 }
 
@@ -524,7 +527,7 @@ CRenderer::RenderPath CRenderer::GetRenderPathByName(CStr name)
 		return RP_VERTEXSHADER;
 	if (name == "default")
 		return RP_DEFAULT;
-	
+
 	LOG(WARNING, LOG_CATEGORY, "Unknown render path name '%hs', assuming 'default'", name.c_str());
 	return RP_DEFAULT;
 }
@@ -535,7 +538,7 @@ CRenderer::RenderPath CRenderer::GetRenderPathByName(CStr name)
 void CRenderer::SetFastPlayerColor(bool fast)
 {
 	m_FastPlayerColor = fast;
-	
+
 	if (m_FastPlayerColor)
 	{
 		if (!FastPlayerColorRender::IsAvailable())
@@ -544,7 +547,7 @@ void CRenderer::SetFastPlayerColor(bool fast)
 			m_FastPlayerColor = false;
 		}
 	}
-	
+
 	if (m_FastPlayerColor)
 		m_Models.ModPlayer = RenderModifierPtr(new FastPlayerColorRender);
 	else
@@ -565,10 +568,10 @@ void CRenderer::BeginFrame()
 
 	if (m_VertexShader)
 		m_VertexShader->BeginFrame();
-	
+
 	// zero out all the per-frame stats
 	m_Stats.Reset();
-	
+
 	// calculate coefficients for terrain and unit lighting
 	m_SHCoeffsUnits.Clear();
 	m_SHCoeffsTerrain.Clear();
@@ -596,354 +599,14 @@ void CRenderer::SetClearColor(u32 color)
 	m_ClearColor[3]=float((color>>24) & 0xff)/255.0f;
 }
 
-static int RoundUpToPowerOf2(int x)
-{
-	if ((x & (x-1))==0) return x;
-	int d=x;
-	while (d & (d-1)) {
-		d&=(d-1);
-	}
-	return d<<1;
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// BuildTransformation: build transformation matrix from a position and standard basis vectors
-void CRenderer::BuildTransformation(const CVector3D& pos,const CVector3D& right,const CVector3D& up,
-						 const CVector3D& dir,CMatrix3D& result)
-{
-	// build basis
-	result._11=right.X;
-	result._12=right.Y;
-	result._13=right.Z;
-	result._14=0;
-
-	result._21=up.X;
-	result._22=up.Y;
-	result._23=up.Z;
-	result._24=0;
-
-	result._31=dir.X;
-	result._32=dir.Y;
-	result._33=dir.Z;
-	result._34=0;
-
-	result._41=0;
-	result._42=0;
-	result._43=0;
-	result._44=1;
-
-	CMatrix3D trans;
-	trans.SetTranslation(-pos.X,-pos.Y,-pos.Z);
-	result=result*trans;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// ConstructLightTransform: build transformation matrix for light at given position casting in
-// given direction
-void CRenderer::ConstructLightTransform(const CVector3D& pos,const CVector3D& dir,CMatrix3D& result)
-{
-	CVector3D right,up;
-
-	CVector3D viewdir=m_Camera.m_Orientation.GetIn();
-	if (fabs(dir.Y)>0.01f) {
-		up=CVector3D(viewdir.X,(-dir.Z*viewdir.Z-dir.X*dir.X)/dir.Y,viewdir.Z);
-	} else {
-		up=CVector3D(0,0,1);
-	}
-
-	up.Normalize();
-	right=dir.Cross(up);
-	right.Normalize();
-	BuildTransformation(pos,right,up,dir,result);
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// CalcShadowMatrices: calculate required matrices for shadow map generation - the light's
-// projection and transformation matrices
-void CRenderer::CalcShadowMatrices()
-{
-	int i;
-
-	// get bounds of shadow casting objects
-	const CBound& bounds=m_ShadowBound;
-
-	// get centre of bounds
-	CVector3D centre;
-	bounds.GetCentre(centre);
-
-	// get sunlight direction
-	// ??? RC more optimal light placement?
-	CVector3D lightpos=centre-(m_LightEnv->m_SunDir * 1000);
-
-	// make light transformation matrix
-	ConstructLightTransform(lightpos,m_LightEnv->m_SunDir,m_LightTransform);
-
-	// transform shadow bounds to light space, calculate near and far bounds
-	CVector3D vp[8];
-	m_LightTransform.Transform(CVector3D(bounds[0].X,bounds[0].Y,bounds[0].Z),vp[0]);
-	m_LightTransform.Transform(CVector3D(bounds[1].X,bounds[0].Y,bounds[0].Z),vp[1]);
-	m_LightTransform.Transform(CVector3D(bounds[0].X,bounds[1].Y,bounds[0].Z),vp[2]);
-	m_LightTransform.Transform(CVector3D(bounds[1].X,bounds[1].Y,bounds[0].Z),vp[3]);
-	m_LightTransform.Transform(CVector3D(bounds[0].X,bounds[0].Y,bounds[1].Z),vp[4]);
-	m_LightTransform.Transform(CVector3D(bounds[1].X,bounds[0].Y,bounds[1].Z),vp[5]);
-	m_LightTransform.Transform(CVector3D(bounds[0].X,bounds[1].Y,bounds[1].Z),vp[6]);
-	m_LightTransform.Transform(CVector3D(bounds[1].X,bounds[1].Y,bounds[1].Z),vp[7]);
-
-	float left=vp[0].X;
-	float right=vp[0].X;
-	float top=vp[0].Y;
-	float bottom=vp[0].Y;
-	float znear=vp[0].Z;
-	float zfar=vp[0].Z;
-
-	for (i=1;i<8;i++) {
-		if (vp[i].X<left) left=vp[i].X;
-		else if (vp[i].X>right) right=vp[i].X;
-
-		if (vp[i].Y<bottom) bottom=vp[i].Y;
-		else if (vp[i].Y>top) top=vp[i].Y;
-
-		if (vp[i].Z<znear) znear=vp[i].Z;
-		else if (vp[i].Z>zfar) zfar=vp[i].Z;
-	}
-
-	// shift near and far clip planes slightly to avoid artifacts with points
-	// exactly on the clip planes
-	znear=(znear<m_Camera.GetNearPlane()+0.01f) ? m_Camera.GetNearPlane() : znear-0.01f;
-	zfar+=0.01f;
-
-	m_LightProjection.SetZero();
-	m_LightProjection._11=2/(right-left);
-	m_LightProjection._22=2/(top-bottom);
-	m_LightProjection._33=2/(zfar-znear);
-	m_LightProjection._14=-(right+left)/(right-left);
-	m_LightProjection._24=-(top+bottom)/(top-bottom);
-	m_LightProjection._34=-(zfar+znear)/(zfar-znear);
-	m_LightProjection._44=1;
-
-#if 0
-
-#if 0
-	// TODO, RC - trim against frustum?
-	// get points of view frustum in world space
-	CVector3D frustumPts[8];
-	m_Camera.GetFrustumPoints(frustumPts);
-
-	// transform to light space
-	for (i=0;i<8;i++) {
-		m_LightTransform.Transform(frustumPts[i],vp[i]);
-	}
-
-	float left1=vp[0].X;
-	float right1=vp[0].X;
-	float top1=vp[0].Y;
-	float bottom1=vp[0].Y;
-	float znear1=vp[0].Z;
-	float zfar1=vp[0].Z;
-
-	for (int i=1;i<8;i++) {
-		if (vp[i].X<left1) left1=vp[i].X;
-		else if (vp[i].X>right1) right1=vp[i].X;
-
-		if (vp[i].Y<bottom1) bottom1=vp[i].Y;
-		else if (vp[i].Y>top1) top1=vp[i].Y;
-
-		if (vp[i].Z<znear1) znear1=vp[i].Z;
-		else if (vp[i].Z>zfar1) zfar1=vp[i].Z;
-	}
-
-	left=max(left,left1);
-	right=min(right,right1);
-	top=min(top,top1);
-	bottom=max(bottom,bottom1);
-	znear=max(znear,znear1);
-	zfar=min(zfar,zfar1);
-#endif
-
-	// experimental stuff, do not use ..
-	// TODO, RC - desperately need to improve resolution here if we're using shadow maps; investigate
-	// feasibility of PSMs
-
-	// transform light space bounds to image space - TODO, RC: safe to just use 3d transform here?
-	CVector4D vph[8];
-	for (i=0;i<8;i++) {
-		CVector4D tmp(vp[i].X,vp[i].Y,vp[i].Z,1.0f);
-		m_LightProjection.Transform(tmp,vph[i]);
-		vph[i][0]/=vph[i][2];
-		vph[i][1]/=vph[i][2];
-	}
-
-	// find the two points furthest apart
-	int p0,p1;
-	float maxdistsqrd=-1;
-	for (i=0;i<8;i++) {
-		for (int j=i+1;j<8;j++) {
-			float dx=vph[i][0]-vph[j][0];
-			float dy=vph[i][1]-vph[j][1];
-			float distsqrd=dx*dx+dy*dy;
-			if (distsqrd>maxdistsqrd) {
-				p0=i;
-				p1=j;
-				maxdistsqrd=distsqrd;
-			}
-		}
-	}
-
-	// now we want to rotate the camera such that the longest axis lies the diagonal at 45 degrees -
-	// get angle between points
-	float angle=atan2(vph[p0][1]-vph[p1][1],vph[p0][0]-vph[p1][0]);
-	float rotation=-angle;
-
-	// build rotation matrix
-	CQuaternion quat;
-	quat.FromAxisAngle(lightdir,rotation);
-	CMatrix3D m;
-	quat.ToMatrix(m);
-
-	// rotate up vector by given rotation
-	CVector3D up(m_LightTransform._21,m_LightTransform._22,m_LightTransform._23);
-	up=m.Rotate(up);
-	up.Normalize();		// TODO, RC - required??
-
-	// rebuild right vector
-	CVector3D rightvec;
-	rightvec=lightdir.Cross(up);
-	rightvec.Normalize();
-	BuildTransformation(lightpos,rightvec,up,lightdir,m_LightTransform);
-
-	// retransform points
-	m_LightTransform.Transform(CVector3D(bounds[0].X,bounds[0].Y,bounds[0].Z),vp[0]);
-	m_LightTransform.Transform(CVector3D(bounds[1].X,bounds[0].Y,bounds[0].Z),vp[1]);
-	m_LightTransform.Transform(CVector3D(bounds[0].X,bounds[1].Y,bounds[0].Z),vp[2]);
-	m_LightTransform.Transform(CVector3D(bounds[1].X,bounds[1].Y,bounds[0].Z),vp[3]);
-	m_LightTransform.Transform(CVector3D(bounds[0].X,bounds[0].Y,bounds[1].Z),vp[4]);
-	m_LightTransform.Transform(CVector3D(bounds[1].X,bounds[0].Y,bounds[1].Z),vp[5]);
-	m_LightTransform.Transform(CVector3D(bounds[0].X,bounds[1].Y,bounds[1].Z),vp[6]);
-	m_LightTransform.Transform(CVector3D(bounds[1].X,bounds[1].Y,bounds[1].Z),vp[7]);
-
-	// recalculate projection
-	left=vp[0].X;
-	right=vp[0].X;
-	top=vp[0].Y;
-	bottom=vp[0].Y;
-	znear=vp[0].Z;
-	zfar=vp[0].Z;
-
-	for (i=1;i<8;i++) {
-		if (vp[i].X<left) left=vp[i].X;
-		else if (vp[i].X>right) right=vp[i].X;
-
-		if (vp[i].Y<bottom) bottom=vp[i].Y;
-		else if (vp[i].Y>top) top=vp[i].Y;
-
-		if (vp[i].Z<znear) znear=vp[i].Z;
-		else if (vp[i].Z>zfar) zfar=vp[i].Z;
-	}
-
-	// shift near and far clip planes slightly to avoid artifacts with points
-	// exactly on the clip planes
-	znear-=0.01f;
-	zfar+=0.01f;
-
-	m_LightProjection.SetZero();
-	m_LightProjection._11=2/(right-left);
-	m_LightProjection._22=2/(top-bottom);
-	m_LightProjection._33=2/(zfar-znear);
-	m_LightProjection._14=-(right+left)/(right-left);
-	m_LightProjection._24=-(top+bottom)/(top-bottom);
-	m_LightProjection._34=-(zfar+znear)/(zfar-znear);
-	m_LightProjection._44=1;
-#endif
-}
-
-void CRenderer::CreateShadowMap()
-{
-	// get shadow map size as next power of two up from view width and height
-	m_ShadowMapWidth=m_Width;
-	m_ShadowMapWidth=RoundUpToPowerOf2(m_ShadowMapWidth);
-	m_ShadowMapHeight=m_Height;
-	m_ShadowMapHeight=RoundUpToPowerOf2(m_ShadowMapHeight);
-
-	// create texture object - initially filled with white, so clamp to edge clamps to correct color
-	glGenTextures(1,(GLuint*) &m_ShadowMap);
-	BindTexture(0,(GLuint) m_ShadowMap);
-
-	u32 size=m_ShadowMapWidth*m_ShadowMapHeight;
-	u32* buf=new u32[size];
-	for (uint i=0;i<size;i++) buf[i]=0x00ffffff;
-	glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA8,m_ShadowMapWidth,m_ShadowMapHeight,0,GL_RGBA,GL_UNSIGNED_BYTE,buf);
-	delete[] buf;
-
-	// set texture parameters
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-}
-
 void CRenderer::RenderShadowMap()
 {
 	PROFILE( "render shadow map" );
 
-	// create shadow map if we haven't already got one
-	if (!m_ShadowMap) CreateShadowMap();
-
-	// clear buffers
-	glClearColor(1,1,1,0);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-
-	// build required matrices
-	CalcShadowMatrices();
-
-	// setup viewport
-	glViewport(0,0,m_Width,m_Height);
-
-	glMatrixMode(GL_PROJECTION);
-	glPushMatrix();
-	glLoadMatrixf(&m_LightProjection._11);
-
-	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-	glLoadMatrixf(&m_LightTransform._11);
-
-#if 0
-	// debug aid - render actual bounds of shadow casting objects; helps see where
-	// the lights projection/transform can be optimised
-	glColor3f(1.0,0.0,0.0);
-	const CBound& bounds=m_ShadowBound;
-
-	glBegin(GL_LINE_LOOP);
-	glVertex3f(bounds[0].X,bounds[0].Y,bounds[0].Z);
-	glVertex3f(bounds[0].X,bounds[0].Y,bounds[1].Z);
-	glVertex3f(bounds[0].X,bounds[1].Y,bounds[1].Z);
-	glVertex3f(bounds[0].X,bounds[1].Y,bounds[0].Z);
-	glEnd();
-
-	glBegin(GL_LINE_LOOP);
-	glVertex3f(bounds[1].X,bounds[0].Y,bounds[0].Z);
-	glVertex3f(bounds[1].X,bounds[0].Y,bounds[1].Z);
-	glVertex3f(bounds[1].X,bounds[1].Y,bounds[1].Z);
-	glVertex3f(bounds[1].X,bounds[1].Y,bounds[0].Z);
-	glEnd();
-
-	glBegin(GL_LINE_LOOP);
-	glVertex3f(bounds[0].X,bounds[0].Y,bounds[0].Z);
-	glVertex3f(bounds[0].X,bounds[0].Y,bounds[1].Z);
-	glVertex3f(bounds[1].X,bounds[0].Y,bounds[1].Z);
-	glVertex3f(bounds[1].X,bounds[0].Y,bounds[0].Z);
-	glEnd();
-
-	glBegin(GL_LINE_LOOP);
-	glVertex3f(bounds[0].X,bounds[1].Y,bounds[0].Z);
-	glVertex3f(bounds[0].X,bounds[1].Y,bounds[1].Z);
-	glVertex3f(bounds[1].X,bounds[1].Y,bounds[1].Z);
-	glVertex3f(bounds[1].X,bounds[1].Y,bounds[0].Z);
-	glEnd();
-#endif // 0
-
-	glEnable(GL_SCISSOR_TEST);
-	glScissor(1,1,m_Width-2,m_Height-2);
-
+	m->shadow->SetupFrame(m_ShadowBound);
+	m->shadow->BeginRender();
+	
+	// TODO HACK fold this into ShadowMap
 	glColor4fv(m_Options.m_ShadowColor);
 
 	glDisable(GL_CULL_FACE);
@@ -967,56 +630,22 @@ void CRenderer::RenderShadowMap()
 
 	glColor3f(1.0f,1.0f,1.0f);
 
-	glDisable(GL_SCISSOR_TEST);
-
-	// copy result into shadow map texture
-	BindTexture(0,m_ShadowMap);
-	glCopyTexSubImage2D(GL_TEXTURE_2D,0,0,0,0,0,m_Width,m_Height);
-
-	// restore matrix stack
-	glPopMatrix();
-	glMatrixMode(GL_PROJECTION);
-	glPopMatrix();
-	glMatrixMode(GL_MODELVIEW);
-
-#if 0
-	// debug aid - dump generated shadow map to file; helps verify shadow map
-	// space being well used (not that it is at the minute .. (TODO, RC))
-	unsigned char* data=new unsigned char[m_ShadowMapWidth*m_ShadowMapHeight*3];
-	glGetTexImage(GL_TEXTURE_2D,0,GL_BGR_EXT,GL_UNSIGNED_BYTE,data);
-	saveTGA("d:\\test4.tga",m_ShadowMapWidth,m_ShadowMapHeight,24,data);
-	delete[] data;
-#endif // 0
-#if 0
-	unsigned char* data=new unsigned char[m_Width*m_Height*4];
-	glReadBuffer(GL_BACK);
-	glReadPixels(0,0,m_Width,m_Height,GL_BGRA_EXT,GL_UNSIGNED_BYTE,data);
-	saveTGA("d:\\test3.tga",m_Width,m_Height,32,data);
-	delete[] data;
-#endif // 0
+	m->shadow->EndRender();
 }
 
+//TODO: Fold into TerrainRenderer
 void CRenderer::ApplyShadowMap()
 {
 	PROFILE( "applying shadows" );
 
-	CMatrix3D tmp2;
-	CMatrix3D texturematrix;
-
-	float dx=0.5f*float(m_Width)/float(m_ShadowMapWidth);
-	float dy=0.5f*float(m_Height)/float(m_ShadowMapHeight);
-	texturematrix.SetTranslation(dx,dy,0);				// transform (-0.5, 0.5) to (0,1) - texture space
-	tmp2.SetScaling(dx,dy,0);						// scale (-1,1) to (-0.5,0.5)
-	texturematrix=texturematrix*tmp2;
-
-	texturematrix=texturematrix*m_LightProjection;						// transform light -> projected light space (-1 to 1)
-	texturematrix=texturematrix*m_LightTransform;						// transform world -> light space
+	const CMatrix3D& texturematrix = m->shadow->GetTextureMatrix();
+	GLuint shadowmap = m->shadow->GetTexture();
 
 	glMatrixMode(GL_TEXTURE);
 	glLoadMatrixf(&texturematrix._11);
 	glMatrixMode(GL_MODELVIEW);
 
-	CPatchRData::ApplyShadowMap(m_ShadowMap);
+	m->terrainRenderer->ApplyShadowMap(shadowmap);
 
 	glMatrixMode(GL_TEXTURE);
 	glLoadIdentity();
@@ -1035,7 +664,7 @@ void CRenderer::RenderPatches()
 
 	// render all the patches, including blend pass
 	MICROLOG(L"render patch submissions");
-	RenderPatchSubmissions();
+	m->terrainRenderer->RenderTerrain();
 
 	if (m_TerrainRenderMode==WIREFRAME) {
 		// switch wireframe off again
@@ -1055,19 +684,15 @@ void CRenderer::RenderPatches()
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
 
-		// .. and some client states
-		glEnableClientState(GL_VERTEX_ARRAY);
-		CPatchRData::RenderStreamsAll(STREAM_POS);
+		// render tiles edges
+		m->terrainRenderer->RenderPatches();
 
 		// set color for outline
 		glColor3f(0,0,1);
 		glLineWidth(4.0f);
 
 		// render outline of each patch
-		CPatchRData::RenderOutlines();
-
-		// .. and switch off the client states
-		glDisableClientState(GL_VERTEX_ARRAY);
+		m->terrainRenderer->RenderOutlines();
 
 		// .. and restore the renderstates
 		glDisable(GL_BLEND);
@@ -1076,135 +701,6 @@ void CRenderer::RenderPatches()
 		// restore fill mode, and we're done
 		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 	}
-}
-
-void CRenderer::RenderWater()
-{
-	PROFILE(" render water ");
-
-	if(!m_RenderWater) 
-	{
-		return;
-	}
-	
-	//Fresnel effect
-	CCamera* Camera=g_Game->GetView()->GetCamera();
-	CVector3D CamFace=Camera->m_Orientation.GetIn();
-	CamFace.Normalize(); 
-	float FresnelScalar = CamFace.Dot( CVector3D(0.0f, -1.0f, 0.0f) );
-	//Invert and set boundaries
-	FresnelScalar = (1 - FresnelScalar) * 0.4f + 0.6f; 
-	
-	const int DX[] = {1,1,0,0};
-	const int DZ[] = {0,1,1,0};
-	
-	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-	int mapSize = terrain->GetVerticesPerSide();
-	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
-
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
-	glDepthMask(GL_FALSE);
-
-	double time = get_time();
-
-	double period = 1.6;
-	int curTex = (int)(time*60/period) % 60;
-	ogl_tex_bind(m_WaterTexture[curTex], 0);
-
-	glMatrixMode(GL_TEXTURE);
-	glLoadIdentity();
-	float tx = -fmod(time, 20.0)/20.0;
-	float ty = fmod(time, 35.0)/35.0;
-	glTranslatef(tx, ty, 0);
-
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR_ARB);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PRIMARY_COLOR_ARB);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-	
-	// Set the proper LOD bias
-	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, m_Options.m_LodBias);
-
-	glBegin(GL_QUADS);
-
-	for(size_t i=0; i<m_VisiblePatches.size(); i++) 
-	{
-		CPatch* patch = m_VisiblePatches[i];
-
-		for(int dx=0; dx<PATCH_SIZE; dx++) 
-		{
-			for(int dz=0; dz<PATCH_SIZE; dz++) 
-			{
-				int x = (patch->m_X*PATCH_SIZE + dx);
-				int z = (patch->m_Z*PATCH_SIZE + dz);
-
-				// is any corner of the tile below the water height? if not, no point rendering it
-				bool shouldRender = false;
-				for(int j=0; j<4; j++) 
-				{
-					float terrainHeight = terrain->getVertexGroundLevel(x + DX[j], z + DZ[j]);
-					if(terrainHeight < m_WaterHeight) 
-					{
-						shouldRender = true;
-						break;
-					}
-				}
-				if(!shouldRender) 
-				{
-					continue;
-				}
-
-				for(int j=0; j<4; j++) 
-				{
-					int ix = x + DX[j];
-					int iz = z + DZ[j];
-
-					float vertX = ix * CELL_SIZE;
-					float vertZ = iz * CELL_SIZE;
-
-					float terrainHeight = terrain->getVertexGroundLevel(ix, iz);
-
-					float alpha = clamp((m_WaterHeight - terrainHeight) / m_WaterFullDepth + m_WaterAlphaOffset,
-										-100.0f, m_WaterMaxAlpha);
-
-					float losMod = 1.0f;
-					for(int k=0; k<4; k++)
-					{
-						int tx = ix - DX[k];
-						int tz = iz - DZ[k];
-
-						if(tx >= 0 && tz >= 0 && tx <= mapSize-2 && tz <= mapSize-2)
-						{
-							ELOSStatus s = losMgr->GetStatus(tx, tz, g_Game->GetLocalPlayer());
-							if(s == LOS_EXPLORED && losMod > 0.7f) 
-								losMod = 0.7f;
-							else if(s==LOS_UNEXPLORED && losMod > 0.0f)
-								losMod = 0.0f;
-						}
-					}
-
-					glColor4f(m_WaterColor.r*losMod, m_WaterColor.g*losMod, m_WaterColor.b*losMod, alpha * FresnelScalar);
-					pglMultiTexCoord2fARB(GL_TEXTURE0, vertX/16.0f, vertZ/16.0f);
-					glVertex3f(vertX, m_WaterHeight, vertZ);
-				}
-			}	//end of x loop
-		}	//end of z loop
-	}
-	
-	glEnd();
-
-	glLoadIdentity();
-	glMatrixMode(GL_MODELVIEW);
-
-	glDepthMask(GL_TRUE);
-	glDisable(GL_BLEND);
-	glDisable(GL_TEXTURE_2D);
 }
 
 void CRenderer::RenderModels()
@@ -1298,6 +794,10 @@ void CRenderer::FlushFrame()
 	m_Models.TranspSortAll->PrepareModels();
 	PROFILE_END("prepare models");
 
+	PROFILE_START("prepare terrain");
+	m->terrainRenderer->PrepareForRendering();
+	PROFILE_END("prepare terrain");
+
 	if (!m_ShadowRendered) {
 		if (m_Options.m_Shadows) {
 			MICROLOG(L"render shadows");
@@ -1334,15 +834,17 @@ void CRenderer::FlushFrame()
 	// render water (note: we're assuming there's no transparent stuff over water...
 	// we could also do this above render transparent if we assume there's no transparent
 	// stuff underwater)
-	MICROLOG(L"render water");
-	RenderWater();
-	oglCheck();
+	if (m_WaterManager->m_RenderWater)
+	{
+		MICROLOG(L"render water");
+		m->terrainRenderer->RenderWater();
+		oglCheck();
+	}
 
 	// empty lists
 	MICROLOG(L"empty lists");
-	CPatchRData::ClearSubmissions();
-	m_VisiblePatches.clear();
-	
+	m->terrainRenderer->EndFrame();
+
 	// Finish model renderers
 	m_Models.NormalFF->EndFrame();
 	m_Models.PlayerFF->EndFrame();
@@ -1405,8 +907,7 @@ void CRenderer::SetViewport(const SViewPort &vp)
 
 void CRenderer::Submit(CPatch* patch)
 {
-	CPatchRData::Submit(patch);
-	m_VisiblePatches.push_back(patch);
+	m->terrainRenderer->Submit(patch);
 }
 
 void CRenderer::Submit(CModel* model)
@@ -1418,9 +919,9 @@ void CRenderer::Submit(CModel* model)
 
 	// Tricky: The call to GetBounds() above can invalidate the position
 	model->ValidatePosition();
-	
+
 	bool canUseInstancing = false;
-	
+
 	if (model->GetModelDef()->GetNumBones() == 0)
 		canUseInstancing = true;
 
@@ -1470,24 +971,6 @@ void CRenderer::Submit(CParticleSys* UNUSED(psys))
 void CRenderer::Submit(COverlay* UNUSED(overlay))
 {
 }
-
-void CRenderer::RenderPatchSubmissions()
-{
-	// switch on required client states 
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	
-	// render everything 
-	CPatchRData::RenderBaseSplats();
-	CPatchRData::RenderBlendSplats();
-
-	// switch off all client states
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);
-	glDisableClientState(GL_VERTEX_ARRAY);
-}
-
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1723,58 +1206,6 @@ void CRenderer::UnloadAlphaMaps()
 
 
 
-
-int CRenderer::LoadWaterTextures()
-{
-	const uint num_textures = ARRAY_SIZE(m_WaterTexture);
-
-	// yield after this time is reached. balances increased progress bar
-	// smoothness vs. slowing down loading.
-	const double end_time = get_time() + 100e-3;
-
-	// initialize to 0 in case something fails below
-	// (we then abort the loop, but don't want undefined values in here)
-	if (cur_loading_water_tex == 0)
-	{
-		for (uint i = 0; i < num_textures; i++)
-			m_WaterTexture[i] = 0;
-	}
-
-	while (cur_loading_water_tex < num_textures)
-	{
-		char waterName[VFS_MAX_PATH];
-		// TODO: add a member variable and setter for this. (can't make this
-		// a parameter because this function is called via delay-load code)
-		const char* water_type = "animation2";
-		snprintf(waterName, ARRAY_SIZE(waterName), "art/textures/terrain/types/water/%s/water%02d.dds", water_type, cur_loading_water_tex+1);
-		Handle ht = ogl_tex_load(waterName);
-		if (ht <= 0)
-		{
-			LOG(ERROR, LOG_CATEGORY, "LoadWaterTextures failed on \"%s\"", waterName);
-			return ht;
-		}
-		m_WaterTexture[cur_loading_water_tex]=ht;
-		RETURN_ERR(ogl_tex_upload(ht));
-		
-		cur_loading_water_tex++;
-		LDR_CHECK_TIMEOUT(cur_loading_water_tex, num_textures);
-	}
-
-	return 0;
-}
-
-
-void CRenderer::UnloadWaterTextures()
-{
-	for (uint i = 0; i < ARRAY_SIZE(m_WaterTexture); i++)
-	{
-		ogl_tex_free(m_WaterTexture[i]);
-		m_WaterTexture[i] = 0;
-	}
-	cur_loading_water_tex = 0; // so they will be reloaded if LoadWaterTextures is called again
-}
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Scripting Interface
 
@@ -1786,10 +1217,10 @@ jsval CRenderer::JSI_GetFastPlayerColor(JSContext*)
 void CRenderer::JSI_SetFastPlayerColor(JSContext* ctx, jsval newval)
 {
 	bool fast;
-	
+
 	if (!ToPrimitive(ctx, newval, fast))
 		return;
-	
+
 	SetFastPlayerColor(fast);
 }
 
@@ -1801,10 +1232,10 @@ jsval CRenderer::JSI_GetRenderPath(JSContext*)
 void CRenderer::JSI_SetRenderPath(JSContext* ctx, jsval newval)
 {
 	CStr name;
-	
+
 	if (!ToPrimitive(ctx, newval, name))
 		return;
-	
+
 	SetRenderPath(GetRenderPathByName(name));
 }
 

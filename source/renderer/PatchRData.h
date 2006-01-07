@@ -15,35 +15,14 @@ class CPatch;
 class CPatchRData : public CRenderData
 {
 public:
-	CPatchRData(CPatch* patch); 
-	~CPatchRData(); 
+	CPatchRData(CPatch* patch);
+	~CPatchRData();
 
 	void Update();
 	void RenderBase();
 	void RenderBlends();
 	void RenderOutline();
 	void RenderStreams(u32 streamflags);
-
-	// submit a patch to render this frame
-	static void Submit(CPatch* patch);
-	// clear per frame patch list
-	static void ClearSubmissions() { m_Patches.clear(); }
-
-	// render the base pass of all patches
-	static void RenderBaseSplats();
-	// render the blend pass of all patches
-	static void RenderBlendSplats();
-	// render the outlines of all patches
-	static void RenderOutlines();
-	// render given streams of all patches; don't fiddle with renderstate
-	static void RenderStreamsAll(u32 streamflags);
-	// apply given shadow map to all terrain patches
-	static void ApplyShadowMap(GLuint handle);
-
-	// submit base batches for this patch to the vertex buffer
-	void SubmitBaseBatches();
-	// submit next set of blend batches for this patch to the vertex buffer;
-	void SubmitBlendBatches();
 
 private:
 	struct SSplat {
@@ -129,9 +108,6 @@ private:
 
 	// splats used in blend pass
 	std::vector<SSplat> m_BlendSplats;
-
-	// list of all submitted patches
-	static std::vector<CPatch*> m_Patches;
 };
 
 

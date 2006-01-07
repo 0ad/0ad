@@ -17,7 +17,7 @@
 #include "Profile.h"
 #include "LOSManager.h"
 #include "graphics/GameView.h"
-
+#include "renderer/WaterManager.h"
 
 
 bool g_TerrainModified = false;
@@ -81,11 +81,11 @@ void CMiniMap::HandleMessage(const SGUIMessage &Message)
 			m_Camera->m_Orientation._14+=TransVector.X;
 			m_Camera->m_Orientation._34+=TransVector.Z;
 
-			//Lock Y coord.  No risk of zoom exceeding limit-Y does not increase  
+			//Lock Y coord.  No risk of zoom exceeding limit-Y does not increase
 			float Height=MMTerrain->getExactGroundLevel(
 				m_Camera->m_Orientation._14, m_Camera->m_Orientation._34) + g_YMinOffset;
 
-			if (m_Camera->m_Orientation._24 < Height)	
+			if (m_Camera->m_Orientation._24 < Height)
 			{
 				m_Camera->m_Orientation._24=Height;
 			}
@@ -103,7 +103,7 @@ void CMiniMap::HandleMessage(const SGUIMessage &Message)
 // which represents the view of the camera in the world.
 void CMiniMap::DrawViewRect()
 {
-	// Get correct world coordinates based off corner of screen start 
+	// Get correct world coordinates based off corner of screen start
 	// at Bottom Left and going CW
 	CVector3D hitPt[4];
 	hitPt[0]=m_Camera->GetWorldCoordinates(0,g_Renderer.GetHeight());
@@ -150,7 +150,7 @@ void CMiniMap::Draw()
 	// happens when the game is started, so abort until then.
 	if(!(GetGUI() && g_Game && g_Game->IsGameStarted()))
 		return;
-	
+
 	// Set our globals in case they hadn't been set before
 	m_Camera      = g_Game->GetView()->GetCamera();
 	m_Terrain     = g_Game->GetWorld()->GetTerrain();
@@ -271,7 +271,7 @@ void CMiniMap::Draw()
 	glEnd();
 
 	DrawViewRect();
-	
+
 	// Reset everything back to normal
 	glPointSize(1.0f);
 	glDisable(GL_LINE_SMOOTH);
@@ -315,6 +315,7 @@ void CMiniMap::RebuildTerrainTexture()
 	u32 y = 0;
 	u32 w = m_MapSize - 1;
 	u32 h = m_MapSize - 1;
+	float waterHeight = g_Renderer.GetWaterManager()->m_WaterHeight;
 
 	for(u32 j = 0; j < h; j++)
 	{
@@ -327,7 +328,7 @@ void CMiniMap::RebuildTerrainTexture()
 					+ m_Terrain->getVertexGroundLevel((int)i+1, (int)j+1)
 				) / 4.0f;
 
-			if(avgHeight < g_Renderer.m_WaterHeight)
+			if(avgHeight < waterHeight)
 			{
 				*dataPtr++ = 0xff304080;		// TODO: perhaps use the renderer's water color?
 			}

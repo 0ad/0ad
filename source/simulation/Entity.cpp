@@ -19,6 +19,7 @@
 #include "scripting/JSInterface_Vector3D.h"
 #include "MathUtil.h"
 #include "CConsole.h"
+#include "renderer/WaterManager.h"
 
 extern CConsole* g_Console;
 extern int g_xres, g_yres;
@@ -878,7 +879,7 @@ float CEntity::getAnchorLevel( float x, float z )
     }
     else
     {
-        return max( groundLevel, g_Renderer.m_WaterHeight );
+        return max( groundLevel, g_Renderer.GetWaterManager()->m_WaterHeight );
     }
 }
 

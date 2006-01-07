@@ -2,8 +2,8 @@
  * =========================================================================
  * File        : TransparencyRenderer.h
  * Project     : Pyrogenesis
- * Description : ModelRenderer implementation that sorts models and/or 
- *             : polygons based on distance from viewer, for transparency 
+ * Description : ModelRenderer implementation that sorts models and/or
+ *             : polygons based on distance from viewer, for transparency
  *             : rendering.
  *
  * @author Rich Cross <rich@wildfiregames.com>
@@ -41,10 +41,10 @@
 struct PSModelDef : public CModelDefRPrivate
 {
 	PSModelDef(CModelDefPtr mdef);
-	
+
 	/// Static vertex array
 	VertexArray m_Array;
-	
+
 	/// UV is static
 	VertexArray::Attribute m_UV;
 };
@@ -55,14 +55,14 @@ PSModelDef::PSModelDef(CModelDefPtr mdef)
 	m_UV.type = GL_FLOAT;
 	m_UV.elems = 2;
 	m_Array.AddAttribute(&m_UV);
-	
+
 	m_Array.SetNumVertices(mdef->GetNumVertices());
 	m_Array.Layout();
 
 	VertexArrayIterator<float[2]> UVit = m_UV.GetIterator<float[2]>();
-	
+
 	ModelRenderer::BuildUV(mdef, UVit);
-	
+
 	m_Array.Upload();
 	m_Array.FreeBackingStore();
 }
@@ -75,7 +75,7 @@ struct PSModel
 {
 	PSModel(CModel* model);
 	~PSModel();
-	
+
 	/**
 	 * BackToFrontIndexSort: Sort polygons by distance to camera for
 	 * transparency rendering and fill the indices array appropriately.
@@ -85,13 +85,13 @@ struct PSModel
 	 * @return Square of the estimated distance to the nearest triangle.
 	 */
 	float BackToFrontIndexSort(const CMatrix3D& objToCam);
-	
+
 	/// Back-link to the model
 	CModel* m_Model;
-	
+
 	/// Dynamic per-CModel vertex array
 	VertexArray m_Array;
-	
+
 	/// Position and lighting are recalculated on CPU every frame
 	VertexArray::Attribute m_Position;
 	VertexArray::Attribute m_Color;
@@ -104,7 +104,7 @@ PSModel::PSModel(CModel* model)
 	: m_Model(model), m_Array(true)
 {
 	CModelDefPtr mdef = m_Model->GetModelDef();
-	
+
 	m_Position.type = GL_FLOAT;
 	m_Position.elems = 3;
 	m_Array.AddAttribute(&m_Position);
@@ -112,10 +112,10 @@ PSModel::PSModel(CModel* model)
 	m_Color.type = GL_UNSIGNED_BYTE;
 	m_Color.elems = 4;
 	m_Array.AddAttribute(&m_Color);
-	
+
 	m_Array.SetNumVertices(mdef->GetNumVertices());
 	m_Array.Layout();
-	
+
 	m_Indices = new u16[mdef->GetNumFaces()*3];
 }
 
@@ -140,7 +140,7 @@ float PSModel::BackToFrontIndexSort(const CMatrix3D& worldToCam)
 	CModelDefPtr mdef = m_Model->GetModelDef();
 	size_t numFaces = mdef->GetNumFaces();
 	const SModelFace* faces = mdef->GetFaces();
-	
+
 	if (IndexSorter.size() < numFaces)
 		IndexSorter.resize(numFaces);
 
@@ -162,7 +162,7 @@ float PSModel::BackToFrontIndexSort(const CMatrix3D& worldToCam)
 	}
 
 	std::sort(IndexSorter.begin(),IndexSorter.begin()+numFaces,SortFacesByDist());
-	
+
 	// now build index list
 	u32 idxidx = 0;
 	for (size_t i = 0; i < numFaces; ++i) {
@@ -203,13 +203,13 @@ void* PolygonSortModelRenderer::CreateModelData(CModel* model)
 {
 	CModelDefPtr mdef = model->GetModelDef();
 	PSModelDef* psmdef = (PSModelDef*)mdef->GetRenderData(m);
-		
+
 	if (!psmdef)
 	{
 		psmdef = new PSModelDef(mdef);
 		mdef->SetRenderData(m, psmdef);
 	}
-	
+
 	return new PSModel(model);
 }
 
@@ -240,14 +240,14 @@ void PolygonSortModelRenderer::UpdateModelData(CModel* model, void* data, u32 up
 		// upload everything to vertex buffer
 		psmdl->m_Array.Upload();
 	}
-	
+
 	// resort model indices from back to front, according to camera position - and store
 	// the returned sqrd distance to the centre of the nearest triangle
 	PROFILE_START( "sorting transparent" );
-	
+
 	CMatrix3D worldToCam;
 	g_Renderer.GetCamera().m_Orientation.GetInverse(worldToCam);
-	
+
 	psmdl->BackToFrontIndexSort(worldToCam);
 	PROFILE_END( "sorting transparent" );
 }
@@ -257,7 +257,7 @@ void PolygonSortModelRenderer::UpdateModelData(CModel* model, void* data, u32 up
 void PolygonSortModelRenderer::DestroyModelData(CModel* UNUSED(model), void* data)
 {
 	PSModel* psmdl = (PSModel*)data;
-	
+
 	delete psmdl;
 }
 
@@ -277,7 +277,7 @@ void PolygonSortModelRenderer::EndPass(uint streamflags)
 {
 	if (streamflags & STREAM_UV0) glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	if (streamflags & STREAM_COLOR) glDisableClientState(GL_COLOR_ARRAY);
-	
+
 	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
@@ -288,12 +288,12 @@ void PolygonSortModelRenderer::PrepareModelDef(uint streamflags, CModelDefPtr de
 	if (streamflags & STREAM_UV0)
 	{
 		PSModelDef* psmdef = (PSModelDef*)def->GetRenderData(m);
-	
+
 		debug_assert(psmdef);
-	
+
 		u8* base = psmdef->m_Array.Bind();
 		GLsizei stride = (GLsizei)psmdef->m_Array.GetStride();
-	
+
 		glTexCoordPointer(2, GL_FLOAT, stride, base + psmdef->m_UV.offset);
 	}
 }
@@ -304,14 +304,14 @@ void PolygonSortModelRenderer::RenderModel(uint streamflags, CModel* model, void
 {
 	CModelDefPtr mdef = model->GetModelDef();
 	PSModel* psmdl = (PSModel*)data;
-	
+
 	// Setup per-CModel arrays
 	u8* base = psmdl->m_Array.Bind();
 	GLsizei stride = (GLsizei)psmdl->m_Array.GetStride();
-	
+
 	glVertexPointer(3, GL_FLOAT, stride, base + psmdl->m_Position.offset);
 	if (streamflags & STREAM_COLOR)
-		glColorPointer(3, psmdl->m_Color.type, stride, base + psmdl->m_Color.offset);	
+		glColorPointer(3, psmdl->m_Color.type, stride, base + psmdl->m_Color.offset);
 
 	// render the lot
 	size_t numFaces = mdef->GetNumFaces();
@@ -335,13 +335,13 @@ struct SModel : public CModelRData
 {
 	SModel(SortModelRendererInternals* tri, CModel* model);
 	~SModel();
-	
+
 	// Back-link to the Model renderer
 	SortModelRendererInternals* m_SMRI;
-	
+
 	// Private data of the ModelVertexRenderer
 	void* m_Data;
-	
+
 	// Distance to camera (for sorting)
 	float m_Distance;
 };
@@ -354,7 +354,7 @@ struct SortModelRendererInternals
 {
 	/// Vertex renderer used for transform and lighting
 	ModelVertexRendererPtr vertexRenderer;
-	
+
 	/// List of submitted models.
 	std::vector<SModel*> models;
 };
@@ -392,7 +392,7 @@ void SortModelRenderer::Submit(CModel* model)
 {
 	CModelRData* rdata = (CModelRData*)model->GetRenderData();
 	SModel* smdl;
-	
+
 	if (rdata && rdata->GetKey() == m)
 	{
 		smdl = (SModel*)rdata;
@@ -405,7 +405,7 @@ void SortModelRenderer::Submit(CModel* model)
 		model->SetDirty(~0u);
 		g_Renderer.LoadTexture(model->GetTexture(), GL_CLAMP_TO_EDGE);
 	}
-	
+
 	m->models.push_back(smdl);
 }
 
@@ -420,26 +420,26 @@ struct SortModelsByDist {
 void SortModelRenderer::PrepareModels()
 {
 	CMatrix3D worldToCam;
-	
+
 	if (m->models.size() == 0)
 		return;
-	
+
 	g_Renderer.m_Camera.m_Orientation.GetInverse(worldToCam);
-	
+
 	for(std::vector<SModel*>::iterator it = m->models.begin(); it != m->models.end(); ++it)
 	{
 		SModel* smdl = *it;
 		CModel* model = smdl->GetModel();
-	
+
 		debug_assert(model->GetRenderData() == smdl);
-		
+
 		m->vertexRenderer->UpdateModelData(model, smdl->m_Data, smdl->m_UpdateFlags);
 		smdl->m_UpdateFlags = 0;
-		
+
 		CVector3D modelpos = model->GetTransform().GetTranslation();
-		
+
 		modelpos = worldToCam.Transform(modelpos);
-		
+
 		smdl->m_Distance = modelpos.Z;
 	}
 
@@ -467,51 +467,51 @@ bool SortModelRenderer::HaveSubmissions()
 void SortModelRenderer::Render(RenderModifierPtr modifier, u32 flags)
 {
 	uint pass = 0;
-	
+
 	if (m->models.size() == 0)
 		return;
-	
+
 	do
 	{
 		u32 streamflags = modifier->BeginPass(pass);
 		CModelDefPtr lastmdef;
 		CTexture* lasttex = 0;
-		
+
 		m->vertexRenderer->BeginPass(streamflags);
-		
+
 		for(std::vector<SModel*>::iterator it = m->models.begin(); it != m->models.end(); ++it)
 		{
 			SModel* smdl = *it;
 			CModel* mdl = smdl->GetModel();
-			
+
 			if (flags & !(mdl->GetFlags() & flags))
 				continue;
-			
+
 			debug_assert(smdl->GetKey() == m);
 
 			CModelDefPtr mdef = mdl->GetModelDef();
 			CTexture* tex = mdl->GetTexture();
-			
+
 			// Prepare per-CModelDef data if changed
 			if (mdef != lastmdef)
 			{
 				m->vertexRenderer->PrepareModelDef(streamflags, mdef);
 				lastmdef = mdef;
 			}
-			
+
 			// Prepare necessary RenderModifier stuff
 			if (tex != lasttex)
 			{
 				modifier->PrepareTexture(pass, tex);
 				lasttex = tex;
 			}
-			
+
 			modifier->PrepareModel(pass, mdl);
-		
+
 			// Render the model
 			m->vertexRenderer->RenderModel(streamflags, mdl, smdl->m_Data);
 		}
-	
+
 		m->vertexRenderer->EndPass(streamflags);
 	} while(!modifier->EndPass(pass++));
 }
@@ -547,13 +547,13 @@ u32 TransparentRenderModifier::BeginPass(uint pass)
 
 		// Set the proper LOD bias
 		glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
-		
+
 		glEnable(GL_ALPHA_TEST);
 		glAlphaFunc(GL_GREATER,0.975f);
 
 		// render everything with color writes off to setup depth buffer correctly
 		glColorMask(0,0,0,0);
-		
+
 		return STREAM_POS|STREAM_UV0;
 	}
 	else
@@ -574,10 +574,10 @@ u32 TransparentRenderModifier::BeginPass(uint pass)
 
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
-	
+
 		// Set the proper LOD bias
 		glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
-		
+
 		return STREAM_POS|STREAM_COLOR|STREAM_UV0;
 	}
 }
@@ -586,11 +586,11 @@ bool TransparentRenderModifier::EndPass(uint pass)
 {
 	if (pass == 0)
 		return false; // multi-pass
-	
+
 	glDisable(GL_BLEND);
 	glDisable(GL_ALPHA_TEST);
 	glDepthMask(1);
-	
+
 	return true;
 }
 
@@ -619,7 +619,7 @@ TransparentShadowRenderModifier::~TransparentShadowRenderModifier()
 u32 TransparentShadowRenderModifier::BeginPass(uint pass)
 {
 	debug_assert(pass == 0);
-	
+
 	glDepthMask(0);
 
 	glEnable(GL_BLEND);
@@ -643,7 +643,7 @@ bool TransparentShadowRenderModifier::EndPass(uint UNUSED(pass))
 {
 	glDepthMask(1);
 	glDisable(GL_BLEND);
-	
+
 	return true;
 }
 

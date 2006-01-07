@@ -41,6 +41,7 @@
 #include "graphics/MaterialManager.h"
 #include "graphics/MeshManager.h"
 #include "renderer/Renderer.h"
+#include "renderer/VertexBufferManager.h"
 #include "maths/MathUtil.h"
 
 #include "simulation/BaseEntityCollection.h"

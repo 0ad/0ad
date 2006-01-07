@@ -1,4 +1,4 @@
-#include "Precompiled.h"
+#include "precompiled.h"
 #include "NUSpline.h"
 #include "Matrix3D.h"
 

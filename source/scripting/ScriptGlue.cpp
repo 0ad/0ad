@@ -36,6 +36,7 @@
 #include "scripting/JSInterface_Console.h"
 #include "scripting/JSInterface_VFS.h"
 #include "scripting/JSConversions.h"
+#include "renderer/WaterManager.h"
 #ifndef NO_GUI
 # include "gui/scripting/JSInterface_IGUIObject.h"
 #endif
@@ -181,7 +182,7 @@ JSBool getEntityTemplate( JSContext* cx, JSObject*, uint argc, jsval* argv, jsva
 		JS_ReportError( cx, "No such template: %s", CStr8(templateName).c_str() );
 		return( JS_TRUE );
 	}
-	
+
 	*rval = OBJECT_TO_JSVAL( v->GetScript() );
 	return( JS_TRUE );
 }
@@ -201,7 +202,7 @@ JSBool issueCommand( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rv
 
 	if (JS_GetClass(JSVAL_TO_OBJECT(argv[0])) == &CEntity::JSI_class)
 		entities.push_back( (ToNative<CEntity>(argv[0])) ->me);
-	else	
+	else
 		entities = *EntityCollection::RetrieveSet(cx, JSVAL_TO_OBJECT(argv[0]));
 
 	CNetMessage *msg = CNetMessage::CommandFromJSArgs(entities, cx, argc-1, argv+1);
@@ -389,7 +390,7 @@ JSBool cancelInterval( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* 
 }
 
 
-// Cause the scheduled task (timeout or interval) with the given ID to 
+// Cause the scheduled task (timeout or interval) with the given ID to
 //   no longer be called.
 // params:
 // returns:
@@ -431,7 +432,7 @@ JSBool createServer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rva
 		g_Game = new CGame();
 	if( !g_NetServer )
 		g_NetServer = new CNetServer(g_Game, &g_GameAttributes);
-	
+
 	*rval = OBJECT_TO_JSVAL(g_NetServer->GetScript());
 	return( JS_TRUE );
 }
@@ -817,7 +818,7 @@ JSBool toggleWater( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, js
 {
 	REQUIRE_NO_PARAMS( toggleWater );
 	debug_printf("Toggling water!\n");
-	g_Renderer.m_RenderWater = !g_Renderer.m_RenderWater;
+	g_Renderer.GetWaterManager()->m_RenderWater = !g_Renderer.GetWaterManager()->m_RenderWater;
 	*rval = JSVAL_VOID;
 	return( JS_TRUE );
 }
@@ -833,7 +834,7 @@ JSBool setWaterHeight( JSContext* cx, JSObject* UNUSED(globalObject), uint argc,
 		*rval = JSVAL_VOID;
 		return( JS_FALSE );
 	}
-	g_Renderer.m_WaterHeight = newHeight;
+	g_Renderer.GetWaterManager()->m_WaterHeight = newHeight;
 	g_TerrainModified = true;
 	*rval = JSVAL_VOID;
 	return( JS_TRUE );
@@ -843,7 +844,7 @@ JSBool setWaterHeight( JSContext* cx, JSObject* UNUSED(globalObject), uint argc,
 JSBool getWaterHeight( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
 	REQUIRE_NO_PARAMS( getWaterHeight );
-	*rval = ToJSVal(g_Renderer.m_WaterHeight);
+	*rval = ToJSVal(g_Renderer.GetWaterManager()->m_WaterHeight);
 	return( JS_TRUE );
 }
 
@@ -860,7 +861,7 @@ JSBool setWaterColor( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, 
 		*rval = JSVAL_VOID;
 		return( JS_FALSE );
 	}
-	g_Renderer.m_WaterColor = CColor(r, g, b, 1.0f);
+	g_Renderer.GetWaterManager()->m_WaterColor = CColor(r, g, b, 1.0f);
 	*rval = JSVAL_VOID;
 	return( JS_TRUE );
 }
@@ -876,7 +877,7 @@ JSBool setWaterMaxAlpha( JSContext* cx, JSObject* UNUSED(globalObject), uint arg
 		*rval = JSVAL_VOID;
 		return( JS_FALSE );
 	}
-	g_Renderer.m_WaterMaxAlpha = val;
+	g_Renderer.GetWaterManager()->m_WaterMaxAlpha = val;
 	*rval = JSVAL_VOID;
 	return( JS_TRUE );
 }
@@ -892,7 +893,7 @@ JSBool setWaterFullDepth( JSContext* cx, JSObject* UNUSED(globalObject), uint ar
 		*rval = JSVAL_VOID;
 		return( JS_FALSE );
 	}
-	g_Renderer.m_WaterFullDepth = val;
+	g_Renderer.GetWaterManager()->m_WaterFullDepth = val;
 	*rval = JSVAL_VOID;
 	return( JS_TRUE );
 }
@@ -908,7 +909,7 @@ JSBool setWaterAlphaOffset( JSContext* cx, JSObject* UNUSED(globalObject), uint 
 		*rval = JSVAL_VOID;
 		return( JS_FALSE );
 	}
-	g_Renderer.m_WaterAlphaOffset = val;
+	g_Renderer.GetWaterManager()->m_WaterAlphaOffset = val;
 	*rval = JSVAL_VOID;
 	return( JS_TRUE );
 }
@@ -973,7 +974,7 @@ JSBool revealMap( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsva
 // we simplify this a bit with a macro:
 #define JS_FUNC(script_name, cpp_function, min_params) { #script_name, cpp_function, min_params, 0, 0 },
 
-JSFunctionSpec ScriptFunctionTable[] = 
+JSFunctionSpec ScriptFunctionTable[] =
 {
 	// Console
 	JS_FUNC(writeConsole, JSI_Console::writeConsole, 1)	// external
@@ -996,7 +997,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC(setWaterFullDepth, setWaterFullDepth, 0)
 	JS_FUNC(setWaterAlphaOffset, setWaterAlphaOffset, 0)
 
-	// GUI	
+	// GUI
 #ifndef NO_GUI
 	JS_FUNC(getGUIObjectByName, JSI_IGUIObject::getByName, 1)	// external
 	JS_FUNC(getGUIGlobal, getGUIGlobal, 0)

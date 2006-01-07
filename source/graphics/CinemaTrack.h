@@ -15,6 +15,8 @@
 
 #include <list>
 #include <map>
+
+#include "CStr.h"
 #include "NUSpline.h"
 
 /*
@@ -32,7 +34,6 @@
 class CVector3D;
 class CVector4D;
 class CCamera;
-class CStr;
 
 //For loading data
 class CCinemaData
