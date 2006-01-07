@@ -1189,7 +1189,18 @@ A large landmass with rivers, forests and coastal fishing grounds.
 //							snd_disable (true);
 
 //						this.checked = !snd_disabled;
-					]]></action>		
+
+						if(this.checked)
+						{
+							curr_music.setGain (0.0);
+							g_ConfigDB.system["sound.mastergain"] = 0.0;
+						}
+						if(!this.checked)
+						{
+							curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
+							g_ConfigDB.system["sound.mastergain"] = getGUIObjectByName ("pgOptionsAudioMusicGain").caption;
+						}
+					]]></action>	
 				</object>
 
 				<object name="pgOptionsAudioMusicGain"
