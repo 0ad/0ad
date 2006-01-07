@@ -1224,8 +1224,11 @@ A large landmass with rivers, forests and coastal fishing grounds.
 						if (getGUIObjectByName ("pgOptionsAudioMusicGain").caption > 0.0)
 							guiModifyCaption ("pgOptionsAudioMusicGain", -.1, 1);
 
-						curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
-						g_ConfigDB.system["sound.mastergain"] = getGUIObjectByName ("pgOptionsAudioMusicGain").caption;
+						if (pgOptionsAudioSoundCheckBox.unchecked)
+						{
+							curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
+							g_ConfigDB.system["sound.mastergain"] = getGUIObjectByName ("pgOptionsAudioMusicGain").caption;
+						}
 					]]></action>
 				</object>
 
@@ -1238,8 +1241,11 @@ A large landmass with rivers, forests and coastal fishing grounds.
 						if (getGUIObjectByName ("pgOptionsAudioMusicGain").caption < 1.0)
 							guiModifyCaption ("pgOptionsAudioMusicGain", .1, 1);
 
-						curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
-						g_ConfigDB.system["sound.mastergain"] = getGUIObjectByName ("pgOptionsAudioMusicGain").caption;
+						if (pgOptionsAudioSoundCheckBox.unchecked)
+						{
+							curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
+							g_ConfigDB.system["sound.mastergain"] = getGUIObjectByName ("pgOptionsAudioMusicGain").caption;
+						}
 					]]></action>
 				</object>
 
