@@ -91,6 +91,8 @@ public:
 	// If this unit is still active in the gameworld - i.e. not a corpse.
 	bool m_extant;
 
+	bool m_isRunning;
+
 	// HP properties
 	float m_healthCurr;
 	float m_healthMax;
@@ -256,6 +258,7 @@ public:
 	void pushOrder( CEntityOrder& order );
 	
 	jsval RequestNotification( JSContext* cx, uintN argc, jsval* argv );
+	void DispatchNotification( CEntityOrder order,uint type );
 	jsval CheckListeners( JSContext* cx, uintN argc, jsval* argv );
 
 	// Script constructor

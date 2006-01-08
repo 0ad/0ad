@@ -7,6 +7,7 @@
 
 #include "scripting/DOMEvent.h"
 #include "Vector3D.h"
+#include "EntityOrders.h"
 
 class CDamageType;
 
@@ -85,6 +86,16 @@ class CEventOrderTransition : public CScriptEvent
 	CVector3D* m_worldPosition;
 public:
 	CEventOrderTransition( int orderPrevious, int orderCurrent, CEntity*& target, CVector3D& worldPosition );
+};
+class CEventNotification : public CScriptEvent
+{
+	//Same as CEntityOrder data for support of all orders
+	CEntity* m_target;
+	uint m_data;	//u64 is unsupported...will this work?
+	uint m_type;
+	CVector3D m_location;	//No real use for y, but CVector2D unsupported
+public:
+	CEventNotification( CEntityOrder order, uint type );
 };
 
 #endif

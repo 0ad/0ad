@@ -100,6 +100,8 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 
     m_selected = false;
 
+	m_isRunning = false;
+
     m_grouped = -1;
 
     m_player = g_Game->GetPlayer( 0 );
@@ -408,7 +410,6 @@ void CEntity::update( size_t timestep )
 				updateCollisionPatch();
 				return;
             case CEntityOrder::ORDER_GOTO:
-			case CEntityOrder::ORDER_RUN:
 				if( processGoto( current, timestep ) )
 					break;
 				updateCollisionPatch();
@@ -648,35 +649,82 @@ bool CEntity::acceptsOrder( int orderType, CEntity* orderTarget )
 
 jsval CEntity::RequestNotification( JSContext* cx, uintN argc, jsval* argv )
 {
-	debug_assert( argc >= 3 ); 
+	debug_assert( argc > 3 ); 
 	CEntityListener notify;
 
 	notify.m_sender = this;
 	//(Convert from int to enum)
-	CEntity* target = ToPrimitive<CEntity*>( argv[0] );
+	CEntity *target = ToNative<CEntity>( argv[0] );
 	*( (uint*) &(notify.m_type) ) = ToPrimitive<int>( argv[1] );
 	
-	if ( ToPrimitive<bool>( argv[2] ) )
+	bool destroy = ToPrimitive<bool>( argv[2] );
+	
+	std::deque<CEntityListener>::iterator it = target->m_listeners.begin();
+	for ( ; it != target->m_listeners.end(); it++)
 	{
-		std::deque<CEntityListener>::iterator it = target->m_listeners.begin();
-		for ( ; it != target->m_listeners.end(); it++)
-		{
-			if ( it->m_sender == this )
-				target->m_listeners.erase(it);
-		}
+		if ( destroy && it->m_sender == this )
+			target->m_listeners.erase(it);
 	}
+
 	target->m_listeners.push_back( notify );
 	return JSVAL_VOID;
 }
-jsval CEntity::CheckListeners( JSContext *cx, uintN argc, jsval* argv )
+void CEntity::DispatchNotification( CEntityOrder order, uint type )
 {
-	debug_assert( argc >= 1);
-	
-	int type = ToPrimitive<int>( argv[0] );
-	for (int i=0; i<m_listeners.size(); i++)
+	CEventNotification evt( order, type );
+	DispatchEvent( &evt );
+}
+
+jsval CEntity::CheckListeners( JSContext *cx, uintN argc, jsval* argv )
+{	
+	if( argc < 1 )
 	{
+		JS_ReportError( cx, "Too few parameters" );
+		return( false );
+	}
+	int type = ToPrimitive<int>( argv[0] );	   //notify code
+	CEntityOrder order = this->m_orderQueue.front();
+	CEntity* target;
+
+	for (int i=0; i<m_listeners.size(); i++)
+		
 		if (m_listeners[i].m_type & type)
-			m_listeners[i].m_sender->pushOrder( this->m_orderQueue.front() );
+		{
+			 switch( type )
+			 {
+			 case CEntityListener::NOTIFY_GOTO:
+					m_listeners[i].m_sender->DispatchNotification( order, type );
+					break;
+				 
+				 case CEntityListener::NOTIFY_HEAL:
+				 case CEntityListener::NOTIFY_ATTACK:
+				 case CEntityListener::NOTIFY_GATHER:
+					 if( argc < 3 )
+					 {
+					 	JS_ReportError( cx, "Too few parameters" );
+					 	continue;
+					 }
+					 target = ToNative<CEntity>( argv[1] );
+					 order.m_data[1].data = ToPrimitive<int>( argv[2] );	//which action
+					 order.m_data[0].entity = target->me;
+					 
+					 m_listeners[i].m_sender->DispatchNotification( order, type );
+					 break;
+				 case CEntityListener::NOTIFY_DAMAGE:
+					 if( argc < 2 )
+					 {
+					 	JS_ReportError( cx, "Too few parameters" );
+					 	continue;
+					 }
+					 target = ToNative<CEntity>( argv[1] );
+					 order.m_data[0].entity = target->me;
+
+					 m_listeners[i].m_sender->DispatchNotification( order, type );
+					 
+				 default:
+					JS_ReportError( cx, "Invalid order type" );
+					continue;
+		 }
 	}
 	return JSVAL_VOID;
 }

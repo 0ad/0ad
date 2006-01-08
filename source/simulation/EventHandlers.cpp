@@ -67,3 +67,16 @@ CEventOrderTransition::CEventOrderTransition( int orderPrevious, int orderCurren
 	AddLocalProperty( L"target", m_target );
 	AddLocalProperty( L"position", m_worldPosition );
 }
+CEventNotification::CEventNotification( CEntityOrder order, uint type ) : CScriptEvent( L"notification", EVENT_NOTIFICATION, true )
+{
+	m_type = type;
+	m_target = order.m_data[0].entity;
+	m_data = (uint) order.m_data[1].data;
+	CVector3D convert( order.m_data[0].location.x, 0.0f, order.m_data[0].location.y );
+	m_location = convert;
+	
+	AddLocalProperty( L"type", &m_type );
+	AddLocalProperty( L"target", &m_target );
+	AddLocalProperty( L"data", &m_data );
+	AddLocalProperty( L"location", &m_location );
+}
