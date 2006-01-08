@@ -49,6 +49,8 @@
         <script file="gui/test/functions_page_session_status_pane.js" />
 
         <script file="gui/test/functions_page_session_status_commands.js" />
+		
+        <script file="gui/test/functions_page_session_manual.js" />		
 
         <!--
         ==========================================
@@ -67,7 +69,7 @@
         -->
 
         <script file="gui/test/functions_global_init.js"><![CDATA[
-		init();
+			init();
         ]]></script>
 
 </objects>

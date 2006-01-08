@@ -346,9 +346,15 @@ function snRefresh()
 		// Update Team Tray
 // (later, we need to base this on the player creating a group).
 //		refreshTeamTray();
-
+		
 		// Refresh handler that monitors whether property/selection has been updated.
 		resetUpdateVars();
+	}
+
+	if ( selectionChanged && getGUIObjectByName( "mn" ).hidden == false)
+	{	
+		// Update manual if it's open.
+		refreshManual();
 	}
 }
 
