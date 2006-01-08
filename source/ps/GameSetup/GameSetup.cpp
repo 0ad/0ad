@@ -485,6 +485,14 @@ static void InitScripting()
 	CScriptEvent::ScriptingInit();
 	CJSProgressTimer::ScriptingInit();
 	CProjectile::ScriptingInit();
+	
+	g_ScriptingHost.DefineConstant( "NOTIFY_GOTO", CEntityListener::NOTIFY_GOTO );
+	g_ScriptingHost.DefineConstant( "NOTIFY_ATTACK", CEntityListener::NOTIFY_ATTACK );
+	g_ScriptingHost.DefineConstant( "NOTIFY_DAMAGE", CEntityListener::NOTIFY_DAMAGE );
+	g_ScriptingHost.DefineConstant( "NOTIFY_COMBAT", CEntityListener::NOTIFY_COMBAT );
+	g_ScriptingHost.DefineConstant( "NOTIFY_ESCORT", CEntityListener::NOTIFY_ESCORT );
+	g_ScriptingHost.DefineConstant( "NOTIFY_HEAL", CEntityListener::NOTIFY_HEAL );
+	g_ScriptingHost.DefineConstant( "NOTIFY_GATHER", CEntityListener::NOTIFY_GATHER );
 
 	g_ScriptingHost.DefineConstant( "ORDER_NONE", -1 );
 	g_ScriptingHost.DefineConstant( "ORDER_GOTO", CEntityOrder::ORDER_GOTO );
