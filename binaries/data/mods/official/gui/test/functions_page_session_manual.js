@@ -5,6 +5,43 @@
 
 // ====================================================================
 
+function addItemsRecursively (container, indent, fontName)
+{
+	// List the tree of items in a container and store it in the string *recursiveString* by recursively calling the function. (Thanks, Philip.)
+
+	// Reset recursive string if this is the first call.
+	if (indent == "")
+		recursiveString = "";
+
+	for (var item in container)
+	{
+		// Skip null strings and function references.
+		if (item != null && container[item] != null
+			&& container[item].toString().substring (0, 1) != "\n" && item != "template")
+		{
+			// Root-level items are in bold.
+			recursiveString += "[font=" + fontName;
+			if (indent == "")
+				recursiveString += "b]";
+			else
+				recursiveString += "]";
+		
+			if (typeof container[item] == 'object')
+			{
+				recursiveString += indent + " " + item + "\n";
+				addItemsRecursively (container[item], indent + "--", fontName);
+			}
+			else
+			{
+				recursiveString += indent + " " + item + ": " + container[item] + "\n";
+			}
+			
+		}
+	}
+}
+
+// ====================================================================
+
 function refreshManual()
 {
 	if (selection.length != 0)
@@ -30,10 +67,12 @@ function refreshManual()
 			manualHistory.caption = selection[0].traits.id.history;
 		}	
 		
-		// Display manual text.
-		manualText = getGUIObjectByName("mnText");
-		manualText.caption = "[font=trebuchet14]";	
-
+		// Build manual text.
+		manualText = "";	
+		addItemsRecursively ( selection[0], "", "trebuchet14" );
+		manualText += recursiveString;
+		
+/*		
 		container = selection[0];
 		for( item in container )
 		{
@@ -52,14 +91,14 @@ function refreshManual()
 					// If it's a function reference, also don't bother.
 					if (currItem[0] == "\n") break;
 
-					manualText.caption += item + ": " + currItem + "\n";
+					manualText += item + ": " + currItem + "\n";
 				break;
 			}
 		}
 		
 		if (selection[0].actions)
 		{
-			manualText.caption += "[font=trebuchet16][[Actions]]\n";
+			manualText += "[font=trebuchet14b][[Actions]]\n";
 
 			subContainer = selection[0].actions;
 			for (sub in subContainer)
@@ -68,20 +107,25 @@ function refreshManual()
 				{
 					default:
 						// List attribute.
-						manualText.caption += sub;
+						manualText += sub;
 						// List value if there is one.
 						if (subContainer[sub] && subContainer[sub] != "true" && subContainer[sub] != true)
-							manualText.caption += ": " + subContainer[sub].toString() + "\n";
+							manualText += ": " + subContainer[sub].toString() + "\n";
 						else
-							manualText.caption += "\n"
+							manualText += "\n"
 					break;
 				}
 				
 				
 			}
 		}
+*/		
 		
-		manualText.caption += "[/font]";
+		// Close the manual string.
+		manualText += "[/font]";
+		
+		// Assign manual text to control.
+		getGUIObjectByName("mnText").caption = manualText;
 	}
 	else
 	{
