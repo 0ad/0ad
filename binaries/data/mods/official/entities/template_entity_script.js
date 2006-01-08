@@ -512,7 +512,23 @@ function entityEventGeneric( evt )
 			console.write( "Unknown generic action: " + evt.action );
 	}
 }
-
+function entityEventNotification( evt )
+{
+	switch( evt.type )
+	{
+		case NOTIFY_GOTO:
+			this.Order( ORDER_GENERIC, evt.location.x, evt.location.y );
+		case NOTIFY_ATTACK:
+		case NOTIFY_DAMAGE:
+			this.Order( ORDER_GENERIC, evt.target, ACTION_ATTACK);
+			this.Order( ORDER_GENERIC, evt.target, ACTION_ATTACK);
+		case NOTIFY_HEAL:
+			this.Order( ORDER_GENERIC, evt.target, ACTION_HEAL);
+		case NOTIFY_GATHER:
+			this.Order( ORDER_GENERIC, evt.target, ACTION_GATHER);
+			
+	}
+}		
 // ====================================================================
 
 function entityEventTargetChanged( evt )

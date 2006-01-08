@@ -19,5 +19,6 @@
 	<Script File="entities/template_entity_script.js" />
 	<Event On="Generic" Function="entityEventGeneric" />
 	<Event On="TargetChanged" Function="entityEventTargetChanged" />
+	<Event On="Notification" Function="entityEventNotification" />
 
 </Entity>
