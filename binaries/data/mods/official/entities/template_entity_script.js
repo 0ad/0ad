@@ -60,38 +60,41 @@ function entityInit()
 	// If entity becomes another entity after it gains enough experience points, set up secondary attributes.
 	if (this.traits.promotion.req)
 	{
-		// Get the name of the entity. (I wish there was a safer way of doing it, but currently unravelling the exported template string.)
-		entityName = this.template.toString()
-		entityName = entityName.substring (24, entityName.length - 1)
+		// Get the name of the entity. 
+		entityName = this.tag.toString();
 	
 		// Determine whether current is basic, advanced or elite, and set rank to suit.
 		switch (entityName.substring (entityName.length-2, entityName.length))
 		{
 			case "_b":
 				// Basic. Upgrades to Advanced.
-				this.traits.promotion.rank="1"
+				this.traits.promotion.rank = "1"
 				nextSuffix = "_a"
 			break;
 			case "_a":
 				// Advanced. Upgrades to Elite.
-				this.traits.promotion.rank="2"
+				this.traits.promotion.rank = "2"
 				nextSuffix = "_e"
 			break;
 			case "_e":
 				// Elite. Maximum rank.
-				this.traits.promotion.rank="3"
+				this.traits.promotion.rank = "3"
 				nextSuffix = ""
 			break;
 			default:
 				// Does not gain promotions.
-				this.traits.promotion.rank="0"
+				this.traits.promotion.rank = "0"
 				nextSuffix = ""
 			break;
 		}
+		
+		// Give the entity an initial value of 0 earned XP at startup if a default value is not specified.
+		if (!this.traits.promotion.curr)
+			this.traits.promotion.curr = 0
 	
 		// The entity it should become (unless specified otherwise) is the base entity plus promotion suffix.
 		if (!this.traits.promotion.newentity && nextSuffix != "" && this.traits.promotion.rank != "0")
-			this.traits.promotion.newentity = entityName.substring (1, entityName.length-2) + nextSuffix
+			this.traits.promotion.newentity = entityName.substring (0, entityName.length-2) + nextSuffix
 
 		// If entity is an additional rank and the correct actor has not been specified
 		// (it's just inherited the Basic), point it to the correct suffix. (Saves us specifying it each time.)
@@ -102,7 +105,7 @@ function entityInit()
 	}
 	else
 	{
-		this.traits.promotion.rank="0"
+		this.traits.promotion.rank = "0";
 	}
 	
 	// Register our actions with the generic order system
@@ -410,22 +413,22 @@ function entityDamage( damage, inflictor )
 	if( this.traits.health.curr <= 0 )
 	{
 		// If the inflictor gains promotions, and he's capable of earning more ranks,
-		if (inflictor.traits.up && inflictor.traits.up.curr && inflictor.traits.up.req
-				&& inflictor.traits.up.newentity && inflictor.traits.up.newentity != ""
-				&& this.traits.loot && this.traits.loot.up)
+		if (inflictor.traits.promotion && inflictor.traits.promotion.curr && inflictor.traits.promotion.req
+				&& inflictor.traits.promotion.newentity && inflictor.traits.promotion.newentity != ""
+				&& this.traits.loot && this.traits.loot.xp)
 		{
 			// Give him the fallen's upgrade points (if he has any).
-			if (this.traits.loot.up)
-				inflictor.traits.up.curr = parseInt(inflictor.traits.up.curr) + parseInt(this.traits.loot.up);
+			if (this.traits.loot.xp)
+				inflictor.traits.promotion.curr = parseInt(inflictor.traits.promotion.curr) + parseInt(this.traits.loot.XP);
 
 			// Notify player.
 			if (this.traits.id.specific)
-				console.write(this.traits.id.specific + " has earned " + this.traits.loot.up + " upgrade points!");
+				console.write(this.traits.id.specific + " has earned " + this.traits.loot.xp + " upgrade points!");
 			else
-				console.write("One of your units has earned " + this.traits.loot.up + " upgrade points!");
+				console.write("One of your units has earned " + this.traits.loot.xp + " upgrade points!");
 
 			// If he now has maximum upgrade points for his rank,
-			if (inflictor.traits.up.curr >= inflictor.traits.up.req)
+			if (inflictor.traits.xp.curr >= inflictor.traits.xp.req)
 			{
 				// Notify the player.
 				if (this.traits.id.specific)
@@ -434,13 +437,13 @@ function entityDamage( damage, inflictor )
 					console.write("One of your units has gained a promotion!");
 				
 				// Reset his upgrade points.
-				inflictor.traits.up.curr = 0; 
+				inflictor.traits.xp.curr = 0; 
 
 				// Upgrade his portrait to the next level.
 				inflictor.traits.id.icon_cell++; 
 
 				// Transmogrify him into his next rank.
-				inflictor.template = getEntityTemplate(inflictor.traits.up.newentity);
+				inflictor.template = getEntityTemplate(inflictor.traits.xp.newentity);
 			}
 		}
 
@@ -453,7 +456,7 @@ function entityDamage( damage, inflictor )
 			{
 				switch( loot.toString().toUpperCase() )
 				{
-					case "up":
+					case "xp":
 					break;
 					default:
 						// Give the inflictor his resources.
@@ -466,7 +469,7 @@ function entityDamage( damage, inflictor )
 		}
 
 		// Notify player.
-		if( inflictor )
+		if ( inflictor )
 			console.write( this.traits.id.generic + " got the point of " + inflictor.traits.id.generic + "'s weapon." );
 		else
 			console.write( this.traits.id.generic + " died in mysterious circumstances." );
