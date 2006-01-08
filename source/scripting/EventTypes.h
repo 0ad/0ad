@@ -20,6 +20,7 @@ enum EEventType
 	EVENT_TARGET_CHANGED,
 	EVENT_PREPARE_ORDER,
 	EVENT_ORDER_TRANSITION,
+	EVENT_NOTIFICATION,
 	EVENT_LAST,
 
 	// Projectile events
@@ -45,7 +46,8 @@ static const wchar_t* const EventNames[EVENT_LAST] =
 	/* EVENT_GENERIC */ L"onGeneric",
 	/* EVENT_TARGET_CHANGED */ L"onTargetChanged", /* If this unit is selected and the mouseover object changes */
 	/* EVENT_PREPARE_ORDER */ L"onPrepareOrder", /* To check if a unit can execute a given order */
-	/* EVENT_ORDER_TRANSITION */ L"onOrderTransition" /* When we change orders (sometimes...) */
+	/* EVENT_ORDER_TRANSITION */ L"onOrderTransition", /* When we change orders (sometimes...) */
+	/* EVENT_NOTIFICATION */ L"onNotification"  /*When we receive a notification */
 };
 
 #endif	// #ifndef EVENTTYPES_H__
