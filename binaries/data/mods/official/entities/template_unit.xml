@@ -46,9 +46,13 @@
 		<Move>
 			<Speed>5.0</Speed>
 			<TurningRadius>0.0</TurningRadius>
+			<Run>
+				<Speed>0.0</Speed>
+			</Run>
 		</Move>
 
 		<Patrol />
 	</Actions>
+
 	
 </Entity>
