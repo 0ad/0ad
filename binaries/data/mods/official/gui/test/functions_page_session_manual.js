@@ -26,16 +26,15 @@ function addItemsRecursively (container, indent, fontName)
 			else
 				recursiveString += "]";
 		
-			if (typeof container[item] == 'object')
-			{
+			// Display the property name, and the value, if any.
+			if (container[item] == true && container[item].toString() != true)
 				recursiveString += indent + " " + item + "\n";
-				addItemsRecursively (container[item], indent + "--", fontName);
-			}
 			else
-			{
 				recursiveString += indent + " " + item + ": " + container[item] + "\n";
-			}
-			
+
+			// Retrieve sub-items.
+			if (typeof container[item] == 'object')
+				addItemsRecursively (container[item], indent + "--", fontName);			
 		}
 	}
 }

@@ -428,7 +428,7 @@ function entityDamage( damage, inflictor )
 				console.write("One of your units has earned " + this.traits.loot.xp + " upgrade points!");
 
 			// If he now has maximum upgrade points for his rank,
-			if (inflictor.traits.xp.curr >= inflictor.traits.xp.req)
+			if (inflictor.traits.promotion.curr >= inflictor.traits.promotion.req)
 			{
 				// Notify the player.
 				if (this.traits.id.specific)
@@ -437,13 +437,13 @@ function entityDamage( damage, inflictor )
 					console.write("One of your units has gained a promotion!");
 				
 				// Reset his upgrade points.
-				inflictor.traits.xp.curr = 0; 
+				inflictor.traits.promotion.curr = 0; 
 
 				// Upgrade his portrait to the next level.
 				inflictor.traits.id.icon_cell++; 
 
 				// Transmogrify him into his next rank.
-				inflictor.template = getEntityTemplate(inflictor.traits.xp.newentity);
+				inflictor.template = getEntityTemplate(inflictor.traits.promotion.newentity);
 			}
 		}
 
