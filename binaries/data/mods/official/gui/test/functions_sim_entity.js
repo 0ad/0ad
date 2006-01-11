@@ -56,12 +56,13 @@ function worldClickHandler(event)
 			args[1]=event.y;
 		break;
 		// entity target commands
-		case NMT_AttackMelee:
-		case NMT_Gather:
-		case NMT_Heal:
-			args[0]=event.entity;
-			args[1]=null;
-		break;
+		// I'm guessing we no longer require these now that they have become generic events?
+//		case NMT_AttackMelee:
+//		case NMT_Gather:
+//		case NMT_Heal:
+//			args[0]=event.entity;
+//			args[1]=null;
+//		break;
 		case NMT_Generic:
 			args[0]=event.entity;
 			args[1]=event.action;

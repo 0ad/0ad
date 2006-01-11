@@ -58,15 +58,25 @@ function addCrd (name, group, rx, ry, x, y, width, height, rx2, ry2)
 // ====================================================================
 
 // Return coordinate object with a given name.
-function getCrd (name)
+// Optionally can choose to return the index to the coordinate, rather than the coordinate itself.
+function getCrd (name, byIndex)
 {
 	for (getCrdLoop = 0; getCrdLoop <= Crd.last; getCrdLoop++)
 	{
 		if (Crd[getCrdLoop].name == name)
-			return Crd[getCrdLoop];
+		{	
+			// If only index requested, just return index.
+			if (byIndex)
+				return getCrdLoop;
+			else
+			// Otherwise return the whole coordinate array for this object.
+				return Crd[getCrdLoop];
+		}
 	}
 
 	console.write ("Coordinate " + name + " not found in call to getCrd().");
+	// Return -1 to indicate failure.
+	return -1;
 }
 
 // ====================================================================
@@ -154,6 +164,25 @@ function calcCrdArray (rx, ry, x, y, width, height, rx2, ry2)
 	
 	
 	
+}
+
+// ====================================================================
+
+// Set an existing coord of a given name to a new value.
+function setCrd (name, newCrd)
+{
+	// Get the index to the given coordinate.
+	crdResult = getCrd (name, true);
+	if (crdResult != -1)
+	{
+		// Set new value of this coordinate.
+		Crd[crdResult] = newCrd;
+	}
+	else
+	{
+		console.write ("Failed to setCrd() + " + name);
+		return -1;
+	}
 }
 
 // ====================================================================

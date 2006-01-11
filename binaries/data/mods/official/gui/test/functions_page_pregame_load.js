@@ -39,6 +39,11 @@ function startMap (mapName, losSetting, openWindow)
                 btCode = new Array("");
                 messageBox(400, 200, "The game could not be started with the given parameters. You probably have entered an invalid map name.", "Error", 0, btCaptions, btCode);
         }
+		
+        // Initialise Resource Pools by attaching them to the Player object.
+        // (CPlayer code takes care of giving a copy to each player.)
+        createResources();
+	
 }
 
 // ====================================================================
@@ -108,12 +113,6 @@ function setupSession ()
 {
         // Do essentials that can only be done when the session has been loaded ...
         // For example, create the resource types, scores, etc, for each player.
-
-        // Initialise Resource Pools by attaching them to the Player object.
-        // (CPlayer code takes care of giving a copy to each player.)
-        createResources();
-		
-		
 
 /*
 	if (sessionType == "Skirmish")

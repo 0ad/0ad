@@ -167,6 +167,17 @@ function entityInit()
 	{
 		this.traits.id = new Object();
 	}
+	
+	// If the entity either costs population or adds to it,
+	if (this.traits.population)
+	{
+		// If the entity increases the population limit (provides Housing),
+		if (this.traits.population.add)
+			getGUIGlobal().giveResources ("Housing", this.traits.population.add);
+		// If the entity occupies population slots (occupies Housing),
+		if (this.traits.population.rem)
+			getGUIGlobal().giveResources ("Population", this.traits.population.rem);
+	}
 
 /*	
 	// Generate entity's personal name (if it needs one).
@@ -773,7 +784,7 @@ function entityCheckQueueReq( entity, template )
 		{
 			case "POPULATION":
 				// If the item costs more of this resource type than we have,
-				if (resources[resource] > (localPlayer.resource["HOUSING"]-localPlayer.resource[resourceU]))
+				if (template.traits.population.rem > (localPlayer.resource["HOUSING"]-localPlayer.resource[resourceU]))
 				{
 					// Return an error.
 					return ("Insufficient Housing; " + (resources[resource]-localPlayer.resource["HOUSING"]-localPlayer.resource.valueOf()[resourceU].toString()) + " required."); 
