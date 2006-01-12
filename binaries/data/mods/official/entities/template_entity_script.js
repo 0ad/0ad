@@ -434,7 +434,7 @@ function entityDamage( damage, inflictor )
 
 			// Notify player.
 			if (this.traits.id.specific)
-				console.write(this.traits.id.specific + " has earned " + this.traits.loot.xp + " upgrade points!");
+				console.write(inflictor.traits.id.specific + " has earned " + this.traits.loot.xp + " upgrade points!");
 			else
 				console.write("One of your units has earned " + this.traits.loot.xp + " upgrade points!");
 
@@ -467,13 +467,17 @@ function entityDamage( damage, inflictor )
 			{
 				switch( loot.toString().toUpperCase() )
 				{
-					case "xp":
+					case "XP":
+						if ( this.actions.loot.xp ) console.write ("XP looting is not yet handled");
 					break;
 					default:
-						// Give the inflictor his resources.
-						getGUIGlobal().giveResources( loot.toString(), parseInt(pool[loot]) );
-						// Notify player.
-						console.write ("Spoils of war! " + pool[loot] + " " + loot.toString() + "!");
+						if ( this.actions.loot.resources ) 
+						{
+							// Give the inflictor his resources.
+							getGUIGlobal().giveResources( loot.toString(), parseInt(pool[loot]) );
+							// Notify player.
+							console.write ("Spoils of war! " + pool[loot] + " " + loot.toString() + "!");
+						}
 					break;
 				}
 			}
