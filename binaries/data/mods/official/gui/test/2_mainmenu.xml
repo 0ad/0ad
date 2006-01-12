@@ -1173,7 +1173,7 @@ A large landmass with rivers, forests and coastal fishing grounds.
 					type="checkbox"
 					hotkey="audio.toggle"
 					size="50%-50 20% 50%+50 25%"
-				>Play Sound
+				>Mute All
 					<action on="Load"><![CDATA[
 						// (Would like to set checkbox state to value of snd_disabled, but looks
 						// like that variable isn't exposed until after the GUI is loaded.
@@ -1202,6 +1202,12 @@ A large landmass with rivers, forests and coastal fishing grounds.
 						}
 					]]></action>	
 				</object>
+
+				<!--
+				===============================================
+				- AUDIO SCREEN - Music
+				===============================================
+				-->
 
 				<object name="pgOptionsAudioMusicGainTitle"
 					style="wheatBorder"
@@ -1256,6 +1262,251 @@ A large landmass with rivers, forests and coastal fishing grounds.
 					]]></action>
 				</object>
 
+				<object name="pgOptionsAudioMusicCheckBox"
+					style="wheatCrossBox"
+					type="checkbox"
+					size="60% 30% 60%+50 35%"
+				>Mute
+					<action on="Press"><![CDATA[
+						// Clicking the checkbox turns music on and off.
+
+						if(this.checked)
+						{
+							curr_music.setGain (0.0);
+							g_ConfigDB.system["sound.mastergain"] = 0.0;
+						}
+						if(!this.checked)
+						{
+							curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
+							g_ConfigDB.system["sound.mastergain"] = getGUIObjectByName ("pgOptionsAudioMusicGain").caption;
+						}
+					]]></action>	
+				</object>
+
+				<!--
+				===============================================
+				- AUDIO SCREEN - Sound
+				===============================================
+				-->
+
+				<object name="pgOptionsAudioSoundGainTitle"
+					style="wheatBorder"
+					type="text"
+					size="50%-200 40% 50%+20 45%"
+					text_align="center"
+					text_valign="center"
+				>Sound Volume
+					<action on="Load"><![CDATA[
+						this.caption = "Sound Volume";
+					]]></action>
+				</object>
+
+
+				<object name="pgOptionsAudioSoundGain"
+					style="wheatBorderBlack"
+					type="text"
+					size="50%-20 40% 50%+20 45%"
+					text_align="center"
+					text_valign="center"
+				>
+					<action on="Load"><![CDATA[
+						this.caption = "0";
+					]]></action>
+				</object>
+
+				<object name="pgOptionsAudioSoundGainDec"
+					style="wheatArrowLeft"
+					type="button"
+					size="50%-40 40% 50%-25 45%"
+				>
+					<action on="Press"><![CDATA[
+						if (getGUIObjectByName ("pgOptionsAudioSoundGain").caption > 0.0)
+							guiModifyCaption ("pgOptionsAudioSoundGain", -.1, 1);
+					]]></action>
+				</object>
+
+				<object name="pgOptionsAudioSoundGainInc"
+					style="wheatArrowRight"
+					type="button"
+					size="50%+25 40% 50%+40 45%"
+				>
+					<action on="Press"><![CDATA[
+						if (getGUIObjectByName ("pgOptionsAudioSoundGain").caption < 1.0)
+							guiModifyCaption ("pgOptionsAudioSoundGain", .1, 1);
+					]]></action>
+				</object>
+
+
+				<object name="pgOptionsAudioSndCheckBox"
+					style="wheatCrossBox"
+					type="checkbox"
+					size="60% 40% 60%+50 45%"
+				>Mute
+					<action on="Press"><![CDATA[
+						// Clicking the checkbox turns sound on and off.
+
+						if(this.checked)
+						{
+//							curr_music.setGain (0.0);
+//							g_ConfigDB.system["sound.mastergain"] = 0.0;
+						}
+						if(!this.checked)
+						{
+//							curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
+//							g_ConfigDB.system["sound.mastergain"] = getGUIObjectByName ("pgOptionsAudioMusicGain").caption;
+						}
+					]]></action>	
+				</object>
+
+				<!--
+				===============================================
+				- AUDIO SCREEN - Ambient
+				===============================================
+				-->
+
+				<object name="pgOptionsAudioAmbientGainTitle"
+					style="wheatBorder"
+					type="text"
+					size="50%-200 50% 50%+20 55%"
+					text_align="center"
+					text_valign="center"
+				>Ambient Volume
+					<action on="Load"><![CDATA[
+						this.caption = "Ambient Volume";
+					]]></action>
+				</object>
+
+
+				<object name="pgOptionsAudioAmbientGain"
+					style="wheatBorderBlack"
+					type="text"
+					size="50%-20 50% 50%+20 55%"
+					text_align="center"
+					text_valign="center"
+				>
+					<action on="Load"><![CDATA[
+						this.caption = "0";
+					]]></action>
+				</object>
+
+				<object name="pgOptionsAudioAmbientGainDec"
+					style="wheatArrowLeft"
+					type="button"
+					size="50%-40 50% 50%-25 55%"
+				>
+					<action on="Press"><![CDATA[
+						if (getGUIObjectByName ("pgOptionsAudioAmbientGain").caption > 0.0)
+							guiModifyCaption ("pgOptionsAudioAmbientGain", -.1, 1);
+					]]></action>
+				</object>
+
+				<object name="pgOptionsAudioAmbientGainInc"
+					style="wheatArrowRight"
+					type="button"
+					size="50%+25 50% 50%+40 55%"
+				>
+					<action on="Press"><![CDATA[
+						if (getGUIObjectByName ("pgOptionsAudioAmbientGain").caption < 1.0)
+							guiModifyCaption ("pgOptionsAudioAmbientGain", .1, 1);
+					]]></action>
+				</object>
+
+
+				<object name="pgOptionsAudioAmbientCheckBox"
+					style="wheatCrossBox"
+					type="checkbox"
+					size="60% 50% 60%+50 55%"
+				>Mute
+					<action on="Press"><![CDATA[
+						// Clicking the checkbox turns ambient sound on and off.
+
+						if(this.checked)
+						{
+//							curr_music.setGain (0.0);
+//							g_ConfigDB.system["sound.mastergain"] = 0.0;
+						}
+						if(!this.checked)
+						{
+//							curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
+//							g_ConfigDB.system["sound.mastergain"] = getGUIObjectByName ("pgOptionsAudioMusicGain").caption;
+						}
+					]]></action>	
+				</object>
+
+				<!--
+				===============================================
+				- AUDIO SCREEN - Voice
+				===============================================
+				-->
+
+				<object name="pgOptionsAudioVoiceGainTitle"
+					style="wheatBorder"
+					type="text"
+					size="50%-200 60% 50%+20 65%"
+					text_align="center"
+					text_valign="center"
+				>Voice Volume
+					<action on="Load"><![CDATA[
+						this.caption = "Sound Volume";
+					]]></action>
+				</object>
+
+
+				<object name="pgOptionsAudioVoiceGain"
+					style="wheatBorderBlack"
+					type="text"
+					size="50%-20 60% 50%+20 65%"
+					text_align="center"
+					text_valign="center"
+				>
+					<action on="Load"><![CDATA[
+						this.caption = "0";
+					]]></action>
+				</object>
+
+				<object name="pgOptionsAudioVoiceGainDec"
+					style="wheatArrowLeft"
+					type="button"
+					size="50%-40 60% 50%-25 65%"
+				>
+					<action on="Press"><![CDATA[
+						if (getGUIObjectByName ("pgOptionsAudioVoiceGain").caption > 0.0)
+							guiModifyCaption ("pgOptionsAudioVoiceGain", -.1, 1);
+					]]></action>
+				</object>
+
+				<object name="pgOptionsAudioVoiceGainInc"
+					style="wheatArrowRight"
+					type="button"
+					size="50%+25 60% 50%+40 65%"
+				>
+					<action on="Press"><![CDATA[
+						if (getGUIObjectByName ("pgOptionsAudioVoiceGain").caption < 1.0)
+							guiModifyCaption ("pgOptionsAudioVoiceGain", .1, 1);
+					]]></action>
+				</object>
+
+				<object name="pgOptionsAudioVoiceCheckBox"
+					style="wheatCrossBox"
+					type="checkbox"
+					size="60% 60% 60%+50 65%"
+				>Mute
+					<action on="Press"><![CDATA[
+						// Clicking the checkbox turns voice sound on and off.
+
+						if(this.checked)
+						{
+//							curr_music.setGain (0.0);
+//							g_ConfigDB.system["sound.mastergain"] = 0.0;
+						}
+						if(!this.checked)
+						{
+//							curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
+//							g_ConfigDB.system["sound.mastergain"] = getGUIObjectByName ("pgOptionsAudioMusicGain").caption;
+						}
+					]]></action>	
+				</object>
+
 			</object>
 
 			<!--
@@ -1269,8 +1520,38 @@ A large landmass with rivers, forests and coastal fishing grounds.
 				type="image"
 				hidden="true"
 				size="1% 4% 99% 90%"
-			/>
+			>
 
+
+				<object name="pgOptionsVideoResolutionTitle"
+					style="wheatBorder"
+					type="text"
+					size="50%-200 30% 50%+20 35%"
+					text_align="center"
+					text_valign="center"
+				>Resolution
+					<action on="Load"><![CDATA[
+						this.caption = "Resolution";
+					]]></action>
+				</object>
+
+				<object name="pgOptionsVideoResolution"
+					style="wheatDropDown"
+					type="dropdown"
+					size="50%-20 30% 70% 35%"
+				>
+					<action on="Load"><![CDATA[
+						pushItem (this.name, "800x600");
+						pushItem (this.name, "1024x768");
+						pushItem (this.name, "1280x768");
+						pushItem (this.name, "1280x800");
+						pushItem (this.name, "1600x1200");
+						setCurrItemValue (this.name, "1024x768");
+					]]></action>
+				</object>
+
+			</object>
+			
 			<!--
 			===============================================
 			- OPTIONS SCREEN - GAME
@@ -1357,6 +1638,7 @@ A large landmass with rivers, forests and coastal fishing grounds.
 					// Save changes.
 					// TODO:
 			console.write ("Volume: " + g_ConfigDB.system["sound.mastergain"] + ".")
+			console.write ("c:\dev-cpp\Config\Config.exe")
 					// Close options screen.
 					closeMainMenuSubWindow ("pgOptions");
 				]]></action>
