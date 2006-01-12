@@ -261,8 +261,14 @@ NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET 
 			delay="0"
 			hide_object="true"
 	/>
-
-	<tooltip 	name="snToolTip"
+	
+	<tooltip	name="pgSessionSetupToolTip"
+			use_object="pgSessionSetupToolTip"
+			delay="0"
+			hide_object="true"
+	/>	
+	
+	<tooltip 	name="pgFloatingToolTip"
 			anchor="top"
 			buffer_zone="4"
 			delay="500"
@@ -273,10 +279,15 @@ NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET 
 			textcolor="0 0 0"
 	/>
 
-	<tooltip	name="pgSessionSetupToolTip"
-			use_object="pgSessionSetupToolTip"
-			delay="0"
-			hide_object="true"
+	<tooltip 	name="snToolTip"
+			anchor="top"
+			buffer_zone="4"
+			delay="500"
+			font="tahoma12"
+			maxwidth="300"
+			offset="16 32"
+			sprite="bkWhiteBorderBlack"
+			textcolor="0 0 0"
 	/>
 
 

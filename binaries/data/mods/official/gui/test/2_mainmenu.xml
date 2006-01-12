@@ -28,21 +28,6 @@
 
 		<!--
 		==========================================
-		- MAIN MENU - STATIC TOOLTIP WINDOW
-		==========================================
-		-->
-
-		<object	name="pgToolTip"
-			style="fancyTextHeadWhite"
-			type="text"
-			hidden="true"
-			sprite="bkTranslucent"
-			size="69% 6.3802% 97.0703125% 28.125%"
-		>tooltipText
-		</object>
-
-		<!--
-		==========================================
 		- MAIN MENU - PROFILE MANAGER
 		==========================================
 		-->
@@ -1210,7 +1195,7 @@ A large landmass with rivers, forests and coastal fishing grounds.
 				-->
 
 				<object name="pgOptionsAudioMusicGainTitle"
-					style="wheatBorder"
+					style="wheatTextLabelBlack"
 					type="text"
 					size="50%-200 30% 50%+20 35%"
 					text_align="center"
@@ -1290,7 +1275,7 @@ A large landmass with rivers, forests and coastal fishing grounds.
 				-->
 
 				<object name="pgOptionsAudioSoundGainTitle"
-					style="wheatBorder"
+					style="wheatTextLabelBlack"
 					type="text"
 					size="50%-200 40% 50%+20 45%"
 					text_align="center"
@@ -1365,7 +1350,7 @@ A large landmass with rivers, forests and coastal fishing grounds.
 				-->
 
 				<object name="pgOptionsAudioAmbientGainTitle"
-					style="wheatBorder"
+					style="wheatTextLabelBlack"
 					type="text"
 					size="50%-200 50% 50%+20 55%"
 					text_align="center"
@@ -1440,7 +1425,7 @@ A large landmass with rivers, forests and coastal fishing grounds.
 				-->
 
 				<object name="pgOptionsAudioVoiceGainTitle"
-					style="wheatBorder"
+					style="wheatTextLabelBlack"
 					type="text"
 					size="50%-200 60% 50%+20 65%"
 					text_align="center"
@@ -1524,7 +1509,7 @@ A large landmass with rivers, forests and coastal fishing grounds.
 
 
 				<object name="pgOptionsVideoResolutionTitle"
-					style="wheatBorder"
+					style="wheatTextLabelBlack"
 					type="text"
 					size="50%-200 30% 50%+20 35%"
 					text_align="center"
@@ -1606,6 +1591,28 @@ A large landmass with rivers, forests and coastal fishing grounds.
 					openOptionsTab ("pgOptionsGame");
 				]]></action>
 			</object>
+			
+			<!--
+			===============================================
+			- OPTIONS SCREEN - OK BUTTON
+			===============================================
+			-->
+
+			<object name="pgOptionsOKButton"
+				style="wheatButton"
+				type="button"
+				size="10% 92% 40% 100%"
+				tooltip="Save all changes and close the Options Screen."
+				tooltip_style="pgFloatingToolTip"
+			>OK
+				<action on="Press"><![CDATA[
+					// Save changes.
+					// TODO:
+			console.write ("Volume: " + g_ConfigDB.system["sound.mastergain"] + ".")
+					// Close options screen.
+					closeMainMenuSubWindow ("pgOptions");
+				]]></action>
+			</object>
 
 			<!--
 			===============================================
@@ -1616,33 +1623,17 @@ A large landmass with rivers, forests and coastal fishing grounds.
 			<object name="pgOptionsCancelButton"
 				style="wheatButton"
 				type="button"
-				size="1% 92% 30% 100%"
+				size="60% 92% 90% 100%"
+				tooltip="Close Options Screen, abandoning all changes."
+				tooltip_style="pgFloatingToolTip"				
 			>Cancel
 				<action on="Press"><![CDATA[
+					// Close Options Screen, abandoning all changes.				
 					closeMainMenuSubWindow ("pgOptions");
 				]]></action>
 			</object>
-
-			<!--
-			===============================================
-			- OPTIONS SCREEN - ACCEPT BUTTON
-			===============================================
-			-->
-
-			<object name="pgOptionsAcceptButton"
-				style="wheatButton"
-				type="button"
-				size="40% 92% 60% 100%"
-			>Accept
-				<action on="Press"><![CDATA[
-					// Save changes.
-					// TODO:
-			console.write ("Volume: " + g_ConfigDB.system["sound.mastergain"] + ".")
-					// Close options screen.
-					closeMainMenuSubWindow ("pgOptions");
-				]]></action>
-			</object>
-		</object>
+			
+		</object>						
 
 		<!--
 		===============================================
@@ -1691,6 +1682,22 @@ A large landmass with rivers, forests and coastal fishing grounds.
 				console.write ("Note to self: Ask Gee to create list function to clear (empty) a list.");
 			]]></action>
 		</object>
+		
+		<!--
+		==========================================
+		- MAIN MENU - STATIC TOOLTIP WINDOW
+		(Put down the bottom so it stays on top.)
+		==========================================
+		-->
+
+		<object	name="pgToolTip"
+			style="fancyTextHeadWhite"
+			type="text"
+			hidden="true"
+			sprite="bkTranslucent"
+			size="69% 6.3802% 97.0703125% 28.125%"
+		>tooltipText
+		</object>		
 
 	</object>
 </objects>
