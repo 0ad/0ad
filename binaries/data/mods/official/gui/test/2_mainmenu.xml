@@ -1203,6 +1203,19 @@ A large landmass with rivers, forests and coastal fishing grounds.
 					]]></action>	
 				</object>
 
+				<object name="pgOptionsAudioMusicGainTitle"
+					style="wheatBorder"
+					type="text"
+					size="50%-200 30% 50%+20 35%"
+					text_align="center"
+					text_valign="center"
+				>Volume
+					<action on="Load"><![CDATA[
+						this.caption = "Main Sound";
+					]]></action>
+				</object>
+
+
 				<object name="pgOptionsAudioMusicGain"
 					style="wheatBorderBlack"
 					type="text"
@@ -1224,11 +1237,8 @@ A large landmass with rivers, forests and coastal fishing grounds.
 						if (getGUIObjectByName ("pgOptionsAudioMusicGain").caption > 0.0)
 							guiModifyCaption ("pgOptionsAudioMusicGain", -.1, 1);
 
-						if (pgOptionsAudioSoundCheckBox.unchecked)
-						{
-							curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
-							g_ConfigDB.system["sound.mastergain"] = getGUIObjectByName ("pgOptionsAudioMusicGain").caption;
-						}
+						curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
+						g_ConfigDB.system["sound.mastergain"] = getGUIObjectByName ("pgOptionsAudioMusicGain").caption;
 					]]></action>
 				</object>
 
@@ -1241,14 +1251,10 @@ A large landmass with rivers, forests and coastal fishing grounds.
 						if (getGUIObjectByName ("pgOptionsAudioMusicGain").caption < 1.0)
 							guiModifyCaption ("pgOptionsAudioMusicGain", .1, 1);
 
-						if (pgOptionsAudioSoundCheckBox.unchecked)
-						{
-							curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
-							g_ConfigDB.system["sound.mastergain"] = getGUIObjectByName ("pgOptionsAudioMusicGain").caption;
-						}
+						curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
+						g_ConfigDB.system["sound.mastergain"] = getGUIObjectByName ("pgOptionsAudioMusicGain").caption;
 					]]></action>
 				</object>
-
 
 			</object>
 
@@ -1317,6 +1323,22 @@ A large landmass with rivers, forests and coastal fishing grounds.
 					// Open Game tab.
 
 					openOptionsTab ("pgOptionsGame");
+				]]></action>
+			</object>
+
+			<!--
+			===============================================
+			- OPTIONS SCREEN - CANCEL BUTTON
+			===============================================
+			-->
+
+			<object name="pgOptionsCancelButton"
+				style="wheatButton"
+				type="button"
+				size="1% 92% 30% 100%"
+			>Cancel
+				<action on="Press"><![CDATA[
+					closeMainMenuSubWindow ("pgOptions");
 				]]></action>
 			</object>
 
