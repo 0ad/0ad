@@ -423,43 +423,8 @@ function entityDamage( damage, inflictor )
 
 	if( this.traits.health.curr <= 0 )
 	{
-		// If the inflictor gains promotions, and he's capable of earning more ranks,
-		if (inflictor.traits.promotion && inflictor.traits.promotion.curr && inflictor.traits.promotion.req
-				&& inflictor.traits.promotion.newentity && inflictor.traits.promotion.newentity != ""
-				&& this.traits.loot && this.traits.loot.xp)
-		{
-			// Give him the fallen's upgrade points (if he has any).
-			if (this.traits.loot.xp)
-				inflictor.traits.promotion.curr = parseInt(inflictor.traits.promotion.curr) + parseInt(this.traits.loot.XP);
-
-			// Notify player.
-			if (this.traits.id.specific)
-				console.write(inflictor.traits.id.specific + " has earned " + this.traits.loot.xp + " upgrade points!");
-			else
-				console.write("One of your units has earned " + this.traits.loot.xp + " upgrade points!");
-
-			// If he now has maximum upgrade points for his rank,
-			if (inflictor.traits.promotion.curr >= inflictor.traits.promotion.req)
-			{
-				// Notify the player.
-				if (this.traits.id.specific)
-					console.write(this.traits.id.specific + " has gained a promotion!");
-				else
-					console.write("One of your units has gained a promotion!");
-				
-				// Reset his upgrade points.
-				inflictor.traits.promotion.curr = 0; 
-
-				// Upgrade his portrait to the next level.
-				inflictor.traits.id.icon_cell++; 
-
-				// Transmogrify him into his next rank.
-				inflictor.template = getEntityTemplate(inflictor.traits.promotion.newentity);
-			}
-		}
-
-		// If the fallen is worth any loot,
-		if (this.traits.loot)
+		// If the fallen is worth any loot and the inflictor is capable of looting
+		if (this.traits.loot && inflictor.actions.loot)
 		{
 			// Cycle through all loot on this entry.
 			pool = this.traits.loot;
@@ -468,10 +433,43 @@ function entityDamage( damage, inflictor )
 				switch( loot.toString().toUpperCase() )
 				{
 					case "XP":
-						if ( this.actions.loot.xp ) console.write ("XP looting is not yet handled");
+						// If the inflictor gains promotions, and he's capable of earning more ranks,
+						if (inflictor.traits.promotion && inflictor.traits.promotion.curr && inflictor.traits.promotion.req
+								&& inflictor.traits.promotion.newentity && inflictor.traits.promotion.newentity != ""
+								&& this.traits.loot && this.traits.loot.xp && inflictor.actions.loot.xp)
+						{
+							// Give him the fallen's upgrade points (if he has any).
+							if (this.traits.loot.xp)
+								inflictor.traits.promotion.curr = parseInt(inflictor.traits.promotion.curr) + parseInt(this.traits.loot.XP);
+
+							// Notify player.
+							if (inflictor.traits.id.specific)
+								console.write(inflictor.traits.id.specific + " has earned " + this.traits.loot.xp + " upgrade points!");
+							else
+								console.write("One of your units has earned " + this.traits.loot.xp + " upgrade points!");
+
+							// If he now has maximum upgrade points for his rank,
+							if (inflictor.traits.promotion.curr >= inflictor.traits.promotion.req)
+							{
+								// Notify the player.
+								if (inflictor.traits.id.specific)
+									console.write(inflictor.traits.id.specific + " has gained a promotion!");
+								else
+									console.write("One of your units has gained a promotion!");
+								
+								// Reset his upgrade points.
+								inflictor.traits.promotion.curr = 0; 
+
+								// Upgrade his portrait to the next level.
+								inflictor.traits.id.icon_cell++; 
+
+								// Transmogrify him into his next rank.
+								inflictor.template = getEntityTemplate(inflictor.traits.promotion.newentity);
+							}
+						}
 					break;
 					default:
-						if ( this.actions.loot.resources ) 
+						if ( inflictor.actions.loot.resources ) 
 						{
 							// Give the inflictor his resources.
 							getGUIGlobal().giveResources( loot.toString(), parseInt(pool[loot]) );
