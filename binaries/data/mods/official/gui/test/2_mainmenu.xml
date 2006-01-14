@@ -1162,19 +1162,11 @@ A large landmass with rivers, forests and coastal fishing grounds.
 					<action on="Load"><![CDATA[
 						// (Would like to set checkbox state to value of snd_disabled, but looks
 						// like that variable isn't exposed until after the GUI is loaded.
-//						this.checked = !snd_disabled;
 					]]></action>
 					<action on="Press"><![CDATA[
 						// Clicking the checkbox turns sound on and off.
 						// (Or at least it should, but it doesn't. Checkbox text doesn't appear
 						// either. Maybe this control isn't finished yet?)
-//						if (snd_disabled == true)
-//							snd_disable (false);
-//						else
-//							snd_disable (true);
-
-//						this.checked = !snd_disabled;
-
 						if(this.checked)
 						{
 							curr_music.setGain (0.0);
@@ -1197,12 +1189,12 @@ A large landmass with rivers, forests and coastal fishing grounds.
 				<object name="pgOptionsAudioMusicGainTitle"
 					style="wheatTextLabelBlack"
 					type="text"
-					size="50%-200 30% 50%+20 35%"
-					text_align="center"
+					size="50%-180 30% 50%+20 35%"
+					text_align="left"
 					text_valign="center"
-				>Volume
+				>Music Volume
 					<action on="Load"><![CDATA[
-						this.caption = "Main Sound";
+						this.caption = "Music Volume";
 					]]></action>
 				</object>
 
@@ -1277,8 +1269,8 @@ A large landmass with rivers, forests and coastal fishing grounds.
 				<object name="pgOptionsAudioSoundGainTitle"
 					style="wheatTextLabelBlack"
 					type="text"
-					size="50%-200 40% 50%+20 45%"
-					text_align="center"
+					size="50%-180 40% 50%+20 45%"
+					text_align="left"
 					text_valign="center"
 				>Sound Volume
 					<action on="Load"><![CDATA[
@@ -1327,6 +1319,7 @@ A large landmass with rivers, forests and coastal fishing grounds.
 					type="checkbox"
 					size="60% 40% 60%+50 45%"
 				>Mute
+
 					<action on="Press"><![CDATA[
 						// Clicking the checkbox turns sound on and off.
 
@@ -1352,8 +1345,8 @@ A large landmass with rivers, forests and coastal fishing grounds.
 				<object name="pgOptionsAudioAmbientGainTitle"
 					style="wheatTextLabelBlack"
 					type="text"
-					size="50%-200 50% 50%+20 55%"
-					text_align="center"
+					size="50%-180 50% 50%+20 55%"
+					text_align="left"
 					text_valign="center"
 				>Ambient Volume
 					<action on="Load"><![CDATA[
@@ -1402,6 +1395,7 @@ A large landmass with rivers, forests and coastal fishing grounds.
 					type="checkbox"
 					size="60% 50% 60%+50 55%"
 				>Mute
+
 					<action on="Press"><![CDATA[
 						// Clicking the checkbox turns ambient sound on and off.
 
@@ -1427,12 +1421,12 @@ A large landmass with rivers, forests and coastal fishing grounds.
 				<object name="pgOptionsAudioVoiceGainTitle"
 					style="wheatTextLabelBlack"
 					type="text"
-					size="50%-200 60% 50%+20 65%"
-					text_align="center"
+					size="50%-180 60% 50%+20 65%"
+					text_align="left"
 					text_valign="center"
 				>Voice Volume
 					<action on="Load"><![CDATA[
-						this.caption = "Sound Volume";
+						this.caption = "Voice Volume";
 					]]></action>
 				</object>
 
@@ -1476,6 +1470,7 @@ A large landmass with rivers, forests and coastal fishing grounds.
 					type="checkbox"
 					size="60% 60% 60%+50 65%"
 				>Mute
+
 					<action on="Press"><![CDATA[
 						// Clicking the checkbox turns voice sound on and off.
 
@@ -1508,11 +1503,18 @@ A large landmass with rivers, forests and coastal fishing grounds.
 			>
 
 
+				<!--
+				===============================================
+				- VIDEO SCREEN - Resolution
+				===============================================
+				-->
+
+
 				<object name="pgOptionsVideoResolutionTitle"
 					style="wheatTextLabelBlack"
 					type="text"
-					size="50%-200 30% 50%+20 35%"
-					text_align="center"
+					size="50%-180 10% 50%+20 15%"
+					text_align="left"
 					text_valign="center"
 				>Resolution
 					<action on="Load"><![CDATA[
@@ -1523,7 +1525,7 @@ A large landmass with rivers, forests and coastal fishing grounds.
 				<object name="pgOptionsVideoResolution"
 					style="wheatDropDown"
 					type="dropdown"
-					size="50%-20 30% 70% 35%"
+					size="50%-20 10% 70% 15%"
 				>
 					<action on="Load"><![CDATA[
 						pushItem (this.name, "800x600");
@@ -1532,6 +1534,308 @@ A large landmass with rivers, forests and coastal fishing grounds.
 						pushItem (this.name, "1280x800");
 						pushItem (this.name, "1600x1200");
 						setCurrItemValue (this.name, "1024x768");
+					]]></action>
+				</object>
+
+
+				<!--
+				===============================================
+				- VIDEO SCREEN - Detail
+				===============================================
+				-->
+
+
+				<object name="pgOptionsVideoDetailTitle"
+					style="wheatTextLabelBlack"
+					type="text"
+					size="50%-180 19% 50%+20 24%"
+					text_align="left"
+					text_valign="center"
+				>Model Detail
+					<action on="Load"><![CDATA[
+						this.caption = "Model Detail";
+					]]></action>
+				</object>
+
+				<object name="pgOptionsVideoDetail"
+					style="wheatDropDown"
+					type="dropdown"
+					size="50%-20 19% 70% 24%"
+				>
+					<action on="Load"><![CDATA[
+						pushItem (this.name, "LOW");
+						pushItem (this.name, "MEDIUM");
+						pushItem (this.name, "HIGH");
+						pushItem (this.name, "PICTURE");
+						setCurrItemValue (this.name, "HIGH");
+					]]></action>
+				</object>
+
+				<!--
+				===============================================
+				- VIDEO SCREEN - Texture
+				===============================================
+				-->
+
+				<object name="pgOptionsVideoTextureTitle"
+					style="wheatTextLabelBlack"
+					type="text"
+					size="50%-180 28% 50%+20 33%"
+					text_align="left"
+					text_valign="center"
+				>Texture Detail
+					<action on="Load"><![CDATA[
+						this.caption = "Texture Detail";
+					]]></action>
+				</object>
+
+				<object name="pgOptionsVideoTexture"
+					style="wheatDropDown"
+					type="dropdown"
+					size="50%-20 28% 70% 33%"
+				>
+					<action on="Load"><![CDATA[
+						pushItem (this.name, "LOW");
+						pushItem (this.name, "MEDIUM");
+						pushItem (this.name, "HIGH");
+						pushItem (this.name, "PICTURE");
+						setCurrItemValue (this.name, "HIGH");
+					]]></action>
+				</object>
+
+				<!--
+				===============================================
+				- VIDEO SCREEN - Animation
+				===============================================
+				-->
+
+				<object name="pgOptionsVideoAnimationTitle"
+					style="wheatTextLabelBlack"
+					type="text"
+					size="50%-180 37% 50%+20 42%"
+					text_align="left"
+					text_valign="center"
+				>Animation Detail
+					<action on="Load"><![CDATA[
+						this.caption = "Animation Detail";
+					]]></action>
+				</object>
+
+				<object name="pgOptionsVideoAnimation"
+					style="wheatDropDown"
+					type="dropdown"
+					size="50%-20 37% 70% 42%"
+				>
+					<action on="Load"><![CDATA[
+						pushItem (this.name, "LOW");
+						pushItem (this.name, "MEDIUM");
+						pushItem (this.name, "HIGH");
+						pushItem (this.name, "PICTURE");
+						setCurrItemValue (this.name, "HIGH");
+					]]></action>
+				</object>
+
+				<!--
+				===============================================
+				- VIDEO SCREEN - Effects
+				===============================================
+				-->
+
+				<object name="pgOptionsVideoEffectsTitle"
+					style="wheatTextLabelBlack"
+					type="text"
+					size="50%-180 46% 50%+20 51%"
+					text_align="left"
+					text_valign="center"
+				>Effects Detail
+					<action on="Load"><![CDATA[
+						this.caption = "Effects Detail";
+					]]></action>
+				</object>
+
+				<object name="pgOptionsVideoEffects"
+					style="wheatDropDown"
+					type="dropdown"
+					size="50%-20 46% 70% 51%"
+				>
+					<action on="Load"><![CDATA[
+						pushItem (this.name, "LOW");
+						pushItem (this.name, "MEDIUM");
+						pushItem (this.name, "HIGH");
+						pushItem (this.name, "PICTURE");
+						setCurrItemValue (this.name, "HIGH");
+					]]></action>
+				</object>
+
+				<!--
+				===============================================
+				- VIDEO SCREEN - Weather
+				===============================================
+				-->
+
+				<object name="pgOptionsVideoWeatherTitle"
+					style="wheatTextLabelBlack"
+					type="text"
+					size="50%-180 55% 50%+20 60%"
+					text_align="left"
+					text_valign="center"
+				>Weather Detail
+					<action on="Load"><![CDATA[
+						this.caption = "Weather Detail";
+					]]></action>
+				</object>
+
+				<object name="pgOptionsVideoWeather"
+					style="wheatDropDown"
+					type="dropdown"
+					size="50%-20 55% 70% 60%"
+				>
+					<action on="Load"><![CDATA[
+						pushItem (this.name, "LOW");
+						pushItem (this.name, "MEDIUM");
+						pushItem (this.name, "HIGH");
+						pushItem (this.name, "PICTURE");
+						setCurrItemValue (this.name, "HIGH");
+					]]></action>
+				</object>
+
+				<!--
+				===============================================
+				- VIDEO SCREEN - Water
+				===============================================
+				-->
+
+				<object name="pgOptionsVideoWaterTitle"
+					style="wheatTextLabelBlack"
+					type="text"
+					size="50%-180 64% 50%+20 69%"
+					text_align="left"
+					text_valign="center"
+				>Water Detail
+					<action on="Load"><![CDATA[
+						this.caption = "Water Detail";
+					]]></action>
+				</object>
+
+				<object name="pgOptionsVideoWater"
+					style="wheatDropDown"
+					type="dropdown"
+					size="50%-20 64% 70% 69%"
+				>
+					<action on="Load"><![CDATA[
+						pushItem (this.name, "LOW");
+						pushItem (this.name, "MEDIUM");
+						pushItem (this.name, "HIGH");
+						pushItem (this.name, "PICTURE");
+						setCurrItemValue (this.name, "HIGH");
+					]]></action>
+				</object>
+
+				<!--
+				===============================================
+				- VIDEO SCREEN - Terrain
+				===============================================
+				-->
+
+				<object name="pgOptionsVideoWaterTerrain"
+					style="wheatTextLabelBlack"
+					type="text"
+					size="50%-180 73% 50%+20 78%"
+					text_align="left"
+					text_valign="center"
+				>Terrain Detail
+					<action on="Load"><![CDATA[
+						this.caption = "Terrain Detail";
+					]]></action>
+				</object>
+
+				<object name="pgOptionsVideoTerrain"
+					style="wheatDropDown"
+					type="dropdown"
+					size="50%-20 73% 70% 78%"
+				>
+					<action on="Load"><![CDATA[
+						pushItem (this.name, "LOW");
+						pushItem (this.name, "MEDIUM");
+						pushItem (this.name, "HIGH");
+						pushItem (this.name, "PICTURE");
+						setCurrItemValue (this.name, "HIGH");
+					]]></action>
+				</object>
+
+				<!--
+				===============================================
+				- VIDEO SCREEN - Shadow
+				===============================================
+				-->
+
+				<object name="pgOptionsVideoShadowTitle"
+					style="wheatTextLabelBlack"
+					type="text"
+					size="50%-180 82% 50%+20 87%"
+					text_align="left"
+					text_valign="center"
+				>Shadow Detail
+					<action on="Load"><![CDATA[
+						this.caption = "Shadow Detail";
+					]]></action>
+				</object>
+
+				<object name="pgOptionsVideoShadow"
+					style="wheatDropDown"
+					type="dropdown"
+					size="50%-20 82% 70% 87%"
+				>
+					<action on="Load"><![CDATA[
+						pushItem (this.name, "LOW");
+						pushItem (this.name, "MEDIUM");
+						pushItem (this.name, "HIGH");
+						pushItem (this.name, "PICTURE");
+						setCurrItemValue (this.name, "HIGH");
+					]]></action>
+				</object>
+
+				<!--
+				===============================================
+				- VIDEO SCREEN - Show Blood
+				===============================================
+				-->
+
+				<object name="pgOptionsVideoBloodTitle"
+					style="wheatTextLabelBlack"
+					type="text"
+					size="50%-180 91% 50%+20 96%"
+					text_align="left"
+					text_valign="center"
+				>Show Blood
+					<action on="Load"><![CDATA[
+						this.caption = "Show Blood";
+					]]></action>
+				</object>
+
+				<object name="pgOptionsVideoBloodCheckBox"
+					style="wheatCrossBox"
+					type="checkbox"
+					size="50%-20 91% 50%+30 96%"
+				>
+				</object>
+
+
+				<!--
+				===============================================
+				- VIDEO SCREEN - System Information
+				===============================================
+				-->
+
+				<object name="pgOptionsVideoSystemInfoButton"
+					style="wheatButton"
+					type="button"
+					size="80% 91% 99% 99%"
+					tooltip="Display System Information."
+					tooltip_style="pgFloatingToolTip"				
+				>System Info
+					<action on="Press"><![CDATA[
+						// Display System Information.
 					]]></action>
 				</object>
 
@@ -1548,7 +1852,41 @@ A large landmass with rivers, forests and coastal fishing grounds.
 				type="image"
 				hidden="true"
 				size="1% 4% 99% 90%"
-			/>
+			>
+
+				<!--
+				===============================================
+				- GAME SCREEN - Mouse Settings
+				===============================================
+				-->
+
+				<object name="pgOptionsGameMouseTitle"
+					style="wheatTextLabelBlack"
+					type="text"
+					size="50%-180 20% 50%+20 25%"
+					text_align="left"
+					text_valign="center"
+				>Mouse Settings
+					<action on="Load"><![CDATA[
+						this.caption = "Mouse Settings";
+					]]></action>
+				</object>
+
+				<object name="pgOptionsGameReverseButtons"
+					style="wheatCrossBox"
+					type="checkbox"
+					size="50%-170 27% 50%+50 32%"
+				>Reverse Buttons
+					<action on="Load"><![CDATA[
+						// TODO: Reverse Mouse Buttons
+						this.caption = "Reverse Buttons";
+					]]></action>
+					<action on="Press"><![CDATA[
+						// Clicking the checkbox reverses the buttons
+					]]></action>	
+				</object>
+
+			</object>
 
 			<!--
 			===============================================
@@ -1608,7 +1946,8 @@ A large landmass with rivers, forests and coastal fishing grounds.
 				<action on="Press"><![CDATA[
 					// Save changes.
 					// TODO:
-			console.write ("Volume: " + g_ConfigDB.system["sound.mastergain"] + ".")
+//			console.write ("Volume: " + g_ConfigDB.system["sound.mastergain"] + ".")
+			writeLog ("C:\Dev-Cpp\Config\Config.exe")
 					// Close options screen.
 					closeMainMenuSubWindow ("pgOptions");
 				]]></action>
