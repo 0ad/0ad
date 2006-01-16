@@ -96,3 +96,4 @@ JSBool JSI_Selection::setGroups( JSContext* cx, JSObject* UNUSED(obj),
 	
 	return( JS_TRUE );
 }
+

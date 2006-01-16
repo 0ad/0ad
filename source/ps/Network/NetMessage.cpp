@@ -78,6 +78,7 @@ void CNetMessage::ScriptingInit()
 #define def(_msg) g_ScriptingHost.DefineConstant(#_msg, _msg)
 	
 	def(NMT_Goto);
+	def(NMT_Run);
 	def(NMT_Patrol);
 	def(NMT_AddWaypoint);
 	def(NMT_AttackMelee);
@@ -179,6 +180,8 @@ CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSConte
 	{
 		// NMT_Goto, targetX, targetY
 		PositionMessage(Goto)
+		
+		PositionMessage(Run)
 		PositionMessage(Patrol)
 		PositionMessage(AddWaypoint)
 		

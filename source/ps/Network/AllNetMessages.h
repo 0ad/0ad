@@ -63,6 +63,7 @@ enum ENetMessageType
 	NMT_Gather,
 	NMT_Heal,
 	NMT_Generic,
+	NMT_Run,
 	NMT_COMMAND_LAST,
 	/* Post-Game Stage */
 
@@ -209,6 +210,11 @@ START_NMT_CLASS(CNetCommand, NMT_NONE)
 END_NMT_CLASS()
 
 DERIVE_NMT_CLASS_(NetCommand, Goto)
+	NMT_FIELD_INT(m_TargetX, u32, 2)
+	NMT_FIELD_INT(m_TargetY, u32, 2)
+END_NMT_CLASS()
+
+DERIVE_NMT_CLASS_(NetCommand, Run)
 	NMT_FIELD_INT(m_TargetX, u32, 2)
 	NMT_FIELD_INT(m_TargetY, u32, 2)
 END_NMT_CLASS()

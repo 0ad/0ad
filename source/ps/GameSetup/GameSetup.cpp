@@ -347,6 +347,8 @@ void Render()
 		glLoadIdentity();
 		g_Mouseover.renderHealthBars();
 		g_Selection.renderHealthBars();
+		g_Mouseover.renderStaminaBars();
+		g_Selection.renderStaminaBars();
 		glPopMatrix();
 		glMatrixMode(GL_PROJECTION);
 		glPopMatrix();
@@ -496,6 +498,7 @@ static void InitScripting()
 
 	g_ScriptingHost.DefineConstant( "ORDER_NONE", -1 );
 	g_ScriptingHost.DefineConstant( "ORDER_GOTO", CEntityOrder::ORDER_GOTO );
+	g_ScriptingHost.DefineConstant( "ORDER_RUN", CEntityOrder::ORDER_RUN );
 	g_ScriptingHost.DefineConstant( "ORDER_PATROL", CEntityOrder::ORDER_PATROL );
 	g_ScriptingHost.DefineConstant( "ORDER_ATTACK", CEntityOrder::ORDER_ATTACK_MELEE );
 	g_ScriptingHost.DefineConstant( "ORDER_GATHER", CEntityOrder::ORDER_GATHER );

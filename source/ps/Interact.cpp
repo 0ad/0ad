@@ -91,6 +91,24 @@ void CSelectedEntities::renderHealthBars()
 		glDisable( GL_BLEND );
 	}
 }
+void CSelectedEntities::renderStaminaBars()
+{
+	std::vector<HEntity>::iterator it;
+	for( it = m_selected.begin(); it < m_selected.end(); it++ )
+		(*it)->renderStaminaBar();
+
+	if( m_group_highlight != -1 )
+	{
+		glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+		glEnable( GL_BLEND );
+
+		std::vector<HEntity>::iterator it;
+		for( it = m_groups[m_group_highlight].begin(); it < m_groups[m_group_highlight].end(); it++ )
+			(*it)->renderStaminaBar();
+
+		glDisable( GL_BLEND );
+	}
+}
 
 void CSelectedEntities::renderOverlays()
 {
@@ -403,6 +421,7 @@ void CSelectedEntities::update()
 		if( !g_Game->GetWorld()->GetTerrain()->isOnMap( g_Mouseover.m_worldposition ) )
 		{
 			m_defaultCommand = -1;
+			m_secondaryCommand = -1;
 			return;
 		}
 		
@@ -413,9 +432,16 @@ void CSelectedEntities::update()
 		std::map<CStrW, int, CStrW_hash_compare> defaultCursor[numCommands];
 		std::map<int, int> defaultAction[numCommands];
 
-		int t, vote;
+		int secondaryPoll[numCommands];
+		std::map<CStrW, int, CStrW_hash_compare> secondaryCursor[numCommands];
+		std::map<int, int> secondaryAction[numCommands];
+
+		int t, vote, secvote;
 		for( t = 0; t < numCommands; t++ )
+		{
 			defaultPoll[t] = 0;
+			secondaryPoll[t] = 0;
+		}
 
 		std::vector<HEntity>::iterator it;
 		for( it = m_selected.begin(); it < m_selected.end(); it++ )
@@ -423,6 +449,7 @@ void CSelectedEntities::update()
 			CEventTargetChanged evt( g_Mouseover.m_target );
 			(*it)->DispatchEvent( &evt );
 			vote = evt.m_defaultOrder - NMT_COMMAND_FIRST;
+			secvote = evt.m_secondaryOrder - NMT_COMMAND_FIRST;
 			
 			if( ( vote >= 0 ) && ( vote < numCommands ) )
 			{
@@ -430,18 +457,28 @@ void CSelectedEntities::update()
 				defaultCursor[vote][evt.m_defaultCursor]++;
 				defaultAction[vote][evt.m_defaultAction]++;
 			}
+			if( ( secvote >= 0 ) && ( secvote < numCommands ) )
+			{
+				secondaryPoll[secvote]++;
+				secondaryCursor[secvote][evt.m_secondaryCursor]++;
+				secondaryAction[secvote][evt.m_secondaryAction]++;
+			}
 		}
 
 		vote = -1;
+		secvote = -1;
 		for( t = 0; t < numCommands; t++ )
 		{
 			if( ( vote == -1 ) || ( defaultPoll[t] > defaultPoll[vote] ) )
 				vote = t;
+			if( ( secvote == -1 ) || ( secondaryPoll[t] > secondaryPoll[secvote] ) )
+				secvote = t;
 		}
 
 		std::map<CStrW, int, CStrW_hash_compare>::iterator itv;
 		std::map<int, int>::iterator iti;
 		m_defaultCommand = vote + NMT_COMMAND_FIRST;
+		m_secondaryCommand = secvote + NMT_COMMAND_FIRST;
 
 		// Now find the most appropriate cursor
 		t = 0;
@@ -453,6 +490,19 @@ void CSelectedEntities::update()
 				g_CursorName = itv->first;
 			}
 		}
+		
+		/*
+		TODO:  provide secondary cursor name?
+
+		t = 0;
+		for( itv = secondaryCursor[secvote].begin(); itv != secondaryCursor[secvote].end(); itv++ )
+		{
+			if( itv->second > t )
+			{
+				t = itv->second;
+				g_CursorName = itv->first;
+			}
+		}*/	
 
 		// Find the most appropriate action parameter too
 		t = 0;
@@ -462,6 +512,16 @@ void CSelectedEntities::update()
 			{
 				t = iti->second;
 				m_defaultAction = iti->first;
+			}
+		}
+		
+		t = 0;
+		for( iti = secondaryAction[secvote].begin(); iti != secondaryAction[secvote].end(); iti++ )
+		{
+			if( iti->second > t )
+			{
+				t = iti->second;
+				m_secondaryAction = iti->first;
 			}
 		}
 
@@ -718,6 +778,18 @@ void CMouseoverEntities::renderHealthBars()
 	glDisable( GL_BLEND );
 }
 
+void CMouseoverEntities::renderStaminaBars()
+{
+	glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+	glEnable( GL_BLEND );
+
+	std::vector<SMouseoverFader>::iterator it;
+	for( it = m_mouseover.begin(); it < m_mouseover.end(); it++ )
+		it->entity->renderStaminaBar();
+
+	glDisable( GL_BLEND );
+}
+
 void CMouseoverEntities::renderOverlays()
 {
 	CCamera *pCamera=g_Game->GetView()->GetCamera();
@@ -784,8 +856,8 @@ void FireWorldClickEvent(uint button, int clicks)
 		clicks,
 		g_Selection.m_defaultCommand,
 		g_Selection.m_defaultAction,
-		-1, // FIXME Secondary order, depends entity scripts etc
-		-1, // FIXME Secondary action, depends entity scripts etc
+		g_Selection.m_secondaryCommand, // FIXME Secondary order, depends entity scripts etc
+		g_Selection.m_secondaryAction, // FIXME Secondary action, depends entity scripts etc
 		g_Mouseover.m_target,
 		(uint)g_Mouseover.m_worldposition.x,
 		(uint)g_Mouseover.m_worldposition.y);
