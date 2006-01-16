@@ -67,6 +67,9 @@ public:
 	int m_defaultOrder;
 	int m_defaultAction;
 	CStrW m_defaultCursor;
+	CStrW m_secondaryCursor;
+	int m_secondaryOrder;
+	int m_secondaryAction;
 	CEventTargetChanged( CEntity* target );
 };
 

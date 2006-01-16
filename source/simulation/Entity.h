@@ -72,8 +72,9 @@ public:
 
 	float m_speed;
 	float m_turningRadius;
-	float m_trampleStart;
-	
+	float m_runRegenRate;
+	float m_runDecayRate;
+
 	SEntityAction m_run;
 	SEntityAction m_melee;
 	SEntityAction m_gather;
@@ -91,12 +92,23 @@ public:
 	// If this unit is still active in the gameworld - i.e. not a corpse.
 	bool m_extant;
 
-	bool m_isRunning;
+	bool m_isRunning;	//is it actually running
+	bool m_shouldRun;	//if run was issued, it will remain true until it is stopped
+	bool m_triggerRun;	//used in SetRun, corrects 1 frame stamina imbalance
+	int m_frameCheck;	//counts the frame
+
+	
+	//SP properties
+	float m_staminaCurr;
+	float m_staminaMax;
+	float m_staminaBarHeight;
+	int m_staminaBarSize;
 
 	// HP properties
 	float m_healthCurr;
 	float m_healthMax;
 	float m_healthBarHeight;
+	int m_healthBarSize;
 	
 	// Minimap properties
 	CStrW m_minimapType;
@@ -237,9 +249,13 @@ public:
 	void render();
 	void renderSelectionOutline( float alpha = 1.0f );
 	void renderHealthBar();
+	void renderStaminaBar();
 
 	// After a collision, recalc the path to the next fixed waypoint.
 	void repath();
+	
+	//Calculate stamina points
+	void CalculateRun(float timestep);
 
 	// Reset properties after the entity-template we use changes.
 	void loadBase();
@@ -257,10 +273,8 @@ public:
 	void clearOrders();
 	void pushOrder( CEntityOrder& order );
 	
-	jsval RequestNotification( JSContext* cx, uintN argc, jsval* argv );
 	void DispatchNotification( CEntityOrder order,uint type );
-	jsval CheckListeners( JSContext* cx, uintN argc, jsval* argv );
-
+	
 	// Script constructor
 
 	static JSBool Construct( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval );
@@ -277,6 +291,12 @@ public:
 	jsval RemoveAura( JSContext* cx, uintN argc, jsval* argv );
 
 	jsval SetActionParams( JSContext* cx, uintN argc, jsval* argv );
+	jsval TriggerRun( JSContext* cx, uintN argc, jsval* argv );
+	jsval SetRun( JSContext* cx, uintN argc, jsval* argv );
+	jsval IsRunning( JSContext* cx, uintN argc, jsval* argv );
+
+	jsval RequestNotification( JSContext* cx, uintN argc, jsval* argv );
+	jsval CheckListeners( JSContext* cx, uintN argc, jsval* argv );
 
 	bool Order( JSContext* cx, uintN argc, jsval* argv, bool Queued );
 	inline bool OrderSingle( JSContext* cx, uintN argc, jsval* argv )

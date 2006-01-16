@@ -47,7 +47,10 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 	// Here there be trig.
 
 	float scale;
-	if ( m_run.m_Speed > 0 && len < m_run.m_MaxRange && ( len > m_run.m_MinRange || m_isRunning ) )
+
+	//Should we run or walk
+	if (m_shouldRun && m_staminaCurr > 0 && len < m_run.m_MaxRange && 
+						( len > m_run.m_MinRange || m_isRunning ) )
 	{	
 		scale = m_run.m_Speed * timestep;
 		if ( m_actor )
@@ -57,7 +60,7 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 				CSkeletonAnim* run = m_actor->GetRandomAnimation( "run" );
 				if ( run )	
 					m_actor->GetModel()->SetAnimation( run, false, m_run.m_Speed * run->m_AnimDef->GetDuration() );
-		
+	
 				// Animation desync
 				m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
 				m_isRunning = true;
@@ -66,28 +69,29 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 	}
 	else
 	{
-		scale = m_speed * timestep;	
+		scale = m_speed * timestep;
 		if ( m_actor )
 		{
+			//Should we update animation?
 			if ( !m_actor->IsPlayingAnimation( "walk" ) )
 			{
 				CSkeletonAnim* walk = m_actor->GetRandomAnimation( "walk" );
 				if ( walk )	
 					m_actor->GetModel()->SetAnimation( walk, false, m_speed * walk->m_AnimDef->GetDuration() );
-		
+	
 				// Animation desync
 				m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
 				m_isRunning = false;
-			}
-		}	
+			}	
+		}
 	}
 	
 
 		
 
 	// Note: Easy optimization: flag somewhere that this unit
-	// is already pointing the right way, and don't do this
-	// trig every time.
+	// is already pointing the  way, and don't do this
+	// trig every time.right
 
 	m_targetorientation = atan2( delta.x, delta.y );
 
@@ -237,6 +241,7 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 		{
 			m_orderQueue.pop_front();
 			m_isRunning = false;
+			m_shouldRun = false;
 		}
 		return( false );
 	case COLLISION_OVERLAPPING_OBJECTS:
@@ -245,6 +250,7 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 		// We're here...
 		m_orderQueue.pop_front();
 		m_isRunning = false;
+		m_shouldRun = false;
 		
 		return( false );
 	case COLLISION_NEAR_DESTINATION:
@@ -309,6 +315,7 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 		// Just stop here, repath if necessary.
 		m_orderQueue.pop_front();
 		m_isRunning = false;
+		m_shouldRun = false;
 		return( false );
 	default:
 		
@@ -329,31 +336,41 @@ bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timeste
 	if( Distance < action->m_MaxRange ) 
 	{
 		(int&)current->m_type = transition;
+		m_isRunning = false;
 		m_orderQueue.push_front(*current);		// Seems to be needed since we do a pop above
 		return( true );
 	}
 	
-	if( m_transition && m_actor )
+	if ( m_actor )
 	{
-		if ( m_run.m_Speed > 0 && Distance < m_run.m_MaxRange && ( Distance > m_run.m_MinRange || m_isRunning ) )
+		//Should we run or walk
+		if (m_shouldRun && m_staminaCurr > 0 && Distance < m_run.m_MaxRange && 
+						( Distance > m_run.m_MinRange || m_isRunning ) )
 		{	
-			CSkeletonAnim* run = m_actor->GetRandomAnimation( "run" );
-			if ( run )	
-				m_actor->GetModel()->SetAnimation( run, false, m_run.m_Speed * run->m_AnimDef->GetDuration() );
-		
-			// Animation desync
-			m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
-			m_isRunning = true;
+			if ( !m_actor->IsPlayingAnimation( "run" ) )
+			{
+				CSkeletonAnim* run = m_actor->GetRandomAnimation( "run" );
+				if ( run )	
+					m_actor->GetModel()->SetAnimation( run, false, m_run.m_Speed * run->m_AnimDef->GetDuration() );
+	
+				// Animation desync
+				m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
+				m_isRunning = true;
+			}
 		}
 		else
 		{
-			CSkeletonAnim* walk = m_actor->GetRandomAnimation( "walk" );
-			if( walk )
-				m_actor->GetModel()->SetAnimation( walk, false, m_speed * walk->m_AnimDef->GetDuration() );
-			
-			// Animation desync
-			m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
-			m_isRunning = false;
+			//Should we update animation?
+			if ( !m_actor->IsPlayingAnimation( "walk" ) )
+			{
+				CSkeletonAnim* walk = m_actor->GetRandomAnimation( "walk" );
+				if ( walk )	
+					m_actor->GetModel()->SetAnimation( walk, false, m_speed * walk->m_AnimDef->GetDuration() );
+	
+				// Animation desync
+				m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
+				m_isRunning = false;
+			}	
 		}
 	}
 
@@ -419,6 +436,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		
 		m_orderQueue.pop_front();
 		m_isRunning = false;
+		m_shouldRun = false;
 		return( false );
 	}
 
@@ -433,6 +451,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		{
 			// Too close... do nothing.
 			m_isRunning = false;
+			m_shouldRun = false;
 			return( false );
 		}
 	}
@@ -445,28 +464,37 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		delta = delta.normalize() * ( adjRange - m_bounds->m_radius );
 		float deltaLength = delta.length();
 		
-		if( m_transition && m_actor )
+		if ( m_actor )
 		{
-			if ( m_run.m_Speed > 0 && deltaLength < m_run.m_MaxRange && ( deltaLength > m_run.m_MinRange || m_isRunning ) )
+			//Should we run or walk
+			if (m_shouldRun && m_staminaCurr > 0 && deltaLength < m_run.m_MaxRange && 
+						( deltaLength > m_run.m_MinRange || m_isRunning ) )
 			{	
-				CSkeletonAnim* run = m_actor->GetRandomAnimation( "run" );
-				if ( run )	
-					m_actor->GetModel()->SetAnimation( run, false, m_run.m_Speed * run->m_AnimDef->GetDuration() );
-		
-				// Animation desync
-				m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
-				m_isRunning = true;
+				if ( !m_actor->IsPlayingAnimation( "run" ) )
+				{
+					CSkeletonAnim* run = m_actor->GetRandomAnimation( "run" );
+					if ( run )	
+						m_actor->GetModel()->SetAnimation( run, false, m_run.m_Speed * run->m_AnimDef->GetDuration() );
+	
+					// Animation desync
+					m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
+					m_isRunning = true;
+				}
 			}
 			else
 			{
-				CSkeletonAnim* walk = m_actor->GetRandomAnimation( "walk" );
-				if( walk )
-					m_actor->GetModel()->SetAnimation( walk, false, m_speed * walk->m_AnimDef->GetDuration() );
-			
-				// Animation desync
-				m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
-				m_isRunning = false;
-			}	
+				//Should we update animation?
+				if ( !m_actor->IsPlayingAnimation( "walk" ) )
+				{
+					CSkeletonAnim* walk = m_actor->GetRandomAnimation( "walk" );
+					if ( walk )	
+						m_actor->GetModel()->SetAnimation( walk, false, m_speed * walk->m_AnimDef->GetDuration() );
+	
+					// Animation desync
+					m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
+					m_isRunning = false;
+				}	
+			}
 		}
 	
 		current->m_data[0].location = (CVector2D)current->m_data[0].entity->m_position - delta;
@@ -639,29 +667,42 @@ bool CEntity::processGoto( CEntityOrder* current, size_t UNUSED(timestep_millis)
 	
 	// Let's just check we're going somewhere...
 	if( Distance < 0.1f ) 
-		return( false );
-
-	if( m_transition && m_actor )
 	{
-		if ( m_run.m_Speed > 0 && Distance < m_run.m_MaxRange && ( Distance > m_run.m_MinRange || m_isRunning ) )
+		m_isRunning = false;
+		m_shouldRun = false;
+		return( false );
+	}
+
+	if ( m_actor )
+	{
+		//Should we run or walk
+		if (m_shouldRun && m_staminaCurr > 0 && Distance < m_run.m_MaxRange && 
+						( Distance > m_run.m_MinRange || m_isRunning ) )
 		{	
-			CSkeletonAnim* run = m_actor->GetRandomAnimation( "run" );
-			if ( run )	
-				m_actor->GetModel()->SetAnimation( run, false, m_run.m_Speed * run->m_AnimDef->GetDuration() );
-		
-			// Animation desync
-			m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
-			m_isRunning = true;
+			if ( !m_actor->IsPlayingAnimation( "run" ) )
+			{
+				CSkeletonAnim* run = m_actor->GetRandomAnimation( "run" );
+				if ( run )	
+					m_actor->GetModel()->SetAnimation( run, false, m_run.m_Speed * run->m_AnimDef->GetDuration() );
+	
+				// Animation desync
+				m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
+				m_isRunning = true;
+			}
 		}
 		else
 		{
-			CSkeletonAnim* walk = m_actor->GetRandomAnimation( "walk" );
-			if( walk )
-				m_actor->GetModel()->SetAnimation( walk, false, m_speed * walk->m_AnimDef->GetDuration() );
-			
-			// Animation desync
-			m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
-			m_isRunning = false;
+			//Should we update animation?
+			if ( !m_actor->IsPlayingAnimation( "walk" ) )
+			{
+				CSkeletonAnim* walk = m_actor->GetRandomAnimation( "walk" );
+				if ( walk )	
+					m_actor->GetModel()->SetAnimation( walk, false, m_speed * walk->m_AnimDef->GetDuration() );
+	
+				// Animation desync
+				m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
+				m_isRunning = false;
+			}	
 		}
 	}
 

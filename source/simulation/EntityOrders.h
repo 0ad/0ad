@@ -53,8 +53,8 @@ public:
 	enum
 	{
 		NOTIFY_GOTO = 0x01,
-		//NOTIFY_ = 0x02,	reservered for possible second goto like command
-		//NOTIFY_FOLLOW = 0x03,	//GOTO | RUN
+		NOTIFY_RUN = 0x02,
+		NOTIFY_FOLLOW = 0x03,	//GOTO | RUN
 
 		NOTIFY_ATTACK = 0x04,
 		NOTIFY_DAMAGE = 0x08,

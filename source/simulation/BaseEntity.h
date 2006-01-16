@@ -55,11 +55,18 @@ public:
 	CBoundingCircle* m_bound_circle;
 	CBoundingBox* m_bound_box;
 	CBoundingObject::EBoundingType m_bound_type;
-
+	
+	//SP properties
+	float m_staminaCurr;
+	float m_staminaMax;
+	float m_staminaBarHeight;
+	int m_staminaBarSize;
+	
 	// HP properties
 	float m_healthCurr;
 	float m_healthMax;
 	float m_healthBarHeight;
+	int m_healthBarSize;
 
 	// Minimap properties
 	CStrW m_minimapType;
@@ -75,7 +82,9 @@ public:
 	bool m_permanent;
 
 	float m_speed;
-	
+	float m_runRegenRate;
+	float m_runDecayRate;
+
 	SEntityAction m_run;
 	SEntityAction m_melee;
 	SEntityAction m_gather;

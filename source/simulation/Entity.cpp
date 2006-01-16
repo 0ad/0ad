@@ -33,11 +33,16 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
     m_orientation = orientation;
     m_ahead.x = sin( m_orientation );
     m_ahead.y = cos( m_orientation );
+	
+	/* Anything added to this list MUST be added to BaseEntity.cpp (and variables used should 
+		also be added to BaseEntity.h */
 
     AddProperty( L"actions.move.speed", &m_speed );
 	AddProperty( L"actions.move.run.speed", &( m_run.m_Speed ) );
 	AddProperty( L"actions.move.run.rangemin", &( m_run.m_MinRange ) );
 	AddProperty( L"actions.move.run.range", &( m_run.m_MaxRange ) );
+	AddProperty( L"actions.move.run.regen_rate", &m_runRegenRate );
+	AddProperty( L"actions.move.run.decay_rate", &m_runDecayRate );
     AddProperty( L"selected", &m_selected, false, (NotifyFn)&CEntity::checkSelection );
     AddProperty( L"group", &m_grouped, false, (NotifyFn)&CEntity::checkGroup );
     AddProperty( L"traits.extant", &m_extant );
@@ -58,6 +63,11 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
     AddProperty( L"traits.health.curr", &m_healthCurr );
     AddProperty( L"traits.health.max", &m_healthMax );
     AddProperty( L"traits.health.bar_height", &m_healthBarHeight );
+	AddProperty( L"traits.health.bar_size", &m_healthBarSize );
+	AddProperty( L"traits.stamina.curr", &m_staminaCurr );
+    AddProperty( L"traits.stamina.max", &m_staminaMax );
+    AddProperty( L"traits.stamina.bar_height", &m_staminaBarHeight );
+	AddProperty( L"traits.stamina.bar_size", &m_staminaBarSize );
     AddProperty( L"traits.minimap.type", &m_minimapType );
     AddProperty( L"traits.minimap.red", &m_minimapR );
     AddProperty( L"traits.minimap.green", &m_minimapG );
@@ -101,6 +111,12 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
     m_selected = false;
 
 	m_isRunning = false;
+
+	m_shouldRun = false;
+
+	m_triggerRun = false;
+
+	m_frameCheck = 0;
 
     m_grouped = -1;
 
@@ -304,8 +320,21 @@ void CEntity::update( size_t timestep )
 {
     m_position_previous = m_position;
     m_orientation_previous = m_orientation;
+	
 
-    // Note: aura processing is done before state processing because the state
+	if ( m_triggerRun )
+		m_frameCheck++;
+	
+	CalculateRun( timestep );
+	
+	if ( m_frameCheck != 0 )
+	{
+		m_shouldRun = true;
+		m_triggerRun = false;
+		m_frameCheck = 0;
+	}
+
+	// Note: aura processing is done before state processing because the state
     // processing code is filled with all kinds of returns
 
     PROFILE_START( "aura processing" );
@@ -410,6 +439,7 @@ void CEntity::update( size_t timestep )
 				updateCollisionPatch();
 				return;
             case CEntityOrder::ORDER_GOTO:
+			case CEntityOrder::ORDER_RUN:
 				if( processGoto( current, timestep ) )
 					break;
 				updateCollisionPatch();
@@ -647,90 +677,13 @@ bool CEntity::acceptsOrder( int orderType, CEntity* orderTarget )
     return( DispatchEvent( &evt ) );
 }
 
-jsval CEntity::RequestNotification( JSContext* cx, uintN argc, jsval* argv )
-{
-	debug_assert( argc > 3 ); 
-	CEntityListener notify;
-
-	notify.m_sender = this;
-	//(Convert from int to enum)
-	CEntity *target = ToNative<CEntity>( argv[0] );
-	*( (uint*) &(notify.m_type) ) = ToPrimitive<int>( argv[1] );
-	
-	bool destroy = ToPrimitive<bool>( argv[2] );
-	
-	std::deque<CEntityListener>::iterator it = target->m_listeners.begin();
-	for ( ; it != target->m_listeners.end(); it++)
-	{
-		if ( destroy && it->m_sender == this )
-			target->m_listeners.erase(it);
-	}
-
-	target->m_listeners.push_back( notify );
-	return JSVAL_VOID;
-}
 void CEntity::DispatchNotification( CEntityOrder order, uint type )
 {
 	CEventNotification evt( order, type );
 	DispatchEvent( &evt );
 }
 
-jsval CEntity::CheckListeners( JSContext *cx, uintN argc, jsval* argv )
-{	
-	if( argc < 1 )
-	{
-		JS_ReportError( cx, "Too few parameters" );
-		return( false );
-	}
-	int type = ToPrimitive<int>( argv[0] );	   //notify code
-	CEntityOrder order = this->m_orderQueue.front();
-	CEntity* target;
 
-	for (int i=0; i<m_listeners.size(); i++)
-		
-		if (m_listeners[i].m_type & type)
-		{
-			 switch( type )
-			 {
-			 case CEntityListener::NOTIFY_GOTO:
-					m_listeners[i].m_sender->DispatchNotification( order, type );
-					break;
-				 
-				 case CEntityListener::NOTIFY_HEAL:
-				 case CEntityListener::NOTIFY_ATTACK:
-				 case CEntityListener::NOTIFY_GATHER:
-					 if( argc < 3 )
-					 {
-					 	JS_ReportError( cx, "Too few parameters" );
-					 	continue;
-					 }
-					 target = ToNative<CEntity>( argv[1] );
-					 order.m_data[1].data = ToPrimitive<int>( argv[2] );	//which action
-					 order.m_data[0].entity = target->me;
-					 
-					 m_listeners[i].m_sender->DispatchNotification( order, type );
-					 break;
-				 case CEntityListener::NOTIFY_DAMAGE:
-					 if( argc < 2 )
-					 {
-					 	JS_ReportError( cx, "Too few parameters" );
-					 	continue;
-					 }
-					 target = ToNative<CEntity>( argv[1] );
-					 order.m_data[0].entity = target->me;
-
-					 m_listeners[i].m_sender->DispatchNotification( order, type );
-					 
-				 default:
-					JS_ReportError( cx, "Invalid order type" );
-					continue;
-		 }
-	}
-	return JSVAL_VOID;
-}
-
-
-	
 void CEntity::repath()
 {
     CVector2D destination;
@@ -855,10 +808,7 @@ void CEntity::render()
         glShadeModel( GL_FLAT );
         glBegin( GL_LINE_STRIP );
 
-
-
         glVertex3f( m_position.X, m_position.Y + 0.25f, m_position.Z );
-
 
         x = m_position.X;
         y = m_position.Z;
@@ -1047,9 +997,8 @@ void CEntity::renderHealthBar()
     g_Camera.GetScreenCoordinates(above, sx, sy);
     float fraction = clamp(m_healthCurr / m_healthMax, 0.0f, 1.0f);
 
-    const float SIZE = 20;
-    float x1 = sx - SIZE/2;
-    float x2 = sx + SIZE/2;
+    float x1 = sx - m_healthBarSize/2;
+    float x2 = sx + m_healthBarSize/2;
     float y = g_yres - sy;
 
     glBegin(GL_LINES);
@@ -1058,19 +1007,61 @@ void CEntity::renderHealthBar()
     glColor3f( 0, 1, 0 );
     glVertex3f( x1, y, 0 );
     glColor3f( 0, 1, 0 );
-    glVertex3f( x1 + SIZE*fraction, y, 0 );
+    glVertex3f( x1 + m_healthBarSize*fraction, y, 0 );
 
     // red part of bar
     glColor3f( 1, 0, 0 );
-    glVertex3f( x1 + SIZE*fraction, y, 0 );
+    glVertex3f( x1 + m_healthBarSize*fraction, y, 0 );
     glColor3f( 1, 0, 0 );
     glVertex3f( x2, y, 0 );
 
     glEnd();
 }
 
+void CEntity::renderStaminaBar()
+{
+    if( !m_bounds )
+        return;
+    if( m_staminaBarHeight < 0 )
+        return;  // negative bar height means don't display health bar
 
+    CCamera *g_Camera=g_Game->GetView()->GetCamera();
 
+    float sx, sy;
+    CVector3D above;
+    above.X = m_position.X;
+    above.Z = m_position.Z;
+    above.Y = getAnchorLevel(m_position.X, m_position.Z) + m_staminaBarHeight;
+    g_Camera->GetScreenCoordinates(above, sx, sy);
+    float fraction = clamp(m_staminaCurr / m_staminaMax, 0.0f, 1.0f);
+
+    float x1 = sx - m_staminaBarSize/2;
+    float x2 = sx + m_staminaBarSize/2;
+    float y = g_yres - sy;
+
+    glBegin(GL_LINES);
+
+    // blue part of bar
+    glColor3f( 0, 0, 1 );
+    glVertex3f( x1, y, 0 );
+    glColor3f( 0, 0, 1 );
+    glVertex3f( x1 + m_staminaBarSize*fraction, y, 0 );
+
+    // red part of bar
+    glColor3f( 1, 0, 0 );
+    glVertex3f( x1 + m_staminaBarSize*fraction, y, 0 );
+    glColor3f( 1, 0, 0 );
+    glVertex3f( x2, y, 0 );
+
+    glEnd();
+}
+void CEntity::CalculateRun(float timestep)
+{
+	if ( m_isRunning )
+		m_staminaCurr = max( 0.0f, m_staminaCurr - timestep / 1000.0f / m_runDecayRate * m_staminaMax );
+	else if ( m_orderQueue.empty() )
+		m_staminaCurr = min( m_staminaMax, m_staminaCurr + timestep / 1000.0f / m_runRegenRate * m_staminaMax );
+}
 /*
 
  Scripting interface
@@ -1092,6 +1083,11 @@ void CEntity::ScriptingInit()
     AddMethod<jsval, &CEntity::AddAura>( "addAura", 3 );
     AddMethod<jsval, &CEntity::RemoveAura>( "removeAura", 1 );
     AddMethod<jsval, &CEntity::SetActionParams>( "setActionParams", 5 );
+	AddMethod<jsval, &CEntity::CheckListeners>( "checkListeners", 1 );
+	AddMethod<jsval, &CEntity::RequestNotification>( "requestNotification", 3 );
+	AddMethod<jsval, &CEntity::TriggerRun>( "triggerRun", 1 );
+	AddMethod<jsval, &CEntity::SetRun>( "setRun", 1 );
+	
 
     AddClassProperty( L"template", (CBaseEntity* CEntity::*)&CEntity::m_base, false, (NotifyFn)&CEntity::loadBase );
     AddClassProperty( L"traits.id.classes", (GetFn)&CEntity::getClassSet, (SetFn)&CEntity::setClassSet );
@@ -1549,3 +1545,90 @@ jsval CEntity::SetActionParams( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 
     return JSVAL_VOID;
 }
+
+jsval CEntity::RequestNotification( JSContext* cx, uintN argc, jsval* argv )
+{
+	if( argc < 3 )
+	{
+		JS_ReportError( cx, "Too few parameters" );
+		return( false );
+	}
+	CEntityListener notify;
+
+	notify.m_sender = this;
+	//(Convert from int to enum)
+	CEntity *target = ToNative<CEntity>( argv[0] );
+	*( (uint*) &(notify.m_type) ) = ToPrimitive<int>( argv[1] );
+	
+	bool destroy = ToPrimitive<bool>( argv[2] );
+	
+	std::deque<CEntityListener>::iterator it = target->m_listeners.begin();
+	for ( ; it != target->m_listeners.end(); it++)
+	{
+		if ( destroy && it->m_sender == this )
+			target->m_listeners.erase(it);
+	}
+
+	target->m_listeners.push_back( notify );
+	return JSVAL_VOID;
+}
+jsval CEntity::CheckListeners( JSContext *cx, uintN argc, jsval* argv )
+{	
+	if( argc < 1 )
+	{
+		JS_ReportError( cx, "Too few parameters" );
+		return( false );
+	}
+	int type = ToPrimitive<int>( argv[0] );	   //notify code
+	CEntityOrder order = this->m_orderQueue.front();
+	CEntity* target;
+
+	for (int i=0; i<m_listeners.size(); i++)
+		
+		if (m_listeners[i].m_type & type)
+		{
+			 switch( type )
+			 {
+			 case CEntityListener::NOTIFY_GOTO:
+					m_listeners[i].m_sender->DispatchNotification( order, type );
+					break;
+				 
+				 case CEntityListener::NOTIFY_HEAL:
+				 case CEntityListener::NOTIFY_ATTACK:
+				 case CEntityListener::NOTIFY_GATHER:
+				 case CEntityListener::NOTIFY_DAMAGE:
+					 if( argc < 2 )
+					 {
+					 	JS_ReportError( cx, "Too few parameters" );
+					 	continue;
+					 }
+					 target = ToNative<CEntity>( argv[1] );
+					 order.m_data[0].entity = target->me;
+
+					 m_listeners[i].m_sender->DispatchNotification( order, type );
+					 break;
+					 
+				 default:
+					JS_ReportError( cx, "Invalid order type" );
+					continue;
+		 }
+	}
+	return JSVAL_VOID;
+}
+
+jsval CEntity::TriggerRun( JSContext* cx, uintN argc, jsval* argv )
+{
+	m_triggerRun = true;
+	return JSVAL_VOID;
+}
+jsval CEntity::SetRun( JSContext* cx, uintN argc, jsval* argv )
+{
+	if( argc < 1 )
+	{
+		JS_ReportError( cx, "Too few parameters" );
+		return( false );
+	}
+	m_isRunning = ToPrimitive<bool> ( argv[0] );
+	return JSVAL_VOID;
+}
+	

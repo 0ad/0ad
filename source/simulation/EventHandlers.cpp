@@ -42,10 +42,19 @@ CEventTargetChanged::CEventTargetChanged( CEntity* target ) : CScriptEvent( L"ta
 	m_defaultOrder = -1;
 	m_defaultAction = 0;
 	m_defaultCursor = L"arrow-default";
+	
+	m_secondaryOrder = -1;
+	m_secondaryAction = 0;
+	m_secondaryCursor = L"arrow-default";
+	
+
 	AddLocalProperty( L"target", &m_target, true );
 	AddLocalProperty( L"defaultOrder", &m_defaultOrder );
 	AddLocalProperty( L"defaultAction", &m_defaultAction );
 	AddLocalProperty( L"defaultCursor", &m_defaultCursor );
+	AddLocalProperty( L"secondaryOrder", &m_secondaryOrder );
+	AddLocalProperty( L"secondaryCursor", &m_secondaryCursor );
+	AddLocalProperty( L"secondaryAction", &m_secondaryAction );
 }
 
 CEventPrepareOrder::CEventPrepareOrder( CEntity* target, int orderType ) : CScriptEvent( L"prepareOrder", EVENT_PREPARE_ORDER, true )

@@ -263,6 +263,9 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 		case NMT_Goto:
 			ENTITY_POSITION(CGoto, ORDER_GOTO);
 			break;
+		case NMT_Run:
+			ENTITY_POSITION(CRun, ORDER_RUN);
+			break;
 		case NMT_Patrol:
 			ENTITY_POSITION(CPatrol, ORDER_PATROL);
 			break;

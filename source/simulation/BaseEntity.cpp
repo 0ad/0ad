@@ -14,7 +14,7 @@ STL_HASH_SET<CStr, CStr_hash_compare> CBaseEntity::scriptsLoaded;
 CBaseEntity::CBaseEntity()
 {
 	m_base = NULL;
-
+	
 	AddProperty( L"tag", &m_Tag, false );
 	AddProperty( L"parent", &m_base, false );
 	AddProperty( L"actions.move.speed", &m_speed );
@@ -22,6 +22,8 @@ CBaseEntity::CBaseEntity()
 	AddProperty( L"actions.move.run.speed", &( m_run.m_Speed ) );
 	AddProperty( L"actions.move.run.rangemin", &( m_run.m_MinRange ) );
 	AddProperty( L"actions.move.run.range", &( m_run.m_MaxRange ) );
+	AddProperty( L"actions.move.run.regen_rate", &m_runRegenRate );
+	AddProperty( L"actions.move.run.decay_rate", &m_runDecayRate );
 	AddProperty( L"actions.attack.range", &( m_melee.m_MaxRange ) );
 	AddProperty( L"actions.attack.rangemin", &( m_melee.m_MinRange ) );
 	AddProperty( L"actions.attack.speed", &( m_melee.m_Speed ) );
@@ -35,8 +37,13 @@ CBaseEntity::CBaseEntity()
 	AddProperty( L"traits.extant", &m_extant );
 	AddProperty( L"traits.corpse", &m_corpse );		
 	AddProperty( L"traits.health.curr", &m_healthCurr );
-	AddProperty( L"traits.health.max", &m_healthMax );
-	AddProperty( L"traits.health.bar_height", &m_healthBarHeight );
+    AddProperty( L"traits.health.max", &m_healthMax );
+    AddProperty( L"traits.health.bar_height", &m_healthBarHeight );
+	AddProperty( L"traits.health.bar_size", &m_healthBarSize );
+	AddProperty( L"traits.stamina.curr", &m_staminaCurr );
+    AddProperty( L"traits.stamina.max", &m_staminaMax );
+    AddProperty( L"traits.stamina.bar_height", &m_staminaBarHeight );
+	AddProperty( L"traits.stamina.bar_size", &m_staminaBarSize );
 	AddProperty( L"traits.minimap.type", &m_minimapType );
 	AddProperty( L"traits.minimap.red", &m_minimapR );
 	AddProperty( L"traits.minimap.green", &m_minimapG );
