@@ -1,6 +1,23 @@
-const ACTION_ATTACK = 1;
-const ACTION_GATHER = 2;
-const ACTION_HEAL = 3;
+/*
+	DESCRIPTION	: Functions that define the scripted behaviour of properties, particularly the effects of entity events and their properties when initialised.
+	NOTES		: 
+*/
+
+// ====================================================================
+
+// To add a new generic order, do the following all within template_entity_script.js:
+
+//    * Pick a number to be its ID (add this to the "const"s directly below). 
+
+//    * Add code in the entityInit() function below that will call setActionParams to set the action's range, speed and animation if the entity supports this action. For example this.setActionParams( ACTION_GATHER, 0.0, a.range, a.speed, "gather" ) tells the entity that the action with ID of ACTION_GATHER has min range 0, max range a.range, speed a.speed, and should play the animation called "gather" while active. 
+
+//    * Add code in entityEventTargetChanged() to tell the GUI whether the entity should use this action depending on what target the mouse is hovering over. This is also where you can set a cursor for the action. 
+
+//    * Add code in entityEventGeneric() to deal with new generic order events of your type. Note that if you want to have your action handler in a separate function (is preferable), you need to also add this function to the entity object in entityInit() (its initialize event), e.g. this.processGather = entityEventGather. 
+
+const ACTION_ATTACK	= 1;
+const ACTION_GATHER	= 2;
+const ACTION_HEAL	= 3;
 
 // ====================================================================
 
