@@ -48,6 +48,10 @@ function entityInit()
 	if (this.traits.health && this.traits.health.max)
 		this.traits.health.curr = this.traits.health.max
 
+	// If entity has health, set current to same.
+	if (this.traits.stamina && this.traits.stamina.max)
+		this.traits.stamina.curr = this.traits.stamina.max
+
 	if (this.traits.supply)
 	{
 		// If entity has supply, set current to same.
@@ -545,6 +549,9 @@ function entityEventGeneric( evt )
 			console.write( "Unknown generic action: " + evt.action );
 	}
 }
+
+//======================================================================
+
 function entityEventNotification( evt )
 {
 	switch( evt.type )
@@ -554,11 +561,10 @@ function entityEventNotification( evt )
 		case NOTIFY_ATTACK:
 		case NOTIFY_DAMAGE:
 			this.Order( ORDER_GENERIC, evt.target, ACTION_ATTACK);
-			this.Order( ORDER_GENERIC, evt.target, ACTION_ATTACK);
 		case NOTIFY_HEAL:
-			this.Order( ORDER_GENERIC, evt.target, ACTION_HEAL);
+			this.Order( ORDER_GENERIC, evt.target, ACTION_HEAL );
 		case NOTIFY_GATHER:
-			this.Order( ORDER_GENERIC, evt.target, ACTION_GATHER);
+			this.Order( ORDER_GENERIC, evt.target, ACTION_GATHER );
 			
 	}
 }		
@@ -579,6 +585,9 @@ function entityEventTargetChanged( evt )
 	
 	evt.defaultOrder = NMT_Goto;
 	evt.defaultCursor = "arrow-default";
+	evt.secondaryOrder = NMT_Run;
+	evt.secondaryCursor = "arrow-default";
+
 	if( evt.target && this.actions )
 	{
 	    /*
@@ -597,6 +606,7 @@ function entityEventTargetChanged( evt )
 		    evt.defaultCursor = "action-gather-" + evt.target.traits.supply.subtype;
 		}
 		*/	
+
 		if( this.actions.attack && 
 			evt.target.player != this.player &&
 			evt.target.traits.health &&
@@ -605,13 +615,22 @@ function entityEventTargetChanged( evt )
 			evt.defaultOrder = NMT_Generic;
 			evt.defaultAction = ACTION_ATTACK;
 			evt.defaultCursor = "action-attack";
+
+			evt.secondaryOrder = NMT_Generic;
+			evt.secondaryAction = ACTION_ATTACK;
+			evt.secondaryCursor = "action-attack";
 		}
 		if( canGather( this, evt.target ) )
 		{
 			evt.defaultOrder = NMT_Generic;
 			evt.defaultAction = ACTION_GATHER;
-		    // Set cursor (eg "action-gather-fruit").
-		    evt.defaultCursor = "action-gather-" + evt.target.traits.supply.subtype;
+		    	// Set cursor (eg "action-gather-fruit").
+		    	evt.defaultCursor = "action-gather-" + evt.target.traits.supply.subtype;
+
+			evt.secondaryOrder = NMT_Generic;
+			evt.secondaryAction = ACTION_GATHER;
+		  	// Set cursor (eg "action-gather-fruit").
+		    	evt.secondaryCursor = "action-gather-" + evt.target.traits.supply.subtype;
 		}
 	}
 }
@@ -634,6 +653,10 @@ function entityEventPrepareOrder( evt )
 	{
 		case ORDER_GOTO:
 			if( !this.actions.move )
+				evt.preventDefault();
+			break;
+		case ORDER_RUN:
+			if( !this.actions.move.run )
 				evt.preventDefault();
 			break;
 		case ORDER_PATROL:

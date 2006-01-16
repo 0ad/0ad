@@ -2,7 +2,6 @@
 	DESCRIPTION	: Functions for the world click handler and manipulating entities.
 	NOTES		: 
 */
-
 // ====================================================================
 
 addGlobalHandler ("worldClick", worldClickHandler);
@@ -43,6 +42,7 @@ function worldClickHandler(event)
 	{
 		// location target commands
 		case NMT_Goto:
+		case NMT_Run:
 		case NMT_Patrol:
 			if (event.queued)
 			{
@@ -65,13 +65,19 @@ function worldClickHandler(event)
 //		break;
 		case NMT_Generic:
 			args[0]=event.entity;
-			args[1]=event.action;
+			if ( event.clicks == 1)
+				args[1]=event.action;
+			else
+				args[1]=event.secondaryAction;
 		break;
 		default:
 			console.write("worldClickHandler: Unknown order: "+cmd);
 			return;
 		break;
 	}
+	
+	if (event.clicks == 2)
+		triggerSelectionRun();
 
 	issueCommand (selection, cmd, args[0], args[1]);
 }
@@ -161,6 +167,13 @@ function selected()
 
 // ====================================================================
 
-
+function triggerSelectionRun()
+{
+	for ( i=0; i< selection.length; i++ )
+	{
+		 selection[i].triggerRun();
+	}
+}
+		
 
 
