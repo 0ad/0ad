@@ -48,7 +48,7 @@ function entityInit()
 	if (this.traits.health && this.traits.health.max)
 		this.traits.health.curr = this.traits.health.max
 
-	// If entity has health, set current to same.
+	// If entity has stamina, set current to same.
 	if (this.traits.stamina && this.traits.stamina.max)
 		this.traits.stamina.curr = this.traits.stamina.max
 

@@ -61,10 +61,22 @@
  			<Range>2.0</Range>
 			<Speed>3000</Speed>
  		</Gather>
+		
+		<Loot>
+			<Resources />
+			<XP />
+		</Loot>		
 
 		<Move>
 			<Speed>10.0</Speed>
 			<TurningRadius>1.0</TurningRadius>
+			
+			<Run>
+				<Speed>30.0</Speed>
+				<Range>100.0</Range>
+				<RangeMin>10.0</RangeMin>
+			</Run>
+			
 		</Move>
 		
 	</Actions>

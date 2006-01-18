@@ -50,18 +50,23 @@
 	</Traits>
 
 	<Actions>
+	
 		<Move>
 			<Speed>5.0</Speed>
 			<TurningRadius>0.0</TurningRadius>
+			
 			<Run>
-				<Speed>0.0</Speed>
+				<Speed>15.0</Speed>
+				<Range>50.0</Range>
+				<RangeMin>10.0</RangeMin>
+
 				<Regen_Rate>10.0</Regen_Rate>
 				<Decay_Rate>5.0</Decay_Rate>
-			</Run>
+			</Run>			
 		</Move>
-
+		
 		<Patrol />
+		
 	</Actions>
-
 	
 </Entity>
