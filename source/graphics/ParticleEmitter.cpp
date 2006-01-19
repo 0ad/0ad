@@ -1,280 +1,189 @@
-/*==================================================================
-| 
-| Name: ParticleEmitter.cpp
-|
-|===================================================================
-|
-| Author: Ben Vinegar
-| Contact: benvinegar () hotmail ! com
-|
-|
-| Last Modified: 03/08/04
-|
-| Overview: Particle emitter class that emits particles from
-|           an origin (or area) with a variety of set colours,
-|		    durations, forces and a single common sprite.
-|
-|
-| Usage: Instantiate one emitter per desired effect. Set the
-|        various fields (preferably all, the defaults are rather
-|		 boring) and then call Frame() - you guessed it - every
-|		 frame. 
-|
-| To do: TBA
-|
-| More Information: TBA
-|
-==================================================================*/
+/////////////////////////////////////////////////////
+//	File Name:	ParticleEmitter.cpp
+//	Date:		6/29/05
+//	Author:		Will Dull
+//	Purpose:	The base particle and emitter
+//				classes implementations.
+/////////////////////////////////////////////////////
 
 #include "precompiled.h"
-
 #include "ParticleEmitter.h"
-#include "timer.h"
-#include "ogl.h"
-#include <stdlib.h>
+#include "ParticleEngine.h"
 
-using namespace std;
+#define PAR_LOG(a,b,c) LOG_SYS::GetInstance()->WriteC(a, LOG_SYS::OBJ, b, c)
 
-CParticleEmitter::CParticleEmitter() :
-	m_origin(0.0f, 0.0f, 0.0f),
-	m_originSpread(0.0f, 0.0f, 0.0f),
-	m_velocity(0.0f, 0.0f, 0.0f),
-	m_velocitySpread(0.0f, 0.0f, 0.0f),
-	m_gravity(0.0f, 0.0f, 0.0f),
-	m_maxParticles(0),
-	m_minParticles(0),
-	m_numParticles(0),
-	m_maxLifetime(0),
-	m_minLifetime(0),
-	m_timeOfLastFrame(0.0f),
-	m_timeSinceLastEmit(0.0f) 
+CEmitter::CEmitter(const int MAX_PARTICLES, const int lifetime, int textureID)
 {
-	m_particles.clear();
-}
-
-CParticleEmitter::~CParticleEmitter() 
-{
-}
-
-void CParticleEmitter::Frame() 
-{
-	Update();
-	Render();
-}
-
-void CParticleEmitter::Render() 
-{
+	particleCount = 0;
+	// declare the pool of nodes
+	max_particles = MAX_PARTICLES;
+	heap = new tParticle[max_particles];
+	emitterLife = lifetime;
+	decrementLife = true;
+	decrementAlpha = true;
+	renderParticles = true;
+	isFinished = false;
+	updateSpeed = 0.02f;
+	blend_mode		= 1;
+	size = 0.15f;
+	texture = textureID;
 	
-	glEnable(GL_ALPHA_TEST);
-	glEnable(GL_BLEND);
-	glDisable(GL_DEPTH_TEST);
+	// init the used/open list
+	usedList = NULL;
+	openList = NULL;
 
-	glAlphaFunc(GL_GREATER, 0.0f);
-	glBlendFunc(GL_SRC_ALPHA,GL_ONE);
-
-	vector<CParticle *>::iterator itor = m_particles.begin();
-	while (itor != m_particles.end()) 
+	// link all the particles in the heap
+	//	into one large open list
+	for(int i = 0; i < max_particles - 1; i++)
 	{
-		CParticle * curParticle = (*itor);
-		
-		curParticle->Frame();
-		++itor;
+		heap[i].next = &(heap[i + 1]);	 
 	}
-	glDisable(GL_ALPHA_TEST);
-	glDisable(GL_BLEND);
-	glEnable(GL_DEPTH_TEST);
+	openList = heap;
 }
 
-void CParticleEmitter::Update() 
+CEmitter::~CEmitter(void)
 {
-	double timeElapsed = get_time() - m_timeOfLastFrame;
-
-	// update existing particles
-	vector<CParticle *>::iterator itor = m_particles.begin();
-	while (itor != m_particles.end()) 
+	/*int open = 0;
+	int used = 0;
+	int final = 0;
+	tParticle *iter = openList;
+	while(iter)
 	{
-		CParticle * curParticle = (*itor);
+		open++;
+		iter = iter->next;
+	}
 
-		curParticle->Update();
+	iter = usedList;
+	while(iter)
+	{
+		used++;
+		iter = iter->next;
+	}
+	final = open + used;*/
 
-		// destroy particle if it has lived beyond its duration
-		if (curParticle->m_timeElapsedTotal >= curParticle->m_duration) 
+	delete [] heap;
+}
+
+bool CEmitter::addParticle()
+{
+	tColor start, end;
+	float fYaw, fPitch, fSpeed;
+
+	if(!openList)
+		return false;
+
+	if(particleCount < max_particles)
+	{
+		// get a particle from the open list
+		tParticle *particle = openList;
+
+		// set it's initial position to the emitter's position
+		particle->pos.x = pos.x;
+		particle->pos.y = pos.y;
+		particle->pos.z = pos.z;
+
+		// Calculate the starting direction vector
+		fYaw = yaw + (yawVar * RandomNum());
+		fPitch = pitch + (pitchVar * RandomNum());
+
+		// Convert the rotations to a vector
+		RotationToDirection(fPitch,fYaw,&particle->dir);
+
+		// Multiply in the speed factor
+		fSpeed = speed + (speedVar * RandomNum());
+		particle->dir.x *= fSpeed;
+		particle->dir.y *= fSpeed;
+		particle->dir.z *= fSpeed;
+
+		// Calculate the life span
+		particle->life = life + (int)((float)lifeVar * RandomNum());
+
+		// Calculate the colors
+		start.r = startColor.r + (startColorVar.r * RandomChar());
+		start.g = startColor.g + (startColorVar.g * RandomChar());
+		start.b = startColor.b + (startColorVar.b * RandomChar());
+		end.r = endColor.r + (endColorVar.r * RandomChar());
+		end.g = endColor.g + (endColorVar.g * RandomChar());
+		end.b = endColor.b + (endColorVar.b * RandomChar());
+
+		// set the initial color of the particle
+		particle->color.r = start.r;
+		particle->color.g = start.g;
+		particle->color.b = start.b;
+
+		// Create the color delta
+		particle->deltaColor.r = (end.r - start.r) / particle->life;
+		particle->deltaColor.g = (end.g - start.g) / particle->life;
+		particle->deltaColor.b = (end.b - start.b) / particle->life;
+
+		particle->alpha = 255.0f;
+		particle->alphaDelta = particle->alpha / particle->life;
+
+		particle->inPos = false;
+
+		// Now, we pop a node from the open list and put it into the used list
+		//tParticleNode *tempNode = openList; // get the top of the list that we have been filling in
+		//openList = tempNode->next;
+		//tempNode->next = usedList;			// have it link to the top of the used list
+		//usedList = tempNode;				// set the new linked node as the start of the list
+		openList = particle->next;
+		particle->next = usedList;
+		usedList = particle;
+
+		// update the length of the used list (particle Count)
+		particleCount++;
+		return true;
+	}
+
+	return false;
+}
+
+bool CEmitter::renderEmitter()
+{
+	if(renderParticles)
+	{
+		switch(blend_mode)
 		{
-			m_particles.erase(itor);
-			delete curParticle;
-			--m_numParticles;
+		case 1:
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE);						// Fire
+			break;
+		case 2:
+			glBlendFunc(GL_SRC_COLOR, GL_ONE);						// Crappy Fire
+			break;
+		case 3:
+			glBlendFunc(GL_SRC_COLOR, GL_ONE_MINUS_SRC_COLOR);		// Plain Particles
+			break;
+		case 4:
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_COLOR);		// Nice fade out effect
+			break;
 		}
 
-		++itor;
-	}
+		// Bind the texture. Use the texture assigned to this emitter.
+		glBindTexture(GL_TEXTURE_2D, texture);
 
-	double secondsPerEmit = 1 / (m_minParticles / m_minLifetime);
-
-	if (m_timeSinceLastEmit > secondsPerEmit) 
-	{
+		glBegin(GL_QUADS);
+		{
+			tParticle *tempParticle = usedList;
 		
-		float duration;
-		CVector3D position, velocity;
-		float colour[4];
-
-		bool moreParticlesToEmit = true;
-		while (moreParticlesToEmit) {
-			CParticle * newParticle = new CParticle();
-			
-			// calculate particle duration
-			duration = (float)m_minLifetime;
-			duration += (rand() % (int)((m_maxLifetime - m_minLifetime) * 1000.0f + 1)) / 1000.0f;
-			newParticle->m_duration = duration;
-
-			// calculate particle start position from spread
-			position = m_origin;
-			position.X += (rand() % (int)(m_originSpread.X * 2000.0f + 1)) / 1000.0f - m_originSpread.X;
-			position.Y += (rand() % (int)(m_originSpread.Y * 2000.0f + 1)) / 1000.0f - m_originSpread.Y;
-			position.Z += (rand() % (int)(m_originSpread.Z * 2000.0f + 1)) / 1000.0f - m_originSpread.Z;
-			newParticle->m_position = position;
-
-			// calculate particle velocity from spread
-			velocity = m_velocity;
-			velocity.X += (rand() % (int)(m_velocitySpread.X * 2000.0f + 1)) / 1000.0f - m_velocitySpread.X;
-			velocity.Y += (rand() % (int)(m_velocitySpread.Y * 2000.0f + 1)) / 1000.0f - m_velocitySpread.Y;
-			velocity.Z += (rand() % (int)(m_velocitySpread.Z * 2000.0f + 1)) / 1000.0f - m_velocitySpread.Z;
-			newParticle->m_velocity = velocity;
-
-			newParticle->m_gravity = m_gravity;
-
-			// calculate and assign colour
-			memcpy2(colour, m_startColour, sizeof(float) * 4);
-			colour[0] += (rand() % (int)((m_endColour[0] - m_startColour[0]) * 1000.0f + 1)) / 1000.0f;
-			colour[1] += (rand() % (int)((m_endColour[1] - m_startColour[1]) * 1000.0f + 1)) / 1000.0f;
-			colour[2] += (rand() % (int)((m_endColour[2] - m_startColour[2]) * 1000.0f + 1)) / 1000.0f;
-			colour[3] += (rand() % (int)((m_endColour[3] - m_startColour[3]) * 1000.0f + 1)) / 1000.0f;
-			memcpy2(newParticle->m_colour, colour, sizeof(float) * 4);
-
-			// assign sprite
-			newParticle->m_sprite = m_sprite;
-
-			// final pre-processing init call
-			newParticle->Init();
-
-			// add to vector of particles
-			m_particles.push_back(newParticle);
-
-			timeElapsed -= secondsPerEmit;
-			if (timeElapsed < secondsPerEmit) 
+			while(tempParticle)
 			{
-				moreParticlesToEmit = false;
+				tColor *pColor = &(tempParticle->color);
+				glColor4ub(pColor->r,pColor->g, pColor->b, (GLubyte)tempParticle->alpha);
+				glTexCoord2d(0.0, 0.0);
+				tVector *pPos = &(tempParticle->pos);
+				glVertex3f(pPos->x - size, pPos->y + size, pPos->z);
+				glTexCoord2d(0.0, 1.0);
+				glVertex3f(pPos->x - size, pPos->y - size, pPos->z);
+				glTexCoord2d(1.0, 1.0);
+				glVertex3f(pPos->x + size, pPos->y - size, pPos->z);
+				glTexCoord2d(1.0, 0.0);
+				glVertex3f(pPos->x + size, pPos->y + size, pPos->z);
+				tempParticle = tempParticle->next;
 			}
-
-
-			++m_numParticles;
 		}
-		m_timeSinceLastEmit = 0.0f;
+		glEnd();
+
+		return true;
 	}
-	else
-		m_timeSinceLastEmit += (float)timeElapsed;
-
-	m_timeOfLastFrame = get_time();
-}
-
-void CParticleEmitter::SetSprite(CSprite * sprite) 
-{
-	m_sprite = sprite;
-}
-
-void CParticleEmitter::SetOrigin(CVector3D origin) 
-{
-	m_origin = origin;
-}
-
-void CParticleEmitter::SetOrigin(float x, float y, float z) 
-{
-	m_origin.X = x;
-	m_origin.Y = y;
-	m_origin.Z = z;
-}
-
-void CParticleEmitter::SetOriginSpread(CVector3D spread) 
-{
-	m_originSpread = spread;
-}
-
-void CParticleEmitter::SetOriginSpread(float x, float y, float z) 
-{
-	m_originSpread.X = x;
-	m_originSpread.Y = y;
-	m_originSpread.Z = z;
-}
-
-void CParticleEmitter::SetGravity(CVector3D gravity) 
-{
-	m_gravity = gravity;
-}
-
-void CParticleEmitter::SetGravity(float x, float y, float z) 
-{
-	m_gravity.X = x;
-	m_gravity.Y = y;
-	m_gravity.Z = z;
-
-}
-
-void CParticleEmitter::SetVelocity(CVector3D velocity) 
-{
-	m_velocity = velocity;
-}
-
-void CParticleEmitter::SetVelocity(float x, float y, float z) 
-{
-	m_velocity.X = x;
-	m_velocity.Y = y;
-	m_velocity.Z = z;
-}
-
-
-void CParticleEmitter::SetVelocitySpread(CVector3D spread) 
-{
-	m_velocitySpread = spread;
-}
-
-void CParticleEmitter::SetVelocitySpread(float x, float y, float z) 
-{
-	m_velocitySpread.X = x;
-	m_velocitySpread.Y = y;
-	m_velocitySpread.Z = z;
-}
-
-void CParticleEmitter::SetStartColour(float r, float g, float b, float a) 
-{
-	m_startColour[0] = r;
-	m_startColour[1] = g;
-	m_startColour[2] = b;
-	m_startColour[3] = a;
-}
-
-void CParticleEmitter::SetEndColour(float r, float g, float b, float a) 
-{
-	m_endColour[0] = r;
-	m_endColour[1] = g;
-	m_endColour[2] = b;
-	m_endColour[3] = a;
-}
-
-void CParticleEmitter::SetMaxLifetime(double maxLife) 
-{
-	m_maxLifetime = maxLife;
-}
-
-void CParticleEmitter::SetMinLifetime(double minLife) 
-{
-	m_minLifetime = minLife;
-}
-
-void CParticleEmitter::SetMaxParticles(int maxParticles) 
-{
-	m_maxParticles = maxParticles;
-}
-
-void CParticleEmitter::SetMinParticles(int minParticles) 
-{
-	m_minParticles = minParticles;
+	return false;
 }
