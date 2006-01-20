@@ -152,12 +152,11 @@ function entityInit()
 	
 	// Attach functions to ourselves
 	
-	this.processAttack = entityEventAttack;
-	this.processAttackRanged = entityEventAttackRanged;
-	this.processGather = entityEventGather;
-	this.processHeal = entityEventHeal;
-	
-	this.damage = entityDamage;
+	this.performAttack = performAttack;
+	this.performAttackRanged = performAttackRanged;
+	this.performGather = performGather;
+	this.performHeal = performHeal;
+	this.damage = damage;
 
 	// Attach Auras if the entity is entitled to them.
 	if( this.traits.auras )
@@ -237,11 +236,11 @@ function entityInit()
 
 // ====================================================================
 
-function entityEventAttack( evt )
+function performAttack( evt )
 {
 	if( this.actions.attack.ranged )
 	{
-		this.processAttackRanged( evt );
+		this.performAttackRanged( evt );
 		return;
 	}
 
@@ -258,7 +257,7 @@ function entityEventAttack( evt )
 
 // ====================================================================
 
-function entityEventAttackRanged( evt )
+function performAttackRanged( evt )
 {
 	// Create a projectile from us, to the target, that will do some damage when it hits them.
 	dmg = new DamageType();
@@ -331,7 +330,7 @@ function projectileEventImpact( evt )
 
 // ====================================================================
 
-function entityEventGather( evt )
+function performGather( evt )
 {
 	g = this.actions.gather;
 	s = evt.target.traits.supply;
@@ -371,7 +370,7 @@ function entityEventGather( evt )
 
 // ====================================================================
 
-function entityEventHeal( evt )
+function performHeal( evt )
 {
 	if ( evt.target.player != this.player )
 	{
@@ -424,17 +423,17 @@ function entityEventHeal( evt )
 
 // ====================================================================
 
-function entityDamage( damage, inflictor )
+function damage( dmg, inflictor )
 {	
 	// Apply armour and work out how much damage we actually take
-	crushDamage = parseInt(damage.crush - this.traits.armour.value * this.traits.armour.crush);
+	crushDamage = parseInt(dmg.crush - this.traits.armour.value * this.traits.armour.crush);
 	if ( crushDamage < 0 ) crushDamage = 0;
-	pierceDamage = parseInt(damage.pierce - this.traits.armour.value * this.traits.armour.pierce);
+	pierceDamage = parseInt(dmg.pierce - this.traits.armour.value * this.traits.armour.pierce);
 	if ( pierceDamage < 0 ) pierceDamage = 0;
-	hackDamage = parseInt(damage.hack - this.traits.armour.value * this.traits.armour.hack);
+	hackDamage = parseInt(dmg.hack - this.traits.armour.value * this.traits.armour.hack);
 	if ( hackDamage < 0 ) hackDamage = 0;
 
-	totalDamage = parseInt(damage.typeless + crushDamage + pierceDamage + hackDamage);
+	totalDamage = parseInt(dmg.typeless + crushDamage + pierceDamage + hackDamage);
 
 	// Minimum of 1 damage
 
@@ -540,11 +539,11 @@ function entityEventGeneric( evt )
 	switch( evt.action )
 	{
 		case ACTION_ATTACK:
-			this.processAttack( evt ); break;
+			this.performAttack( evt ); break;
 		case ACTION_GATHER:
-			this.processGather( evt ); break;
+			this.performGather( evt ); break;
 		case ACTION_HEAL:
-			this.processHeal( evt ); break;
+			this.performHeal( evt ); break;
 		default:
 			console.write( "Unknown generic action: " + evt.action );
 	}
@@ -577,11 +576,7 @@ function entityEventTargetChanged( evt )
 	// the target.
 
 	// If we can gather, and the target supplies, gather. If it's our enemy, and we're armed, attack. 
-	// If all else fails, move.
-	// ToString is needed because every property is actually an object (though that's usually
-	// hidden from you) and comparing an object to any other object in JavaScript (1.5, at least)
-	// yields false. ToString converts them to their actual values (i.e. the four character
-	// string) first.
+	// If all else fails, move (or run on a right-click).
 	
 	evt.defaultOrder = NMT_Goto;
 	evt.defaultCursor = "arrow-default";
@@ -590,23 +585,6 @@ function entityEventTargetChanged( evt )
 
 	if( evt.target && this.actions )
 	{
-	    /*
-		if( this.actions.attack && 
-			evt.target.player != this.player &&
-			evt.target.traits.health &&
-			evt.target.traits.health.max != 0 )
-		{
-			evt.defaultOrder = NMT_AttackMelee;
-			evt.defaultCursor = "action-attack";
-		}
-		if( canGather( this, evt.target ) )
-		{
-		    evt.defaultOrder = NMT_Gather;
-		    // Set cursor (eg "action-gather-fruit").
-		    evt.defaultCursor = "action-gather-" + evt.target.traits.supply.subtype;
-		}
-		*/	
-
 		if( this.actions.attack && 
 			evt.target.player != this.player &&
 			evt.target.traits.health &&
@@ -624,13 +602,13 @@ function entityEventTargetChanged( evt )
 		{
 			evt.defaultOrder = NMT_Generic;
 			evt.defaultAction = ACTION_GATHER;
-		    	// Set cursor (eg "action-gather-fruit").
-		    	evt.defaultCursor = "action-gather-" + evt.target.traits.supply.subtype;
+		    // Set cursor (eg "action-gather-fruit").
+		    evt.defaultCursor = "action-gather-" + evt.target.traits.supply.subtype;
 
 			evt.secondaryOrder = NMT_Generic;
 			evt.secondaryAction = ACTION_GATHER;
 		  	// Set cursor (eg "action-gather-fruit").
-		    	evt.secondaryCursor = "action-gather-" + evt.target.traits.supply.subtype;
+		    evt.secondaryCursor = "action-gather-" + evt.target.traits.supply.subtype;
 		}
 	}
 }
@@ -663,15 +641,6 @@ function entityEventPrepareOrder( evt )
 			if( !this.actions.patrol )
 				evt.preventDefault();
 			break;	
-		case ORDER_ATTACK:
-			if( !this.actions.attack || 
-			    !evt.target )
-				evt.preventDefault();
-			break;
-		case ORDER_GATHER:
-			if( !canGather( this, evt.target ) )
-				evt.preventDefault();
-			break;
 		case ORDER_GENERIC:
 			// TODO: some checking here
 			break;
