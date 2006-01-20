@@ -48,15 +48,6 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
     AddProperty( L"traits.extant", &m_extant );
     AddProperty( L"traits.corpse", &m_corpse );
     AddProperty( L"actions.move.turningradius", &m_turningRadius );
-    AddProperty( L"actions.attack.range", &( m_melee.m_MaxRange ) );
-    AddProperty( L"actions.attack.rangemin", &( m_melee.m_MinRange ) );
-    AddProperty( L"actions.attack.speed", &( m_melee.m_Speed ) );
-    AddProperty( L"actions.gather.range", &( m_gather.m_MaxRange ) );
-    AddProperty( L"actions.gather.rangemin", &( m_gather.m_MinRange ) );
-    AddProperty( L"actions.gather.speed", &( m_gather.m_Speed ) );
-    AddProperty( L"actions.heal.range", &( m_heal.m_MaxRange ) );
-    AddProperty( L"actions.heal.rangemin", &( m_heal.m_MinRange ) );
-    AddProperty( L"actions.heal.speed", &( m_heal.m_Speed ) );
     AddProperty( L"position", &m_graphics_position, false, (NotifyFn)&CEntity::teleport );
     AddProperty( L"orientation", &m_graphics_orientation, false, (NotifyFn)&CEntity::reorient );
     AddProperty( L"player", &m_player, false, (NotifyFn)&CEntity::playerChanged );
@@ -109,11 +100,8 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
     m_destroyed = false;
 
     m_selected = false;
-
 	m_isRunning = false;
-
 	m_shouldRun = false;
-
 	m_triggerRun = false;
 
 	m_frameCheck = 0;
@@ -398,36 +386,6 @@ void CEntity::update( size_t timestep )
 					break;
 				updateCollisionPatch();
 				return;
-            case CEntityOrder::ORDER_ATTACK_MELEE:
-				if( processAttackMeleeNoPathing( current, timestep ) )
-					break;
-				updateCollisionPatch();
-				return;
-            case CEntityOrder::ORDER_ATTACK_MELEE_NOPATHING:
-				if( processAttackMeleeNoPathing( current, timestep ) )
-					break;
-				updateCollisionPatch();
-				return;
-            case CEntityOrder::ORDER_GATHER:
-				if( processGather( current, timestep ) )
-					break;
-				updateCollisionPatch();
-				return;
-            case CEntityOrder::ORDER_GATHER_NOPATHING:
-				if( processGatherNoPathing( current, timestep ) )
-					break;
-				updateCollisionPatch();
-				return;
-            case CEntityOrder::ORDER_HEAL:
-				if( processHeal( current, timestep ) )
-					break;
-				updateCollisionPatch();
-				return;
-            case CEntityOrder::ORDER_HEAL_NOPATHING:
-				if( processHealNoPathing( current, timestep ) )
-					break;
-				updateCollisionPatch();
-				return;
             case CEntityOrder::ORDER_GENERIC:
 				if( processGeneric( current, timestep ) )
 					break;
@@ -650,13 +608,6 @@ void CEntity::Tick()
     CEventTick evt;
     DispatchEvent( &evt );
 }
-
-/*void CEntity::Damage( CDamageType& damage, CEntity* inflictor )
-{
-    CEventDamage evt( inflictor, &damage );
-    DispatchEvent( &evt );
-}*/
-
 
 void CEntity::clearOrders()
 {
@@ -1023,7 +974,7 @@ void CEntity::renderStaminaBar()
     if( !m_bounds )
         return;
     if( m_staminaBarHeight < 0 )
-        return;  // negative bar height means don't display health bar
+        return;  // negative bar height means don't display stamina bar
 
     CCamera *g_Camera=g_Game->GetView()->GetCamera();
 
@@ -1055,6 +1006,7 @@ void CEntity::renderStaminaBar()
 
     glEnd();
 }
+
 void CEntity::CalculateRun(float timestep)
 {
 	if ( m_isRunning )
@@ -1062,6 +1014,7 @@ void CEntity::CalculateRun(float timestep)
 	else if ( m_orderQueue.empty() )
 		m_staminaCurr = min( m_staminaMax, m_staminaCurr + timestep / 1000.0f / m_runRegenRate * m_staminaMax );
 }
+
 /*
 
  Scripting interface
@@ -1076,7 +1029,6 @@ void CEntity::ScriptingInit()
     AddMethod<bool, &CEntity::OrderSingle>( "order", 1 );
     AddMethod<bool, &CEntity::OrderQueued>( "orderQueued", 1 );
     AddMethod<bool, &CEntity::Kill>( "kill", 0 );
-    //AddMethod<bool, &CEntity::Damage>( "damage", 1 );
     AddMethod<bool, &CEntity::IsIdle>( "isIdle", 0 );
     AddMethod<bool, &CEntity::HasClass>( "hasClass", 1 );
     AddMethod<jsval, &CEntity::GetSpawnPoint>( "getSpawnPoint", 1 );
@@ -1214,22 +1166,6 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 				return( false );
 			}
 			break;
-        case CEntityOrder::ORDER_ATTACK_MELEE:
-        case CEntityOrder::ORDER_GATHER:
-        case CEntityOrder::ORDER_HEAL:
-			if( argc < 1 )
-			{
-				JS_ReportError( cx, "Too few parameters" );
-				return( false );
-			}
-			target = ToNative<CEntity>( argv[1] );
-			if( !target )
-			{
-				JS_ReportError( cx, "Invalid target" );
-				return( false );
-			}
-			newOrder.m_data[0].entity = target->me;
-			break;
         case CEntityOrder::ORDER_GENERIC:
 			if( argc < 3 )
 			{
@@ -1264,44 +1200,6 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 
     return( true );
 }
-
-/*bool CEntity::Damage( JSContext* cx, uintN argc, jsval* argv )
-{
-    CEntity* inflictor = NULL;
-
-    if( argc >= 4 )
-        inflictor = ToNative<CEntity>( argv[3] );
-
-    if( argc >= 3 )
-    {
-        CDamageType dmgType( ToPrimitive<float>( argv[0] ), ToPrimitive<float>( argv[1] ), ToPrimitive<float>( argv[2] ) );
-        Damage( dmgType, inflictor );
-        return( true );
-    }
-
-    if( argc >= 2 )
-        inflictor = ToNative<CEntity>( argv[1] );
-
-    // If it's a DamageType, use that. Otherwise, see if it's a float, if so, use
-    // that as the 'typeless' unblockable damage type.
-
-    CDamageType* dmg = ToNative<CDamageType>( argv[0] );
-
-    if( !dmg )
-    {
-        float dmgN;
-        if( !ToPrimitive<float>( cx, argv[0], dmgN ) )
-            return( false );
-
-        CDamageType dmgType( dmgN );
-
-        Damage( dmgType, inflictor );
-        return( true );
-    }
-
-    Damage( *dmg, inflictor );
-    return( true );
-}*/
 
 bool CEntity::Kill( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
@@ -1583,7 +1481,7 @@ jsval CEntity::CheckListeners( JSContext *cx, uintN argc, jsval* argv )
 	CEntityOrder order = this->m_orderQueue.front();
 	CEntity* target;
 
-	for (int i=0; i<m_listeners.size(); i++)
+	for (size_t i=0; i<m_listeners.size(); i++)
 		
 		if (m_listeners[i].m_type & type)
 		{
@@ -1616,11 +1514,12 @@ jsval CEntity::CheckListeners( JSContext *cx, uintN argc, jsval* argv )
 	return JSVAL_VOID;
 }
 
-jsval CEntity::TriggerRun( JSContext* cx, uintN argc, jsval* argv )
+jsval CEntity::TriggerRun( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	m_triggerRun = true;
 	return JSVAL_VOID;
 }
+
 jsval CEntity::SetRun( JSContext* cx, uintN argc, jsval* argv )
 {
 	if( argc < 1 )

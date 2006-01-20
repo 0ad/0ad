@@ -482,7 +482,6 @@ static void InitScripting()
 	CPlayer::ScriptingInit();
 
 	PlayerCollection::Init( "PlayerCollection" );
-	//CDamageType::ScriptingInit();
 	CJSComplexPropertyAccessor<CEntity>::ScriptingInit(); // <-- Doesn't really matter which we use, but we know CJSPropertyAccessor<T> is already being compiled for T = CEntity.
 	CScriptEvent::ScriptingInit();
 	CJSProgressTimer::ScriptingInit();
@@ -500,9 +499,6 @@ static void InitScripting()
 	g_ScriptingHost.DefineConstant( "ORDER_GOTO", CEntityOrder::ORDER_GOTO );
 	g_ScriptingHost.DefineConstant( "ORDER_RUN", CEntityOrder::ORDER_RUN );
 	g_ScriptingHost.DefineConstant( "ORDER_PATROL", CEntityOrder::ORDER_PATROL );
-	g_ScriptingHost.DefineConstant( "ORDER_ATTACK", CEntityOrder::ORDER_ATTACK_MELEE );
-	g_ScriptingHost.DefineConstant( "ORDER_GATHER", CEntityOrder::ORDER_GATHER );
-	g_ScriptingHost.DefineConstant( "ORDER_HEAL", CEntityOrder::ORDER_HEAL );
 	g_ScriptingHost.DefineConstant( "ORDER_GENERIC", CEntityOrder::ORDER_GENERIC );
 
 #define REG_JS_CONSTANT(_name) g_ScriptingHost.DefineConstant(#_name, _name)

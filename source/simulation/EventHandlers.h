@@ -9,8 +9,6 @@
 #include "Vector3D.h"
 #include "EntityOrders.h"
 
-class CDamageType;
-
 class CEventInitialize : public CScriptEvent
 {
 public:
@@ -21,35 +19,6 @@ class CEventTick : public CScriptEvent
 {
 public:
 	CEventTick() : CScriptEvent( L"tick", EVENT_TICK, false ) {}
-};
-
-class CEventAttack : public CScriptEvent
-{
-	CEntity* m_target;
-public:
-	CEventAttack( CEntity* target );
-};
-
-class CEventGather : public CScriptEvent
-{
-	CEntity* m_target;
-public:
-	CEventGather( CEntity* target );
-};
-
-/*class CEventDamage : public CScriptEvent
-{
-	CEntity* m_inflictor;
-	CDamageType* m_damage;
-public:
-	CEventDamage( CEntity* inflictor, CDamageType* damage );
-};*/
-
-class CEventHeal : public CScriptEvent
-{
-	CEntity* m_target;
-public:
-	CEventHeal( CEntity* target );
 };
 
 class CEventGeneric : public CScriptEvent

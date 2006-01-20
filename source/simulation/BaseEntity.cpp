@@ -24,15 +24,6 @@ CBaseEntity::CBaseEntity()
 	AddProperty( L"actions.move.run.range", &( m_run.m_MaxRange ) );
 	AddProperty( L"actions.move.run.regen_rate", &m_runRegenRate );
 	AddProperty( L"actions.move.run.decay_rate", &m_runDecayRate );
-	AddProperty( L"actions.attack.range", &( m_melee.m_MaxRange ) );
-	AddProperty( L"actions.attack.rangemin", &( m_melee.m_MinRange ) );
-	AddProperty( L"actions.attack.speed", &( m_melee.m_Speed ) );
-	AddProperty( L"actions.gather.range", &( m_gather.m_MaxRange ) );
-	AddProperty( L"actions.gather.rangemin", &( m_gather.m_MinRange ) );
-	AddProperty( L"actions.gather.speed", &( m_gather.m_Speed ) );
-	AddProperty( L"actions.heal.range", &( m_heal.m_MaxRange ) );
-	AddProperty( L"actions.heal.rangemin", &( m_heal.m_MinRange ) );
-	AddProperty( L"actions.heal.speed", &( m_heal.m_Speed ) );
 	AddProperty( L"actor", &m_actorName );
 	AddProperty( L"traits.extant", &m_extant );
 	AddProperty( L"traits.corpse", &m_corpse );		

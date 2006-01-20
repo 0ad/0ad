@@ -2,24 +2,6 @@
 #include "EventHandlers.h"
 #include "Entity.h"
 
-CEventAttack::CEventAttack( CEntity* target ) : CScriptEvent( L"attack", EVENT_ATTACK, true )
-{
-	m_target = target;
-	AddLocalProperty( L"target", &m_target );
-}
-
-CEventGather::CEventGather( CEntity* target ) : CScriptEvent( L"gather", EVENT_GATHER, true )
-{
-	m_target = target;
-	AddLocalProperty( L"target", &m_target );
-}
-
-CEventHeal::CEventHeal( CEntity* target ) : CScriptEvent( L"heal", EVENT_HEAL, true)
-{
-	m_target = target;
-	AddLocalProperty( L"target", &m_target );
-}
-
 CEventGeneric::CEventGeneric( CEntity* target, int action ) : CScriptEvent( L"generic", EVENT_GENERIC, true)
 {
 	m_target = target;

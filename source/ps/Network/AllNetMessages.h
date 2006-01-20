@@ -59,9 +59,6 @@ enum ENetMessageType
 	NMT_Goto, NMT_COMMAND_FIRST=NMT_Goto,
 	NMT_Patrol,
 	NMT_AddWaypoint,
-	NMT_AttackMelee,
-	NMT_Gather,
-	NMT_Heal,
 	NMT_Generic,
 	NMT_Run,
 	NMT_COMMAND_LAST,
@@ -227,18 +224,6 @@ END_NMT_CLASS()
 DERIVE_NMT_CLASS_(NetCommand, AddWaypoint)
 	NMT_FIELD_INT(m_TargetX, u32, 2)
 	NMT_FIELD_INT(m_TargetY, u32, 2)
-END_NMT_CLASS()
-
-DERIVE_NMT_CLASS_(NetCommand, AttackMelee)
-	NMT_FIELD(HEntity, m_Target)
-END_NMT_CLASS()
-
-DERIVE_NMT_CLASS_(NetCommand, Gather)
-	NMT_FIELD(HEntity, m_Target)
-END_NMT_CLASS()
-
-DERIVE_NMT_CLASS_(NetCommand, Heal)
-	NMT_FIELD(HEntity, m_Target)
 END_NMT_CLASS()
 
 DERIVE_NMT_CLASS_(NetCommand, Generic)

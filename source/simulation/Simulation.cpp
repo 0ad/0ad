@@ -269,15 +269,6 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 		case NMT_Patrol:
 			ENTITY_POSITION(CPatrol, ORDER_PATROL);
 			break;
-		case NMT_AttackMelee:
-			ENTITY_ENTITY(CAttackMelee, ORDER_ATTACK_MELEE);
-			break;
-		case NMT_Gather:
-			ENTITY_ENTITY(CGather, ORDER_GATHER);
-			break;
-		case NMT_Heal:
-			ENTITY_ENTITY(CHeal, ORDER_HEAL);
-			break;
 		case NMT_Generic:
 			ENTITY_ENTITY_INT(CGeneric, ORDER_GENERIC);
 			break;

@@ -76,9 +76,6 @@ public:
 	float m_runDecayRate;
 
 	SEntityAction m_run;
-	SEntityAction m_melee;
-	SEntityAction m_gather;
-	SEntityAction m_heal;
 
 	ActionTable m_actions;
 
@@ -179,15 +176,6 @@ private:
 	bool processContactAction( CEntityOrder* current, size_t timestep_millis, int transition, SEntityAction* action );
 	bool processContactActionNoPathing( CEntityOrder* current, size_t timestep_millis, const CStr& animation, CScriptEvent* contactEvent, SEntityAction* action );
 
-	bool processAttackMelee( CEntityOrder* current, size_t timestep_milli );
-	bool processAttackMeleeNoPathing( CEntityOrder* current, size_t timestep_milli );
-
-	bool processGather( CEntityOrder* current, size_t timestep_milli );
-	bool processGatherNoPathing( CEntityOrder* current, size_t timestep_milli );
-
-	bool processHeal( CEntityOrder* current, size_t timestep_milli );
-	bool processHealNoPathing( CEntityOrder* current, size_t timestep_milli );
-
 	bool processGeneric( CEntityOrder* current, size_t timestep_milli );
 	bool processGenericNoPathing( CEntityOrder* current, size_t timestep_milli );
 	
@@ -228,9 +216,6 @@ public:
 
 	// Retrieve the player associated with this entity
 	CPlayer* GetPlayer() { return m_player; } 
-
-	// Process damage
-	//void Damage( CDamageType& damage, CEntity* inflictor = NULL );
 
 	// Update collision patch (move ourselves to a new one if necessary)
 	void updateCollisionPatch();
@@ -283,7 +268,6 @@ public:
 
 	jsval ToString( JSContext* cx, uintN argc, jsval* argv );
 	
-	//bool Damage( JSContext* cx, uintN argc, jsval* argv );
 	bool Kill( JSContext* cx, uintN argc, jsval* argv );
 	jsval GetSpawnPoint( JSContext* cx, uintN argc, jsval* argv );
 

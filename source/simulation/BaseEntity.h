@@ -86,9 +86,6 @@ public:
 	float m_runDecayRate;
 
 	SEntityAction m_run;
-	SEntityAction m_melee;
-	SEntityAction m_gather;
-	SEntityAction m_heal;
 	SEntityAction m_generic;
 
 	float m_turningRadius;

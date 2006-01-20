@@ -594,42 +594,6 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 	return( false );
 }
 
-bool CEntity::processAttackMelee( CEntityOrder* current, size_t timestep_millis )
-{
-	return( processContactAction( current, timestep_millis, CEntityOrder::ORDER_ATTACK_MELEE_NOPATHING, &m_melee ) );
-}
-
-bool CEntity::processAttackMeleeNoPathing( CEntityOrder* current, size_t timestep_milli )
-{
-	CEventAttack evt( current->m_data[0].entity );
-	if( !m_actor ) return( false );
-	return( processContactActionNoPathing( current, timestep_milli, "melee", &evt, &m_melee ) );
-}
-
-bool CEntity::processGather( CEntityOrder* current, size_t timestep_millis )
-{
-	return( processContactAction( current, timestep_millis, CEntityOrder::ORDER_GATHER_NOPATHING, &m_gather ) );
-}
-
-bool CEntity::processGatherNoPathing( CEntityOrder* current, size_t timestep_millis )
-{
-	CEventGather evt( current->m_data[0].entity );
-	if( !m_actor ) return( false );
-	return( processContactActionNoPathing( current, timestep_millis, "gather", &evt, &m_gather ) );
-}
-
-bool CEntity::processHeal( CEntityOrder* current, size_t timestep_millis )
-{
-	return( processContactAction( current, timestep_millis, CEntityOrder::ORDER_HEAL_NOPATHING, &m_heal ) );
-}
-
-bool CEntity::processHealNoPathing( CEntityOrder* current, size_t timestep_millis )
-{
-	CEventHeal evt( current->m_data[0].entity );
-	if( !m_actor ) return( false );
-	return( processContactActionNoPathing( current, timestep_millis, "heal", &evt, &m_heal ) );
-}
-
 bool CEntity::processGeneric( CEntityOrder* current, size_t timestep_millis )
 {
 	int id = current->m_data[1].data;

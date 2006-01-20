@@ -81,9 +81,6 @@ void CNetMessage::ScriptingInit()
 	def(NMT_Run);
 	def(NMT_Patrol);
 	def(NMT_AddWaypoint);
-	def(NMT_AttackMelee);
-	def(NMT_Gather);
-	def(NMT_Heal);
 	def(NMT_Generic);
 }
 
@@ -184,10 +181,6 @@ CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSConte
 		PositionMessage(Run)
 		PositionMessage(Patrol)
 		PositionMessage(AddWaypoint)
-		
-		EntityMessage(AttackMelee)
-		EntityMessage(Gather)
-		EntityMessage(Heal)
 
 		EntityIntMessage(Generic)
 
