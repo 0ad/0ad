@@ -97,7 +97,7 @@ public:
 	void RemoveNode(const int index) { m_Spline.RemoveNode(index); }
 	
 	void UpdateNodeTime(const int index, float time) { m_Spline.Node[index].Distance = time; }
-    void UpdateNodePosition(const int index, const CVector3D &pos) { m_Spline.Node[index].Position = pos; }
+    void UpdateNodePos(const int index, const CVector3D &pos) { m_Spline.Node[index].Position = pos; }
 	void DrawSpline(CVector4D RGBA, int smoothness);
 
 	int GetNodeCount() { return m_Spline.NodeCount; }
@@ -121,7 +121,7 @@ public:
 	~CCinemaTrack() {}
 	
 	std::vector<CCinemaPath> m_Paths;
-	std::vector<CCinemaPath>::iterator m_CPA;	//current path selected
+	std::vector<CCinemaPath>::iterator m_CPA;	//current path
 	CVector3D m_StartRotation;
 	
 	void AddPath(CCinemaData path, TNSpline spline);

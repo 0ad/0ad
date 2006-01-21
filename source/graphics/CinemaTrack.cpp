@@ -289,9 +289,6 @@ int CCinemaManager::LoadTracks()
 {
 	unsigned int fileID;
 	int numTracks;
-	CVector3D tmpPos;
-	float tmpTime;
-	CCinemaData tmpData;
 	
 	//NOTE: How do you find the current scenario's cinematics?
 	void* fData;
@@ -313,9 +310,11 @@ int CCinemaManager::LoadTracks()
 	for (int i=0; i < numTracks; i++)
 	{
 		CCinemaTrack tmpTrack;
+		
+		CVector3D tmpPos;
+		float tmpTime;
 		int numPaths;
 		int numNodes;
-		TNSpline Spline;
 		CStr Name;
 		
 		Stream >> Name;
@@ -327,14 +326,15 @@ int CCinemaManager::LoadTracks()
 		
 		for (int j=0; j < numPaths; j++)
 		{
-
+			CCinemaData tmpData;
+			TNSpline tmpSpline;
 			//load main data
 			Stream >> tmpData.m_TotalDuration;
 			Stream >> tmpData.m_TotalRotation.X;
 			Stream >> tmpData.m_TotalRotation.Y;
 			Stream >> tmpData.m_TotalRotation.Z;
-			Stream >> tmpData.m_GrowthCount;
 			Stream >> tmpData.m_Growth;
+			tmpData.m_GrowthCount = tmpData.m_Growth;
 			Stream >> tmpData.m_Switch;
 			Stream >> tmpData.m_mode;
 			Stream >> tmpData.m_style;
@@ -346,11 +346,11 @@ int CCinemaManager::LoadTracks()
 				Stream >> tmpPos.Y;
 				Stream >> tmpPos.Z;
 				Stream >> tmpTime;
-				Spline.AddNode( tmpPos, tmpTime ); 
+				tmpSpline.AddNode( tmpPos, tmpTime ); 
 			}
-			tmpTrack.AddPath(tmpData, Spline);
+			tmpTrack.AddPath(tmpData, tmpSpline);
 		}
-		m_Tracks[Name]=tmpTrack;
+		m_Tracks[Name] = tmpTrack;
 	}
 	mem_free_h(hm);
 	return 0;
