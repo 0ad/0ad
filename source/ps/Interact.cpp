@@ -8,6 +8,8 @@
 #include "CConsole.h"
 #include "HFTracer.h"
 #include "Hotkey.h"
+#include "gui/CGUI.h"
+#include "gui/MiniMap.h"
 #include "timer.h"
 #include "Game.h"
 #include "ps/Globals.h"
@@ -22,6 +24,7 @@
 
 extern CConsole* g_Console;
 extern CStr g_CursorName;
+extern float g_xres, g_yres;
 
 static const double SELECT_DBLCLICK_RATE = 0.5;
 const int ORDER_DELAY = 5;
@@ -850,6 +853,10 @@ void CMouseoverEntities::stopBandbox()
 void FireWorldClickEvent(uint button, int clicks)
 {
 	//debug_printf("FireWorldClickEvent: button %d, clicks %d\n", button, clicks);
+	//If we're clicking on the minimap, use its world click handler
+
+	if ( g_Selection.m_mouseOverMM )
+		return;
 	
 	g_JSGameEvents.FireWorldClick(
 		button,
@@ -939,7 +946,6 @@ InReaction interactInputHandler( const SDL_Event* ev )
 			lastclicktime[i] = 0.0f;
 			clicks[i] = 0;
 		});
-	
 	// These refer to the left mouse button
 	static u16 button_down_x, button_down_y;
 	static double button_down_time;

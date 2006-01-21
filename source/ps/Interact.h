@@ -35,11 +35,13 @@ struct CSelectedEntities : public Singleton<CSelectedEntities>
 		m_secondaryCommand = -1;
 		m_secondaryAction = -1;
 		m_selectionChanged = true;
+		m_mouseOverMM = false;
 	}
 	std::vector<HEntity> m_selected;
 	std::vector<HEntity> m_groups[MAX_GROUPS];
 	i8 m_group, m_group_highlight;
 	bool m_selectionChanged;
+	bool m_mouseOverMM;
 	int m_defaultCommand;
 	int m_defaultAction;
 	int m_secondaryCommand;
