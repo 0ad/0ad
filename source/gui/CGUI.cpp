@@ -39,10 +39,11 @@ gee@pyro.nu
 #include "scripting/ScriptingHost.h"
 #include "Hotkey.h"
 #include "ps/Globals.h"
+#include "lib/timer.h"
 
 // namespaces used
 using namespace std;
-
+const double SELECT_DBLCLICK_RATE = 0.5;
 #include "ps/CLogger.h"
 #define LOG_CATEGORY "gui"
 
@@ -202,8 +203,41 @@ InReaction CGUI::HandleEvent(const SDL_Event* ev)
 			case SDL_BUTTON_LEFT:
 				if (pNearest)
 				{
-					pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_RELEASE_LEFT));
-					pNearest->ScriptEvent("mouseleftrelease");
+					double timeElapsed = get_time() - pNearest->m_LastClickTime[SDL_BUTTON_LEFT];
+					pNearest->m_LastClickTime[SDL_BUTTON_LEFT] = get_time();
+					
+					//Double click?
+					if (timeElapsed < SELECT_DBLCLICK_RATE)
+					{
+						pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_DBLCLICK_LEFT));
+						pNearest->ScriptEvent("mouseleftdoubleclick");
+					}
+					else
+					{
+						pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_RELEASE_LEFT));
+						pNearest->ScriptEvent("mouseleftrelease");
+					}
+
+					ret = IN_HANDLED;
+				}
+				break;
+			case SDL_BUTTON_RIGHT:
+				if (pNearest)
+				{
+					double timeElapsed = get_time() - pNearest->m_LastClickTime[SDL_BUTTON_RIGHT];
+					pNearest->m_LastClickTime[SDL_BUTTON_RIGHT] = get_time();
+					
+					//Double click?
+					if (timeElapsed < SELECT_DBLCLICK_RATE)
+					{
+						pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_DBLCLICK_RIGHT));
+						//pNearest->ScriptEvent("mouserightdoubleclick");
+					}
+					else
+					{
+						pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_RELEASE_RIGHT));
+						//pNearest->ScriptEvent("mouserightrelease");
+					}
 
 					ret = IN_HANDLED;
 				}

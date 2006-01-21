@@ -33,6 +33,9 @@ protected:
     // destroy and free any memory and textures
     void Destroy();
 
+	void SetCameraPos();
+
+	void FireWorldClickEvent(uint button, int clicks);
 
     // calculate the relative heightmap space coordinates
     // for a units world position
@@ -46,6 +49,9 @@ protected:
     
 	// not const: camera is moved by clicking on minimap
 	CCamera* m_Camera;
+	
+	//Whether or not the mouse is currently down
+	bool m_Clicking;	
 
     // minimap texture handles
     u32 m_TerrainTexture;

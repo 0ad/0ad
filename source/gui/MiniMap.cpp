@@ -13,11 +13,14 @@
 #include "Entity.h"
 #include "Bound.h"
 #include "Model.h"
+#include "scripting/GameEvents.h"
 #include "Terrain.h"
 #include "Profile.h"
 #include "LOSManager.h"
 #include "graphics/GameView.h"
 #include "renderer/WaterManager.h"
+#include "Interact.h"
+#include "ps/Network/NetMessage.h"
 
 
 bool g_TerrainModified = false;
@@ -27,6 +30,7 @@ bool g_TerrainModified = false;
 // static data instead of a class member. that is no longer the case,
 // but we leave it because this is slightly more efficient.
 static float m_scaleX, m_scaleY;
+extern bool g_mouse_buttons[1];
 
 
 static unsigned int ScaleColor(unsigned int color, float x)
@@ -44,6 +48,7 @@ CMiniMap::CMiniMap()
 	AddSetting(GUIST_CColor,	"fov_wedge_color");
 	AddSetting(GUIST_CStr,		"tooltip");
 	AddSetting(GUIST_CStr,		"tooltip_style");
+	m_Clicking = false;
 }
 
 CMiniMap::~CMiniMap()
@@ -57,45 +62,108 @@ void CMiniMap::HandleMessage(const SGUIMessage &Message)
 	{
 	case GUIM_MOUSE_PRESS_LEFT:
 		{
-			CTerrain *MMTerrain=g_Game->GetWorld()->GetTerrain();
-			CVector3D CamOrient=m_Camera->m_Orientation.GetTranslation();
-
-			//get center point of screen
-			int x = (int)g_Renderer.GetWidth()/2.f, y = (int)g_Renderer.GetHeight()/2.f;
-			CVector3D ScreenMiddle=m_Camera->GetWorldCoordinates(x,y);
-
-			//Get Vector required to go from camera position to ScreenMiddle
-			CVector3D TransVector;
-			TransVector.X=CamOrient.X-ScreenMiddle.X;
-			TransVector.Z=CamOrient.Z-ScreenMiddle.Z;
-			//world position of where mouse clicked
-			CVector3D Destination;
-			//X and Z according to proportion of mouse position and minimap
-			Destination.X=(CELL_SIZE*m_MapSize)*
-				((g_mouse_x-m_CachedActualSize.left)/m_CachedActualSize.GetWidth());
-			Destination.Z=(CELL_SIZE*m_MapSize)*((m_CachedActualSize.bottom-g_mouse_y)
-				/m_CachedActualSize.GetHeight());
-
-			m_Camera->m_Orientation._14=Destination.X;
-			m_Camera->m_Orientation._34=Destination.Z;
-			m_Camera->m_Orientation._14+=TransVector.X;
-			m_Camera->m_Orientation._34+=TransVector.Z;
-
-			//Lock Y coord.  No risk of zoom exceeding limit-Y does not increase
-			float Height=MMTerrain->getExactGroundLevel(
-				m_Camera->m_Orientation._14, m_Camera->m_Orientation._34) + g_YMinOffset;
-
-			if (m_Camera->m_Orientation._24 < Height)
-			{
-				m_Camera->m_Orientation._24=Height;
-			}
-			m_Camera->UpdateFrustum();
+			SetCameraPos();
+			m_Clicking = true;
+			break;
 		}
+	case GUIM_MOUSE_RELEASE_LEFT:
+		{
+		SetCameraPos();
+		m_Clicking = false;
 		break;
+		}
+	case GUIM_MOUSE_ENTER:
+		{
+			g_Selection.m_mouseOverMM = true;
+			break;
+		}
+	case GUIM_MOUSE_LEAVE:
+		{
+			g_Selection.m_mouseOverMM = false;
+			break;
+		}
+	
+	case GUIM_MOUSE_RELEASE_RIGHT:
+		{
+			CMiniMap::FireWorldClickEvent(SDL_BUTTON_RIGHT, 1);
+			break;
+		}
+	case GUIM_MOUSE_DBLCLICK_RIGHT:
+		{
+			CMiniMap::FireWorldClickEvent(SDL_BUTTON_RIGHT, 2);
+			break;
+		}
+	case GUIM_MOUSE_MOTION:
+		{
+			if (m_Clicking)
+				SetCameraPos();
+			break;
+		}
 
 	default:
 		break;
 	}	// switch
+}
+
+void CMiniMap::SetCameraPos()
+{
+	CTerrain *MMTerrain=g_Game->GetWorld()->GetTerrain();
+	CVector3D CamOrient=m_Camera->m_Orientation.GetTranslation();
+
+	//get center point of screen
+	int x = (int)g_Renderer.GetWidth()/2.f, y = (int)g_Renderer.GetHeight()/2.f;
+	CVector3D ScreenMiddle=m_Camera->GetWorldCoordinates(x,y);
+
+	//Get Vector required to go from camera position to ScreenMiddle
+	CVector3D TransVector;
+	TransVector.X=CamOrient.X-ScreenMiddle.X;
+	TransVector.Z=CamOrient.Z-ScreenMiddle.Z;
+	//world position of where mouse clicked
+	CVector3D Destination;
+	CPos MousePos = GetMousePos();
+	//X and Z according to proportion of mouse position and minimap
+	Destination.X = CELL_SIZE * m_MapSize *
+		( (MousePos.x - m_CachedActualSize.left) / m_CachedActualSize.GetWidth() );
+	Destination.Z = CELL_SIZE * m_MapSize * ( (m_CachedActualSize.bottom - MousePos.y) /
+		m_CachedActualSize.GetHeight() );
+
+	m_Camera->m_Orientation._14=Destination.X;
+	m_Camera->m_Orientation._34=Destination.Z;
+	m_Camera->m_Orientation._14+=TransVector.X;
+	m_Camera->m_Orientation._34+=TransVector.Z;
+
+	//Lock Y coord.  No risk of zoom exceeding limit-Y does not increase
+	float Height=MMTerrain->getExactGroundLevel(
+		m_Camera->m_Orientation._14, m_Camera->m_Orientation._34) + g_YMinOffset;
+
+	if (m_Camera->m_Orientation._24 < Height)
+	{
+		m_Camera->m_Orientation._24=Height;
+	}
+	m_Camera->UpdateFrustum();
+}
+void CMiniMap::FireWorldClickEvent(uint button, int clicks)
+{
+	//debug_printf("FireWorldClickEvent: button %d, clicks %d\n", button, clicks);
+	
+	CPos MousePos = GetMousePos();
+	CVector2D Destination;
+	//X and Z according to proportion of mouse position and minimap
+	Destination.x = CELL_SIZE * m_MapSize *
+		( (MousePos.x - m_CachedActualSize.left) / m_CachedActualSize.GetWidth() );
+	Destination.y = CELL_SIZE * m_MapSize * ( (m_CachedActualSize.bottom - MousePos.y) /
+		m_CachedActualSize.GetHeight() );
+
+	g_JSGameEvents.FireWorldClick(
+		button,
+		clicks,
+		NMT_Goto,
+		-1,
+		NMT_Run,
+		-1, 
+		NULL,
+		Destination.x,
+		Destination.y);
 }
 
 // render view rect : John M. Mena
