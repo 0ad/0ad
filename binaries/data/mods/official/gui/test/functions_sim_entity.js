@@ -78,6 +78,8 @@ function worldClickHandler(event)
 	
 	if (event.clicks == 2)
 		triggerSelectionRun();
+	else
+		setSelectionRun();
 
 	issueCommand (selection, cmd, args[0], args[1]);
 }
@@ -174,6 +176,14 @@ function triggerSelectionRun()
 		 selection[i].triggerRun();
 	}
 }
+function setSelectionRun()
+{
+	for ( i=0; i< selection.length; i++ )
+	{
+		 selection[i].setRun( false );
+	}
+}
+
 		
 
 

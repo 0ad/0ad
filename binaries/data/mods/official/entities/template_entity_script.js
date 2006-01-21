@@ -557,14 +557,19 @@ function entityEventNotification( evt )
 	{
 		case NOTIFY_GOTO:
 			this.Order( ORDER_GENERIC, evt.location.x, evt.location.y );
+			break;
 		case NOTIFY_ATTACK:
 		case NOTIFY_DAMAGE:
 			this.Order( ORDER_GENERIC, evt.target, ACTION_ATTACK);
+			break;
 		case NOTIFY_HEAL:
 			this.Order( ORDER_GENERIC, evt.target, ACTION_HEAL );
+			break;
 		case NOTIFY_GATHER:
 			this.Order( ORDER_GENERIC, evt.target, ACTION_GATHER );
-			
+			break;
+		default:
+			console.wrote( "Unknown notification request" + evt.type );
 	}
 }		
 // ====================================================================
@@ -580,9 +585,12 @@ function entityEventTargetChanged( evt )
 	
 	evt.defaultOrder = NMT_Goto;
 	evt.defaultCursor = "arrow-default";
-	evt.secondaryOrder = NMT_Run;
+	
 	evt.secondaryCursor = "arrow-default";
-
+	if ( this.actions.run && this.actions.run.speed > 0 )
+	{
+		evt.secondaryOrder = NMT_Run;
+	}
 	if( evt.target && this.actions )
 	{
 		if( this.actions.attack && 
