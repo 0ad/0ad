@@ -50,7 +50,7 @@ public:
 	CSkeletonAnim* GetRandomAnimation(const CStr8& name);
 
 	// Returns whether the currently active animation is one of the ones
-	// matchin 'name'.
+	// matching 'name'.
 	bool IsPlayingAnimation(const CStr8& name);
 
 	int GetID() const { return m_ID; }
@@ -63,7 +63,7 @@ private:
 	CModel* m_Model;
 	// the entity that this actor represents, if any
 	CEntity* m_Entity;
-	// unique (per CGame) ID number for units created in the editor, as a
+	// unique (per map) ID number for units created in the editor, as a
 	// permanent way of referencing them. -1 for non-editor units.
 	int m_ID;
 };

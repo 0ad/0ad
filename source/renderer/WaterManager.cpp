@@ -38,13 +38,14 @@ WaterManager::WaterManager()
 	m_WaterFullDepth = 4.0f;
 	m_WaterMaxAlpha = 0.85f;
 	m_WaterAlphaOffset = -0.05f;
-	m_SWaterTrans=0;
-	m_TWaterTrans=0;
-	m_SWaterSpeed=0.0015f;
-	m_TWaterSpeed=0.0015f;
-	m_SWaterScrollCounter=0;
-	m_TWaterScrollCounter=0;
-	m_WaterCurrentTex=0;
+	m_SWaterTrans = 0;
+	m_TWaterTrans = 0;
+	m_SWaterSpeed = 0.0015f;
+	m_TWaterSpeed = 0.0015f;
+	m_SWaterScrollCounter = 0;
+	m_TWaterScrollCounter = 0;
+	m_WaterCurrentTex = 0;
+	m_WaterTexTimer = 0.0;
 
 	for (uint i = 0; i < ARRAY_SIZE(m_WaterTexture); i++)
 		m_WaterTexture[i] = 0;

@@ -84,7 +84,7 @@ public:
 	 * RenderOutlines: Render the outline of patches as lines.
 	 *
 	 * preconditions  : PrepareForRendering must have been called this
-	 * frame before calling RenderOutline.
+	 * frame before calling RenderOutlines.
 	 */
 	void RenderOutlines();
 
@@ -93,7 +93,7 @@ public:
 	 * this frame.
 	 *
 	 * preconditions  : PrepareForRendering must have been called this
-	 * frame before calling RenderOutline.
+	 * frame before calling RenderWater.
 	 */
 	void RenderWater();
 

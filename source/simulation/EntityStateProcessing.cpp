@@ -101,23 +101,22 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 
 	if( fabs( deltatheta ) > 0.01f )
 	{
-		float maxTurningSpeed = ( m_speed / m_turningRadius ) * timestep;
-		if( deltatheta > 0 )
+		if ( m_turningRadius )
 		{
-			m_orientation = m_orientation + MIN( deltatheta, maxTurningSpeed );
+			float maxTurningSpeed = ( m_speed / m_turningRadius ) * timestep;
+			deltatheta = clamp( deltatheta, -maxTurningSpeed, maxTurningSpeed );
 		}
-		else
-			m_orientation = m_orientation + MAX( deltatheta, -maxTurningSpeed );
+		m_orientation = m_orientation + deltatheta;
 
 		m_ahead.x = sin( m_orientation );
 		m_ahead.y = cos( m_orientation );
 
 		// We can only really attempt to smooth paths the pathfinder
 		// has flagged for us. If the turning-radius calculations are
-		// applied to other types of waypoint, wierdness happens.
+		// applied to other types of waypoint, weirdness happens.
 		// Things like an entity trying to walk to a point inside
 		// his turning radius (which he can't do directly, so he'll
-		// orbit the point indefinately), or just massive deviations
+		// orbit the point indefinitely), or just massive deviations
 		// making the paths we calculate useless.
 		// It's also painful trying to watch two entities resolve their
 		// collision when they're both bound by turning constraints.
@@ -255,7 +254,7 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 		return( false );
 	case COLLISION_NEAR_DESTINATION:
 	{
-		// Here's a wierd idea: (I hope it works)
+		// Here's a weird idea: (I hope it works)
 		// Spiral round the destination until a free point is found.
 		CBoundingCircle destinationObs( current->m_data[0].location.x, current->m_data[0].location.y, m_bounds->m_radius, 0.0f );
 

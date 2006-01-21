@@ -20,6 +20,8 @@
 #include "Loader.h"
 #include "LoaderThunks.h"
 #include "GameAttributes.h"
+#include "renderer/Renderer.h"
+#include "renderer/WaterManager.h"
 
 #include "gui/CGUI.h"
 
@@ -79,21 +81,6 @@ void CSimulation::Update(double frameTime)
 			frameTime -= m_DeltaTime; // so the animation stays in sync with the sim
 			m_DeltaTime = 0.0;
 		}
-
-		/*
-		// TODO Remove
-		// Fountain of arrows
-		CObjectEntry* arrow = g_ObjMan.FindObject( "props/weapon/weap_arrow_front.xml" );
-		debug_assert( arrow );
-	
-		float mapsize = (float)( m_pWorld->GetTerrain()->GetVerticesPerSide() * 4 );
-
-		CVector3D here( mapsize / 2, m_pWorld->GetTerrain()->getExactGroundLevel( mapsize / 2, mapsize / 2 ), mapsize / 2 );
-		float x = ( rand() % 1000 ) * mapsize / 1000.0f;
-		float y = ( rand() % 1000 ) * mapsize / 1000.0f;
-		CVector3D there( x, m_pWorld->GetTerrain()->getExactGroundLevel( x, y ), y );
-		g_ProjectileManager.AddProjectile( arrow->m_Model, here, there, 0.006f, NULL );
-		*/
 	}
 
 	PROFILE_START( "simulation interpolation" );
@@ -109,6 +96,7 @@ void CSimulation::Interpolate(double frameTime, double offset)
 
 	g_EntityManager.interpolateAll( (float)offset );
 	g_ProjectileManager.InterpolateAll( (float)offset );
+	g_Renderer.GetWaterManager()->m_WaterTexTimer += frameTime;
 }
 
 void CSimulation::Simulate()

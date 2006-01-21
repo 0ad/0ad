@@ -128,7 +128,7 @@ static CVector3D GetUnitPos(const Position& pos)
 	return vec;
 }
 
-static bool ParseObjectName(const std::wstring& obj, bool& isEntity, std::wstring& name)
+static bool ParseObjectName(const CStrW& obj, bool& isEntity, CStrW& name)
 {
 	if (obj.substr(0, 4) == L"(e) ")
 	{
@@ -161,7 +161,7 @@ MESSAGEHANDLER(ObjectPreview)
 		}
 
 		bool isEntity;
-		std::wstring name;
+		CStrW name;
 		if (ParseObjectName(msg->id, isEntity, name))
 		{
 			// Create new unit
@@ -244,7 +244,7 @@ BEGIN_COMMAND(CreateObject)
 	void Redo()
 	{
 		bool isEntity;
-		std::wstring name;
+		CStrW name;
 		if (ParseObjectName(d->id, isEntity, name))
 		{
 			if (isEntity)

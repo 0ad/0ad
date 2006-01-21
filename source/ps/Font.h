@@ -20,6 +20,7 @@ glwprintf(L"Hello world");
 */
 
 // MFC has nicked all the good names :-(
+// (TODO: Remove when ScEd is no more?)
 #define CFont PS_CFont
 
 class CFont

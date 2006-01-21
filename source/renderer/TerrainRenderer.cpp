@@ -264,7 +264,7 @@ void TerrainRenderer::RenderWater()
 	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
 	glDepthMask(GL_FALSE);
 
-	double time = get_time();
+	double time = WaterMgr->m_WaterTexTimer;
 
 	double period = 1.6;
 	int curTex = (int)(time*60/period) % 60;
