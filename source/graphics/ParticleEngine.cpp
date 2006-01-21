@@ -8,7 +8,6 @@
 
 #include "precompiled.h"
 #include "ParticleEngine.h"
-#include <windows.h>
 #include "ogl.h"
 
 CParticleEngine *CParticleEngine::m_pInstance = 0;

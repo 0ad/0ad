@@ -25,10 +25,7 @@
 #include <deque>
 #include <math.h>
 
-// (some math.h versions omit this)
-#ifndef M_PI
-# define M_PI 3.14159265358979323846
-#endif
+#include "maths/MathUtil.h"
 
 #ifdef __APPLE__
 # include <OpenAL/alut.h>

@@ -9,20 +9,6 @@
 #ifndef _PARTICLEEMITTER_H_
 #define _PARTICLEEMITTER_H_
 
-#include "precompiled.h"
-#include <iostream>
-#include <windows.h>
-#include "ogl.h"
-#include <math.h>
-
-#define M_PI        3.14159265358979323846f
-#define HALF_PI	    1.57079632679489661923f
-
-#define DEGTORAD(d)	((d * (float)M_PI) / 180.0f);
-#define RADTODEG(r)	((r * 180.0f) /(float)M_PI);
-
-const int HALF_RAND = (RAND_MAX / 2);
-
 struct tVector
 {
 	float x,y,z;
@@ -30,6 +16,8 @@ struct tVector
 
 class CEmitter
 {
+	static const int HALF_RAND = (RAND_MAX / 2);
+
 public:
 	struct tColor
 	{

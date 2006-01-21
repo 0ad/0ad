@@ -7,6 +7,7 @@
 /////////////////////////////////////////////////////
 
 #include "precompiled.h"
+#include "maths/MathUtil.h"
 #include "DefaultEmitter.h"
 
 CDefaultEmitter::CDefaultEmitter(const int MAX_PARTICLES, const int lifetime) : CEmitter(MAX_PARTICLES, lifetime)
