@@ -93,7 +93,8 @@ public:
 	bool m_shouldRun;	//if run was issued, it will remain true until it is stopped
 	bool m_triggerRun;	//used in SetRun, corrects 1 frame stamina imbalance
 	int m_frameCheck;	//counts the frame
-
+	
+	float m_lastAttackTime;
 	
 	//SP properties
 	float m_staminaCurr;
@@ -106,6 +107,11 @@ public:
 	float m_healthMax;
 	float m_healthBarHeight;
 	int m_healthBarSize;
+
+	float m_healthRegenRate;
+	float m_healthRegenStart;
+	float m_healthDecayRate;
+	bool m_healthDecay;
 	
 	// Minimap properties
 	CStrW m_minimapType;
@@ -241,6 +247,8 @@ public:
 	
 	//Calculate stamina points
 	void CalculateRun(float timestep);
+	void CalculateHealth(float timestep);
+	bool IsAttacking();
 
 	// Reset properties after the entity-template we use changes.
 	void loadBase();
@@ -278,6 +286,7 @@ public:
 	jsval TriggerRun( JSContext* cx, uintN argc, jsval* argv );
 	jsval SetRun( JSContext* cx, uintN argc, jsval* argv );
 	jsval IsRunning( JSContext* cx, uintN argc, jsval* argv );
+	jsval GetRunState( JSContext* cx, uintN argc, jsval* argv );
 
 	jsval RequestNotification( JSContext* cx, uintN argc, jsval* argv );
 	jsval CheckListeners( JSContext* cx, uintN argc, jsval* argv );

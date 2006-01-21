@@ -55,6 +55,9 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
     AddProperty( L"traits.health.max", &m_healthMax );
     AddProperty( L"traits.health.bar_height", &m_healthBarHeight );
 	AddProperty( L"traits.health.bar_size", &m_healthBarSize );
+	AddProperty( L"traits.health.regen_rate", &m_healthRegenRate );
+	AddProperty( L"traits.health.regen_start", &m_healthRegenStart );
+	AddProperty( L"traits.health.decay_rate", &m_healthDecayRate );
 	AddProperty( L"traits.stamina.curr", &m_staminaCurr );
     AddProperty( L"traits.stamina.max", &m_staminaMax );
     AddProperty( L"traits.stamina.bar_height", &m_staminaBarHeight );
@@ -104,7 +107,10 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	m_shouldRun = false;
 	m_triggerRun = false;
 
+	m_healthDecay = false;
+
 	m_frameCheck = 0;
+	m_lastAttackTime = 0;
 
     m_grouped = -1;
 
@@ -309,11 +315,14 @@ void CEntity::update( size_t timestep )
     m_position_previous = m_position;
     m_orientation_previous = m_orientation;
 	
-
-	if ( m_triggerRun )
-		m_frameCheck++;
+	if ( IsAttacking() )
+		m_lastAttackTime = get_time();
 	
 	CalculateRun( timestep );
+	CalculateHealth( timestep );
+	
+	if ( m_triggerRun )
+		m_frameCheck++;
 	
 	if ( m_frameCheck != 0 )
 	{
@@ -1015,6 +1024,31 @@ void CEntity::CalculateRun(float timestep)
 		m_staminaCurr = min( m_staminaMax, m_staminaCurr + timestep / 1000.0f / m_runRegenRate * m_staminaMax );
 }
 
+void CEntity::CalculateHealth(float timestep)
+{
+	if ( m_healthDecay && m_healthDecayRate > 0 )
+	{
+		m_healthCurr = max( 0.0f, m_healthCurr - timestep / 1000.0f / m_healthDecayRate * m_healthMax );
+	}
+	else if ( m_healthRegenRate > 0 && get_time() - m_lastAttackTime > m_healthRegenStart && !IsAttacking() )
+	{
+		m_healthCurr = min( m_healthMax, m_healthCurr + timestep / 1000.0f / m_healthRegenRate * m_healthMax );
+	}
+}
+bool CEntity::IsAttacking()
+{
+	if ( !m_orderQueue.empty() )
+	{
+		if ( ( m_orderQueue.front().m_type == CEntityOrder::ORDER_GENERIC || 
+			m_orderQueue.front().m_type == CEntityOrder::ORDER_GENERIC_NOPATHING ) && 
+			m_orderQueue.front().m_data[1].data == 1 )
+		{
+				return true;
+		}
+	}
+	return false;
+}
+
 /*
 
  Scripting interface
@@ -1039,6 +1073,7 @@ void CEntity::ScriptingInit()
 	AddMethod<jsval, &CEntity::RequestNotification>( "requestNotification", 3 );
 	AddMethod<jsval, &CEntity::TriggerRun>( "triggerRun", 1 );
 	AddMethod<jsval, &CEntity::SetRun>( "setRun", 1 );
+	AddMethod<jsval, &CEntity::GetRunState>( "getRunState", 0 );
 	
 
     AddClassProperty( L"template", (CBaseEntity* CEntity::*)&CEntity::m_base, false, (NotifyFn)&CEntity::loadBase );
@@ -1527,7 +1562,11 @@ jsval CEntity::SetRun( JSContext* cx, uintN argc, jsval* argv )
 		JS_ReportError( cx, "Too few parameters" );
 		return( false );
 	}
-	m_isRunning = ToPrimitive<bool> ( argv[0] );
+	m_shouldRun = ToPrimitive<bool> ( argv[0] );
+	m_isRunning = m_shouldRun;
 	return JSVAL_VOID;
 }
-	
+jsval CEntity::GetRunState( JSContext* cx, uintN argc, jsval* argv )
+{
+	return m_isRunning;
+}

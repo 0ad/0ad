@@ -68,6 +68,10 @@ public:
 	float m_healthBarHeight;
 	int m_healthBarSize;
 
+	float m_healthRegenRate;
+	float m_healthRegenStart;
+	float m_healthDecayRate;
+
 	// Minimap properties
 	CStrW m_minimapType;
 	int m_minimapR;

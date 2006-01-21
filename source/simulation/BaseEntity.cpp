@@ -31,6 +31,9 @@ CBaseEntity::CBaseEntity()
     AddProperty( L"traits.health.max", &m_healthMax );
     AddProperty( L"traits.health.bar_height", &m_healthBarHeight );
 	AddProperty( L"traits.health.bar_size", &m_healthBarSize );
+	AddProperty( L"traits.health.regen_rate", &m_healthRegenRate );
+	AddProperty( L"traits.health.regen_start", &m_healthRegenStart );
+	AddProperty( L"traits.health.decay_rate", &m_healthDecayRate );
 	AddProperty( L"traits.stamina.curr", &m_staminaCurr );
     AddProperty( L"traits.stamina.max", &m_staminaMax );
     AddProperty( L"traits.stamina.bar_height", &m_staminaBarHeight );

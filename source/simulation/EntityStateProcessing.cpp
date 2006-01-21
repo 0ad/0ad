@@ -552,6 +552,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		// Close enough, but turn to face them.  
 		m_orientation = atan2( delta.x, delta.y );
 		m_ahead = delta.normalize();
+		m_isRunning = false;
 	}
 
 	// Pick our animation, calculate the time to play it, and start the timer.
