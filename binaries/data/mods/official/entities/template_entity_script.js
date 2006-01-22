@@ -133,7 +133,7 @@ function entityInit()
 	// Register our actions with the generic order system
 	if( this.actions )
 	{
-		if( this.actions.attack.melee )
+		if( this.actions.attack && this.actions.attack.melee )
 		{
 			a = this.actions.attack.melee;
 			minRange = ( a.minRange ? a.minRange : 0.0 );
@@ -149,7 +149,7 @@ function entityInit()
 			a = this.actions.heal;
 			this.setActionParams( ACTION_HEAL, 0.0, a.range, a.speed, "heal" );
 		}
-		if( this.actions.attack.ranged )
+		if( this.actions.attack && this.actions.attack.ranged )
 		{
 			a = this.actions.attack.ranged;
 			minRange = ( a.minRange ? a.minRange : 0.0 );
@@ -216,7 +216,7 @@ function entityInit()
 	// Create standard stances that all units have.
 	this.traits.ai.stance.list.avoid = new Object();
 	this.traits.ai.stance.list.hold = new Object();	
-	if ( this.actions.attack )
+	if ( this.actions && this.actions.attack )
 	{
 		// Create stances that units only have if they can attack.
 		this.traits.ai.stance.list.aggress = new Object();	
@@ -599,7 +599,8 @@ function entityEventNotification( evt )
 	switch( evt.type )
 	{
 		case NOTIFY_GOTO:
-			this.Order( ORDER_GENERIC, evt.location.x, evt.location.y );
+		case NOTIFY_RUN:
+			this.Order( ORDER_GOTO, evt.location.x, evt.location.y );
 			break;
 		case NOTIFY_ATTACK:
 		case NOTIFY_DAMAGE:
