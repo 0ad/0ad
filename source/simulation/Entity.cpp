@@ -1018,13 +1018,10 @@ void CEntity::renderStaminaBar()
 
 void CEntity::CalculateRun(float timestep)
 {
-	if ( m_staminaMax != 0 && m_runDecayRate != 0 )
-	{
-		if ( m_isRunning )
-			m_staminaCurr = max( 0.0f, m_staminaCurr - timestep / 1000.0f / m_runDecayRate * m_staminaMax );
-		else if ( m_orderQueue.empty() )
-			m_staminaCurr = min( m_staminaMax, m_staminaCurr + timestep / 1000.0f / m_runRegenRate * m_staminaMax );
-	}
+	if ( m_isRunning )
+		m_staminaCurr = max( 0.0f, m_staminaCurr - timestep / 1000.0f / m_runDecayRate * m_staminaMax );
+	else if ( m_orderQueue.empty() )
+		m_staminaCurr = min( m_staminaMax, m_staminaCurr + timestep / 1000.0f / m_runRegenRate * m_staminaMax );
 }
 
 void CEntity::CalculateHealth(float timestep)
@@ -1187,6 +1184,7 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
     switch( orderCode )
     {
         case CEntityOrder::ORDER_GOTO:
+		case CEntityOrder::ORDER_RUN:
         case CEntityOrder::ORDER_PATROL:
 			if( argc < 3 )
 			{
@@ -1203,6 +1201,9 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 				JS_ReportError( cx, "Invalid location" );
 				return( false );
 			}
+			if ( orderCode == CEntityOrder::ORDER_RUN )
+				m_triggerRun = true;
+
 			break;
         case CEntityOrder::ORDER_GENERIC:
 			if( argc < 3 )
@@ -1520,13 +1521,15 @@ jsval CEntity::CheckListeners( JSContext *cx, uintN argc, jsval* argv )
 	CEntity* target;
 
 	for (size_t i=0; i<m_listeners.size(); i++)
-		
-		if (m_listeners[i].m_type & type)
+	{
+		int result = m_listeners[i].m_type & type;
+		if ( result )
 		{
-			 switch( type )
+			 switch( result )
 			 {
 			 case CEntityListener::NOTIFY_GOTO:
-					m_listeners[i].m_sender->DispatchNotification( order, type );
+			 case CEntityListener::NOTIFY_RUN:
+					m_listeners[i].m_sender->DispatchNotification( order, result );
 					break;
 				 
 				 case CEntityListener::NOTIFY_HEAL:
@@ -1541,12 +1544,13 @@ jsval CEntity::CheckListeners( JSContext *cx, uintN argc, jsval* argv )
 					 target = ToNative<CEntity>( argv[1] );
 					 order.m_data[0].entity = target->me;
 
-					 m_listeners[i].m_sender->DispatchNotification( order, type );
+					 m_listeners[i].m_sender->DispatchNotification( order, result );
 					 break;
 					 
 				 default:
 					JS_ReportError( cx, "Invalid order type" );
 					continue;
+			 }
 		 }
 	}
 	return JSVAL_VOID;
