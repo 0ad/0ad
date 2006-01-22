@@ -153,7 +153,8 @@ function entityInit()
 		{
 			a = this.actions.attack.ranged;
 			minRange = ( a.minRange ? a.minRange : 0.0 );
-			this.setActionParams( ACTION_ATTACK_RANGED, minRange, a.range, a.speed, "ranged" );
+			// this animation should actually be "ranged" except the current actors still have it called "melee"
+			this.setActionParams( ACTION_ATTACK_RANGED, minRange, a.range, a.speed, "melee" );
 		}
 	}
 	
@@ -616,6 +617,18 @@ function entityEventNotification( evt )
 			console.wrote( "Unknown notification request" + evt.type );
 	}
 }		
+
+// ====================================================================
+
+function getAttackAction( source, target )
+{
+	attack = source.actions.attack;
+	if( attack.melee )
+		return ACTION_ATTACK;
+	else
+		return ACTION_ATTACK_RANGED;
+}
+
 // ====================================================================
 
 function entityEventTargetChanged( evt )
@@ -643,11 +656,11 @@ function entityEventTargetChanged( evt )
 			evt.target.traits.health.max != 0 )
 		{
 			evt.defaultOrder = NMT_Generic;
-			evt.defaultAction = ACTION_ATTACK;
+			evt.defaultAction = getAttackAction( this, evt.target );
 			evt.defaultCursor = "action-attack";
 
 			evt.secondaryOrder = NMT_Generic;
-			evt.secondaryAction = ACTION_ATTACK;
+			evt.secondaryAction = getAttackAction( this, evt.target );
 			evt.secondaryCursor = "action-attack";
 		}
 		if( canGather( this, evt.target ) )
