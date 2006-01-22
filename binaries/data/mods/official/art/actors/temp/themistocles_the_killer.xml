@@ -17,6 +17,10 @@
         <animation event="0.5" file="biped/inf_2sword_attack_c.psa" name="Attack" speed="100"/>
         <animation event="0.5" file="biped/inf_2sword_attack_d.psa" name="Attack" speed="100"/>
         <animation event="0.5" file="biped/inf_2sword_attack_e.psa" name="Attack" speed="100"/>
+        <animation event="0.5" file="biped/inf_sword_shield_atk_a.psa" name="Attack" speed="100"/>
+        <animation event="0.5" file="biped/inf_sword_shield_atk_e.psa" name="Attack" speed="120"/>
+        <animation event="0.5" file="biped/inf_sword_shield_atk_f.psa" name="Attack" speed="120"/>
+        <animation file="biped/inf_sword_shield_run_a.psa" name="Run" speed="10"/>
       </animations>
       <mesh>skeletal/m_tunic_b.pmd</mesh>
       <props>
