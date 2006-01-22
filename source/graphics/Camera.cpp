@@ -16,6 +16,7 @@
 #include "Renderer.h"
 #include "HFTracer.h"
 #include "Game.h"
+#include "ogl.h"
 
 CCamera::CCamera ()
 {
@@ -36,7 +37,7 @@ void CCamera::SetProjection (float nearp, float farp, float fov)
 	m_NearPlane = nearp;
 	m_FarPlane = farp;
 	m_FOV = fov;
-	
+
 	float Aspect = (float)m_ViewPort.m_Width/(float)m_ViewPort.m_Height;
 
 	float w = tanf (m_FOV*0.5f*Aspect);
@@ -72,7 +73,7 @@ void CCamera::UpdateFrustum ()
 	CMatrix3D MatView;
 
 	m_Orientation.GetInverse(MatView);
-	
+
 	MatFinal = m_ProjMat * MatView;
 
 	//get the RIGHT plane
@@ -204,7 +205,7 @@ CVector3D CCamera::GetWorldCoordinates( int px, int py )
 	CHFTracer tracer( g_Game->GetWorld()->GetTerrain() ); int x, z;
 
 	CVector3D origin, dir, delta, currentTarget;
-	
+
 	BuildCameraRay( px, py, origin, dir );
 
 	if( tracer.RayIntersect( origin, dir, x, z, currentTarget ) )
@@ -240,7 +241,7 @@ CVector3D CCamera::GetFocus()
 	CHFTracer tracer( g_Game->GetWorld()->GetTerrain() ); int x, z;
 
 	CVector3D origin, dir, delta, currentTarget;
-	
+
 	origin = m_Orientation.GetTranslation();
 	dir = m_Orientation.GetIn();
 
@@ -270,3 +271,68 @@ void CCamera::LookAlong( CVector3D camera, CVector3D orientation, CVector3D up )
 	m_Orientation._31 = -s.Z;	m_Orientation._32 = up.Z;	m_Orientation._33 = orientation.Z;	m_Orientation._34 = camera.Z;
 	m_Orientation._41 = 0.0f;	m_Orientation._42 = 0.0f;	m_Orientation._43 = 0.0f;			m_Orientation._44 = 1.0f;
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////
+// Render the camera's frustum
+void CCamera::Render(uint intermediates) const
+{
+	CVector3D nearPoints[4];
+	CVector3D farPoints[4];
+
+	GetCameraPlanePoints(m_NearPlane, nearPoints);
+	GetCameraPlanePoints(m_FarPlane, farPoints);
+	for(int i = 0; i < 4; i++)
+	{
+		nearPoints[i] = m_Orientation.Transform(nearPoints[i]);
+		farPoints[i] = m_Orientation.Transform(farPoints[i]);
+	}
+
+	// near plane
+	glBegin(GL_POLYGON);
+		glVertex3fv(&nearPoints[0].X);
+		glVertex3fv(&nearPoints[1].X);
+		glVertex3fv(&nearPoints[2].X);
+		glVertex3fv(&nearPoints[3].X);
+	glEnd();
+
+	// far plane
+	glBegin(GL_POLYGON);
+		glVertex3fv(&farPoints[0].X);
+		glVertex3fv(&farPoints[1].X);
+		glVertex3fv(&farPoints[2].X);
+		glVertex3fv(&farPoints[3].X);
+	glEnd();
+
+	// connection lines
+	glBegin(GL_QUAD_STRIP);
+		glVertex3fv(&nearPoints[0].X);
+		glVertex3fv(&farPoints[0].X);
+		glVertex3fv(&nearPoints[1].X);
+		glVertex3fv(&farPoints[1].X);
+		glVertex3fv(&nearPoints[2].X);
+		glVertex3fv(&farPoints[2].X);
+		glVertex3fv(&nearPoints[3].X);
+		glVertex3fv(&farPoints[3].X);
+		glVertex3fv(&nearPoints[0].X);
+		glVertex3fv(&farPoints[0].X);
+	glEnd();
+
+	// intermediate planes
+	CVector3D intermediatePoints[4];
+	for(uint i = 0; i < intermediates; ++i)
+	{
+		float t = (i+1.0)/(intermediates+1.0);
+
+		for(int j = 0; j < 4; ++j)
+			intermediatePoints[j] = nearPoints[j]*t + farPoints[j]*(1.0-t);
+
+		glBegin(GL_POLYGON);
+			glVertex3fv(&intermediatePoints[0].X);
+			glVertex3fv(&intermediatePoints[1].X);
+			glVertex3fv(&intermediatePoints[2].X);
+			glVertex3fv(&intermediatePoints[3].X);
+		glEnd();
+	}
+}
+

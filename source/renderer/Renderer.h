@@ -172,9 +172,9 @@ public:
 
 	// signal frame start
 	void BeginFrame();
-	// force rendering of any batched objects
+	// render any batched objects
 	void FlushFrame();
-	// signal frame end : implicitly flushes batched objects
+	// signal frame end
 	void EndFrame();
 
 	// set color used to clear screen in BeginFrame()
@@ -183,8 +183,15 @@ public:
 	// return current frame counter
 	int GetFrameCounter() const { return m_FrameCounter; }
 
-	// set camera used for subsequent rendering operations; includes viewport, projection and modelview matrices
-	void SetCamera(CCamera& camera);
+	/**
+	 * SetCamera: Set up the camera used for subsequent rendering operations; this includes
+	 * setting OpenGL state like viewport, projection and modelview matrices.
+	 *
+	 * @param viewCamera this camera determines the eye position for rendering
+	 * @param culLCamera this camera determines the frustum for culling in the renderer and
+	 * for shadow calculations
+	 */
+	void SetCamera(const CCamera& viewCamera, const CCamera& cullCamera);
 
 	// set the viewport
 	void SetViewport(const SViewPort &);
@@ -203,14 +210,14 @@ public:
 	//		* all 3D vertices specified in world space
 	//		* primitive operations rendered immediatedly, never batched
 	//		* primitives rendered in current material (set via SetMaterial)
-	void RenderLine(const SVertex2D* vertices);
-	void RenderLineLoop(int len,const SVertex2D* vertices);
-	void RenderTri(const SVertex2D* vertices);
-	void RenderQuad(const SVertex2D* vertices);
-	void RenderLine(const SVertex3D* vertices);
-	void RenderLineLoop(int len,const SVertex3D* vertices);
-	void RenderTri(const SVertex3D* vertices);
-	void RenderQuad(const SVertex3D* vertices);
+// 	void RenderLine(const SVertex2D* vertices);
+// 	void RenderLineLoop(int len,const SVertex2D* vertices);
+// 	void RenderTri(const SVertex2D* vertices);
+// 	void RenderQuad(const SVertex2D* vertices);
+// 	void RenderLine(const SVertex3D* vertices);
+// 	void RenderLineLoop(int len,const SVertex3D* vertices);
+// 	void RenderTri(const SVertex3D* vertices);
+// 	void RenderQuad(const SVertex3D* vertices);
 
 	// set the current lighting environment; (note: the passed pointer is just copied to a variable within the renderer,
 	// so the lightenv passed must be scoped such that it is not destructed until after the renderer is no longer rendering)
@@ -250,8 +257,10 @@ public:
 	// return the current light environment
 	const CLightEnv &GetLightEnv() { return *m_LightEnv; }
 
-	// return the current camera
-	const CCamera& GetCamera() const { return m_Camera; }
+	// return the current view camera
+	const CCamera& GetViewCamera() const { return m_ViewCamera; }
+	// return the current cull camera
+	const CCamera& GetCullCamera() const { return m_CullCamera; }
 
 	/**
 	 * GetWaterManager: Return the renderer's water manager.
@@ -317,8 +326,21 @@ protected:
 	ERenderMode m_TerrainRenderMode;
 	// current model rendering mode
 	ERenderMode m_ModelRenderMode;
-	// current view camera
-	CCamera m_Camera;
+
+	/**
+	 * m_ViewCamera: determines the eye position for rendering
+	 *
+	 * @see CGameView::m_ViewCamera
+	 */
+	CCamera m_ViewCamera;
+
+	/**
+	 * m_CullCamera: determines the frustum for culling and shadowmap calculations
+	 *
+	 * @see CGameView::m_ViewCamera
+	 */
+	CCamera m_CullCamera;
+
 	// color used to clear screen in BeginFrame
 	float m_ClearColor[4];
 	// submitted object lists for batching
@@ -377,13 +399,20 @@ protected:
 	 */
 	bool m_SortAllTransparent;
 
-
 	/**
 	 * m_FastNormals: Use faster normal transformation in the
 	 * software transform by multiplying with the bone matrix itself
 	 * instead of the transpose of the inverse.
 	 */
 	bool m_FastNormals;
+
+	/**
+	 * m_DisplayFrustum: Render the cull frustum and other data that may be interesting
+	 * to evaluate culling and shadow map calculations
+	 *
+	 * Can be controlled from JS via renderer.displayFrustum
+	 */
+	bool m_DisplayFrustum;
 
 	// Various model renderers
 	struct Models {

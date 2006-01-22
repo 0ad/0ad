@@ -200,7 +200,7 @@ struct CRendererInternals
 
 	/// Shadow map
 	ShadowMap* shadow;
-	
+
 	CRendererInternals()
 	: profileTable(g_Renderer.m_Stats)
 	{
@@ -234,6 +234,7 @@ CRenderer::CRenderer()
 
 	m_SortAllTransparent = false;
 	m_FastNormals = true;
+	m_DisplayFrustum = false;
 
 	m_VertexShader = 0;
 
@@ -605,7 +606,7 @@ void CRenderer::RenderShadowMap()
 
 	m->shadow->SetupFrame(m_ShadowBound);
 	m->shadow->BeginRender();
-	
+
 	// TODO HACK fold this into ShadowMap
 	glColor4fv(m_Options.m_ShadowColor);
 
@@ -841,6 +842,29 @@ void CRenderer::FlushFrame()
 		oglCheck();
 	}
 
+	// render debug lines
+	if (m_DisplayFrustum)
+	{
+		MICROLOG(L"display frustum");
+
+		glDepthMask(0);
+		glDisable(GL_CULL_FACE);
+
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glColor4ub(255,255,255,64);
+		m_CullCamera.Render(2);
+		glDisable(GL_BLEND);
+
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		m_CullCamera.Render(2);
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+		glEnable(GL_CULL_FACE);
+		glDepthMask(1);
+		oglCheck();
+	}
+
 	// empty lists
 	MICROLOG(L"empty lists");
 	m->terrainRenderer->EndFrame();
@@ -863,7 +887,7 @@ void CRenderer::FlushFrame()
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// EndFrame: signal frame end; implicitly flushes batched objects
+// EndFrame: signal frame end
 void CRenderer::EndFrame()
 {
 #ifndef SCED
@@ -871,7 +895,6 @@ void CRenderer::EndFrame()
 		return;
 #endif
 
-	FlushFrame();
 	g_Renderer.SetTexture(0,0);
 
 	static bool once=false;
@@ -883,11 +906,14 @@ void CRenderer::EndFrame()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // SetCamera: setup projection and transform of camera and adjust viewport to current view
-void CRenderer::SetCamera(CCamera& camera)
+void CRenderer::SetCamera(const CCamera& viewCamera, const CCamera& cullCamera)
 {
+	m_ViewCamera = viewCamera;
+	m_CullCamera = cullCamera;
+
 	CMatrix3D view;
-	camera.m_Orientation.GetInverse(view);
-	const CMatrix3D& proj=camera.GetProjection();
+	m_ViewCamera.m_Orientation.GetInverse(view);
+	const CMatrix3D& proj = m_ViewCamera.GetProjection();
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadMatrixf(&proj._11);
@@ -895,9 +921,7 @@ void CRenderer::SetCamera(CCamera& camera)
 	glMatrixMode(GL_MODELVIEW);
 	glLoadMatrixf(&view._11);
 
-	SetViewport(camera.GetViewPort());
-
-	m_Camera=camera;
+	SetViewport(m_ViewCamera.GetViewPort());
 }
 
 void CRenderer::SetViewport(const SViewPort &vp)
@@ -1245,6 +1269,7 @@ void CRenderer::ScriptingInit()
 	AddProperty(L"renderpath", &CRenderer::JSI_GetRenderPath, &CRenderer::JSI_SetRenderPath);
 	AddProperty(L"sortAllTransparent", &CRenderer::m_SortAllTransparent);
 	AddProperty(L"fastNormals", &CRenderer::m_FastNormals);
+	AddProperty(L"displayFrustum", &CRenderer::m_DisplayFrustum);
 
 	CJSObject<CRenderer>::ScriptingInit("Renderer");
 }

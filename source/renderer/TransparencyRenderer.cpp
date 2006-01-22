@@ -241,12 +241,15 @@ void PolygonSortModelRenderer::UpdateModelData(CModel* model, void* data, u32 up
 		psmdl->m_Array.Upload();
 	}
 
-	// resort model indices from back to front, according to camera position - and store
+	// resort model indices from back to front, according to the view camera position - and store
 	// the returned sqrd distance to the centre of the nearest triangle
+	// Use the view camera instead of the cull camera because:
+	//  a) polygon sorting implicitly uses the view camera (and changing that would be costly)
+	//  b) using the cull camera is likely not interesting from a debugging POV
 	PROFILE_START( "sorting transparent" );
 
 	CMatrix3D worldToCam;
-	g_Renderer.GetCamera().m_Orientation.GetInverse(worldToCam);
+	g_Renderer.GetViewCamera().m_Orientation.GetInverse(worldToCam);
 
 	psmdl->BackToFrontIndexSort(worldToCam);
 	PROFILE_END( "sorting transparent" );
@@ -424,7 +427,7 @@ void SortModelRenderer::PrepareModels()
 	if (m->models.size() == 0)
 		return;
 
-	g_Renderer.m_Camera.m_Orientation.GetInverse(worldToCam);
+	g_Renderer.GetViewCamera().m_Orientation.GetInverse(worldToCam);
 
 	for(std::vector<SModel*>::iterator it = m->models.begin(); it != m->models.end(); ++it)
 	{

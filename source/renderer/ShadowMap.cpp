@@ -110,7 +110,7 @@ void ShadowMapInternals::ConstructLightTransform(const CVector3D& pos,const CVec
 {
 	CVector3D right,up;
 
-	CVector3D viewdir = g_Renderer.GetCamera().m_Orientation.GetIn();
+	CVector3D viewdir = g_Renderer.GetCullCamera().m_Orientation.GetIn();
 	if (fabs(dir.Y)>0.01f) {
 		up=CVector3D(viewdir.X,(-dir.Z*viewdir.Z-dir.X*dir.X)/dir.Y,viewdir.Z);
 	} else {
@@ -129,7 +129,7 @@ void ShadowMapInternals::ConstructLightTransform(const CVector3D& pos,const CVec
 void ShadowMapInternals::CalcShadowMatrices(const CBound& bounds)
 {
 	const CLightEnv& lightenv = g_Renderer.GetLightEnv();
-	const CCamera& camera = g_Renderer.GetCamera();
+	const CCamera& camera = g_Renderer.GetCullCamera();
 	int i;
 
 	// get centre of bounds

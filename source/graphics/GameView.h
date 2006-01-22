@@ -27,7 +27,30 @@ class CGameView: public CJSObject<CGameView>
 	CGame *m_pGame;
 	CWorld *m_pWorld;
 	CTerrain *m_Terrain;
-	CCamera m_Camera;
+	
+	/**
+	 * m_ViewCamera: this camera controls the eye position when rendering
+	 */
+	CCamera m_ViewCamera;
+	
+	/**
+	 * m_CullCamera: this camera controls the frustum that is used for culling
+	 * and shadow calculations
+	 * 
+	 * Note that all code that works with camera movements should only change
+	 * m_ViewCamera. The render functions automatically sync the cull camera to
+	 * the view camera depending on the value of m_LockCullCamera.
+	 */
+	CCamera m_CullCamera;
+	
+	/**
+	 * m_LockCullCamera: When @c true, the cull camera is locked in place.
+	 * When @c false, the cull camera follows the view camera.
+	 * 
+	 * Exposed to JS as gameView.lockCullCamera
+	 */
+	bool m_LockCullCamera;
+
 	CCinemaManager m_TrackManager;
 
 
@@ -129,7 +152,7 @@ public:
 	bool IsUnitView () { if( m_UnitView ) { return true; } return false; }
 	
 	inline CCamera *GetCamera()
-	{	return &m_Camera; }
+	{	return &m_ViewCamera; }
 };
 extern InReaction game_view_handler(const SDL_Event* ev);
 

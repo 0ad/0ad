@@ -51,7 +51,9 @@ static i8 currentBookmark = -1;
 CGameView::CGameView(CGame *pGame):
 	m_pGame(pGame),
 	m_pWorld(pGame->GetWorld()),
-	m_Camera(),
+	m_ViewCamera(),
+	m_CullCamera(),
+	m_LockCullCamera(false),
 	m_ViewScrollSpeed(60),
 	m_ViewRotateSensitivity(0.002f),
 	m_ViewRotateSensitivityKeyboard(1.0f),
@@ -71,13 +73,14 @@ CGameView::CGameView(CGame *pGame):
 	vp.m_Y=0;
 	vp.m_Width=g_xres;
 	vp.m_Height=g_yres;
-	m_Camera.SetViewPort(&vp);
+	m_ViewCamera.SetViewPort(&vp);
 
-	m_Camera.SetProjection (1, 5000, DEGTORAD(20));
-	m_Camera.m_Orientation.SetXRotation(DEGTORAD(30));
-	m_Camera.m_Orientation.RotateY(DEGTORAD(-45));
-	m_Camera.m_Orientation.Translate (100, 150, -100);
-	g_Renderer.SetCamera(m_Camera);
+	m_ViewCamera.SetProjection (1, 5000, DEGTORAD(20));
+	m_ViewCamera.m_Orientation.SetXRotation(DEGTORAD(30));
+	m_ViewCamera.m_Orientation.RotateY(DEGTORAD(-45));
+	m_ViewCamera.m_Orientation.Translate (100, 150, -100);
+	m_CullCamera = m_ViewCamera;
+	g_Renderer.SetCamera(m_ViewCamera, m_CullCamera);
 
 	m_UnitView=NULL;
 	m_UnitAttach=NULL;
@@ -95,6 +98,7 @@ void CGameView::ScriptingInit()
 {
 	AddMethod<bool, &CGameView::JSI_StartCustomSelection>("startCustomSelection", 0);
 	AddMethod<bool, &CGameView::JSI_EndCustomSelection>("endCustomSelection", 0);
+	AddProperty(L"lockCullCamera", &CGameView::m_LockCullCamera);
 
 	CJSObject<CGameView>::ScriptingInit("GameView");
 }
@@ -142,7 +146,9 @@ void CGameView::RegisterInit(CGameAttributes *pAttribs)
 
 void CGameView::Render()
 {
-	g_Renderer.SetCamera(m_Camera);
+	if (m_LockCullCamera == false)
+		m_CullCamera = m_ViewCamera;
+	g_Renderer.SetCamera(m_ViewCamera, m_CullCamera);
 
 	MICROLOG(L"render terrain");
 	PROFILE_START( "render terrain" );
@@ -156,7 +162,7 @@ void CGameView::Render()
 
 void CGameView::RenderTerrain(CTerrain *pTerrain)
 {
-	CFrustum frustum=m_Camera.GetFrustum();
+	CFrustum frustum = m_CullCamera.GetFrustum();
 	u32 patchesPerSide=pTerrain->GetPatchesPerSide();
 	for (uint j=0; j<patchesPerSide; j++) {
 		for (uint i=0; i<patchesPerSide; i++) {
@@ -170,7 +176,7 @@ void CGameView::RenderTerrain(CTerrain *pTerrain)
 
 void CGameView::RenderModels(CUnitManager *pUnitMan, CProjectileManager *pProjectileMan)
 {
-	CFrustum frustum=m_Camera.GetFrustum();
+	CFrustum frustum = m_CullCamera.GetFrustum();
 	CLOSManager* losMgr = m_pWorld->GetLOSManager();
 
 	const std::vector<CUnit*>& units=pUnitMan->GetUnits();
@@ -229,19 +235,19 @@ void CGameView::CameraLock(CVector3D Trans, bool smooth)
 {
 	m_Terrain=g_Game->GetWorld()->GetTerrain();
 	float height=m_Terrain->getExactGroundLevel(
-			m_Camera.m_Orientation._14 + Trans.X, m_Camera.m_Orientation._34 + Trans.Z) +
+			m_ViewCamera.m_Orientation._14 + Trans.X, m_ViewCamera.m_Orientation._34 + Trans.Z) +
 			g_YMinOffset;
 	//is requested position within limits?
-	if (m_Camera.m_Orientation._24 + Trans.Y <= g_MaxZoomHeight)
+	if (m_ViewCamera.m_Orientation._24 + Trans.Y <= g_MaxZoomHeight)
 	{
-		if( m_Camera.m_Orientation._24 + Trans.Y >= height)
+		if( m_ViewCamera.m_Orientation._24 + Trans.Y >= height)
 		{
-			m_Camera.m_Orientation.Translate(Trans);
+			m_ViewCamera.m_Orientation.Translate(Trans);
 		}
-		else if (m_Camera.m_Orientation._24 + Trans.Y < height && smooth == true)
+		else if (m_ViewCamera.m_Orientation._24 + Trans.Y < height && smooth == true)
 		{
-			m_Camera.m_Orientation.Translate(Trans);
-			m_Camera.m_Orientation._24=height;
+			m_ViewCamera.m_Orientation.Translate(Trans);
+			m_ViewCamera.m_Orientation._24=height;
 		}
 
 
@@ -252,19 +258,19 @@ void CGameView::CameraLock(float x, float y, float z, bool smooth)
 {
 	m_Terrain=g_Game->GetWorld()->GetTerrain();
 	float height=m_Terrain->getExactGroundLevel(
-			m_Camera.m_Orientation._14 + x, m_Camera.m_Orientation._34 + z) +
+			m_ViewCamera.m_Orientation._14 + x, m_ViewCamera.m_Orientation._34 + z) +
 			g_YMinOffset;
 	//is requested position within limits?
-	if (m_Camera.m_Orientation._24 + y <= g_MaxZoomHeight)
+	if (m_ViewCamera.m_Orientation._24 + y <= g_MaxZoomHeight)
 	{
-		if( m_Camera.m_Orientation._24 + y >= height)
+		if( m_ViewCamera.m_Orientation._24 + y >= height)
 		{
-			m_Camera.m_Orientation.Translate(x, y, z);
+			m_ViewCamera.m_Orientation.Translate(x, y, z);
 		}
-		else if (m_Camera.m_Orientation._24 + y < height && smooth == true)
+		else if (m_ViewCamera.m_Orientation._24 + y < height && smooth == true)
 		{
-			m_Camera.m_Orientation.Translate(x, y, z);
-			m_Camera.m_Orientation._24=height;
+			m_ViewCamera.m_Orientation.Translate(x, y, z);
+			m_ViewCamera.m_Orientation._24=height;
 		}
 
 
@@ -287,7 +293,9 @@ void CGameView::RenderNoCull()
 	CUnitManager *pUnitMan=m_pWorld->GetUnitManager();
 	CTerrain *pTerrain=m_pWorld->GetTerrain();
 
-	g_Renderer.SetCamera(m_Camera);
+	if (m_LockCullCamera == false)
+		m_CullCamera = m_ViewCamera;
+	g_Renderer.SetCamera(m_ViewCamera, m_CullCamera);
 
 	uint i,j;
 	const std::vector<CUnit*>& units=pUnitMan->GetUnits();
@@ -317,34 +325,34 @@ void CGameView::UnloadResources()
 void CGameView::ResetCamera()
 {
 	// quick hack to return camera home, for screenshots (after alt+tabbing)
-	m_Camera.SetProjection (1, 5000, DEGTORAD(20));
-	m_Camera.m_Orientation.SetXRotation(DEGTORAD(30));
-	m_Camera.m_Orientation.RotateY(DEGTORAD(-45));
-	m_Camera.m_Orientation.Translate (100, 150, -100);
+	m_ViewCamera.SetProjection (1, 5000, DEGTORAD(20));
+	m_ViewCamera.m_Orientation.SetXRotation(DEGTORAD(30));
+	m_ViewCamera.m_Orientation.RotateY(DEGTORAD(-45));
+	m_ViewCamera.m_Orientation.Translate (100, 150, -100);
 }
 
 void CGameView::ResetCameraOrientation()
 {
 
-	CVector3D origin = m_Camera.m_Orientation.GetTranslation();
-	CVector3D dir = m_Camera.m_Orientation.GetIn();
+	CVector3D origin = m_ViewCamera.m_Orientation.GetTranslation();
+	CVector3D dir = m_ViewCamera.m_Orientation.GetIn();
 
 	CVector3D target = origin + dir * ( ( 50.0f - origin.Y ) / dir.Y );
 
 	target -= CVector3D( -22.474480f, 50.0f, 22.474480f );
 
-	m_Camera.SetProjection (1, 5000, DEGTORAD(20));
-	m_Camera.m_Orientation.SetXRotation(DEGTORAD(30));
-	m_Camera.m_Orientation.RotateY(DEGTORAD(-45));
+	m_ViewCamera.SetProjection (1, 5000, DEGTORAD(20));
+	m_ViewCamera.m_Orientation.SetXRotation(DEGTORAD(30));
+	m_ViewCamera.m_Orientation.RotateY(DEGTORAD(-45));
 
 	target += CVector3D( 100.0f, 150.0f, -100.0f );
 
-	m_Camera.m_Orientation.Translate( target );
+	m_ViewCamera.m_Orientation.Translate( target );
 }
 
 void CGameView::RotateAboutTarget()
 {
-	m_CameraPivot = m_Camera.GetWorldCoordinates();
+	m_CameraPivot = m_ViewCamera.GetWorldCoordinates();
 }
 
 void CGameView::Update(float DeltaTime)
@@ -362,8 +370,8 @@ void CGameView::Update(float DeltaTime)
 //		//Used to fix incorrect positioning
 //		//ToMove.Y += 3.5f;
 //		m_Camera.m_Orientation.Translate(ToMove);
-		m_Camera.m_Orientation.SetYRotation(m_UnitView->m_orientation);
-		m_Camera.m_Orientation.Translate(m_UnitViewProp->GetTransform().GetTranslation());
+		m_ViewCamera.m_Orientation.SetYRotation(m_UnitView->m_orientation);
+		m_ViewCamera.m_Orientation.Translate(m_UnitViewProp->GetTransform().GetTranslation());
 
 		/*if( !m_UnitView->m_orderQueue.empty())
 		{
@@ -407,16 +415,16 @@ void CGameView::Update(float DeltaTime)
 		}	//Is order queue empty?
 	*/
 
-		m_Camera.UpdateFrustum();
+		m_ViewCamera.UpdateFrustum();
 		return;
 	}
 
 	if (m_UnitAttach)
 	{
-		CVector3D ToMove = m_UnitAttach->m_position - m_Camera.GetFocus();
-		m_Camera.m_Orientation._14 += ToMove.X;
-		m_Camera.m_Orientation._34 += ToMove.Z;
-		m_Camera.UpdateFrustum();
+		CVector3D ToMove = m_UnitAttach->m_position - m_ViewCamera.GetFocus();
+		m_ViewCamera.m_Orientation._14 += ToMove.X;
+		m_ViewCamera.m_Orientation._34 += ToMove.Z;
+		m_ViewCamera.UpdateFrustum();
 		return;
 	}
 
@@ -426,12 +434,12 @@ void CGameView::Update(float DeltaTime)
 		{
 			ResetCamera();
 		}
-			m_Camera.UpdateFrustum();
+		m_ViewCamera.UpdateFrustum();
 		return;
 	}
 
 	float delta = powf( m_ViewSnapSmoothness, DeltaTime );
-	m_Camera.m_Orientation.Translate( m_CameraDelta * ( 1.0f - delta ) );
+	m_ViewCamera.m_Orientation.Translate( m_CameraDelta * ( 1.0f - delta ) );
 	m_CameraDelta *= delta;
 
 
@@ -448,8 +456,8 @@ void CGameView::Update(float DeltaTime)
 	mouse_last_y = g_mouse_y;
 
 	// Miscellaneous vectors
-	CVector3D forwards = m_Camera.m_Orientation.GetIn();
-	CVector3D rightwards = m_Camera.m_Orientation.GetLeft() * -1.0f; // upwards.Cross(forwards);
+	CVector3D forwards = m_ViewCamera.m_Orientation.GetIn();
+	CVector3D rightwards = m_ViewCamera.m_Orientation.GetLeft() * -1.0f; // upwards.Cross(forwards);
 	CVector3D upwards( 0.0f, 1.0f, 0.0f );
 	// rightwards.Normalize();
 
@@ -462,8 +470,8 @@ void CGameView::Update(float DeltaTime)
 		// Ctrl + middle-drag or left-and-right-drag to rotate view
 
 		// Untranslate the camera, so it rotates around the correct point
-		CVector3D position = m_Camera.m_Orientation.GetTranslation();
-		m_Camera.m_Orientation.Translate(position*-1);
+		CVector3D position = m_ViewCamera.m_Orientation.GetTranslation();
+		m_ViewCamera.m_Orientation.Translate(position*-1);
 
 		// Sideways rotation
 
@@ -478,7 +486,7 @@ void CGameView::Update(float DeltaTime)
 				rightways += m_ViewRotateSensitivityKeyboard * DeltaTime;
 		}
 
-		m_Camera.m_Orientation.RotateY( rightways );
+		m_ViewCamera.m_Orientation.RotateY( rightways );
 
 		// Up/down rotation
 
@@ -496,15 +504,15 @@ void CGameView::Update(float DeltaTime)
 		CQuaternion temp;
 		temp.FromAxisAngle(rightwards, upways);
 
-		m_Camera.m_Orientation.Rotate(temp);
+		m_ViewCamera.m_Orientation.Rotate(temp);
 
 		// Retranslate back to the right position
-		m_Camera.m_Orientation.Translate(position);
+		m_ViewCamera.m_Orientation.Translate(position);
 
 	}
 	else if( hotkeys[HOTKEY_CAMERA_ROTATE_ABOUT_TARGET] )
 	{
-		CVector3D origin = m_Camera.m_Orientation.GetTranslation();
+		CVector3D origin = m_ViewCamera.m_Orientation.GetTranslation();
 		CVector3D delta = origin - m_CameraPivot;
 
 		CQuaternion rotateH, rotateV; CMatrix3D rotateM;
@@ -531,20 +539,20 @@ void CGameView::Update(float DeltaTime)
 		if( ( scan >= 0.5f ) )
 		{
 			// Move the camera to the origin (in preparation for rotation )
-			m_Camera.m_Orientation.Translate( origin * -1.0f );
+			m_ViewCamera.m_Orientation.Translate( origin * -1.0f );
 
-			m_Camera.m_Orientation.Rotate( rotateH );
+			m_ViewCamera.m_Orientation.Rotate( rotateH );
 
 			// Move the camera back to where it belongs
-			m_Camera.m_Orientation.Translate( m_CameraPivot + delta );
+			m_ViewCamera.m_Orientation.Translate( m_CameraPivot + delta );
 		}
 
 	}
 	else if( hotkeys[HOTKEY_CAMERA_ROTATE_ABOUT_TARGET_KEYBOARD] )
 	{
 		// Split up because the keyboard controls use the centre of the screen, not the mouse position.
-		CVector3D origin = m_Camera.m_Orientation.GetTranslation();
-		CVector3D pivot = m_Camera.GetFocus();
+		CVector3D origin = m_ViewCamera.m_Orientation.GetTranslation();
+		CVector3D pivot = m_ViewCamera.GetFocus();
 		CVector3D delta = origin - pivot;
 
 		CQuaternion rotateH, rotateV; CMatrix3D rotateM;
@@ -580,12 +588,12 @@ void CGameView::Update(float DeltaTime)
 		if( ( scan >= 0.5f ) )
 		{
 			// Move the camera to the origin (in preparation for rotation )
-			m_Camera.m_Orientation.Translate( origin * -1.0f );
+			m_ViewCamera.m_Orientation.Translate( origin * -1.0f );
 
-			m_Camera.m_Orientation.Rotate( rotateH );
+			m_ViewCamera.m_Orientation.Rotate( rotateH );
 
 			// Move the camera back to where it belongs
-			m_Camera.m_Orientation.Translate( pivot + delta );
+			m_ViewCamera.m_Orientation.Translate( pivot + delta );
 		}
 
 	}
@@ -643,7 +651,7 @@ void CGameView::Update(float DeltaTime)
 		m_ZoomDelta *= zoom_proportion;
 	}
 
-	m_Camera.UpdateFrustum ();
+	m_ViewCamera.UpdateFrustum ();
 }
 
 void CGameView::ToUnitView(CEntity* target, CModel* prop)
@@ -662,7 +670,7 @@ void CGameView::ToUnitView(CEntity* target, CModel* prop)
 void CGameView::PushCameraTarget( const CVector3D& target )
 {
 	// Save the current position
-	m_CameraTargets.push_back( m_Camera.m_Orientation.GetTranslation() );
+	m_CameraTargets.push_back( m_ViewCamera.m_Orientation.GetTranslation() );
 	// And set the camera
 	SetCameraTarget( target );
 }
@@ -674,13 +682,13 @@ void CGameView::SetCameraTarget( const CVector3D& target )
 	//  the difference between that position and the camera point, and restoring
 	//  that difference to our new target)
 
-	CVector3D CurrentTarget = m_Camera.GetFocus();
+	CVector3D CurrentTarget = m_ViewCamera.GetFocus();
 	m_CameraDelta = target - CurrentTarget;
 }
 
 void CGameView::PopCameraTarget()
 {
-	m_CameraDelta = m_CameraTargets.back() - m_Camera.m_Orientation.GetTranslation();
+	m_CameraDelta = m_CameraTargets.back() - m_ViewCamera.m_Orientation.GetTranslation();
 	m_CameraTargets.pop_back();
 }
 
