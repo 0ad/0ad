@@ -16,9 +16,13 @@
 		</Id>
 	</Traits>
 	
+	<Actions>
 		<Attack>
+			<Melee>
 				<Range>8.0</Range>
+			</Melee>
 		</Attack>
+	</Actions>
 
 	<Actor>units/hellenes/super_unit_3.xml</Actor>
 

@@ -68,7 +68,7 @@ function entityInit()
 		// you can still gather from the thing. Initialize it to 0 (ungatherable) for every player unless
 		// the entity is forageable (e.g. for huntable animals).
 		this.traits.supply.dropsitecount = new Array();
-		initialCount = this.traits.supply.forageable ? 1 : 0;
+		initialCount = this.traits.supply.subtype.meat ? 1 : 0;
 		for( i=0; i<=8; i++ )
 		{
 			this.traits.supply.dropsitecount[i] = initialCount;
@@ -198,6 +198,34 @@ function entityInit()
 		if (this.traits.population.rem)
 			getGUIGlobal().giveResources ("Population", this.traits.population.rem);
 	}
+	
+	// Build Unit AI Stance list, and set default stance.
+	if ( !this.traits.ai )
+		this.traits.ai = new Object();
+	if ( !this.traits.ai.stance )
+		this.traits.ai.stance = new Object();
+	if ( !this.traits.ai.stance.list )
+		this.traits.ai.stance.list = new Object();
+	// Create standard stances that all units have.
+	this.traits.ai.stance.list.avoid = new Object();
+	this.traits.ai.stance.list.hold = new Object();	
+	if ( this.actions.attack )
+	{
+		// Create stances that units only have if they can attack.
+		this.traits.ai.stance.list.aggress = new Object();	
+		this.traits.ai.stance.list.defend = new Object();
+		this.traits.ai.stance.list.stand = new Object();
+		// Set default stance for combat units.
+		this.traits.ai.stance.curr = "Defend";
+	}
+	else
+	{
+		// Set default stance for non-combat units.
+		this.traits.ai.stance.curr = "Avoid";
+	}
+
+	
+	
 
 /*	
 	// Generate entity's personal name (if it needs one).

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
 <Entity 
-	Parent="template_unit_fauna"
+	Parent="template_unit_fauna_herd_passive"
 >
 
 	<Traits>
@@ -12,13 +12,6 @@
 
 		</Id>
 		
-		<Auras>
-			<Infidelity>
-				<Radius>20</Radius>
-				<Time>0</Time>
-			</Infidelity>
-		</Auras>
-	
 	</Traits>
 
  	<Actor>fauna/sheep1.xml</Actor>

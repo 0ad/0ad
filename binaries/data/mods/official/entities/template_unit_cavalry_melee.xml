@@ -13,5 +13,27 @@
 		</Id>
 		
 	</Traits>
+	
+	<Actions>
+		<Attack>
+			<Melee>
+				<Damage>10.0</Damage>
+				<Crush>0.0</Crush>
+				<Hack>0.5</Hack>
+				<Pierce>0.5</Pierce>
+				<Range>2.0</Range>
+				<Speed>1500</Speed>
+			</Melee>
+		
+			<Charge>
+				<Damage>20.0</Damage>
+				<Crush>0.0</Crush>
+				<Hack>0.5</Hack>
+				<Pierce>0.5</Pierce>
+				<Range>2.0</Range>
+				<Speed>1500</Speed>
+			</Charge>	
+		</Attack>
+	</Actions>
 
 </Entity>
