@@ -331,21 +331,7 @@ bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timeste
 		return( false );
 	current->m_data[0].location = current->m_data[0].entity->m_position;
 	float Distance = (current->m_data[0].location - m_position).length();
-	
-	//TODO: find a better way than assuming constant action indicators.
 
-	if ( current->m_data[1].data == 1 )
-	{
-		//Are we closer using ranged attack?
-		if ( fabs(Distance - m_actions[4].m_MaxRange) < fabs(Distance - action->m_MaxRange) &&
-			Distance > m_actions[4].m_MinRange && !m_shouldRun && m_actions.find( 4 ) != m_actions.end())
-		{
-			action = &m_actions[4];
-			current->m_data[1].data = 4;
-		}
-		else
-			action = &m_actions[1];
-	}
 	if( Distance < action->m_MaxRange ) 
 	{
 		(int&)current->m_type = transition;
@@ -455,20 +441,6 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 
 	CVector2D delta = current->m_data[0].entity->m_position - m_position;
 	float deltaLength = delta.length();
-
-	//TODO: find a better way than assuming constant action indicators.
-	if ( current->m_data[1].data == 1 )
-	{
-		//Are we closer using ranged attack?
-		if ( fabs(deltaLength - m_actions[4].m_MaxRange) < fabs(deltaLength - action->m_MaxRange) &&
-			deltaLength > m_actions[4].m_MinRange && !m_shouldRun && m_actions.find( 4 ) != m_actions.end())
-		{
-			action = &m_actions[4];
-			current->m_data[1].data = 4;
-		}
-		else 
-			action = &m_actions[1];
-	}
 
 	float adjRange = action->m_MaxRange + m_bounds->m_radius + current->m_data[0].entity->m_bounds->m_radius;
 

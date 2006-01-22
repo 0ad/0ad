@@ -74,6 +74,10 @@ public:
 	float m_turningRadius;
 	float m_runRegenRate;
 	float m_runDecayRate;
+	
+	float m_healthRegenRate;
+	float m_healthRegenStart;
+	float m_healthDecayRate;
 
 	SEntityAction m_run;
 
@@ -108,9 +112,6 @@ public:
 	float m_healthBarHeight;
 	int m_healthBarSize;
 
-	float m_healthRegenRate;
-	float m_healthRegenStart;
-	float m_healthDecayRate;
 	bool m_healthDecay;
 	
 	// Minimap properties

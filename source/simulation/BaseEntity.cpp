@@ -45,6 +45,9 @@ CBaseEntity::CBaseEntity()
 	AddProperty( L"traits.anchor.type", &m_anchorType );
 	AddProperty( L"traits.vision.los", &m_los );
 	AddProperty( L"traits.vision.permanent", &m_permanent );
+	AddProperty( L"traits.health.regen_rate", &m_healthRegenRate );
+	AddProperty( L"traits.health.regen_start", &m_healthRegenStart );
+	AddProperty( L"traits.health.decay_rate", &m_healthDecayRate );
 
 	for( int t = 0; t < EVENT_LAST; t++ )
 	{
