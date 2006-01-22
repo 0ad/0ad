@@ -377,19 +377,68 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 
 		// BEGIN: Buffer History Lookup
 		case SDLK_UP:
-			if (m_deqBufHistory.size() && iHistoryPos != (int)m_deqBufHistory.size() - 1)
+			if ( m_deqBufHistory.size() ) 
 			{
-				iHistoryPos++;
-				SetBuffer(m_deqBufHistory.at(iHistoryPos).data());
+				int oldHistoryPos = iHistoryPos;
+				while( iHistoryPos != (int)m_deqBufHistory.size() - 1)
+				{
+					iHistoryPos++;
+					std::wstring& histString = m_deqBufHistory.at(iHistoryPos);
+					if(histString.length() >= m_iBufferPos)
+					{
+						bool bad = false;
+						for(int i=0; i<m_iBufferPos; i++)
+						{
+							if(histString[i] != m_szBuffer[i])
+							{
+								bad = true; break;
+							}
+						}
+						if(!bad)
+						{
+							SetBuffer(m_deqBufHistory.at(iHistoryPos).data());
+							return;
+						}
+					}
+				}
+				// if we got here, failed to find a string with the right prefix;
+				// revert to the old position in case the user types more stuff
+				iHistoryPos = oldHistoryPos;
 			}
 			return;
 
 		case SDLK_DOWN:
-			if (iHistoryPos != -1) iHistoryPos--;
-
-			if (iHistoryPos != -1)
-				SetBuffer(m_deqBufHistory.at(iHistoryPos).data());
-			else FlushBuffer();
+			if ( m_deqBufHistory.size() ) 
+			{
+				int oldHistoryPos = iHistoryPos;
+				while( iHistoryPos != 0)
+				{
+					iHistoryPos--;
+					std::wstring& histString = m_deqBufHistory.at(iHistoryPos);
+					if(histString.length() >= m_iBufferPos)
+					{
+						bool bad = false;
+						for(int i=0; i<m_iBufferPos; i++)
+						{
+							if(histString[i] != m_szBuffer[i])
+							{
+								bad = true; break;
+							}
+						}
+						if(!bad)
+						{
+							SetBuffer(m_deqBufHistory.at(iHistoryPos).data());
+							return;
+						}
+					}
+				}
+				// if we got here, failed to find a string with the right prefix;
+				// revert to the old position in case the user types more stuff,
+				// and also clear any complietion we might've added going up
+				iHistoryPos = oldHistoryPos;
+				m_szBuffer[m_iBufferPos] = 0;
+				m_iBufferLength = m_iBufferPos;
+			}
 			return;
 		// END: Buffer History Lookup
 
@@ -458,6 +507,8 @@ const wchar_t* CConsole::GetBuffer()
 
 void CConsole::SetBuffer(const wchar_t* szMessage, ...)
 {
+	int oldBufferPos = m_iBufferPos;	// remember since FlushBuffer will set it to 0
+
 	va_list args;
 	wchar_t szBuffer[CONSOLE_BUFFER_SIZE];
 
@@ -468,7 +519,8 @@ void CConsole::SetBuffer(const wchar_t* szMessage, ...)
 	FlushBuffer();
 
 	wcsncpy(m_szBuffer, szMessage, CONSOLE_BUFFER_SIZE);
-	m_iBufferLength = m_iBufferPos = (int)wcslen(m_szBuffer);
+	m_iBufferLength = (int)wcslen(m_szBuffer);
+	m_iBufferPos = std::min(oldBufferPos, m_iBufferLength);
 }
 
 void CConsole::UseHistoryFile( CStr filename, int max_history_lines )
