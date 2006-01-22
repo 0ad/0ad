@@ -381,7 +381,7 @@ void CPatchRData::BuildVertices()
 			terrain->CalcPosition(ix,iz,vertices[v].m_Position);		
 			*(uint32_t*)&vertices[v].m_Color = 0;	// will be set to the proper value in Update()
 			vertices[v].m_UVs[0]=i*0.125f;
-			vertices[v].m_UVs[1]=j*0.125f;
+			vertices[v].m_UVs[1]=1 - j*0.125f;
 				
 			// calculate lighting into the separate m_LightingColors array, which will
 			// be used to set the vertex colors in Update()
