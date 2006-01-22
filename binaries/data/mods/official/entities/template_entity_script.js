@@ -18,6 +18,7 @@
 const ACTION_ATTACK	= 1;
 const ACTION_GATHER	= 2;
 const ACTION_HEAL	= 3;
+const ACTION_ATTACK_RANGED = 4;
 
 // ====================================================================
 
@@ -132,9 +133,9 @@ function entityInit()
 	// Register our actions with the generic order system
 	if( this.actions )
 	{
-		if( this.actions.attack )
+		if( this.actions.attack.melee )
 		{
-			a = this.actions.attack;
+			a = this.actions.attack.melee;
 			minRange = ( a.minRange ? a.minRange : 0.0 );
 			this.setActionParams( ACTION_ATTACK, minRange, a.range, a.speed, "melee" );
 		}
@@ -147,6 +148,12 @@ function entityInit()
 		{
 			a = this.actions.heal;
 			this.setActionParams( ACTION_HEAL, 0.0, a.range, a.speed, "heal" );
+		}
+		if( this.actions.attack.ranged )
+		{
+			a = this.actions.attack.ranged;
+			minRange = ( a.minRange ? a.minRange : 0.0 );
+			this.setActionParams( ACTION_ATTACK_RANGED, minRange, a.range, a.speed, "ranged" );
 		}
 	}
 	
@@ -266,20 +273,26 @@ function entityInit()
 
 function performAttack( evt )
 {
-	if( this.actions.attack.ranged )
-	{
-		this.performAttackRanged( evt );
-		return;
-	}
 
 	curr_hit = getGUIGlobal().newRandomSound("voice", "hit", this.traits.audio.path);
 	curr_hit.play();
 
 	// Attack logic.
 	dmg = new DamageType();
-	dmg.crush = parseInt(this.actions.attack.damage * this.actions.attack.crush);
-	dmg.hack = parseInt(this.actions.attack.damage * this.actions.attack.hack);
-	dmg.pierce = parseInt(this.actions.attack.damage * this.actions.attack.pierce);
+	
+	if ( this.getRunState() )
+	{
+		dmg.crush = parseInt(this.actions.attack.charge.damage * this.actions.attack.charge.crush);
+		dmg.hack = parseInt(this.actions.attack.charge.damage * this.actions.attack.charge.hack);
+		dmg.pierce = parseInt(this.actions.attack.charge.damage * this.actions.attack.charge.pierce);
+	}
+	else
+	{
+		dmg.crush = parseInt(this.actions.attack.melee.damage * this.actions.attack.melee.crush);
+		dmg.hack = parseInt(this.actions.attack.melee.damage * this.actions.attack.melee.hack);
+		dmg.pierce = parseInt(this.actions.attack.melee.damage * this.actions.attack.melee.pierce);
+	}
+
 	evt.target.damage( dmg, this );
 }
 
@@ -289,9 +302,9 @@ function performAttackRanged( evt )
 {
 	// Create a projectile from us, to the target, that will do some damage when it hits them.
 	dmg = new DamageType();
-	dmg.crush = parseInt(this.actions.attack.damage * this.actions.attack.crush);
-	dmg.hack = parseInt(this.actions.attack.damage * this.actions.attack.hack);
-	dmg.pierce = parseInt(this.actions.attack.damage * this.actions.attack.pierce);
+	dmg.crush = parseInt(this.actions.attack.ranged.damage * this.actions.attack.ranged.crush);
+	dmg.hack = parseInt(this.actions.attack.ranged.damage * this.actions.attack.ranged.hack);
+	dmg.pierce = parseInt(this.actions.attack.ranged.damage * this.actions.attack.ranged.pierce);
 	
 	// The parameters for Projectile are:
 	// 1 - The actor to use as the projectile. There are two ways of specifying this:
@@ -572,6 +585,8 @@ function entityEventGeneric( evt )
 			this.performGather( evt ); break;
 		case ACTION_HEAL:
 			this.performHeal( evt ); break;
+		case ACTION_ATTACK_RANGED:
+			this.performAttackRanged( evt ); break;
 		default:
 			console.write( "Unknown generic action: " + evt.action );
 	}
