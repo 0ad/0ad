@@ -101,7 +101,7 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 
 	if( fabs( deltatheta ) > 0.01f )
 	{
-		if ( m_turningRadius )
+		if ( m_turningRadius != 0 )
 		{
 			float maxTurningSpeed = ( m_speed / m_turningRadius ) * timestep;
 			deltatheta = clamp( deltatheta, -maxTurningSpeed, maxTurningSpeed );
@@ -325,7 +325,7 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 // Handles processing common to (at the moment) gather and melee attack actions
 bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timestep_millis), int transition, SEntityAction* action )
 {
-	m_orderQueue.pop_front();
+	//m_orderQueue.pop_front();
 
 	if( !current->m_data[0].entity || !current->m_data[0].entity->m_extant )
 		return( false );
@@ -336,7 +336,7 @@ bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timeste
 	{
 		(int&)current->m_type = transition;
 		m_isRunning = false;
-		m_orderQueue.push_front(*current);		// Seems to be needed since we do a pop above
+		//m_orderQueue.push_front(*current);		// Seems to be needed since we do a pop above
 		return( true );
 	}
 	
