@@ -452,8 +452,12 @@ struct XInfo
 static bool isCppException(const EXCEPTION_RECORD* er)
 {
 #if MSC_VERSION
-	// note: representation of 'msc' isn't specified, so use FOURCC
-	if(er->ExceptionCode != FOURCC(0xe0, 'm','s','c'))
+	// notes:
+	// - value of multibyte character constants (e.g. 'msc') aren't
+	//   specified by C++, so use FOURCC instead.
+	// - "MS C" compiler is the only interpretation of this magic value that
+	//   makes sense, so it is apparently stored in big-endian format.
+	if(er->ExceptionCode != FOURCC_BE(0xe0, 'm','s','c'))
 		return false;
 
 	// exception info = (magic, &thrown_Cpp_object, &XInfo)

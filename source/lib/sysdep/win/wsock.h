@@ -25,7 +25,7 @@
 // <unistd.h>
 //
 
-IMP(int, gethostname, (char*, int));
+IMP(int, gethostname, (char*, int))
 
 
 //

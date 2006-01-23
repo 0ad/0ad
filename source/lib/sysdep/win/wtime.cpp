@@ -459,7 +459,7 @@ static LibError hrt_override_impl(HRTOverride ovr, HRTImpl impl)
 {
 	if((ovr != HRT_DISABLE && ovr != HRT_FORCE && ovr != HRT_DEFAULT) ||
 	   (impl != HRT_TSC && impl != HRT_QPC && impl != HRT_GTC && impl != HRT_NONE))
-		CHECK_ERR(ERR_INVALID_PARAM);
+		WARN_RETURN(ERR_INVALID_PARAM);
 
 lock();
 
@@ -533,8 +533,7 @@ static void calibrate_lk()
 
 		// average all samples in buffer
 		double freq_sum = std::accumulate(samples.begin(), samples.end(), 0.0);
-		const int num = (int)samples.size();	// divide-by-0 paranoia
-		hrt_cur_freq = (num == 0)? 0.0 : freq_sum / num;
+		hrt_cur_freq = freq_sum / (int)samples.size();
 	}
 	else
 	{

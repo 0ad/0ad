@@ -782,6 +782,11 @@ static void mouse_update()
 	// don't use DirectInput, because we want to respect the user's mouse
 	// sensitivity settings. Windows messages are laggy, so poll instead.
 
+	// window not created yet or already shut down. no sense reporting
+	// mouse position, and bail now to avoid ScreenToClient failing.
+	if(hWnd == INVALID_HANDLE_VALUE)
+		return;
+
 	POINT pt;
 	WARN_IF_FALSE(GetCursorPos(&pt));
 	WARN_IF_FALSE(ScreenToClient(hWnd, &pt));
