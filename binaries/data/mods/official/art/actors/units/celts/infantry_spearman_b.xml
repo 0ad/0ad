@@ -4,18 +4,55 @@
   <castshadow/>
 
   <group>
-    <variant name="Base">
+    <variant frequency="100" name="Base">
       <animations>
+        <animation file="biped/dudeidle.psa" name="Idle" speed="200"/>
+        <animation file="biped/idle.psa" name="Idle" speed="200"/>	  
         <animation file="biped/inf_idle_spear.psa" name="Idle" speed="200"/>
+        <animation file="biped/inf_salute_a.psa" name="Idle" speed="200"/>
+        <animation file="biped/inf_salute_b.psa" name="Idle" speed="200"/>
+        <animation file="biped/inf_salute_c.psa" name="Idle" speed="200"/>
+        <animation file="biped/inf_salute_d.psa" name="Idle" speed="200"/>
+        <animation file="biped/inf_salute_e.psa" name="Idle" speed="200"/>	
+		
+        <animation file="biped/inf_salute_a.psa" name="Ready" speed="200"/>
+        <animation file="biped/inf_salute_b.psa" name="Ready" speed="200"/>
+        <animation file="biped/inf_salute_c.psa" name="Ready" speed="200"/>
+        <animation file="biped/inf_salute_d.psa" name="Ready" speed="200"/>
+        <animation file="biped/inf_salute_e.psa" name="Ready" speed="200"/>		
+		
+        <animation file="biped/dudewalk.psa" name="Walk" speed="20"/>		
         <animation file="biped/walk_spearshield.psa" name="Walk" speed="20"/>
-        <animation file="biped/dudebuild.psa" name="Build" speed="150"/>
-        <animation event="0.35" file="biped/dudechop.psa" name="Chop" speed="150"/>
-        <animation file="biped/dudedeath_sword.psa" name="Death" speed="200"/>
-        <animation file="biped/dudedecay_sword.psa" name="Decay" speed="100"/>
-        <animation event="0.5" file="biped/inf_spear_shield_atk_a.psa" name="Attack" speed="100"/>
+		
         <animation file="biped/inf_sword_shield_run_a.psa" name="Run" speed="10"/>
         <animation file="biped/inf_sword_shield_run_b.psa" name="Run" speed="10"/>
         <animation file="biped/inf_sword_shield_run_c.psa" name="Run" speed="10"/>
+		
+        <animation event="0.5" file="biped/inf_spear_shield_atk_a.psa" name="Melee" speed="100"/>
+        <animation event="0.5" file="biped/inf_spear_shield_atk_b.psa" name="Melee" speed="100"/>
+        <animation event="0.5" file="biped/inf_spear_shield_atk_a.psa" name="Charge" speed="100"/>
+        <animation event="0.5" file="biped/inf_spear_shield_atk_b.psa" name="Charge" speed="100"/>
+		
+        <animation file="biped/dudebuild.psa" name="Build" speed="150"/>
+        <animation file="biped/dudechop.psa" name="Chop" speed="150"/>
+        <animation file="biped/dudechop.psa" name="Mine" speed="150"/>
+        <animation file="biped/dudechop.psa" name="Forage" speed="150"/>
+        <animation file="biped/dudechop.psa" name="Gather" speed="150"/>		
+        <animation file="biped/dudechop.psa" name="Hoe" speed="150"/>
+        <animation file="biped/dudechop.psa" name="Fish" speed="150"/>
+        <animation file="biped/dudechop.psa" name="Hunt" speed="150"/>
+		
+        <animation file="biped/dudedeath_sword.psa" name="Death" speed="200"/>
+        <animation file="biped/inf_death_a.psa" name="Death" speed="200"/>
+        <animation file="biped/inf_death_b.psa" name="Death" speed="200"/>		
+        <animation file="biped/inf_death_c.psa" name="Death" speed="200"/>		
+        <animation file="biped/inf_death_d.psa" name="Death" speed="200"/>		
+        <animation file="biped/inf_death_e.psa" name="Death" speed="200"/>		
+        <animation file="biped/inf_death_f.psa" name="Death" speed="200"/>		
+        <animation file="biped/inf_death_g.psa" name="Death" speed="200"/>
+		
+        <animation file="biped/dudedecay_sword.psa" name="Corpse" speed="100"/>
+
       </animations>
       <mesh>skeletal/m_pants_c.pmd</mesh>
       <props>
