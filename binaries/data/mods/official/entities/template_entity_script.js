@@ -470,8 +470,10 @@ function performHeal( evt )
 
 function damage( dmg, inflictor )
 {	
-	this.last_combat_time = getGameTime();
+	if(!this.traits.armour) return;		// corpses have no armour, everything else should
 	
+	this.last_combat_time = getGameTime();
+
 	// Apply armour and work out how much damage we actually take
 	crushDamage = parseInt(dmg.crush - this.traits.armour.value * this.traits.armour.crush);
 	if ( crushDamage < 0 ) crushDamage = 0;
