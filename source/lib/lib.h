@@ -130,6 +130,13 @@ STMT(\
 )
 
 
+#define SAFE_FREE(p)\
+STMT(\
+	free(p);	/* if p == 0, free is a no-op */ \
+	(p) = 0;\
+)
+
+
 
 #ifndef MIN
 #define MIN(a, b) (((a) < (b))? (a) : (b))
@@ -269,7 +276,8 @@ extern uint round_up_to_pow2(uint x);
 
 
 // multiple must be a power of two.
-extern uintptr_t round_up(uintptr_t val, uintptr_t multiple);
+extern uintptr_t round_up  (uintptr_t n, uintptr_t multiple);
+extern uintptr_t round_down(uintptr_t n, uintptr_t multiple);
 
 // these avoid a common mistake in using >> (ANSI requires shift count be
 // less than the bit width of the type).
@@ -277,6 +285,7 @@ extern u32 u64_hi(u64 x);
 extern u32 u64_lo(u64 x);
 
 extern u64 u64_from_u32(u32 hi, u32 lo);
+extern u32 u32_from_u16(u16 hi, u16 lo);
 
 
 inline bool feq(float f1, float f2)
@@ -304,5 +313,9 @@ extern void base32(const int len, const u8* in, u8* out);
 // note: NULL wildcard pattern matches everything!
 extern int match_wildcard(const char* s, const char* w);
 extern int match_wildcardw(const wchar_t* s, const wchar_t* w);
+
+// this is strcpy, but indicates that the programmer checked usage and
+// promises it is safe.
+#define SAFE_STRCPY strcpy
 
 #endif	// #ifndef LIB_H__

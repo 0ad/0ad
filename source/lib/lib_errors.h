@@ -208,13 +208,13 @@ STMT(\
 ERR(0, ERR_OK, "(but return value was 0 which indicates success)")
 ERR(-1, ERR_FAIL, "Function failed (no details available)")
 
-ERR(1, INFO_CB_CONTINUE  , "1 (not an error)")
+ERR(1, INFO_CB_CONTINUE,     "1 (not an error)")
 // these are all basically the same thing
-ERR(2, INFO_CANNOT_HANDLE, "2 (not an error)")
-ERR(3, INFO_NO_REPLACE   , "3 (not an error)")
-ERR(4, INFO_SKIPPED      , "4 (not an error)")
-//
-ERR(5, INFO_ALL_COMPLETE, "5 (not an error)")
+ERR(2, INFO_CANNOT_HANDLE,   "2 (not an error)")
+ERR(3, INFO_NO_REPLACE,      "3 (not an error)")
+ERR(4, INFO_SKIPPED,         "4 (not an error)")
+ERR(5, INFO_ALL_COMPLETE,    "5 (not an error)")
+ERR(6, INFO_ALREADY_PRESENT, "6 (not an error)")
 
 ERR(-100000, ERR_LOGIC, "Logic error in code")
 ERR(-100060, ERR_TIMED_OUT, "Timed out")
@@ -280,9 +280,11 @@ ERR(-100321, ERR_NOT_DIR, "Not a directory")
 ERR(-100330, ERR_FILE_ACCESS, "Insufficient access rights to open file")
 ERR(-100331, ERR_IO, "Error during IO")
 ERR(-100332, ERR_EOF, "Reading beyond end of file")
-ERR(-100333, ERR_IS_COMPRESSED, "Invalid operation for a compressed file")
-ERR(-100334, ERR_ALREADY_MOUNTED, "Directory (tree) already mounted")
-ERR(-100335, ERR_INVALID_MOUNT_TYPE, "Invalid mount type (memory corruption?)")
+ERR(-100340, ERR_UNKNOWN_CMETHOD, "Unknown/unsupported compression method")
+ERR(-100341, ERR_IS_COMPRESSED, "Invalid operation for a compressed file")
+ERR(-100350, ERR_ALREADY_MOUNTED, "Directory (tree) already mounted")
+ERR(-100351, ERR_INVALID_MOUNT_TYPE, "Invalid mount type (memory corruption?)")
+ERR(-100360, ERR_NOT_IN_CACHE, "[Internal] Entry not found in cache")
 
 // file format
 ERR(-100400, ERR_UNKNOWN_FORMAT, "Unknown file format")

@@ -250,10 +250,12 @@
 
 // compiler support for C99
 // (this is more convenient than testing __STDC_VERSION__ directly)
-#if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901L)
-# define HAVE_C99 1
-#else
-# define HAVE_C99 0
+#define HAVE_C99 0
+#ifdef __STDC_VERSION__
+# if __STDC_VERSION__ >= 199901L
+#  undef HAVE_C99
+#  define HAVE_C99 1
+# endif
 #endif
 
 // gettimeofday()
@@ -288,7 +290,7 @@
 #endif
 
 // GNU-style __asm() blocks (AT&T syntax)
-#if __GNUC__
+#if GCC_VERSION
 # define HAVE_GNU_ASM 1
 #else
 # define HAVE_GNU_ASM 0

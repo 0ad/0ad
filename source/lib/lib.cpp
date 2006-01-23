@@ -232,9 +232,18 @@ int ilog2(const float x)
 // multiple must be a power of two.
 uintptr_t round_up(const uintptr_t n, const uintptr_t multiple)
 {
-	debug_assert(is_pow2((long)multiple));	// also catches divide-by-zero
+	debug_assert(is_pow2((long)multiple));
 	const uintptr_t result = (n + multiple-1) & ~(multiple-1);
 	debug_assert(n <= result && result < n+multiple);
+	return result;
+}
+
+// multiple must be a power of two.
+uintptr_t round_down(const uintptr_t n, const uintptr_t multiple)
+{
+	debug_assert(is_pow2((long)multiple));
+	const uintptr_t result = n & ~(multiple-1);
+	debug_assert(result <= n && n < result+multiple);
 	return result;
 }
 
@@ -316,6 +325,15 @@ u64 u64_from_u32(u32 hi, u32 lo)
 	x |= lo;
 	return x;
 }
+
+u32 u32_from_u16(u16 hi, u16 lo)
+{
+	u32 x = (u32)hi;
+	x <<= 16;
+	x |= lo;
+	return x;
+}
+
 
 
 

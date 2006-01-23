@@ -38,6 +38,36 @@ extern void* single_calloc(void* storage, volatile uintptr_t* in_use_flag, size_
 
 extern void single_free(void* storage, volatile uintptr_t* in_use_flag, void* p);
 
+// C++ wrapper
+#ifdef __cplusplus
+#include "nommgr.h"
+
+// T must be POD (Plain Old Data) because it is memset to 0!
+template<class T> class SingleAllocator
+{
+	T storage;
+	volatile uintptr_t is_in_use;
+
+public:
+	SingleAllocator()
+	{
+		is_in_use = 0;
+	}
+
+	void* alloc()
+	{
+		return single_calloc(&storage, &is_in_use, sizeof(storage));
+	}
+
+	void free(void* p)
+	{
+		single_free(&storage, &is_in_use, p);
+	}
+};
+
+#include "mmgr.h"
+#endif	// #ifdef __cplusplus
+
 
 //
 // dynamic (expandable) array
@@ -106,7 +136,7 @@ extern LibError da_append(DynArray* da, const void* data_src, size_t size);
 
 // design parameters:
 // - O(1) alloc and free;
-// - fixed XOR variable size blocks;
+// - fixed- XOR variable-sized blocks;
 // - doesn't preallocate the entire pool;
 // - returns sequential addresses.
 
@@ -118,13 +148,14 @@ struct Pool
 	// size of elements; see pool_create.
 	size_t el_size;
 
-	// all bytes in da up to this mark are in circulation or freelist.
-	size_t pos;
-
 	// pointer to freelist (opaque); see freelist_*.
 	// never used (remains 0) if elements are of variable size.
 	void* freelist;
 };
+
+// pass as pool_create's <el_size> param to indicate variable-sized allocs
+// are required (see below).
+const size_t POOL_VARIABLE_ALLOCS = 0;
 
 // ready <p> for use. <max_size> is the upper limit [bytes] on
 // pool size (this is how much address space is reserved).
@@ -173,11 +204,17 @@ extern void pool_free_all(Pool* p);
 //
 
 // design goals:
-// - variable-size allocations;
+// - variable-sized allocations;
 // - no reuse of allocations, can only free all at once;
 // - no init necessary;
 // - never relocates;
 // - no fixed limit.
+
+// note: this type of allocator is called "region-based" in the literature.
+// see "Reconsidering Custom Memory Allocation" (Berger, Zorn, McKinley).
+// if individual elements must be freeable, consider "reaps":
+// basically a combination of region and heap, where frees go to the heap and
+// allocs exhaust that memory first and otherwise use the region.
 
 // opaque! do not read/write any fields!
 struct Bucket

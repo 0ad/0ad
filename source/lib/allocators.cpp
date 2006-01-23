@@ -47,7 +47,14 @@ void* single_calloc(void* storage, volatile uintptr_t* in_use_flag, size_t size)
 		p = storage;
 	// already in use (rare) - allocate from heap
 	else
+	{
 		p = malloc(size);
+		if(!p)
+		{
+			debug_warn("out of memory");
+			return 0;
+		}
+	}
 
 	memset(p, 0, size);
 	return p;
@@ -112,8 +119,10 @@ static LibError validate_da(DynArray* da)
 
 	if(debug_is_pointer_bogus(base))
 		return ERR_1;
-	if(!is_page_multiple((uintptr_t)base))
-		return ERR_2;
+	// note: don't check if base is page-aligned -
+	// might not be true for 'wrapped' mem regions.
+//	if(!is_page_multiple((uintptr_t)base))
+//		return ERR_2;
 	if(!is_page_multiple(max_size_pa))
 		return ERR_3;
 	if(cur_size > max_size_pa)
@@ -263,7 +272,7 @@ LibError da_set_size(DynArray* da, size_t new_size)
 	const size_t cur_size_pa = round_up_to_page(da->cur_size);
 	const size_t new_size_pa = round_up_to_page(new_size);
 	if(new_size_pa > da->max_size_pa)
-		CHECK_ERR(ERR_LIMIT);
+		WARN_RETURN(ERR_LIMIT);
 	const ssize_t size_delta_pa = (ssize_t)new_size_pa - (ssize_t)cur_size_pa;
 
 	u8* end = da->base + cur_size_pa;
@@ -288,7 +297,7 @@ LibError da_reserve(DynArray* da, size_t size)
 {
 	// default to page size (the OS won't commit less anyway);
 	// grab more if request requires it.
-	const size_t expand_amount = MIN(4*KiB, size);
+	const size_t expand_amount = MAX(4*KiB, size);
 
 	if(da->pos + size > da->cur_size)
 		return da_set_size(da, da->cur_size + expand_amount);
@@ -351,7 +360,7 @@ LibError da_append(DynArray* da, const void* data, size_t size)
 
 // design parameters:
 // - O(1) alloc and free;
-// - fixed XOR variable size blocks;
+// - fixed- XOR variable-sized blocks;
 // - doesn't preallocate the entire pool;
 // - returns sequential addresses.
 
@@ -392,10 +401,9 @@ static const size_t POOL_CHUNK = 4*KiB;
 LibError pool_create(Pool* p, size_t max_size, size_t el_size)
 {
 	if(el_size != 0 && el_size < sizeof(void*))
-		CHECK_ERR(ERR_INVALID_PARAM);
+		WARN_RETURN(ERR_INVALID_PARAM);
 
 	RETURN_ERR(da_alloc(&p->da, max_size));
-	p->pos = 0;
 	p->el_size = el_size;
 	return ERR_OK;
 }
@@ -419,10 +427,11 @@ LibError pool_destroy(Pool* p)
 bool pool_contains(Pool* p, void* el)
 {
 	// outside of our range
-	if(!(p->da.base <= el && el < p->da.base+p->pos))
+	if(!(p->da.base <= el && el < p->da.base+p->da.pos))
 		return false;
-	// sanity check: it should be aligned
-	debug_assert((uintptr_t)((u8*)el - p->da.base) % p->el_size == 0);
+	// sanity check: it should be aligned (if pool has fixed-size elements)
+	if(p->el_size)
+		debug_assert((uintptr_t)((u8*)el - p->da.base) % p->el_size == 0);
 	return true;
 }
 
@@ -451,8 +460,8 @@ void* pool_alloc(Pool* p, size_t size)
 		if(da_reserve(&p->da, el_size) < 0)
 			return 0;
 
-		el = p->da.base + p->pos;
-		p->pos += el_size;
+		el = p->da.base + p->da.pos;
+		p->da.pos += el_size;
 	}
 
 have_el:
@@ -487,7 +496,7 @@ void pool_free(Pool* p, void* el)
 // underlying memory.
 void pool_free_all(Pool* p)
 {
-	p->pos = 0;
+	p->da.pos = 0;
 	p->freelist = 0;
 }
 
@@ -497,11 +506,17 @@ void pool_free_all(Pool* p)
 //-----------------------------------------------------------------------------
 
 // design goals:
-// - variable-size allocations;
+// - variable-sized allocations;
 // - no reuse of allocations, can only free all at once;
 // - no init necessary;
 // - never relocates;
 // - no fixed limit.
+
+// note: this type of allocator is called "region-based" in the literature.
+// see "Reconsidering Custom Memory Allocation" (Berger, Zorn, McKinley).
+// if individual elements must be freeable, consider "reaps":
+// basically a combination of region and heap, where frees go to the heap and
+// allocs exhaust that memory first and otherwise use the region.
 
 // must be constant and power-of-2 to allow fast modulo.
 const size_t BUCKET_SIZE = 4*KiB;
