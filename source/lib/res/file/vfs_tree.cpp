@@ -7,9 +7,12 @@
 #include <vector>
 #include <algorithm>
 
+#include "lib/allocators.h"
+#include "lib/adts.h"
 #include "../res.h"
 #include "vfs_path.h"
 #include "vfs_tree.h"
+#include "file_cache.h"
 #include "lib/allocators.h"
 
 
@@ -31,6 +34,7 @@
 // TDir  = container holding TFile-s representing a dir. in the tree.
 
 
+static void* node_alloc();
 
 //-----------------------------------------------------------------------------
 // locking
@@ -50,313 +54,216 @@ void tree_unlock()
 }
 
 
-// CONTAINER RATIONALE (see philip discussion)
+//-----------------------------------------------------------------------------
 
-
-struct Mount;
-
-// these must be defined before TNode because it puts them in a union.
-// some TDir member functions access TNode members, so we have to define
-// those later.
-
-struct TFile
+enum TNodeType
 {
+	NT_DIR,
+	NT_FILE
+};
+
+class TNode
+{
+public:
+	TNodeType type;
+
+	//OLD DOC: (for exact_name): used by callers needing the exact case,
+	// e.g. for case-sensitive syscalls; also key for lookup
+	// set by TChildren
+	const char* atom_fn;
+
+	// name component only (points within atom_fn).
+	// alternative is strrchr(atom_fn, '/') on every access - slow.
+	const char* name;
+
+	TNode(TNodeType type_, const char* atom_fn_, const char* name_)
+	{
+		type = type_;
+		atom_fn = atom_fn_;
+		name = name_;
+	}
+};
+
+
+class TFile : public TNode
+{
+public:
 	// required:
 	const Mount* m;
 	// allocated and owned by caller (mount code)
 
-	time_t mtime;
 	off_t size;
+	time_t mtime;
 
-	// note: this is basically the constructor (C++ can't call it directly
-	// since this object is stored in a union)
-	void init()
+	uintptr_t memento;
+
+	TFile(const char* atom_fn, const char* name, const Mount* m_)
+		: TNode(NT_FILE, atom_fn, name)
 	{
-		m = 0;
-		mtime = 0;
+		m = m_;
 		size = 0;
+		mtime = 0;
+		memento = 0;
 	}
 };
 
 
-
-struct TNode;
-
-enum TNodeType
+template<> class DHT_Traits<const char*, TNode*>
 {
-	N_NONE,
-	N_DIR,
-	N_FILE
-};
-
-
-static Bucket node_buckets;
-
-//////////////////////////////////////////////////////////////////////////////
-//
-//
-//
-//////////////////////////////////////////////////////////////////////////////
-
-typedef TNode* T;
-typedef const char* Key;
-
-static const size_t n = 16;
-
-static inline Key GetKey(const T t);
-static inline bool Eq(const Key k1, const Key k2);
-static inline u32 Hash(const Key key);
-
-class DynHashTbl
-{
-	T* tbl;
-	short num_entries;
-	short max_entries;	// when initialized, = 2**n for faster modulo
-
-	bool expand_tbl()
-	{
-		// alloc a new table (but don't assign it to <tbl> unless successful)
-		T* old_tbl = tbl;
-		tbl = (T*)calloc(max_entries*2, sizeof(T));
-		if(!tbl)
-		{
-			tbl = old_tbl;
-			return false;
-		}
-
-		max_entries += max_entries;
-		// must be set before get_slot
-
-		// newly initialized, nothing to copy - done
-		if(!old_tbl)
-			return true;
-
-		// re-hash from old table into the new one
-		for(int i = 0; i < max_entries/2; i++)
-		{
-			T const t = old_tbl[i];
-			if(t)
-				*get_slot(GetKey(t)) = t;
-		}
-		free(old_tbl);
-
-		return true;
-	}
-
-
 public:
-
-	void init()
+	static const size_t initial_entries = 16;
+	size_t hash(const char* key) const
 	{
-		tbl = 0;
-		num_entries = 0;
-		max_entries = n/2;	// will be doubled in expand_tbl
-		expand_tbl();
+		return (size_t)fnv_lc_hash(key);
 	}
-
-	void clear()
+	bool equal(const char* k1, const char* k2) const
 	{
-		free(tbl);
-		tbl = 0;
-		num_entries = max_entries = 0;
+		// exact match
+		if(!strcmp(k1, k2))
+			return true;
+#ifndef NDEBUG
+		// matched except for case: this can have 2 causes:
+		// - intentional. that would be legitimate but doesn't make much
+		//   sense and isn't expected.
+		// - bug, e.g. discarding filename case in a filelist.
+		//   this risks not being able to find the file (since VFS and
+		//   possibly OS are case-sensitive) and wastes memory here.
+		// what we'll do is warn and treat as separate filename
+		// (least surprise).
+		if(!stricmp(k1, k2))
+			debug_warn("filenames differ only in case: bug?");
+#endif
+		return false;
 	}
-
-	// note: add is only called once per file, so we can do the hash
-	// here without duplication
-	T* get_slot(Key key)
+	const char* get_key(TNode* t) const
 	{
-		u32 hash = Hash(key);
-		debug_assert(max_entries != 0);	// otherwise, mask will be incorrect
-		const uint mask = max_entries-1;
-		T* p;
-		for(;;)
-		{
-			p = &tbl[hash & mask];
-			hash++;
-			const T t = *p;
-			if(!t)
-				break;
-			if(Eq(key, GetKey(t)))
-				break;
-		}
-
-		return p;
-	}
-
-	bool add(const Key key, const T t)
-	{
-		// expand before determining slot; this will invalidate previous pnodes.
-		if(num_entries*4 >= max_entries*3)
-		{
-			if(!expand_tbl())
-				return false;
-		}
-
-		// commit
-		*get_slot(key) = t;
-		num_entries++;
-		return true;
-	}
-
-
-	T find(Key key)
-	{
-		return *get_slot(key);
-	}
-
-	size_t size()
-	{
-		return num_entries;
-	}
-
-
-
-
-
-	class iterator
-	{
-	public:
-		typedef std::forward_iterator_tag iterator_category;
-		typedef ::T T;
-		typedef T value_type;
-		typedef ptrdiff_t difference_type;
-		typedef const T* pointer;
-		typedef const T& reference;
-
-		iterator()
-		{
-		}
-		iterator(T* pos_, T* end_) : pos(pos_), end(end_)
-		{
-		}
-		T& operator*() const
-		{
-			return *pos;
-		}
-		iterator& operator++()	// pre
-		{
-			do
-			pos++;
-			while(pos != end && *pos == 0);
-			return (*this);
-		}
-		bool operator==(const iterator& rhs) const
-		{
-			return pos == rhs.pos;
-		}
-		bool operator<(const iterator& rhs) const
-		{
-			return (pos < rhs.pos);
-		}
-
-		// derived
-		const T* operator->() const
-		{
-			return &**this;
-		}
-		bool operator!=(const iterator& rhs) const
-		{
-			return !(*this == rhs);
-		}
-		iterator operator++(int)	// post
-		{
-			iterator tmp =  *this; ++*this; return tmp;
-		}
-
-	protected:
-		T* pos;
-		T* end;
-		// only used when incrementing (avoid going beyond end of table)
-	};
-
-	iterator begin() const
-	{
-		T* pos = tbl;
-		while(pos != tbl+max_entries && *pos == 0)
-			pos++;
-		return iterator(pos, tbl+max_entries);
-	}
-	iterator end() const
-	{
-		return iterator(tbl+max_entries, 0);
+		return t->name;
 	}
 };
-
-typedef DynHashTbl::iterator TChildIt;
-
-
-
-
-
-
+typedef DynHashTbl<const char*, TNode*, DHT_Traits<const char*, TNode*> > TChildren;
+typedef TChildren::iterator TChildrenIt;
 
 enum TDirFlags
 {
 	TD_POPULATED = 1
 };
 
-// must be declared before TNode
-struct TDir
+class TDir : public TNode
 {
 	int flags;	// enum TDirFlags
 
 	RealDir rd;
 
-	DynHashTbl children;
+	TChildren children;
 
-	void init();
-	TNode* find(const char* name, TNodeType desired_type);
-	LibError add(const char* name, TNodeType new_type, TNode** pnode);
-	LibError attach_real_dir(const char* path, int flags, const Mount* new_m);
-	LibError lookup(const char* path, uint flags, TNode** pnode, char* exact_path);
-	void clearR();
-	void displayR(int indent_level);
-};
-
-
-
-
-// can't inherit, since exact_name must come at end of record
-struct TNode
-{
-	// must be at start of TNode to permit casting back and forth!
-	// (see TDir::lookup)
-	union TNodeUnion
+public:
+	TDir(const char* atom_fn, const char* name)
+		: TNode(NT_DIR, atom_fn, name), children()
 	{
-		TDir dir;
-		TFile file;
-	} u;
+		flags = 0;
+		rd.m = 0;
+		rd.watch = 0;
+	}
 
-	TNodeType type;
+	TNode* find(const char* name) const { return children.find(name); }
+	TChildrenIt begin() const { return children.begin(); }
+	TChildrenIt end() const { return children.end(); }
 
-	//used by callers needing the exact case,
-	// e.g. for case-sensitive syscalls; also key for lookup
-	// set by DynHashTbl
-	char exact_name[1];
+	// non-const - caller may change e.g. rd.watch
+	RealDir& get_rd() { return rd; }
+
+	void populate()
+	{
+		// the caller may potentially access this directory.
+		// make sure it has been populated with loose files/directories.
+		if(!(flags & TD_POPULATED))
+		{
+			WARN_ERR(mount_populate(this, &rd));
+			flags |= TD_POPULATED;
+		}
+	}
+
+	LibError add(const char* P_path, TNodeType type, TNode** pnode)
+	{
+		const char* atom_fn = file_make_unique_fn_copy(P_path, 0);
+		const char* slash = strrchr(atom_fn, '/');
+		const char* name = slash? slash+1 : atom_fn;
+
+		if(!path_component_valid(name))
+			return ERR_PATH_INVALID;
+
+		TNode* node = children.find(name);
+		if(node)
+		{
+			if(node->type != type)
+				return (type == NT_FILE)? ERR_NOT_FILE : ERR_NOT_DIR;
+
+			*pnode = node;
+			return INFO_ALREADY_PRESENT;
+		}
+
+		// note: if anything below fails, this mem remains allocated in the
+		// pool, but that "can't happen" and is OK because pool is big enough.
+		void* mem = node_alloc();
+		if(!mem)
+			return ERR_NO_MEM;
+#include "nommgr.h"
+		if(type == NT_FILE)
+			node = new(mem) TFile(atom_fn, name, rd.m);
+		else
+			node = new(mem) TDir(atom_fn, name);
+#include "mmgr.h"
+
+		children.insert(name, node);
+
+		*pnode = node;
+		return ERR_OK;
+	}
+
+	// empty this directory and all subdirectories; used when rebuilding VFS.
+	void clearR()
+	{
+		// recurse for all subdirs
+		// (preorder traversal - need to do this before clearing the list)
+		for(TChildrenIt it = children.begin(); it != children.end(); ++it)
+		{
+			TNode* node = *it;
+			if(node->type == NT_DIR)
+				((TDir*)node)->clearR();
+		}
+
+		// wipe out this directory
+		children.clear();
+
+		// the watch is restored when this directory is repopulated; we must
+		// remove it in case the real directory backing this one was deleted.
+		mount_detach_real_dir(&rd);
+	}
 };
 
 
 
-static inline bool Eq(const Key k1, const Key k2)
+
+
+
+
+static Pool node_pool;
+
+static inline void node_init()
 {
-	return strcmp(k1, k2) == 0;
+	const size_t el_size = MAX(sizeof(TDir), sizeof(TFile));
+	(void)pool_create(&node_pool, VFS_MAX_FILES*el_size, el_size);
 }
 
-static u32 Hash(const Key key)
+static inline void node_shutdown()
 {
-	return fnv_lc_hash(key);
+	(void)pool_destroy(&node_pool);
 }
 
-static inline Key GetKey(const T t)
+static void* node_alloc()
 {
-	return t->exact_name;
+	return pool_alloc(&node_pool, 0);
 }
-
-
-
-
-
-
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -365,71 +272,67 @@ static inline Key GetKey(const T t)
 //
 //////////////////////////////////////////////////////////////////////////////
 
-void TDir::init()
+
+
+static void displayR(TDir* td, int indent_level)
 {
-	flags = 0;
-	rd.m = 0;
-	rd.watch = 0;
-	children.init();
-}
+	const char indent[] = "    ";
 
-TNode* TDir::find(const char* name, TNodeType desired_type)
-{
-	TNode* node = children.find(name);
-	if(node && node->type != desired_type)
-		return 0;
-	return node;
-}
+	TChildrenIt it;
 
-LibError TDir::add(const char* name, TNodeType new_type, TNode** pnode)
-{
-	if(!path_component_valid(name))
-		return ERR_PATH_INVALID;
-
-	// this is legit - when looking up a directory, LF_CREATE_IF_MISSING
-	// calls this *instead of* find (as opposed to only if not found)
-	TNode* node = children.find(name);
-	if(node)
-		goto done;
-
+	// list all files in this dir
+	for(it = td->begin(); it != td->end(); ++it)
 	{
-	const size_t size = sizeof(TNode)+strnlen(name, VFS_MAX_PATH)+1;
-	node = (TNode*)bucket_alloc(&node_buckets, size);
-	if(!node)
-		return ERR_OK;
-	strcpy(node->exact_name, name);	// safe
-	node->type = new_type;
+		TNode* node = (*it);
+		if(node->type != NT_FILE)
+			continue;
+		const char* name = node->name;
 
-	if(!children.add(name, node))
-	{
-		debug_warn("failed to expand table");
-		// node will be freed by node_free_all
-		return ERR_OK;
+		TFile& file = *((TFile*)node);
+		char file_location = mount_get_type(file.m);
+		char* timestamp = ctime(&file.mtime);
+		timestamp[24] = '\0';	// remove '\n'
+		const off_t size = file.size;
+
+		// build format string: tell it how long the filename may be,
+		// so that it takes up all space before file info column.
+		char fmt[25];
+		int chars = 80 - indent_level*(sizeof(indent)-1);
+		sprintf(fmt, "%%-%d.%ds (%%c; %%6d; %%s)\n", chars, chars);
+
+		for(int i = 0; i < indent_level; i++)
+			printf(indent);
+		printf(fmt, name, file_location, size, timestamp);
 	}
 
-	// note: this is called from lookup, which needs to create nodes.
-	// therefore, we need to initialize here.
-	if(new_type == N_FILE)
-		node->u.file.init();
-	else
-		node->u.dir.init();
-	}
+	// recurse over all subdirs
+	for(it = td->begin(); it != td->end(); ++it)
+	{
+		TNode* node = (*it);
+		if(node->type != NT_DIR)
+			continue;
+		const char* subdir_name = node->name;
 
-done:
-	*pnode = node;
-	return ERR_OK;
+		// write subdir's name
+		// note: do it now, instead of in recursive call so that:
+		// - we don't have to pass dir_name parameter;
+		// - the VFS root node isn't displayed.
+		for(int i = 0; i < indent_level; i++)
+			printf(indent);
+		printf("[%s/]\n", subdir_name);
+
+		TDir* subdir = ((TDir*)node);
+		displayR(subdir, indent_level+1);
+	}
 }
 
-LibError TDir::lookup(const char* path, uint flags, TNode** pnode, char* exact_path)
-{
-	// cleared on failure / if returning root dir node (= "")
-	if(exact_path)
-		exact_path[0] = '\0';
 
+static LibError lookup(TDir* td, const char* path, uint flags, TNode** pnode)
+{
 	// early out: "" => return this directory (usually VFS root)
 	if(path[0] == '\0')
 	{
-		*pnode = (TNode*)this;	// HACK: TDir is at start of TNode
+		*pnode = (TNode*)td;	// HACK: TDir is at start of TNode
 		return ERR_OK;
 	}
 
@@ -441,12 +344,11 @@ LibError TDir::lookup(const char* path, uint flags, TNode** pnode, char* exact_p
 
 	// copy into (writeable) buffer so we can 'tokenize' path components
 	// by replacing '/' with '\0'.
-	char v_path[VFS_MAX_PATH];
-	strcpy_s(v_path, sizeof(v_path), path);
-	char* cur_component = v_path;
+	char V_path[VFS_MAX_PATH];
+	strcpy_s(V_path, sizeof(V_path), path);
+	char* cur_component = V_path;
 
-	TDir* td = this;
-	TNodeType type = N_DIR;
+	TNodeType type = NT_DIR;
 
 	// successively navigate to the next component in <path>.
 	TNode* node = 0;
@@ -467,57 +369,38 @@ LibError TDir::lookup(const char* path, uint flags, TNode** pnode, char* exact_p
 				break;
 
 			// it's a filename
-			type = N_FILE;
+			type = NT_FILE;
 		}
 		// normal operation (cur_component is a directory)
 		else
 		{
-			// the caller may potentially access this directory.
-			// make sure it has been populated with loose files/directories.
-			if(!(td->flags & TD_POPULATED))
-			{
-				WARN_ERR(mount_populate(td, &td->rd));
-				td->flags |= TD_POPULATED;
-			}
+			td->populate();
 
 			*slash = '\0';
 		}
 
 		// create <cur_component> (no-op if it already exists)
 		if(create_missing)
-		{
-			RETURN_ERR(td->add(cur_component, type, &node));
-			// this is a hack, but I don't see a better way.
-			// tree_add_file does special "should override" checks and
-			// we are creating a TNode (not TFile or TDir) here,
-			// so we special-case its init.
-			if(type == N_FILE)
-			{
-				node->u.file.m = td->rd.m;
-			}
-		}
+			RETURN_ERR(td->add(V_path, type, &node));
 		else
 		{
-			node = td->find(cur_component, type);
+			node = td->find(cur_component);
 			if(!node)
 				return slash? ERR_PATH_NOT_FOUND : ERR_FILE_NOT_FOUND;
+			if(node->type != type)
+				return slash? ERR_NOT_DIR : ERR_NOT_FILE;
 		}
-		td = &node->u.dir;
-
-		if(exact_path)
-			exact_path += sprintf(exact_path, "%s/", node->exact_name);
-		// no length check needed: length is the same as path
 
 		// cur_component was a filename => we're done
 		if(!slash)
-		{
-			// strip trailing '/' that was added above
-			if(exact_path)
-				exact_path[-1] = '\0';
 			break;
-		}
 		// else: it was a directory; advance
+		// .. undo having replaced '/' with '\0' - this means V_path will
+		//    store the complete path up to and including cur_component.
+		if(cur_component != V_path)
+			cur_component[-1] = '/';
 		cur_component = slash+1;
+		td = (TDir*)node;
 	}
 
 	// success.
@@ -525,78 +408,6 @@ LibError TDir::lookup(const char* path, uint flags, TNode** pnode, char* exact_p
 	return ERR_OK;
 }
 
-// empty this directory and all subdirectories; used when rebuilding VFS.
-void TDir::clearR()
-{
-	// recurse for all subdirs
-	// (preorder traversal - need to do this before clearing the list)
-	for(TChildIt it = children.begin(); it != children.end(); ++it)
-	{
-		TNode* node = *it;
-		if(node->type == N_DIR)
-			node->u.dir.clearR();
-	}
-
-	// wipe out this directory
-	children.clear();
-
-	// the watch is restored when this directory is repopulated; we must
-	// remove it in case the real directory backing this one was deleted.
-	mount_detach_real_dir(&rd);
-}
-
-void TDir::displayR(int indent_level)
-{
-	const char indent[] = "    ";
-
-	TChildIt it;
-
-	// list all files in this dir
-	for(it = children.begin(); it != children.end(); ++it)
-	{
-		TNode* node = (*it);
-		if(node->type != N_FILE)
-			continue;
-
-		TFile& file = node->u.file;
-		const char* name = node->exact_name;
-		char type = mount_get_type(file.m);
-		char* timestamp = ctime(&file.mtime);
-		timestamp[24] = '\0';	// remove '\n'
-		const off_t size = file.size;
-
-		for(int i = 0; i < indent_level; i++)
-			printf(indent);
-		char fmt[25];
-		int chars = 80 - indent_level*(sizeof(indent)-1);
-		sprintf(fmt, "%%-%d.%ds (%%c; %%6d; %%s)\n", chars, chars);
-		// build format string: tell it how long the filename may be,
-		// so that it takes up all space before file info column.
-		printf(fmt, name, type, size, timestamp);
-	}
-
-	// recurse over all subdirs
-	for(it = children.begin(); it != children.end(); ++it)
-	{
-		TNode* node = (*it);
-		if(node->type != N_DIR)
-			continue;
-
-		TDir& subdir = node->u.dir;
-		const char* subdir_name = node->exact_name;
-
-		// write subdir's name
-		// note: do it now, instead of in recursive call so that:
-		// - we don't have to pass dir_name parameter;
-		// - the VFS root node isn't displayed.
-		for(int i = 0; i < indent_level; i++)
-			printf(indent);
-		printf("[%s/]\n", subdir_name);
-
-		subdir.displayR(indent_level+1);
-	}
-}
-
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -604,98 +415,96 @@ void TDir::displayR(int indent_level)
 //
 //////////////////////////////////////////////////////////////////////////////
 
-static TNode tree_root;
-	// => exact_name = ""
-static TDir* tree_root_dir = &tree_root.u.dir;
-
-
-void tree_clear()
-{
-	tree_root_dir->clearR();
-}
+static TDir tree_root(0, 0);
 
 // rationale: can't do this in tree_shutdown - we'd leak at exit.
 // calling from tree_add* is ugly as well, so require manual init.
 void tree_init()
 {
-	tree_root_dir->init();
+	node_init();
 }
 
 
 void tree_shutdown()
 {
-	bucket_free_all(&node_buckets);
+	node_shutdown();
+}
+
+
+void tree_clear()
+{
+	tree_root.clearR();
 }
 
 
 // write a representation of the VFS tree to stdout.
 void tree_display()
 {
-	tree_root_dir->displayR(0);
+	displayR(&tree_root, 0);
 }
 
 
-
-
-
-LibError tree_add_file(TDir* td, const char* name, const Mount* m,
-	off_t size, time_t mtime)
+LibError tree_add_file(TDir* td, const char* P_path,
+	const Mount* m, off_t size, time_t mtime, uintptr_t memento)
 {
 	TNode* node;
-	RETURN_ERR(td->add(name, N_FILE, &node));
-	TFile* tf = &node->u.file;
+	LibError ret = td->add(P_path, NT_FILE, &node);
+	RETURN_ERR(ret);
+	if(ret == INFO_NO_REPLACE)
+	{
+		// assume they're the same if size and last-modified time match.
+		// note: FAT timestamp only has 2 second resolution
+		TFile* tf = (TFile*)node;
+		const bool is_same = (tf->size == size) &&
+			fabs(difftime(tf->mtime, mtime)) <= 2.0;
+		if(!mount_should_replace(tf->m, m, is_same))
+			return INFO_NO_REPLACE;
+	}
 
-	// assume they're the same if size and last-modified time match.
-	// note: FAT timestamp only has 2 second resolution
-	const bool is_same = (tf->size == size) &&
-		fabs(difftime(tf->mtime, mtime)) <= 2.0;
-	if(!mount_should_replace(tf->m, m, is_same))
-		return INFO_NO_REPLACE;
-
-	tf->m     = m;
-	tf->mtime = mtime;
-	tf->size  = size;
+	TFile* tf = (TFile*)node;
+	tf->m       = m;
+	tf->mtime   = mtime;
+	tf->size    = size;
+	tf->memento = memento;
 	return ERR_OK;
 }
 
 
-LibError tree_add_dir(TDir* td, const char* name, TDir** ptd)
+LibError tree_add_dir(TDir* td, const char* P_path, TDir** ptd)
 {
 	TNode* node;
-	RETURN_ERR(td->add(name, N_DIR, &node));
-	*ptd = &node->u.dir;
+	RETURN_ERR(td->add(P_path, NT_DIR, &node));
+	*ptd = (TDir*)node;
 	return ERR_OK;
 }
 
 
 
-
-
-LibError tree_lookup_dir(const char* path, TDir** ptd, uint flags, char* exact_path)
+LibError tree_lookup_dir(const char* path, TDir** ptd, uint flags)
 {
 	// path is not a directory; TDir::lookup might return a file node
 	if(path[0] != '\0' && path[strlen(path)-1] != '/')
 		return ERR_NOT_DIR;
 
-	TDir* td = (flags & LF_START_DIR)? *ptd : tree_root_dir;
+	TDir* td = (flags & LF_START_DIR)? *ptd : &tree_root;
 	TNode* node;
-	CHECK_ERR(td->lookup(path, flags, &node, exact_path));
+	CHECK_ERR(lookup(td, path, flags, &node));
 		// directories should exist, so warn if this fails
-	*ptd = &node->u.dir;
+	*ptd = (TDir*)node;
 	return ERR_OK;
 }
 
 
-LibError tree_lookup(const char* path, TFile** pfile, uint flags, char* exact_path)
+LibError tree_lookup(const char* path, TFile** pfile, uint flags)
 {
 	// path is not a file; TDir::lookup might return a directory node
 	if(path[0] == '\0' || path[strlen(path)-1] == '/')
 		return ERR_NOT_FILE;
 
 	TNode* node;
-	LibError ret = tree_root_dir->lookup(path, flags, &node, exact_path);
+	LibError ret = lookup(&tree_root, path, flags, &node);
 	RETURN_ERR(ret);
-	*pfile = &node->u.file;
+	*pfile = (TFile*)node;
 	return ERR_OK;
 }
 
@@ -708,10 +517,10 @@ LibError tree_lookup(const char* path, TFile** pfile, uint flags, char* exact_pa
 // rationale: see DirIterator definition in file.h.
 struct TreeDirIterator_
 {
-	DynHashTbl::iterator it;
+	TChildren::iterator it;
 
 	// cache end() to avoid needless copies
-	DynHashTbl::iterator end;
+	TChildren::iterator end;
 
 	// the directory we're iterating over; this is used to lock/unlock it,
 	// i.e. prevent modifications that would invalidate the iterator.
@@ -737,8 +546,8 @@ LibError tree_dir_open(const char* path_slash, TreeDirIterator* d_)
 	// more overhead (we have hundreds of directories) and is unnecessary.
 	tree_lock();
 
-	d->it  = td->children.begin();
-	d->end = td->children.end();
+	d->it  = td->begin();
+	d->end = td->end();
 	d->td  = td;
 	return ERR_OK;
 }
@@ -752,19 +561,22 @@ LibError tree_dir_next_ent(TreeDirIterator* d_, DirEnt* ent)
 		return ERR_DIR_END;
 
 	const TNode* node = *(d->it++);
-	ent->name = node->exact_name;
+	ent->name = node->name;
 
 	// set size and mtime fields depending on node type:
 	switch(node->type)
 	{
-	case N_DIR:
+	case NT_DIR:
 		ent->size = -1;
 		ent->mtime = 0;	// not currently supported for dirs
 		break;
-	case N_FILE:
-		ent->size  = node->u.file.size;
-		ent->mtime = node->u.file.mtime;
+	case NT_FILE:
+	{
+		TFile* tf = (TFile*)node;
+		ent->size  = tf->size;
+		ent->mtime = tf->mtime;
 		break;
+	}
 	default:
 		debug_warn("invalid TNode type");
 	}
@@ -786,10 +598,21 @@ LibError tree_dir_close(TreeDirIterator* UNUSED(d))
 //-----------------------------------------------------------------------------
 // get/set
 
-const Mount* tree_get_mount(const TFile* tf)
+const Mount* tfile_get_mount(const TFile* tf)
 {
 	return tf->m;
 }
+
+uintptr_t tfile_get_memento(const TFile* tf)
+{
+	return tf->memento;
+}
+
+const char* tfile_get_atom_fn(const TFile* tf)
+{
+	return ((TNode*)tf)->atom_fn;
+}
+
 
 
 void tree_update_file(TFile* tf, off_t size, time_t mtime)
@@ -814,5 +637,5 @@ LibError tree_stat(const TFile* tf, struct stat* s)
 
 RealDir* tree_get_real_dir(TDir* td)
 {
-	return &td->rd;
+	return &td->get_rd();
 }

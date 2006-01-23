@@ -75,7 +75,7 @@ struct Mount
 	~Mount()
 	{
 		if(archive > 0)	// avoid h_mgr warning
-			zip_archive_close(archive);
+			archive_close(archive);
 	}
 
 	Mount& operator=(const Mount& rhs)
@@ -153,7 +153,7 @@ bool mount_should_replace(const Mount* m_old, const Mount* m_new, bool files_are
 static const Mount& add_mount(const char* V_mount_point, const char* P_real_path, Handle archive,
 	uint flags, uint pri);
 
-// passed through dirent_cb's zip_enum to zip_cb
+// passed through dirent_cb's afile_enum to afile_cb
 struct ZipCBParams
 {
 	// tree directory into which we are adding the archive's files
@@ -163,7 +163,7 @@ struct ZipCBParams
 	const Mount* const m;
 
 	// storage for directory lookup optimization (see below).
-	// held across one zip_enum's zip_cb calls.
+	// held across one afile_enum's afile_cb calls.
 	char last_path[VFS_MAX_PATH];
 	size_t last_path_len;
 	TDir* last_td;
@@ -180,33 +180,27 @@ private:
 	ZipCBParams& operator=(const ZipCBParams&);
 };
 
-// called by add_ent's zip_enum for each file in the archive.
+// called by add_ent's afile_enum for each file in the archive.
 // we get the full path, since that's what is stored in Zip archives.
 //
 // [total time 21ms, with ~2000 file's (includes add_file cost)]
-static LibError zip_cb(const char* path, const struct stat* s, uintptr_t user)
+static LibError afile_cb(const char* path, const struct stat* s, uintptr_t memento, uintptr_t user)
 {
 	CHECK_PATH(path);
 
 	ZipCBParams* params = (ZipCBParams*)user;
-	TDir* td             = params->td;
+	TDir* td              = params->td;
 	const Mount* m        = params->m;
 	char* last_path       = params->last_path;
 	size_t& last_path_len = params->last_path_len;
-	TDir*& last_td       = params->last_td;
-
-	// extract file name (needed for add_file)
-	const char* fn = path;
-	const char* slash = strrchr(path, '/');
-	if(slash)
-		fn = slash+1;
-	// else: there is no path - it's in the archive's root td.
+	TDir*& last_td        = params->last_td;
 
 	// into which directory should the file be inserted?
 	// naive approach: tree_lookup_dir the path (slow!)
 	// optimization: store the last file's path; if it's the same,
 	//   use the directory we looked up last time (much faster!)
-	const size_t path_len = fn-path;
+	const char* slash = strrchr(path, '/');
+	const size_t path_len = slash? (slash-path+1) : 0;
 	// .. same as last time
 	if(last_td && path_len == last_path_len &&
 		strnicmp(path, last_path, path_len) == 0)
@@ -228,7 +222,7 @@ static LibError zip_cb(const char* path, const struct stat* s, uintptr_t user)
 		last_td = td;
 	}
 
-	WARN_ERR(tree_add_file(td, fn, m, s->st_size, s->st_mtime));
+	WARN_ERR(tree_add_file(td, path, m, s->st_size, s->st_mtime, memento));
 	return INFO_CB_CONTINUE;
 }
 
@@ -247,15 +241,13 @@ typedef Archives::const_iterator ArchiveCIt;
 // was successfully added to the list. see comments below.
 static LibError enqueue_archive(const char* name, const char* P_archive_dir, Archives* archives)
 {
-archives=0;// HACK HACK HACK: disables zip files (WIP)
-
 	// caller doesn't want us to check if this is a Zip file. this is the
 	// case in all subdirectories of the mount point, since checking for all
 	// mounted files would be slow. see mount_dir_tree.
 	if(!archives)
 		return INFO_SKIPPED;
 
-	// get complete path for zip_archive_open.
+	// get complete path for afile_archive_open.
 	// this doesn't (need to) work for subdirectories of the mounted td!
 	// we can't use mount_get_path because we don't have the VFS path.
 	char P_path[PATH_MAX];
@@ -264,7 +256,7 @@ archives=0;// HACK HACK HACK: disables zip files (WIP)
 	// just open the Zip file and see if it's valid. we don't bother
 	// checking the extension because archives won't necessarily be
 	// called .zip (e.g. Quake III .pk3).
-	Handle archive = zip_archive_open(P_path);
+	Handle archive = archive_open(P_path);
 	RETURN_ERR(archive);
 	archives->push_back(archive);
 
@@ -276,7 +268,7 @@ archives=0;// HACK HACK HACK: disables zip files (WIP)
 static LibError mount_archive(TDir* td, const Mount& m)
 {
 	ZipCBParams params(td, &m);
-	zip_enum(m.archive, zip_cb, (uintptr_t)&params);
+	archive_enum(m.archive, afile_cb, (uintptr_t)&params);
 	return ERR_OK;
 }
 
@@ -345,9 +337,9 @@ static LibError enqueue_dir(TDir* parent_td, const char* name,
 
 	// create subdirectory..
 	TDir* td;
-	CHECK_ERR(tree_add_dir(parent_td, name, &td));
+	CHECK_ERR(tree_add_dir(parent_td, P_path, &td));
 	// .. and add it to the list of directories to visit.
-	dir_queue->push_back(TDirAndPath(td, const_cast<const char*>(P_path)));
+	dir_queue->push_back(TDirAndPath(td, P_path));
 	return ERR_OK;
 }
 
@@ -385,8 +377,12 @@ static LibError add_ent(TDir* td, DirEnt* ent, const char* P_parent_path, const 
 	if(enqueue_archive(name, m->P_name.c_str(), archives) == ERR_OK)
 		return ERR_OK;
 
+	// prepend parent path to get complete pathname.
+	char P_path[PATH_MAX];
+	CHECK_ERR(vfs_path_append(P_path, P_parent_path, name));
+
 	// it's a regular data file; add it to the directory.
-	return tree_add_file(td, name, m, ent->size, ent->mtime);
+	return tree_add_file(td, P_path, m, ent->size, ent->mtime, 0);
 }
 
 
@@ -591,14 +587,14 @@ LibError vfs_mount(const char* V_mount_point, const char* P_real_path, int flags
 	for(MountIt it = mounts.begin(); it != mounts.end(); ++it)
 	{
 		if(file_is_subpath(P_real_path, it->P_name.c_str()))
-			CHECK_ERR(ERR_ALREADY_MOUNTED);
+			WARN_RETURN(ERR_ALREADY_MOUNTED);
 	}
 
 	// disallow "." because "./" isn't supported on Windows.
 	// it would also create a loophole for the parent td check above.
 	// "./" and "/." are caught by CHECK_PATH.
 	if(!strcmp(P_real_path, "."))
-		CHECK_ERR(ERR_PATH_INVALID);
+		WARN_RETURN(ERR_PATH_INVALID);
 
 	const Mount& m = add_mount(V_mount_point, P_real_path, 0, flags, pri);
 	return remount(m);
@@ -732,7 +728,7 @@ LibError mount_populate(TDir* td, RealDir* rd)
 
 
 
-// rationale for not using virtual functions for file_open vs zip_open:
+// rationale for not using virtual functions for file_open vs afile_open:
 // it would spread out the implementation of each function and makes
 // keeping them in sync harder. we will very rarely add new sources and
 // all these functions are in one spot anyway.
@@ -740,7 +736,7 @@ LibError mount_populate(TDir* td, RealDir* rd)
 
 // given a Mount, return the actual location (portable path) of
 // <V_path>. used by vfs_realpath and VFile_reopen.
-LibError x_realpath(const Mount* m, const char* V_exact_path, char* P_real_path)
+LibError x_realpath(const Mount* m, const char* V_path, char* P_real_path)
 {
 	const char* P_parent_path = 0;
 
@@ -758,15 +754,16 @@ LibError x_realpath(const Mount* m, const char* V_exact_path, char* P_real_path)
 
 	const char* remove = m->V_mount_point.c_str();
 	const char* replace = P_parent_path;
-	return path_replace(P_real_path, V_exact_path, remove, replace);
+	return path_replace(P_real_path, V_path, remove, replace);
 }
 
 
 
-LibError x_open(const Mount* m, const char* V_exact_path, int flags, TFile* tf, XFile* xf)
+LibError x_open(const Mount* m, const char* V_path, int flags, TFile* tf, XFile* xf)
 {
 	// declare variables used in the switch below to avoid needing {}.
 	char P_path[PATH_MAX];
+	uintptr_t memento = 0;
 
 	switch(m->type)
 	{
@@ -776,10 +773,11 @@ LibError x_open(const Mount* m, const char* V_exact_path, int flags, TFile* tf, 
 			debug_warn("requesting write access to file in archive");
 			return ERR_NOT_IMPLEMENTED;
 		}
-		RETURN_ERR(zip_open(m->archive, V_exact_path, flags, &xf->u.zf));
+		memento = tfile_get_memento(tf);
+		RETURN_ERR(afile_open(m->archive, V_path, memento, flags, &xf->u.zf));
 		break;
 	case MT_FILE:
-		CHECK_ERR(x_realpath(m, V_exact_path, P_path));
+		CHECK_ERR(x_realpath(m, V_path, P_path));
 		RETURN_ERR(file_open(P_path, flags, &xf->u.f));
 		break;
 	default:
@@ -804,7 +802,7 @@ LibError x_close(XFile* xf)
 		return ERR_OK;
 
 	case MT_ARCHIVE:
-		(void)zip_close(&xf->u.zf);
+		(void)afile_close(&xf->u.zf);
 		break;
 	case MT_FILE:
 		(void)file_close(&xf->u.f);
@@ -815,8 +813,8 @@ LibError x_close(XFile* xf)
 
 	// update file state in VFS tree
 	// (must be done after close, since that calculates the size)
-	if(xf->u.f.flags & FILE_WRITE)	// xxx what about other types?
-		tree_update_file(xf->tf, xf->u.f.size, time(0));	// can't fail
+	if(xf->u.fc.flags & FILE_WRITE)
+		tree_update_file(xf->tf, xf->u.fc.size, time(0));	// can't fail
 
 	xf->type = MT_NONE;
 	return ERR_OK;
@@ -843,7 +841,7 @@ LibError x_validate(const XFile* xf)
 		// cannot be modified), but it's not ATM.
 		if(xf->tf == 0)
 			return ERR_13;
-		return zip_validate(&xf->u.zf);
+		return afile_validate(&xf->u.zf);
 
 	default:
 		return ERR_INVALID_MOUNT_TYPE;
@@ -858,76 +856,24 @@ bool x_is_open(const XFile* xf)
 }
 
 
-cassert(offsetof(struct File, size ) == offsetof(struct ZFile, ucsize));
-cassert(offsetof(struct File, flags) == offsetof(struct ZFile, flags));
-
 // VFile was exceeding HDATA_USER_SIZE. flags and size (required
 // in File as well as VFile) are now moved into the union.
 // use the functions below to insulate against change a bit.
 
 off_t x_size(const XFile* xf)
 {
-	return xf->u.f.size;
+	return xf->u.fc.size;
 }
 
 
 void x_set_flags(XFile* xf, uint flags)
 {
-	xf->u.f.flags = flags;
+	xf->u.fc.flags = flags;
 }
 
 uint x_flags(const XFile* xf)
 {
-	return xf->u.f.flags;
-}
-
-
-
-ssize_t x_io(XFile* xf, off_t ofs, size_t size, void* buf, FileIOCB cb, uintptr_t ctx)
-{
-	switch(xf->type)
-	{
-	case MT_ARCHIVE:
-		// (vfs_open makes sure it's not opened for writing if zip)
-		return zip_read(&xf->u.zf, ofs, size, buf, cb, ctx);
-
-	case MT_FILE:
-		// normal file:
-		// let file_io alloc the buffer if the caller didn't (i.e. p = 0),
-		// because it knows about alignment / padding requirements
-		return file_io(&xf->u.f, ofs, size, buf, cb, ctx);
-
-	default:
-		WARN_RETURN(ERR_INVALID_MOUNT_TYPE);
-	}
-}
-
-
-LibError x_map(XFile* xf, void*& p, size_t& size)
-{
-	switch(xf->type)
-	{
-	case MT_ARCHIVE:
-		return zip_map(&xf->u.zf, p, size);
-	case MT_FILE:
-		return file_map(&xf->u.f, p, size);
-	default:
-		WARN_RETURN(ERR_INVALID_MOUNT_TYPE);
-	}
-}
-
-
-LibError x_unmap(XFile* xf)
-{
-	switch(xf->type)
-	{
-	case MT_ARCHIVE:
-		return zip_unmap(&xf->u.zf);
-	case MT_FILE:
-		return file_unmap(&xf->u.f);
-	default:
-		WARN_RETURN(ERR_INVALID_MOUNT_TYPE);
-	}
+	return xf->u.fc.flags;
 }
 
 
@@ -937,7 +883,7 @@ LibError x_io_issue(XFile* xf, off_t ofs, size_t size, void* buf, XIo* xio)
 	switch(xio->type)
 	{
 	case MT_ARCHIVE:
-		return zip_io_issue(&xf->u.zf, ofs, size, buf, &xio->u.zio);
+		return afile_io_issue(&xf->u.zf, ofs, size, buf, &xio->u.zio);
 	case MT_FILE:
 		return file_io_issue(&xf->u.f, ofs, size, buf, &xio->u.fio);
 	default:
@@ -951,7 +897,7 @@ int x_io_has_completed(XIo* xio)
 	switch(xio->type)
 	{
 	case MT_ARCHIVE:
-		return zip_io_has_completed(&xio->u.zio);
+		return afile_io_has_completed(&xio->u.zio);
 	case MT_FILE:
 		return file_io_has_completed(&xio->u.fio);
 	default:
@@ -965,7 +911,7 @@ LibError x_io_wait(XIo* xio, void*& p, size_t& size)
 	switch(xio->type)
 	{
 	case MT_ARCHIVE:
-		return zip_io_wait(&xio->u.zio, p, size);
+		return afile_io_wait(&xio->u.zio, p, size);
 	case MT_FILE:
 		return file_io_wait(&xio->u.fio, p, size);
 	default:
@@ -979,7 +925,7 @@ LibError x_io_discard(XIo* xio)
 	switch(xio->type)
 	{
 	case MT_ARCHIVE:
-		return zip_io_discard(&xio->u.zio);
+		return afile_io_discard(&xio->u.zio);
 	case MT_FILE:
 		return file_io_discard(&xio->u.fio);
 	default:
@@ -993,11 +939,59 @@ LibError x_io_validate(const XIo* xio)
 	switch(xio->type)
 	{
 	case MT_ARCHIVE:
-		return zip_io_validate(&xio->u.zio);
+		return afile_io_validate(&xio->u.zio);
 	case MT_FILE:
 		return file_io_validate(&xio->u.fio);
 	default:
 		return ERR_INVALID_MOUNT_TYPE;
 	}
 	UNREACHABLE;
+}
+
+
+ssize_t x_io(XFile* xf, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb, uintptr_t ctx)
+{
+	switch(xf->type)
+	{
+	case MT_ARCHIVE:
+		// (vfs_open makes sure it's not opened for writing if zip)
+		return afile_read(&xf->u.zf, ofs, size, pbuf, cb, ctx);
+
+	case MT_FILE:
+		// normal file:
+		// let file_io alloc the buffer if the caller didn't (i.e. p = 0),
+		// because it knows about alignment / padding requirements
+		return file_io(&xf->u.f, ofs, size, pbuf, cb, ctx);
+
+	default:
+		WARN_RETURN(ERR_INVALID_MOUNT_TYPE);
+	}
+}
+
+
+LibError x_map(XFile* xf, void*& p, size_t& size)
+{
+	switch(xf->type)
+	{
+	case MT_ARCHIVE:
+		return afile_map(&xf->u.zf, p, size);
+	case MT_FILE:
+		return file_map(&xf->u.f, p, size);
+	default:
+		WARN_RETURN(ERR_INVALID_MOUNT_TYPE);
+	}
+}
+
+
+LibError x_unmap(XFile* xf)
+{
+	switch(xf->type)
+	{
+	case MT_ARCHIVE:
+		return afile_unmap(&xf->u.zf);
+	case MT_FILE:
+		return file_unmap(&xf->u.f);
+	default:
+		WARN_RETURN(ERR_INVALID_MOUNT_TYPE);
+	}
 }

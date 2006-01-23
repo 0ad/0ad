@@ -22,6 +22,8 @@
 
 #include "posix.h"		// struct stat
 
+extern LibError file_init();
+
 // convenience "class" that simplifies successively appending a filename to
 // its parent directory. this avoids needing to allocate memory and calling
 // strlen/strcat. used by wdetect and dir_next_ent.
@@ -84,6 +86,13 @@ extern LibError file_make_full_portable_path(const char* n_full_path, char* path
 //
 // can only be called once, by design (see below). rel_path is trusted.
 extern LibError file_set_root_dir(const char* argv0, const char* rel_path);
+
+
+// allocate a copy of P_fn in our string pool. strings are equal iff
+// their addresses are equal, thus allowing fast comparison.
+// fn_len can be 0 to indicate P_fn is a null-terminated C string
+// (normal case) or the string length [characters].
+extern const char* file_make_unique_fn_copy(const char* P_fn, size_t fn_len);
 
 
 //
@@ -150,7 +159,7 @@ extern LibError dir_close(DirIterator* d);
 // name doesn't include path!
 // return INFO_CB_CONTINUE to continue calling; anything else will cause
 // file_enum to abort and immediately return that value.
-typedef LibError (*FileCB)(const char* name, const struct stat* s, const uintptr_t user);
+typedef LibError (*FileCB)(const char* name, const struct stat* s, uintptr_t memento, const uintptr_t user);
 
 // call <cb> for each file and subdirectory in <dir> (alphabetical order),
 // passing the entry name (not full path!), stat info, and <user>.
@@ -162,17 +171,22 @@ extern LibError file_enum(const char* dir, FileCB cb, uintptr_t user);
 
 
 
-
-struct File
+struct FileCommon
 {
-	// keep offset of flags and size members in sync with struct ZFile!
-	// it is accessed by VFS and must be the same for both (union).
-	// dirty, but necessary because VFile is pushing the HDATA size limit.
+// keep offset of flags and size members in sync with struct AFile!
+// it is accessed by VFS and must be the same for both (union).
+// dirty, but necessary because VFile is pushing the HDATA size limit.
 	uint flags;
 	off_t size;
 
-	// used together with offset to uniquely identify cached blocks.
-	u32 fn_hash;
+	// copy of the filename that was passed to file_open;
+	// its address uniquely identifies it. used as key for file cache.
+	const char* atom_fn;
+};
+
+struct File
+{
+	FileCommon fc;
 
 	int fd;
 
@@ -184,7 +198,10 @@ struct File
 
 enum
 {
-	// write-only access; otherwise, read only
+	// write-only access; otherwise, read only.
+	//
+	// note: only allowing either reads or writes simplifies file cache
+	// coherency (need only invalidate when closing a FILE_WRITE file).
 	FILE_WRITE        = 0x01,
 
 	// translate newlines: convert from/to native representation when
@@ -226,28 +243,36 @@ extern LibError file_validate(const File* f);
 
 
 // remove all blocks loaded from the file <fn>. used when reloading the file.
-extern LibError file_invalidate_cache(const char* fn);
+extern LibError file_cache_invalidate(const char* fn);
 
 
 //
 // asynchronous IO
 //
 
+// this is a thin wrapper on top of the system AIO calls.
+// IOs are carried out exactly as requested - there is no caching or
+// alignment done here. rationale: see source.
+
 struct FileIo
 {
 	void* cb;
 };
 
+// queue the IO; it begins after the previous ones (if any) complete.
+//
 // rationale: this interface is more convenient than implicitly advancing a
-// file pointer because zip.cpp often accesses random offsets.
+// file pointer because archive.cpp often accesses random offsets.
 extern LibError file_io_issue(File* f, off_t ofs, size_t size, void* buf, FileIo* io);
 
 // indicates if the given IO has completed.
 // return value: 0 if pending, 1 if complete, < 0 on error.
 extern int file_io_has_completed(FileIo* io);
 
-extern LibError file_io_wait(FileIo* io, void*& p, size_t& size);
+// wait for the given IO to complete. passes back its buffer and size.
+extern LibError file_io_wait(FileIo* io, const void*& p, size_t& size);
 
+// indicates the IO's buffer is no longer needed and frees that memory.
 extern LibError file_io_discard(FileIo* io);
 
 extern LibError file_io_validate(const FileIo* io);
@@ -257,14 +282,34 @@ extern LibError file_io_validate(const FileIo* io);
 // synchronous IO
 //
 
-// user-specified offsets and transfer lengths must be multiples of this!
-// (simplifies file_io)
-const size_t FILE_BLOCK_SIZE = 64*KiB;
+// block := power-of-two sized chunk of a file.
+// all transfers are expanded to naturally aligned, whole blocks
+// (this makes caching parts of files feasible; it is also much faster
+// for some aio implementations, e.g. wposix).
+const size_t FILE_BLOCK_SIZE = 16*KiB;
 
-// return value:
-// < 0: failed; abort transfer.
-// >= 0: bytes output; continue.
-typedef ssize_t (*FileIOCB)(uintptr_t ctx, void* p, size_t size);
+
+typedef const u8* FileIOBuf;
+
+FileIOBuf* const FILE_BUF_TEMP = (FileIOBuf*)1;
+const FileIOBuf FILE_BUF_ALLOC = (FileIOBuf)2;
+
+extern FileIOBuf file_buf_alloc(size_t size, const char* atom_fn);
+extern LibError file_buf_free(FileIOBuf buf);
+
+
+// called by file_io after a block IO has completed.
+// *bytes_processed must be set; file_io will return the sum of these values.
+// example: when reading compressed data and decompressing in the callback,
+// indicate #bytes decompressed.
+// return value: INFO_CB_CONTINUE to continue calling; anything else:
+//   abort immediately and return that.
+// note: in situations where the entire IO is not split into blocks
+// (e.g. when reading from cache or not using AIO), this is still called but
+// for the entire IO. we do not split into fake blocks because it is
+// advantageous (e.g. for decompressors) to have all data at once, if available
+// anyway.
+typedef LibError (*FileIOCB)(uintptr_t ctx, const void* block, size_t size, size_t* bytes_processed);
 
 // transfer <size> bytes, starting at <ofs>, to/from the given file.
 // (read or write access was chosen at file-open time).
@@ -277,8 +322,10 @@ typedef ssize_t (*FileIOCB)(uintptr_t ctx, void* p, size_t size);
 // (quasi-parallel, without the complexity of threads).
 //
 // return number of bytes transferred (see above), or a negative error code.
-extern ssize_t file_io(File* f, off_t ofs, size_t size, void* buf, FileIOCB cb = 0, uintptr_t ctx = 0);
+extern ssize_t file_io(File* f, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb = 0, uintptr_t ctx = 0);
 
+extern ssize_t file_read_from_cache(const char* atom_fn, off_t ofs, size_t size,
+	FileIOBuf* pbuf, FileIOCB cb, uintptr_t ctx);
 
 //
 // memory mapping

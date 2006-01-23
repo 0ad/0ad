@@ -78,7 +78,7 @@ LibError path_validate(const uint line, const char* path)
 	}
 
 fail:
-	debug_printf("%s called from line %d failed: %s\n", __func__, line, msg);
+	debug_printf("%s called from line %u failed: %s\n", __func__, line, msg);
 	debug_warn("failed");
 	return ERR_FAIL;
 

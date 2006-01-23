@@ -19,11 +19,13 @@
 #ifndef VFS_TREE_H__
 #define VFS_TREE_H__
 
+class TFile;	// must come before vfs_mount.h
+class TDir;
+
 #include "file.h"		// DirEnt
 #include "vfs_mount.h"	// Mount
 
-struct TFile;
-struct TDir;
+
 
 extern void tree_init();
 extern void tree_shutdown();
@@ -42,9 +44,11 @@ extern void tree_clear();
 // note: if "priority" is the same, replace!
 // this makes sure mods/patches etc. actually replace files.
 extern LibError tree_add_file(TDir* td, const char* fn, const Mount* m,
-	off_t size, time_t mtime);
+	off_t size, time_t mtime, uintptr_t memento);
 
-extern LibError tree_add_dir(TDir* dir, const char* name, TDir** ptd);
+extern LibError tree_add_dir(TDir* dir, const char* P_path, TDir** ptd);
+
+
 
 enum TreeLookupFlags
 {
@@ -57,13 +61,10 @@ enum TreeLookupFlags
 // if <flags> & LF_CREATE_MISSING, the file is added to VFS unless
 //   a higher-priority file of the same name already exists
 //   (used by VFile_reload when opening for writing).
-// if <exact_path> != 0, it receives a copy of <path> with the exact
-//   case of each component as returned by the OS (useful for calling
-//   external case-sensitive code). must hold at least VFS_MAX_PATH chars.
 //
 // return 0 on success, or a negative error code
 // (in which case output params are undefined).
-extern LibError tree_lookup(const char* path, TFile** ptf, uint flags = 0, char* exact_path = 0);
+extern LibError tree_lookup(const char* path, TFile** ptf, uint flags = 0);
 
 // starting at VFS root, traverse <path> and pass back information
 // for its last directory component.
@@ -72,16 +73,13 @@ extern LibError tree_lookup(const char* path, TFile** ptf, uint flags = 0, char*
 //   added to the VFS.
 // if <flags> & LF_START_DIR, traversal starts at *pdir
 //   (used when looking up paths relative to a mount point).
-// if <exact_path> != 0, it receives a copy of <path> with the exact
-//   case of each component as returned by the OS (useful for calling
-//   external case-sensitive code). must hold at least VFS_MAX_PATH chars.
 //
 // <path> can be to a file or dir (in which case it must end in '/',
 // to make sure the last component is treated as a directory).
 //
 // return 0 on success, or a negative error code
 // (in which case output params are undefined).
-extern LibError tree_lookup_dir(const char* path, TDir** ptd, uint flags = 0, char* exact_path = 0);
+extern LibError tree_lookup_dir(const char* path, TDir** ptd, uint flags = 0);
 
 
 // documentation and rationale: see file.h's dir_next_ent interface
@@ -102,7 +100,9 @@ extern LibError tree_realpath(TFile* tf, const char* V_path, char* P_real_path);
 
 extern LibError tree_stat(const TFile* tf, struct stat* s);
 
-extern const Mount* tree_get_mount(const TFile* tf);
+extern const Mount* tfile_get_mount(const TFile* tf);
+extern uintptr_t tfile_get_memento(const TFile* tf);
+extern const char* tfile_get_atom_fn(const TFile* tf);
 
 extern void tree_update_file(TFile* tf, off_t size, time_t mtime);
 

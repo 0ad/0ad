@@ -1,13 +1,14 @@
 #ifndef VFS_MOUNT_H__
 #define VFS_MOUNT_H__
 
+struct Mount;	// must come before vfs_tree.h
+
 #include "file.h"
 #include "zip.h"
+#include "vfs_tree.h"
 
 extern void mount_init();
 extern void mount_shutdown();
-
-struct Mount;
 
 
 // If it was possible to forward-declare enums in gcc, this one wouldn't be in
@@ -30,13 +31,11 @@ struct XIo
 	union XIoUnion
 	{
 		FileIo fio;
-		ZipIo zio;
+		AFileIo zio;
 	}
 	u;
 };
 
-
-struct TFile;
 
 struct XFile
 {
@@ -48,8 +47,9 @@ struct XFile
 
 	union XFileUnion
 	{
+		FileCommon fc;
 		File f;
-		ZFile zf;
+		AFile zf;
 	}
 	u;
 };
@@ -57,9 +57,9 @@ struct XFile
 
 // given a Mount, return the actual location (portable path) of
 // <V_path>. used by vfs_realpath and VFile_reopen.
-extern LibError x_realpath(const Mount* m, const char* V_exact_path, char* P_real_path);
+extern LibError x_realpath(const Mount* m, const char* V_path, char* P_real_path);
 
-extern LibError x_open(const Mount* m, const char* V_exact_path, int flags, TFile* tf, XFile* xf);
+extern LibError x_open(const Mount* m, const char* V_path, int flags, TFile* tf, XFile* xf);
 extern LibError x_close(XFile* xf);
 
 extern LibError x_validate(const XFile* xf);
@@ -69,16 +69,17 @@ extern off_t x_size(const XFile* xf);
 extern uint x_flags(const XFile* xf);
 extern void x_set_flags(XFile* xf, uint flags);
 
-extern ssize_t x_io(XFile* xf, off_t ofs, size_t size, void* buf, FileIOCB cb, uintptr_t ctx);;
-
-extern LibError x_map(XFile* xf, void*& p, size_t& size);
-extern LibError x_unmap(XFile* xf);
-
 extern LibError x_io_issue(XFile* xf, off_t ofs, size_t size, void* buf, XIo* xio);
 extern int x_io_has_completed(XIo* xio);
 extern LibError x_io_wait(XIo* xio, void*& p, size_t& size);
 extern LibError x_io_discard(XIo* xio);
 extern LibError x_io_validate(const XIo* xio);
+
+extern ssize_t x_io(XFile* xf, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb, uintptr_t ctx);
+
+extern LibError x_map(XFile* xf, void*& p, size_t& size);
+extern LibError x_unmap(XFile* xf);
+
 
 
 
@@ -122,7 +123,6 @@ struct RealDir
 extern LibError mount_attach_real_dir(RealDir* rd, const char* P_path, const Mount* m, int flags);
 extern void mount_detach_real_dir(RealDir* rd);
 
-struct TDir;
 extern LibError mount_populate(TDir* td, RealDir* rd);
 
 

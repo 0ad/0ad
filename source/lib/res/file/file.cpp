@@ -21,28 +21,23 @@
 
 #include "lib.h"
 #include "../res.h"
-#include "file.h"
 #include "detect.h"
 #include "adts.h"
 #include "sysdep/sysdep.h"
 #include "byte_order.h"
 #include "lib/allocators.h"
+#include "file.h"
+#include "file_internal.h"
 
 #include <vector>
 #include <algorithm>
 
 #include <string>
 
-// block := power-of-two sized chunk of a file.
-// all transfers are expanded to naturally aligned, whole blocks
-// (this makes caching parts of files feasible; it is also much faster
-// for some aio implementations, e.g. wposix).
-const size_t BLOCK_SIZE_LOG2 = 16;		// 2**16 = 64 KiB
-const size_t BLOCK_SIZE = 1ul << BLOCK_SIZE_LOG2;
+// reasonable guess. if too small, aio will do alignment.
+const size_t SECTOR_SIZE = 4*KiB;
 
-const size_t SECTOR_SIZE = 4096;
-	// reasonable guess. if too small, aio will do alignment.
-
+FileStats stats;
 
 
 // rationale for aio, instead of only using mmap:
@@ -80,7 +75,7 @@ LibError pp_set_dir(PathPackage* pp, const char* dir)
 	const int len = snprintf(pp->path, ARRAY_SIZE(pp->path), "%s/", dir);
 	// (need len below and must return an error code, not -1)
 	if(len < 0)
-		CHECK_ERR(ERR_PATH_LENGTH);
+		WARN_RETURN(ERR_PATH_LENGTH);
 	pp->end = pp->path+len;
 	pp->chars_left = ARRAY_SIZE(pp->path)-len;
 
@@ -159,7 +154,7 @@ static LibError convert_path(char* dst, const char* src, Conversion conv = TO_NA
 	{
 		len++;
 		if(len >= PATH_MAX)
-			CHECK_ERR(ERR_PATH_LENGTH);
+			WARN_RETURN(ERR_PATH_LENGTH);
 
 		char c = *s++;
 
@@ -495,13 +490,14 @@ LibError file_enum(const char* P_path, const FileCB cb, const uintptr_t user)
 	{
 	struct stat s;
 	memset(&s, 0, sizeof(s));
+	const uintptr_t memento = 0;	// there is nothing we
 	for(DirEntCIt it = dirents.begin(); it != dirents.end(); ++it)
 	{
 		const DirEnt* ent = *it;
 		s.st_mode  = (ent->size == -1)? S_IFDIR : S_IFREG;
 		s.st_size  = ent->size;
 		s.st_mtime = ent->mtime;
-		LibError ret = cb(ent->name, &s, user);
+		LibError ret = cb(ent->name, &s, memento, user);
 		if(ret != INFO_CB_CONTINUE)
 		{
 			cb_err = ret;	// first error (since we now abort)
@@ -575,19 +571,79 @@ LibError file_validate(const File* f)
 	// mapped but refcount is invalid
 	else if((f->mapping != 0) ^ (f->map_refs != 0))
 		return ERR_2;
-	// fn_hash not set
+	// atom_fn not set
 #ifndef NDEBUG
-	else if(!f->fn_hash)
+	else if(!f->fc.atom_fn)
 		return ERR_3;
 #endif
 
 	return ERR_OK;
 }
 
-#define CHECK_FILE(f) CHECK_ERR(file_validate(f))
+// rationale: we want a constant-time IsAtomFn(string pointer) lookup:
+// this avoids any overhead of calling file_make_unique_fn_copy on
+// already-atomized strings. that requires allocating from one contiguous
+// arena, which is also more memory-efficient than the heap (no headers).
+static Pool atom_pool;
+
+// allocate a copy of P_fn in our string pool. strings are equal iff
+// their addresses are equal, thus allowing fast comparison.
+const char* file_make_unique_fn_copy(const char* P_fn, size_t fn_len)
+{
+/*
+const char* slash = strrchr(P_fn, '/');
+if(slash&&!stricmp(slash+1, "proptest.PMD"))
+debug_break();
+*/
+	// early out: if already an atom, return immediately.
+	if(pool_contains(&atom_pool, (void*)P_fn))
+		return P_fn;
+
+	// allow for Pascal-style strings (e.g. from Zip file header)
+	if(!fn_len)
+		fn_len = strlen(P_fn);
+
+	const char* unique_fn;
+
+	// check if already allocated; return existing copy if so.
+	//
+	// rationale: the entire storage could be done via container,
+	// rather than simply using it as a lookup mapping.
+	// however, DynHashTbl together with Pool (see above) is more efficient.
+	typedef DynHashTbl<const char*, const char*> AtomMap;
+	static AtomMap atom_map;
+	unique_fn = atom_map.find(P_fn);
+	if(unique_fn)
+	{
+debug_assert(!strcmp(P_fn, unique_fn));
+		return unique_fn;
+	}
+
+	unique_fn = (const char*)pool_alloc(&atom_pool, fn_len+1);
+	if(!unique_fn)
+		return 0;
+	memcpy2((void*)unique_fn, P_fn, fn_len);
+	((char*)unique_fn)[fn_len] = '\0';
+
+	atom_map.insert(unique_fn, unique_fn);
+
+	FILE_STATS_NOTIFY_UNIQUE_FILE();
+	return unique_fn;
+}
+
+static inline void atom_init()
+{
+	pool_create(&atom_pool, 8*MiB, POOL_VARIABLE_ALLOCS);
+}
+
+static inline void atom_shutdown()
+{
+	(void)pool_destroy(&atom_pool);
+}
 
 
-LibError file_open(const char* p_fn, const uint flags, File* f)
+
+LibError file_open(const char* P_fn, const uint flags, File* f)
 {
 	// zero output param in case we fail below.
 	memset(f, 0, sizeof(*f));
@@ -595,8 +651,8 @@ LibError file_open(const char* p_fn, const uint flags, File* f)
 	if(flags > FILE_FLAG_MAX)
 		return ERR_INVALID_PARAM;
 
-	char n_fn[PATH_MAX];
-	RETURN_ERR(file_make_full_native_path(p_fn, n_fn));
+	char N_fn[PATH_MAX];
+	RETURN_ERR(file_make_full_native_path(P_fn, N_fn));
 
 	// don't stat if opening for writing - the file may not exist yet
 	off_t size = 0;
@@ -609,7 +665,7 @@ LibError file_open(const char* p_fn, const uint flags, File* f)
 	{
 		// get file size
 		struct stat s;
-		if(stat(n_fn, &s) < 0)
+		if(stat(N_fn, &s) < 0)
 			return ERR_FILE_NOT_FOUND;
 		size = s.st_size;
 
@@ -622,7 +678,7 @@ LibError file_open(const char* p_fn, const uint flags, File* f)
 		//if(size <= 32*KiB)
 		//	flags |= FILE_NO_AIO;
 
-		// make sure <n_fn> is a regular file
+		// make sure <N_fn> is a regular file
 		if(!S_ISREG(s.st_mode))
 			return ERR_NOT_FILE;
 	}
@@ -633,23 +689,23 @@ LibError file_open(const char* p_fn, const uint flags, File* f)
 	else
 		oflag |= O_BINARY_NP;
 
-	// if AIO is disabled (at user's behest or because the file is small),
-	// so inform wposix.
+	// if AIO is disabled at user's behest, so inform wposix.
 	if(flags & FILE_NO_AIO)
 		oflag |= O_NO_AIO_NP;
 #endif
 
-	int fd = open(n_fn, oflag, S_IRWXO|S_IRWXU|S_IRWXG);
+	int fd = open(N_fn, oflag, S_IRWXO|S_IRWXU|S_IRWXG);
 	if(fd < 0)
 		return ERR_FILE_ACCESS;
 
-	f->flags    = flags;
-	f->size     = size;
-	f->fn_hash  = fnv_hash(n_fn);		// copy filename instead?
+	f->fc.flags = flags;
+	f->fc.size  = size;
+	f->fc.atom_fn  = file_make_unique_fn_copy(P_fn, 0);
 	f->mapping  = 0;
 	f->map_refs = 0;
 	f->fd       = fd;
 	CHECK_FILE(f);
+
 	return ERR_OK;
 }
 
@@ -668,7 +724,7 @@ LibError file_close(File* f)
 	// return final file size (required by VFS after writing files).
 	// this is much easier than updating when writing, because we'd have
 	// to add accounting code to both (sync and async) paths.
-	f->size = lseek(f->fd, 0, SEEK_END);
+	f->fc.size = lseek(f->fd, 0, SEEK_END);
 
 	// (check fd to avoid BoundsChecker warning about invalid close() param)
 	if(f->fd != -1)
@@ -677,598 +733,12 @@ LibError file_close(File* f)
 		f->fd = -1;
 	}
 
-	return ERR_OK;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////
-//
-// async I/O
-//
-///////////////////////////////////////////////////////////////////////////////
-
-
-// rationale:
-// asynchronous IO routines don't cache; they're just a thin AIO wrapper.
-// it's taken care of by file_io, which splits transfers into blocks
-// and keeps temp buffers in memory (not user-allocated, because they
-// might pull the rug out from under us at any time).
-//
-// doing so here would be more complicated: would have to handle "forwarding",
-// i.e. recognizing that the desired block has been issued, but isn't yet
-// complete. file_io also knows more about whether a block should be cached.
-//
-// disadvantages:
-// - streamed data will always be read from disk. no problem, because
-//   such data (e.g. music, long speech) is unlikely to be used again soon.
-// - prefetching (issuing the next few blocks from an archive during idle
-//   time, so that future out-of-order reads don't need to seek) isn't
-//   possible in the background (unless via thread, but that's discouraged).
-//   the utility is questionable, though: how to prefetch so as not to delay
-//   real IOs? can't determine "idle time" without completion notification,
-//   which is hard.
-//   we could get the same effect by bridging small gaps in file_io,
-//   and rearranging files in the archive in order of access.
-
-
-static Pool aiocb_pool;
-
-static inline void aiocb_pool_init()
-{
-	(void)pool_create(&aiocb_pool, 32*sizeof(aiocb), sizeof(aiocb));
-}
-
-static inline void aiocb_pool_shutdown()
-{
-	(void)pool_destroy(&aiocb_pool);
-}
-
-static inline aiocb* aiocb_pool_alloc()
-{
-	ONCE(aiocb_pool_init());
-	return (aiocb*)pool_alloc(&aiocb_pool, 0);
-}
-
-static inline void aiocb_pool_free(void* cb)
-{
-	pool_free(&aiocb_pool, cb);
-}
-
-
-// starts transferring to/from the given buffer.
-// no attempt is made at aligning or padding the transfer.
-LibError file_io_issue(File* f, off_t ofs, size_t size, void* p, FileIo* io)
-{
-	// zero output param in case we fail below.
-	memset(io, 0, sizeof(FileIo));
-
-	debug_printf("FILE| issue ofs=%d size=%d\n", ofs, size);
-
-
-	//
-	// check params
-	//
-
-	CHECK_FILE(f);
-
-	if(!size || !p || !io)
-		return ERR_INVALID_PARAM;
-
-	const bool is_write = (f->flags & FILE_WRITE) != 0;
-
-	// cut off at EOF.
-	if(!is_write)
-	{
-		// avoid min() due to type conversion warnings.
-		const off_t bytes_left = f->size - ofs;
-		if(bytes_left < 0)
-		{
-			debug_warn("EOF");
-			return ERR_EOF;
-		}
-		if((off_t)size > bytes_left)
-			size = (size_t)bytes_left;
-			// guaranteed to fit, since size was > bytes_left
-	}
-
-
-	// (we can't store the whole aiocb directly - glibc's version is
-	// 144 bytes large)
-	aiocb* cb = aiocb_pool_alloc();
-	io->cb = cb;
-	if(!cb)
-		return ERR_NO_MEM;
-	memset(cb, 0, sizeof(aiocb));
-
-	// send off async read/write request
-	cb->aio_lio_opcode = is_write? LIO_WRITE : LIO_READ;
-	cb->aio_buf        = p;
-	cb->aio_fildes     = f->fd;
-	cb->aio_offset     = ofs;
-	cb->aio_nbytes     = size;
-debug_printf("FILE| issue2 io=%p nbytes=%d\n", io, cb->aio_nbytes);
-	int err = lio_listio(LIO_NOWAIT, &cb, 1, (struct sigevent*)0);
-	if(err < 0)
-	{
-		debug_printf("lio_listio: %d, %d[%s]\n", err, errno, strerror(errno));
-		file_io_discard(io);
-		return LibError_from_errno();
-	}
+	// wipe out any cached blocks. this is necessary to cover the (rare) case
+	// of file cache contents predating the file write.
+	if(f->fc.flags & FILE_WRITE)
+		file_cache_invalidate(f->fc.atom_fn);
 
 	return ERR_OK;
-}
-
-
-// indicates if the IO referenced by <io> has completed.
-// return value: 0 if pending, 1 if complete, < 0 on error.
-int file_io_has_completed(FileIo* io)
-{
-	aiocb* cb = (aiocb*)io->cb;
-	int ret = aio_error(cb);
-	if(ret == EINPROGRESS)
-		return 0;
-	if(ret == 0)
-		return 1;
-
-	debug_warn("unexpected aio_error return");
-	return -1;
-}
-
-
-LibError file_io_wait(FileIo* io, void*& p, size_t& size)
-{
-	debug_printf("FILE| wait io=%p\n", io);
-
-	// zero output params in case something (e.g. H_DEREF) fails.
-	p = 0;
-	size = 0;
-
-	aiocb* cb = (aiocb*)io->cb;
-
-	// wait for transfer to complete.
-	const aiocb** cbs = (const aiocb**)&cb;	// pass in an "array"
-	while(aio_error(cb) == EINPROGRESS)
-		aio_suspend(cbs, 1, (timespec*)0);	// wait indefinitely
-
-	// query number of bytes transferred (-1 if the transfer failed)
-	const ssize_t bytes_transferred = aio_return(cb);
-	debug_printf("FILE| bytes_transferred=%d aio_nbytes=%d\n", bytes_transferred, cb->aio_nbytes);
-	// (size was clipped to EOF in file_io => this is an actual IO error)
-	if(bytes_transferred < (ssize_t)cb->aio_nbytes)
-		return ERR_IO;
-
-	p = (void*)cb->aio_buf;	// cast from volatile void*
-	size = bytes_transferred;
-	return ERR_OK;
-}
-
-
-LibError file_io_discard(FileIo* io)
-{
-	memset(io->cb, 0, sizeof(aiocb));
-		// discourage further use.
-	aiocb_pool_free(io->cb);
-	io->cb = 0;
-	return ERR_OK;
-}
-
-
-LibError file_io_validate(const FileIo* io)
-{
-	const aiocb* cb = (const aiocb*)io->cb;
-	// >= 0x100 is not necessarily bogus, but suspicious.
-	// this also catches negative values.
-	if((uint)cb->aio_fildes >= 0x100)
-		return ERR_1;
-	if(debug_is_pointer_bogus((void*)cb->aio_buf))
-		return ERR_2;
-	if(cb->aio_lio_opcode != LIO_WRITE && cb->aio_lio_opcode != LIO_READ && cb->aio_lio_opcode != LIO_NOP)
-		return ERR_3;
-    // all other aiocb fields have no invariants we could check.
-	return ERR_OK;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////
-
-
-
-ssize_t lowio(int fd, bool is_write, off_t ofs, size_t size, void* buf)
-{
-	lseek(fd, ofs, SEEK_SET);
-
-	if(is_write)
-		return write(fd, buf, size);
-	else
-		return read (fd, buf, size);
-}
-
-
-
-
-// L3 cache: intended to cache raw compressed data, since files aren't aligned
-// in the archive; alignment code would force a read of the whole block,
-// which would be a slowdown unless we keep them in memory.
-//
-// keep out of async code (although extra work for sync: must not issue/wait
-// if was cached) to simplify things. disadvantage: problems if same block
-// is issued twice, before the first call completes (via wait_io).
-// that won't happen though unless we have threaded file_ios =>
-// rare enough not to worry about performance.
-//
-// since sync code allocates the (temp) buffer, it's guaranteed
-// to remain valid.
-//
-
-
-
-// create an id for use with the Cache that uniquely identifies
-// the block from the file <fn_hash> starting at <ofs> (aligned).
-static u64 block_make_id(const u32 fn_hash, const off_t ofs)
-{
-	// id format: filename hash | block number
-	//            63         32   31         0
-	//
-	// we assume the hash (currently: FNV) is unique for all filenames.
-	// chance of a collision is tiny, and a build tool will ensure
-	// filenames in the VFS archives are safe.
-	//
-	// block_num will always fit in 32 bits (assuming maximum file size
-	// = 2^32 * BLOCK_SIZE = 2^48 -- plenty); we check this, but don't
-	// include a workaround. we could return 0, and the caller would have
-	// to allocate their own buffer, but don't bother.
-
-	// make sure block_num fits in 32 bits
-	const size_t block_num = ofs / BLOCK_SIZE;
-	debug_assert(block_num <= 0xffffffff);
-
-	u64 id = fn_hash;	// careful, don't shift a u32 32 bits left
-	id <<= 32;
-	id |= block_num;
-	return id;
-}
-
-
-typedef std::pair<u64, void*> BlockCacheEntry;
-typedef std::map<u64, void*> BlockCache;
-typedef BlockCache::iterator BlockIt;
-static BlockCache block_cache;
-
-
-
-
-
-
-
-struct IOSlot
-{
-	FileIo io;
-	void* temp_buf;
-
-	u64 block_id;
-		// needed so that we can add the block to the cache when
-		// its IO is complete. if we add it when issuing, we'd no longer be
-		// thread-safe: someone else might find it in the cache before its
-		// transfer has completed. don't want to add an "is_complete" flag,
-		// because that'd be hard to update (on every wait_io).
-
-	void* cached_block;
-		// != 0 <==> data coming from cache and no IO issued.
-
-
-// given buffer
-// given buffer, will copy from cache
-// temp buffer allocated here
-// temp buffer taken from cache
-};
-
-
-// don't just use operator[], so that block_cache isn't cluttered
-// with IDs associated with 0 (blocks that wouldn't be cached anyway).
-static void* block_find(u64 block_id)
-{
-	BlockIt it = block_cache.find(block_id);
-	if(it == block_cache.end())
-		return 0;
-	return it->second;
-}
-
-
-static void block_add(u64 block_id, void* block)
-{
-	if(block_find(block_id))
-		debug_warn("already in cache");
-	else
-		block_cache[block_id] = block;
-}
-
-
-static ssize_t block_issue(File* f, IOSlot* slot, const off_t issue_ofs, void* buf)
-{
-	memset(slot, 0, sizeof(IOSlot));
-
-	ssize_t issue_size = BLOCK_SIZE;
-
-	// check if in cache
-	slot->block_id = block_make_id(f->fn_hash, issue_ofs);
-	slot->cached_block = block_find(slot->block_id);
-	if(slot->cached_block)
-		goto skip_issue;
-
-//debug_printf("%x miss\n", issue_ofs);
-
-	// allocate temp buffer
-	if(!buf)
-		buf = slot->temp_buf = mem_alloc(BLOCK_SIZE, BLOCK_SIZE);
-
-
-	// if using buffer, set position in it; otherwise, use temp buffer
-	CHECK_ERR(file_io_issue(f, issue_ofs, BLOCK_SIZE, buf, &slot->io));
-
-skip_issue:
-
-	return issue_size;
-}
-
-
-static void block_shutdown()
-{
-	for(BlockIt it = block_cache.begin(); it != block_cache.end(); ++it)
-		mem_free(it->second);
-}
-
-
-
-// remove all blocks loaded from the file <fn>. used when reloading the file.
-LibError file_invalidate_cache(const char* fn)
-{
-	// convert to native path to match fn_hash set by file_open
-	char n_fn[PATH_MAX];
-	file_make_full_native_path(fn, n_fn);
-
-	const u32 fn_hash = fnv_hash(fn);
-	// notes:
-	// - don't use remove_if, because std::pair doesn't have operator=.
-	// - erasing elements during loop is ok because map iterators aren't
-	//   invalidated.
-	for(BlockIt it = block_cache.begin(); it != block_cache.end(); ++it)
-		if((it->first >> 32) == fn_hash)
-			block_cache.erase(it);
-
-	return ERR_OK;
-}
-
-
-
-// the underlying aio implementation likes buffer and offset to be
-// sector-aligned; if not, the transfer goes through an align buffer,
-// and requires an extra memcpy2.
-//
-// if the user specifies an unaligned buffer, there's not much we can
-// do - we can't assume the buffer contains padding. therefore,
-// callers should let us allocate the buffer if possible.
-//
-// if ofs misalign = buffer, only the first and last blocks will need
-// to be copied by aio, since we read up to the next block boundary.
-// otherwise, everything will have to be copied; at least we split
-// the read into blocks, so aio's buffer won't have to cover the
-// whole file.
-
-
-
-// transfer <size> bytes, starting at <ofs>, to/from the given file.
-// (read or write access was chosen at file-open time).
-//
-// if non-NULL, <cb> is called for each block transferred, passing <ctx>.
-// it returns how much data was actually transferred, or a negative error
-// code (in which case we abort the transfer and return that value).
-// the callback mechanism is useful for user progress notification or
-// processing data while waiting for the next I/O to complete
-// (quasi-parallel, without the complexity of threads).
-//
-// return number of bytes transferred (see above), or a negative error code.
-ssize_t file_io(File* f, off_t data_ofs, size_t data_size, void* data_buf,
-	FileIOCB cb, uintptr_t ctx) // optional
-{
-	debug_printf("FILE| io: fd=%d size=%d ofs=%d\n", f->fd, data_size, data_ofs);
-
-	CHECK_FILE(f);
-
-	const bool is_write = !!(f->flags & FILE_WRITE);
-	const bool no_aio = !!(f->flags & FILE_NO_AIO);
-
-	// when reading:
-	if(!is_write)
-	{
-		// cut data_size off at EOF
-		const ssize_t bytes_left = f->size - data_ofs;
-		if(bytes_left < 0)
-			return ERR_EOF;
-		data_size = MIN(data_size, (size_t)bytes_left);
-	}
-
-	bool temp = (data_buf == 0);
-
-	// sanity checks:
-	// .. temp blocks requested AND
-	//    (not reading OR using lowio OR no callback)
-	if(temp && (is_write || no_aio || !cb))
-	{
-		debug_warn("invalid parameter");
-		return ERR_INVALID_PARAM;
-	}
-
-
-	// only align if we allocate the buffer and in AIO mode
-	const bool do_align = temp;
-
-
-	//
-	// calculate aligned transfer size (no change if !do_align)
-	//
-
-	off_t actual_ofs   = data_ofs;
-	size_t actual_size = data_size;
-	void* actual_buf   = data_buf;
-
-	// note: we go to the trouble of aligning the first block (instead of
-	// just reading up to the next block and letting aio realign it),
-	// so that it can be taken from the cache.
-	// this is not possible if !do_align, since we have to allocate
-	// extra buffer space for the padding.
-
-	const size_t ofs_misalign = data_ofs % BLOCK_SIZE;
-	const size_t lead_padding = do_align? ofs_misalign : 0;
-		// for convenience; used below.
-	actual_ofs -= (off_t)lead_padding;
-	actual_size = round_up(lead_padding + data_size, BLOCK_SIZE);
-
-
-	// skip aio code, use lowio
-	if(no_aio)
-		return lowio(f->fd, is_write, data_ofs, data_size, data_buf);
-
-
-	//
-	// now we read the file in 64 KiB chunks, N-buffered.
-	// if reading from Zip, inflate while reading the next block.
-	//
-
-	const int MAX_IOS = 4;
-	IOSlot ios[MAX_IOS] = { {0} };
-
-
-	int head = 0;
-	int tail = 0;
-	int pending_ios = 0;
-
-	bool all_issued = false;
-
-	// (useful, raw data: possibly compressed, but doesn't count padding)
-	size_t raw_transferred_cnt = 0;
-	size_t issue_cnt = 0;
-
-	// if callback, what it reports; otherwise, = raw_transferred_cnt
-	// this is what we'll return
-	size_t actual_transferred_cnt = 0;
-
-	ssize_t err = +1;		// loop terminates if <= 0
-
-	for(;;)
-	{
-		// queue not full, data remaining to transfer, and no error:
-		// start transferring next block.
-		if(pending_ios < MAX_IOS && !all_issued && err > 0)
-		{
-			// get next free IO slot in ring buffer
-			IOSlot* slot = &ios[head];
-			memset(slot, 0, sizeof(IOSlot));
-			head = (head + 1) % MAX_IOS;
-			pending_ios++;
-
-			off_t issue_ofs = (off_t)(actual_ofs + issue_cnt);
-
-			void* buf = (temp)? 0 : (char*)actual_buf + issue_cnt;
-			ssize_t issued = block_issue(f, slot, issue_ofs, buf);
-			debug_printf("FILE| io2: block_issue: %d\n", issued);
-			if(issued < 0)
-				err = issued;
-				// transfer failed - loop will now terminate after
-				// waiting for all pending transfers to complete.
-
-			issue_cnt += issued;
-			if(issue_cnt >= actual_size)
-				all_issued = true;
-
-		}
-		// IO pending: wait for it to complete, and process it.
-		else if(pending_ios)
-		{
-			IOSlot* slot = &ios[tail];
-			tail = (tail + 1) % MAX_IOS;
-			pending_ios--;
-
-			void* block = slot->cached_block;
-			size_t size = BLOCK_SIZE;
-			// wasn't in cache; it was issued, so wait for it
-			bool from_cache;
-			if(block)
-				from_cache = true;
-			else
-			{
-				from_cache = false;
-
-				int ret = file_io_wait(&slot->io, block, size);
-				if(ret < 0)
-					err = (ssize_t)ret;
-			}
-
-			// first time; skip past padding
-			void* data = block;
-			if(raw_transferred_cnt == 0)
-			{
-				(char*&)data += lead_padding;
-				size -= lead_padding;
-			}
-
-			// don't include trailing padding
-			if(raw_transferred_cnt + size > data_size)
-				size = data_size - raw_transferred_cnt;
-
-
-
-// we have useable data from a previous temp buffer,
-// but it needs to be copied into the user's buffer
-if(from_cache && !temp)
-	memcpy2((char*)data_buf+raw_transferred_cnt, data, size);
-
-
-			//// if size comes out short, we must be at EOF
-
-			raw_transferred_cnt += size;
-
-			if(cb && !(err <= 0))
-			{
-				ssize_t ret = cb(ctx, data, size);
-				// if negative: processing failed.
-				// loop will now terminate after waiting for all
-				// pending transfers to complete.
-				// note: don't abort if = 0: zip callback may not actually
-				// output anything if passed very little data.
-				if(ret < 0)
-					err = ret;
-				else
-					actual_transferred_cnt += ret;
-			}
-			// no callback to process data: raw = actual
-			else
-				actual_transferred_cnt += size;
-
-			if(!from_cache)
-				file_io_discard(&slot->io);
-
-			if(temp)
-			{
-				// adding is allowed and we didn't take this from the cache already: add
-				if(!slot->cached_block)
-					block_add(slot->block_id, slot->temp_buf);
-			}
-
-		}
-		// (all issued OR error) AND no pending transfers - done.
-		else
-			break;
-	}
-
-	debug_printf("FILE| err=%d, actual_transferred_cnt=%d\n", err, actual_transferred_cnt);
-
-	// failed (0 means callback reports it's finished)
-	if(err < 0)
-		return err;
-
-	debug_assert(issue_cnt >= raw_transferred_cnt && raw_transferred_cnt >= data_size); 
-
-	return (ssize_t)actual_transferred_cnt;
 }
 
 
@@ -1301,14 +771,14 @@ LibError file_map(File* f, void*& p, size_t& size)
 
 	CHECK_FILE(f);
 
-	const int prot = (f->flags & FILE_WRITE)? PROT_WRITE : PROT_READ;
+	const int prot = (f->fc.flags & FILE_WRITE)? PROT_WRITE : PROT_READ;
 
 	// already mapped - increase refcount and return previous mapping.
 	if(f->mapping)
 	{
 		// prevent overflow; if we have this many refs, should find out why.
 		if(f->map_refs >= MAX_MAP_REFS)
-			CHECK_ERR(ERR_LIMIT);
+			WARN_RETURN(ERR_LIMIT);
 		f->map_refs++;
 		goto have_mapping;
 	}
@@ -1317,11 +787,12 @@ LibError file_map(File* f, void*& p, size_t& size)
 	// and BoundsChecker warns about wposix mmap failing).
 	// then again, don't complain, because this might happen when mounting
 	// a dir containing empty files; each is opened as a Zip file.
-	if(f->size == 0)
+	if(f->fc.size == 0)
 		return ERR_FAIL;
 
 	errno = 0;
-	f->mapping = mmap((void*)0, f->size, prot, MAP_PRIVATE, f->fd, (off_t)0);
+	void* start = 0;	// system picks start address
+	f->mapping = mmap(start, f->fc.size, prot, MAP_PRIVATE, f->fd, (off_t)0);
 	if(f->mapping == MAP_FAILED)
 		return LibError_from_errno();
 
@@ -1329,7 +800,7 @@ LibError file_map(File* f, void*& p, size_t& size)
 
 have_mapping:
 	p = f->mapping;
-	size = f->size;
+	size = f->fc.size;
 	return ERR_OK;
 }
 
@@ -1358,16 +829,24 @@ LibError file_unmap(File* f)
 	// no more references: remove the mapping
 	void* p = f->mapping;
 	f->mapping = 0;
-	// don't clear f->size - the file is still open.
+	// don't clear f->fc.size - the file is still open.
 
 	errno = 0;
-	return LibError_from_posix(munmap(p, f->size));
+	return LibError_from_posix(munmap(p, f->fc.size));
 }
 
 
+LibError file_init()
+{
+	atom_init();
+	file_cache_init();
+	return ERR_OK;
+}
+
 LibError file_shutdown()
 {
-	aiocb_pool_shutdown();
-	block_shutdown();
+	FILE_STATS_DUMP();
+	atom_shutdown();
+	file_io_shutdown();
 	return ERR_OK;
 }

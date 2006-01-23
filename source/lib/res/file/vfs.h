@@ -197,6 +197,15 @@ Decompression is free because it is done in parallel with IOs.
 #include "lib/posix.h"	// struct stat
 #include "file.h"		// file open flags
 
+// upper bound on number of files; used as size of TNode pool and
+// enables an optimization in the cache if it fits in 16 bits
+// (each block stores a 16-bit ID instead of pointer to TNode).
+// -1 allows for an "invalid/free" value.
+//
+// must be #define instead of const because we check whether it
+// fits in 16-bits via #if.
+#define VFS_MAX_FILES ((1u << 16) - 1)
+
 // make the VFS tree ready for use. must be called before all other
 // functions below, barring explicit mentions to the contrary.
 extern void vfs_init();
@@ -378,7 +387,7 @@ extern LibError vfs_io_discard(Handle& hio);
 //   this is the preferred read method.
 //
 // return number of bytes transferred (see above), or a negative error code.
-extern ssize_t vfs_io(Handle hf, size_t size, void** p, FileIOCB cb = 0, uintptr_t ctx = 0);
+extern ssize_t vfs_io(Handle hf, size_t size, FileIOBuf* p, FileIOCB cb = 0, uintptr_t ctx = 0);
 
 
 // convenience functions that replace vfs_open / vfs_io / vfs_close:
@@ -391,9 +400,9 @@ extern ssize_t vfs_io(Handle hf, size_t size, void** p, FileIOCB cb = 0, uintptr
 //   kept in memory if flags & FILE_CACHE.
 // when the file contents are no longer needed, you can mem_free_h the
 // Handle, or mem_free(p).
-extern Handle vfs_load(const char* fn, void*& p, size_t& size, uint flags = 0);
+extern Handle vfs_load(const char* fn, FileIOBuf& p, size_t& size, uint flags = 0);
 
-extern ssize_t vfs_store(const char* fn, void* p, size_t size, uint flags = 0);
+extern ssize_t vfs_store(const char* fn, const void* p, size_t size, uint flags = 0);
 
 
 //

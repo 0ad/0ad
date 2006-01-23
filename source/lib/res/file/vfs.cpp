@@ -34,14 +34,17 @@
 
 #include "lib.h"
 #include "adts.h"
+#include "timer.h"
 #include "../res.h"
 #include "zip.h"
 #include "file.h"
+#include "file_cache.h"
+#include "file_internal.h"
 #include "sysdep/dir_watch.h"
 #include "vfs_path.h"
 #include "vfs_tree.h"
 #include "vfs_mount.h"
-#include "timer.h"
+#include "vfs_optimizer.h"
 
 // not safe to call before main!
 
@@ -250,91 +253,26 @@ LibError vfs_dir_next_ent(const Handle hd, DirEnt* ent, const char* filter)
 ///////////////////////////////////////////////////////////////////////////////
 
 
-//
-// logging
-//
-
-static int file_listing_enabled;
-	// tristate; -1 = already shut down
-
-static FILE* file_list;
-
-
-static void file_listing_shutdown()
-{
-	if(file_listing_enabled == 1)
-	{
-		fclose(file_list);
-		file_listing_enabled = -1;
-	}
-}
-
-
-static void file_listing_add(const char* v_fn)
-{
-	// we've already shut down - complain.
-	if(file_listing_enabled == -1)
-	{
-		debug_warn("called after file_listing_shutdown atexit");
-		return;
-	}
-
-	// listing disabled.
-	if(file_listing_enabled == 0)
-		return;
-
-	if(!file_list)
-	{
-		char N_path[PATH_MAX];
-		(void)file_make_full_native_path("../logs/filelist.txt", N_path);
-		file_list = fopen(N_path, "w");
-		if(!file_list)
-			return;
-	}
-
-	fputs(v_fn, file_list);
-	fputc('\n', file_list);
-}
-
-
-void vfs_enable_file_listing(bool want_enabled)
-{
-	// already shut down - don't allow enabling
-	if(file_listing_enabled == -1 && want_enabled)
-	{
-		debug_warn("enabling after shutdown");
-		return;
-	}
-
-	file_listing_enabled = (int)want_enabled;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////
-
-
-
-
 // return actual path to the specified file:
 // "<real_directory>/fn" or "<archive_name>/fn".
 LibError vfs_realpath(const char* v_path, char* realpath)
 {
 	TFile* tf;
-	char V_exact_path[VFS_MAX_PATH];
-	CHECK_ERR(tree_lookup(v_path, &tf, 0, V_exact_path));
+	CHECK_ERR(tree_lookup(v_path, &tf));
 
-	const Mount* m = tree_get_mount(tf);
-	return x_realpath(m, V_exact_path, realpath);
+	const Mount* m = tfile_get_mount(tf);
+	const char* V_path = tfile_get_atom_fn(tf);
+	return x_realpath(m, V_path, realpath);
 }
 
 
 
 // does the specified file exist? return false on error.
 // useful because a "file not found" warning is not raised, unlike vfs_stat.
-bool vfs_exists(const char* v_fn)
+bool vfs_exists(const char* V_fn)
 {
 	TFile* tf;
-	return (tree_lookup(v_fn, &tf) == 0);
+	return (tree_lookup(V_fn, &tf) == 0);
 }
 
 
@@ -356,19 +294,16 @@ LibError vfs_stat(const char* v_path, struct stat* s)
 
 struct VFile
 {
-	// cached contents of file from vfs_load
-	// (can't just use pointer - may be freed behind our back)
-	Handle hm;
+	XFile xf;
 
 	// current file pointer. this is necessary because file.cpp's interface
 	// requires passing an offset for every VIo; see file_io_issue.
 	off_t ofs;
 
-	XFile xf;
+	uint is_valid : 1;
 
 	// be aware when adding fields that this struct is quite large,
 	// and may require increasing the control block size limit.
-	// (especially in CONFIG_PARANOIA builds, which add a member!)
 };
 
 H_TYPE_DEFINE(VFile);
@@ -385,7 +320,8 @@ static void VFile_dtor(VFile* vf)
 	// x_close and mem_free_h safely handle 0-initialized data.
 	WARN_ERR(x_close(&vf->xf));
 
-	(void)mem_free_h(vf->hm);
+	if(vf->is_valid)
+		FILE_STATS_NOTIFY_CLOSE();
 }
 
 static LibError VFile_reload(VFile* vf, const char* V_path, Handle)
@@ -397,12 +333,11 @@ static LibError VFile_reload(VFile* vf, const char* V_path, Handle)
 	if(x_is_open(&vf->xf))
 		return ERR_OK;
 
-	file_listing_add(V_path);
+	trace_add(V_path);
 
 	TFile* tf;
-	char V_exact_path[VFS_MAX_PATH];
 	uint lf = (flags & FILE_WRITE)? LF_CREATE_MISSING : 0;
-	LibError err = tree_lookup(V_path, &tf, lf, V_exact_path);
+	LibError err = tree_lookup(V_path, &tf, lf);
 	if(err < 0)
 	{
 		// don't CHECK_ERR - this happens often and the dialog is annoying
@@ -410,8 +345,14 @@ static LibError VFile_reload(VFile* vf, const char* V_path, Handle)
 		return err;
 	}
 
-	const Mount* m = tree_get_mount(tf);
-	return x_open(m, V_exact_path, flags, tf, &vf->xf);
+	const Mount* m = tfile_get_mount(tf);
+	RETURN_ERR(x_open(m, V_path, flags, tf, &vf->xf));
+
+	FileCommon& fc = vf->xf.u.fc;
+	FILE_STATS_NOTIFY_OPEN(fc.atom_fn, fc.size);
+	vf->is_valid = 1;
+
+	return ERR_OK;
 }
 
 static LibError VFile_validate(const VFile* vf)
@@ -441,7 +382,7 @@ ssize_t vfs_size(Handle hf)
 // file_flags: default 0
 //
 // on failure, a debug_warn is generated and a negative error code returned.
-Handle vfs_open(const char* v_fn, uint file_flags)
+Handle vfs_open(const char* V_fn, uint file_flags)
 {
 	// keeping files open doesn't make sense in most cases (because the
 	// file is used to load resources, which are cached at a higher level).
@@ -451,7 +392,7 @@ Handle vfs_open(const char* v_fn, uint file_flags)
 
 	// res_flags is for h_alloc and file_flags goes to VFile_init.
 	// h_alloc already complains on error.
-	return h_alloc(H_VFile, v_fn, res_flags, file_flags);
+	return h_alloc(H_VFile, V_fn, res_flags, file_flags);
 }
 
 
@@ -483,143 +424,73 @@ LibError vfs_close(Handle& hf)
 //   this is the preferred read method.
 //
 // return number of bytes transferred (see above), or a negative error code.
-ssize_t vfs_io(const Handle hf, const size_t size, void** p, FileIOCB cb, uintptr_t ctx)
+ssize_t vfs_io(const Handle hf, const size_t size, FileIOBuf* pbuf,
+	FileIOCB cb, uintptr_t cb_ctx)
 {
 	debug_printf("VFS| io: size=%d\n", size);
 
 	H_DEREF(hf, VFile, vf);
+	XFile& xf = vf->xf;
 
 	off_t ofs = vf->ofs;
 	vf->ofs += (off_t)size;
 
-	void* buf = 0;	// assume temp buffer (p == 0)
-	if(p)
-	{
-		// user-specified buffer
-		if(*p)
-			buf = *p;
-		// we allocate
-		else
-		{
-			buf = mem_alloc(round_up(size, 4096), FILE_BLOCK_SIZE);
-			if(!buf)
-				return ERR_NO_MEM;
-			*p = buf;
-		}
-	}
+	const bool is_write = (xf.u.fc.flags & FILE_WRITE) != 0;
+	RETURN_ERR(file_buf_get(pbuf, size, xf.u.fc.atom_fn, is_write, cb));
 
-	return x_io(&vf->xf, ofs, size, buf, cb, ctx);
-}
-
-
-#include "timer.h"
-static double dt;
-static double totaldata;
-void dump()
-{
-	debug_printf("TOTAL TIME IN VFS_IO: %f\nthroughput: %f MiB/s\n\n", dt, totaldata/dt/1e6);
-}
-
-static ssize_t vfs_timed_io(const Handle hf, const size_t size, void** p, FileIOCB cb = 0, uintptr_t ctx = 0)
-{
-	ONCE(atexit(dump));
-
-	double t1=get_time();
-	totaldata += size;
-
-	ssize_t nread = vfs_io(hf, size, p, cb, ctx);
-
-	double t2=get_time();
-	if(t2-t1 < 1.0)
-		dt += t2-t1;
-
-	return nread;
+	return x_io(&vf->xf, ofs, size, pbuf, cb, cb_ctx);
 }
 
 
 // load the entire file <fn> into memory.
 // returns a memory handle to the file's contents or a negative error code.
-// p and size are filled with address/size of buffer (0 on failure).
+// buf and size are filled with address/size of buffer (0 on failure).
 // flags influences IO mode and is typically 0.
-//   in addition to the regular file cache, the entire buffer is
-//   kept in memory if flags & FILE_CACHE.
 // when the file contents are no longer needed, you can mem_free_h the
 // Handle, or mem_free(p).
 //
 // rationale: we need the Handle return value for Tex.hm - the data pointer
 // must be protected against being accidentally free-d in that case.
-Handle vfs_load(const char* v_fn, void*& p, size_t& size, uint flags /* default 0 */)
+Handle vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size, uint flags /* default 0 */)
 {
-	debug_printf("VFS| load: v_fn=%s\n", v_fn);
+	debug_printf("VFS| load: V_fn=%s\n", V_fn);
 
-	p = 0; size = 0;	// zeroed in case vfs_open or H_DEREF fails
+	const char* atom_fn = file_make_unique_fn_copy(V_fn, 0);
+	buf = file_cache_retrieve(atom_fn, &size);
+	if(buf)
+		return ERR_OK;
 
-	Handle hf = vfs_open(v_fn, flags);
+	buf = 0; size = 0;	// initialize in case something below fails
+
+	Handle hf = vfs_open(atom_fn, flags);
 	RETURN_ERR(hf);
 		// necessary because if we skip this and have H_DEREF report the
 		// error, we get "invalid handle" instead of vfs_open's error code.
-		// don't CHECK_ERR because vfs_open already did.
 
 	H_DEREF(hf, VFile, vf);
 
 	Handle hm = 0;	// return value - handle to memory or error code
 	size = x_size(&vf->xf);
-
-	// already read into mem - return existing mem handle
-	// TODO: what if mapped?
-	if(vf->hm > 0)
+	buf = FILE_BUF_ALLOC;
+	ssize_t nread = vfs_io(hf, size, &buf);
+	// IO failed
+	if(nread < 0)
+		hm = nread;	// error code
+	else
 	{
-		p = mem_get_ptr(vf->hm, &size);	// xxx remove the entire vf->hm - unused
-		if(p)
-		{
-			debug_assert(x_size(&vf->xf) == (off_t)size && "vfs_load: mismatch between File and Mem size");
-			hm = vf->hm;
-			goto ret;
-		}
-		else
-			debug_warn("invalid MEM attached to vfile (0 pointer)");
-			// happens if someone frees the pointer. not an error!
-	}
-/*
-	// allocate memory. does expose implementation details of File
-	// (padding), but it greatly simplifies returning the Handle
-	// (if we allow File to alloc, have to make sure the Handle references
-	// the actual data address, not that of the padding).
-	{
-		const size_t BLOCK_SIZE = 64*KiB;
-		p = mem_alloc(size, BLOCK_SIZE, 0, &hm);
-		if(!p)
-		{
-			hm = ERR_NO_MEM;
-			goto ret;
-		}
-	}
-*/
-	{
-		ssize_t nread = vfs_timed_io(hf, size, &p);
-		// failed
-		if(nread < 0)
-		{
-			mem_free(p);
-			hm = nread;	// error code
-		}
-		else
-		{
-			hm = mem_wrap(p, size, 0, 0, 0, 0, 0, (void*)vfs_load);
-
-			if(flags & FILE_CACHE)
-				vf->hm = hm;
-		}
+		debug_assert(nread == (ssize_t)size);
+		(void)file_cache_add(buf, size, atom_fn);
+		hm = mem_wrap((void*)buf, size, 0, 0, 0, 0, 0, (void*)vfs_load);
 	}
 
-ret:
-	WARN_ERR(vfs_close(hf));
-		// if FILE_CACHE, it's kept open
+	(void)vfs_close(hf);
 
-	// if we fail, make sure these are set to 0
-	// (they may have been assigned values above)
+	// IO or handle alloc failed
 	if(hm <= 0)
-		p = 0, size = 0;
+	{
+		file_buf_free(buf);
+		buf = 0, size = 0;	// make sure they are zeroed
+	}
 
 	CHECK_ERR(hm);
 	return hm;
@@ -629,15 +500,16 @@ ret:
 // caveat: pads file to next max(4kb, sector_size) boundary
 // (due to limitation of Win32 FILE_FLAG_NO_BUFFERING I/O).
 // if that's a problem, specify FILE_NO_AIO when opening.
-ssize_t vfs_store(const char* v_fn, void* p, const size_t size, uint flags /* default 0 */)
+ssize_t vfs_store(const char* V_fn, const void* p, const size_t size, uint flags /* default 0 */)
 {
-	Handle hf = vfs_open(v_fn, flags|FILE_WRITE);
+	Handle hf = vfs_open(V_fn, flags|FILE_WRITE);
 	RETURN_ERR(hf);
 		// necessary because if we skip this and have H_DEREF report the
 		// error, we get "invalid handle" instead of vfs_open's error code.
 		// don't CHECK_ERR because vfs_open already did.
 	H_DEREF(hf, VFile, vf);
-	const ssize_t ret = vfs_io(hf, size, &p);
+	FileIOBuf buf = (FileIOBuf)p;
+	const ssize_t ret = vfs_io(hf, size, &buf);
 	WARN_ERR(vfs_close(hf));
 	return ret;
 }
@@ -794,7 +666,7 @@ static LibError reload_without_rebuild(const char* fn)
 {
 	// invalidate this file's cached blocks to make sure its contents are
 	// loaded anew.
-	RETURN_ERR(file_invalidate_cache(fn));
+	RETURN_ERR(file_cache_invalidate(fn));
 
 	RETURN_ERR(h_reload(fn));
 
@@ -909,6 +781,7 @@ inline void vfs_display()
 // splitting this into a separate function.
 static void vfs_init_once(void)
 {
+	tree_init();
 	mount_init();
 }
 
@@ -927,7 +800,7 @@ void vfs_init()
 
 void vfs_shutdown()
 {
-	file_listing_shutdown();
+	trace_shutdown();
 	mount_shutdown();
 	tree_shutdown();
 }
