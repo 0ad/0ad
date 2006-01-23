@@ -98,7 +98,7 @@ public:
 	bool m_triggerRun;	//used in SetRun, corrects 1 frame stamina imbalance
 	int m_frameCheck;	//counts the frame
 	
-	float m_lastAttackTime;
+	float m_lastCombatTime;
 	
 	//SP properties
 	float m_staminaCurr;
@@ -249,7 +249,6 @@ public:
 	//Calculate stamina points
 	void CalculateRun(float timestep);
 	void CalculateHealth(float timestep);
-	bool IsAttacking();
 
 	// Reset properties after the entity-template we use changes.
 	void loadBase();

@@ -72,6 +72,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	AddProperty( L"traits.health.regen_rate", &m_healthRegenRate );
 	AddProperty( L"traits.health.regen_start", &m_healthRegenStart );
 	AddProperty( L"traits.health.decay_rate", &m_healthDecayRate );
+	AddProperty( L"last_combat_time", &m_lastCombatTime );
 
     for( int t = 0; t < EVENT_LAST; t++ )
     {
@@ -113,7 +114,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	m_healthDecay = false;
 
 	m_frameCheck = 0;
-	m_lastAttackTime = 0;
+	m_lastCombatTime = 0;
 
     m_grouped = -1;
 
@@ -317,9 +318,6 @@ void CEntity::update( size_t timestep )
 {
     m_position_previous = m_position;
     m_orientation_previous = m_orientation;
-	
-	if ( IsAttacking() )
-		m_lastAttackTime = get_time();
 	
 	CalculateRun( timestep );
 	CalculateHealth( timestep );
@@ -1021,10 +1019,14 @@ void CEntity::renderStaminaBar()
 
 void CEntity::CalculateRun(float timestep)
 {
-	if ( m_isRunning )
+	if ( m_isRunning && m_runDecayRate > 0 )
+	{
 		m_staminaCurr = max( 0.0f, m_staminaCurr - timestep / 1000.0f / m_runDecayRate * m_staminaMax );
-	else if ( m_orderQueue.empty() )
+	}
+	else if ( m_orderQueue.empty() && m_runRegenRate > 0 )
+	{
 		m_staminaCurr = min( m_staminaMax, m_staminaCurr + timestep / 1000.0f / m_runRegenRate * m_staminaMax );
+	}
 }
 
 void CEntity::CalculateHealth(float timestep)
@@ -1033,23 +1035,10 @@ void CEntity::CalculateHealth(float timestep)
 	{
 		m_healthCurr = max( 0.0f, m_healthCurr - timestep / 1000.0f / m_healthDecayRate * m_healthMax );
 	}
-	else if ( m_healthRegenRate > 0 && get_time() - m_lastAttackTime > m_healthRegenStart && !IsAttacking() )
+	else if ( m_healthRegenRate > 0 && g_Game->GetTime() - m_lastCombatTime > m_healthRegenStart )
 	{
 		m_healthCurr = min( m_healthMax, m_healthCurr + timestep / 1000.0f / m_healthRegenRate * m_healthMax );
 	}
-}
-bool CEntity::IsAttacking()
-{
-	if ( !m_orderQueue.empty() )
-	{
-		if ( ( m_orderQueue.front().m_type == CEntityOrder::ORDER_GENERIC || 
-			m_orderQueue.front().m_type == CEntityOrder::ORDER_GENERIC_NOPATHING ) && 
-			m_orderQueue.front().m_data[1].data == 1 )
-		{
-				return true;
-		}
-	}
-	return false;
 }
 
 /*

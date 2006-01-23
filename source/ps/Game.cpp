@@ -33,7 +33,8 @@ CGame::CGame():
 	m_GameView(this),
 	m_pLocalPlayer(NULL),
 	m_GameStarted(false),
-	m_Paused(false)
+	m_Paused(false),
+	m_Time(0)
 {
 	debug_printf("CGame::CGame(): Game object CREATED; initializing..\n");
 }
@@ -130,6 +131,8 @@ void CGame::Update(double deltaTime)
 	{
 		return;
 	}
+
+	m_Time += deltaTime;
 
 	m_Simulation.Update(deltaTime);
 	

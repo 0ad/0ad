@@ -31,6 +31,8 @@ class CGame
 
 	bool m_GameStarted;
 
+	float m_Time;
+
 	enum EOG
 	{
 		EOG_NEUTRAL,
@@ -89,6 +91,9 @@ public:
 	{	return &m_GameView; }
 	inline CSimulation *GetSimulation()
 	{	return &m_Simulation; }
+	
+	inline float GetTime()
+	{	return m_Time; }
 
 private:
 	PSRETURN RegisterInit(CGameAttributes* pAttribs);

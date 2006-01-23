@@ -918,14 +918,28 @@ JSBool setWaterAlphaOffset( JSContext* cx, JSObject* UNUSED(globalObject), uint 
 JSBool isPaused( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
 	REQUIRE_NO_PARAMS( isPaused );
+	
+	if( !g_Game )
+	{
+		JS_ReportError( cx, "Game is not started" );
+		return JS_FALSE;
+	}
+
 	*rval = g_Game->m_Paused ? JSVAL_TRUE : JSVAL_FALSE;
-	return( JS_TRUE );
+	return JS_TRUE ;
 }
 
 // Pause/unpause the game
 JSBool setPaused( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* UNUSED(rval) )
 {
 	REQUIRE_PARAMS( 1, setPaused );
+	
+	if( !g_Game )
+	{
+		JS_ReportError( cx, "Game is not started" );
+		return JS_FALSE;
+	}
+
 	try 
 	{
 		g_Game->m_Paused = ToPrimitive<bool>( argv[0] );
@@ -934,7 +948,23 @@ JSBool setPaused( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsva
 	{
 		JS_ReportError( cx, "Invalid parameter to setPaused" );
 	}
-	return( JS_TRUE );
+
+	return  JS_TRUE;
+}
+
+// Get game time
+JSBool getGameTime( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+{
+	REQUIRE_NO_PARAMS( getGameTime );
+	
+	if( !g_Game )
+	{
+		JS_ReportError( cx, "Game is not started" );
+		return JS_FALSE;
+	}
+
+	*rval = ToJSVal(g_Game->GetTime());
+	return JS_TRUE;
 }
 
 // Reveal map
@@ -1042,6 +1072,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC(exit, exitProgram, 0)
 	JS_FUNC(isPaused, isPaused, 0)
 	JS_FUNC(setPaused, setPaused, 1)
+	JS_FUNC(getGameTime, getGameTime, 0)
 	JS_FUNC(vmem, vmem, 0)
 	JS_FUNC(_rewriteMaps, _rewriteMaps, 0)
 	JS_FUNC(_lodbias, _lodbias, 0)
