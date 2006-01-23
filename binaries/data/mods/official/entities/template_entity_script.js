@@ -274,7 +274,8 @@ function entityInit()
 
 function performAttack( evt )
 {
-
+	this.last_combat_time = getGameTime();
+	
 	curr_hit = getGUIGlobal().newRandomSound("voice", "hit", this.traits.audio.path);
 	curr_hit.play();
 
@@ -301,6 +302,8 @@ function performAttack( evt )
 
 function performAttackRanged( evt )
 {
+	this.last_combat_time = getGameTime();
+
 	// Create a projectile from us, to the target, that will do some damage when it hits them.
 	dmg = new DamageType();
 	dmg.crush = parseInt(this.actions.attack.ranged.damage * this.actions.attack.ranged.crush);
@@ -467,6 +470,8 @@ function performHeal( evt )
 
 function damage( dmg, inflictor )
 {	
+	this.last_combat_time = getGameTime();
+	
 	// Apply armour and work out how much damage we actually take
 	crushDamage = parseInt(dmg.crush - this.traits.armour.value * this.traits.armour.crush);
 	if ( crushDamage < 0 ) crushDamage = 0;

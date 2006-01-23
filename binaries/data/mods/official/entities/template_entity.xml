@@ -17,7 +17,7 @@
 
 		<!-- Defaults to no armour. -->
 		<Armour>
- 			<Value>0</Value>
+ 			<Value>0.0</Value>
  			<Crush>0.0</Crush>
  			<Hack>0.0</Hack>
  			<Pierce>0.0</Pierce>
@@ -26,9 +26,9 @@
 		<Health> 
 			<Bar_Height>-1.0</Bar_Height>
 			<Bar_Size>20</Bar_Size>
-			<Regen_Rate>30.0</Regen_Rate>
+			<Regen_Rate>5.0</Regen_Rate>
 			<Regen_Start>15.0</Regen_Start>
-			<Decay_Rate>30.0</Decay_Rate>
+			<Decay_Rate>5.0</Decay_Rate>
 		</Health>
 		<Stamina>
 			<Bar_Height>-1.0</Bar_Height>
