@@ -40,7 +40,7 @@ public:
 
 
 // intended for pointer types
-template<typename Key, typename T, class Traits=DHT_Traits<Key,T> > class DynHashTbl
+template<typename Key, typename T, typename Traits=DHT_Traits<Key,T> > class DynHashTbl
 {
 	T* tbl;
 	u16 num_entries;
@@ -101,7 +101,7 @@ public:
 	{
 		tbl = 0;
 		num_entries = 0;
-		max_entries = Traits.initial_entries/2;	// will be doubled in expand_tbl
+		max_entries = tr.initial_entries/2;	// will be doubled in expand_tbl
 		debug_assert(is_pow2(max_entries));
 		expand_tbl();
 	}
@@ -119,7 +119,7 @@ public:
 		// rationale: must not set to 0 because expand_tbl only doubles the size.
 		// don't keep the previous size because it may have become huge and
 		// there is no provision for shrinking.
-		max_entries = Traits.initial_entries/2;	// will be doubled in expand_tbl
+		max_entries = tr.initial_entries/2;	// will be doubled in expand_tbl
 	}
 
 	void insert(const Key key, const T t)
