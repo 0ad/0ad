@@ -577,7 +577,7 @@ function damage( dmg, inflictor )
 		// You know, I think this is quite possibly the first AI code the AI divlead has written
 		// for 0 A.D....
 		if( this.isIdle() )
-			this.order( ORDER_GENERIC, inflictor, ACTION_ATTACK );
+			this.order( ORDER_GENERIC, inflictor, getAttackAction( this, inflictor ) );
 	}
 }
 
