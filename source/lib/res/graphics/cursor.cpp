@@ -150,12 +150,11 @@ static LibError Cursor_reload(Cursor* c, const char* name, Handle)
 	uint hotspotx = 0, hotspoty = 0;
 	{
 		snprintf(filename, ARRAY_SIZE(filename), "art/textures/cursors/%s.txt", name);
-		void* p; size_t size;
-		Handle hm = vfs_load(filename, p, size);
-		RETURN_ERR(hm);
-		std::stringstream s(std::string((const char*)p, size));
+		FileIOBuf buf; size_t size;
+		RETURN_ERR(vfs_load(filename, buf, size));
+		std::stringstream s(std::string((const char*)buf, size));
 		s >> hotspotx >> hotspoty;
-		(void)mem_free_h(hm);
+		(void)file_buf_free(buf);
 	}
 
 	// load actual cursor

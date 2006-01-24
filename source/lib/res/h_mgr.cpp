@@ -445,7 +445,7 @@ static void fn_store(HDATA* hd, const char* fn)
 		}
 	}
 
-	strcpy((char*)hd->fn, fn);
+	memcpy2((void*)hd->fn, fn, size);	// faster than strcpy
 }
 
 // TODO: store this in a flag - faster.
@@ -767,7 +767,7 @@ LibError h_free(Handle& h, H_Type type)
 			return ERR_OK;
 		// this was a valid handle but was probably freed in the meantime.
 		// complain because this probably indicates a bug somewhere.
-		CHECK_ERR(ERR_INVALID_HANDLE);
+		WARN_RETURN(ERR_INVALID_HANDLE);
 	}
 
 	return h_free_idx(idx, hd);

@@ -155,22 +155,12 @@ void CMapWriter::PackTerrain(CFilePacker& packer, CTerrain *pTerrain)
 
 void CMapWriter::WriteXML(const char* filename, CUnitManager* pUnitMan, CLightEnv *pLightEnv)
 {
-	// HACK: ScEd uses non-VFS filenames, so just use fopen instead of vfs_open
-#ifdef SCED
-	FILE* f = fopen(filename, "wb");
-	if (! f)
-	{
-		debug_warn("Failed to open map XML file");
-		return;
-	}
-#else
 	Handle h = vfs_open(filename, FILE_WRITE|FILE_NO_AIO);
 	if (h <= 0)
 	{
 		debug_warn("Failed to open map XML file");
 		return;
 	}
-#endif
 
 	XML_Start("utf-8");
 	// DTDs are rather annoying. They ought to be strict in what they accept,
@@ -286,18 +276,11 @@ void CMapWriter::WriteXML(const char* filename, CUnitManager* pUnitMan, CLightEn
 		}
 	}
 
-	// HACK: continued from above
-#ifdef SCED
-	CStr d = xml_file_.HACK_GetData();
-	fwrite(d.data(), d.length(), 1, f);
-	fclose(f);
-#else
 	if (! XML_StoreVFS(h))
 	{
 		debug_warn("Failed to write map XML file");
 	}
-	vfs_close(h);
-#endif
+	(void)vfs_close(h);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

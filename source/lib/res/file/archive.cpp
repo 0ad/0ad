@@ -526,8 +526,8 @@ ssize_t afile_read(AFile* af, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB 
 
 	debug_assert(af->ctx != 0);
 
+	RETURN_ERR(file_buf_get(pbuf, size, af->fc.atom_fn, false, cb));
 	const bool use_temp_buf = (pbuf == FILE_BUF_TEMP);
-
 	if(!use_temp_buf)
 		comp_set_output(af->ctx, (void*)*pbuf, size);
 

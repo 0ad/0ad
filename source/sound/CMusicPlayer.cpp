@@ -42,7 +42,7 @@ void CMusicPlayer::open(char* UNUSED(filename))
 /*
 	void* p;
 	size_t sizeOfFile;
-	if(vfs_load(filename, p, sizeOfFile) <= 0)
+	if(vfs_load(filename, p, sizeOfFile) != ERR_OK)
 	{
 		LOG(ERROR, LOG_CATEGORY, "CMusicPlayer::open(): vfs_load for %s failed!\n", filename);
 		return;

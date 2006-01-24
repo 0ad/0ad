@@ -1565,7 +1565,7 @@ jsval CEntity::SetRun( JSContext* cx, uintN argc, jsval* argv )
 	m_isRunning = m_shouldRun;
 	return JSVAL_VOID;
 }
-jsval CEntity::GetRunState( JSContext* cx, uintN argc, jsval* argv )
+jsval CEntity::GetRunState( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	return m_isRunning;
 }

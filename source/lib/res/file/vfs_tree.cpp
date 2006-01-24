@@ -130,8 +130,8 @@ public:
 		//   possibly OS are case-sensitive) and wastes memory here.
 		// what we'll do is warn and treat as separate filename
 		// (least surprise).
-		if(!stricmp(k1, k2))
-			debug_warn("filenames differ only in case: bug?");
+//		if(!stricmp(k1, k2))
+//			debug_warn("filenames differ only in case: bug?");
 #endif
 		return false;
 	}
@@ -397,8 +397,7 @@ static LibError lookup(TDir* td, const char* path, uint flags, TNode** pnode)
 		// else: it was a directory; advance
 		// .. undo having replaced '/' with '\0' - this means V_path will
 		//    store the complete path up to and including cur_component.
-		if(cur_component != V_path)
-			cur_component[-1] = '/';
+		*slash = '/';
 		cur_component = slash+1;
 		td = (TDir*)node;
 	}

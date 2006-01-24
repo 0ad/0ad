@@ -55,8 +55,9 @@
 
 #include "mmgr.h"		// restore malloc/new macros
 
-#include "lib/res/handle.h"
 #include "lib.h"
+#include "lib/res/handle.h"
+#include "lib/res/file/file.h"
 #include "XercesErrorHandler.h"
 #include "CStr.h"
 
@@ -72,13 +73,11 @@ XMLCh *XMLTranscode(const char *);
 */
 class CVFSInputSource: public InputSource
 {
-	Handle m_hMem;	// from vfs_load
-	void *m_pBuffer;
+	FileIOBuf m_pBuffer;
 	size_t m_BufferSize;
 	
 public:
 	CVFSInputSource():
-		m_hMem(0),
 		m_pBuffer(NULL),
 		m_BufferSize(0)
 	{}

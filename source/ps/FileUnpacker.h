@@ -11,6 +11,7 @@
 
 #include <vector>
 #include "lib/types.h"
+#include "lib/res/file/file.h"
 #include "CStr.h"
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -48,7 +49,7 @@ public:
 
 private:
 	// the data read from file and used during unpack operations
-	void* m_Buf;
+	FileIOBuf m_Buf;
 	size_t m_Size;
 	// current unpack position in stream
 	u32 m_UnpackPos;

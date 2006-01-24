@@ -957,11 +957,11 @@ static LibError SndData_reload(SndData* sd, const char* fn, Handle hsd)
 
 	// else: clip
 
-	void* file;
+	FileIOBuf file;
 	size_t file_size;
 	RETURN_ERR(vfs_load(fn, file, file_size));
 
-	ALvoid* al_data = file;
+	ALvoid* al_data = (ALvoid*)file;
 	ALsizei al_size = (ALsizei)file_size;
 
 	if(file_type == FT_WAV)
@@ -977,7 +977,7 @@ data.reserve(500000);
 if(file_type == FT_OGG)
 {
  sd->o = ogg_create();
- ogg_give_raw(sd->o, file, file_size);
+ ogg_give_raw(sd->o, (void*)file, file_size);
  ogg_open(sd->o, sd->al_fmt, sd->al_freq);
  size_t datasize=0;
  size_t bytes_read;
@@ -1002,7 +1002,7 @@ else
 	sd->al_buf = al_buf_alloc(al_data, al_size, sd->al_fmt, sd->al_freq);
 	sd->is_valid = 1;
 
-	(void)mem_free(file);
+	(void)file_buf_free(file);
 
 	return ERR_OK;
 }
@@ -1209,15 +1209,17 @@ enum FadeRet
 
 static FadeRet fade(FadeInfo& fi, double cur_time, float& out_val)
 {
+	// no fade in progress - abort immediately. this check is necessary to
+	// avoid division-by-zero below.
+	if(fi.type == FT_NONE)
+		return FADE_NO_CHANGE;
+
 	// how far into the fade are we? [0,1]
 	const float t = (cur_time - fi.start_time) / fi.length;
 
 	float factor;
 	switch(fi.type)
 	{
-	case FT_NONE:
-		return FADE_NO_CHANGE;
-
 	case FT_LINEAR:
 		factor = fade_factor_linear(t);
 		break;
@@ -1370,11 +1372,10 @@ static LibError VSrc_reload(VSrc* vs, const char* fn, Handle hvs)
 	const char* ext = strchr(fn, '.');
 	if(ext && !stricmp(ext, ".txt"))
 	{
-		void* def_file;
-		size_t def_size;
-		RETURN_ERR(vfs_load(fn, def_file, def_size));
-		std::istringstream def(std::string((char*)def_file, (int)def_size));
-		mem_free(def_file);
+		FileIOBuf buf; size_t size;
+		RETURN_ERR(vfs_load(fn, buf, size));
+		std::istringstream def(std::string((char*)buf, (int)size));
+		(void)file_buf_free(buf);
 
 		float gain_percent;
 		def >> snd_fn_s;

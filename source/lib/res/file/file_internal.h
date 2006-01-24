@@ -1,6 +1,8 @@
 #include "lib/timer.h"
 #include "vfs_optimizer.h"
 
+const size_t AIO_SECTOR_SIZE = 512;
+
 #define CHECK_FILE(f) CHECK_ERR(file_validate(f))
 
 extern void file_io_shutdown();

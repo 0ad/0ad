@@ -51,10 +51,10 @@ XMLCh *XMLTranscode(const char *str)
 
 int CVFSInputSource::OpenFile(const char *path)
 {
-	m_hMem = vfs_load(path, m_pBuffer, m_BufferSize);
-	if(m_hMem <= 0)
+	LibError ret = vfs_load(path, m_pBuffer, m_BufferSize);
+	if(ret != ERR_OK)
 	{
-		LOG(ERROR, LOG_CATEGORY, "CVFSInputSource: file %s couldn't be loaded (vfs_load: %lld)", path, m_hMem);
+		LOG(ERROR, LOG_CATEGORY, "CVFSInputSource: file %s couldn't be loaded (vfs_load: %d)", path, ret);
 		return -1;
 	}
 
@@ -67,7 +67,8 @@ int CVFSInputSource::OpenFile(const char *path)
 
 void CVFSInputSource::OpenBuffer(const char* path, const void* buffer, const size_t buffersize)
 {
-	m_pBuffer = (void*)buffer; // remove constness; trust people not to mess with the data
+debug_warn("who guarantees that buffer isn't already freed?");
+	m_pBuffer = (FileIOBuf)buffer;
 	m_BufferSize = buffersize;
 
 	XMLCh *sysId=XMLString::transcode(path);
@@ -78,8 +79,7 @@ void CVFSInputSource::OpenBuffer(const char* path, const void* buffer, const siz
 CVFSInputSource::~CVFSInputSource()
 {
 	// our buffer was vfs_load-ed; free it now
-	if(m_hMem > 0)
-		mem_free_h(m_hMem);
+	(void)file_buf_free(m_pBuffer);
 }
 
 BinInputStream *CVFSInputSource::makeStream() const

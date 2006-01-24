@@ -291,11 +291,10 @@ int CCinemaManager::LoadTracks()
 	int numTracks;
 	
 	//NOTE: How do you find the current scenario's cinematics?
-	void* fData;
-	size_t fSize;
-	Handle hm = vfs_load("FILENAME", fData, fSize);
-	RETURN_ERR(hm);
-	std::istringstream Stream(std::string((const char*)fData, (int)fSize), std::istringstream::binary);
+	FileIOBuf buf; size_t size;
+	RETURN_ERR(vfs_load("FILENAME", buf, size));
+	std::istringstream Stream(std::string((const char*)buf, (int)size), std::istringstream::binary);
+	(void)file_buf_free(buf);
 	
 	//Read in lone data
 	Stream >> fileID;
@@ -304,7 +303,6 @@ int CCinemaManager::LoadTracks()
 	if (fileID != 0x0ADC)
 	{
 		debug_printf("Cinematic file not found for (FILENAME)!");
-		mem_free_h(hm);
 		return 0;
 	}
 	for (int i=0; i < numTracks; i++)
@@ -352,7 +350,6 @@ int CCinemaManager::LoadTracks()
 		}
 		m_Tracks[Name] = tmpTrack;
 	}
-	mem_free_h(hm);
 	return 0;
 }
 

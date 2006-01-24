@@ -23,18 +23,17 @@ void CPlayList::load(const char* file)
 {
 	tracks.clear();
 
-	void* p;
-	size_t size;
-	Handle hm = vfs_load(file, p, size);
-	WARN_ERR_RETURN(hm);
+	FileIOBuf buf; size_t size;
+	if(vfs_load(file, buf, size) < 0)
+		return;
 
-	const char* playlist = (const char*)p;
+	const char* playlist = (const char*)buf;
 	char track[512];
 
 	while(sscanf(playlist, "%511s\n", track) == 1)
 		tracks.push_back(track);
 
-	mem_free_h(hm);
+	(void)file_buf_free(buf);
 }
 
 

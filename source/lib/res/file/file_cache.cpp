@@ -10,8 +10,6 @@
 #include "file_cache.h"
 #include "file_internal.h"
 
-static const size_t AIO_SECTOR_SIZE = 512;
-
 // strategy: 
 // policy:
 // - allocation: use all available mem first, then look at freelist
@@ -344,9 +342,6 @@ FileIOBuf file_buf_alloc(size_t size, const char* atom_fn)
 	uint attempts = 0;
 	for(;;)
 	{
-		if(attempts++ > 50)
-			debug_warn("possible infinite loop: failed to make room in cache");
-
 		buf = (FileIOBuf)cache_allocator.alloc(size);
 		if(buf)
 			break;
@@ -355,6 +350,9 @@ FileIOBuf file_buf_alloc(size_t size, const char* atom_fn)
 		FileIOBuf discarded_buf = file_cache.remove_least_valuable(&size);
 		if(discarded_buf)
 			cache_allocator.free((u8*)discarded_buf, size);
+
+		if(attempts++ > 50)
+			debug_warn("possible infinite loop: failed to make room in cache");
 	}
 
 	extant_bufs.add(buf, size, atom_fn);
@@ -380,22 +378,33 @@ LibError file_buf_get(FileIOBuf* pbuf, size_t size,
 	if(!is_write && alloc)
 	{
 		*pbuf = file_buf_alloc(size, atom_fn);
-		if(!*pbuf)
-			return ERR_NO_MEM;
+		if(!*pbuf)	// very unlikely (size totally bogus or cache hosed)
+			WARN_RETURN(ERR_NO_MEM);
 		return ERR_OK;
 	}
 
-	// writing from given buffer - ok.
-	if(is_write && user)
-		return ERR_OK;
+	// user-specified buffer
+	if(user)
+	{
+		// writing - always ok.
+		if(is_write)
+			return ERR_OK;
 
-	return ERR_INVALID_PARAM;
+		// reading - make sure it fits requirements
+		if(size % FILE_BLOCK_SIZE == 0 && (uintptr_t)*pbuf % AIO_SECTOR_SIZE == 0)
+			return ERR_OK;
+	}
+
+	WARN_RETURN(ERR_INVALID_PARAM);
 }
 
 
 LibError file_buf_free(FileIOBuf buf)
 {
-	FILE_STATS_NOTIFY_BUF_ALLOC();
+	if(!buf)
+		return ERR_OK;
+
+	FILE_STATS_NOTIFY_BUF_FREE();
 
 	size_t size;
 	extant_bufs.find_and_remove(buf, &size);
@@ -533,7 +542,6 @@ public:
 		}
 		void* mem = pool_alloc(&pool, FILE_BLOCK_SIZE);	// can't fail
 		blocks.push_back(Block(id, mem));
-debug_printf("alloc %p\n", mem);
 		return mem;
 	}
 

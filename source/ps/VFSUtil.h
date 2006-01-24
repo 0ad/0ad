@@ -32,4 +32,4 @@ enum EnumDirEntsFlags
 extern LibError EnumDirEnts(const CStr path, int flags, const char* filter,
 	EnumDirEntsCB cb, void* context);
 
-};	// namespace VFSUtil
+}	// namespace VFSUtil

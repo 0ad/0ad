@@ -1,6 +1,7 @@
 // OO wrapper around VFS file Handles, to simplify common usages
 
 #include "lib/res/handle.h"
+#include "lib/res/file/file.h"
 #include "ps/CStr.h"
 
 #include "ps/Errors.h"
@@ -23,11 +24,10 @@ public:
 
 	// These die if called when no file has been successfully loaded.
 	const void* GetBuffer() const;
-	const size_t GetBufferSize() const;
+	size_t GetBufferSize() const;
 	CStr GetAsString() const;
 
 private:
-	Handle m_Handle;
-	void* m_Buffer;
+	FileIOBuf m_Buffer;
 	size_t m_BufferSize;
 };

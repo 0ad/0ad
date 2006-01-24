@@ -256,7 +256,7 @@ LibError mem_free_p(void*& p)
 Handle mem_wrap(void* p, size_t size, uint flags, void* raw_p, size_t raw_size, MEM_DTOR dtor, uintptr_t ctx, void* owner)
 {
 	if(!p || !size)
-		CHECK_ERR(ERR_INVALID_PARAM);
+		WARN_RETURN(ERR_INVALID_PARAM);
 
 	SCOPED_LOCK;
 

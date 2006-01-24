@@ -10,9 +10,6 @@
 
 #include "FilePacker.h"
 
-#ifdef SCED
-# include <stdio.h>
-#endif
 #include <string.h>
 #include "lib/res/file/vfs.h"
 

@@ -79,14 +79,12 @@ static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const char* filename, Handle
 	if (shdr->id)
 		return ERR_OK;
 
-	void* file;
+	FileIOBuf file;
 	size_t file_size;
 	GLint log_length;
 	GLint compile_success;
-	Handle hm;
 
-	hm = vfs_load(filename, file, file_size);
-	RETURN_ERR(hm);
+	RETURN_ERR(vfs_load(filename, file, file_size));
 
 	oglCheck();
 
@@ -139,14 +137,14 @@ static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const char* filename, Handle
 		goto fail_shadercreated;
 	}
 
-	mem_free_h(hm);
+	(void)file_buf_free(file);
 	return ERR_OK;
 
 fail_shadercreated:
 	pglDeleteObjectARB(shdr->id);
 	shdr->id = 0;
 fail_fileloaded:
-	mem_free_h(hm);
+	(void)file_buf_free(file);
 	return err;
 }
 
@@ -427,7 +425,7 @@ LibError ogl_program_use(Handle h)
 	if (!p || !p->id)
 	{
 		pglUseProgramObjectARB(0);
-		CHECK_ERR(ERR_INVALID_HANDLE);
+		WARN_RETURN(ERR_INVALID_HANDLE);
 		UNREACHABLE;
 	}
 

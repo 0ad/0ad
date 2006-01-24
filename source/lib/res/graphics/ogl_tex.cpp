@@ -577,7 +577,7 @@ LibError ogl_tex_set_filter(Handle ht, GLint filter)
 	H_DEREF(ht, OglTex, ot);
 
 	if(!filter_valid(filter))
-		CHECK_ERR(ERR_INVALID_PARAM);
+		WARN_RETURN(ERR_INVALID_PARAM);
 
 	if(ot->state.filter != filter)
 	{
@@ -597,7 +597,7 @@ LibError ogl_tex_set_wrap(Handle ht, GLint wrap)
 	H_DEREF(ht, OglTex, ot);
 
 	if(!wrap_valid(wrap))
-		CHECK_ERR(ERR_INVALID_PARAM);
+		WARN_RETURN(ERR_INVALID_PARAM);
 
 	if(ot->state.wrap != wrap)
 	{

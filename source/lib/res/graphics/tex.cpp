@@ -415,7 +415,7 @@ void tex_util_foreach_mipmap(uint w, uint h, uint bpp, const u8* restrict data,
 //-----------------------------------------------------------------------------
 
 // split out of tex_load to ease resource cleanup
-static LibError tex_load_impl(void* file_, size_t file_size, Tex* t)
+static LibError tex_load_impl(FileIOBuf file_, size_t file_size, Tex* t)
 {
 	u8* file = (u8*)file_;
 	const TexCodecVTbl* c;
@@ -455,9 +455,12 @@ static LibError tex_load_impl(void* file_, size_t file_size, Tex* t)
 LibError tex_load(const char* fn, Tex* t)
 {
 	// load file
-	void* file; size_t file_size;
-	Handle hm = vfs_load(fn, file, file_size);
-	RETURN_ERR(hm);	// (need handle below; can't test return value directly)
+	FileIOBuf file; size_t file_size;
+	// rationale: we need the Handle return value for Tex.hm - the data pointer
+	// must be protected against being accidentally free-d in that case.
+
+	RETURN_ERR(vfs_load(fn, file, file_size));
+	Handle hm = mem_wrap((void*)file, file_size, 0, 0, 0, 0, 0, (void*)tex_load);
 	t->hm = hm;
 	LibError ret = tex_load_impl(file, file_size, t);
 	if(ret < 0)

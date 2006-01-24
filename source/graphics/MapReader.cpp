@@ -280,18 +280,8 @@ void CXMLReader::Init(const CStr& xml_filename)
 	// must only assign once, so do it here
 	node_idx = entity_idx = nonentity_idx = 0;
 
-#ifdef SCED
-	// HACK: ScEd uses absolute filenames, not VFS paths. I can't be bothered
-	// to make Xeromyces work with non-VFS, so just cheat:
-	CStr vfs_filename(xml_filename);
-	vfs_filename = vfs_filename.substr(vfs_filename.ReverseFind("\\mods\\official\\") + 15);
-	vfs_filename.Replace("\\", "/");
-	if (xmb_file.Load(vfs_filename) != PSRETURN_OK)
-		throw CFileUnpacker::CFileReadError();
-#else
 	if (xmb_file.Load(xml_filename) != PSRETURN_OK)
 		throw CFileUnpacker::CFileReadError();
-#endif
 
 	// define the elements and attributes that are frequently used in the XML file,
 	// so we don't need to do lots of string construction and comparison when

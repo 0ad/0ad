@@ -116,7 +116,7 @@ JSBool JSI_VFS::GetFileMTime( JSContext* cx, JSObject* UNUSED(obj), uintN argc, 
 		return( JS_FALSE );
 
 	struct stat s;
-	int err = vfs_stat( filename.c_str(), &s );
+	LibError err = vfs_stat( filename.c_str(), &s );
 	JS_CHECK_FILE_ERR( err );
 
 	*rval = ToJSVal( (double)s.st_mtime );
@@ -136,7 +136,7 @@ JSBool JSI_VFS::GetFileSize( JSContext* cx, JSObject* UNUSED(obj), uintN argc, j
 		return( JS_FALSE );
 
 	struct stat s;
-	int err = vfs_stat( filename.c_str(), &s );
+	LibError err = vfs_stat( filename.c_str(), &s );
 	JS_CHECK_FILE_ERR(err);
 
 	*rval = ToJSVal( (uint)s.st_size );
@@ -155,13 +155,13 @@ JSBool JSI_VFS::ReadFile( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsva
 	if( !ToPrimitive<CStr>( cx, argv[0], filename ) )
 		return( JS_FALSE );
 
-	void* p;
+	FileIOBuf buf;
 	size_t size;
-	Handle hm = vfs_load( filename.c_str(), p, size );
-	JS_CHECK_FILE_ERR( hm );
+	LibError err = vfs_load( filename.c_str(), buf, size );
+	JS_CHECK_FILE_ERR( err );
 
-	CStr contents( (const char*)p, size );
-	mem_free_h( hm );
+	CStr contents( (const char*)buf, size );
+	(void)file_buf_free(buf);
 
 	*rval = ToJSVal( CStr( contents ) );
 	return( JS_TRUE );
@@ -183,13 +183,13 @@ JSBool JSI_VFS::ReadFileLines( JSContext* cx, JSObject* UNUSED(obj), uintN argc,
 	// read file
 	//
 
-	void* p;
+	FileIOBuf buf;
 	size_t size;
-	Handle hm = vfs_load( filename.c_str( ), p, size );
-	JS_CHECK_FILE_ERR( hm );
+	LibError err = vfs_load( filename.c_str( ), buf, size );
+	JS_CHECK_FILE_ERR( err );
 
-	CStr contents( (const char*)p, size );
-	mem_free_h( hm );
+	CStr contents( (const char*)buf, size );
+	(void)file_buf_free( buf );
 
 
 	//

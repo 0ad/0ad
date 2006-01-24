@@ -243,7 +243,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 	parser.InputTaskType("Assignment", "_$ident_=<_[-$arg(_minus)]_$value_,>_[-$arg(_minus)]_$value[[;]$rest]");
 	parser.InputTaskType("CommentOrBlank", "_[;[$rest]]");
 
-	void *buffer;
+	FileIOBuf buffer;
 	uint buflen;
 	File f;
 	Handle fh;
@@ -264,9 +264,13 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 			LOG(ERROR, LOG_CATEGORY, "file_open for \"%s\" failed", m_ConfigFile[ns].c_str());
 			return false;
 		}
-		if (file_map(&f, buffer, buflen) != 0)
+		buffer = FILE_BUF_ALLOC;
+		buflen = f.fc.size;
+		ssize_t ret = file_io(&f, 0, buflen, &buffer);
+		(void)file_close(&f);
+		if(ret != (ssize_t)buflen)
 		{
-			LOG(ERROR, LOG_CATEGORY, "file_map for \"%s\" failed", m_ConfigFile[ns].c_str());
+			LOG(ERROR, LOG_CATEGORY, "file_io for \"%s\" failed", m_ConfigFile[ns].c_str());
 			return false;
 		}
 	}
@@ -317,18 +321,8 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 	while (next < filebufend);
 	
 	m_Map[ns].swap(newMap);
-	
-	// Close the correct file handle
-	if (m_UseVFS[ns])
-	{
-		mem_free_h(fh);
-	}
-	else
-	{
-		file_unmap(&f);
-		file_close(&f);
-	}
 
+	(void)file_buf_free(buffer);
 	return true;
 }
 

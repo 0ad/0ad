@@ -5,7 +5,7 @@
 #include "ps/CConsole.h"
 #include "lib/timer.h"
 #include "lib/res/sound/snd.h"
-#include "lib/res/file/vfs.h"
+#include "lib/res/file/vfs_optimizer.h"
 #include "Config.h"
 
 #define LOG_CATEGORY "config"
@@ -135,7 +135,7 @@ static void ParseCommandLineArgs(int argc, char* argv[])
 			break;
 		case 'l':
 			if(strncmp(name, "listfiles", 9) == 0)
-				vfs_enable_file_listing(true);
+				trace_enable(true);
 			break;
 		case 'n':
 			if(strncmp(name, "novbo", 5) == 0)

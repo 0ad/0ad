@@ -40,7 +40,53 @@ WIN_REGISTER_FUNC(waio_shutdown);
 
 // Win32 functions require sector aligned transfers.
 // max of all drives' size is checked in waio_init().
-static size_t sector_size = 4096;	// minimum: one page
+static size_t sector_size = 512;	// minimum: one page
+
+static void determine_max_sector_size()
+{
+// currently disabled: DVDs have 2..4KB, but this causes
+// waio to unnecessarily align some file transfers (when at EOF)
+// this means that we might not be able to read from CD/DVD drives
+// (ReadFile will return error)
+/*
+	// temporarily disable the "insert disk into drive" error box; we are
+	// only interested in fixed drives anyway.
+	//
+	// note: use SetErrorMode (crappy interface, grr) twice so as not to
+	// stomp on other flags (e.g. alignment exception).
+	const UINT old_err_mode = SetErrorMode(0);
+	SetErrorMode(old_err_mode|SEM_FAILCRITICALERRORS);
+
+	// Win32 requires transfers to be sector aligned.
+	// find maximum of all drive's sector sizes, then use that.
+	// (it's good to know this up-front, and checking every open() is slow).
+	const DWORD drives = GetLogicalDrives();
+	char drive_str[4] = "?:\\";
+	for(int drive = 2; drive <= 26; drive++)	// C: .. Z:
+	{
+		// avoid BoundsChecker warning by skipping invalid drives
+		if(!(drives & BIT(drive)))
+			continue;
+
+		drive_str[0] = (char)('A'+drive);
+
+		DWORD spc, nfc, tnc;	// don't need these
+		DWORD sector_size2;
+		if(GetDiskFreeSpace(drive_str, &spc, &sector_size2, &nfc, &tnc))
+		{
+			if(sector_size < sector_size2)
+				sector_size = sector_size2;
+		}
+		// otherwise, it's probably an empty CD drive. ignore the
+		// BoundsChecker error; GetDiskFreeSpace seems to be the
+		// only way of getting at the sector size.
+	}
+
+	SetErrorMode(old_err_mode);
+
+	debug_assert(is_pow2((long)sector_size));
+*/
+}
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -438,7 +484,6 @@ static int aio_rw(struct aiocb* cb)
 		actual_ofs = ofs - r->pad;
 		actual_size = round_up(size + r->pad, sector_size);
 
-		// now decide if any of the original parameters was unaligned,
 		// and whether it was ofs or buf in particular
 		// (needed for unaligned write handling below).
 		const bool ofs_misaligned = r->pad != 0;
@@ -493,7 +538,7 @@ static int aio_rw(struct aiocb* cb)
 	}	// is_file
 
 	// set OVERLAPPED fields
-	ResetEvent(r->ovl.hEvent);
+	// note: Read-/WriteFile reset ovl.hEvent - no need to do that.
 	r->ovl.Internal = r->ovl.InternalHigh = 0;
 	*(size_t*)&r->ovl.Offset = actual_ofs;
 		// HACK: use this instead of OVERLAPPED.Pointer,
@@ -502,10 +547,12 @@ static int aio_rw(struct aiocb* cb)
 
 	DWORD size32 = (DWORD)(actual_size & 0xffffffff);
 	BOOL ok;
+
+	DWORD bytes_transferred;
 	if(is_write)
-		ok = WriteFile(h, actual_buf, size32, 0, &r->ovl);
+		ok = WriteFile(h, actual_buf, size32, &bytes_transferred, &r->ovl);
 	else
-		ok =  ReadFile(h, actual_buf, size32, 0, &r->ovl);		
+		ok =  ReadFile(h, actual_buf, size32, &bytes_transferred, &r->ovl);		
 
 	// "pending" isn't an error
 	if(GetLastError() == ERROR_IO_PENDING)
@@ -513,6 +560,8 @@ static int aio_rw(struct aiocb* cb)
 
 	if(ok)
 		ret = 0;
+	else
+		debug_warn("waio failure");
 
 done:
 	WIN_RESTORE_LAST_ERROR;
@@ -520,6 +569,7 @@ done:
 	return ret;
 
 fail:
+	debug_warn("waio failure");
 	req_free(r);
 	goto done;
 }
@@ -710,43 +760,7 @@ int aio_fsync(int, struct aiocb*)
 static LibError waio_init()
 {
 	req_init();
-
-	// temporarily disable the "insert disk into drive" error box; we are
-	// only interested in fixed drives anyway.
-	//
-	// note: use SetErrorMode (crappy interface, grr) twice so as not to
-	// stomp on other flags (e.g. alignment exception).
-	const UINT old_err_mode = SetErrorMode(0);
-	SetErrorMode(old_err_mode|SEM_FAILCRITICALERRORS);
-
-	// Win32 requires transfers to be sector aligned.
-	// find maximum of all drive's sector sizes, then use that.
-	// (it's good to know this up-front, and checking every open() is slow).
-	const DWORD drives = GetLogicalDrives();
-	char drive_str[4] = "?:\\";
-	for(int drive = 2; drive <= 26; drive++)	// C: .. Z:
-	{
-		// avoid BoundsChecker warning by skipping invalid drives
-		if(!(drives & BIT(drive)))
-			continue;
-
-		drive_str[0] = (char)('A'+drive);
-
-		DWORD spc, nfc, tnc;	// don't need these
-		DWORD sector_size2;
-		if(GetDiskFreeSpace(drive_str, &spc, &sector_size2, &nfc, &tnc))
-		{
-			if(sector_size < sector_size2)
-				sector_size = sector_size2;
-		}
-		// otherwise, it's probably an empty CD drive. ignore the
-		// BoundsChecker error; GetDiskFreeSpace seems to be the
-		// only way of getting at the sector size.
-	}
-
-	SetErrorMode(old_err_mode);
-
-	debug_assert(is_pow2((long)sector_size));
+	determine_max_sector_size();
 	return ERR_OK;
 }
 

@@ -33,7 +33,7 @@ bool XMLWriter_File::StoreVFS(Handle h)
 {
 	if (m_LastElement) debug_warn("ERROR: Saving XML while an element is still open");
 
-	void* data = (void*)m_Data.data();
+	FileIOBuf data = (FileIOBuf)m_Data.data();
 	int err = vfs_io(h, m_Data.Length(), &data);
 	if (err < 0)
 	{

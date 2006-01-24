@@ -619,27 +619,28 @@ void CConsole::ProcessBuffer(const wchar_t* szLine){
 
 void CConsole::LoadHistory()
 {
-	void* buffer; unsigned int buflen;
-	Handle h = vfs_load( m_sHistoryFile, buffer, buflen );
-	if( h > 0 )
-	{
-		CStr bytes( (char*)buffer, buflen );
-		CStrW str( bytes.FromUTF8() );
-		size_t pos = 0;
-		while( pos != CStrW::npos )
-		{
-			pos = str.find( '\n' );
-			if( pos != CStrW::npos )
-			{
-				if( pos > 0 )
-					m_deqBufHistory.push_front( str.Left( str[pos-1] == '\r' ? pos - 1 : pos ) );
-				str = str.GetSubstring( pos + 1, str.npos );
-			}
-			else if( str.Length() > 0 )
-				m_deqBufHistory.push_front( str );
-		}
-	}
+	FileIOBuf buf; unsigned int buflen;
 	// Don't care about failure; just don't load anything.
+	if(vfs_load( m_sHistoryFile, buf, buflen ) < 0)
+		return;
+
+	CStr bytes( (char*)buf, buflen );
+	(void)file_buf_free(buf);
+
+	CStrW str( bytes.FromUTF8() );
+	size_t pos = 0;
+	while( pos != CStrW::npos )
+	{
+		pos = str.find( '\n' );
+		if( pos != CStrW::npos )
+		{
+			if( pos > 0 )
+				m_deqBufHistory.push_front( str.Left( str[pos-1] == '\r' ? pos - 1 : pos ) );
+			str = str.GetSubstring( pos + 1, str.npos );
+		}
+		else if( str.Length() > 0 )
+			m_deqBufHistory.push_front( str );
+	}
 }
 
 void CConsole::SaveHistory()

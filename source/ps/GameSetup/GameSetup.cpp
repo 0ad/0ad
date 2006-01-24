@@ -10,6 +10,7 @@
 # include "lib/sysdep/ia32.h"
 #endif
 #include "lib/res/res.h"
+#include "lib/res/file/vfs_optimizer.h"
 #include "lib/res/sound/snd.h"
 #include "lib/res/graphics/tex.h"
 #include "lib/res/graphics/cursor.h"
@@ -523,6 +524,9 @@ static void InitScripting()
 static void InitVfs(const char* argv0)
 {
 	TIMER("InitVfs");
+
+	(void)file_init();
+
 	// set root directory to "$game_dir/data". all relative file paths
 	// passed to file.cpp will be based from this dir.
 	// (we don't set current directory because other libraries may
@@ -533,7 +537,7 @@ static void InitVfs(const char* argv0)
 	// rationale for data/ being root: untrusted scripts must not be
 	// allowed to overwrite critical game (or worse, OS) files.
 	// the VFS prevents any accesses to files above this directory.
-	WARN_ERR(file_set_root_dir(argv0, "../data"));
+	(void)file_set_root_dir(argv0, "../data");
 
 	vfs_init();
 	vfs_mount("", "mods/official", VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES|VFS_MOUNT_WATCH);
@@ -779,6 +783,9 @@ void Shutdown()
 	// first shut down all resource owners, and then the handle manager.
 	TIMER_BEGIN("resource modules");
 		snd_shutdown();
+
+		(void)trace_write_to_file("../logs/trace.txt");
+
 		vfs_shutdown();
 
 		// must come before h_mgr_shutdown - it frees IO buffers,
@@ -908,7 +915,7 @@ void Init(int argc, char* argv[], uint flags)
 	if(!g_Quickstart)
 	{
 		WriteSystemInfo();
-//		vfs_display(); // disabled to decrease startup time
+		vfs_display(); // disabled to decrease startup time
 	}
 	else
 	{

@@ -34,7 +34,7 @@ struct CColor
 	const float* FloatArray() const { return &r; }
 
 	// For passing to CRenderer:
-	const u32 Int() const
+	u32 Int() const
 	{
 		return (((int)(a*255.0) & 0xff) << 24)
 			 + (((int)(b*255.0) & 0xff) << 16)
@@ -44,10 +44,6 @@ struct CColor
 
 	float r, g, b, a;
 };
-
-// yuck - MFC already defines CRect/CSize classes ...
-#define CRect PS_CRect
-#define CSize PS_CSize
 
 class CPos;
 class CSize;

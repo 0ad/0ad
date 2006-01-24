@@ -590,11 +590,6 @@ static Pool atom_pool;
 // their addresses are equal, thus allowing fast comparison.
 const char* file_make_unique_fn_copy(const char* P_fn, size_t fn_len)
 {
-/*
-const char* slash = strrchr(P_fn, '/');
-if(slash&&!stricmp(slash+1, "proptest.PMD"))
-debug_break();
-*/
 	// early out: if already an atom, return immediately.
 	if(pool_contains(&atom_pool, (void*)P_fn))
 		return P_fn;

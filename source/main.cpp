@@ -11,11 +11,6 @@ that of Atlas depending on commandline parameters.
 
 #include "precompiled.h"
 
-#ifdef SCED
-# include "ui/StdAfx.h"
-# undef ERROR
-#endif // SCED
-
 #include "lib/input.h"
 #include "lib/sdl.h"
 #include "lib/timer.h"

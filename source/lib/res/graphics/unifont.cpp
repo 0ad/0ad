@@ -73,14 +73,12 @@ static LibError UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 	std::string FilenameBase = "fonts/"; FilenameBase += fn;
 
 	// Read font definition file into a stringstream
-	void* RawFNT;
-	size_t FNTSize;
-	std::string FilenameFnt = FilenameBase+".fnt";
+	const std::string FilenameFnt = FilenameBase+".fnt";
 	const char* fnt_fn = FilenameFnt.c_str();
-	Handle hm = vfs_load(fnt_fn, RawFNT, FNTSize);
-	RETURN_ERR(hm);
-	std::istringstream FNTStream (std::string((const char*)RawFNT, (int)FNTSize));
-	mem_free_h(hm);
+	FileIOBuf buf; size_t size;
+	RETURN_ERR(vfs_load(fnt_fn, buf, size));
+	std::istringstream FNTStream (std::string((const char*)buf, (int)size));
+	(void)file_buf_free(buf);
 
 	int Version;
 	FNTStream >> Version;

@@ -346,6 +346,8 @@ static LibError VFile_reload(VFile* vf, const char* V_path, Handle)
 	}
 
 	const Mount* m = tfile_get_mount(tf);
+if(!m)
+return ERR_LOGIC;
 	RETURN_ERR(x_open(m, V_path, flags, tf, &vf->xf));
 
 	FileCommon& fc = vf->xf.u.fc;
@@ -430,28 +432,19 @@ ssize_t vfs_io(const Handle hf, const size_t size, FileIOBuf* pbuf,
 	debug_printf("VFS| io: size=%d\n", size);
 
 	H_DEREF(hf, VFile, vf);
-	XFile& xf = vf->xf;
 
 	off_t ofs = vf->ofs;
 	vf->ofs += (off_t)size;
-
-	const bool is_write = (xf.u.fc.flags & FILE_WRITE) != 0;
-	RETURN_ERR(file_buf_get(pbuf, size, xf.u.fc.atom_fn, is_write, cb));
 
 	return x_io(&vf->xf, ofs, size, pbuf, cb, cb_ctx);
 }
 
 
 // load the entire file <fn> into memory.
-// returns a memory handle to the file's contents or a negative error code.
-// buf and size are filled with address/size of buffer (0 on failure).
+// p and size are filled with address/size of buffer (0 on failure).
 // flags influences IO mode and is typically 0.
-// when the file contents are no longer needed, you can mem_free_h the
-// Handle, or mem_free(p).
-//
-// rationale: we need the Handle return value for Tex.hm - the data pointer
-// must be protected against being accidentally free-d in that case.
-Handle vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size, uint flags /* default 0 */)
+// when the file contents are no longer needed, call file_buf_free(buf).
+LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size, uint flags /* default 0 */)
 {
 	debug_printf("VFS| load: V_fn=%s\n", V_fn);
 
@@ -469,31 +462,23 @@ Handle vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size, uint flags /* de
 
 	H_DEREF(hf, VFile, vf);
 
-	Handle hm = 0;	// return value - handle to memory or error code
 	size = x_size(&vf->xf);
 	buf = FILE_BUF_ALLOC;
 	ssize_t nread = vfs_io(hf, size, &buf);
 	// IO failed
 	if(nread < 0)
-		hm = nread;	// error code
-	else
-	{
-		debug_assert(nread == (ssize_t)size);
-		(void)file_cache_add(buf, size, atom_fn);
-		hm = mem_wrap((void*)buf, size, 0, 0, 0, 0, 0, (void*)vfs_load);
-	}
-
-	(void)vfs_close(hf);
-
-	// IO or handle alloc failed
-	if(hm <= 0)
 	{
 		file_buf_free(buf);
+		(void)vfs_close(hf);
 		buf = 0, size = 0;	// make sure they are zeroed
+		return (LibError)nread;
 	}
 
-	CHECK_ERR(hm);
-	return hm;
+	debug_assert(nread == (ssize_t)size);
+	(void)file_cache_add(buf, size, atom_fn);
+
+	(void)vfs_close(hf);
+	return ERR_OK;
 }
 
 

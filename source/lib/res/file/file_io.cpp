@@ -82,18 +82,16 @@ LibError file_io_issue(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 
 	const bool is_write = (f->fc.flags & FILE_WRITE) != 0;
 
+
 	// cut off at EOF.
 	if(!is_write)
 	{
-		// avoid min() due to type conversion warnings.
 		const off_t bytes_left = f->fc.size - ofs;
 		if(bytes_left < 0)
 			WARN_RETURN(ERR_EOF);
-		if((off_t)size > bytes_left)
-			size = (size_t)bytes_left;
-		// guaranteed to fit, since size was > bytes_left
+		size = MIN(size, (size_t)bytes_left);
+		size = round_up(size, AIO_SECTOR_SIZE);
 	}
-
 
 	// (we can't store the whole aiocb directly - glibc's version is
 	// 144 bytes large)
@@ -155,9 +153,11 @@ LibError file_io_wait(FileIo* io, const void*& p, size_t& size)
 	// query number of bytes transferred (-1 if the transfer failed)
 	const ssize_t bytes_transferred = aio_return(cb);
 	debug_printf("FILE| bytes_transferred=%d aio_nbytes=%u\n", bytes_transferred, cb->aio_nbytes);
-	// (size was clipped to EOF in file_io => this is an actual IO error)
-	if(bytes_transferred < (ssize_t)cb->aio_nbytes)
-		return ERR_IO;
+
+// disabled: we no longer clamp to EOF
+//	// (size was clipped to EOF in file_io => this is an actual IO error)
+//	if(bytes_transferred < (ssize_t)cb->aio_nbytes)
+//		return ERR_IO;
 
 	p = (void*)cb->aio_buf;	// cast from volatile void*
 	size = bytes_transferred;
@@ -263,7 +263,8 @@ class IOManager
 		}
 	};
 	static const uint MAX_PENDING_IOS = 4;
-	RingBuf<IOSlot, MAX_PENDING_IOS> queue;
+	//RingBuf<IOSlot, MAX_PENDING_IOS> queue;
+	std::deque<IOSlot> queue;
 
 	// stop issuing and processing as soon as this changes
 	LibError err;
@@ -387,10 +388,7 @@ class IOManager
 		// transfer failed - loop will now terminate after
 		// waiting for all pending transfers to complete.
 		if(ret != ERR_OK)
-		{
 			err = ret;
-			mem_free(slot.temp_buf);
-		}
 
 skip_issue:
 
@@ -508,7 +506,7 @@ public:
 	// if reading from Zip, inflate while reading the next block.
 	ssize_t run()
 	{
-		prepare();
+		RETURN_ERR(prepare());
 
 		const double start_time = get_time();
 		FileIOImplentation fi;
