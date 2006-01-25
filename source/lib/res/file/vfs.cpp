@@ -32,19 +32,12 @@
 #include <string>
 #include <algorithm>
 
-#include "lib.h"
-#include "adts.h"
-#include "timer.h"
-#include "../res.h"
-#include "zip.h"
-#include "file.h"
-#include "file_cache.h"
-#include "file_internal.h"
+#include "lib/lib.h"
+#include "lib/adts.h"
+#include "lib/timer.h"
+#include "lib/res/res.h"
 #include "sysdep/dir_watch.h"
-#include "vfs_path.h"
-#include "vfs_tree.h"
-#include "vfs_mount.h"
-#include "vfs_optimizer.h"
+#include "file_internal.h"
 
 // not safe to call before main!
 
@@ -321,7 +314,7 @@ static void VFile_dtor(VFile* vf)
 	WARN_ERR(x_close(&vf->xf));
 
 	if(vf->is_valid)
-		FILE_STATS_NOTIFY_CLOSE();
+		stats_close();
 }
 
 static LibError VFile_reload(VFile* vf, const char* V_path, Handle)
@@ -351,7 +344,7 @@ return ERR_LOGIC;
 	RETURN_ERR(x_open(m, V_path, flags, tf, &vf->xf));
 
 	FileCommon& fc = vf->xf.u.fc;
-	FILE_STATS_NOTIFY_OPEN(fc.atom_fn, fc.size);
+	stats_open(fc.atom_fn, fc.size);
 	vf->is_valid = 1;
 
 	return ERR_OK;
@@ -451,7 +444,10 @@ LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size, uint flags /* 
 	const char* atom_fn = file_make_unique_fn_copy(V_fn, 0);
 	buf = file_cache_retrieve(atom_fn, &size);
 	if(buf)
+	{
+		stats_cache(CR_HIT, size, atom_fn);
 		return ERR_OK;
+	}
 
 	buf = 0; size = 0;	// initialize in case something below fails
 
@@ -463,6 +459,11 @@ LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size, uint flags /* 
 	H_DEREF(hf, VFile, vf);
 
 	size = x_size(&vf->xf);
+	// only now can we report misses, since we need to know the size for
+	// statistics purposes. that means vfs_load on nonexistant files will
+	// not show up in cache misses, which is fine.
+	stats_cache(CR_MISS, size, atom_fn);	
+
 	buf = FILE_BUF_ALLOC;
 	ssize_t nread = vfs_io(hf, size, &buf);
 	// IO failed

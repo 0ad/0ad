@@ -1,10 +1,8 @@
 #include "precompiled.h"
 
-#include "lib/res/res.h"
-#include "lib/res/file/compression.h"
 #include "lib/allocators.h"
 #include "lib/timer.h"
-#include "vfs_optimizer.h"
+#include "file_internal.h"
 
 
 enum TraceState

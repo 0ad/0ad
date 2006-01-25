@@ -4,9 +4,6 @@
 #include "lib/posix.h"
 #include "lib/allocators.h"
 #include "lib/adts.h"
-#include "lib/res/res.h"
-#include "file.h"
-#include "file_cache.h"
 #include "file_internal.h"
 
 
@@ -508,20 +505,8 @@ public:
 	{
 		RETURN_ERR(prepare());
 
-		const double start_time = get_time();
-		FileIOImplentation fi;
-		ssize_t ret;
-		if(no_aio)
-		{
-			fi = FI_LOWIO;
-			ret = lowio();
-		}
-		else
-		{
-			fi = FI_AIO;
-			ret = aio();
-		}
-		FILE_STATS_NOTIFY_IO(fi, is_write? FO_WRITE : FO_READ, user_size, total_issued, start_time);
+		ssize_t ret = no_aio? lowio() : aio();
+///		FILE_STATS_NOTIFY_IO(fi, is_write? FO_WRITE : FO_READ, user_size, total_issued, start_time);
 
 		debug_printf("FILE| err=%d, total_processed=%u\n", err, total_processed);
 

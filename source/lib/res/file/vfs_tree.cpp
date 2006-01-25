@@ -9,11 +9,7 @@
 
 #include "lib/allocators.h"
 #include "lib/adts.h"
-#include "../res.h"
-#include "vfs_path.h"
-#include "vfs_tree.h"
-#include "file_cache.h"
-#include "lib/allocators.h"
+#include "file_internal.h"
 
 
 // we add/cancel directory watches from the VFS mount code for convenience -

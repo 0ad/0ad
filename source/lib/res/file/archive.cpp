@@ -1,13 +1,9 @@
 #include "precompiled.h"
 
-#include "lib/res/res.h"
 #include "lib/timer.h"
 #include "lib/allocators.h"
-#include "file.h"
-#include "file_cache.h"
-#include "zip.h"
-#include "compression.h"
-#include "archive.h"
+#include "lib/res/res.h"
+#include "file_internal.h"
 
 
 // components:
@@ -262,7 +258,7 @@ LibError afile_validate(const AFile* af)
 	return ERR_OK;
 }
 
-#define CHECK_ZFILE(af) CHECK_ERR(afile_validate(af))
+#define CHECK_AFILE(af) CHECK_ERR(afile_validate(af))
 
 
 // open file, and fill *af with information about it.
@@ -309,7 +305,7 @@ LibError afile_open(const Handle ha, const char* fn, uintptr_t memento, int flag
 	af->ha        = ha;
 	af->ctx       = ctx;
 	af->is_mapped = 0;
-	CHECK_ZFILE(af);
+	CHECK_AFILE(af);
 	return ERR_OK;
 }
 
@@ -317,7 +313,7 @@ LibError afile_open(const Handle ha, const char* fn, uintptr_t memento, int flag
 // close file.
 LibError afile_close(AFile* af)
 {
-	CHECK_ZFILE(af);
+	CHECK_AFILE(af);
 	// other AFile fields don't need to be freed/cleared
 	comp_free(af->ctx);
 	af->ctx = 0;
@@ -343,7 +339,7 @@ LibError afile_io_issue(AFile* af, off_t user_ofs, size_t max_output_size, void*
 	// zero output param in case we fail below.
 	memset(io, 0, sizeof(AFileIo));
 
-	CHECK_ZFILE(af);
+	CHECK_AFILE(af);
 	H_DEREF(af->ha, Archive, a);
 
 	// not compressed; we'll just read directly from the archive file.
@@ -517,7 +513,7 @@ static LibError decompressor_feed_cb(uintptr_t cb_ctx,
 // return bytes read, or a negative error code.
 ssize_t afile_read(AFile* af, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb, uintptr_t cb_ctx)
 {
-	CHECK_ZFILE(af);
+	CHECK_AFILE(af);
 	H_DEREF(af->ha, Archive, a);
 
 	if(!is_compressed(af))
@@ -564,7 +560,7 @@ LibError afile_map(AFile* af, void*& p, size_t& size)
 	p = 0;
 	size = 0;
 
-	CHECK_ZFILE(af);
+	CHECK_AFILE(af);
 
 	// mapping compressed files doesn't make sense because the
 	// compression algorithm is unspecified - disallow it.
@@ -594,7 +590,7 @@ LibError afile_map(AFile* af, void*& p, size_t& size)
 // may be removed when no longer needed.
 LibError afile_unmap(AFile* af)
 {
-	CHECK_ZFILE(af);
+	CHECK_AFILE(af);
 
 	// make sure archive mapping refcount remains balanced:
 	// don't allow multiple|"false" unmaps.

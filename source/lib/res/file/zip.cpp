@@ -22,13 +22,11 @@
 #include <time.h>
 
 #include "lib.h"
-#include "../res.h"
 #include "byte_order.h"
 #include "allocators.h"
 #include "timer.h"
 #include "self_test.h"
-#include "archive.h"
-#include "zip.h"
+#include "file_internal.h"
 
 
 // Zip file data structures and signatures

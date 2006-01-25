@@ -4,10 +4,7 @@
 
 #include "lib/allocators.h"
 #include "lib/byte_order.h"
-#include "lib/res/res.h"
 #include "lib/adts.h"
-#include "file.h"
-#include "file_cache.h"
 #include "file_internal.h"
 
 // strategy: 
@@ -357,7 +354,7 @@ FileIOBuf file_buf_alloc(size_t size, const char* atom_fn)
 
 	extant_bufs.add(buf, size, atom_fn);
 
-	FILE_STATS_NOTIFY_BUF_ALLOC();
+	stats_buf_alloc(size, round_up(size, AIO_SECTOR_SIZE));
 	return buf;
 }
 
@@ -383,17 +380,9 @@ LibError file_buf_get(FileIOBuf* pbuf, size_t size,
 		return ERR_OK;
 	}
 
-	// user-specified buffer
-	if(user)
-	{
-		// writing - always ok.
-		if(is_write)
-			return ERR_OK;
-
-		// reading - make sure it fits requirements
-		if(size % FILE_BLOCK_SIZE == 0 && (uintptr_t)*pbuf % AIO_SECTOR_SIZE == 0)
-			return ERR_OK;
-	}
+	// writing from user-specified buffer - ok
+	if(is_write && user)
+		return ERR_OK;
 
 	WARN_RETURN(ERR_INVALID_PARAM);
 }
@@ -404,7 +393,7 @@ LibError file_buf_free(FileIOBuf buf)
 	if(!buf)
 		return ERR_OK;
 
-	FILE_STATS_NOTIFY_BUF_FREE();
+	stats_buf_free();
 
 	size_t size;
 	extant_bufs.find_and_remove(buf, &size);
@@ -429,15 +418,7 @@ FileIOBuf file_cache_retrieve(const char* atom_fn, size_t* size)
 	// (why would someone issue a second IO for the entire file while
 	// still referencing the previous instance?)
 
-	FileIOBuf buf = file_cache.retrieve(atom_fn, size);
-	if(!buf)
-	{
-		FILE_STATS_NOTIFY_CACHE(CR_MISS, 1);	// IOTODO: hack - cannot get miss size since not in cache
-		return 0;
-	}
-	
-	FILE_STATS_NOTIFY_CACHE(CR_HIT, *size);
-	return buf;
+	return file_cache.retrieve(atom_fn, size);
 }
 
 

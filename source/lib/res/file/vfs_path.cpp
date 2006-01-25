@@ -3,8 +3,7 @@
 #include <string.h>
 
 #include "lib.h"
-#include "vfs.h"
-#include "vfs_path.h"
+#include "file_internal.h"
 
 
 // path types:

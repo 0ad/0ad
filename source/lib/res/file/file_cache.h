@@ -17,3 +17,7 @@ extern void* block_cache_alloc(BlockId id);
 extern void block_cache_mark_completed(BlockId id);
 
 extern void* block_cache_find(BlockId id);
+
+
+extern void file_cache_init();
+extern void file_cache_shutdown();

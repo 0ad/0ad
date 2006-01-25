@@ -20,24 +20,17 @@
 #include "precompiled.h"
 
 #include "lib.h"
-#include "../res.h"
 #include "detect.h"
 #include "adts.h"
 #include "sysdep/sysdep.h"
 #include "byte_order.h"
 #include "lib/allocators.h"
-#include "file.h"
 #include "file_internal.h"
 
 #include <vector>
 #include <algorithm>
 
 #include <string>
-
-// reasonable guess. if too small, aio will do alignment.
-const size_t SECTOR_SIZE = 4*KiB;
-
-FileStats stats;
 
 
 // rationale for aio, instead of only using mmap:
@@ -609,10 +602,7 @@ const char* file_make_unique_fn_copy(const char* P_fn, size_t fn_len)
 	static AtomMap atom_map;
 	unique_fn = atom_map.find(P_fn);
 	if(unique_fn)
-	{
-debug_assert(!strcmp(P_fn, unique_fn));
 		return unique_fn;
-	}
 
 	unique_fn = (const char*)pool_alloc(&atom_pool, fn_len+1);
 	if(!unique_fn)
@@ -622,7 +612,7 @@ debug_assert(!strcmp(P_fn, unique_fn));
 
 	atom_map.insert(unique_fn, unique_fn);
 
-	FILE_STATS_NOTIFY_UNIQUE_FILE();
+	stats_unique_name(fn_len);
 	return unique_fn;
 }
 
@@ -840,7 +830,7 @@ LibError file_init()
 
 LibError file_shutdown()
 {
-	FILE_STATS_DUMP();
+	stats_dump();
 	atom_shutdown();
 	file_io_shutdown();
 	return ERR_OK;

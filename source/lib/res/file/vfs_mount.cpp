@@ -1,38 +1,11 @@
 #include "precompiled.h"
 
-#include "../res.h"
-#include "vfs_mount.h"
-#include "vfs_path.h"
-#include "vfs_tree.h"
-#include "zip.h"
 #include "sysdep/dir_watch.h"
+#include "lib/res/h_mgr.h"
+#include "file_internal.h"
 
 #include <deque>
 #include <list>
-
-/*
-struct Stats
-{
-	size_t mounted_dirs;
-	size_t mounted_archives;
-	size_t files_examined;
-	size_t files_updated;
-
-	void dump()
-	{
-		debug_printf("VFS stats\n");
-		debug_printf("  dirs=%u archives=%u\n", mounted_dirs, mounted_archives);
-		debug_printf("  files updated=%u files examined=%u\n", files_updated, files_examined);
-	}
-};
-static Stats stats;
-
-void dump_stats()
-{
-	stats.dump();
-}
-*/
-
 
 // location of a file: either archive or a real directory.
 // not many instances => don't worry about efficiency.
