@@ -271,7 +271,7 @@ extern LibError file_io_issue(File* f, off_t ofs, size_t size, void* buf, FileIo
 extern int file_io_has_completed(FileIo* io);
 
 // wait for the given IO to complete. passes back its buffer and size.
-extern LibError file_io_wait(FileIo* io, const void*& p, size_t& size);
+extern LibError file_io_wait(FileIo* io, void*& p, size_t& size);
 
 // indicates the IO's buffer is no longer needed and frees that memory.
 extern LibError file_io_discard(FileIo* io);

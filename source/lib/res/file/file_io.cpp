@@ -132,7 +132,7 @@ int file_io_has_completed(FileIo* io)
 }
 
 
-LibError file_io_wait(FileIo* io, const void*& p, size_t& size)
+LibError file_io_wait(FileIo* io, void*& p, size_t& size)
 {
 	debug_printf("FILE| wait io=%p\n", io);
 

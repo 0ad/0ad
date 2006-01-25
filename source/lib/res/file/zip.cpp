@@ -527,13 +527,18 @@ static void test_fat_timedate_conversion()
 	// note: FAT time stores second/2, which means converting may
 	// end up off by 1 second.
 
-	time_t t = time(0);
-	time_t converted_t = time_t_from_FAT(FAT_from_time_t(t));
-	TEST(abs(converted_t-t) < 2);
+	time_t t, converted_t;
+	long dt;
+
+	t = time(0);
+	converted_t = time_t_from_FAT(FAT_from_time_t(t));
+	dt = converted_t-t;	// disambiguate abs() parameter
+	TEST(abs(dt) < 2);
 
 	t++;
 	converted_t = time_t_from_FAT(FAT_from_time_t(t));
-	TEST(abs(converted_t-t) < 2);
+	dt = converted_t-t;	// disambiguate abs() parameter
+	TEST(abs(dt) < 2);
 }
 
 static void self_test()
