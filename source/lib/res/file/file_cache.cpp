@@ -717,7 +717,9 @@ LibError file_cache_invalidate(const char* P_fn)
 	if(cached_buf)
 	{
 		file_cache.remove(atom_fn);
+#include "nommgr.h"
 		cache_allocator.free((u8*)cached_buf, size);
+#include "mmgr.h"
 	}
 
 	return ERR_OK;
