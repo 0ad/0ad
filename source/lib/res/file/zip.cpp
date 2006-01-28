@@ -545,7 +545,9 @@ LibError zip_archive_finish(ZipArchive* za)
 
 	(void)file_close(&za->f);
 	(void)pool_destroy(&za->cdfhs);
+#include "nommgr.h"
 	za_mgr.free(za);
+#include "mmgr.h"
 	return ERR_OK;
 }
 
