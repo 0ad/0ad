@@ -225,7 +225,7 @@ public:
 	void add(Key key, T item, size_t size, uint cost)
 	{
 		typedef std::pair<CacheMapIt, bool> PairIB;
-		CacheMap::value_type val = std::make_pair(key, CacheEntry(item, size, cost));
+		typename CacheMap::value_type val = std::make_pair(key, CacheEntry(item, size, cost));
 		PairIB ret = map.insert(val);
 		debug_assert(ret.second);	// must not already be in map
 	}
@@ -341,7 +341,7 @@ template<class T, size_t n> class RingBuf
 {
 	size_t size_;	// # of entries in buffer
 	size_t head;	// index of first item
-	size_t tail;	// index of last  item 
+	size_t tail;	// index of last  item
 	T data[n];
 
 public:

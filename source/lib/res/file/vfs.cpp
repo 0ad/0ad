@@ -27,7 +27,7 @@
 
 #include <map>
 #include <list>
-#include <deque>  
+#include <deque>
 #include <vector>
 #include <string>
 #include <algorithm>
@@ -462,7 +462,7 @@ LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size, uint flags /* 
 	// only now can we report misses, since we need to know the size for
 	// statistics purposes. that means vfs_load on nonexistant files will
 	// not show up in cache misses, which is fine.
-	stats_cache(CR_MISS, size, atom_fn);	
+	stats_cache(CR_MISS, size, atom_fn);
 
 	buf = FILE_BUF_ALLOC;
 	ssize_t nread = vfs_io(hf, size, &buf);
@@ -736,7 +736,7 @@ LibError vfs_reload_changed_files()
 
 		// path has already been written to pending_reloads,
 		// so just mark it valid.
-		num_pending++;		
+		num_pending++;
 	}
 
 	// rebuild VFS, in case a file that has been changed is currently
@@ -757,7 +757,7 @@ LibError vfs_reload_changed_files()
 
 //-----------------------------------------------------------------------------
 
-inline void vfs_display()
+void vfs_display()
 {
 	tree_display();
 }

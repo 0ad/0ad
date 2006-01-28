@@ -7,7 +7,7 @@
 #include "lib/adts.h"
 #include "file_internal.h"
 
-// strategy: 
+// strategy:
 // policy:
 // - allocation: use all available mem first, then look at freelist
 // - freelist: good fit, address-ordered, always split
@@ -345,8 +345,10 @@ FileIOBuf file_buf_alloc(size_t size, const char* atom_fn)
 
 		size_t size;
 		FileIOBuf discarded_buf = file_cache.remove_least_valuable(&size);
+#include "nommgr.h"
 		if(discarded_buf)
 			cache_allocator.free((u8*)discarded_buf, size);
+#include "mmgr.h"
 
 		if(attempts++ > 50)
 			debug_warn("possible infinite loop: failed to make room in cache");

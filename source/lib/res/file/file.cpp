@@ -215,7 +215,7 @@ LibError file_make_full_portable_path(const char* n_full_path, char* path)
 // establish the root directory from <rel_path>, which is treated as
 // relative to the executable's directory (determined via argv[0]).
 // all relative file paths passed to this module will be based from
-// this root dir. 
+// this root dir.
 //
 // example: executable in "$install_dir/system"; desired root dir is
 // "$install_dir/data" => rel_path = "../data".
@@ -776,8 +776,7 @@ LibError file_map(File* f, void*& p, size_t& size)
 		return ERR_FAIL;
 
 	errno = 0;
-	void* start = 0;	// system picks start address
-	f->mapping = mmap(start, f->fc.size, prot, MAP_PRIVATE, f->fd, (off_t)0);
+	f->mapping = mmap(0, f->fc.size, prot, MAP_PRIVATE, f->fd, (off_t)0);
 	if(f->mapping == MAP_FAILED)
 		return LibError_from_errno();
 

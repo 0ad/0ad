@@ -1,5 +1,7 @@
 #include "precompiled.h"
 
+#include <deque>
+
 #include "lib.h"
 #include "lib/posix.h"
 #include "lib/allocators.h"
@@ -359,6 +361,7 @@ class IOManager
 	{
 		const off_t ofs = start_ofs+(off_t)total_issued;
 		size_t issue_size;
+
 		// write: must not issue beyond end of data.
 		if(is_write)
 			issue_size = MIN(FILE_BLOCK_SIZE, size - total_issued);
@@ -371,23 +374,22 @@ class IOManager
 		// check if in cache
 		slot.block_id = block_cache_make_id(f->fc.atom_fn, ofs);
 		slot.cached_block = block_cache_find(slot.block_id);
-		if(slot.cached_block)
-			goto skip_issue;
+		if(!slot.cached_block)
+		{
+			void* buf;
 
-		// if using buffer, set position in it; otherwise, use temp buffer
-		void* buf;
-		if(pbuf == FILE_BUF_TEMP)
-			buf = slot.temp_buf = block_cache_alloc(slot.block_id);
-		else
-			buf = (char*)*pbuf + total_issued;
+			// if using buffer, set position in it; otherwise, use temp buffer
+			if(pbuf == FILE_BUF_TEMP)
+				buf = slot.temp_buf = block_cache_alloc(slot.block_id);
+			else
+				buf = (char*)*pbuf + total_issued;
 
-		LibError ret = file_io_issue(f, ofs, issue_size, buf, &slot.io);
-		// transfer failed - loop will now terminate after
-		// waiting for all pending transfers to complete.
-		if(ret != ERR_OK)
-			err = ret;
-
-skip_issue:
+			LibError ret = file_io_issue(f, ofs, issue_size, buf, &slot.io);
+			// transfer failed - loop will now terminate after
+			// waiting for all pending transfers to complete.
+			if(ret != ERR_OK)
+				err = ret;
+		}
 
 		total_issued += issue_size;
 	}
@@ -474,7 +476,7 @@ again:
 		}
 		// (all issued OR error) AND no pending transfers - done.
 
-		debug_assert(total_issued >= total_transferred && total_transferred >= user_size); 
+		debug_assert(total_issued >= total_transferred && total_transferred >= user_size);
 		return (ssize_t)total_processed;
 	}
 

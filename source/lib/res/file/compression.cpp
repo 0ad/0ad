@@ -17,6 +17,8 @@
 
 #include "precompiled.h"
 
+#include <deque>
+
 #include "lib/res/mem.h"
 #include "lib/allocators.h"
 #include "lib/timer.h"
@@ -399,11 +401,11 @@ uintptr_t comp_alloc(ContextType type, CompressionMethod method)
 		c = new(c_mem) ZLibCompressor(type);
 		break;
 #endif
-#include "mmgr.h"
 	default:
 		debug_warn("unknown compression type");
 		compressor_allocator.free(c_mem);
 		return 0;
+#include "mmgr.h"
 	}
 
 	c->init();
@@ -459,5 +461,7 @@ void comp_free(uintptr_t c_)
 	c->release();
 
 	c->~Compressor();
+#include "nommgr.h"
 	compressor_allocator.free(c);
+#include "mmgr.h"
 }
