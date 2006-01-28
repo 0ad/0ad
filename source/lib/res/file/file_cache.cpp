@@ -238,28 +238,23 @@ public:
 		const uint size_class = size_class_of(size_pa);
 		p = alloc_from_class(size_class, size_pa);
 		if(p)
-			goto have_p;
+			return p;
 
 		// grab more space from pool
 		p = pool_alloc(&pool, size_pa);
 		if(p)
-			goto have_p;
+			return p;
 
 		// last resort: split a larger element
 		p = alloc_from_larger_class(size_class, size_pa);
 		if(p)
-			goto have_p;
+			return p;
 
 		// failed - can no longer expand and nothing big enough was
 		// found in freelists.
 		// file cache will decide which elements are least valuable,
 		// free() those and call us again.
 		return 0;
-
-have_p:
-		// make sure range is writable
-		(void)mprotect(p, size_pa, PROT_READ|PROT_WRITE);
-		return p;
 	}
 
 	void make_read_only(u8* p, size_t size)
@@ -279,6 +274,14 @@ have_p:
 		}
 
 		size_t size_pa = round_up(size, BUF_ALIGN);
+
+		// (re)allow writes
+		//
+		// note: unfortunately we cannot unmap this buffer's memory
+		// (to make sure it is not used) because we write a header/footer
+		// into it to support coalescing.
+		(void)mprotect(p, size_pa, PROT_READ|PROT_WRITE);
+
 		coalesce(p, size_pa);
 		freelist_add(p, size_pa);
 	}
