@@ -246,20 +246,20 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 	FileIOBuf buffer;
 	uint buflen;
 	File f;
-	Handle fh;
+	LibError ret;
 	if (m_UseVFS[ns])
 	{
 		// Open file with VFS
-		fh=vfs_load(m_ConfigFile[ns], buffer, buflen);
-		if (fh <= 0)
+		ret = vfs_load(m_ConfigFile[ns], buffer, buflen);
+		if(ret != ERR_OK)
 		{
-			LOG(ERROR, LOG_CATEGORY, "vfs_load for \"%s\" failed: return was %lld", m_ConfigFile[ns].c_str(), fh);
+			LOG(ERROR, LOG_CATEGORY, "vfs_load for \"%s\" failed: return was %lld", m_ConfigFile[ns].c_str(), ret);
 			return false;
 		}
 	}
 	else
 	{
-		if (file_open(m_ConfigFile[ns], 0, &f)!=0)
+		if (file_open(m_ConfigFile[ns], 0, &f)!=ERR_OK)
 		{
 			LOG(ERROR, LOG_CATEGORY, "file_open for \"%s\" failed", m_ConfigFile[ns].c_str());
 			return false;

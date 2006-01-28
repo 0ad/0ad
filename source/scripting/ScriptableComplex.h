@@ -6,6 +6,8 @@
 #include "scripting/ScriptingHost.h"
 #include "JSConversions.h"
 
+#include "lib/allocators.h"
+
 #include <set>
 
 #ifndef SCRIPTABLE_COMPLEX_INCLUDED
@@ -470,6 +472,13 @@ public:
 	}
 };
 
+
+
+extern void jscomplexproperty_suballoc_attach();
+extern void jscomplexproperty_suballoc_detach();
+extern void* jscomplexproperty_suballoc();
+extern void jscomplexproperty_suballoc_free(IJSComplexProperty* p);
+
 template<typename T, bool ReadOnly> class CJSComplex : public IJSComplex
 {
 	typedef STL_HASH_MAP<CStrW, CJSReflector*, CStrW_hash_compare> ReflectorTable;
@@ -479,6 +488,7 @@ template<typename T, bool ReadOnly> class CJSComplex : public IJSComplex
 	std::vector<CScriptObject> m_Watches;
 
 	ReflectorTable m_Reflectors;
+
 
 public:
 	static JSClass JSI_class;
@@ -760,6 +770,8 @@ private:
 public:
 	CJSComplex()
 	{
+		jscomplexproperty_suballoc_attach();
+
 		m_Parent = NULL;
 		m_JS = NULL;
 		m_EngineOwned = true;
@@ -767,6 +779,8 @@ public:
 	virtual ~CJSComplex()
 	{
 		Shutdown();
+
+		jscomplexproperty_suballoc_detach();
 	}
 	void Shutdown()
 	{
@@ -785,7 +799,8 @@ public:
 					JS_RemoveRoot( g_ScriptingHost.GetContext(), &( extProp->m_JSAccessor ) );
 				}	
 			}
-			delete( it->second );
+
+			jscomplexproperty_suballoc_free(it->second);
 		}
 
 
@@ -899,8 +914,11 @@ public:
 	}
 	void AddProperty( CStrW PropertyName, jsval Value )
 	{
-		debug_assert( !HasProperty( PropertyName ) );
-		CJSDynamicComplexProperty* newProp = new CJSValComplexProperty( Value, false ); 
+		DeletePreviouslyAssignedProperty( PropertyName );
+		void* mem = jscomplexproperty_suballoc();
+#include "nommgr.h"
+		CJSDynamicComplexProperty* newProp = new(mem) CJSValComplexProperty( Value, false ); 
+#include "mmgr.h"
 		m_Properties[PropertyName] = newProp;
 
 		ReflectorTable::iterator it;
@@ -938,13 +956,43 @@ public:
 	{
 		T::m_IntrinsicProperties[PropertyName] = new CJSSharedProperty<PropType, true>( (PropType IJSComplex::*)Native, PropAllowInheritance, Update, Refresh );
 	}
+
+	// helper routine for Add*Property. Their interface requires the
+	// property not already exist; we check for this (in non-final builds)
+	// and if so, warn and free the previously new-ed memory in
+	// m_Properties[PropertyName] (avoids mem leak).
+	void DeletePreviouslyAssignedProperty( CStrW PropertyName )
+	{
+#ifndef FINAL
+		PropertyTable::iterator it;
+		it = m_Properties.find( PropertyName );
+		if( it != m_Properties.end() )
+		{
+			debug_warn("BUG: CJSComplexProperty added but already existed!");
+			jscomplexproperty_suballoc_free(it->second);
+		}
+#else
+		UNUSED2(PropertyName);
+#endif
+	}
+
+	// PropertyName must not already exist! (verified in non-final release)
 	template<typename PropType> void AddProperty( CStrW PropertyName, PropType* Native, bool PropAllowInheritance = true, NotifyFn Update = NULL, NotifyFn Refresh = NULL )
 	{
-		m_Properties[PropertyName] = new CJSComplexProperty<PropType, ReadOnly>( Native, PropAllowInheritance, Update, Refresh );
+		DeletePreviouslyAssignedProperty( PropertyName );
+		void* mem = jscomplexproperty_suballoc();
+#include "nommgr.h"
+		m_Properties[PropertyName] = new(mem) CJSComplexProperty<PropType, ReadOnly>( Native, PropAllowInheritance, Update, Refresh );
+#include "mmgr.h"
 	}
+	// PropertyName must not already exist! (verified in non-final release)
 	template<typename PropType> void AddReadOnlyProperty( CStrW PropertyName, PropType* Native, bool PropAllowInheritance = true, NotifyFn Update = NULL, NotifyFn Refresh = NULL )
 	{
-		m_Properties[PropertyName] = new CJSComplexProperty<PropType, true>( Native, PropAllowInheritance, Update, Refresh );
+		DeletePreviouslyAssignedProperty( PropertyName );
+		void* mem = jscomplexproperty_suballoc();
+#include "nommgr.h"
+		m_Properties[PropertyName] = new(mem) CJSComplexProperty<PropType, true>( Native, PropAllowInheritance, Update, Refresh );
+#include "mmgr.h"
 	}
 };
 
