@@ -1,8 +1,8 @@
-#include "file_stats.h"
-
 #include "file.h"
 #include "file_cache.h"
 #include "file_io.h"
+
+#include "file_stats.h"	// must come after file and file_cache
 
 #include "compression.h"
 #include "zip.h"

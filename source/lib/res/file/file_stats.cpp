@@ -48,7 +48,8 @@ static uint user_ios;
 static double user_io_size_total;
 static double io_actual_size_total[FI_MAX_IDX][2];
 static double io_elapsed_time[FI_MAX_IDX][2];
-static BlockId io_disk_head_pos;
+static double io_process_time_total;
+static BlockId io_disk_pos_cur;
 static uint io_seeks;
 
 // file_cache
@@ -148,12 +149,18 @@ void stats_user_io(size_t user_size)
 	user_io_size_total += user_size;
 }
 
-void stats_io_start(FileIOImplentation fi, FileOp fo, size_t actual_size, double* start_time_storage)
+void stats_io_start(FileIOImplentation fi, FileOp fo, size_t actual_size,
+	BlockId disk_pos, double* start_time_storage)
 {
 	debug_assert(fi < FI_MAX_IDX);
 	debug_assert(fo == FO_READ || FO_WRITE);
 
 	io_actual_size_total[fi][fo] += actual_size;
+
+	if(disk_pos.atom_fn != io_disk_pos_cur.atom_fn ||
+	   disk_pos.block_num != io_disk_pos_cur.block_num+1)
+		io_seeks++;
+	io_disk_pos_cur = disk_pos;
 
 	timer_start(start_time_storage);
 }
@@ -164,6 +171,16 @@ void stats_io_finish(FileIOImplentation fi, FileOp fo, double* start_time_storag
 	debug_assert(fo == FO_READ || FO_WRITE);
 
 	io_elapsed_time[fi][fo] += timer_reset(start_time_storage);
+}
+
+void stats_cb_start()
+{
+	timer_start();
+}
+
+void stats_cb_finish()
+{
+	io_process_time_total += timer_reset();
 }
 
 

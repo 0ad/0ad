@@ -824,6 +824,7 @@ LibError file_init()
 {
 	atom_init();
 	file_cache_init();
+	file_io_init();
 	return ERR_OK;
 }
 

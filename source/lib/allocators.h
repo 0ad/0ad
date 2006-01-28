@@ -164,8 +164,6 @@ const size_t POOL_VARIABLE_ALLOCS = 0;
 //  (which cannot be freed individually);
 // otherwise, it specifies the number of bytes that will be
 // returned by pool_alloc (whose size parameter is then ignored).
-// in the latter case, size must at least be enough for a pointer
-//  (due to freelist implementation).
 extern LibError pool_create(Pool* p, size_t max_size, size_t el_size);
 
 // free all memory that ensued from <p>. all elements are made unusable
@@ -185,12 +183,11 @@ extern bool pool_contains(Pool* p, void* el);
 // otherwise, <size> bytes are allocated.
 extern void* pool_alloc(Pool* p, size_t size);
 
-// make <el> available for reuse in the given pool.
+// make <el> available for reuse in the given Pool.
 //
-// this is not allowed if the pool was set up for variable-size elements.
-// (copying with fragmentation would defeat the point of a pool - simplicity)
-// we could allow this, but instead warn and bail to make sure it
-// never happens inadvertently (leaking memory in the pool).
+// this is not allowed if created for variable-size elements.
+// rationale: avoids having to pass el_size here and compare with size when
+// allocating; also prevents fragmentation and leaking memory.
 extern void pool_free(Pool* p, void* el);
 
 // "free" all allocations that ensued from the given Pool.
@@ -204,40 +201,61 @@ extern void pool_free_all(Pool* p);
 //
 
 // design goals:
-// - variable-sized allocations;
-// - no reuse of allocations, can only free all at once;
-// - no init necessary;
+// - fixed- XOR variable-sized blocks;
+// - allow freeing individual blocks if they are all fixed-size;
 // - never relocates;
 // - no fixed limit.
 
 // note: this type of allocator is called "region-based" in the literature.
 // see "Reconsidering Custom Memory Allocation" (Berger, Zorn, McKinley).
-// if individual elements must be freeable, consider "reaps":
+// if individual variable-size elements must be freeable, consider "reaps":
 // basically a combination of region and heap, where frees go to the heap and
 // allocs exhaust that memory first and otherwise use the region.
 
 // opaque! do not read/write any fields!
 struct Bucket
 {
-	// currently open bucket. must be initialized to 0.
+	// currently open bucket.
 	u8* bucket;
 
 	// offset of free space at end of current bucket (i.e. # bytes in use).
-	// must be initialized to 0.
 	size_t pos;
 
-	// records # buckets allocated; used to check if the list of them
-	// isn't corrupted. must be initialized to 0.
-	uint num_buckets;
+	void* freelist;
+
+	size_t el_size : 16;
+
+	// records # buckets allocated; verifies the list of buckets is correct.
+	uint num_buckets : 16;
 };
 
 
-// allocate <size> bytes of memory from the given Bucket object.
-// <b> must initially be zeroed (e.g. by defining it as static data).
+// ready <b> for use.
+//
+// <el_size> can be 0 to allow variable-sized allocations
+//  (which cannot be freed individually);
+// otherwise, it specifies the number of bytes that will be
+// returned by bucket_alloc (whose size parameter is then ignored).
+extern LibError bucket_create(Bucket* b, size_t el_size);
+
+// free all memory that ensued from <b>.
+// future alloc and free calls on this Bucket will fail.
+extern void bucket_destroy(Bucket* b);
+
+// return an entry from the bucket, or 0 if another would have to be
+// allocated and there isn't enough memory to do so.
+// exhausts the freelist before returning new entries to improve locality.
+//
+// if the bucket was set up with fixed-size elements, <size> is ignored;
+// otherwise, <size> bytes are allocated.
 extern void* bucket_alloc(Bucket* b, size_t size);
 
-// free all allocations that ensued from the given Bucket.
-extern void bucket_free_all(Bucket* b);
+// make <el> available for reuse in <b>.
+//
+// this is not allowed if created for variable-size elements.
+// rationale: avoids having to pass el_size here and compare with size when
+// allocating; also prevents fragmentation and leaking memory.
+extern void bucket_free(Bucket* b, void* el);
 
 
 //
@@ -267,25 +285,29 @@ extern void matrix_free(void** matrix);
 // overrun protection
 //
 
-// this class wraps an arbitrary object in DynArray memory and can detect
-// inadvertent writes to it. this is useful for tracking down memory overruns.
-//
-// the basic idea is to require users to request access to the object and
-// notify us when done; memory access permission is temporarily granted.
-// (similar in principle to Software Transaction Memory).
-//
-// since this is quite slow, the protection is disabled unless
-// CONFIG_OVERRUN_PROTECTION == 1; this avoids having to remove the
-// wrapper code in release builds and re-write when looking for overruns.
-//
-// example usage:
-// OverrunProtector<your_class> your_class_wrapper;
-// ..
-// your_class* yc = your_class_wrapper.get();
-// if(!yc) abort();	// not enough memory to allocate a your_class instance
-// // access/write to <yc>
-// your_class_wrapper.lock();	// disallow further access
-// ..
+/*
+OverrunProtector wraps an arbitrary object in DynArray memory and can detect
+inadvertent writes to it. this is useful for tracking down memory overruns.
+
+the basic idea is to require users to request access to the object and
+notify us when done; memory access permission is temporarily granted.
+(similar in principle to Software Transaction Memory).
+
+since this is quite slow, the protection is disabled unless
+CONFIG_OVERRUN_PROTECTION == 1; this avoids having to remove the
+wrapper code in release builds and re-write when looking for overruns.
+
+example usage:
+OverrunProtector<your_class> your_class_wrapper;
+..
+your_class* yc = your_class_wrapper.get();	// unlock, make ready for use
+if(!yc)			// your_class_wrapper's one-time alloc of a your_class-
+	abort();	// instance had failed - can't continue.
+doSomethingWith(yc);	// read/write access
+your_class_wrapper.lock();	// disallow further access until next .get()
+..
+*/
+
 template<class T> class OverrunProtector
 {
 	DynArray da;
@@ -322,11 +344,9 @@ private:
 
 	void init()
 	{
-		const size_t size = 4096;
-		cassert(sizeof(T) <= size);
-		if(da_alloc(&da, size) < 0)
+		if(da_alloc(&da, sizeof(T)) < 0)
 			goto fail;
-		if(da_set_size(&da, size) < 0)
+		if(da_set_size(&da, sizeof(T)) < 0)
 			goto fail;
 
 #include "nommgr.h"

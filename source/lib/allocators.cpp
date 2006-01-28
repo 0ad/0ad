@@ -364,6 +364,7 @@ LibError da_append(DynArray* da, const void* data, size_t size)
 // - doesn't preallocate the entire pool;
 // - returns sequential addresses.
 
+
 // "freelist" is a pointer to the first unused element (0 if there are none);
 // its memory holds a pointer to the next free one in list.
 
@@ -386,7 +387,8 @@ static void* freelist_pop(void** pfreelist)
 }
 
 
-static const size_t POOL_CHUNK = 4*KiB;
+// elements returned are aligned to this many bytes:
+static const size_t ALIGN = 8;
 
 
 // ready <p> for use. <max_size> is the upper limit [bytes] on
@@ -396,15 +398,10 @@ static const size_t POOL_CHUNK = 4*KiB;
 //  (which cannot be freed individually);
 // otherwise, it specifies the number of bytes that will be
 // returned by pool_alloc (whose size parameter is then ignored).
-// in the latter case, size must at least be enough for a pointer
-//  (due to freelist implementation).
 LibError pool_create(Pool* p, size_t max_size, size_t el_size)
 {
-	if(el_size != 0 && el_size < sizeof(void*))
-		WARN_RETURN(ERR_INVALID_PARAM);
-
+	p->el_size = round_up(el_size, ALIGN);
 	RETURN_ERR(da_alloc(&p->da, max_size));
-	p->el_size = el_size;
 	return ERR_OK;
 }
 
@@ -446,7 +443,7 @@ void* pool_alloc(Pool* p, size_t size)
 {
 	// if pool allows variable sizes, go with the size parameter,
 	// otherwise the pool el_size setting.
-	const size_t el_size = p->el_size? p->el_size : size;
+	const size_t el_size = p->el_size? p->el_size : round_up(size, ALIGN);
 
 	// note: this can never happen in pools with variable-sized elements
 	// because they disallow pool_free.
@@ -470,17 +467,19 @@ have_el:
 }
 
 
-// make <el> available for reuse in the given pool.
+// make <el> available for reuse in the given Pool.
 //
-// this is not allowed if the pool was set up for variable-size elements.
-// (copying with fragmentation would defeat the point of a pool - simplicity)
-// we could allow this, but instead warn and bail to make sure it
-// never happens inadvertently (leaking memory in the pool).
+// this is not allowed if created for variable-size elements.
+// rationale: avoids having to pass el_size here and compare with size when
+// allocating; also prevents fragmentation and leaking memory.
 void pool_free(Pool* p, void* el)
 {
+	// only allowed to free items if we were initialized with
+	// fixed el_size. (this avoids having to pass el_size here and
+	// check if requested_size matches that when allocating)
 	if(p->el_size == 0)
 	{
-		debug_warn("pool is set up for variable-size items");
+		debug_warn("cannot free variable-size items");
 		return;
 	}
 
@@ -506,9 +505,8 @@ void pool_free_all(Pool* p)
 //-----------------------------------------------------------------------------
 
 // design goals:
-// - variable-sized allocations;
-// - no reuse of allocations, can only free all at once;
-// - no init necessary;
+// - fixed- XOR variable-sized blocks;
+// - allow freeing individual blocks if they are all fixed-size;
 // - never relocates;
 // - no fixed limit.
 
@@ -518,46 +516,41 @@ void pool_free_all(Pool* p)
 // basically a combination of region and heap, where frees go to the heap and
 // allocs exhaust that memory first and otherwise use the region.
 
-// must be constant and power-of-2 to allow fast modulo.
-const size_t BUCKET_SIZE = 4*KiB;
+// power-of-2 isn't required; value is arbitrary.
+const size_t BUCKET_SIZE = 4000;
 
-// allocate <size> bytes of memory from the given Bucket object.
-// <b> must initially be zeroed (e.g. by defining it as static data).
-void* bucket_alloc(Bucket* b, size_t size)
+// ready <b> for use.
+//
+// <el_size> can be 0 to allow variable-sized allocations
+//  (which cannot be freed individually);
+// otherwise, it specifies the number of bytes that will be
+// returned by bucket_alloc (whose size parameter is then ignored).
+LibError bucket_create(Bucket* b, size_t el_size)
 {
-	// would overflow a bucket
-	if(size > BUCKET_SIZE-sizeof(u8*))
+	b->freelist = 0;
+	b->el_size = round_up(el_size, ALIGN);
+
+	// note: allocating here avoids the is-this-the-first-time check
+	// in bucket_alloc, which speeds things up.
+	b->bucket = (u8*)malloc(BUCKET_SIZE);
+	if(!b->bucket)
 	{
-		debug_warn("size doesn't fit in a bucket");
-		return 0;
+		// cause next bucket_alloc to retry the allocation
+		b->pos = BUCKET_SIZE;
+		b->num_buckets = 0;
+		return ERR_NO_MEM;
 	}
 
-	// make sure the next item will be aligned
-	size = round_up(size, 8);
-
-	// if there's not enough space left or no bucket yet (first call),
-	// close it and allocate another.
-	if(b->pos+size > BUCKET_SIZE || !b->bucket)
-	{
-		u8* bucket = (u8*)malloc(BUCKET_SIZE);
-		if(!bucket)
-			return 0;
-		*(u8**)bucket = b->bucket;
-		b->bucket = bucket;
-		// skip bucket list field and align to 8 bytes (note: malloc already
-		// aligns to at least 8 bytes, so don't take b->bucket into account)
-		b->pos = round_up(sizeof(u8*), 8);
-		b->num_buckets++;
-	}
-
-	void* ret = b->bucket+b->pos;
-	b->pos += size;
-	return ret;
+	*(u8**)b->bucket = 0;	// terminate list
+	b->pos = round_up(sizeof(u8*), ALIGN);
+	b->num_buckets = 1;
+	return ERR_OK;
 }
 
 
-// free all allocations that ensued from the given Bucket.
-void bucket_free_all(Bucket* b)
+// free all memory that ensued from <b>.
+// future alloc and free calls on this Bucket will fail.
+void bucket_destroy(Bucket* b)
 {
 	while(b->bucket)
 	{
@@ -568,6 +561,69 @@ void bucket_free_all(Bucket* b)
 	}
 
 	debug_assert(b->num_buckets == 0);
+
+	// poison pill: cause subsequent alloc and free to fail
+	b->freelist = 0;
+	b->el_size = BUCKET_SIZE;
+}
+
+
+// return an entry from the bucket, or 0 if another would have to be
+// allocated and there isn't enough memory to do so.
+// exhausts the freelist before returning new entries to improve locality.
+//
+// if the bucket was set up with fixed-size elements, <size> is ignored;
+// otherwise, <size> bytes are allocated.
+void* bucket_alloc(Bucket* b, size_t size)
+{
+	size_t el_size = b->el_size? b->el_size : round_up(size, ALIGN);
+	// must fit in a bucket
+	debug_assert(el_size <= BUCKET_SIZE-sizeof(u8*));
+
+	// try to satisfy alloc from freelist
+	void* el = freelist_pop(&b->freelist);
+	if(el)
+		return el;
+
+	// if there's not enough space left, close current bucket and
+	// allocate another.
+	if(b->pos+el_size > BUCKET_SIZE)
+	{
+		u8* bucket = (u8*)malloc(BUCKET_SIZE);
+		if(!bucket)
+			return 0;
+		*(u8**)bucket = b->bucket;
+		b->bucket = bucket;
+		// skip bucket list field and align (note: malloc already
+		// aligns to at least 8 bytes, so don't take b->bucket into account)
+		b->pos = round_up(sizeof(u8*), ALIGN);
+		b->num_buckets++;
+	}
+
+	void* ret = b->bucket+b->pos;
+	b->pos += el_size;
+	return ret;
+}
+
+
+// make <el> available for reuse in <b>.
+//
+// this is not allowed if created for variable-size elements.
+// rationale: avoids having to pass el_size here and compare with size when
+// allocating; also prevents fragmentation and leaking memory.
+void bucket_free(Bucket* b, void* el)
+{
+	if(b->el_size == 0)
+	{
+		debug_warn("cannot free variable-size items");
+		return;
+	}
+
+	freelist_push(&b->freelist, el);
+
+	// note: checking if <el> was actually allocated from <b> is difficult:
+	// it may not be in the currently open bucket, so we'd have to
+	// iterate over the list - too much work.
 }
 
 

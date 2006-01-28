@@ -230,7 +230,19 @@ public:
 		debug_assert(ret.second);	// must not already be in map
 	}
 
-	T retrieve(Key key, size_t* psize = 0)
+	// remove the entry identified by <key>. expected usage is to check
+	// if present and determine size via retrieve(), so no need to
+	// do anything else here.
+	// useful for invalidating single cache entries.
+	void remove(Key key)
+	{
+		map.erase(key);
+	}
+
+	// if there is no entry for <key> in the cache, return 0 with
+	// psize unchanged. otherwise, return its item and
+	// optionally pass back its size.
+	T retrieve(Key key, size_t* psize = 0, bool refill_credit = true)
 	{
 		CacheMapIt it = map.find(key);
 		if(it == map.end())
@@ -238,22 +250,54 @@ public:
 		CacheEntry& entry = it->second;
 		if(psize)
 			*psize = entry.size;
-// increase credit
+
+		if(refill_credit)
+		{
+			// Landlord algorithm calls for credit to be reset to anything
+			// between its current value and the cost.
+			const float gain = 0.75f;	// restore most credit
+			entry.credit = gain*entry.cost + (1.0f-gain)*entry.credit;
+		}
+
 		return entry.item;
 	}
 
 
+	// remove the least valuable item and optionally indicate
+	// how big it was (useful for statistics).
 	T remove_least_valuable(size_t* psize = 0)
 	{
 		CacheMapIt it;
 
-again:	// until we find someone to evict
+		// one iteration ought to suffice to evict someone due to
+		// definition of min_density, but we provide for repeating
+		// in case of floating-point imprecision.
+		// (goto vs. loop avoids nesting and emphasizes rarity)
+again:	
 
-		// foreach entry: decrease credit and evict if <= 0
+		// find minimum credit density (needed for charge step)
+		float min_density = 1e10;	// = \delta in [Young02]
 		for( it = map.begin(); it != map.end(); ++it)
 		{
 			CacheEntry& entry = it->second;
-			// found someone we can evict
+			const float density = entry.credit / entry.size;
+			min_density = MIN(density, min_density);
+		}
+
+		// .. charge everyone rent (proportional to min_density and size)
+		for( it = map.begin(); it != map.end(); ++it)
+		{
+			CacheEntry& entry = it->second;
+			entry.credit -= min_density * entry.size;
+
+			// evict immediately if credit is exhausted
+			// (note: Landlord algorithm calls for 'any subset' of
+			// these items to be evicted. since we need to return
+			// information about the item, we can only discard one.)
+			//
+			// this means every call will end up charging more than
+			// intended, but we compensate by resetting credit
+			// fairly high upon cache hit.
 			if(entry.credit <= 0.0f)
 			{
 				T item = entry.item;
@@ -264,8 +308,7 @@ again:	// until we find someone to evict
 			}
 		}
 
-		// none were evicted
-// charge rent
+		// none were evicted - do it all again.
 		goto again;
 	}
 

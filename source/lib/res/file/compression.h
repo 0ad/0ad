@@ -26,6 +26,7 @@ extern ssize_t comp_feed(uintptr_t ctx, const void* in, size_t in_size);
 
 extern LibError comp_finish(uintptr_t ctx, void** out, size_t* out_size);
 
+extern LibError comp_reset(uintptr_t ctx);
 extern void comp_free(uintptr_t ctx);
 
 #endif	// #ifndef COMPRESSION_H__

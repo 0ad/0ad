@@ -281,11 +281,7 @@ LibError afile_open(const Handle ha, const char* fn, uintptr_t memento, int flag
 	// => need to copy ArchiveEntry fields into AFile.
 	RETURN_ERR(archive_get_file_info(a, atom_fn, memento, ent));
 
-	if(ent->flags & ZIP_LFH_FIXUP_NEEDED)
-	{
-		zip_fixup_lfh(&a->f, ent);
-		ent->flags &= ~ZIP_LFH_FIXUP_NEEDED;
-	}
+	zip_fixup_lfh(&a->f, ent);
 
 	uintptr_t ctx = 0;
 	// slight optimization: do not allocate context if not compressed
@@ -517,8 +513,14 @@ ssize_t afile_read(AFile* af, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB 
 	H_DEREF(af->ha, Archive, a);
 
 	if(!is_compressed(af))
+	{
+		bool we_allocated = (pbuf != FILE_BUF_TEMP) && (*pbuf == FILE_BUF_ALLOC);
 		// no need to set last_cofs - only checked if compressed.
-		return file_io(&a->f, af->ofs+ofs, size, pbuf, cb, cb_ctx);
+		RETURN_ERR(file_io(&a->f, af->ofs+ofs, size, pbuf, cb, cb_ctx));
+		if(we_allocated)
+			(void)file_buf_set_real_fn(*pbuf, af->fc.atom_fn);
+		return ERR_OK;
+	}
 
 	debug_assert(af->ctx != 0);
 

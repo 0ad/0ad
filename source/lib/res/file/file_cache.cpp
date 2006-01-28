@@ -7,17 +7,214 @@
 #include "lib/adts.h"
 #include "file_internal.h"
 
-// strategy:
-// policy:
-// - allocation: use all available mem first, then look at freelist
-// - freelist: good fit, address-ordered, always split
-// - free: immediately coalesce
-// mechanism:
-// - coalesce: boundary tags in freed memory
-// - freelist: 2**n segregated doubly-linked, address-ordered
+//-----------------------------------------------------------------------------
+
+// block cache: intended to cache raw compressed data, since files aren't aligned
+// in the archive; alignment code would force a read of the whole block,
+// which would be a slowdown unless we keep them in memory.
+//
+// keep out of async code (although extra work for sync: must not issue/wait
+// if was cached) to simplify things. disadvantage: problems if same block
+// is issued twice, before the first call completes (via wait_io).
+// that won't happen though unless we have threaded file_ios =>
+// rare enough not to worry about performance.
+//
+// since sync code allocates the (temp) buffer, it's guaranteed
+// to remain valid.
+//
+
+class BlockMgr
+{
+	static const size_t MAX_BLOCKS = 32;
+	enum BlockStatus
+	{
+		BS_PENDING,
+		BS_COMPLETE,
+		BS_INVALID
+	};
+	struct Block
+	{
+		BlockId id;
+		void* mem;
+		BlockStatus status;
+		int refs;
+
+		Block() {}	// for RingBuf
+		Block(BlockId id_, void* mem_)
+			: id(id_), mem(mem_), status(BS_PENDING), refs(0) {}
+	};
+	RingBuf<Block, MAX_BLOCKS> blocks;
+	typedef RingBuf<Block, MAX_BLOCKS>::iterator BlockIt;
+
+	// use Pool to allocate mem for all blocks because it guarantees
+	// page alignment (required for IO) and obviates manually aligning.
+	Pool pool;
+
+public:
+	void init()
+	{
+		(void)pool_create(&pool, MAX_BLOCKS*FILE_BLOCK_SIZE, FILE_BLOCK_SIZE);
+	}
+
+	void shutdown()
+	{
+		(void)pool_destroy(&pool);
+	}
+
+	void* alloc(BlockId id)
+	{
+		if(blocks.size() == MAX_BLOCKS)
+		{
+			Block& b = blocks.front();
+			// if this block is still locked, big trouble..
+			// (someone forgot to free it and we can't reuse it)
+			debug_assert(b.status != BS_PENDING && b.refs == 0);
+			pool_free(&pool, b.mem);
+			blocks.pop_front();
+		}
+		void* mem = pool_alloc(&pool, FILE_BLOCK_SIZE);	// can't fail
+		blocks.push_back(Block(id, mem));
+		return mem;
+	}
+
+	void mark_completed(BlockId id)
+	{
+		for(BlockIt it = blocks.begin(); it != blocks.end(); ++it)
+		{
+			if(block_eq(it->id, id))
+				it->status = BS_COMPLETE;
+		}
+	}
+
+	void* find(BlockId id)
+	{
+		// linear search is ok, since we only keep a few blocks.
+		for(BlockIt it = blocks.begin(); it != blocks.end(); ++it)
+		{
+			if(block_eq(it->id, id) && it->status == BS_COMPLETE)
+			{
+				it->refs++;
+				return it->mem;
+			}
+		}
+		return 0;	// not found
+	}
+
+	void release(BlockId id)
+	{
+		for(BlockIt it = blocks.begin(); it != blocks.end(); ++it)
+		{
+			if(block_eq(it->id, id))
+			{
+				it->refs--;
+				debug_assert(it->refs >= 0);
+				return;
+			}
+		}
+		debug_warn("release: block not found, but ought still to be in cache");
+	}
+
+
+	void invalidate(const char* atom_fn)
+	{
+		for(BlockIt it = blocks.begin(); it != blocks.end(); ++it)
+		{
+			if(it->id.atom_fn == atom_fn)
+			{
+				if(it->refs)
+					debug_warn("invalidating block that is currently in-use");
+				it->status = BS_INVALID;
+			}
+		}
+	}
+};
+static BlockMgr block_mgr;
+
+
+bool block_eq(BlockId b1, BlockId b2)
+{
+	return b1.atom_fn == b2.atom_fn && b1.block_num == b2.block_num;
+}
+
+// create an id for use with the cache that uniquely identifies
+// the block from the file <atom_fn> starting at <ofs>.
+BlockId block_cache_make_id(const char* atom_fn, const off_t ofs)
+{
+	// <atom_fn> is guaranteed to be unique (see file_make_unique_fn_copy).
+	// block_num should always fit in 32 bits (assuming maximum file size
+	// = 2^32 * FILE_BLOCK_SIZE ~= 2^48 -- plenty). we don't bother
+	// checking this.
+	const u32 block_num = (u32)(ofs / FILE_BLOCK_SIZE);
+	BlockId id = { atom_fn, block_num };
+	return id;
+}
+
+void* block_cache_alloc(BlockId id)
+{
+	return block_mgr.alloc(id);
+}
+
+void block_cache_mark_completed(BlockId id)
+{
+	block_mgr.mark_completed(id);
+}
+
+void* block_cache_find(BlockId id)
+{
+	return block_mgr.find(id);
+}
+
+void block_cache_release(BlockId id)
+{
+	return block_mgr.release(id);
+}
+
+
+//-----------------------------------------------------------------------------
+
+// >= AIO_SECTOR_SIZE or else waio will have to realign.
+// chosen as exactly 1 page: this allows write-protecting file buffers
+// without worrying about their (non-page-aligned) borders.
+// internal fragmentation is considerable but acceptable.
+static const size_t BUF_ALIGN = 4*KiB;
+
+/*
+CacheAllocator
+
+the biggest worry of a file cache is fragmentation. there are 2
+basic approaches to combat this:
+1) 'defragment' periodically - move blocks around to increase
+   size of available 'holes'.
+2) prevent fragmentation from occurring at all via
+   deliberate alloc/free policy.
+
+file_io returns cache blocks directly to the user (zero-copy IO),
+so only currently unreferenced blocks can be moved (while holding a
+lock, to boot). it is believed that this would severely hamper
+defragmentation; we therefore go with the latter approach.
+
+basic insight is: fragmentation occurs when a block is freed whose
+neighbors are not free (thus preventing coalescing). this can be
+prevented by allocating objects of similar lifetimes together.
+typical workloads (uniform access frequency) already show such behavior:
+the Landlord cache manager evicts files in an LRU manner, which matches
+the allocation policy.
+
+references:
+"The Memory Fragmentation Problem - Solved?" (Johnstone and Wilson)
+"Dynamic Storage Allocation - A Survey and Critical Review" (Johnstone and Wilson)
+
+policy:
+- allocation: use all available mem first, then look at freelist
+- freelist: good fit, address-ordered, always split blocks
+- free: immediately coalesce
+mechanism:
+- coalesce: boundary tags in freed memory with magic value
+- freelist: 2**n segregated doubly-linked, address-ordered
+*/
 class CacheAllocator
 {
-	static const size_t MAX_CACHE_SIZE = 64*MiB;
+	static const size_t MAX_CACHE_SIZE = 32*MiB;
 
 public:
 	void init()
@@ -34,27 +231,41 @@ public:
 
 	void* alloc(size_t size)
 	{
-		const size_t size_pa = round_up(size, AIO_SECTOR_SIZE);
-
-		// use all available space first
-		void* p = pool_alloc(&pool, size_pa);
-		if(p)
-			return p;
+		const size_t size_pa = round_up(size, BUF_ALIGN);
+		void* p;
 
 		// try to reuse a freed entry
 		const uint size_class = size_class_of(size_pa);
 		p = alloc_from_class(size_class, size_pa);
 		if(p)
-			return p;
+			goto have_p;
+
+		// grab more space from pool
+		p = pool_alloc(&pool, size_pa);
+		if(p)
+			goto have_p;
+
+		// last resort: split a larger element
 		p = alloc_from_larger_class(size_class, size_pa);
 		if(p)
-			return p;
+			goto have_p;
 
 		// failed - can no longer expand and nothing big enough was
 		// found in freelists.
 		// file cache will decide which elements are least valuable,
 		// free() those and call us again.
 		return 0;
+
+have_p:
+		// make sure range is writable
+		(void)mprotect(p, size_pa, PROT_READ|PROT_WRITE);
+		return p;
+	}
+
+	void make_read_only(u8* p, size_t size)
+	{
+		const size_t size_pa = round_up(size, BUF_ALIGN);
+		(void)mprotect(p, size_pa, PROT_READ);
 	}
 
 #include "nommgr.h"
@@ -63,11 +274,11 @@ public:
 	{
 		if(!pool_contains(&pool, p))
 		{
-			debug_warn("not in arena");
+			debug_warn("invalid pointer");
 			return;
 		}
-		size_t size_pa = round_up(size, AIO_SECTOR_SIZE);
 
+		size_t size_pa = round_up(size, BUF_ALIGN);
 		coalesce(p, size_pa);
 		freelist_add(p, size_pa);
 	}
@@ -92,8 +303,8 @@ private:
 		u32 magic1;
 		u32 magic2;
 	};
-	// must be enough room to stash header+footer in the freed page.
-	cassert(AIO_SECTOR_SIZE >= 2*sizeof(FreePage));
+	// must be enough room to stash 2 FreePage instances in the freed page.
+	cassert(BUF_ALIGN >= 2*sizeof(FreePage));
 
 	FreePage* freed_page_at(u8* p, size_t ofs)
 	{
@@ -105,7 +316,7 @@ private:
 		FreePage* page = (FreePage*)p;
 		if(page->magic1 != MAGIC1 || page->magic2 != MAGIC2)
 			return 0;
-		debug_assert(page->size_pa % AIO_SECTOR_SIZE == 0);
+		debug_assert(page->size_pa % BUF_ALIGN == 0);
 		return page;
 	}
 
@@ -275,19 +486,19 @@ public:
 		extant_bufs.push_back(ExtantBuf(buf, size, atom_fn));
 	}
 
-	bool includes(FileIOBuf buf)
+	const char* get_owner_filename(FileIOBuf buf)
 	{
 		debug_assert(buf != 0);
 		for(size_t i = 0; i < extant_bufs.size(); i++)
 		{
 			ExtantBuf& eb = extant_bufs[i];
 			if(matches(eb, buf))
-				return true;
+				return eb.atom_fn;
 		}
-		return false;
+		return 0;
 	}
 
-	void find_and_remove(FileIOBuf buf, size_t* size)
+	void find_and_remove(FileIOBuf buf, size_t* size, const char** atom_fn)
 	{
 		debug_assert(buf != 0);
 		for(size_t i = 0; i < extant_bufs.size(); i++)
@@ -296,6 +507,7 @@ public:
 			if(matches(eb, buf))
 			{
 				*size = eb.size;
+				*atom_fn = eb.atom_fn;
 				eb.buf     = 0;
 				eb.size    = 0;
 				eb.atom_fn = 0;
@@ -356,7 +568,7 @@ FileIOBuf file_buf_alloc(size_t size, const char* atom_fn)
 
 	extant_bufs.add(buf, size, atom_fn);
 
-	stats_buf_alloc(size, round_up(size, AIO_SECTOR_SIZE));
+	stats_buf_alloc(size, round_up(size, BUF_ALIGN));
 	return buf;
 }
 
@@ -395,12 +607,34 @@ LibError file_buf_free(FileIOBuf buf)
 	if(!buf)
 		return ERR_OK;
 
-	stats_buf_free();
+	size_t size; const char* atom_fn;
+	extant_bufs.find_and_remove(buf, &size, &atom_fn);
 
-	size_t size;
-	extant_bufs.find_and_remove(buf, &size);
+	stats_buf_free();
+	trace_notify_free(atom_fn);
+
 	return ERR_OK;
 }
+
+
+// mark <buf> as belonging to the file <atom_fn>. this is done after
+// reading uncompressed data from archive: file_io.cpp must allocate the
+// buffer, since only it knows how much padding is needed; however,
+// archive.cpp knows the real filename (as opposed to that of the archive,
+// which is what the file buffer is associated with). therefore,
+// we fix up the filename afterwards.
+LibError file_buf_set_real_fn(FileIOBuf buf, const char* atom_fn)
+{
+	// remove and reinsert into list instead of replacing atom_fn
+	// in-place for simplicity (speed isn't critical, since there
+	// should only be a few active bufs).
+	size_t size; const char* old_atom_fn;
+	extant_bufs.find_and_remove(buf, &size, &old_atom_fn);
+	extant_bufs.add(buf, size, atom_fn);
+	return ERR_OK;
+}
+
+
 
 
 LibError file_cache_add(FileIOBuf buf, size_t size, const char* atom_fn)
@@ -408,23 +642,32 @@ LibError file_cache_add(FileIOBuf buf, size_t size, const char* atom_fn)
 	// decide (based on flags) if buf is to be cached; set cost
 	uint cost = 1;
 
+	cache_allocator.make_read_only((u8*)buf, size);
 	file_cache.add(atom_fn, buf, size, cost);
 
 	return ERR_OK;
 }
 
 
-FileIOBuf file_cache_retrieve(const char* atom_fn, size_t* size)
+FileIOBuf file_cache_find(const char* atom_fn, size_t* size)
+{
+	return file_cache.retrieve(atom_fn, size, false);
+}
+
+
+FileIOBuf file_cache_retrieve(const char* atom_fn, size_t* psize)
 {
 	// note: do not query extant_bufs - reusing that doesn't make sense
 	// (why would someone issue a second IO for the entire file while
 	// still referencing the previous instance?)
 
-	return file_cache.retrieve(atom_fn, size);
+	FileIOBuf buf = file_cache.retrieve(atom_fn, psize);
+
+	CacheRet cr = buf? CR_HIT : CR_MISS;
+	stats_cache(cr, *psize, atom_fn);
+
+	return buf;
 }
-
-
-
 
 
 /*
@@ -459,146 +702,23 @@ file_buf_free and there are only a few active at a time ( < 10)
 
 
 
-//-----------------------------------------------------------------------------
-
-// block cache: intended to cache raw compressed data, since files aren't aligned
-// in the archive; alignment code would force a read of the whole block,
-// which would be a slowdown unless we keep them in memory.
-//
-// keep out of async code (although extra work for sync: must not issue/wait
-// if was cached) to simplify things. disadvantage: problems if same block
-// is issued twice, before the first call completes (via wait_io).
-// that won't happen though unless we have threaded file_ios =>
-// rare enough not to worry about performance.
-//
-// since sync code allocates the (temp) buffer, it's guaranteed
-// to remain valid.
-//
-
-class BlockMgr
-{
-	static const size_t MAX_BLOCKS = 32;
-	enum BlockStatus
-	{
-		BS_PENDING,
-		BS_COMPLETE,
-		BS_INVALID
-	};
-	struct Block
-	{
-		BlockId id;
-		void* mem;
-		BlockStatus status;
-
-		Block() {}	// for RingBuf
-		Block(BlockId id_, void* mem_)
-			: id(id_), mem(mem_), status(BS_PENDING) {}
-	};
-	RingBuf<Block, MAX_BLOCKS> blocks;
-	typedef RingBuf<Block, MAX_BLOCKS>::iterator BlockIt;
-
-	// use Pool to allocate mem for all blocks because it guarantees
-	// page alignment (required for IO) and obviates manually aligning.
-	Pool pool;
-
-public:
-	void init()
-	{
-		(void)pool_create(&pool, MAX_BLOCKS*FILE_BLOCK_SIZE, FILE_BLOCK_SIZE);
-	}
-
-	void shutdown()
-	{
-		(void)pool_destroy(&pool);
-	}
-
-	void* alloc(BlockId id)
-	{
-		if(blocks.size() == MAX_BLOCKS)
-		{
-			Block& b = blocks.front();
-			// if this block is still locked, big trouble..
-			// (someone forgot to free it and we can't reuse it)
-			debug_assert(b.status != BS_PENDING);
-			pool_free(&pool, b.mem);
-			blocks.pop_front();
-		}
-		void* mem = pool_alloc(&pool, FILE_BLOCK_SIZE);	// can't fail
-		blocks.push_back(Block(id, mem));
-		return mem;
-	}
-
-	void mark_completed(BlockId id)
-	{
-		for(BlockIt it = blocks.begin(); it != blocks.end(); ++it)
-		{
-			if(it->id == id)
-				it->status = BS_COMPLETE;
-		}
-	}
-
-	void* find(BlockId id)
-	{
-		// linear search is ok, since we only keep a few blocks.
-		for(BlockIt it = blocks.begin(); it != blocks.end(); ++it)
-		{
-			if(it->status == BS_COMPLETE && it->id == id)
-				return it->mem;
-		}
-		return 0;	// not found
-	}
-
-	void invalidate(const char* atom_fn)
-	{
-		for(BlockIt it = blocks.begin(); it != blocks.end(); ++it)
-			if((const char*)(it->id >> 32) == atom_fn)
-				it->status = BS_INVALID;
-	}
-};
-static BlockMgr block_mgr;
-
-
-// create an id for use with the cache that uniquely identifies
-// the block from the file <atom_fn> starting at <ofs> (aligned).
-BlockId block_cache_make_id(const char* atom_fn, const off_t ofs)
-{
-	cassert(sizeof(atom_fn) == 4);
-	// format: filename atom | block number
-	//         63         32   31         0
-	//
-	// <atom_fn> is guaranteed to be unique (see file_make_unique_fn_copy).
-	//
-	// block_num should always fit in 32 bits (assuming maximum file size
-	// = 2^32 * FILE_BLOCK_SIZE ~= 2^48 -- plenty). we don't bother
-	// checking this.
-
-	const size_t block_num = ofs / FILE_BLOCK_SIZE;
-	return u64_from_u32((u32)(uintptr_t)atom_fn, (u32)block_num);
-}
-
-void* block_cache_alloc(BlockId id)
-{
-	return block_mgr.alloc(id);
-}
-
-void block_cache_mark_completed(BlockId id)
-{
-	block_mgr.mark_completed(id);
-}
-
-void* block_cache_find(BlockId id)
-{
-	return block_mgr.find(id);
-}
-
-
-//-----------------------------------------------------------------------------
 
 // remove all blocks loaded from the file <fn>. used when reloading the file.
 LibError file_cache_invalidate(const char* P_fn)
 {
 	const char* atom_fn = file_make_unique_fn_copy(P_fn, 0);
+
+	// mark all blocks from the file as invalid
 	block_mgr.invalidate(atom_fn);
+
+	// file was cached: remove it and free that memory
+	size_t size;
+	FileIOBuf cached_buf = file_cache.retrieve(atom_fn, &size);
+	if(cached_buf)
+	{
+		file_cache.remove(atom_fn);
+		cache_allocator.free((u8*)cached_buf, size);
+	}
 
 	return ERR_OK;
 }

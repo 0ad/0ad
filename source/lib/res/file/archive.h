@@ -174,7 +174,7 @@ struct ArchiveEntry
 	time_t mtime;
 
 	// used in IO
-	off_t ofs;		// bit 31 set if fixup needed
+	off_t ofs;
 	off_t csize;
 	CompressionMethod method;
 

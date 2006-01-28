@@ -13,88 +13,90 @@
 // async I/O
 //-----------------------------------------------------------------------------
 
+// we don't do any caching or alignment here - this is just a thin AIO wrapper.
 // rationale:
-// asynchronous IO routines don't cache; they're just a thin AIO wrapper.
-// it's taken care of by file_io, which splits transfers into blocks
-// and keeps temp buffers in memory (not user-allocated, because they
-// might pull the rug out from under us at any time).
-//
-// caching here would be more complicated: would have to handle "forwarding",
-// i.e. recognizing that the desired block has been issued, but isn't yet
-// complete. file_io also knows more about whether a block should be cached.
+// - aligning the transfer isn't possible here since we have no control
+//   over the buffer, i.e. we cannot read more data than requested.
+//   instead, this is done in file_io.
+// - transfer sizes here are arbitrary (viz. not block-aligned);
+//   that means the cache would have to handle this or also split them up
+//   into blocks, which is redundant (already done by file_io).
+// - if caching here, we'd also have to handle "forwarding" (i.e.
+//   desired block has been issued but isn't yet complete). again, it
+//   is easier to let the synchronous file_io manager handle this.
+// - finally, file_io knows more about whether the block should be cached
+//   (e.g. whether another block request will follow), but we don't
+//   currently make use of this.
 //
 // disadvantages:
 // - streamed data will always be read from disk. no problem, because
 //   such data (e.g. music, long speech) is unlikely to be used again soon.
-// - prefetching (issuing the next few blocks from an archive during idle
-//   time, so that future out-of-order reads don't need to seek) isn't
-//   possible in the background (unless via thread, but that's discouraged).
-//   the utility is questionable, though: how to prefetch so as not to delay
-//   real IOs? can't determine "idle time" without completion notification,
-//   which is hard.
-//   we could get the same effect by bridging small gaps in file_io,
-//   and rearranging files in the archive in order of access.
+// - prefetching (issuing the next few blocks from archive/file during
+//   idle time to satisfy potential future IOs) requires extra buffers;
+//   this is a bit more complicated than just using the cache as storage.
 
-
-static Pool aiocb_pool;
-
-static inline void aiocb_pool_init()
+// FileIO must reference an aiocb, which is used to pass IO params to the OS.
+// unfortunately it is 144 bytes on Linux - too much to put in FileIO,
+// since that is stored in a 'resource control block' (see h_mgr.h).
+// we therefore allocate dynamically, but via suballocator to avoid
+// hitting the heap on every IO.
+class AiocbAllocator
 {
-	(void)pool_create(&aiocb_pool, 32*sizeof(aiocb), sizeof(aiocb));
-}
-
-static inline void aiocb_pool_shutdown()
-{
-	(void)pool_destroy(&aiocb_pool);
-}
-
-static inline aiocb* aiocb_pool_alloc()
-{
-	ONCE(aiocb_pool_init());
-	return (aiocb*)pool_alloc(&aiocb_pool, 0);
-}
-
-static inline void aiocb_pool_free(void* cb)
-{
-	pool_free(&aiocb_pool, cb);
-}
+	Pool pool;
+public:
+	void init()
+	{
+		(void)pool_create(&pool, 32*sizeof(aiocb), sizeof(aiocb));
+	}
+	void shutdown()
+	{
+		(void)pool_destroy(&pool);
+	}
+	aiocb* alloc()
+	{
+		return (aiocb*)pool_alloc(&pool, 0);
+	}
+	// weird name to avoid trouble with mem tracker macros
+	// (renaming is less annoying than #include "nommgr.h")
+	void free_(void* cb)
+	{
+		pool_free(&pool, cb);
+	}
+};
+static AiocbAllocator aiocb_allocator;
 
 
 // starts transferring to/from the given buffer.
 // no attempt is made at aligning or padding the transfer.
 LibError file_io_issue(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 {
+	debug_printf("FILE| issue ofs=%d size=%d\n", ofs, size);
+
 	// zero output param in case we fail below.
 	memset(io, 0, sizeof(FileIo));
 
-	debug_printf("FILE| issue ofs=%d size=%d\n", ofs, size);
-
-
-	//
 	// check params
-	//
-
 	CHECK_FILE(f);
-
 	if(!size || !p || !io)
 		WARN_RETURN(ERR_INVALID_PARAM);
-
 	const bool is_write = (f->fc.flags & FILE_WRITE) != 0;
 
-
-	// cut off at EOF.
-	if(!is_write)
-	{
-		const off_t bytes_left = f->fc.size - ofs;
-		if(bytes_left < 0)
-			WARN_RETURN(ERR_EOF);
-		size = MIN(size, (size_t)bytes_left);
-		size = round_up(size, AIO_SECTOR_SIZE);
-	}
+	// note: cutting off at EOF is necessary to avoid transfer errors,
+	// but makes size no longer sector-aligned, which would force
+	// waio to realign (slow). we want to pad back to sector boundaries
+	// afterwards (to avoid realignment), but that is not possible here
+	// since we have no control over the buffer (there might not be
+	// enough room in it). hence, do cut-off in IOManager.
+	//
+	// example: 200-byte file. IOManager issues 16KB chunks; that is way
+	// beyond EOF, so ReadFile fails. limiting size to 200 bytes works,
+	// but causes waio to pad the transfer and use align buffer (slow).
+	// rounding up to 512 bytes avoids realignment and does not fail
+	// (apparently since NTFS files are sector-padded anyway?)
 
 	// (we can't store the whole aiocb directly - glibc's version is
 	// 144 bytes large)
-	aiocb* cb = aiocb_pool_alloc();
+	aiocb* cb = aiocb_allocator.alloc();
 	io->cb = cb;
 	if(!cb)
 		return ERR_NO_MEM;
@@ -153,10 +155,12 @@ LibError file_io_wait(FileIo* io, void*& p, size_t& size)
 	const ssize_t bytes_transferred = aio_return(cb);
 	debug_printf("FILE| bytes_transferred=%d aio_nbytes=%u\n", bytes_transferred, cb->aio_nbytes);
 
-// disabled: we no longer clamp to EOF
-//	// (size was clipped to EOF in file_io => this is an actual IO error)
-//	if(bytes_transferred < (ssize_t)cb->aio_nbytes)
-//		return ERR_IO;
+	// see if actual transfer count matches requested size.
+	// note: most callers clamp to EOF but round back up to sector size
+	// (see explanation in file_io_issue). since we're not sure what
+	// the exact sector size is (only waio knows), we can only warn of
+	// too small transfer counts (not return error).
+	debug_assert(bytes_transferred >= (ssize_t)(cb->aio_nbytes-AIO_SECTOR_SIZE));
 
 	p = (void*)cb->aio_buf;	// cast from volatile void*
 	size = bytes_transferred;
@@ -167,7 +171,7 @@ LibError file_io_wait(FileIo* io, void*& p, size_t& size)
 LibError file_io_discard(FileIo* io)
 {
 	memset(io->cb, 0, sizeof(aiocb));	// prevent further use.
-	aiocb_pool_free(io->cb);
+	aiocb_allocator.free_(io->cb);
 	io->cb = 0;
 	return ERR_OK;
 }
@@ -239,7 +243,7 @@ class IOManager
 		const void* cached_block;
 
 
-		u64 block_id;
+		BlockId block_id;
 		// needed so that we can add the block to the cache when
 		// its IO is complete. if we add it when issuing, we'd no longer be
 		// thread-safe: someone else might find it in the cache before its
@@ -257,7 +261,7 @@ class IOManager
 		{
 			memset(&io, 0, sizeof(io));
 			temp_buf = 0;
-			block_id = 0;
+			memset(&block_id, 0, sizeof(block_id));
 			cached_block = 0;
 		}
 	};
@@ -350,6 +354,16 @@ class IOManager
 			ofs_misalign = start_ofs % FILE_BLOCK_SIZE;
 			start_ofs -= (off_t)ofs_misalign;
 			size = round_up(ofs_misalign + user_size, FILE_BLOCK_SIZE);
+
+			// but cut off at EOF (necessary to prevent IO error).
+			const off_t bytes_left = f->fc.size - start_ofs;
+			if(bytes_left < 0)
+				WARN_RETURN(ERR_EOF);
+			size = MIN(size, (size_t)bytes_left);
+
+			// and round back up to sector size.
+			// see rationale in file_io_issue.
+			size = round_up(size, AIO_SECTOR_SIZE);
 		}
 
 		RETURN_ERR(file_buf_get(pbuf, size, f->fc.atom_fn, is_write, cb));
@@ -360,16 +374,11 @@ class IOManager
 	void issue(IOSlot& slot)
 	{
 		const off_t ofs = start_ofs+(off_t)total_issued;
-		size_t issue_size;
-
-		// write: must not issue beyond end of data.
-		if(is_write)
-			issue_size = MIN(FILE_BLOCK_SIZE, size - total_issued);
-		// read: always grab whole blocks so we can put them in the cache.
-		// any excess data (can only be within first or last block) is
-		// discarded in wait().
-		else
-			issue_size = FILE_BLOCK_SIZE;
+		// for both reads and writes, do not issue beyond end of file/data
+		const size_t issue_size = MIN(FILE_BLOCK_SIZE, size - total_issued);
+// try to grab whole blocks (so we can put them in the cache).
+// any excess data (can only be within first or last) is
+// discarded in wait().
 
 		// check if in cache
 		slot.block_id = block_cache_make_id(f->fc.atom_fn, ofs);
@@ -441,11 +450,14 @@ class IOManager
 			// pending transfers to complete.
 		}
 
-		if(!slot.cached_block)
+		if(slot.cached_block)
+			block_cache_release(slot.block_id);
+		else
+		{
 			file_io_discard(&slot.io);
-
-		if(!slot.cached_block && pbuf == FILE_BUF_TEMP)
-			block_cache_mark_completed(slot.block_id);
+			if(pbuf == FILE_BUF_TEMP)
+				block_cache_mark_completed(slot.block_id);
+		}
 	}
 
 
@@ -539,8 +551,10 @@ ssize_t file_io(File* f, off_t ofs, size_t size, FileIOBuf* pbuf,
 	FileIOCB cb, uintptr_t ctx) // optional
 {
 	debug_printf("FILE| io: size=%u ofs=%u fn=%s\n", size, ofs, f->fc.atom_fn);
-
 	CHECK_FILE(f);
+
+	// note: do not update stats/trace here: this includes Zip IOs,
+	// which shouldn't be reported.
 
 	IOManager mgr(f, ofs, size, pbuf, cb, ctx);
 	return mgr.run();
@@ -549,7 +563,13 @@ ssize_t file_io(File* f, off_t ofs, size_t size, FileIOBuf* pbuf,
 
 
 
+void file_io_init()
+{
+	aiocb_allocator.init();
+}
+
+
 void file_io_shutdown()
 {
-	aiocb_pool_shutdown();
+	aiocb_allocator.shutdown();
 }

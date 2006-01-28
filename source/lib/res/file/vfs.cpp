@@ -326,8 +326,6 @@ static LibError VFile_reload(VFile* vf, const char* V_path, Handle)
 	if(x_is_open(&vf->xf))
 		return ERR_OK;
 
-	trace_add(V_path);
-
 	TFile* tf;
 	uint lf = (flags & FILE_WRITE)? LF_CREATE_MISSING : 0;
 	LibError err = tree_lookup(V_path, &tf, lf);
@@ -425,6 +423,10 @@ ssize_t vfs_io(const Handle hf, const size_t size, FileIOBuf* pbuf,
 	debug_printf("VFS| io: size=%d\n", size);
 
 	H_DEREF(hf, VFile, vf);
+	FileCommon* fc = &vf->xf.u.fc;
+
+	stats_user_io(size);
+	trace_notify_load(fc->atom_fn, fc->flags);
 
 	off_t ofs = vf->ofs;
 	vf->ofs += (off_t)size;
@@ -445,7 +447,8 @@ LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size, uint flags /* 
 	buf = file_cache_retrieve(atom_fn, &size);
 	if(buf)
 	{
-		stats_cache(CR_HIT, size, atom_fn);
+		stats_user_io(size);
+		trace_notify_load(atom_fn, flags);
 		return ERR_OK;
 	}
 
@@ -459,10 +462,6 @@ LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size, uint flags /* 
 	H_DEREF(hf, VFile, vf);
 
 	size = x_size(&vf->xf);
-	// only now can we report misses, since we need to know the size for
-	// statistics purposes. that means vfs_load on nonexistant files will
-	// not show up in cache misses, which is fine.
-	stats_cache(CR_MISS, size, atom_fn);
 
 	buf = FILE_BUF_ALLOC;
 	ssize_t nread = vfs_io(hf, size, &buf);

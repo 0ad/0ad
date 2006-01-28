@@ -266,28 +266,62 @@ static LibError za_extract_cdfh(const CDFH* cdfh,
 }
 
 
+// this code grabs an LFH struct from file block(s) that are
+// passed to the callback. usually, one call copies the whole thing,
+// but the LFH may straddle a block boundary.
+//
+// rationale: this allows using temp buffers for zip_fixup_lfh,
+// which avoids involving the file buffer manager and thus
+// unclutters the trace and cache contents.
 
+struct LFH_Copier
+{
+	u8* lfh_dst;
+	size_t lfh_bytes_remaining;
+};
 
+static LibError lfh_copier_cb(uintptr_t ctx, const void* block, size_t size, size_t* bytes_processed)
+{
+	LFH_Copier* p = (LFH_Copier*)ctx;
 
-// find corresponding LFH, needed to calculate file offset
-// (its extra field may not match that reported by CDFH!).
+	debug_assert(size <= p->lfh_bytes_remaining);
+	memcpy2(p->lfh_dst, block, size);
+	p->lfh_dst += size;
+	p->lfh_bytes_remaining -= size;
+
+	*bytes_processed = size;
+	return INFO_CB_CONTINUE;
+}
+
+// ensures <ent.ofs> points to the actual file contents; it is initially
+// the offset of the LFH. we cannot use CDFH filename and extra field
+// lengths to skip past LFH since that may not mirror CDFH (has happened).
+//
+// this is called at file-open time instead of while mounting to
+// reduce seeks: since reading the file will typically follow, the
+// block cache entirely absorbs the IO cost.
 void zip_fixup_lfh(File* f, ArchiveEntry* ent)
 {
-	// improbable that this will be in cache - if this file had already
-	// been read, it would have been fixed up. only in cache if this
-	// file is in the same block as a previously read file (i.e. both small)
-	FileIOBuf buf = FILE_BUF_ALLOC;
-	file_io(f, ent->ofs, LFH_SIZE, &buf);
-	const LFH* lfh = (const LFH*)buf;
+	// already fixed up - done.
+	if(!(ent->flags & ZIP_LFH_FIXUP_NEEDED))
+		return;
 
-	debug_assert(lfh->magic == lfh_magic);
-	const size_t fn_len = read_le16(&lfh->fn_len);
-	const size_t  e_len = read_le16(&lfh->e_len);
+	// performance note: this ends up reading one file block, which is
+	// only in the block cache if the file starts in the same block as a
+	// previously read file (i.e. both are small).
+	LFH lfh;
+	LFH_Copier params = { (u8*)&lfh, sizeof(LFH) };
+	ssize_t ret = file_io(f, ent->ofs, LFH_SIZE, FILE_BUF_TEMP, lfh_copier_cb, (uintptr_t)&params);
+	debug_assert(ret == sizeof(LFH));
+
+	debug_assert(lfh.magic == lfh_magic);
+	const size_t fn_len = read_le16(&lfh.fn_len);
+	const size_t  e_len = read_le16(&lfh.e_len);
 
 	ent->ofs += (off_t)(LFH_SIZE + fn_len + e_len);
 	// LFH doesn't have a comment field!
 
-	file_buf_free(buf);
+	ent->flags &= ~ZIP_LFH_FIXUP_NEEDED;
 }
 
 
@@ -393,21 +427,24 @@ struct ZipArchive
 	uint cd_entries;
 };
 
-struct ZipEntry
-{
-	char path[PATH_MAX];
-	size_t ucsize;
-	time_t mtime;
-	ZipCompressionMethod method;
-	size_t csize;
-	const void* cdata;
-};
+// we don't want to expose ZipArchive to callers, so
+// allocate the storage here and return opaque pointer.
+static SingleAllocator<ZipArchive> za_mgr;
 
-LibError zip_archive_create(const char* zip_filename, ZipArchive* za)
+
+LibError zip_archive_create(const char* zip_filename, ZipArchive** pza)
 {
-	memset(za, 0, sizeof(*za));
-	RETURN_ERR(file_open(zip_filename, 0, &za->f));
-	RETURN_ERR(pool_create(&za->cdfhs, 10*MiB, 0));
+	// local za_copy simplifies things - if something fails, no cleanup is
+	// needed. upon success, we copy into the newly allocated real za.
+	ZipArchive za_copy;
+	RETURN_ERR(file_open(zip_filename, 0, &za_copy.f));
+	RETURN_ERR(pool_create(&za_copy.cdfhs, 10*MiB, 0));
+
+	ZipArchive* za = (ZipArchive*)za_mgr.alloc();
+	if(!za)
+		WARN_RETURN(ERR_NO_MEM);
+	*za = za_copy;
+	*pza = za;
 	return ERR_OK;
 }
 
@@ -424,18 +461,14 @@ static inline u16 u16_from_size_t(size_t x)
 	return (u16)(x & 0xFFFF);
 }
 
-
-LibError zip_archive_add(ZipArchive* za, const ZipEntry* ze)
+LibError zip_archive_add_file(ZipArchive* za, const ArchiveEntry* ze, void* file_contents)
 {
-	FileIOBuf buf;
-
-	const char* fn      = ze->path;
+	const char* fn      = ze->atom_fn;
 	const size_t fn_len = strlen(fn);
 	const size_t ucsize = ze->ucsize;
 	const u32 fat_mtime = FAT_from_time_t(ze->mtime);
 	const u16 method    = (u16)ze->method;
 	const size_t csize  = ze->csize;
-	const void* cdata   = ze->cdata;
 
 	const off_t lfh_ofs = za->cur_file_size;
 
@@ -454,11 +487,12 @@ LibError zip_archive_add(ZipArchive* za, const ZipEntry* ze)
 		u16_from_size_t(fn_len),
 		0	// e_len
 	};
+	FileIOBuf buf;
 	buf = (FileIOBuf)&lfh;
-	file_io(&za->f, lfh_ofs,                          lfh_size, &buf);
+	file_io(&za->f, lfh_ofs, lfh_size, &buf);
 	buf = (FileIOBuf)fn;
-	file_io(&za->f, lfh_ofs+lfh_size,                 fn_len, &buf);
-	buf = (FileIOBuf)cdata;
+	file_io(&za->f, lfh_ofs+lfh_size, fn_len, &buf);
+	buf = (FileIOBuf)file_contents;
 	file_io(&za->f, lfh_ofs+(off_t)(lfh_size+fn_len), csize, &buf);
 	za->cur_file_size += (off_t)(lfh_size+fn_len+csize);
 
@@ -511,6 +545,7 @@ LibError zip_archive_finish(ZipArchive* za)
 
 	(void)file_close(&za->f);
 	(void)pool_destroy(&za->cdfhs);
+	za_mgr.free(za);
 	return ERR_OK;
 }
 

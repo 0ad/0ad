@@ -213,27 +213,30 @@ TIMER_ACCRUE(tc_plain_transform);
 	if(!transforms)
 		return ERR_OK;
 
+	// allocate copy of the image data.
+	// rationale: L1 cache is typically A2 => swapping in-place with a
+	// line buffer leads to thrashing. we'll assume the whole texture*2
+	// fits in cache, allocate a copy, and transfer directly from there.
+	//
+	// this is necessary even when not flipping because the initial Tex.hm
+	// (which is a FileIOBuf) is read-only.
+	Handle hm;
+	void* new_data = mem_alloc(data_size, 4*KiB, 0, &hm);
+	if(!new_data)
+		return ERR_NO_MEM;
+	memcpy2(new_data, data, data_size);
+
 	// setup row source/destination pointers (simplifies outer loop)
-	u8* dst = data;
-	const u8* src = data;
+	u8* dst = (u8*)new_data;
+	const u8* src = (const u8*)new_data;
 	const size_t pitch = w * bpp/8;
+	// .. avoid y*pitch multiply in row loop; instead, add row_ofs.
 	ssize_t row_ofs = (ssize_t)pitch;
-	// avoid y*pitch multiply in row loop; instead, add row_ofs.
-	void* clone_data = 0;
+
 	// flipping rows (0,1,2 -> 2,1,0)
 	if(transforms & TEX_ORIENTATION)
 	{
-		// L1 cache is typically A2 => swapping in-place with a line buffer
-		// leads to thrashing. we'll assume the whole texture*2 fits in cache,
-		// allocate a copy, and transfer directly from there.
-		//
-		// note: we don't want to return a new buffer: the user assumes
-		// buffer address will remain unchanged.
-		clone_data = mem_alloc(data_size, 4*KiB);
-		if(!clone_data)
-			return ERR_NO_MEM;
-		memcpy2(clone_data, data, data_size);
-		src = (const u8*)clone_data+data_size-pitch;	// last row
+		src = (const u8*)data+data_size-pitch;	// last row
 		row_ofs = -(ssize_t)pitch;
 	}
 
@@ -280,8 +283,9 @@ TIMER_ACCRUE(tc_plain_transform);
 		}
 	}
 
-	if(clone_data)
-		(void)mem_free(clone_data);
+	mem_free_h(t->hm);
+	t->hm = hm;
+	t->ofs = 0;
 
 	if(!(t->flags & TEX_MIPMAPS) && transforms & TEX_MIPMAPS)
 	{
@@ -296,10 +300,11 @@ TIMER_ACCRUE(tc_plain_transform);
 		const u8* mipmap_data = (const u8*)mem_alloc(mipmap_size, 4*KiB, 0, &hm);
 		if(!mipmap_data)
 			return ERR_NO_MEM;
-		CreateLevelData cld = { bpp/8, w, h, data, data_size };
+		CreateLevelData cld = { bpp/8, w, h, (const u8*)new_data, data_size };
 		tex_util_foreach_mipmap(w, h, bpp, mipmap_data, 0, 1, create_level, &cld);
 		mem_free_h(t->hm);
 		t->hm = hm;
+		t->ofs = 0;
 	}
 
 	CHECK_TEX(t);
@@ -450,6 +455,12 @@ static LibError tex_load_impl(FileIOBuf file_, size_t file_size, Tex* t)
 }
 
 
+// MEM_DTOR -> file_buf_free adapter (used for mem_wrap-ping FileIOBuf)
+static void file_buf_dtor(void* p, size_t UNUSED(size), uintptr_t UNUSED(ctx))
+{
+	(void)file_buf_free((FileIOBuf)p);
+}
+
 // load the specified image from file into the given Tex object.
 // currently supports BMP, TGA, JPG, JP2, PNG, DDS.
 LibError tex_load(const char* fn, Tex* t)
@@ -460,7 +471,7 @@ LibError tex_load(const char* fn, Tex* t)
 	// must be protected against being accidentally free-d in that case.
 
 	RETURN_ERR(vfs_load(fn, file, file_size));
-	Handle hm = mem_wrap((void*)file, file_size, 0, 0, 0, 0, 0, (void*)tex_load);
+	Handle hm = mem_wrap((void*)file, file_size, 0, 0, 0, file_buf_dtor, 0, (void*)tex_load);
 	t->hm = hm;
 	LibError ret = tex_load_impl(file, file_size, t);
 	if(ret < 0)
