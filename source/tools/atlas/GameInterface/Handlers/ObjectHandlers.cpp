@@ -171,7 +171,7 @@ MESSAGEHANDLER(ObjectPreview)
 				if (base) // (ignore errors)
 				{
 					g_PreviewUnit = g_UnitMan.CreateUnit(base->m_actorName, NULL);
-					// TODO: set player (for colour)
+					g_PreviewUnit->GetModel()->SetPlayerID(msg->player);
 					// TODO: variations
 				}
 			}
@@ -219,10 +219,12 @@ BEGIN_COMMAND(CreateObject)
 	CVector3D m_Pos;
 	float m_Angle;
 	int m_ID;
+	int m_Player;
 
 	void Do()
 	{
 		m_Pos = GetUnitPos(d->pos);
+		m_Player = d->player;
 
 		if (d->usetarget)
 		{
@@ -260,8 +262,7 @@ BEGIN_COMMAND(CreateObject)
 						LOG(ERROR, LOG_CATEGORY, "Failed to create entity of type '%ls'", name.c_str());
 					else
 					{
-						// TODO: proper player ID
-						ent->SetPlayer(g_Game->GetLocalPlayer());
+						ent->SetPlayer(g_Game->GetPlayer(m_Player));
 
 						ent->m_actor->SetID(m_ID);
 					}

@@ -109,6 +109,12 @@ protected:
 		m_CurrentState = state;
 		m_CurrentState->OnEnter(static_cast<T*>(this));
 	}
+
+	State* GetState() const
+	{
+		return m_CurrentState;
+	}
+
 private:
 	State* m_CurrentState;
 

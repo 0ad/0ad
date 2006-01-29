@@ -100,6 +100,7 @@ QUERY(GetObjectsList,
 
 MESSAGE(ObjectPreview,
 		((std::wstring, id)) // or empty string => disable
+		((int, player))
 		((Position, pos))
 		((bool, usetarget)) // true => use 'target' for orientation; false => use 'angle'
 		((Position, target))
@@ -108,6 +109,7 @@ MESSAGE(ObjectPreview,
 
 COMMAND(CreateObject, NOMERGE,
 		((std::wstring, id))
+		((int, player))
 		((Position, pos))
 		((bool, usetarget)) // true => use 'target' for orientation; false => use 'angle'
 		((Position, target))
