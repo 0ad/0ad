@@ -132,6 +132,8 @@ private:
 		inline End(CMessagePipe *pPipe, CLockedMessageDeque *pIn, CLockedMessageDeque *pOut):
 			m_pPipe(pPipe), m_pIn(pIn), m_pOut(pOut)
 		{}
+		
+		virtual ~End() {}
 
 		virtual void Push(CNetMessage *);
 		virtual CNetMessage *TryPop();

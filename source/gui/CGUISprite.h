@@ -25,7 +25,7 @@ gee@pyro.nu
 //--------------------------------------------------------
 //  Includes / Compiler directives
 //--------------------------------------------------------
-#include "GUIutil.h"
+#include "GUIbase.h"
 
 #include "Overlay.h"
 #include "lib/res/graphics/ogl_tex.h"

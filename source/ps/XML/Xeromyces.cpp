@@ -49,7 +49,7 @@ public:
 
 	void write(const void* data, int size, int offset)
 	{
-		debug_assert(offset >= 0 && offset+size <= length);
+		debug_assert(offset >= 0 && offset+size < length);
 		memcpy2(&buffer[offset], data, size);
 	}
 
@@ -312,13 +312,13 @@ bool CXeromyces::ReadXMBFile(const char* filename)
 	const void* buffer = file->GetBuffer();
 
 	debug_assert(file->GetBufferSize() >= 42 && "Invalid XMB file"); // 42 bytes is the smallest possible XMB. (Well, maybe not quite, but it's a nice number.)
-	debug_assert(*(int*)buffer == HeaderMagic && "Invalid XMB file header");
+	debug_assert(*(u32*)buffer == HeaderMagic && "Invalid XMB file header");
 
 	// Store the Handle so it can be closed later
 	XMBFileHandle = file;
 
 	// Set up the XMBFile
-	Initialise((char*)buffer);
+	Initialise((const char*)buffer);
 
 	return true;
 }

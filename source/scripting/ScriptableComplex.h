@@ -4,6 +4,7 @@
 // in its objects. Shouldn't be used any more for anything but entity code.
 
 #include "scripting/ScriptingHost.h"
+#include "simulation/ScriptObject.h"
 #include "JSConversions.h"
 
 #include "lib/allocators.h"

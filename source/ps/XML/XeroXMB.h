@@ -98,7 +98,7 @@ XMB_Text {
 #endif
 
 // File headers, to make sure it doesn't try loading anything other than an XMB
-extern const int HeaderMagic;
+extern const u32 HeaderMagic;
 extern const char* HeaderMagicStr;
 
 class XMBElement;
@@ -115,7 +115,7 @@ public:
 	// Initialise from the contents of an XMB file.
 	// FileData must remain allocated and unchanged while
 	// the XMBFile is being used.
-	void Initialise(char* FileData);
+	void Initialise(const char* FileData);
 
 	// Returns the root element
 	XMBElement getRoot() const;
@@ -132,7 +132,7 @@ public:
 	std::string getAttributeString(const int ID) const;
 
 private:
-	char* m_Pointer;
+	const char* m_Pointer;
 
 #ifdef XERO_USEMAP
 	std::map<std::string, int> m_ElementNames;
@@ -140,8 +140,8 @@ private:
 #else
 	int m_ElementNameCount;
 	int m_AttributeNameCount;
-	char* m_ElementPointer;
-	char* m_AttributePointer;
+	const char* m_ElementPointer;
+	const char* m_AttributePointer;
 #endif
 
 	std::string ReadZStrA();
@@ -154,7 +154,7 @@ public:
 	XMBElement()
 		: m_Pointer(0) {}
 
-	XMBElement(char* offset)
+	XMBElement(const char* offset)
 		: m_Pointer(offset)	{}
 
 	int getNodeName() const;
@@ -165,7 +165,7 @@ public:
 
 private:
 	// Pointer to the start of the node
-	char* m_Pointer;
+	const char* m_Pointer;
 };
 
 class XMBElementList
@@ -175,7 +175,7 @@ public:
 	XMBElementList()
 		: Count(0), m_Pointer(0), m_LastItemID(-2) {}
 
-	XMBElementList(char* offset, int count)
+	XMBElementList(const char* offset, int count)
 		: Count(count),
 		  m_Pointer(offset),
 		  m_LastItemID(-2) {} // use -2 because it isn't x-1 where x is a non-negative integer
@@ -185,11 +185,11 @@ public:
 	int Count;
 
 private:
-	char* m_Pointer;
+	const char* m_Pointer;
 
 	// For optimised sequential access:
 	int m_LastItemID;
-	char* m_LastPointer;
+	const char* m_LastPointer;
 };
 
 
@@ -206,7 +206,7 @@ struct XMBAttribute
 class XMBAttributeList
 {
 public:
-	XMBAttributeList(char* offset, int count)
+	XMBAttributeList(const char* offset, int count)
 		: Count(count), m_Pointer(offset), m_LastItemID(-2) {};
 
 	// Get the attribute value directly (unlike Xerces)
@@ -219,11 +219,11 @@ public:
 
 private:
 	// Pointer to start of attribute list
-	char* m_Pointer;
+	const char* m_Pointer;
 
 	// For optimised sequential access:
 	int m_LastItemID;
-	char* m_LastPointer;
+	const char* m_LastPointer;
 };
 
 #endif // _XEROXMB_H_

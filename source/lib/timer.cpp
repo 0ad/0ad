@@ -27,6 +27,8 @@
 #include <math.h>
 #include <stdarg.h>
 
+#include "sysdep/ia32.h"
+
 // rationale for wrapping gettimeofday and clock_gettime, instead of emulating
 // them where not available: allows returning higher-resolution timer values
 // than their us / ns interface, via double [seconds]. they're also not

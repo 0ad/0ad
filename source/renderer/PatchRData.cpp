@@ -480,13 +480,13 @@ void CPatchRData::RenderBase()
 {
 	debug_assert(m_UpdateFlags==0);
 
-	u8* base=m_VBBase->m_Owner->Bind();
+	SBaseVertex *base=(SBaseVertex *)m_VBBase->m_Owner->Bind();
 
 	// setup data pointers
 	u32 stride=sizeof(SBaseVertex);
-	glVertexPointer(3,GL_FLOAT,stride,base+offsetof(SBaseVertex,m_Position));
-	glColorPointer(4,GL_UNSIGNED_BYTE,stride,base+offsetof(SBaseVertex,m_Color));
-	glTexCoordPointer(2,GL_FLOAT,stride,base+offsetof(SBaseVertex,m_UVs[0]));
+	glVertexPointer(3,GL_FLOAT,stride,&base->m_Position[0]);
+	glColorPointer(4,GL_UNSIGNED_BYTE,stride,&base->m_Color);
+	glTexCoordPointer(2,GL_FLOAT,stride,&base->m_UVs[0]);
 	
 	// render each splat
 	for (uint i=0;i<(uint)m_Splats.size();i++) {
@@ -503,14 +503,15 @@ void CPatchRData::RenderStreams(u32 streamflags)
 {
 	debug_assert(m_UpdateFlags==0);
 
-	u8* base=m_VBBase->m_Owner->Bind();
+	SBaseVertex* base=(SBaseVertex *)m_VBBase->m_Owner->Bind();
 
 	// setup data pointers
-	glVertexPointer(3,GL_FLOAT,sizeof(SBaseVertex),base+offsetof(SBaseVertex,m_Position));
+	u32 stride=sizeof(SBaseVertex);
+	glVertexPointer(3, GL_FLOAT, stride, &base->m_Position);
 	if (streamflags & STREAM_UV0) {
-		glTexCoordPointer(2,GL_FLOAT,sizeof(SBaseVertex),base+offsetof(SBaseVertex,m_UVs));
+		glTexCoordPointer(2, GL_FLOAT, stride, &base->m_UVs);
 	} else if (streamflags & STREAM_POSTOUV0) {
-		glTexCoordPointer(3,GL_FLOAT,sizeof(SBaseVertex),base+offsetof(SBaseVertex,m_Position));
+		glTexCoordPointer(3, GL_FLOAT, stride, &base->m_Position);
 	}
 	
 	// render all base splats at once

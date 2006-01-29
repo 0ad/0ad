@@ -18,7 +18,7 @@ bool g_mouse_buttons[6] = {0};
 // updates the state of the above; never swallows messages.
 InReaction GlobalsInputHandler(const SDL_Event* ev)
 {
-	int c;
+	uint c;
 
 	switch(ev->type)
 	{

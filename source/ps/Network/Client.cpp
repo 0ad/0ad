@@ -381,8 +381,9 @@ bool CNetClient::ChatHandler(CNetMessage *pMsg, CNetSession *pSession)
 		}
 		HANDLED(pMsg);
 	}
+	default:
+		UNHANDLED(pMsg);
 	}
-	UNHANDLED(pMsg);
 }
 
 void CNetClient::OnClientConnect(int sessionID, const CStrW &name)

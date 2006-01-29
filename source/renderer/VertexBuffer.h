@@ -18,6 +18,9 @@
 // absolute maximum (bytewise) size of each GL vertex buffer object
 #define MAX_VB_SIZE_BYTES		(512*1024)
 
+template <typename T>
+struct ctor_dtor_logger;
+
 ///////////////////////////////////////////////////////////////////////////////
 // CVertexBuffer: encapsulation of ARB_vertex_buffer_object, also supplying 
 // some additional functionality for batching and sharing buffers between
@@ -66,8 +69,10 @@ public:
 	// return this VBs batch list
 	const std::vector<Batch*>& GetBatches() const { return m_Batches; }
 
+	const uint GetVertexSize() const { return m_VertexSize; }
+
 	// free memory
-	static void CVertexBuffer::Shutdown();
+	static void Shutdown();
 
 protected:
 	friend class CVertexBufferManager;		// allow allocate only via CVertexBufferManager
@@ -96,8 +101,9 @@ private:
 	u8* m_SysMem;
 	// type of the buffer - dynamic?
 	bool m_Dynamic;
+	
 	// list of all spare batches, shared between all vbs
-	static std::vector<Batch*> m_FreeBatches;
+	static std::vector<Batch *> m_FreeBatches;
 };
 
 #endif

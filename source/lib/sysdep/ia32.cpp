@@ -692,10 +692,10 @@ namespace test {
 		TEST(i32_from_double(1.01) == 1);
 		TEST(i32_from_double(5.6) == 5);
 
-		TEST(i64_from_double(0.99999) == 0ll);
-		TEST(i64_from_double(1.0) == 1ll);
-		TEST(i64_from_double(1.01) == 1ll);
-		TEST(i64_from_double(5.6) == 5ll);
+		TEST(i64_from_double(0.99999) == 0LL);
+		TEST(i64_from_double(1.0) == 1LL);
+		TEST(i64_from_double(1.01) == 1LL);
+		TEST(i64_from_double(5.6) == 5LL);
 	}
 
 	static void self_test()

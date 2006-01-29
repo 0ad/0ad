@@ -11,6 +11,7 @@
 #include "ogl.h"
 #include "Renderer.h"
 #include "VertexBuffer.h"
+#include "VertexBufferManager.h"
 #include "ps/CLogger.h"
 
 ERROR_GROUP(Renderer);
@@ -18,14 +19,20 @@ ERROR_TYPE(Renderer, VBOFailed);
 
 ///////////////////////////////////////////////////////////////////////////////
 // shared list of all free batch objects
-std::vector<CVertexBuffer::Batch*> CVertexBuffer::m_FreeBatches;
+std::vector<CVertexBuffer::Batch *> CVertexBuffer::m_FreeBatches;
+// NOTE: This global variable is here (as opposed to in VertexBufferManager.cpp,
+// as would be logical) to make sure that m_FreeBatches is freed in the right
+// order relative to the VertexBufferManager
+CVertexBufferManager g_VBMan;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Call at shutdown to free memory
 void CVertexBuffer::Shutdown()
 {
 	for(std::vector<Batch*>::iterator iter=m_FreeBatches.begin();iter!=m_FreeBatches.end();++iter)
+	{
 		delete *iter;
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -173,7 +180,7 @@ void CVertexBuffer::AppendBatch(VBChunk* UNUSED(chunk),Handle texture,size_t num
 			batch=m_FreeBatches.back();
 			m_FreeBatches.pop_back();
 		} else {
-			batch=new Batch;
+			batch=new Batch();
 		}
 		m_Batches.push_back(batch);
 		batch->m_Texture=texture;
@@ -207,6 +214,7 @@ void CVertexBuffer::UpdateChunkVertices(VBChunk* chunk,void* data)
 u8* CVertexBuffer::Bind()
 {
 	u8* base;
+
 	if (g_Renderer.m_Caps.m_VBO) {
 		pglBindBufferARB(GL_ARRAY_BUFFER_ARB,m_Handle);
 		base=(u8*) 0;

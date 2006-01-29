@@ -24,9 +24,14 @@ ERROR_TYPE(GUI, JSOpenFailed);
 //--------------------------------------------------------
 //  Includes / Compiler directives
 //--------------------------------------------------------
-#include "GUI.h"
+// NOTE: GUI.h included at the bottom of this file (has to be after CGUI class
+// definition)
 
 #include "GUITooltip.h"
+#include "GUIbase.h"
+
+#include "ps/Overlay.h" // CPos and CRect
+
 #include "Singleton.h"
 #include "lib/input.h"
 
@@ -57,11 +62,22 @@ extern InReaction gui_handler(const SDL_Event* ev);
  */
 struct SGUIStyle
 {
-	// A list of defualts for 
+	// A list of defaults for 
 	std::map<CStr, CStr> m_SettingsDefaults;
 };
 
 struct JSObject; // The GUI stores a JSObject*, so needs to know that JSObject exists
+class IGUIObject;
+class CGUISpriteInstance;
+struct SGUIText;
+class CColor;
+class SGUIText;
+class SGUIIcon;
+class CGUIString;
+class CGUISprite;
+struct SGUIImageEffects;
+struct SGUIScrollBarStyle;
+class GUITooltip;
 
 /**
  * @author Gustav Larsson
@@ -621,5 +637,8 @@ private:
 	// Icons
 	std::map<CStr, SGUIIcon> m_Icons;
 };
+
+
+#include "GUI.h"
 
 #endif

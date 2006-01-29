@@ -142,6 +142,64 @@ enum EVAlign { EVAlign_Top, EVAlign_Bottom, EVAlign_Center };
 typedef	std::map<CStr, IGUIObject*> map_pObjects;
 typedef std::vector<IGUIObject*> vector_pObjects;
 
+// Icon, you create them in the XML file with root element <setup>
+//  you use them in text owned by different objects... Such as CText.
+struct SGUIIcon
+{
+	SGUIIcon() : m_CellID(0) {}
+
+	// Sprite name of icon
+	CStr m_SpriteName;
+
+	// Size
+	CSize m_Size;
+
+	// Cell of texture to use; ignored unless the texture has specified cell-size
+	int m_CellID;
+};
+
+/**
+ * @author Gustav Larsson
+ *
+ * Client Area is a rectangle relative to a parent rectangle
+ *
+ * You can input the whole value of the Client Area by
+ * string. Like used in the GUI.
+ */
+class CClientArea
+{
+public:
+	CClientArea();
+	CClientArea(const CStr& Value);
+
+	/// Pixel modifiers
+	CRect pixel;
+
+	/// Percent modifiers
+	CRect percent;
+
+	/**
+	 * Get client area rectangle when the parent is given
+	 */
+	CRect GetClientArea(const CRect &parent) const;
+
+	/**
+	 * The ClientArea can be set from a string looking like:
+	 *
+	 * "0 0 100% 100%"
+	 * "50%-10 50%-10 50%+10 50%+10"
+	 * 
+	 * i.e. First percent modifier, then + or - and the pixel modifier.
+	 * Although you can use just the percent or the pixel modifier. Notice
+	 * though that the percent modifier must always be the first when
+	 * both modifiers are inputted.
+	 *
+	 * @return true if success, false if failure. If false then the client area
+	 *			will be unchanged.
+	 */
+	bool SetClientArea(const CStr& Value);
+};
+
 //--------------------------------------------------------
 //  Error declarations
 //--------------------------------------------------------

@@ -127,7 +127,7 @@
 #include <stdexcept>
 #include <streambuf>
 #include <string>
-#include <strstream>
+#include <sstream>
 #include <typeinfo>
 #include <valarray>
 

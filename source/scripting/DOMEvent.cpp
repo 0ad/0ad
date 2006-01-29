@@ -24,8 +24,9 @@ bool IEventTarget::_DispatchEvent( CScriptEvent* evt, IEventTarget* target )
 
 	evt->m_CurrentTarget = this;
 	
-	HandlerList::iterator it;
-	for( it = m_Handlers_id[evt->m_TypeCode].begin(); it != m_Handlers_id[evt->m_TypeCode].end(); it++ )
+	HandlerList::const_iterator it;
+	const HandlerList &handlers=m_Handlers_id[evt->m_TypeCode];
+	for( it = handlers.begin(); it != handlers.end(); it++ )
 	{
 		DOMEventHandler id = *it;
 		if( id && id->DispatchEvent( GetScriptExecContext( target ), evt ) )

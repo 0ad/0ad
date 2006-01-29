@@ -79,7 +79,7 @@ namespace I18n
 #if MSC_VERSION
 # pragma warning (disable: 4355)
 #endif
-		CLocale(JSContext* context, JSObject* scope) : Script(this, context, scope), CacheAge(0) {}
+		CLocale(JSContext* context, JSObject* scope) : CacheAge(0), Script(this, context, scope) {}
 #if MSC_VERSION
 # pragma warning (default: 4355)
 #endif

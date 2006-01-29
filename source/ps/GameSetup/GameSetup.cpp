@@ -80,6 +80,7 @@
 
 #include "Atlas.h"
 #include "GameSetup.h"
+#include "Config.h"
 
 ERROR_GROUP(System);
 ERROR_TYPE(System, SDLInitFailed);

@@ -103,7 +103,7 @@ void udbg_launch_debugger()
 	}
 }
 
-void* debug_get_nth_caller(uint n, void *context)
+void* debug_get_nth_caller(uint n, void *UNUSED(context))
 {
 	// bt[0] == debug_get_nth_caller
 	// bt[1] == caller of get_nth_caller
@@ -116,7 +116,7 @@ void* debug_get_nth_caller(uint n, void *context)
 	return bt[n+1]; // n==1 => bt[2], and so forth
 }
 
-const wchar_t* debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* context)
+const wchar_t* debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* UNUSED(context))
 {
 	++skip; // Skip ourselves too
 
@@ -405,7 +405,6 @@ LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file,
 	
 	return ERR_OK;
 }
-#include "mmgr.h"
 
 void debug_puts(const char* text)
 {
@@ -417,12 +416,13 @@ void debug_puts(const char* text)
 // TODO: Do these properly. (I don't know what I'm doing; I just
 // know that these functions are required in order to compile...)
 
-int debug_write_crashlog(const char* file, wchar_t* header, void* context)
+int debug_write_crashlog(const char* UNUSED(file), wchar_t* UNUSED(header),
+	void* UNUSED(context))
 {
 	abort();
 }
 
-int debug_is_pointer_bogus(const void* p)
+int debug_is_pointer_bogus(const void* UNUSED(p))
 {
 	return false;
 }
@@ -434,7 +434,7 @@ void debug_heap_check()
 // if <full_monty> is true or PARANOIA #defined, all possible checks are
 // performed as often as possible. this is really slow (we are talking x100),
 // but reports errors closer to where they occurred.
-void debug_heap_enable(DebugHeapChecks what)
+void debug_heap_enable(DebugHeapChecks UNUSED(what))
 {
 	// No-op until we find out if glibc has heap debugging
 }
@@ -442,4 +442,5 @@ void debug_heap_enable(DebugHeapChecks what)
 // disable all automatic checks until the next debug_heap_enable.
 void debug_heap_disable()
 {
+	// No-op until we find out if glibc has heap debugging
 }

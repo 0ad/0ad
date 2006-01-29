@@ -406,15 +406,26 @@ static void pattern_set(const Alloc* a, ulong pattern)
 }
 
 
-static bool padding_is_intact(const Alloc* a)
+static bool padding_is_intact(const Alloc* a, ulong **corrupt_address)
 {
+	*corrupt_address=NULL;
+
 	ulong* pre  = (ulong*)a->p;
 	ulong* post = (ulong*)( (char*)a->p + a->size - padding_size );
 
 	for(uint i = 0; i < padding_size / sizeof(ulong); i++)
-		if(*pre++ != pattern_before || *post++ != pattern_after)
+	{
+		if(pre[i] != pattern_before)
+		{
+			*corrupt_address=&pre[i];
 			return false;
-
+		}
+		else if (post[i] != pattern_after)
+		{
+			*corrupt_address=&post[i];
+			return false;
+		}
+	}
 	return true;
 }
 
@@ -767,13 +778,16 @@ void mmgr_write_leak_report(void)
 // user-callable integrity checks
 //////////////////////////////////////////////////////////////////////////////
 
+static bool alloc_is_valid(const Alloc *a);
+
 bool mmgr_is_valid_ptr(const void* p)
 {
 	// null pointer - won't even try ;-)
 	if (p == NULL)
 		return false;
 	lock();
-	bool found = allocs_find(p) != 0;
+	Alloc *a=allocs_find(p);
+	bool found = a != NULL && alloc_is_valid(a);
 	unlock();
 	return found;
 }
@@ -785,10 +799,14 @@ static bool alloc_is_valid(const Alloc* a)
 	// exceptions (e.g. "hardware is on fire") from getting through, but
 	// there's really no alternative, since padding_is_intact is very
 	// likely to crash if the Alloc is corrupted.
+	// TODO Linux doesn't treat e.g. SIGSEGV as an exception (crashes instead)
+	// Research linux/unix/gcc alternative for catching those (signal handler
+	// and set/longjmp?)
 	bool intact;
+	ulong *p=NULL; // The corrupted address
 	try
 	{
-		intact = padding_is_intact(a);
+		intact = padding_is_intact(a, &p);
 	}
 	catch(...)
 	{
@@ -799,9 +817,34 @@ static bool alloc_is_valid(const Alloc* a)
 	// allocation's memory range) or is otherwise corrupt.
 	if(!intact)
 	{
-		debug_assert(0 && "Memory over/underrun detected by mmgr");
-		log("[!] Memory over/underrun:\n");
+		// if p is between a->p and a->p+padding_size, accuse a and the alloc
+		// before a, if p is between a->p+a->size-padding_size and a->p+a->size,
+		// accuse a and the alloc after a
+		// TODO This doesn't really find out the next/previous alloc area, just
+		// prints the address, which end was currupted, and the data found
+		if (p)
+		{
+			u8 *user_p = (u8 *)a->user_p();
+			u8 *user_p_end = ((u8*)a->user_p()) + a->user_size();
+			ulong expected=0;
+			if ((u8*)p < user_p)
+			{
+				log("[!] Memory underrun: padding currupt at offset %d (bytes)\n",
+					((u8 *)p)-user_p);
+				expected=pattern_before;
+			}
+			else
+			{
+				log("[!] Memory overrun: padding currupt at %d bytes past end of buffer\n",
+					((u8 *)p)-user_p_end);
+				expected=pattern_after;
+			}
+			log("[!] Memory over/underrun: expected padding %08x, found garbage %08x\n", expected, *p);
+		}
+		else
+			log("[!] alloc_is_valid encountered an exception - something may be very wrong!\n");
 		log_this_alloc(a);
+		debug_assert(0 && "Memory over/underrun detected by mmgr");
 	}
 	return intact;
 }
@@ -1148,8 +1191,8 @@ void* realloc_dbg(const void* user_p, size_t user_size, AllocType type, const ch
 		if(!a)
 		{
 			// you called realloc for a pointer mmgr didn't allocate
-			debug_assert(0 && "realloc was called for a pointer mmgr didn't allocate");
 			log("[!] realloc: wasn't previously allocated\n");
+			debug_assert(0 && "realloc was called for a pointer mmgr didn't allocate");
 			goto fail;
 		}
 		// .. the owner wasn't compiled with mmgr.h
@@ -1172,8 +1215,8 @@ void* realloc_dbg(const void* user_p, size_t user_size, AllocType type, const ch
 
 	// old_size should only be non-zero if the Alloc security checks all passed
 	// If the old buffer was actually zero bytes large, do nothing :P
-	if (old_size)
-		memcpy2(ret, user_p, old_size);
+	if (old_size && ret)
+		memcpy2(ret, user_p, MIN(old_size, user_size));
 
 	if(user_p)
 		free_dbg(user_p, AT_FREE, file,line,func, stack_frames+1);

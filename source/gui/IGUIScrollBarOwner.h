@@ -22,6 +22,7 @@ gee@pyro.nu
 #include "GUI.h"
 
 struct SGUIScrollBarStyle;
+class IGUIScrollBar;
 
 //--------------------------------------------------------
 //  Macros

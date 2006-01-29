@@ -331,7 +331,7 @@ void CGUI::SendEventToAll(CStr EventName)
 //-------------------------------------------------------------------
 //  Constructor / Destructor
 //-------------------------------------------------------------------
-CGUI::CGUI() : m_InternalNameNumber(0), m_MouseButtons(0), m_FocusedObject(NULL)
+CGUI::CGUI() : m_MouseButtons(0), m_FocusedObject(NULL), m_InternalNameNumber(0)
 {
 	m_BaseObject = new CGUIDummyObject;
 	m_BaseObject->SetGUI(this);

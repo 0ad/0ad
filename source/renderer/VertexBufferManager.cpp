@@ -13,8 +13,6 @@
 
 #define LOG_CATEGORY "graphics"
 
-CVertexBufferManager g_VBMan;
-
 // janwas 2004-06-14: added dtor
 
 CVertexBufferManager::~CVertexBufferManager()
@@ -27,15 +25,11 @@ CVertexBufferManager::~CVertexBufferManager()
 // global instances.
 void CVertexBufferManager::Shutdown()
 {
-	debug_printf("CVertexBufferManager shutdown\n");
-	
 	typedef std::list<CVertexBuffer*>::iterator Iter;
 	for (Iter iter=m_Buffers.begin();iter!=m_Buffers.end();++iter)
 		delete *iter;
-
+	
 	CVertexBuffer::Shutdown();
-
-	debug_printf("CVertexBufferManager shutdown finished\n");
 }
 
 

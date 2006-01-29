@@ -8,26 +8,31 @@
 
 
 
-const int HeaderMagic = 0x30424D58; // = "XMB0" (little-endian)
+const u32 HeaderMagic = 0x30424D58; // = "XMB0" (little-endian)
 const char* HeaderMagicStr = "XMB0";
 
 // Warning: May contain traces of pointer abuse
 
-void XMBFile::Initialise(char* FileData)
+void XMBFile::Initialise(const char* FileData)
 {
 	m_Pointer = FileData;
-	int Header = *(int*)m_Pointer; m_Pointer += 4;
+	u32 Header = *(u32 *)m_Pointer; m_Pointer += 4;
 	debug_assert(Header == HeaderMagic && "Invalid XMB header!");
 
 	int i;
 
+	// FIXME Check that m_Pointer doesn't end up past the end of the buffer
+	// (it shouldn't be all that dangerous since we're only doing read-only
+	// access, but it might crash on an invalid file, reading a couple of
+	// billion random element names from RAM)
+
 #ifdef XERO_USEMAP
 	// Build a std::map of all the names->ids
-	int ElementNameCount = *(int*)m_Pointer; m_Pointer += 4;
+	u32 ElementNameCount = *(u32*)m_Pointer; m_Pointer += 4;
 	for (i = 0; i < ElementNameCount; ++i)
 		m_ElementNames[ReadZStrA()] = i;
 
-	int AttributeNameCount = *(int*)m_Pointer; m_Pointer += 4;
+	u32 AttributeNameCount = *(u32*)m_Pointer; m_Pointer += 4;
 	for (i = 0; i < AttributeNameCount; ++i)
 		m_AttributeNames[ReadZStrA()] = i;
 #else
@@ -77,7 +82,7 @@ int XMBFile::getAttributeID(const char* Name) const
 
 int XMBFile::getElementID(const char* Name) const
 {
-	char* Pos = m_ElementPointer;
+	const char* Pos = m_ElementPointer;
 
 	int len = (int)strlen(Name)+1; // count bytes, including null terminator
 
@@ -97,7 +102,7 @@ int XMBFile::getElementID(const char* Name) const
 
 int XMBFile::getAttributeID(const char* Name) const
 {
-	char* Pos = m_AttributePointer;
+	const char* Pos = m_AttributePointer;
 
 	int len = (int)strlen(Name)+1; // count bytes, including null terminator
 
@@ -121,7 +126,7 @@ int XMBFile::getAttributeID(const char* Name) const
 // laziness overcomes the need for speed
 std::string XMBFile::getElementString(const int ID) const
 {
-	char* Pos = m_ElementPointer;
+	const char* Pos = m_ElementPointer;
 	for (int i = 0; i < ID; ++i)
 		Pos += 4 + *(int*)Pos;
 	return std::string(Pos+4);
@@ -129,7 +134,7 @@ std::string XMBFile::getElementString(const int ID) const
 
 std::string XMBFile::getAttributeString(const int ID) const
 {
-	char* Pos = m_AttributePointer;
+	const char* Pos = m_AttributePointer;
 	for (int i = 0; i < ID; ++i)
 		Pos += 4 + *(int*)Pos;
 	return std::string(Pos+4);
@@ -179,7 +184,7 @@ int XMBElement::getLineNumber() const
 XMBElement XMBElementList::item(const int id)
 {
 	debug_assert(id >= 0 && id < Count && "Element ID out of range");
-	char* Pos;
+	const char* Pos;
 
 	// If access is sequential, don't bother scanning
 	// through all the nodes to find the next one
@@ -204,7 +209,7 @@ XMBElement XMBElementList::item(const int id)
 
 utf16string XMBAttributeList::getNamedItem(const int AttributeName) const
 {
-	char* Pos = m_Pointer;
+	const char* Pos = m_Pointer;
 
 	// Maybe not the cleverest algorithm, but it should be
 	// fast enough with half a dozen attributes:
@@ -222,7 +227,7 @@ utf16string XMBAttributeList::getNamedItem(const int AttributeName) const
 XMBAttribute XMBAttributeList::item(const int id)
 {
 	debug_assert(id >= 0 && id < Count && "Attribute ID out of range");
-	char* Pos;
+	const char* Pos;
 
 	// If access is sequential, don't bother scanning through
 	// all the nodes to find the right one
@@ -243,5 +248,5 @@ XMBAttribute XMBAttributeList::item(const int id)
 	m_LastItemID = id;
 	m_LastPointer = Pos;
 
- 	return XMBAttribute(*(int*)Pos, utf16string( (utf16_t*)(Pos+8) ));
+ 	return XMBAttribute(*(int*)Pos, utf16string( (const utf16_t*)(Pos+8) ));
 }
