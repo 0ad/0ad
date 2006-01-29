@@ -588,6 +588,8 @@ void CRenderer::BeginFrame()
 	// init per frame stuff
 	m_ShadowRendered=false;
 	m_ShadowBound.SetEmpty();
+
+	m->shadow->SetCameraAndLight(m_CullCamera, m_LightEnv->m_SunDir);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -846,22 +848,7 @@ void CRenderer::FlushFrame()
 	if (m_DisplayFrustum)
 	{
 		MICROLOG(L"display frustum");
-
-		glDepthMask(0);
-		glDisable(GL_CULL_FACE);
-
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glColor4ub(255,255,255,64);
-		m_CullCamera.Render(2);
-		glDisable(GL_BLEND);
-
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-		m_CullCamera.Render(2);
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-		glEnable(GL_CULL_FACE);
-		glDepthMask(1);
+		DisplayFrustum();
 		oglCheck();
 	}
 
@@ -904,6 +891,39 @@ void CRenderer::EndFrame()
 	}
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// DisplayFrustum: debug displays
+//  - white: cull camera frustum
+//  - red: bounds of shadow casting objects
+void CRenderer::DisplayFrustum()
+{
+	glDepthMask(0);
+	glDisable(GL_CULL_FACE);
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glColor4ub(255,255,255,64);
+	m_CullCamera.Render(2);
+
+//	glColor4ub(255,0,0,64);
+//	m_ShadowBound.Render();
+	glDisable(GL_BLEND);
+
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glColor3ub(255,255,255);
+	m_CullCamera.Render(2);
+
+//	glColor3ub(255,0,0);
+//	m_ShadowBound.Render();
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+	m->shadow->RenderDebugDisplay();
+
+	glEnable(GL_CULL_FACE);
+	glDepthMask(1);
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // SetCamera: setup projection and transform of camera and adjust viewport to current view
 void CRenderer::SetCamera(const CCamera& viewCamera, const CCamera& cullCamera)
@@ -939,6 +959,7 @@ void CRenderer::Submit(CModel* model)
 	if (model->GetFlags() & MODELFLAG_CASTSHADOWS) {
 		PROFILE( "updating shadow bounds" );
 		m_ShadowBound += model->GetBounds();
+		m->shadow->AddShadowedBound(model->GetBounds());
 	}
 
 	// Tricky: The call to GetBounds() above can invalidate the position

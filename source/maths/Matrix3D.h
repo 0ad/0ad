@@ -25,7 +25,7 @@ public:
 		float _data2d[4][4];
 			// (Be aware that m(0,2) == _data2d[2][0] == _13, etc. This is to be considered a feature.)
 	};
-		
+
 public:
 	// constructors
 	CMatrix3D();
@@ -79,7 +79,7 @@ public:
 	// concatenate a rotation described by given quaternion
 	void Rotate(const CQuaternion& quat);
 
-	// set this matrix to given translation 
+	// set this matrix to given translation
 	void SetTranslation(float x, float y, float z);
 	void SetTranslation(const CVector3D& vector);
 
@@ -101,11 +101,11 @@ public:
 
 	// return the translation component of this matrix
 	CVector3D GetTranslation() const;
-	// return left vector, derived from rotation 
+	// return left vector, derived from rotation
 	CVector3D GetLeft() const;
-	// return up vector, derived from rotation 
+	// return up vector, derived from rotation
 	CVector3D GetUp() const;
-	// return forward vector, derived from rotation 
+	// return forward vector, derived from rotation
 	CVector3D GetIn() const;
 	// return a quaternion representing the matrix's rotation
 	CQuaternion GetRotation() const;

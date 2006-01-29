@@ -34,22 +34,39 @@ public:
 	~ShadowMap();
 
 	/**
+	 * SetCameraAndLight: Configure light space for the given camera and light direction
+	 *
+	 * @param camera the camera that will be used for world rendering
+	 * @param lightdir the direction of the (directional) sunlight
+	 */
+	void SetCameraAndLight(const CCamera& camera, const CVector3D& lightdir);
+
+	/**
+	 * AddShadowedBound: Add the bounding box of an object that has to be shadowed.
+	 * This is used to calculate the bounds for the shadow map.
+	 *
+	 * @param bounds world space bounding box
+	 */
+	void AddShadowedBound(const CBound& bounds);
+
+	/**
 	 * SetupFrame: Setup shadow map texture and matrices for this frame.
 	 *
+	 * @deprecated ???
 	 * @param visibleBounds bound around objects that are visible on the screen
 	 */
 	void SetupFrame(const CBound& visibleBounds);
 
 	/**
 	 * BeginRender: Set OpenGL state for rendering into the shadow map texture.
-	 * 
+	 *
 	 * @todo this depends in non-obvious ways on the behaviour of the call-site
 	 */
 	void BeginRender();
-	
+
 	/**
 	 * EndRender: Finish rendering into the shadow map.
-	 * 
+	 *
 	 * @todo this depends in non-obvious ways on the behaviour of the call-site
 	 */
 	void EndRender();
@@ -60,7 +77,7 @@ public:
 	 * @return the texture name of the shadow map texture
 	 */
 	GLuint GetTexture();
-	
+
 	/**
 	 * GetTextureMatrix: Retrieve the world-space to shadow map texture coordinates
 	 * transformation matrix.
@@ -69,6 +86,12 @@ public:
 	 * shadow map texture coordinates
 	 */
 	const CMatrix3D& GetTextureMatrix();
+
+	/**
+	 * RenderDebugDisplay: Visualize shadow mapping calculations to help in
+	 * debugging and optimal shadow map usage.
+	 */
+	void RenderDebugDisplay();
 
 private:
 	ShadowMapInternals* m;

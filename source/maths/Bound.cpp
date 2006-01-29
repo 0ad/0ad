@@ -10,6 +10,8 @@
 
 // necessary includes
 
+#include "ogl.h"
+
 #include <float.h>
 #include "Bound.h"
 
@@ -71,51 +73,51 @@ bool CBound::RayIntersect(const CVector3D& origin,const CVector3D& dir,
 			tfar = t2;
 		}
 
-		if (tfar<0) 
+		if (tfar<0)
 			return false;
 	}
 
-	if (dir[1]==0 && (origin[1]<m_Data[0][1] || origin[1]>m_Data[1][1])) 
+	if (dir[1]==0 && (origin[1]<m_Data[0][1] || origin[1]>m_Data[1][1]))
 		return false;
 	else {
 		t1=(m_Data[0][1]-origin[1])/dir[1];
 		t2=(m_Data[1][1]-origin[1])/dir[1];
 
-		if (dir[1]<0) { 
-			if (t2>tnear) 
+		if (dir[1]<0) {
+			if (t2>tnear)
 				tnear = t2;
-			if (t1<tfar) 
+			if (t1<tfar)
 				tfar = t1;
 		} else {
-			if (t1>tnear) 
+			if (t1>tnear)
 				tnear = t1;
-			if (t2<tfar) 
+			if (t2<tfar)
 				tfar = t2;
 		}
 
-		if (tnear>tfar || tfar<0) 
+		if (tnear>tfar || tfar<0)
 			return false;
 	}
 
-	if (dir[2]==0 && (origin[2]<m_Data[0][2] || origin[2]>m_Data[1][2])) 
+	if (dir[2]==0 && (origin[2]<m_Data[0][2] || origin[2]>m_Data[1][2]))
 		return false;
 	else {
 		t1=(m_Data[0][2]-origin[2])/dir[2];
 		t2=(m_Data[1][2]-origin[2])/dir[2];
 
-		if (dir[2]<0) { 
-			if (t2>tnear) 
+		if (dir[2]<0) {
+			if (t2>tnear)
 				tnear = t2;
-			if (t1<tfar) 
+			if (t1<tfar)
 				tfar = t1;
 		} else {
-			if (t1>tnear) 
+			if (t1>tnear)
 				tnear = t1;
-			if (t2<tfar) 
+			if (t2<tfar)
 				tfar = t2;
 		}
 
-		if (tnear>tfar || tfar<0) 
+		if (tnear>tfar || tfar<0)
 		return false;
 	}
 
@@ -150,14 +152,14 @@ void CBound::Transform(const CMatrix3D& m,CBound& result) const
 	debug_assert(this!=&result);
 
 	for (int i=0;i<3;++i) {
-		// handle translation 
+		// handle translation
 		result[0][i]=result[1][i]=m(i,3);
-		
-		// Now find the extreme points by considering the product of the 
-		// min and max with each component of matrix  
+
+		// Now find the extreme points by considering the product of the
+		// min and max with each component of matrix
 		for(int j=0;j<3;j++) {
-			float a=m(j,i)*m_Data[0][j];
-			float b=m(j,i)*m_Data[1][j];
+			float a=m(i,j)*m_Data[0][j];
+			float b=m(i,j)*m_Data[1][j];
 
 			if (a<b) {
 				result[0][i]+=a;
@@ -168,4 +170,42 @@ void CBound::Transform(const CMatrix3D& m,CBound& result) const
 			}
 		}
 	}
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Render the bounding box
+void CBound::Render()
+{
+	glBegin(GL_QUADS);
+		glVertex3f(m_Data[0].X, m_Data[0].Y, m_Data[0].Z);
+		glVertex3f(m_Data[1].X, m_Data[0].Y, m_Data[0].Z);
+		glVertex3f(m_Data[1].X, m_Data[1].Y, m_Data[0].Z);
+		glVertex3f(m_Data[0].X, m_Data[1].Y, m_Data[0].Z);
+
+		glVertex3f(m_Data[0].X, m_Data[0].Y, m_Data[0].Z);
+		glVertex3f(m_Data[0].X, m_Data[1].Y, m_Data[0].Z);
+		glVertex3f(m_Data[0].X, m_Data[1].Y, m_Data[1].Z);
+		glVertex3f(m_Data[0].X, m_Data[0].Y, m_Data[1].Z);
+
+		glVertex3f(m_Data[0].X, m_Data[0].Y, m_Data[0].Z);
+		glVertex3f(m_Data[1].X, m_Data[0].Y, m_Data[0].Z);
+		glVertex3f(m_Data[1].X, m_Data[0].Y, m_Data[1].Z);
+		glVertex3f(m_Data[0].X, m_Data[0].Y, m_Data[1].Z);
+
+		glVertex3f(m_Data[0].X, m_Data[0].Y, m_Data[1].Z);
+		glVertex3f(m_Data[1].X, m_Data[0].Y, m_Data[1].Z);
+		glVertex3f(m_Data[1].X, m_Data[1].Y, m_Data[1].Z);
+		glVertex3f(m_Data[0].X, m_Data[1].Y, m_Data[1].Z);
+
+		glVertex3f(m_Data[1].X, m_Data[0].Y, m_Data[0].Z);
+		glVertex3f(m_Data[1].X, m_Data[1].Y, m_Data[0].Z);
+		glVertex3f(m_Data[1].X, m_Data[1].Y, m_Data[1].Z);
+		glVertex3f(m_Data[1].X, m_Data[0].Y, m_Data[1].Z);
+
+		glVertex3f(m_Data[0].X, m_Data[1].Y, m_Data[0].Z);
+		glVertex3f(m_Data[1].X, m_Data[1].Y, m_Data[0].Z);
+		glVertex3f(m_Data[1].X, m_Data[1].Y, m_Data[1].Z);
+		glVertex3f(m_Data[0].X, m_Data[1].Y, m_Data[1].Z);
+	glEnd();
 }

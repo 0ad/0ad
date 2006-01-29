@@ -311,6 +311,9 @@ protected:
 	void RenderShadowMap();
 	void ApplyShadowMap();
 
+	// debugging
+	void DisplayFrustum();
+
 	// RENDERER DATA:
 	/// Private data that is not needed by inline functions
 	CRendererInternals* m;

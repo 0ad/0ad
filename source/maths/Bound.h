@@ -41,11 +41,16 @@ public:
 		CVector3D v=m_Data[1]-m_Data[0];
 		return v.X*v.Y*v.Z;
 	}
-	
+
 	// return the centre of this bounding box
 	void GetCentre(CVector3D& centre) const {
 		centre=(m_Data[0]+m_Data[1])*0.5f;
 	}
+
+	/**
+	 * Render: Render the surfaces of the bound object as polygons.
+	 */
+	void Render();
 
 private:
 	CVector3D m_Data[2];

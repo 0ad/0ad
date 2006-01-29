@@ -42,7 +42,14 @@ struct ShadowMapInternals
 	CMatrix3D LightTransform;
 	// transform world space into texture space
 	CMatrix3D TextureMatrix;
-	
+
+	// transform world space into light space
+	CMatrix3D NewLightTransform;
+	// transform light space into world space
+	CMatrix3D InvLightTransform;
+	// bounding box of shadowed objects in light space
+	CBound NewShadowBound;
+
 	// Helper functions
 	void BuildTransformation(
 			const CVector3D& pos,const CVector3D& right,const CVector3D& up,
@@ -68,6 +75,69 @@ ShadowMap::~ShadowMap()
 
 	delete m;
 }
+
+//////////////////////////////////////////////////////////////////////////////
+// SetCameraAndLight: camera and light direction for this frame
+void ShadowMap::SetCameraAndLight(const CCamera& camera, const CVector3D& lightdir)
+{
+	CVector3D z = lightdir;
+	CVector3D y;
+	CVector3D x = camera.m_Orientation.GetIn();
+	CVector3D eyepos = camera.m_Orientation.GetTranslation();
+
+	z.Normalize();
+	x -= z * z.Dot(x);
+	if (x.GetLength() < 0.001)
+	{
+		// this is invoked if the camera and light directions almost coincide
+		// assumption: light direction has a significant Z component
+		x = CVector3D(1.0, 0.0, 0.0);
+		x -= z * z.Dot(x);
+	}
+	x.Normalize();
+	y = z.Cross(x);
+
+	// X axis perpendicular to light direction, flowing along with view direction
+	m->NewLightTransform._11 = x.X;
+	m->NewLightTransform._12 = x.Y;
+	m->NewLightTransform._13 = x.Z;
+
+	// Y axis perpendicular to light and view direction
+	m->NewLightTransform._21 = y.X;
+	m->NewLightTransform._22 = y.Y;
+	m->NewLightTransform._23 = y.Z;
+
+	// Z axis is in direction of light
+	m->NewLightTransform._31 = z.X;
+	m->NewLightTransform._32 = z.Y;
+	m->NewLightTransform._33 = z.Z;
+
+	// eye is at the origin of the coordinate system
+	m->NewLightTransform._14 = -x.Dot(eyepos);
+	m->NewLightTransform._24 = -y.Dot(eyepos);
+	m->NewLightTransform._34 = -z.Dot(eyepos);
+
+	m->NewLightTransform._41 = 0.0;
+	m->NewLightTransform._42 = 0.0;
+	m->NewLightTransform._43 = 0.0;
+	m->NewLightTransform._44 = 1.0;
+
+	m->NewLightTransform.GetInverse(m->InvLightTransform);
+	m->NewShadowBound.SetEmpty();
+}
+
+
+//////////////////////////////////////////////////////////////////////////////
+// AddShadowedBound: add a world-space bounding box to the bounds of shadowed
+// objects
+void ShadowMap::AddShadowedBound(const CBound& bounds)
+{
+	CBound lightspacebounds;
+
+	bounds.Transform(m->NewLightTransform, lightspacebounds);
+	m->NewShadowBound += lightspacebounds;
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BuildTransformation: build transformation matrix from a position and standard basis vectors
@@ -195,7 +265,7 @@ void ShadowMapInternals::CalcShadowMatrices(const CBound& bounds)
 	TextureMatrix.SetTranslation(dx,dy,0);				// transform (-0.5, 0.5) to (0,1) - texture space
 	tmp2.SetScaling(dx,dy,0);					// scale (-1,1) to (-0.5,0.5)
 	TextureMatrix = TextureMatrix*tmp2;
-	
+
 	TextureMatrix = TextureMatrix * LightProjection;		// transform light -> projected light space (-1 to 1)
 	TextureMatrix = TextureMatrix * LightTransform;			// transform world -> light space
 
@@ -341,7 +411,7 @@ void ShadowMapInternals::CalcShadowMatrices(const CBound& bounds)
 void ShadowMap::SetupFrame(const CBound& visibleBounds)
 {
 	m->CalcShadowMatrices(visibleBounds);
-	
+
 	if (!m->Texture)
 	{
 		// get shadow map size as next power of two up from view width and height
@@ -374,11 +444,11 @@ void ShadowMap::SetupFrame(const CBound& visibleBounds)
 void ShadowMap::BeginRender()
 {
 	// HACK HACK: this depends in non-obvious ways on the behaviour of the caller
-	
+
 	CRenderer& renderer = g_Renderer;
 	int renderWidth = renderer.GetWidth();
 	int renderHeight = renderer.GetHeight();
-	
+
 	// clear buffers
 	glClearColor(1,1,1,0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
@@ -427,4 +497,38 @@ GLuint ShadowMap::GetTexture()
 const CMatrix3D& ShadowMap::GetTextureMatrix()
 {
 	return m->TextureMatrix;
+}
+
+
+//////////////////////////////////////////////////////////////////////////////
+// RenderDebugDisplay: debug visualizations
+//  - blue: objects in shadow
+void ShadowMap::RenderDebugDisplay()
+{
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glMultMatrixf(&m->InvLightTransform._11);
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glColor4ub(0,0,255,64);
+	m->NewShadowBound.Render();
+	glDisable(GL_BLEND);
+
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glColor3ub(0,0,255);
+	m->NewShadowBound.Render();
+
+	glBegin(GL_LINES);
+		glVertex3f(0.0, 0.0, 0.0);
+		glVertex3f(0.0, 0.0, 50.0);
+	glEnd();
+	glBegin(GL_POLYGON);
+		glVertex3f(0.0, 0.0, 50.0);
+		glVertex3f(50.0, 0.0, 50.0);
+		glVertex3f(0.0, 50.0, 50.0);
+	glEnd();
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+	glPopMatrix();
 }
