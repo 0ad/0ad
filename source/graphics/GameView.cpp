@@ -85,6 +85,70 @@ CGameView::CGameView(CGame *pGame):
 	m_UnitView=NULL;
 	m_UnitAttach=NULL;
 
+	/* //TEST TRACK 
+	int Test_Nodes=15;
+	int Test_Variance=10.0f;	//rand() % Test_Variance distortion of linear points
+	int Test_Space=30;
+	float Test_NodeTime = 0.65f;
+
+	CVector3D Test_Direction(1.0f, 0.0f, 1.0f);
+	CVector3D Test_StartPos(100, 150, -80);
+	Test_Direction.Normalize();
+
+	CCinemaData Test_Data;
+	TNSpline Test_Spline;
+	CCinemaTrack Test_Track;
+	
+	//linear generation with variance factor
+	for (int i=0; i<Test_Nodes; i++)
+	{
+		CVector3D linear = Test_StartPos + Test_Direction * i * Test_Space;
+		if ( rand() % 2 )
+			linear.X += rand() % Test_Variance;
+		else
+			linear.X -= rand() % Test_Variance;
+		
+		if ( rand() % 2 )
+			linear.Y += rand() % Test_Variance;
+		else
+			linear.Y -= rand() % Test_Variance;
+		
+		if ( rand() % 2 )
+			linear.Z += rand() % Test_Variance;
+		else
+			linear.Z -= rand() % Test_Variance;
+
+		Test_Spline.AddNode( linear, Test_NodeTime );
+	}
+	
+	Test_Data.m_TotalDuration = Test_Spline.MaxDistance;
+	Test_Data.m_TotalRotation = CVector3D( DEGTORAD(0.0f), DEGTORAD(-150.0f), DEGTORAD(0.0f) );
+	Test_Data.m_Growth = Test_Data.m_GrowthCount = 1.9f;
+	Test_Data.m_Switch = .5f;
+	Test_Data.m_Mode = EM_IN;
+	Test_Data.m_Style = ES_DEFAULT;
+	Test_Track.m_StartRotation = CVector3D( DEGTORAD(30), DEGTORAD(-45), 0.0f );
+
+	Test_Track.AddPath( Test_Data, Test_Spline );
+	
+	Test_Data.m_Style = ES_GROWTH;
+	Test_Track.AddPath( Test_Data, Test_Spline );
+	
+	Test_Data.m_Mode = EM_OUT;
+	Test_Data.m_Style = ES_EXPO;
+	Test_Track.AddPath( Test_Data, Test_Spline );
+	
+	Test_Data.m_Mode = EM_INOUT;
+	Test_Data.m_Style = ES_GROWTH;
+	Test_Track.AddPath( Test_Data, Test_Spline );
+
+	Test_Data.m_Mode = EM_IN;
+	Test_Data.m_Style = ES_SINE;
+	Test_Track.AddPath( Test_Data, Test_Spline );
+
+	m_TrackManager.AddTrack(Test_Track, "test");
+	m_TrackManager.QueueTrack("test", true);
+	*/
 
 	ONCE( ScriptingInit(); );
 }
@@ -362,59 +426,8 @@ void CGameView::Update(float DeltaTime)
 
 	if (m_UnitView)
 	{
-//		CQuaternion ToRotate = m_UnitViewProp->m_Rotation - m_Camera.m_Orientation.GetRotation();
-//		ToRotate.m_V.Y += m_UnitView->m_orientation;
-//		m_Camera.m_Orientation.Rotate(ToRotate);
-//		CVector3D CamTrans = m_Camera.m_Orientation.GetTranslation();
-//		CVector3D ToMove = m_UnitView->m_position + m_UnitViewProp->m_Position - CamTrans;
-//		//Used to fix incorrect positioning
-//		//ToMove.Y += 3.5f;
-//		m_Camera.m_Orientation.Translate(ToMove);
 		m_ViewCamera.m_Orientation.SetYRotation(m_UnitView->m_orientation);
 		m_ViewCamera.m_Orientation.Translate(m_UnitViewProp->GetTransform().GetTranslation());
-
-		/*if( !m_UnitView->m_orderQueue.empty())
-		{
-			CEntityOrder Order = m_UnitView->m_orderQueue.front();
-
-			if (Order.m_type == CEntityOrder::ORDER_ATTACK_MELEE_NOPATHING ||
-				Order.m_type == CEntityOrder::ORDER_GATHER_NOPATHING)
-			{
-				CVector3D Focus = m_Camera.GetFocus();
-				CVector3D Target;
-				Target.X = (float) Order.m_data[0].location.x;
-				Target.Y = (float) m_Terrain->getExactGroundLevel(
-							    Order.m_data[0].location.x, Order.m_data[0].location.y );
-				Target.Z = (float) Order.m_data[0].location.y;
-
-				CVector3D Distance = Target - Focus;
-				float length = Distance.GetLength();
-
-				//We're looking too far out. Correct by moving up or down toward the true position.
-				if (length > 1.0f)
-				{
-					Distance.Normalize();
-					CVector3D Down(0.0f, -1.0f, 0.0f);
-					//Find opposite side's length
-					float Angle = tan( acosf(Distance.Dot(Down)) );
-					float opp = length * Angle;
-					float hyp = 1 / sinf(Angle) * opp;
-
-					CVector3D CamFace = m_Camera.m_Orientation.GetIn();
-					CVector3D ToFace = Target - m_Camera.m_Orientation.GetTranslation();
-					ToFace.Normalize();
-					CamFace.Normalize();
-					//Find out if we need to move up or down.  Dot product returns cosine.
-					//Larger cos means smaller angle.  Smaller angle for target means move down.
-					if ( ToFace.Dot(Down) > CamFace.Dot(Down) )
-						m_Camera.m_Orientation.Translate(0.0f, -hyp, 0.0f);
-					else
-						m_Camera.m_Orientation.Translate(0.0f, hyp, 0.0f);
-				}
-			}	//Check order type
-		}	//Is order queue empty?
-	*/
-
 		m_ViewCamera.UpdateFrustum();
 		return;
 	}
@@ -427,8 +440,8 @@ void CGameView::Update(float DeltaTime)
 		m_ViewCamera.UpdateFrustum();
 		return;
 	}
-
-	if (!m_TrackManager.m_TrackQueue.empty())
+	 
+	if (m_TrackManager.IsPlaying())
 	{
 		if(!m_TrackManager.Update(DeltaTime))
 		{
@@ -635,7 +648,44 @@ void CGameView::Update(float DeltaTime)
 			CameraLock(forwards_horizontal * (m_ViewScrollSpeed * DeltaTime));
 
 	}
+	
+	//Temporary hack for cinematic interface
+	/*if ( hotkeys[HOTKEY_CAMERA_CINEMA_ADD] )
+	{
+		std::vector<CCinemaPath>::iterator it = m_TestTrack.m_Paths.begin();
+		if (it->GetNodeCount() == 0)
+			m_TestTrack.m_StartRotation = m_ViewCamera.m_Orientation.GetRotation().m_V;
 
+		it->AddNode(m_ViewCamera.m_Orientation.GetTranslation(), 1.5f);		
+		it->UpdateSpline();
+	}
+	if ( hotkeys[HOTKEY_CAMERA_CINEMA_DELETE] )
+		m_TestTrack.m_Paths.front().RemoveNode( m_TestTrack.m_Paths.front().GetNodeCount() - 1 );
+		m_TestTrack.m_Paths.front().UpdateSpline();
+
+	if ( hotkeys[HOTKEY_CAMERA_CINEMA_DELETE_ALL] )
+	{
+		for (int i=m_TestTrack.m_Paths.front().GetNodeCount() - 1; i > 0; i--)
+		{
+			m_TestTrack.m_Paths.front().RemoveNode( i );
+		}
+	}
+	if ( hotkeys[HOTKEY_CAMERA_CINEMA_DRAW] )
+		m_DrawTestTrack = !m_DrawTestTrack;
+
+	if ( hotkeys[HOTKEY_CAMERA_CINEMA_WRITE] )
+	{
+		std::vector<CCinemaPath>::iterator it = m_TestTrack.m_Paths.begin();
+		it->m_Growth = 2.5f;
+		it->m_Mode = EM_IN;
+		it->m_Style = ES_DEFAULT;
+		it->m_Switch = 0.5f;
+		it->m_TotalDuration = it->GetDuration();
+		it->m_TotalRotation = m_ViewCamera.m_Orientation.GetRotation().m_V - m_TestTrack.m_StartRotation;
+
+		m_TrackManager.HACK_WriteTrack( m_TestTrack );
+	}*/
+	
 	// Smoothed zooming (move a certain percentage towards the desired zoom distance every frame)
 	// Note that scroll wheel zooming is event-based and handled in game_view_handler
 
@@ -790,6 +840,7 @@ InReaction CGameView::HandleEvent(const SDL_Event* ev)
 					PopCameraTarget();
 				currentBookmark = -1;
 				break;
+			
 			default:
 				return( IN_PASS );
 		}

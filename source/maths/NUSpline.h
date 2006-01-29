@@ -5,7 +5,7 @@
 #ifndef NUSPLINE_H
 #define NUSPLINE_H
 
-#define MAX_SPLINE_NODES 30
+#define MAX_SPLINE_NODES 40
 #include <stdlib.h>
 #include "Vector3D.h"
 
@@ -19,7 +19,8 @@ struct SplineData
 class RNSpline
 {
 public:
-  void Init(){ NodeCount = 0; }
+	
+	RNSpline() { NodeCount = 0; }
   void AddNode(const CVector3D &pos);
   void BuildSpline();
   CVector3D GetPosition(float time);
@@ -48,8 +49,8 @@ public:
   void InsertNode(const int index, const CVector3D &pos, float timePeriod);
   void RemoveNode(const int index);
 
-  void BuildSpline(){ RNSpline::BuildSpline(); Smooth(); Smooth(); Smooth(); }
-  void Smooth(){ SNSpline::Smooth(); Constrain(); }
+  void BuildSpline(){ RNSpline::BuildSpline(); for (int i=0;i<5;i++) { Smooth(); Smooth(); Smooth(); } }
+  void Smooth(){ for( int x=0; x<3; x++ ) { SNSpline::Smooth(); Constrain(); }  }
   void Constrain(); 
 };
 

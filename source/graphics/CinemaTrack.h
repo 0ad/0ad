@@ -53,8 +53,8 @@ public:
 	float m_GrowthCount;
 	float m_Growth;
 	float m_Switch;
-	int m_mode;
-	int m_style;
+	int m_Mode;
+	int m_Style;
 
 };
 
@@ -63,17 +63,17 @@ class CCinemaPath : public CCinemaData
 {
 public:
 	CCinemaPath(CCinemaData data);
-	CCinemaPath() { DistStylePtr = NULL;  DistModePtr = NULL; m_Spline.Init(); }
+	CCinemaPath() { DistStylePtr = &CCinemaPath::EaseDefault;  DistModePtr = &CCinemaPath::EaseIn; }
 	~CCinemaPath() { DistStylePtr = NULL;  DistModePtr = NULL; }
 	
 	float m_TimeElapsed;
-
-	void UpdateSplineEq();
 	
 	//Resets Rotation-Must call before MoveToPointAt()!!!
 	void ResetRotation(float t);
 	//sets camera position to calculated point on spline
-	void MoveToPointAt(float t);
+	void MoveToPointAt(float t, const CVector3D &startRotation);
+	
+	//void MoveToPointAt(float t);
 	
 	//Distortion mode functions-change how ratio is passed to distortion style functions
 	float EaseIn(float t);
@@ -105,9 +105,9 @@ public:
 
 	int GetNodeCount() { return m_Spline.NodeCount; }
 	CVector3D GetNodePosition(const int index) { return m_Spline.Node[index].Position; }
+	float GetNodeDuration(const int index) { return m_Spline.Node[index].Distance; }
 	float GetDuration() { return m_Spline.MaxDistance; }
 
-	
 	//Called when nodes have been added
 	void UpdateSpline() { m_Spline.BuildSpline(); }
 	void SetSpline( TNSpline spline ) { m_Spline = spline; }
@@ -127,7 +127,7 @@ public:
 	std::vector<CCinemaPath>::iterator m_CPA;	//current path
 	CVector3D m_StartRotation;
 	
-	void AddPath(CCinemaData path, TNSpline spline);
+	void AddPath(CCinemaData path, TNSpline &spline);
 	bool Validate();
 
 	//DOES NOT set CPA to Paths.begin().  Returns-false indicates it's finished, 
@@ -143,14 +143,21 @@ class CCinemaManager
 public:
 	CCinemaManager() {}
 	~CCinemaManager() {}
-
-	std::list<CCinemaTrack> m_TrackQueue;
-	std::map<CStr, CCinemaTrack> m_Tracks;
 	
+	void AddTrack(CCinemaTrack track, CStr name);
 	int LoadTracks();	//Loads tracks from file
+	int HACK_WriteTrack(CCinemaTrack track);
+
+	
 	//Adds track to list of being played.  (Called by triggers?)
-	void AddTrack(bool queue, CStr Track);
+	void QueueTrack(CStr name, bool queue);
 	bool Update(float DeltaTime);
+	bool IsPlaying();
+
+
+private:
+	std::map<CStr, CCinemaTrack> m_Tracks;
+	std::list<CCinemaTrack> m_TrackQueue;
 };
 
 #endif

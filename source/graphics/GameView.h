@@ -52,8 +52,6 @@ class CGameView: public CJSObject<CGameView>
 	bool m_LockCullCamera;
 
 	CCinemaManager m_TrackManager;
-
-
 	
 	////////////////////////////////////////
 	// Settings
