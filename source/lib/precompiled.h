@@ -1,7 +1,7 @@
 // precompiled header. must be the first non-comment part of every source
 // file (VC6/7 requirement).
 //
-// if the compiler supports PCH (i.e. HAVE_PCH is defined), this 
+// if the compiler supports PCH (i.e. HAVE_PCH is defined), this
 // tries to include all headers that may be needed. otherwise, all source
 // files will still need to include this (for various global fixes and the
 // memory trackers), but additionally include all required headers.
@@ -83,7 +83,8 @@
 #include <climits>
 #include <clocale>
 #include <cmath>
-#include <csetjmp>
+// Including setjmp.h here causes incompatibilities with libpng on Debian/Ubuntu
+//#include <csetjmp>
 #include <csignal>
 #include <cstdarg>
 #include <cstddef>
