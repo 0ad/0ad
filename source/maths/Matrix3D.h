@@ -23,7 +23,7 @@ public:
 		};
 		float _data[16];
 		float _data2d[4][4];
-			// (Be aware that _data2d[3][1] is _13, etc. This is to be considered a feature.)
+			// (Be aware that m(0,2) == _data2d[2][0] == _13, etc. This is to be considered a feature.)
 	};
 		
 public:
