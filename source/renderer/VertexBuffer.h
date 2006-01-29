@@ -69,7 +69,7 @@ public:
 	// return this VBs batch list
 	const std::vector<Batch*>& GetBatches() const { return m_Batches; }
 
-	const uint GetVertexSize() const { return m_VertexSize; }
+	const size_t GetVertexSize() const { return m_VertexSize; }
 
 	// free memory
 	static void Shutdown();

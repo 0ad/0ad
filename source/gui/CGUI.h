@@ -70,9 +70,9 @@ struct JSObject; // The GUI stores a JSObject*, so needs to know that JSObject e
 class IGUIObject;
 class CGUISpriteInstance;
 struct SGUIText;
-class CColor;
-class SGUIText;
-class SGUIIcon;
+struct CColor;
+struct SGUIText;
+struct SGUIIcon;
 class CGUIString;
 class CGUISprite;
 struct SGUIImageEffects;
