@@ -92,7 +92,7 @@ extern LibError file_set_root_dir(const char* argv0, const char* rel_path);
 // their addresses are equal, thus allowing fast comparison.
 // fn_len can be 0 to indicate P_fn is a null-terminated C string
 // (normal case) or the string length [characters].
-extern const char* file_make_unique_fn_copy(const char* P_fn, size_t fn_len);
+extern const char* file_make_unique_fn_copy(const char* P_fn);
 
 
 //
@@ -179,8 +179,11 @@ struct FileCommon
 	uint flags;
 	off_t size;
 
-	// copy of the filename that was passed to file_open;
-	// its address uniquely identifies it. used as key for file cache.
+	// copy of the filename that is uniquely identified by its address.
+	// used as key for file cache.
+	// NOTE: not set by file_open! (because the path passed there is
+	// a native path; it has no use within VFS and would only
+	// unnecessarily clutter the filename storage)
 	const char* atom_fn;
 };
 
@@ -224,9 +227,24 @@ enum
 
 	FILE_CACHE_BLOCK  = 0x20,
 
+	// notify us that the file buffer returned by file_io will not be
+	// freed immediately (i.e. before the next allocation).
+	// allocation policy may differ and a warning is suppressed.
+	FILE_LONG_LIVED   = 0x40,
+
+	// instruct file_open not to set FileCommon.atom_fn.
+	// this is a slight optimization used by VFS code: file_open
+	// would store the portable name, which is only used when calling
+	// the OS's open(); this would unnecessarily waste atom_fn memory.
+	//
+	// note: other file.cpp functions require atom_fn to be set,
+	// so this behavior is only triggered via flag (caller is
+	// promising they will set atom_fn).
+	FILE_DONT_SET_FN  = 0x80,
+
 	// sum of all flags above. used when validating flag parameters and
 	// by zip.cpp because its flags live alongside these.
-	FILE_FLAG_MAX     = 0x3F
+	FILE_FLAG_MAX     = 0xFF
 };
 
 

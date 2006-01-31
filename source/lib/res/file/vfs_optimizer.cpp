@@ -42,7 +42,7 @@ static void trace_add(TraceOp op, const char* P_fn, uint flags = 0, double times
 	if(!t)
 		return;
 	t->timestamp = timestamp;
-	t->atom_fn = file_make_unique_fn_copy(P_fn, 0);
+	t->atom_fn = file_make_unique_fn_copy(P_fn);
 	t->op = op;
 	t->flags = flags;
 }
@@ -65,6 +65,12 @@ void trace_get(Trace* t)
 	t->num_ents = (uint)(trace_pool.da.pos / sizeof(TraceEntry));
 }
 
+void trace_clear()
+{
+	pool_free_all(&trace_pool);
+}
+
+
 LibError trace_write_to_file(const char* trace_filename)
 {
 	char N_fn[PATH_MAX];
@@ -86,13 +92,8 @@ LibError trace_write_to_file(const char* trace_filename)
 		default: debug_warn("invalid TraceOp");
 		}
 
-		if(ent->op == TO_LOAD)
-			fprintf(f, "%#010f: %c %s %d\n", ent->timestamp, opcode, ent->atom_fn, ent->flags);
-		else
-		{
-			debug_assert(ent->op == TO_FREE);
-			fprintf(f, "%#010f: %c %s\n", ent->timestamp, opcode, ent->atom_fn);
-		}
+		debug_assert(ent->op == TO_LOAD || ent->op == TO_FREE);
+		fprintf(f, "%#010f: %c \"%s\" %02x\n", ent->timestamp, opcode, ent->atom_fn, ent->flags);
 	}
 
 	(void)fclose(f);
@@ -102,6 +103,10 @@ LibError trace_write_to_file(const char* trace_filename)
 
 LibError trace_read_from_file(const char* trace_filename, Trace* t)
 {
+	// we use trace_add, which is the same mechanism called by trace_notify*;
+	// therefore, tracing needs to be enabled.
+	trace_enabled = true;
+
 	char N_fn[PATH_MAX];
 	RETURN_ERR(file_make_full_native_path(trace_filename, N_fn));
 	FILE* f = fopen(N_fn, "rt");
@@ -110,18 +115,18 @@ LibError trace_read_from_file(const char* trace_filename, Trace* t)
 
 	// parse lines and stuff them in trace_pool
 	// (as if they had been trace_add-ed; replaces any existing data)
-	pool_free_all(&trace_pool);
-	char fmt[20];
-	snprintf(fmt, ARRAY_SIZE(fmt), "%%f: %%c %%%ds %%02x\n", PATH_MAX);
+	trace_clear();
+	// .. bake PATH_MAX limit into string.
+	char fmt[30];
+	snprintf(fmt, ARRAY_SIZE(fmt), "%%lf: %%c \"%%%d[^\"]\" %%02x\n", PATH_MAX);
 	for(;;)
 	{
 		double timestamp; char opcode; char P_path[PATH_MAX];
 		uint flags = 0;	// optional
-		int ret = fscanf(f, fmt, &timestamp, &opcode, P_path);
+		int ret = fscanf(f, fmt, &timestamp, &opcode, P_path, &flags);
 		if(ret == EOF)
 			break;
-		if(ret != 3 && ret != 4)
-			debug_warn("invalid line in trace file");
+		debug_assert(ret == 4);
 
 		TraceOp op = TO_LOAD;	// default in case file is garbled
 		switch(opcode)
@@ -137,6 +142,11 @@ LibError trace_read_from_file(const char* trace_filename, Trace* t)
 	fclose(f);
 
 	trace_get(t);
+
+	// all previous trace entries were hereby lost (overwritten),
+	// so there's no sense in continuing.
+	trace_enabled = false;
+
 	return ERR_OK;
 }
 
@@ -148,12 +158,12 @@ enum SimulateFlags
 
 LibError trace_simulate(const char* trace_filename, uint flags)
 {
+	Trace t;
+	RETURN_ERR(trace_read_from_file(trace_filename, &t));
+
 	// prevent the actions we carry out below from generating
 	// trace_add-s.
 	trace_enabled = false;
-
-	Trace t;
-	RETURN_ERR(trace_read_from_file(trace_filename, &t));
 
 	const double start_time = get_time();
 	const double first_timestamp = t.ents[0].timestamp;
@@ -186,6 +196,8 @@ LibError trace_simulate(const char* trace_filename, uint flags)
 		}
 	}
 
+	trace_clear();
+
 	return ERR_OK;
 }
 
@@ -206,7 +218,7 @@ static LibError filelist_build(Trace* t, FileList* fl)
 	fl->num_files = 0;
 	for(size_t i = 0; i < t->num_ents; i++)
 		if(t->ents[i].op == TO_LOAD)
-			fl->num_files;
+			fl->num_files++;
 
 	fl->atom_fns = new const char*[fl->num_files];
 
@@ -217,6 +229,7 @@ static LibError filelist_build(Trace* t, FileList* fl)
 		while(t->ents[ti].op != TO_LOAD)
 			ti++;
 		fl->atom_fns[i] = t->ents[ti].atom_fn;
+		ti++;
 	}
 
 	fl->i = 0;
@@ -229,6 +242,13 @@ static const char* filelist_get_next(FileList* fl)
 	if(fl->i == fl->num_files)
 		return 0;
 	return fl->atom_fns[fl->i++];
+}
+
+
+static void filelist_free(FileList* fl)
+{
+	delete[] fl->atom_fns;
+	fl->atom_fns = 0;
 }
 
 
@@ -267,15 +287,21 @@ struct CompressParams
 {
 	bool attempt_compress;
 	uintptr_t ctx;
+	u32 crc;
 };
+
+#include <zlib.h>
 
 static LibError compress_cb(uintptr_t cb_ctx, const void* block, size_t size, size_t* bytes_processed)
 {
-	const CompressParams* p = (const CompressParams*)cb_ctx;
+	CompressParams* p = (CompressParams*)cb_ctx;
 
 	// comp_feed already makes note of total #bytes fed, and we need
 	// vfs_io to return the uc size (to check if all data was read).
 	*bytes_processed = size;
+
+	// update checksum
+	p->crc = crc32(p->crc, (const Bytef*)block, (uInt)size);
 
 	if(p->attempt_compress)
 		(void)comp_feed(p->ctx, block, size);
@@ -287,7 +313,7 @@ static LibError read_and_compress_file(const char* atom_fn, uintptr_t ctx,
 	ArchiveEntry& ent, void*& file_contents, FileIOBuf& buf)	// out
 {
 	struct stat s;
-	RETURN_ERR(file_stat(atom_fn, &s));
+	RETURN_ERR(vfs_stat(atom_fn, &s));
 	const size_t ucsize = s.st_size;
 
 	const bool attempt_compress = !file_type_is_uncompressible(atom_fn);
@@ -302,7 +328,7 @@ static LibError read_and_compress_file(const char* atom_fn, uintptr_t ctx,
 	Handle hf = vfs_open(atom_fn, 0);
 	RETURN_ERR(hf);
 	buf = FILE_BUF_ALLOC;
-	const CompressParams params = { attempt_compress, ctx };
+	CompressParams params = { attempt_compress, ctx, 0 };
 	ssize_t ucsize_read = vfs_io(hf, ucsize, &buf, compress_cb, (uintptr_t)&params);
 	debug_assert(ucsize_read == (ssize_t)ucsize);
 	(void)vfs_close(hf);
@@ -327,6 +353,7 @@ static LibError read_and_compress_file(const char* atom_fn, uintptr_t ctx,
 	// .. ent.ofs is set by zip_archive_add_file
 	ent.flags   = 0;
 	ent.atom_fn = atom_fn;
+	ent.crc32   = params.crc;
 	if(store_compressed)
 	{
 		ent.method = CM_DEFLATE;
@@ -346,22 +373,24 @@ static LibError read_and_compress_file(const char* atom_fn, uintptr_t ctx,
 	return ERR_OK;
 }
 
-static LibError build_optimized_archive(const char* trace_filename, const char* zip_filename)
+LibError build_optimized_archive(const char* trace_filename, const char* zip_filename)
 {
 	FileList fl;
 	{
 		Trace t;
 		RETURN_ERR(trace_read_from_file(trace_filename, &t));
 		RETURN_ERR(filelist_build(&t, &fl));
+		trace_clear();
 	}
 
 	ZipArchive* za;
 	RETURN_ERR(zip_archive_create(zip_filename, &za));
 	uintptr_t ctx = comp_alloc(CT_COMPRESSION, CM_DEFLATE);
 
+	const char* atom_fn;	// declare outside loop for easier debugging
 	for(;;)
 	{
-		const char* atom_fn = filelist_get_next(&fl);
+		atom_fn = filelist_get_next(&fl);
 		if(!atom_fn)
 			break;
 
@@ -373,6 +402,12 @@ static LibError build_optimized_archive(const char* trace_filename, const char* 
 		}
 	}
 
+	filelist_free(&fl);
+
+	// note: this is currently known to fail if there are no files in the list
+	// - zlib.h says: Z_DATA_ERROR is returned if freed prematurely.
+	// safe to ignore.
 	comp_free(ctx);
 	(void)zip_archive_finish(za);
+	return ERR_OK;
 }

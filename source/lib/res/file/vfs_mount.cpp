@@ -109,6 +109,8 @@ bool mount_should_replace(const Mount* m_old, const Mount* m_new, bool files_are
 	// if the file contents are the same, prefer the more efficient source.
 	// note that priority doesn't automatically take care of this,
 	// especially if set incorrectly.
+	//
+	// note: see MountType for explanation of type > type2.
 	if(files_are_identical && m_old->type > m_new->type)
 		return false;
 
@@ -174,6 +176,7 @@ static LibError afile_cb(const char* path, const struct stat* s, uintptr_t memen
 	//   use the directory we looked up last time (much faster!)
 	const char* slash = strrchr(path, '/');
 	const size_t path_len = slash? (slash-path+1) : 0;
+	const char* name = path+path_len;
 	// .. same as last time
 	if(last_td && path_len == last_path_len &&
 		strnicmp(path, last_path, path_len) == 0)
@@ -195,7 +198,7 @@ static LibError afile_cb(const char* path, const struct stat* s, uintptr_t memen
 		last_td = td;
 	}
 
-	WARN_ERR(tree_add_file(td, path, m, s->st_size, s->st_mtime, memento));
+	WARN_ERR(tree_add_file(td, name, m, s->st_size, s->st_mtime, memento));
 	return INFO_CB_CONTINUE;
 }
 
@@ -276,10 +279,7 @@ struct TDirAndPath
 	const std::string path;
 
 	TDirAndPath(TDir* d, const char* p)
-		: td(d), path(p)
-	{
-	}
-
+		: td(d), path(p) {}
 	// no copy ctor because some members are const
 private:
 	TDirAndPath& operator=(const TDirAndPath&);
@@ -310,7 +310,7 @@ static LibError enqueue_dir(TDir* parent_td, const char* name,
 
 	// create subdirectory..
 	TDir* td;
-	CHECK_ERR(tree_add_dir(parent_td, P_path, &td));
+	CHECK_ERR(tree_add_dir(parent_td, name, &td));
 	// .. and add it to the list of directories to visit.
 	dir_queue->push_back(TDirAndPath(td, P_path));
 	return ERR_OK;
@@ -355,7 +355,7 @@ static LibError add_ent(TDir* td, DirEnt* ent, const char* P_parent_path, const 
 	CHECK_ERR(vfs_path_append(P_path, P_parent_path, name));
 
 	// it's a regular data file; add it to the directory.
-	return tree_add_file(td, P_path, m, ent->size, ent->mtime, 0);
+	return tree_add_file(td, name, m, ent->size, ent->mtime, 0);
 }
 
 
@@ -735,7 +735,7 @@ LibError x_realpath(const Mount* m, const char* V_path, char* P_real_path)
 LibError x_open(const Mount* m, const char* V_path, int flags, TFile* tf, XFile* xf)
 {
 	// declare variables used in the switch below to avoid needing {}.
-	char P_path[PATH_MAX];
+	char N_path[PATH_MAX];
 	uintptr_t memento = 0;
 
 	switch(m->type)
@@ -750,8 +750,10 @@ LibError x_open(const Mount* m, const char* V_path, int flags, TFile* tf, XFile*
 		RETURN_ERR(afile_open(m->archive, V_path, memento, flags, &xf->u.zf));
 		break;
 	case MT_FILE:
-		CHECK_ERR(x_realpath(m, V_path, P_path));
-		RETURN_ERR(file_open(P_path, flags, &xf->u.f));
+		CHECK_ERR(x_realpath(m, V_path, N_path));
+		RETURN_ERR(file_open(N_path, flags|FILE_DONT_SET_FN, &xf->u.f));
+		// file_open didn't set fc.atom_fn due to FILE_DONT_SET_FN.
+		xf->u.fc.atom_fn = file_make_unique_fn_copy(V_path);
 		break;
 	default:
 		WARN_RETURN(ERR_INVALID_MOUNT_TYPE);

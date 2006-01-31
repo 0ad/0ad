@@ -43,10 +43,10 @@ extern void tree_clear();
 //
 // note: if "priority" is the same, replace!
 // this makes sure mods/patches etc. actually replace files.
-extern LibError tree_add_file(TDir* td, const char* fn, const Mount* m,
+extern LibError tree_add_file(TDir* td, const char* name, const Mount* m,
 	off_t size, time_t mtime, uintptr_t memento);
 
-extern LibError tree_add_dir(TDir* dir, const char* P_path, TDir** ptd);
+extern LibError tree_add_dir(TDir* dir, const char* name, TDir** ptd);
 
 
 

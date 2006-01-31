@@ -401,6 +401,7 @@ static const size_t ALIGN = 8;
 LibError pool_create(Pool* p, size_t max_size, size_t el_size)
 {
 	p->el_size = round_up(el_size, ALIGN);
+	p->freelist = 0;
 	RETURN_ERR(da_alloc(&p->da, max_size));
 	return ERR_OK;
 }

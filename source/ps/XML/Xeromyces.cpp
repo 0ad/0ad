@@ -306,7 +306,11 @@ PSRETURN CXeromyces::Load(const char* filename)
 bool CXeromyces::ReadXMBFile(const char* filename)
 {
 	CVFSFile* file = new CVFSFile;
-	if (file->Load(filename) != PSRETURN_OK)
+	// note: an XMB file's buffer is held in memory across all load/free
+	// sequences of dependent files it references. that hurts the
+	// file cache allocator and incurs a warning unless we
+	// inform the file manager of this behavior via FILE_LONG_LIVED.
+	if (file->Load(filename, FILE_LONG_LIVED) != PSRETURN_OK)
 		return false;
 
 	const void* buffer = file->GetBuffer();

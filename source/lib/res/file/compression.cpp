@@ -126,13 +126,18 @@ public:
 	}
 	ssize_t feed(const void* in, size_t in_size)
 	{
-		pending_bufs.push_back(Buf(in, in_size, 0));
-
 		size_t out_total = 0;	// returned unless error occurs
 		LibError err;
 
+		// note: calling with in_size = 0 is allowed and just means
+		// we don't queue a new buffer. this can happen when compressing
+		// newly decompressed data if nothing was output (due to
+		// small compressed input buffer).
+		if(in_size != 0)
+			pending_bufs.push_back(Buf(in, in_size, 0));
+
 		// work off all queued input buffers until output buffer is filled.
-		do
+		while(!pending_bufs.empty())
 		{
 			Buf& buf = pending_bufs.front();
 
@@ -170,7 +175,6 @@ public:
 				return (ssize_t)out_total;
 			}
 		}
-		while(!pending_bufs.empty());
 
 		return (ssize_t)out_total;
 	}
@@ -210,7 +214,7 @@ protected:
 		{
 			// it was big enough - reuse
 			if(out_mem_size >= required_out_size)
-				return ERR_OK;
+				goto have_out_mem;
 
 			// free previous
 			// note: mem.cpp doesn't support realloc; don't use Pool etc. because
@@ -230,6 +234,7 @@ protected:
 			WARN_RETURN(ERR_NO_MEM);
 		out_mem_size = alloc_size;
 
+have_out_mem:
 		next_out  = out_mem;
 		avail_out = out_mem_size;
 
@@ -248,9 +253,7 @@ class ZLibCompressor : public Compressor
 public:
 	// default ctor cannot be generated
 	ZLibCompressor(ContextType type)
-		: Compressor(type)
-	{
-	}
+		: Compressor(type), zs() {}
 
 	virtual LibError init()
 	{
@@ -320,13 +323,6 @@ public:
 			ret = deflate(&zs, 0);
 		else
 			ret = inflate(&zs, Z_SYNC_FLUSH);
-
-		debug_assert(prev_avail_in >= zs.avail_in && prev_avail_out >= avail_out);
-		in_consumed  = prev_avail_in - zs.avail_in;
-		out_consumed = prev_avail_out- zs.avail_out;
-		next_out  = zs.next_out;
-		avail_out = zs.avail_out;
-
 		// sanity check: if ZLib reports end of stream, all input data
 		// must have been consumed.
 		if(ret == Z_STREAM_END)
@@ -334,6 +330,12 @@ public:
 			debug_assert(zs.avail_in == 0);
 			ret = Z_OK;
 		}
+
+		debug_assert(prev_avail_in >= zs.avail_in && prev_avail_out >= avail_out);
+		in_consumed  = prev_avail_in - zs.avail_in;
+		out_consumed = prev_avail_out- zs.avail_out;
+		next_out  = zs.next_out;
+		avail_out = zs.avail_out;
 
 		CHECK_ERR(LibError_from_zlib(ret));
 		return ERR_OK;

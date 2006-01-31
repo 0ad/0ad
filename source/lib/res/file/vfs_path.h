@@ -18,4 +18,13 @@ extern bool path_component_valid(const char* name);
 // used when converting VFS <--> real paths.
 extern LibError path_replace(char* dst, const char* src, const char* remove, const char* replace);
 
+
+struct PathName
+{
+	const char* path;
+	const char* name;
+};
+
+extern LibError pathname_split(const char* V_path_tmp, PathName* V_path);
+
 #endif	// #ifndef VFS_PATH_H__

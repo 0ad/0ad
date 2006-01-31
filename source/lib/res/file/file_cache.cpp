@@ -464,14 +464,24 @@ class ExtantBufMgr
 		// also useful for tracking down buf 'leaks' (i.e. someone
 		// forgetting to call file_buf_free).
 		const char* atom_fn;
-		ExtantBuf(FileIOBuf buf_, size_t size_, const char* atom_fn_)
-			: buf(buf_), size(size_), atom_fn(atom_fn_) {}
+		// used to check if this buffer was freed immediately
+		// (before allocating the next). that is the desired behavior
+		// because it avoids fragmentation and leaks.
+		uint epoch;
+		ExtantBuf(FileIOBuf buf_, size_t size_, const char* atom_fn_, uint epoch_)
+			: buf(buf_), size(size_), atom_fn(atom_fn_), epoch(epoch_) {}
 	};
 	std::vector<ExtantBuf> extant_bufs;
 
 public:
-	void add(FileIOBuf buf, size_t size, const char* atom_fn)
+	ExtantBufMgr()
+		: extant_bufs(), epoch(1) {}
+
+	void add(FileIOBuf buf, size_t size, const char* atom_fn, bool long_lived)
 	{
+		// don't do was-immediately-freed check for long_lived buffers.
+		const uint this_epoch = long_lived? 0 : epoch++;
+
 		debug_assert(buf != 0);
 		// look for holes in array and reuse those
 		for(size_t i = 0; i < extant_bufs.size(); i++)
@@ -482,11 +492,12 @@ public:
 				eb.buf     = buf;
 				eb.size    = size;
 				eb.atom_fn = atom_fn;
+				eb.epoch   = this_epoch;
 				return;
 			}
 		}
 		// add another entry
-		extant_bufs.push_back(ExtantBuf(buf, size, atom_fn));
+		extant_bufs.push_back(ExtantBuf(buf, size, atom_fn, this_epoch));
 	}
 
 	const char* get_owner_filename(FileIOBuf buf)
@@ -514,11 +525,31 @@ public:
 				eb.buf     = 0;
 				eb.size    = 0;
 				eb.atom_fn = 0;
+
+				if(eb.epoch != 0 && eb.epoch != epoch-1)
+					debug_warn("buf not released immediately");
+				epoch++;
 				return;
 			}
 		}
 
 		debug_warn("buf is not on extant list! double free?");
+	}
+
+	void replace_owner(FileIOBuf buf, const char* atom_fn)
+	{
+		debug_assert(buf != 0);
+		for(size_t i = 0; i < extant_bufs.size(); i++)
+		{
+			ExtantBuf& eb = extant_bufs[i];
+			if(matches(eb, buf))
+			{
+				eb.atom_fn = atom_fn;
+				return;
+			}
+		}
+
+		debug_warn("to-be-replaced buf not found");
 	}
 
 	void display_all_remaining()
@@ -538,6 +569,8 @@ private:
 	{
 		return (eb.buf <= buf && buf < (u8*)eb.buf+eb.size);
 	}
+
+	uint epoch;
 };	// ExtantBufMgr
 static ExtantBufMgr extant_bufs;
 
@@ -547,7 +580,7 @@ static ExtantBufMgr extant_bufs;
 static Cache<const char*, FileIOBuf> file_cache;
 
 
-FileIOBuf file_buf_alloc(size_t size, const char* atom_fn)
+FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, bool long_lived)
 {
 	FileIOBuf buf;
 
@@ -569,7 +602,7 @@ FileIOBuf file_buf_alloc(size_t size, const char* atom_fn)
 			debug_warn("possible infinite loop: failed to make room in cache");
 	}
 
-	extant_bufs.add(buf, size, atom_fn);
+	extant_bufs.add(buf, size, atom_fn, long_lived);
 
 	stats_buf_alloc(size, round_up(size, BUF_ALIGN));
 	return buf;
@@ -577,12 +610,15 @@ FileIOBuf file_buf_alloc(size_t size, const char* atom_fn)
 
 
 LibError file_buf_get(FileIOBuf* pbuf, size_t size,
-	const char* atom_fn, bool is_write, FileIOCB cb)
+	const char* atom_fn, uint flags, FileIOCB cb)
 {
 	// decode *pbuf - exactly one of these is true
 	const bool temp  = (pbuf == FILE_BUF_TEMP);
 	const bool alloc = !temp && (*pbuf == FILE_BUF_ALLOC);
 	const bool user  = !temp && !alloc;
+
+	const bool is_write = (flags & FILE_WRITE) != 0;
+	const bool long_lived = (flags & FILE_LONG_LIVED) != 0;
 
 	// reading into temp buffers - ok.
 	if(!is_write && temp && cb != 0)
@@ -591,7 +627,7 @@ LibError file_buf_get(FileIOBuf* pbuf, size_t size,
 	// reading and want buffer allocated.
 	if(!is_write && alloc)
 	{
-		*pbuf = file_buf_alloc(size, atom_fn);
+		*pbuf = file_buf_alloc(size, atom_fn, long_lived);
 		if(!*pbuf)	// very unlikely (size totally bogus or cache hosed)
 			WARN_RETURN(ERR_NO_MEM);
 		return ERR_OK;
@@ -628,12 +664,9 @@ LibError file_buf_free(FileIOBuf buf)
 // we fix up the filename afterwards.
 LibError file_buf_set_real_fn(FileIOBuf buf, const char* atom_fn)
 {
-	// remove and reinsert into list instead of replacing atom_fn
-	// in-place for simplicity (speed isn't critical, since there
-	// should only be a few active bufs).
-	size_t size; const char* old_atom_fn;
-	extant_bufs.find_and_remove(buf, &size, &old_atom_fn);
-	extant_bufs.add(buf, size, atom_fn);
+	// note: removing and reinserting would be easiest, but would
+	// mess up the epoch field.
+	extant_bufs.replace_owner(buf, atom_fn);
 	return ERR_OK;
 }
 
@@ -709,7 +742,7 @@ file_buf_free and there are only a few active at a time ( < 10)
 // remove all blocks loaded from the file <fn>. used when reloading the file.
 LibError file_cache_invalidate(const char* P_fn)
 {
-	const char* atom_fn = file_make_unique_fn_copy(P_fn, 0);
+	const char* atom_fn = file_make_unique_fn_copy(P_fn);
 
 	// mark all blocks from the file as invalid
 	block_mgr.invalidate(atom_fn);

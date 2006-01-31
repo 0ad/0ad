@@ -169,3 +169,14 @@ LibError path_replace(char* dst, const char* src, const char* remove, const char
 	CHECK_ERR(vfs_path_append(dst, replace, start));
 	return ERR_OK;
 }
+
+
+
+
+LibError pathname_split(const char* V_path_tmp, PathName* V_path)
+{
+	V_path->path = file_make_unique_fn_copy(V_path_tmp);
+	const char* slash = strrchr(V_path->path, '/');
+	V_path->name = slash? slash+1 : V_path->path;
+	return ERR_OK;
+}

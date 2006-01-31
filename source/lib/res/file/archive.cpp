@@ -143,7 +143,7 @@ static LibError archive_get_file_info(Archive* a, const char* fn, uintptr_t meme
 	}
 	else
 	{
-		const char* atom_fn = file_make_unique_fn_copy(fn, 0);
+		const char* atom_fn = file_make_unique_fn_copy(fn);
 		for(uint i = 0; i < a->num_files; i++)
 			if(a->ents[i].atom_fn == atom_fn)
 			{
@@ -273,7 +273,7 @@ LibError afile_open(const Handle ha, const char* fn, uintptr_t memento, int flag
 	// this is needed for AFile below. optimization: archive_get_file_info
 	// wants the original filename, but by passing the unique copy
 	// we avoid work there (its file_make_unique_fn_copy returns immediately)
-	const char* atom_fn = file_make_unique_fn_copy(fn, 0);
+	const char* atom_fn = file_make_unique_fn_copy(fn);
 
 	ArchiveEntry* ent;
 	// don't want AFile to contain a ArchiveEntry struct -
@@ -516,15 +516,16 @@ ssize_t afile_read(AFile* af, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB 
 	{
 		bool we_allocated = (pbuf != FILE_BUF_TEMP) && (*pbuf == FILE_BUF_ALLOC);
 		// no need to set last_cofs - only checked if compressed.
-		RETURN_ERR(file_io(&a->f, af->ofs+ofs, size, pbuf, cb, cb_ctx));
+		ssize_t bytes_read = file_io(&a->f, af->ofs+ofs, size, pbuf, cb, cb_ctx);
+		RETURN_ERR(bytes_read);
 		if(we_allocated)
 			(void)file_buf_set_real_fn(*pbuf, af->fc.atom_fn);
-		return ERR_OK;
+		return bytes_read;
 	}
 
 	debug_assert(af->ctx != 0);
 
-	RETURN_ERR(file_buf_get(pbuf, size, af->fc.atom_fn, false, cb));
+	RETURN_ERR(file_buf_get(pbuf, size, af->fc.atom_fn, af->fc.flags, cb));
 	const bool use_temp_buf = (pbuf == FILE_BUF_TEMP);
 	if(!use_temp_buf)
 		comp_set_output(af->ctx, (void*)*pbuf, size);

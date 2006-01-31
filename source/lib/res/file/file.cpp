@@ -564,11 +564,8 @@ LibError file_validate(const File* f)
 	// mapped but refcount is invalid
 	else if((f->mapping != 0) ^ (f->map_refs != 0))
 		return ERR_2;
-	// atom_fn not set
-#ifndef NDEBUG
-	else if(!f->fc.atom_fn)
-		return ERR_3;
-#endif
+	// note: don't check atom_fn - that complains after file_open
+	// if flags & FILE_DONT_SET_FN and has no benefit, really.
 
 	return ERR_OK;
 }
@@ -581,16 +578,13 @@ static Pool atom_pool;
 
 // allocate a copy of P_fn in our string pool. strings are equal iff
 // their addresses are equal, thus allowing fast comparison.
-const char* file_make_unique_fn_copy(const char* P_fn, size_t fn_len)
+const char* file_make_unique_fn_copy(const char* P_fn)
 {
 	// early out: if already an atom, return immediately.
 	if(pool_contains(&atom_pool, (void*)P_fn))
 		return P_fn;
 
-	// allow for Pascal-style strings (e.g. from Zip file header)
-	if(!fn_len)
-		fn_len = strlen(P_fn);
-
+	const size_t fn_len = strlen(P_fn);
 	const char* unique_fn;
 
 	// check if already allocated; return existing copy if so.
@@ -685,7 +679,9 @@ LibError file_open(const char* P_fn, const uint flags, File* f)
 
 	f->fc.flags = flags;
 	f->fc.size  = size;
-	f->fc.atom_fn  = file_make_unique_fn_copy(P_fn, 0);
+	// see FILE_DONT_SET_FN decl.
+	if(!(flags & FILE_DONT_SET_FN))
+		f->fc.atom_fn = file_make_unique_fn_copy(P_fn);
 	f->mapping  = 0;
 	f->map_refs = 0;
 	f->fd       = fd;

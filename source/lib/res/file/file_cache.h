@@ -22,7 +22,7 @@ extern void block_cache_release(BlockId id);
 
 
 extern LibError file_buf_get(FileIOBuf* pbuf, size_t size,
-	const char* atom_fn, bool is_write, FileIOCB cb);
+	const char* atom_fn, uint flags, FileIOCB cb);
 
 extern LibError file_buf_set_real_fn(FileIOBuf buf, const char* atom_fn);
 

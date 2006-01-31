@@ -21,9 +21,26 @@
 #endif
 
 
+extern u16 to_le16(u16 x);
+extern u32 to_le32(u32 x);
+extern u64 to_le64(u64 x);
+
+extern u16 to_be16(u16 x);
+extern u32 to_be32(u32 x);
+extern u64 to_be64(u64 x);
+
 extern u16 read_le16(const void* p);
 extern u32 read_le32(const void* p);
 extern u64 read_le64(const void* p);
+
 extern u16 read_be16(const void* p);
 extern u32 read_be32(const void* p);
 extern u64 read_be64(const void* p);
+
+extern void write_le16(void* p, u16 x);
+extern void write_le32(void* p, u32 x);
+extern void write_le64(void* p, u64 x);
+
+extern void write_be16(void* p, u16 x);
+extern void write_be32(void* p, u32 x);
+extern void write_be64(void* p, u64 x);

@@ -236,22 +236,27 @@ static LibError za_extract_cdfh(const CDFH* cdfh,
 	const u16 e_len      = read_le16(&cdfh->e_len);
 	const u16 c_len      = read_le16(&cdfh->c_len);
 	const u32 lfh_ofs    = read_le32(&cdfh->lfh_ofs);
-	const char* fn = (const char*)cdfh+CDFH_SIZE;	// not 0-terminated!
+	const char* fn_tmp = (const char*)cdfh+CDFH_SIZE;	// not 0-terminated!
 
 	CompressionMethod method;
-	if(zip_method == ZIP_CM_NONE)
-		method = CM_NONE;
-	else if(zip_method == ZIP_CM_DEFLATE)
-		method = CM_DEFLATE;
-	// .. compression method is unknown/unsupported
-	else
-		WARN_RETURN(ERR_UNKNOWN_CMETHOD);
+	switch(zip_method)
+	{
+	case ZIP_CM_NONE: method = CM_NONE; break;
+	case ZIP_CM_DEFLATE: method = CM_DEFLATE; break;
+	default: WARN_RETURN(ERR_UNKNOWN_CMETHOD);
+	}
+		
 	// .. it's a directory entry (we only want files)
 	if(!csize && !ucsize)
 		return ERR_NOT_FILE;	// don't warn - we just ignore these
 
+	// null-terminate fn (must be done before file_make_unique_fn_copy)
+	char fn[PATH_MAX];
+	memcpy2(fn, fn_tmp, fn_len);
+	fn[fn_len] = '\0';
+
 	// write out entry data
-	ent->atom_fn = file_make_unique_fn_copy(fn, fn_len);
+	ent->atom_fn = file_make_unique_fn_copy(fn);
 	ent->ofs     = lfh_ofs;
 	ent->csize   = csize;
 	ent->ucsize  = (off_t)ucsize;
@@ -425,6 +430,7 @@ struct ZipArchive
 
 	Pool cdfhs;
 	uint cd_entries;
+	CDFH* prev_cdfh;
 };
 
 // we don't want to expose ZipArchive to callers, so
@@ -437,7 +443,11 @@ LibError zip_archive_create(const char* zip_filename, ZipArchive** pza)
 	// local za_copy simplifies things - if something fails, no cleanup is
 	// needed. upon success, we copy into the newly allocated real za.
 	ZipArchive za_copy;
-	RETURN_ERR(file_open(zip_filename, 0, &za_copy.f));
+	za_copy.cur_file_size = 0;
+	za_copy.cd_entries    = 0;
+	za_copy.prev_cdfh     = 0;
+
+	RETURN_ERR(file_open(zip_filename, FILE_WRITE|FILE_NO_AIO, &za_copy.f));
 	RETURN_ERR(pool_create(&za_copy.cdfhs, 10*MiB, 0));
 
 	ZipArchive* za = (ZipArchive*)za_mgr.alloc();
@@ -461,64 +471,72 @@ static inline u16 u16_from_size_t(size_t x)
 	return (u16)(x & 0xFFFF);
 }
 
-LibError zip_archive_add_file(ZipArchive* za, const ArchiveEntry* ze, void* file_contents)
+LibError zip_archive_add_file(ZipArchive* za, const ArchiveEntry* ae, void* file_contents)
 {
-	const char* fn      = ze->atom_fn;
+	const char* fn      = ae->atom_fn;
 	const size_t fn_len = strlen(fn);
-	const size_t ucsize = ze->ucsize;
-	const u32 fat_mtime = FAT_from_time_t(ze->mtime);
-	const u16 method    = (u16)ze->method;
-	const size_t csize  = ze->csize;
+	const size_t ucsize = ae->ucsize;
+	const u32 fat_mtime = FAT_from_time_t(ae->mtime);
+	const size_t csize  = ae->csize;
+	const u32 crc32     = ae->crc32;
+	u16 zip_method;
+	switch(ae->method)
+	{
+	case CM_NONE: zip_method = ZIP_CM_NONE; break;
+	case CM_DEFLATE: zip_method = ZIP_CM_DEFLATE; break;
+	default: WARN_RETURN(ERR_UNKNOWN_CMETHOD);
+	}
 
 	const off_t lfh_ofs = za->cur_file_size;
 
 	// write (LFH, filename, file contents) to archive
-	const size_t  lfh_size = sizeof( LFH);
 	const LFH lfh =
 	{
-		lfh_magic,
-		0,	// x1
-		0,	// flags
-		method,
-		fat_mtime,
-		0,	// crc
-		u32_from_size_t(csize),
-		u32_from_size_t(ucsize),
-		u16_from_size_t(fn_len),
-		0	// e_len
+		to_le32(lfh_magic),
+		to_le16(0),	// x1
+		to_le16(0),	// flags
+		to_le16(zip_method),
+		to_le32(fat_mtime),
+		to_le32(crc32),
+		to_le32(u32_from_size_t(csize)),
+		to_le32(u32_from_size_t(ucsize)),
+		to_le16(u16_from_size_t(fn_len)),
+		to_le16(0)	// e_len
 	};
 	FileIOBuf buf;
 	buf = (FileIOBuf)&lfh;
-	file_io(&za->f, lfh_ofs, lfh_size, &buf);
+	file_io(&za->f, lfh_ofs, LFH_SIZE, &buf);
 	buf = (FileIOBuf)fn;
-	file_io(&za->f, lfh_ofs+lfh_size, fn_len, &buf);
+	file_io(&za->f, lfh_ofs+LFH_SIZE, fn_len, &buf);
 	buf = (FileIOBuf)file_contents;
-	file_io(&za->f, lfh_ofs+(off_t)(lfh_size+fn_len), csize, &buf);
-	za->cur_file_size += (off_t)(lfh_size+fn_len+csize);
+	file_io(&za->f, lfh_ofs+(off_t)(LFH_SIZE+fn_len), csize, &buf);
+	za->cur_file_size += (off_t)(LFH_SIZE+fn_len+csize);
 
 	// append a CDFH to the central dir (in memory)
-	const size_t cdfh_size = sizeof(CDFH);
-	CDFH* cdfh = (CDFH*)pool_alloc(&za->cdfhs, cdfh_size+fn_len);
-	if(cdfh)
-	{
-		cdfh->magic     = cdfh_magic;
-		cdfh->x1        = 0;
-		cdfh->flags     = 0;
-		cdfh->method    = method;
-		cdfh->fat_mtime = fat_mtime;
-		cdfh->crc       = 0;
-		cdfh->csize     = u32_from_size_t(csize);
-		cdfh->ucsize    = u32_from_size_t(ucsize);
-		cdfh->fn_len    = u16_from_size_t(fn_len);
-		cdfh->e_len     = 0;
-		cdfh->c_len     = 0;
-		cdfh->x2        = 0;
-		cdfh->x3        = 0;
-		cdfh->lfh_ofs   = lfh_ofs;
-		memcpy2((char*)cdfh+cdfh_size, fn, fn_len);
+	// .. note: pool_alloc may round size up for padding purposes.
+	const size_t prev_pos = za->cdfhs.da.pos;
+	CDFH* cdfh = (CDFH*)pool_alloc(&za->cdfhs, CDFH_SIZE+fn_len);
+	if(!cdfh)
+		return ERR_NO_MEM;
+	const size_t slack = za->cdfhs.da.pos-prev_pos - (CDFH_SIZE+fn_len);
+	// .. store header fields
+	cdfh->magic     = to_le32(cdfh_magic);
+	cdfh->x1        = to_le32(0);
+	cdfh->flags     = to_le16(0);
+	cdfh->method    = to_le16(zip_method);
+	cdfh->fat_mtime = to_le32(fat_mtime);
+	cdfh->crc       = to_le32(crc32);
+	cdfh->csize     = to_le32(u32_from_size_t(csize));
+	cdfh->ucsize    = to_le32(u32_from_size_t(ucsize));
+	cdfh->fn_len    = to_le16(u16_from_size_t(fn_len));
+	cdfh->e_len     = to_le16(0);
+	cdfh->c_len     = to_le16(u16_from_size_t(slack));
+	cdfh->x2        = to_le32(0);
+	cdfh->x3        = to_le32(0);
+	cdfh->lfh_ofs   = to_le32(lfh_ofs);
+	memcpy2((char*)cdfh+CDFH_SIZE, fn, fn_len);
 
-		za->cd_entries++;
-	}
+	za->cd_entries++;
 
 	return ERR_OK;
 }
@@ -530,7 +548,7 @@ LibError zip_archive_finish(ZipArchive* za)
 
 	// append an ECDR to the CDFH list (this allows us to
 	// write out both to the archive file in one burst)
-	ECDR* ecdr = (ECDR*)pool_alloc(&za->cdfhs, sizeof(ECDR));
+	ECDR* ecdr = (ECDR*)pool_alloc(&za->cdfhs, ECDR_SIZE);
 	if(!ecdr)
 		return ERR_NO_MEM;
 	ecdr->magic       = ecdr_magic;
@@ -541,7 +559,7 @@ LibError zip_archive_finish(ZipArchive* za)
 	ecdr->comment_len = 0;
 
 	FileIOBuf buf = za->cdfhs.da.base;
-	file_io(&za->f, za->cur_file_size, za->cdfhs.da.pos, &buf);
+	file_io(&za->f, za->cur_file_size, cd_size+ECDR_SIZE, &buf);
 
 	(void)file_close(&za->f);
 	(void)pool_destroy(&za->cdfhs);

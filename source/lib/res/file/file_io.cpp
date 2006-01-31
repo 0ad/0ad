@@ -366,7 +366,7 @@ class IOManager
 			size = round_up(size, AIO_SECTOR_SIZE);
 		}
 
-		RETURN_ERR(file_buf_get(pbuf, size, f->fc.atom_fn, is_write, cb));
+		RETURN_ERR(file_buf_get(pbuf, size, f->fc.atom_fn, f->fc.flags, cb));
 
 		return ERR_OK;
 	}

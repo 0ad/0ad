@@ -63,21 +63,15 @@ class TNode
 public:
 	TNodeType type;
 
-	//OLD DOC: (for exact_name): used by callers needing the exact case,
-	// e.g. for case-sensitive syscalls; also key for lookup
-	// set by TChildren
-	const char* atom_fn;
+	// rationale: we store both entire path and name component.
+	// this increases size of VFS (2 pointers needed here) and
+	// filename storage, but allows getting path without having to
+	// iterate over all dir name components.
+	//we could retrieve name via strrchr(path, '/'), but that is slow.
+	PathName V_path;
 
-	// name component only (points within atom_fn).
-	// alternative is strrchr(atom_fn, '/') on every access - slow.
-	const char* name;
-
-	TNode(TNodeType type_, const char* atom_fn_, const char* name_)
-	{
-		type = type_;
-		atom_fn = atom_fn_;
-		name = name_;
-	}
+	TNode(TNodeType type_, PathName V_path_)
+		: type(type_), V_path(V_path_) {}
 };
 
 
@@ -93,8 +87,8 @@ public:
 
 	uintptr_t memento;
 
-	TFile(const char* atom_fn, const char* name, const Mount* m_)
-		: TNode(NT_FILE, atom_fn, name)
+	TFile(PathName V_path, const Mount* m_)
+		: TNode(NT_FILE, V_path)
 	{
 		m = m_;
 		size = 0;
@@ -133,7 +127,7 @@ public:
 	}
 	const char* get_key(TNode* t) const
 	{
-		return t->name;
+		return t->V_path.name;
 	}
 };
 typedef DynHashTbl<const char*, TNode*, DHT_Traits<const char*, TNode*> > TChildren;
@@ -153,8 +147,8 @@ class TDir : public TNode
 	TChildren children;
 
 public:
-	TDir(const char* atom_fn, const char* name)
-		: TNode(NT_DIR, atom_fn, name), children()
+	TDir(PathName V_path)
+		: TNode(NT_DIR, V_path), children()
 	{
 		flags = 0;
 		rd.m = 0;
@@ -179,11 +173,14 @@ public:
 		}
 	}
 
-	LibError add(const char* P_path, TNodeType type, TNode** pnode)
+
+	LibError add(const char* name_tmp, TNodeType type, TNode** pnode)
 	{
-		const char* atom_fn = file_make_unique_fn_copy(P_path, 0);
-		const char* slash = strrchr(atom_fn, '/');
-		const char* name = slash? slash+1 : atom_fn;
+		char V_new_path_tmp[VFS_MAX_PATH];
+		vfs_path_append(V_new_path_tmp, V_path.path, name_tmp);
+		PathName V_new_path;
+		pathname_split(V_new_path_tmp, &V_new_path);
+		const char* name = V_new_path.name;
 
 		if(!path_component_valid(name))
 			return ERR_PATH_INVALID;
@@ -205,9 +202,9 @@ public:
 			return ERR_NO_MEM;
 #include "nommgr.h"
 		if(type == NT_FILE)
-			node = new(mem) TFile(atom_fn, name, rd.m);
+			node = new(mem) TFile(V_new_path, rd.m);
 		else
-			node = new(mem) TDir(atom_fn, name);
+			node = new(mem) TDir(V_new_path);
 #include "mmgr.h"
 
 		children.insert(name, node);
@@ -282,7 +279,7 @@ static void displayR(TDir* td, int indent_level)
 		TNode* node = (*it);
 		if(node->type != NT_FILE)
 			continue;
-		const char* name = node->name;
+		const char* name = node->V_path.name;
 
 		TFile& file = *((TFile*)node);
 		char file_location = mount_get_type(file.m);
@@ -307,7 +304,7 @@ static void displayR(TDir* td, int indent_level)
 		TNode* node = (*it);
 		if(node->type != NT_DIR)
 			continue;
-		const char* subdir_name = node->name;
+		const char* subdir_name = node->V_path.name;
 
 		// write subdir's name
 		// note: do it now, instead of in recursive call so that:
@@ -410,7 +407,8 @@ static LibError lookup(TDir* td, const char* path, uint flags, TNode** pnode)
 //
 //////////////////////////////////////////////////////////////////////////////
 
-static TDir tree_root(0, 0);
+static const PathName pn = { "", "" };
+static TDir tree_root(pn);
 
 // rationale: can't do this in tree_shutdown - we'd leak at exit.
 // calling from tree_add* is ugly as well, so require manual init.
@@ -439,11 +437,11 @@ void tree_display()
 }
 
 
-LibError tree_add_file(TDir* td, const char* P_path,
+LibError tree_add_file(TDir* td, const char* name,
 	const Mount* m, off_t size, time_t mtime, uintptr_t memento)
 {
 	TNode* node;
-	LibError ret = td->add(P_path, NT_FILE, &node);
+	LibError ret = td->add(name, NT_FILE, &node);
 	RETURN_ERR(ret);
 	if(ret == INFO_NO_REPLACE)
 	{
@@ -465,10 +463,10 @@ LibError tree_add_file(TDir* td, const char* P_path,
 }
 
 
-LibError tree_add_dir(TDir* td, const char* P_path, TDir** ptd)
+LibError tree_add_dir(TDir* td, const char* name, TDir** ptd)
 {
 	TNode* node;
-	RETURN_ERR(td->add(P_path, NT_DIR, &node));
+	RETURN_ERR(td->add(name, NT_DIR, &node));
 	*ptd = (TDir*)node;
 	return ERR_OK;
 }
@@ -556,7 +554,7 @@ LibError tree_dir_next_ent(TreeDirIterator* d_, DirEnt* ent)
 		return ERR_DIR_END;
 
 	const TNode* node = *(d->it++);
-	ent->name = node->name;
+	ent->name = node->V_path.name;
 
 	// set size and mtime fields depending on node type:
 	switch(node->type)
@@ -605,7 +603,7 @@ uintptr_t tfile_get_memento(const TFile* tf)
 
 const char* tfile_get_atom_fn(const TFile* tf)
 {
-	return ((TNode*)tf)->atom_fn;
+	return ((TNode*)tf)->V_path.path;
 }
 
 

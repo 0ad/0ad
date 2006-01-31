@@ -59,7 +59,7 @@ void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain_, CUnitManager
 		// read the corresponding XML file
 		filename_xml = filename;
 		filename_xml = filename_xml.Left(filename_xml.Length()-4) + ".xml";
-		RegMemFun(this, &CMapReader::ReadXML, L"CMapReader::ReadXML", 1600);
+		RegMemFun(this, &CMapReader::ReadXML, L"CMapReader::ReadXML", 5000);
 	}
 
 	// apply data to the world

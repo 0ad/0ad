@@ -177,6 +177,7 @@ struct ArchiveEntry
 	off_t ofs;
 	off_t csize;
 	CompressionMethod method;
+	u32 crc32;
 
 	uint flags;
 

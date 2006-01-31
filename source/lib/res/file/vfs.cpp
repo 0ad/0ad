@@ -248,14 +248,14 @@ LibError vfs_dir_next_ent(const Handle hd, DirEnt* ent, const char* filter)
 
 // return actual path to the specified file:
 // "<real_directory>/fn" or "<archive_name>/fn".
-LibError vfs_realpath(const char* v_path, char* realpath)
+LibError vfs_realpath(const char* V_path, char* realpath)
 {
 	TFile* tf;
-	CHECK_ERR(tree_lookup(v_path, &tf));
+	CHECK_ERR(tree_lookup(V_path, &tf));
 
 	const Mount* m = tfile_get_mount(tf);
-	const char* V_path = tfile_get_atom_fn(tf);
-	return x_realpath(m, V_path, realpath);
+	const char* atom_fn = tfile_get_atom_fn(tf);
+	return x_realpath(m, atom_fn, realpath);
 }
 
 
@@ -270,12 +270,12 @@ bool vfs_exists(const char* V_fn)
 
 
 // get file status (mode, size, mtime). output param is zeroed on error.
-LibError vfs_stat(const char* v_path, struct stat* s)
+LibError vfs_stat(const char* V_path, struct stat* s)
 {
 	memset(s, 0, sizeof(*s));
 
 	TFile* tf;
-	CHECK_ERR(tree_lookup(v_path, &tf));
+	CHECK_ERR(tree_lookup(V_path, &tf));
 
 	return tree_stat(tf, s);
 }
@@ -443,7 +443,7 @@ LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size, uint flags /* 
 {
 	debug_printf("VFS| load: V_fn=%s\n", V_fn);
 
-	const char* atom_fn = file_make_unique_fn_copy(V_fn, 0);
+	const char* atom_fn = file_make_unique_fn_copy(V_fn);
 	buf = file_cache_retrieve(atom_fn, &size);
 	if(buf)
 	{
