@@ -253,6 +253,9 @@ class IOManager
 
 		void* temp_buf;
 
+		// used by stats_io_start/finish to measure throughput
+		double start_time;
+
 		IOSlot()
 		{
 			reset();
@@ -263,6 +266,7 @@ class IOManager
 			temp_buf = 0;
 			memset(&block_id, 0, sizeof(block_id));
 			cached_block = 0;
+			start_time = 0.0;	// required for stats
 		}
 	};
 	static const uint MAX_PENDING_IOS = 4;
@@ -281,7 +285,9 @@ class IOManager
 	{
 		if(cb)
 		{
+			stats_cb_start();
 			LibError ret = cb(ctx, block, size, &bytes_processed);
+			stats_cb_finish();
 
 			// failed - reset byte count in case callback didn't
 			if(ret != ERR_OK && ret != INFO_CB_CONTINUE)
@@ -317,6 +323,11 @@ class IOManager
 		else
 			dst = (void*)*pbuf;
 
+		double start_time = 0.0;	// required for stats
+		FileOp op = is_write? FO_WRITE : FO_READ;
+		BlockId disk_pos = block_cache_make_id(f->fc.atom_fn, start_ofs);
+		stats_io_start(FI_LOWIO, op, size, disk_pos, &start_time);
+		//
 		ssize_t total_transferred;
 		if(is_write)
 			total_transferred = write(fd, dst, size);
@@ -327,6 +338,8 @@ class IOManager
 			free(dst_mem);
 			WARN_RETURN(LibError_from_errno());
 		}
+		//
+		stats_io_finish(FI_LOWIO, op, &start_time);
 
 		size_t total_processed;
 		LibError ret = call_back(dst, total_transferred, cb, cb_ctx, total_processed);
@@ -393,6 +406,7 @@ class IOManager
 			else
 				buf = (char*)*pbuf + total_issued;
 
+			stats_io_start(FI_AIO, is_write? FO_WRITE : FO_READ, issue_size, slot.block_id, &slot.start_time);
 			LibError ret = file_io_issue(f, ofs, issue_size, buf, &slot.io);
 			// transfer failed - loop will now terminate after
 			// waiting for all pending transfers to complete.
@@ -414,6 +428,7 @@ class IOManager
 		else
 		{
 			LibError ret = file_io_wait(&slot.io, block, block_size);
+			stats_io_finish(FI_AIO, is_write? FO_WRITE : FO_READ, &slot.start_time);
 			if(ret < 0)
 				err = ret;
 		}

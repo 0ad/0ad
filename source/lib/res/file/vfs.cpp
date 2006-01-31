@@ -337,8 +337,6 @@ static LibError VFile_reload(VFile* vf, const char* V_path, Handle)
 	}
 
 	const Mount* m = tfile_get_mount(tf);
-if(!m)
-return ERR_LOGIC;
 	RETURN_ERR(x_open(m, V_path, flags, tf, &vf->xf));
 
 	FileCommon& fc = vf->xf.u.fc;
@@ -447,6 +445,9 @@ LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size, uint flags /* 
 	buf = file_cache_retrieve(atom_fn, &size);
 	if(buf)
 	{
+		// we want to skip the below code (especially vfs_open) for
+		// efficiency. that includes stats/trace accounting, though,
+		// so duplicate that here:
 		stats_user_io(size);
 		trace_notify_load(atom_fn, flags);
 		return ERR_OK;
@@ -779,8 +780,10 @@ static void vfs_init_once(void)
 // is necessary anyway and this way is simpler/easier to maintain.
 void vfs_init()
 {
+	stats_vfs_init_start();
 	static pthread_once_t once = PTHREAD_ONCE_INIT;
 	WARN_ERR(pthread_once(&once, vfs_init_once));
+	stats_vfs_init_finish();
 }
 
 void vfs_shutdown()

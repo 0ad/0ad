@@ -9,24 +9,6 @@
 typedef std::set<const char*> AtomFnSet;
 typedef std::pair<AtomFnSet::iterator, bool> PairIB;
 
-// convenience functions for measuring elapsed time in an interval.
-// by exposing start/finish calls, we avoid callers from querying
-// timestamps when stats are disabled.
-static double start_time;
-static void timer_start(double* start_time_storage = &start_time)
-{
-	// make sure no measurement is currently active
-	// (since start_time is shared static storage)
-	debug_assert(*start_time_storage == 0.0);
-	*start_time_storage = get_time();
-}
-static double timer_reset(double* start_time_storage = &start_time)
-{
-	double elapsed = get_time() - *start_time_storage;
-	*start_time_storage = 0.0;
-	return elapsed;
-}
-
 // vfs
 static uint vfs_files;
 static size_t vfs_size_total;
@@ -54,12 +36,33 @@ static uint io_seeks;
 
 // file_cache
 static uint cache_count[2];
-static u64 cache_size_total[2];
+static double cache_size_total[2];
 static AtomFnSet ever_cached_files;
 static uint conflict_misses;
-static u64 conflict_miss_size_total;
+static double conflict_miss_size_total;
 static uint block_cache_count[2];
 
+
+
+// convenience functions for measuring elapsed time in an interval.
+// by exposing start/finish calls, we avoid callers from querying
+// timestamps when stats are disabled.
+static double start_time;
+static void timer_start(double* start_time_storage = &start_time)
+{
+	// make sure no measurement is currently active
+	// (since start_time is shared static storage)
+	debug_assert(*start_time_storage == 0.0);
+	*start_time_storage = get_time();
+}
+static double timer_reset(double* start_time_storage = &start_time)
+{
+	double elapsed = get_time() - *start_time_storage;
+	*start_time_storage = 0.0;
+	return elapsed;
+}
+
+//-----------------------------------------------------------------------------
 
 //
 // vfs
@@ -213,56 +216,72 @@ void stats_block_cache(CacheRet cr)
 }
 
 
+//-----------------------------------------------------------------------------
+
 void stats_dump()
 {
-/*
-	// note: writes count toward io_actual_size_total but not cache.
-//	debug_assert(io_actual_size_total >= cache_size_total[CR_MISS]);
+	const double KB = 1e3; const double MB = 1e6; const double ms = 1e-3;
 
-	// not necessarily true, since not all IO clients use the cache.		
-	//		debug_assert(io_count >= cache_count[CR_MISS]);
+	debug_printf("--------------------------------------------------------------------------------\n");
+	debug_printf("File statistics:\n");
 
-	const size_t unique_files_accessed = opened_files.size();
+	// note: we split the reports into several debug_printfs for clarity;
+	// this is necessary anyway due to fixed-size buffer.
 
-	// guesstimate miss rate due to cache capacity
-	// (indicates effectiveness of caching algorithm)
-	const u64 working_set_est = opened_file_size_total * ((double)unique_files_accessed/
-		unique_names);
-	const uint cache_capacity_miss_rate_est = (cache_size_total[CR_MISS]-working_set_est)/
-		(double)(cache_size_total[CR_HIT]+cache_size_total[CR_MISS]);
-
-	const double KB = 1000.0; const double MB = 1000000.0;
-	// note: needs to be split up into several calls due to
-	// debug_printf's fixed-size buffer.
+	// vfs
 	debug_printf(
-		"File statistics\n"
-		"--------------------------------------------------------------------------------\n"
-		"Total files seen: %u; total files accessed: %u.\n"
-		"  unused files: %d%%.\n"
-		"Max. open files: %u; leaked files: %u.\n"
-		"Total buffers (re)used: %u; max. extant buffers: %u; leaked buffers: %u.\n"
-		,
-		unique_names, unique_files_accessed,
-		100-(int)(((float)unique_files_accessed)/unique_names),
-		open_files_max, open_files_cur,
-		extant_bufs_total, extant_bufs_max, extant_bufs_cur);
+		"\n"
+		"Total files: %u (%g MB)\n"
+		"Init/mount time: %g ms\n",
+		vfs_files, vfs_size_total/MB,
+		vfs_init_elapsed_time/ms
+	);
 
+	// file
 	debug_printf(
-		"Total # user IOs: %u; cumulative size: %.3g MB; average size: %.2g KB.\n"
-		"  unused data: %d%%.\n"
+		"\n"
+		"Total names: %u (%u KB)\n"
+		"Accessed files: %u (%g MB) -- %u%% of data set\n"
+		"Max. concurrent: %u; leaked: %u.\n",
+		unique_names, unique_name_len_total/1000, 
+		opened_files.size(), opened_file_size_total/MB, 100u*opened_files.size()/vfs_files,
+		open_files_max, open_files_cur
+	);
+
+	// file_buf
+	debug_printf(
+		"\n"
+		"Total buffers used: %u (%g MB)\n"
+		"Max concurrent: %u; leaked: %u\n"
+		"Internal fragmentation: %d%%\n",
+		extant_bufs_total, buf_user_size_total/MB,
+		extant_bufs_max, extant_bufs_cur,
+		(int)(100*(buf_padded_size_total-buf_user_size_total)/buf_user_size_total)
+	);
+
+	// file_io
+	debug_printf(
+		"\n"
+		"Total user IOs: %u (%g MB)\n"
 		"IO thoughput [MB/s; 0=never happened]:\n"
 		"  lowio: R=%.3g, W=%.3g\n"
 		"    aio: R=%.3g, W=%.3g\n"
-		"File cache totals: hits: %.3g MB; misses: %.3g MB.\n"
-		"  ratio: %d%%; capacity miss rate: ~%d%%.\n"
-		"--------------------------------------------------------------------------------\n"
-		,
-		io_count, io_user_size_total/MB, ((double)io_user_size_total)/io_count/KB,
-		100-(int)(((float)io_user_size_total)/opened_file_size_total),
-		read_throughput_avg[FI_LOWIO]/MB, write_throughput_avg[FI_LOWIO]/MB,
-		read_throughput_avg[FI_AIO  ]/MB, write_throughput_avg[FI_AIO  ]/MB,
-		cache_size_total[CR_HIT]/MB, cache_size_total[CR_MISS]/MB,
-		(int)(((float)cache_size_total[CR_HIT])/(cache_size_total[CR_HIT]+cache_size_total[CR_MISS])), cache_capacity_miss_rate_est
-		);
-*/
+		"Average size = %g KB; seeks: %u; total callback time: %g ms\n",
+		user_ios, user_io_size_total/MB,
+#define THROUGHPUT(impl, op) (io_elapsed_time[impl][op] == 0.0)? 0.0 : (io_actual_size_total[impl][op] / io_elapsed_time[impl][op] / MB)
+		THROUGHPUT(FI_LOWIO, FO_READ), THROUGHPUT(FI_LOWIO, FO_WRITE),
+		THROUGHPUT(FI_AIO  , FO_READ), THROUGHPUT(FI_AIO  , FO_WRITE),
+		user_io_size_total/user_ios/KB, io_seeks, io_process_time_total/ms
+	);
+
+	// file_cache
+	debug_printf(
+		"\n"
+		"Hits: %u (%g MB); misses %u (%g MB)\n"
+		"Hit ratio: %u%%; conflict misses: %u%%\n"
+		"Block hits: %u; misses: %u; ratio: %u%%\n",
+		cache_count[CR_HIT], cache_size_total[CR_HIT]/MB, cache_count[CR_MISS], cache_size_total[CR_MISS]/MB,
+		100u*cache_count[CR_HIT]/cache_count[CR_MISS], 100u*conflict_misses/cache_count[CR_MISS],
+		block_cache_count[CR_HIT], block_cache_count[CR_MISS], 100u*block_cache_count[CR_HIT]/(block_cache_count[CR_HIT]+block_cache_count[CR_MISS])
+	);
 }

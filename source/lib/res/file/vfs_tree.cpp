@@ -443,7 +443,7 @@ LibError tree_add_file(TDir* td, const char* name,
 	TNode* node;
 	LibError ret = td->add(name, NT_FILE, &node);
 	RETURN_ERR(ret);
-	if(ret == INFO_NO_REPLACE)
+	if(ret == INFO_ALREADY_PRESENT)
 	{
 		// assume they're the same if size and last-modified time match.
 		// note: FAT timestamp only has 2 second resolution
@@ -451,7 +451,9 @@ LibError tree_add_file(TDir* td, const char* name,
 		const bool is_same = (tf->size == size) &&
 			fabs(difftime(tf->mtime, mtime)) <= 2.0;
 		if(!mount_should_replace(tf->m, m, is_same))
-			return INFO_NO_REPLACE;
+			return INFO_ALREADY_PRESENT;
+
+		stats_vfs_file_remove(tf->size);
 	}
 
 	TFile* tf = (TFile*)node;
@@ -459,6 +461,7 @@ LibError tree_add_file(TDir* td, const char* name,
 	tf->mtime   = mtime;
 	tf->size    = size;
 	tf->memento = memento;
+	stats_vfs_file_add(size);
 	return ERR_OK;
 }
 

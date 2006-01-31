@@ -220,6 +220,9 @@ static LibError filelist_build(Trace* t, FileList* fl)
 		if(t->ents[i].op == TO_LOAD)
 			fl->num_files++;
 
+	if(!fl->num_files)
+		return ERR_DIR_END;
+
 	fl->atom_fns = new const char*[fl->num_files];
 
 	size_t ti = 0;

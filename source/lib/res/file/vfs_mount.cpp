@@ -569,8 +569,12 @@ LibError vfs_mount(const char* V_mount_point, const char* P_real_path, int flags
 	if(!strcmp(P_real_path, "."))
 		WARN_RETURN(ERR_PATH_INVALID);
 
+	// (count this as "init" to obviate a separate timer)
+	stats_vfs_init_start();
 	const Mount& m = add_mount(V_mount_point, P_real_path, 0, flags, pri);
-	return remount(m);
+	LibError ret = remount(m);
+	stats_vfs_init_finish();
+	return ret;
 }
 
 

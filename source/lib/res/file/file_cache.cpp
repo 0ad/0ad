@@ -161,7 +161,9 @@ void block_cache_mark_completed(BlockId id)
 
 void* block_cache_find(BlockId id)
 {
-	return block_mgr.find(id);
+	void* ret = block_mgr.find(id);
+	stats_block_cache(ret? CR_HIT : CR_MISS);
+	return ret;
 }
 
 void block_cache_release(BlockId id)
@@ -214,7 +216,7 @@ mechanism:
 */
 class CacheAllocator
 {
-	static const size_t MAX_CACHE_SIZE = 32*MiB;
+	static const size_t MAX_CACHE_SIZE = 64*MiB;
 
 public:
 	void init()
@@ -430,8 +432,9 @@ private:
 		while(classes_left)
 		{
 #define LS1(x) (x & -(int)x)	// value of LSB 1-bit
-			uint size_class = LS1(classes_left);
-			classes_left &= ~BIT(size_class);	// remove from classes_left
+			const uint class_size = LS1(classes_left);
+			classes_left &= ~BIT(class_size);	// remove from classes_left
+			const uint size_class = size_class_of(class_size);
 			void* p = alloc_from_class(size_class, size_pa);
 			if(p)
 				return p;
