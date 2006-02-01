@@ -4,7 +4,7 @@
 #include "sdl.h"
 
 
-inline u16 to_le16(u16 x)
+u16 to_le16(u16 x)
 {
 #if SDL_BYTE_ORDER == SDL_BIG_ENDIAN
 	return SDL_Swap16(x);
@@ -13,7 +13,7 @@ inline u16 to_le16(u16 x)
 #endif
 }
 
-inline u32 to_le32(u32 x)
+u32 to_le32(u32 x)
 {
 #if SDL_BYTE_ORDER == SDL_BIG_ENDIAN
 	return SDL_Swap32(x);
@@ -22,7 +22,7 @@ inline u32 to_le32(u32 x)
 #endif
 }
 
-inline u64 to_le64(u64 x)
+u64 to_le64(u64 x)
 {
 #if SDL_BYTE_ORDER == SDL_BIG_ENDIAN
 	return SDL_Swap64(x);
@@ -32,7 +32,7 @@ inline u64 to_le64(u64 x)
 }
 
 
-inline u16 to_be16(u16 x)
+u16 to_be16(u16 x)
 {
 #if SDL_BYTE_ORDER == SDL_BIG_ENDIAN
 	return x;
@@ -41,7 +41,7 @@ inline u16 to_be16(u16 x)
 #endif
 }
 
-inline u32 to_be32(u32 x)
+u32 to_be32(u32 x)
 {
 #if SDL_BYTE_ORDER == SDL_BIG_ENDIAN
 	return x;
@@ -50,7 +50,7 @@ inline u32 to_be32(u32 x)
 #endif
 }
 
-inline u64 to_be64(u64 x)
+u64 to_be64(u64 x)
 {
 #if SDL_BYTE_ORDER == SDL_BIG_ENDIAN
 	return x;
