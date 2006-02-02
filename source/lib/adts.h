@@ -222,12 +222,19 @@ public:
 template<typename Key, typename T> class Cache
 {
 public:
+	Cache()
+		: min_credit_density(FLT_MAX) {}
+
 	void add(Key key, T item, size_t size, uint cost)
 	{
 		typedef std::pair<CacheMapIt, bool> PairIB;
 		typename CacheMap::value_type val = std::make_pair(key, CacheEntry(item, size, cost));
 		PairIB ret = map.insert(val);
 		debug_assert(ret.second);	// must not already be in map
+
+		// adding new item - min_credit_density may decrease
+		const CacheEntry& new_entry = ret.first->second;
+		notify_credit_reduced(new_entry);
 	}
 
 	// remove the entry identified by <key>. expected usage is to check
@@ -236,7 +243,21 @@ public:
 	// useful for invalidating single cache entries.
 	void remove(Key key)
 	{
-		map.erase(key);
+		CacheMapIt it = map.find(key);
+		if(it == map.end())
+		{
+			debug_warn("Cache: item to be removed not found");
+			return;
+		}
+
+		// we're removing. if this one had the smallest
+		// density, recalculate.
+		const bool need_recalc = is_min_entry(it->second);
+
+		map.erase(it);
+
+		if(need_recalc)
+			recalc_min_density();
 	}
 
 	// if there is no entry for <key> in the cache, return 0 with
@@ -253,10 +274,17 @@ public:
 
 		if(refill_credit)
 		{
+			// we're increasing credit. if this one had the smallest
+			// density, recalculate.
+			const bool need_recalc = is_min_entry(entry);
+
 			// Landlord algorithm calls for credit to be reset to anything
 			// between its current value and the cost.
 			const float gain = 0.75f;	// restore most credit
 			entry.credit = gain*entry.cost + (1.0f-gain)*entry.credit;
+
+			if(need_recalc)
+				recalc_min_density();
 		}
 
 		return entry.item;
@@ -267,28 +295,22 @@ public:
 	// how big it was (useful for statistics).
 	T remove_least_valuable(size_t* psize = 0)
 	{
-		CacheMapIt it;
-
 		// one iteration ought to suffice to evict someone due to
 		// definition of min_density, but we provide for repeating
 		// in case of floating-point imprecision.
 		// (goto vs. loop avoids nesting and emphasizes rarity)
 again:	
 
-		// find minimum credit density (needed for charge step)
-		float min_density = 1e10;	// = \delta in [Young02]
-		for( it = map.begin(); it != map.end(); ++it)
+		// charge everyone rent (proportional to min_credit_density and size)
+		// .. latch current delta value to avoid it changing during the loop
+		//    (due to notify_* calls). this ensures fairness.
+		const float delta = min_credit_density;
+		for(CacheMapIt it = map.begin(); it != map.end(); ++it)
 		{
 			CacheEntry& entry = it->second;
-			const float density = entry.credit / entry.size;
-			min_density = MIN(density, min_density);
-		}
-
-		// .. charge everyone rent (proportional to min_density and size)
-		for( it = map.begin(); it != map.end(); ++it)
-		{
-			CacheEntry& entry = it->second;
-			entry.credit -= min_density * entry.size;
+			entry.credit -= delta * entry.size;
+			// reducing credit - min_credit_density may decrease
+			notify_credit_reduced(entry);
 
 			// evict immediately if credit is exhausted
 			// (note: Landlord algorithm calls for 'any subset' of
@@ -304,6 +326,9 @@ again:
 				if(psize)
 					*psize = entry.size;
 				map.erase(it);
+				// this item had the least density, else it wouldn't
+				// have been removed. recalculate.
+				recalc_min_density();
 				return item;
 			}
 		}
@@ -313,28 +338,52 @@ again:
 	}
 
 private:
-	class CacheEntry
+	struct CacheEntry
 	{
-		friend class Cache;
+		T item;
+		size_t size;
+		float size_reciprocal;
+		uint cost;
+		float credit;
 
 		CacheEntry(T item_, size_t size_, uint cost_)
+			: item(item_)
 		{
-			item = item_;
-
 			size = size_;
+			size_reciprocal = 1.0f / size;
+
 			cost = cost_;
 			credit = cost;
 		}
-
-		T item;
-		size_t size;
-		uint cost;
-		float credit;
 	};
 
-	typedef std::map<Key, CacheEntry> CacheMap;
+	// note: use hash_map instead of map for better locality
+	// (relevant when iterating over all items in remove_least_valuable)
+	typedef STL_HASH_MAP<Key, CacheEntry> CacheMap;
 	typedef typename CacheMap::iterator CacheMapIt;
 	CacheMap map;
+
+	// = \delta in [Young02] (needed for charge step)
+	// this is cached to avoid having to iterate over the whole map.
+	float min_credit_density;
+	float credit_density(const CacheEntry& entry)
+	{
+		return entry.credit * entry.size_reciprocal;
+	}
+	void notify_credit_reduced(const CacheEntry& entry)
+	{
+		min_credit_density = MIN(min_credit_density, credit_density(entry));
+	}
+	bool is_min_entry(const CacheEntry& entry)
+	{
+		return feq(min_credit_density, credit_density(entry));
+	}
+	void recalc_min_density()
+	{
+		min_credit_density = FLT_MAX;
+		for(CacheMapIt it = map.begin(); it != map.end(); ++it)
+			min_credit_density = MIN(min_credit_density, credit_density(it->second));
+	}
 };
 
 

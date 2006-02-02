@@ -29,7 +29,7 @@ void trace_enable(bool want_enabled)
 }
 
 
-static void trace_add(TraceOp op, const char* P_fn, uint flags = 0, double timestamp = 0.0)
+static void trace_add(TraceOp op, const char* P_fn, size_t size, uint flags = 0, double timestamp = 0.0)
 {
 	trace_init();
 	if(!trace_enabled)
@@ -42,20 +42,21 @@ static void trace_add(TraceOp op, const char* P_fn, uint flags = 0, double times
 	if(!t)
 		return;
 	t->timestamp = timestamp;
-	t->atom_fn = file_make_unique_fn_copy(P_fn);
-	t->op = op;
-	t->flags = flags;
+	t->atom_fn   = file_make_unique_fn_copy(P_fn);
+	t->size      = size;
+	t->op        = op;
+	t->flags     = flags;
 }
 
 
-void trace_notify_load(const char* P_fn, uint flags)
+void trace_notify_load(const char* P_fn, size_t size, uint flags)
 {
-	trace_add(TO_LOAD, P_fn, flags);
+	trace_add(TO_LOAD, P_fn, size, flags);
 }
 
-void trace_notify_free(const char* P_fn)
+void trace_notify_free(const char* P_fn, size_t size)
 {
-	trace_add(TO_FREE, P_fn);
+	trace_add(TO_FREE, P_fn, size);
 }
 
 
@@ -93,7 +94,7 @@ LibError trace_write_to_file(const char* trace_filename)
 		}
 
 		debug_assert(ent->op == TO_LOAD || ent->op == TO_FREE);
-		fprintf(f, "%#010f: %c \"%s\" %02x\n", ent->timestamp, opcode, ent->atom_fn, ent->flags);
+		fprintf(f, "%#010f: %c \"%s\" %d %04x\n", ent->timestamp, opcode, ent->atom_fn, ent->size, ent->flags);
 	}
 
 	(void)fclose(f);
@@ -118,15 +119,14 @@ LibError trace_read_from_file(const char* trace_filename, Trace* t)
 	trace_clear();
 	// .. bake PATH_MAX limit into string.
 	char fmt[30];
-	snprintf(fmt, ARRAY_SIZE(fmt), "%%lf: %%c \"%%%d[^\"]\" %%02x\n", PATH_MAX);
+	snprintf(fmt, ARRAY_SIZE(fmt), "%%lf: %%c \"%%%d[^\"]\" %%d %%04x\n", PATH_MAX);
 	for(;;)
 	{
-		double timestamp; char opcode; char P_path[PATH_MAX];
-		uint flags = 0;	// optional
-		int ret = fscanf(f, fmt, &timestamp, &opcode, P_path, &flags);
+		double timestamp; char opcode; char P_path[PATH_MAX]; size_t size; uint flags;
+		int ret = fscanf(f, fmt, &timestamp, &opcode, P_path, &size, &flags);
 		if(ret == EOF)
 			break;
-		debug_assert(ret == 4);
+		debug_assert(ret == 5);
 
 		TraceOp op = TO_LOAD;	// default in case file is garbled
 		switch(opcode)
@@ -136,7 +136,7 @@ LibError trace_read_from_file(const char* trace_filename, Trace* t)
 		default: debug_warn("invalid TraceOp");
 		}
 
-		trace_add(op, P_path, flags, timestamp);
+		trace_add(op, P_path, size, flags, timestamp);
 	}
 
 	fclose(f);

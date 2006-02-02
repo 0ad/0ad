@@ -168,10 +168,9 @@ static LibError mem_release(u8* p, size_t size)
 static LibError mem_commit(u8* p, size_t size, int prot)
 {
 	if(prot == PROT_NONE)
-	{
-		debug_warn("mem_commit: prot=PROT_NONE isn't allowed (misinterpreted by mmap)");
-		return ERR_INVALID_PARAM;
-	}
+		// not allowed - it would be misinterpreted by mmap.
+		WARN_RETURN(ERR_INVALID_PARAM);
+
 	errno = 0;
 	void* ret = mmap(p, size, prot, mmap_flags|MAP_FIXED, -1, 0);
 	return LibError_from_mmap(ret);

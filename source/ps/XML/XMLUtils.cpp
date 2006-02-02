@@ -84,7 +84,7 @@ CVFSInputSource::~CVFSInputSource()
 
 BinInputStream *CVFSInputSource::makeStream() const
 {
-	if (m_pBuffer > 0)
+	if (m_pBuffer != 0)
 	{
 #include "nommgr.h"
 		return new BinMemInputStream((XMLByte *)m_pBuffer, (unsigned int)m_BufferSize,

@@ -424,7 +424,7 @@ ssize_t vfs_io(const Handle hf, const size_t size, FileIOBuf* pbuf,
 	FileCommon* fc = &vf->xf.u.fc;
 
 	stats_user_io(size);
-	trace_notify_load(fc->atom_fn, fc->flags);
+	trace_notify_load(fc->atom_fn, size, fc->flags);
 
 	off_t ofs = vf->ofs;
 	vf->ofs += (off_t)size;
@@ -449,7 +449,7 @@ LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size, uint flags /* 
 		// efficiency. that includes stats/trace accounting, though,
 		// so duplicate that here:
 		stats_user_io(size);
-		trace_notify_load(atom_fn, flags);
+		trace_notify_load(atom_fn, size, flags);
 		return ERR_OK;
 	}
 

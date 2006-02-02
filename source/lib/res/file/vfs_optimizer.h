@@ -4,8 +4,8 @@
 extern void trace_enable(bool want_enabled);
 extern void trace_shutdown();
 
-extern void trace_notify_load(const char* P_fn, uint flags);
-extern void trace_notify_free(const char* P_fn);
+extern void trace_notify_load(const char* P_fn, size_t size, uint flags);
+extern void trace_notify_free(const char* P_fn, size_t size);
 
 // TraceEntry operation type.
 // note: rather than only a list of accessed files, we also need to
@@ -24,8 +24,13 @@ enum TraceOp
 // (to prevent trace file writes from affecting other IOs)
 struct TraceEntry
 {
-	double timestamp;		// returned by get_time before operation starts
+	// note: float instead of double for nice 16 byte struct size
+	float timestamp;		// returned by get_time before operation starts
 	const char* atom_fn;	// path+name of affected file
+	// rationale: store size in the trace because other applications
+	// that use this trace format but not our IO code wouldn't know
+	// size (since they cannot retrieve the file info given atom_fn).
+	size_t size;			// of IO (usually the entire file)
 	uint op : 8;			// operation - see TraceOp
 	uint flags : 24;		// misc, e.g. file_io flags.
 };

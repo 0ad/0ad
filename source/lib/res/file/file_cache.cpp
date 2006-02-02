@@ -653,7 +653,7 @@ LibError file_buf_free(FileIOBuf buf)
 	extant_bufs.find_and_remove(buf, &size, &atom_fn);
 
 	stats_buf_free();
-	trace_notify_free(atom_fn);
+	trace_notify_free(atom_fn, size);
 
 	return ERR_OK;
 }
