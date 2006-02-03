@@ -460,7 +460,7 @@ function performHeal( evt )
 			break;
 			default:
 				// Deduct resources to pay for healing.
-				this.player.resource[resource]-= evt.target.actions.heal.cost * evt.target.traits.creation.cost[resource];
+				getGUIGlobal().deductResources(toTitleCase (resource.toString()), parseInt(evt.target.actions.heal.cost * evt.target.traits.creation.cost[resource]));
 			break;
 		}
 	}

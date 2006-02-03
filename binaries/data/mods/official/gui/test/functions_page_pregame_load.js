@@ -29,21 +29,28 @@ function startMap (mapName, losSetting, openWindow)
 	// Display loading screen.	
 	startLoadingScreen();
 
-        // Begin game session.
-        if (! startGame())
-        {
-                // Failed to start the game; go back to the main menu.
-                guiSwitch ("ld", "pg");
-                // Show an error message
-                btCaptions = new Array("OK");
-                btCode = new Array("");
-                messageBox(400, 200, "The game could not be started with the given parameters. You probably have entered an invalid map name.", "Error", 0, btCaptions, btCode);
-        }
+	// Begin game session.
+	if (! startGame())
+	{
+			// Failed to start the game; go back to the main menu.
+			guiSwitch ("ld", "pg");
+			// Show an error message
+			btCaptions = new Array("OK");
+			btCode = new Array("");
+			messageBox(400, 200, "The game could not be started with the given parameters. You probably have entered an invalid map name.", "Error", 0, btCaptions, btCode);
+	}
 		
-        // Initialise Resource Pools by attaching them to the Player object.
-        // (CPlayer code takes care of giving a copy to each player.)
-        createResources();
+	// Set starting UI layout.
+	GUIType=rb;
+	flipGUI (GUIType);
 	
+	// Initialise Resource Pools by attaching them to the Player object.
+	// (CPlayer code takes care of giving a copy to each player.)
+	createResources();
+	
+	// Set session UI sprites to match the skin for the player's civilisation.
+	// (We don't have skins for all civs yet, so we're using the standard menu skin. But it should be settable from here later.)
+	setSkin ("wheat");	
 }
 
 // ====================================================================
@@ -128,16 +135,13 @@ function setupSession ()
 		}
 	}
 */
-	// Set starting UI layout.
-	GUIType=rb;
-        flipGUI (GUIType);
 
-        // Select session peace track.
-        curr_session_playlist_1 = newRandomSound("music", "peace");
-        // Fade out main theme and fade in session theme.
-        crossFade(curr_music, curr_session_playlist_1, 1);
+    // Select session peace track.
+    curr_session_playlist_1 = newRandomSound("music", "peace");
+    // Fade out main theme and fade in session theme.
+    crossFade(curr_music, curr_session_playlist_1, g_ConfigDB.system["sound.mastergain"]);
 
-        // Start refreshing the session controls.
+    // Start refreshing the session controls.
 	setInterval( snRefresh, 1, 100 );
 }
 

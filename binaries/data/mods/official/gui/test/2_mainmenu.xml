@@ -20,11 +20,27 @@
 			curr_music.loop();
 
 			// Display a .cfg file variable to prove we can access it.
-			console.write ("Volume: " + g_ConfigDB.system["sound.mastergain"] + ".")
+//			console.write ("Volume: " + g_ConfigDB.system["sound.mastergain"] + ".")
 			// Unfortunately, although Philip's workaround certainly works,
 			// a] The value cannot be modified.
 			// b] Variables a step up in the hierarchy are not recognised (eg system.sound.mastergain).
 		]]></action>
+		
+		<!--
+		==========================================
+		- MAIN MENU - STATIC TOOLTIP WINDOW
+		(Put at the top so that it is recognised by those using it.)
+		==========================================
+		-->
+
+		<object	name="pgToolTip"
+			style="fancyTextHeadWhite"
+			type="text"
+			hidden="true"
+			sprite="bkTranslucent"
+			size="69% 6.3802% 97.0703125% 28.125%"
+		>tooltipText
+		</object>		
 
 		<!--
 		==========================================
@@ -2022,21 +2038,5 @@ A large landmass with rivers, forests and coastal fishing grounds.
 			]]></action>
 		</object>
 		
-		<!--
-		==========================================
-		- MAIN MENU - STATIC TOOLTIP WINDOW
-		(Put down the bottom so it stays on top.)
-		==========================================
-		-->
-
-		<object	name="pgToolTip"
-			style="fancyTextHeadWhite"
-			type="text"
-			hidden="true"
-			sprite="bkTranslucent"
-			size="69% 6.3802% 97.0703125% 28.125%"
-		>tooltipText
-		</object>		
-
 	</object>
 </objects>

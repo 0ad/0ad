@@ -114,31 +114,31 @@
 					addCrd (this.name, rt, 100, 0);
 				]]></action>
 
-				<object name="snMiniMapButton1"
+				<object name="snMiniMapButton_1"
 					style="skin*Hele*Button"
 					type="button"
 				>
 				</object>
-				<object name="snMiniMapButton2"
+				<object name="snMiniMapButton_2"
 					style="skin*Hele*Button"
 					type="button"
 				>
 				</object>
-				<object name="snMiniMapButton3"
+				<object name="snMiniMapButton_3"
 					style="skin*Hele*Button"
 					type="button"
 				>
 				</object>
-				<object name="snMiniMapButton4"
+				<object name="snMiniMapButton_4"
 					style="skin*Hele*Button"
 					type="button"
 				>
 					<action on="Load"><![CDATA[
 						// Seek through this group of buttons (determining length from last object's name).
-						max = this.name.substring (this.name.lastIndexOf ("n")+1, this.name.length);
+						max = this.name.substring (this.name.lastIndexOf ("_")+1, this.name.length);
 						for (loop = 1; loop <= max; loop++)
 						{
-							tempName = this.name.substring (0, this.name.lastIndexOf ("n")+1) + loop;
+							tempName = this.name.substring (0, this.name.lastIndexOf ("_")+1) + loop;
 							// Set size/position.
 							addCrd (tempName,
 								rb, 100, 100, 0,
@@ -166,74 +166,43 @@
 				guiToggle(this.name);
 			]]></action>
 
-			<object name="snResourceCounter_Food" 
-				style="resource_counter"
+			<object name="snResourceCounter_1" 
+				style="snCounter"
 				type="button" 
-				sprite="resource_food_counter"
-				tooltip="Food, plus some word-wrapping: Material, usually of plant or animal origin, that contains or consists of essential body nutrients, such as carbohydrates, fats, proteins, vitamins, or minerals, and is ingested and assimilated by an organism to produce energy, stimulate growth, and maintain life."
 			>
-				<action on="Load"><![CDATA[
-					addCrd (this.name, rb, 50, 0, -200, 4, snConst.MiniIcon.Width+54, snConst.MiniIcon.Height);
-					addCrd (this.name, lb, 50, 0);	
-					addCrd (this.name, lt, 50, 100);
-					addCrd (this.name, rt, 50, 100);
-				]]></action>
 			</object>
-
-			<object name="snResourceCounter_Wood" 
-				style="resource_counter"
+			<object name="snResourceCounter_2" 
+				style="snCounter"
 				type="button" 
-				sprite="resource_wood_counter"
-				tooltip="Wood"
 			>
-				<action on="Load"><![CDATA[
-					addCrd (this.name, rb, 50, 0, Crd[Crd.last].coord[rb].x+Crd[Crd.last].coord[rb].width+5, Crd[Crd.last].coord[rb].y, Crd[Crd.last].coord[rb].width, Crd[Crd.last].coord[rb].height);
-					addCrd (this.name, lb, 50, 0);	
-					addCrd (this.name, lt, 50, 100);
-					addCrd (this.name, rt, 50, 100);
-				]]></action>
 			</object>
-
-
-			<object name="snResourceCounter_Stone" 
-				style="resource_counter"
+			<object name="snResourceCounter_3" 
+				style="snCounter"
 				type="button" 
-				sprite="resource_stone_counter"
-				tooltip="Stone"
 			>
-				<action on="Load"><![CDATA[
-					addCrd (this.name, rb, 50, 0, Crd[Crd.last].coord[rb].x+Crd[Crd.last].coord[rb].width+5, Crd[Crd.last].coord[rb].y, Crd[Crd.last].coord[rb].width, Crd[Crd.last].coord[rb].height);
-					addCrd (this.name, lb, 50, 0);	
-					addCrd (this.name, lt, 50, 100);
-					addCrd (this.name, rt, 50, 100);
-				]]></action>
 			</object>
-
-			<object name="snResourceCounter_Ore" 
-				style="resource_counter"
+			<object name="snResourceCounter_4" 
+				style="snCounter"
 				type="button" 
-				sprite="resource_ore_counter"
-				tooltip="Wood"
 			>
-				<action on="Load"><![CDATA[
-					addCrd (this.name, rb, 50, 0, Crd[Crd.last].coord[rb].x+Crd[Crd.last].coord[rb].width+5, Crd[Crd.last].coord[rb].y, Crd[Crd.last].coord[rb].width, Crd[Crd.last].coord[rb].height);
-					addCrd (this.name, lb, 50, 0);	
-					addCrd (this.name, lt, 50, 100);
-					addCrd (this.name, rt, 50, 100);
-				]]></action>
 			</object>
-
-			<object name="snResourceCounter_Population" 
-				style="resource_counter"
+			<object name="snResourceCounter_5" 
+				style="snCounter"
 				type="button" 
-				sprite="resource_population_counter"
-				tooltip="Population"
 			>
 				<action on="Load"><![CDATA[
-					addCrd (this.name, rb, 50, 0, Crd[Crd.last].coord[rb].x+Crd[Crd.last].coord[rb].width+5, Crd[Crd.last].coord[rb].y, Crd[Crd.last].coord[rb].width+9, Crd[Crd.last].coord[rb].height);
-					addCrd (this.name, lb, 50, 0);	
-					addCrd (this.name, lt, 50, 100);
-					addCrd (this.name, rt, 50, 100);
+					// Seek through this group of buttons (determining length from last object's name).
+					max = this.name.substring (this.name.lastIndexOf ("_")+1, this.name.length);
+					for (loop = 1; loop <= max; loop++)
+					{
+						// Get name of current object in group.
+						tempName = this.name.substring (0, this.name.lastIndexOf ("_")+1) + loop;
+						// Create coordinates for object (the actual coordinates are refreshed when the
+						// resource is updated, so at this point we don't sweat that they have the same
+						// coordinates).
+						addCrds (tempName, 50, 0, -200, 4,
+							snConst.MiniIcon.Width+54, snConst.MiniIcon.Height+5);
+					}
 				]]></action>
 			</object>
 		</object>

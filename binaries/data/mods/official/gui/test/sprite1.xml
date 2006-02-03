@@ -22,6 +22,7 @@
 		* Text formatting for lists (eg centering).
 		* DDS transparency (ie main menu buttons).
 		* Ask him about the checkbox and whether it's available for use (show first example in Options).
+		* Bug: If you nest an icon into a caption [icon=""], it's no longer possible to vertically center that control's text.
 	-->
 
 	<sprite name="bkTranslucent">
@@ -951,7 +952,52 @@
 				size="0 0 100% 100%"
 			/>
                 </sprite>
+				
+		<!--
+		==========================================
+		ICON SHEETS - STATISTICS
+		==========================================
+		-->
 
+		<sprite	name="ui_icon_sheet_statistic">
+			<image	texture="session/icons/ui_icon_sheet_statistic.dds"
+					cell_size="64 64"
+					size="0 0 100% 100%"
+			/>
+		</sprite>
+		
+		<!--
+		==========================================
+		ICON SHEETS - RESOURCES
+		==========================================
+		-->	
+		
+		<sprite	name="icon_sheet_resource">
+			<image	texture="session/icons/icon_sheet_resource.dds"
+					cell_size="64 64"
+					size="0 0 100% 100%"
+			/>
+		</sprite>			
+
+        <!--
+		==========================================
+		RESOURCE COUNTER
+		==========================================
+		-->
+		
+		<sprite	name="snCounter">
+			<image	texture="session/snCounterTile.dds"
+					real_texture_placement="0 0 21 21"
+					size="0% 0% 100%-15 100%" 
+			/>
+			<image 	texture="session/snCounterEdge.dds"
+					real_texture_placement="0 0 15 21"
+					size="100%-15 0% 100% 100%" 
+			/>
+		</sprite>
+		
+
+	
 
 
 
@@ -1225,47 +1271,6 @@ NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET 
 
                 <sprite name="session_panel_status_bg_bottom">
                         <image texture="session/ui_session_panel_status_bg_bottom.dds" texture_size="0 0 256 256" size="0 0 100% 100%" />
-                </sprite>
-
-                <!--
-                ==========================================
-                RESOURCE BAR
-                ==========================================
-                -->
-
-                <sprite name="resource_food_counter">
-                        <image texture="session/icons/ui_icon_sheet_statistic.dds" real_texture_placement="0 128 64 192" texture_size="0 0 100% 100%" size="0 0 20 20" />
-                        <image texture="session/ui_session_panel_resource_counter.dds" texture_size="0 0 64 64" size="21 0 100% 100%" />
-                </sprite>
-
-                <sprite name="resource_wood_counter">
-                        <image texture="session/icons/ui_icon_sheet_statistic.dds" real_texture_placement="64 128 128 192" texture_size="0 0 100% 100%" size="0 0 20 20" />
-                        <image texture="session/ui_session_panel_resource_counter.dds" texture_size="0 0 64 64" size="21 0 100% 100%" />
-                </sprite>
-
-                <sprite name="resource_stone_counter">
-                        <image texture="session/icons/ui_icon_sheet_statistic.dds" real_texture_placement="128 128 192 192" texture_size="0 0 100% 100%" size="0 0 20 20" />
-                        <image texture="session/ui_session_panel_resource_counter.dds" texture_size="0 0 64 64" size="21 0 100% 100%" />
-                </sprite>
-
-                <sprite name="resource_ore_counter">
-                        <image texture="session/icons/ui_icon_sheet_statistic.dds" real_texture_placement="192 128 256 192" texture_size="0 0 100% 100%" size="0 0 20 20" />
-                        <image texture="session/ui_session_panel_resource_counter.dds" texture_size="0 0 64 64" size="21 0 100% 100%" />
-                </sprite>
-
-                <sprite name="resource_population_counter">
-                        <image texture="session/icons/ui_icon_sheet_statistic.dds" real_texture_placement="256 128 320 192" texture_size="0 0 100% 100%" size="0 0 20 20" />
-                        <image texture="session/ui_session_panel_resource_counter_long.dds" texture_size="0 0 64 64" size="21 0 100% 100%" />
-                </sprite>
-
-                <!--
-                ==========================================
-                STATISTIC ICONS - SHEETS
-                ==========================================
-                -->
-
-                <sprite name="ui_icon_sheet_statistic">
-                        <image texture="session/icons/ui_icon_sheet_statistic.dds" cell_size="64 64" texture_size="0 0 100% 100%" size="0 0 100% 100%"/>
                 </sprite>
 
         <!--

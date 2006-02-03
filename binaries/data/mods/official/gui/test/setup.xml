@@ -24,6 +24,70 @@
 			sprite_bar_vertical_over="bkWhiteBorderBlack"
 			sprite_bar_vertical_pressed="bkWhiteBorderBlack"
 	/>
+	
+	<!--
+	==========================================
+	- SETUP - ICONS
+	==========================================
+	-->
+
+		<!--
+		==========================================
+		- SETUP - ICONS - GENERIC
+		==========================================
+		-->
+
+		<icon	name="iconProduct"
+			sprite="iconProduct"
+			size="16 16"
+		/>
+		
+		<icon 	name="iconBullet"
+			sprite="iconBullet"
+			size="8 8" 
+		/>
+
+		<icon 	name="iconInfinity"
+			sprite="iconInfinity"
+			size="16 16" 
+		/>
+		
+		<!--
+		==========================================
+		- SETUP - ICONS - RESOURCE
+		==========================================
+		-->
+
+		<icon	name="iconResourceFood"
+				sprite="icon_sheet_resource"
+				cell_id="0"
+				size="20 20" 
+		/>
+
+		<icon	name="iconResourceWood"
+				sprite="icon_sheet_resource"
+				cell_id="1"
+				size="20 20" 
+		/>
+
+		<icon	name="iconResourceStone"
+				sprite="icon_sheet_resource"
+				cell_id="2"
+				size="20 20" 
+		/>
+
+		<icon 	name="iconResourceOre"
+				sprite="icon_sheet_resource"
+				cell_id="3"
+				size="20 20" 
+		/>
+
+		<icon 	name="iconResourcePopulation"
+				sprite="icon_sheet_resource"
+				cell_id="4"
+				size="20 20" 
+		/>
+	
 
         <!--
 NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED 
@@ -91,74 +155,14 @@ NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET 
 			sprite_bar_vertical_over="atlas_button_lit"
 			sprite_bar_vertical_pressed="atlas_button_lit"
 	/>
-
-	<!--
-	==========================================
-	- SETUP - ICONS
-	==========================================
-	-->
-
-		<!--
-		==========================================
-		- SETUP - ICONS - GENERIC
-		==========================================
-		-->
-
-		<icon	name="iconProduct"
-			sprite="iconProduct"
-			size="16 16"
-		/>
-		
-		<icon 	name="iconBullet"
-			sprite="iconBullet"
-			size="8 8" 
-		/>
-
-		<icon 	name="iconInfinity"
-			sprite="iconInfinity"
-			size="16 16" 
-		/>
+	
+	
 
         <!--
 NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED 
 NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED 
 	-->
 
-		<!--
-		==========================================
-		- SETUP - ICONS - RESOURCE
-		==========================================
-		-->
-
-		<icon	name="icon_resource_food"
-			sprite="ui_icon_sheet_statistic"
-			cell_id="16"
-			size="20 20" 
-		/>
-
-		<icon	name="icon_resource_wood"
-			sprite="ui_icon_sheet_statistic"
-			cell_id="17"
-			size="20 20" 
-		/>
-
-		<icon	name="icon_resource_stone"
-			sprite="ui_icon_sheet_statistic"
-			cell_id="18"
-			size="20 20" 
-		/>
-
-		<icon 	name="icon_resource_ore"
-			sprite="ui_icon_sheet_statistic"
-			cell_id="19"
-			size="20 20" 
-		/>
-
-		<icon 	name="icon_resource_population"
-			sprite="ui_icon_sheet_statistic"
-			cell_id="20"
-			size="20 20" 
-		/>
 
 		<!--
 		==========================================

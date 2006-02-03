@@ -484,6 +484,16 @@
 			tooltip_style="snToolTip"
 			tooltip="(TBA)"
 		/>
+		
+		<style	name="snCounter"
+				sprite="snCounter"
+				text_align="left"
+				text_valign="center"
+				font="tahoma14"
+				textcolor="white"
+				tooltip_style="snToolTip"
+				ghost="false"
+		/>		
 
         <!--
 NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED 
@@ -495,15 +505,6 @@ NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET 
 	- STYLE - UNIQUE - SESSION
 	==========================================
 	-->
-
-	<style name="resource_counter"
-		text_valign="bottom"
-		text_align="right"
-		font="prospero16"
-		textcolor="white"
-		tooltip_style="snToolTip"
-		ghost="false"
-	/>
 
 	<style name="control_group"
 		size="0 0 100% 100%"

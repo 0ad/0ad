@@ -24,6 +24,10 @@ function initCoord()
 // Add a new size coordinate to the array.
 function addCrd (name, group, rx, ry, x, y, width, height, rx2, ry2)
 {
+	// If no group is specified, default to the first one.
+	if (!group)
+		group = rb;
+
 	// Create new coordinate if necessary (it doesn't exist, or we have a new name).
 	if (group == rb || !Crd[Crd.last])
 	{
@@ -54,6 +58,60 @@ function addCrd (name, group, rx, ry, x, y, width, height, rx2, ry2)
 	Crd[Crd.last].coord[group].width	= width;
 	Crd[Crd.last].coord[group].height	= height;
 }
+
+// ====================================================================
+
+function addCrds (name, rx, ry, x, y, width, height, rx2, ry2)
+{
+	// This is a shortcut function that saves you having to call addCrd() for each coordinate group. Just do this once for the whole set.
+	// It creates the first, then assumes all the remaining coordinates are flipped to the opposite screen edge.
+	// (True in 90% of cases.)
+	
+	addCrd (name, rb, rx, ry, x, y, width, height, rx2, ry2);
+	
+	// Determine flip relatives.
+	switch (rx)
+	{
+		case 0:
+			rx1 = 100;
+			rx2 = 100;			
+			rx3 = 0;			
+		break;
+		case 50:
+			rx1 = 50;
+			rx2 = 50;
+			rx3 = 50;
+		break;
+		case 100:
+			rx1 = 0;
+			rx2 = 0;			
+			rx3 = 100;		
+		break;
+	}
+	switch (ry)
+	{
+		case 0:
+			ry1 = 0;
+			ry2 = 100;
+			ry3 = 100;
+		break;
+		case 50:
+			ry1 = 50;
+			ry2 = 50;
+			ry3 = 50;
+		break;		
+		case 100:
+			ry1 = 100;
+			ry2 = 0;
+			ry3 = 0;			
+		break;
+	}	
+	
+	// Define the rest of the coordinate set.
+	addCrd (name, lb, rx1, ry1);
+	addCrd (name, lt, rx2, ry2);
+	addCrd (name, rt, rx3, ry3);
+} 
 
 // ====================================================================
 
@@ -183,6 +241,47 @@ function setCrd (name, newCrd)
 		console.write ("Failed to setCrd() + " + name);
 		return -1;
 	}
+}
+
+// ====================================================================
+
+function setSkin (skinName)
+{
+//	(Unfortunately, this idea just isn't going to work until the GUI Engine allows us to set the value of a control's style (and therefore refresh its properties
+//	with those of the new style. As it stands, the style property is empty at runtime because styles are all set when the stuff is loaded. And since we're wrapping
+//	sprite info for skins in the styles, it won't be adequate to simply change the sprite properties. So commenting this out for now so we can adapt it later.)
+
+/*
+	// Sets the sprites of all registered controls with a skin (eg *<skinname>*SpriteName) to the specified skin name.
+	// Obviously such sprite names must exist, or it all will go horribly wrong.
+	
+	// Seek through all registered coordinates.
+	for (i = 0; i <= Crd.last; i++)
+	{
+		objectName = getGUIObjectByName (Crd[i].name);
+		
+		// We need to deliberately ignore the minimap object as it has no sprite (and checking for the existence of the property or type doesn't work).
+		if (objectName.name != "snMiniMapDisplay")
+		{
+			// Get first asterisk position.
+			startIndex = objectName.style.indexOf ("*", 1);
+			console.write (startIndex);
+			// If the coordinate begins with a "skin*" (and therefore qualifies for replacement),
+			if (startIndex != -1)
+			{
+				// Look for and return the ending asterisk.
+				endIndex = objectName.style.indexOf ("*", 5);
+				console.write (endIndex);				
+				if (endIndex != -1)
+				{
+					// Set new skin name for sprite.
+					objectName.style = "skin*" + skinName + "*" + objectName.style.substring (endIndex);
+				}
+			}
+			
+		}
+	}	
+*/
 }
 
 // ====================================================================
