@@ -501,7 +501,7 @@ public:
 			debug_warn("underflow");
 	}
 
-
+#include <vector>
 	class iterator
 	{
 	public:
@@ -512,25 +512,35 @@ public:
 		typedef T& reference;
 
 		iterator() : data(0), pos(0)
-		{}
+			{}
 		iterator(T* data_, size_t pos_) : data(data_), pos(pos_)
-		{}
+			{}
 		T& operator[](int idx) const
-		{ return data[(pos+idx) % n]; }
+			{ return data[(pos+idx) % n]; }
 		T& operator*() const
-		{ return data[pos % n]; }
+			{ return data[pos % n]; }
 		T* operator->() const
-		{ return &**this; }
+			{ return &**this; }
 		iterator& operator++()	// pre
-		{ ++pos; return (*this); }
+			{ ++pos; return (*this); }
 		iterator operator++(int)	// post
-		{ iterator tmp =  *this; ++*this; return tmp; }
+			{ iterator tmp =  *this; ++*this; return tmp; }
 		bool operator==(const iterator& rhs) const
-		{ return data == rhs.data && pos == rhs.pos; }
+			{ return data == rhs.data && pos == rhs.pos; }
 		bool operator!=(const iterator& rhs) const
-		{ return !(*this == rhs); }
+			{ return !(*this == rhs); }
 		bool operator<(const iterator& rhs) const
-		{ return (pos < rhs.pos); }
+			{ return (pos < rhs.pos); }
+		iterator& operator+=(difference_type ofs)
+			{ pos += ofs; return *this; }
+		iterator& operator-=(difference_type ofs)
+			{ return (*this += -ofs); }
+		iterator operator+(difference_type ofs) const
+			{ iterator tmp = *this; return (tmp += ofs); }
+		iterator operator-(difference_type ofs) const
+			{ iterator tmp = *this; return (tmp -= ofs); }
+		difference_type operator-(const iterator right) const
+			{ return (difference_type)(pos - right.pos); }
 
 	protected:
 		T* data;
@@ -567,6 +577,16 @@ public:
 			{ return !(*this == rhs); }
 		bool operator<(const const_iterator& rhs) const
 			{ return (pos < rhs.pos); }
+		iterator& operator+=(difference_type ofs)
+			{ pos += ofs; return *this; }
+		iterator& operator-=(difference_type ofs)
+			{ return (*this += -ofs); }
+		iterator operator+(difference_type ofs) const
+			{ iterator tmp = *this; return (tmp += ofs); }
+		iterator operator-(difference_type ofs) const
+			{ iterator tmp = *this; return (tmp -= ofs); }
+		difference_type operator-(const iterator right) const
+			{ return (difference_type)(pos - right.pos); }
 
 	protected:
 		const T* data;

@@ -92,11 +92,10 @@ public:
 	// Named constructor, to avoid overload overload.
 	static CStr Repeat(CStr String, size_t Reps);
 	
-	// CStr(8|W) construction from utf16strings, except on MSVC CStrW where
-	// CStrW === utf16string
-	#if !(MSC_VERSION && defined(_UNICODE))
-		CStr(utf16string String) : std::tstring(String.begin(), String.end()) {}
-	#endif
+	// CStr(8|W) construction from utf16strings.
+	// allowed on MSVC as of 2006-02-03 because utf16string is
+	// now distinct from CStrW.
+	CStr(utf16string String) : std::tstring(String.begin(), String.end()) {}
 
 	// Transparent CStrW/8 conversion. Non-ASCII characters are not
 	// handled correctly.

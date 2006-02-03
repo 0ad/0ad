@@ -23,8 +23,6 @@
 // to remain valid.
 //
 
-static uint block_epoch;
-
 class BlockMgr
 {
 	static const size_t MAX_BLOCKS = 32;

@@ -76,7 +76,8 @@ static void test_ringbuf()
 		}
 	}
 	TEST(buf.size() == deq.size());
-	TEST(equal(buf.begin(), buf.end(), deq.begin()));
+	RingBuf<int, N>::iterator begin = buf.begin(), end = buf.end();
+	TEST(equal(begin, end, deq.begin()));
 	}
 }
 
