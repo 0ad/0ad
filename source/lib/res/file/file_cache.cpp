@@ -314,7 +314,8 @@ public:
 	void free(u8* p, size_t size)
 #include "mmgr.h"
 	{
-		if(!pool_contains(&pool, p))
+		// make sure entire range is within pool.
+		if(!pool_contains(&pool, p) || !pool_contains(&pool, p+size-1))
 		{
 			debug_warn("invalid pointer");
 			return;
@@ -365,13 +366,36 @@ private:
 	// must be enough room to stash 2 FreePage instances in the freed page.
 	cassert(BUF_ALIGN >= 2*sizeof(FreePage));
 
+	// check if there is a free allocation before/after <p>.
+	// return 0 if not, otherwise a pointer to its FreePage header/footer.
+	// if ofs = 0, check before; otherwise, it gives the size of the
+	// current allocation, and we check behind that.
+	// notes:
+	// - p and ofs are trusted: [p, p+ofs) lies within the pool.
+	// - correctly deals with p lying at start/end of pool.
 	FreePage* freed_page_at(u8* p, size_t ofs)
 	{
+		// checking the footer of the memory before p.
 		if(!ofs)
+		{
+			// .. but p is at front of pool - bail.
+			if(p == pool.da.base)
+				return 0;
 			p -= sizeof(FreePage);
+		}
+		// checking header of memory after p+ofs.
 		else
+		{
 			p += ofs;
+			// .. but it's at end of the currently committed region - bail.
+			if(p >= pool.da.base+pool.da.cur_size)
+				return 0;
+		}
 
+		// check if there is a valid FreePage header/footer at p.
+		// we use magic values to differentiate the header from user data
+		// (this isn't 100% reliable, but we can't insert extra boundary
+		// tags because the memory must remain aligned).
 		FreePage* page = (FreePage*)p;
 		if(page->magic1 != MAGIC1 || page->magic2 != MAGIC2)
 			return 0;
@@ -379,6 +403,9 @@ private:
 		return page;
 	}
 
+	// check if p's neighbors are free; if so, merges them all into
+	// one big region and updates freelists accordingly.
+	// p and size_pa are trusted: [p, p+size_pa) lies within the pool.
 	void coalesce(u8*& p, size_t& size_pa)
 	{
 		FreePage* prev = freed_page_at(p, 0);
