@@ -37,7 +37,11 @@ DECLARE_HANDLE(HDC);
 DECLARE_HANDLE(HGLRC);
 #endif
 
+// VC6 doesn't define wchar_t as built-in type
+#ifndef _WCHAR_T_DEFINED
 typedef unsigned short wchar_t;	// for glu.h
+#define _WCHAR_T_DEFINED
+#endif
 
 WINGDIAPI BOOL  WINAPI wglCopyContext(HGLRC, HGLRC, UINT);
 WINGDIAPI HGLRC WINAPI wglCreateContext(HDC);
