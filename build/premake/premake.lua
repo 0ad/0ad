@@ -222,6 +222,11 @@ function setuppackage_engine (projectname)
 		-- required to use WinMain() on Windows, otherwise will default to main()
 		tinsert(package.buildflags, { "no-main" })
 
+		-- use native wchar_t type (not typedef to unsigned short)
+		package.buildoptions = {
+			"/Zc:wchar_t",
+		}
+
 		package.pchHeader = "precompiled.h"
 		package.pchSource = "precompiled.cpp"
 
