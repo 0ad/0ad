@@ -432,18 +432,24 @@ struct BitBuf
 template<class T, size_t n> class RingBuf
 {
 	size_t size_;	// # of entries in buffer
-	size_t head;	// index of first item
-	size_t tail;	// index of last  item
+	size_t head;	// index of oldest item
+	size_t tail;	// index of newest item
 	T data[n];
 
 public:
-	RingBuf() { clear(); }
-	void clear() { size_ = 0; head = 1; tail = 0; }
+	RingBuf() : data() { clear(); }
+	void clear() { size_ = 0; head = 0; tail = n-1; }
 
 	size_t size() { return size_; }
 	bool empty() { return size_ == 0; }
 
 	const T& operator[](int ofs) const
+	{
+		debug_assert(!empty());
+		size_t idx = (size_t)(head + ofs);
+		return data[idx % n];
+	}
+	T& operator[](int ofs)
 	{
 		debug_assert(!empty());
 		size_t idx = (size_t)(head + ofs);
@@ -486,12 +492,13 @@ public:
 
 	void pop_front()
 	{
-		if(size_ > 0)
+		if(size_ != 0)
+		{
 			size_--;
+			head = (head + 1) % n;
+		}
 		else
 			debug_warn("underflow");
-
-		head = (head + 1) % n;
 	}
 
 
@@ -569,19 +576,19 @@ public:
 
 	iterator begin()
 	{
-		return iterator(data, (size_ < n)? 1 : head);
+		return iterator(data, (size_ < n)? 0 : head);
 	}
 	const_iterator begin() const
 	{
-		return const_iterator(data, (size_ < n)? 1 : head);
+		return const_iterator(data, (size_ < n)? 0 : head);
 	}
 	iterator end()
 	{
-		return iterator(data, (size_ < n)? size_+1 : head+n);
+		return iterator(data, (size_ < n)? size_ : head+n);
 	}
 	const_iterator end() const
 	{
-		return const_iterator(data, (size_ < n)? size_+1 : head+n);
+		return const_iterator(data, (size_ < n)? size_ : head+n);
 	}
 };
 

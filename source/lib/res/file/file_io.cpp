@@ -263,9 +263,9 @@ class IOManager
 		void reset()
 		{
 			memset(&io, 0, sizeof(io));
-			temp_buf = 0;
-			memset(&block_id, 0, sizeof(block_id));
 			cached_block = 0;
+			memset(&block_id, 0, sizeof(block_id));
+			temp_buf = 0;
 			start_time = 0.0;	// required for stats
 		}
 	};

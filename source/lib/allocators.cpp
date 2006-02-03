@@ -19,6 +19,7 @@
 
 #include "posix.h"
 #include "sysdep/cpu.h"	// CAS
+#include "byte_order.h"
 
 #include "allocators.h"
 
@@ -90,16 +91,23 @@ void single_free(void* storage, volatile uintptr_t* in_use_flag, void* p)
 // dynamic (expandable) array
 //-----------------------------------------------------------------------------
 
-static const size_t page_size = sysconf(_SC_PAGE_SIZE);
+// helper routine that makes sure page_size has been initialized by the
+// time it is needed (otherwise, we are open to NLSO ctor order issues).
+// pool_create is therefore now safe to call before main().
+static size_t get_page_size()
+{
+	static const size_t page_size = sysconf(_SC_PAGE_SIZE);
+	return page_size;
+}
 
 static bool is_page_multiple(uintptr_t x)
 {
-	return (x % page_size) == 0;
+	return (x % get_page_size()) == 0;
 }
 
 static size_t round_up_to_page(size_t size)
 {
-	return round_up(size, page_size);
+	return round_up(size, get_page_size());
 }
 
 // indicates that this DynArray must not be resized or freed
@@ -704,7 +712,7 @@ static void test_da()
 	TEST(da_free(&da) == 0);
 
 	// test wrapping existing mem blocks for use with da_read
-	const u8 data[4] = { 0x12, 0x34, 0x56, 0x78 };
+	u8 data[4] = { 0x12, 0x34, 0x56, 0x78 };
 	TEST(da_wrap_fixed(&da, data, sizeof(data)) == 0);
 	u8 buf[4];
 	TEST(da_read(&da, buf, 4) == 0);	// success

@@ -33,8 +33,9 @@
 # include "lib/sysdep/ia32.h"
 #endif
 
-#define SELF_TEST_ENABLED 0	// raises an an annoying exception
-#include "self_test.h"
+// raises an an annoying exception, so disable unless needed
+#undef SELF_TEST_ENABLED
+#define SELF_TEST_ENABLED 0
 
 
 #if MSC_VERSION

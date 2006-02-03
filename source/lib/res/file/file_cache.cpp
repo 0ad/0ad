@@ -23,6 +23,8 @@
 // to remain valid.
 //
 
+static uint block_epoch;
+
 class BlockMgr
 {
 	static const size_t MAX_BLOCKS = 32;
@@ -35,25 +37,33 @@ class BlockMgr
 	struct Block
 	{
 		BlockId id;
+		// initialized in BlockMgr ctor and remains valid
 		void* mem;
 		BlockStatus status;
 		int refs;
 
-		Block() {}	// for RingBuf
-		Block(BlockId id_, void* mem_)
-			: id(id_), mem(mem_), status(BS_PENDING), refs(0) {}
+		Block()
+			: id(block_cache_make_id(0, 0)), status(BS_INVALID), refs(0) {}
 	};
-	RingBuf<Block, MAX_BLOCKS> blocks;
-	typedef RingBuf<Block, MAX_BLOCKS>::iterator BlockIt;
+	// access pattern is usually ring buffer, but in rare cases we
+	// need to skip over locked items, even though they are the oldest.
+	Block blocks[MAX_BLOCKS];
+	uint oldest_block;
 
 	// use Pool to allocate mem for all blocks because it guarantees
 	// page alignment (required for IO) and obviates manually aligning.
 	Pool pool;
 
 public:
-	void init()
+	BlockMgr()
+		: blocks(), oldest_block(0)
 	{
 		(void)pool_create(&pool, MAX_BLOCKS*FILE_BLOCK_SIZE, FILE_BLOCK_SIZE);
+		for(Block* b = blocks; b < blocks+MAX_BLOCKS; b++)
+		{
+			b->mem = pool_alloc(&pool, 0);
+			debug_assert(b->mem);	// shouldn't ever fail
+		}
 	}
 
 	void shutdown()
@@ -63,38 +73,77 @@ public:
 
 	void* alloc(BlockId id)
 	{
-		if(blocks.size() == MAX_BLOCKS)
+		Block* b;
+		for(b = blocks; b < blocks+MAX_BLOCKS; b++)
 		{
-			Block& b = blocks.front();
-			// if this block is still locked, big trouble..
-			// (someone forgot to free it and we can't reuse it)
-			debug_assert(b.status != BS_PENDING && b.refs == 0);
-			pool_free(&pool, b.mem);
-			blocks.pop_front();
+			if(block_eq(b->id, id))
+				debug_warn("allocating block that is already in list");
 		}
-		void* mem = pool_alloc(&pool, FILE_BLOCK_SIZE);	// can't fail
-		blocks.push_back(Block(id, mem));
-		return mem;
+
+		for(size_t i = 0; i < MAX_BLOCKS; i++)
+		{
+			b = &blocks[oldest_block];
+			oldest_block = (oldest_block+1)%MAX_BLOCKS;
+
+			// normal case: oldest item can be reused
+			if(b->status != BS_PENDING && b->refs == 0)
+				goto have_block;
+
+			// wacky special case: oldest item is currently locked.
+			// skip it and reuse the next.
+			//
+			// to see when this can happen, consider IO depth = 4.
+			// let the Block at blocks[oldest_block] contain data that
+			// an IO wants. the 2nd and 3rd blocks are not in cache and
+			// happen to be taken from near the end of blocks[].
+			// attempting to issue block #4 fails because its buffer would
+			// want the first slot (which is locked since the its IO
+			// is still pending).
+			if(b->status == BS_COMPLETE && b->refs > 0)
+				continue;
+
+			debug_warn("status and/or refs have unexpected values");
+		}
+
+		debug_warn("all blocks are locked");
+		return 0;
+have_block:
+
+		b->id = id;
+		b->status = BS_PENDING;
+		return b->mem;
 	}
 
 	void mark_completed(BlockId id)
 	{
-		for(BlockIt it = blocks.begin(); it != blocks.end(); ++it)
+		for(Block* b = blocks; b < blocks+MAX_BLOCKS; b++)
 		{
-			if(block_eq(it->id, id))
-				it->status = BS_COMPLETE;
+			if(block_eq(b->id, id))
+			{
+				debug_assert(b->status == BS_PENDING);
+				b->status = BS_COMPLETE;
+				return;
+			}
 		}
+		debug_warn("mark_completed: block not found, but ought still to be in cache");
 	}
 
 	void* find(BlockId id)
 	{
 		// linear search is ok, since we only keep a few blocks.
-		for(BlockIt it = blocks.begin(); it != blocks.end(); ++it)
+		for(Block* b = blocks; b < blocks+MAX_BLOCKS; b++)
 		{
-			if(block_eq(it->id, id) && it->status == BS_COMPLETE)
+			if(block_eq(b->id, id))
 			{
-				it->refs++;
-				return it->mem;
+				 if(b->status == BS_COMPLETE)
+				 {
+					 debug_assert(b->refs >= 0);
+					 b->refs++;
+					 return b->mem;
+				 }
+
+				 debug_warn("block referenced while still in progress");
+				 return 0;
 			}
 		}
 		return 0;	// not found
@@ -102,28 +151,27 @@ public:
 
 	void release(BlockId id)
 	{
-		for(BlockIt it = blocks.begin(); it != blocks.end(); ++it)
+		for(Block* b = blocks; b < blocks+MAX_BLOCKS; b++)
 		{
-			if(block_eq(it->id, id))
+			if(block_eq(b->id, id))
 			{
-				it->refs--;
-				debug_assert(it->refs >= 0);
+				b->refs--;
+				debug_assert(b->refs >= 0);
 				return;
 			}
 		}
 		debug_warn("release: block not found, but ought still to be in cache");
 	}
 
-
 	void invalidate(const char* atom_fn)
 	{
-		for(BlockIt it = blocks.begin(); it != blocks.end(); ++it)
+		for(Block* b = blocks; b < blocks+MAX_BLOCKS; b++)
 		{
-			if(it->id.atom_fn == atom_fn)
+			if(b->id.atom_fn == atom_fn)
 			{
-				if(it->refs)
+				if(b->refs)
 					debug_warn("invalidating block that is currently in-use");
-				it->status = BS_INVALID;
+				b->status = BS_INVALID;
 			}
 		}
 	}
@@ -214,15 +262,14 @@ mechanism:
 - coalesce: boundary tags in freed memory with magic value
 - freelist: 2**n segregated doubly-linked, address-ordered
 */
+static const size_t MAX_CACHE_SIZE = 64*MiB;
 class CacheAllocator
 {
-	static const size_t MAX_CACHE_SIZE = 64*MiB;
-
 public:
-	void init()
+	CacheAllocator()
+		: bitmap(0), freelists()
 	{
-		// note: do not call from ctor; pool_create currently (2006-20-01)
-		// breaks if called at NLSO init time.
+		// (safe to call this from ctor as of 2006-02-02)
 		(void)pool_create(&pool, MAX_CACHE_SIZE, 0);
 	}
 
@@ -286,6 +333,15 @@ public:
 
 		coalesce(p, size_pa);
 		freelist_add(p, size_pa);
+	}
+
+	// free all allocations and reset state to how it was just after
+	// (the first and only) init() call.
+	void reset()
+	{
+		pool_free_all(&pool);
+		bitmap = 0;
+		memset(freelists, 0, sizeof(freelists));
 	}
 
 private:
@@ -414,7 +470,7 @@ private:
 				freelist_remove(cur);
 
 				if(remnant_pa)
-					freelist_add(p+remnant_pa, remnant_pa);
+					freelist_add(p+size_pa, remnant_pa);
 
 				return p;
 			}
@@ -433,7 +489,7 @@ private:
 		{
 #define LS1(x) (x & -(int)x)	// value of LSB 1-bit
 			const uint class_size = LS1(classes_left);
-			classes_left &= ~BIT(class_size);	// remove from classes_left
+			classes_left &= ~class_size;	// remove from classes_left
 			const uint size_class = size_class_of(class_size);
 			void* p = alloc_from_class(size_class, size_pa);
 			if(p)
@@ -767,8 +823,6 @@ LibError file_cache_invalidate(const char* P_fn)
 
 void file_cache_init()
 {
-	block_mgr.init();
-	cache_allocator.init();
 }
 
 
@@ -778,3 +832,61 @@ void file_cache_shutdown()
 	cache_allocator.shutdown();
 	block_mgr.shutdown();
 }
+
+
+//-----------------------------------------------------------------------------
+// built-in self test
+//-----------------------------------------------------------------------------
+
+#if SELF_TEST_ENABLED
+namespace test {
+
+static void test_cache_allocator()
+{
+	// allocated address -> its size
+	typedef std::map<void*, size_t> AllocMap;
+	AllocMap allocations;
+
+	// put allocator through its paces by allocating several times
+	// its capacity (this ensures memory is reused)
+	size_t total_size_used = 0;
+	while(total_size_used < 4*MAX_CACHE_SIZE)
+	{
+		size_t size = rand(1, 10*MiB);
+		total_size_used += size;
+		void* p;
+		// until successful alloc:
+		for(;;)
+		{
+			p = cache_allocator.alloc(size);
+			if(p)
+				break;
+			// out of room - remove a previous allocation
+			// .. choose one at random
+			size_t chosen_idx = (size_t)rand(0, (uint)allocations.size());
+			AllocMap::iterator it = allocations.begin();
+			for(; chosen_idx != 0; chosen_idx--)
+				++it;
+#include "nommgr.h"
+			cache_allocator.free((u8*)it->first, it->second);
+#include "mmgr.h"
+			allocations.erase(it);
+		}
+
+		// must not already have been allocated
+		TEST(allocations.find(p) == allocations.end());
+		allocations[p] = size;
+	}
+
+	cache_allocator.reset();
+}
+
+static void self_test()
+{
+	test_cache_allocator();
+}
+
+SELF_TEST_RUN;
+
+}	// namespace test
+#endif	// #if SELF_TEST_ENABLED

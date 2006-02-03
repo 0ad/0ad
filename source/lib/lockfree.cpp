@@ -27,8 +27,9 @@
 #include "lockfree.h"
 #include "timer.h"
 
-#define SELF_TEST_ENABLED 0	// known to fail on P4 due to mem reordering and lack of membars.
-#include "self_test.h"
+// known to fail on P4 due to mem reordering and lack of membars.
+#undef SELF_TEST_ENABLED
+#define SELF_TEST_ENABLED 0
 
 /*
 liberties taken:

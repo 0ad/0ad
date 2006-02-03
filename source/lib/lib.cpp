@@ -512,28 +512,83 @@ int match_wildcardw(const wchar_t* s, const wchar_t* w)
 }
 
 
-//////////////////////////////////////////////////////////////////////////////
-//
+// return random integer in [min, max).
+// avoids several common pitfalls; see discussion at
+// http://www.azillionmonkeys.com/qed/random.html
+uint rand(uint min, uint max)
+{
+	const uint XRAND_MAX = (RAND_MAX+1)*(RAND_MAX+1) - 1;
+
+	const uint range = (max-min);
+	// huge interval or min > max
+	if(range > XRAND_MAX)
+	{
+		WARN_ERR(ERR_INVALID_PARAM);
+		return 0;
+	}
+
+	const uint inv_range = XRAND_MAX / range;
+
+	// generate random number in [0, range)
+	uint x;
+	do
+		x = rand()*(RAND_MAX+1) + rand();
+	while(x >= range * inv_range);
+	x /= inv_range;
+
+	x += min;
+	debug_assert(x < max);
+	return x;
+}
+
+
+//-----------------------------------------------------------------------------
 // built-in self test
-//
-//////////////////////////////////////////////////////////////////////////////
+//-----------------------------------------------------------------------------
 
 #if SELF_TEST_ENABLED
 namespace test {
 
 static void test_log2()
 {
-	TEST(ilog2(0) == -1);
-	TEST(ilog2(3) == -1);
-	TEST(ilog2(0xffffffff) == -1);
-	TEST(ilog2(1) == 0);
-	TEST(ilog2(256) == 8);
-	TEST(ilog2(0x80000000) == 31);
+	TEST(ilog2(0u) == -1);
+	TEST(ilog2(3u) == -1);
+	TEST(ilog2(0xffffffffu) == -1);
+	TEST(ilog2(1u) == 0);
+	TEST(ilog2(256u) == 8);
+	TEST(ilog2(0x80000000u) == 31);
+}
+
+static void test_rand()
+{
+	// complain if huge interval or min > max
+	TEST(rand(1, 0) == 0);
+	TEST(rand(2, ~0u) == 0);
+
+	// returned number must be in [min, max)
+	for(int i = 0; i < 100; i++)
+	{
+		uint min = rand(), max = min+rand();
+		uint x = rand(min, max);
+		TEST(min <= x && x < max);
+	}
+
+	// make sure both possible values are hit
+	uint ones = 0, twos = 0;
+	for(int i = 0; i < 100; i++)
+	{
+		uint x = rand(1, 3);
+		// paranoia: don't use array (x might not be 1 or 2 - checked below)
+		if(x == 1) ones++; if(x == 2) twos++;
+	}
+	TEST(ones+twos == 100);
+	TEST(ones > 10 && twos > 10);
 }
 
 static void self_test()
 {
 	test_log2();
+	test_rand();
 }
 
 SELF_TEST_RUN;
