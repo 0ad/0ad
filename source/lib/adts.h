@@ -3,6 +3,7 @@
 
 #include "lib.h"
 
+#include <cfloat>
 #include <cassert>
 
 #include <list>

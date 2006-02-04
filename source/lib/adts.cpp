@@ -1,7 +1,7 @@
 #include "precompiled.h"
 
 #include "adts.h"
-
+#include <deque>
 
 //-----------------------------------------------------------------------------
 // built-in self test

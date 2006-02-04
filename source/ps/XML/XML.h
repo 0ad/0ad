@@ -76,20 +76,20 @@ class CVFSInputSource: public InputSource
 	FileIOBuf m_pBuffer;
 	size_t m_BufferSize;
 	
+	CVFSInputSource(const CVFSInputSource &);
+	CVFSInputSource &operator = (const CVFSInputSource &);
+	
 public:
 	CVFSInputSource():
 		m_pBuffer(NULL),
 		m_BufferSize(0)
 	{}
 	
-	~CVFSInputSource();
+	virtual ~CVFSInputSource();
 	
 	// Open a VFS path for XML parsing
 	// returns 0 if successful, -1 on failure
 	int OpenFile(const char *path, uint flags);
-
-	// Allow the use of externally-loaded files
-	void OpenBuffer(const char* path, const void* buffer, const size_t buffersize);
 
 	virtual BinInputStream *makeStream() const;
 };

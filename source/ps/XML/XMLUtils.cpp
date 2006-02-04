@@ -65,17 +65,6 @@ int CVFSInputSource::OpenFile(const char *path, uint flags = 0)
 	return 0;
 }
 
-void CVFSInputSource::OpenBuffer(const char* path, const void* buffer, const size_t buffersize)
-{
-debug_warn("who guarantees that buffer isn't already freed?");
-	m_pBuffer = (FileIOBuf)buffer;
-	m_BufferSize = buffersize;
-
-	XMLCh *sysId=XMLString::transcode(path);
-	setSystemId(sysId);
-	XMLString::release(&sysId);
-}
-
 CVFSInputSource::~CVFSInputSource()
 {
 	// our buffer was vfs_load-ed; free it now
