@@ -141,6 +141,11 @@ void stats_buf_free()
 	extant_bufs_cur--;
 }
 
+void stats_buf_ref()
+{
+	extant_bufs_cur++;
+}
+
 
 //
 // file_io

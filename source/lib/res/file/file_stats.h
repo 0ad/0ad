@@ -25,6 +25,7 @@ extern void stats_close();
 // file_buf
 extern void stats_buf_alloc(size_t user_size, size_t padded_size);
 extern void stats_buf_free();
+extern void stats_buf_ref();
 
 // file_io
 extern void stats_user_io(size_t user_size);
@@ -51,6 +52,7 @@ extern void stats_dump();
 #define stats_close()
 #define stats_buf_alloc(user_size, padded_size)
 #define stats_buf_free()
+#define stats_buf_ref()
 #define stats_user_io(user_size)
 #define stats_io_start(fi, fo, actual_size, disk_pos, start_time_storage)
 #define stats_io_finish(fi, fo, start_time_storage)

@@ -548,12 +548,14 @@ class ExtantBufMgr
 		// also useful for tracking down buf 'leaks' (i.e. someone
 		// forgetting to call file_buf_free).
 		const char* atom_fn;
+		//
+		uint refs;
 		// used to check if this buffer was freed immediately
 		// (before allocating the next). that is the desired behavior
 		// because it avoids fragmentation and leaks.
 		uint epoch;
 		ExtantBuf(FileIOBuf buf_, size_t size_, const char* atom_fn_, uint epoch_)
-			: buf(buf_), size(size_), atom_fn(atom_fn_), epoch(epoch_) {}
+			: buf(buf_), size(size_), atom_fn(atom_fn_), refs(1), epoch(epoch_) {}
 	};
 	std::vector<ExtantBuf> extant_bufs;
 
@@ -573,6 +575,8 @@ public:
 			ExtantBuf& eb = extant_bufs[i];
 			if(!eb.buf)
 			{
+				debug_assert(eb.refs == 0);
+				eb.refs    = 1;
 				eb.buf     = buf;
 				eb.size    = size;
 				eb.atom_fn = atom_fn;
@@ -582,6 +586,21 @@ public:
 		}
 		// add another entry
 		extant_bufs.push_back(ExtantBuf(buf, size, atom_fn, this_epoch));
+	}
+
+	void add_ref(FileIOBuf buf, size_t size, const char* atom_fn)
+	{
+		for(size_t i = 0; i < extant_bufs.size(); i++)
+		{
+			ExtantBuf& eb = extant_bufs[i];
+			if(matches(eb, buf))
+			{
+				eb.refs++;
+				return;
+			}
+		}
+
+		add(buf, size, atom_fn, 0);
 	}
 
 	const char* get_owner_filename(FileIOBuf buf)
@@ -606,9 +625,14 @@ public:
 			{
 				*size = eb.size;
 				*atom_fn = eb.atom_fn;
-				eb.buf     = 0;
-				eb.size    = 0;
-				eb.atom_fn = 0;
+
+				if(--eb.refs == 0)
+				{
+					// mark as reusable
+					eb.buf     = 0;
+					eb.size    = 0;
+					eb.atom_fn = 0;
+				}
 
 				if(eb.epoch != 0 && eb.epoch != epoch-1)
 					debug_warn("buf not released immediately");
@@ -769,6 +793,8 @@ LibError file_cache_add(FileIOBuf buf, size_t size, const char* atom_fn)
 }
 
 
+// called by trace simulator to retrieve buffer address, given atom_fn.
+// must not change any cache state (e.g. notify stats or add ref).
 FileIOBuf file_cache_find(const char* atom_fn, size_t* size)
 {
 	return file_cache.retrieve(atom_fn, size, false);
@@ -781,7 +807,12 @@ FileIOBuf file_cache_retrieve(const char* atom_fn, size_t* psize)
 	// (why would someone issue a second IO for the entire file while
 	// still referencing the previous instance?)
 
-	FileIOBuf buf = file_cache.retrieve(atom_fn, psize);
+	FileIOBuf buf = file_cache_find(atom_fn, psize);
+	if(buf)
+	{
+		extant_bufs.add_ref(buf, *psize, atom_fn);
+		stats_buf_ref();
+	}
 
 	CacheRet cr = buf? CR_HIT : CR_MISS;
 	stats_cache(cr, *psize, atom_fn);
