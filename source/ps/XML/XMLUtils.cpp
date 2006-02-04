@@ -49,9 +49,9 @@ XMLCh *XMLTranscode(const char *str)
 	return XMLString::transcode(str);
 }
 
-int CVFSInputSource::OpenFile(const char *path)
+int CVFSInputSource::OpenFile(const char *path, uint flags = 0)
 {
-	LibError ret = vfs_load(path, m_pBuffer, m_BufferSize);
+	LibError ret = vfs_load(path, m_pBuffer, m_BufferSize, flags);
 	if(ret != ERR_OK)
 	{
 		LOG(ERROR, LOG_CATEGORY, "CVFSInputSource: file %s couldn't be loaded (vfs_load: %d)", path, ret);
@@ -80,6 +80,7 @@ CVFSInputSource::~CVFSInputSource()
 {
 	// our buffer was vfs_load-ed; free it now
 	(void)file_buf_free(m_pBuffer);
+	m_pBuffer = 0;
 }
 
 BinInputStream *CVFSInputSource::makeStream() const

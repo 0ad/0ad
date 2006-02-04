@@ -247,8 +247,10 @@ PSRETURN CXeromyces::Load(const char* filename)
 	}
 
 	// Open the .xml file
+	// note: FILE_LONG_LIVED is necessary because we load XML, load DTD,
+	// and only then free XML.
 	CVFSInputSource source;
-	if (source.OpenFile(filename) < 0)
+	if (source.OpenFile(filename, FILE_LONG_LIVED) < 0)
 	{
 		LOG(ERROR, LOG_CATEGORY, "CXeromyces: Failed to open XML file %s", filename);
 		return PSRETURN_Xeromyces_XMLOpenFailed;

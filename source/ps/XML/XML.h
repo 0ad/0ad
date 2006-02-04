@@ -86,7 +86,7 @@ public:
 	
 	// Open a VFS path for XML parsing
 	// returns 0 if successful, -1 on failure
-	int OpenFile(const char *path);
+	int OpenFile(const char *path, uint flags);
 
 	// Allow the use of externally-loaded files
 	void OpenBuffer(const char* path, const void* buffer, const size_t buffersize);
