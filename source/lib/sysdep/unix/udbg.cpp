@@ -392,10 +392,12 @@ LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file,
 			h = strrchr (ctx.filename, '/');
 			if (h != NULL)
 				ctx.filename = h + 1;
-		}
 	
-		strncpy(file, ctx.filename, DBG_FILE_LEN);
-		file[DBG_FILE_LEN]=0;
+			strncpy(file, ctx.filename, DBG_FILE_LEN);
+			file[DBG_FILE_LEN]=0;
+		}
+		else
+			strcpy(file, "none");
 	}
 	
 	if (line)

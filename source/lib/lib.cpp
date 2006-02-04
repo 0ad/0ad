@@ -515,10 +515,26 @@ int match_wildcardw(const wchar_t* s, const wchar_t* w)
 // return random integer in [min, max).
 // avoids several common pitfalls; see discussion at
 // http://www.azillionmonkeys.com/qed/random.html
+
+// Silly heuristic: glibc has RAND_MAX of 2^31 - 1 while MS CRT has 2^15-1 or something...
+#if RAND_MAX < 65536
+static const uint XRAND_MAX = (RAND_MAX+1)*(RAND_MAX+1) - 1;
+
+uint fullrand()
+{
+	return rand()*(RAND_MAX+1) + rand();
+}
+#else
+static const uint XRAND_MAX = RAND_MAX;
+
+uint fullrand()
+{
+	return rand();
+}
+#endif
+
 uint rand(uint min, uint max)
 {
-	const uint XRAND_MAX = (RAND_MAX+1)*(RAND_MAX+1) - 1;
-
 	const uint range = (max-min);
 	// huge interval or min > max
 	if(range > XRAND_MAX)
@@ -532,7 +548,7 @@ uint rand(uint min, uint max)
 	// generate random number in [0, range)
 	uint x;
 	do
-		x = rand()*(RAND_MAX+1) + rand();
+		x = fullrand();
 	while(x >= range * inv_range);
 	x /= inv_range;
 
