@@ -188,7 +188,6 @@ void TNSpline::RemoveNode(const int index)
 {
   if (NodeCount == 0 || index > NodeCount - 1 )
   {
-     Node.pop_back();
      return;
   }
   else
