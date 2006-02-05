@@ -122,7 +122,7 @@ CGameView::CGameView(CGame *pGame):
 	}
 	
 	Test_Data.m_TotalDuration = Test_Spline.MaxDistance;
-	Test_Data.m_TotalRotation = CVector3D( DEGTORAD(0.0f), DEGTORAD(-150.0f), DEGTORAD(0.0f) );
+	Test_Data.m_TotalRotation = CVector3D( 0.0f, DEGTORAD(-150.0f), 0.0f );
 	Test_Data.m_Growth = Test_Data.m_GrowthCount = 1.9f;
 	Test_Data.m_Switch = .5f;
 	Test_Data.m_Mode = EM_IN;
@@ -149,7 +149,55 @@ CGameView::CGameView(CGame *pGame):
 	m_TrackManager.AddTrack(Test_Track, "test");
 	m_TrackManager.QueueTrack("test", true);
 	*/
+	
+	//TEST TRACK 
+	CVector3D Test_NodePos[] = { CVector3D( 109.31228f, 93.302315f, -28.760098f ),	
+								CVector3D( 147.03696f, 87.134117f, 54.718628f ),
+								CVector3D( 174.245293f, 97.134117f, 116.449940f ),
+								CVector3D( 146.245293f, 107.134117f, 162.449940f ),
+								CVector3D( 117.245293f, 97.134117f, 134.449940f ),
+								CVector3D( 72.88226f, 87.134117f, 114.373001f ),
+								CVector3D( 50.39368f, 77.71053f, 99.925789f ) };
+	float Test_NodeTime = 0.85f;
 
+	CCinemaData Test_Data;
+	TNSpline Test_Spline;
+	CCinemaTrack Test_Track;
+	
+	//linear generation with variance factor
+	for (int i=0; i<ARRAY_SIZE(Test_NodePos); i++)
+	{
+		Test_Spline.AddNode( Test_NodePos[i], Test_NodeTime );
+	}
+	
+	Test_Data.m_TotalDuration = Test_Spline.MaxDistance;
+	Test_Data.m_TotalRotation = CVector3D( DEGTORAD(15.0f), DEGTORAD(-100.0f), 0.0f );
+	Test_Data.m_Growth = Test_Data.m_GrowthCount = 1.9f;
+	Test_Data.m_Switch = .5f;
+	Test_Data.m_Mode = EM_IN;
+	Test_Data.m_Style = ES_DEFAULT;
+	Test_Track.m_StartRotation = CVector3D( DEGTORAD(30), DEGTORAD(-45), 0.0f );
+
+	Test_Track.AddPath( Test_Data, Test_Spline );
+	
+	Test_Data.m_Style = ES_GROWTH;
+	Test_Track.AddPath( Test_Data, Test_Spline );
+	
+	Test_Data.m_Mode = EM_OUT;
+	Test_Data.m_Style = ES_EXPO;
+	Test_Track.AddPath( Test_Data, Test_Spline );
+	
+	Test_Data.m_Mode = EM_INOUT;
+	Test_Data.m_Style = ES_GROWTH;
+	Test_Track.AddPath( Test_Data, Test_Spline );
+
+	Test_Data.m_Mode = EM_IN;
+	Test_Data.m_Style = ES_SINE;
+	Test_Track.AddPath( Test_Data, Test_Spline );
+
+	m_TrackManager.AddTrack(Test_Track, "test");
+	
+	m_TestTrack.m_Paths.push_back(CCinemaPath());
 	ONCE( ScriptingInit(); );
 }
 
@@ -650,7 +698,7 @@ void CGameView::Update(float DeltaTime)
 	}
 	
 	//Temporary hack for cinematic interface
-	/*if ( hotkeys[HOTKEY_CAMERA_CINEMA_ADD] )
+	if ( hotkeys[HOTKEY_CAMERA_CINEMA_ADD] )
 	{
 		std::vector<CCinemaPath>::iterator it = m_TestTrack.m_Paths.begin();
 		if (it->GetNodeCount() == 0)
@@ -665,26 +713,13 @@ void CGameView::Update(float DeltaTime)
 
 	if ( hotkeys[HOTKEY_CAMERA_CINEMA_DELETE_ALL] )
 	{
-		for (int i=m_TestTrack.m_Paths.front().GetNodeCount() - 1; i > 0; i--)
+		for (int i=m_TestTrack.m_Paths.front().GetNodeCount() - 1; i >= 0; i--)
 		{
 			m_TestTrack.m_Paths.front().RemoveNode( i );
 		}
 	}
-	if ( hotkeys[HOTKEY_CAMERA_CINEMA_DRAW] )
-		m_DrawTestTrack = !m_DrawTestTrack;
-
-	if ( hotkeys[HOTKEY_CAMERA_CINEMA_WRITE] )
-	{
-		std::vector<CCinemaPath>::iterator it = m_TestTrack.m_Paths.begin();
-		it->m_Growth = 2.5f;
-		it->m_Mode = EM_IN;
-		it->m_Style = ES_DEFAULT;
-		it->m_Switch = 0.5f;
-		it->m_TotalDuration = it->GetDuration();
-		it->m_TotalRotation = m_ViewCamera.m_Orientation.GetRotation().m_V - m_TestTrack.m_StartRotation;
-
-		m_TrackManager.HACK_WriteTrack( m_TestTrack );
-	}*/
+	if ( hotkeys[HOTKEY_CAMERA_CINEMA_QUEUE] )
+		m_TrackManager.QueueTrack("test", false);
 	
 	// Smoothed zooming (move a certain percentage towards the desired zoom distance every frame)
 	// Note that scroll wheel zooming is event-based and handled in game_view_handler

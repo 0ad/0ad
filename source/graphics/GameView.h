@@ -50,8 +50,9 @@ class CGameView: public CJSObject<CGameView>
 	 * Exposed to JS as gameView.lockCullCamera
 	 */
 	bool m_LockCullCamera;
-
+	
 	CCinemaManager m_TrackManager;
+	CCinemaTrack m_TestTrack;
 	
 	////////////////////////////////////////
 	// Settings
