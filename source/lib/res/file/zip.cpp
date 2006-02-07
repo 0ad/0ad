@@ -334,24 +334,28 @@ LibError zip_populate_archive(Archive* a, File* f)
 {
 	LibError ret;
 
-	// check if it's even a Zip file.
-	// the VFS blindly opens files when mounting; it needs to open
-	// all archives, but doesn't know their extension (e.g. ".pk3").
+	// sanity check: file size must be > header size.
+	// (this speeds up determining if the file is a Zip file at all)
 	const size_t file_size = f->fc.size;
-	// if smaller than this, it's definitely bogus
 	if(file_size < LFH_SIZE+CDFH_SIZE+ECDR_SIZE)
-		WARN_RETURN(ERR_CORRUPTED);
+		goto completely_bogus;
+
+	{
 
 	// find "End of Central Dir Record" in file.
 	ECDR ecdr;
-	// early out: check expected case (ECDR at EOF; no file comment)
+	// .. early out: check expected case (ECDR at EOF; no file comment)
 	ret = za_find_ecdr_impl(f, ECDR_SIZE, &ecdr);
-	// second try: scan last 66000 bytes of file
+	// .. second try: scan last 66000 bytes of file
 	// (the Zip archive comment field - up to 64k - may follow ECDR).
 	// if the zip file is < 66000 bytes, scan the whole file.
 	if(ret < 0)
+	{
 		ret = za_find_ecdr_impl(f, 66000u, &ecdr);
-	CHECK_ERR(ret);
+		// still failed - not a Zip file
+		if(ret < 0)
+			goto completely_bogus;
+	}
 	const uint   cd_entries =   (uint)read_le16(&ecdr.cd_entries);
 	const off_t  cd_ofs     =  (off_t)read_le32(&ecdr.cd_ofs);
 	const size_t cd_size    = (size_t)read_le32(&ecdr.cd_size);
@@ -391,6 +395,14 @@ LibError zip_populate_archive(Archive* a, File* f)
 
 	return ret;
 
+	}
+
+	// this file is definitely not a valid Zip file.
+	// note: the VFS blindly opens files when mounting; it needs to open
+	// all archives, but doesn't know their extension (e.g. ".pk3").
+	// therefore, do not warn user.
+completely_bogus:
+	return ERR_UNKNOWN_FORMAT;
 }
 
 
