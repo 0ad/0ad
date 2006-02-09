@@ -313,7 +313,7 @@ typedef const u8* FileIOBuf;
 FileIOBuf* const FILE_BUF_TEMP = (FileIOBuf*)1;
 const FileIOBuf FILE_BUF_ALLOC = (FileIOBuf)2;
 
-extern FileIOBuf file_buf_alloc(size_t size, const char* atom_fn);
+extern FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, bool long_lived);
 extern LibError file_buf_free(FileIOBuf buf);
 
 

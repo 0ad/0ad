@@ -45,6 +45,8 @@ extern void trace_get(Trace* t);
 extern LibError trace_write_to_file(const char* trace_filename);
 extern LibError trace_read_from_file(const char* trace_filename, Trace* t);
 
-extern LibError build_optimized_archive(const char* trace_filename, const char* zip_filename);
+extern LibError vfs_opt_rebuild_main_archive(const char* P_dst_path);
+
+extern void vfs_opt_notify_loose_file(const char* atom_fn);
 
 #endif	// #ifndef VFS_OPTIMIZER_H__

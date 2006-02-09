@@ -315,8 +315,20 @@ u32 u64_hi(u64 x)
 
 u32 u64_lo(u64 x)
 {
-	return (u32)(x & 0xffffffff);
+	return (u32)(x & 0xFFFFFFFF);
 }
+
+u16 u32_hi(u32 x)
+{
+	return (u16)(x >> 16);
+}
+
+u16 u32_lo(u32 x)
+{
+	return (u16)(x & 0xFFFF);
+}
+
+
 
 u64 u64_from_u32(u32 hi, u32 lo)
 {

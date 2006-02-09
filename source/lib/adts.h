@@ -294,8 +294,12 @@ public:
 
 	// remove the least valuable item and optionally indicate
 	// how big it was (useful for statistics).
+	// returns 0 if cache is empty.
 	T remove_least_valuable(size_t* psize = 0)
 	{
+		if(map.empty())
+			return 0;
+
 		// one iteration ought to suffice to evict someone due to
 		// definition of min_density, but we provide for repeating
 		// in case of floating-point imprecision.

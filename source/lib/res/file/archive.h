@@ -159,6 +159,18 @@ extern LibError afile_map(AFile* af, void*& p, size_t& size);
 extern LibError afile_unmap(AFile* af);
 
 
+//
+// archive builder
+//
+
+// array of pointers to VFS filenames (including path), terminated by a
+// NULL entry.
+typedef const char** Filenames;
+
+extern LibError archive_build(const char* P_archive_filename, Filenames V_fl);
+
+
+
 
 enum ArchiveFileFlags
 {

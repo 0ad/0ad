@@ -283,6 +283,9 @@ extern uintptr_t round_down(uintptr_t n, uintptr_t multiple);
 // less than the bit width of the type).
 extern u32 u64_hi(u64 x);
 extern u32 u64_lo(u64 x);
+extern u16 u32_hi(u32 x);
+extern u16 u32_lo(u32 x);
+
 
 extern u64 u64_from_u32(u32 hi, u32 lo);
 extern u32 u32_from_u16(u16 hi, u16 lo);

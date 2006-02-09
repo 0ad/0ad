@@ -786,11 +786,15 @@ LibError file_cache_add(FileIOBuf buf, size_t size, const char* atom_fn)
 	// decide (based on flags) if buf is to be cached; set cost
 	uint cost = 1;
 
-	cache_allocator.make_read_only((u8*)buf, size);
+	if(buf)
+		cache_allocator.make_read_only((u8*)buf, size);
 	file_cache.add(atom_fn, buf, size, cost);
 
 	return ERR_OK;
 }
+
+
+
 
 
 // called by trace simulator to retrieve buffer address, given atom_fn.
@@ -851,9 +855,6 @@ file_buf_free and there are only a few active at a time ( < 10)
 
 
 
-
-
-
 // remove all blocks loaded from the file <fn>. used when reloading the file.
 LibError file_cache_invalidate(const char* P_fn)
 {
@@ -875,6 +876,23 @@ LibError file_cache_invalidate(const char* P_fn)
 
 	return ERR_OK;
 }
+
+
+void file_cache_flush()
+{
+	for(;;)
+	{
+		size_t size;
+		FileIOBuf discarded_buf = file_cache.remove_least_valuable(&size);
+		// cache is now empty - done
+		if(!discarded_buf)
+			return;
+#include "nommgr.h"
+		cache_allocator.free((u8*)discarded_buf, size);
+#include "mmgr.h"
+	}
+}
+
 
 
 void file_cache_init()

@@ -353,6 +353,7 @@ static LibError add_ent(TDir* td, DirEnt* ent, const char* P_parent_path, const 
 	// prepend parent path to get complete pathname.
 	char P_path[PATH_MAX];
 	CHECK_ERR(vfs_path_append(P_path, P_parent_path, name));
+	vfs_opt_notify_loose_file(P_path);
 
 	// it's a regular data file; add it to the directory.
 	return tree_add_file(td, name, m, ent->size, ent->mtime, 0);
