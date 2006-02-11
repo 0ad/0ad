@@ -31,6 +31,7 @@
 #include "ps/Globals.h"
 #include "ps/Util.h"
 
+#include "graphics/ParticleEngine.h"
 #include "graphics/MapReader.h"
 #include "graphics/Terrain.h"
 #include "graphics/TextureManager.h"
@@ -381,6 +382,7 @@ void Render()
 	glLoadIdentity();
 	glOrtho(0.f, (float)g_xres, 0.f, (float)g_yres, -1.f, 1000.f);
 
+
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 
@@ -398,6 +400,9 @@ void Render()
 #endif
 
 	oglCheck();
+
+	// Particle Engine Updating
+	CParticleEngine::GetInstance()->updateEmitters();
 
 	// Text:
 
@@ -648,6 +653,9 @@ static void InitRenderer()
 	new CSkeletonAnimManager;
 	new CObjectManager;
 	new CUnitManager;
+
+	// Particle Engine stuff
+	CParticleEngine::GetInstance()->initParticleSystem();
 
 	MICROLOG(L"init renderer");
 	g_Renderer.Open(g_xres,g_yres,g_bpp);
