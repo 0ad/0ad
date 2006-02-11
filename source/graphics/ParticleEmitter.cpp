@@ -10,8 +10,6 @@
 #include "ParticleEmitter.h"
 #include "ParticleEngine.h"
 
-#define PAR_LOG(a,b,c) LOG_SYS::GetInstance()->WriteC(a, LOG_SYS::OBJ, b, c)
-
 CEmitter::CEmitter(const int MAX_PARTICLES, const int lifetime, int textureID)
 {
 	particleCount = 0;
