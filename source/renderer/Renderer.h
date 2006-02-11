@@ -360,8 +360,6 @@ protected:
 	Handle m_hCompositeAlphaMap;
 	// per-frame flag: has the shadow map been rendered this frame?
 	bool m_ShadowRendered;
-	// object space bound of shadow casting objects
-	CBound m_ShadowBound;
 	// coordinates of each (untransformed) alpha map within the packed texture
 	struct {
 		float u0,u1,v0,v1;

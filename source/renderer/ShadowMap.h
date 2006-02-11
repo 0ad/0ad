@@ -34,12 +34,13 @@ public:
 	~ShadowMap();
 
 	/**
-	 * SetCameraAndLight: Configure light space for the given camera and light direction
+	 * SetupFrame: Configure light space for the given camera and light direction,
+	 * create the shadow texture if necessary, etc.
 	 *
 	 * @param camera the camera that will be used for world rendering
 	 * @param lightdir the direction of the (directional) sunlight
 	 */
-	void SetCameraAndLight(const CCamera& camera, const CVector3D& lightdir);
+	void SetupFrame(const CCamera& camera, const CVector3D& lightdir);
 
 	/**
 	 * AddShadowedBound: Add the bounding box of an object that has to be shadowed.
@@ -48,14 +49,6 @@ public:
 	 * @param bounds world space bounding box
 	 */
 	void AddShadowedBound(const CBound& bounds);
-
-	/**
-	 * SetupFrame: Setup shadow map texture and matrices for this frame.
-	 *
-	 * @deprecated ???
-	 * @param visibleBounds bound around objects that are visible on the screen
-	 */
-	void SetupFrame(const CBound& visibleBounds);
 
 	/**
 	 * BeginRender: Set OpenGL state for rendering into the shadow map texture.

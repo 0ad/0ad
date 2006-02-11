@@ -34,28 +34,24 @@ struct ShadowMapInternals
 	GLuint Texture;
 	// width, height of shadow map
 	u32 Width, Height;
-	// object space bound of shadow casting objects
-	CBound m_ShadowBound;
-	// project light space into projected light space
+	// transform light space into projected light space
+	// in projected light space, the shadowbound box occupies the [-1..1] cube
+	// calculated on BeginRender, after the final shadow bounds are known
 	CMatrix3D LightProjection;
-	// transform world space into light space
+	// Transform world space into light space; calculated on SetupFrame
 	CMatrix3D LightTransform;
-	// transform world space into texture space
+	// Transform world space into texture space of the shadow map;
+	// calculated on BeginRender, after the final shadow bounds are known
 	CMatrix3D TextureMatrix;
 
-	// transform world space into light space
-	CMatrix3D NewLightTransform;
 	// transform light space into world space
 	CMatrix3D InvLightTransform;
 	// bounding box of shadowed objects in light space
-	CBound NewShadowBound;
+	CBound ShadowBound;
 
 	// Helper functions
-	void BuildTransformation(
-			const CVector3D& pos,const CVector3D& right,const CVector3D& up,
-			const CVector3D& dir,CMatrix3D& result);
-	void ConstructLightTransform(const CVector3D& pos,const CVector3D& dir,CMatrix3D& result);
-	void CalcShadowMatrices(const CBound& bound);
+	void CalcShadowMatrices();
+	void CreateTexture();
 };
 
 
@@ -78,8 +74,11 @@ ShadowMap::~ShadowMap()
 
 //////////////////////////////////////////////////////////////////////////////
 // SetCameraAndLight: camera and light direction for this frame
-void ShadowMap::SetCameraAndLight(const CCamera& camera, const CVector3D& lightdir)
+void ShadowMap::SetupFrame(const CCamera& camera, const CVector3D& lightdir)
 {
+	if (!m->Texture)
+		m->CreateTexture();
+
 	CVector3D z = lightdir;
 	CVector3D y;
 	CVector3D x = camera.m_Orientation.GetIn();
@@ -98,32 +97,32 @@ void ShadowMap::SetCameraAndLight(const CCamera& camera, const CVector3D& lightd
 	y = z.Cross(x);
 
 	// X axis perpendicular to light direction, flowing along with view direction
-	m->NewLightTransform._11 = x.X;
-	m->NewLightTransform._12 = x.Y;
-	m->NewLightTransform._13 = x.Z;
+	m->LightTransform._11 = x.X;
+	m->LightTransform._12 = x.Y;
+	m->LightTransform._13 = x.Z;
 
 	// Y axis perpendicular to light and view direction
-	m->NewLightTransform._21 = y.X;
-	m->NewLightTransform._22 = y.Y;
-	m->NewLightTransform._23 = y.Z;
+	m->LightTransform._21 = y.X;
+	m->LightTransform._22 = y.Y;
+	m->LightTransform._23 = y.Z;
 
 	// Z axis is in direction of light
-	m->NewLightTransform._31 = z.X;
-	m->NewLightTransform._32 = z.Y;
-	m->NewLightTransform._33 = z.Z;
+	m->LightTransform._31 = z.X;
+	m->LightTransform._32 = z.Y;
+	m->LightTransform._33 = z.Z;
 
 	// eye is at the origin of the coordinate system
-	m->NewLightTransform._14 = -x.Dot(eyepos);
-	m->NewLightTransform._24 = -y.Dot(eyepos);
-	m->NewLightTransform._34 = -z.Dot(eyepos);
+	m->LightTransform._14 = -x.Dot(eyepos);
+	m->LightTransform._24 = -y.Dot(eyepos);
+	m->LightTransform._34 = -z.Dot(eyepos);
 
-	m->NewLightTransform._41 = 0.0;
-	m->NewLightTransform._42 = 0.0;
-	m->NewLightTransform._43 = 0.0;
-	m->NewLightTransform._44 = 1.0;
+	m->LightTransform._41 = 0.0;
+	m->LightTransform._42 = 0.0;
+	m->LightTransform._43 = 0.0;
+	m->LightTransform._44 = 1.0;
 
-	m->NewLightTransform.GetInverse(m->InvLightTransform);
-	m->NewShadowBound.SetEmpty();
+	m->LightTransform.GetInverse(m->InvLightTransform);
+	m->ShadowBound.SetEmpty();
 }
 
 
@@ -134,308 +133,91 @@ void ShadowMap::AddShadowedBound(const CBound& bounds)
 {
 	CBound lightspacebounds;
 
-	bounds.Transform(m->NewLightTransform, lightspacebounds);
-	m->NewShadowBound += lightspacebounds;
+	bounds.Transform(m->LightTransform, lightspacebounds);
+	m->ShadowBound += lightspacebounds;
 }
 
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// BuildTransformation: build transformation matrix from a position and standard basis vectors
-// TODO: Shouldn't this be part of CMatrix3D?
-void ShadowMapInternals::BuildTransformation(
-		const CVector3D& pos,const CVector3D& right,const CVector3D& up,
-		const CVector3D& dir,CMatrix3D& result)
-{
-	// build basis
-	result._11=right.X;
-	result._12=right.Y;
-	result._13=right.Z;
-	result._14=0;
-
-	result._21=up.X;
-	result._22=up.Y;
-	result._23=up.Z;
-	result._24=0;
-
-	result._31=dir.X;
-	result._32=dir.Y;
-	result._33=dir.Z;
-	result._34=0;
-
-	result._41=0;
-	result._42=0;
-	result._43=0;
-	result._44=1;
-
-	CMatrix3D trans;
-	trans.SetTranslation(-pos.X,-pos.Y,-pos.Z);
-	result=result*trans;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// ConstructLightTransform: build transformation matrix for light at given position casting in
-// given direction
-void ShadowMapInternals::ConstructLightTransform(const CVector3D& pos,const CVector3D& dir,CMatrix3D& result)
-{
-	CVector3D right,up;
-
-	CVector3D viewdir = g_Renderer.GetCullCamera().m_Orientation.GetIn();
-	if (fabs(dir.Y)>0.01f) {
-		up=CVector3D(viewdir.X,(-dir.Z*viewdir.Z-dir.X*dir.X)/dir.Y,viewdir.Z);
-	} else {
-		up=CVector3D(0,0,1);
-	}
-
-	up.Normalize();
-	right=dir.Cross(up);
-	right.Normalize();
-	BuildTransformation(pos,right,up,dir,result);
-}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // CalcShadowMatrices: calculate required matrices for shadow map generation - the light's
 // projection and transformation matrices
-void ShadowMapInternals::CalcShadowMatrices(const CBound& bounds)
+void ShadowMapInternals::CalcShadowMatrices()
 {
-	const CLightEnv& lightenv = g_Renderer.GetLightEnv();
-	const CCamera& camera = g_Renderer.GetCullCamera();
-	int i;
+	CRenderer& renderer = g_Renderer;
 
-	// get centre of bounds
-	CVector3D centre;
-	bounds.GetCentre(centre);
+	// Setup orthogonal projection (lightspace -> clip space) for shadowmap rendering
+	CVector3D scale = ShadowBound[1] - ShadowBound[0];
+	CVector3D shift = (ShadowBound[1] + ShadowBound[0]) * -0.5;
 
-	// get sunlight direction
-	// ??? RC more optimal light placement?
-	CVector3D lightpos=centre-(lightenv.m_SunDir * 1000);
+	if (scale.X < 1.0)
+		scale.X = 1.0;
+	if (scale.Y < 1.0)
+		scale.Y = 1.0;
+	if (scale.Z < 1.0)
+		scale.Z = 1.0;
 
-	// make light transformation matrix
-	ConstructLightTransform(lightpos, lightenv.m_SunDir, LightTransform);
-
-	// transform shadow bounds to light space, calculate near and far bounds
-	CVector3D vp[8];
-	LightTransform.Transform(CVector3D(bounds[0].X,bounds[0].Y,bounds[0].Z),vp[0]);
-	LightTransform.Transform(CVector3D(bounds[1].X,bounds[0].Y,bounds[0].Z),vp[1]);
-	LightTransform.Transform(CVector3D(bounds[0].X,bounds[1].Y,bounds[0].Z),vp[2]);
-	LightTransform.Transform(CVector3D(bounds[1].X,bounds[1].Y,bounds[0].Z),vp[3]);
-	LightTransform.Transform(CVector3D(bounds[0].X,bounds[0].Y,bounds[1].Z),vp[4]);
-	LightTransform.Transform(CVector3D(bounds[1].X,bounds[0].Y,bounds[1].Z),vp[5]);
-	LightTransform.Transform(CVector3D(bounds[0].X,bounds[1].Y,bounds[1].Z),vp[6]);
-	LightTransform.Transform(CVector3D(bounds[1].X,bounds[1].Y,bounds[1].Z),vp[7]);
-
-	float left=vp[0].X;
-	float right=vp[0].X;
-	float top=vp[0].Y;
-	float bottom=vp[0].Y;
-	float znear=vp[0].Z;
-	float zfar=vp[0].Z;
-
-	for (i=1;i<8;i++) {
-		if (vp[i].X<left) left=vp[i].X;
-		else if (vp[i].X>right) right=vp[i].X;
-
-		if (vp[i].Y<bottom) bottom=vp[i].Y;
-		else if (vp[i].Y>top) top=vp[i].Y;
-
-		if (vp[i].Z<znear) znear=vp[i].Z;
-		else if (vp[i].Z>zfar) zfar=vp[i].Z;
-	}
-
-	// shift near and far clip planes slightly to avoid artifacts with points
-	// exactly on the clip planes
-	znear=(znear<camera.GetNearPlane()+0.01f) ? camera.GetNearPlane() : znear-0.01f;
-	zfar+=0.01f;
+	scale.X = 2.0 / scale.X;
+	scale.Y = 2.0 / scale.Y;
+	scale.Z = 2.0 / scale.Z;
 
 	LightProjection.SetZero();
-	LightProjection._11=2/(right-left);
-	LightProjection._22=2/(top-bottom);
-	LightProjection._33=2/(zfar-znear);
-	LightProjection._14=-(right+left)/(right-left);
-	LightProjection._24=-(top+bottom)/(top-bottom);
-	LightProjection._34=-(zfar+znear)/(zfar-znear);
-	LightProjection._44=1;
+	LightProjection._11 = scale.X;
+	LightProjection._14 = shift.X * scale.X;
+	LightProjection._22 = scale.Y;
+	LightProjection._24 = shift.Y * scale.Y;
+	LightProjection._33 = scale.Z;
+	LightProjection._34 = shift.Z * scale.Z;
+	LightProjection._44 = 1.0;
 
-	// calculate texture matrix
-	CMatrix3D tmp2;
-	CMatrix3D texturematrix;
 
-	float dx=0.5f*float(g_Renderer.GetWidth())/float(Width);
-	float dy=0.5f*float(g_Renderer.GetHeight())/float(Height);
-	TextureMatrix.SetTranslation(dx,dy,0);				// transform (-0.5, 0.5) to (0,1) - texture space
-	tmp2.SetScaling(dx,dy,0);					// scale (-1,1) to (-0.5,0.5)
-	TextureMatrix = TextureMatrix*tmp2;
+	// Calculate texture matrix by creating the clip space to texture coordinate matrix
+	// and then concatenating all matrices that have been calculated so far
+	CMatrix3D clipToTex;
+	float texscalex = 0.5 * (float)renderer.GetWidth() / (float)Width;
+	float texscaley = 0.5 * (float)renderer.GetHeight() / (float)Height;
 
-	TextureMatrix = TextureMatrix * LightProjection;		// transform light -> projected light space (-1 to 1)
-	TextureMatrix = TextureMatrix * LightTransform;			// transform world -> light space
+	clipToTex.SetZero();
+	clipToTex._11 = texscalex;
+	clipToTex._14 = texscalex;
+	clipToTex._22 = texscaley;
+	clipToTex._24 = texscaley;
+	clipToTex._33 = 0.5; // translate -1..1 clip space Z values to tex Z values
+	clipToTex._34 = 0.5;
+	clipToTex._44 = 1.0;
 
-#if 0
-
-#if 0
-	// TODO, RC - trim against frustum?
-	// get points of view frustum in world space
-	CVector3D frustumPts[8];
-	m_Camera.GetFrustumPoints(frustumPts);
-
-	// transform to light space
-	for (i=0;i<8;i++) {
-		m_LightTransform.Transform(frustumPts[i],vp[i]);
-	}
-
-	float left1=vp[0].X;
-	float right1=vp[0].X;
-	float top1=vp[0].Y;
-	float bottom1=vp[0].Y;
-	float znear1=vp[0].Z;
-	float zfar1=vp[0].Z;
-
-	for (int i=1;i<8;i++) {
-		if (vp[i].X<left1) left1=vp[i].X;
-		else if (vp[i].X>right1) right1=vp[i].X;
-
-		if (vp[i].Y<bottom1) bottom1=vp[i].Y;
-		else if (vp[i].Y>top1) top1=vp[i].Y;
-
-		if (vp[i].Z<znear1) znear1=vp[i].Z;
-		else if (vp[i].Z>zfar1) zfar1=vp[i].Z;
-	}
-
-	left=max(left,left1);
-	right=min(right,right1);
-	top=min(top,top1);
-	bottom=max(bottom,bottom1);
-	znear=max(znear,znear1);
-	zfar=min(zfar,zfar1);
-#endif
-
-	// experimental stuff, do not use ..
-	// TODO, RC - desperately need to improve resolution here if we're using shadow maps; investigate
-	// feasibility of PSMs
-
-	// transform light space bounds to image space - TODO, RC: safe to just use 3d transform here?
-	CVector4D vph[8];
-	for (i=0;i<8;i++) {
-		CVector4D tmp(vp[i].X,vp[i].Y,vp[i].Z,1.0f);
-		m_LightProjection.Transform(tmp,vph[i]);
-		vph[i][0]/=vph[i][2];
-		vph[i][1]/=vph[i][2];
-	}
-
-	// find the two points furthest apart
-	int p0,p1;
-	float maxdistsqrd=-1;
-	for (i=0;i<8;i++) {
-		for (int j=i+1;j<8;j++) {
-			float dx=vph[i][0]-vph[j][0];
-			float dy=vph[i][1]-vph[j][1];
-			float distsqrd=dx*dx+dy*dy;
-			if (distsqrd>maxdistsqrd) {
-				p0=i;
-				p1=j;
-				maxdistsqrd=distsqrd;
-			}
-		}
-	}
-
-	// now we want to rotate the camera such that the longest axis lies the diagonal at 45 degrees -
-	// get angle between points
-	float angle=atan2(vph[p0][1]-vph[p1][1],vph[p0][0]-vph[p1][0]);
-	float rotation=-angle;
-
-	// build rotation matrix
-	CQuaternion quat;
-	quat.FromAxisAngle(lightdir,rotation);
-	CMatrix3D m;
-	quat.ToMatrix(m);
-
-	// rotate up vector by given rotation
-	CVector3D up(m_LightTransform._21,m_LightTransform._22,m_LightTransform._23);
-	up=m.Rotate(up);
-	up.Normalize();		// TODO, RC - required??
-
-	// rebuild right vector
-	CVector3D rightvec;
-	rightvec=lightdir.Cross(up);
-	rightvec.Normalize();
-	BuildTransformation(lightpos,rightvec,up,lightdir,m_LightTransform);
-
-	// retransform points
-	m_LightTransform.Transform(CVector3D(bounds[0].X,bounds[0].Y,bounds[0].Z),vp[0]);
-	m_LightTransform.Transform(CVector3D(bounds[1].X,bounds[0].Y,bounds[0].Z),vp[1]);
-	m_LightTransform.Transform(CVector3D(bounds[0].X,bounds[1].Y,bounds[0].Z),vp[2]);
-	m_LightTransform.Transform(CVector3D(bounds[1].X,bounds[1].Y,bounds[0].Z),vp[3]);
-	m_LightTransform.Transform(CVector3D(bounds[0].X,bounds[0].Y,bounds[1].Z),vp[4]);
-	m_LightTransform.Transform(CVector3D(bounds[1].X,bounds[0].Y,bounds[1].Z),vp[5]);
-	m_LightTransform.Transform(CVector3D(bounds[0].X,bounds[1].Y,bounds[1].Z),vp[6]);
-	m_LightTransform.Transform(CVector3D(bounds[1].X,bounds[1].Y,bounds[1].Z),vp[7]);
-
-	// recalculate projection
-	left=vp[0].X;
-	right=vp[0].X;
-	top=vp[0].Y;
-	bottom=vp[0].Y;
-	znear=vp[0].Z;
-	zfar=vp[0].Z;
-
-	for (i=1;i<8;i++) {
-		if (vp[i].X<left) left=vp[i].X;
-		else if (vp[i].X>right) right=vp[i].X;
-
-		if (vp[i].Y<bottom) bottom=vp[i].Y;
-		else if (vp[i].Y>top) top=vp[i].Y;
-
-		if (vp[i].Z<znear) znear=vp[i].Z;
-		else if (vp[i].Z>zfar) zfar=vp[i].Z;
-	}
-
-	// shift near and far clip planes slightly to avoid artifacts with points
-	// exactly on the clip planes
-	znear-=0.01f;
-	zfar+=0.01f;
-
-	m_LightProjection.SetZero();
-	m_LightProjection._11=2/(right-left);
-	m_LightProjection._22=2/(top-bottom);
-	m_LightProjection._33=2/(zfar-znear);
-	m_LightProjection._14=-(right+left)/(right-left);
-	m_LightProjection._24=-(top+bottom)/(top-bottom);
-	m_LightProjection._34=-(zfar+znear)/(zfar-znear);
-	m_LightProjection._44=1;
-#endif
+	TextureMatrix = clipToTex * LightProjection * LightTransform;
 }
 
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// Prepare for the next frame: Matrix calculations and texture creation if necessary
-void ShadowMap::SetupFrame(const CBound& visibleBounds)
+// Create the shadow map
+void ShadowMapInternals::CreateTexture()
 {
-	m->CalcShadowMatrices(visibleBounds);
+	if (Texture)
+		glDeleteTextures(1, &Texture);
 
-	if (!m->Texture)
-	{
-		// get shadow map size as next power of two up from view width and height
-		m->Width = g_Renderer.GetWidth();
-		m->Width = RoundUpToPowerOf2(m->Width);
-		m->Height = g_Renderer.GetHeight();
-		m->Height = RoundUpToPowerOf2(m->Height);
+	// get shadow map size as next power of two up from view width and height
+	Width = g_Renderer.GetWidth();
+	Width = RoundUpToPowerOf2(Width);
+	Height = g_Renderer.GetHeight();
+	Height = RoundUpToPowerOf2(Height);
 
-		// create texture object - initially filled with white, so clamp to edge clamps to correct color
-		glGenTextures(1, &m->Texture);
-		g_Renderer.BindTexture(0, m->Texture);
+	// create texture object
+	glGenTextures(1, &Texture);
+	g_Renderer.BindTexture(0, Texture);
 
-		u32 size = m->Width*m->Height;
-		u32* buf=new u32[size];
-		for (uint i=0;i<size;i++) buf[i]=0x00ffffff;
-		glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA8,m->Width,m->Height,0,GL_RGBA,GL_UNSIGNED_BYTE,buf);
-		delete[] buf;
+	u32 size = Width*Height;
+	u32* buf=new u32[size];
+	for (uint i=0;i<size;i++) buf[i]=0x00ffffff;
+	glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA8,Width,Height,0,GL_RGBA,GL_UNSIGNED_BYTE,buf);
+	delete[] buf;
 
-		// set texture parameters
-		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-	}
+	// set texture parameters
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
 }
 
 
@@ -448,6 +230,9 @@ void ShadowMap::BeginRender()
 	CRenderer& renderer = g_Renderer;
 	int renderWidth = renderer.GetWidth();
 	int renderHeight = renderer.GetHeight();
+
+	// Calc remaining shadow matrices
+	m->CalcShadowMatrices();
 
 	// clear buffers
 	glClearColor(1,1,1,0);
@@ -505,6 +290,10 @@ const CMatrix3D& ShadowMap::GetTextureMatrix()
 //  - blue: objects in shadow
 void ShadowMap::RenderDebugDisplay()
 {
+	glDepthMask(0);
+	glDisable(GL_CULL_FACE);
+
+	// Render shadow bound
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 	glMultMatrixf(&m->InvLightTransform._11);
@@ -512,12 +301,12 @@ void ShadowMap::RenderDebugDisplay()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glColor4ub(0,0,255,64);
-	m->NewShadowBound.Render();
+	m->ShadowBound.Render();
 	glDisable(GL_BLEND);
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glColor3ub(0,0,255);
-	m->NewShadowBound.Render();
+	m->ShadowBound.Render();
 
 	glBegin(GL_LINES);
 		glVertex3f(0.0, 0.0, 0.0);
@@ -529,6 +318,66 @@ void ShadowMap::RenderDebugDisplay()
 		glVertex3f(0.0, 50.0, 50.0);
 	glEnd();
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
 	glPopMatrix();
+
+#if 0
+	CMatrix3D InvTexTransform;
+
+	m->TextureMatrix.GetInverse(InvTexTransform);
+
+	// Render representative texture rectangle
+	glPushMatrix();
+	glMultMatrixf(&InvTexTransform._11);
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glColor4ub(255,0,0,64);
+	glBegin(GL_QUADS);
+		glVertex3f(0.0, 0.0, 0.0);
+		glVertex3f(1.0, 0.0, 0.0);
+		glVertex3f(1.0, 1.0, 0.0);
+		glVertex3f(0.0, 1.0, 0.0);
+	glEnd();
+	glDisable(GL_BLEND);
+
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glColor3ub(255,0,0);
+	glBegin(GL_QUADS);
+		glVertex3f(0.0, 0.0, 0.0);
+		glVertex3f(1.0, 0.0, 0.0);
+		glVertex3f(1.0, 1.0, 0.0);
+		glVertex3f(0.0, 1.0, 0.0);
+	glEnd();
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glPopMatrix();
+#endif
+
+	// Render the shadow map
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	glOrtho(0.0, 1.0, 1.0, 0.0, -1.0, 1.0);
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
+
+	glDisable(GL_DEPTH_TEST);
+	g_Renderer.BindTexture(0, m->Texture);
+	glColor3f(1.0, 1.0, 1.0);
+	glBegin(GL_QUADS);
+		glTexCoord2f(0.0, 0.0); glVertex2f(0.0, 0.0);
+		glTexCoord2f(1.0, 0.0); glVertex2f(0.2, 0.0);
+		glTexCoord2f(1.0, 1.0); glVertex2f(0.2, 0.2);
+		glTexCoord2f(0.0, 1.0); glVertex2f(0.0, 0.2);
+	glEnd();
+
+	glEnable(GL_CULL_FACE);
+
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glPopMatrix();
+
+	glEnable(GL_DEPTH_TEST);
+	glDepthMask(1);
 }

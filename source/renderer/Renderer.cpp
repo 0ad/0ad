@@ -587,9 +587,8 @@ void CRenderer::BeginFrame()
 
 	// init per frame stuff
 	m_ShadowRendered=false;
-	m_ShadowBound.SetEmpty();
 
-	m->shadow->SetCameraAndLight(m_CullCamera, m_LightEnv->m_SunDir);
+	m->shadow->SetupFrame(m_CullCamera, m_LightEnv->m_SunDir);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -606,7 +605,6 @@ void CRenderer::RenderShadowMap()
 {
 	PROFILE( "render shadow map" );
 
-	m->shadow->SetupFrame(m_ShadowBound);
 	m->shadow->BeginRender();
 
 	// TODO HACK fold this into ShadowMap
@@ -849,6 +847,7 @@ void CRenderer::FlushFrame()
 	{
 		MICROLOG(L"display frustum");
 		DisplayFrustum();
+		m->shadow->RenderDebugDisplay();
 		oglCheck();
 	}
 
@@ -905,20 +904,12 @@ void CRenderer::DisplayFrustum()
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glColor4ub(255,255,255,64);
 	m_CullCamera.Render(2);
-
-//	glColor4ub(255,0,0,64);
-//	m_ShadowBound.Render();
 	glDisable(GL_BLEND);
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glColor3ub(255,255,255);
 	m_CullCamera.Render(2);
-
-//	glColor3ub(255,0,0);
-//	m_ShadowBound.Render();
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-	m->shadow->RenderDebugDisplay();
 
 	glEnable(GL_CULL_FACE);
 	glDepthMask(1);
@@ -958,7 +949,6 @@ void CRenderer::Submit(CModel* model)
 {
 	if (model->GetFlags() & MODELFLAG_CASTSHADOWS) {
 		PROFILE( "updating shadow bounds" );
-		m_ShadowBound += model->GetBounds();
 		m->shadow->AddShadowedBound(model->GetBounds());
 	}
 
