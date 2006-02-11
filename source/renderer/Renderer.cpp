@@ -44,6 +44,8 @@
 #include "ps/Loader.h"
 #include "ps/ProfileViewer.h"
 
+#include "graphics/ParticleEngine.h"
+#include "graphics/DefaultEmitter.h"
 #include "renderer/FixedFunctionModelRenderer.h"
 #include "renderer/HWLightingModelRenderer.h"
 #include "renderer/InstancingModelRenderer.h"
@@ -299,6 +301,9 @@ CRenderer::CRenderer()
 	m_Models.ModSolidColor = RenderModifierPtr(new SolidColorRenderModifier);
 	m_Models.ModTransparent = RenderModifierPtr(new TransparentRenderModifier);
 	m_Models.ModTransparentShadow = RenderModifierPtr(new TransparentShadowRenderModifier);
+
+	CEmitter *pEmitter = new CDefaultEmitter(1000, -1);
+	CParticleEngine::GetInstance()->addEmitter(pEmitter);
 
 	ONCE( ScriptingInit(); );
 }
@@ -841,6 +846,11 @@ void CRenderer::FlushFrame()
 		m->terrainRenderer->RenderWater();
 		oglCheck();
 	}
+
+	//// Particle Engine Rendering.
+	MICROLOG(L"render particles");
+	CParticleEngine::GetInstance()->renderParticles();
+	oglCheck();
 
 	// render debug lines
 	if (m_DisplayFrustum)
