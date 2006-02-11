@@ -24,7 +24,7 @@ struct PolygonSortModelRendererInternals;
 /**
  * Class PolygonSortModelRenderer: Render animated models using only
  * OpenGL fixed function, sorting polygons from back to front.
- * 
+ *
  * This ModelVertexRenderer should only be used with SortModelRenderer.
  * However, SortModelRenderer can be used with other ModelVertexRenderers
  * than this one.
@@ -55,12 +55,12 @@ struct SortModelRendererInternals;
 /**
  * Class SortModelRenderer: Render models back-to-front from the
  * camera's point of view.
- * 
+ *
  * This is less efficient than batched model renderers, but
  * necessary for transparent models.
- * 
+ *
  * TransparencyRenderer can be used with any ModelVertexRenderer.
- * 
+ *
  * Use this renderer together with TransparentRenderModifier and
  * TransparentShadowRenderModifier to achieve transparency.
  */
@@ -69,7 +69,7 @@ class SortModelRenderer : public ModelRenderer
 public:
 	SortModelRenderer(ModelVertexRendererPtr vertexrenderer);
 	~SortModelRenderer();
-	
+
 	// Transparency renderer implementation
 	void Submit(CModel* model);
 	void PrepareModels();
@@ -101,14 +101,32 @@ public:
 };
 
 /**
- * Class TransparentShadowRenderModifier: Use for shadow rendering of
- * transparent models.
+ * Class TransparentShadowRenderModifier: Use to render shadow data for
+ * transparent models into a luminance map.
  */
 class TransparentShadowRenderModifier : public RenderModifier
 {
 public:
 	TransparentShadowRenderModifier();
 	~TransparentShadowRenderModifier();
+
+	// Implementation
+	u32 BeginPass(uint pass);
+	bool EndPass(uint pass);
+	void PrepareTexture(uint pass, CTexture* texture);
+	void PrepareModel(uint pass, CModel* model);
+};
+
+/**
+ * Class TransparentDepthShadowModifier: Use to render shadow data for
+ * transparent models into a depth texture: Writes into the depth buffer,
+ * color data is undefined.
+ */
+class TransparentDepthShadowModifier : public RenderModifier
+{
+public:
+	TransparentDepthShadowModifier();
+	~TransparentDepthShadowModifier();
 
 	// Implementation
 	u32 BeginPass(uint pass);

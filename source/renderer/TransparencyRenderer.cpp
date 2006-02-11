@@ -659,3 +659,53 @@ void TransparentShadowRenderModifier::PrepareModel(uint UNUSED(pass), CModel* UN
 {
 	// No per-model setup necessary
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TransparentDepthShadowModifier implementation
+
+TransparentDepthShadowModifier::TransparentDepthShadowModifier()
+{
+}
+
+TransparentDepthShadowModifier::~TransparentDepthShadowModifier()
+{
+}
+
+u32 TransparentDepthShadowModifier::BeginPass(uint pass)
+{
+	debug_assert(pass == 0);
+
+	glEnable(GL_ALPHA_TEST);
+	glAlphaFunc(GL_GREATER, 0.4);
+
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+
+	// Set the proper LOD bias
+	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
+
+	return STREAM_POS|STREAM_UV0;
+}
+
+bool TransparentDepthShadowModifier::EndPass(uint UNUSED(pass))
+{
+	glDisable(GL_ALPHA_TEST);
+
+	return true;
+}
+
+void TransparentDepthShadowModifier::PrepareTexture(uint UNUSED(pass), CTexture* texture)
+{
+	g_Renderer.SetTexture(0, texture);
+}
+
+void TransparentDepthShadowModifier::PrepareModel(uint UNUSED(pass), CModel* UNUSED(model))
+{
+	// No per-model setup necessary
+}

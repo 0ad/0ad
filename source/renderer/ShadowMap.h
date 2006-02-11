@@ -25,13 +25,37 @@ struct ShadowMapInternals;
  * The class will automatically generate a texture the first time the shadow map is rendered into.
  * The texture will not be resized afterwards.
  *
- * @todo use depth textures for self-shadowing
+ * Can use a simple luminance map to store shadows (no self-shadowing possible) or
+ * depth textures (with self-shadowing). Default is to use a luminance map, use SetUseDepthTexture
+ * to override the default.
  */
 class ShadowMap
 {
 public:
 	ShadowMap();
 	~ShadowMap();
+
+	/**
+	 * GetUseDepthTexture: Return whether rendering uses a depth texture (instead of
+	 * a luminance texture).
+	 *
+	 * Note that this value may be changed automatically based on OpenGL capabilities.
+	 * It is guarantueed that it stays constant after SetupFrame until the end of the
+	 * frame or the next call to SetUseDepthTexture.
+	 *
+	 * @return whether shadow rendering uses depth textures
+	 */
+	bool GetUseDepthTexture();
+
+	/**
+	 * SetUseDepthTexture: Set whether shadowing should use depth textures.
+	 * Note that even passing @c true for depthTexture does not actually guarantuee that
+	 * depth textures will be used (mostly due to OpenGL capabilities). See the comment
+	 * for GetUseDepthTexture.
+	 *
+	 * @param depthTexture whether shadow rendering should use depth textures
+	 */
+	void SetUseDepthTexture(bool depthTexture);
 
 	/**
 	 * SetupFrame: Configure light space for the given camera and light direction,

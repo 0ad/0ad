@@ -140,6 +140,14 @@ public:
 		RenderPath m_RenderPath;
 	} m_Options;
 
+	struct Caps {
+		bool m_VBO;
+		bool m_TextureBorderClamp;
+		bool m_GenerateMipmaps;
+		bool m_VertexShader;
+		bool m_DepthTextureShadows;
+	};
+
 public:
 	// constructor, destructor
 	CRenderer();
@@ -280,6 +288,13 @@ public:
 	 */
 	void SetFastPlayerColor(bool fast);
 
+	/**
+	 * GetCapabilities: Return which OpenGL capabilities are available and enabled.
+	 *
+	 * @return capabilities structure
+	 */
+	const Caps& GetCapabilities() const { return m_Caps; }
+
 protected:
 	friend struct CRendererInternals;
 	friend class CVertexBuffer;
@@ -298,6 +313,8 @@ protected:
 	void JSI_SetFastPlayerColor(JSContext* ctx, jsval newval);
 	jsval JSI_GetRenderPath(JSContext*);
 	void JSI_SetRenderPath(JSContext* ctx, jsval newval);
+	jsval JSI_GetUseDepthTexture(JSContext*);
+	void JSI_SetUseDepthTexture(JSContext* ctx, jsval newval);
 	static void ScriptingInit();
 
 	// patch rendering stuff
@@ -309,7 +326,6 @@ protected:
 
 	// shadow rendering stuff
 	void RenderShadowMap();
-	void ApplyShadowMap();
 
 	// debugging
 	void DisplayFrustum();
@@ -358,19 +374,12 @@ protected:
 	CSHCoeffs m_SHCoeffsTerrain;
 	// ogl_tex handle of composite alpha map (all the alpha maps packed into one texture)
 	Handle m_hCompositeAlphaMap;
-	// per-frame flag: has the shadow map been rendered this frame?
-	bool m_ShadowRendered;
 	// coordinates of each (untransformed) alpha map within the packed texture
 	struct {
 		float u0,u1,v0,v1;
 	} m_AlphaMapCoords[NumAlphaMaps];
 	// card capabilities
-	struct Caps {
-		bool m_VBO;
-		bool m_TextureBorderClamp;
-		bool m_GenerateMipmaps;
-		bool m_VertexShader;
-	} m_Caps;
+	Caps m_Caps;
 	// build card cap bits
 	void EnumCaps();
 	// per-frame renderer stats
@@ -439,6 +448,7 @@ protected:
 		RenderModifierPtr ModSolidColor;
 		RenderModifierPtr ModTransparent;
 		RenderModifierPtr ModTransparentShadow;
+		RenderModifierPtr ModTransparentDepthShadow;
 	} m_Models;
 };
 

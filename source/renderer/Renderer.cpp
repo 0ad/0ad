@@ -252,6 +252,7 @@ CRenderer::CRenderer()
 	// Must query card capabilities before creating renderers that depend
 	// on card capabilities.
 	EnumCaps();
+	m->shadow->SetUseDepthTexture(true);
 
 	m_VertexShader = new RenderPathVertexShader;
 	if (!m_VertexShader->Init())
@@ -301,6 +302,7 @@ CRenderer::CRenderer()
 	m_Models.ModSolidColor = RenderModifierPtr(new SolidColorRenderModifier);
 	m_Models.ModTransparent = RenderModifierPtr(new TransparentRenderModifier);
 	m_Models.ModTransparentShadow = RenderModifierPtr(new TransparentShadowRenderModifier);
+	m_Models.ModTransparentDepthShadow = RenderModifierPtr(new TransparentDepthShadowModifier);
 
 	CEmitter *pEmitter = new CDefaultEmitter(1000, -1);
 	CParticleEngine::GetInstance()->addEmitter(pEmitter);
@@ -343,6 +345,7 @@ void CRenderer::EnumCaps()
 	m_Caps.m_TextureBorderClamp=false;
 	m_Caps.m_GenerateMipmaps=false;
 	m_Caps.m_VertexShader=false;
+	m_Caps.m_DepthTextureShadows = false;
 
 	// now start querying extensions
 	if (!m_Options.m_NoVBO) {
@@ -360,6 +363,9 @@ void CRenderer::EnumCaps()
 	{
 		if (oglHaveExtension("GL_ARB_vertex_shader"))
 			m_Caps.m_VertexShader=true;
+	}
+	if (0 == oglHaveExtensions(0, "GL_ARB_shadow", "GL_ARB_depth_texture", 0)) {
+		m_Caps.m_DepthTextureShadows = true;
 	}
 }
 
@@ -591,8 +597,6 @@ void CRenderer::BeginFrame()
 	}
 
 	// init per frame stuff
-	m_ShadowRendered=false;
-
 	m->shadow->SetupFrame(m_CullCamera, m_LightEnv->m_SunDir);
 }
 
@@ -612,7 +616,6 @@ void CRenderer::RenderShadowMap()
 
 	m->shadow->BeginRender();
 
-	// TODO HACK fold this into ShadowMap
 	glColor4fv(m_Options.m_ShadowColor);
 
 	glDisable(GL_CULL_FACE);
@@ -627,35 +630,22 @@ void CRenderer::RenderShadowMap()
 		m_Models.NormalInstancing->Render(m_Models.ModSolidColor, MODELFLAG_CASTSHADOWS);
 	if (m_Models.PlayerInstancing)
 		m_Models.PlayerInstancing->Render(m_Models.ModSolidColor, MODELFLAG_CASTSHADOWS);
-	m_Models.TranspFF->Render(m_Models.ModTransparentShadow, MODELFLAG_CASTSHADOWS);
+
+	RenderModifierPtr transparentShadows = m_Models.ModTransparentShadow;
+
+	if (m->shadow->GetUseDepthTexture())
+		transparentShadows = m_Models.ModTransparentDepthShadow;
+
+	m_Models.TranspFF->Render(transparentShadows, MODELFLAG_CASTSHADOWS);
 	if (m_Models.TranspHWLit)
-		m_Models.TranspHWLit->Render(m_Models.ModTransparentShadow, MODELFLAG_CASTSHADOWS);
-	m_Models.TranspSortAll->Render(m_Models.ModTransparentShadow, MODELFLAG_CASTSHADOWS);
+		m_Models.TranspHWLit->Render(transparentShadows, MODELFLAG_CASTSHADOWS);
+	m_Models.TranspSortAll->Render(transparentShadows, MODELFLAG_CASTSHADOWS);
 
 	glEnable(GL_CULL_FACE);
 
-	glColor3f(1.0f,1.0f,1.0f);
+	glColor3f(1.0, 1.0, 1.0);
 
 	m->shadow->EndRender();
-}
-
-//TODO: Fold into TerrainRenderer
-void CRenderer::ApplyShadowMap()
-{
-	PROFILE( "applying shadows" );
-
-	const CMatrix3D& texturematrix = m->shadow->GetTextureMatrix();
-	GLuint shadowmap = m->shadow->GetTexture();
-
-	glMatrixMode(GL_TEXTURE);
-	glLoadMatrixf(&texturematrix._11);
-	glMatrixMode(GL_MODELVIEW);
-
-	m->terrainRenderer->ApplyShadowMap(shadowmap);
-
-	glMatrixMode(GL_TEXTURE);
-	glLoadIdentity();
-	glMatrixMode(GL_MODELVIEW);
 }
 
 void CRenderer::RenderPatches()
@@ -670,7 +660,7 @@ void CRenderer::RenderPatches()
 
 	// render all the patches, including blend pass
 	MICROLOG(L"render patch submissions");
-	m->terrainRenderer->RenderTerrain();
+	m->terrainRenderer->RenderTerrain(m_Options.m_Shadows ? m->shadow : 0, m_Options.m_ShadowColor);
 
 	if (m_TerrainRenderMode==WIREFRAME) {
 		// switch wireframe off again
@@ -804,15 +794,14 @@ void CRenderer::FlushFrame()
 	m->terrainRenderer->PrepareForRendering();
 	PROFILE_END("prepare terrain");
 
-	if (!m_ShadowRendered) {
-		if (m_Options.m_Shadows) {
-			MICROLOG(L"render shadows");
-			RenderShadowMap();
-		}
-		// clear buffers
-		glClearColor(m_ClearColor[0],m_ClearColor[1],m_ClearColor[2],m_ClearColor[3]);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+	if (m_Options.m_Shadows) {
+		MICROLOG(L"render shadows");
+		RenderShadowMap();
 	}
+
+	// clear buffers
+	glClearColor(m_ClearColor[0],m_ClearColor[1],m_ClearColor[2],m_ClearColor[3]);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
 	oglCheck();
 
@@ -824,13 +813,6 @@ void CRenderer::FlushFrame()
 	MICROLOG(L"render models");
 	RenderModels();
 	oglCheck();
-
-	if (m_Options.m_Shadows && !m_ShadowRendered) {
-		MICROLOG(L"apply shadows");
-		ApplyShadowMap();
-		oglCheck();
-	}
-	m_ShadowRendered=true;
 
 	// call on the transparency renderer to render all the transparent stuff
 	MICROLOG(L"render transparent");
@@ -1284,10 +1266,26 @@ void CRenderer::JSI_SetRenderPath(JSContext* ctx, jsval newval)
 	SetRenderPath(GetRenderPathByName(name));
 }
 
+jsval CRenderer::JSI_GetUseDepthTexture(JSContext*)
+{
+	return ToJSVal(m->shadow->GetUseDepthTexture());
+}
+
+void CRenderer::JSI_SetUseDepthTexture(JSContext* ctx, jsval newval)
+{
+	bool depthTexture;
+
+	if (!ToPrimitive(ctx, newval, depthTexture))
+		return;
+
+	m->shadow->SetUseDepthTexture(depthTexture);
+}
+
 void CRenderer::ScriptingInit()
 {
 	AddProperty(L"fastPlayerColor", &CRenderer::JSI_GetFastPlayerColor, &CRenderer::JSI_SetFastPlayerColor);
 	AddProperty(L"renderpath", &CRenderer::JSI_GetRenderPath, &CRenderer::JSI_SetRenderPath);
+	AddProperty(L"useDepthTexture", &CRenderer::JSI_GetUseDepthTexture, &CRenderer::JSI_SetUseDepthTexture);
 	AddProperty(L"sortAllTransparent", &CRenderer::m_SortAllTransparent);
 	AddProperty(L"fastNormals", &CRenderer::m_FastNormals);
 	AddProperty(L"displayFrustum", &CRenderer::m_DisplayFrustum);

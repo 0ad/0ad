@@ -13,6 +13,7 @@
 #define TERRAINRENDERER_H
 
 class CPatch;
+class ShadowMap;
 class WaterManager;
 
 struct TerrainRendererInternals;
@@ -69,8 +70,11 @@ public:
 	 *
 	 * preconditions  : PrepareForRendering must have been called this
 	 * frame before calling RenderTerrain.
+	 *
+	 * @param shadow a prepared shadow map, in case rendering with shadows is enabled
+	 * @param shadowColor color of shadows
 	 */
-	void RenderTerrain();
+	void RenderTerrain(ShadowMap* shadow, const RGBAColor& shadowColor);
 
 	/**
 	 * RenderPatches: Render all patches un-textured as polygons.
@@ -97,14 +101,6 @@ public:
 	 */
 	void RenderWater();
 
-	/**
-	 * ApplyShadowMap: transition measure during refactoring
-	 * 
-	 * @todo fix this
-	 * @deprecated
-	 */
-	void ApplyShadowMap(GLuint handle);
-	
 private:
 	TerrainRendererInternals* m;
 };

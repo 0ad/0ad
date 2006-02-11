@@ -9,7 +9,7 @@
 #include "precompiled.h"
 #include "ParticleEngine.h"
 #include "ogl.h"
-#include "renderer.h"
+#include "Renderer.h"
 
 CParticleEngine *CParticleEngine::m_pInstance = 0;
 CParticleEngine::CParticleEngine(void)
@@ -59,7 +59,7 @@ CParticleEngine *CParticleEngine::GetInstance(void)
 }
 
 void CParticleEngine::DeleteInstance()
-{ 
+{
 	if (m_pInstance)
 		delete m_pInstance;
 	m_pInstance = 0;
@@ -158,7 +158,7 @@ void CParticleEngine::updateEmitters()
 		{
 			// store a pointer to the next node
 			tEmitterNode *pTemp = temp->next;
-			
+
 			// check for the head
 			if(!temp->prev)
 				m_pHead = pTemp;
@@ -166,7 +166,7 @@ void CParticleEngine::updateEmitters()
 				// forward the previous's pointer
 				temp->prev->next = pTemp;
 
-			// if there is any next one, 
+			// if there is any next one,
 			if(pTemp)
 				// fix the backwards pointer
 				pTemp->prev = temp->prev;
@@ -214,7 +214,7 @@ void CParticleEngine::destroyAllEmitters(bool fade)
 		{
 			// store a pointer to the next node
 			tEmitterNode *pTemp = temp->next;
-			
+
 			// check for the head
 			if(!temp->prev)
 				m_pHead = pTemp;
@@ -222,7 +222,7 @@ void CParticleEngine::destroyAllEmitters(bool fade)
 				// forward the previous's pointer
 				temp->prev->next = pTemp;
 
-			// if there is any next one, 
+			// if there is any next one,
 			if(pTemp)
 				// fix the backwards pointer
 				pTemp->prev = temp->prev;

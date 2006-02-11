@@ -11,6 +11,7 @@
 #include "precompiled.h"
 
 #include "ogl.h"
+#include "CLogger.h"
 
 #include "graphics/LightEnv.h"
 
@@ -21,6 +22,8 @@
 #include "renderer/Renderer.h"
 #include "renderer/ShadowMap.h"
 
+#define LOG_CATEGORY "graphics"
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // ShadowMap implementation
@@ -30,6 +33,8 @@
  */
 struct ShadowMapInternals
 {
+	// whether we're using depth texture or luminance map
+	bool UseDepthTexture;
 	// handle of shadow map
 	GLuint Texture;
 	// width, height of shadow map
@@ -61,6 +66,9 @@ ShadowMap::ShadowMap()
 {
 	m = new ShadowMapInternals;
 	m->Texture = 0;
+	m->Width = 0;
+	m->Height = 0;
+	m->UseDepthTexture = false;
 }
 
 
@@ -203,21 +211,36 @@ void ShadowMapInternals::CreateTexture()
 	Height = g_Renderer.GetHeight();
 	Height = RoundUpToPowerOf2(Height);
 
+	LOG(NORMAL, LOG_CATEGORY, "Creating shadow texture (size %ix%i) (format = %s)",
+		Width, Height, UseDepthTexture ? "DEPTH_COMPONENT" : "LUMINANCE");
+
 	// create texture object
 	glGenTextures(1, &Texture);
 	g_Renderer.BindTexture(0, Texture);
 
 	u32 size = Width*Height;
-	u32* buf=new u32[size];
-	for (uint i=0;i<size;i++) buf[i]=0x00ffffff;
-	glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA8,Width,Height,0,GL_RGBA,GL_UNSIGNED_BYTE,buf);
-	delete[] buf;
+
+	if (UseDepthTexture)
+	{
+		float* buf = new float[size];
+		for(uint i = 0; i < size; i++) buf[i] = 1.0;
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, Width, Height, 0,
+			     GL_DEPTH_COMPONENT, GL_FLOAT, buf);
+		delete[] buf;
+	}
+	else
+	{
+		u32* buf=new u32[size];
+		for (uint i=0;i<size;i++) buf[i]=0x00ffffff;
+		glTexImage2D(GL_TEXTURE_2D,0,GL_LUMINANCE8,Width,Height,0,GL_RGBA,GL_UNSIGNED_BYTE,buf);
+		delete[] buf;
+	}
 
 	// set texture parameters
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 }
 
 
@@ -235,8 +258,16 @@ void ShadowMap::BeginRender()
 	m->CalcShadowMatrices();
 
 	// clear buffers
-	glClearColor(1,1,1,0);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+	if (m->UseDepthTexture)
+	{
+		glClear(GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+		glColorMask(0,0,0,0);
+	}
+	else
+	{
+		glClearColor(1,1,1,0);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+	}
 
 	// setup viewport
 	glViewport(0, 0, renderWidth, renderHeight);
@@ -264,6 +295,11 @@ void ShadowMap::EndRender()
 	g_Renderer.BindTexture(0, m->Texture);
 	glCopyTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 0, 0, g_Renderer.GetWidth(), g_Renderer.GetHeight());
 
+	if (m->UseDepthTexture)
+	{
+		glColorMask(1,1,1,1);
+	}
+
 	// restore matrix stack
 	glPopMatrix();
 	glMatrixMode(GL_PROJECTION);
@@ -282,6 +318,38 @@ GLuint ShadowMap::GetTexture()
 const CMatrix3D& ShadowMap::GetTextureMatrix()
 {
 	return m->TextureMatrix;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Using depth textures vs. a simple luminance map
+bool ShadowMap::GetUseDepthTexture()
+{
+	return m->UseDepthTexture;
+}
+
+void ShadowMap::SetUseDepthTexture(bool depthTexture)
+{
+	if (depthTexture)
+	{
+		if (!g_Renderer.GetCapabilities().m_DepthTextureShadows)
+		{
+			LOG(WARNING, LOG_CATEGORY, "Depth textures are not supported by your graphics card/driver. Fallback to luminance map (no self-shadowing)!");
+			depthTexture = false;
+		}
+	}
+
+	if (depthTexture != m->UseDepthTexture)
+	{
+		if (m->Texture)
+		{
+			glDeleteTextures(1, &m->Texture);
+			m->Texture = 0;
+		}
+		m->Width = m->Height = 0;
+
+		m->UseDepthTexture = depthTexture;
+	}
 }
 
 
@@ -363,6 +431,11 @@ void ShadowMap::RenderDebugDisplay()
 
 	glDisable(GL_DEPTH_TEST);
 	g_Renderer.BindTexture(0, m->Texture);
+	if (m->UseDepthTexture)
+	{
+		glTexParameteri(GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE, GL_LUMINANCE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
+	}
 	glColor3f(1.0, 1.0, 1.0);
 	glBegin(GL_QUADS);
 		glTexCoord2f(0.0, 0.0); glVertex2f(0.0, 0.0);
