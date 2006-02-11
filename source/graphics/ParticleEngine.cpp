@@ -9,6 +9,7 @@
 #include "precompiled.h"
 #include "ParticleEngine.h"
 #include "ogl.h"
+#include "renderer.h"
 
 CParticleEngine *CParticleEngine::m_pInstance = 0;
 CParticleEngine::CParticleEngine(void)
@@ -71,6 +72,10 @@ bool CParticleEngine::initParticleSystem()
 	// Needs error checking and testing.
 	idTexture[DEFAULTTEXT] = ogl_tex_load("art/textures/particles/sprite.tga");
 	idTexture[DEFAULTTEXT] = ogl_tex_bind(idTexture[DEFAULTTEXT], 0);
+
+	/*CTexture *pTex;
+	pTex->
+	CRenderer::LoadTexture(*/
 
 	glBindTexture(GL_TEXTURE_2D, idTexture[DEFAULTTEXT]);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -233,9 +238,9 @@ void CParticleEngine::destroyAllEmitters(bool fade)
 
 void CParticleEngine::EnterParticleContext(void)
 {
-	glEnable(GL_DEPTH_TEST);               // Enable depth testing for hidden surface removal.
-	glDepthMask(false);
-	glDisable(GL_LIGHTING);
+	//glEnable(GL_DEPTH_TEST);               // Enable depth testing for hidden surface removal.
+	//glDepthMask(false);
+	//glDisable(GL_LIGHTING);
 	glEnable(GL_TEXTURE_2D);               // Enable texture mapping.
 	glPushMatrix();
 	glEnable(GL_BLEND);
@@ -243,10 +248,10 @@ void CParticleEngine::EnterParticleContext(void)
 
 void CParticleEngine::LeaveParticleContext(void)
 {
-	glDisable(GL_DEPTH_TEST);
+	//glDisable(GL_DEPTH_TEST);
+	//glDepthMask(true);
+	//glEnable(GL_LIGHTING);
 	glDisable(GL_TEXTURE_2D);
-	glDepthMask(true);
 	glPopMatrix();
-	glEnable(GL_LIGHTING);
 	glDisable(GL_BLEND);
 }
