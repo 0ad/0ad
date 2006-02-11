@@ -154,5 +154,4 @@ bool CDefaultEmitter::updateEmitter()
 			return false;		// this will be checked for and then it will be deleted
 		}
 	}
-	return false;
 }
