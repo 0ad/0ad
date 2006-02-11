@@ -178,9 +178,14 @@ void CConsole::Render()
 
 	glTranslatef(m_fX, m_fY + DeltaY, 0.0f); //Move to window position
 
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	DrawWindow();
 	DrawHistory();
 	DrawBuffer();
+
+	glDisable(GL_BLEND);
 }
 
 
@@ -226,7 +231,7 @@ void CConsole::DrawWindow(void)
 
 void CConsole::DrawHistory(void) {
 	int i = 1;
-	
+
 	std::deque<std::wstring>::iterator Iter; //History iterator
 
 	glPushMatrix();
@@ -377,7 +382,7 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 
 		// BEGIN: Buffer History Lookup
 		case SDLK_UP:
-			if ( m_deqBufHistory.size() ) 
+			if ( m_deqBufHistory.size() )
 			{
 				int oldHistoryPos = iHistoryPos;
 				while( iHistoryPos != (int)m_deqBufHistory.size() - 1)
@@ -408,7 +413,7 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 			return;
 
 		case SDLK_DOWN:
-			if ( m_deqBufHistory.size() ) 
+			if ( m_deqBufHistory.size() )
 			{
 				int oldHistoryPos = iHistoryPos;
 				while( iHistoryPos != 0)
@@ -534,7 +539,7 @@ void CConsole::UseHistoryFile( CStr filename, int max_history_lines )
 void CConsole::ProcessBuffer(const wchar_t* szLine){
 	if (szLine == NULL) return;
 	if (wcslen(szLine) <= 0) return;
-	
+
 	debug_assert(wcslen(szLine) < CONSOLE_BUFFER_SIZE);
 
 	m_deqBufHistory.push_front(szLine);
@@ -654,7 +659,7 @@ void CConsole::SaveHistory()
 			break;
 		buffer = CStrW( *it ).ToUTF8() + "\n" + buffer;
 	}
-	vfs_store( m_sHistoryFile, (const void*)buffer.c_str(), buffer.Length(), FILE_NO_AIO ); 
+	vfs_store( m_sHistoryFile, (const void*)buffer.c_str(), buffer.Length(), FILE_NO_AIO );
 }
 
 void CConsole::SendChatMessage(const wchar_t *szMessage)
@@ -714,11 +719,11 @@ InReaction conInputHandler(const SDL_Event* ev)
 		return IN_PASS;
 
 	SDLKey sym = ev->key.keysym.sym;
-	
+
 	if(!g_Console->IsActive())
 		return IN_PASS;
 
-	// Stop unprintable characters (ctrl+, alt+ and escape), 
+	// Stop unprintable characters (ctrl+, alt+ and escape),
 	// also prevent ` and/or ~ appearing in console every time it's toggled.
 	// MT: Is this safe? Does any valid character require a ctrl+ or alt+
 	//     key combination?
@@ -727,7 +732,7 @@ InReaction conInputHandler(const SDL_Event* ev)
 	if( ( ev->key.keysym.sym != SDLK_ESCAPE ) &&
 		/*!g_keys[SDLK_LCTRL] && !g_keys[SDLK_RCTRL] &&
 		!g_keys[SDLK_LALT] && !g_keys[SDLK_RALT] &&*/
-		!hotkeys[HOTKEY_CONSOLE_TOGGLE] ) 
+		!hotkeys[HOTKEY_CONSOLE_TOGGLE] )
 		g_Console->InsertChar(sym, (wchar_t)ev->key.keysym.unicode );
 
 	return IN_PASS;
