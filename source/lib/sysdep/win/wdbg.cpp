@@ -702,6 +702,10 @@ LONG WINAPI wdbg_exception_filter(EXCEPTION_POINTERS* ep)
 	(void)swscanf(locus, fmt, func_name, file, &line);
 		// don't care whether all 3 fields were filled (they default to "?")
 
+	// this must happen before the error dialog because user could choose to
+	// exit immediately there.
+	wdbg_write_minidump(ep);
+
 	wchar_t buf[500];
 	const wchar_t* msg_fmt =
 		L"Much to our regret we must report the program has encountered an error.\r\n"
@@ -715,8 +719,6 @@ LONG WINAPI wdbg_exception_filter(EXCEPTION_POINTERS* ep)
 		flags = DE_NO_CONTINUE;
 	ErrorReaction er = debug_display_error(buf, flags, 1,ep->ContextRecord, file,line);
 	debug_assert(er > 0);
-
-	wdbg_write_minidump(ep);
 
 	// invoke the Win32 default handler - it calls ExitProcess for
 	// most exception types.

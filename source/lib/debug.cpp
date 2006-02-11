@@ -210,7 +210,12 @@ void debug_wprintf(const wchar_t* fmt, ...)
 
 LibError debug_write_crashlog(const wchar_t* text)
 {
-	FILE* f = fopen("crashlog.txt", "w");
+	// note: we go through some gyrations here (strcpy+strcat) to avoid
+	// dependency on file code (vfs_path_append).
+	char N_path[PATH_MAX];
+	strcpy_s(N_path, ARRAY_SIZE(N_path), ah_get_log_dir());
+	strcat_s(N_path, ARRAY_SIZE(N_path), "crashlog.txt");
+	FILE* f = fopen(N_path, "w");
 	if(!f)
 	{
 		DISPLAY_ERROR(L"debug_write_crashlog: unable to open file");

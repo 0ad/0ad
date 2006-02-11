@@ -77,6 +77,15 @@ and call set_app_hooks.
 // not expandable.
 FUNC(void, override_gl_upload_caps, (void), (), (void))
 
+// return full native path of the directory into which crashdumps should be
+// written. must end with directory separator (e.g. '/').
+// if implementing via static storage, be sure to guarantee reentrancy
+// (e.g. by only filling the string once).
+// must be callable at any time - in particular, before VFS init.
+// this means file_make_full_native_path cannot be used; it is best
+// to specify a path relative to sys_get_executable_name.
+FUNC(const char*, get_log_dir, (void), (), return)
+
 // gather all app-related logs/information and write it into <f>.
 // used when writing a crashlog so that all relevant info is in one file.
 //

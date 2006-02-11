@@ -220,11 +220,19 @@ public:
 // Cache for items of variable size and value/"cost".
 // currently uses Landlord algorithm.
 
+#define LL_OPT_MINCREDIT
+#define LL_OPT_RECIP
+#define LL_OPT_DELAYCHARGE
+
 template<typename Key, typename T> class Cache
 {
 public:
 	Cache()
-		: min_credit_density(FLT_MAX) {}
+	{
+#ifdef LL_OPT_MINCREDIT
+		min_credit_density = FLT_MAX;
+#endif
+	}
 
 	void add(Key key, T item, size_t size, uint cost)
 	{
@@ -233,9 +241,11 @@ public:
 		PairIB ret = map.insert(val);
 		debug_assert(ret.second);	// must not already be in map
 
+#ifdef LL_OPT_MINCREDIT
 		// adding new item - min_credit_density may decrease
 		const CacheEntry& new_entry = ret.first->second;
 		notify_credit_reduced(new_entry);
+#endif
 	}
 
 	// remove the entry identified by <key>. expected usage is to check
@@ -250,15 +260,17 @@ public:
 			debug_warn("Cache: item to be removed not found");
 			return;
 		}
-
+#include <queue>
+#ifdef LL_OPT_MINCREDIT
 		// we're removing. if this one had the smallest
 		// density, recalculate.
 		const bool need_recalc = is_min_entry(it->second);
-
+#endif
 		map.erase(it);
-
+#ifdef LL_OPT_MINCREDIT
 		if(need_recalc)
-			recalc_min_density();
+			recalc_min_credit_density();
+#endif
 	}
 
 	// if there is no entry for <key> in the cache, return 0 with
@@ -275,17 +287,21 @@ public:
 
 		if(refill_credit)
 		{
+#ifdef LL_OPT_MINCREDIT
 			// we're increasing credit. if this one had the smallest
 			// density, recalculate.
 			const bool need_recalc = is_min_entry(entry);
+#endif
 
 			// Landlord algorithm calls for credit to be reset to anything
 			// between its current value and the cost.
 			const float gain = 0.75f;	// restore most credit
 			entry.credit = gain*entry.cost + (1.0f-gain)*entry.credit;
 
+#ifdef LL_OPT_MINCREDIT
 			if(need_recalc)
-				recalc_min_density();
+				recalc_min_credit_density();
+#endif
 		}
 
 		return entry.item;
@@ -300,22 +316,35 @@ public:
 		if(map.empty())
 			return 0;
 
-		// one iteration ought to suffice to evict someone due to
-		// definition of min_density, but we provide for repeating
-		// in case of floating-point imprecision.
-		// (goto vs. loop avoids nesting and emphasizes rarity)
-again:	
+#ifdef LL_OPT_DELAYCHARGE
+		// determine who has least density via priqueue
+		// remove it
+		// add its delta to accumulator
+#endif
 
-		// charge everyone rent (proportional to min_credit_density and size)
-		// .. latch current delta value to avoid it changing during the loop
-		//    (due to notify_* calls). this ensures fairness.
+#ifndef LL_OPT_MINCREDIT
+		// not implicitly updated: we need to calculate min_credit_density now.
+		recalc_min_credit_density();
+#endif
+		// latch current delta value to avoid it changing during the loop
+		// (due to notify_* calls). this ensures fairness.
 		const float delta = min_credit_density;
+
+		// one iteration ought to suffice to evict someone due to
+		// definition of min_credit_density, but we provide for
+		// repeating in case of floating-point imprecision.
+		// (goto vs. loop avoids nesting and emphasizes rarity)
+again:
+
+		// charge everyone rent (proportional to delta and size)
 		for(CacheMapIt it = map.begin(); it != map.end(); ++it)
 		{
 			CacheEntry& entry = it->second;
 			entry.credit -= delta * entry.size;
+#ifdef LL_OPT_MINCREDIT
 			// reducing credit - min_credit_density may decrease
 			notify_credit_reduced(entry);
+#endif
 
 			// evict immediately if credit is exhausted
 			// (note: Landlord algorithm calls for 'any subset' of
@@ -325,15 +354,17 @@ again:
 			// this means every call will end up charging more than
 			// intended, but we compensate by resetting credit
 			// fairly high upon cache hit.
-			if(entry.credit <= 0.0f)
+			if(entry.credit <= 0.01f)	// a bit of tolerance
 			{
 				T item = entry.item;
 				if(psize)
 					*psize = entry.size;
 				map.erase(it);
+#ifdef LL_OPT_MINCREDIT
 				// this item had the least density, else it wouldn't
 				// have been removed. recalculate.
-				recalc_min_density();
+				recalc_min_credit_density();
+#endif
 				return item;
 			}
 		}
@@ -342,12 +373,19 @@ again:
 		goto again;
 	}
 
+	bool empty()
+	{
+		return map.empty();
+	}
+
 private:
 	struct CacheEntry
 	{
 		T item;
 		size_t size;
+#ifdef LL_OPT_RECIP
 		float size_reciprocal;
+#endif
 		uint cost;
 		float credit;
 
@@ -355,7 +393,9 @@ private:
 			: item(item_)
 		{
 			size = size_;
+#ifdef LL_OPT_RECIP
 			size_reciprocal = 1.0f / size;
+#endif
 
 			cost = cost_;
 			credit = cost;
@@ -373,8 +413,19 @@ private:
 	float min_credit_density;
 	float credit_density(const CacheEntry& entry)
 	{
+#ifdef LL_OPT_RECIP
 		return entry.credit * entry.size_reciprocal;
+#else
+		return entry.credit / entry.size;
+#endif
 	}
+	void recalc_min_credit_density()
+	{
+		min_credit_density = FLT_MAX;
+		for(CacheMapIt it = map.begin(); it != map.end(); ++it)
+			min_credit_density = MIN(min_credit_density, credit_density(it->second));
+	}
+#ifdef LL_OPT_MINCREDIT
 	void notify_credit_reduced(const CacheEntry& entry)
 	{
 		min_credit_density = MIN(min_credit_density, credit_density(entry));
@@ -383,12 +434,7 @@ private:
 	{
 		return feq(min_credit_density, credit_density(entry));
 	}
-	void recalc_min_density()
-	{
-		min_credit_density = FLT_MAX;
-		for(CacheMapIt it = map.begin(); it != map.end(); ++it)
-			min_credit_density = MIN(min_credit_density, credit_density(it->second));
-	}
+#endif
 };
 
 

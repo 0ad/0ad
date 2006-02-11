@@ -91,7 +91,7 @@ static LibError Archive_reload(Archive* a, const char* fn, Handle)
 	RETURN_ERR(file_open(fn, FILE_CACHE_BLOCK, &a->f));
 	a->is_open = 1;
 
-	RETURN_ERR(zip_populate_archive(a, &a->f));
+	RETURN_ERR(zip_populate_archive(&a->f, a));
 	a->is_loaded = 1;
 
 	return ERR_OK;
@@ -736,15 +736,10 @@ LibError archive_build(const char* P_archive_filename, Filenames V_fl)
 	RETURN_ERR(zip_archive_create(P_archive_filename, &za));
 	uintptr_t ctx = comp_alloc(CT_COMPRESSION, CM_DEFLATE);
 
-	const char* fn;	// declare outside loop for easier debugging
-	for(size_t i = 0; ; i++)
+	for(size_t i = 0; V_fl[i]; i++)
 	{
-		fn = V_fl[i];
-		if(!fn)
-			break;
-
 		ArchiveEntry ent; void* file_contents; FileIOBuf buf;
-		if(read_and_compress_file(fn, ctx, ent, file_contents, buf) == ERR_OK)
+		if(read_and_compress_file(V_fl[i], ctx, ent, file_contents, buf) == ERR_OK)
 		{
 			(void)zip_archive_add_file(za, &ent, file_contents);
 			(void)file_buf_free(buf);

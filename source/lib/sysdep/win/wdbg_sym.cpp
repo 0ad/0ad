@@ -29,6 +29,7 @@
 #include "sysdep/cpu.h"
 #include "wdbg.h"
 #include "debug_stl.h"
+#include "app_hooks.h"
 #if CPU_IA32
 # include "lib/sysdep/ia32.h"
 #endif
@@ -1908,7 +1909,12 @@ void wdbg_write_minidump(EXCEPTION_POINTERS* exception_pointers)
 {
 	lock();
 
-	HANDLE hFile = CreateFile("crashlog.dmp", GENERIC_WRITE, FILE_SHARE_WRITE, 0, CREATE_ALWAYS, 0, 0);
+	// note: we go through some gyrations here (strcpy+strcat) to avoid
+	// dependency on file code (vfs_path_append).
+	char N_path[PATH_MAX];
+	strcpy_s(N_path, ARRAY_SIZE(N_path), ah_get_log_dir());
+	strcat_s(N_path, ARRAY_SIZE(N_path), "crashlog.dmp");
+	HANDLE hFile = CreateFile(N_path, GENERIC_WRITE, FILE_SHARE_WRITE, 0, CREATE_ALWAYS, 0, 0);
 	if(hFile == INVALID_HANDLE_VALUE)
 		goto fail;
 
@@ -1977,8 +1983,11 @@ static void test_array()
 	int ints[] = { 1,2,3,4,5 };	UNUSED2(ints);
 	wchar_t chars[] = { 'w','c','h','a','r','s',0 }; UNUSED2(chars);
 
-	//DISPLAY_ERROR(L"wdbg_sym self test: check if stack trace below is ok.");
-	RaiseException(0xf001,0,0,0);
+	// note: prefer simple error (which also generates stack trace) to
+	// exception, because it is guaranteed to work (no issues with the
+	// debugger swallowing exceptions).
+	DISPLAY_ERROR(L"wdbg_sym self test: check if stack trace below is ok.");
+	//RaiseException(0xf001,0,0,0);
 }
 
 // also used by test_stl as an element type

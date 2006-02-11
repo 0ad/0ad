@@ -1,6 +1,6 @@
-// Zip archiving on top of ZLib.
+// archive backend for Zip files
 //
-// Copyright (c) 2003 Jan Wassenberg
+// Copyright (c) 2003-2006 Jan Wassenberg
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -15,7 +15,6 @@
 // Contact info:
 //   Jan.Wassenberg@stud.uni-karlsruhe.de
 //   http://www.stud.uni-karlsruhe.de/~urkt/
-
 
 #include "precompiled.h"
 
@@ -56,8 +55,8 @@ struct LFH
 	u16 e_len;
 };
 
-const size_t LFH_SIZE = 30;
-cassert(sizeof(LFH) == LFH_SIZE);
+const size_t LFH_SIZE = sizeof(LFH);
+cassert(LFH_SIZE == 30);
 
 
 struct CDFH
@@ -78,8 +77,8 @@ struct CDFH
 	u32 lfh_ofs;
 };
 
-const size_t CDFH_SIZE = 46;
-cassert(sizeof(CDFH) == CDFH_SIZE);
+const size_t CDFH_SIZE = sizeof(CDFH);
+cassert(CDFH_SIZE == 46);
 
 
 struct ECDR
@@ -92,8 +91,8 @@ struct ECDR
 	u16 comment_len;
 };
 
-const size_t ECDR_SIZE = 22;
-cassert(sizeof(ECDR) == ECDR_SIZE);
+const size_t ECDR_SIZE = sizeof(ECDR);
+cassert(ECDR_SIZE == 22);
 
 #pragma pack(pop)
 
@@ -147,17 +146,11 @@ static u32 FAT_from_time_t(time_t time)
 }
 
 
-///////////////////////////////////////////////////////////////////////////////
-//
-// za_*: Zip archive handling
-// passes the list of files in an archive to lookup.
-//
-///////////////////////////////////////////////////////////////////////////////
-
+//-----------------------------------------------------------------------------
 
 // scan for and return a pointer to a Zip record, or 0 if not found.
 // <start> is the expected position; we scan from there until EOF for
-// the given ID (fourcc). <record_size> (includes ID field) bytes must
+// the given ID (fourcc). <record_size> includes ID field) bytes must
 // remain before EOF - this makes sure the record is completely in the file.
 // used by z_find_ecdr and z_extract_cdfh.
 static const u8* za_find_id(const u8* buf, size_t size, const void* start, u32 magic, size_t record_size)
@@ -192,29 +185,31 @@ static const u8* za_find_id(const u8* buf, size_t size, const void* start, u32 m
 }
 
 
-
+// search for ECDR in the last <max_scan_amount> bytes of the file.
+// if found, fill <dst_ecdr> with an (unprocessed) copy of the record and
+// return ERR_OK, otherwise IO error or ERR_CORRUPTED.
 static LibError za_find_ecdr_impl(File* f, size_t max_scan_amount, ECDR* dst_ecdr)
 {
+	// don't scan more than the entire file
 	const size_t file_size = f->fc.size;
+	const size_t scan_amount = MIN(max_scan_amount, file_size);
 
-	// scan the last 66000 bytes of file for ecdr_id signature
-	// (the Zip archive comment field - up to 64k - may follow ECDR).
-	// if the zip file is < 66000 bytes, scan the whole file.
-	size_t scan_amount = MIN(max_scan_amount, file_size);
+	// read desired chunk of file into memory
 	const off_t ofs = (off_t)(file_size - scan_amount);
 	FileIOBuf buf = FILE_BUF_ALLOC;
-	RETURN_ERR(file_io(f, ofs, scan_amount, &buf));
+	ssize_t bytes_read = file_io(f, ofs, scan_amount, &buf);
+	RETURN_ERR(bytes_read);
+	debug_assert(bytes_read == (ssize_t)scan_amount);
 
-	LibError ret;
+	// look for ECDR in buffer
+	LibError ret = ERR_CORRUPTED;
 	const u8* start = (const u8*)buf;
-	const ECDR* ecdr = (const ECDR*)za_find_id(start, scan_amount, start, ecdr_magic, ECDR_SIZE);
+	const ECDR* ecdr = (const ECDR*)za_find_id(start, bytes_read, start, ecdr_magic, ECDR_SIZE);
 	if(ecdr)
 	{
 		*dst_ecdr = *ecdr;
 		ret = ERR_OK;
 	}
-	else
-		ret = ERR_CORRUPTED;
 
 	file_buf_free(buf);
 	return ret;
@@ -271,66 +266,14 @@ static LibError za_extract_cdfh(const CDFH* cdfh,
 }
 
 
-// this code grabs an LFH struct from file block(s) that are
-// passed to the callback. usually, one call copies the whole thing,
-// but the LFH may straddle a block boundary.
+// analyse an opened Zip file; call back into archive.cpp to
+// populate the Archive object with a list of the files it contains.
+// returns ERR_OK on success, ERR_UNKNOWN_FORMAT if not a Zip file
+// (see below) or another negative LibError code.
 //
-// rationale: this allows using temp buffers for zip_fixup_lfh,
-// which avoids involving the file buffer manager and thus
-// unclutters the trace and cache contents.
-
-struct LFH_Copier
-{
-	u8* lfh_dst;
-	size_t lfh_bytes_remaining;
-};
-
-static LibError lfh_copier_cb(uintptr_t ctx, const void* block, size_t size, size_t* bytes_processed)
-{
-	LFH_Copier* p = (LFH_Copier*)ctx;
-
-	debug_assert(size <= p->lfh_bytes_remaining);
-	memcpy2(p->lfh_dst, block, size);
-	p->lfh_dst += size;
-	p->lfh_bytes_remaining -= size;
-
-	*bytes_processed = size;
-	return INFO_CB_CONTINUE;
-}
-
-// ensures <ent.ofs> points to the actual file contents; it is initially
-// the offset of the LFH. we cannot use CDFH filename and extra field
-// lengths to skip past LFH since that may not mirror CDFH (has happened).
-//
-// this is called at file-open time instead of while mounting to
-// reduce seeks: since reading the file will typically follow, the
-// block cache entirely absorbs the IO cost.
-void zip_fixup_lfh(File* f, ArchiveEntry* ent)
-{
-	// already fixed up - done.
-	if(!(ent->flags & ZIP_LFH_FIXUP_NEEDED))
-		return;
-
-	// performance note: this ends up reading one file block, which is
-	// only in the block cache if the file starts in the same block as a
-	// previously read file (i.e. both are small).
-	LFH lfh;
-	LFH_Copier params = { (u8*)&lfh, sizeof(LFH) };
-	ssize_t ret = file_io(f, ent->ofs, LFH_SIZE, FILE_BUF_TEMP, lfh_copier_cb, (uintptr_t)&params);
-	debug_assert(ret == sizeof(LFH));
-
-	debug_assert(lfh.magic == lfh_magic);
-	const size_t fn_len = read_le16(&lfh.fn_len);
-	const size_t  e_len = read_le16(&lfh.e_len);
-
-	ent->ofs += (off_t)(LFH_SIZE + fn_len + e_len);
-	// LFH doesn't have a comment field!
-
-	ent->flags &= ~ZIP_LFH_FIXUP_NEEDED;
-}
-
-
-LibError zip_populate_archive(Archive* a, File* f)
+// fairly slow - must read Central Directory from disk
+// (size ~= 60 bytes*num_files); observed time ~= 80ms.
+LibError zip_populate_archive(File* f, Archive* a)
 {
 	LibError ret;
 
@@ -406,35 +349,81 @@ completely_bogus:
 }
 
 
+//-----------------------------------------------------------------------------
+
+// this code grabs an LFH struct from file block(s) that are
+// passed to the callback. usually, one call copies the whole thing,
+// but the LFH may straddle a block boundary.
+//
+// rationale: this allows using temp buffers for zip_fixup_lfh,
+// which avoids involving the file buffer manager and thus
+// unclutters the trace and cache contents.
+
+struct LFH_Copier
+{
+	u8* lfh_dst;
+	size_t lfh_bytes_remaining;
+};
+
+static LibError lfh_copier_cb(uintptr_t ctx, const void* block, size_t size, size_t* bytes_processed)
+{
+	LFH_Copier* p = (LFH_Copier*)ctx;
+
+	debug_assert(size <= p->lfh_bytes_remaining);
+	memcpy2(p->lfh_dst, block, size);
+	p->lfh_dst += size;
+	p->lfh_bytes_remaining -= size;
+
+	*bytes_processed = size;
+	return INFO_CB_CONTINUE;
+}
 
 
+// ensures <ent.ofs> points to the actual file contents; it is initially
+// the offset of the LFH. we cannot use CDFH filename and extra field
+// lengths to skip past LFH since that may not mirror CDFH (has happened).
+//
+// this is called at file-open time instead of while mounting to
+// reduce seeks: since reading the file will typically follow, the
+// block cache entirely absorbs the IO cost.
+void zip_fixup_lfh(File* f, ArchiveEntry* ent)
+{
+	// already fixed up - done.
+	if(!(ent->flags & ZIP_LFH_FIXUP_NEEDED))
+		return;
 
+	// performance note: this ends up reading one file block, which is
+	// only in the block cache if the file starts in the same block as a
+	// previously read file (i.e. both are small).
+	LFH lfh;
+	LFH_Copier params = { (u8*)&lfh, sizeof(LFH) };
+	ssize_t ret = file_io(f, ent->ofs, LFH_SIZE, FILE_BUF_TEMP, lfh_copier_cb, (uintptr_t)&params);
+	debug_assert(ret == sizeof(LFH));
 
+	debug_assert(lfh.magic == lfh_magic);
+	const size_t fn_len = read_le16(&lfh.fn_len);
+	const size_t  e_len = read_le16(&lfh.e_len);
 
+	ent->ofs += (off_t)(LFH_SIZE + fn_len + e_len);
+	// LFH doesn't have a comment field!
 
-
-
-
+	ent->flags &= ~ZIP_LFH_FIXUP_NEEDED;
+}
 
 
 //-----------------------------------------------------------------------------
+// archive builder backend
+//-----------------------------------------------------------------------------
 
+// rationale: don't support partial adding, i.e. updating archive with
+// only one file. this would require overwriting parts of the Zip archive,
+// which is annoying and slow. also, archives are usually built in
+// seek-optimal order, which would break if we start inserting files.
+// while testing, loose files can be used, so there's no loss.
 
-
-
-
-/*
-dont support partial adding, i.e. updating archive with only one file. only build archive from ground up
-our archive builder always has to arrange everything for optimal performance
-while testing, can use loose files, so no inconvenience
-*/
-
-
-
-
-
-
-
+// we don't want to expose ZipArchive to callers,
+// (would require defining File, Pool and CDFH)
+// so allocate the storage here and return opaque pointer.
 struct ZipArchive
 {
 	File f;
@@ -445,8 +434,6 @@ struct ZipArchive
 	CDFH* prev_cdfh;
 };
 
-// we don't want to expose ZipArchive to callers, so
-// allocate the storage here and return opaque pointer.
 static SingleAllocator<ZipArchive> za_mgr;
 
 

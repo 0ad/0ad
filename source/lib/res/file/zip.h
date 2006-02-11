@@ -1,17 +1,59 @@
+// archive backend for Zip files
+//
+// Copyright (c) 2003-2006 Jan Wassenberg
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License as
+// published by the Free Software Foundation; either version 2 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// General Public License for more details.
+//
+// Contact info:
+//   Jan.Wassenberg@stud.uni-karlsruhe.de
+//   http://www.stud.uni-karlsruhe.de/~urkt/
+
 #ifndef ZIP_H__
 #define ZIP_H__
 
-#include "archive.h"
-#include "file.h"
+struct File;
+struct Archive;
+struct ArchiveEntry;
 
-extern LibError zip_populate_archive(Archive* a, File* f);
 
+// analyse an opened file: if it is a Zip archive, call back into
+// archive.cpp to populate the Archive object with a list of the
+// files it contains.
+// returns ERR_OK on success, ERR_UNKNOWN_FORMAT if not a Zip archive
+// (see below) or another negative LibError code.
+//
+// fairly slow - must read Central Directory from disk
+// (size ~= 60 bytes*num_files); observed time ~= 80ms.
+extern LibError zip_populate_archive(File* f, Archive* a);
+
+
+// ensures <ent.ofs> points to the actual file contents; it is initially
+// the offset of the LFH. we cannot use CDFH filename and extra field
+// lengths to skip past LFH since that may not mirror CDFH (has happened).
+//
+// this is called at file-open time instead of while mounting to
+// reduce seeks: since reading the file will typically follow, the
+// block cache entirely absorbs the IO cost.
 extern void zip_fixup_lfh(File* f, ArchiveEntry* ent);
 
 
-struct ZipArchive;
+//
+// archive builder backend
+//
+
+struct ZipArchive;	// opaque
+
+// create a new Zip archive
 extern LibError zip_archive_create(const char* zip_filename, ZipArchive** pza);
-extern LibError zip_archive_add_file(ZipArchive* za, const ArchiveEntry* ze, void* file_contents);
+extern LibError zip_archive_add_file(ZipArchive* za, const ArchiveEntry* ae, void* file_contents);
 extern LibError zip_archive_finish(ZipArchive* za);
 
 

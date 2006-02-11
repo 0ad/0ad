@@ -23,6 +23,7 @@
 #include "detect.h"
 #include "res/graphics/ogl_tex.h"
 #include "res/file/file.h"
+#include "res/file/vfs.h"
 
 #include "app_hooks.h"
 
@@ -41,6 +42,21 @@ static void override_gl_upload_caps()
 		if(strstr(gfx_drv_ver, "ssicdnt.dll (2.60.115)"))
 			ogl_tex_override(OGL_TEX_S3TC, OGL_TEX_DISABLE);
 	}
+}
+
+
+static const char* get_log_dir()
+{
+	static char N_log_dir[PATH_MAX];
+	ONCE(\
+		char N_exe_name[PATH_MAX];\
+		(void)sys_get_executable_name(N_exe_name, ARRAY_SIZE(N_exe_name));\
+		/* strip app name (we only need path) */\
+		char* slash = strrchr(N_exe_name, DIR_SEP);\
+		if(slash) *slash = '\0';\
+		(void)vfs_path_append(N_log_dir, N_exe_name, "../logs/");
+	);
+	return N_log_dir;
 }
 
 

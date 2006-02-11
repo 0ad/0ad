@@ -305,8 +305,6 @@ void kill_mainloop()
 }
 
 
-#ifndef SCED
-
 int main(int argc, char* argv[])
 {
 	debug_printf("MAIN &argc=%p &argv=%p\n", &argc, &argv);
@@ -326,18 +324,3 @@ int main(int argc, char* argv[])
 	
 	exit(0);
 }
-
-#else // SCED:
-
-void ScEd_Init()
-{
-	g_Quickstart = true;
-	Init(0, NULL, INIT_HAVE_VMODE|INIT_NO_GUI);
-}
-
-void ScEd_Shutdown()
-{
-	Shutdown();
-}
-
-#endif // SCED

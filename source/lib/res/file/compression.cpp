@@ -98,7 +98,12 @@ public:
 
 	virtual LibError init() = 0;
 
-	virtual LibError reset() = 0;
+	virtual LibError reset()
+	{
+		next_out = 0;
+		avail_out = 0;
+		return ERR_OK;
+	}
 
 	virtual LibError alloc_output(size_t in_size) = 0;
 
@@ -117,11 +122,15 @@ public:
 
 	void set_output(void* out, size_t out_size)
 	{
+		// must only be set once, because finish() returns the
+		// output buffer set as: next_out - total_out.
+		debug_assert(next_out == 0 && avail_out == 0);
 		next_out = out;
 		avail_out = out_size;
 	}
 	void* get_output()
 	{
+		debug_assert(next_out != 0);
 		return next_out;
 	}
 	ssize_t feed(const void* in, size_t in_size)
@@ -184,13 +193,14 @@ protected:
 	ContextType type;
 	CompressionMethod method;
 
+	// output buffer - assigned once by set_output
 	void* next_out;
 	size_t avail_out;
 
+	// output memory allocated by allow_output_impl
 	void* out_mem;
 	size_t out_mem_size;
 
-// may be several IOs in flight => list needed
 	struct Buf
 	{
 		const u8* cdata;
@@ -203,6 +213,10 @@ protected:
 			mem_to_free = mem_to_free_;
 		}
 	};
+	// note: a 'list' (deque is more efficient) is necessary.
+	// lack of output space can result in leftover input data;
+	// since we do not want feed() to always have to check for and
+	// use up any previous remnants, we allow queuing them.
 	std::deque<Buf> pending_bufs;
 
 	LibError alloc_output_impl(size_t required_out_size)
@@ -235,6 +249,10 @@ protected:
 		out_mem_size = alloc_size;
 
 have_out_mem:
+		// must only be set once, because finish() returns the
+		// output buffer set as: next_out - total_out.
+		debug_assert(next_out == 0 && avail_out == 0);
+
 		next_out  = out_mem;
 		avail_out = out_mem_size;
 
@@ -279,6 +297,7 @@ public:
 
 	virtual LibError reset()
 	{
+		Compressor::reset();
 		int ret;
 		if(type == CT_COMPRESSION)
 			ret = deflateReset(&zs);

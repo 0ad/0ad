@@ -684,8 +684,12 @@ static ExtantBufMgr extant_bufs;
 
 //-----------------------------------------------------------------------------
 
-
-static Cache<const char*, FileIOBuf> file_cache;
+// HACK: key type is really const char*, but the file_cache's STL (hash_)map
+// stupidly assumes that is a "string". (comparison can be done via
+// pointer compare, due to atom_fn mechanism) we define as void* to avoid
+// this behavior - it breaks the (const char*)1 self-test hack and is
+// inefficient.
+static Cache<const void*, FileIOBuf> file_cache;
 
 
 FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, bool long_lived)
@@ -923,6 +927,7 @@ static void test_cache_allocator()
 
 	// put allocator through its paces by allocating several times
 	// its capacity (this ensures memory is reused)
+	srand(1);
 	size_t total_size_used = 0;
 	while(total_size_used < 4*MAX_CACHE_SIZE)
 	{
@@ -952,12 +957,32 @@ static void test_cache_allocator()
 		allocations[p] = size;
 	}
 
+	// reset to virginal state
 	cache_allocator.reset();
+
+}
+
+static void test_file_cache()
+{
+	// we need a unique address for file_cache_add, but don't want to
+	// actually put it in the atom_fn storage (permanently clutters it).
+	// just increment this pointer (evil but works since it's not used).
+//	const char* atom_fn = (const char*)1;
+
+	// give to file_cache
+//	file_cache_add((FileIOBuf)p, size, atom_fn++);
+
+	file_cache_flush();
+	TEST(file_cache.empty());
+
+	// (even though everything has now been freed,
+	// the freelists may be a bit scattered already).
 }
 
 static void self_test()
 {
 	test_cache_allocator();
+	test_file_cache();
 }
 
 SELF_TEST_RUN;

@@ -167,18 +167,40 @@ extern LibError afile_unmap(AFile* af);
 // NULL entry.
 typedef const char** Filenames;
 
+// create an archive (overwriting previous file) and fill it with the given
+// files. compression method is chosen intelligently based on extension and
+// file entropy / achieved compression ratio.
 extern LibError archive_build(const char* P_archive_filename, Filenames V_fl);
 
 
+//
+// interface for backends
+//
 
+// the archive-specific backends call back here for each file;
+// this module provides storage for the file table.
 
 enum ArchiveFileFlags
 {
+	// indicates ArchiveEntry.ofs points to a "local file header"
+	// instead of the file data. a fixup routine is called upon
+	// file open; it skips past LFH and clears this flag.
+	// this is somewhat of a hack, but vital to archive open
+	// performance. without it, we'd have to scan through the
+	// entire Zip file, which can take *seconds*.
+	// (we cannot use the information in CDFH, because its 'extra' field
+	// has been observed to differ from that of the LFH)
+	// by reading LFH when a file in archive is opened, the block cache
+	// absorbs the IO cost because the file will likely be read anyway.
 	ZIP_LFH_FIXUP_NEEDED = 1
 };
 
-// convenience container for location / size of file in archive.
-// separate from AFile to minimize size of file table.
+// holds all per-file information extracted from the header.
+// this is intended to work for all archive types.
+//
+// note: AFile (state of a currently open file) is separate because
+// some of its fields need not be stored here; we'd like to minimize
+// size of the file table.
 struct ArchiveEntry
 {
 	// these are returned by afile_stat:
@@ -191,7 +213,7 @@ struct ArchiveEntry
 	CompressionMethod method;
 	u32 crc32;
 
-	uint flags;
+	uint flags;	// ArchiveFileFlags
 
 	const char* atom_fn;
 
