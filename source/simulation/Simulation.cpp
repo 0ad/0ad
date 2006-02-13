@@ -260,6 +260,9 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 		case NMT_Generic:
 			ENTITY_ENTITY_INT(CGeneric, ORDER_GENERIC);
 			break;
+		case NMT_NotifyRequest:
+			ENTITY_ENTITY_INT(CNotifyRequest, ORDER_NOTIFY_REQUEST);
+			break;
 	}
 
 	return clientMask;

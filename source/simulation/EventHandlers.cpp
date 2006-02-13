@@ -39,12 +39,16 @@ CEventTargetChanged::CEventTargetChanged( CEntity* target ) : CScriptEvent( L"ta
 	AddLocalProperty( L"secondaryAction", &m_secondaryAction );
 }
 
-CEventPrepareOrder::CEventPrepareOrder( CEntity* target, int orderType ) : CScriptEvent( L"prepareOrder", EVENT_PREPARE_ORDER, true )
+CEventPrepareOrder::CEventPrepareOrder( CEntity* target, int orderType, int action ) : CScriptEvent( L"prepareOrder", EVENT_PREPARE_ORDER, true )
 {
 	m_target = target;
 	m_orderType = orderType;
+	m_action = action;
 	AddLocalProperty( L"target", &m_target, true );
 	AddLocalProperty( L"orderType", &m_orderType, true );
+	AddLocalProperty( L"action", &m_action );
+	AddLocalProperty( L"notifyType", &m_notifyType );
+	AddLocalProperty( L"notifySource", &m_notifySource );
 }
 
 CEventOrderTransition::CEventOrderTransition( int orderPrevious, int orderCurrent, CEntity*& target, CVector3D& worldPosition ) : CScriptEvent( L"orderTransition", EVENT_ORDER_TRANSITION, true )
@@ -58,16 +62,14 @@ CEventOrderTransition::CEventOrderTransition( int orderPrevious, int orderCurren
 	AddLocalProperty( L"target", m_target );
 	AddLocalProperty( L"position", m_worldPosition );
 }
-CEventNotification::CEventNotification( CEntityOrder order, uint type ) : CScriptEvent( L"notification", EVENT_NOTIFICATION, true )
+CEventNotification::CEventNotification( CEntityOrder order, int notifyType ) : CScriptEvent( L"notification", EVENT_NOTIFICATION, true )
 {
-	m_type = type;
+	m_notifyType = notifyType;
 	m_target = order.m_data[0].entity;
-	m_data = (uint) order.m_data[1].data;
 	CVector3D convert( order.m_data[0].location.x, 0.0f, order.m_data[0].location.y );
 	m_location = convert;
 	
-	AddLocalProperty( L"type", &m_type );
+	AddLocalProperty( L"notifyType", &m_notifyType );
 	AddLocalProperty( L"target", &m_target );
-	AddLocalProperty( L"data", &m_data );
 	AddLocalProperty( L"location", &m_location );
 }

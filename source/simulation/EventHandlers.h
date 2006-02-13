@@ -47,7 +47,10 @@ class CEventPrepareOrder : public CScriptEvent
 	CEntity* m_target;
 	int m_orderType;
 public:
-	CEventPrepareOrder( CEntity* target, int orderType );
+	CEntity* m_notifySource;
+	int m_notifyType;
+	int m_action;
+	CEventPrepareOrder( CEntity* target, int orderType, int action );
 };
 
 class CEventOrderTransition : public CScriptEvent
@@ -63,11 +66,11 @@ class CEventNotification : public CScriptEvent
 {
 	//Same as CEntityOrder data for support of all orders
 	CEntity* m_target;
-	uint m_data;	//u64 is unsupported...will this work?
-	uint m_type;
+	int m_action;	//u64 is unsupported...will this work?
+	int m_notifyType;
 	CVector3D m_location;	//No real use for y, but CVector2D unsupported
 public:
-	CEventNotification( CEntityOrder order, uint type );
+	CEventNotification( CEntityOrder order, int notifyType );
 };
 
 #endif

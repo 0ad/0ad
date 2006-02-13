@@ -174,6 +174,8 @@ public:
 
 	std::deque<CEntityOrder> m_orderQueue;	
 	std::deque<CEntityListener> m_listeners;
+	int m_currentNotification;
+	CEntity* m_currentListener;
 	
 private:
 	CEntity( CBaseEntity* base, CVector3D position, float orientation );
@@ -261,12 +263,13 @@ public:
 	void checkExtant(); // Existence
 
 	// Returns whether the entity is capable of performing the given orderType on the target.
-	bool acceptsOrder( int orderType, CEntity* orderTarget );
+	bool acceptsOrder( int orderType, CEntity* orderTarget, int action );
 
 	void clearOrders();
 	void pushOrder( CEntityOrder& order );
 	
-	void DispatchNotification( CEntityOrder order,uint type );
+	void DispatchNotification( CEntityOrder order, int type );
+	void DestroyListeners( CEntity* target );
 	
 	// Script constructor
 
@@ -288,8 +291,10 @@ public:
 	jsval IsRunning( JSContext* cx, uintN argc, jsval* argv );
 	jsval GetRunState( JSContext* cx, uintN argc, jsval* argv );
 
-	jsval RequestNotification( JSContext* cx, uintN argc, jsval* argv );
-	jsval CheckListeners( JSContext* cx, uintN argc, jsval* argv );
+	bool RequestNotification( JSContext* cx, uintN argc, jsval* argv );
+	//Just in case we want to explicitly check the listeners without waiting for the order to be pushed
+	bool ForceCheckListeners( JSContext* cx, uintN argc, jsval* argv );
+	void CheckListeners( int type, CEntity *target );
 
 	bool Order( JSContext* cx, uintN argc, jsval* argv, bool Queued );
 	inline bool OrderSingle( JSContext* cx, uintN argc, jsval* argv )
@@ -310,6 +315,14 @@ public:
 	{
 		debug_assert( argc >= 1 );
 		return( m_classes.IsMember( ToPrimitive<CStrW>( cx, argv[0] ) ) );
+	}
+	jsval TerminateOrder( JSContext* cx, uintN argc, jsval* argv )
+	{
+		debug_assert( argc >= 1);
+		if ( ToPrimitive<bool>( argv[0] ) )
+			m_orderQueue.clear();
+		else
+			m_orderQueue.pop_front();
 	}
 
 	static void ScriptingInit();

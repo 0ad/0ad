@@ -112,6 +112,8 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 
 	m_frameCheck = 0;
 	m_lastCombatTime = 0;
+	m_currentNotification = 0;
+	m_currentListener = NULL;
 
     m_grouped = -1;
 
@@ -623,24 +625,38 @@ void CEntity::clearOrders()
 
 void CEntity::pushOrder( CEntityOrder& order )
 {
-    if( acceptsOrder( order.m_type, order.m_data[0].entity ) )
+   //Replace acceptsOrder because we need the notification data after the order is pushed
+	CEventPrepareOrder evt( order.m_data[0].entity, order.m_type, order.m_data[1].data );
+	if( DispatchEvent(&evt) )
     {
         m_orderQueue.push_back( order );
+		CheckListeners( evt.m_notifyType, evt.m_notifySource );
     }
 }
 
-bool CEntity::acceptsOrder( int orderType, CEntity* orderTarget )
+bool CEntity::acceptsOrder( int orderType, CEntity* orderTarget, int action )
 {
-    CEventPrepareOrder evt( orderTarget, orderType );
-    return( DispatchEvent( &evt ) );
+    CEventPrepareOrder evt( orderTarget, orderType, action );
+	return ( DispatchEvent(&evt) );
 }
 
-void CEntity::DispatchNotification( CEntityOrder order, uint type )
+void CEntity::DispatchNotification( CEntityOrder order, int type )
 {
 	CEventNotification evt( order, type );
 	DispatchEvent( &evt );
 }
+void CEntity::DestroyListeners( CEntity* target )
+{
+	if (target->m_listeners.empty())
+		return;
 
+	for ( size_t i=0; i < target->m_listeners.size(); i++)
+	{
+		if ( target->m_listeners[i].m_sender == this )
+			target->m_listeners.erase(target->m_listeners.begin() + i);
+	}
+
+}
 
 void CEntity::repath()
 {
@@ -1051,6 +1067,7 @@ void CEntity::ScriptingInit()
     AddMethod<jsval, &CEntity::ToString>( "toString", 0 );
     AddMethod<bool, &CEntity::OrderSingle>( "order", 1 );
     AddMethod<bool, &CEntity::OrderQueued>( "orderQueued", 1 );
+	AddMethod<jsval, &CEntity::TerminateOrder>( "terminateOrder", 1 );
     AddMethod<bool, &CEntity::Kill>( "kill", 0 );
     AddMethod<bool, &CEntity::IsIdle>( "isIdle", 0 );
     AddMethod<bool, &CEntity::HasClass>( "hasClass", 1 );
@@ -1058,8 +1075,8 @@ void CEntity::ScriptingInit()
     AddMethod<jsval, &CEntity::AddAura>( "addAura", 3 );
     AddMethod<jsval, &CEntity::RemoveAura>( "removeAura", 1 );
     AddMethod<jsval, &CEntity::SetActionParams>( "setActionParams", 5 );
-	AddMethod<jsval, &CEntity::CheckListeners>( "checkListeners", 1 );
-	AddMethod<jsval, &CEntity::RequestNotification>( "requestNotification", 3 );
+	AddMethod<bool, &CEntity::ForceCheckListeners>( "forceCheckListeners", 2 );
+	AddMethod<bool, &CEntity::RequestNotification>( "requestNotification", 3 );
 	AddMethod<jsval, &CEntity::TriggerRun>( "triggerRun", 1 );
 	AddMethod<jsval, &CEntity::SetRun>( "setRun", 1 );
 	AddMethod<jsval, &CEntity::GetRunState>( "getRunState", 0 );
@@ -1192,6 +1209,13 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 			}
 			if ( orderCode == CEntityOrder::ORDER_RUN )
 				m_triggerRun = true;
+			//It's not a notification order
+			if ( argc == 3 )
+			{
+				if ( m_currentListener )
+					DestroyListeners( m_currentListener );
+				m_currentListener = NULL;
+			}
 
 			break;
         case CEntityOrder::ORDER_GENERIC:
@@ -1215,6 +1239,13 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 			{
 				JS_ReportError( cx, "Invalid generic order type" );
 				return( false );
+			}
+			//It's not a notification order
+			if ( argc == 3 )
+			{
+				if ( m_currentListener )
+					DestroyListeners( m_currentListener );
+				m_currentListener = NULL;
 			}
 			break;
         default:
@@ -1472,43 +1503,81 @@ jsval CEntity::SetActionParams( JSContext* UNUSED(cx), uintN argc, jsval* argv )
     return JSVAL_VOID;
 }
 
-jsval CEntity::RequestNotification( JSContext* cx, uintN argc, jsval* argv )
+bool CEntity::RequestNotification( JSContext* cx, uintN argc, jsval* argv )
 {
 	if( argc < 3 )
 	{
 		JS_ReportError( cx, "Too few parameters" );
 		return( false );
 	}
+	
 	CEntityListener notify;
-
 	notify.m_sender = this;
 	//(Convert from int to enum)
 	CEntity *target = ToNative<CEntity>( argv[0] );
-	*( (uint*) &(notify.m_type) ) = ToPrimitive<int>( argv[1] );
-	
-	bool destroy = ToPrimitive<bool>( argv[2] );
-	
-	std::deque<CEntityListener>::iterator it = target->m_listeners.begin();
-	for ( ; it != target->m_listeners.end(); it++)
-	{
-		if ( destroy && it->m_sender == this )
-			target->m_listeners.erase(it);
-	}
+	if (target == this)
+		return false;
 
+	*( (int*) &(notify.m_type) ) = ToPrimitive<int>( argv[1] );
+	
+	//Clean up old requests
+	if ( ToPrimitive<bool>( argv[2] ) && !target->m_listeners.empty() )
+		DestroyListeners( target );
+	
+	if ( target != m_currentListener && m_currentListener )
+		DestroyListeners( m_currentListener );
+
+	m_currentListener = target;
+	
+	//If our target isn't stationary and it's doing something we want to follow, send notification
+	int result = target->m_currentNotification & notify.m_type;
+	if ( result && !target->m_orderQueue.empty() )
+	{
+		CEntityOrder order = target->m_orderQueue.front();
+		switch( result )
+		{
+			 case CEntityListener::NOTIFY_GOTO:
+			 case CEntityListener::NOTIFY_RUN:
+				DispatchNotification( order, result );
+				break;
+				 
+			 case CEntityListener::NOTIFY_HEAL:
+			 case CEntityListener::NOTIFY_ATTACK:
+			 case CEntityListener::NOTIFY_GATHER:
+		     case CEntityListener::NOTIFY_DAMAGE:
+				 if( argc < 2 )
+				 {
+					 JS_ReportError( cx, "Too few parameters" );
+				 }
+
+				 DispatchNotification( order, result );
+				 break;
+			 default:
+				 JS_ReportError( cx, "Invalid order type" );
+				 break;
+		}
+		target->m_listeners.push_back( notify );
+		return true;
+	}
+		
 	target->m_listeners.push_back( notify );
-	return JSVAL_VOID;
+	return false;
 }
-jsval CEntity::CheckListeners( JSContext *cx, uintN argc, jsval* argv )
+bool CEntity::ForceCheckListeners( JSContext *cx, uintN argc, jsval* argv )
 {	
-	if( argc < 1 )
+	if( argc < 2 )
 	{
 		JS_ReportError( cx, "Too few parameters" );
-		return( false );
+		return false;
 	}
 	int type = ToPrimitive<int>( argv[0] );	   //notify code
-	CEntityOrder order = this->m_orderQueue.front();
-	CEntity* target;
+	m_currentNotification = type;
+	
+	CEntity *target = ToNative<CEntity>( argv[1] );
+	if ( target->m_orderQueue.empty() )
+		return false;
 
+	CEntityOrder order = target->m_orderQueue.front();
 	for (size_t i=0; i<m_listeners.size(); i++)
 	{
 		int result = m_listeners[i].m_type & type;
@@ -1516,33 +1585,52 @@ jsval CEntity::CheckListeners( JSContext *cx, uintN argc, jsval* argv )
 		{
 			 switch( result )
 			 {
-			 case CEntityListener::NOTIFY_GOTO:
-			 case CEntityListener::NOTIFY_RUN:
-					m_listeners[i].m_sender->DispatchNotification( order, result );
-					break;
-				 
+				 case CEntityListener::NOTIFY_GOTO:
+				 case CEntityListener::NOTIFY_RUN: 
 				 case CEntityListener::NOTIFY_HEAL:
 				 case CEntityListener::NOTIFY_ATTACK:
 				 case CEntityListener::NOTIFY_GATHER:
 				 case CEntityListener::NOTIFY_DAMAGE:
-					 if( argc < 2 )
-					 {
-					 	JS_ReportError( cx, "Too few parameters" );
-					 	continue;
-					 }
-					 target = ToNative<CEntity>( argv[1] );
-					 order.m_data[0].entity = target->me;
-
-					 m_listeners[i].m_sender->DispatchNotification( order, result );
-					 break;
+					m_listeners[i].m_sender->DispatchNotification( order, result );
 					 
-				 default:
+				default:
 					JS_ReportError( cx, "Invalid order type" );
 					continue;
 			 }
 		 }
 	}
-	return JSVAL_VOID;
+	return true;
+}
+void CEntity::CheckListeners( int type, CEntity *target)
+{	
+	m_currentNotification = type;
+	
+	debug_assert(target);
+	if ( target->m_orderQueue.empty() )
+		return;
+	
+	CEntityOrder order = target->m_orderQueue.front();
+	for (size_t i=0; i<m_listeners.size(); i++)
+	{
+		int result = m_listeners[i].m_type & type;
+		if ( result )
+		{
+			 switch( result )
+			 {
+				 case CEntityListener::NOTIFY_GOTO:
+				 case CEntityListener::NOTIFY_RUN: 
+				 case CEntityListener::NOTIFY_HEAL:
+				 case CEntityListener::NOTIFY_ATTACK:
+				 case CEntityListener::NOTIFY_GATHER:
+				 case CEntityListener::NOTIFY_DAMAGE:
+					 m_listeners[i].m_sender->DispatchNotification( order, result );
+					 break;
+				 default:
+					debug_warn("Invalid notification: CheckListeners()");
+					continue;
+			 }
+		}
+	}
 }
 
 jsval CEntity::TriggerRun( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
