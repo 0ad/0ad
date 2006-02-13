@@ -42,7 +42,8 @@ void CCinemaPath::DrawSpline(CVector4D RGBA, int smoothness)
 		glVertex3f( tmp.X, tmp.Y, tmp.Z );
 	}
 	glEnd();
-	
+	glLineWidth(1.0f);
+
 	glPointSize(6.0f);
 	//Draw spline endpoints
 	glBegin(GL_POINTS);
@@ -51,6 +52,7 @@ void CCinemaPath::DrawSpline(CVector4D RGBA, int smoothness)
 		tmp = m_Spline.GetPosition(1);
 		glVertex3f( tmp.X, tmp.Y, tmp.Z );
 	glEnd();
+	glPointSize(1.0f);
 }
 void CCinemaPath::MoveToPointAt(float t, const CVector3D &startRotation)
 {
@@ -60,7 +62,7 @@ void CCinemaPath::MoveToPointAt(float t, const CVector3D &startRotation)
 	Cam->m_Orientation.SetXRotation(fmodf(rot.X, 360.0f));
 	Cam->m_Orientation.RotateY(fmodf(rot.Y, 360.0f));
 	Cam->m_Orientation.RotateZ(fmodf(rot.Z, 360.0f));
-	
+
 	CVector3D pos = m_Spline.GetPosition(t);
 	Cam->m_Orientation.Translate(pos);
 }
@@ -71,7 +73,7 @@ void CCinemaPath::ResetRotation(float t)
 	CCamera *Cam=g_Game->GetView()->GetCamera();
 	t = (this->*DistModePtr)(t);
 	CVector3D rot = m_TotalRotation * t;
-	
+
 	//rotate in reverse order and reverse angles
 	Cam->m_Orientation.RotateZ(-fmodf(rot.Z, 360));
 	Cam->m_Orientation.RotateY(-fmodf(rot.Y, 360));
@@ -114,14 +116,14 @@ float CCinemaPath::EaseGrowth(float t)
 
 float CCinemaPath::EaseExpo(float t)
 {
-	if(t == 0) 
+	if(t == 0)
 		return t;
     return powf(m_Growth, 10*(t-1.0f));
 }
 float CCinemaPath::EaseCircle(float t)
 {
 	 t = -(sqrt(1.0f - t*t) - 1.0f);
-     if(m_GrowthCount > 1.0f) 
+     if(m_GrowthCount > 1.0f)
 	 {
 		 m_GrowthCount--;
 		 return (this->*DistStylePtr)(t);
@@ -132,7 +134,7 @@ float CCinemaPath::EaseCircle(float t)
 float CCinemaPath::EaseSine(float t)
 {
      t = 1.0f - cos(t * PI/2);
-     if(m_GrowthCount > 1.0f) 
+     if(m_GrowthCount > 1.0f)
 	 {
 		 m_GrowthCount--;
 		 return (this->*DistStylePtr)(t);
@@ -154,27 +156,27 @@ void CCinemaTrack::AddPath(CCinemaData data, TNSpline &spline)
 	m_Paths.push_back(path);
 	std::vector<CCinemaPath>::iterator SetTemp;
 	SetTemp=m_Paths.end() - 1;
-	
+
 	//Set distortion mode and style
 	switch(data.m_Mode)
 	{
-	case EM_IN:	
+	case EM_IN:
 		SetTemp->DistModePtr = &CCinemaPath::EaseIn;
 		break;
-	case EM_OUT: 
+	case EM_OUT:
 		SetTemp->DistModePtr = &CCinemaPath::EaseOut;
 		break;
-	case EM_INOUT:	
+	case EM_INOUT:
 		SetTemp->DistModePtr = &CCinemaPath::EaseInOut;
 		break;
-	case EM_OUTIN: 
+	case EM_OUTIN:
 		SetTemp->DistModePtr = &CCinemaPath::EaseOutIn;
 		break;
 	default:
 		debug_printf("Cinematic mode not found for %d ", data.m_Mode);
 		break;
 	}
-	
+
 	switch (data.m_Style)
 	{
 	case ES_DEFAULT:
@@ -189,7 +191,7 @@ void CCinemaTrack::AddPath(CCinemaData data, TNSpline &spline)
 	case ES_CIRCLE:
 		SetTemp->DistStylePtr = &CCinemaPath::EaseCircle;
 		break;
-	case ES_SINE: 
+	case ES_SINE:
 		SetTemp->DistStylePtr = &CCinemaPath::EaseSine;
 		break;
 	default:
@@ -197,20 +199,20 @@ void CCinemaTrack::AddPath(CCinemaData data, TNSpline &spline)
 		break;
 	}
 
-	
+
 }
 bool CCinemaTrack::Validate()
-{	
+{
 	if (m_CPA->m_TimeElapsed >= m_CPA->m_TotalDuration)
 	{
-		if (m_CPA == m_Paths.end() - 1)			
+		if (m_CPA == m_Paths.end() - 1)
 		{
 			return false;
 		}
 		//Make sure it's within limits of track
 		else
 		{
-			float Pos = m_CPA->m_TimeElapsed - m_CPA->m_TotalDuration; 
+			float Pos = m_CPA->m_TimeElapsed - m_CPA->m_TotalDuration;
 			m_CPA++;
 
 			while (1)
@@ -222,15 +224,15 @@ bool CCinemaTrack::Validate()
 						 return false;
 					}
 						Pos -= m_CPA->m_TotalDuration;
-						m_CPA++; 		
-				}		
+						m_CPA++;
+				}
 				else
 				{
 					m_CPA->m_TimeElapsed+=Pos;
 					break;
 				}
 			}	//while
-		}	
+		}
     }	//main if statement
    return true;
 }
@@ -248,7 +250,7 @@ bool CCinemaTrack::Play(float DeltaTime)
 			 Cam->m_Orientation.SetXRotation(m_StartRotation.X);
 			 Cam->m_Orientation.RotateY(m_StartRotation.Y);
 			 Cam->m_Orientation.RotateZ(m_StartRotation.Z);
-			
+
 		 }
 	}
 	//m_CPA->ResetRotation(m_CPA->m_TimeElapsed / m_CPA->m_TotalDuration);
@@ -276,7 +278,7 @@ void CCinemaManager::QueueTrack(CStr name, bool queue )
 	}
 	else
 	{
-		m_TrackQueue.push_back(m_Tracks[name]); 
+		m_TrackQueue.push_back(m_Tracks[name]);
 		m_TrackQueue.back().m_CPA = m_TrackQueue.back().m_Paths.begin();
 	}
 }
@@ -297,17 +299,17 @@ int CCinemaManager::LoadTracks()
 {
 	unsigned int fileID;
 	int numTracks;
-	
+
 	//NOTE: How do you find the current scenario's cinematics?
 	FileIOBuf buf; size_t size;
 	RETURN_ERR(vfs_load("FILENAME", buf, size));
 	std::istringstream Stream(std::string((const char*)buf, (int)size), std::istringstream::binary);
 	(void)file_buf_free(buf);
-	
+
 	//Read in lone data
 	Stream >> fileID;
 	Stream >> numTracks;
-	
+
 	if (fileID != 0x0ADC)
 	{
 		debug_printf("Cinematic file not found for (FILENAME)!");
@@ -316,18 +318,18 @@ int CCinemaManager::LoadTracks()
 	for (int i=0; i < numTracks; i++)
 	{
 		CCinemaTrack tmpTrack;
-		
+
 		CVector3D tmpPos;
 		float tmpTime;
 		int numPaths;
 		CStr Name;
-		
+
 		Stream >> Name;
 		Stream >> numPaths;
 		Stream >> tmpTrack.m_StartRotation.X;
 		Stream >> tmpTrack.m_StartRotation.Y;
 		Stream >> tmpTrack.m_StartRotation.Z;
-		
+
 		for (int j=0; j < numPaths; j++)
 		{
 			CCinemaData tmpData;
@@ -352,7 +354,7 @@ int CCinemaManager::LoadTracks()
 				Stream >> tmpPos.Y;
 				Stream >> tmpPos.Z;
 				Stream >> tmpTime;
-				tmpSpline.AddNode( tmpPos, tmpTime ); 
+				tmpSpline.AddNode( tmpPos, tmpTime );
 			}
 			tmpTrack.AddPath(tmpData, tmpSpline);
 		}
@@ -366,39 +368,39 @@ int CCinemaManager::HACK_WriteTrack(CCinemaTrack track)
 	FILE *fp = fopen(name, "wb");
 	unsigned int fileID = 0x0ADC;
 	int numTracks = 1;
-	
+
 	int numPaths = track.m_Paths.size();
-	
+
 	fwrite( &fileID, sizeof(fileID), 1, fp);
 	fwrite( &numTracks, sizeof(numTracks), 1, fp);
 	fwrite( &name, sizeof(name), 1, fp);
 	fwrite( &numPaths, sizeof(numPaths), 1, fp);
 	fwrite( &track.m_StartRotation, sizeof(track.m_StartRotation), 1, fp );
-	
+
 	for (int i=0; i<numPaths; i++)
 	{
 		int count = track.m_Paths[i].GetNodeCount();
 		float duration = track.m_Paths[i].GetDuration();
 
-		fwrite( &count, sizeof(int), 1, fp ); 
-		fwrite( &duration, sizeof(float), 1, fp ); 
-		fwrite( &track.m_Paths[i].m_TotalRotation, sizeof(CVector3D), 1, fp ); 
-		fwrite( &track.m_Paths[i].m_Growth, sizeof(float), 1, fp ); 
-		fwrite( &track.m_Paths[i].m_Switch, sizeof(float), 1, fp ); 
-		fwrite( &track.m_Paths[i].m_Growth, sizeof(float), 1, fp ); 
-		fwrite( &track.m_Paths[i].m_Mode, sizeof(float), 1, fp ); 
-		fwrite( &track.m_Paths[i].m_Style, sizeof(float), 1, fp ); 
+		fwrite( &count, sizeof(int), 1, fp );
+		fwrite( &duration, sizeof(float), 1, fp );
+		fwrite( &track.m_Paths[i].m_TotalRotation, sizeof(CVector3D), 1, fp );
+		fwrite( &track.m_Paths[i].m_Growth, sizeof(float), 1, fp );
+		fwrite( &track.m_Paths[i].m_Switch, sizeof(float), 1, fp );
+		fwrite( &track.m_Paths[i].m_Growth, sizeof(float), 1, fp );
+		fwrite( &track.m_Paths[i].m_Mode, sizeof(float), 1, fp );
+		fwrite( &track.m_Paths[i].m_Style, sizeof(float), 1, fp );
 
 		for (int j=0; j < track.m_Paths[i].GetNodeCount(); j++)
 		{
 			CVector3D position = track.m_Paths[i].GetNodePosition(j);
 			float duration = track.m_Paths[i].GetNodeDuration(j);
 			fwrite( &position, sizeof(CVector3D), 1, fp );
-			fwrite( &duration, sizeof(float), 1, fp ); 
+			fwrite( &duration, sizeof(float), 1, fp );
 		}
 	}
 	fclose(fp);
-			
+
 	return 0;
 }
 

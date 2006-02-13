@@ -284,9 +284,27 @@ namespace __gnu_cxx
 {
 	template<> struct hash<std::string>
 	{
-		size_t operator()(const std::string& __x) const 
+		size_t operator()(const std::string& __x) const
 		{
 			return __stl_hash_string(__x.c_str());
+		}
+	};
+
+	template<> struct hash<const void*>
+	{
+		// TODO: Is this a good hash function for pointers?
+		// The basic idea is to avoid patterns that are caused by alignment of structures
+		// in memory and of heap allocations
+		size_t operator()(const void* __x) const
+		{
+			size_t val = (size_t)__x;
+			const unsigned char* data = (unsigned char*)&val;
+			size_t h = 0;
+
+			for(uint i = 0; i < sizeof(val); ++i, ++data)
+				h = 257*h + *data;
+
+			return h;
 		}
 	};
 }

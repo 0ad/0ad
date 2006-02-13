@@ -695,6 +695,7 @@ void CRenderer::RenderPatches()
 		glDepthMask(1);
 
 		// restore fill mode, and we're done
+		glLineWidth(1.0f);
 		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 	}
 }
