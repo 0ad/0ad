@@ -37,7 +37,7 @@ function worldClickHandler(event)
 	{
 		return;
 	}
-
+	
 	switch (cmd)
 	{
 		// location target commands
@@ -70,6 +70,31 @@ function worldClickHandler(event)
 			else
 				args[1]=event.secondaryAction;
 		break;
+		case NMT_NotifyRequest:
+			if (event.clicks == 1)
+				action = event.action;
+			else
+				action = event.secondaryAction;
+			
+			if (event.entity.isIdle())
+			{
+				for (i=0; i<selection.length;i++)			
+				{
+					console.write("Requesting notification for " + event.entity);
+					selection[i].requestNotification( event.entity, action, true );
+					selection[i].order( ORDER_GOTO, event.entity.position.x, event.entity.position.z -							selection[i].actions.escort.distance, true);
+				}
+			}
+			else
+			{
+				for (i=0; i<selection.length;i++)	
+				{
+					console.write("Requesting notification for " + event.entity);		
+					selection[i].requestNotification( event.entity, action, true );
+				}
+			}	
+			
+			return;
 		default:
 			console.write("worldClickHandler: Unknown order: "+cmd);
 			return;

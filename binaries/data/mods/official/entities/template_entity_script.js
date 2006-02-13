@@ -15,10 +15,12 @@
 
 //    * Add code in entityEventGeneric() to deal with new generic order events of your type. Note that if you want to have your action handler in a separate function (is preferable), you need to also add this function to the entity object in entityInit() (its initialize event), e.g. this.processGather = entityEventGather. 
 
+const ACTION_NONE	= 0;
 const ACTION_ATTACK	= 1;
 const ACTION_GATHER	= 2;
 const ACTION_HEAL	= 3;
 const ACTION_ATTACK_RANGED = 4;
+
 
 // ====================================================================
 
@@ -36,7 +38,6 @@ function entityInit()
 
 		// Exception to make the Romans into rome.
 		if (this.traits.id.civ_code == "roma") this.traits.id.civ_code = "rome"
-
 		// Exception to make the Hellenes into hele.
 		if (this.traits.id.civ_code == "hell") this.traits.id.civ_code = "hele"
 	}
@@ -165,6 +166,7 @@ function entityInit()
 	this.performGather = performGather;
 	this.performHeal = performHeal;
 	this.damage = damage;
+	this.GotoInRange = GotoInRange;
 
 	// Attach Auras if the entity is entitled to them.
 	if( this.traits.auras )
@@ -593,6 +595,7 @@ function entityEventGeneric( evt )
 			this.performHeal( evt ); break;
 		case ACTION_ATTACK_RANGED:
 			this.performAttackRanged( evt ); break;
+
 		default:
 			console.write( "Unknown generic action: " + evt.action );
 	}
@@ -602,24 +605,29 @@ function entityEventGeneric( evt )
 
 function entityEventNotification( evt )
 {
-	switch( evt.type )
+	//Add "true" to the end of order() to indicate that this is a notification order.
+	switch( evt.notifyType )
 	{
+		
 		case NOTIFY_GOTO:
+			this.GotoInRange( evt.location.x, evt.location.z, false);
+			break;
 		case NOTIFY_RUN:
-			this.Order( ORDER_GOTO, evt.location.x, evt.location.y );
+			this.GotoInRange( evt.location.x, evt.location.z, true );
 			break;
 		case NOTIFY_ATTACK:
 		case NOTIFY_DAMAGE:
-			this.Order( ORDER_GENERIC, evt.target, ACTION_ATTACK);
+			this.order( ORDER_GENERIC, evt.target, ACTION_ATTACK, true );
 			break;
 		case NOTIFY_HEAL:
-			this.Order( ORDER_GENERIC, evt.target, ACTION_HEAL );
+			this.order( ORDER_GENERIC, evt.target, ACTION_HEAL, true );
 			break;
 		case NOTIFY_GATHER:
-			this.Order( ORDER_GENERIC, evt.target, ACTION_GATHER );
+			this.order( ORDER_GENERIC, evt.target, ACTION_GATHER, true );
 			break;
 		default:
-			console.wrote( "Unknown notification request" + evt.type );
+			console.write( "Unknown notification request " + evt.notifyType );
+			break;
 	}
 }		
 
@@ -627,11 +635,15 @@ function entityEventNotification( evt )
 
 function getAttackAction( source, target )
 {
+	if (!source.actions.attack)
+		return ACTION_NONE;
 	attack = source.actions.attack;
-	if( attack.melee )
+	if ( attack.melee )
 		return ACTION_ATTACK;
-	else
+	else if ( attack.ranged )
 		return ACTION_ATTACK_RANGED;
+	else
+		return ACTION_NONE;
 }
 
 // ====================================================================
@@ -647,12 +659,14 @@ function entityEventTargetChanged( evt )
 	
 	evt.defaultOrder = NMT_Goto;
 	evt.defaultCursor = "arrow-default";
-	
+	evt.defaultAction = ACTION_NONE;
+	evt.secondaryAction = ACTION_NONE;
 	evt.secondaryCursor = "arrow-default";
 	if ( this.actions.run && this.actions.run.speed > 0 )
 	{
 		evt.secondaryOrder = NMT_Run;
 	}
+
 	if( evt.target && this.actions )
 	{
 		if( this.actions.attack && 
@@ -668,7 +682,24 @@ function entityEventTargetChanged( evt )
 			evt.secondaryAction = getAttackAction( this, evt.target );
 			evt.secondaryCursor = "action-attack";
 		}
-		if( canGather( this, evt.target ) )
+		if ( this.actions.escort &&
+			this != evt.target &&
+			evt.target.player == this.player &&
+			evt.target.actions )
+		{
+			if (evt.target.actions.move)
+			{ 
+				//Send an empty order
+				evt.defaultOrder = NMT_NotifyRequest;
+				evt.secondaryOrder = NMT_NotifyRequest;
+
+				evt.defaultAction = NOTIFY_ESCORT;
+				evt.secondaryAction = NOTIFY_ESCORT;
+			}
+		}
+
+
+		if ( canGather( this, evt.target ) )
 		{
 			evt.defaultOrder = NMT_Generic;
 			evt.defaultAction = ACTION_GATHER;
@@ -681,6 +712,8 @@ function entityEventTargetChanged( evt )
 		    evt.secondaryCursor = "action-gather-" + evt.target.traits.supply.subtype;
 		}
 	}
+
+		
 }
 
 // ====================================================================
@@ -691,29 +724,62 @@ function entityEventPrepareOrder( evt )
 	// Not sure whether this really belongs here like this: the alternative is to override it in
 	// subtypes - then you wouldn't need to check tags, you could hardcode results.
 
-	if( !this.actions )
+	if ( !this.actions )
 	{
 		evt.preventDefault();
 		return;
 	}
+	
+	//evt.notifySource is the entity order data will be obtained from, so if we're attacking and we 
+	//want our listeners to copy us, then we will use our own order as the source.
 
 	switch( evt.orderType )
 	{
 		case ORDER_GOTO:
-			if( !this.actions.move )
+			if ( !this.actions.move )
 				evt.preventDefault();
-			break;
+			evt.notifyType = NOTIFY_GOTO;
+			evt.notifySource = this;
+
+			break
 		case ORDER_RUN:
-			if( !this.actions.move.run )
+			if ( !this.actions.move.run )	
 				evt.preventDefault();
+
+			evt.notifyType = NOTIFY_RUN;
+			evt.notifySource = this;
+
 			break;
 		case ORDER_PATROL:
-			if( !this.actions.patrol )
+			if ( !this.actions.patrol )
 				evt.preventDefault();
+
 			break;	
 		case ORDER_GENERIC:
-			// TODO: some checking here
+			evt.notifySource = this;
+			switch ( evt.action )
+			{
+				case ACTION_ATTACK:
+				case ACTION_ATTACK_RANGED:
+					evt.action = getAttackAction( this, evt.target );
+					if ( action == ACTION_NONE )
+					 	evt.preventDefault();
+					evt.notifyType = NOTIFY_ATTACK;
+					break;
+
+				case ACTION_GATHER:
+					if ( !this.actions.gather )
+						evt.preventDefault();
+					evt.notifyType = NOTIFY_GATHER;
+					break;
+				case ACTION_HEAL:
+					if ( !this.actions.heal )
+						evt.preventDefault();
+					evt.notifyType = NOTIFY_HEAL;
+					break;	
+			}
 			break;
+			
 		default:
 			//evt.preventDefault();
 			break;
@@ -1096,3 +1162,13 @@ function InfidelityAura( source, time )
 }
 
 // ====================================================================
+function GotoInRange( x, y, run )
+{	
+	if ( !this.actions || !this.actions.move )
+		return;
+	//Add "true" at the end to indicate that this is a notification order.
+	if (run && this.actions.move.run)
+		this.order( ORDER_RUN, x, y - this.actions.escort.distance, true);
+	else
+		this.order( ORDER_GOTO, x, y - this.actions.escort.distance, true);
+}
