@@ -369,7 +369,7 @@ int CCinemaManager::HACK_WriteTrack(CCinemaTrack track)
 	unsigned int fileID = 0x0ADC;
 	int numTracks = 1;
 
-	int numPaths = track.m_Paths.size();
+	size_t numPaths = track.m_Paths.size();
 
 	fwrite( &fileID, sizeof(fileID), 1, fp);
 	fwrite( &numTracks, sizeof(numTracks), 1, fp);
