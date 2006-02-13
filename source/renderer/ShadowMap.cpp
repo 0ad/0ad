@@ -174,26 +174,31 @@ void ShadowMapInternals::CalcShadowMatrices()
 	LightProjection._22 = scale.Y;
 	LightProjection._24 = shift.Y * scale.Y;
 	LightProjection._33 = scale.Z;
-	LightProjection._34 = shift.Z * scale.Z;
+	LightProjection._34 = shift.Z * scale.Z + renderer.m_ShadowZBias;
 	LightProjection._44 = 1.0;
 
 
 	// Calculate texture matrix by creating the clip space to texture coordinate matrix
 	// and then concatenating all matrices that have been calculated so far
-	CMatrix3D clipToTex;
-	float texscalex = 0.5 * (float)renderer.GetWidth() / (float)Width;
-	float texscaley = 0.5 * (float)renderer.GetHeight() / (float)Height;
+	CMatrix3D lightToTex;
+	float texscalex = (float)renderer.GetWidth() / (float)Width;
+	float texscaley = (float)renderer.GetHeight() / (float)Height;
+	float texscalez = 1.0;
 
-	clipToTex.SetZero();
-	clipToTex._11 = texscalex;
-	clipToTex._14 = texscalex;
-	clipToTex._22 = texscaley;
-	clipToTex._24 = texscaley;
-	clipToTex._33 = 0.5; // translate -1..1 clip space Z values to tex Z values
-	clipToTex._34 = 0.5;
-	clipToTex._44 = 1.0;
+	texscalex = texscalex / (ShadowBound[1].X - ShadowBound[0].X);
+	texscaley = texscaley / (ShadowBound[1].Y - ShadowBound[0].Y);
+	texscalez = texscalez / (ShadowBound[1].Z - ShadowBound[0].Z);
 
-	TextureMatrix = clipToTex * LightProjection * LightTransform;
+	lightToTex.SetZero();
+	lightToTex._11 = texscalex;
+	lightToTex._14 = -ShadowBound[0].X * texscalex;
+	lightToTex._22 = texscaley;
+	lightToTex._24 = -ShadowBound[0].Y * texscaley;
+	lightToTex._33 = texscalez;
+	lightToTex._34 = -ShadowBound[0].Z * texscalez;
+	lightToTex._44 = 1.0;
+
+	TextureMatrix = lightToTex * LightTransform;
 }
 
 
@@ -224,7 +229,7 @@ void ShadowMapInternals::CreateTexture()
 	{
 		float* buf = new float[size];
 		for(uint i = 0; i < size; i++) buf[i] = 1.0;
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, Width, Height, 0,
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT16, Width, Height, 0,
 			     GL_DEPTH_COMPONENT, GL_FLOAT, buf);
 		delete[] buf;
 	}

@@ -18,6 +18,7 @@
 #include "ps/Profile.h"
 
 #include "graphics/Color.h"
+#include "graphics/LightEnv.h"
 #include "graphics/Model.h"
 #include "graphics/ModelDef.h"
 
@@ -25,7 +26,6 @@
 #include "renderer/ModelVertexRenderer.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderModifiers.h"
-#include "renderer/SHCoeffs.h"
 
 
 #define LOG_CATEGORY "graphics"
@@ -84,7 +84,7 @@ void ModelRenderer::CopyPositionAndNormals(
 {
 	size_t numVertices = mdef->GetNumVertices();
 	SModelVertex* vertices = mdef->GetVertices();
-	
+
 	for(size_t j = 0; j < numVertices; ++j)
 	{
 		Position[j] = vertices[j].m_Coords;
@@ -101,14 +101,14 @@ void ModelRenderer::BuildPositionAndNormals(
 	CModelDefPtr mdef = model->GetModelDef();
 	size_t numVertices = mdef->GetNumVertices();
 	SModelVertex* vertices=mdef->GetVertices();
-	
+
 	const CMatrix3D* bonematrices = model->GetBoneMatrices();
 	if (bonematrices)
 	{
 		// boned model - calculate skinned vertex positions/normals
 		PROFILE( "skinning bones" );
 		const CMatrix3D* invtranspbonematrices;
-		
+
 		// Analytic geometry tells us that normal vectors need to be
 		// multiplied by the inverse of the transpose. However, calculating
 		// the inverse is slow, and analytic geometry also tells us that
@@ -123,7 +123,7 @@ void ModelRenderer::BuildPositionAndNormals(
 			invtranspbonematrices = bonematrices;
 		else
 			invtranspbonematrices = model->GetInvTranspBoneMatrices();
-		
+
 		for (size_t j=0; j<numVertices; j++)
 		{
 			SkinPoint(vertices[j],bonematrices,Position[j]);
@@ -152,17 +152,19 @@ void ModelRenderer::BuildColor4ub(
 		VertexArrayIterator<SColor4ub> Color)
 {
 	PROFILE( "lighting vertices" );
-	
+
 	CModelDefPtr mdef = model->GetModelDef();
 	size_t numVertices = mdef->GetNumVertices();
-	CSHCoeffs& shcoeffs = g_Renderer.m_SHCoeffsUnits;
-	CColor sc = model->GetShadingColor();
-	RGBColor shadingcolor(sc.r, sc.g, sc.b);
+	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
+	CColor shadingColor = model->GetShadingColor();
 	RGBColor tempcolor;
-	
+
 	for (uint j=0; j<numVertices; j++)
 	{
-		shcoeffs.Evaluate(Normal[j], tempcolor, shadingcolor);
+		lightEnv.EvaluateUnit(Normal[j], tempcolor);
+		tempcolor.X *= shadingColor.r;
+		tempcolor.Y *= shadingColor.g;
+		tempcolor.Z *= shadingColor.b;
 		*(u32*)&Color[j] = ConvertRGBColorTo4ub(tempcolor);
 	}
 }
@@ -175,7 +177,7 @@ void ModelRenderer::BuildUV(
 {
 	size_t numVertices = mdef->GetNumVertices();
 	SModelVertex* vertices = mdef->GetVertices();
-		
+
 	for (uint j=0; j < numVertices; ++j, ++UV)
 	{
 		(*UV)[0] = vertices[j].m_U;
@@ -191,7 +193,7 @@ void ModelRenderer::BuildIndices(
 {
 	u32 idxidx = 0;
 	SModelFace* faces = mdef->GetFaces();
-	
+
 	for (size_t j = 0; j < mdef->GetNumFaces(); ++j) {
 		SModelFace& face=faces[j];
 		Indices[idxidx++]=face.m_Verts[0];
@@ -210,7 +212,7 @@ void ModelRenderer::BuildIndices(
 enum BMRPhase {
 	/// Currently allow calls to Submit and PrepareModels
 	BMRSubmit,
-	
+
 	/// Allow calls to rendering and EndFrame
 	BMRRender
 };
@@ -224,13 +226,13 @@ struct BMRModelData : public CModelRData
 	BMRModelData(BatchModelRendererInternals* bmri, CModel* model)
 	: CModelRData(bmri, model), m_BMRI(bmri), m_Data(0), m_Next(0) { }
 	virtual ~BMRModelData();
-	
+
 	/// Back-link to "our" modelrenderer
 	BatchModelRendererInternals* m_BMRI;
-	
+
 	/// Private data created by derived class' CreateModelData
 	void* m_Data;
-	
+
 	/// Next model in the per-ModelDefTracker-slot linked list.
 	BMRModelData* m_Next;
 };
@@ -238,7 +240,7 @@ struct BMRModelData : public CModelRData
 
 /**
  * Class BMRModelDefTracker: Per-CModelDef data used by the BatchModelRenderer.
- * 
+ *
  * Note that classes that derive from BatchModelRenderer should use
  * their own per-CModelDef data if necessary.
  */
@@ -255,7 +257,7 @@ struct BMRModelDefTracker : public CModelDefRPrivate
 
 	/// Number of slots used in m_ModelSlots
 	uint m_Slots;
-	
+
 	/// Each slot contains a linked list of model data objects, up to m_Slots-1
 	// At the end of the frame, m_Slots is reset to 0, but m_ModelSlots stays
 	// the same size (we assume the same number of slots is going to be used
@@ -267,32 +269,32 @@ struct BMRModelDefTracker : public CModelDefRPrivate
 
 /**
  * Struct BatchModelRendererInternals: Internal data of the BatchModelRenderer
- * 
- * Separated into the source file to increase implementation hiding (and to 
+ *
+ * Separated into the source file to increase implementation hiding (and to
  * avoid some causes of recompiles).
  */
 struct BatchModelRendererInternals
 {
 	BatchModelRendererInternals(BatchModelRenderer* r) : m_Renderer(r) { }
-	
+
 	/// Back-link to "our" renderer
 	BatchModelRenderer* m_Renderer;
-	
+
 	/// ModelVertexRenderer used for vertex transformations
 	ModelVertexRendererPtr vertexRenderer;
-	
+
 	/// Track the current "phase" of the frame (only for debugging purposes)
 	BMRPhase phase;
-	
+
 	/// Linked list of ModelDefTrackers that have submitted models
 	BMRModelDefTracker* submissions;
-	
+
 	/// Helper functions
 	void ThunkDestroyModelData(CModel* model, void* data)
 	{
 		vertexRenderer->DestroyModelData(model, data);
 	}
-	
+
 	void RenderAllModels(RenderModifierPtr modifier, u32 filterflags, uint pass, uint streamflags);
 };
 
@@ -320,19 +322,19 @@ BatchModelRenderer::~BatchModelRenderer()
 void BatchModelRenderer::Submit(CModel* model)
 {
 	debug_assert(m->phase == BMRSubmit);
-	
+
 	CModelDefPtr mdef = model->GetModelDef();
 	BMRModelDefTracker* mdeftracker = (BMRModelDefTracker*)mdef->GetRenderData(m);
 	CModelRData* rdata = (CModelRData*)model->GetRenderData();
 	BMRModelData* bmrdata = 0;
-	
+
 	// Ensure model def data and model data exist
 	if (!mdeftracker)
 	{
 		mdeftracker = new BMRModelDefTracker(mdef);
 		mdef->SetRenderData(m, mdeftracker);
 	}
-	
+
 	if (rdata && rdata->GetKey() == m)
 	{
 		bmrdata = (BMRModelData*)rdata;
@@ -357,15 +359,15 @@ void BatchModelRenderer::Submit(CModel* model)
 	// Add the bmrdata to the modeldef list
 	Handle htex = model->GetTexture()->GetHandle();
 	uint idx;
-	
+
 	for(idx = 0; idx < mdeftracker->m_Slots; ++idx)
 	{
 		BMRModelData* in = mdeftracker->m_ModelSlots[idx];
-		
+
 		if (in->GetModel()->GetTexture()->GetHandle() == htex)
 			break;
 	}
-	
+
 	if (idx >= mdeftracker->m_Slots)
 	{
 		++mdeftracker->m_Slots;
@@ -386,7 +388,7 @@ void BatchModelRenderer::Submit(CModel* model)
 void BatchModelRenderer::PrepareModels()
 {
 	debug_assert(m->phase == BMRSubmit);
-	
+
 	for(BMRModelDefTracker* mdeftracker = m->submissions; mdeftracker; mdeftracker = mdeftracker->m_Next)
 	{
 		for(uint idx = 0; idx < mdeftracker->m_Slots; ++idx)
@@ -394,9 +396,9 @@ void BatchModelRenderer::PrepareModels()
 			for(BMRModelData* bmrdata = mdeftracker->m_ModelSlots[idx]; bmrdata; bmrdata = bmrdata->m_Next)
 			{
 				CModel* model = bmrdata->GetModel();
-				
+
 				debug_assert(model->GetRenderData() == bmrdata);
-				
+
 				m->vertexRenderer->UpdateModelData(
 						model, bmrdata->m_Data,
 						bmrdata->m_UpdateFlags);
@@ -404,7 +406,7 @@ void BatchModelRenderer::PrepareModels()
 			}
 		}
 	}
-	
+
 	m->phase = BMRRender;
 }
 
@@ -413,7 +415,7 @@ void BatchModelRenderer::PrepareModels()
 void BatchModelRenderer::EndFrame()
 {
 	static uint mostslots = 1;
-	
+
 	for(BMRModelDefTracker* mdeftracker = m->submissions; mdeftracker; mdeftracker = mdeftracker->m_Next)
 	{
 		if (mdeftracker->m_Slots > mostslots)
@@ -424,7 +426,7 @@ void BatchModelRenderer::EndFrame()
 		mdeftracker->m_Slots = 0;
 	}
 	m->submissions = 0;
-	
+
 	m->phase = BMRSubmit;
 }
 
@@ -440,18 +442,18 @@ bool BatchModelRenderer::HaveSubmissions()
 void BatchModelRenderer::Render(RenderModifierPtr modifier, u32 flags)
 {
 	debug_assert(m->phase == BMRRender);
-	
+
 	if (!HaveSubmissions())
 		return;
-	
+
 	uint pass = 0;
-	
+
 	do
 	{
 		uint streamflags = modifier->BeginPass(pass);
-		
+
 		m->vertexRenderer->BeginPass(streamflags);
-		
+
 		m->RenderAllModels(modifier, flags, pass, streamflags);
 
 		m->vertexRenderer->EndPass(streamflags);
@@ -467,7 +469,7 @@ void BatchModelRendererInternals::RenderAllModels(
 	for(BMRModelDefTracker* mdeftracker = submissions; mdeftracker; mdeftracker = mdeftracker->m_Next)
 	{
 		vertexRenderer->PrepareModelDef(streamflags, mdeftracker->m_ModelDef.lock());
-		
+
 		for(uint idx = 0; idx < mdeftracker->m_Slots; ++idx)
 		{
 			BMRModelData* bmrdata = mdeftracker->m_ModelSlots[idx];
@@ -477,12 +479,12 @@ void BatchModelRendererInternals::RenderAllModels(
 			for(; bmrdata; bmrdata = bmrdata->m_Next)
 			{
 				CModel* model = bmrdata->GetModel();
-				
+
 				debug_assert(bmrdata->GetKey() == this);
-				
+
 				if (filterflags && !(model->GetFlags()&filterflags))
 					continue;
-			
+
 				modifier->PrepareModel(pass, model);
 				vertexRenderer->RenderModel(streamflags, model, bmrdata->m_Data);
 			}

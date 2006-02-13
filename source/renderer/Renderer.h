@@ -17,7 +17,6 @@
 #include "ogl.h"
 #include "Camera.h"
 #include "Frustum.h"
-#include "SHCoeffs.h"
 #include "Terrain.h"
 #include "Singleton.h"
 #include "Overlay.h"
@@ -368,10 +367,6 @@ protected:
 	std::vector<COverlay*> m_Overlays;
 	// current lighting setup
 	CLightEnv* m_LightEnv;
-	// current spherical harmonic coefficients (for unit lighting), derived from lightenv
-	CSHCoeffs m_SHCoeffsUnits;
-	// current spherical harmonic coefficients (for terrain lighting), derived from lightenv
-	CSHCoeffs m_SHCoeffsTerrain;
 	// ogl_tex handle of composite alpha map (all the alpha maps packed into one texture)
 	Handle m_hCompositeAlphaMap;
 	// coordinates of each (untransformed) alpha map within the packed texture
@@ -450,6 +445,16 @@ protected:
 		RenderModifierPtr ModTransparentShadow;
 		RenderModifierPtr ModTransparentDepthShadow;
 	} m_Models;
+
+public:
+	/**
+	 * m_ShadowZBias: Z bias used when rendering shadows into a depth texture.
+	 * This can be used to control shadowing artifacts.
+	 *
+	 * Can be accessed via JS as renderer.shadowZBias
+	 * ShadowMap uses this for matrix calculation.
+	 */
+	float m_ShadowZBias;
 };
 
 

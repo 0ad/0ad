@@ -6,7 +6,7 @@ class RenderPathVertexShader
 public:
 	RenderPathVertexShader();
 	~RenderPathVertexShader();
-	
+
 	// Initialize this render path.
 	bool Init();
 
@@ -15,10 +15,14 @@ public:
 
 public:
 	Handle m_ModelLight;
-	GLint m_ModelLight_SHCoefficients;
-	
+	GLint m_ModelLight_Ambient;
+	GLint m_ModelLight_SunDir;
+	GLint m_ModelLight_SunColor;
+
 	Handle m_InstancingLight;
-	GLint m_InstancingLight_SHCoefficients;
+	GLint m_InstancingLight_Ambient;
+	GLint m_InstancingLight_SunDir;
+	GLint m_InstancingLight_SunColor;
 	GLint m_InstancingLight_Instancing1; // matrix rows
 	GLint m_InstancingLight_Instancing2;
 	GLint m_InstancingLight_Instancing3;

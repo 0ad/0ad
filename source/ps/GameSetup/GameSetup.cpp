@@ -114,7 +114,7 @@ static int SetVideoMode(int w, int h, int bpp, bool fullscreen)
 	// (Note that atexit hooks are guarantueed to be called in reverse order of their registration.)
 	atexit(SDL_Quit);
 	// End work around.
-	
+
 	glViewport(0, 0, w, h);
 
 #ifndef NO_GUI
@@ -255,7 +255,7 @@ void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task)
 #ifndef NO_GUI
 	CStrW i18n_description = I18n::translate(pending_task);
 	JSString* js_desc = StringConvert::wstring_to_jsstring(g_ScriptingHost.getContext(), i18n_description);
-	g_ScriptingHost.SetGlobal("g_Progress", INT_TO_JSVAL(percent)); 
+	g_ScriptingHost.SetGlobal("g_Progress", INT_TO_JSVAL(percent));
 	g_ScriptingHost.SetGlobal("g_LoadDescription", STRING_TO_JSVAL(js_desc));
 	g_GUI.SendEventToAll("progress");
 #endif
@@ -331,7 +331,7 @@ void Render()
 		PROFILE_END( "render selection" );
 
 		PROFILE_START( "render building placement cursor" );
-		if( g_BuildingPlacer.m_active ) 
+		if( g_BuildingPlacer.m_active )
 		{
 			//glEnable( GL_DEPTH_TEST );
 			g_BuildingPlacer.render();
@@ -339,7 +339,7 @@ void Render()
 		}
 		PROFILE_END( "render building placement cursor" );
 
-		
+
 		PROFILE_START( "render health bars" );
 		glMatrixMode(GL_PROJECTION);
 		glPushMatrix();
@@ -493,7 +493,7 @@ static void InitScripting()
 	CScriptEvent::ScriptingInit();
 	CJSProgressTimer::ScriptingInit();
 	CProjectile::ScriptingInit();
-	
+
 	g_ScriptingHost.DefineConstant( "NOTIFY_GOTO", CEntityListener::NOTIFY_GOTO );
 	g_ScriptingHost.DefineConstant( "NOTIFY_RUN", CEntityListener::NOTIFY_RUN );
 	g_ScriptingHost.DefineConstant( "NOTIFY_FOLLOW", CEntityListener::NOTIFY_FOLLOW );
@@ -605,7 +605,7 @@ static void InitInput()
 
 	in_add_handler(CProfileViewer::InputThunk);
 
-	in_add_handler(hotkeyInputHandler); 
+	in_add_handler(hotkeyInputHandler);
 
 	in_add_handler(GlobalsInputHandler);
 }
@@ -666,7 +666,7 @@ static void InitRenderer()
 	g_LightEnv.m_SunColor=RGBColor(1,1,1);
 	g_LightEnv.SetRotation(DEGTORAD(270));
 	g_LightEnv.SetElevation(DEGTORAD(45));
-	g_LightEnv.m_TerrainAmbientColor=RGBColor(0,0,0);
+	g_LightEnv.m_TerrainAmbientColor=RGBColor(0.4f,0.4f,0.4f);
 	g_LightEnv.m_UnitsAmbientColor=RGBColor(0.4f,0.4f,0.4f);
 	g_Renderer.SetLightEnv(&g_LightEnv);
 
@@ -843,7 +843,7 @@ void Init(int argc, char* argv[], uint flags)
 
 	// Query CPU capabilities, possibly set some CPU-dependent flags
 	cpu_init();
-	
+
 	// Do this as soon as possible, because it chdirs
 	// and will mess up the error reporting if anything
 	// crashes before the working directory is set.
@@ -1032,7 +1032,7 @@ void Init(int argc, char* argv[], uint flags)
 		// Code copied mostly from atlas/GameInterface/Handlers/Map.cpp -
 		// maybe should be refactored to avoid duplication
 		g_GameAttributes.m_MapFile = g_AutostartMap+".pmp";
-		for (int i=1; i<8; ++i) 
+		for (int i=1; i<8; ++i)
 			g_GameAttributes.GetSlot(i)->AssignLocal();
 		g_GameAttributes.m_LOSSetting = 2;
 		g_Game = new CGame();

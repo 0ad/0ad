@@ -53,8 +53,8 @@ bool CTerrain::Initialize(u32 size,const u16* data)
 	// store terrain size
 	m_MapSize=(size*PATCH_SIZE)+1;
 	m_MapSizePatches=size;
-	WaterManager *WaterMgr = g_Renderer.GetWaterManager();
-	WaterMgr->InitWave();
+	//WaterManager *WaterMgr = g_Renderer.GetWaterManager();
+	//WaterMgr->InitWave();
 	// allocate data for new terrain
 	m_Heightmap=new u16[m_MapSize*m_MapSize];
 	m_Patches=new CPatch[m_MapSizePatches*m_MapSizePatches];
@@ -94,12 +94,12 @@ void CTerrain::CalcPosition(i32 i, i32 j, CVector3D& pos) const
 void CTerrain::CalcNormal(u32 i, u32 j, CVector3D& normal) const
 {
 	CVector3D left, right, up, down;
-	
+
 	left.Clear();
 	right.Clear();
 	up.Clear();
 	down.Clear();
-	
+
 	// get position of vertex where normal is being evaluated
 	CVector3D basepos;
 	CalcPosition(i,j,basepos);
@@ -128,7 +128,7 @@ void CTerrain::CalcNormal(u32 i, u32 j, CVector3D& normal) const
 	CVector3D n0 = up.Cross(left);
 	CVector3D n1 = left.Cross(down);
 	CVector3D n2 = down.Cross(right);
-	CVector3D n3 = right.Cross(up);	
+	CVector3D n3 = right.Cross(up);
 
 	normal = n0 + n1 + n2 + n3;
 	float nlen=normal.GetLength();
@@ -137,18 +137,18 @@ void CTerrain::CalcNormal(u32 i, u32 j, CVector3D& normal) const
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// GetPatch: return the patch at (x,z) in patch space, or null if the patch is 
+// GetPatch: return the patch at (x,z) in patch space, or null if the patch is
 // out of bounds
 CPatch* CTerrain::GetPatch(i32 x, i32 z) const
 {
 	if (x<0 || x>=i32(m_MapSizePatches)) return 0;
 	if (z<0 || z>=i32(m_MapSizePatches)) return 0;
-	return &m_Patches[(z*m_MapSizePatches)+x]; 
+	return &m_Patches[(z*m_MapSizePatches)+x];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// GetPatch: return the tile at (x,z) in tile space, or null if the tile is out 
+// GetPatch: return the tile at (x,z) in tile space, or null if the tile is out
 // of bounds
 CMiniPatch* CTerrain::GetTile(i32 x, i32 z) const
 {
@@ -160,7 +160,7 @@ CMiniPatch* CTerrain::GetTile(i32 x, i32 z) const
 }
 
 float CTerrain::getVertexGroundLevel(int x, int z) const
-{	
+{
 	if (x < 0)
 	{
 		x = 0;
@@ -266,7 +266,7 @@ void CTerrain::Resize(u32 size)
 			for (u32 i=0;i<newMapSize-m_MapSize;i++) {
 				*dst++=*(src-1);
 			}
-		}		
+		}
 	}
 
 
@@ -286,7 +286,7 @@ void CTerrain::Resize(u32 size)
 			// copy over texture data from existing tiles, if possible
 			if (i<m_MapSizePatches && j<m_MapSizePatches) {
 				memcpy2(newPatches[j*size+i].m_MiniPatches,m_Patches[j*m_MapSizePatches+i].m_MiniPatches,sizeof(CMiniPatch)*PATCH_SIZE*PATCH_SIZE);
-			} 
+			}
 		}
 
 		if (j<m_MapSizePatches && size>m_MapSizePatches) {
@@ -303,7 +303,7 @@ void CTerrain::Resize(u32 size)
 			}
 		}
 	}
-	
+
 	if (size>m_MapSizePatches) {
 		// copy over the last tile from each column
 		CPatch* srcpatch=&newPatches[(m_MapSizePatches-1)*size];
@@ -351,7 +351,7 @@ void CTerrain::InitialisePatches()
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// SetHeightMap: set up a new heightmap from 16-bit source data; 
+// SetHeightMap: set up a new heightmap from 16-bit source data;
 // assumes heightmap matches current terrain size
 void CTerrain::SetHeightMap(u16* heightmap)
 {
@@ -370,15 +370,15 @@ void CTerrain::SetHeightMap(u16* heightmap)
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// FlattenArea: flatten out an area of terrain (specified in world space 
+// FlattenArea: flatten out an area of terrain (specified in world space
 // coords); return the average height of the flattened area
 float CTerrain::FlattenArea(float x0,float x1,float z0,float z1)
 {
-	u32 tx0=u32(clamp(int(float(x0/CELL_SIZE)),0,int(m_MapSize)));	
-	u32 tx1=u32(clamp(int(float(x1/CELL_SIZE)+1.0f),0,int(m_MapSize)));	
-	u32 tz0=u32(clamp(int(float(z0/CELL_SIZE)),0,int(m_MapSize)));	
-	u32 tz1=u32(clamp(int(float(z1/CELL_SIZE)+1.0f),0,int(m_MapSize)));	
-	
+	u32 tx0=u32(clamp(int(float(x0/CELL_SIZE)),0,int(m_MapSize)));
+	u32 tx1=u32(clamp(int(float(x1/CELL_SIZE)+1.0f),0,int(m_MapSize)));
+	u32 tz0=u32(clamp(int(float(z0/CELL_SIZE)),0,int(m_MapSize)));
+	u32 tz1=u32(clamp(int(float(z1/CELL_SIZE)+1.0f),0,int(m_MapSize)));
+
 	u32 count=0;
 	u32 y=0;
 	for (u32 x=tx0;x<=tx1;x++) {

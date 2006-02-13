@@ -13,7 +13,7 @@
 #include "Vector4D.h"
 #include "lib/types.h"
 
-// simple defines for 3 and 4 component floating point colors - just map to 
+// simple defines for 3 and 4 component floating point colors - just map to
 // corresponding vector types
 typedef CVector3D RGBColor;
 typedef CVector4D RGBAColor;
@@ -33,6 +33,9 @@ struct SColor4ub
 	u8 G;
 	u8 B;
 	u8 A;
+
+	SColor4ub() { }
+	SColor4ub(u8 _r, u8 _g, u8 _b, u8 _a) : R(_r), G(_g), B(_b), A(_a) { }
 };
 
 extern u32 (*ConvertRGBColorTo4ub)(const RGBColor& src);

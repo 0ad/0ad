@@ -74,7 +74,7 @@ public:
 	 * @param shadow a prepared shadow map, in case rendering with shadows is enabled
 	 * @param shadowColor color of shadows
 	 */
-	void RenderTerrain(ShadowMap* shadow, const RGBAColor& shadowColor);
+	void RenderTerrain(ShadowMap* shadow);
 
 	/**
 	 * RenderPatches: Render all patches un-textured as polygons.

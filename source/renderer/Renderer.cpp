@@ -304,6 +304,8 @@ CRenderer::CRenderer()
 	m_Models.ModTransparentShadow = RenderModifierPtr(new TransparentShadowRenderModifier);
 	m_Models.ModTransparentDepthShadow = RenderModifierPtr(new TransparentDepthShadowModifier);
 
+	m_ShadowZBias = 0.001;
+
 	CEmitter *pEmitter = new CDefaultEmitter(1000, -1);
 	CParticleEngine::GetInstance()->addEmitter(pEmitter);
 
@@ -584,18 +586,6 @@ void CRenderer::BeginFrame()
 	// zero out all the per-frame stats
 	m_Stats.Reset();
 
-	// calculate coefficients for terrain and unit lighting
-	m_SHCoeffsUnits.Clear();
-	m_SHCoeffsTerrain.Clear();
-
-	if (m_LightEnv) {
-		m_SHCoeffsUnits.AddDirectionalLight(m_LightEnv->m_SunDir, m_LightEnv->m_SunColor);
-		m_SHCoeffsTerrain.AddDirectionalLight(m_LightEnv->m_SunDir, m_LightEnv->m_SunColor);
-
-		m_SHCoeffsUnits.AddAmbientLight(m_LightEnv->m_UnitsAmbientColor);
-		m_SHCoeffsTerrain.AddAmbientLight(m_LightEnv->m_TerrainAmbientColor);
-	}
-
 	// init per frame stuff
 	m->shadow->SetupFrame(m_CullCamera, m_LightEnv->m_SunDir);
 }
@@ -618,6 +608,22 @@ void CRenderer::RenderShadowMap()
 
 	glColor4fv(m_Options.m_ShadowColor);
 
+	// Figure out transparent rendering strategy
+	RenderModifierPtr transparentShadows = m_Models.ModTransparentShadow;
+
+	if (m->shadow->GetUseDepthTexture())
+		transparentShadows = m_Models.ModTransparentDepthShadow;
+
+	// Render all closed models (i.e. models where rendering back faces will produce
+	// the correct result)
+	glCullFace(GL_FRONT);
+
+	if (m->shadow->GetUseDepthTexture())
+		m->terrainRenderer->RenderPatches();
+
+	glCullFace(GL_BACK);
+
+	// Render models that aren't closed
 	glDisable(GL_CULL_FACE);
 
 	m_Models.NormalFF->Render(m_Models.ModSolidColor, MODELFLAG_CASTSHADOWS);
@@ -631,10 +637,6 @@ void CRenderer::RenderShadowMap()
 	if (m_Models.PlayerInstancing)
 		m_Models.PlayerInstancing->Render(m_Models.ModSolidColor, MODELFLAG_CASTSHADOWS);
 
-	RenderModifierPtr transparentShadows = m_Models.ModTransparentShadow;
-
-	if (m->shadow->GetUseDepthTexture())
-		transparentShadows = m_Models.ModTransparentDepthShadow;
 
 	m_Models.TranspFF->Render(transparentShadows, MODELFLAG_CASTSHADOWS);
 	if (m_Models.TranspHWLit)
@@ -660,7 +662,7 @@ void CRenderer::RenderPatches()
 
 	// render all the patches, including blend pass
 	MICROLOG(L"render patch submissions");
-	m->terrainRenderer->RenderTerrain(m_Options.m_Shadows ? m->shadow : 0, m_Options.m_ShadowColor);
+	m->terrainRenderer->RenderTerrain(m_Options.m_Shadows ? m->shadow : 0);
 
 	if (m_TerrainRenderMode==WIREFRAME) {
 		// switch wireframe off again
@@ -1290,6 +1292,7 @@ void CRenderer::ScriptingInit()
 	AddProperty(L"sortAllTransparent", &CRenderer::m_SortAllTransparent);
 	AddProperty(L"fastNormals", &CRenderer::m_FastNormals);
 	AddProperty(L"displayFrustum", &CRenderer::m_DisplayFrustum);
+	AddProperty(L"shadowZBias", &CRenderer::m_ShadowZBias);
 
 	CJSObject<CRenderer>::ScriptingInit("Renderer");
 }

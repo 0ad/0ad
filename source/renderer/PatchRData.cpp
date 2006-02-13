@@ -5,6 +5,7 @@
 #include <algorithm>
 #include "Pyrogenesis.h"
 #include "lib/res/graphics/ogl_tex.h"
+#include "graphics/LightEnv.h"
 #include "Renderer.h"
 #include "renderer/PatchRData.h"
 #include "AlphaMapCalculator.h"
@@ -31,7 +32,7 @@ const int BlendOffsets[8][2] = {
 
 ///////////////////////////////////////////////////////////////////
 // CPatchRData constructor
-CPatchRData::CPatchRData(CPatch* patch) : m_Patch(patch), m_VBBase(0), m_VBBlends(0), m_Vertices(0), m_LightingColors(0)
+CPatchRData::CPatchRData(CPatch* patch) : m_Patch(patch), m_VBBase(0), m_VBBlends(0), m_Vertices(0)
 {
 	debug_assert(patch);
 	Build();
@@ -39,11 +40,10 @@ CPatchRData::CPatchRData(CPatch* patch) : m_Patch(patch), m_VBBase(0), m_VBBlend
 
 ///////////////////////////////////////////////////////////////////
 // CPatchRData destructor
-CPatchRData::~CPatchRData() 
+CPatchRData::~CPatchRData()
 {
 	// delete copy of vertex data
 	delete[] m_Vertices;
-	delete[] m_LightingColors;
 	// release vertex buffer chunks
 	if (m_VBBase) g_VBMan.Release(m_VBBase);
 	if (m_VBBlends) g_VBMan.Release(m_VBBlends);
@@ -104,7 +104,7 @@ void CPatchRData::BuildBlends()
 
 			// build list of textures of higher priority than current tile that are used by neighbouring tiles
 			std::vector<STex> neighbourTextures;
-			for (int m=-1;m<=1;m++) {					
+			for (int m=-1;m<=1;m++) {
 				for (int k=-1;k<=1;k++) {
 					CMiniPatch* nmp=terrain->GetTile(gx+k,gz+m);
 					if (nmp && nmp->Tex1 != mp->Tex1) {
@@ -127,13 +127,13 @@ void CPatchRData::BuildBlends()
 				uint count=(uint)neighbourTextures.size();
 				for (uint k=0;k<count;++k) {
 
-					// now build the grid of blends dependent on whether the tile adjacent to the current tile 
+					// now build the grid of blends dependent on whether the tile adjacent to the current tile
 					// uses the current neighbour texture
 					BlendShape8 shape;
 					for (int m=0;m<8;m++) {
 						int ox=gx+BlendOffsets[m][1];
 						int oz=gz+BlendOffsets[m][0];
-						
+
 						// get texture on adjacent tile
 						Handle atex=GetTerrainTileTexture(terrain,ox,oz);
 						// fill 0/1 into shape array
@@ -155,18 +155,18 @@ void CPatchRData::BuildBlends()
 							float t=u0;
 							u0=u1;
 							u1=t;
-						}  
-						
+						}
+
 						if (alphamapflags & BLENDMAP_FLIPV) {
 							// flip v
 							float t=v0;
 							v0=v1;
 							v1=t;
-						}  
+						}
 
 						int base=0;
 						if (alphamapflags & BLENDMAP_ROTATE90) {
-							// rotate 1 
+							// rotate 1
 							base=1;
 						} else if (alphamapflags & BLENDMAP_ROTATE180) {
 							// rotate 2
@@ -196,7 +196,7 @@ void CPatchRData::BuildBlends()
 						dst.m_UVs[1]=j*0.125f;
 						dst.m_AlphaUVs[0]=vtx[0].m_AlphaUVs[0];
 						dst.m_AlphaUVs[1]=vtx[0].m_AlphaUVs[1];
-						dst.m_Color=vtx0.m_Color;
+						dst.m_LOSColor=vtx0.m_LOSColor;
 						dst.m_Position=vtx0.m_Position;
 						m_BlendVertices.push_back(dst);
 						m_BlendVertexIndices.push_back((j*vsize)+i);
@@ -206,7 +206,7 @@ void CPatchRData::BuildBlends()
 						dst.m_UVs[1]=j*0.125f;
 						dst.m_AlphaUVs[0]=vtx[1].m_AlphaUVs[0];
 						dst.m_AlphaUVs[1]=vtx[1].m_AlphaUVs[1];
-						dst.m_Color=vtx1.m_Color;
+						dst.m_LOSColor=vtx1.m_LOSColor;
 						dst.m_Position=vtx1.m_Position;
 						m_BlendVertices.push_back(dst);
 						m_BlendVertexIndices.push_back((j*vsize)+i+1);
@@ -216,7 +216,7 @@ void CPatchRData::BuildBlends()
 						dst.m_UVs[1]=(j+1)*0.125f;
 						dst.m_AlphaUVs[0]=vtx[2].m_AlphaUVs[0];
 						dst.m_AlphaUVs[1]=vtx[2].m_AlphaUVs[1];
-						dst.m_Color=vtx2.m_Color;
+						dst.m_LOSColor=vtx2.m_LOSColor;
 						dst.m_Position=vtx2.m_Position;
 						m_BlendVertices.push_back(dst);
 						m_BlendVertexIndices.push_back(((j+1)*vsize)+i+1);
@@ -226,7 +226,7 @@ void CPatchRData::BuildBlends()
 						dst.m_UVs[1]=(j+1)*0.125f;
 						dst.m_AlphaUVs[0]=vtx[3].m_AlphaUVs[0];
 						dst.m_AlphaUVs[1]=vtx[3].m_AlphaUVs[1];
-						dst.m_Color=vtx3.m_Color;
+						dst.m_LOSColor=vtx3.m_LOSColor;
 						dst.m_Position=vtx3.m_Position;
 						m_BlendVertices.push_back(dst);
 						m_BlendVertexIndices.push_back(((j+1)*vsize)+i);
@@ -247,7 +247,7 @@ void CPatchRData::BuildBlends()
 			}
 		}
 	}
-	
+
 	// build vertex data
 	if (m_VBBlends) {
 		// release existing vertex buffer chunk
@@ -257,21 +257,21 @@ void CPatchRData::BuildBlends()
 	if (m_BlendVertices.size()) {
 		m_VBBlends=g_VBMan.Allocate(sizeof(SBlendVertex),m_BlendVertices.size(),true);
 		m_VBBlends->m_Owner->UpdateChunkVertices(m_VBBlends,&m_BlendVertices[0]);
-	
+
 		// now build outgoing splats
 		m_BlendSplats.resize(splatTextures.size());
 		int splatCount=0;
-	
+
 		debug_assert(m_VBBlends->m_Index < 65536);
 		unsigned short base = (unsigned short)m_VBBlends->m_Index;
 		std::set<Handle>::iterator iter=splatTextures.begin();
 		for (;iter!=splatTextures.end();++iter) {
 			Handle tex=*iter;
-	
+
 			SSplat& splat=m_BlendSplats[splatCount];
 			splat.m_IndexStart=(u32)m_BlendIndices.size();
 			splat.m_Texture=tex;
-	
+
 			for (uint k=0;k<(uint)splats.size();k++) {
 				if (splats[k].m_Texture==tex) {
 					m_BlendIndices.push_back(splats[k].m_Indices[0]+base);
@@ -314,7 +314,7 @@ void CPatchRData::BuildIndices()
 
 	// now build base splats from interior textures
 	m_Splats.resize(textures.size());
-	// build indices for base splats	
+	// build indices for base splats
 	u32 base=(u32)m_VBBase->m_Index;
 	for (uint i=0;i<(uint)m_Splats.size();i++) {
 		Handle h=textures[i];
@@ -322,7 +322,7 @@ void CPatchRData::BuildIndices()
 		SSplat& splat=m_Splats[i];
 		splat.m_Texture=h;
 		splat.m_IndexStart=(u32)m_Indices.size();
-		
+
 		for (int j=0;j<PATCH_SIZE;j++) {
 			for (int i=0;i<PATCH_SIZE;i++) {
 				if (texgrid[j][i]==h){
@@ -335,7 +335,7 @@ void CPatchRData::BuildIndices()
 		}
 		splat.m_IndexCount=(u32)m_Indices.size()-splat.m_IndexStart;
 	}
-	
+
 	// build indices for the shadow map pass
 	for (int j=0;j<PATCH_SIZE;j++) {
 		for (int i=0;i<PATCH_SIZE;i++) {
@@ -356,19 +356,19 @@ void CPatchRData::BuildVertices()
 
 	// number of vertices in each direction in each patch
 	int vsize=PATCH_SIZE+1;
-	
+
 	if (!m_Vertices) {
 		m_Vertices=new SBaseVertex[vsize*vsize];
-		m_LightingColors=new RGBColor[vsize*vsize];
 	}
 	SBaseVertex* vertices=m_Vertices;
-	
-	
+
+
 	// get index of this patch
 	u32 px=m_Patch->m_X;
 	u32 pz=m_Patch->m_Z;
-	
+
 	CTerrain* terrain=m_Patch->m_Parent;
+	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
 
 	// build vertices
 	for (int j=0;j<vsize;j++) {
@@ -378,18 +378,22 @@ void CPatchRData::BuildVertices()
 			int v=(j*vsize)+i;
 
 			// calculate vertex data
-			terrain->CalcPosition(ix,iz,vertices[v].m_Position);		
-			*(uint32_t*)&vertices[v].m_Color = 0;	// will be set to the proper value in Update()
+			terrain->CalcPosition(ix,iz,vertices[v].m_Position);
+			*(uint32_t*)&vertices[v].m_LOSColor = 0;	// will be set to the proper value in Update()
 			vertices[v].m_UVs[0]=i*0.125f;
 			vertices[v].m_UVs[1]=1 - j*0.125f;
-				
-			// calculate lighting into the separate m_LightingColors array, which will
-			// be used to set the vertex colors in Update()
+
+			// Calculate diffuse lighting for this vertex
+			// Ambient is added by the lighting pass (since ambient is the same
+			// for all vertices, it need not be stored in the vertex structure)
 			terrain->CalcNormal(ix,iz,normal);
-			g_Renderer.m_SHCoeffsTerrain.Evaluate(normal, m_LightingColors[v]);
+
+			RGBColor diffuse;
+			lightEnv.EvaluateDirect(normal, diffuse);
+			*(u32*)&vertices[v].m_DiffuseColor = ConvertRGBColorTo4ub(diffuse);
 		}
 	}
-	
+
 	// upload to vertex buffer
 	if (!m_VBBase) {
 		m_VBBase=g_VBMan.Allocate(sizeof(SBaseVertex),vsize*vsize,true);
@@ -418,7 +422,7 @@ void CPatchRData::Update()
 	}
 
 	// Update vertex colors, which are affected by LOS
-	
+
 	u32 px=m_Patch->m_X;
 	u32 pz=m_Patch->m_Z;
 
@@ -436,7 +440,7 @@ void CPatchRData::Update()
 
 			const int DX[] = {1,1,0,0};
 			const int DZ[] = {0,1,1,0};
-			float losMod = 1.0f;
+			SColor4ub losMod(255, 255, 255, 255);
 
 			for(int k=0; k<4; k++)
 			{
@@ -446,17 +450,14 @@ void CPatchRData::Update()
 				if(tx >= 0 && tz >= 0 && tx <= mapSize-2 && tz <= mapSize-2)
 				{
 					ELOSStatus s = losMgr->GetStatus(tx, tz, g_Game->GetLocalPlayer());
-					if(s==LOS_EXPLORED && losMod > 0.7f) 
-						losMod = 0.7f;
-					else if(s==LOS_UNEXPLORED && losMod > 0.0f)
-						losMod = 0.0f;
+					if(s==LOS_EXPLORED && losMod.R > 178)
+						losMod = SColor4ub(178, 178, 178, 255);
+					else if(s==LOS_UNEXPLORED && losMod.R > 0)
+						losMod = SColor4ub(0, 0, 0, 255);
 				}
 			}
 
-			RGBColor c = m_LightingColors[v];
-			c *= losMod;
-
-			*(uint32_t*)&m_Vertices[v].m_Color = ConvertRGBColorTo4ub(c);
+			m_Vertices[v].m_LOSColor = losMod;
 		}
 	}
 
@@ -464,9 +465,9 @@ void CPatchRData::Update()
 	m_VBBase->m_Owner->UpdateChunkVertices(m_VBBase,m_Vertices);
 
 	// update blend colors by copying them from vertex colors
-	for(uint i=0; i<m_BlendVertices.size(); i++) 
+	for(uint i=0; i<m_BlendVertices.size(); i++)
 	{
-		m_BlendVertices[i].m_Color = m_Vertices[m_BlendVertexIndices[i]].m_Color;
+		m_BlendVertices[i].m_LOSColor = m_Vertices[m_BlendVertexIndices[i]].m_LOSColor;
 	}
 
 	// upload blend vertices into their vertex buffer too
@@ -476,7 +477,7 @@ void CPatchRData::Update()
 	}
 }
 
-void CPatchRData::RenderBase()
+void CPatchRData::RenderBase(bool losColor)
 {
 	debug_assert(m_UpdateFlags==0);
 
@@ -485,9 +486,9 @@ void CPatchRData::RenderBase()
 	// setup data pointers
 	u32 stride=sizeof(SBaseVertex);
 	glVertexPointer(3,GL_FLOAT,stride,&base->m_Position[0]);
-	glColorPointer(4,GL_UNSIGNED_BYTE,stride,&base->m_Color);
+	glColorPointer(4,GL_UNSIGNED_BYTE,stride,losColor ? &base->m_LOSColor : &base->m_DiffuseColor);
 	glTexCoordPointer(2,GL_FLOAT,stride,&base->m_UVs[0]);
-	
+
 	// render each splat
 	for (uint i=0;i<(uint)m_Splats.size();i++) {
 		SSplat& splat=m_Splats[i];
@@ -499,7 +500,7 @@ void CPatchRData::RenderBase()
 	}
 }
 
-void CPatchRData::RenderStreams(u32 streamflags)
+void CPatchRData::RenderStreams(u32 streamflags, bool losColor)
 {
 	debug_assert(m_UpdateFlags==0);
 
@@ -513,7 +514,11 @@ void CPatchRData::RenderStreams(u32 streamflags)
 	} else if (streamflags & STREAM_POSTOUV0) {
 		glTexCoordPointer(3, GL_FLOAT, stride, &base->m_Position);
 	}
-	
+	if (streamflags & STREAM_COLOR)
+	{
+		glColorPointer(4,GL_UNSIGNED_BYTE,stride,losColor ? &base->m_LOSColor : &base->m_DiffuseColor);
+	}
+
 	// render all base splats at once
 	glDrawElements(GL_QUADS,(GLsizei)m_Indices.size(),GL_UNSIGNED_SHORT,&m_Indices[0]);
 
@@ -534,8 +539,8 @@ void CPatchRData::RenderBlends()
 	// setup data pointers
 	u32 stride=sizeof(SBlendVertex);
 	glVertexPointer(3,GL_FLOAT,stride,base+offsetof(SBlendVertex,m_Position));
-	glColorPointer(4,GL_UNSIGNED_BYTE,stride,base+offsetof(SBlendVertex,m_Color));
-	
+	glColorPointer(4,GL_UNSIGNED_BYTE,stride,base+offsetof(SBlendVertex,m_LOSColor));
+
 	pglClientActiveTextureARB(GL_TEXTURE0);
 	glTexCoordPointer(2,GL_FLOAT,stride,base+offsetof(SBlendVertex,m_UVs[0]));
 

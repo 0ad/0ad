@@ -44,7 +44,7 @@ public:
 	 * are required by the fragment stages (see STREAM_XYZ constants).
 	 */
 	virtual u32 BeginPass(uint pass) = 0;
-	
+
 	/**
 	 * EndPass: Cleanup OpenGL state after the given pass. This function
 	 * may indicate that additional passes are needed.
@@ -58,7 +58,7 @@ public:
 	 * increased pass number.
 	 */
 	virtual bool EndPass(uint pass) = 0;
-	
+
 	/**
 	 * PrepareTexture: Called before rendering models that use the given
 	 * texture.
@@ -69,10 +69,10 @@ public:
 	 * @param texture The texture used by subsequent models
 	 */
 	virtual void PrepareTexture(uint pass, CTexture* texture) = 0;
-	
+
 	/**
 	 * PrepareModel: Called before rendering the given model.
-	 * 
+	 *
 	 * Default behaviour does nothing.
 	 *
 	 * @param pass The current pass number (pass == 0 is the first pass)
@@ -91,7 +91,6 @@ class RenderModifierRenderer : public ModelRenderer
 public:
 	RenderModifierRenderer() { }
 	virtual ~RenderModifierRenderer();
-	
 };
 
 

@@ -18,6 +18,7 @@
 #include "ps/CLogger.h"
 
 #include "graphics/Color.h"
+#include "graphics/LightEnv.h"
 #include "graphics/Model.h"
 #include "graphics/ModelDef.h"
 
@@ -25,7 +26,6 @@
 #include "renderer/Renderer.h"
 #include "renderer/RenderModifiers.h"
 #include "renderer/RenderPathVertexShader.h"
-#include "renderer/SHCoeffs.h"
 #include "renderer/VertexArray.h"
 
 
@@ -39,15 +39,15 @@ struct IModelDef : public CModelDefRPrivate
 {
 	/// Static per-CModel vertex array
 	VertexArray m_Array;
-	
+
 	/// Position, normals and UV are all static
 	VertexArray::Attribute m_Position;
 	VertexArray::Attribute m_Normal;
 	VertexArray::Attribute m_UV;
-	
+
 	/// Indices are the same for all models, so share them
 	u16* m_Indices;
-	
+
 
 	IModelDef(CModelDefPtr mdef);
 	~IModelDef() { delete[] m_Indices; }
@@ -58,32 +58,32 @@ IModelDef::IModelDef(CModelDefPtr mdef)
 	: m_Array(false)
 {
 	size_t numVertices = mdef->GetNumVertices();
-	
+
 	m_Position.type = GL_FLOAT;
 	m_Position.elems = 3;
 	m_Array.AddAttribute(&m_Position);
-	
+
 	m_Normal.type = GL_FLOAT;
 	m_Normal.elems = 3;
 	m_Array.AddAttribute(&m_Normal);
-	
+
 	m_UV.type = GL_FLOAT;
 	m_UV.elems = 2;
 	m_Array.AddAttribute(&m_UV);
-	
+
 	m_Array.SetNumVertices(numVertices);
 	m_Array.Layout();
 
 	VertexArrayIterator<CVector3D> Position = m_Position.GetIterator<CVector3D>();
 	VertexArrayIterator<CVector3D> Normal = m_Normal.GetIterator<CVector3D>();
 	VertexArrayIterator<float[2]> UVit = m_UV.GetIterator<float[2]>();
-	
+
 	ModelRenderer::CopyPositionAndNormals(mdef, Position, Normal);
 	ModelRenderer::BuildUV(mdef, UVit);
-	
+
 	m_Array.Upload();
 	m_Array.FreeBackingStore();
-	
+
 	m_Indices = new u16[mdef->GetNumFaces()*3];
 	ModelRenderer::BuildIndices(mdef, m_Indices);
 }
@@ -93,7 +93,7 @@ struct InstancingModelRendererInternals
 {
 	/// Currently used RenderModifier
 	RenderModifierPtr modifier;
-	
+
 	/// Previously prepared modeldef
 	IModelDef* imodeldef;
 };
@@ -126,13 +126,13 @@ void* InstancingModelRenderer::CreateModelData(CModel* model)
 	IModelDef* imodeldef = (IModelDef*)mdef->GetRenderData(m);
 
 	debug_assert(!model->GetBoneMatrices());
-	
+
 	if (!imodeldef)
 	{
 		imodeldef = new IModelDef(mdef);
 		mdef->SetRenderData(m, imodeldef);
 	}
-	
+
 	return NULL;
 }
 
@@ -153,16 +153,20 @@ void InstancingModelRenderer::DestroyModelData(CModel* UNUSED(model), void* UNUS
 void InstancingModelRenderer::BeginPass(uint streamflags)
 {
 	glEnableClientState(GL_VERTEX_ARRAY);
-		
+
 	if (streamflags & STREAM_UV0) glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	if (streamflags & STREAM_COLOR)
 	{
-		const RGBColor* coeffs = g_Renderer.m_SHCoeffsUnits.GetCoefficients();
+		const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
 		int idx;
-		
+
 		ogl_program_use(g_Renderer.m_VertexShader->m_InstancingLight);
-		idx = g_Renderer.m_VertexShader->m_InstancingLight_SHCoefficients;
-		pglUniform3fvARB(idx, 9, (float*)coeffs);
+		idx = g_Renderer.m_VertexShader->m_InstancingLight_Ambient;
+		pglUniform3fvARB(idx, 1, &lightEnv.m_UnitsAmbientColor.X);
+		idx = g_Renderer.m_VertexShader->m_InstancingLight_SunDir;
+		pglUniform3fvARB(idx, 1, &lightEnv.m_SunDir.X);
+		idx = g_Renderer.m_VertexShader->m_InstancingLight_SunColor;
+		pglUniform3fvARB(idx, 1, &lightEnv.m_SunColor.X);
 
 		glEnableClientState(GL_NORMAL_ARRAY);
 	}
@@ -187,12 +191,12 @@ void InstancingModelRenderer::EndPass(uint streamflags)
 void InstancingModelRenderer::PrepareModelDef(uint streamflags, CModelDefPtr def)
 {
 	m->imodeldef = (IModelDef*)def->GetRenderData(m);
-	
+
 	debug_assert(m->imodeldef);
 
 	u8* base = m->imodeldef->m_Array.Bind();
 	GLsizei stride = (GLsizei)m->imodeldef->m_Array.GetStride();
-	
+
 	glVertexPointer(3, GL_FLOAT, stride, base + m->imodeldef->m_Position.offset);
 	if (streamflags & STREAM_COLOR)
 	{
@@ -211,12 +215,12 @@ void InstancingModelRenderer::RenderModel(uint streamflags, CModel* model, void*
 	CModelDefPtr mdldef = model->GetModelDef();
 	const CMatrix3D& mat = model->GetTransform();
 	RenderPathVertexShader* rpvs = g_Renderer.m_VertexShader;
-	
+
 	if (streamflags & STREAM_COLOR)
 	{
 		CColor sc = model->GetShadingColor();
 		glColor3f(sc.r, sc.g, sc.b);
-		
+
 		pglVertexAttrib4fARB(rpvs->m_InstancingLight_Instancing1, mat._11, mat._12, mat._13, mat._14);
 		pglVertexAttrib4fARB(rpvs->m_InstancingLight_Instancing2, mat._21, mat._22, mat._23, mat._24);
 		pglVertexAttrib4fARB(rpvs->m_InstancingLight_Instancing3, mat._31, mat._32, mat._33, mat._34);

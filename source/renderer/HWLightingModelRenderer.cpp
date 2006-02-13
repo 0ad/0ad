@@ -18,6 +18,7 @@
 #include "ps/CLogger.h"
 
 #include "graphics/Color.h"
+#include "graphics/LightEnv.h"
 #include "graphics/Model.h"
 #include "graphics/ModelDef.h"
 
@@ -25,7 +26,6 @@
 #include "renderer/Renderer.h"
 #include "renderer/RenderModifiers.h"
 #include "renderer/RenderPathVertexShader.h"
-#include "renderer/SHCoeffs.h"
 #include "renderer/VertexArray.h"
 
 
@@ -39,7 +39,7 @@ struct HWLModelDef : public CModelDefRPrivate
 {
 	/// Indices are the same for all models, so share them
 	u16* m_Indices;
-	
+
 
 	HWLModelDef(CModelDefPtr mdef);
 	~HWLModelDef() { delete[] m_Indices; }
@@ -57,14 +57,14 @@ struct HWLModel
 {
 	/// Dynamic per-CModel vertex array
 	VertexArray m_Array;
-	
+
 	/// Position and normals are recalculated on CPU every frame
 	VertexArray::Attribute m_Position;
 	VertexArray::Attribute m_Normal;
-	
+
 	/// UV is stored per-CModel in order to avoid space wastage due to alignment
 	VertexArray::Attribute m_UV;
-	
+
 	HWLModel() : m_Array(true) { }
 };
 
@@ -73,7 +73,7 @@ struct HWLightingModelRendererInternals
 {
 	/// Currently used RenderModifier
 	RenderModifierPtr modifier;
-	
+
 	/// Previously prepared modeldef
 	HWLModelDef* hwlmodeldef;
 };
@@ -125,13 +125,13 @@ void* HWLightingModelRenderer::CreateModelData(CModel* model)
 	hwlmodel->m_Normal.type = GL_FLOAT;
 	hwlmodel->m_Normal.elems = 3;
 	hwlmodel->m_Array.AddAttribute(&hwlmodel->m_Normal);
-	
+
 	hwlmodel->m_Array.SetNumVertices(mdef->GetNumVertices());
 	hwlmodel->m_Array.Layout();
 
 	// Fill in static UV coordinates
 	VertexArrayIterator<float[2]> UVit = hwlmodel->m_UV.GetIterator<float[2]>();
-	
+
 	ModelRenderer::BuildUV(mdef, UVit);
 
 	return hwlmodel;
@@ -142,17 +142,17 @@ void* HWLightingModelRenderer::CreateModelData(CModel* model)
 void HWLightingModelRenderer::UpdateModelData(CModel* model, void* data, u32 updateflags)
 {
 	HWLModel* hwlmodel = (HWLModel*)data;
-	
+
 	if (updateflags & RENDERDATA_UPDATE_VERTICES)
 	{
 		CModelDefPtr mdef = model->GetModelDef();
-	
+
 		// build vertices
 		VertexArrayIterator<CVector3D> Position = hwlmodel->m_Position.GetIterator<CVector3D>();
 		VertexArrayIterator<CVector3D> Normal = hwlmodel->m_Normal.GetIterator<CVector3D>();
-		
+
 		ModelRenderer::BuildPositionAndNormals(model, Position, Normal);
-	
+
 		// upload everything to vertex buffer
 		hwlmodel->m_Array.Upload();
 	}
@@ -164,7 +164,7 @@ void HWLightingModelRenderer::UpdateModelData(CModel* model, void* data, u32 upd
 void HWLightingModelRenderer::DestroyModelData(CModel* UNUSED(model), void* data)
 {
 	HWLModel* hwlmodel = (HWLModel*)data;
-	
+
 	delete hwlmodel;
 }
 
@@ -173,16 +173,20 @@ void HWLightingModelRenderer::DestroyModelData(CModel* UNUSED(model), void* data
 void HWLightingModelRenderer::BeginPass(uint streamflags)
 {
 	glEnableClientState(GL_VERTEX_ARRAY);
-	
+
 	if (streamflags & STREAM_UV0) glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	if (streamflags & STREAM_COLOR)
 	{
-		const RGBColor* coeffs = g_Renderer.m_SHCoeffsUnits.GetCoefficients();
+		const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
 		int idx;
-		
+
 		ogl_program_use(g_Renderer.m_VertexShader->m_ModelLight);
-		idx = g_Renderer.m_VertexShader->m_ModelLight_SHCoefficients;
-		pglUniform3fvARB(idx, 9, (float*)coeffs);
+		idx = g_Renderer.m_VertexShader->m_ModelLight_Ambient;
+		pglUniform3fvARB(idx, 1, &lightEnv.m_UnitsAmbientColor.X);
+		idx = g_Renderer.m_VertexShader->m_ModelLight_SunDir;
+		pglUniform3fvARB(idx, 1, &lightEnv.m_SunDir.X);
+		idx = g_Renderer.m_VertexShader->m_ModelLight_SunColor;
+		pglUniform3fvARB(idx, 1, &lightEnv.m_SunColor.X);
 
 		glEnableClientState(GL_NORMAL_ARRAY);
 	}
@@ -199,7 +203,7 @@ void HWLightingModelRenderer::EndPass(uint streamflags)
 
 		glDisableClientState(GL_NORMAL_ARRAY);
 	}
-	
+
 	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
@@ -208,7 +212,7 @@ void HWLightingModelRenderer::EndPass(uint streamflags)
 void HWLightingModelRenderer::PrepareModelDef(uint UNUSED(streamflags), CModelDefPtr def)
 {
 	m->hwlmodeldef = (HWLModelDef*)def->GetRenderData(m);
-	
+
 	debug_assert(m->hwlmodeldef);
 }
 
@@ -218,16 +222,16 @@ void HWLightingModelRenderer::RenderModel(uint streamflags, CModel* model, void*
 {
 	CModelDefPtr mdldef = model->GetModelDef();
 	HWLModel* hwlmodel = (HWLModel*)data;
-	
+
 	u8* base = hwlmodel->m_Array.Bind();
 	GLsizei stride = (GLsizei)hwlmodel->m_Array.GetStride();
-	
+
 	glVertexPointer(3, GL_FLOAT, stride, base + hwlmodel->m_Position.offset);
 	if (streamflags & STREAM_COLOR)
 	{
 		CColor sc = model->GetShadingColor();
 		glColor3f(sc.r, sc.g, sc.b);
-		
+
 		glNormalPointer(GL_FLOAT, stride, base + hwlmodel->m_Normal.offset);
 	}
 	if (streamflags & STREAM_UV0)

@@ -19,14 +19,14 @@ public:
 	~CPatchRData();
 
 	void Update();
-	void RenderBase();
+	void RenderBase(bool losColor);
 	void RenderBlends();
 	void RenderOutline();
-	void RenderStreams(u32 streamflags);
+	void RenderStreams(u32 streamflags, bool losColor);
 
 private:
 	struct SSplat {
-		SSplat() : m_Texture(0), m_IndexCount(0) {}	
+		SSplat() : m_Texture(0), m_IndexCount(0) {}
 
 		// handle of texture to apply during splat
 		Handle m_Texture;
@@ -39,22 +39,24 @@ private:
 	struct SBaseVertex {
 		// vertex position
 		CVector3D m_Position;
-		// vertex color
-		SColor4ub m_Color;
+		// diffuse color from sunlight
+		SColor4ub m_DiffuseColor;
 		// vertex uvs for base texture
 		float m_UVs[2];
-	};	
+		// color modulation from LOS
+		SColor4ub m_LOSColor;
+	};
 
 	struct SBlendVertex {
 		// vertex position
 		CVector3D m_Position;
-		// vertex color
-		SColor4ub m_Color;
+		// color modulation from LOS
+		SColor4ub m_LOSColor;
 		// vertex uvs for base texture
 		float m_UVs[2];
 		// vertex uvs for alpha texture
 		float m_AlphaUVs[2];
-	};	
+	};
 
 	struct STex {
 		bool operator==(const STex& rhs) const { return m_Handle==rhs.m_Handle; }
@@ -62,7 +64,7 @@ private:
 		Handle m_Handle;
 		int m_Priority;
 	};
-	
+
 	// build this renderdata object
 	void Build();
 
@@ -81,11 +83,6 @@ private:
 
 	// patch render vertices
 	SBaseVertex* m_Vertices;
-
-	// precomputed lighting colors at each vertex; these are the multiplied by a LOS modifier
-	// (black for shroud of darkness, half-darkened for fog of war), to compute the colors in
-	// m_Vertices, which are passed to the graphics card
-	RGBColor* m_LightingColors;
 
 	// indices into base vertices for the base splats
 	std::vector<unsigned short> m_Indices;

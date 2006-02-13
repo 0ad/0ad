@@ -15,6 +15,7 @@
 
 #include "boost/shared_ptr.hpp"
 
+#include "graphics/Color.h"
 #include "graphics/MeshManager.h"
 #include "graphics/RenderableObject.h"
 #include "renderer/VertexArray.h"
@@ -29,10 +30,10 @@ class CModel;
 
 
 /**
- * Class CModelRData: Render data that is maintained per CModel. 
+ * Class CModelRData: Render data that is maintained per CModel.
  * ModelRenderer implementations may derive from this class to store
  * per-CModel data.
- * 
+ *
  * The main purpose of this class over CRenderData is to track which
  * ModelRenderer the render data belongs to (via the key that is passed
  * to the constructor). When a model changes the renderer it uses
@@ -60,11 +61,11 @@ public:
 	 * @return The model pointer that was passed to the constructor.
 	 */
 	CModel* GetModel() const { return m_Model; }
-	
+
 private:
 	/// The key for model renderer identification
 	const void* m_Key;
-	
+
 	/// The model this object was created for
 	CModel* m_Model;
 };
@@ -72,25 +73,25 @@ private:
 
 /**
  * Class ModelRenderer: Abstract base class for all model renders.
- * 
+ *
  * A ModelRenderer manages a per-frame list of models.
- * 
+ *
  * It is supposed to be derived in order to create new ways in which
  * the per-frame list of models can be managed (for batching, for
  * transparent rendering, etc.) or potentially for rarely used special
  * effects.
- * 
+ *
  * A typical ModelRenderer will delegate vertex transformation/setup
  * to a ModelVertexRenderer.
  * It will delegate fragment stage setup to a RenderModifier.
- * 
+ *
  * For most purposes, you should use a BatchModelRenderer with
  * specialized ModelVertexRenderer and RenderModifier implementations.
- * 
+ *
  * It is suggested that a derived class implement the provided generic
  * Render function, however in some cases it may be necessary to supply
  * a Render function with a different prototype.
- * 
+ *
  * ModelRenderer also contains a number of static helper functions
  * for building vertex arrays.
  */
@@ -99,7 +100,7 @@ class ModelRenderer
 public:
 	ModelRenderer() { }
 	virtual ~ModelRenderer() { }
-	
+
 	/**
 	 * Submit: Submit a model for rendering this frame.
 	 *
@@ -111,7 +112,7 @@ public:
 	 * submitted this frame.
 	 */
 	virtual void Submit(CModel* model) = 0;
-	
+
 	/**
 	 * PrepareModels: Calculate renderer data for all previously
 	 * submitted models.
@@ -120,25 +121,25 @@ public:
 	 * for this frame have been submitted.
 	 */
 	virtual void PrepareModels() = 0;
-	
+
 	/**
 	 * EndFrame: Remove all models from the list of submitted
 	 * models.
 	 */
 	virtual void EndFrame() = 0;
-	
+
 	/**
 	 * HaveSubmissions: Return whether any models have been submitted this frame.
 	 *
 	 * @return true if models have been submitted, false otherwise.
 	 */
 	virtual bool HaveSubmissions() = 0;
-	
+
 	/**
 	 * Render: Render submitted models, using the given RenderModifier to setup
 	 * the fragment stage.
 	 *
-	 * @note It is suggested that derived model renderers implement and use 
+	 * @note It is suggested that derived model renderers implement and use
 	 * this Render functions. However, a highly specialized model renderer
 	 * may need to "disable" this function and provide its own Render function
 	 * with a different prototype.
@@ -152,7 +153,7 @@ public:
 	 * CModel::GetFlags() are rendered.
 	 */
 	virtual void Render(RenderModifierPtr modifier, u32 flags) = 0;
-	
+
 	/**
 	 * CopyPositionAndNormals: Copy unanimated object-space vertices and
 	 * normals into the given vertex array.
@@ -169,9 +170,9 @@ public:
 			CModelDefPtr mdef,
 			VertexArrayIterator<CVector3D> Position,
 			VertexArrayIterator<CVector3D> Normal);
-	
+
 	/**
-	 * BuildPositionAndNormals: Build animated vertices and normals, 
+	 * BuildPositionAndNormals: Build animated vertices and normals,
 	 * transformed into world space.
 	 *
 	 * @param model The model that is to be transformed.
@@ -187,7 +188,7 @@ public:
 			CModel* model,
 			VertexArrayIterator<CVector3D> Position,
 			VertexArrayIterator<CVector3D> Normal);
-	
+
 	/**
 	 * BuildColor4ub: Build lighting colors for the given model,
 	 * based on previously calculated world space normals.
@@ -203,7 +204,7 @@ public:
 			CModel* model,
 			VertexArrayIterator<CVector3D> Normal,
 			VertexArrayIterator<SColor4ub> Color);
-	
+
 	/**
 	 * BuildUV: Copy UV coordinates into the given vertex array.
 	 *
@@ -220,7 +221,7 @@ public:
 	 * BuildIndices: Create the indices array for the given CModelDef.
 	 *
 	 * @param mdef The model definition object.
-	 * @param Indices The index array, must be able to hold 
+	 * @param Indices The index array, must be able to hold
 	 * mdef->GetNumFaces()*3 elements.
 	 */
 	static void BuildIndices(
@@ -235,14 +236,14 @@ struct BatchModelRendererInternals;
  * Class BatchModelRenderer: Model renderer that sorts submitted models
  * by CModelDef and texture for batching, and uses a ModelVertexRenderer
  * (e.g. FixedFunctionModelRenderer) to manage model vertices.
- * 
+ *
  * @note Deriving from this class is highly discouraged. Specialize
  * using ModelVertexRendererPtr and RenderModifier instead.
  */
 class BatchModelRenderer : public ModelRenderer
 {
 	friend struct BatchModelRendererInternals;
-	
+
 public:
 	BatchModelRenderer(ModelVertexRendererPtr vertexrender);
 	virtual ~BatchModelRenderer();

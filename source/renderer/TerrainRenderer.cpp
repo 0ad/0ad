@@ -12,6 +12,7 @@
 #include "precompiled.h"
 
 #include "graphics/Camera.h"
+#include "graphics/LightEnv.h"
 #include "graphics/Patch.h"
 #include "graphics/Terrain.h"
 
@@ -57,9 +58,6 @@ struct TerrainRendererInternals
 	 * @todo Merge this list with CPatchRData list
 	 */
 	std::vector<CPatch*> visiblePatches;
-
-	// Helper functions
-	void ApplyShadowMap(ShadowMap* shadow, const RGBAColor& shadowColor);
 };
 
 
@@ -128,7 +126,7 @@ bool TerrainRenderer::HaveSubmissions()
 
 ///////////////////////////////////////////////////////////////////
 // Full-featured terrain rendering with blending and everything
-void TerrainRenderer::RenderTerrain(ShadowMap* shadow, const RGBAColor& shadowColor)
+void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 {
 	debug_assert(m->phase == Phase_Render);
 
@@ -137,7 +135,7 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow, const RGBAColor& shadowCo
 	glEnableClientState(GL_COLOR_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-	// render everything
+	// render everything fullbright
 	// set up texture environment for base pass
 	MICROLOG(L"base splat textures");
 	pglActiveTextureARB(GL_TEXTURE0);
@@ -159,7 +157,7 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow, const RGBAColor& shadowCo
 	for(uint i = 0; i < m->visiblePatches.size(); ++i)
 	{
 		CPatchRData* patchdata = (CPatchRData*)m->visiblePatches[i]->GetRenderData();
-		patchdata->RenderBase();
+		patchdata->RenderBase(true); // with LOS color
 	}
 
 	// render blends
@@ -194,27 +192,87 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow, const RGBAColor& shadowCo
 		patchdata->RenderBlends();
 	}
 
-	// restore OpenGL state
-	glDepthMask(1);
-	glDisable(GL_BLEND);
-
+	// Disable second texcoord array
 	pglClientActiveTextureARB(GL_TEXTURE1);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+
+	// Now apply lighting
+	// Light color is Ambient + ShadowTerm * Diffuse
+	glBlendFunc(GL_DST_COLOR, GL_ZERO);
+
+	pglActiveTextureARB(GL_TEXTURE0); // Diffuse * Shadow
+	if (shadow)
+		glBindTexture(GL_TEXTURE_2D, shadow->GetTexture());
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+
+	pglActiveTextureARB(GL_TEXTURE1); // + Ambient
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_ADD);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_CONSTANT);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+
+	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
+	glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, &lightEnv.m_TerrainAmbientColor.X);
+
+	pglActiveTextureARB(GL_TEXTURE0);
+
+	if (shadow)
+	{
+		const CMatrix3D& texturematrix = shadow->GetTextureMatrix();
+
+		glMatrixMode(GL_TEXTURE);
+		glLoadMatrixf(&texturematrix._11);
+		glMatrixMode(GL_MODELVIEW);
+
+		if (shadow->GetUseDepthTexture())
+		{
+			glTexParameteri(GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE, GL_LUMINANCE);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
+		}
+	}
+	else
+	{
+		glBindTexture(GL_TEXTURE_2D, 0);
+	}
+
+	pglClientActiveTextureARB(GL_TEXTURE0);
+
+	for (uint i = 0; i < m->visiblePatches.size(); ++i)
+	{
+		CPatchRData* patchdata = (CPatchRData*)m->visiblePatches[i]->GetRenderData();
+		patchdata->RenderStreams(STREAM_POS|STREAM_COLOR|STREAM_POSTOUV0, false);
+	}
+
+	glMatrixMode(GL_TEXTURE);
+	glLoadIdentity();
+	glMatrixMode(GL_MODELVIEW);
+
+	// restore OpenGL state
 	g_Renderer.BindTexture(1,0);
 
 	pglClientActiveTextureARB(GL_TEXTURE0);
 	pglActiveTextureARB(GL_TEXTURE0);
 
-	// switch off all client states
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	glDepthMask(1);
+	glDisable(GL_BLEND);
+
 	glDisableClientState(GL_COLOR_ARRAY);
 	glDisableClientState(GL_VERTEX_ARRAY);
-
-	// Now render shadows as a second pass
-	if (shadow)
-	{
-		m->ApplyShadowMap(shadow, shadowColor);
-	}
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 }
 
 
@@ -228,7 +286,7 @@ void TerrainRenderer::RenderPatches()
 	for(uint i = 0; i < m->visiblePatches.size(); ++i)
 	{
 		CPatchRData* patchdata = (CPatchRData*)m->visiblePatches[i]->GetRenderData();
-		patchdata->RenderStreams(STREAM_POS);
+		patchdata->RenderStreams(STREAM_POS, true);
 	}
 	glDisableClientState(GL_VERTEX_ARRAY);
 }
@@ -376,73 +434,3 @@ void TerrainRenderer::RenderWater()
 	glDisable(GL_TEXTURE_2D);
 }
 
-
-///////////////////////////////////////////////////////////////////
-// ApplyShadowMap: add luminance map shadows after rendering the
-// actual terrain
-void TerrainRendererInternals::ApplyShadowMap(ShadowMap* shadow, const RGBAColor& shadowColor)
-{
-	debug_assert(phase == Phase_Render);
-
-	const CMatrix3D& texturematrix = shadow->GetTextureMatrix();
-	GLuint shadowmap = shadow->GetTexture();
-
-	glMatrixMode(GL_TEXTURE);
-	glLoadMatrixf(&texturematrix._11);
-	glMatrixMode(GL_MODELVIEW);
-
-	g_Renderer.BindTexture(0, shadowmap);
-	if (shadow->GetUseDepthTexture())
-	{
-		glTexParameteri(GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE, GL_LUMINANCE);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_GREATER);
-
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_ONE_MINUS_SRC_COLOR);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_TEXTURE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-
-		glColor4fv(shadowColor);
-		glBlendFunc(GL_ZERO, GL_ONE_MINUS_SRC_COLOR);
-	}
-	else
-	{
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-
-		glColor3f(1,1,1);
-		glBlendFunc(GL_DST_COLOR,GL_ZERO);
-	}
-
-	glEnable(GL_BLEND);
-	glDepthMask(0);
-
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-
-	for (uint i = 0; i < visiblePatches.size(); ++i)
-	{
-		CPatchRData* patchdata = (CPatchRData*)visiblePatches[i]->GetRenderData();
-		patchdata->RenderStreams(STREAM_POS|STREAM_POSTOUV0);
-	}
-
-	glDepthMask(1);
-	glDisable(GL_BLEND);
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-
-	glMatrixMode(GL_TEXTURE);
-	glLoadIdentity();
-	glMatrixMode(GL_MODELVIEW);
-}

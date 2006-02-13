@@ -4,8 +4,8 @@
 // Author:		Rich Cross
 // Contact:		rich@wildfiregames.com
 //
-// Description: class describing current lighting environment - 
-//	at the minute, this is only sunlight and ambient light 
+// Description: class describing current lighting environment -
+//	at the minute, this is only sunlight and ambient light
 //	parameters; will be extended to handle dynamic lights at some
 //  later date
 //
@@ -25,7 +25,7 @@ class CMainFrame;
 class CLightSettingsDlg;
 
 ///////////////////////////////////////////////////////////////////////////////
-// CLightEnv: description of a lighting environment - contains all the 
+// CLightEnv: description of a lighting environment - contains all the
 // necessary parameters for representation of the lighting within a scenario
 class CLightEnv
 {
@@ -67,6 +67,58 @@ public:
 		CalculateSunDirection();
 	}
 
+	/**
+	 * EvaluateTerrain: Calculate brightness of a point of the terrain with the given normal
+	 * vector.
+	 * The resulting color contains both ambient and diffuse light.
+	 *
+	 * @param normal normal vector (must have length 1)
+	 * @param color resulting color
+	 */
+	void EvaluateTerrain(const CVector3D& normal, RGBColor& color) const
+	{
+		float dot = -normal.Dot(m_SunDir);
+
+		color = m_TerrainAmbientColor;
+		if (dot > 0)
+			color += m_SunColor * dot;
+	}
+
+	/**
+	 * EvaluateUnit: Calculate brightness of a point of a unit with the given normal
+	 * vector.
+	 * The resulting color contains both ambient and diffuse light.
+	 *
+	 * @param normal normal vector (must have length 1)
+	 * @param color resulting color
+	 */
+	void EvaluateUnit(const CVector3D& normal, RGBColor& color) const
+	{
+		float dot = -normal.Dot(m_SunDir);
+
+		color = m_UnitsAmbientColor;
+		if (dot > 0)
+			color += m_SunColor * dot;
+	}
+
+	/**
+	 * EvaluateDirect: Like EvaluateTerrain and EvaluateUnit, but return only the direct
+	 * sunlight term without ambient.
+	 *
+	 * @param normal normal vector (must have length 1)
+	 * @param color resulting color
+	 */
+	void EvaluateDirect(const CVector3D& normal, RGBColor& color) const
+	{
+		float dot = -normal.Dot(m_SunDir);
+
+		if (dot > 0)
+			color = m_SunColor * dot;
+		else
+			color = CVector3D(0,0,0);
+	}
+
+private:
 	void CalculateSunDirection()
 	{
 		m_SunDir.Y=-float(sin(m_Elevation));
