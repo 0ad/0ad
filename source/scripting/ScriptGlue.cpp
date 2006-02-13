@@ -204,7 +204,14 @@ JSBool issueCommand( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rv
 		entities.push_back( (ToNative<CEntity>(argv[0])) ->me);
 	else
 		entities = *EntityCollection::RetrieveSet(cx, JSVAL_TO_OBJECT(argv[0]));
-
+	
+	//Destroy old listeners if we're explicitly being reassigned
+	for ( size_t i=0; i < entities.size(); i++)
+	{
+		if ( entities[i]->m_currentListener )
+			entities[i]->DestroyListeners( entities[i]->m_currentListener );
+		entities[i]->m_currentListener = NULL;
+	}
 	CNetMessage *msg = CNetMessage::CommandFromJSArgs(entities, cx, argc-1, argv+1);
 	if (msg)
 	{
