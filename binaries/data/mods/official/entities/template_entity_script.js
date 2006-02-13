@@ -382,9 +382,8 @@ function performGather( evt )
 	
 	if( !s.dropsitecount[this.player.id] )
 	{
-		// Entity has become ungatherable for us, probably meaning our mill near it was killed
-		// Get that gather order off the queue (really there should be a stop() method for this)
-		this.order( ORDER_GOTO, this.position.x, this.position.z );
+		// Entity has become ungatherable for us, probably meaning our mill near it was killed; cancel order
+		evt.preventDefault();
 		return;
 	}
 
@@ -493,11 +492,10 @@ function damage( dmg, inflictor )
 	if( this.traits.health.curr <= 0 )
 	{
 		// If the fallen is worth any loot and the inflictor is capable of looting
-		if (this.traits.loot && inflictor.actions.loot)
+		if (this.traits.loot && inflictor.actions && inflictor.actions.loot)
 		{
 			// Cycle through all loot on this entry.
-			pool = this.traits.loot;
-			for( loot in pool )
+			for( loot in this.traits.loot )
 			{
 				switch( loot.toString().toUpperCase() )
 				{
@@ -509,7 +507,7 @@ function damage( dmg, inflictor )
 						{
 							// Give him the fallen's upgrade points (if he has any).
 							if (this.traits.loot.xp)
-								inflictor.traits.promotion.curr = parseInt(inflictor.traits.promotion.curr) + parseInt(this.traits.loot.XP);
+								inflictor.traits.promotion.curr = parseInt(inflictor.traits.promotion.curr) + parseInt(this.traits.loot.xp);
 
 							// Notify player.
 							if (inflictor.traits.id.specific)
@@ -536,16 +534,16 @@ function damage( dmg, inflictor )
 								inflictor.template = getEntityTemplate(inflictor.traits.promotion.newentity);
 							}
 						}
-					break;
+						break;
 					default:
-						if ( inflictor.actions.loot.resources ) 
+						if ( inflictor.actions.loot.resources )
 						{
-							// Give the inflictor his resources.
-							getGUIGlobal().giveResources( loot.toString(), parseInt(pool[loot]) );
 							// Notify player.
-							console.write ("Spoils of war! " + pool[loot] + " " + loot.toString() + "!");
+							console.write ("Spoils of war! " + this.traits.loot[loot] + " " + loot.toString() + "!");
+							// Give the inflictor his resources.
+							getGUIGlobal().giveResources( loot.toString(), parseInt(this.traits.loot[loot]) );
 						}
-					break;
+						break;
 				}
 			}
 		}
@@ -717,8 +715,8 @@ function entityEventPrepareOrder( evt )
 			// TODO: some checking here
 			break;
 		default:
-			evt.preventDefault();
-		break;
+			//evt.preventDefault();
+			break;
 	}
 }
 
