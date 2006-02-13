@@ -61,6 +61,8 @@ enum ENetMessageType
 	NMT_AddWaypoint,
 	NMT_Generic,
 	NMT_Run,
+	NMT_NotifyRequest,
+
 	NMT_COMMAND_LAST,
 	/* Post-Game Stage */
 
@@ -227,6 +229,11 @@ DERIVE_NMT_CLASS_(NetCommand, AddWaypoint)
 END_NMT_CLASS()
 
 DERIVE_NMT_CLASS_(NetCommand, Generic)
+	NMT_FIELD(HEntity, m_Target)
+	NMT_FIELD_INT(m_Action, u32, 4)
+END_NMT_CLASS()
+
+DERIVE_NMT_CLASS_(NetCommand, NotifyRequest)
 	NMT_FIELD(HEntity, m_Target)
 	NMT_FIELD_INT(m_Action, u32, 4)
 END_NMT_CLASS()

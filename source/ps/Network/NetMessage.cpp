@@ -82,6 +82,7 @@ void CNetMessage::ScriptingInit()
 	def(NMT_Patrol);
 	def(NMT_AddWaypoint);
 	def(NMT_Generic);
+	def(NMT_NotifyRequest);
 }
 
 CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSContext *cx, uintN argc, jsval *argv)
@@ -183,6 +184,7 @@ CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSConte
 		PositionMessage(AddWaypoint)
 
 		EntityIntMessage(Generic)
+		EntityIntMessage(NotifyRequest)
 
 		default:
 			JS_ReportError(cx, "Invalid order type");
