@@ -606,7 +606,7 @@ void CRenderer::RenderShadowMap()
 
 	m->shadow->BeginRender();
 
-	glColor4fv(m_Options.m_ShadowColor);
+	glColor3ub(0, 0, 0);
 
 	// Figure out transparent rendering strategy
 	RenderModifierPtr transparentShadows = m_Models.ModTransparentShadow;

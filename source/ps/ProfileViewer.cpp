@@ -30,10 +30,10 @@ struct CProfileViewerInternals
 
 	/// List of root tables
 	std::vector<AbstractProfileTable*> rootTables;
-	
+
 	/// Path from a root table (path[0]) to the currently visible table (path[size-1])
 	std::vector<AbstractProfileTable*> path;
-	
+
 	/// Helper functions
 	void TableIsDeleted(AbstractProfileTable* table);
 	void NavigateTree(int id);
@@ -72,12 +72,12 @@ void CProfileViewerInternals::TableIsDeleted(AbstractProfileTable* table)
 		if (rootTables[idx] == table)
 			rootTables.erase(rootTables.begin() + idx);
 	}
-	
+
 	for(size_t idx = 0; idx < path.size(); ++idx)
 	{
 		if (path[idx] != table)
 			continue;
-		
+
 		path.erase(path.begin() + idx, path.end());
 		if (path.size() == 0)
 			profileVisible = false;
@@ -97,14 +97,14 @@ void CProfileViewerInternals::NavigateTree(int id)
 	{
 		AbstractProfileTable* table = path[path.size() - 1];
 		size_t numrows = table->GetNumberRows();
-		
+
 		for(size_t row = 0; row < numrows; ++row)
 		{
 			AbstractProfileTable* child = table->GetChild(row);
-			
+
 			if (!child)
 				continue;
-			
+
 			--id;
 			if (id == 0)
 			{
@@ -134,25 +134,28 @@ void CProfileViewer::RenderProfile()
 {
 	if (!m->profileVisible)
 		return;
-	
+
 	if (!m->path.size())
 	{
 		m->profileVisible = false;
 		return;
 	}
 
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	AbstractProfileTable* table = m->path[m->path.size() - 1];
 	const std::vector<ProfileColumn>& columns = table->GetColumns();
 	size_t numrows = table->GetNumberRows();
-	
+
 	// Render background
 	uint estimate_height;
 	uint estimate_width;
-	
+
 	estimate_width = 50;
 	for(uint i = 0; i < columns.size(); ++i)
 		estimate_width += columns[i].width;
-	
+
 	estimate_height = 3 + (uint)numrows;
 	if (m->path.size() > 1)
 		estimate_height += 2;
@@ -173,12 +176,12 @@ void CProfileViewer::RenderProfile()
 	glTranslatef(2.0f, g_yres - 20.0f, 0.0f );
 	glScalef(1.0f, -1.0f, 1.0f);
 	glColor3ub(255, 255, 255);
-	
+
 	glPushMatrix();
 	glwprintf(L"%hs", table->GetTitle().c_str());
 	glPopMatrix();
 	glTranslatef( 20.0f, 20.0f, 0.0f );
-	
+
 	glPushMatrix();
 	for(uint col = 0; col < columns.size(); ++col)
 	{
@@ -192,16 +195,16 @@ void CProfileViewer::RenderProfile()
 
 	// Print rows
 	int currentExpandId = 1;
-	
+
 	for(uint row = 0; row < numrows; ++row)
 	{
 		glPushMatrix();
-		
+
 		if (table->IsHighlightRow(row))
 			glColor3ub(255, 128, 128);
 		else
 			glColor3ub(255, 255, 255);
-		
+
 		if (table->GetChild(row))
 		{
 			glPushMatrix();
@@ -218,7 +221,7 @@ void CProfileViewer::RenderProfile()
 			glPopMatrix();
 			glTranslatef(columns[col].width, 0, 0);
 		}
-	
+
 		glPopMatrix();
 		glTranslatef( 0.0f, 20.0f, 0.0f );
 	}
@@ -237,6 +240,8 @@ void CProfileViewer::RenderProfile()
 	}
 
 	glPopMatrix();
+
+	glDisable(GL_BLEND);
 }
 
 
@@ -249,7 +254,7 @@ InReaction CProfileViewer::Input(const SDL_Event* ev)
 	{
 		if (!m->profileVisible)
 			break;
-			
+
 		int k = ev->key.keysym.sym - SDLK_0;
 		if (k >= 0 && k <= 9)
 		{
@@ -272,14 +277,14 @@ InReaction CProfileViewer::Input(const SDL_Event* ev)
 			else
 			{
 				uint i;
-				
+
 				for(i = 0; i < m->rootTables.size(); ++i)
 				{
 					if (m->rootTables[i] == m->path[0])
 						break;
 				}
 				i++;
-				
+
 				m->path.clear();
 				if (i < m->rootTables.size())
 				{
@@ -306,7 +311,7 @@ InReaction CProfileViewer::InputThunk(const SDL_Event* ev)
 {
 	if (CProfileViewer::IsInitialised())
 		return g_ProfileViewer.Input(ev);
-	
+
 	return IN_PASS;
 }
 

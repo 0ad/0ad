@@ -236,13 +236,6 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 		glMatrixMode(GL_TEXTURE);
 		glLoadMatrixf(&texturematrix._11);
 		glMatrixMode(GL_MODELVIEW);
-
-		if (shadow->GetUseDepthTexture())
-		{
-			glTexParameteri(GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE, GL_LUMINANCE);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
-		}
 	}
 	else
 	{

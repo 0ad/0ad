@@ -232,6 +232,10 @@ void ShadowMapInternals::CreateTexture()
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT16, Width, Height, 0,
 			     GL_DEPTH_COMPONENT, GL_FLOAT, buf);
 		delete[] buf;
+
+		glTexParameteri(GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE, GL_LUMINANCE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
 	}
 	else
 	{
@@ -438,7 +442,6 @@ void ShadowMap::RenderDebugDisplay()
 	g_Renderer.BindTexture(0, m->Texture);
 	if (m->UseDepthTexture)
 	{
-		glTexParameteri(GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE, GL_LUMINANCE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
 	}
 	glColor3f(1.0, 1.0, 1.0);
@@ -448,6 +451,10 @@ void ShadowMap::RenderDebugDisplay()
 		glTexCoord2f(1.0, 1.0); glVertex2f(0.2, 0.2);
 		glTexCoord2f(0.0, 1.0); glVertex2f(0.0, 0.2);
 	glEnd();
+	if (m->UseDepthTexture)
+	{
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
+	}
 
 	glEnable(GL_CULL_FACE);
 
