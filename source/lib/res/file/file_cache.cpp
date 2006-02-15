@@ -703,12 +703,18 @@ FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, bool long_lived)
 		if(buf)
 			break;
 
-		size_t size;
-		FileIOBuf discarded_buf = file_cache.remove_least_valuable(&size);
+		// tell file_cache to remove some items. this may shake loose
+		// several, all of which must be returned to the cache_allocator.
+		for(;;)
+		{
+			size_t size;
+			FileIOBuf discarded_buf = file_cache.remove_least_valuable(&size);
+			if(!discarded_buf)
+				break;
 #include "nommgr.h"
-		if(discarded_buf)
 			cache_allocator.free((u8*)discarded_buf, size);
 #include "mmgr.h"
+		}
 
 		if(attempts++ > 50)
 			debug_warn("possible infinite loop: failed to make room in cache");

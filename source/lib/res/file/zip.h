@@ -51,9 +51,20 @@ extern void zip_fixup_lfh(File* f, ArchiveEntry* ent);
 
 struct ZipArchive;	// opaque
 
-// create a new Zip archive
+// create a new Zip archive and return a pointer for use in subsequent
+// zip_archive_add_file calls. previous archive file is overwritten.
 extern LibError zip_archive_create(const char* zip_filename, ZipArchive** pza);
+
+// add a file (described by ArchiveEntry) to the archive. file_contents
+// is the actual file data; its compression method is given in ae->method and
+// can be CM_NONE.
+// IO cost: writes out <file_contents> to disk (we don't currently attempt
+// any sort of write-buffering).
 extern LibError zip_archive_add_file(ZipArchive* za, const ArchiveEntry* ae, void* file_contents);
+
+// write out the archive to disk; only hereafter is it valid.
+// frees the ZipArchive instance.
+// IO cost: writes out Central Directory to disk (about 70 bytes per file).
 extern LibError zip_archive_finish(ZipArchive* za);
 
 

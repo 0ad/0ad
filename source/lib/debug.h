@@ -263,10 +263,6 @@ extern void debug_filter_clear();
 // used for "last activity" reporting in the crashlog.
 extern void debug_wprintf_mem(const wchar_t* fmt, ...);
 
-// set directory into which crashlog (and system-specific dumps) will be
-// written. if not called, the current directory is used.
-extern void debug_set_crashlog_dir(const char* P_path);
-
 // write all logs and <text> out to crashlog.txt (unicode format).
 extern LibError debug_write_crashlog(const wchar_t* text);
 

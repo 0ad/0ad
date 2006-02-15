@@ -437,6 +437,8 @@ struct ZipArchive
 static SingleAllocator<ZipArchive> za_mgr;
 
 
+// create a new Zip archive and return a pointer for use in subsequent
+// zip_archive_add_file calls. previous archive file is overwritten.
 LibError zip_archive_create(const char* zip_filename, ZipArchive** pza)
 {
 	// local za_copy simplifies things - if something fails, no cleanup is
@@ -470,6 +472,11 @@ static inline u16 u16_from_size_t(size_t x)
 	return (u16)(x & 0xFFFF);
 }
 
+// add a file (described by ArchiveEntry) to the archive. file_contents
+// is the actual file data; its compression method is given in ae->method and
+// can be CM_NONE.
+// IO cost: writes out <file_contents> to disk (we don't currently attempt
+// any sort of write-buffering).
 LibError zip_archive_add_file(ZipArchive* za, const ArchiveEntry* ae, void* file_contents)
 {
 	const char* fn      = ae->atom_fn;
@@ -541,6 +548,9 @@ LibError zip_archive_add_file(ZipArchive* za, const ArchiveEntry* ae, void* file
 }
 
 
+// write out the archive to disk; only hereafter is it valid.
+// frees the ZipArchive instance.
+// IO cost: writes out Central Directory to disk (about 70 bytes per file).
 LibError zip_archive_finish(ZipArchive* za)
 {
 	const size_t cd_size = za->cdfhs.da.pos;
