@@ -1,6 +1,6 @@
 <!ELEMENT Scenario (Environment,Entities,Nonentities)>
 
-	<!ELEMENT Environment (SunColour,SunElevation,SunRotation,TerrainAmbientColour,UnitsAmbientColour,TerrainShadowTransparency)>
+	<!ELEMENT Environment (SunColour,SunElevation,SunRotation,TerrainAmbientColour,UnitsAmbientColour,TerrainShadowTransparency?)>
 	
 		<!ELEMENT SunColour EMPTY>
 		<!ATTLIST SunColour
