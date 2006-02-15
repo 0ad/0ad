@@ -237,6 +237,7 @@ CRenderer::CRenderer()
 	m_SortAllTransparent = false;
 	m_FastNormals = true;
 	m_DisplayFrustum = false;
+	m_DisableCopyShadow = false;
 
 	m_VertexShader = 0;
 
@@ -1291,6 +1292,21 @@ void CRenderer::JSI_SetUseDepthTexture(JSContext* ctx, jsval newval)
 	m->shadow->SetUseDepthTexture(depthTexture);
 }
 
+jsval CRenderer::JSI_GetDepthTextureBits(JSContext*)
+{
+	return ToJSVal(m->shadow->GetDepthTextureBits());
+}
+
+void CRenderer::JSI_SetDepthTextureBits(JSContext* ctx, jsval newval)
+{
+	int depthTextureBits;
+
+	if (!ToPrimitive(ctx, newval, depthTextureBits))
+		return;
+
+	m->shadow->SetDepthTextureBits(depthTextureBits);
+}
+
 void CRenderer::ScriptingInit()
 {
 	AddProperty(L"fastPlayerColor", &CRenderer::JSI_GetFastPlayerColor, &CRenderer::JSI_SetFastPlayerColor);
@@ -1300,6 +1316,8 @@ void CRenderer::ScriptingInit()
 	AddProperty(L"fastNormals", &CRenderer::m_FastNormals);
 	AddProperty(L"displayFrustum", &CRenderer::m_DisplayFrustum);
 	AddProperty(L"shadowZBias", &CRenderer::m_ShadowZBias);
+	AddProperty(L"disableCopyShadow", &CRenderer::m_DisableCopyShadow);
+	AddProperty(L"depthTextureBits", &CRenderer::JSI_GetDepthTextureBits, &CRenderer::JSI_SetDepthTextureBits);
 
 	CJSObject<CRenderer>::ScriptingInit("Renderer");
 }

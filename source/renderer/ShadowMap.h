@@ -58,6 +58,22 @@ public:
 	void SetUseDepthTexture(bool depthTexture);
 
 	/**
+	 * GetDepthTextureBits: Return the number of bits to use for depth textures when
+	 * enabled.
+	 *
+	 * @return depth texture bit depth
+	 */
+	int GetDepthTextureBits() const;
+
+	/**
+	 * SetDepthTextureBits: Sets the number of bits to use for depth textures when enabled.
+	 * Possible values are 16, 24, 32 and 0 (= use default)
+	 *
+	 * @param bits number of bits
+	 */
+	void SetDepthTextureBits(int bits);
+
+	/**
 	 * SetupFrame: Configure light space for the given camera and light direction,
 	 * create the shadow texture if necessary, etc.
 	 *

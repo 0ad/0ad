@@ -35,6 +35,8 @@ struct ShadowMapInternals
 {
 	// whether we're using depth texture or luminance map
 	bool UseDepthTexture;
+	// bit depth for the depth texture, if used
+	int DepthTextureBits;
 	// handle of shadow map
 	GLuint Texture;
 	// width, height of shadow map
@@ -69,6 +71,7 @@ ShadowMap::ShadowMap()
 	m->Width = 0;
 	m->Height = 0;
 	m->UseDepthTexture = false;
+	m->DepthTextureBits = 16;
 }
 
 
@@ -216,8 +219,20 @@ void ShadowMapInternals::CreateTexture()
 	Height = g_Renderer.GetHeight();
 	Height = RoundUpToPowerOf2(Height);
 
+	const char* formatname = "LUMINANCE";
+
+	if (UseDepthTexture)
+	{
+		switch(DepthTextureBits) {
+		case 16: formatname = "DEPTH_COMPONENT16"; break;
+		case 24: formatname = "DEPTH_COMPONENT24"; break;
+		case 32: formatname = "DEPTH_COMPONENT32"; break;
+		default: formatname = "DEPTH_COMPONENT"; break;
+		}
+	}
+
 	LOG(NORMAL, LOG_CATEGORY, "Creating shadow texture (size %ix%i) (format = %s)",
-		Width, Height, UseDepthTexture ? "DEPTH_COMPONENT" : "LUMINANCE");
+		Width, Height, formatname);
 
 	// create texture object
 	glGenTextures(1, &Texture);
@@ -227,9 +242,18 @@ void ShadowMapInternals::CreateTexture()
 
 	if (UseDepthTexture)
 	{
+		GLenum format;
+
+		switch(DepthTextureBits) {
+		case 16: format = GL_DEPTH_COMPONENT16; break;
+		case 24: format = GL_DEPTH_COMPONENT24; break;
+		case 32: format = GL_DEPTH_COMPONENT32; break;
+		default: format = GL_DEPTH_COMPONENT; break;
+		}
+
 		float* buf = new float[size];
 		for(uint i = 0; i < size; i++) buf[i] = 1.0;
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT16, Width, Height, 0,
+		glTexImage2D(GL_TEXTURE_2D, 0, format, Width, Height, 0,
 			     GL_DEPTH_COMPONENT, GL_FLOAT, buf);
 		delete[] buf;
 
@@ -301,8 +325,11 @@ void ShadowMap::EndRender()
 	glDisable(GL_SCISSOR_TEST);
 
 	// copy result into shadow map texture
-	g_Renderer.BindTexture(0, m->Texture);
-	glCopyTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 0, 0, g_Renderer.GetWidth(), g_Renderer.GetHeight());
+	if (!g_Renderer.GetDisableCopyShadow())
+	{
+		g_Renderer.BindTexture(0, m->Texture);
+		glCopyTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 0, 0, g_Renderer.GetWidth(), g_Renderer.GetHeight());
+	}
 
 	if (m->UseDepthTexture)
 	{
@@ -358,6 +385,29 @@ void ShadowMap::SetUseDepthTexture(bool depthTexture)
 		m->Width = m->Height = 0;
 
 		m->UseDepthTexture = depthTexture;
+	}
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Depth texture bits
+int ShadowMap::GetDepthTextureBits() const
+{
+	return m->DepthTextureBits;
+}
+
+void ShadowMap::SetDepthTextureBits(int bits)
+{
+	if (bits != m->DepthTextureBits)
+	{
+		if (m->Texture)
+		{
+			glDeleteTextures(1, &m->Texture);
+			m->Texture = 0;
+		}
+		m->Width = m->Height = 0;
+
+		m->DepthTextureBits = bits;
 	}
 }
 

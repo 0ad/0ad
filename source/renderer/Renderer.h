@@ -294,6 +294,8 @@ public:
 	 */
 	const Caps& GetCapabilities() const { return m_Caps; }
 
+	bool GetDisableCopyShadow() const { return m_DisableCopyShadow; }
+
 protected:
 	friend struct CRendererInternals;
 	friend class CVertexBuffer;
@@ -314,6 +316,8 @@ protected:
 	void JSI_SetRenderPath(JSContext* ctx, jsval newval);
 	jsval JSI_GetUseDepthTexture(JSContext*);
 	void JSI_SetUseDepthTexture(JSContext* ctx, jsval newval);
+	jsval JSI_GetDepthTextureBits(JSContext*);
+	void JSI_SetDepthTextureBits(JSContext* ctx, jsval newval);
 	static void ScriptingInit();
 
 	// patch rendering stuff
@@ -418,6 +422,12 @@ protected:
 	 * Can be controlled from JS via renderer.displayFrustum
 	 */
 	bool m_DisplayFrustum;
+
+	/**
+	 * m_DisableCopyShadow: For debugging purpose:
+	 * Disable copying of shadow data into the shadow texture (when EXT_fbo is not available)
+	 */
+	bool m_DisableCopyShadow;
 
 	// Various model renderers
 	struct Models {
