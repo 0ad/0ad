@@ -279,9 +279,7 @@ void CObjectBase::CalculateVariation(std::set<CStr>& strings, variation_key& cho
 		// Choose a random number in the interval [0..totalFreq).
 		// (It shouldn't be necessary to use a network-synchronised RNG,
 		// since actors are meant to have purely visual manifestations.)
-		int randNum = (int)( ((float)rand() / RAND_MAX) * totalFreq );
-
-		debug_assert(randNum < totalFreq);
+		int randNum = rand(0, totalFreq);
 
 		// and use that to choose one of the variants
 		for (Iter it = matches.begin(); it != matches.end(); ++it)

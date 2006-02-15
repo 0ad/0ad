@@ -842,9 +842,9 @@ static void* thread_func(void* arg)
 	{
 		void* user_data;
 
-		const int action            = rand_up_to(4);
-		const uintptr_t key         = rand_up_to(100);
-		const int sleep_duration_ms = rand_up_to(100);
+		const int action            = rand(0, 4);
+		const uintptr_t key         = rand(0, 100);
+		const int sleep_duration_ms = rand(0, 100);
 		debug_printf("thread %d: %s\n", thread_number, action_strings[action]);
 
 		//

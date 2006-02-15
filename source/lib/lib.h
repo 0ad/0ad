@@ -303,9 +303,6 @@ inline bool feq(float f1, float f2)
 
 extern u16 fp_to_u16(double in);
 
-// return random integer in [0, limit).
-// does not use poorly distributed lower bits of rand().
-extern int rand_up_to(int limit);
 
 // big endian!
 extern void base32(const int len, const u8* in, u8* out);

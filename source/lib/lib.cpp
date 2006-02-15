@@ -382,17 +382,6 @@ u16 fp_to_u16(double in)
 
 
 
-// return random integer in [0, limit).
-// does not use poorly distributed lower bits of rand().
-int rand_up_to(int limit)
-{
-	// (i64 avoids overflowing in multiply)
-	const i64 ret = ((i64)limit * rand()) / (RAND_MAX+1);
-	debug_assert(0 <= ret && ret < limit);
-	return (int)ret;
-}
-
-
 // big endian!
 void base32(const int len, const u8* in, u8* out)
 {
@@ -522,6 +511,8 @@ int match_wildcardw(const wchar_t* s, const wchar_t* w)
 
 	return (*w == '\0');
 }
+
+
 
 
 // return random integer in [min, max).
