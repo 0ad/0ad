@@ -164,7 +164,7 @@ void InstancingModelRenderer::BeginPass(uint streamflags)
 		idx = g_Renderer.m_VertexShader->m_InstancingLight_Ambient;
 		pglUniform3fvARB(idx, 1, &lightEnv.m_UnitsAmbientColor.X);
 		idx = g_Renderer.m_VertexShader->m_InstancingLight_SunDir;
-		pglUniform3fvARB(idx, 1, &lightEnv.m_SunDir.X);
+		pglUniform3fvARB(idx, 1, &lightEnv.GetSunDir().X);
 		idx = g_Renderer.m_VertexShader->m_InstancingLight_SunColor;
 		pglUniform3fvARB(idx, 1, &lightEnv.m_SunColor.X);
 

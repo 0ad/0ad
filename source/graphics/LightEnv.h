@@ -1,16 +1,13 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		LightEnv.h
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-// Description: class describing current lighting environment -
-//	at the minute, this is only sunlight and ambient light
-//	parameters; will be extended to handle dynamic lights at some
-//  later date
-//
-///////////////////////////////////////////////////////////////////////////////
-
+/**
+ * =========================================================================
+ * File        : LightEnv.h
+ * Project     : Pyrogenesis
+ * Description : CLightEnv, a class describing the current lights
+ *
+ * @author Rich Cross <rich@wildfiregames.com>
+ * @author Nicolai Hähnle <nicolai@wildfiregames.com>
+ * =========================================================================
+ */
 
 #ifndef __LIGHTENV_H
 #define __LIGHTENV_H
@@ -20,52 +17,62 @@
 
 class CMapWriter;
 class CMapReader;
-class CEditorData;
-class CMainFrame;
-class CLightSettingsDlg;
 
-///////////////////////////////////////////////////////////////////////////////
-// CLightEnv: description of a lighting environment - contains all the
-// necessary parameters for representation of the lighting within a scenario
+/**
+ * Class CLightEnv: description of a lighting environment - contains all the
+ * necessary parameters for representation of the lighting within a scenario
+ */
 class CLightEnv
 {
 friend class CMapWriter;
 friend class CMapReader;
 friend class CXMLReader;
+/* Trying to compile ScEd? ;)
 friend class CEditorData;
 friend class CMainFrame;
 friend class CLightSettingsDlg;
-// weird accessor order to preserve memory layout of the class
-public:
-	RGBColor m_SunColor;
+*/
 private:
+	/**
+	 * m_Elevation: Height of sun above the horizon, in radians.
+	 * For example, an elevation of PI/2 means the sun is straight up.
+	 */
 	float m_Elevation;
+
+	/**
+	 * m_Rotation: Direction of sun on the compass, in radians.
+	 * For example, a rotation of zero means the sun is in the direction (0,0,-1)
+	 * and a rotation of PI/2 means the sun is in the direction (1,0,0) (not taking
+	 * elevation into account).
+	 */
 	float m_Rotation;
-public:
-	RGBColor m_TerrainAmbientColor;
-	RGBColor m_UnitsAmbientColor;
+
+	/**
+	 * m_TerrainShadowTransparency: Fraction of diffuse light that reaches shadowed terrain.
+	 * A value of 0.0 means shadowed polygons get only ambient light, while a value of 1.0
+	 * means shadows don't have any effect at all.
+	 */
+	float m_TerrainShadowTransparency;
+
 	CVector3D m_SunDir;
 
-	// get sun direction from a rotation and elevation; defined such that:
-	//	0 rotation    = (0,0,1)
-	// PI/2 rotation  = (-1,0,0)
-	//	0 elevation	  = (0,0,0)
-	// PI/2 elevation = (0,-1,0)
+public:
+	RGBColor m_SunColor;
+	RGBColor m_TerrainAmbientColor;
+	RGBColor m_UnitsAmbientColor;
 
-	float GetElevation() { return m_Elevation; }
-	float GetRotation() { return m_Rotation; }
+public:
+	CLightEnv();
 
-	void SetElevation(float f)
-	{
-		m_Elevation = f;
-		CalculateSunDirection();
-	}
+	float GetElevation() const { return m_Elevation; }
+	float GetRotation() const { return m_Rotation; }
+	const CVector3D& GetSunDir() const { return m_SunDir; }
+	float GetTerrainShadowTransparency() const { return m_TerrainShadowTransparency; }
 
-	void SetRotation(float f)
-	{
-		m_Rotation = f;
-		CalculateSunDirection();
-	}
+	void SetElevation(float f);
+	void SetRotation(float f);
+
+	void SetTerrainShadowTransparency(float f);
 
 	/**
 	 * EvaluateTerrain: Calculate brightness of a point of the terrain with the given normal
@@ -118,15 +125,24 @@ public:
 			color = CVector3D(0,0,0);
 	}
 
-private:
-	void CalculateSunDirection()
+	// Comparison operators
+	bool operator==(const CLightEnv& o) const
 	{
-		m_SunDir.Y=-float(sin(m_Elevation));
-		float scale=1+m_SunDir.Y;
-		m_SunDir.X=scale*float(sin(m_Rotation));
-		m_SunDir.Z=scale*float(cos(m_Rotation));
-		m_SunDir.Normalize();
+		return m_Elevation == o.m_Elevation &&
+			m_Rotation == o.m_Rotation &&
+			m_TerrainShadowTransparency == o.m_TerrainShadowTransparency &&
+			m_SunColor == o.m_SunColor &&
+			m_TerrainAmbientColor == o.m_TerrainAmbientColor &&
+			m_UnitsAmbientColor == o.m_UnitsAmbientColor;
 	}
+
+	bool operator!=(const CLightEnv& o) const
+	{
+		return !(*this == o);
+	}
+
+private:
+	void CalculateSunDirection();
 };
 
 #endif

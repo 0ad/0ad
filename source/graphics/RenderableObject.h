@@ -18,14 +18,14 @@
 // need updating
 #define RENDERDATA_UPDATE_VERTICES		(1<<1)
 #define RENDERDATA_UPDATE_INDICES		(1<<2)
-#define RENDERDATA_UPDATE_TRANSFORM     (1<<3)
+#define RENDERDATA_UPDATE_COLOR			(1<<4)
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// CRenderData: base class of all the renderer's renderdata classes - the 
-// derived class stores necessary information for rendering an object of a 
+// CRenderData: base class of all the renderer's renderdata classes - the
+// derived class stores necessary information for rendering an object of a
 // particular type
-class CRenderData 
+class CRenderData
 {
 public:
 	CRenderData() : m_UpdateFlags(0) {}
@@ -36,7 +36,7 @@ public:
 
 ///////////////////////////////////////////////////////////////////////////////
 // CRenderableObject: base class of all renderable objects - patches, models,
-// sprites, etc; stores position and bound information, and a pointer to 
+// sprites, etc; stores position and bound information, and a pointer to
 // some renderdata necessary for the renderer to actually render it
 class CRenderableObject
 {
@@ -85,9 +85,9 @@ public:
 	void InvalidateBounds() { m_BoundsValid = false; }
 
 	// Set the object renderdata and free previous renderdata, if any.
-	void SetRenderData(CRenderData* renderdata) { 
+	void SetRenderData(CRenderData* renderdata) {
 		delete m_RenderData;
-		m_RenderData = renderdata; 
+		m_RenderData = renderdata;
 	}
 
 	// return object renderdata - can be null if renderer hasn't yet

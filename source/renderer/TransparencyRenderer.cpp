@@ -219,7 +219,7 @@ void PolygonSortModelRenderer::UpdateModelData(CModel* model, void* data, u32 up
 {
 	PSModel* psmdl = (PSModel*)data;
 
-	if (updateflags & RENDERDATA_UPDATE_VERTICES)
+	if (updateflags & (RENDERDATA_UPDATE_VERTICES|RENDERDATA_UPDATE_COLOR))
 	{
 		CModelDefPtr mdef = model->GetModelDef();
 		size_t numVertices = mdef->GetNumVertices();

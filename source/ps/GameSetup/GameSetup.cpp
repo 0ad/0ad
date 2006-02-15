@@ -62,6 +62,7 @@
 #include "scripting/JSInterface_Camera.h"
 #include "scripting/JSInterface_Selection.h"
 #include "scripting/JSInterface_Console.h"
+#include "graphics/scripting/JSInterface_LightEnv.h"
 #include "scripting/JSCollection.h"
 #include "scripting/DOMEvent.h"
 #ifndef NO_GUI
@@ -522,6 +523,7 @@ static void InitScripting()
 
 	JSI_Camera::init();
 	JSI_Console::init();
+	JSI_LightEnv::init();
 
 	new CGameEvents;
 }
@@ -660,14 +662,9 @@ static void InitRenderer()
 	MICROLOG(L"init renderer");
 	g_Renderer.Open(g_xres,g_yres,g_bpp);
 
-	// Setup default lighting environment. Since the Renderer accesses the
+	// Setup lighting environment. Since the Renderer accesses the
 	// lighting environment through a pointer, this has to be done before
 	// the first Frame.
-	g_LightEnv.m_SunColor=RGBColor(1,1,1);
-	g_LightEnv.SetRotation(DEGTORAD(270));
-	g_LightEnv.SetElevation(DEGTORAD(45));
-	g_LightEnv.m_TerrainAmbientColor=RGBColor(0.4f,0.4f,0.4f);
-	g_LightEnv.m_UnitsAmbientColor=RGBColor(0.4f,0.4f,0.4f);
 	g_Renderer.SetLightEnv(&g_LightEnv);
 
 	// I haven't seen the camera affecting GUI rendering and such, but the

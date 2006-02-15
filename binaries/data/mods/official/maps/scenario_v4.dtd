@@ -1,6 +1,6 @@
 <!ELEMENT Scenario (Environment,Entities,Nonentities)>
 
-	<!ELEMENT Environment (SunColour,SunElevation,SunRotation,TerrainAmbientColour,UnitsAmbientColour)>
+	<!ELEMENT Environment (SunColour,SunElevation,SunRotation,TerrainAmbientColour,UnitsAmbientColour,TerrainShadowTransparency)>
 	
 		<!ELEMENT SunColour EMPTY>
 		<!ATTLIST SunColour
@@ -31,6 +31,7 @@
 			g CDATA #REQUIRED
 			b CDATA #REQUIRED
 		>
+		<!ELEMENT TerrainShadowTransparency (#PCDATA)>
 
 	<!ELEMENT Entities (Entity*)>
 

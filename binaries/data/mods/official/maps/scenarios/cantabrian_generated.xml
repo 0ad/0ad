@@ -2,11 +2,12 @@
 <!DOCTYPE Scenario SYSTEM "/maps/scenario_v4.dtd">
 <Scenario>
 	<Environment>
-		<SunColour r="0.9" g="0.9" b="0.8" />
+		<SunColour r="1.1" g="1.1" b="0.9" />
 		<SunElevation angle="0.6" />
 		<SunRotation angle="5.0" />
-		<TerrainAmbientColour r="0.6" g="0.6" b="0.7" />
+		<TerrainAmbientColour r="0.1" g="0.1" b="0.2" />
 		<UnitsAmbientColour r="0.6" g="0.6" b="0.65" />
+		<TerrainShadowTransparency>0.4</TerrainShadowTransparency>
 	</Environment>
 	<Entities>
 		<Entity>

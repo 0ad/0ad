@@ -184,7 +184,7 @@ void HWLightingModelRenderer::BeginPass(uint streamflags)
 		idx = g_Renderer.m_VertexShader->m_ModelLight_Ambient;
 		pglUniform3fvARB(idx, 1, &lightEnv.m_UnitsAmbientColor.X);
 		idx = g_Renderer.m_VertexShader->m_ModelLight_SunDir;
-		pglUniform3fvARB(idx, 1, &lightEnv.m_SunDir.X);
+		pglUniform3fvARB(idx, 1, &lightEnv.GetSunDir().X);
 		idx = g_Renderer.m_VertexShader->m_ModelLight_SunColor;
 		pglUniform3fvARB(idx, 1, &lightEnv.m_SunColor.X);
 

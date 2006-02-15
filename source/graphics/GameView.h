@@ -9,6 +9,7 @@ extern float g_YMinOffset;
 #include "CinemaTrack.h"
 #include "ModelDef.h"
 #include "Vector3D.h"
+#include "LightEnv.h"
 #include "scripting/ScriptableObject.h"
 
 #include "lib/input.h"
@@ -26,34 +27,39 @@ class CGameView: public CJSObject<CGameView>
 {
 	CGame *m_pGame;
 	CWorld *m_pWorld;
-	CTerrain *m_Terrain;
-	
+
 	/**
 	 * m_ViewCamera: this camera controls the eye position when rendering
 	 */
 	CCamera m_ViewCamera;
-	
+
 	/**
 	 * m_CullCamera: this camera controls the frustum that is used for culling
 	 * and shadow calculations
-	 * 
+	 *
 	 * Note that all code that works with camera movements should only change
 	 * m_ViewCamera. The render functions automatically sync the cull camera to
 	 * the view camera depending on the value of m_LockCullCamera.
 	 */
 	CCamera m_CullCamera;
-	
+
 	/**
 	 * m_LockCullCamera: When @c true, the cull camera is locked in place.
 	 * When @c false, the cull camera follows the view camera.
-	 * 
+	 *
 	 * Exposed to JS as gameView.lockCullCamera
 	 */
 	bool m_LockCullCamera;
-	
+
+	/**
+	 * m_cachedLightEnv: Cache global lighting environment. This is used  to check whether the
+	 * environment has changed during the last frame, so that vertex data can be updated etc.
+	 */
+	CLightEnv m_cachedLightEnv;
+
 	CCinemaManager m_TrackManager;
 	CCinemaTrack m_TestTrack;
-	
+
 	////////////////////////////////////////
 	// Settings
 	float m_ViewScrollSpeed;
@@ -81,7 +87,10 @@ class CGameView: public CJSObject<CGameView>
 
 	// Accumulate zooming changes across frames for smoothness
 	float m_ZoomDelta;
-	
+
+	// Check whether lighting environment has changed and update vertex data if necessary
+	void CheckLightEnv();
+
 	// RenderTerrain: iterate through all terrain patches and submit all patches
 	// in viewing frustum to the renderer, for terrain, water and LOS painting
 	void RenderTerrain(CTerrain *pTerrain);
@@ -89,18 +98,18 @@ class CGameView: public CJSObject<CGameView>
 	// RenderModels: iterate through model list and submit all models in viewing
 	// frustum to the Renderer
 	void RenderModels(CUnitManager *pUnitMan, CProjectileManager *pProjectileManager);
-	
+
 	// SubmitModelRecursive: recurse down given model, submitting it and all its
 	// descendents to the renderer
 	void SubmitModelRecursive(CModel *pModel);
-	
+
 	// InitResources(): Load all graphics resources (textures, actor objects and
 	// alpha maps) required by the game
 	//void InitResources();
 
 	// UnloadResources(): Unload all graphics resources loaded by InitResources
 	void UnloadResources();
-	
+
 	// JS Interface
 	bool JSI_StartCustomSelection(JSContext *cx, uintN argc, jsval *argv);
 	bool JSI_EndCustomSelection(JSContext *cx, uintN argc, jsval *argv);
@@ -110,15 +119,15 @@ class CGameView: public CJSObject<CGameView>
 public:
 	CGameView(CGame *pGame);
 	~CGameView();
-	
+
 	void RegisterInit(CGameAttributes *pAttribs);
 	int Initialize(CGameAttributes *pGameAttributes);
 
-	// Update: Update all the view information (i.e. rotate camera, scroll, 
+	// Update: Update all the view information (i.e. rotate camera, scroll,
 	// whatever). This will *not* change any World information - only the
 	// *presentation*
 	void Update(float DeltaTime);
-	
+
 	// Render: Render the World
 	void Render();
 
@@ -132,12 +141,12 @@ public:
 	// RenderNoCull: render absolutely everything to a blank frame to force
 	// renderer to load required assets
 	void RenderNoCull();
-	
+
 	// Camera Control Functions (used by input handler)
 	void ResetCamera();
 	void ResetCameraOrientation();
 	void RotateAboutTarget();
-	
+
 	void PushCameraTarget( const CVector3D& target );
 	void SetCameraTarget( const CVector3D& target );
 	void PopCameraTarget();
@@ -146,10 +155,10 @@ public:
 	void ToUnitView(CEntity* target, CModel* prop);
 	//Keep view the same but follow the unit
 	void AttachToUnit(CEntity* target) { m_UnitAttach = target; }
-	
+
 	bool IsAttached () { if( m_UnitAttach ) { return true; }  return false; }
 	bool IsUnitView () { if( m_UnitView ) { return true; } return false; }
-	
+
 	inline CCamera *GetCamera()
 	{	return &m_ViewCamera; }
 };

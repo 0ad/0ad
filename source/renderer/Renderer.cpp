@@ -366,8 +366,14 @@ void CRenderer::EnumCaps()
 		if (oglHaveExtension("GL_ARB_vertex_shader"))
 			m_Caps.m_VertexShader=true;
 	}
+
 	if (0 == oglHaveExtensions(0, "GL_ARB_shadow", "GL_ARB_depth_texture", 0)) {
-		m_Caps.m_DepthTextureShadows = true;
+		// According to Delphi3d.net, all relevant graphics chips that support depth textures
+		// (i.e. Geforce3+, Radeon9500+, even i915) also have >= 4 TMUs, so this restriction
+		// isn't actually a restriction, and it helps with integrating depth texture
+		// shadows into rendering paths.
+		if (ogl_max_tex_units >= 4)
+			m_Caps.m_DepthTextureShadows = true;
 	}
 }
 
@@ -587,7 +593,7 @@ void CRenderer::BeginFrame()
 	m_Stats.Reset();
 
 	// init per frame stuff
-	m->shadow->SetupFrame(m_CullCamera, m_LightEnv->m_SunDir);
+	m->shadow->SetupFrame(m_CullCamera, m_LightEnv->GetSunDir());
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -606,7 +612,8 @@ void CRenderer::RenderShadowMap()
 
 	m->shadow->BeginRender();
 
-	glColor3ub(0, 0, 0);
+	float shadowTransp = m_LightEnv->GetTerrainShadowTransparency();
+	glColor3f(shadowTransp, shadowTransp, shadowTransp);
 
 	// Figure out transparent rendering strategy
 	RenderModifierPtr transparentShadows = m_Models.ModTransparentShadow;

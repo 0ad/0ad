@@ -35,6 +35,7 @@
 #include "scripting/JSInterface_Camera.h"
 #include "scripting/JSInterface_Console.h"
 #include "scripting/JSInterface_VFS.h"
+#include "graphics/scripting/JSInterface_LightEnv.h"
 #include "scripting/JSConversions.h"
 #include "renderer/WaterManager.h"
 #ifndef NO_GUI
@@ -204,7 +205,7 @@ JSBool issueCommand( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rv
 		entities.push_back( (ToNative<CEntity>(argv[0])) ->me);
 	else
 		entities = *EntityCollection::RetrieveSet(cx, JSVAL_TO_OBJECT(argv[0]));
-	
+
 	//Destroy old listeners if we're explicitly being reassigned
 	for ( size_t i=0; i < entities.size(); i++)
 	{
@@ -925,7 +926,7 @@ JSBool setWaterAlphaOffset( JSContext* cx, JSObject* UNUSED(globalObject), uint 
 JSBool isPaused( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
 	REQUIRE_NO_PARAMS( isPaused );
-	
+
 	if( !g_Game )
 	{
 		JS_ReportError( cx, "Game is not started" );
@@ -940,17 +941,17 @@ JSBool isPaused( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval
 JSBool setPaused( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* UNUSED(rval) )
 {
 	REQUIRE_PARAMS( 1, setPaused );
-	
+
 	if( !g_Game )
 	{
 		JS_ReportError( cx, "Game is not started" );
 		return JS_FALSE;
 	}
 
-	try 
+	try
 	{
 		g_Game->m_Paused = ToPrimitive<bool>( argv[0] );
-	}	
+	}
 	catch( PSERROR_Scripting_ConversionFailed )
 	{
 		JS_ReportError( cx, "Invalid parameter to setPaused" );
@@ -963,7 +964,7 @@ JSBool setPaused( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsva
 JSBool getGameTime( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
 	REQUIRE_NO_PARAMS( getGameTime );
-	
+
 	if( !g_Game )
 	{
 		JS_ReportError( cx, "Game is not started" );
@@ -1177,6 +1178,7 @@ enum ScriptGlobalTinyIDs
 	GLOBAL_GROUPSARRAY,
 	GLOBAL_CAMERA,
 	GLOBAL_CONSOLE,
+	GLOBAL_LIGHTENV
 };
 
 // shorthand
@@ -1189,6 +1191,7 @@ JSPropertySpec ScriptGlobalTable[] =
 	{ "groups"     , GLOBAL_GROUPSARRAY, PERM,         JSI_Selection::getGroups,    JSI_Selection::setGroups },
 	{ "camera"     , GLOBAL_CAMERA,      PERM,         JSI_Camera::getCamera,       JSI_Camera::setCamera },
 	{ "console"    , GLOBAL_CONSOLE,     PERM | CONST, JSI_Console::getConsole,     0 },
+	{ "lightenv"   , GLOBAL_LIGHTENV,    PERM,         JSI_LightEnv::getLightEnv,   JSI_LightEnv::setLightEnv },
 	{ "entities"   , 0,                  PERM | CONST, GetEntitySet,                0 },
 	{ "players"    , 0,                  PERM | CONST, GetPlayerSet,                0 },
 	{ "localPlayer", 0,                  PERM        , GetLocalPlayer,              SetLocalPlayer },

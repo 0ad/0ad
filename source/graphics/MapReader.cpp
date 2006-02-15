@@ -41,7 +41,7 @@ void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain_, CUnitManager
 	// [25ms]
 	unpacker.Read(filename,"PSMP");
 
-	// check version 
+	// check version
 	if (unpacker.GetVersion() < FILE_READ_VERSION) {
 		throw CFileUnpacker::CFileVersionError();
 	}
@@ -174,8 +174,8 @@ int CMapReader::UnpackTerrain()
 // ApplyData: take all the input data, and rebuild the scene from it
 int CMapReader::ApplyData()
 {
-	// initialise the terrain 
-	pTerrain->Initialize(m_MapSize, &m_Heightmap[0]);	
+	// initialise the terrain
+	pTerrain->Initialize(m_MapSize, &m_Heightmap[0]);
 
 	// setup the textures on the minipatches
 	STileDesc* tileptr = &m_Tiles[0];
@@ -323,6 +323,7 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 	EL(sunrotation);
 	EL(terrainambientcolour);
 	EL(unitsambientcolour);
+	EL(terrainshadowtransparency);
 	AT(r); AT(g); AT(b);
 #undef AT
 #undef EL
@@ -360,6 +361,10 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 				CStr(attrs.getNamedItem(at_r)).ToFloat(),
 				CStr(attrs.getNamedItem(at_g)).ToFloat(),
 				CStr(attrs.getNamedItem(at_b)).ToFloat());
+		}
+		else if (element_name == el_terrainshadowtransparency)
+		{
+			m_MapReader.m_LightEnv.SetTerrainShadowTransparency(CStr(element.getText()).ToFloat());
 		}
 		else
 			debug_warn("Invalid XML data - DTD shouldn't allow this");

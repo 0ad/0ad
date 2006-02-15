@@ -85,7 +85,7 @@ CGameView::CGameView(CGame *pGame):
 	m_UnitView=NULL;
 	m_UnitAttach=NULL;
 
-	/* //TEST TRACK 
+	/* //TEST TRACK
 	int Test_Nodes=15;
 	int Test_Variance=10.0f;	//rand() % Test_Variance distortion of linear points
 	int Test_Space=30;
@@ -98,7 +98,7 @@ CGameView::CGameView(CGame *pGame):
 	CCinemaData Test_Data;
 	TNSpline Test_Spline;
 	CCinemaTrack Test_Track;
-	
+
 	//linear generation with variance factor
 	for (int i=0; i<Test_Nodes; i++)
 	{
@@ -107,12 +107,12 @@ CGameView::CGameView(CGame *pGame):
 			linear.X += rand() % Test_Variance;
 		else
 			linear.X -= rand() % Test_Variance;
-		
+
 		if ( rand() % 2 )
 			linear.Y += rand() % Test_Variance;
 		else
 			linear.Y -= rand() % Test_Variance;
-		
+
 		if ( rand() % 2 )
 			linear.Z += rand() % Test_Variance;
 		else
@@ -120,7 +120,7 @@ CGameView::CGameView(CGame *pGame):
 
 		Test_Spline.AddNode( linear, Test_NodeTime );
 	}
-	
+
 	Test_Data.m_TotalDuration = Test_Spline.MaxDistance;
 	Test_Data.m_TotalRotation = CVector3D( 0.0f, DEGTORAD(-150.0f), 0.0f );
 	Test_Data.m_Growth = Test_Data.m_GrowthCount = 1.9f;
@@ -130,14 +130,14 @@ CGameView::CGameView(CGame *pGame):
 	Test_Track.m_StartRotation = CVector3D( DEGTORAD(30), DEGTORAD(-45), 0.0f );
 
 	Test_Track.AddPath( Test_Data, Test_Spline );
-	
+
 	Test_Data.m_Style = ES_GROWTH;
 	Test_Track.AddPath( Test_Data, Test_Spline );
-	
+
 	Test_Data.m_Mode = EM_OUT;
 	Test_Data.m_Style = ES_EXPO;
 	Test_Track.AddPath( Test_Data, Test_Spline );
-	
+
 	Test_Data.m_Mode = EM_INOUT;
 	Test_Data.m_Style = ES_GROWTH;
 	Test_Track.AddPath( Test_Data, Test_Spline );
@@ -149,9 +149,9 @@ CGameView::CGameView(CGame *pGame):
 	m_TrackManager.AddTrack(Test_Track, "test");
 	m_TrackManager.QueueTrack("test", true);
 	*/
-	
-	//TEST TRACK 
-	CVector3D Test_NodePos[] = { CVector3D( 109.31228f, 93.302315f, -28.760098f ),	
+
+	//TEST TRACK
+	CVector3D Test_NodePos[] = { CVector3D( 109.31228f, 93.302315f, -28.760098f ),
 								CVector3D( 147.03696f, 87.134117f, 54.718628f ),
 								CVector3D( 174.245293f, 97.134117f, 116.449940f ),
 								CVector3D( 146.245293f, 107.134117f, 162.449940f ),
@@ -163,13 +163,13 @@ CGameView::CGameView(CGame *pGame):
 	CCinemaData Test_Data;
 	TNSpline Test_Spline;
 	CCinemaTrack Test_Track;
-	
+
 	//linear generation with variance factor
 	for (int i=0; i<ARRAY_SIZE(Test_NodePos); i++)
 	{
 		Test_Spline.AddNode( Test_NodePos[i], Test_NodeTime );
 	}
-	
+
 	Test_Data.m_TotalDuration = Test_Spline.MaxDistance;
 	Test_Data.m_TotalRotation = CVector3D( DEGTORAD(15.0f), DEGTORAD(-100.0f), 0.0f );
 	Test_Data.m_Growth = Test_Data.m_GrowthCount = 1.9f;
@@ -179,14 +179,14 @@ CGameView::CGameView(CGame *pGame):
 	Test_Track.m_StartRotation = CVector3D( DEGTORAD(30), DEGTORAD(-45), 0.0f );
 
 	Test_Track.AddPath( Test_Data, Test_Spline );
-	
+
 	Test_Data.m_Style = ES_GROWTH;
 	Test_Track.AddPath( Test_Data, Test_Spline );
-	
+
 	Test_Data.m_Mode = EM_OUT;
 	Test_Data.m_Style = ES_EXPO;
 	Test_Track.AddPath( Test_Data, Test_Spline );
-	
+
 	Test_Data.m_Mode = EM_INOUT;
 	Test_Data.m_Style = ES_GROWTH;
 	Test_Track.AddPath( Test_Data, Test_Spline );
@@ -196,7 +196,7 @@ CGameView::CGameView(CGame *pGame):
 	Test_Track.AddPath( Test_Data, Test_Spline );
 
 	m_TrackManager.AddTrack(Test_Track, "test");
-	
+
 	m_TestTrack.m_Paths.push_back(CCinemaPath());
 	ONCE( ScriptingInit(); );
 }
@@ -261,6 +261,8 @@ void CGameView::Render()
 	if (m_LockCullCamera == false)
 		m_CullCamera = m_ViewCamera;
 	g_Renderer.SetCamera(m_ViewCamera, m_CullCamera);
+
+	CheckLightEnv();
 
 	MICROLOG(L"render terrain");
 	PROFILE_START( "render terrain" );
@@ -345,8 +347,8 @@ void CGameView::RenderModels(CUnitManager *pUnitMan, CProjectileManager *pProjec
 //locks the camera in place
 void CGameView::CameraLock(CVector3D Trans, bool smooth)
 {
-	m_Terrain=g_Game->GetWorld()->GetTerrain();
-	float height=m_Terrain->getExactGroundLevel(
+	CTerrain* pTerrain = m_pWorld->GetTerrain();
+	float height=pTerrain->getExactGroundLevel(
 			m_ViewCamera.m_Orientation._14 + Trans.X, m_ViewCamera.m_Orientation._34 + Trans.Z) +
 			g_YMinOffset;
 	//is requested position within limits?
@@ -368,8 +370,8 @@ void CGameView::CameraLock(CVector3D Trans, bool smooth)
 
 void CGameView::CameraLock(float x, float y, float z, bool smooth)
 {
-	m_Terrain=g_Game->GetWorld()->GetTerrain();
-	float height=m_Terrain->getExactGroundLevel(
+	CTerrain* pTerrain = m_pWorld->GetTerrain();
+	float height = pTerrain->getExactGroundLevel(
 			m_ViewCamera.m_Orientation._14 + x, m_ViewCamera.m_Orientation._34 + z) +
 			g_YMinOffset;
 	//is requested position within limits?
@@ -409,6 +411,8 @@ void CGameView::RenderNoCull()
 		m_CullCamera = m_ViewCamera;
 	g_Renderer.SetCamera(m_ViewCamera, m_CullCamera);
 
+	CheckLightEnv();
+
 	uint i,j;
 	const std::vector<CUnit*>& units=pUnitMan->GetUnits();
 	for (i=0;i<units.size();++i) {
@@ -421,6 +425,36 @@ void CGameView::RenderNoCull()
 			CPatch* patch=pTerrain->GetPatch(i,j);
 			g_Renderer.Submit(patch);
 		}
+	}
+}
+
+static void MarkUpdateColorRecursive(CModel* model)
+{
+	model->SetDirty(RENDERDATA_UPDATE_COLOR);
+
+	const std::vector<CModel::Prop>& props = model->GetProps();
+	for(uint i = 0; i < props.size(); ++i) {
+		MarkUpdateColorRecursive(props[i].m_Model);
+	}
+}
+
+void CGameView::CheckLightEnv()
+{
+	if (m_cachedLightEnv == g_LightEnv)
+		return;
+
+	m_cachedLightEnv = g_LightEnv;
+	CTerrain* pTerrain = m_pWorld->GetTerrain();
+
+	if (!pTerrain)
+		return;
+
+	PROFILE("update light env");
+	pTerrain->MakeDirty(RENDERDATA_UPDATE_COLOR);
+
+	const std::vector<CUnit*>& units = m_pWorld->GetUnitManager()->GetUnits();
+	for(int i = 0; i < units.size(); ++i) {
+		MarkUpdateColorRecursive(units[i]->GetModel());
 	}
 }
 
@@ -488,7 +522,7 @@ void CGameView::Update(float DeltaTime)
 		m_ViewCamera.UpdateFrustum();
 		return;
 	}
-	 
+
 	if (m_TrackManager.IsPlaying())
 	{
 		if(!m_TrackManager.Update(DeltaTime))
@@ -696,7 +730,7 @@ void CGameView::Update(float DeltaTime)
 			CameraLock(forwards_horizontal * (m_ViewScrollSpeed * DeltaTime));
 
 	}
-	
+
 	//Temporary hack for cinematic interface
 	if ( hotkeys[HOTKEY_CAMERA_CINEMA_ADD] )
 	{
@@ -704,7 +738,7 @@ void CGameView::Update(float DeltaTime)
 		if (it->GetNodeCount() == 0)
 			m_TestTrack.m_StartRotation = m_ViewCamera.m_Orientation.GetRotation().m_V;
 
-		it->AddNode(m_ViewCamera.m_Orientation.GetTranslation(), 1.5f);		
+		it->AddNode(m_ViewCamera.m_Orientation.GetTranslation(), 1.5f);
 		it->UpdateSpline();
 	}
 	if ( hotkeys[HOTKEY_CAMERA_CINEMA_DELETE] )
@@ -720,7 +754,7 @@ void CGameView::Update(float DeltaTime)
 	}
 	if ( hotkeys[HOTKEY_CAMERA_CINEMA_QUEUE] )
 		m_TrackManager.QueueTrack("test", false);
-	
+
 	// Smoothed zooming (move a certain percentage towards the desired zoom distance every frame)
 	// Note that scroll wheel zooming is event-based and handled in game_view_handler
 
@@ -875,7 +909,7 @@ InReaction CGameView::HandleEvent(const SDL_Event* ev)
 					PopCameraTarget();
 				currentBookmark = -1;
 				break;
-			
+
 			default:
 				return( IN_PASS );
 		}
