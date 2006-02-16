@@ -20,6 +20,7 @@
 #include <stdio.h>
 #include <stdlib.h>	// __argc
 
+#include <process.h>	// __security_init_cookie
 #include "win_internal.h"
 
 
@@ -327,9 +328,9 @@ static inline void pre_libc_init()
 }
 
 
-int entry()
+static int SEH_wrapped_entry()
 {
-	int ret = -1;
+	int ret;
 	__try
 	{
 		pre_libc_init();
@@ -341,6 +342,27 @@ int entry()
 	}
 	__except(wdbg_exception_filter(GetExceptionInformation()))
 	{
+		ret = -1;
 	}
 	return ret;
+}
+
+
+int entry()
+{
+	// 2006-02-16 workaround for R6035 on VC8:
+	//
+	// SEH code compiled with /GS pushes a "security cookie" onto the
+	// stack. since we're called before _cinit, the cookie won't have
+	// been initialized yet, which would cause the CRT to FatalAppExit.
+	// to solve this, we must call __security_init_cookie before any
+	// hidden compiler-generated SEH registration code runs,
+	// which means the __try block must be moved into a helper function.
+	//
+	// NB: entry() must not contain local string buffers, either -
+	// /GS would install a cookie here as well (same problem).
+	//
+	// see http://msdn2.microsoft.com/en-US/library/ms235603.aspx
+	__security_init_cookie();
+	return SEH_wrapped_entry();
 }
