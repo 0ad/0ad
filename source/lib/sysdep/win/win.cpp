@@ -20,8 +20,12 @@
 #include <stdio.h>
 #include <stdlib.h>	// __argc
 
-#include <process.h>	// __security_init_cookie
 #include "win_internal.h"
+
+#if MSC_VERSION >= 1400
+#include <process.h>	// __security_init_cookie
+#define NEED_COOKIE_INIT
+#endif
 
 
 char win_sys_dir[MAX_PATH+1];
@@ -350,6 +354,7 @@ static int SEH_wrapped_entry()
 
 int entry()
 {
+#ifdef NEED_COOKIE_INIT
 	// 2006-02-16 workaround for R6035 on VC8:
 	//
 	// SEH code compiled with /GS pushes a "security cookie" onto the
@@ -364,5 +369,6 @@ int entry()
 	//
 	// see http://msdn2.microsoft.com/en-US/library/ms235603.aspx
 	__security_init_cookie();
+#endif
 	return SEH_wrapped_entry();
 }
