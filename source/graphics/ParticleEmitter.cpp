@@ -24,7 +24,8 @@ CEmitter::CEmitter(const int MAX_PARTICLES, const int lifetime, int textureID)
 	updateSpeed = 0.02f;
 	blend_mode		= 1;
 	size = 0.15f;
-	texture = textureID;
+	//texture = textureID;
+	texture = 0;
 	
 	// init the used/open list
 	usedList = NULL;
@@ -157,7 +158,8 @@ bool CEmitter::renderEmitter()
 		}
 
 		// Bind the texture. Use the texture assigned to this emitter.
-		glBindTexture(GL_TEXTURE_2D, texture);
+		int unit = 0;
+		g_Renderer.SetTexture(unit, texture);
 
 		glBegin(GL_QUADS);
 		{
