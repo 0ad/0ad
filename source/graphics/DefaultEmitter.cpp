@@ -22,7 +22,7 @@ CDefaultEmitter::~CDefaultEmitter(void)
 bool CDefaultEmitter::setupEmitter()
 {
 	pos.x = 0.0f;					// XYZ Position
-	pos.y = 0.0f;					// XYZ Position
+	pos.y = 20.0f;					// XYZ Position
 	pos.z = 0.0f;					// XYZ Position
 
 	yaw = DEGTORAD(0.0f);
@@ -38,15 +38,15 @@ bool CDefaultEmitter::setupEmitter()
 	emitVar	= 15;
 	life = 90;
 	lifeVar = 65;
-	startColor.r = 240;
-	startColor.g = 240;
-	startColor.b = 15;
+	startColor.r = 100;
+	startColor.g = 100;
+	startColor.b = 100;
 	startColorVar.r = 15;
 	startColorVar.g = 15;
 	startColorVar.b = 15;
-	endColor.r = 240;
-	endColor.g = 15;
-	endColor.b = 15;
+	endColor.r = 0;
+	endColor.g = 0;
+	endColor.b = 0;
 	endColorVar.r = 15;
 	endColorVar.g = 15;
 	endColorVar.b = 15;
