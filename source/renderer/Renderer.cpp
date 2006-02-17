@@ -307,6 +307,7 @@ CRenderer::CRenderer()
 
 	m_ShadowZBias = 0.001;
 
+	CParticleEngine::GetInstance()->initParticleSystem();
 	CEmitter *pEmitter = new CDefaultEmitter(1000, -1);
 	CParticleEngine::GetInstance()->addEmitter(pEmitter);
 
