@@ -656,9 +656,6 @@ static void InitRenderer()
 	new CObjectManager;
 	new CUnitManager;
 
-	// Particle Engine stuff
-	CParticleEngine::GetInstance()->initParticleSystem();
-
 	MICROLOG(L"init renderer");
 	g_Renderer.Open(g_xres,g_yres,g_bpp);
 
