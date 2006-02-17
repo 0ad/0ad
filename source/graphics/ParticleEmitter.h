@@ -9,6 +9,8 @@
 #ifndef _PARTICLEEMITTER_H_
 #define _PARTICLEEMITTER_H_
 
+class CTexture;
+
 struct tVector
 {
 	float x,y,z;
@@ -54,7 +56,7 @@ public:
 	//};	
 
 protected:
-	int texture;						// Texture ID
+	CTexture *texture;						// Texture ID
 	bool isFinished;					// tells the engine it's ready to be deleted
 
 	// Transformation Info
@@ -205,7 +207,7 @@ public:
 	void setFinalPosX(float finalposX) { finalPos.x = finalposX; }
 	void setFinalPosY(float finalposY) { finalPos.y = finalposY; }
 	void setFinalPosZ(float finalposZ) { finalPos.z = finalposZ; }
-	void setTexture(int id) { texture = id; }
+	void setTexture(CTexture *id) { texture = id; }
 	void setIsFinished(bool finished) { isFinished = finished; }
 	void setEmitterLife(int life) { emitterLife = life; }
 	void setUpdateSpeed(float speed) { updateSpeed = speed; }
