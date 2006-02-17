@@ -8,8 +8,6 @@
 
 #include "precompiled.h"
 #include "ParticleEngine.h"
-#include "ogl.h"
-#include "Renderer.h"
 
 CParticleEngine *CParticleEngine::m_pInstance = 0;
 CParticleEngine::CParticleEngine(void)
@@ -20,9 +18,6 @@ CParticleEngine::CParticleEngine(void)
 
 CParticleEngine::~CParticleEngine(void)
 {
-	//// Release all resources.
-	//for(int i = 0; i < MAX_TEXTURES; i++)
-	//	glDeleteTextures(1, &idTexture[i]);
 }
 
 void CParticleEngine::cleanup()
@@ -68,16 +63,16 @@ void CParticleEngine::DeleteInstance()
 bool CParticleEngine::initParticleSystem()
 {
 	// Texture Loading
+	CTexture pTex;
+	pTex.SetName("art/textures/particles/sprite.tga");
 
-	// Needs error checking and testing.
-	idTexture[DEFAULTTEXT] = ogl_tex_load("art/textures/particles/sprite.tga");
-	idTexture[DEFAULTTEXT] = ogl_tex_bind(idTexture[DEFAULTTEXT], 0);
+	u32 flags = 0;
+	if(!(g_Renderer.LoadTexture(&pTex, flags)))
+		return false;
 
-	/*CTexture *pTex;
-	pTex->
-	CRenderer::LoadTexture(*/
+	g_Renderer.SetTexture(0, &pTex);
+	idTexture[DEFAULTTEXT] = pTex;
 
-	glBindTexture(GL_TEXTURE_2D, idTexture[DEFAULTTEXT]);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -93,9 +88,7 @@ bool CParticleEngine::initParticleSystem()
 
 bool CParticleEngine::addEmitter(CEmitter *emitter, int type, int ID)
 {
-	// without array you could do:
-	//emitter->texture = type + idTextureBase;
-	emitter->setTexture(idTexture[type]);
+	emitter->setTexture(&idTexture[type]);
 	if(m_pHead == NULL)
 	{
 		tEmitterNode *temp = new tEmitterNode;
@@ -239,7 +232,7 @@ void CParticleEngine::destroyAllEmitters(bool fade)
 void CParticleEngine::EnterParticleContext(void)
 {
 	//glEnable(GL_DEPTH_TEST);               // Enable depth testing for hidden surface removal.
-	//glDepthMask(false);
+	glDepthMask(false);
 	//glDisable(GL_LIGHTING);
 	glEnable(GL_TEXTURE_2D);               // Enable texture mapping.
 	glPushMatrix();
@@ -249,7 +242,7 @@ void CParticleEngine::EnterParticleContext(void)
 void CParticleEngine::LeaveParticleContext(void)
 {
 	//glDisable(GL_DEPTH_TEST);
-	//glDepthMask(true);
+	glDepthMask(true);
 	//glEnable(GL_LIGHTING);
 	glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
