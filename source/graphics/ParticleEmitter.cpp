@@ -42,24 +42,6 @@ CEmitter::CEmitter(const int MAX_PARTICLES, const int lifetime, int textureID)
 
 CEmitter::~CEmitter(void)
 {
-	/*int open = 0;
-	int used = 0;
-	int final = 0;
-	tParticle *iter = openList;
-	while(iter)
-	{
-		open++;
-		iter = iter->next;
-	}
-
-	iter = usedList;
-	while(iter)
-	{
-		used++;
-		iter = iter->next;
-	}
-	final = open + used;*/
-
 	delete [] heap;
 }
 
@@ -121,10 +103,6 @@ bool CEmitter::addParticle()
 		particle->inPos = false;
 
 		// Now, we pop a node from the open list and put it into the used list
-		//tParticleNode *tempNode = openList; // get the top of the list that we have been filling in
-		//openList = tempNode->next;
-		//tempNode->next = usedList;			// have it link to the top of the used list
-		//usedList = tempNode;				// set the new linked node as the start of the list
 		openList = particle->next;
 		particle->next = usedList;
 		usedList = particle;
