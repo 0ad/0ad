@@ -18,6 +18,9 @@
 #include "ps/CLogger.h"
 #include "ps/Loader.h"
 
+#include "ogl.h"
+#include "Renderer.h"
+
 // Different textures
 enum PText { DEFAULTTEXT, MAX_TEXTURES };
 // Different emitters
@@ -125,7 +128,7 @@ private:
 	CParticleEngine(void);
 	static CParticleEngine*  m_pInstance;    // The singleton instance
 
-	Handle idTexture[MAX_TEXTURES];
+	CTexture idTexture[MAX_TEXTURES];
 	int totalParticles;					// Total Amount of particles of all emitters.
 
 	struct tEmitterNode
