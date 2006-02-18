@@ -292,19 +292,22 @@ namespace __gnu_cxx
 
 	template<> struct hash<const void*>
 	{
-		// TODO: Is this a good hash function for pointers?
-		// The basic idea is to avoid patterns that are caused by alignment of structures
-		// in memory and of heap allocations
+		// Nemesi hash function (see: http://mail-index.netbsd.org/tech-kern/2001/11/30/0001.html)
+		// treating the pointer as an array of bytes that is hashed.
 		size_t operator()(const void* __x) const
 		{
-			size_t val = (size_t)__x;
-			const unsigned char* data = (unsigned char*)&val;
-			size_t h = 0;
+			union {
+				const void* ptr;
+				unsigned char bytes[sizeof(void*)];
+			} val;
+			size_t h = 5381;
 
-			for(uint i = 0; i < sizeof(val); ++i, ++data)
-				h = 257*h + *data;
+			val.ptr = __x;
 
-			return h;
+			for(uint i = 0; i < sizeof(val); ++i)
+				h = 257*h + val.bytes[i];
+
+			return 257*h;
 		}
 	};
 }
