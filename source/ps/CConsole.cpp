@@ -413,7 +413,7 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 			return;
 
 		case SDLK_DOWN:
-			if ( m_deqBufHistory.size() )
+			if ( m_deqBufHistory.size() && iHistoryPos > 0 )
 			{
 				int oldHistoryPos = iHistoryPos;
 				while( iHistoryPos != 0)
