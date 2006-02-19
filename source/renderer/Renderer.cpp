@@ -305,7 +305,7 @@ CRenderer::CRenderer()
 	m_Models.ModTransparentShadow = RenderModifierPtr(new TransparentShadowRenderModifier);
 	m_Models.ModTransparentDepthShadow = RenderModifierPtr(new TransparentDepthShadowModifier);
 
-	m_ShadowZBias = 0.001;
+	m_ShadowZBias = 0.001f;
 
 	CParticleEngine::GetInstance()->initParticleSystem();
 	CEmitter *pEmitter = new CDefaultEmitter(1000, -1);

@@ -10,7 +10,7 @@
 #include "ParticleEmitter.h"
 #include "ParticleEngine.h"
 
-CEmitter::CEmitter(const int MAX_PARTICLES, const int lifetime, int textureID)
+CEmitter::CEmitter(const int MAX_PARTICLES, const int lifetime, int UNUSED(textureID))
 {
 	particleCount = 0;
 	// declare the pool of nodes

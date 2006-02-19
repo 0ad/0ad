@@ -389,7 +389,7 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 				{
 					iHistoryPos++;
 					std::wstring& histString = m_deqBufHistory.at(iHistoryPos);
-					if(histString.length() >= m_iBufferPos)
+					if((int)histString.length() >= m_iBufferPos)
 					{
 						bool bad = false;
 						for(int i=0; i<m_iBufferPos; i++)
@@ -420,7 +420,7 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 				{
 					iHistoryPos--;
 					std::wstring& histString = m_deqBufHistory.at(iHistoryPos);
-					if(histString.length() >= m_iBufferPos)
+					if((int)histString.length() >= m_iBufferPos)
 					{
 						bool bad = false;
 						for(int i=0; i<m_iBufferPos; i++)

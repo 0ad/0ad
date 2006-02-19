@@ -377,7 +377,7 @@ int CCinemaManager::HACK_WriteTrack(CCinemaTrack track)
 	fwrite( &numPaths, sizeof(numPaths), 1, fp);
 	fwrite( &track.m_StartRotation, sizeof(track.m_StartRotation), 1, fp );
 
-	for (int i=0; i<numPaths; i++)
+	for (size_t i=0; i<numPaths; i++)
 	{
 		int count = track.m_Paths[i].GetNodeCount();
 		float duration = track.m_Paths[i].GetDuration();

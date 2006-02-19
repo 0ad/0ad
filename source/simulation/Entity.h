@@ -323,6 +323,7 @@ public:
 			m_orderQueue.clear();
 		else
 			m_orderQueue.pop_front();
+		return JS_TRUE;
 	}
 
 	static void ScriptingInit();

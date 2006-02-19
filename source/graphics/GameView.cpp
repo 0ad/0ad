@@ -453,7 +453,7 @@ void CGameView::CheckLightEnv()
 	pTerrain->MakeDirty(RENDERDATA_UPDATE_COLOR);
 
 	const std::vector<CUnit*>& units = m_pWorld->GetUnitManager()->GetUnits();
-	for(int i = 0; i < units.size(); ++i) {
+	for(size_t i = 0; i < units.size(); ++i) {
 		MarkUpdateColorRecursive(units[i]->GetModel());
 	}
 }

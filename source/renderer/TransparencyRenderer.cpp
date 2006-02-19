@@ -677,7 +677,7 @@ u32 TransparentDepthShadowModifier::BeginPass(uint pass)
 	debug_assert(pass == 0);
 
 	glEnable(GL_ALPHA_TEST);
-	glAlphaFunc(GL_GREATER, 0.4);
+	glAlphaFunc(GL_GREATER, 0.4f);
 
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);

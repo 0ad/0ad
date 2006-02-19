@@ -494,12 +494,12 @@ void ShadowMap::RenderDebugDisplay()
 	{
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
 	}
-	glColor3f(1.0, 1.0, 1.0);
+	glColor3f(1.0f, 1.0f, 1.0f);
 	glBegin(GL_QUADS);
-		glTexCoord2f(0.0, 0.0); glVertex2f(0.0, 0.0);
-		glTexCoord2f(1.0, 0.0); glVertex2f(0.2, 0.0);
-		glTexCoord2f(1.0, 1.0); glVertex2f(0.2, 0.2);
-		glTexCoord2f(0.0, 1.0); glVertex2f(0.0, 0.2);
+		glTexCoord2f(0.0f, 0.0f); glVertex2f(0.0f, 0.0f);
+		glTexCoord2f(1.0f, 0.0f); glVertex2f(0.2f, 0.0f);
+		glTexCoord2f(1.0f, 1.0f); glVertex2f(0.2f, 0.2f);
+		glTexCoord2f(0.0f, 1.0f); glVertex2f(0.0f, 0.2f);
 	glEnd();
 	if (m->UseDepthTexture)
 	{
