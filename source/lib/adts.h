@@ -218,22 +218,75 @@ public:
 
 //-----------------------------------------------------------------------------
 
-// Cache for items of variable size and value/"cost".
-// underlying displacement algorithm is pluggable; default is "Landlord".
-//
-// templates:
-// Entry provides size, cost, credit and credit_density().
-//   rationale:
-//   - made a template instead of exposing Cache::Entry because
-//     that would drag a lot of stuff out of Cache.
-//   - calculates its own density since that entails a Divider functor,
-//     which requires storage inside Entry.
-// Entries is a collection with iterator and begin()/end() and
-//   "static Entry& entry_from_it(iterator)".
-//   rationale:
-//   - STL map has pair<key, item> as its value_type, so this
-//     function would return it->second. however, we want to support
-//     other container types (where we'd just return *it).
+/*
+Cache for items of variable size and value/"cost".
+underlying displacement algorithm is pluggable; default is "Landlord".
+
+template reference:
+Entry provides size, cost, credit and credit_density().
+  rationale:
+  - made a template instead of exposing Cache::Entry because
+    that would drag a lot of stuff out of Cache.
+  - calculates its own density since that entails a Divider functor,
+    which requires storage inside Entry.
+Entries is a collection with iterator and begin()/end() and
+  "static Entry& entry_from_it(iterator)".
+  rationale:
+  - STL map has pair<key, item> as its value_type, so this
+    function would return it->second. however, we want to support
+    other container types (where we'd just return *it).
+Manager is a template parameterized on typename Key and class Entry.
+  its interface is as follows:
+
+	// is the cache empty?
+	bool empty() const;
+
+	// add (key, entry) to cache.
+	void add(Key key, const Entry& entry);
+
+	// if the entry identified by <key> is not in cache, return false;
+	// otherwise return true and pass back a pointer to it.
+	bool find(Key key, const Entry** pentry) const;
+
+	// remove an entry from cache, which is assumed to exist!
+	// this makes sense because callers will typically first use find() to
+	// return info about the entry; this also checks if present.
+	void remove(Key key);
+
+	// mark <entry> as just accessed for purpose of cache management.
+	// it will tend to be kept in cache longer.
+	void on_access(Entry& entry);
+
+	// caller's intent is to remove the least valuable entry.
+	// in implementing this, you have the latitude to "shake loose"
+	// several entries (e.g. because their 'value' is equal).
+	// they must all be push_back-ed into the list; Cache will dole
+	// them out one at a time in FIFO order to callers.
+	//
+	// rationale:
+	// - it is necessary for callers to receive a copy of the
+	//   Entry being evicted - e.g. file_cache owns its items and
+	//   they must be passed back to allocator when evicted.
+	// - e.g. Landlord can potentially see several entries become
+	//   evictable in one call to remove_least_valuable. there are
+	//   several ways to deal with this:
+	//   1) generator interface: we return one of { empty, nevermind,
+	//      removed, remove-and-call-again }. this greatly complicates
+	//      the call site.
+	//   2) return immediately after finding an item to evict.
+	//      this changes cache behavior - entries stored at the
+	//      beginning would be charged more often (unfair).
+	//      resuming charging at the next entry doesn't work - this
+	//      would have to be flushed when adding, at which time there
+	//      is no provision for returning any items that may be evicted.
+	//   3) return list of all entries "shaken loose". this incurs
+	//      frequent mem allocs, which can be alleviated via suballocator.
+	//      note: an intrusive linked-list doesn't make sense because
+	//      entries to be returned need to be copied anyway (they are
+	//      removed from the manager's storage).
+	void remove_least_valuable(std::list<Entry>& entry_list)
+*/
+
 
 //
 // functors to calculate minimum credit density (MCD)
@@ -325,8 +378,10 @@ private:
 };
 
 
+//
 // Landlord cache management policy: see [Young02].
 //
+
 // in short, each entry has credit initially set to cost. when wanting to
 // remove an item, all are charged according to MCD and their size;
 // entries are evicted if their credit is exhausted. accessing an entry
@@ -630,6 +685,7 @@ public:
 template
 <
 typename Key, typename Item,
+// see documentation above for Manager's interface.
 template<typename Key, class Entry> class Manager = Landlord_Cached,
 class Divider = Divider_Recip
 >
@@ -653,7 +709,7 @@ public:
 	}
 
 	// if there is no entry for <key> in the cache, return false.
-	// otherwise, return true and pass back item and size (optional).
+	// otherwise, return true and pass back item and (optionally) size.
 	// 
 	// if refill_credit (default), the cache manager 'rewards' this entry,
 	// tending to keep it in cache longer. this parameter is not used in
