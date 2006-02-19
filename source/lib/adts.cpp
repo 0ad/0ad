@@ -81,9 +81,53 @@ static void test_ringbuf()
 	}
 }
 
+
+// ensures all 3 variants of Landlord<> behave the same
+static void test_cache_removal()
+{
+	Cache<int, int, Landlord_Naive> c1;
+	Cache<int, int, Landlord_Cached> c2;
+	Cache<int, int, Landlord_Lazy> c3;
+	srand(1);
+	int cnt = 1;
+	for(int i = 0; i < 1000; i++)
+	{
+		// 70% add (random objects)
+		bool add = rand(1,10) < 7;
+		if(add)
+		{
+			int key = cnt++;
+			int val = cnt++;
+			size_t size = (size_t)rand(1,100);
+			uint cost = (uint)rand(1,100);
+			c1.add(key, val, size, cost);
+			c2.add(key, val, size, cost);
+			c3.add(key, val, size, cost);
+		}
+		// 30% delete - make sure "least valuable" was same for all
+		else
+		{
+			size_t size1, size2, size3;
+			int value1, value2, value3;
+			bool removed1, removed2, removed3;
+			removed1 = c1.remove_least_valuable(&value1, &size1);
+			removed2 = c2.remove_least_valuable(&value2, &size2);
+			removed3 = c3.remove_least_valuable(&value3, &size3);
+			TEST(removed1 == removed2);
+			TEST(size1 == size2);
+			TEST(value1 == value2);
+			TEST(removed2 == removed3);
+			TEST(size2 == size3);
+			TEST(value2 == value3);
+		}	// else
+	}	// for i
+}
+
+
 static void self_test()
 {
 	test_ringbuf();
+	test_cache_removal();
 }
 
 SELF_TEST_RUN;

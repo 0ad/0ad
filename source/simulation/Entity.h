@@ -316,7 +316,7 @@ public:
 		debug_assert( argc >= 1 );
 		return( m_classes.IsMember( ToPrimitive<CStrW>( cx, argv[0] ) ) );
 	}
-	jsval TerminateOrder( JSContext* cx, uintN argc, jsval* argv )
+	jsval TerminateOrder( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 	{
 		debug_assert( argc >= 1);
 		if ( ToPrimitive<bool>( argv[0] ) )

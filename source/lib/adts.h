@@ -216,225 +216,532 @@ public:
 };
 
 
+//-----------------------------------------------------------------------------
 
 // Cache for items of variable size and value/"cost".
-// currently uses Landlord algorithm.
+// underlying displacement algorithm is pluggable; default is "Landlord".
+//
+// templates:
+// Entry provides size, cost, credit and credit_density().
+//   rationale:
+//   - made a template instead of exposing Cache::Entry because
+//     that would drag a lot of stuff out of Cache.
+//   - calculates its own density since that entails a Divider functor,
+//     which requires storage inside Entry.
+// Entries is a collection with iterator and begin()/end() and
+//   "static Entry& entry_from_it(iterator)".
+//   rationale:
+//   - STL map has pair<key, item> as its value_type, so this
+//     function would return it->second. however, we want to support
+//     other container types (where we'd just return *it).
 
-#define LL_OPT_MINCREDIT
-#define LL_OPT_RECIP
-#define LL_OPT_DELAYCHARGE
+//
+// functors to calculate minimum credit density (MCD)
+//
 
-template<typename Key, typename T> class Cache
+// MCD is required for the Landlord algorithm's evict logic.
+// [Young02] calls it '\delta'.
+
+// scan over all entries and return MCD.
+template<class Entries> float ll_calc_min_credit_density(const Entries& entries)
+{
+	float min_credit_density = FLT_MAX;
+	for(typename Entries::const_iterator it = entries.begin(); it != entries.end(); ++it)
+		min_credit_density = MIN(min_credit_density, Entries::entry_from_it(it).credit_density());
+	return min_credit_density;
+}
+
+// determine MCD by scanning over all entries.
+// tradeoff: O(N) time complexity, but all notify* calls are no-ops.
+template<class Entry, class Entries>
+class McdCalc_Naive
 {
 public:
-	Cache()
+	void notify_added(const Entry&) const {}
+	void notify_decreased(const Entry&) const {}
+	void notify_impending_increase_or_remove(const Entry&) const {}
+	void notify_increased_or_removed(const Entry&) const {}
+	float operator()(const Entries& entries) const
 	{
-#ifdef LL_OPT_MINCREDIT
-		min_credit_density = FLT_MAX;
-#endif
+		return ll_calc_min_credit_density(entries);
+	}
+};
+
+// cache previous MCD and update it incrementally (when possible).
+// tradeoff: amortized O(1) time complexity, but notify* calls must
+// perform work whenever something in the cache changes.
+template<class Entry, class Entries>
+class McdCalc_Cached
+{
+public:
+	McdCalc_Cached() : min_credit_density(FLT_MAX), min_valid(false) {}
+
+	void notify_added(const Entry& entry)
+	{
+		// when adding a new item, the minimum credit density can only
+		// decrease or remain the same; acting as if entry's credit had
+		// been decreased covers both cases.
+		notify_decreased(entry);
 	}
 
-	void add(Key key, T item, size_t size, uint cost)
+	void notify_decreased(const Entry& entry)
 	{
-		typedef std::pair<CacheMapIt, bool> PairIB;
-		typename CacheMap::value_type val = std::make_pair(key, CacheEntry(item, size, cost));
-		PairIB ret = map.insert(val);
-		debug_assert(ret.second);	// must not already be in map
-
-#ifdef LL_OPT_MINCREDIT
-		// adding new item - min_credit_density may decrease
-		const CacheEntry& new_entry = ret.first->second;
-		notify_credit_reduced(new_entry);
-#endif
+		min_credit_density = MIN(min_credit_density, entry.credit_density());
 	}
 
-	// remove the entry identified by <key>. expected usage is to check
-	// if present and determine size via retrieve(), so no need to
-	// do anything else here.
-	// useful for invalidating single cache entries.
-	void remove(Key key)
+	void notify_impending_increase_or_remove(const Entry& entry)
 	{
-		CacheMapIt it = map.find(key);
-		if(it == map.end())
+		// remember if this entry had the smallest density
+		is_min_entry = feq(min_credit_density, entry.credit_density());
+	}
+
+	void notify_increased_or_removed(const Entry& UNUSED(entry))
+	{
+		// .. it did and was increased or removed. we must invalidate
+		// MCD and recalculate it next time.
+		if(is_min_entry)
 		{
-			debug_warn("Cache: item to be removed not found");
-			return;
+			min_valid = false;
+			min_credit_density = -1.0f;
 		}
-#include <queue>
-#ifdef LL_OPT_MINCREDIT
-		// we're removing. if this one had the smallest
-		// density, recalculate.
-		const bool need_recalc = is_min_entry(it->second);
-#endif
-		map.erase(it);
-#ifdef LL_OPT_MINCREDIT
-		if(need_recalc)
-			recalc_min_credit_density();
-#endif
 	}
 
-	// if there is no entry for <key> in the cache, return 0 with
-	// psize unchanged. otherwise, return its item and
-	// optionally pass back its size.
-	T retrieve(Key key, size_t* psize = 0, bool refill_credit = true)
+	float operator()(const Entries& entries)
 	{
-		CacheMapIt it = map.find(key);
-		if(it == map.end())
-			return 0;
-		CacheEntry& entry = it->second;
-		if(psize)
-			*psize = entry.size;
-
-		if(refill_credit)
+		if(!min_valid)
 		{
-#ifdef LL_OPT_MINCREDIT
-			// we're increasing credit. if this one had the smallest
-			// density, recalculate.
-			const bool need_recalc = is_min_entry(entry);
-#endif
-
-			// Landlord algorithm calls for credit to be reset to anything
-			// between its current value and the cost.
-			const float gain = 0.75f;	// restore most credit
-			entry.credit = gain*entry.cost + (1.0f-gain)*entry.credit;
-
-#ifdef LL_OPT_MINCREDIT
-			if(need_recalc)
-				recalc_min_credit_density();
-#endif
+			min_credit_density = ll_calc_min_credit_density(entries);
+			min_valid = true;
 		}
-
-		return entry.item;
+		return min_credit_density;
 	}
 
+private:
+	float min_credit_density;
+	bool min_valid;
 
-	// remove the least valuable item and optionally indicate
-	// how big it was (useful for statistics).
-	// returns 0 if cache is empty.
-	T remove_least_valuable(size_t* psize = 0)
-	{
-		if(map.empty())
-			return 0;
+	// temporary flag set by notify_impending_increase_or_remove
+	bool is_min_entry;
+};
 
-#ifdef LL_OPT_DELAYCHARGE
-		// determine who has least density via priqueue
-		// remove it
-		// add its delta to accumulator
-#endif
 
-#ifndef LL_OPT_MINCREDIT
-		// not implicitly updated: we need to calculate min_credit_density now.
-		recalc_min_credit_density();
-#endif
-		// latch current delta value to avoid it changing during the loop
-		// (due to notify_* calls). this ensures fairness.
-		const float delta = min_credit_density;
-
-		// one iteration ought to suffice to evict someone due to
-		// definition of min_credit_density, but we provide for
-		// repeating in case of floating-point imprecision.
-		// (goto vs. loop avoids nesting and emphasizes rarity)
-again:
-
-		// charge everyone rent (proportional to delta and size)
-		for(CacheMapIt it = map.begin(); it != map.end(); ++it)
-		{
-			CacheEntry& entry = it->second;
-			entry.credit -= delta * entry.size;
-#ifdef LL_OPT_MINCREDIT
-			// reducing credit - min_credit_density may decrease
-			notify_credit_reduced(entry);
-#endif
-
-			// evict immediately if credit is exhausted
-			// (note: Landlord algorithm calls for 'any subset' of
-			// these items to be evicted. since we need to return
-			// information about the item, we can only discard one.)
-			//
-			// this means every call will end up charging more than
-			// intended, but we compensate by resetting credit
-			// fairly high upon cache hit.
-			if(entry.credit <= 0.01f)	// a bit of tolerance
-			{
-				T item = entry.item;
-				if(psize)
-					*psize = entry.size;
-				map.erase(it);
-#ifdef LL_OPT_MINCREDIT
-				// this item had the least density, else it wouldn't
-				// have been removed. recalculate.
-				recalc_min_credit_density();
-#endif
-				return item;
-			}
-		}
-
-		// none were evicted - do it all again.
-		goto again;
-	}
-
-	bool empty()
+// Landlord cache management policy: see [Young02].
+//
+// in short, each entry has credit initially set to cost. when wanting to
+// remove an item, all are charged according to MCD and their size;
+// entries are evicted if their credit is exhausted. accessing an entry
+// restores "some" of its credit.
+template<typename Key, class Entry, template<class Entry, class Entries> class McdCalc = McdCalc_Cached>
+class Landlord
+{
+public:
+	bool empty() const
 	{
 		return map.empty();
 	}
 
-private:
-	struct CacheEntry
+	void add(Key key, const Entry& entry)
 	{
-		T item;
+		// adapter for add_ (which returns an iterator)
+		(void)add_(key, entry);
+	}
+
+	bool find(Key key, const Entry** pentry) const
+	{
+		MapCIt it = map.find(key);
+		if(it == map.end())
+			return false;
+		*pentry = &it->second;
+		return true;
+	}
+
+	void remove(Key key)
+	{
+		MapIt it = map.find(key);
+		debug_assert(it != map.end());
+		remove_(it);
+	}
+
+	void on_access(Entry& entry)
+	{
+		mcd_calc.notify_impending_increase_or_remove(entry);
+
+		// Landlord algorithm calls for credit to be reset to anything
+		// between its current value and the cost.
+		const float gain = 0.75f;	// restore most credit
+		entry.credit = gain*entry.cost + (1.0f-gain)*entry.credit;
+
+		mcd_calc.notify_increased_or_removed(entry);
+	}
+
+	void remove_least_valuable(std::list<Entry>& entry_list)
+	{
+		// we are required to evict at least one entry. one iteration
+		// ought to suffice, due to definition of min_credit_density and
+		// tolerance; however, we provide for repeating if necessary.
+again:
+
+		// messing with this (e.g. raising if tiny) would result in
+		// different evictions than Landlord_Lazy, which is unacceptable.
+		// nor is doing so necessary: if mcd is tiny, so is credit.
+		const float min_credit_density = mcd_calc(map);
+
+		for(MapIt it = map.begin(); it != map.end();)	// no ++it
+		{
+			Entry& entry = it->second;
+
+			mcd_calc.notify_impending_increase_or_remove(entry);
+			entry.credit -= min_credit_density * entry.size;
+			if(should_evict(entry))
+			{
+				mcd_calc.notify_increased_or_removed(entry);
+				entry_list.push_back(entry);
+
+				// annoying: we have to increment <it> before erasing
+				MapIt it_to_remove = it++;
+				map.erase(it_to_remove);
+			}
+			else
+			{
+				mcd_calc.notify_decreased(entry);
+				++it;
+			}
+		}
+
+		if(entry_list.empty())
+			goto again;
+	}
+
+protected:
+	// note: use hash_map instead of map for better locality
+	// (relevant when iterating over all items in remove_least_valuable)
+	class Map : public STL_HASH_MAP<Key, Entry>
+	{
+	public:
+		static Entry& entry_from_it(iterator it) { return it->second; }
+		static const Entry& entry_from_it(const_iterator it) { return it->second; }
+	};
+	typedef typename Map::iterator MapIt;
+	typedef typename Map::const_iterator MapCIt;
+	Map map;
+
+	// add entry and return iterator pointing to it.
+	MapIt add_(Key key, const Entry& entry)
+	{
+		typedef std::pair<MapIt, bool> PairIB;
+		typename Map::value_type val = std::make_pair(key, entry);
+		PairIB ret = map.insert(val);
+		debug_assert(ret.second);	// must not already be in map
+
+		mcd_calc.notify_added(entry);
+
+		return ret.first;
+	}
+
+	// remove entry (given by iterator) directly.
+	void remove_(MapIt it)
+	{
+		const Entry& entry = it->second;
+		mcd_calc.notify_impending_increase_or_remove(entry);
+		mcd_calc.notify_increased_or_removed(entry);
+		map.erase(it);
+	}
+
+	// for each entry, 'charge' it (i.e. reduce credit by) delta * its size.
+	// delta is typically MCD (see above); however, several such updates
+	// may be lumped together to save time. Landlord_Lazy does this.
+	void charge_all(float delta)
+	{
+		for(MapIt it = map.begin(); it != map.end(); ++it)
+		{
+			Entry& entry = it->second;
+			entry.credit -= delta * entry.size;
+			if(!should_evict(entry))
+				mcd_calc.notify_decreased(entry);
+		}
+	}
+
+	// is entry's credit exhausted? if so, it should be evicted.
+	bool should_evict(const Entry& entry)
+	{
+		// we need a bit of leeway because density calculations may not
+		// be exact. choose value carefully: must not be high enough to
+		// trigger false positives.
+		return entry.credit < 0.0001f;
+	}
+
+private:
+	McdCalc<Entry, Map> mcd_calc;
+};
+
+// Cache manger policies. (these are partial specializations of Landlord,
+// adapting it to the template params required by Cache)
+template<class Key, class Entry> class Landlord_Naive : public Landlord<Key, Entry, McdCalc_Naive> {};
+template<class Key, class Entry> class Landlord_Cached: public Landlord<Key, Entry, McdCalc_Cached> {};
+
+// variant of Landlord that adds a priority queue to directly determine
+// which entry to evict. this allows lumping several charge operations
+// together and thus reduces iteration over all entries.
+// tradeoff: O(logN) removal (instead of N), but additional O(N) storage.
+template<typename Key, class Entry>
+class Landlord_Lazy : public Landlord_Naive<Key, Entry>
+{
+public:
+	Landlord_Lazy() { pending_delta = 0.0f; }
+
+	void add(Key key, const Entry& entry)
+	{
+		// we must apply pending_delta now - otherwise, the existing delta
+		// would later be applied to this newly added item (incorrect).
+		commit_pending_delta();
+
+		MapIt it = Parent::add_(key, entry);
+		pri_q.push(it);
+	}
+
+	void remove(Key key)
+	{
+		Parent::remove(key);
+
+		// reconstruct pri_q from current map. this is slow (N*logN) and
+		// could definitely be done better, but we don't bother since
+		// remove is a very rare operation (e.g. invalidating entries).
+		while(!pri_q.empty())
+			pri_q.pop();
+		for(MapCIt it = map.begin(); it != map.end(); ++it)
+			pri_q.push(it);
+	}
+
+	void on_access(Entry& entry)
+	{
+		Parent::on_access(entry);
+
+		// entry's credit was changed. we now need to reshuffle the
+		// pri queue to reflect this.
+		pri_q.ensure_heap_order();
+	}
+
+	void remove_least_valuable(std::list<Entry>& entry_list)
+	{
+		MapIt least_valuable_it = pri_q.top(); pri_q.pop();
+		Entry& entry = Map::entry_from_it(least_valuable_it);
+
+		entry_list.push_back(entry);
+
+		// add to pending_delta the MCD that would have resulted
+		// if removing least_valuable_it normally.
+		// first, calculate actual credit (i.e. apply pending_delta to
+		// this entry); then add the resulting density to pending_delta.
+		entry.credit -= pending_delta*entry.size;
+		const float credit_density = entry.credit_density();
+		debug_assert(credit_density > 0.0f);
+		pending_delta += credit_density;
+
+		Parent::remove_(least_valuable_it);
+	}
+
+private:
+	typedef Landlord_Naive<Key, Entry> Parent;
+
+	// sort iterators by credit_density of the Entry they reference.
+	struct CD_greater
+	{
+		bool operator()(MapIt it1, MapIt it2) const
+		{
+			return Map::entry_from_it(it1).credit_density() >
+			       Map::entry_from_it(it2).credit_density();
+		}
+	};
+	// wrapper on top of priority_queue that allows 'heap re-sift'
+	// (see on_access).
+	// note: greater comparator makes pri_q.top() the one with
+	// LEAST credit_density, which is what we want.
+	class PriQ: public std::priority_queue<MapIt, std::vector<MapIt>, CD_greater>
+	{
+	public:
+		void ensure_heap_order()
+		{
+			std::make_heap(c.begin(), c.end(), comp);
+		}
+	};
+	PriQ pri_q;
+
+	// delta values that have accumulated over several
+	// remove_least_valuable() calls. applied during add().
+	float pending_delta;
+
+	void commit_pending_delta()
+	{
+		if(pending_delta > 0.0f)
+		{
+			charge_all(pending_delta);
+			pending_delta = 0.0f;
+
+			// we've changed entry credit, so the heap order *may* have been
+			// violated; reorder the pri queue. (I don't think so,
+			// due to definition of delta, but we'll play it safe)
+			pri_q.ensure_heap_order();
+		}
+	}
+};
+
+
+//
+// functor that implements division of first arg by second
+//
+
+// this is used to calculate credit_density(); performance matters
+// because this is called for each entry during each remove operation.
+
+// floating-point division (fairly slow)
+class Divider_Naive
+{
+public:
+	Divider_Naive() {}	// needed for default CacheEntry ctor
+	Divider_Naive(float UNUSED(x)) {}
+	float operator()(float val, float divisor) const
+	{
+		return val / divisor;
+	}
+};
+
+// caches reciprocal of divisor and multiplies by that.
+// tradeoff: only 4 clocks (instead of 20), but 4 bytes extra per entry.
+class Divider_Recip
+{
+	float recip;
+public:
+	Divider_Recip() {}	// needed for default CacheEntry ctor
+	Divider_Recip(float x) { recip = 1.0f / x; }
+	float operator()(float val, float divisor) const
+	{
+		return val / divisor;
+	}
+};
+
+// TODO: use SSE/3DNow RCP instruction? not yet, because not all systems
+// support it and overhead of detecting this support eats into any gains.
+
+
+//
+// Cache
+//
+
+template
+<
+typename Key, typename Item,
+template<typename Key, class Entry> class Manager = Landlord_Cached,
+class Divider = Divider_Recip
+>
+class Cache
+{
+public:
+	Cache() : mgr() {}
+
+	void add(Key key, Item item, size_t size, uint cost)
+	{
+		return mgr.add(key, Entry(item, size, cost));
+	}
+
+	// remove the entry identified by <key>. expected usage is to check
+	// if present and determine size via retrieve(), so no need for
+	// error checking.
+	// useful for invalidating single cache entries.
+	void remove(Key key)
+	{
+		mgr.remove(key);
+	}
+
+	// if there is no entry for <key> in the cache, return false.
+	// otherwise, return true and pass back item and size (optional).
+	// 
+	// if refill_credit (default), the cache manager 'rewards' this entry,
+	// tending to keep it in cache longer. this parameter is not used in
+	// normal operation - it's only for special cases where we need to
+	// make an end run around the cache accounting (e.g. for cache simulator).
+	bool retrieve(Key key, Item& item, size_t* psize = 0, bool refill_credit = true)
+	{
+		const Entry* entry;
+		if(!mgr.find(key, &entry))
+			return false;
+
+		item = entry->item;
+		if(psize)
+			*psize = entry->size;
+
+		if(refill_credit)
+			mgr.on_access((Entry&)*entry);
+
+		return true;
+	}
+
+	// toss out the least valuable entry. return false if cache is empty,
+	// otherwise true and (optionally) pass back its item and size.
+	bool remove_least_valuable(Item* pItem = 0, size_t* pSize = 0)
+	{
+		if(empty())
+			return false;
+
+		// as an artefact of the cache eviction policy, several entries
+		// may be "shaken loose" by one call to remove_least_valuable.
+		// we cache them in a list to disburden callers (they always get
+		// exactly one).
+		if(entries_awaiting_eviction.empty())
+		{
+			mgr.remove_least_valuable(entries_awaiting_eviction);
+			debug_assert(!entries_awaiting_eviction.empty());
+		}
+
+		const Entry& entry = entries_awaiting_eviction.front();
+		if(pItem)
+			*pItem = entry.item;
+		if(pSize)
+			*pSize = entry.size;
+		entries_awaiting_eviction.pop_front();
+
+		return true;
+	}
+
+	bool empty() const
+	{
+		return mgr.empty();
+	}
+
+private:
+	// this is applicable to all cache management policies and stores all
+	// required information. a Divider functor is used to implement
+	// division for credit_density.
+	template<class Divider> struct CacheEntry
+	{
+		Item item;
 		size_t size;
-#ifdef LL_OPT_RECIP
-		float size_reciprocal;
-#endif
 		uint cost;
 		float credit;
 
-		CacheEntry(T item_, size_t size_, uint cost_)
-			: item(item_)
+		Divider divider;
+
+		// needed for mgr.remove_least_valuable's entry_copy
+		CacheEntry() {}
+
+		CacheEntry(Item item_, size_t size_, uint cost_)
+			: item(item_), divider((float)size_)
 		{
 			size = size_;
-#ifdef LL_OPT_RECIP
-			size_reciprocal = 1.0f / size;
-#endif
-
 			cost = cost_;
 			credit = cost;
 		}
+
+		float credit_density() const
+		{
+			return divider(credit, (float)size);
+		}
 	};
+	typedef CacheEntry<Divider> Entry;
 
-	// note: use hash_map instead of map for better locality
-	// (relevant when iterating over all items in remove_least_valuable)
-	typedef STL_HASH_MAP<Key, CacheEntry> CacheMap;
-	typedef typename CacheMap::iterator CacheMapIt;
-	CacheMap map;
+	// see note in remove_least_valuable().
+	std::list<Entry> entries_awaiting_eviction;
 
-	// = \delta in [Young02] (needed for charge step)
-	// this is cached to avoid having to iterate over the whole map.
-	float min_credit_density;
-	float credit_density(const CacheEntry& entry)
-	{
-#ifdef LL_OPT_RECIP
-		return entry.credit * entry.size_reciprocal;
-#else
-		return entry.credit / entry.size;
-#endif
-	}
-	void recalc_min_credit_density()
-	{
-		min_credit_density = FLT_MAX;
-		for(CacheMapIt it = map.begin(); it != map.end(); ++it)
-			min_credit_density = MIN(min_credit_density, credit_density(it->second));
-	}
-#ifdef LL_OPT_MINCREDIT
-	void notify_credit_reduced(const CacheEntry& entry)
-	{
-		min_credit_density = MIN(min_credit_density, credit_density(entry));
-	}
-	bool is_min_entry(const CacheEntry& entry)
-	{
-		return feq(min_credit_density, credit_density(entry));
-	}
-#endif
+	Manager<Key, Entry> mgr;
 };
 
 
@@ -552,7 +859,6 @@ public:
 			debug_warn("underflow");
 	}
 
-#include <vector>
 	class iterator
 	{
 	public:

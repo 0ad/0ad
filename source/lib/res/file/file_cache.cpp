@@ -707,9 +707,8 @@ FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, bool long_lived)
 		// several, all of which must be returned to the cache_allocator.
 		for(;;)
 		{
-			size_t size;
-			FileIOBuf discarded_buf = file_cache.remove_least_valuable(&size);
-			if(!discarded_buf)
+			FileIOBuf discarded_buf; size_t size;
+			if(!file_cache.remove_least_valuable(&discarded_buf, &size))
 				break;
 #include "nommgr.h"
 			cache_allocator.free((u8*)discarded_buf, size);
@@ -809,9 +808,12 @@ LibError file_cache_add(FileIOBuf buf, size_t size, const char* atom_fn)
 
 // called by trace simulator to retrieve buffer address, given atom_fn.
 // must not change any cache state (e.g. notify stats or add ref).
-FileIOBuf file_cache_find(const char* atom_fn, size_t* size)
+FileIOBuf file_cache_find(const char* atom_fn, size_t* psize)
 {
-	return file_cache.retrieve(atom_fn, size, false);
+	FileIOBuf buf;
+	if(!file_cache.retrieve(atom_fn, buf, psize, false))
+		return 0;
+	return buf;
 }
 
 
@@ -874,9 +876,8 @@ LibError file_cache_invalidate(const char* P_fn)
 	block_mgr.invalidate(atom_fn);
 
 	// file was cached: remove it and free that memory
-	size_t size;
-	FileIOBuf cached_buf = file_cache.retrieve(atom_fn, &size);
-	if(cached_buf)
+	FileIOBuf cached_buf; size_t size;
+	if(file_cache.retrieve(atom_fn, cached_buf, &size))
 	{
 		file_cache.remove(atom_fn);
 #include "nommgr.h"
@@ -892,11 +893,9 @@ void file_cache_flush()
 {
 	for(;;)
 	{
-		size_t size;
-		FileIOBuf discarded_buf = file_cache.remove_least_valuable(&size);
-		// cache is now empty - done
-		if(!discarded_buf)
-			return;
+		FileIOBuf discarded_buf; size_t size;
+		if(!file_cache.remove_least_valuable(&discarded_buf, &size))
+			return;	// cache is now empty - done
 #include "nommgr.h"
 		cache_allocator.free((u8*)discarded_buf, size);
 #include "mmgr.h"
