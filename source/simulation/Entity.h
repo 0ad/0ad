@@ -45,6 +45,7 @@ class CBaseEntity;
 class CBoundingObject;
 class CUnit;
 class CAura;
+class CProductionQueue;
 
 // TODO MT: Put this is /some/ sort of order...
 
@@ -56,11 +57,10 @@ class CEntity : public  CJSComplex<CEntity>, public IEventTarget
 	typedef STL_HASH_MAP<int, SEntityAction> ActionTable;
 	typedef std::set<CAura*> AuraSet;
 
-private:
+public:
 	// The player that owns this entity
 	CPlayer* m_player;
 
-public:
 	// Intrinsic properties
 	CBaseEntity* m_base;
 	
@@ -69,6 +69,9 @@ public:
 
 	// The class types this entity has
 	SClassSet m_classes;
+
+	// Production queue
+	CProductionQueue* m_productionQueue;
 
 	float m_speed;
 	float m_turningRadius;
@@ -187,6 +190,8 @@ private:
 
 	bool processGeneric( CEntityOrder* current, size_t timestep_milli );
 	bool processGenericNoPathing( CEntityOrder* current, size_t timestep_milli );
+
+	bool processProduce( CEntityOrder* order );
 	
 	bool processGotoNoPathing( CEntityOrder* current, size_t timestep_milli );
 	bool processGoto( CEntityOrder* current, size_t timestep_milli );
@@ -261,9 +266,6 @@ public:
 	void checkSelection(); // In case anyone tries to select/deselect this through JavaScript.
 	void checkGroup(); // Groups
 	void checkExtant(); // Existence
-
-	// Returns whether the entity is capable of performing the given orderType on the target.
-	bool acceptsOrder( int orderType, CEntity* orderTarget, int action );
 
 	void clearOrders();
 	void pushOrder( CEntityOrder& order );

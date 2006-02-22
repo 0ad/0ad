@@ -26,7 +26,33 @@ class CEventGeneric : public CScriptEvent
 	CEntity* m_target;
 	int m_action;
 public:
-	CEventGeneric( CEntity* target, int m_action );
+	CEventGeneric( CEntity* target, int action );
+};
+
+class CEventStartProduction : public CScriptEvent
+{
+	int m_productionType;
+	CStrW m_name;
+	float m_time;
+public:
+	CEventStartProduction( int productionType, const CStrW& name );
+	inline float GetTime() { return m_time; }
+};
+
+class CEventFinishProduction : public CScriptEvent
+{
+	int m_productionType;
+	CStrW m_name;
+public:
+	CEventFinishProduction( int productionType, const CStrW& name );
+};
+
+class CEventCancelProduction : public CScriptEvent
+{
+	int m_productionType;
+	CStrW m_name;
+public:
+	CEventCancelProduction( int productionType, const CStrW& name );
 };
 
 class CEventTargetChanged : public CScriptEvent
@@ -44,13 +70,14 @@ public:
 
 class CEventPrepareOrder : public CScriptEvent
 {
+public:
 	CEntity* m_target;
 	int m_orderType;
-public:
+	int m_action;
+	CStrW m_name;
 	CEntity* m_notifySource;
 	int m_notifyType;
-	int m_action;
-	CEventPrepareOrder( CEntity* target, int orderType, int action );
+	CEventPrepareOrder( CEntity* target, int orderType, int action, const CStrW& name );
 };
 
 class CEventOrderTransition : public CScriptEvent

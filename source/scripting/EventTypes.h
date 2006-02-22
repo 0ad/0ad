@@ -13,6 +13,9 @@ enum EEventType
 	EVENT_INITIALIZE = 0,
 	EVENT_TICK,
 	EVENT_GENERIC,
+	EVENT_START_PRODUCTION,
+	EVENT_CANCEL_PRODUCTION,
+	EVENT_FINISH_PRODUCTION,
 	EVENT_TARGET_CHANGED,
 	EVENT_PREPARE_ORDER,
 	EVENT_ORDER_TRANSITION,
@@ -35,7 +38,10 @@ static const wchar_t* const EventNames[EVENT_LAST] =
 {
 	/* EVENT_INITIALIZE */ L"onInitialize",
 	/* EVENT_TICK */ L"onTick",
-	/* EVENT_GENERIC */ L"onGeneric",
+	/* EVENT_GENERIC */ L"onGeneric", /* For generic actions on a target unit, like attack or gather */
+	/* EVENT_START_PRODUCTION */ L"onStartProduction", /* We're about to start training/researching something (deduct resources, etc) */
+	/* EVENT_CANCEL_PRODUCTION */ L"onCancelProduction", /* Something in production has been cancelled */
+	/* EVENT_FINISH_PRODUCTION */ L"onFinishProduction", /* We've finished something in production */
 	/* EVENT_TARGET_CHANGED */ L"onTargetChanged", /* If this unit is selected and the mouseover object changes */
 	/* EVENT_PREPARE_ORDER */ L"onPrepareOrder", /* To check if a unit can execute a given order */
 	/* EVENT_ORDER_TRANSITION */ L"onOrderTransition", /* When we change orders (sometimes...) */

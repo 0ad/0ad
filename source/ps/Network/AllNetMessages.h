@@ -60,6 +60,7 @@ enum ENetMessageType
 	NMT_Patrol,
 	NMT_AddWaypoint,
 	NMT_Generic,
+	NMT_Produce,
 	NMT_Run,
 	NMT_NotifyRequest,
 
@@ -231,6 +232,11 @@ END_NMT_CLASS()
 DERIVE_NMT_CLASS_(NetCommand, Generic)
 	NMT_FIELD(HEntity, m_Target)
 	NMT_FIELD_INT(m_Action, u32, 4)
+END_NMT_CLASS()
+
+DERIVE_NMT_CLASS_(NetCommand, Produce)
+	NMT_FIELD_INT(m_Type, u32, 4)
+	NMT_FIELD(CStrW, m_Name)
 END_NMT_CLASS()
 
 DERIVE_NMT_CLASS_(NetCommand, NotifyRequest)

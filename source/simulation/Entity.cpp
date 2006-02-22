@@ -9,6 +9,7 @@
 #include "BaseEntityCollection.h"
 #include "Unit.h"
 #include "Aura.h"
+#include "ProductionQueue.h"
 #include "Renderer.h"
 #include "Model.h"
 #include "Terrain.h"
@@ -70,6 +71,9 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
     AddProperty( L"traits.vision.los", &m_los );
     AddProperty( L"traits.vision.permanent", &m_permanent );
 	AddProperty( L"last_combat_time", &m_lastCombatTime );
+
+	m_productionQueue = new CProductionQueue( this );
+	AddProperty( L"production_queue", m_productionQueue );
 
     for( int t = 0; t < EVENT_LAST; t++ )
     {
@@ -134,6 +138,8 @@ CEntity::~CEntity()
     {
         delete( m_bounds );
     }
+
+	delete m_productionQueue;
 
     for( AuraTable::iterator it = m_auras.begin(); it != m_auras.end(); it++ )
     {
@@ -331,6 +337,8 @@ void CEntity::update( size_t timestep )
 		m_frameCheck = 0;
 	}
 
+	m_productionQueue->Update( timestep );
+
 	// Note: aura processing is done before state processing because the state
     // processing code is filled with all kinds of returns
 
@@ -400,6 +408,10 @@ void CEntity::update( size_t timestep )
 					break;
 				updateCollisionPatch();
 				return;
+            case CEntityOrder::ORDER_PRODUCE:
+				processProduce( current );
+				m_orderQueue.pop_front();
+				break;
             case CEntityOrder::ORDER_GENERIC_NOPATHING:
 				if( processGenericNoPathing( current, timestep ) )
 					break;
@@ -421,7 +433,7 @@ void CEntity::update( size_t timestep )
 				break;
             default:
 				debug_warn("Invalid entity order" );
-        }
+		}
     }
 
     PROFILE_END( "state processing" );
@@ -625,19 +637,15 @@ void CEntity::clearOrders()
 
 void CEntity::pushOrder( CEntityOrder& order )
 {
-   //Replace acceptsOrder because we need the notification data after the order is pushed
-	CEventPrepareOrder evt( order.m_data[0].entity, order.m_type, order.m_data[1].data );
+	CEventPrepareOrder evt( order.m_data[0].entity, order.m_type, order.m_data[1].data, order.m_data[0].string );
 	if( DispatchEvent(&evt) )
     {
-        m_orderQueue.push_back( order );
-		CheckListeners( evt.m_notifyType, evt.m_notifySource );
+		m_orderQueue.push_back( order );
+		if(evt.m_notifyType != CEntityListener::NOTIFY_NONE) 
+		{
+			CheckListeners( evt.m_notifyType, evt.m_notifySource );
+		}
     }
-}
-
-bool CEntity::acceptsOrder( int orderType, CEntity* orderTarget, int action )
-{
-    CEventPrepareOrder evt( orderTarget, orderType, action );
-	return ( DispatchEvent(&evt) );
 }
 
 void CEntity::DispatchNotification( CEntityOrder order, int type )
@@ -1246,6 +1254,22 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 				if ( m_currentListener )
 					DestroyListeners( m_currentListener );
 				m_currentListener = NULL;
+			}
+			break;
+        case CEntityOrder::ORDER_PRODUCE:
+			if( argc < 3 )
+			{
+				JS_ReportError( cx, "Too few parameters" );
+				return( false );
+			}
+			try {
+				newOrder.m_data[0].string = ToPrimitive<CStrW>(argv[2]);
+				newOrder.m_data[1].data = ToPrimitive<int>(argv[1]);
+			}
+			catch( PSERROR_Scripting_ConversionFailed )
+			{
+				JS_ReportError( cx, "Invalid parameter types" );
+				return( false );
 			}
 			break;
         default:

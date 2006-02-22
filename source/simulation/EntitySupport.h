@@ -52,44 +52,4 @@ struct SClassSet
 	}
 };
 
-struct SAuraData
-{
-	enum Allegiance
-	{
-		SELF = 1,
-		PLAYER = 2,
-		GAIA = 4,
-		ALLY = 8,
-		ENEMY = 16,
-	};	
-	static const ssize_t DURATION_RADIUS = -1;
-	static const ssize_t DURATION_PERMANENT = -2;
-	SClassSet::ClassSet m_Affects;
-	Allegiance m_Allegiance;
-	float m_Radius;
-	size_t m_Time;
-	size_t m_Cooldown;
-	float m_Hitpoints;
-	size_t m_Duration;
-	bool m_Cumulative;
-	CScriptObject m_BeginEffect;
-	CScriptObject m_EndEffect;
-};
-
-struct SAuraInstance
-{
-	HEntity m_Influenced;
-	size_t m_EnteredRange;
-	size_t m_LastInRange;
-	size_t m_Applied;
-	inline CEntity* GetEntity() const { return( m_Influenced ); }
-};
-
-struct SAura
-{
-	std::vector<SAuraInstance> m_Influenced;
-	SAuraData m_Data;
-	size_t m_Recharge;
-};
-
 #endif

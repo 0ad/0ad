@@ -27,4 +27,8 @@
 
 	</Traits>
 
+	<Script File="entities/template_entity_script.js" />
+	<Event On="StartProduction" Function="entityStartProduction" />
+	<Event On="CancelProduction" Function="entityCancelProduction" />
+	<Event On="FinishProduction" Function="entityFinishProduction" />
 </Entity>

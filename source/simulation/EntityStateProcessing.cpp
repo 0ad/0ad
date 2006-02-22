@@ -8,6 +8,7 @@
 #include "ObjectEntry.h"
 #include "SkeletonAnimDef.h" // Animation duration
 #include "Unit.h"
+#include "ProductionQueue.h"
 #include "MathUtil.h"
 
 #include "Collision.h"
@@ -325,8 +326,6 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 // Handles processing common to (at the moment) gather and melee attack actions
 bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timestep_millis), int transition, SEntityAction* action )
 {
-	//m_orderQueue.pop_front();
-
 	if( !current->m_data[0].entity || !current->m_data[0].entity->m_extant )
 		return( false );
 	current->m_data[0].location = current->m_data[0].entity->m_position;
@@ -336,7 +335,6 @@ bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timeste
 	{
 		(int&)current->m_type = transition;
 		m_isRunning = false;
-		//m_orderQueue.push_front(*current);		// Seems to be needed since we do a pop above
 		return( true );
 	}
 	
@@ -403,16 +401,15 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		}
 		if( ( m_fsm_cyclepos <= action->m_Speed ) && ( nextpos > action->m_Speed ) )
 		{
-			// Fire!
 			m_actor->HideAmmunition();
-			DispatchEvent( contactEvent );
-			// Note that, at the moment, we don't care if the action succeeds or fails - 
-			// we could check for failure, then abort the animation.
-			// It depends what we think is worse: stopping an animation halfway through,
-			// or playing the animation without getting a game effect.
-
-			// Could also check again here if the entity still exists, is in range, etc..
-			// and cancel if not, but we'll see how it looks without that, first.
+			if(!DispatchEvent( contactEvent ))
+			{
+				// Cancel current order
+				m_orderQueue.pop_front();
+				m_isRunning = false;
+				m_shouldRun = false;
+				return( false );
+			}
 		}
 		
 		if( nextpos >= ( action->m_Speed * 2 ) )
@@ -427,7 +424,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		return( false );
 	}
 
-	// Target's dead (or exhausted)? Then our work here is done.
+	// Target's dead (or exhausted), or we cancelled? Then our work here is done.
 	if( !current->m_data[0].entity || !current->m_data[0].entity->m_extant )
 	{
 		//TODO:  eventually when stances/formations are implemented, if applicable (e.g. not 
@@ -697,4 +694,18 @@ bool CEntity::processPatrol( CEntityOrder* current, size_t UNUSED(timestep_milli
 	m_orderQueue.push_front( this_segment );
 	m_orderQueue.push_back( repeat_patrol );
 	return( true );
+}
+
+bool CEntity::processProduce( CEntityOrder* order )
+{
+	int type = order->m_data[1].data;
+	CStrW name = order->m_data[0].string;
+	debug_printf("Trying to produce %d %ls\n", type, name.c_str() );
+	CEventStartProduction evt( type, name );
+	if( DispatchEvent( &evt ) && evt.GetTime() >= 0 )
+	{
+		debug_printf("Production started, time is %f\n", evt.GetTime());
+		m_productionQueue->AddItem( type, name, evt.GetTime() );
+	}
+	return( false );
 }

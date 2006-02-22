@@ -40,11 +40,13 @@
 #include "Vector2D.h"
 #include "scripting/DOMEvent.h"
 
+// An order data field, which could represent different things depending on the type of order.
 struct SOrderData
 {
 	CVector2D location;
-	u64 data;  // miscellaneous
 	HEntity entity;
+	CStrW string;
+	u64 data;  // could be recast as a double or int
 };
 
 class CEntityListener
@@ -52,6 +54,8 @@ class CEntityListener
 public:
 	enum
 	{
+		NOTIFY_NONE = 0x00,
+
 		NOTIFY_GOTO = 0x01,
 		NOTIFY_RUN = 0x02,
 		NOTIFY_FOLLOW = 0x03,	//GOTO | RUN
@@ -85,9 +89,11 @@ public:
 		ORDER_PATH_END_MARKER,
 		ORDER_GENERIC,
 		ORDER_GENERIC_NOPATHING,
+		ORDER_PRODUCE,
 		ORDER_NOTIFY_REQUEST,
 		ORDER_LAST
 	} m_type;
+
 	SOrderData m_data[ORDER_MAX_DATA];
 };
 

@@ -10,13 +10,34 @@ CEventGeneric::CEventGeneric( CEntity* target, int action ) : CScriptEvent( L"ge
 	AddLocalProperty( L"action", &m_action );
 }
 
-/*CEventDamage::CEventDamage( CEntity* inflictor, CDamageType* damage ) : CScriptEvent( L"takesDamage", EVENT_DAMAGE, true )
+CEventStartProduction::CEventStartProduction( int productionType, const CStrW& name )
+	: CScriptEvent( L"startProduction", EVENT_START_PRODUCTION, true)
 {
-	m_inflictor = inflictor;
-	m_damage = damage;
-	AddLocalProperty( L"inflictor", &m_inflictor, true );
-	AddLocalProperty( L"damage", &m_damage );
-}*/
+	m_productionType = productionType;
+	m_name = name;
+	m_time = -1;
+	AddLocalProperty( L"productionType", &m_productionType );
+	AddLocalProperty( L"name", &m_name );
+	AddLocalProperty( L"time", &m_time );
+}
+
+CEventFinishProduction::CEventFinishProduction( int productionType, const CStrW& name )
+	: CScriptEvent( L"finishProduction", EVENT_FINISH_PRODUCTION, true)
+{
+	m_productionType = productionType;
+	m_name = name;
+	AddLocalProperty( L"productionType", &m_productionType );
+	AddLocalProperty( L"name", &m_name );
+}
+
+CEventCancelProduction::CEventCancelProduction( int productionType, const CStrW& name )
+	: CScriptEvent( L"cancelProduction", EVENT_CANCEL_PRODUCTION, true)
+{
+	m_productionType = productionType;
+	m_name = name;
+	AddLocalProperty( L"productionType", &m_productionType );
+	AddLocalProperty( L"name", &m_name );
+}
 
 CEventTargetChanged::CEventTargetChanged( CEntity* target ) : CScriptEvent( L"targetChanged", EVENT_TARGET_CHANGED, false )
 {
@@ -29,7 +50,6 @@ CEventTargetChanged::CEventTargetChanged( CEntity* target ) : CScriptEvent( L"ta
 	m_secondaryAction = 0;
 	m_secondaryCursor = L"arrow-default";
 	
-
 	AddLocalProperty( L"target", &m_target, true );
 	AddLocalProperty( L"defaultOrder", &m_defaultOrder );
 	AddLocalProperty( L"defaultAction", &m_defaultAction );
@@ -39,19 +59,23 @@ CEventTargetChanged::CEventTargetChanged( CEntity* target ) : CScriptEvent( L"ta
 	AddLocalProperty( L"secondaryAction", &m_secondaryAction );
 }
 
-CEventPrepareOrder::CEventPrepareOrder( CEntity* target, int orderType, int action ) : CScriptEvent( L"prepareOrder", EVENT_PREPARE_ORDER, true )
+CEventPrepareOrder::CEventPrepareOrder( CEntity* target, int orderType, int action, const CStrW& name) 
+	: CScriptEvent( L"prepareOrder", EVENT_PREPARE_ORDER, true )
 {
 	m_target = target;
 	m_orderType = orderType;
 	m_action = action;
+	m_name = name;
 	AddLocalProperty( L"target", &m_target, true );
 	AddLocalProperty( L"orderType", &m_orderType, true );
 	AddLocalProperty( L"action", &m_action );
+	AddLocalProperty( L"name", &m_name );
 	AddLocalProperty( L"notifyType", &m_notifyType );
 	AddLocalProperty( L"notifySource", &m_notifySource );
 }
 
-CEventOrderTransition::CEventOrderTransition( int orderPrevious, int orderCurrent, CEntity*& target, CVector3D& worldPosition ) : CScriptEvent( L"orderTransition", EVENT_ORDER_TRANSITION, true )
+CEventOrderTransition::CEventOrderTransition( int orderPrevious, int orderCurrent, CEntity*& target, CVector3D& worldPosition ) 
+	: CScriptEvent( L"orderTransition", EVENT_ORDER_TRANSITION, true )
 {
 	m_orderPrevious = orderPrevious;
 	m_orderCurrent = orderCurrent;

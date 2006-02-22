@@ -212,6 +212,14 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 		order.m_data[1].data=msg->m_Action; \
 		QueueOrder(order, msg->m_Entities, clearQueue); \
 	} while(0)
+#define ENTITY_INT_STRING(_msg, _order) do\
+	{ \
+		_msg *msg=(_msg *)pMsg; \
+		order.m_type=CEntityOrder::_order; \
+		order.m_data[0].string=msg->m_Name; \
+		order.m_data[1].data=msg->m_Type; \
+		QueueOrder(order, msg->m_Entities, clearQueue); \
+	} while(0)
 	
 	switch (pMsg->GetType())
 	{
@@ -259,6 +267,9 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 			break;
 		case NMT_Generic:
 			ENTITY_ENTITY_INT(CGeneric, ORDER_GENERIC);
+			break;
+		case NMT_Produce:
+			ENTITY_INT_STRING(CProduce, ORDER_PRODUCE);
 			break;
 		case NMT_NotifyRequest:
 			ENTITY_ENTITY_INT(CNotifyRequest, ORDER_NOTIFY_REQUEST);

@@ -495,6 +495,7 @@ static void InitScripting()
 	CJSProgressTimer::ScriptingInit();
 	CProjectile::ScriptingInit();
 
+	g_ScriptingHost.DefineConstant( "NOTIFY_NONE", CEntityListener::NOTIFY_NONE );
 	g_ScriptingHost.DefineConstant( "NOTIFY_GOTO", CEntityListener::NOTIFY_GOTO );
 	g_ScriptingHost.DefineConstant( "NOTIFY_RUN", CEntityListener::NOTIFY_RUN );
 	g_ScriptingHost.DefineConstant( "NOTIFY_FOLLOW", CEntityListener::NOTIFY_FOLLOW );
@@ -510,6 +511,8 @@ static void InitScripting()
 	g_ScriptingHost.DefineConstant( "ORDER_RUN", CEntityOrder::ORDER_RUN );
 	g_ScriptingHost.DefineConstant( "ORDER_PATROL", CEntityOrder::ORDER_PATROL );
 	g_ScriptingHost.DefineConstant( "ORDER_GENERIC", CEntityOrder::ORDER_GENERIC );
+	g_ScriptingHost.DefineConstant( "ORDER_PRODUCE", CEntityOrder::ORDER_PRODUCE );
+
 
 #define REG_JS_CONSTANT(_name) g_ScriptingHost.DefineConstant(#_name, _name)
 	REG_JS_CONSTANT(SDL_BUTTON_LEFT);

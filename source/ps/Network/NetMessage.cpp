@@ -82,6 +82,7 @@ void CNetMessage::ScriptingInit()
 	def(NMT_Patrol);
 	def(NMT_AddWaypoint);
 	def(NMT_Generic);
+	def(NMT_Produce);
 	def(NMT_NotifyRequest);
 }
 
@@ -142,6 +143,15 @@ CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSConte
 			int val=ToPrimitive<int>(argv[argIndex++]); \
 			_msg->_field=val; \
 		)
+	#define ReadString(_msg, _field) \
+		STMT(\
+			if (argIndex+1 > argc) \
+				ArgumentCountError(); \
+			if (!JSVAL_IS_STRING(argv[argIndex])) \
+				ArgumentTypeError(); \
+			CStrW val=ToPrimitive<CStrW>(argv[argIndex++]); \
+			_msg->_field=val; \
+		)
 	
 	#define PositionMessage(_msg) \
 		case NMT_ ## _msg: \
@@ -171,6 +181,15 @@ CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSConte
 			return msg; \
 		}
 	
+	#define ProduceMessage(_msg) \
+		case NMT_ ## _msg: \
+		{ \
+			C##_msg *msg = new C##_msg(); \
+			ReadInt(msg, m_Type); \
+			ReadString(msg, m_Name); \
+			return msg; \
+		}
+
 	// argIndex, incremented by reading macros. We have already "eaten" the
 	// first argument (message type)
 	uint argIndex = 1;
@@ -178,13 +197,16 @@ CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSConte
 	{
 		// NMT_Goto, targetX, targetY
 		PositionMessage(Goto)
-		
 		PositionMessage(Run)
 		PositionMessage(Patrol)
 		PositionMessage(AddWaypoint)
 
+		// NMT_Generic, target, action
 		EntityIntMessage(Generic)
 		EntityIntMessage(NotifyRequest)
+
+		// NMT_Produce, type, name
+		ProduceMessage(Produce)
 
 		default:
 			JS_ReportError(cx, "Invalid order type");

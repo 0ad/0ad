@@ -729,7 +729,7 @@ function entityEventPrepareOrder( evt )
 		evt.preventDefault();
 		return;
 	}
-	
+			
 	//evt.notifySource is the entity order data will be obtained from, so if we're attacking and we 
 	//want our listeners to copy us, then we will use our own order as the source.
 
@@ -762,7 +762,7 @@ function entityEventPrepareOrder( evt )
 				case ACTION_ATTACK:
 				case ACTION_ATTACK_RANGED:
 					evt.action = getAttackAction( this, evt.target );
-					if ( action == ACTION_NONE )
+					if ( evt.action == ACTION_NONE )
 					 	evt.preventDefault();
 					evt.notifyType = NOTIFY_ATTACK;
 					break;
@@ -779,11 +779,34 @@ function entityEventPrepareOrder( evt )
 					break;	
 			}
 			break;
+		
+		case ORDER_PRODUCE:
+			evt.notifyType = NOTIFY_NONE;
+			break;
 			
 		default:
-			//evt.preventDefault();
+			console.write("Unknown order type " + evt.orderType + "; ignoring.");
+			evt.preventDefault();
 			break;
 	}
+}
+
+// ====================================================================
+
+function entityStartProduction( evt )
+{
+	console.write("StartProduction: " + evt.productionType + " " + evt.name);
+	evt.time = 5.0;
+}
+
+function entityFinishProduction( evt )
+{
+	console.write("FinishProduction: " + evt.productionType + " " + evt.name);
+}
+
+function entityCancelProduction( evt )
+{
+	console.write("CancelProduction: " + evt.productionType + " " + evt.name);
 }
 
 // ====================================================================
