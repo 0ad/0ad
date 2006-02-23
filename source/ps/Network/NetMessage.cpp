@@ -185,6 +185,7 @@ CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSConte
 		case NMT_ ## _msg: \
 		{ \
 			C##_msg *msg = new C##_msg(); \
+			msg->m_Entities = entities; \
 			ReadInt(msg, m_Type); \
 			ReadString(msg, m_Name); \
 			return msg; \
