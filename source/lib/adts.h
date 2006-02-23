@@ -300,9 +300,14 @@ template<class Entries> float ll_calc_min_credit_density(const Entries& entries)
 {
 	float min_credit_density = FLT_MAX;
 	for(typename Entries::const_iterator it = entries.begin(); it != entries.end(); ++it)
-		min_credit_density = MIN(min_credit_density, Entries::entry_from_it(it).credit_density());
+		min_credit_density = fminf(min_credit_density, Entries::entry_from_it(it).credit_density());
 	return min_credit_density;
 }
+
+// note: no warning is given that the MCD entry is being removed!
+// (reduces overhead in remove_least_valuable)
+// these functors must account for that themselves (e.g. by resetting
+// their state directly after returning MCD).
 
 // determine MCD by scanning over all entries.
 // tradeoff: O(N) time complexity, but all notify* calls are no-ops.
@@ -361,12 +366,24 @@ public:
 
 	float operator()(const Entries& entries)
 	{
-		if(!min_valid)
+		if(min_valid)
 		{
-			min_credit_density = ll_calc_min_credit_density(entries);
-			min_valid = true;
+			// the entry that has MCD will be removed anyway by caller;
+			// we need to invalidate here because they don't call
+			// notify_increased_or_removed.
+			min_valid = false;
+			return min_credit_density;
 		}
-		return min_credit_density;
+
+		// this is somewhat counterintuitive. since we're calculating
+		// MCD directly, why not mark our cached version of it valid
+		// afterwards? reason is that our caller will remove the entry with
+		// MCD, so it'll be invalidated anyway.
+		// instead, our intent is to calculate MCD for the *next time*.
+		const float ret = ll_calc_min_credit_density(entries);
+		min_valid = true;
+		min_credit_density = FLT_MAX;
+		return ret;
 	}
 
 private:
@@ -445,11 +462,9 @@ again:
 		{
 			Entry& entry = it->second;
 
-			mcd_calc.notify_impending_increase_or_remove(entry);
 			entry.credit -= min_credit_density * entry.size;
 			if(should_evict(entry))
 			{
-				mcd_calc.notify_increased_or_removed(entry);
 				entry_list.push_back(entry);
 
 				// annoying: we have to increment <it> before erasing

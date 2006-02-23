@@ -155,6 +155,19 @@ extern LibError dir_next_ent(DirIterator* d, DirEnt* ent);
 extern LibError dir_close(DirIterator* d);
 
 
+#ifdef __cplusplus
+
+typedef std::vector<DirEnt> DirEnts;
+typedef DirEnts::const_iterator DirEntCIt;
+typedef DirEnts::reverse_iterator DirEntRIt;
+
+// enumerate all directory entries in <P_path>; add to container and
+// then sort it by filename.
+extern LibError file_get_sorted_dirents(const char* P_path, DirEnts& dirents);
+
+#endif	// #ifdef __cplusplus
+
+
 // called by file_enum for each entry in the directory.
 // name doesn't include path!
 // return INFO_CB_CONTINUE to continue calling; anything else will cause

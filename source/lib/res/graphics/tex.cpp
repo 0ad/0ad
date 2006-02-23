@@ -419,6 +419,26 @@ void tex_util_foreach_mipmap(uint w, uint h, uint bpp, const u8* restrict data,
 // API
 //-----------------------------------------------------------------------------
 
+// indicate if <filename>'s extension is that of a texture format
+// supported by tex_load. case-insensitive.
+//
+// rationale: tex_load complains if the given file is of an
+// unsupported type. this API allows users to preempt that warning
+// (by checking the filename themselves), and also provides for e.g.
+// enumerating only images in a file picker.
+// an alternative might be a flag to suppress warning about invalid files,
+// but this is open to misuse.
+bool tex_is_known_extension(const char* filename)
+{
+	const TexCodecVTbl* dummy;
+	// found codec for it => known extension
+	if(tex_codec_for_filename(filename, &dummy) == ERR_OK)
+		return true;
+
+	return false;
+}
+
+
 // split out of tex_load to ease resource cleanup
 static LibError tex_load_impl(FileIOBuf file_, size_t file_size, Tex* t)
 {

@@ -4,6 +4,8 @@
 #include "lib/timer.h"
 #include "file_internal.h"
 
+#		include "ps/VFSUtil.h"
+
 static uintptr_t trace_initialized;	// set via CAS
 static Pool trace_pool;
 
@@ -251,10 +253,10 @@ struct FileAccess
 
 typedef std::vector<FileAccess> FileAccesses;
 
-class FileGatherer
+class FileAccessGatherer
 {
 	// put all entries in one trace file: easier to handle; obviates FS enum code
-	// rationale: don't go through file in order; instead, process most recent
+	// rationale: don't go through trace in order; instead, process most recent
 	// run first, to give more weight to it (TSP code should go with first entry
 	// when #occurrences are equal)
 	struct Run
@@ -350,7 +352,7 @@ class FileGatherer
 	}
 
 public:
-	FileGatherer(const char* trace_filename, Filenames required_fns,
+	FileAccessGatherer(const char* trace_filename, Filenames required_fns,
 		FileAccesses& file_accesses_)
 		: file_accesses(file_accesses_)
 	{
@@ -374,8 +376,8 @@ public:
 
 	// should never be copied; this also squelches warning
 private:
-	FileGatherer(const FileGatherer& rhs);
-	FileGatherer& operator=(const FileGatherer& rhs);
+	FileAccessGatherer(const FileAccessGatherer& rhs);
+	FileAccessGatherer& operator=(const FileAccessGatherer& rhs);
 };
 
 
@@ -387,11 +389,11 @@ class TourBuilder
 	{
 		return u32_from_u16(prev, next);
 	}
-	FileId cid_prev(ConnectionId id)
+	FileId cid_first(ConnectionId id)
 	{
 		return u32_hi(id);
 	}
-	FileId cid_next(ConnectionId id)
+	FileId cid_second(ConnectionId id)
 	{
 		return u32_lo(id);
 	}
@@ -408,7 +410,8 @@ class TourBuilder
 			: id(id_), occurrences(1) {}
 	};
 
-	struct decreasing_occurrences: public std::binary_function<const Connection&, const Connection&, bool>
+	// sort by decreasing occurrence
+	struct Occurrence_greater: public std::binary_function<const Connection&, const Connection&, bool>
 	{
 		bool operator()(const Connection& c1, const Connection& c2) const
 		{
@@ -476,41 +479,75 @@ class TourBuilder
 		return has_cycle;
 	}
 
-	void add_edge(const Connection& c)
+	void try_add_edge(const Connection& c)
 	{
-		FileId prev_id = cid_prev(c.id);
-		FileId next_id = cid_next(c.id);
+		FileId first_id  = cid_first(c.id);
+		FileId second_id = cid_second(c.id);
 
-		FileAccess& prev = file_accesses[prev_id];
-		FileAccess& next = file_accesses[next_id];
-		if(prev.next != NULL_ID || next.prev != NULL_ID)
+		FileAccess& first  = file_accesses[first_id];
+		FileAccess& second = file_accesses[second_id];
+		if(first.next != NULL_ID || second.prev != NULL_ID)
 			return;
 
-		prev.next = next_id;
-		next.prev = prev_id;
+		first.next  = second_id;
+		second.prev = first_id;
 
-		bool introduced_cycle = is_cycle_at(next_id);
-		debug_assert(introduced_cycle == is_cycle_at(prev_id));
+		bool introduced_cycle = is_cycle_at(second_id);
+		debug_assert(introduced_cycle == is_cycle_at(first_id));
 		if(introduced_cycle)
 		{
+debug_printf("try: undo (due tot cycle)\n");
 			// undo
-			prev.next = next.prev = NULL_ID;
+			first.next = second.prev = NULL_ID;
 			return;
 		}
 	}
 
+	// pointer to this is returned by TourBuilder()!
+	std::vector<const char*> fn_vector;
+
+	void output_chain(const Connection& c)
+	{
+		FileAccess* start = &file_accesses[cid_first(c.id)];
+		// early out: if this access was already visited, so must the entire
+		// chain of which it is a part. bail to save lots of time.
+		if(start->visited)
+			return;
+
+		// follow prev links starting with c until no more are left;
+		// start ends up the beginning of the chain including <c>.
+		while(start->prev != NULL_ID)
+			start = &file_accesses[start->prev];
+
+		// iterate over the chain - add to Filenames list and mark as visited
+		FileAccess* cur = start;
+		do
+		{
+			if(!cur->visited)
+			{
+				fn_vector.push_back(cur->atom_fn);
+				cur->visited = true;
+			}
+			cur = &file_accesses[cur->next];
+		}
+		while(cur->next != NULL_ID);
+	}
+
 public:
-	TourBuilder(FileAccesses& file_accesses_)
+	TourBuilder(FileAccesses& file_accesses_, Filenames& fns)
 		: file_accesses(file_accesses_)
 	{
 		build_connections();
-		std::sort(connections.begin(), connections.end(), decreasing_occurrences());
+		std::sort(connections.begin(), connections.end(), Occurrence_greater());
+
 		for(Connections::iterator it = connections.begin(); it != connections.end(); ++it)
-			add_edge(*it);
+			try_add_edge(*it);
 
+		for(Connections::iterator it = connections.begin(); it != connections.end(); ++it)
+			output_chain(*it);
 
-		// walk tour; make sure all nodes are covered
-		// add each one to FileList
+		fn_vector.push_back(0);	// 0-terminate for use as Filenames array
+		fns = &fn_vector[0];
 	}
 
 	// should never be copied; this also squelches warning
@@ -519,44 +556,6 @@ private:
 	TourBuilder& operator=(const TourBuilder& rhs);
 };
 
-
-/*
-
-static LibError determine_optimal_ordering(const char* trace_filename, Filenames* pfns)
-{
-
-
-	*pfl = 0;
-
-
-	// count # files
-	uint num_files = 0;
-	for(size_t i = 0; i < t.num_ents; i++)
-		if(t.ents[i].op == TO_LOAD)
-			num_files++;
-
-	if(!num_files)
-		return ERR_DIR_END;
-
-	Filenames fns = (Filenames)malloc((num_files+1)*sizeof(const char*));
-	if(!fns)
-		return ERR_NO_MEM;
-
-	size_t ti = 0;
-	for(size_t i = 0; i < num_files; i++)
-	{
-		// find next trace entry that is a load (must exist)
-		while(t.ents[ti].op != TO_LOAD)
-			ti++;
-		fns[i] = t.ents[ti].atom_fn;
-		ti++;
-	}
-
-	trace_clear();
-	*pfl = fl;
-	return ERR_OK;
-}
-*/
 
 //-----------------------------------------------------------------------------
 
@@ -573,30 +572,46 @@ void vfs_opt_notify_loose_file(const char* atom_fn)
 }
 
 
-LibError vfs_opt_rebuild_main_archive(const char* P_archive_dst_dir)
+struct EntCbParams
 {
-debug_warn("currently non-functional");
+	std::vector<const char*> files;
+};
 
-	// for each mount point (with VFS_MOUNT_ARCHIVE flag set):
+static void EntCb(const char* path, const DirEnt* ent, void* context)
+{
+	EntCbParams* params = (EntCbParams*)context;
+	if(!DIRENT_IS_DIR(ent))
+		params->files.push_back(file_make_unique_fn_copy(path));
+}
+
+
+
+LibError vfs_opt_rebuild_main_archive(const char* P_archive_path, const char* trace_filename)
+{
 	// get list of all files
-	Filenames required_fns = 0;
+	// TODO: for each mount point (with VFS_MOUNT_ARCHIVE flag set):
+	EntCbParams params;
+	RETURN_ERR(VFSUtil::EnumDirEnts("", VFSUtil::RECURSIVE, 0, EntCb, &params));
+	params.files.push_back(0);
+	Filenames required_fns = &params.files[0];
 
 	FileAccesses file_accesses;
-	FileGatherer gatherer("../logs/trace.txt", required_fns, file_accesses);
+	FileAccessGatherer gatherer(trace_filename, required_fns, file_accesses);
 
-	TourBuilder builder(file_accesses);
-//	builder.store_list(pfns);
-	Filenames fns = 0;
-// (Filenames)malloc((num_files+1)*sizeof(const char*));
-//	if(!fns)
-//		return ERR_NO_MEM;
+	Filenames fns;
+	TourBuilder builder(file_accesses, fns);
 
-	char P_path[VFS_MAX_PATH];
-	RETURN_ERR(vfs_path_append(P_path, P_archive_dst_dir, "main.zip"));
-	LibError ret = archive_build("main.zip", fns);
-	// delete all loose files in list
-	free(fns);
-	// delete all archives in P_dst_path
+	LibError ret = archive_build(P_archive_path, fns);
+
+	// do NOT delete source files or archives! some apps might want to
+	// keep them (e.g. for source control), or name them differently.
+
+	// rebuild is required to make sure the new archive is used. this is
+	// already taken care of by VFS dir watch, unless it's disabled..
+#ifdef NO_DIR_WATCH
+	(void)mount_rebuild();
+#endif
+
 	return ret;
 
 }
@@ -631,16 +646,20 @@ static bool should_build_mini_archive()
 }
 
 
-LibError vfs_opt_auto_build_archive(const char* P_dst_path)
+LibError vfs_opt_auto_build_archive(const char* P_dst_path,
+	const char* main_archive_name, const char* trace_filename)
 {
+	char P_archive_path[PATH_MAX];
 	if(should_rebuild_main_archive())
-		return vfs_opt_rebuild_main_archive(P_dst_path);
+	{
+		RETURN_ERR(vfs_path_append(P_archive_path, P_dst_path, main_archive_name));
+		return vfs_opt_rebuild_main_archive(P_archive_path, trace_filename);
+	}
 	else if(should_build_mini_archive())
 	{
 		loose_files.push_back(0);
-		// get new unused mini archive name
-		const char* archive_filename = 0;
-		RETURN_ERR(archive_build(archive_filename, &loose_files[0]));
+		// get new unused mini archive name at P_dst_path
+		RETURN_ERR(archive_build(P_archive_path, &loose_files[0]));
 		// delete all newly added loose files
 	}
 

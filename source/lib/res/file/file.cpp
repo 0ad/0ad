@@ -415,9 +415,37 @@ LibError dir_close(DirIterator* d_)
 }
 
 
-static bool dirent_less(const DirEnt* d1, const DirEnt* d2)
+static bool dirent_less(const DirEnt& d1, const DirEnt& d2)
 {
-	return strcmp(d1->name, d2->name) < 0;
+	return strcmp(d1.name, d2.name) < 0;
+}
+
+
+// enumerate all directory entries in <P_path>; add to container and
+// then sort it by filename.
+LibError file_get_sorted_dirents(const char* P_path, DirEnts& dirents)
+{
+	DirIterator d;
+	RETURN_ERR(dir_open(P_path, &d));
+
+	dirents.reserve(125);	// preallocate for efficiency
+
+	DirEnt ent;
+	for(;;)
+	{
+		LibError ret = dir_next_ent(&d, &ent);
+		if(ret == ERR_DIR_END)
+			break;
+		RETURN_ERR(ret);
+
+		ent.name = file_make_unique_fn_copy(ent.name);
+		dirents.push_back(ent);
+	}
+
+	std::sort(dirents.begin(), dirents.end(), dirent_less);
+
+	(void)dir_close(&d);
+	return ERR_OK;
 }
 
 
@@ -439,72 +467,32 @@ static bool dirent_less(const DirEnt* d1, const DirEnt* d2)
 //   of converting from/to native path (we just give 'em the dirent name).
 LibError file_enum(const char* P_path, const FileCB cb, const uintptr_t user)
 {
-	// pointer to DirEnt: faster sorting, but more allocs.
-	typedef std::vector<const DirEnt*> DirEnts;
-	typedef DirEnts::const_iterator DirEntCIt;
-	typedef DirEnts::reverse_iterator DirEntRIt;
-	// all entries are enumerated (adding to this container),
-	// std::sort-ed, then all passed to cb.
-	DirEnts dirents;
-	dirents.reserve(125);	// preallocate for efficiency
-
 	LibError stat_err = ERR_OK;	// first error encountered by stat()
 	LibError cb_err   = ERR_OK;	// first error returned by cb
 
-	DirIterator d;
-	CHECK_ERR(dir_open(P_path, &d));
+	DirEnts dirents;
+	RETURN_ERR(file_get_sorted_dirents(P_path, dirents));
 
-	DirEnt ent;
-	for(;;)	// instead of while() to avoid warnings
-	{
-		LibError ret = dir_next_ent(&d, &ent);
-		if(ret == ERR_DIR_END)
-			break;
-		if(!stat_err)
-			stat_err = ret;
-
-		const size_t size = sizeof(DirEnt)+strlen(ent.name)+1;
-		DirEnt* p_ent = (DirEnt*)malloc(size);
-		if(!p_ent)
-		{
-			stat_err = ERR_NO_MEM;
-			goto fail;
-		}
-		p_ent->size  = ent.size;
-		p_ent->mtime = ent.mtime;
-		p_ent->name  = (const char*)p_ent + sizeof(DirEnt);
-		strcpy((char*)p_ent->name, ent.name);	// safe
-		dirents.push_back(p_ent);
-	}
-
-	std::sort(dirents.begin(), dirents.end(), dirent_less);
-
-	// call back for each entry (now sorted)
-	{
+	// call back for each entry (now sorted);
+	// first, expand each DirEnt to full struct stat (we store as such to
+	// reduce memory use and therefore speed up sorting)
 	struct stat s;
 	memset(&s, 0, sizeof(s));
-	const uintptr_t memento = 0;	// there is nothing we
+	// .. not needed for plain files (OS opens them; memento doesn't help)
+	const uintptr_t memento = 0;
 	for(DirEntCIt it = dirents.begin(); it != dirents.end(); ++it)
 	{
-		const DirEnt* ent = *it;
-		s.st_mode  = (ent->size == -1)? S_IFDIR : S_IFREG;
-		s.st_size  = ent->size;
-		s.st_mtime = ent->mtime;
-		LibError ret = cb(ent->name, &s, memento, user);
+		const DirEnt& dirent = *it;
+		s.st_mode  = (dirent.size == -1)? S_IFDIR : S_IFREG;
+		s.st_size  = dirent.size;
+		s.st_mtime = dirent.mtime;
+		LibError ret = cb(dirent.name, &s, memento, user);
 		if(ret != INFO_CB_CONTINUE)
 		{
 			cb_err = ret;	// first error (since we now abort)
 			break;
 		}
 	}
-	}
-
-fail:
-	WARN_ERR(dir_close(&d));
-
-	// free all memory (can't do in loop above because it may be aborted).
-	for(DirEntRIt rit = dirents.rbegin(); rit != dirents.rend(); ++rit)
-		free((void*)(*rit));
 
 	if(cb_err != ERR_OK)
 		return cb_err;

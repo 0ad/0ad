@@ -278,6 +278,11 @@ public:
 
 	void* alloc(size_t size)
 	{
+		// safely handle 0 byte allocations. according to C/C++ tradition,
+		// we allocate a unique address, which ends up wasting 1 page.
+		if(!size)
+			size = 1;
+
 		const size_t size_pa = round_up(size, BUF_ALIGN);
 		void* p;
 
@@ -307,31 +312,29 @@ public:
 	void make_read_only(u8* p, size_t size)
 	{
 		const size_t size_pa = round_up(size, BUF_ALIGN);
-		(void)mprotect(p, size_pa, PROT_READ);
+/*/*		(void)mprotect(p, size_pa, PROT_READ);*/
 	}
 
 #include "nommgr.h"
 	void free(u8* p, size_t size)
 #include "mmgr.h"
 	{
-		// make sure entire range is within pool.
-		if(!pool_contains(&pool, p) || !pool_contains(&pool, p+size-1))
+		size_t size_pa = round_up(size, BUF_ALIGN);
+		// make sure entire (aligned!) range is within pool.
+		if(!pool_contains(&pool, p) || !pool_contains(&pool, p+size_pa-1))
 		{
 			debug_warn("invalid pointer");
 			return;
 		}
-
-		size_t size_pa = round_up(size, BUF_ALIGN);
 
 		// (re)allow writes
 		//
 		// note: unfortunately we cannot unmap this buffer's memory
 		// (to make sure it is not used) because we write a header/footer
 		// into it to support coalescing.
-		(void)mprotect(p, size_pa, PROT_READ|PROT_WRITE);
+/*/*		(void)mprotect(p, size_pa, PROT_READ|PROT_WRITE);*/
 
-		coalesce(p, size_pa);
-		freelist_add(p, size_pa);
+		coalesce_and_free(p, size_pa);
 	}
 
 	// free all allocations and reset state to how it was just after
@@ -346,146 +349,155 @@ public:
 private:
 	Pool pool;
 
-	uint size_class_of(size_t size_pa)
+	uint size_class_of(size_t size_pa) const
 	{
 		return log2((uint)size_pa);
 	}
 
 	//-------------------------------------------------------------------------
 	// boundary tags for coalescing
-	static const u32 MAGIC1 = FOURCC('C','M','E','M');
-	static const u32 MAGIC2 = FOURCC('\x00','\xFF','\x55','\xAA');
-	struct FreePage
+	static const u32 HEADER_ID = FOURCC('C','M','A','H');
+	static const u32 FOOTER_ID = FOURCC('C','M','A','F');
+	static const u32 MAGIC = FOURCC('\xFF','\x55','\xAA','\x01');
+	struct Header
 	{
-		FreePage* prev;
-		FreePage* next;
+		Header* prev;
+		Header* next;
 		size_t size_pa;
-		u32 magic1;
-		u32 magic2;
+		u32 id;
+		u32 magic;
 	};
-	// must be enough room to stash 2 FreePage instances in the freed page.
-	cassert(BUF_ALIGN >= 2*sizeof(FreePage));
-
-	// check if there is a free allocation before/after <p>.
-	// return 0 if not, otherwise a pointer to its FreePage header/footer.
-	// if ofs = 0, check before; otherwise, it gives the size of the
-	// current allocation, and we check behind that.
-	// notes:
-	// - p and ofs are trusted: [p, p+ofs) lies within the pool.
-	// - correctly deals with p lying at start/end of pool.
-	FreePage* freed_page_at(u8* p, size_t ofs)
+	// we could use struct Header for Footer as well, but keeping them
+	// separate and different can avoid coding errors (e.g. mustn't pass a
+	// Footer to freelist_remove!)
+	struct Footer
 	{
-		// checking the footer of the memory before p.
-		if(!ofs)
-		{
-			// .. but p is at front of pool - bail.
-			if(p == pool.da.base)
-				return 0;
-			p -= sizeof(FreePage);
-		}
-		// checking header of memory after p+ofs.
-		else
-		{
-			p += ofs;
-			// .. but it's at end of the currently committed region - bail.
-			if(p >= pool.da.base+pool.da.cur_size)
-				return 0;
-		}
+		// note: deliberately reordered fields for safety
+		u32 magic;
+		u32 id;
+		size_t size_pa;
+	};
+	// must be enough room to stash Header+Footer within the freed allocation.
+	cassert(BUF_ALIGN >= sizeof(Header)+sizeof(Footer));
 
-		// check if there is a valid FreePage header/footer at p.
-		// we use magic values to differentiate the header from user data
-		// (this isn't 100% reliable, but we can't insert extra boundary
-		// tags because the memory must remain aligned).
-		FreePage* page = (FreePage*)p;
-		if(page->magic1 != MAGIC1 || page->magic2 != MAGIC2)
-			return 0;
-		debug_assert(page->size_pa % BUF_ALIGN == 0);
-		return page;
+	// expected_id identifies the tag type (either HEADER_ID or
+	// FOOTER_ID). returns whether the given id, magic and size_pa
+	// values are consistent with such a tag.
+	//
+	// note: these magic values are all that differentiates tags from
+	// user data. this isn't 100% reliable, but we can't insert extra
+	// boundary tags because the memory must remain aligned.
+	bool is_valid_tag(u32 expected_id, u32 id, u32 magic, size_t size_pa) const
+	{
+		if(id != expected_id || magic != MAGIC)
+			return false;
+		TEST(size_pa % BUF_ALIGN == 0);
+		TEST(size_pa <= MAX_CACHE_SIZE);
+		return true;
 	}
 
-	// check if p's neighbors are free; if so, merges them all into
-	// one big region and updates freelists accordingly.
-	// p and size_pa are trusted: [p, p+size_pa) lies within the pool.
-	void coalesce(u8*& p, size_t& size_pa)
+	// add p to freelist; if its neighbor(s) are free, merges them all into
+	// one big region and frees that.
+	// notes:
+	// - correctly deals with p lying at start/end of pool.
+	// - p and size_pa are trusted: [p, p+size_pa) lies within the pool.
+	void coalesce_and_free(u8* p, size_t size_pa)
 	{
-		FreePage* prev = freed_page_at(p, 0);
-		if(prev)
+		// CAVEAT: Header and Footer are wiped out by freelist_remove -
+		// must use them before that.
+
+		// expand (p, size_pa) to include previous allocation if it's free.
+		// (unless p is at start of pool region)
+		if(p != pool.da.base)
 		{
-			freelist_remove(prev);
-			p -= prev->size_pa;
-			size_pa += prev->size_pa;
+			const Footer* footer = (const Footer*)(p-sizeof(Footer));
+			if(is_valid_tag(FOOTER_ID, footer->id, footer->magic, footer->size_pa))
+			{
+				p       -= footer->size_pa;
+				size_pa += footer->size_pa;
+				Header* header = (Header*)p;
+				freelist_remove(header);
+			}
 		}
-		FreePage* next = freed_page_at(p, size_pa);
-		if(next)
+
+		// expand size_pa to include following memory if it was allocated
+		// and is currently free.
+		// (unless it starts beyond end of currently committed region)
+		Header* header = (Header*)(p+size_pa);
+		if((u8*)header < pool.da.base+pool.da.cur_size)
 		{
-			freelist_remove(next);
-			size_pa += next->size_pa;
+			if(is_valid_tag(HEADER_ID, header->id, header->magic, header->size_pa))
+			{
+				size_pa += header->size_pa;
+				freelist_remove(header);
+			}
 		}
+
+		freelist_add(p, size_pa);
 	}
 
 	//-------------------------------------------------------------------------
 	// freelist
 	uintptr_t bitmap;
-	FreePage* freelists[sizeof(uintptr_t)*CHAR_BIT];
+	// note: we store Header nodes instead of just a pointer to head of
+	// list - this wastes a bit of mem but greatly simplifies list insertion.
+	Header freelists[sizeof(uintptr_t)*CHAR_BIT];
 
 	void freelist_add(u8* p, size_t size_pa)
 	{
+		TEST(size_pa % BUF_ALIGN == 0);
 		const uint size_class = size_class_of(size_pa);
 
 		// write header and footer into the freed mem
 		// (its prev and next link fields will be set below)
-		FreePage* header = (FreePage*)p;
-		header->prev = header->next = 0;
+		Header* header = (Header*)p;
+		header->id = HEADER_ID;
+		header->magic = MAGIC;
 		header->size_pa = size_pa;
-		header->magic1 = MAGIC1; header->magic2 = MAGIC2;
-		FreePage* footer = (FreePage*)(p+size_pa-sizeof(FreePage));
-		*footer = *header;
+		Footer* footer = (Footer*)(p+size_pa-sizeof(Footer));
+		footer->id = FOOTER_ID;
+		footer->magic = MAGIC;
+		footer->size_pa = size_pa;
 
-		// insert the header into freelist
-		// .. list was empty: link to head
-		if(!freelists[size_class])
-		{
-			freelists[size_class] = header;
-			bitmap |= BIT(size_class);
-		}
-		// .. not empty: link to node (address order)
-		else
-		{
-			FreePage* prev = freelists[size_class];
-			// find node to insert after
-			while(prev->next && header <= prev->next)
-				prev = prev->next;
-			header->next = prev->next;
-			header->prev = prev;
-		}
+		Header* prev = &freelists[size_class];
+		// find node after which to insert (address ordered freelist)
+		while(prev->next && header <= prev->next)
+			prev = prev->next;
+
+		header->next = prev->next;
+		header->prev = prev;
+		if(prev->next)
+			prev->next->prev = header;
+		prev->next = header;
+
+        bitmap |= BIT(size_class);
 	}
 
-	void freelist_remove(FreePage* page)
+	void freelist_remove(Header* header)
 	{
-		const uint size_class = size_class_of(page->size_pa);
+		Footer* footer = (Footer*)((u8*)header+header->size_pa-sizeof(Footer));
+		TEST(is_valid_tag(HEADER_ID, header->id, header->magic, header->size_pa));
+		TEST(is_valid_tag(FOOTER_ID, footer->id, footer->magic, footer->size_pa));
+		TEST(header->size_pa == footer->size_pa);
+		const uint size_class = size_class_of(header->size_pa);
 
-		// in middle of list: unlink from prev node
-		if(page->prev)
-			page->prev->next = page->next;
-		// was at front of list: unlink from head
-		else
-		{
-			freelists[size_class] = page->next;
-			// freelist is now empty - update bitmap.
-			if(!page->next)
-				bitmap &= ~BIT(size_class);
-		}
+		header->prev->next = header->next;
+		if(header->next)
+			header->next->prev = header->prev;
 
-		// not at end of list: unlink from next node
-		if(page->next)
-			page->next->prev = page->prev;
+		// if freelist is now empty, clear bit in bitmap.
+		if(!freelists[size_class].next)
+			bitmap &= ~BIT(size_class);
+
+		// wipe out header and footer to prevent accidental reuse
+		memset(header, 0xEE, sizeof(Header));
+		memset(footer, 0xEE, sizeof(Footer));
 	}
 
 	void* alloc_from_class(uint size_class, size_t size_pa)
 	{
 		// return first suitable entry in (address-ordered) list
-		FreePage* cur = freelists[size_class];
-		while(cur)
+		for(Header* cur = freelists[size_class].next; cur; cur = cur->next)
 		{
 			if(cur->size_pa >= size_pa)
 			{
@@ -499,7 +511,6 @@ private:
 
 				return p;
 			}
-			cur = cur->next;
 		}
 
 		return 0;
@@ -523,7 +534,7 @@ private:
 
 		// apparently all classes above start_size_class are empty,
 		// or the above would have succeeded.
-		debug_assert(bitmap < BIT(start_size_class+1));
+		TEST(bitmap < BIT(start_size_class+1));
 		return 0;
 	}
 };	// CacheAllocator
@@ -565,6 +576,11 @@ public:
 
 	void add(FileIOBuf buf, size_t size, const char* atom_fn, bool long_lived)
 	{
+		// cache_allocator also does this; we need to follow suit so that
+		// matches() won't fail due to zero-length size.
+		if(!size)
+			size = 1;
+
 		// don't do was-immediately-freed check for long_lived buffers.
 		const uint this_epoch = long_lived? 0 : epoch++;
 
@@ -600,7 +616,7 @@ public:
 			}
 		}
 
-		add(buf, size, atom_fn, 0);
+		add(buf, size, atom_fn, false);
 	}
 
 	const char* get_owner_filename(FileIOBuf buf)
@@ -615,33 +631,40 @@ public:
 		return 0;
 	}
 
-	void find_and_remove(FileIOBuf buf, size_t* size, const char** atom_fn)
+	bool find_and_remove(FileIOBuf buf, FileIOBuf& exact_buf, size_t& size, const char*& atom_fn)
 	{
+		bool actually_removed = false;
+
 		debug_assert(buf != 0);
 		for(size_t i = 0; i < extant_bufs.size(); i++)
 		{
 			ExtantBuf& eb = extant_bufs[i];
 			if(matches(eb, buf))
 			{
-				*size = eb.size;
-				*atom_fn = eb.atom_fn;
+				exact_buf = eb.buf;
+				size      = eb.size;
+				atom_fn   = eb.atom_fn;
 
+				// no more references
 				if(--eb.refs == 0)
 				{
-					// mark as reusable
+					// mark slot in extant_bufs[] as reusable
 					eb.buf     = 0;
 					eb.size    = 0;
 					eb.atom_fn = 0;
+
+					actually_removed = true;
 				}
 
 				if(eb.epoch != 0 && eb.epoch != epoch-1)
 					debug_warn("buf not released immediately");
 				epoch++;
-				return;
+				return actually_removed;
 			}
 		}
 
 		debug_warn("buf is not on extant list! double free?");
+		return false;
 	}
 
 	void replace_owner(FileIOBuf buf, const char* atom_fn)
@@ -703,17 +726,15 @@ FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, bool long_lived)
 		if(buf)
 			break;
 
-		// tell file_cache to remove some items. this may shake loose
-		// several, all of which must be returned to the cache_allocator.
-		for(;;)
-		{
-			FileIOBuf discarded_buf; size_t size;
-			if(!file_cache.remove_least_valuable(&discarded_buf, &size))
-				break;
+		// remove least valuable entry from cache and free its buffer.
+		FileIOBuf discarded_buf; size_t size;
+		bool removed = file_cache.remove_least_valuable(&discarded_buf, &size);
+		// only false if cache is empty, which can't be the case because
+		// allocation failed.
+		TEST(removed);
 #include "nommgr.h"
-			cache_allocator.free((u8*)discarded_buf, size);
+		cache_allocator.free((u8*)discarded_buf, size);
 #include "mmgr.h"
-		}
 
 		if(attempts++ > 50)
 			debug_warn("possible infinite loop: failed to make room in cache");
@@ -763,11 +784,29 @@ LibError file_buf_free(FileIOBuf buf)
 	if(!buf)
 		return ERR_OK;
 
-	size_t size; const char* atom_fn;
-	extant_bufs.find_and_remove(buf, &size, &atom_fn);
+	FileIOBuf exact_buf; size_t actual_size; const char* atom_fn;
+	bool actually_removed = extant_bufs.find_and_remove(buf, exact_buf, actual_size, atom_fn);
+	if(actually_removed)
+	{
+		FileIOBuf buf_in_cache;
+		if(file_cache.retrieve(atom_fn, buf_in_cache, 0, false))
+		{
+			// sanity checks: what's in cache must match what we have.
+			// note: don't compare actual_size with cached size - they are
+			// usually different.
+			debug_assert(buf_in_cache == buf);
+		}
+		// buf is not in cache - needs to be freed immediately.
+		else
+		{
+#include "nommgr.h"
+			cache_allocator.free((u8*)exact_buf, actual_size);
+#include "mmgr.h"
+		}
+	}
 
 	stats_buf_free();
-	trace_notify_free(atom_fn, size);
+	trace_notify_free(atom_fn, actual_size);
 
 	return ERR_OK;
 }
@@ -938,6 +977,8 @@ static void test_cache_allocator()
 	{
 		size_t size = rand(1, 10*MiB);
 		total_size_used += size;
+if(total_size_used == 298580898)
+debug_break();
 		void* p;
 		// until successful alloc:
 		for(;;)

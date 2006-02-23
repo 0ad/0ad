@@ -539,8 +539,8 @@ uint fullrand()
 uint rand(uint min, uint max)
 {
 	const uint range = (max-min);
-	// huge interval or min > max
-	if(range > XRAND_MAX)
+	// huge interval or min >= max
+	if(range == 0 || range > XRAND_MAX)
 	{
 		WARN_ERR(ERR_INVALID_PARAM);
 		return 0;

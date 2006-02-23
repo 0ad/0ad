@@ -183,6 +183,17 @@ extern void tex_set_global_orientation(int orientation);
 // open/close
 //
 
+// indicate if <filename>'s extension is that of a texture format
+// supported by tex_load. case-insensitive.
+//
+// rationale: tex_load complains if the given file is of an
+// unsupported type. this API allows users to preempt that warning
+// (by checking the filename themselves), and also provides for e.g.
+// enumerating only images in a file picker.
+// an alternative might be a flag to suppress warning about invalid files,
+// but this is open to misuse.
+extern bool tex_is_known_extension(const char* filename);
+
 // load the specified image from file into the given Tex object.
 // currently supports BMP, TGA, JPG, JP2, PNG, DDS.
 extern LibError tex_load(const char* fn, Tex* t);

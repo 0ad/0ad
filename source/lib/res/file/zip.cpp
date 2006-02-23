@@ -233,6 +233,10 @@ static LibError za_extract_cdfh(const CDFH* cdfh,
 	const u32 lfh_ofs    = read_le32(&cdfh->lfh_ofs);
 	const char* fn_tmp = (const char*)cdfh+CDFH_SIZE;	// not 0-terminated!
 
+	// offset to where next CDFH should be (caller will scan for it)
+	// (must be set before early-out below).
+	ofs_to_next_cdfh = CDFH_SIZE + fn_len + e_len + c_len;
+
 	CompressionMethod method;
 	switch(zip_method)
 	{
@@ -240,8 +244,8 @@ static LibError za_extract_cdfh(const CDFH* cdfh,
 	case ZIP_CM_DEFLATE: method = CM_DEFLATE; break;
 	default: WARN_RETURN(ERR_UNKNOWN_CMETHOD);
 	}
-		
-	// .. it's a directory entry (we only want files)
+
+	// it's a directory entry (we only want files)
 	if(!csize && !ucsize)
 		return ERR_NOT_FILE;	// don't warn - we just ignore these
 
@@ -258,9 +262,6 @@ static LibError za_extract_cdfh(const CDFH* cdfh,
 	ent->mtime   = time_t_from_FAT(fat_mtime);
 	ent->method  = method;
 	ent->flags   = ZIP_LFH_FIXUP_NEEDED;
-
-	// offset to where next CDFH should be (caller will scan for it)
-	ofs_to_next_cdfh = CDFH_SIZE + fn_len + e_len + c_len;
 
 	return ERR_OK;
 }

@@ -916,6 +916,11 @@ void Init(int argc, char* argv[], uint flags)
 	// required by ogl_tex to detect broken gfx card/driver combos
 	get_gfx_info();
 
+
+	//-------------------------------------------------------------------------
+	// all lib init is now complete. self-tests are now run.
+	self_test_run_all();
+
 	oglCheck();
 
 	if(!g_Quickstart)

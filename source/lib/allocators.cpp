@@ -278,9 +278,13 @@ LibError da_set_size(DynArray* da, size_t new_size)
 	// determine how much to add/remove
 	const size_t cur_size_pa = round_up_to_page(da->cur_size);
 	const size_t new_size_pa = round_up_to_page(new_size);
-	if(new_size_pa > da->max_size_pa)
-		WARN_RETURN(ERR_LIMIT);
 	const ssize_t size_delta_pa = (ssize_t)new_size_pa - (ssize_t)cur_size_pa;
+
+	// not enough memory to satisfy this expand request: abort.
+	// note: do not complain - some allocators (e.g. file_cache)
+	// egitimately use up all available space.
+	if(new_size_pa > da->max_size_pa)
+		return ERR_LIMIT;
 
 	u8* end = da->base + cur_size_pa;
 	// expanding

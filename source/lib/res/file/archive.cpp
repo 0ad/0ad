@@ -514,6 +514,20 @@ ssize_t afile_read(AFile* af, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB 
 
 	if(!is_compressed(af))
 	{
+		// HACK
+		// background: file_io will operate according to the
+		// *archive* file's flags, but the AFile may contain some overrides
+		// set via vfs_open. one example is FILE_LONG_LIVED -
+		// that must be copied over (temporarily) into a->f flags.
+		//
+		// we currently copy all flags - this may mean that setting
+		// global policy (e.g. "don't cache") for all archive files is
+		// difficult, but that can be worked around by forcing
+		// flag to be set in afile_open.
+		// this is better than the alternative of copying individual
+		// flags because it'd need to be updated as new flags are added.
+		a->f.fc.flags = af->fc.flags;
+
 		bool we_allocated = (pbuf != FILE_BUF_TEMP) && (*pbuf == FILE_BUF_ALLOC);
 		// no need to set last_cofs - only checked if compressed.
 		ssize_t bytes_read = file_io(&a->f, af->ofs+ofs, size, pbuf, cb, cb_ctx);
@@ -625,8 +639,8 @@ static inline bool file_type_is_uncompressible(const char* fn)
 	static const char* uncompressible_exts[] =
 	{
 		"zip", "rar",
-			"jpg", "jpeg", "png",
-			"ogg", "mp3"
+		"jpg", "jpeg", "png",
+		"ogg", "mp3"
 	};
 
 	for(uint i = 0; i < ARRAY_SIZE(uncompressible_exts); i++)
@@ -671,6 +685,16 @@ static LibError read_and_compress_file(const char* atom_fn, uintptr_t ctx,
 	struct stat s;
 	RETURN_ERR(vfs_stat(atom_fn, &s));
 	const size_t ucsize = s.st_size;
+	// skip 0-length files.
+	// rationale: zip.cpp needs to determine whether a CDFH entry is
+	// a file or directory (the latter are written by some programs but
+	// not needed - they'd only pollute the file table).
+	// it looks like checking for ucsize=csize=0 is the safest way -
+	// relying on file attributes (which are system-dependent!) is
+	// even less safe.
+	// we thus skip 0-length files to avoid confusing them with dirs.
+	if(!ucsize)
+		return INFO_SKIPPED;
 
 	const bool attempt_compress = !file_type_is_uncompressible(atom_fn);
 	if(attempt_compress)
@@ -695,7 +719,12 @@ static LibError read_and_compress_file(const char* atom_fn, uintptr_t ctx,
 	void* cdata = 0; size_t csize = 0;
 	if(attempt_compress)
 	{
-		RETURN_ERR(comp_finish(ctx, &cdata, &csize));
+		LibError ret = comp_finish(ctx, &cdata, &csize);
+		if(ret < 0)
+		{
+			file_buf_free(buf);
+			return ret;
+		}
 
 		const float ratio = (float)ucsize / csize;
 		const ssize_t bytes_saved = (ssize_t)ucsize - (ssize_t)csize;

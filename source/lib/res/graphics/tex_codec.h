@@ -32,6 +32,7 @@ struct TexCodecVTbl
 
 	// precondition: ext is valid string
 	// ext doesn't include '.'; just compare against e.g. "png"
+	// must compare case-insensitive!
 	bool (*is_ext)(const char* ext);
 
 	size_t (*hdr_size)(const u8* file);

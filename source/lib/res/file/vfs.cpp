@@ -429,7 +429,9 @@ ssize_t vfs_io(const Handle hf, const size_t size, FileIOBuf* pbuf,
 	off_t ofs = vf->ofs;
 	vf->ofs += (off_t)size;
 
-	return x_io(&vf->xf, ofs, size, pbuf, cb, cb_ctx);
+	ssize_t nbytes = x_io(&vf->xf, ofs, size, pbuf, cb, cb_ctx);
+	RETURN_ERR(nbytes);
+	return nbytes;
 }
 
 

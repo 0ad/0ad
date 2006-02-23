@@ -325,7 +325,7 @@ public:
 			m_orderQueue.clear();
 		else
 			m_orderQueue.pop_front();
-		return JS_TRUE;
+		return JSVAL_VOID;
 	}
 
 	static void ScriptingInit();

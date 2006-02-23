@@ -105,7 +105,7 @@ static void ParseCommandLineArgs(int argc, char* argv[])
 				// note: VFS init is sure to have been completed by now
 				// (since CONFIG_Init reads from file); therefore,
 				// it is safe to call this from here directly.
-				vfs_opt_rebuild_main_archive("mods/official");
+				vfs_opt_rebuild_main_archive("mods/official/official1.zip", "../logs/trace.txt");
 			break;
 		case 'c':
 			if(strcmp(name, "conf") == 0)

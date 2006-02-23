@@ -16,17 +16,52 @@
 
 #if !HAVE_C99
 
+// note: stupid VC7 gets arguments wrong when using __declspec(naked);
+// we need to use DWORD PTR and esp-relative addressing.
+
+#if HAVE_MS_ASM
+__declspec(naked) float fminf(float, float)
+{
+	__asm
+	{
+		fld		DWORD PTR [esp+4]
+		fld		DWORD PTR [esp+8]
+		fcomi	st(0), st(1)
+		fcmovnb	st(0), st(1)
+		fxch
+		fstp	st(0)
+		ret
+	}
+}
+#else
 float fminf(float a, float b)
 {
 	return (a < b)? a : b;
 }
+#endif
 
+#if HAVE_MS_ASM
+__declspec(naked) float fmaxf(float, float)
+{
+	__asm
+	{
+		fld		DWORD PTR [esp+4]
+		fld		DWORD PTR [esp+8]
+		fcomi	st(0), st(1)
+		fcmovb	st(0), st(1)
+		fxch
+		fstp	st(0)
+		ret
+	}
+}
+#else
 float fmaxf(float a, float b)
 {
 	return (a > b)? a : b;
 }
-
 #endif
+
+#endif	// #if !HAVE_C99
 
 
 // no C99, and not running on IA-32 (where this is defined to ia32_rint)
