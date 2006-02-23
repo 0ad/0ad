@@ -34,6 +34,8 @@ function startMap (mapName, losSetting, openWindow)
 	{
 			// Failed to start the game; go back to the main menu.
 			guiSwitch ("ld", "pg");
+			// Restore default cursor.
+			setCursor ("arrow-default");
 			// Show an error message
 			btCaptions = new Array("OK");
 			btCode = new Array("");
@@ -59,6 +61,8 @@ function startLoadingScreen()
 {
         // Switch screens from main menu to loading screen.
         guiSwitch ("pg", "ld");
+		// Set to "hourglass" cursor.
+		setCursor("cursor-wait");
         console.write ("Loading " + g_GameAttributes.mapFile + " (" + g_GameAttributes.numPlayers + " players) ...");
 
         // Generate random number for random concept art (should be depending on the selected civ later)
@@ -112,6 +116,9 @@ function reallyStartGame()
 
 	// Switch GUI from loading screen to game session.
 	guiSwitch ("ld", "sn");
+	
+	// Restore default cursor.
+	setCursor ("arrow-default");
 }
 
 // ====================================================================
