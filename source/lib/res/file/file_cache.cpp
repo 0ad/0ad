@@ -315,9 +315,9 @@ public:
 /*/*		(void)mprotect(p, size_pa, PROT_READ);*/
 	}
 
-#include "nommgr.h"
-	void free(u8* p, size_t size)
-#include "mmgr.h"
+	// rationale: don't call this "free" because that would run afoul of the
+	// memory tracker's redirection macro and require #include "nommgr.h".
+	void dealloc(u8* p, size_t size)
 	{
 		size_t size_pa = round_up(size, BUF_ALIGN);
 		// make sure entire (aligned!) range is within pool.
@@ -732,9 +732,7 @@ FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, bool long_lived)
 		// only false if cache is empty, which can't be the case because
 		// allocation failed.
 		TEST(removed);
-#include "nommgr.h"
-		cache_allocator.free((u8*)discarded_buf, size);
-#include "mmgr.h"
+		cache_allocator.dealloc((u8*)discarded_buf, size);
 
 		if(attempts++ > 50)
 			debug_warn("possible infinite loop: failed to make room in cache");
@@ -798,11 +796,7 @@ LibError file_buf_free(FileIOBuf buf)
 		}
 		// buf is not in cache - needs to be freed immediately.
 		else
-		{
-#include "nommgr.h"
-			cache_allocator.free((u8*)exact_buf, actual_size);
-#include "mmgr.h"
-		}
+			cache_allocator.dealloc((u8*)exact_buf, actual_size);
 	}
 
 	stats_buf_free();
@@ -919,9 +913,7 @@ LibError file_cache_invalidate(const char* P_fn)
 	if(file_cache.retrieve(atom_fn, cached_buf, &size))
 	{
 		file_cache.remove(atom_fn);
-#include "nommgr.h"
-		cache_allocator.free((u8*)cached_buf, size);
-#include "mmgr.h"
+		cache_allocator.dealloc((u8*)cached_buf, size);
 	}
 
 	return ERR_OK;
@@ -935,9 +927,7 @@ void file_cache_flush()
 		FileIOBuf discarded_buf; size_t size;
 		if(!file_cache.remove_least_valuable(&discarded_buf, &size))
 			return;	// cache is now empty - done
-#include "nommgr.h"
-		cache_allocator.free((u8*)discarded_buf, size);
-#include "mmgr.h"
+		cache_allocator.dealloc((u8*)discarded_buf, size);
 	}
 }
 
@@ -992,9 +982,7 @@ debug_break();
 			AllocMap::iterator it = allocations.begin();
 			for(; chosen_idx != 0; chosen_idx--)
 				++it;
-#include "nommgr.h"
-			cache_allocator.free((u8*)it->first, it->second);
-#include "mmgr.h"
+			cache_allocator.dealloc((u8*)it->first, it->second);
 			allocations.erase(it);
 		}
 
