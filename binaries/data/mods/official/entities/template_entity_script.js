@@ -234,9 +234,6 @@ function entityInit()
 		this.traits.ai.stance.curr = "Avoid";
 	}
 
-	
-	
-
 /*	
 	// Generate entity's personal name (if it needs one).
 	if (this.traits.id.personal)
@@ -428,9 +425,9 @@ function performHeal( evt )
 	pool = this.player.resource;
 	for( resource in pool )
 	{
-		switch( resource.toString().toUpperCase() )
+		switch( resource.toString() )
 		{
-			case "POPULATION" || "HOUSING":
+			case "Population" || "Housing":
 			break;
 			default:
 				// Make sure we have enough resources.
@@ -455,9 +452,9 @@ function performHeal( evt )
 	pool = this.player.resource;
 	for( resource in pool )
 	{
-		switch( resource.toString().toUpperCase() )
+		switch( resource.toString() )
 		{
-			case "POPULATION" || "HOUSING":
+			case "Population" || "Housing":
 			break;
 			default:
 				// Deduct resources to pay for healing.
@@ -796,7 +793,8 @@ function entityEventPrepareOrder( evt )
 function entityStartProduction( evt )
 {
 	console.write("StartProduction: " + evt.productionType + " " + evt.name);
-	evt.time = 5.0;
+	// Set the amount of time it will take to complete production of the production object.
+	evt.time = getTemplate(evt.name).traits.creation.time;
 }
 
 function entityFinishProduction( evt )
@@ -908,21 +906,22 @@ function attemptAddToBuildQueue( entity, create_tag, tab, list )
 	template = getEntityTemplate( create_tag );
 	result = entityCheckQueueReq( entity, template );	
 
-	if (result == "true") // If the entry meets requirements to be added to the queue (eg sufficient resources) 
+	if (result == true) // If the entry meets requirements to be added to the queue (eg sufficient resources) 
 	{
 		// Cycle through all costs of this entry.
 		pool = template.traits.creation.resource;
-		for( resource in pool )
+		for ( resource in pool )
 		{
-			switch( resource.toString().toUpperCase() )
+			switch ( getGUIGlobal().toTitleCase(resource.toString()) )
 			{
-				case "POPULATION" || "HOUSING":
+				case "Population":
+				case "Housing":
 				break;
 				default:
 					// Deduct the given quantity of resources.
-					getGUIGlobal().deductResources(resource.toString(), parseInt(pool[resource]));
+					getGUIGlobal().deductResources (resource.toString(), parseInt(pool[resource]));
 
-					console.write("Spent " + pool[resource] + " " + resource + " to purchase " + 
+					console.write ("Spent " + pool[resource] + " " + resource + " to purchase " + 
 						template.traits.id.generic);
 				break;
 			}
@@ -931,9 +930,14 @@ function attemptAddToBuildQueue( entity, create_tag, tab, list )
 		// Add entity to queue.
 		console.write( "Adding ", create_tag, " to build queue..." );
 		entity.addCreateQueue( template, tab, list );
+		
+		return true;
 	}
-	else		// If not, output the error message.
+	else
+	{	// If not, output the error message.
 		console.write(result);
+		return false;
+	}
 }
 
 // ====================================================================
@@ -948,26 +952,24 @@ function entityCheckQueueReq( entity, template )
 	resources = template.traits.creation.resource;
 	for( resource in resources )
 	{
-		resourceU = resource.toString().toUpperCase();
-		
-		switch( resourceU )
+		switch( getGUIGlobal().toTitleCase(resource.toString()) )
 		{
-			case "POPULATION":
+			case "Population":
 				// If the item costs more of this resource type than we have,
-				if (template.traits.population.rem > (localPlayer.resource["HOUSING"]-localPlayer.resource[resourceU]))
+				if (template.traits.population.rem > (localPlayer.resource["Housing"]-localPlayer.resource[resource]))
 				{
 					// Return an error.
-					return ("Insufficient Housing; " + (resources[resource]-localPlayer.resource["HOUSING"]-localPlayer.resource.valueOf()[resourceU].toString()) + " required."); 
+					return ("Insufficient Housing; " + (resources[resource]-localPlayer.resource["Housing"]-localPlayer.resource.valueOf()[resource].toString()) + " required."); 
 				}
 			break;
-			case "HOUSING": // Ignore housing. It's handled in combination with population.
+			case "Housing": // Ignore housing. It's handled in combination with population.
 			break
 			default:
 				// If the item costs more of this resource type than we have,
-				if (resources[resource] > localPlayer.resource[resourceU])
+				if (resources[resource] > localPlayer.resource[resource])
 				{
 					// Return an error.
-					return ("Insufficient " + resource + "; " + (localPlayer.resource[resourceU]-resources[resource])*-1 + " required."); 
+					return ("Insufficient " + resource + "; " + (localPlayer.resource[resource]-resources[resource])*-1 + " required."); 
 				}
 				else
 					console.write("Player has at least " + resources[resource] + " " + resource + ".");
@@ -982,7 +984,7 @@ function entityCheckQueueReq( entity, template )
 	// Check if the limit for this type of entity has been reached. 
 
 	// If we passed all checks, return success. Entity can be queued.
-	return "true"; 
+	return true; 
 }
 
 // ====================================================================

@@ -5,6 +5,21 @@
 
 // ====================================================================
 
+// Switch from the archive builder to the main menu.
+function startMainMenu()
+{
+	// Reveal the main menu now that the archive has been loaded.
+	guiHide ("ab");
+	guiUnHide ("pg");
+	// Play main 0 A.D. theme when the main menu starts.
+	curr_music = newRandomSound("music", "menu");
+	curr_music.loop();
+	// Switch to standard pointer.
+	setCursor ("arrow-default");
+}
+
+// ====================================================================
+
 // Helper function that enables the dark background mask, then reveals a given subwindow object.
 function openMainMenuSubWindow (windowName)
 {

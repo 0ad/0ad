@@ -6,6 +6,58 @@
 
 	<!--
 	==========================================
+	- PROGRESS BAR FOR ARCHIVE BUILDER
+	==========================================
+	-->
+
+	<object	name="ab"
+			type="button"
+			size="0 0 100% 100%"
+			ghost="false"
+			hotkey="archive.abort"
+			sprite="bkFillBlack"			
+	>
+		<action on="Press"><![CDATA[
+			// If the user aborts the archive, switch to the main menu.
+			startMainMenu();
+		]]></action>  	
+	
+		<object name="abProgressBarText"
+			type="text"
+			size="25 100%-190 100%-25 100%-180"
+			font="tahoma14"
+			textcolor="255 255 255"
+			text_align="center"
+			text_valign="center"
+		>
+		Rebuilding Archive ... Press Esc or Left-Click to Cancel
+		</object>
+
+		<object name="abProgressBar"
+			style="wheatProgressBarBlue"
+			type="progressbar"
+			size="25 100%-160 100%-25 100%-145"
+		>
+			<action on="Load"><![CDATA[
+				// Reset progress bar to zero at start of game.
+				// (Putting it at half for the moment so we have something to see)
+				this.caption = 50; // 0;
+				// Use waiting cursor.
+				setCursor ("cursor-wait");
+			]]></action>
+			<action on="Archive"><![CDATA[
+				// Jan: Please insert your equivalent event and variable for archive progress here.
+//				this.caption = g_Progress;  
+			]]></action>  
+			<action on="ArchiveComplete"><![CDATA[
+				// When the archive is finished, switch to the main menu.
+				startMainMenu();
+			]]></action>			
+		</object>	
+	</object>
+	
+	<!--
+	==========================================
 	- MAIN MENU - "COMMANDER'S TENT" BACKDROP
 	==========================================
 	-->
@@ -13,19 +65,8 @@
 	<object	name="pg"
 		type="image"
 		sprite="pgBackground"
+		hidden="true"
 	>
-		<action on="Load"><![CDATA[
-			// Play main 0 A.D. theme when the main menu starts.
-			curr_music = newRandomSound("music", "menu");
-			curr_music.loop();
-
-			// Display a .cfg file variable to prove we can access it.
-//			console.write ("Volume: " + g_ConfigDB.system["sound.mastergain"] + ".")
-			// Unfortunately, although Philip's workaround certainly works,
-			// a] The value cannot be modified.
-			// b] Variables a step up in the hierarchy are not recognised (eg system.sound.mastergain).
-		]]></action>
-		
 		<!--
 		==========================================
 		- MAIN MENU - STATIC TOOLTIP WINDOW
