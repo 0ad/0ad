@@ -10,7 +10,7 @@ function guiHide (objectName)
 {
     var guiObject = getGUIObjectByName (objectName);
 	if( guiObject == "" || guiObject == null || guiObject == undefined || guiObject == "undefined" )
-		console.write ("GUI Object not found: " + objectName);
+		console.write ("guiHide(): GUI Object not found: " + objectName);
 	if( !guiObject.hidden )
 		guiObject.hidden = true;
 }
@@ -22,7 +22,7 @@ function guiUnHide (objectName)
 {
     var guiObject = getGUIObjectByName (objectName);
 	if (guiObject == "" || guiObject == null || guiObject == undefined || guiObject == "undefined")
-		console.write ("GUI Object not found: " + objectName);
+		console.write ("guiUnHide(): GUI Object not found: " + objectName);
 	if( guiObject.hidden )
 		guiObject.hidden = false;
 }
@@ -36,7 +36,7 @@ function guiToggle (objectName)
         var guiObject = getGUIObjectByName (objectName);
 
 	if (guiObject == "" || guiObject == null || guiObject == undefined || guiObject == "undefined")
-		console.write ("GUI Object not found: " + objectName);
+		console.write ("guiToggle(): GUI Object not found: " + objectName);
 
         // Toggle it
         guiObject.hidden = !guiObject.hidden;
@@ -49,7 +49,7 @@ function guiEnable (objectName)
 {
         var guiObject = getGUIObjectByName (objectName);
 	if (guiObject == "" || guiObject == null || guiObject == undefined || guiObject == "undefined")
-		console.write ("GUI Object not found: " + objectName);
+		console.write ("guiEnable(): GUI Object not found: " + objectName);
 	guiObject.enabled = true;
 }
 
@@ -60,7 +60,7 @@ function guiDisable (objectName)
 {
         var guiObject = getGUIObjectByName (objectName);
 	if (guiObject == "" || guiObject == null || guiObject == undefined || guiObject == "undefined")
-		console.write ("GUI Object not found: " + objectName);
+		console.write ("guiDisable(): GUI Object not found: " + objectName);
 	guiObject.enabled = false;
 }
 
@@ -73,7 +73,7 @@ function guiRenameAndReveal (objectName, objectCaption)
         var guiObject = getGUIObjectByName (objectName);
 
 	if (guiObject == "" || guiObject == null || guiObject == undefined || guiObject == "undefined")
-		console.write ("GUI Object not found: " + objectName);
+		console.write ("guiRenameAndReveal(): GUI Object not found: " + objectName);
 
 	// Rename it
 	guiObject.caption = objectCaption;
@@ -96,7 +96,7 @@ function guiModifyCaption (objectName, objectModifier, objectPlaces)
         var guiObject = getGUIObjectByName (objectName);
 
 	if (guiObject == "" || guiObject == null || guiObject == undefined || guiObject == "undefined")
-		console.write ("GUI Object not found: " + objectName);
+		console.write ("guiModifyCaption(): GUI Object not found: " + objectName);
 
 	if (!objectPlaces)
 		objectPlaces = 0;
@@ -117,7 +117,7 @@ function guiSetCaption (objectName, objectCaption)
         var guiObject = getGUIObjectByName (objectName);
 
 	if (guiObject == "" || guiObject == null || guiObject == undefined || guiObject == "undefined")
-		console.write ("GUI Object not found: " + objectName);
+		console.write ("guiSetCaption(): GUI Object not found: " + objectName);
 
 	guiObject.caption = objectCaption;
 }

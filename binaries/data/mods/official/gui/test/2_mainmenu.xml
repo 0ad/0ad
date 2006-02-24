@@ -24,13 +24,13 @@
 	
 		<object name="abProgressBarText"
 			type="text"
-			size="25 100%-190 100%-25 100%-180"
+			size="25 100%-190 100%-25 100%-175"
 			font="tahoma14"
 			textcolor="255 255 255"
 			text_align="center"
 			text_valign="center"
 		>
-		Rebuilding Archive ... Press Esc or Left-Click to Cancel
+		Rebuilding Archive ... Press Alt+F4 or Left-Click to Cancel
 		</object>
 
 		<object name="abProgressBar"
@@ -42,8 +42,6 @@
 				// Reset progress bar to zero at start of game.
 				// (Putting it at half for the moment so we have something to see)
 				this.caption = 50; // 0;
-				// Use waiting cursor.
-				setCursor ("cursor-wait");
 			]]></action>
 			<action on="Archive"><![CDATA[
 				// Jan: Please insert your equivalent event and variable for archive progress here.

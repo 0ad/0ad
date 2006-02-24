@@ -14,8 +14,6 @@ function startMainMenu()
 	// Play main 0 A.D. theme when the main menu starts.
 	curr_music = newRandomSound("music", "menu");
 	curr_music.loop();
-	// Switch to standard pointer.
-	setCursor ("arrow-default");
 }
 
 // ====================================================================
