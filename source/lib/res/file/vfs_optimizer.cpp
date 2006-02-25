@@ -23,11 +23,23 @@ void trace_shutdown()
 }
 
 
-static bool trace_enabled;
+// enabled by default. by the time we can decide whether a trace needs to
+// be generated (see should_rebuild_main_archive), file accesses will
+// already have occurred; hence default enabled and disable if not needed.
+static bool trace_enabled = true;
+static bool trace_force_enabled = false;	// see below
 
+// note: explicitly enabling trace means the user wants one to be
+// generated even if an up-to-date version exists.
+// (mechanism: ignore any attempts to disable)
 void trace_enable(bool want_enabled)
 {
 	trace_enabled = want_enabled;
+
+	if(want_enabled)
+		trace_force_enabled = true;
+	if(trace_force_enabled)
+		trace_enabled = true;
 }
 
 
@@ -76,6 +88,9 @@ void trace_clear()
 
 LibError trace_write_to_file(const char* trace_filename)
 {
+	if(!trace_enabled)
+		return INFO_SKIPPED;
+
 	char N_fn[PATH_MAX];
 	RETURN_ERR(file_make_full_native_path(trace_filename, N_fn));
 	FILE* f = fopen(N_fn, "wt");
@@ -584,8 +599,6 @@ static void EntCb(const char* path, const DirEnt* ent, void* context)
 		params->files.push_back(file_make_unique_fn_copy(path));
 }
 
-
-
 LibError vfs_opt_rebuild_main_archive(const char* P_archive_path, const char* trace_filename)
 {
 	// get list of all files
@@ -613,7 +626,6 @@ LibError vfs_opt_rebuild_main_archive(const char* P_archive_path, const char* tr
 #endif
 
 	return ret;
-
 }
 
 
@@ -621,11 +633,21 @@ LibError vfs_opt_rebuild_main_archive(const char* P_archive_path, const char* tr
 // autobuild logic: decides when to (re)build an archive.
 //
 
-static const size_t REBUILD_MAIN_ARCHIVE_THRESHOLD = 100;
-static const size_t BUILD_MINI_ARCHIVE_THRESHOLD = 30;
+static const size_t REBUILD_MAIN_ARCHIVE_THRESHOLD = 50;
+static const size_t BUILD_MINI_ARCHIVE_THRESHOLD = 20;
 
-static bool should_rebuild_main_archive()
+static bool should_rebuild_main_archive(const char* P_archive_path,
+	const char* trace_filename)
 {
+	// if there's no trace file, no point in building a main archive.
+	struct stat s;
+	if(file_stat(trace_filename, &s) != ERR_OK)
+		return false;
+	// otherwise, if trace is up-to-date, stop recording a new one.
+	const time_t vfs_mtime = tree_most_recent_mtime();
+	if(s.st_mtime >= vfs_mtime)
+		trace_enable(false);
+
 	if(loose_files.size() >= REBUILD_MAIN_ARCHIVE_THRESHOLD)
 		return true;
 
@@ -650,11 +672,9 @@ LibError vfs_opt_auto_build_archive(const char* P_dst_path,
 	const char* main_archive_name, const char* trace_filename)
 {
 	char P_archive_path[PATH_MAX];
-	if(should_rebuild_main_archive())
-	{
-		RETURN_ERR(vfs_path_append(P_archive_path, P_dst_path, main_archive_name));
+	RETURN_ERR(vfs_path_append(P_archive_path, P_dst_path, main_archive_name));
+	if(should_rebuild_main_archive(P_archive_path, trace_filename))
 		return vfs_opt_rebuild_main_archive(P_archive_path, trace_filename);
-	}
 	else if(should_build_mini_archive())
 	{
 		loose_files.push_back(0);

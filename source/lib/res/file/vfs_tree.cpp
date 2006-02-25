@@ -32,6 +32,18 @@
 
 static void* node_alloc();
 
+
+// remembers which VFS file is the most recently modified.
+static time_t most_recent_mtime;
+static void set_most_recent_if_newer(time_t mtime)
+{
+	most_recent_mtime = MAX(most_recent_mtime, mtime);
+}
+time_t tree_most_recent_mtime()
+{
+	return most_recent_mtime;
+}
+
 //-----------------------------------------------------------------------------
 // locking
 // these are exported to protect the vfs_mount list; apart from that, it is
@@ -459,12 +471,8 @@ LibError tree_add_file(TDir* td, const char* name,
 	RETURN_ERR(ret);
 	if(ret == INFO_ALREADY_PRESENT)
 	{
-		// assume they're the same if size and last-modified time match.
-		// note: FAT timestamp only has 2 second resolution
 		TFile* tf = (TFile*)node;
-		const bool is_same = (tf->size == size) &&
-			fabs(difftime(tf->mtime, mtime)) <= 2.0;
-		if(!mount_should_replace(tf->m, m, is_same))
+		if(!mount_should_replace(tf->m, m, tf->size, size, tf->mtime, mtime))
 			return INFO_ALREADY_PRESENT;
 
 		stats_vfs_file_remove(tf->size);
@@ -476,6 +484,8 @@ LibError tree_add_file(TDir* td, const char* name,
 	tf->size    = size;
 	tf->memento = memento;
 	stats_vfs_file_add(size);
+
+	set_most_recent_if_newer(mtime);
 	return ERR_OK;
 }
 

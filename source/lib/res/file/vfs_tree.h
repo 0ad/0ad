@@ -36,6 +36,8 @@ extern void tree_display();
 // rebuilding VFS and on exit.
 extern void tree_clear();
 
+extern time_t tree_most_recent_mtime();
+
 // attempt to add <fn> to <dir>, storing its attributes.
 // overrides previously existing files of the same name if the new one
 // is more important, determined via priority and file location.

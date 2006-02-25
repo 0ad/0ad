@@ -94,16 +94,25 @@ char mount_get_type(const Mount* m)
 }
 
 
-bool mount_should_replace(const Mount* m_old, const Mount* m_new, bool files_are_identical)
+bool mount_should_replace(const Mount* m_old, const Mount* m_new,
+	size_t size_old, size_t size_new, time_t mtime_old, time_t mtime_new)
 {
-	// need to "replace" if not yet associated with a Mount
+	// 1) "replace" if not yet associated with a Mount.
 	if(!m_old)
 		return true;
 
-	// keep old if new priority is lower.
+	// 2) keep old if new priority is lower.
 	if(m_new->pri < m_old->pri)
 		return false;
 
+	// assume they're the same if size and last-modified time match.
+	// note: FAT timestamp only has 2 second resolution
+	const double mtime_diff = difftime(mtime_old, mtime_new);
+	const bool identical = (size_old == size_new) &&
+		fabs(mtime_diff) <= 2.0;
+
+	// 3) go with more efficient source (if files are identical)
+	//
 	// since priority is not less, we really ought to always go with m_new.
 	// however, there is one special case we handle for performance reasons:
 	// if the file contents are the same, prefer the more efficient source.
@@ -111,7 +120,12 @@ bool mount_should_replace(const Mount* m_old, const Mount* m_new, bool files_are
 	// especially if set incorrectly.
 	//
 	// note: see MountType for explanation of type > type2.
-	if(files_are_identical && m_old->type > m_new->type)
+	if(identical && m_old->type > m_new->type)
+		return false;
+
+	// 4) don't replace "old" file if modified more recently than "new".
+	// (still provide for 2 sec. FAT tolerance - see above)
+	if(mtime_diff > 2.0)
 		return false;
 
 	return true;
