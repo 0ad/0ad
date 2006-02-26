@@ -49,7 +49,9 @@ public:
 	~CEntityManager();
 
 	HEntity create( CBaseEntity* base, CVector3D position, float orientation );
-	HEntity create( CStrW templatename, CVector3D position, float orientation );
+	HEntity create( CStrW templateName, CVector3D position, float orientation );
+
+	HEntity createFoundation( CStrW templateName, CVector3D position, float orientation );
 
 	HEntity* getByHandle( u16 index );
 	CHandle *getHandle( int index );

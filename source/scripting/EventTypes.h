@@ -11,6 +11,7 @@ enum EEventType
 {
 	// Entity events
 	EVENT_INITIALIZE = 0,
+	EVENT_DEATH,
 	EVENT_TICK,
 	EVENT_GENERIC,
 	EVENT_START_PRODUCTION,
@@ -37,6 +38,7 @@ enum EEventType
 static const wchar_t* const EventNames[EVENT_LAST] =
 {
 	/* EVENT_INITIALIZE */ L"onInitialize",
+	/* EVENT_DEATH */ L"onDeath",
 	/* EVENT_TICK */ L"onTick",
 	/* EVENT_GENERIC */ L"onGeneric", /* For generic actions on a target unit, like attack or gather */
 	/* EVENT_START_PRODUCTION */ L"onStartProduction", /* We're about to start training/researching something (deduct resources, etc) */

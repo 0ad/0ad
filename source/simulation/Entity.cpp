@@ -28,7 +28,7 @@ extern int g_xres, g_yres;
 #include <algorithm>
 using namespace std;
 
-CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
+CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, CStrW building )
 {
     m_position = position;
     m_orientation = orientation;
@@ -71,6 +71,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
     AddProperty( L"traits.vision.los", &m_los );
     AddProperty( L"traits.vision.permanent", &m_permanent );
 	AddProperty( L"last_combat_time", &m_lastCombatTime );
+	AddProperty( L"building", &m_building );
 
 	m_productionQueue = new CProductionQueue( this );
 	AddProperty( L"production_queue", m_productionQueue );
@@ -120,6 +121,8 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation )
 	m_currentListener = NULL;
 
     m_grouped = -1;
+
+	m_building = building;
 
     m_player = g_Game->GetPlayer( 0 );
 
@@ -179,6 +182,8 @@ void CEntity::loadBase()
     {
         m_bounds = new CBoundingBox( m_position.X, m_position.Z, m_ahead, m_base->m_bound_box );
     }
+
+    m_actor_transform_valid = false;
 }
 
 void CEntity::kill()
@@ -1286,6 +1291,9 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 
 bool CEntity::Kill( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
+    CEventDeath evt;
+    DispatchEvent( &evt );
+
     for( AuraTable::iterator it = m_auras.begin(); it != m_auras.end(); it++ )
     {
         it->second->RemoveAll();

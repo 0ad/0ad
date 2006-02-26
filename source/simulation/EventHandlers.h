@@ -15,6 +15,12 @@ public:
 	CEventInitialize() : CScriptEvent( L"initialize", EVENT_INITIALIZE, false ) {}
 };
 
+class CEventDeath : public CScriptEvent
+{
+public:
+	CEventDeath() : CScriptEvent( L"death", EVENT_DEATH, false ) {}
+};
+
 class CEventTick : public CScriptEvent
 {
 public:

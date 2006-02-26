@@ -45,6 +45,7 @@ CBaseEntity::CBaseEntity()
 	AddProperty( L"traits.anchor.type", &m_anchorType );
 	AddProperty( L"traits.vision.los", &m_los );
 	AddProperty( L"traits.vision.permanent", &m_permanent );
+	AddProperty( L"traits.foundation", &m_foundation );
 
 	for( int t = 0; t < EVENT_LAST; t++ )
 	{
@@ -54,7 +55,9 @@ CBaseEntity::CBaseEntity()
 
 	// Initialize, make life a little easier on the scriptors
 	m_speed = m_turningRadius = 0.0f;
-	m_extant = true; m_corpse = CStrW();
+	m_extant = true; 
+	m_corpse = CStrW();
+	m_foundation = CStrW();
 
 	m_bound_type = CBoundingObject::BOUND_NONE;
 	m_bound_circle = NULL;
@@ -268,12 +271,14 @@ bool CBaseEntity::loadXML( CStr filename )
 					}
 					else if( hadDepth )
 					{
+						// Specifying a rectangular footprint
 						if( !m_bound_box )
 							m_bound_box = new CBoundingBox();
 						m_bound_box->setDimensions( width, depth );
 						m_bound_box->setHeight( height );
 						m_bound_type = CBoundingObject::BOUND_OABB;
 					}
+					// Else, entity has no footprint.
 				}
 			}
 			// important so that scripts can see traits
@@ -344,7 +349,9 @@ void CBaseEntity::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement&
 			AddProperty( PropertyName, JSVAL_TRUE );
 		}
 		else
+		{
 			AddProperty( PropertyName, Source.getText() );
+		}
 	}
 
 	

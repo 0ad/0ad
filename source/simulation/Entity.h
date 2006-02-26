@@ -102,7 +102,10 @@ public:
 	int m_frameCheck;	//counts the frame
 	
 	float m_lastCombatTime;
-	
+
+	// Building to convert to if this is a foundation, or "" otherwise
+	CStrW m_building;
+
 	//SP properties
 	float m_staminaCurr;
 	float m_staminaMax;
@@ -181,7 +184,7 @@ public:
 	CEntity* m_currentListener;
 	
 private:
-	CEntity( CBaseEntity* base, CVector3D position, float orientation );
+	CEntity( CBaseEntity* base, CVector3D position, float orientation, CStrW building = L"" );
 
 	uint processGotoHelper( CEntityOrder* current, size_t timestep_milli, HEntity& collide );
 

@@ -1207,8 +1207,7 @@ void CBuildingPlacer::mouseReleased()
 
 	if(m_valid) 
 	{
-		CBaseEntity* base = g_EntityTemplateCollection.getTemplate( m_templateName );
-		HEntity ent = g_EntityManager.create( base, clickPos, m_angle );
+		HEntity ent = g_EntityManager.createFoundation( m_templateName, clickPos, m_angle );
 		ent->SetPlayer(g_Game->GetLocalPlayer());
 	}
 }

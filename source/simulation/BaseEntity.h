@@ -85,6 +85,9 @@ public:
 	int m_los;
 	bool m_permanent;
 
+	// Foundation entity, or "" for none
+	CStrW m_foundation;
+
 	float m_speed;
 	float m_runRegenRate;
 	float m_runDecayRate;

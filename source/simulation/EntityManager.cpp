@@ -91,10 +91,41 @@ HEntity CEntityManager::create( CBaseEntity* base, CVector3D position, float ori
 	return( HEntity( m_nextalloc++ ) );
 }
 
-HEntity CEntityManager::create( CStrW templatename, CVector3D position, float orientation )
+HEntity CEntityManager::create( const CStrW templateName, CVector3D position, float orientation )
 {
-	CBaseEntity* templateobj = g_EntityTemplateCollection.getTemplate( templatename );
-	return( create( templateobj, position, orientation ) );
+	CBaseEntity* templateObj = g_EntityTemplateCollection.getTemplate( templateName );
+	return( create( templateObj, position, orientation ) );
+}
+
+HEntity CEntityManager::createFoundation( CStrW templateName, CVector3D position, float orientation )
+{
+	CBaseEntity* base = g_EntityTemplateCollection.getTemplate( templateName );
+	debug_assert( base );
+	if( !base )
+		return HEntity();
+	if( base->m_foundation == L"" )
+		return create( base, position, orientation );	// Entity has no foundation, so just create it
+
+	CBaseEntity* foundation = g_EntityTemplateCollection.getTemplate( base->m_foundation );
+	debug_assert( foundation );
+	if( !foundation )
+		return HEntity();
+
+	while( m_entities[m_nextalloc].m_refcount )
+	{
+		m_nextalloc++;
+		if(m_nextalloc == MAX_HANDLES)
+		{
+			debug_warn("Ran out of entity handles!");
+			return HEntity();
+		}
+	}
+
+	m_entities[m_nextalloc].m_entity = new CEntity( foundation, position, orientation, templateName );
+	if( m_collisionPatches)
+		m_entities[m_nextalloc].m_entity->updateCollisionPatch();
+	m_entities[m_nextalloc].m_entity->me = HEntity( m_nextalloc );
+	return( HEntity( m_nextalloc++ ) );
 }
 
 HEntity* CEntityManager::getByHandle( u16 index )
