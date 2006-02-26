@@ -37,6 +37,7 @@ function entityInit()
 		this.traits.id.generic = building.traits.id.generic;
 		this.traits.id.specific = building.traits.id.specific;
 		this.traits.id.civ = building.traits.id.civ;
+		this.traits.id.icon_cell = building.traits.id.icon_cell;
 		this.traits.health.max = building.traits.health.max;
 		this.build_points = new Object();
 		this.build_points.curr = 0.0;
@@ -186,31 +187,9 @@ function entityInit()
 	this.damage = damage;
 	this.entityComplete = entityComplete;
 	this.GotoInRange = GotoInRange;
+	this.attachAuras = attachAuras;
 
-	// Attach Auras if the entity is entitled to them.
-	if( this.traits.auras )
-	{
-		if( this.traits.auras.courage )
-		{
-			a = this.traits.auras.courage;
-			this.addAura ( "courage", a.radius, new DamageModifyAura( this, true, a.bonus ) );
-		}
-		if( this.traits.auras.fear ) 
-		{
-			a = this.traits.auras.fear;
-			this.addAura ( "fear", a.radius, new DamageModifyAura( this, false, -a.bonus ) );
-		}
-		if( this.traits.auras.infidelity ) 
-		{
-			a = this.traits.auras.infidelity;
-			this.addAura ( "infidelity", a.radius, new InfidelityAura( this, a.time ) );
-		}
-		if( this.traits.auras.dropsite ) 
-		{
-			a = this.traits.auras.dropsite;
-			this.addAura ( "dropsite", a.radius, new DropsiteAura( this, a.types ) );
-		}
-	}		
+	this.attachAuras();
 	
 	if ( !this.traits.id )
 	{
@@ -286,6 +265,37 @@ function entityInit()
 	//	console.write ("A new " + this.traits.id.specific + " (" + this.traits.id.generic + ") called " + this.traits.id.personal.name + " has entered your dungeon.")
 	//else	
 	//	console.write ("A new " + this.traits.id.specific + " (" + this.traits.id.generic + ") has entered your dungeon.")
+}
+
+// ====================================================================
+
+// Attach any auras the entity is entitled to. This was moved to a separate function so that buildings can have their auras 
+// attached to them only when they finish construction.
+function attachAuras() 
+{
+	if( this.traits.auras )
+	{
+		if( this.traits.auras.courage )
+		{
+			a = this.traits.auras.courage;
+			this.addAura ( "courage", a.radius, new DamageModifyAura( this, true, a.bonus ) );
+		}
+		if( this.traits.auras.fear ) 
+		{
+			a = this.traits.auras.fear;
+			this.addAura ( "fear", a.radius, new DamageModifyAura( this, false, -a.bonus ) );
+		}
+		if( this.traits.auras.infidelity ) 
+		{
+			a = this.traits.auras.infidelity;
+			this.addAura ( "infidelity", a.radius, new InfidelityAura( this, a.time ) );
+		}
+		if( this.traits.auras.dropsite ) 
+		{
+			a = this.traits.auras.dropsite;
+			this.addAura ( "dropsite", a.radius, new DropsiteAura( this, a.types ) );
+		}
+	}		
 }
 
 // ====================================================================
@@ -523,6 +533,7 @@ function performBuild( evt )
 		{
 			t.template = getEntityTemplate( t.building );
 			t.building = "";
+			t.attachAuras();
 		}
 		evt.preventDefault();	// Stop performing this action
 	}
