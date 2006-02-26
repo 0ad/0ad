@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_entity_full"
+>
+	<Traits>
+	
+		<Id>
+			<Internal_Only />
+			
+			<Generic>Foundation</Generic>
+			
+			<Icon>sheet_civ</Icon>
+			
+			<Classes>Foundation</Classes>
+		</Id>
+
+		<Health>
+			<Bar_Height>6.0</Bar_Height>
+			<Regen_Rate>0.0</Regen_Rate>
+		</Health>
+
+		<Vision>
+			<LOS>3</LOS>
+		</Vision>
+
+	</Traits>
+	
+	<Script File="entities/template_entity_script.js" />
+	<Event On="Death" Function="foundationDestroyed" />
+</Entity>

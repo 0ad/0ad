@@ -20,7 +20,7 @@ const ACTION_ATTACK	= 1;
 const ACTION_GATHER	= 2;
 const ACTION_HEAL	= 3;
 const ACTION_ATTACK_RANGED = 4;
-
+const ACTION_BUILD = 5;
 
 // ====================================================================
 
@@ -29,6 +29,19 @@ function entityInit()
 	// Initialise an entity when it is first spawned (generate starting hitpoints, etc).
 
 	this.addCreateQueue = entityAddCreateQueue;
+	
+	// If this is a foundation, initialize traits from the building we're converting into
+	if( this.building != "" )
+	{
+		var building = getEntityTemplate( this.building );
+		this.traits.id.generic = building.traits.id.generic;
+		this.traits.id.specific = building.traits.id.specific;
+		this.traits.id.civ = building.traits.id.civ;
+		this.traits.health.max = building.traits.health.max;
+		this.build_points = new Object();
+		this.build_points.curr = 0.0;
+		this.build_points.max = parseFloat( building.traits.creation.time );
+	}
 	
 	// Generate civ code (1st four characters of civ name, in lower case eg "Carthaginians" => "cart").
 	if (this.traits.id && this.traits.id.civ)
@@ -43,27 +56,27 @@ function entityInit()
 	}
 
 	// If entity can contain garrisoned units, empty it.
-	if (this.traits.garrison && this.traits.garrison.max)
-		this.traits.garrison.curr = 0
+	if ( this.traits.garrison && this.traits.garrison.max )
+		this.traits.garrison.curr = 0;
 
-	// If entity has health, set current to same.
-	if (this.traits.health && this.traits.health.max)
-		this.traits.health.curr = this.traits.health.max
+	// If entity has health, set current to same, unless it's a foundation, in which case we set it to 0.
+	if ( this.traits.health && this.traits.health.max  )
+		this.traits.health.curr = ( this.building!="" ? 0.0 : this.traits.health.max );
 
 	// If entity has stamina, set current to same.
-	if (this.traits.stamina && this.traits.stamina.max)
-		this.traits.stamina.curr = this.traits.stamina.max
+	if ( this.traits.stamina && this.traits.stamina.max )
+		this.traits.stamina.curr = this.traits.stamina.max;
 
 	if (this.traits.supply)
 	{
 		// If entity has supply, set current to same.
 		if (this.traits.supply.max)
-			this.traits.supply.curr = this.traits.supply.max
+			this.traits.supply.curr = this.traits.supply.max;
 
 		// If entity has type of supply and no subtype, set subtype to same
 		// (so we don't have to say type="wood", subtype="wood"
 		if (this.traits.supply.type && !this.traits.supply.subtype)
-			this.traits.supply.subtype = this.traits.supply.type
+			this.traits.supply.subtype = this.traits.supply.type;
 			
 		// The "dropsitecount" array holds the number of units with gather aura in range of the object;
 		// this is important so that if you have two mills near something and one of them is destroyed,
@@ -157,6 +170,10 @@ function entityInit()
 			// this animation should actually be "ranged" except the current actors still have it called "melee"
 			this.setActionParams( ACTION_ATTACK_RANGED, minRange, a.range, a.speed, "melee" );
 		}
+		if( this.actions.build )
+		{
+			this.setActionParams( ACTION_BUILD, 0.0, 2.0, this.actions.build.speed, "build" );
+		}
 	}
 	
 	// Attach functions to ourselves
@@ -165,7 +182,9 @@ function entityInit()
 	this.performAttackRanged = performAttackRanged;
 	this.performGather = performGather;
 	this.performHeal = performHeal;
+	this.performBuild = performBuild;
 	this.damage = damage;
+	this.entityComplete = entityComplete;
 	this.GotoInRange = GotoInRange;
 
 	// Attach Auras if the entity is entitled to them.
@@ -233,7 +252,7 @@ function entityInit()
 		// Set default stance for non-combat units.
 		this.traits.ai.stance.curr = "Avoid";
 	}
-
+	
 /*	
 	// Generate entity's personal name (if it needs one).
 	if (this.traits.id.personal)
@@ -271,15 +290,35 @@ function entityInit()
 
 // ====================================================================
 
+function foundationDestroyed( evt )
+{
+	if( this.building != "" )	// Check that we're *really* a foundation since the event handler is kept when we change templates (probably a bug)
+	{
+		//console.write( "Hari Seldon made a small calculation error." );
+		
+		var bp = this.build_points;
+		var fractionToReturn = (bp.max - bp.curr) / bp.max;
+		
+		var resources = getEntityTemplate( this.building ).traits.creation.resource;
+		for( r in resources )
+		{
+			amount = parseInt( fractionToReturn * parseInt(resources[r]) );
+			getGUIGlobal().giveResources( r.toString(), amount );
+		}
+	}
+}
+
+// ====================================================================
+
 function performAttack( evt )
 {
 	this.last_combat_time = getGameTime();
 	
-	curr_hit = getGUIGlobal().newRandomSound("voice", "hit", this.traits.audio.path);
+	var curr_hit = getGUIGlobal().newRandomSound("voice", "hit", this.traits.audio.path);
 	curr_hit.play();
 
 	// Attack logic.
-	dmg = new DamageType();
+	var dmg = new DamageType();
 	
 	if ( this.getRunState() )
 	{
@@ -454,13 +493,38 @@ function performHeal( evt )
 	{
 		switch( resource.toString() )
 		{
-			case "Population" || "Housing":
-			break;
+			case "Population":
+			case "Housing":
+				break;
 			default:
 				// Deduct resources to pay for healing.
 				getGUIGlobal().deductResources(toTitleCase (resource.toString()), parseInt(evt.target.actions.heal.cost * evt.target.traits.creation.cost[resource]));
-			break;
+				break;
 		}
+	}
+}
+
+// ====================================================================
+
+function performBuild( evt )
+{
+	var t = evt.target;
+	var b = this.actions.build;
+	var bp = t.build_points;
+	var hp = t.traits.health;
+	
+	var points = parseFloat( b.rate ) * parseFloat( b.speed ) / 1000.0;
+	bp.curr += points;
+	hp.curr = Math.min( hp.max, hp.curr + (points/bp.max)*hp.max );
+	
+	if( bp.curr >= bp.max )
+	{
+		if( t.building != "" )	// Might be false if another unit finished building the thing during our last anim cycle
+		{
+			t.template = getEntityTemplate( t.building );
+			t.building = "";
+		}
+		evt.preventDefault();	// Stop performing this action
 	}
 }
 
@@ -568,7 +632,7 @@ function damage( dmg, inflictor )
 		console.write("Kill!!");
 		this.kill();
 	}
-	else if( inflictor && this.actions.attack )
+	else if( inflictor && this.actions && this.actions.attack )
 	{
 		// If we're not already doing something else, take a measured response - hit 'em back.
 		// You know, I think this is quite possibly the first AI code the AI divlead has written
@@ -592,6 +656,8 @@ function entityEventGeneric( evt )
 			this.performHeal( evt ); break;
 		case ACTION_ATTACK_RANGED:
 			this.performAttackRanged( evt ); break;
+		case ACTION_BUILD:
+			this.performBuild( evt ); break;
 
 		default:
 			console.write( "Unknown generic action: " + evt.action );
@@ -645,6 +711,14 @@ function getAttackAction( source, target )
 
 // ====================================================================
 
+// TODO: Change this to an event so that it gets passed to our parent too, like other events
+function entityComplete()
+{
+	console.write( this + " is finished building." );
+}
+
+// ====================================================================
+
 function entityEventTargetChanged( evt )
 {
 	// This event lets us know when the user moves his/her cursor to a different unit (provided this
@@ -659,7 +733,7 @@ function entityEventTargetChanged( evt )
 	evt.defaultAction = ACTION_NONE;
 	evt.secondaryAction = ACTION_NONE;
 	evt.secondaryCursor = "arrow-default";
-	if ( this.actions.run && this.actions.run.speed > 0 )
+	if ( this.actions && this.actions.run && this.actions.run.speed > 0 )
 	{
 		evt.secondaryOrder = NMT_Run;
 	}
@@ -679,6 +753,7 @@ function entityEventTargetChanged( evt )
 			evt.secondaryAction = getAttackAction( this, evt.target );
 			evt.secondaryCursor = "action-attack";
 		}
+		
 		if ( this.actions.escort &&
 			this != evt.target &&
 			evt.target.player == this.player &&
@@ -695,7 +770,6 @@ function entityEventTargetChanged( evt )
 			}
 		}
 
-
 		if ( canGather( this, evt.target ) )
 		{
 			evt.defaultOrder = NMT_Generic;
@@ -707,6 +781,17 @@ function entityEventTargetChanged( evt )
 			evt.secondaryAction = ACTION_GATHER;
 		  	// Set cursor (eg "action-gather-fruit").
 		    evt.secondaryCursor = "action-gather-" + evt.target.traits.supply.subtype;
+		}
+		
+		if ( canBuild( this, evt.target ) )
+		{
+			evt.defaultOrder = NMT_Generic;
+			evt.defaultAction = ACTION_BUILD;
+		    evt.defaultCursor = "action-build";
+
+			evt.secondaryOrder = NMT_Generic;
+			evt.secondaryAction = ACTION_BUILD;
+		    evt.secondaryCursor = "action-build";
 		}
 	}
 
@@ -726,7 +811,7 @@ function entityEventPrepareOrder( evt )
 		evt.preventDefault();
 		return;
 	}
-			
+	
 	//evt.notifySource is the entity order data will be obtained from, so if we're attacking and we 
 	//want our listeners to copy us, then we will use our own order as the source.
 
@@ -737,21 +822,20 @@ function entityEventPrepareOrder( evt )
 				evt.preventDefault();
 			evt.notifyType = NOTIFY_GOTO;
 			evt.notifySource = this;
-
-			break
+			break;
+			
 		case ORDER_RUN:
 			if ( !this.actions.move.run )	
 				evt.preventDefault();
-
 			evt.notifyType = NOTIFY_RUN;
 			evt.notifySource = this;
-
 			break;
+			
 		case ORDER_PATROL:
 			if ( !this.actions.patrol )
 				evt.preventDefault();
-
 			break;	
+			
 		case ORDER_GENERIC:
 			evt.notifySource = this;
 			switch ( evt.action )
@@ -769,10 +853,17 @@ function entityEventPrepareOrder( evt )
 						evt.preventDefault();
 					evt.notifyType = NOTIFY_GATHER;
 					break;
+					
 				case ACTION_HEAL:
 					if ( !this.actions.heal )
 						evt.preventDefault();
 					evt.notifyType = NOTIFY_HEAL;
+					break;	
+					
+				case ACTION_BUILD:
+					if ( !this.actions.build )
+						evt.preventDefault();
+					evt.notifyType = NOTIFY_NONE;
 					break;	
 			}
 			break;
@@ -992,7 +1083,6 @@ function entityCheckQueueReq( entity, template )
 function canGather( source, target )
 {
 	// Checks whether we're allowed to gather from a target entity (this involves looking at both the type and subtype).
-	
 	if( !source.actions )
 		return false;
 	g = source.actions.gather;
@@ -1001,6 +1091,17 @@ function canGather( source, target )
 		( s.subtype==s.type || g.resource[s.type][s.subtype] ) &&
 		( s.curr > 0 || s.max == 0 ) && 
 		s.dropsitecount[source.player.id] );
+}
+
+// ====================================================================
+
+function canBuild( source, target )
+{
+	// Checks whether we're allowed to build a target entity
+	if( !source.actions )
+		return false;
+	b = source.actions.build;
+	return (b && target.building != "" && target.player.id == source.player.id );
 }
 
 // ====================================================================
