@@ -1135,7 +1135,8 @@ bool isMouseoverType( CEntity* ev, void* UNUSED(userdata) )
 	std::vector<SMouseoverFader>::iterator it;
 	for( it = g_Mouseover.m_mouseover.begin(); it < g_Mouseover.m_mouseover.end(); it++ )
 	{
-		if( it->isActive && ( (CBaseEntity*)it->entity->m_base == (CBaseEntity*)ev->m_base ) )
+		if( it->isActive && ( (CBaseEntity*)it->entity->m_base == (CBaseEntity*)ev->m_base )
+				&& ( it->entity->GetPlayer() == ev->GetPlayer() ) )
 			return( true );
 	}
 	return( false );

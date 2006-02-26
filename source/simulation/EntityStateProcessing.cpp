@@ -390,7 +390,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 			// Start the animation. Actual damage/gather will be done in a 
 			// few hundred ms, at the 'action point' of the animation we're
 			// now setting.
-
+			m_isRunning = false;
 			m_actor->GetModel()->SetAnimation( m_fsm_animation, true, 1000.0f * m_fsm_animation->m_AnimDef->GetDuration() / (float)action->m_Speed, m_fsm_animation );
 		}
 		if( ( m_fsm_cyclepos <= m_fsm_anipos2 ) &&
@@ -408,6 +408,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 				m_orderQueue.pop_front();
 				m_isRunning = false;
 				m_shouldRun = false;
+				m_actor->SetRandomAnimation("idle");
 				return( false );
 			}
 		}
