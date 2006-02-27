@@ -1,0 +1,2 @@
+rmgen cantabrian_highlands cantabrian_generated
+rmgen neareastern_badlands neareastern_generated

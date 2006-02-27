@@ -201,7 +201,7 @@
 						// resource is updated, so at this point we don't sweat that they have the same
 						// coordinates).
 						addCrds (tempName, 50, 0, -200, 4,
-							snConst.MiniIcon.Width+54, snConst.MiniIcon.Height+5);
+							snConst.MiniIcon.Width+54, snConst.MiniIcon.Height-10+5);
 					}
 				]]></action>
 			</object>
@@ -228,7 +228,7 @@
 				]]></action>
 
 				<object	name="snStatusPanePortrait"
-					style="portrait"
+					style="snPortrait"
 					type="button"
 					hotkey="selection.snap"
 				>
@@ -249,165 +249,175 @@
 
 			<!-- COMMAND BUTTONS (arc the Status Pane) -->
 			<object	name="snStatusPaneCommand1_1"
+				style="snPortrait"
 				type="button"
 			>
 			</object>
 			<object	name="snStatusPaneCommandGroup1" >
-				<object	type="button" name="snStatusPaneCommand1_2" />
-				<object type="button" name="snStatusPaneCommand1_3" />
-				<object type="button" name="snStatusPaneCommand1_4" />
-				<object type="button" name="snStatusPaneCommand1_5" />
-				<object type="button" name="snStatusPaneCommand1_6" />
-				<object type="button" name="snStatusPaneCommand1_7" />
-				<object type="button" name="snStatusPaneCommand1_8" />
-				<object type="button" name="snStatusPaneCommand1_9" />
-				<object type="button" name="snStatusPaneCommand1_10" />
-				<object type="button" name="snStatusPaneCommand1_11" />
-				<object type="button" name="snStatusPaneCommand1_12" />
+				<object	style="snPortrait" type="button" name="snStatusPaneCommand1_2" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand1_3" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand1_4" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand1_5" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand1_6" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand1_7" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand1_8" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand1_9" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand1_10" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand1_11" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand1_12" />
 			</object>
 			<object	name="snStatusPaneCommand2_1" 
+				style="snPortrait" 
 				type="button"
 			/>
 			<object name="snStatusPaneCommandGroup2" >
-				<object type="button" name="snStatusPaneCommand2_2" />
-				<object type="button" name="snStatusPaneCommand2_3" />
-				<object type="button" name="snStatusPaneCommand2_4" />
-				<object type="button" name="snStatusPaneCommand2_5" />
-				<object type="button" name="snStatusPaneCommand2_6" />
-				<object type="button" name="snStatusPaneCommand2_7" />
-				<object type="button" name="snStatusPaneCommand2_8" />
-				<object type="button" name="snStatusPaneCommand2_9" />
-				<object type="button" name="snStatusPaneCommand2_10" />
-				<object type="button" name="snStatusPaneCommand2_11" />
-				<object type="button" name="snStatusPaneCommand2_12" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand2_2" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand2_3" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand2_4" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand2_5" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand2_6" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand2_7" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand2_8" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand2_9" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand2_10" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand2_11" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand2_12" />
 			</object>
 			<object name="snStatusPaneCommand3_1" 
+				style="snPortrait" 
 				type="button"
 			/>
 			<object name="snStatusPaneCommandGroup3" >
-				<object type="button" name="snStatusPaneCommand3_2" />
-				<object type="button" name="snStatusPaneCommand3_3" />
-				<object type="button" name="snStatusPaneCommand3_4" />
-				<object type="button" name="snStatusPaneCommand3_5" />
-				<object type="button" name="snStatusPaneCommand3_6" />
-				<object type="button" name="snStatusPaneCommand3_7" />
-				<object type="button" name="snStatusPaneCommand3_8" />
-				<object type="button" name="snStatusPaneCommand3_9" />
-				<object type="button" name="snStatusPaneCommand3_10" />
-				<object type="button" name="snStatusPaneCommand3_11" />
-				<object type="button" name="snStatusPaneCommand3_12" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand3_2" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand3_3" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand3_4" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand3_5" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand3_6" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand3_7" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand3_8" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand3_9" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand3_10" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand3_11" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand3_12" />
 			</object>
 			<object name="snStatusPaneCommand4_1" 
+				style="snPortrait" 
 				type="button"
 			/>
 			<object name="snStatusPaneCommandGroup4" >
-				<object type="button" name="snStatusPaneCommand4_2" />
-				<object type="button" name="snStatusPaneCommand4_3" />
-				<object type="button" name="snStatusPaneCommand4_4" />
-				<object type="button" name="snStatusPaneCommand4_5" />
-				<object type="button" name="snStatusPaneCommand4_6" />
-				<object type="button" name="snStatusPaneCommand4_7" />
-				<object type="button" name="snStatusPaneCommand4_8" />
-				<object type="button" name="snStatusPaneCommand4_9" />
-				<object type="button" name="snStatusPaneCommand4_10" />
-				<object type="button" name="snStatusPaneCommand4_11" />
-				<object type="button" name="snStatusPaneCommand4_12" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand4_2" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand4_3" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand4_4" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand4_5" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand4_6" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand4_7" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand4_8" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand4_9" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand4_10" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand4_11" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand4_12" />
 			</object>
 			<object name="snStatusPaneCommand5_1" 
+				style="snPortrait" 	
 				type="button"
 			/>
 			<object name="snStatusPaneCommandGroup5" >
-				<object type="button" name="snStatusPaneCommand5_2" />
-				<object type="button" name="snStatusPaneCommand5_3" />
-				<object type="button" name="snStatusPaneCommand5_4" />
-				<object type="button" name="snStatusPaneCommand5_5" />
-				<object type="button" name="snStatusPaneCommand5_6" />
-				<object type="button" name="snStatusPaneCommand5_7" />
-				<object type="button" name="snStatusPaneCommand5_8" />
-				<object type="button" name="snStatusPaneCommand5_9" />
-				<object type="button" name="snStatusPaneCommand5_10" />
-				<object type="button" name="snStatusPaneCommand5_11" />
-				<object type="button" name="snStatusPaneCommand5_12" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand5_2" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand5_3" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand5_4" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand5_5" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand5_6" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand5_7" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand5_8" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand5_9" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand5_10" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand5_11" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand5_12" />
 			</object>
 			<object name="snStatusPaneCommand6_1" 
+				style="snPortrait" 
 				type="button"
 			/>
 			<object name="snStatusPaneCommandGroup6" >
-				<object type="button" name="snStatusPaneCommand6_2" />
-				<object type="button" name="snStatusPaneCommand6_3" />
-				<object type="button" name="snStatusPaneCommand6_4" />
-				<object type="button" name="snStatusPaneCommand6_5" />
-				<object type="button" name="snStatusPaneCommand6_6" />
-				<object type="button" name="snStatusPaneCommand6_7" />
-				<object type="button" name="snStatusPaneCommand6_8" />
-				<object type="button" name="snStatusPaneCommand6_9" />
-				<object type="button" name="snStatusPaneCommand6_10" />
-				<object type="button" name="snStatusPaneCommand6_11" />
-				<object type="button" name="snStatusPaneCommand6_12" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand6_2" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand6_3" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand6_4" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand6_5" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand6_6" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand6_7" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand6_8" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand6_9" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand6_10" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand6_11" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand6_12" />
 			</object>
 			<object name="snStatusPaneCommand7_1" 
+				style="snPortrait" 	
 				type="button"
 			/>
 			<object name="snStatusPaneCommandGroup7" >
-				<object type="button" name="snStatusPaneCommand7_2" />
-				<object type="button" name="snStatusPaneCommand7_3" />
-				<object type="button" name="snStatusPaneCommand7_4" />
-				<object type="button" name="snStatusPaneCommand7_5" />
-				<object type="button" name="snStatusPaneCommand7_6" />
-				<object type="button" name="snStatusPaneCommand7_7" />
-				<object type="button" name="snStatusPaneCommand7_8" />
-				<object type="button" name="snStatusPaneCommand7_9" />
-				<object type="button" name="snStatusPaneCommand7_10" />
-				<object type="button" name="snStatusPaneCommand7_11" />
-				<object type="button" name="snStatusPaneCommand7_12" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand7_2" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand7_3" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand7_4" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand7_5" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand7_6" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand7_7" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand7_8" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand7_9" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand7_10" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand7_11" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand7_12" />
 			</object>
 			<object name="snStatusPaneCommand8_1" 
+				style="snPortrait" 
 				type="button"
 			/>
 			<object name="snStatusPaneCommandGroup8" >
-				<object type="button" name="snStatusPaneCommand8_2" />
-				<object type="button" name="snStatusPaneCommand8_3" />
-				<object type="button" name="snStatusPaneCommand8_4" />
-				<object type="button" name="snStatusPaneCommand8_5" />
-				<object type="button" name="snStatusPaneCommand8_6" />
-				<object type="button" name="snStatusPaneCommand8_7" />
-				<object type="button" name="snStatusPaneCommand8_8" />
-				<object type="button" name="snStatusPaneCommand8_9" />
-				<object type="button" name="snStatusPaneCommand8_10" />
-				<object type="button" name="snStatusPaneCommand8_11" />
-				<object type="button" name="snStatusPaneCommand8_12" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_2" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_3" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_4" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_5" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_6" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_7" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_8" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_9" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_10" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_11" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_12" />
 			</object>
 			<object name="snStatusPaneCommand9_1" 
+				style="snPortrait" 
 				type="button"
 			/>
 			<object name="snStatusPaneCommandGroup9" >
-				<object type="button" name="snStatusPaneCommand9_2" />
-				<object type="button" name="snStatusPaneCommand9_3" />
-				<object type="button" name="snStatusPaneCommand9_4" />
-				<object type="button" name="snStatusPaneCommand9_5" />
-				<object type="button" name="snStatusPaneCommand9_6" />
-				<object type="button" name="snStatusPaneCommand9_7" />
-				<object type="button" name="snStatusPaneCommand9_8" />
-				<object type="button" name="snStatusPaneCommand9_9" />
-				<object type="button" name="snStatusPaneCommand9_10" />
-				<object type="button" name="snStatusPaneCommand9_11" />
-				<object type="button" name="snStatusPaneCommand9_12" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand9_2" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand9_3" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand9_4" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand9_5" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand9_6" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand9_7" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand9_8" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand9_9" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand9_10" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand9_11" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand9_12" />
 			</object>
 			<object name="snStatusPaneCommand10_1" 
+				style="snPortrait" 
 				type="button"
 			/>
 			<object name="snStatusPaneCommandGroup10" >
-				<object type="button" name="snStatusPaneCommand10_2" />
-				<object type="button" name="snStatusPaneCommand10_3" />
-				<object type="button" name="snStatusPaneCommand10_4" />
-				<object type="button" name="snStatusPaneCommand10_5" />
-				<object type="button" name="snStatusPaneCommand10_6" />
-				<object type="button" name="snStatusPaneCommand10_7" />
-				<object type="button" name="snStatusPaneCommand10_8" />
-				<object type="button" name="snStatusPaneCommand10_9" />
-				<object type="button" name="snStatusPaneCommand10_10" />
-				<object type="button" name="snStatusPaneCommand10_11" />
-				<object type="button" name="snStatusPaneCommand10_12" 
+				<object style="snPortrait" type="button" name="snStatusPaneCommand10_2" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand10_3" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand10_4" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand10_5" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand10_6" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand10_7" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand10_8" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand10_9" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand10_10" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand10_11" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand10_12" 
 				>
 					<action on="Load"><![CDATA[
 						defineCommandButtons(this.name);

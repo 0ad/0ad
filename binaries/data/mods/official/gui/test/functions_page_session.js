@@ -14,7 +14,7 @@ function initSession()
 	// Portraits (large and small).
 	snConst.Portrait = new Object();
 	snConst.Portrait.Sml = new Object();
-	snConst.Portrait.Sml.Width = 36;
+	snConst.Portrait.Sml.Width = 45;
 	snConst.Portrait.Sml.Height = snConst.Portrait.Sml.Width;
 	snConst.Portrait.Lrg = new Object();
 	snConst.Portrait.Lrg.Width = 64;
@@ -22,7 +22,7 @@ function initSession()
 
 	// Small icons (eg Movement Rate, Food).
 	snConst.MiniIcon = new Object();
-	snConst.MiniIcon.Width = 20;
+	snConst.MiniIcon.Width = 30;
 	snConst.MiniIcon.Height = snConst.MiniIcon.Width;
 
 	// ============================================= GLOBALS =================================================
@@ -35,66 +35,165 @@ function initSession()
 
 function initCellReference()
 {
-        // Define cell reference constants for icon sheets.
+		cellGroup = new Array();
+	
+		// Define the cells in this icon sheet.
+		groupName = "Armour";
+		addCell (groupName, "rating", "Rating");
+		addCell (groupName, "hack", "Hack");		
+		addCell (groupName, "pierce", "Pierce");		
+		addCell (groupName, "crush", "Crush");		
 
-        // icon_sheet_statistic
-        stat_accuracy                   = 0;
-        stat_attack                     = 1;
-        stat_armour                     = 2;
-        stat_los                        = 3;
-        stat_speed                      = 4;
-        stat_range                      = 5;
-        stat_hack                       = 6;
-        stat_pierce                     = 7;
-        stat_crush                      = 8;
-        stat_rank1                      = 9;
-        stat_rank2                      = 10;
-        stat_rank3                      = 11;
-        stat_garrison                   = 12;
-        stat_heart                      = 13;
+		// Define the cells in this icon sheet.
+		groupName = "Attack";
+		addCell (groupName, "rating", "Rating");
+		addCell (groupName, "hack", "Hack");		
+		addCell (groupName, "pierce", "Pierce");		
+		addCell (groupName, "crush", "Crush");		
+		
+		// Define the cells in this icon sheet.
+		groupName = "Command";
+		addCell (groupName, "patrol", "Patrol");
+		addCell (groupName, "townbell", "Town Bell");		
+		addCell (groupName, "lock", "Lock");		
+		addCell (groupName, "unlock", "Unlock");		
+		addCell (groupName, "kill", "Kill");		
+		addCell (groupName, "explore", "Explore");		
+		addCell (groupName, "rallypoint", "Rally Point");		
+		addCell (groupName, "stop", "Stop");		
+		addCell (groupName, "heal", "Heal");		
+		addCell (groupName, "repair", "Repair");		
+		addCell (groupName, "herd", "Herd");		
+		addCell (groupName, "escort", "Escort");		
+		addCell (groupName, "move", "Move");		
+		addCell (groupName, "attack", "Attack");		
+		addCell (groupName, "build", "Build");
 
-        // portrait_sheet_action
-                // generic actions
-        action_empty                    = 0;
-        action_attack                   = 1;
-        action_patrol                   = 2;
-        action_stop                     = 3;
-        action_gather_food              = 4;
-        action_gather_wood              = 5;
-        action_gather_stone             = 6;
-        action_gather_ore               = 7;
-        action_rally                    = 8;
-        action_repair                   = 9;
-        action_heal                     = 10;
-        action_scout                    = 11;
-        action_townbell                 = 12;
-        action_lock                     = 13;
-        action_unlock                   = 14;
-                // formation actions
-        action_formation_box            = 23;
-        action_formation_column_c       = 24;
-        action_formation_column_o       = 25;
-        action_formation_line_c         = 26;
-        action_formation_line_o         = 27;
-        action_formation_phalanx        = 28;
-        action_formation_skirmish       = 29;
-        action_formation_testudo        = 30;
-        action_formation_wedge          = 31;
-                // stance actions
-        action_stance_aggress           = 39;
-        action_stance_avoid             = 40;
-        action_stance_defend            = 41;
-        action_stance_hold              = 42;
-        action_stance_stand             = 43;
-                // tab actions
-        action_tab_command              = 48;
-        action_tab_train                = 49;
-        action_tab_buildciv             = 50;
-        action_tab_buildmil             = 51;
-        action_tab_research             = 52;
-        action_tab_formation            = 53;
-        action_tab_stance               = 54;
-        action_tab_barter               = 55;
+		// Define the cells in this icon sheet.
+		groupName = "Find";
+		addCell (groupName, "citizen", "Citizen");
+		addCell (groupName, "military", "Military");		
+		addCell (groupName, "hero", "Hero");				
+		addCell (groupName, "civcentre", "Civic Centre");				
+		
+		// Define the cells in this icon sheet.
+		groupName = "Formation";
+		addCell (groupName, "box", "Box");
+		addCell (groupName, "column_c", "Column Closed");		
+		addCell (groupName, "line_c", "Line Closed");				
+		addCell (groupName, "column_o", "Column Open");		
+		addCell (groupName, "line_o", "Line Open");		
+		addCell (groupName, "flank", "Flank");				
+		addCell (groupName, "skirmish", "Skirmish");		
+		addCell (groupName, "wedge", "Wedge");		
+		addCell (groupName, "testudo", "Testudo");		
+		addCell (groupName, "phalanx", "Phalanx");	
+
+		// Define the cells in this icon sheet.
+		groupName = "Garrison";
+		addCell (groupName, "garrison", "Garrison");
+		addCell (groupName, "unload", "Unload");		
+		addCell (groupName, "unloadtotarget", "Unload to Target");		
+		
+		// Define the cells in this icon sheet.
+		groupName = "Gather";		
+		addCell (groupName, "food", "Food");		
+		addCell (groupName, "wood", "Wood");				
+		addCell (groupName, "stone", "Stone");				
+		addCell (groupName, "ore", "Ore");				
+		addCell (groupName, "fish", "Fish");				
+		addCell (groupName, "fruit", "Fruit");				
+		addCell (groupName, "grain", "Grain");				
+		addCell (groupName, "meat", "Meat");				
+		addCell (groupName, "milk", "Milk");				
+		
+		// Define the cells in this icon sheet.
+		groupName = "Menu";		
+		addCell (groupName, "game", "Game");		
+		addCell (groupName, "diplomacy", "Diplomacy");				
+		addCell (groupName, "objectives", "Objectives");				
+		addCell (groupName, "score", "Score");				
+		addCell (groupName, "chat", "Chat");				
+
+		// Define the cells in this icon sheet.
+		groupName = "MiniMap";		
+		addCell (groupName, "flare", "Flare");				
+		addCell (groupName, "flare", "Terrain");						
+		addCell (groupName, "flare", "Territories");						
+		addCell (groupName, "friendorfoe", "Friend or Foe");						
+		addCell (groupName, "economic", "Economic");						
+		addCell (groupName, "military", "Military");						
+		addCell (groupName, "resources", "Resources");						
+		
+		// Define the cells in this icon sheet.
+		groupName = "Rank";		
+		addCell (groupName, "advanced", "Advanced");		
+		addCell (groupName, "elite", "Elite");		
+		
+		// Define the cells in this icon sheet.
+		groupName = "Replay";		
+		addCell (groupName, "pause", "Pause");		
+		addCell (groupName, "play", "Play");		
+		addCell (groupName, "rewind", "Rewind");		
+		addCell (groupName, "fastforward", "Fast Forward");		
+		addCell (groupName, "start", "Start");		
+		addCell (groupName, "end", "End");		
+		addCell (groupName, "cycle", "Cycle");		
+		
+		// Define the cells in this icon sheet.
+		groupName = "Resource";		
+		addCell (groupName, "food", "Food");		
+		addCell (groupName, "wood", "Wood");		
+		addCell (groupName, "stone", "Stone");		
+		addCell (groupName, "ore", "Ore");		
+		addCell (groupName, "population", "Population");		
+		
+		// Define the cells in this icon sheet.
+		groupName = "Stance";	
+		addCell (groupName, "aggress", "Aggress");		
+		addCell (groupName, "defend", "Defend");		
+		addCell (groupName, "avoid", "Avoid");		
+		addCell (groupName, "stand", "Stand");		
+		addCell (groupName, "hold", "Hold");		
+		
+		// Define the cells in this icon sheet.
+		groupName = "Statistic";		
+		addCell (groupName, "accuracy", "Accuracy");
+		addCell (groupName, "vision", "Vision");		
+		addCell (groupName, "speed", "Speed");		
+		addCell (groupName, "range", "Range");		
+		addCell (groupName, "capacity", "Capacity");		
+		addCell (groupName, "health", "Health");		
+		addCell (groupName, "stamina", "Stamina");		
+		
+		// Define the cells in this icon sheet.
+		groupName = "Tab";		
+		addCell (groupName, "structciv", "Construct Civic Buildings");		
+		addCell (groupName, "structmil", "Construct Military Buildings");		
+		addCell (groupName, "train", "Train");		
+		addCell (groupName, "research", "Research");		
+		addCell (groupName, "command", "Command");		
+}
+
+// ====================================================================
+
+function addCell (group, cellID, cellName)
+{
+	// Add a cell ID to a cell container group.
+
+	// If this array does not exist,
+	if (!cellGroup[group])
+	{
+		// Create the container.
+		cellGroup[group] = new Array();	
+		cellGroup[group].length = new Object(0);
+	}
+
+	cellGroup[group][cellID]		= new Array();
+	cellGroup[group][cellID].id		= new Object (cellGroup[group].length);
+	cellGroup[group][cellID].name	= new Object (cellName);
+	
+	cellGroup[group].length++;
 }
 
 // ====================================================================
@@ -104,9 +203,9 @@ function setPortrait(objectName, portraitString, portraitSuffix, portraitCell)
         // Use this function as a shortcut to change a portrait object to a different portrait image. 
 
         // Accepts an object and specifies its default, rollover (lit) and disabled (gray) sprites.
-        // Sprite Format: "ui_portrait_"portraitString"_"portraitSuffix
-        // Sprite Format: "ui_portrait_"portraitString"_"portraitSuffix"_lit"
-        // Sprite Format: "ui_portrait_"portraitString"_"portraitSuffix"_gray"
+        // Sprite Format: "sn""portraitString""portraitSuffix"
+        // Sprite Format: "sn""portraitString""portraitSuffix""Over"
+        // Sprite Format: "sn""portraitString""portraitSuffix""Disabled"
         // Note: Make sure the file follows this naming convention or bad things could happen.
 
         // Get GUI object
@@ -121,12 +220,12 @@ function setPortrait(objectName, portraitString, portraitSuffix, portraitCell)
 
         // Set the three portraits.
 	if (portraitSuffix && portraitSuffix != "")
-	        setPortraitGUIObject.sprite = "ui_portrait_" + portraitString + "_" + portraitSuffix;
+	        setPortraitGUIObject.sprite = "sn" + portraitString + portraitSuffix;
 	else
-	        setPortraitGUIObject.sprite = "ui_portrait_" + portraitString;
+	        setPortraitGUIObject.sprite = "sn" + portraitString;
 
-        setPortraitGUIObject.sprite_over = setPortraitGUIObject.sprite + "_lit";
-        setPortraitGUIObject.sprite_disabled = setPortraitGUIObject.sprite + "_gray";
+        setPortraitGUIObject.sprite_over = setPortraitGUIObject.sprite + "Over";
+        setPortraitGUIObject.sprite_disabled = setPortraitGUIObject.sprite + "Disabled";
 
         // If the source texture is a multi-frame image (icon sheet), specify correct cell.
         if (portraitCell && portraitCell != "")

@@ -45,8 +45,6 @@ function addResource (resourceName, resourceQty)
 
 	// Ensure resource name is title-case.
 	resourceName = toTitleCase (resourceName);
-	// Create uppercase name.
-	resourceNameU = resourceName.toUpperCase();
 
 	if (!localPlayer.resource)
 	{
@@ -59,7 +57,7 @@ function addResource (resourceName, resourceQty)
 	}
 	
 	// Store resource's name and starting value.
-	localPlayer.resource.valueOf()[resourceNameU] = resourceQty;
+	localPlayer.resource.valueOf()[resourceName] = resourceQty;
 	
 	// The array is now one index longer.
 	localPlayer.resource.length++;
@@ -91,13 +89,11 @@ function setResources (resourceName, resourceQty)
 
 	// Ensure resource name is title-case.
 	resourceName = toTitleCase (resourceName);
-	// Create uppercase name.
-	resourceNameU = resourceName.toUpperCase();
 
-//	if ( localPlayer.resource.valueOf()[resourceNameU] )
+//	if ( localPlayer.resource.valueOf()[resourceName] )
 //	{
 		// Set resource value.
-		localPlayer.resource.valueOf()[resourceNameU] = resourceQty;
+		localPlayer.resource.valueOf()[resourceName] = resourceQty;
 		
 		// Dynamically adjust width of resource counter based on caption length.
 		refreshResources();		
@@ -119,13 +115,11 @@ function giveResources (resourceName, resourceQty)
 
 	// Ensure resource name is title-case.
 	resourceName = toTitleCase (resourceName);
-	// Create uppercase name.
-	resourceNameU = resourceName.toUpperCase();
-// console.write (localPlayer.resource.valueOf()[resourceNameU]);
-//	if ( localPlayer.resource.valueOf()[resourceNameU] )
+
+//	if ( localPlayer.resource.valueOf()[resourceName] )
 //	{
 		// Set resource value.
-		localPlayer.resource.valueOf()[resourceNameU] += resourceQty;
+		localPlayer.resource.valueOf()[resourceName] += resourceQty;
 	
 		// Dynamically adjust width of resource counter based on caption length.
 		refreshResources();		
@@ -148,13 +142,11 @@ function deductResources (resourceName, resourceQty)
 
 	// Ensure resource name is title-case.
 	resourceName = toTitleCase (resourceName);
-	// Create uppercase name.
-	resourceNameU = resourceName.toUpperCase();
 
-//	if( localPlayer.resource.valueOf()[resourceNameU] )
+//	if( localPlayer.resource.valueOf()[resourceName] )
 //	{
 		// Set resource value.
-		localPlayer.resource.valueOf()[resourceNameU] -= resourceQty;
+		localPlayer.resource.valueOf()[resourceName] -= resourceQty;
 		
 		// Dynamically adjust width of resource counter based on caption length.
 		refreshResources();
@@ -175,12 +167,12 @@ function refreshResources ()
 {
 	// Refreshes all resource counters after update.
 
-	pool = localPlayer.resource;
+	resourcePool = localPlayer.resource;
 	resourceCount = 0;
-	for (resource in pool)
+	for (currResource in resourcePool)
 	{
 		// Pass the array index of the resource as the second parameter (as we'll need that to determine the centered screen position of each counter).
-		refreshResource (toTitleCase(resource), resourceUIArray[resourceCount]);
+		refreshResource (toTitleCase(currResource), resourceUIArray[resourceCount]);
 		resourceCount++;
 	}
 }
@@ -190,6 +182,9 @@ function refreshResources ()
 function refreshResource (resourceName, resourceIndex)
 {
 	// Refresh the onscreen counter for a given resource (called to recalculate the size of the coordinates, as these dynamically adjust depending on character length).
+	
+	// Ensure resource name is title-case.
+	resourceName = toTitleCase (resourceName);	
 
 	// Ignore the "Housing" resource ... It doesn't work like normal resources and doesn't have a counter to resize.
 	if (resourceName == "Housing")
@@ -200,11 +195,11 @@ function refreshResource (resourceName, resourceIndex)
 	// Update counter caption (since we need to have up-to-date text to determine the length of the counter).
 	caption 
 		= "[icon=iconResource" + resourceName + " displace=\"0 0\"] "
-		+ localPlayer.resource.valueOf()[resourceName.toUpperCase()];
+		+ localPlayer.resource.valueOf()[resourceName];
 	// The Population counter also lists the amount of available housing.		
 	if (resourceName == "Population")
 		caption
-			+= "/" + localPlayer.resource.valueOf()["HOUSING"];	
+			+= "/" + localPlayer.resource.valueOf()["Housing"];	
 	resourceObject.caption = caption;
 	
 	// Update caption tooltip.

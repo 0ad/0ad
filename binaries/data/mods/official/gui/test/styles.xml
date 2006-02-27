@@ -456,9 +456,9 @@
 		/>
 
 		<style name="snAction"
-			sprite="ui_portrait_defaultcircle"
-			sprite_over="ui_portrait_defaultcircle_lit"
-			sprite_disabled="ui_portrait_defaultcircle_gray"
+			sprite="snIconCommand"
+			sprite_over="snIconCommandOver"
+			sprite_disabled="snIconCommandDisabled"
 			text_align="right"
 			textcolor="255 255 255"
 			tooltip_style="snToolTip"
@@ -466,9 +466,9 @@
 		/>
 
 		<style 	name="snPortrait"
-			sprite="ui_portrait_default_square"
-			sprite_over="ui_portrait_default_square_lit"
-			sprite_disabled="ui_portrait_default_square_Gray"
+			sprite="snIconPortrait"
+			sprite_over="snIconPortraitOver"
+			sprite_disabled="snIconPortraitDisabled"
 			text_align="right"
 			textcolor="255 255 255"
 			tooltip_style="snToolTip"
@@ -631,17 +631,6 @@ NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET 
 	<style name="session_minimap"
 		tooltip_style="snToolTip"
 		tooltip=""
-	/>
-
-	<!-- Empty entity portrait. -->
-	<style 	name="portrait"
-		sprite="ui_portrait_default_square"
-		sprite_over="ui_portrait_default_square_lit"
-		sprite_disabled="ui_portrait_default_square_grey"
-		text_align="right"
-		textcolor="255 255 255"
-		tooltip_style="snToolTip"
-		tooltip="(TBA)"
 	/>
 
 	<style name="portrait_progress"

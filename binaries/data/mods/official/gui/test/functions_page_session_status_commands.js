@@ -17,7 +17,7 @@ function defineCommandButtons(command)
 	// Maximum number of entries in a list.
 	snStatusPaneCommand.list.max = command.substring (command.lastIndexOf ("_")+1, command.length); // 12
 
-	// Number of tabs that are single buttons (no list).
+	// Number of tabs that have to be single buttons (no list).
 	snStatusPaneCommand.button.max = 5;		
 	// When we reach this button, split the rows (remainder are vertical, not horizontal).
 	snStatusPaneCommand.split = 7;			
@@ -30,8 +30,6 @@ function defineCommandButtons(command)
 	// Update each tab.
 	for (var tabLoop = 1; tabLoop <= snStatusPaneCommand.tab.max; tabLoop++)
 	{
-		snStatusPaneCommand[tabLoop]	    = new Array();
-
 		tempGroupObject = getGUIObjectByName("snStatusPaneCommand" +
 			"Group" + tabLoop);
 
@@ -41,18 +39,8 @@ function defineCommandButtons(command)
 			tempListObject = getGUIObjectByName("snStatusPaneCommand" +
 				tabLoop + "_" + listLoop);
 
-			// Define properties of list buttons.
-			tempListObject.style = "snAction";
-
 			// Set portrait to default.
-			setPortrait (tempListObject.name, "default_square");
-
-			// Create parameters where command button information will later be stored.
-			snStatusPaneCommand[tabLoop][listLoop]	    = new Array();
-			snStatusPaneCommand[tabLoop][listLoop].type = new Object();
-			snStatusPaneCommand[tabLoop][listLoop].name = new Object();
-			snStatusPaneCommand[tabLoop][listLoop].object = new Object();
-			snStatusPaneCommand[tabLoop][listLoop].last = new Object();
+			setPortrait (tempListObject.name, "IconPortrait");
 
 			// Determine x and y position for current button.
 			if (tabLoop >= snStatusPaneCommand.split)
@@ -95,114 +83,268 @@ function defineCommandButtons(command)
 			}
 
 			// Define dimensions of list buttons.
-			addCrd ("snStatusPaneCommand" +	tabLoop + "_" + listLoop, rb, 0, 100, x, y,
+			addCrds ("snStatusPaneCommand" +	tabLoop + "_" + listLoop, 0, 100, x, y,
 				snConst.Portrait.Sml.Width, snConst.Portrait.Sml.Height);
-			addCrd ("snStatusPaneCommand" +	tabLoop + "_" + listLoop, lb, 100, 100);	
-			addCrd ("snStatusPaneCommand" +	tabLoop + "_" + listLoop, lt, 100, 0);
-			addCrd ("snStatusPaneCommand" +	tabLoop + "_" + listLoop, rt, 0, 0);
-
-			// Set array affected when button pressed.
-			tempListObject.onPress = function (event)
-			{
-				pressCommandButton(this); 
-			}
+/*				
+			// Store indexes to the button for easy future reference.
+			Crd[getCrd ("snStatusPaneCommand" +	tabLoop + "_" + listLoop, true)].tab = tabLoop;
+			Crd[getCrd ("snStatusPaneCommand" +	tabLoop + "_" + listLoop, true)].list = listLoop;
+			// Create quantity and entity for create lists for future use.
+			Crd[getCrd ("snStatusPaneCommand" +	tabLoop + "_" + listLoop, true)].entity = "";
+			Crd[getCrd ("snStatusPaneCommand" +	tabLoop + "_" + listLoop, true)].quantity = 0;			
+*/			
 		}
 	}
 }
 
 // ====================================================================
 
-function UpdateList(listIcon, listCol)
+function updateList (listTab, listGroup)
 {
-	// Populates a given column of command icons with appropriate build portraits for the selected object.
-	// Returns an array of this selection.
-
-	// Build unit list.
-	if ( selection[0].traits.id.civ_code
-	&& selection[0].actions
-	&& selection[0].actions.create
-	&& selection[0].actions.create.list )
+	// If any items in the list (construction, train, research, etc, need to be updated, update that list.)
+	if ( shouldUpdateStat (listGroup) )
 	{
-		list = null;
-
-		switch (listIcon)
+		// Get tab.
+		tabObject 	= getGUIObjectByName ("snStatusPaneCommand" + listCounter + "_1");		
+		groupObject = getGUIObjectByName ("snStatusPaneCommand" + "Group" + listCounter);		
+		// Enable tab.
+		guiUnHide (tabObject.name);
+		// Set tab portrait.
+		setPortrait ("snStatusPaneCommand" + listCounter + "_1", "IconSheet", "TabButton", cellGroup["Tab"][listTab].id);
+		tooltip = cellGroup["Tab"][listTab].name;
+		tooltip += " Tab";
+		tabObject.tooltip = tooltip;
+		// Set tab function.
+		tabObject.onPress = function (event)
 		{
-			case action_tab_train:
-				if ( selection[0].actions.create.list.unit && shouldUpdateStat( "actions.create.list.unit" ) )
-					list = selection[0].actions.create.list.unit;
-			break;
-			case action_tab_buildciv:
-				if ( selection[0].actions.create.list.structciv && shouldUpdateStat( "actions.create.list.structciv" ) )
-					list = selection[0].actions.create.list.structciv;
-			break;
-			case action_tab_buildmil:
-				if ( selection[0].actions.create.list.structmil && shouldUpdateStat( "actions.create.list.structmil" ) )
-					list = selection[0].actions.create.list.structmil;
-			break;
-			case action_tab_research:
-				if ( selection[0].actions.create.list.tech && shouldUpdateStat( "actions.create.list.tech" ) )
-					list = selection[0].actions.create.list.tech;
-			break;
-			default:
-				return 0;
-			break;
+			// Click the tab button to toggle visibility of its list.
+			guiToggle ( "snStatusPaneCommandGroup" + this.name.substring (this.name.lastIndexOf ("d")+1, this.name.lastIndexOf ("_")) );
 		}
 
-		if ( list )
+		// If the list hasn't been hidden (tab is open),
+		if ( groupObject.hidden == false )
 		{
-			// Enable tab portrait.
-			guiUnHide("snStatusPaneCommand" + "Group" + listCol);
-			guiUnHide("snStatusPaneCommand" + listCol + "_1");
-			setPortrait("snStatusPaneCommand" + listCol + "_1", "sheet_action", "", listIcon);
-			// Reset list length.
-			snStatusPaneCommand[listCol][1].last = 0;
-			// Store content info in tab button for future reference.
-			snStatusPaneCommand[listCol][1].type = "list";
-
+			
 			// Extract entity list into an array.
 			listArray = [];
-			for( i in list )
+			for ( i in listGroup )
 			{
-				listArray[listArray.length] = i.toString();
+				listArray[listArray.length] = i;
+				// Store any current quantity in the queue for this object.
+//				if (listGroup[i].quantity)
+//					listArray[listArray.length].quantity = listGroup[i].quantity;
 			}
 
-			// Populate appropriate command buttons.
+			// Populate the buttons in this tab's list.
 			for (createLoop = 1; createLoop < snStatusPaneCommand.list.max; createLoop++)
 			{
 				if (createLoop < listArray.length)
 				{
+					// Get name of current button.
+					listObject = getGUIObjectByName ("snStatusPaneCommand" + listCounter + "_" + (createLoop+1));
+
 					// Get name of entity to display in list.
-					UpdateListEntityName = selection[0].traits.id.civ_code + "_" + listArray[createLoop];
+					updateListEntityName = selection[0].traits.id.civ_code + "_" + listArray[createLoop];
 
-					getGUIObjectByName ("snStatusPaneCommand" + listCol + "_" + (createLoop+1)).caption = "";
+					// Store name of entity to display in list in this button's coordinate.
+//					Crd[getCrd (listObject.name, true)].entity = new Object(updateListEntityName);
 
-					guiUnHide("snStatusPaneCommand" + listCol + "_" + (createLoop+1));
-					setPortrait("snStatusPaneCommand" + listCol + "_" + (createLoop+1), 
-						getEntityTemplate(UpdateListEntityName).traits.id.icon, 
-						selection[0].traits.id.civ_code, 
-						getEntityTemplate(UpdateListEntityName).traits.id.icon_cell);
+					// Set tooltip.
+					listObject.tooltip = getEntityTemplate(updateListEntityName).traits.id.civ + " " + getEntityTemplate(updateListEntityName).traits.id.generic;
 					
-					// Store content info in tab button for future reference.
-					snStatusPaneCommand[listCol][createLoop+1].name = listIcon;
-					snStatusPaneCommand[listCol][createLoop+1].object = listArray[createLoop];
-					snStatusPaneCommand[listCol][createLoop+1].type = "list";
-					snStatusPaneCommand[listCol][createLoop+1].last++;
+					// Create quantity container in entity's create list if necessary.
+//					if (!listGroup[listArray[createLoop]].quantity)
+//						listGroup[listArray[createLoop]].quantity = new Object(0);
+					// Set caption to counter.
+//					if (listGroup[listArray[createLoop]].quantity > 1)
+//						listObject.caption = listGroup[listArray[createLoop]].quantity-1;
+					// Store pointer to quantity in coordinate.
+//					Crd[getCrd (listObject.name, true)].quantity = new Object(listGroup[listArray[createLoop]].quantity);
+					
+					// Set portrait.
+					switch (listTab)
+					{
+						case "research":
+							// Skip research list for the moment, since we don't have any portraits for techs.
+						break;
+						default:
+							setPortrait (listObject.name, 
+								getEntityTemplate(updateListEntityName).traits.id.icon, 
+								toTitleCase(selection[0].traits.id.civ_code), 
+								getEntityTemplate(updateListEntityName).traits.id.icon_cell);
+						break;
+					}
+					
+					// Reveal portrait.
+					guiUnHide (listObject.name);					
+/*				
+					// Set function that occurs when the button is pressed (left-clicked).
+					// (Somehow, we also need to do one for right-clicking -- decrement counter and remove item from queue.)
+					listObject.onPress = function (event)
+					{
+						switch (listTab)
+						{
+							case "StructCiv":
+							case "StructMil":
+								// Create building placement cursor.
+								startPlacing (Crd[getCrd (this.name, true)].entity);
+							break;
+							default:
+								// Attempt to add the entry to the queue.
+								if (attemptAddToBuildQueue (selection[0], Crd[getCrd (this.name, true)].entity, Crd[getCrd (this.name, true)].tab, Crd[getCrd (this.name, true)].list))
+//										if (attemptAddToBuildQueue (selection[0], updateListEntityName, tab, list))
+								{
+//								// Create quantity container in entity's create list if necessary.
+		//							if (!listGroup[Crd[getCrd (this.name, true)].list].quantity)
+			//							listGroup[Crd[getCrd (this.name, true)].list].quantity = new Object(0);
+									// Increment counter.
+									listGroup[Crd[getCrd (this.name, true)].list].quantity++;
+									// Set caption to counter.
+									if (listGroup[Crd[getCrd (this.name, true)].list].quantity > 1)
+										this.caption = listGroup[Crd[getCrd (this.name, true)].list].quantity-1;
+									
+									console.write (this.caption);
+								}
+							break;
+						}
+					}
+*/				
 				}
 				else
 				{
-					guiHide("snStatusPaneCommand" + listCol + "_" + parseInt(createLoop+1));
+					// Conceal this button.
+					guiHide ("snStatusPaneCommand" + listCounter + "_" + parseInt(createLoop+1));
+					// Ensure it doesn't have a stored entity to display in list.
+//					Crd[getCrd ("snStatusPaneCommand" + listCounter + "_" + parseInt(createLoop+1), true)].entity = "";
+					// Ensure it doesn't have a stored quantity of queued items.
+//					Crd[getCrd ("snStatusPaneCommand" + listCounter + "_" + parseInt(createLoop+1), true)].quantity = 0;
 				}
 			}
-			return listArray;
 		}
+		listCounter++;
 	}
-
-	return 0;
 }
 
 // ====================================================================
 
-function UpdateCommand(listIcon, listCol)
+function refreshCommandButtons()
+{
+	// Set start of tabs.
+	listCounter	= 1;
+
+	if ( selection[0].actions && shouldUpdateStat( "actions" ) )
+	{
+		// Update production lists (Construction, Train, Barter). (Tab button, persistent buttons, click them to do things.)
+		if ( shouldUpdateStat( "actions.create" ) && shouldUpdateStat( "actions.create.list" ) )
+		{
+			// Everything in this block is tied to properties in
+			// actions.create.list, the above check should limit the
+			// number of times this update is needlessly made.
+
+			// Get train/research/build lists by seeking through entity's creation list.
+			listRoot = selection[0].actions.create.list;
+			
+			for (listTab in listRoot)
+			{
+				// Note: This check indicates the production lists are updated twice on some occasions. I don't know why (error from shouldUpdate()?).
+				console.write (listTab + " " + listRoot[listTab]);
+				if (listTab != "research")	// Do research later.
+					updateList (listTab, listRoot[listTab]);
+			}
+		}
+			
+		// Update selection lists (formation, stance, trade). (Tab button holds current selection, click a button to select a new option and close the tab.)
+			
+		// Update research production list (which should always go last after all the other lists).
+		if ( shouldUpdateStat( "actions.create" ) && shouldUpdateStat( "actions.create.list" ) 
+		  && shouldUpdateStat( "actions.create.list.research" ) && selection[0].actions.create.list.research )
+			{
+				updateList ("research", selection[0].actions.create.list.research);
+			}
+			
+		// Update commands. (Click "tab" button to do something; no list).
+			
+	
+// This whole section needs to be rewritten (now list of XML attributes instead of semicolon-delimited string).
+/*
+			unitArray 	= UpdateList(action_tab_train, listCounter); 		if (unitArray != 0)	 listCounter++;
+			structcivArray 	= UpdateList(action_tab_buildciv, listCounter);		if (structcivArray != 0) listCounter++;
+			structmilArray 	= UpdateList(action_tab_buildmil, listCounter);		if (structmilArray != 0) listCounter++;
+			techArray 	= UpdateList(action_tab_research, listCounter);		if (techArray != 0)	 listCounter++;
+			
+			formationArray 	= UpdateList(action_tab_formation, listCounter);	if (formationArray != 0) listCounter++;
+			stanceArray 	= UpdateList(action_tab_stance, listCounter);		if (stanceArray != 0)	 listCounter++;
+*/		
+		if ( shouldUpdateStat( "actions" ) )
+		{
+			// Update commands.
+			commandCounter = snStatusPaneCommand.tab.max;
+/*		
+			commandCounter = UpdateCommand(cellGroup["Command"]["attack"].id, commandCounter);
+			commandCounter = UpdateCommand(cellGroup["Command"]["patrol"].id, commandCounter);
+			commandCounter = UpdateCommand(cellGroup["Command"]["repair"].id, commandCounter);
+			commandCounter = UpdateCommand(cellGroup["Gather"]["food"].id, commandCounter);
+			commandCounter = UpdateCommand(cellGroup["Gather"]["wood"].id, commandCounter);
+			commandCounter = UpdateCommand(cellGroup["Gather"]["stone"].id, commandCounter);
+			commandCounter = UpdateCommand(cellGroup["Gather"]["ore"].id, commandCounter);
+*/		
+		}
+	}
+
+	if (listCounter > 0 && commandCounter > 0)
+	{
+		// Clear remaining buttons between them.
+		for (commandClearLoop = listCounter; commandClearLoop <= commandCounter; commandClearLoop++)
+		{
+			guiHide ("snStatusPaneCommand" + commandClearLoop + "_1");
+			// If this slot could possibly contain a list, hide that too.
+			guiHide ("snStatusPaneCommand" + "Group" + commandClearLoop);
+		}
+	}
+/*
+	// Update production queue.
+	GUIObject = getGUIObjectByName("snStatusPaneCommandProgress");
+	// If the entity has a production item underway,
+	if ( selection[0].actions.create && selection[0].actions.create.progress
+	  && selection[0].actions.create.progress.valueOf()
+          && selection[0].actions.create.progress.valueOf().current
+          && selection[0].actions.create.queue.valueOf()
+          && selection[0].actions.create.queue.valueOf()[0].traits.creation.time )
+	{
+
+		// Set the value of the production progress bar.
+		GUIObject.caption = ((Math.round(Math.round(selection[0].actions.create.progress.valueOf().current)) * 100 ) / Math.round(selection[0].actions.create.queue.valueOf()[0].traits.creation.time));
+		// Set position of progress bar.
+		GUIObject.size = getGUIObjectByName("snStatusPaneCommand" + selection[0].actions.create.queue.valueOf()[0].tab + "_" + selection[0].actions.create.queue.valueOf()[0].list).size;
+		// Set progress bar tooltip.
+//		GUIObject.tooltip = "Training " + selection[0].actions.create.queue.valueOf()[0].traits.id.generic + " ... " + (Math.round(selection[0].actions.create.queue.valueOf()[0].traits.creation.time-Math.round(selection[0].actions.create.progress.valueOf().current)) + " seconds remaining.";
+		// Reveal progressbar.
+		GUIObject.hidden  = false;
+		
+		// Seek through queue.
+		for( queueEntry = 0; queueEntry < selection[0].actions.create.queue.valueOf().length; queueEntry++)
+		{
+			// Update list buttons so that they match the number of entries of that type in the queue.
+			getGUIObjectByName("snStatusPaneCommand" + selection[0].actions.create.queue.valueOf()[queueEntry].tab + "_" + selection[0].actions.create.queue.valueOf()[queueEntry].list).caption++;
+		}
+	}
+	else
+	{
+		// Hide the progress bar.
+		GUIObject.hidden  = true;
+		GUIObject.tooltip = "";
+	}
+*/	
+}
+
+
+// ====================================================================
+
+
+
+// ====================================================================
+
+function UpdateCommand(listIcon, listCounter)
 {
 	// Similar to UpdateList, but without the list.
 	// Updates a particular command button with a particular action.
@@ -223,25 +365,25 @@ function UpdateCommand(listIcon, listCol)
 		)
 	{	
 		// Set appearance of tab.
-		setPortrait("snStatusPaneCommand" + listCol + "_1", "sheet_action", "", listIcon);
-		guiUnHide("snStatusPaneCommand" + listCol + "_1");
+		setPortrait("snStatusPaneCommand" + listCounter + "_1", "IconSheetCommand", "Button", listIcon);
+		guiUnHide("snStatusPaneCommand" + listCounter + "_1");
 
 		// Hide its list.
-		guiHide("snStatusPaneCommand" + "Group" + listCol);
+		guiHide("snStatusPaneCommand" + "Group" + listCounter);
 
 		// Store content info in tab button for future reference.
-		snStatusPaneCommand[listCol][1].type = "command";
-		snStatusPaneCommand[listCol][1].last = 0;
-		snStatusPaneCommand[listCol][1].name = listIcon;
+		snStatusPaneCommand[listCounter][1].type = "command";
+		snStatusPaneCommand[listCounter][1].last = 0;
+		snStatusPaneCommand[listCounter][1].name = listIcon;
 
-		return (listCol-1);
+		return (listCounter-1);
 	}
 	else
-		return (listCol);
+		return (listCounter);
 }
 
 // ====================================================================
-
+/*
 function pressCommandButton(commandButton)
 {
 	// Determine current object, tab, and list from command button name.
@@ -305,88 +447,96 @@ console.write (snStatusPaneCommand[tab][list].type);
 		break;
 	}
 }
-
-// ====================================================================
-
-function refreshCommandButtons()
-{
-	if( shouldUpdateStat( "actions.create.list" ) )
-	{
-		// Everything in this block is tied to properties in
-		// actions.create.list, the above check should limit the
-		// number of times this update is needlessly made.
-	
-		// Update train/research/build lists.
-		listCounter	= 1; 
-		
-// This whole section needs to be rewritten (now list of XML attributes instead of semicolon-delimited string).
-
-		unitArray 	= UpdateList(action_tab_train, listCounter); 		if (unitArray != 0)	 listCounter++;
-		structcivArray 	= UpdateList(action_tab_buildciv, listCounter);		if (structcivArray != 0) listCounter++;
-		structmilArray 	= UpdateList(action_tab_buildmil, listCounter);		if (structmilArray != 0) listCounter++;
-		techArray 	= UpdateList(action_tab_research, listCounter);		if (techArray != 0)	 listCounter++;
-		
-		formationArray 	= UpdateList(action_tab_formation, listCounter);	if (formationArray != 0) listCounter++;
-		stanceArray 	= UpdateList(action_tab_stance, listCounter);		if (stanceArray != 0)	 listCounter++;
-	}
-	
-	if( shouldUpdateStat( "actions" ) )
-	{
-		// Update commands.
-		commandCounter = snStatusPaneCommand.tab.max;
-		commandCounter = UpdateCommand(action_attack, commandCounter);
-		commandCounter = UpdateCommand(action_patrol, commandCounter);
-		commandCounter = UpdateCommand(action_repair, commandCounter);
-		commandCounter = UpdateCommand(action_gather_food, commandCounter);
-		commandCounter = UpdateCommand(action_gather_wood, commandCounter);
-		commandCounter = UpdateCommand(action_gather_stone, commandCounter);
-		commandCounter = UpdateCommand(action_gather_ore, commandCounter);
-	}
-
-	if (listCounter > 0 && commandCounter > 0)
-	{
-		// Clear remaining buttons between them.
-		for (commandClearLoop = listCounter; commandClearLoop <= commandCounter; commandClearLoop++)
-		{
-			guiHide("snStatusPaneCommand" + commandClearLoop + "_1");
-			// If this slot could possibly contain a list, hide that too.
-			guiHide("snStatusPaneCommand" + "Group" + commandClearLoop);
-		}
-	}
-/*
-	// Update production queue.
-	GUIObject = getGUIObjectByName("snStatusPaneCommandProgress");
-	// If the entity has a production item underway,
-	if ( selection[0].actions.create && selection[0].actions.create.progress
-	  && selection[0].actions.create.progress.valueOf()
-          && selection[0].actions.create.progress.valueOf().current
-          && selection[0].actions.create.queue.valueOf()
-          && selection[0].actions.create.queue.valueOf()[0].traits.creation.time )
-	{
-
-		// Set the value of the production progress bar.
-		GUIObject.caption = ((Math.round(Math.round(selection[0].actions.create.progress.valueOf().current)) * 100 ) / Math.round(selection[0].actions.create.queue.valueOf()[0].traits.creation.time));
-		// Set position of progress bar.
-		GUIObject.size = getGUIObjectByName("snStatusPaneCommand" + selection[0].actions.create.queue.valueOf()[0].tab + "_" + selection[0].actions.create.queue.valueOf()[0].list).size;
-		// Set progress bar tooltip.
-//		GUIObject.tooltip = "Training " + selection[0].actions.create.queue.valueOf()[0].traits.id.generic + " ... " + (Math.round(selection[0].actions.create.queue.valueOf()[0].traits.creation.time-Math.round(selection[0].actions.create.progress.valueOf().current)) + " seconds remaining.";
-		// Reveal progressbar.
-		GUIObject.hidden  = false;
-		
-		// Seek through queue.
-		for( queueEntry = 0; queueEntry < selection[0].actions.create.queue.valueOf().length; queueEntry++)
-		{
-			// Update list buttons so that they match the number of entries of that type in the queue.
-			getGUIObjectByName("snStatusPaneCommand" + selection[0].actions.create.queue.valueOf()[queueEntry].tab + "_" + selection[0].actions.create.queue.valueOf()[queueEntry].list).caption++;
-		}
-	}
-	else
-	{
-		// Hide the progress bar.
-		GUIObject.hidden  = true;
-		GUIObject.tooltip = "";
-	}
 */
-}
+
 
 // ====================================================================
+/*
+function UpdateListold(listIcon, listCounter)
+{
+	// Populates a given column of command icons with appropriate build portraits for the selected object.
+	// Returns an array of this selection.
+
+	// Build unit list.
+	if ( selection[0].traits.id.civ_code
+	&& selection[0].actions
+	&& selection[0].actions.create
+	&& selection[0].actions.create.list )
+	{
+		list = null;
+
+		switch (listIcon)
+		{
+			case action_tab_train:
+				if ( selection[0].actions.create.list.unit && shouldUpdateStat( "actions.create.list.unit" ) )
+					list = selection[0].actions.create.list.unit;
+			break;
+			case action_tab_buildciv:
+				if ( selection[0].actions.create.list.structciv && shouldUpdateStat( "actions.create.list.structciv" ) )
+					list = selection[0].actions.create.list.structciv;
+			break;
+			case action_tab_buildmil:
+				if ( selection[0].actions.create.list.structmil && shouldUpdateStat( "actions.create.list.structmil" ) )
+					list = selection[0].actions.create.list.structmil;
+			break;
+			case action_tab_research:
+				if ( selection[0].actions.create.list.tech && shouldUpdateStat( "actions.create.list.tech" ) )
+					list = selection[0].actions.create.list.tech;
+			break;
+			default:
+				return 0;
+			break;
+		}
+
+		if ( list )
+		{
+			// Enable tab portrait.
+			guiUnHide("snStatusPaneCommand" + "Group" + listCounter);
+			guiUnHide("snStatusPaneCommand" + listCounter + "_1");
+			setPortrait("snStatusPaneCommand" + listCounter + "_1", "sheet_action", "", listIcon);
+			// Reset list length.
+			snStatusPaneCommand[listCounter][1].last = 0;
+			// Store content info in tab button for future reference.
+			snStatusPaneCommand[listCounter][1].type = "list";
+
+			// Extract entity list into an array.
+			listArray = [];
+			for( i in list )
+			{
+				listArray[listArray.length] = i.toString();
+			}
+
+			// Populate appropriate command buttons.
+			for (createLoop = 1; createLoop < snStatusPaneCommand.list.max; createLoop++)
+			{
+				if (createLoop < listArray.length)
+				{
+					// Get name of entity to display in list.
+					UpdateListEntityName = selection[0].traits.id.civ_code + "_" + listArray[createLoop];
+
+					getGUIObjectByName ("snStatusPaneCommand" + listCounter + "_" + (createLoop+1)).caption = "";
+
+					guiUnHide("snStatusPaneCommand" + listCounter + "_" + (createLoop+1));
+					setPortrait("snStatusPaneCommand" + listCounter + "_" + (createLoop+1), 
+						getEntityTemplate(UpdateListEntityName).traits.id.icon, 
+						selection[0].traits.id.civ_code, 
+						getEntityTemplate(UpdateListEntityName).traits.id.icon_cell);
+					
+					// Store content info in tab button for future reference.
+					snStatusPaneCommand[listCounter][createLoop+1].name = listIcon;
+					snStatusPaneCommand[listCounter][createLoop+1].object = listArray[createLoop];
+					snStatusPaneCommand[listCounter][createLoop+1].type = "list";
+					snStatusPaneCommand[listCounter][createLoop+1].last++;
+				}
+				else
+				{
+					guiHide("snStatusPaneCommand" + listCounter + "_" + parseInt(createLoop+1));
+				}
+			}
+			return listArray;
+		}
+	}
+
+	return 0;
+}
+*/
