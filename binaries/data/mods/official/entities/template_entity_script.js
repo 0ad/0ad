@@ -31,7 +31,7 @@ function entityInit()
 	this.addCreateQueue = entityAddCreateQueue;
 	
 	// If this is a foundation, initialize traits from the building we're converting into
-	if( this.building != "" )
+	if( this.building && this.building != "" )
 	{
 		var building = getEntityTemplate( this.building );
 		this.traits.id.generic = building.traits.id.generic;
@@ -47,13 +47,13 @@ function entityInit()
 	// Generate civ code (1st four characters of civ name, in lower case eg "Carthaginians" => "cart").
 	if (this.traits.id && this.traits.id.civ)
 	{
-		this.traits.id.civ_code = this.traits.id.civ.toString().substring (0, 4)
-		this.traits.id.civ_code = this.traits.id.civ_code.toString().toLowerCase()
+		this.traits.id.civ_code = this.traits.id.civ.toString().substring (0, 4);
+		this.traits.id.civ_code = this.traits.id.civ_code.toString().toLowerCase();
 
 		// Exception to make the Romans into rome.
-		if (this.traits.id.civ_code == "roma") this.traits.id.civ_code = "rome"
+		if (this.traits.id.civ_code == "roma") this.traits.id.civ_code = "rome";
 		// Exception to make the Hellenes into hele.
-		if (this.traits.id.civ_code == "hell") this.traits.id.civ_code = "hele"
+		if (this.traits.id.civ_code == "hell") this.traits.id.civ_code = "hele";
 	}
 
 	// If entity can contain garrisoned units, empty it.
