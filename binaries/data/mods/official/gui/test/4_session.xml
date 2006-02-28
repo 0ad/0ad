@@ -217,11 +217,11 @@
 
 			<!-- STATUS PANE -->
 			<object	name="snStatusPaneBkg"
-				style="skin*Hele*Window"
+				style="snStatusPane"
 				type="image"
 			>
 				<action on="Load"><![CDATA[
-					addCrd (this.name, rb, 0, 100, 0, 0, 240, 150);
+					addCrd (this.name, rb, 0, 100, 0, 0, 256, 128);
 					addCrd (this.name, lb, 100, 100);	
 					addCrd (this.name, lt, 100, 0);
 					addCrd (this.name, rt, 0, 0);
