@@ -99,6 +99,273 @@ function defineCommandButtons(command)
 
 // ====================================================================
 
+function updateTab (tab, type, cellSheet, attribute, attribute2)
+{
+	// Refresh the next tab (and any buttons in its list, if appropriate), according to tabCounter.
+	// tab: 		The name of the tab (eg research).
+	// type:		The type of button:
+	//			* production (Tab button, persistent list of buttons, click them to do things.)
+	//			* pick (Tab button holds current selection, click a button from the list to select a new option and close the tab.)
+	//			* command (Click "tab" button to do something; no list.)
+	// cellSheet:	* The cell sheet (icon group) containing this item's tab icon. (We usually leave it blank to use the default.)
+	//				* production: Tends to be "Tab" (since they need a special tab icon), so defaults to this.
+	//				* pick: Usually a group that's the same as the tab name, so use this.
+	//				* command: Tends to be "Command" (though not always), so defaults to this.
+	// attribute: 	* For production & pick: the attribute containing the list of items to display (eg selection[0].actions.create.list.research)
+	// attribute2:	* For pick: The variable used to store the current item in the pick that has been selected -- placed in the tab (eg selection[0].actions.formation.curr)
+
+console.write ("1st: " + tabCounter + " " + tab + " " + type + " " + cellSheet + " " + attribute + " " + attribute2);
+
+	// If any items in the list (construction, train, research, etc, need to be updated, update that list.)
+	if 	 ( attribute != undefined
+		&& attribute2 != undefined
+//		&& shouldUpdateStat (attribute) // Can't be this precise, as items in the full batch need to be refreshed when switching between units,
+		 )
+	{
+		// Set default values.
+		if (cellSheet == "")
+		{
+			switch (type)
+			{
+				case "command":
+					cellSheet = "Command";
+				break;
+				case "pick":
+					cellSheet = tab;
+					tab		  = attribute2;
+				break;
+				default:
+					cellSheet = "Tab";
+				break;
+			}			
+		}
+		
+console.write ("2nd: " + tabCounter + " " + tab + " " + type + " " + cellSheet + " " + attribute + " " + attribute2);
+
+		// Get tab.
+		tabObject 	= getGUIObjectByName ("snStatusPaneCommand" + tabCounter + "_1");		
+		// Enable tab.
+		guiUnHide (tabObject.name);
+		
+console.write ("3rd: " + "snStatusPaneCommand" + tabCounter + "_1" + "|" + "IconSheet" + "|" + cellSheet + "Button" + "|" + cellGroup[cellSheet][tab].id);
+		
+		// Set tab portrait.
+		if (type != "pick")
+			setPortrait ("snStatusPaneCommand" + tabCounter + "_1", "IconSheet", cellSheet + "Button", cellGroup[cellSheet][tab].id);
+		else
+			setPortrait ("snStatusPaneCommand" + tabCounter + "_1", "IconSheet", cellSheet + "Button", cellGroup[cellSheet][attribute2].id);			
+			
+		// Set tab tooltip.
+		tooltip = cellGroup[cellSheet][tab].name;
+		// Set tab function.
+		switch (type)
+		{
+			case "command":
+				tooltip += " " + cellSheet;
+			
+				tabObject.onPress = function (event)
+				{
+				}			
+			break;
+			case "pick":
+				tooltip += " List";
+		
+				tabObject.onPress = function (event)
+				{
+					// Click the tab button to toggle visibility of its list.
+					guiToggle ( "snStatusPaneCommandGroup" + this.name.substring (this.name.lastIndexOf ("d")+1, this.name.lastIndexOf ("_")) );
+				}			
+			break;
+			default:
+				tooltip += " " + cellSheet;
+		
+				tabObject.onPress = function (event)
+				{
+					// Click the tab button to toggle visibility of its list.
+					guiToggle ( "snStatusPaneCommandGroup" + this.name.substring (this.name.lastIndexOf ("d")+1, this.name.lastIndexOf ("_")) );
+				}
+			break;
+		}
+		tabObject.tooltip = tooltip;		
+		
+		// Get group.
+		groupObject = getGUIObjectByName ("snStatusPaneCommand" + "Group" + tabCounter);		
+
+		// If the list hasn't been hidden (tab is open), and it should have list items (it's not merely a command),
+		if ( groupObject.hidden == false)
+		{
+			// Extract item list into an array.
+			listArray = [];
+			for ( i in attribute )
+			{
+				listArray[listArray.length] = i;
+				// Store any current quantity in the queue for this object.
+//				if (attribute[i].quantity)
+//					listArray[listArray.length].quantity = attribute[i].quantity;
+			}
+
+			// Populate the buttons in this tab's list.
+			for (createLoop = 1; createLoop < snStatusPaneCommand.list.max; createLoop++)
+			{
+				if (createLoop < listArray.length && type != "command")
+				{
+					// Get name of current button.
+					listObject = getGUIObjectByName ("snStatusPaneCommand" + tabCounter + "_" + (createLoop+1));
+
+					// Get name of item to display in list.
+					itemName = selection[0].traits.id.civ_code + "_" + listArray[createLoop];
+
+					// Store name of entity to display in list in this button's coordinate.
+//					Crd[getCrd (listObject.name, true)].entity = new Object(itemName);
+
+					// Set tooltip.
+					listObject.tooltip = getEntityTemplate(itemName).traits.id.civ + " " + getEntityTemplate(itemName).traits.id.generic;
+					
+					// Create quantity container in entity's create list if necessary.
+//					if (!attribute[listArray[createLoop]].quantity)
+//						attribute[listArray[createLoop]].quantity = new Object(0);
+					// Set caption to counter.
+//					if (attribute[listArray[createLoop]].quantity > 1)
+//						listObject.caption = attribute[listArray[createLoop]].quantity-1;
+					// Store pointer to quantity in coordinate.
+//					Crd[getCrd (listObject.name, true)].quantity = new Object(attribute[listArray[createLoop]].quantity);
+					
+					// Set portrait.
+					switch (tab)
+					{
+						case "research":
+							// Skip research list for the moment, since we don't have any portraits for techs.
+						break;
+						default:
+							setPortrait (listObject.name, 
+								getEntityTemplate(itemName).traits.id.icon, 
+								toTitleCase(selection[0].traits.id.civ_code), 
+								getEntityTemplate(itemName).traits.id.icon_cell);
+						break;
+					}
+					
+					// Reveal portrait.
+					guiUnHide (listObject.name);					
+/*				
+					// Set function that occurs when the button is pressed (left-clicked).
+					// (Somehow, we also need to do one for right-clicking -- decrement counter and remove item from queue.)
+					listObject.onPress = function (event)
+					{
+						switch (tab)
+						{
+							case "StructCiv":
+							case "StructMil":
+								// Create building placement cursor.
+								startPlacing (Crd[getCrd (this.name, true)].entity);
+							break;
+							default:
+								// Attempt to add the entry to the queue.
+								if (attemptAddToBuildQueue (selection[0], Crd[getCrd (this.name, true)].entity, Crd[getCrd (this.name, true)].tab, Crd[getCrd (this.name, true)].list))
+//										if (attemptAddToBuildQueue (selection[0], itemName, tab, list))
+								{
+//								// Create quantity container in entity's create list if necessary.
+		//							if (!attribute[Crd[getCrd (this.name, true)].list].quantity)
+			//							attribute[Crd[getCrd (this.name, true)].list].quantity = new Object(0);
+									// Increment counter.
+									attribute[Crd[getCrd (this.name, true)].list].quantity++;
+									// Set caption to counter.
+									if (attribute[Crd[getCrd (this.name, true)].list].quantity > 1)
+										this.caption = attribute[Crd[getCrd (this.name, true)].list].quantity-1;
+									
+									console.write (this.caption);
+								}
+							break;
+						}
+					}
+*/				
+				}
+				else
+				{
+					// Conceal this button.
+					guiHide ("snStatusPaneCommand" + tabCounter + "_" + parseInt(createLoop+1));
+					// Ensure it doesn't have a stored entity to display in list.
+//					Crd[getCrd ("snStatusPaneCommand" + tabCounter + "_" + parseInt(createLoop+1), true)].entity = "";
+					// Ensure it doesn't have a stored quantity of queued items.
+//					Crd[getCrd ("snStatusPaneCommand" + tabCounter + "_" + parseInt(createLoop+1), true)].quantity = 0;
+				}
+			}
+		}
+		tabCounter++;
+	}
+}
+
+// ====================================================================
+
+function refreshCommandButtons()
+{
+	if ( selection[0].actions && shouldUpdateStat ( "actions" ) )
+	{
+		// Reset button counter.
+		tabCounter = 1;
+		
+		// Update production lists (both types of Construction, Train). (Tab button, persistent buttons, click them to do things.)
+		listRoot = selection[0].actions.create.list;
+		for (listTab in listRoot)
+		{
+			if (listTab != "research")	// Do research later.
+				updateTab (listTab, "production", "", listRoot[listTab], "");
+		}	
+	
+		// Update Barter. (Tab button, persistent buttons, click them to do things.)
+//		updateTab ("barter", "production", "", selection[0].actions.barter);
+		
+		// Update pick lists (formation, stance, trade). (Tab button holds current selection, click a button to select a new option and close the tab.)
+//		updateTab ("formation", "pick", "", selection[0].traits.formation.type, selection[0].traits.formation.curr);
+//		updateTab ("stance", "pick", "", selection[0].traits.ai.stance.list, selection[0].traits.ai.stance.curr);
+//		updateTab ("trade", "pick", "", selection[0].actions.trade.list, selection[0].actions.trade.curr);
+//		updateTab ("gate", "pick", "", selection[0].actions.gate.list, selection[0].actions.gate.curr);
+		
+		// Update research. (Tab button, persistent buttons, click them to do things.)
+		updateTab ("research", "production", "", selection[0].actions.create.list.research, "");
+		
+		// End of production and pick lists. Store end position.
+		listCounter = tabCounter;
+		
+		// Commands begin from this point.
+		tabCounter = snStatusPaneCommand.split;
+		// Update commands. (Click "tab" button to do something; no list.)		
+		updateTab ("patrol", "command", "", selection[0].actions.patrol, "");
+		updateTab ("townbell", "command", "", selection[0].actions.townbell, "");				
+		updateTab ("rally", "command", "", selection[0].actions.create.rally, "");		
+		updateTab ("explore", "command", "", selection[0].actions.explore, "");		
+		updateTab ("retreat", "command", "", selection[0].actions.retreat, "");			
+		updateTab ("stop", "command", "", selection[0].actions.stop, "");		
+		updateTab ("kill", "command", "", selection[0].actions.kill, "");		
+		
+		// End of commands. Store end position.
+		commandCounter = tabCounter;
+	}
+
+	if (listCounter > 0 && commandCounter > 0)
+	{
+		// Clear remaining buttons between the lists and commands.
+		for (commandClearLoop = listCounter; commandClearLoop <= snStatusPaneCommand.split-1; commandClearLoop++)
+		{
+			guiHide ("snStatusPaneCommand" + commandClearLoop + "_1");
+			// If this slot could possibly contain a list, hide that too.
+			guiHide ("snStatusPaneCommand" + "Group" + commandClearLoop);
+		}
+		for (commandClearLoop = commandCounter; commandClearLoop <= snStatusPaneCommand.tab.max; commandClearLoop++)
+		{
+			guiHide ("snStatusPaneCommand" + commandClearLoop + "_1");
+			// If this slot could possibly contain a list, hide that too.
+			guiHide ("snStatusPaneCommand" + "Group" + commandClearLoop);
+		}		
+	}
+	
+}
+
+
+// ====================================================================
+
+
+// ====================================================================
+/*
 function updateList (listTab, listGroup)
 {
 	// If any items in the list (construction, train, research, etc, need to be updated, update that list.)
@@ -177,6 +444,7 @@ function updateList (listTab, listGroup)
 					
 					// Reveal portrait.
 					guiUnHide (listObject.name);					
+*/					
 /*				
 					// Set function that occurs when the button is pressed (left-clicked).
 					// (Somehow, we also need to do one for right-clicking -- decrement counter and remove item from queue.)
@@ -208,7 +476,8 @@ function updateList (listTab, listGroup)
 							break;
 						}
 					}
-*/				
+*/			
+/*
 				}
 				else
 				{
@@ -224,9 +493,10 @@ function updateList (listTab, listGroup)
 		listCounter++;
 	}
 }
+*/
 
 // ====================================================================
-
+/*
 function refreshCommandButtons()
 {
 	// Set start of tabs.
@@ -264,7 +534,7 @@ function refreshCommandButtons()
 			
 		// Update commands. (Click "tab" button to do something; no list).
 			
-	
+*/	
 // This whole section needs to be rewritten (now list of XML attributes instead of semicolon-delimited string).
 /*
 			unitArray 	= UpdateList(action_tab_train, listCounter); 		if (unitArray != 0)	 listCounter++;
@@ -274,11 +544,13 @@ function refreshCommandButtons()
 			
 			formationArray 	= UpdateList(action_tab_formation, listCounter);	if (formationArray != 0) listCounter++;
 			stanceArray 	= UpdateList(action_tab_stance, listCounter);		if (stanceArray != 0)	 listCounter++;
-*/		
+*/	
+/*	
 		if ( shouldUpdateStat( "actions" ) )
 		{
 			// Update commands.
 			commandCounter = snStatusPaneCommand.tab.max;
+*/			
 /*		
 			commandCounter = UpdateCommand(cellGroup["Command"]["attack"].id, commandCounter);
 			commandCounter = UpdateCommand(cellGroup["Command"]["patrol"].id, commandCounter);
@@ -287,7 +559,8 @@ function refreshCommandButtons()
 			commandCounter = UpdateCommand(cellGroup["Gather"]["wood"].id, commandCounter);
 			commandCounter = UpdateCommand(cellGroup["Gather"]["stone"].id, commandCounter);
 			commandCounter = UpdateCommand(cellGroup["Gather"]["ore"].id, commandCounter);
-*/		
+*/	
+/*	
 		}
 	}
 
@@ -301,6 +574,7 @@ function refreshCommandButtons()
 			guiHide ("snStatusPaneCommand" + "Group" + commandClearLoop);
 		}
 	}
+*/	
 /*
 	// Update production queue.
 	GUIObject = getGUIObjectByName("snStatusPaneCommandProgress");
@@ -335,15 +609,10 @@ function refreshCommandButtons()
 		GUIObject.tooltip = "";
 	}
 */	
-}
-
-
-// ====================================================================
-
-
+//}
 
 // ====================================================================
-
+/*
 function UpdateCommand(listIcon, listCounter)
 {
 	// Similar to UpdateList, but without the list.
@@ -381,6 +650,7 @@ function UpdateCommand(listIcon, listCounter)
 	else
 		return (listCounter);
 }
+*/
 
 // ====================================================================
 /*

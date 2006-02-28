@@ -59,7 +59,7 @@ function initCellReference()
 		addCell (groupName, "unlock", "Unlock");		
 		addCell (groupName, "kill", "Kill");		
 		addCell (groupName, "explore", "Explore");		
-		addCell (groupName, "rallypoint", "Rally Point");		
+		addCell (groupName, "rally", "Rally");		
 		addCell (groupName, "stop", "Stop");		
 		addCell (groupName, "heal", "Heal");		
 		addCell (groupName, "repair", "Repair");		
