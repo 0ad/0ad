@@ -184,7 +184,7 @@ int ilog2(uint n)
 
 #endif
 
-	debug_assert(-1 <= bit_index && bit_index < sizeof(int)*CHAR_BIT);
+	debug_assert(-1 <= bit_index && bit_index < (int)sizeof(int)*CHAR_BIT);
 	debug_assert(bit_index == -1 || n == (1u << bit_index));
 	return bit_index;
 }

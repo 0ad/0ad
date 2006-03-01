@@ -615,11 +615,13 @@ static LibError mmap_mem(void* start, size_t len, int prot, int flags, int fd, v
 	if(!want_commit && start != 0 && flags & MAP_FIXED)
 	{
 		MEMORY_BASIC_INFORMATION mbi;
-		WARN_RETURN_IF_FALSE(VirtualQuery(start, &mbi, len));
+		WARN_RETURN_IF_FALSE(VirtualQuery(start, &mbi, sizeof(mbi)));
 		if(mbi.State == MEM_COMMIT)
 		{
 			WARN_IF_FALSE(VirtualFree(start, len, MEM_DECOMMIT));
 			*pp = 0;
+			// make sure *pp won't be misinterpreted as an error
+			cassert(MAP_FAILED != 0);
 			return ERR_OK;
 		}
 	}

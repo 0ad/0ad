@@ -16,6 +16,7 @@ that of Atlas depending on commandline parameters.
 #include "lib/timer.h"
 #include "lib/res/file/vfs.h"
 #include "lib/res/sound/snd.h"
+#include "lib/res/file/vfs_optimizer.h"
 
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/GameSetup/Atlas.h"
@@ -85,6 +86,31 @@ static void PumpEvents()
 }
 
 
+// return indication of whether archive is currently being built; this is
+// used to prevent reloading during that time (see call site).
+static bool ProgressiveBuildArchive()
+{
+	int ret = vfs_opt_auto_build("mods/official", "official%d.zip", "../logs/trace.txt");
+	if(ret == INFO_ALL_COMPLETE)
+	{
+		// nothing to do; will return false below
+	}
+	else if(ret < 0)
+		DISPLAY_ERROR(L"Archive build failed");
+	else if(ret == ERR_OK)
+		g_GUI.SendEventToAll("archivebuildercomplete");
+	// in progress
+	else
+	{
+		int percent = (int)ret;
+		g_ScriptingHost.SetGlobal("g_ArchiveBuilderProgress", INT_TO_JSVAL(percent));
+		g_GUI.SendEventToAll("archivebuilderprogress");
+		return true;
+	}
+
+	return false;
+}
+
 
 static int ProgressiveLoad()
 {
@@ -117,6 +143,7 @@ static int ProgressiveLoad()
 	GUI_DisplayLoadProgress(progress_percent, description);
 	return 0;
 }
+
 
 CMusicPlayer music_player;
 
@@ -176,10 +203,24 @@ static void Frame()
 	music_player.update();
 	PROFILE_END( "update music" );
 
-	PROFILE_START("reload changed files");
-	MICROLOG(L"reload changed files");
-	vfs_reload_changed_files(); 
-	PROFILE_END( "reload changed files");
+	bool is_building_archive;	// must come before PROFILE_START's {
+	PROFILE_START("build archive");
+	MICROLOG(L"build archive");
+	is_building_archive = ProgressiveBuildArchive();
+	PROFILE_END( "build archive");
+
+	// this scans for changed files/directories and reloads them, thus
+	// allowing hotloading (changes are immediately assimilated in-game).
+	// must not be done during archive building because it changes the
+	// archive file each iteration, but keeps it locked; reloading
+	// would trigger a warning because the file can't be opened.
+	if(!is_building_archive)
+	{
+		PROFILE_START("reload changed files");
+		MICROLOG(L"reload changed files");
+		vfs_reload_changed_files(); 
+		PROFILE_END( "reload changed files");
+	}
 
 	PROFILE_START("progressive load");
 	MICROLOG(L"progressive load");

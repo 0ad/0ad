@@ -57,25 +57,24 @@
 // we want to maintain C compatibility, so this isn't a C++ class.
 
 // write the given directory path into our buffer and set end/chars_left
-// accordingly. <dir> need and should not end with a directory separator.
+// accordingly. <dir> need not but can end with a directory separator.
 //
 // note: <dir> and the filename set via pp_append_file are separated by
 // '/'. this is to allow use on portable paths; the function otherwise
 // does not care if paths are relative/portable/absolute.
 LibError pp_set_dir(PathPackage* pp, const char* dir)
 {
-	// note: use / instead of DIR_SEP because pp->path is portable.
-	const int len = snprintf(pp->path, ARRAY_SIZE(pp->path), "%s/", dir);
-	// (need len below and must return an error code, not -1)
-	if(len < 0)
+	// -1 allows for trailing DIR_SEP that will be added if not
+	// already present.
+	if(strcpy_s(pp->path, ARRAY_SIZE(pp->path)-1, dir) != 0)
 		WARN_RETURN(ERR_PATH_LENGTH);
+	size_t len = strlen(pp->path);
+	// didn't end with directory separator: add one
+	if(pp->path[len-1] != '/' && pp->path[len-1] != DIR_SEP)
+		pp->path[len++] = '/';
+
 	pp->end = pp->path+len;
 	pp->chars_left = ARRAY_SIZE(pp->path)-len;
-
-	// check if <dir> actually did end with '/' (this will cause problems
-	// when attempting to vfs_open the file).
-	if(len >= 2)	// protect against underrun
-		debug_assert(pp->end[-2] != '/' && pp->end[-2] != DIR_SEP);
 	return ERR_OK;
 }
 
@@ -501,15 +500,23 @@ LibError file_enum(const char* P_path, const FileCB cb, const uintptr_t user)
 
 
 // get file information. output param is zeroed on error.
-LibError file_stat(const char* path, struct stat* s)
+LibError file_stat(const char* fn, struct stat* s)
 {
 	memset(s, 0, sizeof(struct stat));
 
-	char n_path[PATH_MAX+1];
-	CHECK_ERR(file_make_full_native_path(path, n_path));
+	char N_fn[PATH_MAX+1];
+	RETURN_ERR(file_make_full_native_path(fn, N_fn));
 
 	errno = 0;
-	return LibError_from_posix(stat(n_path, s));
+	return LibError_from_posix(stat(N_fn, s));
+}
+
+
+// does the given file exist? (implemented via file_stat)
+bool file_exists(const char* fn)
+{
+	struct stat s;
+	return file_stat(fn, &s) == ERR_OK;
 }
 
 

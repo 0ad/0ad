@@ -284,42 +284,47 @@ public:
 			size = 1;
 
 		const size_t size_pa = round_up(size, BUF_ALIGN);
+		const uint size_class = size_class_of(size_pa);
 		void* p;
 
 		// try to reuse a freed entry
-		const uint size_class = size_class_of(size_pa);
 		p = alloc_from_class(size_class, size_pa);
 		if(p)
-			return p;
+			goto success;
 
 		// grab more space from pool
 		p = pool_alloc(&pool, size_pa);
 		if(p)
-			return p;
+			goto success;
 
 		// last resort: split a larger element
 		p = alloc_from_larger_class(size_class, size_pa);
 		if(p)
-			return p;
+			goto success;
 
 		// failed - can no longer expand and nothing big enough was
 		// found in freelists.
 		// file cache will decide which elements are least valuable,
 		// free() those and call us again.
 		return 0;
+
+success:
+		stats_notify_alloc(size_pa);
+		return p;
 	}
 
 	void make_read_only(u8* p, size_t size)
 	{
+		u8* p_pa = (u8*)round_down((uintptr_t)p, BUF_ALIGN);
 		const size_t size_pa = round_up(size, BUF_ALIGN);
-/*/*		(void)mprotect(p, size_pa, PROT_READ);*/
+		(void)mprotect(p_pa, size_pa, PROT_READ);
 	}
 
 	// rationale: don't call this "free" because that would run afoul of the
 	// memory tracker's redirection macro and require #include "nommgr.h".
 	void dealloc(u8* p, size_t size)
 	{
-		size_t size_pa = round_up(size, BUF_ALIGN);
+		const size_t size_pa = round_up(size, BUF_ALIGN);
 		// make sure entire (aligned!) range is within pool.
 		if(!pool_contains(&pool, p) || !pool_contains(&pool, p+size_pa-1))
 		{
@@ -332,9 +337,11 @@ public:
 		// note: unfortunately we cannot unmap this buffer's memory
 		// (to make sure it is not used) because we write a header/footer
 		// into it to support coalescing.
-/*/*		(void)mprotect(p, size_pa, PROT_READ|PROT_WRITE);*/
+		(void)mprotect(p, size_pa, PROT_READ|PROT_WRITE);
 
 		coalesce_and_free(p, size_pa);
+
+		stats_notify_free(size_pa);
 	}
 
 	// free all allocations and reset state to how it was just after
@@ -344,14 +351,21 @@ public:
 		pool_free_all(&pool);
 		bitmap = 0;
 		memset(freelists, 0, sizeof(freelists));
+		stats_reset();
 	}
 
 private:
 	Pool pool;
 
-	uint size_class_of(size_t size_pa) const
+	static uint size_class_of(size_t size_pa)
 	{
 		return log2((uint)size_pa);
+	}
+
+	// value of LSB 1-bit
+	static uint ls1(uint x)
+	{
+		return (x & -(int)x);
 	}
 
 	//-------------------------------------------------------------------------
@@ -445,6 +459,7 @@ private:
 
 	void freelist_add(u8* p, size_t size_pa)
 	{
+		TEST((uintptr_t)p % BUF_ALIGN == 0);
 		TEST(size_pa % BUF_ALIGN == 0);
 		const uint size_class = size_class_of(size_pa);
 
@@ -475,6 +490,8 @@ private:
 
 	void freelist_remove(Header* header)
 	{
+		TEST((uintptr_t)header % BUF_ALIGN == 0);
+
 		Footer* footer = (Footer*)((u8*)header+header->size_pa-sizeof(Footer));
 		TEST(is_valid_tag(HEADER_ID, header->id, header->magic, header->size_pa));
 		TEST(is_valid_tag(FOOTER_ID, footer->id, footer->magic, footer->size_pa));
@@ -523,8 +540,7 @@ private:
 		classes_left &= (~0 << start_size_class);
 		while(classes_left)
 		{
-#define LS1(x) (x & -(int)x)	// value of LSB 1-bit
-			const uint class_size = LS1(classes_left);
+			const uint class_size = ls1(classes_left);
 			classes_left &= ~class_size;	// remove from classes_left
 			const uint size_class = size_class_of(class_size);
 			void* p = alloc_from_class(size_class, size_pa);
@@ -536,6 +552,32 @@ private:
 		// or the above would have succeeded.
 		TEST(bitmap < BIT(start_size_class+1));
 		return 0;
+	}
+
+	//-------------------------------------------------------------------------
+	// stats and validation
+	size_t allocated_size_total_pa, free_size_total_pa;
+
+	void stats_notify_alloc(size_t size_pa) { allocated_size_total_pa += size_pa; }
+	void stats_notify_free(size_t size_pa) { free_size_total_pa += size_pa; }
+	void stats_reset() { allocated_size_total_pa = free_size_total_pa = 0; }
+
+	void self_check() const
+	{
+		debug_assert(allocated_size_total_pa+free_size_total_pa == pool.da.cur_size);
+
+		// make sure freelists contain exactly free_size_total_pa bytes
+		size_t freelist_size_total_pa = 0;
+		uint classes_left = bitmap;
+		while(classes_left)
+		{
+			const uint class_size = ls1(classes_left);
+			classes_left &= ~class_size;	// remove from classes_left
+			const uint size_class = size_class_of(class_size);
+			for(const Header* p = &freelists[size_class]; p; p = p->next)
+				freelist_size_total_pa += p->size_pa;
+		}
+		debug_assert(free_size_total_pa == freelist_size_total_pa);
 	}
 };	// CacheAllocator
 
@@ -574,6 +616,31 @@ public:
 	ExtantBufMgr()
 		: extant_bufs(), epoch(1) {}
 
+	// return index of ExtantBuf that contains <buf>, or -1.
+	ssize_t find(FileIOBuf buf)
+	{
+		debug_assert(buf != 0);
+		for(size_t i = 0; i < extant_bufs.size(); i++)
+		{
+			ExtantBuf& eb = extant_bufs[i];
+			if(matches(eb, buf))
+				return (ssize_t)i;
+		}
+
+		return -1;
+	}
+
+	// issues a warning if <buf> is not on the extant list or if
+	// size doesn't match that stored in the list.
+	void warn_if_not_extant(FileIOBuf buf, size_t size)
+	{
+		ssize_t idx = find(buf);
+		if(idx == -1)
+			debug_warn("not in extant list");
+		else
+			debug_assert(extant_bufs[idx].size == size);
+	}
+
 	void add(FileIOBuf buf, size_t size, const char* atom_fn, bool long_lived)
 	{
 		// cache_allocator also does this; we need to follow suit so that
@@ -589,6 +656,9 @@ public:
 		for(size_t i = 0; i < extant_bufs.size(); i++)
 		{
 			ExtantBuf& eb = extant_bufs[i];
+			if(eb.atom_fn == atom_fn)
+				debug_warn("already exists!");
+			// slot currently empty
 			if(!eb.buf)
 			{
 				debug_assert(eb.refs == 0);
@@ -606,81 +676,66 @@ public:
 
 	void add_ref(FileIOBuf buf, size_t size, const char* atom_fn)
 	{
-		for(size_t i = 0; i < extant_bufs.size(); i++)
-		{
-			ExtantBuf& eb = extant_bufs[i];
-			if(matches(eb, buf))
-			{
-				eb.refs++;
-				return;
-			}
-		}
-
-		add(buf, size, atom_fn, false);
+		ssize_t idx = find(buf);
+		if(idx != -1)
+			extant_bufs[idx].refs++;
+		else
+			add(buf, size, atom_fn, false);
 	}
 
 	const char* get_owner_filename(FileIOBuf buf)
 	{
-		debug_assert(buf != 0);
-		for(size_t i = 0; i < extant_bufs.size(); i++)
-		{
-			ExtantBuf& eb = extant_bufs[i];
-			if(matches(eb, buf))
-				return eb.atom_fn;
-		}
-		return 0;
+		ssize_t idx = find(buf);
+		if(idx != -1)
+			return extant_bufs[idx].atom_fn;
+		else
+			return 0;
 	}
+
 
 	bool find_and_remove(FileIOBuf buf, FileIOBuf& exact_buf, size_t& size, const char*& atom_fn)
 	{
-		bool actually_removed = false;
-
-		debug_assert(buf != 0);
-		for(size_t i = 0; i < extant_bufs.size(); i++)
+		ssize_t idx = find(buf);
+		if(idx == -1)
 		{
-			ExtantBuf& eb = extant_bufs[i];
-			if(matches(eb, buf))
-			{
-				exact_buf = eb.buf;
-				size      = eb.size;
-				atom_fn   = eb.atom_fn;
-
-				// no more references
-				if(--eb.refs == 0)
-				{
-					// mark slot in extant_bufs[] as reusable
-					eb.buf     = 0;
-					eb.size    = 0;
-					eb.atom_fn = 0;
-
-					actually_removed = true;
-				}
-
-				if(eb.epoch != 0 && eb.epoch != epoch-1)
-					debug_warn("buf not released immediately");
-				epoch++;
-				return actually_removed;
-			}
+			debug_warn("buf is not on extant list! double free?");
+			return false;
 		}
 
-		debug_warn("buf is not on extant list! double free?");
-		return false;
+		ExtantBuf& eb = extant_bufs[idx];
+		exact_buf = eb.buf;
+		size      = eb.size;
+		atom_fn   = eb.atom_fn;
+
+		if(eb.epoch != 0 && eb.epoch != epoch-1)
+			debug_warn("buf not released immediately");
+		epoch++;
+
+		bool actually_removed = false;
+		// no more references
+		if(--eb.refs == 0)
+		{
+			// mark slot in extant_bufs[] as reusable
+			memset(&eb, 0, sizeof(eb));
+
+			actually_removed = true;
+		}
+
+		return actually_removed;
+	}
+
+	void clear()
+	{
+		extant_bufs.clear();
 	}
 
 	void replace_owner(FileIOBuf buf, const char* atom_fn)
 	{
-		debug_assert(buf != 0);
-		for(size_t i = 0; i < extant_bufs.size(); i++)
-		{
-			ExtantBuf& eb = extant_bufs[i];
-			if(matches(eb, buf))
-			{
-				eb.atom_fn = atom_fn;
-				return;
-			}
-		}
-
-		debug_warn("to-be-replaced buf not found");
+		ssize_t idx = find(buf);
+		if(idx != -1)
+			extant_bufs[idx].atom_fn = atom_fn;
+		else
+			debug_warn("to-be-replaced buf not found");
 	}
 
 	void display_all_remaining()
@@ -714,11 +769,67 @@ static ExtantBufMgr extant_bufs;
 // inefficient.
 static Cache<const void*, FileIOBuf> file_cache;
 
+class ExactBufOracle
+{
+public:
+	void add(FileIOBuf exact_buf, FileIOBuf padded_buf)
+	{
+		debug_assert((uintptr_t)exact_buf % BUF_ALIGN == 0);
+		debug_assert(exact_buf < padded_buf);
+
+		std::pair<Padded2Exact::iterator, bool> ret;
+		ret = padded2exact.insert(std::make_pair(padded_buf, exact_buf));
+		// make sure it wasn't already in the map
+		debug_assert(ret.second == true);
+	}
+
+	void remove(FileIOBuf padded_buf)
+	{
+		padded2exact.erase(padded_buf);
+	}
+
+	FileIOBuf get(FileIOBuf padded_buf, bool remove_afterwards = false)
+	{
+		Padded2Exact::iterator it = padded2exact.find(padded_buf);
+
+		FileIOBuf exact_buf;
+		if(it == padded2exact.end())
+			exact_buf = padded_buf;
+		else
+		{
+			exact_buf = it->second;
+			if(remove_afterwards)
+				padded2exact.erase(it);
+		}
+
+		debug_assert((uintptr_t)exact_buf % BUF_ALIGN == 0);
+		return exact_buf;
+	}
+
+private:
+	typedef std::map<FileIOBuf, FileIOBuf> Padded2Exact;
+	Padded2Exact padded2exact;
+};
+static ExactBufOracle exact_buf_oracle;
+
+
+static void free_padded_buf(FileIOBuf padded_buf, size_t size)
+{
+	FileIOBuf exact_buf = exact_buf_oracle.get(padded_buf, true);
+
+	size_t exact_size = size + ((u8*)padded_buf-(u8*)exact_buf);
+	exact_size = round_up(exact_size, BUF_ALIGN);
+
+	cache_allocator.dealloc((u8*)exact_buf, exact_size);
+}
+
 
 FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, bool long_lived)
 {
-	FileIOBuf buf;
+if(!stricmp(atom_fn, "entities/template_structure_43fd26460000028eA.xmb"))
+debug_break();
 
+	FileIOBuf buf;
 	uint attempts = 0;
 	for(;;)
 	{
@@ -732,9 +843,14 @@ FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, bool long_lived)
 		// only false if cache is empty, which can't be the case because
 		// allocation failed.
 		TEST(removed);
-		cache_allocator.dealloc((u8*)discarded_buf, size);
 
-		if(attempts++ > 50)
+		free_padded_buf(discarded_buf, size);
+
+		// note: 200 may seem hefty, but 50 is known to be reached.
+		// (after building archive, file cache is full; attempting to
+		// allocate 2MB while only freeing 100KB blocks scattered over
+		// the entire cache can take a while)
+		if(attempts++ > 200)
 			debug_warn("possible infinite loop: failed to make room in cache");
 	}
 
@@ -777,13 +893,24 @@ LibError file_buf_get(FileIOBuf* pbuf, size_t size,
 }
 
 
+void file_buf_add_padding(FileIOBuf buf, size_t padding)
+{
+	debug_assert(padding != 0 && padding < FILE_BLOCK_SIZE);
+	FileIOBuf padded_buf = (FileIOBuf)((u8*)buf + padding);
+	exact_buf_oracle.add(buf, padded_buf);
+}
+
+
 LibError file_buf_free(FileIOBuf buf)
 {
 	if(!buf)
 		return ERR_OK;
 
-	FileIOBuf exact_buf; size_t actual_size; const char* atom_fn;
-	bool actually_removed = extant_bufs.find_and_remove(buf, exact_buf, actual_size, atom_fn);
+	// note: don't use exact_buf_oracle here - just scanning through
+	// extant list and comparing range is faster + simpler.
+
+	FileIOBuf exact_buf; size_t exact_size; const char* atom_fn;
+	bool actually_removed = extant_bufs.find_and_remove(buf, exact_buf, exact_size, atom_fn);
 	if(actually_removed)
 	{
 		FileIOBuf buf_in_cache;
@@ -796,11 +923,14 @@ LibError file_buf_free(FileIOBuf buf)
 		}
 		// buf is not in cache - needs to be freed immediately.
 		else
-			cache_allocator.dealloc((u8*)exact_buf, actual_size);
+		{
+			exact_buf_oracle.remove(buf);
+			cache_allocator.dealloc((u8*)exact_buf, exact_size);
+		}
 	}
 
 	stats_buf_free();
-	trace_notify_free(atom_fn, actual_size);
+	trace_notify_free(atom_fn, exact_size);
 
 	return ERR_OK;
 }
@@ -821,15 +951,14 @@ LibError file_buf_set_real_fn(FileIOBuf buf, const char* atom_fn)
 }
 
 
-
-
 LibError file_cache_add(FileIOBuf buf, size_t size, const char* atom_fn)
 {
+	debug_assert(buf);
+
 	// decide (based on flags) if buf is to be cached; set cost
 	uint cost = 1;
 
-	if(buf)
-		cache_allocator.make_read_only((u8*)buf, size);
+	cache_allocator.make_read_only((u8*)buf, size);
 	file_cache.add(atom_fn, buf, size, cost);
 
 	return ERR_OK;
@@ -920,15 +1049,15 @@ LibError file_cache_invalidate(const char* P_fn)
 }
 
 
-void file_cache_flush()
+void file_cache_reset()
 {
-	for(;;)
-	{
-		FileIOBuf discarded_buf; size_t size;
-		if(!file_cache.remove_least_valuable(&discarded_buf, &size))
-			return;	// cache is now empty - done
-		cache_allocator.dealloc((u8*)discarded_buf, size);
-	}
+	// wipe out extant list and cache. no need to free the bufs -
+	// cache allocator is completely reset below.
+	extant_bufs.clear();
+	FileIOBuf discarded_buf; size_t size;
+	while(file_cache.remove_least_valuable(&discarded_buf, &size)) {}
+
+	cache_allocator.reset();
 }
 
 
@@ -967,8 +1096,6 @@ static void test_cache_allocator()
 	{
 		size_t size = rand(1, 10*MiB);
 		total_size_used += size;
-if(total_size_used == 298580898)
-debug_break();
 		void* p;
 		// until successful alloc:
 		for(;;)
@@ -1006,7 +1133,7 @@ static void test_file_cache()
 	// give to file_cache
 //	file_cache_add((FileIOBuf)p, size, atom_fn++);
 
-	file_cache_flush();
+	file_cache_reset();
 	TEST(file_cache.empty());
 
 	// (even though everything has now been freed,

@@ -19,12 +19,32 @@ extern bool path_component_valid(const char* name);
 extern LibError path_replace(char* dst, const char* src, const char* remove, const char* replace);
 
 
-struct PathName
+// fill V_dir_only with the path portion of V_src_fn
+// ("" if root dir, otherwise ending with /)
+extern void path_dir_only(const char* V_src_fn, char* V_dir_only);
+
+// return pointer to the name component within V_src_fn
+extern const char* path_name_only(const char* V_src_fn);
+
+
+struct NextNumberedFilenameInfo
 {
-	const char* path;
-	const char* name;
+	int next_num;
 };
 
-extern LibError pathname_split(const char* V_path_tmp, PathName* V_path);
+// fill V_next_fn (which must be big enough for VFS_MAX_PATH chars) with
+// the next numbered filename according to the pattern defined by V_fn_fmt.
+// <nfi> must be initially zeroed (e.g. by defining as static) and passed
+// each time.
+// if <use_vfs> (default), the paths are treated as VFS paths; otherwise,
+// file.cpp's functions are used. this is necessary because one of
+// our callers needs a filename for VFS archive files.
+//
+// this function is useful when creating new files which are not to
+// overwrite the previous ones, e.g. screenshots.
+// example for V_fn_fmt: "screenshots/screenshot%04d.png".
+extern void next_numbered_filename(const char* V_fn_fmt,
+	NextNumberedFilenameInfo* nfi, char* V_next_fn, bool use_vfs = true);
+
 
 #endif	// #ifndef VFS_PATH_H__

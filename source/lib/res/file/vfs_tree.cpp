@@ -79,11 +79,14 @@ public:
 	// this increases size of VFS (2 pointers needed here) and
 	// filename storage, but allows getting path without having to
 	// iterate over all dir name components.
-	//we could retrieve name via strrchr(path, '/'), but that is slow.
-	PathName V_path;
+	// we could retrieve name via strrchr(path, '/'), but that is slow.
+	const char* V_path;
+	const char* name;
 
-	TNode(TNodeType type_, PathName V_path_)
-		: type(type_), V_path(V_path_) {}
+	TNode(TNodeType type_, const char* V_path_, const char* name_)
+		: type(type_), V_path(V_path_), name(name_)
+	{
+	}
 };
 
 
@@ -99,8 +102,8 @@ public:
 
 	uintptr_t memento;
 
-	TFile(PathName V_path, const Mount* m_)
-		: TNode(NT_FILE, V_path)
+	TFile(const char* V_path, const char* name, const Mount* m_)
+		: TNode(NT_FILE, V_path, name)
 	{
 		m = m_;
 		size = 0;
@@ -139,7 +142,7 @@ public:
 	}
 	const char* get_key(TNode* t) const
 	{
-		return t->V_path.name;
+		return t->name;
 	}
 };
 typedef DynHashTbl<const char*, TNode*, DHT_Traits<const char*, TNode*> > TChildren;
@@ -159,8 +162,8 @@ class TDir : public TNode
 	TChildren children;
 
 public:
-	TDir(PathName V_path)
-		: TNode(NT_DIR, V_path), children()
+	TDir(const char* V_path, const char* name)
+		: TNode(NT_DIR, V_path, name), children()
 	{
 		flags = 0;
 		rd.m = 0;
@@ -189,10 +192,9 @@ public:
 	LibError add(const char* name_tmp, TNodeType type, TNode** pnode)
 	{
 		char V_new_path_tmp[VFS_MAX_PATH];
-		vfs_path_append(V_new_path_tmp, V_path.path, name_tmp);
-		PathName V_new_path;
-		pathname_split(V_new_path_tmp, &V_new_path);
-		const char* name = V_new_path.name;
+		vfs_path_append(V_new_path_tmp, V_path, name_tmp);
+		const char* V_new_path = file_make_unique_fn_copy(V_new_path_tmp);
+		const char* name = path_name_only(V_new_path);
 
 		if(!path_component_valid(name))
 			return ERR_PATH_INVALID;
@@ -214,9 +216,9 @@ public:
 			return ERR_NO_MEM;
 #include "nommgr.h"
 		if(type == NT_FILE)
-			node = new(mem) TFile(V_new_path, rd.m);
+			node = new(mem) TFile(V_new_path, name, rd.m);
 		else
-			node = new(mem) TDir(V_new_path);
+			node = new(mem) TDir(V_new_path, name);
 #include "mmgr.h"
 
 		children.insert(name, node);
@@ -296,7 +298,7 @@ static void displayR(TDir* td, int indent_level)
 		TNode* node = (*it);
 		if(node->type != NT_FILE)
 			continue;
-		const char* name = node->V_path.name;
+		const char* name = node->name;
 
 		TFile& file = *((TFile*)node);
 		char file_location = mount_get_type(file.m);
@@ -321,7 +323,7 @@ static void displayR(TDir* td, int indent_level)
 		TNode* node = (*it);
 		if(node->type != NT_DIR)
 			continue;
-		const char* subdir_name = node->V_path.name;
+		const char* subdir_name = node->name;
 
 		// write subdir's name
 		// note: do it now, instead of in recursive call so that:
@@ -435,9 +437,8 @@ void tree_init()
 	void* mem = node_alloc();
 	if(mem)
 	{
-		const PathName V_root_path = { "", "" };
 #include "nommgr.h"
-		tree_root = new(mem) TDir(V_root_path);
+		tree_root = new(mem) TDir("", "");
 #include "mmgr.h"
 	}
 }
@@ -581,7 +582,7 @@ LibError tree_dir_next_ent(TreeDirIterator* d_, DirEnt* ent)
 		return ERR_DIR_END;
 
 	const TNode* node = *(d->it++);
-	ent->name = node->V_path.name;
+	ent->name = node->name;
 
 	// set size and mtime fields depending on node type:
 	switch(node->type)
@@ -630,7 +631,7 @@ uintptr_t tfile_get_memento(const TFile* tf)
 
 const char* tfile_get_atom_fn(const TFile* tf)
 {
-	return ((TNode*)tf)->V_path.path;
+	return ((TNode*)tf)->V_path;
 }
 
 

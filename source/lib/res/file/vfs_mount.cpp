@@ -153,17 +153,16 @@ struct ZipCBParams
 
 	// storage for directory lookup optimization (see below).
 	// held across one afile_enum's afile_cb calls.
-	char last_path[VFS_MAX_PATH];
-	size_t last_path_len;
+	const char* last_path;
 	TDir* last_td;
 
 	ZipCBParams(TDir* dir_, const Mount* loc_)
 		: td(dir_), m(loc_)
 	{
-		last_path[0] = '\0';
-		last_path_len = 0;
+		last_path = 0;
 		last_td = 0;
 	}
+
 	// no copy ctor because some members are const
 private:
 	ZipCBParams& operator=(const ZipCBParams&);
@@ -173,46 +172,46 @@ private:
 // we get the full path, since that's what is stored in Zip archives.
 //
 // [total time 21ms, with ~2000 file's (includes add_file cost)]
-static LibError afile_cb(const char* path, const struct stat* s, uintptr_t memento, uintptr_t user)
+static LibError afile_cb(const char* atom_fn, const struct stat* s, uintptr_t memento, uintptr_t user)
 {
-	CHECK_PATH(path);
+	CHECK_PATH(atom_fn);
+
+	const char* name = path_name_only(atom_fn);
+	char path[VFS_MAX_PATH];
+	path_dir_only(atom_fn, path);
+	const char* atom_path = file_make_unique_fn_copy(path);
+	if(!atom_path)
+		return ERR_NO_MEM;
 
 	ZipCBParams* params = (ZipCBParams*)user;
 	TDir* td              = params->td;
 	const Mount* m        = params->m;
-	char* last_path       = params->last_path;
-	size_t& last_path_len = params->last_path_len;
-	TDir*& last_td        = params->last_td;
+	const char* last_path = params->last_path;
+	TDir* last_td         = params->last_td;
 
 	// into which directory should the file be inserted?
 	// naive approach: tree_lookup_dir the path (slow!)
 	// optimization: store the last file's path; if it's the same,
 	//   use the directory we looked up last time (much faster!)
-	const char* slash = strrchr(path, '/');
-	const size_t path_len = slash? (slash-path+1) : 0;
-	const char* name = path+path_len;
 	// .. same as last time
-	if(last_td && path_len == last_path_len &&
-		strnicmp(path, last_path, path_len) == 0)
+	if(last_path == atom_path)
 		td = last_td;
 	// .. last != current: need to do lookup
 	else
 	{
-		vfs_path_copy(last_path, path);
-		last_path_len = path_len;
-		last_path[last_path_len] = '\0';
-		// strip filename (tree_lookup_dir requirement)
-
-		CHECK_ERR(tree_lookup_dir(last_path, &td, LF_CREATE_MISSING|LF_START_DIR));
 		// we have to create them if missing, since we can't rely on the
 		// archiver placing directories before subdirs or files that
 		// reference them (WinZip doesn't always).
 		// we also need to start at the mount point (td).
+		const uint flags = LF_CREATE_MISSING|LF_START_DIR;
+		CHECK_ERR(tree_lookup_dir(atom_path, &td, flags));
 
-		last_td = td;
+		params->last_path = atom_path;
+		params->last_td = td;
 	}
 
 	WARN_ERR(tree_add_file(td, name, m, s->st_size, s->st_mtime, memento));
+	vfs_opt_notify_non_loose_file(atom_fn);
 	return INFO_CB_CONTINUE;
 }
 
@@ -367,7 +366,8 @@ static LibError add_ent(TDir* td, DirEnt* ent, const char* P_parent_path, const 
 	// prepend parent path to get complete pathname.
 	char P_path[PATH_MAX];
 	CHECK_ERR(vfs_path_append(P_path, P_parent_path, name));
-	vfs_opt_notify_loose_file(P_path);
+	const char* atom_fn = file_make_unique_fn_copy(P_path);
+	vfs_opt_notify_loose_file(atom_fn);
 
 	// it's a regular data file; add it to the directory.
 	return tree_add_file(td, name, m, ent->size, ent->mtime, 0);

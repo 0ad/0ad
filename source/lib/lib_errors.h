@@ -208,13 +208,15 @@ STMT(\
 ERR(0, ERR_OK, "(but return value was 0 which indicates success)")
 ERR(-1, ERR_FAIL, "Function failed (no details available)")
 
-ERR(1, INFO_CB_CONTINUE,     "1 (not an error)")
+// note: these values are > 100 to allow multiplexing them with
+// coroutine return values, which return completion percentage.
+ERR(101, INFO_CB_CONTINUE,     "1 (not an error)")
 // these are all basically the same thing
-ERR(2, INFO_CANNOT_HANDLE,   "2 (not an error)")
-ERR(3, INFO_NO_REPLACE,      "3 (not an error)")
-ERR(4, INFO_SKIPPED,         "4 (not an error)")
-ERR(5, INFO_ALL_COMPLETE,    "5 (not an error)")
-ERR(6, INFO_ALREADY_PRESENT, "6 (not an error)")
+ERR(102, INFO_CANNOT_HANDLE,   "2 (not an error)")
+ERR(103, INFO_NO_REPLACE,      "3 (not an error)")
+ERR(104, INFO_SKIPPED,         "4 (not an error)")
+ERR(105, INFO_ALL_COMPLETE,    "5 (not an error)")
+ERR(106, INFO_ALREADY_PRESENT, "6 (not an error)")
 
 ERR(-100000, ERR_LOGIC, "Logic error in code")
 ERR(-100060, ERR_TIMED_OUT, "Timed out")

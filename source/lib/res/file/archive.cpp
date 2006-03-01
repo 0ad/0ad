@@ -159,6 +159,9 @@ static LibError archive_get_file_info(Archive* a, const char* fn, uintptr_t meme
 // successively call <cb> for each valid file in the archive <ha>,
 // passing the complete path and <user>.
 // if it returns a nonzero value, abort and return that, otherwise 0.
+//
+// FileCB's name parameter will be the full path and unique
+// (i.e. returned by file_make_unique_fn_copy).
 LibError archive_enum(const Handle ha, const FileCB cb, const uintptr_t user)
 {
 	H_DEREF(ha, Archive, a);
@@ -705,13 +708,11 @@ static LibError read_and_compress_file(const char* atom_fn, uintptr_t ctx,
 
 	// read file into newly allocated buffer. if attempt_compress, also
 	// compress the file into another buffer while waiting for IOs.
-	Handle hf = vfs_open(atom_fn, 0);
-	RETURN_ERR(hf);
-	buf = FILE_BUF_ALLOC;
+	size_t ucsize_read;
+	const uint flags = 0;
 	CompressParams params = { attempt_compress, ctx, 0 };
-	ssize_t ucsize_read = vfs_io(hf, ucsize, &buf, compress_cb, (uintptr_t)&params);
-	debug_assert(ucsize_read == (ssize_t)ucsize);
-	(void)vfs_close(hf);
+	RETURN_ERR(vfs_load(atom_fn, buf, ucsize_read, flags, compress_cb, (uintptr_t)&params));
+	debug_assert(ucsize_read == ucsize);
 
 	// if we compressed the file trial-wise, check results and
 	// decide whether to store as such or not (based on compression ratio)
@@ -728,7 +729,7 @@ static LibError read_and_compress_file(const char* atom_fn, uintptr_t ctx,
 
 		const float ratio = (float)ucsize / csize;
 		const ssize_t bytes_saved = (ssize_t)ucsize - (ssize_t)csize;
-		if(ratio > 1.05f && bytes_saved > 200)
+		if(ratio > 1.05f && bytes_saved > 50)
 			store_compressed = true;
 	}
 
@@ -759,27 +760,73 @@ static LibError read_and_compress_file(const char* atom_fn, uintptr_t ctx,
 }
 
 
-LibError archive_build(const char* P_archive_filename, Filenames V_fl)
-{
-	ZipArchive* za;
-	RETURN_ERR(zip_archive_create(P_archive_filename, &za));
-	uintptr_t ctx = comp_alloc(CT_COMPRESSION, CM_DEFLATE);
 
-	for(size_t i = 0; V_fl[i]; i++)
+LibError archive_build_init(const char* P_archive_filename, Filenames V_fns,
+	ArchiveBuildState* ab)
+{
+	RETURN_ERR(zip_archive_create(P_archive_filename, &ab->za));
+	ab->ctx = comp_alloc(CT_COMPRESSION, CM_DEFLATE);
+	ab->V_fns = V_fns;
+
+	// count number of files (needed to estimate progress)
+	for(ab->num_files = 0; ab->V_fns[ab->num_files]; ab->num_files++) {}
+
+	ab->i = 0;
+	return ERR_OK;
+}
+
+
+#include "ps/Loader.h"
+
+int archive_build_continue(ArchiveBuildState* ab)
+{
+
+	const double end_time = get_time() + 200e-3;
+
+	for(;;)
 	{
+		const char* V_fn = ab->V_fns[ab->i];
+		if(!V_fn)
+			break;
+
 		ArchiveEntry ent; void* file_contents; FileIOBuf buf;
-		if(read_and_compress_file(V_fl[i], ctx, ent, file_contents, buf) == ERR_OK)
+		if(read_and_compress_file(V_fn, ab->ctx, ent, file_contents, buf) == ERR_OK)
 		{
-			(void)zip_archive_add_file(za, &ent, file_contents);
+			(void)zip_archive_add_file(ab->za, &ent, file_contents);
 			(void)file_buf_free(buf);
 		}
+
+		ab->i++;
+		LDR_CHECK_TIMEOUT((int)ab->i, (int)ab->num_files);
 	}
 
 	// note: this is currently known to fail if there are no files in the list
 	// - zlib.h says: Z_DATA_ERROR is returned if freed prematurely.
 	// safe to ignore.
-	comp_free(ctx);
-	(void)zip_archive_finish(za);
+	comp_free(ab->ctx); ab->ctx = 0;
+	(void)zip_archive_finish(ab->za);
 
 	return ERR_OK;
+}
+
+
+void archive_build_cancel(ArchiveBuildState* ab)
+{
+	comp_free(ab->ctx); ab->ctx = 0;
+	(void)zip_archive_finish(ab->za);
+	memset(ab, 0, sizeof(*ab));
+}
+
+
+LibError archive_build(const char* P_archive_filename, Filenames V_fns)
+{
+	ArchiveBuildState ab;
+	RETURN_ERR(archive_build_init(P_archive_filename, V_fns, &ab));
+	for(;;)
+	{
+		int ret = archive_build_continue(&ab);
+		RETURN_ERR(ret);
+		if(ret == ERR_OK)
+			return ERR_OK;
+	}
 }

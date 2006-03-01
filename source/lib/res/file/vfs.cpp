@@ -439,7 +439,8 @@ ssize_t vfs_io(const Handle hf, const size_t size, FileIOBuf* pbuf,
 // p and size are filled with address/size of buffer (0 on failure).
 // flags influences IO mode and is typically 0.
 // when the file contents are no longer needed, call file_buf_free(buf).
-LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size, uint flags /* default 0 */)
+LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size,
+	uint flags, FileIOCB cb, uintptr_t cb_ctx)	// all default 0
 {
 	debug_printf("VFS| load: V_fn=%s\n", V_fn);
 
@@ -452,7 +453,18 @@ LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size, uint flags /* 
 		// so duplicate that here:
 		stats_user_io(size);
 		trace_notify_load(atom_fn, size, flags);
-		return ERR_OK;
+
+		size_t actual_size;
+		LibError ret = file_io_call_back(buf, size, cb, cb_ctx, actual_size);
+		if(ret < 0)
+			file_buf_free(buf);
+		// we don't care if the cb has "had enough" or whether it would
+		// accept more data - this is all it gets and we need to
+		// translate return value to avoid confusing callers.
+		if(ret == INFO_CB_CONTINUE)
+			ret = ERR_OK;
+		size = actual_size;
+		return ret;
 	}
 
 	buf = 0; size = 0;	// initialize in case something below fails
@@ -467,7 +479,7 @@ LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size, uint flags /* 
 	size = x_size(&vf->xf);
 
 	buf = FILE_BUF_ALLOC;
-	ssize_t nread = vfs_io(hf, size, &buf);
+	ssize_t nread = vfs_io(hf, size, &buf, cb, cb_ctx);
 	// IO failed
 	if(nread < 0)
 	{

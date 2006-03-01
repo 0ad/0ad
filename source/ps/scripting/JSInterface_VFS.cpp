@@ -5,6 +5,7 @@
 #include "ps/CStr.h"
 #include "ps/VFSUtil.h"
 #include "lib/res/res.h"
+#include "lib/res/file/vfs_optimizer.h"	// ArchiveBuilderCancel
 #include "scripting/ScriptingHost.h"
 #include "scripting/JSConversions.h"
 #include "scripting/JSInterface_VFS.h"
@@ -207,5 +208,15 @@ JSBool JSI_VFS::ReadFileLines( JSContext* cx, JSObject* UNUSED(obj), uintN argc,
 	}
 
 	*rval = OBJECT_TO_JSVAL( line_array );
+	return( JS_TRUE );
+}
+
+
+// vfs_optimizer
+
+JSBool JSI_VFS::ArchiveBuilderCancel(JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
+{
+	debug_assert( argc == 0 );
+	vfs_opt_cancel();
 	return( JS_TRUE );
 }

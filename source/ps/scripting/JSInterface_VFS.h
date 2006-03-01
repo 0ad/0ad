@@ -9,6 +9,8 @@
 
 // [KEEP IN SYNC WITH TDD AND WIKI]
 
+// these are registered in ScriptGlue.cpp, hence the need for a header.
+
 namespace JSI_VFS
 {
 	// Return an array of pathname strings, one for each matching entry in the
@@ -46,6 +48,11 @@ namespace JSI_VFS
 	// lines = readFileLines(filename);
 	//   filename: VFS filename (may include path)
 	JSBool ReadFileLines( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
+
+	// Abort the current archive build operation (no-op if not currently active).
+	//
+	// archiveBuilderCancel();
+	JSBool ArchiveBuilderCancel(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
 };
 
 #endif

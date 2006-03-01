@@ -41,6 +41,9 @@ extern LibError archive_close(Handle& ha);
 // successively call <cb> for each valid file in the archive <ha>,
 // passing the complete path and <user>.
 // if it returns a nonzero value, abort and return that, otherwise 0.
+//
+// FileCB's name parameter will be the full path and unique
+// (i.e. returned by file_make_unique_fn_copy).
 extern LibError archive_enum(const Handle ha, const FileCB cb, const uintptr_t user);
 
 
@@ -160,17 +163,35 @@ extern LibError afile_unmap(AFile* af);
 
 
 //
-// archive builder
+// archive creation
 //
 
 // array of pointers to VFS filenames (including path), terminated by a
 // NULL entry.
 typedef const char** Filenames;
 
+// rationale: this is fairly lightweight and simple, so we don't bother
+// making it opaque.
+struct ArchiveBuildState
+{
+	ZipArchive* za;
+	uintptr_t ctx;
+	Filenames V_fns;
+	size_t num_files;	// number of filenames in V_fns (excluding final 0)
+	size_t i;
+};
+
+extern LibError archive_build_init(const char* P_archive_filename, Filenames V_fns,
+	ArchiveBuildState* ab);
+
 // create an archive (overwriting previous file) and fill it with the given
 // files. compression method is chosen intelligently based on extension and
 // file entropy / achieved compression ratio.
-extern LibError archive_build(const char* P_archive_filename, Filenames V_fl);
+extern int archive_build_continue(ArchiveBuildState* ab);
+
+extern void archive_build_cancel(ArchiveBuildState* ab);
+
+extern LibError archive_build(const char* P_archive_filename, Filenames V_fns);
 
 
 //

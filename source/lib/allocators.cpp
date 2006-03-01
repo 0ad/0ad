@@ -292,7 +292,7 @@ LibError da_set_size(DynArray* da, size_t new_size)
 		CHECK_ERR(mem_commit(end, size_delta_pa, da->prot));
 	// shrinking
 	else if(size_delta_pa < 0)
-		CHECK_ERR(mem_decommit(end+size_delta_pa, size_delta_pa));
+		CHECK_ERR(mem_decommit(end+size_delta_pa, -size_delta_pa));
 	// else: no change in page count, e.g. if going from size=1 to 2
 	// (we don't want mem_* to have to handle size=0)
 
@@ -507,8 +507,12 @@ void pool_free(Pool* p, void* el)
 // underlying memory.
 void pool_free_all(Pool* p)
 {
-	p->da.pos = 0;
 	p->freelist = 0;
+
+	// must be reset before da_set_size or CHECK_DA will complain.
+	p->da.pos = 0;
+
+	da_set_size(&p->da, 0);
 }
 
 
@@ -731,13 +735,16 @@ static void test_expand()
 
 static void test_matrix()
 {
-	// not much we can do here; allocate a matrix and make sure
-	// its memory layout is as expected (C-style row-major).
+	// not much we can do here; allocate a matrix, write to it and
+	// make sure it can be freed.
+	// (note: can't check memory layout because "matrix" is int** -
+	// array of pointers. the matrix interface doesn't guarantee
+	// that data comes in row-major order after the row pointers)
 	int** m = (int**)matrix_alloc(3, 3, sizeof(int));
-	m[0][0] = 1; debug_assert(((int*)m)[0*3+0] == 1);
-	m[0][1] = 2; debug_assert(((int*)m)[0*3+1] == 2);
-	m[1][0] = 3; debug_assert(((int*)m)[1*3+0] == 3);
-	m[2][2] = 4; debug_assert(((int*)m)[2*3+2] == 4);
+	m[0][0] = 1;
+	m[0][1] = 2;
+	m[1][0] = 3;
+	m[2][2] = 4;
 	matrix_free((void**)m);
 }
 

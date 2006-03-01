@@ -171,12 +171,92 @@ LibError path_replace(char* dst, const char* src, const char* remove, const char
 }
 
 
-
-
-LibError pathname_split(const char* V_path_tmp, PathName* V_path)
+// fill V_dir_only with the path portion of V_src_fn
+// ("" if root dir, otherwise ending with /)
+void path_dir_only(const char* V_src_fn, char* V_dir_only)
 {
-	V_path->path = file_make_unique_fn_copy(V_path_tmp);
-	const char* slash = strrchr(V_path->path, '/');
-	V_path->name = slash? slash+1 : V_path->path;
-	return ERR_OK;
+	vfs_path_copy(V_dir_only, V_src_fn);
+	char* slash = strrchr(V_dir_only, '/');
+	// was filename only; directory = "" (empty string)
+	if(!slash)
+		V_dir_only[0] = '\0';
+	// normal directory+filename: cut off after last slash
+	else
+		*(slash+1) = '\0';
+}
+
+
+// return pointer to the name component within V_src_fn
+const char* path_name_only(const char* V_src_fn)
+{
+	const char* slash = strrchr(V_src_fn, '/');
+	return slash? slash+1 : V_src_fn;
+}
+
+
+
+// fill V_next_fn (which must be big enough for VFS_MAX_PATH chars) with
+// the next numbered filename according to the pattern defined by V_fn_fmt.
+// <nfi> must be initially zeroed (e.g. by defining as static) and passed
+// each time.
+// if <use_vfs> (default), the paths are treated as VFS paths; otherwise,
+// file.cpp's functions are used. this is necessary because one of
+// our callers needs a filename for VFS archive files.
+//
+// this function is useful when creating new files which are not to
+// overwrite the previous ones, e.g. screenshots.
+// example for V_fn_fmt: "screenshots/screenshot%04d.png".
+void next_numbered_filename(const char* fn_fmt,
+	NextNumberedFilenameInfo* nfi, char* next_fn, bool use_vfs)
+{
+	// (first call only:) scan directory and set next_num according to
+	// highest matching filename found. this avoids filling "holes" in
+	// the number series due to deleted files, which could be confusing.
+	// example: add 1st and 2nd; [exit] delete 1st; [restart]
+	// add 3rd -> without this measure it would get number 1, not 3. 
+	if(nfi->next_num == 0)
+	{
+		char dir[VFS_MAX_PATH];
+		path_dir_only(fn_fmt, dir);
+		const char* name_fmt = path_name_only(fn_fmt);
+
+		int max_num = -1; int num;
+		DirEnt ent;
+
+		if(use_vfs)
+		{
+			Handle hd = vfs_dir_open(dir);
+			if(hd > 0)
+			{
+				while(vfs_dir_next_ent(hd, &ent, 0) == ERR_OK)
+					if(!DIRENT_IS_DIR(&ent) && sscanf(ent.name, name_fmt, &num) == 1)
+						max_num = MAX(num, max_num);
+				(void)vfs_dir_close(hd);
+			}
+		}
+		else
+		{
+			DirIterator it;
+			if(dir_open(dir, &it) == ERR_OK)
+			{
+				while(dir_next_ent(&it, &ent) == ERR_OK)
+					if(!DIRENT_IS_DIR(&ent) && sscanf(ent.name, name_fmt, &num) == 1)
+						max_num = MAX(num, max_num);
+				(void)dir_close(&it);
+			}
+		}
+
+		nfi->next_num = max_num+1;
+	}
+
+	bool (*exists)(const char* fn) = use_vfs? vfs_exists : file_exists;
+
+	// now increment number until that file doesn't yet exist.
+	// this is fairly slow, but typically only happens once due
+	// to scan loop above. (we still need to provide for looping since
+	// someone may have added files in the meantime)
+	// binary search isn't expected to improve things.
+	do
+		snprintf(next_fn, VFS_MAX_PATH, fn_fmt, nfi->next_num++);
+	while(exists(next_fn));
 }

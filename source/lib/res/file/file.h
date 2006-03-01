@@ -37,7 +37,7 @@ struct PathPackage
 };
 
 // write the given directory path into our buffer and set end/chars_left
-// accordingly. <dir> need and should not end with a directory separator.
+// accordingly. <dir> need not but can end with a directory separator.
 //
 // note: <dir> and the filename set via pp_append_file are separated by
 // '/'. this is to allow use on portable paths; the function otherwise
@@ -263,6 +263,9 @@ enum
 
 // get file information. output param is zeroed on error.
 extern LibError file_stat(const char* path, struct stat*);
+
+// does the given file exist? (implemented via file_stat)
+extern bool file_exists(const char* fn);
 
 extern LibError file_open(const char* fn, uint flags, File* f);
 

@@ -24,14 +24,17 @@ extern void block_cache_release(BlockId id);
 extern LibError file_buf_get(FileIOBuf* pbuf, size_t size,
 	const char* atom_fn, uint flags, FileIOCB cb);
 
+extern void file_buf_add_padding(FileIOBuf buf, size_t padding);
+
 extern LibError file_buf_set_real_fn(FileIOBuf buf, const char* atom_fn);
+
 
 extern FileIOBuf file_cache_find(const char* atom_fn, size_t* size);
 extern FileIOBuf file_cache_retrieve(const char* atom_fn, size_t* size);
 extern LibError file_cache_add(FileIOBuf buf, size_t size, const char* atom_fn);
 
 extern LibError file_cache_invalidate(const char* fn);
-extern void file_cache_flush();
+extern void file_cache_reset();
 
 
 extern void file_cache_init();

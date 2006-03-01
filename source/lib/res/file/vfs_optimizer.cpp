@@ -291,7 +291,7 @@ class FileAccessGatherer
 	// be arranged badly.
 	void extract_accesses_from_run(const Run& run)
 	{
-		file_cache_flush();
+		file_cache_reset();
 
 		const TraceEntry* ent = run.first;
 		for(uint i = 0; i < run.count; i++, ent++)
@@ -324,7 +324,7 @@ class FileAccessGatherer
 			}
 		}	// foreach entry
 
-		file_cache_flush();
+		file_cache_reset();
 	}
 
 
@@ -519,7 +519,7 @@ debug_printf("try: undo (due tot cycle)\n");
 	}
 
 	// pointer to this is returned by TourBuilder()!
-	std::vector<const char*> fn_vector;
+	std::vector<const char*>& fn_vector;
 
 	void output_chain(const Connection& c)
 	{
@@ -549,8 +549,8 @@ debug_printf("try: undo (due tot cycle)\n");
 	}
 
 public:
-	TourBuilder(FileAccesses& file_accesses_, Filenames& fns)
-		: file_accesses(file_accesses_)
+	TourBuilder(FileAccesses& file_accesses_, std::vector<const char*>& fns_)
+		: file_accesses(file_accesses_), fn_vector(fns_)
 	{
 		build_connections();
 		std::sort(connections.begin(), connections.end(), Occurrence_greater());
@@ -560,9 +560,6 @@ public:
 
 		for(Connections::iterator it = connections.begin(); it != connections.end(); ++it)
 			output_chain(*it);
-
-		fn_vector.push_back(0);	// 0-terminate for use as Filenames array
-		fns = &fn_vector[0];
 	}
 
 	// should never be copied; this also squelches warning
@@ -573,68 +570,31 @@ private:
 
 
 //-----------------------------------------------------------------------------
+// autobuild logic: decides when to (re)build an archive.
+//-----------------------------------------------------------------------------
+
+static const ssize_t REBUILD_MAIN_ARCHIVE_THRESHOLD = 50;
+static const ssize_t BUILD_MINI_ARCHIVE_THRESHOLD = 20;
 
 typedef std::vector<const char*> FnVector;
 static FnVector loose_files;
+static ssize_t loose_file_total, non_loose_file_total;
 
 void vfs_opt_notify_loose_file(const char* atom_fn)
 {
-	// we could stop adding to loose_files if it's already got more than
-	// REBUILD_MAIN_ARCHIVE_THRESHOLD entries, but don't bother
-	// (it's ok to waste a bit of mem - this is rare)
+	loose_file_total++;
 
-	loose_files.push_back(atom_fn);
+	// only add if it's not yet clear the main archive will be
+	// rebuilt anyway (otherwise we'd just waste time and memory)
+	if(loose_files.size() > REBUILD_MAIN_ARCHIVE_THRESHOLD)
+		loose_files.push_back(atom_fn);
 }
 
-
-struct EntCbParams
+void vfs_opt_notify_non_loose_file(const char* UNUSED(atom_fn))
 {
-	std::vector<const char*> files;
-};
-
-static void EntCb(const char* path, const DirEnt* ent, void* context)
-{
-	EntCbParams* params = (EntCbParams*)context;
-	if(!DIRENT_IS_DIR(ent))
-		params->files.push_back(file_make_unique_fn_copy(path));
+	non_loose_file_total++;
 }
 
-LibError vfs_opt_rebuild_main_archive(const char* P_archive_path, const char* trace_filename)
-{
-	// get list of all files
-	// TODO: for each mount point (with VFS_MOUNT_ARCHIVE flag set):
-	EntCbParams params;
-	RETURN_ERR(VFSUtil::EnumDirEnts("", VFSUtil::RECURSIVE, 0, EntCb, &params));
-	params.files.push_back(0);
-	Filenames required_fns = &params.files[0];
-
-	FileAccesses file_accesses;
-	FileAccessGatherer gatherer(trace_filename, required_fns, file_accesses);
-
-	Filenames fns;
-	TourBuilder builder(file_accesses, fns);
-
-	LibError ret = archive_build(P_archive_path, fns);
-
-	// do NOT delete source files or archives! some apps might want to
-	// keep them (e.g. for source control), or name them differently.
-
-	// rebuild is required to make sure the new archive is used. this is
-	// already taken care of by VFS dir watch, unless it's disabled..
-#ifdef NO_DIR_WATCH
-	(void)mount_rebuild();
-#endif
-
-	return ret;
-}
-
-
-//
-// autobuild logic: decides when to (re)build an archive.
-//
-
-static const size_t REBUILD_MAIN_ARCHIVE_THRESHOLD = 50;
-static const size_t BUILD_MINI_ARCHIVE_THRESHOLD = 20;
 
 static bool should_rebuild_main_archive(const char* P_archive_path,
 	const char* trace_filename)
@@ -648,7 +608,9 @@ static bool should_rebuild_main_archive(const char* P_archive_path,
 	if(s.st_mtime >= vfs_mtime)
 		trace_enable(false);
 
-	if(loose_files.size() >= REBUILD_MAIN_ARCHIVE_THRESHOLD)
+
+	const ssize_t loose_files_only = loose_file_total - non_loose_file_total;
+	if(loose_files_only >= REBUILD_MAIN_ARCHIVE_THRESHOLD)
 		return true;
 
 	// more than 3 mini archives
@@ -662,26 +624,146 @@ static bool should_rebuild_main_archive(const char* P_archive_path,
 
 static bool should_build_mini_archive()
 {
-	if(loose_files.size() >= BUILD_MINI_ARCHIVE_THRESHOLD)
+	const ssize_t loose_files_only = loose_file_total - non_loose_file_total;
+	if(loose_files_only >= BUILD_MINI_ARCHIVE_THRESHOLD)
 		return true;
 	return false;
 }
 
 
-LibError vfs_opt_auto_build_archive(const char* P_dst_path,
-	const char* main_archive_name, const char* trace_filename)
+static ArchiveBuildState ab;
+static std::vector<const char*> fn_vector;
+
+struct EntCbParams
 {
-	char P_archive_path[PATH_MAX];
-	RETURN_ERR(vfs_path_append(P_archive_path, P_dst_path, main_archive_name));
-	if(should_rebuild_main_archive(P_archive_path, trace_filename))
-		return vfs_opt_rebuild_main_archive(P_archive_path, trace_filename);
-	else if(should_build_mini_archive())
+	std::vector<const char*> files;
+};
+
+static void EntCb(const char* path, const DirEnt* ent, void* context)
+{
+	EntCbParams* params = (EntCbParams*)context;
+	if(!DIRENT_IS_DIR(ent))
+		params->files.push_back(file_make_unique_fn_copy(path));
+}
+
+static void vfs_opt_init(const char* P_archive_fn_fmt, const char* trace_filename)
+{
+	// get list of all files
+	// TODO: for each mount point (with VFS_MOUNT_ARCHIVE flag set):
+	EntCbParams params;
+	VFSUtil::EnumDirEnts("", VFSUtil::RECURSIVE, 0, EntCb, &params);
+	params.files.push_back(0);
+	Filenames required_fns = &params.files[0];
+
+	FileAccesses file_accesses;
+	FileAccessGatherer gatherer(trace_filename, required_fns, file_accesses);
+
+	TourBuilder builder(file_accesses, fn_vector);
+	fn_vector.push_back(0);
+	Filenames V_fns = &fn_vector[0];
+
+	char archive_fn[PATH_MAX];
+	static NextNumberedFilenameInfo archive_nfi;
+	next_numbered_filename(P_archive_fn_fmt, &archive_nfi, archive_fn, false);
+	archive_build_init(archive_fn, V_fns, &ab);
+}
+
+
+static int vfs_opt_continue()
+{
+	int ret = archive_build_continue(&ab);
+	if(ret == ERR_OK)
 	{
-		loose_files.push_back(0);
-		// get new unused mini archive name at P_dst_path
-		RETURN_ERR(archive_build(P_archive_path, &loose_files[0]));
-		// delete all newly added loose files
+		// do NOT delete source files or archives! some apps might want to
+		// keep them (e.g. for source control), or name them differently.
+
+		// rebuild is required to make sure the new archive is used. this is
+		// already taken care of by VFS dir watch, unless it's disabled..
+#ifdef NO_DIR_WATCH
+		(void)mount_rebuild();
+#endif
+	}
+	return ret;
+}
+
+
+static enum
+{
+	DECIDE_IF_BUILD,
+	IN_PROGRESS,
+	NOP
+}
+state = DECIDE_IF_BUILD;
+
+void vfs_opt_cancel()
+{
+	archive_build_cancel(&ab);
+	state = NOP;
+}
+
+
+LibError vfs_opt_rebuild_main_archive(const char* P_archive_fn_fmt, const char* trace_filename)
+{
+	vfs_opt_init(P_archive_fn_fmt, trace_filename);
+	for(;;)
+	{
+		int ret = vfs_opt_continue();
+		RETURN_ERR(ret);
+		if(ret == ERR_OK)
+			return ERR_OK;
+	}
+}
+
+
+int vfs_opt_auto_build(const char* P_dst_path,
+	const char* main_archive_name_fmt, const char* trace_filename)
+{
+	if(state == NOP)
+		return INFO_ALL_COMPLETE;
+
+	if(state == DECIDE_IF_BUILD)
+	{
+		char P_archive_fn_fmt[PATH_MAX];
+		(void)vfs_path_append(P_archive_fn_fmt, P_dst_path, main_archive_name_fmt);
+		if(should_rebuild_main_archive(P_archive_fn_fmt, trace_filename))
+		{
+			vfs_opt_init(P_archive_fn_fmt, trace_filename);
+			state = IN_PROGRESS;
+		}
+		else
+		{
+			// note: only think about building mini archive if not rebuilding
+			// the main archive.
+			if(should_build_mini_archive())
+			{
+				Filenames V_fns = (Filenames)malloc((loose_files.size()+1) * sizeof(const char*));
+				if(!V_fns)
+					return ERR_NO_MEM;
+				std::copy(loose_files.begin(), loose_files.end(), &V_fns[0]);
+				V_fns[loose_files.size()] = 0;	// terminator
+
+				// get new unused mini archive name at P_dst_path
+				char mini_archive_fn[VFS_MAX_PATH];
+				char fn_fmt[VFS_MAX_PATH];
+				(void)vfs_path_append(fn_fmt, P_dst_path, "mini%d.zip");
+				static NextNumberedFilenameInfo nfi;
+				next_numbered_filename(fn_fmt, &nfi, mini_archive_fn, false);
+
+				RETURN_ERR(archive_build(mini_archive_fn, V_fns));
+			}
+
+			state = NOP;
+			return ERR_OK;	// "finished"
+		}
 	}
 
-	return ERR_OK;
+	if(state == IN_PROGRESS)
+	{
+		int ret = vfs_opt_continue();
+		if(ret == ERR_OK)
+			state = NOP;
+		return ret;
+	}
+
+	UNREACHABLE;
 }

@@ -1,6 +1,7 @@
 #include "precompiled.h"
 
 #include "lib/res/file/vfs.h"
+#include "lib/res/file/vfs_path.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
 #include "lib/detect.h"
@@ -157,30 +158,20 @@ const wchar_t* ErrorString(int err)
 }
 
 
+static NextNumberedFilenameInfo screenshot_nfi;
+
 // <extension> identifies the file format that is to be written
 // (case-insensitive). examples: "bmp", "png", "jpg".
 // BMP is good for quick output at the expense of large files.
 void WriteScreenshot(const char* extension)
 {
-	// determine next screenshot number.
-	//
-	// current approach: increment number until that file doesn't yet exist.
-	// this is fairly slow, but it's typically only done once, since the last
-	// number is cached. binary search shouldn't be necessary.
-	//
-	// known bug: after program restart, holes in the number series are
-	// filled first. example: add 1st and 2nd; [exit] delete 1st; [restart]
-	// add 3rd -> it gets number 1, not 3. 
-	// could fix via enumerating all files, but it's not worth it ATM.
+	// get next available numbered filename
+	// .. bake extension into format string.
+	// note: %04d -> always 4 digits, so sorting by filename works correctly.
+	char file_format_string[VFS_MAX_PATH];
+	snprintf(file_format_string, PATH_MAX, "screenshots/screenshot%%04d.%s", extension);
 	char fn[VFS_MAX_PATH];
-
-	// %04d -> always 4 digits, so sorting by filename works correctly.
-	const char* file_format_string = "screenshots/screenshot%04d.%s";
-
-	static int next_num = 1;
-	do
-		sprintf(fn, file_format_string, next_num++, extension);
-	while(vfs_exists(fn));
+	next_numbered_filename(file_format_string, &screenshot_nfi, fn);
 
 	const int w = g_xres, h = g_yres;
 	const int bpp = 24;
@@ -218,18 +209,13 @@ void WriteScreenshot(const char* extension)
 // Similar to WriteScreenshot, but generates an image of size 640*tiles x 480*tiles.
 void WriteBigScreenshot(const char* extension, int tiles)
 {
-	// determine next screenshot number.
-
+	// get next available numbered filename
+	// .. bake extension into format string.
+	// note: %04d -> always 4 digits, so sorting by filename works correctly.
+	char file_format_string[VFS_MAX_PATH];
+	snprintf(file_format_string, PATH_MAX, "screenshots/screenshot%%04d.%s", extension);
 	char fn[VFS_MAX_PATH];
-
-	// %04d -> always 4 digits, so sorting by filename works correctly.
-	const char* file_format_string = "screenshots/screenshot%04d.%s";
-
-	static int next_num = 1;
-	do
-	sprintf(fn, file_format_string, next_num++, extension);
-	while(vfs_exists(fn));
-
+	next_numbered_filename(file_format_string, &screenshot_nfi, fn);
 
 	// Slightly ugly and inflexible: Always draw 640*480 tiles onto the screen, and
 	// hope the screen is actually large enough for that.

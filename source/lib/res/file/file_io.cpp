@@ -212,6 +212,35 @@ LibError file_io_validate(const FileIo* io)
 // whole file.
 
 
+// helper routine used by functions that call back to a FileIOCB.
+//
+// bytes_processed is 0 if return value != { ERR_OK, INFO_CB_CONTINUE }
+// note: don't abort if = 0: zip callback may not actually
+// output anything if passed very little data.
+LibError file_io_call_back(const void* block, size_t size,
+	FileIOCB cb, uintptr_t ctx, size_t& bytes_processed)
+{
+	if(cb)
+	{
+		stats_cb_start();
+		LibError ret = cb(ctx, block, size, &bytes_processed);
+		stats_cb_finish();
+
+		// failed - reset byte count in case callback didn't
+		if(ret != ERR_OK && ret != INFO_CB_CONTINUE)
+			bytes_processed = 0;
+
+		CHECK_ERR(ret);
+		return ret;
+	}
+	// no callback to process data: raw = actual
+	else
+	{
+		bytes_processed = size;
+		return INFO_CB_CONTINUE;
+	}
+}
+
 class IOManager
 {
 	File* f;
@@ -277,33 +306,6 @@ class IOManager
 	LibError err;
 
 
-	// bytes_processed is 0 if return value != { ERR_OK, INFO_CB_CONTINUE }
-	// note: don't abort if = 0: zip callback may not actually
-	// output anything if passed very little data.
-	static LibError call_back(const void* block, size_t size,
-		FileIOCB cb, uintptr_t ctx, size_t& bytes_processed)
-	{
-		if(cb)
-		{
-			stats_cb_start();
-			LibError ret = cb(ctx, block, size, &bytes_processed);
-			stats_cb_finish();
-
-			// failed - reset byte count in case callback didn't
-			if(ret != ERR_OK && ret != INFO_CB_CONTINUE)
-				bytes_processed = 0;
-
-			return ret;
-		}
-		// no callback to process data: raw = actual
-		else
-		{
-			bytes_processed = size;
-			return INFO_CB_CONTINUE;
-		}
-	}
-
-
 	ssize_t lowio()
 	{
 		const int fd = f->fd;
@@ -342,9 +344,9 @@ class IOManager
 		stats_io_finish(FI_LOWIO, op, &start_time);
 
 		size_t total_processed;
-		LibError ret = call_back(dst, total_transferred, cb, cb_ctx, total_processed);
+		LibError ret = file_io_call_back(dst, total_transferred, cb, cb_ctx, total_processed);
 		free(dst_mem);
-		CHECK_ERR(ret);
+		RETURN_ERR(ret);
 		return (ssize_t)total_processed;
 	}
 
@@ -457,7 +459,7 @@ class IOManager
 		if(err == INFO_CB_CONTINUE)
 		{
 			size_t bytes_processed;
-			err = call_back(block, block_size, cb, ctx, bytes_processed);
+			err = file_io_call_back(block, block_size, cb, ctx, bytes_processed);
 			if(err == INFO_CB_CONTINUE || err == ERR_OK)
 				total_processed += bytes_processed;
 			// else: processing failed.
@@ -540,8 +542,12 @@ public:
 		debug_printf("FILE| err=%d, total_processed=%u\n", err, total_processed);
 
 		// we allocated the memory: skip any leading padding
-		if(pbuf != FILE_BUF_TEMP && !is_write)
-			*pbuf = (u8*)*pbuf + ofs_misalign;
+		if(pbuf != FILE_BUF_TEMP && !is_write && ofs_misalign)
+		{
+			FileIOBuf org_buf = *pbuf;
+			*pbuf = (u8*)org_buf + ofs_misalign;
+			file_buf_add_padding(org_buf, ofs_misalign);
+		}
 
 		if(err != INFO_CB_CONTINUE && err != ERR_OK)
 			return (ssize_t)err;
