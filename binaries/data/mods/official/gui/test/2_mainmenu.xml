@@ -19,6 +19,7 @@
 	>
 		<action on="Press"><![CDATA[
 			// If the user aborts the archive, switch to the main menu.
+			archiveBuilderCancel();
 			startMainMenu();
 		]]></action>  	
 	
@@ -40,14 +41,12 @@
 		>
 			<action on="Load"><![CDATA[
 				// Reset progress bar to zero at start of game.
-				// (Putting it at half for the moment so we have something to see)
-				this.caption = 50; // 0;
+				this.caption = 0;
 			]]></action>
-			<action on="Archive"><![CDATA[
-				// Jan: Please insert your equivalent event and variable for archive progress here.
-//				this.caption = g_Progress;  
+			<action on="ArchiveBuilderProgress"><![CDATA[
+				this.caption = g_ArchiveBuilderProgress;  
 			]]></action>  
-			<action on="ArchiveComplete"><![CDATA[
+			<action on="ArchiveBuilderComplete"><![CDATA[
 				// When the archive is finished, switch to the main menu.
 				startMainMenu();
 			]]></action>			
