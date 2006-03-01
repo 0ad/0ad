@@ -107,190 +107,244 @@ function updateTab (tab, type, cellSheet, attribute, attribute2)
 	//			* production (Tab button, persistent list of buttons, click them to do things.)
 	//			* pick (Tab button holds current selection, click a button from the list to select a new option and close the tab.)
 	//			* command (Click "tab" button to do something; no list.)
-	// cellSheet:	* The cell sheet (icon group) containing this item's tab icon. (We usually leave it blank to use the default.)
+	// cellSheet:	* The cell sheet (icon group) containing this item's tab icon.
 	//				* production: Tends to be "Tab" (since they need a special tab icon), so defaults to this.
 	//				* pick: Usually a group that's the same as the tab name, so use this.
 	//				* command: Tends to be "Command" (though not always), so defaults to this.
-	// attribute: 	* For production & pick: the attribute containing the list of items to display (eg selection[0].actions.create.list.research)
+	//			* If no value is specified, it will use the above default for the type.
+	// attribute: 	* For production & pick: the attribute containing the list of items to display (eg selection[0].actions.create.list.research), which this entity must
+	//			   have in order to update the tab with this list.
+	//			* For command: the attribute that the entity must have in order to have this command.
+	//			* If no value is specified, all entities have this attribute.
 	// attribute2:	* For pick: The variable used to store the current item in the pick that has been selected -- placed in the tab (eg selection[0].actions.formation.curr)
 
 console.write ("1st: " + tabCounter + " " + tab + " " + type + " " + cellSheet + " " + attribute + " " + attribute2);
 
-	// If any items in the list (construction, train, research, etc, need to be updated, update that list.)
-	if 	 ( attribute != undefined
-		&& attribute2 != undefined
-//		&& shouldUpdateStat (attribute) // Can't be this precise, as items in the full batch need to be refreshed when switching between units,
-		 )
+	try
 	{
-		// Set default values.
-		if (cellSheet == "")
-		{
+		// If any items in the list (construction, train, research, etc, need to be updated, update that list.)
+		if (attribute != undefined
+		&&  attribute2 != undefined
+//		&& shouldUpdateStat (attribute) // Can't be this precise, as items in the full batch need to be refreshed when switching between units,
+		   )
+	
+			// Set default values.
+			if (cellSheet == "")
+			{
+				switch (type)
+				{
+					case "command":
+						cellSheet = "Command";
+					break;
+					case "pick":
+						cellSheet = toTitleCase(tab);
+						tab		  = attribute2.toLowerCase();
+						// avoid, pick, Stance, .traits.ai.stance.list
+					break;
+					default:
+						cellSheet = "Tab";
+					break;
+				}			
+			}
+			
+console.write ("2nd: " + tabCounter + " " + tab + " " + type + " " + cellSheet + " " + attribute + " " + attribute2);
+
+			// Get tab.
+			tabObject 	= getGUIObjectByName ("snStatusPaneCommand" + tabCounter + "_1");		
+			// Enable tab.
+			guiUnHide (tabObject.name);
+			
+			// Set tab portrait.
+			setPortrait ("snStatusPaneCommand" + tabCounter + "_1", "IconSheet", cellSheet + "Button", cellGroup[cellSheet][tab].id);
+			
+			console.write ("3rd: " + "snStatusPaneCommand" + tabCounter + "_1" + "|" + "IconSheet" + "|" + cellSheet + "Button" + "|" + cellGroup[cellSheet][tab].id);
+				
 			switch (type)
 			{
 				case "command":
-					cellSheet = "Command";
+					// Set tab tooltip.
+					tooltip = cellGroup[cellSheet][tab].name;
+					tooltip += " " + cellSheet;
+				
+					// Set tab function.				
+					tabObject.onPress = function (event)
+					{
+					}			
 				break;
 				case "pick":
-					cellSheet = tab;
-					tab		  = attribute2;
+					// Set tab tooltip.
+					tooltip = cellSheet;				
+					tooltip += " List\nCurrent " + cellSheet + ": " + cellGroup[cellSheet][tab].name;
+			
+					// Set tab function.
+					tabObject.onPress = function (event)
+					{
+						// Click the tab button to toggle visibility of its list.
+						guiToggle ( "snStatusPaneCommandGroup" + this.name.substring (this.name.lastIndexOf ("d")+1, this.name.lastIndexOf ("_")) );
+					}			
 				break;
 				default:
-					cellSheet = "Tab";
+					// Set tab tooltip.
+					tooltip = cellGroup[cellSheet][tab].name;				
+					tooltip += " " + cellSheet;
+			
+					// Set tab function.
+					tabObject.onPress = function (event)
+					{
+						// Click the tab button to toggle visibility of its list.
+						guiToggle ( "snStatusPaneCommandGroup" + this.name.substring (this.name.lastIndexOf ("d")+1, this.name.lastIndexOf ("_")) );
+					}
 				break;
-			}			
-		}
-		
-console.write ("2nd: " + tabCounter + " " + tab + " " + type + " " + cellSheet + " " + attribute + " " + attribute2);
-
-		// Get tab.
-		tabObject 	= getGUIObjectByName ("snStatusPaneCommand" + tabCounter + "_1");		
-		// Enable tab.
-		guiUnHide (tabObject.name);
-		
-console.write ("3rd: " + "snStatusPaneCommand" + tabCounter + "_1" + "|" + "IconSheet" + "|" + cellSheet + "Button" + "|" + cellGroup[cellSheet][tab].id);
-		
-		// Set tab portrait.
-		if (type != "pick")
-			setPortrait ("snStatusPaneCommand" + tabCounter + "_1", "IconSheet", cellSheet + "Button", cellGroup[cellSheet][tab].id);
-		else
-			setPortrait ("snStatusPaneCommand" + tabCounter + "_1", "IconSheet", cellSheet + "Button", cellGroup[cellSheet][attribute2].id);			
+			}
+			tabObject.tooltip = tooltip;		
 			
-		// Set tab tooltip.
-		tooltip = cellGroup[cellSheet][tab].name;
-		// Set tab function.
-		switch (type)
-		{
-			case "command":
-				tooltip += " " + cellSheet;
-			
-				tabObject.onPress = function (event)
-				{
-				}			
-			break;
-			case "pick":
-				tooltip += " List";
-		
-				tabObject.onPress = function (event)
-				{
-					// Click the tab button to toggle visibility of its list.
-					guiToggle ( "snStatusPaneCommandGroup" + this.name.substring (this.name.lastIndexOf ("d")+1, this.name.lastIndexOf ("_")) );
-				}			
-			break;
-			default:
-				tooltip += " " + cellSheet;
-		
-				tabObject.onPress = function (event)
-				{
-					// Click the tab button to toggle visibility of its list.
-					guiToggle ( "snStatusPaneCommandGroup" + this.name.substring (this.name.lastIndexOf ("d")+1, this.name.lastIndexOf ("_")) );
-				}
-			break;
-		}
-		tabObject.tooltip = tooltip;		
-		
-		// Get group.
-		groupObject = getGUIObjectByName ("snStatusPaneCommand" + "Group" + tabCounter);		
+			// Get group.
+			groupObject = getGUIObjectByName ("snStatusPaneCommand" + "Group" + tabCounter);		
 
-		// If the list hasn't been hidden (tab is open), and it should have list items (it's not merely a command),
-		if ( groupObject.hidden == false)
-		{
-			// Extract item list into an array.
-			listArray = [];
-			for ( i in attribute )
+			// If the list hasn't been hidden (tab is open), and it should have list items (it's not merely a command),
+			if ( groupObject.hidden == false )
 			{
-				listArray[listArray.length] = i;
-				// Store any current quantity in the queue for this object.
+				// Extract item list into an array.
+				listArray = [];
+				for ( i in attribute )
+				{
+					listArray[listArray.length] = i;
+					// Store any current quantity in the queue for this object.
 //				if (attribute[i].quantity)
 //					listArray[listArray.length].quantity = attribute[i].quantity;
-			}
+				}
 
-			// Populate the buttons in this tab's list.
-			for (createLoop = 1; createLoop < snStatusPaneCommand.list.max; createLoop++)
-			{
-				if (createLoop < listArray.length && type != "command")
+				// Populate the buttons in this tab's list.
+				for (createLoop = 1; createLoop < snStatusPaneCommand.list.max; createLoop++)
 				{
-					// Get name of current button.
-					listObject = getGUIObjectByName ("snStatusPaneCommand" + tabCounter + "_" + (createLoop+1));
-
-					// Get name of item to display in list.
-					itemName = selection[0].traits.id.civ_code + "_" + listArray[createLoop];
-
-					// Store name of entity to display in list in this button's coordinate.
-//					Crd[getCrd (listObject.name, true)].entity = new Object(itemName);
-
-					// Set tooltip.
-					listObject.tooltip = getEntityTemplate(itemName).traits.id.civ + " " + getEntityTemplate(itemName).traits.id.generic;
-					
-					// Create quantity container in entity's create list if necessary.
-//					if (!attribute[listArray[createLoop]].quantity)
-//						attribute[listArray[createLoop]].quantity = new Object(0);
-					// Set caption to counter.
-//					if (attribute[listArray[createLoop]].quantity > 1)
-//						listObject.caption = attribute[listArray[createLoop]].quantity-1;
-					// Store pointer to quantity in coordinate.
-//					Crd[getCrd (listObject.name, true)].quantity = new Object(attribute[listArray[createLoop]].quantity);
-					
-					// Set portrait.
-					switch (tab)
+					// (Skip research list for the moment, since we don't have any portraits for techs. But we should remove the research condition later.)
+					if (createLoop < listArray.length && type != "command" && tab != "research")
 					{
-						case "research":
-							// Skip research list for the moment, since we don't have any portraits for techs.
-						break;
-						default:
-							setPortrait (listObject.name, 
-								getEntityTemplate(itemName).traits.id.icon, 
-								toTitleCase(selection[0].traits.id.civ_code), 
-								getEntityTemplate(itemName).traits.id.icon_cell);
-						break;
-					}
-					
-					// Reveal portrait.
-					guiUnHide (listObject.name);					
-/*				
-					// Set function that occurs when the button is pressed (left-clicked).
-					// (Somehow, we also need to do one for right-clicking -- decrement counter and remove item from queue.)
-					listObject.onPress = function (event)
-					{
-						switch (tab)
+						// Get name of current button.
+						listObject = getGUIObjectByName ("snStatusPaneCommand" + tabCounter + "_" + (createLoop+1));
+
+						switch (type)
 						{
-							case "StructCiv":
-							case "StructMil":
-								// Create building placement cursor.
-								startPlacing (Crd[getCrd (this.name, true)].entity);
-							break;
-							default:
-								// Attempt to add the entry to the queue.
-								if (attemptAddToBuildQueue (selection[0], Crd[getCrd (this.name, true)].entity, Crd[getCrd (this.name, true)].tab, Crd[getCrd (this.name, true)].list))
-//										if (attemptAddToBuildQueue (selection[0], itemName, tab, list))
-								{
-//								// Create quantity container in entity's create list if necessary.
-		//							if (!attribute[Crd[getCrd (this.name, true)].list].quantity)
-			//							attribute[Crd[getCrd (this.name, true)].list].quantity = new Object(0);
-									// Increment counter.
-									attribute[Crd[getCrd (this.name, true)].list].quantity++;
-									// Set caption to counter.
-									if (attribute[Crd[getCrd (this.name, true)].list].quantity > 1)
-										this.caption = attribute[Crd[getCrd (this.name, true)].list].quantity-1;
+							case "pick":
+								// Set tooltip.
+								listObject.tooltip = toTitleCase(listArray[createLoop]);
+								
+								// Set portrait.
+								setPortrait (listObject.name, 
+									"IconSheet", cellSheet + "Button", cellGroup[cellSheet][listArray[createLoop]].id);							
 									
-									console.write (this.caption);
+								// Set item function.
+								listObject.onPress = function (event)
+								{
+									// Update the tab and the entity's corresponding ".curr" attribute with the "picked" item.
 								}
 							break;
+							default:
+								// Get name of item to display in list.
+								itemName = selection[0].traits.id.civ_code + "_" + listArray[createLoop];
+
+								// Set tooltip.
+								listObject.tooltip = getEntityTemplate(itemName).traits.id.civ + " " + getEntityTemplate(itemName).traits.id.generic;
+								
+								// Store name of entity to display in list in this button's coordinate.
+								Crd[getCrd (listObject.name, true)].entity = new Object(itemName);
+								
+								// Set portrait.
+								setPortrait (listObject.name, 
+									getEntityTemplate(itemName).traits.id.icon, 
+									toTitleCase(selection[0].traits.id.civ_code), 
+									getEntityTemplate(itemName).traits.id.icon_cell);
+									
+								// Set item function.
+								listObject.onPress = function (event)
+								{
+									switch (tab)
+									{
+										case "train":
+										case "research":
+											// Add this item to the production queue if left-clicked.
+											// Remove this item from the production queue if right-clicked.
+										break;
+										case "barter":
+											// Buy a quantity of this resource if left-clicked.
+											// Sell a quantity of this resource if right-clicked.
+										break;
+										case "structciv":
+										case "structmil":
+											// Select building placement cursor.
+											startPlacing (Crd[getCrd (this.name, true)].entity);
+										break;
+										default:
+										break;
+									}
+								}									
+							break;
 						}
-					}
+						
+						// Create quantity container in entity's create list if necessary.
+//					if (!attribute[listArray[createLoop]].quantity)
+//						attribute[listArray[createLoop]].quantity = new Object(0);
+						// Set caption to counter.
+//					if (attribute[listArray[createLoop]].quantity > 1)
+//						listObject.caption = attribute[listArray[createLoop]].quantity-1;
+						// Store pointer to quantity in coordinate.
+//					Crd[getCrd (listObject.name, true)].quantity = new Object(attribute[listArray[createLoop]].quantity);
+						
+						// Reveal portrait.
+						guiUnHide (listObject.name);					
+				
+/*				
+						// Set function that occurs when the button is pressed (left-clicked).
+						// (Somehow, we also need to do one for right-clicking -- decrement counter and remove item from queue.)
+						listObject.onPress = function (event)
+						{
+							switch (tab)
+							{
+								case "StructCiv":
+								case "StructMil":
+									// Create building placement cursor.
+									startPlacing (Crd[getCrd (this.name, true)].entity);
+								break;
+								default:
+									// Attempt to add the entry to the queue.
+									if (attemptAddToBuildQueue (selection[0], Crd[getCrd (this.name, true)].entity, Crd[getCrd (this.name, true)].tab, Crd[getCrd (this.name, true)].list))
+//										if (attemptAddToBuildQueue (selection[0], itemName, tab, list))
+									{
+//								// Create quantity container in entity's create list if necessary.
+			//							if (!attribute[Crd[getCrd (this.name, true)].list].quantity)
+				//							attribute[Crd[getCrd (this.name, true)].list].quantity = new Object(0);
+										// Increment counter.
+										attribute[Crd[getCrd (this.name, true)].list].quantity++;
+										// Set caption to counter.
+										if (attribute[Crd[getCrd (this.name, true)].list].quantity > 1)
+											this.caption = attribute[Crd[getCrd (this.name, true)].list].quantity-1;
+										
+										console.write (this.caption);
+									}
+								break;
+							}
+						}
 */				
-				}
-				else
-				{
-					// Conceal this button.
-					guiHide ("snStatusPaneCommand" + tabCounter + "_" + parseInt(createLoop+1));
-					// Ensure it doesn't have a stored entity to display in list.
+					}
+					else
+					{
+						// Conceal this button.
+						guiHide ("snStatusPaneCommand" + tabCounter + "_" + parseInt(createLoop+1));
+						// Ensure it doesn't have a stored entity to display in list.
 //					Crd[getCrd ("snStatusPaneCommand" + tabCounter + "_" + parseInt(createLoop+1), true)].entity = "";
-					// Ensure it doesn't have a stored quantity of queued items.
+						// Ensure it doesn't have a stored quantity of queued items.
 //					Crd[getCrd ("snStatusPaneCommand" + tabCounter + "_" + parseInt(createLoop+1), true)].quantity = 0;
+					}
 				}
 			}
-		}
-		tabCounter++;
+			tabCounter++;
+			
+			return true;
+	}
+	catch (e if e instanceof TypeError)
+	{
+		// Attribute is invalid. Return error.
+		return false;
 	}
 }
 
@@ -312,7 +366,7 @@ function refreshCommandButtons()
 		}	
 	
 		// Update Barter. (Tab button, persistent buttons, click them to do things.)
-//		updateTab ("barter", "production", "", selection[0].actions.barter);
+//		updateTab ("barter", "production", "", selection[0].actions.barter.list);
 		
 		// Update pick lists (formation, stance, trade). (Tab button holds current selection, click a button to select a new option and close the tab.)
 //		updateTab ("formation", "pick", "", selection[0].traits.formation.type, selection[0].traits.formation.curr);
@@ -335,7 +389,7 @@ function refreshCommandButtons()
 		updateTab ("explore", "command", "", selection[0].actions.explore, "");		
 		updateTab ("retreat", "command", "", selection[0].actions.retreat, "");			
 		updateTab ("stop", "command", "", selection[0].actions.stop, "");		
-		updateTab ("kill", "command", "", selection[0].actions.kill, "");		
+		updateTab ("kill", "command", "", "", "");		
 		
 		// End of commands. Store end position.
 		commandCounter = tabCounter;

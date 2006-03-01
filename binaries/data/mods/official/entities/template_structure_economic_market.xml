@@ -40,5 +40,16 @@
 		</Population>
 
 	</Traits>
+	
+	<Actions>
+		<Barter>
+			<List>
+				<Food />
+				<Wood />
+				<Stone />
+				<Ore />
+			</List>
+		</Barter>
+	</Actions>
 
 </Entity>

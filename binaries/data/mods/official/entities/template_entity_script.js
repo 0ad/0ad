@@ -208,28 +208,31 @@ function entityInit()
 	}
 	
 	// Build Unit AI Stance list, and set default stance.
-	if ( !this.traits.ai )
-		this.traits.ai = new Object();
-	if ( !this.traits.ai.stance )
-		this.traits.ai.stance = new Object();
-	if ( !this.traits.ai.stance.list )
-		this.traits.ai.stance.list = new Object();
-	// Create standard stances that all units have.
-	this.traits.ai.stance.list.avoid = new Object();
-	this.traits.ai.stance.list.hold = new Object();	
-	if ( this.actions && this.actions.attack )
+	if (this.actions && this.actions.move)
 	{
-		// Create stances that units only have if they can attack.
-		this.traits.ai.stance.list.aggress = new Object();	
-		this.traits.ai.stance.list.defend = new Object();
-		this.traits.ai.stance.list.stand = new Object();
-		// Set default stance for combat units.
-		this.traits.ai.stance.curr = "Defend";
-	}
-	else
-	{
-		// Set default stance for non-combat units.
-		this.traits.ai.stance.curr = "Avoid";
+		if ( !this.traits.ai )
+			this.traits.ai = new Object();
+		if ( !this.traits.ai.stance )
+			this.traits.ai.stance = new Object();
+		if ( !this.traits.ai.stance.list )
+			this.traits.ai.stance.list = new Object();
+		// Create standard stances that all units have.
+		this.traits.ai.stance.list.avoid = new Object();
+		this.traits.ai.stance.list.hold = new Object();	
+		if ( this.actions && this.actions.attack )
+		{
+			// Create stances that units only have if they can attack.
+			this.traits.ai.stance.list.aggress = new Object();	
+			this.traits.ai.stance.list.defend = new Object();
+			this.traits.ai.stance.list.stand = new Object();
+			// Set default stance for combat units.
+			this.traits.ai.stance.curr = "Defend";
+		}
+		else
+		{
+			// Set default stance for non-combat units.
+			this.traits.ai.stance.curr = "Avoid";
+		}
 	}
 	
 /*	

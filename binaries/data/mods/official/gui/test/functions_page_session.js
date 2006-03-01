@@ -68,6 +68,7 @@ function initCellReference()
 		addCell (groupName, "move", "Move");		
 		addCell (groupName, "attack", "Attack");		
 		addCell (groupName, "build", "Build");
+		addCell (groupName, "retreat", "Retreat");		
 
 		// Define the cells in this icon sheet.
 		groupName = "Find";
@@ -173,6 +174,69 @@ function initCellReference()
 		addCell (groupName, "train", "Train");		
 		addCell (groupName, "research", "Research");		
 		addCell (groupName, "command", "Command");		
+		
+		// Define the cells in this icon sheet.
+		groupName = "Civ";
+		addCell (groupName, "infantry_swordsman_b", "Basic Infantry Swordsman");
+		addCell (groupName, "infantry_swordsman_a", "Advanced Infantry Swordsman");
+		addCell (groupName, "infantry_swordsman_e", "Elite Infantry Swordsman");
+		addCell (groupName, "infantry_spearman_b", "Basic Infantry Spearman");
+		addCell (groupName, "infantry_spearman_a", "Advanced Infantry Spearman");		
+		addCell (groupName, "infantry_spearman_e", "Elite Infantry Spearman");				
+		addCell (groupName, "infantry_javelinist_b", "Basic Infantry Javelinist");
+		addCell (groupName, "infantry_javelinist_a", "Advanced Infantry Javelinist");		
+		addCell (groupName, "infantry_javelinist_e", "Elite Infantry Javelinist");
+		addCell (groupName, "infantry_archer_b", "Basic Infantry Archer");
+		addCell (groupName, "infantry_archer_a", "Advanced Infantry Archer");		
+		addCell (groupName, "infantry_archer_e", "Elite Infantry Archer");		
+		addCell (groupName, "infantry_slinger_b", "Basic Infantry Slinger");
+		addCell (groupName, "infantry_slinger_a", "Advanced Infantry Slinger");		
+		addCell (groupName, "infantry_slinger_e", "Elite Infantry Slinger");		
+		addCell (groupName, "cavalry_swordsman_b", "Basic Cavalry Swordsman");
+		addCell (groupName, "cavalry_swordsman_a", "Advanced Cavalry Swordsman");
+		addCell (groupName, "cavalry_swordsman_e", "Elite Cavalry Swordsman");
+		addCell (groupName, "cavalry_spearman_b", "Basic Cavalry Spearman");
+		addCell (groupName, "cavalry_spearman_a", "Advanced Cavalry Spearman");		
+		addCell (groupName, "cavalry_spearman_e", "Elite Cavalry Spearman");				
+		addCell (groupName, "cavalry_javelinist_b", "Basic Cavalry Javelinist");
+		addCell (groupName, "cavalry_javelinist_a", "Advanced Infantry Javelinist");		
+		addCell (groupName, "cavalry_javelinist_e", "Elite Infantry Javelinist");
+		addCell (groupName, "cavalry_archer_b", "Basic Infantry Archer");
+		addCell (groupName, "cavalry_archer_a", "Advanced Infantry Archer");		
+		addCell (groupName, "cavalry_archer_e", "Elite Infantry Archer");		
+		addCell (groupName, "super_siege", "Super Siege");
+		addCell (groupName, "support_female_citizen", "Female Citizen");		
+		addCell (groupName, "support_healer", "Healer");				
+		addCell (groupName, "support_trader", "Trader");		
+		addCell (groupName, "siege_onager", "Onager");		
+		addCell (groupName, "siege_ram", "Ram");				
+		addCell (groupName, "siege_ballista", "Ballista");				
+		addCell (groupName, "ship_merchant", "Merchant Ship");				
+		addCell (groupName, "ship_bireme", "Light Warship");		
+		addCell (groupName, "ship_trireme", "Medium Warship");		
+		addCell (groupName, "ship_quinquereme", "Heavy Warship");		
+		addCell (groupName, "super_infantry", "Super Infantry");		
+		addCell (groupName, "super_cavalry", "Super Cavalry");		
+		addCell (groupName, "hero_1", "Hero");		
+		addCell (groupName, "hero_2", "Hero");				
+		addCell (groupName, "hero_3", "Hero");			
+		addCell (groupName, "civil_centre", "Civic Centre");			
+		addCell (groupName, "house", "House");		
+		addCell (groupName, "farmstead", "Farmstead");		
+		addCell (groupName, "field", "Field");		
+		addCell (groupName, "corral", "Corral");		
+		addCell (groupName, "mill", "Mill");		
+		addCell (groupName, "scout_tower", "Outpost");		
+		addCell (groupName, "wall", "Wall");		
+		addCell (groupName, "wall_tower", "Wall Tower");		
+		addCell (groupName, "wall_gate", "Wall Gate");		
+		addCell (groupName, "dock", "Dock");		
+		addCell (groupName, "temple", "Temple");		
+		addCell (groupName, "barracks", "Barracks");		
+		addCell (groupName, "market", "Market");		
+		addCell (groupName, "fortress", "Fortress");		
+		addCell (groupName, "sb1", "Special Building");		
+		addCell (groupName, "sb2", "Special Building");		
 }
 
 // ====================================================================
