@@ -260,7 +260,7 @@ mechanism:
 - coalesce: boundary tags in freed memory with magic value
 - freelist: 2**n segregated doubly-linked, address-ordered
 */
-static const size_t MAX_CACHE_SIZE = 64*MiB;
+static const size_t MAX_CACHE_SIZE = 96*MiB;
 class CacheAllocator
 {
 public:
@@ -674,13 +674,13 @@ public:
 		extant_bufs.push_back(ExtantBuf(buf, size, atom_fn, this_epoch));
 	}
 
-	void add_ref(FileIOBuf buf, size_t size, const char* atom_fn)
+	void add_ref(FileIOBuf buf, size_t size, const char* atom_fn, bool long_lived)
 	{
 		ssize_t idx = find(buf);
 		if(idx != -1)
 			extant_bufs[idx].refs++;
 		else
-			add(buf, size, atom_fn, false);
+			add(buf, size, atom_fn, long_lived);
 	}
 
 	const char* get_owner_filename(FileIOBuf buf)
@@ -826,9 +826,6 @@ static void free_padded_buf(FileIOBuf padded_buf, size_t size)
 
 FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, bool long_lived)
 {
-if(!stricmp(atom_fn, "entities/template_structure_43fd26460000028eA.xmb"))
-debug_break();
-
 	FileIOBuf buf;
 	uint attempts = 0;
 	for(;;)
@@ -846,11 +843,11 @@ debug_break();
 
 		free_padded_buf(discarded_buf, size);
 
-		// note: 200 may seem hefty, but 50 is known to be reached.
+		// note: this may seem hefty, but 200 is known to be reached.
 		// (after building archive, file cache is full; attempting to
 		// allocate 2MB while only freeing 100KB blocks scattered over
 		// the entire cache can take a while)
-		if(attempts++ > 200)
+		if(attempts++ > 300)
 			debug_warn("possible infinite loop: failed to make room in cache");
 	}
 
@@ -979,7 +976,7 @@ FileIOBuf file_cache_find(const char* atom_fn, size_t* psize)
 }
 
 
-FileIOBuf file_cache_retrieve(const char* atom_fn, size_t* psize)
+FileIOBuf file_cache_retrieve(const char* atom_fn, size_t* psize, bool long_lived)
 {
 	// note: do not query extant_bufs - reusing that doesn't make sense
 	// (why would someone issue a second IO for the entire file while
@@ -988,7 +985,7 @@ FileIOBuf file_cache_retrieve(const char* atom_fn, size_t* psize)
 	FileIOBuf buf = file_cache_find(atom_fn, psize);
 	if(buf)
 	{
-		extant_bufs.add_ref(buf, *psize, atom_fn);
+		extant_bufs.add_ref(buf, *psize, atom_fn, long_lived);
 		stats_buf_ref();
 	}
 

@@ -304,17 +304,19 @@ class FileAccessGatherer
 			switch(ent->op)
 			{
 			case TO_LOAD:
-				buf = file_cache_retrieve(atom_fn, &size);
+			{
+				bool long_lived = (ent->flags & FILE_LONG_LIVED) != 0;
+				buf = file_cache_retrieve(atom_fn, &size, long_lived);
 				// would not be in cache: add to list of real IOs
 				if(!buf)
 				{
-					bool long_lived = (ent->flags & FILE_LONG_LIVED) != 0;
 					buf = file_buf_alloc(size, atom_fn, long_lived);
 					(void)file_cache_add(buf, size, atom_fn);
 
 					file_accesses.push_back(atom_fn);
 				}
 				break;
+			}
 			case TO_FREE:
 				buf = file_cache_find(atom_fn, &size);
 				(void)file_buf_free(buf);

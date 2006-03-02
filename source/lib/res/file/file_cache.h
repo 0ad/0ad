@@ -30,7 +30,7 @@ extern LibError file_buf_set_real_fn(FileIOBuf buf, const char* atom_fn);
 
 
 extern FileIOBuf file_cache_find(const char* atom_fn, size_t* size);
-extern FileIOBuf file_cache_retrieve(const char* atom_fn, size_t* size);
+extern FileIOBuf file_cache_retrieve(const char* atom_fn, size_t* size, bool long_lived);
 extern LibError file_cache_add(FileIOBuf buf, size_t size, const char* atom_fn);
 
 extern LibError file_cache_invalidate(const char* fn);

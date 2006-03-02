@@ -445,7 +445,8 @@ LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size,
 	debug_printf("VFS| load: V_fn=%s\n", V_fn);
 
 	const char* atom_fn = file_make_unique_fn_copy(V_fn);
-	buf = file_cache_retrieve(atom_fn, &size);
+	bool long_lived = (flags & FILE_LONG_LIVED) != 0;
+	buf = file_cache_retrieve(atom_fn, &size, long_lived);
 	if(buf)
 	{
 		// we want to skip the below code (especially vfs_open) for

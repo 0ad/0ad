@@ -682,6 +682,33 @@ static LibError compress_cb(uintptr_t cb_ctx, const void* block, size_t size, si
 }
 
 
+// final decision on whether to store the file as compressed,
+// given the observed compressed/uncompressed sizes.
+static bool should_store_compressed(size_t ucsize, size_t csize)
+{
+	const float ratio = (float)ucsize / csize;
+	const ssize_t bytes_saved = (ssize_t)ucsize - (ssize_t)csize;
+
+	// tiny - store compressed regardless of savings.
+	// rationale:
+	// - CPU cost is negligible and overlapped with IO anyway;
+	// - reading from compressed files uses less memory because we
+	//   don't need to allocate space for padding in the final buffer.
+	if(ucsize < 512)
+		return true;
+
+	// large high-entropy file - store uncompressed.
+	// rationale:
+	// - any bigger than this and CPU time becomes a problem: it isn't
+	//   necessarily hidden by IO time anymore.
+	if(ucsize >= 32*KiB && ratio < 1.02f)
+		return false;
+
+	// TODO: any other cases?
+	// we currently store everything else compressed.
+	return true;
+}
+
 static LibError read_and_compress_file(const char* atom_fn, uintptr_t ctx,
 	ArchiveEntry& ent, void*& file_contents, FileIOBuf& buf)	// out
 {
@@ -727,10 +754,7 @@ static LibError read_and_compress_file(const char* atom_fn, uintptr_t ctx,
 			return ret;
 		}
 
-		const float ratio = (float)ucsize / csize;
-		const ssize_t bytes_saved = (ssize_t)ucsize - (ssize_t)csize;
-		if(ratio > 1.05f && bytes_saved > 50)
-			store_compressed = true;
+		store_compressed = should_store_compressed(ucsize, csize);
 	}
 
 	// store file info
