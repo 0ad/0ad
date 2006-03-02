@@ -843,11 +843,11 @@ FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, bool long_lived)
 
 		free_padded_buf(discarded_buf, size);
 
-		// note: this may seem hefty, but 200 is known to be reached.
+		// note: this may seem hefty, but 300 is known to be reached.
 		// (after building archive, file cache is full; attempting to
-		// allocate 2MB while only freeing 100KB blocks scattered over
+		// allocate ~4MB while only freeing small blocks scattered over
 		// the entire cache can take a while)
-		if(attempts++ > 300)
+		if(attempts++ > 500)
 			debug_warn("possible infinite loop: failed to make room in cache");
 	}
 
