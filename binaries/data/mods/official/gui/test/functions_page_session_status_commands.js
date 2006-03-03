@@ -202,7 +202,7 @@ console.write ("2nd: " + tabCounter + " " + tab + " " + type + " " + cellSheet +
 			groupObject = getGUIObjectByName ("snStatusPaneCommand" + "Group" + tabCounter);		
 
 			// If the list hasn't been hidden (tab is open), and it should have list items (it's not merely a command),
-			if ( groupObject.hidden == false )
+			if ( type != "command" )
 			{
 				// Extract item list into an array.
 				listArray = [];
@@ -252,7 +252,7 @@ console.write ("2nd: " + tabCounter + " " + tab + " " + type + " " + cellSheet +
 								// Set portrait.
 								setPortrait (listObject.name, 
 									getEntityTemplate(itemName).traits.id.icon, 
-									toTitleCase(selection[0].traits.id.civ_code), 
+									"Button" + toTitleCase(selection[0].traits.id.civ_code), 
 									getEntityTemplate(itemName).traits.id.icon_cell);
 									
 								// Set item function.
@@ -337,6 +337,10 @@ console.write ("2nd: " + tabCounter + " " + tab + " " + type + " " + cellSheet +
 					}
 				}
 			}
+			
+			// Default the list to closed.
+			groupObject.hidden = true;			
+			
 			tabCounter++;
 			
 			return true;

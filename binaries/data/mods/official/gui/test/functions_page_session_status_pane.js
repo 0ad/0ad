@@ -34,7 +34,9 @@ function refreshStatusPane()
 		{
 			guiObject.hidden = true;		
 		}
-console.write ("Updated hitpoints");			
+		// Update text.
+		getGUIObjectByName ("snStatusPaneHealthBarText").caption =
+			"[font=verdana8][color=white]" + selection[0].traits.health.curr + "[/color][/font]";
 	}
 	
 	// Update stamina bar.
@@ -50,7 +52,9 @@ console.write ("Updated hitpoints");
 		{
 			guiObject.hidden = true;		
 		}
-console.write ("Updated stamina");			
+		// Update text.
+		getGUIObjectByName ("snStatusPaneStaminaBarText").caption =
+			"[font=verdana8][color=white]" + selection[0].traits.stamina.curr + "[/color][/font]";		
 	}	
 	
 	// Update unit text panel.

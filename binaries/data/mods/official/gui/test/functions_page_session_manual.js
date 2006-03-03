@@ -49,7 +49,7 @@ function refreshManual()
 		if (selection[0].traits.id.icon)
 		{
 			setPortrait ("mnPortrait", selection[0].traits.id.icon,
-				toTitleCase(selection[0].traits.id.civ_code), selection[0].traits.id.icon_cell);
+				"Button" + toTitleCase(selection[0].traits.id.civ_code), selection[0].traits.id.icon_cell);
 		}
 		
 		// Display rollover text.

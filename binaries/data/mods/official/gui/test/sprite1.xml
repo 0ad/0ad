@@ -104,10 +104,10 @@
 		<image 	backcolor="green"
 				size="0 0 100% 100%" 
 		/>	
-		<image	backcolor="255 255 255"
+		<image	backcolor="100 100 100"
 				size="0 1 1 100%-1"
 		/>
-		<image 	backcolor="255 255 255"
+		<image 	backcolor="100 100 100"
 				size="0 0 100%-1 1" 
 		/>
 		<image 	backcolor="64 64 64"
@@ -128,10 +128,10 @@
 		<image 	backcolor="blue"
 				size="0 0 100% 100%" 
 		/>
-		<image	backcolor="255 255 255"
+		<image	backcolor="100 100 100"
 				size="0 1 1 100%-1"
 		/>
-		<image 	backcolor="255 255 255"
+		<image 	backcolor="100 100 100"
 				size="0 0 100%-1 1" 
 		/>
 		<image 	backcolor="64 64 64"
@@ -774,8 +774,29 @@
 		SESSION GUI - PORTRAIT SHEETS - CARTHAGINIANS
 		==========================================
 		-->
-
+		
 			<sprite	name="snPortraitSheetCart">
+				<image	texture="session/portraits/sheets/cart.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>
+			</sprite>
+			<sprite	name="snPortraitSheetCartOver">
+				<effect	add_color="42 42 42 0"/>
+				<image	texture="session/portraits/sheets/cart.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>
+			</sprite>			
+			<sprite name="snPortraitSheetCartDisabled">
+				<effect	grayscale=""/>
+				<image	texture="session/portraits/sheets/cart.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>
+			</sprite>		
+
+			<sprite	name="snPortraitSheetButtonCart">
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
 				/>			
@@ -784,7 +805,7 @@
 						size="2 2 100%-2 100%-2" 
 				/>
 			</sprite>
-			<sprite	name="snPortraitSheetCartOver">
+			<sprite	name="snPortraitSheetButtonCartOver">
 				<effect	add_color="42 42 42 0"/>
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
@@ -794,7 +815,7 @@
 						size="2 2 100%-2 100%-2" 
 				/>
 			</sprite>			
-			<sprite name="snPortraitSheetCartDisabled">
+			<sprite name="snPortraitSheetButtonCartDisabled">
 				<effect	grayscale=""/>
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
@@ -810,8 +831,29 @@
 		SESSION GUI - PORTRAIT SHEETS - CELTS
 		==========================================
 		-->
-
+		
 			<sprite	name="snPortraitSheetCelt">
+				<image	texture="session/portraits/sheets/celt.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>
+			</sprite>
+			<sprite	name="snPortraitSheetCeltOver">
+				<effect	add_color="42 42 42 0"/>
+				<image	texture="session/portraits/sheets/celt.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>
+			</sprite>
+			<sprite name="snPortraitSheetCeltDisabled">
+				<effect	grayscale=""/>
+				<image	texture="session/portraits/sheets/celt.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>				
+			</sprite>			
+
+			<sprite	name="snPortraitSheetButtonCelt">
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
 				/>			
@@ -820,7 +862,7 @@
 						size="2 2 100%-2 100%-2" 
 				/>
 			</sprite>
-			<sprite	name="snPortraitSheetCeltOver">
+			<sprite	name="snPortraitSheetButtonCeltOver">
 				<effect	add_color="42 42 42 0"/>
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
@@ -830,7 +872,7 @@
 						size="2 2 100%-2 100%-2" 
 				/>
 			</sprite>
-			<sprite name="snPortraitSheetCeltDisabled">
+			<sprite name="snPortraitSheetButtonCeltDisabled">
 				<effect	grayscale=""/>
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
@@ -846,8 +888,29 @@
 		SESSION GUI - PORTRAIT SHEETS - HELLENES
 		==========================================
 		-->
-
+		
 			<sprite	name="snPortraitSheetHele">
+				<image	texture="session/portraits/sheets/hele.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>
+			</sprite>
+			<sprite	name="snPortraitSheetHeleOver">
+				<effect	add_color="42 42 42 0"/>
+				<image	texture="session/portraits/sheets/hele.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>				
+			</sprite>
+			<sprite name="snPortraitSheetHeleDisabled">
+				<effect	grayscale=""/>
+				<image	texture="session/portraits/sheets/hele.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>				
+			</sprite>		
+
+			<sprite	name="snPortraitSheetButtonHele">
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
 				/>			
@@ -856,7 +919,7 @@
 						size="2 2 100%-2 100%-2" 
 				/>
 			</sprite>
-			<sprite	name="snPortraitSheetHeleOver">
+			<sprite	name="snPortraitSheetButtonHeleOver">
 				<effect	add_color="42 42 42 0"/>
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
@@ -866,7 +929,7 @@
 						size="2 2 100%-2 100%-2" 
 				/>				
 			</sprite>
-			<sprite name="snPortraitSheetHeleDisabled">
+			<sprite name="snPortraitSheetButtonHeleDisabled">
 				<effect	grayscale=""/>
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
@@ -882,8 +945,29 @@
 		SESSION GUI - PORTRAIT SHEETS - IBERIANS
 		==========================================
 		-->
-
+		
 			<sprite	name="snPortraitSheetIber">
+				<image	texture="session/portraits/sheets/iber.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>			
+			</sprite>
+			<sprite	name="snPortraitSheetIberOver">
+				<effect	add_color="42 42 42 0"/>
+				<image	texture="session/portraits/sheets/iber.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>			
+			</sprite>
+			<sprite name="snPortraitSheetIberDisabled">
+				<effect	grayscale=""/>
+				<image	texture="session/portraits/sheets/iber.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>				
+			</sprite>			
+
+			<sprite	name="snPortraitSheetButtonIber">
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
 				/>			
@@ -892,7 +976,7 @@
 						size="2 2 100%-2 100%-2" 
 				/>			
 			</sprite>
-			<sprite	name="snPortraitSheetIberOver">
+			<sprite	name="snPortraitSheetButtonIberOver">
 				<effect	add_color="42 42 42 0"/>
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
@@ -902,7 +986,7 @@
 						size="2 2 100%-2 100%-2" 
 				/>			
 			</sprite>
-			<sprite name="snPortraitSheetIberDisabled">
+			<sprite name="snPortraitSheetButtonIberDisabled">
 				<effect	grayscale=""/>
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
@@ -918,8 +1002,29 @@
 		SESSION GUI - PORTRAIT SHEETS - PERSIANS
 		==========================================
 		-->
-
+		
 			<sprite	name="snPortraitSheetPers">
+				<image	texture="session/portraits/sheets/pers.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>			
+			</sprite>
+			<sprite	name="snPortraitSheetPersOver">
+				<effect	add_color="42 42 42 0"/>
+				<image	texture="session/portraits/sheets/pers.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>				
+			</sprite>
+			<sprite name="snPortraitSheetPersDisabled">
+				<effect	grayscale=""/>
+				<image	texture="session/portraits/sheets/pers.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>				
+			</sprite>			
+
+			<sprite	name="snPortraitSheetButtonPers">
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
 				/>			
@@ -928,7 +1033,7 @@
 						size="2 2 100%-2 100%-2" 
 				/>			
 			</sprite>
-			<sprite	name="snPortraitSheetPersOver">
+			<sprite	name="snPortraitSheetButtonPersOver">
 				<effect	add_color="42 42 42 0"/>
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
@@ -938,7 +1043,7 @@
 						size="2 2 100%-2 100%-2" 
 				/>				
 			</sprite>
-			<sprite name="snPortraitSheetPersDisabled">
+			<sprite name="snPortraitSheetButtonPersDisabled">
 				<effect	grayscale=""/>
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
@@ -954,8 +1059,29 @@
 		SESSION GUI - PORTRAIT SHEETS - ROMANS
 		==========================================
 		-->
-
+		
 			<sprite	name="snPortraitSheetRome">
+				<image	texture="session/portraits/sheets/rome.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>			
+			</sprite>
+			<sprite	name="snPortraitSheetRomeOver">
+				<effect	add_color="42 42 42 0"/>
+				<image	texture="session/portraits/sheets/rome.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>			
+			</sprite>
+			<sprite name="snPortraitSheetRomeDisabled">
+				<effect	grayscale=""/>
+				<image	texture="session/portraits/sheets/rome.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>			
+			</sprite>			
+
+			<sprite	name="snPortraitSheetButtonRome">
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
 				/>			
@@ -964,7 +1090,7 @@
 						size="2 2 100%-2 100%-2" 
 				/>			
 			</sprite>
-			<sprite	name="snPortraitSheetRomeOver">
+			<sprite	name="snPortraitSheetButtonRomeOver">
 				<effect	add_color="42 42 42 0"/>
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
@@ -974,7 +1100,7 @@
 						size="2 2 100%-2 100%-2" 
 				/>			
 			</sprite>
-			<sprite name="snPortraitSheetRomeDisabled">
+			<sprite name="snPortraitSheetButtonRomeDisabled">
 				<effect	grayscale=""/>
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
@@ -990,8 +1116,29 @@
 		SESSION GUI - PORTRAIT SHEETS - GAIA ANIMALS
 		==========================================
 		-->
-
+		
 			<sprite	name="snPortraitSheetAnimalGaia">
+				<image	texture="session/portraits/sheets/gaia_animal.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>			
+			</sprite>
+			<sprite	name="snPortraitSheetAnimalGaiaOver">
+				<effect	add_color="42 42 42 0"/>
+				<image	texture="session/portraits/sheets/gaia_animal.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>				
+			</sprite>
+			<sprite name="snPortraitSheetAnimalGaiaDisabled">
+				<effect	grayscale=""/>
+				<image	texture="session/portraits/sheets/gaia_animal.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>				
+			</sprite>			
+
+			<sprite	name="snPortraitSheetAnimalButtonGaia">
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
 				/>			
@@ -1000,7 +1147,7 @@
 						size="2 2 100%-2 100%-2" 
 				/>			
 			</sprite>
-			<sprite	name="snPortraitSheetAnimalGaiaOver">
+			<sprite	name="snPortraitSheetAnimalButtonGaiaOver">
 				<effect	add_color="42 42 42 0"/>
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
@@ -1010,7 +1157,7 @@
 						size="2 2 100%-2 100%-2" 
 				/>				
 			</sprite>
-			<sprite name="snPortraitSheetAnimalGaiaDisabled">
+			<sprite name="snPortraitSheetAnimalButtonGaiaDisabled">
 				<effect	grayscale=""/>
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
@@ -1026,8 +1173,29 @@
 		SESSION GUI - PORTRAIT SHEETS - GAIA ROCKS
 		==========================================
 		-->
-
+		
 			<sprite	name="snPortraitSheetRockGaia">
+				<image	texture="session/portraits/sheets/gaia_rock.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>			
+			</sprite>
+			<sprite	name="snPortraitSheetRockGaiaOver">
+				<effect	add_color="42 42 42 0"/>
+				<image	texture="session/portraits/sheets/gaia_rock.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>				
+			</sprite>
+			<sprite name="snPortraitSheetRockGaiaDisabled">
+				<effect	grayscale=""/>
+				<image	texture="session/portraits/sheets/gaia_rock.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>				
+			</sprite>			
+
+			<sprite	name="snPortraitSheetRockButtonGaia">
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
 				/>			
@@ -1036,7 +1204,7 @@
 						size="2 2 100%-2 100%-2" 
 				/>			
 			</sprite>
-			<sprite	name="snPortraitSheetRockGaiaOver">
+			<sprite	name="snPortraitSheetRockButtonGaiaOver">
 				<effect	add_color="42 42 42 0"/>
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
@@ -1046,7 +1214,7 @@
 						size="2 2 100%-2 100%-2" 
 				/>				
 			</sprite>
-			<sprite name="snPortraitSheetRockGaiaDisabled">
+			<sprite name="snPortraitSheetRockButtonGaiaDisabled">
 				<effect	grayscale=""/>
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
@@ -1062,8 +1230,29 @@
 		SESSION GUI - PORTRAIT SHEETS - GAIA SPECIALS
 		==========================================
 		-->
-
+		
 			<sprite	name="snPortraitSheetSpecialGaia">
+				<image	texture="session/portraits/sheets/gaia_special.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>			
+			</sprite>
+			<sprite	name="snPortraitSheetSpecialGaiaOver">
+				<effect	add_color="42 42 42 0"/>
+				<image	texture="session/portraits/sheets/gaia_special.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>				
+			</sprite>
+			<sprite name="snPortraitSheetSpecialGaiaDisabled">
+				<effect	grayscale=""/>
+				<image	texture="session/portraits/sheets/gaia_special.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>				
+			</sprite>			
+
+			<sprite	name="snPortraitSheetSpecialButtonGaia">
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
 				/>			
@@ -1072,7 +1261,7 @@
 						size="2 2 100%-2 100%-2" 
 				/>			
 			</sprite>
-			<sprite	name="snPortraitSheetSpecialGaiaOver">
+			<sprite	name="snPortraitSheetSpecialButtonGaiaOver">
 				<effect	add_color="42 42 42 0"/>
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
@@ -1082,7 +1271,7 @@
 						size="2 2 100%-2 100%-2" 
 				/>				
 			</sprite>
-			<sprite name="snPortraitSheetSpecialGaiaDisabled">
+			<sprite name="snPortraitSheetSpecialButtonGaiaDisabled">
 				<effect	grayscale=""/>
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
@@ -1098,8 +1287,29 @@
 		SESSION GUI - PORTRAIT SHEETS - GAIA TREE
 		==========================================
 		-->
-
+		
 			<sprite	name="snPortraitSheetTreeGaia">
+				<image	texture="session/portraits/sheets/gaia_tree.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>			
+			</sprite>
+			<sprite	name="snPortraitSheetTreeGaiaOver">
+				<effect	add_color="42 42 42 0"/>
+				<image	texture="session/portraits/sheets/gaia_tree.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>				
+			</sprite>
+			<sprite name="snPortraitSheetTreeGaiaDisabled">
+				<effect	grayscale=""/>
+				<image	texture="session/portraits/sheets/gaia_tree.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>				
+			</sprite>			
+
+			<sprite	name="snPortraitSheetTreeButtonGaia">
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
 				/>			
@@ -1108,7 +1318,7 @@
 						size="2 2 100%-2 100%-2" 
 				/>			
 			</sprite>
-			<sprite	name="snPortraitSheetTreeGaiaOver">
+			<sprite	name="snPortraitSheetTreeButtonGaiaOver">
 				<effect	add_color="42 42 42 0"/>
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
@@ -1118,7 +1328,7 @@
 						size="2 2 100%-2 100%-2" 
 				/>				
 			</sprite>
-			<sprite name="snPortraitSheetTreeGaiaDisabled">
+			<sprite name="snPortraitSheetTreeButtonGaiaDisabled">
 				<effect	grayscale=""/>
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
@@ -1134,8 +1344,29 @@
 		SESSION GUI - PORTRAIT SHEETS - GENERIC TECHS
 		==========================================
 		-->
-
+		
 			<sprite	name="snPortraitSheetTech">
+				<image	texture="session/portraits/sheets/tech.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>			
+			</sprite>
+			<sprite	name="snPortraitSheetTechOver">
+				<effect	add_color="42 42 42 0"/>
+				<image	texture="session/portraits/sheets/tech.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>				
+			</sprite>
+			<sprite name="snPortraitSheetTechDisabled">
+				<effect	grayscale=""/>
+				<image	texture="session/portraits/sheets/tech.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>				
+			</sprite>			
+
+			<sprite	name="snPortraitSheetTechButton">
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
 				/>			
@@ -1144,7 +1375,7 @@
 						size="2 2 100%-2 100%-2" 
 				/>			
 			</sprite>
-			<sprite	name="snPortraitSheetTechOver">
+			<sprite	name="snPortraitSheetTechButtonOver">
 				<effect	add_color="42 42 42 0"/>
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"
@@ -1154,7 +1385,7 @@
 						size="2 2 100%-2 100%-2" 
 				/>				
 			</sprite>
-			<sprite name="snPortraitSheetTechDisabled">
+			<sprite name="snPortraitSheetTechButtonDisabled">
 				<effect	grayscale=""/>
 				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="-2 -2 100%+2 100%+2"

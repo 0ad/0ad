@@ -264,11 +264,11 @@
 				>
 					<action on="Load"><![CDATA[
 						currCrd = getCrd ("snStatusPanePortrait");
-						addCrds (this.name, 0, 0, currCrd.coord[rb].x+2,
-								currCrd.coord[rb].y+currCrd.coord[rb].height+4, 46, 8);					
+						addCrds (this.name, 0, 0, currCrd.coord[rb].x+1,
+								currCrd.coord[rb].y+currCrd.coord[rb].height+3, 35, 8);					
 					]]></action>
-				</object>				
-				
+				</object>	
+
 				<object	name="snStatusPaneStaminaBar"
 					style="snBlueBar"
 					type="progressbar"
@@ -276,7 +276,33 @@
 					<action on="Load"><![CDATA[
 						currCrd = getCrd ("snStatusPaneHealthBar");
 						addCrds (this.name, 0, 0, currCrd.coord[rb].x,
-								currCrd.coord[rb].y+currCrd.coord[rb].height, 46, 8);					
+								currCrd.coord[rb].y+currCrd.coord[rb].height, currCrd.coord[rb].width, currCrd.coord[rb].height);					
+					]]></action>
+				</object>		
+				
+				<object	name="snStatusPaneHealthBarText"
+					style="snObject"
+					type="text"
+					text_align="left"
+					text_valign="center"					
+				>
+					<action on="Load"><![CDATA[
+						currCrd = getCrd ("snStatusPaneHealthBar");
+						currCrd2 = getCrd ("snStatusPanePortrait");						
+						addCrds (this.name, 0, 0, currCrd.coord[rb].x+currCrd.coord[rb].width, currCrd.coord[rb].y, currCrd2.coord[rb].width-currCrd.coord[rb].width-2, currCrd.coord[rb].height);					
+					]]></action>
+				</object>				
+
+				<object	name="snStatusPaneStaminaBarText"
+					style="snObject"
+					type="text"
+					text_align="left"
+					text_valign="center"					
+				>
+					<action on="Load"><![CDATA[
+						currCrd = getCrd ("snStatusPaneHealthBarText");
+						currCrd2 = getCrd ("snStatusPaneStaminaBar");						
+						addCrds (this.name, 0, 0, currCrd.coord[rb].x, currCrd2.coord[rb].y, currCrd.coord[rb].width, currCrd.coord[rb].height);					
 					]]></action>
 				</object>				
 				
@@ -285,7 +311,6 @@
 					type="text"
 					buffer_zone="5"
 					text_align="left"
-					textcolor="white"
 					text_valign="top"					
 				>
 					<action on="Load"><![CDATA[
@@ -328,8 +353,9 @@
 				>
 					<action on="Load"><![CDATA[
 						currCrd = getCrd ("snStatusPaneSupply");
+						currCrd2 = getCrd ("snStatusPaneSupplyIcon");						
 						addCrds (this.name, 0, 0, currCrd.coord[rb].x+currCrd.coord[rb].width,
-								currCrd.coord[rb].y, getCrd ("snStatusPaneSupplyIcon").coord[rb].width, getCrd ("snStatusPaneSupply").coord[rb].height);					
+								currCrd.coord[rb].y, currCrd2.coord[rb].width, currCrd.coord[rb].height);					
 					]]></action>
 				</object>
 
@@ -340,7 +366,8 @@
 				>
 					<action on="Load"><![CDATA[
 						currCrd = getCrd ("snStatusPaneSupply");
-						addCrds (this.name, 0, 0, getCrd("snStatusPaneGarrisonIcon").coord[rb].x+getCrd("snStatusPaneGarrisonIcon").coord[rb].width, getCrd("snStatusPaneGarrisonIcon").coord[rb].y, currCrd.coord[rb].width, currCrd.coord[rb].height);					
+						currCrd2 = getCrd ("snStatusPaneGarrisonIcon");						
+						addCrds (this.name, 0, 0, currCrd2.coord[rb].x+currCrd2.coord[rb].width, currCrd2.coord[rb].y, currCrd.coord[rb].width, currCrd.coord[rb].height);					
 					]]></action>
 				</object>				
 				
