@@ -546,7 +546,7 @@ public:
 		{
 			FileIOBuf org_buf = *pbuf;
 			*pbuf = (u8*)org_buf + ofs_misalign;
-			file_buf_add_padding(org_buf, ofs_misalign);
+			file_buf_add_padding(org_buf, size, ofs_misalign);
 		}
 
 		if(err != INFO_CB_CONTINUE && err != ERR_OK)

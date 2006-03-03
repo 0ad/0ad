@@ -313,13 +313,6 @@ success:
 		return p;
 	}
 
-	void make_read_only(u8* p, size_t size)
-	{
-		u8* p_pa = (u8*)round_down((uintptr_t)p, BUF_ALIGN);
-		const size_t size_pa = round_up(size, BUF_ALIGN);
-		(void)mprotect(p_pa, size_pa, PROT_READ);
-	}
-
 	// rationale: don't call this "free" because that would run afoul of the
 	// memory tracker's redirection macro and require #include "nommgr.h".
 	void dealloc(u8* p, size_t size)
@@ -344,6 +337,20 @@ success:
 		stats_notify_free(size_pa);
 	}
 
+	// make given range read-only via MMU.
+	// write access is restored when buffer is freed.
+	//
+	// p and size are the user-visible values; we round up/down to
+	// cover the entire allocation (except maybe lots of initial padding).
+	// rationale: this avoids need for consulting exact_buf_oracle,
+	// which is a bit slow.
+	void make_read_only(u8* p, size_t size)
+	{
+		u8* p_pa = (u8*)round_down((uintptr_t)p, BUF_ALIGN);
+		const size_t size_pa = round_up(size, BUF_ALIGN);
+		(void)mprotect(p_pa, size_pa, PROT_READ);
+	}
+
 	// free all allocations and reset state to how it was just after
 	// (the first and only) init() call.
 	void reset()
@@ -356,17 +363,6 @@ success:
 
 private:
 	Pool pool;
-
-	static uint size_class_of(size_t size_pa)
-	{
-		return log2((uint)size_pa);
-	}
-
-	// value of LSB 1-bit
-	static uint ls1(uint x)
-	{
-		return (x & -(int)x);
-	}
 
 	//-------------------------------------------------------------------------
 	// boundary tags for coalescing
@@ -452,10 +448,28 @@ private:
 
 	//-------------------------------------------------------------------------
 	// freelist
-	uintptr_t bitmap;
+
+	// segregated, i.e. one list per size class.
 	// note: we store Header nodes instead of just a pointer to head of
 	// list - this wastes a bit of mem but greatly simplifies list insertion.
 	Header freelists[sizeof(uintptr_t)*CHAR_BIT];
+
+	// bit i set iff size class i's freelist is not empty.
+	// in conjunction with ls1, this allows finding a non-empty list in O(1).
+	uintptr_t bitmap;
+
+	// "size class" i (>= 0) contains allocations of size (2**(i-1), 2**i]
+	// except for i=0, which corresponds to size=1.
+	static uint size_class_of(size_t size_pa)
+	{
+		return log2((uint)size_pa);
+	}
+
+	// value of LSB 1-bit.
+	static uint ls1(uint x)
+	{
+		return (x & -(int)x);
+	}
 
 	void freelist_add(u8* p, size_t size_pa)
 	{
@@ -511,6 +525,7 @@ private:
 		memset(footer, 0xEE, sizeof(Footer));
 	}
 
+	// returns 0 if nothing big enough is in size_class's freelist.
 	void* alloc_from_class(uint size_class, size_t size_pa)
 	{
 		// return first suitable entry in (address-ordered) list
@@ -533,16 +548,22 @@ private:
 		return 0;
 	}
 
+	// returns 0 if there is no big enough entry in any freelist.
 	void* alloc_from_larger_class(uint start_size_class, size_t size_pa)
 	{
 		uint classes_left = bitmap;
 		// .. strip off all smaller classes
 		classes_left &= (~0 << start_size_class);
+
+		// for each non-empty freelist (loop doesn't incur overhead for
+		// empty freelists)
 		while(classes_left)
 		{
 			const uint class_size = ls1(classes_left);
 			classes_left &= ~class_size;	// remove from classes_left
 			const uint size_class = size_class_of(class_size);
+
+			// .. try to alloc
 			void* p = alloc_from_class(size_class, size_pa);
 			if(p)
 				return p;
@@ -585,62 +606,42 @@ static CacheAllocator cache_allocator;
 
 //-----------------------------------------------------------------------------
 
-// list of FileIOBufs currently held by the application.
+/*
+list of FileIOBufs currently held by the application.
+
+note: "currently held" means between a file_buf_alloc/file_buf_retrieve
+and file_buf_free.
+additionally, the buffer may be stored in file_cache if file_cache_add
+was called; it remains there until evicted in favor of another buffer.
+
+rationale: users are strongly encouraged to access buffers as follows:
+"alloc, use, free; alloc next..". this means only a few (typically one) are
+active at a time. a list of these is more efficient to go through (O(1))
+than having to scan file_cache for the buffer (O(N)).
+
+see also discussion at declaration of FileIOBuf.
+*/
 class ExtantBufMgr
 {
-	struct ExtantBuf
-	{
-		FileIOBuf buf;
-		// this would also be available via TFile, but we want users
-		// to be able to allocate file buffers (and they don't know tf).
-		// therefore, we store this separately.
-		size_t size;
-		// which file was this buffer taken from?
-		// we search for given atom_fn as part of file_cache_retrieve
-		// (since we are responsible for already extant bufs).
-		// also useful for tracking down buf 'leaks' (i.e. someone
-		// forgetting to call file_buf_free).
-		const char* atom_fn;
-		//
-		uint refs;
-		// used to check if this buffer was freed immediately
-		// (before allocating the next). that is the desired behavior
-		// because it avoids fragmentation and leaks.
-		uint epoch;
-		ExtantBuf(FileIOBuf buf_, size_t size_, const char* atom_fn_, uint epoch_)
-			: buf(buf_), size(size_), atom_fn(atom_fn_), refs(1), epoch(epoch_) {}
-	};
-	std::vector<ExtantBuf> extant_bufs;
-
 public:
 	ExtantBufMgr()
 		: extant_bufs(), epoch(1) {}
 
-	// return index of ExtantBuf that contains <buf>, or -1.
-	ssize_t find(FileIOBuf buf)
+	// issues a warning if any buffers from the file <atom_fn> are extant.
+	void warn_if_extant(const char* atom_fn)
 	{
-		debug_assert(buf != 0);
 		for(size_t i = 0; i < extant_bufs.size(); i++)
 		{
-			ExtantBuf& eb = extant_bufs[i];
-			if(matches(eb, buf))
-				return (ssize_t)i;
+			if(extant_bufs[i].atom_fn == atom_fn)
+				debug_warn("file has extant buffers but isn't expected to");
 		}
-
-		return -1;
 	}
 
-	// issues a warning if <buf> is not on the extant list or if
-	// size doesn't match that stored in the list.
-	void warn_if_not_extant(FileIOBuf buf, size_t size)
-	{
-		ssize_t idx = find(buf);
-		if(idx == -1)
-			debug_warn("not in extant list");
-		else
-			debug_assert(extant_bufs[idx].size == size);
-	}
-
+	// add given buffer to extant list.
+	// long_lived indicates if this buffer will not be freed immediately
+	// (more precisely, before allocating the next buffer); see the
+	// FILE_LONG_LIVED flag.
+	// note: reuses a previous extant_bufs[] slot if one is unused.
 	void add(FileIOBuf buf, size_t size, const char* atom_fn, bool long_lived)
 	{
 		// cache_allocator also does this; we need to follow suit so that
@@ -674,15 +675,22 @@ public:
 		extant_bufs.push_back(ExtantBuf(buf, size, atom_fn, this_epoch));
 	}
 
+	// indicate that a reference has been taken for <buf>;
+	// parameters are the same as for add().
 	void add_ref(FileIOBuf buf, size_t size, const char* atom_fn, bool long_lived)
 	{
 		ssize_t idx = find(buf);
+		// this buf was already on the extant list
 		if(idx != -1)
 			extant_bufs[idx].refs++;
+		// it was in cache and someone is 'reactivating' it, i.e. moving it
+		// to the extant list.
 		else
 			add(buf, size, atom_fn, long_lived);
 	}
 
+	// return atom_fn that was passed when add()-ing this buf, or 0 if
+	// it's not on extant list.
 	const char* get_owner_filename(FileIOBuf buf)
 	{
 		ssize_t idx = find(buf);
@@ -692,8 +700,11 @@ public:
 			return 0;
 	}
 
-
-	bool find_and_remove(FileIOBuf buf, FileIOBuf& exact_buf, size_t& size, const char*& atom_fn)
+	// return false and warn if buf is not on extant list; otherwise,
+	// pass back its size/owner filename and decrement reference count.
+	// the return value indicates whether it reached 0, i.e. was
+	// actually removed from the extant list.
+	bool find_and_remove(FileIOBuf buf, size_t& size, const char*& atom_fn)
 	{
 		ssize_t idx = find(buf);
 		if(idx == -1)
@@ -703,7 +714,6 @@ public:
 		}
 
 		ExtantBuf& eb = extant_bufs[idx];
-		exact_buf = eb.buf;
 		size      = eb.size;
 		atom_fn   = eb.atom_fn;
 
@@ -724,11 +734,20 @@ public:
 		return actually_removed;
 	}
 
+	// wipe out the entire list without freeing any FileIOBuf.
+	// only meant to be used in file_cache_reset: since the allocator
+	// is completely reset, there's no need to free outstanding items first.
 	void clear()
 	{
 		extant_bufs.clear();
 	}
 
+	// if buf is not in extant list, complain; otherwise, mark it as
+	// coming from the file <atom_fn>.
+	// this is needed in the following case: uncompressed reads from archive
+	// boil down to a file_io of the archive file. the buffer is therefore
+	// tagged with the archive filename instead of the desired filename.
+	// afile_read sets things right by calling this.
 	void replace_owner(FileIOBuf buf, const char* atom_fn)
 	{
 		ssize_t idx = find(buf);
@@ -738,6 +757,9 @@ public:
 			debug_warn("to-be-replaced buf not found");
 	}
 
+	// display list of all extant buffers in debug outut.
+	// meant to be called at exit, at which time any remaining buffers
+	// must apparently have been leaked.
 	void display_all_remaining()
 	{
 		debug_printf("Leaked FileIOBufs:\n");
@@ -751,9 +773,65 @@ public:
 	}
 
 private:
-	bool matches(ExtantBuf& eb, FileIOBuf buf)
+	struct ExtantBuf
+	{
+		// treat as user-visible padded buffer, although it may already be
+		// the correct exact_buf.
+		// rationale: file_cache_retrieve gets padded_buf from file_cache
+		// and then calls add_ref. if not already in extant list, that
+		// would be added, whereas file_buf_alloc's add() would specify
+		// the exact_buf. assuming it's padded_buf is safe because
+		// exact_buf_oracle can be used to get exact_buf from that.
+		FileIOBuf buf;
+
+		// treat as user-visible size, although it may already be the
+		// correct exact_size.
+		// rationale: this would also be available via TFile, but we want
+		// users to be able to allocate file buffers (and they don't know tf).
+		// therefore, we store this separately.
+		size_t size;
+
+		// which file was this buffer taken from?
+		// we search for given atom_fn as part of file_cache_retrieve
+		// (since we are responsible for already extant bufs).
+		// also useful for tracking down buf 'leaks' (i.e. someone
+		// forgetting to call file_buf_free).
+		const char* atom_fn;
+
+		// active references, i.e. how many times file_buf_free must be
+		// called until this buffer is freed and removed from extant list.
+		uint refs;
+
+		// used to check if this buffer was freed immediately
+		// (before allocating the next). that is the desired behavior
+		// because it avoids fragmentation and leaks.
+		uint epoch;
+
+		ExtantBuf(FileIOBuf buf_, size_t size_, const char* atom_fn_, uint epoch_)
+			: buf(buf_), size(size_), atom_fn(atom_fn_), refs(1), epoch(epoch_) {}
+	};
+
+	std::vector<ExtantBuf> extant_bufs;
+
+	// see if buf (which may have been adjusted upwards to skip over padding)
+	// falls within eb's buffer.
+	bool matches(const ExtantBuf& eb, FileIOBuf buf) const
 	{
 		return (eb.buf <= buf && buf < (u8*)eb.buf+eb.size);
+	}
+
+	// return index of ExtantBuf that contains <buf>, or -1.
+	ssize_t find(FileIOBuf buf) const
+	{
+		debug_assert(buf != 0);
+		for(size_t i = 0; i < extant_bufs.size(); i++)
+		{
+			const ExtantBuf& eb = extant_bufs[i];
+			if(matches(eb, buf))
+				return (ssize_t)i;
+		}
+
+		return -1;	// not found
 	}
 
 	uint epoch;
@@ -769,61 +847,93 @@ static ExtantBufMgr extant_bufs;
 // inefficient.
 static Cache<const void*, FileIOBuf> file_cache;
 
+/*
+mapping of padded_buf to the original exact_buf and exact_size.
+
+rationale: cache stores the user-visible (padded) buffer, but we need
+to pass the original to cache_allocator.
+since not all buffers end up padded (only happens if reading
+uncompressed files from archive), it is more efficient to only
+store bookkeeping information for those who need it (rather than
+maintaining a complete list of allocs in cache_allocator).
+*/
 class ExactBufOracle
 {
 public:
-	void add(FileIOBuf exact_buf, FileIOBuf padded_buf)
+	typedef std::pair<FileIOBuf, size_t> BufAndSize;
+
+	// associate padded_buf with exact_buf and exact_size;
+	// these can later be retrieved via get().
+	// should only be called if necessary, i.e. they are not equal.
+	// assumes and verifies that the association didn't already exist
+	// (otherwise it's a bug, because it's removed when buf is freed)
+	void add(FileIOBuf exact_buf, size_t exact_size, FileIOBuf padded_buf)
 	{
 		debug_assert((uintptr_t)exact_buf % BUF_ALIGN == 0);
 		debug_assert(exact_buf < padded_buf);
 
 		std::pair<Padded2Exact::iterator, bool> ret;
-		ret = padded2exact.insert(std::make_pair(padded_buf, exact_buf));
+		const BufAndSize item = std::make_pair(exact_buf, exact_size);
+		ret = padded2exact.insert(std::make_pair(padded_buf, item));
 		// make sure it wasn't already in the map
 		debug_assert(ret.second == true);
 	}
 
+	// remove association; should be called when freeing <padded_buf>.
 	void remove(FileIOBuf padded_buf)
 	{
 		padded2exact.erase(padded_buf);
 	}
 
-	FileIOBuf get(FileIOBuf padded_buf, bool remove_afterwards = false)
+	// return exact_buf and exact_size that were associated with <padded_buf>.
+	// can optionally remove that association afterwards (slightly more
+	// efficient than a separate remove() call).
+	BufAndSize get(FileIOBuf padded_buf, size_t size, bool remove_afterwards = false)
 	{
 		Padded2Exact::iterator it = padded2exact.find(padded_buf);
 
-		FileIOBuf exact_buf;
+		BufAndSize ret;
+		// not found => must already be exact_buf. will be verified below.
 		if(it == padded2exact.end())
-			exact_buf = padded_buf;
+			ret = std::make_pair(padded_buf, size);
 		else
 		{
-			exact_buf = it->second;
+			ret = it->second;
+
 			if(remove_afterwards)
 				padded2exact.erase(it);
 		}
 
-		debug_assert((uintptr_t)exact_buf % BUF_ALIGN == 0);
-		return exact_buf;
+		// exact_buf must be aligned, or something is wrong.
+		debug_assert((uintptr_t)ret.first  % BUF_ALIGN == 0);
+		return ret;
 	}
 
 private:
-	typedef std::map<FileIOBuf, FileIOBuf> Padded2Exact;
+	typedef std::map<FileIOBuf, BufAndSize> Padded2Exact;
 	Padded2Exact padded2exact;
 };
 static ExactBufOracle exact_buf_oracle;
 
-
+// translate <padded_buf> to the exact buffer and free it.
+// convenience function used by file_buf_alloc and file_buf_free.
 static void free_padded_buf(FileIOBuf padded_buf, size_t size)
 {
-	FileIOBuf exact_buf = exact_buf_oracle.get(padded_buf, true);
-
-	size_t exact_size = size + ((u8*)padded_buf-(u8*)exact_buf);
-	exact_size = round_up(exact_size, BUF_ALIGN);
-
+	const bool remove_afterwards = true;
+	ExactBufOracle::BufAndSize exact = exact_buf_oracle.get(padded_buf, size, remove_afterwards);
+	FileIOBuf exact_buf = exact.first; size_t exact_size = exact.second;
 	cache_allocator.dealloc((u8*)exact_buf, exact_size);
 }
 
 
+// allocate a new buffer of <size> bytes (possibly more due to internal
+// fragmentation). never returns 0.
+// <atom_fn>: owner filename (buffer is intended to be used for data from
+//   this file).
+// <long_lived>: indicates the buffer will not be freed immediately
+//   (i.e. before the next buffer alloc) as it normally should.
+//   this flag serves to suppress a warning and better avoid fragmentation.
+//   caller sets this when FILE_LONG_LIVED is specified.
 FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, bool long_lived)
 {
 	FileIOBuf buf;
@@ -858,6 +968,47 @@ FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, bool long_lived)
 }
 
 
+// mark <buf> as no longer needed. if its reference count drops to 0,
+// it will be removed from the extant list. if it had been added to the
+// cache, it remains there until evicted in favor of another buffer.
+LibError file_buf_free(FileIOBuf buf)
+{
+	if(!buf)
+		return ERR_OK;
+
+	size_t size; const char* atom_fn;
+	bool actually_removed = extant_bufs.find_and_remove(buf, size, atom_fn);
+	if(actually_removed)
+	{
+		FileIOBuf buf_in_cache;
+		// it's still in cache - leave its buffer intact.
+		if(file_cache.retrieve(atom_fn, buf_in_cache, 0, false))
+		{
+			// sanity checks: what's in cache must match what we have.
+			// note: don't compare actual_size with cached size - they are
+			// usually different.
+			debug_assert(buf_in_cache == buf);
+		}
+		// buf is not in cache - needs to be freed immediately.
+		else
+		{
+			// note: extant_bufs cannot be relied upon to store and return
+			// exact_buf - see definition of ExtantBuf.buf.
+			// we have to use exact_buf_oracle, which is a bit slow, but hey.
+			free_padded_buf(buf, size);
+		}
+	}
+
+	stats_buf_free();
+	trace_notify_free(atom_fn, size);
+
+	return ERR_OK;
+}
+
+
+// interpret file_io parameters (pbuf, size, flags, cb) and allocate a
+// file buffer if necessary.
+// called by file_io and afile_read.
 LibError file_buf_get(FileIOBuf* pbuf, size_t size,
 	const char* atom_fn, uint flags, FileIOCB cb)
 {
@@ -890,55 +1041,28 @@ LibError file_buf_get(FileIOBuf* pbuf, size_t size,
 }
 
 
-void file_buf_add_padding(FileIOBuf buf, size_t padding)
+
+// inform us that the buffer address will be increased by <padding>-bytes.
+// this happens when reading uncompressed files from archive: they
+// start at unaligned offsets and file_io rounds offset down to
+// next block boundary. the buffer therefore starts with padding, which
+// is skipped so the user only sees their data.
+// we make note of the new buffer address so that it can be freed correctly
+// by passing the new padded buffer.
+void file_buf_add_padding(FileIOBuf exact_buf, size_t exact_size, size_t padding)
 {
 	debug_assert(padding != 0 && padding < FILE_BLOCK_SIZE);
-	FileIOBuf padded_buf = (FileIOBuf)((u8*)buf + padding);
-	exact_buf_oracle.add(buf, padded_buf);
+	FileIOBuf padded_buf = (FileIOBuf)((u8*)exact_buf + padding);
+	exact_buf_oracle.add(exact_buf, exact_size, padded_buf);
 }
 
 
-LibError file_buf_free(FileIOBuf buf)
-{
-	if(!buf)
-		return ERR_OK;
-
-	// note: don't use exact_buf_oracle here - just scanning through
-	// extant list and comparing range is faster + simpler.
-
-	FileIOBuf exact_buf; size_t exact_size; const char* atom_fn;
-	bool actually_removed = extant_bufs.find_and_remove(buf, exact_buf, exact_size, atom_fn);
-	if(actually_removed)
-	{
-		FileIOBuf buf_in_cache;
-		if(file_cache.retrieve(atom_fn, buf_in_cache, 0, false))
-		{
-			// sanity checks: what's in cache must match what we have.
-			// note: don't compare actual_size with cached size - they are
-			// usually different.
-			debug_assert(buf_in_cache == buf);
-		}
-		// buf is not in cache - needs to be freed immediately.
-		else
-		{
-			exact_buf_oracle.remove(buf);
-			cache_allocator.dealloc((u8*)exact_buf, exact_size);
-		}
-	}
-
-	stats_buf_free();
-	trace_notify_free(atom_fn, exact_size);
-
-	return ERR_OK;
-}
-
-
-// mark <buf> as belonging to the file <atom_fn>. this is done after
-// reading uncompressed data from archive: file_io.cpp must allocate the
-// buffer, since only it knows how much padding is needed; however,
-// archive.cpp knows the real filename (as opposed to that of the archive,
-// which is what the file buffer is associated with). therefore,
-// we fix up the filename afterwards.
+// if buf is not in extant list, complain; otherwise, mark it as
+// coming from the file <atom_fn>.
+// this is needed in the following case: uncompressed reads from archive
+// boil down to a file_io of the archive file. the buffer is therefore
+// tagged with the archive filename instead of the desired filename.
+// afile_read sets things right by calling this.
 LibError file_buf_set_real_fn(FileIOBuf buf, const char* atom_fn)
 {
 	// note: removing and reinserting would be easiest, but would
@@ -948,6 +1072,12 @@ LibError file_buf_set_real_fn(FileIOBuf buf, const char* atom_fn)
 }
 
 
+// "give" <buf> to the cache, specifying its size and owner filename.
+// since this data may be shared among users of the cache, it is made
+// read-only (via MMU) to make sure no one can corrupt/change it.
+//
+// note: the reference added by file_buf_alloc still exists! it must
+// still be file_buf_free-d after calling this.
 LibError file_cache_add(FileIOBuf buf, size_t size, const char* atom_fn)
 {
 	debug_assert(buf);
@@ -962,20 +1092,23 @@ LibError file_cache_add(FileIOBuf buf, size_t size, const char* atom_fn)
 }
 
 
-
-
-
 // called by trace simulator to retrieve buffer address, given atom_fn.
 // must not change any cache state (e.g. notify stats or add ref).
 FileIOBuf file_cache_find(const char* atom_fn, size_t* psize)
 {
 	FileIOBuf buf;
-	if(!file_cache.retrieve(atom_fn, buf, psize, false))
+	bool should_refill_credit = false;
+	if(!file_cache.retrieve(atom_fn, buf, psize, should_refill_credit))
 		return 0;
 	return buf;
 }
 
 
+// check if the contents of the file <atom_fn> are in file cache.
+// if not, return 0; otherwise, return buffer address and optionally
+// pass back its size.
+// <long_lived> indicates whether this file has FILE_LONG_LIVED flag set -
+// see file_buf_alloc docs.
 FileIOBuf file_cache_retrieve(const char* atom_fn, size_t* psize, bool long_lived)
 {
 	// note: do not query extant_bufs - reusing that doesn't make sense
@@ -996,40 +1129,22 @@ FileIOBuf file_cache_retrieve(const char* atom_fn, size_t* psize, bool long_live
 }
 
 
-/*
-a) FileIOBuf is opaque type with getter
-FileIOBuf buf;	<--------------------- how to initialize??
-file_io(.., &buf);
-data = file_buf_contents(&buf);
-file_buf_free(&buf);
-
-would obviate lookup struct but at expense of additional getter and
-trouble with init - need to set FileIOBuf to wrap user's buffer, or
-only allow us to return buffer address (which is ok)
-
-b) FileIOBuf is pointer to the buf, and secondary map associates that with BufInfo
-FileIOBuf buf;
-file_io(.., &buf);
-file_buf_free(&buf);
-
-secondary map covers all currently open IO buffers. it is accessed upon
-file_buf_free and there are only a few active at a time ( < 10)
-
-*/
-
-
-
-
-
-
-
-
-
-
-// remove all blocks loaded from the file <fn>. used when reloading the file.
+// invalidate all data loaded from the file <fn>. this ensures the next
+// load of this file gets the (presumably new) contents of the file,
+// not previous stale cache contents.
+// call after hotloading code detects file has been changed.
 LibError file_cache_invalidate(const char* P_fn)
 {
 	const char* atom_fn = file_make_unique_fn_copy(P_fn);
+
+	// note: what if the file has an extant buffer?
+	// this *could* conceivably happen during hotloading if a file is
+	// saved right when the engine wants to access it (unlikely but not
+	// impossible).
+	// what we'll do is just let them continue as if nothing had happened;
+	// invalidating is only meant to make sure that the reload's IO
+	// will load the new data (not stale stuff from cache).
+	// => nothing needs to be done.
 
 	// mark all blocks from the file as invalid
 	block_mgr.invalidate(atom_fn);
@@ -1039,16 +1154,20 @@ LibError file_cache_invalidate(const char* P_fn)
 	if(file_cache.retrieve(atom_fn, cached_buf, &size))
 	{
 		file_cache.remove(atom_fn);
-		cache_allocator.dealloc((u8*)cached_buf, size);
+		free_padded_buf(cached_buf, size);
 	}
 
 	return ERR_OK;
 }
 
 
+// reset entire state of the file cache to what it was after initialization.
+// that means completely emptying the extant list and cache.
+// used after simulating cache operation, which fills the cache with
+// invalid data.
 void file_cache_reset()
 {
-	// wipe out extant list and cache. no need to free the bufs -
+	// just wipe out extant list and cache without freeing the bufs -
 	// cache allocator is completely reset below.
 	extant_bufs.clear();
 	FileIOBuf discarded_buf; size_t size;

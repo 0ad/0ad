@@ -324,8 +324,15 @@ void CGUI::TickObjects()
 
 void CGUI::SendEventToAll(CStr EventName)
 {
+	// janwas 2006-03-03: spoke with Ykkrosh about EventName case.
+	// when registering, case is converted to lower - this avoids surprise
+	// if someone were to get the case wrong and then not notice their
+	// handler is never called. however, until now, the other end
+	// (sending events here) wasn't converting to lower case,
+	// leading to a similar problem.
+	// now fixed; case is irrelevant since all are converted to lower.
 	GUI<CStr>::RecurseObject(0, m_BaseObject, 
-		&IGUIObject::ScriptEvent, EventName);
+		&IGUIObject::ScriptEvent, EventName.LowerCase());
 }
 
 //-------------------------------------------------------------------

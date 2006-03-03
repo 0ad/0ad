@@ -688,6 +688,7 @@ static bool should_store_compressed(size_t ucsize, size_t csize)
 {
 	const float ratio = (float)ucsize / csize;
 	const ssize_t bytes_saved = (ssize_t)ucsize - (ssize_t)csize;
+	UNUSED2(bytes_saved);
 
 	// tiny - store compressed regardless of savings.
 	// rationale:

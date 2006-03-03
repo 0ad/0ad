@@ -280,9 +280,19 @@ public:
 		int ret;
 		if(type == CT_COMPRESSION)
 		{
+			// note: with Z_BEST_COMPRESSION, 78% percent of
+			// archive builder CPU time is spent in ZLib, even though
+			// that is interleaved with IO; everything else is negligible.
+			// we therefore enable this only in final builds; during
+			// development, 1.5% bigger archives are definitely worth much
+			// faster build time.
+#ifdef FINAL
 			const int level      = Z_BEST_COMPRESSION;
+#else
+			const int level      = Z_BEST_SPEED;
+#endif
 			const int windowBits = -MAX_WBITS;	// max window size; omit ZLib header
-			const int memLevel   = 8;					// default; total mem ~= 256KiB
+			const int memLevel   = 9;					// max speed; total mem ~= 384KiB
 			const int strategy   = Z_DEFAULT_STRATEGY;	// normal data - not RLE
 			ret = deflateInit2(&zs, level, Z_DEFLATED, windowBits, memLevel, strategy);
 		}
