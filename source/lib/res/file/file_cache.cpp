@@ -261,6 +261,7 @@ mechanism:
 - freelist: 2**n segregated doubly-linked, address-ordered
 */
 static const size_t MAX_CACHE_SIZE = 96*MiB;
+
 class CacheAllocator
 {
 public:
@@ -340,15 +341,11 @@ success:
 	// make given range read-only via MMU.
 	// write access is restored when buffer is freed.
 	//
-	// p and size are the user-visible values; we round up/down to
-	// cover the entire allocation (except maybe lots of initial padding).
-	// rationale: this avoids need for consulting exact_buf_oracle,
-	// which is a bit slow.
+	// p and size are the exact (non-padded) values as in dealloc.
 	void make_read_only(u8* p, size_t size)
 	{
-		u8* p_pa = (u8*)round_down((uintptr_t)p, BUF_ALIGN);
 		const size_t size_pa = round_up(size, BUF_ALIGN);
-		(void)mprotect(p_pa, size_pa, PROT_READ);
+		(void)mprotect(p, size_pa, PROT_READ);
 	}
 
 	// free all allocations and reset state to how it was just after
@@ -627,16 +624,6 @@ public:
 	ExtantBufMgr()
 		: extant_bufs(), epoch(1) {}
 
-	// issues a warning if any buffers from the file <atom_fn> are extant.
-	void warn_if_extant(const char* atom_fn)
-	{
-		for(size_t i = 0; i < extant_bufs.size(); i++)
-		{
-			if(extant_bufs[i].atom_fn == atom_fn)
-				debug_warn("file has extant buffers but isn't expected to");
-		}
-	}
-
 	// add given buffer to extant list.
 	// long_lived indicates if this buffer will not be freed immediately
 	// (more precisely, before allocating the next buffer); see the
@@ -813,8 +800,10 @@ private:
 
 	std::vector<ExtantBuf> extant_bufs;
 
-	// see if buf (which may have been adjusted upwards to skip over padding)
-	// falls within eb's buffer.
+	// see if buf (which may be padded) falls within eb's buffer.
+	// this is necessary for file_buf_free; we do not know the size
+	// of buffer to free until after find_and_remove, so exact_buf_oracle
+	// cannot be used.
 	bool matches(const ExtantBuf& eb, FileIOBuf buf) const
 	{
 		return (eb.buf <= buf && buf < (u8*)eb.buf+eb.size);
@@ -879,12 +868,6 @@ public:
 		debug_assert(ret.second == true);
 	}
 
-	// remove association; should be called when freeing <padded_buf>.
-	void remove(FileIOBuf padded_buf)
-	{
-		padded2exact.erase(padded_buf);
-	}
-
 	// return exact_buf and exact_size that were associated with <padded_buf>.
 	// can optionally remove that association afterwards (slightly more
 	// efficient than a separate remove() call).
@@ -907,6 +890,13 @@ public:
 		// exact_buf must be aligned, or something is wrong.
 		debug_assert((uintptr_t)ret.first  % BUF_ALIGN == 0);
 		return ret;
+	}
+
+	// remove all associations. this is intended only for use in
+	// file_cache_reset.
+	void clear()
+	{
+		padded2exact.clear();
 	}
 
 private:
@@ -1085,7 +1075,10 @@ LibError file_cache_add(FileIOBuf buf, size_t size, const char* atom_fn)
 	// decide (based on flags) if buf is to be cached; set cost
 	uint cost = 1;
 
-	cache_allocator.make_read_only((u8*)buf, size);
+	ExactBufOracle::BufAndSize bas = exact_buf_oracle.get(buf, size);
+	FileIOBuf exact_buf = bas.first; size_t exact_size = bas.second;
+	cache_allocator.make_read_only((u8*)exact_buf, exact_size);
+
 	file_cache.add(atom_fn, buf, size, cost);
 
 	return ERR_OK;
@@ -1169,11 +1162,18 @@ void file_cache_reset()
 {
 	// just wipe out extant list and cache without freeing the bufs -
 	// cache allocator is completely reset below.
+
 	extant_bufs.clear();
+
+	// note: do not loop until file_cache.empty - there may still be
+	// some items pending eviction even though cache is "empty".
 	FileIOBuf discarded_buf; size_t size;
-	while(file_cache.remove_least_valuable(&discarded_buf, &size)) {}
+	while(file_cache.remove_least_valuable(&discarded_buf, &size))
+	{
+	}
 
 	cache_allocator.reset();
+	exact_buf_oracle.clear();
 }
 
 
@@ -1236,7 +1236,6 @@ static void test_cache_allocator()
 
 	// reset to virginal state
 	cache_allocator.reset();
-
 }
 
 static void test_file_cache()

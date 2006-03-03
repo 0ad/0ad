@@ -750,15 +750,15 @@ public:
 	// otherwise true and (optionally) pass back its item and size.
 	bool remove_least_valuable(Item* pItem = 0, size_t* pSize = 0)
 	{
-		if(empty())
-			return false;
-
 		// as an artefact of the cache eviction policy, several entries
 		// may be "shaken loose" by one call to remove_least_valuable.
 		// we cache them in a list to disburden callers (they always get
 		// exactly one).
 		if(entries_awaiting_eviction.empty())
 		{
+			if(empty())
+				return false;
+
 			mgr.remove_least_valuable(entries_awaiting_eviction);
 			debug_assert(!entries_awaiting_eviction.empty());
 		}
