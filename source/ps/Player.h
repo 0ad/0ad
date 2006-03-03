@@ -65,6 +65,7 @@ public:
 	jsval JSI_ToString( JSContext* context, uintN argc, jsval* argv );
 	jsval JSI_GetControlledEntities( JSContext* context );
 	jsval JSI_SetColour(JSContext *context, uintN argc, jsval *argv);
+	jsval JSI_GetColour(JSContext *context, uintN argc, jsval *argv);
 
 	static void ScriptingInit();
 };

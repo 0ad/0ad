@@ -1045,13 +1045,16 @@ void CEntity::renderStaminaBar()
 
 void CEntity::CalculateRun(float timestep)
 {
-	if ( m_isRunning && m_runDecayRate > 0 )
+	if( m_staminaMax > 0 )
 	{
-		m_staminaCurr = max( 0.0f, m_staminaCurr - timestep / 1000.0f / m_runDecayRate * m_staminaMax );
-	}
-	else if ( m_orderQueue.empty() && m_runRegenRate > 0 )
-	{
-		m_staminaCurr = min( m_staminaMax, m_staminaCurr + timestep / 1000.0f / m_runRegenRate * m_staminaMax );
+		if ( m_isRunning && m_runDecayRate > 0 )
+		{
+			m_staminaCurr = max( 0.0f, m_staminaCurr - timestep / 1000.0f / m_runDecayRate * m_staminaMax );
+		}
+		else if ( m_orderQueue.empty() && m_runRegenRate > 0 )
+		{
+			m_staminaCurr = min( m_staminaMax, m_staminaCurr + timestep / 1000.0f / m_runRegenRate * m_staminaMax );
+		}
 	}
 }
 

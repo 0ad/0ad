@@ -37,6 +37,7 @@ void CPlayer::ScriptingInit()
 {
 	AddMethod<jsval, &CPlayer::JSI_ToString>( "toString", 0 );
 	AddMethod<jsval, &CPlayer::JSI_SetColour>( "setColour", 1);
+	AddMethod<jsval, &CPlayer::JSI_GetColour>( "getColour", 0);
 	
 	AddProperty( L"id", &CPlayer::m_PlayerID, true );
 	// MT: Work out how this fits with the Synched stuff...
@@ -106,4 +107,10 @@ jsval CPlayer::JSI_SetColour( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 	
 	// Return something that isn't null, so users can check whether this function succeeded
 	return argv[0];
+}
+
+jsval CPlayer::JSI_GetColour( JSContext* cx, uintN argc, jsval* argv )
+{
+	ISynchedJSProperty *prop=GetSynchedProperty(L"colour");
+	return prop->Get(cx, this);
 }

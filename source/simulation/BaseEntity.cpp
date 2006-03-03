@@ -59,6 +59,9 @@ CBaseEntity::CBaseEntity()
 	m_corpse = CStrW();
 	m_foundation = CStrW();
 
+	m_staminaCurr = 0;
+	m_staminaMax = 0;
+
 	m_bound_type = CBoundingObject::BOUND_NONE;
 	m_bound_circle = NULL;
 	m_bound_box = NULL;
