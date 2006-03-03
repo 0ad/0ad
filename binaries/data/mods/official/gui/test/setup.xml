@@ -87,8 +87,102 @@
 				cell_id="4"
 				size="30 30" 
 		/>
+		
+		<!--
+		==========================================
+		- SETUP - ICONS - STATISTICS
+		==========================================
+		-->		
 	
+		<icon 	name="iconGarrisonCapacity"
+				sprite="snIconSheetGarrison"
+				cell_id="0"
+				size="30 30" 
+		/>
+		
+		<!--
+		==========================================
+		- SETUP - TOOLTIPS
+		==========================================
+		-->
 
+		<tooltip	name="pgToolTip"
+				use_object="pgToolTip"
+				delay="0"
+				hide_object="true"
+		/>
+		
+		<tooltip	name="pgSessionSetupToolTip"
+				use_object="pgSessionSetupToolTip"
+				delay="0"
+				hide_object="true"
+		/>	
+		
+		<tooltip 	name="pgFloatingToolTip"
+				anchor="top"
+				buffer_zone="4"
+				delay="500"
+				font="tahoma12"
+				maxwidth="300"
+				offset="16 32"
+				sprite="bkWhiteBorderBlack"
+				textcolor="0 0 0"
+		/>
+
+		<tooltip 	name="snToolTip"
+				anchor="top"
+				buffer_zone="4"
+				delay="500"
+				font="tahoma12"
+				maxwidth="300"
+				offset="16 32"
+				sprite="bkWhiteBorderBlack"
+				textcolor="0 0 0"
+		/>
+		
+		<!--
+		==========================================
+		- SETUP - COLORS
+		==========================================
+		-->
+
+		<color		name="black"
+		>0 0 0
+		</color>
+
+		<color		name="gold"
+		>237 227 167
+		</color>
+
+		<color		name="white"
+		>255 255 255
+		</color>
+
+		<color		name="gray"
+		>243 242 240
+		</color>
+		
+		<color		name="darkgray"
+		>43 42 40
+		</color>		
+
+		<color		name="blue"
+		>0 0 255
+		</color>	
+		
+		<color		name="green"
+		>0 200 0
+		</color>	
+		
+		<color		name="mustard"
+		>191 191 2
+		</color>	
+		
+		<color		name="brown"
+		>159 98 24
+		</color>		
+		
+		
         <!--
 NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED 
 NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED 
@@ -254,76 +348,4 @@ NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET 
 			size="20 20" 
 		/>
         
-	<!--
-	==========================================
-	- SETUP - TOOLTIPS
-	==========================================
-	-->
-
-	<tooltip	name="pgToolTip"
-			use_object="pgToolTip"
-			delay="0"
-			hide_object="true"
-	/>
-	
-	<tooltip	name="pgSessionSetupToolTip"
-			use_object="pgSessionSetupToolTip"
-			delay="0"
-			hide_object="true"
-	/>	
-	
-	<tooltip 	name="pgFloatingToolTip"
-			anchor="top"
-			buffer_zone="4"
-			delay="500"
-			font="tahoma12"
-			maxwidth="300"
-			offset="16 32"
-			sprite="bkWhiteBorderBlack"
-			textcolor="0 0 0"
-	/>
-
-	<tooltip 	name="snToolTip"
-			anchor="top"
-			buffer_zone="4"
-			delay="500"
-			font="tahoma12"
-			maxwidth="300"
-			offset="16 32"
-			sprite="bkWhiteBorderBlack"
-			textcolor="0 0 0"
-	/>
-
-
-        <!--
-NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED 
-NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED 
-	-->
-
-	<!--
-	==========================================
-	- SETUP - COLORS
-	==========================================
-	-->
-
-	<color		name="black"
-	>0 0 0
-	</color>
-
-	<color		name="gold"
-	>237 227 167
-	</color>
-
-	<color		name="white"
-	>255 255 255
-	</color>
-
-	<color		name="gray"
-	>243 242 240
-	</color>
-
-	<color		name="blue"
-	>0 0 255
-	</color>
-
 </setup>

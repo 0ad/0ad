@@ -172,7 +172,11 @@ function initCellReference()
 		addCell (groupName, "structciv", "Construct Civic Buildings");		
 		addCell (groupName, "structmil", "Construct Military Buildings");		
 		addCell (groupName, "train", "Train");		
-		addCell (groupName, "research", "Research");		
+		addCell (groupName, "research", "Research");
+		addCell (groupName, "barter", "Barter");
+		addCell (groupName, "allegiance", "Allegiance");
+		addCell (groupName, "selection", "Selection");		
+		addCell (groupName, "garrison", "Garrison");		
 		addCell (groupName, "command", "Command");		
 		
 		// Define the cells in this icon sheet.

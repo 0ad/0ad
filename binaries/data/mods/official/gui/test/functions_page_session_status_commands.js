@@ -47,7 +47,7 @@ function defineCommandButtons(command)
 			{
 				if (listLoop == 1)
 				{
-					var x = currCrd.coord[rb].x+currCrd.coord[rb].width;
+					var x = currCrd.coord[rb].x+currCrd.coord[rb].width-14;
 	
 					if (tabLoop == snStatusPaneCommand.split && listLoop == 1)
 						var y = currCrd.coord[rb].y; 
@@ -70,9 +70,9 @@ function defineCommandButtons(command)
 						var x = currCrd.coord[rb].x; 
 					else
 						var x = Crd[Crd.last].coord[rb].x+Crd[Crd.last].coord[rb].width
-							+snStatusPaneCommand.span;;
+							+snStatusPaneCommand.span;
 
-					var y = currCrd.coord[rb].y+currCrd.coord[rb].height; 
+					var y = currCrd.coord[rb].y+currCrd.coord[rb].height-7; 
 				}
 				else
 				{
@@ -352,11 +352,11 @@ console.write ("2nd: " + tabCounter + " " + tab + " " + type + " " + cellSheet +
 
 function refreshCommandButtons()
 {
-	if ( selection[0].actions && shouldUpdateStat ( "actions" ) )
+	// Reset button counter.
+	tabCounter = 1;
+
+	if ( selectionChanged && selection[0].actions && shouldUpdateStat ("actions") )
 	{
-		// Reset button counter.
-		tabCounter = 1;
-		
 		// Update production lists (both types of Construction, Train). (Tab button, persistent buttons, click them to do things.)
 		listRoot = selection[0].actions.create.list;
 		for (listTab in listRoot)
@@ -394,8 +394,15 @@ function refreshCommandButtons()
 		// End of commands. Store end position.
 		commandCounter = tabCounter;
 	}
+	else
+	{
+		console.write ("No buttons");
+		// Ensure tabs should be cleanable.
+		listCounter		= 1;
+		commandCounter 	= snStatusPaneCommand.split-1;
+	}
 
-	if (listCounter > 0 && commandCounter > 0)
+	if ( selectionChanged )
 	{
 		// Clear remaining buttons between the lists and commands.
 		for (commandClearLoop = listCounter; commandClearLoop <= snStatusPaneCommand.split-1; commandClearLoop++)

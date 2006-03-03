@@ -2,15 +2,7 @@
 
 <!DOCTYPE sprites SYSTEM "../gui.dtd">
 
-<!-- testing an update -->
-
 <sprites>
-
-	<!--
-	==========================================
-	GENERIC - BACKCOLOR SPRITES
-	==========================================
-	-->
 
 	<!-- Notes:
 		* Can we make size = 0 0 100% 100% by default? It's seems to be the most common value ("stretched sprite").
@@ -23,6 +15,12 @@
 		* DDS transparency (ie main menu buttons).
 		* Ask him about the checkbox and whether it's available for use (show first example in Options).
 		* Bug: If you nest an icon into a caption [icon=""], it's no longer possible to vertically center that control's text.
+	-->
+
+	<!--
+	==========================================
+	GENERIC - BACKCOLOR SPRITES
+	==========================================
 	-->
 
 	<sprite name="bkTranslucent">
@@ -46,6 +44,14 @@
 			bordercolor="black"
 		/>
         </sprite>
+		
+        <sprite name="bkDarkGrayBorderBlack">
+			<image 	backcolor="darkgray"
+					size="0 0 100% 100%"
+					border="true"
+					bordercolor="black"
+		/>
+        </sprite>		
 
         <sprite name="bkBlueBorderBlack">
                 <image 	backcolor="blue"
@@ -87,6 +93,60 @@
 			size="0 0 100% 100%" 
 		/>
 	</sprite>
+	
+	<!--
+	==========================================
+	GENERIC - PROGRESS BARS
+	==========================================
+	-->	
+	
+	<sprite name="bkGreenBar">
+		<image 	backcolor="green"
+				size="0 0 100% 100%" 
+		/>	
+		<image	backcolor="255 255 255"
+				size="0 1 1 100%-1"
+		/>
+		<image 	backcolor="255 255 255"
+				size="0 0 100%-1 1" 
+		/>
+		<image 	backcolor="64 64 64"
+				size="100%-1 0 100% 100%"
+		/>
+		<image 	backcolor="64 64 64"
+				size="0 100%-1 100%-1 100%" 
+		/>
+		<image 	backcolor="128 128 128"
+				size="100%-2 1 100%-1 100%-1" 
+		/>
+		<image	backcolor="128 128 128"
+				size="1 100%-2 100%-1 100%-1" 
+		/>
+	</sprite>	
+	
+	<sprite name="bkBlueBar">
+		<image 	backcolor="blue"
+				size="0 0 100% 100%" 
+		/>
+		<image	backcolor="255 255 255"
+				size="0 1 1 100%-1"
+		/>
+		<image 	backcolor="255 255 255"
+				size="0 0 100%-1 1" 
+		/>
+		<image 	backcolor="64 64 64"
+				size="100%-1 0 100% 100%"
+		/>
+		<image 	backcolor="64 64 64"
+				size="0 100%-1 100%-1 100%" 
+		/>
+		<image 	backcolor="128 128 128"
+				size="100%-2 1 100%-1 100%-1" 
+		/>
+		<image	backcolor="128 128 128"
+				size="1 100%-2 100%-1 100%-1" 
+		/>
+	</sprite>	
 
 	<!--
 	==========================================
@@ -654,19 +714,19 @@
 			
 			<!-- Portrait (Disabled square). -->
 			<sprite	name="snIconPortrait">
-				<image	texture="session/icons/bkg/portrait.dds"
+				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="0 0 100% 100%" 
 				/>
 			</sprite>
 			<sprite	name="snIconPortraitOver">
 				<effect	add_color="42 42 42 0"/>
-				<image	texture="session/icons/bkg/portrait.dds"
+				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="0 0 100% 100%" 
 				/>
 			</sprite>
 			<sprite	name="snIconPortraitDisabled">
 				<effect	grayscale=""/>
-				<image	texture="session/icons/bkg/portrait.dds"
+				<image	texture="session/icons/bkg/portrait_black.dds"
 						size="0 0 100% 100%" 
 				/>
 			</sprite>			
@@ -716,72 +776,33 @@
 		-->
 
 			<sprite	name="snPortraitSheetCart">
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
 				<image	texture="session/portraits/sheets/cart.dds"
 						cell_size="64 64"
-						size="1 1 100%-1 100%-1" 
+						size="2 2 100%-2 100%-2" 
 				/>
-				<!-- Top border -->
-				<image	backcolor="220 223 228"
-						size="0 0 100%-1 1" 
-				/>
-				<!-- Right border -->
-				<image 	backcolor="109 122 146"
-						size="100%-1 0 100% 100%" 
-				/>
-				<!-- Bottom border -->
-				<image 	backcolor="109 122 146"
-						size="0 100%-1 100% 100%" 
-				/>
-				<!-- Left border -->
-				<image 	backcolor="220 223 228"
-						size="0 0 1 100%-1" 
-				/>				
 			</sprite>
 			<sprite	name="snPortraitSheetCartOver">
 				<effect	add_color="42 42 42 0"/>
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
 				<image	texture="session/portraits/sheets/cart.dds"
 						cell_size="64 64"
-						size="1 1 100%-1 100%-1" 
+						size="2 2 100%-2 100%-2" 
 				/>
-				<!-- Top border -->
-				<image	backcolor="220 223 228"
-						size="0 0 100%-1 1" 
-				/>
-				<!-- Right border -->
-				<image 	backcolor="109 122 146"
-						size="100%-1 0 100% 100%" 
-				/>
-				<!-- Bottom border -->
-				<image 	backcolor="109 122 146"
-						size="0 100%-1 100% 100%" 
-				/>
-				<!-- Left border -->
-				<image 	backcolor="220 223 228"
-						size="0 0 1 100%-1" 
-				/>				
 			</sprite>			
 			<sprite name="snPortraitSheetCartDisabled">
 				<effect	grayscale=""/>
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
 				<image	texture="session/portraits/sheets/cart.dds"
 						cell_size="64 64"
-						size="1 1 100%-1 100%-1" 
+						size="2 2 100%-2 100%-2" 
 				/>
-				<!-- Top border -->
-				<image	backcolor="220 223 228"
-						size="0 0 100%-1 1" 
-				/>
-				<!-- Right border -->
-				<image 	backcolor="109 122 146"
-						size="100%-1 0 100% 100%" 
-				/>
-				<!-- Bottom border -->
-				<image 	backcolor="109 122 146"
-						size="0 100%-1 100% 100%" 
-				/>
-				<!-- Left border -->
-				<image 	backcolor="220 223 228"
-						size="0 0 1 100%-1" 
-				/>				
 			</sprite>
 
 		<!--
@@ -791,71 +812,32 @@
 		-->
 
 			<sprite	name="snPortraitSheetCelt">
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
 				<image	texture="session/portraits/sheets/celt.dds"
 						cell_size="64 64"
-						size="1 1 100%-1 100%-1" 
+						size="2 2 100%-2 100%-2" 
 				/>
-				<!-- Top border -->
-				<image	backcolor="220 223 228"
-						size="0 0 100%-1 1" 
-				/>
-				<!-- Right border -->
-				<image 	backcolor="109 122 146"
-						size="100%-1 0 100% 100%" 
-				/>
-				<!-- Bottom border -->
-				<image 	backcolor="109 122 146"
-						size="0 100%-1 100% 100%" 
-				/>
-				<!-- Left border -->
-				<image 	backcolor="220 223 228"
-						size="0 0 1 100%-1" 
-				/>				
 			</sprite>
 			<sprite	name="snPortraitSheetCeltOver">
 				<effect	add_color="42 42 42 0"/>
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
 				<image	texture="session/portraits/sheets/celt.dds"
 						cell_size="64 64"
-						size="1 1 100%-1 100%-1" 
+						size="2 2 100%-2 100%-2" 
 				/>
-				<!-- Top border -->
-				<image	backcolor="220 223 228"
-						size="0 0 100%-1 1" 
-				/>
-				<!-- Right border -->
-				<image 	backcolor="109 122 146"
-						size="100%-1 0 100% 100%" 
-				/>
-				<!-- Bottom border -->
-				<image 	backcolor="109 122 146"
-						size="0 100%-1 100% 100%" 
-				/>
-				<!-- Left border -->
-				<image 	backcolor="220 223 228"
-						size="0 0 1 100%-1" 
-				/>				
 			</sprite>
 			<sprite name="snPortraitSheetCeltDisabled">
 				<effect	grayscale=""/>
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
 				<image	texture="session/portraits/sheets/celt.dds"
 						cell_size="64 64"
-						size="1 1 100%-1 100%-1" 
-				/>
-				<!-- Top border -->
-				<image	backcolor="220 223 228"
-						size="0 0 100%-1 1" 
-				/>
-				<!-- Right border -->
-				<image 	backcolor="109 122 146"
-						size="100%-1 0 100% 100%" 
-				/>
-				<!-- Bottom border -->
-				<image 	backcolor="109 122 146"
-						size="0 100%-1 100% 100%" 
-				/>
-				<!-- Left border -->
-				<image 	backcolor="220 223 228"
-						size="0 0 1 100%-1" 
+						size="2 2 100%-2 100%-2" 
 				/>				
 			</sprite>			
 			
@@ -866,71 +848,32 @@
 		-->
 
 			<sprite	name="snPortraitSheetHele">
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
 				<image	texture="session/portraits/sheets/hele.dds"
 						cell_size="64 64"
-						size="1 1 100%-1 100%-1" 
+						size="2 2 100%-2 100%-2" 
 				/>
-				<!-- Top border -->
-				<image	backcolor="220 223 228"
-						size="0 0 100%-1 1" 
-				/>
-				<!-- Right border -->
-				<image 	backcolor="109 122 146"
-						size="100%-1 0 100% 100%" 
-				/>
-				<!-- Bottom border -->
-				<image 	backcolor="109 122 146"
-						size="0 100%-1 100% 100%" 
-				/>
-				<!-- Left border -->
-				<image 	backcolor="220 223 228"
-						size="0 0 1 100%-1" 
-				/>				
 			</sprite>
 			<sprite	name="snPortraitSheetHeleOver">
 				<effect	add_color="42 42 42 0"/>
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
 				<image	texture="session/portraits/sheets/hele.dds"
 						cell_size="64 64"
-						size="1 1 100%-1 100%-1" 
-				/>
-				<!-- Top border -->
-				<image	backcolor="220 223 228"
-						size="0 0 100%-1 1" 
-				/>
-				<!-- Right border -->
-				<image 	backcolor="109 122 146"
-						size="100%-1 0 100% 100%" 
-				/>
-				<!-- Bottom border -->
-				<image 	backcolor="109 122 146"
-						size="0 100%-1 100% 100%" 
-				/>
-				<!-- Left border -->
-				<image 	backcolor="220 223 228"
-						size="0 0 1 100%-1" 
+						size="2 2 100%-2 100%-2" 
 				/>				
 			</sprite>
 			<sprite name="snPortraitSheetHeleDisabled">
 				<effect	grayscale=""/>
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
 				<image	texture="session/portraits/sheets/hele.dds"
 						cell_size="64 64"
-						size="1 1 100%-1 100%-1" 
-				/>
-				<!-- Top border -->
-				<image	backcolor="220 223 228"
-						size="0 0 100%-1 1" 
-				/>
-				<!-- Right border -->
-				<image 	backcolor="109 122 146"
-						size="100%-1 0 100% 100%" 
-				/>
-				<!-- Bottom border -->
-				<image 	backcolor="109 122 146"
-						size="0 100%-1 100% 100%" 
-				/>
-				<!-- Left border -->
-				<image 	backcolor="220 223 228"
-						size="0 0 1 100%-1" 
+						size="2 2 100%-2 100%-2" 
 				/>				
 			</sprite>
 			
@@ -941,71 +884,32 @@
 		-->
 
 			<sprite	name="snPortraitSheetIber">
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
 				<image	texture="session/portraits/sheets/iber.dds"
 						cell_size="64 64"
-						size="1 1 100%-1 100%-1" 
-				/>
-				<!-- Top border -->
-				<image	backcolor="220 223 228"
-						size="0 0 100%-1 1" 
-				/>
-				<!-- Right border -->
-				<image 	backcolor="109 122 146"
-						size="100%-1 0 100% 100%" 
-				/>
-				<!-- Bottom border -->
-				<image 	backcolor="109 122 146"
-						size="0 100%-1 100% 100%" 
-				/>
-				<!-- Left border -->
-				<image 	backcolor="220 223 228"
-						size="0 0 1 100%-1" 
-				/>				
+						size="2 2 100%-2 100%-2" 
+				/>			
 			</sprite>
 			<sprite	name="snPortraitSheetIberOver">
 				<effect	add_color="42 42 42 0"/>
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
 				<image	texture="session/portraits/sheets/iber.dds"
 						cell_size="64 64"
-						size="1 1 100%-1 100%-1" 
-				/>
-				<!-- Top border -->
-				<image	backcolor="220 223 228"
-						size="0 0 100%-1 1" 
-				/>
-				<!-- Right border -->
-				<image 	backcolor="109 122 146"
-						size="100%-1 0 100% 100%" 
-				/>
-				<!-- Bottom border -->
-				<image 	backcolor="109 122 146"
-						size="0 100%-1 100% 100%" 
-				/>
-				<!-- Left border -->
-				<image 	backcolor="220 223 228"
-						size="0 0 1 100%-1" 
-				/>				
+						size="2 2 100%-2 100%-2" 
+				/>			
 			</sprite>
 			<sprite name="snPortraitSheetIberDisabled">
 				<effect	grayscale=""/>
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
 				<image	texture="session/portraits/sheets/iber.dds"
 						cell_size="64 64"
-						size="1 1 100%-1 100%-1" 
-				/>
-				<!-- Top border -->
-				<image	backcolor="220 223 228"
-						size="0 0 100%-1 1" 
-				/>
-				<!-- Right border -->
-				<image 	backcolor="109 122 146"
-						size="100%-1 0 100% 100%" 
-				/>
-				<!-- Bottom border -->
-				<image 	backcolor="109 122 146"
-						size="0 100%-1 100% 100%" 
-				/>
-				<!-- Left border -->
-				<image 	backcolor="220 223 228"
-						size="0 0 1 100%-1" 
+						size="2 2 100%-2 100%-2" 
 				/>				
 			</sprite>	
 
@@ -1016,71 +920,32 @@
 		-->
 
 			<sprite	name="snPortraitSheetPers">
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
 				<image	texture="session/portraits/sheets/pers.dds"
 						cell_size="64 64"
-						size="1 1 100%-1 100%-1" 
-				/>
-				<!-- Top border -->
-				<image	backcolor="220 223 228"
-						size="0 0 100%-1 1" 
-				/>
-				<!-- Right border -->
-				<image 	backcolor="109 122 146"
-						size="100%-1 0 100% 100%" 
-				/>
-				<!-- Bottom border -->
-				<image 	backcolor="109 122 146"
-						size="0 100%-1 100% 100%" 
-				/>
-				<!-- Left border -->
-				<image 	backcolor="220 223 228"
-						size="0 0 1 100%-1" 
-				/>				
+						size="2 2 100%-2 100%-2" 
+				/>			
 			</sprite>
 			<sprite	name="snPortraitSheetPersOver">
 				<effect	add_color="42 42 42 0"/>
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
 				<image	texture="session/portraits/sheets/pers.dds"
 						cell_size="64 64"
-						size="1 1 100%-1 100%-1" 
-				/>
-				<!-- Top border -->
-				<image	backcolor="220 223 228"
-						size="0 0 100%-1 1" 
-				/>
-				<!-- Right border -->
-				<image 	backcolor="109 122 146"
-						size="100%-1 0 100% 100%" 
-				/>
-				<!-- Bottom border -->
-				<image 	backcolor="109 122 146"
-						size="0 100%-1 100% 100%" 
-				/>
-				<!-- Left border -->
-				<image 	backcolor="220 223 228"
-						size="0 0 1 100%-1" 
+						size="2 2 100%-2 100%-2" 
 				/>				
 			</sprite>
 			<sprite name="snPortraitSheetPersDisabled">
 				<effect	grayscale=""/>
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
 				<image	texture="session/portraits/sheets/pers.dds"
 						cell_size="64 64"
-						size="1 1 100%-1 100%-1" 
-				/>
-				<!-- Top border -->
-				<image	backcolor="220 223 228"
-						size="0 0 100%-1 1" 
-				/>
-				<!-- Right border -->
-				<image 	backcolor="109 122 146"
-						size="100%-1 0 100% 100%" 
-				/>
-				<!-- Bottom border -->
-				<image 	backcolor="109 122 146"
-						size="0 100%-1 100% 100%" 
-				/>
-				<!-- Left border -->
-				<image 	backcolor="220 223 228"
-						size="0 0 1 100%-1" 
+						size="2 2 100%-2 100%-2" 
 				/>				
 			</sprite>	
 			
@@ -1091,73 +956,214 @@
 		-->
 
 			<sprite	name="snPortraitSheetRome">
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
 				<image	texture="session/portraits/sheets/rome.dds"
 						cell_size="64 64"
-						size="1 1 100%-1 100%-1" 
-				/>
-				<!-- Top border -->
-				<image	backcolor="220 223 228"
-						size="0 0 100%-1 1" 
-				/>
-				<!-- Right border -->
-				<image 	backcolor="109 122 146"
-						size="100%-1 0 100% 100%" 
-				/>
-				<!-- Bottom border -->
-				<image 	backcolor="109 122 146"
-						size="0 100%-1 100% 100%" 
-				/>
-				<!-- Left border -->
-				<image 	backcolor="220 223 228"
-						size="0 0 1 100%-1" 
-				/>				
+						size="2 2 100%-2 100%-2" 
+				/>			
 			</sprite>
 			<sprite	name="snPortraitSheetRomeOver">
 				<effect	add_color="42 42 42 0"/>
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
 				<image	texture="session/portraits/sheets/rome.dds"
 						cell_size="64 64"
-						size="1 1 100%-1 100%-1" 
-				/>
-				<!-- Top border -->
-				<image	backcolor="220 223 228"
-						size="0 0 100%-1 1" 
-				/>
-				<!-- Right border -->
-				<image 	backcolor="109 122 146"
-						size="100%-1 0 100% 100%" 
-				/>
-				<!-- Bottom border -->
-				<image 	backcolor="109 122 146"
-						size="0 100%-1 100% 100%" 
-				/>
-				<!-- Left border -->
-				<image 	backcolor="220 223 228"
-						size="0 0 1 100%-1" 
-				/>				
+						size="2 2 100%-2 100%-2" 
+				/>			
 			</sprite>
 			<sprite name="snPortraitSheetRomeDisabled">
 				<effect	grayscale=""/>
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
 				<image	texture="session/portraits/sheets/rome.dds"
 						cell_size="64 64"
-						size="1 1 100%-1 100%-1" 
-				/>
-				<!-- Top border -->
-				<image	backcolor="220 223 228"
-						size="0 0 100%-1 1" 
-				/>
-				<!-- Right border -->
-				<image 	backcolor="109 122 146"
-						size="100%-1 0 100% 100%" 
-				/>
-				<!-- Bottom border -->
-				<image 	backcolor="109 122 146"
-						size="0 100%-1 100% 100%" 
-				/>
-				<!-- Left border -->
-				<image 	backcolor="220 223 228"
-						size="0 0 1 100%-1" 
+						size="2 2 100%-2 100%-2" 
+				/>			
+			</sprite>	
+			
+		<!--
+		==========================================
+		SESSION GUI - PORTRAIT SHEETS - GAIA ANIMALS
+		==========================================
+		-->
+
+			<sprite	name="snPortraitSheetAnimalGaia">
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
+				<image	texture="session/portraits/sheets/gaia_animal.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>			
+			</sprite>
+			<sprite	name="snPortraitSheetAnimalGaiaOver">
+				<effect	add_color="42 42 42 0"/>
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
+				<image	texture="session/portraits/sheets/gaia_animal.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>				
+			</sprite>
+			<sprite name="snPortraitSheetAnimalGaiaDisabled">
+				<effect	grayscale=""/>
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
+				<image	texture="session/portraits/sheets/gaia_animal.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>				
+			</sprite>			
+			
+		<!--
+		==========================================
+		SESSION GUI - PORTRAIT SHEETS - GAIA ROCKS
+		==========================================
+		-->
+
+			<sprite	name="snPortraitSheetRockGaia">
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
+				<image	texture="session/portraits/sheets/gaia_rock.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>			
+			</sprite>
+			<sprite	name="snPortraitSheetRockGaiaOver">
+				<effect	add_color="42 42 42 0"/>
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
+				<image	texture="session/portraits/sheets/gaia_rock.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>				
+			</sprite>
+			<sprite name="snPortraitSheetRockGaiaDisabled">
+				<effect	grayscale=""/>
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
+				<image	texture="session/portraits/sheets/gaia_rock.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>				
+			</sprite>		
+
+					<!--
+		==========================================
+		SESSION GUI - PORTRAIT SHEETS - GAIA SPECIALS
+		==========================================
+		-->
+
+			<sprite	name="snPortraitSheetSpecialGaia">
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
+				<image	texture="session/portraits/sheets/gaia_special.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>			
+			</sprite>
+			<sprite	name="snPortraitSheetSpecialGaiaOver">
+				<effect	add_color="42 42 42 0"/>
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
+				<image	texture="session/portraits/sheets/gaia_special.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>				
+			</sprite>
+			<sprite name="snPortraitSheetSpecialGaiaDisabled">
+				<effect	grayscale=""/>
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
+				<image	texture="session/portraits/sheets/gaia_special.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
 				/>				
 			</sprite>	
+			
+		<!--
+		==========================================
+		SESSION GUI - PORTRAIT SHEETS - GAIA TREE
+		==========================================
+		-->
+
+			<sprite	name="snPortraitSheetTreeGaia">
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
+				<image	texture="session/portraits/sheets/gaia_tree.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>			
+			</sprite>
+			<sprite	name="snPortraitSheetTreeGaiaOver">
+				<effect	add_color="42 42 42 0"/>
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
+				<image	texture="session/portraits/sheets/gaia_tree.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>				
+			</sprite>
+			<sprite name="snPortraitSheetTreeGaiaDisabled">
+				<effect	grayscale=""/>
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
+				<image	texture="session/portraits/sheets/gaia_tree.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>				
+			</sprite>	
+
+		<!--
+		==========================================
+		SESSION GUI - PORTRAIT SHEETS - GENERIC TECHS
+		==========================================
+		-->
+
+			<sprite	name="snPortraitSheetTech">
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
+				<image	texture="session/portraits/sheets/tech.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>			
+			</sprite>
+			<sprite	name="snPortraitSheetTechOver">
+				<effect	add_color="42 42 42 0"/>
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
+				<image	texture="session/portraits/sheets/tech.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>				
+			</sprite>
+			<sprite name="snPortraitSheetTechDisabled">
+				<effect	grayscale=""/>
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
+				<image	texture="session/portraits/sheets/tech.dds"
+						cell_size="64 64"
+						size="2 2 100%-2 100%-2" 
+				/>				
+			</sprite>				
 
 		<!--
 		==========================================
@@ -1679,21 +1685,21 @@
 		-->
 		
 		<sprite	name="snIconSheetRank">
-				<image	texture="session/icons/sheets/Rank.dds"
+				<image	texture="session/icons/sheets/rank.dds"
 						cell_size="64 64"
 						size="0 0 100% 100%"
 				/>
 		</sprite>
 		<sprite	name="snIconSheetRankOver">
 				<effect	add_color="42 42 42 0"/>
-				<image	texture="session/icons/sheets/Rank.dds"
+				<image	texture="session/icons/sheets/rank.dds"
 						cell_size="64 64"
 						size="0 0 100% 100%"
 				/>
 		</sprite>
 		<sprite	name="snIconSheetRankDisabled">
 				<effect	grayscale=""/>
-				<image	texture="session/icons/sheets/Rank.dds"
+				<image	texture="session/icons/sheets/rank.dds"
 						cell_size="64 64"
 						size="0 0 100% 100%"
 				/>
@@ -1703,7 +1709,7 @@
 				<image	texture="session/icons/bkg/command.dds"
 						size="0 0 100% 100%" 
 				/>		
-				<image	texture="session/icons/sheets/Rank.dds"
+				<image	texture="session/icons/sheets/rank.dds"
 						cell_size="64 64"
 						size="0 0 100% 100%"
 				/>
@@ -1713,7 +1719,7 @@
 				<image	texture="session/icons/bkg/command.dds"
 						size="0 0 100% 100%" 
 				/>				
-				<image	texture="session/icons/sheets/Rank.dds"
+				<image	texture="session/icons/sheets/rank.dds"
 						cell_size="64 64"
 						size="0 0 100% 100%"
 				/>
@@ -1723,7 +1729,7 @@
 				<image	texture="session/icons/bkg/command.dds"
 						size="0 0 100% 100%" 
 				/>				
-				<image	texture="session/icons/sheets/Rank.dds"
+				<image	texture="session/icons/sheets/rank.dds"
 						cell_size="64 64"
 						size="0 0 100% 100%"
 				/>

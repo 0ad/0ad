@@ -233,7 +233,7 @@
 					hotkey="selection.snap"
 				>
 					<action on="Load"><![CDATA[
-						addCrd (this.name, rb, 0, 0, 5, 5, 
+						addCrd (this.name, rb, 0, 0, 7, 11, 
 							snConst.Portrait.Lrg.Width, snConst.Portrait.Lrg.Height);
 						addCrd (this.name, lb, 100, 100);	
 						addCrd (this.name, lt, 100, 0);
@@ -245,6 +245,105 @@
 							setCameraTarget(selection[0].position); 
 					]]></action>
 				</object>
+				
+				<object	name="snStatusPaneRank"
+					style="snObject"
+					type="text"
+					sprite="snIconSheetRank"
+				>
+					<action on="Load"><![CDATA[
+						currCrd = getCrd ("snStatusPanePortrait");
+						addCrds (this.name, 0, 0, currCrd.coord[rb].x,
+								currCrd.coord[rb].y, 25, 25);					
+					]]></action>
+				</object>				
+				
+				<object	name="snStatusPaneHealthBar"
+					style="snGreenBar"
+					type="progressbar"
+				>
+					<action on="Load"><![CDATA[
+						currCrd = getCrd ("snStatusPanePortrait");
+						addCrds (this.name, 0, 0, currCrd.coord[rb].x+2,
+								currCrd.coord[rb].y+currCrd.coord[rb].height+4, 46, 8);					
+					]]></action>
+				</object>				
+				
+				<object	name="snStatusPaneStaminaBar"
+					style="snBlueBar"
+					type="progressbar"
+				>
+					<action on="Load"><![CDATA[
+						currCrd = getCrd ("snStatusPaneHealthBar");
+						addCrds (this.name, 0, 0, currCrd.coord[rb].x,
+								currCrd.coord[rb].y+currCrd.coord[rb].height, 46, 8);					
+					]]></action>
+				</object>				
+				
+				<object	name="snStatusPaneText"
+					style="snObject"
+					type="text"
+					buffer_zone="5"
+					text_align="left"
+					textcolor="white"
+					text_valign="top"					
+				>
+					<action on="Load"><![CDATA[
+						currCrd = getCrd ("snStatusPanePortrait");
+						addCrds (this.name, 0, 0, currCrd.coord[rb].x+currCrd.coord[rb].width+3,
+								currCrd.coord[rb].y-1, 190, currCrd.coord[rb].height);					
+					]]></action>
+				</object>	
+				
+				<object	name="snStatusPaneSupplyIcon"
+					style="snObject"
+					type="text"
+					cell_id="0"					
+					sprite="snIconSheetResource"					
+				>
+					<action on="Load"><![CDATA[
+						currCrd = getCrd ("snStatusPaneText");
+						addCrds (this.name, 0, 0, currCrd.coord[rb].x,
+								currCrd.coord[rb].y+currCrd.coord[rb].height+2, 20, 20);					
+					]]></action>
+				</object>				
+				
+				<object	name="snStatusPaneSupply"
+					style="snObject"
+					type="text"
+					sprite="bkDarkGrayBorderBlack"
+				>
+					<action on="Load"><![CDATA[
+						currCrd = getCrd ("snStatusPaneSupplyIcon");
+						addCrds (this.name, 0, 0, currCrd.coord[rb].x+currCrd.coord[rb].width,
+								currCrd.coord[rb].y, 64, currCrd.coord[rb].height);					
+					]]></action>
+				</object>				
+				
+				<object	name="snStatusPaneGarrisonIcon"
+					style="snObject"
+					type="text"
+					cell_id="0"					
+					sprite="snIconSheetGarrison"					
+				>
+					<action on="Load"><![CDATA[
+						currCrd = getCrd ("snStatusPaneSupply");
+						addCrds (this.name, 0, 0, currCrd.coord[rb].x+currCrd.coord[rb].width,
+								currCrd.coord[rb].y, getCrd ("snStatusPaneSupplyIcon").coord[rb].width, getCrd ("snStatusPaneSupply").coord[rb].height);					
+					]]></action>
+				</object>
+
+				<object	name="snStatusPaneGarrison"
+					style="snObject"
+					type="text"
+					sprite="bkDarkGrayBorderBlack"
+				>
+					<action on="Load"><![CDATA[
+						currCrd = getCrd ("snStatusPaneSupply");
+						addCrds (this.name, 0, 0, getCrd("snStatusPaneGarrisonIcon").coord[rb].x+getCrd("snStatusPaneGarrisonIcon").coord[rb].width, getCrd("snStatusPaneGarrisonIcon").coord[rb].y, currCrd.coord[rb].width, currCrd.coord[rb].height);					
+					]]></action>
+				</object>				
+				
 			</object>
 
 			<!-- COMMAND BUTTONS (arc the Status Pane) -->
