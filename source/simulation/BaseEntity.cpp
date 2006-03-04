@@ -59,8 +59,11 @@ CBaseEntity::CBaseEntity()
 	m_corpse = CStrW();
 	m_foundation = CStrW();
 
+	// Sentinel values for stamina and health (so scripts can check if an entity has no stamina or no HP).
 	m_staminaCurr = 0;
 	m_staminaMax = 0;
+	m_healthCurr = 0;
+	m_healthMax = 0;
 
 	m_bound_type = CBoundingObject::BOUND_NONE;
 	m_bound_circle = NULL;
