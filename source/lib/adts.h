@@ -628,13 +628,22 @@ private:
 	};
 	// wrapper on top of priority_queue that allows 'heap re-sift'
 	// (see on_access).
-	// note: greater comparator makes pri_q.top() the one with
-	// LEAST credit_density, which is what we want.
+	// notes:
+	// - greater comparator makes pri_q.top() the one with
+	//   LEAST credit_density, which is what we want.
+	// - deriving from an STL container is a bit dirty, but we need this
+	//   to get at the underlying data (priority_queue interface is not
+	//   very capable).
 	class PriQ: public std::priority_queue<MapIt, std::vector<MapIt>, CD_greater>
 	{
 	public:
 		void ensure_heap_order()
 		{
+			// TODO: this is actually N*logN - ouch! that explains high
+			// CPU cost in profile. this is called after only 1 item has
+			// changed, so a logN "sift" operation ought to suffice.
+			// that's not supported by the STL heap functions, so we'd
+			// need a better implementation. pending..
 			std::make_heap(this->c.begin(), this->c.end(), this->comp);
 		}
 	};

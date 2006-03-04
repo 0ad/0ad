@@ -364,9 +364,9 @@ static LibError add_ent(TDir* td, DirEnt* ent, const char* P_parent_path, const 
 		return ERR_OK;
 
 	// prepend parent path to get complete pathname.
-	char P_path[PATH_MAX];
-	CHECK_ERR(vfs_path_append(P_path, P_parent_path, name));
-	const char* atom_fn = file_make_unique_fn_copy(P_path);
+	char V_path[PATH_MAX];
+	CHECK_ERR(vfs_path_append(V_path, tfile_get_atom_fn((TFile*)td), name));
+	const char* atom_fn = file_make_unique_fn_copy(V_path);
 	vfs_opt_notify_loose_file(atom_fn);
 
 	// it's a regular data file; add it to the directory.

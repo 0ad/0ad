@@ -228,47 +228,151 @@ LibError trace_simulate(const char* trace_filename, uint flags)
 typedef u16 FileId;
 static const FileId NULL_ID = 0;
 
+
+struct FileNode
+{
+	const char* atom_fn;
+
+	FileId prev : 15;
+	u32 visited : 1;
+	FileId next : 15;
+	u32 output : 1;
+
+	FileNode(const char* atom_fn_)
+	{
+		atom_fn = atom_fn_;
+
+		prev = next = NULL_ID;
+		visited = output = 0;
+	}
+};
+
+typedef std::vector<FileNode> FileNodes;
+
+
+
 class IdMgr
 {
 	FileId cur;
 	typedef std::map<const char*, FileId> Map;
 	Map map;
-public:
-	FileId get(const char* atom_fn)
+	FileNodes* nodes;
+
+	void associate_node_with_fn(const FileNode* node, const char* atom_fn)
 	{
-		Map::iterator it = map.find(atom_fn);
-		if(it != map.end())
-			return it->second;
-		FileId id = cur++;
-		map[atom_fn] = id;
+		FileId id = id_from_node(node);
+		const Map::value_type item = std::make_pair(atom_fn, id);
+		std::pair<Map::iterator, bool> ret = map.insert(item);
+		if(!ret.second)
+			debug_warn("atom_fn already associated with node");
+	}
+
+public:
+	FileId id_from_node(const FileNode* node) const
+	{
+		// +1 to skip NULL_ID value
+		FileId id = node - &((*nodes)[0]) +1;
+		debug_assert(id <= nodes->size());
 		return id;
 	}
-	void reset() { cur = NULL_ID+1; }
-	IdMgr() { reset(); }
+
+	FileId id_from_fn(const char* atom_fn) const
+	{
+		Map::const_iterator cit = map.find(atom_fn);
+		if(cit == map.end())
+		{
+			debug_warn("id_from_fn: not found");
+			return NULL_ID;
+		}
+		return cit->second;
+	}
+
+	void init(FileNodes* nodes_)
+	{
+		cur = NULL_ID+1;
+		map.clear();
+		nodes = nodes_;
+
+		for(FileNodes::const_iterator cit = nodes->begin(); cit != nodes->end(); ++cit)
+		{
+			const FileNode& node = *cit;
+			associate_node_with_fn(&node, node.atom_fn);
+		}
+	}
 };
 static IdMgr id_mgr;
 
 
-struct FileAccess
+/*
+file gatherer - build vector of the complex file objects; enum via VFS
+connection builder - encapsulate trace details; stitch those into series of connections
+tour builder: take this list, sort it, use it to generate a nice ordering of all files
+  anything not covered will be added to output list by default
+*/
+
+// build list of FileNode - exactly one per file in VFS
+class FileNodeGatherer
 {
-	const char* atom_fn;
-	FileId id;
-
-	FileId prev;
-	FileId next;
-	bool visited;
-
-	FileAccess(const char* atom_fn_)
+	struct EntCbParams
 	{
-		atom_fn = atom_fn_;
-		prev = next = NULL_ID;
-		id = id_mgr.get(atom_fn);
+		FileNodes* file_nodes;
+	};
+
+	static void EntCb(const char* path, const DirEnt* ent, void* context)
+	{
+		EntCbParams* params = (EntCbParams*)context;
+		FileNodes* file_nodes = params->file_nodes;
+
+		if(!DIRENT_IS_DIR(ent))
+		{
+			const char* atom_fn = file_make_unique_fn_copy(path);
+			file_nodes->push_back(FileNode(atom_fn));
+		}
+	}
+
+public:
+	FileNodeGatherer(FileNodes& file_nodes)
+	{
+		// jump-start allocation (avoids frequent initial reallocs)
+		file_nodes.reserve(500);
+
+		// TODO: for each mount point (with VFS_MOUNT_ARCHIVE flag set):
+		EntCbParams params = { &file_nodes };
+		VFSUtil::EnumDirEnts("", VFSUtil::RECURSIVE, 0, EntCb, &params);
 	}
 };
 
-typedef std::vector<FileAccess> FileAccesses;
 
-class FileAccessGatherer
+typedef u32 ConnectionId;
+cassert(sizeof(FileId)*2 <= sizeof(ConnectionId));
+ConnectionId cid_make(FileId first, FileId second)
+{
+	return u32_from_u16(first, second);
+}
+FileId cid_first(ConnectionId id)
+{
+	return u32_hi(id);
+}
+FileId cid_second(ConnectionId id)
+{
+	return u32_lo(id);
+}
+
+struct Connection
+{
+	ConnectionId id;
+	// repeated edges ("connections") are reflected in
+	// the 'occurrences' count; we optimize the ordering so that
+	// files with frequent connections are nearby.
+	uint occurrences;
+
+	Connection(ConnectionId id_)
+		: id(id_), occurrences(1) {}
+};
+
+typedef std::vector<Connection> Connections;
+
+class ConnectionBuilder
 {
 	// put all entries in one trace file: easier to handle; obviates FS enum code
 	// rationale: don't go through trace in order; instead, process most recent
@@ -284,55 +388,9 @@ class FileAccessGatherer
 		Run(const TraceEntry* first_) : first(first_) {}
 	};
 
-	FileAccesses& file_accesses;
-
-	// improvement: postprocess the trace and remove all IOs that would be
-	// satisfied by our cache. often repeated IOs would otherwise potentially
-	// be arranged badly.
-	void extract_accesses_from_run(const Run& run)
-	{
-		file_cache_reset();
-
-		const TraceEntry* ent = run.first;
-		for(uint i = 0; i < run.count; i++, ent++)
-		{
-			// simulate carrying out the entry's TraceOp to determine
-			// whether this IO would be satisfied by the file_buf cache.
-			FileIOBuf buf;
-			size_t size         = ent->size;
-			const char* atom_fn = ent->atom_fn;
-			switch(ent->op)
-			{
-			case TO_LOAD:
-			{
-				bool long_lived = (ent->flags & FILE_LONG_LIVED) != 0;
-				buf = file_cache_retrieve(atom_fn, &size, long_lived);
-				// would not be in cache: add to list of real IOs
-				if(!buf)
-				{
-					buf = file_buf_alloc(size, atom_fn, long_lived);
-					(void)file_cache_add(buf, size, atom_fn);
-
-					file_accesses.push_back(atom_fn);
-				}
-				break;
-			}
-			case TO_FREE:
-				buf = file_cache_find(atom_fn, &size);
-				(void)file_buf_free(buf);
-				break;
-			default:
-				debug_warn("unknown TraceOp");
-			}
-		}	// foreach entry
-
-		file_cache_reset();
-	}
-
-
 	// note: passing i and comparing timestamp with previous timestamp
 	// avoids having to keep an extra local cur_time variable.
-	bool is_start_of_run(uint i, const TraceEntry* ent)
+	bool is_start_of_run(uint i, const TraceEntry* ent) const
 	{
 		// first item is always start of a run (protects [-1] below)
 		if(i == 0)
@@ -346,8 +404,8 @@ class FileAccessGatherer
 	}
 
 	typedef std::vector<Run> Runs;
-	Runs runs;
-	void split_trace_into_runs(const Trace* t)
+
+	void split_trace_into_runs(const Trace* t, Runs& runs)
 	{
 		uint cur_run_length = 0;
 		const TraceEntry* cur_entry = t->ents;
@@ -356,9 +414,11 @@ class FileAccessGatherer
 			cur_run_length++;
 			if(is_start_of_run(i, cur_entry))
 			{
+				// not first time: mark previous run as complete
 				if(!runs.empty())
 					runs.back().count = cur_run_length;
 				cur_run_length = 0;
+
 				runs.push_back(Run(cur_entry));
 			}
 			cur_entry++;
@@ -368,65 +428,136 @@ class FileAccessGatherer
 			runs.back().count = cur_run_length;
 	}
 
-public:
-	FileAccessGatherer(const char* trace_filename, Filenames required_fns,
-		FileAccesses& file_accesses_)
-		: file_accesses(file_accesses_)
+	// simulate carrying out the entry's TraceOp to determine
+	// whether this IO would be satisfied by the file_buf cache.
+	bool requires_actual_io(const TraceEntry* ent) const
 	{
-		Trace t;
-		if(trace_read_from_file(trace_filename, &t) == 0)
+		FileIOBuf buf;
+		size_t size         = ent->size;
+		const char* atom_fn = ent->atom_fn;
+		switch(ent->op)
 		{
-			split_trace_into_runs(&t);
-			// extract accesses from each run (starting with most recent
-			// first. this isn't critical, but may help a bit since
-			// files that are equally strongly 'connected' are ordered
-			// according to position in file_accesses. that means files from
-			// more recent traces tend to go first, which is good.)
-			for(Runs::iterator it = runs.begin(); it != runs.end(); ++it)
-				extract_accesses_from_run(*it);
+		case TO_LOAD:
+		{
+			bool long_lived = (ent->flags & FILE_LONG_LIVED) != 0;
+			buf = file_cache_retrieve(atom_fn, &size, long_lived);
+			// would not be in cache: add to list of real IOs
+			if(!buf)
+			{
+				buf = file_buf_alloc(size, atom_fn, long_lived);
+				(void)file_cache_add(buf, size, atom_fn);
+				return true;
+			}
+			break;
+		}
+		case TO_FREE:
+			buf = file_cache_find(atom_fn, &size);
+			(void)file_buf_free(buf);
+			break;
+		default:
+			debug_warn("unknown TraceOp");
 		}
 
-		// add all remaining files that are to be put in archive
-		for(uint i = 0; required_fns[i] != 0; i++)
-			file_accesses.push_back(required_fns[i]);
+		return false;
 	}
 
-	// should never be copied; this also squelches warning
-private:
-	FileAccessGatherer(const FileAccessGatherer& rhs);
-	FileAccessGatherer& operator=(const FileAccessGatherer& rhs);
+
+	class ConnectionAdder
+	{
+		// we need to check before inserting a new connection if it has
+		// come up before (to increment occurrences). this map speeds
+		// things up from n*n to n*log(n) (n = # files).
+		typedef std::map<ConnectionId, Connection*> Map;
+		Map map;
+
+		FileId prev_id;
+
+	public:
+		ConnectionAdder() : prev_id(NULL_ID) {}
+
+		void operator()(Connections& connections, const char* new_fn)
+		{
+			// we connect previous node with the one identified by new_fn;
+			// on first call, there's nothing to do.
+			const bool was_first_call = (prev_id == NULL_ID);
+			FileId id = id_mgr.id_from_fn(new_fn);
+			const ConnectionId c_id = cid_make(prev_id, id);
+			prev_id = id;
+			if(was_first_call)
+				return;
+
+			// if this connection already exists, increment its occurence
+			// count; otherwise, add it anew.
+			//
+			// note: checking return value of map.insert is more efficient
+			// than find + insert, but requires we know next_c beforehand
+			// (bit of a hack, but safe due to coonnections.reserve() above)
+			Connection* next_c = &connections[0] + connections.size();
+			const std::pair<ConnectionId, Connection*> item = std::make_pair(c_id, next_c);
+			std::pair<Map::iterator, bool> ret = map.insert(item);
+			if(!ret.second)	// already existed
+			{
+				Map::iterator inserted_at = ret.first;
+				Connection* c = inserted_at->second;	// std::map "payload"
+				c->occurrences++;
+			}
+			else	// first time we've seen this connection
+				connections.push_back(Connection(c_id));
+		}
+	};
+
+	void add_connections_from_runs(const Runs& runs, Connections& connections)
+	{
+		file_cache_reset();
+
+		ConnectionAdder add_connection;
+
+		// extract accesses from each run (starting with most recent
+		// first. this isn't critical, but may help a bit since
+		// files that are equally strongly 'connected' are ordered
+		// according to position in file_nodes. that means files from
+		// more recent traces tend to go first, which is good.)
+		for(Runs::const_iterator cit = runs.begin(); cit != runs.end(); ++cit)
+		{
+			const Run& run = *cit;
+			const TraceEntry* ent = run.first;
+			for(uint i = 0; i < run.count; i++, ent++)
+			{
+				// improvement: postprocess the trace and remove all IOs that would be
+				// satisfied by our cache. often repeated IOs would otherwise potentially
+				// be arranged badly.
+				if(requires_actual_io(ent))
+					add_connection(connections, ent->atom_fn);
+			}
+
+			file_cache_reset();
+		}
+	}
+
+public:
+	ConnectionBuilder(const char* trace_filename, Connections& connections)
+	{
+		Trace t;
+		THROW_ERR(trace_read_from_file(trace_filename, &t));
+
+		// reserve memory for worst-case amount of connections (happens if
+		// all accesses are unique). this is necessary because we store
+		// pointers to Connection in the map, which would be invalidated if
+		// connections[] ever expands.
+		// may waste up to ~3x the memory (about 1mb) for a short time,
+		// which is ok.
+		connections.reserve(t.num_ents-1);
+
+		Runs runs;
+		split_trace_into_runs(&t, runs);
+
+		add_connections_from_runs(runs, connections);
+	}
 };
 
 
 class TourBuilder
 {
-	typedef u32 ConnectionId;
-	cassert(sizeof(FileId)*2 <= sizeof(ConnectionId));
-	ConnectionId cid_make(FileId prev, FileId next)
-	{
-		return u32_from_u16(prev, next);
-	}
-	FileId cid_first(ConnectionId id)
-	{
-		return u32_hi(id);
-	}
-	FileId cid_second(ConnectionId id)
-	{
-		return u32_lo(id);
-	}
-
-	struct Connection
-	{
-		ConnectionId id;
-		// repeated edges ("connections") are reflected in
-		// the 'occurrences' count; we optimize the ordering so that
-		// files with frequent connections are nearby.
-		uint occurrences;
-
-		Connection(ConnectionId id_)
-			: id(id_), occurrences(1) {}
-	};
-
 	// sort by decreasing occurrence
 	struct Occurrence_greater: public std::binary_function<const Connection&, const Connection&, bool>
 	{
@@ -436,51 +567,18 @@ class TourBuilder
 		}
 	};
 
-	typedef std::vector<Connection> Connections;
-	Connections connections;
-
 	// not const because we change the graph-related members
-	FileAccesses& file_accesses;
-
-	void build_connections()
-	{
-		// reserve memory for worst-case amount of connections (happens if
-		// all accesses are unique). this is necessary because we store
-		// pointers to Connection in the map, which would be invalidated if
-		// connections[] ever expands.
-		connections.reserve(file_accesses.size()-1);
-
-		// we need to check before inserting a new connection if it has
-		// come up before (to increment occurrences). this map speeds
-		// things up from n*n to n*log(n) (n = # files).
-		typedef std::map<ConnectionId, Connection*> Map;
-		Map map;
-
-		// for each file pair (i-1, i): set up a Connection
-		for(uint i = 1; i < file_accesses.size(); i++)
-		{
-			const ConnectionId c_id = cid_make(file_accesses[i-1].id, file_accesses[i].id);
-
-			Map::iterator it = map.find(c_id);
-			if(it != map.end())
-				it->second->occurrences++;
-			else
-			{
-				connections.push_back(Connection(c_id));
-				map[c_id] = &connections.back();
-			}
-		}
-	}
+	FileNodes& file_nodes;
 
 	bool has_cycle;
 	void detect_cycleR(FileId node)
 	{
-		FileAccess* pnode = &file_accesses[node];
-		pnode->visited = true;
+		FileNode* pnode = &file_nodes[node];
+		pnode->visited = 1;
 		FileId next = pnode->next;
 		if(next != NULL_ID)
 		{
-			FileAccess* pnext = &file_accesses[next];
+			FileNode* pnext = &file_nodes[next];
 			if(pnext->visited)
 				has_cycle = true;
 			else
@@ -490,7 +588,7 @@ class TourBuilder
 	bool is_cycle_at(FileId node)
 	{
 		has_cycle = false;
-		for(FileAccesses::iterator it = file_accesses.begin(); it != file_accesses.end(); ++it)
+		for(FileNodes::iterator it = file_nodes.begin(); it != file_nodes.end(); ++it)
 			it->visited = 0;
 		detect_cycleR(node);
 		return has_cycle;
@@ -501,19 +599,19 @@ class TourBuilder
 		FileId first_id  = cid_first(c.id);
 		FileId second_id = cid_second(c.id);
 
-		FileAccess& first  = file_accesses[first_id];
-		FileAccess& second = file_accesses[second_id];
+		FileNode& first  = file_nodes[first_id];
+		FileNode& second = file_nodes[second_id];
+		// one of them has already been hooked up - bail
 		if(first.next != NULL_ID || second.prev != NULL_ID)
 			return;
 
 		first.next  = second_id;
 		second.prev = first_id;
 
-		bool introduced_cycle = is_cycle_at(second_id);
+		const bool introduced_cycle = is_cycle_at(second_id);
 		debug_assert(introduced_cycle == is_cycle_at(first_id));
 		if(introduced_cycle)
 		{
-debug_printf("try: undo (due tot cycle)\n");
 			// undo
 			first.next = second.prev = NULL_ID;
 			return;
@@ -523,44 +621,43 @@ debug_printf("try: undo (due tot cycle)\n");
 	// pointer to this is returned by TourBuilder()!
 	std::vector<const char*>& fn_vector;
 
-	void output_chain(const Connection& c)
+	void output_chain(FileNode& node)
 	{
-		FileAccess* start = &file_accesses[cid_first(c.id)];
-		// early out: if this access was already visited, so must the entire
+        // early out: if this access was already visited, so must the entire
 		// chain of which it is a part. bail to save lots of time.
-		if(start->visited)
+		if(node.output)
 			return;
 
 		// follow prev links starting with c until no more are left;
 		// start ends up the beginning of the chain including <c>.
+		FileNode* start = &node;
 		while(start->prev != NULL_ID)
-			start = &file_accesses[start->prev];
+			start = &file_nodes[start->prev];
 
 		// iterate over the chain - add to Filenames list and mark as visited
-		FileAccess* cur = start;
+		FileNode* cur = start;
 		do
 		{
-			if(!cur->visited)
+			if(!cur->output)
 			{
 				fn_vector.push_back(cur->atom_fn);
-				cur->visited = true;
+				cur->output = 1;
 			}
-			cur = &file_accesses[cur->next];
+			cur = &file_nodes[cur->next];
 		}
 		while(cur->next != NULL_ID);
 	}
 
 public:
-	TourBuilder(FileAccesses& file_accesses_, std::vector<const char*>& fns_)
-		: file_accesses(file_accesses_), fn_vector(fns_)
+	TourBuilder(FileNodes& file_nodes_, Connections& connections, std::vector<const char*>& fns_)
+		: file_nodes(file_nodes_), fn_vector(fns_)
 	{
-		build_connections();
 		std::sort(connections.begin(), connections.end(), Occurrence_greater());
 
 		for(Connections::iterator it = connections.begin(); it != connections.end(); ++it)
 			try_add_edge(*it);
 
-		for(Connections::iterator it = connections.begin(); it != connections.end(); ++it)
+		for(FileNodes::iterator it = file_nodes.begin(); it != file_nodes.end(); ++it)
 			output_chain(*it);
 	}
 
@@ -582,9 +679,14 @@ typedef std::vector<const char*> FnVector;
 static FnVector loose_files;
 static ssize_t loose_file_total, non_loose_file_total;
 
+static std::set<const char*> loose;
+static std::set<const char*> archive;
+
 void vfs_opt_notify_loose_file(const char* atom_fn)
 {
 	loose_file_total++;
+
+loose.insert(atom_fn);
 
 	// only add if it's not yet clear the main archive will be
 	// rebuilt anyway (otherwise we'd just waste time and memory)
@@ -592,8 +694,10 @@ void vfs_opt_notify_loose_file(const char* atom_fn)
 		loose_files.push_back(atom_fn);
 }
 
-void vfs_opt_notify_non_loose_file(const char* UNUSED(atom_fn))
+void vfs_opt_notify_non_loose_file(const char* atom_fn)
 {
+archive.insert(atom_fn);
+
 	non_loose_file_total++;
 }
 
@@ -601,6 +705,12 @@ void vfs_opt_notify_non_loose_file(const char* UNUSED(atom_fn))
 static bool should_rebuild_main_archive(const char* P_archive_path,
 	const char* trace_filename)
 {
+	std::vector<const char*> diff;
+	set_difference(loose.begin(), loose.end(), archive.begin(), archive.end(), back_inserter(diff));
+	debug_printf("loose only:\n");
+	for(std::vector<const char*>::iterator it = diff.begin(); it != diff.end(); ++it)
+		debug_printf("%s\n", *it);
+
 	// if there's no trace file, no point in building a main archive.
 	struct stat s;
 	if(file_stat(trace_filename, &s) != ERR_OK)
@@ -636,31 +746,18 @@ static bool should_build_mini_archive()
 static ArchiveBuildState ab;
 static std::vector<const char*> fn_vector;
 
-struct EntCbParams
-{
-	std::vector<const char*> files;
-};
-
-static void EntCb(const char* path, const DirEnt* ent, void* context)
-{
-	EntCbParams* params = (EntCbParams*)context;
-	if(!DIRENT_IS_DIR(ent))
-		params->files.push_back(file_make_unique_fn_copy(path));
-}
 
 static void vfs_opt_init(const char* P_archive_fn_fmt, const char* trace_filename)
 {
-	// get list of all files
-	// TODO: for each mount point (with VFS_MOUNT_ARCHIVE flag set):
-	EntCbParams params;
-	VFSUtil::EnumDirEnts("", VFSUtil::RECURSIVE, 0, EntCb, &params);
-	params.files.push_back(0);
-	Filenames required_fns = &params.files[0];
+	FileNodes file_nodes;
+	FileNodeGatherer gatherer(file_nodes);
 
-	FileAccesses file_accesses;
-	FileAccessGatherer gatherer(trace_filename, required_fns, file_accesses);
+	id_mgr.init(&file_nodes);
 
-	TourBuilder builder(file_accesses, fn_vector);
+	Connections connections;
+	ConnectionBuilder cbuilder(trace_filename, connections);
+
+	TourBuilder builder(file_nodes, connections, fn_vector);
 	fn_vector.push_back(0);
 	Filenames V_fns = &fn_vector[0];
 

@@ -220,6 +220,54 @@ void block_cache_release(BlockId id)
 
 //-----------------------------------------------------------------------------
 
+// tracks and sanity-checks all operations made by allocator.
+// active only during debug mode due to overhead.
+class AllocatorChecker
+{
+public:
+	void notify_alloc(void* p, size_t size)
+	{
+#ifndef NDEBUG
+		//debug_printf("a %p %d\n", p, size);
+		const Allocs::value_type item = std::make_pair(p, size);
+		std::pair<Allocs::iterator, bool> ret = allocs.insert(item);
+		TEST(ret.second == true);	// wasn't already in map
+#endif
+	}
+
+	void notify_free(void* p, size_t size)
+	{
+#ifndef NDEBUG
+		//debug_printf("f %p %d\n", p, size);
+		Allocs::iterator it = allocs.find(p);
+		if(it == allocs.end())
+			debug_warn("AllocatorChecker: freeing invalid pointer");
+		else
+		{
+			// size must match what was passed to notify_alloc
+			const size_t allocated_size = it->second;
+			TEST(size == allocated_size);
+
+			allocs.erase(it);
+		}
+#endif
+	}
+
+	void notify_clear()
+	{
+#ifndef NDEBUG
+		allocs.clear();
+#endif
+	}
+
+private:
+#ifndef NDEBUG
+	typedef std::map<void*, size_t> Allocs;
+	Allocs allocs;
+#endif
+};
+static AllocatorChecker alloc_checker;
+
 // >= AIO_SECTOR_SIZE or else waio will have to realign.
 // chosen as exactly 1 page: this allows write-protecting file buffers
 // without worrying about their (non-page-aligned) borders.
@@ -310,6 +358,7 @@ public:
 		return 0;
 
 success:
+		alloc_checker.notify_alloc(p, size);
 		stats_notify_alloc(size_pa);
 		return p;
 	}
@@ -318,6 +367,8 @@ success:
 	// memory tracker's redirection macro and require #include "nommgr.h".
 	void dealloc(u8* p, size_t size)
 	{
+		alloc_checker.notify_free(p, size);
+
 		const size_t size_pa = round_up(size, BUF_ALIGN);
 		// make sure entire (aligned!) range is within pool.
 		if(!pool_contains(&pool, p) || !pool_contains(&pool, p+size_pa-1))
@@ -352,6 +403,8 @@ success:
 	// (the first and only) init() call.
 	void reset()
 	{
+		alloc_checker.notify_clear();
+
 		pool_free_all(&pool);
 		bitmap = 0;
 		memset(freelists, 0, sizeof(freelists));
@@ -624,6 +677,20 @@ public:
 	ExtantBufMgr()
 		: extant_bufs(), epoch(1) {}
 
+	// return index of ExtantBuf that contains <buf>, or -1.
+	ssize_t find(FileIOBuf buf) const
+	{
+		debug_assert(buf != 0);
+		for(size_t i = 0; i < extant_bufs.size(); i++)
+		{
+			const ExtantBuf& eb = extant_bufs[i];
+			if(matches(eb, buf))
+				return (ssize_t)i;
+		}
+
+		return -1;	// not found
+	}
+
 	// add given buffer to extant list.
 	// long_lived indicates if this buffer will not be freed immediately
 	// (more precisely, before allocating the next buffer); see the
@@ -809,20 +876,6 @@ private:
 		return (eb.buf <= buf && buf < (u8*)eb.buf+eb.size);
 	}
 
-	// return index of ExtantBuf that contains <buf>, or -1.
-	ssize_t find(FileIOBuf buf) const
-	{
-		debug_assert(buf != 0);
-		for(size_t i = 0; i < extant_bufs.size(); i++)
-		{
-			const ExtantBuf& eb = extant_bufs[i];
-			if(matches(eb, buf))
-				return (ssize_t)i;
-		}
-
-		return -1;	// not found
-	}
-
 	uint epoch;
 };	// ExtantBufMgr
 static ExtantBufMgr extant_bufs;
@@ -941,7 +994,10 @@ FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, bool long_lived)
 		// allocation failed.
 		TEST(removed);
 
-		free_padded_buf(discarded_buf, size);
+		// discarded_buf may be the least valuable entry in cache, but if
+		// still in use (i.e. extant), it must not actually be freed yet!
+		if(extant_bufs.find(discarded_buf) == -1)
+			free_padded_buf(discarded_buf, size);
 
 		// note: this may seem hefty, but 300 is known to be reached.
 		// (after building archive, file cache is full; attempting to
