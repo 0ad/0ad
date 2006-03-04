@@ -22,51 +22,50 @@ function refreshStatusPane()
 	}
 	
 	// Update hitpoint bar.
-	if ( (shouldUpdateStat ( "traits.health.max" ) || shouldUpdateStat ( "traits.health.curr" )) )
+	if ( selectionChanged || shouldUpdateStat ( "traits.health.max" ) || shouldUpdateStat ( "traits.health.curr" ) )
 	{
-		guiObject = getGUIObjectByName ("snStatusPaneHealthBar");
+		barObject = getGUIObjectByName ("snStatusPaneHealthBar");
+		textObject = getGUIObjectByName ("snStatusPaneHealthBarText");
 		if (selection[0].traits.health.max && selection[0].traits.health.max != 0)
 		{
-			guiObject.caption = (selection[0].traits.health.curr * 100) / selection[0].traits.health.max;
-			guiObject.hidden = false;
+			barObject.caption = (selection[0].traits.health.curr * 100) / selection[0].traits.health.max;
+			barObject.hidden = false;
+			textObject.caption = "[font=verdana8][color=white]" + selection[0].traits.health.curr + "[/color][/font]";
 		}
 		else
 		{
-			guiObject.hidden = true;		
+			barObject.hidden = true;		
+			textObject.caption = "";
 		}
-		// Update text.
-		getGUIObjectByName ("snStatusPaneHealthBarText").caption =
-			"[font=verdana8][color=white]" + selection[0].traits.health.curr + "[/color][/font]";
 	}
 	
 	// Update stamina bar.
-	if ( (shouldUpdateStat ( "traits.stamina.max" ) || shouldUpdateStat ( "traits.stamina.curr" ))  )
+	if ( selectionChanged || shouldUpdateStat ( "traits.stamina.max" ) || shouldUpdateStat ( "traits.stamina.curr" ) )
 	{
-		guiObject = getGUIObjectByName ("snStatusPaneStaminaBar");
+		barObject = getGUIObjectByName ("snStatusPaneStaminaBar");
+		textObject = getGUIObjectByName ("snStatusPaneStaminaBarText");
 		if (selection[0].traits.stamina.max && selection[0].traits.stamina.max != 0)
 		{
-			guiObject.caption = (selection[0].traits.stamina.curr * 100) / selection[0].traits.stamina.max;
-			guiObject.hidden = false;
+			barObject.caption = (selection[0].traits.stamina.curr * 100) / selection[0].traits.stamina.max;
+			barObject.hidden = false;
+			textObject.caption = "[font=verdana8][color=white]" + selection[0].traits.stamina.curr + "[/color][/font]";
 		}
 		else
 		{
-			guiObject.hidden = true;		
+			barObject.hidden = true;		
+			textObject.caption = "";
 		}
-		// Update text.
-		getGUIObjectByName ("snStatusPaneStaminaBarText").caption =
-			"[font=verdana8][color=white]" + selection[0].traits.stamina.curr + "[/color][/font]";		
 	}	
 	
 	// Update unit text panel.
 	if ( shouldUpdateStat ("player") || shouldUpdateStat ( "traits.id.civ" ) || shouldUpdateStat ( "traits.id.generic" ) || shouldUpdateStat ( "traits.id.specific" ) )
 	{
 		textCaption = "";
-		// (Is there some way to grab the player colour RGB values? It'd be good if we could put the player name in player colour.)
-		textCaption += "[font=verdana10][color=white]" + getCurrItemValue ("pgProfileName") + "[/color][/font]\n";
+textCaption += '[font=verdana10][color="' + Math.round(selection[0].player.getColour().r*255) + ' ' + Math.round(selection[0].player.getColour().g*255) + ' ' + Math.round(selection[0].player.getColour().b*255) + '"]' + selection[0].player.name + '[/color][/font]\n';		
 		textCaption += "[font=verdana10][color=white]" + selection[0].traits.id.civ + "[/color][/font]\n";
 		textCaption += "[font=verdana10][color=white]" + selection[0].traits.id.specific + "[/color][/font]\n";
-		textCaption += "[font=optimus12][color=gold]" + selection[0].traits.id.generic + "[/color][/font]\n";
-
+		textCaption += "[font=optimus12][color=gold]" + selection[0].traits.id.generic + "[/color][/font]";
+console.write (textCaption);
 		getGUIObjectByName ("snStatusPaneText").caption = textCaption;
 	}
 	

@@ -22,7 +22,7 @@ function startMap (mapName, losSetting, openWindow)
 	// Set up game
 	g_GameAttributes.mapFile = mapName;
 	g_GameAttributes.losSetting = losSetting;
-
+	
 	// Close setup window
 	closeMainMenuSubWindow (openWindow);
 

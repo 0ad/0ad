@@ -165,38 +165,43 @@ console.write ("2nd: " + tabCounter + " " + tab + " " + type + " " + cellSheet +
 					// Set tab tooltip.
 					tooltip = cellGroup[cellSheet][tab].name;
 					tooltip += " " + cellSheet;
-				
-					// Set tab function.				
-					tabObject.onPress = function (event)
-					{
-					}			
 				break;
 				case "pick":
 					// Set tab tooltip.
 					tooltip = cellSheet;				
 					tooltip += " List\nCurrent " + cellSheet + ": " + cellGroup[cellSheet][tab].name;
-			
-					// Set tab function.
-					tabObject.onPress = function (event)
-					{
-						// Click the tab button to toggle visibility of its list.
-						guiToggle ( "snStatusPaneCommandGroup" + this.name.substring (this.name.lastIndexOf ("d")+1, this.name.lastIndexOf ("_")) );
-					}			
 				break;
 				default:
 					// Set tab tooltip.
 					tooltip = cellGroup[cellSheet][tab].name;				
 					tooltip += " " + cellSheet;
+				break;
+			}
+			tabObject.tooltip = tooltip;		
 			
-					// Set tab function.
+			switch (type)
+			{
+				case "command":
+					// An array of actions for the command "tabs" can be triggered by clicking the individual commands. We'll set them here.
+					tabObject.onPress = function (event)
+					{
+					}			
+				break;
+				default:
+					// Set tab function when user moves mouse over tab.
+					tabObject.onMouseEnter = function (event)
+					{
+						// Click the tab button to toggle visibility of its list.
+						guiToggle ( "snStatusPaneCommandGroup" + this.name.substring (this.name.lastIndexOf ("d")+1, this.name.lastIndexOf ("_")) );
+					}			
+					// Set tab function when user clicks tab.
 					tabObject.onPress = function (event)
 					{
 						// Click the tab button to toggle visibility of its list.
 						guiToggle ( "snStatusPaneCommandGroup" + this.name.substring (this.name.lastIndexOf ("d")+1, this.name.lastIndexOf ("_")) );
-					}
+					}				
 				break;
 			}
-			tabObject.tooltip = tooltip;		
 			
 			// Get group.
 			groupObject = getGUIObjectByName ("snStatusPaneCommand" + "Group" + tabCounter);		
