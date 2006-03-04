@@ -169,12 +169,14 @@ exit(1134);
 			removed2 = c2.remove_least_valuable(&value2, &size2);
 			removed3 = c3.remove_least_valuable(&value3, &size3);
 			TEST(removed1 == removed2);
-			TEST(size1 == size2);
-			TEST(value1 == value2);
 			TEST(removed2 == removed3);
-			TEST(size2 == size3);
-			TEST(value2 == value3);
-
+			if (removed1)
+			{
+				TEST(size1 == size2);
+				TEST(value1 == value2);
+				TEST(size2 == size3);
+				TEST(value2 == value3);
+			}
 		}	// else
 	}	// for i
 }

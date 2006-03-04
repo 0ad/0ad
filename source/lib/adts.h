@@ -403,7 +403,7 @@ private:
 // remove an item, all are charged according to MCD and their size;
 // entries are evicted if their credit is exhausted. accessing an entry
 // restores "some" of its credit.
-template<typename Key, class Entry, template<class Entry, class Entries> class McdCalc = McdCalc_Cached>
+template<typename Key, typename Entry, template<class Entry, class Entries> class McdCalc = McdCalc_Cached>
 class Landlord
 {
 public:
@@ -488,8 +488,8 @@ protected:
 	class Map : public STL_HASH_MAP<Key, Entry>
 	{
 	public:
-		static Entry& entry_from_it(iterator it) { return it->second; }
-		static const Entry& entry_from_it(const_iterator it) { return it->second; }
+		static Entry& entry_from_it(typename Map::iterator it) { return it->second; }
+		static const Entry& entry_from_it(typename Map::const_iterator it) { return it->second; }
 	};
 	typedef typename Map::iterator MapIt;
 	typedef typename Map::const_iterator MapCIt;
@@ -556,6 +556,10 @@ template<class Key, class Entry> class Landlord_Cached: public Landlord<Key, Ent
 template<typename Key, class Entry>
 class Landlord_Lazy : public Landlord_Naive<Key, Entry>
 {
+	typedef typename Landlord_Naive<Key, Entry>::Map Map;
+	typedef typename Landlord_Naive<Key, Entry>::MapIt MapIt;
+	typedef typename Landlord_Naive<Key, Entry>::MapCIt MapCIt;
+
 public:
 	Landlord_Lazy() { pending_delta = 0.0f; }
 
@@ -578,7 +582,7 @@ public:
 		// remove is a very rare operation (e.g. invalidating entries).
 		while(!pri_q.empty())
 			pri_q.pop();
-		for(MapCIt it = map.begin(); it != map.end(); ++it)
+		for(MapCIt it = this->map.begin(); it != this->map.end(); ++it)
 			pri_q.push(it);
 	}
 
@@ -631,7 +635,7 @@ private:
 	public:
 		void ensure_heap_order()
 		{
-			std::make_heap(c.begin(), c.end(), comp);
+			std::make_heap(this->c.begin(), this->c.end(), this->comp);
 		}
 	};
 	PriQ pri_q;
@@ -644,7 +648,7 @@ private:
 	{
 		if(pending_delta > 0.0f)
 		{
-			charge_all(pending_delta);
+			this->charge_all(pending_delta);
 			pending_delta = 0.0f;
 
 			// we've changed entry credit, so the heap order *may* have been
@@ -725,7 +729,7 @@ public:
 
 	// if there is no entry for <key> in the cache, return false.
 	// otherwise, return true and pass back item and (optionally) size.
-	// 
+	//
 	// if refill_credit (default), the cache manager 'rewards' this entry,
 	// tending to keep it in cache longer. this parameter is not used in
 	// normal operation - it's only for special cases where we need to
@@ -782,14 +786,14 @@ private:
 	// this is applicable to all cache management policies and stores all
 	// required information. a Divider functor is used to implement
 	// division for credit_density.
-	template<class Divider> struct CacheEntry
+	template<class InnerDivider> struct CacheEntry
 	{
 		Item item;
 		size_t size;
 		uint cost;
 		float credit;
 
-		Divider divider;
+		InnerDivider divider;
 
 		// needed for mgr.remove_least_valuable's entry_copy
 		CacheEntry() {}
