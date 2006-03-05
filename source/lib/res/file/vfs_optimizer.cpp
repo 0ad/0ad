@@ -233,16 +233,16 @@ struct FileNode
 {
 	const char* atom_fn;
 
-	FileId prev : 15;
+	FileId prev_id;
+	FileId next_id;
 	u32 visited : 1;
-	FileId next : 15;
 	u32 output : 1;
 
 	FileNode(const char* atom_fn_)
 	{
 		atom_fn = atom_fn_;
 
-		prev = next = NULL_ID;
+		prev_id = next_id = NULL_ID;
 		visited = output = 0;
 	}
 };
@@ -274,6 +274,12 @@ public:
 		FileId id = node - &((*nodes)[0]) +1;
 		debug_assert(id <= nodes->size());
 		return id;
+	}
+
+	FileNode* node_from_id(FileId id) const
+	{
+		debug_assert(id != NULL_ID);
+		return &(*nodes)[id-1];
 	}
 
 	FileId id_from_fn(const char* atom_fn) const
@@ -567,25 +573,22 @@ class TourBuilder
 		}
 	};
 
-	// not const because we change the graph-related members
-	FileNodes& file_nodes;
-
 	bool has_cycle;
-	void detect_cycleR(FileId node)
+	void detect_cycleR(FileId id)
 	{
-		FileNode* pnode = &file_nodes[node];
+		FileNode* pnode = id_mgr.node_from_id(id);
 		pnode->visited = 1;
-		FileId next = pnode->next;
-		if(next != NULL_ID)
+		FileId next_id = pnode->next_id;
+		if(next_id != NULL_ID)
 		{
-			FileNode* pnext = &file_nodes[next];
+			FileNode* pnext = id_mgr.node_from_id(next_id);
 			if(pnext->visited)
 				has_cycle = true;
 			else
-				detect_cycleR(next);
+				detect_cycleR(next_id);
 		}
 	}
-	bool is_cycle_at(FileId node)
+	bool is_cycle_at(FileNodes& file_nodes, FileId node)
 	{
 		has_cycle = false;
 		for(FileNodes::iterator it = file_nodes.begin(); it != file_nodes.end(); ++it)
@@ -594,36 +597,34 @@ class TourBuilder
 		return has_cycle;
 	}
 
-	void try_add_edge(const Connection& c)
+	void try_add_edge(FileNodes& file_nodes, const Connection& c)
 	{
 		FileId first_id  = cid_first(c.id);
 		FileId second_id = cid_second(c.id);
 
-		FileNode& first  = file_nodes[first_id];
-		FileNode& second = file_nodes[second_id];
+		FileNode* first  = id_mgr.node_from_id(first_id);
+		FileNode* second = id_mgr.node_from_id(second_id);
 		// one of them has already been hooked up - bail
-		if(first.next != NULL_ID || second.prev != NULL_ID)
+		if(first->next_id != NULL_ID || second->prev_id != NULL_ID)
 			return;
 
-		first.next  = second_id;
-		second.prev = first_id;
+		first->next_id  = second_id;
+		second->prev_id = first_id;
 
-		const bool introduced_cycle = is_cycle_at(second_id);
-		debug_assert(introduced_cycle == is_cycle_at(first_id));
+		const bool introduced_cycle = is_cycle_at(file_nodes, second_id);
+		debug_assert(introduced_cycle == is_cycle_at(file_nodes, first_id));
 		if(introduced_cycle)
 		{
 			// undo
-			first.next = second.prev = NULL_ID;
+			first->next_id = second->prev_id = NULL_ID;
 			return;
 		}
 	}
 
-	// pointer to this is returned by TourBuilder()!
-	std::vector<const char*>& fn_vector;
 
-	void output_chain(FileNode& node)
+	void output_chain(FileNode& node, std::vector<const char*>& fn_vector)
 	{
-        // early out: if this access was already visited, so must the entire
+		// early out: if this access was already visited, so must the entire
 		// chain of which it is a part. bail to save lots of time.
 		if(node.output)
 			return;
@@ -631,34 +632,34 @@ class TourBuilder
 		// follow prev links starting with c until no more are left;
 		// start ends up the beginning of the chain including <c>.
 		FileNode* start = &node;
-		while(start->prev != NULL_ID)
-			start = &file_nodes[start->prev];
+		while(start->prev_id != NULL_ID)
+			start = id_mgr.node_from_id(start->prev_id);
 
 		// iterate over the chain - add to Filenames list and mark as visited
 		FileNode* cur = start;
-		do
+		for(;;)
 		{
 			if(!cur->output)
 			{
 				fn_vector.push_back(cur->atom_fn);
 				cur->output = 1;
 			}
-			cur = &file_nodes[cur->next];
+			if(cur->next_id == NULL_ID)
+				break;
+			cur = id_mgr.node_from_id(cur->next_id);
 		}
-		while(cur->next != NULL_ID);
 	}
 
 public:
-	TourBuilder(FileNodes& file_nodes_, Connections& connections, std::vector<const char*>& fns_)
-		: file_nodes(file_nodes_), fn_vector(fns_)
+	TourBuilder(FileNodes& file_nodes, Connections& connections, std::vector<const char*>& fn_vector)
 	{
-		std::sort(connections.begin(), connections.end(), Occurrence_greater());
+		std::stable_sort(connections.begin(), connections.end(), Occurrence_greater());
 
 		for(Connections::iterator it = connections.begin(); it != connections.end(); ++it)
-			try_add_edge(*it);
+			try_add_edge(file_nodes, *it);
 
 		for(FileNodes::iterator it = file_nodes.begin(); it != file_nodes.end(); ++it)
-			output_chain(*it);
+			output_chain(*it, fn_vector);
 	}
 
 	// should never be copied; this also squelches warning
@@ -705,12 +706,6 @@ archive.insert(atom_fn);
 static bool should_rebuild_main_archive(const char* P_archive_path,
 	const char* trace_filename)
 {
-	std::vector<const char*> diff;
-	set_difference(loose.begin(), loose.end(), archive.begin(), archive.end(), back_inserter(diff));
-	debug_printf("loose only:\n");
-	for(std::vector<const char*>::iterator it = diff.begin(); it != diff.end(); ++it)
-		debug_printf("%s\n", *it);
-
 	// if there's no trace file, no point in building a main archive.
 	struct stat s;
 	if(file_stat(trace_filename, &s) != ERR_OK)
@@ -719,7 +714,6 @@ static bool should_rebuild_main_archive(const char* P_archive_path,
 	const time_t vfs_mtime = tree_most_recent_mtime();
 	if(s.st_mtime >= vfs_mtime)
 		trace_enable(false);
-
 
 	const ssize_t loose_files_only = loose_file_total - non_loose_file_total;
 	if(loose_files_only >= REBUILD_MAIN_ARCHIVE_THRESHOLD)
@@ -760,6 +754,7 @@ static void vfs_opt_init(const char* P_archive_fn_fmt, const char* trace_filenam
 	TourBuilder builder(file_nodes, connections, fn_vector);
 	fn_vector.push_back(0);
 	Filenames V_fns = &fn_vector[0];
+
 
 	char archive_fn[PATH_MAX];
 	static NextNumberedFilenameInfo archive_nfi;
