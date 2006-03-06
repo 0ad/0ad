@@ -18,10 +18,34 @@
 #include "ogl_tex.h"
 #include "cursor.h"
 
+/*
+	This is used to create the sys cursor to use together with the OpenGL
+	cursor. I.e. to set a transparent cursor on X-windows where we don't use
+	the X11 cursor, and on windows should the hardware cursor setup fail.
+	
+	Shouldn't be called when both hardware/software cursor fails (i.e. invalid
+	cursor file given) - in that case we'd rather use the default cursor.
+*/ 
+static void *load_empty_sys_cursor()
+{
+	void *sys_cursor = 0;
+
+	if(sys_cursor_create_empty(&sys_cursor) < 0)
+	{
+		debug_warn("sys_cursor_create_empty failed");
+		return NULL;
+	}
+	
+	return sys_cursor;
+}
 
 static void* load_sys_cursor(const char* filename, int hx, int hy)
 {
 #if !ALLOW_SYS_CURSOR
+	UNUSED2(filename);
+	UNUSED2(hx);
+	UNUSED2(hy);
+
 	return 0;
 #else
 	Tex t;
@@ -123,6 +147,8 @@ struct Cursor
 
 	// valid iff sys_cursor == 0.
 	GLCursor gl_cursor;
+	// a system cursor to use together with the gl_cursor
+	void *gl_sys_cursor;
 };
 
 H_TYPE_DEFINE(Cursor);
@@ -163,7 +189,14 @@ static LibError Cursor_reload(Cursor* c, const char* name, Handle)
 	c->sys_cursor = load_sys_cursor(filename, hotspotx, hotspoty);
 	// .. fall back to GLCursor (system cursor code is disabled or failed)
 	if(!c->sys_cursor)
-		RETURN_ERR(c->gl_cursor.create(filename, hotspotx, hotspoty));
+	{
+		LibError err=c->gl_cursor.create(filename, hotspotx, hotspoty);
+		
+		if (err == ERR_OK)
+			c->gl_sys_cursor = load_empty_sys_cursor();
+		
+		return err;			
+	}
 
 	return ERR_OK;
 }
@@ -223,7 +256,14 @@ LibError cursor_draw(const char* name, int x, int y)
 	if(c->sys_cursor)
 		WARN_ERR(sys_cursor_set(c->sys_cursor));
 	else
+	{
 		c->gl_cursor.draw(x, y);
+		// Here, gl_sys_cursor is either a pointer to a valid cursor or NULL.
+		// It is NULL if the gl_cursor init failed or if load_empty_sys_cursor
+		// failed - in the first case, we want to use the default system cursor,
+		// in the second case setting the default cursor yields no change.
+		WARN_ERR(sys_cursor_set(c->gl_sys_cursor));
+	}
 
 	(void)cursor_free(hc);
 	return ERR_OK;

@@ -8,7 +8,7 @@
 
 #include <list>
 #include <map>
-
+#include <queue>
 
 
 template<typename Key, typename T> class DHT_Traits
@@ -41,7 +41,8 @@ public:
 
 
 // intended for pointer types
-template<typename Key, typename T, typename Traits=DHT_Traits<Key,T> > class DynHashTbl
+template<typename Key, typename T, typename Traits=DHT_Traits<Key,T> >
+class DynHashTbl
 {
 	T* tbl;
 	u16 num_entries;

@@ -16,7 +16,7 @@ namespace test {
 static void test_ringbuf()
 {
 	const size_t N = 49;	// RingBuf capacity
-	const size_t S = 100;	// number of test items
+	const int S = 100;	// number of test items
 
 	// insert and remove immediately
 	{

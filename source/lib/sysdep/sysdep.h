@@ -177,6 +177,10 @@ extern LibError sys_clipboard_free(wchar_t* copy);
 extern LibError sys_cursor_create(uint w, uint h, void* bgra_img,
 	uint hx, uint hy, void** cursor);
 
+// create a fully transparent cursor (i.e. one that when passed to set hides
+// the system cursor)
+extern LibError sys_cursor_create_empty(void **cursor);
+
 // replaces the current system cursor with the one indicated. need only be
 // called once per cursor; pass 0 to restore the default.
 extern LibError sys_cursor_set(void* cursor);

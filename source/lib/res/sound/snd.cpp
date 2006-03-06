@@ -1214,6 +1214,24 @@ static FadeRet fade(FadeInfo& fi, double cur_time, float& out_val)
 	if(fi.type == FT_NONE)
 		return FADE_NO_CHANGE;
 
+	// end reached - if fi.length is 0, but the fade is "in progress", do the
+	// processing here, and skip the dangerous division
+	if(fi.type == FT_ABORT || (cur_time >= fi.start_time + fi.length))
+	{
+		// make sure exact value is hit
+		out_val = fi.final_val;
+
+		// special case: we were fading out; caller will free the sound.
+		if(fi.final_val == 0.0f)
+			return FADE_TO_0_FINISHED;
+
+		// wipe out all values amd mark as no longer actively fading
+		memset(&fi, 0, sizeof(fi));
+		fi.type = FT_NONE;
+		
+		return FADE_CHANGED;
+	}
+
 	// how far into the fade are we? [0,1]
 	const float t = (cur_time - fi.start_time) / fi.length;
 
@@ -1241,21 +1259,6 @@ static FadeRet fade(FadeInfo& fi, double cur_time, float& out_val)
 	}
 
 	out_val = fi.initial_val + factor*(fi.final_val - fi.initial_val);
-
-	// end reached
-	if(fi.type == FT_ABORT || (cur_time >= fi.start_time + fi.length))
-	{
-		// make sure exact value is hit
-		out_val = fi.final_val;
-
-		// special case: we were fading out; caller will free the sound.
-		if(fi.final_val == 0.0f)
-			return FADE_TO_0_FINISHED;
-
-		// wipe out all values amd mark as no longer actively fading
-		memset(&fi, 0, sizeof(fi));
-		fi.type = FT_NONE;
-	}
 
 	return FADE_CHANGED;
 }

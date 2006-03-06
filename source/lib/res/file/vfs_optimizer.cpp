@@ -1,10 +1,13 @@
 #include "precompiled.h"
 
+#include <set>
+#include <map>
+
 #include "lib/allocators.h"
 #include "lib/timer.h"
 #include "file_internal.h"
 
-#		include "ps/VFSUtil.h"
+#include "ps/VFSUtil.h"
 
 static uintptr_t trace_initialized;	// set via CAS
 static Pool trace_pool;
@@ -546,18 +549,21 @@ public:
 		Trace t;
 		THROW_ERR(trace_read_from_file(trace_filename, &t));
 
-		// reserve memory for worst-case amount of connections (happens if
-		// all accesses are unique). this is necessary because we store
-		// pointers to Connection in the map, which would be invalidated if
-		// connections[] ever expands.
-		// may waste up to ~3x the memory (about 1mb) for a short time,
-		// which is ok.
-		connections.reserve(t.num_ents-1);
+		if (t.num_ents)
+		{
+			// reserve memory for worst-case amount of connections (happens if
+			// all accesses are unique). this is necessary because we store
+			// pointers to Connection in the map, which would be invalidated if
+			// connections[] ever expands.
+			// may waste up to ~3x the memory (about 1mb) for a short time,
+			// which is ok.
+			connections.reserve(t.num_ents-1);
 
-		Runs runs;
-		split_trace_into_runs(&t, runs);
+			Runs runs;
+			split_trace_into_runs(&t, runs);
 
-		add_connections_from_runs(runs, connections);
+			add_connections_from_runs(runs, connections);
+		}
 	}
 };
 
@@ -706,6 +712,8 @@ archive.insert(atom_fn);
 static bool should_rebuild_main_archive(const char* P_archive_path,
 	const char* trace_filename)
 {
+	UNUSED2(P_archive_path);
+
 	// if there's no trace file, no point in building a main archive.
 	struct stat s;
 	if(file_stat(trace_filename, &s) != ERR_OK)
@@ -860,4 +868,5 @@ int vfs_opt_auto_build(const char* P_dst_path,
 	}
 
 	UNREACHABLE;
+	return ERR_OK; // To quelch gcc "control reaches end of non-void function"
 }
