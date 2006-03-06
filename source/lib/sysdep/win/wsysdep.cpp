@@ -502,8 +502,7 @@ LibError sys_cursor_create(uint w, uint h, void* bgra_img,
 
 LibError sys_cursor_create_empty(void **cursor)
 {
-	// TODO: High alpha value = opaque, low = transparent?
-	u8 bgra_img = {0, 0, 0, 0};
+	u8 bgra_img[] = {0, 0, 0, 0};
 	return sys_cursor_create(1, 1, bgra_img, 0, 0, cursor);
 }
 
