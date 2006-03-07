@@ -10,7 +10,7 @@
 # include "lib/sysdep/ia32.h"
 #endif
 #include "lib/res/res.h"
-#include "lib/res/file/vfs_optimizer.h"
+#include "lib/res/file/trace.h"
 #include "lib/res/sound/snd.h"
 #include "lib/res/graphics/tex.h"
 #include "lib/res/graphics/cursor.h"

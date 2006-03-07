@@ -220,6 +220,7 @@ void block_cache_release(BlockId id)
 
 //-----------------------------------------------------------------------------
 
+#ifndef NDEBUG
 // tracks and sanity-checks all operations made by allocator.
 // active only during debug mode due to overhead.
 class AllocatorChecker
@@ -227,18 +228,15 @@ class AllocatorChecker
 public:
 	void notify_alloc(void* p, size_t size)
 	{
-#ifndef NDEBUG
-		//debug_printf("a %p %d\n", p, size);
+//		debug_printf("a %p %d\n", p, size);
 		const Allocs::value_type item = std::make_pair(p, size);
 		std::pair<Allocs::iterator, bool> ret = allocs.insert(item);
 		TEST(ret.second == true);	// wasn't already in map
-#endif
 	}
 
 	void notify_free(void* p, size_t size)
 	{
-#ifndef NDEBUG
-		//debug_printf("f %p %d\n", p, size);
+//		debug_printf("f %p %d\n", p, size);
 		Allocs::iterator it = allocs.find(p);
 		if(it == allocs.end())
 			debug_warn("AllocatorChecker: freeing invalid pointer");
@@ -250,23 +248,19 @@ public:
 
 			allocs.erase(it);
 		}
-#endif
 	}
 
 	void notify_clear()
 	{
-#ifndef NDEBUG
 		allocs.clear();
-#endif
 	}
 
 private:
-#ifndef NDEBUG
 	typedef std::map<void*, size_t> Allocs;
 	Allocs allocs;
-#endif
 };
 static AllocatorChecker alloc_checker;
+#endif
 
 // >= AIO_SECTOR_SIZE or else waio will have to realign.
 // chosen as exactly 1 page: this allows write-protecting file buffers
@@ -358,7 +352,9 @@ public:
 		return 0;
 
 success:
+#ifndef NDEBUG
 		alloc_checker.notify_alloc(p, size);
+#endif
 		stats_notify_alloc(size_pa);
 		return p;
 	}
@@ -367,7 +363,9 @@ success:
 	// memory tracker's redirection macro and require #include "nommgr.h".
 	void dealloc(u8* p, size_t size)
 	{
+#ifndef NDEBUG
 		alloc_checker.notify_free(p, size);
+#endif
 
 		const size_t size_pa = round_up(size, BUF_ALIGN);
 		// make sure entire (aligned!) range is within pool.
@@ -403,7 +401,9 @@ success:
 	// (the first and only) init() call.
 	void reset()
 	{
+#ifndef NDEBUG
 		alloc_checker.notify_clear();
+#endif
 
 		pool_free_all(&pool);
 		bitmap = 0;
@@ -898,6 +898,10 @@ since not all buffers end up padded (only happens if reading
 uncompressed files from archive), it is more efficient to only
 store bookkeeping information for those who need it (rather than
 maintaining a complete list of allocs in cache_allocator).
+
+storing both padded and exact buf/size in a FileIOBuf struct is not really
+an option: that begs the question how users initialize it, and can't
+well be stored in Cache.
 */
 class ExactBufOracle
 {
@@ -912,7 +916,7 @@ public:
 	void add(FileIOBuf exact_buf, size_t exact_size, FileIOBuf padded_buf)
 	{
 		debug_assert((uintptr_t)exact_buf % BUF_ALIGN == 0);
-		debug_assert(exact_buf < padded_buf);
+		debug_assert(exact_buf <= padded_buf);
 
 		std::pair<Padded2Exact::iterator, bool> ret;
 		const BufAndSize item = std::make_pair(exact_buf, exact_size);
@@ -935,6 +939,13 @@ public:
 		else
 		{
 			ret = it->second;
+
+			// something must be different, else it shouldn't have been
+			// added anyway.
+			// actually, no: file_io may have had to register these values
+			// (since its user_size != size), but they may match what
+			// caller passed us.
+			//debug_assert(ret.first != padded_buf || ret.second != size);
 
 			if(remove_afterwards)
 				padded2exact.erase(it);
@@ -1097,7 +1108,7 @@ LibError file_buf_get(FileIOBuf* pbuf, size_t size,
 // by passing the new padded buffer.
 void file_buf_add_padding(FileIOBuf exact_buf, size_t exact_size, size_t padding)
 {
-	debug_assert(padding != 0 && padding < FILE_BLOCK_SIZE);
+	debug_assert(padding < FILE_BLOCK_SIZE);
 	FileIOBuf padded_buf = (FileIOBuf)((u8*)exact_buf + padding);
 	exact_buf_oracle.add(exact_buf, exact_size, padded_buf);
 }

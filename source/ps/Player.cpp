@@ -109,7 +109,7 @@ jsval CPlayer::JSI_SetColour( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 	return argv[0];
 }
 
-jsval CPlayer::JSI_GetColour( JSContext* cx, uintN argc, jsval* argv )
+jsval CPlayer::JSI_GetColour( JSContext* cx, uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	ISynchedJSProperty *prop=GetSynchedProperty(L"colour");
 	return prop->Get(cx, this);

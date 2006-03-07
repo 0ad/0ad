@@ -90,7 +90,7 @@ static void PumpEvents()
 // used to prevent reloading during that time (see call site).
 static bool ProgressiveBuildArchive()
 {
-	int ret = vfs_opt_auto_build("mods/official", "official%d.zip", "../logs/trace.txt");
+	int ret = vfs_opt_auto_build("../logs/trace.txt", "mods/official/official%02d.zip", "mods/official/mini%02d.zip");
 	if(ret == INFO_ALL_COMPLETE)
 	{
 		// nothing to do; will return false below

@@ -99,7 +99,7 @@ jsval CProductionQueue::JSI_Get( JSContext* cx, uintN argc, jsval* argv )
 
     int index = ToPrimitive<int>( argv[0] );
 
-	if(index < 0 || index >= m_items.size() )
+	if(index < 0 || index >= (int)m_items.size() )
 	{
 		JS_ReportError( cx, "Production queue index out of bounds: %d", index );
 		return JSVAL_NULL;
@@ -115,7 +115,7 @@ bool CProductionQueue::JSI_Cancel( JSContext* cx, uintN argc, jsval* argv )
 
     int index = ToPrimitive<int>( argv[0] );
 
-	if(index < 0 || index >= m_items.size() )
+	if(index < 0 || index >= (int)m_items.size() )
 	{
 		JS_ReportError( cx, "Production queue index out of bounds: %d", index );
 		return false;

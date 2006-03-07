@@ -287,6 +287,7 @@ ERR(-100341, ERR_IS_COMPRESSED, "Invalid operation for a compressed file")
 ERR(-100350, ERR_ALREADY_MOUNTED, "Directory (tree) already mounted")
 ERR(-100351, ERR_INVALID_MOUNT_TYPE, "Invalid mount type (memory corruption?)")
 ERR(-100360, ERR_NOT_IN_CACHE, "[Internal] Entry not found in cache")
+ERR(-100370, ERR_TRACE_EMPTY, "No valid entries in trace")
 
 // file format
 ERR(-100400, ERR_UNKNOWN_FORMAT, "Unknown file format")

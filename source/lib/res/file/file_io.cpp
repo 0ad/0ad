@@ -542,11 +542,12 @@ public:
 		debug_printf("FILE| err=%d, total_processed=%u\n", err, total_processed);
 
 		// we allocated the memory: skip any leading padding
-		if(pbuf != FILE_BUF_TEMP && !is_write && ofs_misalign)
+		if(pbuf != FILE_BUF_TEMP && !is_write)
 		{
 			FileIOBuf org_buf = *pbuf;
 			*pbuf = (u8*)org_buf + ofs_misalign;
-			file_buf_add_padding(org_buf, size, ofs_misalign);
+			if(ofs_misalign || size != user_size)
+				file_buf_add_padding(org_buf, size, ofs_misalign);
 		}
 
 		if(err != INFO_CB_CONTINUE && err != ERR_OK)

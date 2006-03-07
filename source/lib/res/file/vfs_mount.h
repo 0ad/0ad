@@ -126,6 +126,8 @@ extern void mount_detach_real_dir(RealDir* rd);
 extern LibError mount_populate(TDir* td, RealDir* rd);
 
 
+extern void mount_unmount_all(void);
+
 // rebuild the VFS, i.e. re-mount everything. open files are not affected.
 // necessary after loose files or directories change, so that the VFS
 // "notices" the changes and updates file locations. res calls this after

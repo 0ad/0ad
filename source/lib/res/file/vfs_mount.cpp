@@ -476,7 +476,7 @@ static LibError mount_dir_tree(TDir* td, const Mount& m)
 //
 // allocate via mnt_create, passing the location. do not free!
 // we keep track of all Locs allocated; they are freed at exit,
-// and by mnt_free_all (useful when rebuilding the VFS).
+// and by mount_unmount_all (useful when rebuilding the VFS).
 // this is much easier and safer than walking the VFS tree and
 // freeing every location we find.
 
@@ -533,7 +533,7 @@ static LibError remount(const Mount& m)
 	}
 }
 
-static inline void unmount_all(void)
+void mount_unmount_all(void)
 {
 	mounts.clear();
 }
@@ -663,7 +663,7 @@ void mount_init()
 void mount_shutdown()
 {
 	tree_clear();
-	unmount_all();
+	mount_unmount_all();
 }
 
 

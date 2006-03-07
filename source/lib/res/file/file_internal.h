@@ -12,6 +12,8 @@
 #include "vfs_path.h"
 #include "vfs_mount.h"
 #include "vfs_tree.h"
+
+#include "trace.h"
 #include "vfs_optimizer.h"
 
 const size_t AIO_SECTOR_SIZE = 512;

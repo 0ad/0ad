@@ -214,9 +214,9 @@ JSBool JSI_VFS::ReadFileLines( JSContext* cx, JSObject* UNUSED(obj), uintN argc,
 
 // vfs_optimizer
 
-JSBool JSI_VFS::ArchiveBuilderCancel(JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
+JSBool JSI_VFS::ArchiveBuilderCancel(JSContext* UNUSED(cx), JSObject* UNUSED(obj), uintN argc, jsval* UNUSED(argv), jsval* UNUSED(rval) )
 {
 	debug_assert( argc == 0 );
-	vfs_opt_cancel();
+	vfs_opt_auto_build_cancel();
 	return( JS_TRUE );
 }

@@ -3,233 +3,14 @@
 #include <set>
 #include <map>
 
-#include "lib/allocators.h"
-#include "lib/timer.h"
 #include "file_internal.h"
 
 #include "ps/VFSUtil.h"
 
-static uintptr_t trace_initialized;	// set via CAS
-static Pool trace_pool;
-
-// call at before using trace_pool. no-op if called more than once.
-static inline void trace_init()
-{
-	if(CAS(&trace_initialized, 0, 1))
-		(void)pool_create(&trace_pool, 4*MiB, sizeof(TraceEntry));
-}
-
-void trace_shutdown()
-{
-	if(CAS(&trace_initialized, 1, 2))
-		(void)pool_destroy(&trace_pool);
-}
-
-
-// enabled by default. by the time we can decide whether a trace needs to
-// be generated (see should_rebuild_main_archive), file accesses will
-// already have occurred; hence default enabled and disable if not needed.
-static bool trace_enabled = true;
-static bool trace_force_enabled = false;	// see below
-
-// note: explicitly enabling trace means the user wants one to be
-// generated even if an up-to-date version exists.
-// (mechanism: ignore any attempts to disable)
-void trace_enable(bool want_enabled)
-{
-	trace_enabled = want_enabled;
-
-	if(want_enabled)
-		trace_force_enabled = true;
-	if(trace_force_enabled)
-		trace_enabled = true;
-}
-
-
-static void trace_add(TraceOp op, const char* P_fn, size_t size, uint flags = 0, double timestamp = 0.0)
-{
-	trace_init();
-	if(!trace_enabled)
-		return;
-
-	if(timestamp == 0.0)
-		timestamp = get_time();
-
-	TraceEntry* t = (TraceEntry*)pool_alloc(&trace_pool, 0);
-	if(!t)
-		return;
-	t->timestamp = timestamp;
-	t->atom_fn   = file_make_unique_fn_copy(P_fn);
-	t->size      = size;
-	t->op        = op;
-	t->flags     = flags;
-}
-
-
-void trace_notify_load(const char* P_fn, size_t size, uint flags)
-{
-	trace_add(TO_LOAD, P_fn, size, flags);
-}
-
-void trace_notify_free(const char* P_fn, size_t size)
-{
-	trace_add(TO_FREE, P_fn, size);
-}
-
-
-void trace_get(Trace* t)
-{
-	t->ents = (const TraceEntry*)trace_pool.da.base;
-	t->num_ents = (uint)(trace_pool.da.pos / sizeof(TraceEntry));
-}
-
-void trace_clear()
-{
-	pool_free_all(&trace_pool);
-}
-
-
-LibError trace_write_to_file(const char* trace_filename)
-{
-	if(!trace_enabled)
-		return INFO_SKIPPED;
-
-	char N_fn[PATH_MAX];
-	RETURN_ERR(file_make_full_native_path(trace_filename, N_fn));
-	FILE* f = fopen(N_fn, "wt");
-	if(!f)
-		WARN_RETURN(ERR_FILE_ACCESS);
-
-	Trace t;
-	trace_get(&t);
-	const TraceEntry* ent = t.ents;
-	for(size_t i = 0; i < t.num_ents; i++, ent++)
-	{
-		char opcode = '?';
-		switch(ent->op)
-		{
-		case TO_LOAD: opcode = 'L'; break;
-		case TO_FREE: opcode = 'F'; break;
-		default: debug_warn("invalid TraceOp");
-		}
-
-		debug_assert(ent->op == TO_LOAD || ent->op == TO_FREE);
-		fprintf(f, "%#010f: %c \"%s\" %d %04x\n", ent->timestamp, opcode, ent->atom_fn, ent->size, ent->flags);
-	}
-
-	(void)fclose(f);
-	return ERR_OK;
-}
-
-
-LibError trace_read_from_file(const char* trace_filename, Trace* t)
-{
-	trace_clear();
-
-	char N_fn[PATH_MAX];
-	RETURN_ERR(file_make_full_native_path(trace_filename, N_fn));
-	FILE* f = fopen(N_fn, "rt");
-	if(!f)
-		WARN_RETURN(ERR_FILE_NOT_FOUND);
-
-	// we use trace_add, which is the same mechanism called by trace_notify*;
-	// therefore, tracing needs to be enabled.
-	trace_enabled = true;
-
-	// parse lines and stuff them in trace_pool
-	// (as if they had been trace_add-ed; replaces any existing data)
-	// .. bake PATH_MAX limit into string.
-	char fmt[30];
-	snprintf(fmt, ARRAY_SIZE(fmt), "%%lf: %%c \"%%%d[^\"]\" %%d %%04x\n", PATH_MAX);
-	for(;;)
-	{
-		double timestamp; char opcode; char P_path[PATH_MAX]; size_t size; uint flags;
-		int ret = fscanf(f, fmt, &timestamp, &opcode, P_path, &size, &flags);
-		if(ret == EOF)
-			break;
-		debug_assert(ret == 5);
-
-		TraceOp op = TO_LOAD;	// default in case file is garbled
-		switch(opcode)
-		{
-		case 'L': op = TO_LOAD; break;
-		case 'F': op = TO_FREE; break;
-		default: debug_warn("invalid TraceOp");
-		}
-
-		trace_add(op, P_path, size, flags, timestamp);
-	}
-
-	fclose(f);
-
-	trace_get(t);
-
-	// all previous trace entries were hereby lost (overwritten),
-	// so there's no sense in continuing.
-	trace_enabled = false;
-
-	return ERR_OK;
-}
-
-
-enum SimulateFlags
-{
-	SF_SYNC_TO_TIMESTAMP = 1
-};
-
-LibError trace_simulate(const char* trace_filename, uint flags)
-{
-	Trace t;
-	RETURN_ERR(trace_read_from_file(trace_filename, &t));
-
-	// prevent the actions we carry out below from generating
-	// trace_add-s.
-	trace_enabled = false;
-
-	const double start_time = get_time();
-	const double first_timestamp = t.ents[0].timestamp;
-
-	const TraceEntry* ent = t.ents;
-	for(uint i = 0; i < t.num_ents; i++, ent++)
-	{
-		// wait until time for next entry if caller requested this
-		if(flags & SF_SYNC_TO_TIMESTAMP)
-		{
-			while(get_time()-start_time < ent->timestamp-first_timestamp)
-			{
-				// busy-wait (don't sleep - can skew results)
-			}
-		}
-
-		// carry out this entry's operation
-		FileIOBuf buf; size_t size;
-		switch(ent->op)
-		{
-		case TO_LOAD:
-			(void)vfs_load(ent->atom_fn, buf, size, ent->flags);
-			break;
-		case TO_FREE:
-			buf = file_cache_find(ent->atom_fn, &size);
-			(void)file_buf_free(buf);
-			break;
-		default:
-			debug_warn("unknown TraceOp");
-		}
-	}
-
-	trace_clear();
-
-	return ERR_OK;
-}
-
-
-//-----------------------------------------------------------------------------
-
-
-
 // enough for 64K unique files - ought to suffice.
 typedef u16 FileId;
 static const FileId NULL_ID = 0;
+static const size_t MAX_IDS = 0x10000 -1;	// -1 due to NULL_ID
 
 
 struct FileNode
@@ -252,7 +33,7 @@ struct FileNode
 
 typedef std::vector<FileNode> FileNodes;
 
-
+//-----------------------------------------------------------------------------
 
 class IdMgr
 {
@@ -261,10 +42,11 @@ class IdMgr
 	Map map;
 	FileNodes* nodes;
 
-	void associate_node_with_fn(const FileNode* node, const char* atom_fn)
+	// dummy return value so this can be called via for_each/mem_fun_ref
+	void associate_node_with_fn(const FileNode& node)
 	{
-		FileId id = id_from_node(node);
-		const Map::value_type item = std::make_pair(atom_fn, id);
+		FileId id = id_from_node(&node);
+		const Map::value_type item = std::make_pair(node.atom_fn, id);
 		std::pair<Map::iterator, bool> ret = map.insert(item);
 		if(!ret.second)
 			debug_warn("atom_fn already associated with node");
@@ -302,35 +84,28 @@ public:
 		map.clear();
 		nodes = nodes_;
 
+		// can't use for_each (mem_fun requires const function and
+		// non-reference-type argument)
 		for(FileNodes::const_iterator cit = nodes->begin(); cit != nodes->end(); ++cit)
 		{
 			const FileNode& node = *cit;
-			associate_node_with_fn(&node, node.atom_fn);
+			associate_node_with_fn(node);
 		}
 	}
 };
 static IdMgr id_mgr;
 
+//-----------------------------------------------------------------------------
 
-/*
-file gatherer - build vector of the complex file objects; enum via VFS
-connection builder - encapsulate trace details; stitch those into series of connections
-tour builder: take this list, sort it, use it to generate a nice ordering of all files
-  anything not covered will be added to output list by default
-*/
-
-// build list of FileNode - exactly one per file in VFS
+// build list of FileNode - exactly one per file in VFS.
+//
+// time cost: 13ms for 5500 files; we therefore do not bother with
+// optimizations like reading from vfs_tree container directly.
 class FileNodeGatherer
 {
-	struct EntCbParams
-	{
-		FileNodes* file_nodes;
-	};
-
 	static void EntCb(const char* path, const DirEnt* ent, void* context)
 	{
-		EntCbParams* params = (EntCbParams*)context;
-		FileNodes* file_nodes = params->file_nodes;
+		FileNodes* file_nodes = (FileNodes*)context;
 
 		if(!DIRENT_IS_DIR(ent))
 		{
@@ -345,24 +120,37 @@ public:
 		// jump-start allocation (avoids frequent initial reallocs)
 		file_nodes.reserve(500);
 
-		// TODO: for each mount point (with VFS_MOUNT_ARCHIVE flag set):
-		EntCbParams params = { &file_nodes };
-		VFSUtil::EnumDirEnts("", VFSUtil::RECURSIVE, 0, EntCb, &params);
+		// TODO: only add entries from mount points that have
+		// VFS_MOUNT_ARCHIVE flag set (avoids adding screenshots etc.)
+		VFSUtil::EnumDirEnts("", VFSUtil::RECURSIVE, 0, EntCb, &file_nodes);
+
+		// MAX_IDS is a rather large limit on number of files, but must not
+		// be exceeded (otherwise FileId overflows).
+		// check for this here and not in EntCb because it's not
+		// expected to happen.
+		if(file_nodes.size() > MAX_IDS)
+		{
+			debug_warn("limit on files exceeded. see vfs_optimizer.FileId");
+			// note: use this instead of resize because FileNode doesn't have
+			// a default ctor. NB: this is how resize is implemented anyway.
+			file_nodes.erase(file_nodes.begin() + MAX_IDS, file_nodes.end());
+		}
 	}
 };
 
+//-----------------------------------------------------------------------------
 
 typedef u32 ConnectionId;
 cassert(sizeof(FileId)*2 <= sizeof(ConnectionId));
-ConnectionId cid_make(FileId first, FileId second)
+static ConnectionId cid_make(FileId first, FileId second)
 {
 	return u32_from_u16(first, second);
 }
-FileId cid_first(ConnectionId id)
+static FileId cid_first(ConnectionId id)
 {
 	return u32_hi(id);
 }
-FileId cid_second(ConnectionId id)
+static FileId cid_second(ConnectionId id)
 {
 	return u32_lo(id);
 }
@@ -381,6 +169,11 @@ struct Connection
 
 typedef std::vector<Connection> Connections;
 
+// builds a list of Connection-s (basically edges in the FileNode graph)
+// defined by the trace.
+//
+// time cost: 70ms for 1000 trace entries. this is rather heavy;
+// the main culprit is simulating file_cache to see if an IO would result.
 class ConnectionBuilder
 {
 	// put all entries in one trace file: easier to handle; obviates FS enum code
@@ -437,45 +230,13 @@ class ConnectionBuilder
 			runs.back().count = cur_run_length;
 	}
 
-	// simulate carrying out the entry's TraceOp to determine
-	// whether this IO would be satisfied by the file_buf cache.
-	bool requires_actual_io(const TraceEntry* ent) const
-	{
-		FileIOBuf buf;
-		size_t size         = ent->size;
-		const char* atom_fn = ent->atom_fn;
-		switch(ent->op)
-		{
-		case TO_LOAD:
-		{
-			bool long_lived = (ent->flags & FILE_LONG_LIVED) != 0;
-			buf = file_cache_retrieve(atom_fn, &size, long_lived);
-			// would not be in cache: add to list of real IOs
-			if(!buf)
-			{
-				buf = file_buf_alloc(size, atom_fn, long_lived);
-				(void)file_cache_add(buf, size, atom_fn);
-				return true;
-			}
-			break;
-		}
-		case TO_FREE:
-			buf = file_cache_find(atom_fn, &size);
-			(void)file_buf_free(buf);
-			break;
-		default:
-			debug_warn("unknown TraceOp");
-		}
 
-		return false;
-	}
-
-
+	// functor: on every call except the first, adds a connection between
+	// the previous file (remembered here) and the current file.
+	// if the connection already exists, its occurrence count is incremented.
 	class ConnectionAdder
 	{
-		// we need to check before inserting a new connection if it has
-		// come up before (to increment occurrences). this map speeds
-		// things up from n*n to n*log(n) (n = # files).
+		// speeds up "already exists" overhead from n*n to n*log(n).
 		typedef std::map<ConnectionId, Connection*> Map;
 		Map map;
 
@@ -486,21 +247,20 @@ class ConnectionBuilder
 
 		void operator()(Connections& connections, const char* new_fn)
 		{
-			// we connect previous node with the one identified by new_fn;
-			// on first call, there's nothing to do.
 			const bool was_first_call = (prev_id == NULL_ID);
 			FileId id = id_mgr.id_from_fn(new_fn);
 			const ConnectionId c_id = cid_make(prev_id, id);
 			prev_id = id;
+
 			if(was_first_call)
-				return;
+				return;	// bail after setting prev_id
 
 			// if this connection already exists, increment its occurence
 			// count; otherwise, add it anew.
 			//
 			// note: checking return value of map.insert is more efficient
 			// than find + insert, but requires we know next_c beforehand
-			// (bit of a hack, but safe due to coonnections.reserve() above)
+			// (bit of a hack, but safe due to connections.reserve())
 			Connection* next_c = &connections[0] + connections.size();
 			const std::pair<ConnectionId, Connection*> item = std::make_pair(c_id, next_c);
 			std::pair<Map::iterator, bool> ret = map.insert(item);
@@ -519,6 +279,9 @@ class ConnectionBuilder
 	{
 		file_cache_reset();
 
+		// (note: lifetime = entire connection build process; if re-created
+		// in between, entries in Connections will no longer be unique,
+		// which may break TourBuilder)
 		ConnectionAdder add_connection;
 
 		// extract accesses from each run (starting with most recent
@@ -526,17 +289,24 @@ class ConnectionBuilder
 		// files that are equally strongly 'connected' are ordered
 		// according to position in file_nodes. that means files from
 		// more recent traces tend to go first, which is good.)
-		for(Runs::const_iterator cit = runs.begin(); cit != runs.end(); ++cit)
+		for(Runs::const_reverse_iterator it = runs.rbegin(); it != runs.rend(); ++it)
 		{
-			const Run& run = *cit;
+			const Run& run = *it;
 			const TraceEntry* ent = run.first;
 			for(uint i = 0; i < run.count; i++, ent++)
 			{
 				// improvement: postprocess the trace and remove all IOs that would be
 				// satisfied by our cache. often repeated IOs would otherwise potentially
 				// be arranged badly.
-				if(requires_actual_io(ent))
-					add_connection(connections, ent->atom_fn);
+				if(trace_entry_causes_io(ent))
+				{
+					// only add connection if this file exists. otherwise,
+					// ConnectionAdder's id_from_fn call will fail.
+					// note: this is relevant when trace contains
+					// by now deleted files.
+					if(vfs_exists(ent->atom_fn))
+						add_connection(connections, ent->atom_fn);
+				}
 			}
 
 			file_cache_reset();
@@ -544,30 +314,38 @@ class ConnectionBuilder
 	}
 
 public:
-	ConnectionBuilder(const char* trace_filename, Connections& connections)
+	LibError run(const char* trace_filename, Connections& connections)
 	{
 		Trace t;
-		THROW_ERR(trace_read_from_file(trace_filename, &t));
+		RETURN_ERR(trace_read_from_file(trace_filename, &t));
 
-		if (t.num_ents)
-		{
-			// reserve memory for worst-case amount of connections (happens if
-			// all accesses are unique). this is necessary because we store
-			// pointers to Connection in the map, which would be invalidated if
-			// connections[] ever expands.
-			// may waste up to ~3x the memory (about 1mb) for a short time,
-			// which is ok.
-			connections.reserve(t.num_ents-1);
+		if(!t.num_ents)
+			WARN_RETURN(ERR_TRACE_EMPTY);
 
-			Runs runs;
-			split_trace_into_runs(&t, runs);
+		// reserve memory for worst-case amount of connections (happens if
+		// all accesses are unique). this is necessary because we store
+		// pointers to Connection in the map, which would be invalidated if
+		// connections[] ever expands.
+		// may waste up to ~3x the memory (about 1mb) for a short time,
+		// which is ok.
+		connections.reserve(t.num_ents-1);
 
-			add_connections_from_runs(runs, connections);
-		}
+		Runs runs;
+		split_trace_into_runs(&t, runs);
+
+		add_connections_from_runs(runs, connections);
+
+		return ERR_OK;
 	}
 };
 
+//-----------------------------------------------------------------------------
 
+// given graph and known edges, stitch together FileNodes so that
+// Hamilton tour (TSP solution) length of the graph is minimized.
+// heuristic is greedy adding edges sorted by decreasing 'occurrences'.
+//
+// time cost: 7ms for 1000 connections; quite fast despite DFS.
 class TourBuilder
 {
 	// sort by decreasing occurrence
@@ -618,7 +396,9 @@ class TourBuilder
 		second->prev_id = first_id;
 
 		const bool introduced_cycle = is_cycle_at(file_nodes, second_id);
+#ifndef NDEBUG
 		debug_assert(introduced_cycle == is_cycle_at(file_nodes, first_id));
+#endif
 		if(introduced_cycle)
 		{
 			// undo
@@ -667,11 +447,6 @@ public:
 		for(FileNodes::iterator it = file_nodes.begin(); it != file_nodes.end(); ++it)
 			output_chain(*it, fn_vector);
 	}
-
-	// should never be copied; this also squelches warning
-private:
-	TourBuilder(const TourBuilder& rhs);
-	TourBuilder& operator=(const TourBuilder& rhs);
 };
 
 
@@ -680,7 +455,7 @@ private:
 //-----------------------------------------------------------------------------
 
 static const ssize_t REBUILD_MAIN_ARCHIVE_THRESHOLD = 50;
-static const ssize_t BUILD_MINI_ARCHIVE_THRESHOLD = 20;
+static const ssize_t BUILD_MINI_ARCHIVE_THRESHOLD = 15;
 
 typedef std::vector<const char*> FnVector;
 static FnVector loose_files;
@@ -709,11 +484,44 @@ archive.insert(atom_fn);
 }
 
 
-static bool should_rebuild_main_archive(const char* P_archive_path,
-	const char* trace_filename)
+// functor called for every entry in root directory. counts # archives and
+// remembers most recent modification time (directly accessible).
+class ArchiveScanner
 {
-	UNUSED2(P_archive_path);
+	const char* archive_ext;
 
+public:
+	time_t most_recent_archive_mtime;
+	uint num_archives;
+
+	ArchiveScanner(const char* archive_fn_fmt)
+	{
+		archive_ext = strrchr(archive_fn_fmt, '.');
+		debug_assert(archive_ext);
+
+		most_recent_archive_mtime = 0;
+		num_archives = 0;
+	}
+
+	void operator()(const DirEnt& ent)
+	{
+		// only interested in files
+		if(DIRENT_IS_DIR(&ent))
+			return;
+
+		// same extension, i.e. is also archive
+		const char* ext = strrchr(ent.name, '.');
+		if(ext && !strcmp(archive_ext, ext))
+		{
+			most_recent_archive_mtime = MAX(ent.mtime, most_recent_archive_mtime);
+			num_archives++;
+		}
+	}
+};
+
+static bool should_rebuild_main_archive(const char* trace_filename,
+	const char* archive_fn_fmt, DirEnts& dirents)
+{
 	// if there's no trace file, no point in building a main archive.
 	struct stat s;
 	if(file_stat(trace_filename, &s) != ERR_OK)
@@ -727,47 +535,75 @@ static bool should_rebuild_main_archive(const char* P_archive_path,
 	if(loose_files_only >= REBUILD_MAIN_ARCHIVE_THRESHOLD)
 		return true;
 
-	// more than 3 mini archives
-
-	// development build only: archive is more than 2 weeks old
-#ifndef FINAL
-#endif
-
-	return false;
-}
-
-static bool should_build_mini_archive()
-{
-	const ssize_t loose_files_only = loose_file_total - non_loose_file_total;
-	if(loose_files_only >= BUILD_MINI_ARCHIVE_THRESHOLD)
+	// scan dir and see what archives are already present
+	{
+	ArchiveScanner archive_scanner(archive_fn_fmt);
+	for(DirEnts::iterator it = dirents.begin(); it != dirents.end(); ++it)
+		archive_scanner(*it);
+	// .. 3 or more archives in dir: rebuild so that they'll be
+	//    merged into one archive and the rest deleted
+	if(archive_scanner.num_archives >= 3)
 		return true;
+	// .. dev builds only: archive is much older than most recent data.
+#ifndef FINAL
+	const double max_diff = 14*86400;	// 14 days
+	if(difftime(tree_most_recent_mtime(), archive_scanner.most_recent_archive_mtime) > max_diff)
+		return true;
+#endif
+	}
+
 	return false;
 }
 
 
 static ArchiveBuildState ab;
 static std::vector<const char*> fn_vector;
+static DirEnts existing_archives;
 
-
-static void vfs_opt_init(const char* P_archive_fn_fmt, const char* trace_filename)
+static LibError vfs_opt_init(const char* trace_filename, const char* archive_fn_fmt, bool force_build)
 {
+	// get list of files in root dir.
+	// note: this is needed by should_rebuild_main_archive and later in
+	//   vfs_opt_continue; must be done here instead of inside the former
+	//   because it is not called when force_build == true.
+	char dir[PATH_MAX];
+	path_dir_only(archive_fn_fmt, dir);
+	DirEnts existing_archives;	// and possibly other entries
+	RETURN_ERR(file_get_sorted_dirents(dir, existing_archives));
+
+	// bail if we shouldn't rebuild the archive.
+	if(!force_build && !should_rebuild_main_archive(trace_filename, archive_fn_fmt, existing_archives))
+		return INFO_SKIPPED;
+
+	// build 'graph' (nodes only) of all files that must be added.
 	FileNodes file_nodes;
 	FileNodeGatherer gatherer(file_nodes);
+	if(file_nodes.empty())
+		WARN_RETURN(ERR_DIR_END);
 
+	// scan nodes and add them to filename->FileId mapping.
 	id_mgr.init(&file_nodes);
 
+	// build list of edges between FileNodes (referenced via FileId) that
+	// are defined by trace entries.
 	Connections connections;
-	ConnectionBuilder cbuilder(trace_filename, connections);
+	ConnectionBuilder cbuilder;
+	RETURN_ERR(cbuilder.run(trace_filename, connections));
 
+	// create output filelist by first adding the above edges (most
+	// frequent first) and then adding the rest sequentially.
 	TourBuilder builder(file_nodes, connections, fn_vector);
-	fn_vector.push_back(0);
+	fn_vector.push_back(0);	// 0-terminate for Filenames
 	Filenames V_fns = &fn_vector[0];
 
-
+	// get next not-yet-existing archive filename.
 	char archive_fn[PATH_MAX];
 	static NextNumberedFilenameInfo archive_nfi;
-	next_numbered_filename(P_archive_fn_fmt, &archive_nfi, archive_fn, false);
-	archive_build_init(archive_fn, V_fns, &ab);
+	bool use_vfs = false;	// can't use VFS for archive files
+	next_numbered_filename(archive_fn_fmt, &archive_nfi, archive_fn, use_vfs);
+
+	RETURN_ERR(archive_build_init(archive_fn, V_fns, &ab));
+	return ERR_OK;
 }
 
 
@@ -776,17 +612,51 @@ static int vfs_opt_continue()
 	int ret = archive_build_continue(&ab);
 	if(ret == ERR_OK)
 	{
-		// do NOT delete source files or archives! some apps might want to
+		// do NOT delete source files! some apps might want to
 		// keep them (e.g. for source control), or name them differently.
+
+		// delete old archives
 
 		// rebuild is required to make sure the new archive is used. this is
 		// already taken care of by VFS dir watch, unless it's disabled..
-#ifdef NO_DIR_WATCH
 		(void)mount_rebuild();
-#endif
 	}
 	return ret;
 }
+
+
+
+
+
+static bool should_build_mini_archive(const char* UNUSED(mini_archive_fn_fmt))
+{
+	const ssize_t loose_files_only = loose_file_total - non_loose_file_total;
+	if(loose_files_only >= BUILD_MINI_ARCHIVE_THRESHOLD)
+		return true;
+	return false;
+}
+
+static LibError build_mini_archive(const char* mini_archive_fn_fmt)
+{
+	if(!should_build_mini_archive(mini_archive_fn_fmt))
+		return INFO_SKIPPED;
+
+	Filenames V_fns = (Filenames)malloc((loose_files.size()+1) * sizeof(const char*));
+	if(!V_fns)
+		return ERR_NO_MEM;
+	std::copy(loose_files.begin(), loose_files.end(), &V_fns[0]);
+	V_fns[loose_files.size()] = 0;	// terminator
+
+	// get new unused mini archive name at P_dst_path
+	char mini_archive_fn[VFS_MAX_PATH];
+	static NextNumberedFilenameInfo nfi;
+	bool use_vfs = false;	// can't use VFS for archive files
+	next_numbered_filename(mini_archive_fn_fmt, &nfi, mini_archive_fn, use_vfs);
+
+	RETURN_ERR(archive_build(mini_archive_fn, V_fns));
+	return ERR_OK;
+}
+
 
 
 static enum
@@ -797,62 +667,26 @@ static enum
 }
 state = DECIDE_IF_BUILD;
 
-void vfs_opt_cancel()
+void vfs_opt_auto_build_cancel()
 {
 	archive_build_cancel(&ab);
 	state = NOP;
 }
 
-
-LibError vfs_opt_rebuild_main_archive(const char* P_archive_fn_fmt, const char* trace_filename)
-{
-	vfs_opt_init(P_archive_fn_fmt, trace_filename);
-	for(;;)
-	{
-		int ret = vfs_opt_continue();
-		RETURN_ERR(ret);
-		if(ret == ERR_OK)
-			return ERR_OK;
-	}
-}
-
-
-int vfs_opt_auto_build(const char* P_dst_path,
-	const char* main_archive_name_fmt, const char* trace_filename)
+int vfs_opt_auto_build(const char* trace_filename,
+	const char* archive_fn_fmt, const char* mini_archive_fn_fmt, bool force_build)
 {
 	if(state == NOP)
 		return INFO_ALL_COMPLETE;
 
 	if(state == DECIDE_IF_BUILD)
 	{
-		char P_archive_fn_fmt[PATH_MAX];
-		(void)vfs_path_append(P_archive_fn_fmt, P_dst_path, main_archive_name_fmt);
-		if(should_rebuild_main_archive(P_archive_fn_fmt, trace_filename))
-		{
-			vfs_opt_init(P_archive_fn_fmt, trace_filename);
+		if(vfs_opt_init(trace_filename, archive_fn_fmt, force_build) != INFO_SKIPPED)
 			state = IN_PROGRESS;
-		}
 		else
 		{
-			// note: only think about building mini archive if not rebuilding
-			// the main archive.
-			if(should_build_mini_archive())
-			{
-				Filenames V_fns = (Filenames)malloc((loose_files.size()+1) * sizeof(const char*));
-				if(!V_fns)
-					return ERR_NO_MEM;
-				std::copy(loose_files.begin(), loose_files.end(), &V_fns[0]);
-				V_fns[loose_files.size()] = 0;	// terminator
-
-				// get new unused mini archive name at P_dst_path
-				char mini_archive_fn[VFS_MAX_PATH];
-				char fn_fmt[VFS_MAX_PATH];
-				(void)vfs_path_append(fn_fmt, P_dst_path, "mini%d.zip");
-				static NextNumberedFilenameInfo nfi;
-				next_numbered_filename(fn_fmt, &nfi, mini_archive_fn, false);
-
-				RETURN_ERR(archive_build(mini_archive_fn, V_fns));
-			}
+			// create mini-archive (if needed)
+			RETURN_ERR(build_mini_archive(mini_archive_fn_fmt));
 
 			state = NOP;
 			return ERR_OK;	// "finished"
@@ -862,6 +696,7 @@ int vfs_opt_auto_build(const char* P_dst_path,
 	if(state == IN_PROGRESS)
 	{
 		int ret = vfs_opt_continue();
+		// just finished
 		if(ret == ERR_OK)
 			state = NOP;
 		return ret;
@@ -869,4 +704,15 @@ int vfs_opt_auto_build(const char* P_dst_path,
 
 	UNREACHABLE;
 	return ERR_OK; // To quelch gcc "control reaches end of non-void function"
+}
+
+LibError vfs_opt_rebuild_main_archive(const char* trace_filename, const char* archive_fn_fmt)
+{
+	for(;;)
+	{
+		int ret = vfs_opt_auto_build(trace_filename, archive_fn_fmt, 0, true);
+		RETURN_ERR(ret);
+		if(ret == ERR_OK)
+			return ERR_OK;
+	}
 }

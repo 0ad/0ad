@@ -427,7 +427,7 @@ LibError file_get_sorted_dirents(const char* P_path, DirEnts& dirents)
 	DirIterator d;
 	RETURN_ERR(dir_open(P_path, &d));
 
-	dirents.reserve(125);	// preallocate for efficiency
+	dirents.reserve(50);	// preallocate for efficiency
 
 	DirEnt ent;
 	for(;;)

@@ -370,12 +370,6 @@ static LibError lookup(TDir* td, const char* path, uint flags, TNode** pnode)
 		char* slash = (char*)strchr(cur_component, '/');
 		if(!slash)
 		{
-			// all other node assignments are checked, so this must have
-			// been the first iteration and there's no slash =>
-			// pathname is incorrect.
-			if(!node)
-				return ERR_INVALID_PARAM;
-
 			// string ended in slash => return the current dir node.
 			if(*cur_component == '\0')
 				break;
