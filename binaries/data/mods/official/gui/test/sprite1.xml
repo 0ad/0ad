@@ -677,6 +677,48 @@
 		
         <!--
 		==========================================
+		CIV EMBLEMS
+		==========================================
+		-->		
+		
+		<sprite name="snEmblemCelt">
+			<image 	texture="session/icons/emblems/celt.dds"
+					size="0 0 100% 100%"
+			/>
+		</sprite>		
+		
+		<sprite name="snEmblemHele">
+			<image 	texture="session/icons/emblems/hele.dds"
+					size="0 0 100% 100%"
+			/>
+		</sprite>		
+		
+		<sprite name="snEmblemIber">
+			<image 	texture="session/icons/emblems/iber.dds"
+					size="0 0 100% 100%"
+			/>
+		</sprite>		
+		
+		<sprite name="snEmblemKart">
+			<image 	texture="session/icons/emblems/kart.dds"
+					size="0 0 100% 100%"
+			/>
+		</sprite>		
+		
+		<sprite name="snEmblemPers">
+			<image 	texture="session/icons/emblems/pers.dds"
+					size="0 0 100% 100%"
+			/>
+		</sprite>		
+		
+		<sprite name="snEmblemRome">
+			<image 	texture="session/icons/emblems/rome.dds"
+					size="0 0 100% 100%"
+			/>
+		</sprite>		
+		
+        <!--
+		==========================================
 		STATUS PANE
 		==========================================
 		-->		
@@ -2927,11 +2969,4 @@ NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET 
                 <image size="0 0 100% 100%" backcolor="50 50 50" />
         </sprite>
         
-        <!-- TEMP GAME SETUP UI -->
-        
-        <sprite name="pgSessionSetupCivSelTmp">
-        	<image texture="global/icon/hele.dds" texture_size="0 0 100% 100%" size="0 0 100% 100%" />
-        </sprite>
-
-      
 </sprites>

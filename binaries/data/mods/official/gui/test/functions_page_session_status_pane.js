@@ -65,7 +65,6 @@ textCaption += '[font=verdana10][color="' + Math.round(selection[0].player.getCo
 		textCaption += "[font=verdana10][color=white]" + selection[0].traits.id.civ + "[/color][/font]\n";
 		textCaption += "[font=verdana10][color=white]" + selection[0].traits.id.specific + "[/color][/font]\n";
 		textCaption += "[font=optimus12][color=gold]" + selection[0].traits.id.generic + "[/color][/font]";
-console.write (textCaption);
 		getGUIObjectByName ("snStatusPaneText").caption = textCaption;
 	}
 	
@@ -84,6 +83,16 @@ console.write (textCaption);
 		else
 			rankObject.hidden = true;
 	}
+	
+	// Update civilisation emblem.
+	if ( selectionChanged )
+	{
+		emblemObject = getGUIObjectByName ("snStatusPaneEmblem");
+		if (selection[0].traits.id.civ_code != "gaia")
+			emblemObject.sprite = "snEmblem" + toTitleCase (selection[0].traits.id.civ_code);
+		else
+			emblemObject.sprite = "";
+	}	
 	
 	// Update garrison capacity.
 	if( shouldUpdateStat( "traits.garrison" ) )
@@ -135,8 +144,7 @@ console.write (textCaption);
 	}	
 
 	// Refresh command buttons.
-	if( shouldUpdateStat( "actions" ) )
-		refreshCommandButtons();
+	refreshCommandButtons();
 }
 
 // ====================================================================

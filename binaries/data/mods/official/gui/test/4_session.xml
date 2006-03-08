@@ -258,6 +258,17 @@
 					]]></action>
 				</object>				
 				
+				<object	name="snStatusPaneEmblem"
+					style="snObject"
+					type="text"
+				>
+					<action on="Load"><![CDATA[
+						currCrd = getCrd ("snStatusPanePortrait");
+						addCrds (this.name, 0, 0, currCrd.coord[rb].x+currCrd.coord[rb].width-25,
+								currCrd.coord[rb].y, 25, 25);					
+					]]></action>
+				</object>				
+				
 				<object	name="snStatusPaneHealthBar"
 					style="snGreenBar"
 					type="progressbar"
@@ -499,52 +510,39 @@
 				type="button"
 			/>
 			<object name="snStatusPaneCommandGroup8" >
-				<object style="snPortrait" type="button" name="snStatusPaneCommand8_2" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand8_3" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand8_4" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand8_5" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand8_6" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand8_7" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand8_8" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand8_9" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand8_10" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand8_11" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand8_12" />
-			</object>
-			<object name="snStatusPaneCommand9_1" 
-				style="snPortrait" 
-				type="button"
-			/>
-			<object name="snStatusPaneCommandGroup9" >
-				<object style="snPortrait" type="button" name="snStatusPaneCommand9_2" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand9_3" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand9_4" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand9_5" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand9_6" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand9_7" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand9_8" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand9_9" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand9_10" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand9_11" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand9_12" />
-			</object>
-			<object name="snStatusPaneCommand10_1" 
-				style="snPortrait" 
-				type="button"
-			/>
-			<object name="snStatusPaneCommandGroup10" >
-				<object style="snPortrait" type="button" name="snStatusPaneCommand10_2" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand10_3" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand10_4" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand10_5" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand10_6" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand10_7" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand10_8" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand10_9" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand10_10" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand10_11" />
-				<object style="snPortrait" type="button" name="snStatusPaneCommand10_12" 
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_2">
+					<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_2Bar" />
+				</object>
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_3">
+					<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_3Bar" />
+				</object>
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_4">
+					<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_4Bar" />
+				</object>
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_5">
+					<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_5Bar" />
+				</object>
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_6">
+					<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_6Bar" />
+				</object>
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_7">
+					<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_7Bar" />
+				</object>
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_8">
+					<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_8Bar" />
+				</object>
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_9">
+					<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_9Bar" />
+				</object>
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_10">
+					<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_10Bar" />
+				</object>
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_11">
+					<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_11Bar" />
+				</object>
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_12" 
 				>
+					<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_12Bar" />
 					<action on="Load"><![CDATA[
 						defineCommandButtons(this.name);
 					]]></action>

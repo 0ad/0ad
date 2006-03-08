@@ -13,16 +13,14 @@ function defineCommandButtons(command)
 	snStatusPaneCommand.button = new Object();
 
 	// Maximum number of buttons (either single or lists).
-	snStatusPaneCommand.tab.max = command.substring (command.lastIndexOf ("d")+1, command.lastIndexOf ("_")); // 10
+	snStatusPaneCommand.tab.max = command.substring (command.lastIndexOf ("d")+1, command.lastIndexOf ("_")); // 8
 	// Maximum number of entries in a list.
 	snStatusPaneCommand.list.max = command.substring (command.lastIndexOf ("_")+1, command.length); // 12
 
-	// Number of tabs that have to be single buttons (no list).
-	snStatusPaneCommand.button.max = 5;		
 	// When we reach this button, split the rows (remainder are vertical, not horizontal).
-	snStatusPaneCommand.split = 7;			
+	snStatusPaneCommand.split = 5;			
 	// Spacing between lists.
-	snStatusPaneCommand.span = 2;	
+	snStatusPaneCommand.span = 1;	
 
 	// Get the coordinates of the Status Pane background (referenced to determine command button locations).
 	currCrd = getCrd ("snStatusPaneBkg");	
@@ -32,59 +30,105 @@ function defineCommandButtons(command)
 	{
 		tempGroupObject = getGUIObjectByName("snStatusPaneCommand" +
 			"Group" + tabLoop);
-
+			
 		// Update each list under each tab.
 		for (var listLoop = 1; listLoop <= snStatusPaneCommand.list.max; listLoop++)
 		{
 			tempListObject = getGUIObjectByName("snStatusPaneCommand" +
 				tabLoop + "_" + listLoop);
-
-			// Set portrait to default.
+				
+			// Set default portrait.
 			setPortrait (tempListObject.name, "IconPortrait");
+			
+			// Width and height of buttons is always the same.
+			var buttonWidth = snConst.Portrait.Sml.Width;
+			var buttonHeight = snConst.Portrait.Sml.Height;
 
-			// Determine x and y position for current button.
+			// If we're doing the arc of commands.
 			if (tabLoop >= snStatusPaneCommand.split)
 			{
 				if (listLoop == 1)
 				{
-					var x = currCrd.coord[rb].x+currCrd.coord[rb].width-14;
-	
-					if (tabLoop == snStatusPaneCommand.split && listLoop == 1)
-						var y = currCrd.coord[rb].y; 
-					else
-						var y = Crd[Crd.last].coord[rb].y+Crd[Crd.last].coord[rb].height
-							+snStatusPaneCommand.span;
+					if (tabLoop > snStatusPaneCommand.split)
+					{
+						// Get the first tab.
+						firstTab = getCrd ("snStatusPaneCommand" + (snStatusPaneCommand.split) + "_" + listLoop);
+						// Get the previous tab.
+						lastTab = getCrd ("snStatusPaneCommand" + (tabLoop-1) + "_" + listLoop);				
+					}
+				
+					// Set position of tab (it curves, so we need to specifically set each button position).					
+					switch (tabLoop)
+					{
+						case (snStatusPaneCommand.split):
+							var buttonX = currCrd.coord[rb].x + currCrd.coord[rb].width - buttonWidth + 2;
+							var buttonY = currCrd.coord[rb].y + currCrd.coord[rb].height - buttonHeight - 3.3;
+						break;
+						case (snStatusPaneCommand.split+1):
+							var buttonX = lastTab.coord[rb].x + (lastTab.coord[rb].width/1.7);
+							var buttonY = lastTab.coord[rb].y - (lastTab.coord[rb].height/1.3);
+						break;						
+						case (snStatusPaneCommand.split+2):
+							var buttonX = firstTab.coord[rb].x - (buttonWidth / 1.5);
+							var buttonY = firstTab.coord[rb].y + (buttonHeight / 1.5);
+						break;						
+						default:
+							var buttonX = getCrd ("snStatusPaneCommand" + (snStatusPaneCommand.split+1) + "_" + listLoop).coord[rb].x;
+							var buttonY = currCrd.coord[rb].y + 3;						
+							
+							var barX = buttonX;
+							var barY = buttonY;
+						break;
+					}
+				
+					// Set default portrait.
+					setPortrait (tempListObject.name, "IconCommand");										
 				}
 				else
 				{
-					var x = Crd[Crd.last].coord[rb].x+Crd[Crd.last].coord[rb].width
+					parentTab = getCrd ("snStatusPaneCommand" + (tabLoop) + "_" + (listLoop - 1));
+					// Set position of buttons under tab (parallel row to the right of it).
+					var buttonX = parentTab.coord[rb].x+parentTab.coord[rb].width
 							+snStatusPaneCommand.span;
-					var y = Crd[Crd.last].coord[rb].y;
+					var buttonY = parentTab.coord[rb].y;
 				}
 			}
-			else
+			else	// If we're doing the row of tabs,
 			{
+				// Set position of tab.
 				if (listLoop == 1)
 				{
 					if (tabLoop == 1 && listLoop == 1)
-						var x = currCrd.coord[rb].x; 
+						var buttonX = currCrd.coord[rb].x; 
 					else
-						var x = Crd[Crd.last].coord[rb].x+Crd[Crd.last].coord[rb].width
+						var buttonX = Crd[Crd.last].coord[rb].x+Crd[Crd.last].coord[rb].width
 							+snStatusPaneCommand.span;
 
-					var y = currCrd.coord[rb].y+currCrd.coord[rb].height-7; 
+					var buttonY = currCrd.coord[rb].y+currCrd.coord[rb].height-7; 
 				}
-				else
+				else	// Set position of buttons under tab.
 				{
-					var x = Crd[Crd.last].coord[rb].x;
-					var y = Crd[Crd.last].coord[rb].y+Crd[Crd.last].coord[rb].height
+					var buttonX = Crd[Crd.last].coord[rb].x;
+					var buttonY = Crd[Crd.last].coord[rb].y+Crd[Crd.last].coord[rb].height
 						+snStatusPaneCommand.span;
 				}
 			}
 
 			// Define dimensions of list buttons.
-			addCrds ("snStatusPaneCommand" +	tabLoop + "_" + listLoop, 0, 100, x, y,
-				snConst.Portrait.Sml.Width, snConst.Portrait.Sml.Height);
+			addCrds ("snStatusPaneCommand" + tabLoop + "_" + listLoop, 0, 100, buttonX, buttonY,
+				buttonWidth, buttonHeight);
+			
+			// If we're defining the last button in the list, and it's not a tab,
+			if (tabLoop == snStatusPaneCommand.tab.max && listLoop != 1)
+			{
+				// It has health bars (for the current selection). Set them up too.
+				addCrds ("snStatusPaneCommand" + tabLoop + "_" + listLoop + "Bar", 0, 100, barX, barY, 
+					buttonWidth, 4);
+				getGUIObjectByName ("snStatusPaneCommand" +	tabLoop + "_" + listLoop + "Bar").hidden = false;
+				getGUIObjectByName ("snStatusPaneCommand" +	tabLoop + "_" + listLoop + "Bar").caption = 100;
+				
+//console.write ("Done health bar " + "snStatusPaneCommand" +	tabLoop + "_" + listLoop + "Bar:" + buttonX + " " + buttonY);							
+			}
 /*				
 			// Store indexes to the button for easy future reference.
 			Crd[getCrd ("snStatusPaneCommand" +	tabLoop + "_" + listLoop, true)].tab = tabLoop;
@@ -405,7 +449,6 @@ function refreshCommandButtons()
 	}
 	else
 	{
-		console.write ("No buttons");
 		// Ensure tabs should be cleanable.
 		listCounter		= 1;
 		commandCounter 	= snStatusPaneCommand.split-1;
