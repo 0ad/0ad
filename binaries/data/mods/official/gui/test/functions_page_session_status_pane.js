@@ -7,6 +7,16 @@
 
 function refreshStatusPane()
 {
+	// Update civilisation emblem.
+	if ( selectionChanged )
+	{
+		emblemObject = getGUIObjectByName ("snStatusPaneEmblem");
+		if (selection[0].traits.id.civ_code != "gaia")
+			emblemObject.sprite = "snStatusPaneEmblem" + toTitleCase (selection[0].traits.id.civ_code);
+		else
+			emblemObject.sprite = "";
+	}
+
 	if ( shouldUpdateStat ( "traits.id.icon" ) )
 	{
 		// Update portrait
@@ -83,16 +93,6 @@ textCaption += '[font=verdana10][color="' + Math.round(selection[0].player.getCo
 		else
 			rankObject.hidden = true;
 	}
-	
-	// Update civilisation emblem.
-	if ( selectionChanged )
-	{
-		emblemObject = getGUIObjectByName ("snStatusPaneEmblem");
-		if (selection[0].traits.id.civ_code != "gaia")
-			emblemObject.sprite = "snEmblem" + toTitleCase (selection[0].traits.id.civ_code);
-		else
-			emblemObject.sprite = "";
-	}	
 	
 	// Update garrison capacity.
 	if( shouldUpdateStat( "traits.garrison" ) )

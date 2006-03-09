@@ -30,7 +30,7 @@ function defineCommandButtons(command)
 	{
 		tempGroupObject = getGUIObjectByName("snStatusPaneCommand" +
 			"Group" + tabLoop);
-			
+		
 		// Update each list under each tab.
 		for (var listLoop = 1; listLoop <= snStatusPaneCommand.list.max; listLoop++)
 		{

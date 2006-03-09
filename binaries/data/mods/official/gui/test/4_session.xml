@@ -226,6 +226,18 @@
 					addCrd (this.name, lt, 100, 0);
 					addCrd (this.name, rt, 0, 0);
 				]]></action>
+				
+				<object	name="snStatusPaneEmblem"
+					style="snStatusPane"
+					type="image"
+					z="10"
+				>
+					<action on="Load"><![CDATA[				
+						currCrd = getCrd ("snStatusPaneBkg");
+						addCrds (this.name, 0, 0, currCrd.coord[rb].x, currCrd.coord[rb].y, 
+							currCrd.coord[rb].width, currCrd.coord[rb].height);
+					]]></action>								
+				</object>
 
 				<object	name="snStatusPanePortrait"
 					style="snPortrait"
@@ -254,17 +266,6 @@
 					<action on="Load"><![CDATA[
 						currCrd = getCrd ("snStatusPanePortrait");
 						addCrds (this.name, 0, 0, currCrd.coord[rb].x,
-								currCrd.coord[rb].y, 25, 25);					
-					]]></action>
-				</object>				
-				
-				<object	name="snStatusPaneEmblem"
-					style="snObject"
-					type="text"
-				>
-					<action on="Load"><![CDATA[
-						currCrd = getCrd ("snStatusPanePortrait");
-						addCrds (this.name, 0, 0, currCrd.coord[rb].x+currCrd.coord[rb].width-25,
 								currCrd.coord[rb].y, 25, 25);					
 					]]></action>
 				</object>				
@@ -388,6 +389,7 @@
 			<object	name="snStatusPaneCommand1_1"
 				style="snPortrait"
 				type="button"
+				z="100"
 			>
 			</object>
 			<object	name="snStatusPaneCommandGroup1" >
@@ -406,6 +408,7 @@
 			<object	name="snStatusPaneCommand2_1" 
 				style="snPortrait" 
 				type="button"
+				z="100"				
 			/>
 			<object name="snStatusPaneCommandGroup2" >
 				<object style="snPortrait" type="button" name="snStatusPaneCommand2_2" />
@@ -423,6 +426,7 @@
 			<object name="snStatusPaneCommand3_1" 
 				style="snPortrait" 
 				type="button"
+				z="100"				
 			/>
 			<object name="snStatusPaneCommandGroup3" >
 				<object style="snPortrait" type="button" name="snStatusPaneCommand3_2" />
@@ -440,6 +444,7 @@
 			<object name="snStatusPaneCommand4_1" 
 				style="snPortrait" 
 				type="button"
+				z="100"				
 			/>
 			<object name="snStatusPaneCommandGroup4" >
 				<object style="snPortrait" type="button" name="snStatusPaneCommand4_2" />
@@ -457,6 +462,7 @@
 			<object name="snStatusPaneCommand5_1" 
 				style="snPortrait" 	
 				type="button"
+				z="100"				
 			/>
 			<object name="snStatusPaneCommandGroup5" >
 				<object style="snPortrait" type="button" name="snStatusPaneCommand5_2" />
@@ -474,6 +480,7 @@
 			<object name="snStatusPaneCommand6_1" 
 				style="snPortrait" 
 				type="button"
+				z="100"				
 			/>
 			<object name="snStatusPaneCommandGroup6" >
 				<object style="snPortrait" type="button" name="snStatusPaneCommand6_2" />
@@ -491,6 +498,7 @@
 			<object name="snStatusPaneCommand7_1" 
 				style="snPortrait" 	
 				type="button"
+				z="100"				
 			/>
 			<object name="snStatusPaneCommandGroup7" >
 				<object style="snPortrait" type="button" name="snStatusPaneCommand7_2" />
@@ -508,6 +516,7 @@
 			<object name="snStatusPaneCommand8_1" 
 				style="snPortrait" 
 				type="button"
+				z="100"				
 			/>
 			<object name="snStatusPaneCommandGroup8" >
 				<object style="snPortrait" type="button" name="snStatusPaneCommand8_2">
