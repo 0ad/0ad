@@ -118,6 +118,8 @@ struct DirIterator
 	char opaque[PATH_MAX+32];
 };
 
+class TFile;
+
 // information about a directory entry filled by dir_next_ent.
 struct DirEnt
 {
@@ -134,6 +136,8 @@ struct DirEnt
 	// rationale: we don't want to return a pointer to a copy because
 	// users would have to free it (won't happen).
 	const char* name;
+
+	const TFile* tf;
 };
 
 // return [bool] indicating whether the given DirEnt* (filled by

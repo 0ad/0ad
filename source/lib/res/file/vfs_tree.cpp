@@ -584,12 +584,14 @@ LibError tree_dir_next_ent(TreeDirIterator* d_, DirEnt* ent)
 	case NT_DIR:
 		ent->size = -1;
 		ent->mtime = 0;	// not currently supported for dirs
+		ent->tf    = 0;
 		break;
 	case NT_FILE:
 	{
 		TFile* tf = (TFile*)node;
 		ent->size  = tf->size;
 		ent->mtime = tf->mtime;
+		ent->tf    = tf;
 		break;
 	}
 	default:

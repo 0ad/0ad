@@ -551,7 +551,7 @@ static void InitVfs(const char* argv0)
 	(void)file_set_root_dir(argv0, "../data");
 
 	vfs_init();
-	vfs_mount("", "mods/official", VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES|VFS_MOUNT_WATCH);
+	vfs_mount("", "mods/official", VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES|VFS_MOUNT_WATCH|VFS_MOUNT_ARCHIVABLE);
 	vfs_mount("screenshots/", "screenshots");
 	vfs_mount("profiles/", "profiles", VFS_MOUNT_RECURSIVE);
 

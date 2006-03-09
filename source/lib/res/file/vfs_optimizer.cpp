@@ -35,6 +35,16 @@ typedef std::vector<FileNode> FileNodes;
 
 //-----------------------------------------------------------------------------
 
+// check if the file is supposed to be added to archive.
+// this avoids adding e.g. screenshots (wasteful because they're never used)
+// or config (bad because they are written to and that's not supported for
+// archived files).
+static bool is_archivable(const TFile* tf)
+{
+	const Mount* m = tfile_get_mount(tf);
+	return mount_is_archivable(m);
+}
+
 class IdMgr
 {
 	FileId cur;
@@ -101,13 +111,17 @@ static IdMgr id_mgr;
 //
 // time cost: 13ms for 5500 files; we therefore do not bother with
 // optimizations like reading from vfs_tree container directly.
-class FileNodeGatherer
+class FileGatherer
 {
 	static void EntCb(const char* path, const DirEnt* ent, void* context)
 	{
 		FileNodes* file_nodes = (FileNodes*)context;
 
-		if(!DIRENT_IS_DIR(ent))
+		// we only want files
+		if(DIRENT_IS_DIR(ent))
+			return;
+
+		if(is_archivable(ent->tf))
 		{
 			const char* atom_fn = file_make_unique_fn_copy(path);
 			file_nodes->push_back(FileNode(atom_fn));
@@ -115,7 +129,7 @@ class FileNodeGatherer
 	}
 
 public:
-	FileNodeGatherer(FileNodes& file_nodes)
+	FileGatherer(FileNodes& file_nodes)
 	{
 		// jump-start allocation (avoids frequent initial reallocs)
 		file_nodes.reserve(500);
@@ -292,20 +306,23 @@ class ConnectionBuilder
 		for(Runs::const_reverse_iterator it = runs.rbegin(); it != runs.rend(); ++it)
 		{
 			const Run& run = *it;
-			const TraceEntry* ent = run.first;
-			for(uint i = 0; i < run.count; i++, ent++)
+			for(uint i = 0; i < run.count; i++)
 			{
+				const TraceEntry* te = run.first + i;
 				// improvement: postprocess the trace and remove all IOs that would be
 				// satisfied by our cache. often repeated IOs would otherwise potentially
 				// be arranged badly.
-				if(trace_entry_causes_io(ent))
+				if(trace_entry_causes_io(te))
 				{
-					// only add connection if this file exists. otherwise,
-					// ConnectionAdder's id_from_fn call will fail.
-					// note: this is relevant when trace contains
-					// by now deleted files.
-					if(vfs_exists(ent->atom_fn))
-						add_connection(connections, ent->atom_fn);
+					// only add connection if this file exists and is in
+					// file_nodes list. otherwise, ConnectionAdder's
+					// id_from_fn call will fail.
+					// note: this happens when trace contains by now
+					// deleted or unarchivable files.
+					TFile* tf;
+					if(tree_lookup(te->atom_fn, &tf) == ERR_OK)
+						if(is_archivable(tf))
+							add_connection(connections, te->atom_fn);
 				}
 			}
 
@@ -577,7 +594,7 @@ static LibError vfs_opt_init(const char* trace_filename, const char* archive_fn_
 
 	// build 'graph' (nodes only) of all files that must be added.
 	FileNodes file_nodes;
-	FileNodeGatherer gatherer(file_nodes);
+	FileGatherer gatherer(file_nodes);
 	if(file_nodes.empty())
 		WARN_RETURN(ERR_DIR_END);
 

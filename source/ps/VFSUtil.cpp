@@ -74,8 +74,8 @@ LibError VFSUtil::EnumDirEnts(const CStr start_path, int flags, const char* user
 	// (less stack usage; avoids seeks by reading all entries in a
 	// directory consecutively)
 
-	std::deque<CStr> dir_queue;
-	dir_queue.push_back(start_path);
+	std::queue<const char*> dir_queue;
+	dir_queue.push(file_make_unique_fn_copy(start_path.c_str()));
 
 	// for each directory:
 	do
@@ -83,13 +83,11 @@ LibError VFSUtil::EnumDirEnts(const CStr start_path, int flags, const char* user
 		// get current directory path from queue
 		// note: can't refer to the queue contents - those are invalidated
 		// as soon as a directory is pushed onto it.
-		char path[VFS_MAX_PATH];
-		vfs_path_append(path, dir_queue.front().c_str(), "");
-			// vfs_open_dir checks this, so ignore failure
-		const size_t path_len = strlen(path);
-		dir_queue.pop_front();
+		PathPackage pp;
+		(void)pp_set_dir(&pp, dir_queue.front());
+		dir_queue.pop();
 
-		Handle hdir = vfs_dir_open(path);
+		Handle hdir = vfs_dir_open(pp.path);
 		if(hdir <= 0)
 		{
 			debug_warn("vfs_open_dir failed");
@@ -101,18 +99,19 @@ LibError VFSUtil::EnumDirEnts(const CStr start_path, int flags, const char* user
 		while(vfs_dir_next_ent(hdir, &ent, filter) == 0)
 		{
 			// build complete path (DirEnt only stores entry name)
-			strcpy_s(path+path_len, VFS_MAX_PATH-path_len, ent.name);
+			(void)pp_append_file(&pp, ent.name);
+			const char* atom_path = file_make_unique_fn_copy(pp.path);
 
 			if(DIRENT_IS_DIR(&ent))
 			{
 				if(recursive)
-					dir_queue.push_back(path);
+					dir_queue.push(atom_path);
 
 				if(want_dir)
-					cb(path, &ent, context);
+					cb(atom_path, &ent, context);
 			}
 			else
-				cb(path, &ent, context);
+				cb(atom_path, &ent, context);
 		}
 
 		vfs_dir_close(hdir);

@@ -94,6 +94,12 @@ char mount_get_type(const Mount* m)
 }
 
 
+bool mount_is_archivable(const Mount* m)
+{
+	return (m->flags & VFS_MOUNT_ARCHIVES) != 0;
+}
+
+
 bool mount_should_replace(const Mount* m_old, const Mount* m_new,
 	size_t size_old, size_t size_new, time_t mtime_old, time_t mtime_new)
 {

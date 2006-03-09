@@ -262,7 +262,11 @@ enum VfsMountFlags
 	// all real directories mounted during this operation will be watched
 	// for changes. this flag is provided to avoid watches in output-only
 	// directories, e.g. screenshots/ (only causes unnecessary overhead).
-	VFS_MOUNT_WATCH = 4
+	VFS_MOUNT_WATCH = 4,
+
+	// anything mounted from here should be added to archive when
+	// building via vfs_optimizer.
+	VFS_MOUNT_ARCHIVABLE = 8
 };
 
 // mount <P_real_dir> into the VFS at <V_mount_point>,

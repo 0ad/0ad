@@ -63,15 +63,29 @@
 // '/'. this is to allow use on portable paths; the function otherwise
 // does not care if paths are relative/portable/absolute.
 LibError pp_set_dir(PathPackage* pp, const char* dir)
-{
+ {
 	// -1 allows for trailing DIR_SEP that will be added if not
 	// already present.
 	if(strcpy_s(pp->path, ARRAY_SIZE(pp->path)-1, dir) != 0)
 		WARN_RETURN(ERR_PATH_LENGTH);
 	size_t len = strlen(pp->path);
-	// didn't end with directory separator: add one
-	if(pp->path[len-1] != '/' && pp->path[len-1] != DIR_SEP)
-		pp->path[len++] = '/';
+	// add directory separator if not already present
+	// .. but only check this if dir != "" (=> len-1 is safe)
+	if(len != 0)
+	{
+		char* last_char = pp->path+len-1;
+		// note: must handle both portable and native separators -
+		// <dir> may be either.
+		if(*last_char != '/' && *last_char != DIR_SEP)
+		{
+			*(last_char+1) = '/';
+			// note: need to 0-terminate because pp.path is uninitialized
+			// and we overwrite strcpy_s's terminator above.
+			*(last_char+2) = '\0';
+			// only bump by 1 - filename must overwrite '\0'.
+			len++;
+		}
+	}
 
 	pp->end = pp->path+len;
 	pp->chars_left = ARRAY_SIZE(pp->path)-len;

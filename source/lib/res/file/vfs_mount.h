@@ -97,7 +97,9 @@ extern LibError x_unmap(XFile* xf);
 // accessor routines that obviate the need to access Mount fields directly:
 //
 
-bool mount_should_replace(const Mount* m_old, const Mount* m_new,
+extern bool mount_is_archivable(const Mount* m);
+
+extern bool mount_should_replace(const Mount* m_old, const Mount* m_new,
 	size_t size_old, size_t size_new, time_t mtime_old, time_t mtime_new);
 
 extern char mount_get_type(const Mount* m);
