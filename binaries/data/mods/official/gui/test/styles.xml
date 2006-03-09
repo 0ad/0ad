@@ -485,9 +485,19 @@
 			tooltip="(TBA)"
 		/>
 		
+		<style	name="snIcon"
+				ghost="true"
+		/>
+		
+		<style	name="snResourceIcon"
+				ghost="true"
+				sprite="snIconSheetResource"
+				z="100"									
+		/>		
+		
 		<style	name="snCounter"
 				sprite="snCounter"
-				text_align="left"
+				text_align="right"
 				text_valign="center"
 				font="tahoma14"
 				textcolor="white"

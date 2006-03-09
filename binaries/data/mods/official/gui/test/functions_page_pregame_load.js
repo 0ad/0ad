@@ -41,18 +41,20 @@ function startMap (mapName, losSetting, openWindow)
 			btCode = new Array("");
 			messageBox(400, 200, "The game could not be started with the given parameters. You probably have entered an invalid map name.", "Error", 0, btCaptions, btCode);
 	}
-		
+
 	// Set starting UI layout.
 	GUIType=rb;
-	flipGUI (GUIType);
 	
 	// Initialise Resource Pools by attaching them to the Player object.
 	// (CPlayer code takes care of giving a copy to each player.)
 	createResources();
-	
+
 	// Set session UI sprites to match the skin for the player's civilisation.
 	// (We don't have skins for all civs yet, so we're using the standard menu skin. But it should be settable from here later.)
 	setSkin ("wheat");	
+	
+	// Set GUI coordinates to starting orientation.
+	flipGUI (GUIType);		
 }
 
 // ====================================================================

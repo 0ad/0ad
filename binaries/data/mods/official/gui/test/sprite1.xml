@@ -666,13 +666,17 @@
 		
 		<sprite	name="snCounter">
 			<image	texture="session/counter_tile.dds"
-					real_texture_placement="0 0 21 21"
-					size="0% 0% 100%-15 100%" 
+					real_texture_placement="0 0 32 32"
+					size="0%+32 0% 100%-32 0%+32" 
 			/>
 			<image 	texture="session/counter_edge.dds"
-					real_texture_placement="0 0 15 21"
-					size="100%-15 0% 100% 100%" 
+					real_texture_placement="0 0 32 32"
+					size="100%-32 0% 100% 0%+32" 
 			/>
+			<image 	texture="session/counter_icon.dds"
+					real_texture_placement="0 0 32 32"
+					size="0% 0% 0%+32 0%+32" 
+			/>			
 		</sprite>
 		
         <!--

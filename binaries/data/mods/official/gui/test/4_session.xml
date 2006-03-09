@@ -169,23 +169,19 @@
 			<object name="snResourceCounter_1" 
 				style="snCounter"
 				type="button" 
-			>
-			</object>
+			/>
 			<object name="snResourceCounter_2" 
 				style="snCounter"
 				type="button" 
-			>
-			</object>
+			/>
 			<object name="snResourceCounter_3" 
 				style="snCounter"
 				type="button" 
-			>
-			</object>
+			/>
 			<object name="snResourceCounter_4" 
 				style="snCounter"
 				type="button" 
-			>
-			</object>
+			/>
 			<object name="snResourceCounter_5" 
 				style="snCounter"
 				type="button" 
@@ -201,10 +197,47 @@
 						// resource is updated, so at this point we don't sweat that they have the same
 						// coordinates).
 						addCrds (tempName, 50, 0, -200, 4,
-							snConst.MiniIcon.Width+54, snConst.MiniIcon.Height-10+5);
+							snConst.MiniIcon.Width+54, 32); 
 					}
 				]]></action>
 			</object>
+			
+			<object name="snResourceCounterIcon_1" 
+					style="snResourceIcon"
+					type="button" 
+			/>
+			<object name="snResourceCounterIcon_2" 
+					style="snResourceIcon"
+					type="button" 
+			/>
+			<object name="snResourceCounterIcon_3" 
+					style="snResourceIcon"
+					type="button" 
+			/>
+			<object name="snResourceCounterIcon_4" 
+					style="snResourceIcon"
+					type="button" 
+			/>			
+			<object name="snResourceCounterIcon_5" 
+					style="snResourceIcon"
+					type="button" 
+			>
+				<action on="Load"><![CDATA[
+					// Seek through this group of buttons (determining length from last object's name).
+					max = this.name.substring (this.name.lastIndexOf ("_")+1, this.name.length);
+					for (loop = 1; loop <= max; loop++)
+					{
+						// Get name of current object in group.
+						tempName = this.name.substring (0, this.name.lastIndexOf ("_")+1) + loop;
+						// Create coordinates for object (the actual coordinates are refreshed when the
+						// resource is updated, so at this point we don't sweat that they have the same
+						// coordinates).
+						addCrds (tempName, 50, 0, -200, 4,
+							32, 32); 
+					}
+				]]></action>				
+			</object>			
+
 		</object>
 
 		<!-- GROUP: STATUS PANE -->

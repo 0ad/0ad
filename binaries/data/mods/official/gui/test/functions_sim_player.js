@@ -192,21 +192,26 @@ function refreshResource (resourceName, resourceIndex)
 		
 	// Get resource readout object.
 	resourceObject = getGUIObjectByName ("snResourceCounter_" + (resourceIndex + 1));
+	// Get resource icon object.
+	resourceIconObject = getGUIObjectByName ("snResourceCounterIcon_" + (resourceIndex + 1));
+	
 	// Update counter caption (since we need to have up-to-date text to determine the length of the counter).
-	caption 
-		= "[icon=iconResource" + resourceName + " displace=\"0 0\"] "
-		+ localPlayer.resource.valueOf()[resourceName];
+	caption = localPlayer.resource.valueOf()[resourceName];
 	// The Population counter also lists the amount of available housing.		
 	if (resourceName == "Population")
-		caption
-			+= "/" + localPlayer.resource.valueOf()["Housing"];	
+		caption	+= "/" + localPlayer.resource.valueOf()["Housing"];	
 	resourceObject.caption = caption;
 	
-	// Update caption tooltip.
+	// Update counter tooltip.
 	resourceObject.tooltip = resourceName + ": " + resourceObject.caption;
+	
+	// Set resource icon.
+	resourceIconObject.cell_id = cellGroup["Resource"][resourceName.toLowerCase()].id;
 			
 	// Get the index of the resource readout to be resized.
 	crdResult = getCrd (resourceObject.name, true);
+	// Get the index of the resource icon.
+	crdIconResult = getCrd (resourceIconObject.name, true);	
 	
 	// For each coordinate group stored for this control,
 	for (coordGroup in Crd[crdResult].coord)
@@ -252,14 +257,32 @@ function refreshResource (resourceName, resourceIndex)
 				= Crd[crdResult-1].coord[coordGroup].height;
 		}
 		
+		// Transfer to icon coordinates.
+		Crd[crdIconResult].coord[coordGroup].width = 32;
+		Crd[crdIconResult].coord[coordGroup].height = 32;
+		Crd[crdIconResult].coord[coordGroup].x = Crd[crdResult].coord[coordGroup].x;
+		Crd[crdIconResult].coord[coordGroup].y = Crd[crdResult].coord[coordGroup].y;
+		
+		
 		// Recalculate readout's size coordinates.
 		Crd[crdResult].size[coordGroup] = calcCrdArray (Crd[crdResult].coord[coordGroup].rx, Crd[crdResult].coord[coordGroup].ry, Crd[crdResult].coord[coordGroup].x, Crd[crdResult].coord[coordGroup].y, Crd[crdResult].coord[coordGroup].width, Crd[crdResult].coord[coordGroup].height, Crd[crdResult].coord[coordGroup].rx2, Crd[crdResult].coord[coordGroup].ry2);
+		
+		// Recalculate icon's size coordinates.
+		Crd[crdIconResult].size[coordGroup] = calcCrdArray (Crd[crdIconResult].coord[coordGroup].rx, Crd[crdIconResult].coord[coordGroup].ry, Crd[crdIconResult].coord[coordGroup].x, Crd[crdIconResult].coord[coordGroup].y, Crd[crdIconResult].coord[coordGroup].width, Crd[crdIconResult].coord[coordGroup].height, Crd[crdIconResult].coord[coordGroup].rx2, Crd[crdIconResult].coord[coordGroup].ry2);
 		
 		// If this coordinate is part of the currently active set, update the control onscreen too.
 		if (coordGroup == GUIType)
 		{
 			// Update counter size.
-			resourceObject.size = Crd[getCrd(resourceObject.name, true)].size[GUIType];
+//			resourceObject.size = Crd[getCrd(resourceObject.name, true)].size[GUIType];
+//			resourceIconObject.size = Crd[getCrd(resourceIconObject.name, true)].size[GUIType];
+
+			resourceObject.size = Crd[crdResult].size[GUIType];
+			resourceIconObject.size = Crd[crdIconResult].size[GUIType];
+			
+			console.write (resourceName + " Counter: " + resourceObject.size);
+			console.write (resourceName + " Icon: " + resourceIconObject.size);
+			
 		}
 	}
 }
