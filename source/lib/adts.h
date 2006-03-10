@@ -697,9 +697,9 @@ class Divider_Recip
 public:
 	Divider_Recip() {}	// needed for default CacheEntry ctor
 	Divider_Recip(float x) { recip = 1.0f / x; }
-	float operator()(float val, float divisor) const
+	float operator()(float val, float UNUSED(divisor)) const
 	{
-		return val / divisor;
+		return val * recip;
 	}
 };
 

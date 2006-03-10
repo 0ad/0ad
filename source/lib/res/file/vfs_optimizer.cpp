@@ -363,6 +363,10 @@ public:
 // heuristic is greedy adding edges sorted by decreasing 'occurrences'.
 //
 // time cost: 7ms for 1000 connections; quite fast despite DFS.
+//
+// could be improved (if there are lots of files) by storing in each node
+// a pointer to end of list; if adding a new edge, check if end.endoflist
+// is the start of edge.
 class TourBuilder
 {
 	// sort by decreasing occurrence
