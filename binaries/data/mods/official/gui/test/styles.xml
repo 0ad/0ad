@@ -493,7 +493,16 @@
 				ghost="true"
 				sprite="snIconSheetResource"
 				z="100"									
-		/>		
+		/>	
+
+		<style	name="snStat"
+				text_align="left"
+				text_valign="center"
+				font="tahoma14"
+				textcolor="white"
+				tooltip_style="snToolTip"
+				ghost="true"
+		/>
 		
 		<style	name="snCounter"
 				sprite="snCounter"

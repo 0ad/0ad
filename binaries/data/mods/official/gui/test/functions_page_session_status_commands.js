@@ -75,9 +75,6 @@ function defineCommandButtons(command)
 						default:
 							var buttonX = getCrd ("snStatusPaneCommand" + (snStatusPaneCommand.split+1) + "_" + listLoop).coord[rb].x;
 							var buttonY = currCrd.coord[rb].y + 3;						
-							
-							var barX = buttonX;
-							var barY = buttonY;
 						break;
 					}
 				
@@ -92,6 +89,8 @@ function defineCommandButtons(command)
 							+snStatusPaneCommand.span;
 					var buttonY = parentTab.coord[rb].y;
 				}
+				var barX = buttonX;
+				var barY = 0;				
 			}
 			else	// If we're doing the row of tabs,
 			{
@@ -126,8 +125,6 @@ function defineCommandButtons(command)
 					buttonWidth, 4);
 				getGUIObjectByName ("snStatusPaneCommand" +	tabLoop + "_" + listLoop + "Bar").hidden = false;
 				getGUIObjectByName ("snStatusPaneCommand" +	tabLoop + "_" + listLoop + "Bar").caption = 100;
-				
-//console.write ("Done health bar " + "snStatusPaneCommand" +	tabLoop + "_" + listLoop + "Bar:" + buttonX + " " + buttonY);							
 			}
 /*				
 			// Store indexes to the button for easy future reference.
@@ -419,13 +416,18 @@ function refreshCommandButtons()
 		}	
 	
 		// Update Barter. (Tab button, persistent buttons, click them to do things.)
-//		updateTab ("barter", "production", "", selection[0].actions.barter.list);
+		if (selection[0].actions && selection[0].actions.barter && selection[0].actions.barter.list)
+			updateTab ("barter", "production", "", selection[0].actions.barter.list);
 		
 		// Update pick lists (formation, stance, trade). (Tab button holds current selection, click a button to select a new option and close the tab.)
-//		updateTab ("formation", "pick", "", selection[0].traits.formation.type, selection[0].traits.formation.curr);
-//		updateTab ("stance", "pick", "", selection[0].traits.ai.stance.list, selection[0].traits.ai.stance.curr);
-//		updateTab ("trade", "pick", "", selection[0].actions.trade.list, selection[0].actions.trade.curr);
-//		updateTab ("gate", "pick", "", selection[0].actions.gate.list, selection[0].actions.gate.curr);
+		if (selection[0].traits && selection[0].traits.formation && selection[0].traits.formation.type && selection[0].traits.formation.curr)		
+			updateTab ("formation", "pick", "", selection[0].traits.formation.type, selection[0].traits.formation.curr);
+		if (selection[0].traits && selection[0].traits.ai && selection[0].traits.ai.stance && selection[0].traits.ai.stance.list && selection[0].traits.ai.stance.curr)
+			updateTab ("stance", "pick", "", selection[0].traits.ai.stance.list, selection[0].traits.ai.stance.curr);
+		if (selection[0].actions && selection[0].actions.trade && selection[0].actions.trade.list && selection[0].actions.trade.curr)
+			updateTab ("trade", "pick", "", selection[0].actions.trade.list, selection[0].actions.trade.curr);
+		if (selection[0].actions && selection[0].actions.gate && selection[0].actions.gate.list && selection[0].actions.gate.list.curr)
+			updateTab ("gate", "pick", "", selection[0].actions.gate.list, selection[0].actions.gate.curr);
 		
 		// Update research. (Tab button, persistent buttons, click them to do things.)
 		updateTab ("research", "production", "", selection[0].actions.create.list.research, "");
@@ -471,6 +473,19 @@ function refreshCommandButtons()
 		}		
 	}
 	
+	// Do the selection/garrison list.
+	tabCounter = snStatusPaneCommand.tab.max;
+	// If there are entities garrisoned in the current entity,
+	if (selection[0].traits.garrison && selection[0].traits.garrison.curr > 0)
+	{
+		updateTab ("garrison", "production", "", selection, "");	
+	}
+	else
+	{
+		// If more than one entity is selected, list them.
+		if (selection.length > 1)
+			updateTab ("selection", "production", "", selection, "");	
+	}
 }
 
 

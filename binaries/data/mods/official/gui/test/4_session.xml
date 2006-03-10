@@ -416,6 +416,49 @@
 					]]></action>
 				</object>				
 				
+				<object	name="snStatusPaneStat_1" style="snStat" type="button" />
+				<object	name="snStatusPaneStat_2" style="snStat" type="button" />
+				<object	name="snStatusPaneStat_3" style="snStat" type="button" />
+				<object	name="snStatusPaneStat_4" style="snStat" type="button" />				
+				<object	name="snStatusPaneStat_5" style="snStat" type="button" />
+				<object	name="snStatusPaneStat_6" style="snStat" type="button" />
+				<object	name="snStatusPaneStat_7" style="snStat" type="button" />
+				<object	name="snStatusPaneStat_8" style="snStat" type="button"
+				>
+					<action on="Load"><![CDATA[
+						// Seek through this group of buttons (determining length from last object's name).
+						max = this.name.substring (this.name.lastIndexOf ("_")+1, this.name.length);
+						currCrd = getCrd ("snStatusPaneBkg");
+						currCrd3 = getCrd ("snStatusPanePortrait");
+						for (loop = 1; loop <= max; loop++)
+						{
+							// Get name of current object in group.
+							tempName = this.name.substring (0, this.name.lastIndexOf ("_")+1) + loop;
+							
+							// Set width as either icon (odd) or text (even).
+							if (loop % 2 == 0)
+								tempWidth = (currCrd.coord[rb].width/max + 7);							
+							else
+								tempWidth = 20;							
+							
+							if (loop == 1)
+							{
+								// Define first stat.
+								addCrds (tempName, 0, 0, currCrd3.coord[rb].x,
+									currCrd.coord[rb].y+currCrd.coord[rb].height-28,
+									tempWidth, 20);
+							}
+							else
+							{
+								// Get previous stat.
+								currCrd2 = getCrd (this.name.substring (0, this.name.lastIndexOf ("_")+1) + (loop-1));
+								// Align to the right of it.
+								addCrds (tempName, 0, 0, currCrd2.coord[rb].x + currCrd2.coord[rb].width, currCrd2.coord[rb].y, tempWidth, currCrd2.coord[rb].height);								
+							}
+						}					
+					]]></action>				
+				</object>
+
 			</object>
 
 			<!-- COMMAND BUTTONS (arc the Status Pane) -->
@@ -552,39 +595,29 @@
 				z="100"				
 			/>
 			<object name="snStatusPaneCommandGroup8" >
-				<object style="snPortrait" type="button" name="snStatusPaneCommand8_2">
-					<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_2Bar" />
-				</object>
-				<object style="snPortrait" type="button" name="snStatusPaneCommand8_3">
-					<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_3Bar" />
-				</object>
-				<object style="snPortrait" type="button" name="snStatusPaneCommand8_4">
-					<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_4Bar" />
-				</object>
-				<object style="snPortrait" type="button" name="snStatusPaneCommand8_5">
-					<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_5Bar" />
-				</object>
-				<object style="snPortrait" type="button" name="snStatusPaneCommand8_6">
-					<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_6Bar" />
-				</object>
-				<object style="snPortrait" type="button" name="snStatusPaneCommand8_7">
-					<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_7Bar" />
-				</object>
-				<object style="snPortrait" type="button" name="snStatusPaneCommand8_8">
-					<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_8Bar" />
-				</object>
-				<object style="snPortrait" type="button" name="snStatusPaneCommand8_9">
-					<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_9Bar" />
-				</object>
-				<object style="snPortrait" type="button" name="snStatusPaneCommand8_10">
-					<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_10Bar" />
-				</object>
-				<object style="snPortrait" type="button" name="snStatusPaneCommand8_11">
-					<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_11Bar" />
-				</object>
+				<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_2Bar" />
+				<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_3Bar" />
+				<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_4Bar" />	
+				<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_5Bar" />
+				<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_6Bar" />
+				<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_7Bar" />
+				<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_8Bar" />
+				<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_9Bar" />
+				<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_10Bar" />
+				<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_11Bar" />
+				<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_12Bar" />			
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_2" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_3" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_4" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_5" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_6" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_7" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_8" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_9" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_10" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_11" />
 				<object style="snPortrait" type="button" name="snStatusPaneCommand8_12" 
 				>
-					<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_12Bar" />
 					<action on="Load"><![CDATA[
 						defineCommandButtons(this.name);
 					]]></action>

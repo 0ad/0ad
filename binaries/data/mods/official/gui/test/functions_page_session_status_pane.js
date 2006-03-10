@@ -74,7 +74,7 @@ function refreshStatusPane()
 textCaption += '[font=verdana10][color="' + Math.round(selection[0].player.getColour().r*255) + ' ' + Math.round(selection[0].player.getColour().g*255) + ' ' + Math.round(selection[0].player.getColour().b*255) + '"]' + selection[0].player.name + '[/color][/font]\n';		
 		textCaption += "[font=verdana10][color=white]" + selection[0].traits.id.civ + "[/color][/font]\n";
 		textCaption += "[font=verdana10][color=white]" + selection[0].traits.id.specific + "[/color][/font]\n";
-		textCaption += "[font=optimus12][color=gold]" + selection[0].traits.id.generic + "[/color][/font]";
+		textCaption += "[font=optimus14b][color=gold]" + selection[0].traits.id.generic + "[/color][/font]";
 		getGUIObjectByName ("snStatusPaneText").caption = textCaption;
 	}
 	
@@ -142,9 +142,38 @@ textCaption += '[font=verdana10][color="' + Math.round(selection[0].player.getCo
 			getGUIObjectByName ("snStatusPaneSupplyIcon").hidden = true;
 		}
 	}	
+	
+	// Update statistic icons.
+	statCurr = 1;
+	if (selection[0].actions && selection[0].actions.attack && selection[0].actions.attack.melee && selection[0].actions.attack.melee.damage)
+		updateStat ("snStatusPaneStat_", "Attack", "rating", selection[0].actions.attack.melee.damage);		
+	if (selection[0].actions && selection[0].actions.attack && selection[0].actions.attack.melee && selection[0].actions.attack.melee.range)
+		updateStat ("snStatusPaneStat_", "Statistic", "range", selection[0].actions.attack.melee.range);		
+	if (selection[0].actions && selection[0].actions.attack && selection[0].actions.attack.ranged && selection[0].actions.attack.ranged.damage)
+		updateStat ("snStatusPaneStat_", "Attack", "rating", selection[0].actions.attack.ranged.damage);		
+	if (selection[0].actions && selection[0].actions.attack && selection[0].actions.attack.ranged && selection[0].actions.attack.ranged.range)
+		updateStat ("snStatusPaneStat_", "Statistic", "range", selection[0].actions.attack.ranged.range);		
+	if (selection[0].traits && selection[0].traits.armour && selection[0].traits.armour.value)
+		updateStat ("snStatusPaneStat_", "Armour", "rating", selection[0].traits.armour.value);	
+	if (selection[0].traits && selection[0].traits.vision && selection[0].traits.vision.los)
+		updateStat ("snStatusPaneStat_", "Statistic", "vision", selection[0].traits.vision.los);	
 
 	// Refresh command buttons.
 	refreshCommandButtons();
+}
+
+// ====================================================================
+
+function updateStat (baseName, cellSheet, cell, statistic)
+{
+	textStat = getGUIObjectByName (baseName + statCurr);
+	textStat.sprite = "snIconSheet" + cellSheet;
+	textStat.cell_id = cellGroup[cellSheet][cell].id;
+	textStat.tooltip = cellGroup[cellSheet][cell].name;
+	iconStat = getGUIObjectByName (baseName + (statCurr + 1))
+	iconStat.caption = statistic;
+	iconStat.tooltip = cellGroup[cellSheet][cell].name + ": " + statistic + ".";
+	statCurr = (statCurr + 2);
 }
 
 // ====================================================================

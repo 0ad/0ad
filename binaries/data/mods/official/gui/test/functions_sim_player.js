@@ -274,15 +274,8 @@ function refreshResource (resourceName, resourceIndex)
 		if (coordGroup == GUIType)
 		{
 			// Update counter size.
-//			resourceObject.size = Crd[getCrd(resourceObject.name, true)].size[GUIType];
-//			resourceIconObject.size = Crd[getCrd(resourceIconObject.name, true)].size[GUIType];
-
 			resourceObject.size = Crd[crdResult].size[GUIType];
 			resourceIconObject.size = Crd[crdIconResult].size[GUIType];
-			
-			console.write (resourceName + " Counter: " + resourceObject.size);
-			console.write (resourceName + " Icon: " + resourceIconObject.size);
-			
 		}
 	}
 }
