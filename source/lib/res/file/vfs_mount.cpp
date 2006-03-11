@@ -281,7 +281,7 @@ static LibError mount_archives(TDir* td, Archives* archives, const Mount* mount)
 
 		// add this archive to the mount list (address is guaranteed to
 		// remain valid).
-		const Mount& m = add_mount(mount->V_mount_point.c_str(), mount->P_name.c_str(), hza, 0, 0);
+		const Mount& m = add_mount(mount->V_mount_point.c_str(), mount->P_name.c_str(), hza, mount->flags, mount->pri);
 
 		mount_archive(td, m);
 	}
