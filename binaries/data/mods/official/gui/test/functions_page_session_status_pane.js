@@ -20,7 +20,7 @@ function refreshStatusPane()
 	if ( shouldUpdateStat ( "traits.id.icon" ) )
 	{
 		// Update portrait
-		if (selection[0].traits.id.icon)
+		if (validProperty("selection[0].traits.id.icon"))
 			setPortrait ("snStatusPanePortrait", selection[0].traits.id.icon,
 				toTitleCase(selection[0].traits.id.civ_code), selection[0].traits.id.icon_cell);
 	}
@@ -145,17 +145,17 @@ textCaption += '[font=verdana10][color="' + Math.round(selection[0].player.getCo
 	
 	// Update statistic icons.
 	statCurr = 1;
-	if (selection[0].actions && selection[0].actions.attack && selection[0].actions.attack.melee && selection[0].actions.attack.melee.damage)
+	if (validProperty ("selection[0].actions.attack.melee.damage"))
 		updateStat ("snStatusPaneStat_", "Attack", "rating", selection[0].actions.attack.melee.damage);		
-	if (selection[0].actions && selection[0].actions.attack && selection[0].actions.attack.melee && selection[0].actions.attack.melee.range)
+	if (validProperty ("selection[0].actions.attack.melee.range"))
 		updateStat ("snStatusPaneStat_", "Statistic", "range", selection[0].actions.attack.melee.range);		
-	if (selection[0].actions && selection[0].actions.attack && selection[0].actions.attack.ranged && selection[0].actions.attack.ranged.damage)
+	if (validProperty ("selection[0].actions.attack.ranged.damage"))
 		updateStat ("snStatusPaneStat_", "Attack", "rating", selection[0].actions.attack.ranged.damage);		
-	if (selection[0].actions && selection[0].actions.attack && selection[0].actions.attack.ranged && selection[0].actions.attack.ranged.range)
+	if (validProperty ("selection[0].actions.attack.ranged.range"))
 		updateStat ("snStatusPaneStat_", "Statistic", "range", selection[0].actions.attack.ranged.range);		
-	if (selection[0].traits && selection[0].traits.armour && selection[0].traits.armour.value)
+	if (validProperty ("selection[0].traits.armour.value"))
 		updateStat ("snStatusPaneStat_", "Armour", "rating", selection[0].traits.armour.value);	
-	if (selection[0].traits && selection[0].traits.vision && selection[0].traits.vision.los)
+	if (validProperty ("selection[0].traits.vision.los"))
 		updateStat ("snStatusPaneStat_", "Statistic", "vision", selection[0].traits.vision.los);	
 
 	// Refresh command buttons.

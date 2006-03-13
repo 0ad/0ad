@@ -201,6 +201,9 @@ function triggerSelectionRun()
 		 selection[i].triggerRun();
 	}
 }
+
+// ====================================================================
+
 function setSelectionRun()
 {
 	for ( i=0; i< selection.length; i++ )
@@ -209,6 +212,35 @@ function setSelectionRun()
 	}
 }
 
-		
+// ====================================================================
 
+function validProperty (propertyName)
+{
+	// Accepts a string representing an entity property (eg "selection[0].traits.id.generic")
+	// and checks if all the elements (selection[0].traits, selection[0].traits.id, etc) are valid properties.
+	// Returns false if any invalids are found. Returns true if the whole property is valid.
+	
+	// An empty string is always successful.
+	if (propertyName == "") return true;
+
+	// Store elements of the property as an array of strings.
+	splitArray = propertyName.toString().split (".");
+	
+	// Seek through elements in array.
+	arrayString = "";
+	for (i = 0; i < splitArray.length; i++)
+	{
+		// Test each element combination of the string to ensure they are all valid.
+		if (i > 0) arrayString += ".";
+		arrayString += splitArray[i];
+
+		// If the property name is not valid, return false.
+		if (!(eval (arrayString)))
+			return false;
+	}
+	// If we managed to check them all, every element in the property is valid. Return true.
+	return true;
+}
+		
+// ====================================================================
 
