@@ -33,7 +33,7 @@
 
 const TCHAR* msgbox_title = _T("Wildfire Games - Texture Converter");
 
-enum OutputFileFormat { DXTn, DXT1, DXT3, DXT5, BMP, TGA, BEST };
+enum OutputFileFormat { DXTn, DXT1, DXT3, DXT5, ABGR, BMP, TGA, BEST };
 enum trool { tr_false, tr_true, tr_maybe };
 struct ConversionSettings
 {
@@ -132,6 +132,8 @@ void process_args(int argc, TCHAR** argv)
 			settings.top().fmt = DXT3;
 		CASE("-dxt5")
 			settings.top().fmt = DXT5;
+		CASE("-abgr")
+			settings.top().fmt = ABGR;
 		CASE("-bmp")
 			settings.top().fmt = BMP;
 		CASE("-tga")
@@ -183,6 +185,7 @@ void convert(std::tstring filename, ConversionSettings& settings)
 	case DXT1:
 	case DXT3:
 	case DXT5:
+	case ABGR:
 		extn = _T(".dds");
 		break;
 	case BMP:
@@ -324,6 +327,9 @@ void convert(std::tstring filename, ConversionSettings& settings)
 		break;
 	case DXT5:
 		ilSetInteger(IL_DXTC_FORMAT, IL_DXT5);
+		break;
+	case ABGR:
+		ilSetInteger(IL_DXTC_FORMAT, IL_DXT_NO_COMP);
 		break;
 	}
 

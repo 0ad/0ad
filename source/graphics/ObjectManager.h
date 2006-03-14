@@ -73,6 +73,7 @@ public:
 
 	// Get all names, quite slowly. (Intended only for ScEd.)
 	void GetAllObjectNames(std::vector<CStr>& names);
+	void GetPropObjectNames(std::vector<CStr>& names);
 
 	//CBaseEntity* m_SelectedEntity;
 	void SetSelectedEntity(CBaseEntity* thing);

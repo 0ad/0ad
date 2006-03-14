@@ -4,6 +4,8 @@
 template<typename T> class DeltaArray2D
 {
 public:
+	virtual ~DeltaArray2D() {}
+
 	T get(int x, int y);
 	void set(int x, int y, const T& val);
 

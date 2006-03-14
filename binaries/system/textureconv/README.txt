@@ -26,6 +26,7 @@ Various settings can be given from the command line or from .bat files. They are
   -dxt1    Force output to be DXT1
   -dxt3    Force output to be DXT3
   -dxt5    Force output to be DXT5
+  -abgr    Force output to be uncompressed DDS
   -bmp     Force output to be BMP
   -tga     Force output to be TGA
 

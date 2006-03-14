@@ -199,6 +199,11 @@ void CObjectManager::GetAllObjectNames(std::vector<CStr>& names)
 	VFSUtil::EnumDirEnts("art/actors/", VFSUtil::RECURSIVE, "*.xml",
 		GetObjectName_ThunkCb, &names);
 }
+void CObjectManager::GetPropObjectNames(std::vector<CStr>& names)
+{
+	VFSUtil::EnumDirEnts("art/actors/props/", VFSUtil::RECURSIVE, "*.xml",
+		GetObjectName_ThunkCb, &names);
+}
 
 struct CObjectThing_Entity : public CObjectThing
 {

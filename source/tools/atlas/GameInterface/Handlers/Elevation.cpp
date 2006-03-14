@@ -115,7 +115,7 @@ BEGIN_COMMAND(AlterElevation)
 				// TODO: proper variable raise amount (store floats in terrain delta array?)
 				float b = g_CurrentBrush.Get(dx, dy);
 				if (b)
-					m_TerrainDelta.RaiseVertex(x0+dx, y0+dy, amount*b);
+					m_TerrainDelta.RaiseVertex(x0+dx, y0+dy, (int)(amount*b));
 			}
 
 		g_Game->GetWorld()->GetTerrain()->MakeDirty(x0, y0, x0+g_CurrentBrush.m_W, y0+g_CurrentBrush.m_H, RENDERDATA_UPDATE_VERTICES);

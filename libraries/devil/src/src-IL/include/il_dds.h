@@ -117,6 +117,7 @@ typedef struct DXTAlphaBlock3BitLinear
 #define DDS_FOURCC				0x00000004l
 #define DDS_PITCH				0x00000008l
 #define DDS_COMPLEX				0x00000008l
+#define DDS_RGB					0x00000040l
 #define DDS_TEXTURE				0x00001000l
 #define DDS_MIPMAPCOUNT			0x00020000l
 #define DDS_LINEARSIZE			0x00080000l

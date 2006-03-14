@@ -60,7 +60,7 @@ MESSAGEHANDLER(Scroll)
 		CVector3D origin, dir;
 		float x, y;
 		msg->pos.GetScreenSpace(x, y);
-		g_Game->GetView()->GetCamera()->BuildCameraRay(x, y, origin, dir);
+		g_Game->GetView()->GetCamera()->BuildCameraRay((int)x, (int)y, origin, dir);
 		dir *= targetDistance;
 		camera.Translate(targetPos - dir - origin);
 		g_Game->GetView()->GetCamera()->UpdateFrustum();

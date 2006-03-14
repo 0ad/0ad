@@ -38,7 +38,7 @@ public:
 	float m_TWaterTrans;
 	float m_SWaterScrollCounter;
 	float m_TWaterScrollCounter;
-	float m_WaterTexTimer;
+	double m_WaterTexTimer;
 
 public:
 	WaterManager();

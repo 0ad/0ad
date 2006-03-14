@@ -109,8 +109,35 @@ ILboolean iSaveDdsInternal()
 			}
 		}
 
-		if (!Compress(iCurImage, DXTCFormat))
-			return IL_FALSE;
+
+		if (DXTCFormat != IL_DXT_NO_COMP)
+		{
+			if (!Compress(iCurImage, DXTCFormat))
+				return IL_FALSE;
+		}
+		else 
+		{
+			ILimage     *TempImage;
+
+			/* 8*8*8*8 / 8*8*8*0 */
+
+			if ((iCurImage->Format == IL_LUMINANCE_ALPHA) || 
+				(iCurImage->Format == IL_RGBA) ||
+				(iCurImage->Format == IL_BGRA) ||
+				(iCurImage->Format == IL_COLOR_INDEX) ) 
+				TempImage = iConvertImage(iCurImage, IL_RGBA, IL_UNSIGNED_BYTE);
+			else
+				TempImage = iConvertImage(iCurImage, IL_RGB, IL_UNSIGNED_BYTE);
+
+			if (TempImage == NULL)
+				return IL_FALSE;
+
+			iwrite(TempImage->Data, 1, TempImage->SizeOfData);
+
+			if (TempImage != iCurImage)
+				ilCloseImage(TempImage);
+		}
+
 
 		if (iCurImage->Origin != IL_ORIGIN_UPPER_LEFT) {
 			ifree(iCurImage->Data);
@@ -129,9 +156,23 @@ ILboolean WriteHeader(ILimage *Image, ILenum DXTCFormat)
 {
 	ILuint i, FourCC, Flags1 = 0, Flags2 = 0, ddsCaps1 = 0, LinearSize;
 
-	Flags1 |= DDS_LINEARSIZE
-			| DDS_WIDTH | DDS_HEIGHT | DDS_CAPS | DDS_PIXELFORMAT;
-	Flags2 |= DDS_FOURCC;
+	Flags1 |= DDS_LINEARSIZE | DDS_WIDTH | DDS_HEIGHT | DDS_CAPS | DDS_PIXELFORMAT;
+
+	if (DXTCFormat != IL_DXT_NO_COMP) 
+	{
+		Flags2 |= DDS_FOURCC;
+	}
+	else
+	{
+		Flags2 |= DDS_RGB;
+
+		if ((iCurImage->Format == IL_LUMINANCE_ALPHA) || 
+			(iCurImage->Format == IL_RGBA) ||
+			(iCurImage->Format == IL_BGRA) ||
+			(iCurImage->Format == IL_COLOR_INDEX) ) 
+
+			Flags2 |= DDS_ALPHAPIXELS;
+	}
 
 	if (ilGetInteger(IL_NUM_MIPMAPS) > 0)
 		Flags1 |= DDS_MIPMAPCOUNT;
@@ -160,6 +201,9 @@ ILboolean WriteHeader(ILimage *Image, ILenum DXTCFormat)
 		case IL_DXT5:
 			FourCC = IL_MAKEFOURCC('D','X','T','5');
 			break;
+		case IL_DXT_NO_COMP:
+			FourCC = 0;
+			break;
 		default:
 			// Error!
 			ilSetError(IL_INTERNAL_ERROR);  // Should never happen, though.
@@ -175,8 +219,19 @@ ILboolean WriteHeader(ILimage *Image, ILenum DXTCFormat)
 	if (DXTCFormat == IL_DXT1) {
 		LinearSize = Image->Width * Image->Height / 16 * 8;
 	}
-	else {
+	else if (DXTCFormat != IL_DXT_NO_COMP)
+	{
 		LinearSize = Image->Width * Image->Height / 16 * 16;
+	}
+	else {
+		if ((iCurImage->Format == IL_LUMINANCE_ALPHA) || 
+			(iCurImage->Format == IL_RGBA) ||
+			(iCurImage->Format == IL_BGRA) ||
+			(iCurImage->Format == IL_COLOR_INDEX) ) 
+
+			LinearSize = Image->Width * Image->Height * 4;
+		else 
+			LinearSize = Image->Width * Image->Height * 3;
 	}
 	SaveLittleUInt(LinearSize);	// LinearSize
 	SaveLittleUInt(0);			// Depth
@@ -194,11 +249,29 @@ ILboolean WriteHeader(ILimage *Image, ILenum DXTCFormat)
 	SaveLittleUInt(32);			// Size2
 	SaveLittleUInt(Flags2);		// Flags2
 	SaveLittleUInt(FourCC);		// FourCC
-	SaveLittleUInt(0);			// RGBBitCount
-	SaveLittleUInt(0);			// RBitMask
-	SaveLittleUInt(0);			// GBitMask
-	SaveLittleUInt(0);			// BBitMask
-	SaveLittleUInt(0);			// RGBAlphaBitMask
+
+	if (DXTCFormat != IL_DXT_NO_COMP)
+	{
+
+		SaveLittleUInt(0);			// RGBBitCount
+		SaveLittleUInt(0);			// RBitMask
+		SaveLittleUInt(0);			// GBitMask
+		SaveLittleUInt(0);			// BBitMask
+		SaveLittleUInt(0);			// RGBAlphaBitMask
+	}
+	else
+	{
+		if (iCurImage->Format == IL_RGB)
+			SaveLittleUInt(24);			// RGBBitCount
+		else
+			SaveLittleUInt(32);			//  Using Alpha
+
+		SaveLittleUInt(0x000000FF);		// RBitMask
+		SaveLittleUInt(0x0000FF00);		// GBitMask
+		SaveLittleUInt(0x00FF0000);		// BBitMask
+		SaveLittleUInt(0xFF000000);		// AlphaBitMask
+	}
+
 	ddsCaps1 |= DDS_TEXTURE;
 	//changed 20040516: set mipmap flag on mipmap images
 	//(cubemaps and non-compressed .dds files still not supported,

@@ -1069,7 +1069,7 @@ ILvoid ILAPIENTRY ilSetInteger(ILenum Mode, ILint Param)
 			}
 			break;
 		case IL_DXTC_FORMAT:
-			if (Param >= IL_DXT1 || Param <= IL_DXT5) {
+			if (Param >= IL_DXT1 || Param <= IL_DXT_NO_COMP) {
 				ilStates[ilCurrentPos].ilDxtcFormat = Param;
 				return;
 			}
