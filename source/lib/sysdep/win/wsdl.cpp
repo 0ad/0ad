@@ -805,7 +805,7 @@ static void mouse_update()
 	}
 	// moved outside of window
 	else
-		queue_active_event(LOSE, SDL_APPMOUSEFOCUS);
+		active_change_state(LOSE, SDL_APPMOUSEFOCUS);
 }
 
 static uint mouse_buttons;

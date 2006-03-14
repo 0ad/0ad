@@ -321,13 +321,21 @@ public:
 
 	void* alloc(size_t size)
 	{
-		// safely handle 0 byte allocations. according to C/C++ tradition,
-		// we allocate a unique address, which ends up wasting 1 page.
+		// determine actual size to allocate
+		// .. better not be more than MAX_CACHE_SIZE - file_buf_alloc will
+		//    fail because no amount of freeing up existing allocations
+		//    would make enough room. therefore, check for this here
+		//    (should never happen).
+		debug_assert(size < MAX_CACHE_SIZE);
+		// .. safely handle 0 byte allocations. according to C/C++ tradition,
+		//    we allocate a unique address, which ends up wasting 1 page.
 		if(!size)
 			size = 1;
-
+		// .. each allocation must be aligned to BUF_ALIGN, so
+		//    we round up all sizes to that.
 		const size_t size_pa = round_up(size, BUF_ALIGN);
 		const uint size_class = size_class_of(size_pa);
+
 		void* p;
 
 		// try to reuse a freed entry

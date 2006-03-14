@@ -296,7 +296,7 @@ LibError zip_populate_archive(File* f, Archive* a)
 	if(ret < 0)
 	{
 		ret = za_find_ecdr_impl(f, 66000u, &ecdr);
-		// still failed - not a Zip file
+		// still failed - not a valid Zip file
 		if(ret < 0)
 			goto completely_bogus;
 	}

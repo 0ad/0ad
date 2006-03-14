@@ -402,15 +402,37 @@ static LibError decode_pf(const DDPIXELFORMAT* pf, uint* bpp_, uint* flags_)
 	// .. uncompressed
 	if(pf_flags & DDPF_RGB)
 	{
-		const u32 pf_bpp = read_le32(&pf->dwRGBBitCount);
-		bpp = pf_bpp;	// checked below
+		const u32 pf_bpp    = read_le32(&pf->dwRGBBitCount);
+		const u32 pf_r_mask = read_le32(&pf->dwRBitMask);
+		const u32 pf_g_mask = read_le32(&pf->dwGBitMask);
+		const u32 pf_b_mask = read_le32(&pf->dwBBitMask);
+		const u32 pf_a_mask = read_le32(&pf->dwRGBAlphaBitMask);
 
-		// check for alpha channel
-		const u32 alpha_mask = read_le32(&pf->dwRGBAlphaBitMask);
-		if(alpha_mask && pf_flags & DDPF_ALPHAPIXELS)
+		// (checked below; must be set in case below warning is to be
+		// skipped)
+		bpp = pf_bpp;
+
+		if(pf_flags & DDPF_ALPHAPIXELS)
+		{
+			// something weird other than RGBA or BGRA
+			if(pf_a_mask != 0xFF000000)
+				goto unsupported_component_ordering;
 			flags |= TEX_ALPHA;
+		}
 
-		// note: we don't bother validating *BitMask.
+		// make sure component ordering is 0xBBGGRR = RGB (see below)
+		if(pf_r_mask != 0xFF || pf_g_mask != 0xFF00 || pf_b_mask != 0xFF0000)
+		{
+			// DDPIXELFORMAT in theory supports any ordering of R,G,B,A.
+			// we need to upload to OpenGL, which can only receive BGR(A) or
+			// RBG(A). the latter still requires conversion (done by driver),
+			// so it's slower. since the very purpose of supporting uncompressed
+			// DDS is storing images in a format that requires no processessing,
+			// we do not allow any weird orderings that require runtime work.
+			// instead, the artists must export with the correct settings.
+		unsupported_component_ordering:
+			/*/*WARN_RETURN(ERR_TEX_FMT_INVALID)*/;
+		}
 
 		CHECK_ERR(tex_validate_plain_format(bpp, flags));
 	}

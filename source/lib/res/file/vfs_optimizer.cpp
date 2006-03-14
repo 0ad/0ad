@@ -476,7 +476,7 @@ public:
 //-----------------------------------------------------------------------------
 
 static const ssize_t REBUILD_MAIN_ARCHIVE_THRESHOLD = 50;
-static const ssize_t BUILD_MINI_ARCHIVE_THRESHOLD = 15;
+static const ssize_t BUILD_MINI_ARCHIVE_THRESHOLD = 20;
 
 typedef std::vector<const char*> FnVector;
 static FnVector loose_files;
