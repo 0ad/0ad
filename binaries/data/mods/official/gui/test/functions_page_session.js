@@ -36,211 +36,45 @@ function initSession()
 function initCellReference()
 {
 		cellGroup = new Array();
+
+		// Define categories of cell groups by checking their reference files in the same locations as the icon sheets.
+		addCellGroupCategory ("art/textures/ui/session/icons/sheets/");
+		// (Note that we don't use this and we probably shouldn't, since the entities state which icon cell they should use; it makes it easier to remember which icon is used
+		// for which unit if we have this reference sheet, though.)
+		addCellGroupCategory ("art/textures/ui/session/portraits/sheets/");		
+}
+
+// ====================================================================
+
+function addCellGroupCategory(iconSheetPath)
+{
+	// Get array list of all icon sheet reference files.
+	iconSheets = buildFileList (iconSheetPath, "*.txt", true);
+	// Alphabetically sort the array.
+	iconSheets.sort();
 	
-		// Define the cells in this icon sheet.
-		groupName = "Armour";
-		addCell (groupName, "rating", "Rating");
-		addCell (groupName, "hack", "Hack");		
-		addCell (groupName, "pierce", "Pierce");		
-		addCell (groupName, "crush", "Crush");		
-
-		// Define the cells in this icon sheet.
-		groupName = "Attack";
-		addCell (groupName, "rating", "Rating");
-		addCell (groupName, "hack", "Hack");		
-		addCell (groupName, "pierce", "Pierce");		
-		addCell (groupName, "crush", "Crush");		
+	// Seek through all icon sheets.
+	for (sheet = 0; sheet < iconSheets.length; sheet++)
+	{
+		// Get the current icon sheet name.
+		groupName = iconSheets[sheet];
+		// Remove path and extension information so we just have the group name.
+		groupName = groupName.replace (iconSheetPath, "");
+		groupName = groupName.replace (".txt", "");			
+		groupName = toTitleCase(groupName);
 		
-		// Define the cells in this icon sheet.
-		groupName = "Command";
-		addCell (groupName, "patrol", "Patrol");
-		addCell (groupName, "townbell", "Town Bell");		
-		addCell (groupName, "lock", "Lock");		
-		addCell (groupName, "unlock", "Unlock");		
-		addCell (groupName, "kill", "Kill");		
-		addCell (groupName, "explore", "Explore");		
-		addCell (groupName, "rally", "Rally");		
-		addCell (groupName, "stop", "Stop");		
-		addCell (groupName, "heal", "Heal");		
-		addCell (groupName, "repair", "Repair");		
-		addCell (groupName, "herd", "Herd");		
-		addCell (groupName, "escort", "Escort");		
-		addCell (groupName, "move", "Move");		
-		addCell (groupName, "attack", "Attack");		
-		addCell (groupName, "build", "Build");
-		addCell (groupName, "retreat", "Retreat");		
-
-		// Define the cells in this icon sheet.
-		groupName = "Find";
-		addCell (groupName, "citizen", "Citizen");
-		addCell (groupName, "military", "Military");		
-		addCell (groupName, "hero", "Hero");				
-		addCell (groupName, "civcentre", "Civic Centre");				
+		// Get the elements from the current icon sheet.
+		iconArray = readFileLines (iconSheets[sheet]);
 		
-		// Define the cells in this icon sheet.
-		groupName = "Formation";
-		addCell (groupName, "box", "Box");
-		addCell (groupName, "column_c", "Column Closed");		
-		addCell (groupName, "line_c", "Line Closed");				
-		addCell (groupName, "column_o", "Column Open");		
-		addCell (groupName, "line_o", "Line Open");		
-		addCell (groupName, "flank", "Flank");				
-		addCell (groupName, "skirmish", "Skirmish");		
-		addCell (groupName, "wedge", "Wedge");		
-		addCell (groupName, "testudo", "Testudo");		
-		addCell (groupName, "phalanx", "Phalanx");	
-
-		// Define the cells in this icon sheet.
-		groupName = "Garrison";
-		addCell (groupName, "garrison", "Garrison");
-		addCell (groupName, "unload", "Unload");		
-		addCell (groupName, "unloadtotarget", "Unload to Target");		
-		
-		// Define the cells in this icon sheet.
-		groupName = "Gather";		
-		addCell (groupName, "food", "Food");		
-		addCell (groupName, "wood", "Wood");				
-		addCell (groupName, "stone", "Stone");				
-		addCell (groupName, "ore", "Ore");				
-		addCell (groupName, "fish", "Fish");				
-		addCell (groupName, "fruit", "Fruit");				
-		addCell (groupName, "grain", "Grain");				
-		addCell (groupName, "meat", "Meat");				
-		addCell (groupName, "milk", "Milk");				
-		
-		// Define the cells in this icon sheet.
-		groupName = "Menu";		
-		addCell (groupName, "game", "Game");		
-		addCell (groupName, "diplomacy", "Diplomacy");				
-		addCell (groupName, "objectives", "Objectives");				
-		addCell (groupName, "score", "Score");				
-		addCell (groupName, "chat", "Chat");				
-
-		// Define the cells in this icon sheet.
-		groupName = "MiniMap";		
-		addCell (groupName, "flare", "Flare");				
-		addCell (groupName, "flare", "Terrain");						
-		addCell (groupName, "flare", "Territories");						
-		addCell (groupName, "friendorfoe", "Friend or Foe");						
-		addCell (groupName, "economic", "Economic");						
-		addCell (groupName, "military", "Military");						
-		addCell (groupName, "resources", "Resources");						
-		
-		// Define the cells in this icon sheet.
-		groupName = "Rank";		
-		addCell (groupName, "advanced", "Advanced");		
-		addCell (groupName, "elite", "Elite");		
-		
-		// Define the cells in this icon sheet.
-		groupName = "Replay";		
-		addCell (groupName, "pause", "Pause");		
-		addCell (groupName, "play", "Play");		
-		addCell (groupName, "rewind", "Rewind");		
-		addCell (groupName, "fastforward", "Fast Forward");		
-		addCell (groupName, "start", "Start");		
-		addCell (groupName, "end", "End");		
-		addCell (groupName, "cycle", "Cycle");		
-		
-		// Define the cells in this icon sheet.
-		groupName = "Resource";		
-		addCell (groupName, "food", "Food");		
-		addCell (groupName, "wood", "Wood");		
-		addCell (groupName, "stone", "Stone");		
-		addCell (groupName, "ore", "Ore");		
-		addCell (groupName, "population", "Population");		
-		
-		// Define the cells in this icon sheet.
-		groupName = "Stance";	
-		addCell (groupName, "aggress", "Aggress");		
-		addCell (groupName, "defend", "Defend");		
-		addCell (groupName, "avoid", "Avoid");		
-		addCell (groupName, "stand", "Stand");		
-		addCell (groupName, "hold", "Hold");		
-		
-		// Define the cells in this icon sheet.
-		groupName = "Statistic";		
-		addCell (groupName, "accuracy", "Accuracy");
-		addCell (groupName, "vision", "Vision");		
-		addCell (groupName, "speed", "Speed");		
-		addCell (groupName, "range", "Range");		
-		addCell (groupName, "capacity", "Capacity");		
-		addCell (groupName, "health", "Health");		
-		addCell (groupName, "stamina", "Stamina");		
-		
-		// Define the cells in this icon sheet.
-		groupName = "Tab";		
-		addCell (groupName, "structciv", "Construct Civic Buildings");		
-		addCell (groupName, "structmil", "Construct Military Buildings");		
-		addCell (groupName, "train", "Train");		
-		addCell (groupName, "research", "Research");
-		addCell (groupName, "barter", "Barter");
-		addCell (groupName, "allegiance", "Allegiance");
-		addCell (groupName, "selection", "Selection");		
-		addCell (groupName, "garrison", "Garrison");		
-		addCell (groupName, "command", "Command");		
-		
-		// Define the cells in this icon sheet.
-		groupName = "Civ";
-		addCell (groupName, "infantry_swordsman_b", "Basic Infantry Swordsman");
-		addCell (groupName, "infantry_swordsman_a", "Advanced Infantry Swordsman");
-		addCell (groupName, "infantry_swordsman_e", "Elite Infantry Swordsman");
-		addCell (groupName, "infantry_spearman_b", "Basic Infantry Spearman");
-		addCell (groupName, "infantry_spearman_a", "Advanced Infantry Spearman");		
-		addCell (groupName, "infantry_spearman_e", "Elite Infantry Spearman");				
-		addCell (groupName, "infantry_javelinist_b", "Basic Infantry Javelinist");
-		addCell (groupName, "infantry_javelinist_a", "Advanced Infantry Javelinist");		
-		addCell (groupName, "infantry_javelinist_e", "Elite Infantry Javelinist");
-		addCell (groupName, "infantry_archer_b", "Basic Infantry Archer");
-		addCell (groupName, "infantry_archer_a", "Advanced Infantry Archer");		
-		addCell (groupName, "infantry_archer_e", "Elite Infantry Archer");		
-		addCell (groupName, "infantry_slinger_b", "Basic Infantry Slinger");
-		addCell (groupName, "infantry_slinger_a", "Advanced Infantry Slinger");		
-		addCell (groupName, "infantry_slinger_e", "Elite Infantry Slinger");		
-		addCell (groupName, "cavalry_swordsman_b", "Basic Cavalry Swordsman");
-		addCell (groupName, "cavalry_swordsman_a", "Advanced Cavalry Swordsman");
-		addCell (groupName, "cavalry_swordsman_e", "Elite Cavalry Swordsman");
-		addCell (groupName, "cavalry_spearman_b", "Basic Cavalry Spearman");
-		addCell (groupName, "cavalry_spearman_a", "Advanced Cavalry Spearman");		
-		addCell (groupName, "cavalry_spearman_e", "Elite Cavalry Spearman");				
-		addCell (groupName, "cavalry_javelinist_b", "Basic Cavalry Javelinist");
-		addCell (groupName, "cavalry_javelinist_a", "Advanced Infantry Javelinist");		
-		addCell (groupName, "cavalry_javelinist_e", "Elite Infantry Javelinist");
-		addCell (groupName, "cavalry_archer_b", "Basic Infantry Archer");
-		addCell (groupName, "cavalry_archer_a", "Advanced Infantry Archer");		
-		addCell (groupName, "cavalry_archer_e", "Elite Infantry Archer");		
-		addCell (groupName, "super_siege", "Super Siege");
-		addCell (groupName, "support_female_citizen", "Female Citizen");		
-		addCell (groupName, "support_healer", "Healer");				
-		addCell (groupName, "support_trader", "Trader");		
-		addCell (groupName, "siege_onager", "Onager");		
-		addCell (groupName, "siege_ram", "Ram");				
-		addCell (groupName, "siege_ballista", "Ballista");				
-		addCell (groupName, "ship_merchant", "Merchant Ship");				
-		addCell (groupName, "ship_bireme", "Light Warship");		
-		addCell (groupName, "ship_trireme", "Medium Warship");		
-		addCell (groupName, "ship_quinquereme", "Heavy Warship");		
-		addCell (groupName, "super_infantry", "Super Infantry");		
-		addCell (groupName, "super_cavalry", "Super Cavalry");		
-		addCell (groupName, "hero_1", "Hero");		
-		addCell (groupName, "hero_2", "Hero");				
-		addCell (groupName, "hero_3", "Hero");			
-		addCell (groupName, "civil_centre", "Civic Centre");			
-		addCell (groupName, "house", "House");		
-		addCell (groupName, "farmstead", "Farmstead");		
-		addCell (groupName, "field", "Field");		
-		addCell (groupName, "corral", "Corral");		
-		addCell (groupName, "mill", "Mill");		
-		addCell (groupName, "scout_tower", "Outpost");		
-		addCell (groupName, "wall", "Wall");		
-		addCell (groupName, "wall_tower", "Wall Tower");		
-		addCell (groupName, "wall_gate", "Wall Gate");		
-		addCell (groupName, "dock", "Dock");		
-		addCell (groupName, "temple", "Temple");		
-		addCell (groupName, "barracks", "Barracks");		
-		addCell (groupName, "market", "Market");		
-		addCell (groupName, "fortress", "Fortress");		
-		addCell (groupName, "sb1", "Special Building");		
-		addCell (groupName, "sb2", "Special Building");		
+		// For each row in the icon sheet file,
+		for (row = 0; row < iconArray.length; row++)
+		{
+			// Get the individual fields in the array as another array.
+			iconElements = iconArray[row].split (",");
+			// Add this cell to the current group.
+			addCell (groupName, iconElements[0], iconElements[1]);
+		}
+	}
 }
 
 // ====================================================================

@@ -65,95 +65,87 @@
 		
 		<!-- GROUP: MINIMAP -->
 		<object	name="snMiniMap"
-			hotkey="session.minimap.toggle"
+				hotkey="session.minimap.toggle"
 		>
 			<action on="Press"><![CDATA[
 				guiToggle (this.name);
 			]]></action>
-
+			
+			<object name="snMiniMapDisplay"
+				style="snObject"
+				type="minimap"
+			>
+				<action on="Load"><![CDATA[
+					addCrds (this.name, 100, 100, 5, 5, 150, 150);
+				]]></action>
+			</object>			
+			
 			<object	name="snMiniMapBorder"
-				style="skin*Hele*Window"
+				style="snMiniMapBorder"
 				type="image"
 			>
 				<action on="Load"><![CDATA[
-					addCrd (this.name, rb, 100, 100, 0, 0, 180, 180);
-					addCrd (this.name, lb, 0, 100);	
-					addCrd (this.name, lt, 0, 0);
-					addCrd (this.name, rt, 100, 0);
+					addCrds (this.name, 100, 100, 0, 0, 192, 192);
 				]]></action>
-
-				<object name="snMiniMapDisplay"
-					style="snObject"
-					type="minimap"
-				>
-					<action on="Load"><![CDATA[
-						addCrd (this.name, rb, 100, 100, 5, 5, 170, 170);
-						addCrd (this.name, lb, 0, 100);	
-						addCrd (this.name, lt, 0, 0);
-						addCrd (this.name, rt, 100, 0);
-					]]></action>
-
-					<object	name="snMiniMapEdge"
-						style="skin*Hele*BorderBlack"
-						type="image"
-						ghost="true"
-					/>
-				</object>
-			</object>
-
-			<object name="snMiniMapButtonGroup"
-				style="skin*Hele*BorderBlack"
-				type="image"
-				ghost="true"
-			>
-				<action on="Load"><![CDATA[
-					addCrd (this.name, rb, 100, 100, getCrd ("snMiniMapBorder").coord[rb].width+1, 0,
-						20, getCrd ("snMiniMapBorder").coord[rb].height);
-					addCrd (this.name, lb, 0, 100);	
-					addCrd (this.name, lt, 0, 0);
-					addCrd (this.name, rt, 100, 0);
-				]]></action>
-
-				<object name="snMiniMapButton_1"
-					style="skin*Hele*Button"
-					type="button"
-				>
-				</object>
-				<object name="snMiniMapButton_2"
-					style="skin*Hele*Button"
-					type="button"
-				>
-				</object>
-				<object name="snMiniMapButton_3"
-					style="skin*Hele*Button"
-					type="button"
-				>
-				</object>
-				<object name="snMiniMapButton_4"
-					style="skin*Hele*Button"
-					type="button"
-				>
-					<action on="Load"><![CDATA[
-						// Seek through this group of buttons (determining length from last object's name).
-						max = this.name.substring (this.name.lastIndexOf ("_")+1, this.name.length);
-						for (loop = 1; loop <= max; loop++)
-						{
-							tempName = this.name.substring (0, this.name.lastIndexOf ("_")+1) + loop;
-							// Set size/position.
-							addCrd (tempName,
-								rb, 100, 100, 0,
-								getCrd ("snMiniMapButtonGroup").coord[rb].y+(getCrd ("snMiniMapButtonGroup").coord[rb].height/max)*(loop-1),
-								getCrd ("snMiniMapButtonGroup").coord[rb].width,
-								getCrd ("snMiniMapButtonGroup").coord[rb].height/max);
-							addCrd (tempName, lb, 0, 100);	
-							addCrd (tempName, lt, 0, 0);
-							addCrd (tempName, rt, 100, 0);
-							// Set tooltip.
-							getGUIObjectByName (tempName).tooltip = "This button doesn't do anything ... yet.";
-							getGUIObjectByName (tempName).tooltip_style = "snToolTip";
-						}
-					]]></action>
-				</object>
+				
+					<object name="snMiniMapButtonGroup"
+					>
+						<object	name="snMiniMapButtonArc_Up" style="snMiniMapArcUp" type="button"
+						>
+							<action on="Load"><![CDATA[
+								addCrds (this.name, 0, 0, 10, 30, 30, 60);
+							]]></action>				
+						</object>
+						<object	name="snMiniMapButtonArc_Left" style="snMiniMapArcLeft" type="button"
+						>
+							<action on="Load"><![CDATA[
+								addCrds (this.name, 0, 0, 30, 10, 60, 30);
+							]]></action>				
+						</object>				
+						<object	name="snMiniMapButtonTop_1" style="snStat" type="button" />
+						<object	name="snMiniMapButtonTop_2" style="snStat" type="button" />
+						<object	name="snMiniMapButtonTop_3" style="snStat" type="button"
+						>
+							<action on="Load"><![CDATA[
+								// Seek through this group of buttons (determining length from last object's name).
+								max = this.name.substring (this.name.lastIndexOf ("_")+1, this.name.length);
+								for (loop = 1; loop <= max; loop++)
+								{
+									tempName = this.name.substring (0, this.name.lastIndexOf ("_")+1) + loop;
+									// Set size/position.
+									addCrds (tempName,
+										100, 100, 0,
+										getCrd ("snMiniMapButtonArc_Up").coord[rb].y+(getCrd ("snMiniMapButtonArc_Up").coord[rb].height/max)*(loop-1),
+										getCrd ("snMiniMapButtonArc_Up").coord[rb].width,
+										getCrd ("snMiniMapButtonArc_Up").coord[rb].height/max);
+									// Set tooltip.
+									getGUIObjectByName (tempName).tooltip = "This button doesn't do anything ... yet.";
+								}
+							]]></action>
+						</object>				
+						<object	name="snMiniMapButtonLeft_1" style="snStat" type="button" />
+						<object	name="snMiniMapButtonLeft_2" style="snStat" type="button" />
+						<object	name="snMiniMapButtonLeft_3" style="snStat" type="button"
+						>
+							<action on="Load"><![CDATA[
+								// Seek through this group of buttons (determining length from last object's name).
+								max = this.name.substring (this.name.lastIndexOf ("_")+1, this.name.length);
+								for (loop = 1; loop <= max; loop++)
+								{
+									tempName = this.name.substring (0, this.name.lastIndexOf ("_")+1) + loop;
+									// Set size/position.
+									addCrds (tempName,
+										100, 100, 0,
+										getCrd ("snMiniMapButtonArc_Left").coord[rb].y+(getCrd ("snMiniMapButtonArc_Left").coord[rb].height/max)*(loop-1),
+										getCrd ("snMiniMapButtonArc_Left").coord[rb].width,
+										getCrd ("snMiniMapButtonArc_Left").coord[rb].height/max);
+									// Set tooltip.
+									getGUIObjectByName (tempName).tooltip = "This button doesn't do anything ... yet.";
+								}
+							]]></action>
+						</object>
+					</object>
+				
 			</object>
 
 		</object>

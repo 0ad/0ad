@@ -521,6 +521,28 @@
 				text_valign="top"
 		/>		
 		
+		<style 	name="snMiniMapBorder"
+				sprite="snMiniMapBorder"
+				buffer_zone="10"
+				ghost="true"
+				text_align="left"
+				text_valign="top"
+		/>
+		
+		<style	name="snMiniMapArcLeft"
+				sprite="snIconArcLeft"
+				sprite_over="snIconArcLeftOver"
+				sprite_disabled="snIconArcLeftDisabled"
+				tooltip_style="snToolTip"
+		/>
+
+		<style	name="snMiniMapArcUp"
+				sprite="snIconArcUp"
+				sprite_over="snIconArcUpOver"
+				sprite_disabled="snIconArcUpDisabled"
+				tooltip_style="snToolTip"
+		/>		
+		
 		<style name="snGreenBar"
 			sprite_background=""
 			sprite_bar="bkGreenBar"
@@ -668,11 +690,6 @@ NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET 
 		tooltip_style="snToolTip"
 		tooltip="(TBA)"
 		ghost="true"
-	/>
-
-	<style name="session_minimap"
-		tooltip_style="snToolTip"
-		tooltip=""
 	/>
 
 	<style name="portrait_progress"

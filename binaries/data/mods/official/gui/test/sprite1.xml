@@ -773,6 +773,19 @@
 			<image 	texture="session/status_pane_rome.dds"
 					size="0 0 100% 100%"
 			/>
+		</sprite>	
+
+        <!--
+		==========================================
+		MINIMAP
+		==========================================
+		-->		
+		
+		<sprite name="snMiniMapBorder">
+			<image 	texture="session/minimap_pane.dds"
+					real_texture_placement="0 0 174 172"
+					size="0 0 100% 100%"
+			/>
 		</sprite>		
 
 		<!--
@@ -840,22 +853,60 @@
 			
 			<!-- Statistic (gold circle). -->
 			<sprite	name="snIconStatistic">
-				<image	texture="session/icons/bkg/statistic_s.dds"
+				<image	texture="session/icons/bkg/statistic.dds"
 						size="0 0 100% 100%" 
 				/>
 			</sprite>
 			<sprite	name="snIconStatisticOver">
 				<effect	add_color="42 42 42 0"/>
-				<image	texture="session/icons/bkg/statistic_s.dds"
+				<image	texture="session/icons/bkg/statistic.dds"
 						size="0 0 100% 100%" 
 				/>
 			</sprite>
 			<sprite	name="snIconStatisticDisabled">
 				<effect	grayscale=""/>
-				<image	texture="session/icons/bkg/statistic_s.dds"
+				<image	texture="session/icons/bkg/statistic.dds"
 						size="0 0 100% 100%" 
 				/>
 			</sprite>	
+			
+			<!-- Arc Left (minimap top). -->
+			<sprite	name="snIconArcLeft">
+				<image	texture="session/icons/bkg/arc_left.dds"
+						size="0 0 100% 100%" 
+				/>
+			</sprite>
+			<sprite	name="snIconArcLeftOver">
+				<effect	add_color="42 42 42 0"/>
+				<image	texture="session/icons/bkg/arc_left.dds"
+						size="0 0 100% 100%" 
+				/>
+			</sprite>
+			<sprite	name="snIconArcLeftDisabled">
+				<effect	grayscale=""/>
+				<image	texture="session/icons/bkg/arc_left.dds"
+						size="0 0 100% 100%" 
+				/>
+			</sprite>			
+			
+			<!-- Arc Up (minimap left). -->
+			<sprite	name="snIconArcUp">
+				<image	texture="session/icons/bkg/arc_up.dds"
+						size="0 0 100% 100%" 
+				/>
+			</sprite>
+			<sprite	name="snIconArcUpOver">
+				<effect	add_color="42 42 42 0"/>
+				<image	texture="session/icons/bkg/arc_up.dds"
+						size="0 0 100% 100%" 
+				/>
+			</sprite>
+			<sprite	name="snIconArcUpDisabled">
+				<effect	grayscale=""/>
+				<image	texture="session/icons/bkg/arc_up.dds"
+						size="0 0 100% 100%" 
+				/>
+			</sprite>			
 
 		<!--
 		==========================================
@@ -2493,129 +2544,7 @@ NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET 
                 <image backcolor="255 255 255" size="0 0 100% 100%" border="true" bordercolor="0 0 0"/>
         </sprite>
 
-                <!--
-                ==========================================
-                MAP ORB
-                ==========================================
-                -->
 
-                <sprite name="session_panel_minimap_bg">
-                        <image texture="session/ui_session_panel_minimap_bg.dds" texture_size="0 0 256 256" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="session_panel_minimap_dummy">
-                        <image texture="session/ui_session_panel_minimap_dummy.dds" texture_size="0 0 256 256" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="session_panel_minimap_segleft1">
-                        <image texture="session/ui_session_panel_minimap_segleft1.dds" texture_size="0 0 64 64" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="session_panel_minimap_segleft2">
-                        <image texture="session/ui_session_panel_minimap_segleft2.dds" texture_size="0 0 64 64" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="session_panel_minimap_segleft3">
-                        <image texture="session/ui_session_panel_minimap_segleft3.dds" texture_size="0 0 64 64" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="session_panel_minimap_segleft4">
-                        <image texture="session/ui_session_panel_minimap_segleft4.dds" texture_size="0 0 64 64" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="session_panel_minimap_segbottom1">
-                        <image texture="session/ui_session_panel_minimap_segbottom1.dds" texture_size="0 0 64 64" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="session_panel_minimap_segbottom2">
-                        <image texture="session/ui_session_panel_minimap_segbottom2.dds" texture_size="0 0 64 64" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="session_panel_minimap_segbottom3">
-                        <image texture="session/ui_session_panel_minimap_segbottom3.dds" texture_size="0 0 64 64" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="session_panel_minimap_segbottom4">
-                        <image texture="session/ui_session_panel_minimap_segbottom4.dds" texture_size="0 0 64 64" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="session_panel_minimap_segtop1">
-                        <image texture="session/ui_session_panel_minimap_segtop1.dds" texture_size="0 0 64 64" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="session_panel_minimap_segtop2">
-                        <image texture="session/ui_session_panel_minimap_segtop2.dds" texture_size="0 0 64 64" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="session_panel_minimap_segtop3">
-                        <image texture="session/ui_session_panel_minimap_segtop3.dds" texture_size="0 0 64 64" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="session_panel_minimap_segtop4">
-                        <image texture="session/ui_session_panel_minimap_segtop4.dds" texture_size="0 0 64 64" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="session_panel_minimap_segleft1_Over">
-                        <image texture="session/ui_session_panel_minimap_segleft1_Over.dds" texture_size="0 0 64 64" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="session_panel_minimap_segleft2_Over">
-                        <image texture="session/ui_session_panel_minimap_segleft2_Over.dds" texture_size="0 0 64 64" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="session_panel_minimap_segleft3_Over">
-                        <image texture="session/ui_session_panel_minimap_segleft3_Over.dds" texture_size="0 0 64 64" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="session_panel_minimap_segleft4_Over">
-                        <image texture="session/ui_session_panel_minimap_segleft4_Over.dds" texture_size="0 0 64 64" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="session_panel_minimap_segbottom1_Over">
-                        <image texture="session/ui_session_panel_minimap_segbottom1_Over.dds" texture_size="0 0 64 64" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="session_panel_minimap_segbottom2_Over">
-                        <image texture="session/ui_session_panel_minimap_segbottom2_Over.dds" texture_size="0 0 64 64" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="session_panel_minimap_segbottom3_Over">
-                        <image texture="session/ui_session_panel_minimap_segbottom3_Over.dds" texture_size="0 0 64 64" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="session_panel_minimap_segbottom4_Over">
-                        <image texture="session/ui_session_panel_minimap_segbottom4_Over.dds" texture_size="0 0 64 64" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="session_panel_minimap_segtop1_Over">
-                        <image texture="session/ui_session_panel_minimap_segtop1_Over.dds" texture_size="0 0 64 64" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="session_panel_minimap_segtop2_Over">
-                        <image texture="session/ui_session_panel_minimap_segtop2_Over.dds" texture_size="0 0 64 64" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="session_panel_minimap_segtop3_Over">
-                        <image texture="session/ui_session_panel_minimap_segtop3_Over.dds" texture_size="0 0 64 64" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="session_panel_minimap_segtop4_Over">
-                        <image texture="session/ui_session_panel_minimap_segtop4_Over.dds" texture_size="0 0 64 64" size="0 0 100% 100%" />
-                </sprite>
-
-                <!--
-                ==========================================
-                STATUS ORB
-                ==========================================
-                -->
-
-                <sprite name="session_panel_status_bg_top">
-                        <image texture="session/ui_session_panel_status_bg_top.dds" texture_size="0 0 256 256" size="0 0 100% 100%" />
-                </sprite>
-
-                <sprite name="session_panel_status_bg_bottom">
-                        <image texture="session/ui_session_panel_status_bg_bottom.dds" texture_size="0 0 256 256" size="0 0 100% 100%" />
-                </sprite>
 
         <!--
         ==========================================
