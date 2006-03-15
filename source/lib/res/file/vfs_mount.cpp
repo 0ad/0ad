@@ -232,8 +232,8 @@ static bool archive_less(Handle hza1, Handle hza2)
 typedef std::vector<Handle> Archives;
 typedef Archives::const_iterator ArchiveCIt;
 
-// return value is ERR_OK iff archives != 0 and name is a valid archive that
-// was successfully added to the list. see comments below.
+// return value is ERR_OK iff archives != 0 and the file should not be
+// added to VFS (e.g. because it is an archive).
 static LibError enqueue_archive(const char* name, const char* P_archive_dir, Archives* archives)
 {
 	// caller doesn't want us to check if this is a Zip file. this is the
@@ -242,7 +242,7 @@ static LibError enqueue_archive(const char* name, const char* P_archive_dir, Arc
 	if(!archives)
 		return INFO_SKIPPED;
 
-	// get complete path for afile_archive_open.
+	// get complete path for archive_open.
 	// this doesn't (need to) work for subdirectories of the mounted td!
 	// we can't use mount_get_path because we don't have the VFS path.
 	char P_path[PATH_MAX];
@@ -252,11 +252,18 @@ static LibError enqueue_archive(const char* name, const char* P_archive_dir, Arc
 	// checking the extension because archives won't necessarily be
 	// called .zip (e.g. Quake III .pk3).
 	Handle archive = archive_open(P_path);
+	// .. special case: <name> is recognizable as a Zip file but is
+	//    invalid and can't be opened. avoid adding it to
+	//    archive list and/or VFS.
+	if(archive == ERR_CORRUPTED)
+		goto do_not_add_to_VFS_or_list;
 	RETURN_ERR(archive);
+
 	archives->push_back(archive);
 
-	// avoid also adding the Zip file itself to <td>.
+	// avoid also adding the archive file itself to VFS.
 	// (when caller sees ERR_OK, they skip the file)
+do_not_add_to_VFS_or_list:
 	return ERR_OK;
 }
 
@@ -367,6 +374,8 @@ static LibError add_ent(TDir* td, DirEnt* ent, const char* P_parent_path, const 
 	// file and subdirectory entries).
 
 	if(enqueue_archive(name, m->P_name.c_str(), archives) == ERR_OK)
+		// return value indicates this file shouldn't be added to VFS
+		// (see enqueue_archive)
 		return ERR_OK;
 
 	// prepend parent path to get complete pathname.
