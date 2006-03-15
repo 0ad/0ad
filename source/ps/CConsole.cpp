@@ -308,19 +308,18 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 	if (!m_bVisible) return;
 
 	switch (szChar){
-		case '\r':
-		case '\n':
+		case SDLK_RETURN:
 			iHistoryPos = -1;
 			m_iMsgHistPos = 1;
 			ProcessBuffer(m_szBuffer);
 			FlushBuffer();
 			return;
 
-		case '\t':
+		case SDLK_TAB:
 			// Auto Complete
 			return;
 
-		case '\b':
+		case SDLK_BACKSPACE:
 			if (IsEmpty() || IsBOB()) return;
 
 			if (m_iBufferPos == m_iBufferLength)
@@ -689,6 +688,31 @@ extern CConsole* g_Console;
 
 extern void Die(int err, const wchar_t* fmt, ...);
 
+static bool isUnprintableChar(SDL_keysym key)
+{
+	// U+0000 to U+001F are control characters
+	if (key.unicode < 0x20)
+	{
+		switch (key.sym)
+		{
+			// We want to allow some, which are handled specially
+		case SDLK_RETURN: case SDLK_TAB:
+		case SDLK_BACKSPACE: case SDLK_DELETE:
+		case SDLK_HOME: case SDLK_END:
+		case SDLK_LEFT: case SDLK_RIGHT:
+		case SDLK_UP: case SDLK_DOWN:
+		case SDLK_PAGEUP: case SDLK_PAGEDOWN:
+			return false;
+
+			// Ignore the others
+		default:
+			return true;
+		}
+	}
+
+	return false;
+}
+
 InReaction conInputHandler(const SDL_Event* ev)
 {
 	if( ev->type == SDL_HOTKEYDOWN )
@@ -696,11 +720,12 @@ InReaction conInputHandler(const SDL_Event* ev)
 		if( ev->user.code == HOTKEY_CONSOLE_TOGGLE )
 		{
 			g_Console->ToggleVisible();
-			return( IN_HANDLED );
+			return IN_HANDLED;
 		}
 		else if( ev->user.code == HOTKEY_CONSOLE_COPY )
 		{
 			sys_clipboard_set( g_Console->GetBuffer() );
+			return IN_HANDLED;
 		}
 		else if( ev->user.code == HOTKEY_CONSOLE_PASTE )
 		{
@@ -712,6 +737,7 @@ InReaction conInputHandler(const SDL_Event* ev)
 
 				sys_clipboard_free(text);
 			}
+			return IN_HANDLED;
 		}
 	}
 
@@ -725,13 +751,7 @@ InReaction conInputHandler(const SDL_Event* ev)
 
 	// Stop unprintable characters (ctrl+, alt+ and escape),
 	// also prevent ` and/or ~ appearing in console every time it's toggled.
-	// MT: Is this safe? Does any valid character require a ctrl+ or alt+
-	//     key combination?
-	// SB: Not safe, really.. Swedish keyboards have {[]} on AltGr (Ctrl-Alt)
-	//     for example, so I commented those tests.
-	if( ( ev->key.keysym.sym != SDLK_ESCAPE ) &&
-		/*!g_keys[SDLK_LCTRL] && !g_keys[SDLK_RCTRL] &&
-		!g_keys[SDLK_LALT] && !g_keys[SDLK_RALT] &&*/
+	if( !isUnprintableChar(ev->key.keysym) &&
 		!hotkeys[HOTKEY_CONSOLE_TOGGLE] )
 		g_Console->InsertChar(sym, (wchar_t)ev->key.keysym.unicode );
 
