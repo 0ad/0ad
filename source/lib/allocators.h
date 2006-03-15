@@ -40,7 +40,6 @@ extern void single_free(void* storage, volatile uintptr_t* in_use_flag, void* p)
 
 // C++ wrapper
 #ifdef __cplusplus
-#include "nommgr.h"
 
 // T must be POD (Plain Old Data) because it is memset to 0!
 template<class T> class SingleAllocator
@@ -59,13 +58,12 @@ public:
 		return single_calloc(&storage, &is_in_use, sizeof(storage));
 	}
 
-	void free(void* p)
+	void release(void* p)
 	{
 		single_free(&storage, &is_in_use, p);
 	}
 };
 
-#include "mmgr.h"
 #endif	// #ifdef __cplusplus
 
 

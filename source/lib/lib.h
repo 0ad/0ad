@@ -58,7 +58,6 @@ scope
 
 #include "config.h"
 #include "lib/types.h"
-
 #include "sysdep/sysdep.h"
 #include "sysdep/cpu.h"	// CAS
 
@@ -199,20 +198,9 @@ STMT(\
 
 
 
-
-
-
-
 const size_t KiB = 1ul << 10;
 const size_t MiB = 1ul << 20;
 const size_t GiB = 1ul << 30;
-
-
-#if OS_WIN
-#define DIR_SEP '\\'
-#else
-#define DIR_SEP '/'
-#endif
 
 
 
@@ -289,6 +277,8 @@ extern u16 u32_lo(u32 x);
 
 extern u64 u64_from_u32(u32 hi, u32 lo);
 extern u32 u32_from_u16(u16 hi, u16 lo);
+
+
 
 
 inline bool feq(float f1, float f2)

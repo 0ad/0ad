@@ -1,3 +1,4 @@
+
 // archive backend for Zip files
 //
 // Copyright (c) 2003-2006 Jan Wassenberg
@@ -24,11 +25,10 @@ struct Archive;
 struct ArchiveEntry;
 
 
-// analyse an opened file: if it is a Zip archive, call back into
-// archive.cpp to populate the Archive object with a list of the
-// files it contains.
-// returns ERR_OK on success, ERR_UNKNOWN_FORMAT if not a Zip archive
-// (see below) or another negative LibError code.
+// analyse an opened Zip file; call back into archive.cpp to
+// populate the Archive object with a list of the files it contains.
+// returns ERR_OK on success, ERR_CORRUPTED if file is recognizable as
+// a Zip file but invalid, otherwise ERR_UNKNOWN_FORMAT or IO error.
 //
 // fairly slow - must read Central Directory from disk
 // (size ~= 60 bytes*num_files); observed time ~= 80ms.
@@ -67,5 +67,8 @@ extern LibError zip_archive_add_file(ZipArchive* za, const ArchiveEntry* ae, voi
 // IO cost: writes out Central Directory to disk (about 70 bytes per file).
 extern LibError zip_archive_finish(ZipArchive* za);
 
+
+template<typename T> u32 u32_from_larger2(T x);
+template<typename T> u16 u16_from_larger2(T x);
 
 #endif	// #ifndef ZIP_H__

@@ -12,7 +12,9 @@ enum CompressionMethod
 	CM_NONE,
 
 	// zlib "deflate" - see RFC 1750, 1751.
-	CM_DEFLATE
+	CM_DEFLATE,
+
+	CM_UNSUPPORTED
 };
 
 extern uintptr_t comp_alloc(ContextType type, CompressionMethod method);

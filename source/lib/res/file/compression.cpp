@@ -423,22 +423,22 @@ uintptr_t comp_alloc(ContextType type, CompressionMethod method)
 		return 0;
 	Compressor* c;
 
-#include "nommgr.h"	// protect placement new and free() from macros
 	switch(method)
 	{
 #ifndef NO_ZLIB
 	case CM_DEFLATE:
 		cassert(sizeof(ZLibCompressor) <= MAX_COMPRESSOR_SIZE);
+#include "nommgr.h"	// protect placement new
 		c = new(c_mem) ZLibCompressor(type);
+#include "mmgr.h"
 		break;
 #endif
 	default:
 		debug_warn("unknown compression type");
-		compressor_allocator.free(c_mem);
+		compressor_allocator.release(c_mem);
 		return 0;
-#include "mmgr.h"
+
 	}
-#include "mmgr.h"
 
 	c->init();
 	return (uintptr_t)c;
@@ -493,7 +493,5 @@ void comp_free(uintptr_t c_)
 	c->release();
 
 	c->~Compressor();
-#include "nommgr.h"
-	compressor_allocator.free(c);
-#include "mmgr.h"
+	compressor_allocator.release(c);
 }

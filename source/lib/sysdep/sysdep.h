@@ -254,6 +254,15 @@ extern i64 i64_from_double(double);
 #endif
 
 
+#if OS_WIN
+#define DIR_SEP '\\'
+#else
+#define DIR_SEP '/'
+#endif
+
+
+
+
 #ifdef __cplusplus
 }
 #endif

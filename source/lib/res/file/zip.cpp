@@ -28,79 +28,34 @@
 #include "file_internal.h"
 
 
-// Zip file data structures and signatures
-static const u32 cdfh_magic = FOURCC_LE('P','K','\1','\2');
-static const u32  lfh_magic = FOURCC_LE('P','K','\3','\4');
-static const u32 ecdr_magic = FOURCC_LE('P','K','\5','\6');
-
-enum ZipCompressionMethod
-{
-	ZIP_CM_NONE    = 0,
-	ZIP_CM_DEFLATE = 8
-};
-
-#pragma pack(push, 1)
-
-struct LFH
-{
-	u32 magic;
-	u16 x1;			// version needed
-	u16 flags;
-	u16 method;
-	u32 fat_mtime;	// last modified time (DOS FAT format)
-	u32 crc;
-	u32 csize;
-	u32 ucsize;
-	u16 fn_len;
-	u16 e_len;
-};
-
-const size_t LFH_SIZE = sizeof(LFH);
-cassert(LFH_SIZE == 30);
-
-
-struct CDFH
-{
-	u32 magic;
-	u32 x1;			// versions
-	u16 flags;
-	u16 method;
-	u32 fat_mtime;	// last modified time (DOS FAT format)
-	u32 crc;
-	u32 csize;
-	u32 ucsize;
-	u16 fn_len;
-	u16 e_len;
-	u16 c_len;
-	u32 x2;			// spanning
-	u32 x3;			// attributes
-	u32 lfh_ofs;
-};
-
-const size_t CDFH_SIZE = sizeof(CDFH);
-cassert(CDFH_SIZE == 46);
-
-
-struct ECDR
-{
-	u32 magic;
-	u8 x1[6];	// multiple-disk support
-	u16 cd_entries;
-	u32 cd_size;
-	u32 cd_ofs;
-	u16 comment_len;
-};
-
-const size_t ECDR_SIZE = sizeof(ECDR);
-cassert(ECDR_SIZE == 22);
-
-#pragma pack(pop)
-
-
-
+// safe downcasters: cast from any integral type to u32 or u16; 
+// issues warning if larger than would fit in the target type.
 //
+// these are generally useful but included here (instead of e.g. lib.h) for
+// several reasons:
+// - including implementation in lib.h doesn't work because the definition
+//   of debug_assert in turn requires lib.h's STMT.
+// - separate compilation of templates via export isn't supported by
+//   most compilers.
+
+template<typename T> u32 u32_from_larger(T x)
+{
+	const T max = std::numeric_limits<T>::max();
+	debug_assert(x <= max);
+	return (u32)(x & max);
+}
+
+template<typename T> u16 u16_from_larger(T x)
+{
+	const T max = std::numeric_limits<T>::max();
+	debug_assert(x <= max);
+	return (u16)(x & max);
+}
+
+
+//-----------------------------------------------------------------------------
 // timestamp conversion: DOS FAT <-> Unix time_t
-//
+//-----------------------------------------------------------------------------
 
 static time_t time_t_from_FAT(u32 fat_timedate)
 {
@@ -147,6 +102,224 @@ static u32 FAT_from_time_t(time_t time)
 
 
 //-----------------------------------------------------------------------------
+// Zip file data structures and signatures
+//-----------------------------------------------------------------------------
+
+enum ZipCompressionMethod
+{
+	ZIP_CM_NONE    = 0,
+	ZIP_CM_DEFLATE = 8
+};
+
+// translate ArchiveEntry's method to zip_method.
+static ZipCompressionMethod zip_method_for(CompressionMethod method)
+{
+	switch(method)
+	{
+	case CM_NONE:
+		return ZIP_CM_NONE;
+	case CM_DEFLATE:
+		return ZIP_CM_DEFLATE;
+	default:
+		WARN_ERR(ERR_UNKNOWN_CMETHOD);
+		return ZIP_CM_NONE;
+	}
+}
+
+// translate to (not Zip-specific) CompressionMethod for use in ArchiveEntry.
+static CompressionMethod method_for_zip_method(ZipCompressionMethod zip_method)
+{
+	switch(zip_method)
+	{
+	case ZIP_CM_NONE:
+		return CM_NONE;
+	case ZIP_CM_DEFLATE:
+		return CM_DEFLATE;
+	default:
+		WARN_ERR(ERR_UNKNOWN_CMETHOD);
+		return CM_UNSUPPORTED;
+	}
+}
+
+
+static const u32 cdfh_magic = FOURCC_LE('P','K','\1','\2');
+static const u32  lfh_magic = FOURCC_LE('P','K','\3','\4');
+static const u32 ecdr_magic = FOURCC_LE('P','K','\5','\6');
+
+#pragma pack(push, 1)
+
+struct LFH
+{
+	u32 magic;
+	u16 x1;			// version needed
+	u16 flags;
+	u16 method;
+	u32 fat_mtime;	// last modified time (DOS FAT format)
+	u32 crc;
+	u32 csize;
+	u32 ucsize;
+	u16 fn_len;
+	u16 e_len;
+};
+
+const size_t LFH_SIZE = sizeof(LFH);
+cassert(LFH_SIZE == 30);
+
+// convenience (allows writing out LFH and fn in 1 IO).
+// must be declared here to avoid any struct padding.
+struct LFH_Package
+{
+	LFH lfh;
+	char fn[PATH_MAX];
+};
+
+
+struct CDFH
+{
+	u32 magic;
+	u32 x1;			// versions
+	u16 flags;
+	u16 method;
+	u32 fat_mtime;	// last modified time (DOS FAT format)
+	u32 crc;
+	u32 csize;
+	u32 ucsize;
+	u16 fn_len;
+	u16 e_len;
+	u16 c_len;
+	u32 x2;			// spanning
+	u32 x3;			// attributes
+	u32 lfh_ofs;
+};
+
+const size_t CDFH_SIZE = sizeof(CDFH);
+cassert(CDFH_SIZE == 46);
+
+// convenience (avoids need for pointer arithmetic)
+// must be declared here to avoid any struct padding.
+struct CDFH_Package
+{
+	CDFH cdfh;
+	char fn[PATH_MAX];
+};
+
+
+struct ECDR
+{
+	u32 magic;
+	u8 x1[6];	// multiple-disk support
+	u16 cd_entries;
+	u32 cd_size;
+	u32 cd_ofs;
+	u16 comment_len;
+};
+
+const size_t ECDR_SIZE = sizeof(ECDR);
+cassert(ECDR_SIZE == 22);
+
+#pragma pack(pop)
+
+
+static off_t lfh_total_size(const LFH* lfh_le)
+{
+	debug_assert(lfh_le->magic == lfh_magic);
+	const size_t fn_len = read_le16(&lfh_le->fn_len);
+	const size_t  e_len = read_le16(&lfh_le->e_len);
+	// note: LFH doesn't have a comment field!
+
+	return (off_t)(LFH_SIZE + fn_len + e_len);
+}
+
+static void lfh_assemble(LFH* lfh_le,
+	CompressionMethod method, time_t mtime, u32 crc,
+	off_t csize, off_t ucsize, size_t fn_len)
+{
+	const ZipCompressionMethod zip_method = zip_method_for(method);
+	const u32 fat_mtime = FAT_from_time_t(mtime);
+
+	lfh_le->magic     = lfh_magic;
+	lfh_le->x1        = to_le16(0);
+	lfh_le->flags     = to_le16(0);
+	lfh_le->method    = to_le16(zip_method);
+	lfh_le->fat_mtime = to_le32(fat_mtime);
+	lfh_le->crc       = to_le32(crc);
+	lfh_le->csize     = to_le32(u32_from_larger(csize));
+	lfh_le->ucsize    = to_le32(u32_from_larger(ucsize));
+	lfh_le->fn_len    = to_le16(u16_from_larger(fn_len));
+	lfh_le->e_len     = to_le16(0);
+}
+
+
+static void cdfh_decompose(const CDFH* cdfh_le,
+	CompressionMethod& method, time_t& mtime, off_t& csize, off_t& ucsize,
+	const char*& fn, off_t& lfh_ofs, size_t& total_size)
+{
+	const u16 zip_method = read_le16(&cdfh_le->method);
+	const u32 fat_mtime  = read_le32(&cdfh_le->fat_mtime);
+	csize         = (off_t)read_le32(&cdfh_le->csize);
+	ucsize        = (off_t)read_le32(&cdfh_le->ucsize);
+	const u16 fn_len     = read_le16(&cdfh_le->fn_len);
+	const u16 e_len      = read_le16(&cdfh_le->e_len);
+	const u16 c_len      = read_le16(&cdfh_le->c_len);
+	lfh_ofs       = (off_t)read_le32(&cdfh_le->lfh_ofs);
+
+	method = method_for_zip_method((ZipCompressionMethod)zip_method);
+	mtime = time_t_from_FAT(fat_mtime);
+
+	// return 0-terminated copy of filename
+	const char* fn_src = (const char*)cdfh_le+CDFH_SIZE; // not 0-terminated!
+	char fn_buf[PATH_MAX];
+	memcpy2(fn_buf, fn_src, fn_len*sizeof(char));
+	fn_buf[fn_len] = '\0';
+	fn = file_make_unique_fn_copy(fn_buf);
+
+	total_size = CDFH_SIZE + fn_len + e_len + c_len;
+}
+
+static void cdfh_assemble(CDFH* dst_cdfh_le,
+	CompressionMethod method, time_t mtime, u32 crc,
+	size_t csize, size_t ucsize, size_t fn_len, size_t slack, u32 lfh_ofs)
+{
+	const ZipCompressionMethod zip_method = zip_method_for(method);
+	const u32 fat_mtime = FAT_from_time_t(mtime);
+
+	dst_cdfh_le->magic     = cdfh_magic;
+	dst_cdfh_le->x1        = to_le32(0);
+	dst_cdfh_le->flags     = to_le16(0);
+	dst_cdfh_le->method    = to_le16(zip_method);
+	dst_cdfh_le->fat_mtime = to_le32(fat_mtime);
+	dst_cdfh_le->crc       = to_le32(crc);
+	dst_cdfh_le->csize     = to_le32(u32_from_larger(csize));
+	dst_cdfh_le->ucsize    = to_le32(u32_from_larger(ucsize));
+	dst_cdfh_le->fn_len    = to_le16(u16_from_larger(fn_len));
+	dst_cdfh_le->e_len     = to_le16(0);
+	dst_cdfh_le->c_len     = to_le16(u16_from_larger(slack));
+	dst_cdfh_le->x2        = to_le32(0);
+	dst_cdfh_le->x3        = to_le32(0);
+	dst_cdfh_le->lfh_ofs   = to_le32(lfh_ofs);
+}
+
+
+static void ecdr_decompose(ECDR* ecdr_le,
+	uint& cd_entries, off_t& cd_ofs, size_t& cd_size)
+{
+	cd_entries = (uint)read_le16(&ecdr_le->cd_entries);
+	cd_ofs    = (off_t)read_le32(&ecdr_le->cd_ofs);
+	cd_size  = (size_t)read_le32(&ecdr_le->cd_size);
+}
+
+static void ecdr_assemble(ECDR* dst_ecdr_le, uint cd_entries, off_t cd_ofs, size_t cd_size)
+{
+	dst_ecdr_le->magic       = ecdr_magic;
+	memset(dst_ecdr_le->x1, 0, sizeof(dst_ecdr_le->x1));
+	dst_ecdr_le->cd_entries  = to_le16(u16_from_larger(cd_entries));
+	dst_ecdr_le->cd_size     = to_le32(u32_from_larger(cd_size));
+	dst_ecdr_le->cd_ofs      = to_le32(u32_from_larger(cd_ofs));
+	dst_ecdr_le->comment_len = to_le16(0);
+}
+
+
+//-----------------------------------------------------------------------------
 
 // scan for and return a pointer to a Zip record, or 0 if not found.
 // <start> is the expected position; we scan from there until EOF for
@@ -186,9 +359,9 @@ static const u8* za_find_id(const u8* buf, size_t size, const void* start, u32 m
 
 
 // search for ECDR in the last <max_scan_amount> bytes of the file.
-// if found, fill <dst_ecdr> with an (unprocessed) copy of the record and
+// if found, fill <dst_ecdr> with a copy of the (little-endian) ECDR and
 // return ERR_OK, otherwise IO error or ERR_CORRUPTED.
-static LibError za_find_ecdr_impl(File* f, size_t max_scan_amount, ECDR* dst_ecdr)
+static LibError za_find_ecdr(File* f, size_t max_scan_amount, ECDR* dst_ecdr_le)
 {
 	// don't scan more than the entire file
 	const size_t file_size = f->fc.size;
@@ -204,10 +377,10 @@ static LibError za_find_ecdr_impl(File* f, size_t max_scan_amount, ECDR* dst_ecd
 	// look for ECDR in buffer
 	LibError ret = ERR_CORRUPTED;
 	const u8* start = (const u8*)buf;
-	const ECDR* ecdr = (const ECDR*)za_find_id(start, bytes_read, start, ecdr_magic, ECDR_SIZE);
-	if(ecdr)
+	const ECDR* ecdr_le = (const ECDR*)za_find_id(start, bytes_read, start, ecdr_magic, ECDR_SIZE);
+	if(ecdr_le)
 	{
-		*dst_ecdr = *ecdr;
+		*dst_ecdr_le = *ecdr_le;
 		ret = ERR_OK;
 	}
 
@@ -216,93 +389,72 @@ static LibError za_find_ecdr_impl(File* f, size_t max_scan_amount, ECDR* dst_ecd
 }
 
 
-// read the current CDFH. if a valid file, return its filename and ZLoc.
-// return -1 on error (output params invalid), or 0 on success.
-// called by za_enum_files, which passes the output to lookup.
-static LibError za_extract_cdfh(const CDFH* cdfh,
-	ArchiveEntry* ent, size_t& ofs_to_next_cdfh)
+static LibError za_find_cd(File* f, uint& cd_entries, off_t& cd_ofs, size_t& cd_size)
 {
-	// extract fields from CDFH
-	const u16 zip_method = read_le16(&cdfh->method);
-	const u32 fat_mtime  = read_le32(&cdfh->fat_mtime);
-	const u32 csize      = read_le32(&cdfh->csize);
-	const u32 ucsize     = read_le32(&cdfh->ucsize);
-	const u16 fn_len     = read_le16(&cdfh->fn_len);
-	const u16 e_len      = read_le16(&cdfh->e_len);
-	const u16 c_len      = read_le16(&cdfh->c_len);
-	const u32 lfh_ofs    = read_le32(&cdfh->lfh_ofs);
-	const char* fn_tmp = (const char*)cdfh+CDFH_SIZE;	// not 0-terminated!
-
-	// offset to where next CDFH should be (caller will scan for it)
-	// (must be set before early-out below).
-	ofs_to_next_cdfh = CDFH_SIZE + fn_len + e_len + c_len;
-
-	CompressionMethod method;
-	switch(zip_method)
+	// sanity check: file size must be > header size.
+	// (this speeds up determining if the file is a Zip file at all)
+	const size_t file_size = f->fc.size;
+	if(file_size < LFH_SIZE+CDFH_SIZE+ECDR_SIZE)
 	{
-	case ZIP_CM_NONE: method = CM_NONE; break;
-	case ZIP_CM_DEFLATE: method = CM_DEFLATE; break;
-	default: WARN_RETURN(ERR_UNKNOWN_CMETHOD);
+completely_bogus:
+		// this file is definitely not a valid Zip file.
+		// note: the VFS blindly opens files when mounting; it needs to open
+		// all archives, but doesn't know their extension (e.g. ".pk3").
+		// therefore, do not warn user.
+		return ERR_UNKNOWN_FORMAT;
 	}
 
-	// it's a directory entry (we only want files)
-	if(!csize && !ucsize)
-		return ERR_NOT_FILE;	// don't warn - we just ignore these
+	ECDR ecdr_le;
+	// expected case: ECDR at EOF; no file comment (=> we only need to
+	// read 512 bytes)
+	LibError ret = za_find_ecdr(f, ECDR_SIZE, &ecdr_le);
+	if(ret == ERR_OK)
+	{
+have_ecdr:
+		ecdr_decompose(&ecdr_le, cd_entries, cd_ofs, cd_size);
+		return ERR_OK;
+	}
+	// last resort: scan last 66000 bytes of file
+	// (the Zip archive comment field - up to 64k - may follow ECDR).
+	// if the zip file is < 66000 bytes, scan the whole file.
+	ret = za_find_ecdr(f, 66000u, &ecdr_le);
+	if(ret == ERR_OK)
+		goto have_ecdr;
 
-	// null-terminate fn (must be done before file_make_unique_fn_copy)
-	char fn[PATH_MAX];
-	memcpy2(fn, fn_tmp, fn_len);
-	fn[fn_len] = '\0';
-
-	// write out entry data
-	ent->atom_fn = file_make_unique_fn_copy(fn);
-	ent->ofs     = lfh_ofs;
-	ent->csize   = csize;
-	ent->ucsize  = (off_t)ucsize;
-	ent->mtime   = time_t_from_FAT(fat_mtime);
-	ent->method  = method;
-	ent->flags   = ZIP_LFH_FIXUP_NEEDED;
-
-	return ERR_OK;
+	// both ECDR scans failed - this is not a valid Zip file.
+	// now see if the beginning of the file holds a valid LFH:
+	const off_t ofs = 0; const size_t scan_amount = LFH_SIZE;
+	FileIOBuf buf = FILE_BUF_ALLOC;
+	ssize_t bytes_read = file_io(f, ofs, scan_amount, &buf);
+	RETURN_ERR(bytes_read);
+	debug_assert(bytes_read == (ssize_t)scan_amount);
+	const bool has_LFH = (za_find_id(buf, scan_amount, buf, lfh_magic, LFH_SIZE) != 0);
+	file_buf_free(buf);
+	if(!has_LFH)
+		goto completely_bogus;
+	// the Zip file is mostly valid but lacking an ECDR. (can happen if
+	// user hard-exits while building an archive)
+	// notes:
+	// - return ERR_CORRUPTED so VFS will not include this file.
+	// - we could work around this by scanning all LFHs, but won't bother
+	//   because it'd be slow.
+	// - do not warn - the corrupt archive will be deleted on next
+	//   successful archive builder run anyway.
+	return ERR_CORRUPTED;
 }
 
 
 // analyse an opened Zip file; call back into archive.cpp to
 // populate the Archive object with a list of the files it contains.
-// returns ERR_OK on success, ERR_UNKNOWN_FORMAT if not a Zip file
-// (see below) or another negative LibError code.
+// returns ERR_OK on success, ERR_CORRUPTED if file is recognizable as
+// a Zip file but invalid, otherwise ERR_UNKNOWN_FORMAT or IO error.
 //
 // fairly slow - must read Central Directory from disk
 // (size ~= 60 bytes*num_files); observed time ~= 80ms.
 LibError zip_populate_archive(File* f, Archive* a)
 {
-	LibError ret;
-
-	// sanity check: file size must be > header size.
-	// (this speeds up determining if the file is a Zip file at all)
-	const size_t file_size = f->fc.size;
-	if(file_size < LFH_SIZE+CDFH_SIZE+ECDR_SIZE)
-		goto completely_bogus;
-
-	{
-
-	// find "End of Central Dir Record" in file.
-	ECDR ecdr;
-	// .. early out: check expected case (ECDR at EOF; no file comment)
-	ret = za_find_ecdr_impl(f, ECDR_SIZE, &ecdr);
-	// .. second try: scan last 66000 bytes of file
-	// (the Zip archive comment field - up to 64k - may follow ECDR).
-	// if the zip file is < 66000 bytes, scan the whole file.
-	if(ret < 0)
-	{
-		ret = za_find_ecdr_impl(f, 66000u, &ecdr);
-		// still failed - not a valid Zip file
-		if(ret < 0)
-			goto completely_bogus;
-	}
-	const uint   cd_entries =   (uint)read_le16(&ecdr.cd_entries);
-	const off_t  cd_ofs     =  (off_t)read_le32(&ecdr.cd_ofs);
-	const size_t cd_size    = (size_t)read_le32(&ecdr.cd_size);
+	uint cd_entries; off_t cd_ofs; size_t cd_size;
+	RETURN_ERR(za_find_cd(f, cd_entries, cd_ofs, cd_size));
 
 	// call back with number of entries in archives (an upper bound
 	// for valid files; we're not interested in the directory entries).
@@ -310,10 +462,11 @@ LibError zip_populate_archive(File* f, Archive* a)
 	// just skip them and waste a bit of preallocated memory.
 	RETURN_ERR(archive_allocate_entries(a, cd_entries));
 
-	// iterate through Central Directory
 	FileIOBuf buf = FILE_BUF_ALLOC;
 	RETURN_ERR(file_io(f, cd_ofs, cd_size, &buf));
-	ret = ERR_OK;
+
+	// iterate through Central Directory
+	LibError ret = ERR_OK;
 	const CDFH* cdfh = (const CDFH*)buf;
 	size_t ofs_to_next_cdfh = 0;
 	for(uint i = 0; i < cd_entries; i++)
@@ -327,26 +480,22 @@ LibError zip_populate_archive(File* f, Archive* a)
 			break;
 		}
 
-		ArchiveEntry ent;
-		if(za_extract_cdfh(cdfh, &ent, ofs_to_next_cdfh) == ERR_OK)
+		// copy translated fields from CDFH into ArchiveEntry.
+		ArchiveEntry ae;
+		cdfh_decompose(cdfh, ae.method, ae.mtime, ae.csize, ae.ucsize, ae.atom_fn, ae.ofs, ofs_to_next_cdfh);
+		ae.flags = ZIP_LFH_FIXUP_NEEDED;
+
+		// if file (we don't care about directories):
+		if(ae.csize && ae.ucsize)
 		{
-			ret = archive_add_file(a, &ent);
+			ret = archive_add_file(a, &ae);
 			if(ret != ERR_OK)
 				break;
 		}
 	}
+
 	file_buf_free(buf);
-
 	return ret;
-
-	}
-
-	// this file is definitely not a valid Zip file.
-	// note: the VFS blindly opens files when mounting; it needs to open
-	// all archives, but doesn't know their extension (e.g. ".pk3").
-	// therefore, do not warn user.
-completely_bogus:
-	return ERR_UNKNOWN_FORMAT;
 }
 
 
@@ -401,13 +550,7 @@ void zip_fixup_lfh(File* f, ArchiveEntry* ent)
 	ssize_t ret = file_io(f, ent->ofs, LFH_SIZE, FILE_BUF_TEMP, lfh_copier_cb, (uintptr_t)&params);
 	debug_assert(ret == sizeof(LFH));
 
-	debug_assert(lfh.magic == lfh_magic);
-	const size_t fn_len = read_le16(&lfh.fn_len);
-	const size_t  e_len = read_le16(&lfh.e_len);
-
-	ent->ofs += (off_t)(LFH_SIZE + fn_len + e_len);
-	// LFH doesn't have a comment field!
-
+	ent->ofs += lfh_total_size(&lfh);
 	ent->flags &= ~ZIP_LFH_FIXUP_NEEDED;
 }
 
@@ -461,18 +604,6 @@ LibError zip_archive_create(const char* zip_filename, ZipArchive** pza)
 }
 
 
-static inline u32 u32_from_size_t(size_t x)
-{
-	debug_assert(x <= 0xFFFFFFFF);
-	return (u32)(x & 0xFFFFFFFF);
-}
-
-static inline u16 u16_from_size_t(size_t x)
-{
-	debug_assert(x <= 0xFFFF);
-	return (u16)(x & 0xFFFF);
-}
-
 // add a file (described by ArchiveEntry) to the archive. file_contents
 // is the actual file data; its compression method is given in ae->method and
 // can be CM_NONE.
@@ -480,68 +611,32 @@ static inline u16 u16_from_size_t(size_t x)
 // any sort of write-buffering).
 LibError zip_archive_add_file(ZipArchive* za, const ArchiveEntry* ae, void* file_contents)
 {
-	const char* fn      = ae->atom_fn;
-	const size_t fn_len = strlen(fn);
-	const size_t ucsize = ae->ucsize;
-	const u32 fat_mtime = FAT_from_time_t(ae->mtime);
-	const size_t csize  = ae->csize;
-	const u32 crc32     = ae->crc32;
-	u16 zip_method;
-	switch(ae->method)
-	{
-	case CM_NONE: zip_method = ZIP_CM_NONE; break;
-	case CM_DEFLATE: zip_method = ZIP_CM_DEFLATE; break;
-	default: WARN_RETURN(ERR_UNKNOWN_CMETHOD);
-	}
-
-	const off_t lfh_ofs = za->cur_file_size;
+	const size_t fn_len = strlen(ae->atom_fn);
 
 	// write (LFH, filename, file contents) to archive
-	const LFH lfh =
-	{
-		to_le32(lfh_magic),
-		to_le16(0),	// x1
-		to_le16(0),	// flags
-		to_le16(zip_method),
-		to_le32(fat_mtime),
-		to_le32(crc32),
-		to_le32(u32_from_size_t(csize)),
-		to_le32(u32_from_size_t(ucsize)),
-		to_le16(u16_from_size_t(fn_len)),
-		to_le16(0)	// e_len
-	};
+	// .. put LFH and filename into one 'package'
+	LFH_Package header;
+	lfh_assemble(&header.lfh, ae->method, ae->mtime, ae->crc, ae->csize, ae->ucsize, fn_len);
+	strcpy_s(header.fn, ARRAY_SIZE(header.fn), ae->atom_fn);
+	// .. write that out in 1 IO
+	const off_t lfh_ofs = za->cur_file_size;
 	FileIOBuf buf;
-	buf = (FileIOBuf)&lfh;
-	file_io(&za->f, lfh_ofs, LFH_SIZE, &buf);
-	buf = (FileIOBuf)fn;
-	file_io(&za->f, lfh_ofs+LFH_SIZE, fn_len, &buf);
+	buf = (FileIOBuf)&header;
+	file_io(&za->f, lfh_ofs, LFH_SIZE+fn_len, &buf);
+	// .. write out file contents
 	buf = (FileIOBuf)file_contents;
-	file_io(&za->f, lfh_ofs+(off_t)(LFH_SIZE+fn_len), csize, &buf);
-	za->cur_file_size += (off_t)(LFH_SIZE+fn_len+csize);
+	file_io(&za->f, lfh_ofs+(off_t)(LFH_SIZE+fn_len), ae->csize, &buf);
+	za->cur_file_size += (off_t)(LFH_SIZE+fn_len+ae->csize);
 
 	// append a CDFH to the central dir (in memory)
 	// .. note: pool_alloc may round size up for padding purposes.
 	const size_t prev_pos = za->cdfhs.da.pos;
-	CDFH* cdfh = (CDFH*)pool_alloc(&za->cdfhs, CDFH_SIZE+fn_len);
-	if(!cdfh)
+	CDFH_Package* p = (CDFH_Package*)pool_alloc(&za->cdfhs, CDFH_SIZE+fn_len);
+	if(!p)
 		return ERR_NO_MEM;
 	const size_t slack = za->cdfhs.da.pos-prev_pos - (CDFH_SIZE+fn_len);
-	// .. store header fields
-	cdfh->magic     = to_le32(cdfh_magic);
-	cdfh->x1        = to_le32(0);
-	cdfh->flags     = to_le16(0);
-	cdfh->method    = to_le16(zip_method);
-	cdfh->fat_mtime = to_le32(fat_mtime);
-	cdfh->crc       = to_le32(crc32);
-	cdfh->csize     = to_le32(u32_from_size_t(csize));
-	cdfh->ucsize    = to_le32(u32_from_size_t(ucsize));
-	cdfh->fn_len    = to_le16(u16_from_size_t(fn_len));
-	cdfh->e_len     = to_le16(0);
-	cdfh->c_len     = to_le16(u16_from_size_t(slack));
-	cdfh->x2        = to_le32(0);
-	cdfh->x3        = to_le32(0);
-	cdfh->lfh_ofs   = to_le32(lfh_ofs);
-	memcpy2((char*)cdfh+CDFH_SIZE, fn, fn_len);
+	cdfh_assemble(&p->cdfh, ae->method, ae->mtime, ae->crc, ae->csize, ae->ucsize, fn_len, slack, lfh_ofs);
+	memcpy2(p->fn, ae->atom_fn, fn_len);
 
 	za->cd_entries++;
 
@@ -561,21 +656,14 @@ LibError zip_archive_finish(ZipArchive* za)
 	ECDR* ecdr = (ECDR*)pool_alloc(&za->cdfhs, ECDR_SIZE);
 	if(!ecdr)
 		return ERR_NO_MEM;
-	ecdr->magic       = ecdr_magic;
-	memset(ecdr->x1, 0, sizeof(ecdr->x1));
-	ecdr->cd_entries  = za->cd_entries;
-	ecdr->cd_size     = (u32)cd_size;
-	ecdr->cd_ofs      = za->cur_file_size;
-	ecdr->comment_len = 0;
+	ecdr_assemble(ecdr, za->cd_entries, za->cur_file_size, cd_size);
 
 	FileIOBuf buf = za->cdfhs.da.base;
 	file_io(&za->f, za->cur_file_size, cd_size+ECDR_SIZE, &buf);
 
 	(void)file_close(&za->f);
 	(void)pool_destroy(&za->cdfhs);
-#include "nommgr.h"
-	za_mgr.free(za);
-#include "mmgr.h"
+	za_mgr.release(za);
 	return ERR_OK;
 }
 

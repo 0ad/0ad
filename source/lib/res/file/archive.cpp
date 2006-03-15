@@ -764,7 +764,7 @@ static LibError read_and_compress_file(const char* atom_fn, uintptr_t ctx,
 	// .. ent.ofs is set by zip_archive_add_file
 	ent.flags   = 0;
 	ent.atom_fn = atom_fn;
-	ent.crc32   = params.crc;
+	ent.crc     = params.crc;
 	if(store_compressed)
 	{
 		ent.method = CM_DEFLATE;
