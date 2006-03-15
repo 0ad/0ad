@@ -837,8 +837,13 @@ int archive_build_continue(ArchiveBuildState* ab)
 
 void archive_build_cancel(ArchiveBuildState* ab)
 {
+	// note: the GUI may call us even though no build was ever in progress.
+	// be sure to make all steps no-op if <ab> is zeroed (initial state) or
+	// no build is in progress.
+
 	comp_free(ab->ctx); ab->ctx = 0;
-	(void)zip_archive_finish(ab->za);
+	if(ab->za)
+		(void)zip_archive_finish(ab->za);
 	memset(ab, 0, sizeof(*ab));
 }
 
