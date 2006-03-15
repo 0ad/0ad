@@ -853,19 +853,19 @@
 			
 			<!-- Statistic (gold circle). -->
 			<sprite	name="snIconStatistic">
-				<image	texture="session/icons/bkg/statistic.dds"
+				<image	texture="session/icons/bkg/statistic_s.dds"
 						size="0 0 100% 100%" 
 				/>
 			</sprite>
 			<sprite	name="snIconStatisticOver">
 				<effect	add_color="42 42 42 0"/>
-				<image	texture="session/icons/bkg/statistic.dds"
+				<image	texture="session/icons/bkg/statistic_s.dds"
 						size="0 0 100% 100%" 
 				/>
 			</sprite>
 			<sprite	name="snIconStatisticDisabled">
 				<effect	grayscale=""/>
-				<image	texture="session/icons/bkg/statistic.dds"
+				<image	texture="session/icons/bkg/statistic_s.dds"
 						size="0 0 100% 100%" 
 				/>
 			</sprite>	
@@ -1543,21 +1543,21 @@
 		
 		<sprite	name="snIconSheetArmour">
 				<image	texture="session/icons/sheets/armour_s.dds"
-						cell_size="64 64"
+						cell_size="16 16"
 						size="0 0 100% 100%"
 				/>
 		</sprite>
 		<sprite	name="snIconSheetArmourOver">
 				<effect	add_color="42 42 42 0"/>
 				<image	texture="session/icons/sheets/armour_s.dds"
-						cell_size="64 64"
+						cell_size="16 16"
 						size="0 0 100% 100%"
 				/>
 		</sprite>
 		<sprite	name="snIconSheetArmourDisabled">
 				<effect	grayscale=""/>
 				<image	texture="session/icons/sheets/armour_s.dds"
-						cell_size="64 64"
+						cell_size="16 16"
 						size="0 0 100% 100%"
 				/>
 		</sprite>		
@@ -1567,7 +1567,7 @@
 						size="0 0 100% 100%" 
 				/>		
 				<image	texture="session/icons/sheets/armour_s.dds"
-						cell_size="64 64"
+						cell_size="16 16"
 						size="0 0 100% 100%"
 				/>
 		</sprite>
@@ -1577,7 +1577,7 @@
 						size="0 0 100% 100%" 
 				/>				
 				<image	texture="session/icons/sheets/armour_s.dds"
-						cell_size="64 64"
+						cell_size="16 16"
 						size="0 0 100% 100%"
 				/>
 		</sprite>
@@ -1587,7 +1587,7 @@
 						size="0 0 100% 100%" 
 				/>				
 				<image	texture="session/icons/sheets/armour_s.dds"
-						cell_size="64 64"
+						cell_size="16 16"
 						size="0 0 100% 100%"
 				/>
 		</sprite>			
@@ -1600,21 +1600,21 @@
 		
 		<sprite	name="snIconSheetAttack">
 				<image	texture="session/icons/sheets/attack_s.dds"
-						cell_size="64 64"
+						cell_size="16 16"
 						size="0 0 100% 100%"
 				/>
 		</sprite>
 		<sprite	name="snIconSheetAttackOver">
 				<effect	add_color="42 42 42 0"/>
 				<image	texture="session/icons/sheets/attack_s.dds"
-						cell_size="64 64"
+						cell_size="16 16"
 						size="0 0 100% 100%"
 				/>
 		</sprite>
 		<sprite	name="snIconSheetAttackDisabled">
 				<effect	grayscale=""/>
 				<image	texture="session/icons/sheets/attack_s.dds"
-						cell_size="64 64"
+						cell_size="16 16"
 						size="0 0 100% 100%"
 				/>
 		</sprite>		
@@ -1634,7 +1634,7 @@
 						size="0 0 100% 100%" 
 				/>				
 				<image	texture="session/icons/sheets/attack_s.dds"
-						cell_size="64 64"
+						cell_size="16 16"
 						size="0 0 100% 100%"
 				/>
 		</sprite>
@@ -1644,7 +1644,7 @@
 						size="0 0 100% 100%" 
 				/>				
 				<image	texture="session/icons/sheets/attack_s.dds"
-						cell_size="64 64"
+						cell_size="16 16"
 						size="0 0 100% 100%"
 				/>
 		</sprite>	
@@ -2283,22 +2283,22 @@
 		-->
 		
 		<sprite	name="snIconSheetStatistic">
-				<image	texture="session/icons/sheets/statistic.dds"
-						cell_size="64 64"
+				<image	texture="session/icons/sheets/statistic_s.dds"
+						cell_size="16 16"
 						size="0 0 100% 100%"
 				/>
 		</sprite>
 		<sprite	name="snIconSheetStatisticOver">
 				<effect	add_color="42 42 42 0"/>
-				<image	texture="session/icons/sheets/statistic.dds"
-						cell_size="64 64"
+				<image	texture="session/icons/sheets/statistic_s.dds"
+						cell_size="16 16"
 						size="0 0 100% 100%"
 				/>
 		</sprite>
 		<sprite	name="snIconSheetStatisticDisabled">
 				<effect	grayscale=""/>
-				<image	texture="session/icons/sheets/statistic.dds"
-						cell_size="64 64"
+				<image	texture="session/icons/sheets/statistic_s.dds"
+						cell_size="16 16"
 						size="0 0 100% 100%"
 				/>
 		</sprite>		
@@ -2307,8 +2307,8 @@
 				<image	texture="session/icons/bkg/statistic.dds"
 						size="0 0 100% 100%" 
 				/>		
-				<image	texture="session/icons/sheets/statistic.dds"
-						cell_size="64 64"
+				<image	texture="session/icons/sheets/statistic_s.dds"
+						cell_size="16 16"
 						size="0 0 100% 100%"
 				/>
 		</sprite>
@@ -2317,8 +2317,8 @@
 				<image	texture="session/icons/bkg/statistic.dds"
 						size="0 0 100% 100%" 
 				/>				
-				<image	texture="session/icons/sheets/statistic.dds"
-						cell_size="64 64"
+				<image	texture="session/icons/sheets/statistic_s.dds"
+						cell_size="16 16"
 						size="0 0 100% 100%"
 				/>
 		</sprite>
@@ -2327,7 +2327,7 @@
 				<image	texture="session/icons/bkg/statistic.dds"
 						size="0 0 100% 100%" 
 				/>				
-				<image	texture="session/icons/sheets/statistic.dds"
+				<image	texture="session/icons/sheets/statistic_s.dds"
 						cell_size="64 64"
 						size="0 0 100% 100%"
 				/>

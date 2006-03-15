@@ -431,14 +431,14 @@
 							if (loop % 2 == 0)
 								tempWidth = (currCrd.coord[rb].width/max + 7);							
 							else
-								tempWidth = 20;							
+								tempWidth = 16;							
 							
 							if (loop == 1)
 							{
 								// Define first stat.
 								addCrds (tempName, 0, 0, currCrd3.coord[rb].x,
 									currCrd.coord[rb].y+currCrd.coord[rb].height-28,
-									tempWidth, 20);
+									tempWidth, 16);
 							}
 							else
 							{
