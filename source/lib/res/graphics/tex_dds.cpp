@@ -425,13 +425,13 @@ static LibError decode_pf(const DDPIXELFORMAT* pf, uint* bpp_, uint* flags_)
 		{
 			// DDPIXELFORMAT in theory supports any ordering of R,G,B,A.
 			// we need to upload to OpenGL, which can only receive BGR(A) or
-			// RBG(A). the former still requires conversion (done by driver),
+			// RGB(A). the former still requires conversion (done by driver),
 			// so it's slower. since the very purpose of supporting uncompressed
-			// DDS is storing images in a format that requires no processessing,
+			// DDS is storing images in a format that requires no processing,
 			// we do not allow any weird orderings that require runtime work.
 			// instead, the artists must export with the correct settings.
 		unsupported_component_ordering:
-			/*/*WARN_RETURN(ERR_TEX_FMT_INVALID)*/;
+			WARN_RETURN(ERR_TEX_FMT_INVALID);
 		}
 
 		CHECK_ERR(tex_validate_plain_format(bpp, flags));
