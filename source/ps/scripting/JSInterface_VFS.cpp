@@ -38,7 +38,13 @@ struct BuildFileListState
 		: cx(cx_)
 	{
 		filename_array = JS_NewArrayObject(cx, 0, NULL);
+		JS_AddRoot(cx, &filename_array);
 		cur_idx = 0;
+	}
+
+	~BuildFileListState()
+	{
+		JS_RemoveRoot(cx, &filename_array);
 	}
 };
 
@@ -164,7 +170,10 @@ JSBool JSI_VFS::ReadFile( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsva
 	CStr contents( (const char*)buf, size );
 	(void)file_buf_free(buf);
 
-	*rval = ToJSVal( CStr( contents ) );
+	// Fix CRLF line endings. (This function will only ever be used on text files.)
+	contents.Replace("\r\n", "\n");
+
+	*rval = ToJSVal( contents );
 	return( JS_TRUE );
 }
 
@@ -192,13 +201,18 @@ JSBool JSI_VFS::ReadFileLines( JSContext* cx, JSObject* UNUSED(obj), uintN argc,
 	CStr contents( (const char*)buf, size );
 	(void)file_buf_free( buf );
 
+	// Fix CRLF line endings. (This function will only ever be used on text files.)
+	contents.Replace("\r\n", "\n");
 
 	//
 	// split into array of strings (one per line)
 	//
 
 	std::stringstream ss( contents );
+
 	JSObject* line_array = JS_NewArrayObject( cx, 0, NULL );
+	JS_AddRoot(cx, &line_array);
+
 	std::string line;
 	int cur_line = 0;
 	while( std::getline( ss, line ) )
@@ -206,6 +220,8 @@ JSBool JSI_VFS::ReadFileLines( JSContext* cx, JSObject* UNUSED(obj), uintN argc,
 		jsval val = ToJSVal( CStr( line ) );
 		JS_SetElement( cx, line_array, cur_line++, &val );
 	}
+
+	JS_RemoveRoot(cx, &line_array);
 
 	*rval = OBJECT_TO_JSVAL( line_array );
 	return( JS_TRUE );

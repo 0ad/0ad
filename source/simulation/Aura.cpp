@@ -8,12 +8,12 @@ using namespace std;
 CAura::CAura( JSContext* cx, CEntity* source, CStrW& name, float radius, JSObject* handler )
 		: m_cx(cx), m_source(source), m_name(name), m_radius(radius), m_handler(handler)
 {
-	JS_AddRoot( m_cx, m_handler );	// don't GC it so we can call it later
+	JS_AddRoot( m_cx, &m_handler );	// don't GC it so we can call it later
 }
 
 CAura::~CAura()
 {
-	JS_RemoveRoot( m_cx, m_handler );
+	JS_RemoveRoot( m_cx, &m_handler );
 }
 
 void CAura::Update( size_t UNUSED(timestep) )
