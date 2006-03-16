@@ -1662,14 +1662,13 @@
 				/>
 		</sprite>
 		<sprite	name="snIconSheetCommandOver">
-				<effect	add_color="42 42 42 0"/>
-				<image	texture="session/icons/sheets/command.dds"
+				<image	texture="session/icons/sheets/command_o.dds"
 						cell_size="64 64"
 						size="0 0 100% 100%"
 				/>
 		</sprite>
 		<sprite	name="snIconSheetCommandDisabled">
-				<effect	grayscale=""/>
+
 				<image	texture="session/icons/sheets/command.dds"
 						cell_size="64 64"
 						size="0 0 100% 100%"
@@ -1686,17 +1685,15 @@
 				/>
 		</sprite>
 		<sprite	name="snIconSheetCommandButtonOver">
-				<effect	add_color="42 42 42 0"/>
 				<image	texture="session/icons/bkg/command.dds"
 						size="0 0 100% 100%" 
 				/>				
-				<image	texture="session/icons/sheets/command.dds"
+				<image	texture="session/icons/sheets/command_o.dds"
 						cell_size="64 64"
 						size="0 0 100% 100%"
 				/>
 		</sprite>
 		<sprite	name="snIconSheetCommandButtonDisabled">
-				<effect	grayscale=""/>
 				<image	texture="session/icons/bkg/command.dds"
 						size="0 0 100% 100%" 
 				/>				
