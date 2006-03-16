@@ -219,9 +219,14 @@ function validProperty (propertyName)
 	// Accepts a string representing an entity property (eg "selection[0].traits.id.generic")
 	// and checks if all the elements (selection[0].traits, selection[0].traits.id, etc) are valid properties.
 	// Returns false if any invalids are found. Returns true if the whole property is valid.
+
+console.write (propertyName);
 	
 	// An empty string is always successful.
 	if (propertyName == "") return true;
+	
+	// An undefined string is always unsuccessful.
+	if (propertyName == undefined) return false;
 
 	// Store elements of the property as an array of strings.
 	splitArray = propertyName.toString().split (".");

@@ -534,6 +534,7 @@
 				sprite_over="snIconArcLeftOver"
 				sprite_disabled="snIconArcLeftDisabled"
 				tooltip_style="snToolTip"
+				ghost="false"
 		/>
 
 		<style	name="snMiniMapArcUp"
@@ -541,6 +542,7 @@
 				sprite_over="snIconArcUpOver"
 				sprite_disabled="snIconArcUpDisabled"
 				tooltip_style="snToolTip"
+				ghost="false"				
 		/>		
 		
 		<style name="snGreenBar"

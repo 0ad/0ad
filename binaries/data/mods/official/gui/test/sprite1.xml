@@ -875,18 +875,27 @@
 				<image	texture="session/icons/bkg/arc_left.dds"
 						size="0 0 100% 100%" 
 				/>
+				<image	texture="session/icons/single/idle.dds"
+						size="0 0 100% 100%" 
+				/>				
 			</sprite>
 			<sprite	name="snIconArcLeftOver">
 				<effect	add_color="42 42 42 0"/>
 				<image	texture="session/icons/bkg/arc_left.dds"
 						size="0 0 100% 100%" 
 				/>
+				<image	texture="session/icons/single/idle.dds"
+						size="0 0 100% 100%" 
+				/>				
 			</sprite>
 			<sprite	name="snIconArcLeftDisabled">
 				<effect	grayscale=""/>
 				<image	texture="session/icons/bkg/arc_left.dds"
 						size="0 0 100% 100%" 
 				/>
+				<image	texture="session/icons/single/idle.dds"
+						size="0 0 100% 100%" 
+				/>				
 			</sprite>			
 			
 			<!-- Arc Up (minimap left). -->
@@ -894,18 +903,27 @@
 				<image	texture="session/icons/bkg/arc_up.dds"
 						size="0 0 100% 100%" 
 				/>
+				<image	texture="session/icons/single/flare.dds"
+						size="0 0 100% 100%" 
+				/>				
 			</sprite>
 			<sprite	name="snIconArcUpOver">
 				<effect	add_color="42 42 42 0"/>
 				<image	texture="session/icons/bkg/arc_up.dds"
 						size="0 0 100% 100%" 
 				/>
+				<image	texture="session/icons/single/flare.dds"
+						size="0 0 100% 100%" 
+				/>				
 			</sprite>
 			<sprite	name="snIconArcUpDisabled">
 				<effect	grayscale=""/>
 				<image	texture="session/icons/bkg/arc_up.dds"
 						size="0 0 100% 100%" 
 				/>
+				<image	texture="session/icons/single/flare.dds"
+						size="0 0 100% 100%" 
+				/>				
 			</sprite>			
 
 		<!--

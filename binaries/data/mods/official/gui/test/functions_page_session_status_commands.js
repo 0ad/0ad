@@ -420,13 +420,17 @@ function refreshCommandButtons()
 		}
 	
 		// Update Barter. (Tab button, persistent buttons, click them to do things.)
-		updateTab ("barter", "production", "", "selection[0].actions.barter.list");
+		updateTab ("barter", "production", "Tab", "selection[0].actions.barter.list");
+		// Update Allegiance. (Tab button, persistent buttons (though unit will be lost as soon as option selected), click them to do things.)
+		tempArray = new Array ("player1", "player2", "player3", "player4", "kill");
+		updateTab ("allegiance", "production", "Tab", "tempArray");
 	
 		// Update pick lists (formation, stance, trade). (Tab button holds current selection, click a button to select a new option and close the tab.)
 		updateTab ("formation", "pick", "", "selection[0].traits.formation.type", "selection[0].traits.formation.curr");
 		updateTab ("stance", "pick", "", "selection[0].traits.ai.stance.list", "selection[0].traits.ai.stance.curr");
 		updateTab ("trade", "pick", "", "selection[0].actions.trade.list", "selection[0].actions.trade.curr");
 		updateTab ("gate", "pick", "", "selection[0].actions.gate.list", "selection[0].actions.gate.curr");
+		updateTab ("weapon", "pick", "", "selection[0].actions.attack", "selection[0].actions.attack.curr");
 		
 		// Update research. (Tab button, persistent buttons, click them to do things.)
 		updateTab ("research", "production", "", "selection[0].actions.create.list.research", "");
@@ -443,7 +447,6 @@ function refreshCommandButtons()
 		updateTab ("explore", "command", "", "selection[0].actions.explore", "");		
 		updateTab ("retreat", "command", "", "selection[0].actions.retreat", "");			
 		updateTab ("stop", "command", "", "selection[0].actions.stop", "");		
-		updateTab ("kill", "command", "", "", "");		
 		
 		// End of commands. Store end position.
 		commandCounter = tabCounter;
