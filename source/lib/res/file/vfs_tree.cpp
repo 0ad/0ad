@@ -425,8 +425,6 @@ static LibError lookup(TDir* td, const char* path, uint flags, TNode** pnode)
 // - no NLSO shutdown order issues; validity is well defined
 //   (namely between tree_init and tree_shutdown)
 // - bonus: tree_init can use it when checking if called twice.
-//
-//
 static TDir* tree_root;
 
 

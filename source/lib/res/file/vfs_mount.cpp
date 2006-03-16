@@ -378,11 +378,20 @@ static LibError add_ent(TDir* td, DirEnt* ent, const char* P_parent_path, const 
 		// (see enqueue_archive)
 		return ERR_OK;
 
-	// prepend parent path to get complete pathname.
-	char V_path[PATH_MAX];
-	CHECK_ERR(vfs_path_append(V_path, tfile_get_atom_fn((TFile*)td), name));
-	const char* atom_fn = file_make_unique_fn_copy(V_path);
-	vfs_opt_notify_loose_file(atom_fn);
+	// notify archive builder that this file could be archived but
+	// currently isn't; if there are too many of these, archive will be
+	// rebuilt.
+	// note: check if archivable to exclude stuff like screenshots
+	// from counting towards the threshold.
+	if(mount_is_archivable(m))
+	{
+		// prepend parent path to get complete pathname.
+		char V_path[PATH_MAX];
+		CHECK_ERR(vfs_path_append(V_path, tfile_get_atom_fn((TFile*)td), name));
+		const char* atom_fn = file_make_unique_fn_copy(V_path);
+
+		vfs_opt_notify_loose_file(atom_fn);
+	}
 
 	// it's a regular data file; add it to the directory.
 	return tree_add_file(td, name, m, ent->size, ent->mtime, 0);

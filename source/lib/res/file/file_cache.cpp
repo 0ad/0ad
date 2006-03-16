@@ -1016,13 +1016,20 @@ FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, bool long_lived)
 		// discarded_buf may be the least valuable entry in cache, but if
 		// still in use (i.e. extant), it must not actually be freed yet!
 		if(extant_bufs.find(discarded_buf) == -1)
+		{
 			free_padded_buf(discarded_buf, size);
+
+			// optional: this iteration doesn't really count because no
+			// memory was actually freed. helps prevent infinite loop
+			// warning without having to raise the limit really high.
+			attempts--;
+		}
 
 		// note: this may seem hefty, but 300 is known to be reached.
 		// (after building archive, file cache is full; attempting to
 		// allocate ~4MB while only freeing small blocks scattered over
 		// the entire cache can take a while)
-		if(attempts++ > 500)
+		if(++attempts > 500)
 			debug_warn("possible infinite loop: failed to make room in cache");
 	}
 

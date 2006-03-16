@@ -475,33 +475,48 @@ public:
 // autobuild logic: decides when to (re)build an archive.
 //-----------------------------------------------------------------------------
 
+// for each loose or archived file encountered during mounting: add to a
+// std::set; if there are more than *_THRESHOLD non-archived files, rebuild.
+// this ends up costing 50ms for 5000 files, so disable it in final release.
+#ifndef FINAL
+# define AB_COUNT_LOOSE_FILES 1
+#else
+# define AB_COUNT_LOOSE_FILES 0
+#endif
+// rebuild if the archive is much older than most recent VFS timestamp.
+// this makes sense during development: the archive will periodically be
+// rebuilt with the newest trace. however, it would be annoying in the
+// final release, where users will frequently mod things, which should not
+// end up rebuilding the main archive.
+#ifndef FINAL
+# define AB_COMPARE_MTIME 1
+#else
+# define AB_COMPARE_MTIME 0
+#endif
+
+#if AB_COUNT_LOOSE_FILES
 static const ssize_t REBUILD_MAIN_ARCHIVE_THRESHOLD = 50;
 static const ssize_t BUILD_MINI_ARCHIVE_THRESHOLD = 20;
 
-typedef std::vector<const char*> FnVector;
-static FnVector loose_files;
-static ssize_t loose_file_total, non_loose_file_total;
-
-static std::set<const char*> loose;
-static std::set<const char*> archive;
+typedef std::set<const char*> FnSet;
+static FnSet loose_files;
+static FnSet archived_files;
+#endif
 
 void vfs_opt_notify_loose_file(const char* atom_fn)
 {
-	loose_file_total++;
-
-loose.insert(atom_fn);
-
-	// only add if it's not yet clear the main archive will be
-	// rebuilt anyway (otherwise we'd just waste time and memory)
-	if(loose_files.size() > REBUILD_MAIN_ARCHIVE_THRESHOLD)
-		loose_files.push_back(atom_fn);
+#if AB_COUNT_LOOSE_FILES
+	// note: files are added before archives, so we can't stop adding to
+	// set after one of the above thresholds are reached.
+	loose_files.insert(atom_fn);
+#endif
 }
 
 void vfs_opt_notify_non_loose_file(const char* atom_fn)
 {
-archive.insert(atom_fn);
-
-	non_loose_file_total++;
+#if AB_COUNT_LOOSE_FILES
+	archived_files.insert(atom_fn);
+#endif
 }
 
 
@@ -544,29 +559,30 @@ static bool should_rebuild_main_archive(const char* trace_filename,
 	const char* archive_fn_fmt, DirEnts& dirents)
 {
 	// if there's no trace file, no point in building a main archive.
-	struct stat s;
-	if(file_stat(trace_filename, &s) != ERR_OK)
+	// (we wouldn't know how to order the files)
+	if(!file_exists(trace_filename))
 		return false;
-	// otherwise, if trace is up-to-date, stop recording a new one.
-	const time_t vfs_mtime = tree_most_recent_mtime();
-	if(s.st_mtime >= vfs_mtime)
-		trace_enable(false);
 
-	const ssize_t loose_files_only = loose_file_total - non_loose_file_total;
+#if AB_COUNT_LOOSE_FILES
+	// too many (eligible for archiving!) loose files not in archive: rebuild.
+	const ssize_t loose_files_only = (ssize_t)loose_files.size() - (ssize_t)archived_files.size();
 	if(loose_files_only >= REBUILD_MAIN_ARCHIVE_THRESHOLD)
 		return true;
+#endif
 
-	// scan dir and see what archives are already present
+	// scan dir and see what archives are already present..
 	{
 	ArchiveScanner archive_scanner(archive_fn_fmt);
-	for(DirEnts::iterator it = dirents.begin(); it != dirents.end(); ++it)
+	// note: a loop is more convenient than std::for_each, which would
+	// require referencing the returned functor (since param is a copy).
+	for(DirEnts::const_iterator it = dirents.begin(); it != dirents.end(); ++it)
 		archive_scanner(*it);
-	// .. 3 or more archives in dir: rebuild so that they'll be
-	//    merged into one archive and the rest deleted
-	if(archive_scanner.num_archives >= 3)
+	// .. no archive yet OR 'lots' of them: rebuild so that they'll be
+	//    merged into one archive and the rest deleted.
+	if(archive_scanner.num_archives == 0 || archive_scanner.num_archives >= 4)
 		return true;
-	// .. dev builds only: archive is much older than most recent data.
-#ifndef FINAL
+#if AB_COMPARE_MTIME
+	// .. archive is much older than most recent data: rebuild.
 	const double max_diff = 14*86400;	// 14 days
 	if(difftime(tree_most_recent_mtime(), archive_scanner.most_recent_archive_mtime) > max_diff)
 		return true;
@@ -575,6 +591,8 @@ static bool should_rebuild_main_archive(const char* trace_filename,
 
 	return false;
 }
+
+//-----------------------------------------------------------------------------
 
 
 static ArchiveBuildState ab;
@@ -651,9 +669,12 @@ static int vfs_opt_continue()
 
 static bool should_build_mini_archive(const char* UNUSED(mini_archive_fn_fmt))
 {
-	const ssize_t loose_files_only = loose_file_total - non_loose_file_total;
+#if AB_COUNT_LOOSE_FILES
+	// too many (eligible for archiving!) loose files not in archive
+	const ssize_t loose_files_only = (ssize_t)loose_files.size() - (ssize_t)archived_files.size();
 	if(loose_files_only >= BUILD_MINI_ARCHIVE_THRESHOLD)
 		return true;
+#endif
 	return false;
 }
 
