@@ -782,7 +782,6 @@ void vfs_display()
 // splitting this into a separate function.
 static void vfs_init_once(void)
 {
-	tree_init();
 	mount_init();
 }
 
@@ -805,5 +804,4 @@ void vfs_shutdown()
 {
 	trace_shutdown();
 	mount_shutdown();
-	tree_shutdown();
 }

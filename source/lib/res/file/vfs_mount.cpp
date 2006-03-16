@@ -617,7 +617,6 @@ LibError vfs_mount(const char* V_mount_point, const char* P_real_path, int flags
 LibError mount_rebuild()
 {
 	tree_clear();
-	tree_init();
 	remount_all();
 	return ERR_OK;
 }
@@ -677,7 +676,7 @@ void mount_init()
 
 void mount_shutdown()
 {
-	tree_clear();
+	tree_shutdown();
 	mount_unmount_all();
 }
 

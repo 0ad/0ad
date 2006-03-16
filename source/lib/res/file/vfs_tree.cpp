@@ -420,34 +420,63 @@ static LibError lookup(TDir* td, const char* path, uint flags, TNode** pnode)
 //
 //////////////////////////////////////////////////////////////////////////////
 
+// this is a pointer to node_alloc-ed memory instead of a static TDir for
+// 2 reasons:
+// - no NLSO shutdown order issues; validity is well defined
+//   (namely between tree_init and tree_shutdown)
+// - bonus: tree_init can use it when checking if called twice.
+//
+//
 static TDir* tree_root;
 
-// rationale: can't do this in tree_shutdown - we'd leak at exit.
-// calling from tree_add* is ugly as well, so require manual init.
+
+// establish a root node and prepare node_allocator for use.
+//
+// rationale: calling this from every tree_add* is ugly, so require
+// manual init.
 void tree_init()
 {
+	// must not call more than once without intervening tree_shutdown
+	debug_assert(!tree_root);
+
 	node_init();
 
+#include "nommgr.h"	// placement new
 	void* mem = node_alloc();
 	if(mem)
-	{
-#include "nommgr.h"
 		tree_root = new(mem) TDir("", "");
 #include "mmgr.h"
-	}
 }
 
 
-void tree_shutdown()
-{
-	node_shutdown();
-}
-
-
+// empty all directories and free their memory.
+// however, node_allocator's DynArray still remains initialized and
+// the root directory is usable (albeit empty).
+// use when remounting.
 void tree_clear()
 {
 	tree_root->clearR();
 	node_free_all();
+}
+
+
+// shut down entirely; destroys node_allocator. any further use after this
+// requires another tree_init.
+void tree_shutdown()
+{
+	// tree_shutdown should be preceded by tree_init, so ought to be valid.
+	debug_assert(tree_root);
+
+	// careful! do not call tree_clear because it will un-map all
+	// node memory, which would cause the dtor below to fail.
+	tree_root->clearR();
+
+	// we've still got to destroy the root node (otherwise its
+	// hash table will leak).
+	tree_root->~TDir();
+	tree_root = 0;
+
+	node_shutdown();
 }
 
 

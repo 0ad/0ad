@@ -26,14 +26,19 @@ class TDir;
 #include "vfs_mount.h"	// Mount
 
 
-
+// establish a root node and prepare node_allocator for use.
 extern void tree_init();
+
+// shut down entirely; destroys node_allocator. any further use after this
+// requires another tree_init.
 extern void tree_shutdown();
 
 extern void tree_display();
 
-// empties the tree and frees all resources. this is used when
-// rebuilding VFS and on exit.
+// empty all directories and free their memory.
+// however, node_allocator's DynArray still remains initialized and
+// the root directory is usable (albeit empty).
+// use when remounting.
 extern void tree_clear();
 
 extern time_t tree_most_recent_mtime();
