@@ -15,6 +15,7 @@
 #include "Model.h"
 #include "Unit.h"
 #include "Matrix3D.h"
+#include "ps/Profile.h"
 
 #define LOG_CATEGORY "graphics"
 
@@ -77,37 +78,28 @@ CObjectBase* CObjectManager::FindObjectBase(const char* objectname)
 
 CObjectEntry* CObjectManager::FindObject(const char* objname)
 {
-	CObjectBase* base = FindObjectBase(objname);
-
-	if (! base)
-		return NULL;
-
-	std::set<CStr> choices;
-	// TODO: Fill in these choices from somewhere, e.g.:
-	//choices.insert("whatever");
-
-	CObjectBase::variation_key var;
-	base->CalculateVariation(choices, var);
-
-	CObjectBase::variation_key::const_iterator vars_it=var.begin();
-	return FindObjectVariation(base, var, vars_it);
+	std::vector<std::set<CStrW> > selections; // TODO - should this really be empty?
+	return FindObjectVariation(objname, selections);
 }
 
-CObjectEntry* CObjectManager::FindObjectVariation(const char* objname, const CObjectBase::variation_key& vars, CObjectBase::variation_key::const_iterator& vars_it)
+CObjectEntry* CObjectManager::FindObjectVariation(const char* objname, const std::vector<std::set<CStrW> >& selections)
 {
 	CObjectBase* base = FindObjectBase(objname);
 
 	if (! base)
 		return NULL;
 
-	return FindObjectVariation(base, vars, vars_it);
+	return FindObjectVariation(base, selections);
 }
 
-CObjectEntry* CObjectManager::FindObjectVariation(CObjectBase* base, const CObjectBase::variation_key& vars, CObjectBase::variation_key::const_iterator& vars_it)
+CObjectEntry* CObjectManager::FindObjectVariation(CObjectBase* base, const std::vector<std::set<CStrW> >& selections)
 {
+	PROFILE( "object variation loading" );
+
 	// Look to see whether this particular variation has already been loaded
 
-	ObjectKey key (base->m_Name, vars);
+	std::vector<u8> choices = base->CalculateVariationKey(selections);
+	ObjectKey key (base->m_Name, choices);
 
 	std::map<ObjectKey, CObjectEntry*>::iterator it = m_ObjectTypes[0].m_Objects.find(key);
 	if (it != m_ObjectTypes[0].m_Objects.end())
@@ -117,7 +109,7 @@ CObjectEntry* CObjectManager::FindObjectVariation(CObjectBase* base, const CObje
 
 	CObjectEntry* obj = new CObjectEntry(0, base); // TODO: type ?
 
-	if (! obj->BuildRandomVariant(vars, vars_it))
+	if (! obj->BuildVariation(selections))
 	{
 		DeleteObject(obj);
 		return NULL;
@@ -185,8 +177,6 @@ void CObjectManager::UnloadObjects()
 }
 
 
-//////////////////////////////////////////////////////////////////////////
-// For ScEd:
 
 static void GetObjectName_ThunkCb(const char* path, const DirEnt* UNUSED(ent), void* context)
 {
@@ -194,80 +184,15 @@ static void GetObjectName_ThunkCb(const char* path, const DirEnt* UNUSED(ent), v
 	CStr name (path);
 	names->push_back(name.AfterFirst("actors/"));
 }
+
 void CObjectManager::GetAllObjectNames(std::vector<CStr>& names)
 {
 	VFSUtil::EnumDirEnts("art/actors/", VFSUtil::RECURSIVE, "*.xml",
 		GetObjectName_ThunkCb, &names);
 }
+
 void CObjectManager::GetPropObjectNames(std::vector<CStr>& names)
 {
 	VFSUtil::EnumDirEnts("art/actors/props/", VFSUtil::RECURSIVE, "*.xml",
 		GetObjectName_ThunkCb, &names);
-}
-
-struct CObjectThing_Entity : public CObjectThing
-{
-	CObjectThing_Entity(CBaseEntity* b) : base(b), ent(NULL), obj(g_ObjMan.FindObject((CStr)b->m_actorName)) {}
-	~CObjectThing_Entity() {}
-	CBaseEntity* base;
-	CEntity* ent;
-	CObjectEntry* obj;
-	void Create(CMatrix3D& transform, int playerID)
-	{
-		CVector3D orient = transform.GetIn();
-		CVector3D position = transform.GetTranslation();
-		ent = g_EntityManager.create(base, position, atan2(-orient.X, -orient.Z));
-		ent->SetPlayer(g_Game->GetPlayer(playerID));
-	}
-	void SetTransform(CMatrix3D& transform)
-	{
-		CVector3D orient = transform.GetIn();
-		CVector3D position = transform.GetTranslation();
-
-		// This looks quite yucky, but nothing else seems to actually work:
-		ent->m_position =
-		ent->m_position_previous =
-		ent->m_graphics_position = position;
-		ent->teleport();
-		ent->m_orientation =
-		ent->m_orientation_previous =
-		ent->m_graphics_orientation = atan2(-orient.X, -orient.Z);
-		ent->reorient();
-	}
-	CObjectEntry* GetObjectEntry()
-	{
-		return obj;
-	}
-};
-struct CObjectThing_Object : public CObjectThing
-{
-	CObjectThing_Object(CObjectEntry* o) : obj(o) {}
-	~CObjectThing_Object() {}
-	CObjectEntry* obj;
-	CUnit* unit;
-	void Create(CMatrix3D& transform, int UNUSED(playerID))
-	{
-		unit = new CUnit(obj, obj->m_Model->Clone());
-		unit->GetModel()->SetTransform(transform);
-		g_UnitMan.AddUnit(unit);
-	}
-	void SetTransform(CMatrix3D& transform)
-	{
-		unit->GetModel()->SetTransform(transform);
-	}
-	CObjectEntry* GetObjectEntry()
-	{
-		return obj;
-	}
-};
-
-void CObjectManager::SetSelectedEntity(CBaseEntity* thing)
-{
-	delete m_SelectedThing;
-	m_SelectedThing = (thing ? new CObjectThing_Entity(thing) : NULL);
-}
-void CObjectManager::SetSelectedObject(CObjectEntry* thing)
-{
-	delete m_SelectedThing;
-	m_SelectedThing = (thing ? new CObjectThing_Object(thing) : NULL);
 }

@@ -69,8 +69,6 @@ public:
 	static void Save(const char* filename, const CSkeletonAnimDef* anim);
 
 public:
-	// name of the animation
-	CStr m_Name; // TODO: this doesn't seem to be used, so it's just a waste of memory...
 	// frame time - time between successive frames, in ms
 	float m_FrameTime;
 	// number of keys in each frame - should match number of bones in the skeleton

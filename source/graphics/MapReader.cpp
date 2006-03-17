@@ -205,7 +205,8 @@ int CMapReader::ApplyData()
 			// loaded on demand)
 		}
 
-		CUnit* unit = g_UnitMan.CreateUnit(m_ObjectTypes.at(m_Objects[i].m_ObjectIndex), NULL);
+		std::set<CStrW> selections; // TODO: read from file
+		CUnit* unit = g_UnitMan.CreateUnit(m_ObjectTypes.at(m_Objects[i].m_ObjectIndex), NULL, selections);
 
 		if (unit)
 		{
@@ -428,7 +429,9 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 			LOG(ERROR, LOG_CATEGORY, "Failed to load entity template '%ls'", TemplateName.c_str());
 		else
 		{
-			HEntity ent = g_EntityManager.create(base, Position, Orientation);
+			std::set<CStrW> selections; // TODO: read from file
+
+			HEntity ent = g_EntityManager.create(base, Position, Orientation, selections);
 
 			if (! ent)
 				LOG(ERROR, LOG_CATEGORY, "Failed to create entity of type '%ls'", TemplateName.c_str());
@@ -492,7 +495,9 @@ int CXMLReader::ReadNonEntities(XMBElement parent, double end_time)
 				debug_warn("Invalid XML data - DTD shouldn't allow this");
 		}
 
-		CUnit* unit = g_UnitMan.CreateUnit(ActorName, NULL);
+		std::set<CStrW> selections; // TODO: read from file
+
+		CUnit* unit = g_UnitMan.CreateUnit(ActorName, NULL, selections);
 
 		if (unit)
 		{

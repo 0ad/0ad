@@ -36,47 +36,61 @@ CObjectEntry::~CObjectEntry()
 	delete m_Model;
 }
 
-bool CObjectEntry::BuildRandomVariant(const CObjectBase::variation_key& vars, CObjectBase::variation_key::const_iterator& vars_it)
-{
-	// vars_it is passed by reference so that the caller's iterator
-	// can be incremented by the appropriate amount, to point to the
-	// next object's set of variant choices (for propped models).
 
+bool CObjectEntry::BuildVariation(const std::vector<std::set<CStrW> >& selections)
+{
 	CStr chosenTexture;
 	CStr chosenModel;
 	CStr chosenColor;
 	std::map<CStr, CObjectBase::Prop> chosenProps;
 	std::multimap<CStr, CObjectBase::Anim> chosenAnims;
 
-	// For each group in m_Base->m_Variants, take whichever variant is specified
-	// by 'vars', and then store its data into the 'chosen' variables. If data
-	// is specified more than once, the last value overrides all previous ones.
-
 	for (std::vector<std::vector<CObjectBase::Variant> >::iterator grp = m_Base->m_Variants.begin();
 		grp != m_Base->m_Variants.end();
 		++grp)
 	{
-		if (vars_it == vars.end())
+		// Ignore groups with nothing inside. (A warning will have been
+		// emitted by the loading code.)
+		if (grp->size() == 0)
+			continue;
+
+		int match = -1; // -1 => none found yet
+
+		// If there's only a single variant, choose that one
+		if (grp->size() == 1)
 		{
-			debug_warn("BuildRandomVariant is using too many vars");
-			return false;
+			match = 0;
+		}
+		else
+		{
+			// Determine the first variant that matches the provided strings,
+			// starting with the highest priority selections set:
+
+			for (std::vector<std::set<CStrW> >::const_iterator selset = selections.begin(); selset < selections.end(); ++selset)
+			{
+				debug_assert(grp->size() < 256); // else they won't fit in 'choices'
+
+				for (size_t i = 0; i < grp->size(); ++i)
+				{
+					if (selset->count((*grp)[i].m_VariantName))
+					{
+						match = (u8)i;
+						break;
+					}
+				}
+
+				// Stop after finding the first match
+				if (match != -1)
+					break;
+			}
+
+			// If no match, just choose the first
+			if (match == -1)
+				match = 0;
 		}
 
-		// Get the correct variant
-		u8 var_id = *vars_it++;
-		if (var_id >= grp->size())
-		{
-			LOG(ERROR, LOG_CATEGORY, "Internal error (BuildRandomVariant: %d not in 0..%d)", var_id, grp->size()-1);
-			// Carry on as best we can, by using some arbitrary variant (rather
-			// than choosing none, else we might end up with no model or texture)
-			if (grp->size())
-				var_id = 0;
-			else
-				// ... unless there aren't any variants in this group, in which
-				// case just give up and try the next group
-				continue;
-		}
-		CObjectBase::Variant& var ((*grp)[var_id]);
+		// Get the matched variant
+		CObjectBase::Variant& var ((*grp)[match]);
 
 		// Apply its data:
 
@@ -124,11 +138,8 @@ bool CObjectEntry::BuildRandomVariant(const CObjectBase::variation_key& vars, CO
 
 	for (std::map<CStr, CObjectBase::Prop>::iterator it = chosenProps.begin(); it != chosenProps.end(); ++it)
 		props.push_back(it->second);
-	// TODO: This is all wrong, since it breaks the order (which vars_it relies on)
-
 
 	// Build the model:
-
 
 	// get the root directory of this object
 	CStr dirname = g_ObjMan.m_ObjectTypes[m_Type].m_Name;
@@ -176,9 +187,26 @@ bool CObjectEntry::BuildRandomVariant(const CObjectBase::variation_key& vars, CO
 		}
 	}
 
-	// start up idling
-	if (! m_Model->SetAnimation(GetRandomAnimation("idle")))
-		LOG(ERROR, LOG_CATEGORY, "Failed to set idle animation in model \"%s\"", modelfilename);
+	// ensure there's always an idle animation
+	if (m_Animations.find("idle") == m_Animations.end())
+	{
+		CSkeletonAnim* anim = new CSkeletonAnim();
+		anim->m_Name = "idle";
+		anim->m_AnimDef = NULL;
+		anim->m_Speed = 0.f;
+		anim->m_ActionPos = 0.f;
+		anim->m_ActionPos2 = 0.f;
+		m_Animations.insert(std::make_pair("idle", anim));
+
+		// Ignore errors, since they're probably saying this is a non-animated model
+		m_Model->SetAnimation(anim);
+	}
+	else
+	{
+		// start up idling
+		if (! m_Model->SetAnimation(GetRandomAnimation("idle")))
+			LOG(ERROR, LOG_CATEGORY, "Failed to set idle animation in model \"%s\"", modelfilename);
+	}
 
 	// build props - TODO, RC - need to fix up bounds here
 	// TODO: Make sure random variations get handled correctly when a prop fails
@@ -186,7 +214,7 @@ bool CObjectEntry::BuildRandomVariant(const CObjectBase::variation_key& vars, CO
 	{
 		const CObjectBase::Prop& prop = props[p];
 	
-		CObjectEntry* oe = g_ObjMan.FindObjectVariation(prop.m_ModelName, vars, vars_it);
+		CObjectEntry* oe = g_ObjMan.FindObjectVariation(prop.m_ModelName, selections);
 		if (!oe)
 		{
 			LOG(ERROR, LOG_CATEGORY, "Failed to build prop model \"%s\" on actor \"%s\"", (const char*)prop.m_ModelName, (const char*)m_Base->m_ShortName);
@@ -265,7 +293,6 @@ bool CObjectEntry::BuildRandomVariant(const CObjectBase::variation_key& vars, CO
 	return true;
 }
 
-
 CSkeletonAnim* CObjectEntry::GetRandomAnimation(const CStr& animationName)
 {
 	SkeletonAnimMap::iterator lower = m_Animations.lower_bound(animationName);
@@ -279,7 +306,7 @@ CSkeletonAnim* CObjectEntry::GetRandomAnimation(const CStr& animationName)
 	else
 	{
 		// TODO: Do we care about network synchronisation of random animations?
-		int id = rand() % (int)count;
+		int id = rand(0, (int)count);
 		std::advance(lower, id);
 		return lower->second;
 	}

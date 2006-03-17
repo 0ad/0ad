@@ -29,6 +29,45 @@ enum EGotoSituation
 	WOULD_LEAVE_MAP
 };
 
+float CEntity::processChooseMovement( float distance )
+{
+	// Should we run or walk
+	if (m_shouldRun && m_staminaCurr > 0 && distance < m_run.m_MaxRange && 
+		( distance > m_run.m_MinRange || m_isRunning ) )
+	{	
+		if ( m_actor )
+		{
+			if ( !m_actor->IsPlayingAnimation( "run" ) )
+			{
+				m_actor->SetEntitySelection( L"run" );
+				m_actor->SetRandomAnimation( "run", false, m_run.m_Speed );
+
+				// Animation desync
+				m_actor->GetModel()->Update( rand( 0, 1000 ) / 1000.0f );
+				m_isRunning = true;
+			}
+		}
+		return m_run.m_Speed;
+	}
+	else
+	{
+		if ( m_actor )
+		{
+			// Should we update animation?
+			if ( !m_actor->IsPlayingAnimation( "walk" ) )
+			{
+				m_actor->SetEntitySelection( L"walk" );
+				m_actor->SetRandomAnimation( "walk", false, m_speed );
+
+				// Animation desync
+				m_actor->GetModel()->Update( rand( 0, 1000 ) / 1000.0f );
+				m_isRunning = false;
+			}
+		}
+		return m_speed;
+	}
+}
+
 // Does all the shared processing for line-of-sight gotos
 
 uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, HEntity& collide )
@@ -47,48 +86,8 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 	// Curve smoothing.
 	// Here there be trig.
 
-	float scale;
+	float scale = processChooseMovement( len ) * timestep;
 
-	//Should we run or walk
-	if (m_shouldRun && m_staminaCurr > 0 && len < m_run.m_MaxRange && 
-						( len > m_run.m_MinRange || m_isRunning ) )
-	{	
-		scale = m_run.m_Speed * timestep;
-		if ( m_actor )
-		{
-			if ( !m_actor->IsPlayingAnimation( "run" ) )
-			{
-				CSkeletonAnim* run = m_actor->GetRandomAnimation( "run" );
-				if ( run )	
-					m_actor->GetModel()->SetAnimation( run, false, m_run.m_Speed * run->m_AnimDef->GetDuration() );
-	
-				// Animation desync
-				m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
-				m_isRunning = true;
-			}
-		}
-	}
-	else
-	{
-		scale = m_speed * timestep;
-		if ( m_actor )
-		{
-			//Should we update animation?
-			if ( !m_actor->IsPlayingAnimation( "walk" ) )
-			{
-				CSkeletonAnim* walk = m_actor->GetRandomAnimation( "walk" );
-				if ( walk )	
-					m_actor->GetModel()->SetAnimation( walk, false, m_speed * walk->m_AnimDef->GetDuration() );
-	
-				// Animation desync
-				m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
-				m_isRunning = false;
-			}	
-		}
-	}
-	
-
-		
 
 	// Note: Easy optimization: flag somewhere that this unit
 	// is already pointing the  way, and don't do this
@@ -338,38 +337,7 @@ bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timeste
 		return( true );
 	}
 	
-	if ( m_actor )
-	{
-		//Should we run or walk
-		if (m_shouldRun && m_staminaCurr > 0 && Distance < m_run.m_MaxRange && 
-						( Distance > m_run.m_MinRange || m_isRunning ) )
-		{	
-			if ( !m_actor->IsPlayingAnimation( "run" ) )
-			{
-				CSkeletonAnim* run = m_actor->GetRandomAnimation( "run" );
-				if ( run )	
-					m_actor->GetModel()->SetAnimation( run, false, m_run.m_Speed * run->m_AnimDef->GetDuration() );
-	
-				// Animation desync
-				m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
-				m_isRunning = true;
-			}
-		}
-		else
-		{
-			//Should we update animation?
-			if ( !m_actor->IsPlayingAnimation( "walk" ) )
-			{
-				CSkeletonAnim* walk = m_actor->GetRandomAnimation( "walk" );
-				if ( walk )	
-					m_actor->GetModel()->SetAnimation( walk, false, m_speed * walk->m_AnimDef->GetDuration() );
-	
-				// Animation desync
-				m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
-				m_isRunning = false;
-			}	
-		}
-	}
+	processChooseMovement( Distance );
 
 	// The pathfinder will push its result back into this unit's queue and
 	// add back the current order at the end with the transition type.
@@ -391,7 +359,12 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 			// few hundred ms, at the 'action point' of the animation we're
 			// now setting.
 			m_isRunning = false;
-			m_actor->GetModel()->SetAnimation( m_fsm_animation, true, 1000.0f * m_fsm_animation->m_AnimDef->GetDuration() / (float)action->m_Speed, m_fsm_animation );
+			// TODO: this is set to be looping, because apparently it otherwise
+			// plays one frame of 'idle' after e.g. attacks. But this way means
+			// animations sometimes play ~1.5 times then repeat, which looks
+			// broken too.
+			//m_actor->GetModel()->SetAnimation( m_fsm_animation, true, 1000.0f * m_fsm_animation->m_AnimDef->GetDuration() / (float)action->m_Speed, m_actor->GetRandomAnimation( "idle" ) );
+			m_actor->GetModel()->SetAnimation( m_fsm_animation, false, 1000.0f * m_fsm_animation->m_AnimDef->GetDuration() / (float)action->m_Speed );
 		}
 		if( ( m_fsm_cyclepos <= m_fsm_anipos2 ) &&
 			( nextpos > m_fsm_anipos2 ) )
@@ -408,7 +381,8 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 				m_orderQueue.pop_front();
 				m_isRunning = false;
 				m_shouldRun = false;
-				m_actor->SetRandomAnimation("idle");
+				m_actor->SetEntitySelection( L"idle" );
+				m_actor->SetRandomAnimation( "idle" );
 				return( false );
 			}
 		}
@@ -460,39 +434,8 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		// We're aiming to end up at a location just inside our maximum range
 		// (is this good enough?)
 		delta = delta.normalize() * ( adjRange - m_bounds->m_radius );
-		
-		if ( m_actor )
-		{
-			//Should we run or walk
-			if (m_shouldRun && m_staminaCurr > 0 && deltaLength < m_run.m_MaxRange && 
-						( deltaLength > m_run.m_MinRange || m_isRunning ) )
-			{	
-				if ( !m_actor->IsPlayingAnimation( "run" ) )
-				{
-					CSkeletonAnim* run = m_actor->GetRandomAnimation( "run" );
-					if ( run )	
-						m_actor->GetModel()->SetAnimation( run, false, m_run.m_Speed * run->m_AnimDef->GetDuration() );
-	
-					// Animation desync
-					m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
-					m_isRunning = true;
-				}
-			}
-			else
-			{
-				//Should we update animation?
-				if ( !m_actor->IsPlayingAnimation( "walk" ) )
-				{
-					CSkeletonAnim* walk = m_actor->GetRandomAnimation( "walk" );
-					if ( walk )	
-						m_actor->GetModel()->SetAnimation( walk, false, m_speed * walk->m_AnimDef->GetDuration() );
-	
-					// Animation desync
-					m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
-					m_isRunning = false;
-				}	
-			}
-		}
+
+		processChooseMovement(deltaLength);
 	
 		current->m_data[0].location = (CVector2D)current->m_data[0].entity->m_position - delta;
 
@@ -553,6 +496,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 	}
 
 	// Pick our animation, calculate the time to play it, and start the timer.
+	m_actor->SetEntitySelection( animation );
 	m_fsm_animation = m_actor->GetRandomAnimation( animation );
 
 	// Here's the idea - we want to be at that animation's event point
@@ -575,7 +519,10 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		// If we've just transitioned, play idle. Otherwise, let the previous animation complete, if it
 		// hasn't already.
 		if( m_transition )
+		{
+			// (don't change actor's entity-selection)
 			m_actor->SetRandomAnimation( "idle" );
+		}
 	}
 
 	// Load time needs to be animation->m_ActionPos2 ms after the start of the animation.
@@ -635,38 +582,7 @@ bool CEntity::processGoto( CEntityOrder* current, size_t UNUSED(timestep_millis)
 		return( false );
 	}
 
-	if ( m_actor )
-	{
-		//Should we run or walk
-		if (m_shouldRun && m_staminaCurr > 0 && Distance < m_run.m_MaxRange && 
-						( Distance > m_run.m_MinRange || m_isRunning ) )
-		{	
-			if ( !m_actor->IsPlayingAnimation( "run" ) )
-			{
-				CSkeletonAnim* run = m_actor->GetRandomAnimation( "run" );
-				if ( run )	
-					m_actor->GetModel()->SetAnimation( run, false, m_run.m_Speed * run->m_AnimDef->GetDuration() );
-	
-				// Animation desync
-				m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
-				m_isRunning = true;
-			}
-		}
-		else
-		{
-			//Should we update animation?
-			if ( !m_actor->IsPlayingAnimation( "walk" ) )
-			{
-				CSkeletonAnim* walk = m_actor->GetRandomAnimation( "walk" );
-				if ( walk )	
-					m_actor->GetModel()->SetAnimation( walk, false, m_speed * walk->m_AnimDef->GetDuration() );
-	
-				// Animation desync
-				m_actor->GetModel()->Update( ( rand() * 1000.0f ) / 1000.0f );
-				m_isRunning = false;
-			}	
-		}
-	}
+	processChooseMovement( Distance );
 
 	// The pathfinder will push its result back into this unit's queue.
 

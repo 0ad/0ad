@@ -70,7 +70,8 @@ CSkeletonAnimDef* CSkeletonAnimDef::Load(const char* filename)
 	// unpack the data
 	CSkeletonAnimDef* anim=new CSkeletonAnimDef;
 	try {
-		unpacker.UnpackString(anim->m_Name);
+		CStr name; // unused - just here to maintain compatibility with the animation files
+		unpacker.UnpackString(name);
 		unpacker.UnpackRaw(&anim->m_FrameTime,sizeof(anim->m_FrameTime));
 		unpacker.UnpackRaw(&anim->m_NumKeys,sizeof(anim->m_NumKeys));
 		unpacker.UnpackRaw(&anim->m_NumFrames,sizeof(anim->m_NumFrames));
@@ -91,7 +92,7 @@ void CSkeletonAnimDef::Save(const char* filename,const CSkeletonAnimDef* anim)
 	CFilePacker packer(FILE_VERSION, "PSSA");
 
 	// pack up all the data
-	packer.PackString(CStr(anim->m_Name));
+	packer.PackString("");
 	packer.PackRaw(&anim->m_FrameTime,sizeof(anim->m_FrameTime));
 	packer.PackRaw(&anim->m_NumKeys,sizeof(anim->m_NumKeys));
 	packer.PackRaw(&anim->m_NumFrames,sizeof(anim->m_NumFrames));

@@ -31,11 +31,11 @@ class CObjectManager : public Singleton<CObjectManager>
 public:
 	struct ObjectKey
 	{
-		ObjectKey(const CStr& name, const CObjectBase::variation_key& var)
+		ObjectKey(const CStr& name, const std::vector<u8>& var)
 			: ActorName(name), ActorVariation(var) {}
 
 		CStr ActorName;
-		CObjectBase::variation_key ActorVariation;
+		std::vector<u8> ActorVariation;
 
 	};
 
@@ -68,16 +68,12 @@ public:
 	
 	CObjectBase* FindObjectBase(const char* objname);
 
-	CObjectEntry* FindObjectVariation(const char* objname, const CObjectBase::variation_key& vars, CObjectBase::variation_key::const_iterator& vars_it);
-	CObjectEntry* FindObjectVariation(CObjectBase* base, const CObjectBase::variation_key& vars, CObjectBase::variation_key::const_iterator& vars_it);
+	CObjectEntry* FindObjectVariation(const char* objname, const std::vector<std::set<CStrW> >& selections);
+	CObjectEntry* FindObjectVariation(CObjectBase* base, const std::vector<std::set<CStrW> >& selections);
 
 	// Get all names, quite slowly. (Intended only for ScEd.)
 	void GetAllObjectNames(std::vector<CStr>& names);
 	void GetPropObjectNames(std::vector<CStr>& names);
-
-	//CBaseEntity* m_SelectedEntity;
-	void SetSelectedEntity(CBaseEntity* thing);
-	void SetSelectedObject(CObjectEntry* thing);
 
 	std::vector<SObjectType> m_ObjectTypes;
 };

@@ -209,17 +209,19 @@ bool CObjectBase::Load(const char* filename)
 	return true;
 }
 
-void CObjectBase::CalculateVariation(std::set<CStr>& strings, variation_key& choices)
+std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<std::set<CStrW> >& selections)
 {
-	// Calculate a complete list of choices, one per group. In each group,
-	// if one of the variants has a name matching a string in 'strings', use
-	// that one. If more than one matches, choose randomly from those matching
-	// ones. If none match, choose randomly from all variants.
-	//
-	// When choosing randomly, make use of each variant's frequency. If all
-	// variants have frequency 0, treat them as if they were 1.
+	// Calculate a complete list of choices, one per group, based on the
+	// supposedly-complete selections (i.e. not making random choices at this
+	// stage).
+	// In each group, if one of the variants has a name matching a string in the
+	// first 'selections', set use that one.
+	// Otherwise, try with the next (lower priority) selections set, and repeat.
+	// Otherwise, choose the first variant (arbitrarily).
 
-	choices.clear();
+	std::vector<u8> choices;
+
+	std::map<CStr, CStr> chosenProps;
 
 	for (std::vector<std::vector<CObjectBase::Variant> >::iterator grp = m_Variants.begin();
 		grp != m_Variants.end();
@@ -230,103 +232,175 @@ void CObjectBase::CalculateVariation(std::set<CStr>& strings, variation_key& cho
 		if (grp->size() == 0)
 			continue;
 
+		int match = -1; // -1 => none found yet
+
 		// If there's only a single variant, choose that one
 		if (grp->size() == 1)
 		{
-			choices.push_back(0);
-			continue;
+			match = 0;
 		}
-			
-		// Determine the variants that match the provided strings:
-
-		std::vector<u8> matches;
-		typedef std::vector<u8>::const_iterator Iter;
-
-		debug_assert(grp->size() < 256); // else they won't fit in the vector
-
-		for (uint i = 0; i < grp->size(); ++i)
-			if (strings.count((*grp)[i].m_VariantName))
-				matches.push_back((u8)i);	// "protected" by debug_assert
-
-		// If there's only one match, choose that one
-		if (matches.size() == 1)
+		else
 		{
-			choices.push_back(matches[0]);
-			continue;
-		}
-		
-		// Otherwise, choose randomly from the others.
+			// Determine the first variant that matches the provided strings,
+			// starting with the highest priority selections set:
 
-		// If none matched the specified strings, choose from all the variants
-		if (matches.size() == 0)
-			for (uint i = 0; i < grp->size(); ++i)
-				matches.push_back((u8)i);	// "protected" by debug_assert
-
-		// Sum the frequencies:
-		int totalFreq = 0;
-		for (Iter it = matches.begin(); it != matches.end(); ++it)
-			totalFreq += (*grp)[*it].m_Frequency;
-
-		// Someone might be silly and set all variants to have freq==0, in
-		// which case we just pretend they're all 1
-		bool allZero = false;
-		if (totalFreq == 0)
-		{
-			totalFreq = (int)matches.size();
-			allZero = true;
-		}
-
-		// Choose a random number in the interval [0..totalFreq).
-		// (It shouldn't be necessary to use a network-synchronised RNG,
-		// since actors are meant to have purely visual manifestations.)
-		int randNum = rand(0, totalFreq);
-
-		// and use that to choose one of the variants
-		for (Iter it = matches.begin(); it != matches.end(); ++it)
-		{
-			randNum -= (allZero ? 1 : (*grp)[*it].m_Frequency);
-			if (randNum < 0)
+			for (std::vector<std::set<CStrW> >::const_iterator selset = selections.begin(); selset < selections.end(); ++selset)
 			{
-				choices.push_back(*it);
-				break;
+				debug_assert(grp->size() < 256); // else they won't fit in 'choices'
+
+				for (size_t i = 0; i < grp->size(); ++i)
+				{
+					if (selset->count((*grp)[i].m_VariantName))
+					{
+						match = (u8)i;
+						break;
+					}
+				}
+
+				// Stop after finding the first match
+				if (match != -1)
+					break;
 			}
+
+			// If no match, just choose the first
+			if (match == -1)
+				match = 0;
 		}
 
-		debug_assert(randNum < 0);
-			// This should always happen; otherwise it
-			// wouldn't have chosen any of the variants.
-	}
+		choices.push_back(match);
 
-	debug_assert(choices.size() == m_Variants.size());
-
-
-	// Also, make choices for all props:
-
-	// Work out which props have been chosen
-	std::map<CStr, CStr> chosenProps;
-	CObjectBase::variation_key::const_iterator choice_it = choices.begin();
-	for (std::vector<std::vector<CObjectBase::Variant> >::iterator grp = m_Variants.begin();
-		grp != m_Variants.end();
-		++grp)
-	{
-		CObjectBase::Variant& var (grp->at(*(choice_it++)));
+		// Remember which props were chosen. (Later-defined props override
+		// earlier props at the same prop point.)
+		CObjectBase::Variant& var ((*grp)[match]);
 		for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
 		{
 			chosenProps[it->m_PropPointName] = it->m_ModelName;
 		}
 	}
 
-	// Load each prop, and call CalculateVariation on them:
+	// Load each prop, and add their CalculateVariationKey to our key:
 	for (std::map<CStr, CStr>::iterator it = chosenProps.begin(); it != chosenProps.end(); ++it)
 	{
 		CObjectBase* prop = g_ObjMan.FindObjectBase(it->second);
 		if (prop)
 		{
-			variation_key propChoices;
-			prop->CalculateVariation(strings, propChoices);
+			std::vector<u8> propChoices = prop->CalculateVariationKey(selections);
 			choices.insert(choices.end(), propChoices.begin(), propChoices.end());
 		}
 	}
 
-	// (TODO: This seems rather fragile, e.g. if props fail to load)
+	return choices;
+}
+
+std::set<CStrW> CObjectBase::CalculateRandomVariation(const std::set<CStrW>& initialSelections)
+{
+	std::set<CStrW> selections = initialSelections;
+
+	std::map<CStr, CStr> chosenProps;
+
+	// Calculate a complete list of selections, so there is at least one
+	// (and in most cases only one) per group.
+	// In each group, if one of the variants has a name matching a string in
+	// 'selections', use that one.
+	// If more than one matches, choose randomly from those matching ones.
+	// If none match, choose randomly from all variants.
+	//
+	// When choosing randomly, make use of each variant's frequency. If all
+	// variants have frequency 0, treat them as if they were 1.
+
+	for (std::vector<std::vector<CObjectBase::Variant> >::iterator grp = m_Variants.begin();
+		grp != m_Variants.end();
+		++grp)
+	{
+		// Ignore groups with nothing inside. (A warning will have been
+		// emitted by the loading code.)
+		if (grp->size() == 0)
+			continue;
+
+		int match = -1; // -1 => none found yet
+
+		// If there's only a single variant, choose that one
+		if (grp->size() == 1)
+		{
+			match = 0;
+		}
+		else
+		{
+			// See if a variant (or several, but we only care about the first)
+			// is already matched by the selections we've made
+
+			for (size_t i = 0; i < grp->size(); ++i)
+			{
+				if (selections.count((*grp)[i].m_VariantName))
+				{
+					match = (int)i;
+					break;
+				}
+			}
+
+			// If there was one, we don't need to do anything now because there's
+			// already something to choose. Otherwise, choose randomly from the others.
+			if (match == -1)
+			{
+				// Sum the frequencies
+				int totalFreq = 0;
+				for (size_t i = 0; i < grp->size(); ++i)
+					totalFreq += (*grp)[i].m_Frequency;
+
+				// Someone might be silly and set all variants to have freq==0, in
+				// which case we just pretend they're all 1
+				bool allZero = (totalFreq == 0);
+				if (allZero) totalFreq = (int)grp->size();
+
+				// Choose a random number in the interval [0..totalFreq).
+				// (It shouldn't be necessary to use a network-synchronised RNG,
+				// since actors are meant to have purely visual manifestations.)
+				int randNum = rand(0, totalFreq);
+
+				// and use that to choose one of the variants
+				for (size_t i = 0; i < grp->size(); ++i)
+				{
+					randNum -= (allZero ? 1 : (*grp)[i].m_Frequency);
+					if (randNum < 0)
+					{
+						selections.insert((*grp)[i].m_VariantName);
+						// (If this change to 'selections' interferes with earlier
+						// choices, then we'll get some non-fatal inconsistencies
+						// that just break the randomness. But that shouldn't
+						// happen, much.)
+						match = (int)i;
+						break;
+					}
+				}
+				debug_assert(randNum < 0);
+				// This should always succeed; otherwise it
+				// wouldn't have chosen any of the variants.
+			}
+		}
+
+		// Remember which props were chosen. (Later-defined props override
+		// earlier props at the same prop point.)
+		CObjectBase::Variant& var ((*grp)[match]);
+		for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
+		{
+			chosenProps[it->m_PropPointName] = it->m_ModelName;
+		}
+	}
+
+	// Load each prop, and add their required selections to ours:
+	for (std::map<CStr, CStr>::iterator it = chosenProps.begin(); it != chosenProps.end(); ++it)
+	{
+		CObjectBase* prop = g_ObjMan.FindObjectBase(it->second);
+		if (prop)
+		{
+			std::set<CStrW> propSelections = prop->CalculateRandomVariation(selections);
+			std::set<CStrW> newSelections;
+			std::set_union(propSelections.begin(), propSelections.end(),
+				selections.begin(), selections.end(),
+				std::inserter(newSelections, newSelections.begin()));
+			selections.swap(newSelections);
+		}
+	}
+
+	return selections;
 }

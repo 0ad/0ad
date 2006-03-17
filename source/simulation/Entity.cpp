@@ -28,7 +28,7 @@ extern int g_xres, g_yres;
 #include <algorithm>
 using namespace std;
 
-CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, CStrW building )
+CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections, CStrW building )
 {
     m_position = position;
     m_orientation = orientation;
@@ -94,7 +94,8 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, CStr
 
     m_base = base;
 
-    loadBase();
+	m_actorSelections = actorSelections;
+	loadBase();
 
     if( m_bounds )
         m_bounds->setPosition( m_position.X, m_position.Z );
@@ -166,7 +167,8 @@ void CEntity::loadBase()
     }
 
     CStr actorName ( m_base->m_actorName ); // convert CStrW->CStr8
-    m_actor = g_UnitMan.CreateUnit( actorName, this );
+
+	m_actor = g_UnitMan.CreateUnit( actorName, this, m_actorSelections );
 
     // Set up our instance data
 
@@ -217,7 +219,7 @@ void CEntity::SetPlayer(CPlayer *pPlayer)
 
     // Store the ID of the player in the associated model
     if( m_actor )
-        m_actor->GetModel()->SetPlayerID( m_player->GetPlayerID() );
+        m_actor->SetPlayerID( m_player->GetPlayerID() );
 }
 
 void CEntity::updateActorTransforms()
@@ -449,10 +451,16 @@ void CEntity::update( size_t timestep )
         if( m_extant )
         {
             if( ( m_lastState != -1 ) || !m_actor->GetModel()->GetAnimation() )
+			{
+				m_actor->SetEntitySelection( L"idle" );
                 m_actor->SetRandomAnimation( "idle" );
+			}
         }
         else if( !m_actor->GetModel()->GetAnimation() )
+		{
+			m_actor->SetEntitySelection( L"corpse" );
             m_actor->SetRandomAnimation( "corpse" );
+		}
     }
 
     if( m_lastState != -1 )
@@ -709,7 +717,7 @@ void CEntity::teleport()
 void CEntity::playerChanged()
 {
     if( m_actor )
-        m_actor->GetModel()->SetPlayerID( m_player->GetPlayerID() );
+        m_actor->SetPlayerID( m_player->GetPlayerID() );
 }
 
 void CEntity::checkSelection()
@@ -1164,7 +1172,8 @@ JSBool CEntity::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsva
         }
     }
 
-    HEntity handle = g_EntityManager.create( baseEntity, position, orientation );
+	std::set<CStrW> selections; // TODO: let scripts specify selections?
+    HEntity handle = g_EntityManager.create( baseEntity, position, orientation, selections );
 
     *rval = ToJSVal<CEntity>( *handle );
     return( JS_TRUE );
@@ -1346,7 +1355,10 @@ bool CEntity::Kill( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(arg
 	g_EntityManager.SetDeath(true);	
 
     if( m_actor )
+	{
+		m_actor->SetEntitySelection( L"death" );
         m_actor->SetRandomAnimation( "death", true );
+	}
 
     return( true );
 }

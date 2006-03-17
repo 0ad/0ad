@@ -48,8 +48,8 @@ public:
 	CEntityManager();
 	~CEntityManager();
 
-	HEntity create( CBaseEntity* base, CVector3D position, float orientation );
-	HEntity create( CStrW templateName, CVector3D position, float orientation );
+	HEntity create( CBaseEntity* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections );
+	HEntity create( CStrW templateName, CVector3D position, float orientation, const std::set<CStrW>& actorSelections );
 
 	HEntity createFoundation( CStrW templateName, CVector3D position, float orientation );
 

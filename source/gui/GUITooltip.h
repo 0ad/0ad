@@ -15,6 +15,9 @@ public:
 
 private:
 
+	static void ShowTooltip(IGUIObject* obj, CPos pos, const CStr& style, CGUI* gui);
+	static void HideTooltip(const CStr& style, CGUI* gui);
+
 	int m_State;
 
 	IGUIObject* m_PreviousObject;

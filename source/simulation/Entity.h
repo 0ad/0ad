@@ -166,6 +166,7 @@ public:
 	CScriptObject m_EventHandlers[EVENT_LAST];
 
 	CUnit* m_actor;
+	std::set<CStrW> m_actorSelections;
 
 	// State transition in the FSM (animations should be reset)
 	bool m_transition;
@@ -184,7 +185,7 @@ public:
 	CEntity* m_currentListener;
 	
 private:
-	CEntity( CBaseEntity* base, CVector3D position, float orientation, CStrW building = L"" );
+	CEntity( CBaseEntity* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections, CStrW building = L"" );
 
 	uint processGotoHelper( CEntityOrder* current, size_t timestep_milli, HEntity& collide );
 
@@ -200,6 +201,8 @@ private:
 	bool processGoto( CEntityOrder* current, size_t timestep_milli );
 
 	bool processPatrol( CEntityOrder* current, size_t timestep_milli );
+
+	float processChooseMovement( float distance );
 
 public:
 	~CEntity();

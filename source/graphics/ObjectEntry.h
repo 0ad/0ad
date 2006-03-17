@@ -18,7 +18,7 @@ public:
 	CObjectEntry(int type, CObjectBase* base);
 	~CObjectEntry();
 
-	bool BuildRandomVariant(const CObjectBase::variation_key& vars, CObjectBase::variation_key::const_iterator& vars_it);
+	bool BuildVariation(const std::vector<std::set<CStrW> >& selections);
 
 	// Base actor. Contains all the things that don't change between
 	// different variations of the actor.

@@ -133,7 +133,7 @@ static CVector3D SkinPoint(const CVector3D& pos,const SVertexBlend& blend,
 void CModel::CalcBounds()
 {
 	// Need to calculate the object bounds first, if that hasn't already been done
-	if (! m_Anim)
+	if (! (m_Anim && m_Anim->m_AnimDef))
 		CalcObjectBounds();
 	else
 	{
@@ -238,7 +238,7 @@ CSkeletonAnim* CModel::BuildAnimation(const char* filename, const char* name, fl
 // Update: update this model by the given time, in seconds
 void CModel::Update(float time)
 {
-	if (m_Anim && m_BoneMatrices) {
+	if (m_Anim && m_Anim->m_AnimDef && m_BoneMatrices) {
 		// adjust for animation speed
 		float animtime=time*m_AnimSpeed;
 
@@ -251,13 +251,10 @@ void CModel::Update(float time)
 
 		float duration=m_Anim->m_AnimDef->GetDuration();
 		if (m_AnimTime > duration) {
-			if( m_Flags & MODELFLAG_NOLOOPANIMATION )
-			{
-				SetAnimation( m_NextAnim );
-			}
+			if (m_Flags & MODELFLAG_NOLOOPANIMATION)
+				SetAnimation(m_NextAnim);
 			else
-				m_AnimTime=(float) fmod(m_AnimTime,duration);
-
+				m_AnimTime = (float) fmod(m_AnimTime, duration);
 		}
 		
 		// mark vertices as dirty
@@ -366,18 +363,25 @@ bool CModel::SetAnimation(CSkeletonAnim* anim, bool once, float speed, CSkeleton
 
 	if (anim) {
 		m_Flags &= ~MODELFLAG_NOLOOPANIMATION;
+
 		if (once)
 		{
 			m_Flags |= MODELFLAG_NOLOOPANIMATION;
 			m_NextAnim = next;
 		}
 
-		if (!m_BoneMatrices) {
+		if (!m_BoneMatrices && anim->m_AnimDef) {
 			// not boned, can't animate
 			return false;
 		}
 
-		if (anim->m_AnimDef->GetNumKeys() != m_pModelDef->GetNumBones()) {
+		if (m_BoneMatrices && !anim->m_AnimDef) {
+			// boned, but animation isn't valid
+			// (e.g. the default (static) idle animation on an animated unit)
+			return false;
+		}
+
+		if (anim->m_AnimDef && anim->m_AnimDef->GetNumKeys() != m_pModelDef->GetNumBones()) {
 			// mismatch between model's skeleton and animation's skeleton
 			LOG(ERROR, LOG_CATEGORY, "Mismatch between model's skeleton and animation's skeleton (%d model bones != %d animation keys)",
 										m_pModelDef->GetNumBones(), anim->m_AnimDef->GetNumKeys());

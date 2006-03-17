@@ -52,9 +52,9 @@ public:
 
 	std::vector< std::vector<Variant> > m_Variants;
 
-	typedef std::vector<u8> variation_key;
+	std::vector<u8> CalculateVariationKey(const std::vector<std::set<CStrW> >& selections);
 
-	void CalculateVariation(std::set<CStr>& strings, variation_key& variation);
+	std::set<CStrW> CalculateRandomVariation(const std::set<CStrW>& initialSelections);
 
 	bool Load(const char* filename);
 

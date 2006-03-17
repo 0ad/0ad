@@ -1076,6 +1076,11 @@ void CRenderer::BindTexture(int unit,GLuint tex)
 void CRenderer::SetTexture(int unit,CTexture* texture)
 {
 	Handle h = texture? texture->GetHandle() : 0;
+
+	// Errored textures will give a handle of -1
+	if (h == -1)
+		h = 0;
+
 	ogl_tex_bind(h, unit);
 }
 

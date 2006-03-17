@@ -1179,8 +1179,10 @@ bool CBuildingPlacer::activate(CStrW& templateName)
 
 	// m_actor
 	CStr actorName ( base->m_actorName );	// convert CStrW->CStr8
-	m_actor = g_UnitMan.CreateUnit( actorName, 0 );
-	m_actor->GetModel()->SetPlayerID(g_Game->GetLocalPlayer()->GetPlayerID());
+
+	std::set<CStrW> selections;
+	m_actor = g_UnitMan.CreateUnit( actorName, 0, selections );
+	m_actor->SetPlayerID(g_Game->GetLocalPlayer()->GetPlayerID());
 	
 	// m_bounds
 	if( base->m_bound_type == CBoundingObject::BOUND_CIRCLE )

@@ -119,14 +119,24 @@ CUnit* CUnitManager::PickUnit(const CVector3D& origin, const CVector3D& dir) con
 
 ///////////////////////////////////////////////////////////////////////////////
 // CreateUnit: create a new unit and add it to the world
-CUnit* CUnitManager::CreateUnit(const CStr& actorName, CEntity* entity)
+CUnit* CUnitManager::CreateUnit(const CStr& actorName, CEntity* entity, const std::set<CStrW>& selections)
 {
-	CObjectEntry* obj = g_ObjMan.FindObject(actorName);
+	CObjectBase* base = g_ObjMan.FindObjectBase(actorName);
+
+	if (! base)
+		return NULL;
+
+	std::set<CStrW> actorSelections = base->CalculateRandomVariation(selections);
+
+	std::vector<std::set<CStrW> > selectionsVec;
+	selectionsVec.push_back(actorSelections);
+
+	CObjectEntry* obj = g_ObjMan.FindObjectVariation(base, selectionsVec);
 
 	if (! obj)
 		return NULL;
 
-	CUnit* unit = new CUnit(obj, obj->m_Model->Clone(), entity);
+	CUnit* unit = new CUnit(obj, entity, actorSelections);
 	AddUnit(unit);
 	return unit;
 }

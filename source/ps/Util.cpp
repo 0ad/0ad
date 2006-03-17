@@ -294,7 +294,7 @@ void WriteBigScreenshot(const char* extension, int tiles)
 		}
 	}
 
-	// Restor the buffer settings
+	// Restore the buffer settings
 	glDrawBuffer(oldDrawBuffer);
 	glReadBuffer(oldReadBuffer);
 

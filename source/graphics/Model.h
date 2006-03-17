@@ -55,7 +55,8 @@ public:
 	void SetTexture(const CTexture& tex) { m_Texture=tex; }
 	// set the model's material
 	void SetMaterial(const CMaterial &material);
-	// set the model's player ID, recursively through props
+	// set the model's player ID, recursively through props. CUnit::SetPlayerID
+	// should normally be used instead.
 	void SetPlayerID(int id);
 	// set the model's player colour
 	void SetPlayerColor(CColor& colour);
@@ -69,7 +70,7 @@ public:
 	CColor GetShadingColor() { return m_ShadingColor; }
 
 	// set the given animation as the current animation on this model
-	bool SetAnimation(CSkeletonAnim* anim, bool once = false, float speed = 1000.0f, CSkeletonAnim* next = NULL );
+	bool SetAnimation(CSkeletonAnim* anim, bool once = false, float speed = 1000.0f, CSkeletonAnim* next = NULL);
 
 	// get the currently playing animation, if any
 	CSkeletonAnim* GetAnimation() { return m_Anim; }

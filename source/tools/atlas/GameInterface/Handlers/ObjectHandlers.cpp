@@ -164,20 +164,22 @@ MESSAGEHANDLER(ObjectPreview)
 		CStrW name;
 		if (ParseObjectName(msg->id, isEntity, name))
 		{
+			std::set<CStrW> selections; // TODO: get selections from user
+
 			// Create new unit
 			if (isEntity)
 			{
 				CBaseEntity* base = g_EntityTemplateCollection.getTemplate(name);
 				if (base) // (ignore errors)
 				{
-					g_PreviewUnit = g_UnitMan.CreateUnit(base->m_actorName, NULL);
-					g_PreviewUnit->GetModel()->SetPlayerID(msg->player);
+					g_PreviewUnit = g_UnitMan.CreateUnit(base->m_actorName, NULL, selections);
+					g_PreviewUnit->SetPlayerID(msg->player);
 					// TODO: variations
 				}
 			}
 			else
 			{
-				g_PreviewUnit = g_UnitMan.CreateUnit(CStr(name), NULL);
+				g_PreviewUnit = g_UnitMan.CreateUnit(CStr(name), NULL, selections);
 			}
 		}
 
@@ -249,6 +251,8 @@ BEGIN_COMMAND(CreateObject)
 		CStrW name;
 		if (ParseObjectName(d->id, isEntity, name))
 		{
+			std::set<CStrW> selections;
+
 			if (isEntity)
 			{
 				CBaseEntity* base = g_EntityTemplateCollection.getTemplate(name);
@@ -256,7 +260,7 @@ BEGIN_COMMAND(CreateObject)
 					LOG(ERROR, LOG_CATEGORY, "Failed to load entity template '%ls'", name.c_str());
 				else
 				{
-					HEntity ent = g_EntityManager.create(base, m_Pos, m_Angle);
+					HEntity ent = g_EntityManager.create(base, m_Pos, m_Angle, selections);
 
 					if (! ent)
 						LOG(ERROR, LOG_CATEGORY, "Failed to create entity of type '%ls'", name.c_str());
@@ -270,7 +274,7 @@ BEGIN_COMMAND(CreateObject)
 			}
 			else
 			{
-				CUnit* unit = g_UnitMan.CreateUnit(CStr(name), NULL);
+				CUnit* unit = g_UnitMan.CreateUnit(CStr(name), NULL, selections);
 				if (! unit)
 					LOG(ERROR, LOG_CATEGORY, "Failed to load nonentity actor '%ls'", name.c_str());
 				else

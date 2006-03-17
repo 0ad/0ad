@@ -40,7 +40,7 @@ public:
 	void DeleteAll();
 
 	// creates a new unit and adds it to the world
-	CUnit* CreateUnit(const CStr& actorName, CEntity* entity);
+	CUnit* CreateUnit(const CStr& actorName, CEntity* entity, const std::set<CStrW>& selections);
 
 	// return the units
 	const std::vector<CUnit*>& GetUnits() const { return m_Units; }

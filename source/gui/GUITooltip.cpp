@@ -89,9 +89,13 @@ static bool GetTooltip(IGUIObject* obj, CStr &style)
 	return false;
 }
 
-void ShowTooltip(IGUIObject* obj, CPos pos, CStr& style, CGUI* gui)
+void GUITooltip::ShowTooltip(IGUIObject* obj, CPos pos, const CStr& style, CGUI* gui)
 {
 	debug_assert(obj);
+
+	// Ignore attempts to use tooltip ""
+	if (style.Length() == 0)
+		return;
 
 	// Get the object referenced by 'tooltip_style'
 	IGUIObject* tooltipobj = gui->FindObjectByName("__tooltip_"+style);
@@ -144,8 +148,12 @@ void ShowTooltip(IGUIObject* obj, CPos pos, CStr& style, CGUI* gui)
 	usedobj->HandleMessage(SGUIMessage(GUIM_SETTINGS_UPDATED, "caption"));
 }
 
-void HideTooltip(CStr& style, CGUI* gui)
+void GUITooltip::HideTooltip(const CStr& style, CGUI* gui)
 {
+	// Ignore attempts to use tooltip ""
+	if (style.Length() == 0)
+		return;
+
 	IGUIObject* tooltipobj = gui->FindObjectByName("__tooltip_"+style);
 	if (! tooltipobj)
 	{
