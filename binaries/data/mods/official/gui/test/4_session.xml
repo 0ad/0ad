@@ -138,13 +138,13 @@
 									switch (loop)
 									{
 										case 1:
-											tempObject.cell_id = cellGroup["MiniMap"]["territories"].id;
+											tempObject.cell_id = cellGroup["Minimap"]["territories"].id;
 										break;
 										case 2:
-											tempObject.cell_id = cellGroup["MiniMap"]["terrain"].id;
+											tempObject.cell_id = cellGroup["Minimap"]["terrain"].id;
 										break;
 										case 3:
-											tempObject.cell_id = cellGroup["MiniMap"]["chat"].id;
+											tempObject.cell_id = cellGroup["Minimap"]["chat"].id;
 										break;
 										default:
 										break;

@@ -796,19 +796,19 @@
 
 			<!-- Command (Disabled circle). -->
 			<sprite	name="snIconCommand">
-				<image	texture="session/icons/bkg/command.dds"
+				<image	texture="session/icons/bkg/command_outer.dds"
 						size="0 0 100% 100%" 
 				/>
 			</sprite>
 			<sprite	name="snIconCommandOver">
 				<effect	add_color="42 42 42 0"/>
-				<image	texture="session/icons/bkg/command.dds"
+				<image	texture="session/icons/bkg/command_outer.dds"
 						size="0 0 100% 100%" 
 				/>
 			</sprite>
 			<sprite	name="snIconCommandDisabled">
 				<effect	grayscale=""/>
-				<image	texture="session/icons/bkg/command.dds"
+				<image	texture="session/icons/bkg/command_outer.dds"
 						size="0 0 100% 100%" 
 				/>
 			</sprite>
@@ -1680,6 +1680,7 @@
 				/>
 		</sprite>
 		<sprite	name="snIconSheetCommandOver">
+				<effect	add_color="42 42 42 0"/>		
 				<image	texture="session/icons/sheets/command.dds"
 						cell_size="64 64"
 						size="0 0 100% 100%"
@@ -1694,16 +1695,10 @@
 		</sprite>		
 
 		<sprite	name="snIconSheetCommandButton">
-				<image	texture="session/icons/bkg/command.dds"
+				<image	texture="session/icons/bkg/command_outer.dds"
 						size="0 0 100% 100%" 
 				/>		
-				<image	texture="session/icons/sheets/command.dds"
-						cell_size="64 64"
-						size="0 0 100% 100%"
-				/>
-		</sprite>
-		<sprite	name="snIconSheetCommandButtonOver">
-				<image	texture="session/icons/bkg/command.dds"
+				<image	texture="session/icons/bkg/command_inner.dds"
 						size="0 0 100% 100%" 
 				/>				
 				<image	texture="session/icons/sheets/command.dds"
@@ -1711,8 +1706,26 @@
 						size="0 0 100% 100%"
 				/>
 		</sprite>
+		<sprite	name="snIconSheetCommandButtonOver">
+				<image	texture="session/icons/bkg/command_outer.dds"
+						size="0 0 100% 100%" 
+				/>				
+				<image
+						texture="session/icons/bkg/command_inner.dds"
+						size="0 0 100% 100%"
+				>
+						<effect	add_color="42 42 42 0"/>
+				</image>
+				<image	texture="session/icons/sheets/command.dds"
+						cell_size="64 64"
+						size="0 0 100% 100%"
+				/>
+		</sprite>
 		<sprite	name="snIconSheetCommandButtonDisabled">
-				<image	texture="session/icons/bkg/command.dds"
+				<image	texture="session/icons/bkg/command_outer.dds"
+						size="0 0 100% 100%" 
+				/>				
+				<image	texture="session/icons/bkg/command_inner.dds"
 						size="0 0 100% 100%" 
 				/>				
 				<image	texture="session/icons/sheets/command.dds"
@@ -1749,7 +1762,7 @@
 		</sprite>		
 
 		<sprite	name="snIconSheetFindButton">
-				<image	texture="session/icons/bkg/command.dds"
+				<image	texture="session/icons/bkg/minimap.dds"
 						size="0 0 100% 100%" 
 				/>		
 				<image	texture="session/icons/sheets/find.dds"
@@ -1759,7 +1772,7 @@
 		</sprite>
 		<sprite	name="snIconSheetFindButtonOver">
 				<effect	add_color="42 42 42 0"/>
-				<image	texture="session/icons/bkg/command.dds"
+				<image	texture="session/icons/bkg/minimap.dds"
 						size="0 0 100% 100%" 
 				/>				
 				<image	texture="session/icons/sheets/find.dds"
@@ -1769,7 +1782,7 @@
 		</sprite>
 		<sprite	name="snIconSheetFindButtonDisabled">
 				<effect	grayscale=""/>
-				<image	texture="session/icons/bkg/command.dds"
+				<image	texture="session/icons/bkg/minimap.dds"
 						size="0 0 100% 100%" 
 				/>				
 				<image	texture="session/icons/sheets/find.dds"
@@ -1837,63 +1850,6 @@
 
 		<!--
 		==========================================
-		SESSION GUI - ICON SHEETS - GARRISON
-		==========================================
-		-->
-		
-		<sprite	name="snIconSheetGarrison">
-				<image	texture="session/icons/sheets/garrison.dds"
-						cell_size="64 64"
-						size="0 0 100% 100%"
-				/>
-		</sprite>
-		<sprite	name="snIconSheetGarrisonOver">
-				<effect	add_color="42 42 42 0"/>
-				<image	texture="session/icons/sheets/garrison.dds"
-						cell_size="64 64"
-						size="0 0 100% 100%"
-				/>
-		</sprite>
-		<sprite	name="snIconSheetGarrisonDisabled">
-				<effect	grayscale=""/>
-				<image	texture="session/icons/sheets/garrison.dds"
-						cell_size="64 64"
-						size="0 0 100% 100%"
-				/>
-		</sprite>		
-
-		<sprite	name="snIconSheetGarrisonButton">
-				<image	texture="session/icons/bkg/command.dds"
-						size="0 0 100% 100%" 
-				/>		
-				<image	texture="session/icons/sheets/garrison.dds"
-						cell_size="64 64"
-						size="0 0 100% 100%"
-				/>
-		</sprite>
-		<sprite	name="snIconSheetGarrisonButtonOver">
-				<effect	add_color="42 42 42 0"/>
-				<image	texture="session/icons/bkg/command.dds"
-						size="0 0 100% 100%" 
-				/>				
-				<image	texture="session/icons/sheets/garrison.dds"
-						cell_size="64 64"
-						size="0 0 100% 100%"
-				/>
-		</sprite>
-		<sprite	name="snIconSheetGarrisonButtonDisabled">
-				<effect	grayscale=""/>
-				<image	texture="session/icons/bkg/command.dds"
-						size="0 0 100% 100%" 
-				/>				
-				<image	texture="session/icons/sheets/garrison.dds"
-						cell_size="64 64"
-						size="0 0 100% 100%"
-				/>
-		</sprite>
-
-		<!--
-		==========================================
 		SESSION GUI - ICON SHEETS - GATHER
 		==========================================
 		-->
@@ -1920,19 +1876,28 @@
 		</sprite>		
 
 		<sprite	name="snIconSheetGatherButton">
-				<image	texture="session/icons/bkg/command.dds"
+				<image	texture="session/icons/bkg/command_outer.dds"
 						size="0 0 100% 100%" 
-				/>		
+				/>				
+				<image
+						texture="session/icons/bkg/command_inner.dds"
+						size="0 0 100% 100%"
+				/>
 				<image	texture="session/icons/sheets/gather.dds"
 						cell_size="64 64"
 						size="0 0 100% 100%"
 				/>
 		</sprite>
 		<sprite	name="snIconSheetGatherButtonOver">
-				<effect	add_color="42 42 42 0"/>
-				<image	texture="session/icons/bkg/command.dds"
+				<image	texture="session/icons/bkg/command_outer.dds"
 						size="0 0 100% 100%" 
 				/>				
+				<image
+						texture="session/icons/bkg/command_inner.dds"
+						size="0 0 100% 100%"
+				>
+						<effect	add_color="42 42 42 0"/>
+				</image>				
 				<image	texture="session/icons/sheets/gather.dds"
 						cell_size="64 64"
 						size="0 0 100% 100%"
@@ -1940,9 +1905,13 @@
 		</sprite>
 		<sprite	name="snIconSheetGatherButtonDisabled">
 				<effect	grayscale=""/>
-				<image	texture="session/icons/bkg/command.dds"
+				<image	texture="session/icons/bkg/command_outer.dds"
 						size="0 0 100% 100%" 
 				/>				
+				<image
+						texture="session/icons/bkg/command_inner.dds"
+						size="0 0 100% 100%"
+				/>
 				<image	texture="session/icons/sheets/gather.dds"
 						cell_size="64 64"
 						size="0 0 100% 100%"
@@ -2034,7 +2003,7 @@
 		</sprite>		
 
 		<sprite	name="snIconSheetMiniMapButton">
-				<image	texture="session/icons/bkg/command.dds"
+				<image	texture="session/icons/bkg/minimap.dds"
 						size="0 0 100% 100%" 
 				/>		
 				<image	texture="session/icons/sheets/minimap.dds"
@@ -2044,7 +2013,7 @@
 		</sprite>
 		<sprite	name="snIconSheetMiniMapButtonOver">
 				<effect	add_color="42 42 42 0"/>
-				<image	texture="session/icons/bkg/command.dds"
+				<image	texture="session/icons/bkg/minimap.dds"
 						size="0 0 100% 100%" 
 				/>				
 				<image	texture="session/icons/sheets/minimap.dds"
@@ -2054,7 +2023,7 @@
 		</sprite>
 		<sprite	name="snIconSheetMiniMapButtonDisabled">
 				<effect	grayscale=""/>
-				<image	texture="session/icons/bkg/command.dds"
+				<image	texture="session/icons/bkg/minimap.dds"
 						size="0 0 100% 100%" 
 				/>				
 				<image	texture="session/icons/sheets/minimap.dds"
@@ -2091,19 +2060,28 @@
 		</sprite>		
 
 		<sprite	name="snIconSheetRankButton">
-				<image	texture="session/icons/bkg/command.dds"
+				<image	texture="session/icons/bkg/command_outer.dds"
 						size="0 0 100% 100%" 
-				/>		
+				/>				
+				<image
+						texture="session/icons/bkg/command_inner.dds"
+						size="0 0 100% 100%"
+				/>
 				<image	texture="session/icons/sheets/rank.dds"
 						cell_size="32 32"
 						size="0 0 100% 100%"
 				/>
 		</sprite>
 		<sprite	name="snIconSheetRankButtonOver">
-				<effect	add_color="42 42 42 0"/>
-				<image	texture="session/icons/bkg/command.dds"
+				<image	texture="session/icons/bkg/command_outer.dds"
 						size="0 0 100% 100%" 
 				/>				
+				<image
+						texture="session/icons/bkg/command_inner.dds"
+						size="0 0 100% 100%"
+				>
+						<effect	add_color="42 42 42 0"/>
+				</image>				
 				<image	texture="session/icons/sheets/rank.dds"
 						cell_size="64 64"
 						size="0 0 100% 100%"
@@ -2111,9 +2089,13 @@
 		</sprite>
 		<sprite	name="snIconSheetRankButtonDisabled">
 				<effect	grayscale=""/>
-				<image	texture="session/icons/bkg/command.dds"
+				<image	texture="session/icons/bkg/command_outer.dds"
 						size="0 0 100% 100%" 
 				/>				
+				<image
+						texture="session/icons/bkg/command_inner.dds"
+						size="0 0 100% 100%"
+				/>
 				<image	texture="session/icons/sheets/rank.dds"
 						cell_size="32 32"
 						size="0 0 100% 100%"
@@ -2378,21 +2360,23 @@
 		<sprite	name="snIconSheetTabButton">
 				<image	texture="session/icons/bkg/tab.dds"
 						size="0 0 100% 100%" 
-				/>		
+				/>				
 				<image	texture="session/icons/sheets/tab.dds"
 						cell_size="64 64"
 						size="0 0 100% 100%"
 				/>
 		</sprite>
 		<sprite	name="snIconSheetTabButtonOver">
-				<effect	add_color="42 42 42 0"/>
 				<image	texture="session/icons/bkg/tab.dds"
-						size="0 0 100% 100%" 
-				/>				
-				<image	texture="session/icons/sheets/tab.dds"
-						cell_size="64 64"
 						size="0 0 100% 100%"
-				/>
+				/>		
+				<image
+						texture="session/icons/sheets/tab.dds"
+						cell_size="64 64"						
+						size="0 0 100% 100%"
+				>
+						<effect	add_color="42 42 42 0"/>
+				</image>
 		</sprite>
 		<sprite	name="snIconSheetTabButtonDisabled">
 				<effect	grayscale=""/>
@@ -2405,7 +2389,37 @@
 				/>
 		</sprite>		
 		
-		
+		<sprite	name="snIconSheetTabButton_H">
+				<image	texture="session/icons/bkg/tab_h.dds"
+						size="0 0 100% 100%" 
+				/>				
+				<image	texture="session/icons/sheets/tab.dds"
+						cell_size="64 64"
+						size="0 0 100% 100%"
+				/>
+		</sprite>
+		<sprite	name="snIconSheetTabButton_HOver">
+				<image	texture="session/icons/bkg/tab_h.dds"
+						size="0 0 100% 100%"
+				/>		
+				<image
+						texture="session/icons/sheets/tab.dds"
+						cell_size="64 64"						
+						size="0 0 100% 100%"
+				>
+						<effect	add_color="42 42 42 0"/>
+				</image>
+		</sprite>
+		<sprite	name="snIconSheetTabButton_HDisabled">
+				<effect	grayscale=""/>
+				<image	texture="session/icons/bkg/tab_h.dds"
+						size="0 0 100% 100%" 
+				/>				
+				<image	texture="session/icons/sheets/tab.dds"
+						cell_size="64 64"
+						size="0 0 100% 100%"
+				/>
+		</sprite>		
 
 	
 
