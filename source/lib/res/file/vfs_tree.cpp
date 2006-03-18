@@ -425,7 +425,35 @@ static LibError lookup(TDir* td, const char* path, uint flags, TNode** pnode)
 // - no NLSO shutdown order issues; validity is well defined
 //   (namely between tree_init and tree_shutdown)
 // - bonus: tree_init can use it when checking if called twice.
+//
+// this means we'll have to be extremely careful during tree_clear
+// whether its memory remains valid.
 static TDir* tree_root;
+
+// make tree_root valid.
+static void tree_root_init()
+{
+	// must not be called more than once without intervening tree_shutdown.
+	debug_assert(!tree_root);
+
+#include "nommgr.h"	// placement new
+	void* mem = node_alloc();
+	if(mem)
+		tree_root = new(mem) TDir("", "");
+#include "mmgr.h"
+}
+
+// destroy the tree root node and free any extra memory held by it.
+// note that its node memory still remains allocated.
+static void tree_root_shutdown()
+{
+	// must not be called without previous tree_root_init.
+	debug_assert(tree_root);
+
+	// this frees the root node's hash table, which would otherwise leak.
+	tree_root->~TDir();
+	tree_root = 0;
+}
 
 
 // establish a root node and prepare node_allocator for use.
@@ -434,16 +462,8 @@ static TDir* tree_root;
 // manual init.
 void tree_init()
 {
-	// must not call more than once without intervening tree_shutdown
-	debug_assert(!tree_root);
-
 	node_init();
-
-#include "nommgr.h"	// placement new
-	void* mem = node_alloc();
-	if(mem)
-		tree_root = new(mem) TDir("", "");
-#include "mmgr.h"
+	tree_root_init();
 }
 
 
@@ -454,7 +474,13 @@ void tree_init()
 void tree_clear()
 {
 	tree_root->clearR();
+	tree_root_shutdown();	// must come before tree_root_init
+
 	node_free_all();
+
+	// note: this is necessary because node_free_all
+	// pulls the rug out from under tree_root.
+	tree_root_init();
 }
 
 
@@ -462,18 +488,14 @@ void tree_clear()
 // requires another tree_init.
 void tree_shutdown()
 {
-	// tree_shutdown should be preceded by tree_init, so ought to be valid.
-	debug_assert(tree_root);
+	// note: can't use tree_clear because that restores a root node
+	// ready for use, which allocates memory.
 
-	// careful! do not call tree_clear because it will un-map all
-	// node memory, which would cause the dtor below to fail.
+	// wipe out all dirs (including root node), thus
+	// freeing memory they hold.
 	tree_root->clearR();
 
-	// we've still got to destroy the root node (otherwise its
-	// hash table will leak).
-	tree_root->~TDir();
-	tree_root = 0;
-
+	// free memory underlying the nodes themselves.
 	node_shutdown();
 }
 
