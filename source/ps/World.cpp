@@ -40,7 +40,7 @@ CWorld::CWorld(CGame *pGame):
 void CWorld::Initialize(CGameAttributes *pAttribs)
 {
 	// TODO: Find a better way of handling these global things
-	ONCE(RegMemFun(CBaseEntityCollection::GetSingletonPtr(), &CBaseEntityCollection::loadTemplates, L"LoadTemplates", 6));
+	ONCE(RegMemFun(CBaseEntityCollection::GetSingletonPtr(), &CBaseEntityCollection::loadTemplates, L"LoadTemplates", 15));
 
 	// Load the map, if one was specified
 	if (pAttribs->m_MapFile.Length())

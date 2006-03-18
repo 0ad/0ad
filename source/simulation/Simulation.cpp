@@ -58,7 +58,7 @@ int CSimulation::Initialize(CGameAttributes* pAttribs)
 
 void CSimulation::RegisterInit(CGameAttributes *pAttribs)
 {
-	RegMemFun1(this, &CSimulation::Initialize, pAttribs, L"CSimulation", 50);
+	RegMemFun1(this, &CSimulation::Initialize, pAttribs, L"CSimulation", 3900);
 }
 
 

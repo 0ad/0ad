@@ -53,13 +53,13 @@ void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain_, CUnitManager
 	g_UnitMan.SetNextID(0);
 
 	// unpack the data
-	RegMemFun(this, &CMapReader::UnpackMap, L"CMapReader::UnpackMap", 1250);
+	RegMemFun(this, &CMapReader::UnpackMap, L"CMapReader::UnpackMap", 1200);
 
 	if (unpacker.GetVersion() >= 3) {
 		// read the corresponding XML file
 		filename_xml = filename;
 		filename_xml = filename_xml.Left(filename_xml.Length()-4) + ".xml";
-		RegMemFun(this, &CMapReader::ReadXML, L"CMapReader::ReadXML", 5000);
+		RegMemFun(this, &CMapReader::ReadXML, L"CMapReader::ReadXML", 5800);
 	}
 
 	// apply data to the world
