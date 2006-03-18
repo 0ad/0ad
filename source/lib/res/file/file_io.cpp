@@ -70,7 +70,7 @@ static AiocbAllocator aiocb_allocator;
 // no attempt is made at aligning or padding the transfer.
 LibError file_io_issue(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 {
-	debug_printf("FILE| issue ofs=%d size=%d\n", ofs, size);
+	debug_printf("FILE| issue ofs=0x%X size=0x%X\n", ofs, size);
 
 	// zero output param in case we fail below.
 	memset(io, 0, sizeof(FileIo));
@@ -108,7 +108,6 @@ LibError file_io_issue(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 	cb->aio_fildes     = f->fd;
 	cb->aio_offset     = ofs;
 	cb->aio_nbytes     = size;
-	debug_printf("FILE| issue2 io=%p nbytes=%u\n", io, cb->aio_nbytes);
 	int err = lio_listio(LIO_NOWAIT, &cb, 1, (struct sigevent*)0);
 	if(err < 0)
 	{
@@ -138,7 +137,7 @@ int file_io_has_completed(FileIo* io)
 
 LibError file_io_wait(FileIo* io, void*& p, size_t& size)
 {
-	debug_printf("FILE| wait io=%p\n", io);
+//	debug_printf("FILE| wait io=%p\n", io);
 
 	// zero output params in case something (e.g. H_DEREF) fails.
 	p = 0;
@@ -153,7 +152,7 @@ LibError file_io_wait(FileIo* io, void*& p, size_t& size)
 
 	// query number of bytes transferred (-1 if the transfer failed)
 	const ssize_t bytes_transferred = aio_return(cb);
-	debug_printf("FILE| bytes_transferred=%d aio_nbytes=%u\n", bytes_transferred, cb->aio_nbytes);
+//	debug_printf("FILE| bytes_transferred=%d aio_nbytes=%u\n", bytes_transferred, cb->aio_nbytes);
 
 	// see if actual transfer count matches requested size.
 	// note: most callers clamp to EOF but round back up to sector size
@@ -325,11 +324,6 @@ class IOManager
 		else
 			dst = (void*)*pbuf;
 
-		double start_time = 0.0;	// required for stats
-		FileOp op = is_write? FO_WRITE : FO_READ;
-		BlockId disk_pos = block_cache_make_id(f->fc.atom_fn, start_ofs);
-		stats_io_start(FI_LOWIO, op, size, disk_pos, &start_time);
-		//
 		ssize_t total_transferred;
 		if(is_write)
 			total_transferred = write(fd, dst, size);
@@ -340,8 +334,6 @@ class IOManager
 			free(dst_mem);
 			WARN_RETURN(LibError_from_errno());
 		}
-		//
-		stats_io_finish(FI_LOWIO, op, &start_time);
 
 		size_t total_processed;
 		LibError ret = file_io_call_back(dst, total_transferred, cb, cb_ctx, total_processed);
@@ -408,7 +400,6 @@ class IOManager
 			else
 				buf = (char*)*pbuf + total_issued;
 
-			stats_io_start(FI_AIO, is_write? FO_WRITE : FO_READ, issue_size, slot.block_id, &slot.start_time);
 			LibError ret = file_io_issue(f, ofs, issue_size, buf, &slot.io);
 			// transfer failed - loop will now terminate after
 			// waiting for all pending transfers to complete.
@@ -430,9 +421,15 @@ class IOManager
 		else
 		{
 			LibError ret = file_io_wait(&slot.io, block, block_size);
-			stats_io_finish(FI_AIO, is_write? FO_WRITE : FO_READ, &slot.start_time);
 			if(ret < 0)
 				err = ret;
+
+if(pbuf != FILE_BUF_TEMP && f->fc.flags & FILE_CACHE_BLOCK)
+{
+	slot.temp_buf = block_cache_alloc(slot.block_id);
+	memcpy2(slot.temp_buf, block, block_size);
+	// block_cache_mark_completed will be called in process()
+}
 		}
 
 		// first time; skip past padding
@@ -472,7 +469,8 @@ class IOManager
 		else
 		{
 			file_io_discard(&slot.io);
-			if(pbuf == FILE_BUF_TEMP)
+
+			if(slot.temp_buf)
 				block_cache_mark_completed(slot.block_id);
 		}
 	}
@@ -536,10 +534,13 @@ public:
 	{
 		RETURN_ERR(prepare());
 
-		ssize_t ret = no_aio? lowio() : aio();
-///		FILE_STATS_NOTIFY_IO(fi, is_write? FO_WRITE : FO_READ, user_size, total_issued, start_time);
-
-		debug_printf("FILE| err=%d, total_processed=%u\n", err, total_processed);
+		const FileIOImplentation fi = no_aio? FI_LOWIO : FI_AIO;
+		const FileOp fo = is_write? FO_WRITE : FO_READ;
+		const BlockId disk_pos = block_cache_make_id(f->fc.atom_fn, start_ofs);
+		double start_time = 0.0;
+		stats_io_start(disk_pos, &start_time);
+			ssize_t ret = no_aio? lowio() : aio();
+		stats_io_finish(fi, fo, ret, &start_time);
 
 		// we allocated the memory: skip any leading padding
 		if(pbuf != FILE_BUF_TEMP && !is_write)
@@ -572,7 +573,6 @@ public:
 ssize_t file_io(File* f, off_t ofs, size_t size, FileIOBuf* pbuf,
 	FileIOCB cb, uintptr_t ctx) // optional
 {
-	debug_printf("FILE| io: size=%u ofs=%u fn=%s\n", size, ofs, f->fc.atom_fn);
 	CHECK_FILE(f);
 
 	// note: do not update stats/trace here: this includes Zip IOs,

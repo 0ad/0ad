@@ -325,7 +325,7 @@ extern LibError file_io_validate(const FileIo* io);
 // all transfers are expanded to naturally aligned, whole blocks
 // (this makes caching parts of files feasible; it is also much faster
 // for some aio implementations, e.g. wposix).
-const size_t FILE_BLOCK_SIZE = 16*KiB;
+const size_t FILE_BLOCK_SIZE = 32*KiB;
 
 
 typedef const u8* FileIOBuf;

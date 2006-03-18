@@ -295,6 +295,8 @@ LibError afile_open(const Handle ha, const char* fn, uintptr_t memento, int flag
 			return ERR_NO_MEM;
 	}
 
+flags |= FILE_CACHE_BLOCK;
+
 	af->fc.flags   = flags;
 	af->fc.size    = ent->ucsize;
 	af->fc.atom_fn = atom_fn;
@@ -431,11 +433,7 @@ LibError afile_io_validate(const AFileIo* io)
 }
 
 
-///////////////////////////////////////////////////////////////////////////////
-
-
-
-
+//-----------------------------------------------------------------------------
 
 class Decompressor
 {

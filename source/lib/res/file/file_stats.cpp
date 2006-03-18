@@ -157,14 +157,8 @@ void stats_user_io(size_t user_size)
 	user_io_size_total += user_size;
 }
 
-void stats_io_start(FileIOImplentation fi, FileOp fo, size_t actual_size,
-	BlockId disk_pos, double* start_time_storage)
+void stats_io_start(BlockId disk_pos, double* start_time_storage)
 {
-	debug_assert(fi < FI_MAX_IDX);
-	debug_assert(fo == FO_READ || FO_WRITE);
-
-	io_actual_size_total[fi][fo] += actual_size;
-
 	if(disk_pos.atom_fn != io_disk_pos_cur.atom_fn ||
 	   disk_pos.block_num != io_disk_pos_cur.block_num+1)
 		io_seeks++;
@@ -173,12 +167,17 @@ void stats_io_start(FileIOImplentation fi, FileOp fo, size_t actual_size,
 	timer_start(start_time_storage);
 }
 
-void stats_io_finish(FileIOImplentation fi, FileOp fo, double* start_time_storage)
+void stats_io_finish(FileIOImplentation fi, FileOp fo, ssize_t user_size, double* start_time_storage)
 {
 	debug_assert(fi < FI_MAX_IDX);
 	debug_assert(fo == FO_READ || FO_WRITE);
 
-	io_elapsed_time[fi][fo] += timer_reset(start_time_storage);
+	// ignore IOs that failed (nothing we can do)
+	if(user_size > 0)
+	{
+		io_actual_size_total[fi][fo] += user_size;
+		io_elapsed_time[fi][fo] += timer_reset(start_time_storage);
+	}
 }
 
 void stats_cb_start()
@@ -223,6 +222,13 @@ void stats_block_cache(CacheRet cr)
 
 //-----------------------------------------------------------------------------
 
+template<typename T> int percent(T num, T divisor)
+{
+	if(!divisor)
+		return 0;
+	return (int)(100*num / divisor);
+}
+
 void stats_dump()
 {
 	const double KB = 1e3; const double MB = 1e6; const double ms = 1e-3;
@@ -249,7 +255,7 @@ void stats_dump()
 		"Accessed files: %u (%g MB) -- %u%% of data set\n"
 		"Max. concurrent: %u; leaked: %u.\n",
 		unique_names, unique_name_len_total/1000, 
-		opened_files.size(), opened_file_size_total/MB, 100u*opened_files.size()/vfs_files,
+		opened_files.size(), opened_file_size_total/MB, percent(opened_files.size(), vfs_files),
 		open_files_max, open_files_cur
 	);
 
@@ -261,7 +267,7 @@ void stats_dump()
 		"Internal fragmentation: %d%%\n",
 		extant_bufs_total, buf_user_size_total/MB,
 		extant_bufs_max, extant_bufs_cur,
-		(int)(100*(buf_padded_size_total-buf_user_size_total)/buf_user_size_total)
+		percent(buf_padded_size_total-buf_user_size_total, buf_user_size_total)
 	);
 
 	// file_io
@@ -286,7 +292,7 @@ void stats_dump()
 		"Hit ratio: %u%%; conflict misses: %u%%\n"
 		"Block hits: %u; misses: %u; ratio: %u%%\n",
 		cache_count[CR_HIT], cache_size_total[CR_HIT]/MB, cache_count[CR_MISS], cache_size_total[CR_MISS]/MB,
-		100u*cache_count[CR_HIT]/cache_count[CR_MISS], 100u*conflict_misses/cache_count[CR_MISS],
-		block_cache_count[CR_HIT], block_cache_count[CR_MISS], 100u*block_cache_count[CR_HIT]/(block_cache_count[CR_HIT]+block_cache_count[CR_MISS])
+		percent(cache_count[CR_HIT], cache_count[CR_MISS]), percent(conflict_misses, cache_count[CR_MISS]),
+		block_cache_count[CR_HIT], block_cache_count[CR_MISS], percent(block_cache_count[CR_HIT], block_cache_count[CR_HIT]+block_cache_count[CR_MISS])
 	);
 }

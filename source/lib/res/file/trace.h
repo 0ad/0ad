@@ -58,7 +58,7 @@ enum TraceRunFlags
 // carry out all operations specified in the trace.
 // if flags&TRF_SYNC_TO_TIMESTAMP, waits until timestamp for each event is
 // reached; otherwise, they are run as fast as possible.
-extern LibError trace_run(const char* trace_filename, uint flags);
+extern LibError trace_run(const char* trace_filename, uint flags = 0);
 
 
 #endif	// #ifndef TRACE_H__
