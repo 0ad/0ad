@@ -81,7 +81,7 @@ public:
 		// Otherwise, complain.
 		else
 		{
-			LOG(WARNING, "gui", "add_color effect has some components >127 and some <127 - colours will be clamped");
+			LOG(WARNING, "gui", "add_color effect has some components above 127 and some below -127 - colours will be clamped");
 			m_Color = CColor(c.r+0.5f, c.g+0.5f, c.b+0.5f, c.a+0.5f);
 			m_Method = ADD_SIGNED;
 		}

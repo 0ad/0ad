@@ -5,6 +5,7 @@
 #include "ConfigDB.h"
 #include "Network/ServerSession.h"
 #include "CLogger.h"
+#include "ps/XML/Xeromyces.h"
 
 using namespace std;
 
@@ -197,36 +198,40 @@ CGameAttributes::CGameAttributes():
 	AddSynchedProperty(L"numSlots", &m_NumSlots, &CGameAttributes::OnNumSlotsUpdate);
 	AddSynchedProperty(L"losSetting", &m_LOSSetting);
 
-	m_Players.resize(9);
-	for (int i=0;i<9;i++)
-		m_Players[i]=new CPlayer(i);
-		
-	m_Players[0]->SetName(L"Gaia");
-	m_Players[0]->SetColour(SPlayerColour(1.0f, 1.0f, 1.0f)); //White
+	CXeromyces XeroFile;
+	if (XeroFile.Load("temp/players.xml") != PSRETURN_OK)
+	{
+		LOG(ERROR, "", "Failed to load players list (temp/players.xml)");
 
-	m_Players[1]->SetName(L"Player 1");
-	m_Players[1]->SetColour(SPlayerColour(0.4375f, 0.4375f, 0.8125f)); // Blue
+		// Basic default players
 
-	m_Players[2]->SetName(L"Acumen");
-	m_Players[2]->SetColour(SPlayerColour(0.8125f, 0.4375f, 0.4375f)); //Red
+		m_Players.push_back(new CPlayer(0));
+		m_Players.back()->SetName(L"Gaia");
+		m_Players.back()->SetColour(SPlayerColour(1.0f, 1.0f, 1.0f));
 
-	m_Players[3]->SetName(L"Boco the Insignificant");
-	m_Players[3]->SetColour(SPlayerColour(0.4375f, 0.8125f, 0.4375f)); //Green
+		m_Players.push_back(new CPlayer(1));
+		m_Players.back()->SetName(L"Player 1");
+		m_Players.back()->SetColour(SPlayerColour(0.4375f, 0.4375f, 0.8125f));
+	}
+	else
+	{
+		int at_name = XeroFile.getAttributeID("name");
+		int at_rgb = XeroFile.getAttributeID("rgb");
 
-	m_Players[4]->SetName(L"NoMonkey the Magnificent");
-	m_Players[4]->SetColour(SPlayerColour(0.8125f, 0.8125f, 0.4375f)); //Yellow
+		XMBElement root = XeroFile.getRoot();
+		XERO_ITER_EL(root, player)
+		{
+			XMBAttributeList attr = player.getAttributes();
+			m_Players.push_back(new CPlayer((int)m_Players.size()));
+			m_Players.back()->SetName(attr.getNamedItem(at_name));
 
-	m_Players[5]->SetName(L"Wijit");
-	m_Players[5]->SetColour(SPlayerColour(0.4375f, 0.8125f, 0.8125f)); //Turquoise
-
-	m_Players[6]->SetName(L"Ykkrosh");
-	m_Players[6]->SetColour(SPlayerColour(0.8125f, 0.4375f, 0.8125f)); //Purple
-
-	m_Players[7]->SetName(L"Code Monkey");
-	m_Players[7]->SetColour(SPlayerColour(0.8125f, 0.625f, 0.4375f)); //Orange
-
-	m_Players[8]->SetName(L"Clausewitz");
-	m_Players[8]->SetColour(SPlayerColour(0.625f, 0.625f, 0.625f)); //Gray
+			std::stringstream str;
+			str << (CStr)attr.getNamedItem(at_rgb);
+			int r, g, b;
+			if (str >> r >> g >> b)
+				m_Players.back()->SetColour(SPlayerColour(r/255.0f, g/255.0f, b/255.0f));
+		}
+	}
 	
 	std::vector<CPlayer *>::iterator it=m_Players.begin();
 	++it; // Skip Gaia - gaia doesn't account for a slot

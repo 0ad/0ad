@@ -50,7 +50,10 @@ bool CUnit::SetRandomAnimation(const CStr& name, bool once, float speed)
 	CSkeletonAnim* anim = GetRandomAnimation(name);
 	if (anim)
 	{
-		m_Model->SetAnimation(anim, once, speed ? speed*anim->m_AnimDef->GetDuration() : 1000.f);
+		float actualSpeed = 1000.f;
+		if (speed && anim->m_AnimDef)
+			actualSpeed = speed * anim->m_AnimDef->GetDuration();
+		m_Model->SetAnimation(anim, once, actualSpeed);
 		return true;
 	}
 	else
