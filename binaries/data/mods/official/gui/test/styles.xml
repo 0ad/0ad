@@ -545,6 +545,18 @@
 				ghost="false"				
 		/>		
 		
+		<style	name="snMiniMapButton"
+				text_align="left"
+				text_valign="center"
+				font="tahoma14"
+				textcolor="white"
+				tooltip_style="snToolTip"
+				sprite="snIconSheetMiniMapButton"
+				sprite_over="snIconSheetMiniMapButtonOver"
+				sprite_disabled="snIconSheetMiniMapButtonDisabled"
+				ghost="false"				
+		/>		
+		
 		<style name="snGreenBar"
 			sprite_background=""
 			sprite_bar="bkGreenBar"

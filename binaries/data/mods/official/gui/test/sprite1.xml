@@ -786,7 +786,7 @@
 					real_texture_placement="0 0 174 172"
 					size="0 0 100% 100%"
 			/>
-		</sprite>		
+		</sprite>	
 
 		<!--
 		==========================================
@@ -873,27 +873,33 @@
 			<!-- Arc Left (minimap top). -->
 			<sprite	name="snIconArcLeft">
 				<image	texture="session/icons/bkg/arc_left.dds"
+						real_texture_placement="0 0 48 24"
 						size="0 0 100% 100%" 
 				/>
 				<image	texture="session/icons/single/idle.dds"
+						real_texture_placement="0 0 48 24"				
 						size="0 0 100% 100%" 
 				/>				
 			</sprite>
 			<sprite	name="snIconArcLeftOver">
 				<effect	add_color="42 42 42 0"/>
 				<image	texture="session/icons/bkg/arc_left.dds"
+						real_texture_placement="0 0 48 24"				
 						size="0 0 100% 100%" 
 				/>
 				<image	texture="session/icons/single/idle.dds"
+						real_texture_placement="0 0 48 24"				
 						size="0 0 100% 100%" 
 				/>				
 			</sprite>
 			<sprite	name="snIconArcLeftDisabled">
 				<effect	grayscale=""/>
 				<image	texture="session/icons/bkg/arc_left.dds"
+						real_texture_placement="0 0 48 24"				
 						size="0 0 100% 100%" 
 				/>
 				<image	texture="session/icons/single/idle.dds"
+						real_texture_placement="0 0 48 24"				
 						size="0 0 100% 100%" 
 				/>				
 			</sprite>			
@@ -901,27 +907,33 @@
 			<!-- Arc Up (minimap left). -->
 			<sprite	name="snIconArcUp">
 				<image	texture="session/icons/bkg/arc_up.dds"
+						real_texture_placement="0 0 24 48"
 						size="0 0 100% 100%" 
 				/>
 				<image	texture="session/icons/single/flare.dds"
+						real_texture_placement="0 0 24 48"				
 						size="0 0 100% 100%" 
 				/>				
 			</sprite>
 			<sprite	name="snIconArcUpOver">
 				<effect	add_color="42 42 42 0"/>
 				<image	texture="session/icons/bkg/arc_up.dds"
+						real_texture_placement="0 0 24 48"				
 						size="0 0 100% 100%" 
 				/>
 				<image	texture="session/icons/single/flare.dds"
+						real_texture_placement="0 0 24 48"				
 						size="0 0 100% 100%" 
 				/>				
 			</sprite>
 			<sprite	name="snIconArcUpDisabled">
 				<effect	grayscale=""/>
 				<image	texture="session/icons/bkg/arc_up.dds"
+						real_texture_placement="0 0 24 48"				
 						size="0 0 100% 100%" 
 				/>
 				<image	texture="session/icons/single/flare.dds"
+						real_texture_placement="0 0 24 48"				
 						size="0 0 100% 100%" 
 				/>				
 			</sprite>			
