@@ -207,12 +207,12 @@ function calcCrdArray (rx, ry, x, y, width, height, rx2, ry2)
 	else
 	{
 		// Use the standard "size" structure:
+		//	RX
+		//	RY
 		//	X1
 		//	X2
 		//	Y1
 		//	Y2
-		//	RX
-		//	RY
 		//	RX2
 		//	RY2
 	

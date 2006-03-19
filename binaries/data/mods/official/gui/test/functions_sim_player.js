@@ -225,7 +225,7 @@ function refreshResource (resourceName, resourceIndex)
 		if (resourceIndex == 0)
 		{
 			// The first coordinate is in the exact centre of the screen.
-			Crd[crdResult].coord[coordGroup].x = -Crd[crdResult].coord[coordGroup].width - 5;
+			Crd[crdResult].coord[coordGroup].x = Math.round (-(Crd[crdResult].coord[coordGroup].width/2) - 5);
 		}
 		else
 		{	// Resources other than the first one get stacked in sequence to the sides of it.
