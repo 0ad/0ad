@@ -173,7 +173,8 @@ MESSAGEHANDLER(ObjectPreview)
 				if (base) // (ignore errors)
 				{
 					g_PreviewUnit = g_UnitMan.CreateUnit(base->m_actorName, NULL, selections);
-					g_PreviewUnit->SetPlayerID(msg->player);
+					if (g_PreviewUnit)
+						g_PreviewUnit->SetPlayerID(msg->player);
 					// TODO: variations
 				}
 			}
@@ -263,11 +264,19 @@ BEGIN_COMMAND(CreateObject)
 					HEntity ent = g_EntityManager.create(base, m_Pos, m_Angle, selections);
 
 					if (! ent)
+					{
 						LOG(ERROR, LOG_CATEGORY, "Failed to create entity of type '%ls'", name.c_str());
+					}
+					else if (! ent->m_actor)
+					{
+						// We don't want to allow entities with no actors, because
+						// they'll be be invisible and will confuse scenario designers
+						LOG(ERROR, LOG_CATEGORY, "Failed to create entity of type '%ls'", name.c_str());
+						ent->kill();
+					}
 					else
 					{
 						ent->SetPlayer(g_Game->GetPlayer(m_Player));
-
 						ent->m_actor->SetID(m_ID);
 					}
 				}
@@ -276,7 +285,9 @@ BEGIN_COMMAND(CreateObject)
 			{
 				CUnit* unit = g_UnitMan.CreateUnit(CStr(name), NULL, selections);
 				if (! unit)
+				{
 					LOG(ERROR, LOG_CATEGORY, "Failed to load nonentity actor '%ls'", name.c_str());
+				}
 				else
 				{
 					unit->SetID(m_ID);
@@ -290,7 +301,6 @@ BEGIN_COMMAND(CreateObject)
 					m._31 = s;      m._32 = 0.0f;   m._33 = -c;     m._34 = m_Pos.Z;
 					m._41 = 0.0f;   m._42 = 0.0f;   m._43 = 0.0f;   m._44 = 1.0f;
 					unit->GetModel()->SetTransform(m);
-
 				}
 			}
 		}
