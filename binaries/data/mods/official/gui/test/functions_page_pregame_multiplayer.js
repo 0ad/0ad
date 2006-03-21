@@ -8,7 +8,7 @@
 function initMPHost (parentWindow, gameName, welcomeMessage, profileName)
 {
 	// Set up the server
-	server = createServer();
+	var server = createServer();
 	// Welcome message
 	server.welcomeMessage = welcomeMessage;
 	// Server Name
@@ -52,7 +52,7 @@ console.write (event.id);
 	{
 		// Client has disconnected; free their slot.
 		g_GameAttributes.slots[event.id].assignOpen();
-		result = setCurrItemValue ("pgSessionSetupP" + event.id, "Open");
+		var result = setCurrItemValue ("pgSessionSetupP" + event.id, "Open");
 
 		messageBox(400, 200, "Client " + event.name + "(" + event.id + ") disconnected from " + event.session + ".", "Client Disconnected", 2, new Array(), new Array());
 	}	
@@ -70,11 +70,11 @@ console.write (event.id);
 function initMPClient (mpParentWindow, ipAddress, profileName)
 {
 	// Create the client instance
-	client = createClient();
+	var client = createClient();
 	// Player Name
 	client.playerName = profileName;
 
-	success = client.beginConnect (ipAddress);
+	var success = client.beginConnect (ipAddress);
 	if (!success)
 	{
 		messageBox(400, 200, "Failed to connect to server. Please check the network connection.",

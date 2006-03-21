@@ -54,15 +54,6 @@
 			]]></action>
 		</object>
 		
-		<!-- EMPTY OBJECT USED TO PAUSE/UNPAUSE GAME. -->
-		<object name="snPause"
-			hotkey="pause"
-		>
-			<action on="Press"><![CDATA[	
-				setPaused( !isPaused() );
-			]]></action>
-		</object>
-		
 		<!-- GROUP: MINIMAP -->
 		<object	name="snMiniMap"
 				hotkey="session.minimap.toggle"
@@ -98,14 +89,14 @@
 			<object	name="snMiniMapButtonArc_Up" style="snMiniMapArcUp" type="button"
 			>
 				<action on="Load"><![CDATA[
-					currCrd = getCrd ("snMiniMapBorder");
+					var currCrd = getCrd ("snMiniMapBorder");
 					addCrds (this.name, 100, 100, currCrd.coord[rb].x+currCrd.coord[rb].width-32, currCrd.coord[rb].y+currCrd.coord[rb].height-83, 25, 52);
 				]]></action>				
 			</object>
 			<object	name="snMiniMapButtonArc_Left" style="snMiniMapArcLeft" type="button"
 			>
 				<action on="Load"><![CDATA[
-					currCrd = getCrd ("snMiniMapBorder");
+					var currCrd = getCrd ("snMiniMapBorder");
 					addCrds (this.name, 100, 100, currCrd.coord[rb].x+currCrd.coord[rb].width-83, currCrd.coord[rb].y+currCrd.coord[rb].height-32, 52, 25);
 				]]></action>				
 			</object>				
@@ -115,10 +106,10 @@
 			>
 				<action on="Load"><![CDATA[
 					// Seek through this group of buttons (determining length from last object's name).
-					max = this.name.substring (this.name.lastIndexOf ("_")+1, this.name.length);
-					for (loop = 1; loop <= max; loop++)
+					var max = this.name.substring (this.name.lastIndexOf ("_")+1, this.name.length);
+					for (var loop = 1; loop <= max; loop++)
 					{
-						tempName = this.name.substring (0, this.name.lastIndexOf ("_")+1) + loop;
+						var tempName = this.name.substring (0, this.name.lastIndexOf ("_")+1) + loop;
 						// Set size/position.
 						if (loop == 1)
 						{
@@ -141,7 +132,7 @@
 								currCrd.coord[rb].height);
 						}
 						// Set object properties.
-						tempObject = getGUIObjectByName (tempName);
+						var tempObject = getGUIObjectByName (tempName);
 						switch (loop)
 						{
 							case 1:
@@ -168,14 +159,14 @@
 			>
 				<action on="Load"><![CDATA[
 					// Seek through this group of buttons (determining length from last object's name).
-					max = this.name.substring (this.name.lastIndexOf ("_")+1, this.name.length);
-					for (loop = 1; loop <= max; loop++)
+					var max = this.name.substring (this.name.lastIndexOf ("_")+1, this.name.length);
+					for (var loop = 1; loop <= max; loop++)
 					{
-						tempName = this.name.substring (0, this.name.lastIndexOf ("_")+1) + loop;
+						var tempName = this.name.substring (0, this.name.lastIndexOf ("_")+1) + loop;
 						// Set size/position.
 						if (loop == 1)
 						{
-							currCrd = getCrd ("snMiniMapBorder");									
+							var currCrd = getCrd ("snMiniMapBorder");									
 							addCrds (tempName,
 								100, 100,
 								currCrd.coord[rb].x,
@@ -185,7 +176,7 @@
 						}
 						else
 						{
-							currCrd = getCrd (this.name.substring (0, this.name.lastIndexOf ("_")+1) + (loop - 1));
+							var currCrd = getCrd (this.name.substring (0, this.name.lastIndexOf ("_")+1) + (loop - 1));
 							addCrds (tempName,
 								100, 100,
 								currCrd.coord[rb].x+currCrd.coord[rb].width+1,
@@ -194,7 +185,7 @@
 								currCrd.coord[rb].height);
 						}
 						// Set object properties.
-						tempObject = getGUIObjectByName (tempName);
+						var tempObject = getGUIObjectByName (tempName);
 						switch (loop)
 						{
 							case 1:
@@ -248,11 +239,11 @@
 			>
 				<action on="Load"><![CDATA[
 					// Seek through this group of buttons (determining length from last object's name).
-					max = this.name.substring (this.name.lastIndexOf ("_")+1, this.name.length);
-					for (loop = 1; loop <= max; loop++)
+					var max = this.name.substring (this.name.lastIndexOf ("_")+1, this.name.length);
+					for (var loop = 1; loop <= max; loop++)
 					{
 						// Get name of current object in group.
-						tempName = this.name.substring (0, this.name.lastIndexOf ("_")+1) + loop;
+						var tempName = this.name.substring (0, this.name.lastIndexOf ("_")+1) + loop;
 						// Create coordinates for object (the actual coordinates are refreshed when the
 						// resource is updated, so at this point we don't sweat that they have the same
 						// coordinates).
@@ -284,11 +275,11 @@
 			>
 				<action on="Load"><![CDATA[
 					// Seek through this group of buttons (determining length from last object's name).
-					max = this.name.substring (this.name.lastIndexOf ("_")+1, this.name.length);
-					for (loop = 1; loop <= max; loop++)
+					var max = this.name.substring (this.name.lastIndexOf ("_")+1, this.name.length);
+					for (var loop = 1; loop <= max; loop++)
 					{
 						// Get name of current object in group.
-						tempName = this.name.substring (0, this.name.lastIndexOf ("_")+1) + loop;
+						var tempName = this.name.substring (0, this.name.lastIndexOf ("_")+1) + loop;
 						// Create coordinates for object (the actual coordinates are refreshed when the
 						// resource is updated, so at this point we don't sweat that they have the same
 						// coordinates).
@@ -298,6 +289,26 @@
 				]]></action>				
 			</object>			
 
+		</object>
+		
+		<!-- PAUSE/UNPAUSE GAME TITLE. -->
+		<object name="snPause"
+				type="button"
+				font="prospero18b"
+				hidden="true"
+				hotkey="pause"
+				text_align="center"
+				text_valign="center"
+				textcolor="gold"
+		>Game is Paused
+			<action on="Load"><![CDATA[
+				var currCrd = getCrd ("snResourceCounter_1")
+				addCrds (this.name, 50, 0, -200, currCrd.coord[rb].y+currCrd.coord[rb].height, 200, currCrd.coord[rb].y+currCrd.coord[rb].height+52, 50, 0); 
+			]]></action>		
+			<action on="Press"><![CDATA[	
+				setPaused( !isPaused() );
+				getGUIObjectByName (this.name).hidden = (!(getGUIObjectByName (this.name).hidden));
+			]]></action>
 		</object>
 
 		<!-- GROUP: STATUS PANE -->
@@ -314,10 +325,7 @@
 				type="image"
 			>
 				<action on="Load"><![CDATA[
-					addCrd (this.name, rb, 0, 100, 0, 0, 256, 128);
-					addCrd (this.name, lb, 100, 100);	
-					addCrd (this.name, lt, 100, 0);
-					addCrd (this.name, rt, 0, 0);
+					addCrds (this.name, 0, 100, 0, 0, 256, 128);
 				]]></action>
 				
 				<object	name="snStatusPaneEmblem"
@@ -326,7 +334,7 @@
 					z="10"
 				>
 					<action on="Load"><![CDATA[				
-						currCrd = getCrd ("snStatusPaneBkg");
+						var currCrd = getCrd ("snStatusPaneBkg");
 						addCrds (this.name, 0, 0, currCrd.coord[rb].x, currCrd.coord[rb].y, 
 							currCrd.coord[rb].width, currCrd.coord[rb].height);
 					]]></action>								
@@ -338,11 +346,8 @@
 					hotkey="selection.snap"
 				>
 					<action on="Load"><![CDATA[
-						addCrd (this.name, rb, 0, 0, 7, 11, 
+						addCrds (this.name, 0, 0, 7, 11, 
 							snConst.Portrait.Lrg.Width, snConst.Portrait.Lrg.Height);
-						addCrd (this.name, lb, 100, 100);	
-						addCrd (this.name, lt, 100, 0);
-						addCrd (this.name, rt, 0, 0);
 					]]></action>
 					<action on="Press"><![CDATA[
 						// Focus the camera on the unit when his portrait is clicked.
@@ -357,7 +362,7 @@
 					sprite="snIconSheetRank"
 				>
 					<action on="Load"><![CDATA[
-						currCrd = getCrd ("snStatusPanePortrait");
+						var currCrd = getCrd ("snStatusPanePortrait");
 						addCrds (this.name, 0, 0, currCrd.coord[rb].x,
 								currCrd.coord[rb].y, 25, 25);					
 					]]></action>
@@ -368,7 +373,7 @@
 					type="progressbar"
 				>
 					<action on="Load"><![CDATA[
-						currCrd = getCrd ("snStatusPanePortrait");
+						var currCrd = getCrd ("snStatusPanePortrait");
 						addCrds (this.name, 0, 0, currCrd.coord[rb].x+1,
 								currCrd.coord[rb].y+currCrd.coord[rb].height+3, 35, 8);					
 					]]></action>
@@ -379,7 +384,7 @@
 					type="progressbar"
 				>
 					<action on="Load"><![CDATA[
-						currCrd = getCrd ("snStatusPaneHealthBar");
+						var currCrd = getCrd ("snStatusPaneHealthBar");
 						addCrds (this.name, 0, 0, currCrd.coord[rb].x,
 								currCrd.coord[rb].y+currCrd.coord[rb].height, currCrd.coord[rb].width, currCrd.coord[rb].height);					
 					]]></action>
@@ -392,8 +397,8 @@
 					text_valign="center"					
 				>
 					<action on="Load"><![CDATA[
-						currCrd = getCrd ("snStatusPaneHealthBar");
-						currCrd2 = getCrd ("snStatusPanePortrait");						
+						var currCrd = getCrd ("snStatusPaneHealthBar");
+						var currCrd2 = getCrd ("snStatusPanePortrait");						
 						addCrds (this.name, 0, 0, currCrd.coord[rb].x+currCrd.coord[rb].width, currCrd.coord[rb].y, currCrd2.coord[rb].width-currCrd.coord[rb].width-2, currCrd.coord[rb].height);					
 					]]></action>
 				</object>				
@@ -405,8 +410,8 @@
 					text_valign="center"					
 				>
 					<action on="Load"><![CDATA[
-						currCrd = getCrd ("snStatusPaneHealthBarText");
-						currCrd2 = getCrd ("snStatusPaneStaminaBar");						
+						var currCrd = getCrd ("snStatusPaneHealthBarText");
+						var currCrd2 = getCrd ("snStatusPaneStaminaBar");						
 						addCrds (this.name, 0, 0, currCrd.coord[rb].x, currCrd2.coord[rb].y, currCrd.coord[rb].width, currCrd.coord[rb].height);					
 					]]></action>
 				</object>				
@@ -419,7 +424,7 @@
 					text_valign="top"					
 				>
 					<action on="Load"><![CDATA[
-						currCrd = getCrd ("snStatusPanePortrait");
+						var currCrd = getCrd ("snStatusPanePortrait");
 						addCrds (this.name, 0, 0, currCrd.coord[rb].x+currCrd.coord[rb].width+3,
 								currCrd.coord[rb].y-1, 190, currCrd.coord[rb].height);					
 					]]></action>
@@ -432,7 +437,7 @@
 					sprite="snIconSheetResource"					
 				>
 					<action on="Load"><![CDATA[
-						currCrd = getCrd ("snStatusPaneText");
+						var currCrd = getCrd ("snStatusPaneText");
 						addCrds (this.name, 0, 0, currCrd.coord[rb].x,
 								currCrd.coord[rb].y+currCrd.coord[rb].height+2, 20, 20);					
 					]]></action>
@@ -444,7 +449,7 @@
 					sprite="bkDarkGrayBorderBlack"
 				>
 					<action on="Load"><![CDATA[
-						currCrd = getCrd ("snStatusPaneSupplyIcon");
+						var currCrd = getCrd ("snStatusPaneSupplyIcon");
 						addCrds (this.name, 0, 0, currCrd.coord[rb].x+currCrd.coord[rb].width,
 								currCrd.coord[rb].y, 64, currCrd.coord[rb].height);					
 					]]></action>
@@ -457,8 +462,8 @@
 					sprite="snIconSheetGarrison"					
 				>
 					<action on="Load"><![CDATA[
-						currCrd = getCrd ("snStatusPaneSupply");
-						currCrd2 = getCrd ("snStatusPaneSupplyIcon");						
+						var currCrd = getCrd ("snStatusPaneSupply");
+						var currCrd2 = getCrd ("snStatusPaneSupplyIcon");						
 						addCrds (this.name, 0, 0, currCrd.coord[rb].x+currCrd.coord[rb].width,
 								currCrd.coord[rb].y, currCrd2.coord[rb].width, currCrd.coord[rb].height);					
 					]]></action>
@@ -470,8 +475,8 @@
 					sprite="bkDarkGrayBorderBlack"
 				>
 					<action on="Load"><![CDATA[
-						currCrd = getCrd ("snStatusPaneSupply");
-						currCrd2 = getCrd ("snStatusPaneGarrisonIcon");						
+						var currCrd = getCrd ("snStatusPaneSupply");
+						var currCrd2 = getCrd ("snStatusPaneGarrisonIcon");						
 						addCrds (this.name, 0, 0, currCrd2.coord[rb].x+currCrd2.coord[rb].width, currCrd2.coord[rb].y, currCrd.coord[rb].width, currCrd.coord[rb].height);					
 					]]></action>
 				</object>				
@@ -487,9 +492,9 @@
 				>
 					<action on="Load"><![CDATA[
 						// Seek through this group of buttons (determining length from last object's name).
-						max = this.name.substring (this.name.lastIndexOf ("_")+1, this.name.length);
-						currCrd = getCrd ("snStatusPaneBkg");
-						currCrd3 = getCrd ("snStatusPanePortrait");
+						var max = this.name.substring (this.name.lastIndexOf ("_")+1, this.name.length);
+						var currCrd = getCrd ("snStatusPaneBkg");
+						var currCrd3 = getCrd ("snStatusPanePortrait");
 						for (loop = 1; loop <= max; loop++)
 						{
 							// Get name of current object in group.
@@ -511,7 +516,7 @@
 							else
 							{
 								// Get previous stat.
-								currCrd2 = getCrd (this.name.substring (0, this.name.lastIndexOf ("_")+1) + (loop-1));
+								var currCrd2 = getCrd (this.name.substring (0, this.name.lastIndexOf ("_")+1) + (loop-1));
 								// Align to the right of it.
 								addCrds (tempName, 0, 0, currCrd2.coord[rb].x + currCrd2.coord[rb].width, currCrd2.coord[rb].y, tempWidth, currCrd2.coord[rb].height);								
 							}
@@ -690,14 +695,11 @@
 				hidden="true"
 			>
 				<action on="Load"><![CDATA[
-					addCrd (this.name, rb, 0, 100,
+					addCrds (this.name, 0, 100,
 						getCrd ("snStatusPaneBkg").coord[rb].x
 							+getCrd ("snStatusPaneBkg").coord[rb].width,
 							getCrd ("snStatusPaneBkg").coord[rb].y+getCrd ("snStatusPaneBkg").coord[rb].height, 
 								snConst.Portrait.Sml.Width, snConst.Portrait.Sml.Height);
-					addCrd (this.name, lb, 100, 100);	
-					addCrd (this.name, lt, 100, 0);
-					addCrd (this.name, rt, 0, 0);
 				]]></action>
 			</object>
 -->

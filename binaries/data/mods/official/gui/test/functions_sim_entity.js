@@ -176,8 +176,8 @@ function makeUnit (x, y, z, MakeUnitName)
 {
         // Spawn an entity at the given coordinates.
 
-        DudeSpawnPoint = new Vector3D(x, y, z);
-        new Entity(getEntityTemplate(MakeUnitName), DudeSpawnPoint, 1.0);
+        var dudeSpawnPoint = new Vector3D(x, y, z);
+        new Entity(getEntityTemplate(MakeUnitName), dudeSpawnPoint, 1.0);
         // writeConsole(MakeUnitName + " created at " + DudeSpawnPoint);
 }
 
@@ -220,8 +220,6 @@ function validProperty (propertyName)
 	// and checks if all the elements (selection[0].traits, selection[0].traits.id, etc) are valid properties.
 	// Returns false if any invalids are found. Returns true if the whole property is valid.
 
-console.write (propertyName);
-	
 	// An empty string is always successful.
 	if (propertyName == "") return true;
 	
@@ -229,11 +227,11 @@ console.write (propertyName);
 	if (propertyName == undefined) return false;
 
 	// Store elements of the property as an array of strings.
-	splitArray = propertyName.toString().split (".");
+	var splitArray = propertyName.toString().split (".");
 	
 	// Seek through elements in array.
-	arrayString = "";
-	for (i = 0; i < splitArray.length; i++)
+	var arrayString = "";
+	for (var i = 0; i < splitArray.length; i++)
 	{
 		// Test each element combination of the string to ensure they are all valid.
 		if (i > 0) arrayString += ".";

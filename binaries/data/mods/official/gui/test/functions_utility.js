@@ -11,28 +11,28 @@ function getRandom(randomMin, randomMax)
 	// NOTE: There should probably be an engine function for this,
 	// since we'd need to keep track of random seeds for replays.
 
-	randomNum = randomMin + (randomMax-randomMin)*Math.random();  // num is random, from A to B 
+	var randomNum = randomMin + (randomMax-randomMin)*Math.random();  // num is random, from A to B 
 	return Math.round(randomNum);
 }
 
 // ====================================================================
 
-function parseDelimiterString (parseString, Delimiter) 
+function parseDelimiterString (parseString, delimiter) 
 { 
         // Seeks through the delimiters in a string and populates the elements of an array with fields found between them. 
 
         // Declare local variables. 
-        parseLoop = 0; 
-        parseElement = 0; 
-        seekDelimiter = 0; 
-        parseArray = new Array(); 
+        var parseLoop = 0; 
+        var parseElement = 0; 
+        var seekDelimiter = 0; 
+        var parseArray = new Array(); 
 
         // While we're still within the bounds of the string, 
         while (parseLoop <= parseString.length) 
         { 
                 // Seek until we find a delimiter. 
                 seekDelimiter = parseLoop; 
-                while (parseString[seekDelimiter] != Delimiter && seekDelimiter <= parseString.length) 
+                while (parseString[seekDelimiter] != delimiter && seekDelimiter <= parseString.length) 
                         seekDelimiter++; 
 
                 // If we found a delimiter within the string, 

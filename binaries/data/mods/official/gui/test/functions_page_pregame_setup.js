@@ -8,11 +8,11 @@
 // Open the Session Setup screen.
 function openSessionSetup (sessionReturnWindow)
 {
-	profileName 	= getCurrItemValue ("pgProfileName");
-	titleBar	= getGUIObjectByName ("pgSessionSetupTitleBar");
+	var profileName 	= getCurrItemValue ("pgProfileName");
+	var titleBar		= getGUIObjectByName ("pgSessionSetupTitleBar");
 
 	// Setup remaining slots.
-	for (i = 1; i <= g_GameAttributes.numSlots; i++)
+	for (var i = 1; i <= g_GameAttributes.numSlots; i++)
 	{
 		if (i == 1)
 		{
@@ -28,12 +28,12 @@ function openSessionSetup (sessionReturnWindow)
 //			pushItem ("pgSessionSetupP" + i, "AI");
 
 			// Set other slots to Open.
-			result = setCurrItemValue ("pgSessionSetupP" + i, "Open");
+			var result = setCurrItemValue ("pgSessionSetupP" + i, "Open");
 
 			// Setup onchange event (closing and opening affects host slots).
 			getGUIObjectByName ("pgSessionSetupP" + i).onSelectionChange = function (event)
 			{
-				slotNumber = this.name.substring (this.name.length-1, this.name.length);
+				var slotNumber = this.name.substring (this.name.length-1, this.name.length);
 				switch (getCurrItemValue (this.name))
 				{
 					case "Open":

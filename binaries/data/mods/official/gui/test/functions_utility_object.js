@@ -32,8 +32,8 @@ function guiUnHide (objectName)
 // Toggle visibility of GUI object.
 function guiToggle (objectName)
 {
-        // Get our GUI object
-        var guiObject = getGUIObjectByName (objectName);
+	// Get our GUI object
+	var guiObject = getGUIObjectByName (objectName);
 
 	if (guiObject == "" || guiObject == null || guiObject == undefined || guiObject == "undefined")
 		console.write ("guiToggle(): GUI Object not found: " + objectName);
@@ -47,7 +47,7 @@ function guiToggle (objectName)
 // Enable GUI object.
 function guiEnable (objectName) 
 {
-        var guiObject = getGUIObjectByName (objectName);
+    var guiObject = getGUIObjectByName (objectName);
 	if (guiObject == "" || guiObject == null || guiObject == undefined || guiObject == "undefined")
 		console.write ("guiEnable(): GUI Object not found: " + objectName);
 	guiObject.enabled = true;
@@ -58,7 +58,7 @@ function guiEnable (objectName)
 // Disable GUI object.
 function guiDisable (objectName) 
 {
-        var guiObject = getGUIObjectByName (objectName);
+    var guiObject = getGUIObjectByName (objectName);
 	if (guiObject == "" || guiObject == null || guiObject == undefined || guiObject == "undefined")
 		console.write ("guiDisable(): GUI Object not found: " + objectName);
 	guiObject.enabled = false;
@@ -69,8 +69,8 @@ function guiDisable (objectName)
 // Change caption of GUI object and then make it visible.
 function guiRenameAndReveal (objectName, objectCaption)
 {
-        // Get our GUI object
-        var guiObject = getGUIObjectByName (objectName);
+    // Get our GUI object
+    var guiObject = getGUIObjectByName (objectName);
 
 	if (guiObject == "" || guiObject == null || guiObject == undefined || guiObject == "undefined")
 		console.write ("guiRenameAndReveal(): GUI Object not found: " + objectName);
@@ -78,8 +78,8 @@ function guiRenameAndReveal (objectName, objectCaption)
 	// Rename it
 	guiObject.caption = objectCaption;
 
-        // Toggle it
-        guiObject.hidden = false;
+    // Toggle it
+    guiObject.hidden = false;
 }
 
 // ====================================================================
@@ -92,8 +92,8 @@ function guiModifyCaption (objectName, objectModifier, objectPlaces)
 	// objectPlaces specifies the number of decimal places to use for a floating point number.
 	// If not specified, it defaults to zero (whole number).
 
-        // Get our GUI object
-        var guiObject = getGUIObjectByName (objectName);
+    // Get our GUI object
+    var guiObject = getGUIObjectByName (objectName);
 
 	if (guiObject == "" || guiObject == null || guiObject == undefined || guiObject == "undefined")
 		console.write ("guiModifyCaption(): GUI Object not found: " + objectName);
@@ -113,8 +113,8 @@ function guiSetCaption (objectName, objectCaption)
 {
 	// Sets an object's caption to the specified value.
 
-        // Get our GUI object
-        var guiObject = getGUIObjectByName (objectName);
+    // Get our GUI object
+    var guiObject = getGUIObjectByName (objectName);
 
 	if (guiObject == "" || guiObject == null || guiObject == undefined || guiObject == "undefined")
 		console.write ("guiSetCaption(): GUI Object not found: " + objectName);

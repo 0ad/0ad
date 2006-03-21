@@ -167,9 +167,9 @@ function refreshResources ()
 {
 	// Refreshes all resource counters after update.
 
-	resourcePool = localPlayer.resource;
-	resourceCount = 0;
-	for (currResource in resourcePool)
+	var resourcePool = localPlayer.resource;
+	var resourceCount = 0;
+	for (var currResource in resourcePool)
 	{
 		// Pass the array index of the resource as the second parameter (as we'll need that to determine the centered screen position of each counter).
 		refreshResource (toTitleCase(currResource), resourceUIArray[resourceCount]);
@@ -191,12 +191,12 @@ function refreshResource (resourceName, resourceIndex)
 		return;
 		
 	// Get resource readout object.
-	resourceObject = getGUIObjectByName ("snResourceCounter_" + (resourceIndex + 1));
+	var resourceObject = getGUIObjectByName ("snResourceCounter_" + (resourceIndex + 1));
 	// Get resource icon object.
-	resourceIconObject = getGUIObjectByName ("snResourceCounterIcon_" + (resourceIndex + 1));
+	var resourceIconObject = getGUIObjectByName ("snResourceCounterIcon_" + (resourceIndex + 1));
 	
 	// Update counter caption (since we need to have up-to-date text to determine the length of the counter).
-	caption = localPlayer.resource.valueOf()[resourceName];
+	var caption = localPlayer.resource.valueOf()[resourceName];
 	// The Population counter also lists the amount of available housing.		
 	if (resourceName == "Population")
 		caption	+= "/" + localPlayer.resource.valueOf()["Housing"];	
@@ -209,12 +209,12 @@ function refreshResource (resourceName, resourceIndex)
 	resourceIconObject.cell_id = cellGroup["Resource"][resourceName.toLowerCase()].id;
 			
 	// Get the index of the resource readout to be resized.
-	crdResult = getCrd (resourceObject.name, true);
+	var crdResult = getCrd (resourceObject.name, true);
 	// Get the index of the resource icon.
-	crdIconResult = getCrd (resourceIconObject.name, true);	
+	var crdIconResult = getCrd (resourceIconObject.name, true);	
 	
 	// For each coordinate group stored for this control,
-	for (coordGroup in Crd[crdResult].coord)
+	for (var coordGroup in Crd[crdResult].coord)
 	{
 		// Set width of readout based on length of caption.
 		Crd[crdResult].coord[coordGroup].width = snConst.MiniIcon.Width+5 + resourceObject.caption.length * 10;
@@ -262,8 +262,7 @@ function refreshResource (resourceName, resourceIndex)
 		Crd[crdIconResult].coord[coordGroup].height = 32;
 		Crd[crdIconResult].coord[coordGroup].x = Crd[crdResult].coord[coordGroup].x;
 		Crd[crdIconResult].coord[coordGroup].y = Crd[crdResult].coord[coordGroup].y;
-		
-		
+			
 		// Recalculate readout's size coordinates.
 		Crd[crdResult].size[coordGroup] = calcCrdArray (Crd[crdResult].coord[coordGroup].rx, Crd[crdResult].coord[coordGroup].ry, Crd[crdResult].coord[coordGroup].x, Crd[crdResult].coord[coordGroup].y, Crd[crdResult].coord[coordGroup].width, Crd[crdResult].coord[coordGroup].height, Crd[crdResult].coord[coordGroup].rx2, Crd[crdResult].coord[coordGroup].ry2);
 		

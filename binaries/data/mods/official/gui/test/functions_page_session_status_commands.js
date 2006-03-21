@@ -23,18 +23,18 @@ function defineCommandButtons(command)
 	snStatusPaneCommand.span = 1;	
 
 	// Get the coordinates of the Status Pane background (referenced to determine command button locations).
-	currCrd = getCrd ("snStatusPaneBkg");	
+	var currCrd = getCrd ("snStatusPaneBkg");	
 
 	// Update each tab.
 	for (var tabLoop = 1; tabLoop <= snStatusPaneCommand.tab.max; tabLoop++)
 	{
-		tempGroupObject = getGUIObjectByName("snStatusPaneCommand" +
+		var tempGroupObject = getGUIObjectByName("snStatusPaneCommand" +
 			"Group" + tabLoop);
 		
 		// Update each list under each tab.
 		for (var listLoop = 1; listLoop <= snStatusPaneCommand.list.max; listLoop++)
 		{
-			tempListObject = getGUIObjectByName("snStatusPaneCommand" +
+			var tempListObject = getGUIObjectByName("snStatusPaneCommand" +
 				tabLoop + "_" + listLoop);
 				
 			// Set default portrait.
@@ -52,9 +52,9 @@ function defineCommandButtons(command)
 					if (tabLoop > snStatusPaneCommand.split)
 					{
 						// Get the first tab.
-						firstTab = getCrd ("snStatusPaneCommand" + (snStatusPaneCommand.split) + "_" + listLoop);
+						var firstTab = getCrd ("snStatusPaneCommand" + (snStatusPaneCommand.split) + "_" + listLoop);
 						// Get the previous tab.
-						lastTab = getCrd ("snStatusPaneCommand" + (tabLoop-1) + "_" + listLoop);				
+						var lastTab = getCrd ("snStatusPaneCommand" + (tabLoop-1) + "_" + listLoop);				
 					}
 				
 					// Set position of tab (it curves, so we need to specifically set each button position).					
@@ -83,7 +83,7 @@ function defineCommandButtons(command)
 				}
 				else
 				{
-					parentTab = getCrd ("snStatusPaneCommand" + (tabLoop) + "_" + (listLoop - 1));
+					var parentTab = getCrd ("snStatusPaneCommand" + (tabLoop) + "_" + (listLoop - 1));
 					// Set position of buttons under tab (parallel row to the right of it).
 					var buttonX = parentTab.coord[rb].x+parentTab.coord[rb].width
 							+snStatusPaneCommand.span;
@@ -160,8 +160,8 @@ function updateTab (tab, type, cellSheet, attribute, attribute2)
 	// attribute2:	* For pick: The variable used to store the current item in the pick that has been selected -- placed in the tab (eg selection[0].actions.formation.curr)
 
 	// Store string form of attribute for future reference.
-	attributeString = attribute;
-	attribute2String = attribute2;
+	var attributeString = attribute;
+	var attribute2String = attribute2;
 	
 	// If either attribute is not a valid property, return false.
 	if ( (validProperty (attributeString)) && (validProperty (attribute2String)) )
@@ -194,7 +194,7 @@ console.write ("1st: " + tabCounter + " " + tab + " " + type + " " + cellSheet +
 console.write ("2nd: " + tabCounter + " " + tab + " " + type + " " + cellSheet + " " + attribute + " " + attribute2);
 
 		// Get tab.
-		tabObject 	= getGUIObjectByName ("snStatusPaneCommand" + tabCounter + "_1");		
+		var tabObject 	= getGUIObjectByName ("snStatusPaneCommand" + tabCounter + "_1");		
 		// Enable tab.
 		guiUnHide (tabObject.name);
 		
@@ -207,17 +207,17 @@ console.write ("2nd: " + tabCounter + " " + tab + " " + type + " " + cellSheet +
 		{
 			case "command":
 				// Set tab tooltip.
-				tooltip = cellGroup[cellSheet][tab].name;
+				var tooltip = cellGroup[cellSheet][tab].name;
 				tooltip += " " + cellSheet;
 			break;
 			case "pick":
 				// Set tab tooltip.
-				tooltip = cellSheet;				
+				var tooltip = cellSheet;				
 				tooltip += " List\nCurrent " + cellSheet + ": " + cellGroup[cellSheet][tab].name;
 			break;
 			default:
 				// Set tab tooltip.
-				tooltip = cellGroup[cellSheet][tab].name;				
+				var tooltip = cellGroup[cellSheet][tab].name;				
 				tooltip += " " + cellSheet;
 			break;
 		}
@@ -248,14 +248,14 @@ console.write ("2nd: " + tabCounter + " " + tab + " " + type + " " + cellSheet +
 		}
 		
 		// Get group.
-		groupObject = getGUIObjectByName ("snStatusPaneCommand" + "Group" + tabCounter);		
+		var groupObject = getGUIObjectByName ("snStatusPaneCommand" + "Group" + tabCounter);		
 
 		// If the list hasn't been hidden (tab is open), and it should have list items (it's not merely a command),
 		if ( type != "command" )
 		{
 			// Extract item list into an array.
-			listArray = [];
-			for ( i in attribute )
+			var listArray = [];
+			for ( var i in attribute )
 			{
 				listArray[listArray.length] = i;
 				// Store any current quantity in the queue for this object.
@@ -264,13 +264,13 @@ console.write ("2nd: " + tabCounter + " " + tab + " " + type + " " + cellSheet +
 			}
 
 			// Populate the buttons in this tab's list.
-			for (createLoop = 1; createLoop < snStatusPaneCommand.list.max; createLoop++)
+			for (var createLoop = 1; createLoop < snStatusPaneCommand.list.max; createLoop++)
 			{
 				// (Skip research list for the moment, since we don't have any portraits for techs. But we should remove the research condition later.)
 				if (createLoop < listArray.length && type != "command" && tab != "research")
 				{
 					// Get name of current button.
-					listObject = getGUIObjectByName ("snStatusPaneCommand" + tabCounter + "_" + (createLoop+1));
+					var listObject = getGUIObjectByName ("snStatusPaneCommand" + tabCounter + "_" + (createLoop+1));
 
 					switch (type)
 					{
@@ -290,7 +290,7 @@ console.write ("2nd: " + tabCounter + " " + tab + " " + type + " " + cellSheet +
 						break;
 						default:
 							// Get name of item to display in list.
-							itemName = selection[0].traits.id.civ_code + "_" + listArray[createLoop];
+							var itemName = selection[0].traits.id.civ_code + "_" + listArray[createLoop];
 
 							// Set tooltip.
 							listObject.tooltip = getEntityTemplate(itemName).traits.id.civ + " " + getEntityTemplate(itemName).traits.id.generic;
@@ -436,7 +436,7 @@ function refreshCommandButtons()
 		updateTab ("research", "production", "", "selection[0].actions.create.list.research", "");
 		
 		// End of production and pick lists. Store end position.
-		listCounter = tabCounter;
+		var listCounter = tabCounter;
 		
 		// Commands begin from this point.
 		tabCounter = snStatusPaneCommand.split;
@@ -449,7 +449,7 @@ function refreshCommandButtons()
 		updateTab ("stop", "command", "", "selection[0].actions.stop", "");		
 		
 		// End of commands. Store end position.
-		commandCounter = tabCounter;
+		var commandCounter = tabCounter;
 	}
 	else
 	{
@@ -461,13 +461,13 @@ function refreshCommandButtons()
 	if ( selectionChanged )
 	{
 		// Clear remaining buttons between the lists and commands.
-		for (commandClearLoop = listCounter; commandClearLoop <= snStatusPaneCommand.split-1; commandClearLoop++)
+		for (var commandClearLoop = listCounter; commandClearLoop <= snStatusPaneCommand.split-1; commandClearLoop++)
 		{
 			guiHide ("snStatusPaneCommand" + commandClearLoop + "_1");
 			// If this slot could possibly contain a list, hide that too.
 			guiHide ("snStatusPaneCommand" + "Group" + commandClearLoop);
 		}
-		for (commandClearLoop = commandCounter; commandClearLoop <= snStatusPaneCommand.tab.max; commandClearLoop++)
+		for (var commandClearLoop = commandCounter; commandClearLoop <= snStatusPaneCommand.tab.max; commandClearLoop++)
 		{
 			guiHide ("snStatusPaneCommand" + commandClearLoop + "_1");
 			// If this slot could possibly contain a list, hide that too.

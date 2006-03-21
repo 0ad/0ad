@@ -10,7 +10,7 @@ function refreshStatusPane()
 	// Update civilisation emblem.
 	if ( selectionChanged )
 	{
-		emblemObject = getGUIObjectByName ("snStatusPaneEmblem");
+		var emblemObject = getGUIObjectByName ("snStatusPaneEmblem");
 		if (selection[0].traits.id.civ_code != "gaia")
 			emblemObject.sprite = "snStatusPaneEmblem" + toTitleCase (selection[0].traits.id.civ_code);
 		else
@@ -34,8 +34,8 @@ function refreshStatusPane()
 	// Update hitpoint bar.
 	if ( selectionChanged || shouldUpdateStat ( "traits.health.max" ) || shouldUpdateStat ( "traits.health.curr" ) )
 	{
-		barObject = getGUIObjectByName ("snStatusPaneHealthBar");
-		textObject = getGUIObjectByName ("snStatusPaneHealthBarText");
+		var barObject = getGUIObjectByName ("snStatusPaneHealthBar");
+		var textObject = getGUIObjectByName ("snStatusPaneHealthBarText");
 		if (selection[0].traits.health.max && selection[0].traits.health.max != 0)
 		{
 			barObject.caption = (selection[0].traits.health.curr * 100) / selection[0].traits.health.max;
@@ -52,8 +52,8 @@ function refreshStatusPane()
 	// Update stamina bar.
 	if ( selectionChanged || shouldUpdateStat ( "traits.stamina.max" ) || shouldUpdateStat ( "traits.stamina.curr" ) )
 	{
-		barObject = getGUIObjectByName ("snStatusPaneStaminaBar");
-		textObject = getGUIObjectByName ("snStatusPaneStaminaBarText");
+		var barObject = getGUIObjectByName ("snStatusPaneStaminaBar");
+		var textObject = getGUIObjectByName ("snStatusPaneStaminaBarText");
 		if (selection[0].traits.stamina.max && selection[0].traits.stamina.max != 0)
 		{
 			barObject.caption = (selection[0].traits.stamina.curr * 100) / selection[0].traits.stamina.max;
@@ -70,7 +70,7 @@ function refreshStatusPane()
 	// Update unit text panel.
 	if ( shouldUpdateStat ("player") || shouldUpdateStat ( "traits.id.civ" ) || shouldUpdateStat ( "traits.id.generic" ) || shouldUpdateStat ( "traits.id.specific" ) )
 	{
-		textCaption = "";
+		var textCaption = "";
 textCaption += '[font=verdana10][color="' + Math.round(selection[0].player.getColour().r*255) + ' ' + Math.round(selection[0].player.getColour().g*255) + ' ' + Math.round(selection[0].player.getColour().b*255) + '"]' + selection[0].player.name + '[/color][/font]\n';		
 		textCaption += "[font=verdana10][color=white]" + selection[0].traits.id.civ + "[/color][/font]\n";
 		textCaption += "[font=verdana10][color=white]" + selection[0].traits.id.specific + "[/color][/font]\n";
@@ -81,7 +81,7 @@ textCaption += '[font=verdana10][color="' + Math.round(selection[0].player.getCo
 	// Update rank icon.
 	if ( shouldUpdateStat ( "traits.promotion" ) )
 	{
-		rankObject = getGUIObjectByName ("snStatusPaneRank");
+		var rankObject = getGUIObjectByName ("snStatusPaneRank");
 
 		// Don't show a rank icon for Basic or unranked units.
 		if (selection[0].traits.promotion.rank > 1)
@@ -98,7 +98,7 @@ textCaption += '[font=verdana10][color="' + Math.round(selection[0].player.getCo
 	if( shouldUpdateStat( "traits.garrison" ) )
 	{
 		// Update Supply/Garrison
-		guiObject = getGUIObjectByName("snStatusPaneGarrison");
+		var guiObject = getGUIObjectByName("snStatusPaneGarrison");
 		guiObject.caption = '';
 
 		if (selection[0].traits.garrison)
@@ -166,11 +166,11 @@ textCaption += '[font=verdana10][color="' + Math.round(selection[0].player.getCo
 
 function updateStat (baseName, cellSheet, cell, statistic)
 {
-	textStat = getGUIObjectByName (baseName + statCurr);
+	var textStat = getGUIObjectByName (baseName + statCurr);
 	textStat.sprite = "snIconSheet" + cellSheet;
 	textStat.cell_id = cellGroup[cellSheet][cell].id;
 	textStat.tooltip = cellGroup[cellSheet][cell].name;
-	iconStat = getGUIObjectByName (baseName + (statCurr + 1))
+	var iconStat = getGUIObjectByName (baseName + (statCurr + 1))
 	iconStat.caption = statistic;
 	iconStat.tooltip = cellGroup[cellSheet][cell].name + ": " + statistic + ".";
 	statCurr = (statCurr + 2);

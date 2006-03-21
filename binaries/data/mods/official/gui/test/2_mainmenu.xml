@@ -102,10 +102,10 @@
 			>
 				<action on="Load"><![CDATA[
 					// Get list of profile names (profile folders).
-					profileArray = buildFileList("profiles/", "user.cfg", true);
+					var profileArray = buildFileList("profiles/", "user.cfg", true);
 
 					// Populate profile list.		
-					for (profileIndex = 0; profileIndex < profileArray.length; profileIndex++)
+					for (var profileIndex = 0; profileIndex < profileArray.length; profileIndex++)
 					{
 						// Remove path/file information so only profile name remains.
 						profileArray[profileIndex] = profileArray[profileIndex].replace ("profiles/", "");
@@ -245,10 +245,10 @@
 		>
 			<action on="Press"><![CDATA[
 				// Get credits text.
-				creditsArray  = readFileLines("gui/text/credits.txt");
+				var creditsArray  = readFileLines("gui/text/credits.txt");
 
 				// Populate credits list.		
-				for (creditsIndex = 0; creditsIndex < creditsArray.length; creditsIndex++)
+				for (var creditsIndex = 0; creditsIndex < creditsArray.length; creditsIndex++)
 				{
 					// Add credit row to the end of the object's list.
 					pushItem ("pgCredits", creditsArray[creditsIndex]);

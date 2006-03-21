@@ -12,11 +12,11 @@ function startMap (mapName, losSetting, openWindow)
 	// openWindow: 	Window group (usually parent string) of control that called the function. It'll be hidden.
 
 	// Check whether we have a correct file extension, to avoid crashes
-	extension = mapName.substring (mapName.length, mapName.length-4);
+	var extension = mapName.substring (mapName.length, mapName.length-4);
 	if (extension != ".pmp")
 	{
 		// Add .pmp to the file name.
-		mapName =  mapName + ".pmp";
+		var mapName =  mapName + ".pmp";
 	}
 
 	// Set up game
@@ -68,7 +68,7 @@ function startLoadingScreen()
         console.write ("Loading " + g_GameAttributes.mapFile + " (" + g_GameAttributes.numPlayers + " players) ...");
 
         // Generate random number for random concept art (should be depending on the selected civ later)
-        randVar = getRandom(1, 6);
+        var randVar = getRandom(1, 6);
         
 	switch (randVar) {
 		case 1:
@@ -101,7 +101,7 @@ function startLoadingScreen()
         getGUIObjectByName ("ldText").caption = "LOADING " + g_GameAttributes.mapFile + " ...\nPlease wait ...";
 
         // Pick a random tip of the day (each line is a separate tip).
-        tipArray  = readFileLines("gui/text/tips.txt");
+        var tipArray  = readFileLines("gui/text/tips.txt");
         // Set tip string.
         getGUIObjectByName ("ldTip").caption = tipArray[getRandom(0, tipArray.length-1)];
 }
@@ -137,7 +137,7 @@ function setupSession ()
 		console.write ("Setting Up Temporary Single Players");
 		// The first player is by default allocated to the local player in SP, so
 		// adding 7 players means that we'll have 8 players in total
-		for (i=0; i<7; i++)
+		for (var i=0; i<7; i++)
 		{
 			g_GameAttributes.slots[i+1].assignLocal();
 			console.write ("Slot "+(i+1)+" is assigned: " + g_GameAttributes.slots[i+1].assignment);
@@ -148,7 +148,7 @@ function setupSession ()
     // Select session peace track.
     curr_session_playlist_1 = newRandomSound("music", "peace");
     // Fade out main theme and fade in session theme.
-    crossFade(curr_music, curr_session_playlist_1, g_ConfigDB.system["sound.mastergain"]);
+    crossFade(curr_music, curr_session_playlist_1); // , g_ConfigDB.system["sound.mastergain"]);
 
     // Start refreshing the session controls.
 	setInterval( snRefresh, 1, 100 );
@@ -169,8 +169,8 @@ function endSession (closeType)
                         endGame();
                         
                         // Fade out current music and return to playing menu theme.
-                        curr_music = newRandomSound('music', 'menu');
-                        crossFade(curr_session_playlist_1, curr_music, 1);
+                        curr_music = newRandomSound("music", "menu");
+                        crossFade(curr_session_playlist_1, curr_music); // , 1);
 
                         // Stop refreshing the session controls.
                         cancelInterval();

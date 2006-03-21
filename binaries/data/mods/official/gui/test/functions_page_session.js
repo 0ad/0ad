@@ -49,28 +49,28 @@ function initCellReference()
 function addCellGroupCategory(iconSheetPath)
 {
 	// Get array list of all icon sheet reference files.
-	iconSheets = buildFileList (iconSheetPath, "*.txt", true);
+	var iconSheets = buildFileList (iconSheetPath, "*.txt", true);
 	// Alphabetically sort the array.
 	iconSheets.sort();
 	
 	// Seek through all icon sheets.
-	for (sheet = 0; sheet < iconSheets.length; sheet++)
+	for (var sheet = 0; sheet < iconSheets.length; sheet++)
 	{
 		// Get the current icon sheet name.
-		groupName = iconSheets[sheet];
+		var groupName = iconSheets[sheet];
 		// Remove path and extension information so we just have the group name.
 		groupName = groupName.replace (iconSheetPath, "");
 		groupName = groupName.replace (".txt", "");			
 		groupName = toTitleCase(groupName);
 		
 		// Get the elements from the current icon sheet.
-		iconArray = readFileLines (iconSheets[sheet]);
+		var iconArray = readFileLines (iconSheets[sheet]);
 		
 		// For each row in the icon sheet file,
-		for (row = 0; row < iconArray.length; row++)
+		for (var row = 0; row < iconArray.length; row++)
 		{
 			// Get the individual fields in the array as another array.
-			iconElements = iconArray[row].split (",");
+			var iconElements = iconArray[row].split (",");
 			// Add this cell to the current group.
 			addCell (groupName, iconElements[0], iconElements[1]);
 		}
@@ -102,16 +102,16 @@ function addCell (group, cellID, cellName)
 
 function setPortrait(objectName, portraitString, portraitSuffix, portraitCell) 
 {
-        // Use this function as a shortcut to change a portrait object to a different portrait image. 
+	// Use this function as a shortcut to change a portrait object to a different portrait image. 
 
-        // Accepts an object and specifies its default, rollover (lit) and disabled (gray) sprites.
-        // Sprite Format: "sn""portraitString""portraitSuffix"
-        // Sprite Format: "sn""portraitString""portraitSuffix""Over"
-        // Sprite Format: "sn""portraitString""portraitSuffix""Disabled"
-        // Note: Make sure the file follows this naming convention or bad things could happen.
+	// Accepts an object and specifies its default, rollover (lit) and disabled (gray) sprites.
+	// Sprite Format: "sn""portraitString""portraitSuffix"
+	// Sprite Format: "sn""portraitString""portraitSuffix""Over"
+	// Sprite Format: "sn""portraitString""portraitSuffix""Disabled"
+	// Note: Make sure the file follows this naming convention or bad things could happen.
 
-        // Get GUI object
-        setPortraitGUIObject = getGUIObjectByName(objectName);
+	// Get GUI object
+	setPortraitGUIObject = getGUIObjectByName(objectName);
 
 	// Report error if object not found.
 	if (!setPortraitGUIObject)
@@ -168,7 +168,7 @@ function flipGUI (NewGUIType)
 		break;
 	}
 	// Seek through all sizes created.
-	for (i = 0; i <= Crd.last; i++)
+	for (var i = 0; i <= Crd.last; i++)
 	{
 		// Set their sizes to the stored value.
 		getGUIObjectByName (Crd[i].name).size = Crd[i].size[GUIType];

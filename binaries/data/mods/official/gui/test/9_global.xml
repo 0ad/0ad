@@ -25,7 +25,7 @@
 			z="198"
 		>
 			<!-- control for blocking access to other controls in background -->
-                        <object	name="mbBlocker"
+			<object	name="mbBlocker"
 				type="image"
 				hidden="false" 
 			/>
@@ -36,8 +36,8 @@
 			>mbTitle
 			</object>
 
-                        <!-- text -->
-                        <object name="mbText"
+			<!-- text -->
+			<object name="mbText"
 				style="fancyTextTitleBlack"
 				type="text"
 				size="30 30 100%-30 100%-100"
@@ -51,9 +51,9 @@
 				size="40 100%-50 33%-30 100%-20" 
 			>mbButton1Caption
 				<action on="Press"><![CDATA[
-                                        eval (getGUIGlobal().mbButton1Code);
-                                        guiHide ("mbMain");
-                                ]]></action>
+					eval (getGUIGlobal().mbButton1Code);
+					guiHide ("mbMain");
+				]]></action>
 			</object>
 			<object name="mbButton2"
 				style="wheatButtonFancy"

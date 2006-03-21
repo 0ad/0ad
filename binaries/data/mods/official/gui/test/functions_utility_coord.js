@@ -73,37 +73,37 @@ function addCrds (name, rx, ry, x, y, width, height, rx2, ry2)
 	switch (rx)
 	{
 		case 0:
-			rx1 = 100;
-			rx2 = 100;			
-			rx3 = 0;			
+			var rx1 = 100;
+			var rx2 = 100;			
+			var rx3 = 0;			
 		break;
 		case 50:
-			rx1 = 50;
-			rx2 = 50;
-			rx3 = 50;
+			var rx1 = 50;
+			var rx2 = 50;
+			var rx3 = 50;
 		break;
 		case 100:
-			rx1 = 0;
-			rx2 = 0;			
-			rx3 = 100;		
+			var rx1 = 0;
+			var rx2 = 0;			
+			var rx3 = 100;		
 		break;
 	}
 	switch (ry)
 	{
 		case 0:
-			ry1 = 0;
-			ry2 = 100;
-			ry3 = 100;
+			var ry1 = 0;
+			var ry2 = 100;
+			var ry3 = 100;
 		break;
 		case 50:
-			ry1 = 50;
-			ry2 = 50;
-			ry3 = 50;
+			var ry1 = 50;
+			var ry2 = 50;
+			var ry3 = 50;
 		break;		
 		case 100:
-			ry1 = 100;
-			ry2 = 0;
-			ry3 = 0;			
+			var ry1 = 100;
+			var ry2 = 0;
+			var ry3 = 0;			
 		break;
 	}	
 	
@@ -119,7 +119,7 @@ function addCrds (name, rx, ry, x, y, width, height, rx2, ry2)
 // Optionally can choose to return the index to the coordinate, rather than the coordinate itself.
 function getCrd (name, byIndex)
 {
-	for (getCrdLoop = 0; getCrdLoop <= Crd.last; getCrdLoop++)
+	for (var getCrdLoop = 0; getCrdLoop <= Crd.last; getCrdLoop++)
 	{
 		if (Crd[getCrdLoop].name == name)
 		{	
@@ -152,7 +152,7 @@ function calcCrdArray (rx, ry, x, y, width, height, rx2, ry2)
 		//	Width from X
 		//	Height from Y	
 	
-		setSizeContainer = new Object();
+		var setSizeContainer = new Object();
 
 		setSizeContainer.rleft = rx;
 		setSizeContainer.rtop = ry;
@@ -230,7 +230,7 @@ function calcCrdArray (rx, ry, x, y, width, height, rx2, ry2)
 function setCrd (name, newCrd)
 {
 	// Get the index to the given coordinate.
-	crdResult = getCrd (name, true);
+	var crdResult = getCrd (name, true);
 	if (crdResult != -1)
 	{
 		// Set new value of this coordinate.
@@ -256,21 +256,21 @@ function setSkin (skinName)
 	// Obviously such sprite names must exist, or it all will go horribly wrong.
 	
 	// Seek through all registered coordinates.
-	for (i = 0; i <= Crd.last; i++)
+	for (var i = 0; i <= Crd.last; i++)
 	{
-		objectName = getGUIObjectByName (Crd[i].name);
+		var objectName = getGUIObjectByName (Crd[i].name);
 		
 		// We need to deliberately ignore the minimap object as it has no sprite (and checking for the existence of the property or type doesn't work).
 		if (objectName.name != "snMiniMapDisplay")
 		{
 			// Get first asterisk position.
-			startIndex = objectName.style.indexOf ("*", 1);
+			var startIndex = objectName.style.indexOf ("*", 1);
 			console.write (startIndex);
 			// If the coordinate begins with a "skin*" (and therefore qualifies for replacement),
 			if (startIndex != -1)
 			{
 				// Look for and return the ending asterisk.
-				endIndex = objectName.style.indexOf ("*", 5);
+				var endIndex = objectName.style.indexOf ("*", 5);
 				console.write (endIndex);				
 				if (endIndex != -1)
 				{

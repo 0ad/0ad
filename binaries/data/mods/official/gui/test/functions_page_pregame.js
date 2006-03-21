@@ -50,13 +50,13 @@ function openOptionsTab(tabName)
 		switch (i)
 		{
 			case 1:
-				tmpName = "pgOptionsAudio";
+				var tmpName = "pgOptionsAudio";
 			break;
 			case 2:
-				tmpName = "pgOptionsVideo";
+				var tmpName = "pgOptionsVideo";
 			break;
 			case 3:
-				tmpName = "pgOptionsGame";
+				var tmpName = "pgOptionsGame";
 			break;
 			default:
 			break;

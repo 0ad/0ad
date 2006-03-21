@@ -55,70 +55,21 @@ function refreshManual()
 		// Display rollover text.
 		if (selection[0].traits.id.rollover)
 		{
-			manualRollover = getGUIObjectByName("mnRollover");
+			var manualRollover = getGUIObjectByName("mnRollover");
 			manualRollover.caption = selection[0].traits.id.rollover;
 		}	
 		
 		// Display history text.
 		if (selection[0].traits.id.rollover)
 		{
-			manualHistory = getGUIObjectByName("mnHistory");
+			var manualHistory = getGUIObjectByName("mnHistory");
 			manualHistory.caption = selection[0].traits.id.history;
 		}	
 		
 		// Build manual text.
-		manualText = "";	
+		var manualText = "";	
 		addItemsRecursively ( selection[0], "", "trebuchet14" );
 		manualText += recursiveString;
-		
-/*		
-		container = selection[0];
-		for( item in container )
-		{
-			switch (item)
-			{
-				case "actions":
-				case "traits":
-				break;
-				default:
-					// If it's a null value, or function reference, don't even bother.
-					if (item == null || container[item] == null) break;
-					
-					// Store current property value.
-					currItem = container[item].toString();
-					
-					// If it's a function reference, also don't bother.
-					if (currItem[0] == "\n") break;
-
-					manualText += item + ": " + currItem + "\n";
-				break;
-			}
-		}
-		
-		if (selection[0].actions)
-		{
-			manualText += "[font=trebuchet14b][[Actions]]\n";
-
-			subContainer = selection[0].actions;
-			for (sub in subContainer)
-			{
-				switch (sub)
-				{
-					default:
-						// List attribute.
-						manualText += sub;
-						// List value if there is one.
-						if (subContainer[sub] && subContainer[sub] != "true" && subContainer[sub] != true)
-							manualText += ": " + subContainer[sub].toString() + "\n";
-						else
-							manualText += "\n"
-					break;
-				}
-				
-				
-			}
-		}
-*/		
 		
 		// Close the manual string.
 		manualText += "[/font]";

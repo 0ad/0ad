@@ -31,7 +31,7 @@ function newRandomSound(soundType, soundSubType, soundPrePath)
 	switch (soundType)
 	{
 		case "music":
-			randomSoundPath = "audio/music/"
+			var randomSoundPath = "audio/music/"
 		break;
 		case "voice":
 			randomSoundPath = soundPrePath + "/";
@@ -43,16 +43,16 @@ function newRandomSound(soundType, soundSubType, soundPrePath)
 	// Get names of sounds (attack, command, select, hit, pain).
 	// or
 	// Get names of "peace", "menu" (theme) and "battle" tracks.
-	soundArray = buildFileList(randomSoundPath, "*" + soundSubType + "*", false);
+	var soundArray = buildFileList(randomSoundPath, "*" + soundSubType + "*", false);
 	if (soundArray.length == 0)
 	{
 		console.write ("Failed to find sounds matching '*"+soundSubType+"*'");
 		return;
 	}
 	// Get a random number within the sound's range.
-	randomSound = getRandom (0, soundArray.length-1);
+	var randomSound = getRandom (0, soundArray.length-1);
 	// Set name of track.
-	randomFileName = soundArray[randomSound];
+	var randomFileName = soundArray[randomSound];
 
 	// Build path to random audio file.
 	randomSoundPath = randomFileName;
@@ -97,7 +97,7 @@ function crossFade (outHandle, inHandle, fadeDuration)
 	if (inHandle)
 	{
 		inHandle.play();
-		fadeIn(inHandle, 1, fadeDuration);
+		fadeIn(inHandle, g_ConfigDB.system["sound.mastergain"], fadeDuration);
 	}
 
 	return true;
