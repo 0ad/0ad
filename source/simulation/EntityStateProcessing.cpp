@@ -15,7 +15,8 @@
 #include "PathfindEngine.h"
 #include "Terrain.h"
 
-#include "Game.h"
+#include "ps/Game.h"
+#include "ps/World.h"
 
 enum EGotoSituation
 {

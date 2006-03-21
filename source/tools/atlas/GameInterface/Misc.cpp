@@ -4,8 +4,9 @@
 
 #include "Messages.h"
 
-#include "Vector3D.h"
-#include "Game.h"
+#include "maths/Vector3D.h"
+#include "ps/Game.h"
+#include "graphics/GameView.h"
 
 void AtlasMessage::Position::GetWorldSpace(CVector3D& vec) const
 {

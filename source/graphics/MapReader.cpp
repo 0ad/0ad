@@ -11,6 +11,7 @@
 #include "EntityManager.h"
 #include "CLogger.h"
 #include "MathUtil.h"
+#include "Camera.h"
 
 #include "Model.h"
 #include "Terrain.h"
@@ -31,12 +32,14 @@ CMapReader::CMapReader()
 
 
 // LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
-void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain_, CUnitManager *pUnitMan_, CLightEnv *pLightEnv_)
+void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain_, CUnitManager *pUnitMan_,
+						 CLightEnv *pLightEnv_, CCamera *pCamera_)
 {
 	// latch parameters (held until DelayedLoadFinished)
 	pTerrain = pTerrain_;
 	pUnitMan = pUnitMan_;
 	pLightEnv = pLightEnv_;
+	pCamera = pCamera_;
 
 	// [25ms]
 	unpacker.Read(filename,"PSMP");
@@ -267,6 +270,7 @@ private:
 	void Init(const CStr& xml_filename);
 
 	void ReadEnvironment(XMBElement parent);
+	void ReadCamera(XMBElement parent);
 	int ReadEntities(XMBElement parent, double end_time);
 	int ReadNonEntities(XMBElement parent, double end_time);
 
@@ -368,10 +372,55 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 			m_MapReader.m_LightEnv.SetTerrainShadowTransparency(CStr(element.getText()).ToFloat());
 		}
 		else
-			debug_warn("Invalid XML data - DTD shouldn't allow this");
+			debug_warn("Invalid map XML data");
 	}
 
 	m_MapReader.m_LightEnv.CalculateSunDirection();
+}
+
+void CXMLReader::ReadCamera(XMBElement parent)
+{
+#define EL(x) int el_##x = xmb_file.getElementID(#x)
+#define AT(x) int at_##x = xmb_file.getAttributeID(#x)
+	EL(declination);
+	EL(rotation);
+	EL(position);
+	AT(angle);
+	AT(x); AT(y); AT(z);
+#undef AT
+#undef EL
+
+	float declination = DEGTORAD(30.f), rotation = DEGTORAD(-45.f);
+	CVector3D translation = CVector3D(100, 150, -100);
+
+	XERO_ITER_EL(parent, element)
+	{
+		int element_name = element.getNodeName();
+
+		XMBAttributeList attrs = element.getAttributes();
+		if (element_name == el_declination)
+		{
+			declination = CStr(attrs.getNamedItem(at_angle)).ToFloat();
+		}
+		else if (element_name == el_rotation)
+		{
+			rotation = CStr(attrs.getNamedItem(at_angle)).ToFloat();
+		}
+		else if (element_name == el_position)
+		{
+			translation = CVector3D(
+				CStr(attrs.getNamedItem(at_x)).ToFloat(),
+				CStr(attrs.getNamedItem(at_y)).ToFloat(),
+				CStr(attrs.getNamedItem(at_z)).ToFloat());
+		}
+		else
+			debug_warn("Invalid map XML data");
+	}
+
+	m_MapReader.pCamera->m_Orientation.SetXRotation(declination);
+	m_MapReader.pCamera->m_Orientation.RotateY(rotation);
+	m_MapReader.pCamera->m_Orientation.Translate(translation);
+	m_MapReader.pCamera->UpdateFrustum();
 }
 
 
@@ -421,7 +470,7 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 				Orientation = CStr(attrs.getNamedItem(at_angle)).ToFloat();
 			}
 			else
-				debug_warn("Invalid XML data - DTD shouldn't allow this");
+				debug_warn("Invalid map XML data");
 		}
 
 		CBaseEntity* base = g_EntityTemplateCollection.getTemplate(TemplateName);
@@ -492,7 +541,7 @@ int CXMLReader::ReadNonEntities(XMBElement parent, double end_time)
 				Orientation = CStr(attrs.getNamedItem(at_angle)).ToFloat();
 			}
 			else
-				debug_warn("Invalid XML data - DTD shouldn't allow this");
+				debug_warn("Invalid map XML data");
 		}
 
 		std::set<CStrW> selections; // TODO: read from file
@@ -540,6 +589,10 @@ int CXMLReader::ProgressiveRead()
 		{
 			ReadEnvironment(node);
 		}
+		else if (name == "camera")
+		{
+			ReadCamera(node);
+		}
 		else if (name == "entities")
 		{
 			ret = ReadEntities(node, end_time);
@@ -553,7 +606,7 @@ int CXMLReader::ProgressiveRead()
 				return ret;
 		}
 		else
-			debug_warn("Invalid XML data - DTD shouldn't allow this");
+			debug_warn("Invalid map XML data");
 
 		node_idx++;
 	}

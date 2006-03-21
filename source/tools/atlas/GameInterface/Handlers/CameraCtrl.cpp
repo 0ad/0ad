@@ -7,6 +7,7 @@
 #include "maths/Quaternion.h"
 #include "ps/Game.h"
 #include "renderer/Renderer.h"
+#include "graphics/GameView.h"
 
 #include <assert.h>
 

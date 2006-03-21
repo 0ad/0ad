@@ -6,24 +6,24 @@
 #include "ps/Errors.h"
 ERROR_GROUP(Game);
 
-#include "World.h"
-#include "Simulation.h"
-#include "GameView.h"
-
 #include <vector>
 
+class CWorld;
+class CSimulation;
+class CGameView;
+class CSimulation;
 class CPlayer;
 class CGameAttributes;
 
 // Default player limit (not counting the Gaia player)
-// This may be overriden by system.cfg ("max_players")
+// This may be overridden by system.cfg ("max_players")
 #define PS_MAX_PLAYERS 6
 
 class CGame
 {
-	CWorld m_World;
-	CSimulation m_Simulation;
-	CGameView m_GameView;
+	CWorld *m_World;
+	CSimulation *m_Simulation;
+	CGameView *m_GameView;
 	
 	CPlayer *m_pLocalPlayer;
 	std::vector<CPlayer *> m_Players;
@@ -86,11 +86,11 @@ public:
 	}
 
 	inline CWorld *GetWorld()
-	{	return &m_World; }
+	{	return m_World; }
 	inline CGameView *GetView()
-	{	return &m_GameView; }
+	{	return m_GameView; }
 	inline CSimulation *GetSimulation()
-	{	return &m_Simulation; }
+	{	return m_Simulation; }
 	
 	inline float GetTime()
 	{	return m_Time; }

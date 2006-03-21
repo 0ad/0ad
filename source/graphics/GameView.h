@@ -25,6 +25,10 @@ class CEntity;
 
 class CGameView: public CJSObject<CGameView>
 {
+public:
+	static const float defaultFOV, defaultNear, defaultFar;
+
+private:
 	CGame *m_pGame;
 	CWorld *m_pWorld;
 

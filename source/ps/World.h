@@ -15,13 +15,11 @@ class CWorld
 	CGame *m_pGame;
 	
 	CTerrain m_Terrain;
-	// These all point to the respective g_* globals - the plan is to remove
-	// the globals and move them into CWorld members as soon as all code has
-	// been converted
-	CUnitManager &m_UnitManager;
-	CEntityManager &m_EntityManager;
-	CProjectileManager &m_ProjectileManager;
-	CLOSManager &m_LOSManager;
+
+	CUnitManager *m_UnitManager;
+	CEntityManager *m_EntityManager;
+	CProjectileManager *m_ProjectileManager;
+	CLOSManager *m_LOSManager;
 
 public:
 	CWorld(CGame *pGame);
@@ -39,13 +37,13 @@ public:
 	inline CTerrain *GetTerrain()
 	{	return &m_Terrain; }
 	inline CUnitManager *GetUnitManager()
-	{	return &m_UnitManager; }
+	{	return m_UnitManager; }
 	inline CEntityManager *GetEntityManager()
-	{	return &m_EntityManager; }
+	{	return m_EntityManager; }
 	inline CProjectileManager *GetProjectileManager()
-	{	return &m_ProjectileManager; }
+	{	return m_ProjectileManager; }
 	inline CLOSManager *GetLOSManager()
-	{	return &m_LOSManager; }
+	{	return m_LOSManager; }
 
 private:
 	// squelch "unable to generate" warnings

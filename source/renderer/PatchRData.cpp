@@ -56,20 +56,12 @@ static Handle GetTerrainTileTexture(CTerrain* terrain,int gx,int gz)
 	return mp ? mp->Tex1 : 0;
 }
 
-bool QueryAdjacency(int x,int y,Handle h,Handle* texgrid)
+const float uvFactor = 0.125f / sqrt(2.f);
+static void CalculateUV(float uv[2], int x, int z)
 {
-	for (int j=y-1;j<=y+1;j++) {
-		for (int i=x-1;i<=x+1;i++) {
-			if (i<0 || i>PATCH_SIZE+1 || j<0 || j>PATCH_SIZE+1) {
-				continue;
-			}
-
-			if (texgrid[j*(PATCH_SIZE+2)+i]==h) {
-				return true;
-			}
-		}
-	}
-	return false;
+	// The UV axes are offset 45 degrees from XZ
+	uv[0] = ( x-z)*uvFactor;
+	uv[1] = (-x-z)*uvFactor;
 }
 
 struct STmpSplat {
@@ -83,10 +75,6 @@ void CPatchRData::BuildBlends()
 	m_BlendSplats.clear();
 	m_BlendVertices.clear();
 	m_BlendVertexIndices.clear();
-
-	// get index of this patch (unused)
-	//int px=m_Patch->m_X;
-	//int pz=m_Patch->m_Z;
 
 	CTerrain* terrain=m_Patch->m_Parent;
 
@@ -192,8 +180,7 @@ void CPatchRData::BuildBlends()
 						int vindex=(int)m_BlendVertices.size();
 
 						const SBaseVertex& vtx0=m_Vertices[(j*vsize)+i];
-						dst.m_UVs[0]=i*0.125f;
-						dst.m_UVs[1]=j*0.125f;
+						CalculateUV(dst.m_UVs, gx, gz);
 						dst.m_AlphaUVs[0]=vtx[0].m_AlphaUVs[0];
 						dst.m_AlphaUVs[1]=vtx[0].m_AlphaUVs[1];
 						dst.m_LOSColor=vtx0.m_LOSColor;
@@ -202,8 +189,7 @@ void CPatchRData::BuildBlends()
 						m_BlendVertexIndices.push_back((j*vsize)+i);
 
 						const SBaseVertex& vtx1=m_Vertices[(j*vsize)+i+1];
-						dst.m_UVs[0]=(i+1)*0.125f;
-						dst.m_UVs[1]=j*0.125f;
+						CalculateUV(dst.m_UVs, gx+1, gz);
 						dst.m_AlphaUVs[0]=vtx[1].m_AlphaUVs[0];
 						dst.m_AlphaUVs[1]=vtx[1].m_AlphaUVs[1];
 						dst.m_LOSColor=vtx1.m_LOSColor;
@@ -212,8 +198,7 @@ void CPatchRData::BuildBlends()
 						m_BlendVertexIndices.push_back((j*vsize)+i+1);
 
 						const SBaseVertex& vtx2=m_Vertices[((j+1)*vsize)+i+1];
-						dst.m_UVs[0]=(i+1)*0.125f;
-						dst.m_UVs[1]=(j+1)*0.125f;
+						CalculateUV(dst.m_UVs, gx+1, gz+1);
 						dst.m_AlphaUVs[0]=vtx[2].m_AlphaUVs[0];
 						dst.m_AlphaUVs[1]=vtx[2].m_AlphaUVs[1];
 						dst.m_LOSColor=vtx2.m_LOSColor;
@@ -222,8 +207,7 @@ void CPatchRData::BuildBlends()
 						m_BlendVertexIndices.push_back(((j+1)*vsize)+i+1);
 
 						const SBaseVertex& vtx3=m_Vertices[((j+1)*vsize)+i];
-						dst.m_UVs[0]=i*0.125f;
-						dst.m_UVs[1]=(j+1)*0.125f;
+						CalculateUV(dst.m_UVs, gx, gz+1);
 						dst.m_AlphaUVs[0]=vtx[3].m_AlphaUVs[0];
 						dst.m_AlphaUVs[1]=vtx[3].m_AlphaUVs[1];
 						dst.m_LOSColor=vtx3.m_LOSColor;
@@ -380,8 +364,7 @@ void CPatchRData::BuildVertices()
 			// calculate vertex data
 			terrain->CalcPosition(ix,iz,vertices[v].m_Position);
 			*(uint32_t*)&vertices[v].m_LOSColor = 0;	// will be set to the proper value in Update()
-			vertices[v].m_UVs[0]=i*0.125f;
-			vertices[v].m_UVs[1]=1 - j*0.125f;
+			CalculateUV(vertices[v].m_UVs, ix, iz);
 
 			// Calculate diffuse lighting for this vertex
 			// Ambient is added by the lighting pass (since ambient is the same
@@ -563,8 +546,6 @@ void CPatchRData::RenderOutline()
 {
 	int i;
 	uint vsize=PATCH_SIZE+1;
-	u8* base=m_VBBase->m_Owner->Bind(); //TODO: this makes no sense, get rid of it
-	UNUSED2(base);
 
 	glBegin(GL_LINES);
 	for (i=0;i<PATCH_SIZE;i++) {

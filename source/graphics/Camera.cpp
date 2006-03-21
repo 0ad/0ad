@@ -17,6 +17,7 @@
 #include "HFTracer.h"
 #include "Game.h"
 #include "ogl.h"
+#include "ps/World.h"
 
 CCamera::CCamera ()
 {

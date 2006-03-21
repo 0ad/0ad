@@ -13,6 +13,10 @@
 #include "EntityManager.h"
 #include "CConsole.h"
 
+#include "ps/World.h"
+#include "simulation/Simulation.h"
+#include "graphics/GameView.h"
+
 extern CConsole* g_Console;
 CGame *g_Game=NULL;
 
@@ -28,9 +32,9 @@ CGame *g_Game=NULL;
 #endif
 
 CGame::CGame():
-	m_World(this),
-	m_Simulation(this),
-	m_GameView(this),
+	m_World(new CWorld(this)),
+	m_Simulation(new CSimulation(this)),
+	m_GameView(new CGameView(this)),
 	m_pLocalPlayer(NULL),
 	m_GameStarted(false),
 	m_Paused(false),
@@ -47,6 +51,11 @@ CGame::~CGame()
 {
 	// Again, the in-game call tree is going to be different to the main menu one.
 	g_Profiler.StructuralReset();
+
+	delete m_GameView;
+	delete m_Simulation;
+	delete m_World;
+
 	debug_printf("CGame::~CGame(): Game object DESTROYED\n");
 }
 
@@ -61,9 +70,9 @@ PSRETURN CGame::RegisterInit(CGameAttributes* pAttribs)
 	// values.  At the minute, it's just lighting settings, but could be extended to store camera position.  
 	// Storing lighting settings in the gameview seems a little odd, but it's no big deal; maybe move it at 
 	// some point to be stored in the world object?
-	m_GameView.RegisterInit(pAttribs);
-	m_World.RegisterInit(pAttribs);
-	m_Simulation.RegisterInit(pAttribs);
+	m_GameView->RegisterInit(pAttribs);
+	m_World->RegisterInit(pAttribs);
+	m_Simulation->RegisterInit(pAttribs);
 
 	LDR_EndRegistering();
 	return 0;
@@ -134,19 +143,20 @@ void CGame::Update(double deltaTime)
 
 	m_Time += deltaTime;
 
-	m_Simulation.Update(deltaTime);
+	m_Simulation->Update(deltaTime);
 	
 	// TODO Detect game over and bring up the summary screen or something
 	// ^ Quick game over hack is implemented, no summary screen however
-	if ( m_World.GetEntityManager()->GetDeath() )
+	if ( m_World->GetEntityManager()->GetDeath() )
 	{
 			UpdateGameStatus();
 		if (GameStatus != 0)
 			EndGame();
 	}
 	//reset death event flag
-	m_World.GetEntityManager()->SetDeath(false);
+	m_World->GetEntityManager()->SetDeath(false);
 }
+
 void CGame::UpdateGameStatus()
 {
 	bool EOG_lose = true;
@@ -155,7 +165,7 @@ void CGame::UpdateGameStatus()
 
 	for (int i=0; i<MAX_HANDLES; i++)
 	{	
-		CHandle *handle = m_World.GetEntityManager()->getHandle(i);
+		CHandle *handle = m_World->GetEntityManager()->getHandle(i);
 		if ( !handle )
 			continue;
 		CPlayer *tmpPlayer = handle->m_entity->GetPlayer();

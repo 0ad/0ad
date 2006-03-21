@@ -7,10 +7,12 @@
 #include "graphics/TextureManager.h"
 #include "graphics/TextureEntry.h"
 #include "graphics/MapWriter.h"
+#include "graphics/GameView.h"
 #include "ps/Game.h"
 #include "ps/GameAttributes.h"
 #include "ps/Loader.h"
 #include "simulation/LOSManager.h"
+#include "simulation/Simulation.h"
 
 namespace AtlasMessage {
 
@@ -103,7 +105,9 @@ MESSAGEHANDLER(LoadMap)
 MESSAGEHANDLER(SaveMap)
 {
 	CMapWriter writer;
-	writer.SaveMap(CStr(L"maps/scenarios/" + msg->filename), g_Game->GetWorld()->GetTerrain(), &g_LightEnv, g_Game->GetWorld()->GetUnitManager());
+	writer.SaveMap(CStr(L"maps/scenarios/" + msg->filename),
+		g_Game->GetWorld()->GetTerrain(), g_Game->GetWorld()->GetUnitManager(),
+		&g_LightEnv, g_Game->GetView()->GetCamera());
 }
 
 }

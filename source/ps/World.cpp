@@ -20,6 +20,7 @@
 #include "EntityManager.h"
 #include "Projectile.h"
 #include "LOSManager.h"
+#include "graphics/GameView.h"
 
 #define LOG_CATEGORY "world"
 
@@ -31,10 +32,10 @@ CLightEnv g_LightEnv;
 CWorld::CWorld(CGame *pGame):
 	m_pGame(pGame),
 	m_Terrain(),
-	m_UnitManager(g_UnitMan),
-	m_EntityManager(*(new CEntityManager())),
-	m_ProjectileManager(*(new CProjectileManager())),
-	m_LOSManager(*(new CLOSManager()))
+	m_UnitManager(&g_UnitMan),
+	m_EntityManager(new CEntityManager()),
+	m_ProjectileManager(new CProjectileManager()),
+	m_LOSManager(new CLOSManager())
 {}
 
 void CWorld::Initialize(CGameAttributes *pAttribs)
@@ -53,7 +54,7 @@ void CWorld::Initialize(CGameAttributes *pAttribs)
 
 		try {
 			reader = new CMapReader;
-			reader->LoadMap(mapfilename, &m_Terrain, &m_UnitManager, &g_LightEnv);
+			reader->LoadMap(mapfilename, &m_Terrain, m_UnitManager, &g_LightEnv, m_pGame->GetView()->GetCamera());
 				// fails immediately, or registers for delay loading
 		} catch (CFileUnpacker::CError) {
 			delete reader;
@@ -72,18 +73,13 @@ void CWorld::RegisterInit(CGameAttributes *pAttribs)
 
 CWorld::~CWorld()
 {
-	// The Entity Manager should perhaps be converted into a CWorld member..
-	// But for now, we'll just create and delete the global singleton instance
-	// following the creation and deletion of CWorld.
-	// The reason for not keeping the instance around is that we require a
-	// clean slate for each game start.
-	delete &m_EntityManager;
-	delete &m_ProjectileManager;
-	delete &m_LOSManager;
+	delete m_EntityManager;
+	delete m_ProjectileManager;
+	delete m_LOSManager;
 }
 
 
 void CWorld::RewriteMap()
 {
-	CMapWriter::RewriteAllMaps(&m_Terrain, &m_UnitManager, &g_LightEnv);
+	CMapWriter::RewriteAllMaps(&m_Terrain, m_UnitManager, &g_LightEnv, m_pGame->GetView()->GetCamera());
 }

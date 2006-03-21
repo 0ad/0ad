@@ -15,6 +15,7 @@
 #include "graphics/LightEnv.h"
 #include "graphics/Patch.h"
 #include "graphics/Terrain.h"
+#include "graphics/GameView.h"
 
 #include "maths/MathUtil.h"
 

@@ -42,7 +42,7 @@ enum EUnitLOSStatus
 
 extern uint LOS_GetTokenFor(uint player_id);
 
-class CLOSManager : public Singleton<CLOSManager>
+class CLOSManager
 {
 #ifdef _2_los
 	int** m_Explored;		// (m_Explored[x][z] & (1<<p) says whether player p has explored tile (x,z),

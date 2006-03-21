@@ -4,6 +4,7 @@
 
 #include "ps/Game.h"
 #include "graphics/Camera.h"
+#include "graphics/GameView.h"
 
 static float g_ViewZoomSmoothness = 0.02f; // TODO: configurable, like GameView
 

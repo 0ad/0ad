@@ -48,6 +48,10 @@ static CVector3D cameraBookmarks[10];
 static bool bookmarkInUse[10] = { false, false, false, false, false, false, false, false, false, false };
 static i8 currentBookmark = -1;
 
+const float CGameView::defaultFOV = DEGTORAD(20.f);
+const float CGameView::defaultNear = 1.f;
+const float CGameView::defaultFar = 5000.f;
+
 CGameView::CGameView(CGame *pGame):
 	m_pGame(pGame),
 	m_pWorld(pGame->GetWorld()),
@@ -75,9 +79,9 @@ CGameView::CGameView(CGame *pGame):
 	vp.m_Height=g_yres;
 	m_ViewCamera.SetViewPort(&vp);
 
-	m_ViewCamera.SetProjection (1, 5000, DEGTORAD(20));
+	m_ViewCamera.SetProjection (defaultNear, defaultFar, defaultFOV);
 	m_ViewCamera.m_Orientation.SetXRotation(DEGTORAD(30));
-	m_ViewCamera.m_Orientation.RotateY(DEGTORAD(-45));
+	m_ViewCamera.m_Orientation.RotateY(DEGTORAD(0));
 	m_ViewCamera.m_Orientation.Translate (100, 150, -100);
 	m_CullCamera = m_ViewCamera;
 	g_Renderer.SetCamera(m_ViewCamera, m_CullCamera);

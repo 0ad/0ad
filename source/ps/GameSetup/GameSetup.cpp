@@ -42,6 +42,7 @@
 #include "graphics/UnitManager.h"
 #include "graphics/MaterialManager.h"
 #include "graphics/MeshManager.h"
+#include "graphics/GameView.h"
 #include "renderer/Renderer.h"
 #include "renderer/VertexBufferManager.h"
 #include "maths/MathUtil.h"

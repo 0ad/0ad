@@ -10,6 +10,7 @@
 #include "scripting/ScriptableObject.h"
 
 #include "Game.h"
+#include "Simulation.h"
 #include "Player.h"
 #include "CLogger.h"
 #include "CConsole.h"

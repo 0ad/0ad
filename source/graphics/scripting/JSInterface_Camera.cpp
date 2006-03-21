@@ -8,6 +8,7 @@
 #include "MathUtil.h"
 #include "Terrain.h"
 #include "Game.h"
+#include "graphics/GameView.h"
 
 
 JSClass JSI_Camera::JSI_class = {

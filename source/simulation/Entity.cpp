@@ -21,6 +21,7 @@
 #include "MathUtil.h"
 #include "CConsole.h"
 #include "renderer/WaterManager.h"
+#include "graphics/GameView.h"
 
 extern CConsole* g_Console;
 extern int g_xres, g_yres;

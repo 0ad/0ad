@@ -21,6 +21,7 @@
 #include "scripting/GameEvents.h"
 #include "UnitManager.h"
 #include "MathUtil.h"
+#include "graphics/GameView.h"
 
 extern CConsole* g_Console;
 extern CStr g_CursorName;

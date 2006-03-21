@@ -16,6 +16,7 @@
 #include "ps/CLogger.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/Game.h"
+#include "ps/World.h"
 #include "simulation/Simulation.h"
 #include "simulation/EntityManager.h"
 

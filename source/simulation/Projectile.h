@@ -13,6 +13,8 @@
 #include "scripting/ScriptableObject.h"
 #include "scripting/DOMEvent.h"
 #include "ScriptObject.h"
+#include "ps/Game.h"
+#include "ps/World.h"
 
 class CProjectileManager;
 class CModel;
@@ -78,7 +80,7 @@ public:
 // Initially this had g_UnitMan managing the models and g_EntityManager holding the
 // projectiles themselves. This way may be less confusing - I'm not sure.
 
-class CProjectileManager : public Singleton<CProjectileManager>
+class CProjectileManager
 {
 	friend class CProjectile;
 public:
@@ -102,6 +104,6 @@ private:
 	std::vector<CProjectile*> m_Projectiles;
 };
 
-#define g_ProjectileManager CProjectileManager::GetSingleton()
+#define g_ProjectileManager (*(g_Game->GetWorld()->GetProjectileManager()))
 
 #endif

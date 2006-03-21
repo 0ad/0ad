@@ -2,16 +2,17 @@
 
 #include "lib.h"
 
-#include <scripting/DOMEvent.h>
-#include <scripting/JSConversions.h>
-#include <scripting/ScriptableObject.h>
-#include <Network/Client.h>
-#include <Network/JSEvents.h>
-#include <CStr.h>
-#include <CLogger.h>
-#include <CConsole.h>
-#include <Game.h>
-#include <GameAttributes.h>
+#include "scripting/DOMEvent.h"
+#include "scripting/JSConversions.h"
+#include "scripting/ScriptableObject.h"
+#include "Network/Client.h"
+#include "Network/JSEvents.h"
+#include "CStr.h"
+#include "CLogger.h"
+#include "CConsole.h"
+#include "Game.h"
+#include "GameAttributes.h"
+#include "Simulation.h"
 
 #define LOG_CAT_NET "net"
 

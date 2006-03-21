@@ -15,6 +15,8 @@
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 #include "ps/Game.h"
+#include "ps/World.h"
+#include "graphics/GameView.h"
 #include "lib/ogl.h"
 
 #define LOG_CATEGORY "editor"

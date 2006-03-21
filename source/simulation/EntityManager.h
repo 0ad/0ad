@@ -23,15 +23,17 @@
 #include "EntityHandles.h"
 #include "EntityPredicate.h"
 #include "EntityMessage.h"
+#include "ps/Game.h"
+#include "ps/World.h"
 
 #define MAX_HANDLES 4096
 
 // collision patch size, in graphics units, not tiles (1 tile = 4 units)
 #define COLLISION_PATCH_SIZE 8
 
-#define g_EntityManager CEntityManager::GetSingleton()
+#define g_EntityManager (*(g_Game->GetWorld()->GetEntityManager()))
 
-class CEntityManager : public Singleton<CEntityManager>
+class CEntityManager
 {
 friend class HEntity;
 friend class CHandle;

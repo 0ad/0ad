@@ -17,6 +17,7 @@
 #include "VFSUtil.h"
 #include "Loader.h"
 #include "MathUtil.h"
+#include "graphics/Camera.h"
 
 #include "ps/XML/XMLWriter.h"
 #include "simulation/Entity.h"
@@ -31,19 +32,19 @@ CMapWriter::CMapWriter()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // SaveMap: try to save the current map to the given file
-void CMapWriter::SaveMap(const char* filename, CTerrain *pTerrain, CLightEnv *pLightEnv, CUnitManager *pUnitMan)
+void CMapWriter::SaveMap(const char* filename, CTerrain *pTerrain, CUnitManager *pUnitMan, CLightEnv *pLightEnv, CCamera *pCamera)
 {
 	CFilePacker packer(FILE_VERSION, "PSMP");
 
 	// build necessary data
-	PackMap(packer, pTerrain, pLightEnv, pUnitMan);
+	PackMap(packer, pTerrain, pUnitMan, pLightEnv);
 
 	// write it out
 	packer.Write(filename);
 
 	CStr filename_xml (filename);
 	filename_xml = filename_xml.Left(filename_xml.Length()-4) + ".xml";
-	WriteXML(filename_xml, pUnitMan, pLightEnv);
+	WriteXML(filename_xml, pUnitMan, pLightEnv, pCamera);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -114,7 +115,7 @@ void CMapWriter::EnumTerrainTextures(CTerrain *pTerrain,
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // PackMap: pack the current world into a raw data stream
 void CMapWriter::PackMap(CFilePacker& packer, CTerrain* pTerrain,
-	CLightEnv* UNUSED(pLightEnv), CUnitManager* UNUSED(pUnitMan))
+	CUnitManager* UNUSED(pUnitMan), CLightEnv* UNUSED(pLightEnv))
 {
 	// now pack everything up
 	PackTerrain(packer, pTerrain);
@@ -153,7 +154,7 @@ void CMapWriter::PackTerrain(CFilePacker& packer, CTerrain *pTerrain)
 
 
 
-void CMapWriter::WriteXML(const char* filename, CUnitManager* pUnitMan, CLightEnv *pLightEnv)
+void CMapWriter::WriteXML(const char* filename, CUnitManager* pUnitMan, CLightEnv *pLightEnv, CCamera *pCamera)
 {
 	Handle h = vfs_open(filename, FILE_WRITE|FILE_NO_AIO);
 	if (h <= 0)
@@ -163,14 +164,6 @@ void CMapWriter::WriteXML(const char* filename, CUnitManager* pUnitMan, CLightEn
 	}
 
 	XML_Start("utf-8");
-	// DTDs are rather annoying. They ought to be strict in what they accept,
-	// else they serve no purpose (given that the only purpose is complaining
-	// nicely when someone provides invalid input). But then it can't be
-	// backwards-compatible, because the old data files don't follow the new
-	// format, and there's no way we're going to rebuild all the old data
-	// files. So, just create an entirely new DTD for each revision of the
-	// format:
-	XML_Doctype("Scenario", "/maps/scenario_v4.dtd");
 
 	{
 		XML_Element("Scenario");
@@ -203,6 +196,32 @@ void CMapWriter::WriteXML(const char* filename, CUnitManager* pUnitMan, CLightEn
 				XML_Attribute("r", pLightEnv->m_UnitsAmbientColor.X);
 				XML_Attribute("g", pLightEnv->m_UnitsAmbientColor.Y);
 				XML_Attribute("b", pLightEnv->m_UnitsAmbientColor.Z);
+			}
+		}
+
+		{
+			XML_Element("Camera");
+
+			{
+				XML_Element("Position");
+				CVector3D pos = pCamera->m_Orientation.GetTranslation();
+				XML_Attribute("x", pos.X);
+				XML_Attribute("y", pos.Y);
+				XML_Attribute("z", pos.Z);
+			}
+
+			CVector3D in = pCamera->m_Orientation.GetIn();
+			// Convert to spherical coordinates
+			float rotation = atan2(in.X, in.Z);
+			float declination = atan2(sqrt(in.X*in.X + in.Z*in.Z), in.Y) - M_PI_2;
+
+			{
+				XML_Element("Rotation");
+				XML_Attribute("angle", rotation);
+			}
+			{
+				XML_Element("Declination");
+				XML_Attribute("angle", declination);
 			}
 		}
 
@@ -285,7 +304,7 @@ void CMapWriter::WriteXML(const char* filename, CUnitManager* pUnitMan, CLightEn
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // RewriteAllMaps
-void CMapWriter::RewriteAllMaps(CTerrain *pTerrain, CUnitManager *pUnitMan, CLightEnv *pLightEnv)
+void CMapWriter::RewriteAllMaps(CTerrain *pTerrain, CUnitManager *pUnitMan, CLightEnv *pLightEnv, CCamera *pCamera)
 {
 	VFSUtil::FileList files;
 	VFSUtil::FindFiles("maps/scenarios", "*.pmp", files);
@@ -294,13 +313,13 @@ void CMapWriter::RewriteAllMaps(CTerrain *pTerrain, CUnitManager *pUnitMan, CLig
 	{
 		CMapReader* reader = new CMapReader;
 		LDR_BeginRegistering();
-		reader->LoadMap(*it, pTerrain, pUnitMan, pLightEnv);
+		reader->LoadMap(*it, pTerrain, pUnitMan, pLightEnv, pCamera);
 		LDR_EndRegistering();
 		LDR_NonprogressiveLoad();
 
 		CStr n (*it);
 		n.Replace("scenarios/", "scenarios/new/");
 		CMapWriter writer;
-		writer.SaveMap(n, pTerrain, pLightEnv, pUnitMan);
+		writer.SaveMap(n, pTerrain, pUnitMan, pLightEnv, pCamera);
 	}
 }

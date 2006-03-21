@@ -35,6 +35,8 @@
 #include "scripting/JSInterface_Camera.h"
 #include "scripting/JSInterface_Console.h"
 #include "scripting/JSInterface_VFS.h"
+#include "simulation/Simulation.h"
+#include "graphics/GameView.h"
 #include "graphics/scripting/JSInterface_LightEnv.h"
 #include "scripting/JSConversions.h"
 #include "renderer/WaterManager.h"

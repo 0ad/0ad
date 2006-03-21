@@ -5,6 +5,7 @@
 #include "../CommandProc.h"
 
 #include "renderer/Renderer.h"
+#include "graphics/GameView.h"
 #include "gui/GUI.h"
 #include "ps/CConsole.h"
 #include "ps/Game.h"

@@ -6,6 +6,7 @@
 
 #include "graphics/Terrain.h"
 #include "ps/Game.h"
+#include "ps/World.h"
 #include "maths/MathUtil.h"
 #include "simulation/EntityManager.h"
 

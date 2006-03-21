@@ -2,7 +2,8 @@
 
 #include "PathfindSparse.h"
 #include "Terrain.h"
-#include "Game.h"
+#include "ps/Game.h"
+#include "ps/World.h"
 
 int SPF_RECURSION_DEPTH = 10;
 
