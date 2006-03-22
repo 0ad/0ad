@@ -1859,6 +1859,73 @@
 						size="0 0 100% 100%"
 				/>
 		</sprite>
+		
+		<!--
+		==========================================
+		SESSION GUI - ICON SHEETS - GARRISON
+		==========================================
+		-->
+		
+		<sprite	name="snIconSheetGarrison">
+				<image	texture="session/icons/sheets/garrison.dds"
+						cell_size="64 64"
+						size="0 0 100% 100%"
+				/>
+		</sprite>
+		<sprite	name="snIconSheetGarrisonOver">
+				<effect	add_color="42 42 42 0"/>		
+				<image	texture="session/icons/sheets/garrison.dds"
+						cell_size="64 64"
+						size="0 0 100% 100%"
+				/>
+		</sprite>
+		<sprite	name="snIconSheetGarrisonDisabled">
+
+				<image	texture="session/icons/sheets/garrison.dds"
+						cell_size="64 64"
+						size="0 0 100% 100%"
+				/>
+		</sprite>		
+
+		<sprite	name="snIconSheetGarrisonButton">
+				<image	texture="session/icons/bkg/command_outer.dds"
+						size="0 0 100% 100%" 
+				/>		
+				<image	texture="session/icons/bkg/command_inner.dds"
+						size="0 0 100% 100%" 
+				/>				
+				<image	texture="session/icons/sheets/garrison.dds"
+						cell_size="64 64"
+						size="0 0 100% 100%"
+				/>
+		</sprite>
+		<sprite	name="snIconSheetGarrisonButtonOver">
+				<image	texture="session/icons/bkg/command_outer.dds"
+						size="0 0 100% 100%" 
+				/>				
+				<image
+						texture="session/icons/bkg/command_inner.dds"
+						size="0 0 100% 100%"
+				>
+						<effect	add_color="42 42 42 0"/>
+				</image>
+				<image	texture="session/icons/sheets/garrison.dds"
+						cell_size="64 64"
+						size="0 0 100% 100%"
+				/>
+		</sprite>
+		<sprite	name="snIconSheetGarrisonButtonDisabled">
+				<image	texture="session/icons/bkg/command_outer.dds"
+						size="0 0 100% 100%" 
+				/>				
+				<image	texture="session/icons/bkg/command_inner.dds"
+						size="0 0 100% 100%" 
+				/>				
+				<image	texture="session/icons/sheets/garrison.dds"
+						cell_size="64 64"
+						size="0 0 100% 100%"
+				/>
+		</sprite>		
 
 		<!--
 		==========================================

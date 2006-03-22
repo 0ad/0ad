@@ -97,12 +97,13 @@ textCaption += '[font=verdana10][color="' + Math.round(selection[0].player.getCo
 	// Update garrison capacity.
 	if( shouldUpdateStat( "traits.garrison" ) )
 	{
-		// Update Supply/Garrison
 		var guiObject = getGUIObjectByName("snStatusPaneGarrison");
 		guiObject.caption = '';
 
 		if (selection[0].traits.garrison)
 		{
+			// Set garrison icon.
+			getGUIObjectByName ("snStatusPaneGarrisonIcon").cell_id = cellGroup["Garrison"]["garrison"].id;		
 			if (selection[0].traits.garrison.curr && selection[0].traits.garrison.max)
 			{
 				guiObject.caption += '[color="blue"]' + selection[0].traits.garrison.curr + '/' + selection[0].traits.garrison.max + '[/color] ';
@@ -116,6 +117,7 @@ textCaption += '[font=verdana10][color="' + Math.round(selection[0].player.getCo
 			getGUIObjectByName ("snStatusPaneGarrisonIcon").hidden = true;
 		}
 	}
+	
 	if( shouldUpdateStat( "traits.supply" ) )
 	{
 		guiObject = getGUIObjectByName("snStatusPaneSupply");
@@ -126,7 +128,7 @@ textCaption += '[font=verdana10][color="' + Math.round(selection[0].player.getCo
 			if (selection[0].traits.supply.curr && selection[0].traits.supply.max && selection[0].traits.supply.type)
 			{
 				// Set resource icon.
-				getGUIObjectByName ("snStatusPaneSupplyIcon").cell_id = cellGroup["Resource"][selection[0].traits.supply.type];
+				getGUIObjectByName ("snStatusPaneSupplyIcon").cell_id = cellGroup["Resource"][selection[0].traits.supply.type].id;
 				// Special case for infinity.
 				if (selection[0].traits.supply.curr == "0" && selection[0].traits.supply.max == "0")
 					guiObject.caption += '[color="brown"] [icon="iconInfinity"] [/color] ';
