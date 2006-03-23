@@ -199,9 +199,23 @@ console.write ("2nd: " + tabCounter + " " + tab + " " + type + " " + cellSheet +
 		guiUnHide (tabObject.name);
 		
 		// Set tab portrait.
-		setPortrait ("snStatusPaneCommand" + tabCounter + "_1", "IconSheet", cellSheet + "Button", cellGroup[cellSheet][tab].id);
+		switch (tab)
+		{
+			case "selection":
+			case "garrison":
+				// Temporarily (until we have the tab textures) force a particular cell ID for selection and garrison so we can see the icon.
+				cellGroup[cellSheet][tab].id = 2;
+			
+				// Use the horizontal tab. (Extends right.)
+				setPortrait ("snStatusPaneCommand" + tabCounter + "_1", "IconSheet", cellSheet + "Button_H", cellGroup[cellSheet][tab].id);		
+			break;
+			default:
+				// Use the vertical tab. (Extends up).
+				setPortrait ("snStatusPaneCommand" + tabCounter + "_1", "IconSheet", cellSheet + "Button", cellGroup[cellSheet][tab].id);
+			break;
+		}
 		
-		console.write ("3rd: " + "snStatusPaneCommand" + tabCounter + "_1" + "|" + "IconSheet" + "|" + cellSheet + "Button" + "|" + cellGroup[cellSheet][tab].id);
+console.write ("3rd: " + "snStatusPaneCommand" + tabCounter + "_1" + "|" + "IconSheet" + "|" + cellSheet + "Button" + "|" + cellGroup[cellSheet][tab].id);
 			
 		switch (type)
 		{
@@ -253,14 +267,30 @@ console.write ("2nd: " + tabCounter + " " + tab + " " + type + " " + cellSheet +
 		// If the list hasn't been hidden (tab is open), and it should have list items (it's not merely a command),
 		if ( type != "command" )
 		{
-			// Extract item list into an array.
+			// Reset array.
 			var listArray = [];
-			for ( var i in attribute )
-			{
-				listArray[listArray.length] = i;
-				// Store any current quantity in the queue for this object.
-//				if (attribute[i].quantity)
-//					listArray[listArray.length].quantity = attribute[i].quantity;
+			// Insert blank array element at location 0 (to buffer array so items are in 1..n range).
+			listArray[0] = "";
+			// Extract item list into an array.		
+			if (!attribute.length)			
+			{	// If it's a list where each element is a value, (entity list)
+				for ( var i in attribute )
+				{
+					listArray[listArray.length] = i;
+					// Store any current quantity in the queue for this object.
+//					if (attribute[i].quantity)
+//						listArray[listArray.length].quantity = attribute[i].quantity;					
+				}
+			}
+			else
+			{	// If it's a list where each element is part of a numbered array, (array list)
+				for ( var i = 0; i < attribute.length; i++ )
+				{
+					listArray[listArray.length] = attribute[i];
+					// Store any current quantity in the queue for this object.
+//					if (attribute[i].quantity)
+//						listArray[listArray.length].quantity = attribute[i].quantity;					
+				}
 			}
 
 			// Populate the buttons in this tab's list.
@@ -289,8 +319,21 @@ console.write ("2nd: " + tabCounter + " " + tab + " " + type + " " + cellSheet +
 							}
 						break;
 						default:
-							// Get name of item to display in list.
-							var itemName = selection[0].traits.id.civ_code + "_" + listArray[createLoop];
+							switch (tab)
+							{
+								case "selection":
+								case "garrison":
+									// Get name of item to display in list.
+									// (These already know the full name of the entity tag, so we don't prefix it.)
+									var itemName = listArray[createLoop];
+								break;
+								default:
+									// Get name of item to display in list.
+									var itemName = selection[0].traits.id.civ_code + "_" + listArray[createLoop];
+								break;
+							}
+
+console.write ("4th: " + "snStatusPaneCommand" + tabCounter + "_1" + "|" + "IconSheet" + "|" + cellSheet + "Button" + "|" + createLoop + "|" + listArray[createLoop]);				
 
 							// Set tooltip.
 							listObject.tooltip = getEntityTemplate(itemName).traits.id.civ + " " + getEntityTemplate(itemName).traits.id.generic;
@@ -322,6 +365,12 @@ console.write ("2nd: " + tabCounter + " " + tab + " " + type + " " + cellSheet +
 									case "structmil":
 										// Select building placement cursor.
 										startPlacing (Crd[getCrd (this.name, true)].entity);
+									break;
+									case "garrison":
+										// Remove this item from the entity's garrison inventory.
+									break;
+									case "selection":
+										// Change the selection to this unit.
 									break;
 									default:
 									break;
@@ -415,7 +464,7 @@ function refreshCommandButtons()
 			for (listTab in listRoot)
 			{
 				if (listTab != "research")	// Do research later.
-					updateTab (listTab, "production", "", "listRoot[listTab]", "");
+					updateTab (listTab, "production", "Tab", "listRoot[listTab]", "");
 			}	
 		}
 	
@@ -475,18 +524,28 @@ function refreshCommandButtons()
 		}		
 	}
 	
-	// Do the selection/garrison list.
-	tabCounter = snStatusPaneCommand.tab.max;
-	// If there are entities garrisoned in the current entity,
-	if (selection[0].traits.garrison && selection[0].traits.garrison.curr > 0)
+	if ( selectionChanged )
 	{
-		updateTab ("garrison", "production", "", "selection", "");	
-	}
-	else
-	{
-		// If more than one entity is selected, list them.
-		if (selection.length > 1)
-			updateTab ("selection", "production", "", "selection", "");	
+		// Do the selection/garrison list.
+		tabCounter = snStatusPaneCommand.tab.max;
+		
+		// If there are entities garrisoned in the current entity,
+		if (selection[0].traits.garrison && selection[0].traits.garrison.curr > 0)
+		{
+			updateTab ("garrison", "production", "Tab", "selection", "");	
+		}
+		else
+		{
+			// If more than one entity is selected, list them.
+			if (selection.length > 1)
+			{
+				tempArray = [];
+				for ( var i = 0; i < selection.length; i++ )
+					tempArray[i] = selection[i].tag;
+				tempArray.length = i;
+				updateTab ("selection", "production", "Tab", "tempArray", "");	
+			}
+		}
 	}
 }
 
