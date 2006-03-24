@@ -26,6 +26,24 @@
 			<Radius>0.5</Radius>
 			<Height>4.0</Height>
 		</Footprint>
+		
+		<Formation>
+  			<Category>Melee</Category>
+  			<Curr>Loose</Curr>
+  			<List>
+  				<Loose />
+  				<Box />
+  				<Column_C />
+  				<Line_C />
+  				<Column_O />
+  				<Line_O />
+  				<Flank />
+  				<Skirmish />
+  				<Wedge />
+  				<Testudo />
+  				<Phalanx />
+  			</List>
+		</Formation>
 	
 		<Health>
 			<Max>100</Max>

@@ -140,7 +140,7 @@ function defineCommandButtons(command)
 
 // ====================================================================
 
-function updateTab (tab, type, cellSheet, attribute, attribute2)
+function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 {
 	// Refresh the next tab (and any buttons in its list, if appropriate), according to tabCounter.
 	// tab: 		The name of the tab (eg research).
@@ -158,10 +158,11 @@ function updateTab (tab, type, cellSheet, attribute, attribute2)
 	//			* For command: the attribute that the entity must have in order to have this command.
 	//			* If no value is specified, all entities have this attribute.
 	// attribute2:	* For pick: The variable used to store the current item in the pick that has been selected -- placed in the tab (eg selection[0].actions.formation.curr)
+	// arrayCells:	* Optional attribute. If true, assume that items cannot all be found in the same cellSheet; check in attribute.sheet for cell sheet name for each item.
 
 	// Store string form of attribute for future reference.
-	var attributeString = attribute;
-	var attribute2String = attribute2;
+	attributeString = attribute;
+	attribute2String = attribute2;
 	
 	// If either attribute is not a valid property, return false.
 	if ( (validProperty (attributeString)) && (validProperty (attribute2String)) )
@@ -169,8 +170,10 @@ function updateTab (tab, type, cellSheet, attribute, attribute2)
 		// Use the value of the attribute from this point forwards.
 		attribute = eval (attribute);
 		attribute2 = eval (attribute2);
+		// String properties taken from entities can be a little confused about their variable type, so make sure they're considered strings.
+		attribute2 = String (attribute2);
 		
-console.write ("1st: " + tabCounter + " " + tab + " " + type + " " + cellSheet + " " + attribute + " " + attribute2);
+//console.write ("1st: " + tabCounter + " " + tab + " " + type + " " + cellSheet + " " + attribute + " " + attribute2);
 		
 		// Set default values.
 		if (cellSheet == "")
@@ -191,7 +194,7 @@ console.write ("1st: " + tabCounter + " " + tab + " " + type + " " + cellSheet +
 			}			
 		}
 		
-console.write ("2nd: " + tabCounter + " " + tab + " " + type + " " + cellSheet + " " + attribute + " " + attribute2);
+//console.write ("2nd: " + tabCounter + " " + tab + " " + type + " " + cellSheet + " " + attribute + " " + attribute2);
 
 		// Get tab.
 		var tabObject 	= getGUIObjectByName ("snStatusPaneCommand" + tabCounter + "_1");		
@@ -210,12 +213,14 @@ console.write ("2nd: " + tabCounter + " " + tab + " " + type + " " + cellSheet +
 				setPortrait ("snStatusPaneCommand" + tabCounter + "_1", "IconSheet", cellSheet + "Button_H", cellGroup[cellSheet][tab].id);		
 			break;
 			default:
-				// Use the vertical tab. (Extends up).
-				setPortrait ("snStatusPaneCommand" + tabCounter + "_1", "IconSheet", cellSheet + "Button", cellGroup[cellSheet][tab].id);
+				if (type == "pick" && cellSheet != "Tab")	// Force the tab background for pick lists,
+					setPortrait ("snStatusPaneCommand" + tabCounter + "_1", "IconSheet", cellSheet + "TabButton", cellGroup[cellSheet][tab].id);			
+				else						// Use the vertical tab. (Extends up).
+					setPortrait ("snStatusPaneCommand" + tabCounter + "_1", "IconSheet", cellSheet + "Button", cellGroup[cellSheet][tab].id);
 			break;
 		}
 		
-console.write ("3rd: " + "snStatusPaneCommand" + tabCounter + "_1" + "|" + "IconSheet" + "|" + cellSheet + "Button" + "|" + cellGroup[cellSheet][tab].id);
+//console.write ("3rd: " + "snStatusPaneCommand" + tabCounter + "_1" + "|" + "IconSheet" + "|" + cellSheet + "Button" + "|" + cellGroup[cellSheet][tab].id);
 			
 		switch (type)
 		{
@@ -265,12 +270,13 @@ console.write ("3rd: " + "snStatusPaneCommand" + tabCounter + "_1" + "|" + "Icon
 		var groupObject = getGUIObjectByName ("snStatusPaneCommand" + "Group" + tabCounter);		
 
 		// If the list hasn't been hidden (tab is open), and it should have list items (it's not merely a command),
-		if ( type != "command" )
+		if ( type != "command" && attribute != undefined )
 		{
 			// Reset array.
 			var listArray = [];
 			// Insert blank array element at location 0 (to buffer array so items are in 1..n range).
 			listArray[0] = "";
+
 			// Extract item list into an array.		
 			if (!attribute.length)			
 			{	// If it's a list where each element is a value, (entity list)
@@ -287,6 +293,13 @@ console.write ("3rd: " + "snStatusPaneCommand" + tabCounter + "_1" + "|" + "Icon
 				for ( var i = 0; i < attribute.length; i++ )
 				{
 					listArray[listArray.length] = attribute[i];
+					// If cell sheet for each item is stored in attribute.sheet, transfer that across too.
+					if (arrayCells == true)
+					{
+						console.write (attribute[i].sheet);					
+						listArray[listArray.length].sheet = new Object(attribute[i].sheet);
+						console.write (listArray[listArray.length].sheet);
+					}
 					// Store any current quantity in the queue for this object.
 //					if (attribute[i].quantity)
 //						listArray[listArray.length].quantity = attribute[i].quantity;					
@@ -306,16 +319,41 @@ console.write ("3rd: " + "snStatusPaneCommand" + tabCounter + "_1" + "|" + "Icon
 					{
 						case "pick":
 							// Set tooltip.
-							listObject.tooltip = toTitleCase(listArray[createLoop]);
+							if (arrayCells == true)	// Check a .sheet property for each item in the list to know its cellsheet.
+								listObject.tooltip = cellGroup[listArray[createLoop].sheet][listArray[createLoop]].name;
+							else	// Assume each item uses the same cell sheet as the tab.
+								listObject.tooltip = cellGroup[cellSheet][listArray[createLoop]].name;
 							
 							// Set portrait.
 							setPortrait (listObject.name, 
 								"IconSheet", cellSheet + "Button", cellGroup[cellSheet][listArray[createLoop]].id);							
+							// Store properties which we will need when doing the press event as a comma-delimited string.
+							// * 0 Name of variable that contains the ".curr" value.
+							// * 1 String name of current button's content.
+							// * 2 Array list of tab items.
+							// * 3 Name of tab (eg stance).
+							// * 4 Tab number.
+							// (Storing the properties in the hotkey is an evil hack, and we'll eventually need the hotkey, but since new properties cannot be
+							// attached to controls, there doesn't seem to be much choice ... Maybe add a .container property for situations such as this?)
+							listObject.hotkey = attribute2String + "," + listArray[createLoop] + "," + attributeString + "," + cellSheet.toLowerCase() + "," + tabCounter + ",";
+//							console.write (listObject.caption);
 								
 							// Set item function.
 							listObject.onPress = function (event)
 							{
-								// Update the tab and the entity's corresponding ".curr" attribute with the "picked" item.
+								// Extract the properties from the comma-delimited string.
+								var tempArray = parseDelimiterString (this.hotkey, ",");
+								// Set .curr property to refer to this item.
+//								console.write (tempArray[0]);
+//								console.write (tempArray[1]);	
+								tempStr = tempArray[0] + " = '" + tempArray[1] + "'";
+								eval(tempStr);
+//								console.write (tempArray[0]);
+//								console.write (tempArray[1]);
+//								console.write (selection[0].traits.ai.stance.curr);
+								// Refresh tab so it displays the new .curr sprite.
+								tabCounter = tempArray[4];
+								updateTab (tempArray[3], "pick", "", tempArray[2], tempArray[0]);
 							}
 						break;
 						default:
@@ -333,7 +371,7 @@ console.write ("3rd: " + "snStatusPaneCommand" + tabCounter + "_1" + "|" + "Icon
 								break;
 							}
 
-console.write ("4th: " + "snStatusPaneCommand" + tabCounter + "_1" + "|" + "IconSheet" + "|" + cellSheet + "Button" + "|" + createLoop + "|" + listArray[createLoop]);				
+//console.write ("4th: " + "snStatusPaneCommand" + tabCounter + "_1" + "|" + "IconSheet" + "|" + cellSheet + "Button" + "|" + createLoop + "|" + listArray[createLoop]);				
 
 							// Set tooltip.
 							listObject.tooltip = getEntityTemplate(itemName).traits.id.civ + " " + getEntityTemplate(itemName).traits.id.generic;
@@ -470,17 +508,21 @@ function refreshCommandButtons()
 	
 		// Update Barter. (Tab button, persistent buttons, click them to do things.)
 		updateTab ("barter", "production", "Tab", "selection[0].actions.barter.list");
-		// Update Allegiance. (Tab button, persistent buttons (though unit will be lost as soon as option selected), click them to do things.)
-		tempArray = new Array ("player1", "player2", "player3", "player4", "kill");
-		updateTab ("allegiance", "production", "Tab", "tempArray");
-	
+		
 		// Update pick lists (formation, stance, trade). (Tab button holds current selection, click a button to select a new option and close the tab.)
-		updateTab ("formation", "pick", "", "selection[0].traits.formation.type", "selection[0].traits.formation.curr");
+		updateTab ("formation", "pick", "", "selection[0].traits.formation.list", "selection[0].traits.formation.curr");
 		updateTab ("stance", "pick", "", "selection[0].traits.ai.stance.list", "selection[0].traits.ai.stance.curr");
 		updateTab ("trade", "pick", "", "selection[0].actions.trade.list", "selection[0].actions.trade.curr");
 		updateTab ("gate", "pick", "", "selection[0].actions.gate.list", "selection[0].actions.gate.curr");
 		updateTab ("weapon", "pick", "", "selection[0].actions.attack", "selection[0].actions.attack.curr");
-		
+/*		
+		// Update Allegiance. (Tab button, persistent buttons (though unit will be lost as soon as option selected), click them to do things.)
+		tempArray = new Array ("kill", "food");
+		tempArray.sheet = new Object();
+		tempArray.sheet = new Array ("Command", "Resource");
+		console.write(tempArray[1].sheet);
+		updateTab ("allegiance", "pick", "Tab", "", "", true);
+*/		
 		// Update research. (Tab button, persistent buttons, click them to do things.)
 		updateTab ("research", "production", "", "selection[0].actions.create.list.research", "");
 		
@@ -495,8 +537,8 @@ function refreshCommandButtons()
 		updateTab ("rally", "command", "", "selection[0].actions.create.rally", "");		
 		updateTab ("explore", "command", "", "selection[0].actions.explore", "");		
 		updateTab ("retreat", "command", "", "selection[0].actions.retreat", "");			
-		updateTab ("stop", "command", "", "selection[0].actions.stop", "");		
-		
+		updateTab ("stop", "command", "", "selection[0].actions.stop", "");	
+
 		// End of commands. Store end position.
 		var commandCounter = tabCounter;
 	}
