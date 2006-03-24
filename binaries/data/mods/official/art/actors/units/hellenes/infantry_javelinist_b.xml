@@ -70,7 +70,7 @@
   <group>
     <variant name="Chop">
       <animations>
-        <animation file="biped/dudechop.psa" name="Chop" speed="150"/>
+        <animation file="biped/chop.psa" name="Chop" speed="150"/>
       </animations>
       <props>
         <prop actor="props/units/tools/prop_handscythe.xml" attachpoint="r_hand"/>
@@ -92,7 +92,7 @@
   <group>
     <variant name="Forage">
       <animations>
-        <animation file="biped/gather.psa" name="Forage" speed="5"/>
+        <animation file="biped/forage.psa" name="Forage" speed="5"/>
       </animations>
     </variant>
   </group>
@@ -100,7 +100,7 @@
   <group>
     <variant name="Mine">
       <animations>
-        <animation file="biped/dudechop.psa" name="Mine" speed="150"/>
+        <animation file="biped/mine.psa" name="Mine" speed="150"/>
       </animations>
       <props>
         <prop actor="props/units/tools/prop_spade.xml" attachpoint="r_hand"/>
