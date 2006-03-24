@@ -401,6 +401,10 @@ success:
 	// p and size are the exact (non-padded) values as in dealloc.
 	void make_read_only(u8* p, size_t size)
 	{
+		// bail to avoid mprotect failing
+		if(!size)
+			return;
+
 		const size_t size_pa = round_up(size, BUF_ALIGN);
 		(void)mprotect(p, size_pa, PROT_READ);
 	}
@@ -701,8 +705,7 @@ public:
 
 	// add given buffer to extant list.
 	// long_lived indicates if this buffer will not be freed immediately
-	// (more precisely, before allocating the next buffer); see the
-	// FILE_LONG_LIVED flag.
+	// (more precisely: before allocating the next buffer); see FC_LONG_LIVED.
 	// note: reuses a previous extant_bufs[] slot if one is unused.
 	void add(FileIOBuf buf, size_t size, const char* atom_fn, bool long_lived)
 	{
@@ -992,12 +995,12 @@ static void free_padded_buf(FileIOBuf padded_buf, size_t size)
 // fragmentation). never returns 0.
 // <atom_fn>: owner filename (buffer is intended to be used for data from
 //   this file).
-// <long_lived>: indicates the buffer will not be freed immediately
-//   (i.e. before the next buffer alloc) as it normally should.
-//   this flag serves to suppress a warning and better avoid fragmentation.
-//   caller sets this when FILE_LONG_LIVED is specified.
-FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, bool long_lived)
+// <fc_flags>: see FileCacheFlags.
+FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, uint fc_flags)
 {
+	const bool should_update_stats = (fc_flags & FC_NO_STATS) == 0;
+	const bool long_lived = (fc_flags & FC_LONG_LIVED) != 0;
+
 	FileIOBuf buf;
 	uint attempts = 0;
 	for(;;)
@@ -1035,7 +1038,8 @@ FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, bool long_lived)
 
 	extant_bufs.add(buf, size, atom_fn, long_lived);
 
-	stats_buf_alloc(size, round_up(size, BUF_ALIGN));
+	if(should_update_stats)
+		stats_buf_alloc(size, round_up(size, BUF_ALIGN));
 	return buf;
 }
 
@@ -1043,8 +1047,10 @@ FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, bool long_lived)
 // mark <buf> as no longer needed. if its reference count drops to 0,
 // it will be removed from the extant list. if it had been added to the
 // cache, it remains there until evicted in favor of another buffer.
-LibError file_buf_free(FileIOBuf buf)
+LibError file_buf_free(FileIOBuf buf, uint fc_flags)
 {
+	const bool should_update_stats = (fc_flags & FC_NO_STATS) == 0;
+
 	if(!buf)
 		return ERR_OK;
 
@@ -1071,7 +1077,8 @@ LibError file_buf_free(FileIOBuf buf)
 		}
 	}
 
-	stats_buf_free();
+	if(should_update_stats)
+		stats_buf_free();
 	trace_notify_free(atom_fn, size);
 
 	return ERR_OK;
@@ -1082,15 +1089,15 @@ LibError file_buf_free(FileIOBuf buf)
 // file buffer if necessary.
 // called by file_io and afile_read.
 LibError file_buf_get(FileIOBuf* pbuf, size_t size,
-	const char* atom_fn, uint flags, FileIOCB cb)
+	const char* atom_fn, uint file_flags, FileIOCB cb)
 {
 	// decode *pbuf - exactly one of these is true
 	const bool temp  = (pbuf == FILE_BUF_TEMP);
 	const bool alloc = !temp && (*pbuf == FILE_BUF_ALLOC);
 	const bool user  = !temp && !alloc;
 
-	const bool is_write = (flags & FILE_WRITE) != 0;
-	const bool long_lived = (flags & FILE_LONG_LIVED) != 0;
+	const bool is_write = (file_flags & FILE_WRITE) != 0;
+	const uint fc_flags = (file_flags & FILE_LONG_LIVED)? FC_LONG_LIVED : 0;
 
 	// reading into temp buffers - ok.
 	if(!is_write && temp && cb != 0)
@@ -1099,7 +1106,7 @@ LibError file_buf_get(FileIOBuf* pbuf, size_t size,
 	// reading and want buffer allocated.
 	if(!is_write && alloc)
 	{
-		*pbuf = file_buf_alloc(size, atom_fn, long_lived);
+		*pbuf = file_buf_alloc(size, atom_fn, fc_flags);
 		if(!*pbuf)	// very unlikely (size totally bogus or cache hosed)
 			WARN_RETURN(ERR_NO_MEM);
 		return ERR_OK;
@@ -1156,6 +1163,8 @@ LibError file_cache_add(FileIOBuf buf, size_t size, const char* atom_fn)
 
 	// decide (based on flags) if buf is to be cached; set cost
 	uint cost = 1;
+	if(!size)
+		cost = 0;
 
 	ExactBufOracle::BufAndSize bas = exact_buf_oracle.get(buf, size);
 	FileIOBuf exact_buf = bas.first; size_t exact_size = bas.second;
@@ -1167,38 +1176,34 @@ LibError file_cache_add(FileIOBuf buf, size_t size, const char* atom_fn)
 }
 
 
-// called by trace simulator to retrieve buffer address, given atom_fn.
-// must not change any cache state (e.g. notify stats or add ref).
-FileIOBuf file_cache_find(const char* atom_fn, size_t* psize)
-{
-	FileIOBuf buf;
-	bool should_refill_credit = false;
-	if(!file_cache.retrieve(atom_fn, buf, psize, should_refill_credit))
-		return 0;
-	return buf;
-}
 
 
 // check if the contents of the file <atom_fn> are in file cache.
 // if not, return 0; otherwise, return buffer address and optionally
 // pass back its size.
-// <long_lived> indicates whether this file has FILE_LONG_LIVED flag set -
-// see file_buf_alloc docs.
-FileIOBuf file_cache_retrieve(const char* atom_fn, size_t* psize, bool long_lived)
+//
+// note: does not call stats_cache because it does not know the file size
+// in case of cache miss! doing so is left to the caller.
+FileIOBuf file_cache_retrieve(const char* atom_fn, size_t* psize, uint fc_flags)
 {
 	// note: do not query extant_bufs - reusing that doesn't make sense
 	// (why would someone issue a second IO for the entire file while
 	// still referencing the previous instance?)
 
-	FileIOBuf buf = file_cache_find(atom_fn, psize);
-	if(buf)
-	{
-		extant_bufs.add_ref(buf, *psize, atom_fn, long_lived);
-		stats_buf_ref();
-	}
+	const bool long_lived = (fc_flags & FC_LONG_LIVED) != 0;
+	const bool should_account = (fc_flags & FC_NO_ACCOUNTING) == 0;
+	const bool should_update_stats = (fc_flags & FC_NO_STATS) == 0;
 
-	CacheRet cr = buf? CR_HIT : CR_MISS;
-	stats_cache(cr, *psize, atom_fn);
+	FileIOBuf buf;
+	const bool should_refill_credit = should_account;
+	if(!file_cache.retrieve(atom_fn, buf, psize, should_refill_credit))
+		return 0;
+
+	if(should_account)
+		extant_bufs.add_ref(buf, *psize, atom_fn, long_lived);
+
+	if(should_update_stats)
+		stats_buf_ref();
 
 	return buf;
 }

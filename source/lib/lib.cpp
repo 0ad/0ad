@@ -536,9 +536,9 @@ uint fullrand()
 }
 #endif
 
-uint rand(uint min, uint max)
+uint rand(uint min_inclusive, uint max_exclusive)
 {
-	const uint range = (max-min);
+	const uint range = (max_exclusive-min_inclusive);
 	// huge interval or min >= max
 	if(range == 0 || range > XRAND_MAX)
 	{
@@ -555,8 +555,8 @@ uint rand(uint min, uint max)
 	while(x >= range * inv_range);
 	x /= inv_range;
 
-	x += min;
-	debug_assert(x < max);
+	x += min_inclusive;
+	debug_assert(x < max_exclusive);
 	return x;
 }
 

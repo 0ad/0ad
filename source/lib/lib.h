@@ -311,6 +311,6 @@ extern int match_wildcardw(const wchar_t* s, const wchar_t* w);
 // return random integer in [min, max).
 // avoids several common pitfalls; see discussion at
 // http://www.azillionmonkeys.com/qed/random.html
-extern uint rand(uint min, uint max);
+extern uint rand(uint min_inclusive, uint max_exclusive);
 
 #endif	// #ifndef LIB_H__

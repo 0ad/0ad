@@ -278,14 +278,18 @@ class ConnectionBuilder
 			Connection* next_c = &connections[0] + connections.size();
 			const std::pair<ConnectionId, Connection*> item = std::make_pair(c_id, next_c);
 			std::pair<Map::iterator, bool> ret = map.insert(item);
-			if(!ret.second)	// already existed
+			const bool already_exists = !ret.second;
+			if(already_exists)
 			{
 				Map::iterator inserted_at = ret.first;
 				Connection* c = inserted_at->second;	// std::map "payload"
 				c->occurrences++;
 			}
-			else	// first time we've seen this connection
+			// first time we've seen this connection
+			else
 				connections.push_back(Connection(c_id));
+
+			stats_ab_connection(already_exists);
 		}
 	};
 

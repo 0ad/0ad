@@ -167,12 +167,49 @@ LibError trace_read_from_file(const char* trace_filename, Trace* t)
 }
 
 
+void trace_gen_random(size_t num_entries)
+{
+	trace_clear();
+
+	for(size_t i = 0; i < num_entries; i++)
+	{
+		// generate random names until we get a valid file;
+		// remember its name and size.
+		const char* atom_fn;
+		off_t size;
+		for(;;)
+		{
+			atom_fn = file_get_random_name();
+			// use instead of vfs_stat to avoid warnings, since some of
+			// atom_fn will actually be directory names.
+			if(vfs_exists(atom_fn))
+			{
+				struct stat s;
+				LibError ret = vfs_stat(atom_fn, &s);
+				// ought to apply due to vfs_exists above.
+				debug_assert(ret == ERR_OK && S_ISREG(s.st_mode));
+
+				size = s.st_size;
+				break;
+			}
+		}
+
+		trace_add(TO_LOAD, atom_fn, size);
+		trace_add(TO_FREE, atom_fn, size);
+	}
+}
+
+
 //-----------------------------------------------------------------------------
 
 // simulate carrying out the entry's TraceOp to determine
 // whether this IO would be satisfied by the file_buf cache.
 bool trace_entry_causes_io(const TraceEntry* ent)
 {
+	uint fc_flags = FC_NO_STATS;
+	if(ent->flags & FILE_LONG_LIVED)
+		fc_flags |= FC_LONG_LIVED;
+
 	FileIOBuf buf;
 	size_t size         = ent->size;
 	const char* atom_fn = ent->atom_fn;
@@ -180,19 +217,18 @@ bool trace_entry_causes_io(const TraceEntry* ent)
 	{
 	case TO_LOAD:
 	{
-		bool long_lived = (ent->flags & FILE_LONG_LIVED) != 0;
-		buf = file_cache_retrieve(atom_fn, &size, long_lived);
+		buf = file_cache_retrieve(atom_fn, &size, fc_flags);
 		// would not be in cache: add to list of real IOs
 		if(!buf)
 		{
-			buf = file_buf_alloc(size, atom_fn, long_lived);
+			buf = file_buf_alloc(size, atom_fn, fc_flags);
 			(void)file_cache_add(buf, size, atom_fn);
 			return true;
 		}
 		break;
 	}
 	case TO_FREE:
-		buf = file_cache_find(atom_fn, &size);
+		buf = file_cache_retrieve(atom_fn, &size, fc_flags|FC_NO_ACCOUNTING);
 		(void)file_buf_free(buf);
 		break;
 	default:
@@ -238,7 +274,7 @@ LibError trace_run(const char* trace_filename, uint flags)
 			(void)vfs_load(ent->atom_fn, buf, size, ent->flags);
 			break;
 		case TO_FREE:
-			buf = file_cache_find(ent->atom_fn, &size);
+			buf = file_cache_retrieve(ent->atom_fn, &size, FC_NO_STATS|FC_NO_ACCOUNTING);
 			(void)file_buf_free(buf);
 			break;
 		default:

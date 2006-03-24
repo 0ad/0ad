@@ -96,7 +96,7 @@ static void test_cache_removal()
 	Cache<int, int, Landlord_Lazy> c3;
 	Cache<int, int, Landlord_Lazy, Divider_Recip> c3r;
 
-#if 0
+#if defined(ENABLE_CACHE_POLICY_BENCHMARK) || 0
 	// set max priority, to reduce interference while measuring.
 	int old_policy; static sched_param old_param;	// (static => 0-init)
 	pthread_getschedparam(pthread_self(), &old_policy, &old_param);

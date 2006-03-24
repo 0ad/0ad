@@ -31,7 +31,6 @@ static double user_io_size_total;
 static double io_actual_size_total[FI_MAX_IDX][2];
 static double io_elapsed_time[FI_MAX_IDX][2];
 static double io_process_time_total;
-static BlockId io_disk_pos_cur;
 static uint io_seeks;
 
 // file_cache
@@ -42,6 +41,9 @@ static uint conflict_misses;
 static double conflict_miss_size_total;
 static uint block_cache_count[2];
 
+// archive builder
+static uint ab_connection_attempts;	// total number of trace entries
+static uint ab_repeated_connections;	// how many of these were not unique
 
 
 // convenience functions for measuring elapsed time in an interval.
@@ -151,23 +153,22 @@ void stats_buf_ref()
 // file_io
 //
 
-void stats_user_io(size_t user_size)
+void stats_io_user_request(size_t user_size)
 {
 	user_ios++;
 	user_io_size_total += user_size;
 }
 
-void stats_io_start(BlockId disk_pos, double* start_time_storage)
+// these bracket file_io's IOManager::run and measure effective throughput.
+// note: cannot be called from aio issue/finish because IOManager's
+// decompression may cause us to miss the exact end of IO, thus throwing off
+// throughput measurements.
+void stats_io_sync_start(double* start_time_storage)
 {
-	if(disk_pos.atom_fn != io_disk_pos_cur.atom_fn ||
-	   disk_pos.block_num != io_disk_pos_cur.block_num+1)
-		io_seeks++;
-	io_disk_pos_cur = disk_pos;
-
 	timer_start(start_time_storage);
 }
 
-void stats_io_finish(FileIOImplentation fi, FileOp fo, ssize_t user_size, double* start_time_storage)
+void stats_io_sync_finish(FileIOImplentation fi, FileOp fo, ssize_t user_size, double* start_time_storage)
 {
 	debug_assert(fi < FI_MAX_IDX);
 	debug_assert(fo == FO_READ || FO_WRITE);
@@ -179,6 +180,25 @@ void stats_io_finish(FileIOImplentation fi, FileOp fo, ssize_t user_size, double
 		io_elapsed_time[fi][fo] += timer_reset(start_time_storage);
 	}
 }
+
+
+void stats_io_check_seek(BlockId disk_pos)
+{
+	static BlockId cur_disk_pos;
+
+	// makes debugging ("why are there seeks") a bit nicer by suppressing
+	// the first (bogus) seek.
+	if(!cur_disk_pos.atom_fn)
+		goto dont_count_first_seek;
+
+	if(disk_pos.atom_fn != cur_disk_pos.atom_fn ||	// different file OR
+	   disk_pos.block_num != cur_disk_pos.block_num+1)	// nonsequential
+		io_seeks++;
+
+dont_count_first_seek:
+	cur_disk_pos = disk_pos;
+}
+
 
 void stats_cb_start()
 {
@@ -220,6 +240,18 @@ void stats_block_cache(CacheRet cr)
 }
 
 
+//
+// archive builder
+//
+
+void stats_ab_connection(bool already_exists)
+{
+	ab_connection_attempts++;
+	if(already_exists)
+		ab_repeated_connections++;
+}
+
+
 //-----------------------------------------------------------------------------
 
 template<typename T> int percent(T num, T divisor)
@@ -239,18 +271,16 @@ void stats_dump()
 	// note: we split the reports into several debug_printfs for clarity;
 	// this is necessary anyway due to fixed-size buffer.
 
-	// vfs
 	debug_printf(
-		"\n"
+		"\nvfs:\n"
 		"Total files: %u (%g MB)\n"
 		"Init/mount time: %g ms\n",
 		vfs_files, vfs_size_total/MB,
 		vfs_init_elapsed_time/ms
 	);
 
-	// file
 	debug_printf(
-		"\n"
+		"\nfile:\n"
 		"Total names: %u (%u KB)\n"
 		"Accessed files: %u (%g MB) -- %u%% of data set\n"
 		"Max. concurrent: %u; leaked: %u.\n",
@@ -259,9 +289,8 @@ void stats_dump()
 		open_files_max, open_files_cur
 	);
 
-	// file_buf
 	debug_printf(
-		"\n"
+		"\nfile_buf:\n"
 		"Total buffers used: %u (%g MB)\n"
 		"Max concurrent: %u; leaked: %u\n"
 		"Internal fragmentation: %d%%\n",
@@ -270,29 +299,35 @@ void stats_dump()
 		percent(buf_padded_size_total-buf_user_size_total, buf_user_size_total)
 	);
 
-	// file_io
 	debug_printf(
-		"\n"
-		"Total user IOs: %u (%g MB)\n"
+		"\nfile_io:\n"
+		"Total user load requests: %u (%g MB)\n"
 		"IO thoughput [MB/s; 0=never happened]:\n"
 		"  lowio: R=%.3g, W=%.3g\n"
 		"    aio: R=%.3g, W=%.3g\n"
-		"Average size = %g KB; seeks: %u; total callback time: %g ms\n",
+		"Average size = %g KB; seeks: %u; total callback time: %g ms\n"
+		"Total data actually read from disk = %g MB\n",
 		user_ios, user_io_size_total/MB,
 #define THROUGHPUT(impl, op) (io_elapsed_time[impl][op] == 0.0)? 0.0 : (io_actual_size_total[impl][op] / io_elapsed_time[impl][op] / MB)
 		THROUGHPUT(FI_LOWIO, FO_READ), THROUGHPUT(FI_LOWIO, FO_WRITE),
 		THROUGHPUT(FI_AIO  , FO_READ), THROUGHPUT(FI_AIO  , FO_WRITE),
-		user_io_size_total/user_ios/KB, io_seeks, io_process_time_total/ms
+		user_io_size_total/user_ios/KB, io_seeks, io_process_time_total/ms,
+		(io_actual_size_total[FI_LOWIO][FO_READ]+io_actual_size_total[FI_AIO][FO_READ])/MB
 	);
 
-	// file_cache
 	debug_printf(
-		"\n"
+		"\nfile_cache:\n"
 		"Hits: %u (%g MB); misses %u (%g MB)\n"
 		"Hit ratio: %u%%; conflict misses: %u%%\n"
 		"Block hits: %u; misses: %u; ratio: %u%%\n",
 		cache_count[CR_HIT], cache_size_total[CR_HIT]/MB, cache_count[CR_MISS], cache_size_total[CR_MISS]/MB,
 		percent(cache_count[CR_HIT], cache_count[CR_MISS]), percent(conflict_misses, cache_count[CR_MISS]),
 		block_cache_count[CR_HIT], block_cache_count[CR_MISS], percent(block_cache_count[CR_HIT], block_cache_count[CR_HIT]+block_cache_count[CR_MISS])
+	);
+
+	debug_printf(
+		"\nvfs_optimizer:\n"
+		"Total trace entries: %u; repeated connections: %u; unique files: %u\n",
+		ab_connection_attempts, ab_repeated_connections, ab_connection_attempts-ab_repeated_connections
 	);
 }

@@ -45,6 +45,8 @@ extern void trace_get(Trace* t);
 extern LibError trace_write_to_file(const char* trace_filename);
 extern LibError trace_read_from_file(const char* trace_filename, Trace* t);
 
+extern void trace_gen_random(size_t num_entries);
+
 
 // simulate carrying out the entry's TraceOp to determine
 // whether this IO would be satisfied by the file_buf cache.

@@ -423,7 +423,7 @@ ssize_t vfs_io(const Handle hf, const size_t size, FileIOBuf* pbuf,
 	H_DEREF(hf, VFile, vf);
 	FileCommon* fc = &vf->xf.u.fc;
 
-	stats_user_io(size);
+	stats_io_user_request(size);
 	trace_notify_load(fc->atom_fn, size, fc->flags);
 
 	off_t ofs = vf->ofs;
@@ -445,14 +445,15 @@ LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size,
 	debug_printf("VFS| load: V_fn=%s\n", V_fn);
 
 	const char* atom_fn = file_make_unique_fn_copy(V_fn);
-	bool long_lived = (flags & FILE_LONG_LIVED) != 0;
-	buf = file_cache_retrieve(atom_fn, &size, long_lived);
+	const uint fc_flags = (flags & FILE_LONG_LIVED)? FC_LONG_LIVED : 0;
+	buf = file_cache_retrieve(atom_fn, &size, fc_flags);
 	if(buf)
 	{
 		// we want to skip the below code (especially vfs_open) for
 		// efficiency. that includes stats/trace accounting, though,
 		// so duplicate that here:
-		stats_user_io(size);
+		stats_cache(CR_HIT, size, atom_fn);
+		stats_io_user_request(size);
 		trace_notify_load(atom_fn, size, flags);
 
 		size_t actual_size;
@@ -491,7 +492,9 @@ LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size,
 	}
 
 	debug_assert(nread == (ssize_t)size);
+
 	(void)file_cache_add(buf, size, atom_fn);
+	stats_cache(CR_MISS, size, atom_fn);
 
 	(void)vfs_close(hf);
 	return ERR_OK;

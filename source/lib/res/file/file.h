@@ -94,6 +94,8 @@ extern LibError file_set_root_dir(const char* argv0, const char* rel_path);
 // (normal case) or the string length [characters].
 extern const char* file_make_unique_fn_copy(const char* P_fn);
 
+extern const char* file_get_random_name();
+
 
 //
 // dir_next_ent
@@ -328,15 +330,6 @@ extern LibError file_io_validate(const FileIo* io);
 const size_t FILE_BLOCK_SIZE = 32*KiB;
 
 
-typedef const u8* FileIOBuf;
-
-FileIOBuf* const FILE_BUF_TEMP = (FileIOBuf*)1;
-const FileIOBuf FILE_BUF_ALLOC = (FileIOBuf)2;
-
-extern FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, bool long_lived);
-extern LibError file_buf_free(FileIOBuf buf);
-
-
 // called by file_io after a block IO has completed.
 // *bytes_processed must be set; file_io will return the sum of these values.
 // example: when reading compressed data and decompressing in the callback,
@@ -349,6 +342,15 @@ extern LibError file_buf_free(FileIOBuf buf);
 // advantageous (e.g. for decompressors) to have all data at once, if available
 // anyway.
 typedef LibError (*FileIOCB)(uintptr_t ctx, const void* block, size_t size, size_t* bytes_processed);
+
+
+typedef const u8* FileIOBuf;
+
+FileIOBuf* const FILE_BUF_TEMP = (FileIOBuf*)1;
+const FileIOBuf FILE_BUF_ALLOC = (FileIOBuf)2;
+
+#include "file_cache.h"	// file_buf_*
+
 
 // transfer <size> bytes, starting at <ofs>, to/from the given file.
 // (read or write access was chosen at file-open time).

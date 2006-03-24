@@ -116,6 +116,9 @@ LibError file_io_issue(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 		WARN_RETURN(LibError_from_errno());
 	}
 
+	const BlockId disk_pos = block_cache_make_id(f->fc.atom_fn, ofs);
+	stats_io_check_seek(disk_pos);
+
 	return ERR_OK;
 }
 
@@ -281,9 +284,6 @@ class IOManager
 
 		void* temp_buf;
 
-		// used by stats_io_start/finish to measure throughput
-		double start_time;
-
 		IOSlot()
 		{
 			reset();
@@ -294,7 +294,6 @@ class IOManager
 			cached_block = 0;
 			memset(&block_id, 0, sizeof(block_id));
 			temp_buf = 0;
-			start_time = 0.0;	// required for stats
 		}
 	};
 	static const uint MAX_PENDING_IOS = 4;
@@ -536,11 +535,10 @@ public:
 
 		const FileIOImplentation fi = no_aio? FI_LOWIO : FI_AIO;
 		const FileOp fo = is_write? FO_WRITE : FO_READ;
-		const BlockId disk_pos = block_cache_make_id(f->fc.atom_fn, start_ofs);
 		double start_time = 0.0;
-		stats_io_start(disk_pos, &start_time);
-			ssize_t ret = no_aio? lowio() : aio();
-		stats_io_finish(fi, fo, ret, &start_time);
+		stats_io_sync_start(&start_time);
+			ssize_t bytes_transferred = no_aio? lowio() : aio();
+		stats_io_sync_finish(fi, fo, bytes_transferred, &start_time);
 
 		// we allocated the memory: skip any leading padding
 		if(pbuf != FILE_BUF_TEMP && !is_write)
@@ -553,7 +551,7 @@ public:
 
 		if(err != INFO_CB_CONTINUE && err != ERR_OK)
 			return (ssize_t)err;
-		return ret;
+		return bytes_transferred;
 	}
 
 };	// IOManager

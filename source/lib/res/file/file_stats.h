@@ -28,15 +28,19 @@ extern void stats_buf_free();
 extern void stats_buf_ref();
 
 // file_io
-extern void stats_user_io(size_t user_size);
-extern void stats_io_start(BlockId disk_pos, double* start_time_storage);
-extern void stats_io_finish(FileIOImplentation fi, FileOp fo, ssize_t user_size, double* start_time_storage);
+extern void stats_io_user_request(size_t user_size);
+extern void stats_io_sync_start(double* start_time_storage);
+extern void stats_io_sync_finish(FileIOImplentation fi, FileOp fo, ssize_t user_size, double* start_time_storage);
+extern void stats_io_check_seek(BlockId disk_pos);
 extern void stats_cb_start();
 extern void stats_cb_finish();
 
 // file_cache
 extern void stats_cache(CacheRet cr, size_t size, const char* atom_fn);
 extern void stats_block_cache(CacheRet cr);
+
+// archive builder
+extern void stats_ab_connection(bool already_exists);
 
 extern void stats_dump();
 
@@ -52,13 +56,15 @@ extern void stats_dump();
 #define stats_buf_alloc(user_size, padded_size)
 #define stats_buf_free()
 #define stats_buf_ref()
-#define stats_user_io(user_size)
-#define stats_io_start(disk_pos, start_time_storage)
-#define stats_io_finish(fi, fo, user_size, start_time_storage)
+#define stats_io_user_request(user_size)
+#define stats_io_sync_start(disk_pos, start_time_storage)
+#define stats_io_sync_finish(fi, fo, user_size, start_time_storage)
+#define stats_io_check_seek(disk_pos)
 #define stats_cb_start()
 #define stats_cb_finish()
 #define stats_cache(cr, size, atom_fn)
 #define stats_block_cache(cr)
+#define stats_ab_connection(already_exists)
 #define stats_dump()
 
 #endif

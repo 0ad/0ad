@@ -143,7 +143,8 @@ struct Pool
 {
 	DynArray da;
 
-	// size of elements; see pool_create.
+	// size of elements. = 0 if pool set up for variable-sized
+	// elements, otherwise rounded up to pool alignment.
 	size_t el_size;
 
 	// pointer to freelist (opaque); see freelist_*.
@@ -153,7 +154,7 @@ struct Pool
 
 // pass as pool_create's <el_size> param to indicate variable-sized allocs
 // are required (see below).
-const size_t POOL_VARIABLE_ALLOCS = 0;
+const size_t POOL_VARIABLE_ALLOCS = ~0u;
 
 // ready <p> for use. <max_size> is the upper limit [bytes] on
 // pool size (this is how much address space is reserved).

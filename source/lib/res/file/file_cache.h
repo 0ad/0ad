@@ -1,3 +1,5 @@
+#ifndef FILE_CACHE_H__
+#define FILE_CACHE_H__
 
 struct BlockId
 {
@@ -20,20 +22,38 @@ extern void block_cache_release(BlockId id);
 
 
 
+
+enum FileCacheFlags
+{
+	// indicates the buffer will not be freed immediately
+	// (i.e. before the next buffer alloc) as it normally should.
+	// this flag serves to suppress a warning and better avoid fragmentation.
+	// caller sets this when FILE_LONG_LIVED is specified.
+	//
+	// also used by file_cache_retrieve because it may have to
+	// 'reactivate' the buffer (transfer from cache to extant list),
+	// which requires knowing whether the buffer is long-lived or not.
+	FC_LONG_LIVED    = 1,
+
+	// statistics (e.g. # buffer allocs) should not be updated.
+	// (useful for simulation, e.g. trace_entry_causes_io)
+	FC_NO_STATS      = 2,
+
+	// file_cache_retrieve should not update item credit.
+	// (useful when just looking up buffer given atom_fn)
+	FC_NO_ACCOUNTING = 4
+};
+
 // allocate a new buffer of <size> bytes (possibly more due to internal
 // fragmentation). never returns 0.
 // <atom_fn>: owner filename (buffer is intended to be used for data from
 //   this file).
-// <long_lived>: indicates the buffer will not be freed immediately
-//   (i.e. before the next buffer alloc) as it normally should.
-//   this flag serves to suppress a warning and better avoid fragmentation.
-//   caller sets this when FILE_LONG_LIVED is specified.
-extern FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, bool long_lived);
+extern FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, uint fc_flags = 0);
 
 // mark <buf> as no longer needed. if its reference count drops to 0,
 // it will be removed from the extant list. if it had been added to the
 // cache, it remains there until evicted in favor of another buffer.
-extern LibError file_buf_free(FileIOBuf buf);
+extern LibError file_buf_free(FileIOBuf buf, uint fc_flags = 0);
 
 // interpret file_io parameters (pbuf, size, flags, cb) and allocate a
 // file buffer if necessary.
@@ -66,16 +86,15 @@ extern LibError file_buf_set_real_fn(FileIOBuf buf, const char* atom_fn);
 // still be file_buf_free-d after calling this.
 extern LibError file_cache_add(FileIOBuf buf, size_t size, const char* atom_fn);
 
-// called by trace simulator to retrieve buffer address, given atom_fn.
-// must not change any cache state (e.g. notify stats or add ref).
-extern FileIOBuf file_cache_find(const char* atom_fn, size_t* psize);
+
 
 // check if the contents of the file <atom_fn> are in file cache.
 // if not, return 0; otherwise, return buffer address and optionally
 // pass back its size.
-// <long_lived> indicates whether this file has FILE_LONG_LIVED flag set -
-// see file_buf_alloc docs.
-extern FileIOBuf file_cache_retrieve(const char* atom_fn, size_t* psize, bool long_lived);
+//
+// note: does not call stats_cache because it does not know the file size
+// in case of cache miss! doing so is left to the caller.
+extern FileIOBuf file_cache_retrieve(const char* atom_fn, size_t* psize, uint fc_flags = 0);
 
 // invalidate all data loaded from the file <fn>. this ensures the next
 // load of this file gets the (presumably new) contents of the file,
@@ -91,3 +110,5 @@ extern void file_cache_reset();
 
 extern void file_cache_init();
 extern void file_cache_shutdown();
+
+#endif	// #ifndef FILE_CACHE_H__

@@ -619,6 +619,29 @@ const char* file_make_unique_fn_copy(const char* P_fn)
 	return unique_fn;
 }
 
+
+const char* file_get_random_name()
+{
+	// there had better be names in atom_pool, else this will fail.
+	debug_assert(atom_pool.da.pos != 0);
+
+again:
+	const size_t start_ofs = (size_t)rand(0, (uint)atom_pool.da.pos-1);
+	
+	// scan ahead to next string boundary
+	const char* start = (const char*)atom_pool.da.base+start_ofs;
+	const char* next_0 = strchr(start, '\0')+1;
+	// .. at end of storage: restart
+	if((u8*)next_0 >= atom_pool.da.base+atom_pool.da.pos)
+		goto again;
+	// .. skip all '\0' (may be several due to pool alignment)
+	const char* next_name = next_0;
+	while(*next_name == '\0') next_name++;
+
+	return next_name;
+}
+
+
 static inline void atom_init()
 {
 	pool_create(&atom_pool, 8*MiB, POOL_VARIABLE_ALLOCS);

@@ -411,7 +411,10 @@ static const size_t ALIGN = 8;
 // returned by pool_alloc (whose size parameter is then ignored).
 LibError pool_create(Pool* p, size_t max_size, size_t el_size)
 {
-	p->el_size = round_up(el_size, ALIGN);
+	if(el_size == POOL_VARIABLE_ALLOCS)
+		p->el_size = 0;
+	else
+		p->el_size = round_up(el_size, ALIGN);
 	p->freelist = 0;
 	RETURN_ERR(da_alloc(&p->da, max_size));
 	return ERR_OK;

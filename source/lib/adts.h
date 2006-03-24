@@ -468,7 +468,7 @@ again:
 		{
 			Entry& entry = it->second;
 
-			entry.credit -= min_credit_density * entry.size;
+			charge(entry, min_credit_density);
 			if(should_evict(entry))
 			{
 				entry_list.push_back(entry);
@@ -521,6 +521,14 @@ protected:
 		mcd_calc.notify_impending_increase_or_remove(entry);
 		mcd_calc.notify_increased_or_removed(entry);
 		map.erase(it);
+	}
+
+	void charge(Entry& entry, float delta)
+	{
+		entry.credit -= delta * entry.size;
+
+		// don't worry about entry.size being 0 - if so, cost
+		// should also be 0, so credit will already be 0 anyway.
 	}
 
 	// for each entry, 'charge' it (i.e. reduce credit by) delta * its size.
@@ -721,7 +729,7 @@ template
 typename Key, typename Item,
 // see documentation above for Manager's interface.
 template<typename Key, class Entry> class Manager = Landlord_Cached,
-class Divider = Divider_Recip
+class Divider = Divider_Naive
 >
 class Cache
 {
