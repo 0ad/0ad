@@ -424,7 +424,7 @@ ssize_t vfs_io(const Handle hf, const size_t size, FileIOBuf* pbuf,
 	FileCommon* fc = &vf->xf.u.fc;
 
 	stats_io_user_request(size);
-	trace_notify_load(fc->atom_fn, size, fc->flags);
+	trace_notify_io(fc->atom_fn, size, fc->flags);
 
 	off_t ofs = vf->ofs;
 	vf->ofs += (off_t)size;
@@ -454,7 +454,7 @@ LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size,
 		// so duplicate that here:
 		stats_cache(CR_HIT, size, atom_fn);
 		stats_io_user_request(size);
-		trace_notify_load(atom_fn, size, flags);
+		trace_notify_io(atom_fn, size, flags);
 
 		size_t actual_size;
 		LibError ret = file_io_call_back(buf, size, cb, cb_ctx, actual_size);

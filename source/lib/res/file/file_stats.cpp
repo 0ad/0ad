@@ -317,11 +317,11 @@ void stats_dump()
 
 	debug_printf(
 		"\nfile_cache:\n"
-		"Hits: %u (%g MB); misses %u (%g MB)\n"
-		"Hit ratio: %u%%; conflict misses: %u%%\n"
+		"Hits: %u (%g MB); misses %u (%g MB); ratio: %u%%\n"
+		"Percent of requested bytes satisfied by cache: %u%%; non-compulsory misses: %u (%u%% of misses)\n"
 		"Block hits: %u; misses: %u; ratio: %u%%\n",
-		cache_count[CR_HIT], cache_size_total[CR_HIT]/MB, cache_count[CR_MISS], cache_size_total[CR_MISS]/MB,
-		percent(cache_count[CR_HIT], cache_count[CR_MISS]), percent(conflict_misses, cache_count[CR_MISS]),
+		cache_count[CR_HIT], cache_size_total[CR_HIT]/MB, cache_count[CR_MISS], cache_size_total[CR_MISS]/MB, percent(cache_count[CR_HIT], cache_count[CR_HIT]+cache_count[CR_MISS]),
+		percent(cache_size_total[CR_HIT], cache_size_total[CR_HIT]+cache_size_total[CR_MISS]), conflict_misses, percent(conflict_misses, cache_count[CR_MISS]),
 		block_cache_count[CR_HIT], block_cache_count[CR_MISS], percent(block_cache_count[CR_HIT], block_cache_count[CR_HIT]+block_cache_count[CR_MISS])
 	);
 

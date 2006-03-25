@@ -1297,7 +1297,7 @@ static void test_cache_allocator()
 	size_t total_size_used = 0;
 	while(total_size_used < 4*MAX_CACHE_SIZE)
 	{
-		size_t size = rand(1, 10*MiB);
+		size_t size = rand(1, MAX_CACHE_SIZE/4);
 		total_size_used += size;
 		void* p;
 		// until successful alloc:

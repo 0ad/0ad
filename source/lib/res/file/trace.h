@@ -4,7 +4,7 @@
 extern void trace_enable(bool want_enabled);
 extern void trace_shutdown();
 
-extern void trace_notify_load(const char* P_fn, size_t size, uint flags);
+extern void trace_notify_io(const char* P_fn, size_t size, uint flags);
 extern void trace_notify_free(const char* P_fn, size_t size);
 
 // TraceEntry operation type.
@@ -14,7 +14,7 @@ extern void trace_notify_free(const char* P_fn, size_t size);
 // yield the same results.
 enum TraceOp
 {
-	TO_LOAD,
+	TO_IO,
 	TO_FREE
 };
 

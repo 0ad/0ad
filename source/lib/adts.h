@@ -719,6 +719,80 @@ public:
 // TODO: use SSE/3DNow RCP instruction? not yet, because not all systems
 // support it and overhead of detecting this support eats into any gains.
 
+// initial implementation for testing purposes; quite inefficient.
+template<typename Key, typename Entry>
+class LRU
+{
+public:
+	bool empty() const
+	{
+		return lru.empty();
+	}
+
+	void add(Key key, const Entry& entry)
+	{
+		lru.push_back(KeyAndEntry(key, entry));
+	}
+
+	bool find(Key key, const Entry** pentry) const
+	{
+		CIt it = std::find_if(lru.begin(), lru.end(), KeyEq(key));
+		if(it == lru.end())
+			return false;
+		*pentry = &it->entry;
+		return true;
+	}
+
+	void remove(Key key)
+	{
+		std::remove_if(lru.begin(), lru.end(), KeyEq(key));
+	}
+
+	void on_access(Entry& entry)
+	{
+		for(It it = lru.begin(); it != lru.end(); ++it)
+		{
+			if(&entry == &it->entry)
+			{
+				add(it->key, it->entry);
+				lru.erase(it);
+				return;
+			}
+		}
+		debug_warn("entry not found in list");
+	}
+
+	void remove_least_valuable(std::list<Entry>& entry_list)
+	{
+		entry_list.push_back(lru.front().entry);
+		lru.pop_front();
+	}
+
+private:
+	struct KeyAndEntry
+	{
+		Key key;
+		Entry entry;
+		KeyAndEntry(Key key_, const Entry& entry_)
+			: key(key_), entry(entry_) {}
+	};
+	class KeyEq
+	{
+		Key key;
+	public:
+		KeyEq(Key key_) : key(key_) {}
+		bool operator()(const KeyAndEntry& ke) const
+		{
+			return ke.key == key;
+		}
+	};
+
+	typedef std::list<KeyAndEntry> List;
+	typedef typename List::iterator It;
+	typedef typename List::const_iterator CIt;
+	List lru;
+};
+
 
 //
 // Cache

@@ -61,9 +61,9 @@ static void trace_add(TraceOp op, const char* P_fn, size_t size, uint flags = 0,
 }
 
 
-void trace_notify_load(const char* P_fn, size_t size, uint flags)
+void trace_notify_io(const char* P_fn, size_t size, uint flags)
 {
-	trace_add(TO_LOAD, P_fn, size, flags);
+	trace_add(TO_IO, P_fn, size, flags);
 }
 
 void trace_notify_free(const char* P_fn, size_t size)
@@ -103,12 +103,12 @@ LibError trace_write_to_file(const char* trace_filename)
 		char opcode = '?';
 		switch(ent->op)
 		{
-		case TO_LOAD: opcode = 'L'; break;
+		case TO_IO: opcode = 'L'; break;
 		case TO_FREE: opcode = 'F'; break;
 		default: debug_warn("invalid TraceOp");
 		}
 
-		debug_assert(ent->op == TO_LOAD || ent->op == TO_FREE);
+		debug_assert(ent->op == TO_IO || ent->op == TO_FREE);
 		fprintf(f, "%#010f: %c \"%s\" %d %04x\n", ent->timestamp, opcode, ent->atom_fn, ent->size, ent->flags);
 	}
 
@@ -144,10 +144,10 @@ LibError trace_read_from_file(const char* trace_filename, Trace* t)
 			break;
 		debug_assert(ret == 5);
 
-		TraceOp op = TO_LOAD;	// default in case file is garbled
+		TraceOp op = TO_IO;	// default in case file is garbled
 		switch(opcode)
 		{
-		case 'L': op = TO_LOAD; break;
+		case 'L': op = TO_IO; break;
 		case 'F': op = TO_FREE; break;
 		default: debug_warn("invalid TraceOp");
 		}
@@ -194,7 +194,7 @@ void trace_gen_random(size_t num_entries)
 			}
 		}
 
-		trace_add(TO_LOAD, atom_fn, size);
+		trace_add(TO_IO, atom_fn, size);
 		trace_add(TO_FREE, atom_fn, size);
 	}
 }
@@ -215,8 +215,11 @@ bool trace_entry_causes_io(const TraceEntry* ent)
 	const char* atom_fn = ent->atom_fn;
 	switch(ent->op)
 	{
-	case TO_LOAD:
+	case TO_IO:
 	{
+		// we're not interested in writes
+		if(ent->flags & FILE_WRITE)
+			return false;
 		buf = file_cache_retrieve(atom_fn, &size, fc_flags);
 		// would not be in cache: add to list of real IOs
 		if(!buf)
@@ -270,7 +273,10 @@ LibError trace_run(const char* trace_filename, uint flags)
 		FileIOBuf buf; size_t size;
 		switch(ent->op)
 		{
-		case TO_LOAD:
+		case TO_IO:
+			// do not 'run' writes - we'd destroy the existing data.
+			if(ent->flags & FILE_WRITE)
+				continue;
 			(void)vfs_load(ent->atom_fn, buf, size, ent->flags);
 			break;
 		case TO_FREE:
