@@ -19,14 +19,14 @@ CHFTracer::CHFTracer(CTerrain *pTerrain):
 	m_pTerrain(pTerrain),
 	m_Heightfield(m_pTerrain->GetHeightMap()),
 	m_MapSize(m_pTerrain->GetVerticesPerSide()),
-	m_CellSize((float)CELL_SIZE), 
+	m_CellSize((float)CELL_SIZE),
 	m_HeightScale(HEIGHT_SCALE)
 {
-} 
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// RayTriIntersect: intersect a ray with triangle defined by vertices 
+// RayTriIntersect: intersect a ray with triangle defined by vertices
 // v0,v1,v2; return true if ray hits triangle at distance less than dist,
 // or false otherwise
 bool CHFTracer::RayTriIntersect(const CVector3D& v0,const CVector3D& v1,const CVector3D& v2,
@@ -75,7 +75,7 @@ bool CHFTracer::RayTriIntersect(const CVector3D& v0,const CVector3D& v1,const CV
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// CellIntersect: test if ray intersects either of the triangles in the given 
+// CellIntersect: test if ray intersects either of the triangles in the given
 // cell - return hit result, and distance to hit, if hit occurred
 bool CHFTracer::CellIntersect(int cx,int cz,CVector3D& origin,CVector3D& dir,float& dist) const
 {
@@ -95,14 +95,14 @@ bool CHFTracer::CellIntersect(int cx,int cz,CVector3D& origin,CVector3D& dir,flo
 
 	if (RayTriIntersect(vpos[0],vpos[2],vpos[3],origin,dir,dist)) {
 		res=true;
-	}	
+	}
 
 	return res;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// RayIntersect: intersect ray with this heightfield; return true if 
-// intersection occurs (and fill in grid coordinates of intersection), or false 
+// RayIntersect: intersect ray with this heightfield; return true if
+// intersection occurs (and fill in grid coordinates of intersection), or false
 // otherwise
 bool CHFTracer::RayIntersect(CVector3D& origin,CVector3D& dir,int& x,int& z,CVector3D& ipt) const
 {
@@ -137,20 +137,26 @@ bool CHFTracer::RayIntersect(CVector3D& origin,CVector3D& dir,int& x,int& z,CVec
 	float fcz=traversalPt.Z*invCellSize;
 	int cz=int(fcz);
 
-	float invdx=float(1.0/fabs(dir.X));
-	float invdz=float(1.0/fabs(dir.Z));
+	float invdx = 1.0e20;
+	float invdz = 1.0e20;
 
-	float dist;
-	do {		
+	if (fabs(dir.X) > 1.0e-20)
+		invdx = float(1.0/fabs(dir.X));
+	if (fabs(dir.Z) > 1.0e-20)
+		invdz = float(1.0/fabs(dir.Z));
+
+	do {
 		// test current cell
 		if (cx>=0 && cx<int(m_MapSize-1) && cz>=0 && cz<int(m_MapSize-1)) {
+			float dist;
+
 			if (CellIntersect(cx,cz,origin,dir,dist)) {
 				x=cx;
 				z=cz;
 				ipt=origin+dir*dist;
 				return true;
 			}
-		} 
+		}
 		else
 		{
 			// Degenerate case: y close to zero
@@ -187,7 +193,7 @@ bool CHFTracer::RayIntersect(CVector3D& origin,CVector3D& dir,int& x,int& z,CVec
 
 		traversalPt+=dir*dist;
 	} while (traversalPt.Y>=0);
-	
+
 	// fell off end of heightmap with no intersection; return a miss
 	return false;
 }
