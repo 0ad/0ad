@@ -232,7 +232,7 @@ bool trace_entry_causes_io(const TraceEntry* ent)
 	}
 	case TO_FREE:
 		buf = file_cache_retrieve(atom_fn, &size, fc_flags|FC_NO_ACCOUNTING);
-		(void)file_buf_free(buf);
+		(void)file_buf_free(buf, fc_flags);
 		break;
 	default:
 		debug_warn("unknown TraceOp");
