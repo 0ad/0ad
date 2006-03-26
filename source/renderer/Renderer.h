@@ -89,9 +89,7 @@ public:
 	enum Option {
 		OPT_NOVBO,
 		OPT_NOFRAMEBUFFEROBJECT,
-		OPT_NOPBUFFER,
 		OPT_SHADOWS,
-		OPT_SHADOWCOLOR,
 		OPT_LODBIAS
 	};
 
@@ -137,7 +135,6 @@ public:
 		bool m_NoVBO;
 		bool m_NoFramebufferObject;
 		bool m_Shadows;
-		RGBAColor m_ShadowColor;
 		float m_LodBias;
 		RenderPath m_RenderPath;
 	} m_Options;

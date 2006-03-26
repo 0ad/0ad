@@ -301,7 +301,6 @@ CRenderer::CRenderer()
 	m_Options.m_NoVBO=false;
 	m_Options.m_NoFramebufferObject = false;
 	m_Options.m_Shadows=true;
-	m_Options.m_ShadowColor=RGBAColor(0.4f,0.4f,0.4f,1.0f);
 	m_Options.m_RenderPath = RP_DEFAULT;
 
 	m_ShadowZBias = 0.001f;
@@ -521,9 +520,6 @@ void CRenderer::SetOptionBool(enum Option opt,bool value)
 		case OPT_SHADOWS:
 			m_Options.m_Shadows=value;
 			break;
-		case OPT_NOPBUFFER:
-			// NOT IMPLEMENTED
-			break;
 		default:
 			debug_warn("CRenderer::SetOptionBool: unknown option");
 			break;
@@ -554,9 +550,6 @@ bool CRenderer::GetOptionBool(enum Option opt) const
 void CRenderer::SetOptionColor(enum Option opt,const RGBAColor& value)
 {
 	switch (opt) {
-		case OPT_SHADOWCOLOR:
-			m_Options.m_ShadowColor=value;
-			break;
 		default:
 			debug_warn("CRenderer::SetOptionColor: unknown option");
 			break;
@@ -583,8 +576,6 @@ const RGBAColor& CRenderer::GetOptionColor(enum Option opt) const
 	static const RGBAColor defaultColor(1.0f,1.0f,1.0f,1.0f);
 
 	switch (opt) {
-		case OPT_SHADOWCOLOR:
-			return m_Options.m_ShadowColor;
 		default:
 			debug_warn("CRenderer::GetOptionColor: unknown option");
 			break;

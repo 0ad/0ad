@@ -21,8 +21,6 @@ bool g_NoGLVBO=false;
 bool g_NoGLFramebufferObject = false;
 // flag to switch on shadows
 bool g_Shadows=false;
-// flag to switch off pbuffers
-bool g_NoPBuffer=true;
 // flag to switch on fixed frame timing (RC: I'm using this for profiling purposes)
 bool g_FixedFrameTiming=false;
 bool g_VSync = false;
@@ -151,8 +149,6 @@ static void ParseCommandLineArgs(int argc, char* argv[])
 		case 'n':
 			if(strncmp(name, "novbo", 5) == 0)
 				g_ConfigDB.CreateValue(CFG_COMMAND, "novbo")->m_String="true";
-			else if(strncmp(name, "nopbuffer", 9) == 0)
-				g_NoPBuffer = true;
 			break;
 		case 'p':
 			if(strncmp(name, "profile=", 8) == 0)
