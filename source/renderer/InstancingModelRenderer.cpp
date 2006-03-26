@@ -96,14 +96,21 @@ struct InstancingModelRendererInternals
 
 	/// Previously prepared modeldef
 	IModelDef* imodeldef;
+
+	/// If true, primary color will only contain the diffuse term
+	bool colorIsDiffuseOnly;
+
+	/// After BeginPass, this points to the instancing matrix interface
+	VS_Instancing* instancingConfig;
 };
 
 
 // Construction and Destruction
-InstancingModelRenderer::InstancingModelRenderer()
+InstancingModelRenderer::InstancingModelRenderer(bool colorIsDiffuseOnly)
 {
 	m = new InstancingModelRendererInternals;
 	m->imodeldef = 0;
+	m->colorIsDiffuseOnly = colorIsDiffuseOnly;
 }
 
 InstancingModelRenderer::~InstancingModelRenderer()
@@ -150,29 +157,58 @@ void InstancingModelRenderer::DestroyModelData(CModel* UNUSED(model), void* UNUS
 
 
 // Setup one rendering pass.
-void InstancingModelRenderer::BeginPass(uint streamflags)
+void InstancingModelRenderer::BeginPass(uint streamflags, const CMatrix3D* texturematrix)
 {
+	debug_assert(streamflags == (streamflags & (STREAM_POS|STREAM_UV0|STREAM_COLOR|STREAM_TEXGENTOUV1)));
+
+	RenderPathVertexShader* rpvs = g_Renderer.m_VertexShader;
+
 	glEnableClientState(GL_VERTEX_ARRAY);
 
 	if (streamflags & STREAM_UV0) glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	if (streamflags & STREAM_COLOR)
 	{
 		const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
-		int idx;
+		VS_GlobalLight* lightConfig;
 
-		ogl_program_use(g_Renderer.m_VertexShader->m_InstancingLight);
-		idx = g_Renderer.m_VertexShader->m_InstancingLight_Ambient;
-		pglUniform3fvARB(idx, 1, &lightEnv.m_UnitsAmbientColor.X);
-		idx = g_Renderer.m_VertexShader->m_InstancingLight_SunDir;
-		pglUniform3fvARB(idx, 1, &lightEnv.GetSunDir().X);
-		idx = g_Renderer.m_VertexShader->m_InstancingLight_SunColor;
-		pglUniform3fvARB(idx, 1, &lightEnv.m_SunColor.X);
+		if (streamflags & STREAM_TEXGENTOUV1)
+		{
+			ogl_program_use(rpvs->m_InstancingLightP);
+			lightConfig = &rpvs->m_InstancingLightP_Light;
+			m->instancingConfig = &rpvs->m_InstancingLightP_Instancing;
+
+			rpvs->m_InstancingLightP_PosToUV1.SetMatrix(*texturematrix);
+		}
+		else
+		{
+			ogl_program_use(rpvs->m_InstancingLight);
+			lightConfig = &rpvs->m_InstancingLight_Light;
+			m->instancingConfig = &rpvs->m_InstancingLight_Instancing;
+		}
+
+		if (m->colorIsDiffuseOnly)
+			lightConfig->SetAmbient(RGBColor(0,0,0));
+		else
+			lightConfig->SetAmbient(lightEnv.m_UnitsAmbientColor);
+		lightConfig->SetSunDir(lightEnv.GetSunDir());
+		lightConfig->SetSunColor(lightEnv.m_SunColor);
 
 		glEnableClientState(GL_NORMAL_ARRAY);
 	}
 	else
 	{
-		ogl_program_use(g_Renderer.m_VertexShader->m_Instancing);
+		if (streamflags & STREAM_TEXGENTOUV1)
+		{
+			ogl_program_use(rpvs->m_InstancingP);
+			m->instancingConfig = &rpvs->m_InstancingP_Instancing;
+
+			rpvs->m_InstancingP_PosToUV1.SetMatrix(*texturematrix);
+		}
+		else
+		{
+			ogl_program_use(rpvs->m_Instancing);
+			m->instancingConfig = &rpvs->m_Instancing_Instancing;
+		}
 	}
 }
 
@@ -214,23 +250,14 @@ void InstancingModelRenderer::RenderModel(uint streamflags, CModel* model, void*
 {
 	CModelDefPtr mdldef = model->GetModelDef();
 	const CMatrix3D& mat = model->GetTransform();
-	RenderPathVertexShader* rpvs = g_Renderer.m_VertexShader;
 
 	if (streamflags & STREAM_COLOR)
 	{
 		CColor sc = model->GetShadingColor();
 		glColor3f(sc.r, sc.g, sc.b);
+	}
 
-		pglVertexAttrib4fARB(rpvs->m_InstancingLight_Instancing1, mat._11, mat._12, mat._13, mat._14);
-		pglVertexAttrib4fARB(rpvs->m_InstancingLight_Instancing2, mat._21, mat._22, mat._23, mat._24);
-		pglVertexAttrib4fARB(rpvs->m_InstancingLight_Instancing3, mat._31, mat._32, mat._33, mat._34);
-	}
-	else
-	{
-		pglVertexAttrib4fARB(rpvs->m_Instancing_Instancing1, mat._11, mat._12, mat._13, mat._14);
-		pglVertexAttrib4fARB(rpvs->m_Instancing_Instancing2, mat._21, mat._22, mat._23, mat._24);
-		pglVertexAttrib4fARB(rpvs->m_Instancing_Instancing3, mat._31, mat._32, mat._33, mat._34);
-	}
+	m->instancingConfig->SetMatrix(mat);
 
 	// render the lot
 	size_t numFaces = mdldef->GetNumFaces();

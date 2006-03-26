@@ -92,14 +92,18 @@ struct FixedFunctionModelRendererInternals
 
 	/// Previously prepared modeldef
 	FFModelDef* ffmodeldef;
+
+	/// If true, primary color will only contain the diffuse term
+	bool colorIsDiffuseOnly;
 };
 
 
 // Construction and Destruction
-FixedFunctionModelRenderer::FixedFunctionModelRenderer()
+FixedFunctionModelRenderer::FixedFunctionModelRenderer(bool colorIsDiffuseOnly)
 {
 	m = new FixedFunctionModelRendererInternals;
 	m->ffmodeldef = 0;
+	m->colorIsDiffuseOnly = colorIsDiffuseOnly;
 }
 
 FixedFunctionModelRenderer::~FixedFunctionModelRenderer()
@@ -159,7 +163,7 @@ void FixedFunctionModelRenderer::UpdateModelData(CModel* model, void* data, u32 
 
 		VertexArrayIterator<SColor4ub> Color = ffmodel->m_Color.GetIterator<SColor4ub>();
 
-		ModelRenderer::BuildColor4ub(model, Normal, Color);
+		ModelRenderer::BuildColor4ub(model, Normal, Color, m->colorIsDiffuseOnly);
 
 		// upload everything to vertex buffer
 		ffmodel->m_Array.Upload();
@@ -178,12 +182,28 @@ void FixedFunctionModelRenderer::DestroyModelData(CModel* UNUSED(model), void* d
 
 
 // Setup one rendering pass
-void FixedFunctionModelRenderer::BeginPass(uint streamflags)
+void FixedFunctionModelRenderer::BeginPass(uint streamflags, const CMatrix3D* texturematrix)
 {
+	debug_assert(streamflags == streamflags & (STREAM_POS|STREAM_UV0|STREAM_COLOR|STREAM_TEXGENTOUV1));
+
 	glEnableClientState(GL_VERTEX_ARRAY);
 
 	if (streamflags & STREAM_UV0) glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	if (streamflags & STREAM_COLOR) glEnableClientState(GL_COLOR_ARRAY);
+	if (streamflags & STREAM_TEXGENTOUV1)
+	{
+		pglActiveTextureARB(GL_TEXTURE1);
+		pglClientActiveTextureARB(GL_TEXTURE1);
+
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+		glMatrixMode(GL_TEXTURE);
+		glLoadMatrixf(&texturematrix->_11);
+		glMatrixMode(GL_MODELVIEW);
+
+		pglActiveTextureARB(GL_TEXTURE0);
+		pglClientActiveTextureARB(GL_TEXTURE0);
+	}
 }
 
 
@@ -192,6 +212,20 @@ void FixedFunctionModelRenderer::EndPass(uint streamflags)
 {
 	if (streamflags & STREAM_UV0) glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	if (streamflags & STREAM_COLOR) glDisableClientState(GL_COLOR_ARRAY);
+	if (streamflags & STREAM_TEXGENTOUV1)
+	{
+		pglActiveTextureARB(GL_TEXTURE1);
+		pglClientActiveTextureARB(GL_TEXTURE1);
+
+		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+
+		glMatrixMode(GL_TEXTURE);
+		glLoadIdentity();
+		glMatrixMode(GL_MODELVIEW);
+
+		pglActiveTextureARB(GL_TEXTURE0);
+		pglClientActiveTextureARB(GL_TEXTURE0);
+	}
 
 	glDisableClientState(GL_VERTEX_ARRAY);
 }
@@ -226,6 +260,14 @@ void FixedFunctionModelRenderer::RenderModel(uint streamflags, CModel* model, vo
 	glVertexPointer(3, GL_FLOAT, stride, base + ffmodel->m_Position.offset);
 	if (streamflags & STREAM_COLOR)
 		glColorPointer(3, ffmodel->m_Color.type, stride, base + ffmodel->m_Color.offset);
+	if (streamflags & STREAM_TEXGENTOUV1)
+	{
+		pglClientActiveTextureARB(GL_TEXTURE1);
+		pglActiveTextureARB(GL_TEXTURE1);
+		glTexCoordPointer(3, GL_FLOAT, stride, base + ffmodel->m_Position.offset);
+		pglClientActiveTextureARB(GL_TEXTURE0);
+		pglActiveTextureARB(GL_TEXTURE0);
+	}
 
 	// render the lot
 	size_t numFaces = mdldef->GetNumFaces();

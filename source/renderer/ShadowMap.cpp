@@ -346,12 +346,12 @@ void ShadowMap::EndRender()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Retrieve the texture handle and texture matrix for shadowing
-GLuint ShadowMap::GetTexture()
+GLuint ShadowMap::GetTexture() const
 {
 	return m->Texture;
 }
 
-const CMatrix3D& ShadowMap::GetTextureMatrix()
+const CMatrix3D& ShadowMap::GetTextureMatrix() const
 {
 	return m->TextureMatrix;
 }
@@ -359,7 +359,7 @@ const CMatrix3D& ShadowMap::GetTextureMatrix()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Using depth textures vs. a simple luminance map
-bool ShadowMap::GetUseDepthTexture()
+bool ShadowMap::GetUseDepthTexture() const
 {
 	return m->UseDepthTexture;
 }

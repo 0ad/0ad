@@ -40,7 +40,7 @@ public:
 	void UpdateModelData(CModel* model, void* data, u32 updateflags);
 	void DestroyModelData(CModel* model, void* data);
 
-	void BeginPass(uint streamflags);
+	void BeginPass(uint streamflags, const CMatrix3D* texturematrix);
 	void EndPass(uint streamflags);
 	void PrepareModelDef(uint streamflags, CModelDefPtr def);
 	void RenderModel(uint streamflags, CModel* model, void* data);
@@ -99,6 +99,30 @@ public:
 	void PrepareModel(uint pass, CModel* model);
 
 };
+
+
+/**
+ * Class LitTransparentRenderModifier: Modifier for transparent models,
+ * including alpha blending and shadowed lighting.
+ *
+ * @note Use only when depth textures are used for shadows and thus supported by the OpenGL
+ * implementation.
+ */
+class LitTransparentRenderModifier : public LitRenderModifier
+{
+public:
+	LitTransparentRenderModifier();
+	~LitTransparentRenderModifier();
+
+	// Implementation
+	u32 BeginPass(uint pass);
+	bool EndPass(uint pass);
+	const CMatrix3D* GetTexGenMatrix(uint pass);
+	void PrepareTexture(uint pass, CTexture* texture);
+	void PrepareModel(uint pass, CModel* model);
+
+};
+
 
 /**
  * Class TransparentShadowRenderModifier: Use to render shadow data for

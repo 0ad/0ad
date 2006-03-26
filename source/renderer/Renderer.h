@@ -53,6 +53,7 @@ enum ERenderMode { WIREFRAME, SOLID, EDGED_FACES };
 #define STREAM_UV2 0x20
 #define STREAM_UV3 0x40
 #define STREAM_POSTOUV0 0x80
+#define STREAM_TEXGENTOUV1 0x100
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // SVertex3D: simple 3D vertex declaration
@@ -428,33 +429,6 @@ protected:
 	 * Disable copying of shadow data into the shadow texture (when EXT_fbo is not available)
 	 */
 	bool m_DisableCopyShadow;
-
-	// Various model renderers
-	struct Models {
-		ModelRenderer* NormalFF;
-		ModelRenderer* PlayerFF;
-		ModelRenderer* NormalHWLit;
-		ModelRenderer* PlayerHWLit;
-		ModelRenderer* NormalInstancing;
-		ModelRenderer* PlayerInstancing;
-
-		ModelRenderer* TranspFF;
-		ModelRenderer* TranspHWLit;
-		ModelRenderer* TranspSortAll;
-
-		ModelVertexRendererPtr VertexFF;
-		ModelVertexRendererPtr VertexHWLit;
-		ModelVertexRendererPtr VertexInstancing;
-		ModelVertexRendererPtr VertexPolygonSort;
-
-		RenderModifierPtr ModWireframe;
-		RenderModifierPtr ModPlain;
-		RenderModifierPtr ModPlayer;
-		RenderModifierPtr ModSolidColor;
-		RenderModifierPtr ModTransparent;
-		RenderModifierPtr ModTransparentShadow;
-		RenderModifierPtr ModTransparentDepthShadow;
-	} m_Models;
 
 public:
 	/**

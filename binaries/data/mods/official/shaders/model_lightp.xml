@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Program>
+	<Shaders>
+		<Shader type="VERTEX_SHADER">shaders/model_lightp.vs</Shader>
+		<Shader type="VERTEX_SHADER">shaders/globallight.vs</Shader>
+		<Shader type="VERTEX_SHADER">shaders/postouv1.vs</Shader>
+	</Shaders>
+</Program>

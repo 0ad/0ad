@@ -21,12 +21,14 @@
 #include "Vector3D.h"
 #include "Vector4D.h"
 
+#include "graphics/LightEnv.h"
 #include "graphics/Model.h"
 #include "graphics/ModelDef.h"
 
 #include "ps/Profile.h"
 
 #include "renderer/Renderer.h"
+#include "renderer/ShadowMap.h"
 #include "renderer/TransparencyRenderer.h"
 #include "renderer/VertexArray.h"
 
@@ -235,7 +237,7 @@ void PolygonSortModelRenderer::UpdateModelData(CModel* model, void* data, u32 up
 
 		VertexArrayIterator<SColor4ub> Color = psmdl->m_Color.GetIterator<SColor4ub>();
 
-		ModelRenderer::BuildColor4ub(model, Normal, Color);
+		ModelRenderer::BuildColor4ub(model, Normal, Color, false);
 
 		// upload everything to vertex buffer
 		psmdl->m_Array.Upload();
@@ -266,8 +268,10 @@ void PolygonSortModelRenderer::DestroyModelData(CModel* UNUSED(model), void* dat
 
 
 // Prepare for one rendering pass
-void PolygonSortModelRenderer::BeginPass(uint streamflags)
+void PolygonSortModelRenderer::BeginPass(uint streamflags, const CMatrix3D* UNUSED(texturematrix))
 {
+	debug_assert(streamflags == streamflags & (STREAM_POS|STREAM_COLOR|STREAM_UV0));
+
 	glEnableClientState(GL_VERTEX_ARRAY);
 
 	if (streamflags & STREAM_UV0) glEnableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -477,10 +481,14 @@ void SortModelRenderer::Render(RenderModifierPtr modifier, u32 flags)
 	do
 	{
 		u32 streamflags = modifier->BeginPass(pass);
+		const CMatrix3D* texturematrix = 0;
 		CModelDefPtr lastmdef;
 		CTexture* lasttex = 0;
 
-		m->vertexRenderer->BeginPass(streamflags);
+		if (streamflags & STREAM_TEXGENTOUV1)
+			texturematrix = modifier->GetTexGenMatrix(pass);
+
+		m->vertexRenderer->BeginPass(streamflags, texturematrix);
 
 		for(std::vector<SModel*>::iterator it = m->models.begin(); it != m->models.end(); ++it)
 		{
@@ -603,6 +611,143 @@ void TransparentRenderModifier::PrepareTexture(uint UNUSED(pass), CTexture* text
 }
 
 void TransparentRenderModifier::PrepareModel(uint UNUSED(pass), CModel* UNUSED(model))
+{
+	// No per-model setup necessary
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// LitTransparentRenderModifier implementation
+
+LitTransparentRenderModifier::LitTransparentRenderModifier()
+{
+}
+
+LitTransparentRenderModifier::~LitTransparentRenderModifier()
+{
+}
+
+u32 LitTransparentRenderModifier::BeginPass(uint pass)
+{
+	debug_assert(GetShadowMap() && GetShadowMap()->GetUseDepthTexture());
+
+	if (pass == 0)
+	{
+		// First pass: Put down Z for opaque parts of the model,
+		// don't touch the color buffer.
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_CONSTANT);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+
+		// just pass through texture's alpha
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+
+		// Set the proper LOD bias
+		glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
+
+		glEnable(GL_ALPHA_TEST);
+		glAlphaFunc(GL_GREATER,0.975f);
+
+		// render everything with color writes off to setup depth buffer correctly
+		glColorMask(0,0,0,0);
+
+		return STREAM_POS|STREAM_UV0;
+	}
+	else
+	{
+		// Second pass: Put down color, disable Z write
+		glColorMask(1,1,1,1);
+
+		glDepthMask(0);
+
+		// Ambient + Diffuse * Shadow
+		pglActiveTextureARB(GL_TEXTURE0);
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PRIMARY_COLOR);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_TEXTURE1);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+
+		pglActiveTextureARB(GL_TEXTURE1);
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, GetShadowMap()->GetTexture());
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_ADD);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_CONSTANT);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+
+		glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, &GetLightEnv()->m_UnitsAmbientColor.X);
+
+		// Incoming color is ambient + diffuse light
+		pglActiveTextureARB(GL_TEXTURE2);
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, GetShadowMap()->GetTexture());
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_TEXTURE0);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
+
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE0);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+
+		pglActiveTextureARB(GL_TEXTURE0);
+
+		glAlphaFunc(GL_GREATER,0);
+
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+
+		// Set the proper LOD bias
+		glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
+
+		return STREAM_POS|STREAM_COLOR|STREAM_UV0|STREAM_TEXGENTOUV1;
+	}
+}
+
+bool LitTransparentRenderModifier::EndPass(uint pass)
+{
+	if (pass == 0)
+		return false; // multi-pass
+
+	pglActiveTextureARB(GL_TEXTURE1);
+	glDisable(GL_TEXTURE_2D);
+	pglActiveTextureARB(GL_TEXTURE2);
+	glDisable(GL_TEXTURE_2D);
+	pglActiveTextureARB(GL_TEXTURE0);
+
+	glDisable(GL_BLEND);
+	glDisable(GL_ALPHA_TEST);
+	glDepthMask(1);
+
+	return true;
+}
+
+const CMatrix3D* LitTransparentRenderModifier::GetTexGenMatrix(uint UNUSED(pass))
+{
+	return &GetShadowMap()->GetTextureMatrix();
+}
+
+void LitTransparentRenderModifier::PrepareTexture(uint UNUSED(pass), CTexture* texture)
+{
+	g_Renderer.SetTexture(0, texture);
+}
+
+void LitTransparentRenderModifier::PrepareModel(uint UNUSED(pass), CModel* UNUSED(model))
 {
 	// No per-model setup necessary
 }

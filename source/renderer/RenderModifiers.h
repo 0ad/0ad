@@ -16,9 +16,11 @@
 #include "ModelRenderer.h"
 
 
+class CLightEnv;
+class CMatrix3D;
 class CModel;
 class CTexture;
-
+class ShadowMap;
 
 /**
  * Class RenderModifier: Some ModelRenderer implementations provide vertex
@@ -44,6 +46,19 @@ public:
 	 * are required by the fragment stages (see STREAM_XYZ constants).
 	 */
 	virtual u32 BeginPass(uint pass) = 0;
+
+	/**
+	 * GetTexGenMatrix: If BeginPass returns STREAM_TEXGENTOUVx, the caller must
+	 * call this function to query the texture matrix that will be used to transform
+	 * vertex positions into texture coordinates.
+	 *
+	 * Default implementation raises a runtime error.
+	 *
+	 * @param pass the current pass number (pass == 0 is the first pass)
+	 *
+	 * @return a pointer to the texture matrix for the given pass
+	 */
+	virtual const CMatrix3D* GetTexGenMatrix(uint pass);
 
 	/**
 	 * EndPass: Cleanup OpenGL state after the given pass. This function
@@ -83,6 +98,45 @@ public:
 
 
 /**
+ * Class LitRenderModifier: Abstract base class for RenderModifiers that apply
+ * a shadow map.
+ * LitRenderModifiers expect the diffuse brightness in the primary color (instead of ambient + diffuse).
+ */
+class LitRenderModifier : public RenderModifier
+{
+public:
+	LitRenderModifier();
+	~LitRenderModifier();
+
+	/**
+	 * SetShadowMap: Set the shadow map that will be used for rendering.
+	 * Must be called by the user of the RenderModifier.
+	 *
+	 * The shadow map must be non-null and use depth texturing, or subsequent rendering
+	 * using this RenderModifier will fail.
+	 *
+	 * @param shadow the shadow map
+	 */
+	void SetShadowMap(const ShadowMap* shadow);
+
+	/**
+	 * SetLightEnv: Set the light environment that will be used for rendering.
+	 * Must be called by the user of the RenderModifier.
+	 *
+	 * @param lightenv the light environment (must be non-null)
+	 */
+	void SetLightEnv(const CLightEnv* lightenv);
+
+	const ShadowMap* GetShadowMap() const { return m_Shadow; }
+	const CLightEnv* GetLightEnv() const { return m_LightEnv; }
+
+private:
+	const ShadowMap* m_Shadow;
+	const CLightEnv* m_LightEnv;
+};
+
+
+/**
  * Class RenderModifierRenderer: Interface to a model renderer that can render
  * its models via a RenderModifier that sets up fragment stages.
  */
@@ -108,8 +162,27 @@ public:
 	u32 BeginPass(uint pass);
 	bool EndPass(uint pass);
 	void PrepareTexture(uint pass, CTexture* texture);
-	void PrepareModel(uint pass, CModel* model);
 };
+
+
+/**
+ * Class PlainLitRenderModifier: Use an opaque color texture for a lit object that is shadowed
+ * using a depth texture.
+ * Expects the diffuse brightness in the primary color.
+ */
+class PlainLitRenderModifier : public LitRenderModifier
+{
+public:
+	PlainLitRenderModifier();
+	~PlainLitRenderModifier();
+
+	// Implementation
+	u32 BeginPass(uint pass);
+	const CMatrix3D* GetTexGenMatrix(uint pass);
+	bool EndPass(uint pass);
+	void PrepareTexture(uint pass, CTexture* texture);
+};
+
 
 /**
  * Class WireframeRenderModifier: RenderModifier that renders wireframe models.

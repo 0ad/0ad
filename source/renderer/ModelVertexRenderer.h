@@ -20,7 +20,7 @@ class CModel;
  * Class ModelVertexRenderer: Normal ModelRenderer implementations delegate
  * vertex array management and vertex transformation to an implementation of
  * ModelVertexRenderer.
- * 
+ *
  * ModelVertexRenderer implementations should be designed so that one
  * instance of the implementation can be used with more than one ModelRenderer
  * simultaneously.
@@ -29,14 +29,14 @@ class ModelVertexRenderer
 {
 public:
 	virtual ~ModelVertexRenderer() { }
-	
-	
+
+
 	/**
 	 * CreateModelData: Create internal data for one model.
 	 *
 	 * ModelRenderer implementations must call this once for every
 	 * model that will later be rendered.
-	 * 
+	 *
 	 * ModelVertexRenderer implementations should use this function to
 	 * create per-CModel and per-CModelDef data like vertex arrays.
 	 *
@@ -58,11 +58,11 @@ public:
 	 * value of updateflags will be zero.
 	 * This implies that this function will also be called at least once
 	 * between a call to CreateModelData and a call to RenderModel.
-	 * 
+	 *
 	 * ModelVertexRenderer implementations should use this function to
 	 * perform software vertex transforms and potentially other per-frame
 	 * calculations.
-	 * 
+	 *
 	 * @param model The model.
 	 * @param data Private data as returned by CreateModelData.
 	 * @param updateflags Flags indicating which data has changed during
@@ -71,7 +71,7 @@ public:
 	 */
 	virtual void UpdateModelData(CModel* model, void* data, u32 updateflags) = 0;
 
-	
+
 	/**
 	 * DestroyModelData: Release all per-model data that has been allocated
 	 * by CreateModelData or UpdateModelData.
@@ -80,7 +80,7 @@ public:
 	 * called exactly once for every call to CreateModelData. This can be
 	 * achieved by deriving from CModelRData and calling DestroyModelData
 	 * in the derived class' destructor.
-	 * 
+	 *
 	 * ModelVertexRenderer implementations need not track the CModel
 	 * instances for which per-model data has been created.
 	 *
@@ -89,7 +89,7 @@ public:
 	 */
 	virtual void DestroyModelData(CModel* model, void* data) = 0;
 
-	
+
 	/**
 	 * BeginPass: Setup global OpenGL state for this ModelVertexRenderer.
 	 *
@@ -103,12 +103,15 @@ public:
 	 *
 	 * Recursive calls to BeginPass are not allowed, and every BeginPass
 	 * is matched by a corresponding call to EndPass.
-	 * 
+	 *
 	 * @param streamflags Vertex streams required by the fragment stage.
+	 * @param texturematrix if texgen is requested in streamflags, this points to the
+	 * texture matrix that must be used to transform vertex positions into texture
+	 * coordinates
 	 */
-	virtual void BeginPass(uint streamflags) = 0;
+	virtual void BeginPass(uint streamflags, const CMatrix3D* texturematrix) = 0;
 
-	
+
 	/**
 	 * EndPass: Cleanup OpenGL state set up by BeginPass.
 	 *
@@ -121,11 +124,11 @@ public:
 	 */
 	virtual void EndPass(uint streamflags) = 0;
 
-	
+
 	/**
 	 * PrepareModelDef: Setup OpenGL state for rendering of models that
 	 * use the given CModelDef object as base.
-	 * 
+	 *
 	 * ModelRenderer implementations must call this function before
 	 * rendering a sequence of models based on the given CModelDef.
 	 * When a ModelRenderer switches back and forth between CModelDefs,
@@ -141,7 +144,7 @@ public:
 
 	/**
 	 * RenderModel: Invoke the rendering commands for the given model.
-	 * 
+	 *
 	 * ModelRenderer implementations must call this function to perform
 	 * the actual rendering.
 	 *

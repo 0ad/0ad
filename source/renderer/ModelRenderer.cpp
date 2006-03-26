@@ -149,7 +149,8 @@ void ModelRenderer::BuildPositionAndNormals(
 void ModelRenderer::BuildColor4ub(
 		CModel* model,
 		VertexArrayIterator<CVector3D> Normal,
-		VertexArrayIterator<SColor4ub> Color)
+		VertexArrayIterator<SColor4ub> Color,
+		bool onlyDiffuse)
 {
 	PROFILE( "lighting vertices" );
 
@@ -159,13 +160,27 @@ void ModelRenderer::BuildColor4ub(
 	CColor shadingColor = model->GetShadingColor();
 	RGBColor tempcolor;
 
-	for (uint j=0; j<numVertices; j++)
+	if (onlyDiffuse)
 	{
-		lightEnv.EvaluateUnit(Normal[j], tempcolor);
-		tempcolor.X *= shadingColor.r;
-		tempcolor.Y *= shadingColor.g;
-		tempcolor.Z *= shadingColor.b;
-		*(u32*)&Color[j] = ConvertRGBColorTo4ub(tempcolor);
+		for (uint j=0; j<numVertices; j++)
+		{
+			lightEnv.EvaluateDirect(Normal[j], tempcolor);
+			tempcolor.X *= shadingColor.r;
+			tempcolor.Y *= shadingColor.g;
+			tempcolor.Z *= shadingColor.b;
+			*(u32*)&Color[j] = ConvertRGBColorTo4ub(tempcolor);
+		}
+	}
+	else
+	{
+		for (uint j=0; j<numVertices; j++)
+		{
+			lightEnv.EvaluateUnit(Normal[j], tempcolor);
+			tempcolor.X *= shadingColor.r;
+			tempcolor.Y *= shadingColor.g;
+			tempcolor.Z *= shadingColor.b;
+			*(u32*)&Color[j] = ConvertRGBColorTo4ub(tempcolor);
+		}
 	}
 }
 
@@ -451,8 +466,12 @@ void BatchModelRenderer::Render(RenderModifierPtr modifier, u32 flags)
 	do
 	{
 		uint streamflags = modifier->BeginPass(pass);
+		const CMatrix3D* texturematrix = 0;
 
-		m->vertexRenderer->BeginPass(streamflags);
+		if (streamflags & STREAM_TEXGENTOUV1)
+			texturematrix = modifier->GetTexGenMatrix(pass);
+
+		m->vertexRenderer->BeginPass(streamflags, texturematrix);
 
 		m->RenderAllModels(modifier, flags, pass, streamflags);
 

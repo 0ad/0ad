@@ -185,6 +185,13 @@ AbstractProfileTable* CRendererStatsTable::GetChild(uint UNUSED(row))
 ///////////////////////////////////////////////////////////////////////////////////
 // CRenderer implementation
 
+enum {
+	AmbientDiffuse = 0,
+	OnlyDiffuse,
+
+	NumVertexTypes
+};
+
 /**
  * Struct CRendererInternals: Truly hide data that is supposed to be hidden
  * in this structure so it won't even appear in header files.
@@ -202,6 +209,55 @@ struct CRendererInternals
 
 	/// Shadow map
 	ShadowMap* shadow;
+
+	/// Various model renderers
+	struct Models {
+		// The following model renderers are aliases for the appropriate real_*
+		// model renderers (depending on hardware availability and current settings)
+		// and must be used for actual model submission and rendering
+		ModelRenderer* Normal;
+		ModelRenderer* NormalInstancing;
+		ModelRenderer* Player;
+		ModelRenderer* PlayerInstancing;
+		ModelRenderer* Transp;
+
+		// "Palette" of available ModelRenderers. Do not use these directly for
+		// rendering and submission; use the aliases above instead.
+		ModelRenderer* pal_NormalFF[NumVertexTypes];
+		ModelRenderer* pal_PlayerFF[NumVertexTypes];
+		ModelRenderer* pal_NormalHWLit[NumVertexTypes];
+		ModelRenderer* pal_PlayerHWLit[NumVertexTypes];
+		ModelRenderer* pal_NormalInstancing[NumVertexTypes];
+		ModelRenderer* pal_PlayerInstancing[NumVertexTypes];
+		ModelRenderer* pal_TranspFF[NumVertexTypes];
+		ModelRenderer* pal_TranspHWLit[NumVertexTypes];
+		ModelRenderer* pal_TranspSortAll;
+
+		ModelVertexRendererPtr VertexFF[NumVertexTypes];
+		ModelVertexRendererPtr VertexHWLit[NumVertexTypes];
+		ModelVertexRendererPtr VertexInstancing[NumVertexTypes];
+		ModelVertexRendererPtr VertexPolygonSort;
+
+		// generic RenderModifiers that are supposed to be used directly
+		RenderModifierPtr ModWireframe;
+		RenderModifierPtr ModSolidColor;
+		RenderModifierPtr ModTransparentShadow;
+		RenderModifierPtr ModTransparentDepthShadow;
+
+		// RenderModifiers that are selected from the palette below
+		RenderModifierPtr ModNormal;
+		RenderModifierPtr ModPlayer;
+		RenderModifierPtr ModTransparent;
+
+		// Palette of available RenderModifiers
+		RenderModifierPtr ModPlain;
+		LitRenderModifierPtr ModPlainLit;
+		RenderModifierPtr ModPlayerUnlit;
+		LitRenderModifierPtr ModPlayerLit;
+		RenderModifierPtr ModTransparentUnlit;
+		LitRenderModifierPtr ModTransparentLit;
+	} Model;
+
 
 	CRendererInternals()
 	: profileTable(g_Renderer.m_Stats)
@@ -263,47 +319,61 @@ CRenderer::CRenderer()
 	}
 
 	// model rendering
-	m_Models.VertexFF = ModelVertexRendererPtr(new FixedFunctionModelRenderer);
+	m->Model.VertexFF[AmbientDiffuse] = ModelVertexRendererPtr(new FixedFunctionModelRenderer(false));
+	m->Model.VertexFF[OnlyDiffuse] = ModelVertexRendererPtr(new FixedFunctionModelRenderer(true));
 	if (HWLightingModelRenderer::IsAvailable())
-		m_Models.VertexHWLit = ModelVertexRendererPtr(new HWLightingModelRenderer);
+	{
+		m->Model.VertexHWLit[AmbientDiffuse] = ModelVertexRendererPtr(new HWLightingModelRenderer(false));
+		m->Model.VertexHWLit[OnlyDiffuse] = ModelVertexRendererPtr(new HWLightingModelRenderer(true));
+	}
 	if (InstancingModelRenderer::IsAvailable())
-		m_Models.VertexInstancing = ModelVertexRendererPtr(new InstancingModelRenderer);
-	m_Models.VertexPolygonSort = ModelVertexRendererPtr(new PolygonSortModelRenderer);
+	{
+		m->Model.VertexInstancing[AmbientDiffuse] = ModelVertexRendererPtr(new InstancingModelRenderer(false));
+		m->Model.VertexInstancing[OnlyDiffuse] = ModelVertexRendererPtr(new InstancingModelRenderer(true));
+	}
+	m->Model.VertexPolygonSort = ModelVertexRendererPtr(new PolygonSortModelRenderer);
 
-	m_Models.NormalFF = new BatchModelRenderer(m_Models.VertexFF);
-	m_Models.PlayerFF = new BatchModelRenderer(m_Models.VertexFF);
-	m_Models.TranspFF = new SortModelRenderer(m_Models.VertexFF);
-	if (m_Models.VertexHWLit)
+	for(int vertexType = 0; vertexType < NumVertexTypes; ++vertexType)
 	{
-		m_Models.NormalHWLit = new BatchModelRenderer(m_Models.VertexHWLit);
-		m_Models.PlayerHWLit = new BatchModelRenderer(m_Models.VertexHWLit);
-		m_Models.TranspHWLit = new SortModelRenderer(m_Models.VertexHWLit);
+		m->Model.pal_NormalFF[vertexType] = new BatchModelRenderer(m->Model.VertexFF[vertexType]);
+		m->Model.pal_PlayerFF[vertexType] = new BatchModelRenderer(m->Model.VertexFF[vertexType]);
+		m->Model.pal_TranspFF[vertexType] = new SortModelRenderer(m->Model.VertexFF[vertexType]);
+		if (m->Model.VertexHWLit[vertexType])
+		{
+			m->Model.pal_NormalHWLit[vertexType] = new BatchModelRenderer(m->Model.VertexHWLit[vertexType]);
+			m->Model.pal_PlayerHWLit[vertexType] = new BatchModelRenderer(m->Model.VertexHWLit[vertexType]);
+			m->Model.pal_TranspHWLit[vertexType] = new SortModelRenderer(m->Model.VertexHWLit[vertexType]);
+		}
+		else
+		{
+			m->Model.pal_NormalHWLit[vertexType] = NULL;
+			m->Model.pal_PlayerHWLit[vertexType] = NULL;
+			m->Model.pal_TranspHWLit[vertexType] = NULL;
+		}
+		if (m->Model.VertexInstancing[vertexType])
+		{
+			m->Model.pal_NormalInstancing[vertexType] = new BatchModelRenderer(m->Model.VertexInstancing[vertexType]);
+			m->Model.pal_PlayerInstancing[vertexType] = new BatchModelRenderer(m->Model.VertexInstancing[vertexType]);
+		}
+		else
+		{
+			m->Model.pal_NormalInstancing[vertexType] = NULL;
+			m->Model.pal_PlayerInstancing[vertexType] = NULL;
+		}
 	}
-	else
-	{
-		m_Models.NormalHWLit = NULL;
-		m_Models.PlayerHWLit = NULL;
-		m_Models.TranspHWLit = NULL;
-	}
-	if (m_Models.VertexInstancing)
-	{
-		m_Models.NormalInstancing = new BatchModelRenderer(m_Models.VertexInstancing);
-		m_Models.PlayerInstancing = new BatchModelRenderer(m_Models.VertexInstancing);
-	}
-	else
-	{
-		m_Models.NormalInstancing = NULL;
-		m_Models.PlayerInstancing = NULL;
-	}
-	m_Models.TranspSortAll = new SortModelRenderer(m_Models.VertexPolygonSort);
 
-	m_Models.ModWireframe = RenderModifierPtr(new WireframeRenderModifier);
-	m_Models.ModPlain = RenderModifierPtr(new PlainRenderModifier);
+	m->Model.pal_TranspSortAll = new SortModelRenderer(m->Model.VertexPolygonSort);
+
+	m->Model.ModWireframe = RenderModifierPtr(new WireframeRenderModifier);
+	m->Model.ModPlain = RenderModifierPtr(new PlainRenderModifier);
+	m->Model.ModPlainLit = LitRenderModifierPtr(new PlainLitRenderModifier);
 	SetFastPlayerColor(true);
-	m_Models.ModSolidColor = RenderModifierPtr(new SolidColorRenderModifier);
-	m_Models.ModTransparent = RenderModifierPtr(new TransparentRenderModifier);
-	m_Models.ModTransparentShadow = RenderModifierPtr(new TransparentShadowRenderModifier);
-	m_Models.ModTransparentDepthShadow = RenderModifierPtr(new TransparentDepthShadowModifier);
+	m->Model.ModPlayerLit = LitRenderModifierPtr(new LitPlayerColorRender);
+	m->Model.ModSolidColor = RenderModifierPtr(new SolidColorRenderModifier);
+	m->Model.ModTransparentUnlit = RenderModifierPtr(new TransparentRenderModifier);
+	m->Model.ModTransparentLit = LitRenderModifierPtr(new LitTransparentRenderModifier);
+	m->Model.ModTransparentShadow = RenderModifierPtr(new TransparentShadowRenderModifier);
+	m->Model.ModTransparentDepthShadow = RenderModifierPtr(new TransparentDepthShadowModifier);
 
 	m_ShadowZBias = 0.001f;
 
@@ -319,15 +389,18 @@ CRenderer::CRenderer()
 CRenderer::~CRenderer()
 {
 	// model rendering
-	delete m_Models.NormalFF;
-	delete m_Models.PlayerFF;
-	delete m_Models.TranspFF;
-	delete m_Models.NormalHWLit;
-	delete m_Models.PlayerHWLit;
-	delete m_Models.TranspHWLit;
-	delete m_Models.NormalInstancing;
-	delete m_Models.PlayerInstancing;
-	delete m_Models.TranspSortAll;
+	for(int vertexType = 0; vertexType < NumVertexTypes; ++vertexType)
+	{
+		delete m->Model.pal_NormalFF[vertexType];
+		delete m->Model.pal_PlayerFF[vertexType];
+		delete m->Model.pal_TranspFF[vertexType];
+		delete m->Model.pal_NormalHWLit[vertexType];
+		delete m->Model.pal_PlayerHWLit[vertexType];
+		delete m->Model.pal_TranspHWLit[vertexType];
+		delete m->Model.pal_NormalInstancing[vertexType];
+		delete m->Model.pal_PlayerInstancing[vertexType];
+	}
+	delete m->Model.pal_TranspSortAll;
 
 	// general
 	delete m_VertexShader;
@@ -514,7 +587,7 @@ void CRenderer::SetRenderPath(RenderPath rp)
 {
 	if (rp == RP_DEFAULT)
 	{
-		if (m_Models.NormalHWLit && m_Models.PlayerHWLit)
+		if (m->Model.pal_NormalHWLit && m->Model.pal_PlayerHWLit)
 			rp = RP_VERTEXSHADER;
 		else
 			rp = RP_FIXED;
@@ -522,7 +595,7 @@ void CRenderer::SetRenderPath(RenderPath rp)
 
 	if (rp == RP_VERTEXSHADER)
 	{
-		if (!m_Models.NormalHWLit || !m_Models.PlayerHWLit)
+		if (!m->Model.pal_NormalHWLit || !m->Model.pal_PlayerHWLit)
 		{
 			LOG(WARNING, LOG_CATEGORY, "Falling back to fixed function\n");
 			rp = RP_FIXED;
@@ -573,9 +646,9 @@ void CRenderer::SetFastPlayerColor(bool fast)
 	}
 
 	if (m_FastPlayerColor)
-		m_Models.ModPlayer = RenderModifierPtr(new FastPlayerColorRender);
+		m->Model.ModPlayerUnlit = RenderModifierPtr(new FastPlayerColorRender);
 	else
-		m_Models.ModPlayer = RenderModifierPtr(new SlowPlayerColorRender);
+		m->Model.ModPlayerUnlit = RenderModifierPtr(new SlowPlayerColorRender);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -598,7 +671,64 @@ void CRenderer::BeginFrame()
 
 	// init per frame stuff
 	m->shadow->SetupFrame(m_CullCamera, m_LightEnv->GetSunDir());
+
+	// choose model renderers for this frame
+	int vertexType;
+
+	if (m_Options.m_Shadows && m->shadow->GetUseDepthTexture())
+	{
+		vertexType = OnlyDiffuse;
+		m->Model.ModNormal = m->Model.ModPlainLit;
+		m->Model.ModPlainLit->SetShadowMap(m->shadow);
+		m->Model.ModPlainLit->SetLightEnv(m_LightEnv);
+
+		m->Model.ModPlayer = m->Model.ModPlayerLit;
+		m->Model.ModPlayerLit->SetShadowMap(m->shadow);
+		m->Model.ModPlayerLit->SetLightEnv(m_LightEnv);
+
+		m->Model.ModTransparent = m->Model.ModTransparentLit;
+		m->Model.ModTransparentLit->SetShadowMap(m->shadow);
+		m->Model.ModTransparentLit->SetLightEnv(m_LightEnv);
+	}
+	else
+	{
+		vertexType = AmbientDiffuse;
+		m->Model.ModNormal = m->Model.ModPlain;
+		m->Model.ModPlayer = m->Model.ModPlayerUnlit;
+		m->Model.ModTransparent = m->Model.ModTransparentUnlit;
+	}
+
+	if (m_Options.m_RenderPath == RP_VERTEXSHADER)
+	{
+		if (m->Model.pal_NormalInstancing)
+			m->Model.NormalInstancing = m->Model.pal_NormalInstancing[vertexType];
+		else
+			m->Model.NormalInstancing = m->Model.pal_NormalHWLit[vertexType];
+		m->Model.Normal = m->Model.pal_NormalHWLit[vertexType];
+
+		if (m->Model.pal_PlayerInstancing)
+			m->Model.PlayerInstancing = m->Model.pal_PlayerInstancing[vertexType];
+		else
+			m->Model.PlayerInstancing = m->Model.pal_PlayerHWLit[vertexType];
+		m->Model.Player = m->Model.pal_PlayerHWLit[vertexType];
+	}
+	else
+	{
+		m->Model.NormalInstancing = m->Model.pal_NormalFF[vertexType];
+		m->Model.Normal = m->Model.pal_NormalFF[vertexType];
+
+		m->Model.PlayerInstancing = m->Model.pal_PlayerFF[vertexType];
+		m->Model.Player = m->Model.pal_PlayerFF[vertexType];
+	}
+
+	if (m_SortAllTransparent)
+		m->Model.Transp = m->Model.pal_TranspSortAll;
+	else if (m_Options.m_RenderPath == RP_VERTEXSHADER)
+		m->Model.Transp = m->Model.pal_TranspHWLit[vertexType];
+	else
+		m->Model.Transp = m->Model.pal_TranspFF[vertexType];
 }
+
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // SetClearColor: set color used to clear screen in BeginFrame()
@@ -620,10 +750,10 @@ void CRenderer::RenderShadowMap()
 	glColor3f(shadowTransp, shadowTransp, shadowTransp);
 
 	// Figure out transparent rendering strategy
-	RenderModifierPtr transparentShadows = m_Models.ModTransparentShadow;
+	RenderModifierPtr transparentShadows = m->Model.ModTransparentShadow;
 
 	if (m->shadow->GetUseDepthTexture())
-		transparentShadows = m_Models.ModTransparentDepthShadow;
+		transparentShadows = m->Model.ModTransparentDepthShadow;
 
 	// Render all closed models (i.e. models where rendering back faces will produce
 	// the correct result)
@@ -637,22 +767,14 @@ void CRenderer::RenderShadowMap()
 	// Render models that aren't closed
 	glDisable(GL_CULL_FACE);
 
-	m_Models.NormalFF->Render(m_Models.ModSolidColor, MODELFLAG_CASTSHADOWS);
-	m_Models.PlayerFF->Render(m_Models.ModSolidColor, MODELFLAG_CASTSHADOWS);
-	if (m_Models.NormalHWLit)
-		m_Models.NormalHWLit->Render(m_Models.ModSolidColor, MODELFLAG_CASTSHADOWS);
-	if (m_Models.PlayerHWLit)
-		m_Models.PlayerHWLit->Render(m_Models.ModSolidColor, MODELFLAG_CASTSHADOWS);
-	if (m_Models.NormalInstancing)
-		m_Models.NormalInstancing->Render(m_Models.ModSolidColor, MODELFLAG_CASTSHADOWS);
-	if (m_Models.PlayerInstancing)
-		m_Models.PlayerInstancing->Render(m_Models.ModSolidColor, MODELFLAG_CASTSHADOWS);
+	m->Model.Normal->Render(m->Model.ModSolidColor, MODELFLAG_CASTSHADOWS);
+	if (m->Model.Normal != m->Model.NormalInstancing)
+		m->Model.NormalInstancing->Render(m->Model.ModSolidColor, MODELFLAG_CASTSHADOWS);
+	m->Model.Player->Render(m->Model.ModSolidColor, MODELFLAG_CASTSHADOWS);
+	if (m->Model.Player != m->Model.PlayerInstancing)
+		m->Model.PlayerInstancing->Render(m->Model.ModSolidColor, MODELFLAG_CASTSHADOWS);
 
-
-	m_Models.TranspFF->Render(transparentShadows, MODELFLAG_CASTSHADOWS);
-	if (m_Models.TranspHWLit)
-		m_Models.TranspHWLit->Render(transparentShadows, MODELFLAG_CASTSHADOWS);
-	m_Models.TranspSortAll->Render(transparentShadows, MODELFLAG_CASTSHADOWS);
+	m->Model.Transp->Render(transparentShadows, MODELFLAG_CASTSHADOWS);
 
 	glEnable(GL_CULL_FACE);
 
@@ -722,31 +844,23 @@ void CRenderer::RenderModels()
 		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 	}
 
-	m_Models.NormalFF->Render(m_Models.ModPlain, 0);
-	m_Models.PlayerFF->Render(m_Models.ModPlayer, 0);
-	if (m_Models.NormalHWLit)
-		m_Models.NormalHWLit->Render(m_Models.ModPlain, 0);
-	if (m_Models.PlayerHWLit)
-		m_Models.PlayerHWLit->Render(m_Models.ModPlayer, 0);
-	if (m_Models.NormalInstancing)
-		m_Models.NormalInstancing->Render(m_Models.ModPlain, 0);
-	if (m_Models.PlayerInstancing)
-		m_Models.PlayerInstancing->Render(m_Models.ModPlayer, 0);
+	m->Model.Normal->Render(m->Model.ModNormal, 0);
+	m->Model.Player->Render(m->Model.ModPlayer, 0);
+	if (m->Model.Normal != m->Model.NormalInstancing)
+		m->Model.NormalInstancing->Render(m->Model.ModNormal, 0);
+	if (m->Model.Player != m->Model.PlayerInstancing)
+		m->Model.PlayerInstancing->Render(m->Model.ModPlayer, 0);
 
 	if (m_ModelRenderMode==WIREFRAME) {
 		// switch wireframe off again
 		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 	} else if (m_ModelRenderMode==EDGED_FACES) {
-		m_Models.NormalFF->Render(m_Models.ModWireframe, 0);
-		m_Models.PlayerFF->Render(m_Models.ModWireframe, 0);
-		if (m_Models.NormalHWLit)
-			m_Models.NormalHWLit->Render(m_Models.ModWireframe, 0);
-		if (m_Models.PlayerHWLit)
-			m_Models.PlayerHWLit->Render(m_Models.ModWireframe, 0);
-		if (m_Models.NormalInstancing)
-			m_Models.NormalInstancing->Render(m_Models.ModWireframe, 0);
-		if (m_Models.PlayerInstancing)
-			m_Models.PlayerInstancing->Render(m_Models.ModWireframe, 0);
+		m->Model.Normal->Render(m->Model.ModWireframe, 0);
+		m->Model.Player->Render(m->Model.ModWireframe, 0);
+		if (m->Model.Normal != m->Model.NormalInstancing)
+			m->Model.NormalInstancing->Render(m->Model.ModWireframe, 0);
+		if (m->Model.Player != m->Model.PlayerInstancing)
+			m->Model.PlayerInstancing->Render(m->Model.ModWireframe, 0);
 	}
 }
 
@@ -759,19 +873,13 @@ void CRenderer::RenderTransparentModels()
 		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 	}
 
-	m_Models.TranspFF->Render(m_Models.ModTransparent, 0);
-	if (m_Models.TranspHWLit)
-		m_Models.TranspHWLit->Render(m_Models.ModTransparent, 0);
-	m_Models.TranspSortAll->Render(m_Models.ModTransparent, 0);
+	m->Model.Transp->Render(m->Model.ModTransparent, 0);
 
 	if (m_ModelRenderMode==WIREFRAME) {
 		// switch wireframe off again
 		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 	} else if (m_ModelRenderMode==EDGED_FACES) {
-		m_Models.TranspFF->Render(m_Models.ModWireframe, 0);
-		if (m_Models.TranspHWLit)
-			m_Models.TranspHWLit->Render(m_Models.ModWireframe, 0);
-		m_Models.TranspSortAll->Render(m_Models.ModWireframe, 0);
+		m->Model.Transp->Render(m->Model.ModWireframe, 0);
 	}
 }
 
@@ -788,20 +896,13 @@ void CRenderer::FlushFrame()
 
 	// Prepare model renderers
 	PROFILE_START("prepare models");
-	m_Models.NormalFF->PrepareModels();
-	m_Models.PlayerFF->PrepareModels();
-	m_Models.TranspFF->PrepareModels();
-	if (m_Models.NormalHWLit)
-		m_Models.NormalHWLit->PrepareModels();
-	if (m_Models.PlayerHWLit)
-		m_Models.PlayerHWLit->PrepareModels();
-	if (m_Models.TranspHWLit)
-		m_Models.TranspHWLit->PrepareModels();
-	if (m_Models.NormalInstancing)
-		m_Models.NormalInstancing->PrepareModels();
-	if (m_Models.PlayerInstancing)
-		m_Models.PlayerInstancing->PrepareModels();
-	m_Models.TranspSortAll->PrepareModels();
+	m->Model.Normal->PrepareModels();
+	m->Model.Player->PrepareModels();
+	if (m->Model.Normal != m->Model.NormalInstancing)
+		m->Model.NormalInstancing->PrepareModels();
+	if (m->Model.Player != m->Model.PlayerInstancing)
+		m->Model.PlayerInstancing->PrepareModels();
+	m->Model.Transp->PrepareModels();
 	PROFILE_END("prepare models");
 
 	PROFILE_START("prepare terrain");
@@ -862,20 +963,13 @@ void CRenderer::FlushFrame()
 	m->terrainRenderer->EndFrame();
 
 	// Finish model renderers
-	m_Models.NormalFF->EndFrame();
-	m_Models.PlayerFF->EndFrame();
-	m_Models.TranspFF->EndFrame();
-	if (m_Models.NormalHWLit)
-		m_Models.NormalHWLit->EndFrame();
-	if (m_Models.PlayerHWLit)
-		m_Models.PlayerHWLit->EndFrame();
-	if (m_Models.TranspHWLit)
-		m_Models.TranspHWLit->EndFrame();
-	if (m_Models.NormalInstancing)
-		m_Models.NormalInstancing->EndFrame();
-	if (m_Models.PlayerInstancing)
-		m_Models.PlayerInstancing->EndFrame();
-	m_Models.TranspSortAll->EndFrame();
+	m->Model.Normal->EndFrame();
+	m->Model.Player->EndFrame();
+	if (m->Model.Normal != m->Model.NormalInstancing)
+		m->Model.NormalInstancing->EndFrame();
+	if (m->Model.Player != m->Model.PlayerInstancing)
+		m->Model.PlayerInstancing->EndFrame();
+	m->Model.Transp->EndFrame();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -968,36 +1062,21 @@ void CRenderer::Submit(CModel* model)
 
 	if (model->GetMaterial().IsPlayer())
 	{
-		if (m_Options.m_RenderPath == RP_VERTEXSHADER)
-		{
-			if (canUseInstancing && m_Models.PlayerInstancing)
-				m_Models.PlayerInstancing->Submit(model);
-			else
-				m_Models.PlayerHWLit->Submit(model);
-		}
+		if (canUseInstancing)
+			m->Model.PlayerInstancing->Submit(model);
 		else
-			m_Models.PlayerFF->Submit(model);
+			m->Model.Player->Submit(model);
 	}
 	else if (model->GetMaterial().UsesAlpha())
 	{
-		if (m_SortAllTransparent)
-			m_Models.TranspSortAll->Submit(model);
-		else if (m_Options.m_RenderPath == RP_VERTEXSHADER)
-			m_Models.TranspHWLit->Submit(model);
-		else
-			m_Models.TranspFF->Submit(model);
+		m->Model.Transp->Submit(model);
 	}
 	else
 	{
-		if (m_Options.m_RenderPath == RP_VERTEXSHADER)
-		{
-			if (canUseInstancing && m_Models.NormalInstancing)
-				m_Models.NormalInstancing->Submit(model);
-			else
-				m_Models.NormalHWLit->Submit(model);
-		}
+		if (canUseInstancing)
+			m->Model.NormalInstancing->Submit(model);
 		else
-			m_Models.NormalFF->Submit(model);
+			m->Model.Normal->Submit(model);
 	}
 }
 

@@ -8,32 +8,44 @@
 
 #define LOG_CATEGORY "graphics"
 
+void VS_GlobalLight::Init(Handle shader)
+{
+	m_Ambient = ogl_program_get_uniform_location(shader, "ambient");
+	m_SunDir = ogl_program_get_uniform_location(shader, "sunDir");
+	m_SunColor = ogl_program_get_uniform_location(shader, "sunColor");
+}
+
+void VS_Instancing::Init(Handle shader)
+{
+	m_Instancing1 = ogl_program_get_attrib_location(shader, "Instancing1");
+	m_Instancing2 = ogl_program_get_attrib_location(shader, "Instancing2");
+	m_Instancing3 = ogl_program_get_attrib_location(shader, "Instancing3");
+}
+
+void VS_PosToUV1::Init(Handle shader)
+{
+	m_TextureMatrix1 = ogl_program_get_uniform_location(shader, "TextureMatrix1");
+	debug_assert(m_TextureMatrix1 >= 0);
+	m_TextureMatrix2 = ogl_program_get_uniform_location(shader, "TextureMatrix2");
+	debug_assert(m_TextureMatrix2 >= 0);
+	m_TextureMatrix3 = ogl_program_get_uniform_location(shader, "TextureMatrix3");
+	debug_assert(m_TextureMatrix3 >= 0);
+}
 
 RenderPathVertexShader::RenderPathVertexShader()
 {
 	m_ModelLight = 0;
-	m_ModelLight_Ambient = -1;
-	m_ModelLight_SunDir = -1;
-	m_ModelLight_SunColor = -1;
-
+	m_ModelLightP = 0;
 	m_InstancingLight = 0;
-	m_InstancingLight_Ambient = -1;
-	m_InstancingLight_SunDir = -1;
-	m_InstancingLight_SunColor = -1;
-	m_InstancingLight_Instancing1 = -1;
-	m_InstancingLight_Instancing2 = -1;
-	m_InstancingLight_Instancing3 = -1;
-
 	m_Instancing = 0;
-	m_Instancing_Instancing1 = -1;
-	m_Instancing_Instancing2 = -1;
-	m_Instancing_Instancing3 = -1;
 }
 
 RenderPathVertexShader::~RenderPathVertexShader()
 {
 	if (m_ModelLight)
 		ogl_program_free(m_ModelLight);
+	if (m_ModelLightP)
+		ogl_program_free(m_ModelLightP);
 	if (m_InstancingLight)
 		ogl_program_free(m_InstancingLight);
 	if (m_Instancing)
@@ -55,6 +67,13 @@ bool RenderPathVertexShader::Init()
 		return false;
 	}
 
+	m_ModelLightP = ogl_program_load("shaders/model_lightp.xml");
+	if (m_ModelLightP < 0)
+	{
+		LOG(WARNING, LOG_CATEGORY, "Failed to load shaders/model_lightp.xml: %i\n", (int)m_ModelLightP);
+		return false;
+	}
+
 	m_InstancingLight = ogl_program_load("shaders/instancing_light.xml");
 	if (m_InstancingLight < 0)
 	{
@@ -62,10 +81,24 @@ bool RenderPathVertexShader::Init()
 		return false;
 	}
 
+	m_InstancingLightP = ogl_program_load("shaders/instancing_lightp.xml");
+	if (m_InstancingLightP < 0)
+	{
+		LOG(WARNING, LOG_CATEGORY, "Failed to load shaders/instancing_lightp.xml: %i\n", (int)m_InstancingLightP);
+		return false;
+	}
+
 	m_Instancing = ogl_program_load("shaders/instancing.xml");
 	if (m_Instancing < 0)
 	{
 		LOG(WARNING, LOG_CATEGORY, "Failed to load shaders/instancing.xml: %i\n", (int)m_Instancing);
+		return false;
+	}
+
+	m_InstancingP = ogl_program_load("shaders/instancingp.xml");
+	if (m_InstancingP < 0)
+	{
+		LOG(WARNING, LOG_CATEGORY, "Failed to load shaders/instancingp.xml: %i\n", (int)m_InstancingP);
 		return false;
 	}
 
@@ -77,27 +110,20 @@ bool RenderPathVertexShader::Init()
 // the uniform locations might have changed under us.
 void RenderPathVertexShader::BeginFrame()
 {
-	m_ModelLight_Ambient = ogl_program_get_uniform_location(m_ModelLight, "ambient");
-	m_ModelLight_SunDir = ogl_program_get_uniform_location(m_ModelLight, "sunDir");
-	m_ModelLight_SunColor = ogl_program_get_uniform_location(m_ModelLight, "sunColor");
+	m_ModelLight_Light.Init(m_ModelLight);
 
-	m_InstancingLight_Ambient = ogl_program_get_uniform_location(
-			m_InstancingLight, "ambient");
-	m_InstancingLight_SunDir = ogl_program_get_uniform_location(
-			m_InstancingLight, "sunDir");
-	m_InstancingLight_SunColor = ogl_program_get_uniform_location(
-			m_InstancingLight, "sunColor");
-	m_InstancingLight_Instancing1 = ogl_program_get_attrib_location(
-			m_InstancingLight, "Instancing1");
-	m_InstancingLight_Instancing2 = ogl_program_get_attrib_location(
-			m_InstancingLight, "Instancing2");
-	m_InstancingLight_Instancing3 = ogl_program_get_attrib_location(
-			m_InstancingLight, "Instancing3");
+	m_ModelLightP_Light.Init(m_ModelLightP);
+	m_ModelLightP_PosToUV1.Init(m_ModelLightP);
 
-	m_Instancing_Instancing1 = ogl_program_get_attrib_location(
-			m_Instancing, "Instancing1");
-	m_Instancing_Instancing2 = ogl_program_get_attrib_location(
-			m_Instancing, "Instancing2");
-	m_Instancing_Instancing3 = ogl_program_get_attrib_location(
-			m_Instancing, "Instancing3");
+	m_InstancingLight_Light.Init(m_InstancingLight);
+	m_InstancingLight_Instancing.Init(m_InstancingLight);
+
+	m_InstancingLightP_Light.Init(m_InstancingLightP);
+	m_InstancingLightP_Instancing.Init(m_InstancingLightP);
+	m_InstancingLightP_PosToUV1.Init(m_InstancingLightP);
+
+	m_Instancing_Instancing.Init(m_Instancing);
+
+	m_InstancingP_Instancing.Init(m_InstancingP);
+	m_InstancingP_PosToUV1.Init(m_InstancingP);
 }

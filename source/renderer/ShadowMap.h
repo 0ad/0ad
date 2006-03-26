@@ -45,7 +45,7 @@ public:
 	 *
 	 * @return whether shadow rendering uses depth textures
 	 */
-	bool GetUseDepthTexture();
+	bool GetUseDepthTexture() const;
 
 	/**
 	 * SetUseDepthTexture: Set whether shadowing should use depth textures.
@@ -109,7 +109,7 @@ public:
 	 *
 	 * @return the texture name of the shadow map texture
 	 */
-	GLuint GetTexture();
+	GLuint GetTexture() const;
 
 	/**
 	 * GetTextureMatrix: Retrieve the world-space to shadow map texture coordinates
@@ -118,7 +118,7 @@ public:
 	 * @return the matrix that transforms world-space coordinates into homogenous
 	 * shadow map texture coordinates
 	 */
-	const CMatrix3D& GetTextureMatrix();
+	const CMatrix3D& GetTextureMatrix() const;
 
 	/**
 	 * RenderDebugDisplay: Visualize shadow mapping calculations to help in

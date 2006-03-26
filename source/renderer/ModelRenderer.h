@@ -23,6 +23,9 @@
 class RenderModifier;
 typedef boost::shared_ptr<RenderModifier> RenderModifierPtr;
 
+class LitRenderModifier;
+typedef boost::shared_ptr<LitRenderModifier> LitRenderModifierPtr;
+
 class ModelVertexRenderer;
 typedef boost::shared_ptr<ModelVertexRenderer> ModelVertexRendererPtr;
 
@@ -199,11 +202,14 @@ public:
 	 * @param Color Points to the array that will receive the lit vertex color.
 	 * The array behind the iterator must large enough to hold
 	 * model->GetModelDef()->GetNumVertices() vertices.
+	 * @param onlyDiffuse if true, color will only contain the diffuse term (instead
+	 * of both ambient and diffuse)
 	 */
 	static void BuildColor4ub(
 			CModel* model,
 			VertexArrayIterator<CVector3D> Normal,
-			VertexArrayIterator<SColor4ub> Color);
+			VertexArrayIterator<SColor4ub> Color,
+			bool onlyDiffuse);
 
 	/**
 	 * BuildUV: Copy UV coordinates into the given vertex array.

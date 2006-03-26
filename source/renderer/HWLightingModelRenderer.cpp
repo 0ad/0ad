@@ -76,14 +76,18 @@ struct HWLightingModelRendererInternals
 
 	/// Previously prepared modeldef
 	HWLModelDef* hwlmodeldef;
+
+	/// If true, primary color will only contain the diffuse term
+	bool colorIsDiffuseOnly;
 };
 
 
 // Construction and Destruction
-HWLightingModelRenderer::HWLightingModelRenderer()
+HWLightingModelRenderer::HWLightingModelRenderer(bool colorIsDiffuseOnly)
 {
 	m = new HWLightingModelRendererInternals;
 	m->hwlmodeldef = 0;
+	m->colorIsDiffuseOnly = colorIsDiffuseOnly;
 }
 
 HWLightingModelRenderer::~HWLightingModelRenderer()
@@ -170,25 +174,75 @@ void HWLightingModelRenderer::DestroyModelData(CModel* UNUSED(model), void* data
 
 
 // Setup one rendering pass
-void HWLightingModelRenderer::BeginPass(uint streamflags)
+void HWLightingModelRenderer::BeginPass(uint streamflags, const CMatrix3D* texturematrix)
 {
+	debug_assert(streamflags == (streamflags & (STREAM_POS|STREAM_UV0|STREAM_COLOR|STREAM_TEXGENTOUV1)));
+
 	glEnableClientState(GL_VERTEX_ARRAY);
 
 	if (streamflags & STREAM_UV0) glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	if (streamflags & STREAM_COLOR)
 	{
+		RenderPathVertexShader* rpvs = g_Renderer.m_VertexShader;
 		const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
-		int idx;
+		VS_GlobalLight* lightConfig;
 
-		ogl_program_use(g_Renderer.m_VertexShader->m_ModelLight);
-		idx = g_Renderer.m_VertexShader->m_ModelLight_Ambient;
-		pglUniform3fvARB(idx, 1, &lightEnv.m_UnitsAmbientColor.X);
-		idx = g_Renderer.m_VertexShader->m_ModelLight_SunDir;
-		pglUniform3fvARB(idx, 1, &lightEnv.GetSunDir().X);
-		idx = g_Renderer.m_VertexShader->m_ModelLight_SunColor;
-		pglUniform3fvARB(idx, 1, &lightEnv.m_SunColor.X);
+		if (streamflags & STREAM_TEXGENTOUV1)
+		{
+			ogl_program_use(rpvs->m_ModelLightP);
+			lightConfig = &rpvs->m_ModelLightP_Light;
+
+			rpvs->m_ModelLightP_PosToUV1.SetMatrix(*texturematrix);
+		}
+		else
+		{
+			ogl_program_use(rpvs->m_ModelLight);
+			lightConfig = &rpvs->m_ModelLight_Light;
+		}
+
+		if (m->colorIsDiffuseOnly)
+			lightConfig->SetAmbient(RGBColor(0,0,0));
+		else
+			lightConfig->SetAmbient(lightEnv.m_UnitsAmbientColor);
+		lightConfig->SetSunDir(lightEnv.GetSunDir());
+		lightConfig->SetSunColor(lightEnv.m_SunColor);
 
 		glEnableClientState(GL_NORMAL_ARRAY);
+	}
+	else
+	{
+		if (streamflags & STREAM_TEXGENTOUV1)
+		{
+			pglActiveTextureARB(GL_TEXTURE1);
+
+			float tmp[4];
+
+			glEnable(GL_TEXTURE_GEN_S);
+			glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
+			tmp[0] = texturematrix->_11;
+			tmp[1] = texturematrix->_12;
+			tmp[2] = texturematrix->_13;
+			tmp[3] = texturematrix->_14;
+			glTexGenfv(GL_S, GL_OBJECT_PLANE, tmp);
+
+			glEnable(GL_TEXTURE_GEN_T);
+			glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
+			tmp[0] = texturematrix->_21;
+			tmp[1] = texturematrix->_22;
+			tmp[2] = texturematrix->_23;
+			tmp[3] = texturematrix->_24;
+			glTexGenfv(GL_T, GL_OBJECT_PLANE, tmp);
+
+			glEnable(GL_TEXTURE_GEN_R);
+			glTexGeni(GL_R, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
+			tmp[0] = texturematrix->_31;
+			tmp[1] = texturematrix->_32;
+			tmp[2] = texturematrix->_33;
+			tmp[3] = texturematrix->_34;
+			glTexGenfv(GL_R, GL_OBJECT_PLANE, tmp);
+
+			pglActiveTextureARB(GL_TEXTURE0);
+		}
 	}
 }
 
@@ -202,6 +256,19 @@ void HWLightingModelRenderer::EndPass(uint streamflags)
 		pglUseProgramObjectARB(0);
 
 		glDisableClientState(GL_NORMAL_ARRAY);
+	}
+	else
+	{
+		if (streamflags & STREAM_TEXGENTOUV1)
+		{
+			pglActiveTextureARB(GL_TEXTURE1);
+
+			glDisable(GL_TEXTURE_GEN_S);
+			glDisable(GL_TEXTURE_GEN_T);
+			glDisable(GL_TEXTURE_GEN_R);
+
+			pglActiveTextureARB(GL_TEXTURE0);
+		}
 	}
 
 	glDisableClientState(GL_VERTEX_ARRAY);
