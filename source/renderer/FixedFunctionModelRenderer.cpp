@@ -184,7 +184,7 @@ void FixedFunctionModelRenderer::DestroyModelData(CModel* UNUSED(model), void* d
 // Setup one rendering pass
 void FixedFunctionModelRenderer::BeginPass(uint streamflags, const CMatrix3D* texturematrix)
 {
-	debug_assert(streamflags == streamflags & (STREAM_POS|STREAM_UV0|STREAM_COLOR|STREAM_TEXGENTOUV1));
+	debug_assert(streamflags == (streamflags & (STREAM_POS|STREAM_UV0|STREAM_COLOR|STREAM_TEXGENTOUV1)));
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 
