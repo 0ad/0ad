@@ -547,13 +547,13 @@ bool CRenderer::GetOptionBool(enum Option opt) const
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // SetOptionColor: set color renderer option
-void CRenderer::SetOptionColor(enum Option opt,const RGBAColor& value)
+void CRenderer::SetOptionColor(enum Option opt,const RGBAColor& UNUSED(value))
 {
-	switch (opt) {
-		default:
+//	switch (opt) {
+//		default:
 			debug_warn("CRenderer::SetOptionColor: unknown option");
-			break;
-	}
+//			break;
+//	}
 }
 
 void CRenderer::SetOptionFloat(enum Option opt, float val)
@@ -575,11 +575,11 @@ const RGBAColor& CRenderer::GetOptionColor(enum Option opt) const
 {
 	static const RGBAColor defaultColor(1.0f,1.0f,1.0f,1.0f);
 
-	switch (opt) {
-		default:
+//	switch (opt) {
+//		default:
 			debug_warn("CRenderer::GetOptionColor: unknown option");
-			break;
-	}
+//			break;
+//	}
 
 	return defaultColor;
 }

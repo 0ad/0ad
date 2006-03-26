@@ -13,6 +13,8 @@
 #include "Vector3D.h"
 #include "Matrix3D.h"
 
+class CFrustum;
+
 ///////////////////////////////////////////////////////////////////////////////
 // CBound: basic axis aligned bounding box class
 class CBound
@@ -46,6 +48,21 @@ public:
 	void GetCentre(CVector3D& centre) const {
 		centre=(m_Data[0]+m_Data[1])*0.5f;
 	}
+
+	/**
+	 * IntersectFrustumConservative: Approximate the intersection of this bounds object
+	 * with the given frustum. The bounds object is overwritten with the results.
+	 *
+	 * The approximation is conservative in the sense that the result will always contain
+	 * the actual intersection, but it may be larger than the intersection itself.
+	 * The result will always be fully contained within the original bounds.
+	 *
+	 * @note While not in the spirit of this function's purpose, a no-op would be a correct
+	 * implementation of this function.
+	 *
+	 * @param frustum the frustum to intersect with
+	 */
+	void IntersectFrustumConservative(const CFrustum& frustum);
 
 	/**
 	 * Render: Render the surfaces of the bound object as polygons.

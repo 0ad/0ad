@@ -270,7 +270,7 @@ void PolygonSortModelRenderer::DestroyModelData(CModel* UNUSED(model), void* dat
 // Prepare for one rendering pass
 void PolygonSortModelRenderer::BeginPass(uint streamflags, const CMatrix3D* UNUSED(texturematrix))
 {
-	debug_assert(streamflags == streamflags & (STREAM_POS|STREAM_COLOR|STREAM_UV0));
+	debug_assert(streamflags == (streamflags & (STREAM_POS|STREAM_COLOR|STREAM_UV0)));
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 

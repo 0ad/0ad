@@ -30,15 +30,20 @@ public:
 	~CFrustum ();
 
 	//Set the number of planes to use for
-	//calculations. This is clipped to 
+	//calculations. This is clipped to
 	//[0,MAX_NUM_FRUSTUM_PLANES]
 	void SetNumPlanes (int num);
+
+	uint GetNumPlanes() const { return m_NumPlanes; }
 
 	//The following methods return true if the shape is
 	//partially or completely in front of the frustum planes
 	bool IsPointVisible (const CVector3D &point) const;
 	bool IsSphereVisible (const CVector3D &center, float radius) const;
 	bool IsBoxVisible (const CVector3D &position,const CBound &bounds) const;
+
+	CPlane& operator[](uint idx) { return m_aPlanes[idx]; }
+	const CPlane& operator[](uint idx) const { return m_aPlanes[idx]; }
 
 public:
 	//make the planes public for ease of use
@@ -47,5 +52,5 @@ public:
 private:
 	int m_NumPlanes;
 };
-		
+
 #endif

@@ -14,6 +14,9 @@
 
 #include <float.h>
 #include "Bound.h"
+#include "Frustum.h"
+#include "Brush.h"
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // operator+=: extend this bound to include given bound
@@ -170,6 +173,19 @@ void CBound::Transform(const CMatrix3D& m,CBound& result) const
 			}
 		}
 	}
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Intersect with the given frustum in a conservative manner
+void CBound::IntersectFrustumConservative(const CFrustum& frustum)
+{
+	CBrush brush(*this);
+	CBrush buf;
+
+	brush.Intersect(frustum, buf);
+
+	buf.Bounds(*this);
 }
 
 

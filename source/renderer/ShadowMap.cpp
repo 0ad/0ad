@@ -61,6 +61,9 @@ struct ShadowMapInternals
 	// bounding box of shadowed objects in light space
 	CBound ShadowBound;
 
+	// Camera transformed into light space
+	CCamera LightspaceCamera;
+
 	// Helper functions
 	void CalcShadowMatrices();
 	void CreateTexture();
@@ -144,6 +147,11 @@ void ShadowMap::SetupFrame(const CCamera& camera, const CVector3D& lightdir)
 
 	m->LightTransform.GetInverse(m->InvLightTransform);
 	m->ShadowBound.SetEmpty();
+
+	//
+	m->LightspaceCamera = camera;
+	m->LightspaceCamera.m_Orientation = m->LightTransform * camera.m_Orientation;
+	m->LightspaceCamera.UpdateFrustum();
 }
 
 
@@ -165,6 +173,16 @@ void ShadowMap::AddShadowedBound(const CBound& bounds)
 void ShadowMapInternals::CalcShadowMatrices()
 {
 	CRenderer& renderer = g_Renderer;
+
+	float minZ = ShadowBound[0].Z;
+
+	ShadowBound.IntersectFrustumConservative(LightspaceCamera.GetFrustum());
+
+	// minimum Z bound must not be clipped too much, because objects that lie outside
+	// the shadow bounds cannot cast shadows either
+	// the 2.0 is rather arbitrary: it should be big enough so that we won't accidently miss
+	// a shadow generator, and small enough not to affect Z precision
+	ShadowBound[0].Z = minZ - 2.0;
 
 	// Setup orthogonal projection (lightspace -> clip space) for shadowmap rendering
 	CVector3D scale = ShadowBound[1] - ShadowBound[0];
