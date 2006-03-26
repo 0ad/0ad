@@ -57,6 +57,25 @@ FUNC2(void, glCompressedTexSubImage2DARB, glCompressedTexSubImage2D, "1.3", (GLe
 FUNC2(void, glCompressedTexSubImage1DARB, glCompressedTexSubImage1D, "1.3", (GLenum, GLint, GLint, GLsizei, GLenum, GLsizei, const GLvoid*))
 FUNC2(void, glGetCompressedTexImageARB, glGetCompressedTexImage, "1.3", (GLenum, GLint, GLvoid*))
 
+// GL_EXT_framebuffer_object
+FUNC(GLboolean, glIsRenderbufferEXT, (GLuint renderbuffer))
+FUNC(void, glBindRenderbufferEXT, (GLenum target, GLuint renderbuffer))
+FUNC(void, glDeleteRenderbuffersEXT, (GLsizei n, const GLuint *renderbuffers))
+FUNC(void, glGenRenderbuffersEXT, (GLsizei n, GLuint *renderbuffers))
+FUNC(void, glRenderbufferStorageEXT, (GLenum target, GLenum internalformat, GLsizei width, GLsizei height))
+FUNC(void, glGetRenderbufferParameterivEXT, (GLenum target, GLenum pname, GLint *params))
+FUNC(GLboolean, glIsFramebufferEXT, (GLuint framebuffer))
+FUNC(void, glBindFramebufferEXT, (GLenum target, GLuint framebuffer))
+FUNC(void, glDeleteFramebuffersEXT, (GLsizei n, const GLuint *framebuffers))
+FUNC(void, glGenFramebuffersEXT, (GLsizei n, GLuint *framebuffers))
+FUNC(GLenum, glCheckFramebufferStatusEXT, (GLenum target))
+FUNC(void, glFramebufferTexture1DEXT, (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level))
+FUNC(void, glFramebufferTexture2DEXT, (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level))
+FUNC(void, glFramebufferTexture3DEXT, (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level, GLint zoffset))
+FUNC(void, glFramebufferRenderbufferEXT, (GLenum target, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer))
+FUNC(void, glGetFramebufferAttachmentParameterivEXT, (GLenum target, GLenum attachment, GLenum pname, GLint *params))
+FUNC(void, glGenerateMipmapEXT, (GLenum target))
+
 // GL_ARB_shader_objects
 FUNC2(void, glDeleteObjectARB, glDeleteObject, "2.0", (GLhandleARB obj))
 FUNC2(GLhandleARB, glGetHandleARB, glGetHandle, "2.0", (GLenum pname))

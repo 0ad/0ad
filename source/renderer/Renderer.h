@@ -88,6 +88,7 @@ public:
 	enum { MaxTextureUnits=16 };
 	enum Option {
 		OPT_NOVBO,
+		OPT_NOFRAMEBUFFEROBJECT,
 		OPT_NOPBUFFER,
 		OPT_SHADOWS,
 		OPT_SHADOWCOLOR,
@@ -134,6 +135,7 @@ public:
 	// renderer options
 	struct Options {
 		bool m_NoVBO;
+		bool m_NoFramebufferObject;
 		bool m_Shadows;
 		RGBAColor m_ShadowColor;
 		float m_LodBias;
@@ -146,6 +148,7 @@ public:
 		bool m_GenerateMipmaps;
 		bool m_VertexShader;
 		bool m_DepthTextureShadows;
+		bool m_FramebufferObject;
 	};
 
 public:

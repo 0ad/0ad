@@ -264,7 +264,8 @@ static void dump_gl_error(GLenum err)
 	E(GL_STACK_OVERFLOW)
 	E(GL_STACK_UNDERFLOW)
 	E(GL_OUT_OF_MEMORY)
-	default:;
+	E(GL_INVALID_FRAMEBUFFER_OPERATION_EXT)
+	default: debug_printf("GL error: %04f\n", err); break;
 	}
 #undef E
 }

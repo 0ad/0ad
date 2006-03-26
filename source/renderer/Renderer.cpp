@@ -294,18 +294,104 @@ CRenderer::CRenderer()
 	m_FastNormals = true;
 	m_DisplayFrustum = false;
 	m_DisableCopyShadow = false;
+	m_FastPlayerColor = true;
 
 	m_VertexShader = 0;
 
 	m_Options.m_NoVBO=false;
+	m_Options.m_NoFramebufferObject = false;
 	m_Options.m_Shadows=true;
 	m_Options.m_ShadowColor=RGBAColor(0.4f,0.4f,0.4f,1.0f);
 	m_Options.m_RenderPath = RP_DEFAULT;
+
+	m_ShadowZBias = 0.001f;
 
 	for (uint i=0;i<MaxTextureUnits;i++) {
 		m_ActiveTextures[i]=0;
 	}
 
+	ONCE( ScriptingInit(); );
+}
+
+///////////////////////////////////////////////////////////////////////////////////
+// CRenderer destructor
+CRenderer::~CRenderer()
+{
+	// model rendering
+	for(int vertexType = 0; vertexType < NumVertexTypes; ++vertexType)
+	{
+		delete m->Model.pal_NormalFF[vertexType];
+		delete m->Model.pal_PlayerFF[vertexType];
+		delete m->Model.pal_TranspFF[vertexType];
+		delete m->Model.pal_NormalHWLit[vertexType];
+		delete m->Model.pal_PlayerHWLit[vertexType];
+		delete m->Model.pal_TranspHWLit[vertexType];
+		delete m->Model.pal_NormalInstancing[vertexType];
+		delete m->Model.pal_PlayerInstancing[vertexType];
+	}
+	delete m->Model.pal_TranspSortAll;
+
+	// general
+	delete m_VertexShader;
+	m_VertexShader = 0;
+
+	CParticleEngine::GetInstance()->cleanup();
+
+	// we no longer UnloadAlphaMaps / UnloadWaterTextures here -
+	// that is the responsibility of the module that asked for
+	// them to be loaded (i.e. CGameView).
+	delete m;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////
+// EnumCaps: build card cap bits
+void CRenderer::EnumCaps()
+{
+	// assume support for nothing
+	m_Caps.m_VBO=false;
+	m_Caps.m_TextureBorderClamp=false;
+	m_Caps.m_GenerateMipmaps=false;
+	m_Caps.m_VertexShader=false;
+	m_Caps.m_DepthTextureShadows = false;
+	m_Caps.m_FramebufferObject = false;
+
+	// now start querying extensions
+	if (!m_Options.m_NoVBO) {
+		if (oglHaveExtension("GL_ARB_vertex_buffer_object")) {
+			m_Caps.m_VBO=true;
+		}
+	}
+	if (oglHaveExtension("GL_ARB_texture_border_clamp")) {
+		m_Caps.m_TextureBorderClamp=true;
+	}
+	if (oglHaveExtension("GL_SGIS_generate_mipmap")) {
+		m_Caps.m_GenerateMipmaps=true;
+	}
+	if (0 == oglHaveExtensions(0, "GL_ARB_shader_objects", "GL_ARB_shading_language_100", 0))
+	{
+		if (oglHaveExtension("GL_ARB_vertex_shader"))
+			m_Caps.m_VertexShader=true;
+	}
+
+	if (0 == oglHaveExtensions(0, "GL_ARB_shadow", "GL_ARB_depth_texture", 0)) {
+		// According to Delphi3d.net, all relevant graphics chips that support depth textures
+		// (i.e. Geforce3+, Radeon9500+, even i915) also have >= 4 TMUs, so this restriction
+		// isn't actually a restriction, and it helps with integrating depth texture
+		// shadows into rendering paths.
+		if (ogl_max_tex_units >= 4)
+			m_Caps.m_DepthTextureShadows = true;
+	}
+	if (!m_Options.m_NoFramebufferObject)
+	{
+		if (oglHaveExtension("GL_EXT_framebuffer_object"))
+			m_Caps.m_FramebufferObject = true;
+	}
+}
+
+
+bool CRenderer::Open(int width, int height, int depth)
+{
 	// Must query card capabilities before creating renderers that depend
 	// on card capabilities.
 	EnumCaps();
@@ -375,88 +461,12 @@ CRenderer::CRenderer()
 	m->Model.ModTransparentShadow = RenderModifierPtr(new TransparentShadowRenderModifier);
 	m->Model.ModTransparentDepthShadow = RenderModifierPtr(new TransparentDepthShadowModifier);
 
-	m_ShadowZBias = 0.001f;
-
+	// Particle engine
 	CParticleEngine::GetInstance()->initParticleSystem();
 	CEmitter *pEmitter = new CDefaultEmitter(1000, -1);
 	CParticleEngine::GetInstance()->addEmitter(pEmitter);
 
-	ONCE( ScriptingInit(); );
-}
-
-///////////////////////////////////////////////////////////////////////////////////
-// CRenderer destructor
-CRenderer::~CRenderer()
-{
-	// model rendering
-	for(int vertexType = 0; vertexType < NumVertexTypes; ++vertexType)
-	{
-		delete m->Model.pal_NormalFF[vertexType];
-		delete m->Model.pal_PlayerFF[vertexType];
-		delete m->Model.pal_TranspFF[vertexType];
-		delete m->Model.pal_NormalHWLit[vertexType];
-		delete m->Model.pal_PlayerHWLit[vertexType];
-		delete m->Model.pal_TranspHWLit[vertexType];
-		delete m->Model.pal_NormalInstancing[vertexType];
-		delete m->Model.pal_PlayerInstancing[vertexType];
-	}
-	delete m->Model.pal_TranspSortAll;
-
-	// general
-	delete m_VertexShader;
-	m_VertexShader = 0;
-
-	CParticleEngine::GetInstance()->cleanup();
-
-	// we no longer UnloadAlphaMaps / UnloadWaterTextures here -
-	// that is the responsibility of the module that asked for
-	// them to be loaded (i.e. CGameView).
-	delete m;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////
-// EnumCaps: build card cap bits
-void CRenderer::EnumCaps()
-{
-	// assume support for nothing
-	m_Caps.m_VBO=false;
-	m_Caps.m_TextureBorderClamp=false;
-	m_Caps.m_GenerateMipmaps=false;
-	m_Caps.m_VertexShader=false;
-	m_Caps.m_DepthTextureShadows = false;
-
-	// now start querying extensions
-	if (!m_Options.m_NoVBO) {
-		if (oglHaveExtension("GL_ARB_vertex_buffer_object")) {
-			m_Caps.m_VBO=true;
-		}
-	}
-	if (oglHaveExtension("GL_ARB_texture_border_clamp")) {
-		m_Caps.m_TextureBorderClamp=true;
-	}
-	if (oglHaveExtension("GL_SGIS_generate_mipmap")) {
-		m_Caps.m_GenerateMipmaps=true;
-	}
-	if (0 == oglHaveExtensions(0, "GL_ARB_shader_objects", "GL_ARB_shading_language_100", 0))
-	{
-		if (oglHaveExtension("GL_ARB_vertex_shader"))
-			m_Caps.m_VertexShader=true;
-	}
-
-	if (0 == oglHaveExtensions(0, "GL_ARB_shadow", "GL_ARB_depth_texture", 0)) {
-		// According to Delphi3d.net, all relevant graphics chips that support depth textures
-		// (i.e. Geforce3+, Radeon9500+, even i915) also have >= 4 TMUs, so this restriction
-		// isn't actually a restriction, and it helps with integrating depth texture
-		// shadows into rendering paths.
-		if (ogl_max_tex_units >= 4)
-			m_Caps.m_DepthTextureShadows = true;
-	}
-}
-
-
-bool CRenderer::Open(int width, int height, int depth)
-{
+	// Dimensions
 	m_Width = width;
 	m_Height = height;
 	m_Depth = depth;
@@ -505,6 +515,9 @@ void CRenderer::SetOptionBool(enum Option opt,bool value)
 		case OPT_NOVBO:
 			m_Options.m_NoVBO=value;
 			break;
+		case OPT_NOFRAMEBUFFEROBJECT:
+			m_Options.m_NoFramebufferObject=value;
+			break;
 		case OPT_SHADOWS:
 			m_Options.m_Shadows=value;
 			break;
@@ -524,6 +537,8 @@ bool CRenderer::GetOptionBool(enum Option opt) const
 	switch (opt) {
 		case OPT_NOVBO:
 			return m_Options.m_NoVBO;
+		case OPT_NOFRAMEBUFFEROBJECT:
+			return m_Options.m_NoFramebufferObject;
 		case OPT_SHADOWS:
 			return m_Options.m_Shadows;
 		default:

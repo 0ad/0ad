@@ -17,6 +17,8 @@ CStr g_ActiveProfile = "default";
 // flag to disable extended GL extensions until fix found - specifically, crashes
 // using VBOs on laptop Radeon cards
 bool g_NoGLVBO=false;
+// disable FBO extension in case the driver is flaky
+bool g_NoGLFramebufferObject = false;
 // flag to switch on shadows
 bool g_Shadows=false;
 // flag to switch off pbuffers
@@ -69,6 +71,7 @@ static void LoadGlobals()
 
 	CFG_GET_USER_VAL("vsync", Bool, g_VSync);
 	CFG_GET_USER_VAL("novbo", Bool, g_NoGLVBO);
+	CFG_GET_USER_VAL("noframebufferobject", Bool, g_NoGLFramebufferObject);
 	CFG_GET_USER_VAL("shadows", Bool, g_Shadows);
 	CFG_GET_USER_VAL("renderpath", String, g_RenderPath);
 

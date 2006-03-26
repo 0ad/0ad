@@ -3,6 +3,8 @@
 // flag to disable extended GL extensions until fix found - specifically, crashes
 // using VBOs on laptop Radeon cards
 extern bool g_NoGLVBO;
+// disable FBO extension in case the driver is flaky
+extern bool g_NoGLFramebufferObject;
 // flag to switch on shadows
 extern bool g_Shadows;
 // flag to switch off pbuffers
