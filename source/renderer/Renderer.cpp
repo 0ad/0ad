@@ -198,6 +198,9 @@ enum {
  */
 struct CRendererInternals
 {
+	/// true if CRenderer::Open has been called
+	bool IsOpen;
+
 	/// Table to display renderer stats in-game via profile system
 	CRendererStatsTable profileTable;
 
@@ -260,10 +263,29 @@ struct CRendererInternals
 
 
 	CRendererInternals()
-	: profileTable(g_Renderer.m_Stats)
+	: IsOpen(false), profileTable(g_Renderer.m_Stats)
 	{
 		terrainRenderer = new TerrainRenderer();
 		shadow = new ShadowMap();
+
+		for(int vertexType = 0; vertexType < NumVertexTypes; ++vertexType)
+		{
+			Model.pal_NormalFF[vertexType] = 0;
+			Model.pal_PlayerFF[vertexType] = 0;
+			Model.pal_TranspFF[vertexType] = 0;
+			Model.pal_NormalHWLit[vertexType] = 0;
+			Model.pal_PlayerHWLit[vertexType] = 0;
+			Model.pal_TranspHWLit[vertexType] = 0;
+			Model.pal_NormalInstancing[vertexType] = 0;
+			Model.pal_PlayerInstancing[vertexType] = 0;
+		}
+		Model.pal_TranspSortAll = 0;
+
+		Model.Normal = 0;
+		Model.NormalInstancing = 0;
+		Model.Player = 0;
+		Model.PlayerInstancing = 0;
+		Model.Transp = 0;
 	}
 
 	~CRendererInternals()
@@ -391,6 +413,8 @@ void CRenderer::EnumCaps()
 
 bool CRenderer::Open(int width, int height, int depth)
 {
+	m->IsOpen = true;
+
 	// Must query card capabilities before creating renderers that depend
 	// on card capabilities.
 	EnumCaps();
@@ -429,21 +453,10 @@ bool CRenderer::Open(int width, int height, int depth)
 			m->Model.pal_PlayerHWLit[vertexType] = new BatchModelRenderer(m->Model.VertexHWLit[vertexType]);
 			m->Model.pal_TranspHWLit[vertexType] = new SortModelRenderer(m->Model.VertexHWLit[vertexType]);
 		}
-		else
-		{
-			m->Model.pal_NormalHWLit[vertexType] = NULL;
-			m->Model.pal_PlayerHWLit[vertexType] = NULL;
-			m->Model.pal_TranspHWLit[vertexType] = NULL;
-		}
 		if (m->Model.VertexInstancing[vertexType])
 		{
 			m->Model.pal_NormalInstancing[vertexType] = new BatchModelRenderer(m->Model.VertexInstancing[vertexType]);
 			m->Model.pal_PlayerInstancing[vertexType] = new BatchModelRenderer(m->Model.VertexInstancing[vertexType]);
-		}
-		else
-		{
-			m->Model.pal_NormalInstancing[vertexType] = NULL;
-			m->Model.pal_PlayerInstancing[vertexType] = NULL;
 		}
 	}
 
@@ -489,8 +502,8 @@ bool CRenderer::Open(int width, int height, int depth)
 	glGetIntegerv(GL_ALPHA_BITS,&bits);
 	LOG(NORMAL, LOG_CATEGORY, "CRenderer::Open: alpha bits %d",bits);
 
-	if (m_Options.m_RenderPath == RP_DEFAULT)
-		SetRenderPath(m_Options.m_RenderPath);
+	// Validate the currently selected render path
+	SetRenderPath(m_Options.m_RenderPath);
 
 	return true;
 }
@@ -547,7 +560,7 @@ bool CRenderer::GetOptionBool(enum Option opt) const
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // SetOptionColor: set color renderer option
-void CRenderer::SetOptionColor(enum Option opt,const RGBAColor& UNUSED(value))
+void CRenderer::SetOptionColor(Option UNUSED(opt),const RGBAColor& UNUSED(value))
 {
 //	switch (opt) {
 //		default:
@@ -571,7 +584,7 @@ void CRenderer::SetOptionFloat(enum Option opt, float val)
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // GetOptionColor: get color renderer option
-const RGBAColor& CRenderer::GetOptionColor(enum Option opt) const
+const RGBAColor& CRenderer::GetOptionColor(Option UNUSED(opt)) const
 {
 	static const RGBAColor defaultColor(1.0f,1.0f,1.0f,1.0f);
 
@@ -591,6 +604,14 @@ const RGBAColor& CRenderer::GetOptionColor(enum Option opt) const
 // data may depend on the chosen render path.
 void CRenderer::SetRenderPath(RenderPath rp)
 {
+	if (!m->IsOpen)
+	{
+		// Delay until Open() is called.
+		m_Options.m_RenderPath = rp;
+		return;
+	}
+
+	// Renderer has been opened, so validate the selected renderpath
 	if (rp == RP_DEFAULT)
 	{
 		if (m->Model.pal_NormalHWLit && m->Model.pal_PlayerHWLit)
@@ -706,6 +727,8 @@ void CRenderer::BeginFrame()
 
 	if (m_Options.m_RenderPath == RP_VERTEXSHADER)
 	{
+		debug_assert(m->Model.pal_NormalHWLit[vertexType] != 0);
+
 		if (m->Model.pal_NormalInstancing)
 			m->Model.NormalInstancing = m->Model.pal_NormalInstancing[vertexType];
 		else
