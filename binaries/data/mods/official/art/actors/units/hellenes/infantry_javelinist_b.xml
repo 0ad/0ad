@@ -73,7 +73,7 @@
         <animation file="biped/chop.psa" name="Chop" speed="150"/>
       </animations>
       <props>
-        <prop actor="props/units/tools/prop_handscythe.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/tools/handaxe.xml" attachpoint="r_hand"/>
       </props>
     </variant>
   </group>
@@ -103,7 +103,7 @@
         <animation file="biped/mine.psa" name="Mine" speed="150"/>
       </animations>
       <props>
-        <prop actor="props/units/tools/prop_spade.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/tools/prop_pick.xml" attachpoint="r_hand"/>
       </props>
     </variant>
   </group>

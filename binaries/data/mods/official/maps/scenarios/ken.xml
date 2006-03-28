@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<!DOCTYPE Scenario SYSTEM "/maps/scenario_v4.dtd">
 
 <Scenario>
 	<Environment>
-		<SunColour r="1.0" g="1.0" b="1.0" />
+		<SunColour r="1" g="1" b="1" />
 		<SunElevation angle="0.75" />
 		<SunRotation angle="5.5" />
 		<TerrainAmbientColour r="0.4" g="0.4" b="0.4" />
 		<UnitsAmbientColour r="0.4" g="0.4" b="0.4" />
-		<TerrainShadowTransparency>0.3</TerrainShadowTransparency>
+		<TerrainShadowTransparency>0.0</TerrainShadowTransparency>
 	</Environment>
+	<Camera>
+		<Position x="68.6964" y="120.112" z="54.8725" />
+		<Rotation angle="-0.00923317" />
+		<Declination angle="0.59257" />
+	</Camera>
 	<Entities>
 		<Entity>
 			<Template>cart_dock</Template>
@@ -20,74 +24,74 @@
 		<Entity>
 			<Template>cart_farmstead</Template>
 			<Player>6</Player>
-			<Position x="10.6582" y="5.56035" z="113.14" />
-			<Orientation angle="3.13236" />
+			<Position x="8.90586" y="5.56035" z="129.792" />
+			<Orientation angle="-2.28027" />
 		</Entity>
 		<Entity>
 			<Template>cart_fortress</Template>
 			<Player>6</Player>
-			<Position x="20.7971" y="5.56035" z="80.601" />
-			<Orientation angle="3.12874" />
+			<Position x="19.7866" y="5.56035" z="83.7927" />
+			<Orientation angle="-2.35814" />
 		</Entity>
 		<Entity>
 			<Template>cart_house</Template>
 			<Player>6</Player>
 			<Position x="20.6702" y="5.56034" z="160.671" />
-			<Orientation angle="-3.08767" />
+			<Orientation angle="2.28235" />
 		</Entity>
 		<Entity>
 			<Template>cart_house</Template>
 			<Player>6</Player>
 			<Position x="38.1269" y="5.56035" z="158.243" />
-			<Orientation angle="-3.08507" />
+			<Orientation angle="-2.608" />
 		</Entity>
 		<Entity>
 			<Template>cart_house</Template>
 			<Player>6</Player>
 			<Position x="11.6171" y="5.56035" z="150.757" />
-			<Orientation angle="1.56491" />
+			<Orientation angle="2.33178" />
 		</Entity>
 		<Entity>
 			<Template>cart_civil_centre</Template>
 			<Player>6</Player>
 			<Position x="30.9189" y="5.56036" z="129.39" />
-			<Orientation angle="-3.14089" />
+			<Orientation angle="-2.47924" />
 		</Entity>
 		<Entity>
 			<Template>cart_market</Template>
 			<Player>6</Player>
 			<Position x="58.4593" y="5.56035" z="124.227" />
-			<Orientation angle="-3.13399" />
+			<Orientation angle="-2.34875" />
 		</Entity>
 		<Entity>
 			<Template>cart_mill</Template>
 			<Player>6</Player>
 			<Position x="66.7956" y="5.56035" z="85.7646" />
-			<Orientation angle="3.13509" />
+			<Orientation angle="-2.42338" />
 		</Entity>
 		<Entity>
 			<Template>cart_scout_tower</Template>
 			<Player>6</Player>
 			<Position x="72.4323" y="5.56035" z="137.387" />
-			<Orientation angle="1.56664" />
+			<Orientation angle="-0.879098" />
 		</Entity>
 		<Entity>
 			<Template>cart_scout_tower</Template>
 			<Player>6</Player>
 			<Position x="71.5394" y="5.56033" z="101.766" />
-			<Orientation angle="1.54713" />
+			<Orientation angle="2.26104" />
 		</Entity>
 		<Entity>
 			<Template>cart_temple</Template>
 			<Player>6</Player>
 			<Position x="44.3481" y="5.56035" z="91.4815" />
-			<Orientation angle="3.12802" />
+			<Orientation angle="-2.42189" />
 		</Entity>
 		<Entity>
 			<Template>cart_barracks</Template>
 			<Player>6</Player>
 			<Position x="45.5037" y="5.56036" z="62.6271" />
-			<Orientation angle="3.11551" />
+			<Orientation angle="-2.3911" />
 		</Entity>
 		<Entity>
 			<Template>cart_cavalry_javelinist_b</Template>
@@ -285,7 +289,7 @@
 			<Template>celt_barracks</Template>
 			<Player>1</Player>
 			<Position x="192.902" y="8.34394" z="181.832" />
-			<Orientation angle="-3.02603" />
+			<Orientation angle="-2.43466" />
 		</Entity>
 		<Entity>
 			<Template>celt_cavalry_javelinist_b</Template>
@@ -344,8 +348,8 @@
 		<Entity>
 			<Template>celt_civil_centre</Template>
 			<Player>1</Player>
-			<Position x="215.72" y="8.34394" z="203.389" />
-			<Orientation angle="-3.0839" />
+			<Position x="217.446" y="8.34395" z="200.925" />
+			<Orientation angle="-2.43012" />
 		</Entity>
 		<Entity>
 			<Template>celt_dock</Template>
@@ -357,7 +361,7 @@
 			<Template>celt_farmstead</Template>
 			<Player>1</Player>
 			<Position x="198.56" y="8.34394" z="246.583" />
-			<Orientation angle="-3.07558" />
+			<Orientation angle="-2.56622" />
 		</Entity>
 		<Entity>
 			<Template>celt_fortress_b</Template>
@@ -368,8 +372,8 @@
 		<Entity>
 			<Template>celt_fortress_g</Template>
 			<Player>1</Player>
-			<Position x="244.216" y="8.34395" z="165.49" />
-			<Orientation angle="-3.12485" />
+			<Position x="238.473" y="8.34395" z="165.11" />
+			<Orientation angle="2.41623" />
 		</Entity>
 		<Entity>
 			<Template>celt_house</Template>
@@ -435,19 +439,19 @@
 			<Template>celt_market</Template>
 			<Player>1</Player>
 			<Position x="243.453" y="8.34394" z="202.648" />
-			<Orientation angle="-3.05648" />
+			<Orientation angle="-2.41262" />
 		</Entity>
 		<Entity>
 			<Template>celt_mill</Template>
 			<Player>1</Player>
-			<Position x="248.306" y="8.34395" z="246.535" />
-			<Orientation angle="-3.11907" />
+			<Position x="245.195" y="8.34395" z="245.692" />
+			<Orientation angle="-2.39945" />
 		</Entity>
 		<Entity>
 			<Template>celt_sb1</Template>
 			<Player>1</Player>
 			<Position x="246.923" y="8.34395" z="225.463" />
-			<Orientation angle="-3.05728" />
+			<Orientation angle="-1.61553" />
 		</Entity>
 		<Entity>
 			<Template>celt_scout_tower</Template>
@@ -537,13 +541,13 @@
 			<Template>hele_fortress</Template>
 			<Player>2</Player>
 			<Position x="209.349" y="5.56035" z="88.7263" />
-			<Orientation angle="1.576" />
+			<Orientation angle="2.30439" />
 		</Entity>
 		<Entity>
 			<Template>hele_barracks</Template>
 			<Player>2</Player>
-			<Position x="184.403" y="5.56034" z="10.8819" />
-			<Orientation angle="1.52367" />
+			<Position x="183.31" y="5.56036" z="11.2574" />
+			<Orientation angle="2.33836" />
 		</Entity>
 		<Entity>
 			<Template>hele_cavalry_swordsman_b</Template>
@@ -567,7 +571,7 @@
 			<Template>hele_civil_centre</Template>
 			<Player>2</Player>
 			<Position x="217.175" y="5.56036" z="39.2536" />
-			<Orientation angle="1.55758" />
+			<Orientation angle="2.39596" />
 		</Entity>
 		<Entity>
 			<Template>hele_dock</Template>
@@ -579,7 +583,7 @@
 			<Template>hele_farmstead</Template>
 			<Player>2</Player>
 			<Position x="236.929" y="5.56036" z="92.5947" />
-			<Orientation angle="1.60825" />
+			<Orientation angle="2.40538" />
 		</Entity>
 		<Entity>
 			<Template>hele_hero_alexander</Template>
@@ -621,19 +625,19 @@
 			<Template>hele_house</Template>
 			<Player>2</Player>
 			<Position x="186.063" y="5.56035" z="51.3717" />
-			<Orientation angle="1.49123" />
+			<Orientation angle="2.22798" />
 		</Entity>
 		<Entity>
 			<Template>hele_house</Template>
 			<Player>2</Player>
 			<Position x="215.357" y="5.56035" z="68.4553" />
-			<Orientation angle="1.54406" />
+			<Orientation angle="2.34436" />
 		</Entity>
 		<Entity>
 			<Template>hele_house</Template>
 			<Player>2</Player>
 			<Position x="203.087" y="5.56035" z="68.8823" />
-			<Orientation angle="1.52452" />
+			<Orientation angle="2.31032" />
 		</Entity>
 		<Entity>
 			<Template>hele_infantry_archer_a</Template>
@@ -692,26 +696,26 @@
 		<Entity>
 			<Template>hele_market</Template>
 			<Player>2</Player>
-			<Position x="183.431" y="5.56035" z="32.8166" />
-			<Orientation angle="1.58727" />
+			<Position x="186.344" y="5.56035" z="33.0329" />
+			<Orientation angle="2.47078" />
 		</Entity>
 		<Entity>
 			<Template>hele_mill</Template>
 			<Player>2</Player>
 			<Position x="244.312" y="5.56036" z="114.648" />
-			<Orientation angle="1.59765" />
+			<Orientation angle="2.38783" />
 		</Entity>
 		<Entity>
 			<Template>hele_sb1</Template>
 			<Player>2</Player>
-			<Position x="245.65" y="5.56035" z="10.8261" />
-			<Orientation angle="1.56794" />
+			<Position x="241.299" y="5.56035" z="10.7585" />
+			<Orientation angle="-2.16898" />
 		</Entity>
 		<Entity>
 			<Template>hele_sb2</Template>
 			<Player>2</Player>
 			<Position x="240.357" y="5.56035" z="62.4988" />
-			<Orientation angle="-3.12816" />
+			<Orientation angle="-2.33073" />
 		</Entity>
 		<Entity>
 			<Template>hele_scout_tower</Template>
@@ -789,13 +793,13 @@
 			<Template>hele_temple</Template>
 			<Player>2</Player>
 			<Position x="247.025" y="5.56035" z="33.7816" />
-			<Orientation angle="-3.09884" />
+			<Orientation angle="2.4389" />
 		</Entity>
 		<Entity>
 			<Template>iber_barracks</Template>
 			<Player>3</Player>
 			<Position x="26.0886" y="5.56035" z="198.953" />
-			<Orientation angle="3.13753" />
+			<Orientation angle="-2.38807" />
 		</Entity>
 		<Entity>
 			<Template>iber_cavalry_javelinist_a</Template>
@@ -837,7 +841,7 @@
 			<Template>iber_civil_centre</Template>
 			<Player>3</Player>
 			<Position x="59.043" y="5.56035" z="211.309" />
-			<Orientation angle="-3.10666" />
+			<Orientation angle="-2.40512" />
 		</Entity>
 		<Entity>
 			<Template>iber_dock</Template>
@@ -849,7 +853,7 @@
 			<Template>iber_farmstead</Template>
 			<Player>3</Player>
 			<Position x="82.2953" y="5.56035" z="229.355" />
-			<Orientation angle="3.12532" />
+			<Orientation angle="2.38529" />
 		</Entity>
 		<Entity>
 			<Template>iber_fortress</Template>
@@ -933,13 +937,13 @@
 			<Template>iber_market</Template>
 			<Player>3</Player>
 			<Position x="70.5473" y="5.56035" z="174.972" />
-			<Orientation angle="3.12124" />
+			<Orientation angle="-2.43773" />
 		</Entity>
 		<Entity>
 			<Template>iber_mill</Template>
 			<Player>3</Player>
 			<Position x="39.4904" y="5.56035" z="242.955" />
-			<Orientation angle="3.12696" />
+			<Orientation angle="-2.53263" />
 		</Entity>
 		<Entity>
 			<Template>iber_scout_tower</Template>
@@ -981,13 +985,13 @@
 			<Template>iber_temple</Template>
 			<Player>3</Player>
 			<Position x="82.9368" y="5.56036" z="204.004" />
-			<Orientation angle="-3.13078" />
+			<Orientation angle="-2.44098" />
 		</Entity>
 		<Entity>
 			<Template>pers_barracks</Template>
 			<Player>4</Player>
 			<Position x="53.175" y="5.56035" z="31.9023" />
-			<Orientation angle="3.12551" />
+			<Orientation angle="-2.36527" />
 		</Entity>
 		<Entity>
 			<Template>pers_cavalry_archer_b</Template>
@@ -1065,7 +1069,7 @@
 			<Template>pers_civil_centre</Template>
 			<Player>4</Player>
 			<Position x="107.671" y="5.56035" z="32.0544" />
-			<Orientation angle="3.12419" />
+			<Orientation angle="-2.31143" />
 		</Entity>
 		<Entity>
 			<Template>pers_dock</Template>
@@ -1077,31 +1081,31 @@
 			<Template>pers_farmstead</Template>
 			<Player>4</Player>
 			<Position x="40.5667" y="5.56035" z="9.87599" />
-			<Orientation angle="3.11119" />
+			<Orientation angle="-2.44275" />
 		</Entity>
 		<Entity>
 			<Template>pers_fortress</Template>
 			<Player>4</Player>
 			<Position x="16.5784" y="5.56035" z="37.3096" />
-			<Orientation angle="-3.13995" />
+			<Orientation angle="-2.2718" />
 		</Entity>
 		<Entity>
 			<Template>pers_house</Template>
 			<Player>4</Player>
 			<Position x="137.728" y="5.56035" z="5.90257" />
-			<Orientation angle="1.60078" />
+			<Orientation angle="2.39394" />
 		</Entity>
 		<Entity>
 			<Template>pers_house</Template>
 			<Player>4</Player>
 			<Position x="148.332" y="5.56035" z="20.984" />
-			<Orientation angle="3.09232" />
+			<Orientation angle="2.41545" />
 		</Entity>
 		<Entity>
 			<Template>pers_house</Template>
 			<Player>4</Player>
 			<Position x="135.212" y="5.56035" z="19.7198" />
-			<Orientation angle="1.55844" />
+			<Orientation angle="-2.29471" />
 		</Entity>
 		<Entity>
 			<Template>pers_infantry_archer_b</Template>
@@ -1161,19 +1165,19 @@
 			<Template>pers_market</Template>
 			<Player>4</Player>
 			<Position x="135.961" y="5.56035" z="40.466" />
-			<Orientation angle="-3.11663" />
+			<Orientation angle="-2.3326" />
 		</Entity>
 		<Entity>
 			<Template>pers_mill</Template>
 			<Player>4</Player>
-			<Position x="12.7924" y="5.56035" z="12.9212" />
-			<Orientation angle="3.06468" />
+			<Position x="17.6151" y="5.56035" z="9.48245" />
+			<Orientation angle="-2.28882" />
 		</Entity>
 		<Entity>
 			<Template>pers_scout_tower</Template>
 			<Player>4</Player>
 			<Position x="80.7435" y="5.56035" z="33.2941" />
-			<Orientation angle="3.0777" />
+			<Orientation angle="2.43676" />
 		</Entity>
 		<Entity>
 			<Template>pers_super_cavalry</Template>
@@ -1203,49 +1207,49 @@
 			<Template>pers_temple</Template>
 			<Player>4</Player>
 			<Position x="103.076" y="5.56035" z="55.9463" />
-			<Orientation angle="-3.13059" />
+			<Orientation angle="-2.3712" />
 		</Entity>
 		<Entity>
 			<Template>rome_barracks</Template>
 			<Player>5</Player>
 			<Position x="135.945" y="5.56034" z="182.867" />
-			<Orientation angle="1.62494" />
+			<Orientation angle="2.31878" />
 		</Entity>
 		<Entity>
 			<Template>rome_civil_centre</Template>
 			<Player>5</Player>
 			<Position x="132.474" y="5.56035" z="227.059" />
-			<Orientation angle="1.63795" />
+			<Orientation angle="2.34014" />
 		</Entity>
 		<Entity>
 			<Template>rome_farmstead</Template>
 			<Player>5</Player>
 			<Position x="150.859" y="5.56035" z="247.152" />
-			<Orientation angle="-3.10528" />
+			<Orientation angle="-2.31467" />
 		</Entity>
 		<Entity>
 			<Template>rome_fortress</Template>
 			<Player>5</Player>
 			<Position x="103.362" y="5.56034" z="242.356" />
-			<Orientation angle="3.13956" />
+			<Orientation angle="2.30189" />
 		</Entity>
 		<Entity>
 			<Template>rome_house</Template>
 			<Player>5</Player>
-			<Position x="129.784" y="5.56035" z="203.067" />
-			<Orientation angle="1.59121" />
+			<Position x="124.613" y="5.56035" z="205.409" />
+			<Orientation angle="2.37199" />
 		</Entity>
 		<Entity>
 			<Template>rome_house</Template>
 			<Player>5</Player>
-			<Position x="142.201" y="5.56035" z="207.438" />
-			<Orientation angle="1.56207" />
+			<Position x="151.125" y="5.56035" z="217.387" />
+			<Orientation angle="2.37814" />
 		</Entity>
 		<Entity>
 			<Template>rome_house</Template>
 			<Player>5</Player>
 			<Position x="144.444" y="5.56035" z="196.781" />
-			<Orientation angle="1.60724" />
+			<Orientation angle="2.32562" />
 		</Entity>
 		<Entity>
 			<Template>rome_infantry_javelinist_b</Template>
@@ -1323,13 +1327,13 @@
 			<Template>rome_market</Template>
 			<Player>5</Player>
 			<Position x="106.778" y="5.56036" z="203.243" />
-			<Orientation angle="1.56134" />
+			<Orientation angle="2.26163" />
 		</Entity>
 		<Entity>
 			<Template>rome_scout_tower</Template>
 			<Player>5</Player>
 			<Position x="115.615" y="5.56035" z="158.279" />
-			<Orientation angle="1.44394" />
+			<Orientation angle="2.30415" />
 		</Entity>
 		<Entity>
 			<Template>rome_super_cavalry</Template>
@@ -1359,7 +1363,7 @@
 			<Template>rome_temple</Template>
 			<Player>5</Player>
 			<Position x="111.487" y="5.56035" z="179.135" />
-			<Orientation angle="3.12033" />
+			<Orientation angle="2.32071" />
 		</Entity>
 		<Entity>
 			<Template>flora_tree_carob</Template>
@@ -1508,25 +1512,13 @@
 		<Entity>
 			<Template>flora_tree_oak</Template>
 			<Player>0</Player>
-			<Position x="187.162" y="8.34395" z="233.798" />
-			<Orientation angle="2.63151" />
-		</Entity>
-		<Entity>
-			<Template>flora_tree_oak</Template>
-			<Player>0</Player>
-			<Position x="196.053" y="8.34395" z="236.608" />
-			<Orientation angle="2.73637" />
-		</Entity>
-		<Entity>
-			<Template>flora_tree_oak</Template>
-			<Player>0</Player>
 			<Position x="190.481" y="8.34394" z="193.603" />
 			<Orientation angle="1.81588" />
 		</Entity>
 		<Entity>
 			<Template>flora_tree_oak</Template>
 			<Player>0</Player>
-			<Position x="187.217" y="8.34395" z="170.463" />
+			<Position x="182.764" y="8.34395" z="175.759" />
 			<Orientation angle="1.95358" />
 		</Entity>
 		<Entity>
@@ -1538,19 +1530,19 @@
 		<Entity>
 			<Template>flora_tree_poplar</Template>
 			<Player>0</Player>
-			<Position x="195.849" y="8.34396" z="217.888" />
+			<Position x="189.949" y="8.34394" z="236.14" />
 			<Orientation angle="2.74825" />
 		</Entity>
 		<Entity>
 			<Template>flora_tree_poplar</Template>
 			<Player>0</Player>
-			<Position x="194.105" y="8.34395" z="233.021" />
+			<Position x="189.238" y="8.34394" z="243.137" />
 			<Orientation angle="2.27626" />
 		</Entity>
 		<Entity>
 			<Template>flora_tree_poplar</Template>
 			<Player>0</Player>
-			<Position x="188.883" y="8.34394" z="171.42" />
+			<Position x="182.786" y="8.34395" z="196.596" />
 			<Orientation angle="2.35619" />
 		</Entity>
 		<Entity>
@@ -1809,7 +1801,7 @@
 		<Nonentity>
 			<Actor>props/flora/grass_soft_small.xml</Actor>
 			<Position x="209.028" y="8.34395" z="221.214" />
-			<Orientation angle="2.35619" />
+			<Orientation angle="-0.218737" />
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_small_tall.xml</Actor>
