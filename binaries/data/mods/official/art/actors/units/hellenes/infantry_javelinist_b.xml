@@ -73,7 +73,7 @@
         <animation file="biped/chop.psa" name="Chop" speed="150"/>
       </animations>
       <props>
-        <prop actor="props/units/tools/handaxe.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/tools/axe.xml" attachpoint="r_hand"/>
       </props>
     </variant>
   </group>
@@ -84,7 +84,7 @@
         <animation file="biped/hoe.psa" name="Hoe" speed="150"/>
       </animations>
       <props>
-        <prop actor="props/units/tools/prop_mallet.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/tools/hoe.xml" attachpoint="l_hand"/>
       </props>
     </variant>
   </group>
@@ -94,6 +94,9 @@
       <animations>
         <animation file="biped/forage.psa" name="Forage" speed="5"/>
       </animations>
+      <props>
+        <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
+      </props>
     </variant>
   </group>
 
@@ -103,7 +106,7 @@
         <animation file="biped/mine.psa" name="Mine" speed="150"/>
       </animations>
       <props>
-        <prop actor="props/units/tools/prop_pick.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/tools/pick.xml" attachpoint="r_hand"/>
       </props>
     </variant>
   </group>
@@ -114,7 +117,7 @@
         <animation file="biped/dudebuild.psa" name="Build" speed="150"/>
       </animations>
       <props>
-        <prop actor="props/units/tools/prop_mallet.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/tools/mallet.xml" attachpoint="r_hand"/>
       </props>
     </variant>
   </group>
