@@ -742,6 +742,7 @@ function entityEventTargetChanged( evt )
 	// If we can gather, and the target supplies, gather. If it's our enemy, and we're armed, attack. 
 	// If all else fails, move (or run on a right-click).
 	
+	
 	evt.defaultOrder = NMT_Goto;
 	evt.defaultCursor = "arrow-default";
 	evt.defaultAction = ACTION_NONE;
@@ -1311,4 +1312,33 @@ function GotoInRange( x, y, run )
 		this.order( ORDER_RUN, x, y - this.actions.escort.distance, true);
 	else
 		this.order( ORDER_GOTO, x, y - this.actions.escort.distance, true);
+}
+function entityEventFormation( evt )
+{
+	if ( evt.formationEvent == FORMATION_ENTER )
+	{
+		if ( this.getFormationBonus() && this.isInClass( this.getFormationBonusType() ) )
+		{
+			eval( this + this.getFormationBonus() ) += eval( this + this.getFormationBonus() ) *		
+				 this.getFormationBonusVal();
+		}
+		if ( this.getFormationPenalty() && this.isInClass( this.getFormationPenaltyType() ) )
+		{
+			eval( this + this.getFormationPenalty() ) -= eval( this + this.getFormationbonus() ) *
+				this.getFormationPenaltyVal();
+		}
+	}
+	//Reverse the bonuses
+	else if ( evt.formationEvent == FORMATION_LEAVE )
+	{
+		if ( this.getFormationBonus() && this.isInClass( this.getFormationBonusType() ) )
+		{
+			eval( this + this.getFormationBonus() ) -= eval( this + this.getFormationBonus() ) *						 this.getFormationBonusVal();
+		}
+		if ( this.getFormationPenalty() && this.isInClass( this.getFormationPenaltyType() ) )
+		{
+			eval( this + this.getFormationPenalty() ) += eval( this + this.getFormationbonus() ) *
+				this.getFormationPenaltyVal();
+		}
+	}	
 }

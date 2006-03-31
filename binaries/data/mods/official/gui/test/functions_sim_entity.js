@@ -70,6 +70,7 @@ function worldClickHandler(event)
 			else
 				args[1]=event.secondaryAction;
 		break;
+		//TODO:  get rid of order() calls.
 		case NMT_NotifyRequest:
 			if (event.clicks == 1)
 				action = event.action;
@@ -78,8 +79,10 @@ function worldClickHandler(event)
 			
 			if (event.entity.isIdle())
 			{
-				for (i=0; i<selection.length;i++)			
+				for (var i=0; i<selection.length;i++)			
 				{
+					if (!selection[i].actions)
+						continue;
 					console.write("Requesting notification for " + event.entity);
 					selection[i].requestNotification( event.entity, action, true );
 					selection[i].order( ORDER_GOTO, event.entity.position.x, event.entity.position.z -							selection[i].actions.escort.distance, true);
@@ -87,8 +90,10 @@ function worldClickHandler(event)
 			}
 			else
 			{
-				for (i=0; i<selection.length;i++)	
+				for (var i=0; i<selection.length;i++)	
 				{
+					if (!selection[i].actions)
+						continue;
 					console.write("Requesting notification for " + event.entity);		
 					selection[i].requestNotification( event.entity, action, true );
 				}
