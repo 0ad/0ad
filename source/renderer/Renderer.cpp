@@ -293,6 +293,18 @@ struct CRendererInternals
 		delete shadow;
 		delete terrainRenderer;
 	}
+
+	bool CanUseRenderPathVertexShader()
+	{
+		for(int vertexType = 0; vertexType < NumVertexTypes; ++vertexType)
+		{
+			if (!Model.pal_NormalHWLit[vertexType] ||
+			    !Model.pal_PlayerHWLit[vertexType])
+				return false;
+		}
+
+		return true;
+	}
 };
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -614,7 +626,7 @@ void CRenderer::SetRenderPath(RenderPath rp)
 	// Renderer has been opened, so validate the selected renderpath
 	if (rp == RP_DEFAULT)
 	{
-		if (m->Model.pal_NormalHWLit && m->Model.pal_PlayerHWLit)
+		if (m->CanUseRenderPathVertexShader())
 			rp = RP_VERTEXSHADER;
 		else
 			rp = RP_FIXED;
@@ -622,7 +634,7 @@ void CRenderer::SetRenderPath(RenderPath rp)
 
 	if (rp == RP_VERTEXSHADER)
 	{
-		if (!m->Model.pal_NormalHWLit || !m->Model.pal_PlayerHWLit)
+		if (!m->CanUseRenderPathVertexShader())
 		{
 			LOG(WARNING, LOG_CATEGORY, "Falling back to fixed function\n");
 			rp = RP_FIXED;
