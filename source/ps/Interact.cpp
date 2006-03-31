@@ -13,11 +13,14 @@
 #include "timer.h"
 #include "Game.h"
 #include "ps/Globals.h"
+#include "ps/VFSUtil.h"
 #include "Network/NetMessage.h"
 #include "BoundingObjects.h"
 #include "Unit.h"
 #include "Model.h"
 #include "simulation/BaseEntityCollection.h"
+#include "simulation/EntityFormation.h"
+#include "simulation/FormationManager.h"
 #include "scripting/GameEvents.h"
 #include "UnitManager.h"
 #include "MathUtil.h"
@@ -92,6 +95,7 @@ void CSelectedEntities::renderHealthBars()
 		for( it = m_groups[m_group_highlight].begin(); it < m_groups[m_group_highlight].end(); it++ )
 			(*it)->renderHealthBar();
 
+
 		glDisable( GL_BLEND );
 	}
 }
@@ -113,6 +117,25 @@ void CSelectedEntities::renderStaminaBars()
 		glDisable( GL_BLEND );
 	}
 }
+void CSelectedEntities::renderRanks()
+{
+	std::vector<HEntity>::iterator it;
+	for( it = m_selected.begin(); it < m_selected.end(); it++ )
+		(*it)->renderRank();
+
+	if( m_group_highlight != -1 )
+	{
+		glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+		glEnable( GL_BLEND );
+
+		std::vector<HEntity>::iterator it;
+		for( it = m_groups[m_group_highlight].begin(); it < m_groups[m_group_highlight].end(); it++ )
+			(*it)->renderRank();
+
+		glDisable( GL_BLEND );
+	}
+}
+
 
 void CSelectedEntities::renderOverlays()
 {
@@ -793,7 +816,49 @@ void CMouseoverEntities::renderStaminaBars()
 
 	glDisable( GL_BLEND );
 }
+void CMouseoverEntities::renderRanks()
+{
+	glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+	glEnable( GL_BLEND );
 
+	std::vector<SMouseoverFader>::iterator it;
+	for( it = m_mouseover.begin(); it < m_mouseover.end(); it++ )
+		it->entity->renderRank();
+
+	glDisable( GL_BLEND );
+}
+
+
+int CSelectedEntities::loadRankTextures()
+{
+	VFSUtil::FileList ranklist;
+	VFSUtil::FindFiles( "art/textures/ui/session/icons", 0, ranklist );
+	for ( std::vector<CStr>::iterator it = ranklist.begin(); it != ranklist.end(); it++ )
+	{
+		if ( !tex_is_known_extension(*it) )
+		{
+			LOG(ERROR, "Unknown rank texture extension", "%s", *it);
+			continue;
+		}
+		Handle tmp = ogl_tex_load(*it);
+		if (tmp <= 0)
+		{
+			LOG(ERROR, "Rank Textures", "loadRankTextures failed on \"%s\"", *it);
+			return tmp;
+		}
+		m_rankTextures[it->AfterLast("/")] = tmp;
+		RETURN_ERR(ogl_tex_upload(tmp));
+	}
+	return 0;
+}
+void CSelectedEntities::destroyRankTextures()
+{
+	for ( std::map<CStr, Handle>::iterator it=m_rankTextures.begin(); it != m_rankTextures.end(); it++ )
+	{
+		ogl_tex_free(it->second);
+		it->second = 0;
+	}
+}
 void CMouseoverEntities::renderOverlays()
 {
 	CCamera *pCamera=g_Game->GetView()->GetCamera();
@@ -869,6 +934,14 @@ void FireWorldClickEvent(uint button, int clicks)
 		g_Mouseover.m_target,
 		(uint)g_Mouseover.m_worldposition.x,
 		(uint)g_Mouseover.m_worldposition.y);
+	
+	//Reset duplication flag- after this, it isn't the same order
+	std::vector<HEntity>::iterator it=g_Selection.m_selected.begin();
+	for ( ; it != g_Selection.m_selected.end(); it++ )
+	{
+		if ( (*it)->m_formation >= 0)
+		(*it)->GetFormation()->SetDuplication(false);
+	}
 }
 
 void MouseButtonUpHandler(const SDL_Event *ev, int clicks)
@@ -968,7 +1041,6 @@ InReaction interactInputHandler( const SDL_Event* ev )
 			if( g_Selection.m_selected.size() )
 				pView->SetCameraTarget( g_Selection.getSelectionPosition() );
 			break;
-
 		case HOTKEY_CAMERA_UNIT_VIEW:
 		{
 			if ( pView->IsAttached() )

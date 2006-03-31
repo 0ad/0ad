@@ -53,8 +53,8 @@ bool CTerrain::Initialize(u32 size,const u16* data)
 	// store terrain size
 	m_MapSize=(size*PATCH_SIZE)+1;
 	m_MapSizePatches=size;
-	//WaterManager *WaterMgr = g_Renderer.GetWaterManager();
-	//WaterMgr->InitWave();
+	WaterManager *WaterMgr = g_Renderer.GetWaterManager();
+//	WaterMgr->InitWave();
 	// allocate data for new terrain
 	m_Heightmap=new u16[m_MapSize*m_MapSize];
 	m_Patches=new CPatch[m_MapSizePatches*m_MapSizePatches];

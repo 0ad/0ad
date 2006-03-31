@@ -105,5 +105,19 @@ class CEventNotification : public CScriptEvent
 public:
 	CEventNotification( CEntityOrder order, int notifyType );
 };
+class CFormationEvent : public CScriptEvent
+{
+	 int m_formationEvent;
 
+public:
+	CFormationEvent( int type );
+
+	enum FormationEventType
+	{
+		FORMATION_ENTER,
+		FORMATION_LEAVE,
+
+		FORMATION_LAST
+	};
+};
 #endif

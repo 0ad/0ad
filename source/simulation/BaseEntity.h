@@ -72,6 +72,11 @@ public:
 	float m_healthRegenStart;
 	float m_healthDecayRate;
 
+	//Rank properties
+	float m_rankHeight;
+	int m_rankSize;
+	CStr m_rankName;
+
 	// Minimap properties
 	CStrW m_minimapType;
 	int m_minimapR;

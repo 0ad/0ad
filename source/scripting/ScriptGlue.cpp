@@ -13,7 +13,9 @@
 #include "EntityHandles.h"
 #include "Entity.h"
 #include "EntityManager.h"
+
 #include "BaseEntityCollection.h"
+#include "EntityFormation.h"
 #include "Scheduler.h"
 #include "timer.h"
 #include "LightEnv.h"
@@ -40,6 +42,8 @@
 #include "graphics/scripting/JSInterface_LightEnv.h"
 #include "scripting/JSConversions.h"
 #include "renderer/WaterManager.h"
+#include "simulation/FormationManager.h"
+
 #ifndef NO_GUI
 # include "gui/scripting/JSInterface_IGUIObject.h"
 #endif
@@ -87,7 +91,6 @@ extern bool g_TerrainModified;
 		JS_ReportError(cx, #func_name ": too few parameters passed");\
 		return JS_FALSE;\
 	}
-
 
 //-----------------------------------------------------------------------------
 // Output
@@ -189,7 +192,27 @@ JSBool getEntityTemplate( JSContext* cx, JSObject*, uint argc, jsval* argv, jsva
 	*rval = OBJECT_TO_JSVAL( v->GetScript() );
 	return( JS_TRUE );
 }
-
+//Used to create net messages for formations--msgList.front() is the original message. see issueCommand
+void CreateFormationMessage( std::vector<CNetMessage*>& msgList, CNetMessage*& msg, HEntity formationEnt )
+{
+	if ( formationEnt->GetFormation()->IsDuplication() || msgList.empty() )
+		return;
+		
+	CNetMessage* tmp;
+	ENetMessageType type=msg->GetType();
+	CEntityList formation = formationEnt->GetFormation()->GetEntityList(); 
+	if ( type == NMT_Goto || type == NMT_Run )
+	{
+		//formationEnt->GetFormation()->BaseToMovement();
+		tmp = CNetMessage::CastCommand(msg, formation, NMT_FormationGoto);
+	}
+	else if ( type == NMT_Generic )
+		tmp = CNetMessage::CastCommand(msg, formation, NMT_FormationGeneric);
+	else
+		return;
+	
+	msgList.push_back(tmp); 
+}
 
 // Issue a command (network message) to an entity or collection.
 // params: either an entity- or entity collection object, message ID [int],
@@ -200,7 +223,7 @@ JSBool issueCommand( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rv
 	REQUIRE_MIN_PARAMS(2, issueCommand);
 	debug_assert(JSVAL_IS_OBJECT(argv[0]));
 	*rval = JSVAL_NULL;
-
+	
 	CEntityList entities;
 
 	if (JS_GetClass(JSVAL_TO_OBJECT(argv[0])) == &CEntity::JSI_class)
@@ -215,17 +238,41 @@ JSBool issueCommand( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rv
 			entities[i]->DestroyListeners( entities[i]->m_currentListener );
 		entities[i]->m_currentListener = NULL;
 	}
-	CNetMessage *msg = CNetMessage::CommandFromJSArgs(entities, cx, argc-1, argv+1);
-	if (msg)
+	std::vector<CNetMessage*> messages;
+	CNetMessage* msg = CNetMessage::CommandFromJSArgs(entities, cx, argc-1, argv+1);
+	if (!msg)
+		return JS_TRUE;
+	
+	messages.push_back(msg);
+	//Generate messages for formations
+	for (size_t i=0; i < entities.size(); i++ )
 	{
-		g_Console->InsertMessage(L"issueCommand: %hs", msg->GetString().c_str());
-		g_Game->GetSimulation()->QueueLocalCommand(msg);
-		*rval = g_ScriptingHost.UCStringToValue(msg->GetString());
+		if ( entities[i]->m_formation >= 0)
+		{
+			CEntityFormation* formation = entities[i]->GetFormation();
+			bool duplicate = formation->IsDuplication();
+			
+			if ( formation->IsLocked() && !duplicate)
+			{
+				formation->SelectAllUnits();
+				CreateFormationMessage(messages, msg, entities[i]);
+				formation->SetDuplication(true);
+				entities.erase( entities.begin()+i );	//we don't want to be in two orders
+			}
+			else if ( duplicate )
+				entities.erase( entities.begin()+i );
+		}
+	}
+	
+	for ( std::vector<CNetMessage*>::iterator it=messages.begin(); it != messages.end(); it++ )
+	{
+		g_Console->InsertMessage(L"issueCommand: %hs", (*it)->GetString().c_str());
+		g_Game->GetSimulation()->QueueLocalCommand(*it);
+		*rval = g_ScriptingHost.UCStringToValue((*it)->GetString());
 	}
 
 	return JS_TRUE;
 }
-
 
 //-----------------------------------------------------------------------------
 // Events

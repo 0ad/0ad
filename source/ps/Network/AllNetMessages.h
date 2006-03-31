@@ -63,6 +63,8 @@ enum ENetMessageType
 	NMT_Produce,
 	NMT_Run,
 	NMT_NotifyRequest,
+	NMT_FormationGoto,
+	NMT_FormationGeneric,
 
 	NMT_COMMAND_LAST,
 	/* Post-Game Stage */
@@ -240,6 +242,16 @@ DERIVE_NMT_CLASS_(NetCommand, Produce)
 END_NMT_CLASS()
 
 DERIVE_NMT_CLASS_(NetCommand, NotifyRequest)
+	NMT_FIELD(HEntity, m_Target)
+	NMT_FIELD_INT(m_Action, u32, 4)
+END_NMT_CLASS()
+
+DERIVE_NMT_CLASS_(NetCommand, FormationGoto)
+	NMT_FIELD_INT(m_TargetX, u32, 2)
+	NMT_FIELD_INT(m_TargetY, u32, 2)
+END_NMT_CLASS()
+
+DERIVE_NMT_CLASS_(NetCommand, FormationGeneric)
 	NMT_FIELD(HEntity, m_Target)
 	NMT_FIELD_INT(m_Action, u32, 4)
 END_NMT_CLASS()

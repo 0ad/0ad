@@ -6,7 +6,7 @@
 #include <map>
 
 #include "Entity.h"
-
+#include "Vector2D.h"
 #define ALLNETMSGS_IMPLEMENT
 
 #include "NetMessage.h"
@@ -84,6 +84,8 @@ void CNetMessage::ScriptingInit()
 	def(NMT_Generic);
 	def(NMT_Produce);
 	def(NMT_NotifyRequest);
+	def(NMT_FormationGoto);
+	def(NMT_FormationGeneric);
 }
 
 CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSContext *cx, uintN argc, jsval *argv)
@@ -201,10 +203,12 @@ CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSConte
 		PositionMessage(Run)
 		PositionMessage(Patrol)
 		PositionMessage(AddWaypoint)
-
+		PositionMessage(FormationGoto)
 		// NMT_Generic, target, action
 		EntityIntMessage(Generic)
 		EntityIntMessage(NotifyRequest)
+		EntityIntMessage(FormationGeneric)
+		
 
 		// NMT_Produce, type, name
 		ProduceMessage(Produce)
@@ -214,3 +218,137 @@ CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSConte
 			return NULL;
 	}
 }
+
+CNetCommand *CNetMessage::CastCommand(CNetMessage*& message, const CEntityList& entities, const ENetMessageType type)
+{
+	 #define CopyPositionMessage(_msg) \
+		case NMT_ ## _msg: \
+		{ \
+			C##_msg *msg = new C##_msg(); \
+			C##_msg *castmsg = static_cast<C##_msg*>(message); \
+			msg->m_TargetX = castmsg->m_TargetX; \
+			msg->m_TargetY = castmsg->m_TargetY; \
+			msg->m_Entities = entities; \
+			return msg; \
+		}
+	
+	#define CopyEntityMessage(_msg) \
+		case NMT_ ## _msg: \
+		{ \
+			C##_msg *msg = new C##_msg(); \
+			C##_msg *castmsg = static_cast<C##_msg*>(message); \
+			msg->m_Entities = entities; \
+			msg->m_Target = castmsg->Target; \
+			return msg; \
+		}
+
+	#define CopyEntityIntMessage(_msg) \
+		case NMT_ ## _msg: \
+		{ \
+			C##_msg *msg = new C##_msg(); \
+			C##_msg *castmsg = static_cast<C##_msg*>(message); \
+			msg->m_Entities = entities; \
+			msg->m_Target = castmsg->m_Target; \
+			msg->m_Action = castmsg->m_Action; \
+			return msg; \
+		}
+	
+	#define CopyProduceMessage(_msg) \
+		case NMT_ ## _msg: \
+		{ \
+			C##_msg *msg = new C##_msg(); \
+			C##_msg *castmsg = static_cast<C##_msg*>(message); \
+			msg->m_Entities = entities; \
+			msg->m_Name = castmsg->m_Name; \
+			msg->m_Type = castmsg->m_Type; \
+			return msg; \
+		}
+
+	switch (type)
+	{
+		CopyPositionMessage(Goto)
+		CopyPositionMessage(Run)
+		CopyPositionMessage(Patrol)
+		CopyPositionMessage(AddWaypoint)
+		CopyPositionMessage(FormationGoto)
+
+		CopyEntityIntMessage(Generic)
+		CopyEntityIntMessage(NotifyRequest)
+		CopyEntityIntMessage(FormationGeneric)
+		
+		CopyProduceMessage(Produce)
+
+		default:
+			return NULL;
+	}
+} 
+CNetMessage *CNetMessage::CreatePositionMessage( const CEntityList& entities, const ENetMessageType type, CVector2D pos )
+{
+	#define PosMessage(_msg) \
+		case NMT_ ## _msg: \
+		{ \
+			C##_msg* msg = new C##_msg(); \
+			msg->m_Entities = entities; \
+			msg->m_TargetX = pos.x; \
+			msg->m_TargetY = pos.y; \
+			return msg; \
+		}
+	
+	switch (type)
+	{
+		PosMessage(Goto)
+		PosMessage(Run)
+		PosMessage(Patrol)
+		PosMessage(AddWaypoint)
+		PosMessage(FormationGoto)
+	
+	default:
+			return NULL;
+	}
+}
+CNetMessage *CNetMessage::CreateEntityIntMessage( const CEntityList& entities, const ENetMessageType type, HEntity& target, int action )
+{
+	#define EntMessage(_msg) \
+		case NMT_ ## _msg: \
+		{ \
+			C##_msg* msg = new C##_msg(); \
+			msg->m_Entities = entities; \
+			msg->m_Target = target; \
+			msg->m_Action = action; \
+			return msg; \
+		}
+
+	switch (type)
+	{
+		EntMessage(Generic)
+		EntMessage(NotifyRequest)
+		EntMessage(FormationGeneric)
+
+	default:
+		return NULL;
+	}
+}
+CNetMessage *CNetMessage::CreateProduceMessage( const CEntityList& entities, const ENetMessageType type, int proType, CStrW name )
+{
+	#define ProMessage(_msg)\
+		case NMT_ ## _msg: \
+		{ \
+			C##_msg* msg = new C##_msg(); \
+			msg->m_Entities = entities; \
+			msg->m_Type = proType; \
+			msg->m_Name = name; \
+			return msg; \
+		}
+
+	switch (type)
+	{
+		ProMessage(Produce)
+
+	default:
+		return NULL;
+	}
+}
+
+		
+
+	

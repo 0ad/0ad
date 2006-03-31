@@ -135,7 +135,7 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_COLOR_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-
+	
 	// render everything fullbright
 	// set up texture environment for base pass
 	MICROLOG(L"base splat textures");
@@ -154,13 +154,13 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 	static const float one[4] = { 1.f, 1.f, 1.f, 1.f };
 	glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, one);
-
+	
 	for(uint i = 0; i < m->visiblePatches.size(); ++i)
 	{
 		CPatchRData* patchdata = (CPatchRData*)m->visiblePatches[i]->GetRenderData();
 		patchdata->RenderBase(true); // with LOS color
 	}
-
+	
 	// render blends
 	// switch on the composite alpha map texture
 	(void)ogl_tex_bind(g_Renderer.m_hCompositeAlphaMap, 1);
@@ -185,14 +185,14 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 
 	// no need to write to the depth buffer a second time
 	glDepthMask(0);
-
+	
 	// render blend passes for each patch
 	for(uint i = 0; i < m->visiblePatches.size(); ++i)
 	{
 		CPatchRData* patchdata = (CPatchRData*)m->visiblePatches[i]->GetRenderData();
 		patchdata->RenderBlends();
 	}
-
+	
 	// Disable second texcoord array
 	pglClientActiveTextureARB(GL_TEXTURE1);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -201,7 +201,7 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
 
 	glBlendFunc(GL_DST_COLOR, GL_ZERO);
-
+	
 	if (!shadow)
 	{
 		pglActiveTextureARB(GL_TEXTURE0);
@@ -219,6 +219,7 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 
 		glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, &lightEnv.m_TerrainAmbientColor.X);
+		
 	}
 	else
 	{
@@ -275,6 +276,7 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 
 			glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, &lightEnv.m_TerrainAmbientColor.X);
+			
 		}
 		else
 		{
@@ -301,36 +303,39 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 
 			glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, &lightEnv.m_TerrainAmbientColor.X);
+			
 		}
 	}
 
-
 	pglActiveTextureARB(GL_TEXTURE0);
 	pglClientActiveTextureARB(GL_TEXTURE0);
-
+	
 	for (uint i = 0; i < m->visiblePatches.size(); ++i)
 	{
 		CPatchRData* patchdata = (CPatchRData*)m->visiblePatches[i]->GetRenderData();
 		patchdata->RenderStreams(STREAM_POS|STREAM_COLOR|STREAM_POSTOUV0, false);
 	}
-
+	
 	glMatrixMode(GL_TEXTURE);
 	glLoadIdentity();
 	glMatrixMode(GL_MODELVIEW);
 
 	// restore OpenGL state
-	g_Renderer.BindTexture(2,0);
+	if ( shadow )
+	{
+		if ( shadow->GetUseDepthTexture() )	
+			g_Renderer.BindTexture(2,0);	
+	}
 	g_Renderer.BindTexture(1,0);
 
 	pglClientActiveTextureARB(GL_TEXTURE0);
 	pglActiveTextureARB(GL_TEXTURE0);
-
 	glDepthMask(1);
 	glDisable(GL_BLEND);
-
 	glDisableClientState(GL_COLOR_ARRAY);
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	
 }
 
 
@@ -370,7 +375,8 @@ void TerrainRenderer::RenderWater()
 {
 	PROFILE(" render water ");
 
-	//Fresnel effect
+
+	//(Crappy) fresnel effect
 	CCamera* Camera=g_Game->GetView()->GetCamera();
 	CVector3D CamFace=Camera->m_Orientation.GetIn();
 	CamFace.Normalize();
@@ -385,6 +391,7 @@ void TerrainRenderer::RenderWater()
 	int mapSize = terrain->GetVerticesPerSide();
 	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
 	WaterManager* WaterMgr = g_Renderer.GetWaterManager();
+	
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
@@ -414,7 +421,7 @@ void TerrainRenderer::RenderWater()
 
 	// Set the proper LOD bias
 	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
-
+	
 	glBegin(GL_QUADS);
 
 	for(size_t i=0; i<m->visiblePatches.size(); i++)
@@ -433,7 +440,7 @@ void TerrainRenderer::RenderWater()
 				for(int j=0; j<4; j++)
 				{
 					float terrainHeight = terrain->getVertexGroundLevel(x + DX[j], z + DZ[j]);
-					if(terrainHeight < WaterMgr->m_WaterHeight)
+					if( terrainHeight < WaterMgr->m_WaterHeight )
 					{
 						shouldRender = true;
 						break;
@@ -481,12 +488,10 @@ void TerrainRenderer::RenderWater()
 			}	//end of x loop
 		}	//end of z loop
 	}
-
 	glEnd();
 
 	glLoadIdentity();
 	glMatrixMode(GL_MODELVIEW);
-
 	glDepthMask(GL_TRUE);
 	glDisable(GL_BLEND);
 	glDisable(GL_TEXTURE_2D);

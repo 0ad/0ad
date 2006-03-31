@@ -29,7 +29,6 @@
 #include <deque>
 #include "scripting/ScriptableComplex.h"
 #include "Player.h"
-
 #include "Vector2D.h"
 #include "Vector3D.h"
 #include "UnitManager.h"
@@ -46,6 +45,8 @@ class CBoundingObject;
 class CUnit;
 class CAura;
 class CProductionQueue;
+
+class CEntityFormation;
 
 // TODO MT: Put this is /some/ sort of order...
 
@@ -88,6 +89,8 @@ public:
 
 	bool m_selected;
 	i32 m_grouped;
+	int m_formation;	//Indice of which formation we're in
+	int m_formationSlot;	//The slot of the above formation 
 
 	// If this unit has been removed from the gameworld but has still
 	// has references.
@@ -117,6 +120,11 @@ public:
 	float m_healthMax;
 	float m_healthBarHeight;
 	int m_healthBarSize;
+	
+	//Rank properties
+	float m_rankHeight;
+	int m_rankSize;
+	CStr m_rankName;
 
 	bool m_healthDecay;
 	
@@ -255,6 +263,7 @@ public:
 	void renderSelectionOutline( float alpha = 1.0f );
 	void renderHealthBar();
 	void renderStaminaBar();
+	void renderRank();
 
 	// After a collision, recalc the path to the next fixed waypoint.
 	void repath();
@@ -278,7 +287,17 @@ public:
 	
 	void DispatchNotification( CEntityOrder order, int type );
 	void DestroyListeners( CEntity* target );
-	
+
+	CEntityFormation* GetFormation();
+	bool IsInClass( JSContext* cx, uintN argc, jsval* argv );
+	jsval GetFormationPenalty( JSContext* cx, uintN argc, jsval* argv );
+	jsval GetFormationPenaltyType( JSContext* cx, uintN argc, jsval* argv );
+	jsval GetFormationPenaltyVal( JSContext* cx, uintN argc, jsval* argv );
+
+	jsval GetFormationBonus( JSContext* cx, uintN argc, jsval* argv );
+	jsval GetFormationBonusType( JSContext* cx, uintN argc, jsval* argv );
+	jsval GetFormationBonusVal( JSContext* cx, uintN argc, jsval* argv );
+	void DispatchFormationEvent( int type );
 	// Script constructor
 
 	static JSBool Construct( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval );
@@ -303,6 +322,11 @@ public:
 	//Just in case we want to explicitly check the listeners without waiting for the order to be pushed
 	bool ForceCheckListeners( JSContext* cx, uintN argc, jsval* argv );
 	void CheckListeners( int type, CEntity *target );
+
+	bool IsInFormation( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+	{
+		return ( m_formation != NULL ? true : false );
+	}
 
 	bool Order( JSContext* cx, uintN argc, jsval* argv, bool Queued );
 	inline bool OrderSingle( JSContext* cx, uintN argc, jsval* argv )

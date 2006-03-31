@@ -21,7 +21,11 @@
 #include "MathUtil.h"
 #include "CConsole.h"
 #include "renderer/WaterManager.h"
+#include "EntityFormation.h"
+#include "simulation/FormationManager.h"
+#include "BaseFormation.h"
 #include "graphics/GameView.h"
+
 
 extern CConsole* g_Console;
 extern int g_xres, g_yres;
@@ -64,6 +68,9 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
     AddProperty( L"traits.stamina.max", &m_staminaMax );
     AddProperty( L"traits.stamina.bar_height", &m_staminaBarHeight );
 	AddProperty( L"traits.stamina.bar_size", &m_staminaBarSize );
+	AddProperty( L"traits.rank.size", &m_rankSize );
+	AddProperty( L"traits.rank.height", &m_rankHeight );
+	AddProperty( L"traits.rank.name", &m_rankName );
     AddProperty( L"traits.minimap.type", &m_minimapType );
     AddProperty( L"traits.minimap.red", &m_minimapR );
     AddProperty( L"traits.minimap.green", &m_minimapG );
@@ -121,7 +128,9 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
 	m_lastCombatTime = 0;
 	m_currentNotification = 0;
 	m_currentListener = NULL;
-
+	
+	m_formationSlot =	-1;
+	m_formation = -1;
     m_grouped = -1;
 
 	m_building = building;
@@ -151,6 +160,9 @@ CEntity::~CEntity()
         delete it->second;
     }
     m_auras.clear();
+	
+	CEntity* remove = this;
+	g_FormationManager.RemoveUnit(remove);
 }
 
 void CEntity::loadBase()
@@ -192,8 +204,11 @@ void CEntity::loadBase()
 void CEntity::kill()
 {
     g_Selection.removeAll( me );
-
-    if( m_bounds )
+	
+	CEntity* remove = this;
+	g_FormationManager.RemoveUnit(remove);
+   
+	if( m_bounds )
         delete( m_bounds );
     m_bounds = NULL;
 
@@ -208,8 +223,9 @@ void CEntity::kill()
         delete( m_actor );
         m_actor = NULL;
     }
-
+	
     updateCollisionPatch();
+	
 
     me = HEntity(); // will deallocate the entity, assuming nobody else has a reference to it
 }
@@ -679,7 +695,17 @@ void CEntity::DestroyListeners( CEntity* target )
 	}
 
 }
-
+CEntityFormation* CEntity::GetFormation()
+{
+	if ( m_formation < 0 )
+		return NULL;
+	return g_FormationManager.GetFormation(m_formation);
+}
+void CEntity::DispatchFormationEvent( int type )
+{
+	CFormationEvent evt( type );
+	DispatchEvent( &evt );
+}
 void CEntity::repath()
 {
     CVector2D destination;
@@ -1051,6 +1077,46 @@ void CEntity::renderStaminaBar()
 
     glEnd();
 }
+void CEntity::renderRank()
+{
+	if( !m_bounds )
+        return;
+    if( m_rankHeight < 0 )
+        return;  // negative bar height means don't display stamina bar
+	//Check for valid texture
+	if( g_Selection.m_rankTextures.find( m_rankName ) == g_Selection.m_rankTextures.end() )
+		return;
+
+    CCamera *g_Camera=g_Game->GetView()->GetCamera();
+
+    float sx, sy;
+    CVector3D above;
+    above.X = m_position.X;
+    above.Z = m_position.Z;
+    above.Y = getAnchorLevel(m_position.X, m_position.Z) + m_rankHeight;
+    g_Camera->GetScreenCoordinates(above, sx, sy);
+    int size = m_rankSize/2;
+
+    float x1 = sx - size;
+    float x2 = sx + size;
+    float y1 = g_yres - (sy - size);	//top
+	float y2 = g_yres - (sy + size);	//bottom
+
+	ogl_tex_bind(g_Selection.m_rankTextures[m_rankName]);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
+	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
+   
+	glBegin(GL_QUADS);
+
+    glTexCoord2f(1.0f, 0.0f); glVertex3f( x2, y2, 0 );
+    glTexCoord2f(1.0f, 1.0f); glVertex3f( x2, y1, 0 );
+    glTexCoord2f(0.0f, 1.0f); glVertex3f( x1, y1,0 );
+    glTexCoord2f(0.0f, 0.0f); glVertex3f( x1, y2, 0 );
+
+    glEnd();
+}
+
 
 void CEntity::CalculateRun(float timestep)
 {
@@ -1105,7 +1171,14 @@ void CEntity::ScriptingInit()
 	AddMethod<jsval, &CEntity::TriggerRun>( "triggerRun", 1 );
 	AddMethod<jsval, &CEntity::SetRun>( "setRun", 1 );
 	AddMethod<jsval, &CEntity::GetRunState>( "getRunState", 0 );
-	
+	AddMethod<bool, &CEntity::IsInFormation>( "isInFormation", 0 );
+	AddMethod<jsval, &CEntity::GetFormationBonus>( "getFormationBonus", 0 );
+	AddMethod<jsval, &CEntity::GetFormationBonusType>( "getFormationBonusType", 0 );
+	AddMethod<jsval, &CEntity::GetFormationBonusVal>( "getFormationBonusVal", 0 );
+	AddMethod<jsval, &CEntity::GetFormationPenalty>( "getFormationPenalty", 0 );
+	AddMethod<jsval, &CEntity::GetFormationPenaltyType>( "getFormationPenaltyType", 0 );
+	AddMethod<jsval, &CEntity::GetFormationPenaltyVal>( "getFormationPenaltyVal", 0 );
+	AddMethod<bool, &CEntity::IsInClass>( "isInClass", 1 );
 
     AddClassProperty( L"template", (CBaseEntity* CEntity::*)&CEntity::m_base, false, (NotifyFn)&CEntity::loadBase );
     AddClassProperty( L"traits.id.classes", (GetFn)&CEntity::getClassSet, (SetFn)&CEntity::setClassSet );
@@ -1354,6 +1427,7 @@ bool CEntity::Kill( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(arg
     clearOrders();
 
 	g_EntityManager.SetDeath(true);	
+	
 
     if( m_actor )
 	{
@@ -1701,4 +1775,38 @@ jsval CEntity::SetRun( JSContext* cx, uintN argc, jsval* argv )
 jsval CEntity::GetRunState( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	return m_isRunning;
+}
+jsval CEntity::GetFormationPenalty( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+{
+	return ToJSVal( GetFormation()->GetBase()->GetPenalty() );
+}
+jsval CEntity::GetFormationPenaltyType( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+{
+	return ToJSVal( GetFormation()->GetBase()->GetPenaltyType() );
+}
+jsval CEntity::GetFormationPenaltyVal( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+{
+	return ToJSVal( GetFormation()->GetBase()->GetPenaltyVal() );
+}
+jsval CEntity::GetFormationBonus( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+{
+	return ToJSVal( GetFormation()->GetBase()->GetBonus() );
+}
+jsval CEntity::GetFormationBonusType( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+{
+	return ToJSVal( GetFormation()->GetBase()->GetBonusType() );
+}
+jsval CEntity::GetFormationBonusVal( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+{
+	return ToJSVal( GetFormation()->GetBase()->GetBonusVal() );
+}
+bool CEntity::IsInClass( JSContext* cx, uintN argc, jsval* argv )
+{
+	if( argc < 1 )
+	{
+		JS_ReportError( cx, "Too few parameters" );
+		return( false );
+	}
+	CStr test = ToPrimitive<CStr>( argv[0] );
+	return m_classes.IsMember( test );
 }

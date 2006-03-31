@@ -36,6 +36,12 @@ struct CSelectedEntities : public Singleton<CSelectedEntities>
 		m_secondaryAction = -1;
 		m_selectionChanged = true;
 		m_mouseOverMM = false;
+
+		loadRankTextures();
+	}
+	~CSelectedEntities()
+	{
+		destroyRankTextures();
 	}
 	std::vector<HEntity> m_selected;
 	std::vector<HEntity> m_groups[MAX_GROUPS];
@@ -71,6 +77,11 @@ struct CSelectedEntities : public Singleton<CSelectedEntities>
 	void renderOverlays();
 	void renderHealthBars();
 	void renderStaminaBars();
+	void renderRanks();
+	
+	void destroyRankTextures();
+	int loadRankTextures();
+	std::map<CStr, Handle> m_rankTextures;
 };
 
 // CMouseoverEntities: the singleton containing entities the mouse is currently hovering over or bandboxing
@@ -121,6 +132,7 @@ struct CMouseoverEntities : public Singleton<CMouseoverEntities>
 	void renderOverlays();
 	void renderHealthBars();
 	void renderStaminaBars();
+	void renderRanks();
 
 	bool isBandbox() { return( m_bandbox ); }
 	void startBandbox( u16 x, u16 y );

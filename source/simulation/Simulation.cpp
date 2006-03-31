@@ -22,6 +22,7 @@
 #include "GameAttributes.h"
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"
+#include "EntityFormation.h"
 
 #include "gui/CGUI.h"
 
@@ -171,6 +172,48 @@ void RandomizeLocations(CEntityOrder order, const vector <HEntity> &entities, bo
 	}
 }
 
+void FormationLocations(CEntityOrder order, const vector <HEntity> &entities, bool clearQueue)
+{
+	CVector2D upvec(0.0f, 1.0f);
+	vector<HEntity>::const_iterator it = entities.begin();
+	CEntityFormation* formation = (*it)->GetFormation();
+
+
+	for (; it != entities.end(); it++)
+	{
+		CEntityOrder orderCopy = order;
+		CVector2D posDelta = orderCopy.m_data[0].location - formation->GetPosition();
+		CVector2D formDelta = formation->GetSlotPosition( (*it)->m_formationSlot );
+		
+		posDelta = posDelta.normalize();
+		//Rotate the slot position's offset vector according to the rotation of posDelta.
+		CVector2D rotDelta;
+		float deltaCos = posDelta.dot(upvec);
+		float deltaSin = sinf( acosf(deltaCos) );
+		rotDelta.x = formDelta.x * deltaCos - formDelta.y * deltaSin;
+		rotDelta.y = formDelta.x * deltaSin + formDelta.y * deltaCos; 
+
+		orderCopy.m_data[0].location += rotDelta;
+
+		// Clamp it to within the map, just in case.
+		float mapsize = (float)g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide() * CELL_SIZE;
+
+		if( orderCopy.m_data[0].location.x < 0.0f )
+			orderCopy.m_data[0].location.x = 0.0f;
+		if( orderCopy.m_data[0].location.x >= mapsize )
+			orderCopy.m_data[0].location.x = mapsize;
+		if( orderCopy.m_data[0].location.y < 0.0f )
+			orderCopy.m_data[0].location.y = 0.0f;
+		if( orderCopy.m_data[0].location.y >= mapsize )
+			orderCopy.m_data[0].location.y = mapsize;
+
+		if( clearQueue )
+			(*it)->clearOrders();
+
+		(*it)->pushOrder( orderCopy );
+	}
+}
+
 void QueueOrder(CEntityOrder order, const vector <HEntity> &entities, bool clearQueue)
 {
 	vector<HEntity>::const_iterator it;
@@ -196,6 +239,14 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 		order.m_data[0].location.x=(float)msg->m_TargetX; \
 		order.m_data[0].location.y=(float)msg->m_TargetY; \
 		RandomizeLocations(order, msg->m_Entities, clearQueue); \
+	} while(0)
+#define ENTITY_POSITION_FORM(_msg, _order) do\
+	{ \
+		_msg *msg=(_msg *)pMsg; \
+		order.m_type=CEntityOrder::_order; \
+		order.m_data[0].location.x=(float)msg->m_TargetX; \
+		order.m_data[0].location.y=(float)msg->m_TargetY; \
+		FormationLocations(order, msg->m_Entities, clearQueue); \
 	} while(0)
 #define ENTITY_ENTITY(_msg, _order) do\
 	{ \
@@ -259,6 +310,13 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 		case NMT_Goto:
 			ENTITY_POSITION(CGoto, ORDER_GOTO);
 			break;
+		case NMT_FormationGoto:
+			ENTITY_POSITION_FORM(CFormationGoto, ORDER_GOTO);
+			break;
+		//TODO: make formation move to within range of target and then attack normally
+		case NMT_FormationGeneric:
+			ENTITY_ENTITY_INT(CFormationGeneric, ORDER_GENERIC);
+			break;
 		case NMT_Run:
 			ENTITY_POSITION(CRun, ORDER_RUN);
 			break;
@@ -274,6 +332,7 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 		case NMT_NotifyRequest:
 			ENTITY_ENTITY_INT(CNotifyRequest, ORDER_NOTIFY_REQUEST);
 			break;
+		
 	}
 
 	return clientMask;

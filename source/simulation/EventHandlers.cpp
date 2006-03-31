@@ -97,3 +97,8 @@ CEventNotification::CEventNotification( CEntityOrder order, int notifyType ) : C
 	AddLocalProperty( L"target", &m_target );
 	AddLocalProperty( L"location", &m_location );
 }
+CFormationEvent::CFormationEvent(  int type ) : CScriptEvent( L"formationEvent", EVENT_FORMATION, true )
+{
+	(int&) m_formationEvent = type;
+	AddLocalProperty( L"formationEvent", &m_formationEvent );
+}

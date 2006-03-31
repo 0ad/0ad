@@ -38,6 +38,9 @@ CBaseEntity::CBaseEntity()
     AddProperty( L"traits.stamina.max", &m_staminaMax );
     AddProperty( L"traits.stamina.bar_height", &m_staminaBarHeight );
 	AddProperty( L"traits.stamina.bar_size", &m_staminaBarSize );
+	AddProperty( L"traits.rank.size", &m_rankSize );
+	AddProperty( L"traits.rank.height", &m_rankHeight );
+	AddProperty( L"traits.rank.name", &m_rankName );
 	AddProperty( L"traits.minimap.type", &m_minimapType );
 	AddProperty( L"traits.minimap.red", &m_minimapR );
 	AddProperty( L"traits.minimap.green", &m_minimapG );

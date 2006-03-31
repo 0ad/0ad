@@ -48,9 +48,11 @@
 #include "maths/MathUtil.h"
 
 #include "simulation/BaseEntityCollection.h"
+#include "simulation/BaseFormationCollection.h"
 #include "simulation/Entity.h"
 #include "simulation/EntityHandles.h"
 #include "simulation/EntityManager.h"
+#include "simulation/FormationManager.h"
 #include "simulation/PathfindEngine.h"
 #include "simulation/Scheduler.h"
 #include "simulation/Projectile.h"
@@ -354,6 +356,8 @@ void Render()
 		g_Selection.renderHealthBars();
 		g_Mouseover.renderStaminaBars();
 		g_Selection.renderStaminaBars();
+		g_Selection.renderRanks();
+		g_Mouseover.renderRanks();
 		glPopMatrix();
 		glMatrixMode(GL_PROJECTION);
 		glPopMatrix();
@@ -495,6 +499,9 @@ static void InitScripting()
 	CScriptEvent::ScriptingInit();
 	CJSProgressTimer::ScriptingInit();
 	CProjectile::ScriptingInit();
+	
+	g_ScriptingHost.DefineConstant( "FORMATION_ENTER", CFormationEvent::FORMATION_ENTER );
+	g_ScriptingHost.DefineConstant( "FORMATION_LEAVE", CFormationEvent::FORMATION_LEAVE );
 
 	g_ScriptingHost.DefineConstant( "NOTIFY_NONE", CEntityListener::NOTIFY_NONE );
 	g_ScriptingHost.DefineConstant( "NOTIFY_GOTO", CEntityListener::NOTIFY_GOTO );
@@ -506,7 +513,7 @@ static void InitScripting()
 	g_ScriptingHost.DefineConstant( "NOTIFY_ESCORT", CEntityListener::NOTIFY_ESCORT );
 	g_ScriptingHost.DefineConstant( "NOTIFY_HEAL", CEntityListener::NOTIFY_HEAL );
 	g_ScriptingHost.DefineConstant( "NOTIFY_GATHER", CEntityListener::NOTIFY_GATHER );
-
+	
 	g_ScriptingHost.DefineConstant( "ORDER_NONE", -1 );
 	g_ScriptingHost.DefineConstant( "ORDER_GOTO", CEntityOrder::ORDER_GOTO );
 	g_ScriptingHost.DefineConstant( "ORDER_RUN", CEntityOrder::ORDER_RUN );
@@ -742,7 +749,9 @@ void Shutdown()
 	TIMER_BEGIN("shutdown game scripting stuff");
 	delete &g_GameAttributes;
 	delete &g_JSGameEvents;
-
+	
+	delete &g_FormationManager;
+	delete &g_EntityFormationCollection;
 	delete &g_EntityTemplateCollection;
 	TIMER_END("shutdown game scripting stuff");
 
@@ -968,6 +977,10 @@ void Init(int argc, char* argv[], uint flags)
 	TIMER("Init_entitiessection");
 	// This needs to be done after the renderer has loaded all its actors...
 	new CBaseEntityCollection;
+	new CBaseFormationCollection;
+	g_EntityFormationCollection.loadTemplates();
+	new CFormationManager;
+
 	// CEntityManager is managed by CWorld
 	//new CEntityManager;
 	new CSelectedEntities;
@@ -988,6 +1001,8 @@ void Init(int argc, char* argv[], uint flags)
 	// Register a few Game/Network JS globals
 	g_ScriptingHost.SetGlobal("g_GameAttributes", OBJECT_TO_JSVAL(g_GameAttributes.GetScript()));
 
+	
+	
 	// Check for heap corruption after every allocation. Very, very slowly.
 	// (And it highlights the allocation just after the one you care about,
 	// so you need to run it again and tell it to break on the one before.)
