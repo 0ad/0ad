@@ -665,7 +665,16 @@ function entityEventGeneric( evt )
 		case ACTION_ATTACK:
 			this.performAttack( evt ); break;
 		case ACTION_GATHER:
-			this.performGather( evt ); break;
+			if ( !this.actions.gather )
+				evt.preventDefault();
+			evt.notifyType = NOTIFY_GATHER;
+
+			// Change our gather animation based on the type of target
+			var a = this.actions.gather;
+			this.setActionParams( ACTION_GATHER, 0.0, a.range, a.speed,
+				"gather_" + evt.target.traits.supply.subtype );
+			
+			break;
 		case ACTION_HEAL:
 			this.performHeal( evt ); break;
 		case ACTION_ATTACK_RANGED:

@@ -68,9 +68,9 @@
   </group>
 
   <group>
-    <variant name="Chop">
+    <variant name="gather_wood">
       <animations>
-        <animation file="biped/chop.psa" name="Chop" speed="150"/>
+        <animation file="biped/chop.psa" name="gather_wood" speed="150"/>
       </animations>
       <props>
         <prop actor="props/units/tools/axe.xml" attachpoint="r_hand"/>
@@ -79,9 +79,9 @@
   </group>
 
   <group>
-    <variant name="Hoe">
+    <variant name="gather_grain">
       <animations>
-        <animation file="biped/hoe.psa" name="Hoe" speed="150"/>
+        <animation file="biped/hoe.psa" name="gather_grain" speed="150"/>
       </animations>
       <props>
         <prop actor="props/units/tools/hoe.xml" attachpoint="l_hand"/>
@@ -90,9 +90,9 @@
   </group>
 
   <group>
-    <variant name="Forage">
+    <variant name="gather_fruit">
       <animations>
-        <animation file="biped/forage.psa" name="Forage" speed="5"/>
+        <animation file="biped/forage.psa" name="gather_fruit" speed="5"/>
       </animations>
       <props>
         <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
@@ -101,9 +101,9 @@
   </group>
 
   <group>
-    <variant name="Mine">
+    <variant name="gather_stone">
       <animations>
-        <animation file="biped/mine.psa" name="Mine" speed="150"/>
+        <animation file="biped/mine.psa" name="gather_stone" speed="150"/>
       </animations>
       <props>
         <prop actor="props/units/tools/pick.xml" attachpoint="r_hand"/>
