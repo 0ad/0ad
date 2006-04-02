@@ -835,19 +835,20 @@ int CSelectedEntities::loadRankTextures()
 	VFSUtil::FindFiles( "art/textures/ui/session/icons", 0, ranklist );
 	for ( std::vector<CStr>::iterator it = ranklist.begin(); it != ranklist.end(); it++ )
 	{
-		if ( !tex_is_known_extension(*it) )
+		const char* filename = it->c_str();
+		if ( !tex_is_known_extension(filename) )
 		{
-			LOG(ERROR, "Unknown rank texture extension", "%s", *it);
+			LOG(ERROR, "Unknown rank texture extension (%s)", filename);
 			continue;
 		}
-		Handle tmp = ogl_tex_load(*it);
-		if (tmp <= 0)
+		Handle ht = ogl_tex_load(filename);
+		if (ht <= 0)
 		{
-			LOG(ERROR, "Rank Textures", "loadRankTextures failed on \"%s\"", *it);
-			return tmp;
+			LOG(ERROR, "Rank Textures", "loadRankTextures failed on \"%s\"", filename);
+			return ht;
 		}
-		m_rankTextures[it->AfterLast("/")] = tmp;
-		RETURN_ERR(ogl_tex_upload(tmp));
+		m_rankTextures[it->AfterLast("/")] = ht;
+		RETURN_ERR(ogl_tex_upload(ht));
 	}
 	return 0;
 }
