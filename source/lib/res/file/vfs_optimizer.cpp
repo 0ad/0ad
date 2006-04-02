@@ -252,6 +252,8 @@ class ConnectionBuilder
 	{
 		// speeds up "already exists" overhead from n*n to n*log(n).
 		typedef std::map<ConnectionId, Connection*> Map;
+		typedef std::pair<ConnectionId, Connection*> MapItem;
+		typedef Map::const_iterator MapCIt;
 		Map map;
 
 		FileId prev_id;
@@ -269,25 +271,25 @@ class ConnectionBuilder
 			if(was_first_call)
 				return;	// bail after setting prev_id
 
-			// if this connection already exists, increment its occurence
-			// count; otherwise, add it anew.
-			//
-			// note: checking return value of map.insert is more efficient
-			// than find + insert, but requires we know next_c beforehand
-			// (bit of a hack, but safe due to connections.reserve())
-			Connection* next_c = &connections[0] + connections.size();
-			const std::pair<ConnectionId, Connection*> item = std::make_pair(c_id, next_c);
-			std::pair<Map::iterator, bool> ret = map.insert(item);
-			const bool already_exists = !ret.second;
+			// note: always insert-ing and checking return value would be
+			// more efficient (saves 1 iteration over map), but would not
+			// be safe: VC8's STL disallows &vector[0] if empty
+			// (even though memory has been reserved).
+			// it doesn't matter much anyway (decently fast and offline task).
+			MapCIt it = map.find(c_id);
+			const bool already_exists = (it != map.end());
 			if(already_exists)
 			{
-				Map::iterator inserted_at = ret.first;
-				Connection* c = inserted_at->second;	// std::map "payload"
+				Connection* c = it->second;	// Map "payload"
 				c->occurrences++;
 			}
-			// first time we've seen this connection
+			// seen this connection for the first time: add to map and list.
 			else
+			{
 				connections.push_back(Connection(c_id));
+				const MapItem item = std::make_pair(c_id, &connections.back());
+				map.insert(item);
+			}
 
 			stats_ab_connection(already_exists);
 		}
