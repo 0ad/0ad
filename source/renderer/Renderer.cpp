@@ -694,10 +694,8 @@ void CRenderer::SetFastPlayerColor(bool fast)
 // BeginFrame: signal frame start
 void CRenderer::BeginFrame()
 {
-#ifndef SCED
 	if(!g_Game || !g_Game->IsGameStarted())
 		return;
-#endif
 
 	// bump frame counter
 	m_FrameCounter++;
@@ -928,10 +926,8 @@ void CRenderer::RenderTransparentModels()
 // FlushFrame: force rendering of any batched objects
 void CRenderer::FlushFrame()
 {
-#ifndef SCED
 	if(!g_Game || !g_Game->IsGameStarted())
 		return;
-#endif
 
 	oglCheck();
 
@@ -1017,10 +1013,8 @@ void CRenderer::FlushFrame()
 // EndFrame: signal frame end
 void CRenderer::EndFrame()
 {
-#ifndef SCED
 	if(!g_Game || !g_Game->IsGameStarted())
 		return;
-#endif
 
 	g_Renderer.SetTexture(0,0);
 

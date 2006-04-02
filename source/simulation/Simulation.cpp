@@ -49,9 +49,7 @@ int CSimulation::Initialize(CGameAttributes* pAttribs)
 
 	g_EntityManager.InitializeAll();
 
-#ifndef SCED
 	m_pWorld->GetLOSManager()->Initialize(pAttribs->m_LOSSetting);
-#endif
 
 	return 0;
 }
