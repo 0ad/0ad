@@ -186,8 +186,6 @@ static LibError afile_cb(const char* atom_fn, const struct stat* s, uintptr_t me
 	char path[VFS_MAX_PATH];
 	path_dir_only(atom_fn, path);
 	const char* atom_path = file_make_unique_fn_copy(path);
-	if(!atom_path)
-		return ERR_NO_MEM;
 
 	ZipCBParams* params = (ZipCBParams*)user;
 	TDir* td              = params->td;
@@ -552,8 +550,7 @@ static LibError remount(const Mount& m)
 	case MT_FILE:
 		return mount_dir_tree(td, m);
 	default:
-		debug_warn("invalid type");
-		return ERR_CORRUPTED;
+		WARN_RETURN(ERR_INVALID_MOUNT_TYPE);
 	}
 }
 
@@ -606,7 +603,7 @@ LibError vfs_mount(const char* V_mount_point, const char* P_real_path, int flags
 	// it would also create a loophole for the parent td check above.
 	// "./" and "/." are caught by CHECK_PATH.
 	if(!strcmp(P_real_path, "."))
-		WARN_RETURN(ERR_PATH_INVALID);
+		WARN_RETURN(ERR_PATH_NON_CANONICAL);
 
 	// (count this as "init" to obviate a separate timer)
 	stats_vfs_init_start();
@@ -643,7 +640,7 @@ LibError vfs_unmount(const char* P_name)
 		std::bind2nd(Mount::equal_to(), P_name));
 	// none were removed - need to complain so that the caller notices.
 	if(last == end)
-		return ERR_PATH_NOT_FOUND;
+		WARN_RETURN(ERR_PATH_NOT_FOUND);
 	// trim list and actually remove 'invalidated' entries.
 	mounts.erase(last, end);
 
@@ -673,7 +670,7 @@ LibError mount_make_vfs_path(const char* P_path, char* V_path)
 			return ERR_OK;
 	}
 
-	return ERR_PATH_NOT_FOUND;
+	WARN_RETURN(ERR_PATH_NOT_FOUND);
 }
 
 
@@ -784,10 +781,7 @@ LibError x_open(const Mount* m, const char* V_path, int flags, TFile* tf, XFile*
 	{
 	case MT_ARCHIVE:
 		if(flags & FILE_WRITE)
-		{
-			debug_warn("requesting write access to file in archive");
-			return ERR_NOT_IMPLEMENTED;
-		}
+			WARN_RETURN(ERR_IS_COMPRESSED);
 		memento = tfile_get_memento(tf);
 		RETURN_ERR(afile_open(m->archive, V_path, memento, flags, &xf->u.zf));
 		break;

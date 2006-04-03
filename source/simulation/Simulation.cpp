@@ -49,6 +49,7 @@ int CSimulation::Initialize(CGameAttributes* pAttribs)
 
 	g_EntityManager.InitializeAll();
 
+	// 2006-03-04: ~33ms
 	m_pWorld->GetLOSManager()->Initialize(pAttribs->m_LOSSetting);
 
 	return 0;

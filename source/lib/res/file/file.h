@@ -90,8 +90,10 @@ extern LibError file_set_root_dir(const char* argv0, const char* rel_path);
 
 // allocate a copy of P_fn in our string pool. strings are equal iff
 // their addresses are equal, thus allowing fast comparison.
-// fn_len can be 0 to indicate P_fn is a null-terminated C string
-// (normal case) or the string length [characters].
+//
+// if the (generous) filename storage is full, 0 is returned.
+// this is not ever expected to happen; callers need not check the
+// return value because a warning is raised anyway.
 extern const char* file_make_unique_fn_copy(const char* P_fn);
 
 extern const char* file_get_random_name();
@@ -165,7 +167,6 @@ extern LibError dir_close(DirIterator* d);
 
 typedef std::vector<DirEnt> DirEnts;
 typedef DirEnts::const_iterator DirEntCIt;
-typedef DirEnts::reverse_iterator DirEntRIt;
 
 // enumerate all directory entries in <P_path>; add to container and
 // then sort it by filename.
@@ -218,9 +219,17 @@ struct File
 };
 
 
-enum
+// note: these are all set during file_open and cannot be changed thereafter.
+enum FileFlags
 {
+	// IO:
+	// ------------------------------------------------------------------------
+
 	// write-only access; otherwise, read only.
+	//
+	// unless FILE_NO_AIO is set, data that is to be written must be
+	// aligned and padded to a multiple of file_sector_size bytes;
+	// this requirement avoids the need for align buffers.
 	//
 	// note: only allowing either reads or writes simplifies file cache
 	// coherency (need only invalidate when closing a FILE_WRITE file).
@@ -234,22 +243,32 @@ enum
 	// - not supported by POSIX, so this currently only has meaning on Win32.
 	FILE_TEXT         = 0x02,
 
-	// the file's contents aren't cached at a higher level; do so here.
-	// we keep the file open (until the cache is "full enough"). if it
-	// is loaded, we keep the buffer there to satisfy later loads.
-	FILE_CACHE        = 0x04,
+	// skip the aio path and use the OS-provided synchronous blocking
+	// read()/write() calls. this avoids the need for buffer alignment
+	// set out below, so it's useful for writing small text files.
+	FILE_NO_AIO       = 0x04,
 
-	// random access hint
-	//	FILE_RANDOM       = 0x08,
+	// caching:
+	// ------------------------------------------------------------------------
 
-	FILE_NO_AIO       = 0x10,
+	// do not add the (entire) contents of this file to the cache.
+	// this flag should be specified when the data is cached at a higher
+	// level (e.g. OpenGL textures) to avoid wasting previous cache space.
+	FILE_CACHED_AT_HIGHER_LEVEL = 0x10,
 
+	// enable caching individual blocks read from a file. the block cache
+	// is small, organized as LRU and incurs some copying overhead, so it
+	// should only be enabled when needed. this is the case for archives,
+	// where the cache absorbs overhead of block-aligning all IOs.
 	FILE_CACHE_BLOCK  = 0x20,
 
 	// notify us that the file buffer returned by file_io will not be
 	// freed immediately (i.e. before the next allocation).
 	// allocation policy may differ and a warning is suppressed.
 	FILE_LONG_LIVED   = 0x40,
+
+	// misc:
+	// ------------------------------------------------------------------------
 
 	// instruct file_open not to set FileCommon.atom_fn.
 	// this is a slight optimization used by VFS code: file_open
@@ -263,7 +282,7 @@ enum
 
 	// sum of all flags above. used when validating flag parameters and
 	// by zip.cpp because its flags live alongside these.
-	FILE_FLAG_MAX     = 0xFF
+	FILE_FLAG_ALL     = 0xFF
 };
 
 
@@ -323,12 +342,7 @@ extern LibError file_io_validate(const FileIo* io);
 // synchronous IO
 //
 
-// block := power-of-two sized chunk of a file.
-// all transfers are expanded to naturally aligned, whole blocks
-// (this makes caching parts of files feasible; it is also much faster
-// for some aio implementations, e.g. wposix).
-const size_t FILE_BLOCK_SIZE = 32*KiB;
-
+extern size_t file_sector_size;
 
 // called by file_io after a block IO has completed.
 // *bytes_processed must be set; file_io will return the sum of these values.
@@ -349,7 +363,44 @@ typedef const u8* FileIOBuf;
 FileIOBuf* const FILE_BUF_TEMP = (FileIOBuf*)1;
 const FileIOBuf FILE_BUF_ALLOC = (FileIOBuf)2;
 
-#include "file_cache.h"	// file_buf_*
+
+enum FileBufFlags
+{
+	// indicates the buffer will not be freed immediately
+	// (i.e. before the next buffer alloc) as it normally should.
+	// this flag serves to suppress a warning and better avoid fragmentation.
+	// caller sets this when FILE_LONG_LIVED is specified.
+	//
+	// also used by file_cache_retrieve because it may have to
+	// 'reactivate' the buffer (transfer from cache to extant list),
+	// which requires knowing whether the buffer is long-lived or not.
+	FB_LONG_LIVED    = 1,
+
+	// statistics (e.g. # buffer allocs) should not be updated.
+	// (useful for simulation, e.g. trace_entry_causes_io)
+	FB_NO_STATS      = 2,
+
+	// file_cache_retrieve should not update item credit.
+	// (useful when just looking up buffer given atom_fn)
+	FB_NO_ACCOUNTING = 4,
+
+	// memory will be allocated from the heap, not the (limited) file cache.
+	// this makes sense for write buffers that are never used again,
+	// because we avoid having to displace some other cached items.
+	FB_FROM_HEAP     = 8
+};
+
+// allocate a new buffer of <size> bytes (possibly more due to internal
+// fragmentation). never returns 0.
+// <atom_fn>: owner filename (buffer is intended to be used for data from
+//   this file).
+extern FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, uint fb_flags = 0);
+
+// mark <buf> as no longer needed. if its reference count drops to 0,
+// it will be removed from the extant list. if it had been added to the
+// cache, it remains there until evicted in favor of another buffer.
+extern LibError file_buf_free(FileIOBuf buf, uint fb_flags = 0);
+
 
 
 // transfer <size> bytes, starting at <ofs>, to/from the given file.

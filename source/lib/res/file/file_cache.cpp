@@ -262,7 +262,7 @@ private:
 static AllocatorChecker alloc_checker;
 #endif
 
-// >= AIO_SECTOR_SIZE or else waio will have to realign.
+// >= file_sector_size or else waio will have to realign.
 // chosen as exactly 1 page: this allows write-protecting file buffers
 // without worrying about their (non-page-aligned) borders.
 // internal fragmentation is considerable but acceptable.
@@ -705,9 +705,9 @@ public:
 
 	// add given buffer to extant list.
 	// long_lived indicates if this buffer will not be freed immediately
-	// (more precisely: before allocating the next buffer); see FC_LONG_LIVED.
+	// (more precisely: before allocating the next buffer); see FB_LONG_LIVED.
 	// note: reuses a previous extant_bufs[] slot if one is unused.
-	void add(FileIOBuf buf, size_t size, const char* atom_fn, bool long_lived)
+	void add(FileIOBuf buf, size_t size, const char* atom_fn, uint fb_flags)
 	{
 		// cache_allocator also does this; we need to follow suit so that
 		// matches() won't fail due to zero-length size.
@@ -715,6 +715,7 @@ public:
 			size = 1;
 
 		// don't do was-immediately-freed check for long_lived buffers.
+		const bool long_lived = (fb_flags & FB_LONG_LIVED) != 0;
 		const uint this_epoch = long_lived? 0 : epoch++;
 
 		debug_assert(buf != 0);
@@ -728,16 +729,17 @@ public:
 			if(!eb.buf)
 			{
 				debug_assert(eb.refs == 0);
-				eb.refs    = 1;
-				eb.buf     = buf;
-				eb.size    = size;
-				eb.atom_fn = atom_fn;
-				eb.epoch   = this_epoch;
+				eb.refs     = 1;
+				eb.buf      = buf;
+				eb.size     = size;
+				eb.fb_flags = fb_flags;
+				eb.atom_fn  = atom_fn;
+				eb.epoch    = this_epoch;
 				return;
 			}
 		}
 		// add another entry
-		extant_bufs.push_back(ExtantBuf(buf, size, atom_fn, this_epoch));
+		extant_bufs.push_back(ExtantBuf(buf, size, fb_flags, atom_fn, this_epoch));
 	}
 
 	// indicate that a reference has been taken for <buf>;
@@ -856,6 +858,9 @@ private:
 		// therefore, we store this separately.
 		size_t size;
 
+		// FileBufFlags
+		uint fb_flags;
+
 		// which file was this buffer taken from?
 		// we search for given atom_fn as part of file_cache_retrieve
 		// (since we are responsible for already extant bufs).
@@ -872,8 +877,8 @@ private:
 		// because it avoids fragmentation and leaks.
 		uint epoch;
 
-		ExtantBuf(FileIOBuf buf_, size_t size_, const char* atom_fn_, uint epoch_)
-			: buf(buf_), size(size_), atom_fn(atom_fn_), refs(1), epoch(epoch_) {}
+		ExtantBuf(FileIOBuf buf_, size_t size_, uint fb_flags_, const char* atom_fn_, uint epoch_)
+			: buf(buf_), size(size_), fb_flags(fb_flags_), atom_fn(atom_fn_), refs(1), epoch(epoch_) {}
 	};
 
 	std::vector<ExtantBuf> extant_bufs;
@@ -980,34 +985,22 @@ private:
 };
 static ExactBufOracle exact_buf_oracle;
 
-// translate <padded_buf> to the exact buffer and free it.
-// convenience function used by file_buf_alloc and file_buf_free.
-static void free_padded_buf(FileIOBuf padded_buf, size_t size)
+// referenced by cache_alloc
+static void free_padded_buf(FileIOBuf padded_buf, size_t size, bool from_heap = false);
+
+static void cache_free(FileIOBuf exact_buf, size_t exact_size)
 {
-	const bool remove_afterwards = true;
-	ExactBufOracle::BufAndSize exact = exact_buf_oracle.get(padded_buf, size, remove_afterwards);
-	FileIOBuf exact_buf = exact.first; size_t exact_size = exact.second;
 	cache_allocator.dealloc((u8*)exact_buf, exact_size);
 }
 
-
-// allocate a new buffer of <size> bytes (possibly more due to internal
-// fragmentation). never returns 0.
-// <atom_fn>: owner filename (buffer is intended to be used for data from
-//   this file).
-// <fc_flags>: see FileCacheFlags.
-FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, uint fc_flags)
+static FileIOBuf cache_alloc(size_t size)
 {
-	const bool should_update_stats = (fc_flags & FC_NO_STATS) == 0;
-	const bool long_lived = (fc_flags & FC_LONG_LIVED) != 0;
-
-	FileIOBuf buf;
 	uint attempts = 0;
 	for(;;)
 	{
-		buf = (FileIOBuf)cache_allocator.alloc(size);
+		FileIOBuf buf = (FileIOBuf)cache_allocator.alloc(size);
 		if(buf)
-			break;
+			return buf;
 
 		// remove least valuable entry from cache and free its buffer.
 		FileIOBuf discarded_buf; size_t size;
@@ -1036,7 +1029,46 @@ FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, uint fc_flags)
 			debug_warn("possible infinite loop: failed to make room in cache");
 	}
 
-	extant_bufs.add(buf, size, atom_fn, long_lived);
+	UNREACHABLE;
+}
+
+
+// translate <padded_buf> to the exact buffer and free it.
+// convenience function used by file_buf_alloc and file_buf_free.
+static void free_padded_buf(FileIOBuf padded_buf, size_t size, bool from_heap)
+{
+	const bool remove_afterwards = true;
+	ExactBufOracle::BufAndSize exact = exact_buf_oracle.get(padded_buf, size, remove_afterwards);
+	FileIOBuf exact_buf = exact.first; size_t exact_size = exact.second;
+
+	if(from_heap)
+		page_aligned_free((void*)exact_buf, exact_size);
+	else
+		cache_free(exact_buf, exact_size);
+}
+
+
+// allocate a new buffer of <size> bytes (possibly more due to internal
+// fragmentation). never returns 0.
+// <atom_fn>: owner filename (buffer is intended to be used for data from
+//   this file).
+// <fb_flags>: see FileBufFlags.
+FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, uint fb_flags)
+{
+	const bool should_update_stats = (fb_flags & FB_NO_STATS) == 0;
+	const bool from_heap           = (fb_flags & FB_FROM_HEAP) != 0;
+
+	FileIOBuf buf;
+	if(from_heap)
+	{
+		buf = (FileIOBuf)page_aligned_alloc(size);
+		if(!buf)
+			WARN_ERR(ERR_NO_MEM);
+	}
+	else
+		buf = cache_alloc(size);
+
+	extant_bufs.add(buf, size, atom_fn, fb_flags);
 
 	if(should_update_stats)
 		stats_buf_alloc(size, round_up(size, BUF_ALIGN));
@@ -1047,9 +1079,10 @@ FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, uint fc_flags)
 // mark <buf> as no longer needed. if its reference count drops to 0,
 // it will be removed from the extant list. if it had been added to the
 // cache, it remains there until evicted in favor of another buffer.
-LibError file_buf_free(FileIOBuf buf, uint fc_flags)
+LibError file_buf_free(FileIOBuf buf, uint fb_flags)
 {
-	const bool should_update_stats = (fc_flags & FC_NO_STATS) == 0;
+	const bool should_update_stats = (fb_flags & FB_NO_STATS) == 0;
+	const bool from_heap           = (fb_flags & FB_FROM_HEAP) != 0;
 
 	if(!buf)
 		return ERR_OK;
@@ -1058,6 +1091,12 @@ LibError file_buf_free(FileIOBuf buf, uint fc_flags)
 	bool actually_removed = extant_bufs.find_and_remove(buf, size, atom_fn);
 	if(actually_removed)
 	{
+		// avoid any potential confusion and some overhead by skipping the
+		// retrieve step (not needed anyway).
+		if(from_heap)
+			goto free_immediately;
+
+		{
 		FileIOBuf buf_in_cache;
 		// it's still in cache - leave its buffer intact.
 		if(file_cache.retrieve(atom_fn, buf_in_cache, 0, false))
@@ -1070,10 +1109,12 @@ LibError file_buf_free(FileIOBuf buf, uint fc_flags)
 		// buf is not in cache - needs to be freed immediately.
 		else
 		{
+free_immediately:
 			// note: extant_bufs cannot be relied upon to store and return
 			// exact_buf - see definition of ExtantBuf.buf.
 			// we have to use exact_buf_oracle, which is a bit slow, but hey.
-			free_padded_buf(buf, size);
+			free_padded_buf(buf, size, from_heap);
+		}
 		}
 	}
 
@@ -1083,42 +1124,6 @@ LibError file_buf_free(FileIOBuf buf, uint fc_flags)
 
 	return ERR_OK;
 }
-
-
-// interpret file_io parameters (pbuf, size, flags, cb) and allocate a
-// file buffer if necessary.
-// called by file_io and afile_read.
-LibError file_buf_get(FileIOBuf* pbuf, size_t size,
-	const char* atom_fn, uint file_flags, FileIOCB cb)
-{
-	// decode *pbuf - exactly one of these is true
-	const bool temp  = (pbuf == FILE_BUF_TEMP);
-	const bool alloc = !temp && (*pbuf == FILE_BUF_ALLOC);
-	const bool user  = !temp && !alloc;
-
-	const bool is_write = (file_flags & FILE_WRITE) != 0;
-	const uint fc_flags = (file_flags & FILE_LONG_LIVED)? FC_LONG_LIVED : 0;
-
-	// reading into temp buffers - ok.
-	if(!is_write && temp && cb != 0)
-		return ERR_OK;
-
-	// reading and want buffer allocated.
-	if(!is_write && alloc)
-	{
-		*pbuf = file_buf_alloc(size, atom_fn, fc_flags);
-		if(!*pbuf)	// very unlikely (size totally bogus or cache hosed)
-			WARN_RETURN(ERR_NO_MEM);
-		return ERR_OK;
-	}
-
-	// writing from user-specified buffer - ok
-	if(is_write && user)
-		return ERR_OK;
-
-	WARN_RETURN(ERR_INVALID_PARAM);
-}
-
 
 
 // inform us that the buffer address will be increased by <padding>-bytes.
@@ -1157,11 +1162,16 @@ LibError file_buf_set_real_fn(FileIOBuf buf, const char* atom_fn)
 //
 // note: the reference added by file_buf_alloc still exists! it must
 // still be file_buf_free-d after calling this.
-LibError file_cache_add(FileIOBuf buf, size_t size, const char* atom_fn)
+LibError file_cache_add(FileIOBuf buf, size_t size, const char* atom_fn,
+	uint file_flags)
 {
 	debug_assert(buf);
 
-	// decide (based on flags) if buf is to be cached; set cost
+	// caller is saying this file shouldn't be cached here.
+	if(file_flags & FILE_CACHED_AT_HIGHER_LEVEL)
+		return INFO_SKIPPED;
+
+	// assign cost
 	uint cost = 1;
 	if(!size)
 		cost = 0;
@@ -1184,15 +1194,15 @@ LibError file_cache_add(FileIOBuf buf, size_t size, const char* atom_fn)
 //
 // note: does not call stats_cache because it does not know the file size
 // in case of cache miss! doing so is left to the caller.
-FileIOBuf file_cache_retrieve(const char* atom_fn, size_t* psize, uint fc_flags)
+FileIOBuf file_cache_retrieve(const char* atom_fn, size_t* psize, uint fb_flags)
 {
 	// note: do not query extant_bufs - reusing that doesn't make sense
 	// (why would someone issue a second IO for the entire file while
 	// still referencing the previous instance?)
 
-	const bool long_lived = (fc_flags & FC_LONG_LIVED) != 0;
-	const bool should_account = (fc_flags & FC_NO_ACCOUNTING) == 0;
-	const bool should_update_stats = (fc_flags & FC_NO_STATS) == 0;
+	const bool long_lived = (fb_flags & FB_LONG_LIVED) != 0;
+	const bool should_account = (fb_flags & FB_NO_ACCOUNTING) == 0;
+	const bool should_update_stats = (fb_flags & FB_NO_STATS) == 0;
 
 	FileIOBuf buf;
 	const bool should_refill_credit = should_account;

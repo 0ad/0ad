@@ -144,10 +144,10 @@ public:
 		// expected to happen.
 		if(file_nodes.size() > MAX_IDS)
 		{
-			debug_warn("limit on files exceeded. see vfs_optimizer.FileId");
 			// note: use this instead of resize because FileNode doesn't have
 			// a default ctor. NB: this is how resize is implemented anyway.
 			file_nodes.erase(file_nodes.begin() + MAX_IDS, file_nodes.end());
+			WARN_ERR(ERR_LIMIT);
 		}
 	}
 };
@@ -610,7 +610,7 @@ static LibError vfs_opt_init(const char* trace_filename, const char* archive_fn_
 	// get list of files in root dir.
 	// note: this is needed by should_rebuild_main_archive and later in
 	//   vfs_opt_continue; must be done here instead of inside the former
-	//   because it is not called when force_build == true.
+	//   because that is not called when force_build == true.
 	char dir[PATH_MAX];
 	path_dir_only(archive_fn_fmt, dir);
 	DirEnts existing_archives;	// and possibly other entries
@@ -691,7 +691,7 @@ static LibError build_mini_archive(const char* mini_archive_fn_fmt)
 
 	Filenames V_fns = (Filenames)malloc((loose_files.size()+1) * sizeof(const char*));
 	if(!V_fns)
-		return ERR_NO_MEM;
+		WARN_RETURN(ERR_NO_MEM);
 	std::copy(loose_files.begin(), loose_files.end(), &V_fns[0]);
 	V_fns[loose_files.size()] = 0;	// terminator
 

@@ -196,8 +196,7 @@ public:
 		const char* V_new_path = file_make_unique_fn_copy(V_new_path_tmp);
 		const char* name = path_name_only(V_new_path);
 
-		if(!path_component_valid(name))
-			return ERR_PATH_INVALID;
+		CHECK_ERR(path_component_validate(name));
 
 		TNode* node = children.find(name);
 		if(node)
@@ -213,7 +212,7 @@ public:
 		// pool, but that "can't happen" and is OK because pool is big enough.
 		void* mem = node_alloc();
 		if(!mem)
-			return ERR_NO_MEM;
+			WARN_RETURN(ERR_NO_MEM);
 #include "nommgr.h"
 		if(type == NT_FILE)
 			node = new(mem) TFile(V_new_path, name, rd.m);
@@ -548,7 +547,7 @@ LibError tree_lookup_dir(const char* path, TDir** ptd, uint flags)
 {
 	// path is not a directory; TDir::lookup might return a file node
 	if(path[0] != '\0' && path[strlen(path)-1] != '/')
-		return ERR_NOT_DIR;
+		WARN_RETURN(ERR_NOT_DIR);
 
 	TDir* td = (flags & LF_START_DIR)? *ptd : tree_root;
 	TNode* node;
@@ -563,7 +562,7 @@ LibError tree_lookup(const char* path, TFile** pfile, uint flags)
 {
 	// path is not a file; TDir::lookup might return a directory node
 	if(path[0] == '\0' || path[strlen(path)-1] == '/')
-		return ERR_NOT_FILE;
+		WARN_RETURN(ERR_NOT_FILE);
 
 	TNode* node;
 	LibError ret = lookup(tree_root, path, flags, &node);
@@ -622,7 +621,7 @@ LibError tree_dir_next_ent(TreeDirIterator* d_, DirEnt* ent)
 	TreeDirIterator_* d = (TreeDirIterator_*)d_;
 
 	if(d->it == d->end)
-		return ERR_DIR_END;
+		return ERR_DIR_END;	// NOWARN
 
 	const TNode* node = *(d->it++);
 	ent->name = node->name;

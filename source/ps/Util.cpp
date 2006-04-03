@@ -173,6 +173,7 @@ void WriteScreenshot(const char* extension)
 	snprintf(file_format_string, PATH_MAX, "screenshots/screenshot%%04d.%s", extension);
 	char fn[VFS_MAX_PATH];
 	next_numbered_filename(file_format_string, &screenshot_nfi, fn);
+	const char* atom_fn = file_make_unique_fn_copy(fn);
 
 	const int w = g_xres, h = g_yres;
 	const int bpp = 24;
@@ -188,21 +189,15 @@ void WriteScreenshot(const char* extension)
 
 	const size_t img_size = w * h * bpp/8;
 	const size_t hdr_size = tex_hdr_size(fn);
-	Handle img_hm;
-	void* data = mem_alloc(hdr_size+img_size, FILE_BLOCK_SIZE, 0, &img_hm);
-	if(!data)
-	{
-		debug_warn("not enough memory to write screenshot");
-		return;
-	}
-	GLvoid* img = (u8*)data + hdr_size;
+	FileIOBuf buf = file_buf_alloc(hdr_size+img_size, atom_fn, FB_FROM_HEAP);
+	GLvoid* img = (u8*)buf + hdr_size;
 	Tex t;
 	if(tex_wrap(w, h, bpp, flags, img, &t) < 0)
 		return;
 	glReadPixels(0, 0, w, h, fmt, GL_UNSIGNED_BYTE, img);
 	(void)tex_write(&t, fn);
 	(void)tex_free(&t);
-	mem_free_h(img_hm);
+	(void)file_buf_free(buf);
 }
 
 
@@ -217,6 +212,7 @@ void WriteBigScreenshot(const char* extension, int tiles)
 	snprintf(file_format_string, PATH_MAX, "screenshots/screenshot%%04d.%s", extension);
 	char fn[VFS_MAX_PATH];
 	next_numbered_filename(file_format_string, &screenshot_nfi, fn);
+	const char* atom_fn = file_make_unique_fn_copy(fn);
 
 	// Slightly ugly and inflexible: Always draw 640*480 tiles onto the screen, and
 	// hope the screen is actually large enough for that.
@@ -238,19 +234,13 @@ void WriteBigScreenshot(const char* extension, int tiles)
 	const size_t img_size = img_w * img_h * bpp/8;
 	const size_t tile_size = tile_w * tile_h * bpp/8;
 	const size_t hdr_size = tex_hdr_size(fn);
-	Handle tile_hm, img_hm;
-	void* tile_data = mem_alloc(tile_size, 1, 0, &tile_hm);
-	void* img_data = mem_alloc(hdr_size+img_size, FILE_BLOCK_SIZE, 0, &img_hm);
-	if(!tile_data || !img_data)
-	{
-		debug_warn("not enough memory to write screenshot");
-		if (tile_data) mem_free_h(tile_hm);
-		if (img_data) mem_free_h(img_hm);
-		return;
-	}
+	void* tile_data = malloc(tile_size);
+	if(!tile_data)
+		WARN_ERR_RETURN(ERR_NO_MEM);
+	FileIOBuf img_buf = file_buf_alloc(hdr_size+img_size, atom_fn, FB_FROM_HEAP);
 
 	Tex t;
-	GLvoid* img = (u8*)img_data + hdr_size;
+	GLvoid* img = (u8*)img_buf + hdr_size;
 	if(tex_wrap(img_w, img_h, bpp, flags, img, &t) < 0)
 		return;
 
@@ -311,6 +301,6 @@ void WriteBigScreenshot(const char* extension, int tiles)
 
 	(void)tex_write(&t, fn);
 	(void)tex_free(&t);
-	mem_free_h(tile_hm);
-	mem_free_h(img_hm);
+	free(tile_data);
+	(void)file_buf_free(img_buf);
 }

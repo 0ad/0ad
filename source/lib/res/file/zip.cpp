@@ -401,7 +401,7 @@ completely_bogus:
 		// note: the VFS blindly opens files when mounting; it needs to open
 		// all archives, but doesn't know their extension (e.g. ".pk3").
 		// therefore, do not warn user.
-		return ERR_UNKNOWN_FORMAT;
+		return ERR_UNKNOWN_FORMAT;	// NOWARN
 	}
 
 	ECDR ecdr_le;
@@ -633,7 +633,7 @@ LibError zip_archive_add_file(ZipArchive* za, const ArchiveEntry* ae, void* file
 	const size_t prev_pos = za->cdfhs.da.pos;
 	CDFH_Package* p = (CDFH_Package*)pool_alloc(&za->cdfhs, CDFH_SIZE+fn_len);
 	if(!p)
-		return ERR_NO_MEM;
+		WARN_RETURN(ERR_NO_MEM);
 	const size_t slack = za->cdfhs.da.pos-prev_pos - (CDFH_SIZE+fn_len);
 	cdfh_assemble(&p->cdfh, ae->method, ae->mtime, ae->crc, ae->csize, ae->ucsize, fn_len, slack, lfh_ofs);
 	memcpy2(p->fn, ae->atom_fn, fn_len);
@@ -655,7 +655,7 @@ LibError zip_archive_finish(ZipArchive* za)
 	// write out both to the archive file in one burst)
 	ECDR* ecdr = (ECDR*)pool_alloc(&za->cdfhs, ECDR_SIZE);
 	if(!ecdr)
-		return ERR_NO_MEM;
+		WARN_RETURN(ERR_NO_MEM);
 	ecdr_assemble(ecdr, za->cd_entries, za->cur_file_size, cd_size);
 
 	FileIOBuf buf = za->cdfhs.da.base;

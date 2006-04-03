@@ -485,14 +485,14 @@ static void file_buf_dtor(void* p, size_t UNUSED(size), uintptr_t UNUSED(ctx))
 
 // load the specified image from file into the given Tex object.
 // currently supports BMP, TGA, JPG, JP2, PNG, DDS.
-LibError tex_load(const char* fn, Tex* t)
+LibError tex_load(const char* fn, Tex* t, uint file_flags)
 {
 	// load file
 	FileIOBuf file; size_t file_size;
 	// rationale: we need the Handle return value for Tex.hm - the data pointer
 	// must be protected against being accidentally free-d in that case.
 
-	RETURN_ERR(vfs_load(fn, file, file_size));
+	RETURN_ERR(vfs_load(fn, file, file_size, file_flags));
 	Handle hm = mem_wrap((void*)file, file_size, 0, 0, 0, file_buf_dtor, 0, (void*)tex_load);
 	t->hm = hm;
 	LibError ret = tex_load_impl(file, file_size, t);
@@ -693,8 +693,8 @@ LibError tex_write(Tex* t, const char* fn)
 
 	// write to disk
 	{
-	const size_t rounded_size = round_up(da.cur_size, file_sector_size);
-	(void)da_set_size(&da, rounded_size);
+	const size_t sector_aligned_size = round_up(da.cur_size, file_sector_size);
+	(void)da_set_size(&da, sector_aligned_size);
 	const ssize_t bytes_written = vfs_store(fn, da.base, da.pos);
 	debug_assert(bytes_written == (ssize_t)da.pos);
 	}

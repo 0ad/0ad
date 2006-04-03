@@ -18,6 +18,17 @@
 
 const size_t AIO_SECTOR_SIZE = 512;
 
+// block := power-of-two sized chunk of a file.
+// all transfers are expanded to naturally aligned, whole blocks
+// (this makes caching parts of files feasible; it is also much faster
+// for some aio implementations, e.g. wposix).
+//
+// this is not exposed to users because it's an implementation detail and
+// they shouldn't care.
+//
+// measurements show this value to yield best read throughput.
+const size_t FILE_BLOCK_SIZE = 32*KiB;
+
 // helper routine used by functions that call back to a FileIOCB.
 //
 // bytes_processed is 0 if return value != { ERR_OK, INFO_CB_CONTINUE }

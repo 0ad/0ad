@@ -413,7 +413,7 @@ static LibError OglTex_reload(OglTex* ot, const char* fn, Handle h)
 	// if we don't already have the texture in memory (*), load from file.
 	// * this happens if the texture is "wrapped".
 	if(!(ot->flags & OT_TEX_VALID))
-		RETURN_ERR(tex_load(fn, &ot->t));
+		RETURN_ERR(tex_load(fn, &ot->t, FILE_CACHED_AT_HIGHER_LEVEL));
 	ot->flags |= OT_TEX_VALID;
 
 	glGenTextures(1, &ot->id);

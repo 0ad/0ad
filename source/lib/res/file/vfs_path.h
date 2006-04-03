@@ -5,13 +5,15 @@
 
 // internal use only:
 
-// if path is invalid (see source for criteria), print a diagnostic message
-// (indicating line number of the call that failed) and
-// return a negative error code. used by CHECK_PATH.
-extern LibError path_validate(const uint line, const char* path);
-#define CHECK_PATH(path) CHECK_ERR(path_validate(__LINE__, path))
+// if path is invalid (see source for criteria), return a
+// descriptive error code, otherwise ERR_OK.
+extern LibError path_validate(const char* path);
+#define CHECK_PATH(path) CHECK_ERR(path_validate(path))
 
-extern bool path_component_valid(const char* name);
+// if name is invalid, (see source for criteria), return a
+// descriptive error code, otherwise ERR_OK.
+extern LibError path_component_validate(const char* name);
+
 
 // strip <remove> from the start of <src>, prepend <replace>,
 // and write to <dst>.

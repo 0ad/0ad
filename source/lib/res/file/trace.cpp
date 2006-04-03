@@ -91,7 +91,10 @@ LibError trace_write_to_file(const char* trace_filename)
 
 	char N_fn[PATH_MAX];
 	RETURN_ERR(file_make_full_native_path(trace_filename, N_fn));
-	FILE* f = fopen(N_fn, "wt");
+	// append at end of file, otherwise we'd only have the most
+	// recently stored trace. vfs_optimizer correctly deals with
+	// several trace runs per file.
+	FILE* f = fopen(N_fn, "at");
 	if(!f)
 		WARN_RETURN(ERR_FILE_ACCESS);
 
@@ -206,33 +209,34 @@ void trace_gen_random(size_t num_entries)
 // whether this IO would be satisfied by the file_buf cache.
 bool trace_entry_causes_io(const TraceEntry* ent)
 {
-	uint fc_flags = FC_NO_STATS;
+	uint fb_flags = FB_NO_STATS;
 	if(ent->flags & FILE_LONG_LIVED)
-		fc_flags |= FC_LONG_LIVED;
+		fb_flags |= FB_LONG_LIVED;
 
 	FileIOBuf buf;
 	size_t size         = ent->size;
 	const char* atom_fn = ent->atom_fn;
+	uint file_flags     = ent->flags;
 	switch(ent->op)
 	{
 	case TO_IO:
 	{
 		// we're not interested in writes
-		if(ent->flags & FILE_WRITE)
+		if(file_flags & FILE_WRITE)
 			return false;
-		buf = file_cache_retrieve(atom_fn, &size, fc_flags);
+		buf = file_cache_retrieve(atom_fn, &size, fb_flags);
 		// would not be in cache: add to list of real IOs
 		if(!buf)
 		{
-			buf = file_buf_alloc(size, atom_fn, fc_flags);
-			(void)file_cache_add(buf, size, atom_fn);
+			buf = file_buf_alloc(size, atom_fn, fb_flags);
+			(void)file_cache_add(buf, size, atom_fn, file_flags);
 			return true;
 		}
 		break;
 	}
 	case TO_FREE:
-		buf = file_cache_retrieve(atom_fn, &size, fc_flags|FC_NO_ACCOUNTING);
-		(void)file_buf_free(buf, fc_flags);
+		buf = file_cache_retrieve(atom_fn, &size, fb_flags|FB_NO_ACCOUNTING);
+		(void)file_buf_free(buf, fb_flags);
 		break;
 	default:
 		debug_warn("unknown TraceOp");
@@ -280,7 +284,7 @@ LibError trace_run(const char* trace_filename, uint flags)
 			(void)vfs_load(ent->atom_fn, buf, size, ent->flags);
 			break;
 		case TO_FREE:
-			buf = file_cache_retrieve(ent->atom_fn, &size, FC_NO_STATS|FC_NO_ACCOUNTING);
+			buf = file_cache_retrieve(ent->atom_fn, &size, FB_NO_STATS|FB_NO_ACCOUNTING);
 			(void)file_buf_free(buf);
 			break;
 		default:

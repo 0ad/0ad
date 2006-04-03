@@ -1,17 +1,109 @@
-// notes:
-// - file is called lib_errors.h because 0ad has another errors.cpp and
-//   the MS linker isn't smart enough to deal with object files
-//   of the same name but in different paths.
-// - the first part of this file is a normal header; the second contains
-//   X macros and is only active if ERR is defined (i.e. someone is
-//   including this header for the purpose of using them).
+/*
+
+Error handling system
+
+Introduction
+------------
+
+This module defines error codes, translates them to/from other systems
+(e.g. errno), provides several macros that simplify returning errors /
+checking if a function failed, and associates codes with descriptive text.
+
+Why Error Codes?
+----------------
+
+To convey information about what failed, the alternatives are unique
+integral codes and direct pointers to descriptive text. Both occupy the
+same amount of space, but codes are easier to internationalize.
+
+Method of Propagating Errors
+----------------------------
+
+When a low-level function has failed, this must be conveyed to the
+higher-level application logic across several functions on the call stack.
+There are two alternatives:
+1) check at each call site whether a function failed;
+   if so, return to the caller.
+2) throw an exception.
+
+We will discuss the advantages and disadvantages of exceptions,
+which mirror those of call site checking.
+- performance: they shouldn't be used in time-critical code.
+- predictability: exceptions can come up almost anywhere,
+  so it is hard to say what execution path will be taken.
+- interoperability: not compatible with other languages.
++ readability: cleans up code by separating application logic and
+  error handling. however, this is also a disadvantage because it
+  may be difficult to see at a glance if a piece of code does
+  error checking at all.
++ visibility: errors are more likely to be seen than relying on
+  callers to check return codes; less reliant on discipline.
+
+Both have their place. Our recommendation is to throw error code
+exceptions when checking call sites and propagating errors becomes tedious.
+However, inter-module boundaries should always return error codes for
+interoperability with other languages.
+
+Simplifying Call-Site Checking
+------------------------------
+
+As mentioned above, this approach requires discipline. We provide
+macros to simplify this task: function calls can be wrapped in an
+"enforcer" that checks whether they succeeded and can take action
+(e.g. returning to caller or warning user) as appropriate.
+
+Consider the following example:
+  LibError ret = doWork();
+  if(ret != ERR_OK) { warnUser(ret); return ret; }
+This can be replaced by:
+  CHECK_ERR(doWork());
+
+This provides a visible sign that the code handles errors,
+automatically propagates errors back to the caller, and most importantly,
+allows warning the user whenever an error occurs.
+Thus, no errors can be swept under the carpet by failing to
+check return value or catch(...) all exceptions.
+
+When to warn the user?
+----------------------
+
+When a function fails, there are 2 places we can raise a warning:
+as soon as the error condition is known, or in the higher-level caller.
+The former is the WARN_RETURN(ERR_FAIL) approach, while the latter
+corresponds to the example above.
+
+We prefer the former because it is easier to ensure that all
+possible return paths have been covered: search for all "return ERR_*"
+that are not followed by a "// NOWARN" comment. Also, the latter approach
+raises the question of where exactly to issue the warning.
+Clearly API-level routines must raise the warning, but sometimes they will
+want to call each other. Multiple warnings along the call stack ensuing
+from the same root cause are not nice.
+
+There is one exception to this rule: "validator" calls that e.g. verify the
+state of an object typically have multiple return statements, but only a
+few call sites. It is more convenient to simply return the error directly and
+require callers to raise warnings, typically via CHECK_ERR.
+
+
+Notes:
+- file is called lib_errors.h because 0ad has another errors.cpp and
+  the MS linker isn't smart enough to deal with object files
+  of the same name but in different paths.
+- the first part of this file is a normal header; the second contains
+  X macros and is only active if ERR is defined (i.e. someone is
+  including this header for the purpose of using them).
+- unfortunately Intellisense isn't smart enough to pick up the
+  ERR_* definitions. This is the price of automatically associating
+  descriptive text with the error code.
+*/
 
 #ifndef ERRORS_H__
 #define ERRORS_H__
 
 // limits on the errors defined above (used by error_description_r)
 #define ERR_MIN 100000
-#define ERR_MAX 110000
+#define ERR_MAX 120000
 
 // define error codes.
 enum LibError {
@@ -56,6 +148,15 @@ enum ErrorReaction
 extern void error_description_r(LibError err, char* buf, size_t max_chars);
 
 
+//-----------------------------------------------------------------------------
+
+// conversion to/from other error code definitions.
+// notes:
+// - these functions will raise a warning (before returning any error code
+//   except ERR_OK) unless warn_if_failed is explicitly set to false.
+// - other conversion routines (e.g. to/from Win32) are implemented in
+//   the corresponding modules to keep this header portable.
+
 // return the LibError equivalent of errno, or ERR_FAIL if there's no equal.
 // only call after a POSIX function indicates failure.
 // raises a warning (avoids having to on each call site).
@@ -74,6 +175,8 @@ extern LibError LibError_from_posix(int ret, bool warn_if_failed = true);
 extern void LibError_set_errno(LibError err);
 
 
+//-----------------------------------------------------------------------------
+
 // be careful here. the given expression (e.g. variable or
 // function return value) may be a Handle (=i64), so it needs to be
 // stored and compared as such. (very large but legitimate Handle values
@@ -83,7 +186,8 @@ extern void LibError_set_errno(LibError err);
 // error code and is therefore known to fit; we still mask with
 // UINT_MAX to avoid VC cast-to-smaller-type warnings.
 
-// if expression evaluates to a negative i64, warn user and return the number.
+// if expression evaluates to a negative error code, warn user and
+// return the number.
 #if OS_WIN
 #define CHECK_ERR(expression)\
 STMT(\
@@ -127,7 +231,8 @@ STMT(\
 	return err;\
 )
 
-// if expression evaluates to a negative i64, warn user and throw the number.
+// if expression evaluates to a negative error code, warn user and
+// throw that number.
 #define THROW_ERR(expression)\
 STMT(\
 	i64 err64 = (i64)(expression);\
@@ -139,7 +244,7 @@ STMT(\
 	}\
 )
 
-// if expression evaluates to a negative i64, warn user and just return
+// if expression evaluates to a negative error code, warn user and just return
 // (useful for void functions that must bail and complain)
 #define WARN_ERR_RETURN(expression)\
 STMT(\
@@ -152,7 +257,7 @@ STMT(\
 	}\
 )
 
-// if expression evaluates to a negative i64, warn user
+// if expression evaluates to a negative error code, warn user
 // (this is similar to debug_assert but also works in release mode)
 #define WARN_ERR(expression)\
 STMT(\
@@ -165,6 +270,13 @@ STMT(\
 )
 
 
+// if expression evaluates to a negative error code, return 0.
+#define RETURN0_IF_ERR(expression)\
+STMT(\
+	i64 err64 = (i64)(expression);\
+	if(err64 < 0)\
+		return 0;\
+)
 
 // if ok evaluates to false or FALSE, warn user and return -1.
 #define WARN_RETURN_IF_FALSE(ok)\
@@ -201,7 +313,7 @@ STMT(\
 
 // X macros: error code, symbolic name in code, user-visible string.
 // error code is usually negative; positive denotes warnings.
-//   its absolute value must be within [ERR_MIN, ERR_MAX).
+//   if negative, absolute value must be within [ERR_MIN, ERR_MAX).
 
 // ERR_OK doesn't really need a string, but must be part of enum LibError
 // due to compiler checks. (and calling error_description_r(0) should

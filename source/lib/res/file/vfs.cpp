@@ -378,8 +378,6 @@ Handle vfs_open(const char* V_fn, uint file_flags)
 	// keeping files open doesn't make sense in most cases (because the
 	// file is used to load resources, which are cached at a higher level).
 	uint res_flags = RES_NO_CACHE;
-	if(file_flags & FILE_CACHE)
-		res_flags = 0;
 
 	// res_flags is for h_alloc and file_flags goes to VFile_init.
 	// h_alloc already complains on error.
@@ -440,13 +438,13 @@ ssize_t vfs_io(const Handle hf, const size_t size, FileIOBuf* pbuf,
 // flags influences IO mode and is typically 0.
 // when the file contents are no longer needed, call file_buf_free(buf).
 LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size,
-	uint flags, FileIOCB cb, uintptr_t cb_ctx)	// all default 0
+	uint file_flags, FileIOCB cb, uintptr_t cb_ctx)	// all default 0
 {
 	debug_printf("VFS| load: V_fn=%s\n", V_fn);
 
 	const char* atom_fn = file_make_unique_fn_copy(V_fn);
-	const uint fc_flags = (flags & FILE_LONG_LIVED)? FC_LONG_LIVED : 0;
-	buf = file_cache_retrieve(atom_fn, &size, fc_flags);
+	const uint fb_flags = (file_flags & FILE_LONG_LIVED)? FB_LONG_LIVED : 0;
+	buf = file_cache_retrieve(atom_fn, &size, fb_flags);
 	if(buf)
 	{
 		// we want to skip the below code (especially vfs_open) for
@@ -454,7 +452,7 @@ LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size,
 		// so duplicate that here:
 		stats_cache(CR_HIT, size, atom_fn);
 		stats_io_user_request(size);
-		trace_notify_io(atom_fn, size, flags);
+		trace_notify_io(atom_fn, size, file_flags);
 
 		size_t actual_size;
 		LibError ret = file_io_call_back(buf, size, cb, cb_ctx, actual_size);
@@ -471,7 +469,7 @@ LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size,
 
 	buf = 0; size = 0;	// initialize in case something below fails
 
-	Handle hf = vfs_open(atom_fn, flags);
+	Handle hf = vfs_open(atom_fn, file_flags);
 	RETURN_ERR(hf);
 		// necessary because if we skip this and have H_DEREF report the
 		// error, we get "invalid handle" instead of vfs_open's error code.
@@ -493,7 +491,7 @@ LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size,
 
 	debug_assert(nread == (ssize_t)size);
 
-	(void)file_cache_add(buf, size, atom_fn);
+	(void)file_cache_add(buf, size, atom_fn, file_flags);
 	stats_cache(CR_MISS, size, atom_fn);
 
 	(void)vfs_close(hf);

@@ -196,7 +196,7 @@ extern bool tex_is_known_extension(const char* filename);
 
 // load the specified image from file into the given Tex object.
 // currently supports BMP, TGA, JPG, JP2, PNG, DDS.
-extern LibError tex_load(const char* fn, Tex* t);
+extern LibError tex_load(const char* fn, Tex* t, uint file_flags = 0);
 
 // store the given image data into a Tex object; this will be as if
 // it had been loaded via tex_load.

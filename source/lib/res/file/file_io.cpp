@@ -88,9 +88,10 @@ LibError file_io_issue(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 	// since we have no control over the buffer (there might not be
 	// enough room in it). hence, do cut-off in IOManager.
 	//
-	// example: 200-byte file. IOManager issues 16KB chunks; that is way
-	// beyond EOF, so ReadFile fails. limiting size to 200 bytes works,
-	// but causes waio to pad the transfer and use align buffer (slow).
+	// example: 200-byte file. IOManager issues (large) blocks;
+	// that ends up way beyond EOF, so ReadFile fails.
+	// limiting size to 200 bytes works, but causes waio to pad the
+	// transfer and use align buffer (slow).
 	// rounding up to 512 bytes avoids realignment and does not fail
 	// (apparently since NTFS files are sector-padded anyway?)
 
@@ -99,7 +100,7 @@ LibError file_io_issue(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 	aiocb* cb = aiocb_allocator.alloc();
 	io->cb = cb;
 	if(!cb)
-		return ERR_NO_MEM;
+		WARN_RETURN(ERR_NO_MEM);
 	memset(cb, 0, sizeof(*cb));
 
 	// send off async read/write request
@@ -113,7 +114,7 @@ LibError file_io_issue(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 	{
 		debug_printf("lio_listio: %d, %d[%s]\n", err, errno, strerror(errno));
 		(void)file_io_discard(io);
-		WARN_RETURN(LibError_from_errno());
+		return LibError_from_errno();
 	}
 
 	const BlockId disk_pos = block_cache_make_id(f->fc.atom_fn, ofs);
@@ -159,9 +160,7 @@ LibError file_io_wait(FileIo* io, void*& p, size_t& size)
 
 	// see if actual transfer count matches requested size.
 	// note: most callers clamp to EOF but round back up to sector size
-	// (see explanation in file_io_issue). since we're not sure what
-	// the exact sector size is (only waio knows), we can only warn of
-	// too small transfer counts (not return error).
+	// (see explanation in file_io_issue).
 	debug_assert(bytes_transferred >= (ssize_t)(cb->aio_nbytes-AIO_SECTOR_SIZE));
 
 	p = (void*)cb->aio_buf;	// cast from volatile void*
@@ -198,6 +197,10 @@ LibError file_io_validate(const FileIo* io)
 //-----------------------------------------------------------------------------
 // sync I/O
 //-----------------------------------------------------------------------------
+
+// set from sys_max_sector_size(); see documentation there.
+size_t file_sector_size;
+
 
 // the underlying aio implementation likes buffer and offset to be
 // sector-aligned; if not, the transfer goes through an align buffer,
@@ -242,6 +245,42 @@ LibError file_io_call_back(const void* block, size_t size,
 		return INFO_CB_CONTINUE;
 	}
 }
+
+
+// interpret file_io parameters (pbuf, size, flags, cb) and allocate a
+// file buffer if necessary.
+// called by file_io and afile_read.
+LibError file_io_get_buf(FileIOBuf* pbuf, size_t size,
+	const char* atom_fn, uint file_flags, FileIOCB cb)
+{
+	// decode *pbuf - exactly one of these is true
+	const bool temp  = (pbuf == FILE_BUF_TEMP);
+	const bool alloc = !temp && (*pbuf == FILE_BUF_ALLOC);
+	const bool user  = !temp && !alloc;
+
+	const bool is_write = (file_flags & FILE_WRITE) != 0;
+	const uint fb_flags = (file_flags & FILE_LONG_LIVED)? FB_LONG_LIVED : 0;
+
+	// reading into temp buffers - ok.
+	if(!is_write && temp && cb != 0)
+		return ERR_OK;
+
+	// reading and want buffer allocated.
+	if(!is_write && alloc)
+	{
+		*pbuf = file_buf_alloc(size, atom_fn, fb_flags);
+		if(!*pbuf)	// very unlikely (size totally bogus or cache hosed)
+			WARN_RETURN(ERR_NO_MEM);
+		return ERR_OK;
+	}
+
+	// writing from user-specified buffer - ok
+	if(is_write && user)
+		return ERR_OK;
+
+	WARN_RETURN(ERR_INVALID_PARAM);
+}
+
 
 class IOManager
 {
@@ -317,7 +356,7 @@ class IOManager
 		{
 			dst_mem = malloc(size);
 			if(!dst_mem)
-				return ERR_NO_MEM;
+				WARN_RETURN(ERR_NO_MEM);
 			dst = dst_mem;
 		}
 		else
@@ -331,7 +370,7 @@ class IOManager
 		if(total_transferred < 0)
 		{
 			free(dst_mem);
-			WARN_RETURN(LibError_from_errno());
+			return LibError_from_errno();
 		}
 
 		size_t total_processed;
@@ -372,7 +411,7 @@ class IOManager
 			size = round_up(size, AIO_SECTOR_SIZE);
 		}
 
-		RETURN_ERR(file_buf_get(pbuf, size, f->fc.atom_fn, f->fc.flags, cb));
+		RETURN_ERR(file_io_get_buf(pbuf, size, f->fc.atom_fn, f->fc.flags, cb));
 
 		return ERR_OK;
 	}
@@ -411,24 +450,29 @@ class IOManager
 
 	void wait(IOSlot& slot, void*& block, size_t& block_size)
 	{
+		// get completed block address/size
 		if(slot.cached_block)
 		{
 			block = (u8*)slot.cached_block;
 			block_size = FILE_BLOCK_SIZE;
 		}
-		// wasn't in cache; it was issued, so wait for it
+		// .. wasn't in cache; it was issued, so wait for it
 		else
 		{
 			LibError ret = file_io_wait(&slot.io, block, block_size);
 			if(ret < 0)
 				err = ret;
+		}
 
-if(pbuf != FILE_BUF_TEMP && f->fc.flags & FILE_CACHE_BLOCK)
-{
-	slot.temp_buf = block_cache_alloc(slot.block_id);
-	memcpy2(slot.temp_buf, block, block_size);
-	// block_cache_mark_completed will be called in process()
-}
+		// special forwarding path: copy into block cache from
+		// user's buffer. this necessary to efficiently support direct
+		// IO of uncompressed files in archives.
+		// note: must occur before skipping padding below.
+		if(!slot.cached_block && pbuf != FILE_BUF_TEMP && f->fc.flags & FILE_CACHE_BLOCK)
+		{
+			slot.temp_buf = block_cache_alloc(slot.block_id);
+			memcpy2(slot.temp_buf, block, block_size);
+			// block_cache_mark_completed will be called in process()
 		}
 
 		// first time; skip past padding

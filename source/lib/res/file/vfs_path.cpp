@@ -22,93 +22,67 @@
 // name ::= [^/]
 
 
-// if path is invalid (see source for criteria), print a diagnostic message
-// (indicating line number of the call that failed) and
-// return a negative error code. used by CHECK_PATH.
-LibError path_validate(const uint line, const char* path)
+// if path is invalid, return a descriptive error code, otherwise ERR_OK.
+LibError path_validate(const char* path)
 {
-	size_t path_len = 0;	// counted as we go; checked against max.
-
-	const char* msg = 0;	// error occurred <==> != 0
-
-	int c = 0, last_c;		// used for ./ detection
-
 	// disallow "/", because it would create a second 'root' (with name = "").
 	// root dir is "".
 	if(path[0] == '/')
-	{
-		msg = "starts with '/'";
-		goto fail;
-	}
+		return ERR_PATH_NOT_RELATIVE;
 
 	// scan each char in path string; count length.
+	int c = 0;		// current char; used for .. detection
+	size_t path_len = 0;
 	for(;;)
 	{
-		last_c = c;
+		const int last_c = c;
 		c = path[path_len++];
 
 		// whole path is too long
 		if(path_len >= VFS_MAX_PATH)
-		{
-			msg = "path too long";
-			goto fail;
-		}
+			return ERR_PATH_LENGTH;
 
 		// disallow:
 		// - ".." (prevent going above the VFS root dir)
 		// - "./" (security hole when mounting and not supported on Windows).
 		// allow "/.", because CVS backup files include it.
 		if(last_c == '.' && (c == '.' || c == '/'))
-		{
-			msg = "contains '..' or './'";
-			goto fail;
-		}
+			return ERR_PATH_NON_CANONICAL;
 
 		// disallow OS-specific dir separators
 		if(c == '\\' || c == ':')
-		{
-			msg = "contains OS-specific dir separator (e.g. '\\', ':')";
-			goto fail;
-		}
+			return ERR_PATH_NON_PORTABLE;
 
-		// end of string, all is well.
+		// end of string, no errors encountered
 		if(c == '\0')
-			goto ok;
+			break;
 	}
 
-fail:
-	debug_printf("%s called from line %u failed: %s\n", __func__, line, msg);
-	debug_warn("failed");
-	return ERR_FAIL;
-
-ok:
 	return ERR_OK;
 }
 
 
-bool path_component_valid(const char* name)
+// if name is invalid, return a descriptive error code, otherwise ERR_OK.
+LibError path_component_validate(const char* name)
 {
 	// disallow empty strings
 	if(*name == '\0')
-		return false;
+		return ERR_PATH_EMPTY;
 
-	int c = 0;
 	for(;;)
 	{
-		int last_c = c;
-		c = *name++;
-
-		// disallow '..' (would allow escaping the VFS root dir sandbox)
-		if(c == '.' && last_c == '.')
-			return false;
+		const int c = *name++;
 
 		// disallow dir separators
 		if(c == '\\' || c == ':' || c == '/')
-			return false;
+			return ERR_PATH_COMPONENT_SEPARATOR;
 
+		// end of string, no errors encountered
 		if(c == '\0')
-			return true;
+			break;
 	}
+
+	return ERR_OK;
 }
 
 
@@ -139,7 +113,7 @@ LibError vfs_path_append(char* dst, const char* path1, const char* path2)
 	}
 
 	if(total_len+1 > VFS_MAX_PATH)
-		return ERR_PATH_LENGTH;
+		WARN_RETURN(ERR_PATH_LENGTH);
 
 	strcpy(dst, path1);	// safe
 	dst += len1;
@@ -158,7 +132,7 @@ LibError path_replace(char* dst, const char* src, const char* remove, const char
 	// remove doesn't match start of <src>
 	const size_t remove_len = strlen(remove);
 	if(strncmp(src, remove, remove_len) != 0)
-		return ERR_FAIL;
+		WARN_RETURN(ERR_FAIL);
 
 	// get rid of trailing / in src (must not be included in remove)
 	const char* start = src+remove_len;

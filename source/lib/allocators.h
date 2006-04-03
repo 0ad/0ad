@@ -21,50 +21,25 @@
 #include "lib/types.h"
 #include "lib/posix.h"	// PROT_* constants for da_set_prot
 
-
 //
-// allocator optimized for single instances
+// page aligned allocator
 //
 
-// intended for applications that frequently alloc/free a single
-// fixed-size object. caller provides static storage and an in-use flag;
-// we use that memory if available and otherwise fall back to the heap.
-// if the application only has one object in use at a time, malloc is
-// avoided; this is faster and avoids heap fragmentation.
+// allocates memory aligned to the system page size.
 //
-// thread-safe.
+// this is useful for file_buf_alloc, which uses this allocator to
+// get sector-aligned (hopefully; see file_sector_size) IO buffers.
+//
+// note that this allocator is stateless and very litte error checking
+// can be performed.
 
-extern void* single_calloc(void* storage, volatile uintptr_t* in_use_flag, size_t size);
+// returns at least unaligned_size bytes of page-aligned memory.
+// it defaults to read/writable; you can mprotect it if desired.
+extern void* page_aligned_alloc(size_t unaligned_size);
 
-extern void single_free(void* storage, volatile uintptr_t* in_use_flag, void* p);
-
-// C++ wrapper
-#ifdef __cplusplus
-
-// T must be POD (Plain Old Data) because it is memset to 0!
-template<class T> class SingleAllocator
-{
-	T storage;
-	volatile uintptr_t is_in_use;
-
-public:
-	SingleAllocator()
-	{
-		is_in_use = 0;
-	}
-
-	void* alloc()
-	{
-		return single_calloc(&storage, &is_in_use, sizeof(storage));
-	}
-
-	void release(void* p)
-	{
-		single_free(&storage, &is_in_use, p);
-	}
-};
-
-#endif	// #ifdef __cplusplus
+// free a previously allocated region. must be passed the exact values
+// passed to/returned from page_aligned_malloc.
+extern void page_aligned_free(void* p, size_t unaligned_size);
 
 
 //
@@ -278,6 +253,51 @@ extern void** matrix_alloc(uint cols, uint rows, size_t el_size);
 // callers will likely want to pass variables of a different type
 // (e.g. int**); they must be cast to void**.
 extern void matrix_free(void** matrix);
+
+
+//
+// allocator optimized for single instances
+//
+
+// intended for applications that frequently alloc/free a single
+// fixed-size object. caller provides static storage and an in-use flag;
+// we use that memory if available and otherwise fall back to the heap.
+// if the application only has one object in use at a time, malloc is
+// avoided; this is faster and avoids heap fragmentation.
+//
+// thread-safe.
+
+extern void* single_calloc(void* storage, volatile uintptr_t* in_use_flag, size_t size);
+
+extern void single_free(void* storage, volatile uintptr_t* in_use_flag, void* p);
+
+// C++ wrapper
+#ifdef __cplusplus
+
+// T must be POD (Plain Old Data) because it is memset to 0!
+template<class T> class SingleAllocator
+{
+	T storage;
+	volatile uintptr_t is_in_use;
+
+public:
+	SingleAllocator()
+	{
+		is_in_use = 0;
+	}
+
+	void* alloc()
+	{
+		return single_calloc(&storage, &is_in_use, sizeof(storage));
+	}
+
+	void release(void* p)
+	{
+		single_free(&storage, &is_in_use, p);
+	}
+};
+
+#endif	// #ifdef __cplusplus
 
 
 //

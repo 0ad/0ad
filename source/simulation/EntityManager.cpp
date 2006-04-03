@@ -227,6 +227,8 @@ void CEntityManager::InitializeAll()
 		{
 			CEntity* e = m_entities[i].m_entity;
 			e->Initialize();
+
+			// 2006-03-04 ~8ms total
 			e->updateCollisionPatch();
 		}
 	}

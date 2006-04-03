@@ -25,74 +25,11 @@
 
 
 //-----------------------------------------------------------------------------
-// allocator optimized for single instances
+// helper routines
 //-----------------------------------------------------------------------------
 
-// intended for applications that frequently alloc/free a single
-// fixed-size object. caller provides static storage and an in-use flag;
-// we use that memory if available and otherwise fall back to the heap.
-// if the application only has one object in use at a time, malloc is
-// avoided; this is faster and avoids heap fragmentation.
-//
-// thread-safe.
-
-void* single_calloc(void* storage, volatile uintptr_t* in_use_flag, size_t size)
-{
-	// sanity check
-	debug_assert(*in_use_flag == 0 || *in_use_flag == 1);
-
-	void* p;
-
-	// successfully reserved the single instance
-	if(CAS(in_use_flag, 0, 1))
-		p = storage;
-	// already in use (rare) - allocate from heap
-	else
-	{
-		p = malloc(size);
-		if(!p)
-		{
-			WARN_ERR(ERR_NO_MEM);
-			return 0;
-		}
-	}
-
-	memset(p, 0, size);
-	return p;
-}
-
-
-void single_free(void* storage, volatile uintptr_t* in_use_flag, void* p)
-{
-	// sanity check
-	debug_assert(*in_use_flag == 0 || *in_use_flag == 1);
-
-	if(p == storage)
-	{
-		if(CAS(in_use_flag, 1, 0))
-		{
-			// ok, flag has been reset to 0
-		}
-		else
-			debug_warn("in_use_flag out of sync (double free?)");
-	}
-	// was allocated from heap
-	else
-	{
-		// single instance may have been freed by now - cannot assume
-		// anything about in_use_flag.
-
-		free(p);
-	}
-}
-
-
-//-----------------------------------------------------------------------------
-// dynamic (expandable) array
-//-----------------------------------------------------------------------------
-
-// helper routine that makes sure page_size has been initialized by the
-// time it is needed (otherwise, we are open to NLSO ctor order issues).
+// makes sure page_size has been initialized by the time it is needed
+// (otherwise, we are open to NLSO ctor order issues).
 // pool_create is therefore now safe to call before main().
 static size_t get_page_size()
 {
@@ -100,55 +37,19 @@ static size_t get_page_size()
 	return page_size;
 }
 
-static bool is_page_multiple(uintptr_t x)
+static inline bool is_page_multiple(uintptr_t x)
 {
 	return (x % get_page_size()) == 0;
 }
 
-static size_t round_up_to_page(size_t size)
+static inline size_t round_up_to_page(size_t size)
 {
 	return round_up(size, get_page_size());
 }
 
-// indicates that this DynArray must not be resized or freed
-// (e.g. because it merely wraps an existing memory range).
-// stored in da->prot to reduce size; doesn't conflict with any PROT_* flags.
-const int DA_NOT_OUR_MEM = 0x40000000;
 
-static LibError validate_da(DynArray* da)
-{
-	if(!da)
-		return ERR_INVALID_PARAM;
-	u8* const base           = da->base;
-	const size_t max_size_pa = da->max_size_pa;
-	const size_t cur_size    = da->cur_size;
-	const size_t pos         = da->pos;
-	const int prot           = da->prot;
-
-	if(debug_is_pointer_bogus(base))
-		return ERR_1;
-	// note: don't check if base is page-aligned -
-	// might not be true for 'wrapped' mem regions.
-//	if(!is_page_multiple((uintptr_t)base))
-//		return ERR_2;
-	if(!is_page_multiple(max_size_pa))
-		return ERR_3;
-	if(cur_size > max_size_pa)
-		return ERR_4;
-	if(pos > cur_size || pos > max_size_pa)
-		return ERR_5;
-	if(prot & ~(PROT_READ|PROT_WRITE|PROT_EXEC|DA_NOT_OUR_MEM))
-		return ERR_6;
-
-	return ERR_OK;
-}
-
-#define CHECK_DA(da) CHECK_ERR(validate_da(da))
-
-
-//-----------------------------------------------------------------------------
-// very thin wrapper on top of sys/mman.h that makes the intent more obvious
-// (its commit/decommit semantics are difficult to tell apart).
+// very thin wrapper on top of sys/mman.h that makes the intent more obvious:
+// (its commit/decommit semantics are difficult to tell apart)
 
 static inline LibError LibError_from_mmap(void* ret, bool warn_if_failed = true)
 {
@@ -201,7 +102,69 @@ static LibError mem_protect(u8* p, size_t size, int prot)
 
 
 //-----------------------------------------------------------------------------
-// API
+// page aligned allocator
+//-----------------------------------------------------------------------------
+
+// returns at least unaligned_size bytes of page-aligned memory.
+// it defaults to read/writable; you can mprotect it if desired.
+void* page_aligned_alloc(size_t unaligned_size)
+{
+	const size_t size_pa = round_up_to_page(unaligned_size);
+	u8* p = 0;
+	RETURN0_IF_ERR(mem_reserve(size_pa, &p));
+	RETURN0_IF_ERR(mem_commit(p, size_pa, PROT_READ|PROT_WRITE));
+	return p;
+}
+
+// free a previously allocated region. must be passed the exact values
+// passed to/returned from page_aligned_malloc.
+void page_aligned_free(void* p, size_t unaligned_size)
+{
+	debug_assert(is_page_multiple((uintptr_t)p));
+	const size_t size_pa = round_up_to_page(unaligned_size);
+	(void)mem_release((u8*)p, size_pa);
+}
+
+
+//-----------------------------------------------------------------------------
+// dynamic (expandable) array
+//-----------------------------------------------------------------------------
+
+// indicates that this DynArray must not be resized or freed
+// (e.g. because it merely wraps an existing memory range).
+// stored in da->prot to reduce size; doesn't conflict with any PROT_* flags.
+const int DA_NOT_OUR_MEM = 0x40000000;
+
+static LibError validate_da(DynArray* da)
+{
+	if(!da)
+		return ERR_INVALID_PARAM;
+	u8* const base           = da->base;
+	const size_t max_size_pa = da->max_size_pa;
+	const size_t cur_size    = da->cur_size;
+	const size_t pos         = da->pos;
+	const int prot           = da->prot;
+
+	if(debug_is_pointer_bogus(base))
+		return ERR_1;
+	// note: don't check if base is page-aligned -
+	// might not be true for 'wrapped' mem regions.
+//	if(!is_page_multiple((uintptr_t)base))
+//		return ERR_2;
+	if(!is_page_multiple(max_size_pa))
+		return ERR_3;
+	if(cur_size > max_size_pa)
+		return ERR_4;
+	if(pos > cur_size || pos > max_size_pa)
+		return ERR_5;
+	if(prot & ~(PROT_READ|PROT_WRITE|PROT_EXEC|DA_NOT_OUR_MEM))
+		return ERR_6;
+
+	return ERR_OK;
+}
+
+#define CHECK_DA(da) CHECK_ERR(validate_da(da))
+
 
 // ready the DynArray object for use. preallocates max_size bytes
 // (rounded up to the next page size multiple) of address space for the
@@ -212,7 +175,7 @@ LibError da_alloc(DynArray* da, size_t max_size)
 	const size_t max_size_pa = round_up_to_page(max_size);
 
 	u8* p;
-	CHECK_ERR(mem_reserve(max_size_pa, &p));
+	RETURN_ERR(mem_reserve(max_size_pa, &p));
 
 	da->base        = p;
 	da->max_size_pa = max_size_pa;
@@ -259,7 +222,7 @@ LibError da_free(DynArray* da)
 	// (i.e. it doesn't actually own any memory). don't complain;
 	// da_free is supposed to be called even in the above case.
 	if(!was_wrapped)
-		CHECK_ERR(mem_release(p, size));
+		RETURN_ERR(mem_release(p, size));
 	return ERR_OK;
 }
 
@@ -288,10 +251,10 @@ LibError da_set_size(DynArray* da, size_t new_size)
 	u8* end = da->base + cur_size_pa;
 	// expanding
 	if(size_delta_pa > 0)
-		CHECK_ERR(mem_commit(end, size_delta_pa, da->prot));
+		RETURN_ERR(mem_commit(end, size_delta_pa, da->prot));
 	// shrinking
 	else if(size_delta_pa < 0)
-		CHECK_ERR(mem_decommit(end+size_delta_pa, -size_delta_pa));
+		RETURN_ERR(mem_decommit(end+size_delta_pa, -size_delta_pa));
 	// else: no change in page count, e.g. if going from size=1 to 2
 	// (we don't want mem_* to have to handle size=0)
 
@@ -329,7 +292,7 @@ LibError da_set_prot(DynArray* da, int prot)
 		WARN_RETURN(ERR_LOGIC);
 
 	da->prot = prot;
-	CHECK_ERR(mem_protect(da->base, da->cur_size, prot));
+	RETURN_ERR(mem_protect(da->base, da->cur_size, prot));
 
 	CHECK_DA(da);
 	return ERR_OK;
@@ -698,6 +661,69 @@ void** matrix_alloc(uint cols, uint rows, size_t el_size)
 void matrix_free(void** matrix)
 {
 	free(matrix);
+}
+
+
+//-----------------------------------------------------------------------------
+// allocator optimized for single instances
+//-----------------------------------------------------------------------------
+
+// intended for applications that frequently alloc/free a single
+// fixed-size object. caller provides static storage and an in-use flag;
+// we use that memory if available and otherwise fall back to the heap.
+// if the application only has one object in use at a time, malloc is
+// avoided; this is faster and avoids heap fragmentation.
+//
+// thread-safe.
+
+void* single_calloc(void* storage, volatile uintptr_t* in_use_flag, size_t size)
+{
+	// sanity check
+	debug_assert(*in_use_flag == 0 || *in_use_flag == 1);
+
+	void* p;
+
+	// successfully reserved the single instance
+	if(CAS(in_use_flag, 0, 1))
+		p = storage;
+	// already in use (rare) - allocate from heap
+	else
+	{
+		p = malloc(size);
+		if(!p)
+		{
+			WARN_ERR(ERR_NO_MEM);
+			return 0;
+		}
+	}
+
+	memset(p, 0, size);
+	return p;
+}
+
+
+void single_free(void* storage, volatile uintptr_t* in_use_flag, void* p)
+{
+	// sanity check
+	debug_assert(*in_use_flag == 0 || *in_use_flag == 1);
+
+	if(p == storage)
+	{
+		if(CAS(in_use_flag, 1, 0))
+		{
+			// ok, flag has been reset to 0
+		}
+		else
+			debug_warn("in_use_flag out of sync (double free?)");
+	}
+	// was allocated from heap
+	else
+	{
+		// single instance may have been freed by now - cannot assume
+		// anything about in_use_flag.
+
+		free(p);
+	}
 }
 
 

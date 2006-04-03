@@ -86,9 +86,13 @@ static void Archive_dtor(Archive* a)
 
 static LibError Archive_reload(Archive* a, const char* fn, Handle)
 {
+	// must be enabled in archive files for efficiency (see decl).
+	// note that afile_read overrides archive file flags for
+	// uncompressed IOs, but this flag is re-added there.
+	const uint flags = FILE_CACHE_BLOCK;
 	// (note: don't warn on failure - this happens when
 	// vfs_mount blindly archive_open-s a dir)
-	RETURN_ERR(file_open(fn, FILE_CACHE_BLOCK, &a->f));
+	RETURN_ERR(file_open(fn, flags, &a->f));
 	a->is_open = 1;
 
 	RETURN_ERR(zip_populate_archive(&a->f, a));
@@ -152,7 +156,7 @@ static LibError archive_get_file_info(Archive* a, const char* fn, uintptr_t meme
 			}
 	}
 
-	return ERR_FILE_NOT_FOUND;
+	WARN_RETURN(ERR_FILE_NOT_FOUND);
 }
 
 
@@ -292,10 +296,8 @@ LibError afile_open(const Handle ha, const char* fn, uintptr_t memento, int flag
 	{
 		ctx = comp_alloc(CT_DECOMPRESSION, ent->method);
 		if(!ctx)
-			return ERR_NO_MEM;
+			WARN_RETURN(ERR_NO_MEM);
 	}
-
-flags |= FILE_CACHE_BLOCK;
 
 	af->fc.flags   = flags;
 	af->fc.size    = ent->ucsize;
@@ -367,7 +369,7 @@ LibError afile_io_issue(AFile* af, off_t user_ofs, size_t max_output_size, void*
 
 	void* cbuf = mem_alloc(csize, 4*KiB);
 	if(!cbuf)
-		return ERR_NO_MEM;
+		WARN_RETURN(ERR_NO_MEM);
 
 	CHECK_ERR(file_io_issue(&a->f, cofs, csize, cbuf, &io->io));
 
@@ -522,12 +524,13 @@ ssize_t afile_read(AFile* af, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB 
 		// that must be copied over (temporarily) into a->f flags.
 		//
 		// we currently copy all flags - this may mean that setting
-		// global policy (e.g. "don't cache") for all archive files is
-		// difficult, but that can be worked around by forcing
-		// flag to be set in afile_open.
+		// global policy flags for all archive files is difficult,
+		// but that can be worked around by setting them in afile_open.
 		// this is better than the alternative of copying individual
 		// flags because it'd need to be updated as new flags are added.
 		a->f.fc.flags = af->fc.flags;
+		// this was set in Archive_reload and must be re-enabled for efficiency.
+		a->f.fc.flags |= FILE_CACHE_BLOCK;
 
 		bool we_allocated = (pbuf != FILE_BUF_TEMP) && (*pbuf == FILE_BUF_ALLOC);
 		// no need to set last_cofs - only checked if compressed.
@@ -540,7 +543,7 @@ ssize_t afile_read(AFile* af, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB 
 
 	debug_assert(af->ctx != 0);
 
-	RETURN_ERR(file_buf_get(pbuf, size, af->fc.atom_fn, af->fc.flags, cb));
+	RETURN_ERR(file_io_get_buf(pbuf, size, af->fc.atom_fn, af->fc.flags, cb));
 	const bool use_temp_buf = (pbuf == FILE_BUF_TEMP);
 	if(!use_temp_buf)
 		comp_set_output(af->ctx, (void*)*pbuf, size);
@@ -613,7 +616,7 @@ LibError afile_unmap(AFile* af)
 	// make sure archive mapping refcount remains balanced:
 	// don't allow multiple|"false" unmaps.
 	if(!af->is_mapped)
-		return ERR_FAIL;
+		WARN_RETURN(ERR_NOT_MAPPED);
 	af->is_mapped = 0;
 
 	H_DEREF(af->ha, Archive, a);

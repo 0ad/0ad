@@ -220,7 +220,7 @@ LibError file_make_full_portable_path(const char* n_full_path, char* path)
 	debug_assert(path != n_full_path);	// doesn't work in-place
 
 	if(strncmp(n_full_path, n_root_dir, n_root_dir_len) != 0)
-		return ERR_PATH_NOT_FOUND;
+		WARN_RETURN(ERR_PATH_NOT_FOUND);
 	return convert_path(path, n_full_path+n_root_dir_len, TO_PORTABLE);
 }
 
@@ -240,8 +240,6 @@ LibError file_make_full_portable_path(const char* n_full_path, char* path)
 // can only be called once, by design (see below). rel_path is trusted.
 LibError file_set_root_dir(const char* argv0, const char* rel_path)
 {
-	const char* msg = 0;
-
 	// security check: only allow attempting to chdir once, so that malicious
 	// code cannot circumvent the VFS checks that disallow access to anything
 	// above the current directory (set here).
@@ -249,13 +247,8 @@ LibError file_set_root_dir(const char* argv0, const char* rel_path)
 	// are likely bogus.
 	static bool already_attempted;
 	if(already_attempted)
-	{
-		msg = "called more than once";
-		goto fail;
-	}
+		WARN_RETURN(ERR_ROOT_DIR_ALREADY_SET);
 	already_attempted = true;
-
-	{
 
 	// get full path to executable
 	char n_path[PATH_MAX];
@@ -264,49 +257,28 @@ LibError file_set_root_dir(const char* argv0, const char* rel_path)
 	{
 		// .. failed; use argv[0]
 		if(!realpath(argv0, n_path))
-		{
-			msg = "realpath(argv[0]) failed";
-			goto fail;
-		}
+			return LibError_from_errno();
 	}
 
 	// make sure it's valid
 	if(access(n_path, X_OK) < 0)
-	{
-		msg = "ERR_FILE_ACCESS";
-		goto fail;
-	}
+		return LibError_from_errno();
 
 	// strip executable name, append rel_path, convert to native
-	char* fn = strrchr(n_path, DIR_SEP);
-	if(!fn)
-	{
-		msg = "realpath returned an invalid path?";
-		goto fail;
-	}
-	RETURN_ERR(file_make_native_path(rel_path, fn+1));
+	char* slash = strrchr(n_path, DIR_SEP);
+	// .. safely handle n_path not containing DIR_SEP (not expected)
+	if(!slash) slash = n_path-1;
+	RETURN_ERR(file_make_native_path(rel_path, slash+1));
 
 	// get actual root dir - previous n_path may include ".."
 	// (slight optimization, speeds up path lookup)
 	if(!realpath(n_path, n_root_dir))
-		goto fail;
+		return LibError_from_errno();
 	// .. append DIR_SEP to simplify code that uses n_root_dir
 	//    (note: already 0-terminated, since it's static)
 	n_root_dir_len = strlen(n_root_dir)+1;	// +1 for trailing DIR_SEP
 	n_root_dir[n_root_dir_len-1] = DIR_SEP;
 	return ERR_OK;
-
-	}
-
-fail:
-	debug_warn("failed");
-	if(msg)
-	{
-		debug_printf("%s: %s\n", __func__, msg);
-		return ERR_FAIL;
-	}
-
-	return LibError_from_errno();
 }
 
 
@@ -355,7 +327,7 @@ LibError dir_open(const char* P_path, DirIterator* d_)
 
 	d->os_dir = opendir(n_path);
 	if(!d->os_dir)
-		CHECK_ERR(LibError_from_errno());
+		return LibError_from_errno();
 
 	RETURN_ERR(pp_set_dir(&d->pp, n_path));
 	return ERR_OK;
@@ -374,9 +346,10 @@ get_another_entry:
 	struct dirent* os_ent = readdir(d->os_dir);
 	if(!os_ent)
 	{
-		if(errno)
-			debug_warn("readdir failed");
-		return ERR_DIR_END;
+		// no error, just no more entries to return
+		if(!errno)
+			return ERR_DIR_END;	// NOWARN
+		return LibError_from_errno();
 	}
 
 	// copy os_ent.name[]; we need it for stat() #if !OS_WIN and
@@ -514,7 +487,7 @@ LibError file_enum(const char* P_path, const FileCB cb, const uintptr_t user)
 
 
 // get file information. output param is zeroed on error.
-LibError file_stat(const char* fn, struct stat* s)
+static LibError file_stat_impl(const char* fn, struct stat* s, bool warn_if_failed = true)
 {
 	memset(s, 0, sizeof(struct stat));
 
@@ -522,15 +495,21 @@ LibError file_stat(const char* fn, struct stat* s)
 	RETURN_ERR(file_make_full_native_path(fn, N_fn));
 
 	errno = 0;
-	return LibError_from_posix(stat(N_fn, s));
+	int ret = stat(N_fn, s);
+	return LibError_from_posix(ret, warn_if_failed);
 }
 
+LibError file_stat(const char* fn, struct stat* s)
+{
+	return file_stat_impl(fn, s);
+}
 
 // does the given file exist? (implemented via file_stat)
 bool file_exists(const char* fn)
 {
 	struct stat s;
-	return file_stat(fn, &s) == ERR_OK;
+	const bool warn_if_failed = false;
+	return file_stat_impl(fn, &s, warn_if_failed) == ERR_OK;
 }
 
 
@@ -573,8 +552,8 @@ LibError file_validate(const File* f)
 	// mapped but refcount is invalid
 	else if((f->mapping != 0) ^ (f->map_refs != 0))
 		return ERR_2;
-	// note: don't check atom_fn - that complains after file_open
-	// if flags & FILE_DONT_SET_FN and has no benefit, really.
+	// note: don't check atom_fn - that complains at the end of
+	// file_open if flags & FILE_DONT_SET_FN and has no benefit, really.
 
 	return ERR_OK;
 }
@@ -587,6 +566,10 @@ static Pool atom_pool;
 
 // allocate a copy of P_fn in our string pool. strings are equal iff
 // their addresses are equal, thus allowing fast comparison.
+//
+// if the (generous) filename storage is full, 0 is returned.
+// this is not ever expected to happen; callers need not check the
+// return value because a warning is raised anyway.
 const char* file_make_unique_fn_copy(const char* P_fn)
 {
 	// early out: if already an atom, return immediately.
@@ -609,7 +592,10 @@ const char* file_make_unique_fn_copy(const char* P_fn)
 
 	unique_fn = (const char*)pool_alloc(&atom_pool, fn_len+1);
 	if(!unique_fn)
+	{
+		DEBUG_WARN_ERR(ERR_NO_MEM);
 		return 0;
+	}
 	memcpy2((void*)unique_fn, P_fn, fn_len);
 	((char*)unique_fn)[fn_len] = '\0';
 
@@ -659,8 +645,8 @@ LibError file_open(const char* P_fn, const uint flags, File* f)
 	// zero output param in case we fail below.
 	memset(f, 0, sizeof(*f));
 
-	if(flags > FILE_FLAG_MAX)
-		return ERR_INVALID_PARAM;
+	if(flags > FILE_FLAG_ALL)
+		WARN_RETURN(ERR_INVALID_PARAM);
 
 	char N_fn[PATH_MAX];
 	RETURN_ERR(file_make_full_native_path(P_fn, N_fn));
@@ -677,7 +663,7 @@ LibError file_open(const char* P_fn, const uint flags, File* f)
 		// get file size
 		struct stat s;
 		if(stat(N_fn, &s) < 0)
-			return ERR_FILE_NOT_FOUND;
+			WARN_RETURN(ERR_FILE_NOT_FOUND);
 		size = s.st_size;
 
 		// note: despite increased overhead, the AIO read method is still
@@ -691,7 +677,7 @@ LibError file_open(const char* P_fn, const uint flags, File* f)
 
 		// make sure <N_fn> is a regular file
 		if(!S_ISREG(s.st_mode))
-			return ERR_NOT_FILE;
+			WARN_RETURN(ERR_NOT_FILE);
 	}
 
 #if OS_WIN
@@ -707,7 +693,7 @@ LibError file_open(const char* P_fn, const uint flags, File* f)
 
 	int fd = open(N_fn, oflag, S_IRWXO|S_IRWXU|S_IRWXG);
 	if(fd < 0)
-		return ERR_FILE_ACCESS;
+		WARN_RETURN(ERR_FILE_ACCESS);
 
 	f->fc.flags = flags;
 	f->fc.size  = size;
@@ -801,7 +787,7 @@ LibError file_map(File* f, void*& p, size_t& size)
 	// then again, don't complain, because this might happen when mounting
 	// a dir containing empty files; each is opened as a Zip file.
 	if(f->fc.size == 0)
-		return ERR_FAIL;
+		return ERR_FAIL;	// NOWARN
 
 	errno = 0;
 	f->mapping = mmap(0, f->fc.size, prot, MAP_PRIVATE, f->fd, (off_t)0);
@@ -829,10 +815,7 @@ LibError file_unmap(File* f)
 
 	// file is not currently mapped
 	if(f->map_refs == 0)
-	{
-		debug_warn("not currently mapped");
-		return ERR_FAIL;
-	}
+		WARN_RETURN(ERR_NOT_MAPPED);
 
 	// still more than one reference remaining - done.
 	if(--f->map_refs > 0)
@@ -844,7 +827,8 @@ LibError file_unmap(File* f)
 	// don't clear f->fc.size - the file is still open.
 
 	errno = 0;
-	return LibError_from_posix(munmap(p, f->fc.size));
+	int ret = munmap(p, f->fc.size);
+	return LibError_from_posix(ret);
 }
 
 
@@ -853,6 +837,10 @@ LibError file_init()
 	atom_init();
 	file_cache_init();
 	file_io_init();
+
+	// convenience
+	file_sector_size = sys_max_sector_size();
+
 	return ERR_OK;
 }
 
