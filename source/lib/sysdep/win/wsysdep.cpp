@@ -351,7 +351,7 @@ LibError sys_clipboard_set(const wchar_t* text)
 	// MSDN: passing 0 requests the current task be granted ownership;
 	// there's no need to pass our window handle.
 	if(!OpenClipboard(new_owner))
-		return ERR_FAIL;
+		WARN_RETURN(ERR_FAIL);
 	EmptyClipboard();
 
 	LibError err = ERR_FAIL;
@@ -494,7 +494,7 @@ LibError sys_cursor_create(uint w, uint h, void* bgra_img,
 	DeleteObject(hbmColour);
 
 	if(!hIcon)	// not INVALID_HANDLE_VALUE
-		return ERR_FAIL;
+		WARN_RETURN(ERR_FAIL);
 
 	*cursor = ptr_from_HICON(hIcon);
 	return ERR_OK;
@@ -550,7 +550,7 @@ LibError sys_error_description_r(int err, char* buf, size_t max_chars)
 {
 	// not in our range (Win32 error numbers are positive)
 	if(err < 0)
-		return ERR_FAIL;
+		return ERR_FAIL;	// NOWARN
 
 	const LPCVOID source = 0;	// ignored (we're not using FROM_HMODULE etc.)
 	const DWORD lang_id = 0;	// look for neutral, then current locale
@@ -558,7 +558,7 @@ LibError sys_error_description_r(int err, char* buf, size_t max_chars)
 	DWORD chars_output = FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, source, (DWORD)err,
 		lang_id, buf, (DWORD)max_chars, args);
 	if(!chars_output)
-		return ERR_FAIL;
+		WARN_RETURN(ERR_FAIL);
 	debug_assert(chars_output < max_chars);
 	return ERR_OK;
 }
@@ -654,11 +654,11 @@ LibError sys_on_each_cpu(void (*cb)())
 	const HANDLE hProcess = GetCurrentProcess();
 	DWORD process_affinity, system_affinity;
 	if(!GetProcessAffinityMask(hProcess, &process_affinity, &system_affinity))
-		return ERR_FAIL;
+		WARN_RETURN(ERR_FAIL);
 	// our affinity != system affinity: OS is limiting the CPUs that
 	// this process can run on. fail (cannot call back for each CPU).
 	if(process_affinity != system_affinity)
-		return ERR_FAIL;
+		WARN_RETURN(ERR_CPU_RESTRICTED_AFFINITY);
 
 	for(DWORD cpu_bit = 1; cpu_bit != 0 && cpu_bit <= process_affinity; cpu_bit *= 2)
 	{
@@ -668,7 +668,7 @@ LibError sys_on_each_cpu(void (*cb)())
 		// .. and do so.
 		if(!SetProcessAffinityMask(hProcess, process_affinity))
 		{
-			debug_warn("SetProcessAffinityMask failed");
+			WARN_ERR(ERR_CPU_RESTRICTED_AFFINITY);
 			continue;
 		}
 

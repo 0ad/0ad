@@ -94,7 +94,7 @@ no_aio:
 	// warn now, so that we notice why so many are open.
 #ifndef NDEBUG
 	if(fd > 256)
-		debug_warn("wposix: too many files open (CRT limitation)");
+		WARN_ERR(ERR_LIMIT);
 #endif
 
 	return fd;
@@ -407,7 +407,7 @@ fail:
 			goto success;
 
 		// translate Win32 error to errno.
-		LibError err = LibError_from_win32(0);
+		LibError err = LibError_from_win32(FALSE);
 		LibError_set_errno(err);
 
 		// release the WDIR allocated above.
@@ -630,7 +630,7 @@ static LibError mmap_mem(void* start, size_t len, int prot, int flags, int fd, v
 	DWORD flProtect = win32_prot(prot);
 	void* p = VirtualAlloc(start, len, flAllocationType, flProtect);
 	if(!p)
-		return ERR_NO_MEM;
+		WARN_RETURN(ERR_NO_MEM);
 	*pp = p;
 	return ERR_OK;
 }
@@ -665,7 +665,7 @@ static LibError mmap_file_access(int prot, int flags, DWORD& flProtect, DWORD& d
 		//    definitely illegal according to POSIX and some man pages
 		//    say exactly one must be set, so abort.
 		default:
-			return ERR_INVALID_PARAM;
+			WARN_RETURN(ERR_INVALID_PARAM);
 		}
 	}
 
@@ -682,7 +682,7 @@ static LibError mmap_file(void* start, size_t len, int prot, int flags,
 
 	HANDLE hFile = HANDLE_from_intptr(_get_osfhandle(fd));
 	if(hFile == INVALID_HANDLE_VALUE)
-		return ERR_INVALID_PARAM;
+		WARN_RETURN(ERR_INVALID_PARAM);
 
 	// MapViewOfFileEx will fail if the "suggested" base address is
 	// nonzero but cannot be honored, so wipe out <start> unless MAP_FIXED.
@@ -699,7 +699,7 @@ static LibError mmap_file(void* start, size_t len, int prot, int flags,
 	const HANDLE hMap = CreateFileMapping(hFile, 0, flProtect, 0, 0, (LPCSTR)0);
 	// .. create failed; bail now to avoid overwriting the last error value.
 	if(!hMap)
-		return ERR_NO_MEM;
+		WARN_RETURN(ERR_NO_MEM);
 	const DWORD ofs_hi = u64_hi(ofs), ofs_lo = u64_lo(ofs);
 	void* p = MapViewOfFileEx(hMap, dwAccess, ofs_hi, ofs_lo, (SIZE_T)len, start);
 	// .. make sure we got the requested address if MAP_FIXED was passed.
@@ -710,7 +710,7 @@ static LibError mmap_file(void* start, size_t len, int prot, int flags,
 	CloseHandle(hMap);
 	// .. map failed; bail now to avoid "restoring" the last error value.
 	if(!p)
-		return ERR_NO_MEM;
+		WARN_RETURN(ERR_NO_MEM);
 
 	// slap on correct (more restrictive) permissions. 
 	(void)mprotect(p, len, prot);

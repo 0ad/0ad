@@ -9,16 +9,17 @@
 #include <fam.h>
 
 static FAMConnection fc;
-static bool initialized=false;
+static bool initialized = false;
 
 static std::map<intptr_t, std::string> dirs;
 
-void fam_deinit()
+// for atexit
+static void fam_deinit()
 {
 	FAMClose(&fc);
 }
 
-int dir_add_watch(const char* const n_full_path, intptr_t* const watch)
+LibError dir_add_watch(const char* const n_full_path, intptr_t* const watch)
 {
 	if(!initialized)
 	{
@@ -32,22 +33,19 @@ int dir_add_watch(const char* const n_full_path, intptr_t* const watch)
 	{
 		*watch = -1;
 		debug_warn("res_watch_dir failed!");
-		return -1;	// no way of getting error code?
+		return ERR_FAIL;	// no way of getting error code?
 	}
 
 	*watch = (intptr_t)req.reqnum;
 	dirs[*watch] = n_full_path;
-	return 0;
+	return ERR_OK;
 }
 
 
-int dir_cancel_watch(const intptr_t watch)
+LibError dir_cancel_watch(const intptr_t watch)
 {
 	if(!initialized)
-	{
-		debug_warn("dir_cancel_watch before dir_add_watch");
-		return -1;
-	}
+		WARN_RETURN(ERR_LOGIC);
 
 	FAMRequest req;
 	req.reqnum = (int)watch;
@@ -57,10 +55,11 @@ int dir_cancel_watch(const intptr_t watch)
 int dir_get_changed_file(char* fn)
 {
 	if(!initialized)
-		return ERR_FAIL;
+		WARN_RETURN(ERR_LOGIC);
 
 	FAMEvent e;
 	while(FAMPending(&fc) > 0)
+	{
 		if(FAMNextEvent(&fc, &e) >= 0)
 		{
 			if (e.code == FAMChanged || e.code == FAMCreated || e.code == FAMDeleted)
@@ -72,6 +71,7 @@ int dir_get_changed_file(char* fn)
 				return ERR_OK;
 			}
 		}
+	}
 
-	return ERR_AGAIN;
+	return ERR_AGAIN;	// NOWARN
 }

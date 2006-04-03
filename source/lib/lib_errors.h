@@ -58,13 +58,14 @@ extern void error_description_r(LibError err, char* buf, size_t max_chars);
 
 // return the LibError equivalent of errno, or ERR_FAIL if there's no equal.
 // only call after a POSIX function indicates failure.
-extern LibError LibError_from_errno();
+// raises a warning (avoids having to on each call site).
+extern LibError LibError_from_errno(bool warn_if_failed = true);
 
 // translate the return value of any POSIX function into LibError.
 // ret is typically to -1 to indicate error and 0 on success.
 // you should set errno to 0 before calling the POSIX function to
 // make sure we do not return any stale errors.
-extern LibError LibError_from_posix(int ret);
+extern LibError LibError_from_posix(int ret, bool warn_if_failed = true);
 
 // set errno to the equivalent of <err>. used in wposix - underlying
 // functions return LibError but must be translated to errno at
@@ -264,30 +265,45 @@ ERR(-100221, ERR_INVALID_HANDLE, "Invalid Handle (argument)")
 ERR(-100222, ERR_BUF_SIZE, "Buffer argument too small")
 
 // system limitations
-ERR(-100240, ERR_NO_MEM, "Not enough memory")
-ERR(-100241, ERR_AGAIN, "Try again later")
-ERR(-100242, ERR_LIMIT, "Fixed limit exceeded")
-ERR(-100243, ERR_NO_SYS, "OS doesn't provide a required API")
-ERR(-100244, ERR_NOT_IMPLEMENTED, "Feature currently not implemented")
-ERR(-100245, ERR_NOT_SUPPORTED, "Feature isn't and won't be supported")
+ERR(-100240, ERR_AGAIN, "Try again later")
+ERR(-100241, ERR_LIMIT, "Fixed limit exceeded")
+ERR(-100242, ERR_NO_SYS, "OS doesn't provide a required API")
+ERR(-100243, ERR_NOT_IMPLEMENTED, "Feature currently not implemented")
+ERR(-100244, ERR_NOT_SUPPORTED, "Feature isn't and won't be supported")
+
+// memory
+ERR(-100260, ERR_NO_MEM, "Not enough memory")
+ERR(-100261, ERR_ALLOC_NOT_FOUND, "Not a valid allocated address")
 
 // file + vfs
-ERR(-100300, ERR_FILE_NOT_FOUND, "VFile not found")
-ERR(-100301, ERR_PATH_NOT_FOUND, "VDir not found")
-ERR(-100302, ERR_PATH_LENGTH, "Path exceeds VFS_MAX_PATH characters")
-ERR(-100303, ERR_PATH_INVALID, "Path is invalid")
-ERR(-100310, ERR_DIR_END, "End of directory reached (no more files)")
-ERR(-100320, ERR_NOT_FILE, "Not a file")
+// .. path
+ERR(-100300, ERR_PATH_LENGTH, "Path exceeds VFS_MAX_PATH characters")
+ERR(-100301, ERR_PATH_EMPTY, "Path is an empty string")
+ERR(-100302, ERR_PATH_NOT_RELATIVE, "Path is not relative")
+ERR(-100303, ERR_PATH_NON_PORTABLE, "Path contains OS-specific dir separator")
+ERR(-100304, ERR_PATH_NON_CANONICAL, "Path contains unsupported .. or ./")
+ERR(-100305, ERR_PATH_COMPONENT_SEPARATOR, "Path component contains dir separator")
+// .. open
+ERR(-100310, ERR_FILE_NOT_FOUND, "VFile not found")
+ERR(-100311, ERR_NOT_FILE, "Not a file")
+ERR(-100312, ERR_FILE_ACCESS, "Insufficient access rights to open file")
+// .. enum
+ERR(-100320, ERR_PATH_NOT_FOUND, "VDir not found")
 ERR(-100321, ERR_NOT_DIR, "Not a directory")
-ERR(-100330, ERR_FILE_ACCESS, "Insufficient access rights to open file")
-ERR(-100331, ERR_IO, "Error during IO")
-ERR(-100332, ERR_EOF, "Reading beyond end of file")
-ERR(-100340, ERR_UNKNOWN_CMETHOD, "Unknown/unsupported compression method")
-ERR(-100341, ERR_IS_COMPRESSED, "Invalid operation for a compressed file")
-ERR(-100350, ERR_ALREADY_MOUNTED, "Directory (tree) already mounted")
-ERR(-100351, ERR_INVALID_MOUNT_TYPE, "Invalid mount type (memory corruption?)")
-ERR(-100360, ERR_NOT_IN_CACHE, "[Internal] Entry not found in cache")
-ERR(-100370, ERR_TRACE_EMPTY, "No valid entries in trace")
+ERR(-100322, ERR_DIR_END, "End of directory reached (no more files)")
+// .. IO
+ERR(-100330, ERR_IO, "Error during IO")
+ERR(-100331, ERR_EOF, "Reading beyond end of file")
+// .. mount
+ERR(-100340, ERR_ALREADY_MOUNTED, "Directory (tree) already mounted")
+ERR(-100341, ERR_INVALID_MOUNT_TYPE, "Invalid mount type (memory corruption?)")
+ERR(-100342, ERR_ROOT_DIR_ALREADY_SET, "Attempting to set FS root dir more than once")
+// .. misc
+ERR(-100350, ERR_UNKNOWN_CMETHOD, "Unknown/unsupported compression method")
+ERR(-100351, ERR_IS_COMPRESSED, "Invalid operation for a compressed file")
+ERR(-100352, ERR_NOT_MAPPED, "File was not mapped")
+ERR(-100353, ERR_NOT_IN_CACHE, "[Internal] Entry not found in cache")
+ERR(-100354, ERR_TRACE_EMPTY, "No valid entries in trace")
 
 // file format
 ERR(-100400, ERR_UNKNOWN_FORMAT, "Unknown file format")
@@ -306,6 +322,8 @@ ERR(-100507, ERR_TEX_CODEC_CANNOT_HANDLE, "Texture codec cannot handle the given
 
 // CPU
 ERR(-100600, ERR_CPU_FEATURE_MISSING, "This CPU doesn't support a required feature")
+ERR(-100601, ERR_CPU_UNKNOWN_OPCODE, "Disassembly failed")
+ERR(-100602, ERR_CPU_RESTRICTED_AFFINITY, "Cannot set desired CPU affinity")
 
 // shaders
 ERR(-100700, ERR_SHDR_CREATE, "Shader creation failed")
@@ -336,6 +354,9 @@ ERR(-100809, ERR_SYM_CHILD_NOT_FOUND, "Symbol does not have the given child")
 ERR(-100900, ERR_STL_CNT_UNKNOWN, "Unknown STL container type_name")
 // .. likely causes: not yet initialized or memory corruption.
 ERR(-100901, ERR_STL_CNT_INVALID, "Container type is known but contents are invalid")
+
+// timer
+ERR(-101000, ERR_TIMER_NO_SAFE_IMPL, "No safe time source available")
 
 #undef ERR
 #endif	// #ifdef ERR

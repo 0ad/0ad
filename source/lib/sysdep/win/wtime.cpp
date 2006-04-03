@@ -278,10 +278,9 @@ static LibError choose_impl()
 		return ERR_OK;
 	}
 
-	debug_warn("no safe timer found!");
 	hrt_impl = HRT_NONE;
 	hrt_nominal_freq = -1.0;
-	return ERR_FAIL;
+	WARN_RETURN(ERR_TIMER_NO_SAFE_IMPL);
 }
 
 

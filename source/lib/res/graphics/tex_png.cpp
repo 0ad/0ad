@@ -97,14 +97,14 @@ static LibError png_decode_impl(DynArray* da,
 
 	// make sure format is acceptable
 	if(bit_depth != 8)
-		return ERR_TEX_NOT_8BIT_PRECISION;
+		WARN_RETURN(ERR_TEX_NOT_8BIT_PRECISION);
 	if(colour_type & PNG_COLOR_MASK_PALETTE)
-		return ERR_TEX_INVALID_COLOR_TYPE;
+		WARN_RETURN(ERR_TEX_INVALID_COLOR_TYPE);
 
 	const size_t img_size = pitch * h;
 	u8* img = (u8*)mem_alloc(img_size, 64*KiB, 0, &img_hm);
 	if(!img)
-		return ERR_NO_MEM;
+		WARN_RETURN(ERR_NO_MEM);
 
 	RETURN_ERR(tex_codec_alloc_rows(img, h, pitch, TEX_TOP_DOWN, 0, rows));
 

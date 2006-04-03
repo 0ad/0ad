@@ -83,10 +83,7 @@ static LibError UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 	int Version;
 	FNTStream >> Version;
 	if (Version != 100) // Make sure this is from a recent version of the font builder
-	{
-		debug_warn("Invalid .fnt version number");
-		return ERR_UNKNOWN_FORMAT;
-	}
+		WARN_RETURN(ERR_UNKNOWN_FORMAT);
 
 	int TextureWidth, TextureHeight;
 	FNTStream >> TextureWidth >> TextureHeight;
@@ -103,10 +100,7 @@ static LibError UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 
 	f->ListBase = glGenLists(NumGlyphs);
 	if (f->ListBase == 0) // My Voodoo2 drivers didn't support display lists (although I'd be surprised if they got this far)
-	{
-		debug_warn("Display list creation failed");
-		return ERR_FAIL;
-	}
+		WARN_RETURN(ERR_FAIL);
 
 	for (int i = 0; i < NumGlyphs; ++i)
 	{

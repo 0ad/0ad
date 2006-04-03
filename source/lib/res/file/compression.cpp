@@ -54,24 +54,28 @@ inf_*: in-memory inflate routines (zlib wrapper)
 decompresses blocks from file_io callback.
 */
 
-static LibError LibError_from_zlib(int err)
+static LibError LibError_from_zlib(int zlib_err, bool warn_if_failed = true)
 {
-	switch(err)
+	LibError err;
+	switch(zlib_err)
 	{
 	case Z_OK:
 		return ERR_OK;
 	case Z_STREAM_END:
-		return ERR_EOF;
+		err =  ERR_EOF; break;
 	case Z_MEM_ERROR:
-		return ERR_NO_MEM;
+		err =  ERR_NO_MEM; break;
 	case Z_DATA_ERROR:
-		return ERR_CORRUPTED;
+		err =  ERR_CORRUPTED; break;
 	case Z_STREAM_ERROR:
-		return ERR_INVALID_PARAM;
+		err =  ERR_INVALID_PARAM; break;
 	default:
-		return ERR_FAIL;
+		err =  ERR_FAIL; break;
 	}
-	UNREACHABLE;
+
+	if(warn_if_failed)
+		DEBUG_WARN_ERR(err);
+	return err;
 }
 
 
@@ -176,7 +180,7 @@ public:
 				{
 					void* cdata_copy = malloc(buf.csize);
 					if(!cdata_copy)
-						return ERR_NO_MEM;
+						 WARN_RETURN(ERR_NO_MEM);
 					memcpy2(cdata_copy, buf.cdata, buf.csize);
 					buf.cdata = (const u8*)cdata_copy;
 				}
@@ -301,8 +305,7 @@ public:
 			const int windowBits = -MAX_WBITS;	// max window size; omit ZLib header
 			ret = inflateInit2(&zs, windowBits);
 		}
-		CHECK_ERR(LibError_from_zlib(ret));
-		return ERR_OK;
+		return LibError_from_zlib(ret);
 	}
 
 	virtual LibError reset()
@@ -313,8 +316,7 @@ public:
 			ret = deflateReset(&zs);
 		else
 			ret = inflateReset(&zs);
-		CHECK_ERR(LibError_from_zlib(ret));
-		return ERR_OK;
+		return LibError_from_zlib(ret);
 	}
 
 
@@ -366,8 +368,7 @@ public:
 		next_out  = zs.next_out;
 		avail_out = zs.avail_out;
 
-		CHECK_ERR(LibError_from_zlib(ret));
-		return ERR_OK;
+		return LibError_from_zlib(ret);
 	}
 
 
@@ -403,7 +404,7 @@ public:
 			ret = deflateEnd(&zs);
 		else
 			ret = inflateEnd(&zs);
-		WARN_ERR(LibError_from_zlib(ret));
+		(void)LibError_from_zlib(ret, true);	// just warn
 	}
 };
 
@@ -434,8 +435,8 @@ uintptr_t comp_alloc(ContextType type, CompressionMethod method)
 		break;
 #endif
 	default:
-		debug_warn("unknown compression type");
 		compressor_allocator.release(c_mem);
+		WARN_ERR(ERR_UNKNOWN_CMETHOD);
 		return 0;
 
 	}

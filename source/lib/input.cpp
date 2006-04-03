@@ -34,10 +34,7 @@ void in_add_handler(InHandler handler)
 	debug_assert(handler);
 
 	if(handler_stack_top >= MAX_HANDLERS)
-	{
-		debug_warn("increase MAX_HANDLERS");
-		return;
-	}
+		WARN_ERR_RETURN(ERR_LIMIT);
 
 	handler_stack[handler_stack_top++] = handler;
 }
@@ -103,7 +100,7 @@ LibError in_record(const char* fn)
 
 	f = fopen(fn, "wb");
 	if(!f)
-		return ERR_FILE_ACCESS;
+		WARN_RETURN(ERR_FILE_ACCESS);
 
 	fwrite(&game_ticks, sizeof(u32), 1, f);
 
@@ -122,7 +119,7 @@ LibError in_playback(const char* fn)
 
 	f = fopen(fn, "rb");
 	if(!f)
-		return ERR_FILE_NOT_FOUND;
+		WARN_RETURN(ERR_FILE_NOT_FOUND);
 
 	u32 rec_start_time;
 	fread(&rec_start_time, sizeof(u32), 1, f);

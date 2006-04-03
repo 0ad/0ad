@@ -53,7 +53,7 @@ static Handle find_alloc(void* target_raw_p, It* out_it = 0)
 {
 	Ptr2H* ptr2h = ptr2h_wrapper.get();
 	if(!ptr2h)
-		return ERR_NO_MEM;
+		WARN_RETURN(ERR_NO_MEM);
 
 	// early out optimization (don't pay for full subset check)
 	It it = ptr2h->find(target_raw_p);
@@ -242,10 +242,7 @@ LibError mem_free_p(void*& p)
 
 	p = 0;
 	if(hm <= 0)
-	{
-		debug_warn("mem_free_p: not found in map");
-		return ERR_FAIL;
-	}
+		WARN_RETURN(ERR_ALLOC_NOT_FOUND);
 	return mem_free_h(hm);
 }
 

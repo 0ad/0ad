@@ -344,7 +344,11 @@ private:
 	void init()
 	{
 		if(da_alloc(&da, sizeof(T)) < 0)
-			goto fail;
+		{
+fail:
+			WARN_ERR(ERR_NO_MEM);
+			return;
+		}
 		if(da_set_size(&da, sizeof(T)) < 0)
 			goto fail;
 
@@ -352,10 +356,6 @@ private:
 		cached_ptr = new(da.base) T();
 #include "mmgr.h"
 		lock();
-		return;	// success
-
-fail:
-		debug_warn("OverrunProtector mem alloc failed");
 	}
 
 	void shutdown()

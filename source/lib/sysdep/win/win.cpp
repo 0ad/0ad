@@ -33,29 +33,33 @@ char win_exe_dir[MAX_PATH+1];
 
 
 // only call after a Win32 function indicates failure.
-static LibError LibError_from_GLE()
+static LibError LibError_from_GLE(bool warn_if_failed = true)
 {
+	LibError err;
 	switch(GetLastError())
 	{
 	case ERROR_OUTOFMEMORY:
-		return ERR_NO_MEM;
+		err =  ERR_NO_MEM; break;
 
 	case ERROR_INVALID_PARAMETER:
-		return ERR_INVALID_PARAM;
+		err =  ERR_INVALID_PARAM; break;
 	case ERROR_INSUFFICIENT_BUFFER:
-		return ERR_BUF_SIZE;
+		err =  ERR_BUF_SIZE; break;
 
 	case ERROR_ACCESS_DENIED:
-		return ERR_FILE_ACCESS;
+		err =  ERR_FILE_ACCESS; break;
 	case ERROR_FILE_NOT_FOUND:
-		return ERR_FILE_NOT_FOUND;
+		err =  ERR_FILE_NOT_FOUND; break;
 	case ERROR_PATH_NOT_FOUND:
-		return ERR_PATH_NOT_FOUND;
+		err =  ERR_PATH_NOT_FOUND; break;
 
 	default:
-		return ERR_FAIL;
+		err =  ERR_FAIL; break;
 	}
-	UNREACHABLE;
+
+	if(warn_if_failed)
+		DEBUG_WARN_ERR(err);
+	return err;
 }
 
 
@@ -63,9 +67,11 @@ static LibError LibError_from_GLE()
 // there's no equal.
 // you should SetLastError(0) before calling whatever will set ret
 // to make sure we do not return any stale errors.
-LibError LibError_from_win32(DWORD ret)
+LibError LibError_from_win32(DWORD ret, bool warn_if_failed)
 {
-	return (ret != FALSE)? ERR_OK : LibError_from_GLE();
+	if(ret != FALSE)
+		return ERR_OK;
+	return LibError_from_GLE(warn_if_failed);
 }
 
 

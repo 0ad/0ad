@@ -276,14 +276,12 @@ fail:
 LibError dir_cancel_watch(const intptr_t reqnum)
 {
 	if(reqnum <= 0)
-		return ERR_INVALID_PARAM;
+		WARN_RETURN(ERR_INVALID_PARAM);
 
 	Watch* w = find_watch(reqnum);
+	// watches[reqnum] is invalid - big trouble
 	if(!w)
-	{
-		debug_warn("watches[reqnum] invalid");
-		return ERR_FAIL;
-	}
+		WARN_RETURN(ERR_FAIL);
 
 	// we're freeing a reference - done.
 	debug_assert(w->refs >= 1);
@@ -383,7 +381,7 @@ LibError dir_get_changed_file(char* fn)
 
 	// nothing to return; call again later.
 	if(pending_events.empty())
-		return ERR_AGAIN;
+		return ERR_AGAIN;	// NOWARN
 
 	const std::string& fn_s = pending_events.front();
 	strcpy_s(fn, PATH_MAX, fn_s.c_str());

@@ -456,7 +456,7 @@ static LibError jpg_decode_impl(DynArray* da,
 	const size_t img_size = pitch * h;	// for allow_rows
 	u8* img = (u8*)mem_alloc(img_size, 64*KiB, 0, &img_hm);
 	if(!img)
-		return ERR_NO_MEM;
+		WARN_RETURN(ERR_NO_MEM);
 
 	// read rows
 	RETURN_ERR(tex_codec_alloc_rows(img, h, pitch, TEX_TOP_DOWN, 0, rows));

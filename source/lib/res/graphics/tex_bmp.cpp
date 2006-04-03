@@ -90,7 +90,7 @@ static LibError bmp_decode(DynArray* restrict da, Tex* restrict t)
 
 	// sanity checks
 	if(compress != BI_RGB)
-		return ERR_TEX_COMPRESSED;
+		WARN_RETURN(ERR_TEX_COMPRESSED);
 
 	t->w     = w;
 	t->h     = h;

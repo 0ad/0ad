@@ -26,7 +26,10 @@ int tex_codec_register(TexCodecVTbl* c)
 }
 
 
-// find codec that recognizes the desired output file extension
+// find codec that recognizes the desired output file extension,
+// or return ERR_UNKNOWN_FORMAT if unknown.
+// note: does not raise a warning because it is used by
+// tex_is_known_extension.
 LibError tex_codec_for_filename(const char* fn, const TexCodecVTbl** c)
 {
 	const char* ext = strrchr(fn, '.');
@@ -50,7 +53,7 @@ LibError tex_codec_for_header(const u8* file, size_t file_size, const TexCodecVT
 {
 	// we guarantee at least 4 bytes for is_hdr to look at
 	if(file_size < 4)
-		return ERR_INCOMPLETE_HEADER;
+		WARN_RETURN(ERR_INCOMPLETE_HEADER);
 
 	for(*c = codecs; *c; *c = (*c)->next)
 	{
@@ -59,7 +62,7 @@ LibError tex_codec_for_header(const u8* file, size_t file_size, const TexCodecVT
 			return ERR_OK;
 	}
 
-	return ERR_UNKNOWN_FORMAT;
+	WARN_RETURN(ERR_UNKNOWN_FORMAT);
 }
 
 
@@ -106,7 +109,7 @@ LibError tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
 
 	rows = (RowArray)malloc(h * sizeof(RowPtr));
 	if(!rows)
-		return ERR_NO_MEM;
+		WARN_RETURN(ERR_NO_MEM);
 
 	// determine start position and direction
 	RowPtr pos        = flip? data+pitch*(h-1) : data;

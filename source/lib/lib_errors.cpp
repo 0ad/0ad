@@ -49,36 +49,42 @@ void error_description_r(LibError err, char* buf, size_t max_chars)
 }
 
 
-// return the LibError equivalent of errno, or ERR_FAIL if
-// there's no equal.
+// return the LibError equivalent of errno, or ERR_FAIL if there's no equal.
 // only call after a POSIX function indicates failure.
-LibError LibError_from_errno()
+// raises a warning (avoids having to on each call site).
+LibError LibError_from_errno(bool warn_if_failed)
 {
+	LibError err;
 	switch(errno)
 	{
-	case ENOMEM: return ERR_NO_MEM;
+	case ENOMEM: err = ERR_NO_MEM; break;
 
-	case EINVAL: return ERR_INVALID_PARAM;
-	case ENOSYS: return ERR_NOT_IMPLEMENTED;
+	case EINVAL: err =  ERR_INVALID_PARAM; break;
+	case ENOSYS: err =  ERR_NOT_IMPLEMENTED; break;
 
-	case ENOENT: return ERR_PATH_NOT_FOUND;
-	case EACCES: return ERR_FILE_ACCESS;
-	case EIO: return ERR_IO;
-	case ENAMETOOLONG: return ERR_PATH_LENGTH;
+	case ENOENT: err =  ERR_PATH_NOT_FOUND; break;
+	case EACCES: err =  ERR_FILE_ACCESS; break;
+	case EIO:    err =  ERR_IO; break;
+	case ENAMETOOLONG: err =  ERR_PATH_LENGTH; break;
 
-	default: return ERR_FAIL;
+	default:     err =  ERR_FAIL; break;
 	}
-	UNREACHABLE;
+
+	if(warn_if_failed)
+		DEBUG_WARN_ERR(err);
+	return err;
 }
 
 // translate the return value of any POSIX function into LibError.
 // ret is typically to -1 to indicate error and 0 on success.
 // you should set errno to 0 before calling the POSIX function to
 // make sure we do not return any stale errors.
-LibError LibError_from_posix(int ret)
+LibError LibError_from_posix(int ret, bool warn_if_failed)
 {
 	debug_assert(ret == 0 || ret == -1);
-	return (ret == 0)? ERR_OK : LibError_from_errno();
+	if(ret == 0)
+		return ERR_OK;
+	return LibError_from_errno(warn_if_failed);
 }
 
 

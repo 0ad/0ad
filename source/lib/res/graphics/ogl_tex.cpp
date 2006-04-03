@@ -712,7 +712,7 @@ static LibError get_mipmaps(Tex* t, GLint filter, uint q_flags, int* plevels_to_
 	// all<->all transforms aren't implemented, it'd have to decompress
 	// from S3TC first), and DDS images ought to include mipmaps!
 	else if(is_s3tc)
-		return ERR_FAIL;
+		return ERR_FAIL;	// NOWARN
 	// image is uncompressed and we're on an old OpenGL implementation;
 	// we will generate mipmaps in software.
 	else

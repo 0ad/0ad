@@ -110,7 +110,7 @@ static LibError tga_decode(DynArray* restrict da, Tex* restrict t)
 	// .. storing right-to-left is just stupid;
 	//    we're not going to bother converting it.
 	if(desc & TGA_RIGHT_TO_LEFT)
-		return ERR_TEX_INVALID_LAYOUT;
+		WARN_RETURN(ERR_TEX_INVALID_LAYOUT);
 
 	t->w     = w;
 	t->h     = h;

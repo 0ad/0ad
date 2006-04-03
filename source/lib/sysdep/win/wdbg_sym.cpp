@@ -414,13 +414,15 @@ static LibError walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip 
 		const HANDLE hThread = GetCurrentThread();
 		BOOL ok = StackWalk64(machine, hProcess, hThread, &sf, (PVOID)pcontext,
 			0, SymFunctionTableAccess64, SymGetModuleBase64, 0);
-		err = LibError_from_win32(ok);
+		// note: don't use LibError_from_win32 because it raises a warning,
+		// and this "fails" commonly (when no stack frames are left).
+		err = ok? ERR_OK : ERR_FAIL;
 #endif
 
 		// no more frames found - abort. note: also test FP because
 		// StackWalk64 sometimes erroneously reports success.
 		void* fp = (void*)(uintptr_t)sf.AddrFrame .Offset;
-		if(err < 0 || !fp)
+		if(err != ERR_OK || !fp)
 			return ret;
 
 		if(skip)
@@ -607,11 +609,11 @@ static void out_latch_pos()
 static LibError out_check_limit()
 {
 	if(out_have_warned_of_limit)
-		return ERR_SYM_SUPPRESS_OUTPUT;
+		return ERR_SYM_SUPPRESS_OUTPUT;	// NOWARN
 	if(out_pos - out_latched_pos > 3000)	// ~30 lines
 	{
 		out_have_warned_of_limit = true;
-		return ERR_SYM_SINGLE_SYMBOL_LIMIT;
+		return ERR_SYM_SINGLE_SYMBOL_LIMIT;	// NOWARN
 	}
 
 	// no limit hit, proceed normally
@@ -892,7 +894,7 @@ static LibError determine_symbol_address(DWORD id, DWORD UNUSED(type_id), const 
 
 	DWORD data_kind;
 	if(!SymGetTypeInfo(hProcess, mod_base, id, TI_GET_DATAKIND, &data_kind))
-		return ERR_SYM_TYPE_INFO_UNAVAILABLE;
+		WARN_RETURN(ERR_SYM_TYPE_INFO_UNAVAILABLE);
 	switch(data_kind)
 	{
 	// SymFromIndex will fail
@@ -905,7 +907,7 @@ static LibError determine_symbol_address(DWORD id, DWORD UNUSED(type_id), const 
 	// this symbol is defined as static in another module =>
 	// there's nothing we can do.
 	case DataIsStaticMember:
-		return ERR_SYM_UNRETRIEVABLE_STATIC;
+		return ERR_SYM_UNRETRIEVABLE_STATIC;	// NOWARN
 
 	// ok; will handle below
 	case DataIsLocal:
@@ -927,7 +929,7 @@ static LibError determine_symbol_address(DWORD id, DWORD UNUSED(type_id), const 
 	SYMBOL_INFO_PACKAGEW2 sp;
 	SYMBOL_INFOW* sym = &sp.si;
 	if(!SymFromIndexW(hProcess, mod_base, id, sym))
-		return ERR_SYM_TYPE_INFO_UNAVAILABLE;
+		WARN_RETURN(ERR_SYM_TYPE_INFO_UNAVAILABLE);
 
 DWORD addrofs = 0;
 ULONG64 addr2 = 0;
@@ -968,7 +970,7 @@ fp_rel:
 	{
 in_register:
 		*pp = (const u8*)(uintptr_t)sym->Register;
-		return ERR_SYM_UNRETRIEVABLE_REG;
+		return ERR_SYM_UNRETRIEVABLE_REG;	// NOWARN
 	}
 
 	*pp = (const u8*)addr;
@@ -992,18 +994,18 @@ static LibError dump_sym_array(DWORD type_id, const u8* p, DumpState state)
 { 
 	ULONG64 size_ = 0;
 	if(!SymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_LENGTH, &size_))
-		return ERR_SYM_TYPE_INFO_UNAVAILABLE;
+		WARN_RETURN(ERR_SYM_TYPE_INFO_UNAVAILABLE);
 	const size_t size = (size_t)size_;
 
 	// get element count and size
 	DWORD el_type_id = 0;
 	if(!SymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_TYPEID, &el_type_id))
-		return ERR_SYM_TYPE_INFO_UNAVAILABLE;
+		WARN_RETURN(ERR_SYM_TYPE_INFO_UNAVAILABLE);
 	// .. workaround: TI_GET_COUNT returns total struct size for
 	//    arrays-of-struct. therefore, calculate as size / el_size.
 	ULONG64 el_size_;
 	if(!SymGetTypeInfo(hProcess, mod_base, el_type_id, TI_GET_LENGTH, &el_size_))
-		return ERR_SYM_TYPE_INFO_UNAVAILABLE;
+		WARN_RETURN(ERR_SYM_TYPE_INFO_UNAVAILABLE);
 	const size_t el_size = (size_t)el_size_;
 	debug_assert(el_size != 0);
 	const size_t num_elements = size/el_size;
@@ -1019,10 +1021,10 @@ static LibError dump_sym_base_type(DWORD type_id, const u8* p, DumpState state)
 {
 	DWORD base_type;
 	if(!SymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_BASETYPE, &base_type))
-		return ERR_SYM_TYPE_INFO_UNAVAILABLE;
+		WARN_RETURN(ERR_SYM_TYPE_INFO_UNAVAILABLE);
 	ULONG64 size_ = 0;
 	if(!SymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_LENGTH, &size_))
-		return ERR_SYM_TYPE_INFO_UNAVAILABLE;
+		WARN_RETURN(ERR_SYM_TYPE_INFO_UNAVAILABLE);
 	const size_t size = (size_t)size_;
 
 	// single out() call. note: we pass a single u64 for all sizes,
@@ -1141,7 +1143,7 @@ display_as_hex:
 		case btBit:
 		case btBSTR:
 		case btHresult:
-			return ERR_SYM_UNSUPPORTED;
+			return ERR_SYM_UNSUPPORTED;	// NOWARN
 	}
 
 	out(fmt, data);
@@ -1165,14 +1167,14 @@ static LibError dump_sym_base_class(DWORD type_id, const u8* p, DumpState state)
 {
 	DWORD base_class_type_id;
 	if(!SymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_TYPEID, &base_class_type_id))
-		return ERR_SYM_TYPE_INFO_UNAVAILABLE;
+		WARN_RETURN(ERR_SYM_TYPE_INFO_UNAVAILABLE);
 
 	// this is a virtual base class. we can't display those because it'd
 	// require reading the VTbl, which is difficult given lack of documentation
 	// and just not worth it.
 	DWORD vptr_ofs;
 	if(SymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_VIRTUALBASEPOINTEROFFSET, &vptr_ofs))
-		return ERR_SYM_UNSUPPORTED;
+		return ERR_SYM_UNSUPPORTED;	// NOWARN
 
 	return dump_sym(base_class_type_id, p, state);
 	
@@ -1187,7 +1189,7 @@ static LibError dump_sym_data(DWORD id, const u8* p, DumpState state)
 	// display name (of variable/member)
 	const wchar_t* name;
 	if(!SymGetTypeInfo(hProcess, mod_base, id, TI_GET_SYMNAME, &name))
-		return ERR_SYM_TYPE_INFO_UNAVAILABLE;
+		WARN_RETURN(ERR_SYM_TYPE_INFO_UNAVAILABLE);
 	out(L"%s = ", name);
 	LocalFree((HLOCAL)name);
 
@@ -1196,7 +1198,7 @@ static LibError dump_sym_data(DWORD id, const u8* p, DumpState state)
 		// get type_id and address
 		DWORD type_id;
 		if(!SymGetTypeInfo(hProcess, mod_base, id, TI_GET_TYPEID, &type_id))
-			return ERR_SYM_TYPE_INFO_UNAVAILABLE;
+			WARN_RETURN(ERR_SYM_TYPE_INFO_UNAVAILABLE);
 		LibError ret = determine_symbol_address(id, type_id, &p);
 		if(ret != 0)
 			return ret;
@@ -1206,7 +1208,7 @@ static LibError dump_sym_data(DWORD id, const u8* p, DumpState state)
 	}
 	__except(EXCEPTION_EXECUTE_HANDLER)
 	{
-		return ERR_SYM_INTERNAL_ERROR;
+		return ERR_SYM_INTERNAL_ERROR;	// NOWARN
 	}
 }
 
@@ -1217,7 +1219,7 @@ static LibError dump_sym_enum(DWORD type_id, const u8* p, DumpState UNUSED(state
 {
 	ULONG64 size_ = 0;
 	if(!SymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_LENGTH, &size_))
-		return ERR_SYM_TYPE_INFO_UNAVAILABLE;
+		WARN_RETURN(ERR_SYM_TYPE_INFO_UNAVAILABLE);
 	const size_t size = (size_t)size_;
 
 	const i64 enum_value = movsx_64le(p, size);
@@ -1225,10 +1227,10 @@ static LibError dump_sym_enum(DWORD type_id, const u8* p, DumpState UNUSED(state
 	// get array of child symbols (enumerants).
 	DWORD num_children;
 	if(!SymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_CHILDRENCOUNT, &num_children))
-		return ERR_SYM_TYPE_INFO_UNAVAILABLE;
+		WARN_RETURN(ERR_SYM_TYPE_INFO_UNAVAILABLE);
 	TI_FINDCHILDREN_PARAMS2 fcp(num_children);
 	if(!SymGetTypeInfo(hProcess, mod_base, type_id, TI_FINDCHILDREN, &fcp))
-		return ERR_SYM_TYPE_INFO_UNAVAILABLE;
+		WARN_RETURN(ERR_SYM_TYPE_INFO_UNAVAILABLE);
 	num_children = fcp.p.Count;	// was truncated to MAX_CHILDREN
 	const DWORD* children = fcp.p.ChildId;
 
@@ -1244,7 +1246,7 @@ static LibError dump_sym_enum(DWORD type_id, const u8* p, DumpState UNUSED(state
 		// already pulled in by e.g. OpenGL anyway.
 		VARIANT v;
 		if(!SymGetTypeInfo(hProcess, mod_base, child_data_id, TI_GET_VALUE, &v))
-			return ERR_SYM_TYPE_INFO_UNAVAILABLE;
+			WARN_RETURN(ERR_SYM_TYPE_INFO_UNAVAILABLE);
 		if(VariantChangeType(&v, &v, 0, VT_I8) != S_OK)
 			continue;
 
@@ -1253,7 +1255,7 @@ static LibError dump_sym_enum(DWORD type_id, const u8* p, DumpState UNUSED(state
 		{
 			const wchar_t* name;
 			if(!SymGetTypeInfo(hProcess, mod_base, child_data_id, TI_GET_SYMNAME, &name))
-				return ERR_SYM_TYPE_INFO_UNAVAILABLE;
+				WARN_RETURN(ERR_SYM_TYPE_INFO_UNAVAILABLE);
 			out(L"%s", name);
 			LocalFree((HLOCAL)name);
 			return ERR_OK;
@@ -1274,7 +1276,7 @@ static LibError dump_sym_enum(DWORD type_id, const u8* p, DumpState UNUSED(state
 static LibError dump_sym_function(DWORD UNUSED(type_id), const u8* UNUSED(p),
 	DumpState UNUSED(state))
 {
-	return ERR_SYM_SUPPRESS_OUTPUT;
+	return ERR_SYM_SUPPRESS_OUTPUT;	// NOWARN
 }
 
 
@@ -1334,7 +1336,7 @@ static LibError dump_sym_pointer(DWORD type_id, const u8* p, DumpState state)
 {
 	ULONG64 size_ = 0;
 	if(!SymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_LENGTH, &size_))
-		return ERR_SYM_TYPE_INFO_UNAVAILABLE;
+		WARN_RETURN(ERR_SYM_TYPE_INFO_UNAVAILABLE);
 	const size_t size = (size_t)size_;
 
 	// read+output pointer's value.
@@ -1360,11 +1362,11 @@ static LibError dump_sym_pointer(DWORD type_id, const u8* p, DumpState state)
 	// the responsible dump_sym* will erase "->", leaving only address.
 	out(L" -> ");
 	if(!SymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_TYPEID, &type_id))
-		return ERR_SYM_TYPE_INFO_UNAVAILABLE;
+		WARN_RETURN(ERR_SYM_TYPE_INFO_UNAVAILABLE);
 
 	// prevent infinite recursion just to be safe (shouldn't happen)
 	if(state.indirection >= MAX_INDIRECTION)
-		return ERR_SYM_NESTING_LIMIT;
+		WARN_RETURN(ERR_SYM_NESTING_LIMIT);
 	state.indirection++;
 	return dump_sym(type_id, p, state);
 }
@@ -1376,7 +1378,7 @@ static LibError dump_sym_pointer(DWORD type_id, const u8* p, DumpState state)
 static LibError dump_sym_typedef(DWORD type_id, const u8* p, DumpState state)
 {
 	if(!SymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_TYPEID, &type_id))
-		return ERR_SYM_TYPE_INFO_UNAVAILABLE;
+		WARN_RETURN(ERR_SYM_TYPE_INFO_UNAVAILABLE);
 	return dump_sym(type_id, p, state);
 }
 
@@ -1410,11 +1412,11 @@ static LibError udt_get_child_type(const wchar_t* child_name,
 		// .. its type information is what we want.
 		DWORD type_id;
 		if(!SymGetTypeInfo(hProcess, mod_base, child_id, TI_GET_TYPEID, &type_id))
-			return ERR_SYM_TYPE_INFO_UNAVAILABLE;
+			WARN_RETURN(ERR_SYM_TYPE_INFO_UNAVAILABLE);
 
 		ULONG64 size;
 		if(!SymGetTypeInfo(hProcess, mod_base, child_id, TI_GET_LENGTH, &size))
-			return ERR_SYM_TYPE_INFO_UNAVAILABLE;
+			WARN_RETURN(ERR_SYM_TYPE_INFO_UNAVAILABLE);
 
 		*el_type_id = type_id;
 		*el_size = (size_t)size;
@@ -1422,7 +1424,7 @@ static LibError udt_get_child_type(const wchar_t* child_name,
 	}
 
 	// (happens if called for containers that are treated as STL but are not)
-	return ERR_SYM_CHILD_NOT_FOUND;
+	return ERR_SYM_CHILD_NOT_FOUND;	// NOWARN
 }
 
 
@@ -1597,7 +1599,7 @@ static LibError udt_dump_normal(const wchar_t* type_name, const u8* p, size_t si
 
 	// prevent infinite recursion just to be safe (shouldn't happen)
 	if(state.level >= MAX_LEVEL)
-		return ERR_SYM_NESTING_LIMIT;
+		WARN_RETURN(ERR_SYM_NESTING_LIMIT);
 	state.level++;
 
 	out(fits_on_one_line? L"{ " : L"\r\n");
@@ -1663,22 +1665,22 @@ static LibError dump_sym_udt(DWORD type_id, const u8* p, DumpState state)
 {
 	ULONG64 size_ = 0;
 	if(!SymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_LENGTH, &size_))
-		return ERR_SYM_TYPE_INFO_UNAVAILABLE;
+		WARN_RETURN(ERR_SYM_TYPE_INFO_UNAVAILABLE);
 	const size_t size = (size_t)size_;
 
 	// get array of child symbols (members/functions/base classes).
 	DWORD num_children;
 	if(!SymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_CHILDRENCOUNT, &num_children))
-		return ERR_SYM_TYPE_INFO_UNAVAILABLE;
+		WARN_RETURN(ERR_SYM_TYPE_INFO_UNAVAILABLE);
 	TI_FINDCHILDREN_PARAMS2 fcp(num_children);
 	if(!SymGetTypeInfo(hProcess, mod_base, type_id, TI_FINDCHILDREN, &fcp))
-		return ERR_SYM_TYPE_INFO_UNAVAILABLE;
+		WARN_RETURN(ERR_SYM_TYPE_INFO_UNAVAILABLE);
 	num_children = fcp.p.Count;	// was truncated to MAX_CHILDREN
 	const DWORD* children = fcp.p.ChildId;
 
 	const wchar_t* type_name;
 	if(!SymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_SYMNAME, &type_name))
-		return ERR_SYM_TYPE_INFO_UNAVAILABLE;
+		WARN_RETURN(ERR_SYM_TYPE_INFO_UNAVAILABLE);
 
 	LibError ret;
 	// note: order is important (e.g. STL special-case must come before
@@ -1708,7 +1710,7 @@ done:
 static LibError dump_sym_vtable(DWORD UNUSED(type_id), const u8* UNUSED(p), DumpState UNUSED(state))
 {
 	// unsupported (vtable internals are undocumented; too much work).
-	return ERR_SYM_SUPPRESS_OUTPUT;
+	return ERR_SYM_SUPPRESS_OUTPUT;	// NOWARN
 }
 
 
@@ -1720,7 +1722,7 @@ static LibError dump_sym_unknown(DWORD type_id, const u8* UNUSED(p), DumpState U
 	// redundant (already done in dump_sym), but this is rare.
 	DWORD type_tag;
 	if(!SymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_SYMTAG, &type_tag))
-		return ERR_SYM_TYPE_INFO_UNAVAILABLE;
+		WARN_RETURN(ERR_SYM_TYPE_INFO_UNAVAILABLE);
 
 	debug_printf("SYM| unknown tag: %d\n", type_tag);
 	out(L"(unknown symbol type)");
@@ -1739,7 +1741,7 @@ static LibError dump_sym(DWORD type_id, const u8* p, DumpState state)
 
 	DWORD type_tag;
 	if(!SymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_SYMTAG, &type_tag))
-		return ERR_SYM_TYPE_INFO_UNAVAILABLE;
+		WARN_RETURN(ERR_SYM_TYPE_INFO_UNAVAILABLE);
 	switch(type_tag)
 	{
 	case SymTagArrayType:

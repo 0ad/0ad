@@ -283,15 +283,13 @@ static LibError alloc_idx(i32& idx, HDATA*& hd)
 		}
 
 		// add another
+		// .. too many already: IDX_BITS must be increased.
 		if(last_in_use >= hdata_cap)
-		{
-			debug_warn("too many open handles (increase IDX_BITS)");
-			return ERR_LIMIT;
-		}
+			WARN_RETURN(ERR_LIMIT);
 		idx = last_in_use+1;	// just incrementing idx would start it at 1
 		hd = h_data_from_idx(idx);
 		if(!hd)
-			return ERR_NO_MEM;
+			WARN_RETURN(ERR_NO_MEM);
 			// can't fail for any other reason - idx is checked above.
 		{	// VC6 goto fix
 		bool is_unused = !hd->tag;
@@ -439,10 +437,7 @@ static void fn_store(HDATA* hd, const char* fn)
 		hd->fn = (const char*)malloc(size);
 		// still failed - bail (avoid strcpy to 0)
 		if(!hd->fn)
-		{
-			debug_warn("not enough memory to store hd->fn!");
-			return;
-		}
+			WARN_ERR_RETURN(ERR_NO_MEM);
 	}
 
 	memcpy2((void*)hd->fn, fn, size);	// faster than strcpy
@@ -510,20 +505,11 @@ static void warn_if_invalid(HDATA* hd)
 static LibError type_validate(H_Type type)
 {
 	if(!type)
-	{
-		debug_warn("type is 0");
 		return ERR_INVALID_PARAM;
-	}
 	if(type->user_size > HDATA_USER_SIZE)
-	{
-		debug_warn("type's user data is too large for HDATA");
 		return ERR_LIMIT;
-	}
 	if(type->name == 0)
-	{
-		debug_warn("type's name field is 0");
 		return ERR_INVALID_PARAM;
-	}
 
 	return ERR_OK;
 }
@@ -553,11 +539,9 @@ static Handle reuse_existing_handle(uintptr_t key, H_Type type, uint flags)
 		return 0;
 
 	HDATA* hd = h_data_tag_type(h, type);
+	// too many references - increase REF_BITS
 	if(hd->refs == REF_MAX)
-	{
-		debug_warn("too many references to a handle - increase REF_BITS");
-		return ERR_LIMIT;
-	}
+		WARN_RETURN(ERR_LIMIT);
 
 	hd->refs++;
 
@@ -812,13 +796,10 @@ const char* h_filename(const Handle h)
 // TODO: what if iterating through all handles is too slow?
 LibError h_reload(const char* fn)
 {
+	// must not continue - some resources not backed by files have
+	// key = 0 and reloading those would be disastrous.
 	if(!fn)
-	{
-		debug_warn("fn = 0");
-		// must not continue - some resources not backed by files have
-		// key = 0 and reloading those would be disastrous.
-		return ERR_INVALID_PARAM;
-	}
+		WARN_RETURN(ERR_INVALID_PARAM);
 
 	const u32 key = fnv_hash(fn);
 
@@ -879,7 +860,7 @@ LibError h_force_free(Handle h, H_Type type)
 	// require valid index; ignore tag; type checked below.
 	HDATA* hd = h_data_no_tag(h);
 	if(!hd || hd->type != type)
-		return ERR_INVALID_HANDLE;
+		WARN_RETURN(ERR_INVALID_HANDLE);
 	u32 idx = h_idx(h);
 	hd->keep_open = 0;
 	hd->refs = 0;
@@ -920,10 +901,7 @@ int h_get_refcnt(Handle h)
 {
 	HDATA* hd = h_data_tag(h);
 	if(!hd)
-	{
-		debug_warn("invalid handle");
-		return ERR_INVALID_PARAM;
-	}
+		WARN_RETURN(ERR_INVALID_PARAM);
 
 	// if there are no refs, how did the caller manage to keep a Handle?!
 	if(!hd->refs)

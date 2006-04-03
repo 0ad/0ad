@@ -254,6 +254,28 @@ extern i64 i64_from_double(double);
 #endif
 
 
+// return the largest sector size [bytes] of any storage medium
+// (HD, optical, etc.) in the system.
+//
+// this may be a bit slow to determine (iterates over all drives),
+// but caches the result so subsequent calls are free.
+// (caveat: device changes won't be noticed during this program run)
+//
+// sector size is relevant because Windows aio requires all IO
+// buffers, offsets and lengths to be a multiple of it. this requirement
+// is also carried over into the vfs / file.cpp interfaces for efficiency
+// (avoids the need for copying to/from align buffers).
+//
+// waio uses the sector size to (in some cases) align IOs if
+// they aren't already, but it's also needed by user code when
+// aligning their buffers to meet the requirements.
+//
+// the largest size is used so that we can read from any drive. while this
+// is a bit wasteful (more padding) and requires iterating over all drives,
+// it is the only safe way: this may be called before we know which
+// drives will be needed, and hardlinks may confuse things.
+extern size_t sys_max_sector_size();
+
 #if OS_WIN
 #define DIR_SEP '\\'
 #else

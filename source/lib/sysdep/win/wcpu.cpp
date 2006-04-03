@@ -260,10 +260,7 @@ LibError prof_start()
 	const DWORD access = THREAD_GET_CONTEXT|THREAD_SUSPEND_RESUME;
 	HANDLE hThread = OpenThread(access, FALSE, GetCurrentThreadId());
 	if(hThread == INVALID_HANDLE_VALUE)
-	{
-		debug_warn("OpenThread failed");
-		return ERR_FAIL;
-	}
+		WARN_RETURN(ERR_FAIL);
 
 	prof_target_thread = hThread;
 

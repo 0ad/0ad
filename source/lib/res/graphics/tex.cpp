@@ -223,7 +223,7 @@ TIMER_ACCRUE(tc_plain_transform);
 	Handle hm;
 	void* new_data = mem_alloc(data_size, 4*KiB, 0, &hm);
 	if(!new_data)
-		return ERR_NO_MEM;
+		WARN_RETURN(ERR_NO_MEM);
 	memcpy2(new_data, data, data_size);
 
 	// setup row source/destination pointers (simplifies outer loop)
@@ -293,13 +293,13 @@ TIMER_ACCRUE(tc_plain_transform);
 		// go to the trouble of implementing image scaling because
 		// the only place this is used (ogl_tex_upload) requires POT anyway.
 		if(!is_pow2(w) || !is_pow2(h))
-			return ERR_TEX_INVALID_SIZE;
+			WARN_RETURN(ERR_TEX_INVALID_SIZE);
 		t->flags |= TEX_MIPMAPS;	// must come before tex_img_size!
 		const size_t mipmap_size = tex_img_size(t);
 		Handle hm;
 		const u8* mipmap_data = (const u8*)mem_alloc(mipmap_size, 4*KiB, 0, &hm);
 		if(!mipmap_data)
-			return ERR_NO_MEM;
+			WARN_RETURN(ERR_NO_MEM);
 		CreateLevelData cld = { bpp/8, w, h, (const u8*)new_data, data_size };
 		tex_util_foreach_mipmap(w, h, bpp, mipmap_data, 0, 1, create_level, &cld);
 		mem_free_h(t->hm);
@@ -449,10 +449,10 @@ static LibError tex_load_impl(FileIOBuf file_, size_t file_size, Tex* t)
 	// make sure the entire header has been read
 	const size_t min_hdr_size = c->hdr_size(0);
 	if(file_size < min_hdr_size)
-		return ERR_INCOMPLETE_HEADER;
+		WARN_RETURN(ERR_INCOMPLETE_HEADER);
 	const size_t hdr_size = c->hdr_size(file);
 	if(file_size < hdr_size)
-		return ERR_INCOMPLETE_HEADER;
+		WARN_RETURN(ERR_INCOMPLETE_HEADER);
 	t->ofs = hdr_size;
 
 	DynArray da;
@@ -464,10 +464,12 @@ static LibError tex_load_impl(FileIOBuf file_, size_t file_size, Tex* t)
 
 	// sanity checks
 	if(!t->w || !t->h || t->bpp > 32)
-		return ERR_TEX_FMT_INVALID;
-	// TODO: need to compare against the new t->hm (file may be compressed, cannot use file_size)
-	//if(mem_size < t->ofs + tex_img_size(t))
-	//	return ERR_TEX_INVALID_SIZE;
+		WARN_RETURN(ERR_TEX_FMT_INVALID);
+	// .. note: decode() may have decompressed the image; cannot use file_size.
+	size_t hm_size;
+	void* unused = mem_get_ptr(t->hm, &hm_size);
+	if(hm_size < t->ofs + tex_img_size(t))
+		WARN_RETURN(ERR_TEX_INVALID_SIZE);
 
 	flip_to_global_orientation(t);
 
@@ -681,10 +683,7 @@ LibError tex_write(Tex* t, const char* fn)
 	CHECK_ERR(tex_codec_for_filename(fn, &c));
 
 	// encode into <da>
-	LibError err;
-	size_t rounded_size;
-	ssize_t bytes_written;
-	err = c->encode(t, &da);
+	LibError err = c->encode(t, &da);
 	if(err < 0)
 	{
 		debug_printf("%s (%s) failed: %d", __func__, c->name, err);
@@ -693,10 +692,12 @@ LibError tex_write(Tex* t, const char* fn)
 	}
 
 	// write to disk
-	rounded_size = round_up(da.cur_size, FILE_BLOCK_SIZE);
+	{
+	const size_t rounded_size = round_up(da.cur_size, file_sector_size);
 	(void)da_set_size(&da, rounded_size);
-	bytes_written = vfs_store(fn, da.base, da.pos);
+	const ssize_t bytes_written = vfs_store(fn, da.base, da.pos);
 	debug_assert(bytes_written == (ssize_t)da.pos);
+	}
 
 fail:
 	(void)da_free(&da);

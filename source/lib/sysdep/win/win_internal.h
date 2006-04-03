@@ -454,7 +454,7 @@ extern void win_free(void* p);
 // there's no equal.
 // you should SetLastError(0) before calling whatever will set ret
 // to make sure we do not return any stale errors.
-extern LibError LibError_from_win32(DWORD ret);
+extern LibError LibError_from_win32(DWORD ret, bool warn_if_failed = true);
 
 
 extern char win_sys_dir[MAX_PATH+1];

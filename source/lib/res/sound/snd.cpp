@@ -48,6 +48,7 @@
 #include "../res.h"
 #include "snd.h"
 #include "lib/timer.h"
+#include "app_hooks.h"
 
 
 
@@ -249,6 +250,13 @@ static LibError alc_init()
 		ret = ERR_FAIL;
 	}
 
+	// make note of which sound device is actually being used
+	// (e.g. DS3D, native, MMSYSTEM) - needed when reporting OpenAL bugs.
+	const char* dev_name = (const char*)alcGetString(alc_dev, ALC_DEVICE_SPECIFIER);
+	wchar_t buf[200];
+	swprintf(buf, ARRAY_SIZE(buf), L"SND| alc_init: success, using %hs\n", dev_name);
+	ah_log(buf);
+
 	// release DLL references, so BoundsChecker doesn't complain at exit.
 #if OS_WIN
 	for(int i = 0; i < ARRAY_SIZE(dlls); i++)
@@ -294,10 +302,7 @@ static void al_listener_latch()
 LibError snd_set_master_gain(float gain)
 {
 	if(gain < 0)
-	{
-		debug_warn("gain < 0");
-		return ERR_INVALID_PARAM;
-	}
+		WARN_RETURN(ERR_INVALID_PARAM);
 
 	al_listener_gain = gain;
 
@@ -572,7 +577,7 @@ static const char* devs;
 LibError snd_dev_prepare_enum()
 {
 	if(alcIsExtensionPresent(0, (ALubyte*)"ALC_ENUMERATION_EXT") != AL_TRUE)
-		return ERR_NO_SYS;
+		WARN_RETURN(ERR_NO_SYS);
 
 	devs = (const char*)alcGetString(0, ALC_DEVICE_SPECIFIER);
 	return ERR_OK;
@@ -660,11 +665,14 @@ static void* io_buf_alloc()
 	// note: we have to bail now; can't update io_buf_freelist.
 	if(!buf)
 	{
+		// no buffer allocated
 		if(!io_bufs)
-			debug_warn("not enough memory to allocate buffer pool");
+			WARN_ERR(ERR_NO_MEM);
+		// too many streams - can't happen (tm) because
+		// stream_open enforces MAX_STREAMS.
 		else
-			debug_warn("max #streams exceeded");
-			// can't happen (tm) because stream_open enforces MAX_STREAMS.
+			WARN_ERR(ERR_LIMIT);
+
 		return 0;
 	}
 
@@ -707,7 +715,7 @@ static LibError stream_issue(Stream* s)
 
 	void* buf = io_buf_alloc();
 	if(!buf)
-		return ERR_NO_MEM;
+		WARN_RETURN(ERR_NO_MEM);
 
 	Handle h = vfs_io_issue(s->hf, STREAM_BUF_SIZE, buf);
 	CHECK_ERR(h);
@@ -722,14 +730,14 @@ static LibError stream_issue(Stream* s)
 static LibError stream_buf_get(Stream* s, void*& data, size_t& size)
 {
 	if(s->active_ios == 0)
-		return ERR_EOF;
+		WARN_RETURN(ERR_EOF);
 	Handle hio = s->ios[0];
 
 	// has it finished? if not, bail.
 	int is_complete = vfs_io_has_completed(hio);
 	RETURN_ERR(is_complete);
 	if(is_complete == 0)
-		return ERR_AGAIN;
+		return ERR_AGAIN;	// NOWARN
 
 	// get its buffer.
 	RETURN_ERR(vfs_io_wait(hio, data, size));
@@ -770,12 +778,9 @@ static uint active_streams;
 // open a stream and begin reading from disk.
 static LibError stream_open(Stream* s, const char* fn)
 {
+	// bail because we wouldn't have enough IO buffers for all
 	if(active_streams >= MAX_STREAMS)
-	{
-		debug_warn("MAX_STREAMS exceeded - why?");
-		// bail because we wouldn't have enough IO buffers for all
-		return ERR_LIMIT;
-	}
+		WARN_RETURN(ERR_LIMIT);
 	active_streams++;
 
 	s->hf = vfs_open(fn);
@@ -927,7 +932,7 @@ static LibError SndData_reload(SndData* sd, const char* fn, Handle hsd)
 		if(ogg_supported == -1)
 			ogg_supported = alIsExtensionPresent((ALubyte*)"AL_EXT_vorbis")? 1 : 0;
 		if(!ogg_supported)
-			return ERR_NO_SYS;
+			WARN_RETURN(ERR_NO_SYS);
 
 		sd->al_fmt  = AL_FORMAT_VORBIS_EXT;
 		sd->al_freq = 0;
@@ -940,7 +945,7 @@ static LibError SndData_reload(SndData* sd, const char* fn, Handle hsd)
 		file_type = FT_WAV;
 	// .. unknown extension
 	else
-		return ERR_UNKNOWN_FORMAT;
+		WARN_RETURN(ERR_UNKNOWN_FORMAT);
 
 
 	if(sd->is_stream)
@@ -948,7 +953,7 @@ static LibError SndData_reload(SndData* sd, const char* fn, Handle hsd)
 		// refuse to stream anything that cannot be passed directly to OpenAL -
 		// we'd have to extract the audio data ourselves (not worth it).
 		if(file_type != FT_OGG)
-			return ERR_NOT_SUPPORTED;
+			WARN_RETURN(ERR_NOT_SUPPORTED);
 
 		RETURN_ERR(stream_open(&sd->s, fn));
 		sd->is_valid = 1;
@@ -1123,7 +1128,7 @@ static LibError snd_data_buf_get(Handle hsd, ALuint& al_buf)
 	if(!sd->is_stream)
 	{
 		al_buf = sd->al_buf;
-		return ERR_EOF;
+		return ERR_EOF;	// NOWARN
 	}
 
 	// stream:
@@ -1133,7 +1138,7 @@ static LibError snd_data_buf_get(Handle hsd, ALuint& al_buf)
 	size_t size;
 	err = stream_buf_get(&sd->s, data, size);
 	if(err == ERR_AGAIN)
-		return ERR_AGAIN;
+		return ERR_AGAIN;	// NOWARN
 	CHECK_ERR(err);
 
 	// .. yes: pass to OpenAL and discard IO buffer.
@@ -1144,7 +1149,7 @@ static LibError snd_data_buf_get(Handle hsd, ALuint& al_buf)
 	// if EOF reached, indicate al_buf is the last that will be returned.
 	err = stream_issue(&sd->s);
 	if(err == ERR_EOF)
-		return ERR_EOF;
+		return ERR_EOF;	// NOWARN
 	CHECK_ERR(err);
 
 	// al_buf valid and next IO issued successfully.
@@ -1681,7 +1686,7 @@ static LibError vsrc_grant(VSrc* vs)
 	// we get called in that hope that one is available by snd_play.
 	vs->al_src = al_src_alloc();
 	if(!vs->al_src)
-		return ERR_FAIL;
+		return ERR_FAIL;	// NOWARN
 
 	// OpenAL docs don't specify default values, so initialize everything
 	// ourselves to be sure. note: alSourcefv param is not const.
@@ -1711,7 +1716,7 @@ static LibError vsrc_reclaim(VSrc* vs)
 {
 	// don't own a source - bail.
 	if(!vs->al_src)
-		return ERR_FAIL;
+		return ERR_FAIL;	// NOWARN
 
 	alSourceStop(vs->al_src);
 	al_check("src_stop");
@@ -2006,7 +2011,7 @@ static inline LibError snd_init()
 {
 	// (note: each VSrc_reload and therefore snd_open will fail)
 	if(snd_disabled)
-		return ERR_AGAIN;
+		return ERR_AGAIN;	// NOWARN
 
 	return al_init();
 }

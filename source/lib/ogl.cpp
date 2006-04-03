@@ -341,7 +341,7 @@ LibError ogl_get_gfx_info()
 	// can fail if OpenGL not yet initialized,
 	// or if called between glBegin and glEnd.
 	if(!vendor || !renderer || !version)
-		return ERR_AGAIN;
+		WARN_RETURN(ERR_AGAIN);
 
 	snprintf(gfx_card, ARRAY_SIZE(gfx_card), "%s %s", vendor, renderer);
 

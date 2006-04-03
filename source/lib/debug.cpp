@@ -217,10 +217,7 @@ LibError debug_write_crashlog(const wchar_t* text)
 	strcat_s(N_path, ARRAY_SIZE(N_path), "crashlog.txt");
 	FILE* f = fopen(N_path, "w");
 	if(!f)
-	{
-		DISPLAY_ERROR(L"debug_write_crashlog: unable to open file");
-		return ERR_FILE_ACCESS;
-	}
+		WARN_RETURN(ERR_FILE_ACCESS);
 
 	fputwc(0xfeff, f);	// BOM
 	fwprintf(f, L"%ls\n", text);
@@ -260,7 +257,7 @@ static const char* symbol_string_build(void* symbol, const char* name, const cha
 		string_buf = (char*)malloc(STRING_BUF_SIZE);
 		if(!string_buf)
 		{
-			debug_warn("failed to allocate string_buf");
+			WARN_ERR(ERR_NO_MEM);
 			return 0;
 		}
 		string_buf_pos = string_buf;
@@ -270,7 +267,7 @@ static const char* symbol_string_build(void* symbol, const char* name, const cha
 	char* string = string_buf_pos;
 	if(string + STRING_MAX >= string_buf + STRING_BUF_SIZE)
 	{
-		debug_warn("increase STRING_BUF_SIZE");
+		WARN_ERR(ERR_LIMIT);
 		return 0;
 	}
 
@@ -393,10 +390,7 @@ static void symbol_string_add_to_cache(const char* string, void* symbol)
 	// hash table is completely full (guard against infinite loop below).
 	// if this happens, the string won't be cached - nothing serious.
 	if(total_symbols >= MAX_SYMBOLS)
-	{
-		debug_warn("increase MAX_SYMBOLS");
-		return;
-	}
+		WARN_ERR_RETURN(ERR_LIMIT);
 	total_symbols++;
 
 	// find Symbol slot in hash table

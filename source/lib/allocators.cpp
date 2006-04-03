@@ -52,7 +52,7 @@ void* single_calloc(void* storage, volatile uintptr_t* in_use_flag, size_t size)
 		p = malloc(size);
 		if(!p)
 		{
-			debug_warn("out of memory");
+			WARN_ERR(ERR_NO_MEM);
 			return 0;
 		}
 	}
@@ -150,11 +150,11 @@ static LibError validate_da(DynArray* da)
 // very thin wrapper on top of sys/mman.h that makes the intent more obvious
 // (its commit/decommit semantics are difficult to tell apart).
 
-static inline LibError LibError_from_mmap(void* ret)
+static inline LibError LibError_from_mmap(void* ret, bool warn_if_failed = true)
 {
 	if(ret != MAP_FAILED)
 		return ERR_OK;
-	return LibError_from_errno();
+	return LibError_from_errno(warn_if_failed);
 }
 
 static const int mmap_flags = MAP_PRIVATE|MAP_ANONYMOUS;
@@ -170,7 +170,8 @@ static LibError mem_reserve(size_t size, u8** pp)
 static LibError mem_release(u8* p, size_t size)
 {
 	errno = 0;
-	return LibError_from_posix(munmap(p, size));
+	int ret = munmap(p, size);
+	return LibError_from_posix(ret);
 }
 
 static LibError mem_commit(u8* p, size_t size, int prot)
@@ -194,7 +195,8 @@ static LibError mem_decommit(u8* p, size_t size)
 static LibError mem_protect(u8* p, size_t size, int prot)
 {
 	errno = 0;
-	return LibError_from_posix(mprotect(p, size, prot));
+	int ret = mprotect(p, size, prot);
+	return LibError_from_posix(ret);
 }
 
 
@@ -270,10 +272,7 @@ LibError da_set_size(DynArray* da, size_t new_size)
 	CHECK_DA(da);
 
 	if(da->prot & DA_NOT_OUR_MEM)
-	{
-		debug_warn("da is marked DA_NOT_OUR_MEM, must not be altered");
-		return ERR_LOGIC;
-	}
+		WARN_RETURN(ERR_LOGIC);
 
 	// determine how much to add/remove
 	const size_t cur_size_pa = round_up_to_page(da->cur_size);
@@ -284,7 +283,7 @@ LibError da_set_size(DynArray* da, size_t new_size)
 	// note: do not complain - some allocators (e.g. file_cache)
 	// egitimately use up all available space.
 	if(new_size_pa > da->max_size_pa)
-		return ERR_LIMIT;
+		return ERR_LIMIT;	// NOWARN
 
 	u8* end = da->base + cur_size_pa;
 	// expanding
@@ -327,10 +326,7 @@ LibError da_set_prot(DynArray* da, int prot)
 	// somewhat more subtle: POSIX mprotect requires the memory have been
 	// mmap-ed, which it probably wasn't here.
 	if(da->prot & DA_NOT_OUR_MEM)
-	{
-		debug_warn("da is marked DA_NOT_OUR_MEM, must not be altered");
-		return ERR_LOGIC;
-	}
+		WARN_RETURN(ERR_LOGIC);
 
 	da->prot = prot;
 	CHECK_ERR(mem_protect(da->base, da->cur_size, prot));
@@ -346,7 +342,7 @@ LibError da_read(DynArray* da, void* data, size_t size)
 {
 	// make sure we have enough data to read
 	if(da->pos+size > da->cur_size)
-		return ERR_EOF;
+		WARN_RETURN(ERR_EOF);
 
 	memcpy2(data, da->base+da->pos, size);
 	da->pos += size;
@@ -557,7 +553,7 @@ LibError bucket_create(Bucket* b, size_t el_size)
 		// cause next bucket_alloc to retry the allocation
 		b->pos = BUCKET_SIZE;
 		b->num_buckets = 0;
-		return ERR_NO_MEM;
+		WARN_RETURN(ERR_NO_MEM);
 	}
 
 	*(u8**)b->bucket = 0;	// terminate list

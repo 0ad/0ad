@@ -204,10 +204,7 @@ static LibError call_while_suspended(WhileSuspendedFunc func, void* user_arg)
 	const DWORD access = THREAD_GET_CONTEXT|THREAD_SET_CONTEXT|THREAD_SUSPEND_RESUME;
 	HANDLE hThread = OpenThread(access, FALSE, GetCurrentThreadId());
 	if(hThread == INVALID_HANDLE_VALUE)
-	{
-		debug_warn("OpenThread failed");
-		return ERR_FAIL;
-	}
+		WARN_RETURN(ERR_FAIL);
 
 	WhileSuspendedParam param = { hThread, func, user_arg };
 
@@ -281,8 +278,7 @@ static LibError brk_enable_in_ctx(BreakInfo* bi, CONTEXT* context)
 		if((context->Dr7 & LE) == 0)
 			goto have_reg;
 	}
-	debug_warn("brk_enable_in_ctx: no register available");
-	return ERR_LIMIT;
+	WARN_RETURN(ERR_LIMIT);
 have_reg:
 
 	// store breakpoint address in debug register.
@@ -352,10 +348,7 @@ static LibError brk_do_request(HANDLE hThread, void* arg)
 	CONTEXT context;
 	context.ContextFlags = CONTEXT_DEBUG_REGISTERS;
 	if(!GetThreadContext(hThread, &context))
-	{
-		debug_warn("brk_do_request: GetThreadContext failed");
-		goto fail;
-	}
+		WARN_RETURN(ERR_FAIL);
 
 #if CPU_IA32
 	if(bi->want_all_disabled)
@@ -367,14 +360,10 @@ static LibError brk_do_request(HANDLE hThread, void* arg)
 #endif
 
 	if(!SetThreadContext(hThread, &context))
-	{
-		debug_warn("brk_do_request: SetThreadContext failed");
-		goto fail;
-	}
+		WARN_RETURN(ERR_FAIL);
 
-	return ret;
-fail:
-	return ERR_FAIL;
+	RETURN_ERR(ret);
+	return ERR_OK;
 }
 
 

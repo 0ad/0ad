@@ -267,7 +267,7 @@ static LibError s3tc_decompress(Tex* t)
 	const size_t out_size = tex_img_size(t) * out_bpp / t->bpp;
 	void* out_data = mem_alloc(out_size, 64*KiB, 0, &hm);
 	if(!out_data)
-		return ERR_NO_MEM;
+		WARN_RETURN(ERR_NO_MEM);
 
 	const uint s3tc_block_size = (dxt == 3 || dxt == 5)? 16 : 8;
 	S3tcDecompressInfo di = { dxt, s3tc_block_size, out_bpp/8, (u8*)out_data };
@@ -395,7 +395,7 @@ static LibError decode_pf(const DDPIXELFORMAT* pf, uint* bpp_, uint* flags_)
 
 	// check struct size
 	if(read_le32(&pf->dwSize) != sizeof(DDPIXELFORMAT))
-		return ERR_TEX_INVALID_SIZE;
+		WARN_RETURN(ERR_TEX_INVALID_SIZE);
 
 	// determine type
 	const u32 pf_flags = read_le32(&pf->dwFlags);
@@ -462,12 +462,12 @@ static LibError decode_pf(const DDPIXELFORMAT* pf, uint* bpp_, uint* flags_)
 			break;
 
 		default:
-			return ERR_TEX_FMT_INVALID;
+			WARN_RETURN(ERR_TEX_FMT_INVALID);
 		}
 	}
 	// .. neither uncompressed nor compressed - invalid
 	else
-		return ERR_TEX_FMT_INVALID;
+		WARN_RETURN(ERR_TEX_FMT_INVALID);
 
 	*bpp_ = bpp;
 	*flags_ = flags;
@@ -484,7 +484,7 @@ static LibError decode_sd(const DDSURFACEDESC2* sd, uint* w_, uint* h_,
 {
 	// check header size
 	if(read_le32(&sd->dwSize) != sizeof(*sd))
-		return ERR_CORRUPTED;
+		WARN_RETURN(ERR_CORRUPTED);
 
 	// flags (indicate which fields are valid)
 	const u32 sd_flags = read_le32(&sd->dwFlags);
@@ -492,14 +492,14 @@ static LibError decode_sd(const DDSURFACEDESC2* sd, uint* w_, uint* h_,
 	// note: we can't guess dimensions - the image may not be square.
 	const u32 sd_req_flags = DDSD_CAPS|DDSD_HEIGHT|DDSD_WIDTH|DDSD_PIXELFORMAT;
 	if((sd_flags & sd_req_flags) != sd_req_flags)
-		return ERR_INCOMPLETE_HEADER;
+		WARN_RETURN(ERR_INCOMPLETE_HEADER);
 
 	// image dimensions
 	const u32 h = read_le32(&sd->dwHeight);
 	const u32 w = read_le32(&sd->dwWidth);
 	// .. not padded to S3TC block size
 	if(w % 4 || h % 4)
-		return ERR_TEX_INVALID_SIZE;
+		WARN_RETURN(ERR_TEX_INVALID_SIZE);
 
 	// pixel format
 	uint bpp, flags;
@@ -511,12 +511,12 @@ static LibError decode_sd(const DDSURFACEDESC2* sd, uint* w_, uint* h_,
 	if(sd_flags & DDSD_PITCH)
 	{
 		if(sd_pitch_or_size != round_up(pitch, 4))
-			return ERR_CORRUPTED;
+			WARN_RETURN(ERR_CORRUPTED);
 	}
 	if(sd_flags & DDSD_LINEARSIZE)
 	{
 		if(sd_pitch_or_size != pitch*h)
-			return ERR_CORRUPTED;
+			WARN_RETURN(ERR_CORRUPTED);
 	}
 	// note: both flags set would be invalid; no need to check for that,
 	// though, since one of the above tests would fail.
@@ -530,7 +530,7 @@ static LibError decode_sd(const DDSURFACEDESC2* sd, uint* w_, uint* h_,
 			// mipmap chain is incomplete
 			// note: DDS includes the base level in its count, hence +1.
 			if(mipmap_count != log2(MAX(w,h))+1)
-				return ERR_TEX_FMT_INVALID;
+				WARN_RETURN(ERR_TEX_FMT_INVALID);
 			flags |= TEX_MIPMAPS;
 		}
 	}
@@ -540,7 +540,7 @@ static LibError decode_sd(const DDSURFACEDESC2* sd, uint* w_, uint* h_,
 	{
 		const u32 depth = read_le32(&sd->dwDepth);
 		if(depth)
-			return ERR_NOT_IMPLEMENTED;
+			WARN_RETURN(ERR_NOT_IMPLEMENTED);
 	}
 
 	// check caps

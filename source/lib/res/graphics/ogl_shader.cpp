@@ -198,7 +198,7 @@ LibError ogl_shader_attach(GLhandleARB program, Handle& h)
 	H_DEREF(h, Ogl_Shader, shdr);
 
 	if (!shdr->id)
-		return ERR_SHDR_NO_SHADER;
+		WARN_RETURN(ERR_SHDR_NO_SHADER);
 
 	pglAttachObjectARB(program, shdr->id);
 

@@ -104,7 +104,7 @@ LibError get_cur_vmode(int* xres, int* yres, int* bpp, int* freq)
 	// dm.dmDriverExtra already set to 0 by memset
 
 	if(!EnumDisplaySettingsA(0, ENUM_CURRENT_SETTINGS, &dm))
-		return ERR_FAIL;
+		WARN_RETURN(ERR_FAIL);
 
 	if(dm.dmFields & (DWORD)DM_PELSWIDTH && xres)
 		*xres = (int)dm.dmPelsWidth;
@@ -144,10 +144,10 @@ static LibError get_ver(const char* module_path, char* out_ver, size_t out_ver_l
 	DWORD unused;
 	const DWORD ver_size = GetFileVersionInfoSize(module_path, &unused);
 	if(!ver_size)
-		return ERR_FAIL;
+		WARN_RETURN(ERR_FAIL);
 	void* buf = malloc(ver_size);
 	if(!buf)
-		return ERR_NO_MEM;
+		WARN_RETURN(ERR_NO_MEM);
 
 	LibError ret = ERR_FAIL;	// single point of exit (for free())
 
@@ -200,12 +200,9 @@ static void dll_list_init(char* buf, size_t chars)
 // we add the .dll extension if necessary.
 static LibError dll_list_add(const char* name)
 {
-	// make sure we're allowed to be called.
+	// not be called before dll_list_init or after failure
 	if(!dll_list_pos)
-	{
-		debug_warn("called before dll_list_init or after failure");
-		return ERR_FAIL;
-	}
+		WARN_RETURN(ERR_LOGIC);
 
 	// some driver names are stored in the registry without .dll extension.
 	// if necessary, copy to new buffer and add it there.
@@ -247,8 +244,7 @@ static LibError dll_list_add(const char* name)
 	// didn't fit; complain
 	sprintf(dll_list_pos, "...");	// (room was reserved above)
 	dll_list_pos = 0;	// poison pill, prevent further calls
-	debug_warn("not enough room");
-	return ERR_BUF_SIZE;
+	WARN_RETURN(ERR_BUF_SIZE);
 }
 
 
@@ -287,7 +283,7 @@ static LibError win_get_gfx_card()
 		}
 	}
 
-	return ERR_FAIL;
+	WARN_RETURN(ERR_FAIL);
 }
 
 
@@ -296,7 +292,7 @@ static LibError win_get_gfx_drv_ver()
 {
 	// don't overwrite existing information
 	if(gfx_drv_ver[0] != '\0')
-		return ERR_FAIL;
+		return INFO_SKIPPED;
 
 	// rationale:
 	// - we could easily determine the 2d driver via EnumDisplaySettings,
@@ -324,7 +320,7 @@ static LibError win_get_gfx_drv_ver()
 	HKEY hkOglDrivers;
 	const char* key = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\OpenGLDrivers";
 	if(RegOpenKeyEx(HKEY_LOCAL_MACHINE, key, 0, KEY_READ, &hkOglDrivers) != 0)
-		return ERR_FAIL;
+		WARN_RETURN(ERR_FAIL);
 
 	// for each subkey (i.e. set of installed OpenGL drivers):
 	for(i = 0; ; i++)

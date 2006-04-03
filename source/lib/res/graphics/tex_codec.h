@@ -59,7 +59,10 @@ struct TexCodecVTbl
 extern int tex_codec_register(TexCodecVTbl* c);
 
 
-// find codec that recognizes the desired output file extension
+// find codec that recognizes the desired output file extension,
+// or return ERR_UNKNOWN_FORMAT if unknown.
+// note: does not raise a warning because it is used by
+// tex_is_known_extension.
 extern LibError tex_codec_for_filename(const char* fn, const TexCodecVTbl** c);
 
 // find codec that recognizes the header's magic field

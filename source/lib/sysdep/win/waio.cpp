@@ -37,18 +37,39 @@ WIN_REGISTER_FUNC(waio_init);
 WIN_REGISTER_FUNC(waio_shutdown);
 #pragma data_seg()
 
-
-// Win32 functions require sector aligned transfers.
-// max of all drives' size is checked in waio_init().
-static size_t sector_size = 512;	// minimum: one page
-
-static void determine_max_sector_size()
+// return the largest sector size [bytes] of any storage medium
+// (HD, optical, etc.) in the system.
+//
+// this may be a bit slow to determine (iterates over all drives),
+// but caches the result so subsequent calls are free.
+// (caveat: device changes won't be noticed during this program run)
+//
+// sector size is relevant because Windows aio requires all IO
+// buffers, offsets and lengths to be a multiple of it. this requirement
+// is also carried over into the vfs / file.cpp interfaces for efficiency
+// (avoids the need for copying to/from align buffers).
+//
+// waio uses the sector size to (in some cases) align IOs if
+// they aren't already, but it's also needed by user code when
+// aligning their buffers to meet the requirements.
+//
+// the largest size is used so that we can read from any drive. while this
+// is a bit wasteful (more padding) and requires iterating over all drives,
+// it is the only safe way: this may be called before we know which
+// drives will be needed, and hardlinks may confuse things.
+size_t sys_max_sector_size()
 {
-// currently disabled: DVDs have 2..4KB, but this causes
-// waio to unnecessarily align some file transfers (when at EOF)
-// this means that we might not be able to read from CD/DVD drives
-// (ReadFile will return error)
-/*
+	// users may call us more than once, so cache the results.
+	static size_t cached_sector_size;
+	if(cached_sector_size)
+		return cached_sector_size;
+	
+			// currently disabled: DVDs have 2..4KB, but this causes
+			// waio to unnecessarily align some file transfers (when at EOF)
+			// this means that we might not be able to read from CD/DVD drives
+			// (ReadFile will return error)
+	// reactivated for correctness.
+
 	// temporarily disable the "insert disk into drive" error box; we are
 	// only interested in fixed drives anyway.
 	//
@@ -57,9 +78,7 @@ static void determine_max_sector_size()
 	const UINT old_err_mode = SetErrorMode(0);
 	SetErrorMode(old_err_mode|SEM_FAILCRITICALERRORS);
 
-	// Win32 requires transfers to be sector aligned.
-	// find maximum of all drive's sector sizes, then use that.
-	// (it's good to know this up-front, and checking every open() is slow).
+	// find maximum of all drive's sector sizes.
 	const DWORD drives = GetLogicalDrives();
 	char drive_str[4] = "?:\\";
 	for(int drive = 2; drive <= 26; drive++)	// C: .. Z:
@@ -71,12 +90,9 @@ static void determine_max_sector_size()
 		drive_str[0] = (char)('A'+drive);
 
 		DWORD spc, nfc, tnc;	// don't need these
-		DWORD sector_size2;
-		if(GetDiskFreeSpace(drive_str, &spc, &sector_size2, &nfc, &tnc))
-		{
-			if(sector_size < sector_size2)
-				sector_size = sector_size2;
-		}
+		DWORD cur_sector_size;
+		if(GetDiskFreeSpace(drive_str, &spc, &cur_sector_size, &nfc, &tnc))
+			cached_sector_size = MAX(cached_sector_size, cur_sector_size);
 		// otherwise, it's probably an empty CD drive. ignore the
 		// BoundsChecker error; GetDiskFreeSpace seems to be the
 		// only way of getting at the sector size.
@@ -84,8 +100,10 @@ static void determine_max_sector_size()
 
 	SetErrorMode(old_err_mode);
 
-	debug_assert(is_pow2((long)sector_size));
-*/
+	// sanity check; believed to be the case for all drives.
+	debug_assert(cached_sector_size % 512 == 0);
+
+	return cached_sector_size;
 }
 
 
@@ -186,10 +204,12 @@ static HANDLE aio_h_get(const int fd)
 // setting h = INVALID_HANDLE_VALUE removes the association.
 static LibError aio_h_set(const int fd, const HANDLE h)
 {
+	if(fd < 0)
+		WARN_RETURN(ERR_INVALID_PARAM);
+
 	lock();
 
-	if(fd < 0)
-		goto fail;
+	LibError err;
 
 	// grow hs array to at least fd+1 entries
 	if(fd >= aio_hs_size)
@@ -197,7 +217,10 @@ static LibError aio_h_set(const int fd, const HANDLE h)
 		const uint size2 = (uint)round_up(fd+8, 8);
 		HANDLE* hs2 = (HANDLE*)realloc(aio_hs, size2*sizeof(HANDLE));
 		if(!hs2)
+		{
+			err = ERR_NO_MEM;
 			goto fail;
+		}
 		// don't assign directly from realloc -
 		// we'd leak the previous array if realloc fails.
 
@@ -207,17 +230,25 @@ static LibError aio_h_set(const int fd, const HANDLE h)
 		aio_hs_size = size2;
 	}
 
-	// nothing to do; will set aio_hs[fd] to INVALID_HANDLE_VALUE below.
+
 	if(h == INVALID_HANDLE_VALUE)
-		;
+	{
+		// nothing to do; will set aio_hs[fd] to INVALID_HANDLE_VALUE below.
+	}
 	else
 	{
 		// already set
 		if(aio_hs[fd] != INVALID_HANDLE_VALUE)
+		{
+			err = ERR_LOGIC;
 			goto fail;
+		}
 		// setting invalid handle
 		if(!is_valid_file_handle(h))
+		{
+			err = ERR_NOT_FILE;
 			goto fail;
+		}
 	}
 
 	aio_hs[fd] = h;
@@ -227,8 +258,7 @@ static LibError aio_h_set(const int fd, const HANDLE h)
 
 fail:
 	unlock();
-	debug_warn("failed");
-	return ERR_FAIL;
+	WARN_RETURN(err);
 }
 
 
@@ -466,12 +496,17 @@ static int aio_rw(struct aiocb* cb)
 	// align
 	//
 
-	// actual transfer parameters
-	// (possibly rounded up/down to satisfy Win32 alignment requirements)
+	// Win32 requires transfers to be sector aligned.
+	// we check if the transfer is aligned to sector size (the max of
+	// all drives in the system) and copy to/from align buffer if not.
+
+	// actual transfer parameters (possibly rounded up/down)
 	size_t actual_ofs = 0;
 		// assume socket; if file, set below
 	size_t actual_size = size;
 	void* actual_buf = buf;
+
+	const size_t sector_size = sys_max_sector_size();
 
 	// leave offset 0 if h is a socket (don't support seeking);
 	// otherwise, calculate aligned offset/size
@@ -515,7 +550,7 @@ static int aio_rw(struct aiocb* cb)
 			}
 			else
 			{
-				// unaligned offset: not supported.
+				// unaligned write offset: not supported.
 				// (we'd have to read padding, then write our data. ugh.)
 				if(ofs_misaligned)
 				{
@@ -527,9 +562,9 @@ static int aio_rw(struct aiocb* cb)
 				if(buf_misaligned)
 				{
 					memcpy2(r->buf, buf, size);
-					memset((char*)r->buf + size, 0, actual_size - size);
-						// clear previous contents at end of align buf
 					actual_buf = r->buf;
+					// clear previous contents at end of align buf
+					memset((char*)r->buf + size, 0, actual_size - size);
 				}
 
 				// unaligned size: already taken care of (we round up)
@@ -540,10 +575,9 @@ static int aio_rw(struct aiocb* cb)
 	// set OVERLAPPED fields
 	// note: Read-/WriteFile reset ovl.hEvent - no need to do that.
 	r->ovl.Internal = r->ovl.InternalHigh = 0;
-	*(size_t*)&r->ovl.Offset = actual_ofs;
-		// HACK: use this instead of OVERLAPPED.Pointer,
-		// which isn't defined in older headers (e.g. VC6).
-		// 64-bit clean, but endian dependent!
+	// note: OVERLAPPED.Pointer is more convenient but not defined on VC6.
+	r->ovl.Offset     = u64_lo(actual_ofs);
+	r->ovl.OffsetHigh = u64_hi(actual_ofs);
 
 	DWORD size32 = (DWORD)(actual_size & 0xffffffff);
 	BOOL ok;
@@ -760,7 +794,6 @@ int aio_fsync(int, struct aiocb*)
 static LibError waio_init()
 {
 	req_init();
-	determine_max_sector_size();
 	return ERR_OK;
 }
 
