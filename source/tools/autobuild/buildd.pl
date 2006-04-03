@@ -9,7 +9,7 @@ use constant EXIT_NOTCOMPILED => 1;
 use constant EXIT_FAILED => 2;
 use constant EXIT_ABORTED => 3;
 
-use POE qw(Component::Server::TCP Filter::HTTPD Filter::Line);
+use POE qw(Component::Server::TCP Component::Client::HTTP Filter::HTTPD Filter::Line);
 use HTTP::Response;
 
 use Win32::Process;
@@ -31,6 +31,8 @@ sub LOG {
 	print $logfile $msg;
 	print $msg;
 }
+
+my $main_session; # main POE::Session object
 
 POE::Component::Server::TCP->new(
 	Alias        => "web_server",
@@ -59,6 +61,7 @@ POE::Component::Server::TCP->new(
 			abort_build();
 			$response->push_header('Content-type', 'text/plain');
 			$response->content("Build initiated.");
+			$kernel->post($main_session, 'commit_notify');
 		}
 		elsif ($url eq '/force_build.html')
 		{
@@ -186,10 +189,14 @@ EOF
 
 		$heap->{client}->put($response);
 		$kernel->yield("shutdown");
-	}
+	},
 );
 
-POE::Session->create(
+POE::Component::Client::HTTP->spawn(
+	Alias => "web_client",
+);
+
+$main_session = POE::Session->create(
 	inline_states => {
 		_start => sub {
 			$_[KERNEL]->delay(tick => 1);
@@ -226,7 +233,19 @@ POE::Session->create(
 				start_build(commit => 1);
 				$commit_required = 0;
 			}
-		}
+		},
+		
+		commit_notify => sub {
+			$_[KERNEL]->post('web_client', 'request', 'commit_notify_response',
+				new HTTP::Request(GET => 'http://192.168.0.223/wfg/svnlog.cgi/logupdate/doupdate'));
+		},
+		
+		commit_notify_response => sub {
+			my $response_packet = $_[ARG1];
+			my $response = $response_packet->[0];
+			LOG "notified - ".$response->content;
+		},
+
 	}
 );
 

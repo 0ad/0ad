@@ -1,7 +1,5 @@
 #include "precompiled.h"
 
-#include "CLogger.h"
-
 #include "Interact.h"
 #include "Renderer.h"
 #include "input.h"
@@ -25,6 +23,9 @@
 #include "UnitManager.h"
 #include "MathUtil.h"
 #include "graphics/GameView.h"
+
+#include "ps/CLogger.h"
+#define LOG_CATEGORY "world"
 
 extern CConsole* g_Console;
 extern CStr g_CursorName;
@@ -838,13 +839,13 @@ int CSelectedEntities::loadRankTextures()
 		const char* filename = it->c_str();
 		if ( !tex_is_known_extension(filename) )
 		{
-			LOG(ERROR, "Unknown rank texture extension (%s)", filename);
+			LOG(ERROR, LOG_CATEGORY, "Unknown rank texture extension (%s)", filename);
 			continue;
 		}
 		Handle ht = ogl_tex_load(filename);
 		if (ht <= 0)
 		{
-			LOG(ERROR, "Rank Textures", "loadRankTextures failed on \"%s\"", filename);
+			LOG(ERROR, LOG_CATEGORY, "loadRankTextures failed on \"%s\"", filename);
 			return ht;
 		}
 		m_rankTextures[it->AfterLast("/")] = ht;
