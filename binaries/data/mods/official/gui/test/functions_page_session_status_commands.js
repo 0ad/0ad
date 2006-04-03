@@ -254,8 +254,22 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 				// Set tab function when user moves mouse over tab.
 				tabObject.onMouseEnter = function (event)
 				{
-					// Click the tab button to toggle visibility of its list.
-					guiToggle ( "snStatusPaneCommandGroup" + this.name.substring (this.name.lastIndexOf ("d")+1, this.name.lastIndexOf ("_")) );
+					var currTab = this.name.substring (this.name.lastIndexOf ("d")+1, this.name.lastIndexOf ("_"));
+					// Seek through all list tabs. (Only the one being hovered should stay open.)
+					for (var i = 1; i < snStatusPaneCommand.split; i++)
+					{
+						// If we've found the current tab,
+						if (i == currTab) 
+						{
+							// Click the tab button to toggle visibility of its list.
+							guiToggle ( "snStatusPaneCommandGroup" + currTab );
+						}
+						else // If it's another list tab,
+						{
+							// Ensure this tab is hidden.
+							guiHide ("snStatusPaneCommandGroup" + i);
+						}
+					}
 				}			
 				// Set tab function when user clicks tab.
 				tabObject.onPress = function (event)
@@ -351,9 +365,34 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 //								console.write (tempArray[0]);
 //								console.write (tempArray[1]);
 //								console.write (selection[0].traits.ai.stance.curr);
+
 								// Refresh tab so it displays the new .curr sprite.
 								tabCounter = tempArray[4];
 								updateTab (tempArray[3], "pick", "", tempArray[2], tempArray[0]);
+								
+								// Do case-specific stuff depending on name of tab.
+								switch (tempArray[3])
+								{
+									case "formation":
+										// Remove the selected units from any existing formation.
+										removeFromFormation (selection);
+										// Set the selected entities to the chosen formation name.
+										createEntityFormation (selection, tempArray[0]);
+										// If the player is choosing to "disband" the formation (disable "batallion mode"),
+										if ( tempArray[0] == "Loose" && isFormationLocked (selection) )
+										{
+											// Unlock the formation so each entity can be individually selected.
+											lockEntityFormation (false);
+										}
+										else
+										{
+											// Lock the formation so the selection can be controlled as one unit.
+											lockEntityFormation (true);
+										}
+									break;
+									default:
+									break;
+								}
 							}
 						break;
 						default:

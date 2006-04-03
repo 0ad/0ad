@@ -105,18 +105,24 @@ function entityInit()
 		{
 			case "_b":
 				// Basic. Upgrades to Advanced.
-				this.traits.promotion.rank = "1"
-				nextSuffix = "_a"
+				this.traits.promotion.rank = "1";
+				nextSuffix = "_a";
+				// Set rank image to put over entity's head.
+				this.traits.rank.name = "";
 			break;
 			case "_a":
 				// Advanced. Upgrades to Elite.
-				this.traits.promotion.rank = "2"
-				nextSuffix = "_e"
+				this.traits.promotion.rank = "2";
+				nextSuffix = "_e";
+				// Set rank image to put over entity's head.
+				this.traits.rank.name = "advanced.dds";				
 			break;
 			case "_e":
 				// Elite. Maximum rank.
-				this.traits.promotion.rank = "3"
-				nextSuffix = ""
+				this.traits.promotion.rank = "3";
+				nextSuffix = "";
+				// Set rank image to put over entity's head.
+				this.traits.rank.name = "elite.dds";				
 			break;
 			default:
 				// Does not gain promotions.
