@@ -467,7 +467,7 @@ static LibError tex_load_impl(FileIOBuf file_, size_t file_size, Tex* t)
 		WARN_RETURN(ERR_TEX_FMT_INVALID);
 	// .. note: decode() may have decompressed the image; cannot use file_size.
 	size_t hm_size;
-	void* unused = mem_get_ptr(t->hm, &hm_size);
+	(void)mem_get_ptr(t->hm, &hm_size);
 	if(hm_size < t->ofs + tex_img_size(t))
 		WARN_RETURN(ERR_TEX_INVALID_SIZE);
 

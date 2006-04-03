@@ -689,10 +689,12 @@ LibError stl_get_container_info(const char* type_name, const u8* p, size_t size,
 	CONTAINER(slist, STRINGIZE(STL_SLIST) "<*>")
 #endif
 
+	// note: do not raise warnings - these can happen for new
+	// STL classes or if the debuggee's memory is corrupted.
 	if(!handled)
-		return ERR_STL_CNT_UNKNOWN;
+		return ERR_STL_CNT_UNKNOWN;	// NOWARN
 	if(!valid)
-		return ERR_STL_CNT_INVALID;
+		return ERR_STL_CNT_INVALID;	// NOWARN
 	return ERR_OK;
 }
 

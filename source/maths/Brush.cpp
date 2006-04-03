@@ -107,7 +107,7 @@ uint CBrush::Helper::SliceNewVertex(SliceInfo& si, uint v1, uint v2)
 
 		nvi.v1 = v1;
 		nvi.v2 = v2;
-		nvi.res = si.result->m_Vertices.size();
+		nvi.res = (uint)si.result->m_Vertices.size();
 		nvi.neighb1 = no_vertex;
 		nvi.neighb2 = no_vertex;
 		si.result->m_Vertices.push_back(newpos);
@@ -160,7 +160,7 @@ void CBrush::Slice(const CPlane& plane, CBrush& result) const
 		si.v[i].d = plane.DistanceToPlane(m_Vertices[i]);
 		if (si.v[i].d >= 0.0)
 		{
-			si.v[i].res = result.m_Vertices.size();
+			si.v[i].res = (uint)result.m_Vertices.size();
 			result.m_Vertices.push_back(m_Vertices[i]);
 		}
 		else
@@ -171,7 +171,7 @@ void CBrush::Slice(const CPlane& plane, CBrush& result) const
 
 	// Transfer faces
 	uint firstInFace = no_vertex; // in original brush
-	uint startInResultFaceArray = ~0;
+	uint startInResultFaceArray = ~0u;
 
 	for(uint i = 0; i < m_Faces.size(); ++i)
 	{
@@ -180,7 +180,7 @@ void CBrush::Slice(const CPlane& plane, CBrush& result) const
 			debug_assert(si.thisFaceNewVertex == no_vertex);
 
 			firstInFace = m_Faces[i];
-			startInResultFaceArray = result.m_Faces.size();
+			startInResultFaceArray = (uint)result.m_Faces.size();
 			continue;
 		}
 

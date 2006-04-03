@@ -73,7 +73,7 @@ public:
 	void Render() const;
 
 private:
-	static const uint no_vertex = ~0;
+	static const uint no_vertex = ~0u;
 
 	typedef std::vector<CVector3D> Vertices;
 	typedef std::vector<uint> FaceIndices;

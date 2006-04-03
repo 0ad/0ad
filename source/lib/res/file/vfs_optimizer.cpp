@@ -751,7 +751,6 @@ int vfs_opt_auto_build(const char* trace_filename,
 	}
 
 	UNREACHABLE;
-	return ERR_OK; // To quelch gcc "control reaches end of non-void function"
 }
 
 LibError vfs_opt_rebuild_main_archive(const char* trace_filename, const char* archive_fn_fmt)

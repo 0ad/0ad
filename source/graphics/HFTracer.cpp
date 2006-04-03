@@ -137,8 +137,8 @@ bool CHFTracer::RayIntersect(CVector3D& origin,CVector3D& dir,int& x,int& z,CVec
 	float fcz=traversalPt.Z*invCellSize;
 	int cz=int(fcz);
 
-	float invdx = 1.0e20;
-	float invdz = 1.0e20;
+	float invdx = 1.0e20f;
+	float invdz = 1.0e20f;
 
 	if (fabs(dir.X) > 1.0e-20)
 		invdx = float(1.0/fabs(dir.X));
