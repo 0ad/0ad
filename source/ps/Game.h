@@ -1,10 +1,7 @@
 #ifndef _ps_Game_H
 #define _ps_Game_H
 
-// Kludge: Our included headers might want to subgroup the Game group, so do it
-// here, before including the other guys
 #include "ps/Errors.h"
-ERROR_GROUP(Game);
 
 #include <vector>
 

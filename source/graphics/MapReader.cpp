@@ -46,7 +46,7 @@ void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain_, CUnitManager
 
 	// check version
 	if (unpacker.GetVersion() < FILE_READ_VERSION) {
-		throw CFileUnpacker::CFileVersionError();
+		throw PSERROR_File_InvalidVersion();
 	}
 
 	// delete all existing entities
@@ -286,7 +286,7 @@ void CXMLReader::Init(const CStr& xml_filename)
 	node_idx = entity_idx = nonentity_idx = 0;
 
 	if (xmb_file.Load(xml_filename) != PSRETURN_OK)
-		throw CFileUnpacker::CFileReadError();
+		throw PSERROR_File_ReadFailed();
 
 	// define the elements and attributes that are frequently used in the XML file,
 	// so we don't need to do lots of string construction and comparison when

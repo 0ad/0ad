@@ -38,7 +38,7 @@ void CFileUnpacker::Read(const char* filename,const char magicstr[4])
 	// complains about missing files when running in release
 //#ifndef NDEBUG
 	if(!vfs_exists(filename))
-		throw CFileOpenError();
+		throw PSERROR_File_OpenFailed();
 //#endif
 
 	// somewhat of a hack: if loading a map (.PMP), tell the file manager
@@ -50,7 +50,7 @@ void CFileUnpacker::Read(const char* filename,const char magicstr[4])
 
 	// load the whole thing into memory
 	if(vfs_load(filename, m_Buf, m_Size, flags) < 0)
-		throw CFileOpenError();
+		throw PSERROR_File_OpenFailed();
 
 	// make sure we read enough for the header
 	if(m_Size < 12)
@@ -58,7 +58,7 @@ void CFileUnpacker::Read(const char* filename,const char magicstr[4])
 		(void)file_buf_free(m_Buf);
 		m_Buf = 0;
 		m_Size = 0;
-		throw CFileReadError();
+		throw PSERROR_File_ReadFailed();
 	}
 
 	// extract data from header
@@ -76,7 +76,7 @@ void CFileUnpacker::Read(const char* filename,const char magicstr[4])
 		(void)file_buf_free(m_Buf);
 		m_Buf = 0;
 		m_Size = 0;
-		throw CFileTypeError();
+		throw PSERROR_File_InvalidType();
 	}
 
 	m_UnpackPos = 12;
@@ -98,7 +98,7 @@ void CFileUnpacker::UnpackRaw(void* rawdata,u32 rawdatalen)
 	}
 	else
 		// nope - throw exception
-		throw CFileEOFError();
+		throw PSERROR_File_UnexpectedEOF();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -117,6 +117,6 @@ void CFileUnpacker::UnpackString(CStr& result)
 		m_UnpackPos += length;
 	}
 	else
-		throw CFileEOFError();
+		throw PSERROR_File_UnexpectedEOF();
 }
 

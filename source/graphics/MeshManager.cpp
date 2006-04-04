@@ -41,7 +41,7 @@ CModelDefPtr CMeshManager::GetMesh(const char *filename)
 		m_MeshMap[fn] = model;
 		return model;
 	}
-	catch (CFileUnpacker::CError)
+	catch (PSERROR_File&)
 	{
 		LOG(ERROR, "mesh", "Could not load mesh '%s'!", filename);
 		return CModelDefPtr();

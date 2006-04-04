@@ -13,6 +13,16 @@
 #include "lib/types.h"	// u32
 #include "CStr.h"
 
+#include "ps/Errors.h"
+
+#ifndef ERROR_GROUP_FILE_DEFINED
+#define ERROR_GROUP_FILE_DEFINED
+// FileUnpacker.h defines these too
+ERROR_GROUP(File);
+ERROR_TYPE(File, OpenFailed);
+#endif
+ERROR_TYPE(File, WriteFailed);
+
 ////////////////////////////////////////////////////////////////////////////////////////
 // CFilePacker: class to assist in writing of binary files.
 // basically a resizeable buffer that allows adding raw data and strings;
@@ -20,23 +30,17 @@
 class CFilePacker 
 {
 public:
-	// CFilePacker exceptions
-	class CError { };
-	class CFileOpenError : public CError { };
-	class CFileWriteError : public CError { };
-
-public:
 	// constructor
 	// adds version and signature (i.e. the header) to the buffer.
 	// this means Write() can write the entire buffer to file in one go,
 	// which is simpler and more efficient than writing in pieces.
-	CFilePacker(u32 version,const char magicstr[4]);
+	CFilePacker(u32 version, const char magicstr[4]);
 
 	// Write: write out to file all packed data added so far
 	void Write(const char* filename);
 
 	// PackRaw: pack given number of bytes onto the end of the data stream
-	void PackRaw(const void* rawdata,u32 rawdatalen);
+	void PackRaw(const void* rawdata, u32 rawdatalen);
 	// PackString: pack a string onto the end of the data stream
 	void PackString(const CStr& str);
 

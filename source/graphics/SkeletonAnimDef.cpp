@@ -64,7 +64,7 @@ CSkeletonAnimDef* CSkeletonAnimDef::Load(const char* filename)
 			
 	// check version
 	if (unpacker.GetVersion()<FILE_READ_VERSION) {
-		throw CFileUnpacker::CFileVersionError();
+		throw PSERROR_File_InvalidVersion();
 	}
 
 	// unpack the data
@@ -77,7 +77,7 @@ CSkeletonAnimDef* CSkeletonAnimDef::Load(const char* filename)
 		unpacker.UnpackRaw(&anim->m_NumFrames,sizeof(anim->m_NumFrames));
 		anim->m_Keys=new Key[anim->m_NumKeys*anim->m_NumFrames];
 		unpacker.UnpackRaw(anim->m_Keys,anim->m_NumKeys*anim->m_NumFrames*sizeof(Key));
-	} catch (CFileUnpacker::CError) {
+	} catch (PSERROR_File&) {
 		delete anim;
 		throw;
 	}

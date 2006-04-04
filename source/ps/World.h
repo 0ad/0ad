@@ -3,6 +3,15 @@
 
 #include "Terrain.h"
 
+#include "ps/Errors.h"
+
+#ifndef ERROR_GROUP_GAME_DEFINED
+#define ERROR_GROUP_GAME_DEFINED
+ERROR_GROUP(Game);
+#endif
+ERROR_SUBGROUP(Game, World);
+ERROR_TYPE(Game_World, MapLoadFailed);
+
 class CGame;
 class CGameAttributes;
 class CUnitManager;
@@ -50,10 +59,6 @@ private:
 	CWorld(const CWorld& rhs);
 	const CWorld& operator=(const CWorld& rhs);
 };
-
-#include "Game.h"
-ERROR_SUBGROUP(Game, World);
-ERROR_TYPE(Game_World, MapLoadFailed);
 
 // rationale: see definition.
 class CLightEnv;

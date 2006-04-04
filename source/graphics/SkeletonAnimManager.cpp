@@ -57,7 +57,7 @@ CSkeletonAnimDef* CSkeletonAnimManager::GetAnimation(const char* filename)
 	CSkeletonAnimDef* def;
 	try {
 		def=CSkeletonAnimDef::Load(filename);
-	} catch (CFileUnpacker::CError) {
+	} catch (PSERROR_File&) {
 		def=0;
 	}
 

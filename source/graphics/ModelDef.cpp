@@ -57,7 +57,7 @@ CModelDef* CModelDef::Load(const char* filename)
 			
 	// check version
 	if (unpacker.GetVersion()<FILE_READ_VERSION) {
-		throw CFileUnpacker::CFileVersionError();
+		throw PSERROR_File_InvalidVersion();
 	}
 
 	CModelDef* mdef=new CModelDef;
@@ -95,9 +95,9 @@ CModelDef* CModelDef::Load(const char* filename)
 				}
 			}
 		}
-	} catch (CFileUnpacker::CFileEOFError) {
+	} catch (PSERROR_File_UnexpectedEOF&) {
 		delete mdef;
-		throw CFileUnpacker::CFileEOFError();
+		throw;
 	}
 
 	return mdef;

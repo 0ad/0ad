@@ -35,22 +35,7 @@ void CFilePacker::Write(const char* filename)
 {
 	// write out all data (including header)
 	if(vfs_store(filename, &m_Data[0], m_Data.size(), FILE_NO_AIO) < 0)
-		throw CFileWriteError();
-
-	// 'filename' is already an absolute path, so don't use file_make_full_native_path
-	FILE* fp=fopen(filename,"wb");
-	if (!fp) {
-		throw CFileOpenError();
-	}
-
-	// write out one big chunk of data (includes header)
-	if (fwrite(&m_Data[0],m_Data.size(),1,fp)!=1) {
-		fclose(fp);
-		throw CFileWriteError();
-	}
-
-	// all done
-	fclose(fp);
+		throw PSERROR_File_WriteFailed();
 }
 
 
