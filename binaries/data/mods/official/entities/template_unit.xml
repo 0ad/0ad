@@ -27,6 +27,11 @@
 			<Height>4.0</Height>
 		</Footprint>
 		
+		<AnglePenalty>
+			<Sectors>6</Sectors>
+			<Value>.2</Value>
+		</AnglePenalty>
+
 		<Formation>
   			<Category>Melee</Category>
   			<Curr>Loose</Curr>
@@ -72,6 +77,7 @@
 	
 		<Move>
 			<Speed>5.0</Speed>
+			<Curr/>
 			<TurningRadius>0.0</TurningRadius>
 			
 			<Run>

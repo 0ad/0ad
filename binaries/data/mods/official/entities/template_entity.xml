@@ -26,16 +26,25 @@
 		<Health> 
 			<Bar_Height>-1.0</Bar_Height>
 			<Bar_Size>20</Bar_Size>
+			<Bar_Width>2.0</Bar_Width>
 			<Regen_Rate>5.0</Regen_Rate>
 			<Regen_Start>15.0</Regen_Start>
 			<Decay_Rate>5.0</Decay_Rate>
+
+			<Border_Height>7</Border_Height>
+			<Border_Width>28</Border_Width>
+			<Border_Name>bar.dds</Border_Name>
 		</Health>
 		<Stamina>
 			<Bar_Height>-1.0</Bar_Height>
 			<Bar_Size>20</Bar_Size>
+			<Bar_Width>2.0</Bar_Width>
+			<Border_Height>7</Border_Height>
+			<Border_Width>28</Border_Width>
+			<Border_Name>bar.dds</Border_Name>
 		</Stamina>
 		<Rank>
-			<Height>7.0</Height>
+			<Width>7.0</Width>
 			<Size>17</Size>
 			<Name></Name>
 		</Rank>

@@ -21,5 +21,6 @@
 	<Event On="TargetChanged" Function="entityEventTargetChanged" />
 	<Event On="Notification" Function="entityEventNotification" />
 	<Event On="Formation" Function="entityEventFormation" />
+	<Event On="Idle" Function="entityEventIdle" />
 
 </Entity>

@@ -66,7 +66,7 @@ function entityInit()
 
 	// If entity has stamina, set current to same.
 	if ( this.traits.stamina && this.traits.stamina.max )
-		this.traits.stamina.curr = this.traits.stamina.max;
+		this.traits.stamina.curr = this.traits.stamina.max
 
 	if (this.traits.supply)
 	{
@@ -353,6 +353,7 @@ function performAttack( evt )
 	}
 
 	evt.target.damage( dmg, this );
+	
 }
 
 // ====================================================================
@@ -660,8 +661,10 @@ function damage( dmg, inflictor )
 		if( this.isIdle() )
 			this.order( ORDER_GENERIC, inflictor, getAttackAction( this, inflictor ) );
 	}
+	//When the entity is idle, we can readjust angle penalty. We must destroy the notifiers ourselves later, however.
+	this.RequestNotification( inflictor, NOTIFY_IDLE, false, true );
+	this.RegisterDamage( inflictor );
 }
-
 // ====================================================================
 
 function entityEventGeneric( evt )
@@ -717,6 +720,10 @@ function entityEventNotification( evt )
 		case NOTIFY_GATHER:
 			this.order( ORDER_GENERIC, evt.target, ACTION_GATHER, true );
 			break;
+		case NOTIFY_IDLE:
+			//target is the unit that has become idle
+			this.registerIdle( evt.target );
+			break;
 		default:
 			console.write( "Unknown notification request " + evt.notifyType );
 			break;
@@ -744,6 +751,12 @@ function getAttackAction( source, target )
 function entityComplete()
 {
 	console.write( this + " is finished building." );
+}
+//=====================================================================
+function entityEventIdle( evt )
+{
+	//Use our own data for target; we aren't affecting anyone, so listeners wants to know about us
+	this.forceCheckListeners( NOTIFY_IDLE, this );
 }
 
 // ====================================================================
@@ -1328,16 +1341,17 @@ function GotoInRange( x, y, run )
 	else
 		this.order( ORDER_GOTO, x, y - this.actions.escort.distance, true);
 }
+//=====================================================================
 function entityEventFormation( evt )
 {
 	if ( evt.formationEvent == FORMATION_ENTER )
 	{
-		if ( this.getFormationBonus() && this.isInClass( this.getFormationBonusType() ) )
+		if ( this.getFormationBonus() && this.hasClass( this.getFormationBonusType() ) )
 		{
 			eval( this + this.getFormationBonus() ) += eval( this + this.getFormationBonus() ) *		
 				 this.getFormationBonusVal();
 		}
-		if ( this.getFormationPenalty() && this.isInClass( this.getFormationPenaltyType() ) )
+		if ( this.getFormationPenalty() && this.hasInClass( this.getFormationPenaltyType() ) )
 		{
 			eval( this + this.getFormationPenalty() ) -= eval( this + this.getFormationbonus() ) *
 				this.getFormationPenaltyVal();
@@ -1346,14 +1360,15 @@ function entityEventFormation( evt )
 	//Reverse the bonuses
 	else if ( evt.formationEvent == FORMATION_LEAVE )
 	{
-		if ( this.getFormationBonus() && this.isInClass( this.getFormationBonusType() ) )
-		{
-			eval( this + this.getFormationBonus() ) -= eval( this + this.getFormationBonus() ) *						 this.getFormationBonusVal();
-		}
-		if ( this.getFormationPenalty() && this.isInClass( this.getFormationPenaltyType() ) )
+		if ( this.getFormationPenalty() && this.hasInClass( this.getFormationPenaltyType() ) )
 		{
 			eval( this + this.getFormationPenalty() ) += eval( this + this.getFormationbonus() ) *
 				this.getFormationPenaltyVal();
 		}
-	}	
+		if ( this.getFormationBonus() && this.hasClass( this.getFormationBonusType() ) )
+		{
+			eval( this + this.getFormationBonus() ) -= eval( this + this.getFormationBonus() ) *						 this.getFormationBonusVal();
+		}
+		
+	}
 }
