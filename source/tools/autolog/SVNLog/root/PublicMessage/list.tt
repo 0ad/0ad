@@ -1,0 +1,33 @@
+
+[% USE table_class = Class('SVNLog::Model::CDBI::PublicMessage') %]
+<table border="1">
+    <tr>
+        <th>Revision</th>
+        <th>Author</th>
+        <th>Log message</th>
+        <th>Public message</th>
+        <th/>
+    </tr>
+    [%
+    	count = 20;
+    	start = c.req.param('start') || 0;
+    %]
+    [% FOR object = table_class.search_log_range(count, start) %]
+        <tr>
+            <td>[% object.logentry.revision %]</td>
+            <td>[% object.logentry.author %]</td>
+            <td>[% object.logentry.msg | html | html_line_break %]</td>
+            <td>[% object.msg | html | html_line_break %]</td>
+            <td>
+                <a href="[% c.uri_for('/publicmessage/edit', object.id) %]">
+                    Edit
+                </a>
+            </td>
+        </tr>
+    [% END %]
+</table>
+
+[% IF start > 0 %]
+	<a href="[% c.uri_for('/publicmessage/list') _ '?start=' _ (start-count) %]">Previous page</a> |
+[% END %]
+<a href="[% c.uri_for('/publicmessage/list') _ '?start=' _ (start+count) %]">Next page</a>

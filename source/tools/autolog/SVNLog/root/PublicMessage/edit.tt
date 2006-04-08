@@ -1,0 +1,25 @@
+
+<p>[% message %]</p>
+
+<form action="[% c.uri_for('/publicmessage/do_edit', item.id) %]" method="post">
+
+	Revision<br/>
+	[% item.logentry.revision %]<br/>
+	<br/>
+	
+	Log message<br/>
+	<tt>[% item.logentry.msg | html_line_break %]</tt><br/>
+	<br/>
+	
+	Public message<br/>
+	[%
+		textarea = item.to_field('msg');
+		CALL textarea.attr('rows', 10);
+		CALL textarea.attr('cols', 60);
+		textarea.as_XML
+	%]
+	 <br/>
+	<input type="submit" value="Save changes"/>
+</form>
+<br/>
+<a href="[% c.uri_for('/publicmessage/list') %]">Back to list</a>

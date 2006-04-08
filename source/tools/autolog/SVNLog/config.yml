@@ -1,0 +1,10 @@
+name: SVNLog
+svn:
+  username: philip
+  password: ????????
+  url     : http://artificetech.co.uk/svn/trunk
+cdbi:
+  dsn     : dbi:SQLite:/var/www/svnlog/SVNLog/sql/svnlog.db
+scp:
+  command : /usr/bin/scp -i /var/www/svnlog/ssh/wfgkey
+  filename: philip@wildfiregames.com:~/svnlog/public
