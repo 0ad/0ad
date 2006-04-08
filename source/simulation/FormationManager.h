@@ -23,7 +23,7 @@ class CFormationManager : public Singleton<CFormationManager>
 public:
 	CFormationManager() {}
 	~CFormationManager();
-	void CreateFormation( CStrW& name, CEntityList& entities );
+	void CreateFormation( CEntityList& entities, CStrW& name );
 	//entity is any unit in the formation
 	void DestroyFormation( size_t form );
 	inline bool IsValidFormation( int index )
@@ -35,6 +35,7 @@ public:
 	
 	//Returns false if the formation is destroyed
 	bool RemoveUnit( CEntity*& entity );
+	bool RemoveUnitList( CEntityList& entities );
 	CEntityFormation* GetFormation(int form);
 	void UpdateIndexes( size_t update );
 

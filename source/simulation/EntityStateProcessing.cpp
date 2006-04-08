@@ -379,7 +379,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 			if(!DispatchEvent( contactEvent ))
 			{
 				// Cancel current order
-				m_orderQueue.pop_front();
+				popOrder();
 				m_isRunning = false;
 				m_shouldRun = false;
 				m_actor->SetEntitySelection( L"idle" );
@@ -406,7 +406,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		//TODO:  eventually when stances/formations are implemented, if applicable (e.g. not 
 		//heal or if defensive stance), the unit should expand and continue the order.
 		
-		m_orderQueue.pop_front();
+		popOrder();
 		m_isRunning = false;
 		m_shouldRun = false;
 		return( false );

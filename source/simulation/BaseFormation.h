@@ -36,6 +36,12 @@ public:
 	CStr GetPenaltyType(){ return m_penaltyType; }
 	float GetPenaltyVal(){ return m_penaltyVal; }
 
+	CStr GetAnglePenalty(){ return m_anglePenalty; }
+	CStr GetAnglePenaltyType(){ return m_anglePenaltyType; }
+	int GetAnglePenaltyDivs(){ return m_anglePenaltyDivs; }
+	float GetAnglePenaltyVal(){ return m_anglePenaltyVal; }
+
+
 private:
 	
 	CStr m_tag;
@@ -46,6 +52,11 @@ private:
 	CStr m_penalty;
 	CStr m_penaltyType;
 	float m_penaltyVal;
+
+	CStr m_anglePenalty;
+	int m_anglePenaltyDivs;
+	CStr m_anglePenaltyType;
+	float m_anglePenaltyVal;
 
 	int m_required;
 	CStr m_next;
@@ -60,6 +71,7 @@ private:
 	
 	//The key is the "order" of the slot 
 	std::map<int, FormationSlot> m_slots;
+	std::vector<float> m_angleValues;	//cosine of angle divisions
 	
 	bool loadXML(CStr filename);
 	void AssignCategory(int order, CStr category);	//takes care of formatting strings

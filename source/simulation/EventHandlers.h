@@ -116,8 +116,21 @@ public:
 	{
 		FORMATION_ENTER,
 		FORMATION_LEAVE,
+		FORMATION_DAMAGE,
+		FORMATION_ATTACK,
 
 		FORMATION_LAST
 	};
 };
+class CIdleEvent : public CScriptEvent
+{
+	int m_notifyType;	//previous order in notification code form
+	int m_orderType;
+	int m_action;	//previous order in terms of generic order action
+	CVector3D m_location;
+	CEntity* m_target;
+public:
+	CIdleEvent( CEntityOrder order, int notifyType );
+};
+
 #endif

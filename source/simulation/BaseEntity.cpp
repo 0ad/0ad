@@ -31,14 +31,25 @@ CBaseEntity::CBaseEntity()
     AddProperty( L"traits.health.max", &m_healthMax );
     AddProperty( L"traits.health.bar_height", &m_healthBarHeight );
 	AddProperty( L"traits.health.bar_size", &m_healthBarSize );
+	AddProperty( L"traits.health.bar_width", &m_healthBarWidth );
+	AddProperty( L"traits.health.border_height", &m_healthBorderHeight);
+	AddProperty( L"traits.health.border_width", &m_healthBorderWidth );
+	AddProperty( L"traits.health.border_name", &m_healthBorderName );
 	AddProperty( L"traits.health.regen_rate", &m_healthRegenRate );
 	AddProperty( L"traits.health.regen_start", &m_healthRegenStart );
 	AddProperty( L"traits.health.decay_rate", &m_healthDecayRate );
+
 	AddProperty( L"traits.stamina.curr", &m_staminaCurr );
     AddProperty( L"traits.stamina.max", &m_staminaMax );
     AddProperty( L"traits.stamina.bar_height", &m_staminaBarHeight );
 	AddProperty( L"traits.stamina.bar_size", &m_staminaBarSize );
-	AddProperty( L"traits.rank.size", &m_rankSize );
+	AddProperty( L"traits.stamina.bar_width", &m_staminaBarWidth );
+	AddProperty( L"traits.stamina.border_height", &m_staminaBorderHeight);
+	AddProperty( L"traits.stamina.border_width", &m_staminaBorderWidth );
+	AddProperty( L"traits.stamina.border_name", &m_staminaBorderName );
+	AddProperty( L"traits.angle_penalty.sectors", &m_sectorDivs );
+	AddProperty( L"traits.angle_penalty.value", &m_sectorPenalty );
+	AddProperty( L"traits.rank.width", &m_rankWidth );
 	AddProperty( L"traits.rank.height", &m_rankHeight );
 	AddProperty( L"traits.rank.name", &m_rankName );
 	AddProperty( L"traits.minimap.type", &m_minimapType );

@@ -91,19 +91,21 @@ void CEntityFormation::RemoveUnit( CEntity*& entity )
 	--m_numEntities;
 	//UpdateFormation();
 }
-bool CEntityFormation::IsSlotAppropriate( int order, CEntity*& entity )
+bool CEntityFormation::IsSlotAppropriate( int order, CEntity* entity )
 {
 	debug_assert( entity );
 	if ( !IsValidOrder(order) )
 		return false;
+	
 	for ( size_t idx=0; idx < m_base->m_slots[order].category.size(); ++idx )
 	{
-		if ( entity->m_classes.IsMember( m_base->m_slots[order].category[idx] ) )
+		CStr tmp( m_base->m_slots[order].category[idx] );
+		if ( entity->m_classes.IsMember( tmp ) )
 			return true;
 	}
 	return false;
 }
-bool CEntityFormation::IsBetterUnit( int order, CEntity*& entity )
+bool CEntityFormation::IsBetterUnit( int order, CEntity* entity )
 {
 	if ( !( IsValidOrder(order) || entity ) )
 		return false;
@@ -162,6 +164,11 @@ void CEntityFormation::ResetAllEntities()
 {
 	for ( int i=0; i<m_base->m_numSlots; ++i )
 		m_entities[i] = NULL;
+}
+void CEntityFormation::ResetAngleDivs()
+{
+	for ( int i=0; i<m_base->m_anglePenaltyDivs; ++i )
+		m_angleDivs[i] = false;
 }
 void CEntityFormation::SelectAllUnits()
 {

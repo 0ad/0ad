@@ -2,6 +2,7 @@
 #include "BaseFormation.h"
 #include "CLogger.h"
 #include "CStr.h"
+#include "maths\MathUtil.h"
 
 #define LOG_CATEGORY "Formation"
 
@@ -30,6 +31,11 @@ bool CBaseFormation::loadXML(CStr filename)
 	AT(penalty);
 	AT(penaltytype);
 	AT(penaltyval);
+	AT(anglepenalty);
+	AT(anglepenaltydivs);
+	AT(anglepenaltytype);
+	AT(anglepenaltyval);
+
 	AT(required);
 	AT(next);
 	AT(prior);
@@ -53,36 +59,46 @@ bool CBaseFormation::loadXML(CStr filename)
 	for ( int i=0; i<Attributes.Count; ++i )
 	{
 		XMBAttribute Attr = Attributes.item(i);
-		if (  Attr.Name == at_tag )
+		if ( Attr.Name == at_tag )
 			m_tag = CStr(Attr.Value);
-		else if (  Attr.Name == at_bonus )
+		else if ( Attr.Name == at_bonus )
 			m_bonus = CStr(Attr.Value);
-		else if (  Attr.Name == at_bonustype )
+		else if ( Attr.Name == at_bonustype )
 			m_bonusType = CStr(Attr.Value);
-		else if (  Attr.Name == at_bonusval )
+		else if ( Attr.Name == at_bonusval )
 			m_bonusVal = CStr(Attr.Value).ToFloat();
-		else if (  Attr.Name == at_penalty )
+		else if ( Attr.Name == at_penalty )
 			m_penalty = CStr(Attr.Value);
-		else if (  Attr.Name == at_penaltytype )
+		else if ( Attr.Name == at_penaltytype )
 			m_penaltyType = CStr(Attr.Value);
-		else if (  Attr.Name == at_penaltyval )
+		else if ( Attr.Name == at_penaltyval )
 			m_penaltyVal = CStr(Attr.Value).ToFloat();
-		else if (  Attr.Name == at_required)
+		
+		else if ( Attr.Name == at_anglepenalty )
+			m_anglePenalty = CStr(Attr.Value);
+		else if ( Attr.Name == at_anglepenaltydivs )
+			m_anglePenaltyDivs = CStr(Attr.Value).ToInt();
+		else if ( Attr.Name == at_anglepenaltytype )
+			m_anglePenaltyType = CStr(Attr.Value);
+		else if ( Attr.Name == at_anglepenaltyval )
+			m_anglePenaltyVal = CStr(Attr.Value).ToFloat();
+		
+		else if ( Attr.Name == at_required)
 			m_required = CStr(Attr.Value).ToInt();
-		else if (  Attr.Name == at_next )
+		else if ( Attr.Name == at_next )
 			m_next = CStr(Attr.Value);
-		else if (  Attr.Name == at_prior )
+		else if ( Attr.Name == at_prior )
 			m_prior = CStr(Attr.Value);
-		else if (  Attr.Name == at_movement )
+		else if ( Attr.Name == at_movement )
 			m_movement = CStr(Attr.Value);
-		else if (  Attr.Name == at_rankspacing )
+		else if ( Attr.Name == at_rankspacing )
 			m_rankSpacing = CStr(Attr.Value).ToFloat();
-		else if (  Attr.Name == at_filespacing )
+		else if ( Attr.Name == at_filespacing )
 			m_fileSpacing = CStr(Attr.Value).ToFloat();
 		else
 		{
-			CStr invAttr = XeroFile.getAttributeString(Attr.Name);
-			LOG( ERROR, LOG_CATEGORY, "CBaseFormation::LoadXML: Invalid attribute defined in formation file %s. Load failed.", filename.c_str() );
+			const char* invAttr = XeroFile.getAttributeString(Attr.Name).c_str();
+			LOG( ERROR, LOG_CATEGORY, "CBaseFormation::LoadXML: Invalid attribute %s defined in formation file %s. Load failed.", invAttr, filename.c_str() );
 			return( false );
 		}
 	}

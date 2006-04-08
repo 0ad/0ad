@@ -61,14 +61,25 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
     AddProperty( L"traits.health.max", &m_healthMax );
     AddProperty( L"traits.health.bar_height", &m_healthBarHeight );
 	AddProperty( L"traits.health.bar_size", &m_healthBarSize );
+	AddProperty( L"traits.health.bar_width", &m_healthBarWidth );
+	AddProperty( L"traits.health.border_height", &m_healthBorderHeight);
+	AddProperty( L"traits.health.border_width", &m_healthBorderWidth );
+	AddProperty( L"traits.health.border_name", &m_healthBorderName );
 	AddProperty( L"traits.health.regen_rate", &m_healthRegenRate );
 	AddProperty( L"traits.health.regen_start", &m_healthRegenStart );
 	AddProperty( L"traits.health.decay_rate", &m_healthDecayRate );
+	
 	AddProperty( L"traits.stamina.curr", &m_staminaCurr );
     AddProperty( L"traits.stamina.max", &m_staminaMax );
     AddProperty( L"traits.stamina.bar_height", &m_staminaBarHeight );
 	AddProperty( L"traits.stamina.bar_size", &m_staminaBarSize );
-	AddProperty( L"traits.rank.size", &m_rankSize );
+	AddProperty( L"traits.stamina.bar_width", &m_staminaBarWidth );
+	AddProperty( L"traits.stamina.border_height", &m_staminaBorderHeight);
+	AddProperty( L"traits.stamina.border_width", &m_staminaBorderWidth );
+	AddProperty( L"traits.stamina.border_name", &m_staminaBorderName );
+	AddProperty( L"traits.angle_penalty.sectors", &m_sectorDivs);
+	AddProperty( L"traits.angle_penalty.value", &m_sectorPenalty );
+	AddProperty( L"traits.rank.width", &m_rankWidth );
 	AddProperty( L"traits.rank.height", &m_rankHeight );
 	AddProperty( L"traits.rank.name", &m_rankName );
     AddProperty( L"traits.minimap.type", &m_minimapType );
@@ -89,6 +100,18 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
         AddProperty( EventNames[t], &m_EventHandlers[t], false );
         AddHandler( t, &m_EventHandlers[t] );
     }
+	if ( m_sectorDivs >= 0 )
+	{	
+		m_sectorAngles.resize(m_sectorDivs);
+		m_sectorValues.resize(m_sectorDivs);
+		float step = DEGTORAD(360.0f / m_sectorDivs);
+	
+		for ( int i=0; i<m_sectorDivs; ++i )
+		{
+			m_sectorAngles[i] = cosf( step*i );
+			m_sectorValues[i] = false;
+		}
+	}
 
     m_collisionPatch = NULL;
 
@@ -127,7 +150,8 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
 	m_frameCheck = 0;
 	m_lastCombatTime = 0;
 	m_currentNotification = 0;
-	m_currentListener = NULL;
+	m_currentRequest = 0;
+	m_destroyNotifiers = true;
 	
 	m_formationSlot =	-1;
 	m_formation = -1;
@@ -160,6 +184,10 @@ CEntity::~CEntity()
         delete it->second;
     }
     m_auras.clear();
+	
+	for ( size_t i=0; i<m_listeners.size(); i++ )
+		m_listeners[i].m_sender->DestroyNotifier( this );
+	DestroyAllNotifiers();
 	
 	CEntity* remove = this;
 	g_FormationManager.RemoveUnit(remove);
@@ -207,6 +235,8 @@ void CEntity::kill()
 	
 	CEntity* remove = this;
 	g_FormationManager.RemoveUnit(remove);
+	
+	DestroyAllNotifiers();
    
 	if( m_bounds )
         delete( m_bounds );
@@ -662,9 +692,21 @@ void CEntity::Tick()
 
 void CEntity::clearOrders()
 {
-    m_orderQueue.clear();
+    if ( m_orderQueue.empty() )
+		return;
+	CIdleEvent evt( m_orderQueue.front(), m_currentNotification );
+	DispatchEvent(&evt);
+	m_orderQueue.clear();
 }
+void CEntity::popOrder()
+{
+	if ( m_orderQueue.empty() )
+		return;
+	CIdleEvent evt( m_orderQueue.front(), m_currentNotification );
+	DispatchEvent(&evt);
 
+	m_orderQueue.pop_front();
+}
 void CEntity::pushOrder( CEntityOrder& order )
 {
 	CEventPrepareOrder evt( order.m_data[0].entity, order.m_type, order.m_data[1].data, order.m_data[0].string );
@@ -683,17 +725,36 @@ void CEntity::DispatchNotification( CEntityOrder order, int type )
 	CEventNotification evt( order, type );
 	DispatchEvent( &evt );
 }
-void CEntity::DestroyListeners( CEntity* target )
+int CEntity::DestroyNotifier( CEntity* target )
 {
-	if (target->m_listeners.empty())
-		return;
-
-	for ( size_t i=0; i < target->m_listeners.size(); i++)
+	if (target->m_listeners.empty() || !m_destroyNotifiers)
+		return 0;
+	//Stop listening
+	for ( size_t i=0; i < target->m_listeners.size(); i++ )
 	{
 		if ( target->m_listeners[i].m_sender == this )
 			target->m_listeners.erase(target->m_listeners.begin() + i);
 	}
-
+	int removed=0;
+	//Get rid of our copy
+	for ( size_t i=0; i < target->m_notifiers.size(); i++ )
+	{
+		if ( m_notifiers[i] == target )
+		{
+			m_notifiers.erase(m_notifiers.begin() + i);
+			++removed;
+		}
+	}
+	return removed;
+}
+void CEntity::DestroyAllNotifiers()
+{
+	debug_assert(m_destroyNotifiers);
+	//Make them stop listening to us
+	if ( m_notifiers.empty() )
+		return;
+	for ( size_t i=0; i<m_notifiers.size(); i++ )
+		i -= DestroyNotifier( m_notifiers[i] );
 }
 CEntityFormation* CEntity::GetFormation()
 {
@@ -1001,29 +1062,81 @@ void CEntity::renderSelectionOutline( float alpha )
 
     glEnd();
 }
+CVector2D CEntity::getScreenCoords( float height )
+{
+	CCamera &g_Camera=*g_Game->GetView()->GetCamera();
 
+    float sx, sy;
+    CVector3D above;
+    above.X = m_position.X;
+    above.Z = m_position.Z;
+    above.Y = getAnchorLevel(m_position.X, m_position.Z) + height;
+    g_Camera.GetScreenCoordinates(above, sx, sy);
+	return CVector2D( sx, sy );
+}
+void CEntity::renderBarBorders()
+{
+	pglActiveTextureARB( GL_TEXTURE0_ARB );
+	
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
+	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
+	
+	if ( g_Selection.m_unitUITextures.find(m_healthBorderName) != g_Selection.m_unitUITextures.end() )
+	{
+		ogl_tex_bind( g_Selection.m_unitUITextures[m_healthBorderName] );
+		CVector2D pos = getScreenCoords( m_healthBarHeight );
+		
+		float left = pos.x - m_healthBorderWidth/2;
+		float right = pos.x + m_healthBorderWidth/2;
+		pos.y = g_yres - pos.y;
+		float bottom = pos.y + m_healthBorderHeight/2;
+		float top = pos.y - m_healthBorderHeight/2;	
+		
+		glBegin(GL_QUADS);
+	
+		glTexCoord2f(0.0f, 0.0f); glVertex3f( left, bottom, 0 );
+		glTexCoord2f(0.0f, 1.0f); glVertex3f( left, top, 0 );
+		glTexCoord2f(1.0f, 1.0f); glVertex3f( right, top, 0 );
+		glTexCoord2f(1.0f, 0.0f); glVertex3f( right, bottom, 0 );
+	  
+		glEnd();
+	}
+	if ( g_Selection.m_unitUITextures.find(m_staminaBorderName) != g_Selection.m_unitUITextures.end() )
+	{
+		ogl_tex_bind( g_Selection.m_unitUITextures[m_staminaBorderName] );
+		CVector2D pos = getScreenCoords( m_staminaBarHeight );
+		float left = pos.x - m_staminaBorderWidth/2;
+		float right = pos.x + m_staminaBorderWidth/2;
+		pos.y = g_yres - pos.y;
+		float bottom = pos.y + m_staminaBorderHeight/2;
+		float top = pos.y - m_staminaBorderHeight/2;	
+		
+		glBegin(GL_QUADS);
+	
+		glTexCoord2f(0.0f, 0.0f); glVertex3f( left, bottom, 0 );
+		glTexCoord2f(0.0f, 1.0f); glVertex3f( left, top, 0 );
+		glTexCoord2f(1.0f, 1.0f); glVertex3f( right, top, 0 );
+		glTexCoord2f(1.0f, 0.0f); glVertex3f( right, bottom, 0 );
+	  
+		glEnd();
+	}
+}
 void CEntity::renderHealthBar()
 {
     if( !m_bounds )
         return;
     if( m_healthBarHeight < 0 )
         return;  // negative bar height means don't display health bar
-
-    CCamera &g_Camera=*g_Game->GetView()->GetCamera();
-
-    float sx, sy;
-    CVector3D above;
-    above.X = m_position.X;
-    above.Z = m_position.Z;
-    above.Y = getAnchorLevel(m_position.X, m_position.Z) + m_healthBarHeight;
-    g_Camera.GetScreenCoordinates(above, sx, sy);
+	
+	CVector2D pos = getScreenCoords( m_healthBarHeight );
     float fraction = clamp(m_healthCurr / m_healthMax, 0.0f, 1.0f);
-
-    float x1 = sx - m_healthBarSize/2;
-    float x2 = sx + m_healthBarSize/2;
-    float y = g_yres - sy;
-
-    glBegin(GL_LINES);
+    float x1 = pos.x - m_healthBarSize/2;
+    float x2 = pos.x + m_healthBarSize/2;
+    float y = g_yres - pos.y;
+	
+	glLineWidth( m_healthBarWidth );
+	glBegin(GL_LINES);
 
     // green part of bar
     glColor3f( 0, 1, 0 );
@@ -1038,6 +1151,9 @@ void CEntity::renderHealthBar()
     glVertex3f( x2, y, 0 );
 
     glEnd();
+	
+	glLineWidth(1.0f);
+	
 }
 
 void CEntity::renderStaminaBar()
@@ -1047,20 +1163,13 @@ void CEntity::renderStaminaBar()
     if( m_staminaBarHeight < 0 )
         return;  // negative bar height means don't display stamina bar
 
-    CCamera *g_Camera=g_Game->GetView()->GetCamera();
-
-    float sx, sy;
-    CVector3D above;
-    above.X = m_position.X;
-    above.Z = m_position.Z;
-    above.Y = getAnchorLevel(m_position.X, m_position.Z) + m_staminaBarHeight;
-    g_Camera->GetScreenCoordinates(above, sx, sy);
+    CVector2D pos = getScreenCoords( m_staminaBarHeight );
     float fraction = clamp(m_staminaCurr / m_staminaMax, 0.0f, 1.0f);
-
-    float x1 = sx - m_staminaBarSize/2;
-    float x2 = sx + m_staminaBarSize/2;
-    float y = g_yres - sy;
-
+    float x1 = pos.x - m_staminaBarSize/2;
+    float x2 = pos.x + m_staminaBarSize/2;
+    float y = g_yres - pos.y;
+	
+	glLineWidth( m_staminaBarWidth );
     glBegin(GL_LINES);
 
     // blue part of bar
@@ -1076,17 +1185,18 @@ void CEntity::renderStaminaBar()
     glVertex3f( x2, y, 0 );
 
     glEnd();
+	glLineWidth(1.0f);
 }
 void CEntity::renderRank()
 {
 	if( !m_bounds )
         return;
     if( m_rankHeight < 0 )
-        return;  // negative bar height means don't display stamina bar
+        return;  // negative height means don't display stamina bar
 	//Check for valid texture
-	if( g_Selection.m_rankTextures.find( m_rankName ) == g_Selection.m_rankTextures.end() )
+	if( g_Selection.m_unitUITextures.find( m_rankName ) == g_Selection.m_unitUITextures.end() )
 		return;
-
+	
     CCamera *g_Camera=g_Game->GetView()->GetCamera();
 
     float sx, sy;
@@ -1095,14 +1205,14 @@ void CEntity::renderRank()
     above.Z = m_position.Z;
     above.Y = getAnchorLevel(m_position.X, m_position.Z) + m_rankHeight;
     g_Camera->GetScreenCoordinates(above, sx, sy);
-    int size = m_rankSize/2;
+    int size = m_rankWidth/2;
 
     float x1 = sx - size;
     float x2 = sx + size;
     float y1 = g_yres - (sy - size);	//top
 	float y2 = g_yres - (sy + size);	//bottom
-
-	ogl_tex_bind(g_Selection.m_rankTextures[m_rankName]);
+	
+	ogl_tex_bind(g_Selection.m_unitUITextures[m_rankName]);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
 	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
@@ -1167,7 +1277,9 @@ void CEntity::ScriptingInit()
     AddMethod<jsval, &CEntity::RemoveAura>( "removeAura", 1 );
     AddMethod<jsval, &CEntity::SetActionParams>( "setActionParams", 5 );
 	AddMethod<bool, &CEntity::ForceCheckListeners>( "forceCheckListeners", 2 );
-	AddMethod<bool, &CEntity::RequestNotification>( "requestNotification", 3 );
+	AddMethod<bool, &CEntity::RequestNotification>( "requestNotification", 4 );
+	AddMethod<jsval, &CEntity::DestroyNotifier>( "destroyNotifier", 1 );
+	AddMethod<jsval, &CEntity::DestroyAllNotifiers>( "destroyAllNotifiers", 0 );
 	AddMethod<jsval, &CEntity::TriggerRun>( "triggerRun", 1 );
 	AddMethod<jsval, &CEntity::SetRun>( "setRun", 1 );
 	AddMethod<jsval, &CEntity::GetRunState>( "getRunState", 0 );
@@ -1178,7 +1290,8 @@ void CEntity::ScriptingInit()
 	AddMethod<jsval, &CEntity::GetFormationPenalty>( "getFormationPenalty", 0 );
 	AddMethod<jsval, &CEntity::GetFormationPenaltyType>( "getFormationPenaltyType", 0 );
 	AddMethod<jsval, &CEntity::GetFormationPenaltyVal>( "getFormationPenaltyVal", 0 );
-	AddMethod<bool, &CEntity::IsInClass>( "isInClass", 1 );
+	AddMethod<jsval, &CEntity::RegisterDamage>( "registerDamage", 0 );
+	AddMethod<jsval, &CEntity::RegisterIdle>( "registerIdle", 0 );
 
     AddClassProperty( L"template", (CBaseEntity* CEntity::*)&CEntity::m_base, false, (NotifyFn)&CEntity::loadBase );
     AddClassProperty( L"traits.id.classes", (GetFn)&CEntity::getClassSet, (SetFn)&CEntity::setClassSet );
@@ -1311,11 +1424,12 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 			//It's not a notification order
 			if ( argc == 3 )
 			{
-				if ( m_currentListener )
-					DestroyListeners( m_currentListener );
-				m_currentListener = NULL;
+				if ( m_destroyNotifiers )
+				{
+					m_currentRequest=0;
+					DestroyAllNotifiers();
+				}
 			}
-
 			break;
         case CEntityOrder::ORDER_GENERIC:
 			if( argc < 3 )
@@ -1342,9 +1456,11 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 			//It's not a notification order
 			if ( argc == 3 )
 			{
-				if ( m_currentListener )
-					DestroyListeners( m_currentListener );
-				m_currentListener = NULL;
+				if ( m_destroyNotifiers )
+				{
+					m_currentRequest=0;
+					DestroyAllNotifiers();
+				}
 			}
 			break;
         case CEntityOrder::ORDER_PRODUCE:
@@ -1627,32 +1743,35 @@ jsval CEntity::SetActionParams( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 
 bool CEntity::RequestNotification( JSContext* cx, uintN argc, jsval* argv )
 {
-	if( argc < 3 )
+	if( argc < 4 )
 	{
 		JS_ReportError( cx, "Too few parameters" );
 		return( false );
 	}
 	
 	CEntityListener notify;
-	notify.m_sender = this;
-	//(Convert from int to enum)
 	CEntity *target = ToNative<CEntity>( argv[0] );
+	(int&)notify.m_type = ToPrimitive<int>( argv[1] );
+	bool tmpDestroyNotifiers = ToPrimitive<bool>( argv[2] );
+	bool m_destroyNotifiers = !ToPrimitive<bool>( argv[3] );
+
 	if (target == this)
 		return false;
-
-	*( (int*) &(notify.m_type) ) = ToPrimitive<int>( argv[1] );
 	
+	notify.m_sender = this;
+
 	//Clean up old requests
-	if ( ToPrimitive<bool>( argv[2] ) && !target->m_listeners.empty() )
-		DestroyListeners( target );
-	
-	if ( target != m_currentListener && m_currentListener )
-		DestroyListeners( m_currentListener );
+	if ( tmpDestroyNotifiers )
+		DestroyAllNotifiers();
+	//If new request is not the same and we're destroy notifiers, reset
+	else if ( !(notify.m_type & m_currentRequest) && m_destroyNotifiers )
+		DestroyAllNotifiers();
 
-	m_currentListener = target;
+	m_currentRequest = notify.m_type;
+	m_notifiers.push_back( target );
+	int result = target->m_currentNotification & notify.m_type;
 	
 	//If our target isn't stationary and it's doing something we want to follow, send notification
-	int result = target->m_currentNotification & notify.m_type;
 	if ( result && !target->m_orderQueue.empty() )
 	{
 		CEntityOrder order = target->m_orderQueue.front();
@@ -1667,11 +1786,6 @@ bool CEntity::RequestNotification( JSContext* cx, uintN argc, jsval* argv )
 			 case CEntityListener::NOTIFY_ATTACK:
 			 case CEntityListener::NOTIFY_GATHER:
 		     case CEntityListener::NOTIFY_DAMAGE:
-				 if( argc < 2 )
-				 {
-					 JS_ReportError( cx, "Too few parameters" );
-				 }
-
 				 DispatchNotification( order, result );
 				 break;
 			 default:
@@ -1713,11 +1827,13 @@ bool CEntity::ForceCheckListeners( JSContext *cx, uintN argc, jsval* argv )
 				 case CEntityListener::NOTIFY_ATTACK:
 				 case CEntityListener::NOTIFY_GATHER:
 				 case CEntityListener::NOTIFY_DAMAGE:
+				 case CEntityListener::NOTIFY_IDLE:	//target should be 'this'
 					m_listeners[i].m_sender->DispatchNotification( order, result );
-					 
+					break;
+				
 				default:
 					JS_ReportError( cx, "Invalid order type" );
-					continue;
+					break;
 			 }
 		 }
 	}
@@ -1753,6 +1869,21 @@ void CEntity::CheckListeners( int type, CEntity *target)
 			 }
 		}
 	}
+}
+jsval CEntity::DestroyAllNotifiers( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+{
+	DestroyAllNotifiers();
+	return JS_TRUE;
+}
+jsval CEntity::DestroyNotifier( JSContext* cx, uintN argc, jsval* argv )
+{
+	if ( argc < 1 )
+	{
+		JS_ReportError(cx, "too few parameters: CEntity::DestroyNotifier");
+		return JS_FALSE;
+	}
+	DestroyNotifier( ToNative<CEntity>( argv[0] ) );
+	return JS_TRUE;
 }
 
 jsval CEntity::TriggerRun( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
@@ -1800,13 +1931,64 @@ jsval CEntity::GetFormationBonusVal( JSContext* UNUSED(cx), uintN UNUSED(argc), 
 {
 	return ToJSVal( GetFormation()->GetBase()->GetBonusVal() );
 }
-bool CEntity::IsInClass( JSContext* cx, uintN argc, jsval* argv )
+
+jsval CEntity::RegisterDamage( JSContext* cx, uintN argc, jsval* argv )
 {
-	if( argc < 1 )
+	if ( argc < 1 )
 	{
 		JS_ReportError( cx, "Too few parameters" );
 		return( false );
 	}
-	CStr test = ToPrimitive<CStr>( argv[0] );
-	return m_classes.IsMember( test );
+	CEntity* inflictor = ToNative<CEntity>( argv[0] );
+	CVector2D up(1.0f, 0.0f);
+	CVector2D pos = CVector2D( inflictor->m_position.X, inflictor->m_position.Z );
+	CVector2D posDelta = (pos - m_position).normalize(); 
+
+	float angle = up.dot(posDelta);
+	//Find what section it is between and "activate" it
+	for ( int i=0; i<m_sectorDivs; ++i )
+	{
+		//Wrap around to the start-if we've made it this far, it's here
+		if ( i == m_base->m_sectorDivs )
+			m_sectorValues[i] = true;
+		else if ( angle > m_sectorAngles[i] && angle < m_sectorAngles[i+1] )
+			m_sectorValues[i] = true;
+	}
+	return JS_TRUE;
+}
+jsval CEntity::RegisterIdle( JSContext* cx, uintN argc, jsval* argv )
+{
+	if ( argc < 1 )
+	{
+		JS_ReportError( cx, "Too few parameters" );
+		return( false );
+	}
+	CEntity* idleEntity = ToNative<CEntity>( argv[0] );
+
+	CVector2D up(1.0f, 0.0f);
+	CVector2D pos = CVector2D( idleEntity->m_position.X, idleEntity->m_position.Z );
+	CVector2D posDelta = (pos - m_position).normalize(); 
+
+	float angle = up.dot(posDelta);
+	//Find what section it is between and "activate" it
+	for ( int i=0; i<m_sectorDivs; ++i )
+	{
+		//Wrap around to the start-if we've made it this far, it's here
+		if ( i == m_base->m_sectorDivs )
+			m_sectorValues[i] = false;
+		else if ( angle > m_sectorAngles[i] && angle < m_sectorAngles[i+1] )
+			m_sectorValues[i] = false;
+	}
+	return JS_TRUE;
+}
+jsval CEntity::GetAttackDirections( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+{
+	int directions=0;
+
+	for ( std::vector<bool>::iterator it=m_sectorValues.begin(); it != m_sectorValues.end(); it++ )
+	{
+		if ( *it )
+			++directions;
+	}
+	return ToJSVal( directions );
 }

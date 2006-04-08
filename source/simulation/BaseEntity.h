@@ -61,20 +61,30 @@ public:
 	float m_staminaMax;
 	float m_staminaBarHeight;
 	int m_staminaBarSize;
-	
+	float m_staminaBarWidth;
+
+	int m_staminaBorderWidth;
+	int m_staminaBorderHeight;
+	CStr m_staminaBorderName;
+
 	// HP properties
 	float m_healthCurr;
 	float m_healthMax;
 	float m_healthBarHeight;
 	int m_healthBarSize;
+	float m_healthBarWidth;
 
+	int m_healthBorderWidth;
+	int m_healthBorderHeight;
+	CStr m_healthBorderName;
+	
 	float m_healthRegenRate;
 	float m_healthRegenStart;
 	float m_healthDecayRate;
 
 	//Rank properties
-	float m_rankHeight;
-	int m_rankSize;
+	float m_rankWidth;
+	int m_rankHeight;
 	CStr m_rankName;
 
 	// Minimap properties
@@ -99,6 +109,9 @@ public:
 
 	SEntityAction m_run;
 	SEntityAction m_generic;
+
+	int m_sectorDivs;
+	float m_sectorPenalty;
 
 	float m_turningRadius;
 	CScriptObject m_EventHandlers[EVENT_LAST];

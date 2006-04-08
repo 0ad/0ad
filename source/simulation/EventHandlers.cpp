@@ -97,8 +97,21 @@ CEventNotification::CEventNotification( CEntityOrder order, int notifyType ) : C
 	AddLocalProperty( L"target", &m_target );
 	AddLocalProperty( L"location", &m_location );
 }
-CFormationEvent::CFormationEvent(  int type ) : CScriptEvent( L"formationEvent", EVENT_FORMATION, true )
+CFormationEvent::CFormationEvent( int type ) : CScriptEvent( L"formationEvent", EVENT_FORMATION, true )
 {
 	(int&) m_formationEvent = type;
 	AddLocalProperty( L"formationEvent", &m_formationEvent );
+}
+CIdleEvent::CIdleEvent( CEntityOrder order, int notifyType ) : CScriptEvent( L"idleEvent", EVENT_IDLE, false )
+{
+	m_notifyType = notifyType;
+	m_orderType = order.m_type;
+	m_target = order.m_data[0].entity;
+	CVector3D convert( order.m_data[0].location.x, 0.0f, order.m_data[0].location.y );
+	m_location = convert;
+	
+	AddLocalProperty( L"notifyType", &m_notifyType );
+	AddLocalProperty( L"orderType", &m_orderType );
+	AddLocalProperty( L"target", &m_target );
+	AddLocalProperty( L"location", &m_location );
 }

@@ -118,6 +118,25 @@ void CSelectedEntities::renderStaminaBars()
 		glDisable( GL_BLEND );
 	}
 }
+void CSelectedEntities::renderBarBorders()
+{
+	std::vector<HEntity>::iterator it;
+	for( it = m_selected.begin(); it < m_selected.end(); it++ )
+		(*it)->renderBarBorders();
+
+	if( m_group_highlight != -1 )
+	{
+		glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+		glEnable( GL_BLEND );
+
+		std::vector<HEntity>::iterator it;
+		for( it = m_groups[m_group_highlight].begin(); it < m_groups[m_group_highlight].end(); it++ )
+			(*it)->renderBarBorders();
+
+		glDisable( GL_BLEND );
+	}
+}
+
 void CSelectedEntities::renderRanks()
 {
 	std::vector<HEntity>::iterator it;
@@ -828,34 +847,48 @@ void CMouseoverEntities::renderRanks()
 
 	glDisable( GL_BLEND );
 }
-
-
-int CSelectedEntities::loadRankTextures()
+void CMouseoverEntities::renderBarBorders()
 {
-	VFSUtil::FileList ranklist;
-	VFSUtil::FindFiles( "art/textures/ui/session/icons", 0, ranklist );
-	for ( std::vector<CStr>::iterator it = ranklist.begin(); it != ranklist.end(); it++ )
+	glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+	glEnable( GL_BLEND );
+
+	std::vector<SMouseoverFader>::iterator it;
+	for( it = m_mouseover.begin(); it < m_mouseover.end(); it++ )
+		it->entity->renderBarBorders();
+
+	glDisable( GL_BLEND );
+}
+static void LoadUnitUIThunk( const char* path, const DirEnt* UNUSED(ent), void* context )
+{
+	std::map<CStr, Handle>* textures = (std::map<CStr, Handle>*) context;
+	CStr name(path);
+	
+	if ( !tex_is_known_extension(path) )
 	{
-		const char* filename = it->c_str();
-		if ( !tex_is_known_extension(filename) )
-		{
-			LOG(ERROR, LOG_CATEGORY, "Unknown rank texture extension (%s)", filename);
-			continue;
-		}
-		Handle ht = ogl_tex_load(filename);
-		if (ht <= 0)
-		{
-			LOG(ERROR, LOG_CATEGORY, "loadRankTextures failed on \"%s\"", filename);
-			return ht;
-		}
-		m_rankTextures[it->AfterLast("/")] = ht;
-		RETURN_ERR(ogl_tex_upload(ht));
+		if ( name.BeforeLast(".") == name )		//this is a directory (contains no ".")
+			return;
+		LOG(ERROR, "Unknown rank texture extension (%s)", path);
+		return;
 	}
+	Handle tmp = ogl_tex_load(path);
+	if (tmp <= 0)
+	{	
+		LOG(ERROR, "Rank Textures", "loadRankTextures failed on \"%s\"", path);
+		return;
+	}
+	name.Remove("art/textures/ui/session/icons/");	//Names are relative to this directory
+	(*textures)[name] = tmp;
+	ogl_tex_upload(tmp);
+}
+int CSelectedEntities::loadUnitUITextures()
+{
+	THROW_ERR( VFSUtil::EnumDirEnts( "art/textures/ui/session/icons/", VFSUtil::RECURSIVE,
+		NULL, LoadUnitUIThunk, &m_unitUITextures ) );
 	return 0;
 }
-void CSelectedEntities::destroyRankTextures()
+void CSelectedEntities::destroyUnitUITextures()
 {
-	for ( std::map<CStr, Handle>::iterator it=m_rankTextures.begin(); it != m_rankTextures.end(); it++ )
+	for ( std::map<CStr, Handle>::iterator it=m_unitUITextures.begin(); it != m_unitUITextures.end(); it++ )
 	{
 		ogl_tex_free(it->second);
 		it->second = 0;

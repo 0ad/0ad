@@ -114,16 +114,26 @@ public:
 	float m_staminaMax;
 	float m_staminaBarHeight;
 	int m_staminaBarSize;
+	float m_staminaBarWidth;
+
+	int m_staminaBorderWidth;
+	int m_staminaBorderHeight;
+	CStr m_staminaBorderName;
 
 	// HP properties
 	float m_healthCurr;
 	float m_healthMax;
 	float m_healthBarHeight;
 	int m_healthBarSize;
+	float m_healthBarWidth;
+
+	int m_healthBorderWidth;
+	int m_healthBorderHeight;
+	CStr m_healthBorderName;
 	
 	//Rank properties
 	float m_rankHeight;
-	int m_rankSize;
+	int m_rankWidth;
 	CStr m_rankName;
 
 	bool m_healthDecay;
@@ -189,8 +199,16 @@ public:
 
 	std::deque<CEntityOrder> m_orderQueue;	
 	std::deque<CEntityListener> m_listeners;
-	int m_currentNotification;
-	CEntity* m_currentListener;
+	
+	std::vector<CEntity*> m_notifiers;
+	int m_currentNotification;	//Current order in the form of a notification code
+	int m_currentRequest;	//Notification we our notifiers are sending 
+	bool m_destroyNotifiers;	//True: we destroy them. False: the script does.
+
+	std::vector<bool> m_sectorValues;
+	std::vector<float> m_sectorAngles;
+	int m_sectorDivs;
+	float m_sectorPenalty;
 	
 private:
 	CEntity( CBaseEntity* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections, CStrW building = L"" );
@@ -261,10 +279,11 @@ public:
 	// Things like selection circles and debug info - possibly move to gui if/when it becomes responsible for (and capable of) it.
 	void render();
 	void renderSelectionOutline( float alpha = 1.0f );
+	void renderBarBorders( );
 	void renderHealthBar();
 	void renderStaminaBar();
 	void renderRank();
-
+	CVector2D getScreenCoords( float height );
 	// After a collision, recalc the path to the next fixed waypoint.
 	void repath();
 	
@@ -283,10 +302,12 @@ public:
 	void checkExtant(); // Existence
 
 	void clearOrders();
+	void popOrder();	//Use this if and order has finished instead of m_orderQueue.pop_front()
 	void pushOrder( CEntityOrder& order );
 	
 	void DispatchNotification( CEntityOrder order, int type );
-	void DestroyListeners( CEntity* target );
+	int DestroyNotifier( CEntity* target );	//Stop notifier from sending to us
+	void DestroyAllNotifiers();
 
 	CEntityFormation* GetFormation();
 	bool IsInClass( JSContext* cx, uintN argc, jsval* argv );
@@ -297,7 +318,12 @@ public:
 	jsval GetFormationBonus( JSContext* cx, uintN argc, jsval* argv );
 	jsval GetFormationBonusType( JSContext* cx, uintN argc, jsval* argv );
 	jsval GetFormationBonusVal( JSContext* cx, uintN argc, jsval* argv );
+	
 	void DispatchFormationEvent( int type );
+
+	jsval RegisterDamage( JSContext* cx, uintN argc, jsval* argv );
+	jsval RegisterIdle( JSContext* cx, uintN argc, jsval* argv );
+	jsval GetAttackDirections( JSContext* cx, uintN argc, jsval* argv );
 	// Script constructor
 
 	static JSBool Construct( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval );
@@ -322,6 +348,8 @@ public:
 	//Just in case we want to explicitly check the listeners without waiting for the order to be pushed
 	bool ForceCheckListeners( JSContext* cx, uintN argc, jsval* argv );
 	void CheckListeners( int type, CEntity *target );
+	jsval DestroyAllNotifiers( JSContext* cx, uintN argc, jsval* argv );
+	jsval DestroyNotifier( JSContext* cx, uintN argc, jsval* argv );
 
 	bool IsInFormation( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 	{

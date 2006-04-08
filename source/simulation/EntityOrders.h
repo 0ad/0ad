@@ -66,7 +66,10 @@ public:
 
 		NOTIFY_ESCORT = 0x0F,	//GOTO | ATTACK | DAMAGE
 		NOTIFY_HEAL = 0x10,
-		NOTIFY_GATHER = 0x20
+		NOTIFY_GATHER = 0x20,
+		
+		NOTIFY_IDLE = 0x40,
+		NOTIFY_ALL = 0x7F
 
 	}	m_type;
 	

@@ -13,7 +13,7 @@ CFormationManager::~CFormationManager()
 	for ( size_t i=0; i<m_formations.size(); i++ )
 		 delete m_formations[i];		
 }
-void CFormationManager::CreateFormation( CStrW& name, CEntityList& entities )
+void CFormationManager::CreateFormation( CEntityList& entities, CStrW& name )
 {
 	if ( entities.empty() )
 	{
@@ -118,6 +118,16 @@ bool CFormationManager::RemoveUnit( CEntity*& entity )
 	}
 	entity->DispatchFormationEvent( CFormationEvent::FORMATION_LEAVE );
 	(*it)->RemoveUnit( entity );
+	return true;
+}
+bool CFormationManager::RemoveUnitList( CEntityList& entities )
+{
+	for ( CEntityList::iterator it=entities.begin(); it != entities.end(); it++ )
+	{
+		CEntity* entity = *it;
+		if ( !RemoveUnit(entity) )
+			return false;
+	}
 	return true;
 }
 CEntityFormation* CFormationManager::GetFormation(int form) 

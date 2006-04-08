@@ -231,12 +231,11 @@ JSBool issueCommand( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rv
 	else
 		entities = *EntityCollection::RetrieveSet(cx, JSVAL_TO_OBJECT(argv[0]));
 
-	//Destroy old listeners if we're explicitly being reassigned
+	//Destroy old notifiers if we're explicitly being reassigned
 	for ( size_t i=0; i < entities.size(); i++)
 	{
-		if ( entities[i]->m_currentListener )
-			entities[i]->DestroyListeners( entities[i]->m_currentListener );
-		entities[i]->m_currentListener = NULL;
+		if ( entities[i]->m_destroyNotifiers )
+			entities[i]->DestroyAllNotifiers();
 	}
 	std::vector<CNetMessage*> messages;
 	CNetMessage* msg = CNetMessage::CommandFromJSArgs(entities, cx, argc-1, argv+1);
@@ -271,6 +270,48 @@ JSBool issueCommand( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rv
 		*rval = g_ScriptingHost.UCStringToValue((*it)->GetString());
 	}
 
+	return JS_TRUE;
+}
+//Formation stuff
+JSBool createEntityFormation( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
+{
+	REQUIRE_MIN_PARAMS(2, createEntityFormation);
+	
+	CEntityList entities = *EntityCollection::RetrieveSet(cx, JSVAL_TO_OBJECT(argv[0]));
+	CStrW name = ToPrimitive<CStrW>( argv[1] );
+	g_FormationManager.CreateFormation( entities, name );
+	*rval = JSVAL_VOID;
+	return JS_TRUE;
+
+}
+JSBool removeFromFormation( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
+{
+	REQUIRE_MIN_PARAMS(1, removeFromFormation);
+	
+	CEntityList entities;
+	if (JS_GetClass(JSVAL_TO_OBJECT(argv[0])) == &CEntity::JSI_class)
+		entities.push_back( (ToNative<CEntity>(argv[0])) ->me);
+	else
+		entities = *EntityCollection::RetrieveSet(cx, JSVAL_TO_OBJECT(argv[0]));
+
+	*rval = g_FormationManager.RemoveUnitList(entities) ? JS_TRUE : JS_FALSE;
+	return JS_TRUE;
+}
+JSBool lockEntityFormation( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
+{
+	REQUIRE_MIN_PARAMS(1, lockEntityFormation);
+
+	CEntity* entity = ToNative<CEntity>( argv[0] );
+	entity->GetFormation()->SetLock( ToPrimitive<bool>( argv[1] ) );
+	*rval = JSVAL_VOID;
+	return JS_TRUE;
+}
+JSBool isFormationLocked( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
+{
+	REQUIRE_MIN_PARAMS(1, isFormationLocked);
+
+	CEntity* entity = ToNative<CEntity>( argv[0] );
+	*rval = entity->GetFormation()->IsLocked() ? JS_TRUE : JS_FALSE;
 	return JS_TRUE;
 }
 
@@ -1071,6 +1112,11 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC(getEntityTemplate, getEntityTemplate, 1)
 	JS_FUNC(issueCommand, issueCommand, 2)
 	JS_FUNC(startPlacing, startPlacing, 1)
+
+	JS_FUNC(createEntityFormation, createEntityFormation, 2)
+	JS_FUNC(removeFromFormation, removeFromFormation, 1)
+	JS_FUNC(lockEntityFormation, lockEntityFormation, 1)
+	JS_FUNC(isFormationLocked, isFormationLocked, 1)
 
 	// Camera
 	JS_FUNC(setCameraTarget, setCameraTarget, 1)
