@@ -21,11 +21,11 @@ class CEntityFormation
 public:
 	CEntityFormation( CBaseFormation*& base, size_t index );
 	~CEntityFormation();
-	
+
 	int GetEntityCount() { return m_numEntities; }
 	float GetSpeed() { return m_speed; }
 	int GetSlotCount() { return m_base->m_numSlots; }
-	
+
 	CEntityList GetEntityList();
 	CVector2D GetSlotPosition( int order );
 	CVector2D GetPosition() { return m_position; }
@@ -33,7 +33,7 @@ public:
 	void BaseToMovement();
 
 	void SelectAllUnits();
-	
+
 	inline void SetDuplication( bool duplicate ) { m_duplication=duplicate; }
 	inline bool IsDuplication() { return m_duplication; }
 	inline void SetLock( bool lock ){ m_locked=lock; }
@@ -49,23 +49,23 @@ private:
 
 	bool m_locked;
 	//Prevents other selected units from reordering the formation after one has already done it.
-	bool m_duplication;  
-	
+	bool m_duplication;
+
 	CBaseFormation* m_base;
 	CBaseFormation* m_self;   //Keeps track of base (referred to during movement switching)
-	
+
 	std::vector<CEntity*> m_entities;	//number of units currently in this formation
 	std::vector<bool> m_angleDivs;	//attack direction penalty-true=being attacked from sector
 	std::vector<float> m_angleVals;
-			
+
 	bool AddUnit( CEntity*& entity );
 	void RemoveUnit( CEntity*& entity );
 	bool IsSlotAppropriate( int order, CEntity* entity );   //If empty, can we use this slot?
 	bool IsBetterUnit( int order, CEntity* entity );
-	
+
 	void UpdateFormation();
 	void SwitchBase( CBaseFormation*& base );
-	
+
 	void ResetIndex( size_t index );
 	void ResetAllEntities();	//Sets all handles to invalid
 	void ResetAngleDivs();

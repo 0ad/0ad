@@ -3,9 +3,9 @@
 #include "BaseFormationCollection.h"
 #include "FormationManager.h"
 #include "Simulation.h"
-#include "ps\Game.h"
-#include "ps\Interact.h"
-#include "ps\Network\NetMessage.h"
+#include "ps/Game.h"
+#include "ps/Interact.h"
+#include "ps/Network/NetMessage.h"
 
 CEntityFormation::CEntityFormation( CBaseFormation*& base, size_t index )
 {
@@ -16,7 +16,7 @@ CEntityFormation::CEntityFormation( CBaseFormation*& base, size_t index )
 	m_numEntities=0;
 	m_speed=0.0f;
 	m_orientation = 0.0f;
-	
+
 	m_position.x = m_position.y = -1.0f;
 	m_duplication=false;
 	m_entities.resize(m_base->m_numSlots);
@@ -68,12 +68,12 @@ bool CEntityFormation::AddUnit( CEntity*& entity )
 				m_entities[i] = entity;
 				AddUnit( prev );
 			}
-			
+
 			m_entities[i] = entity;
 			++m_numEntities;
 			entity->m_formation = m_index;
 			entity->m_formationSlot = i;
-			
+
 			return true;
 		}
 	}
@@ -87,7 +87,7 @@ void CEntityFormation::RemoveUnit( CEntity*& entity )
 	m_entities[entity->m_formationSlot] = NULL;
 	entity->m_formation = -1;
 	entity->m_formationSlot = -1;
-	
+
 	--m_numEntities;
 	//UpdateFormation();
 }
@@ -96,7 +96,7 @@ bool CEntityFormation::IsSlotAppropriate( int order, CEntity* entity )
 	debug_assert( entity );
 	if ( !IsValidOrder(order) )
 		return false;
-	
+
 	for ( size_t idx=0; idx < m_base->m_slots[order].category.size(); ++idx )
 	{
 		CStr tmp( m_base->m_slots[order].category[idx] );
@@ -120,7 +120,7 @@ bool CEntityFormation::IsBetterUnit( int order, CEntity* entity )
 		CStr cat = m_base->m_slots[order].category[idx];
 		bool current=false;
 		bool newEnt=false;
-		
+
 		current = m_entities[order]->m_classes.IsMember( cat );
 		newEnt = entity->m_classes.IsMember( cat );
 
@@ -130,7 +130,7 @@ bool CEntityFormation::IsBetterUnit( int order, CEntity* entity )
 	return false;
 }
 
-void CEntityFormation::UpdateFormation() 
+void CEntityFormation::UpdateFormation()
 {
 	//Get the entities in the right order (as in, ordered correctly and in the right order/slot)
 	for ( int i=1; i<m_base->m_numSlots; ++i )
@@ -146,7 +146,7 @@ void CEntityFormation::UpdateFormation()
 				CEntity* temp = m_entities[j];
 				m_entities[j] = m_entities[i];
 				m_entities[i] = temp;
-				
+
 				int tmpSlot = m_entities[i]->m_formationSlot;
 				m_entities[i]->m_formationSlot = m_entities[j]->m_formationSlot;
 				m_entities[j]->m_formationSlot = tmpSlot;
@@ -157,7 +157,7 @@ void CEntityFormation::UpdateFormation()
 	CEntityList entities = GetEntityList();
 	CNetMessage* msg = CNetMessage::CreatePositionMessage( entities, NMT_FormationGoto, m_position );
 	g_Game->GetSimulation()->QueueLocalCommand(msg);
-	
+
 }
 
 void CEntityFormation::ResetAllEntities()
@@ -192,7 +192,7 @@ CEntityList CEntityFormation::GetEntityList()
 
 CVector2D CEntityFormation::GetSlotPosition( int order )
 {
-	if ( IsValidOrder(order) ) 
+	if ( IsValidOrder(order) )
 		return CVector2D ( m_base->m_slots[order].rankOff, m_base->m_slots[order].fileOff );
 	return CVector2D(-1, -1);
 }
@@ -209,7 +209,7 @@ void CEntityFormation::BaseToMovement()
 void CEntityFormation::ResetIndex( size_t index )
 {
 	m_index = (int)index;
-	
+
 	for ( size_t i=0; i< m_entities.size(); ++i )
 	{
 		if ( m_entities[i] )

@@ -1,7 +1,7 @@
 // Entity.h
 //
 // Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
-// 
+//
 // Entity class.
 //
 // Usage: Do not attempt to instantiate this class directly. (See EntityManager.h)
@@ -17,7 +17,7 @@
 //								 prior to its next update cycle.
 //
 //			CUnit* m_actor: is the visible representation of this entity.
-//			
+//
 //			snapToGround(): Called every frame, this will ensure the entity never takes flight.
 //			updateActorTransforms(): Must be called every time the position of this entity changes.
 //			Also remember to update the collision object if you alter the position directly.
@@ -53,7 +53,7 @@ class CEntityFormation;
 class CEntity : public  CJSComplex<CEntity>, public IEventTarget
 {
 	friend class CEntityManager;
-	
+
 	typedef STL_HASH_MAP<CStrW, CAura*, CStrW_hash_compare> AuraTable;
 	typedef STL_HASH_MAP<int, SEntityAction> ActionTable;
 	typedef std::set<CAura*> AuraSet;
@@ -64,7 +64,7 @@ public:
 
 	// Intrinsic properties
 	CBaseEntity* m_base;
-	
+
 	// The entity to switch to when this dies.
 	CStrW m_corpse;
 
@@ -78,7 +78,7 @@ public:
 	float m_turningRadius;
 	float m_runRegenRate;
 	float m_runDecayRate;
-	
+
 	float m_healthRegenRate;
 	float m_healthRegenStart;
 	float m_healthDecayRate;
@@ -90,7 +90,7 @@ public:
 	bool m_selected;
 	i32 m_grouped;
 	int m_formation;	//Indice of which formation we're in
-	int m_formationSlot;	//The slot of the above formation 
+	int m_formationSlot;	//The slot of the above formation
 
 	// If this unit has been removed from the gameworld but has still
 	// has references.
@@ -103,7 +103,7 @@ public:
 	bool m_shouldRun;	//if run was issued, it will remain true until it is stopped
 	bool m_triggerRun;	//used in SetRun, corrects 1 frame stamina imbalance
 	int m_frameCheck;	//counts the frame
-	
+
 	float m_lastCombatTime;
 
 	// Building to convert to if this is a foundation, or "" otherwise
@@ -130,14 +130,14 @@ public:
 	int m_healthBorderWidth;
 	int m_healthBorderHeight;
 	CStr m_healthBorderName;
-	
+
 	//Rank properties
 	float m_rankHeight;
 	int m_rankWidth;
 	CStr m_rankName;
 
 	bool m_healthDecay;
-	
+
 	// Minimap properties
 	CStrW m_minimapType;
 	int m_minimapR;
@@ -189,7 +189,7 @@ public:
 	// State transition in the FSM (animations should be reset)
 	bool m_transition;
 	int m_lastState;
-	
+
 	// Position in the current state's cycle
 	static const size_t NOT_IN_CYCLE = (size_t)-1;
 	size_t m_fsm_cyclepos; // -cycle_length....cycle_length
@@ -197,19 +197,19 @@ public:
 	size_t m_fsm_anipos; // the time at which we should start playing it.
 	size_t m_fsm_anipos2; // for when there are two animation-related events we need to take care of.
 
-	std::deque<CEntityOrder> m_orderQueue;	
+	std::deque<CEntityOrder> m_orderQueue;
 	std::deque<CEntityListener> m_listeners;
-	
+
 	std::vector<CEntity*> m_notifiers;
 	int m_currentNotification;	//Current order in the form of a notification code
-	int m_currentRequest;	//Notification we our notifiers are sending 
+	int m_currentRequest;	//Notification we our notifiers are sending
 	bool m_destroyNotifiers;	//True: we destroy them. False: the script does.
 
 	std::vector<bool> m_sectorValues;
 	std::vector<float> m_sectorAngles;
 	int m_sectorDivs;
 	float m_sectorPenalty;
-	
+
 private:
 	CEntity( CBaseEntity* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections, CStrW building = L"" );
 
@@ -222,7 +222,7 @@ private:
 	bool processGenericNoPathing( CEntityOrder* current, size_t timestep_milli );
 
 	bool processProduce( CEntityOrder* order );
-	
+
 	bool processGotoNoPathing( CEntityOrder* current, size_t timestep_milli );
 	bool processGoto( CEntityOrder* current, size_t timestep_milli );
 
@@ -261,7 +261,7 @@ public:
 	void SetPlayer(CPlayer *pPlayer);
 
 	// Retrieve the player associated with this entity
-	CPlayer* GetPlayer() { return m_player; } 
+	CPlayer* GetPlayer() { return m_player; }
 
 	// Update collision patch (move ourselves to a new one if necessary)
 	void updateCollisionPatch();
@@ -286,7 +286,7 @@ public:
 	CVector2D getScreenCoords( float height );
 	// After a collision, recalc the path to the next fixed waypoint.
 	void repath();
-	
+
 	//Calculate stamina points
 	void CalculateRun(float timestep);
 	void CalculateHealth(float timestep);
@@ -304,7 +304,7 @@ public:
 	void clearOrders();
 	void popOrder();	//Use this if and order has finished instead of m_orderQueue.pop_front()
 	void pushOrder( CEntityOrder& order );
-	
+
 	void DispatchNotification( CEntityOrder order, int type );
 	int DestroyNotifier( CEntity* target );	//Stop notifier from sending to us
 	void DestroyAllNotifiers();
@@ -318,7 +318,7 @@ public:
 	jsval GetFormationBonus( JSContext* cx, uintN argc, jsval* argv );
 	jsval GetFormationBonusType( JSContext* cx, uintN argc, jsval* argv );
 	jsval GetFormationBonusVal( JSContext* cx, uintN argc, jsval* argv );
-	
+
 	void DispatchFormationEvent( int type );
 
 	jsval RegisterDamage( JSContext* cx, uintN argc, jsval* argv );
@@ -331,7 +331,7 @@ public:
 	// Script-bound functions
 
 	jsval ToString( JSContext* cx, uintN argc, jsval* argv );
-	
+
 	bool Kill( JSContext* cx, uintN argc, jsval* argv );
 	jsval GetSpawnPoint( JSContext* cx, uintN argc, jsval* argv );
 
@@ -353,7 +353,7 @@ public:
 
 	bool IsInFormation( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 	{
-		return ( m_formation != NULL ? true : false );
+		return ( m_formation != 0 ? true : false );
 	}
 
 	bool Order( JSContext* cx, uintN argc, jsval* argv, bool Queued );
@@ -398,7 +398,7 @@ private:
 
 
 // In its current incarnation, inefficient but pretty
-#define SELECTION_TERRAIN_CONFORMANCE 
+#define SELECTION_TERRAIN_CONFORMANCE
 
 extern int SELECTION_CIRCLE_POINTS;
 extern int SELECTION_BOX_POINTS;

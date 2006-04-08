@@ -2,6 +2,9 @@
 //ajdecker1022@msn.com
 //This keeps track of all the formations exisisting in the game.
 
+#ifndef FORMATIONMANAGER_INCLUDED
+#define FORMATIONMANAGER_INCLUDED
+
 #include "ps/Singleton.h"
 #include "BaseFormationCollection.h"
 #include "scripting/DOMEvent.h"
@@ -32,7 +35,7 @@ public:
 	}
 	bool AddUnit( CEntity*& entity, int& form );
 	CEntityList AddUnitList( CEntityList& entities, int form );
-	
+
 	//Returns false if the formation is destroyed
 	bool RemoveUnit( CEntity*& entity );
 	bool RemoveUnitList( CEntityList& entities );
@@ -42,3 +45,5 @@ public:
 private:
 	std::vector<CEntityFormation*> m_formations;
 };
+
+#endif // FORMATIONMANAGER_INCLUDED

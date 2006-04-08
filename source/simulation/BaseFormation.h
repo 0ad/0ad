@@ -27,7 +27,7 @@ struct FormationSlot
 public:
 	CBaseFormation();
 	~CBaseFormation(){}
-	
+
 	CStr GetBonus(){ return m_bonus; }
 	CStr GetBonusType(){ return m_bonusType; }
 	float GetBonusVal(){ return m_bonusVal; }
@@ -43,7 +43,7 @@ public:
 
 
 private:
-	
+
 	CStr m_tag;
 	CStr m_bonus;
 	CStr m_bonusType;
@@ -64,15 +64,15 @@ private:
 	CStr m_movement;
 	float m_fileSpacing;
 	float m_rankSpacing;
-	
+
 	int m_numSlots;	//how many possible slots in this formation
 	int m_numRanks;
 	int m_numFiles;
-	
-	//The key is the "order" of the slot 
+
+	//The key is the "order" of the slot
 	std::map<int, FormationSlot> m_slots;
 	std::vector<float> m_angleValues;	//cosine of angle divisions
-	
+
 	bool loadXML(CStr filename);
 	void AssignCategory(int order, CStr category);	//takes care of formatting strings
 };
