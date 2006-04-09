@@ -592,6 +592,26 @@ bool CEntity::processGoto( CEntityOrder* current, size_t UNUSED(timestep_millis)
 	return( true );
 }
 
+bool CEntity::processGotoWaypoint( CEntityOrder* current, size_t UNUSED(timestep_milli) )
+{
+	CVector2D pos( m_position.X, m_position.Z );
+	CVector2D path_to = current->m_data[0].location;
+	m_orderQueue.pop_front();
+	float Distance = ( path_to - pos ).length();
+	
+	// Let's just check we're going somewhere...
+	if( Distance < 0.1f ) 
+	{
+		m_isRunning = false;
+		m_shouldRun = false;
+		return( false );
+	}
+
+	g_Pathfinder.requestLowLevelPath( me, path_to );
+
+	return( true );
+}
+
 bool CEntity::processPatrol( CEntityOrder* current, size_t UNUSED(timestep_millis) )
 {
 	// float timestep=timestep_millis/1000.0f;

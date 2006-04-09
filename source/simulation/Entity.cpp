@@ -471,6 +471,11 @@ void CEntity::update( size_t timestep )
 					break;
 				updateCollisionPatch();
 				return;
+			case CEntityOrder::ORDER_GOTO_WAYPOINT:
+				if ( processGotoWaypoint( current, timestep ) )
+					break;
+				updateCollisionPatch();
+				return;
             case CEntityOrder::ORDER_GOTO:
 			case CEntityOrder::ORDER_RUN:
 				if( processGoto( current, timestep ) )

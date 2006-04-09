@@ -182,6 +182,41 @@ float CTerrain::getVertexGroundLevel(int x, int z) const
 	return HEIGHT_SCALE * m_Heightmap[z*m_MapSize + x];
 }
 
+float CTerrain::getSlope(float x, float y) const
+{
+	x /= (float)CELL_SIZE;
+	y /= (float)CELL_SIZE;
+
+	int xi = (int)floor(x);
+	int yi = (int)floor(y);
+
+	if (xi < 0)
+	{
+		xi = 0;
+	}
+	else if (xi >= (int)m_MapSize-1)
+	{
+		xi = m_MapSize - 2;
+	}
+
+	if (yi < 0)
+	{
+		yi = 0;
+	}
+	else if (yi >= (int)m_MapSize-1)
+	{
+		yi = m_MapSize - 2;
+	}
+
+	float h00 = m_Heightmap[yi*m_MapSize + xi];
+	float h01 = m_Heightmap[yi*m_MapSize + xi + m_MapSize];
+	float h10 = m_Heightmap[yi*m_MapSize + xi + 1];
+	float h11 = m_Heightmap[yi*m_MapSize + xi + m_MapSize + 1];
+
+	return MAX(MAX(h00, h01), MAX(h10, h11)) -
+		   MIN(MIN(h00, h01), MIN(h10, h11));
+}
+
 float CTerrain::getExactGroundLevel(float x, float y) const
 {
 	x /= (float)CELL_SIZE;

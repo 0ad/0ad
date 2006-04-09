@@ -225,6 +225,7 @@ private:
 
 	bool processGotoNoPathing( CEntityOrder* current, size_t timestep_milli );
 	bool processGoto( CEntityOrder* current, size_t timestep_milli );
+	bool processGotoWaypoint( CEntityOrder* current, size_t timestep_milli );
 
 	bool processPatrol( CEntityOrder* current, size_t timestep_milli );
 

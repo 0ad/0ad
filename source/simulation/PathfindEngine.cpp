@@ -13,6 +13,20 @@ CPathfindEngine::CPathfindEngine()
 
 void CPathfindEngine::requestPath( HEntity entity, const CVector2D& destination )
 {
+//	pathSparse( entity, destination );
+	/* TODO: Add code to generate high level path
+	         For now, just the one high level waypoint to the final 
+			  destination is added
+	*/
+	CEntityOrder waypoint;
+	waypoint.m_type = CEntityOrder::ORDER_GOTO_WAYPOINT;
+	waypoint.m_data[0].location = destination;
+	entity->m_orderQueue.push_front( waypoint );
+}
+
+void CPathfindEngine::requestLowLevelPath( HEntity entity, const CVector2D& destination )
+{
+	/* Temporary - will be replaced by low-level A* */
 	pathSparse( entity, destination );
 }
 

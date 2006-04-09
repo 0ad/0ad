@@ -42,6 +42,8 @@ public:
 	float getExactGroundLevel( float x, float y ) const ;
 	inline float getExactGroundLevel( const CVector2D& v ) const { return( getExactGroundLevel( v.x, v.y ) ); }
 
+	float getSlope(float x, float y) const ;
+
 	// resize this terrain such that each side has given number of patches
 	void Resize(u32 size);
 

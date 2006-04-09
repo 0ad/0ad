@@ -30,6 +30,7 @@ class CPathfindEngine : public Singleton<CPathfindEngine>
 public:
 	CPathfindEngine();
 	void requestPath( HEntity entity, const CVector2D& destination );
+	void requestLowLevelPath( HEntity entity, const CVector2D& destination );
 	void requestContactPath( HEntity entity, CEntityOrder* current );
 };
 
