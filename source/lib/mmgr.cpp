@@ -877,17 +877,18 @@ static bool validate_all()
 		// enable MMGR_VALIDATE_ALL, trigger this condition again,
 		// and check the log for the last successful operation. the problem
 		// will have occurred between then and now.
-		debug_assert(0);
+		DEBUG_WARN_ERR(ERR_CORRUPTED);
 		log("[!] Memory tracking hash table corrupt!\n");
 	}
 
 	if(params.num_invalid)
 	{
-		debug_assert(0);
+		DEBUG_WARN_ERR(ERR_MEM_OVERWRITTEN);
 		log("[!] %d allocations are corrupt\n", params.num_invalid);
+		return false;
 	}
 
-	return params.num_invalid == 0;
+	return true;
 }
 
 bool mmgr_are_all_valid()
@@ -1042,7 +1043,7 @@ void* alloc_dbg(size_t user_size, AllocType type, const char* file, int line, co
 	void* p = malloc(size);
 	if(!p)
 	{
-		debug_assert(0);
+		DEBUG_WARN_ERR(ERR_NO_MEM);
 		log("[!] Allocation failed (out of memory)\n");
 		goto fail;
 	}

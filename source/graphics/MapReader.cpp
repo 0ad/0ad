@@ -124,7 +124,7 @@ int CMapReader::UnpackTerrain()
 {
 	// yield after this time is reached. balances increased progress bar
 	// smoothness vs. slowing down loading.
-	const double end_time = get_time() + 100e-3;
+	const double end_time = get_time() + 200e-3;
 
 	// first call to generator (this is skipped after first call,
 	// i.e. when the loop below was interrupted)
@@ -577,7 +577,7 @@ int CXMLReader::ProgressiveRead()
 {
 	// yield after this time is reached. balances increased progress bar
 	// smoothness vs. slowing down loading.
-	const double end_time = get_time() + 50e-3;
+	const double end_time = get_time() + 200e-3;
 
 	int ret;
 

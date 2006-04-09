@@ -386,6 +386,7 @@ ERR(-100244, ERR_NOT_SUPPORTED, "Feature isn't and won't be supported")
 // memory
 ERR(-100260, ERR_NO_MEM, "Not enough memory")
 ERR(-100261, ERR_ALLOC_NOT_FOUND, "Not a valid allocated address")
+ERR(-100262, ERR_MEM_OVERWRITTEN, "Wrote to memory outside valid allocation")
 
 // file + vfs
 // .. path
