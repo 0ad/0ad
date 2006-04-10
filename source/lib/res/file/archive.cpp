@@ -123,8 +123,11 @@ static LibError Archive_to_string(const Archive* a, char* buf)
 // somewhat slow - each file is added to an internal index.
 Handle archive_open(const char* fn)
 {
-	TIMER("archive_open");
-	return h_alloc(H_Archive, fn);
+TIMER("archive_open");
+	// note: must not keep the archive open. the archive builder asks
+	// vfs_mount to back away from all archives and close them,
+	// which must happen immediately or else deleting archives will fail.
+	return h_alloc(H_Archive, fn, RES_NO_CACHE);
 }
 
 

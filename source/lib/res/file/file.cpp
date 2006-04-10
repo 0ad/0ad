@@ -491,7 +491,7 @@ static LibError file_stat_impl(const char* fn, struct stat* s, bool warn_if_fail
 {
 	memset(s, 0, sizeof(struct stat));
 
-	char N_fn[PATH_MAX+1];
+	char N_fn[PATH_MAX];
 	RETURN_ERR(file_make_full_native_path(fn, N_fn));
 
 	errno = 0;
@@ -510,6 +510,18 @@ bool file_exists(const char* fn)
 	struct stat s;
 	const bool warn_if_failed = false;
 	return file_stat_impl(fn, &s, warn_if_failed) == ERR_OK;
+}
+
+
+// permanently delete the file. be very careful with this!
+LibError file_delete(const char* fn)
+{
+	char N_fn[PATH_MAX+1];
+	RETURN_ERR(file_make_full_native_path(fn, N_fn));
+
+	errno = 0;
+	int ret = unlink(N_fn);
+	return LibError_from_posix(ret);
 }
 
 

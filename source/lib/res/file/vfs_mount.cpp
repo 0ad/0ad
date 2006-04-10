@@ -554,7 +554,7 @@ static LibError remount(const Mount& m)
 	}
 }
 
-void mount_unmount_all(void)
+static void mount_unmount_all(void)
 {
 	mounts.clear();
 }
@@ -625,6 +625,28 @@ LibError mount_rebuild()
 	tree_clear();
 	remount_all();
 	return ERR_OK;
+}
+
+
+struct IsArchiveMount
+{
+	bool operator()(const Mount& m) const
+	{
+		return (m.archive > 0);
+	}
+};
+
+// "backs off of" all archives - closes their files and allows them to
+// be rewritten or deleted (required by archive builder).
+// must call mount_rebuild when done with the rewrite/deletes,
+// because this call leaves the VFS in limbo!!
+//
+// note: this works because archives are not "first-class" mount objects -
+// they are added to the list whenever a real mount point's root directory
+// contains archives. hence, we can just remove them from the list.
+void mount_release_all_archives()
+{
+	mounts.remove_if(IsArchiveMount());
 }
 
 

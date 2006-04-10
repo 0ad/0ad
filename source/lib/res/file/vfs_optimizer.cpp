@@ -526,43 +526,8 @@ void vfs_opt_notify_non_loose_file(const char* atom_fn)
 }
 
 
-// functor called for every entry in root directory. counts # archives and
-// remembers most recent modification time (directly accessible).
-class ArchiveScanner
-{
-	const char* archive_ext;
-
-public:
-	time_t most_recent_archive_mtime;
-	uint num_archives;
-
-	ArchiveScanner(const char* archive_fn_fmt)
-	{
-		archive_ext = strrchr(archive_fn_fmt, '.');
-		debug_assert(archive_ext);
-
-		most_recent_archive_mtime = 0;
-		num_archives = 0;
-	}
-
-	void operator()(const DirEnt& ent)
-	{
-		// only interested in files
-		if(DIRENT_IS_DIR(&ent))
-			return;
-
-		// same extension, i.e. is also archive
-		const char* ext = strrchr(ent.name, '.');
-		if(ext && !strcmp(archive_ext, ext))
-		{
-			most_recent_archive_mtime = MAX(ent.mtime, most_recent_archive_mtime);
-			num_archives++;
-		}
-	}
-};
-
 static bool should_rebuild_main_archive(const char* trace_filename,
-	const char* archive_fn_fmt, DirEnts& dirents)
+	DirEnts& existing_archives)
 {
 	// if there's no trace file, no point in building a main archive.
 	// (we wouldn't know how to order the files)
@@ -578,19 +543,19 @@ static bool should_rebuild_main_archive(const char* trace_filename,
 
 	// scan dir and see what archives are already present..
 	{
-	ArchiveScanner archive_scanner(archive_fn_fmt);
+	time_t most_recent_archive_mtime = 0;
 	// note: a loop is more convenient than std::for_each, which would
 	// require referencing the returned functor (since param is a copy).
-	for(DirEnts::const_iterator it = dirents.begin(); it != dirents.end(); ++it)
-		archive_scanner(*it);
+	for(DirEnts::const_iterator it = existing_archives.begin(); it != existing_archives.end(); ++it)
+		most_recent_archive_mtime = MAX(it->mtime, most_recent_archive_mtime);
 	// .. no archive yet OR 'lots' of them: rebuild so that they'll be
 	//    merged into one archive and the rest deleted.
-	if(archive_scanner.num_archives == 0 || archive_scanner.num_archives >= 4)
+	if(existing_archives.empty() || existing_archives.size() >= 4)
 		return true;
 #if AB_COMPARE_MTIME
 	// .. archive is much older than most recent data: rebuild.
 	const double max_diff = 14*86400;	// 14 days
-	if(difftime(tree_most_recent_mtime(), archive_scanner.most_recent_archive_mtime) > max_diff)
+	if(difftime(tree_most_recent_mtime(), most_recent_archive_mtime) > max_diff)
 		return true;
 #endif
 	}
@@ -601,23 +566,58 @@ static bool should_rebuild_main_archive(const char* trace_filename,
 //-----------------------------------------------------------------------------
 
 
+static char archive_fn[PATH_MAX];
 static ArchiveBuildState ab;
 static std::vector<const char*> fn_vector;
-static DirEnts existing_archives;
+static DirEnts existing_archives;	// and possibly other entries
+
+class IsArchive
+{
+	const char* archive_ext;
+
+public:
+	IsArchive(const char* archive_fn)
+	{
+		archive_ext = strrchr(archive_fn, '.');
+		if(!archive_ext) archive_ext = "";	// for safe comparison
+	}
+
+	bool operator()(DirEnt& ent) const
+	{
+		// remove if not file
+		if(DIRENT_IS_DIR(&ent))
+			return true;
+
+		// remove if not same extension
+		const char* ext = strrchr(ent.name, '.');
+		if(!ext) ext = "";	// for safe comparison
+		if(stricmp(archive_ext, ext) != 0)
+			return true;
+
+		// keep
+		return false;
+	}
+};
 
 static LibError vfs_opt_init(const char* trace_filename, const char* archive_fn_fmt, bool force_build)
 {
-	// get list of files in root dir.
+	// get next not-yet-existing archive filename.
+	static NextNumberedFilenameInfo archive_nfi;
+	bool use_vfs = false;	// can't use VFS for archive files
+	next_numbered_filename(archive_fn_fmt, &archive_nfi, archive_fn, use_vfs);
+
+	// get list of existing archives in root dir.
 	// note: this is needed by should_rebuild_main_archive and later in
 	//   vfs_opt_continue; must be done here instead of inside the former
 	//   because that is not called when force_build == true.
 	char dir[VFS_MAX_PATH];
 	path_dir_only(archive_fn_fmt, dir);
-	DirEnts existing_archives;	// and possibly other entries
 	RETURN_ERR(file_get_sorted_dirents(dir, existing_archives));
+	DirEntIt new_end = std::remove_if(existing_archives.begin(), existing_archives.end(), IsArchive(archive_fn));
+	existing_archives.erase(new_end, existing_archives.end());
 
 	// bail if we shouldn't rebuild the archive.
-	if(!force_build && !should_rebuild_main_archive(trace_filename, archive_fn_fmt, existing_archives))
+	if(!force_build && !should_rebuild_main_archive(trace_filename, existing_archives))
 		return INFO_SKIPPED;
 
 	// build 'graph' (nodes only) of all files that must be added.
@@ -638,14 +638,8 @@ static LibError vfs_opt_init(const char* trace_filename, const char* archive_fn_
 	// create output filelist by first adding the above edges (most
 	// frequent first) and then adding the rest sequentially.
 	TourBuilder builder(file_nodes, connections, fn_vector);
-	fn_vector.push_back(0);	// 0-terminate for Filenames
+	fn_vector.push_back(0);	// 0-terminate for use as Filenames
 	Filenames V_fns = &fn_vector[0];
-
-	// get next not-yet-existing archive filename.
-	char archive_fn[PATH_MAX];
-	static NextNumberedFilenameInfo archive_nfi;
-	bool use_vfs = false;	// can't use VFS for archive files
-	next_numbered_filename(archive_fn_fmt, &archive_nfi, archive_fn, use_vfs);
 
 	RETURN_ERR(archive_build_init(archive_fn, V_fns, &ab));
 	return ERR_OK;
@@ -660,11 +654,29 @@ static int vfs_opt_continue()
 		// do NOT delete source files! some apps might want to
 		// keep them (e.g. for source control), or name them differently.
 
-		// delete old archives
+		mount_release_all_archives();
 
-		// rebuild is required to make sure the new archive is used. this is
-		// already taken care of by VFS dir watch, unless it's disabled..
+		// delete old archives
+		PathPackage pp;	// need path to each existing_archive, not only name
+		{
+		char archive_dir[VFS_MAX_PATH];
+		path_dir_only(archive_fn, archive_dir);
+		(void)pp_set_dir(&pp, archive_dir);
+		}
+		for(DirEntCIt it = existing_archives.begin(); it != existing_archives.end(); ++it)
+		{
+			(void)pp_append_file(&pp, it->name);
+			(void)file_delete(pp.path);
+		}
+
+		// rebuild is required due to mount_release_all_archives.
+		// the dir watcher may already have rebuilt the VFS once,
+		// which is a waste of time here.
 		(void)mount_rebuild();
+
+		// it is believed that wiping out the file cache is not necessary.
+		// building archive doesn't change the game data files, and any
+		// cached contents of the previous archives are irrelevant.
 	}
 	return ret;
 }

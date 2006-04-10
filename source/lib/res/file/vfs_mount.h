@@ -128,7 +128,12 @@ extern void mount_detach_real_dir(RealDir* rd);
 extern LibError mount_populate(TDir* td, RealDir* rd);
 
 
-extern void mount_unmount_all(void);
+// "backs off of" all archives - closes their files and allows them to
+// be rewritten or deleted (required by archive builder).
+// must call mount_rebuild when done with the rewrite/deletes,
+// because this call leaves the VFS in limbo!!
+extern void mount_release_all_archives();
+
 
 // rebuild the VFS, i.e. re-mount everything. open files are not affected.
 // necessary after loose files or directories change, so that the VFS

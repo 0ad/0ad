@@ -166,6 +166,7 @@ extern LibError dir_close(DirIterator* d);
 #ifdef __cplusplus
 
 typedef std::vector<DirEnt> DirEnts;
+typedef DirEnts::iterator DirEntIt;
 typedef DirEnts::const_iterator DirEntCIt;
 
 // enumerate all directory entries in <P_path>; add to container and
@@ -291,6 +292,10 @@ extern LibError file_stat(const char* path, struct stat*);
 
 // does the given file exist? (implemented via file_stat)
 extern bool file_exists(const char* fn);
+
+// permanently delete the file. be very careful with this!
+extern LibError file_delete(const char* fn);
+
 
 extern LibError file_open(const char* fn, uint flags, File* f);
 
