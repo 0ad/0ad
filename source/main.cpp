@@ -15,7 +15,7 @@ that of Atlas depending on commandline parameters.
 #include "lib/sdl.h"
 #include "lib/timer.h"
 #include "lib/res/file/vfs.h"
-#include "lib/res/sound/snd.h"
+#include "lib/res/sound/snd_mgr.h"
 #include "lib/res/file/vfs_optimizer.h"
 
 #include "ps/GameSetup/GameSetup.h"
@@ -347,6 +347,8 @@ void kill_mainloop()
 }
 
 
+#include "lib/res/file/trace.h"
+
 int main(int argc, char* argv[])
 {
 	debug_printf("MAIN &argc=%p &argv=%p\n", &argc, &argv);
@@ -356,8 +358,17 @@ int main(int argc, char* argv[])
 	Init(argc, argv, 0);
 	MainControllerInit();
 
+//debug_filter_add("LOADER");
+
+//trace_gen_random(5000);
+//trace_write_to_file("../logs/trace.txt");
+
+#if 0
+trace_run("../logs/trace.txt");
+#else
 	while(!quit)
 		Frame();
+#endif
 
 	Shutdown();
 	MainControllerShutdown();
