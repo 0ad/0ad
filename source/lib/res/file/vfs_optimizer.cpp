@@ -611,7 +611,7 @@ static LibError vfs_opt_init(const char* trace_filename, const char* archive_fn_
 	// note: this is needed by should_rebuild_main_archive and later in
 	//   vfs_opt_continue; must be done here instead of inside the former
 	//   because that is not called when force_build == true.
-	char dir[PATH_MAX];
+	char dir[VFS_MAX_PATH];
 	path_dir_only(archive_fn_fmt, dir);
 	DirEnts existing_archives;	// and possibly other entries
 	RETURN_ERR(file_get_sorted_dirents(dir, existing_archives));

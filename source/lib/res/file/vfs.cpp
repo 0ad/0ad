@@ -122,7 +122,7 @@ static LibError VDir_reload(VDir* vd, const char* path, Handle UNUSED(hvd))
 {
 	// add required trailing slash if not already present to make
 	// caller's life easier.
-	char V_path_slash[PATH_MAX];
+	char V_path_slash[VFS_MAX_PATH];
 	RETURN_ERR(vfs_path_append(V_path_slash, path, ""));
 
 	RETURN_ERR(tree_dir_open(V_path_slash, &vd->it));
