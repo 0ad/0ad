@@ -592,7 +592,7 @@ bool CEntity::processGoto( CEntityOrder* current, size_t UNUSED(timestep_millis)
 	return( true );
 }
 
-bool CEntity::processGotoWaypoint( CEntityOrder* current, size_t UNUSED(timestep_milli) )
+bool CEntity::processGotoWaypoint( CEntityOrder* current, size_t UNUSED(timestep_milli), bool contact )
 {
 	CVector2D pos( m_position.X, m_position.Z );
 	CVector2D path_to = current->m_data[0].location;
@@ -607,7 +607,9 @@ bool CEntity::processGotoWaypoint( CEntityOrder* current, size_t UNUSED(timestep
 		return( false );
 	}
 
-	g_Pathfinder.requestLowLevelPath( me, path_to );
+	processChooseMovement( Distance );
+
+	g_Pathfinder.requestLowLevelPath( me, path_to, contact );
 
 	return( true );
 }

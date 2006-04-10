@@ -472,7 +472,12 @@ void CEntity::update( size_t timestep )
 				updateCollisionPatch();
 				return;
 			case CEntityOrder::ORDER_GOTO_WAYPOINT:
-				if ( processGotoWaypoint( current, timestep ) )
+				if ( processGotoWaypoint( current, timestep, false ) )
+					break;
+				updateCollisionPatch();
+				return;
+			case CEntityOrder::ORDER_GOTO_WAYPOINT_CONTACT:
+				if ( processGotoWaypoint( current, timestep, true ) )
 					break;
 				updateCollisionPatch();
 				return;
