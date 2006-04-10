@@ -4,7 +4,8 @@
 #include "lib/res/file/vfs_path.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
-#include "lib/detect.h"
+#include "lib/sysdep/gfx.h"
+#include "lib/sysdep/snd.h"
 #include "lib/res/res.h"
 #include "lib/res/graphics/tex.h"
 
@@ -42,8 +43,8 @@ void WriteSystemInfo()
 {
 	TIMER("write_sys_info");
 
-	// get_cpu_info and get_gfx_info already called during init - see call site
-	get_snd_info();
+	// get_cpu_info and gfx_detect already called during init - see call site
+	snd_detect();
 	get_mem_status();
 
 	struct utsname un;

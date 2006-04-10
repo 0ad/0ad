@@ -20,7 +20,7 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "detect.h"
+#include "sysdep/gfx.h"
 #include "res/graphics/ogl_tex.h"
 #include "res/file/file.h"
 #include "res/file/vfs.h"
@@ -35,7 +35,7 @@
 static void override_gl_upload_caps()
 {
 	if(gfx_card[0] == '\0')
-		debug_warn("get_gfx_info must be called before ogl_tex_upload");
+		debug_warn("gfx_detect must be called before ogl_tex_upload");
 
 	if(!strcmp(gfx_card, "S3 SuperSavage/IXC 1014"))
 	{

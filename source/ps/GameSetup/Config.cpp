@@ -4,7 +4,7 @@
 #include "ps/ConfigDB.h"
 #include "ps/CConsole.h"
 #include "lib/timer.h"
-#include "lib/res/sound/snd.h"
+#include "lib/res/sound/snd_mgr.h"
 #include "lib/res/file/trace.h"
 #include "lib/res/file/vfs_optimizer.h"
 #include "Config.h"

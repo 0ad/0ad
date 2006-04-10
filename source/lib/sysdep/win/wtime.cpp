@@ -21,7 +21,6 @@
 #include "posix.h"
 #include "adts.h"
 #include "sysdep/ia32.h"
-#include "detect.h"
 
 #include "win_internal.h"
 

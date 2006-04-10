@@ -26,7 +26,7 @@
 #include "lib.h"
 #include "sdl.h"
 #include "ogl.h"
-#include "detect.h"
+#include "sysdep/gfx.h"
 #include "debug.h"
 #include "lib/res/h_mgr.h"
 #include "lib/res/graphics/tex.h"
@@ -332,6 +332,9 @@ int ogl_max_tex_size = -1;				// [pixels]
 int ogl_max_tex_units = -1;				// limit on GL_TEXTUREn
 
 
+// set sysdep/gfx.h gfx_card and gfx_drv_ver. called by gfx_detect.
+//
+// fails if OpenGL not ready for use.
 // gfx_card and gfx_drv_ver are unchanged on failure.
 LibError ogl_get_gfx_info()
 {

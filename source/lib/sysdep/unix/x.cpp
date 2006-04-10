@@ -31,7 +31,7 @@
 
 // useful for choosing a video mode. not called by detect().
 // if we fail, outputs are unchanged (assumed initialized to defaults)
-LibError get_cur_vmode(int* xres, int* yres, int* bpp, int* freq)
+LibError gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
 {
 	Display* disp = XOpenDisplay(0);
 	if(!disp)
@@ -65,7 +65,7 @@ LibError get_cur_vmode(int* xres, int* yres, int* bpp, int* freq)
 
 // useful for determining aspect ratio. not called by detect().
 // if we fail, outputs are unchanged (assumed initialized to defaults)
-LibError get_monitor_size(int& width_mm, int& height_mm)
+LibError gfx_get_monitor_size(int& width_mm, int& height_mm)
 {
 	Display* disp = XOpenDisplay(0);
 	if(!disp)

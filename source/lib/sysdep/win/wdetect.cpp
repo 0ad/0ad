@@ -18,7 +18,8 @@
 
 #include "precompiled.h"
 
-#include "detect.h"
+#include "sysdep/gfx.h"
+#include "sysdep/snd.h"
 #include "lib.h"
 #include "lib/res/file/file.h"	// file_enum
 
@@ -92,7 +93,7 @@ static LibError import_EnumDisplayDevices()
 
 // useful for choosing a video mode.
 // if we fail, outputs are unchanged (assumed initialized to defaults)
-LibError get_cur_vmode(int* xres, int* yres, int* bpp, int* freq)
+LibError gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
 {
 	// don't use EnumDisplaySettingsW - BoundsChecker reports it causes
 	// a memory overrun (even if called as the very first thing, before
@@ -121,7 +122,7 @@ LibError get_cur_vmode(int* xres, int* yres, int* bpp, int* freq)
 
 // useful for determining aspect ratio.
 // if we fail, outputs are unchanged (assumed initialized to defaults)
-LibError get_monitor_size(int& width_mm, int& height_mm)
+LibError gfx_get_monitor_size(int& width_mm, int& height_mm)
 {
 	// (DC for the primary monitor's entire screen)
 	HDC dc = GetDC(0);

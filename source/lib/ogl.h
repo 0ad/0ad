@@ -152,8 +152,7 @@ extern const char* oglExtList(void);
 extern int ogl_max_tex_size;				// [pixels]
 extern int ogl_max_tex_units;				// limit on GL_TEXTUREn
 
-// set detect.cpp gfx_card[] and gfx_drv_ver[].
-// (called by detect.cpp get_gfx_info()).
+// set sysdep/gfx.h gfx_card and gfx_drv_ver. called by gfx_detect.
 //
 // fails if OpenGL not ready for use.
 // gfx_card and gfx_drv_ver are unchanged on failure.

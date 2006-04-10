@@ -302,8 +302,8 @@ static void state_latch(OglTexState* ots)
 //----------------------------------------------------------------------------
 
 // ideally we would split OglTex into data and state objects as in
-// snd.cpp's SndData / VSrc. this gives us the benefits of caching while 
-// still leaving each "instance" (state object, which owns a data reference)
+// SndData / VSrc. this gives us the benefits of caching while still
+// leaving each "instance" (state object, which owns a data reference)
 // free to change its state. however, unlike in OpenAL, there is no state
 // independent of the data object - all parameters are directly tied to the
 // GL texture object. therefore, splitting them up is impossible.

@@ -3,15 +3,15 @@
 #include "lib.h"
 #include "lib/sdl.h"
 #include "lib/ogl.h"
-#include "lib/detect.h"
 #include "lib/timer.h"
 #include "lib/input.h"
 #if CPU_IA32
 # include "lib/sysdep/ia32.h"
 #endif
+#include "lib/sysdep/gfx.h"
 #include "lib/res/res.h"
 #include "lib/res/file/trace.h"
-#include "lib/res/sound/snd.h"
+#include "lib/res/sound/snd_mgr.h"
 #include "lib/res/graphics/tex.h"
 #include "lib/res/graphics/cursor.h"
 
@@ -896,7 +896,7 @@ void Init(int argc, char* argv[], uint flags)
 
 	// preferred video mode = current desktop settings
 	// (command line params may override these)
-	get_cur_vmode(&g_xres, &g_yres, &g_bpp, &g_freq);
+	gfx_get_video_mode(&g_xres, &g_yres, &g_bpp, &g_freq);
 
 	new CProfileViewer;
 	new CProfileManager;	// before any script code
@@ -934,7 +934,7 @@ void Init(int argc, char* argv[], uint flags)
 	SetTextureQuality(quality);
 
 	// required by ogl_tex to detect broken gfx card/driver combos
-	get_gfx_info();
+	gfx_detect();
 
 
 	//-------------------------------------------------------------------------

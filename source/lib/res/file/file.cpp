@@ -20,7 +20,6 @@
 #include "precompiled.h"
 
 #include "lib.h"
-#include "detect.h"
 #include "adts.h"
 #include "sysdep/sysdep.h"
 #include "byte_order.h"

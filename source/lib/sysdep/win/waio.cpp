@@ -588,14 +588,15 @@ static int aio_rw(struct aiocb* cb)
 	else
 		ok =  ReadFile(h, actual_buf, size32, &bytes_transferred, &r->ovl);		
 
-	// "pending" isn't an error
-	if(GetLastError() == ERROR_IO_PENDING)
-		ok = true;
-
-	if(ok)
+	// check result.
+	// .. "pending" isn't an error
+	if(!ok && GetLastError() == ERROR_IO_PENDING)
+		ok = TRUE;
+	// .. translate from Win32 result code to POSIX
+	LibError err = LibError_from_win32(ok);
+	if(err == ERR_OK)
 		ret = 0;
-	else
-		debug_warn("waio failure");
+	LibError_set_errno(err);
 
 done:
 	WIN_RESTORE_LAST_ERROR;

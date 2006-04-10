@@ -1,12 +1,12 @@
-#ifndef SYSDEP_CPU_H
-#define SYSDEP_CPU_H
+#ifndef CPU_H__
+#define CPU_H__
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 
-const size_t CPU_TYPE_LEN = 49;	// processor brand string is <= 48 chars
+const size_t CPU_TYPE_LEN = 49;	// IA32 processor brand string is <= 48 chars
 extern char cpu_type[CPU_TYPE_LEN];
 
 extern double cpu_freq;
@@ -22,6 +22,13 @@ extern int cpu_speedstep;
 
 
 extern void cpu_init(void);
+
+
+extern size_t tot_mem;
+extern size_t avl_mem;
+
+// updates *_mem above
+extern void get_mem_status(void);
 
 
 // atomic "compare and swap". compare the machine word at <location> against
@@ -59,4 +66,4 @@ extern void serialize();
 }
 #endif
 
-#endif
+#endif	// #ifndef CPU_H__
