@@ -46,6 +46,12 @@
 # define CONFIG_PARANOIA 0
 #endif
 
+// finale release; disables some safety checks.
+#ifndef CONFIG_FINAL
+# define CONFIG_FINAL 0
+#endif
+
+
 // enable trace output for low-level code - various functions will
 // debug_printf when they are entered/exited. note that the appropriate
 // TRACEn tags must be debug_filter_add-ed for this to have any effect.

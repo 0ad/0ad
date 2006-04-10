@@ -290,7 +290,7 @@ public:
 			// we therefore enable this only in final builds; during
 			// development, 1.5% bigger archives are definitely worth much
 			// faster build time.
-#ifdef FINAL
+#if CONFIG_FINAL
 			const int level      = Z_BEST_COMPRESSION;
 #else
 			const int level      = Z_BEST_SPEED;

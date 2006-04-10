@@ -426,7 +426,6 @@ LibError ogl_program_use(Handle h)
 	{
 		pglUseProgramObjectARB(0);
 		WARN_RETURN(ERR_INVALID_HANDLE);
-		UNREACHABLE;
 	}
 
 	pglUseProgramObjectARB(p->id);

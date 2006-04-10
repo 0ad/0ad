@@ -380,7 +380,6 @@ static bool is_valid_dxt(uint dxt)
 	default:
 		return false;
 	}
-	UNREACHABLE;
 }
 
 

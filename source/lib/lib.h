@@ -152,21 +152,75 @@ STMT(\
 // .. wrapped around the parameter name, e.g. void f(int UNUSED(x))
 #define UNUSED(param)
 
-// indicates a piece of code cannot be reached (e.g. because all
-// control paths before it end up returning). this is mostly for
-// human benefit, but it may also help optimization and generates
-// warnings if reached in paranoia builds.
-#if MSC_VERSION
-// .. note: we only enable this in paranoia builds because it
-//    causes "unreachable code" warnings (exactly what we want to avoid).
-# if CONFIG_PARANOIA
-#  define UNREACHABLE debug_warn("hit supposedly unreachable code");
-# else
-#  define UNREACHABLE __assume(0)
-# endif
+
+/*
+"unreachable code" helpers
+
+unreachable lines of code are often the source or symptom of subtle bugs.
+they are flagged by compiler warnings; however, the opposite problem -
+erroneously reaching certain spots (e.g. due to missing return statement)
+is worse and not detected automatically.
+
+to defend against this, the programmer can annotate their code to
+indicate to humans that a particular spot should never be reached.
+however, that isn't much help; better is a sentinel that raises an
+error if if it is actually reached. hence, the UNREACHABLE macro.
+
+ironically, if the code guarded by UNREACHABLE works as it should,
+compilers may flag the macro's code as unreachable. this would
+distract from genuine warnings, which is unacceptable.
+
+even worse, compilers differ in their code checking: GCC only complains if
+non-void functions end without returning a value (i.e. missing return
+statement), while VC checks if lines are unreachable (e.g. if they are
+preceded by a return on all paths).
+
+our implementation of UNREACHABLE solves this dilemna as follows:
+- on GCC: call abort(); since it has the noreturn attributes, the
+  "non-void" warning disappears.
+- on VC: avoid generating any code. we allow the compiler to assume the
+  spot is actually unreachable, which incidentally helps optimization.
+  if reached after all, a crash usually results. in that case, compile with
+  CONFIG_PARANOIA, which will cause an error message to be displayed.
+
+this approach still allows for the possiblity of automated
+checking, but does not cause any compiler warnings.
+*/
+
+// 1) final build: optimize assuming this location cannot be reached.
+//    may crash if that turns out to be untrue, but removes checking overhead.
+#if CONFIG_FINAL
+# define UNREACHABLE SYS_UNREACHABLE
+// 2) normal build:
 #else
-# define UNREACHABLE
+//    a) normal implementation: includes "abort", which is declared with
+//       noreturn attribute and therefore avoids GCC's "execution reaches
+//       end of non-void function" warning.
+# if !MSC_VERSION || CONFIG_PARANOIA
+#  define UNREACHABLE\
+	STMT(\
+		debug_warn("hit supposedly unreachable code");\
+		abort();\
+	)
+//    b) VC only: don't generate any code; squelch the warning and optimize.
+# else
+#  define UNREACHABLE SYS_UNREACHABLE
+# endif
 #endif
+
+/*
+convenient specialization of UNREACHABLE for switch statements whose
+default can never be reached. example usage:
+int x;
+switch(x % 2)
+{
+	case 0: break;
+	case 1: break;
+	NODEFAULT;
+}
+*/
+#define NODEFAULT default: UNREACHABLE
+
 
 #define ARRAY_SIZE(name) (sizeof(name) / sizeof(name[0]))
 

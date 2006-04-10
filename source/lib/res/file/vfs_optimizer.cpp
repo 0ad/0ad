@@ -484,20 +484,20 @@ public:
 // for each loose or archived file encountered during mounting: add to a
 // std::set; if there are more than *_THRESHOLD non-archived files, rebuild.
 // this ends up costing 50ms for 5000 files, so disable it in final release.
-#ifndef FINAL
-# define AB_COUNT_LOOSE_FILES 1
-#else
+#if CONFIG_FINAL
 # define AB_COUNT_LOOSE_FILES 0
+#else
+# define AB_COUNT_LOOSE_FILES 1
 #endif
 // rebuild if the archive is much older than most recent VFS timestamp.
 // this makes sense during development: the archive will periodically be
 // rebuilt with the newest trace. however, it would be annoying in the
 // final release, where users will frequently mod things, which should not
 // end up rebuilding the main archive.
-#ifndef FINAL
-# define AB_COMPARE_MTIME 1
-#else
+#if CONFIG_FINAL
 # define AB_COMPARE_MTIME 0
+#else
+# define AB_COMPARE_MTIME 1
 #endif
 
 #if AB_COUNT_LOOSE_FILES

@@ -964,7 +964,9 @@ public:
 	// m_Properties[PropertyName] (avoids mem leak).
 	void DeletePreviouslyAssignedProperty( CStrW PropertyName )
 	{
-#ifndef FINAL
+#if !CONFIG_FINAL
+		UNUSED2(PropertyName);
+#else
 		PropertyTable::iterator it;
 		it = m_Properties.find( PropertyName );
 		if( it != m_Properties.end() )
@@ -972,8 +974,6 @@ public:
 			debug_warn("BUG: CJSComplexProperty added but already existed!");
 			jscomplexproperty_suballoc_free(it->second);
 		}
-#else
-		UNUSED2(PropertyName);
 #endif
 	}
 

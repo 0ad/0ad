@@ -291,7 +291,7 @@ have_reg:
 	case 1:	context->Dr1 = addr; break;
 	case 2:	context->Dr2 = addr; break;
 	case 3:	context->Dr3 = addr; break;
-	default: UNREACHABLE;
+	NODEFAULT;
 	}
 
 	// choose breakpoint settings:

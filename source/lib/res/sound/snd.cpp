@@ -1259,8 +1259,7 @@ static FadeRet fade(FadeInfo& fi, double cur_time, float& out_val)
 		factor = 0.0f;
 		break;
 
-	default:
-		UNREACHABLE;
+	NODEFAULT;
 	}
 
 	out_val = fi.initial_val + factor*(fi.final_val - fi.initial_val);

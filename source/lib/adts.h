@@ -117,11 +117,7 @@ public:
 	{
 		// note: users might call clear() right before the dtor runs,
 		// so safely handling calling this twice.
-		if(tbl)
-		{
-			free(tbl);
-			tbl = 0;
-		}
+		SAFE_FREE(tbl);
 		num_entries = 0;
 		// rationale: must not set to 0 because expand_tbl only doubles the size.
 		// don't keep the previous size because it may have become huge and

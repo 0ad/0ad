@@ -857,7 +857,6 @@ LibError x_validate(const XFile* xf)
 	default:
 		return ERR_INVALID_MOUNT_TYPE;
 	}
-	UNREACHABLE;
 }
 
 
@@ -956,7 +955,6 @@ LibError x_io_validate(const XIo* xio)
 	default:
 		return ERR_INVALID_MOUNT_TYPE;
 	}
-	UNREACHABLE;
 }
 
 

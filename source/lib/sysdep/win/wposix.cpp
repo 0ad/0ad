@@ -581,8 +581,7 @@ static DWORD win32_prot(int prot)
 		return PAGE_EXECUTE_READWRITE;
 	case PROT_READ|PROT_WRITE|PROT_EXEC:
 		return PAGE_EXECUTE_READWRITE;
-	default:
-		UNREACHABLE;
+	NODEFAULT;
 	}
 }
 

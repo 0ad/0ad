@@ -842,8 +842,7 @@ static LRESULT OnMouseButton(HWND UNUSED(hWnd), UINT uMsg, int x, int y, UINT UN
 		button = SDL_BUTTON_MIDDLE;
 		state = SDL_RELEASED;
 		break;
-	default:
-		UNREACHABLE;
+	NODEFAULT;
 	}
 
 	// mouse capture

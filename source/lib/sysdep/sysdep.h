@@ -282,7 +282,17 @@ extern size_t sys_max_sector_size();
 #define DIR_SEP '/'
 #endif
 
-
+// tell the compiler that the code at/following this macro invocation is
+// unreachable. this can improve optimization and avoid warnings.
+//
+// this macro should not generate any fallback code; it is merely the
+// compiler-specific backend for lib.h's UNREACHABLE.
+// #define it to nothing if the compiler doesn't support such a hint.
+#if MSC_VERSION
+# define SYS_UNREACHABLE __assume(0)
+#else
+# define SYS_UNREACHABLE
+#endif
 
 
 #ifdef __cplusplus

@@ -45,7 +45,6 @@ static bool filter_valid(GLint filter)
 	default:
 		return false;
 	}
-	UNREACHABLE;
 }
 
 
@@ -62,7 +61,6 @@ static bool wrap_valid(GLint wrap)
 	default:
 		return false;
 	}
-	UNREACHABLE;
 }
 
 
@@ -78,7 +76,6 @@ static bool filter_uses_mipmaps(GLint filter)
 	default:
 		return false;
 	}
-	UNREACHABLE;
 }
 
 
@@ -94,7 +91,6 @@ static bool fmt_is_s3tc(GLenum fmt)
 	default:
 		return false;
 	}
-	UNREACHABLE;
 }
 
 
