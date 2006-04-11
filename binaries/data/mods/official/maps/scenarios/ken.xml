@@ -7,10 +7,9 @@
 		<SunRotation angle="5.5" />
 		<TerrainAmbientColour r="0.4" g="0.4" b="0.4" />
 		<UnitsAmbientColour r="0.4" g="0.4" b="0.4" />
-		<TerrainShadowTransparency>0.0</TerrainShadowTransparency>
 	</Environment>
 	<Camera>
-		<Position x="68.6964" y="120.112" z="54.8725" />
+		<Position x="132.456" y="120.112" z="76.463" />
 		<Rotation angle="-0.00923317" />
 		<Declination angle="0.59257" />
 	</Camera>
@@ -1222,12 +1221,6 @@
 			<Orientation angle="2.34014" />
 		</Entity>
 		<Entity>
-			<Template>rome_farmstead</Template>
-			<Player>5</Player>
-			<Position x="150.859" y="5.56035" z="247.152" />
-			<Orientation angle="-2.31467" />
-		</Entity>
-		<Entity>
 			<Template>rome_fortress</Template>
 			<Player>5</Player>
 			<Position x="103.362" y="5.56034" z="242.356" />
@@ -1640,6 +1633,12 @@
 			<Player>1</Player>
 			<Position x="198.491" y="8.34394" z="147.484" />
 			<Orientation angle="-2.8747" />
+		</Entity>
+		<Entity>
+			<Template>rome_mill</Template>
+			<Player>1</Player>
+			<Position x="150.985" y="5.56034" z="246.493" />
+			<Orientation angle="2.35619" />
 		</Entity>
 	</Entities>
 	<Nonentities>

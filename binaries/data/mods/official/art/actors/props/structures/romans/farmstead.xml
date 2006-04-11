@@ -5,10 +5,7 @@
 
   <group>
     <variant frequency="100" name="Base">
-      <mesh>structural/rome_hc.pmd</mesh>
-      <props>
-        <prop actor="props/structures/romans/temple.xml" attachpoint="props_main"/>
-      </props>
+      <mesh>props/rome_fc.pmd</mesh>
       <texture>structural/rome_struct_2.dds</texture>
     </variant>
   </group>
