@@ -1,3 +1,26 @@
+/**
+ * =========================================================================
+ * File        : vfs_mount.h
+ * Project     : 0 A.D.
+ * Description : mounts files and archives into VFS; provides x_* API
+ *             : that dispatches to file or archive implementation.
+ *
+ * @author Jan.Wassenberg@stud.uni-karlsruhe.de
+ * =========================================================================
+ */
+
+/*
+ * Copyright (c) 2004-2005 Jan Wassenberg
+ *
+ * Redistribution and/or modification are also permitted under the
+ * terms of the GNU General Public License as published by the
+ * Free Software Foundation (version 2 or later, at your option).
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
 #ifndef VFS_MOUNT_H__
 #define VFS_MOUNT_H__
 

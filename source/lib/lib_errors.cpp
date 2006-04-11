@@ -1,3 +1,26 @@
+/**
+ * =========================================================================
+ * File        : lib_errors.cpp
+ * Project     : 0 A.D.
+ * Description : error handling system: defines error codes, associates
+ *             : them with descriptive text, simplifies error notification.
+ *
+ * @author Jan.Wassenberg@stud.uni-karlsruhe.de
+ * =========================================================================
+ */
+
+/*
+ * Copyright (c) 2005 Jan Wassenberg
+ *
+ * Redistribution and/or modification are also permitted under the
+ * terms of the GNU General Public License as published by the
+ * Free Software Foundation (version 2 or later, at your option).
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
 // note: this is called lib_errors.cpp because we have another
 // errors.cpp; the MS linker isn't smart enough to deal with
 // object files of the same name but in different paths.

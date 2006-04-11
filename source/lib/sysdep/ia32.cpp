@@ -1,19 +1,24 @@
-// IA-32 (x86) specific code
-// Copyright (c) 2003 Jan Wassenberg
-//
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of the
-// License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful, but
-// WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-// General Public License for more details.
-//
-// Contact info:
-//   Jan.Wassenberg@stud.uni-karlsruhe.de
-//   http://www.stud.uni-karlsruhe.de/~urkt/
+/**
+ * =========================================================================
+ * File        : ia32.cpp
+ * Project     : 0 A.D.
+ * Description : C++ and inline asm implementations for IA-32.
+ *
+ * @author Jan.Wassenberg@stud.uni-karlsruhe.de
+ * =========================================================================
+ */
+
+/*
+ * Copyright (c) 2003-2005 Jan Wassenberg
+ *
+ * Redistribution and/or modification are also permitted under the
+ * terms of the GNU General Public License as published by the
+ * Free Software Foundation (version 2 or later, at your option).
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
 #include "precompiled.h"
 
@@ -70,8 +75,11 @@ void ia32_init()
 
 #if HAVE_MS_ASM
 
-// note: declspec naked is significantly faster: it avoids redundant
-// store/load, even though it prevents inlining.
+// notes:
+// - declspec naked is significantly faster: it avoids redundant
+//   store/load, even though it prevents inlining.
+// - stupid VC7 gets arguments wrong when using __declspec(naked);
+//   we need to use DWORD PTR and esp-relative addressing.
 
 // if on 64-bit systems, [esp+4] will have to change
 cassert(sizeof(int)*CHAR_BIT == 32);
@@ -88,6 +96,34 @@ __declspec(naked) double ia32_rint(double)
 	__asm fld		QWORD PTR [esp+4]
 	__asm frndint
 	__asm ret
+}
+
+__declspec(naked) float ia32_fminf(float, float)
+{
+	__asm
+	{
+		fld		DWORD PTR [esp+4]
+		fld		DWORD PTR [esp+8]
+		fcomi	st(0), st(1)
+		fcmovnb	st(0), st(1)
+		fxch
+		fstp	st(0)
+		ret
+	}
+}
+
+__declspec(naked) float ia32_fmaxf(float, float)
+{
+	__asm
+	{
+		fld		DWORD PTR [esp+4]
+		fld		DWORD PTR [esp+8]
+		fcomi	st(0), st(1)
+		fcmovb	st(0), st(1)
+		fxch
+		fstp	st(0)
+		ret
+	}
 }
 
 #endif	// HAVE_MS_ASM

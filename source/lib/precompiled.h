@@ -1,6 +1,26 @@
-// precompiled header. must be the first non-comment part of every source
-// file (VC6/7 requirement).
-//
+/**
+ * =========================================================================
+ * File        : precompiled.h
+ * Project     : 0 A.D.
+ * Description : precompiled header. must be the first non-comment part
+ *             : of every source file (VC6/7 requirement).
+ *
+ * @author Jan.Wassenberg@stud.uni-karlsruhe.de
+ * =========================================================================
+ */
+
+/*
+ * Copyright (c) 2002-2005 Jan Wassenberg
+ *
+ * Redistribution and/or modification are also permitted under the
+ * terms of the GNU General Public License as published by the
+ * Free Software Foundation (version 2 or later, at your option).
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
 // if the compiler supports PCH (i.e. HAVE_PCH is defined), this
 // tries to include all headers that may be needed. otherwise, all source
 // files will still need to include this (for various global fixes and the

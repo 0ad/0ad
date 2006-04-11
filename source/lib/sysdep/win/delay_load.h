@@ -1,15 +1,15 @@
 /**
  * =========================================================================
- * File        : dir_watch.h
+ * File        : delay_load.h
  * Project     : 0 A.D.
- * Description : portable directory change notification API.
+ * Description : allow delay-loading DLLs.
  *
  * @author Jan.Wassenberg@stud.uni-karlsruhe.de
  * =========================================================================
  */
 
 /*
- * Copyright (c) 2004-2005 Jan Wassenberg
+ * Copyright (c) 2004 Jan Wassenberg
  *
  * Redistribution and/or modification are also permitted under the
  * terms of the GNU General Public License as published by the
@@ -20,15 +20,23 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-#ifndef DIR_WATCH_H__
-#define DIR_WATCH_H__
+struct DllLoadNotify;
 
-// path: portable and relative, must add current directory and convert to native
-// better to use a cached string from rel_chdir - secure
-extern LibError dir_add_watch(const char* path, intptr_t* watch);
+extern void wdll_add_notify(DllLoadNotify*);
 
-extern LibError dir_cancel_watch(intptr_t watch);
+struct DllLoadNotify
+{
+	const char* dll_name;
+	LibError (*func)(void);
+	DllLoadNotify* next;
 
-extern LibError dir_get_changed_file(char* fn);
+	DllLoadNotify(const char* _dll_name, LibError (*_func)(void))
+	{
+		dll_name = _dll_name;
+		func = _func;
+		wdll_add_notify(this);
+	}
+};
 
-#endif	// #ifndef DIR_WATCH_H__
+#define WDLL_LOAD_NOTIFY(dll_name, func)\
+	static DllLoadNotify func##_NOTIFY(dll_name, func)

@@ -1,19 +1,24 @@
-// Windows-specific high resolution timer
-// Copyright (c) 2004 Jan Wassenberg
-//
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of the
-// License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful, but
-// WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-// General Public License for more details.
-//
-// Contact info:
-//   Jan.Wassenberg@stud.uni-karlsruhe.de
-//   http://www.stud.uni-karlsruhe.de/~urkt/
+/**
+ * =========================================================================
+ * File        : wtime.h
+ * Project     : 0 A.D.
+ * Description : emulate POSIX high resolution timer on Windows.
+ *
+ * @author Jan.Wassenberg@stud.uni-karlsruhe.de
+ * =========================================================================
+ */
+
+/*
+ * Copyright (c) 2004 Jan Wassenberg
+ *
+ * Redistribution and/or modification are also permitted under the
+ * terms of the GNU General Public License as published by the
+ * Free Software Foundation (version 2 or later, at your option).
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
 #ifndef WTIME_H__
 #define WTIME_H__

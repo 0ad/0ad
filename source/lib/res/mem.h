@@ -1,5 +1,28 @@
-#ifndef MEM_H
-#define MEM_H
+/**
+* =========================================================================
+* File        : mem.h
+* Project     : 0 A.D.
+* Description : wrapper that treats memory as a "resource", i.e.
+*             : guarantees its lifetime and automatic release.
+*
+* @author Jan.Wassenberg@stud.uni-karlsruhe.de
+* =========================================================================
+*/
+
+/*
+* Copyright (c) 2003 Jan Wassenberg
+*
+* Redistribution and/or modification are also permitted under the
+* terms of the GNU General Public License as published by the
+* Free Software Foundation (version 2 or later, at your option).
+*
+* This program is distributed in the hope that it will be useful, but
+* WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+
+#ifndef MEM_H__
+#define MEM_H__
 
 #include "handle.h"
 
@@ -46,4 +69,4 @@ extern void mem_shutdown(void);
 }
 #endif
 
-#endif	// #ifndef MEM_H
+#endif	// #ifndef MEM_H__

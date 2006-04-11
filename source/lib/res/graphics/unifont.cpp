@@ -1,11 +1,12 @@
-/*
-$Id$
-
-Unicode OpenGL texture font
-  
-   -- Philip Taylor (philip@wildfiregames.com / philip@zaynar.demon.co.uk)
-      (based on Jan Wassenberg's font.cpp/.h)
-*/
+/**
+ * =========================================================================
+ * File        : unifont.cpp
+ * Project     : 0 A.D.
+ * Description : Unicode OpenGL texture font.
+ *
+ * @author Philip Taylor (philip@zaynar.demon.co.uk)
+ * =========================================================================
+ */
 
 #include "precompiled.h"
 

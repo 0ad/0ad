@@ -1,4 +1,12 @@
-// $Id$
+/**
+ * =========================================================================
+ * File        : unifont.h
+ * Project     : 0 A.D.
+ * Description : Unicode OpenGL texture font.
+ *
+ * @author Philip Taylor (philip@zaynar.demon.co.uk)
+ * =========================================================================
+ */
 
 #ifndef __UNIFONT_H__
 #define __UNIFONT_H__

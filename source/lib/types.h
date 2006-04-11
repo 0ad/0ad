@@ -1,4 +1,24 @@
-// convenient type aliases (shorter than uintN_t from stdint.h)
+/**
+ * =========================================================================
+ * File        : types.h
+ * Project     : 0 A.D.
+ * Description : convenient type aliases (shorter than stdint.h's uintN_t)
+ *
+ * @author Jan.Wassenberg@stud.uni-karlsruhe.de
+ * =========================================================================
+ */
+
+/*
+ * Copyright (c) 2003-2005 Jan Wassenberg
+ *
+ * Redistribution and/or modification are also permitted under the
+ * terms of the GNU General Public License as published by the
+ * Free Software Foundation (version 2 or later, at your option).
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
 #ifndef __TYPES_H__
 #define __TYPES_H__

@@ -1,72 +1,35 @@
+/**
+ * =========================================================================
+ * File        : sysdep.cpp
+ * Project     : 0 A.D.
+ * Description : various system-specific function implementations
+ *
+ * @author Jan.Wassenberg@stud.uni-karlsruhe.de
+ * =========================================================================
+ */
+
+/*
+ * Copyright (c) 2003-2005 Jan Wassenberg
+ *
+ * Redistribution and/or modification are also permitted under the
+ * terms of the GNU General Public License as published by the
+ * Free Software Foundation (version 2 or later, at your option).
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
 #include "precompiled.h"
 
-#include "lib.h"
 #include "sysdep.h"
-#if CPU_IA32
-# include "ia32.h"
-#endif
-#if OS_WIN
-# include "win/wcpu.h"
-#endif
 
 
-#include <memory.h>
-#include <stdarg.h>
-
-
+// emulate C99 functionality
 #if !HAVE_C99
 
-// note: stupid VC7 gets arguments wrong when using __declspec(naked);
-// we need to use DWORD PTR and esp-relative addressing.
-
-#if HAVE_MS_ASM
-__declspec(naked) float fminf(float, float)
-{
-	__asm
-	{
-		fld		DWORD PTR [esp+4]
-		fld		DWORD PTR [esp+8]
-		fcomi	st(0), st(1)
-		fcmovnb	st(0), st(1)
-		fxch
-		fstp	st(0)
-		ret
-	}
-}
-#else
-float fminf(float a, float b)
-{
-	return (a < b)? a : b;
-}
-#endif
-
-#if HAVE_MS_ASM
-__declspec(naked) float fmaxf(float, float)
-{
-	__asm
-	{
-		fld		DWORD PTR [esp+4]
-		fld		DWORD PTR [esp+8]
-		fcomi	st(0), st(1)
-		fcmovb	st(0), st(1)
-		fxch
-		fstp	st(0)
-		ret
-	}
-}
-#else
-float fmaxf(float a, float b)
-{
-	return (a > b)? a : b;
-}
-#endif
-
-#endif	// #if !HAVE_C99
-
-
-// no C99, and not running on IA-32 (where this is defined to ia32_rint)
-// => need to implement our fallback version.
-#if !HAVE_C99 && !defined(rint)
+// fallback versions in case ia32 optimized versions are unavailable.
+#if !HAVE_MS_ASM
 
 inline float rintf(float f)
 {
@@ -78,7 +41,19 @@ inline double rint(double d)
 	return (double)(int)d;
 }
 
+float fminf(float a, float b)
+{
+	return (a < b)? a : b;
+}
+
+float fmaxf(float a, float b)
+{
+	return (a > b)? a : b;
+}
+
 #endif
+
+#endif	// #if !HAVE_C99
 
 
 // float->int conversion: not using the ia32 version; just implement as a
