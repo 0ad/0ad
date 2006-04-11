@@ -51,7 +51,6 @@
 #include "app_hooks.h"
 
 
-
 #define OGG_HACK
 #include "ogghack.h"
 
@@ -59,6 +58,13 @@
 # pragma comment(lib, "openal32.lib")
 # pragma comment(lib, "alut.lib")	// alutLoadWAVMemory
 #endif
+
+// HACK: OpenAL loads and unloads certain DLLs several times on Windows.
+// that looks unnecessary and wastes 100..400 ms on startup.
+// we hold a reference to prevent the actual unload. everything works ATM;
+// hopefully, OpenAL doesn't rely on them actually being unloaded.
+#define WIN_LOADLIBRARY_HACK 1
+
 
 // components:
 // - alc*: OpenAL context
@@ -118,9 +124,12 @@ static void al_check(const char* caller = "(unknown)")
 		return;
 
 	const char* str = (const char*)alGetString(err);
-	debug_printf("openal error: %s; called from %s\n", str, caller);
+	debug_printf("OpenAL error: %s; called from %s\n", str, caller);
 	debug_warn("OpenAL error");
 }
+
+// convenience version that automatically passes in function name.
+#define AL_CHECK al_check(__func__)
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -202,12 +211,7 @@ static LibError alc_init()
 {
 	LibError ret = ERR_OK;
 
-	// HACK: OpenAL loads and unloads these DLLs several times on Windows.
-	// we hold a reference to prevent the actual unload,
-	// thus speeding up startup by 100..400 ms. everything works ATM;
-	// hopefully, OpenAL doesn't rely on them actually being unloaded.
-
-#if OS_WIN
+#if WIN_LOADLIBRARY_HACK
 	HMODULE dlls[3];
 	dlls[0] = LoadLibrary("wrap_oal.dll");
 	dlls[1] = LoadLibrary("setupapi.dll");
@@ -257,8 +261,8 @@ static LibError alc_init()
 	swprintf(buf, ARRAY_SIZE(buf), L"SND| alc_init: success, using %hs\n", dev_name);
 	ah_log(buf);
 
+#if WIN_LOADLIBRARY_HACK
 	// release DLL references, so BoundsChecker doesn't complain at exit.
-#if OS_WIN
 	for(int i = 0; i < ARRAY_SIZE(dlls); i++)
 		if(dlls[i] != INVALID_HANDLE_VALUE)
 			FreeLibrary(dlls[i]);
@@ -288,11 +292,9 @@ static void al_listener_latch()
 	if(al_initialized)
 	{
 		alListenerf(AL_GAIN, al_listener_gain);
-		al_check("al_listener_latch: gain");
 		alListenerfv(AL_POSITION, al_listener_pos);
-		al_check("al_listener_latch: pos");
 		alListenerfv(AL_ORIENTATION, al_listener_orientation);
-		al_check("al_listener_latch: orientation");
+		AL_CHECK;
 	}
 }
 
@@ -355,7 +357,7 @@ static ALuint al_buf_alloc(ALvoid* data, ALsizei size, ALenum al_fmt, ALsizei al
 	ALuint al_buf;
 	alGenBuffers(1, &al_buf);
 	alBufferData(al_buf, al_fmt, data, size, al_freq);
-	al_check("al_buf_alloc");
+	AL_CHECK;
 
 	al_bufs_outstanding++;
 	return al_buf;
@@ -371,7 +373,7 @@ static void al_buf_free(ALuint al_buf)
 
 	debug_assert(alIsBuffer(al_buf));
 	alDeleteBuffers(1, &al_buf);
-	al_check("al_buf_free");
+	AL_CHECK;
 
 	al_bufs_outstanding--;
 }
@@ -440,7 +442,7 @@ static void al_src_shutdown()
 	debug_assert(al_src_used == 0);
 	alDeleteSources(al_src_allocated, al_srcs);
 	al_src_allocated = 0;
-	al_check("al_src_shutdown");
+	AL_CHECK;
 }
 
 
@@ -1581,7 +1583,7 @@ static void vsrc_latch(VSrc* vs)
 	alSourcef (vs->al_src, AL_GAIN,            vs->gain);
 	alSourcef (vs->al_src, AL_PITCH,           vs->pitch);
 	alSourcei (vs->al_src, AL_LOOPING,         vs->loop);
-	al_check("vsrc_latch");
+	AL_CHECK;
 }
 
 
@@ -1598,7 +1600,7 @@ static int vsrc_deque_finished_bufs(VSrc* vs)
 		snd_data_buf_free(vs->hsd, al_buf);
 	}
 
-	al_check("vsrc_deque_finished_bufs");
+	AL_CHECK;
 	return num_processed;
 }
 
@@ -1694,7 +1696,7 @@ static LibError vsrc_grant(VSrc* vs)
 	alSourcefv(vs->al_src, AL_DIRECTION,       zero3);
 	alSourcef (vs->al_src, AL_ROLLOFF_FACTOR,  0.0f);
 	alSourcei (vs->al_src, AL_SOURCE_RELATIVE, AL_TRUE);
-	al_check("vsrc_grant");
+	AL_CHECK;
 
 	// set remaining (user-specifiable) properties.
 	vsrc_latch(vs);
@@ -1718,7 +1720,7 @@ static LibError vsrc_reclaim(VSrc* vs)
 		return ERR_FAIL;	// NOWARN
 
 	alSourceStop(vs->al_src);
-	al_check("src_stop");
+	AL_CHECK;
 		// (note: all queued buffers are now considered 'processed')
 
 	// deque and free remaining buffers (if sound was closed abruptly).

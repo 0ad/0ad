@@ -52,7 +52,7 @@
 
 // convenience "class" that simplifies successively appending a filename to
 // its parent directory. this avoids needing to allocate memory and calling
-// strlen/strcat. used by wdetect and dir_next_ent.
+// strlen/strcat. used by wdll_ver and dir_next_ent.
 // we want to maintain C compatibility, so this isn't a C++ class.
 
 // write the given directory path into our buffer and set end/chars_left
@@ -312,7 +312,7 @@ LibError dir_open(const char* P_path, DirIterator* d_)
 
 	char n_path[PATH_MAX];
 	// HACK: allow calling with a full (absolute) native path.
-	// (required by wdetect).
+	// (required by wdll_ver).
 #if OS_WIN
 	if(P_path[1] == ':' && P_path[2] == '\\')
 		strcpy_s(n_path, ARRAY_SIZE(n_path), P_path);

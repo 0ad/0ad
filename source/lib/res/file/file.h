@@ -26,7 +26,7 @@ extern LibError file_init();
 
 // convenience "class" that simplifies successively appending a filename to
 // its parent directory. this avoids needing to allocate memory and calling
-// strlen/strcat. used by wdetect and dir_next_ent.
+// strlen/strcat. used by wdll_ver and dir_next_ent.
 // we want to maintain C compatibility, so this isn't a C++ class.
 
 struct PathPackage
