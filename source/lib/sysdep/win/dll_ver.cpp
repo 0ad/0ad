@@ -26,7 +26,7 @@
 #include <stdlib.h>
 
 #include "win_internal.h"
-#include "wdll_ver.h"
+#include "dll_ver.h"
 
 #if MSC_VERSION
 #pragma comment(lib, "version.lib")		// DLL version

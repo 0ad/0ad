@@ -29,7 +29,7 @@
 #include <stdlib.h>
 
 #include "lib/sysdep/snd.h"
-#include "wdll_ver.h"	// dll_list_*
+#include "dll_ver.h"	// dll_list_*
 #include "win_internal.h"
 #include "lib/res/file/file.h"
 

@@ -80,8 +80,15 @@ extern int vsnprintf2(char* buffer, size_t count, const char* format, va_list ar
 #endif
 
 #if !HAVE_C99
+// fast IA-32 version
+# if CPU_IA32
+#  define fminf ia32_fminf
+#  define fmaxf ia32_fmaxf
+// portable C emulation
+# else
 extern float fminf(float a, float b);
 extern float fmaxf(float a, float b);
+# endif
 #endif
 
 #if !MSC_VERSION

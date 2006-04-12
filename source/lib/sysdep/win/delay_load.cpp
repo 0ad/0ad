@@ -26,7 +26,7 @@
 
 #include "win_internal.h"
 
-#include "wdll.h"
+#include "delay_load.h"
 
 #define _DELAY_IMP_VER  2
 

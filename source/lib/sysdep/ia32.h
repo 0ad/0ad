@@ -47,6 +47,9 @@ extern void ia32_init();
 extern float ia32_rintf(float f);
 extern double ia32_rint(double f);
 
+extern float ia32_fminf(float f1, float f2);
+extern float ia32_fmaxf(float f1, float f2);
+
 extern i32 ia32_i32_from_float(float f);
 extern i32 ia32_i32_from_double(double d);
 extern i64 ia32_i64_from_double(double d);

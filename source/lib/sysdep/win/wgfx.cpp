@@ -23,7 +23,7 @@
 #include "precompiled.h"
 
 #include "lib/sysdep/gfx.h"
-#include "wdll_ver.h"	// dll_list_*
+#include "dll_ver.h"	// dll_list_*
 #include "win_internal.h"
 
 #if MSC_VERSION
