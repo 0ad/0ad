@@ -79,18 +79,6 @@ extern int vsnprintf2(char* buffer, size_t count, const char* format, va_list ar
 #define vsnprintf2 vsnprintf
 #endif
 
-#if !HAVE_C99
-// fast IA-32 version
-# if CPU_IA32
-#  define fminf ia32_fminf
-#  define fmaxf ia32_fmaxf
-// portable C emulation
-# else
-extern float fminf(float a, float b);
-extern float fmaxf(float a, float b);
-# endif
-#endif
-
 #if !MSC_VERSION
 #define stricmp strcasecmp
 #define strnicmp strncasecmp
@@ -103,17 +91,22 @@ extern float fmaxf(float a, float b);
 extern void* alloca(size_t size);
 #endif
 
-// rint: round float to nearest integral value.
-// provided by C99, otherwise:
+// emulate some C99 functions if not already available:
+//   rint: round float to nearest integral value.
+//   fminf/fmaxf: return minimum/maximum of two floats.
 #if !HAVE_C99
-// .. fast IA-32 version
+// .. fast IA-32 versions
 # if CPU_IA32
 #  define rintf ia32_rintf
 #  define rint ia32_rint
+#  define fminf ia32_fminf
+#  define fmaxf ia32_fmaxf
 // .. portable C emulation
 # else
    extern float rintf(float f);
    extern double rint(double d);
+   extern float fminf(float a, float b);
+   extern float fmaxf(float a, float b);
 # endif
 #endif
 
