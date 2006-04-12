@@ -100,6 +100,11 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
         AddProperty( EventNames[t], &m_EventHandlers[t], false );
         AddHandler( t, &m_EventHandlers[t] );
     }
+
+// FIXME: janwas: this was uninitialized, which leads to disaster if
+// its value happens to be positive.
+// setting to what seems to be a reasonable default.
+m_sectorDivs = 4;
 	if ( m_sectorDivs >= 0 )
 	{	
 		m_sectorAngles.resize(m_sectorDivs);
