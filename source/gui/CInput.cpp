@@ -11,8 +11,6 @@ gee@pyro.nu
 #include "ps/Font.h"
 #include "ogl.h"
 
-// TODO Gee: new
-#include "OverlayText.h"
 #include "lib/res/graphics/unifont.h"
 
 #include "ps/Hotkey.h"

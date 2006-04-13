@@ -9,7 +9,6 @@ gee@pyro.nu
 #include "GUI.h"
 #include "CLogger.h"
 #include "Parser.h"
-#include "OverlayText.h"
 #include <algorithm>
 
 #define LOG_CATEGORY "gui"

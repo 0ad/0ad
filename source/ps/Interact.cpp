@@ -867,13 +867,13 @@ static void LoadUnitUIThunk( const char* path, const DirEnt* UNUSED(ent), void* 
 	{
 		if ( name.BeforeLast(".") == name )		//this is a directory (contains no ".")
 			return;
-		LOG(ERROR, "Unknown rank texture extension (%s)", path);
+		LOG(ERROR, LOG_CATEGORY, "Unknown rank texture extension (%s)", path);
 		return;
 	}
 	Handle tmp = ogl_tex_load(path);
 	if (tmp <= 0)
 	{	
-		LOG(ERROR, "Rank Textures", "loadRankTextures failed on \"%s\"", path);
+		LOG(ERROR, LOG_CATEGORY, "Rank Textures", "loadRankTextures failed on \"%s\"", path);
 		return;
 	}
 	name.Remove("art/textures/ui/session/icons/");	//Names are relative to this directory

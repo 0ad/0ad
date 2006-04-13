@@ -32,7 +32,6 @@ gee@pyro.nu
 
 #include "Pyrogenesis.h"
 #include "input.h"
-#include "OverlayText.h"
 // TODO Gee: Whatever include CRect/CPos/CSize
 #include "Overlay.h"
 

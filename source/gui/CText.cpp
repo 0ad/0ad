@@ -10,9 +10,6 @@ gee@pyro.nu
 
 #include "ogl.h"
 
-// TODO Gee: new
-#include "OverlayText.h"
-
 using namespace std;
 
 //-------------------------------------------------------------------
