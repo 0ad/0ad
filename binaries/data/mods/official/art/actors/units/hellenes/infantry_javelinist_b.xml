@@ -5,32 +5,41 @@
 
   <group>
     <variant frequency="100" name="Base">
+      <animations>
+        <animation file="biped/dudeidle.psa" name="Idle" speed="200"/>
+        <animation event="0.5" file="biped/inf_spear_shield_atk_a.psa" name="Melee" speed="100"/>
+        <animation event="0.5" file="biped/inf_spear_shield_atk_b.psa" name="Melee" speed="100"/>
+        <animation file="biped/dudewalk.psa" name="Walk" speed="20"/>
+        <animation file="biped/inf_sword_shield_run_a.psa" name="Run" speed="10"/>
+        <animation file="biped/inf_sword_shield_run_b.psa" name="Run" speed="10"/>
+        <animation file="biped/inf_sword_shield_run_c.psa" name="Run" speed="10"/>
+        <animation file="biped/chop.psa" name="gather_wood" speed="125"/>
+        <animation file="biped/hoe.psa" name="gather_grain" speed="150"/>
+        <animation file="biped/forage.psa" name="gather_fruit" speed="35"/>
+        <animation file="biped/mine.psa" name="gather_stone" speed="150"/>
+        <animation file="biped/dudebuild.psa" name="Build" speed="150"/>
+        <animation file="biped/inf_death_a.psa" name="Death" speed="200"/>
+        <animation file="biped/inf_death_b.psa" name="Death" speed="200"/>
+        <animation file="biped/inf_death_c.psa" name="Death" speed="200"/>
+        <animation file="biped/inf_death_d.psa" name="Death" speed="200"/>
+        <animation file="biped/inf_death_e.psa" name="Death" speed="200"/>
+        <animation file="biped/inf_death_f.psa" name="Death" speed="200"/>
+        <animation file="biped/inf_death_g.psa" name="Death" speed="200"/>
+        <animation file="biped/dudedecay_sword.psa" name="Corpse" speed="100"/>
+      </animations>
       <mesh>skeletal/m_tunic_b.pmd</mesh>
       <props>
         <prop actor="props/units/heads/thrac_a.xml" attachpoint="head"/>
+        <prop actor="props/units/shields/hele_pelta_b.xml" attachpoint="shield"/>
+        <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
       </props>
       <texture>skeletal/hele_ijv_b.dds</texture>
     </variant>
   </group>
 
   <group>
-    <variant name="Idle">
-      <animations>
-        <animation file="biped/dudeidle.psa" name="Idle" speed="200"/>
-      </animations>
-      <props>
-        <prop actor="props/units/shields/hele_pelta_b.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
-      </props>
-    </variant>
-  </group>
-
-  <group>
-    <variant name="Attack">
-      <animations>
-        <animation event="0.5" file="biped/inf_spear_shield_atk_a.psa" name="Melee" speed="100"/>
-        <animation event="0.5" file="biped/inf_spear_shield_atk_b.psa" name="Melee" speed="100"/>
-      </animations>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Melee">
       <props>
         <prop actor="props/units/shields/hele_pelta_b.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
@@ -39,108 +48,39 @@
         <prop actor="props/units/weapons/jav.xml" attachpoint="projectile"/>
       </props>
     </variant>
-  </group>
-
-  <group>
-    <variant name="Walk">
-      <animations>
-        <animation file="biped/dudewalk.psa" name="Walk" speed="20"/>
-      </animations>
-      <props>
-        <prop actor="props/units/shields/hele_pelta_b.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
-      </props>
-    </variant>
-  </group>
-
-  <group>
-    <variant name="Run">
-      <animations>
-        <animation file="biped/inf_sword_shield_run_a.psa" name="Run" speed="10"/>
-        <animation file="biped/inf_sword_shield_run_b.psa" name="Run" speed="10"/>
-        <animation file="biped/inf_sword_shield_run_c.psa" name="Run" speed="10"/>
-      </animations>
-      <props>
-        <prop actor="props/units/shields/hele_pelta_b.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
-      </props>
-    </variant>
-  </group>
-
-  <group>
     <variant name="gather_wood">
-      <animations>
-        <animation file="biped/chop.psa" name="gather_wood" speed="125"/>
-      </animations>
       <props>
+        <prop actor="" attachpoint="shield"/>
+        <prop actor="" attachpoint="l_hand"/>
         <prop actor="props/units/tools/axe.xml" attachpoint="r_hand"/>
       </props>
     </variant>
-  </group>
-
-  <group>
     <variant name="gather_grain">
-      <animations>
-        <animation file="biped/hoe.psa" name="gather_grain" speed="150"/>
-      </animations>
       <props>
+        <prop actor="" attachpoint="shield"/>
         <prop actor="props/units/tools/hoe.xml" attachpoint="l_hand"/>
       </props>
     </variant>
-  </group>
-
-  <group>
     <variant name="gather_fruit">
-      <animations>
-        <animation file="biped/forage.psa" name="gather_fruit" speed="35"/>
-      </animations>
       <props>
+        <prop actor="" attachpoint="shield"/>
+        <prop actor="" attachpoint="l_hand"/>
         <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
       </props>
     </variant>
-  </group>
-
-  <group>
     <variant name="gather_stone">
-      <animations>
-        <animation file="biped/mine.psa" name="gather_stone" speed="150"/>
-      </animations>
       <props>
+        <prop actor="" attachpoint="shield"/>
+        <prop actor="" attachpoint="l_hand"/>
         <prop actor="props/units/tools/pick.xml" attachpoint="r_hand"/>
       </props>
     </variant>
-  </group>
-
-  <group>
     <variant name="Build">
-      <animations>
-        <animation file="biped/dudebuild.psa" name="Build" speed="150"/>
-      </animations>
       <props>
+        <prop actor="" attachpoint="shield"/>
+        <prop actor="" attachpoint="l_hand"/>
         <prop actor="props/units/tools/mallet.xml" attachpoint="r_hand"/>
       </props>
-    </variant>
-  </group>
-
-  <group>
-    <variant name="Death">
-      <animations>
-        <animation file="biped/inf_death_a.psa" name="Death" speed="200"/>
-        <animation file="biped/inf_death_b.psa" name="Death" speed="200"/>
-        <animation file="biped/inf_death_c.psa" name="Death" speed="200"/>
-        <animation file="biped/inf_death_d.psa" name="Death" speed="200"/>
-        <animation file="biped/inf_death_e.psa" name="Death" speed="200"/>
-        <animation file="biped/inf_death_f.psa" name="Death" speed="200"/>
-        <animation file="biped/inf_death_g.psa" name="Death" speed="200"/>
-      </animations>
-    </variant>
-  </group>
-
-  <group>
-    <variant name="Decay">
-      <animations>
-        <animation file="biped/dudedecay_sword.psa" name="Corpse" speed="100"/>
-      </animations>
     </variant>
   </group>
 
