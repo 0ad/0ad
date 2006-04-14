@@ -1098,8 +1098,6 @@ CVector2D CEntity::getScreenCoords( float height )
 }
 void CEntity::renderBarBorders()
 {
-	pglActiveTextureARB( GL_TEXTURE0_ARB );
-	
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
 	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
@@ -1235,8 +1233,8 @@ void CEntity::renderRank()
     g_Camera->GetScreenCoordinates(above, sx, sy);
     int size = m_rankWidth/2;
 
-    float x1 = sx - size;
-    float x2 = sx + size;
+	float x1 = sx + m_healthBarSize/2;
+    float x2 = sx + m_healthBarSize/2 + 2*size;
     float y1 = g_yres - (sy - size);	//top
 	float y2 = g_yres - (sy + size);	//bottom
 	
@@ -1247,10 +1245,10 @@ void CEntity::renderRank()
 
 	glBegin(GL_QUADS);
 
-    glTexCoord2f(0.0f, 0.0f); glVertex3f( x1, y2, 0 );
-    glTexCoord2f(0.0f, 1.0f); glVertex3f( x1, y1, 0 );
-    glTexCoord2f(1.0f, 1.0f); glVertex3f( x2, y1, 0 );
     glTexCoord2f(1.0f, 0.0f); glVertex3f( x2, y2, 0 );
+    glTexCoord2f(1.0f, 1.0f); glVertex3f( x2, y1, 0 );
+    glTexCoord2f(0.0f, 1.0f); glVertex3f( x1, y1, 0 );
+    glTexCoord2f(0.0f, 0.0f); glVertex3f( x1, y2, 0 );
 
     glEnd();
 }

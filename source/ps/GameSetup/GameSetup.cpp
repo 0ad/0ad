@@ -353,8 +353,6 @@ void Render()
 		glPushMatrix();
 		glLoadIdentity();
 
-		g_Selection.renderRanks();
-		g_Mouseover.renderRanks();
 		g_Mouseover.renderBarBorders();
 		g_Selection.renderBarBorders();
 		glDisable( GL_TEXTURE_2D );
@@ -363,6 +361,8 @@ void Render()
 		g_Mouseover.renderStaminaBars();
 		g_Selection.renderStaminaBars();
 		glEnable( GL_TEXTURE_2D );
+		g_Selection.renderRanks();
+		g_Mouseover.renderRanks();
 		
 		glPopMatrix();
 		glMatrixMode(GL_PROJECTION);
