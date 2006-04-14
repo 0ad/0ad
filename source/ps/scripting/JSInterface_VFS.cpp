@@ -99,12 +99,12 @@ JSBool JSI_VFS::BuildFileList( JSContext* cx, JSObject* UNUSED(obj), uintN argc,
 		if( !ToPrimitive<bool>( cx, argv[2], recursive ) )
 			return( JS_FALSE );
 	}
-	int flags = recursive? VFSUtil::RECURSIVE : 0;
+	int flags = recursive? VFS_DIR_RECURSIVE : 0;
 
 
 	// build array in the callback function
 	BuildFileListState state(cx);
-	VFSUtil::EnumDirEnts( path, flags, filter, BuildFileListCB, &state );
+	vfs_dir_enum( path, flags, filter, BuildFileListCB, &state );
 
 	*rval = OBJECT_TO_JSVAL( state.filename_array );
 	return( JS_TRUE );

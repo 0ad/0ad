@@ -321,6 +321,25 @@ extern LibError vfs_dir_close(Handle& hd);
 extern LibError vfs_dir_next_ent(Handle hd, DirEnt* ent, const char* filter = 0);
 
 
+
+// called by EnumDirEnts for each entry in a directory (optionally those in
+// its subdirectories as well), passing their complete path+name, the info
+// that would be returned by vfs_next_dirent, and user-specified context.
+// note: path and ent parameters are only valid during the callback.
+typedef void (*DirEnumCB)(const char* path, const DirEnt* ent, void* context);
+
+enum DirEnumFlags
+{
+	VFS_DIR_RECURSIVE = 1
+};
+
+// call <cb> for each entry matching <user_filter> (see vfs_next_dirent) in
+// directory <path>; if flags & VFS_DIR_RECURSIVE, entries in
+// subdirectories are also returned.
+extern LibError vfs_dir_enum(const char* path, uint enum_flags, const char* filter,
+	DirEnumCB cb, void* context);
+
+
 //
 // file
 //

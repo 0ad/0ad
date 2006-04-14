@@ -113,7 +113,6 @@ extern bool ia32_cap(CpuCap cap);
 
 
 extern void ia32_get_cpu_info(void);
-extern void ia32_hook_capabilities(void);
 
 
 //-----------------------------------------------------------------------------

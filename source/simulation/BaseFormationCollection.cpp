@@ -30,7 +30,7 @@ static void LoadFormationThunk( const char* path, const DirEnt* UNUSED(ent), voi
 int CBaseFormationCollection::loadTemplates()
 {
 	// Load all files in entities/formations and subdirectories.
-	THROW_ERR( VFSUtil::EnumDirEnts( "entities/formations", VFSUtil::RECURSIVE, "*.xml",
+	THROW_ERR( vfs_dir_enum( "entities/formations", VFS_DIR_RECURSIVE, "*.xml",
 		LoadFormationThunk, this ) );
 	return 0;
 }

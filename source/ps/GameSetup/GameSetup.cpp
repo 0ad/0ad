@@ -693,6 +693,8 @@ static void InitRenderer()
 	vp.m_Width=g_xres;
 	vp.m_Height=g_yres;
 	g_Renderer.SetViewport(vp);
+
+	ColorActivateFastImpl();
 }
 
 static void InitSDL()

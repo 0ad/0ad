@@ -38,7 +38,13 @@ struct SColor4ub
 	SColor4ub(u8 _r, u8 _g, u8 _b, u8 _a) : R(_r), G(_g), B(_b), A(_a) { }
 };
 
+// exposed as function pointer because it is set at init-time to
+// one of several implementations depending on CPU caps.
 extern u32 (*ConvertRGBColorTo4ub)(const RGBColor& src);
+
+// call once ia32_init has run; detects CPU caps and activates the best
+// possible codepath.
+extern void ColorActivateFastImpl();
 
 
 #endif

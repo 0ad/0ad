@@ -191,12 +191,12 @@ static void GetObjectName_ThunkCb(const char* path, const DirEnt* UNUSED(ent), v
 
 void CObjectManager::GetAllObjectNames(std::vector<CStr>& names)
 {
-	VFSUtil::EnumDirEnts("art/actors/", VFSUtil::RECURSIVE, "*.xml",
+	vfs_dir_enum("art/actors/", VFS_DIR_RECURSIVE, "*.xml",
 		GetObjectName_ThunkCb, &names);
 }
 
 void CObjectManager::GetPropObjectNames(std::vector<CStr>& names)
 {
-	VFSUtil::EnumDirEnts("art/actors/props/", VFSUtil::RECURSIVE, "*.xml",
+	vfs_dir_enum("art/actors/props/", VFS_DIR_RECURSIVE, "*.xml",
 		GetObjectName_ThunkCb, &names);
 }

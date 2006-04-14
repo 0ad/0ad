@@ -239,6 +239,85 @@ LibError vfs_dir_next_ent(const Handle hd, DirEnt* ent, const char* filter)
 }
 
 
+// call <cb> for each entry matching <user_filter> (see vfs_next_dirent) in
+// directory <path>; if flags & VFS_DIR_RECURSIVE, entries in
+// subdirectories are also returned.
+//
+// note: EnumDirEntsCB path and ent are only valid during the callback.
+LibError vfs_dir_enum(const char* start_path, uint flags, const char* user_filter,
+	DirEnumCB cb, void* context)
+{
+	debug_assert((flags & ~(VFS_DIR_RECURSIVE)) == 0);
+	const bool recursive = (flags & VFS_DIR_RECURSIVE) != 0;
+
+	char filter_buf[VFS_MAX_PATH];
+	const char* filter = user_filter;
+	bool user_filter_wants_dirs = true;
+	if(user_filter)
+	{
+		if(user_filter[0] != '/')
+			user_filter_wants_dirs = false;
+
+		// we need subdirectories and the caller hasn't already requested them
+		if(recursive && !user_filter_wants_dirs)
+		{
+			snprintf(filter_buf, sizeof(filter_buf), "/|%s", user_filter);
+			filter = filter_buf;
+		}
+	}
+
+
+	// note: FIFO queue instead of recursion is much more efficient
+	// (less stack usage; avoids seeks by reading all entries in a
+	// directory consecutively)
+
+	std::queue<const char*> dir_queue;
+	dir_queue.push(file_make_unique_fn_copy(start_path));
+
+	// for each directory:
+	do
+	{
+		// get current directory path from queue
+		// note: can't refer to the queue contents - those are invalidated
+		// as soon as a directory is pushed onto it.
+		PathPackage pp;
+		(void)pp_set_dir(&pp, dir_queue.front());
+		dir_queue.pop();
+
+		Handle hdir = vfs_dir_open(pp.path);
+		if(hdir <= 0)
+		{
+			debug_warn("vfs_open_dir failed");
+			continue;
+		}
+
+		// for each entry (file, subdir) in directory:
+		DirEnt ent;
+		while(vfs_dir_next_ent(hdir, &ent, filter) == 0)
+		{
+			// build complete path (DirEnt only stores entry name)
+			(void)pp_append_file(&pp, ent.name);
+			const char* atom_path = file_make_unique_fn_copy(pp.path);
+
+			if(DIRENT_IS_DIR(&ent))
+			{
+				if(recursive)
+					dir_queue.push(atom_path);
+
+				if(user_filter_wants_dirs)
+					cb(atom_path, &ent, context);
+			}
+			else
+				cb(atom_path, &ent, context);
+		}
+
+		vfs_dir_close(hdir);
+	}
+	while(!dir_queue.empty());
+
+	return ERR_OK;
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////
 //

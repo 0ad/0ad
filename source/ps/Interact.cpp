@@ -882,7 +882,7 @@ static void LoadUnitUIThunk( const char* path, const DirEnt* UNUSED(ent), void* 
 }
 int CSelectedEntities::loadUnitUITextures()
 {
-	THROW_ERR( VFSUtil::EnumDirEnts( "art/textures/ui/session/icons/", VFSUtil::RECURSIVE,
+	THROW_ERR( vfs_dir_enum( "art/textures/ui/session/icons/", VFS_DIR_RECURSIVE,
 		NULL, LoadUnitUIThunk, &m_unitUITextures ) );
 	return 0;
 }

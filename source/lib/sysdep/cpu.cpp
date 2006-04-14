@@ -63,9 +63,6 @@ void cpu_init()
 	// the result as required by ANSI C. however, FPU calculation
 	// results were changed significantly, so it had to be disabled.
 	//ia32_control87(IA32_RC_CHOP, IA32_MCW_RC);
-
-	// If possible, hook up capability-sensitive assembler routines
-	ia32_hook_capabilities();
 #endif
 
 	// detects CPU clock frequency and capabilities, which are prerequisites

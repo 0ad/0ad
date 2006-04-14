@@ -32,12 +32,6 @@
 #include "lib/sysdep/win/wtime.h"
 #endif
 
-#define NO_COLOR
-
-#ifndef NO_COLOR
-#include "graphics/Color.h"
-#endif
-
 #include <string.h>
 #include <stdio.h>
 
@@ -681,30 +675,6 @@ LibError ia32_get_call_target(void* ret_addr, void** target)
 		return ERR_OK;
 
 	return ERR_CPU_UNKNOWN_OPCODE;
-}
-
-
-//-----------------------------------------------------------------------------
-
-#ifndef NO_COLOR
-// Assembler-optimized function for color conversion
-extern "C" {
-u32 sse_ConvertRGBColorTo4ub(const RGBColor& src);
-}
-#endif
-
-void ia32_hook_capabilities()
-{
-#ifndef NO_COLOR
-	if (ia32_cap(SSE))
-	{
-		ConvertRGBColorTo4ub = sse_ConvertRGBColorTo4ub;
-	}
-	else
-	{
-		debug_printf("No SSE available. Slow fallback routines will be used.\n");
-	}
-#endif
 }
 
 

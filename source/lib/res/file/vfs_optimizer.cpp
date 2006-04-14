@@ -28,8 +28,6 @@
 
 #include "file_internal.h"
 
-#include "ps/VFSUtil.h"
-
 // enough for 64K unique files - ought to suffice.
 typedef u16 FileId;
 static const FileId NULL_ID = 0;
@@ -159,7 +157,7 @@ public:
 
 		// TODO: only add entries from mount points that have
 		// VFS_MOUNT_ARCHIVE flag set (avoids adding screenshots etc.)
-		VFSUtil::EnumDirEnts("", VFSUtil::RECURSIVE, 0, EntCb, &file_nodes);
+		vfs_dir_enum("", VFS_DIR_RECURSIVE, 0, EntCb, &file_nodes);
 
 		// MAX_IDS is a rather large limit on number of files, but must not
 		// be exceeded (otherwise FileId overflows).
