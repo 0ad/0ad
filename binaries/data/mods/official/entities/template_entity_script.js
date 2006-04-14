@@ -661,9 +661,11 @@ function damage( dmg, inflictor )
 		if( this.isIdle() )
 			this.order( ORDER_GENERIC, inflictor, getAttackAction( this, inflictor ) );
 	}
+	
+// FIXME: These seemed to cause a crash I fixed the spelling from register to Register, so I've commented them out (Matei)
 	//When the entity is idle, we can readjust angle penalty. We must destroy the notifiers ourselves later, however.
-	this.RequestNotification( inflictor, NOTIFY_IDLE, false, true );
-	this.RegisterDamage( inflictor );
+	//this.requestNotification( inflictor, NOTIFY_IDLE, false, true );
+	//this.registerDamage( inflictor );
 }
 // ====================================================================
 
