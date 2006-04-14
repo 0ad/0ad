@@ -104,7 +104,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
 // FIXME: janwas: this was uninitialized, which leads to disaster if
 // its value happens to be positive.
 // setting to what seems to be a reasonable default.
-m_sectorDivs = 4;
+	m_sectorDivs = 4;
 	if ( m_sectorDivs >= 0 )
 	{	
 		m_sectorAngles.resize(m_sectorDivs);
@@ -1151,8 +1151,11 @@ void CEntity::renderHealthBar()
     if( m_healthBarHeight < 0 )
         return;  // negative bar height means don't display health bar
 	
+    float fraction;
+	if(m_healthMax == 0) fraction = 1.0f;
+	else fraction = clamp(m_healthCurr / m_healthMax, 0.0f, 1.0f);
+
 	CVector2D pos = getScreenCoords( m_healthBarHeight );
-    float fraction = clamp(m_healthCurr / m_healthMax, 0.0f, 1.0f);
     float x1 = pos.x - m_healthBarSize/2;
     float x2 = pos.x + m_healthBarSize/2;
     float y = g_yres - pos.y;
@@ -1185,8 +1188,11 @@ void CEntity::renderStaminaBar()
     if( m_staminaBarHeight < 0 )
         return;  // negative bar height means don't display stamina bar
 
+    float fraction;
+	if(m_staminaMax == 0) fraction = 1.0f;
+	else fraction = clamp(m_staminaCurr / m_staminaMax, 0.0f, 1.0f);
+
     CVector2D pos = getScreenCoords( m_staminaBarHeight );
-    float fraction = clamp(m_staminaCurr / m_staminaMax, 0.0f, 1.0f);
     float x1 = pos.x - m_staminaBarSize/2;
     float x2 = pos.x + m_staminaBarSize/2;
     float y = g_yres - pos.y;
@@ -1214,7 +1220,7 @@ void CEntity::renderRank()
 	if( !m_bounds )
         return;
     if( m_rankHeight < 0 )
-        return;  // negative height means don't display stamina bar
+        return;  // negative height means don't display rank
 	//Check for valid texture
 	if( g_Selection.m_unitUITextures.find( m_rankName ) == g_Selection.m_unitUITextures.end() )
 		return;
@@ -1238,13 +1244,13 @@ void CEntity::renderRank()
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
 	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
-   
+
 	glBegin(GL_QUADS);
 
-    glTexCoord2f(1.0f, 0.0f); glVertex3f( x2, y2, 0 );
-    glTexCoord2f(1.0f, 1.0f); glVertex3f( x2, y1, 0 );
-    glTexCoord2f(0.0f, 1.0f); glVertex3f( x1, y1,0 );
     glTexCoord2f(0.0f, 0.0f); glVertex3f( x1, y2, 0 );
+    glTexCoord2f(0.0f, 1.0f); glVertex3f( x1, y1, 0 );
+    glTexCoord2f(1.0f, 1.0f); glVertex3f( x2, y1, 0 );
+    glTexCoord2f(1.0f, 0.0f); glVertex3f( x2, y2, 0 );
 
     glEnd();
 }

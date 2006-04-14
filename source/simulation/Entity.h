@@ -133,7 +133,7 @@ public:
 
 	//Rank properties
 	float m_rankHeight;
-	int m_rankWidth;
+	float m_rankWidth;
 	CStr m_rankName;
 
 	bool m_healthDecay;

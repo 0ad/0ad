@@ -84,7 +84,7 @@ public:
 
 	//Rank properties
 	float m_rankWidth;
-	int m_rankHeight;
+	float m_rankHeight;
 	CStr m_rankName;
 
 	// Minimap properties
