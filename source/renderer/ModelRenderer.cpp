@@ -124,10 +124,18 @@ void ModelRenderer::BuildPositionAndNormals(
 		else
 			invtranspbonematrices = model->GetInvTranspBoneMatrices();
 
+		// Avoid the noisy warnings that occur inside SkinPoint/SkinNormal in
+		// some broken situations
+		if (numVertices && vertices[0].m_Blend.m_Bone[0] == 0xff)
+		{
+			LOG_ONCE(ERROR, LOG_CATEGORY, "Model %s is boned with unboned animation", mdef->GetName().c_str());
+			return;
+		}
+
 		for (size_t j=0; j<numVertices; j++)
 		{
-			SkinPoint(vertices[j],bonematrices,Position[j]);
-			SkinNormal(vertices[j],invtranspbonematrices,Normal[j]);
+			SkinPoint(vertices[j], bonematrices, Position[j]);
+			SkinNormal(vertices[j], invtranspbonematrices, Normal[j]);
 		}
 	}
 	else

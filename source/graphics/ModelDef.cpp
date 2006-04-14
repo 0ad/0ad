@@ -17,7 +17,7 @@
 // CModelDef Constructor
 CModelDef::CModelDef()	
 	: m_NumVertices(0), m_pVertices(0), m_NumFaces(0), m_pFaces(0), m_NumBones(0), m_Bones(0),
-	m_NumPropPoints(0), m_PropPoints(0)
+	m_NumPropPoints(0), m_PropPoints(0), m_Name("[not loaded]")
 {
 }
 
@@ -51,7 +51,7 @@ SPropPoint* CModelDef::FindPropPoint(const char* name) const
 CModelDef* CModelDef::Load(const char* filename)
 {
 	CFileUnpacker unpacker;
-	
+
 	// read everything in from file
 	unpacker.Read(filename,"PSMD");
 			
@@ -61,6 +61,8 @@ CModelDef* CModelDef::Load(const char* filename)
 	}
 
 	CModelDef* mdef=new CModelDef;
+	mdef->m_Name = filename;
+
 	try {
 		// now unpack everything 
 		unpacker.UnpackRaw(&mdef->m_NumVertices,sizeof(mdef->m_NumVertices));	

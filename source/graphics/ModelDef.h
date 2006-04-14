@@ -144,6 +144,9 @@ public:
 	// accessor: render data
 	CModelDefRPrivate* GetRenderData(const void* key) const;
 
+	// accessor: get model name (for debugging)
+	CStr GetName() const { return m_Name; }
+
 public:
 	// vertex data
 	u32 m_NumVertices;
@@ -159,6 +162,9 @@ public:
 	SPropPoint* m_PropPoints;
 
 private:
+	// filename
+	CStr m_Name;
+
 	// renderdata shared by models of the same modeldef,
 	// by render path
 	typedef std::map<const void*, CModelDefRPrivate*> RenderDataMap;
