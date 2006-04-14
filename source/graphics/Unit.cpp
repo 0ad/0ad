@@ -92,13 +92,15 @@ void CUnit::SetPlayerID(int id)
 
 void CUnit::SetEntitySelection(const CStrW& selection)
 {
+	CStrW selection_lc = selection.LowerCase();
+
 	// If we've already selected this, don't do anything
-	if (m_EntitySelections.find(selection) != m_EntitySelections.end())
+	if (m_EntitySelections.find(selection_lc) != m_EntitySelections.end())
 		return;
 
 	// Just allow one selection at a time
 	m_EntitySelections.clear();
-	m_EntitySelections.insert(selection);
+	m_EntitySelections.insert(selection_lc);
 
 	ReloadObject();
 }

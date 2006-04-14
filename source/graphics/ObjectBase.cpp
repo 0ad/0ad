@@ -5,6 +5,7 @@
 #include "ObjectManager.h"
 #include "XML/Xeromyces.h"
 #include "CLogger.h"
+#include "lib/timer.h"
 
 #define LOG_CATEGORY "graphics"
 
@@ -16,7 +17,7 @@ CObjectBase::CObjectBase()
 
 bool CObjectBase::Load(const char* filename)
 {
-	m_Variants.clear();
+	m_VariantGroups.clear();
 
 	CStr filePath ("art/actors/");
 	filePath += filename;
@@ -69,27 +70,25 @@ bool CObjectBase::Load(const char* filename)
 	// of elements, to avoid wasteful copying/reallocation later.
 	{
 		// Count the variants in each group
-		std::vector<int> variantSizes;
+		std::vector<int> variantGroupSizes;
 		XERO_ITER_EL(root, child)
 		{
 			if (child.getNodeName() == el_group)
 			{
-				variantSizes.push_back(0);
-				XERO_ITER_EL(child, variant)
-					++variantSizes.back();
+				variantGroupSizes.push_back(child.getChildNodes().Count);
 			}
 		}
 
-		m_Variants.resize(variantSizes.size());
+		m_VariantGroups.resize(variantGroupSizes.size());
 		// Set each vector to match the number of variants
-		for (size_t i = 0; i < variantSizes.size(); ++i)
-			m_Variants[i].resize(variantSizes[i]);
+		for (size_t i = 0; i < variantGroupSizes.size(); ++i)
+			m_VariantGroups[i].resize(variantGroupSizes[i]);
 	}
 
 
 	// (This XML-reading code is rather worryingly verbose...)
 
-	std::vector<std::vector<Variant> >::iterator currentGroup = m_Variants.begin();
+	std::vector<std::vector<Variant> >::iterator currentGroup = m_VariantGroups.begin();
 
 	XERO_ITER_EL(root, child)
 	{
@@ -104,7 +103,7 @@ bool CObjectBase::Load(const char* filename)
 				XERO_ITER_ATTR(variant, attr)
 				{
 					if (attr.Name == at_name)
-						currentVariant->m_VariantName = attr.Value;
+						currentVariant->m_VariantName = CStr(attr.Value).LowerCase();
 
 					else if (attr.Name == at_frequency)
 						currentVariant->m_Frequency = CStr(attr.Value).ToInt();
@@ -134,9 +133,13 @@ bool CObjectBase::Load(const char* filename)
 							XERO_ITER_ATTR(anim_element, ae)
 							{
 								if (ae.Name == at_name)
+								{
 									anim.m_AnimName = ae.Value;
+								}
 								else if (ae.Name == at_file)
+								{
 									anim.m_FileName = "art/animation/" + CStr(ae.Value);
+								}
 								else if (ae.Name == at_speed)
 								{
 									anim.m_Speed = CStr(ae.Value).ToInt() / 100.f;
@@ -209,8 +212,14 @@ bool CObjectBase::Load(const char* filename)
 	return true;
 }
 
+TIMER_ADD_CLIENT(tc_CalculateVariationKey)
+
 std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<std::set<CStrW> >& selections)
 {
+	TIMER_ACCRUE(tc_CalculateVariationKey);
+	// (TODO: see CObjectManager::FindObjectVariation for an opportunity to
+	// call this function a bit less frequently)
+
 	// Calculate a complete list of choices, one per group, based on the
 	// supposedly-complete selections (i.e. not making random choices at this
 	// stage).
@@ -223,8 +232,8 @@ std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<std::set<CS
 
 	std::map<CStr, CStr> chosenProps;
 
-	for (std::vector<std::vector<CObjectBase::Variant> >::iterator grp = m_Variants.begin();
-		grp != m_Variants.end();
+	for (std::vector<std::vector<CObjectBase::Variant> >::iterator grp = m_VariantGroups.begin();
+		grp != m_VariantGroups.end();
 		++grp)
 	{
 		// Ignore groups with nothing inside. (A warning will have been
@@ -274,7 +283,10 @@ std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<std::set<CS
 		CObjectBase::Variant& var ((*grp)[match]);
 		for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
 		{
-			chosenProps[it->m_PropPointName] = it->m_ModelName;
+			if (it->m_ModelName.Length())
+				chosenProps[it->m_PropPointName] = it->m_ModelName;
+			else
+				chosenProps.erase(it->m_PropPointName);
 		}
 	}
 
@@ -290,6 +302,70 @@ std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<std::set<CS
 	}
 
 	return choices;
+}
+
+const CObjectBase::Variation CObjectBase::BuildVariation(const std::vector<u8>& variationKey)
+{
+	Variation variation;
+
+	// variationKey should correspond with m_Variants, giving the id of the
+	// chosen variant from each group. (Except variationKey has some bits stuck
+	// on the end for props, but we don't care about those in here.)
+
+	std::vector<std::vector<CObjectBase::Variant> >::iterator grp = m_VariantGroups.begin();
+	std::vector<u8>::const_iterator match = variationKey.begin();
+	for ( ;
+		grp != m_VariantGroups.end() && match != variationKey.end();
+		++grp, ++match)
+	{
+		// Ignore groups with nothing inside. (A warning will have been
+		// emitted by the loading code.)
+		if (grp->size() == 0)
+			continue;
+
+		size_t id = *match;
+		if (id >= grp->size())
+		{
+			// This should be impossible
+			debug_warn("BuildVariation: invalid variant id");
+			continue;
+		}
+
+		// Get the matched variant
+		CObjectBase::Variant& var ((*grp)[id]);
+
+		// Apply its data:
+
+		if (var.m_TextureFilename.Length())
+			variation.texture = var.m_TextureFilename;
+
+		if (var.m_ModelFilename.Length())
+			variation.model = var.m_ModelFilename;
+
+		if (var.m_Color.Length())
+			variation.color = var.m_Color;
+
+		for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
+		{
+			if (it->m_ModelName.Length())
+				variation.props[it->m_PropPointName] = *it;
+			else
+				variation.props.erase(it->m_PropPointName);
+		}
+
+		// If one variant defines one animation called e.g. "attack", and this
+		// variant defines two different animations with the same name, the one
+		// original should be erased, and replaced by the two new ones.
+		//
+		// So, erase all existing animations which are overridden by this variant:
+		for (std::vector<CObjectBase::Anim>::iterator it = var.m_Anims.begin(); it != var.m_Anims.end(); ++it)
+			variation.anims.erase(it->m_AnimName);
+		// and then insert the new ones:
+		for (std::vector<CObjectBase::Anim>::iterator it = var.m_Anims.begin(); it != var.m_Anims.end(); ++it)
+			variation.anims.insert(make_pair(it->m_AnimName, *it));
+	}
+
+	return variation;
 }
 
 std::set<CStrW> CObjectBase::CalculateRandomVariation(const std::set<CStrW>& initialSelections)
@@ -308,8 +384,8 @@ std::set<CStrW> CObjectBase::CalculateRandomVariation(const std::set<CStrW>& ini
 	// When choosing randomly, make use of each variant's frequency. If all
 	// variants have frequency 0, treat them as if they were 1.
 
-	for (std::vector<std::vector<CObjectBase::Variant> >::iterator grp = m_Variants.begin();
-		grp != m_Variants.end();
+	for (std::vector<std::vector<CObjectBase::Variant> >::iterator grp = m_VariantGroups.begin();
+		grp != m_VariantGroups.end();
 		++grp)
 	{
 		// Ignore groups with nothing inside. (A warning will have been
@@ -383,7 +459,10 @@ std::set<CStrW> CObjectBase::CalculateRandomVariation(const std::set<CStrW>& ini
 		CObjectBase::Variant& var ((*grp)[match]);
 		for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
 		{
-			chosenProps[it->m_PropPointName] = it->m_ModelName;
+			if (it->m_ModelName.Length())
+				chosenProps[it->m_PropPointName] = it->m_ModelName;
+			else
+				chosenProps.erase(it->m_PropPointName);
 		}
 	}
 
@@ -394,6 +473,7 @@ std::set<CStrW> CObjectBase::CalculateRandomVariation(const std::set<CStrW>& ini
 		if (prop)
 		{
 			std::set<CStrW> propSelections = prop->CalculateRandomVariation(selections);
+			// selections = union(propSelections, selections)
 			std::set<CStrW> newSelections;
 			std::set_union(propSelections.begin(), propSelections.end(),
 				selections.begin(), selections.end(),

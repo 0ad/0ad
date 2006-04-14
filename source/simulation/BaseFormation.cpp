@@ -141,7 +141,7 @@ bool CBaseFormation::loadXML(CStr filename)
 
 				if( order <= 0 )
 				{
-					LOG( ERROR, LOG_CATEGORY, "CBaseFormation::LoadXML: Invalid (negative number or 0) order defined in formation file %s.  The game will try to continue anyway.", filename.c_str() );
+					LOG( ERROR, LOG_CATEGORY, "CBaseFormation::LoadXML: Invalid (negative number or 0) order defined in formation file %s. The game will try to continue anyway.", filename.c_str() );
 					continue;
 				}
 				--order;	//We need this to be in line with arrays, so start at 0
@@ -173,7 +173,7 @@ bool CBaseFormation::loadXML(CStr filename)
 	{
 		if ( m_slots.find(i) == m_slots.end() )
 		{
-			LOG( ERROR, LOG_CATEGORY, "CBaseFormation::LoadXML: Missing orders in %s.  Load failed.", filename.c_str() );
+			LOG( ERROR, LOG_CATEGORY, "CBaseFormation::LoadXML: Missing orders in %s. Load failed.", filename.c_str() );
 			return false;
 		}
 		else

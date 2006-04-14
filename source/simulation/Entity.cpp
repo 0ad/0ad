@@ -740,36 +740,43 @@ void CEntity::DispatchNotification( CEntityOrder order, int type )
 	CEventNotification evt( order, type );
 	DispatchEvent( &evt );
 }
+
+struct isListenerSender
+{
+	CEntity* sender;
+	isListenerSender(CEntity* sender) : sender(sender) {}
+	bool operator()(CEntityListener& listener)
+	{
+		return listener.m_sender == sender;
+	}
+};
+
 int CEntity::DestroyNotifier( CEntity* target )
 {
 	if (target->m_listeners.empty() || !m_destroyNotifiers)
 		return 0;
 	//Stop listening
-	for ( size_t i=0; i < target->m_listeners.size(); i++ )
-	{
-		if ( target->m_listeners[i].m_sender == this )
-			target->m_listeners.erase(target->m_listeners.begin() + i);
-	}
-	int removed=0;
+	// (Don't just loop and use 'erase', because modifying the deque while
+	// looping over it is a bit dangerous)
+	std::deque<CEntityListener>::iterator newEnd = std::remove_if(
+		target->m_listeners.begin(), target->m_listeners.end(),
+		isListenerSender(this));
+	target->m_listeners.erase(newEnd, target->m_listeners.end());
+
 	//Get rid of our copy
-	for ( size_t i=0; i < target->m_notifiers.size(); i++ )
-	{
-		if ( m_notifiers[i] == target )
-		{
-			m_notifiers.erase(m_notifiers.begin() + i);
-			++removed;
-		}
-	}
+	std::vector<CEntity*>::iterator newEnd2 = std::remove_if(
+		m_notifiers.begin(), m_notifiers.end(),
+		bind2nd(std::equal_to<CEntity*>(), target));
+	int removed = std::distance(newEnd2, m_notifiers.end());
+	m_notifiers.erase(newEnd2, m_notifiers.end());
 	return removed;
 }
 void CEntity::DestroyAllNotifiers()
 {
 	debug_assert(m_destroyNotifiers);
 	//Make them stop listening to us
-	if ( m_notifiers.empty() )
-		return;
-	for ( size_t i=0; i<m_notifiers.size(); i++ )
-		i -= DestroyNotifier( m_notifiers[i] );
+	while ( ! m_notifiers.empty() )
+		DestroyNotifier( m_notifiers[0] );
 }
 CEntityFormation* CEntity::GetFormation()
 {
@@ -1768,6 +1775,7 @@ bool CEntity::RequestNotification( JSContext* cx, uintN argc, jsval* argv )
 	CEntity *target = ToNative<CEntity>( argv[0] );
 	(int&)notify.m_type = ToPrimitive<int>( argv[1] );
 	bool tmpDestroyNotifiers = ToPrimitive<bool>( argv[2] );
+	// TODO: ??? This local variable overrides the member variable of the same name...
 	bool m_destroyNotifiers = !ToPrimitive<bool>( argv[3] );
 
 	if (target == this)

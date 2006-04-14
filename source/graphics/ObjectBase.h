@@ -38,7 +38,7 @@ public:
 	struct Variant
 	{
 		Variant() : m_Frequency(0) {}
-		CStr m_VariantName;
+		CStr m_VariantName; // lowercase name
 		int m_Frequency;
 		CStr m_ModelFilename;
 		CStr m_TextureFilename;
@@ -48,11 +48,20 @@ public:
 		std::vector<Prop> m_Props;
 	};
 
+	struct Variation
+	{
+		CStr texture;
+		CStr model;
+		CStr color;
+		std::map<CStr, CObjectBase::Prop> props;
+		std::multimap<CStr, CObjectBase::Anim> anims;
+	};
+
 	CObjectBase();
 
-	std::vector< std::vector<Variant> > m_Variants;
-
 	std::vector<u8> CalculateVariationKey(const std::vector<std::set<CStrW> >& selections);
+
+	const Variation BuildVariation(const std::vector<u8>& variationKey);
 
 	std::set<CStrW> CalculateRandomVariation(const std::set<CStrW>& initialSelections);
 
@@ -73,6 +82,9 @@ public:
 
 	// the material file
 	CStr m_Material;
+
+private:
+	std::vector< std::vector<Variant> > m_VariantGroups;
 };
 
 

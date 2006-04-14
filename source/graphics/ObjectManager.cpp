@@ -109,7 +109,11 @@ CObjectEntry* CObjectManager::FindObjectVariation(CObjectBase* base, const std::
 
 	CObjectEntry* obj = new CObjectEntry(0, base); // TODO: type ?
 
-	if (! obj->BuildVariation(selections))
+	// TODO (for some efficiency): use the pre-calculated choices for this object,
+	// which has already worked out what to do for props, instead of passing the
+	// selections into BuildVariation and having it recalculate the props' choices.
+
+	if (! obj->BuildVariation(selections, choices))
 	{
 		DeleteObject(obj);
 		return NULL;

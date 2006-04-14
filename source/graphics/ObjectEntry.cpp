@@ -37,106 +37,29 @@ CObjectEntry::~CObjectEntry()
 }
 
 
-bool CObjectEntry::BuildVariation(const std::vector<std::set<CStrW> >& selections)
+bool CObjectEntry::BuildVariation(const std::vector<std::set<CStrW> >& selections, const std::vector<u8>& variationKey)
 {
-	CStr chosenTexture;
-	CStr chosenModel;
-	CStr chosenColor;
-	std::map<CStr, CObjectBase::Prop> chosenProps;
-	std::multimap<CStr, CObjectBase::Anim> chosenAnims;
-
-	for (std::vector<std::vector<CObjectBase::Variant> >::iterator grp = m_Base->m_Variants.begin();
-		grp != m_Base->m_Variants.end();
-		++grp)
-	{
-		// Ignore groups with nothing inside. (A warning will have been
-		// emitted by the loading code.)
-		if (grp->size() == 0)
-			continue;
-
-		int match = -1; // -1 => none found yet
-
-		// If there's only a single variant, choose that one
-		if (grp->size() == 1)
-		{
-			match = 0;
-		}
-		else
-		{
-			// Determine the first variant that matches the provided strings,
-			// starting with the highest priority selections set:
-
-			for (std::vector<std::set<CStrW> >::const_iterator selset = selections.begin(); selset < selections.end(); ++selset)
-			{
-				debug_assert(grp->size() < 256); // else they won't fit in 'choices'
-
-				for (size_t i = 0; i < grp->size(); ++i)
-				{
-					if (selset->count((*grp)[i].m_VariantName))
-					{
-						match = (u8)i;
-						break;
-					}
-				}
-
-				// Stop after finding the first match
-				if (match != -1)
-					break;
-			}
-
-			// If no match, just choose the first
-			if (match == -1)
-				match = 0;
-		}
-
-		// Get the matched variant
-		CObjectBase::Variant& var ((*grp)[match]);
-
-		// Apply its data:
-
-		if (var.m_TextureFilename.Length())
-			chosenTexture = var.m_TextureFilename;
-
-		if (var.m_ModelFilename.Length())
-			chosenModel = var.m_ModelFilename;
-
-		if (var.m_Color.Length())
-			chosenColor = var.m_Color;
-
-		for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
-			chosenProps[it->m_PropPointName] = *it;
-
-		// If one variant defines one animation called e.g. "attack", and this
-		// variant defines two different animations with the same name, the one
-		// original should be erased, and replaced by the two new ones.
-		//
-		// So, erase all existing animations which are overridden by this variant:
-		for (std::vector<CObjectBase::Anim>::iterator it = var.m_Anims.begin(); it != var.m_Anims.end(); ++it)
-			chosenAnims.erase(chosenAnims.lower_bound(it->m_AnimName), chosenAnims.upper_bound(it->m_AnimName));
-		// and then insert the new ones:
-		for (std::vector<CObjectBase::Anim>::iterator it = var.m_Anims.begin(); it != var.m_Anims.end(); ++it)
-			chosenAnims.insert(make_pair(it->m_AnimName, *it));
-	}
+	CObjectBase::Variation variation = m_Base->BuildVariation(variationKey);
 
 	// Copy the chosen data onto this model:
 
-	m_TextureName = chosenTexture;
-	m_ModelName = chosenModel;
+	m_TextureName = variation.texture;
+	m_ModelName = variation.model;
 
-	if (chosenColor.Length())
+	if (variation.color.Length())
 	{
 		std::stringstream str;
-		str << chosenColor;
+		str << variation.color;
 		int r, g, b;
 		if (! (str >> r >> g >> b)) // Any trailing data is ignored
-			LOG(ERROR, LOG_CATEGORY, "Invalid RGB colour '%s'", chosenColor.c_str());
+			LOG(ERROR, LOG_CATEGORY, "Invalid RGB colour '%s'", variation.color.c_str());
 		else
 			m_Color = CColor(r/255.0f, g/255.0f, b/255.0f, 1.0f);
 	}
 
 	std::vector<CObjectBase::Prop> props;
 
-	for (std::map<CStr, CObjectBase::Prop>::iterator it = chosenProps.begin(); it != chosenProps.end(); ++it)
+	for (std::map<CStr, CObjectBase::Prop>::iterator it = variation.props.begin(); it != variation.props.end(); ++it)
 		props.push_back(it->second);
 
 	// Build the model:
@@ -169,7 +92,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStrW> >& selection
 	m_Model->CalcObjectBounds();
 
 	// load the animations
-	for (std::multimap<CStr, CObjectBase::Anim>::iterator it = chosenAnims.begin(); it != chosenAnims.end(); ++it)
+	for (std::multimap<CStr, CObjectBase::Anim>::iterator it = variation.anims.begin(); it != variation.anims.end(); ++it)
 	{
 		CStr name = it->first.LowerCase();
 
