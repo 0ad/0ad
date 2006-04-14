@@ -13,7 +13,7 @@
         <animation file="biped/inf_sword_shield_run_a.psa" name="Run" speed="10"/>
         <animation file="biped/inf_sword_shield_run_b.psa" name="Run" speed="10"/>
         <animation file="biped/inf_sword_shield_run_c.psa" name="Run" speed="10"/>
-        <animation file="biped/chop.psa" name="gather_wood" speed="125"/>
+        <animation file="biped/chop.psa" name="gather_wood" speed="100"/>
         <animation file="biped/hoe.psa" name="gather_grain" speed="150"/>
         <animation file="biped/forage.psa" name="gather_fruit" speed="35"/>
         <animation file="biped/mine.psa" name="gather_stone" speed="150"/>
@@ -51,8 +51,8 @@
     <variant name="gather_wood">
       <props>
         <prop actor="" attachpoint="shield"/>
-        <prop actor="" attachpoint="l_hand"/>
-        <prop actor="props/units/tools/axe.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/tools/axe.xml" attachpoint="l_hand"/>
+        <prop actor="" attachpoint="r_hand"/>
       </props>
     </variant>
     <variant name="gather_grain">
@@ -71,8 +71,8 @@
     <variant name="gather_stone">
       <props>
         <prop actor="" attachpoint="shield"/>
-        <prop actor="" attachpoint="l_hand"/>
-        <prop actor="props/units/tools/pick.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
+        <prop actor="" attachpoint="r_hand"/>
       </props>
     </variant>
     <variant name="Build">
