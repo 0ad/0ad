@@ -482,7 +482,8 @@ private:
 	std::wstring errorText;
 	void complain(const SAXParseException& err, const wchar_t* severity) {
 		sawErrors = true;
-		errorText += (std::wstring)L"XML "+severity+L": "+ err.getSystemId() + L" / " + err.getMessage();
+		C_ASSERT(sizeof(wchar_t) == sizeof(XMLCh));
+		errorText += (std::wstring)L"XML "+severity+L": "+ (wchar_t*)err.getSystemId() + L" / " + (wchar_t*)err.getMessage();
 	}
 };
 
@@ -569,7 +570,7 @@ void XeroHandler::endDocument()
 
 void XeroHandler::startElement(const XMLCh* const /*uri*/, const XMLCh* const localname, const XMLCh* const /*qname*/, const Attributes& attrs)
 {
-	utf16string elementName = localname;
+	utf16string elementName = (utf16_t*)localname;
 
 	// Create a new element
 	XMLElement* e = new XMLElement;
@@ -579,10 +580,10 @@ void XeroHandler::startElement(const XMLCh* const /*uri*/, const XMLCh* const lo
 	// Store all the attributes in the new element
 	for (unsigned int i = 0; i < attrs.getLength(); ++i)
 	{
-		utf16string attrName = attrs.getLocalName(i);
+		utf16string attrName = (utf16_t*)attrs.getLocalName(i);
 		XMLAttribute attr;
 		attr.name = attrName;
-		attr.value = attrs.getValue(i);
+		attr.value = (utf16_t*)attrs.getValue(i);
 		e->attrs.push_back(attr);
 	}
 
@@ -628,5 +629,5 @@ void XeroHandler::endElement(const XMLCh* const /*uri*/, const XMLCh* const /*lo
 
 void XeroHandler::characters(const XMLCh* const chars, const unsigned int length)
 {
-	ElementStack.top()->text += utf16string(chars, length);
+	ElementStack.top()->text += utf16string((utf16_t*)chars, length);
 }

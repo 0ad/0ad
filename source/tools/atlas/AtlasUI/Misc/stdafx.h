@@ -4,6 +4,12 @@
 # define HAVE_PCH
 #endif
 
+#ifdef _MSC_VER
+// Please shut up about all the deprecations
+# define _CRT_SECURE_NO_DEPRECATE
+# pragma warning(disable: 4996)
+#endif
+
 #ifdef HAVE_PCH
 
 // Exclude rarely-used stuff from Windows headers
@@ -37,8 +43,8 @@
 
 // Nicer memory-leak detection:
 #ifdef _DEBUG
-#include <crtdbg.h>
-#define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
+# include <crtdbg.h>
+# define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
 
 #endif // HAVE_PCH

@@ -163,7 +163,7 @@ BEGIN_COMMAND(PaintTerrain)
 		d->pos.GetWorldSpace(g_CurrentBrush.m_Centre);
 
 		int x0, y0;
-		g_CurrentBrush.GetBottomRight(x0, y0);
+		g_CurrentBrush.GetBottomLeft(x0, y0);
 
 		CTextureEntry* texentry = g_TexMan.FindTexture(CStrW(d->texture));
 		if (! texentry)

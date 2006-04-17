@@ -136,7 +136,8 @@ static AtSmartPtr<AtNode> ConvertNode(DOMElement* element)
 			// Text inside the element. Append it to the current node's string.
 
 			// TODO: Make this work on GCC, where wchar_t != XMLCh
-			std::wstring value_wstr (node->getNodeValue());
+			assert(sizeof(wchar_t) == sizeof(XMLCh));
+			std::wstring value_wstr (reinterpret_cast<const wchar_t*>(node->getNodeValue()));
 			obj->value += value_wstr;
 		}
 	}
@@ -152,7 +153,7 @@ static AtSmartPtr<AtNode> ConvertNode(DOMElement* element)
 
 			// Get name and value. (TODO: GCC)
 			char* name = XMLString::transcode(attr->getName());
-			const wchar_t* value = attr->getValue();
+			const wchar_t* value = reinterpret_cast<const wchar_t*>(attr->getValue());
 
 			// Prefix the name with an @, to differentiate it from an element
 			std::string newName ("@"); newName += name;
@@ -201,7 +202,8 @@ static DOMAttr* BuildDOMAttr(DOMDocument* doc, const XMLCh* name, AtNode::Ptr p)
 
 	DOMAttr* attr = doc->createAttribute(name);
 
-	attr->setValue(p->value.c_str());
+	// TODO: make work on GCC
+	attr->setValue(reinterpret_cast<const XMLCh*>(p->value.c_str()));
 
 	return attr;
 }
@@ -215,7 +217,7 @@ static DOMNode* BuildDOMNode(DOMDocument* doc, const XMLCh* name, AtNode::Ptr p)
 	{
 		// TODO: make this work on GCC
 		if (p->value.length())
-			node->setTextContent(p->value.c_str());
+			node->setTextContent(reinterpret_cast<const XMLCh*>(p->value.c_str()));
 
 		XMLCh tempStr[256]; // urgh, nasty fixed-size buffer
 		for (AtNode::child_maptype::const_iterator it = p->children.begin(); it != p->children.end(); ++it)

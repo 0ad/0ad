@@ -1,5 +1,7 @@
 #include "maths/Vector3D.h"
 
+class TerrainOverlay;
+
 namespace AtlasMessage {
 
 struct Brush
@@ -10,10 +12,10 @@ struct Brush
 	void SetData(int w, int h, const float* data);
 	
 	void SetRenderEnabled(bool enabled); // initial state is disabled
-	void Render(); // only does anything if enabled
 
 	void GetCentre(int& x, int& y) const;
-	void GetBottomRight(int& x, int& y) const;
+	void GetBottomLeft(int& x, int& y) const;
+	void GetTopRight(int& x, int& y) const;
 
 	float Get(int x, int y) const
 	{
@@ -24,8 +26,8 @@ struct Brush
 	int m_W, m_H;
 	CVector3D m_Centre;
 private:
+	TerrainOverlay* m_TerrainOverlay; // NULL if rendering is not enabled
 	const float* m_Data;
-	bool m_Enabled;
 };
 
 extern Brush g_CurrentBrush;

@@ -54,6 +54,7 @@
 #include "renderer/RenderModifiers.h"
 #include "renderer/RenderPathVertexShader.h"
 #include "renderer/ShadowMap.h"
+#include "renderer/TerrainOverlay.h"
 #include "renderer/TerrainRenderer.h"
 #include "renderer/TransparencyRenderer.h"
 #include "renderer/WaterManager.h"
@@ -961,6 +962,9 @@ void CRenderer::FlushFrame()
 	MICROLOG(L"render patches");
 	RenderPatches();
 	oglCheck();
+
+	// render debug-related terrain overlays
+	TerrainOverlay::RenderOverlays();
 
 	MICROLOG(L"render models");
 	RenderModels();

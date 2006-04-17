@@ -31,7 +31,6 @@ namespace AtlasMessage
 void AtlasRender()
 {
 	Render();
-	g_CurrentBrush.Render();
 	AtlasRenderSelection();
 }
 

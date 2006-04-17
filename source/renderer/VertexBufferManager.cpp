@@ -69,7 +69,7 @@ CVertexBuffer::VBChunk* CVertexBufferManager::Allocate(size_t vertexSize,size_t 
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// Release: return given chunk to it's owner
+// Release: return given chunk to its owner
 void CVertexBufferManager::Release(CVertexBuffer::VBChunk* chunk)
 {
 	debug_assert(chunk);

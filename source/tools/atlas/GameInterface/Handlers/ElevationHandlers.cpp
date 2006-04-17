@@ -108,7 +108,7 @@ BEGIN_COMMAND(AlterElevation)
 		previousPosition = g_CurrentBrush.m_Centre;
 
 		int x0, y0;
-		g_CurrentBrush.GetBottomRight(x0, y0);
+		g_CurrentBrush.GetBottomLeft(x0, y0);
 
 		for (int dy = 0; dy < g_CurrentBrush.m_H; ++dy)
 			for (int dx = 0; dx < g_CurrentBrush.m_W; ++dx)
@@ -171,7 +171,7 @@ BEGIN_COMMAND(FlattenElevation)
 		u16 height = m_TerrainDelta.GetVertex(xc, yc);
 
 		int x0, y0;
-		g_CurrentBrush.GetBottomRight(x0, y0);
+		g_CurrentBrush.GetBottomLeft(x0, y0);
 
 		for (int dy = 0; dy < g_CurrentBrush.m_H; ++dy)
 			for (int dx = 0; dx < g_CurrentBrush.m_W; ++dx)

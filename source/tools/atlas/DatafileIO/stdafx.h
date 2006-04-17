@@ -4,6 +4,10 @@
 # define HAVE_PCH
 #endif
 
+#ifdef _MSC_VER
+# define _SCL_SECURE_NO_DEPRECATE // shut up, std::copy isn't deprecated
+#endif
+
 #ifdef HAVE_PCH
 
 // Exclude rarely-used stuff from Windows headers
