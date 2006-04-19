@@ -120,6 +120,12 @@ char mount_get_type(const Mount* m)
 }
 
 
+Handle mount_get_archive(const Mount* m)
+{
+	return m->archive;
+}
+
+
 bool mount_is_archivable(const Mount* m)
 {
 	return (m->flags & VFS_MOUNT_ARCHIVES) != 0;
@@ -161,6 +167,18 @@ bool mount_should_replace(const Mount* m_old, const Mount* m_new,
 		return false;
 
 	return true;
+}
+
+
+// given a file's TFile and V_path, return its actual location (portable path).
+LibError mount_realpath(const char* V_path, const TFile* tf, char* P_real_path)
+{
+	const Mount* m = tfile_get_mount(tf);
+	const char* P_parent_path = m->P_name.c_str();
+
+	const char* remove = m->V_mount_point.c_str();
+	const char* replace = P_parent_path;
+	return path_replace(P_real_path, V_path, remove, replace);
 }
 
 
@@ -424,7 +442,7 @@ static LibError add_ent(TDir* td, DirEnt* ent, const char* P_parent_path, const 
 
 // note: full path is needed for the dir watch.
 static LibError populate_dir(TDir* td, const char* P_path, const Mount* m,
-	DirQueue* dir_queue, Archives* archives, int flags)
+	DirQueue* dir_queue, Archives* archives, uint flags)
 {
 	LibError err;
 
@@ -603,7 +621,7 @@ static inline void remount_all()
 // flags determines extra actions to perform; see VfsMountFlags.
 //
 // P_real_path = "." or "./" isn't allowed - see implementation for rationale.
-LibError vfs_mount(const char* V_mount_point, const char* P_real_path, int flags, uint pri)
+LibError vfs_mount(const char* V_mount_point, const char* P_real_path, uint flags, uint pri)
 {
 	// callers have a tendency to forget required trailing '/';
 	// complain if it's not there, unless path = "" (root td).
@@ -739,7 +757,7 @@ void mount_shutdown()
 
 
 
-LibError mount_attach_real_dir(RealDir* rd, const char* P_path, const Mount* m, int flags)
+LibError mount_attach_real_dir(RealDir* rd, const char* P_path, const Mount* m, uint flags)
 {
 	// more than one real dir mounted into VFS dir
 	// (=> can't create files for writing here)
@@ -778,277 +796,4 @@ LibError mount_populate(TDir* td, RealDir* rd)
 	UNUSED2(td);
 	UNUSED2(rd);
 	return ERR_OK;
-}
-
-
-//-----------------------------------------------------------------------------
-
-
-
-
-
-
-// rationale for not using virtual functions for file_open vs afile_open:
-// it would spread out the implementation of each function and makes
-// keeping them in sync harder. we will very rarely add new sources and
-// all these functions are in one spot anyway.
-
-
-// given a Mount, return the actual location (portable path) of
-// <V_path>. used by vfs_realpath and VFile_reopen.
-LibError x_realpath(const Mount* m, const char* V_path, char* P_real_path)
-{
-	const char* P_parent_path = 0;
-
-	switch(m->type)
-	{
-	case MT_ARCHIVE:
-		P_parent_path = h_filename(m->archive);
-		break;
-	case MT_FILE:
-		P_parent_path = m->P_name.c_str();
-		break;
-	default:
-		WARN_RETURN(ERR_INVALID_MOUNT_TYPE);
-	}
-
-	const char* remove = m->V_mount_point.c_str();
-	const char* replace = P_parent_path;
-	return path_replace(P_real_path, V_path, remove, replace);
-}
-
-
-
-LibError x_open(const Mount* m, const char* V_path, int flags, TFile* tf, XFile* xf)
-{
-	// declare variables used in the switch below to avoid needing {}.
-	char N_path[PATH_MAX];
-	uintptr_t memento = 0;
-
-	switch(m->type)
-	{
-	case MT_ARCHIVE:
-		if(flags & FILE_WRITE)
-			WARN_RETURN(ERR_IS_COMPRESSED);
-		memento = tfile_get_memento(tf);
-		RETURN_ERR(afile_open(m->archive, V_path, memento, flags, &xf->u.zf));
-		break;
-	case MT_FILE:
-		CHECK_ERR(x_realpath(m, V_path, N_path));
-		RETURN_ERR(file_open(N_path, flags|FILE_DONT_SET_FN, &xf->u.f));
-		// file_open didn't set fc.atom_fn due to FILE_DONT_SET_FN.
-		xf->u.fc.atom_fn = file_make_unique_fn_copy(V_path);
-		break;
-	default:
-		WARN_RETURN(ERR_INVALID_MOUNT_TYPE);
-	}
-
-	// success
-	// note: don't assign these unless we succeed to avoid the
-	// false impression that all is well.
-	xf->type = m->type;
-	xf->tf   = tf;
-	return ERR_OK;
-}
-
-
-LibError x_close(XFile* xf)
-{
-	switch(xf->type)
-	{
-	// no file open (e.g. because x_open failed) -> nothing to do.
-	case MT_NONE:
-		return ERR_OK;
-
-	case MT_ARCHIVE:
-		(void)afile_close(&xf->u.zf);
-		break;
-	case MT_FILE:
-		(void)file_close(&xf->u.f);
-		break;
-	default:
-		WARN_RETURN(ERR_INVALID_MOUNT_TYPE);
-	}
-
-	// update file state in VFS tree
-	// (must be done after close, since that calculates the size)
-	if(xf->u.fc.flags & FILE_WRITE)
-		tree_update_file(xf->tf, xf->u.fc.size, time(0));	// can't fail
-
-	xf->type = MT_NONE;
-	return ERR_OK;
-}
-
-
-LibError x_validate(const XFile* xf)
-{
-	switch(xf->type)
-	{
-	case MT_NONE:
-		if(xf->tf != 0)
-			return ERR_11;
-		return ERR_OK;	// ok, nothing else to check
-
-	case MT_FILE:
-		if(xf->tf == 0)
-			return ERR_12;
-		return file_validate(&xf->u.f);
-
-	case MT_ARCHIVE:
-		// this could be set to 0 in x_open (since it's used to update the
-		// VFS after newly written files are closed, but archive files
-		// cannot be modified), but it's not ATM.
-		if(xf->tf == 0)
-			return ERR_13;
-		return afile_validate(&xf->u.zf);
-
-	default:
-		return ERR_INVALID_MOUNT_TYPE;
-	}
-}
-
-
-bool x_is_open(const XFile* xf)
-{
-	return (xf->type != MT_NONE);
-}
-
-
-// VFile was exceeding HDATA_USER_SIZE. flags and size (required
-// in File as well as VFile) are now moved into the union.
-// use the functions below to insulate against change a bit.
-
-off_t x_size(const XFile* xf)
-{
-	return xf->u.fc.size;
-}
-
-
-void x_set_flags(XFile* xf, uint flags)
-{
-	xf->u.fc.flags = flags;
-}
-
-uint x_flags(const XFile* xf)
-{
-	return xf->u.fc.flags;
-}
-
-
-LibError x_io_issue(XFile* xf, off_t ofs, size_t size, void* buf, XIo* xio)
-{
-	xio->type = xf->type;
-	switch(xio->type)
-	{
-	case MT_ARCHIVE:
-		return afile_io_issue(&xf->u.zf, ofs, size, buf, &xio->u.zio);
-	case MT_FILE:
-		return file_io_issue(&xf->u.f, ofs, size, buf, &xio->u.fio);
-	default:
-		WARN_RETURN(ERR_INVALID_MOUNT_TYPE);
-	}
-}
-
-
-int x_io_has_completed(XIo* xio)
-{
-	switch(xio->type)
-	{
-	case MT_ARCHIVE:
-		return afile_io_has_completed(&xio->u.zio);
-	case MT_FILE:
-		return file_io_has_completed(&xio->u.fio);
-	default:
-		WARN_RETURN(ERR_INVALID_MOUNT_TYPE);
-	}
-}
-
-
-LibError x_io_wait(XIo* xio, void*& p, size_t& size)
-{
-	switch(xio->type)
-	{
-	case MT_ARCHIVE:
-		return afile_io_wait(&xio->u.zio, p, size);
-	case MT_FILE:
-		return file_io_wait(&xio->u.fio, p, size);
-	default:
-		WARN_RETURN(ERR_INVALID_MOUNT_TYPE);
-	}
-}
-
-
-LibError x_io_discard(XIo* xio)
-{
-	switch(xio->type)
-	{
-	case MT_ARCHIVE:
-		return afile_io_discard(&xio->u.zio);
-	case MT_FILE:
-		return file_io_discard(&xio->u.fio);
-	default:
-		WARN_RETURN(ERR_INVALID_MOUNT_TYPE);
-	}
-}
-
-
-LibError x_io_validate(const XIo* xio)
-{
-	switch(xio->type)
-	{
-	case MT_ARCHIVE:
-		return afile_io_validate(&xio->u.zio);
-	case MT_FILE:
-		return file_io_validate(&xio->u.fio);
-	default:
-		return ERR_INVALID_MOUNT_TYPE;
-	}
-}
-
-
-ssize_t x_io(XFile* xf, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb, uintptr_t ctx)
-{
-	switch(xf->type)
-	{
-	case MT_ARCHIVE:
-		// (vfs_open makes sure it's not opened for writing if zip)
-		return afile_read(&xf->u.zf, ofs, size, pbuf, cb, ctx);
-
-	case MT_FILE:
-		// normal file:
-		// let file_io alloc the buffer if the caller didn't (i.e. p = 0),
-		// because it knows about alignment / padding requirements
-		return file_io(&xf->u.f, ofs, size, pbuf, cb, ctx);
-
-	default:
-		WARN_RETURN(ERR_INVALID_MOUNT_TYPE);
-	}
-}
-
-
-LibError x_map(XFile* xf, void*& p, size_t& size)
-{
-	switch(xf->type)
-	{
-	case MT_ARCHIVE:
-		return afile_map(&xf->u.zf, p, size);
-	case MT_FILE:
-		return file_map(&xf->u.f, p, size);
-	default:
-		WARN_RETURN(ERR_INVALID_MOUNT_TYPE);
-	}
-}
-
-
-LibError x_unmap(XFile* xf)
-{
-	switch(xf->type)
-	{
-	case MT_ARCHIVE:
-		return afile_unmap(&xf->u.zf);
-	case MT_FILE:
-		return file_unmap(&xf->u.f);
-	default:
-		WARN_RETURN(ERR_INVALID_MOUNT_TYPE);
-	}
 }

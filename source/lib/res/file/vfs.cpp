@@ -333,9 +333,8 @@ LibError vfs_realpath(const char* V_path, char* realpath)
 	TFile* tf;
 	CHECK_ERR(tree_lookup(V_path, &tf));
 
-	const Mount* m = tfile_get_mount(tf);
 	const char* atom_fn = tfile_get_atom_fn(tf);
-	return x_realpath(m, atom_fn, realpath);
+	return mount_realpath(atom_fn, tf, realpath);
 }
 
 
@@ -367,11 +366,15 @@ LibError vfs_stat(const char* V_path, struct stat* s)
 
 struct VFile
 {
-	XFile xf;
+	File f;
 
 	// current file pointer. this is necessary because file.cpp's interface
 	// requires passing an offset for every VIo; see file_io_issue.
 	off_t ofs;
+
+	// pointer to VFS file info storage; used to update size/mtime
+	// after a newly written file is closed.
+	TFile* tf;
 
 	uint is_valid : 1;
 
@@ -383,15 +386,19 @@ H_TYPE_DEFINE(VFile);
 
 static void VFile_init(VFile* vf, va_list args)
 {
-	uint flags = va_arg(args, int);
-	x_set_flags(&vf->xf, flags);	// can't fail
+	vf->f.flags = va_arg(args, int);
 }
 
 static void VFile_dtor(VFile* vf)
 {
 	// note: checking if reload() succeeded is unnecessary because
-	// x_close and mem_free_h safely handle 0-initialized data.
-	WARN_ERR(x_close(&vf->xf));
+	// xfile_close and mem_free_h safely handle 0-initialized data.
+	WARN_ERR(xfile_close(&vf->f));
+
+	// update file state in VFS tree
+	// (must be done after close, since that calculates the size)
+	if(vf->f.flags & FILE_WRITE)
+		tree_update_file(vf->tf, vf->f.size, time(0));	// can't fail
 
 	if(vf->is_valid)
 		stats_close();
@@ -399,11 +406,11 @@ static void VFile_dtor(VFile* vf)
 
 static LibError VFile_reload(VFile* vf, const char* V_path, Handle)
 {
-	const uint flags = x_flags(&vf->xf);
+	const uint flags = vf->f.flags;
 
 	// we're done if file is already open. need to check this because
 	// reload order (e.g. if resource opens a file) is unspecified.
-	if(x_is_open(&vf->xf))
+	if(xfile_is_open(&vf->f))
 		return ERR_OK;
 
 	TFile* tf;
@@ -416,12 +423,11 @@ static LibError VFile_reload(VFile* vf, const char* V_path, Handle)
 		return err;
 	}
 
-	const Mount* m = tfile_get_mount(tf);
-	RETURN_ERR(x_open(m, V_path, flags, tf, &vf->xf));
+	RETURN_ERR(xfile_open(V_path, flags, tf, &vf->f));
 
-	FileCommon& fc = vf->xf.u.fc;
-	stats_open(fc.atom_fn, fc.size);
+	stats_open(vf->f.atom_fn, vf->f.size);
 	vf->is_valid = 1;
+	vf->tf = tf;
 
 	return ERR_OK;
 }
@@ -429,7 +435,7 @@ static LibError VFile_reload(VFile* vf, const char* V_path, Handle)
 static LibError VFile_validate(const VFile* vf)
 {
 	// <ofs> doesn't have any invariant we can check.
-	RETURN_ERR(x_validate(&vf->xf));
+	RETURN_ERR(xfile_validate(&vf->f));
 	return ERR_OK;
 }
 
@@ -444,7 +450,7 @@ static LibError VFile_to_string(const VFile* UNUSED(vf), char* buf)
 ssize_t vfs_size(Handle hf)
 {
 	H_DEREF(hf, VFile, vf);
-	return x_size(&vf->xf);
+	return vf->f.size;
 }
 
 
@@ -499,15 +505,15 @@ ssize_t vfs_io(const Handle hf, const size_t size, FileIOBuf* pbuf,
 	debug_printf("VFS| io: size=%d\n", size);
 
 	H_DEREF(hf, VFile, vf);
-	FileCommon* fc = &vf->xf.u.fc;
+	File* f = &vf->f;
 
 	stats_io_user_request(size);
-	trace_notify_io(fc->atom_fn, size, fc->flags);
+	trace_notify_io(f->atom_fn, size, f->flags);
 
 	off_t ofs = vf->ofs;
 	vf->ofs += (off_t)size;
 
-	ssize_t nbytes = x_io(&vf->xf, ofs, size, pbuf, cb, cb_ctx);
+	ssize_t nbytes = xfile_io(&vf->f, ofs, size, pbuf, cb, cb_ctx);
 	RETURN_ERR(nbytes);
 	return nbytes;
 }
@@ -556,7 +562,7 @@ LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size,
 
 	H_DEREF(hf, VFile, vf);
 
-	size = x_size(&vf->xf);
+	size = vf->f.size;
 
 	buf = FILE_BUF_ALLOC;
 	ssize_t nread = vfs_io(hf, size, &buf, cb, cb_ctx);
@@ -611,7 +617,7 @@ struct VIo
 	size_t size;
 	void* buf;
 
-	XIo xio;
+	FileIo io;
 };
 
 H_TYPE_DEFINE(VIo);
@@ -626,8 +632,8 @@ static void VIo_init(VIo* vio, va_list args)
 static void VIo_dtor(VIo* vio)
 {
 	// note: checking if reload() succeeded is unnecessary because
-	// x_io_discard safely handles 0-initialized data.
-	WARN_ERR(x_io_discard(&vio->xio));
+	// xfile_io_discard safely handles 0-initialized data.
+	WARN_ERR(xfile_io_discard(&vio->io));
 }
 
 // we don't support transparent read resume after file invalidation.
@@ -644,7 +650,7 @@ static LibError VIo_reload(VIo* vio, const char* UNUSED(fn), Handle UNUSED(h))
 	off_t ofs = vf->ofs;
 	vf->ofs += (off_t)size;
 
-	return x_io_issue(&vf->xf, ofs, size, buf, &vio->xio);
+	return xfile_io_validate(&vf->f, ofs, size, buf, &vio->io);
 }
 
 static LibError VIo_validate(const VIo* vio)
@@ -654,7 +660,7 @@ static LibError VIo_validate(const VIo* vio)
 	// <size> doesn't have any invariant we can check.
 	if(debug_is_pointer_bogus(vio->buf))
 		return ERR_22;
-	return x_io_validate(&vio->xio);
+	return xfile_io_validate(&vio->io);
 }
 
 static LibError VIo_to_string(const VIo* vio, char* buf)
@@ -670,7 +676,7 @@ static LibError VIo_to_string(const VIo* vio, char* buf)
 Handle vfs_io_issue(Handle hf, size_t size, void* buf)
 {
 	const char* fn = 0;
-	int flags = 0;
+	uint flags = 0;
 	return h_alloc(H_VIo, fn, flags, hf, size, buf);
 }
 
@@ -682,12 +688,12 @@ LibError vfs_io_discard(Handle& hio)
 }
 
 
-// indicates if the VIo referenced by <xio> has completed.
+// indicates if the VIo referenced by <io> has completed.
 // return value: 0 if pending, 1 if complete, < 0 on error.
 int vfs_io_has_completed(Handle hio)
 {
 	H_DEREF(hio, VIo, vio);
-	return x_io_has_completed(&vio->xio);
+	return xfile_io_has_completed(&vio->io);
 }
 
 
@@ -696,7 +702,7 @@ int vfs_io_has_completed(Handle hio)
 LibError vfs_io_wait(Handle hio, void*& p, size_t& size)
 {
 	H_DEREF(hio, VIo, vio);
-	return x_io_wait(&vio->xio, p, size);
+	return xfile_io_wait(&vio->io, p, size);
 }
 
 
@@ -721,7 +727,7 @@ LibError vfs_map(const Handle hf, const uint UNUSED(flags), void*& p, size_t& si
 	// need to zero these here in case H_DEREF fails
 
 	H_DEREF(hf, VFile, vf);
-	return x_map(&vf->xf, p, size);
+	return xfile_map(&vf->f, p, size);
 }
 
 
@@ -734,7 +740,7 @@ LibError vfs_map(const Handle hf, const uint UNUSED(flags), void*& p, size_t& si
 LibError vfs_unmap(const Handle hf)
 {
 	H_DEREF(hf, VFile, vf);
-	return x_unmap(&vf->xf);
+	return xfile_unmap(&vf->f);
 }
 
 

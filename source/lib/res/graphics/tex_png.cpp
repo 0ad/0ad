@@ -111,7 +111,7 @@ static LibError png_decode_impl(DynArray* da,
 	const size_t pitch = png_get_rowbytes(png_ptr, info_ptr);
 	const u32 bpp = (u32)(pitch/w * 8);
 
-	int flags = 0;
+	uint flags = 0;
 	if(bpp == 32)
 		flags |= TEX_ALPHA;
 	if(colour_type == PNG_COLOR_TYPE_GRAY)

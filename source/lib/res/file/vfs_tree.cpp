@@ -177,7 +177,7 @@ enum TDirFlags
 
 class TDir : public TNode
 {
-	int flags;	// enum TDirFlags
+	uint flags;	// enum TDirFlags
 
 	RealDir rd;
 

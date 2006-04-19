@@ -56,68 +56,40 @@ extern LibError archive_enum(const Handle ha, const FileCB cb, const uintptr_t u
 // file
 //
 
-struct AFile
-{
-	FileCommon fc;
-
-	off_t ofs;	// in archive
-	off_t csize;
-	CompressionMethod method;
-
-	off_t last_cofs;	// in compressed file
-
-	Handle ha;
-	uintptr_t ctx;
-
-	// this AFile has been successfully afile_map-ped, i.e. reference
-	// count of the archive's mapping has been increased.
-	// we need to undo that when closing it.
-	uint is_mapped : 1;
-};
-
 // get file status (size, mtime). output param is zeroed on error.
 extern LibError afile_stat(Handle ha, const char* fn, struct stat* s);
 
-// open file, and fill *zf with information about it.
+// open file, and fill *f with information about it.
 // return < 0 on error (output param zeroed). 
-extern LibError afile_open(Handle ha, const char* fn, uintptr_t memento, int flags, AFile* af);
+extern LibError afile_open(Handle ha, const char* fn, uintptr_t memento, uint flags, File* f);
 
 // close file.
-extern LibError afile_close(AFile* af);
+extern LibError afile_close(File* f);
 
-extern LibError afile_validate(const AFile* af);
+extern LibError afile_validate(const File* f);
 
+extern LibError afile_open_vfs(const char* fn, uint flags, File* f, TFile* tf);
 
 //
 // asynchronous read
 //
 
-struct AFileIo
-{
-	FileIo io;
-
-	uintptr_t ctx;
-
-	size_t max_output_size;
-	void* user_buf;
-};
-
 // begin transferring <size> bytes, starting at <ofs>. get result
 // with afile_io_wait; when no longer needed, free via afile_io_discard.
-extern LibError afile_io_issue(AFile* af, off_t ofs, size_t size, void* buf, AFileIo* io);
+extern LibError afile_io_issue(File* f, off_t ofs, size_t size, void* buf, FileIo* io);
 
 // indicates if the IO referenced by <io> has completed.
 // return value: 0 if pending, 1 if complete, < 0 on error.
-extern int afile_io_has_completed(AFileIo* io);
+extern int afile_io_has_completed(FileIo* io);
 
 // wait until the transfer <io> completes, and return its buffer.
 // output parameters are zeroed on error.
-extern LibError afile_io_wait(AFileIo* io, void*& p, size_t& size);
+extern LibError afile_io_wait(FileIo* io, void*& p, size_t& size);
 
 // finished with transfer <io> - free its buffer (returned by afile_io_wait)
-extern LibError afile_io_discard(AFileIo* io);
+extern LibError afile_io_discard(FileIo* io);
 
-extern LibError afile_io_validate(const AFileIo* io);
+extern LibError afile_io_validate(const FileIo* io);
 
 
 //
@@ -136,7 +108,7 @@ extern LibError afile_io_validate(const AFileIo* io);
 // (quasi-parallel, without the complexity of threads).
 //
 // return bytes read, or a negative error code.
-extern ssize_t afile_read(AFile* af, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb = 0, uintptr_t ctx = 0);
+extern ssize_t afile_read(File* f, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb = 0, uintptr_t ctx = 0);
 
 
 //
@@ -157,14 +129,14 @@ extern ssize_t afile_read(AFile* af, off_t ofs, size_t size, FileIOBuf* pbuf, Fi
 // the mapping will be removed (if still open) when its archive is closed.
 // however, map/unmap calls should still be paired so that the archive mapping
 // may be removed when no longer needed.
-extern LibError afile_map(AFile* af, void*& p, size_t& size);
+extern LibError afile_map(File* f, void*& p, size_t& size);
 
 // remove the mapping of file <zf>; fail if not mapped.
 //
 // the mapping will be removed (if still open) when its archive is closed.
 // however, map/unmap calls should be paired so that the archive mapping
 // may be removed when no longer needed.
-extern LibError afile_unmap(AFile* af);
+extern LibError afile_unmap(File* f);
 
 
 //
@@ -224,7 +196,7 @@ enum ArchiveFileFlags
 // holds all per-file information extracted from the header.
 // this is intended to work for all archive types.
 //
-// note: AFile (state of a currently open file) is separate because
+// note: File* (state of a currently open file) is separate because
 // some of its fields need not be stored here; we'd like to minimize
 // size of the file table.
 struct ArchiveEntry

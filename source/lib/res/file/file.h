@@ -194,13 +194,24 @@ typedef LibError (*FileCB)(const char* name, const struct stat* s, uintptr_t mem
 // return first error encountered while listing files, or 0 on success.
 extern LibError file_enum(const char* dir, FileCB cb, uintptr_t user);
 
+struct FileProvider_VTbl;
 
+// chosen for semi-nice 48 byte total struct File size.
+// each implementation checks if this is enough.
+const size_t FILE_OPAQUE_SIZE = 52;
 
-struct FileCommon
+// represents an open file of any type (OS, archive, VFS).
+// contains common fields and opaque storage for type-specific fields.
+//
+// this cannot merely be added in a separate VFS layer: it would want to
+// share some common fields, which either requires this approach
+// (one publically visible struct with space for private storage), or
+// a common struct layout / embedding a FileCommon struct at
+// the beginning. the latter is a bit messy since fields must be accessed
+// as e.g. af->fc.flags. one shared struct also makes for a common
+// interface.
+struct File
 {
-// keep offset of flags and size members in sync with struct AFile!
-// it is accessed by VFS and must be the same for both (union).
-// dirty, but necessary because VFile is pushing the HDATA size limit.
 	uint flags;
 	off_t size;
 
@@ -210,19 +221,13 @@ struct FileCommon
 	// a native path; it has no use within VFS and would only
 	// unnecessarily clutter the filename storage)
 	const char* atom_fn;
+
+	// can be 0 if not currently in use; otherwise, points to
+	// the file provider's vtbl.
+	const FileProvider_VTbl* type;
+
+	u8 opaque[FILE_OPAQUE_SIZE];
 };
-
-struct File
-{
-	FileCommon fc;
-
-	int fd;
-
-	// for reference counted memory-mapping
-	void* mapping;
-	uint map_refs;
-};
-
 
 // note: these are all set during file_open and cannot be changed thereafter.
 enum FileFlags
@@ -300,7 +305,11 @@ extern bool file_exists(const char* fn);
 // permanently delete the file. be very careful with this!
 extern LibError file_delete(const char* fn);
 
-
+// <tf> is ignored here.
+// rationale: all file providers' open() routines should ideally take the
+// same parameters. since afile_open requires archive Handle and
+// memento, we need some way of passing them; TFile is sufficient
+// (via vfs_tree accessor methods).
 extern LibError file_open(const char* fn, uint flags, File* f);
 
 // note: final file size is calculated and returned in f->size.
@@ -323,9 +332,13 @@ extern LibError file_cache_invalidate(const char* fn);
 // IOs are carried out exactly as requested - there is no caching or
 // alignment done here. rationale: see source.
 
+// again chosen for nice alignment; each user checks if big enough.
+const size_t FILE_IO_OPAQUE_SIZE = 28;
+
 struct FileIo
 {
-	void* cb;
+	const FileProvider_VTbl* type;
+	u8 opaque[FILE_IO_OPAQUE_SIZE];
 };
 
 // queue the IO; it begins after the previous ones (if any) complete.

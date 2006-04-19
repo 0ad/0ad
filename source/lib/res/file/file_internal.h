@@ -34,6 +34,7 @@
 #include "vfs_path.h"
 #include "vfs_mount.h"
 #include "vfs_tree.h"
+#include "vfs_redirector.h"
 
 #include "trace.h"
 #include "vfs_optimizer.h"
@@ -58,3 +59,14 @@ const size_t FILE_BLOCK_SIZE = 32*KiB;
 // output anything if passed very little data.
 extern LibError file_io_call_back(const void* block, size_t size,
 	FileIOCB cb, uintptr_t ctx, size_t& bytes_processed);
+
+// used by file.cpp and file_io.cpp
+struct PosixFile
+{
+	int fd;
+
+	// for reference counted memory-mapping
+	void* mapping;
+	uint map_refs;
+};
+cassert(sizeof(PosixFile) < FILE_OPAQUE_SIZE);

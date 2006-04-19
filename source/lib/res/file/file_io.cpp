@@ -35,6 +35,12 @@
 // async I/O
 //-----------------------------------------------------------------------------
 
+struct PosixFileIo
+{
+	void* cb;	// aiocb
+};
+cassert(sizeof(PosixFileIo) <= FILE_IO_OPAQUE_SIZE);
+
 // we don't do any caching or alignment here - this is just a thin AIO wrapper.
 // rationale:
 // - aligning the transfer isn't possible here since we have no control
@@ -101,7 +107,10 @@ LibError file_io_issue(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 	CHECK_FILE(f);
 	if(!size || !p || !io)
 		WARN_RETURN(ERR_INVALID_PARAM);
-	const bool is_write = (f->fc.flags & FILE_WRITE) != 0;
+	const bool is_write = (f->flags & FILE_WRITE) != 0;
+
+	PosixFile* pf = (PosixFile*)f->opaque;
+	PosixFileIo* pio = (PosixFileIo*)io;
 
 	// note: cutting off at EOF is necessary to avoid transfer errors,
 	// but makes size no longer sector-aligned, which would force
@@ -120,7 +129,7 @@ LibError file_io_issue(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 	// (we can't store the whole aiocb directly - glibc's version is
 	// 144 bytes large)
 	aiocb* cb = aiocb_allocator.alloc();
-	io->cb = cb;
+	pio->cb = cb;
 	if(!cb)
 		WARN_RETURN(ERR_NO_MEM);
 	memset(cb, 0, sizeof(*cb));
@@ -128,7 +137,7 @@ LibError file_io_issue(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 	// send off async read/write request
 	cb->aio_lio_opcode = is_write? LIO_WRITE : LIO_READ;
 	cb->aio_buf        = (volatile void*)p;
-	cb->aio_fildes     = f->fd;
+	cb->aio_fildes     = pf->fd;
 	cb->aio_offset     = ofs;
 	cb->aio_nbytes     = size;
 	int err = lio_listio(LIO_NOWAIT, &cb, 1, (struct sigevent*)0);
@@ -139,7 +148,7 @@ LibError file_io_issue(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 		return LibError_from_errno();
 	}
 
-	const BlockId disk_pos = block_cache_make_id(f->fc.atom_fn, ofs);
+	const BlockId disk_pos = block_cache_make_id(f->atom_fn, ofs);
 	stats_io_check_seek(disk_pos);
 
 	return ERR_OK;
@@ -150,7 +159,8 @@ LibError file_io_issue(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 // return value: 0 if pending, 1 if complete, < 0 on error.
 int file_io_has_completed(FileIo* io)
 {
-	aiocb* cb = (aiocb*)io->cb;
+	PosixFileIo* pio = (PosixFileIo*)io;
+	aiocb* cb = (aiocb*)pio->cb;
 	int ret = aio_error(cb);
 	if(ret == EINPROGRESS)
 		return 0;
@@ -163,13 +173,14 @@ int file_io_has_completed(FileIo* io)
 
 LibError file_io_wait(FileIo* io, void*& p, size_t& size)
 {
+	PosixFileIo* pio = (PosixFileIo*)io;
 //	debug_printf("FILE| wait io=%p\n", io);
 
 	// zero output params in case something (e.g. H_DEREF) fails.
 	p = 0;
 	size = 0;
 
-	aiocb* cb = (aiocb*)io->cb;
+	aiocb* cb = (aiocb*)pio->cb;
 
 	// wait for transfer to complete.
 	const aiocb** cbs = (const aiocb**)&cb;	// pass in an "array"
@@ -193,16 +204,18 @@ LibError file_io_wait(FileIo* io, void*& p, size_t& size)
 
 LibError file_io_discard(FileIo* io)
 {
-	memset(io->cb, 0, sizeof(aiocb));	// prevent further use.
-	aiocb_allocator.free_(io->cb);
-	io->cb = 0;
+	PosixFileIo* pio = (PosixFileIo*)io;
+	memset(pio->cb, 0, sizeof(aiocb));	// prevent further use.
+	aiocb_allocator.free_(pio->cb);
+	pio->cb = 0;
 	return ERR_OK;
 }
 
 
 LibError file_io_validate(const FileIo* io)
 {
-	const aiocb* cb = (const aiocb*)io->cb;
+	PosixFileIo* pio = (PosixFileIo*)io;
+	const aiocb* cb = (const aiocb*)pio->cb;
 	// >= 0x100 is not necessarily bogus, but suspicious.
 	// this also catches negative values.
 	if((uint)cb->aio_fildes >= 0x100)
@@ -367,7 +380,8 @@ class IOManager
 
 	ssize_t lowio()
 	{
-		const int fd = f->fd;
+		const PosixFile* pf = (const PosixFile*)f->opaque;
+		const int fd = pf->fd;
 
 		lseek(fd, start_ofs, SEEK_SET);
 
@@ -423,7 +437,7 @@ class IOManager
 			size = round_up(ofs_misalign + user_size, FILE_BLOCK_SIZE);
 
 			// but cut off at EOF (necessary to prevent IO error).
-			const off_t bytes_left = f->fc.size - start_ofs;
+			const off_t bytes_left = f->size - start_ofs;
 			if(bytes_left < 0)
 				WARN_RETURN(ERR_EOF);
 			size = MIN(size, (size_t)bytes_left);
@@ -433,7 +447,7 @@ class IOManager
 			size = round_up(size, AIO_SECTOR_SIZE);
 		}
 
-		RETURN_ERR(file_io_get_buf(pbuf, size, f->fc.atom_fn, f->fc.flags, cb));
+		RETURN_ERR(file_io_get_buf(pbuf, size, f->atom_fn, f->flags, cb));
 
 		return ERR_OK;
 	}
@@ -448,7 +462,7 @@ class IOManager
 // discarded in wait().
 
 		// check if in cache
-		slot.block_id = block_cache_make_id(f->fc.atom_fn, ofs);
+		slot.block_id = block_cache_make_id(f->atom_fn, ofs);
 		slot.cached_block = block_cache_find(slot.block_id);
 		if(!slot.cached_block)
 		{
@@ -490,7 +504,7 @@ class IOManager
 		// user's buffer. this necessary to efficiently support direct
 		// IO of uncompressed files in archives.
 		// note: must occur before skipping padding below.
-		if(!slot.cached_block && pbuf != FILE_BUF_TEMP && f->fc.flags & FILE_CACHE_BLOCK)
+		if(!slot.cached_block && pbuf != FILE_BUF_TEMP && f->flags & FILE_CACHE_BLOCK)
 		{
 			slot.temp_buf = block_cache_alloc(slot.block_id);
 			memcpy2(slot.temp_buf, block, block_size);
@@ -577,8 +591,8 @@ public:
 		FileIOCB cb_, uintptr_t cb_ctx_)
 	{
 		f = f_;
-		is_write = (f->fc.flags & FILE_WRITE ) != 0;
-		no_aio =   (f->fc.flags & FILE_NO_AIO) != 0;
+		is_write = (f->flags & FILE_WRITE ) != 0;
+		no_aio =   (f->flags & FILE_NO_AIO) != 0;
 
 		cb = cb_;
 		cb_ctx = cb_ctx_;

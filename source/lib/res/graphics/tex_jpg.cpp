@@ -450,7 +450,7 @@ static LibError jpg_decode_impl(DynArray* da,
 
 	// set libjpg output format. we cannot go with the default because
 	// Photoshop writes non-standard CMYK files that must be converted to RGB.
-	int flags = 0;
+	uint flags = 0;
 	cinfo->out_color_space = JCS_RGB;
 	if(cinfo->num_components == 1)
 	{

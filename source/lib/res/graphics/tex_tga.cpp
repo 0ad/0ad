@@ -119,7 +119,7 @@ static LibError tga_decode(DynArray* restrict da, Tex* restrict t)
 	const uint bpp = hdr->bpp;
 	const u8 desc  = hdr->img_desc;
 
-	int flags = 0;
+	uint flags = 0;
 	flags |= (desc & TGA_TOP_DOWN)? TEX_TOP_DOWN : TEX_BOTTOM_UP;
 	if(desc & 0x0f)	// alpha bits
 		flags |= TEX_ALPHA;

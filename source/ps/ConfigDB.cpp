@@ -265,7 +265,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 			return false;
 		}
 		buffer = FILE_BUF_ALLOC;
-		buflen = f.fc.size;
+		buflen = f.size;
 		ssize_t ret = file_io(&f, 0, buflen, &buffer);
 		(void)file_close(&f);
 		if(ret != (ssize_t)buflen)

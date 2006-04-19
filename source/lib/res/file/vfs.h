@@ -281,7 +281,7 @@ enum VfsMountFlags
 // flags determines extra actions to perform; see VfsMountFlags.
 //
 // P_real_dir = "." or "./" isn't allowed - see implementation for rationale.
-extern LibError vfs_mount(const char* V_mount_point, const char* P_real_dir, int flags = 0, uint pri = 0);
+extern LibError vfs_mount(const char* V_mount_point, const char* P_real_dir, uint flags = 0, uint pri = 0);
 
 // unmount a previously mounted item, and rebuild the VFS afterwards.
 extern LibError vfs_unmount(const char* name);

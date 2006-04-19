@@ -369,7 +369,7 @@ static const u8* za_find_id(const u8* buf, size_t size, const void* start, u32 m
 static LibError za_find_ecdr(File* f, size_t max_scan_amount, ECDR* dst_ecdr_le)
 {
 	// don't scan more than the entire file
-	const size_t file_size = f->fc.size;
+	const size_t file_size = f->size;
 	const size_t scan_amount = MIN(max_scan_amount, file_size);
 
 	// read desired chunk of file into memory
@@ -398,7 +398,7 @@ static LibError za_find_cd(File* f, uint& cd_entries, off_t& cd_ofs, size_t& cd_
 {
 	// sanity check: file size must be > header size.
 	// (this speeds up determining if the file is a Zip file at all)
-	const size_t file_size = f->fc.size;
+	const size_t file_size = f->size;
 	if(file_size < LFH_SIZE+CDFH_SIZE+ECDR_SIZE)
 	{
 completely_bogus:

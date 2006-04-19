@@ -535,7 +535,6 @@ LibError file_delete(const char* fn)
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-
 // interface rationale:
 // - this module depends on the handle manager for IO management,
 //   but should be useable without the VFS (even if they are designed
@@ -562,10 +561,11 @@ LibError file_validate(const File* f)
 {
 	if(!f)
 		return ERR_INVALID_PARAM;
-	else if(f->fd < 0)
+	const PosixFile* pf = (PosixFile*)f->opaque;
+	if(pf->fd < 0)
 		return ERR_1;
 	// mapped but refcount is invalid
-	else if((f->mapping != 0) ^ (f->map_refs != 0))
+	else if((pf->mapping != 0) ^ (pf->map_refs != 0))
 		return ERR_2;
 	// note: don't check atom_fn - that complains at the end of
 	// file_open if flags & FILE_DONT_SET_FN and has no benefit, really.
@@ -655,7 +655,7 @@ static inline void atom_shutdown()
 
 
 
-LibError file_open(const char* P_fn, const uint flags, File* f)
+LibError file_open(const char* P_fn, uint flags, File* f)
 {
 	// zero output param in case we fail below.
 	memset(f, 0, sizeof(*f));
@@ -710,14 +710,15 @@ LibError file_open(const char* P_fn, const uint flags, File* f)
 	if(fd < 0)
 		WARN_RETURN(ERR_FILE_ACCESS);
 
-	f->fc.flags = flags;
-	f->fc.size  = size;
+	f->flags = flags;
+	f->size  = size;
 	// see FILE_DONT_SET_FN decl.
 	if(!(flags & FILE_DONT_SET_FN))
-		f->fc.atom_fn = file_make_unique_fn_copy(P_fn);
-	f->mapping  = 0;
-	f->map_refs = 0;
-	f->fd       = fd;
+		f->atom_fn = file_make_unique_fn_copy(P_fn);
+	PosixFile* pf = (PosixFile*)f->opaque;
+	pf->mapping  = 0;
+	pf->map_refs = 0;
+	pf->fd       = fd;
 	CHECK_FILE(f);
 
 	return ERR_OK;
@@ -727,30 +728,31 @@ LibError file_open(const char* P_fn, const uint flags, File* f)
 LibError file_close(File* f)
 {
 	CHECK_FILE(f);
+	PosixFile* pf = (PosixFile*)f->opaque;
 
 	// make sure the mapping is actually freed,
 	// regardless of how many references remain.
-	if(f->map_refs > 1)
-		f->map_refs = 1;
-	if(f->mapping)	// only free if necessary (unmap complains if not mapped)
+	if(pf->map_refs > 1)
+		pf->map_refs = 1;
+	if(pf->mapping)	// only free if necessary (unmap complains if not mapped)
 		file_unmap(f);
 
 	// return final file size (required by VFS after writing files).
 	// this is much easier than updating when writing, because we'd have
 	// to add accounting code to both (sync and async) paths.
-	f->fc.size = lseek(f->fd, 0, SEEK_END);
+	f->size = lseek(pf->fd, 0, SEEK_END);
 
 	// (check fd to avoid BoundsChecker warning about invalid close() param)
-	if(f->fd != -1)
+	if(pf->fd != -1)
 	{
-		close(f->fd);
-		f->fd = -1;
+		close(pf->fd);
+		pf->fd = -1;
 	}
 
 	// wipe out any cached blocks. this is necessary to cover the (rare) case
 	// of file cache contents predating the file write.
-	if(f->fc.flags & FILE_WRITE)
-		file_cache_invalidate(f->fc.atom_fn);
+	if(f->flags & FILE_WRITE)
+		file_cache_invalidate(f->atom_fn);
 
 	return ERR_OK;
 }
@@ -784,16 +786,17 @@ LibError file_map(File* f, void*& p, size_t& size)
 	size = 0;
 
 	CHECK_FILE(f);
+	PosixFile* pf = (PosixFile*)f->opaque;
 
-	const int prot = (f->fc.flags & FILE_WRITE)? PROT_WRITE : PROT_READ;
+	const int prot = (f->flags & FILE_WRITE)? PROT_WRITE : PROT_READ;
 
 	// already mapped - increase refcount and return previous mapping.
-	if(f->mapping)
+	if(pf->mapping)
 	{
 		// prevent overflow; if we have this many refs, should find out why.
-		if(f->map_refs >= MAX_MAP_REFS)
+		if(pf->map_refs >= MAX_MAP_REFS)
 			WARN_RETURN(ERR_LIMIT);
-		f->map_refs++;
+		pf->map_refs++;
 		goto have_mapping;
 	}
 
@@ -801,19 +804,19 @@ LibError file_map(File* f, void*& p, size_t& size)
 	// and BoundsChecker warns about wposix mmap failing).
 	// then again, don't complain, because this might happen when mounting
 	// a dir containing empty files; each is opened as a Zip file.
-	if(f->fc.size == 0)
+	if(f->size == 0)
 		return ERR_FAIL;	// NOWARN
 
 	errno = 0;
-	f->mapping = mmap(0, f->fc.size, prot, MAP_PRIVATE, f->fd, (off_t)0);
-	if(f->mapping == MAP_FAILED)
+	pf->mapping = mmap(0, f->size, prot, MAP_PRIVATE, pf->fd, (off_t)0);
+	if(pf->mapping == MAP_FAILED)
 		return LibError_from_errno();
 
-	f->map_refs = 1;
+	pf->map_refs = 1;
 
 have_mapping:
-	p = f->mapping;
-	size = f->fc.size;
+	p = pf->mapping;
+	size = f->size;
 	return ERR_OK;
 }
 
@@ -827,22 +830,23 @@ have_mapping:
 LibError file_unmap(File* f)
 {
 	CHECK_FILE(f);
+	PosixFile* pf = (PosixFile*)f->opaque;
 
 	// file is not currently mapped
-	if(f->map_refs == 0)
+	if(pf->map_refs == 0)
 		WARN_RETURN(ERR_NOT_MAPPED);
 
 	// still more than one reference remaining - done.
-	if(--f->map_refs > 0)
+	if(--pf->map_refs > 0)
 		return ERR_OK;
 
 	// no more references: remove the mapping
-	void* p = f->mapping;
-	f->mapping = 0;
-	// don't clear f->fc.size - the file is still open.
+	void* p = pf->mapping;
+	pf->mapping = 0;
+	// don't clear f->size - the file is still open.
 
 	errno = 0;
-	int ret = munmap(p, f->fc.size);
+	int ret = munmap(p, f->size);
 	return LibError_from_posix(ret);
 }
 

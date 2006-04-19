@@ -103,7 +103,7 @@ static LibError bmp_decode(DynArray* restrict da, Tex* restrict t)
 
 	const long h = abs(h_);
 
-	int flags = 0;
+	uint flags = 0;
 	flags |= (h_ < 0)? TEX_TOP_DOWN : TEX_BOTTOM_UP;
 	if(bpp > 16)
 		flags |= TEX_BGR;

@@ -188,7 +188,7 @@ static LibError UniFont_to_string(const UniFont* UNUSED(f), char* buf)
 }
 
 
-Handle unifont_load(const char* fn, int flags)
+Handle unifont_load(const char* fn, uint flags)
 {
 	return h_alloc(H_UniFont, fn, flags);
 }

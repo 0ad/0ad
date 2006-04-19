@@ -17,7 +17,7 @@
 
 // Load and return a handle to the font defined
 // in fn+".fnt" with texture fn+".tga"
-extern Handle unifont_load(const char* fn, int flags = 0);
+extern Handle unifont_load(const char* fn, uint flags = 0);
 
 // Release a handle to a previously loaded font
 extern LibError unifont_unload(Handle& h);

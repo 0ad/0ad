@@ -247,11 +247,29 @@ LibError archive_add_file(Archive* a, const ArchiveEntry* ent)
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-// convenience function, allows implementation change in AFile.
+struct ArchiveFile
+{
+	off_t ofs;	// in archive
+	off_t csize;
+	CompressionMethod method;
+
+	off_t last_cofs;	// in compressed file
+
+	Handle ha;
+	uintptr_t ctx;
+
+	// this File has been successfully afile_map-ped, i.e. reference
+	// count of the archive's mapping has been increased.
+	// we need to undo that when closing it.
+	uint is_mapped : 1;
+};
+cassert(sizeof(ArchiveFile) <= FILE_OPAQUE_SIZE);
+
+// convenience function, allows implementation change in File.
 // note that size == ucsize isn't foolproof, and adding a flag to
 // ofs or size is ugly and error-prone.
 // no error checking - always called from functions that check af.
-static inline bool is_compressed(AFile* af)
+static inline bool is_compressed(ArchiveFile* af)
 {
 	return af->method != CM_NONE;
 }
@@ -278,40 +296,45 @@ LibError afile_stat(Handle ha, const char* fn, struct stat* s)
 
 
 
-LibError afile_validate(const AFile* af)
+LibError afile_validate(const File* f)
 {
-	if(!af)
+	if(!f)
 		return ERR_INVALID_PARAM;
+	const ArchiveFile* af = (const ArchiveFile*)f->opaque;
+	UNUSED2(af);
 	// note: don't check af->ha - it may be freed at shutdown before
 	// its files. TODO: revisit once dependency support is added.
-	if(!af->fc.size)
+	if(!f->size)
 		return ERR_1;
 	// note: af->ctx is 0 if file is not compressed.
 
 	return ERR_OK;
 }
 
-#define CHECK_AFILE(af) CHECK_ERR(afile_validate(af))
+#define CHECK_AFILE(f) CHECK_ERR(afile_validate(f))
 
 
 // open file, and fill *af with information about it.
 // return < 0 on error (output param zeroed). 
-LibError afile_open(const Handle ha, const char* fn, uintptr_t memento, int flags, AFile* af)
+LibError afile_open(const Handle ha, const char* fn, uintptr_t memento, uint flags, File* f)
 {
 	// zero output param in case we fail below.
-	memset(af, 0, sizeof(*af));
+	memset(f, 0, sizeof(*f));
+
+	if(flags & FILE_WRITE)
+		WARN_RETURN(ERR_IS_COMPRESSED);
 
 	H_DEREF(ha, Archive, a);
 
-	// this is needed for AFile below. optimization: archive_get_file_info
+	// this is needed for File below. optimization: archive_get_file_info
 	// wants the original filename, but by passing the unique copy
 	// we avoid work there (its file_make_unique_fn_copy returns immediately)
 	const char* atom_fn = file_make_unique_fn_copy(fn);
 
 	ArchiveEntry* ent;
-	// don't want AFile to contain a ArchiveEntry struct -
+	// don't want File to contain a ArchiveEntry struct -
 	// its ucsize member must be 'loose' for compatibility with File.
-	// => need to copy ArchiveEntry fields into AFile.
+	// => need to copy ArchiveEntry fields into File.
 	RETURN_ERR(archive_get_file_info(a, atom_fn, memento, ent));
 
 	zip_fixup_lfh(&a->f, ent);
@@ -325,30 +348,31 @@ LibError afile_open(const Handle ha, const char* fn, uintptr_t memento, int flag
 			WARN_RETURN(ERR_NO_MEM);
 	}
 
-	af->fc.flags   = flags;
-	af->fc.size    = ent->ucsize;
-	af->fc.atom_fn = atom_fn;
+	f->flags   = flags;
+	f->size    = ent->ucsize;
+	f->atom_fn = atom_fn;
+	ArchiveFile* af = (ArchiveFile*)f->opaque;
 	af->ofs       = ent->ofs;
 	af->csize     = ent->csize;
 	af->method    = ent->method;
 	af->ha        = ha;
 	af->ctx       = ctx;
 	af->is_mapped = 0;
-	CHECK_AFILE(af);
+	CHECK_AFILE(f);
 	return ERR_OK;
 }
 
 
 // close file.
-LibError afile_close(AFile* af)
+LibError afile_close(File* f)
 {
-	CHECK_AFILE(af);
-	// other AFile fields don't need to be freed/cleared
+	CHECK_AFILE(f);
+	ArchiveFile* af = (ArchiveFile*)f->opaque;
+	// other File fields don't need to be freed/cleared
 	comp_free(af->ctx);
 	af->ctx = 0;
 	return ERR_OK;
 }
-
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -358,32 +382,54 @@ LibError afile_close(AFile* af)
 //
 ///////////////////////////////////////////////////////////////////////////////
 
+struct ArchiveFileIo
+{
+	// note: this cannot be embedded into the struct due to the FileIo
+	// interface (fixed size limit and type field).
+	// it is passed by afile_read to file_io, so we'll have to allocate
+	// and point to it.
+	FileIo* io;
+
+	uintptr_t ctx;
+
+	size_t max_output_size;
+	void* user_buf;
+};
+cassert(sizeof(ArchiveFileIo) <= FILE_IO_OPAQUE_SIZE);
 
 static const size_t CHUNK_SIZE = 16*KiB;
 
+static SingleAllocator<FileIo> io_allocator;
+
 // begin transferring <size> bytes, starting at <ofs>. get result
 // with afile_io_wait; when no longer needed, free via afile_io_discard.
-LibError afile_io_issue(AFile* af, off_t user_ofs, size_t max_output_size, void* user_buf, AFileIo* io)
+LibError afile_io_issue(File* f, off_t user_ofs, size_t max_output_size, void* user_buf, FileIo* io)
 {
 	// zero output param in case we fail below.
-	memset(io, 0, sizeof(AFileIo));
+	memset(io, 0, sizeof(FileIo));
 
-	CHECK_AFILE(af);
+	CHECK_AFILE(f);
+	ArchiveFile* af = (ArchiveFile*)f->opaque;
 	H_DEREF(af->ha, Archive, a);
+
+	ArchiveFileIo* aio = (ArchiveFileIo*)io->opaque;
+	aio->io = (FileIo*)io_allocator.alloc();
+	if(!aio->io)
+		WARN_RETURN(ERR_NO_MEM);
 
 	// not compressed; we'll just read directly from the archive file.
 	// no need to clamp to EOF - that's done already by the VFS.
 	if(!is_compressed(af))
 	{
-		// io->ctx is 0 (due to memset)
+		// aio->ctx is 0 (due to memset)
 		const off_t ofs = af->ofs+user_ofs;
-		return file_io_issue(&a->f, ofs, max_output_size, user_buf, &io->io);
+		return file_io_issue(&a->f, ofs, max_output_size, user_buf, aio->io);
 	}
 
 
-	io->ctx = af->ctx;
-	io->max_output_size = max_output_size;
-	io->user_buf = user_buf;
+	aio->ctx = af->ctx;
+	aio->max_output_size = max_output_size;
+	aio->user_buf = user_buf;
 
 	const off_t cofs = af->ofs + af->last_cofs;	// needed to determine csize
 
@@ -397,7 +443,7 @@ LibError afile_io_issue(AFile* af, off_t user_ofs, size_t max_output_size, void*
 	if(!cbuf)
 		WARN_RETURN(ERR_NO_MEM);
 
-	CHECK_ERR(file_io_issue(&a->f, cofs, csize, cbuf, &io->io));
+	RETURN_ERR(file_io_issue(&a->f, cofs, csize, cbuf, aio->io));
 
 	af->last_cofs += (off_t)csize;
 	return ERR_OK;
@@ -406,32 +452,35 @@ LibError afile_io_issue(AFile* af, off_t user_ofs, size_t max_output_size, void*
 
 // indicates if the IO referenced by <io> has completed.
 // return value: 0 if pending, 1 if complete, < 0 on error.
-int afile_io_has_completed(AFileIo* io)
+int afile_io_has_completed(FileIo* io)
 {
-	return file_io_has_completed(&io->io);
+	ArchiveFileIo* aio = (ArchiveFileIo*)io->opaque;
+	return file_io_has_completed(aio->io);
 }
 
 
 // wait until the transfer <io> completes, and return its buffer.
 // output parameters are zeroed on error.
-LibError afile_io_wait(AFileIo* io, void*& buf, size_t& size)
+LibError afile_io_wait(FileIo* io, void*& buf, size_t& size)
 {
 	buf = 0;
 	size = 0;
 
+	ArchiveFileIo* aio = (ArchiveFileIo*)io->opaque;
+
 	void* raw_buf;
 	size_t raw_size;
-	CHECK_ERR(file_io_wait(&io->io, raw_buf, raw_size));
+	CHECK_ERR(file_io_wait(aio->io, raw_buf, raw_size));
 
 	// file is compressed and we need to decompress
-	if(io->ctx)
+	if(aio->ctx)
 	{
-		comp_set_output(io->ctx, (void*)io->user_buf, io->max_output_size);
-		ssize_t ucbytes_output = comp_feed(io->ctx, raw_buf, raw_size);
+		comp_set_output(aio->ctx, (void*)aio->user_buf, aio->max_output_size);
+		ssize_t ucbytes_output = comp_feed(aio->ctx, raw_buf, raw_size);
 		free(raw_buf);
 		RETURN_ERR(ucbytes_output);
 
-		buf = io->user_buf;
+		buf = aio->user_buf;
 		size = ucbytes_output;
 	}
 	else
@@ -445,18 +494,22 @@ LibError afile_io_wait(AFileIo* io, void*& buf, size_t& size)
 
 
 // finished with transfer <io> - free its buffer (returned by afile_io_wait)
-LibError afile_io_discard(AFileIo* io)
+LibError afile_io_discard(FileIo* io)
 {
-	return file_io_discard(&io->io);
+	ArchiveFileIo* aio = (ArchiveFileIo*)io->opaque;
+	LibError ret = file_io_discard(aio->io);
+	io_allocator.release(aio->io);
+	return ret;
 }
 
 
-LibError afile_io_validate(const AFileIo* io)
+LibError afile_io_validate(const FileIo* io)
 {
-	if(debug_is_pointer_bogus(io->user_buf))
+	ArchiveFileIo* aio = (ArchiveFileIo*)io->opaque;
+	if(debug_is_pointer_bogus(aio->user_buf))
 		return ERR_1;
 	// <ctx> and <max_output_size> have no invariants we could check.
-	RETURN_ERR(file_io_validate(&io->io));
+	RETURN_ERR(file_io_validate(aio->io));
 	return ERR_OK;
 }
 
@@ -536,16 +589,17 @@ static LibError decompressor_feed_cb(uintptr_t cb_ctx,
 // (quasi-parallel, without the complexity of threads).
 //
 // return bytes read, or a negative error code.
-ssize_t afile_read(AFile* af, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb, uintptr_t cb_ctx)
+ssize_t afile_read(File* f, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb, uintptr_t cb_ctx)
 {
-	CHECK_AFILE(af);
+	CHECK_AFILE(f);
+	ArchiveFile* af = (ArchiveFile*)f->opaque;
 	H_DEREF(af->ha, Archive, a);
 
 	if(!is_compressed(af))
 	{
 		// HACK
 		// background: file_io will operate according to the
-		// *archive* file's flags, but the AFile may contain some overrides
+		// *archive* file's flags, but the File may contain some overrides
 		// set via vfs_open. one example is FILE_LONG_LIVED -
 		// that must be copied over (temporarily) into a->f flags.
 		//
@@ -554,22 +608,22 @@ ssize_t afile_read(AFile* af, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB 
 		// but that can be worked around by setting them in afile_open.
 		// this is better than the alternative of copying individual
 		// flags because it'd need to be updated as new flags are added.
-		a->f.fc.flags = af->fc.flags;
+		a->f.flags = f->flags;
 		// this was set in Archive_reload and must be re-enabled for efficiency.
-		a->f.fc.flags |= FILE_CACHE_BLOCK;
+		a->f.flags |= FILE_CACHE_BLOCK;
 
 		bool we_allocated = (pbuf != FILE_BUF_TEMP) && (*pbuf == FILE_BUF_ALLOC);
 		// no need to set last_cofs - only checked if compressed.
 		ssize_t bytes_read = file_io(&a->f, af->ofs+ofs, size, pbuf, cb, cb_ctx);
 		RETURN_ERR(bytes_read);
 		if(we_allocated)
-			(void)file_buf_set_real_fn(*pbuf, af->fc.atom_fn);
+			(void)file_buf_set_real_fn(*pbuf, f->atom_fn);
 		return bytes_read;
 	}
 
 	debug_assert(af->ctx != 0);
 
-	RETURN_ERR(file_io_get_buf(pbuf, size, af->fc.atom_fn, af->fc.flags, cb));
+	RETURN_ERR(file_io_get_buf(pbuf, size, f->atom_fn, f->flags, cb));
 	const bool use_temp_buf = (pbuf == FILE_BUF_TEMP);
 	if(!use_temp_buf)
 		comp_set_output(af->ctx, (void*)*pbuf, size);
@@ -602,12 +656,13 @@ ssize_t afile_read(AFile* af, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB 
 // the mapping will be removed (if still open) when its file is closed.
 // however, map/unmap calls should still be paired so that the mapping
 // may be removed when no longer needed.
-LibError afile_map(AFile* af, void*& p, size_t& size)
+LibError afile_map(File* f, void*& p, size_t& size)
 {
 	p = 0;
 	size = 0;
 
-	CHECK_AFILE(af);
+	CHECK_AFILE(f);
+	ArchiveFile* af = (ArchiveFile*)f->opaque;
 
 	// mapping compressed files doesn't make sense because the
 	// compression algorithm is unspecified - disallow it.
@@ -623,7 +678,7 @@ LibError afile_map(AFile* af, void*& p, size_t& size)
 	CHECK_ERR(file_map(&a->f, archive_p, archive_size));
 
 	p = (char*)archive_p + af->ofs;
-	size = af->fc.size;
+	size = f->size;
 
 	af->is_mapped = 1;
 	return ERR_OK;
@@ -635,9 +690,10 @@ LibError afile_map(AFile* af, void*& p, size_t& size)
 // the mapping will be removed (if still open) when its archive is closed.
 // however, map/unmap calls should be paired so that the archive mapping
 // may be removed when no longer needed.
-LibError afile_unmap(AFile* af)
+LibError afile_unmap(File* f)
 {
-	CHECK_AFILE(af);
+	CHECK_AFILE(f);
+	ArchiveFile* af = (ArchiveFile*)f->opaque;
 
 	// make sure archive mapping refcount remains balanced:
 	// don't allow multiple|"false" unmaps.
