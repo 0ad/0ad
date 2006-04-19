@@ -825,7 +825,7 @@ void CRenderer::RenderShadowMap()
 
 void CRenderer::RenderPatches()
 {
-	PROFILE(" render patches ");
+	PROFILE( "render patches" );
 
 	// switch on wireframe if we need it
 	if (m_TerrainRenderMode==WIREFRAME) {

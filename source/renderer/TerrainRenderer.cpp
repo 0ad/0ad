@@ -373,7 +373,7 @@ void TerrainRenderer::RenderOutlines()
 // Render water that is part of the terrain
 void TerrainRenderer::RenderWater()
 {
-	PROFILE(" render water ");
+	PROFILE( "render water" );
 
 
 	//(Crappy) fresnel effect

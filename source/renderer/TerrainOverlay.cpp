@@ -11,9 +11,7 @@
 
 // Handy things for STL:
 
-/**
- * Functor for sorting pairs, using the &lt;-ordering of their second values.
- */
+/// Functor for sorting pairs, using the &lt;-ordering of their second values.
 struct compare2nd
 {
 	template<typename S, typename T> bool operator()(const std::pair<S, T>& a, const std::pair<S, T>& b) const
@@ -22,9 +20,7 @@ struct compare2nd
 	}
 };
 
-/**
- * Functor for comparing the firsts of pairs to a specified value.
- */
+/// Functor for comparing the firsts of pairs to a specified value.
 template<typename S> struct equal1st
 {
 	const S& val;
@@ -37,9 +33,7 @@ private:
 	const equal1st& operator=(const equal1st& rhs);
 };
 
-/**
- * Functor for calling ->Render on pairs' firsts.
- */
+/// Functor for calling ->Render on pairs' firsts.
 struct render1st
 {
 	template<typename S, typename T> void operator()(const std::pair<S, T>& a) const
@@ -75,9 +69,11 @@ TerrainOverlay::~TerrainOverlay()
 
 void TerrainOverlay::RenderOverlays()
 {
+	if (g_TerrainOverlayList.size() == 0)
+		return;
+
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glDepthFunc(GL_LEQUAL);
 	glDepthMask(GL_FALSE);
 	// To ensure that outlines are drawn on top of the terrain correctly (and
 	// don't Z-fight and flicker nastily), draw them as QUADS with the LINE
@@ -89,11 +85,12 @@ void TerrainOverlay::RenderOverlays()
 	std::for_each(g_TerrainOverlayList.begin(), g_TerrainOverlayList.end(),
 		render1st());
 
-	// Clean up state to at least be consistent
+	// Clean up state changes
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_POLYGON_OFFSET_LINE);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glDepthMask(GL_TRUE);
 	glDisable(GL_BLEND);
 }
 

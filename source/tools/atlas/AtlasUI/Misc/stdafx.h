@@ -4,12 +4,6 @@
 # define HAVE_PCH
 #endif
 
-#ifdef _MSC_VER
-// Please shut up about all the deprecations
-# define _CRT_SECURE_NO_DEPRECATE
-# pragma warning(disable: 4996)
-#endif
-
 #ifdef HAVE_PCH
 
 // Exclude rarely-used stuff from Windows headers
