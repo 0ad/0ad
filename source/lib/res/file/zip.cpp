@@ -23,6 +23,7 @@
 #include "precompiled.h"
 
 #include <time.h>
+#include <limits>
 
 #include "lib.h"
 #include "byte_order.h"

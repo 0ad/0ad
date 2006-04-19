@@ -32,7 +32,7 @@
 
 #include <string.h>
 #include <stdlib.h>	// abs
-
+#include <errno.h>
 
 static const char* LibError_description(LibError err)
 {

@@ -11,6 +11,9 @@
  */
 
 #include "precompiled.h"
+
+#include <ctime>
+
 #include "ProfileViewer.h"
 #include "Profile.h"
 #include "Renderer.h"

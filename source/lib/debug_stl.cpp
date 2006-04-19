@@ -23,6 +23,8 @@
 #include "precompiled.h"
 
 #include <deque>
+#include <map>
+#include <set>
 
 #include "debug_stl.h"
 #include "lib.h"	// match_wildcard

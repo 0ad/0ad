@@ -1,5 +1,7 @@
 #include "precompiled.h"
 
+#include <sstream>
+
 #include "GameAttributes.h"
 #include "Game.h"
 #include "ConfigDB.h"

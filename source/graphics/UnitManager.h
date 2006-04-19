@@ -10,6 +10,7 @@
 #define _UNITMANAGER_H
 
 #include <vector>
+#include <set>
 #include "Singleton.h"
 
 class CUnit;

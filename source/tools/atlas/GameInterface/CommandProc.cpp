@@ -2,6 +2,8 @@
 
 #include "CommandProc.h"
 
+#include <algorithm>
+
 //////////////////////////////////////////////////////////////////////////
 
 template<typename T> T next(T x) { T t = x; return ++t; }
@@ -55,7 +57,7 @@ CommandProc::~CommandProc()
 
 void CommandProc::Destroy()
 {
-	for_each(m_Commands.begin(), m_Commands.end(), delete_fn<Command>);
+	std::for_each(m_Commands.begin(), m_Commands.end(), delete_fn<Command>);
 	m_Commands.clear();
 }
 

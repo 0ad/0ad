@@ -29,6 +29,9 @@
 
 #include <deque>
 #include <list>
+#include <string>
+#include <algorithm>
+#include <ctime>
 
 // location of a file: either archive or a real directory.
 // not many instances => don't worry about efficiency.

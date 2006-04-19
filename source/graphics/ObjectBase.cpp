@@ -1,5 +1,7 @@
 #include "precompiled.h"
 
+#include <algorithm>
+
 #include "ObjectBase.h"
 
 #include "ObjectManager.h"

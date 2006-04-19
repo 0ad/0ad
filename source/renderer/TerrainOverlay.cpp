@@ -8,6 +8,7 @@
 #include "maths/MathUtil.h"
 #include "lib/ogl.h"
 
+#include <algorithm>
 
 // Handy things for STL:
 

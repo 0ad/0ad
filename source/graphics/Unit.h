@@ -1,13 +1,14 @@
 #ifndef _UNIT_H
 #define _UNIT_H
 
-
+#include <set>
 
 class CModel;
 class CObjectEntry;
 class CEntity;
 class CSkeletonAnim;
 class CStr8;
+class CStrW;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // CUnit: simple "actor" definition - defines a sole object within the world

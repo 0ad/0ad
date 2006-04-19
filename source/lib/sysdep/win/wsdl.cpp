@@ -24,6 +24,7 @@
 
 #include <stdio.h>
 #include <math.h>
+#include <queue>
 
 #include "win_internal.h"
 #include <ddraw.h>

@@ -24,6 +24,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <set>
 
 #include "lib.h"
 #include "win_internal.h"

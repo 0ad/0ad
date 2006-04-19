@@ -25,6 +25,8 @@
 
 #include <set>
 #include <map>
+#include <algorithm>
+#include <ctime>
 
 #include "file_internal.h"
 

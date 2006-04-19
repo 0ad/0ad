@@ -1,5 +1,7 @@
 #include "precompiled.h"
 
+#include <queue>
+
 #include "PathfindEngine.h"
 //#include "PathfindSparse.h"
 #include "ConfigDB.h"

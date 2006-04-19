@@ -7,6 +7,8 @@
 #include "BaseEntity.h"
 #include "lib/sysdep/sysdep.h"	// finite
 
+#include <cfloat>
+
 // HEntity
 
 template<> HEntity* ToNative<HEntity>( JSContext* cx, JSObject* obj )
