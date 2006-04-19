@@ -194,3 +194,15 @@ LibError sys_cursor_free(void* cursor)
 
 	return ERR_OK;
 }
+
+// note: just use the sector size: Linux aio doesn't really care about
+// the alignment of buffers/lengths/offsets, so we'll just pick a
+// sane value and not bother scanning all drives.
+size_t sys_max_sector_size()
+{
+	// users may call us more than once, so cache the results.
+	static size_t cached_sector_size;
+	if(!cached_sector_size)
+		cached_sector_size = sysconf(_SC_PAGE_SIZE);
+	return cached_sector_size;
+}

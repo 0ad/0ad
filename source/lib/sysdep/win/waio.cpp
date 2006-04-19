@@ -85,7 +85,7 @@ size_t sys_max_sector_size()
 	// find maximum of all drive's sector sizes.
 	const DWORD drives = GetLogicalDrives();
 	char drive_str[4] = "?:\\";
-	for(int drive = 2; drive <= 26; drive++)	// C: .. Z:
+	for(int drive = 2; drive <= 25; drive++)	// C: .. Z:
 	{
 		// avoid BoundsChecker warning by skipping invalid drives
 		if(!(drives & BIT(drive)))
