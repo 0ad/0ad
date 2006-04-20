@@ -226,6 +226,14 @@ struct File
 	// the file provider's vtbl.
 	const FileProvider_VTbl* type;
 
+	// storage for the provider-specific fields.
+	// the implementations cast this to their e.g. PosixFile struct.
+	//
+	// note: when doing so, there's no need to verify type - if
+	// vfs_io dispatches to afile_read, then the File.type must obviously
+	// have been "archive".
+	// if users call the e.g. archive.h methods directly, we assume they
+	// know what they're doing and don't check that.
 	u8 opaque[FILE_OPAQUE_SIZE];
 };
 

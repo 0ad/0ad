@@ -407,4 +407,46 @@ public:
 	}
 };
 
+
+//
+// allocator test rig
+//
+
+// call for each allocator operation to sanity-check them.
+// should only be used during debug mode due to serious overhead.
+class AllocatorChecker
+{
+public:
+	void notify_alloc(void* p, size_t size)
+	{
+		const Allocs::value_type item = std::make_pair(p, size);
+		std::pair<Allocs::iterator, bool> ret = allocs.insert(item);
+		TEST(ret.second == true);	// wasn't already in map
+	}
+
+	void notify_free(void* p, size_t size)
+	{
+		Allocs::iterator it = allocs.find(p);
+		if(it == allocs.end())
+			debug_warn("AllocatorChecker: freeing invalid pointer");
+		else
+		{
+			// size must match what was passed to notify_alloc
+			const size_t allocated_size = it->second;
+			TEST(size == allocated_size);
+
+			allocs.erase(it);
+		}
+	}
+
+	void notify_clear()
+	{
+		allocs.clear();
+	}
+
+private:
+	typedef std::map<void*, size_t> Allocs;
+	Allocs allocs;
+};
+
 #endif	// #ifndef ALLOCATORS_H__

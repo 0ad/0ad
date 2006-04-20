@@ -243,48 +243,6 @@ void block_cache_release(BlockId id)
 
 //-----------------------------------------------------------------------------
 
-#ifndef NDEBUG
-// tracks and sanity-checks all operations made by allocator.
-// active only during debug mode due to overhead.
-class AllocatorChecker
-{
-public:
-	void notify_alloc(void* p, size_t size)
-	{
-//		debug_printf("a %p %d\n", p, size);
-		const Allocs::value_type item = std::make_pair(p, size);
-		std::pair<Allocs::iterator, bool> ret = allocs.insert(item);
-		TEST(ret.second == true);	// wasn't already in map
-	}
-
-	void notify_free(void* p, size_t size)
-	{
-//		debug_printf("f %p %d\n", p, size);
-		Allocs::iterator it = allocs.find(p);
-		if(it == allocs.end())
-			debug_warn("AllocatorChecker: freeing invalid pointer");
-		else
-		{
-			// size must match what was passed to notify_alloc
-			const size_t allocated_size = it->second;
-			TEST(size == allocated_size);
-
-			allocs.erase(it);
-		}
-	}
-
-	void notify_clear()
-	{
-		allocs.clear();
-	}
-
-private:
-	typedef std::map<void*, size_t> Allocs;
-	Allocs allocs;
-};
-static AllocatorChecker alloc_checker;
-#endif
-
 // >= file_sector_size or else waio will have to realign.
 // chosen as exactly 1 page: this allows write-protecting file buffers
 // without worrying about their (non-page-aligned) borders.
@@ -447,6 +405,10 @@ success:
 	}
 
 private:
+#ifndef NDEBUG
+	AllocatorChecker alloc_checker;
+#endif
+
 	Pool pool;
 
 	//-------------------------------------------------------------------------
@@ -1364,15 +1326,14 @@ static void test_file_cache()
 	// actually put it in the atom_fn storage (permanently clutters it).
 	// just increment this pointer (evil but works since it's not used).
 //	const char* atom_fn = (const char*)1;
-
 	// give to file_cache
 //	file_cache_add((FileIOBuf)p, size, atom_fn++);
 
 	file_cache_reset();
 	TEST(file_cache.empty());
 
-	// (even though everything has now been freed,
-	// the freelists may be a bit scattered already).
+	// note: even though everything has now been freed,
+	// the freelists may be a bit scattered already.
 }
 
 static void self_test()

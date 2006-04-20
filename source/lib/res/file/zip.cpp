@@ -45,15 +45,15 @@
 
 template<typename T> u32 u32_from_larger(T x)
 {
-	const T max = std::numeric_limits<T>::max();
-	debug_assert(x <= max);
+	const u32 max = std::numeric_limits<u32>::max();
+	debug_assert((u64)x <= (u64)max);
 	return (u32)(x & max);
 }
 
 template<typename T> u16 u16_from_larger(T x)
 {
-	const T max = std::numeric_limits<T>::max();
-	debug_assert(x <= max);
+	const u16 max = std::numeric_limits<u16>::max();
+	debug_assert((u64)x <= (u64)max);
 	return (u16)(x & max);
 }
 
@@ -116,7 +116,7 @@ enum ZipCompressionMethod
 	ZIP_CM_DEFLATE = 8
 };
 
-// translate ArchiveEntry's method to zip_method.
+// translate ArchiveEntry.method to zip_method.
 static ZipCompressionMethod zip_method_for(CompressionMethod method)
 {
 	switch(method)
@@ -445,7 +445,7 @@ have_ecdr:
 	//   because it'd be slow.
 	// - do not warn - the corrupt archive will be deleted on next
 	//   successful archive builder run anyway.
-	return ERR_CORRUPTED;
+	return ERR_CORRUPTED;	// NOWARN
 }
 
 

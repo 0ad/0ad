@@ -25,7 +25,7 @@
 #include "file_internal.h"
 #include "byte_order.h"	// FOURCC
 
-static const vtbl_magic = FOURCC('F','P','V','T');
+static const u32 vtbl_magic = FOURCC('F','P','V','T');
 
 
 // HACK: these thunks and the vtbls are implemented here,
