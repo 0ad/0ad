@@ -1,23 +1,23 @@
 function sourcesfromdirs(root, dirs)
 	local res = {}
-	for i=1, getn(dirs) do
+	for i,v in dirs do
 		local files = matchfiles(
-			root..dirs[i].."/*.cpp",
-			root..dirs[i].."/*.h",
-			root..dirs[i].."/*.asm")
-		tconcat(res, files)
+			root..v.."/*.cpp",
+			root..v.."/*.h",
+			root..v.."/*.asm")
+		listconcat(res, files)
 	end
 	return res
 end
 
 function trimrootdir(root, dirs)
-	for i=1, getn(dirs) do
-		dirs[i] = strsub(dirs[i], strlen(root))
+	for i,v in dirs do
+		dirs[i] = strsub(v, strlen(root))
 	end
 end
 
-function tconcat(table, values)
-	for i=1, getn(values) do
-		tinsert(table, values[i])
+function listconcat(list, values)
+	for i,v in values do
+		table.insert(list, v)
 	end
 end

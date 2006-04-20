@@ -10,15 +10,8 @@ cd $premake_dir
 
 # build/premake/
 
-mkdir -p tmp
-cp premake.lua tmp
-cd tmp
-
-# build/premake/tmp/
-../premake --target gnu
-
 mkdir -p $workspace_dir
-mv -f Makefile pyrogenesis.make $workspace_dir
+./premake --target gnu --outpath $workspace_dir
 
 # These files need to be linked; premake makefiles assume that the
 # lua file is accessible from the makefile directory

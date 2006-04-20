@@ -1,39 +1,44 @@
 addoption("atlas", "Include Atlas scenario editor packages")
-addoption("sced", "Include ScEd package")
+addoption("outpath", "Location for generated project files")
 
-dofile("../functions.lua")
+dofile("functions.lua")
 
 -- Set up the Project
 project.name = "pyrogenesis"
-project.bindir   = "../../../binaries/system"
-project.libdir   = "../../../binaries/system"
-project.debugdir = "../../../binaries/system"
+project.bindir   = "../../binaries/system"
+project.libdir   = "../../binaries/system"
+project.debugdir = "../../binaries/system"
+if not options["outpath"] then
+	error("You must specify the 'outpath' parameter")
+end
+project.path = options["outpath"]
 project.configs = { "Debug", "Release", "Testing" }
 
 if (OS == "windows") then
-	project.nasmpath = "../../../build/bin/nasm"
+	project.nasmpath = "../../build/bin/nasm.exe"
 end
 
----------------- Main game package (pyrogenesis/sced) ----------------
+function create_package()
+	package = newpackage()
+	package.path = project.path
+	package.language = "c++"
+	package.buildflags = { "no-manifest", "with-symbols", "no-edit-and-continue" }
+	return package
+end
+
+---------------- Main game package (pyrogenesis) ----------------
 
 function setuppackage_engine (projectname)
 
 	-- Start the package part
-	package = newpackage()
+	package = create_package()
 
-	if (projectname == "sced") then
-		package.name = "sced"
-		exename = "sced"
-		objdirprefix = "obj/ScEd_"
-	else
-		package.name = "pyrogenesis"
-		exename = "ps"
-		objdirprefix = "obj/"
-	end
+	package.name = "pyrogenesis"
+	exename = "ps"
+	objdirprefix = "obj/"
 
 	-- Windowed executable on windows, "exe" on all other platforms
 	package.kind = "winexe"
-	package.language = "c++"
 
 	-- Package target for debug and release build
 	-- On Windows, ".exe" is added on the end, on unices the name is used directly
@@ -76,26 +81,21 @@ function setuppackage_engine (projectname)
 		"terrain",
 		"sound",
 		"scripting",
-		"i18n"
-	}
+		"i18n",
 
-	if (projectname ~= "sced") then tconcat(source_dirs, {
 		"gui",
 		"gui/scripting",
 
 		"tools/atlas/GameInterface",
 		"tools/atlas/GameInterface/Handlers"
-	}) end
-
-	if (projectname == "sced") then tconcat(source_dirs, {
-		"tools/sced",
-		"tools/sced/ui"
-	}) end
+	}
 
 	package.files = sourcesfromdirs(sourceroot, source_dirs)
+	table.insert(package.files, sourceroot.."main.cpp")
 
-	tinsert(package.files, sourceroot.."main.cpp")
-
+	package.trimprefix = sourceroot
+	
+	--trimrootdir(sourceroot, package.files)
 
 	include_dirs = {
 		"ps",
@@ -108,44 +108,27 @@ function setuppackage_engine (projectname)
 		""
 	}
 
-	if (projectname == "sced") then
-		tinsert(include_dirs, "tools/sced")
-	end
-
 	package.includepaths = {}
-	foreach(include_dirs, function (i,v)
-		tinsert(package.includepaths, sourceroot .. v)
-	end)
+	for i,v in include_dirs do
+		table.insert(package.includepaths, sourceroot .. v)
+	end
 
 	package.libpaths = {}
 
+	table.insert(package.buildflags, "extra-warnings")
+	
 	if (OS == "windows") then
-		package.buildflags = { "no-rtti" }
-	else
-		package.buildflags = { }
+		table.insert(package.buildflags, "no-rtti")
 	end
 
 	-- PremakeWiki says with-symbols and optimize are automatically set for
 	-- Debug and Release builds, respectively. doesn't happen though, so do it manually.
 
-	package.config["Debug"].buildflags = { "with-symbols", "no-edit-and-continue" }
-
-	package.config["Testing"].buildflags = { "with-symbols", "no-runtime-checks", "no-edit-and-continue" }
+	package.config["Testing"].buildflags = { "no-runtime-checks" }
 	package.config["Testing"].defines = { "TESTING" }
 
-	package.config["Release"].buildflags = { "with-symbols", "no-runtime-checks", "no-edit-and-continue", "optimize" }
+	package.config["Release"].buildflags = { "no-runtime-checks", "optimize" }
 	package.config["Release"].defines = { "NDEBUG" }
-
-
-	if (projectname == "sced") then
-		tinsert(package.defines, "SCED")
-		tinsert(package.defines, "_AFXDLL")
-		-- Disable the whole GUI system, since it conflicts with the MFC headers
-		tinsert(package.defines, "NO_GUI")
-		-- Some definitions to make the lib code initialisation work
-		tinsert(package.defines, "USE_WINMAIN")
-		tinsert(package.defines, "NO_MAIN_REDIRECT")
-	end
 
 	-- Platform Specifics
 	if (OS == "windows") then
@@ -166,23 +149,16 @@ function setuppackage_engine (projectname)
 		}
 
 		-- Add '<libraries root>/<libraryname>/lib' and '/include' to the includepaths and libpaths
-		foreach(external_libraries, function (i,v)
-			tinsert(package.includepaths,	librariesroot..v.."/include")
-			tinsert(package.libpaths,		librariesroot..v.."/lib")
-		end)
+		for i,v in external_libraries do
+			table.insert(package.includepaths, librariesroot..v.."/include")
+			table.insert(package.libpaths,     librariesroot..v.."/lib")
+		end
 
 		-- Libraries
 		package.links = { "opengl32" }
-		tinsert(package.files, sourcesfromdirs(sourceroot, {"lib/sysdep/win"}))
-		tinsert(package.files, {sourceroot.."lib/sysdep/win/error_dialog.rc"})
-
-		if (projectname == "sced") then
-			tinsert(package.files, {sourceroot.."tools/sced/ui/ScEd.rc"})
-		end
-
-		if (projectname ~= "sced") then
-			tinsert(package.files, {sourceroot.."lib/sysdep/win/icon.rc"})
-		end
+		table.insert(package.files, sourcesfromdirs(sourceroot, {"lib/sysdep/win"}))
+		table.insert(package.files, {sourceroot.."lib/sysdep/win/error_dialog.rc"})
+		table.insert(package.files, {sourceroot.."lib/sysdep/win/icon.rc"})
 
 		package.linkoptions = { "/ENTRY:entry",
 			"/DELAYLOAD:opengl32.dll",
@@ -220,19 +196,17 @@ function setuppackage_engine (projectname)
 		}
 
 		-- required to use WinMain() on Windows, otherwise will default to main()
-		tinsert(package.buildflags, { "no-main" })
+		table.insert(package.buildflags, { "no-main" })
 
 		-- use native wchar_t type (not typedef to unsigned short)
-		package.buildoptions = {
-			"/Zc:wchar_t",
-		}
+		table.insert(package.buildflags, { "native-wchar_t" })
 
-		package.pchHeader = "precompiled.h"
-		package.pchSource = "precompiled.cpp"
+		package.pchheader = "precompiled.h"
+		package.pchsource = "precompiled.cpp"
 
 	else -- Non-Windows, = Unix
 
-		tinsert(package.files, sourcesfromdirs(sourceroot, {"lib/sysdep/unix"}))
+		table.insert(package.files, sourcesfromdirs(sourceroot, {"lib/sysdep/unix"}))
 
 		-- Libraries
 		package.links = {
@@ -261,18 +235,18 @@ function setuppackage_engine (projectname)
 			"-Wno-non-virtual-dtor",
 		}
 		
-		tinsert(package.libpaths, { "/usr/X11R6/lib" } )
+		table.insert(package.libpaths, { "/usr/X11R6/lib" } )
 		-- Defines
 		package.defines = {
 			"__STDC_VERSION__=199901L",
 			"CONFIG_USE_MMGR" }
 		-- Includes (X11 include path isn't standard across distributions)
-		tinsert(package.includepaths, { "/usr/X11R6/include/X11" } )
-		tinsert(package.includepaths, { "/usr/include/X11" } )
+		table.insert(package.includepaths, { "/usr/X11R6/include/X11" } )
+		table.insert(package.includepaths, { "/usr/include/X11" } )
 
 		-- speed up math functions by inlining. warning: this may result in
 		-- non-IEEE-conformant results, but haven't noticed any trouble so far.
-		tinsert(package.buildoptions, { "-ffast-math" })
+		table.insert(package.buildoptions, { "-ffast-math" })
 	end
 end
 
@@ -282,12 +256,11 @@ end
 
 function setuppackage_atlas(package_name, target_type, source_dirs, include_dirs, flags)
 
-	package = newpackage()
+	package = create_package()
 	package.name = package_name
 	objdirprefix = "obj/"..package_name.."_"
 
 	package.kind = target_type
-	package.language = "c++"
 
 	-- Package target for debug and release build
 	package.config["Debug"].target = package_name.."_d"
@@ -296,15 +269,14 @@ function setuppackage_atlas(package_name, target_type, source_dirs, include_dirs
 	package.config["Debug"].objdir = objdirprefix.."Debug"
 	package.config["Release"].objdir  = objdirprefix.."Release"
 
-	sourceroot = "../../../source/tools/atlas/"
+	sourceroot = "../../../source/tools/atlas/" .. package_name
 	librariesroot = "../../../libraries/"
 
-
 	sources = sourcesfromdirs(sourceroot, source_dirs)
-	if (flags["extrasource"]) then
-		foreach(flags["extrasource"], function (i,v)
-			tinsert(sources, sourceroot..v)
-		end)
+	if flags["extrasource"] then
+		for i,v in flags["extrasource"] do
+			table.insert(sources, sourceroot .. v)
+		end
 	end
 
 	-- We don't want three pointless levels of directories in each project,
@@ -312,54 +284,50 @@ function setuppackage_atlas(package_name, target_type, source_dirs, include_dirs
 	-- names are used by Premake to construct the project tree), but set
 	-- 'filesprefix' (with Premake altered to recognise that) so the project
 	-- will still point to the correct filenames.
-	trimrootdir(sourceroot, sources)
-	package.filesprefix = sourceroot
+	package.trimprefix = sourceroot .. "/"
 	package.files = sources
 
 	package.includepaths = {}
-	foreach(include_dirs, function (i,v)
-		tinsert(package.includepaths, sourceroot .. v)
-	end)
+	for i,v in include_dirs do
+		table.insert(package.includepaths, sourceroot .. v)
+	end
 
 	package.libpaths = {}
 
 	if (OS == "windows") then
-		package.buildflags = { "no-rtti" }
-	else
-		package.buildflags = { }
+		table.insert(package.buildflags, "no-rtti")
 	end
 
 	-- PremakeWiki says with-symbols and optimize are automatically set for
 	-- Debug and Release builds, respectively. doesn't happen though, so do it manually.
-	package.config["Debug"].buildflags = { "with-symbols", "no-edit-and-continue" }
-	package.config["Release"].buildflags = { "with-symbols", "no-runtime-checks", "no-edit-and-continue", "optimize" }
+	package.config["Release"].buildflags = { "no-runtime-checks", "optimize" }
 	package.config["Release"].defines = { "NDEBUG" }
 
 	-- Platform Specifics
 	if (OS == "windows") then
 
-		tinsert(package.defines, "_UNICODE")
+		table.insert(package.defines, "_UNICODE")
 
 		-- Directories under 'libraries', each containing 'lib' and 'include':
 		external_libraries = {}
-		if (flags["boost"])  then tinsert(external_libraries, "boost") end
-		if (flags["devil"])  then tinsert(external_libraries, "devil") end
-		if (flags["xerces"]) then tinsert(external_libraries, "xerces") end
-		if (flags["zlib"])   then tinsert(external_libraries, "zlib") end
+		if (flags["boost"])  then table.insert(external_libraries, "boost") end
+		if (flags["devil"])  then table.insert(external_libraries, "devil") end
+		if (flags["xerces"]) then table.insert(external_libraries, "xerces") end
+		if (flags["zlib"])   then table.insert(external_libraries, "zlib") end
 		
 		external_libraries.n = nil; -- remove the array size, else it'll be interpreted as a directory
 
 		-- Add '<libraries root>/<libraryname>/lib' and '/include' to the includepaths and libpaths
-		foreach(external_libraries, function (i,v)
-			tinsert(package.includepaths,	librariesroot..v.."/include")
-			tinsert(package.libpaths,		librariesroot..v.."/lib")
-		end)
+		for i,v in external_libraries do
+			table.insert(package.includepaths,	librariesroot..v.."/include")
+			table.insert(package.libpaths,		librariesroot..v.."/lib")
+		end
 
 		-- Handle wx specially
 		if (flags["wx"]) then
-			tinsert(package.includepaths, librariesroot.."wxwidgets/include/msvc")
-			tinsert(package.includepaths, librariesroot.."wxwidgets/include")
-			tinsert(package.libpaths, librariesroot.."wxwidgets/lib/vc_lib")
+			table.insert(package.includepaths, librariesroot.."wxwidgets/include/msvc")
+			table.insert(package.includepaths, librariesroot.."wxwidgets/include")
+			table.insert(package.libpaths, librariesroot.."wxwidgets/lib/vc_lib")
 		end
 
 		-- Link to required libraries		
@@ -367,15 +335,15 @@ function setuppackage_atlas(package_name, target_type, source_dirs, include_dirs
 		package.config["Debug"].links = { "wxmsw26ud_gl" }
 		package.config["Release"].links = { "wxmsw26u_gl" }
 		if (flags["depends"]) then
-			tconcat(package.links, flags["depends"])
+			listconcat(package.links, flags["depends"])
 		end
 
 		-- required to use WinMain() on Windows, otherwise will default to main()
-		tinsert(package.buildflags, { "no-main" })
+		table.insert(package.buildflags, { "no-main" })
 
 		if (flags["pch"]) then
-			package.pchHeader = "stdafx.h"
-			package.pchSource = "stdafx.cpp"
+			package.pchheader = "stdafx.h"
+			package.pchsource = "stdafx.cpp"
 		end
 
 	else -- Non-Windows, = Unix
@@ -388,12 +356,11 @@ end
 
 function setuppackage_atlas_frontend (package_name)
 
-	package = newpackage()
+	package = create_package()
 	package.name = package_name
 	objdirprefix = "obj/Frontend/"..package_name.."_"
 
 	package.kind = "winexe"
-	package.language = "c++"
 
 	-- Package target for debug and release build
 	package.config["Debug"].target = package_name.."_d"
@@ -404,25 +371,24 @@ function setuppackage_atlas_frontend (package_name)
 
 	sourceroot = "../../../source/tools/atlas/AtlasFrontends/"
 
-	package.filesprefix = sourceroot
 	package.files = {
-		package_name..".cpp",
-		package_name..".rc"
+		sourceroot..package_name..".cpp",
+		sourceroot..package_name..".rc"
 	}
+	package.trimprefix = sourceroot
 	
 	package.includepaths = { sourceroot..".." }
 
-	package.config["Debug"].buildflags = { "with-symbols", "no-edit-and-continue" }
-	package.config["Release"].buildflags = { "with-symbols", "no-runtime-checks", "no-edit-and-continue", "optimize" }
+	package.config["Release"].buildflags = { "no-runtime-checks", "optimize" }
 	package.config["Release"].defines = { "NDEBUG" }
 
 	-- Platform Specifics
 	if (OS == "windows") then
-		tinsert(package.defines, "_UNICODE")
-		tinsert(package.links, "AtlasUI")
+		table.insert(package.defines, "_UNICODE")
+		table.insert(package.links, "AtlasUI")
 
 		-- required to use WinMain() on Windows, otherwise will default to main()
-		tinsert(package.buildflags, { "no-main" })
+		table.insert(package.buildflags, { "no-main" })
 
 	else -- Non-Windows, = Unix
 		-- TODO
@@ -437,7 +403,7 @@ end
 function setuppackages_atlas()
 	setuppackage_atlas("AtlasObject", "lib", {
 		-- src
-		"AtlasObject"
+		""
 	},{
 		-- include
 	},{
@@ -446,32 +412,32 @@ function setuppackages_atlas()
 
 	setuppackage_atlas("AtlasUI", "dll", {
 		-- src
-		"AtlasUI/ActorEditor",
-		"AtlasUI/ArchiveViewer",
-		"AtlasUI/ColourTester",
-		"AtlasUI/CustomControls/Buttons",
-		"AtlasUI/CustomControls/DraggableListCtrl",
-		"AtlasUI/CustomControls/EditableListCtrl",
-		"AtlasUI/CustomControls/FileHistory",
-		"AtlasUI/CustomControls/HighResTimer",
-		"AtlasUI/CustomControls/SnapSplitterWindow",
-		"AtlasUI/CustomControls/VirtualDirTreeCtrl",
-		"AtlasUI/CustomControls/Windows",
-		"AtlasUI/FileConverter",
-		"AtlasUI/General",
-		"AtlasUI/Misc",
-		"AtlasUI/ScenarioEditor",
-		"AtlasUI/ScenarioEditor/Sections/Common",
-		"AtlasUI/ScenarioEditor/Sections/Map",
-		"AtlasUI/ScenarioEditor/Sections/Object",
-		"AtlasUI/ScenarioEditor/Sections/Terrain",
-		"AtlasUI/ScenarioEditor/Tools",
-		"AtlasUI/ScenarioEditor/Tools/Common"
+		"/ActorEditor",
+		"/ArchiveViewer",
+		"/ColourTester",
+		"/CustomControls/Buttons",
+		"/CustomControls/DraggableListCtrl",
+		"/CustomControls/EditableListCtrl",
+		"/CustomControls/FileHistory",
+		"/CustomControls/HighResTimer",
+		"/CustomControls/SnapSplitterWindow",
+		"/CustomControls/VirtualDirTreeCtrl",
+		"/CustomControls/Windows",
+		"/FileConverter",
+		"/General",
+		"/Misc",
+		"/ScenarioEditor",
+		"/ScenarioEditor/Sections/Common",
+		"/ScenarioEditor/Sections/Map",
+		"/ScenarioEditor/Sections/Object",
+		"/ScenarioEditor/Sections/Terrain",
+		"/ScenarioEditor/Tools",
+		"/ScenarioEditor/Tools/Common"
 	},{
 		-- include
+		"/..",
 		"",
-		"AtlasUI",
-		"AtlasUI/CustomControls"
+		"/CustomControls"
 	},{
 		pch = 1,
 		boost = 1,
@@ -479,20 +445,20 @@ function setuppackages_atlas()
 		wx = 1,
 		xerces = 1,
 		depends = { "AtlasObject", "DatafileIO" },
-		extrasource = { "AtlasUI/Misc/icons.rc" }
+		extrasource = { "/Misc/icons.rc" }
 	})
 
 	setuppackage_atlas("DatafileIO", "lib", {
 		-- src
-		"DatafileIO",
-		"DatafileIO/BAR",
-		"DatafileIO/DDT",
-		"DatafileIO/SCN",
-		"DatafileIO/Stream",
-		"DatafileIO/XMB"
+		"",
+		"/BAR",
+		"/DDT",
+		"/SCN",
+		"/Stream",
+		"/XMB"
 	},{
 		-- include
-		"DatafileIO"
+		""
 	},{
 		pch = 1,
 		devil = 1,
@@ -510,10 +476,6 @@ end
 --------------------------------
 
 setuppackage_engine("pyrogenesis")
-
-if (options["sced"]) then
-	setuppackage_engine("sced")
-end
 
 if (options["atlas"]) then
 	setuppackages_atlas()
