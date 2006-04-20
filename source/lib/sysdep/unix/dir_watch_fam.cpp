@@ -49,7 +49,8 @@ LibError dir_cancel_watch(const intptr_t watch)
 
 	FAMRequest req;
 	req.reqnum = (int)watch;
-	return FAMCancelMonitor(&fc, &req);
+	RETURN_ERR(FAMCancelMonitor(&fc, &req));
+	return ERR_OK;
 }
 
 int dir_get_changed_file(char* fn)

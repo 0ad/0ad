@@ -29,7 +29,7 @@
 # define WINAPI __stdcall
 # define WINAPIV __cdecl
 #endif	// OS_WIN
-#include "libpng13/png.h"
+#include "png.h"
 
 #include "lib/byte_order.h"
 #include "lib/res/res.h"

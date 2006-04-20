@@ -1,5 +1,5 @@
 ; =========================================================================
-; File        : ia32.asm
+; File        : ia32_asm.asm
 ; Project     : 0 A.D.
 ; Description : optimized assembly code for IA-32. not provided as
 ;             : inline assembly because that's compiler-specific.

@@ -23,10 +23,10 @@
 # define XP_UNIX
 #endif
 
-#include <jsapi.h>
-#include <jsatom.h>
+#include <js/jsapi.h>
+#include <js/jsatom.h>
 #ifndef NDEBUG
-# include <jsdbgapi.h>
+# include <js/jsdbgapi.h>
 #endif
 
 // include any further required headers here

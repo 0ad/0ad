@@ -25,7 +25,7 @@
 
 #include "lib.h"
 #include "debug.h"
-#include "detect.h"
+#include "sysdep/gfx.h"
 
 #include <algorithm>
 

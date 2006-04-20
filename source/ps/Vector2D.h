@@ -28,6 +28,10 @@ public:
 	{
 		return( CVector3D( x, 0, y ) );
 	}
+	inline bool operator==( const CVector2D& rhs ) const
+	{
+		return( x == rhs.x && y == rhs.y );
+	}
 	static inline float dot( const CVector2D& u, const CVector2D& v )
 	{
 		return( u.x * v.x + u.y * v.y );

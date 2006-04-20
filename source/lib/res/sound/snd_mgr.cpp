@@ -68,7 +68,9 @@
 // that looks unnecessary and wastes 100..400 ms on startup.
 // we hold a reference to prevent the actual unload. everything works ATM;
 // hopefully, OpenAL doesn't rely on them actually being unloaded.
-#define WIN_LOADLIBRARY_HACK 1
+#if OS_WIN
+# define WIN_LOADLIBRARY_HACK 1
+#endif
 
 
 // components:

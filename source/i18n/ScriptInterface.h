@@ -18,7 +18,7 @@ and 'variables' (dependent on the type passed with "translate(...) <<").
 ERROR_SUBGROUP(I18n, Script);
 ERROR_TYPE(I18n_Script, SetupFailed);
 
-#ifdef XP_WIN // the Windows JS libraries are using '_W64 long' to avoid MSVC warnings
+#ifdef OS_WIN // the Windows JS libraries are using '_W64 long' to avoid MSVC warnings
 typedef _W64 long jsval;
 #else
 typedef long jsval;
