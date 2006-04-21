@@ -16,7 +16,7 @@ public:
 
 	int GetWidth() const;
 	int GetHeight() const;
-	float* GetNewedData() const; // freshly allocated via new[]
+	std::vector<float> GetData() const;
 
 	float GetStrength() const;
 

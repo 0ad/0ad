@@ -80,10 +80,16 @@ public:
 		AtlasMessage::qGetTerrainGroupPreviews qry(m_Name.c_str(), imageWidth, imageHeight);
 		qry.Post();
 
+		std::vector<AtlasMessage::sTerrainGroupPreview> previews = *qry.previews;
+
 		int i = 0;
-		for (std::vector<AtlasMessage::sTerrainGroupPreview>::iterator it = qry.previews.begin(); it != qry.previews.end(); ++it)
+		for (std::vector<AtlasMessage::sTerrainGroupPreview>::iterator it = previews.begin(); it != previews.end(); ++it)
 		{
-			wxImage img (imageWidth, imageHeight, it->imagedata);
+			unsigned char* buf = (unsigned char*)(malloc(it->imagedata.GetSize()));
+			// it->imagedata.GetBuffer() gives a Shareable<unsigned char>*, which
+			// is stored the same as a unsigned char*, so we can just copy it.
+			memcpy(buf, it->imagedata.GetBuffer(), it->imagedata.GetSize());
+			wxImage img (imageWidth, imageHeight, buf);
 			imglist->Add(wxBitmap(img));
 
 			wxListItem item;
@@ -142,7 +148,8 @@ public:
 		// Get the list of terrain groups from the engine
 		AtlasMessage::qGetTerrainGroups qry;
 		qry.Post();
-		for (std::vector<std::wstring>::iterator it = qry.groupnames.begin(); it != qry.groupnames.end(); ++it)
+		std::vector<std::wstring> groupnames = *qry.groupnames;
+		for (std::vector<std::wstring>::iterator it = groupnames.begin(); it != groupnames.end(); ++it)
 			m_TerrainGroups.Add(it->c_str());
 
 		for (size_t i = 0; i < m_TerrainGroups.GetCount(); ++i)

@@ -8,13 +8,13 @@ namespace AtlasMessage {
 
 MESSAGEHANDLER(Brush)
 {
-	g_CurrentBrush.SetData(msg->width, msg->height, msg->data);
+	g_CurrentBrush.SetData(msg->width, msg->height, *msg->data);
 }
 
 MESSAGEHANDLER(BrushPreview)
 {
 	g_CurrentBrush.SetRenderEnabled(msg->enable);
-	msg->pos.GetWorldSpace(g_CurrentBrush.m_Centre);
+	msg->pos->GetWorldSpace(g_CurrentBrush.m_Centre);
 }
 
 }

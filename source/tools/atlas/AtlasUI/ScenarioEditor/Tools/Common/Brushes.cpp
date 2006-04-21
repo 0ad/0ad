@@ -40,12 +40,12 @@ int Brush::GetHeight() const
 	return GetWidth();
 }
 
-float* Brush::GetNewedData() const
+std::vector<float> Brush::GetData() const
 {
 	int width = GetWidth();
 	int height = GetHeight();
 	
-	float* data = new float[width*height];
+	std::vector<float> data (width*height);
 	
 	switch (m_Shape)
 	{
@@ -200,7 +200,7 @@ void Brush::MakeActive()
 void Brush::Send()
 {
 	if (m_IsActive)
-		POST_MESSAGE(Brush(GetWidth(), GetHeight(), GetNewedData()));
+		POST_MESSAGE(Brush, (GetWidth(), GetHeight(), GetData()));
 }
 
 

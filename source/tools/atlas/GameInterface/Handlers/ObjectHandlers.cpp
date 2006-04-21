@@ -25,11 +25,12 @@ namespace AtlasMessage {
 
 static bool SortObjectsList(const sObjectsListItem& a, const sObjectsListItem& b)
 {
-	return a.name < b.name;
+	return wcscmp(a.name.c_str(), b.name.c_str()) < 0;
 }
 
 QUERYHANDLER(GetObjectsList)
 {
+	std::vector<sObjectsListItem> objects;
 	{
 		std::vector<CStrW> names;
 		g_EntityTemplateCollection.getBaseEntityNames(names);
@@ -40,7 +41,7 @@ QUERYHANDLER(GetObjectsList)
 			e.id = L"(e) " + *it;
 			e.name = *it; //baseent->m_Tag
 			e.type = 0;
-			msg->objects.push_back(e);
+			objects.push_back(e);
 		}
 	}
 
@@ -54,10 +55,11 @@ QUERYHANDLER(GetObjectsList)
 			e.id = L"(n) " + CStrW(*it);
 			e.name = CStrW(*it).AfterFirst(/*L"props/"*/ L"actors/");
 			e.type = 1;
-			msg->objects.push_back(e);
+			objects.push_back(e);
 		}
 	}
-	std::sort(msg->objects.begin(), msg->objects.end(), SortObjectsList);
+	std::sort(objects.begin(), objects.end(), SortObjectsList);
+	msg->objects = objects;
 }
 
 
@@ -98,7 +100,7 @@ void AtlasRenderSelection()
 
 MESSAGEHANDLER(SetSelectionPreview)
 {
-	g_Selection = msg->ids;
+	g_Selection = *msg->ids;
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -152,7 +154,7 @@ static bool ParseObjectName(const CStrW& obj, bool& isEntity, CStrW& name)
 
 MESSAGEHANDLER(ObjectPreview)
 {
-	if (msg->id != g_PreviewUnitID)
+	if (*msg->id != g_PreviewUnitID)
 	{
 		// Delete old unit
 		if (g_PreviewUnit)
@@ -164,7 +166,7 @@ MESSAGEHANDLER(ObjectPreview)
 
 		bool isEntity;
 		CStrW name;
-		if (ParseObjectName(msg->id, isEntity, name))
+		if (ParseObjectName(*msg->id, isEntity, name))
 		{
 			std::set<CStrW> selections; // TODO: get selections from user
 
@@ -186,7 +188,7 @@ MESSAGEHANDLER(ObjectPreview)
 			}
 		}
 
-		g_PreviewUnitID = msg->id;
+		g_PreviewUnitID = *msg->id;
 	}
 
 	if (g_PreviewUnit)
@@ -198,7 +200,7 @@ MESSAGEHANDLER(ObjectPreview)
 		if (msg->usetarget)
 		{
 			CVector3D target;
-			msg->target.GetWorldSpace(target, pos.Y);
+			msg->target->GetWorldSpace(target, pos.Y);
 			CVector2D dir(target.X-pos.X, target.Z-pos.Z);
 			dir = dir.normalize();
 			s = dir.x;
@@ -234,7 +236,7 @@ BEGIN_COMMAND(CreateObject)
 		if (d->usetarget)
 		{
 			CVector3D target;
-			d->target.GetWorldSpace(target, m_Pos.Y);
+			d->target->GetWorldSpace(target, m_Pos.Y);
 			CVector2D dir(target.X-m_Pos.X, target.Z-m_Pos.Z);
 			m_Angle = atan2(dir.x, dir.y);
 		}
@@ -252,7 +254,7 @@ BEGIN_COMMAND(CreateObject)
 	{
 		bool isEntity;
 		CStrW name;
-		if (ParseObjectName(d->id, isEntity, name))
+		if (ParseObjectName(*d->id, isEntity, name))
 		{
 			std::set<CStrW> selections;
 
@@ -329,7 +331,7 @@ END_COMMAND(CreateObject)
 QUERYHANDLER(SelectObject)
 {
 	float x, y;
-	msg->pos.GetScreenSpace(x, y);
+	msg->pos->GetScreenSpace(x, y);
 	
 	CVector3D rayorigin, raydir;
 	g_Game->GetView()->GetCamera()->BuildCameraRay((int)x, (int)y, rayorigin, raydir);
@@ -434,7 +436,7 @@ BEGIN_COMMAND(RotateObject)
 			{
 				CVector3D& pos = unit->GetEntity()->m_position;
 				CVector3D target;
-				d->target.GetWorldSpace(target, pos.Y);
+				d->target->GetWorldSpace(target, pos.Y);
 				CVector2D dir(target.X-pos.X, target.Z-pos.Z);
 				m_AngleNew = atan2(dir.x, dir.y);
 			}
@@ -453,7 +455,7 @@ BEGIN_COMMAND(RotateObject)
 			if (d->usetarget)
 			{
 				CVector3D target;
-				d->target.GetWorldSpace(target, pos.Y);
+				d->target->GetWorldSpace(target, pos.Y);
 				CVector2D dir(target.X-pos.X, target.Z-pos.Z);
 				dir = dir.normalize();
 				s = dir.x;

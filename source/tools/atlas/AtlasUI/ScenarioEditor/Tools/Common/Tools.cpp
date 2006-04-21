@@ -111,16 +111,20 @@ WorldCommand::WorldCommand(AtlasMessage::mWorldCommand* command)
 
 WorldCommand::~WorldCommand()
 {
+	// m_Command was allocated by POST_COMMAND
 	delete m_Command;
 }
 
 bool WorldCommand::Do()
 {
 	if (m_AlreadyDone)
-		POST_MESSAGE(RedoCommand());
+		POST_MESSAGE(RedoCommand, ());
 	else
 	{
-		POST_MESSAGE(DoCommand(m_Command));
+		// The DoCommand message clones the data from m_Command, and posts that
+		// (passing ownership to the game), so we're free to delete m_Command
+		// at any time
+		POST_MESSAGE(DoCommand, (m_Command));
 		m_AlreadyDone = true;
 	}
 	return true;
@@ -128,7 +132,7 @@ bool WorldCommand::Do()
 
 bool WorldCommand::Undo()
 {
-	POST_MESSAGE(UndoCommand());
+	POST_MESSAGE(UndoCommand, ());
 	return true;
 }
 
@@ -145,6 +149,6 @@ bool WorldCommand::Merge(AtlasWindowCommand* p)
 	if (! m_Command->IsMergeable())
 		return false;
 
-	POST_MESSAGE(MergeCommand());
+	POST_MESSAGE(MergeCommand, ());
 	return true;
 }

@@ -10,7 +10,7 @@ namespace AtlasMessage {
 MESSAGEHANDLER(DoCommand)
 {
 	Command* c = NULL;
-	cmdHandlers::const_iterator it = GetCmdHandlers().find("c" + msg->name);
+	cmdHandlers::const_iterator it = GetCmdHandlers().find("c" + *msg->name);
 	if (it != GetCmdHandlers().end())
 	{
 		c = (it->second)(msg->data);

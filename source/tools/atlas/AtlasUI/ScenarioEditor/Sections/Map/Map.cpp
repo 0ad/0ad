@@ -25,7 +25,7 @@ static void LoadMap(void*)
 		SetCurrentTool(_T(""));
 		// TODO: clear the undo buffer, etc
 
-		POST_MESSAGE(LoadMap(map));
+		POST_MESSAGE(LoadMap, (map));
 	}
 	
 	wxCHECK_RET(cwd == wxFileName::GetCwd(), _T("cwd changed"));
@@ -44,13 +44,13 @@ static void SaveMap(void*)
 	{
 		// TODO: Work when the map is not in .../maps/scenarios/
 		std::wstring map = dlg.GetFilename().c_str();
-		POST_MESSAGE(SaveMap(map));
+		POST_MESSAGE(SaveMap, (map));
 	}
 }
 
 static void GenerateMap(void*)
 {
-	POST_MESSAGE(GenerateMap(9));
+	POST_MESSAGE(GenerateMap, (9));
 }
 
 static void GenerateRMS(void* data)
@@ -64,7 +64,7 @@ static void GenerateRMS(void* data)
 	wxExecute(argv, wxEXEC_SYNC);
 	wxFileName::SetCwd(cwd);
 
-	POST_MESSAGE(LoadMap(L"_atlasrm.pmp"));
+	POST_MESSAGE(LoadMap, (L"_atlasrm.pmp"));
 }
 
 //////////////////////////////////////////////////////////////////////////

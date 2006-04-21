@@ -20,8 +20,10 @@ namespace AtlasMessage {
 QUERYHANDLER(GetTerrainGroups)
 {
 	const CTextureManager::TerrainGroupMap &groups = g_TexMan.GetGroups();
-	for (CTextureManager ::TerrainGroupMap::const_iterator it = groups.begin(); it != groups.end(); ++it)
-		msg->groupnames.push_back(CStrW(it->first));
+	std::vector<std::wstring> groupnames;
+	for (CTextureManager::TerrainGroupMap::const_iterator it = groups.begin(); it != groups.end(); ++it)
+		groupnames.push_back(CStrW(it->first));
+	msg->groupnames = groupnames;
 }
 
 static bool CompareTerrain(const sTerrainGroupPreview& a, const sTerrainGroupPreview& b) 
@@ -31,13 +33,15 @@ static bool CompareTerrain(const sTerrainGroupPreview& a, const sTerrainGroupPre
 
 QUERYHANDLER(GetTerrainGroupPreviews)
 {
-	CTerrainGroup* group = g_TexMan.FindGroup(CStrW(msg->groupname));
+	std::vector<sTerrainGroupPreview> previews;
+
+	CTerrainGroup* group = g_TexMan.FindGroup(CStrW(*msg->groupname));
 	for (std::vector<CTextureEntry*>::const_iterator it = group->GetTerrains().begin(); it != group->GetTerrains().end(); ++it)
 	{
-		msg->previews.push_back(sTerrainGroupPreview());
-		msg->previews.back().name = CStrW((*it)->GetTag());
+		previews.push_back(sTerrainGroupPreview());
+		previews.back().name = CStrW((*it)->GetTag());
 
-		unsigned char* buf = (unsigned char*)malloc(msg->imagewidth*msg->imageheight*3);
+		std::vector<unsigned char> buf (msg->imagewidth*msg->imageheight*3);
 
 		// It's not good to shrink the entire texture to fit the small preview
 		// window, since it's the fine details in the texture that are
@@ -72,7 +76,7 @@ QUERYHANDLER(GetTerrainGroupPreviews)
 			// Extract the middle section (as a representative preview),
 			// and copy into buf
 			unsigned char* texdata_ptr = texdata + (w*(h - msg->imageheight)/2 + (w - msg->imagewidth)/2) * 3;
-			unsigned char* buf_ptr = buf;
+			unsigned char* buf_ptr = &buf[0];
 			for (int y = 0; y < msg->imageheight; ++y)
 			{
 				memcpy(buf_ptr, texdata_ptr, msg->imagewidth*3);
@@ -83,11 +87,12 @@ QUERYHANDLER(GetTerrainGroupPreviews)
 			delete[] texdata;
 		}
 
-		msg->previews.back().imagedata = buf;
+		previews.back().imagedata = buf;
 	}
 
 	// Sort the list alphabetically by name
-	std::sort(msg->previews.begin(), msg->previews.end(), CompareTerrain);
+	std::sort(previews.begin(), previews.end(), CompareTerrain);
+	msg->previews = previews;
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -160,12 +165,12 @@ BEGIN_COMMAND(PaintTerrain)
 	void Do()
 	{
 
-		d->pos.GetWorldSpace(g_CurrentBrush.m_Centre);
+		d->pos->GetWorldSpace(g_CurrentBrush.m_Centre);
 
 		int x0, y0;
 		g_CurrentBrush.GetBottomLeft(x0, y0);
 
-		CTextureEntry* texentry = g_TexMan.FindTexture(CStrW(d->texture));
+		CTextureEntry* texentry = g_TexMan.FindTexture(CStrW(*d->texture));
 		if (! texentry)
 		{
 			debug_warn("Can't find texentry"); // TODO: nicer error handling

@@ -14,6 +14,26 @@
 #include "wx/config.h"
 #include "wx/debugrpt.h"
 
+// Shared memory allocation functions
+ATLASDLLIMPEXP void* ShareableMalloc(size_t n)
+{
+	// TODO: make sure this is thread-safe everywhere. (It is in MSVC with the
+	// multithreaded CRT.)
+	return malloc(n);
+}
+ATLASDLLIMPEXP void ShareableFree(void* p)
+{
+	return free(p);
+}
+// Define the function pointers that we'll use when calling those functions.
+// (The game loads the addresses of the above functions, then does the same.)
+namespace AtlasMessage
+{
+	void* (*ShareableMallocFptr) (size_t) = &ShareableMalloc;
+	void (*ShareableFreeFptr) (void*) = &ShareableFree;
+}
+
+
 // Global variables, to remember state between DllMain and StartWindow and OnInit
 wxString g_InitialWindowType;
 HINSTANCE g_Module;
@@ -166,4 +186,4 @@ public:
 	}
 };
 
-IMPLEMENT_APP_NO_MAIN(wxDLLApp) 
+IMPLEMENT_APP_NO_MAIN(wxDLLApp)

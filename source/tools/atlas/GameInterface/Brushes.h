@@ -9,7 +9,7 @@ struct Brush
 	Brush();
 	~Brush();
 
-	void SetData(int w, int h, const float* data);
+	void SetData(int w, int h, const std::vector<float>& data);
 	
 	void SetRenderEnabled(bool enabled); // initial state is disabled
 
@@ -27,7 +27,7 @@ struct Brush
 	CVector3D m_Centre;
 private:
 	TerrainOverlay* m_TerrainOverlay; // NULL if rendering is not enabled
-	const float* m_Data;
+	std::vector<float> m_Data;
 };
 
 extern Brush g_CurrentBrush;

@@ -30,9 +30,9 @@ public:
 			+ (m_ScreenPos.type1.y-m_Target.type1.y)*(m_ScreenPos.type1.y-m_Target.type1.y);
 		bool useTarget = (dragDistSq >= 16*16);
 		if (preview)
-			POST_MESSAGE(ObjectPreview(m_ObjectID.c_str(), 0, m_ObjPos, useTarget, m_Target, g_DefaultAngle));
+			POST_MESSAGE(ObjectPreview, (m_ObjectID.c_str(), 0, m_ObjPos, useTarget, m_Target, g_DefaultAngle));
 		else
-			POST_COMMAND(CreateObject,(m_ObjectID.c_str(), m_Player, m_ObjPos, useTarget, m_Target, g_DefaultAngle));
+			POST_COMMAND(CreateObject, (m_ObjectID.c_str(), m_Player, m_ObjPos, useTarget, m_Target, g_DefaultAngle));
 	}
 
 	virtual void Init(void* initData)

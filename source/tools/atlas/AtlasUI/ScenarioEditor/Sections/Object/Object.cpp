@@ -91,7 +91,7 @@ void ObjectSidebar::OnFirstDisplay()
 {
 	AtlasMessage::qGetObjectsList qry;
 	qry.Post();
-	p->m_Objects = qry.objects;
+	p->m_Objects = *qry.objects;
 	SetObjectFilter(0);
 }
 

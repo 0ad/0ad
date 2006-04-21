@@ -2,6 +2,8 @@
 #include <list>
 #include <map>
 
+#include "SharedMemory.h"
+
 namespace AtlasMessage
 {
 
@@ -47,7 +49,8 @@ struct DataCommand : public Command // so commands can optionally override (De|C
 {
 	void Destruct() {};
 	void Construct() {};
-	// MergeWithSelf should update 'prev' to include the effects of 'this'
+	// MergeWithSelf should be overriden by commands, and implemented
+	// to update 'prev' to include the effects of 'this'
 	void MergeWithSelf(void*) { debug_warn("MergeWithSelf unimplemented in some command"); }
 };
 
@@ -57,8 +60,8 @@ struct DataCommand : public Command // so commands can optionally override (De|C
 		d##t* d; \
 	public: \
 		c##t(d##t* data) : d(data) { Construct(); } \
-		~c##t() { Destruct(); delete d; } \
-		static Command* Create(const void* data) { return new c##t((d##t*)data); } \
+		~c##t() { Destruct(); AtlasMessage::ShareableDelete(d); /* d was allocated by mDoCommand() */ } \
+		static Command* Create(const void* data) { return new c##t ((d##t*)data); } \
 		virtual void Merge(Command* prev) { MergeWithSelf((c##t*)prev); } \
 		virtual const char* GetType() const { return #t; }
 

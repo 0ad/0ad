@@ -98,14 +98,14 @@ MESSAGEHANDLER(GenerateMap)
 
 MESSAGEHANDLER(LoadMap)
 {
-	InitGame(msg->filename);
+	InitGame(*msg->filename);
 	StartGame();
 }
 
 MESSAGEHANDLER(SaveMap)
 {
 	CMapWriter writer;
-	writer.SaveMap(CStr(L"maps/scenarios/" + msg->filename),
+	writer.SaveMap(CStr(L"maps/scenarios/" + *msg->filename),
 		g_Game->GetWorld()->GetTerrain(), g_Game->GetWorld()->GetUnitManager(),
 		&g_LightEnv, g_Game->GetView()->GetCamera());
 }

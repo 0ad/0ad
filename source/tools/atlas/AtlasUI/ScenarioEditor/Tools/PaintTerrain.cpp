@@ -28,7 +28,7 @@ public:
 
 	void OnDisable()
 	{
-		POST_MESSAGE(BrushPreview(false, Position()));
+		POST_MESSAGE(BrushPreview, (false, Position()));
 	}
 
 
@@ -50,7 +50,7 @@ public:
 			}
 			else if (evt.Moving())
 			{
-				POST_MESSAGE(BrushPreview(true, Position(evt.GetPosition())));
+				POST_MESSAGE(BrushPreview, (true, Position(evt.GetPosition())));
 				return true;
 			}
 			else
@@ -96,7 +96,7 @@ public:
 
 		void Paint(PaintTerrain* obj)
 		{
-			POST_MESSAGE(BrushPreview(true, obj->m_Pos));
+			POST_MESSAGE(BrushPreview, (true, obj->m_Pos));
 			POST_COMMAND(PaintTerrain, (obj->m_Pos, g_SelectedTexture.c_str(), GetPriority()));
 		}
 

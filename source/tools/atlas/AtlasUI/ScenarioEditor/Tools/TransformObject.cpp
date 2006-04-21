@@ -23,7 +23,7 @@ public:
 	void OnDisable()
 	{
 		m_Selection.clear();
-		POST_MESSAGE(SetSelectionPreview(m_Selection));
+		POST_MESSAGE(SetSelectionPreview, (m_Selection));
 	}
 
 
@@ -46,7 +46,7 @@ public:
 					obj->m_dy = qry.offsety;
 					SET_STATE(Dragging);
 				}
-				POST_MESSAGE(SetSelectionPreview(obj->m_Selection));
+				POST_MESSAGE(SetSelectionPreview, (obj->m_Selection));
 				ScenarioEditor::GetCommandProc().FinaliseLastCommand();
 				return true;
 			}
@@ -68,7 +68,7 @@ public:
 				for (size_t i = 0; i < obj->m_Selection.size(); ++i)
 					POST_COMMAND(DeleteObject, (obj->m_Selection[i]));
 				obj->m_Selection.clear();
-				POST_MESSAGE(SetSelectionPreview(obj->m_Selection));
+				POST_MESSAGE(SetSelectionPreview, (obj->m_Selection));
 				return true;
 			}
 			else

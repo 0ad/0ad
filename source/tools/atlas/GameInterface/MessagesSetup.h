@@ -4,45 +4,16 @@
 #define MESSAGESSETUP_NOTFIRST
 
 #include "MessagePasser.h"
+#include "SharedTypes.h"
+#include "Shareable.h"
 
 // Structures in this file are passed over the DLL boundary, so some
 // carefulness and/or luck is required...
 
-class wxPoint;
-class CVector3D;
 class CMutex;
 
 namespace AtlasMessage
 {
-
-//////////////////////////////////////////////////////////////////////////
-
-struct Position
-{
-	Position() : type(0) { type0.x = type0.y = type0.z = 0.f;  }
-	Position(float x_, float y_, float z_) : type(0) { type0.x = x_; type0.y = y_; type0.z = z_; }
-	Position(const wxPoint& pt); // (implementation in ScenarioEditor.cpp)
-
-	int type;
-	union {
-		struct { float x, y, z; } type0; // world-space coordinates
-		struct { int x, y; } type1; // screen-space coordinates, to be projected onto terrain
-		// type2: "same as previous" (e.g. for elevation-editing when the mouse hasn't moved)
-	};
-
-	// Constructs a position with the meaning "same as previous", which is handled
-	// in an unspecified way by various message handlers.
-	static Position Unchanged() { Position p; p.type = 2; return p; }
-
-	// Only for use in the game, not the UI.
-	// Implementations in Misc.cpp.
-	void GetWorldSpace(CVector3D& vec) const;
-	void GetWorldSpace(CVector3D& vec, float h) const;
-	void GetWorldSpace(CVector3D& vec, const CVector3D& prev) const;
-	void GetScreenSpace(float& x, float& y) const;
-};
-
-//////////////////////////////////////////////////////////////////////////
 
 struct IMessage
 {
@@ -71,8 +42,9 @@ MESSAGESTRUCT(WorldCommand)
 };
 MESSAGESTRUCT(DoCommand)
 	mDoCommand(mWorldCommand* c) : name(c->GetName()), data(c->CloneData()) {}
-	const std::string name;
-	const void* data;
+	const Shareable<std::string> name;
+	const Shareable<void*> data;
+		// 'data' gets deallocated by ~cWhatever in the game thread
 };
 MESSAGESTRUCT(UndoCommand)  };
 MESSAGESTRUCT(RedoCommand)  };
@@ -112,7 +84,7 @@ const bool NOMERGE = false;
 		m##t(const d##t& d) : d##t(d) {} \
 		const char* GetName() const { return #t; } \
 		virtual bool IsMergeable() const { return merge; } \
-		void* CloneData() const { return new d##t(*this); } \
+		void* CloneData() const { return SHAREABLE_NEW(d##t, (*this)); } \
 	private: \
 		const m##t& operator=(const m##t&);\
 	};
@@ -128,15 +100,15 @@ const bool NOMERGE = false;
 #define B_NAME(elem) BOOST_PP_TUPLE_ELEM(2, 1, elem)
 #define B_CONSTRUCTORARGS(r, data, n, elem) BOOST_PP_COMMA_IF(n) B_TYPE(elem) BOOST_PP_CAT(B_NAME(elem),_)
 #define B_CONSTRUCTORINIT(r, data, n, elem) BOOST_PP_COMMA_IF(n) B_NAME(elem)(BOOST_PP_CAT(B_NAME(elem),_))
-#define B_CONSTMEMBERS(r, data, n, elem) const B_TYPE(elem) B_NAME(elem);
-#define B_MEMBERS(r, data, n, elem) B_TYPE(elem) B_NAME(elem);
+#define B_CONSTMEMBERS(r, data, n, elem) const Shareable< B_TYPE(elem) > B_NAME(elem);
+#define B_MEMBERS(r, data, n, elem) Shareable< B_TYPE(elem) > B_NAME(elem);
 
 /* For each message type, generate something roughly like:
 	struct mBlah : public IMessage {
 		const char* GetName() const { return "Blah"; }
 		mBlah(int in0_, bool in1_) : in0(in0_), in1(in1_) {}
-		const int in0;
-		const bool in1;
+		const Shareable<int> in0;
+		const Shareable<bool> in1;
 	}
 */
 

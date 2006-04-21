@@ -49,22 +49,20 @@ public:
 };
 
 Brush::Brush()
-: m_W(0), m_H(0), m_TerrainOverlay(NULL), m_Data(NULL)
+: m_W(0), m_H(0), m_TerrainOverlay(NULL)
 {
 }
 
 Brush::~Brush()
 {
 	delete m_TerrainOverlay;
-	delete[] m_Data;
 }
 
-void Brush::SetData(int w, int h, const float* data)
+void Brush::SetData(int w, int h, const std::vector<float>& data)
 {
 	m_W = w;
 	m_H = h;
 
-	delete[] m_Data;
 	m_Data = data;
 }
 

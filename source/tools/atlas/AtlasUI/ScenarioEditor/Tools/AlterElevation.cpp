@@ -27,7 +27,7 @@ public:
 
 	void OnDisable()
 	{
-		POST_MESSAGE(BrushPreview(false, Position()));
+		POST_MESSAGE(BrushPreview, (false, Position()));
 	}
 
 
@@ -49,7 +49,7 @@ public:
 			}
 			else if (evt.Moving())
 			{
-				POST_MESSAGE(BrushPreview(true, Position(evt.GetPosition())));
+				POST_MESSAGE(BrushPreview, (true, Position(evt.GetPosition())));
 				return true;
 			}
 			else
@@ -65,7 +65,7 @@ public:
 	{
 		void OnEnter(AlterElevation* obj)
 		{
-			POST_MESSAGE(BrushPreview(true, obj->m_Pos));
+			POST_MESSAGE(BrushPreview, (true, obj->m_Pos));
 		}
 
 		void OnLeave(AlterElevation*)
@@ -84,7 +84,7 @@ public:
 			{
 				wxPoint pos = evt.GetPosition();
 				obj->m_Pos = Position(pos);
-				POST_MESSAGE(BrushPreview(true, obj->m_Pos));
+				POST_MESSAGE(BrushPreview, (true, obj->m_Pos));
 				return true;
 			}
 			else

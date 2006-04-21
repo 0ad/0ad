@@ -55,7 +55,7 @@ MESSAGE(Screenshot,
 MESSAGE(Brush,
 		((int, width)) // number of vertices
 		((int, height))
-		((float*, data)) // width*height array, allocated with new[] (handler will delete[])
+		((std::vector<float>, data)) // width*height array
 		);
 
 MESSAGE(BrushPreview,
@@ -73,9 +73,11 @@ QUERY(GetTerrainGroups,
 
 struct sTerrainGroupPreview
 {
-	std::wstring name;
-	unsigned char* imagedata; // RGB*size*size, allocated with malloc (querier should free)
+	Shareable<std::wstring> name;
+	Shareable<std::vector<unsigned char> > imagedata; // RGB*size*size
 };
+SHAREABLE_POD(sTerrainGroupPreview);
+
 QUERY(GetTerrainGroupPreviews,
 	  ((std::wstring, groupname))
 	  ((int, imagewidth))
@@ -89,10 +91,12 @@ QUERY(GetTerrainGroupPreviews,
 
 struct sObjectsListItem
 {
-	std::wstring id;
-	std::wstring name;
-	int type; // 0 = entity, 1 = actor
+	Shareable<std::wstring> id;
+	Shareable<std::wstring> name;
+	Shareable<int> type; // 0 = entity, 1 = actor
 };
+SHAREABLE_POD(sObjectsListItem);
+
 QUERY(GetObjectsList,
 	  , // no inputs
 	  ((std::vector<sObjectsListItem>, objects))

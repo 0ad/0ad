@@ -53,14 +53,14 @@ MESSAGEHANDLER(Scroll)
 
 	if (msg->type == eScrollType::FROM)
 	{
-		msg->pos.GetWorldSpace(targetPos);
+		msg->pos->GetWorldSpace(targetPos);
 		targetDistance = (targetPos - camera.GetTranslation()).GetLength();
 	}
 	else if (msg->type == eScrollType::TO)
 	{
 		CVector3D origin, dir;
 		float x, y;
-		msg->pos.GetScreenSpace(x, y);
+		msg->pos->GetScreenSpace(x, y);
 		g_Game->GetView()->GetCamera()->BuildCameraRay((int)x, (int)y, origin, dir);
 		dir *= targetDistance;
 		camera.Translate(targetPos - dir - origin);
@@ -87,13 +87,13 @@ MESSAGEHANDLER(RotateAround)
 
 	if (msg->type == eRotateAroundType::FROM)
 	{
-		msg->pos.GetScreenSpace(lastX, lastY); // get mouse position
-		msg->pos.GetWorldSpace(focusPos); // get point on terrain under mouse
+		msg->pos->GetScreenSpace(lastX, lastY); // get mouse position
+		msg->pos->GetWorldSpace(focusPos); // get point on terrain under mouse
 	}
 	else if (msg->type == eRotateAroundType::TO)
 	{
 		float x, y;
-		msg->pos.GetScreenSpace(x, y); // get mouse position
+		msg->pos->GetScreenSpace(x, y); // get mouse position
 
 		// Rotate around X and Y axes by amounts depending on the mouse delta
 		float rotX = 6.f * (y-lastY) / g_Renderer.GetHeight();

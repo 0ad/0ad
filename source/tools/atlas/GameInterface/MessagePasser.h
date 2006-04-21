@@ -1,6 +1,8 @@
 #ifndef MESSAGEPASSER_H__
 #define MESSAGEPASSER_H__
 
+#include "SharedMemory.h"
+
 namespace AtlasMessage
 {
 	
@@ -21,7 +23,7 @@ public:
 
 extern MessagePasser* g_MessagePasser;
 
-#define POST_MESSAGE(type) AtlasMessage::g_MessagePasser->Add(new AtlasMessage::m##type)
+#define POST_MESSAGE(type, data) AtlasMessage::g_MessagePasser->Add(SHAREABLE_NEW(AtlasMessage::m##type, data))
 
 }
 

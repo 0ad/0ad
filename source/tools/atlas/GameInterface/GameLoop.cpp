@@ -4,6 +4,7 @@
 
 #include "MessagePasserImpl.h"
 #include "Messages.h"
+#include "SharedMemory.h"
 #include "Brushes.h"
 #include "Handlers/MessageHandler.h"
 
@@ -41,6 +42,11 @@ void (*Atlas_SetMessagePasser)(MessagePasser*);
 void (*Atlas_GLSetCurrent)(void* context);
 void (*Atlas_GLSwapBuffers)(void* context);
 void (*Atlas_NotifyEndOfFrame)();
+namespace AtlasMessage
+{
+	void* (*ShareableMallocFptr)(size_t);
+	void (*ShareableFreeFptr)(void*);
+}
 
 
 static MessagePasserImpl msgPasser;
@@ -70,6 +76,10 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 	GET(Atlas_GLSetCurrent);
 	GET(Atlas_GLSwapBuffers);
 	GET(Atlas_NotifyEndOfFrame);
+#undef GET
+#define GET(x) *(void**)&x##Fptr = dlsym(dll, #x); debug_assert(x##Fptr); if (! x##Fptr) return false;
+	GET(ShareableMalloc);
+	GET(ShareableFree);
 #undef GET
 
 	// Pass our message handler to Atlas
@@ -129,7 +139,7 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 					// construct a reference to the appropriate handler for the
 					// given string)
 					name += "_";
-					name += static_cast<mCommandString*>(msg)->name;
+					name += *static_cast<mCommandString*>(msg)->name;
 					// use 'static_cast' when casting messages, to make it clear
 					// that something slightly dangerous is happening - we have
 					// to just assume that GetName is correct, since we can't use
@@ -166,7 +176,7 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 				{
 					// For non-queries, we need to delete the object, since we
 					// took ownership of it.
-					delete msg;
+					AtlasMessage::ShareableDelete(msg);
 				}
 			}
 		}
