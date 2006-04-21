@@ -55,7 +55,7 @@ void cpu_init()
 	// possible. that means only zero-divide, because the JS engine is
 	// triggering the rest.
 	// note: passing a flag *disables* that exception.
-	ia32_control87(IA32_EM_INVALID|IA32_EM_DENORMAL|IA32_EM_OVERFLOW|IA32_EM_UNDERFLOW|IA32_EM_INEXACT, IA32_MCW_EM);
+	ia32_control87(IA32_EM_ZERODIVIDE|IA32_EM_INVALID|IA32_EM_DENORMAL|IA32_EM_OVERFLOW|IA32_EM_UNDERFLOW|IA32_EM_INEXACT, IA32_MCW_EM);
 
 	// no longer round toward zero (truncate). changing this setting
 	// resulted in much faster float->int casts, because the compiler

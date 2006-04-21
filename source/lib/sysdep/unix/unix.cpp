@@ -57,7 +57,7 @@ int unix_get_cpu_info()
 LibError sys_on_each_cpu(void(*cb)())
 {
 	UNUSED2(cb);
-	
+
 	return ERR_NO_SYS;
 }
 
@@ -119,7 +119,7 @@ LibError sys_error_description_r(int err, char* buf, size_t max_chars)
 	UNUSED2(err);
 	UNUSED2(buf);
 	UNUSED2(max_chars);
-	
+
 	// don't need to do anything: lib/errors.cpp already queries
 	// libc's strerror(). if we ever end up needing translation of
 	// e.g. Qt or X errors, that'd go here.
@@ -150,12 +150,12 @@ LibError sys_cursor_create_empty(void **cursor)
 	/* bitmap for a fully transparent cursor */
 	u8 data[] = {0};
 	u8 mask[] = {0};
-	
+
 	// size 8x1 (cursor size must be a whole number of bytes ^^)
 	// hotspot at 0,0
 	// SDL will make its own copies of data and mask
 	*cursor=SDL_CreateCursor(data, mask, 8, 1, 0, 0);
-	
+
 	return cursor?ERR_OK:ERR_FAIL;
 }
 

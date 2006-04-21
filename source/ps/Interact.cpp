@@ -53,7 +53,7 @@ void CSelectedEntities::removeSelection( HEntity entity )
 	std::vector<HEntity>::iterator it;
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
 	{
-		if( (*it) == entity ) 
+		if( (*it) == entity )
 		{
 			m_selected.erase( it );
 			m_selectionChanged = true;
@@ -170,7 +170,7 @@ void CSelectedEntities::renderOverlays()
 		if( (*it)->m_grouped != -1 )
 		{
 			if( !(*it)->m_bounds ) continue;
-			
+
 			glLoadIdentity();
 			float x, y;
 			CVector3D labelpos = (*it)->m_graphics_position - pCamera->m_Orientation.GetLeft() * (*it)->m_bounds->m_radius;
@@ -182,7 +182,7 @@ void CSelectedEntities::renderOverlays()
 			glTranslatef( x, g_Renderer.GetHeight() - y, 0.0f );
 			glScalef( 1.0f, -1.0f, 1.0f );
 			glwprintf( L"%d", (i32) (*it)->m_grouped );
-			
+
 		}
 	}
 	if( m_group_highlight != -1 )
@@ -194,7 +194,7 @@ void CSelectedEntities::renderOverlays()
 		for( it = m_groups[m_group_highlight].begin(); it < m_groups[m_group_highlight].end(); it++ )
 		{
 			if( !(*it)->m_bounds ) continue;
-			
+
 			glLoadIdentity();
 			float x, y;
 			CVector3D labelpos = (*it)->m_graphics_position - pCamera->m_Orientation.GetLeft() * (*it)->m_bounds->m_radius;
@@ -262,7 +262,7 @@ void CSelectedEntities::removeAll( HEntity entity )
 	std::vector<HEntity>::iterator it;
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
 	{
-		if( (*it) == entity ) 
+		if( (*it) == entity )
 		{
 			m_selected.erase( it );
 			m_selectionChanged = true;
@@ -273,7 +273,7 @@ void CSelectedEntities::removeAll( HEntity entity )
 	{
 		for( it = m_groups[group].begin(); it < m_groups[group].end(); it++ )
 		{
-			if( (*it) == entity ) 
+			if( (*it) == entity )
 			{
 				m_groups[group].erase( it );
 				m_selectionChanged = true;
@@ -298,7 +298,7 @@ void CSelectedEntities::saveGroup( i8 groupid )
 	// Clear all entities in the group...
 	for( it = m_groups[groupid].begin(); it < m_groups[groupid].end(); it++ )
 		(*it)->m_grouped = -1;
-	
+
 	m_groups[groupid].clear();
 	// Remove selected entities from each group they're in, and flag them as
 	// members of the new group
@@ -392,7 +392,7 @@ void CSelectedEntities::changeGroup( HEntity entity, i8 groupid )
 		std::vector<HEntity>::iterator it;
 		for( it = m_groups[current].begin(); it < m_groups[current].end(); it++ )
 		{
-			if( (*it) == entity ) 
+			if( (*it) == entity )
 			{
 				m_groups[current].erase( it );
 				break;
@@ -409,7 +409,7 @@ bool CSelectedEntities::isSelected( HEntity entity )
 	std::vector<HEntity>::iterator it;
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
 	{
-		if( (*it) == entity ) 
+		if( (*it) == entity )
 			return( true );
 	}
 	return( false );
@@ -451,7 +451,7 @@ CVector3D CSelectedEntities::getGroupPosition( i8 groupid )
 void CSelectedEntities::update()
 {
 	static std::vector<HEntity> lastSelection;
-	
+
 	// Drop out immediately if we're in some special interaction mode
 	if (customSelectionMode)
 		return;
@@ -459,7 +459,7 @@ void CSelectedEntities::update()
 	if( !( m_selected == lastSelection ) )
 	{
 		g_JSGameEvents.FireSelectionChanged( m_selectionChanged );
-		lastSelection = m_selected; 
+		lastSelection = m_selected;
 	}
 
 	if( m_selectionChanged || g_Mouseover.m_targetChanged )
@@ -471,7 +471,7 @@ void CSelectedEntities::update()
 			m_secondaryCommand = -1;
 			return;
 		}
-		
+
 		// Quick count to see which is the modal default order.
 
 		const int numCommands=NMT_COMMAND_LAST - NMT_COMMAND_FIRST;
@@ -497,7 +497,7 @@ void CSelectedEntities::update()
 			(*it)->DispatchEvent( &evt );
 			vote = evt.m_defaultOrder - NMT_COMMAND_FIRST;
 			secvote = evt.m_secondaryOrder - NMT_COMMAND_FIRST;
-			
+
 			if( ( vote >= 0 ) && ( vote < numCommands ) )
 			{
 				defaultPoll[vote]++;
@@ -537,7 +537,7 @@ void CSelectedEntities::update()
 				g_CursorName = itv->first;
 			}
 		}
-		
+
 		/*
 		TODO:  provide secondary cursor name?
 
@@ -549,7 +549,7 @@ void CSelectedEntities::update()
 				t = itv->second;
 				g_CursorName = itv->first;
 			}
-		}*/	
+		}*/
 
 		// Find the most appropriate action parameter too
 		t = 0;
@@ -561,7 +561,7 @@ void CSelectedEntities::update()
 				m_defaultAction = iti->first;
 			}
 		}
-		
+
 		t = 0;
 		for( iti = secondaryAction[secvote].begin(); iti != secondaryAction[secvote].end(); iti++ )
 		{
@@ -590,7 +590,7 @@ void CMouseoverEntities::update( float timestep )
 	pCamera->BuildCameraRay( origin, dir );
 
 	CUnit* hit = g_UnitMan.PickUnit( origin, dir );
-	
+
 	m_worldposition = pCamera->GetWorldCoordinates();
 
 	if( hit && hit->GetEntity() && hit->GetEntity()->m_extant )
@@ -617,7 +617,7 @@ void CMouseoverEntities::update( float timestep )
 
 		std::vector<HEntity>* onscreen = g_EntityManager.matches( isOnScreen );
 		std::vector<HEntity>::iterator it;
-		
+
 		for( it = onscreen->begin(); it < onscreen->end(); it++ )
 			if( (*it)->m_extant && ( (*it)->GetPlayer() == g_Game->GetLocalPlayer() ) )
 				m_mouseover.push_back( SMouseoverFader( *it, m_fademaximum, false ) );
@@ -667,7 +667,7 @@ void CMouseoverEntities::update( float timestep )
 			{
 				inBox = ( x >= m_x2 ) && ( x < m_x1 );
 			}
-			
+
 			if( m_y1 < m_y2 )
 			{
 				inBox &= ( y >= m_y1 ) && ( y < m_y2 );
@@ -676,7 +676,7 @@ void CMouseoverEntities::update( float timestep )
 			{
 				inBox &= ( y >= m_y2 ) && ( y < m_y1 );
 			}
-			
+
 			if( inBox )
 			{
 				bool found = false;
@@ -692,7 +692,7 @@ void CMouseoverEntities::update( float timestep )
 			}
 		}
 		delete( onscreen );
-		
+
 		for( it2 = m_mouseover.begin(); it2 < m_mouseover.end(); )
 		{
 			it2->fade -= m_fadeoutrate * timestep;
@@ -743,17 +743,17 @@ void CMouseoverEntities::addSelection()
 {
 	// Rules for shift-click selection:
 
-	// If selecting a non-allied unit, you can only select one. You can't 
+	// If selecting a non-allied unit, you can only select one. You can't
 	// select a mix of allied and non-allied units. Therefore:
 	// Forbid shift-click of enemy units unless the selection is empty
 	// Forbid shift-click of allied units if the selection contains one
 	//   or more enemy units.
 
 	if( ( m_mouseover.size() != 0 ) &&
-		( m_mouseover.front().entity->GetPlayer() != g_Game->GetLocalPlayer() ) && 
+		( m_mouseover.front().entity->GetPlayer() != g_Game->GetLocalPlayer() ) &&
 		( g_Selection.m_selected.size() != 0 ) )
 		return;
-	
+
 	if( ( g_Selection.m_selected.size() != 0 ) &&
 		( g_Selection.m_selected.front()->GetPlayer() != g_Game->GetLocalPlayer() ) )
 		return;
@@ -780,7 +780,7 @@ void CMouseoverEntities::setSelection()
 
 void CMouseoverEntities::expandAcrossScreen()
 {
-	std::vector<HEntity>* activeset = g_EntityManager.matches( 
+	std::vector<HEntity>* activeset = g_EntityManager.matches(
 		CEntityManager::EntityPredicateLogicalAnd<isMouseoverType,isOnScreen> );
 	m_mouseover.clear();
 	std::vector<HEntity>::iterator it;
@@ -858,11 +858,13 @@ void CMouseoverEntities::renderBarBorders()
 
 	glDisable( GL_BLEND );
 }
+
+// Helper function for CSelectedEntities::loadUnitUITextures
 static void LoadUnitUIThunk( const char* path, const DirEnt* UNUSED(ent), void* context )
 {
 	std::map<CStr, Handle>* textures = (std::map<CStr, Handle>*) context;
 	CStr name(path);
-	
+
 	if ( !tex_is_known_extension(path) )
 	{
 		if ( name.BeforeLast(".") == name )		//this is a directory (contains no ".")
@@ -872,7 +874,7 @@ static void LoadUnitUIThunk( const char* path, const DirEnt* UNUSED(ent), void* 
 	}
 	Handle tmp = ogl_tex_load(path);
 	if (tmp <= 0)
-	{	
+	{
 		LOG(ERROR, LOG_CATEGORY, "Rank Textures", "loadRankTextures failed on \"%s\"", path);
 		return;
 	}
@@ -914,7 +916,7 @@ void CMouseoverEntities::renderOverlays()
 		//glPopMatrix();
 	}
 	glEnable( GL_TEXTURE_2D );
-	
+
 	std::vector<SMouseoverFader>::iterator it;
 	for( it = m_mouseover.begin(); it < m_mouseover.end(); it++ )
 	{
@@ -958,7 +960,7 @@ void FireWorldClickEvent(uint button, int clicks)
 
 	if ( g_Selection.m_mouseOverMM )
 		return;
-	
+
 	g_JSGameEvents.FireWorldClick(
 		button,
 		clicks,
@@ -969,7 +971,7 @@ void FireWorldClickEvent(uint button, int clicks)
 		g_Mouseover.m_target,
 		(uint)g_Mouseover.m_worldposition.x,
 		(uint)g_Mouseover.m_worldposition.y);
-	
+
 	//Reset duplication flag- after this, it isn't the same order
 	std::vector<HEntity>::iterator it=g_Selection.m_selected.begin();
 	for ( ; it != g_Selection.m_selected.end(); it++ )
@@ -982,7 +984,7 @@ void FireWorldClickEvent(uint button, int clicks)
 void MouseButtonUpHandler(const SDL_Event *ev, int clicks)
 {
 	FireWorldClickEvent(ev->button.button, clicks);
-	
+
 	switch( ev->button.button )
 	{
 	case SDL_BUTTON_LEFT:
@@ -994,7 +996,7 @@ void MouseButtonUpHandler(const SDL_Event *ev, int clicks)
 
 		if (customSelectionMode)
 			break;
-	
+
 		if( g_Mouseover.m_viewall )
 			break;
 
@@ -1060,12 +1062,12 @@ InReaction interactInputHandler( const SDL_Event* ev )
 	static double button_down_time;
 	static bool button_down = false;
 	static bool right_button_down = false;
-	
+
 	if (customSelectionMode && ev->type != SDL_MOUSEBUTTONUP)
 		return IN_PASS;
-	
+
 	switch( ev->type )
-	{	
+	{
 	case SDL_HOTKEYDOWN:
 		switch( ev->user.code )
 		{
@@ -1090,7 +1092,7 @@ InReaction interactInputHandler( const SDL_Event* ev )
 				break;
 
 			std::vector<CModel::Prop>& Props = g_Selection.m_selected.front()->m_actor->GetModel()->GetProps();
-			
+
 			for (size_t x=0; x<Props.size(); x++)
 			{
 				if( Props[x].m_Point->m_Name == "head" )
@@ -1113,7 +1115,7 @@ InReaction interactInputHandler( const SDL_Event* ev )
 			}
 			if ( g_Selection.m_selected.empty() )
 				break;
-			
+
 			pView->AttachToUnit( g_Selection.m_selected.front() );
 			break;
 		}
@@ -1124,7 +1126,7 @@ InReaction interactInputHandler( const SDL_Event* ev )
 				// The above test limits it to 20 groups, so don't worry about overflowing
 
 				i8 id = (i8)( ev->user.code - HOTKEY_SELECTION_GROUP_0 );
-				
+
 				if( hotkeys[HOTKEY_SELECTION_GROUP_ADD] )
 				{
 					g_Selection.addGroup( id );
@@ -1176,7 +1178,7 @@ InReaction interactInputHandler( const SDL_Event* ev )
 			double time = get_time();
 			// Reset clicks counter if too slow or if the cursor's
 			// hovering over something else now.
-			
+
 			if( time - lastclicktime[button] >= SELECT_DBLCLICK_RATE )
 				clicks[button] = 0;
 			if( g_Mouseover.m_target != lastclickobject[button] )
@@ -1291,7 +1293,7 @@ bool CBuildingPlacer::activate(CStrW& templateName)
 	std::set<CStrW> selections;
 	m_actor = g_UnitMan.CreateUnit( actorName, 0, selections );
 	m_actor->SetPlayerID(g_Game->GetLocalPlayer()->GetPlayerID());
-	
+
 	// m_bounds
 	if( base->m_bound_type == CBoundingObject::BOUND_CIRCLE )
 	{
@@ -1316,7 +1318,7 @@ void CBuildingPlacer::mouseReleased()
 {
 	deactivate();	// do it first in case we fail for any reason
 
-	if(m_valid) 
+	if(m_valid)
 	{
 		HEntity ent = g_EntityManager.createFoundation( m_templateName, clickPos, m_angle );
 		ent->SetPlayer(g_Game->GetLocalPlayer());
@@ -1348,7 +1350,7 @@ void CBuildingPlacer::update( float timeStep )
 		CVector3D dif = mousePos - clickPos;
 		float x = dif.X, z = dif.Z;
 		if(x*x + z*z < 3*3) {
-			if(m_dragged || m_timeSinceClick > 0.2f) 
+			if(m_dragged || m_timeSinceClick > 0.2f)
 			{
 				m_angle += timeStep * PI;
 			}
@@ -1361,7 +1363,7 @@ void CBuildingPlacer::update( float timeStep )
 	}
 
 	CVector3D pos;
-	if(m_clicked) 
+	if(m_clicked)
 	{
 		pos = clickPos;
 	}
@@ -1382,7 +1384,7 @@ void CBuildingPlacer::update( float timeStep )
 
 	m_bounds->setPosition(pos.X, pos.Z);
 
-	if(m_bounds->m_type == CBoundingObject::BOUND_OABB) 
+	if(m_bounds->m_type == CBoundingObject::BOUND_OABB)
 	{
 		CBoundingBox* box = (CBoundingBox*) m_bounds;
 		box->setOrientation(m_angle);
@@ -1396,7 +1398,7 @@ void CBuildingPlacer::update( float timeStep )
 	{
 		col = CColor(1.0f, 1.0f, 1.0f, 1.0f);
 	}
-	else 
+	else
 	{
 		float add = (sin(4*PI*m_totalTime) + 1.0f) * 0.08f;
 		col = CColor(1.4f+add, 0.4f+add, 0.4f+add, 1.0f);
@@ -1412,7 +1414,7 @@ void CBuildingPlacer::render()
 		return;
 
 	CVector3D pos;
-	if(m_clicked) 
+	if(m_clicked)
 	{
 		pos = clickPos;
 	}
