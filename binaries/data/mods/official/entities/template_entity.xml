@@ -49,6 +49,15 @@
 			<Height>-1.0</Height>
 			<Name></Name>
 		</Rank>
+		<AnglePenalty>
+			<Sectors>6</Sectors>
+			<Value>.2</Value>
+		</AnglePenalty>
+		<Pitch>
+			<Max_Actor>0.03</Max_Actor>
+			<Min_Actor>-0.03</Min_Actor>
+
+		</Pitch>
 
 	</Traits>
 
