@@ -113,6 +113,9 @@ public:
 	int m_sectorDivs;
 	float m_sectorPenalty;
 
+	float m_maxActorPitch;
+	float m_minActorPitch;
+
 	float m_turningRadius;
 	CScriptObject m_EventHandlers[EVENT_LAST];
 

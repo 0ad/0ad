@@ -79,6 +79,8 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
 	AddProperty( L"traits.stamina.border_name", &m_staminaBorderName );
 	AddProperty( L"traits.angle_penalty.sectors", &m_sectorDivs);
 	AddProperty( L"traits.angle_penalty.value", &m_sectorPenalty );
+	AddProperty( L"traits.pitch.max_actor", &m_maxActorPitch );
+	AddProperty( L"traits.pitch.min_actor", &m_minActorPitch );
 	AddProperty( L"traits.rank.width", &m_rankWidth );
 	AddProperty( L"traits.rank.height", &m_rankHeight );
 	AddProperty( L"traits.rank.name", &m_rankName );
@@ -101,10 +103,6 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
         AddHandler( t, &m_EventHandlers[t] );
     }
 
-// FIXME: janwas: this was uninitialized, which leads to disaster if
-// its value happens to be positive.
-// setting to what seems to be a reasonable default.
-	m_sectorDivs = 4;
 	if ( m_sectorDivs >= 0 )
 	{
 		m_sectorAngles.resize(m_sectorDivs);
@@ -143,6 +141,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
     m_graphics_orientation = m_orientation;
     m_actor_transform_valid = false;
 
+	m_pitchOrientation = m_pitchOrientation_previous = m_graphics_pitchOrientation = 0.0f;
     m_destroyed = false;
 
     m_selected = false;
@@ -158,7 +157,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
 	m_currentRequest = 0;
 	m_destroyNotifiers = true;
 
-	m_formationSlot =	-1;
+	m_formationSlot = -1;
 	m_formation = -1;
     m_grouped = -1;
 
@@ -277,29 +276,22 @@ void CEntity::SetPlayer(CPlayer *pPlayer)
 void CEntity::updateActorTransforms()
 {
     CMatrix3D m;
+	CMatrix3D mX;
+	float Cos = cosf( m_graphics_orientation );
+	float Sin = sinf( m_graphics_orientation );
 
-    float s = sin( m_graphics_orientation );
-    float c = cos( m_graphics_orientation );
-
-    m._11 = -c;
-    m._12 = 0.0f;
-    m._13 = -s;
-    m._14 = m_graphics_position.X;
-    m._21 = 0.0f;
-    m._22 = 1.0f;
-    m._23 = 0.0f;
-    m._24 = m_graphics_position.Y;
-    m._31 = s;
-    m._32 = 0.0f;
-    m._33 = -c;
-    m._34 = m_graphics_position.Z;
-    m._41 = 0.0f;
-    m._42 = 0.0f;
-    m._43 = 0.0f;
-    m._44 = 1.0f;
+	m._11=-Cos;  m._12=0.0f; m._13=-Sin;  m._14=0.0f;
+	m._21=0.0f; m._22=1.0f; m._23=0.0f; m._24=0.0f;
+	m._31=Sin; m._32=0.0f; m._33=-Cos;  m._34=0.0f;
+	m._41=0.0f; m._42=0.0f; m._43=0.0f; m._44=1.0f;
+  
+	mX.SetXRotation( m_graphics_pitchOrientation );
+	mX = m*mX;
+	mX.Translate(m_graphics_position);
+	//m.RotateX(m_graphics_pitchOrientation);
 
     if( m_actor )
-        m_actor->GetModel()->SetTransform( m );
+        m_actor->GetModel()->SetTransform( mX );
 }
 
 void CEntity::snapToGround()
@@ -382,7 +374,8 @@ void CEntity::update( size_t timestep )
 {
     m_position_previous = m_position;
     m_orientation_previous = m_orientation;
-
+	m_pitchOrientation_previous = m_pitchOrientation;
+	
 	CalculateRun( timestep );
 	CalculateHealth( timestep );
 
@@ -809,6 +802,7 @@ void CEntity::repath()
 void CEntity::reorient()
 {
     m_orientation = m_graphics_orientation;
+	m_pitchOrientation = m_graphics_pitchOrientation;
     m_ahead.x = sin( m_orientation );
     m_ahead.y = cos( m_orientation );
     if( m_bounds->m_type == CBoundingObject::BOUND_OABB )
@@ -855,7 +849,8 @@ void CEntity::interpolate( float relativeoffset )
 {
     CVector3D old_graphics_position = m_graphics_position;
     float old_graphics_orientation = m_graphics_orientation;
-
+	float old_graphics_pitchOrientation = m_graphics_pitchOrientation;
+	
     m_graphics_position = Interpolate<CVector3D>( m_position_previous, m_position, relativeoffset );
 
     // Avoid wraparound glitches for interpolating angles.
@@ -864,7 +859,13 @@ void CEntity::interpolate( float relativeoffset )
     while( m_orientation > m_orientation_previous + PI )
         m_orientation_previous += 2 * PI;
 
+	 while( m_pitchOrientation < m_pitchOrientation_previous - PI )
+        m_pitchOrientation_previous -= 2 * PI;
+    while( m_pitchOrientation > m_pitchOrientation_previous + PI )
+        m_pitchOrientation_previous += 2 * PI;
+
     m_graphics_orientation = Interpolate<float>( m_orientation_previous, m_orientation, relativeoffset );
+	m_graphics_pitchOrientation = Interpolate<float>( m_pitchOrientation_previous, m_pitchOrientation, relativeoffset );
 
     // Mark the actor transform data as invalid if the entity has moved since
     // the last call to 'interpolate'.
@@ -872,10 +873,13 @@ void CEntity::interpolate( float relativeoffset )
     // calling snapToGround, which is slow. TODO: This may need to be adjusted to
     // handle flying units or moving terrain.
     if( m_graphics_orientation != old_graphics_orientation ||
-            m_graphics_position.X != old_graphics_position.X ||
-            m_graphics_position.Z != old_graphics_position.Z )
+        m_graphics_position.X != old_graphics_position.X ||
+        m_graphics_position.Z != old_graphics_position.Z ||		
+		m_graphics_pitchOrientation != old_graphics_pitchOrientation 
+		)
+	{															
         m_actor_transform_valid = false;
-
+	}
     // Update the actor transform data when necessary.
     if( !m_actor_transform_valid )
     {

@@ -89,13 +89,11 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 
 	float scale = processChooseMovement( len ) * timestep;
 
-
 	// Note: Easy optimization: flag somewhere that this unit
 	// is already pointing the  way, and don't do this
 	// trig every time.right
 
 	m_targetorientation = atan2( delta.x, delta.y );
-
 	float deltatheta = m_targetorientation - (float)m_orientation;
 	while( deltatheta > PI ) deltatheta -= 2 * PI;
 	while( deltatheta < -PI ) deltatheta += 2 * PI;
@@ -136,6 +134,12 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 		m_ahead = delta / len;
 		m_orientation = m_targetorientation;
 	}
+	
+	float targetpitch = g_Game->GetWorld()->GetTerrain()->getSlopeAngleFace( m_position.X, m_position.Z, m_orientation );
+	while( targetpitch > PI ) targetpitch -= 2 * PI;
+	while( targetpitch < -PI ) targetpitch += 2 * PI;
+	m_pitchOrientation = clamp( targetpitch, m_minActorPitch, m_maxActorPitch );
+	
 
 	if( m_bounds && m_bounds->m_type == CBoundingObject::BOUND_OABB )
 		((CBoundingBox*)m_bounds)->setOrientation( m_ahead );

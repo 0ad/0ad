@@ -53,8 +53,6 @@ bool CTerrain::Initialize(u32 size,const u16* data)
 	// store terrain size
 	m_MapSize=(size*PATCH_SIZE)+1;
 	m_MapSizePatches=size;
-//	WaterManager *WaterMgr = g_Renderer.GetWaterManager();
-//	WaterMgr->InitWave();
 	// allocate data for new terrain
 	m_Heightmap=new u16[m_MapSize*m_MapSize];
 	m_Patches=new CPatch[m_MapSizePatches*m_MapSizePatches];
@@ -204,9 +202,165 @@ float CTerrain::getSlope(float x, float z) const
 	float h01 = m_Heightmap[zi*m_MapSize + xi + m_MapSize];
 	float h10 = m_Heightmap[zi*m_MapSize + xi + 1];
 	float h11 = m_Heightmap[zi*m_MapSize + xi + m_MapSize + 1];
-
+	
+	//Difference of highest point from lowest point
 	return MAX(MAX(h00, h01), MAX(h10, h11)) -
 		   MIN(MIN(h00, h01), MIN(h10, h11));
+}
+float CTerrain::getSlopeAngle( float x, float y ) const
+{
+	float fCell = (float)CELL_SIZE;
+	x /= fCell;
+	y /= fCell;
+	int xi = (int)floor(x);
+	int yi = (int)floor(y);
+
+	//Keep it in bounds
+	if (xi < 0)
+		xi = 0;
+	else if (xi >= (int)m_MapSize-1)
+		xi = m_MapSize - 2;
+	if (yi < 0)
+		yi = 0;
+	else if (yi >= (int)m_MapSize-1)
+		yi = m_MapSize - 2;
+	
+	float h00 = m_Heightmap[yi*m_MapSize + xi] * HEIGHT_SCALE;
+	float h01 = m_Heightmap[yi*m_MapSize + xi + m_MapSize] * HEIGHT_SCALE;
+	float h10 = m_Heightmap[yi*m_MapSize + xi + 1] * HEIGHT_SCALE;
+	float h11 = m_Heightmap[yi*m_MapSize + xi + m_MapSize + 1] * HEIGHT_SCALE;
+
+	CVector3D flat, elevated;
+	float low, high;
+	
+	if ( h00 < h01 && h00 < h10 && h00 < h11 )
+		low = h00;
+	else if ( h01 < h10 && h01 < h11 )
+		low = h01;
+	else if ( h10 < h11 )
+		low = h10;
+	else 
+		low = h11;
+	
+	//Find correct vector representing the flat version of the vector from low to high points
+	if ( h00 > h01 && h00 > h10 && h00 > h11 )
+	{
+		high = h00;
+		if ( low == h10 )
+			flat = CVector3D( fCell, 0.0f, 0.0f );
+		else if ( low == h01 )
+			flat = CVector3D( 0.0f, 0.0f, fCell );
+		else if ( low == h11 )
+			flat = CVector3D( fCell, 0.0f, fCell );
+	}
+	else if ( h01 > h10 && h01 > h11 )
+	{
+		high = h01;
+		if ( low == h00 )
+			flat = CVector3D( 0.0f, 0.0f, fCell );
+		else if ( low == h01 )
+			flat = CVector3D( fCell, 0.0f, fCell );
+		else if ( low == h11 )
+			flat = CVector3D( fCell, 0.0f, 0.0f );
+	}
+	else if ( h10 > h11 )
+	{
+		high = h10;
+		if ( low == h00 )
+			flat = CVector3D( fCell, 0.0f, 0.0f );
+		else if ( low == h01 )
+			flat = CVector3D( fCell, 0.0f, fCell );
+		else if ( low == h11 )
+			flat = CVector3D( 0.0f, 0.0f, fCell );
+	}
+	else 
+	{
+		high = h11;
+		if ( low == h10 )
+			flat = CVector3D( 0.0f, 0.0f, fCell );
+		else if ( low == h01 )
+			flat = CVector3D( fCell, 0.0f, 0.0f );
+		else if ( low == h00 )
+			flat = CVector3D( fCell, 0.0f, fCell );
+	}
+	elevated = flat;
+	elevated.Y = high - low;
+	elevated.Normalize();
+	flat.Normalize();
+	return acosf( flat.Dot( elevated ) );
+}
+float CTerrain::getSlopeAngleFace(float x, float y, float orientation) const
+{
+	bool right;	//true means use 0,0 and 1,1; false means use 1,0 and 0,1
+	bool invert;
+	float top, bottom;
+	x /= (float)CELL_SIZE;
+	y /= (float)CELL_SIZE;
+	int xi = (int)floor(x);
+	int yi = (int)floor(y);
+	CVector3D flat( (float)CELL_SIZE, 0.0f, (float)CELL_SIZE );
+	CVector3D elevated=flat;
+	
+	float a0 = DEGTORAD(0.0f);
+	float a90 = DEGTORAD(90.0f);
+	float a180 = DEGTORAD(180.0f);
+	float neg = DEGTORAD(-90.0f);
+	float a45 = DEGTORAD(45.0f);
+	float a135 = DEGTORAD(135.0f);
+
+	//Find which side it's facing; use that and the opposite
+	if ( orientation > 0.0f && orientation < DEGTORAD(90.0f) )
+		right = true;
+	else if ( orientation > DEGTORAD(90.0f) && orientation < DEGTORAD(180.0f) )
+		right = false;
+	else if ( orientation < DEGTORAD(-180.0f) && orientation > DEGTORAD(-90.0f) )
+		right = true;
+	else
+		right = false;
+
+	//Keep it in bounds
+	if (xi < 0)
+		xi = 0;
+	else if (xi >= (int)m_MapSize-1)
+		xi = m_MapSize - 2;
+	if (yi < 0)
+		yi = 0;
+	else if (yi >= (int)m_MapSize-1)
+		yi = m_MapSize - 2;
+
+	if ( right ) 
+	{
+		bottom = m_Heightmap[yi*m_MapSize + xi]*HEIGHT_SCALE;
+		top = m_Heightmap[yi*m_MapSize+m_MapSize + xi + 1]*HEIGHT_SCALE;
+		if ( (orientation > DEGTORAD(-45.0f) && orientation < 0.0f) || 
+		(orientation < DEGTORAD(135.0f) && orientation > 0.0f) )
+			elevated.Y = top-bottom;
+		else
+			elevated.Y = bottom-top;
+	}
+	else
+	{
+		bottom = m_Heightmap[yi*m_MapSize + xi + 1]*HEIGHT_SCALE;
+		top = m_Heightmap[yi*m_MapSize+m_MapSize + xi]*HEIGHT_SCALE;
+		if ( (orientation > DEGTORAD(-135.0f) && orientation < 0.0f) || 
+		(orientation < DEGTORAD(45.0f) && orientation > 0.0f) )
+			elevated.Y = top-bottom;
+		else
+			elevated.Y = bottom-top;
+	}
+	if ( elevated.Y > 0.0f )
+		invert=false;
+	else
+		invert=true;
+	elevated.Y = fabs(elevated.Y);
+	elevated.Normalize();
+	flat.Normalize();
+	float ret = elevated.Dot(flat);
+	
+	if (invert)
+		return -acosf(ret);
+	return acosf(ret);
+
 }
 
 float CTerrain::getExactGroundLevel(float x, float z) const

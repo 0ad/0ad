@@ -390,8 +390,6 @@ void CGameView::CameraLock(float x, float y, float z, bool smooth)
 			m_ViewCamera.m_Orientation.Translate(x, y, z);
 			m_ViewCamera.m_Orientation._24=height;
 		}
-
-
 	}
 }
 

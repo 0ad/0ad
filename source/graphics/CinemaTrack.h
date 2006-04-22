@@ -19,8 +19,6 @@
 #include "CStr.h"
 #include "NUSpline.h"
 
-#include <list>
-#include <map>
 
 /*
 	Andrew (aka pyrolink)

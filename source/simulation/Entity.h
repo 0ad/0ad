@@ -79,6 +79,9 @@ public:
 	float m_runRegenRate;
 	float m_runDecayRate;
 
+	float m_maxActorPitch;
+	float m_minActorPitch;
+
 	float m_healthRegenRate;
 	float m_healthRegenStart;
 	float m_healthDecayRate;
@@ -168,6 +171,10 @@ public:
 	float m_orientation;
 	float m_orientation_previous;
 	float m_graphics_orientation;
+	
+	float m_pitchOrientation;
+	float m_pitchOrientation_previous;
+	float m_graphics_pitchOrientation;
 
 	// If the actor's current transform data is valid (i.e. the entity hasn't
 	// moved since it was last calculated, and the terrain hasn't been changed).

@@ -45,7 +45,9 @@ public:
 	inline float getExactGroundLevel(const CVector2D& v) const { return getExactGroundLevel(v.x, v.y); }
 
 	float getSlope(float x, float z) const ;
-
+	float getSlopeAngle( float x, float y) const;	//In radians
+	//Same as above, but picks the two vertices that the unit is facing (front+back) for slope
+	float getSlopeAngleFace(float x, float y, float orientation) const;	
 	// resize this terrain such that each side has given number of patches
 	void Resize(u32 size);
 

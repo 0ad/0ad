@@ -49,6 +49,8 @@ CBaseEntity::CBaseEntity()
 	AddProperty( L"traits.stamina.border_name", &m_staminaBorderName );
 	AddProperty( L"traits.angle_penalty.sectors", &m_sectorDivs );
 	AddProperty( L"traits.angle_penalty.value", &m_sectorPenalty );
+	AddProperty( L"traits.pitch.max_actor", &m_maxActorPitch );
+	AddProperty( L"traits.pitch.min_actor", &m_minActorPitch );
 	AddProperty( L"traits.rank.width", &m_rankWidth );
 	AddProperty( L"traits.rank.height", &m_rankHeight );
 	AddProperty( L"traits.rank.name", &m_rankName );
