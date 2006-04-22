@@ -72,7 +72,7 @@ int WaterManager::LoadWaterTextures()
 
 	while (cur_loading_water_tex < num_textures)
 	{
-		char waterName[VFS_MAX_PATH];
+		char waterName[PATH_MAX];
 		// TODO: add a member variable and setter for this. (can't make this
 		// a parameter because this function is called via delay-load code)
 		static const char* const water_type = "animation2";

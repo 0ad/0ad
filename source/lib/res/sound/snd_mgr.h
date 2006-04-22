@@ -144,7 +144,7 @@ extern LibError snd_set_master_gain(float gain);
 
 // open and return a handle to a sound instance.
 //
-// if <snd_fn> is a text file (extension ".txt"), it is assumed
+// if <snd_fn> is a text file (extension "txt"), it is assumed
 // to be a definition file containing the sound file name and
 // its gain (0.0 .. 1.0).
 // otherwise, <snd_fn> is taken to be the sound file name and

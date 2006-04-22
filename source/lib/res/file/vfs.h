@@ -227,19 +227,21 @@ extern void vfs_display(void);
 // paths
 //
 
-// the VFS doesn't require this length restriction - VFS internal storage
-// is not fixed-length. the purpose here is to give an indication of how
-// large fixed-size user buffers should be. length includes trailing '\0'.
-#define VFS_MAX_PATH 256
+// note: the VFS doesn't specify any path length restriction -
+// internal filename storage is not fixed-length.
+// for an an indication of how large fixed-size user buffers should be,
+// use PATH_MAX.
 
 // convenience function
-extern void vfs_path_copy(char* dst, const char* src);
+extern void path_copy(char* dst, const char* src);
 
 // combine <path1> and <path2> into one path, and write to <dst>.
 // if necessary, a directory separator is added between the paths.
 // each may be empty, filenames, or full paths.
-// total path length (including '\0') must not exceed VFS_MAX_PATH.
-extern LibError vfs_path_append(char* dst, const char* path1, const char* path2);
+// total path length (including '\0') must not exceed PATH_MAX.
+extern LibError path_append(char* dst, const char* path1, const char* path2);
+
+extern const char* path_extension(const char* fn);
 
 // VFS paths are of the form: "(dir/)*file?"
 // in English: '/' as path separator; trailing '/' required for dir names;

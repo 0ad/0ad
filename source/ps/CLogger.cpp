@@ -3,6 +3,7 @@
 #include "CLogger.h"
 #include "ConfigDB.h"
 #include "lib.h"
+#include "lib/path_util.h"
 #include "lib/res/file/file.h"
 
 #include <time.h>
@@ -37,12 +38,12 @@ CLogger::CLogger()
 	char N_path[PATH_MAX];
 	(void)file_make_full_native_path("../logs", N_path);
 	PathPackage pp;
-	(void)pp_set_dir(&pp, N_path);
-	(void)pp_append_file(&pp, "mainlog.html");
+	(void)path_package_set_dir(&pp, N_path);
+	(void)path_package_append_file(&pp, "mainlog.html");
 	m_MainLog.open       (pp.path, ofstream::out | ofstream::trunc);
-	(void)pp_append_file(&pp, "interestinglog.html");
+	(void)path_package_append_file(&pp, "interestinglog.html");
 	m_InterestingLog.open(pp.path, ofstream::out | ofstream::trunc);
-	(void)pp_append_file(&pp, "memorylog.html");
+	(void)path_package_append_file(&pp, "memorylog.html");
 	m_MemoryLog.open     (pp.path, ofstream::out | ofstream::trunc);
 
 	//Write Headers for the HTML documents

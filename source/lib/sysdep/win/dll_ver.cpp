@@ -26,6 +26,7 @@
 #include <stdlib.h>
 
 #include "win_internal.h"
+#include "lib/path_util.h"
 #include "dll_ver.h"
 
 #if MSC_VERSION
@@ -108,8 +109,8 @@ LibError dll_list_add(const char* name)
 	// ".sys" extension, so always appending ".dll" is incorrect.
 	char buf[MAX_PATH];
 	const char* dll_name = name;
-	const char* ext = strrchr(name, '.');
-	if(!ext)
+	const char* ext = path_extension(name);
+	if(ext[0] == '\0')	// no extension
 	{
 		snprintf(buf, ARRAY_SIZE(buf), "%s.dll", name);
 		dll_name = buf;
@@ -128,8 +129,7 @@ LibError dll_list_add(const char* name)
 		dll_list_pos += sprintf(dll_list_pos, ", ");
 
 	// extract filename.
-	const char* slash = strrchr(dll_name, '\\');
-	const char* dll_fn = slash? slash+1 : dll_name;
+	const char* dll_fn = path_name_only(dll_name);
 
 	int len = snprintf(dll_list_pos, max_chars_to_write, "%s (%s)", dll_fn, dll_ver);
 	// success

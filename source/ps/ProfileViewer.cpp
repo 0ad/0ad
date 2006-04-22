@@ -18,6 +18,7 @@
 #include "Profile.h"
 #include "Renderer.h"
 #include "lib/res/graphics/unifont.h"
+#include "lib/path_util.h"
 #include "lib/res/file/file.h"
 #include "Hotkey.h"
 #include "ps/CLogger.h"
@@ -418,8 +419,8 @@ void CProfileViewer::SaveToFile()
 		char N_path[PATH_MAX];
 		(void)file_make_full_native_path("../logs", N_path);
 		PathPackage pp;
-		(void)pp_set_dir(&pp, N_path);
-		(void)pp_append_file(&pp, "profile.txt");
+		(void)path_package_set_dir(&pp, N_path);
+		(void)path_package_append_file(&pp, "profile.txt");
 
 		// Open the file. (It will be closed when the CProfileViewer
 		// destructor is called.)

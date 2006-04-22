@@ -1,7 +1,7 @@
 #include "precompiled.h"
 
+#include "lib/res/file/path.h"
 #include "lib/res/file/vfs.h"
-#include "lib/res/file/vfs_path.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
 #include "lib/sysdep/gfx.h"
@@ -170,9 +170,9 @@ void WriteScreenshot(const char* extension)
 	// get next available numbered filename
 	// .. bake extension into format string.
 	// note: %04d -> always 4 digits, so sorting by filename works correctly.
-	char file_format_string[VFS_MAX_PATH];
+	char file_format_string[PATH_MAX];
 	snprintf(file_format_string, PATH_MAX, "screenshots/screenshot%%04d.%s", extension);
-	char fn[VFS_MAX_PATH];
+	char fn[PATH_MAX];
 	next_numbered_filename(file_format_string, &screenshot_nfi, fn);
 	const char* atom_fn = file_make_unique_fn_copy(fn);
 
@@ -209,9 +209,9 @@ void WriteBigScreenshot(const char* extension, int tiles)
 	// get next available numbered filename
 	// .. bake extension into format string.
 	// note: %04d -> always 4 digits, so sorting by filename works correctly.
-	char file_format_string[VFS_MAX_PATH];
+	char file_format_string[PATH_MAX];
 	snprintf(file_format_string, PATH_MAX, "screenshots/screenshot%%04d.%s", extension);
-	char fn[VFS_MAX_PATH];
+	char fn[PATH_MAX];
 	next_numbered_filename(file_format_string, &screenshot_nfi, fn);
 	const char* atom_fn = file_make_unique_fn_copy(fn);
 

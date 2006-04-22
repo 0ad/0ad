@@ -28,35 +28,6 @@
 
 extern LibError file_init();
 
-// convenience "class" that simplifies successively appending a filename to
-// its parent directory. this avoids needing to allocate memory and calling
-// strlen/strcat. used by wdll_ver and dir_next_ent.
-// we want to maintain C compatibility, so this isn't a C++ class.
-
-struct PathPackage
-{
-	char* end;
-	size_t chars_left;
-	char path[PATH_MAX];
-};
-
-// write the given directory path into our buffer and set end/chars_left
-// accordingly. <dir> need not but can end with a directory separator.
-//
-// note: <dir> and the filename set via pp_append_file are separated by
-// '/'. this is to allow use on portable paths; the function otherwise
-// does not care if paths are relative/portable/absolute.
-extern LibError pp_set_dir(PathPackage* pp, const char* dir);
-
-// append the given filename to the directory established by the last
-// pp_set_dir on this package. the whole path is accessible at pp->path.
-extern LibError pp_append_file(PathPackage* pp, const char* file);
-
-
-// is s2 a subpath of s1, or vice versa? used by VFS and wdir_watch.
-// works for portable and native paths.
-extern bool file_is_subpath(const char* s1, const char* s2);
-
 
 //
 // path conversion functions (native <--> portable),

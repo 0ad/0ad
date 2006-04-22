@@ -26,9 +26,11 @@
 #include <stdio.h>
 
 #include "sysdep/gfx.h"
-#include "res/graphics/ogl_tex.h"
-#include "res/file/file.h"
-#include "res/file/vfs.h"
+#include "lib/res/graphics/ogl_tex.h"
+#include "lib/res/file/file.h"
+#include "lib/res/file/vfs.h"
+#include "lib/res/graphics/ogl_tex.h"
+#include "lib/path_util.h"
 
 #include "app_hooks.h"
 
@@ -56,10 +58,9 @@ static const char* get_log_dir()
 	ONCE(\
 		char N_exe_name[PATH_MAX];\
 		(void)sys_get_executable_name(N_exe_name, ARRAY_SIZE(N_exe_name));\
-		/* strip app name (we only need path) */\
-		char* slash = strrchr(N_exe_name, DIR_SEP);\
-		if(slash) *slash = '\0';\
-		(void)vfs_path_append(N_log_dir, N_exe_name, "../logs/");
+		/* strip app name (we only want its path) */\
+		path_strip_fn(N_exe_name);\
+		(void)path_append(N_log_dir, N_exe_name, "../logs/");
 	);
 	return N_log_dir;
 }

@@ -54,239 +54,6 @@
 
 
 
-// convenience "class" that simplifies successively appending a filename to
-// its parent directory. this avoids needing to allocate memory and calling
-// strlen/strcat. used by wdll_ver and dir_next_ent.
-// we want to maintain C compatibility, so this isn't a C++ class.
-
-// write the given directory path into our buffer and set end/chars_left
-// accordingly. <dir> need not but can end with a directory separator.
-//
-// note: <dir> and the filename set via pp_append_file are separated by
-// '/'. this is to allow use on portable paths; the function otherwise
-// does not care if paths are relative/portable/absolute.
-LibError pp_set_dir(PathPackage* pp, const char* dir)
- {
-	// -1 allows for trailing DIR_SEP that will be added if not
-	// already present.
-	if(strcpy_s(pp->path, ARRAY_SIZE(pp->path)-1, dir) != 0)
-		WARN_RETURN(ERR_PATH_LENGTH);
-	size_t len = strlen(pp->path);
-	// add directory separator if not already present
-	// .. but only check this if dir != "" (=> len-1 is safe)
-	if(len != 0)
-	{
-		char* last_char = pp->path+len-1;
-		// note: must handle both portable and native separators -
-		// <dir> may be either.
-		if(*last_char != '/' && *last_char != DIR_SEP)
-		{
-			*(last_char+1) = '/';
-			// note: need to 0-terminate because pp.path is uninitialized
-			// and we overwrite strcpy_s's terminator above.
-			*(last_char+2) = '\0';
-			// only bump by 1 - filename must overwrite '\0'.
-			len++;
-		}
-	}
-
-	pp->end = pp->path+len;
-	pp->chars_left = ARRAY_SIZE(pp->path)-len;
-	return ERR_OK;
-}
-
-
-// append the given filename to the directory established by the last
-// pp_set_dir on this package. the whole path is accessible at pp->path.
-LibError pp_append_file(PathPackage* pp, const char* fn)
-{
-	CHECK_ERR(strcpy_s(pp->end, pp->chars_left, fn));
-	return ERR_OK;
-}
-
-//-----------------------------------------------------------------------------
-
-
-// is s2 a subpath of s1, or vice versa? used by VFS and wdir_watch.
-// works for portable and native paths.
-bool file_is_subpath(const char* s1, const char* s2)
-{
-	// make sure s1 is the shorter string
-	if(strlen(s1) > strlen(s2))
-		std::swap(s1, s2);
-
-	int c1 = 0, last_c1, c2;
-	for(;;)
-	{
-		last_c1 = c1;
-		c1 = *s1++, c2 = *s2++;
-
-		// end of s1 reached:
-		if(c1 == '\0')
-		{
-			// s1 matched s2 up until:
-			if((c2 == '\0') ||	// its end (i.e. they're equal length)
-			   (c2 == '/' || c2 == DIR_SEP) ||	// start of next component
-			   (last_c1 == '/' || last_c1 == DIR_SEP))	// ", but both have a trailing slash
-				// => is subpath
-				return true;
-		}
-
-		// mismatch => is not subpath
-		if(c1 != c2)
-			return false;
-	}
-}
-
-
-
-enum Conversion
-{
-	TO_NATIVE,
-	TO_PORTABLE
-};
-
-static LibError convert_path(char* dst, const char* src, Conversion conv = TO_NATIVE)
-{
-	// DIR_SEP is assumed to be a single character!
-
-	const char* s = src;
-	char* d = dst;
-
-	char from = DIR_SEP, to = '/';
-	if(conv == TO_NATIVE)
-		from = '/', to = DIR_SEP;
-
-	size_t len = 0;
-
-	for(;;)
-	{
-		len++;
-		if(len >= PATH_MAX)
-			WARN_RETURN(ERR_PATH_LENGTH);
-
-		char c = *s++;
-
-		if(c == from)
-			c = to;
-
-		*d++ = c;
-
-		// end of string - done
-		if(c == '\0')
-			return ERR_OK;
-	}
-}
-
-
-// set by file_set_root_dir
-static char n_root_dir[PATH_MAX];
-static size_t n_root_dir_len;
-
-
-// return the native equivalent of the given relative portable path
-// (i.e. convert all '/' to the platform's directory separator)
-// makes sure length < PATH_MAX.
-LibError file_make_native_path(const char* path, char* n_path)
-{
-	return convert_path(n_path, path, TO_NATIVE);
-}
-
-// return the portable equivalent of the given relative native path
-// (i.e. convert the platform's directory separators to '/')
-// makes sure length < PATH_MAX.
-LibError file_make_portable_path(const char* n_path, char* path)
-{
-	return convert_path(path, n_path, TO_PORTABLE);
-}
-
-
-// return the native equivalent of the given portable path
-// (i.e. convert all '/' to the platform's directory separator).
-// also prepends current directory => n_full_path is absolute.
-// makes sure length < PATH_MAX.
-LibError file_make_full_native_path(const char* path, char* n_full_path)
-{
-	debug_assert(path != n_full_path);	// doesn't work in-place
-
-	strcpy_s(n_full_path, PATH_MAX, n_root_dir);
-	return convert_path(n_full_path+n_root_dir_len, path, TO_NATIVE);
-}
-
-// return the portable equivalent of the given relative native path
-// (i.e. convert the platform's directory separators to '/')
-// n_full_path is absolute; if it doesn't match the current dir, fail.
-// (note: portable paths are always relative to the file root dir).
-// makes sure length < PATH_MAX.
-LibError file_make_full_portable_path(const char* n_full_path, char* path)
-{
-	debug_assert(path != n_full_path);	// doesn't work in-place
-
-	if(strncmp(n_full_path, n_root_dir, n_root_dir_len) != 0)
-		WARN_RETURN(ERR_PATH_NOT_FOUND);
-	return convert_path(path, n_full_path+n_root_dir_len, TO_PORTABLE);
-}
-
-
-// establish the root directory from <rel_path>, which is treated as
-// relative to the executable's directory (determined via argv[0]).
-// all relative file paths passed to this module will be based from
-// this root dir.
-//
-// example: executable in "$install_dir/system"; desired root dir is
-// "$install_dir/data" => rel_path = "../data".
-//
-// argv[0] is necessary because the current directory is unknown at startup
-// (e.g. it isn't set when invoked via batch file), and this is the
-// easiest portable way to find our install directory.
-//
-// can only be called once, by design (see below). rel_path is trusted.
-LibError file_set_root_dir(const char* argv0, const char* rel_path)
-{
-	// security check: only allow attempting to chdir once, so that malicious
-	// code cannot circumvent the VFS checks that disallow access to anything
-	// above the current directory (set here).
-	// this routine is called early at startup, so any subsequent attempts
-	// are likely bogus.
-	static bool already_attempted;
-	if(already_attempted)
-		WARN_RETURN(ERR_ROOT_DIR_ALREADY_SET);
-	already_attempted = true;
-
-	// get full path to executable
-	char n_path[PATH_MAX];
-	// .. first try safe, but system-dependent version
-	if(sys_get_executable_name(n_path, PATH_MAX) < 0)
-	{
-		// .. failed; use argv[0]
-		if(!realpath(argv0, n_path))
-			return LibError_from_errno();
-	}
-
-	// make sure it's valid
-	if(access(n_path, X_OK) < 0)
-		return LibError_from_errno();
-
-	// strip executable name, append rel_path, convert to native
-	char* slash = strrchr(n_path, DIR_SEP);
-	// .. safely handle n_path not containing DIR_SEP (not expected)
-	if(!slash) slash = n_path-1;
-	RETURN_ERR(file_make_native_path(rel_path, slash+1));
-
-	// get actual root dir - previous n_path may include ".."
-	// (slight optimization, speeds up path lookup)
-	if(!realpath(n_path, n_root_dir))
-		return LibError_from_errno();
-	// .. append DIR_SEP to simplify code that uses n_root_dir
-	//    (note: already 0-terminated, since it's static)
-	n_root_dir_len = strlen(n_root_dir)+1;	// +1 for trailing DIR_SEP
-	n_root_dir[n_root_dir_len-1] = DIR_SEP;
-	return ERR_OK;
-}
-
-
-//-----------------------------------------------------------------------------
-
 // layer on top of POSIX opendir/readdir/closedir that handles
 // portable -> native path conversion, ignores non-file/directory entries,
 // and additionally returns the file status (size and mtime).
@@ -332,7 +99,7 @@ LibError dir_open(const char* P_path, DirIterator* d_)
 	if(!d->os_dir)
 		return LibError_from_errno();
 
-	RETURN_ERR(pp_set_dir(&d->pp, n_path));
+	RETURN_ERR(path_package_set_dir(&d->pp, n_path));
 	return ERR_OK;
 }
 
@@ -357,7 +124,7 @@ get_another_entry:
 
 	// copy os_ent.name[]; we need it for stat() #if !OS_WIN and
 	// return it as ent.name (since os_ent.name[] is volatile).
-	pp_append_file(&d->pp, os_ent->d_name);
+	path_package_append_file(&d->pp, os_ent->d_name);
 	const char* name = d->pp.end;
 
 	// get file information (mode, size, mtime)
@@ -368,7 +135,7 @@ get_another_entry:
 	CHECK_ERR(readdir_stat_np(d->os_dir, &s));
 #else
 	// .. call regular stat().
-	//    we need the full pathname for this. don't use vfs_path_append because
+	//    we need the full pathname for this. don't use path_append because
 	//    it would unnecessarily call strlen.
 
 	CHECK_ERR(stat(d->pp.path, &s));
@@ -404,89 +171,7 @@ LibError dir_close(DirIterator* d_)
 }
 
 
-static bool dirent_less(const DirEnt& d1, const DirEnt& d2)
-{
-	return strcmp(d1.name, d2.name) < 0;
-}
 
-
-// enumerate all directory entries in <P_path>; add to container and
-// then sort it by filename.
-LibError file_get_sorted_dirents(const char* P_path, DirEnts& dirents)
-{
-	DirIterator d;
-	RETURN_ERR(dir_open(P_path, &d));
-
-	dirents.reserve(50);	// preallocate for efficiency
-
-	DirEnt ent;
-	for(;;)
-	{
-		LibError ret = dir_next_ent(&d, &ent);
-		if(ret == ERR_DIR_END)
-			break;
-		RETURN_ERR(ret);
-
-		ent.name = file_make_unique_fn_copy(ent.name);
-		dirents.push_back(ent);
-	}
-
-	std::sort(dirents.begin(), dirents.end(), dirent_less);
-
-	(void)dir_close(&d);
-	return ERR_OK;
-}
-
-
-// call <cb> for each file and subdirectory in <dir> (alphabetical order),
-// passing the entry name (not full path!), stat info, and <user>.
-//
-// first builds a list of entries (sorted) and remembers if an error occurred.
-// if <cb> returns non-zero, abort immediately and return that; otherwise,
-// return first error encountered while listing files, or 0 on success.
-//
-// rationale:
-//   this makes file_enum and zip_enum slightly incompatible, since zip_enum
-//   returns the full path. that's necessary because VFS zip_cb
-//   has no other way of determining what VFS dir a Zip file is in,
-//   since zip_enum enumerates all files in the archive (not only those
-//   in a given dir). no big deal though, since add_ent has to
-//   special-case Zip files anyway.
-//   the advantage here is simplicity, and sparing callbacks the trouble
-//   of converting from/to native path (we just give 'em the dirent name).
-LibError file_enum(const char* P_path, const FileCB cb, const uintptr_t user)
-{
-	LibError stat_err = ERR_OK;	// first error encountered by stat()
-	LibError cb_err   = ERR_OK;	// first error returned by cb
-
-	DirEnts dirents;
-	RETURN_ERR(file_get_sorted_dirents(P_path, dirents));
-
-	// call back for each entry (now sorted);
-	// first, expand each DirEnt to full struct stat (we store as such to
-	// reduce memory use and therefore speed up sorting)
-	struct stat s;
-	memset(&s, 0, sizeof(s));
-	// .. not needed for plain files (OS opens them; memento doesn't help)
-	const uintptr_t memento = 0;
-	for(DirEntCIt it = dirents.begin(); it != dirents.end(); ++it)
-	{
-		const DirEnt& dirent = *it;
-		s.st_mode  = (dirent.size == -1)? S_IFDIR : S_IFREG;
-		s.st_size  = dirent.size;
-		s.st_mtime = dirent.mtime;
-		LibError ret = cb(dirent.name, &s, memento, user);
-		if(ret != INFO_CB_CONTINUE)
-		{
-			cb_err = ret;	// first error (since we now abort)
-			break;
-		}
-	}
-
-	if(cb_err != ERR_OK)
-		return cb_err;
-	return stat_err;
-}
 
 
 // get file information. output param is zeroed on error.
@@ -556,6 +241,8 @@ LibError file_delete(const char* fn)
 //   and the Handle approach doesn't guard against some idiot calling
 //   close(our_fd_value) directly, either.
 
+cassert(sizeof(PosixFile) < FILE_OPAQUE_SIZE);
+
 
 LibError file_validate(const File* f)
 {
@@ -572,87 +259,6 @@ LibError file_validate(const File* f)
 
 	return ERR_OK;
 }
-
-// rationale: we want a constant-time IsAtomFn(string pointer) lookup:
-// this avoids any overhead of calling file_make_unique_fn_copy on
-// already-atomized strings. that requires allocating from one contiguous
-// arena, which is also more memory-efficient than the heap (no headers).
-static Pool atom_pool;
-
-// allocate a copy of P_fn in our string pool. strings are equal iff
-// their addresses are equal, thus allowing fast comparison.
-//
-// if the (generous) filename storage is full, 0 is returned.
-// this is not ever expected to happen; callers need not check the
-// return value because a warning is raised anyway.
-const char* file_make_unique_fn_copy(const char* P_fn)
-{
-	// early out: if already an atom, return immediately.
-	if(pool_contains(&atom_pool, (void*)P_fn))
-		return P_fn;
-
-	const size_t fn_len = strlen(P_fn);
-	const char* unique_fn;
-
-	// check if already allocated; return existing copy if so.
-	//
-	// rationale: the entire storage could be done via container,
-	// rather than simply using it as a lookup mapping.
-	// however, DynHashTbl together with Pool (see above) is more efficient.
-	typedef DynHashTbl<const char*, const char*> AtomMap;
-	static AtomMap atom_map;
-	unique_fn = atom_map.find(P_fn);
-	if(unique_fn)
-		return unique_fn;
-
-	unique_fn = (const char*)pool_alloc(&atom_pool, fn_len+1);
-	if(!unique_fn)
-	{
-		DEBUG_WARN_ERR(ERR_NO_MEM);
-		return 0;
-	}
-	memcpy2((void*)unique_fn, P_fn, fn_len);
-	((char*)unique_fn)[fn_len] = '\0';
-
-	atom_map.insert(unique_fn, unique_fn);
-
-	stats_unique_name(fn_len);
-	return unique_fn;
-}
-
-
-const char* file_get_random_name()
-{
-	// there had better be names in atom_pool, else this will fail.
-	debug_assert(atom_pool.da.pos != 0);
-
-again:
-	const size_t start_ofs = (size_t)rand(0, (uint)atom_pool.da.pos-1);
-	
-	// scan ahead to next string boundary
-	const char* start = (const char*)atom_pool.da.base+start_ofs;
-	const char* next_0 = strchr(start, '\0')+1;
-	// .. at end of storage: restart
-	if((u8*)next_0 >= atom_pool.da.base+atom_pool.da.pos)
-		goto again;
-	// .. skip all '\0' (may be several due to pool alignment)
-	const char* next_name = next_0;
-	while(*next_name == '\0') next_name++;
-
-	return next_name;
-}
-
-
-static inline void atom_init()
-{
-	pool_create(&atom_pool, 8*MiB, POOL_VARIABLE_ALLOCS);
-}
-
-static inline void atom_shutdown()
-{
-	(void)pool_destroy(&atom_pool);
-}
-
 
 
 LibError file_open(const char* P_fn, uint flags, File* f)
@@ -853,7 +459,7 @@ LibError file_unmap(File* f)
 
 LibError file_init()
 {
-	atom_init();
+	path_init();
 	file_cache_init();
 	file_io_init();
 
@@ -866,7 +472,7 @@ LibError file_init()
 LibError file_shutdown()
 {
 	stats_dump();
-	atom_shutdown();
+	path_shutdown();
 	file_io_shutdown();
 	return ERR_OK;
 }

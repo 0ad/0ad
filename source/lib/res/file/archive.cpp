@@ -712,10 +712,7 @@ LibError afile_unmap(File* f)
 
 static inline bool file_type_is_uncompressible(const char* fn)
 {
-	const char* ext = strrchr(fn, '.');
-	// no extension? bail; assume compressible
-	if(!ext)
-		return true;
+	const char* ext = path_extension(fn);
 
 	// this is a selection of file types that are certainly not
 	// further compressible. we need not include every type under the sun -

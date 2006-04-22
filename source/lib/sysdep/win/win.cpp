@@ -26,6 +26,7 @@
 #include <stdlib.h>	// __argc
 
 #include "win_internal.h"
+#include "lib/path_util.h"
 
 #if MSC_VERSION >= 1400
 #include <process.h>	// __security_init_cookie
@@ -318,11 +319,7 @@ static inline void pre_libc_init()
 	GetSystemDirectory(win_sys_dir, sizeof(win_sys_dir));
 
 	if(GetModuleFileName(GetModuleHandle(0), win_exe_dir, MAX_PATH) != 0)
-	{
-		char* slash = strrchr(win_exe_dir, '\\');
-		if(slash)
-			*slash = '\0';
-	}
+		path_strip_fn(win_exe_dir);
 
 	// HACK: make sure a reference to user32 is held, even if someone
 	// decides to delay-load it. this fixes bug #66, which was the

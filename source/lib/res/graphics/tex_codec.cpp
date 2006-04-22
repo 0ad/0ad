@@ -27,6 +27,7 @@
 
 #include "tex_codec.h"
 #include "tex.h"
+#include "lib/path_util.h"
 
 static const TexCodecVTbl* codecs;
 
@@ -54,11 +55,7 @@ int tex_codec_register(TexCodecVTbl* c)
 // tex_is_known_extension.
 LibError tex_codec_for_filename(const char* fn, const TexCodecVTbl** c)
 {
-	const char* ext = strrchr(fn, '.');
-	if(!ext)
-		return ERR_UNKNOWN_FORMAT;
-	ext++;	// skip '.'
-
+	const char* ext = path_extension(fn);
 	for(*c = codecs; *c; *c = (*c)->next)
 	{
 		// we found it

@@ -26,9 +26,10 @@
 #include <stdlib.h>
 
 #include "lib.h"
-#include "posix.h"
 #include "win_internal.h"
 #include "allocators.h"
+#include "lib/path_util.h"
+#include "posix.h"
 
 
 // cast intptr_t to HANDLE; centralized for easier changing, e.g. avoiding
@@ -793,11 +794,12 @@ void* dlopen(const char* so_name, int flags)
 
 	// if present, strip .so extension; add .dll extension
 	char dll_name[MAX_PATH];
-	strcpy_s(dll_name, ARRAY_SIZE(dll_name)-4, so_name);
-	char* ext = strrchr(dll_name, '.');
-	if(!ext)
-		ext = dll_name + strlen(dll_name);
-	strcpy(ext, ".dll");	// safe
+	strcpy_s(dll_name, ARRAY_SIZE(dll_name)-5, so_name);
+	char* ext = (char*)path_extension(dll_name);
+	if(ext[0] == '\0')	// no extension
+		strcat(dll_name, ".dll");	// safe
+	else	// need to replace extension
+		SAFE_STRCPY(ext, "dll");
 
 	HMODULE hModule = LoadLibrary(dll_name);
 	if(!hModule)

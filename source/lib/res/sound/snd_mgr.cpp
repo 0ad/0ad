@@ -50,7 +50,7 @@
 # include "sysdep/win/win_internal.h"
 #endif
 
-#include "../res.h"
+#include "lib/res/res.h"
 #include "snd_mgr.h"
 #include "lib/timer.h"
 #include "app_hooks.h"
@@ -929,9 +929,9 @@ static LibError SndData_reload(SndData* sd, const char* fn, Handle hsd)
 	}
 	file_type;
 
-	const char* ext = strrchr(fn, '.');
+	const char* ext = path_extension(fn);
 	// .. OGG (data will be passed directly to OpenAL)
-	if(ext && !stricmp(ext, ".ogg"))
+	if(!stricmp(ext, "ogg"))
 	{
 #ifdef OGG_HACK
 #else
@@ -950,7 +950,7 @@ static LibError SndData_reload(SndData* sd, const char* fn, Handle hsd)
 		file_type = FT_OGG;
 	}
 	// .. WAV
-	else if(ext && !stricmp(ext, ".wav"))
+	else if(!stricmp(ext, "wav"))
 		file_type = FT_WAV;
 	// .. unknown extension
 	else
@@ -1375,7 +1375,7 @@ static LibError VSrc_reload(VSrc* vs, const char* fn, Handle hvs)
 	CHECK_ERR(err);
 
 	//
-	// if extension is .txt, fn is a definition file containing the
+	// if extension is "txt", fn is a definition file containing the
 	// sound file name and its gain; otherwise, read directly from fn
 	// and assume default gain (1.0).
 	//
@@ -1385,8 +1385,8 @@ static LibError VSrc_reload(VSrc* vs, const char* fn, Handle hvs)
 	// extracted from stringstream;
 	// declare here so that it doesn't go out of scope below.
 
-	const char* ext = strchr(fn, '.');
-	if(ext && !stricmp(ext, ".txt"))
+	const char* ext = path_extension(fn);
+	if(!stricmp(ext, "txt"))
 	{
 		FileIOBuf buf; size_t size;
 		RETURN_ERR(vfs_load(fn, buf, size));

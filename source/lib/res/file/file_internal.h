@@ -20,6 +20,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+#include "lib/path_util.h"
+#include "path.h"
+
 #include "file.h"
 #include "file_cache.h"
 #include "file_io.h"
@@ -31,7 +34,6 @@
 #include "archive.h"
 
 #include "vfs.h"
-#include "vfs_path.h"
 #include "vfs_mount.h"
 #include "vfs_tree.h"
 #include "vfs_redirector.h"
@@ -69,4 +71,3 @@ struct PosixFile
 	void* mapping;
 	uint map_refs;
 };
-cassert(sizeof(PosixFile) < FILE_OPAQUE_SIZE);

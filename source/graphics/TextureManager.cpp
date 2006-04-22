@@ -116,22 +116,14 @@ void CTextureManager::LoadTextures(CTerrainPropertiesPtr props, const char* dir)
 		// we can't use FindFile's filter param because new texture formats
 		// may later be added and that interface doesn't support specifying
 		// multiple extensions.
-		const char* ext = strrchr(texture_name, '.');
-		if(!ext
-			|| !stricmp(ext, ".xml")
-			|| !stricmp(ext, ".xmb")
-			|| !stricmp(ext, ".dtd")
-			|| !stricmp(ext, ".jbf") // PSP browser files. (This list is getting quite long and ugly...)
-		  )
-			continue;
-		// Also allow storage of other temporary files in the texture directories
-		if(ext[strlen(ext)-1] == '~')
+		if(!tex_is_known_extension(texture_name))
 			continue;
 
 		// build name of associated xml file (i.e. replace extension)
 		char xml_name[PATH_MAX+5];	// add room for .XML
 		strcpy_s(xml_name, PATH_MAX, texture_name);
-		strcpy(xml_name + (ext-texture_name), ".xml");	// safe
+		const char* ext = path_extension(texture_name);
+		SAFE_STRCPY(xml_name + (ext-texture_name), "xml");
 
 		CTerrainPropertiesPtr myprops;
 		// Has XML file -> attempt to load properties

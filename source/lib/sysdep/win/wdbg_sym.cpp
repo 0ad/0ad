@@ -36,6 +36,7 @@
 #include "wdbg.h"
 #include "debug_stl.h"
 #include "app_hooks.h"
+#include "lib/path_util.h"
 #if CPU_IA32
 # include "lib/sysdep/ia32.h"
 #endif
@@ -207,11 +208,7 @@ LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file,
 				// this loses information, but that isn't expected to be a
 				// problem and is balanced by not having to do this from every
 				// call site (full path is too long to display nicely).
-				const char* base_name = line_info.FileName;
-				const char* slash = strrchr(base_name, DIR_SEP);
-				if(slash)
-					base_name = slash+1;
-
+				const char* base_name = path_name_only(line_info.FileName);
 				snprintf(file, DBG_FILE_LEN, "%s", base_name);
 				successes++;
 			}
@@ -1918,7 +1915,7 @@ void wdbg_write_minidump(EXCEPTION_POINTERS* exception_pointers)
 	lock();
 
 	// note: we go through some gyrations here (strcpy+strcat) to avoid
-	// dependency on file code (vfs_path_append).
+	// dependency on file code (path_append).
 	char N_path[PATH_MAX];
 	strcpy_s(N_path, ARRAY_SIZE(N_path), ah_get_log_dir());
 	strcat_s(N_path, ARRAY_SIZE(N_path), "crashlog.dmp");

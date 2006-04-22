@@ -123,8 +123,8 @@ static LibError VDir_reload(VDir* vd, const char* path, Handle UNUSED(hvd))
 {
 	// add required trailing slash if not already present to make
 	// caller's life easier.
-	char V_path_slash[VFS_MAX_PATH];
-	RETURN_ERR(vfs_path_append(V_path_slash, path, ""));
+	char V_path_slash[PATH_MAX];
+	RETURN_ERR(path_append(V_path_slash, path, ""));
 
 	RETURN_ERR(tree_dir_open(V_path_slash, &vd->it));
 	vd->it_valid = 1;
@@ -250,7 +250,7 @@ LibError vfs_dir_enum(const char* start_path, uint flags, const char* user_filte
 	debug_assert((flags & ~(VFS_DIR_RECURSIVE)) == 0);
 	const bool recursive = (flags & VFS_DIR_RECURSIVE) != 0;
 
-	char filter_buf[VFS_MAX_PATH];
+	char filter_buf[PATH_MAX];
 	const char* filter = user_filter;
 	bool user_filter_wants_dirs = true;
 	if(user_filter)
@@ -281,7 +281,7 @@ LibError vfs_dir_enum(const char* start_path, uint flags, const char* user_filte
 		// note: can't refer to the queue contents - those are invalidated
 		// as soon as a directory is pushed onto it.
 		PathPackage pp;
-		(void)pp_set_dir(&pp, dir_queue.front());
+		(void)path_package_set_dir(&pp, dir_queue.front());
 		dir_queue.pop();
 
 		Handle hdir = vfs_dir_open(pp.path);
@@ -296,7 +296,7 @@ LibError vfs_dir_enum(const char* start_path, uint flags, const char* user_filte
 		while(vfs_dir_next_ent(hdir, &ent, filter) == 0)
 		{
 			// build complete path (DirEnt only stores entry name)
-			(void)pp_append_file(&pp, ent.name);
+			(void)path_package_append_file(&pp, ent.name);
 			const char* atom_path = file_make_unique_fn_copy(pp.path);
 
 			if(DIRENT_IS_DIR(&ent))
@@ -772,17 +772,57 @@ LibError vfs_reload(const char* fn)
 	return reload_without_rebuild(fn);
 }
 
+// array of reloads requested this frame (see 'do we really need to
+// reload' below). go through gyrations to avoid heap allocs.
+const size_t MAX_RELOADS_PER_FRAME = 12;
+typedef char Path[PATH_MAX];
+typedef Path PathList[MAX_RELOADS_PER_FRAME];
+
+// do we really need to reload? try to avoid the considerable cost of
+// rebuilding VFS and scanning all Handles.
+static bool can_ignore_reload(const char* V_path, PathList pending_reloads, uint num_pending)
+{
+	// note: be careful to avoid 'race conditions' depending on the
+	// timeframe in which notifications reach us.
+	// example: editor deletes a.tga; we are notified; reload is
+	// triggered but fails since the file isn't found; further
+	// notifications (e.g. renamed a.tmp to a.tga) come within x [ms] and
+	// are ignored due to a time limit.
+	// therefore, we can only check for multiple reload requests a frame;
+	// to that purpose, an array is built and duplicates ignored.
+	const char* ext = path_extension(V_path);
+	// .. directory change notification; ignore because we get
+	//    per-file notifications anyway. (note: assume no extension =>
+	//    it's a directory).
+	if(ext[0] == '\0')
+		return true;
+	// .. compiled XML files the engine writes out by the hundreds;
+	//    skipping them is a big performance gain.
+	if(!stricmp(ext, "xmb"))
+		return true;
+	// .. temp files, usually created when an editor saves a file
+	//    (delete, create temp, rename temp); no need to reload those.
+	if(!stricmp(ext, "tmp"))
+		return true;
+	// .. more than one notification for a file; only reload once.
+	//    note: this doesn't suffer from the 'reloaded too early'
+	//    problem described above; if there's more than one
+	//    request in the array, the file has since been written.
+	for(uint i = 0; i < num_pending; i++)
+	{
+		if(!strcmp(pending_reloads[i], V_path))
+			return true;
+	}
+
+	return false;
+}
+
 
 // get directory change notifications, and reload all affected files.
 // must be called regularly (e.g. once a frame). this is much simpler
 // than asynchronous notifications: everything would need to be thread-safe.
 LibError vfs_reload_changed_files()
 {
-	// array of reloads requested this frame (see 'do we really need to
-	// reload' below). go through gyrations to avoid heap allocs.
-	const size_t MAX_RELOADS_PER_FRAME = 12;
-	typedef char Path[VFS_MAX_PATH];
-	typedef Path PathList[MAX_RELOADS_PER_FRAME];
 	PathList pending_reloads;
 
 	uint num_pending = 0;
@@ -803,38 +843,8 @@ LibError vfs_reload_changed_files()
 		char* V_path = pending_reloads[num_pending];
 		CHECK_ERR(mount_make_vfs_path(P_path, V_path));
 
-		// do we really need to reload? try to avoid the considerable cost of
-		// rebuilding VFS and scanning all Handles.
-		//
-		// note: be careful to avoid 'race conditions' depending on the
-		// timeframe in which notifications reach us.
-		// example: editor deletes a.tga; we are notified; reload is
-		// triggered but fails since the file isn't found; further
-		// notifications (e.g. renamed a.tmp to a.tga) come within x [ms] and
-		// are ignored due to a time limit.
-		// therefore, we can only check for multiple reload requests a frame;
-		// to that purpose, an array is built and duplicates ignored.
-		const char* ext = strrchr(V_path, '.');
-		// .. directory change notification; ignore because we get
-		//    per-file notifications anyway. (note: assume no extension =>
-		//    it's a directory). this also protects the strcmp calls below.
-		if(!ext)
+		if(can_ignore_reload(V_path, pending_reloads, num_pending))
 			continue;
-		// .. compiled XML files the engine writes out by the hundreds;
-		//    skipping them is a big performance gain.
-		if(!stricmp(ext, ".xmb"))
-			continue;
-		// .. temp files, usually created when an editor saves a file
-		//    (delete, create temp, rename temp); no need to reload those.
-		if(!stricmp(ext, ".tmp"))
-			continue;
-		// .. more than one notification for a file; only reload once.
-		//    note: this doesn't suffer from the 'reloaded too early'
-		//    problem described above; if there's more than one
-		//    request in the array, the file has since been written.
-		for(uint i = 0; i < num_pending; i++)
-			if(!strcmp(pending_reloads[i], V_path))
-				continue;
 
 		// path has already been written to pending_reloads,
 		// so just mark it valid.

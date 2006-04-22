@@ -227,7 +227,7 @@ static LibError afile_cb(const char* atom_fn, const struct stat* s, uintptr_t me
 	CHECK_PATH(atom_fn);
 
 	const char* name = path_name_only(atom_fn);
-	char path[VFS_MAX_PATH];
+	char path[PATH_MAX];
 	path_dir_only(atom_fn, path);
 	const char* atom_path = file_make_unique_fn_copy(path);
 
@@ -288,7 +288,7 @@ static LibError enqueue_archive(const char* name, const char* P_archive_dir, Arc
 	// this doesn't (need to) work for subdirectories of the mounted td!
 	// we can't use mount_get_path because we don't have the VFS path.
 	char P_path[PATH_MAX];
-	RETURN_ERR(vfs_path_append(P_path, P_archive_dir, name));
+	RETURN_ERR(path_append(P_path, P_archive_dir, name));
 
 	// just open the Zip file and see if it's valid. we don't bother
 	// checking the extension because archives won't necessarily be
@@ -374,7 +374,7 @@ static LibError enqueue_dir(TDir* parent_td, const char* name,
 
 	// prepend parent path to get complete pathname.
 	char P_path[PATH_MAX];
-	CHECK_ERR(vfs_path_append(P_path, P_parent_path, name));
+	CHECK_ERR(path_append(P_path, P_parent_path, name));
 
 	// create subdirectory..
 	TDir* td;
@@ -429,7 +429,7 @@ static LibError add_ent(TDir* td, DirEnt* ent, const char* P_parent_path, const 
 	{
 		// prepend parent path to get complete pathname.
 		char V_path[PATH_MAX];
-		CHECK_ERR(vfs_path_append(V_path, tfile_get_atom_fn((TFile*)td), name));
+		CHECK_ERR(path_append(V_path, tfile_get_atom_fn((TFile*)td), name));
 		const char* atom_fn = file_make_unique_fn_copy(V_path);
 
 		vfs_opt_notify_loose_file(atom_fn);
@@ -639,7 +639,7 @@ LibError vfs_mount(const char* V_mount_point, const char* P_real_path, uint flag
 	// no matter if it's an archive - still shouldn't be a "subpath".
 	for(MountIt it = mounts.begin(); it != mounts.end(); ++it)
 	{
-		if(file_is_subpath(P_real_path, it->P_name.c_str()))
+		if(path_is_subpath(P_real_path, it->P_name.c_str()))
 			WARN_RETURN(ERR_ALREADY_MOUNTED);
 	}
 

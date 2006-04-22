@@ -526,18 +526,21 @@ int match_wildcardw(const wchar_t* s, const wchar_t* w)
 // avoids several common pitfalls; see discussion at
 // http://www.azillionmonkeys.com/qed/random.html
 
-// Silly heuristic: glibc has RAND_MAX of 2^31 - 1 while MS CRT has 2^15-1 or something...
+// rand() is poorly implemented (e.g. in VC7) and only returns < 16 bits;
+// double that amount by concatenating 2 random numbers.
+// this is not to fix poor rand() randomness - the number returned will be
+// folded down to a much smaller interval anyway. instead, a larger XRAND_MAX
+// decreases the probability of having to repeat the loop.
 #if RAND_MAX < 65536
 static const uint XRAND_MAX = (RAND_MAX+1)*(RAND_MAX+1) - 1;
-
-uint fullrand()
+static uint xrand()
 {
 	return rand()*(RAND_MAX+1) + rand();
 }
+// rand() is already ok; no need to do anything.
 #else
 static const uint XRAND_MAX = RAND_MAX;
-
-uint fullrand()
+static uint xrand()
 {
 	return rand();
 }
@@ -556,9 +559,12 @@ uint rand(uint min_inclusive, uint max_exclusive)
 	const uint inv_range = XRAND_MAX / range;
 
 	// generate random number in [0, range)
+	// idea: avoid skewed distributions when <range> doesn't evenly divide
+	// XRAND_MAX by simply discarding values in the "remainder".
+	// not expected to run often since XRAND_MAX is large.
 	uint x;
 	do
-		x = fullrand();
+		x = xrand();
 	while(x >= range * inv_range);
 	x /= inv_range;
 

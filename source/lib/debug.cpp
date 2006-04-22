@@ -26,14 +26,15 @@
 #include <string.h>
 
 #include "lib.h"
-#include "debug.h"
-#include "debug_stl.h"
 #include "posix.h"
 // some functions here are called from within mmgr; disable its hooks
 // so that our allocations don't cause infinite recursion.
 #include "nommgr.h"
 #include "self_test.h"
 #include "app_hooks.h"
+#include "lib/path_util.h"
+#include "debug_stl.h"
+#include "debug.h"
 
 
 // needed when writing crashlog
@@ -216,7 +217,7 @@ void debug_wprintf(const wchar_t* fmt, ...)
 LibError debug_write_crashlog(const wchar_t* text)
 {
 	// note: we go through some gyrations here (strcpy+strcat) to avoid
-	// dependency on file code (vfs_path_append).
+	// dependency on file code (path_append).
 	char N_path[PATH_MAX];
 	strcpy_s(N_path, ARRAY_SIZE(N_path), ah_get_log_dir());
 	strcat_s(N_path, ARRAY_SIZE(N_path), "crashlog.txt");
@@ -300,12 +301,9 @@ static const char* symbol_string_build(void* symbol, const char* name, const cha
 	if(file && line)
 	{
 		// strip path from filename (long and irrelevant)
-		const char* filename_only = file;
-		const char* slash = strrchr(file, DIR_SEP);
-		if(slash)
-			filename_only = slash+1;
+		const char* fn_only = path_name_only(file);
 
-		len = snprintf(string, STRING_MAX-1, "%s:%05d ", filename_only, line);
+		len = snprintf(string, STRING_MAX-1, "%s:%05d ", fn_only, line);
 	}
 	// only address is known
 	else
@@ -471,9 +469,8 @@ ErrorReaction debug_display_error(const wchar_t* description,
 	description = ah_translate(description);
 
 	// display in output window; double-click will navigate to error location.
-	const char* slash = strrchr(file, DIR_SEP);
-	const char* filename = slash? slash+1 : file;
-	debug_wprintf(L"%hs(%d): %ls\n", filename, line, description);
+	const char* fn_only = path_name_only(file);
+	debug_wprintf(L"%hs(%d): %ls\n", fn_only, line, description);
 
 	// allocate memory for the stack trace. this needs to be quite large,
 	// so preallocating is undesirable. it must work even if the heap is
@@ -559,13 +556,12 @@ ErrorReaction debug_assert_failed(const char* expr,
 
 	// __FILE__ evaluates to the full path (albeit without drive letter)
 	// which is rather long. we only display the base name for clarity.
-	const char* slash = strrchr(file, DIR_SEP);
-	const char* base_name = slash? slash+1 : file;
+	const char* fn_only = path_name_only(file);
 
 	uint skip = 1; void* context = 0;
 	wchar_t buf[400];
-	swprintf(buf, ARRAY_SIZE(buf), L"Assertion failed at %hs:%d (%hs): \"%hs\"", base_name, line, func, expr);
-	return debug_display_error(buf, DE_ALLOW_SUPPRESS|DE_MANUAL_BREAK, skip,context, base_name,line);
+	swprintf(buf, ARRAY_SIZE(buf), L"Assertion failed at %hs:%d (%hs): \"%hs\"", fn_only, line, func, expr);
+	return debug_display_error(buf, DE_ALLOW_SUPPRESS|DE_MANUAL_BREAK, skip,context, fn_only,line);
 }
 
 
@@ -583,14 +579,13 @@ ErrorReaction debug_warn_err(LibError err,
 
 	// __FILE__ evaluates to the full path (albeit without drive letter)
 	// which is rather long. we only display the base name for clarity.
-	const char* slash = strrchr(file, DIR_SEP);
-	const char* base_name = slash? slash+1 : file;
+	const char* fn_only = path_name_only(file);
 
 	uint skip = 1; void* context = 0;
 	wchar_t buf[400];
 	char err_buf[200]; error_description_r(err, err_buf, ARRAY_SIZE(err_buf));
-	swprintf(buf, ARRAY_SIZE(buf), L"Function call failed at %hs:%d (%hs): return value was %d (%hs)", base_name, line, func, err, err_buf);
-	return debug_display_error(buf, DE_ALLOW_SUPPRESS|DE_MANUAL_BREAK, skip,context, base_name,line);
+	swprintf(buf, ARRAY_SIZE(buf), L"Function call failed at %hs:%d (%hs): return value was %d (%hs)", fn_only, line, func, err, err_buf);
+	return debug_display_error(buf, DE_ALLOW_SUPPRESS|DE_MANUAL_BREAK, skip,context, fn_only,line);
 }
 
 

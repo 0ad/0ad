@@ -1,6 +1,6 @@
 /**
  * =========================================================================
- * File        : vfs_path.h
+ * File        : path.h
  * Project     : 0 A.D.
  * Description : helper functions for VFS paths.
  *
@@ -9,7 +9,7 @@
  */
 
 /*
- * Copyright (c) 2004-2005 Jan Wassenberg
+ * Copyright (c) 2004-2006 Jan Wassenberg
  *
  * Redistribution and/or modification are also permitted under the
  * terms of the GNU General Public License as published by the
@@ -50,13 +50,16 @@ extern void path_dir_only(const char* V_src_fn, char* V_dir_only);
 // return pointer to the name component within V_src_fn
 extern const char* path_name_only(const char* V_src_fn);
 
+extern const char* path_extension(const char* fn);
+
+extern void path_strip_fn(char* fn);
 
 struct NextNumberedFilenameInfo
 {
 	int next_num;
 };
 
-// fill V_next_fn (which must be big enough for VFS_MAX_PATH chars) with
+// fill V_next_fn (which must be big enough for PATH_MAX chars) with
 // the next numbered filename according to the pattern defined by V_fn_fmt.
 // <nfi> must be initially zeroed (e.g. by defining as static) and passed
 // each time.
@@ -70,5 +73,7 @@ struct NextNumberedFilenameInfo
 extern void next_numbered_filename(const char* V_fn_fmt,
 	NextNumberedFilenameInfo* nfi, char* V_next_fn, bool use_vfs = true);
 
+extern void path_init();
+extern void path_shutdown();
 
 #endif	// #ifndef VFS_PATH_H__

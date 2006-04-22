@@ -330,8 +330,8 @@ bool CConfigDB::WriteFile(EConfigNamespace ns, bool useVFS, CStr path)
 {
 	debug_assert(ns >= 0 && ns < CFG_LAST);
 
-	char realpath[VFS_MAX_PATH];
-	char nativepath[VFS_MAX_PATH];
+	char realpath[PATH_MAX];
+	char nativepath[PATH_MAX];
 	const char *filepath=path.c_str();
 	int err;
 	FILE *fp;

@@ -213,8 +213,8 @@ public:
 
 	LibError add(const char* name_tmp, TNodeType type, TNode** pnode)
 	{
-		char V_new_path_tmp[VFS_MAX_PATH];
-		vfs_path_append(V_new_path_tmp, V_path, name_tmp);
+		char V_new_path_tmp[PATH_MAX];
+		path_append(V_new_path_tmp, V_path, name_tmp);
 		const char* V_new_path = file_make_unique_fn_copy(V_new_path_tmp);
 		const char* name = path_name_only(V_new_path);
 
@@ -377,7 +377,7 @@ static LibError lookup(TDir* td, const char* path, uint flags, TNode** pnode)
 
 	// copy into (writeable) buffer so we can 'tokenize' path components
 	// by replacing '/' with '\0'.
-	char V_path[VFS_MAX_PATH];
+	char V_path[PATH_MAX];
 	strcpy_s(V_path, sizeof(V_path), path);
 	char* cur_component = V_path;
 

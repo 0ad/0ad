@@ -106,7 +106,7 @@ InputSource *CVFSEntityResolver::resolveEntity(const XMLCh *const UNUSED(publicI
 	char *path=XMLString::transcode(systemId);
 	char *orgpath=path;
 	
-	char abspath[VFS_MAX_PATH];
+	char abspath[PATH_MAX];
 	const char *end=strchr(m_DocName, '\0');
 
 	if (IS_PATH_SEP(*path))
@@ -140,9 +140,9 @@ InputSource *CVFSEntityResolver::resolveEntity(const XMLCh *const UNUSED(publicI
 		const ptrdiff_t prefixlen=end-m_DocName;
 		
 		memcpy2(abspath, m_DocName, prefixlen);
-		strncpy(abspath+prefixlen, path, VFS_MAX_PATH-prefixlen);
+		strncpy(abspath+prefixlen, path, PATH_MAX-prefixlen);
 		// strncpy might not have terminated, if path was too long
-		abspath[VFS_MAX_PATH-1]=0;
+		abspath[PATH_MAX-1]=0;
 		
 		path=abspath;
 	}

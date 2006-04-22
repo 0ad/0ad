@@ -37,6 +37,7 @@
 #include "ModelDef.h"
 
 #include "ogl.h"
+#include "lib/path_util.h"
 #include "lib/res/res.h"
 #include "lib/res/file/file.h"
 #include "lib/res/graphics/tex.h"
@@ -1245,7 +1246,7 @@ int CRenderer::LoadAlphaMaps()
 	//
 	Handle textures[NumAlphaMaps] = {0};
 	PathPackage pp;
-	(void)pp_set_dir(&pp, "art/textures/terrain/alphamaps/special");
+	(void)path_package_set_dir(&pp, "art/textures/terrain/alphamaps/special");
 	const char* fnames[NumAlphaMaps] = {
 		"blendcircle.dds",
 		"blendlshape.dds",
@@ -1268,7 +1269,7 @@ int CRenderer::LoadAlphaMaps()
 	uint bpp = 0;
 	for(uint i=0;i<NumAlphaMaps;i++)
 	{
-		(void)pp_append_file(&pp, fnames[i]);
+		(void)path_package_append_file(&pp, fnames[i]);
 		// note: these individual textures can be discarded afterwards;
 		// we cache the composite.
 		textures[i] = ogl_tex_load(pp.path, RES_NO_CACHE);

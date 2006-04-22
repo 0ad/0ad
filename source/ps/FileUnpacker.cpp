@@ -9,6 +9,7 @@
 #include "precompiled.h"
 
 #include "FileUnpacker.h"
+#include "lib/path_util.h"
 #include "lib/res/res.h"
  
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -44,8 +45,8 @@ void CFileUnpacker::Read(const char* filename,const char magicstr[4])
 	// somewhat of a hack: if loading a map (.PMP), tell the file manager
 	// that the buffer will be kept in memory longer (avoids warning).
 	uint flags = 0;
-	const char* ext = strrchr(filename, '.');
-	if(ext && !stricmp(ext, ".pmp"))
+	const char* ext = path_extension(filename);
+	if(!stricmp(ext, "pmp"))
 		flags |= FILE_LONG_LIVED;
 
 	// load the whole thing into memory

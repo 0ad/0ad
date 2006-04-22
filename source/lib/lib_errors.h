@@ -413,7 +413,7 @@ ERR(-100262, ERR_MEM_OVERWRITTEN, "Wrote to memory outside valid allocation")
 
 // file + vfs
 // .. path
-ERR(-100300, ERR_PATH_LENGTH, "Path exceeds VFS_MAX_PATH characters")
+ERR(-100300, ERR_PATH_LENGTH, "Path exceeds PATH_MAX characters")
 ERR(-100301, ERR_PATH_EMPTY, "Path is an empty string")
 ERR(-100302, ERR_PATH_NOT_RELATIVE, "Path is not relative")
 ERR(-100303, ERR_PATH_NON_PORTABLE, "Path contains OS-specific dir separator")

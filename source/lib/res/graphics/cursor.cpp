@@ -191,7 +191,7 @@ static void Cursor_dtor(Cursor* c)
 
 static LibError Cursor_reload(Cursor* c, const char* name, Handle)
 {
-	char filename[VFS_MAX_PATH];
+	char filename[PATH_MAX];
 
 	// read pixel offset of the cursor's hotspot [the bit of it that's
 	// drawn at (g_mouse_x,g_mouse_y)] from file.

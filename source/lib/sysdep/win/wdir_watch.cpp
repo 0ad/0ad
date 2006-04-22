@@ -22,15 +22,14 @@
 
 #include "precompiled.h"
 
-#include "lib.h"
-#include "win_internal.h"
-#include "lib/res/file/file.h"	// file_is_subpath
-
-
-
 #include <string>
 #include <map>
 #include <list>
+
+#include "lib.h"
+#include "lib/path_util.h"
+#include "win_internal.h"
+#include "lib/res/file/file.h"	// path_is_subpath
 
 
 #pragma data_seg(WIN_CALLBACK_POST_ATEXIT(x))
@@ -204,7 +203,7 @@ LibError dir_add_watch(const char* dir, intptr_t* _reqnum)
 		if(!w)
 			continue;
 		const char* old_dir = w->dir_name.c_str();
-		if(file_is_subpath(dir, old_dir))
+		if(path_is_subpath(dir, old_dir))
 		{
 			reqnum = w->reqnum;
 			w->refs++;

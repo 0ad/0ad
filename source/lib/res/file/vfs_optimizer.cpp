@@ -601,8 +601,7 @@ class IsArchive
 public:
 	IsArchive(const char* archive_fn)
 	{
-		archive_ext = strrchr(archive_fn, '.');
-		if(!archive_ext) archive_ext = "";	// for safe comparison
+		archive_ext = path_extension(archive_fn);
 	}
 
 	bool operator()(DirEnt& ent) const
@@ -612,8 +611,7 @@ public:
 			return true;
 
 		// remove if not same extension
-		const char* ext = strrchr(ent.name, '.');
-		if(!ext) ext = "";	// for safe comparison
+		const char* ext = path_extension(ent.name);
 		if(stricmp(archive_ext, ext) != 0)
 			return true;
 
@@ -633,7 +631,7 @@ static LibError vfs_opt_init(const char* trace_filename, const char* archive_fn_
 	// note: this is needed by should_rebuild_main_archive and later in
 	//   vfs_opt_continue; must be done here instead of inside the former
 	//   because that is not called when force_build == true.
-	char dir[VFS_MAX_PATH];
+	char dir[PATH_MAX];
 	path_dir_only(archive_fn_fmt, dir);
 	RETURN_ERR(file_get_sorted_dirents(dir, existing_archives));
 	DirEntIt new_end = std::remove_if(existing_archives.begin(), existing_archives.end(), IsArchive(archive_fn));
@@ -682,13 +680,13 @@ static int vfs_opt_continue()
 		// delete old archives
 		PathPackage pp;	// need path to each existing_archive, not only name
 		{
-		char archive_dir[VFS_MAX_PATH];
+		char archive_dir[PATH_MAX];
 		path_dir_only(archive_fn, archive_dir);
-		(void)pp_set_dir(&pp, archive_dir);
+		(void)path_package_set_dir(&pp, archive_dir);
 		}
 		for(DirEntCIt it = existing_archives.begin(); it != existing_archives.end(); ++it)
 		{
-			(void)pp_append_file(&pp, it->name);
+			(void)path_package_append_file(&pp, it->name);
 			(void)file_delete(pp.path);
 		}
 
@@ -731,7 +729,7 @@ static LibError build_mini_archive(const char* mini_archive_fn_fmt)
 	V_fns[loose_files.size()] = 0;	// terminator
 
 	// get new unused mini archive name at P_dst_path
-	char mini_archive_fn[VFS_MAX_PATH];
+	char mini_archive_fn[PATH_MAX];
 	static NextNumberedFilenameInfo nfi;
 	bool use_vfs = false;	// can't use VFS for archive files
 	next_numbered_filename(mini_archive_fn_fmt, &nfi, mini_archive_fn, use_vfs);

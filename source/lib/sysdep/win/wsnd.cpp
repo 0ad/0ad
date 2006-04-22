@@ -28,6 +28,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "lib/path_util.h"
 #include "lib/sysdep/snd.h"
 #include "dll_ver.h"	// dll_list_*
 #include "win_internal.h"
@@ -99,7 +100,7 @@ static LibError add_if_oal_dll(const DirEnt* ent, PathPackage* pp, StringSet* dl
 	if(!ret.second)	// insert failed - element already there
 		return ERR_OK;
 
-	RETURN_ERR(pp_append_file(pp, fn));
+	RETURN_ERR(path_package_append_file(pp, fn));
 	return dll_list_add(pp->path);
 }
 
@@ -113,7 +114,7 @@ static LibError add_if_oal_dll(const DirEnt* ent, PathPackage* pp, StringSet* dl
 static LibError add_oal_dlls_in_dir(const char* dir, StringSet* dlls)
 {
 	PathPackage pp;
-	RETURN_ERR(pp_set_dir(&pp, dir));
+	RETURN_ERR(path_package_set_dir(&pp, dir));
 
 	DirIterator d;
 	RETURN_ERR(dir_open(dir, &d));
