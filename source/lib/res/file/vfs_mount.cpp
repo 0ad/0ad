@@ -770,8 +770,8 @@ LibError mount_attach_real_dir(RealDir* rd, const char* P_path, const Mount* m, 
 	if(flags & VFS_MOUNT_WATCH)
 	{
 		char N_path[PATH_MAX];
-		CHECK_ERR(file_make_full_native_path(P_path, N_path));
-		CHECK_ERR(dir_add_watch(N_path, &rd->watch));
+		RETURN_ERR(file_make_full_native_path(P_path, N_path));
+		RETURN_ERR(dir_add_watch(N_path, &rd->watch));
 	}
 #endif
 

@@ -296,7 +296,7 @@ extern LibError file_open(const char* fn, uint flags, File* f);
 extern LibError file_close(File* f);
 
 extern LibError file_validate(const File* f);
-#define CHECK_FILE(f) CHECK_ERR(file_validate(f))
+#define CHECK_FILE(f) RETURN_ERR(file_validate(f))
 
 
 // remove all blocks loaded from the file <fn>. used when reloading the file.

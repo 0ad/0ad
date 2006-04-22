@@ -103,11 +103,17 @@ Clearly API-level routines must raise the warning, but sometimes they will
 want to call each other. Multiple warnings along the call stack ensuing
 from the same root cause are not nice.
 
-There is one exception to this rule: "validator" calls that e.g. verify the
-state of an object typically have multiple return statements, but only a
-few call sites. It is more convenient to simply return the error directly and
-require callers to raise warnings, typically via CHECK_ERR.
-
+Note the special case of "validator" functions that e.g. verify the
+state of an object: we now discuss pros/cons of just returning errors
+without warning, and having their callers take care of that.
++ they typically have many return paths (-> increased code size)
+- this is balanced by validators that have many call sites.
+- we want all return statements wrapped for consistency and
+  easily checking if any were forgotten
+- adding // NOWARN to each validator return statement would be tedious.
+- there is no advantage to checking at the call site; call stack indicates
+  which caller of the validator failed anyway.
+Validator functions should therefore also use WARN_RETURN.
 
 Notes:
 - file is called lib_errors.h because 0ad has another errors.cpp and

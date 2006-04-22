@@ -139,9 +139,11 @@ int SDL_SetGamma(float r, float g, float b)
 		if(!GetDeviceGammaRamp(hDC, org_ramp))
 			return -1;
 
-	CHECK_ERR(calc_gamma_ramp(r, cur_ramp[0]));
-	CHECK_ERR(calc_gamma_ramp(g, cur_ramp[1]));
-	CHECK_ERR(calc_gamma_ramp(b, cur_ramp[2]));
+	LibError err1 = calc_gamma_ramp(r, cur_ramp[0]);
+	LibError err2 = calc_gamma_ramp(g, cur_ramp[1]);
+	LibError err3 = calc_gamma_ramp(b, cur_ramp[2]);
+	if(err1 != ERR_OK || err2 != ERR_OK || err3 != ERR_OK)
+		return -1;
 
 	if(!SetDeviceGammaRamp(hDC, cur_ramp))
 		return -1;

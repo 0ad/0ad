@@ -218,7 +218,7 @@ public:
 		const char* V_new_path = file_make_unique_fn_copy(V_new_path_tmp);
 		const char* name = path_name_only(V_new_path);
 
-		CHECK_ERR(path_component_validate(name));
+		RETURN_ERR(path_component_validate(name));
 
 		TNode* node = children.find(name);
 		if(node)

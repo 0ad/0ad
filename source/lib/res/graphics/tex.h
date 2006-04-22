@@ -281,8 +281,6 @@ extern LibError tex_validate(const Tex* t);
 // 24bpp color or 32bpp color+alpha (BGR / upside down are permitted).
 // basically, this is the "plain" format understood by all codecs and
 // tex_codec_plain_transform.
-// return 0 if ok, otherwise negative error code (but doesn't warn;
-// caller is responsible for using CHECK_ERR et al.)
 extern LibError tex_validate_plain_format(uint bpp, uint flags);
 
 

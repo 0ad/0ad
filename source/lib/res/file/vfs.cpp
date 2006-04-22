@@ -135,7 +135,7 @@ static LibError VDir_validate(const VDir* vd)
 {
 	// note: <it> is opaque and cannot be validated.
 	if(vd->filter && !isprint(vd->filter[0]))
-		return ERR_1;
+		WARN_RETURN(ERR_1);
 	return ERR_OK;
 }
 
@@ -556,10 +556,6 @@ LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size,
 	buf = 0; size = 0;	// initialize in case something below fails
 
 	Handle hf = vfs_open(atom_fn, file_flags);
-	RETURN_ERR(hf);
-		// necessary because if we skip this and have H_DEREF report the
-		// error, we get "invalid handle" instead of vfs_open's error code.
-
 	H_DEREF(hf, VFile, vf);
 
 	size = vf->f.size;
@@ -591,10 +587,6 @@ LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size,
 ssize_t vfs_store(const char* V_fn, const void* p, const size_t size, uint flags /* default 0 */)
 {
 	Handle hf = vfs_open(V_fn, flags|FILE_WRITE);
-	RETURN_ERR(hf);
-		// necessary because if we skip this and have H_DEREF report the
-		// error, we get "invalid handle" instead of vfs_open's error code.
-		// don't CHECK_ERR because vfs_open already did.
 	H_DEREF(hf, VFile, vf);
 	FileIOBuf buf = (FileIOBuf)p;
 	const ssize_t ret = vfs_io(hf, size, &buf);
@@ -656,10 +648,10 @@ static LibError VIo_reload(VIo* vio, const char* UNUSED(fn), Handle UNUSED(h))
 static LibError VIo_validate(const VIo* vio)
 {
 	if(vio->hf < 0)
-		return ERR_21;
+		WARN_RETURN(ERR_21);
 	// <size> doesn't have any invariant we can check.
 	if(debug_is_pointer_bogus(vio->buf))
-		return ERR_22;
+		WARN_RETURN(ERR_22);
 	return xfile_io_validate(&vio->io);
 }
 
@@ -767,7 +759,7 @@ LibError vfs_reload(const char* fn)
 {
 	// if <fn> currently maps to an archive, the VFS must switch
 	// over to using the loose file (that was presumably changed).
-	CHECK_ERR(mount_rebuild());
+	RETURN_ERR(mount_rebuild());
 
 	return reload_without_rebuild(fn);
 }
@@ -835,13 +827,13 @@ LibError vfs_reload_changed_files()
 		LibError ret = dir_get_changed_file(N_path);
 		if(ret == ERR_AGAIN)	// none available; done.
 			break;
-		CHECK_ERR(ret);
+		RETURN_ERR(ret);
 
 		// convert to VFS path
 		char P_path[PATH_MAX];
-		CHECK_ERR(file_make_full_portable_path(N_path, P_path));
+		RETURN_ERR(file_make_full_portable_path(N_path, P_path));
 		char* V_path = pending_reloads[num_pending];
-		CHECK_ERR(mount_make_vfs_path(P_path, V_path));
+		RETURN_ERR(mount_make_vfs_path(P_path, V_path));
 
 		if(can_ignore_reload(V_path, pending_reloads, num_pending))
 			continue;
@@ -857,11 +849,11 @@ LibError vfs_reload_changed_files()
 	// always choses the loose file version. only do this once
 	// (instead of per reload request) because it's slow (> 1s)!
 	if(num_pending != 0)
-		CHECK_ERR(mount_rebuild());
+		RETURN_ERR(mount_rebuild());
 
 	// now actually reload all files in the array we built
 	for(uint i = 0; i < num_pending; i++)
-		CHECK_ERR(reload_without_rebuild(pending_reloads[i]));
+		RETURN_ERR(reload_without_rebuild(pending_reloads[i]));
 
 	return ERR_OK;
 }

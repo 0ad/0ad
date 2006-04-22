@@ -129,7 +129,7 @@ static LibError Archive_validate(const Archive* a)
 	RETURN_ERR(file_validate(&a->f));
 
 	if(debug_is_pointer_bogus(a->ents))
-		return ERR_1;
+		WARN_RETURN(ERR_1);
 
 	return ERR_OK;
 }
@@ -286,7 +286,7 @@ LibError afile_stat(Handle ha, const char* fn, struct stat* s)
 	H_DEREF(ha, Archive, a);
 
 	ArchiveEntry* ent;
-	CHECK_ERR(archive_get_file_info(a, fn, 0, ent));
+	RETURN_ERR(archive_get_file_info(a, fn, 0, ent));
 
 	s->st_size  = ent->ucsize;
 	s->st_mtime = ent->mtime;
@@ -299,19 +299,19 @@ LibError afile_stat(Handle ha, const char* fn, struct stat* s)
 LibError afile_validate(const File* f)
 {
 	if(!f)
-		return ERR_INVALID_PARAM;
+		WARN_RETURN(ERR_INVALID_PARAM);
 	const ArchiveFile* af = (const ArchiveFile*)f->opaque;
 	UNUSED2(af);
 	// note: don't check af->ha - it may be freed at shutdown before
 	// its files. TODO: revisit once dependency support is added.
 	if(!f->size)
-		return ERR_1;
+		WARN_RETURN(ERR_1);
 	// note: af->ctx is 0 if file is not compressed.
 
 	return ERR_OK;
 }
 
-#define CHECK_AFILE(f) CHECK_ERR(afile_validate(f))
+#define CHECK_AFILE(f) RETURN_ERR(afile_validate(f))
 
 
 // open file, and fill *af with information about it.
@@ -470,7 +470,7 @@ LibError afile_io_wait(FileIo* io, void*& buf, size_t& size)
 
 	void* raw_buf;
 	size_t raw_size;
-	CHECK_ERR(file_io_wait(aio->io, raw_buf, raw_size));
+	RETURN_ERR(file_io_wait(aio->io, raw_buf, raw_size));
 
 	// file is compressed and we need to decompress
 	if(aio->ctx)
@@ -507,7 +507,7 @@ LibError afile_io_validate(const FileIo* io)
 {
 	ArchiveFileIo* aio = (ArchiveFileIo*)io->opaque;
 	if(debug_is_pointer_bogus(aio->user_buf))
-		return ERR_1;
+		WARN_RETURN(ERR_1);
 	// <ctx> and <max_output_size> have no invariants we could check.
 	RETURN_ERR(file_io_validate(aio->io));
 	return ERR_OK;
@@ -675,7 +675,7 @@ LibError afile_map(File* f, void*& p, size_t& size)
 	H_DEREF(af->ha, Archive, a);
 	void* archive_p;
 	size_t archive_size;
-	CHECK_ERR(file_map(&a->f, archive_p, archive_size));
+	RETURN_ERR(file_map(&a->f, archive_p, archive_size));
 
 	p = (char*)archive_p + af->ofs;
 	size = f->size;

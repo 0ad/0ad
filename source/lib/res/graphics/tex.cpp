@@ -48,36 +48,34 @@ LibError tex_validate(const Tex* t)
 		// possible causes: texture file header is invalid,
 		// or file wasn't loaded completely.
 		if(tex_file_size < t->ofs + t->w*t->h*t->bpp/8)
-			return ERR_1;
+			WARN_RETURN(ERR_1);
 	}
 
 	// bits per pixel
 	// (we don't bother checking all values; a sanity check is enough)
 	if(t->bpp % 4 || t->bpp > 32)
-		return ERR_2;
+		WARN_RETURN(ERR_2);
 
 	// flags
 	// .. DXT value
 	const uint dxt = t->flags & TEX_DXT;
 	if(dxt != 0 && dxt != 1 && dxt != DXT1A && dxt != 3 && dxt != 5)
-		return ERR_3;
+		WARN_RETURN(ERR_3);
 	// .. orientation
 	const uint orientation = t->flags & TEX_ORIENTATION;
 	if(orientation == (TEX_BOTTOM_UP|TEX_TOP_DOWN))
-		return ERR_4;
+		WARN_RETURN(ERR_4);
 
 	return ERR_OK;
 }
 
-#define CHECK_TEX(t) CHECK_ERR(tex_validate(t))
+#define CHECK_TEX(t) RETURN_ERR(tex_validate(t))
 
 
 // check if the given texture format is acceptable: 8bpp grey,
 // 24bpp color or 32bpp color+alpha (BGR / upside down are permitted).
 // basically, this is the "plain" format understood by all codecs and
 // tex_codec_plain_transform.
-// return 0 if ok, otherwise negative error code (but doesn't warn;
-// caller is responsible for using CHECK_ERR et al.)
 LibError tex_validate_plain_format(uint bpp, uint flags)
 {
 	const bool alpha   = (flags & TEX_ALPHA  ) != 0;
@@ -86,14 +84,14 @@ LibError tex_validate_plain_format(uint bpp, uint flags)
 	const bool mipmaps = (flags & TEX_MIPMAPS) != 0;
 
 	if(dxt || mipmaps)
-		return ERR_TEX_FMT_INVALID;
+		WARN_RETURN(ERR_TEX_FMT_INVALID);
 
 	// grey must be 8bpp without alpha, or it's invalid.
 	if(grey)
 	{
 		if(bpp == 8 && !alpha)
 			return ERR_OK;
-		return ERR_TEX_FMT_INVALID;
+		WARN_RETURN(ERR_TEX_FMT_INVALID);
 	}
 
 	if(bpp == 24 && !alpha)
@@ -101,7 +99,7 @@ LibError tex_validate_plain_format(uint bpp, uint flags)
 	if(bpp == 32 && alpha)
 		return ERR_OK;
 
-	return ERR_TEX_FMT_INVALID;
+	WARN_RETURN(ERR_TEX_FMT_INVALID);
 }
 
 
@@ -209,10 +207,9 @@ TIMER_ACCRUE(tc_plain_transform);
 	// sanity checks (not errors, we just can't handle these cases)
 	// .. unknown transform
 	if(transforms & ~(TEX_BGR|TEX_ORIENTATION|TEX_MIPMAPS))
-		return ERR_TEX_CODEC_CANNOT_HANDLE;
+		WARN_RETURN(ERR_TEX_CODEC_CANNOT_HANDLE);
 	// .. data is not in "plain" format
-	if(tex_validate_plain_format(bpp, flags) != 0)
-		return ERR_TEX_CODEC_CANNOT_HANDLE;
+	RETURN_ERR(tex_validate_plain_format(bpp, flags));
 	// .. nothing to do
 	if(!transforms)
 		return ERR_OK;
@@ -594,7 +591,7 @@ TIMER_ACCRUE(tc_transform);
 	}
 
 	// last chance
-	CHECK_ERR(plain_transform(t, remaining_transforms));
+	RETURN_ERR(plain_transform(t, remaining_transforms));
 	return ERR_OK;
 }
 

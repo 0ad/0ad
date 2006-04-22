@@ -455,7 +455,7 @@ static LibError decode_pf(const DDPIXELFORMAT* pf, uint* bpp_, uint* flags_)
 			WARN_RETURN(ERR_TEX_FMT_INVALID);
 		}
 
-		CHECK_ERR(tex_validate_plain_format(bpp, flags));
+		RETURN_ERR(tex_validate_plain_format(bpp, flags));
 	}
 	// .. compressed
 	else if(pf_flags & DDPF_FOURCC)
@@ -626,7 +626,7 @@ static LibError dds_encode(Tex* restrict UNUSED(t), DynArray* restrict UNUSED(da
 {
 	// note: do not return ERR_NOT_IMPLEMENTED et al. because that would
 	// break tex_write (which assumes either this, 0 or errors are returned).
-	return ERR_TEX_CODEC_CANNOT_HANDLE;
+	WARN_RETURN(ERR_TEX_CODEC_CANNOT_HANDLE);
 }
 
 

@@ -46,7 +46,7 @@ LibError file_open_vfs(const char* V_path, uint flags, TFile* tf,
 	File* f)	// out
 {
 	char N_path[PATH_MAX];
-	CHECK_ERR(mount_realpath(V_path, tf, N_path));
+	RETURN_ERR(mount_realpath(V_path, tf, N_path));
 	RETURN_ERR(file_open(N_path, flags|FILE_DONT_SET_FN, f));
 	// file_open didn't set fc.atom_fn due to FILE_DONT_SET_FN.
 	f->atom_fn = file_make_unique_fn_copy(V_path);
@@ -82,13 +82,13 @@ static const FileProvider_VTbl file_vtbl =
 static LibError vtbl_validate(const FileProvider_VTbl* vtbl)
 {
 	if(!vtbl)
-		return ERR_INVALID_PARAM;
+		WARN_RETURN(ERR_INVALID_PARAM);
 	if(vtbl->magic != vtbl_magic)
-		return ERR_CORRUPTED;
+		WARN_RETURN(ERR_CORRUPTED);
 	return ERR_OK;
 }
 
-#define CHECK_VTBL(type) CHECK_ERR(vtbl_validate(type))
+#define CHECK_VTBL(type) RETURN_ERR(vtbl_validate(type))
 
 
 bool xfile_is_open(const File* f)

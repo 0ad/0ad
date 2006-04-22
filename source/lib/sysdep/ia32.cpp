@@ -674,7 +674,7 @@ LibError ia32_get_call_target(void* ret_addr, void** target)
 	if(len >= 2 && c[-2] == 0xFF && (c[-1] & 0xF8) == 0xD0)
 		return ERR_OK;
 
-	return ERR_CPU_UNKNOWN_OPCODE;
+	WARN_RETURN(ERR_CPU_UNKNOWN_OPCODE);
 }
 
 

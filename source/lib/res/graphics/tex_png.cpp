@@ -88,7 +88,7 @@ static void io_flush(png_structp UNUSED(png_ptr))
 
 static LibError png_transform(Tex* UNUSED(t), uint UNUSED(transforms))
 {
-	return ERR_TEX_CODEC_CANNOT_HANDLE;
+	WARN_RETURN(ERR_TEX_CODEC_CANNOT_HANDLE);
 }
 
 

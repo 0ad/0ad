@@ -316,7 +316,8 @@ static LibError debug_resolve_symbol_dladdr(void *ptr, char* sym_name, char* fil
 	Dl_info syminfo;
 	
 	int res=dladdr(ptr, &syminfo);
-	if (res == 0) return ERR_FAIL;
+	if (res == 0)
+		WARN_RETURN(ERR_FAIL);
 	
 	if (sym_name)
 	{

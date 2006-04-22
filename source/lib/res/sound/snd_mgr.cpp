@@ -512,7 +512,7 @@ static LibError al_init()
 	if(al_initialized)
 		return ERR_OK;
 
-	CHECK_ERR(alc_init());
+	RETURN_ERR(alc_init());
 
 	al_initialized = true;
 
@@ -727,7 +727,7 @@ static LibError stream_issue(Stream* s)
 		WARN_RETURN(ERR_NO_MEM);
 
 	Handle h = vfs_io_issue(s->hf, STREAM_BUF_SIZE, buf);
-	CHECK_ERR(h);
+	RETURN_ERR(h);
 	s->ios[s->active_ios++] = h;
 	return ERR_OK;
 }
@@ -793,10 +793,10 @@ static LibError stream_open(Stream* s, const char* fn)
 	active_streams++;
 
 	s->hf = vfs_open(fn);
-	CHECK_ERR(s->hf);
+	RETURN_ERR(s->hf);
 
 	for(int i = 0; i < MAX_IOS; i++)
-		CHECK_ERR(stream_issue(s));
+		RETURN_ERR(stream_issue(s));
 
 	return ERR_OK;
 }
@@ -839,7 +839,7 @@ static LibError stream_close(Stream* s)
 static LibError stream_validate(const Stream* s)
 {
 	if(s->active_ios > MAX_IOS)
-		return ERR_1;
+		WARN_RETURN(ERR_1);
 	// <last_buf> has no invariant we could check.
 	return ERR_OK;
 }
@@ -1024,11 +1024,11 @@ else
 static LibError SndData_validate(const SndData* sd)
 {
 	if(sd->al_fmt == 0)
-		return ERR_11;
+		WARN_RETURN(ERR_11);
 	if((uint)sd->al_freq > 100000)	// suspicious
-		return ERR_12;
+		WARN_RETURN(ERR_12);
 	if(sd->al_buf == 0)
-		return ERR_13;
+		WARN_RETURN(ERR_13);
 
 	if(sd->is_stream)
 		RETURN_ERR(stream_validate(&sd->s));
@@ -1148,7 +1148,7 @@ static LibError snd_data_buf_get(Handle hsd, ALuint& al_buf)
 	err = stream_buf_get(&sd->s, data, size);
 	if(err == ERR_AGAIN)
 		return ERR_AGAIN;	// NOWARN
-	CHECK_ERR(err);
+	RETURN_ERR(err);
 
 	// .. yes: pass to OpenAL and discard IO buffer.
 	al_buf = al_buf_alloc(data, (ALsizei)size, sd->al_fmt, sd->al_freq);
@@ -1159,7 +1159,7 @@ static LibError snd_data_buf_get(Handle hsd, ALuint& al_buf)
 	err = stream_issue(&sd->s);
 	if(err == ERR_EOF)
 		return ERR_EOF;	// NOWARN
-	CHECK_ERR(err);
+	RETURN_ERR(err);
 
 	// al_buf valid and next IO issued successfully.
 	return ERR_OK;
@@ -1372,7 +1372,7 @@ static LibError VSrc_reload(VSrc* vs, const char* fn, Handle hvs)
 	if(err == ERR_AGAIN)
 		return err;
 	// .. catch genuine errors during init.
-	CHECK_ERR(err);
+	RETURN_ERR(err);
 
 	//
 	// if extension is "txt", fn is a definition file containing the
@@ -1424,14 +1424,14 @@ static LibError VSrc_validate(const VSrc* vs)
 {
 	// al_src can legitimately be 0 (if vs is low-pri)
 	if(vs->flags & ~VS_ALL_FLAGS)
-		return ERR_1;
+		WARN_RETURN(ERR_1);
 	// no limitations on <pos>
 	if(!(0.0f <= vs->gain && vs->gain <= 1.0f))
-		return ERR_2;
+		WARN_RETURN(ERR_2);
 	if(!(0.0f < vs->pitch && vs->pitch <= 1.0f))
-		return ERR_3;
+		WARN_RETURN(ERR_3);
 	if(*(u8*)&vs->loop > 1 || *(u8*)&vs->relative > 1)
-		return ERR_4;
+		WARN_RETURN(ERR_4);
 	// <static_pri> and <cur_pri> have no invariant we could check.
 	return ERR_OK;
 }
@@ -1666,7 +1666,7 @@ static LibError vsrc_update(VSrc* vs)
 			ret = snd_data_buf_get(vs->hsd, al_buf);
 			// these 2 are legit (see above); otherwise, bail.
 			if(ret != ERR_AGAIN && ret != ERR_EOF)
-				CHECK_ERR(ret);
+				RETURN_ERR(ret);
 
 			alSourceQueueBuffers(vs->al_src, 1, &al_buf);
 			al_check("vsrc_update alSourceQueueBuffers");

@@ -438,31 +438,31 @@ static LibError OglTex_validate(const OglTex* ot)
 	GLsizei h = (GLsizei)ot->t.h;
 	// .. == 0; texture file probably not loaded successfully.
 	if(w == 0 || h == 0)
-		return ERR_11;
+		WARN_RETURN(ERR_11);
 	// .. greater than max supported tex dimension.
 	//    no-op if oglInit not yet called
 	if(w > (GLsizei)ogl_max_tex_size || h > (GLsizei)ogl_max_tex_size)
-		return ERR_12;
+		WARN_RETURN(ERR_12);
 	// .. not power-of-2.
 	//    note: we can't work around this because both NV_texture_rectangle
 	//    and subtexture require work for the client (changing tex coords).
 	//    TODO: ARB_texture_non_power_of_two
 	if(!is_pow2(w) || !is_pow2(h))
-		return ERR_13;
+		WARN_RETURN(ERR_13);
 
 	// texture state
 	if(!filter_valid(ot->state.filter))
-		return ERR_14;
+		WARN_RETURN(ERR_14);
 	if(!wrap_valid(ot->state.wrap))
-		return ERR_15;
+		WARN_RETURN(ERR_15);
 
 	// misc
 	if(!q_flags_valid(ot->q_flags))
-		return ERR_16;
+		WARN_RETURN(ERR_16);
 	if(ot->tmu >= 128)	// unexpected that there will ever be this many
-		return ERR_17;
+		WARN_RETURN(ERR_17);
 	if(ot->flags > OT_ALL_FLAGS)
-		return ERR_18;
+		WARN_RETURN(ERR_18);
 	// .. note: don't check ot->fmt and ot->int_fmt - they aren't set
 	//    until during ogl_tex_upload.
 

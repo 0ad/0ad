@@ -281,19 +281,19 @@ static LibError ia32_walk_stack(STACKFRAME64* sf)
 	void* prev_ip  = (void*)sf->AddrPC    .Offset;
 	void* prev_ret = (void*)sf->AddrReturn.Offset;
 	if(!debug_is_stack_ptr(prev_fp))
-		return ERR_11;
+		WARN_RETURN(ERR_11);
 	if(prev_ip && !debug_is_code_ptr(prev_ip))
-		return ERR_12;
+		WARN_RETURN(ERR_12);
 	if(prev_ret && !debug_is_code_ptr(prev_ret))
-		return ERR_13;
+		WARN_RETURN(ERR_13);
 
 	// read stack frame
 	void* fp       = ((void**)prev_fp)[0];
 	void* ret_addr = ((void**)prev_fp)[1];
 	if(!debug_is_stack_ptr(fp))
-		return ERR_14;
+		WARN_RETURN(ERR_14);
 	if(!debug_is_code_ptr(ret_addr))
-		return ERR_15;
+		WARN_RETURN(ERR_15);
 
 	void* target;
 	LibError err = ia32_get_call_target(ret_addr, &target);

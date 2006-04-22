@@ -252,7 +252,7 @@ static LibError do_load_shader(
 	{
 		LOG(ERROR, LOG_CATEGORY, "%hs: Missing attribute \"type\" in element \"Shader\".",
 		    filename);
-		return ERR_CORRUPTED;
+		WARN_RETURN(ERR_CORRUPTED);
 	}
 
 	GLenum shadertype = string_to_shader_type(Type.c_str());
@@ -261,7 +261,7 @@ static LibError do_load_shader(
 	{
 		LOG(ERROR, LOG_CATEGORY, "%hs: Unknown shader type \"%hs\" (valid are: VERTEX_SHADER, FRAGMENT_SHADER).",
 		    filename, Type.c_str());
-		return ERR_CORRUPTED;
+		WARN_RETURN(ERR_CORRUPTED);
 	}
 
 	CStr Name = Shader.getText();
@@ -269,7 +269,7 @@ static LibError do_load_shader(
 	if (!Name.Length())
 	{
 		LOG(ERROR, LOG_CATEGORY, "%hs: Missing shader name.", filename);
-		return ERR_CORRUPTED;
+		WARN_RETURN(ERR_CORRUPTED);
 	}
 	
 	Handle hshader = ogl_shader_load(Name.c_str(), shadertype);
@@ -302,12 +302,12 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const char* filename, Handle 
 		// here, but it may still help spot bad code.
 		oglCheck();
 		
-		return ERR_SHDR_CREATE;
+		WARN_RETURN(ERR_SHDR_CREATE);
 	}
 	
 	CXeromyces XeroFile;
 	if (XeroFile.Load(filename) != PSRETURN_OK)
-		return ERR_CORRUPTED; // more informative error message?
+		WARN_RETURN(ERR_CORRUPTED); // more informative error message?
 
 	// Define all the elements and attributes used in the XML file
 #define EL(x) int el_##x = XeroFile.getElementID(#x)
@@ -321,7 +321,7 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const char* filename, Handle 
 	if (Root.getNodeName() != el_program)
 	{
 		LOG(ERROR, LOG_CATEGORY, "%hs: XML root was not \"Program\".", filename);
-		return ERR_CORRUPTED;
+		WARN_RETURN(ERR_CORRUPTED);
 	}
 
 	XMBElementList RootChildren = Root.getChildNodes();
@@ -343,7 +343,7 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const char* filename, Handle 
 				{
 					LOG(ERROR, LOG_CATEGORY, "%hs: Only \"Shader\" may be child of \"Shaders\".",
 					    filename);
-					return ERR_CORRUPTED;
+					WARN_RETURN(ERR_CORRUPTED);
 				}
 				
 				RETURN_ERR(do_load_shader(p, filename, h, XeroFile, Shader));
@@ -374,7 +374,7 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const char* filename, Handle 
 	if (!linked)
 	{
 		debug_printf("Link failed for %hs\n", filename);
-		return ERR_SHDR_LINK;
+		WARN_RETURN(ERR_SHDR_LINK);
 	}
 
 	return ERR_OK;

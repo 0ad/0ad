@@ -169,15 +169,15 @@ static LibError UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 static LibError UniFont_validate(const UniFont* f)
 {
 	if(f->ht < 0)
-		return ERR_1;
+		WARN_RETURN(ERR_1);
 	if(debug_is_pointer_bogus(f->glyphs_id) || debug_is_pointer_bogus(f->glyphs_size))
-		return ERR_2;
+		WARN_RETURN(ERR_2);
 	// <LineSpacing> and <Height> are read directly from font file.
 	// negative values don't make sense, but that's all we can check.
 	if(f->LineSpacing < 0 || f->Height < 0)
-		return ERR_3;
+		WARN_RETURN(ERR_3);
 	if(f->ListBase == 0 || f->ListBase > 1000000)	// suspicious
-		return ERR_4;
+		WARN_RETURN(ERR_4);
 	return ERR_OK;
 }
 

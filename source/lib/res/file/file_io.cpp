@@ -219,11 +219,11 @@ LibError file_io_validate(const FileIo* io)
 	// >= 0x100 is not necessarily bogus, but suspicious.
 	// this also catches negative values.
 	if((uint)cb->aio_fildes >= 0x100)
-		return ERR_1;
+		WARN_RETURN(ERR_1);
 	if(debug_is_pointer_bogus((void*)cb->aio_buf))
-		return ERR_2;
+		WARN_RETURN(ERR_2);
 	if(cb->aio_lio_opcode != LIO_WRITE && cb->aio_lio_opcode != LIO_READ && cb->aio_lio_opcode != LIO_NOP)
-		return ERR_3;
+		WARN_RETURN(ERR_3);
 	// all other aiocb fields have no invariants we could check.
 	return ERR_OK;
 }
@@ -270,7 +270,7 @@ LibError file_io_call_back(const void* block, size_t size,
 		if(ret != ERR_OK && ret != INFO_CB_CONTINUE)
 			bytes_processed = 0;
 
-		CHECK_ERR(ret);
+		CHECK_ERR(ret);	// user might not have raised a warning; make sure
 		return ret;
 	}
 	// no callback to process data: raw = actual

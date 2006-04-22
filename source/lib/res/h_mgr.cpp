@@ -351,7 +351,7 @@ static Handle key_find(uintptr_t key, H_Type type, KeyRemoveFlag remove_option =
 {
 	Key2Idx* key2idx = key2idx_wrapper.get();
 	if(!key2idx)
-		return ERR_NO_MEM;
+		WARN_RETURN(ERR_NO_MEM);
 
 	// initial return value: "not found at all, or it's of the
 	// wrong type". the latter happens when called by h_alloc to
@@ -509,11 +509,11 @@ static void warn_if_invalid(HDATA* hd)
 static LibError type_validate(H_Type type)
 {
 	if(!type)
-		return ERR_INVALID_PARAM;
+		WARN_RETURN(ERR_INVALID_PARAM);
 	if(type->user_size > HDATA_USER_SIZE)
-		return ERR_LIMIT;
+		WARN_RETURN(ERR_LIMIT);
 	if(type->name == 0)
-		return ERR_INVALID_PARAM;
+		WARN_RETURN(ERR_INVALID_PARAM);
 
 	return ERR_OK;
 }
@@ -539,7 +539,7 @@ static Handle reuse_existing_handle(uintptr_t key, H_Type type, uint flags)
 
 	// object of specified key and type doesn't exist yet
 	Handle h = h_find(type, key);
-	if(h <= 0)	// "failure" is meaningless; we only care if found or not
+	if(h <= 0)
 		return 0;
 
 	HDATA* hd = h_data_tag_type(h, type);
@@ -599,7 +599,7 @@ static Handle alloc_new_handle(H_Type type, const char* fn, uintptr_t key,
 {
 	i32 idx;
 	HDATA* hd;
-	CHECK_ERR(alloc_idx(idx, hd));
+	RETURN_ERR(alloc_idx(idx, hd));
 
 	// (don't want to do this before the add-reference exit,
 	// so as not to waste tags for often allocated handles.)
@@ -644,7 +644,7 @@ fail:
 // any further params are passed to type's init routine
 Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 {
-	CHECK_ERR(type_validate(type));
+	RETURN_ERR(type_validate(type));
 
 	// get key (either hash of filename, or fn param)
 	uintptr_t key = 0;
@@ -668,8 +668,7 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 
 	// see if we can reuse an existing handle
 	Handle h = reuse_existing_handle(key, type, flags);
-	// .. error
-	CHECK_ERR(h);
+	RETURN_ERR(h);
 	// .. successfully reused the handle; refcount increased
 	if(h > 0)
 		return h;

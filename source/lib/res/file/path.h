@@ -30,7 +30,7 @@
 // if path is invalid (see source for criteria), return a
 // descriptive error code, otherwise ERR_OK.
 extern LibError path_validate(const char* path);
-#define CHECK_PATH(path) CHECK_ERR(path_validate(path))
+#define CHECK_PATH(path) RETURN_ERR(path_validate(path))
 
 // if name is invalid, (see source for criteria), return a
 // descriptive error code, otherwise ERR_OK.

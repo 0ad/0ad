@@ -382,7 +382,7 @@ static LibError reset_impl_lk()
 	else
 		old_time = time_lk();		
 
-	CHECK_ERR(choose_impl());
+	RETURN_ERR(choose_impl());
 	debug_assert(hrt_impl != HRT_NONE && hrt_nominal_freq > 0.0);
 
 	// impl has changed; reset timer state.

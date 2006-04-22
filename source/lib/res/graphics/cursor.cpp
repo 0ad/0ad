@@ -151,13 +151,13 @@ public:
 		glEnd();
 	}
 
-	int validate() const
+	LibError validate() const
 	{
 		const uint A = 128;	// no cursor is expected to get this big
 		if(w > A || h > A || hotspotx > A || hotspoty > A)
-			return ERR_1;
+			WARN_RETURN(ERR_1);
 		if(ht < 0)
-			return ERR_2;
+			WARN_RETURN(ERR_2);
 		return ERR_OK;
 	}
 };
@@ -272,7 +272,6 @@ LibError cursor_draw(const char* name, int x, int y)
 	}
 
 	Handle hc = cursor_load(name);
-	CHECK_ERR(hc);
 	H_DEREF(hc, Cursor, c);
 
 	if(c->sys_cursor)

@@ -212,7 +212,7 @@ LibError win_get_gfx_info()
 	LibError err2 = win_get_gfx_drv_ver();
 
 	// don't exit before trying both
-	CHECK_ERR(err1);
-	CHECK_ERR(err2);
+	RETURN_ERR(err1);
+	RETURN_ERR(err2);
 	return ERR_OK;
 }

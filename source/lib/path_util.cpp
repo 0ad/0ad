@@ -74,7 +74,7 @@ LibError path_validate(const char* path)
 	// disallow "/", because it would create a second 'root' (with name = "").
 	// root dir is "".
 	if(path[0] == '/')
-		return ERR_PATH_NOT_RELATIVE;
+		WARN_RETURN(ERR_PATH_NOT_RELATIVE);
 
 	// scan each char in path string; count length.
 	int c = 0;		// current char; used for .. detection
@@ -86,18 +86,18 @@ LibError path_validate(const char* path)
 
 		// whole path is too long
 		if(path_len >= PATH_MAX)
-			return ERR_PATH_LENGTH;
+			WARN_RETURN(ERR_PATH_LENGTH);
 
 		// disallow:
 		// - ".." (prevent going above the VFS root dir)
 		// - "./" (security hole when mounting and not supported on Windows).
 		// allow "/.", because CVS backup files include it.
 		if(last_c == '.' && (c == '.' || c == '/'))
-			return ERR_PATH_NON_CANONICAL;
+			WARN_RETURN(ERR_PATH_NON_CANONICAL);
 
 		// disallow OS-specific dir separators
 		if(c == '\\' || c == ':')
-			return ERR_PATH_NON_PORTABLE;
+			WARN_RETURN(ERR_PATH_NON_PORTABLE);
 
 		// end of string, no errors encountered
 		if(c == '\0')
@@ -114,7 +114,7 @@ LibError path_component_validate(const char* name)
 {
 	// disallow empty strings
 	if(*name == '\0')
-		return ERR_PATH_EMPTY;
+		WARN_RETURN(ERR_PATH_EMPTY);
 
 	for(;;)
 	{
@@ -123,7 +123,7 @@ LibError path_component_validate(const char* name)
 		// disallow *any* dir separators (regardless of which
 		// platform we're on).
 		if(c == '\\' || c == ':' || c == '/')
-			return ERR_PATH_COMPONENT_SEPARATOR;
+			WARN_RETURN(ERR_PATH_COMPONENT_SEPARATOR);
 
 		// end of string, no errors encountered
 		if(c == '\0')

@@ -188,13 +188,13 @@ static LibError Mem_reload(Mem* m, const char* UNUSED(fn), Handle hm)
 static LibError Mem_validate(const Mem* m)
 {
 	if(debug_is_pointer_bogus(m->p))
-		return ERR_1;
+		WARN_RETURN(ERR_1);
 	if(!m->size)
-		return ERR_2;
+		WARN_RETURN(ERR_2);
 	if(m->raw_p && m->raw_p > m->p)
-		return ERR_3;
+		WARN_RETURN(ERR_3);
 	if(m->raw_size && m->raw_size < m->size)
-		return ERR_4;
+		WARN_RETURN(ERR_4);
 	return ERR_OK;
 }
 

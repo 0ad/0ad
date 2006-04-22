@@ -247,13 +247,13 @@ cassert(sizeof(PosixFile) < FILE_OPAQUE_SIZE);
 LibError file_validate(const File* f)
 {
 	if(!f)
-		return ERR_INVALID_PARAM;
+		WARN_RETURN(ERR_INVALID_PARAM);
 	const PosixFile* pf = (PosixFile*)f->opaque;
 	if(pf->fd < 0)
-		return ERR_1;
+		WARN_RETURN(ERR_1);
 	// mapped but refcount is invalid
 	else if((pf->mapping != 0) ^ (pf->map_refs != 0))
-		return ERR_2;
+		WARN_RETURN(ERR_2);
 	// note: don't check atom_fn - that complains at the end of
 	// file_open if flags & FILE_DONT_SET_FN and has no benefit, really.
 

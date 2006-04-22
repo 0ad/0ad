@@ -33,7 +33,7 @@ LibError dir_add_watch(const char* const n_full_path, intptr_t* const watch)
 	{
 		*watch = -1;
 		debug_warn("res_watch_dir failed!");
-		return ERR_FAIL;	// no way of getting error code?
+		WARN_RETURN(ERR_FAIL);	// no way of getting error code?
 	}
 
 	*watch = (intptr_t)req.reqnum;
@@ -68,7 +68,7 @@ int dir_get_changed_file(char* fn)
 				char n_path[PATH_MAX];
 				const char* dir = dirs[e.fr.reqnum].c_str();
 				snprintf(n_path, PATH_MAX, "%s%c%s", dir, DIR_SEP, e.filename);
-				CHECK_ERR(file_make_portable_path(n_path, fn));
+				RETURN_ERR(file_make_portable_path(n_path, fn));
 				return ERR_OK;
 			}
 		}

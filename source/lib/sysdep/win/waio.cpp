@@ -325,7 +325,7 @@ int aio_close(int fd)
 
 	if(!CloseHandle(h))
 		goto fail;
-	CHECK_ERR(aio_h_set(fd, INVALID_HANDLE_VALUE));
+	RETURN_ERR(aio_h_set(fd, INVALID_HANDLE_VALUE));
 
 	return 0;
 
@@ -769,12 +769,12 @@ int lio_listio(int mode, struct aiocb* const cbs[], int n, struct sigevent* se)
 	for(int i = 0; i < n; i++)
 	{
 		int ret = aio_rw(cbs[i]);		// checks for cbs[i] == 0
-		// don't CHECK_ERR - want to try to issue each one
+		// don't RETURN_ERR yet - we want to try to issue each one
 		if(ret < 0 && !err)
 			err = ret;
 	}
 
-	CHECK_ERR(err);
+	RETURN_ERR(err);
 
 	if(mode == LIO_WAIT)
 		return aio_suspend(cbs, n, 0);

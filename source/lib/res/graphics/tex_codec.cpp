@@ -63,7 +63,7 @@ LibError tex_codec_for_filename(const char* fn, const TexCodecVTbl** c)
 			return ERR_OK;
 	}
 
-	return ERR_UNKNOWN_FORMAT;
+	return ERR_UNKNOWN_FORMAT;	// NOWARN
 }
 
 

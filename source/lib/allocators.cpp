@@ -143,7 +143,7 @@ const int DA_NOT_OUR_MEM = 0x40000000;
 static LibError validate_da(DynArray* da)
 {
 	if(!da)
-		return ERR_INVALID_PARAM;
+		WARN_RETURN(ERR_INVALID_PARAM);
 	u8* const base           = da->base;
 	const size_t max_size_pa = da->max_size_pa;
 	const size_t cur_size    = da->cur_size;
@@ -151,24 +151,24 @@ static LibError validate_da(DynArray* da)
 	const int prot           = da->prot;
 
 	if(debug_is_pointer_bogus(base))
-		return ERR_1;
+		WARN_RETURN(ERR_1);
 	// note: don't check if base is page-aligned -
 	// might not be true for 'wrapped' mem regions.
 //	if(!is_page_multiple((uintptr_t)base))
-//		return ERR_2;
+//		WARN_RETURN(ERR_2);
 	if(!is_page_multiple(max_size_pa))
-		return ERR_3;
+		WARN_RETURN(ERR_3);
 	if(cur_size > max_size_pa)
-		return ERR_4;
+		WARN_RETURN(ERR_4);
 	if(pos > cur_size || pos > max_size_pa)
-		return ERR_5;
+		WARN_RETURN(ERR_5);
 	if(prot & ~(PROT_READ|PROT_WRITE|PROT_EXEC|DA_NOT_OUR_MEM))
-		return ERR_6;
+		WARN_RETURN(ERR_6);
 
 	return ERR_OK;
 }
 
-#define CHECK_DA(da) CHECK_ERR(validate_da(da))
+#define CHECK_DA(da) RETURN_ERR(validate_da(da))
 
 
 // ready the DynArray object for use. preallocates max_size bytes
