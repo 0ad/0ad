@@ -1,5 +1,3 @@
-// $Id: fontselect.cpp,v 1.4 2004/08/10 15:51:06 philip Exp $
-
 #include "stdafx.h"
 
 #include "../fontselect.h"

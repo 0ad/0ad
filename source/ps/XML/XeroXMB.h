@@ -1,9 +1,7 @@
-/* $Id$
-
+/* 
 	Xeromyces - XMB reading library
 
 	Philip Taylor (philip@zaynar.demon.co.uk / @wildfiregames.com)
-
 */
 
 /* 

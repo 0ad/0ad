@@ -1,5 +1,3 @@
-// $Id: font.cpp,v 1.6 2004/11/23 18:19:27 philip Exp $
-
 #include "stdafx.h"
 
 #include "wx/wx.h"

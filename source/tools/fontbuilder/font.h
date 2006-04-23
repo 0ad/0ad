@@ -1,5 +1,3 @@
-// $Id: font.h,v 1.5 2004/11/23 18:19:27 philip Exp $
-
 #ifndef _FONT_H_
 #define _FONT_H_
 

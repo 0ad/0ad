@@ -1,5 +1,3 @@
-// $Id: imagemanip.cpp,v 1.1 2004/06/17 19:32:04 philip Exp $
-
 #include "stdafx.h"
 
 #include "math.h"

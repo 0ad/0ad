@@ -1,5 +1,3 @@
-// $Id: wxconfig.cpp,v 1.3 2004/06/19 13:46:11 philip Exp $
-
 #include "stdafx.h"
 
 #include "wx/config.h"

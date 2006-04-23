@@ -1,5 +1,3 @@
-// $Id: stdafx.h,v 1.7 2004/11/23 18:19:27 philip Exp $
-
 // Precompiled headers
 
 #ifdef _WIN32

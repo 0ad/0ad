@@ -1,5 +1,3 @@
-// $Id: fontselect.cpp,v 1.4 2004/07/16 15:32:34 philip Exp $
-
 /************
 
   This attempt at completely separating the platform-dependent

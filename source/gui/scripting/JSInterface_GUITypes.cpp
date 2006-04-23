@@ -1,5 +1,3 @@
-// $Id$
-
 #include "precompiled.h"
 
 #include "JSInterface_GUITypes.h"

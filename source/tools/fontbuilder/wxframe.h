@@ -1,5 +1,3 @@
-// $Id: wxframe.h,v 1.2 2004/06/19 12:56:09 philip Exp $
-
 #include "wx/panel.h"
 #include "wx/bitmap.h"
 #include "wx/frame.h"

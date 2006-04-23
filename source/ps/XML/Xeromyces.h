@@ -1,11 +1,9 @@
-/* $Id$
-
+/*
   Xeromyces file-loading interface.
   Automatically creates and caches relatively
   efficient binary representations of XML files.
 
   - Philip Taylor (philip@zaynar.demon.co.uk / @wildfiregames.com)
-
 */
 
 #ifndef _XEROMYCES_H_

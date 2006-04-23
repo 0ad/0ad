@@ -1,5 +1,3 @@
-// $Id: filemanip.cpp,v 1.2 2004/06/19 13:46:11 philip Exp $
-
 #include "stdafx.h"
 
 #include "filemanip.h"

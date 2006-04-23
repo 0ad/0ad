@@ -1,5 +1,3 @@
-// $Id$
-
 #include "scripting/ScriptingHost.h"
 
 #ifndef JSI_IGUIOBJECT_INCLUDED

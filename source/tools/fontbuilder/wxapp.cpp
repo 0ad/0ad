@@ -1,5 +1,3 @@
-// $Id: wxapp.cpp,v 1.4 2004/08/10 16:01:18 philip Exp $
-
 #include "stdafx.h"
 
 #include "wx/app.h"

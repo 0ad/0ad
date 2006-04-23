@@ -1,5 +1,3 @@
-// $Id: packer.cpp,v 1.4 2004/08/24 14:54:10 philip Exp $
-
 #include "stdafx.h"
 
 #include "packer.h"

@@ -1,5 +1,3 @@
-// $Id: fontselect.h,v 1.5 2004/06/19 13:46:11 philip Exp $
-
 #include "wx/dialog.h"
 #include "wx/filedlg.h"
 
