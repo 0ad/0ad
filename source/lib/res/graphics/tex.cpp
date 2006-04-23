@@ -207,7 +207,7 @@ TIMER_ACCRUE(tc_plain_transform);
 	// sanity checks (not errors, we just can't handle these cases)
 	// .. unknown transform
 	if(transforms & ~(TEX_BGR|TEX_ORIENTATION|TEX_MIPMAPS))
-		WARN_RETURN(ERR_TEX_CODEC_CANNOT_HANDLE);
+		return ERR_TEX_CODEC_CANNOT_HANDLE;
 	// .. data is not in "plain" format
 	RETURN_ERR(tex_validate_plain_format(bpp, flags));
 	// .. nothing to do

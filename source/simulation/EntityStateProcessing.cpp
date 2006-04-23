@@ -6,6 +6,7 @@
 #include "BaseEntity.h"
 #include "Model.h"
 #include "ObjectEntry.h"
+#include "SkeletonAnim.h"
 #include "SkeletonAnimDef.h" // Animation duration
 #include "Unit.h"
 #include "ProductionQueue.h"

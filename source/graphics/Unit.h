@@ -33,7 +33,7 @@ public:
 	void HideAmmunition();
 
 	// Sets the animation a random one matching 'name'. If none is found,
-	// sets to idle instead.
+	// sets to idle instead. Applies recursively to props.
 	bool SetRandomAnimation(const CStr8& name, bool once = false, float speed = 0.0f);
 
 	// Returns a random animation matching 'name'. If none is found,

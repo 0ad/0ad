@@ -8,6 +8,7 @@
 #include "CLogger.h"
 #include "MaterialManager.h"
 #include "MeshManager.h"
+#include "SkeletonAnim.h"
 
 #include "UnitManager.h"
 #include "Unit.h"
@@ -164,7 +165,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStrW> >& selection
 			if (proppoint)
 			{
 				CModel* propmodel = oe->m_Model->Clone();
-				m_Model->AddProp(proppoint, propmodel);
+				m_Model->AddProp(proppoint, propmodel, oe);
 				propmodel->SetAnimation(oe->GetRandomAnimation("idle"));
 			}
 			else

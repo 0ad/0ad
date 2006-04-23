@@ -406,7 +406,7 @@ bool CModel::SetAnimation(CSkeletonAnim* anim, bool once, float speed, CSkeleton
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // AddProp: add a prop to the model on the given point
-void CModel::AddProp(SPropPoint* point, CModel* model)
+void CModel::AddProp(SPropPoint* point, CModel* model, CObjectEntry* objectentry)
 {
 	// position model according to prop point position
 	model->SetTransform(point->m_Transform);
@@ -415,8 +415,8 @@ void CModel::AddProp(SPropPoint* point, CModel* model)
 	// check if we're already using this point, and remove it if so
 	// (when a prop is removed it will also remove the prop point)
 	uint i;
-	for (i=0;i<m_Props.size();i++) {
-		if (m_Props[i].m_Point==point) {
+	for (i = 0; i < m_Props.size(); i++) {
+		if (m_Props[i].m_Point == point) {
 			delete m_Props[i].m_Model;
 			break;
 		}
@@ -424,8 +424,9 @@ void CModel::AddProp(SPropPoint* point, CModel* model)
 
 	// not using point; add new prop
 	Prop prop;
-	prop.m_Point=point;
-	prop.m_Model=model;
+	prop.m_Point = point;
+	prop.m_Model = model;
+	prop.m_ObjectEntry = objectentry;
 	m_Props.push_back(prop);
 }
 
@@ -458,7 +459,7 @@ CModel* CModel::Clone() const
 	clone->SetFlags(m_Flags);
 	for (uint i=0;i<m_Props.size();i++) {
 		// eek!  TODO, RC - need to investigate shallow clone here
-		clone->AddProp(m_Props[i].m_Point, m_Props[i].m_Model->Clone());
+		clone->AddProp(m_Props[i].m_Point, m_Props[i].m_Model->Clone(), m_Props[i].m_ObjectEntry);
 	}
 	return clone;
 }

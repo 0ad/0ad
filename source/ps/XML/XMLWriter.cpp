@@ -60,7 +60,10 @@ void XMLWriter_File::ElementStart(XMLWriter_Element* element, const char* name)
 {
 	if (m_LastElement) m_LastElement->Close(EL_SUBEL);
 	m_LastElement = element;
-	m_Data += "\n" + Indent() + "<" + name;
+	m_Data += "\n";
+	m_Data += Indent();
+	m_Data += "<";
+	m_Data += name;
 
 	++m_Indent;
 }
@@ -86,7 +89,11 @@ void XMLWriter_File::ElementEnd(const char* name, int type)
 		m_Data += ">";
 		break;
 	case EL_SUBEL:
-		m_Data += "\n" + Indent() + "</" + name += ">";
+		m_Data += "\n";
+		m_Data += Indent();
+		m_Data += "</";
+		m_Data += name;
+		m_Data += ">";
 		break;
 	default:
 		debug_assert(0);
@@ -140,7 +147,9 @@ template <> void XMLWriter_File::ElementAttribute<CStr>(const char* name, const 
 		debug_assert(m_LastElement && m_LastElement->m_Type == EL_ATTR);
 		m_Data += " ";
 		m_Data += name;
-		m_Data += "=\"" + value + "\"";
+		m_Data += "=\"";
+		m_Data += value;
+		m_Data += "\"";
 	}
 }
 

@@ -3,13 +3,12 @@
 
 class CModel;
 class CSkeletonAnim;
+class CObjectBase;
 struct SPropPoint;
 
 #include <map>
 #include <vector>
-#include <map>
 #include "CStr.h"
-#include "ObjectBase.h"
 #include "Overlay.h"
 
 class CObjectEntry

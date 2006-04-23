@@ -626,7 +626,7 @@ static LibError dds_encode(Tex* restrict UNUSED(t), DynArray* restrict UNUSED(da
 {
 	// note: do not return ERR_NOT_IMPLEMENTED et al. because that would
 	// break tex_write (which assumes either this, 0 or errors are returned).
-	WARN_RETURN(ERR_TEX_CODEC_CANNOT_HANDLE);
+	return ERR_TEX_CODEC_CANNOT_HANDLE;
 }
 
 

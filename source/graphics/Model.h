@@ -14,10 +14,12 @@
 #include "Texture.h"
 #include "MeshManager.h"
 #include "RenderableObject.h"
-#include "SkeletonAnim.h"
 #include "Material.h"
 #include "Overlay.h"
 struct SPropPoint;
+class CObjectEntry;
+class CSkeletonAnim;
+class CSkeletonAnimDef;
 
 #define MODELFLAG_CASTSHADOWS		(1<<0)
 #define MODELFLAG_NOLOOPANIMATION	(1<<1)
@@ -29,10 +31,11 @@ class CModel : public CRenderableObject
 {
 public:
 	struct Prop {
-		Prop() : m_Point(0), m_Model(0) {}
+		Prop() : m_Point(0), m_Model(0), m_ObjectEntry(0) {}
 
 		SPropPoint* m_Point;
 		CModel* m_Model;
+		CObjectEntry* m_ObjectEntry;
 	};
 
 public:
@@ -119,7 +122,7 @@ public:
 	CSkeletonAnim* BuildAnimation(const char* filename, const char* name, float speed, double actionpos, double actionpos2);
 
 	// add a prop to the model on the given point
-	void AddProp(SPropPoint* point,CModel* model);
+	void AddProp(SPropPoint* point, CModel* model, CObjectEntry* objectentry);
 	// remove a prop from the given point
 	void RemoveProp(SPropPoint* point);
 	// return prop list
