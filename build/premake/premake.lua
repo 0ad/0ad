@@ -22,7 +22,7 @@ function create_package()
 	package = newpackage()
 	package.path = project.path
 	package.language = "c++"
-	package.buildflags = { "no-manifest", "with-symbols", "no-edit-and-continue" }
+	package.buildflags = { "with-symbols", "no-edit-and-continue" }
 	return package
 end
 
@@ -445,7 +445,7 @@ function setuppackages_atlas()
 		wx = 1,
 		xerces = 1,
 		depends = { "AtlasObject", "DatafileIO" },
-		extrasource = { "/Misc/icons.rc" }
+		extrasource = { "/Misc/atlas.rc" }
 	})
 
 	setuppackage_atlas("DatafileIO", "lib", {
