@@ -40,6 +40,12 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
     m_ahead.x = sin( m_orientation );
     m_ahead.y = cos( m_orientation );
 
+	// set sane default in case someone forgets to add this to the entity's
+	// XML file, which is prone to happen. (prevents crash below when
+	// using this value to resize a vector)
+	const int sane_sectordivs_default = 4;
+	m_sectorDivs = sane_sectordivs_default;
+
 	/* Anything added to this list MUST be added to BaseEntity.cpp (and variables used should
 		also be added to BaseEntity.h */
 
@@ -103,17 +109,21 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
         AddHandler( t, &m_EventHandlers[t] );
     }
 
-	if ( m_sectorDivs >= 0 )
+	// this has been the cause of several crashes (due to not being
+	// specified in the XML file), so in addition to the above default,
+	// we'll sanity check its value.
+	if(!(0 <= m_sectorDivs && m_sectorDivs < 1000))
 	{
-		m_sectorAngles.resize(m_sectorDivs);
-		m_sectorValues.resize(m_sectorDivs);
-		float step = DEGTORAD(360.0f / m_sectorDivs);
-
-		for ( int i=0; i<m_sectorDivs; ++i )
-		{
-			m_sectorAngles[i] = cosf( step*i );
-			m_sectorValues[i] = false;
-		}
+		debug_warn("invalid entity angle_penalty.sectors value");
+		m_sectorDivs = sane_sectordivs_default;
+	}
+	m_sectorAngles.resize(m_sectorDivs);
+	m_sectorValues.resize(m_sectorDivs);
+	float step = DEGTORAD(360.0f / m_sectorDivs);
+	for ( int i=0; i<m_sectorDivs; ++i )
+	{
+		m_sectorAngles[i] = cosf( step*i );
+		m_sectorValues[i] = false;
 	}
 
     m_collisionPatch = NULL;
