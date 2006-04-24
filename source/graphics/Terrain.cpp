@@ -300,13 +300,14 @@ float CTerrain::getSlopeAngleFace(float x, float y, float orientation) const
 	int yi = (int)floor(y);
 	CVector3D flat( (float)CELL_SIZE, 0.0f, (float)CELL_SIZE );
 	CVector3D elevated=flat;
-	
-	float a0 = DEGTORAD(0.0f);
-	float a90 = DEGTORAD(90.0f);
-	float a180 = DEGTORAD(180.0f);
-	float neg = DEGTORAD(-90.0f);
-	float a45 = DEGTORAD(45.0f);
-	float a135 = DEGTORAD(135.0f);
+
+	/* JW: currently all unused, so commented out to avoid warning
+	const float a0 = DEGTORAD(0.0f);
+	const float a90 = DEGTORAD(90.0f);
+	const float a180 = DEGTORAD(180.0f);
+	const float neg = DEGTORAD(-90.0f);
+	const float a45 = DEGTORAD(45.0f);
+	const float a135 = DEGTORAD(135.0f);*/
 
 	//Find which side it's facing; use that and the opposite
 	if ( orientation > 0.0f && orientation < DEGTORAD(90.0f) )

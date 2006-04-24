@@ -87,7 +87,7 @@ LibError tex_codec_for_header(const u8* file, size_t file_size, const TexCodecVT
 
 LibError tex_codec_transform(Tex* t, uint transforms)
 {
-	LibError ret = ERR_TEX_CODEC_CANNOT_HANDLE;
+	LibError ret = INFO_TEX_CODEC_CANNOT_HANDLE;
 
 	// find codec that understands the data, and transform
 	for(const TexCodecVTbl* c = codecs; c; c = c->next)
@@ -97,7 +97,7 @@ LibError tex_codec_transform(Tex* t, uint transforms)
 		if(err == ERR_OK)
 			return ERR_OK;
 		// something went wrong
-		else if(err != ERR_TEX_CODEC_CANNOT_HANDLE)
+		else if(err != INFO_TEX_CODEC_CANNOT_HANDLE)
 		{
 			ret = err;
 			debug_warn("codec indicates error");

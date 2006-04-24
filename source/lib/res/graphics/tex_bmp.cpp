@@ -58,7 +58,7 @@ struct BmpHeader
 
 static LibError bmp_transform(Tex* UNUSED(t), uint UNUSED(transforms))
 {
-	return ERR_TEX_CODEC_CANNOT_HANDLE;
+	return INFO_TEX_CODEC_CANNOT_HANDLE;
 }
 
 

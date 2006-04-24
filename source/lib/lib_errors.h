@@ -460,7 +460,7 @@ ERR(-100503, ERR_TEX_INVALID_LAYOUT, "Unsupported texel layout, e.g. right-to-le
 ERR(-100504, ERR_TEX_COMPRESSED, "Unsupported texture compression")
 ERR(+100505, WARN_TEX_INVALID_DATA, "Warning: invalid texel data encountered")
 ERR(-100506, ERR_TEX_INVALID_SIZE, "Texture size is incorrect")
-ERR(-100507, ERR_TEX_CODEC_CANNOT_HANDLE, "Texture codec cannot handle the given format")
+ERR(+100507, INFO_TEX_CODEC_CANNOT_HANDLE, "Texture codec cannot handle the given format")
 
 // CPU
 ERR(-100600, ERR_CPU_FEATURE_MISSING, "This CPU doesn't support a required feature")

@@ -422,7 +422,7 @@ JpgErrorMgr::JpgErrorMgr(j_common_ptr cinfo)
 
 static LibError jpg_transform(Tex* UNUSED(t), uint UNUSED(transforms))
 {
-	return ERR_TEX_CODEC_CANNOT_HANDLE;
+	return INFO_TEX_CODEC_CANNOT_HANDLE;
 }
 
 

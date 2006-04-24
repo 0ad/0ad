@@ -626,7 +626,7 @@ static LibError dds_encode(Tex* restrict UNUSED(t), DynArray* restrict UNUSED(da
 {
 	// note: do not return ERR_NOT_IMPLEMENTED et al. because that would
 	// break tex_write (which assumes either this, 0 or errors are returned).
-	return ERR_TEX_CODEC_CANNOT_HANDLE;
+	return INFO_TEX_CODEC_CANNOT_HANDLE;
 }
 
 
@@ -646,7 +646,7 @@ static LibError dds_transform(Tex* t, uint transforms)
 	// compressed) or requesting compression (not implemented) or
 	// both not DXT (nothing we can do) - bail.
 	else
-		return ERR_TEX_CODEC_CANNOT_HANDLE;
+		return INFO_TEX_CODEC_CANNOT_HANDLE;
 }
 
 
