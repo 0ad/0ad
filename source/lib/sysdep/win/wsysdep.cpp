@@ -468,9 +468,8 @@ static HCURSOR HCURSOR_from_ptr(void* p)
 //   it is no longer needed and can be freed after this call returns.
 // hotspot (hx,hy) is the offset from its upper-left corner to the
 //   position where mouse clicks are registered.
-// return: negative error code, or 0 on success. cursor is filled with
-//   a pointer and undefined on failure. it must be sys_cursor_free-ed
-//   when no longer needed.
+// cursor is only valid when ERR_OK is returned; in that case, it must be
+//   sys_cursor_free-ed when no longer needed.
 LibError sys_cursor_create(uint w, uint h, void* bgra_img,
 	uint hx, uint hy, void** cursor)
 {
@@ -593,7 +592,6 @@ wchar_t* sys_get_module_filename(void* addr, wchar_t* path)
 
 
 // store full path to the current executable.
-// returns 0 or a negative error code.
 // useful for determining installation directory, e.g. for VFS.
 inline LibError sys_get_executable_name(char* n_path, size_t buf_size)
 {
@@ -619,7 +617,6 @@ static int CALLBACK browse_cb(HWND hWnd, unsigned int msg, LPARAM UNUSED(lParam)
 // have the user specify a directory via OS dialog.
 // stores its full path in the given buffer, which must hold at least
 // PATH_MAX chars.
-// returns 0 on success or a negative error code.
 LibError sys_pick_directory(char* path, size_t buf_size)
 {
 	// bring up dialog; set starting directory to current working dir.

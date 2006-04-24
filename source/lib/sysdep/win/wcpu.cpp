@@ -128,9 +128,9 @@ LibError win_get_cpu_info()
 // is never re-entered) in order of increasing OS CPU ID.
 // note: implemented by switching thread affinity masks and forcing
 // a reschedule, which is apparently not possible with POSIX.
-// return 0 on success or a negative error code on failure
-// (e.g. if OS is preventing us from running on some CPUs).
-// called from ia32.cpp get_cpu_count
+//
+// may fail if e.g. OS is preventing us from running on some CPUs.
+// called from ia32.cpp get_cpu_count.
 LibError sys_on_each_cpu(void (*cb)())
 {
 	const HANDLE hProcess = GetCurrentProcess();

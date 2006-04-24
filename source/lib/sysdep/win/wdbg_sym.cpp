@@ -436,7 +436,7 @@ static LibError walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip 
 
 		ret = cb(&sf, user_arg);
 		// callback reports it's done; stop calling it and return that value.
-		// (can be 0 for success, or a negative error code)
+		// (can be either success or failure)
 		if(ret != INFO_CB_CONTINUE)
 		{
 			debug_assert(ret <= 0);	// shouldn't return > 0

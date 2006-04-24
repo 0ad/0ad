@@ -75,8 +75,8 @@ cassert(sizeof(DirIterator_) <= sizeof(DirIterator));
 
 
 // prepare to iterate (once) over entries in the given directory.
-// returns a negative error code or 0 on success, in which case <d> is
-// ready for subsequent dir_next_ent calls and must be freed via dir_close.
+// if ERR_OK is returned, <d> is ready for subsequent dir_next_ent calls and
+// must be freed via dir_close.
 LibError dir_open(const char* P_path, DirIterator* d_)
 {
 	DirIterator_* d = (DirIterator_*)d_;
@@ -105,7 +105,7 @@ LibError dir_open(const char* P_path, DirIterator* d_)
 
 
 // return ERR_DIR_END if all entries have already been returned once,
-// another negative error code, or 0 on success, in which case <ent>
+// another negative error code, or ERR_OK on success, in which case <ent>
 // describes the next (order is unspecified) directory entry.
 LibError dir_next_ent(DirIterator* d_, DirEnt* ent)
 {

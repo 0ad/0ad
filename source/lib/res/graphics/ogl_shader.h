@@ -35,7 +35,6 @@ Handle ogl_shader_load(const char* fn, GLenum type);
 void ogl_shader_free(Handle& h);
 
 // Attach a shader to the given OpenGL program.
-// Returns 0 on success and a negative error code otherwise.
 LibError ogl_shader_attach(GLhandleARB program, Handle& h);
 
 

@@ -193,9 +193,8 @@ extern LibError sys_clipboard_free(wchar_t* copy);
 //   it is no longer needed and can be freed after this call returns.
 // hotspot (hx,hy) is the offset from its upper-left corner to the
 //   position where mouse clicks are registered.
-// return: negative error code, or 0 on success. cursor is filled with
-//   a pointer and undefined on failure. it must be sys_cursor_free-ed
-//   when no longer needed.
+// cursor is only valid when ERR_OK is returned; in that case, it must be
+//   sys_cursor_free-ed when no longer needed.
 extern LibError sys_cursor_create(uint w, uint h, void* bgra_img,
 	uint hx, uint hy, void** cursor);
 
@@ -229,14 +228,12 @@ extern LibError sys_error_description_r(int err, char* buf, size_t max_chars);
 wchar_t* sys_get_module_filename(void* addr, wchar_t* path);
 
 // store full path to the current executable.
-// returns 0 or a negative error code.
 // useful for determining installation directory, e.g. for VFS.
 extern LibError sys_get_executable_name(char* n_path, size_t buf_size);
 
 // have the user specify a directory via OS dialog.
 // stores its full path in the given buffer, which must hold at least
 // PATH_MAX chars.
-// returns 0 on success or a negative error code.
 extern LibError sys_pick_directory(char* n_path, size_t buf_size);
 
 // execute the specified function once on each CPU.
@@ -244,9 +241,9 @@ extern LibError sys_pick_directory(char* n_path, size_t buf_size);
 // is never re-entered) in order of increasing OS CPU ID.
 // note: implemented by switching thread affinity masks and forcing
 // a reschedule, which is apparently not possible with POSIX.
-// return 0 on success or a negative error code on failure
-// (e.g. if OS is preventing us from running on some CPUs).
-// called from ia32.cpp get_cpu_count
+//
+// may fail if e.g. OS is preventing us from running on some CPUs.
+// called from ia32.cpp get_cpu_count.
 extern LibError sys_on_each_cpu(void (*cb)());
 
 

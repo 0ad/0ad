@@ -29,7 +29,6 @@
 extern void dll_list_init(char* buf, size_t chars);
 
 // read DLL file version and append that and its name to the list.
-// return 0 on success or a negative error code.
 //
 // name should preferably be the complete path to DLL, to make sure
 // we don't inadvertently load another one on the library search path.

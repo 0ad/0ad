@@ -32,6 +32,7 @@
 #include "compression.h"
 #include "zip.h"
 #include "archive.h"
+#include "archive_builder.h"
 
 #include "vfs.h"
 #include "vfs_mount.h"
