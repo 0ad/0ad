@@ -10,6 +10,7 @@ public:
 
 private:
 	void OnSashPosChanging(wxSplitterEvent& evt);
+	void OnDoubleClick(wxSplitterEvent& evt);
 
 	int m_DefaultSashPosition;
 	int m_SnapTolerance;

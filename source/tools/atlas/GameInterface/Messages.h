@@ -76,7 +76,7 @@ struct sTerrainGroupPreview
 	Shareable<std::wstring> name;
 	Shareable<std::vector<unsigned char> > imagedata; // RGB*size*size
 };
-SHAREABLE_POD(sTerrainGroupPreview);
+SHAREABLE_STRUCT(sTerrainGroupPreview);
 
 QUERY(GetTerrainGroupPreviews,
 	  ((std::wstring, groupname))
@@ -95,16 +95,23 @@ struct sObjectsListItem
 	Shareable<std::wstring> name;
 	Shareable<int> type; // 0 = entity, 1 = actor
 };
-SHAREABLE_POD(sObjectsListItem);
+SHAREABLE_STRUCT(sObjectsListItem);
 
 QUERY(GetObjectsList,
 	  , // no inputs
 	  ((std::vector<sObjectsListItem>, objects))
 	  );
 
+struct sUnitSettings
+{
+	Shareable<int> player;
+	Shareable<std::vector<std::wstring> > selections;
+};
+SHAREABLE_STRUCT(sUnitSettings);
+
 MESSAGE(ObjectPreview,
 		((std::wstring, id)) // or empty string => disable
-		((int, player))
+		((sUnitSettings, settings))
 		((Position, pos))
 		((bool, usetarget)) // true => use 'target' for orientation; false => use 'angle'
 		((Position, target))
@@ -113,7 +120,7 @@ MESSAGE(ObjectPreview,
 
 COMMAND(CreateObject, NOMERGE,
 		((std::wstring, id))
-		((int, player))
+		((sUnitSettings, settings))
 		((Position, pos))
 		((bool, usetarget)) // true => use 'target' for orientation; false => use 'angle'
 		((Position, target))

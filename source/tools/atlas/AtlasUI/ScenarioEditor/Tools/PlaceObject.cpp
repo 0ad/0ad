@@ -3,6 +3,7 @@
 #include "Common/Tools.h"
 #include "Common/Brushes.h"
 #include "Common/MiscState.h"
+#include "Common/UnitSettings.h"
 #include "GameInterface/Messages.h"
 
 using AtlasMessage::Position;
@@ -15,7 +16,6 @@ class PlaceObject : public StateDrivenTool<PlaceObject>
 
 	Position m_ScreenPos, m_ObjPos, m_Target;
 	wxString m_ObjectID;
-	static int m_Player;
 
 public:
 	PlaceObject()
@@ -30,9 +30,9 @@ public:
 			+ (m_ScreenPos.type1.y-m_Target.type1.y)*(m_ScreenPos.type1.y-m_Target.type1.y);
 		bool useTarget = (dragDistSq >= 16*16);
 		if (preview)
-			POST_MESSAGE(ObjectPreview, (m_ObjectID.c_str(), 0, m_ObjPos, useTarget, m_Target, g_DefaultAngle));
+			POST_MESSAGE(ObjectPreview, (m_ObjectID.c_str(), g_UnitSettings.GetSettings(), m_ObjPos, useTarget, m_Target, g_DefaultAngle));
 		else
-			POST_COMMAND(CreateObject, (m_ObjectID.c_str(), m_Player, m_ObjPos, useTarget, m_Target, g_DefaultAngle));
+			POST_COMMAND(CreateObject, (m_ObjectID.c_str(), g_UnitSettings.GetSettings(), m_ObjPos, useTarget, m_Target, g_DefaultAngle));
 	}
 
 	virtual void Init(void* initData)
@@ -86,9 +86,6 @@ public:
 			{
 				SetState(&Disabled);
 				return true;
-			}
-			else if(key >= '0' && key <= '8') {
-				m_Player = key - '0';
 			}
 			break;
 		}
@@ -188,5 +185,3 @@ public:
 };
 
 IMPLEMENT_DYNAMIC_CLASS(PlaceObject, StateDrivenTool<PlaceObject>);
-
-int PlaceObject::m_Player = 1;

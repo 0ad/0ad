@@ -91,6 +91,9 @@ MESSAGEHANDLER(ResizeScreen)
 	g_Renderer.SetViewport(vp);
 	g_Renderer.Resize(g_xres, g_yres);
 
+	if (g_Game)
+		g_Game->GetView()->GetCamera()->UpdateFrustum();
+
 	g_GUI.UpdateResolution();
 
 	g_Console->UpdateScreenSize(g_xres, g_yres);

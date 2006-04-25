@@ -177,8 +177,6 @@ MESSAGEHANDLER(ObjectPreview)
 				if (base) // (ignore errors)
 				{
 					g_PreviewUnit = g_UnitMan.CreateUnit(base->m_actorName, NULL, selections);
-					if (g_PreviewUnit)
-						g_PreviewUnit->SetPlayerID(msg->player);
 					// TODO: variations
 				}
 			}
@@ -193,12 +191,15 @@ MESSAGEHANDLER(ObjectPreview)
 
 	if (g_PreviewUnit)
 	{
+		// Update the unit's position and orientation:
+
 		CVector3D pos = GetUnitPos(msg->pos);
 
 		float s, c;
 
 		if (msg->usetarget)
 		{
+			// Aim from pos towards msg->target
 			CVector3D target;
 			msg->target->GetWorldSpace(target, pos.Y);
 			CVector2D dir(target.X-pos.X, target.Z-pos.Z);
@@ -218,6 +219,9 @@ MESSAGEHANDLER(ObjectPreview)
 		m._31 = s;      m._32 = 0.0f;   m._33 = -c;     m._34 = pos.Z;
 		m._41 = 0.0f;   m._42 = 0.0f;   m._43 = 0.0f;   m._44 = 1.0f;
 		g_PreviewUnit->GetModel()->SetTransform(m);
+
+		// Update the unit's player colour:
+		g_PreviewUnit->SetPlayerID(msg->settings->player);
 	}
 }
 
@@ -231,7 +235,7 @@ BEGIN_COMMAND(CreateObject)
 	void Do()
 	{
 		m_Pos = GetUnitPos(d->pos);
-		m_Player = d->player;
+		m_Player = d->settings->player;
 
 		if (d->usetarget)
 		{

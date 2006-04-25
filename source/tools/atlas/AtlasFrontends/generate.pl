@@ -1,31 +1,23 @@
 use strict;
 use warnings;
 
-my @files = qw( .cpp .vcproj .rc );
+my @files = qw( .cpp .rc );
 
 my @progs = (
 	{
 		PROJECT_NAME	=> "ActorEditor",
-		GUID			=> "",
-		EXE_NAME		=> "ActorEditor",
 		WINDOW_NAME		=> "ActorEditor",
 	},
 	{
 		PROJECT_NAME	=> "ColourTester",
-		GUID			=> "",
-		EXE_NAME		=> "ColourTester",
 		WINDOW_NAME		=> "ColourTester",
 	},
 	{
 		PROJECT_NAME	=> "FileConverter",
-		GUID			=> "",
-		EXE_NAME		=> "FileConverter",
 		WINDOW_NAME		=> "FileConverter",
 	},
 	{
 		PROJECT_NAME	=> "ArchiveViewer",
-		GUID			=> "",
-		EXE_NAME		=> "ArchiveViewer",
 		WINDOW_NAME		=> "ArchiveViewer",
 	},
 

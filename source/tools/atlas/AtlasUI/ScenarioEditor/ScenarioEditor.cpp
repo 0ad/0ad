@@ -15,7 +15,7 @@
 
 #include "tools/Common/Tools.h"
 
-//#define UI_ONLY
+// #define UI_ONLY
 
 static HighResTimer g_Timer;
 

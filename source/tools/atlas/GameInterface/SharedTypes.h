@@ -33,7 +33,7 @@ struct Position
 	void GetWorldSpace(CVector3D& vec, const CVector3D& prev) const;
 	void GetScreenSpace(float& x, float& y) const;
 };
-SHAREABLE_POD(Position);
+SHAREABLE_STRUCT(Position);
 
 }
 

@@ -9,7 +9,7 @@ but that causes problems if the DLL and EXE were not compiled in exactly
 the same way.
 
 So, the Shareable<T> class is used to make things a bit safer:
-Simple types (primitives, POD structs, etc) are passed as normal.
+Simple types (primitives, basic structs, etc) are passed as normal.
 std::string is converted to an array, using a shared (and thread-safe) memory
 allocation function so that it works when the DLL and EXE use different heaps. 
 std::vector is done the same, though its element type must be Shareable too.
@@ -25,7 +25,7 @@ only storing size_t and pointer values.)
 
 Usage should be fairly transparent - conversions from T to Shareable<T> are
 automatic, and the opposite is automatic for primitive types.
-For POD structs, use operator-> to access members (e.g. "msg->sharedstruct->value").
+For basic structs, use operator-> to access members (e.g. "msg->sharedstruct->value").
 For more complex things (strings, vectors), use the unary operator* to get back
 an STL object (e.g. "std::string s = *msg->sharedstring").
 (That conversion to an STL object is potentially expensive, so
@@ -34,8 +34,8 @@ if that's all you need.)
 
 The supported list of primitive types is below (SHAREABLE_PRIMITIVE).
 Structs are made shareable by manually ensuring that all their members are
-shareable (i.e. primitives, PODs, Shareable<string>s, etc) and writing
-	SHAREABLE_POD(StructName);
+shareable (i.e. primitives and Shareable<T>s) and writing
+	SHAREABLE_STRUCTS(StructName);
 after their definition.
 
 */
@@ -86,8 +86,8 @@ SHAREABLE_PRIMITIVE(void*);
 
 #undef SHAREABLE_PRIMITIVE
 
-// POD types are similar to primitives, but with operator->
-#define SHAREABLE_POD(T) \
+// Structs are similar to primitives, but with operator->
+#define SHAREABLE_STRUCT(T) \
 	template<> class Shareable<T> \
 	{ \
 		T m; \

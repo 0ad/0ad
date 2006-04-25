@@ -5,6 +5,7 @@
 #include "Buttons/ActionButton.h"
 #include "Buttons/ToolButton.h"
 #include "ScenarioEditor/Tools/Common/Tools.h"
+#include "ScenarioEditor/Tools/Common/UnitSettings.h"
 
 #include "GameInterface/Messages.h"
 
@@ -78,12 +79,12 @@ ObjectSidebar::~ObjectSidebar()
 	delete p;
 }
 
-wxWindow* ObjectSidebar::GetBottomBar(wxWindow* WXUNUSED(parent))
+wxWindow* ObjectSidebar::GetBottomBar(wxWindow* parent)
 {
 	if (p->m_BottomBar)
 		return p->m_BottomBar;
 
-//	m_BottomBar = new ObjectBottomBar(parent);
+	p->m_BottomBar = new ObjectBottomBar(parent);
 	return p->m_BottomBar;
 }
 
@@ -113,12 +114,44 @@ void ObjectSidebar::SetObjectFilter(int type)
 
 //////////////////////////////////////////////////////////////////////////
 
+class PlayerComboBox : public wxComboBox
+{
+public:
+	PlayerComboBox(wxWindow* parent, wxArrayString& choices)
+		: wxComboBox(parent, -1, choices[g_UnitSettings.GetPlayerID()], wxDefaultPosition, wxDefaultSize, choices, wxCB_READONLY)
+	{
+	}
 
-//TerrainBottomBar::TerrainBottomBar(wxWindow* parent)
-//	: wxPanel(parent, wxID_ANY)
-//{
-//	wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
-//	wxNotebook* notebook = new TextureNotebook(this);
-//	sizer->Add(notebook, wxSizerFlags().Expand().Proportion(1));
-//	SetSizer(sizer);
-//}
+private:
+
+	void OnSelect(wxCommandEvent& evt)
+	{
+		g_UnitSettings.SetPlayerID(evt.GetInt());
+	}
+
+	DECLARE_EVENT_TABLE();
+};
+BEGIN_EVENT_TABLE(PlayerComboBox, wxComboBox)
+	EVT_COMBOBOX(wxID_ANY, OnSelect)
+END_EVENT_TABLE();
+
+ObjectBottomBar::ObjectBottomBar(wxWindow* parent)
+	: wxPanel(parent, wxID_ANY)
+{
+	wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+
+	wxArrayString players;
+	// TODO: get proper player names
+	players.Add(_("Gaia"));
+	players.Add(_("Player 1"));
+	players.Add(_("Player 2"));
+	players.Add(_("Player 3"));
+	players.Add(_("Player 4"));
+	players.Add(_("Player 5"));
+	players.Add(_("Player 6"));
+	players.Add(_("Player 7"));
+	players.Add(_("Player 8"));
+	wxComboBox* playerSelect = new PlayerComboBox(this, players);
+
+	SetSizer(sizer);
+}

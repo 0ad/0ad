@@ -4,6 +4,7 @@
 
 BEGIN_EVENT_TABLE(SnapSplitterWindow, wxSplitterWindow)
 	EVT_SPLITTER_SASH_POS_CHANGING(wxID_ANY, SnapSplitterWindow::OnSashPosChanging)
+	EVT_SPLITTER_DCLICK(wxID_ANY, SnapSplitterWindow::OnDoubleClick)
 END_EVENT_TABLE()
 
 SnapSplitterWindow::SnapSplitterWindow(wxWindow* parent, long style)
@@ -13,7 +14,6 @@ SnapSplitterWindow::SnapSplitterWindow(wxWindow* parent, long style)
 {
 	// Set min size, to disable unsplitting
 	SetMinimumPaneSize(32);
-
 }
 
 void SnapSplitterWindow::SetDefaultSashPosition(int sashPosition)
@@ -48,4 +48,10 @@ void SnapSplitterWindow::OnSashPosChanging(wxSplitterEvent& evt)
 	{
 		evt.SetSashPosition(defaultPos);
 	}
+}
+
+void SnapSplitterWindow::OnDoubleClick(wxSplitterEvent& evt)
+{
+	int defaultPos = ConvertSashPosition(m_DefaultSashPosition);
+	SetSashPosition(defaultPos);
 }

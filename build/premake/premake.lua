@@ -94,8 +94,6 @@ function setuppackage_engine (projectname)
 	table.insert(package.files, sourceroot.."main.cpp")
 
 	package.trimprefix = sourceroot
-	
-	--trimrootdir(sourceroot, package.files)
 
 	include_dirs = {
 		"ps",
@@ -116,7 +114,7 @@ function setuppackage_engine (projectname)
 	package.libpaths = {}
 
 	table.insert(package.buildflags, "extra-warnings")
-	
+
 	if (OS == "windows") then
 		table.insert(package.buildflags, "no-rtti")
 	end
@@ -160,6 +158,11 @@ function setuppackage_engine (projectname)
 		table.insert(package.files, {sourceroot.."lib/sysdep/win/error_dialog.rc"})
 		table.insert(package.files, {sourceroot.."lib/sysdep/win/icon.rc"})
 
+		-- VS2005 generates its own manifest, but earlier ones need us to add it manually
+		if (options["target"] == "vs2002" or options["target"] == "vs2003") then
+			table.insert(package.files, {sourceroot.."lib/sysdep/win/manifest.rc"})
+		end
+
 		package.linkoptions = { "/ENTRY:entry",
 			"/DELAYLOAD:opengl32.dll",
 			"/DELAYLOAD:oleaut32.dll",
@@ -184,7 +187,7 @@ function setuppackage_engine (projectname)
 			"/DELAYLOAD:vorbisfile_d.dll",
 		}
 
-		-- 'Testing' uses 'Debug' DLL's
+		-- 'Testing' uses 'Debug' DLLs
 		package.config["Testing"].linkoptions = package.config["Debug"].linkoptions
 
 		package.config["Release"].linkoptions = {
@@ -234,7 +237,7 @@ function setuppackage_engine (projectname)
 			"-Wno-reorder",		-- order of initialization list in constructors
 			"-Wno-non-virtual-dtor",
 		}
-		
+
 		table.insert(package.libpaths, { "/usr/X11R6/lib" } )
 		-- Defines
 		package.defines = {
@@ -314,7 +317,7 @@ function setuppackage_atlas(package_name, target_type, source_dirs, include_dirs
 		if (flags["devil"])  then table.insert(external_libraries, "devil") end
 		if (flags["xerces"]) then table.insert(external_libraries, "xerces") end
 		if (flags["zlib"])   then table.insert(external_libraries, "zlib") end
-		
+
 		external_libraries.n = nil; -- remove the array size, else it'll be interpreted as a directory
 
 		-- Add '<libraries root>/<libraryname>/lib' and '/include' to the includepaths and libpaths
@@ -330,7 +333,7 @@ function setuppackage_atlas(package_name, target_type, source_dirs, include_dirs
 			table.insert(package.libpaths, librariesroot.."wxwidgets/lib/vc_lib")
 		end
 
-		-- Link to required libraries		
+		-- Link to required libraries
 		package.links = { "winmm", "comctl32", "rpcrt4" }
 		package.config["Debug"].links = { "wxmsw26ud_gl" }
 		package.config["Release"].links = { "wxmsw26u_gl" }
@@ -349,7 +352,7 @@ function setuppackage_atlas(package_name, target_type, source_dirs, include_dirs
 	else -- Non-Windows, = Unix
 		-- TODO
 	end
-	
+
 end
 
 ---------------- Atlas 'frontend' tool-launching packages ----------------
@@ -367,7 +370,7 @@ function setuppackage_atlas_frontend (package_name)
 	package.config["Release"].target = package_name
 
 	package.config["Debug"].objdir = objdirprefix.."Debug"
-	package.config["Release"].objdir  = objdirprefix.."Release"
+	package.config["Release"].objdir = objdirprefix.."Release"
 
 	sourceroot = "../../../source/tools/atlas/AtlasFrontends/"
 
@@ -376,7 +379,7 @@ function setuppackage_atlas_frontend (package_name)
 		sourceroot..package_name..".rc"
 	}
 	package.trimprefix = sourceroot
-	
+
 	package.includepaths = { sourceroot..".." }
 
 	package.config["Release"].buildflags = { "no-runtime-checks", "optimize" }
@@ -393,7 +396,7 @@ function setuppackage_atlas_frontend (package_name)
 	else -- Non-Windows, = Unix
 		-- TODO
 	end
-	
+
 	package.config["Testing"] = package.config["Debug"]
 
 end
@@ -465,7 +468,7 @@ function setuppackages_atlas()
 		xerces = 1,
 		zlib = 1
 	})
-	
+
 	setuppackage_atlas_frontend("ActorEditor")
 	setuppackage_atlas_frontend("ArchiveViewer")
 	setuppackage_atlas_frontend("ColourTester")
