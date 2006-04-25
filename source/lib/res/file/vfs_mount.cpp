@@ -676,7 +676,7 @@ struct IsArchiveMount
 {
 	bool operator()(const Mount& m) const
 	{
-		return (m.archive > 0);
+		return (m.type == MT_ARCHIVE);
 	}
 };
 
@@ -738,6 +738,60 @@ LibError mount_make_vfs_path(const char* P_path, char* V_path)
 
 	WARN_RETURN(ERR_PATH_NOT_FOUND);
 }
+
+
+
+
+static const Mount* mod_target;
+
+// set current "mod write directory" to P_target_dir, which must
+// already have been mounted into the VFS.
+// all files opened for writing with the FILE_WRITE_TO_MOD flag set will
+// be written into the appropriate subdirectory of this mount point.
+//
+// this allows e.g. the editor to write files that are already
+// stored in archives, which are read-only.
+LibError vfs_mod_set_write_target(const char* P_target_dir)
+{
+	for(MountIt it = mounts.begin(); it != mounts.end(); ++it)
+	{
+		const Mount& m = *it;
+		// skip if not a directory mounting
+		if(m.type != MT_FILE)
+			continue;
+
+		// found it in list of mounted dirs
+		if(!strcmp(m.P_name.c_str(), P_target_dir))
+		{
+			mod_target = &m;
+			return ERR_OK;
+		}
+	}
+
+	WARN_RETURN(ERR_NOT_MOUNTED);
+}
+
+
+// 'relocate' tf to the mounting established by vfs_mod_set_write_target.
+// call if <tf> is being opened with FILE_WRITE_TO_MOD flag set.
+LibError set_mount_to_mod_target(TFile* tf)
+{
+	if(!mod_target)
+		WARN_RETURN(ERR_NOT_MOUNTED);
+
+	tfile_set_mount(tf, mod_target);
+
+	// invalidate the previous values. we don't need to be clever and
+	// set size to that of the file in the new mod_target mount point.
+	// this is because we're only called for files that are being
+	// opened for writing, which will change these values anyway.
+	tree_update_file(tf, 0, 0);
+
+	return ERR_OK;
+}
+
+
+
 
 
 void mount_init()

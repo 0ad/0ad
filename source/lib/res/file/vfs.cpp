@@ -360,9 +360,7 @@ LibError vfs_stat(const char* V_path, struct stat* s)
 }
 
 
-
-
-
+//-----------------------------------------------------------------------------
 
 struct VFile
 {
@@ -422,6 +420,9 @@ static LibError VFile_reload(VFile* vf, const char* V_path, Handle)
 		debug_printf("lookup failed for %s\n", V_path);
 		return err;
 	}
+
+	if(flags & FILE_WRITE_TO_MOD)
+		RETURN_ERR(set_mount_to_mod_target(tf));
 
 	RETURN_ERR(xfile_open(V_path, flags, tf, &vf->f));
 

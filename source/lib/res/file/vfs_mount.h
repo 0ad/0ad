@@ -95,6 +95,10 @@ extern LibError mount_populate(TDir* td, RealDir* rd);
 // because this call leaves the VFS in limbo!!
 extern void mount_release_all_archives();
 
+// 'relocate' tf to the mounting established by vfs_mod_set_write_target.
+// call if <tf> is being opened with FILE_WRITE_TO_MOD flag set.
+extern LibError set_mount_to_mod_target(TFile* tf);
+
 
 // rebuild the VFS, i.e. re-mount everything. open files are not affected.
 // necessary after loose files or directories change, so that the VFS

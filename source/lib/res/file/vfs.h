@@ -288,6 +288,15 @@ extern LibError vfs_mount(const char* V_mount_point, const char* P_real_dir, uin
 // unmount a previously mounted item, and rebuild the VFS afterwards.
 extern LibError vfs_unmount(const char* name);
 
+// set current "mod write directory" to P_target_dir, which must
+// already have been mounted into the VFS.
+// all files opened for writing with the FILE_WRITE_TO_MOD flag set will
+// be written into the appropriate subdirectory of this mount point.
+//
+// this allows e.g. the editor to write files that are already
+// stored in archives, which are read-only.
+extern LibError vfs_mod_set_write_target(const char* P_target_dir);
+
 
 //
 // directory entry

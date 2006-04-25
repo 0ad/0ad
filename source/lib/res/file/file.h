@@ -269,9 +269,13 @@ enum FileFlags
 	// promising they will set atom_fn).
 	FILE_DONT_SET_FN  = 0x80,
 
-	// sum of all flags above. used when validating flag parameters and
-	// by zip.cpp because its flags live alongside these.
-	FILE_FLAG_ALL     = 0xFF
+	// (only relevant for VFS) file will be written into the
+	// appropriate subdirectory of the mount point established by
+	// vfs_mod_set_write_target. see documentation there.
+	FILE_WRITE_TO_MOD  = FILE_WRITE|0x100,
+
+	// sum of all flags above. used when validating flag parameters.
+	FILE_FLAG_ALL     = 0x1FF
 };
 
 

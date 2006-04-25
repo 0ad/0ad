@@ -113,6 +113,7 @@ extern const Mount* tfile_get_mount(const TFile* tf);
 extern uintptr_t tfile_get_memento(const TFile* tf);
 extern const char* tfile_get_atom_fn(const TFile* tf);
 
+extern void tfile_set_mount(TFile* tf, const Mount* m);
 extern void tree_update_file(TFile* tf, off_t size, time_t mtime);
 
 struct RealDir;

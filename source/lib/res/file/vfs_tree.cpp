@@ -702,6 +702,11 @@ const char* tfile_get_atom_fn(const TFile* tf)
 
 
 
+void tfile_set_mount(TFile* tf, const Mount* m)
+{
+	tf->m = m;
+}
+
 void tree_update_file(TFile* tf, off_t size, time_t mtime)
 {
 	tf->size  = size;

@@ -438,8 +438,9 @@ ERR(-100330, ERR_IO, "Error during IO")
 ERR(-100331, ERR_EOF, "Reading beyond end of file")
 // .. mount
 ERR(-100340, ERR_ALREADY_MOUNTED, "Directory (tree) already mounted")
-ERR(-100341, ERR_INVALID_MOUNT_TYPE, "Invalid mount type (memory corruption?)")
-ERR(-100342, ERR_ROOT_DIR_ALREADY_SET, "Attempting to set FS root dir more than once")
+ERR(-100341, ERR_NOT_MOUNTED, "Specified directory is not mounted")
+ERR(-100342, ERR_INVALID_MOUNT_TYPE, "Invalid mount type (memory corruption?)")
+ERR(-100343, ERR_ROOT_DIR_ALREADY_SET, "Attempting to set FS root dir more than once")
 // .. misc
 ERR(-100350, ERR_UNKNOWN_CMETHOD, "Unknown/unsupported compression method")
 ERR(-100351, ERR_IS_COMPRESSED, "Invalid operation for a compressed file")
