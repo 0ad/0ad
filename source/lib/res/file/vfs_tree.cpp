@@ -600,7 +600,7 @@ LibError tree_lookup(const char* path, TFile** pfile, uint flags)
 
 
 // rationale: see DirIterator definition in file.h.
-struct TreeDirIterator_
+struct TreeDirIterator
 {
 	TChildren::iterator it;
 
@@ -612,12 +612,12 @@ struct TreeDirIterator_
 	TDir* td;
 };
 
-cassert(sizeof(TreeDirIterator_) <= sizeof(TreeDirIterator));
+cassert(sizeof(TreeDirIterator) <= DIR_ITERATOR_OPAQUE_SIZE);
 
 
-LibError tree_dir_open(const char* path_slash, TreeDirIterator* d_)
+LibError tree_dir_open(const char* path_slash, DirIterator* di)
 {
-	TreeDirIterator_* d = (TreeDirIterator_*)d_;
+	TreeDirIterator* tdi = (TreeDirIterator*)di->opaque;
 
 	TDir* td;
 	CHECK_ERR(tree_lookup_dir(path_slash, &td));
@@ -631,21 +631,21 @@ LibError tree_dir_open(const char* path_slash, TreeDirIterator* d_)
 	// more overhead (we have hundreds of directories) and is unnecessary.
 	tree_lock();
 
-	d->it  = td->begin();
-	d->end = td->end();
-	d->td  = td;
+	tdi->it  = td->begin();
+	tdi->end = td->end();
+	tdi->td  = td;
 	return ERR_OK;
 }
 
 
-LibError tree_dir_next_ent(TreeDirIterator* d_, DirEnt* ent)
+LibError tree_dir_next_ent(DirIterator* di, DirEnt* ent)
 {
-	TreeDirIterator_* d = (TreeDirIterator_*)d_;
+	TreeDirIterator* tdi = (TreeDirIterator*)di->opaque;
 
-	if(d->it == d->end)
+	if(tdi->it == tdi->end)
 		return ERR_DIR_END;	// NOWARN
 
-	const TNode* node = *(d->it++);
+	const TNode* node = *(tdi->it++);
 	ent->name = node->name;
 
 	// set size and mtime fields depending on node type:
@@ -672,7 +672,7 @@ LibError tree_dir_next_ent(TreeDirIterator* d_, DirEnt* ent)
 }
 
 
-LibError tree_dir_close(TreeDirIterator* UNUSED(d))
+LibError tree_dir_close(DirIterator* UNUSED(d))
 {
 	tree_unlock();
 

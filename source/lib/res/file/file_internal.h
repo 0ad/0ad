@@ -63,6 +63,27 @@ const size_t FILE_BLOCK_SIZE = 32*KiB;
 extern LibError file_io_call_back(const void* block, size_t size,
 	FileIOCB cb, uintptr_t ctx, size_t& bytes_processed);
 
+
+// retrieve the next (order is unspecified) dir entry matching <filter>.
+// return 0 on success, ERR_DIR_END if no matching entry was found,
+// or a negative error code on failure.
+// filter values:
+// - 0: anything;
+// - "/": any subdirectory;
+// - "/|<pattern>": any subdirectory, or as below with <pattern>;
+// - <pattern>: any file whose name matches; ? and * wildcards are allowed.
+//
+// note that the directory entries are only scanned once; after the
+// end is reached (-> ERR_DIR_END returned), no further entries can
+// be retrieved, even if filter changes (which shouldn't happen - see impl).
+//
+// rationale: we do not sort directory entries alphabetically here.
+// most callers don't need it and the overhead is considerable
+// (we'd have to store all entries in a vector). it is left up to
+// higher-level code such as VfsUtil.
+extern LibError dir_filtered_next_ent(DirIterator* di, DirEnt* ent, const char* filter);
+
+
 // used by file.cpp and file_io.cpp
 struct PosixFile
 {

@@ -56,6 +56,7 @@ LibError file_open_vfs(const char* V_path, uint flags, TFile* tf,
 static const FileProvider_VTbl archive_vtbl =
 {
 	vtbl_magic,
+	0,0,0,	// not supported for archives ATM
 	afile_open_vfs, afile_close, afile_validate,
 	afile_io_issue, afile_io_has_completed, afile_io_wait, afile_io_discard, afile_io_validate,
 	afile_read,
@@ -65,10 +66,22 @@ static const FileProvider_VTbl archive_vtbl =
 static const FileProvider_VTbl file_vtbl =
 {
 	vtbl_magic,
+	dir_open, dir_next_ent, dir_close,
 	file_open_vfs, file_close, file_validate,
 	file_io_issue, file_io_has_completed, file_io_wait, file_io_discard, file_io_validate,
 	file_io,
 	file_map, file_unmap
+};
+
+// see FileProvider_VTbl decl for details on why this is so empty.
+static const FileProvider_VTbl tree_vtbl =
+{
+	vtbl_magic,
+	tree_dir_open, tree_dir_next_ent, tree_dir_close,
+	0, 0, 0,
+	0, 0, 0, 0, 0,
+	0,
+	0, 0
 };
 
 
@@ -91,6 +104,36 @@ static LibError vtbl_validate(const FileProvider_VTbl* vtbl)
 #define CHECK_VTBL(type) RETURN_ERR(vtbl_validate(type))
 
 
+//
+// directory entry enumeration
+//
+
+LibError xdir_open(const char* dir, DirIterator* di)
+{
+// HACK: it is unclear ATM how to set this properly. assume tree_dir_* is
+// the only user ATM.
+di->type = &tree_vtbl;
+	CHECK_VTBL(di->type);
+	return di->type->dir_open(dir, di);
+}
+
+LibError xdir_next_ent(DirIterator* di, DirEnt* ent)
+{
+	CHECK_VTBL(di->type);
+	return di->type->dir_next_ent(di, ent);
+}
+
+LibError xdir_close(DirIterator* di)
+{
+	CHECK_VTBL(di->type);
+	return di->type->dir_close(di);
+}
+
+
+//
+// file object
+//
+
 bool xfile_is_open(const File* f)
 {
 	// not currently in use
@@ -100,11 +143,6 @@ bool xfile_is_open(const File* f)
 	WARN_ERR(vtbl_validate(f->type));
 	return true;
 }
-
-
-//
-// file object
-//
 
 LibError xfile_open(const char* V_path, uint flags, TFile* tf, File* f)
 {
@@ -116,7 +154,7 @@ char c = mount_get_type(m);
 const FileProvider_VTbl* vtbl = (c == 'F')? &file_vtbl : &archive_vtbl;
 
 	CHECK_VTBL(vtbl);
-	RETURN_ERR(vtbl->open(V_path, flags, tf, f));
+	RETURN_ERR(vtbl->file_open(V_path, flags, tf, f));
 
 	// success
 	// note: don't assign these unless we succeed to avoid the
@@ -133,7 +171,7 @@ LibError xfile_close(File* f)
 	// note: this takes care of checking the vtbl.
 	if(!xfile_is_open(f))
 		return ERR_OK;
-	LibError ret = f->type->close(f);
+	LibError ret = f->type->file_close(f);
 	f->type = 0;
 	return ret;
 }
@@ -141,15 +179,15 @@ LibError xfile_close(File* f)
 LibError xfile_validate(const File* f)
 {
 	CHECK_VTBL(f->type);
-	return f->type->validate(f);
+	return f->type->file_validate(f);
 }
 
 
 //
-// async IO
+// IO
 //
 
-LibError xfile_io_validate(File* f, off_t ofs, size_t size, void* buf, FileIo* io)
+LibError xfile_io_issue(File* f, off_t ofs, size_t size, void* buf, FileIo* io)
 {
 	io->type = f->type;
 	CHECK_VTBL(io->type);
@@ -179,11 +217,6 @@ LibError xfile_io_validate(const FileIo* io)
 	CHECK_VTBL(io->type);
 	return io->type->io_validate(io);
 }
-
-
-//
-// sync IO
-//
 
 ssize_t xfile_io(File* f, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb, uintptr_t ctx)
 {

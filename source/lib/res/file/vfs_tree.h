@@ -91,15 +91,9 @@ extern LibError tree_lookup(const char* path, TFile** ptf, uint flags = 0);
 extern LibError tree_lookup_dir(const char* path, TDir** ptd, uint flags = 0);
 
 
-// documentation and rationale: see file.h's dir_next_ent interface
-struct TreeDirIterator
-{
-	char opaque[32];
-};
-
-extern LibError tree_dir_open(const char* path_slash, TreeDirIterator* d);
-extern LibError tree_dir_next_ent(TreeDirIterator* d, DirEnt* ent);
-extern LibError tree_dir_close(TreeDirIterator* d);
+extern LibError tree_dir_open(const char* path_slash, DirIterator* di);
+extern LibError tree_dir_next_ent(DirIterator* di, DirEnt* ent);
+extern LibError tree_dir_close(DirIterator* di);
 
 
 // given a file that is stored on disk and its VFS path,

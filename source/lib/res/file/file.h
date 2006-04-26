@@ -28,6 +28,9 @@
 
 extern LibError file_init();
 
+// used by vfs_redirector to call various file objects' methods.
+struct FileProvider_VTbl;
+
 
 //
 // path conversion functions (native <--> portable),
@@ -78,6 +81,8 @@ extern const char* file_get_random_name();
 // dir_next_ent
 //
 
+const size_t DIR_ITERATOR_OPAQUE_SIZE = 40;
+
 // layer on top of POSIX opendir/readdir/closedir that handles
 // portable -> native path conversion, ignores non-file/directory entries,
 // and additionally returns the file status (size and mtime).
@@ -94,7 +99,15 @@ extern const char* file_get_random_name();
 // instantiate this.
 struct DirIterator
 {
-	char opaque[PATH_MAX+32];
+	// safety check - used to verify correct calling of dir_filtered_next_ent
+	const char* filter;
+	// .. has filter been assigned? this flag is necessary because
+	//    there are no "invalid" filter values we can use.
+	uint filter_latched : 1;
+
+	const FileProvider_VTbl* type;
+
+	char opaque[DIR_ITERATOR_OPAQUE_SIZE];
 };
 
 class TFile;
@@ -164,8 +177,6 @@ typedef LibError (*FileCB)(const char* name, const struct stat* s, uintptr_t mem
 // if <cb> returns non-zero, abort immediately and return that; otherwise,
 // return first error encountered while listing files, or 0 on success.
 extern LibError file_enum(const char* dir, FileCB cb, uintptr_t user);
-
-struct FileProvider_VTbl;
 
 // chosen for semi-nice 48 byte total struct File size.
 // each implementation checks if this is enough.

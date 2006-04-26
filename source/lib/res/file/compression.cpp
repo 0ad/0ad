@@ -421,11 +421,12 @@ public:
 
 // allocator
 static const size_t MAX_COMPRESSOR_SIZE = sizeof(ZLibCompressor);
+typedef u8 CompressorMem[MAX_COMPRESSOR_SIZE];
 static SingleAllocator<u8[MAX_COMPRESSOR_SIZE]> compressor_allocator;
 
 uintptr_t comp_alloc(ContextType type, CompressionMethod method)
 {
-	void* c_mem = compressor_allocator.alloc();
+	CompressorMem* c_mem = compressor_allocator.alloc();
 	if(!c_mem)
 		return 0;
 	Compressor* c;
@@ -500,5 +501,5 @@ void comp_free(uintptr_t c_)
 	c->release();
 
 	c->~Compressor();
-	compressor_allocator.release(c);
+	compressor_allocator.release((CompressorMem*)c);
 }

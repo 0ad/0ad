@@ -92,14 +92,8 @@
 
 struct VDir
 {
-	TreeDirIterator it;
-	uint it_valid : 1;	// <it> will be closed iff == 1
-
-	// safety check
-	const char* filter;
-	// has filter been assigned? this flag is necessary because there are no
-	// "invalid" filter values we can use.
-	uint filter_latched : 1;
+	DirIterator di;
+	uint di_valid : 1;	// <di> will be closed iff == 1
 };
 
 H_TYPE_DEFINE(VDir);
@@ -110,12 +104,12 @@ static void VDir_init(VDir* UNUSED(vd), va_list UNUSED(args))
 
 static void VDir_dtor(VDir* vd)
 {
-	// note: TreeDirIterator has no way of checking if it's valid;
+	// note: DirIterator has no way of checking if it's valid;
 	// we must therefore only free it if reload() succeeded.
-	if(vd->it_valid)
+	if(vd->di_valid)
 	{
-		tree_dir_close(&vd->it);
-		vd->it_valid = 0;
+		xdir_close(&vd->di);
+		vd->di_valid = 0;
 	}
 }
 
@@ -126,23 +120,23 @@ static LibError VDir_reload(VDir* vd, const char* path, Handle UNUSED(hvd))
 	char V_path_slash[PATH_MAX];
 	RETURN_ERR(path_append(V_path_slash, path, ""));
 
-	RETURN_ERR(tree_dir_open(V_path_slash, &vd->it));
-	vd->it_valid = 1;
+	RETURN_ERR(xdir_open(V_path_slash, &vd->di));
+	vd->di_valid = 1;
 	return ERR_OK;
 }
 
 static LibError VDir_validate(const VDir* vd)
 {
-	// note: <it> is opaque and cannot be validated.
-	if(vd->filter && !isprint(vd->filter[0]))
+	// note: <di> is mostly opaque and cannot be validated.
+	if(vd->di.filter && !isprint(vd->di.filter[0]))
 		WARN_RETURN(ERR_1);
 	return ERR_OK;
 }
 
-static LibError VDir_to_string(const VDir* d, char* buf)
+static LibError VDir_to_string(const VDir* vd, char* buf)
 {
-	const char* filter = d->filter;
-	if(!d->filter_latched)
+	const char* filter = vd->di.filter;
+	if(!vd->di.filter_latched)
 		filter = "?";
 	if(!filter)
 		filter = "*";
@@ -153,11 +147,11 @@ static LibError VDir_to_string(const VDir* d, char* buf)
 
 // open a directory for reading its entries via vfs_next_dirent.
 // <v_dir> need not end in '/'; we add it if not present.
-Handle vfs_dir_open(const char* v_dir)
+Handle vfs_dir_open(const char* V_dir)
 {
 	// must disallow handle caching because this object is not
 	// copy-equivalent (since the iterator is advanced by each user).
-	return h_alloc(H_VDir, v_dir, RES_NO_CACHE);
+	return h_alloc(H_VDir, V_dir, RES_NO_CACHE);
 }
 
 
@@ -188,135 +182,9 @@ LibError vfs_dir_close(Handle& hd)
 LibError vfs_dir_next_ent(const Handle hd, DirEnt* ent, const char* filter)
 {
 	H_DEREF(hd, VDir, vd);
-
-	// warn if scanning the directory twice with different filters
-	// (this used to work with dir/file because they were stored separately).
-	// it is imaginable that someone will want to change it, but until
-	// there's a good reason, leave this check in. note: only comparing
-	// pointers isn't 100% certain, but it's safe enough and easy.
-	if(!vd->filter_latched)
-	{
-		vd->filter = filter;
-		vd->filter_latched = 1;
-	}
-	if(vd->filter != filter)
-		debug_warn("filter has changed for this directory. are you scanning it twice?");
-
-	bool want_dir = true;
-	if(filter)
-	{
-		// directory
-		if(filter[0] == '/')
-		{
-			// .. and also files
-			if(filter[1] == '|')
-				filter += 2;
-		}
-		// file only
-		else
-			want_dir = false;
-	}
-
-	// loop until ent matches what is requested, or end of directory.
-	for(;;)
-	{
-		RETURN_ERR(tree_dir_next_ent(&vd->it, ent));
-
-		if(DIRENT_IS_DIR(ent))
-		{
-			if(want_dir)
-				break;
-		}
-		else
-		{
-			// (note: filter = 0 matches anything)
-			if(match_wildcard(ent->name, filter))
-				break;
-		}
-	}
-
-	return ERR_OK;
+	return dir_filtered_next_ent(&vd->di, ent, filter);
 }
 
-
-// call <cb> for each entry matching <user_filter> (see vfs_next_dirent) in
-// directory <path>; if flags & VFS_DIR_RECURSIVE, entries in
-// subdirectories are also returned.
-//
-// note: EnumDirEntsCB path and ent are only valid during the callback.
-LibError vfs_dir_enum(const char* start_path, uint flags, const char* user_filter,
-	DirEnumCB cb, void* context)
-{
-	debug_assert((flags & ~(VFS_DIR_RECURSIVE)) == 0);
-	const bool recursive = (flags & VFS_DIR_RECURSIVE) != 0;
-
-	char filter_buf[PATH_MAX];
-	const char* filter = user_filter;
-	bool user_filter_wants_dirs = true;
-	if(user_filter)
-	{
-		if(user_filter[0] != '/')
-			user_filter_wants_dirs = false;
-
-		// we need subdirectories and the caller hasn't already requested them
-		if(recursive && !user_filter_wants_dirs)
-		{
-			snprintf(filter_buf, sizeof(filter_buf), "/|%s", user_filter);
-			filter = filter_buf;
-		}
-	}
-
-
-	// note: FIFO queue instead of recursion is much more efficient
-	// (less stack usage; avoids seeks by reading all entries in a
-	// directory consecutively)
-
-	std::queue<const char*> dir_queue;
-	dir_queue.push(file_make_unique_fn_copy(start_path));
-
-	// for each directory:
-	do
-	{
-		// get current directory path from queue
-		// note: can't refer to the queue contents - those are invalidated
-		// as soon as a directory is pushed onto it.
-		PathPackage pp;
-		(void)path_package_set_dir(&pp, dir_queue.front());
-		dir_queue.pop();
-
-		Handle hdir = vfs_dir_open(pp.path);
-		if(hdir <= 0)
-		{
-			debug_warn("vfs_open_dir failed");
-			continue;
-		}
-
-		// for each entry (file, subdir) in directory:
-		DirEnt ent;
-		while(vfs_dir_next_ent(hdir, &ent, filter) == 0)
-		{
-			// build complete path (DirEnt only stores entry name)
-			(void)path_package_append_file(&pp, ent.name);
-			const char* atom_path = file_make_unique_fn_copy(pp.path);
-
-			if(DIRENT_IS_DIR(&ent))
-			{
-				if(recursive)
-					dir_queue.push(atom_path);
-
-				if(user_filter_wants_dirs)
-					cb(atom_path, &ent, context);
-			}
-			else
-				cb(atom_path, &ent, context);
-		}
-
-		vfs_dir_close(hdir);
-	}
-	while(!dir_queue.empty());
-
-	return ERR_OK;
-}
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -643,7 +511,7 @@ static LibError VIo_reload(VIo* vio, const char* UNUSED(fn), Handle UNUSED(h))
 	off_t ofs = vf->ofs;
 	vf->ofs += (off_t)size;
 
-	return xfile_io_validate(&vf->f, ofs, size, buf, &vio->io);
+	return xfile_io_issue(&vf->f, ofs, size, buf, &vio->io);
 }
 
 static LibError VIo_validate(const VIo* vio)

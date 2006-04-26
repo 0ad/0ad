@@ -88,6 +88,154 @@ LibError file_enum(const char* P_path, const FileCB cb, const uintptr_t user)
 
 
 
+// retrieve the next (order is unspecified) dir entry matching <filter>.
+// return 0 on success, ERR_DIR_END if no matching entry was found,
+// or a negative error code on failure.
+// filter values:
+// - 0: anything;
+// - "/": any subdirectory;
+// - "/|<pattern>": any subdirectory, or as below with <pattern>;
+// - <pattern>: any file whose name matches; ? and * wildcards are allowed.
+//
+// note that the directory entries are only scanned once; after the
+// end is reached (-> ERR_DIR_END returned), no further entries can
+// be retrieved, even if filter changes (which shouldn't happen - see impl).
+//
+// rationale: we do not sort directory entries alphabetically here.
+// most callers don't need it and the overhead is considerable
+// (we'd have to store all entries in a vector). it is left up to
+// higher-level code such as VfsUtil.
+LibError dir_filtered_next_ent(DirIterator* di, DirEnt* ent, const char* filter)
+{
+	// warn if scanning the directory twice with different filters
+	// (this used to work with dir/file because they were stored separately).
+	// it is imaginable that someone will want to change it, but until
+	// there's a good reason, leave this check in. note: only comparing
+	// pointers isn't 100% certain, but it's safe enough and easy.
+	if(!di->filter_latched)
+	{
+		di->filter = filter;
+		di->filter_latched = 1;
+	}
+	if(di->filter != filter)
+		debug_warn("filter has changed for this directory. are you scanning it twice?");
+
+	bool want_dir = true;
+	if(filter)
+	{
+		// directory
+		if(filter[0] == '/')
+		{
+			// .. and also files
+			if(filter[1] == '|')
+				filter += 2;
+		}
+		// file only
+		else
+			want_dir = false;
+	}
+
+	// loop until ent matches what is requested, or end of directory.
+	for(;;)
+	{
+		RETURN_ERR(xdir_next_ent(di, ent));
+
+		if(DIRENT_IS_DIR(ent))
+		{
+			if(want_dir)
+				break;
+		}
+		else
+		{
+			// (note: filter = 0 matches anything)
+			if(match_wildcard(ent->name, filter))
+				break;
+		}
+	}
+
+	return ERR_OK;
+}
+
+
+// call <cb> for each entry matching <user_filter> (see vfs_next_dirent) in
+// directory <path>; if flags & VFS_DIR_RECURSIVE, entries in
+// subdirectories are also returned.
+//
+// note: EnumDirEntsCB path and ent are only valid during the callback.
+LibError vfs_dir_enum(const char* start_path, uint flags, const char* user_filter,
+	DirEnumCB cb, void* context)
+{
+	debug_assert((flags & ~(VFS_DIR_RECURSIVE)) == 0);
+	const bool recursive = (flags & VFS_DIR_RECURSIVE) != 0;
+
+	char filter_buf[PATH_MAX];
+	const char* filter = user_filter;
+	bool user_filter_wants_dirs = true;
+	if(user_filter)
+	{
+		if(user_filter[0] != '/')
+			user_filter_wants_dirs = false;
+
+		// we need subdirectories and the caller hasn't already requested them
+		if(recursive && !user_filter_wants_dirs)
+		{
+			snprintf(filter_buf, sizeof(filter_buf), "/|%s", user_filter);
+			filter = filter_buf;
+		}
+	}
+
+
+	// note: FIFO queue instead of recursion is much more efficient
+	// (less stack usage; avoids seeks by reading all entries in a
+	// directory consecutively)
+
+	std::queue<const char*> dir_queue;
+	dir_queue.push(file_make_unique_fn_copy(start_path));
+
+	// for each directory:
+	do
+	{
+		// get current directory path from queue
+		// note: can't refer to the queue contents - those are invalidated
+		// as soon as a directory is pushed onto it.
+		PathPackage pp;
+		(void)path_package_set_dir(&pp, dir_queue.front());
+		dir_queue.pop();
+
+		Handle hdir = vfs_dir_open(pp.path);
+		if(hdir <= 0)
+		{
+			debug_warn("vfs_open_dir failed");
+			continue;
+		}
+
+		// for each entry (file, subdir) in directory:
+		DirEnt ent;
+		while(vfs_dir_next_ent(hdir, &ent, filter) == 0)
+		{
+			// build complete path (DirEnt only stores entry name)
+			(void)path_package_append_file(&pp, ent.name);
+			const char* atom_path = file_make_unique_fn_copy(pp.path);
+
+			if(DIRENT_IS_DIR(&ent))
+			{
+				if(recursive)
+					dir_queue.push(atom_path);
+
+				if(user_filter_wants_dirs)
+					cb(atom_path, &ent, context);
+			}
+			else
+				cb(atom_path, &ent, context);
+		}
+
+		vfs_dir_close(hdir);
+	}
+	while(!dir_queue.empty());
+
+	return ERR_OK;
+}
+
 
 // fill V_next_fn (which must be big enough for PATH_MAX chars) with
 // the next numbered filename according to the pattern defined by V_fn_fmt.

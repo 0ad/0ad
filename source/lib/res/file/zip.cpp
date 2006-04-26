@@ -600,7 +600,7 @@ LibError zip_archive_create(const char* zip_filename, ZipArchive** pza)
 	RETURN_ERR(file_open(zip_filename, FILE_WRITE|FILE_NO_AIO, &za_copy.f));
 	RETURN_ERR(pool_create(&za_copy.cdfhs, 10*MiB, 0));
 
-	ZipArchive* za = (ZipArchive*)za_mgr.alloc();
+	ZipArchive* za = za_mgr.alloc();
 	if(!za)
 		WARN_RETURN(ERR_NO_MEM);
 	*za = za_copy;

@@ -59,7 +59,7 @@
 // and additionally returns the file status (size and mtime).
 
 // rationale: see DirIterator definition in header.
-struct DirIterator_
+struct PosixDirIterator
 {
 	DIR* os_dir;
 
@@ -68,18 +68,23 @@ struct DirIterator_
 	// we latch dir_open's path and append entry name every dir_next_ent call.
 	// this is also the storage to which DirEnt.name points!
 	// PathPackage avoids repeated memory allocs and strlen() overhead.
-	PathPackage pp;
+	//
+	// it can't be stored here directly because then the struct would
+	// no longer fit in HDATA; we'll allocate it separately.
+	PathPackage* pp;
 };
 
-cassert(sizeof(DirIterator_) <= sizeof(DirIterator));
+cassert(sizeof(PosixDirIterator) <= DIR_ITERATOR_OPAQUE_SIZE);
+
+static SingleAllocator<PathPackage> pp_allocator;
 
 
 // prepare to iterate (once) over entries in the given directory.
 // if ERR_OK is returned, <d> is ready for subsequent dir_next_ent calls and
 // must be freed via dir_close.
-LibError dir_open(const char* P_path, DirIterator* d_)
+LibError dir_open(const char* P_path, DirIterator* di)
 {
-	DirIterator_* d = (DirIterator_*)d_;
+	PosixDirIterator* pdi = (PosixDirIterator*)di->opaque;
 
 	char n_path[PATH_MAX];
 	// HACK: allow calling with a full (absolute) native path.
@@ -95,11 +100,16 @@ LibError dir_open(const char* P_path, DirIterator* d_)
 		RETURN_ERR(file_make_full_native_path(P_path, n_path));
 	}
 
-	d->os_dir = opendir(n_path);
-	if(!d->os_dir)
+	pdi->pp = pp_allocator.alloc();
+	if(!pdi->pp)
+		WARN_RETURN(ERR_NO_MEM);
+
+	errno = 0;
+	pdi->os_dir = opendir(n_path);
+	if(!pdi->os_dir)
 		return LibError_from_errno();
 
-	RETURN_ERR(path_package_set_dir(&d->pp, n_path));
+	(void)path_package_set_dir(pdi->pp, n_path);
 	return ERR_OK;
 }
 
@@ -107,13 +117,13 @@ LibError dir_open(const char* P_path, DirIterator* d_)
 // return ERR_DIR_END if all entries have already been returned once,
 // another negative error code, or ERR_OK on success, in which case <ent>
 // describes the next (order is unspecified) directory entry.
-LibError dir_next_ent(DirIterator* d_, DirEnt* ent)
+LibError dir_next_ent(DirIterator* di, DirEnt* ent)
 {
-	DirIterator_* d = (DirIterator_*)d_;
+	PosixDirIterator* pdi = (PosixDirIterator*)di->opaque;
 
 get_another_entry:
 	errno = 0;
-	struct dirent* os_ent = readdir(d->os_dir);
+	struct dirent* os_ent = readdir(pdi->os_dir);
 	if(!os_ent)
 	{
 		// no error, just no more entries to return
@@ -124,21 +134,21 @@ get_another_entry:
 
 	// copy os_ent.name[]; we need it for stat() #if !OS_WIN and
 	// return it as ent.name (since os_ent.name[] is volatile).
-	path_package_append_file(&d->pp, os_ent->d_name);
-	const char* name = d->pp.end;
+	path_package_append_file(pdi->pp, os_ent->d_name);
+	const char* name = pdi->pp->end;
 
 	// get file information (mode, size, mtime)
 	struct stat s;
 #if OS_WIN
 	// .. wposix readdir has enough information to return dirent
 	//    status directly (much faster than calling stat).
-	CHECK_ERR(readdir_stat_np(d->os_dir, &s));
+	CHECK_ERR(readdir_stat_np(pdi->os_dir, &s));
 #else
 	// .. call regular stat().
 	//    we need the full pathname for this. don't use path_append because
 	//    it would unnecessarily call strlen.
 
-	CHECK_ERR(stat(d->pp.path, &s));
+	CHECK_ERR(stat(pdi->pp.path, &s));
 #endif
 
 	// skip "undesirable" entries that POSIX readdir returns:
@@ -163,10 +173,14 @@ get_another_entry:
 
 // indicate the directory iterator is no longer needed; all resources it
 // held are freed.
-LibError dir_close(DirIterator* d_)
+LibError dir_close(DirIterator* di)
 {
-	DirIterator_* d = (DirIterator_*)d_;
-	WARN_ERR(closedir(d->os_dir));
+	PosixDirIterator* pdi = (PosixDirIterator*)di->opaque;
+	pp_allocator.release(pdi->pp);
+
+	errno = 0;
+	if(closedir(pdi->os_dir) < 0)
+		return LibError_from_errno();
 	return ERR_OK;
 }
 

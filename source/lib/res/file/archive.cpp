@@ -413,7 +413,7 @@ LibError afile_io_issue(File* f, off_t user_ofs, size_t max_output_size, void* u
 	H_DEREF(af->ha, Archive, a);
 
 	ArchiveFileIo* aio = (ArchiveFileIo*)io->opaque;
-	aio->io = (FileIo*)io_allocator.alloc();
+	aio->io = io_allocator.alloc();
 	if(!aio->io)
 		WARN_RETURN(ERR_NO_MEM);
 

@@ -293,12 +293,12 @@ public:
 		is_in_use = 0;
 	}
 
-	void* alloc()
+	T* alloc()
 	{
-		return single_calloc(&storage, &is_in_use, sizeof(storage));
+		return (T*)single_calloc(&storage, &is_in_use, sizeof(storage));
 	}
 
-	void release(void* p)
+	void release(T* p)
 	{
 		single_free(&storage, &is_in_use, p);
 	}
