@@ -6,6 +6,7 @@
 #include "lib/timer.h"
 #include "lib/res/sound/snd_mgr.h"
 #include "lib/res/file/trace.h"
+#include "lib/res/file/vfs.h"
 #include "lib/res/file/vfs_optimizer.h"
 #include "Config.h"
 
@@ -145,6 +146,24 @@ static void ParseCommandLineArgs(int argc, char* argv[])
 		case 'l':
 			if(strncmp(name, "listfiles", 9) == 0)
 				trace_enable(true);
+			break;
+		case 'm':
+			if(strncmp(name, "mod=", 4) == 0)
+			{
+				const char* mod_name = name+4;
+				char path[PATH_MAX];
+				snprintf(path, ARRAY_SIZE(path), "mods/%s", mod_name);
+				// note: default is 0. we should set this higher in case the
+				// mod file mtimes are actually older than the official
+				// version (*could* happen), otherwise the mod might not
+				// actually override as intended.
+				//
+				// HACK: since this is the only place where mods are added,
+				// we can get away with just setting it to 1.
+				// otherwise, add a static counter.
+				uint pri = 1;
+				(void)vfs_mount("", path, VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES|VFS_MOUNT_WATCH, pri);
+			}
 			break;
 		case 'n':
 			if(strncmp(name, "novbo", 5) == 0)
