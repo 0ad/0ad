@@ -289,7 +289,11 @@ static LibError VFile_reload(VFile* vf, const char* V_path, Handle)
 		return err;
 	}
 
-	if(flags & FILE_WRITE_TO_MOD)
+	// careful! FILE_WRITE_TO_MOD consists of 2 bits; they must both be
+	// set (one of them is FILE_WRITE, which can be set independently).
+	// this is a bit ugly but better than requiring users to write
+	// FILE_WRITE|FILE_WRITE_TO_MOD.
+	if((flags & FILE_WRITE_TO_MOD) == FILE_WRITE_TO_MOD)
 		RETURN_ERR(set_mount_to_mod_target(tf));
 
 	RETURN_ERR(xfile_open(V_path, flags, tf, &vf->f));
