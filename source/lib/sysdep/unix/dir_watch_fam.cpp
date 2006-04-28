@@ -9,7 +9,11 @@
 #include <fam.h>
 
 static FAMConnection fc;
-static bool initialized = false;
+
+// trool; -1 = init failed and all operations will be aborted silently.
+// this is so that each dir_* call doesn't complain if the system's
+// FAM is broken or unavailable.
+static int initialized = 0;
 
 static std::map<intptr_t, std::string> dirs;
 
@@ -21,11 +25,23 @@ static void fam_deinit()
 
 LibError dir_add_watch(const char* const n_full_path, intptr_t* const watch)
 {
+	// init already failed; don't try again or complain
+	if(initialized == -1)
+		return ERR_FAIL;	// NOWARN
+
 	if(!initialized)
 	{
-		CHECK_ERR(FAMOpen2(&fc, "lib_res"));
-		initialized = true;
-		atexit(fam_deinit);
+		// success
+		if(FAMOpen2(&fc, "lib_res") == 0)
+		{
+			initialized = 1;
+			atexit(fam_deinit);
+		}
+		else
+		{
+			initialized = -1;
+			DISPLAY_ERROR(L"Error initializing FAM; hotloading will be disabled");
+		}
 	}
 
 	FAMRequest req;
@@ -44,6 +60,8 @@ LibError dir_add_watch(const char* const n_full_path, intptr_t* const watch)
 
 LibError dir_cancel_watch(const intptr_t watch)
 {
+	if(initialized == -1)
+		return ERR_FAIL;	// NOWARN
 	if(!initialized)
 		WARN_RETURN(ERR_LOGIC);
 
@@ -55,6 +73,8 @@ LibError dir_cancel_watch(const intptr_t watch)
 
 int dir_get_changed_file(char* fn)
 {
+	if(initialized == -1)
+		return ERR_FAIL;	// NOWARN
 	if(!initialized)
 		WARN_RETURN(ERR_LOGIC);
 
@@ -74,5 +94,6 @@ int dir_get_changed_file(char* fn)
 		}
 	}
 
+	// just nothing new; try again later
 	return ERR_AGAIN;	// NOWARN
 }
