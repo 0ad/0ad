@@ -2,6 +2,7 @@
 
 #include "file_internal.h"
 
+#include <queue>
 
 static bool dirent_less(const DirEnt& d1, const DirEnt& d2)
 {

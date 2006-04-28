@@ -8,6 +8,7 @@ struct SPropPoint;
 
 #include <map>
 #include <vector>
+#include <set>
 #include "CStr.h"
 #include "Overlay.h"
 

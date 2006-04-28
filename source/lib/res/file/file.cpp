@@ -148,7 +148,7 @@ get_another_entry:
 	//    we need the full pathname for this. don't use path_append because
 	//    it would unnecessarily call strlen.
 
-	CHECK_ERR(stat(pdi->pp.path, &s));
+	CHECK_ERR(stat(pdi->pp->path, &s));
 #endif
 
 	// skip "undesirable" entries that POSIX readdir returns:

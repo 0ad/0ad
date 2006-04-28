@@ -19,6 +19,7 @@
 #define BASEENT_COLLECTION_INCLUDED
 
 #include <vector>
+#include <map>
 #include "CStr.h"
 #include "Singleton.h"
 #include "ObjectEntry.h"

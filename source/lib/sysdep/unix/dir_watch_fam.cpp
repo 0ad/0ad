@@ -41,6 +41,7 @@ LibError dir_add_watch(const char* const n_full_path, intptr_t* const watch)
 		{
 			initialized = -1;
 			DISPLAY_ERROR(L"Error initializing FAM; hotloading will be disabled");
+			return ERR_FAIL;	// NOWARN
 		}
 	}
 
