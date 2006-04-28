@@ -447,7 +447,7 @@ static LibError populate_dir(TDir* td, const char* P_path, const Mount* m,
 	LibError err;
 
 	RealDir* rd = tree_get_real_dir(td);
-	WARN_ERR(mount_attach_real_dir(rd, P_path, m, flags));
+	RETURN_ERR(mount_attach_real_dir(rd, P_path, m, flags));
 
 	DirIterator d;
 	RETURN_ERR(dir_open(P_path, &d));
@@ -823,9 +823,12 @@ LibError mount_attach_real_dir(RealDir* rd, const char* P_path, const Mount* m, 
 #ifndef NO_DIR_WATCH
 	if(flags & VFS_MOUNT_WATCH)
 	{
+		// 'watch' this directory for changes to support hotloading.
+		// note: do not cause this function to return an error if
+		// something goes wrong - this step is basically optional.
 		char N_path[PATH_MAX];
-		RETURN_ERR(file_make_full_native_path(P_path, N_path));
-		RETURN_ERR(dir_add_watch(N_path, &rd->watch));
+		if(file_make_full_native_path(P_path, N_path) == ERR_OK)
+			(void)dir_add_watch(N_path, &rd->watch);
 	}
 #endif
 
