@@ -109,6 +109,17 @@ function setResources (resourceName, resourceQty)
 
 // ====================================================================
 
+function getResources (resourceName)
+{
+	// Generic function to get the value of a resource in the player's pool.
+
+	// Ensure resource name is title-case.
+	resourceName = toTitleCase (resourceName);
+
+	return parseInt(localPlayer.resource.valueOf()[resourceName]);
+}
+// ====================================================================
+
 function giveResources (resourceName, resourceQty)
 {
 	// Generic function to add resources to the player's Pool.

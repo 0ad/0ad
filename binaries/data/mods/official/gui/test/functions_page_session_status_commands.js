@@ -430,6 +430,8 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 								switch (tab)
 								{
 									case "train":
+										// TODO: Remove this item from the production queue if right-clicked.
+										issueCommand(selection, NMT_Produce, PRODUCTION_TRAIN, ""+(Crd[getCrd (this.name, true)].entity));
 									case "research":
 										// Add this item to the production queue if left-clicked.
 										// Remove this item from the production queue if right-clicked.

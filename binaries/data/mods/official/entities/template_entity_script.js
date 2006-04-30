@@ -22,6 +22,9 @@ const ACTION_HEAL	= 3;
 const ACTION_ATTACK_RANGED = 4;
 const ACTION_BUILD = 5;
 
+const PRODUCTION_TRAIN = 1;
+const PRODUCTION_RESEARCH = 2;
+
 // ====================================================================
 
 function entityInit()
@@ -539,11 +542,16 @@ function performBuild( evt )
 	
 	if( bp.curr >= bp.max )
 	{
+		// We've finished building this object; convert the foundation to a building
 		if( t.building != "" )	// Might be false if another unit finished building the thing during our last anim cycle
 		{
 			t.template = getEntityTemplate( t.building );
 			t.building = "";
+			
 			t.attachAuras();
+			
+			if (t.traits.population && t.traits.population.add)
+				getGUIGlobal().giveResources ("Housing", t.traits.population.add);
 		}
 		evt.preventDefault();	// Stop performing this action
 	}
@@ -929,18 +937,113 @@ function entityEventPrepareOrder( evt )
 function entityStartProduction( evt )
 {
 	console.write("StartProduction: " + evt.productionType + " " + evt.name);
-	// Set the amount of time it will take to complete production of the production object.
-	evt.time = getTemplate(evt.name).traits.creation.time;
-}
+	
+	if(evt.productionType == PRODUCTION_TRAIN) 
+	{
+		var template = getEntityTemplate( evt.name );
+		var result = entityCheckQueueReq( this, template );	
 
-function entityFinishProduction( evt )
-{
-	console.write("FinishProduction: " + evt.productionType + " " + evt.name);
+		if (result == true) // If the entry meets requirements to be added to the queue (eg sufficient resources) 
+		{
+			// Cycle through all costs of this entry.
+			var pool = template.traits.creation.resource;
+			for ( resource in pool )
+			{
+				switch ( getGUIGlobal().toTitleCase(resource.toString()) )
+				{
+					case "Population":
+					case "Housing":
+					break;
+					default:
+						// Deduct the given quantity of resources.
+						getGUIGlobal().deductResources (resource.toString(), parseInt(pool[resource]));
+
+						console.write ("Spent " + pool[resource] + " " + resource + " to purchase " + 
+							template.traits.id.generic);
+					break;
+				}
+			}
+	
+			// Set the amount of time it will take to complete production of the production object.
+			evt.time = getEntityTemplate(evt.name).traits.creation.time;
+		}
+		else
+		{	
+			// If not, output the error message.
+			console.write(result);
+			evt.preventDefault();
+		}
+	}
+	else
+	{
+		evt.preventDefault();
+	}
 }
 
 function entityCancelProduction( evt )
 {
 	console.write("CancelProduction: " + evt.productionType + " " + evt.name);
+	
+	if(evt.productionType == PRODUCTION_TRAIN) 
+	{
+		// Give back all the resources spent on this entry.
+		var template = getEntityTemplate( evt.name );
+		var pool = template.traits.creation.resource;
+		for ( resource in pool )
+		{
+			switch ( getGUIGlobal().toTitleCase(resource.toString()) )
+			{
+				case "Population":
+				case "Housing":
+				break;
+				default:
+					// Deduct the given quantity of resources.
+					getGUIGlobal().addResources (resource.toString(), parseInt(pool[resource]));
+
+					console.write ("Got back " + pool[resource] + " " + resource + " from cancelling " + 
+						template.traits.id.generic);
+				break;
+			}
+		}
+	}
+}
+
+function entityFinishProduction( evt )
+{
+	console.write("FinishProduction: " + evt.productionType + " " + evt.name);
+	
+	if(evt.productionType == PRODUCTION_TRAIN) 
+	{
+		var template =  getEntityTemplate(evt.name);
+	
+		// Code to find a free space around an object is tedious and slow, so 
+		// I wrote it in C. Takes the template object so it can determine how
+		// much space it needs to leave.
+		var position = this.getSpawnPoint( template );
+		
+		// The above function returns null if it couldn't find a large enough space.
+		if( !position )
+		{
+			console.write( "Couldn't train unit - not enough space" );
+			// Oh well. The player's just lost all the resources and time they put into
+			// construction - serves them right for not paying attention to the land
+			// around their barracks, doesn't it?
+		}
+		else
+		{
+			var created = new Entity( template, position );
+		
+			// Above shouldn't ever fail, but just in case...
+			if( created )
+			{
+				console.write( "Created: ", template.tag );
+		
+				// Entities start under Gaia control - make the controller
+				// the same as our controller
+				created.player = this.player;
+			}
+		}		
+	}
 }
 
 // ====================================================================
@@ -1085,31 +1188,41 @@ function entityCheckQueueReq( entity, template )
 	// A return value of 0 equals success -- entry meets requirements for production. 
 	
 	// Cycle through all resources that this item costs, and check the player can afford the cost.
-	resources = template.traits.creation.resource;
+	var resources = template.traits.creation.resource;
 	for( resource in resources )
 	{
 		switch( getGUIGlobal().toTitleCase(resource.toString()) )
 		{
 			case "Population":
-				// If the item costs more of this resource type than we have,
-				if (template.traits.population.rem > (localPlayer.resource["Housing"]-localPlayer.resource[resource]))
-				{
-					// Return an error.
-					return ("Insufficient Housing; " + (resources[resource]-localPlayer.resource["Housing"]-localPlayer.resource.valueOf()[resource].toString()) + " required."); 
-				}
-			break;
 			case "Housing": // Ignore housing. It's handled in combination with population.
 			break
 			default:
 				// If the item costs more of this resource type than we have,
-				if (resources[resource] > localPlayer.resource[resource])
+				var cur = getGUIGlobal().getResources(resource);
+				var req = parseInt(resources[resource]);
+				if (req > cur)
 				{
 					// Return an error.
-					return ("Insufficient " + resource + "; " + (localPlayer.resource[resource]-resources[resource])*-1 + " required."); 
+					return ("Insufficient " + resource + "; " + (req-cur) + " more required."); 
 				}
 				else
-					console.write("Player has at least " + resources[resource] + " " + resource + ".");
+					console.write("Player has at least " + req + " " + resource + ".");
 			break;
+		}
+	}
+	
+	// Check if we have enough population space for the entity
+	
+	if(template.traits.population && template.traits.population.rem) 
+	{
+		var req = parseInt(template.traits.population.rem);
+		var space = getGUIGlobal().getResources("Housing") - getGUIGlobal().getResources("Population");
+	
+		// If the item costs more of this resource type than we have,
+		if (req > space)
+		{
+			// Return an error.
+			return ("Insufficient Housing; " + (req - space) + " more required."); 
 		}
 	}
 
