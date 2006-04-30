@@ -1156,10 +1156,13 @@ LibError file_cache_add(FileIOBuf buf, size_t size, const char* atom_fn,
 	if(file_flags & FILE_CACHED_AT_HIGHER_LEVEL)
 		return INFO_SKIPPED;
 
+	// refuse to cache 0-length files (it would have no benefit and
+	// causes problems due to divide-by-0).
+	if(size == 0)
+		return INFO_SKIPPED;
+
 	// assign cost
 	uint cost = 1;
-	if(!size)
-		cost = 0;
 
 	ExactBufOracle::BufAndSize bas = exact_buf_oracle.get(buf, size);
 	FileIOBuf exact_buf = bas.first; size_t exact_size = bas.second;

@@ -213,61 +213,6 @@ typedef std::vector<Connection> Connections;
 // the main culprit is simulating file_cache to see if an IO would result.
 class ConnectionBuilder
 {
-	// put all entries in one trace file: easier to handle; obviates FS enum code
-	// rationale: don't go through trace in order; instead, process most recent
-	// run first, to give more weight to it (TSP code should go with first entry
-	// when #occurrences are equal)
-	struct Run
-	{
-		const TraceEntry* first;
-		uint count;
-
-		// note: up to caller to initialize count (that's done when
-		// starting the next run
-		Run(const TraceEntry* first_) : first(first_) {}
-	};
-
-	// note: passing i and comparing timestamp with previous timestamp
-	// avoids having to keep an extra local cur_time variable.
-	bool is_start_of_run(uint i, const TraceEntry* ent) const
-	{
-		// first item is always start of a run (protects [-1] below)
-		if(i == 0)
-			return true;
-
-		// timestamp started over from 0 (e.g. 29, 30, 1) -> start of new run.
-		if(ent->timestamp < ent[-1].timestamp)
-			return true;
-
-		return false;
-	}
-
-	typedef std::vector<Run> Runs;
-
-	void split_trace_into_runs(const Trace* t, Runs& runs)
-	{
-		uint cur_run_length = 0;
-		const TraceEntry* cur_entry = t->ents;
-		for(uint i = 0; i < t->num_ents; i++)
-		{
-			cur_run_length++;
-			if(is_start_of_run(i, cur_entry))
-			{
-				// not first time: mark previous run as complete
-				if(!runs.empty())
-					runs.back().count = cur_run_length;
-				cur_run_length = 0;
-
-				runs.push_back(Run(cur_entry));
-			}
-			cur_entry++;
-		}
-		// set the last run's length
-		if(!runs.empty())
-			runs.back().count = cur_run_length;
-	}
-
-
 	// functor: on every call except the first, adds a connection between
 	// the previous file (remembered here) and the current file.
 	// if the connection already exists, its occurrence count is incremented.
@@ -318,7 +263,7 @@ class ConnectionBuilder
 		}
 	};
 
-	void add_connections_from_runs(const Runs& runs, Connections& connections)
+	void add_connections_from_runs(const Trace& t, Connections& connections)
 	{
 		file_cache_reset();
 
@@ -332,12 +277,12 @@ class ConnectionBuilder
 		// files that are equally strongly 'connected' are ordered
 		// according to position in file_nodes. that means files from
 		// more recent traces tend to go first, which is good.)
-		for(Runs::const_reverse_iterator it = runs.rbegin(); it != runs.rend(); ++it)
+		for(size_t r = 0; r < t.num_runs; r++)
 		{
-			const Run& run = *it;
-			for(uint i = 0; i < run.count; i++)
+			const TraceRun& run = t.runs[r];
+			for(uint i = 0; i < run.num_ents; i++)
 			{
-				const TraceEntry* te = run.first + i;
+				const TraceEntry* te = &run.ents[i];
 				// improvement: postprocess the trace and remove all IOs that would be
 				// satisfied by our cache. often repeated IOs would otherwise potentially
 				// be arranged badly.
@@ -365,21 +310,15 @@ public:
 		Trace t;
 		RETURN_ERR(trace_read_from_file(trace_filename, &t));
 
-		if(!t.num_ents)
-			WARN_RETURN(ERR_TRACE_EMPTY);
-
 		// reserve memory for worst-case amount of connections (happens if
 		// all accesses are unique). this is necessary because we store
 		// pointers to Connection in the map, which would be invalidated if
 		// connections[] ever expands.
 		// may waste up to ~3x the memory (about 1mb) for a short time,
 		// which is ok.
-		connections.reserve(t.num_ents-1);
+		connections.reserve(t.total_ents-1);
 
-		Runs runs;
-		split_trace_into_runs(&t, runs);
-
-		add_connections_from_runs(runs, connections);
+		add_connections_from_runs(t, connections);
 
 		return ERR_OK;
 	}

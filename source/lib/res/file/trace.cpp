@@ -64,7 +64,8 @@ void trace_enable(bool want_enabled)
 }
 
 
-static void trace_add(TraceOp op, const char* P_fn, size_t size, uint flags = 0, double timestamp = 0.0)
+static void trace_add(TraceOp op, const char* P_fn, size_t size,
+	uint flags = 0, double timestamp = 0.0)
 {
 	trace_init();
 	if(!trace_enabled)
@@ -83,6 +84,12 @@ static void trace_add(TraceOp op, const char* P_fn, size_t size, uint flags = 0,
 	t->flags     = flags;
 }
 
+static void trace_get_raw_ents(const TraceEntry*& ents, size_t& num_ents)
+{
+	ents = (const TraceEntry*)trace_pool.da.base;
+	num_ents = (uint)(trace_pool.da.pos / sizeof(TraceEntry));
+}
+
 
 void trace_notify_io(const char* P_fn, size_t size, uint flags)
 {
@@ -95,18 +102,132 @@ void trace_notify_free(const char* P_fn, size_t size)
 }
 
 
+//-----------------------------------------------------------------------------
+
+// put all entries in one trace file: easier to handle; obviates FS enum code
+// rationale: don't go through trace in order; instead, process most recent
+// run first, to give more weight to it (TSP code should go with first entry
+// when #occurrences are equal)
+
+
+static const TraceEntry delimiter_entry =
+{
+	0.0f,	// timestamp
+	"------------------------------------------------------------",
+	0,		// size
+	TO_IO,	// TraceOp (never seen by user; value doesn't matter)
+	0		// flags
+};
+
+// storage for Trace.runs.
+static const uint MAX_RUNS = 100;
+static TraceRun runs[MAX_RUNS];
+
+// note: the last entry may be one past number of actual entries.
+static std::vector<size_t> run_start_indices;
+
+class DelimiterAdder
+{
+public:
+	enum Consequence
+	{
+		SKIP_ADD,
+		CONTINUE
+	};
+	Consequence operator()(size_t i, double timestamp, const char* P_path)
+	{
+		// this entry is a delimiter
+		if(!strcmp(P_path, delimiter_entry.atom_fn))
+		{
+			run_start_indices.push_back(i+1);	// skip this entry
+			// note: its timestamp is invalid, so don't set cur_timestamp!
+			return SKIP_ADD;
+		}
+
+		const double last_timestamp = cur_timestamp;
+		cur_timestamp = timestamp;
+
+		// first item is always start of a run
+		if((i == 0) ||
+		// timestamp started over from 0 (e.g. 29, 30, 1) -> start of new run.
+		   (timestamp < last_timestamp))
+			run_start_indices.push_back(i);
+
+		return CONTINUE;
+	}
+private:
+	double cur_timestamp;
+};
+
+
+//-----------------------------------------------------------------------------
+
+
 void trace_get(Trace* t)
 {
-	t->ents = (const TraceEntry*)trace_pool.da.base;
-	t->num_ents = (uint)(trace_pool.da.pos / sizeof(TraceEntry));
+	const TraceEntry* ents; size_t num_ents;
+	trace_get_raw_ents(ents, num_ents);
+
+	// nobody had split ents up into runs; just create one big 'run'.
+	if(run_start_indices.empty())
+		run_start_indices.push_back(0);
+
+	t->runs = runs;
+	t->num_runs = 0;	// counted up
+	t->total_ents = num_ents;
+
+	size_t last_start_idx = num_ents;
+
+	std::vector<size_t>::reverse_iterator it;
+	for(it = run_start_indices.rbegin(); it != run_start_indices.rend(); ++it)
+	{
+		const size_t start_idx = *it;
+		// run_start_indices.back() may be = num_ents (could happen if
+		// a zero-length run gets written out); skip that to avoid
+		// zero-length run here.
+		if(last_start_idx == start_idx)
+			continue;
+
+		TraceRun& run = runs[t->num_runs++];
+		run.num_ents = last_start_idx - start_idx;
+		run.ents = &ents[start_idx];
+		last_start_idx = start_idx;
+
+		if(t->num_runs == MAX_RUNS)
+			break;
+	}
+
+	debug_assert(t->num_runs != 0);
 }
 
 void trace_clear()
 {
 	pool_free_all(&trace_pool);
+	run_start_indices.clear();
+	memset(runs, 0, sizeof(runs));	// for safety
+}
+
+//-----------------------------------------------------------------------------
+
+
+
+static void write_entry(FILE* f, const TraceEntry* ent)
+{
+	char opcode = '?';
+	switch(ent->op)
+	{
+	case TO_IO: opcode = 'L'; break;
+	case TO_FREE: opcode = 'F'; break;
+	default: debug_warn("invalid TraceOp");
+	}
+
+	debug_assert(ent->op == TO_IO || ent->op == TO_FREE);
+	fprintf(f, "%#010f: %c \"%s\" %d %04x\n", ent->timestamp, opcode,
+		ent->atom_fn, ent->size, ent->flags);
 }
 
 
+// *appends* entire current trace contents to file (with delimiter first)
 LibError trace_write_to_file(const char* trace_filename)
 {
 	if(!trace_enabled)
@@ -121,22 +242,14 @@ LibError trace_write_to_file(const char* trace_filename)
 	if(!f)
 		WARN_RETURN(ERR_FILE_ACCESS);
 
-	Trace t;
-	trace_get(&t);
-	const TraceEntry* ent = t.ents;
-	for(size_t i = 0; i < t.num_ents; i++, ent++)
-	{
-		char opcode = '?';
-		switch(ent->op)
-		{
-		case TO_IO: opcode = 'L'; break;
-		case TO_FREE: opcode = 'F'; break;
-		default: debug_warn("invalid TraceOp");
-		}
+	write_entry(f, &delimiter_entry);
 
-		debug_assert(ent->op == TO_IO || ent->op == TO_FREE);
-		fprintf(f, "%#010f: %c \"%s\" %d %04x\n", ent->timestamp, opcode, ent->atom_fn, ent->size, ent->flags);
-	}
+	// somewhat of a hack: write all entries in original order, not the
+	// reverse order returned by trace_get.
+	const TraceEntry* ent; size_t num_ents;
+	trace_get_raw_ents(ent, num_ents);
+	for(size_t i = 0; i < num_ents; i++, ent++)
+		write_entry(f, ent);
 
 	(void)fclose(f);
 	return ERR_OK;
@@ -157,12 +270,14 @@ LibError trace_read_from_file(const char* trace_filename, Trace* t)
 	// therefore, tracing needs to be enabled.
 	trace_enabled = true;
 
+	DelimiterAdder delim_adder;
+
 	// parse lines and stuff them in trace_pool
 	// (as if they had been trace_add-ed; replaces any existing data)
 	// .. bake PATH_MAX limit into string.
 	char fmt[30];
 	snprintf(fmt, ARRAY_SIZE(fmt), "%%lf: %%c \"%%%d[^\"]\" %%d %%04x\n", PATH_MAX);
-	for(;;)
+	for(size_t i = 0; ; i++)
 	{
 		double timestamp; char opcode; char P_path[PATH_MAX]; size_t size; uint flags;
 		int ret = fscanf(f, fmt, &timestamp, &opcode, P_path, &size, &flags);
@@ -178,7 +293,8 @@ LibError trace_read_from_file(const char* trace_filename, Trace* t)
 		default: debug_warn("invalid TraceOp");
 		}
 
-		trace_add(op, P_path, size, flags, timestamp);
+		if(delim_adder(i, timestamp, P_path) != DelimiterAdder::SKIP_ADD)
+			trace_add(op, P_path, size, flags, timestamp);
 	}
 
 	fclose(f);
@@ -188,6 +304,9 @@ LibError trace_read_from_file(const char* trace_filename, Trace* t)
 	// all previous trace entries were hereby lost (overwritten),
 	// so there's no sense in continuing.
 	trace_enabled = false;
+
+	if(t->total_ents == 0)
+		WARN_RETURN(ERR_TRACE_EMPTY);
 
 	return ERR_OK;
 }
@@ -282,36 +401,40 @@ LibError trace_run(const char* trace_filename, uint flags)
 	trace_enabled = false;
 
 	const double start_time = get_time();
-	const double first_timestamp = t.ents[0].timestamp;
+	const double first_timestamp = t.runs[t.num_runs-1].ents[0].timestamp;
 
-	const TraceEntry* ent = t.ents;
-	for(uint i = 0; i < t.num_ents; i++, ent++)
+	for(uint r = 0; r < t.num_runs; r++)
 	{
-		// wait until time for next entry if caller requested this
-		if(flags & TRF_SYNC_TO_TIMESTAMP)
+		const TraceRun& run = t.runs[r];
+		const TraceEntry* ent = run.ents;
+		for(uint i = 0; i < run.num_ents; i++, ent++)
 		{
-			while(get_time()-start_time < ent->timestamp-first_timestamp)
+			// wait until time for next entry if caller requested this
+			if(flags & TRF_SYNC_TO_TIMESTAMP)
 			{
-				// busy-wait (don't sleep - can skew results)
+				while(get_time()-start_time < ent->timestamp-first_timestamp)
+				{
+					// busy-wait (don't sleep - can skew results)
+				}
 			}
-		}
 
-		// carry out this entry's operation
-		FileIOBuf buf; size_t size;
-		switch(ent->op)
-		{
-		case TO_IO:
-			// do not 'run' writes - we'd destroy the existing data.
-			if(ent->flags & FILE_WRITE)
-				continue;
-			(void)vfs_load(ent->atom_fn, buf, size, ent->flags);
-			break;
-		case TO_FREE:
-			buf = file_cache_retrieve(ent->atom_fn, &size, FB_NO_STATS|FB_NO_ACCOUNTING);
-			(void)file_buf_free(buf);
-			break;
-		default:
-			debug_warn("unknown TraceOp");
+			// carry out this entry's operation
+			FileIOBuf buf; size_t size;
+			switch(ent->op)
+			{
+			case TO_IO:
+				// do not 'run' writes - we'd destroy the existing data.
+				if(ent->flags & FILE_WRITE)
+					continue;
+				(void)vfs_load(ent->atom_fn, buf, size, ent->flags);
+				break;
+			case TO_FREE:
+				buf = file_cache_retrieve(ent->atom_fn, &size, FB_NO_STATS|FB_NO_ACCOUNTING);
+				(void)file_buf_free(buf);
+				break;
+			default:
+				debug_warn("unknown TraceOp");
+			}
 		}
 	}
 

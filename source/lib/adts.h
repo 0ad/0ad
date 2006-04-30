@@ -324,7 +324,10 @@ template<class Entries> float ll_calc_min_credit_density(const Entries& entries)
 {
 	float min_credit_density = FLT_MAX;
 	for(typename Entries::const_iterator it = entries.begin(); it != entries.end(); ++it)
-		min_credit_density = fminf(min_credit_density, Entries::entry_from_it(it).credit_density());
+	{
+		const float credit_density = Entries::entry_from_it(it).credit_density();
+		min_credit_density = fminf(min_credit_density, credit_density);
+	}
 	return min_credit_density;
 }
 
@@ -345,7 +348,8 @@ public:
 	void notify_increased_or_removed(const Entry&) const {}
 	float operator()(const Entries& entries) const
 	{
-		return ll_calc_min_credit_density(entries);
+		const float mcd = ll_calc_min_credit_density(entries);
+		return mcd;
 	}
 };
 
@@ -481,6 +485,7 @@ again:
 		// different evictions than Landlord_Lazy, which is unacceptable.
 		// nor is doing so necessary: if mcd is tiny, so is credit.
 		const float min_credit_density = mcd_calc(map);
+		debug_assert(min_credit_density > 0.0f);
 
 		for(MapIt it = map.begin(); it != map.end();)	// no ++it
 		{
@@ -919,6 +924,9 @@ private:
 			size = size_;
 			cost = cost_;
 			credit = cost;
+
+			// else divider will fail
+			debug_assert(size != 0);
 		}
 
 		float credit_density() const

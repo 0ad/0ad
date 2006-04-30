@@ -34,11 +34,11 @@ extern void trace_notify_free(const char* P_fn, size_t size);
 // note: rather than only a list of accessed files, we also need to
 // know the application's behavior WRT caching (e.g. when it releases
 // cached buffers). this is necessary so that our simulation can
-// yield the same results.
+// yield the same behavior.
 enum TraceOp
 {
 	TO_IO,
-	TO_FREE
+	TO_FREE,
 };
 
 // stores one event that is relevant for file IO / caching.
@@ -58,10 +58,19 @@ struct TraceEntry
 	uint flags : 24;		// misc, e.g. file_io flags.
 };
 
-struct Trace
+struct TraceRun
 {
 	const TraceEntry* ents;
 	size_t num_ents;
+};
+
+struct Trace
+{
+	// most recent first! (see rationale in source)
+	const TraceRun* runs;
+	size_t num_runs;
+
+	size_t total_ents;
 };
 
 extern void trace_get(Trace* t);
