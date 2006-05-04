@@ -69,8 +69,8 @@ static void GenerateRMS(void* data)
 
 //////////////////////////////////////////////////////////////////////////
 
-MapSidebar::MapSidebar(wxWindow* parent)
-	: Sidebar(parent)
+MapSidebar::MapSidebar(wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
+	: Sidebar(sidebarContainer, bottomBarContainer)
 {
 	// TODO: Less ugliness
 	// TODO: Intercept arrow keys and send them to the GL window

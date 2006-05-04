@@ -103,6 +103,54 @@ MESSAGEHANDLER(SetSelectionPreview)
 	g_Selection = *msg->ids;
 }
 
+QUERYHANDLER(GetObjectSettings)
+{
+	CUnit* unit = g_UnitMan.FindByID(msg->id);
+	if (! unit) return;
+
+	sObjectSettings settings;
+	settings.player = unit->GetPlayerID();
+	// TODO: actor variation
+
+	msg->settings = settings;
+}
+
+BEGIN_COMMAND(SetObjectSettings)
+
+	int m_PlayerOld, m_PlayerNew;
+
+	void Do()
+	{
+		CUnit* unit = g_UnitMan.FindByID(msg->id);
+		if (! unit) return;
+
+		sObjectSettings settings = msg->settings;
+
+		m_PlayerOld = unit->GetPlayerID();
+		m_PlayerNew = settings.player;
+		// TODO: actor variations
+
+		Redo();
+	}
+
+	void Redo()
+	{
+		CUnit* unit = g_UnitMan.FindByID(msg->id);
+		if (! unit) return;
+
+		unit->SetPlayerID(m_PlayerNew);
+	}
+
+	void Undo()
+	{
+		CUnit* unit = g_UnitMan.FindByID(msg->id);
+		if (! unit) return;
+
+		unit->SetPlayerID(m_PlayerOld);
+	}
+
+END_COMMAND(SetObjectSettings);
+
 //////////////////////////////////////////////////////////////////////////
 
 
@@ -234,21 +282,27 @@ BEGIN_COMMAND(CreateObject)
 
 	void Do()
 	{
-		m_Pos = GetUnitPos(d->pos);
-		m_Player = d->settings->player;
+		// Calculate the position/orientation to create this unit with
+		
+		m_Pos = GetUnitPos(msg->pos);
 
-		if (d->usetarget)
+		if (msg->usetarget)
 		{
+			// Aim from m_Pos towards msg->target
 			CVector3D target;
-			d->target->GetWorldSpace(target, m_Pos.Y);
+			msg->target->GetWorldSpace(target, m_Pos.Y);
 			CVector2D dir(target.X-m_Pos.X, target.Z-m_Pos.Z);
 			m_Angle = atan2(dir.x, dir.y);
 		}
 		else
 		{
-			m_Angle = d->angle;
+			m_Angle = msg->angle;
 		}
 
+		// TODO: variations too
+		m_Player = msg->settings->player;
+
+		// Get a new ID, for future reference to this unit
 		m_ID = g_UnitMan.GetNewID();
 
 		Redo();
@@ -258,7 +312,7 @@ BEGIN_COMMAND(CreateObject)
 	{
 		bool isEntity;
 		CStrW name;
-		if (ParseObjectName(*d->id, isEntity, name))
+		if (ParseObjectName(*msg->id, isEntity, name))
 		{
 			std::set<CStrW> selections;
 
@@ -309,6 +363,8 @@ BEGIN_COMMAND(CreateObject)
 					m._31 = s;      m._32 = 0.0f;   m._33 = -c;     m._34 = m_Pos.Z;
 					m._41 = 0.0f;   m._42 = 0.0f;   m._43 = 0.0f;   m._44 = 1.0f;
 					unit->GetModel()->SetTransform(m);
+
+					unit->SetPlayerID(m_Player);
 				}
 			}
 		}
@@ -332,7 +388,7 @@ BEGIN_COMMAND(CreateObject)
 END_COMMAND(CreateObject)
 
 
-QUERYHANDLER(SelectObject)
+QUERYHANDLER(PickObject)
 {
 	float x, y;
 	msg->pos->GetScreenSpace(x, y);
@@ -369,7 +425,7 @@ BEGIN_COMMAND(MoveObject)
 
 	void Do()
 	{
-		CUnit* unit = g_UnitMan.FindByID(d->id);
+		CUnit* unit = g_UnitMan.FindByID(msg->id);
 		if (! unit) return;
 
 		if (unit->GetEntity())
@@ -382,14 +438,14 @@ BEGIN_COMMAND(MoveObject)
 			m_PosOld = m.GetTranslation();
 		}
 
-		m_PosNew = GetUnitPos(d->pos);
+		m_PosNew = GetUnitPos(msg->pos);
 
 		SetPos(m_PosNew);
 	}
 
 	void SetPos(CVector3D& pos)
 	{
-		CUnit* unit = g_UnitMan.FindByID(d->id);
+		CUnit* unit = g_UnitMan.FindByID(msg->id);
 		if (! unit) return;
 
 		if (unit->GetEntity())
@@ -430,23 +486,23 @@ BEGIN_COMMAND(RotateObject)
 
 	void Do()
 	{
-		CUnit* unit = g_UnitMan.FindByID(d->id);
+		CUnit* unit = g_UnitMan.FindByID(msg->id);
 		if (! unit) return;
 
 		if (unit->GetEntity())
 		{
 			m_AngleOld = unit->GetEntity()->m_orientation;
-			if (d->usetarget)
+			if (msg->usetarget)
 			{
 				CVector3D& pos = unit->GetEntity()->m_position;
 				CVector3D target;
-				d->target->GetWorldSpace(target, pos.Y);
+				msg->target->GetWorldSpace(target, pos.Y);
 				CVector2D dir(target.X-pos.X, target.Z-pos.Z);
 				m_AngleNew = atan2(dir.x, dir.y);
 			}
 			else
 			{
-				m_AngleNew = d->angle;
+				m_AngleNew = msg->angle;
 			}
 		}
 		else
@@ -456,10 +512,10 @@ BEGIN_COMMAND(RotateObject)
 			CVector3D pos = unit->GetModel()->GetTransform().GetTranslation();
 
 			float s, c;
-			if (d->usetarget)
+			if (msg->usetarget)
 			{
 				CVector3D target;
-				d->target->GetWorldSpace(target, pos.Y);
+				msg->target->GetWorldSpace(target, pos.Y);
 				CVector2D dir(target.X-pos.X, target.Z-pos.Z);
 				dir = dir.normalize();
 				s = dir.x;
@@ -467,8 +523,8 @@ BEGIN_COMMAND(RotateObject)
 			}
 			else
 			{
-				s = sinf(d->angle);
-				c = cosf(d->angle);
+				s = sinf(msg->angle);
+				c = cosf(msg->angle);
 			}
 			CMatrix3D& m = m_TransformNew;
 			m._11 = -c;     m._12 = 0.0f;   m._13 = -s;     m._14 = pos.X;
@@ -482,7 +538,7 @@ BEGIN_COMMAND(RotateObject)
 
 	void SetAngle(float angle, CMatrix3D& transform)
 	{
-		CUnit* unit = g_UnitMan.FindByID(d->id);
+		CUnit* unit = g_UnitMan.FindByID(msg->id);
 		if (! unit) return;
 
 		if (unit->GetEntity())
@@ -542,7 +598,7 @@ BEGIN_COMMAND(DeleteObject)
 
 	void Redo()
 	{
-		CUnit* unit = g_UnitMan.FindByID(d->id);
+		CUnit* unit = g_UnitMan.FindByID(msg->id);
 		if (! unit) return;
 
 		if (unit->GetEntity())

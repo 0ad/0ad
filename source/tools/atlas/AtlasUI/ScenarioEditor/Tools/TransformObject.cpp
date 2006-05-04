@@ -11,7 +11,6 @@ class TransformObject : public StateDrivenTool<TransformObject>
 {
 	DECLARE_DYNAMIC_CLASS(TransformObject);
 
-	std::vector<AtlasMessage::ObjectID> m_Selection;
 	int m_dx, m_dy;
 
 public:
@@ -22,8 +21,9 @@ public:
 
 	void OnDisable()
 	{
-		m_Selection.clear();
-		POST_MESSAGE(SetSelectionPreview, (m_Selection));
+		g_SelectedObjects.clear();
+		g_SelectedObjects.NotifyObservers();
+		POST_MESSAGE(SetSelectionPreview, (g_SelectedObjects));
 	}
 
 
@@ -36,25 +36,26 @@ public:
 			if (evt.LeftDown())
 			{
 				// TODO: multiple selection
-				AtlasMessage::qSelectObject qry(Position(evt.GetPosition()));
+				AtlasMessage::qPickObject qry(Position(evt.GetPosition()));
 				qry.Post();
-				obj->m_Selection.clear();
+				g_SelectedObjects.clear();
 				if (AtlasMessage::ObjectIDIsValid(qry.id))
 				{
-					obj->m_Selection.push_back(qry.id);
+					g_SelectedObjects.push_back(qry.id);
 					obj->m_dx = qry.offsetx;
 					obj->m_dy = qry.offsety;
 					SET_STATE(Dragging);
 				}
-				POST_MESSAGE(SetSelectionPreview, (obj->m_Selection));
+				g_SelectedObjects.NotifyObservers();
+				POST_MESSAGE(SetSelectionPreview, (g_SelectedObjects));
 				ScenarioEditor::GetCommandProc().FinaliseLastCommand();
 				return true;
 			}
 			else if (evt.Dragging() && evt.RightIsDown() || evt.RightDown())
 			{
 				Position pos (evt.GetPosition());
-				for (size_t i = 0; i < obj->m_Selection.size(); ++i)
-					POST_COMMAND(RotateObject, (obj->m_Selection[i], true, pos, 0.f));
+				for (size_t i = 0; i < g_SelectedObjects.size(); ++i)
+					POST_COMMAND(RotateObject, (g_SelectedObjects[i], true, pos, 0.f));
 				return true;
 			}
 			else
@@ -65,10 +66,11 @@ public:
 		{
 			if (type == KEY_CHAR && evt.GetKeyCode() == WXK_DELETE)
 			{
-				for (size_t i = 0; i < obj->m_Selection.size(); ++i)
-					POST_COMMAND(DeleteObject, (obj->m_Selection[i]));
-				obj->m_Selection.clear();
-				POST_MESSAGE(SetSelectionPreview, (obj->m_Selection));
+				for (size_t i = 0; i < g_SelectedObjects.size(); ++i)
+					POST_COMMAND(DeleteObject, (g_SelectedObjects[i]));
+				g_SelectedObjects.clear();
+				g_SelectedObjects.NotifyObservers();
+				POST_MESSAGE(SetSelectionPreview, (g_SelectedObjects));
 				return true;
 			}
 			else
@@ -89,8 +91,8 @@ public:
 			else if (evt.Dragging())
 			{
 				Position pos (evt.GetPosition() + wxPoint(obj->m_dx, obj->m_dy));
-				for (size_t i = 0; i < obj->m_Selection.size(); ++i)
-					POST_COMMAND(MoveObject, (obj->m_Selection[i], pos));
+				for (size_t i = 0; i < g_SelectedObjects.size(); ++i)
+					POST_COMMAND(MoveObject, (g_SelectedObjects[i], pos));
 				return true;
 			}
 			else

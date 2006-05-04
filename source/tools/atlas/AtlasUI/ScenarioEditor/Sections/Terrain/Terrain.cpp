@@ -13,8 +13,20 @@
 
 #include "wx/spinctrl.h"
 
-TerrainSidebar::TerrainSidebar(wxWindow* parent)
-: Sidebar(parent), m_BottomBar(NULL)
+class TextureNotebook;
+
+class TerrainBottomBar : public wxPanel
+{
+public:
+	TerrainBottomBar(wxWindow* parent);
+	void LoadTerrain();
+private:
+	TextureNotebook* m_Textures;
+};
+
+
+TerrainSidebar::TerrainSidebar(wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
+: Sidebar(sidebarContainer, bottomBarContainer)
 {
 	// TODO: Less ugliness
 
@@ -36,15 +48,12 @@ TerrainSidebar::TerrainSidebar(wxWindow* parent)
 		m_MainSizer->Add(sizer);
 	}
 
+	m_BottomBar = new TerrainBottomBar(bottomBarContainer);
 }
 
-wxWindow* TerrainSidebar::GetBottomBar(wxWindow* parent)
+void TerrainSidebar::OnFirstDisplay()
 {
-	if (m_BottomBar)
-		return m_BottomBar;
-
-	m_BottomBar = new TerrainBottomBar(parent);
-	return m_BottomBar;
+	static_cast<TerrainBottomBar*>(m_BottomBar)->LoadTerrain();
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -145,6 +154,13 @@ public:
 	TextureNotebook(wxWindow *parent)
 		: wxNotebook(parent, wxID_ANY/*, wxDefaultPosition, wxDefaultSize, wxNB_FIXEDWIDTH*/)
 	{
+	}
+
+	void LoadTerrain()
+	{
+		DeleteAllPages();
+		m_TerrainGroups.Clear();
+
 		// Get the list of terrain groups from the engine
 		AtlasMessage::qGetTerrainGroups qry;
 		qry.Post();
@@ -164,7 +180,7 @@ public:
 protected:
 	void OnPageChanged(wxNotebookEvent& event)
 	{
-		if (event.GetSelection() != -1)
+		if (event.GetSelection() >= 0 && event.GetSelection() < (int)GetPageCount())
 		{
 			static_cast<TextureNotebookPage*>(GetPage(event.GetSelection()))->OnDisplay();
 		}
@@ -186,7 +202,12 @@ TerrainBottomBar::TerrainBottomBar(wxWindow* parent)
 	: wxPanel(parent, wxID_ANY)
 {
 	wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
-	wxNotebook* notebook = new TextureNotebook(this);
-	sizer->Add(notebook, wxSizerFlags().Expand().Proportion(1));
+	m_Textures = new TextureNotebook(this);
+	sizer->Add(m_Textures, wxSizerFlags().Expand().Proportion(1));
 	SetSizer(sizer);
+}
+
+void TerrainBottomBar::LoadTerrain()
+{
+	m_Textures->LoadTerrain();
 }

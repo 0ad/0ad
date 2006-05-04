@@ -7,20 +7,21 @@ class Sidebar : public wxPanel
 
 public:
 	Sidebar() {}
-	Sidebar(wxWindow* parent);
+	Sidebar(wxWindow* sidebarContainer, wxWindow* bottomBarContainer);
 
+	void OnSwitchAway();
 	void OnSwitchTo();
 
-	virtual wxWindow* GetBottomBar(wxWindow* parent);
-		// called whenever the bottom bar is made visible; should usually be
-		// lazily constructed, then cached forever (to maximise responsiveness)
+	wxWindow* GetBottomBar() { return m_BottomBar; }
 
 protected:
 	wxSizer* m_MainSizer; // vertical box sizer, used by most sidebars
 
+	wxWindow* m_BottomBar; // window that goes at the bottom of the screen; may be NULL
+
 	virtual void OnFirstDisplay() {}
 		// should be overridden when sidebars need to do expensive construction,
-		// so it can be delayed until it is required
+		// so it can be delayed until it is required;
 
 private:
 	bool m_AlreadyDisplayed;

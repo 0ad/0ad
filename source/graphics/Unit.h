@@ -51,6 +51,9 @@ public:
 	// Set player ID of this unit
 	void SetPlayerID(int id);
 
+	// Get player ID of this unit
+	int GetPlayerID() { return m_PlayerID; }
+
 	int GetID() const { return m_ID; }
 	void SetID(int id) { m_ID = id; }
 

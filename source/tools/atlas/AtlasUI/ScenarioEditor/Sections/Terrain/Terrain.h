@@ -3,16 +3,8 @@
 class TerrainSidebar : public Sidebar
 {
 public:
-	TerrainSidebar(wxWindow* parent);
-	wxWindow* GetBottomBar(wxWindow* parent);
+	TerrainSidebar(wxWindow* sidebarContainer, wxWindow* bottomBarContainer);
 
-private:
-	wxWindow* m_BottomBar;
-};
-
-class TerrainBottomBar : public wxPanel
-{
-public:
-	TerrainBottomBar(wxWindow* parent);
-private:
+protected:
+	virtual void OnFirstDisplay();
 };

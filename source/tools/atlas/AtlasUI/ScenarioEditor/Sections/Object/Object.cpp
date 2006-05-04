@@ -5,7 +5,8 @@
 #include "Buttons/ActionButton.h"
 #include "Buttons/ToolButton.h"
 #include "ScenarioEditor/Tools/Common/Tools.h"
-#include "ScenarioEditor/Tools/Common/UnitSettings.h"
+#include "ScenarioEditor/Tools/Common/ObjectSettings.h"
+#include "ScenarioEditor/Tools/Common/MiscState.h"
 
 #include "GameInterface/Messages.h"
 
@@ -62,8 +63,8 @@ struct ObjectSidebarImpl
 	std::vector<AtlasMessage::sObjectsListItem> m_Objects;
 };
 
-ObjectSidebar::ObjectSidebar(wxWindow* parent)
-: Sidebar(parent), p(new ObjectSidebarImpl())
+ObjectSidebar::ObjectSidebar(wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
+: Sidebar(sidebarContainer, bottomBarContainer), p(new ObjectSidebarImpl())
 {
 	wxArrayString strings;
 	strings.Add(_("Entities"));
@@ -72,20 +73,13 @@ ObjectSidebar::ObjectSidebar(wxWindow* parent)
 
 	p->m_ObjectListBox = new ObjectSelectListBox(this);
 	m_MainSizer->Add(p->m_ObjectListBox, wxSizerFlags().Proportion(1).Expand());
+
+	m_BottomBar = new ObjectBottomBar(bottomBarContainer);
 }
 
 ObjectSidebar::~ObjectSidebar()
 {
 	delete p;
-}
-
-wxWindow* ObjectSidebar::GetBottomBar(wxWindow* parent)
-{
-	if (p->m_BottomBar)
-		return p->m_BottomBar;
-
-	p->m_BottomBar = new ObjectBottomBar(parent);
-	return p->m_BottomBar;
 }
 
 void ObjectSidebar::OnFirstDisplay()
@@ -118,15 +112,27 @@ class PlayerComboBox : public wxComboBox
 {
 public:
 	PlayerComboBox(wxWindow* parent, wxArrayString& choices)
-		: wxComboBox(parent, -1, choices[g_UnitSettings.GetPlayerID()], wxDefaultPosition, wxDefaultSize, choices, wxCB_READONLY)
+		: wxComboBox(parent, -1, choices[g_ObjectSettings.GetPlayerID()], wxDefaultPosition, wxDefaultSize, choices, wxCB_READONLY)
 	{
+ 		m_Conn = g_SelectedObjects.RegisterObserver(1, &PlayerComboBox::OnSelectionChange, this);
+	}
+	~PlayerComboBox()
+	{
+		g_SelectedObjects.RemoveObserver(m_Conn);
 	}
 
 private:
 
+	ObservableConnection m_Conn;
+
+	void OnSelectionChange(const std::vector<AtlasMessage::ObjectID>& selection)
+	{
+		SetSelection(g_ObjectSettings.GetPlayerID());
+	}
+
 	void OnSelect(wxCommandEvent& evt)
 	{
-		g_UnitSettings.SetPlayerID(evt.GetInt());
+		g_ObjectSettings.SetPlayerID(evt.GetInt());
 	}
 
 	DECLARE_EVENT_TABLE();
@@ -135,11 +141,12 @@ BEGIN_EVENT_TABLE(PlayerComboBox, wxComboBox)
 	EVT_COMBOBOX(wxID_ANY, OnSelect)
 END_EVENT_TABLE();
 
+
 ObjectBottomBar::ObjectBottomBar(wxWindow* parent)
 	: wxPanel(parent, wxID_ANY)
 {
 	wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
-
+	
 	wxArrayString players;
 	// TODO: get proper player names
 	players.Add(_("Gaia"));
@@ -153,5 +160,6 @@ ObjectBottomBar::ObjectBottomBar(wxWindow* parent)
 	players.Add(_("Player 8"));
 	wxComboBox* playerSelect = new PlayerComboBox(this, players);
 
+	sizer->Add(playerSelect);
 	SetSizer(sizer);
 }

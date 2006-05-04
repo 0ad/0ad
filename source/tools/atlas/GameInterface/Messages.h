@@ -102,16 +102,16 @@ QUERY(GetObjectsList,
 	  ((std::vector<sObjectsListItem>, objects))
 	  );
 
-struct sUnitSettings
+struct sObjectSettings
 {
 	Shareable<int> player;
 	Shareable<std::vector<std::wstring> > selections;
 };
-SHAREABLE_STRUCT(sUnitSettings);
+SHAREABLE_STRUCT(sObjectSettings);
 
 MESSAGE(ObjectPreview,
 		((std::wstring, id)) // or empty string => disable
-		((sUnitSettings, settings))
+		((sObjectSettings, settings))
 		((Position, pos))
 		((bool, usetarget)) // true => use 'target' for orientation; false => use 'angle'
 		((Position, target))
@@ -120,7 +120,7 @@ MESSAGE(ObjectPreview,
 
 COMMAND(CreateObject, NOMERGE,
 		((std::wstring, id))
-		((sUnitSettings, settings))
+		((sObjectSettings, settings))
 		((Position, pos))
 		((bool, usetarget)) // true => use 'target' for orientation; false => use 'angle'
 		((Position, target))
@@ -183,7 +183,7 @@ COMMAND(PaintTerrain, MERGE,
 typedef int ObjectID;
 inline bool ObjectIDIsValid(ObjectID id) { return (id >= 0); }
 
-QUERY(SelectObject,
+QUERY(PickObject,
 	  ((Position, pos))
 	  ,
 	  ((ObjectID, id))
@@ -210,6 +210,18 @@ COMMAND(DeleteObject, NOMERGE,
 MESSAGE(SetSelectionPreview,
 		((std::vector<ObjectID>, ids))
 		);
+
+QUERY(GetObjectSettings,
+	  ((ObjectID, id))
+	  ,
+	  ((sObjectSettings, settings))
+	  );
+
+COMMAND(SetObjectSettings, NOMERGE,
+		((ObjectID, id))
+		((sObjectSettings, settings))
+		);
+
 
 //////////////////////////////////////////////////////////////////////////
 

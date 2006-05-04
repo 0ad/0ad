@@ -91,12 +91,12 @@ BEGIN_COMMAND(AlterElevation)
 
 	void Do()
 	{
-		int amount = (int)d->amount;
+		int amount = (int)msg->amount;
 
 		// If the framerate is very high, 'amount' is often very
 		// small (even zero) so the integer truncation is significant
 		static float roundingError = 0.0;
-		roundingError += d->amount - (float)amount;
+		roundingError += msg->amount - (float)amount;
 		if (roundingError >= 1.f)
 		{
 			amount += (int)roundingError;
@@ -104,7 +104,7 @@ BEGIN_COMMAND(AlterElevation)
 		}
 
 		static CVector3D previousPosition;
-		d->pos->GetWorldSpace(g_CurrentBrush.m_Centre, previousPosition);
+		msg->pos->GetWorldSpace(g_CurrentBrush.m_Centre, previousPosition);
 		previousPosition = g_CurrentBrush.m_Centre;
 
 		int x0, y0;
@@ -160,10 +160,10 @@ BEGIN_COMMAND(FlattenElevation)
 
 	void Do()
 	{
-		int amount = (int)d->amount;
+		int amount = (int)msg->amount;
 
 		static CVector3D previousPosition;
-		d->pos->GetWorldSpace(g_CurrentBrush.m_Centre, previousPosition);
+		msg->pos->GetWorldSpace(g_CurrentBrush.m_Centre, previousPosition);
 		previousPosition = g_CurrentBrush.m_Centre;
 
 		int xc, yc;

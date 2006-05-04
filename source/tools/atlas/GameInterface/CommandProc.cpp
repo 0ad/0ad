@@ -8,15 +8,6 @@
 
 template<typename T> T next(T x) { T t = x; return ++t; }
 
-template<typename T, typename I> void delete_erase(T list, I first, I last)
-{
-	while (first != last)
-	{
-		delete *first;
-		first = list.erase(first);
-	}
-}
-
 template<typename T> void delete_fn(T* v) { delete v; }
 
 //////////////////////////////////////////////////////////////////////////
@@ -63,7 +54,12 @@ void CommandProc::Destroy()
 
 void CommandProc::Submit(Command* cmd)
 {
-	delete_erase(m_Commands, next(m_CurrentCommand), m_Commands.end());
+	// If some commands have been undone at the time we insert this new one,
+	// delete and remove them all.
+	std::for_each(next(m_CurrentCommand), m_Commands.end(), delete_fn<Command>);
+	m_Commands.erase(next(m_CurrentCommand), m_Commands.end());
+	assert(next(m_CurrentCommand) == m_Commands.end());
+
 	m_CurrentCommand = m_Commands.insert(next(m_CurrentCommand), cmd);
 
 	(*m_CurrentCommand)->Do();

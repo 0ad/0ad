@@ -36,6 +36,8 @@ public:
 private:
 	std::list<Command*> m_Commands;
 	typedef std::list<Command*>::iterator cmdIt;
+	// The 'current' command is the latest one which has been executed
+	// (ignoring any that have been undone)
 	cmdIt m_CurrentCommand;
 };
 
@@ -49,7 +51,7 @@ struct DataCommand : public Command // so commands can optionally override (De|C
 {
 	void Destruct() {};
 	void Construct() {};
-	// MergeWithSelf should be overriden by commands, and implemented
+	// MergeWithSelf should be overridden by commands, and implemented
 	// to update 'prev' to include the effects of 'this'
 	void MergeWithSelf(void*) { debug_warn("MergeWithSelf unimplemented in some command"); }
 };
@@ -57,10 +59,10 @@ struct DataCommand : public Command // so commands can optionally override (De|C
 #define BEGIN_COMMAND(t) \
 	class c##t : public DataCommand \
 	{ \
-		d##t* d; \
+		d##t* msg; \
 	public: \
-		c##t(d##t* data) : d(data) { Construct(); } \
-		~c##t() { Destruct(); AtlasMessage::ShareableDelete(d); /* d was allocated by mDoCommand() */ } \
+		c##t(d##t* data) : msg(data) { Construct(); } \
+		~c##t() { Destruct(); AtlasMessage::ShareableDelete(msg); /* msg was allocated by mDoCommand() */ } \
 		static Command* Create(const void* data) { return new c##t ((d##t*)data); } \
 		virtual void Merge(Command* prev) { MergeWithSelf((c##t*)prev); } \
 		virtual const char* GetType() const { return #t; }

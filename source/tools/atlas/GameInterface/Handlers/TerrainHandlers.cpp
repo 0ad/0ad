@@ -165,12 +165,12 @@ BEGIN_COMMAND(PaintTerrain)
 	void Do()
 	{
 
-		d->pos->GetWorldSpace(g_CurrentBrush.m_Centre);
+		msg->pos->GetWorldSpace(g_CurrentBrush.m_Centre);
 
 		int x0, y0;
 		g_CurrentBrush.GetBottomLeft(x0, y0);
 
-		CTextureEntry* texentry = g_TexMan.FindTexture(CStrW(*d->texture));
+		CTextureEntry* texentry = g_TexMan.FindTexture(CStrW(*msg->texture));
 		if (! texentry)
 		{
 			debug_warn("Can't find texentry"); // TODO: nicer error handling
@@ -182,7 +182,7 @@ BEGIN_COMMAND(PaintTerrain)
 			for (int dx = 0; dx < g_CurrentBrush.m_W; ++dx)
 			{
 				if (g_CurrentBrush.Get(dx, dy) > 0.5f) // TODO: proper solid brushes
-					m_TerrainDelta.PaintTile(x0+dx, y0+dy, texture, d->priority);
+					m_TerrainDelta.PaintTile(x0+dx, y0+dy, texture, msg->priority);
 			}
 
 		g_Game->GetWorld()->GetTerrain()->MakeDirty(x0, y0, x0+g_CurrentBrush.m_W, y0+g_CurrentBrush.m_H, RENDERDATA_UPDATE_INDICES);

@@ -34,6 +34,8 @@
 #include <boost/preprocessor/seq/for_each_i.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/punctuation/comma_if.hpp>
+#include <boost/signals.hpp>
+#include <boost/bind.hpp>
 
 // Nicer memory-leak detection:
 #ifdef _DEBUG

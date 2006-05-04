@@ -4,23 +4,27 @@
 
 IMPLEMENT_DYNAMIC_CLASS(Sidebar, wxPanel)
 
-Sidebar::Sidebar(wxWindow* parent)
-	: wxPanel(parent), m_AlreadyDisplayed(false)
+Sidebar::Sidebar(wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
+	: wxPanel(sidebarContainer), m_BottomBar(NULL), m_AlreadyDisplayed(false)
 {
 	m_MainSizer = new wxBoxSizer(wxVERTICAL);
 	SetSizer(m_MainSizer);
 }
 
-wxWindow* Sidebar::GetBottomBar(wxWindow* WXUNUSED(parent))
+void Sidebar::OnSwitchAway()
 {
-	return NULL;
+	if (m_BottomBar)
+		m_BottomBar->Show(false);
 }
 
 void Sidebar::OnSwitchTo()
 {
-	if (m_AlreadyDisplayed)
-		return;
+	if (! m_AlreadyDisplayed)
+	{
+		m_AlreadyDisplayed = true;
+		OnFirstDisplay();
+	}
 
-	m_AlreadyDisplayed = true;
-	OnFirstDisplay();
+	if (m_BottomBar)
+		m_BottomBar->Show(true);
 }

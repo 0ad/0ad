@@ -3,5 +3,5 @@
 class MapSidebar : public Sidebar
 {
 public:
-	MapSidebar(wxWindow* parent);
+	MapSidebar(wxWindow* sidebarContainer, wxWindow* bottomBarContainer);
 };

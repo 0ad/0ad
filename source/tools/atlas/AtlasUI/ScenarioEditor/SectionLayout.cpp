@@ -36,13 +36,16 @@ protected:
 		if (event.GetSelection() != -1)
 			newPage = wxDynamicCast(GetPage(event.GetSelection()), Sidebar);
 
+		if (oldPage)
+			oldPage->OnSwitchAway();
+
 		if (newPage)
 			newPage->OnSwitchTo();
 
 		if (m_Splitter->IsSplit())
 		{
 			wxWindow* bottom;
-			if (newPage && NULL != (bottom = newPage->GetBottomBar(m_Splitter)))
+			if (newPage && NULL != (bottom = newPage->GetBottomBar()))
 			{
 				m_Splitter->ReplaceWindow(m_Splitter->GetWindow2(), bottom);
 			}
@@ -54,7 +57,7 @@ protected:
 		else
 		{
 			wxWindow* bottom;
-			if (newPage && NULL != (bottom = newPage->GetBottomBar(m_Splitter)))
+			if (newPage && NULL != (bottom = newPage->GetBottomBar()))
 			{
 				m_Splitter->SplitHorizontally(m_Splitter->GetWindow1(), bottom);
 			}
@@ -104,14 +107,24 @@ void SectionLayout::Build()
 {
 	// TODO: wxWidgets bug (http://sourceforge.net/tracker/index.php?func=detail&aid=1298803&group_id=9863&atid=109863)
 	// - pressing menu keys (e.g. alt+f) with notebook tab focussed causes application to freeze
-	wxNotebook* sidebar = new SidebarNotebook(m_HorizSplitter, m_VertSplitter);
-	sidebar->AddPage(new MapSidebar(sidebar), _("Map"), false);
-	sidebar->AddPage(new TerrainSidebar(sidebar), _("Terrain"), false);
-	sidebar->AddPage(new ObjectSidebar(sidebar), _("Object"), false);
+	SidebarNotebook* sidebarBook = new SidebarNotebook(m_HorizSplitter, m_VertSplitter);
+	Sidebar* sidebar;
+
+	#define ADD_SIDEBAR(classname, label) \
+		sidebar = new classname(sidebarBook, m_VertSplitter); \
+		if (sidebar->GetBottomBar()) \
+			sidebar->GetBottomBar()->Show(false); \
+		sidebarBook->AddPage(sidebar, _(label));
+	
+	ADD_SIDEBAR(MapSidebar, "Map");
+	ADD_SIDEBAR(TerrainSidebar, "Terrain");
+	ADD_SIDEBAR(ObjectSidebar, "Object");
+	
+	#undef ADD_SIDEBAR
 
 	m_VertSplitter->SetDefaultSashPosition(-165);
 	m_VertSplitter->Initialize(m_Canvas);
 
 	m_HorizSplitter->SetDefaultSashPosition(200);
-	m_HorizSplitter->SplitVertically(sidebar, m_VertSplitter);
+	m_HorizSplitter->SplitVertically(sidebarBook, m_VertSplitter);
 }
