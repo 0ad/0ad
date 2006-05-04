@@ -623,8 +623,14 @@ void CConsole::ProcessBuffer(const wchar_t* szLine){
 
 void CConsole::LoadHistory()
 {
-	FileIOBuf buf; unsigned int buflen;
-	// Don't care about failure; just don't load anything.
+	// note: we don't care if this file doesn't exist or can't be read;
+	// just don't load anything in that case.
+
+	// do this before vfs_load to avoid an error message if file not found.
+	if(!vfs_exists(m_sHistoryFile))
+		return;
+
+	FileIOBuf buf; size_t buflen;
 	if(vfs_load( m_sHistoryFile, buf, buflen ) < 0)
 		return;
 
