@@ -13,8 +13,10 @@ my $svn_trunk = 'c:\0ad\trunk';
 my $temp_trunk = 'c:\0ad\buildtrunk';
 my $output_dir = 'c:\0ad\builds';
 my $log_dir = 'c:\0ad\autobuild';
+my $doc_out_dir = 'p:\latest';
 
 my $sevenz = '"C:\Program Files\7-Zip\7z.exe"';
+my $junction = 'c:\0ad\autobuild\junction.exe'; # from http://www.sysinternals.com/Utilities/Junction.html
 
 #my $vcbuild = '"C:\Program Files\Microsoft Visual Studio .NET 2003\Common7\IDE\vcbuild"';
 # except I need to call vcvars32.bat then "vcbuild.exe /useenv", since the VS registry settings don't always exist
@@ -68,7 +70,6 @@ if (grep { $_ eq '--commitlatest' } @ARGV)
 	exit(EXIT_NOTCOMPILED);
 }
 
-
 ### Update from SVN ###
 
 my $svn_output = `svn update --username $username --password $password 2>&1`;
@@ -80,10 +81,10 @@ allow_abort();
 $svn_output =~ /^(?:Updated to|At) revision (\d+)\.$/m or die;
 my $svn_revision = $1;
 
-if ($svn_output =~ m~^.  (source(?![/\\]tools)|build|libraries)~m)
+if ($svn_output =~ m~^.  (source(?![/\\]tools(?![/\\]atlas[/\\]GameInterface))|build|libraries)~m)
 {
 	# The source has been updated.
-	# ('source' means something in the source, build, or libraries directories, excluding source/tools)
+	# ('source' means something in the source, build, or libraries directories, excluding source/tools, but including source/tools/atlas/GameInterface)
 }
 else
 {
@@ -116,10 +117,19 @@ if (-e "$output_dir\\$svn_revision")
 
 ### Copy all the necessary files onto it ###
 
-for (qw(source libraries build))
+# For some directories (which we're going to alter), do a real copy
+for (qw(builds))
 {
 	`xcopy /e $svn_trunk\\$_ $temp_trunk\\$_\\ 2>&1`;
 	die "xcopy $_: $?" if $?;
+	allow_abort();
+}
+
+# For other directories (which we're only going to read), do a 'junction' (like a symbolic link) because it's faster
+for (qw(source libraries))
+{
+	`$junction $temp_trunk\\$_ $svn_trunk\\$_`;
+	die "junction $_: $?" if $?;
 	allow_abort();
 }
 
@@ -181,6 +191,21 @@ die $? if ($? and $? != 32768);
 die $? if $?;
 `copy $temp_trunk\\binaries\\system\\ps.pdb $output_dir\\temp\\`;
 die $? if $?;
+
+### Generate the documentation ###
+
+chdir "$temp_trunk\\build\\docs" or die $!;
+`builddoc.bat`;
+if ($?)
+{
+	warn $?;
+}
+else
+{
+	### Store the documentation ###
+	`rmdir /q /s $doc_out_dir 2>&1`;
+	`xcopy /e $temp_trunk\\docs\\generated\\*.* $doc_out_dir\\ 2>&1`;
+}
 
 ### Store the output permanently ###
 
