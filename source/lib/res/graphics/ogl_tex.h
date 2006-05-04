@@ -112,7 +112,7 @@ the next function to fail, but real apps should check and report errors.
 	[.. do something with OpenGL that uses the currently bound texture]
 
 	[at exit:]
-	// (done automatically, but this avoids it showing up as a leak)
+	* (done automatically, but this avoids it showing up as a leak)
 	(void)ogl_tex_free(hTexture);
 
 
@@ -120,14 +120,14 @@ the next function to fail, but real apps should check and report errors.
    specify internal_format and use multitexturing.
 
 	Tex t;
-	const uint flags = 0;	// image is plain RGB, default orientation
+	const uint flags = 0;	* image is plain RGB, default orientation
 	void* data = [pre-existing image]
 	(void)tex_wrap(w, h, 24, flags, data, &t);
 	Handle hCompositeAlphaMap = ogl_tex_wrap(&t, "(alpha map composite)");
 	(void)ogl_tex_set_filter(hCompositeAlphaMap, GL_LINEAR);
 	(void)ogl_tex_upload(hCompositeAlphaMap, 0, 0, GL_INTENSITY);
-	// (your responsibility! tex_wrap attaches a reference but it is
-	// removed by ogl_tex_upload.)
+	* (your responsibility! tex_wrap attaches a reference but it is
+	* removed by ogl_tex_upload.)
 	free(data);
 
 	[when rendering:]
@@ -135,7 +135,7 @@ the next function to fail, but real apps should check and report errors.
 	[.. do something with OpenGL that uses the currently bound texture]
 
 	[at exit:]
-	// (done automatically, but this avoids it showing up as a leak)
+	* (done automatically, but this avoids it showing up as a leak)
 	(void)ogl_tex_free(hCompositeAlphaMap);
 
 */
@@ -153,41 +153,55 @@ the next function to fail, but real apps should check and report errors.
 // quality mechanism
 //
 
+/**
+* Quality flags for texture uploads.
+* Specify any of them to override certain aspects of the default.
+*/
 enum OglTexQualityFlags
 {
-	// emphatically require full quality for this texture.
-	// (q_flags are invalid if this is set together with any other bit)
-	// rationale: the value 0 is used to indicate "use default flags" in
-	// ogl_tex_upload and ogl_tex_set_defaults, so this is the only
-	// way we can say "disregard default and do not reduce anything".
+	/**
+	 * emphatically require full quality for this texture.
+	 * (q_flags are invalid if this is set together with any other bit)
+	 * rationale: the value 0 is used to indicate "use default flags" in
+	 * ogl_tex_upload and ogl_tex_set_defaults, so this is the only
+	 * way we can say "disregard default and do not reduce anything".
+	 */
 	OGL_TEX_FULL_QUALITY = 0x20,
 
-	// store the texture at half the normal bit depth
-	// (4 bits per pixel component, as opposed to 8).
-	// this increases performance on older graphics cards due to
-	// decreased size in vmem. it has no effect on
-	// compressed textures because they have a fixed internal format.
+	/**
+	 * store the texture at half the normal bit depth
+	 * (4 bits per pixel component, as opposed to 8).
+	 * this increases performance on older graphics cards due to
+	 * decreased size in vmem. it has no effect on
+	 * compressed textures because they have a fixed internal format.
+	 */
 	OGL_TEX_HALF_BPP = 0x10,
 
-	// store the texture at half its original resolution.
-	// this increases performance on older graphics cards due to
-	// decreased size in vmem. 
-	// this is useful for also reducing quality of compressed textures,
-	// which are not affected by OGL_TEX_HALF_BPP.
-	// currently only implemented for images that contain mipmaps
-	// (otherwise, we'd have to resample, which is slow).
-	// note: scaling down to 1/4, 1/8, .. is easily possible without
-	// extra work, so we leave some bits free for that.
+	/**
+	 * store the texture at half its original resolution.
+	 * this increases performance on older graphics cards due to
+	 * decreased size in vmem. 
+	 * this is useful for also reducing quality of compressed textures,
+	 * which are not affected by OGL_TEX_HALF_BPP.
+	 * currently only implemented for images that contain mipmaps
+	 * (otherwise, we'd have to resample, which is slow).
+	 * note: scaling down to 1/4, 1/8, .. is easily possible without
+	 * extra work, so we leave some bits free for that.
+	 */
 	OGL_TEX_HALF_RES = 0x01
 };
 
-// change default settings - these affect performance vs. quality.
-// may be overridden for individual textures via parameter to
-// ogl_tex_upload or ogl_tex_set_filter, respectively.
-// 
-// pass 0 to keep the current setting; defaults and legal values are:
-// - q_flags: OGL_TEX_FULL_QUALITY; combination of OglTexQualityFlags 
-// - filter: GL_LINEAR; any valid OpenGL minification filter
+/**
+* Change default settings - these affect performance vs. quality.
+* May be overridden for individual textures via parameter to
+* ogl_tex_upload or ogl_tex_set_filter, respectively.
+*
+* @param q_flags quality flags. Pass 0 to keep the current setting
+*        (initially OGL_TEX_FULL_QUALITY), or any combination of
+*        OglTexQualityFlags.
+* @param filter mag/minification filter. Pass 0 to keep the current setting
+*        (initially GL_LINEAR), or any valid OpenGL minification filter.
+*/
 extern void ogl_tex_set_defaults(uint q_flags, GLint filter);
 
 
@@ -195,30 +209,52 @@ extern void ogl_tex_set_defaults(uint q_flags, GLint filter);
 // open/close
 //
 
-// load and return a handle to the texture given in <fn>.
-// for a list of supported formats, see tex.h's tex_load.
+/**
+* Load and return a handle to the texture.
+*
+* @param fn VFS filename of texture.
+* @param flags h_alloc flags.
+* @return Handle to texture or negative LibError
+* for a list of supported formats, see tex.h's tex_load.
+*/
 extern Handle ogl_tex_load(const char* fn, uint flags = 0);
 
-// return Handle to an existing object, if it has been loaded and
-// is still in memory; otherwise, a negative error code.
+/**
+* Find and return an existing texture object, if it has already been
+* loaded and is still in memory.
+*
+* @param fn VFS filename of texture.
+* @return Handle to texture or negative LibError
+*/
 extern Handle ogl_tex_find(const char* fn);
 
-// make the given Tex object ready for use as an OpenGL texture
-// and return a handle to it. this will be as if its contents
-// had been loaded by ogl_tex_load.
-//
-// we need only add bookkeeping information and "wrap" it in
-// a resource object (accessed via Handle), hence the name.
-//
-// <fn> isn't strictly needed but should describe the texture so that
-// h_filename will return a meaningful comment for debug purposes.
-// note: because we cannot guarantee that callers will pass distinct
-// "filenames", caching is disabled for the created object. this avoids
-// mistakenly reusing previous objects that share the same comment.
+/**
+* Make the Tex object ready for use as an OpenGL texture
+* and return a handle to it. This will be as if its contents
+* had been loaded by ogl_tex_load.
+*
+* @param t Texture object.
+* @param fn filename or description of texture. not strictly needed,
+*        but would allow h_filename to return meaningful info for
+*        purposes of debugging.
+* @return Handle to texture or negative LibError
+*
+* note: because we cannot guarantee that callers will pass distinct
+* "filenames", caching is disabled for the created object. this avoids
+* mistakenly reusing previous objects that share the same comment.
+*
+* we need only add bookkeeping information and "wrap" it in
+* a resource object (accessed via Handle), hence the name.
+*/
 extern Handle ogl_tex_wrap(Tex* t, const char* fn = 0, uint flags = 0);
 
-// free all resources associated with the texture and make further
-// use of it impossible. (subject to refcount)
+/**
+* Release this texture reference. When the count reaches zero, all of
+* its associated resources are freed and further use made impossible.
+*
+* @param ht Texture handle.
+* @return LibError
+*/
 extern LibError ogl_tex_free(Handle& ht);
 
 
@@ -229,16 +265,27 @@ extern LibError ogl_tex_free(Handle& ht);
 // these must be called before uploading; this simplifies
 // things and avoids calling glTexParameter twice.
 
-// override default filter (as set above) for this texture.
-// must be called before uploading (raises a warning if called afterwards).
-// filter is as defined by OpenGL; it is applied for both minification and
-// magnification (for rationale and details, see OglTexState)
+/**
+* Override default filter (see {@link #ogl_tex_set_defaults}) for
+* this texture.
+*
+* @param filter OpenGL minification and magnification filter
+*        (rationale: see {@link OglTexState})
+* @return LibError
+*
+* Must be called before uploading (raises a warning if called afterwards).
+*/
 extern LibError ogl_tex_set_filter(Handle ht, GLint filter);
 
-// override default wrap mode (GL_REPEAT) for this texture.
-// must be called before uploading (raises a warning if called afterwards).
-// wrap is as defined by OpenGL and applies to both S and T coordinates
-// (rationale: see OglTexState).
+/**
+* Override default wrap mode (GL_REPEAT) for this texture.
+*
+* @param wrap OpenGL wrap mode (for both S and T coordinates)
+*        (rationale: see {@link OglTexState})
+* @return LibError
+*
+* Must be called before uploading (raises a warning if called afterwards).
+*/
 extern LibError ogl_tex_set_wrap(Handle ht, GLint wrap);
 
 
@@ -258,19 +305,31 @@ enum OglTexAllow
 	OGL_TEX_ENABLE
 };
 
-// override the default decision and force/disallow use of the
-// given feature. should be called from ah_override_gl_upload_caps.
+/**
+* Override the default decision and force/disallow use of the
+* given feature. Typically called from ah_override_gl_upload_caps.
+*
+* @param what feature to influence
+* @param allow disable/enable flag
+*/
 extern void ogl_tex_override(OglTexOverrides what, OglTexAllow allow);
 
-// upload the texture to OpenGL.
-// if not 0, parameters override the following:
-//   fmt_ovr     : OpenGL format (e.g. GL_RGB) decided from bpp / Tex flags;
-//   q_flags_ovr : global default "quality vs. performance" flags;
-//   int_fmt_ovr : internal format (e.g. GL_RGB8) decided from fmt / q_flags.
-//
-// side effects:
-// - enables texturing on TMU 0 and binds the texture to it;
-// - frees the texel data! see ogl_tex_get_data.
+/**
+* Upload texture to OpenGL.
+*
+* @param fmt_ovr optional override for OpenGL format (e.g. GL_RGB),
+*        which is decided from bpp / Tex flags
+* @param q_flags_ovr optional override for global default
+*        OglTexQualityFlags
+* @param int_fmt_ovr optional override for OpenGL internal format
+*        (e.g. GL_RGB8), which is decided from fmt / q_flags.
+* @return LibError
+* Side Effects:
+* <UL>
+*   <LI>enables texturing on TMU 0 and binds the texture to it;
+*   <LI>frees the texel data! see ogl_tex_get_data.
+* </UL>
+*/
 extern LibError ogl_tex_upload(const Handle ht, GLenum fmt_ovr = 0, uint q_flags_ovr = 0, GLint int_fmt_ovr = 0);
 
 
@@ -278,22 +337,41 @@ extern LibError ogl_tex_upload(const Handle ht, GLenum fmt_ovr = 0, uint q_flags
 // return information about the texture
 //
 
-// retrieve texture dimensions and bits per pixel.
-// all params are optional and filled if non-NULL.
+/**
+* Retrieve dimensions and bit depth of the texture.
+*
+* @param ht Texture handle
+* @param w optional; will be filled with width
+* @param h optional; will be filled with height
+* @param bpp optional; will be filled with bits per pixel
+* @return LibError
+*/
 extern LibError ogl_tex_get_size(Handle ht, uint* w, uint* h, uint* bpp);
 
-// retrieve Tex.flags and the corresponding OpenGL format.
-// the latter is determined during ogl_tex_upload and is 0 before that.
-// all params are optional and filled if non-NULL.
+/**
+* Retrieve pixel format of the texture.
+*
+* @param ht Texture handle
+* @param flags optional; will be filled with TexFlags
+* @param fmt optional; will be filled with GL format
+*        (it is determined during ogl_tex_upload and 0 before then)
+* @return LibError
+*/
 extern LibError ogl_tex_get_format(Handle ht, uint* flags, GLenum* fmt);
 
-// retrieve pointer to texel data.
-//
-// note: this memory is freed after a successful ogl_tex_upload for
-// this texture. after that, the pointer we retrieve is NULL but
-// the function doesn't fail (negative return value) by design.
-// if you still need to get at the data, add a reference before
-// uploading it or read directly from OpenGL (discouraged).
+/**
+* Retrieve pixel data of the texture.
+*
+* @param ht Texture handle
+* @param p will be filled with pointer to texels.
+* @return LibError
+*
+* Note: this memory is freed after a successful ogl_tex_upload for
+* this texture. After that, the pointer we retrieve is NULL but
+* the function doesn't fail (negative return value) by design.
+* If you still need to get at the data, add a reference before
+* uploading it or read directly from OpenGL (discouraged).
+*/
 extern LibError ogl_tex_get_data(Handle ht, void** p);
 
 
@@ -301,25 +379,49 @@ extern LibError ogl_tex_get_data(Handle ht, void** p);
 // misc
 //
 
-// bind the texture to the specified unit [number] in preparation for
-// using it in rendering. if <ht> is 0, texturing is disabled instead.
-//
-// side effects:
-// - changes the active texture unit;
-// - (if return value is 0:) texturing was enabled/disabled on that unit.
-//
-// notes:
-// - assumes multitexturing is available.
-// - not necessary before calling ogl_tex_upload!
-// - on error, the unit's texture state is unchanged; see implementation.
+/**
+* Bind texture to the specified unit in preparation for using it in
+* rendering.
+*
+* @param ht Texture handle. If 0, texturing is disabled on this unit.
+* @param unit Texture Mapping Unit number, typically 0 for the first.
+* @return LibError
+*
+* Side Effects:
+* - changes the active texture unit;
+* - (if successful) texturing was enabled/disabled on that unit.
+*
+* Notes:
+* - assumes multitexturing is available.
+* - not necessary before calling ogl_tex_upload!
+* - on error, the unit's texture state is unchanged; see implementation.
+*/
 extern LibError ogl_tex_bind(Handle ht, uint unit = 0);
 
-// apply the specified transforms (as in tex_transform) to the image.
-// must be called before uploading (raises a warning if called afterwards).
+/**
+* (partially) Transform pixel format of the texture.
+*
+* @param ht Texture handle
+* @param flags the TexFlags that are to be <em>changed</em>
+* @return LibError
+* @see tex_transform
+*
+* Must be called before uploading (raises a warning if called afterwards).
+*/
 extern LibError ogl_tex_transform(Handle ht, uint flags);
 
-// change the pixel format to that specified by <new_flags>.
-// (note: this is equivalent to ogl_tex_transform(ht, ht_flags^new_flags).
+/**
+* Transform pixel format of the texture.
+*
+* @param ht Texture handle
+* @param flags desired new TexFlags indicating pixel format.
+* @return LibError
+* @see tex_transform
+*
+* Must be called before uploading (raises a warning if called afterwards).
+*
+* Note: this is equivalent to ogl_tex_transform(ht, ht_flags^new_flags).
+*/
 extern LibError ogl_tex_transform_to(Handle ht, uint new_flags);
 
 #endif	// #ifndef OGL_TEX_H__

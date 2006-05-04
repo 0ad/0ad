@@ -110,8 +110,14 @@ static LibError mem_protect(u8* p, size_t size, int prot)
 // page aligned allocator
 //-----------------------------------------------------------------------------
 
-// returns at least unaligned_size bytes of page-aligned memory.
-// it defaults to read/writable; you can mprotect it if desired.
+/**
+* allocate memory starting at a page-aligned address.
+* it defaults to read/writable; you can mprotect it if desired.
+*
+* @param unaligned_size minimum size [bytes] to allocate
+* (will be rounded up to page size)
+* @return void* allocated memory, or NULL if error / out of memory.
+*/
 void* page_aligned_alloc(size_t unaligned_size)
 {
 	const size_t size_pa = round_up_to_page(unaligned_size);
@@ -121,10 +127,16 @@ void* page_aligned_alloc(size_t unaligned_size)
 	return p;
 }
 
-// free a previously allocated region. must be passed the exact values
-// passed to/returned from page_aligned_malloc.
+/**
+* Free a memory block that had been allocated by page_aligned_alloc.
+*
+* @param void* Exact pointer returned by page_aligned_alloc
+* @param unaligned_size Exact size passed to page_aligned_alloc
+*/
 void page_aligned_free(void* p, size_t unaligned_size)
 {
+	if(!p)
+		return;
 	debug_assert(is_page_multiple((uintptr_t)p));
 	const size_t size_pa = round_up_to_page(unaligned_size);
 	(void)mem_release((u8*)p, size_pa);
@@ -171,10 +183,16 @@ static LibError validate_da(DynArray* da)
 #define CHECK_DA(da) RETURN_ERR(validate_da(da))
 
 
-// ready the DynArray object for use. preallocates max_size bytes
-// (rounded up to the next page size multiple) of address space for the
-// array; it can never grow beyond this.
-// no virtual memory is actually committed until calls to da_set_size.
+
+/**
+* ready the DynArray object for use.
+*
+* @param DynArray*
+* @param max_size Max size [bytes] of the DynArray; this much
+* (rounded up to next page multiple) virtual address space is reserved.
+* no virtual memory is actually committed until calls to da_set_size.
+* @return LibError
+*/
 LibError da_alloc(DynArray* da, size_t max_size)
 {
 	const size_t max_size_pa = round_up_to_page(max_size);
@@ -192,10 +210,19 @@ LibError da_alloc(DynArray* da, size_t max_size)
 }
 
 
-// "wrap" (i.e. store information about) the given buffer in a
-// DynArray object, preparing it for use with da_read or da_append.
-// da_free should be called when the DynArray is no longer needed,
-// even though it doesn't free this memory (but does zero the DynArray).
+/**
+* "wrap" (i.e. store information about) the given buffer in a
+* DynArray object, preparing it for use with da_read or da_append.
+*
+* da_free should be called when the DynArray is no longer needed,
+* even though it doesn't free this memory (but does zero the DynArray).
+*
+* @param DynArray*. Note: any future operations on it that would
+* change the underlying memory (e.g. da_set_size) will fail.
+* @param p Memory
+* @param size Size [bytes]
+* @return LibError
+*/
 LibError da_wrap_fixed(DynArray* da, u8* p, size_t size)
 {
 	da->base        = p;
@@ -208,9 +235,14 @@ LibError da_wrap_fixed(DynArray* da, u8* p, size_t size)
 }
 
 
-// free all memory (address space + physical) that constitutes the
-// given array. use-after-free is impossible because the memory is
-// marked not-present via MMU. also zeroes the contents of <da>.
+/**
+* free all memory (address space + physical) that constitutes the
+* given array. use-after-free is impossible because the memory is
+* marked not-present via MMU.
+*
+* @param DynArray* da; zeroed afterwards.
+* @return LibError
+*/
 LibError da_free(DynArray* da)
 {
 	CHECK_DA(da);
@@ -232,9 +264,15 @@ LibError da_free(DynArray* da)
 }
 
 
-// expand or shrink the array: changes the amount of currently committed
-// (i.e. usable) memory pages. pages are added/removed until
-// new_size (rounded up to the next page size multiple) is met.
+/**
+* expand or shrink the array: changes the amount of currently committed
+* (i.e. usable) memory pages.
+*
+* @param DynArray*
+* @param new_size [bytes]. Pages are added/removed until this size
+* (rounded up to the next page size multiple) is reached.
+* @return LibError
+*/
 LibError da_set_size(DynArray* da, size_t new_size)
 {
 	CHECK_DA(da);
@@ -269,8 +307,14 @@ LibError da_set_size(DynArray* da, size_t new_size)
 }
 
 
-// make sure at least <size> bytes starting at <pos> are committed and
-// ready for use.
+/**
+* Make sure at least <size> bytes starting at da->pos are committed and
+* ready for use.
+*
+* @param DynArray*
+* @param size Minimum amount to guarantee [bytes]
+* @return LibError
+*/
 LibError da_reserve(DynArray* da, size_t size)
 {
 	// default to page size (the OS won't commit less anyway);
@@ -283,10 +327,15 @@ LibError da_reserve(DynArray* da, size_t size)
 }
 
 
-// change access rights of the array memory; used to implement
-// write-protection. affects the currently committed pages as well as
-// all subsequently added pages.
-// prot can be a combination of the PROT_* values used with mprotect.
+/**
+* Change access rights of the array memory; used to implement
+* write-protection. affects the currently committed pages as well as
+* all subsequently added pages.
+*
+* @param DynArray*
+* @param prot PROT_* protection flags as defined by POSIX mprotect()
+* @return LibError
+*/
 LibError da_set_prot(DynArray* da, int prot)
 {
 	CHECK_DA(da);
@@ -304,8 +353,15 @@ LibError da_set_prot(DynArray* da, int prot)
 }
 
 
-// "read" from array, i.e. copy into the given buffer.
-// starts at offset DynArray.pos and advances this.
+/**
+* "read" from array, i.e. copy into the given buffer.
+* starts at offset DynArray.pos and advances this.
+*
+* @param DynArray*
+* @param data Destination buffer
+* @param size Amount to copy [bytes]
+* @return LibError
+*/
 LibError da_read(DynArray* da, void* data, size_t size)
 {
 	// make sure we have enough data to read
@@ -318,8 +374,15 @@ LibError da_read(DynArray* da, void* data, size_t size)
 }
 
 
-// "write" to array, i.e. copy from the given buffer.
-// starts at offset DynArray.pos and advances this.
+/**
+* "write" to array, i.e. copy from the given buffer.
+* starts at offset DynArray.pos and advances this.
+*
+* @param DynArray*
+* @param data Source buffer
+* @param Amount to copy [bytes]
+* @return LibError
+*/
 LibError da_append(DynArray* da, const void* data, size_t size)
 {
 	RETURN_ERR(da_reserve(da, size));
@@ -366,13 +429,18 @@ static void* freelist_pop(void** pfreelist)
 static const size_t ALIGN = 8;
 
 
-// ready <p> for use. <max_size> is the upper limit [bytes] on
-// pool size (this is how much address space is reserved).
-//
-// <el_size> can be 0 to allow variable-sized allocations
-//  (which cannot be freed individually);
-// otherwise, it specifies the number of bytes that will be
-// returned by pool_alloc (whose size parameter is then ignored).
+/**
+* Ready Pool for use.
+*
+* @param Pool*
+* @param max_size Max size [bytes] of the Pool; this much
+* (rounded up to next page multiple) virtual address space is reserved.
+* no virtual memory is actually committed until calls to pool_alloc.
+* @param el_size Number of bytes that will be returned by each
+* pool_alloc (whose size parameter is then ignored). Can be 0 to
+* allow variable-sized allocations, but pool_free is then unusable.
+* @return LibError
+*/
 LibError pool_create(Pool* p, size_t max_size, size_t el_size)
 {
 	if(el_size == POOL_VARIABLE_ALLOCS)
@@ -385,9 +453,14 @@ LibError pool_create(Pool* p, size_t max_size, size_t el_size)
 }
 
 
-// free all memory that ensued from <p>. all elements are made unusable
-// (it doesn't matter if they were "allocated" or in freelist or unused);
-// future alloc and free calls on this pool will fail.
+/**
+* Free all memory that ensued from the Pool. all elements are made unusable
+* (it doesn't matter if they were "allocated" or in freelist or unused);
+* future alloc and free calls on this pool will fail.
+*
+* @param Pool*
+* @return LibError
+*/
 LibError pool_destroy(Pool* p)
 {
 	// don't be picky and complain if the freelist isn't empty;
@@ -398,8 +471,14 @@ LibError pool_destroy(Pool* p)
 }
 
 
-// indicate whether <el> was allocated from the given pool.
-// this is useful for callers that use several types of allocators.
+/**
+* Indicate whether <el> was allocated from the given pool.
+* this is useful for callers that use several types of allocators.
+*
+* @param Pool*
+* @param el Address in question
+* @return bool
+*/
 bool pool_contains(Pool* p, void* el)
 {
 	// outside of our range
@@ -412,12 +491,15 @@ bool pool_contains(Pool* p, void* el)
 }
 
 
-// return an entry from the pool, or 0 if it would have to be expanded and
-// there isn't enough memory to do so.
-// exhausts the freelist before returning new entries to improve locality.
-//
-// if the pool was set up with fixed-size elements, <size> is ignored;
-// otherwise, <size> bytes are allocated.
+/**
+* Dole out memory from the pool.
+* exhausts the freelist before returning new entries to improve locality.
+*
+* @param Pool*
+* @param size bytes to allocate; ignored if pool_create's el_size was not 0.
+* @return allocated memory, or 0 if the Pool would have to be expanded and
+* there isn't enough memory to do so.
+*/
 void* pool_alloc(Pool* p, size_t size)
 {
 	// if pool allows variable sizes, go with the size parameter,
@@ -446,11 +528,16 @@ have_el:
 }
 
 
-// make <el> available for reuse in the given Pool.
-//
-// this is not allowed if created for variable-size elements.
-// rationale: avoids having to pass el_size here and compare with size when
-// allocating; also prevents fragmentation and leaking memory.
+/**
+* Make a fixed-size element available for reuse in the given Pool.
+*
+* this is not allowed if the Pool was created for variable-size elements.
+* rationale: avoids having to pass el_size here and compare with size when
+* allocating; also prevents fragmentation and leaking memory.
+*
+* @param Pool*
+* @param el Element returned by pool_alloc.
+*/
 void pool_free(Pool* p, void* el)
 {
 	// only allowed to free items if we were initialized with
@@ -469,9 +556,13 @@ void pool_free(Pool* p, void* el)
 }
 
 
-// "free" all allocations that ensued from the given Pool.
-// this resets it as if freshly pool_create-d, but doesn't release the
-// underlying memory.
+/**
+* "free" all allocations that ensued from the given Pool.
+* this resets it as if freshly pool_create-d, but doesn't release the
+* underlying reserved virtual memory.
+*
+* @param Pool*
+*/
 void pool_free_all(Pool* p)
 {
 	p->freelist = 0;
@@ -502,12 +593,16 @@ void pool_free_all(Pool* p)
 // power-of-2 isn't required; value is arbitrary.
 const size_t BUCKET_SIZE = 4000;
 
-// ready <b> for use.
-//
-// <el_size> can be 0 to allow variable-sized allocations
-//  (which cannot be freed individually);
-// otherwise, it specifies the number of bytes that will be
-// returned by bucket_alloc (whose size parameter is then ignored).
+
+/**
+* Ready Bucket for use.
+*
+* @param Bucket*
+* @param el_size Number of bytes that will be returned by each
+* bucket_alloc (whose size parameter is then ignored). Can be 0 to
+* allow variable-sized allocations, but bucket_free is then unusable.
+* @return LibError
+*/
 LibError bucket_create(Bucket* b, size_t el_size)
 {
 	b->freelist = 0;
@@ -531,8 +626,12 @@ LibError bucket_create(Bucket* b, size_t el_size)
 }
 
 
-// free all memory that ensued from <b>.
-// future alloc and free calls on this Bucket will fail.
+/**
+* Free all memory that ensued from the Bucket.
+* future alloc and free calls on this Bucket will fail.
+*
+* @param Bucket*
+*/
 void bucket_destroy(Bucket* b)
 {
 	while(b->bucket)
@@ -551,12 +650,15 @@ void bucket_destroy(Bucket* b)
 }
 
 
-// return an entry from the bucket, or 0 if another would have to be
-// allocated and there isn't enough memory to do so.
-// exhausts the freelist before returning new entries to improve locality.
-//
-// if the bucket was set up with fixed-size elements, <size> is ignored;
-// otherwise, <size> bytes are allocated.
+/**
+* Dole out memory from the Bucket.
+* exhausts the freelist before returning new entries to improve locality.
+*
+* @param Bucket*
+* @param size bytes to allocate; ignored if bucket_create's el_size was not 0.
+* @return allocated memory, or 0 if the Bucket would have to be expanded and
+* there isn't enough memory to do so.
+*/
 void* bucket_alloc(Bucket* b, size_t size)
 {
 	size_t el_size = b->el_size? b->el_size : round_up(size, ALIGN);
@@ -589,11 +691,16 @@ void* bucket_alloc(Bucket* b, size_t size)
 }
 
 
-// make <el> available for reuse in <b>.
-//
-// this is not allowed if created for variable-size elements.
-// rationale: avoids having to pass el_size here and compare with size when
-// allocating; also prevents fragmentation and leaking memory.
+/**
+* Make a fixed-size element available for reuse in the Bucket.
+*
+* this is not allowed if the Bucket was created for variable-size elements.
+* rationale: avoids having to pass el_size here and compare with size when
+* allocating; also prevents fragmentation and leaking memory.
+*
+* @param Bucket*
+* @param el Element returned by bucket_alloc.
+*/
 void bucket_free(Bucket* b, void* el)
 {
 	if(b->el_size == 0)
@@ -619,11 +726,15 @@ void bucket_free(Bucket* b, void* el)
 // - only allocates one memory block, which is more efficient than
 //   malloc/new for each row.
 
-// allocate a 2D cols x rows matrix of <el_size> byte cells.
-// this must be freed via matrix_free. returns 0 if out of memory.
-//
-// the returned pointer should be cast to the target type (e.g. int**) and
-// can then be accessed by matrix[col][row].
+/**
+* allocate a 2D cols x rows matrix of <el_size> byte cells.
+* this must be freed via matrix_free.
+*
+* @param cols, rows Matrix dimensions.
+* @param el_size Size [bytes] of each matrix entry.
+* @return void**: 0 if out of memory, or a pointer that should be cast to the
+* target type (e.g. int**). it can then be accessed via matrix[col][row].
+*/
 void** matrix_alloc(uint cols, uint rows, size_t el_size)
 {
 	const size_t initial_align = 64;
@@ -660,9 +771,12 @@ void** matrix_alloc(uint cols, uint rows, size_t el_size)
 }
 
 
-// free the given matrix (allocated by matrix_alloc). no-op if matrix == 0.
-// callers will likely want to pass variables of a different type
-// (e.g. int**); they must be cast to void**.
+/**
+* Free a matrix allocated by matrix_alloc.
+*
+* @param void** matrix. Callers will likely want to pass it as another
+* type, but C++ requires it be explicitly casted to void**.
+*/
 void matrix_free(void** matrix)
 {
 	free(matrix);
@@ -673,14 +787,25 @@ void matrix_free(void** matrix)
 // allocator optimized for single instances
 //-----------------------------------------------------------------------------
 
-// intended for applications that frequently alloc/free a single
-// fixed-size object. caller provides static storage and an in-use flag;
-// we use that memory if available and otherwise fall back to the heap.
-// if the application only has one object in use at a time, malloc is
-// avoided; this is faster and avoids heap fragmentation.
-//
-// thread-safe.
 
+/**
+* Allocate <size> bytes of zeroed memory.
+*
+* intended for applications that frequently alloc/free a single
+* fixed-size object. caller provides static storage and an in-use flag;
+* we use that memory if available and otherwise fall back to the heap.
+* if the application only has one object in use at a time, malloc is
+* avoided; this is faster and avoids heap fragmentation.
+*
+* note: thread-safe despite use of shared static data.
+*
+* @param storage Caller-allocated memory of at least <size> bytes
+* (typically a static array of bytes)
+* @param in_use_flag Pointer to a flag we set when <storage> is in-use.
+* @param size [bytes] to allocate
+* @return allocated memory; typically = <storage>, but falls back to
+* malloc if that's in-use. can return 0 (with warning) if out of memory.
+*/
 void* single_calloc(void* storage, volatile uintptr_t* in_use_flag, size_t size)
 {
 	// sanity check
@@ -707,6 +832,13 @@ void* single_calloc(void* storage, volatile uintptr_t* in_use_flag, size_t size)
 }
 
 
+/**
+* Free a memory block that had been allocated by single_calloc.
+*
+* @param storage Exact value passed to single_calloc.
+* @param in_use_flag Exact value passed to single_calloc.
+* @param Exact value returned by single_calloc.
+*/
 void single_free(void* storage, volatile uintptr_t* in_use_flag, void* p)
 {
 	// sanity check
