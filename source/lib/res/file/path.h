@@ -73,6 +73,9 @@ struct NextNumberedFilenameInfo
 extern void next_numbered_filename(const char* V_fn_fmt,
 	NextNumberedFilenameInfo* nfi, char* V_next_fn, bool use_vfs = true);
 
+
+extern bool path_is_atom_fn(const char* fn);
+
 extern void path_init();
 extern void path_shutdown();
 

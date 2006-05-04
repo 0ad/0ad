@@ -138,14 +138,22 @@ public:
 template<> class DHT_Traits<const char*, TNode*>
 {
 public:
-	static const size_t initial_entries = 16;
+	static const size_t initial_entries = 32;
 	size_t hash(const char* key) const
 	{
 		return (size_t)fnv_lc_hash(key);
 	}
 	bool equal(const char* k1, const char* k2) const
 	{
-		// exact match
+		// note: in theory, we could take advantage of the atom_fn
+		// mechanism to only compare string pointers. however, we're
+		// dealing with path *components* here. adding these as atoms would
+		// about double the memory used (to ~1 MB) and require a bit of
+		// care in the implementation of file_make_unique_path_copy
+		// (must not early-out before checking the hash table).
+		//
+		// given that path components are rather short, string comparisons
+		// are not expensive and we'll just go with that for simplicity.
 		if(!strcmp(k1, k2))
 			return true;
 #ifndef NDEBUG

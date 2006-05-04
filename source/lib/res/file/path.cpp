@@ -241,6 +241,12 @@ const char* file_make_unique_fn_copy(const char* P_fn)
 }
 
 
+bool path_is_atom_fn(const char* fn)
+{
+	return pool_contains(&atom_pool, (void*)fn);
+}
+
+
 void path_init()
 {
 	pool_create(&atom_pool, 8*MiB, POOL_VARIABLE_ALLOCS);
