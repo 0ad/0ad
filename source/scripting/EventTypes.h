@@ -23,6 +23,7 @@ enum EEventType
 	EVENT_NOTIFICATION,
 	EVENT_FORMATION,
 	EVENT_IDLE,
+	EVENT_MOVEMENT,
 	EVENT_LAST,
 
 	// Projectile events
@@ -51,7 +52,9 @@ static const wchar_t* const EventNames[EVENT_LAST] =
 	/* EVENT_ORDER_TRANSITION */ L"onOrderTransition", /* When we change orders (sometimes...) */
 	/* EVENT_NOTIFICATION */ L"onNotification",  /*When we receive a notification */
 	/* EVENT_FORMATION */ L"onFormation", /* When this unit does something with a formation */
-	/* EVENT_IDLE */ L"onIdle" /* When this unit becomes idle, do something */
+	/* EVENT_IDLE */ L"onIdle", /* When this unit becomes idle, do something */
+	/* EVENT_MOVEMENT */ L"onMovement" /*Triggered by processGotoHelper(), when unit moves */
 };
 
 #endif	// #ifndef EVENTTYPES_H__
+

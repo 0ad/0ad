@@ -179,7 +179,7 @@ int CMapReader::ApplyData()
 {
 	// initialise the terrain
 	pTerrain->Initialize(m_MapSize, &m_Heightmap[0]);
-
+	
 	// setup the textures on the minipatches
 	STileDesc* tileptr = &m_Tiles[0];
 	for (u32 j=0; j<m_MapSize; j++) {
@@ -218,13 +218,14 @@ int CMapReader::ApplyData()
 			unit->GetModel()->SetTransform(transform);
 		}
 	}
+	//Make units start out conforming correctly
+	g_EntityManager.conformAll();
 
 	if (unpacker.GetVersion() >= 2)
 	{
 		// copy over the lighting parameters
 		*pLightEnv = m_LightEnv;
 	}
-
 	return 0;
 }
 

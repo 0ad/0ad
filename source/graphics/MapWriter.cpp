@@ -254,7 +254,7 @@ void CMapWriter::WriteXML(const char* filename, CUnitManager* pUnitMan, CLightEn
 				}
 
 				{
-					float angle = entity->m_orientation;
+					float angle = entity->m_orientation.Y;
 
 					XML_Element("Orientation");
 					XML_Attribute("angle", angle);

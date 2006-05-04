@@ -13,6 +13,9 @@
 		<!-- All but sea units are attached to the ground plane. -->		
 		<Anchor>
  			<Type>Ground</Type>
+		<!-- If negative or > 90.0, entity will always conform to terrain (assuming traits.pitch allows it) -->
+			<ConformX>3.141592</ConformX>
+			<ConformZ>3.141592</ConformZ>
  		</Anchor>
 
 		<!-- Defaults to no armour. -->
@@ -49,14 +52,13 @@
 			<Height>-1.0</Height>
 			<Name></Name>
 		</Rank>
-		<AnglePenalty>
+		<Flank_Penalty>
 			<Sectors>6</Sectors>
 			<Value>.2</Value>
-		</AnglePenalty>
+		</Flank_Penalty>
 		<Pitch>
-			<Max_Actor>0.03</Max_Actor>
-			<Min_Actor>-0.03</Min_Actor>
-
+			<Sectors>7</Sectors>
+			<Value>.1</Value>
 		</Pitch>
 
 	</Traits>

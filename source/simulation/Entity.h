@@ -149,6 +149,8 @@ public:
 
 	// Y anchor
 	CStrW m_anchorType;
+	float m_anchorConformX;
+	float m_anchorConformZ;
 
 	// LOS
 	int m_los;
@@ -168,13 +170,12 @@ public:
 	CVector2D m_ahead;
 
 	//-- Interpolated property
-	float m_orientation;
-	float m_orientation_previous;
-	float m_graphics_orientation;
+	CVector3D m_orientation;
+	CVector3D m_orientation_previous;
+	CVector3D m_graphics_orientation;
 	
-	float m_pitchOrientation;
-	float m_pitchOrientation_previous;
-	float m_graphics_pitchOrientation;
+	CVector2D m_orientation_unclamped;
+
 
 	// If the actor's current transform data is valid (i.e. the entity hasn't
 	// moved since it was last calculated, and the terrain hasn't been changed).
@@ -213,9 +214,9 @@ public:
 	bool m_destroyNotifiers;	//True: we destroy them. False: the script does.
 
 	std::vector<bool> m_sectorValues;
-	std::vector<float> m_sectorAngles;
 	int m_sectorDivs;
-	float m_sectorPenalty;
+	
+	int m_pitchDivs;
 
 private:
 	CEntity( CBaseEntity* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections, CStrW building = L"" );
@@ -317,21 +318,26 @@ public:
 	int DestroyNotifier( CEntity* target );	//Stop notifier from sending to us
 	void DestroyAllNotifiers();
 
+	int findSector( int divs, float angle, float maxAngle, bool negative=true );
+
 	CEntityFormation* GetFormation();
-	bool IsInClass( JSContext* cx, uintN argc, jsval* argv );
 	jsval GetFormationPenalty( JSContext* cx, uintN argc, jsval* argv );
+	jsval GetFormationPenaltyBase( JSContext* cx, uintN argc, jsval* argv );
 	jsval GetFormationPenaltyType( JSContext* cx, uintN argc, jsval* argv );
 	jsval GetFormationPenaltyVal( JSContext* cx, uintN argc, jsval* argv );
 
 	jsval GetFormationBonus( JSContext* cx, uintN argc, jsval* argv );
+	jsval GetFormationBonusBase( JSContext* cx, uintN argc, jsval* argv );
 	jsval GetFormationBonusType( JSContext* cx, uintN argc, jsval* argv );
 	jsval GetFormationBonusVal( JSContext* cx, uintN argc, jsval* argv );
 
 	void DispatchFormationEvent( int type );
 
 	jsval RegisterDamage( JSContext* cx, uintN argc, jsval* argv );
-	jsval RegisterIdle( JSContext* cx, uintN argc, jsval* argv );
+	jsval RegisterOrderChange( JSContext* cx, uintN argc, jsval* argv );
 	jsval GetAttackDirections( JSContext* cx, uintN argc, jsval* argv );
+
+	jsval FindSector( JSContext* cx, uintN argc, jsval* argv );
 	// Script constructor
 
 	static JSBool Construct( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval );
@@ -355,6 +361,7 @@ public:
 	bool RequestNotification( JSContext* cx, uintN argc, jsval* argv );
 	//Just in case we want to explicitly check the listeners without waiting for the order to be pushed
 	bool ForceCheckListeners( JSContext* cx, uintN argc, jsval* argv );
+	int GetCurrentRequest( JSContext* cx, uintN argc, jsval* argv );
 	void CheckListeners( int type, CEntity *target );
 	jsval DestroyAllNotifiers( JSContext* cx, uintN argc, jsval* argv );
 	jsval DestroyNotifier( JSContext* cx, uintN argc, jsval* argv );

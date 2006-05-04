@@ -157,6 +157,9 @@ function entityInit()
 	// Register our actions with the generic order system
 	if( this.actions )
 	{
+		if ( this.actions.move && this.actions.move.speed )
+			this.actions.move.speed_curr = this.actions.move.speed;
+			
 		if( this.actions.attack && this.actions.attack.melee )
 		{
 			a = this.actions.attack.melee;
@@ -341,7 +344,7 @@ function performAttack( evt )
 
 	// Attack logic.
 	var dmg = new DamageType();
-	
+	var flank = (evt.target.getAttackDirections()-1)*evt.target.traits.flank_penalty.value;
 	if ( this.getRunState() )
 	{
 		dmg.crush = parseInt(this.actions.attack.charge.damage * this.actions.attack.charge.crush);
@@ -354,6 +357,9 @@ function performAttack( evt )
 		dmg.hack = parseInt(this.actions.attack.melee.damage * this.actions.attack.melee.hack);
 		dmg.pierce = parseInt(this.actions.attack.melee.damage * this.actions.attack.melee.pierce);
 	}
+	dmg.crush += dmg.crush * flank;
+	dmg.hack += dmg.hack * flank;
+	dmg.pierce += dmg.pierce * flank;
 
 	evt.target.damage( dmg, this );
 	
@@ -371,7 +377,12 @@ function performAttackRanged( evt )
 	dmg.hack = parseInt(this.actions.attack.ranged.damage * this.actions.attack.ranged.hack);
 	dmg.pierce = parseInt(this.actions.attack.ranged.damage * this.actions.attack.ranged.pierce);
 	
-	// The parameters for Projectile are:
+	var flank = (evt.target.getAttackDirections()-1)*evt.target.traits.flank_penalty.value;
+	dmg.crush += dmg.crush * flank;
+	dmg.hack += dmg.hack * flank;
+	dmg.pierce += dmg.pierce * flank;
+
+	// The parameters for Projectile are:	
 	// 1 - The actor to use as the projectile. There are two ways of specifying this:
 	//     the first is by giving an entity. The projectile's actor is found by looking
 	//     in the actor of that entity. This way is usual, and preferred - visual
@@ -564,7 +575,7 @@ function damage( dmg, inflictor )
 	if(!this.traits.armour) return;		// corpses have no armour, everything else should
 	
 	this.last_combat_time = getGameTime();
-
+	
 	// Apply armour and work out how much damage we actually take
 	crushDamage = parseInt(dmg.crush - this.traits.armour.value * this.traits.armour.crush);
 	if ( crushDamage < 0 ) crushDamage = 0;
@@ -666,14 +677,14 @@ function damage( dmg, inflictor )
 		// If we're not already doing something else, take a measured response - hit 'em back.
 		// You know, I think this is quite possibly the first AI code the AI divlead has written
 		// for 0 A.D....
+		//When the entity changes order, we can readjust flank penalty. We must destroy the notifiers ourselves 				later,however.
+		this.requestNotification( inflictor, NOTIFY_ORDER_CHANGE, false, true );			
+		this.registerDamage( inflictor );
 		if( this.isIdle() )
 			this.order( ORDER_GENERIC, inflictor, getAttackAction( this, inflictor ) );
 	}
 	
-// FIXME: These seemed to cause a crash I fixed the spelling from register to Register, so I've commented them out (Matei)
-	//When the entity is idle, we can readjust angle penalty. We must destroy the notifiers ourselves later, however.
-	//this.requestNotification( inflictor, NOTIFY_IDLE, false, true );
-	//this.registerDamage( inflictor );
+	
 }
 // ====================================================================
 
@@ -710,11 +721,18 @@ function entityEventGeneric( evt )
 
 function entityEventNotification( evt )
 {
+	//This is used to adjust the flank penalty (we're no longer being attacked).
+	if ( this.getCurrentRequest() == NOTIFY_ORDER_CHANGE )
+	{
+		this.registerOrderChange();
+		destroyNotifier( evt.target );
+		return;
+	}
 	//Add "true" to the end of order() to indicate that this is a notification order.
 	switch( evt.notifyType )
 	{
 		
-		case NOTIFY_GOTO:
+		case NOTIFY_GOTO:	
 			this.GotoInRange( evt.location.x, evt.location.z, false);
 			break;
 		case NOTIFY_RUN:
@@ -731,13 +749,13 @@ function entityEventNotification( evt )
 			this.order( ORDER_GENERIC, evt.target, ACTION_GATHER, true );
 			break;
 		case NOTIFY_IDLE:
-			//target is the unit that has become idle
-			this.registerIdle( evt.target );
+			//target is the unit that has become idle.  Eventually...do something here.
 			break;
 		default:
 			console.write( "Unknown notification request " + evt.notifyType );
-			break;
+			return;
 	}
+	
 }		
 
 // ====================================================================
@@ -765,9 +783,30 @@ function entityComplete()
 //=====================================================================
 function entityEventIdle( evt )
 {
-	//Use our own data for target; we aren't affecting anyone, so listeners wants to know about us
+	//Use our own data for target; we aren't affecting anyone, so listeners want to know about us
 	this.forceCheckListeners( NOTIFY_IDLE, this );
 }
+//=====================================================================
+function entityEventMovement( evt )
+{
+	var divs = this.traits.pitch.sectors;
+	var sector = this.findSector( divs, evt.slope, 3.141592, true );
+	
+	if ( divs % 2 )
+	{	
+		sector += ((divs+1)/2 - sector)*2;
+		sector -= (divs+1)/2;
+		this.actions.move.speed_curr = this.actions.move.speed;
+		this.actions.move.speed_curr += 									this.actions.move.speed*this.traits.pitch.value*sector;
+	}
+	else
+	{
+		sector += ((divs)/2 - sector)*2;
+		sector -= (divs)/2;
+		this.actions.move.speed_curr = this.actions.move.speed;
+		this.actions.move.speed_curr += 						this.actions.move.speed*this.traits.pitch.value*sector;
+	}
+}	
 
 // ====================================================================
 
@@ -867,26 +906,40 @@ function entityEventPrepareOrder( evt )
 	
 	//evt.notifySource is the entity order data will be obtained from, so if we're attacking and we 
 	//want our listeners to copy us, then we will use our own order as the source.
+	//registerOrderChange() is used to adjust the flank penalty
 
 	switch( evt.orderType )
 	{
 		case ORDER_GOTO:
 			if ( !this.actions.move )
+			{
 				evt.preventDefault();
+				return;
+			}
 			evt.notifyType = NOTIFY_GOTO;
 			evt.notifySource = this;
+			this.forceCheckListeners( NOTIFY_ORDER_CHANGE, this );
 			break;
 			
 		case ORDER_RUN:
 			if ( !this.actions.move.run )	
+			{
 				evt.preventDefault();
+				return;
+			}
 			evt.notifyType = NOTIFY_RUN;
 			evt.notifySource = this;
+			this.forceCheckListeners( NOTIFY_ORDER_CHANGE, this );
 			break;
 			
 		case ORDER_PATROL:
 			if ( !this.actions.patrol )
+			{
 				evt.preventDefault();
+				return;
+			}
+			this.registerOrderChange();
+			this.forceCheckListeners( NOTIFY_ORDER_CHANGE, this );
 			break;	
 			
 		case ORDER_GENERIC:
@@ -897,26 +950,42 @@ function entityEventPrepareOrder( evt )
 				case ACTION_ATTACK_RANGED:
 					evt.action = getAttackAction( this, evt.target );
 					if ( evt.action == ACTION_NONE )
-					 	evt.preventDefault();
+					{
+						evt.preventDefault();
+						return;
+					}
 					evt.notifyType = NOTIFY_ATTACK;
+					this.forceCheckListeners( NOTIFY_ORDER_CHANGE, this );
 					break;
 
 				case ACTION_GATHER:
 					if ( !this.actions.gather )
+					{
 						evt.preventDefault();
+						return;
+					}
 					evt.notifyType = NOTIFY_GATHER;
+					this.forceCheckListeners( NOTIFY_ORDER_CHANGE, this );
 					break;
 					
 				case ACTION_HEAL:
 					if ( !this.actions.heal )
+					{
 						evt.preventDefault();
+						return;
+					}
 					evt.notifyType = NOTIFY_HEAL;
+					this.forceCheckListeners( NOTIFY_ORDER_CHANGE, this );
 					break;	
 					
 				case ACTION_BUILD:
 					if ( !this.actions.build )
+					{
 						evt.preventDefault();
+						return;
+					}
 					evt.notifyType = NOTIFY_NONE;
+					this.forceCheckListeners( NOTIFY_ORDER_CHANGE, this );
 					break;	
 			}
 			break;
@@ -1463,12 +1532,12 @@ function entityEventFormation( evt )
 	{
 		if ( this.getFormationBonus() && this.hasClass( this.getFormationBonusType() ) )
 		{
-			eval( this + this.getFormationBonus() ) += eval( this + this.getFormationBonus() ) *		
+			eval( this + this.getFormationBonus() ) += eval( this + this.getFormationBonusBase() ) *		
 				 this.getFormationBonusVal();
 		}
 		if ( this.getFormationPenalty() && this.hasInClass( this.getFormationPenaltyType() ) )
 		{
-			eval( this + this.getFormationPenalty() ) -= eval( this + this.getFormationbonus() ) *
+			eval( this + this.getFormationPenalty() ) -= eval( this + this.getFormationPenaltyBase() ) *
 				this.getFormationPenaltyVal();
 		}
 	}
@@ -1477,12 +1546,12 @@ function entityEventFormation( evt )
 	{
 		if ( this.getFormationPenalty() && this.hasInClass( this.getFormationPenaltyType() ) )
 		{
-			eval( this + this.getFormationPenalty() ) += eval( this + this.getFormationbonus() ) *
+			eval( this + this.getFormationPenalty() ) += eval( this + this.getFormationPenaltyBase() ) *
 				this.getFormationPenaltyVal();
 		}
 		if ( this.getFormationBonus() && this.hasClass( this.getFormationBonusType() ) )
 		{
-			eval( this + this.getFormationBonus() ) -= eval( this + this.getFormationBonus() ) *						 this.getFormationBonusVal();
+			eval( this + this.getFormationBonus() ) -= eval( this + this.getFormationBonusBase() ) *						 this.getFormationBonusVal();
 		}
 		
 	}

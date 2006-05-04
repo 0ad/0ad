@@ -29,10 +29,12 @@ public:
 	~CBaseFormation(){}
 
 	CStr GetBonus(){ return m_bonus; }
+	CStr GetBonusBase(){ return m_bonusBase; }
 	CStr GetBonusType(){ return m_bonusType; }
 	float GetBonusVal(){ return m_bonusVal; }
 
 	CStr GetPenalty(){ return m_penalty; }
+	CStr GetPenaltyBase(){ return m_penaltyBase; }
 	CStr GetPenaltyType(){ return m_penaltyType; }
 	float GetPenaltyVal(){ return m_penaltyVal; }
 
@@ -46,10 +48,12 @@ private:
 
 	CStr m_tag;
 	CStr m_bonus;
+	CStr m_bonusBase;
 	CStr m_bonusType;
 	float m_bonusVal;
 
 	CStr m_penalty;
+	CStr m_penaltyBase;
 	CStr m_penaltyType;
 	float m_penaltyVal;
 
@@ -71,9 +75,9 @@ private:
 
 	//The key is the "order" of the slot
 	std::map<int, FormationSlot> m_slots;
-	std::vector<float> m_angleValues;	//cosine of angle divisions
 
 	bool loadXML(CStr filename);
 	void AssignCategory(int order, CStr category);	//takes care of formatting strings
 };
 #endif
+

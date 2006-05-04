@@ -111,10 +111,9 @@ public:
 	SEntityAction m_generic;
 
 	int m_sectorDivs;
-	float m_sectorPenalty;
-
-	float m_maxActorPitch;
-	float m_minActorPitch;
+	int m_pitchDivs;
+	float m_anchorConformX;
+	float m_anchorConformZ;
 
 	float m_turningRadius;
 	CScriptObject m_EventHandlers[EVENT_LAST];

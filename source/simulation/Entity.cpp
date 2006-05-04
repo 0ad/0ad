@@ -36,21 +36,20 @@ using namespace std;
 CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections, CStrW building )
 {
     m_position = position;
-    m_orientation = orientation;
-    m_ahead.x = sin( m_orientation );
-    m_ahead.y = cos( m_orientation );
+    m_orientation.Y = orientation;
+    m_ahead.x = sin( m_orientation.Y );
+    m_ahead.y = cos( m_orientation.Y );
 
 	// set sane default in case someone forgets to add this to the entity's
 	// XML file, which is prone to happen. (prevents crash below when
 	// using this value to resize a vector)
 	const int sane_sectordivs_default = 4;
-	m_sectorDivs = sane_sectordivs_default;
 
 	/* Anything added to this list MUST be added to BaseEntity.cpp (and variables used should
 		also be added to BaseEntity.h */
-
-    AddProperty( L"actions.move.speed", &m_speed );
-	AddProperty( L"actions.move.run.speed", &( m_run.m_Speed ) );
+	
+    AddProperty( L"actions.move.speed_curr", &m_speed );
+	AddProperty( L"actions.move.run.speed.curr", &( m_run.m_Speed ) );
 	AddProperty( L"actions.move.run.rangemin", &( m_run.m_MinRange ) );
 	AddProperty( L"actions.move.run.range", &( m_run.m_MaxRange ) );
 	AddProperty( L"actions.move.run.regen_rate", &m_runRegenRate );
@@ -61,7 +60,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
     AddProperty( L"traits.corpse", &m_corpse );
     AddProperty( L"actions.move.turningradius", &m_turningRadius );
     AddProperty( L"position", &m_graphics_position, false, (NotifyFn)&CEntity::teleport );
-    AddProperty( L"orientation", &m_graphics_orientation, false, (NotifyFn)&CEntity::reorient );
+    AddProperty( L"orientation", &(m_orientation.Y), false, (NotifyFn)&CEntity::reorient );
     AddProperty( L"player", &m_player, false, (NotifyFn)&CEntity::playerChanged );
     AddProperty( L"traits.health.curr", &m_healthCurr );
     AddProperty( L"traits.health.max", &m_healthMax );
@@ -83,10 +82,8 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
 	AddProperty( L"traits.stamina.border_height", &m_staminaBorderHeight);
 	AddProperty( L"traits.stamina.border_width", &m_staminaBorderWidth );
 	AddProperty( L"traits.stamina.border_name", &m_staminaBorderName );
-	AddProperty( L"traits.angle_penalty.sectors", &m_sectorDivs);
-	AddProperty( L"traits.angle_penalty.value", &m_sectorPenalty );
-	AddProperty( L"traits.pitch.max_actor", &m_maxActorPitch );
-	AddProperty( L"traits.pitch.min_actor", &m_minActorPitch );
+	AddProperty( L"traits.flank_penalty.sectors", &m_sectorDivs);
+	AddProperty( L"traits.pitch.sectors", &m_pitchDivs );
 	AddProperty( L"traits.rank.width", &m_rankWidth );
 	AddProperty( L"traits.rank.height", &m_rankHeight );
 	AddProperty( L"traits.rank.name", &m_rankName );
@@ -95,6 +92,9 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
     AddProperty( L"traits.minimap.green", &m_minimapG );
     AddProperty( L"traits.minimap.blue", &m_minimapB );
     AddProperty( L"traits.anchor.type", &m_anchorType );
+	AddProperty( L"traits.anchor.conformx", &m_anchorConformX );
+	AddProperty( L"traits.anchor.conformz", &m_anchorConformZ );
+
     AddProperty( L"traits.vision.los", &m_los );
     AddProperty( L"traits.vision.permanent", &m_permanent );
 	AddProperty( L"last_combat_time", &m_lastCombatTime );
@@ -108,23 +108,6 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
         AddProperty( EventNames[t], &m_EventHandlers[t], false );
         AddHandler( t, &m_EventHandlers[t] );
     }
-
-	// this has been the cause of several crashes (due to not being
-	// specified in the XML file), so in addition to the above default,
-	// we'll sanity check its value.
-	if(!(0 <= m_sectorDivs && m_sectorDivs < 1000))
-	{
-		debug_warn("invalid entity angle_penalty.sectors value");
-		m_sectorDivs = sane_sectordivs_default;
-	}
-	m_sectorAngles.resize(m_sectorDivs);
-	m_sectorValues.resize(m_sectorDivs);
-	float step = DEGTORAD(360.0f / m_sectorDivs);
-	for ( int i=0; i<m_sectorDivs; ++i )
-	{
-		m_sectorAngles[i] = cosf( step*i );
-		m_sectorValues[i] = false;
-	}
 
     m_collisionPatch = NULL;
 
@@ -141,6 +124,18 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
 	m_actorSelections = actorSelections;
 	loadBase();
 
+	// this has been the cause of several crashes (due to not being
+	// specified in the XML file), so in addition to the above default,
+	// we'll sanity check its value.
+	if(!(0 <= m_sectorDivs && m_sectorDivs < 360))
+	{
+		debug_warn("invalid entity flank_penalty.sectors value");
+		m_sectorDivs = sane_sectordivs_default;
+	}
+	m_sectorValues.resize(m_sectorDivs);
+	for ( int i=0; i<m_sectorDivs; ++i )
+		m_sectorValues[i] = false;
+	
     if( m_bounds )
         m_bounds->setPosition( m_position.X, m_position.Z );
 
@@ -151,7 +146,6 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
     m_graphics_orientation = m_orientation;
     m_actor_transform_valid = false;
 
-	m_pitchOrientation = m_pitchOrientation_previous = m_graphics_pitchOrientation = 0.0f;
     m_destroyed = false;
 
     m_selected = false;
@@ -172,7 +166,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
     m_grouped = -1;
 
 	m_building = building;
-
+	
     m_player = g_Game->GetPlayer( 0 );
 
     Initialize();
@@ -198,7 +192,8 @@ CEntity::~CEntity()
         delete it->second;
     }
     m_auras.clear();
-
+	
+	m_destroyNotifiers=true;
 	for ( size_t i=0; i<m_listeners.size(); i++ )
 		m_listeners[i].m_sender->DestroyNotifier( this );
 	DestroyAllNotifiers();
@@ -249,7 +244,10 @@ void CEntity::kill()
 
 	CEntity* remove = this;
 	g_FormationManager.RemoveUnit(remove);
-
+	
+	m_destroyNotifiers=true;
+	for ( size_t i=0; i<m_listeners.size(); i++ )
+		m_listeners[i].m_sender->DestroyNotifier( this );
 	DestroyAllNotifiers();
 
 	if( m_bounds )
@@ -286,22 +284,22 @@ void CEntity::SetPlayer(CPlayer *pPlayer)
 void CEntity::updateActorTransforms()
 {
     CMatrix3D m;
-	CMatrix3D mX;
-	float Cos = cosf( m_graphics_orientation );
-	float Sin = sinf( m_graphics_orientation );
+	CMatrix3D mXZ;
+	float Cos = cosf( m_graphics_orientation.Y );
+	float Sin = sinf( m_graphics_orientation.Y );
 
 	m._11=-Cos;  m._12=0.0f; m._13=-Sin;  m._14=0.0f;
 	m._21=0.0f; m._22=1.0f; m._23=0.0f; m._24=0.0f;
 	m._31=Sin; m._32=0.0f; m._33=-Cos;  m._34=0.0f;
 	m._41=0.0f; m._42=0.0f; m._43=0.0f; m._44=1.0f;
   
-	mX.SetXRotation( m_graphics_pitchOrientation );
-	mX = m*mX;
-	mX.Translate(m_graphics_position);
-	//m.RotateX(m_graphics_pitchOrientation);
+	mXZ.SetXRotation( m_graphics_orientation.X );
+	mXZ.RotateZ( m_graphics_orientation.Z );
+	mXZ = m*mXZ;
+	mXZ.Translate(m_graphics_position);
 
     if( m_actor )
-        m_actor->GetModel()->SetTransform( mX );
+        m_actor->GetModel()->SetTransform( mXZ );
 }
 
 void CEntity::snapToGround()
@@ -384,7 +382,6 @@ void CEntity::update( size_t timestep )
 {
     m_position_previous = m_position;
     m_orientation_previous = m_orientation;
-	m_pitchOrientation_previous = m_pitchOrientation;
 	
 	CalculateRun( timestep );
 	CalculateHealth( timestep );
@@ -756,7 +753,7 @@ struct isListenerSender
 
 int CEntity::DestroyNotifier( CEntity* target )
 {
-	if (target->m_listeners.empty() || !m_destroyNotifiers)
+	if ( target->m_listeners.empty() )
 		return 0;
 	//Stop listening
 	// (Don't just loop and use 'erase', because modifying the deque while
@@ -812,9 +809,9 @@ void CEntity::repath()
 void CEntity::reorient()
 {
     m_orientation = m_graphics_orientation;
-	m_pitchOrientation = m_graphics_pitchOrientation;
-    m_ahead.x = sin( m_orientation );
-    m_ahead.y = cos( m_orientation );
+
+    m_ahead.x = sin( m_orientation.Y );
+    m_ahead.y = cos( m_orientation.Y );
     if( m_bounds->m_type == CBoundingObject::BOUND_OABB )
         ((CBoundingBox*)m_bounds)->setOrientation( m_ahead );
     updateActorTransforms();
@@ -858,24 +855,27 @@ void CEntity::checkGroup()
 void CEntity::interpolate( float relativeoffset )
 {
     CVector3D old_graphics_position = m_graphics_position;
-    float old_graphics_orientation = m_graphics_orientation;
-	float old_graphics_pitchOrientation = m_graphics_pitchOrientation;
-	
+    CVector3D old_graphics_orientation = m_graphics_orientation;
+
     m_graphics_position = Interpolate<CVector3D>( m_position_previous, m_position, relativeoffset );
 
     // Avoid wraparound glitches for interpolating angles.
-    while( m_orientation < m_orientation_previous - PI )
-        m_orientation_previous -= 2 * PI;
-    while( m_orientation > m_orientation_previous + PI )
-        m_orientation_previous += 2 * PI;
+    while( m_orientation.Y < m_orientation_previous.Y - PI )
+        m_orientation_previous.Y -= 2 * PI;
+    while( m_orientation.Y > m_orientation_previous.Y + PI )
+        m_orientation_previous.Y += 2 * PI;
 
-	 while( m_pitchOrientation < m_pitchOrientation_previous - PI )
-        m_pitchOrientation_previous -= 2 * PI;
-    while( m_pitchOrientation > m_pitchOrientation_previous + PI )
-        m_pitchOrientation_previous += 2 * PI;
+	while( m_orientation.X < m_orientation_previous.X - PI )
+        m_orientation_previous.X -= 2 * PI;
+    while( m_orientation.X > m_orientation_previous.X + PI )
+        m_orientation_previous.X += 2 * PI;
 
-    m_graphics_orientation = Interpolate<float>( m_orientation_previous, m_orientation, relativeoffset );
-	m_graphics_pitchOrientation = Interpolate<float>( m_pitchOrientation_previous, m_pitchOrientation, relativeoffset );
+	while( m_orientation.Z < m_orientation_previous.Z - PI )
+        m_orientation_previous.Z -= 2 * PI;
+    while( m_orientation.Z > m_orientation_previous.Z + PI )
+        m_orientation_previous.Z += 2 * PI;
+
+    m_graphics_orientation = Interpolate<CVector3D>( m_orientation_previous, m_orientation, relativeoffset );
 
     // Mark the actor transform data as invalid if the entity has moved since
     // the last call to 'interpolate'.
@@ -884,8 +884,7 @@ void CEntity::interpolate( float relativeoffset )
     // handle flying units or moving terrain.
     if( m_graphics_orientation != old_graphics_orientation ||
         m_graphics_position.X != old_graphics_position.X ||
-        m_graphics_position.Z != old_graphics_position.Z ||		
-		m_graphics_pitchOrientation != old_graphics_pitchOrientation 
+        m_graphics_position.Z != old_graphics_position.Z		
 		)
 	{															
         m_actor_transform_valid = false;
@@ -999,7 +998,39 @@ float CEntity::getAnchorLevel( float x, float z )
         return max( groundLevel, g_Renderer.GetWaterManager()->m_WaterHeight );
     }
 }
-
+int CEntity::findSector( int divs, float angle, float maxAngle, bool negative )
+{
+	float step=maxAngle/divs;
+	if ( negative )
+	{
+		float tracker;
+		int i=1, sectorRemainder;
+		for ( tracker=-maxAngle/2.0f; tracker+step<0.0f; tracker+=step, ++i )
+		{
+			if ( angle > tracker && angle <= tracker+step ) 
+				return i;
+		}
+		sectorRemainder = i;
+		i=divs;
+		for ( tracker=maxAngle/2.0f; tracker-step>0.0f; tracker-=step, --i )
+		{
+			if ( angle < tracker && angle >= tracker-step ) 
+				return i;
+		}
+		return sectorRemainder;
+	}
+	else
+	{
+		int i=0;
+		for (  float tracker=0.0f; tracker<maxAngle; tracker+=step, ++i )
+		{
+			if ( angle > tracker && angle <= tracker+step )
+				return i;
+		}
+	}
+	debug_warn("CEntity::findSector() - invalid parameters passed.");
+	return -1;
+}
 void CEntity::renderSelectionOutline( float alpha )
 {
     if( !m_bounds )
@@ -1047,8 +1078,8 @@ void CEntity::renderSelectionOutline( float alpha )
             float d = ((CBoundingBox*)m_bounds)->m_d;
             float w = ((CBoundingBox*)m_bounds)->m_w;
 
-            u.x = sin( m_graphics_orientation );
-            u.y = cos( m_graphics_orientation );
+            u.x = sin( m_graphics_orientation.Y );
+            u.y = cos( m_graphics_orientation.Y );
             v.x = u.y;
             v.y = -u.x;
 
@@ -1316,6 +1347,7 @@ void CEntity::ScriptingInit()
     AddMethod<jsval, &CEntity::AddAura>( "addAura", 3 );
     AddMethod<jsval, &CEntity::RemoveAura>( "removeAura", 1 );
     AddMethod<jsval, &CEntity::SetActionParams>( "setActionParams", 5 );
+	AddMethod<int, &CEntity::GetCurrentRequest>( "getCurrentRequest", 0 );
 	AddMethod<bool, &CEntity::ForceCheckListeners>( "forceCheckListeners", 2 );
 	AddMethod<bool, &CEntity::RequestNotification>( "requestNotification", 4 );
 	AddMethod<jsval, &CEntity::DestroyNotifier>( "destroyNotifier", 1 );
@@ -1331,7 +1363,9 @@ void CEntity::ScriptingInit()
 	AddMethod<jsval, &CEntity::GetFormationPenaltyType>( "getFormationPenaltyType", 0 );
 	AddMethod<jsval, &CEntity::GetFormationPenaltyVal>( "getFormationPenaltyVal", 0 );
 	AddMethod<jsval, &CEntity::RegisterDamage>( "registerDamage", 0 );
-	AddMethod<jsval, &CEntity::RegisterIdle>( "registerIdle", 0 );
+	AddMethod<jsval, &CEntity::RegisterOrderChange>( "registerOrderChange", 0 );
+	AddMethod<jsval, &CEntity::GetAttackDirections>( "getAttackDirections", 0 );
+	AddMethod<jsval, &CEntity::FindSector>("findSector", 4);
 
     AddClassProperty( L"template", (CBaseEntity* CEntity::*)&CEntity::m_base, false, (NotifyFn)&CEntity::loadBase );
     AddClassProperty( L"traits.id.classes", (GetFn)&CEntity::getClassSet, (SetFn)&CEntity::setClassSet );
@@ -1793,8 +1827,7 @@ bool CEntity::RequestNotification( JSContext* cx, uintN argc, jsval* argv )
 	CEntity *target = ToNative<CEntity>( argv[0] );
 	(int&)notify.m_type = ToPrimitive<int>( argv[1] );
 	bool tmpDestroyNotifiers = ToPrimitive<bool>( argv[2] );
-	// TODO: ??? This local variable overrides the member variable of the same name...
-	bool m_destroyNotifiers = !ToPrimitive<bool>( argv[3] );
+	m_destroyNotifiers = !ToPrimitive<bool>( argv[3] );
 
 	if (target == this)
 		return false;
@@ -1839,6 +1872,10 @@ bool CEntity::RequestNotification( JSContext* cx, uintN argc, jsval* argv )
 
 	target->m_listeners.push_back( notify );
 	return false;
+}
+int CEntity::GetCurrentRequest( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+{
+	return m_currentRequest;
 }
 bool CEntity::ForceCheckListeners( JSContext *cx, uintN argc, jsval* argv )
 {
@@ -1952,6 +1989,10 @@ jsval CEntity::GetFormationPenalty( JSContext* UNUSED(cx), uintN UNUSED(argc), j
 {
 	return ToJSVal( GetFormation()->GetBase()->GetPenalty() );
 }
+jsval CEntity::GetFormationPenaltyBase( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+{
+	return ToJSVal( GetFormation()->GetBase()->GetPenaltyBase() );
+}
 jsval CEntity::GetFormationPenaltyType( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	return ToJSVal( GetFormation()->GetBase()->GetPenaltyType() );
@@ -1963,6 +2004,10 @@ jsval CEntity::GetFormationPenaltyVal( JSContext* UNUSED(cx), uintN UNUSED(argc)
 jsval CEntity::GetFormationBonus( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	return ToJSVal( GetFormation()->GetBase()->GetBonus() );
+}
+jsval CEntity::GetFormationBonusBase( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+{
+	return ToJSVal( GetFormation()->GetBase()->GetBonusBase() );
 }
 jsval CEntity::GetFormationBonusType( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
@@ -1985,19 +2030,13 @@ jsval CEntity::RegisterDamage( JSContext* cx, uintN argc, jsval* argv )
 	CVector2D pos = CVector2D( inflictor->m_position.X, inflictor->m_position.Z );
 	CVector2D posDelta = (pos - m_position).normalize();
 
-	float angle = up.dot(posDelta);
+	float angle = acosf( up.dot(posDelta) );
 	//Find what section it is between and "activate" it
-	for ( int i=0; i<m_sectorDivs; ++i )
-	{
-		//Wrap around to the start-if we've made it this far, it's here
-		if ( i == m_base->m_sectorDivs )
-			m_sectorValues[i] = true;
-		else if ( angle > m_sectorAngles[i] && angle < m_sectorAngles[i+1] )
-			m_sectorValues[i] = true;
-	}
+	int sector = findSector(m_sectorDivs, angle, DEGTORAD(360.0f))-1;
+	m_sectorValues[sector]=true;
 	return JS_TRUE;
 }
-jsval CEntity::RegisterIdle( JSContext* cx, uintN argc, jsval* argv )
+jsval CEntity::RegisterOrderChange( JSContext* cx, uintN argc, jsval* argv )
 {
 	if ( argc < 1 )
 	{
@@ -2010,16 +2049,10 @@ jsval CEntity::RegisterIdle( JSContext* cx, uintN argc, jsval* argv )
 	CVector2D pos = CVector2D( idleEntity->m_position.X, idleEntity->m_position.Z );
 	CVector2D posDelta = (pos - m_position).normalize();
 
-	float angle = up.dot(posDelta);
-	//Find what section it is between and "activate" it
-	for ( int i=0; i<m_sectorDivs; ++i )
-	{
-		//Wrap around to the start-if we've made it this far, it's here
-		if ( i == m_base->m_sectorDivs )
-			m_sectorValues[i] = false;
-		else if ( angle > m_sectorAngles[i] && angle < m_sectorAngles[i+1] )
-			m_sectorValues[i] = false;
-	}
+	float angle = acosf( up.dot(posDelta) );
+	//Find what section it is between and "deactivate" it
+	int sector = MAX( 0.0, findSector(m_sectorDivs, angle, DEGTORAD(360.0f)) );
+	m_sectorValues[sector]=false;
 	return JS_TRUE;
 }
 jsval CEntity::GetAttackDirections( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
@@ -2032,4 +2065,47 @@ jsval CEntity::GetAttackDirections( JSContext* UNUSED(cx), uintN UNUSED(argc), j
 			++directions;
 	}
 	return ToJSVal( directions );
+}
+jsval CEntity::FindSector( JSContext* cx, uintN argc, jsval* argv )
+{
+	if ( argc < 4 )
+	{
+		JS_ReportError( cx, "Too few parameters" );
+		return( false );
+	}
+	int divs = ToPrimitive<int>( argv[0] );
+	float angle = ToPrimitive<float>( argv[1] );
+	float maxAngle = ToPrimitive<float>( argv[2] );
+	bool negative = ToPrimitive<bool>( argv[3] );
+	float step = maxAngle/divs;
+
+	if ( negative )
+	{
+		float tracker;
+		int i=1, sectorRemainder;
+		for ( tracker=-maxAngle/2.0f; tracker+step<0.0f; tracker+=step, ++i )
+		{
+			if ( angle > tracker && angle <= tracker+step ) 
+				return ToJSVal(i);
+		}
+		sectorRemainder = i;
+		i=divs;
+		for ( tracker=maxAngle/2.0f; tracker-step>0.0f; tracker-=step, --i )
+		{
+			if ( angle < tracker && angle >= tracker-step ) 
+				return ToJSVal(i);
+		}
+		return ToJSVal(sectorRemainder);
+	}
+	else
+	{
+		int i=1;
+		for (  float tracker=0.0f; tracker<maxAngle; tracker+=step, ++i )
+		{
+			if ( angle > tracker && angle <= tracker+step )
+				return ToJSVal(i);
+		}
+	}
+	debug_warn("JS - FindSector(): invalid parameters");
+	return ToJSVal(-1);
 }

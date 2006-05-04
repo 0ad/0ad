@@ -13,6 +13,7 @@
 #include "Patch.h"
 #include "Vector3D.h"
 #include "Vector2D.h"
+#include "Entity.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // CTerrain: main terrain class; contains the heightmap describing elevation
@@ -45,9 +46,8 @@ public:
 	inline float getExactGroundLevel(const CVector2D& v) const { return getExactGroundLevel(v.x, v.y); }
 
 	float getSlope(float x, float z) const ;
-	float getSlopeAngle( float x, float y) const;	//In radians
-	//Same as above, but picks the two vertices that the unit is facing (front+back) for slope
-	float getSlopeAngleFace(float x, float y, float orientation) const;	
+	//Find the slope of in X and Z axes depending on the way the entity is facing
+	CVector2D getSlopeAngleFace(float x, float y, CEntity*& entity) const;	
 	// resize this terrain such that each side has given number of patches
 	void Resize(u32 size);
 

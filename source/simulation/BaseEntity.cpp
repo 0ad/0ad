@@ -17,9 +17,9 @@ CBaseEntity::CBaseEntity()
 	
 	AddProperty( L"tag", &m_Tag, false );
 	AddProperty( L"parent", &m_base, false );
-	AddProperty( L"actions.move.speed", &m_speed );
+	AddProperty( L"actions.move.speed_curr", &m_speed );
 	AddProperty( L"actions.move.turningradius", &m_turningRadius );
-	AddProperty( L"actions.move.run.speed", &( m_run.m_Speed ) );
+	AddProperty( L"actions.move.run.speed.curr", &( m_run.m_Speed ) );
 	AddProperty( L"actions.move.run.rangemin", &( m_run.m_MinRange ) );
 	AddProperty( L"actions.move.run.range", &( m_run.m_MaxRange ) );
 	AddProperty( L"actions.move.run.regen_rate", &m_runRegenRate );
@@ -47,10 +47,8 @@ CBaseEntity::CBaseEntity()
 	AddProperty( L"traits.stamina.border_height", &m_staminaBorderHeight);
 	AddProperty( L"traits.stamina.border_width", &m_staminaBorderWidth );
 	AddProperty( L"traits.stamina.border_name", &m_staminaBorderName );
-	AddProperty( L"traits.angle_penalty.sectors", &m_sectorDivs );
-	AddProperty( L"traits.angle_penalty.value", &m_sectorPenalty );
-	AddProperty( L"traits.pitch.max_actor", &m_maxActorPitch );
-	AddProperty( L"traits.pitch.min_actor", &m_minActorPitch );
+	AddProperty( L"traits.flank_penalty.sectors", &m_sectorDivs );
+	AddProperty( L"traits.pitch.sectors", &m_pitchDivs );
 	AddProperty( L"traits.rank.width", &m_rankWidth );
 	AddProperty( L"traits.rank.height", &m_rankHeight );
 	AddProperty( L"traits.rank.name", &m_rankName );
@@ -59,6 +57,8 @@ CBaseEntity::CBaseEntity()
 	AddProperty( L"traits.minimap.green", &m_minimapG );
 	AddProperty( L"traits.minimap.blue", &m_minimapB );
 	AddProperty( L"traits.anchor.type", &m_anchorType );
+	AddProperty( L"traits.anchor.conformx", &m_anchorConformX );
+	AddProperty( L"traits.anchor.conformz", &m_anchorConformZ );
 	AddProperty( L"traits.vision.los", &m_los );
 	AddProperty( L"traits.vision.permanent", &m_permanent );
 	AddProperty( L"traits.foundation", &m_foundation );
@@ -76,6 +76,7 @@ CBaseEntity::CBaseEntity()
 	m_foundation = CStrW();
 
 	// Sentinel values for stamina and health (so scripts can check if an entity has no stamina or no HP).
+	m_speed=0;
 	m_staminaCurr = 0;
 	m_staminaMax = 0;
 	m_healthCurr = 0;

@@ -14,6 +14,8 @@
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"
 
+#include "EntityManager.h"
+
 #include <string.h>
 #include "Terrain.h"
 #include "MathUtil.h"
@@ -207,14 +209,27 @@ float CTerrain::getSlope(float x, float z) const
 	return MAX(MAX(h00, h01), MAX(h10, h11)) -
 		   MIN(MIN(h00, h01), MIN(h10, h11));
 }
-float CTerrain::getSlopeAngle( float x, float y ) const
+CVector2D CTerrain::getSlopeAngleFace(float x, float y, CEntity*& entity ) const
 {
+	//side start at 0 at -180 degrees, and end up at 7 at 180 degrees
+    int side;
+	bool invert;
+	float top, bottom, topZ, bottomZ;
 	float fCell = (float)CELL_SIZE;
 	x /= fCell;
 	y /= fCell;
 	int xi = (int)floor(x);
 	int yi = (int)floor(y);
-
+	
+	CVector3D flat(0.0f, 0.0f, 0.0f);
+	CVector3D flatZ = flat;
+	CVector2D ret;
+	side = entity->findSector( 8, entity->m_orientation.Y, DEGTORAD(360.0f) ) - 1;
+	
+	//Wrap around
+	if ( side < 0 )
+		side += 8;
+	
 	//Keep it in bounds
 	if (xi < 0)
 		xi = 0;
@@ -230,125 +245,45 @@ float CTerrain::getSlopeAngle( float x, float y ) const
 	float h10 = m_Heightmap[yi*m_MapSize + xi + 1] * HEIGHT_SCALE;
 	float h11 = m_Heightmap[yi*m_MapSize + xi + m_MapSize + 1] * HEIGHT_SCALE;
 
-	CVector3D flat, elevated;
-	float low, high;
-	
-	if ( h00 < h01 && h00 < h10 && h00 < h11 )
-		low = h00;
-	else if ( h01 < h10 && h01 < h11 )
-		low = h01;
-	else if ( h10 < h11 )
-		low = h10;
-	else 
-		low = h11;
-	
-	//Find correct vector representing the flat version of the vector from low to high points
-	if ( h00 > h01 && h00 > h10 && h00 > h11 )
+	//Find heights
+	if ( side == 0 || side == 7 )
 	{
-		high = h00;
-		if ( low == h10 )
-			flat = CVector3D( fCell, 0.0f, 0.0f );
-		else if ( low == h01 )
-			flat = CVector3D( 0.0f, 0.0f, fCell );
-		else if ( low == h11 )
-			flat = CVector3D( fCell, 0.0f, fCell );
+		top = (h00 + h10)/2.0f;
+		bottom = (h01 + h11)/2.0f;
+		topZ = (h00 + h01)/2.0f;
+		bottomZ = (h10 + h11)/2.0f;
+		flat.Z = sqrtf(SQR(CELL_SIZE) - SQR(top-bottom));
+		flatZ.X = sqrtf(SQR(CELL_SIZE) - SQR(topZ-bottomZ));
 	}
-	else if ( h01 > h10 && h01 > h11 )
+	else if ( side == 1 || side == 2 )
 	{
-		high = h01;
-		if ( low == h00 )
-			flat = CVector3D( 0.0f, 0.0f, fCell );
-		else if ( low == h01 )
-			flat = CVector3D( fCell, 0.0f, fCell );
-		else if ( low == h11 )
-			flat = CVector3D( fCell, 0.0f, 0.0f );
+		top = (h00 + h01)/2.0f;
+		bottom = (h10 + h11)/2.0f;
+		topZ = (h01 + h11)/2.0f;
+		bottomZ = (h00 + h10)/2.0f;
+		flat.X = sqrtf(SQR(CELL_SIZE) - SQR(top-bottom));
+		flatZ.Z = sqrtf(SQR(CELL_SIZE) - SQR(topZ-bottomZ));
 	}
-	else if ( h10 > h11 )
+	else if ( side == 3 || side == 4 )
 	{
-		high = h10;
-		if ( low == h00 )
-			flat = CVector3D( fCell, 0.0f, 0.0f );
-		else if ( low == h01 )
-			flat = CVector3D( fCell, 0.0f, fCell );
-		else if ( low == h11 )
-			flat = CVector3D( 0.0f, 0.0f, fCell );
+		top = (h01 + h11)/2.0f;
+		bottom = (h00 + h10)/2.0f;
+		topZ = (h11 + h10)/2.0f;
+		bottomZ = (h00 + h01)/2.0f;
+		flat.Z = sqrtf(SQR(CELL_SIZE) - SQR(top-bottom));
+		flatZ.X = sqrtf(SQR(CELL_SIZE) - SQR(topZ-bottomZ));
 	}
-	else 
+	else
 	{
-		high = h11;
-		if ( low == h10 )
-			flat = CVector3D( 0.0f, 0.0f, fCell );
-		else if ( low == h01 )
-			flat = CVector3D( fCell, 0.0f, 0.0f );
-		else if ( low == h00 )
-			flat = CVector3D( fCell, 0.0f, fCell );
+		top = (h11 + h10)/2.0f;
+		bottom = (h00 + h01)/2.0f;
+		topZ = (h00 + h10)/2.0f;
+		bottomZ = (h01 + h11)/2.0f;
+		flat.X = sqrtf(SQR(CELL_SIZE) - SQR(top-bottom));
+		flatZ.Z = sqrtf(SQR(CELL_SIZE) - SQR(topZ-bottomZ));
 	}
-	elevated = flat;
-	elevated.Y = high - low;
-	elevated.Normalize();
-	flat.Normalize();
-	return acosf( flat.Dot( elevated ) );
-}
-float CTerrain::getSlopeAngleFace(float x, float y, float orientation) const
-{
-	bool right;	//true means use 0,0 and 1,1; false means use 1,0 and 0,1
-	bool invert;
-	float top, bottom;
-	x /= (float)CELL_SIZE;
-	y /= (float)CELL_SIZE;
-	int xi = (int)floor(x);
-	int yi = (int)floor(y);
-	CVector3D flat( (float)CELL_SIZE, 0.0f, (float)CELL_SIZE );
 	CVector3D elevated=flat;
-
-	/* JW: currently all unused, so commented out to avoid warning
-	const float a0 = DEGTORAD(0.0f);
-	const float a90 = DEGTORAD(90.0f);
-	const float a180 = DEGTORAD(180.0f);
-	const float neg = DEGTORAD(-90.0f);
-	const float a45 = DEGTORAD(45.0f);
-	const float a135 = DEGTORAD(135.0f);*/
-
-	//Find which side it's facing; use that and the opposite
-	if ( orientation > 0.0f && orientation < DEGTORAD(90.0f) )
-		right = true;
-	else if ( orientation > DEGTORAD(90.0f) && orientation < DEGTORAD(180.0f) )
-		right = false;
-	else if ( orientation < DEGTORAD(-180.0f) && orientation > DEGTORAD(-90.0f) )
-		right = true;
-	else
-		right = false;
-
-	//Keep it in bounds
-	if (xi < 0)
-		xi = 0;
-	else if (xi >= (int)m_MapSize-1)
-		xi = m_MapSize - 2;
-	if (yi < 0)
-		yi = 0;
-	else if (yi >= (int)m_MapSize-1)
-		yi = m_MapSize - 2;
-
-	if ( right ) 
-	{
-		bottom = m_Heightmap[yi*m_MapSize + xi]*HEIGHT_SCALE;
-		top = m_Heightmap[yi*m_MapSize+m_MapSize + xi + 1]*HEIGHT_SCALE;
-		if ( (orientation > DEGTORAD(-45.0f) && orientation < 0.0f) || 
-		(orientation < DEGTORAD(135.0f) && orientation > 0.0f) )
-			elevated.Y = top-bottom;
-		else
-			elevated.Y = bottom-top;
-	}
-	else
-	{
-		bottom = m_Heightmap[yi*m_MapSize + xi + 1]*HEIGHT_SCALE;
-		top = m_Heightmap[yi*m_MapSize+m_MapSize + xi]*HEIGHT_SCALE;
-		if ( (orientation > DEGTORAD(-135.0f) && orientation < 0.0f) || 
-		(orientation < DEGTORAD(45.0f) && orientation > 0.0f) )
-			elevated.Y = top-bottom;
-		else
-			elevated.Y = bottom-top;
-	}
+	elevated.Y = top-bottom;
 	if ( elevated.Y > 0.0f )
 		invert=false;
 	else
@@ -356,12 +291,27 @@ float CTerrain::getSlopeAngleFace(float x, float y, float orientation) const
 	elevated.Y = fabs(elevated.Y);
 	elevated.Normalize();
 	flat.Normalize();
-	float ret = elevated.Dot(flat);
+	if ( invert )
+		ret.x = -acosf( elevated.Dot(flat) );
+	else
+		ret.x = acosf( elevated.Dot(flat) );
 	
-	if (invert)
-		return -acosf(ret);
-	return acosf(ret);
-
+	//Z component
+	elevated = flatZ;
+	elevated.Y = topZ-bottomZ;
+	if ( elevated.Y > 0.0f )
+		invert=true;
+	else
+		invert=false;
+	elevated.Y = fabs(elevated.Y);
+	elevated.Normalize();
+	flatZ.Normalize();
+	if ( invert )
+		ret.y = -acosf( elevated.Dot(flatZ) );
+	else
+		ret.y = acosf( elevated.Dot(flatZ) );
+	
+	return ret;
 }
 
 float CTerrain::getExactGroundLevel(float x, float z) const

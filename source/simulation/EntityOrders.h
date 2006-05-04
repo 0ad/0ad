@@ -68,7 +68,8 @@ public:
 		NOTIFY_HEAL = 0x10,
 		NOTIFY_GATHER = 0x20,
 		
-		NOTIFY_IDLE = 0x40,
+		NOTIFY_IDLE = 0x40, 
+		NOTIFY_ORDER_CHANGE = 0x80,	//this isn't counted in NOTIFY_ALL
 		NOTIFY_ALL = 0x7F
 
 	}	m_type;

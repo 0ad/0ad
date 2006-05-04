@@ -26,9 +26,11 @@ bool CBaseFormation::loadXML(CStr filename)
 
 	AT(tag);
 	AT(bonus);
+	AT(bonusbase);
 	AT(bonustype);
 	AT(bonusval);
 	AT(penalty);
+	AT(penaltybase);
 	AT(penaltytype);
 	AT(penaltyval);
 	AT(anglepenalty);
@@ -63,12 +65,16 @@ bool CBaseFormation::loadXML(CStr filename)
 			m_tag = CStr(Attr.Value);
 		else if ( Attr.Name == at_bonus )
 			m_bonus = CStr(Attr.Value);
+		else if ( Attr.Name == at_bonusbase )
+			m_bonusBase = CStr(Attr.Value);
 		else if ( Attr.Name == at_bonustype )
 			m_bonusType = CStr(Attr.Value);
 		else if ( Attr.Name == at_bonusval )
 			m_bonusVal = CStr(Attr.Value).ToFloat();
 		else if ( Attr.Name == at_penalty )
 			m_penalty = CStr(Attr.Value);
+		else if ( Attr.Name == at_penaltybase )
+			m_penaltyBase = CStr(Attr.Value);
 		else if ( Attr.Name == at_penaltytype )
 			m_penaltyType = CStr(Attr.Value);
 		else if ( Attr.Name == at_penaltyval )

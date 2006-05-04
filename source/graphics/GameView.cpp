@@ -510,7 +510,7 @@ void CGameView::Update(float DeltaTime)
 
 	if (m_UnitView)
 	{
-		m_ViewCamera.m_Orientation.SetYRotation(m_UnitView->m_orientation);
+		m_ViewCamera.m_Orientation.SetYRotation(m_UnitView->m_orientation.Y);
 		m_ViewCamera.m_Orientation.Translate(m_UnitViewProp->GetTransform().GetTranslation());
 		m_ViewCamera.UpdateFrustum();
 		return;

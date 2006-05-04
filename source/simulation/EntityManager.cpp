@@ -7,7 +7,7 @@
 #include "Profile.h"
 #include "Terrain.h"
 #include "Game.h"
-
+#include "MathUtil.h"
 int SELECTION_CIRCLE_POINTS;
 int SELECTION_BOX_POINTS;
 int SELECTION_SMOOTHNESS_UNIFIED = 9;
@@ -283,6 +283,30 @@ void CEntityManager::renderAll()
 	for( int i = 0; i < MAX_HANDLES; i++ )
 		if( m_entities[i].m_refcount && !m_entities[i].m_entity->m_destroyed )
 			m_entities[i].m_entity->render();
+}
+void CEntityManager::conformAll()
+{
+	PROFILE_START("conform all");
+	for ( int i=0; i < MAX_HANDLES; i++ )
+	{
+		if( m_entities[i].m_refcount && !m_entities[i].m_entity->m_destroyed )
+		{
+			CEntity* entity = m_entities[i].m_entity;
+			CVector2D targetXZ = g_Game->GetWorld()->GetTerrain()->getSlopeAngleFace( entity->m_position.X, entity->m_position.Z, entity );
+	
+			while( targetXZ.x > PI ) targetXZ.x -= 2 * PI;
+			while( targetXZ.x < -PI ) targetXZ.x += 2 * PI;
+			while( targetXZ.y > PI ) targetXZ.y -= 2 * PI;
+			while( targetXZ.y < -PI ) targetXZ.y += 2 * PI;
+	
+			entity->m_orientation.X = clamp( targetXZ.x, -entity->m_anchorConformX, entity->m_anchorConformX );
+			entity->m_orientation.Z = clamp( targetXZ.y, -entity->m_anchorConformZ, entity->m_anchorConformZ );
+			entity->m_orientation_unclamped.x = targetXZ.x;
+			entity->m_orientation_unclamped.y = targetXZ.y;
+			entity->updateActorTransforms();
+		}
+	}
+	PROFILE_END("conform all");
 }
 
 void CEntityManager::invalidateAll()

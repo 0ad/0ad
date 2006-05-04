@@ -491,7 +491,7 @@ BEGIN_COMMAND(RotateObject)
 
 		if (unit->GetEntity())
 		{
-			m_AngleOld = unit->GetEntity()->m_orientation;
+			m_AngleOld = unit->GetEntity()->m_orientation.Y;
 			if (msg->usetarget)
 			{
 				CVector3D& pos = unit->GetEntity()->m_position;
@@ -543,7 +543,7 @@ BEGIN_COMMAND(RotateObject)
 
 		if (unit->GetEntity())
 		{
-			unit->GetEntity()->m_orientation = angle;
+			unit->GetEntity()->m_orientation.Y = angle;
 		}
 		else
 		{

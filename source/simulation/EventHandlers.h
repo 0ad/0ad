@@ -132,5 +132,10 @@ class CIdleEvent : public CScriptEvent
 public:
 	CIdleEvent( CEntityOrder order, int notifyType );
 };
-
+class CMovementEvent : public CScriptEvent
+{
+	float m_slope;
+public:
+	CMovementEvent( float slope );
+};
 #endif

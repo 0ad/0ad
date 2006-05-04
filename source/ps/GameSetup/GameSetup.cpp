@@ -522,6 +522,7 @@ static void InitScripting()
 	g_ScriptingHost.DefineConstant( "NOTIFY_HEAL", CEntityListener::NOTIFY_HEAL );
 	g_ScriptingHost.DefineConstant( "NOTIFY_GATHER", CEntityListener::NOTIFY_GATHER );
 	g_ScriptingHost.DefineConstant( "NOTIFY_IDLE", CEntityListener::NOTIFY_IDLE );
+	g_ScriptingHost.DefineConstant( "NOTIFY_ORDER_CHANGE", CEntityListener::NOTIFY_ORDER_CHANGE );
 	g_ScriptingHost.DefineConstant( "NOTIFY_ALL", CEntityListener::NOTIFY_ALL );
 	
 	g_ScriptingHost.DefineConstant( "ORDER_NONE", -1 );

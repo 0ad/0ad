@@ -73,7 +73,6 @@ PSRETURN CGame::RegisterInit(CGameAttributes* pAttribs)
 	m_GameView->RegisterInit(pAttribs);
 	m_World->RegisterInit(pAttribs);
 	m_Simulation->RegisterInit(pAttribs);
-
 	LDR_EndRegistering();
 	return 0;
 }

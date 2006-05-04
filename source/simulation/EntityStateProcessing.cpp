@@ -95,7 +95,7 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 	// trig every time.right
 
 	m_targetorientation = atan2( delta.x, delta.y );
-	float deltatheta = m_targetorientation - (float)m_orientation;
+	float deltatheta = m_targetorientation - (float)m_orientation.Y;
 	while( deltatheta > PI ) deltatheta -= 2 * PI;
 	while( deltatheta < -PI ) deltatheta += 2 * PI;
 
@@ -106,10 +106,10 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 			float maxTurningSpeed = ( m_speed / m_turningRadius ) * timestep;
 			deltatheta = clamp( deltatheta, -maxTurningSpeed, maxTurningSpeed );
 		}
-		m_orientation = m_orientation + deltatheta;
+		m_orientation.Y = m_orientation.Y + deltatheta;
 
-		m_ahead.x = sin( m_orientation );
-		m_ahead.y = cos( m_orientation );
+		m_ahead.x = sin( m_orientation.Y );
+		m_ahead.y = cos( m_orientation.Y );
 
 		// We can only really attempt to smooth paths the pathfinder
 		// has flagged for us. If the turning-radius calculations are
@@ -127,20 +127,29 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 		// let's not.
 	
 		if( current->m_type != CEntityOrder::ORDER_GOTO_SMOOTHED )
-			m_orientation = m_targetorientation;
+			m_orientation.Y = m_targetorientation;
 			
 	}
 	else
 	{
 		m_ahead = delta / len;
-		m_orientation = m_targetorientation;
+		m_orientation.Y = m_targetorientation;
 	}
+	CEntity* _this = this;
+	CVector2D targetXZ = g_Game->GetWorld()->GetTerrain()->getSlopeAngleFace( m_position.X, m_position.Z, _this );
 	
-	float targetpitch = g_Game->GetWorld()->GetTerrain()->getSlopeAngleFace( m_position.X, m_position.Z, m_orientation );
-	while( targetpitch > PI ) targetpitch -= 2 * PI;
-	while( targetpitch < -PI ) targetpitch += 2 * PI;
-	m_pitchOrientation = clamp( targetpitch, m_minActorPitch, m_maxActorPitch );
+	while( targetXZ.x > PI ) targetXZ.x -= 2 * PI;
+	while( targetXZ.x < -PI ) targetXZ.x += 2 * PI;
+	while( targetXZ.y > PI ) targetXZ.y -= 2 * PI;
+	while( targetXZ.y < -PI ) targetXZ.y += 2 * PI;
 	
+	m_orientation.X = clamp( targetXZ.x, -m_anchorConformX, m_anchorConformX );
+	m_orientation.Z = clamp( targetXZ.y, -m_anchorConformZ, m_anchorConformZ );
+	m_orientation_unclamped.x = targetXZ.x;
+	m_orientation_unclamped.y = targetXZ.y;
+
+	CMovementEvent evt( m_orientation_unclamped.x );
+	DispatchEvent(&evt);
 
 	if( m_bounds && m_bounds->m_type == CBoundingObject::BOUND_OABB )
 		((CBoundingBox*)m_bounds)->setOrientation( m_ahead );
@@ -496,7 +505,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 	else
 	{
 		// Close enough, but turn to face them.  
-		m_orientation = atan2( delta.x, delta.y );
+		m_orientation.Y = atan2( delta.x, delta.y );
 		m_ahead = delta.normalize();
 		m_isRunning = false;
 	}
