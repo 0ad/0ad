@@ -35,6 +35,13 @@ public:
 	CEventGeneric( CEntity* target, int action );
 };
 
+class CEventStartConstruction : public CScriptEvent
+{
+	CEntity* m_target;
+public:
+	CEventStartConstruction( CEntity* target );
+};
+
 class CEventStartProduction : public CScriptEvent
 {
 	int m_productionType;

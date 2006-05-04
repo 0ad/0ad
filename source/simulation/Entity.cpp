@@ -467,6 +467,13 @@ void CEntity::update( size_t timestep )
 					break;
 				updateCollisionPatch();
 				return;
+			case CEntityOrder::ORDER_START_CONSTRUCTION:
+				{
+					CEventStartConstruction evt( current->m_data[0].entity );
+					m_orderQueue.pop_front();
+					DispatchEvent( &evt );
+				}
+				break;
             case CEntityOrder::ORDER_PRODUCE:
 				processProduce( current );
 				m_orderQueue.pop_front();

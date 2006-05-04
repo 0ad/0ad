@@ -61,6 +61,7 @@ enum ENetMessageType
 	NMT_AddWaypoint,
 	NMT_Generic,
 	NMT_Produce,
+	NMT_PlaceObject,
 	NMT_Run,
 	NMT_NotifyRequest,
 	NMT_FormationGoto,
@@ -239,6 +240,14 @@ END_NMT_CLASS()
 DERIVE_NMT_CLASS_(NetCommand, Produce)
 	NMT_FIELD_INT(m_Type, u32, 4)
 	NMT_FIELD(CStrW, m_Name)
+END_NMT_CLASS()
+
+DERIVE_NMT_CLASS_(NetCommand, PlaceObject)
+	NMT_FIELD(CStrW, m_Template)
+	NMT_FIELD_INT(m_X, u32, 4)
+	NMT_FIELD_INT(m_Y, u32, 4)
+	NMT_FIELD_INT(m_Z, u32, 4)
+	NMT_FIELD_INT(m_Angle, u32, 4)		// Orientation angle
 END_NMT_CLASS()
 
 DERIVE_NMT_CLASS_(NetCommand, NotifyRequest)

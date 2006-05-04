@@ -331,6 +331,30 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 		case NMT_NotifyRequest:
 			ENTITY_ENTITY_INT(CNotifyRequest, ORDER_NOTIFY_REQUEST);
 			break;
+		case NMT_PlaceObject:
+			{
+				CPlaceObject *msg = (CPlaceObject *) pMsg;
+				
+				// Create the object
+				CVector3D pos(msg->m_X/1000.0f, msg->m_Y/1000.0f, msg->m_Z/1000.0f);
+				HEntity newObj = g_EntityManager.createFoundation( msg->m_Template, pos, msg->m_Angle/1000.0f );
+
+				if(msg->m_Entities.size() > 0) 
+				{
+					newObj->SetPlayer(msg->m_Entities[0]->GetPlayer());
+				}
+				else
+				{
+					// Object might have been placed from the console just for testing
+					newObj->SetPlayer(g_Game->GetLocalPlayer());
+				}
+				
+				// Order all the selected units to work on the new object using the given action
+				order.m_type = CEntityOrder::ORDER_START_CONSTRUCTION;
+				order.m_data[0].entity = newObj;
+				QueueOrder(order, msg->m_Entities, false);
+			} while(0)
+			break;
 		
 	}
 

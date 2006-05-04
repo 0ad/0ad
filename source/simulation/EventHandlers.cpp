@@ -10,6 +10,12 @@ CEventGeneric::CEventGeneric( CEntity* target, int action ) : CScriptEvent( L"ge
 	AddLocalProperty( L"action", &m_action );
 }
 
+CEventStartConstruction::CEventStartConstruction( CEntity* target ) : CScriptEvent( L"startConstruction", EVENT_START_CONSTRUCTION, true)
+{
+	m_target = target;
+	AddLocalProperty( L"target", &m_target );
+}
+
 CEventStartProduction::CEventStartProduction( int productionType, const CStrW& name )
 	: CScriptEvent( L"startProduction", EVENT_START_PRODUCTION, true)
 {

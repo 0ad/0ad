@@ -83,6 +83,7 @@ void CNetMessage::ScriptingInit()
 	def(NMT_AddWaypoint);
 	def(NMT_Generic);
 	def(NMT_Produce);
+	def(NMT_PlaceObject);
 	def(NMT_NotifyRequest);
 	def(NMT_FormationGoto);
 	def(NMT_FormationGeneric);
@@ -193,6 +194,19 @@ CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSConte
 			return msg; \
 		}
 
+	#define PlaceObjectMessage(_msg) \
+		case NMT_ ## _msg: \
+		{ \
+			C##_msg *msg = new C##_msg(); \
+			msg->m_Entities = entities; \
+			ReadString(msg, m_Template); \
+			ReadInt(msg, m_X); \
+			ReadInt(msg, m_Y); \
+			ReadInt(msg, m_Z); \
+			ReadInt(msg, m_Angle); \
+			return msg; \
+		}
+
 	// argIndex, incremented by reading macros. We have already "eaten" the
 	// first argument (message type)
 	uint argIndex = 1;
@@ -204,14 +218,17 @@ CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSConte
 		PositionMessage(Patrol)
 		PositionMessage(AddWaypoint)
 		PositionMessage(FormationGoto)
+
 		// NMT_Generic, target, action
 		EntityIntMessage(Generic)
 		EntityIntMessage(NotifyRequest)
 		EntityIntMessage(FormationGeneric)
-		
 
 		// NMT_Produce, type, name
 		ProduceMessage(Produce)
+
+		// NMT_PlaceObject, template, x, y, z, angle, action
+		PlaceObjectMessage(PlaceObject)
 
 		default:
 			JS_ReportError(cx, "Invalid order type");

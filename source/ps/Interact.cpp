@@ -10,6 +10,7 @@
 #include "gui/MiniMap.h"
 #include "timer.h"
 #include "Game.h"
+#include "Simulation.h"
 #include "ps/Globals.h"
 #include "ps/VFSUtil.h"
 #include "Network/NetMessage.h"
@@ -1320,8 +1321,18 @@ void CBuildingPlacer::mouseReleased()
 
 	if(m_valid)
 	{
-		HEntity ent = g_EntityManager.createFoundation( m_templateName, clickPos, m_angle );
-		ent->SetPlayer(g_Game->GetLocalPlayer());
+		//HEntity ent = g_EntityManager.createFoundation( m_templateName, clickPos, m_angle );
+		//ent->SetPlayer(g_Game->GetLocalPlayer());
+
+		// Issue a command accross the network
+		CPlaceObject *msg = new CPlaceObject();
+		msg->m_Entities = g_Selection.m_selected;
+		msg->m_Template = m_templateName;
+		msg->m_X = (u32) (clickPos.X * 1000);
+		msg->m_Y = (u32) (clickPos.Y * 1000);
+		msg->m_Z = (u32) (clickPos.Z * 1000);
+		msg->m_Angle = (u32) (m_angle * 1000);
+		g_Game->GetSimulation()->QueueLocalCommand(msg);
 	}
 }
 
