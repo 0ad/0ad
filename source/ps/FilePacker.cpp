@@ -34,7 +34,7 @@ CFilePacker::CFilePacker(u32 version, const char magicstr[4])
 void CFilePacker::Write(const char* filename)
 {
 	// write out all data (including header)
-	if(vfs_store(filename, &m_Data[0], m_Data.size(), FILE_NO_AIO) < 0)
+	if(vfs_store(filename, &m_Data[0], m_Data.size(), FILE_NO_AIO|FILE_WRITE_TO_MOD) < 0)
 		throw PSERROR_File_WriteFailed();
 }
 

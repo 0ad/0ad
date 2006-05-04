@@ -573,6 +573,9 @@ static void InitVfs(const char* argv0)
 	vfs_mount("screenshots/", "screenshots");
 	vfs_mount("profiles/", "profiles", VFS_MOUNT_RECURSIVE);
 
+	// TODO: once people can load multiple mods, set the top one to be the write target
+	vfs_mod_set_write_target("mods/official");
+
 	// don't try vfs_display yet: SDL_Init hasn't yet redirected stdout
 }
 
