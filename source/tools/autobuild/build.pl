@@ -118,7 +118,7 @@ if (-e "$output_dir\\$svn_revision")
 ### Copy all the necessary files onto it ###
 
 # For some directories (which we're going to alter), do a real copy
-for (qw(builds))
+for (qw(build))
 {
 	`xcopy /e $svn_trunk\\$_ $temp_trunk\\$_\\ 2>&1`;
 	die "xcopy $_: $?" if $?;
