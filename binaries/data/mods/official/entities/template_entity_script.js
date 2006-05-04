@@ -991,6 +991,7 @@ function entityEventPrepareOrder( evt )
 			break;
 		
 		case ORDER_PRODUCE:
+		case ORDER_START_CONSTRUCTION:
 			evt.notifyType = NOTIFY_NONE;
 			break;
 			
@@ -999,6 +1000,13 @@ function entityEventPrepareOrder( evt )
 			evt.preventDefault();
 			break;
 	}
+}
+
+// ====================================================================
+
+function entityStartConstruction( evt )
+{
+	this.order( ORDER_GENERIC, evt.target, ACTION_BUILD );
 }
 
 // ====================================================================

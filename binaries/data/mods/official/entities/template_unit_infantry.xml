@@ -91,9 +91,11 @@
 		
 		<Build>
 			<Rate>1.0</Rate>
-			<Speed>1500</Speed>
+			<Speed>1000</Speed>
 		</Build>
 		
 	</Actions>
 
+	<Script File="entities/template_entity_script.js" />
+	<Event On="StartConstruction" Function="entityStartConstruction" />
 </Entity>
