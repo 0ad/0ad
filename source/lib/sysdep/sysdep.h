@@ -101,13 +101,29 @@ extern void* alloca(size_t size);
 #  define rint ia32_rint
 #  define fminf ia32_fminf
 #  define fmaxf ia32_fmaxf
+
+#  define FP_NAN       IA32_FP_NAN
+#  define FP_NORMAL    IA32_FP_NORMAL
+#  define FP_INFINITE  (FP_NAN | FP_NORMAL)
+#  define FP_ZERO      IA32_FP_ZERO
+#  define FP_SUBNORMAL (FP_NORMAL | FP_ZERO)
+#  define fpclassify ia32_fpclassify
 // .. portable C emulation
 # else
    extern float rintf(float f);
    extern double rint(double d);
    extern float fminf(float a, float b);
    extern float fmaxf(float a, float b);
+
+#  define FP_NAN       1
+#  define FP_NORMAL    2
+#  define FP_INFINITE  (FP_NAN | FP_NORMAL)
+#  define FP_ZERO      4
+#  define FP_SUBNORMAL (FP_NORMAL | FP_ZERO)
+   extern uint fpclassify(double d);
 # endif
+
+# define isnan(d) (fpclassify(d) == FP_NAN)
 #endif
 
 // finite: return 0 iff the given double is infinite or NaN.

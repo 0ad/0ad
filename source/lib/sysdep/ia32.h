@@ -54,6 +54,16 @@ extern i32 ia32_i32_from_float(float f);
 extern i32 ia32_i32_from_double(double d);
 extern i64 ia32_i64_from_double(double d);
 
+// fpclassify return values
+#define IA32_FP_NAN       0x0100
+#define IA32_FP_NORMAL    0x0400
+#define IA32_FP_INFINITE  (IA32_FP_NAN | IA32_FP_NORMAL)
+#define IA32_FP_ZERO      0x4000
+#define IA32_FP_SUBNORMAL (IA32_FP_NORMAL | IA32_FP_ZERO)
+
+extern uint ia32_fpclassify(double d);
+extern uint ia32_fpclassifyf(float f);
+
 extern void* ia32_memcpy(void* dst, const void* src, size_t nbytes);	// asm
 
 

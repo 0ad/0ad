@@ -1827,11 +1827,22 @@ static void vsrc_latch(VSrc* vs)
 	if(!vs->al_src)
 		return;
 
+#ifndef NDEBUG
+	// paranoid value checking; helps determine which parameter is
+	// the problem when the below AL_CHECK fails.
+	debug_assert(!isnan(vs->pos[0]) && !isnan(vs->pos[1]) && !isnan(vs->pos[2]));
+	debug_assert(vs->relative == AL_TRUE || vs->relative == AL_FALSE);
+	debug_assert(!isnan(vs->gain));
+	debug_assert(!isnan(vs->pitch) && vs->pitch > 0.0f);
+	debug_assert(vs->loop == AL_TRUE || vs->loop == AL_FALSE);
+#endif
+
 	alSourcefv(vs->al_src, AL_POSITION,        vs->pos);
 	alSourcei (vs->al_src, AL_SOURCE_RELATIVE, vs->relative);
 	alSourcef (vs->al_src, AL_GAIN,            vs->gain);
 	alSourcef (vs->al_src, AL_PITCH,           vs->pitch);
 	alSourcei (vs->al_src, AL_LOOPING,         vs->loop);
+
 	AL_CHECK;
 }
 

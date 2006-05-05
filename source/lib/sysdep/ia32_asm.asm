@@ -503,10 +503,10 @@ db		0xf0							; LOCK prefix
 
 
 ;-------------------------------------------------------------------------------
-; misc
+; FPU
 ;-------------------------------------------------------------------------------
 
-; extern "C" uint __cdecl ia32_control87(uint new_cw, uint mask)
+; extern "C" uint __cdecl ia32_control87(uint new_cw, uint mask);
 global sym(ia32_control87)
 sym(ia32_control87):
 	push	eax
@@ -524,6 +524,32 @@ sym(ia32_control87):
 	xor		eax, eax					; return value
 	ret
 
+
+; possible IA-32 FPU control word flags after FXAM: NAN|NORMAL|ZERO
+FP_CLASSIFY_MASK	equ 0x4500
+
+; extern "C" uint __cdecl ia32_fpclassify(double d);
+global sym(ia32_fpclassify)
+sym(ia32_fpclassify):
+	fld		qword [esp+4]
+	fxam
+	fnstsw	ax
+	and		eax, FP_CLASSIFY_MASK
+	ret
+
+; extern "C" uint __cdecl ia32_fpclassifyf(float f);
+global sym(ia32_fpclassifyf)
+sym(ia32_fpclassifyf):
+	fld		dword [esp+4]
+	fxam
+	fnstsw	ax
+	and		eax, FP_CLASSIFY_MASK
+	ret
+
+
+;-------------------------------------------------------------------------------
+; misc
+;-------------------------------------------------------------------------------
 
 ; write the current execution state (e.g. all register values) into
 ; (Win32::CONTEXT*)pcontext (defined as void* to avoid dependency).

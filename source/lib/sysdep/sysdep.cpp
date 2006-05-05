@@ -51,6 +51,21 @@ float fmaxf(float a, float b)
 	return (a > b)? a : b;
 }
 
+uint fpclassify(double d)
+{
+	// really sucky stub implementation; doesn't attempt to cover all cases.
+
+	if(d != d)
+		return IA32_FP_NAN;
+	else
+		return IA32_FP_NORMAL;
+}
+
+uint fpclassifyf(float f)
+{
+	return fpclassify((double)f);
+}
+
 #endif
 
 #endif	// #if !HAVE_C99
