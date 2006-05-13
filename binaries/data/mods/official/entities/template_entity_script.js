@@ -636,7 +636,7 @@ function damage( dmg, inflictor )
 								inflictor.traits.id.icon_cell++; 
 
 								// Transmogrify him into his next rank.
-								inflictor.template = getEntityTemplate(inflictor.traits.promotion.newentity);
+								inflictor.template = getEntityTemplate(inflictor.traits.promotion.newentity, inflictor.player);
 							}
 						}
 						break;
@@ -980,7 +980,7 @@ function entityEventPrepareOrder( evt )
 					break;	
 					
 				case ACTION_BUILD:
-					if ( !this.actions.build )
+					if ( !this.actions.build || !evt.target.building || evt.target.building=="" )
 					{
 						evt.preventDefault();
 						return;
