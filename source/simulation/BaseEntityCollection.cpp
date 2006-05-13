@@ -5,9 +5,9 @@
 #include "Model.h"
 #include "CLogger.h"
 #include "VFSUtil.h"
+#include "Player.h"
 
 #define LOG_CATEGORY "entity"
-
 
 void CBaseEntityCollection::LoadFile( const char* path )
 {
@@ -35,11 +35,14 @@ int CBaseEntityCollection::loadTemplates()
 	return 0;
 }
 
-CBaseEntity* CBaseEntityCollection::getTemplate( CStrW name )
+CBaseEntity* CBaseEntityCollection::getTemplate( CStrW name, CPlayer* player )
 {
+	// Find player ID
+	int id = ( player == 0 ? NULL_PLAYER : player->GetPlayerID() );
+
 	// Check whether this template has already been loaded
-	templateMap::iterator it = m_templates.find( name );
-	if( it != m_templates.end() )
+	templateMap::iterator it = m_templates[id].find( name );
+	if( it != m_templates[id].end() )
 		return( it->second );
 
 	// Find the filename corresponding to this template
@@ -50,7 +53,7 @@ CBaseEntity* CBaseEntityCollection::getTemplate( CStrW name )
 	CStr path( filename_it->second );
 
 	// Try to load to the entity
-	CBaseEntity* newTemplate = new CBaseEntity();
+	CBaseEntity* newTemplate = new CBaseEntity( player );
 	if( !newTemplate->loadXML( path ) )
 	{
 		LOG(ERROR, LOG_CATEGORY, "CBaseEntityCollection::loadTemplates(): Couldn't load template \"%s\"", path.c_str());
@@ -58,12 +61,12 @@ CBaseEntity* CBaseEntityCollection::getTemplate( CStrW name )
 	}
 
 	LOG(NORMAL, LOG_CATEGORY, "CBaseEntityCollection::loadTemplates(): Loaded template \"%s\"", path.c_str());
-	m_templates[name] = newTemplate;
+	m_templates[id][name] = newTemplate;
 
 	// Load the entity's parent, if it has one
 	if( newTemplate->m_Base_Name.Length() )
 	{
-		CBaseEntity* base = getTemplate( newTemplate->m_Base_Name );
+		CBaseEntity* base = getTemplate( newTemplate->m_Base_Name, player );
 		if( base )
 		{
 			newTemplate->m_base = base;
@@ -89,6 +92,7 @@ void CBaseEntityCollection::getBaseEntityNames( std::vector<CStrW>& names )
 
 CBaseEntityCollection::~CBaseEntityCollection()
 {
-	for( templateMap::iterator it = m_templates.begin(); it != m_templates.end(); ++it )
-		delete( it->second );
+	for( int id = 0; id < PS_MAX_PLAYERS + 2; id++ )
+		for( templateMap::iterator it = m_templates[id].begin(); it != m_templates[id].end(); ++it )
+			delete( it->second );
 }

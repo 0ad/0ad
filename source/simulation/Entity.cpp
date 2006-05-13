@@ -39,6 +39,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
     m_orientation.Y = orientation;
     m_ahead.x = sin( m_orientation.Y );
     m_ahead.y = cos( m_orientation.Y );
+	m_player = 0;
 
 	// set sane default in case someone forgets to add this to the entity's
 	// XML file, which is prone to happen. (prevents crash below when
@@ -235,6 +236,12 @@ void CEntity::loadBase()
     }
 
     m_actor_transform_valid = false;
+
+	if( m_player )
+	{
+		// Make sure the actor has the right player colour
+		m_actor->SetPlayerID( m_player->GetPlayerID() );
+	}
 }
 
 void CEntity::kill()
@@ -507,7 +514,7 @@ void CEntity::update( size_t timestep )
 				m_orderQueue.pop_front();
 				break;
             default:
-				debug_warn("Invalid entity order" );
+				debug_warn( "Invalid entity order" );
 		}
     }
 

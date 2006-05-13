@@ -1,8 +1,10 @@
 #include "precompiled.h"
 
 #include "BaseEntity.h"
+#include "BaseEntityCollection.h"
 #include "ObjectManager.h"
 #include "CStr.h"
+#include "Player.h"
 
 #include "ps/XML/Xeromyces.h"
 
@@ -11,12 +13,14 @@
 
 STL_HASH_SET<CStr, CStr_hash_compare> CBaseEntity::scriptsLoaded;
 
-CBaseEntity::CBaseEntity()
+CBaseEntity::CBaseEntity( CPlayer* player )
 {
+	m_player = player;
 	m_base = NULL;
 	
 	AddProperty( L"tag", &m_Tag, false );
 	AddProperty( L"parent", &m_base, false );
+	AddProperty( L"unmodified", &m_unmodified, false );
 	AddProperty( L"actions.move.speed_curr", &m_speed );
 	AddProperty( L"actions.move.turningradius", &m_turningRadius );
 	AddProperty( L"actions.move.run.speed", &m_runSpeed );
@@ -348,6 +352,16 @@ bool CBaseEntity::loadXML( CStr filename )
 		}
 	}	
 
+
+	if( m_player == 0 )
+	{
+		m_unmodified = this;
+	}
+	else
+	{
+		m_unmodified = g_EntityTemplateCollection.getTemplate( m_Tag, 0 );
+	}
+
 	return true;
 }
 
@@ -432,7 +446,10 @@ JSObject* CBaseEntity::GetScriptExecContext( IEventTarget* target )
 jsval CBaseEntity::ToString( JSContext* cx, uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	wchar_t buffer[256];
-	swprintf( buffer, 256, L"[object EntityTemplate: %ls]", m_Tag.c_str() );
+	if( m_player == 0 )
+		swprintf( buffer, 256, L"[object EntityTemplate: %ls base]", m_Tag.c_str() );
+	else
+		swprintf( buffer, 256, L"[object EntityTemplate: %ls for player %d]", m_Tag.c_str(), m_player->GetPlayerID() );
 	buffer[255] = 0;
 	utf16string str16(buffer, buffer+wcslen(buffer));
 	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, str16.c_str() ) ) );

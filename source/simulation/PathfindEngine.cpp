@@ -32,25 +32,28 @@ void CPathfindEngine::requestLowLevelPath( HEntity entity, const CVector2D& dest
 	if ( mLowPathfinder.findPath(source, destination, entity->m_player) )
 	{
 		std::vector<CVector2D> path = mLowPathfinder.getLastPath();
-		std::vector<CVector2D>::iterator it;
-		CEntityOrder node;
-		for( it = path.begin(); (it+1) != path.end(); it++ )
+		if( path.size() > 0 )
 		{
-			if ( !contact )
+			std::vector<CVector2D>::iterator it;
+			CEntityOrder node;
+			for( it = path.begin(); (it+1) != path.end(); it++ )
 			{
-				node.m_type = CEntityOrder::ORDER_GOTO_NOPATHING;
+				if ( !contact )
+				{
+					node.m_type = CEntityOrder::ORDER_GOTO_NOPATHING;
+				}
+				else
+				{
+					// TODO: Is this right?
+					node.m_type = CEntityOrder::ORDER_GOTO_NOPATHING;
+				}
+				node.m_data[0].location = *it;
+				entity->m_orderQueue.push_back(node);
 			}
-			else
-			{
-				// TODO: Is this right?
-				node.m_type = CEntityOrder::ORDER_GOTO_NOPATHING;
-			}
+			node.m_type = CEntityOrder::ORDER_PATH_END_MARKER;
 			node.m_data[0].location = *it;
 			entity->m_orderQueue.push_back(node);
 		}
-		node.m_type = CEntityOrder::ORDER_PATH_END_MARKER;
-		node.m_data[0].location = *it;
-		entity->m_orderQueue.push_back(node);
 	}
 	else
 	{

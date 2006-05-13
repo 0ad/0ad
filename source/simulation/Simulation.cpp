@@ -335,19 +335,17 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 			{
 				CPlaceObject *msg = (CPlaceObject *) pMsg;
 				
+				// Figure out the player
+				CPlayer* player = 0;
+				if(msg->m_Entities.size() > 0) 
+					player = msg->m_Entities[0]->GetPlayer();
+				else
+					player = g_Game->GetLocalPlayer();
+
 				// Create the object
 				CVector3D pos(msg->m_X/1000.0f, msg->m_Y/1000.0f, msg->m_Z/1000.0f);
-				HEntity newObj = g_EntityManager.createFoundation( msg->m_Template, pos, msg->m_Angle/1000.0f );
-
-				if(msg->m_Entities.size() > 0) 
-				{
-					newObj->SetPlayer(msg->m_Entities[0]->GetPlayer());
-				}
-				else
-				{
-					// Object might have been placed from the console just for testing
-					newObj->SetPlayer(g_Game->GetLocalPlayer());
-				}
+				HEntity newObj = g_EntityManager.createFoundation( msg->m_Template, player, pos, msg->m_Angle/1000.0f );
+				newObj->SetPlayer(player);
 				
 				// Order all the selected units to work on the new object using the given action
 				order.m_type = CEntityOrder::ORDER_START_CONSTRUCTION;

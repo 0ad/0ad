@@ -27,10 +27,15 @@
 #include "ScriptObject.h"
 #include "XML/Xeromyces.h"
 
+class CPlayer;
+
 class CBaseEntity : public CJSComplex<CBaseEntity>, public IEventTarget
 {
 public:
-	CBaseEntity();
+	CPlayer* m_player;		// Which player this template is for, or null for the no-player template
+							// used to read unmodified values for upgrades and such.
+
+	CBaseEntity( CPlayer* player );
 	~CBaseEntity();
 	// Load from XML
 	bool loadXML( CStr filename );
@@ -38,10 +43,12 @@ public:
 	void XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement& Source, CStrW BasePropertyName );
 
 	// Base stats
-
 	CBaseEntity* m_base;
 	CStrW m_corpse;
 	bool m_extant;
+
+	// The unmodified, no-player version of this template
+	CBaseEntity* m_unmodified;
 
 	// The class types this entity has
 	SClassSet m_classes;

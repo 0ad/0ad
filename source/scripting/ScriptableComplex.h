@@ -99,7 +99,7 @@ public:
 	// Add a property (with immediate value)
 	virtual void AddProperty( CStrW PropertyName, jsval Value ) = 0;
 	virtual void AddProperty( CStrW PropertyName, CStrW Value ) = 0;
-	
+
 	inline IJSComplex() {}
 };
 
@@ -117,6 +117,7 @@ public:
 		m_Owner = Owner;
 		m_PropertyRoot = PropertyRoot;
 	}
+
 	static JSObject* CreateAccessor( JSContext* cx, T* Owner, CStrW PropertyRoot )
 	{
 		JSObject* Accessor = JS_NewObject( cx, &JSI_Class, NULL, NULL );
@@ -124,6 +125,7 @@ public:
 
 		return( Accessor );
 	}
+
 	static JSBool JSGetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
 	{
 		CJSComplexPropertyAccessor* Instance = (CJSComplexPropertyAccessor*)JS_GetPrivate( cx, obj );
@@ -135,6 +137,7 @@ public:
 		
 		return( JS_TRUE );
 	}
+
 	static JSBool JSSetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
 	{
 		CJSComplexPropertyAccessor* Instance = (CJSComplexPropertyAccessor*)JS_GetPrivate( cx, obj );
@@ -146,6 +149,7 @@ public:
 		
 		return( JS_TRUE );
 	}
+
 	static JSBool JSEnumerate( JSContext* cx, JSObject* obj, JSIterateOp enum_op, jsval* statep, jsid *idp )
 	{
 		IJSComplex::IteratorState* it;
@@ -204,6 +208,7 @@ public:
 		}
 		return( JS_FALSE );
 	}
+
 	static JSBool JSPrimitive( JSContext* cx, JSObject* obj, uintN UNUSED(argc), jsval* UNUSED(argv), jsval* rval )
 	{
 		CJSComplexPropertyAccessor* Instance = (CJSComplexPropertyAccessor*)JS_GetPrivate( cx, obj );
@@ -227,6 +232,7 @@ public:
 		
 		return( JS_TRUE );
 	}
+
 	static JSBool JSToString( JSContext* cx, JSObject* obj, uintN UNUSED(argc), jsval* UNUSED(argv), jsval* rval )
 	{
 		CJSComplexPropertyAccessor* Instance = (CJSComplexPropertyAccessor*)JS_GetPrivate( cx, obj );
@@ -253,7 +259,9 @@ public:
 		
 		return( JS_TRUE );
 	}
+
 	static JSClass JSI_Class;
+
 	static void ScriptingInit()
 	{
 		JSFunctionSpec JSI_methods[] = { { "valueOf", JSPrimitive, 0, 0, 0 }, { "toString", JSToString, 0, 0, 0 }, { 0 } };
@@ -698,12 +706,15 @@ public:
 			JSI_methods[MethodID] = m_Methods[MethodID];
 
 		JSFunctionSpec watchAll = { "watchAll", SetWatchAll, 1, 0, 0 };
-		JSI_methods[MethodID] = watchAll;
+		JSI_methods[MethodID + 0] = watchAll;
+
 		JSFunctionSpec unwatchAll = { "unwatchAll", UnWatchAll, 1, 0, 0 };
 		JSI_methods[MethodID + 1] = unwatchAll;
+
 		JSI_methods[MethodID + 2].name = 0;
 
 		JSI_class.name = ClassName;
+
 		g_ScriptingHost.DefineCustomObjectType( &JSI_class, Constructor, ConstructorMinArgs, JSI_props, JSI_methods, NULL, NULL );
 
 		delete[]( JSI_methods );

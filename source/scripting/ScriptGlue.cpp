@@ -169,20 +169,28 @@ JSBool getEntityByHandle( JSContext* cx, JSObject*, uint argc, jsval* argv, jsva
 // returns: entity template object
 JSBool getEntityTemplate( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_PARAMS(1, getEntityTemplate);
+	REQUIRE_MIN_PARAMS(1, getEntityTemplate);
+	REQUIRE_MAX_PARAMS(2, getEntityTemplate);
 	*rval = JSVAL_NULL;
 
 	CStrW templateName;
+	CPlayer* player = 0;
+
 	try
 	{
 		templateName = g_ScriptingHost.ValueToUCString( argv[0] );
+		if( argc == 2 )
+		{
+			player = ToNative<CPlayer>( argv[1] );
+		}
 	}
 	catch( PSERROR_Scripting_ConversionFailed )
 	{
 		JS_ReportError( cx, "Invalid template identifier" );
 		return( JS_TRUE );
 	}
-	CBaseEntity* v = g_EntityTemplateCollection.getTemplate( templateName );
+
+	CBaseEntity* v = g_EntityTemplateCollection.getTemplate( templateName, player );
 	if( !v )
 	{
 		JS_ReportError( cx, "No such template: %s", CStr8(templateName).c_str() );

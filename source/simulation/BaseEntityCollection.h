@@ -24,18 +24,23 @@
 #include "Singleton.h"
 #include "ObjectEntry.h"
 #include "BaseEntity.h"
+#include "Game.h"
 
 #define g_EntityTemplateCollection CBaseEntityCollection::GetSingleton()
+#define NULL_PLAYER (PS_MAX_PLAYERS+1)
+
+class CPlayer;
 
 class CBaseEntityCollection : public Singleton<CBaseEntityCollection>
 {
-	typedef std::map<CStrW, CBaseEntity*> templateMap;
-	typedef std::map<CStrW, CStr> templateFilenameMap;
-	templateMap m_templates;
+	typedef STL_HASH_MAP<CStrW, CBaseEntity*, CStrW_hash_compare> templateMap;
+	typedef STL_HASH_MAP<CStrW, CStr, CStrW_hash_compare> templateFilenameMap;
+	
+	templateMap m_templates[PS_MAX_PLAYERS + 2];
 	templateFilenameMap m_templateFilenames;
 public:
 	~CBaseEntityCollection();
-	CBaseEntity* getTemplate( CStrW entityType );
+	CBaseEntity* getTemplate( CStrW entityType, CPlayer* player = 0 );
 	int loadTemplates();
 	void LoadFile( const char* path );
 
