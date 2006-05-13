@@ -6,18 +6,22 @@
   <group>
     <variant frequency="100" name="Base">
       <animations>
-        <animation file="biped/dudeidle.psa" name="Idle" speed="200"/>
+		<!-- Class Specific -->
+	    <animation file="biped/dudeidle.psa" name="Idle" speed="200"/>
         <animation event="0.5" file="biped/inf_spear_shield_atk_a.psa" name="Melee" speed="100"/>
         <animation event="0.5" file="biped/inf_spear_shield_atk_b.psa" name="Melee" speed="100"/>
         <animation file="biped/dudewalk.psa" name="Walk" speed="20"/>
+		<!-- Stamina Specific -->
         <animation file="biped/inf_sword_shield_run_a.psa" name="Run" speed="10"/>
         <animation file="biped/inf_sword_shield_run_b.psa" name="Run" speed="10"/>
         <animation file="biped/inf_sword_shield_run_c.psa" name="Run" speed="10"/>
+		<!-- Citzen Soldier Specific -->
         <animation file="biped/chop.psa" name="gather_wood" speed="100"/>
         <animation file="biped/hoe.psa" name="gather_grain" speed="150"/>
         <animation file="biped/forage.psa" name="gather_fruit" speed="35"/>
         <animation file="biped/mine.psa" name="gather_stone" speed="150"/>
         <animation file="biped/dudebuild.psa" name="Build" speed="150"/>
+		<!-- Shared  -->
         <animation file="biped/inf_death_a.psa" name="Death" speed="200"/>
         <animation file="biped/inf_death_b.psa" name="Death" speed="200"/>
         <animation file="biped/inf_death_c.psa" name="Death" speed="200"/>
