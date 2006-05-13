@@ -6,13 +6,30 @@
   <group>
     <variant frequency="100" name="Base">
       <animations>
+		<!-- Class Specific -->
         <animation file="biped/inf_idle_spear.psa" name="Idle" speed="200"/>
         <animation file="biped/walk_spearshield.psa" name="Walk" speed="20"/>
+        <animation event="0.5" file="biped/inf_spear_shield_atk_a.psa" name="Melee" speed="100"/>
+        <animation event="0.5" file="biped/inf_spear_shield_atk_b.psa" name="Melee" speed="100"/>
+		<!-- Stamina Specific -->
+        <animation file="biped/inf_sword_shield_run_a.psa" name="Run" speed="10"/>
+        <animation file="biped/inf_sword_shield_run_b.psa" name="Run" speed="10"/>
+        <animation file="biped/inf_sword_shield_run_c.psa" name="Run" speed="10"/>
+		<!-- Citzen Soldier Specific -->
+        <animation file="biped/chop.psa" name="gather_wood" speed="100"/>
+        <animation file="biped/hoe.psa" name="gather_grain" speed="150"/>
+        <animation file="biped/forage.psa" name="gather_fruit" speed="35"/>
+        <animation file="biped/mine.psa" name="gather_stone" speed="150"/>
         <animation file="biped/dudebuild.psa" name="Build" speed="150"/>
-        <animation event="0.35" file="biped/dudechop.psa" name="Chop" speed="150"/>
-        <animation file="biped/dudedeath_sword.psa" name="Death" speed="200"/>
+		<!-- Shared  -->
+        <animation file="biped/inf_death_a.psa" name="Death" speed="200"/>
+        <animation file="biped/inf_death_b.psa" name="Death" speed="200"/>
+        <animation file="biped/inf_death_c.psa" name="Death" speed="200"/>
+        <animation file="biped/inf_death_d.psa" name="Death" speed="200"/>
+        <animation file="biped/inf_death_e.psa" name="Death" speed="200"/>
+        <animation file="biped/inf_death_f.psa" name="Death" speed="200"/>
+        <animation file="biped/inf_death_g.psa" name="Death" speed="200"/>
         <animation file="biped/dudedecay_sword.psa" name="Corpse" speed="100"/>
-        <animation event="0.5" file="biped/inf_spear_shield_atk_a.psa" name="Attack" speed="100"/>
       </animations>
       <mesh>skeletal/m_pants_c.pmd</mesh>
       <props>
@@ -56,6 +73,53 @@
     </variant>
     <variant>
       <texture>skeletal/celt_isw_a_01.dds</texture>
+    </variant>
+  </group>
+  
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Melee">
+      <props>
+        <prop actor="" attachpoint="l_hand"/>
+	    <prop actor="props/units/shields/celt_scutum_a.xml" attachpoint="shield"/>
+        <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
+      </props>
+    </variant>
+    <variant name="gather_wood">
+      <props>
+        <prop actor="" attachpoint="shield"/>
+        <prop actor="props/units/tools/axe.xml" attachpoint="l_hand"/>
+        <prop actor="" attachpoint="r_hand"/>
+      </props>
+    </variant>
+    <variant name="gather_grain">
+      <props>
+        <prop actor="" attachpoint="shield"/>
+        <prop actor="props/units/tools/hoe.xml" attachpoint="l_hand"/>
+        <prop actor="" attachpoint="r_hand"/>
+	  </props>
+    </variant>
+    <variant name="gather_fruit">
+      <props>
+        <prop actor="" attachpoint="shield"/>
+        <prop actor="" attachpoint="l_hand"/>
+        <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
+        <prop actor="" attachpoint="r_hand"/>
+	  </props>
+    </variant>
+    <variant name="gather_stone">
+      <props>
+        <prop actor="" attachpoint="shield"/>
+        <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
+        <prop actor="" attachpoint="r_hand"/>
+      </props>
+    </variant>
+    <variant name="Build">
+      <props>
+        <prop actor="" attachpoint="shield"/>
+        <prop actor="" attachpoint="l_hand"/>
+        <prop actor="props/units/tools/mallet.xml" attachpoint="r_hand"/>
+      </props>
     </variant>
   </group>
 
