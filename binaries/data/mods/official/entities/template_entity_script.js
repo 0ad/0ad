@@ -699,10 +699,6 @@ function entityEventGeneric( evt )
 		case ACTION_GATHER:
 			evt.notifyType = NOTIFY_GATHER;
 			this.performGather( evt );
-			// Change our gather animation based on the type of target
-			var a = this.actions.gather;
-			this.setActionParams( ACTION_GATHER, 0.0, a.range, a.speed,
-				"gather_" + evt.target.traits.supply.subtype );
 			break;
 		case ACTION_HEAL:
 			this.performHeal( evt ); break;
@@ -965,6 +961,12 @@ function entityEventPrepareOrder( evt )
 					}
 					evt.notifyType = NOTIFY_GATHER;
 					this.forceCheckListeners( NOTIFY_ORDER_CHANGE, this );
+					
+					// Change our gather animation based on the type of target
+					var a = this.actions.gather;
+					this.setActionParams( ACTION_GATHER, 0.0, a.range, a.speed,
+						"gather_" + evt.target.traits.supply.subtype );
+						
 					break;
 					
 				case ACTION_HEAL:
