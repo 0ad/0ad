@@ -34,7 +34,7 @@ typedef std::vector<CEntity*> RayIntersects;
 
 HEntity getCollisionObject( CEntity* entity );
 HEntity getCollisionObject( CEntity* entity, float x, float y );
-CBoundingObject* getCollisionObject( CBoundingObject* bounds );
+CBoundingObject* getCollisionObject( CBoundingObject* bounds, CPlayer* player=0 );
 CBoundingObject* getContainingObject( const CVector2D& point );
 CEntity* GetCollisionObject( float x, float y ); // Point collision
 bool getRayIntersection( const CVector2D& source, const CVector2D& forward, const CVector2D& right, float length, float maxDistance, CBoundingObject* destinationCollisionObject, rayIntersectionResults* results );

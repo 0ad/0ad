@@ -45,7 +45,7 @@ CEntity* GetCollisionObject( float x, float y )
 	return( NULL );
 }
 
-CBoundingObject* getCollisionObject( CBoundingObject* bounds )
+CBoundingObject* getCollisionObject( CBoundingObject* bounds, CPlayer* player )
 {
 	std::vector<CEntity*> entities;
 	g_EntityManager.GetInRange( bounds->m_pos.x, bounds->m_pos.y, COLLISION_RANGE, entities );
@@ -55,6 +55,9 @@ CBoundingObject* getCollisionObject( CBoundingObject* bounds )
 	{
 		if( !(*it)->m_bounds ) continue;
 		if( (*it)->m_bounds == bounds ) continue;
+		/* If the unit is marked to ignore ally collisions, and the player parameter 
+		   is passed in and the same player as the unit, then ignore the (potential) collision */
+		if( player && (*it)->m_passThroughAllies && (*it)->m_player == player ) continue;
 		if( bounds->intersects( (*it)->m_bounds ) )
 		{
 			CBoundingObject* obj = (*it)->m_bounds;
