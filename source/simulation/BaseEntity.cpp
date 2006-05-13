@@ -19,11 +19,12 @@ CBaseEntity::CBaseEntity()
 	AddProperty( L"parent", &m_base, false );
 	AddProperty( L"actions.move.speed_curr", &m_speed );
 	AddProperty( L"actions.move.turningradius", &m_turningRadius );
-	AddProperty( L"actions.move.run.speed.curr", &( m_run.m_Speed ) );
+	AddProperty( L"actions.move.run.speed", &m_runSpeed );
 	AddProperty( L"actions.move.run.rangemin", &( m_run.m_MinRange ) );
 	AddProperty( L"actions.move.run.range", &( m_run.m_MaxRange ) );
 	AddProperty( L"actions.move.run.regen_rate", &m_runRegenRate );
 	AddProperty( L"actions.move.run.decay_rate", &m_runDecayRate );
+	AddProperty( L"actions.move.pass_through_allies", &m_passThroughAllies );
 	AddProperty( L"actor", &m_actorName );
 	AddProperty( L"traits.extant", &m_extant );
 	AddProperty( L"traits.corpse", &m_corpse );		
@@ -38,7 +39,6 @@ CBaseEntity::CBaseEntity()
 	AddProperty( L"traits.health.regen_rate", &m_healthRegenRate );
 	AddProperty( L"traits.health.regen_start", &m_healthRegenStart );
 	AddProperty( L"traits.health.decay_rate", &m_healthDecayRate );
-
 	AddProperty( L"traits.stamina.curr", &m_staminaCurr );
     AddProperty( L"traits.stamina.max", &m_staminaMax );
     AddProperty( L"traits.stamina.bar_height", &m_staminaBarHeight );
@@ -74,6 +74,7 @@ CBaseEntity::CBaseEntity()
 	m_extant = true; 
 	m_corpse = CStrW();
 	m_foundation = CStrW();
+	m_passThroughAllies = false;
 
 	// Sentinel values for stamina and health (so scripts can check if an entity has no stamina or no HP).
 	m_speed=0;

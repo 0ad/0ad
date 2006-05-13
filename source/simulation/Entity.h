@@ -74,10 +74,13 @@ public:
 	// Production queue
 	CProductionQueue* m_productionQueue;
 
+	// Movement properties
 	float m_speed;
 	float m_turningRadius;
+	float m_runSpeed;
 	float m_runRegenRate;
 	float m_runDecayRate;
+	bool m_passThroughAllies;
 
 	float m_maxActorPitch;
 	float m_minActorPitch;

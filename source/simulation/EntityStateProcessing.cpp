@@ -42,14 +42,14 @@ float CEntity::processChooseMovement( float distance )
 			if ( !m_actor->IsPlayingAnimation( "run" ) )
 			{
 				m_actor->SetEntitySelection( L"run" );
-				m_actor->SetRandomAnimation( "run", false, m_run.m_Speed );
+				m_actor->SetRandomAnimation( "run", false, m_runSpeed );
 
 				// Animation desync
 				m_actor->GetModel()->Update( rand( 0, 1000 ) / 1000.0f );
 				m_isRunning = true;
 			}
 		}
-		return m_run.m_Speed;
+		return m_runSpeed;
 	}
 	else
 	{
@@ -254,8 +254,8 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 		else
 		{
 			m_orderQueue.pop_front();
-			m_isRunning = false;
-			m_shouldRun = false;
+			//m_isRunning = false;
+			//m_shouldRun = false;
 		}
 		return( false );
 	case COLLISION_OVERLAPPING_OBJECTS:
@@ -263,8 +263,8 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 	case COLLISION_WITH_DESTINATION:
 		// We're here...
 		m_orderQueue.pop_front();
-		m_isRunning = false;
-		m_shouldRun = false;
+		//m_isRunning = false;
+		//m_shouldRun = false;
 		
 		return( false );
 	case COLLISION_NEAR_DESTINATION:
@@ -328,8 +328,8 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 	case WOULD_LEAVE_MAP:
 		// Just stop here, repath if necessary.
 		m_orderQueue.pop_front();
-		m_isRunning = false;
-		m_shouldRun = false;
+		//m_isRunning = false;
+		//m_shouldRun = false;
 		return( false );
 	default:
 		
@@ -592,8 +592,8 @@ bool CEntity::processGoto( CEntityOrder* current, size_t UNUSED(timestep_millis)
 	// Let's just check we're going somewhere...
 	if( Distance < 0.1f ) 
 	{
-		m_isRunning = false;
-		m_shouldRun = false;
+		//m_isRunning = false;
+		//m_shouldRun = false;
 		return( false );
 	}
 
@@ -617,7 +617,7 @@ bool CEntity::processGotoWaypoint( CEntityOrder* current, size_t UNUSED(timestep
 	if( Distance < 0.1f ) 
 	{
 		m_isRunning = false;
-		m_shouldRun = false;
+		//m_shouldRun = false;
 		return( false );
 	}
 

@@ -104,8 +104,10 @@ public:
 	CStrW m_foundation;
 
 	float m_speed;
+	float m_runSpeed;
 	float m_runRegenRate;
 	float m_runDecayRate;
+	bool m_passThroughAllies;
 
 	SEntityAction m_run;
 	SEntityAction m_generic;

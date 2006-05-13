@@ -49,11 +49,12 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
 		also be added to BaseEntity.h */
 	
     AddProperty( L"actions.move.speed_curr", &m_speed );
-	AddProperty( L"actions.move.run.speed.curr", &( m_run.m_Speed ) );
+	AddProperty( L"actions.move.run.speed", &m_runSpeed );
 	AddProperty( L"actions.move.run.rangemin", &( m_run.m_MinRange ) );
 	AddProperty( L"actions.move.run.range", &( m_run.m_MaxRange ) );
 	AddProperty( L"actions.move.run.regen_rate", &m_runRegenRate );
 	AddProperty( L"actions.move.run.decay_rate", &m_runDecayRate );
+	AddProperty( L"actions.move.pass_through_allies", &m_passThroughAllies );
     AddProperty( L"selected", &m_selected, false, (NotifyFn)&CEntity::checkSelection );
     AddProperty( L"group", &m_grouped, false, (NotifyFn)&CEntity::checkGroup );
     AddProperty( L"traits.extant", &m_extant );
@@ -73,7 +74,6 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
 	AddProperty( L"traits.health.regen_rate", &m_healthRegenRate );
 	AddProperty( L"traits.health.regen_start", &m_healthRegenStart );
 	AddProperty( L"traits.health.decay_rate", &m_healthDecayRate );
-
 	AddProperty( L"traits.stamina.curr", &m_staminaCurr );
     AddProperty( L"traits.stamina.max", &m_staminaMax );
     AddProperty( L"traits.stamina.bar_height", &m_staminaBarHeight );
@@ -94,7 +94,6 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
     AddProperty( L"traits.anchor.type", &m_anchorType );
 	AddProperty( L"traits.anchor.conformx", &m_anchorConformX );
 	AddProperty( L"traits.anchor.conformz", &m_anchorConformZ );
-
     AddProperty( L"traits.vision.los", &m_los );
     AddProperty( L"traits.vision.permanent", &m_permanent );
 	AddProperty( L"last_combat_time", &m_lastCombatTime );
@@ -511,6 +510,32 @@ void CEntity::update( size_t timestep )
 				debug_warn("Invalid entity order" );
 		}
     }
+
+	if( m_orderQueue.empty() ) 
+	{
+		// If we have no orders, stop running
+		m_isRunning = false;
+		m_shouldRun = false;
+	}
+	else 
+	{
+		// If the front order is not a movement order, stop running
+		switch(m_orderQueue.front().m_type) 
+		{
+			case CEntityOrder::ORDER_GOTO_NOPATHING:
+			case CEntityOrder::ORDER_GOTO_COLLISION:
+			case CEntityOrder::ORDER_GOTO_SMOOTHED:
+			case CEntityOrder::ORDER_GOTO_WAYPOINT:
+			case CEntityOrder::ORDER_GOTO_WAYPOINT_CONTACT:
+            case CEntityOrder::ORDER_GOTO:
+			case CEntityOrder::ORDER_RUN:
+				break;
+			default:
+				m_isRunning = false;
+				//m_shouldRun = false;
+				break;
+		}
+	}
 
     PROFILE_END( "state processing" );
 
@@ -1251,15 +1276,15 @@ void CEntity::renderStaminaBar()
     glBegin(GL_LINES);
 
     // blue part of bar
-    glColor3f( 0, 0, 1 );
+    glColor3f( 0.1f, 0.1f, 1 );
     glVertex3f( x1, y, 0 );
-    glColor3f( 0, 0, 1 );
+    glColor3f( 0.1f, 0.1f, 1 );
     glVertex3f( x1 + m_staminaBarSize*fraction, y, 0 );
 
-    // red part of bar
-    glColor3f( 1, 0, 0 );
+    // purple part of bar
+    glColor3f( 0.3f, 0, 0.3f );
     glVertex3f( x1 + m_staminaBarSize*fraction, y, 0 );
-    glColor3f( 1, 0, 0 );
+    glColor3f( 0.3f, 0, 0.3f );
     glVertex3f( x2, y, 0 );
 
     glEnd();
@@ -1990,7 +2015,7 @@ jsval CEntity::SetRun( JSContext* cx, uintN argc, jsval* argv )
 }
 jsval CEntity::GetRunState( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-	return m_isRunning;
+	return BOOLEAN_TO_JSVAL( m_shouldRun );
 }
 jsval CEntity::GetFormationPenalty( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
