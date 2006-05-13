@@ -347,9 +347,11 @@ function performAttack( evt )
 	var flank = (evt.target.getAttackDirections()-1)*evt.target.traits.flank_penalty.value;
 	if ( this.getRunState() )
 	{
+		console.write("" + this + " doing a charge attack!");
 		dmg.crush = parseInt(this.actions.attack.charge.damage * this.actions.attack.charge.crush);
 		dmg.hack = parseInt(this.actions.attack.charge.damage * this.actions.attack.charge.hack);
 		dmg.pierce = parseInt(this.actions.attack.charge.damage * this.actions.attack.charge.pierce);
+		this.setRun( false );
 	}
 	else
 	{
