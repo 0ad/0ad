@@ -14,8 +14,8 @@
 		<Anchor>
  			<Type>Ground</Type>
 		<!-- If negative or > 90.0, entity will always conform to terrain (assuming traits.pitch allows it) -->
-			<ConformX>3.141592</ConformX>
-			<ConformZ>3.141592</ConformZ>
+			<ConformX>0</ConformX>
+			<ConformZ>0</ConformZ>
  		</Anchor>
 
 		<!-- Defaults to no armour. -->
