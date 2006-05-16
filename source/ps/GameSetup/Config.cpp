@@ -50,7 +50,7 @@ static void LoadProfile( CStr profile )
 	g_ConfigDB.SetConfigFile(CFG_USER, true, base +  "/settings/user.cfg");
 	g_ConfigDB.Reload(CFG_USER);
 
-	int max_history_lines = 50;
+	int max_history_lines = 200;
 	CFG_GET_USER_VAL("console.history.size", Int, max_history_lines);
 	g_Console->UseHistoryFile(base+"/settings/history", max_history_lines);
 }

@@ -42,6 +42,7 @@
 #include "graphics/scripting/JSInterface_LightEnv.h"
 #include "scripting/JSConversions.h"
 #include "renderer/WaterManager.h"
+#include "renderer/SkyManager.h"
 #include "simulation/FormationManager.h"
 
 #ifndef NO_GUI
@@ -896,7 +897,8 @@ JSBool getGlobal( JSContext* cx, JSObject* globalObject, uint argc, jsval* argv,
 	return( JS_TRUE );
 }
 
-// Activates the building placement cursor for placing a building.
+// Activates the building placement cursor for placing a building. The currently selected units
+// are then ordered to construct the building if it is placed.
 // params: templateName - the name of the entity to place.
 // returns: true if cursor was activated, false if cursor was already active.
 JSBool startPlacing( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
@@ -919,11 +921,19 @@ JSBool startPlacing( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, j
 	return( JS_TRUE );
 }
 
+// Toggles drawing the sky
+JSBool toggleSky( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+{
+	REQUIRE_NO_PARAMS( toggleSky );
+	g_Renderer.GetSkyManager()->m_RenderSky = !g_Renderer.GetSkyManager()->m_RenderSky;
+	*rval = JSVAL_VOID;
+	return( JS_TRUE );
+}
+
 // Toggles drawing the water plane
 JSBool toggleWater( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
 	REQUIRE_NO_PARAMS( toggleWater );
-	debug_printf("Toggling water!\n");
 	g_Renderer.GetWaterManager()->m_RenderWater = !g_Renderer.GetWaterManager()->m_RenderWater;
 	*rval = JSVAL_VOID;
 	return( JS_TRUE );
@@ -1128,6 +1138,9 @@ JSFunctionSpec ScriptFunctionTable[] =
 
 	// Camera
 	JS_FUNC(setCameraTarget, setCameraTarget, 1)
+
+	// Sky
+	JS_FUNC(toggleSky, toggleSky, 0)
 
 	// Water
 	JS_FUNC(toggleWater, toggleWater, 0)

@@ -111,6 +111,7 @@ public:
 	int m_frameCheck;	//counts the frame
 
 	float m_lastCombatTime;
+	float m_lastRunTime;
 
 	// Building to convert to if this is a foundation, or "" otherwise
 	CStrW m_building;

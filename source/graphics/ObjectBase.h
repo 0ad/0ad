@@ -15,7 +15,7 @@ public:
 
 	struct Anim {
 		// constructor
-		Anim() : m_Speed(1), m_ActionPos(0.0), m_ActionPos2(0.0) {}
+		Anim() : m_Speed(1), m_ActionPos(0.5), m_ActionPos2(0.0) {}
 
 		// name of the animation - "Idle", "Run", etc
 		CStr m_AnimName;

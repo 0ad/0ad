@@ -119,7 +119,7 @@ void ScriptingHost::RunScript(const CStr& filename, JSObject* globalObject)
 		throw PSERROR_Scripting_LoadFile_OpenFailed();
 
 	const char* script = (const char*)buf;
-	RunMemScript(script, size, fn, 0, globalObject);
+	RunMemScript(script, size, fn, 1, globalObject);
 
 	(void)file_buf_free(buf);
 }
@@ -147,7 +147,7 @@ jsval ScriptingHost::ExecuteScript(const CStrW& script, const CStrW& calledFrom,
 	char* asciiName = new char[len + 1];
 	wcstombs( asciiName, calledFrom, len + 1 );
 
-	JSBool ok = JS_EvaluateUCScript(m_Context, contextObject ? contextObject : m_GlobalObject, script.utf16().c_str(), (int)script.Length(), asciiName, 0, &rval); 
+	JSBool ok = JS_EvaluateUCScript(m_Context, contextObject ? contextObject : m_GlobalObject, script.utf16().c_str(), (int)script.Length(), asciiName, 1, &rval); 
 
 	delete[]( asciiName );
 

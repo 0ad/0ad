@@ -59,6 +59,7 @@
 #include "renderer/TerrainRenderer.h"
 #include "renderer/TransparencyRenderer.h"
 #include "renderer/WaterManager.h"
+#include "renderer/SkyManager.h"
 
 #define LOG_CATEGORY "graphics"
 
@@ -209,6 +210,9 @@ struct CRendererInternals
 	/// Water manager
 	WaterManager waterManager;
 
+	/// Sky manager
+	SkyManager skyManager;
+
 	/// Terrain renderer
 	TerrainRenderer* terrainRenderer;
 
@@ -315,6 +319,7 @@ CRenderer::CRenderer()
 {
 	m = new CRendererInternals;
 	m_WaterManager = &m->waterManager;
+	m_SkyManager = &m->skyManager;
 
 	g_ProfileViewer.AddRootTable(&m->profileTable);
 
@@ -958,6 +963,17 @@ void CRenderer::FlushFrame()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
 	oglCheck();
+
+	// render sky; this is done before everything so that 
+	// (a) we can use a box around the camera instead of placing it "infinitely far away"
+	//     (we just disable depth write so that this doesn't affect future rendering)
+	// (b) transparent objects properly overlap the sky
+	if (m_SkyManager->m_RenderSky)
+	{
+		MICROLOG(L"render sky");
+		m->skyManager.RenderSky();
+		oglCheck();
+	}
 
 	// render submitted patches and models
 	MICROLOG(L"render patches");

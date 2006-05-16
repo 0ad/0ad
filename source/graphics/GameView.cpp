@@ -28,6 +28,7 @@
 #include "ps/LoaderThunks.h"
 #include "ps/Globals.h"
 #include "renderer/WaterManager.h"
+#include "renderer/SkyManager.h"
 
 #include "Quaternion.h"
 #include "Unit.h"
@@ -257,6 +258,7 @@ void CGameView::RegisterInit(CGameAttributes *pAttribs)
 	RegMemFun(g_ObjMan.GetSingletonPtr(), &CObjectManager::LoadObjects, L"LoadObjects", 1);
 	RegMemFun(g_Renderer.GetSingletonPtr(), &CRenderer::LoadAlphaMaps, L"LoadAlphaMaps", 5);
 	RegMemFun(g_Renderer.GetSingletonPtr()->GetWaterManager(), &WaterManager::LoadWaterTextures, L"LoadWaterTextures", 80);
+	RegMemFun(g_Renderer.GetSingletonPtr()->GetSkyManager(), &SkyManager::LoadSkyTextures, L"LoadSkyTextures", 15);
 }
 
 

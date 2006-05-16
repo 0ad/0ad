@@ -39,6 +39,7 @@ class CTerrain;
 
 class RenderPathVertexShader;
 class WaterManager;
+class SkyManager;
 
 
 // rendering modes
@@ -278,6 +279,13 @@ public:
 	WaterManager* GetWaterManager() { return m_WaterManager; }
 
 	/**
+	 * GetWaterManager: Return the renderer's sky manager.
+	 *
+	 * @return the SkyManager object used by the renderer
+	 */
+	SkyManager* GetSkyManager() { return m_SkyManager; }
+
+	/**
 	 * SetFastPlayerColor: Tell the renderer which path to take for
 	 * player colored models. Both paths should provide the same visual
 	 * quality, however the slow path runs on older hardware using multi-pass.
@@ -399,6 +407,11 @@ protected:
 	 * (e.g. water color, water height)
 	 */
 	WaterManager* m_WaterManager;
+
+	/**
+	 * m_SkyManager: the SkyManager object used for sky textures and settings
+	 */
+	SkyManager* m_SkyManager;
 
 	/**
 	 * m_SortAllTransparent: If true, all transparent models are

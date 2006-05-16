@@ -98,6 +98,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
     AddProperty( L"traits.vision.los", &m_los );
     AddProperty( L"traits.vision.permanent", &m_permanent );
 	AddProperty( L"last_combat_time", &m_lastCombatTime );
+	AddProperty( L"last_run_time", &m_lastRunTime );
 	AddProperty( L"building", &m_building );
 
 	m_productionQueue = new CProductionQueue( this );
@@ -157,6 +158,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
 
 	m_frameCheck = 0;
 	m_lastCombatTime = 0;
+	m_lastRunTime = 0;
 	m_currentNotification = 0;
 	m_currentRequest = 0;
 	m_destroyNotifiers = true;
@@ -422,8 +424,13 @@ void CEntity::update( size_t timestep )
 
     PROFILE_START( "state processing" );
 
+	if( m_isRunning )
+	{
+		m_lastRunTime = g_Game->GetTime();
+	}
+
     while( !m_orderQueue.empty() )
-    {
+	{
         CEntityOrder* current = &m_orderQueue.front();
 
         if( current->m_type != m_lastState )
@@ -524,27 +531,10 @@ void CEntity::update( size_t timestep )
 		m_isRunning = false;
 		m_shouldRun = false;
 	}
-	else 
-	{
-		// If the front order is not a movement order, stop running
-		switch(m_orderQueue.front().m_type) 
-		{
-			case CEntityOrder::ORDER_GOTO_NOPATHING:
-			case CEntityOrder::ORDER_GOTO_COLLISION:
-			case CEntityOrder::ORDER_GOTO_SMOOTHED:
-			case CEntityOrder::ORDER_GOTO_WAYPOINT:
-			case CEntityOrder::ORDER_GOTO_WAYPOINT_CONTACT:
-            case CEntityOrder::ORDER_GOTO:
-			case CEntityOrder::ORDER_RUN:
-				break;
-			default:
-				m_isRunning = false;
-				//m_shouldRun = false;
-				break;
-		}
-	}
 
     PROFILE_END( "state processing" );
+
+	// If we get to here, it means we're idle or dead (no orders); update the animation
 
     if( m_actor )
     {
@@ -1811,18 +1801,19 @@ jsval CEntity::GetSpawnPoint( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 
 jsval CEntity::AddAura( JSContext* cx, uintN argc, jsval* argv )
 {
-    debug_assert( argc >= 3 );
-    debug_assert( JSVAL_IS_OBJECT(argv[2]) );
+    debug_assert( argc >= 4 );
+    debug_assert( JSVAL_IS_OBJECT(argv[3]) );
 
     CStrW name = ToPrimitive<CStrW>( argv[0] );
     float radius = ToPrimitive<float>( argv[1] );
-    JSObject* handler = JSVAL_TO_OBJECT( argv[2] );
+	size_t tickRate = max( 0, ToPrimitive<int>( argv[2] ) );	// since it's a size_t we don't want it to be negative
+    JSObject* handler = JSVAL_TO_OBJECT( argv[3] );
 
     if( m_auras[name] )
     {
         delete m_auras[name];
     }
-    m_auras[name] = new CAura( cx, this, name, radius, handler );
+    m_auras[name] = new CAura( cx, this, name, radius, tickRate, handler );
 
     return JSVAL_VOID;
 }

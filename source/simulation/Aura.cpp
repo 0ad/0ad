@@ -5,8 +5,9 @@
 
 using namespace std;
 
-CAura::CAura( JSContext* cx, CEntity* source, CStrW& name, float radius, JSObject* handler )
-		: m_cx(cx), m_source(source), m_name(name), m_radius(radius), m_handler(handler)
+CAura::CAura( JSContext* cx, CEntity* source, CStrW& name, float radius, size_t tickRate, JSObject* handler )
+		: m_cx(cx), m_source(source), m_name(name), m_radius(radius), m_handler(handler),
+		m_tickRate(tickRate), m_tickCyclePos(0)
 {
 	JS_AddRoot( m_cx, &m_handler );	// don't GC it so we can call it later
 }
@@ -16,7 +17,7 @@ CAura::~CAura()
 	JS_RemoveRoot( m_cx, &m_handler );
 }
 
-void CAura::Update( size_t UNUSED(timestep) )
+void CAura::Update( size_t timestep )
 {
 	vector<CEntity*> inRange;
 	CVector3D pos = m_source->m_position;
@@ -51,10 +52,12 @@ void CAura::Update( size_t UNUSED(timestep) )
 	jsval rval;
 	jsval argv[1];
 
+	// Call onEnter on any new unit that has entered the aura
 	CStrW enterName = L"onEnter";
 	jsval enterFunction;
 	utf16string enterName16 = enterName.utf16();
-	if( JS_GetUCProperty( m_cx, m_handler, enterName16.c_str(), enterName16.length(), &enterFunction ) )
+	if( JS_GetUCProperty( m_cx, m_handler, enterName16.c_str(), enterName16.length(), &enterFunction )
+		&& enterFunction != JSVAL_VOID)
 	{
 		back_insert_iterator<vector<CEntity*> > ins( entered );
 		set_difference( curInfluenced.begin(), curInfluenced.end(), 
@@ -68,10 +71,12 @@ void CAura::Update( size_t UNUSED(timestep) )
 		}
 	}
 	
+	// Call onExit on any unit that has exited the aura
 	CStrW exitName = L"onExit";
 	jsval exitFunction;
 	utf16string exitName16 = exitName.utf16();
-	if( JS_GetUCProperty( m_cx, m_handler, exitName16.c_str(), exitName16.length(), &exitFunction ) )
+	if( JS_GetUCProperty( m_cx, m_handler, exitName16.c_str(), exitName16.length(), &exitFunction )
+		&& exitFunction != JSVAL_VOID )
 	{
 		back_insert_iterator<vector<CEntity*> > ins( exited );
 		set_difference( prevInfluenced.begin(), prevInfluenced.end(), 
@@ -84,6 +89,28 @@ void CAura::Update( size_t UNUSED(timestep) )
 			(*it)->m_aurasInfluencingMe.erase( this );
 		}
 	}
+
+	m_tickCyclePos += timestep;
+
+	if( m_tickRate > 0 && m_tickCyclePos > m_tickRate )
+	{
+		// It's time to tick; call OnTick on any unit that is in the aura
+		CStrW tickName = L"onTick";
+		jsval tickFunction;
+		utf16string tickName16 = tickName.utf16();
+		if( JS_GetUCProperty( m_cx, m_handler, tickName16.c_str(), tickName16.length(), &tickFunction )
+			&& tickFunction != JSVAL_VOID )
+		{
+			for( vector<CEntity*>::iterator it = curInfluenced.begin(); it != curInfluenced.end(); it++ )
+			{
+				argv[0] = OBJECT_TO_JSVAL( (*it)->GetScript() );
+				JS_CallFunctionValue( m_cx, m_handler, tickFunction, 1, argv, &rval );
+			}
+		}
+
+		// Reset cycle pos
+		m_tickCyclePos %= m_tickRate;
+	}
 }
 
 void CAura::RemoveAll()
@@ -93,8 +120,10 @@ void CAura::RemoveAll()
 	CStrW exitName = L"onExit";
 	jsval exitFunction;
 	utf16string exitName16 = exitName.utf16();
-	if( JS_GetUCProperty( m_cx, m_handler, exitName16.c_str(), exitName16.length(), &exitFunction ) )
+	if( JS_GetUCProperty( m_cx, m_handler, exitName16.c_str(), exitName16.length(), &exitFunction )
+		&& exitFunction != JSVAL_VOID )
 	{
+		// Call the exit function on everything in our influence
 		for( vector<HEntity>::iterator it = m_influenced.begin(); it != m_influenced.end(); it++ )
 		{
 			CEntity* ent = *it;
@@ -116,10 +145,14 @@ void CAura::Remove( CEntity* ent )
 	CStrW exitName = L"onExit";
 	jsval exitFunction;
 	utf16string exitName16 = exitName.utf16();
-	if( JS_GetUCProperty( m_cx, m_handler, exitName16.c_str(), exitName16.length(), &exitFunction ) )
+	if( JS_GetUCProperty( m_cx, m_handler, exitName16.c_str(), exitName16.length(), &exitFunction )
+		&& exitFunction != JSVAL_VOID )
 	{
+		// Call the exit function on it
 		argv[0] = OBJECT_TO_JSVAL( ent->GetScript() );
 		JS_CallFunctionValue( m_cx, m_handler, exitFunction, 1, argv, &rval );
+
+		// Remove it from the m_influenced array
 		for( size_t i=0; i < m_influenced.size(); i++ )
 		{
 			if( ((CEntity*) m_influenced[i]) == ent )

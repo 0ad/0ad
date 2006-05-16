@@ -338,14 +338,28 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 			if (IsEmpty() || IsEOB()) return;
 
 			if (m_iBufferPos == m_iBufferLength-1)
+			{
 				m_szBuffer[m_iBufferPos] = '\0';
-			else{
-				for(int j=m_iBufferPos; j<m_iBufferLength-1; j++)
-					m_szBuffer[j] = m_szBuffer[j+1]; // move chars to left
-				m_szBuffer[m_iBufferLength-1] = '\0';
+				m_iBufferLength--;
+			}
+			else
+			{
+				if (g_keys[SDLK_RCTRL] || g_keys[SDLK_LCTRL])
+				{
+					// Make Ctrl-Delete delete up to end of line
+					m_szBuffer[m_iBufferPos] = '\0';
+					m_iBufferLength = m_iBufferPos;
+				}
+				else 
+				{
+					// Delete just one char and move the others left
+					for(int j=m_iBufferPos; j<m_iBufferLength-1; j++)
+						m_szBuffer[j] = m_szBuffer[j+1];
+					m_szBuffer[m_iBufferLength-1] = '\0';
+					m_iBufferLength--;
+				}
 			}
 
-			m_iBufferLength--;
 			return;
 
 		case SDLK_HOME:
