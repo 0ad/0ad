@@ -21,6 +21,7 @@ const ACTION_GATHER	= 2;
 const ACTION_HEAL	= 3;
 const ACTION_ATTACK_RANGED = 4;
 const ACTION_BUILD = 5;
+const ACTION_REPAIR = 6;
 
 const PRODUCTION_TRAIN = 1;
 const PRODUCTION_RESEARCH = 2;
@@ -36,7 +37,7 @@ function entityInit()
 	// If this is a foundation, initialize traits from the building we're converting into
 	if( this.building && this.building != "" )
 	{
-		var building = getEntityTemplate( this.building );
+		var building = getEntityTemplate( this.building, this.player );
 		this.traits.id.generic = building.traits.id.generic;
 		this.traits.id.specific = building.traits.id.specific;
 		this.traits.id.civ = building.traits.id.civ;
@@ -187,6 +188,10 @@ function entityInit()
 		{
 			this.setActionParams( ACTION_BUILD, 0.0, 2.0, this.actions.build.speed, "build" );
 		}
+		if( this.actions.repair )
+		{
+			this.setActionParams( ACTION_REPAIR, 0.0, 2.0, this.actions.repair.speed, "build" );
+		}
 	}
 	
 	// Attach functions to ourselves
@@ -196,6 +201,7 @@ function entityInit()
 	this.performGather = performGather;
 	this.performHeal = performHeal;
 	this.performBuild = performBuild;
+	this.performRepair = performRepair;
 	this.damage = damage;
 	this.entityComplete = entityComplete;
 	this.GotoInRange = GotoInRange;
@@ -293,22 +299,32 @@ function attachAuras()
 		if( this.traits.auras.courage )
 		{
 			a = this.traits.auras.courage;
-			this.addAura ( "courage", a.radius, new DamageModifyAura( this, true, a.bonus ) );
+			this.addAura ( "courage", a.radius, 0, new DamageModifyAura( this, true, a.bonus ) );
 		}
-		if( this.traits.auras.fear ) 
+		if( this.traits.auras.fear )
 		{
 			a = this.traits.auras.fear;
-			this.addAura ( "fear", a.radius, new DamageModifyAura( this, false, -a.bonus ) );
+			this.addAura ( "fear", a.radius, 0, new DamageModifyAura( this, false, -a.bonus ) );
 		}
-		if( this.traits.auras.infidelity ) 
+		if( this.traits.auras.infidelity )
 		{
 			a = this.traits.auras.infidelity;
-			this.addAura ( "infidelity", a.radius, new InfidelityAura( this, a.time ) );
+			this.addAura ( "infidelity", a.radius, 0, new InfidelityAura( this, a.time ) );
 		}
-		if( this.traits.auras.dropsite ) 
+		if( this.traits.auras.dropsite )
 		{
 			a = this.traits.auras.dropsite;
-			this.addAura ( "dropsite", a.radius, new DropsiteAura( this, a.types ) );
+			this.addAura ( "dropsite", a.radius, 0, new DropsiteAura( this, a.types ) );
+		}
+		if( this.traits.auras.heal )
+		{
+			a = this.traits.auras.heal;
+			this.addAura ( "heal", a.radius, a.speed, new HealAura( this ) );
+		}
+		if( this.traits.auras.trample )
+		{
+			a = this.traits.auras.trample;
+			this.addAura ( "trample", a.radius, a.speed, new TrampleAura( this ) );
 		}
 	}		
 }
@@ -324,7 +340,7 @@ function foundationDestroyed( evt )
 		var bp = this.build_points;
 		var fractionToReturn = (bp.max - bp.curr) / bp.max;
 		
-		var resources = getEntityTemplate( this.building ).traits.creation.resource;
+		var resources = getEntityTemplate( this.building, this.player ).traits.creation.resource;
 		for( r in resources )
 		{
 			amount = parseInt( fractionToReturn * parseInt(resources[r]) );
@@ -344,24 +360,31 @@ function performAttack( evt )
 
 	// Attack logic.
 	var dmg = new DamageType();
-	var flank = (evt.target.getAttackDirections()-1)*evt.target.traits.flank_penalty.value;
 	if ( this.getRunState() )
 	{
 		console.write("" + this + " doing a charge attack!");
-		dmg.crush = parseInt(this.actions.attack.charge.damage * this.actions.attack.charge.crush);
-		dmg.hack = parseInt(this.actions.attack.charge.damage * this.actions.attack.charge.hack);
-		dmg.pierce = parseInt(this.actions.attack.charge.damage * this.actions.attack.charge.pierce);
+		var a = this.actions.attack.charge;
+		dmg.crush = parseInt(a.damage * a.crush);
+		dmg.hack = parseInt(a.damage * a.hack);
+		dmg.pierce = parseInt(a.damage * a.pierce);
 		this.setRun( false );
 	}
 	else
 	{
-		dmg.crush = parseInt(this.actions.attack.melee.damage * this.actions.attack.melee.crush);
-		dmg.hack = parseInt(this.actions.attack.melee.damage * this.actions.attack.melee.hack);
-		dmg.pierce = parseInt(this.actions.attack.melee.damage * this.actions.attack.melee.pierce);
+		var a = this.actions.attack.melee;
+		dmg.crush = parseInt(a.damage * a.crush);
+		dmg.hack = parseInt(a.damage * a.hack);
+		dmg.pierce = parseInt(a.damage * a.pierce);
 	}
-	dmg.crush += dmg.crush * flank;
-	dmg.hack += dmg.hack * flank;
-	dmg.pierce += dmg.pierce * flank;
+	
+	// Add flank bonus
+	if(evt.target.traits.flank_penalty)
+	{
+		var flank = (evt.target.getAttackDirections()-1)*evt.target.traits.flank_penalty.value;
+		dmg.crush += dmg.crush * flank;
+		dmg.hack += dmg.hack * flank;
+		dmg.pierce += dmg.pierce * flank;
+	}
 
 	evt.target.damage( dmg, this );
 	
@@ -375,14 +398,19 @@ function performAttackRanged( evt )
 
 	// Create a projectile from us, to the target, that will do some damage when it hits them.
 	dmg = new DamageType();
-	dmg.crush = parseInt(this.actions.attack.ranged.damage * this.actions.attack.ranged.crush);
-	dmg.hack = parseInt(this.actions.attack.ranged.damage * this.actions.attack.ranged.hack);
-	dmg.pierce = parseInt(this.actions.attack.ranged.damage * this.actions.attack.ranged.pierce);
+	var a = this.actions.attack.ranged;
+	dmg.crush = parseInt(a.damage * a.crush);
+	dmg.hack = parseInt(a.damage * a.hack);
+	dmg.pierce = parseInt(a.damage * a.pierce);
 	
-	var flank = (evt.target.getAttackDirections()-1)*evt.target.traits.flank_penalty.value;
-	dmg.crush += dmg.crush * flank;
-	dmg.hack += dmg.hack * flank;
-	dmg.pierce += dmg.pierce * flank;
+	// Add flank bonus
+	if(evt.target.traits.flank_penalty)
+	{
+		var flank = (evt.target.getAttackDirections()-1)*evt.target.traits.flank_penalty.value;
+		dmg.crush += dmg.crush * flank;
+		dmg.hack += dmg.hack * flank;
+		dmg.pierce += dmg.pierce * flank;
+	}
 
 	// The parameters for Projectile are:	
 	// 1 - The actor to use as the projectile. There are two ways of specifying this:
@@ -544,6 +572,12 @@ function performHeal( evt )
 
 function performBuild( evt )
 {
+	if( !canBuild( this, evt.target ) )
+	{
+		evt.preventDefault();
+		return;
+	}
+	
 	var t = evt.target;
 	var b = this.actions.build;
 	var bp = t.build_points;
@@ -558,7 +592,7 @@ function performBuild( evt )
 		// We've finished building this object; convert the foundation to a building
 		if( t.building != "" )	// Might be false if another unit finished building the thing during our last anim cycle
 		{
-			t.template = getEntityTemplate( t.building );
+			t.template = getEntityTemplate( t.building, t.player );
 			t.building = "";
 			
 			t.attachAuras();
@@ -567,6 +601,48 @@ function performBuild( evt )
 				getGUIGlobal().giveResources ("Housing", t.traits.population.add);
 		}
 		evt.preventDefault();	// Stop performing this action
+	}
+}
+
+// ====================================================================
+
+function performRepair( evt )
+{
+	if( !canRepair( this, evt.target ) )
+	{
+		evt.preventDefault();
+		return;
+	}
+	
+	var t = evt.target;
+	var b = this.actions.build;
+	var hp = t.traits.health;
+	
+	// Find the fraction of max health to repair by; this should be one build tick (i.e. longer for buildings with
+	// longer creation time) but also not so much that it causes the unit to have more than max HP
+	var fraction = Math.min(
+		parseFloat( b.rate ) / t.traits.creation.time,
+		( hp.max - hp.curr ) / hp.max 
+	);
+	console.write("Repair fraction is " + fraction);
+	
+	// Check if we can afford to repair
+	var resources = t.traits.creation.resource;
+	for( r in resources )
+	{
+		amount = parseInt( fraction * parseInt(resources[r]) );
+		getGUIGlobal().deductResources( r.toString(), amount );
+	}
+
+	// Heal the building
+	hp.curr = Math.min( hp.max, hp.curr + fraction * hp.max );
+	
+	// Deduct the resources
+	var resources = t.traits.creation.resource;
+	for( r in resources )
+	{
+		amount = parseInt( fraction * parseInt(resources[r]) );
+		getGUIGlobal().deductResources( r.toString(), amount );
 	}
 }
 
@@ -636,7 +712,7 @@ function damage( dmg, inflictor )
 								inflictor.traits.id.icon_cell++; 
 
 								// Transmogrify him into his next rank.
-								inflictor.template = getEntityTemplate(inflictor.traits.promotion.newentity, inflictor.player);
+								inflictor.template = getEntityTemplate( inflictor.traits.promotion.newentity, inflictor.player );
 							}
 						}
 						break;
@@ -706,6 +782,8 @@ function entityEventGeneric( evt )
 			this.performAttackRanged( evt ); break;
 		case ACTION_BUILD:
 			this.performBuild( evt ); break;
+		case ACTION_REPAIR:
+			this.performRepair( evt ); break;
 
 		default:
 			console.write( "Unknown generic action: " + evt.action );
@@ -880,6 +958,17 @@ function entityEventTargetChanged( evt )
 			evt.secondaryAction = ACTION_BUILD;
 		    evt.secondaryCursor = "action-build";
 		}
+		
+		if ( canRepair( this, evt.target ) )
+		{
+			evt.defaultOrder = NMT_Generic;
+			evt.defaultAction = ACTION_REPAIR;
+		    evt.defaultCursor = "action-build";
+
+			evt.secondaryOrder = NMT_Generic;
+			evt.secondaryAction = ACTION_REPAIR;
+		    evt.secondaryCursor = "action-build";
+		}
 	}
 
 		
@@ -988,6 +1077,16 @@ function entityEventPrepareOrder( evt )
 					evt.notifyType = NOTIFY_NONE;
 					this.forceCheckListeners( NOTIFY_ORDER_CHANGE, this );
 					break;	
+					
+				case ACTION_REPAIR:
+					if ( !this.actions.repair )
+					{
+						evt.preventDefault();
+						return;
+					}
+					evt.notifyType = NOTIFY_NONE;
+					this.forceCheckListeners( NOTIFY_ORDER_CHANGE, this );
+					break;	
 			}
 			break;
 		
@@ -1018,7 +1117,7 @@ function entityStartProduction( evt )
 	
 	if(evt.productionType == PRODUCTION_TRAIN) 
 	{
-		var template = getEntityTemplate( evt.name );
+		var template = getEntityTemplate( evt.name, this.player );
 		var result = entityCheckQueueReq( this, template );	
 
 		if (result == true) // If the entry meets requirements to be added to the queue (eg sufficient resources) 
@@ -1043,7 +1142,7 @@ function entityStartProduction( evt )
 			}
 	
 			// Set the amount of time it will take to complete production of the production object.
-			evt.time = getEntityTemplate(evt.name).traits.creation.time;
+			evt.time = getEntityTemplate( evt.name, this.player ).traits.creation.time;
 		}
 		else
 		{	
@@ -1065,7 +1164,7 @@ function entityCancelProduction( evt )
 	if(evt.productionType == PRODUCTION_TRAIN) 
 	{
 		// Give back all the resources spent on this entry.
-		var template = getEntityTemplate( evt.name );
+		var template = getEntityTemplate( evt.name, this.player );
 		var pool = template.traits.creation.resource;
 		for ( resource in pool )
 		{
@@ -1092,7 +1191,7 @@ function entityFinishProduction( evt )
 	
 	if(evt.productionType == PRODUCTION_TRAIN) 
 	{
-		var template =  getEntityTemplate(evt.name);
+		var template =  getEntityTemplate( evt.name, this.player );
 	
 		// Code to find a free space around an object is tedious and slow, so 
 		// I wrote it in C. Takes the template object so it can determine how
@@ -1220,7 +1319,7 @@ function entityCreateComplete()
 
 function attemptAddToBuildQueue( entity, create_tag, tab, list )
 {
-	template = getEntityTemplate( create_tag );
+	template = getEntityTemplate( create_tag, entity.player );
 	result = entityCheckQueueReq( entity, template );	
 
 	if (result == true) // If the entry meets requirements to be added to the queue (eg sufficient resources) 
@@ -1338,6 +1437,19 @@ function canBuild( source, target )
 		return false;
 	b = source.actions.build;
 	return (b && target.building != "" && target.player.id == source.player.id );
+}
+
+// ====================================================================
+
+function canRepair( source, target )
+{
+	// Checks whether we're allowed to gather from a target entity (this involves looking at both the type and subtype).
+	if( !source.actions )
+		return false;
+	r = source.actions.repair;
+	return( r && target.traits.health.repairable && target.player.id == source.player.id
+			&& target.traits.health.curr < target.traits.health.max 
+			&& target.building == "" );
 }
 
 // ====================================================================
@@ -1524,6 +1636,75 @@ function InfidelityAura( source, time )
 }
 
 // ====================================================================
+
+function HealAura( source )
+{
+	// Defines the effects of the Heal aura. Slowly heals nearby allies over time.
+
+	this.source = source;
+	
+	this.affects = function( e ) 
+	{
+		return ( e.player.id == this.source.player.id && e.traits.health 
+					&& e.traits.health.healable
+					&& e.traits.health.curr < e.traits.health.max );
+	}
+	
+	this.onTick = function( e ) 
+	{
+		if( this.affects( e ) ) 
+		{
+			var hp = e.traits.health;
+			var rate = this.source.traits.auras.heal.rate;
+			hp.curr = Math.min( hp.max, hp.curr + rate );
+		}
+	};
+}
+
+// ====================================================================
+
+function TrampleAura( source )
+{
+	// Defines the effects of the Trample  aura. Damages nearby enemies over time if the unit is charging or has recently charged.
+	
+	this.source = source;
+	
+	this.affects = function( e )
+	{
+		// Check if the target is an enemy foot unit with health and if we were running in the last 3 seconds
+		var a = this.source.traits.auras.trample;
+		return ( e.player.id != this.source.player.id && e.traits.health && e.hasClass("Foot")
+			&& (getGameTime() - this.source.last_run_time < a.duration) );
+	}
+	
+	this.onTick = function( e )
+	{
+		if( this.affects( e ) )
+		{
+			// Set up the damage object
+			var dmg = new DamageType();
+			var a = this.source.traits.auras.trample;
+			dmg.crush = parseInt(a.damage * a.crush);
+			dmg.hack = parseInt(a.damage * a.hack);
+			dmg.pierce = parseInt(a.damage * a.pierce);
+
+			// Add flank bonus
+			if(e.traits.flank_penalty)
+			{
+				var flank = (e.getAttackDirections()-1)*e.traits.flank_penalty.value;
+				dmg.crush += dmg.crush * flank;
+				dmg.hack += dmg.hack * flank;
+				dmg.pierce += dmg.pierce * flank;
+			}
+
+			// Perform the damage
+			e.damage( dmg, this.source );
+		}
+	};
+}
+
+// ====================================================================
+
 function GotoInRange( x, y, run )
 {	
 	if ( !this.actions || !this.actions.move )
@@ -1534,7 +1715,9 @@ function GotoInRange( x, y, run )
 	else
 		this.order( ORDER_GOTO, x, y - this.actions.escort.distance, true);
 }
+
 //=====================================================================
+
 function entityEventFormation( evt )
 {
 	if ( evt.formationEvent == FORMATION_ENTER )

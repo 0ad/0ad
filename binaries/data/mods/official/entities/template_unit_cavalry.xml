@@ -42,17 +42,6 @@
 		<Promotion>
 			<Req>900</Req>
 		</Promotion>
-		
-		<Auras>
-			<Trample>
-				<Radius>1</Radius>
-				<Damage>50</Damage>
-				<Crush>0</Crush>
-				<Hack>0.9</Hack>
-				<Pierce>0.1</Pierce>
-			</Trample>
-		</Auras>		
-
 	</Traits>
 
 	<Actions>
@@ -78,7 +67,7 @@
 			
 			<Run>
 				<Speed>30.0</Speed>
-				<Range>100.0</Range>
+				<Range>150.0</Range>
 				<RangeMin>10.0</RangeMin>
 			</Run>
 			

@@ -87,7 +87,10 @@
 			<XP />
 		</Loot>
 
-		<Repair />
+		<Repair>
+			<Rate>1.0</Rate>
+			<Speed>1000</Speed>
+		</Repair>
 		
 		<Build>
 			<Rate>1.0</Rate>

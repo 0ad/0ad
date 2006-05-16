@@ -50,7 +50,7 @@
 			<Max>100</Max>
 			<Bar_Height>5.0</Bar_Height>
 			<Bar_Size>20</Bar_Size>
-
+			<Healable />
 		</Health>
 		
 		<Stamina>
@@ -83,7 +83,7 @@
 			<Run>
 				<Speed>15.0</Speed>
 				<Range>50.0</Range>
-				<RangeMin>10.0</RangeMin>
+				<RangeMin>0.0</RangeMin>
 
 				<Regen_Rate>10.0</Regen_Rate>
 				<Decay_Rate>5.0</Decay_Rate>

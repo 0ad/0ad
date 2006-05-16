@@ -17,14 +17,23 @@
 		
 		</Id>
 
+		<Creation>
+ 			<Time>10</Time>
+ 			<Resource>
+ 				<Food>0</Food>
+ 				<Wood>100</Wood>
+ 				<Stone>50</Stone>
+ 			</Resource>
+ 		</Creation>		
+		
 		<Health>
 			<Bar_Height>12.0</Bar_Height>
+			<Repairable />
 		</Health>
 
 		<Vision>
 			<LOS>9</LOS>
 		</Vision>
-
 	</Traits>
 
 	<Script File="entities/template_entity_script.js" />
