@@ -11,13 +11,8 @@ IEventTarget::~IEventTarget()
 		delete( it->second );
 }
 
-TIMER_ADD_CLIENT(tc_dispatch_total);
-TIMER_ADD_CLIENT(tc_dispatch_js_total);
-
 bool IEventTarget::_DispatchEvent( CScriptEvent* evt, IEventTarget* target )
 {	
-TIMER_ACCRUE(tc_dispatch_total);
-	
 	PROFILE_START( "_DispatchEvent" );
 
 	// TODO: Deal correctly with multiple handlers
@@ -34,12 +29,10 @@ TIMER_ACCRUE(tc_dispatch_total);
 	for( it = handlers.begin(); it != handlers.end(); it++ )
 	{
 		DOMEventHandler id = *it;
-{TIMER_ACCRUE(tc_dispatch_js_total);
 		if( id && id->DispatchEvent( GetScriptExecContext( target ), evt ) )
 		{
 			return( true );
 		}
-}
 	}
 
 	HandlerRange range = m_Handlers_name.equal_range( evt->m_Type );
@@ -47,12 +40,10 @@ TIMER_ACCRUE(tc_dispatch_total);
 	for( itm = range.first; itm != range.second; itm++ )
 	{
 		DOMEventHandler id = itm->second;
-{TIMER_ACCRUE(tc_dispatch_js_total);
 		if( id && id->DispatchEvent( GetScriptExecContext( target ), evt ) )
 		{
 			return( true );
 		}
-}
 	}
 	
 	if( after && after->_DispatchEvent( evt, target ) )
