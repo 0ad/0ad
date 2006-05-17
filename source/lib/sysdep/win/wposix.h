@@ -59,7 +59,8 @@ extern "C" {
 // <limits.h>
 //
 
-#define PATH_MAX 260	// matches Win32 MAX_PATH
+// Win32 MAX_PATH is 260; our number may be a bit more efficient.
+#define PATH_MAX 256
 
 #if OS_WIN
 # ifndef SIZE_MAX // VC2005 already defines this in limits.h

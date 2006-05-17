@@ -109,7 +109,6 @@ LibError file_io_issue(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 		WARN_RETURN(ERR_INVALID_PARAM);
 	const bool is_write = (f->flags & FILE_WRITE) != 0;
 
-	PosixFile* pf = (PosixFile*)f->opaque;
 	PosixFileIo* pio = (PosixFileIo*)io;
 
 	// note: cutting off at EOF is necessary to avoid transfer errors,
@@ -137,7 +136,7 @@ LibError file_io_issue(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 	// send off async read/write request
 	cb->aio_lio_opcode = is_write? LIO_WRITE : LIO_READ;
 	cb->aio_buf        = (volatile void*)p;
-	cb->aio_fildes     = pf->fd;
+	cb->aio_fildes     = file_fd_from_PosixFile(f);
 	cb->aio_offset     = ofs;
 	cb->aio_nbytes     = size;
 	int err = lio_listio(LIO_NOWAIT, &cb, 1, (struct sigevent*)0);
@@ -380,9 +379,7 @@ class IOManager
 
 	ssize_t lowio()
 	{
-		const PosixFile* pf = (const PosixFile*)f->opaque;
-		const int fd = pf->fd;
-
+		const int fd = file_fd_from_PosixFile(f);
 		lseek(fd, start_ofs, SEEK_SET);
 
 		// emulate temp buffers - we take care of allocating and freeing.

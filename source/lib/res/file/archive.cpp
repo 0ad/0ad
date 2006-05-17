@@ -182,7 +182,7 @@ static LibError archive_get_file_info(Archive* a, const char* fn, uintptr_t meme
 			}
 	}
 
-	WARN_RETURN(ERR_FILE_NOT_FOUND);
+	WARN_RETURN(ERR_TNODE_NOT_FOUND);
 }
 
 

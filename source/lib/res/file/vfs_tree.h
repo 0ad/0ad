@@ -91,6 +91,14 @@ extern LibError tree_lookup(const char* path, TFile** ptf, uint flags = 0);
 extern LibError tree_lookup_dir(const char* path, TDir** ptd, uint flags = 0);
 
 
+// iterate over all components in V_dir_path (must reference a directory,
+// i.e. end in slash). for any that are missing, add them with the
+// specified mount point. this is useful for mounting directories.
+//
+// passes back the last directory encountered.
+extern LibError tree_add_path(const char* V_dir_path, const Mount* m, TDir** ptd);
+
+
 extern LibError tree_dir_open(const char* path_slash, DirIterator* di);
 extern LibError tree_dir_next_ent(DirIterator* di, DirEnt* ent);
 extern LibError tree_dir_close(DirIterator* di);

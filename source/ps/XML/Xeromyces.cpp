@@ -170,6 +170,37 @@ void CXeromyces::Terminate()
 	}
 }
 
+
+// Find out write location of the XMB file corresponding to xmlFilename
+void CXeromyces::getXMBPath(const char* xmlFilename, const char* xmbFilename,
+	char* xmbPath)
+{
+	// rationale:
+	// - it is necessary to write out XMB files into a subdirectory
+	//   corresponding to the mod from which the XML file is taken.
+	//   this avoids confusion when multiple mods are active -
+	//   their XMB files' VFS filename would otherwise be indistinguishable.
+	// - we group files in the cache/ mount point first by mod, and only
+	//   then XMB. this is so that all output files for a given mod can
+	//   easily be deleted. the operation of deleting all old/unused
+	//   XMB files requires a program anyway (to find out which are no
+	//   longer needed), so it's not a problem that XMB files reside in
+	//   a subdirectory (which would make manually deleting all harder).
+
+	// get real path of XML file (e.g. mods/official/entities/...)
+	char P_XMBRealPath[PATH_MAX];
+	vfs_realpath(xmlFilename, P_XMBRealPath);
+
+	// extract mod name from that
+	char modName[PATH_MAX];
+	// .. NOTE: can't use %s, of course (keeps going beyond '/')
+	int matches = sscanf(P_XMBRealPath, "mods/%[^/]", modName);
+	debug_assert(matches == 1);
+
+	// build full name: cache, then mod name, XMB subdir, original XMB path
+	snprintf(xmbPath, PATH_MAX, "cache/mods/%s/xmb/%s", modName, xmbFilename);
+}
+
 PSRETURN CXeromyces::Load(const char* filename)
 {
 	// Make sure the .xml actually exists
@@ -224,11 +255,14 @@ PSRETURN CXeromyces::Load(const char* filename)
 	}
 	xmbFilename += buf;
 
+	char xmbPath[PATH_MAX];
+	getXMBPath(filename, xmbFilename, xmbPath);
+
 
 	// If the file exists, use it
-	if (vfs_exists(xmbFilename))
+	if (vfs_exists(xmbPath))
 	{
-		if (ReadXMBFile(xmbFilename))
+		if (ReadXMBFile(xmbPath))
 			return PSRETURN_OK;
 		else
 			return PSRETURN_Xeromyces_XMLOpenFailed;
@@ -292,7 +326,7 @@ PSRETURN CXeromyces::Load(const char* filename)
 	handler.CreateXMB();
 
 	// Save the file to disk, so it can be loaded quickly next time
-	vfs_store(xmbFilename, handler.buffer.buffer, handler.buffer.length, FILE_NO_AIO);
+	vfs_store(xmbPath, handler.buffer.buffer, handler.buffer.length, FILE_NO_AIO);
 
 	// Store the buffer so it can be freed later
 	XMBBuffer = handler.buffer.steal_buffer();

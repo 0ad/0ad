@@ -13,7 +13,7 @@
 // shared error handling code
 #define JS_CHECK_FILE_ERR(err)\
 	/* this is liable to happen often, so don't complain */\
-	if(err == ERR_FILE_NOT_FOUND)\
+	if(err == ERR_TNODE_NOT_FOUND)\
 	{\
 		*rval = JSVAL_NULL;\
 		return( JS_TRUE );\

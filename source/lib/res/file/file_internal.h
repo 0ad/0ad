@@ -83,13 +83,6 @@ extern LibError file_io_call_back(const void* block, size_t size,
 // higher-level code such as VfsUtil.
 extern LibError dir_filtered_next_ent(DirIterator* di, DirEnt* ent, const char* filter);
 
-
-// used by file.cpp and file_io.cpp
-struct PosixFile
-{
-	int fd;
-
-	// for reference counted memory-mapping
-	void* mapping;
-	uint map_refs;
-};
+// returns file descriptor (int) given File (assumed to represent PosixFile).
+// this avoids the need for declaring PosixFile here for file_io's use.
+extern int file_fd_from_PosixFile(File* f);

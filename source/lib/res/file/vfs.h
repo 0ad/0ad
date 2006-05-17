@@ -232,17 +232,6 @@ extern void vfs_display(void);
 // for an an indication of how large fixed-size user buffers should be,
 // use PATH_MAX.
 
-// convenience function
-extern void path_copy(char* dst, const char* src);
-
-// combine <path1> and <path2> into one path, and write to <dst>.
-// if necessary, a directory separator is added between the paths.
-// each may be empty, filenames, or full paths.
-// total path length (including '\0') must not exceed PATH_MAX.
-extern LibError path_append(char* dst, const char* path1, const char* path2);
-
-extern const char* path_extension(const char* fn);
-
 // VFS paths are of the form: "(dir/)*file?"
 // in English: '/' as path separator; trailing '/' required for dir names;
 // no leading '/', since "" is the root dir.
@@ -290,12 +279,12 @@ extern LibError vfs_unmount(const char* name);
 
 // set current "mod write directory" to P_target_dir, which must
 // already have been mounted into the VFS.
-// all files opened for writing with the FILE_WRITE_TO_MOD flag set will
+// all files opened for writing with the FILE_WRITE_TO_TARGET flag set will
 // be written into the appropriate subdirectory of this mount point.
 //
 // this allows e.g. the editor to write files that are already
 // stored in archives, which are read-only.
-extern LibError vfs_mod_set_write_target(const char* P_target_dir);
+extern LibError vfs_set_write_target(const char* P_target_dir);
 
 
 //

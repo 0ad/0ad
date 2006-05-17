@@ -113,14 +113,17 @@ static void VDir_dtor(VDir* vd)
 	}
 }
 
-static LibError VDir_reload(VDir* vd, const char* path, Handle UNUSED(hvd))
+static LibError VDir_reload(VDir* vd, const char* V_path, Handle UNUSED(hvd))
 {
+	debug_assert(*V_path == '\0' || V_path[strlen(V_path)-1] == '/');
+/*/*SLASH
 	// add required trailing slash if not already present to make
 	// caller's life easier.
 	char V_path_slash[PATH_MAX];
 	RETURN_ERR(path_append(V_path_slash, path, ""));
+*/
 
-	RETURN_ERR(xdir_open(V_path_slash, &vd->di));
+	RETURN_ERR(xdir_open(V_path, &vd->di));
 	vd->di_valid = 1;
 	return ERR_OK;
 }
@@ -202,7 +205,8 @@ LibError vfs_realpath(const char* V_path, char* realpath)
 	CHECK_ERR(tree_lookup(V_path, &tf));
 
 	const char* atom_fn = tfile_get_atom_fn(tf);
-	return mount_realpath(atom_fn, tf, realpath);
+	const Mount* m = tfile_get_mount(tf);
+	return mount_realpath(atom_fn, m, realpath);
 }
 
 
@@ -289,12 +293,12 @@ static LibError VFile_reload(VFile* vf, const char* V_path, Handle)
 		return err;
 	}
 
-	// careful! FILE_WRITE_TO_MOD consists of 2 bits; they must both be
+	// careful! FILE_WRITE_TO_TARGET consists of 2 bits; they must both be
 	// set (one of them is FILE_WRITE, which can be set independently).
 	// this is a bit ugly but better than requiring users to write
-	// FILE_WRITE|FILE_WRITE_TO_MOD.
-	if((flags & FILE_WRITE_TO_MOD) == FILE_WRITE_TO_MOD)
-		RETURN_ERR(set_mount_to_mod_target(tf));
+	// FILE_WRITE|FILE_WRITE_TO_TARGET.
+	if((flags & FILE_WRITE_TO_TARGET) == FILE_WRITE_TO_TARGET)
+		RETURN_ERR(set_mount_to_write_target(tf));
 
 	RETURN_ERR(xfile_open(V_path, flags, tf, &vf->f));
 

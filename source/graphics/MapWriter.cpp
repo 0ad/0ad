@@ -156,7 +156,7 @@ void CMapWriter::PackTerrain(CFilePacker& packer, CTerrain *pTerrain)
 
 void CMapWriter::WriteXML(const char* filename, CUnitManager* pUnitMan, CLightEnv *pLightEnv, CCamera *pCamera)
 {
-	Handle h = vfs_open(filename, FILE_WRITE_TO_MOD|FILE_NO_AIO);
+	Handle h = vfs_open(filename, FILE_WRITE_TO_TARGET|FILE_NO_AIO);
 	if (h <= 0)
 	{
 		debug_warn("Failed to open map XML file");

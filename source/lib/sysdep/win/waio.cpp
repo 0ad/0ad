@@ -250,7 +250,7 @@ static LibError aio_h_set(const int fd, const HANDLE h)
 		// setting invalid handle
 		if(!is_valid_file_handle(h))
 		{
-			err = ERR_NOT_FILE;
+			err = ERR_TNODE_WRONG_TYPE;
 			goto fail;
 		}
 	}

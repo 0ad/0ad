@@ -19,9 +19,6 @@
 
 using namespace std;
 
-// filter for vfs_next_dirent
-static const char* SupportedTextureFormats[] = { "*.png", "*.dds", "*.tga", "*.bmp" };
-
 CTextureManager::CTextureManager():
 	m_LastGroupIndex(0)
 {}
@@ -176,7 +173,7 @@ void CTextureManager::RecurseDirectory(CTerrainPropertiesPtr parentProps, const 
 
 int CTextureManager::LoadTerrainTextures()
 {
-	RecurseDirectory(CTerrainPropertiesPtr(), "art/textures/terrain/types");
+	RecurseDirectory(CTerrainPropertiesPtr(), "art/textures/terrain/types/");
 	return 0;
 }
 

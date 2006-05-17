@@ -571,12 +571,23 @@ static void InitVfs(const char* argv0)
 	(void)file_set_root_dir(argv0, "../data");
 
 	vfs_init();
-	vfs_mount("", "mods/official", VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES|VFS_MOUNT_WATCH|VFS_MOUNT_ARCHIVABLE);
 	vfs_mount("screenshots/", "screenshots");
 	vfs_mount("profiles/", "profiles", VFS_MOUNT_RECURSIVE);
 
+	// rationale:
+	// - this is in a separate real directory so that it can later be moved
+	//   to $APPDATA to allow running without Admin access.
+	// - we mount as archivable so that all files will be added to archive.
+	//   even though we write out XMBs here, they will eventually be read,
+	//   so putting them in an archive boosts performance.
+	vfs_mount("cache/", "cache", VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES|VFS_MOUNT_ARCHIVABLE);
+
+	// --- this belongs in a LoadMod function
+	vfs_mount("", "mods/official", VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES|VFS_MOUNT_WATCH|VFS_MOUNT_ARCHIVABLE);
+	// ---
+
 	// TODO: once people can load multiple mods, set the top one to be the write target
-	vfs_mod_set_write_target("mods/official");
+	vfs_set_write_target("mods/official");
 
 	// don't try vfs_display yet: SDL_Init hasn't yet redirected stdout
 }

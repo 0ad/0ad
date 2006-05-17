@@ -290,6 +290,8 @@ static LibError ia32_walk_stack(STACKFRAME64* sf)
 	// read stack frame
 	void* fp       = ((void**)prev_fp)[0];
 	void* ret_addr = ((void**)prev_fp)[1];
+	if(!fp)
+		return INFO_ALL_COMPLETE;
 	if(!debug_is_stack_ptr(fp))
 		WARN_RETURN(ERR_14);
 	if(!debug_is_code_ptr(ret_addr))

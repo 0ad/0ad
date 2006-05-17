@@ -46,7 +46,8 @@ LibError file_open_vfs(const char* V_path, uint flags, TFile* tf,
 	File* f)	// out
 {
 	char N_path[PATH_MAX];
-	RETURN_ERR(mount_realpath(V_path, tf, N_path));
+	const Mount* m = tfile_get_mount(tf);
+	RETURN_ERR(mount_realpath(V_path, m, N_path));
 	RETURN_ERR(file_open(N_path, flags|FILE_DONT_SET_FN, f));
 	// file_open didn't set fc.atom_fn due to FILE_DONT_SET_FN.
 	f->atom_fn = file_make_unique_fn_copy(V_path);
@@ -148,6 +149,8 @@ LibError xfile_open(const char* V_path, uint flags, TFile* tf, File* f)
 {
 	// find out who is providing this file
 	const Mount* m = tfile_get_mount(tf);
+	debug_assert(m != 0);
+
 // HACK: see decl of vtbls. ideally vtbl would already be stored in
 // Mount, but that's not implemented yet.
 char c = mount_get_type(m);

@@ -78,7 +78,7 @@ extern const char* file_get_random_name();
 
 
 //
-// dir_next_ent
+// directory
 //
 
 const size_t DIR_ITERATOR_OPAQUE_SIZE = 40;
@@ -149,6 +149,9 @@ extern LibError dir_next_ent(DirIterator* d, DirEnt* ent);
 // indicate the directory iterator is no longer needed; all resources it
 // held are freed.
 extern LibError dir_close(DirIterator* d);
+
+
+extern LibError dir_create(const char* P_path, mode_t mode);
 
 
 #ifdef __cplusplus
@@ -282,8 +285,8 @@ enum FileFlags
 
 	// (only relevant for VFS) file will be written into the
 	// appropriate subdirectory of the mount point established by
-	// vfs_mod_set_write_target. see documentation there.
-	FILE_WRITE_TO_MOD  = FILE_WRITE|0x100,
+	// vfs_set_write_target. see documentation there.
+	FILE_WRITE_TO_TARGET  = FILE_WRITE|0x100,
 
 	// sum of all flags above. used when validating flag parameters.
 	FILE_FLAG_ALL     = 0x1FF

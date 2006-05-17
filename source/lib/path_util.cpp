@@ -145,22 +145,35 @@ void path_copy(char* dst, const char* src)
 // if necessary, a directory separator is added between the paths.
 // each may be empty, filenames, or full paths.
 // total path length (including '\0') must not exceed PATH_MAX.
-LibError path_append(char* dst, const char* path1, const char* path2)
+LibError path_append(char* dst, const char* path1, const char* path2, uint flags)
 {
 	const size_t len1 = strlen(path1);
 	const size_t len2 = strlen(path2);
 	size_t total_len = len1 + len2 + 1;	// includes '\0'
+	const bool no_end_slash1 = (len1 == 0 || !is_dir_sep(path1[len1-1]));
+	const bool no_end_slash2 = (len2 == 0 || !is_dir_sep(path2[len2-1]));
 
 	// check if we need to add '/' between path1 and path2
-	// note: the second can't start with '/' (not allowed by path_validate)
+	// notes:
+	// - the second can't start with '/' (not allowed by path_validate)
+	// - must check len2 as well - if it's empty, we'd end up
+	//   inadvertently terminating the string with '/'.
 	bool need_separator = false;
-	if(len1 != 0 && !is_dir_sep(path1[len1-1]))
+	if(len2 != 0 && len1 != 0 && no_end_slash1)
 	{
 		total_len++;	// for '/'
 		need_separator = true;
 	}
 
-	if(total_len+1 > PATH_MAX)
+	// check if trailing slash requested and not already present
+	bool need_terminator = false;
+	if(flags & PATH_APPEND_SLASH && no_end_slash2)
+	{
+		total_len++;	// for '/'
+		need_terminator = true;
+	}
+
+	if(total_len > PATH_MAX)
 		WARN_RETURN(ERR_PATH_LENGTH);
 
 	strcpy(dst, path1);	// safe
@@ -168,21 +181,26 @@ LibError path_append(char* dst, const char* path1, const char* path2)
 	if(need_separator)
 		*dst++ = '/';
 	strcpy(dst, path2);	// safe
+	if(need_terminator)
+		strcpy(dst+len2, "/");	// safe
+
 	return ERR_OK;
 }
 
 
 // strip <remove> from the start of <src>, prepend <replace>,
 // and write to <dst>.
-// returns ERR_FAIL if the beginning of <src> doesn't match <remove>.
+// returns ERR_FAIL (without warning!) if the beginning of <src> doesn't
+// match <remove>.
 LibError path_replace(char* dst, const char* src, const char* remove, const char* replace)
 {
 	// remove doesn't match start of <src>
 	const size_t remove_len = strlen(remove);
 	if(strncmp(src, remove, remove_len) != 0)
-		WARN_RETURN(ERR_FAIL);
+		return ERR_FAIL;	// NOWARN
 
-	// get rid of trailing / in src (must not be included in remove)
+	// if removing will leave a separator at beginning of src, remove it
+	// (example: "a/b"; removing "a" would yield "/b")
 	const char* start = src+remove_len;
 	if(is_dir_sep(*start))
 		start++;
@@ -191,6 +209,8 @@ LibError path_replace(char* dst, const char* src, const char* remove, const char
 	RETURN_ERR(path_append(dst, replace, start));
 	return ERR_OK;
 }
+
+
 
 
 //-----------------------------------------------------------------------------
@@ -215,6 +235,30 @@ const char* path_name_only(const char* path)
 
 	const char* name = slash+1;
 	return name;
+}
+
+
+// return last component within path. this is similar to path_name_only,
+// but correctly handles VFS paths, which must end with '/'.
+// (path_name_only would return "")
+const char* path_last_component(const char* path)
+{
+	// ('\0' is end of set string)
+	static const char separators[3] = { DIR_SEP, '/', '\0' };
+
+	const char* pos = path;
+	const char* last_component = path;
+
+	for(;;)
+	{
+		if(*pos == '\0')
+			break;
+		last_component = pos;
+		const size_t component_len = strcspn(pos, separators);
+		pos += component_len+1;	// +1 for separator
+	}
+
+	return last_component;
 }
 
 
@@ -245,6 +289,62 @@ const char* path_extension(const char* fn)
 		return "";
 	const char* ext = dot+1;
 	return ext;
+}
+
+
+// call <cb> with <ctx> for each component in <path>.
+LibError path_foreach_component(const char* path_org, PathComponentCb cb, void* ctx)
+{
+	CHECK_PATH(path_org);
+
+	// copy into (writeable) buffer so we can 'tokenize' path components by
+	// replacing '/' with '\0'.
+	char path[PATH_MAX];
+	strcpy_s(path, ARRAY_SIZE(path), path_org);
+	char* cur_component = path;
+
+	bool is_dir = true;	// until we find a component without slash
+
+	// successively navigate to the next component in <path>.
+	for(;;)
+	{
+		// at end of string - done.
+		// (this happens if <path> is empty or ends with slash)
+		if(*cur_component == '\0')
+			break;
+
+		// find end of cur_component
+		char* slash = (char*)strchr(cur_component, '/');
+		// .. try platform-specific separator
+		if(!slash)
+			slash = (char*)strchr(cur_component, DIR_SEP);
+
+		// decide its type and 0-terminate
+		// .. filename (by definition)
+		if(!slash)
+			is_dir = false;
+		// .. directory
+		else
+			*slash = '\0';	// 0-terminate cur_component
+
+		LibError ret = cb(cur_component, is_dir, ctx);
+		// callback wants to abort - return its value.
+		if(ret != INFO_CB_CONTINUE)
+			return ret;
+
+		// filename is by definition the last component. abort now
+		// in case the callback didn't.
+		if(!is_dir)
+			break;
+
+		// advance to next component
+		// .. undo having replaced '/' with '\0' - this means <path> will
+		//    store the complete path up to and including cur_component.
+		*slash = '/';
+		cur_component = slash+1;
+	}
+
+	return ERR_OK;
 }
 
 

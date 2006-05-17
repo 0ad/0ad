@@ -26,7 +26,10 @@ bool VFSUtil::FindFiles (const CStr& dirname, const char* filter, FileList& file
 	DirEnt entry;
 	while ((err = vfs_dir_next_ent(dir, &entry, filter)) == 0)
 	{
-		files.push_back(dirname+"/"+entry.name);
+		CStr path = dirname+entry.name;
+		if(DIRENT_IS_DIR(&entry))
+			path += '/';
+		files.push_back(path);
 	}
 
 	if (err != ERR_DIR_END)

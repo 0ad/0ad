@@ -55,9 +55,8 @@ static LibError LibError_from_GLE(bool warn_if_failed = true)
 	case ERROR_ACCESS_DENIED:
 		err =  ERR_FILE_ACCESS; break;
 	case ERROR_FILE_NOT_FOUND:
-		err =  ERR_FILE_NOT_FOUND; break;
 	case ERROR_PATH_NOT_FOUND:
-		err =  ERR_PATH_NOT_FOUND; break;
+		err =  ERR_TNODE_NOT_FOUND; break;
 
 	default:
 		err =  ERR_FAIL; break;

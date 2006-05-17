@@ -25,35 +25,6 @@
 
 #include "lib.h"
 
-// internal use only:
-
-// if path is invalid (see source for criteria), return a
-// descriptive error code, otherwise ERR_OK.
-extern LibError path_validate(const char* path);
-#define CHECK_PATH(path) RETURN_ERR(path_validate(path))
-
-// if name is invalid, (see source for criteria), return a
-// descriptive error code, otherwise ERR_OK.
-extern LibError path_component_validate(const char* name);
-
-
-// strip <remove> from the start of <src>, prepend <replace>,
-// and write to <dst>.
-// used when converting VFS <--> real paths.
-extern LibError path_replace(char* dst, const char* src, const char* remove, const char* replace);
-
-
-// fill V_dir_only with the path portion of V_src_fn
-// ("" if root dir, otherwise ending with /)
-extern void path_dir_only(const char* V_src_fn, char* V_dir_only);
-
-// return pointer to the name component within V_src_fn
-extern const char* path_name_only(const char* V_src_fn);
-
-extern const char* path_extension(const char* fn);
-
-extern void path_strip_fn(char* fn);
-
 struct NextNumberedFilenameInfo
 {
 	int next_num;
@@ -75,6 +46,11 @@ extern void next_numbered_filename(const char* V_fn_fmt,
 
 
 extern bool path_is_atom_fn(const char* fn);
+
+extern const char* file_get_random_name();
+
+// note: other functions are declared directly in the public file.h header.
+
 
 extern void path_init();
 extern void path_shutdown();

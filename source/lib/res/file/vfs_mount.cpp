@@ -170,15 +170,20 @@ bool mount_should_replace(const Mount* m_old, const Mount* m_new,
 }
 
 
-// given a file's TFile and V_path, return its actual location (portable path).
-LibError mount_realpath(const char* V_path, const TFile* tf, char* P_real_path)
+// given Mount and V_path, return its actual location (portable path).
+LibError mount_realpath(const char* V_path, const Mount* m, char* P_real_path)
 {
-	const Mount* m = tfile_get_mount(tf);
-	const char* P_parent_path = m->P_name.c_str();
-
 	const char* remove = m->V_mount_point.c_str();
-	const char* replace = P_parent_path;
-	return path_replace(P_real_path, V_path, remove, replace);
+	const char* replace = m->P_name.c_str();	// P_parent_path
+	CHECK_ERR(path_replace(P_real_path, V_path, remove, replace));
+
+	// if P_real_path ends with '/' (a remnant from V_path), strip
+	// it because that's not acceptable for portable paths.
+	const size_t P_len = strlen(P_real_path);
+	if(P_len != 0 && P_real_path[P_len-1] == '/')
+		P_real_path[P_len-1] = '\0';
+
+	return ERR_OK;
 }
 
 
@@ -500,8 +505,10 @@ static LibError mount_dir_tree(TDir* td, const Mount& m)
 	// pop to come at end of loop => this is easiest)
 	dir_queue.push_back(TDirAndPath(td, m.P_name.c_str()));
 
+static int seq2;
 	do
 	{
+seq2++;
 		TDir* const td     = dir_queue.front().td;
 		const char* P_path = dir_queue.front().path.c_str();
 
@@ -585,7 +592,7 @@ static const Mount& add_mount(const char* V_mount_point, const char* P_real_path
 static LibError remount(const Mount& m)
 {
 	TDir* td;
-	CHECK_ERR(tree_lookup_dir(m.V_mount_point.c_str(), &td, LF_CREATE_MISSING));
+	CHECK_ERR(tree_add_path(m.V_mount_point.c_str(), &m, &td));
 
 	switch(m.type)
 	{
@@ -706,7 +713,7 @@ LibError vfs_unmount(const char* P_name)
 		std::bind2nd(Mount::equal_to(), P_name));
 	// none were removed - need to complain so that the caller notices.
 	if(last == end)
-		WARN_RETURN(ERR_PATH_NOT_FOUND);
+		WARN_RETURN(ERR_TNODE_NOT_FOUND);
 	// trim list and actually remove 'invalidated' entries.
 	mounts.erase(last, end);
 
@@ -732,26 +739,55 @@ LibError mount_make_vfs_path(const char* P_path, char* V_path)
 		const char* remove = m.P_name.c_str();
 		const char* replace = m.V_mount_point.c_str();
 
-		if(path_replace(V_path, P_path, remove, replace) == 0)
+		if(path_replace(V_path, P_path, remove, replace) == ERR_OK)
 			return ERR_OK;
 	}
 
-	WARN_RETURN(ERR_PATH_NOT_FOUND);
+	WARN_RETURN(ERR_TNODE_NOT_FOUND);
 }
 
 
 
 
-static const Mount* mod_target;
+static const Mount* write_target;
+
+// 2006-05-09 JW note: we are wanting to move XMB files into a separate
+// folder tree (no longer interspersed with XML), so that deleting them is
+// easier and dirs are less cluttered.
+//
+// if several mods are active, VFS would have several RealDirs mounted
+// and could no longer automatically determine the write target.
+//
+// one solution would be to use this set_write_target support to choose the
+// correct dir; however, XMB files may be generated whilst editing
+// (which also requires a write_target to write files that are actually
+// currently in archives), so we'd need to save/restore write_target.
+// this would't be thread-safe => disaster.
+//
+// a vfs_store_to(filename, flags, N_actual_path) API would work, but it'd
+// impose significant burden on users (finding the actual native dir),
+// and be prone to abuse. additionally, it would be difficult to
+// propagate N_actual_path to VFile_reload where it is needed;
+// this would end up messy.
+//
+// instead, we'll write XMB files into VFS path "mods/$MODNAME/..",
+// into which the realdir of the same name (located in some writable folder)
+// is mounted; VFS therefore can write without problems.
+//
+// however, other code (e.g. archive builder) doesn't know about this
+// trick - it only sees the flat VFS namespace, which doesn't
+// include mods/$MODNAME (that is hidden). to solve this, we also mount
+// any active mod's XMB dir into VFS root for read access.
+
 
 // set current "mod write directory" to P_target_dir, which must
 // already have been mounted into the VFS.
-// all files opened for writing with the FILE_WRITE_TO_MOD flag set will
+// all files opened for writing with the FILE_WRITE_TO_TARGET flag set will
 // be written into the appropriate subdirectory of this mount point.
 //
 // this allows e.g. the editor to write files that are already
 // stored in archives, which are read-only.
-LibError vfs_mod_set_write_target(const char* P_target_dir)
+LibError vfs_set_write_target(const char* P_target_dir)
 {
 	for(MountIt it = mounts.begin(); it != mounts.end(); ++it)
 	{
@@ -763,7 +799,7 @@ LibError vfs_mod_set_write_target(const char* P_target_dir)
 		// found it in list of mounted dirs
 		if(!strcmp(m.P_name.c_str(), P_target_dir))
 		{
-			mod_target = &m;
+			write_target = &m;
 			return ERR_OK;
 		}
 	}
@@ -772,17 +808,17 @@ LibError vfs_mod_set_write_target(const char* P_target_dir)
 }
 
 
-// 'relocate' tf to the mounting established by vfs_mod_set_write_target.
-// call if <tf> is being opened with FILE_WRITE_TO_MOD flag set.
-LibError set_mount_to_mod_target(TFile* tf)
+// 'relocate' tf to the mounting established by vfs_set_write_target.
+// call if <tf> is being opened with FILE_WRITE_TO_TARGET flag set.
+LibError set_mount_to_write_target(TFile* tf)
 {
-	if(!mod_target)
+	if(!write_target)
 		WARN_RETURN(ERR_NOT_MOUNTED);
 
-	tfile_set_mount(tf, mod_target);
+	tfile_set_mount(tf, write_target);
 
 	// invalidate the previous values. we don't need to be clever and
-	// set size to that of the file in the new mod_target mount point.
+	// set size to that of the file in the new write_target mount point.
 	// this is because we're only called for files that are being
 	// opened for writing, which will change these values anyway.
 	tree_update_file(tf, 0, 0);
@@ -807,16 +843,20 @@ void mount_shutdown()
 }
 
 
+static const Mount* MULTIPLE_MOUNTINGS = (const Mount*)-1;
 
-
-
-
+// RDTODO: when should this be called? TDir ctor can already set this.
 LibError mount_attach_real_dir(RealDir* rd, const char* P_path, const Mount* m, uint flags)
 {
 	// more than one real dir mounted into VFS dir
 	// (=> can't create files for writing here)
 	if(rd->m)
-		rd->m = (const Mount*)-1;
+	{
+		// HACK: until RealDir reorg is done, we're going to have to deal with
+		// "attaching" to real dirs twice. don't mess up rd->m if m is the same.
+		if(rd->m != m)
+			rd->m = MULTIPLE_MOUNTINGS;
+	}
 	else
 		rd->m = m;
 
@@ -845,6 +885,18 @@ void mount_detach_real_dir(RealDir* rd)
 		WARN_ERR(dir_cancel_watch(rd->watch));
 	rd->watch = 0;
 #endif
+}
+
+
+LibError mount_create_real_dir(const char* V_path, const Mount* m)
+{
+	if(!m || m == MULTIPLE_MOUNTINGS || m->type != MT_FILE)
+		return ERR_OK;
+
+	char P_path[PATH_MAX];
+	RETURN_ERR(mount_realpath(V_path, m, P_path));
+
+	return dir_create(P_path, S_IRWXU|S_IRWXG|S_IRWXO);
 }
 
 

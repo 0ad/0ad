@@ -129,7 +129,7 @@ LibError file_make_full_portable_path(const char* n_full_path, char* path)
 	debug_assert(path != n_full_path);	// doesn't work in-place
 
 	if(strncmp(n_full_path, n_root_dir, n_root_dir_len) != 0)
-		WARN_RETURN(ERR_PATH_NOT_FOUND);
+		WARN_RETURN(ERR_TNODE_NOT_FOUND);
 	return convert_path(path, n_full_path+n_root_dir_len, TO_PORTABLE);
 }
 

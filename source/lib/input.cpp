@@ -124,7 +124,7 @@ LibError in_playback(const char* fn)
 
 	f = fopen(fn, "rb");
 	if(!f)
-		WARN_RETURN(ERR_FILE_NOT_FOUND);
+		WARN_RETURN(ERR_TNODE_NOT_FOUND);
 
 	u32 rec_start_time;
 	fread(&rec_start_time, sizeof(u32), 1, f);

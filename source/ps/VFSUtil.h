@@ -1,4 +1,5 @@
 #include "ps/CStr.h"
+#include "lib/path_util.h"	// for convenience
 #include "lib/res/file/vfs.h"
 
 namespace VFSUtil

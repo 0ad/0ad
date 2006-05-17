@@ -30,6 +30,11 @@ public:
 	static void Terminate();
 
 private:
+
+	// Find out write location of the XMB file corresponding to xmlFilename
+	void getXMBPath(const char* xmlFilename, const char* xmbFilename,
+		char* xmbPath);
+
 	bool ReadXMBFile(const char* filename);
 
 	XMBFile* XMB;

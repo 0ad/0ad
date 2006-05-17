@@ -85,7 +85,7 @@ LibError LibError_from_errno(bool warn_if_failed)
 	case EINVAL: err =  ERR_INVALID_PARAM; break;
 	case ENOSYS: err =  ERR_NOT_IMPLEMENTED; break;
 
-	case ENOENT: err =  ERR_PATH_NOT_FOUND; break;
+	case ENOENT: err =  ERR_TNODE_NOT_FOUND; break;
 	case EACCES: err =  ERR_FILE_ACCESS; break;
 	case EIO:    err =  ERR_IO; break;
 	case ENAMETOOLONG: err =  ERR_PATH_LENGTH; break;
@@ -122,7 +122,7 @@ static int return_errno_from_LibError(LibError err)
 	case ERR_INVALID_PARAM: return EINVAL;
 	case ERR_NOT_IMPLEMENTED: return ENOSYS;
 
-	case ERR_PATH_NOT_FOUND: return ENOENT;
+	case ERR_TNODE_NOT_FOUND: return ENOENT;
 	case ERR_FILE_ACCESS: return EACCES;
 	case ERR_IO: return EIO;
 	case ERR_PATH_LENGTH: return ENAMETOOLONG;

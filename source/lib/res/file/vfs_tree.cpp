@@ -96,6 +96,8 @@ class TNode
 {
 public:
 	TNodeType type;
+	// allocated and owned by vfs_mount
+	const Mount* m;
 
 	// rationale: we store both entire path and name component.
 	// this increases size of VFS (2 pointers needed here) and
@@ -103,10 +105,14 @@ public:
 	// iterate over all dir name components.
 	// we could retrieve name via strrchr(path, '/'), but that is slow.
 	const char* V_path;
+	// ends with slash if this is a directory!
+	// this is compared as a normal string (not pointer comparison), but
+	// the pointer passed must obviously remain valid, so it is
+	// usually an atom_fn.
 	const char* name;
 
-	TNode(TNodeType type_, const char* V_path_, const char* name_)
-		: type(type_), V_path(V_path_), name(name_)
+	TNode(TNodeType type_, const char* V_path_, const char* name_, const Mount* m_)
+		: type(type_), V_path(V_path_), name(name_), m(m_)
 	{
 	}
 };
@@ -115,19 +121,14 @@ public:
 class TFile : public TNode
 {
 public:
-	// required:
-	const Mount* m;
-	// allocated and owned by caller (mount code)
-
 	off_t size;
 	time_t mtime;
 
 	uintptr_t memento;
 
-	TFile(const char* V_path, const char* name, const Mount* m_)
-		: TNode(NT_FILE, V_path, name)
+	TFile(const char* V_path, const char* name, const Mount* m)
+		: TNode(NT_FILE, V_path, name, m)
 	{
-		m = m_;
 		size = 0;
 		mtime = 0;
 		memento = 0;
@@ -187,20 +188,21 @@ class TDir : public TNode
 {
 	uint flags;	// enum TDirFlags
 
-	RealDir rd;
-
 	TChildren children;
 
 public:
-	TDir(const char* V_path, const char* name)
-		: TNode(NT_DIR, V_path, name), children()
+RealDir rd;	// HACK; removeme
+
+	TDir(const char* V_path, const char* name, const Mount* m_)
+		: TNode(NT_DIR, V_path, name, 0), children()
 	{
 		flags = 0;
-		rd.m = 0;
+
+		rd.m = m_;
 		rd.watch = 0;
+		mount_create_real_dir(V_path, rd.m);
 	}
 
-	TNode* find(const char* name) const { return children.find(name); }
 	TChildrenIt begin() const { return children.begin(); }
 	TChildrenIt end() const { return children.end(); }
 
@@ -218,36 +220,42 @@ public:
 		}
 	}
 
-
-	LibError add(const char* name_tmp, TNodeType type, TNode** pnode)
+	TNode* find(const char* name) const
 	{
+		return children.find(name);
+	}
+
+	// must not be called if already exists! use find() first or
+	// find_and_add instead.
+	LibError add(const char* name_tmp, TNodeType type, TNode** pnode, const Mount* m_override = 0)
+	{
+		// note: must be done before path_append for security
+		// (otherwise, '/' in <name_tmp> wouldn't be caught)
+		RETURN_ERR(path_component_validate(name_tmp));
+
 		char V_new_path_tmp[PATH_MAX];
-		path_append(V_new_path_tmp, V_path, name_tmp);
+		const uint flags = (type == NT_DIR)? PATH_APPEND_SLASH : 0;
+		RETURN_ERR(path_append(V_new_path_tmp, V_path, name_tmp, flags));
 		const char* V_new_path = file_make_unique_fn_copy(V_new_path_tmp);
 		const char* name = path_name_only(V_new_path);
+		if(type == NT_DIR)
+			name = file_make_unique_fn_copy(name_tmp);
 
-		RETURN_ERR(path_component_validate(name));
-
-		TNode* node = children.find(name);
-		if(node)
-		{
-			if(node->type != type)
-				return (type == NT_FILE)? ERR_NOT_FILE : ERR_NOT_DIR;
-
-			*pnode = node;
-			return INFO_ALREADY_PRESENT;
-		}
+		const Mount* m = rd.m;
+		if(m_override)
+			m = m_override;
 
 		// note: if anything below fails, this mem remains allocated in the
 		// pool, but that "can't happen" and is OK because pool is big enough.
 		void* mem = node_alloc();
 		if(!mem)
 			WARN_RETURN(ERR_NO_MEM);
+		TNode* node;
 #include "nommgr.h"
 		if(type == NT_FILE)
-			node = new(mem) TFile(V_new_path, name, rd.m);
+			node = new(mem) TFile(V_new_path, name, m);
 		else
-			node = new(mem) TDir(V_new_path, name);
+			node = new(mem) TDir (V_new_path, name, m);
 #include "mmgr.h"
 
 		children.insert(name, node);
@@ -255,6 +263,23 @@ public:
 		*pnode = node;
 		return ERR_OK;
 	}
+
+	LibError find_and_add(const char* name, TNodeType type, TNode** pnode, const Mount* m = 0)
+	{
+		TNode* node = children.find(name);
+		if(node)
+		{
+			// wrong type (dir vs. file)
+			if(node->type != type)
+				WARN_RETURN(ERR_TNODE_WRONG_TYPE);
+
+			*pnode = node;
+			return INFO_ALREADY_PRESENT;
+		}
+
+		return add(name, type, pnode, m);
+	}
+
 
 	// empty this directory and all subdirectories; used when rebuilding VFS.
 	void clearR()
@@ -368,77 +393,56 @@ static void displayR(TDir* td, int indent_level)
 }
 
 
+struct LookupCbParams
+{
+	const bool create_missing;
+	TDir* td;		// current dir; assigned from node
+	TNode* node;	// latest node returned (dir or file)
+	LookupCbParams(uint flags, TDir* td_)
+		: create_missing((flags & LF_CREATE_MISSING) != 0), td(td_)
+	{
+		// init in case lookup's <path> is "".
+		// this works because TDir is derived from TNode.
+		node = (TNode*)td;
+	}
+};
+
+static LibError lookup_cb(const char* component, bool is_dir, void* ctx)
+{
+	LookupCbParams* p = (LookupCbParams*)ctx;
+	const TNodeType type = is_dir? NT_DIR : NT_FILE;
+
+	p->td->populate();
+
+	p->node = p->td->find(component);
+	if(!p->node)
+	{
+		if(p->create_missing)
+			RETURN_ERR(p->td->add(component, type, &p->node));
+		else
+			// complaining is left to callers; vfs_exists must be
+			// able to fail quietly.
+			return ERR_TNODE_NOT_FOUND;	// NOWARN
+	}
+	if(p->node->type != type)
+		WARN_RETURN(ERR_TNODE_WRONG_TYPE);
+
+	if(is_dir)
+		p->td = (TDir*)p->node;
+
+	return INFO_CB_CONTINUE;
+}
+
 static LibError lookup(TDir* td, const char* path, uint flags, TNode** pnode)
 {
-	// early out: "" => return this directory (usually VFS root)
-	if(path[0] == '\0')
-	{
-		*pnode = (TNode*)td;	// HACK: TDir is at start of TNode
-		return ERR_OK;
-	}
-
-	CHECK_PATH(path);
-	debug_assert( (flags & ~(LF_CREATE_MISSING|LF_START_DIR)) == 0 );
 	// no undefined bits set
+	debug_assert( (flags & ~(LF_CREATE_MISSING|LF_START_DIR)) == 0 );
 
-	const bool create_missing = !!(flags & LF_CREATE_MISSING);
-
-	// copy into (writeable) buffer so we can 'tokenize' path components
-	// by replacing '/' with '\0'.
-	char V_path[PATH_MAX];
-	strcpy_s(V_path, sizeof(V_path), path);
-	char* cur_component = V_path;
-
-	TNodeType type = NT_DIR;
-
-	// successively navigate to the next component in <path>.
-	TNode* node = 0;
-	for(;;)
-	{
-		// "extract" cur_component string (0-terminate by replacing '/')
-		char* slash = (char*)strchr(cur_component, '/');
-		if(!slash)
-		{
-			// string ended in slash => return the current dir node.
-			if(*cur_component == '\0')
-				break;
-
-			// it's a filename
-			type = NT_FILE;
-		}
-		// normal operation (cur_component is a directory)
-		else
-		{
-			td->populate();
-
-			*slash = '\0';
-		}
-
-		// create <cur_component> (no-op if it already exists)
-		if(create_missing)
-			RETURN_ERR(td->add(V_path, type, &node));
-		else
-		{
-			node = td->find(cur_component);
-			if(!node)
-				return slash? ERR_PATH_NOT_FOUND : ERR_FILE_NOT_FOUND;
-			if(node->type != type)
-				return slash? ERR_NOT_DIR : ERR_NOT_FILE;
-		}
-
-		// cur_component was a filename => we're done
-		if(!slash)
-			break;
-		// else: it was a directory; advance
-		// .. undo having replaced '/' with '\0' - this means V_path will
-		//    store the complete path up to and including cur_component.
-		*slash = '/';
-		cur_component = slash+1;
-		td = (TDir*)node;
-	}
+	LookupCbParams p(flags, td);
+	RETURN_ERR(path_foreach_component(path, lookup_cb, &p));
 
 	// success.
-	*pnode = node;
+	*pnode = p.node;
 	return ERR_OK;
 }
 
@@ -468,7 +472,7 @@ static void tree_root_init()
 #include "nommgr.h"	// placement new
 	void* mem = node_alloc();
 	if(mem)
-		tree_root = new(mem) TDir("", "");
+		tree_root = new(mem) TDir("", "", 0);
 #include "mmgr.h"
 }
 
@@ -540,7 +544,7 @@ LibError tree_add_file(TDir* td, const char* name,
 	const Mount* m, off_t size, time_t mtime, uintptr_t memento)
 {
 	TNode* node;
-	LibError ret = td->add(name, NT_FILE, &node);
+	LibError ret = td->find_and_add(name, NT_FILE, &node);
 	RETURN_ERR(ret);
 	if(ret == INFO_ALREADY_PRESENT)
 	{
@@ -566,7 +570,7 @@ LibError tree_add_file(TDir* td, const char* name,
 LibError tree_add_dir(TDir* td, const char* name, TDir** ptd)
 {
 	TNode* node;
-	RETURN_ERR(td->add(name, NT_DIR, &node));
+	RETURN_ERR(td->find_and_add(name, NT_DIR, &node));
 	*ptd = (TDir*)node;
 	return ERR_OK;
 }
@@ -577,7 +581,7 @@ LibError tree_lookup_dir(const char* path, TDir** ptd, uint flags)
 {
 	// path is not a directory; TDir::lookup might return a file node
 	if(path[0] != '\0' && path[strlen(path)-1] != '/')
-		WARN_RETURN(ERR_NOT_DIR);
+		WARN_RETURN(ERR_TNODE_WRONG_TYPE);
 
 	TDir* td = (flags & LF_START_DIR)? *ptd : tree_root;
 	TNode* node;
@@ -592,7 +596,7 @@ LibError tree_lookup(const char* path, TFile** pfile, uint flags)
 {
 	// path is not a file; TDir::lookup might return a directory node
 	if(path[0] == '\0' || path[strlen(path)-1] == '/')
-		WARN_RETURN(ERR_NOT_FILE);
+		WARN_RETURN(ERR_TNODE_WRONG_TYPE);
 
 	TNode* node;
 	LibError ret = lookup(tree_root, path, flags, &node);
@@ -602,9 +606,44 @@ LibError tree_lookup(const char* path, TFile** pfile, uint flags)
 }
 
 
+struct AddPathCbParams
+{
+	const Mount* const m;
+	TDir* td;
+	AddPathCbParams(const Mount* m_)
+		: m(m_), td(tree_root) {}
+};
+
+static LibError add_path_cb(const char* component, bool is_dir, void* ctx)
+{
+	AddPathCbParams* p = (AddPathCbParams*)ctx;
+
+	// should only be called for directory paths, so complain if not dir.
+	if(!is_dir)
+		WARN_RETURN(ERR_TNODE_WRONG_TYPE);
+
+	TNode* node;
+	RETURN_ERR(p->td->find_and_add(component, NT_DIR, &node, p->m));
+
+	p->td = (TDir*)node;
+	return INFO_CB_CONTINUE;
+}
+
+// iterate over all components in V_dir_path (must reference a directory,
+// i.e. end in slash). for any that are missing, add them with the
+// specified mount point. this is useful for mounting directories.
+//
+// passes back the last directory encountered.
+LibError tree_add_path(const char* V_dir_path, const Mount* m, TDir** ptd)
+{
+	AddPathCbParams p(m);
+	RETURN_ERR(path_foreach_component(V_dir_path, add_path_cb, &p));
+	*ptd = p.td;
+	return ERR_OK;
+}
+
+
 //////////////////////////////////////////////////////////////////////////////
-
-
 
 
 // rationale: see DirIterator definition in file.h.

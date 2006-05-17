@@ -132,25 +132,17 @@ no_ip:
 }
 
 
-
+// not thread-safe!
 static const wchar_t* HardcodedErrorString(int err)
 {
-#define E(sym) case sym: return L ## #sym;
-
-	switch(err)
-	{
-	E(ERR_NO_MEM)
-	E(ERR_FILE_NOT_FOUND)
-	E(ERR_INVALID_HANDLE)
-	E(ERR_INVALID_PARAM)
-	E(ERR_EOF)
-	E(ERR_PATH_NOT_FOUND)
-	E(ERR_PATH_LENGTH)
-	default:
-		return 0;
-	}
+	char description[200];
+	error_description_r((LibError)err, description, ARRAY_SIZE(description));
+	static wchar_t output_buf[200];
+	mbstowcs(output_buf, description, ARRAY_SIZE(output_buf));
+	return output_buf;
 }
 
+// not thread-safe!
 const wchar_t* ErrorString(int err)
 {
 	// language file not available (yet)

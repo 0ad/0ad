@@ -185,6 +185,20 @@ LibError dir_close(DirIterator* di)
 }
 
 
+LibError dir_create(const char* P_path, mode_t mode)
+{
+	char N_path[PATH_MAX];
+	RETURN_ERR(file_make_full_native_path(P_path, N_path));
+
+	struct stat s;
+	int ret = stat(N_path, &s);
+	if(ret == 0)
+		return INFO_ALREADY_PRESENT;
+
+	errno = 0;
+	ret = mkdir(N_path, mode);
+	return LibError_from_posix(ret);
+}
 
 
 
@@ -255,7 +269,22 @@ LibError file_delete(const char* fn)
 //   and the Handle approach doesn't guard against some idiot calling
 //   close(our_fd_value) directly, either.
 
+
+struct PosixFile
+{
+	int fd;
+
+	// for reference counted memory-mapping
+	void* mapping;
+	uint map_refs;
+};
 cassert(sizeof(PosixFile) < FILE_OPAQUE_SIZE);
+
+int file_fd_from_PosixFile(File* f)
+{
+	const PosixFile* pf = (const PosixFile*)f->opaque;
+	return pf->fd;
+}
 
 
 LibError file_validate(const File* f)
@@ -298,7 +327,7 @@ LibError file_open(const char* P_fn, uint flags, File* f)
 		// get file size
 		struct stat s;
 		if(stat(N_fn, &s) < 0)
-			WARN_RETURN(ERR_FILE_NOT_FOUND);
+			WARN_RETURN(ERR_TNODE_NOT_FOUND);
 		size = s.st_size;
 
 		// note: despite increased overhead, the AIO read method is still
@@ -312,7 +341,7 @@ LibError file_open(const char* P_fn, uint flags, File* f)
 
 		// make sure <N_fn> is a regular file
 		if(!S_ISREG(s.st_mode))
-			WARN_RETURN(ERR_NOT_FILE);
+			WARN_RETURN(ERR_TNODE_WRONG_TYPE);
 	}
 
 #if OS_WIN

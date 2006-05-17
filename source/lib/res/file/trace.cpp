@@ -264,7 +264,7 @@ LibError trace_read_from_file(const char* trace_filename, Trace* t)
 	RETURN_ERR(file_make_full_native_path(trace_filename, N_fn));
 	FILE* f = fopen(N_fn, "rt");
 	if(!f)
-		WARN_RETURN(ERR_FILE_NOT_FOUND);
+		WARN_RETURN(ERR_TNODE_NOT_FOUND);
 
 	// we use trace_add, which is the same mechanism called by trace_notify*;
 	// therefore, tracing needs to be enabled.

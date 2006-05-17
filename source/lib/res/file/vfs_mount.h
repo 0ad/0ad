@@ -61,9 +61,8 @@ extern char mount_get_type(const Mount* m);
 
 extern Handle mount_get_archive(const Mount* m);
 
-// given a file's TFile and V_path, return its actual location (portable path).
-extern LibError mount_realpath(const char* V_path, const TFile* tf, char* P_real_path);
-
+// given Mount and V_path, return its actual location (portable path).
+extern LibError mount_realpath(const char* V_path, const Mount* m, char* P_real_path);
 
 
 
@@ -86,6 +85,8 @@ struct RealDir
 extern LibError mount_attach_real_dir(RealDir* rd, const char* P_path, const Mount* m, uint flags);
 extern void mount_detach_real_dir(RealDir* rd);
 
+extern LibError mount_create_real_dir(const char* V_path, const Mount* m);
+
 extern LibError mount_populate(TDir* td, RealDir* rd);
 
 
@@ -95,9 +96,9 @@ extern LibError mount_populate(TDir* td, RealDir* rd);
 // because this call leaves the VFS in limbo!!
 extern void mount_release_all_archives();
 
-// 'relocate' tf to the mounting established by vfs_mod_set_write_target.
-// call if <tf> is being opened with FILE_WRITE_TO_MOD flag set.
-extern LibError set_mount_to_mod_target(TFile* tf);
+// 'relocate' tf to the mounting established by vfs_set_write_target.
+// call if <tf> is being opened with FILE_WRITE_TO_TARGET flag set.
+extern LibError set_mount_to_write_target(TFile* tf);
 
 
 // rebuild the VFS, i.e. re-mount everything. open files are not affected.

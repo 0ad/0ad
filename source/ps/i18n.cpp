@@ -42,7 +42,7 @@ bool I18n::LoadLanguage(const char* name)
 	// Automatically delete the pointer when returning early
 	std::auto_ptr<CLocale_interface> locale (locale_ptr);
 
-	CStr dirname = CStr("language/")+name;
+	CStr dirname = CStr("language/")+name+"/";
 
 	VFSUtil::FileList files;
 	VFSUtil::FileList::iterator filename;
