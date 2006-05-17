@@ -327,6 +327,8 @@ protected:
 	void JSI_SetUseDepthTexture(JSContext* ctx, jsval newval);
 	jsval JSI_GetDepthTextureBits(JSContext*);
 	void JSI_SetDepthTextureBits(JSContext* ctx, jsval newval);
+	jsval JSI_GetSky(JSContext*);
+	void JSI_SetSky(JSContext* ctx, jsval newval);
 	static void ScriptingInit();
 
 	// patch rendering stuff

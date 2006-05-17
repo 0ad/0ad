@@ -19,18 +19,6 @@
 class SkyManager
 {
 public:
-	Handle m_SkyTexture[6];
-
-	// Indices into m_SkyTexture
-	// Note: these must be kept in sync with the string constants in LoadSkyTextures; 
-	//       perhaps there is a more clever way to do that.
-	static const int IMG_FRONT = 0;
-	static const int IMG_BACK = 1;
-	static const int IMG_RIGHT = 2;
-	static const int IMG_LEFT = 3;
-	static const int IMG_TOP = 4;
-	static const int IMG_BOTTOM = 5;
-
 	bool m_RenderSky;
 
 public:
@@ -57,7 +45,35 @@ public:
 	 */
 	void RenderSky();
 
+	/**
+	 * GetSkySet(): Return the currently selected sky set name
+	 */
+	inline CStrW GetSkySet() {
+		return m_SkySet;
+	}
+
+	/**
+	 * GetSkySet(): Set the sky set name, potentially loading the textures
+	 */
+	void SetSkySet(CStrW name);
+
 private:
+	/// Name of current skyset (a directory within art/textures/skies)
+	CStrW m_SkySet;
+
+	// Sky textures
+	Handle m_SkyTexture[5];
+
+	// Indices into m_SkyTexture
+	static const int IMG_FRONT = 0;
+	static const int IMG_BACK = 1;
+	static const int IMG_RIGHT = 2;
+	static const int IMG_LEFT = 3;
+	static const int IMG_TOP = 4;
+
+	// Array of image names (defined in SkyManager.cpp), in the order of the IMG_ id's
+	static const char* IMAGE_NAMES[5];
+
 	/// State of progressive loading (in # of loaded textures)
 	uint cur_loading_tex;
 };

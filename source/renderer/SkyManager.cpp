@@ -31,11 +31,24 @@
 
 
 ///////////////////////////////////////////////////////////////////
+// String names for each image, in order of the IMG_ constants
+const char* SkyManager::IMAGE_NAMES[5] = {
+	"front",
+	"back",
+	"right",
+	"left",
+	"top"
+};
+
+
+///////////////////////////////////////////////////////////////////
 // Construction/Destruction
 SkyManager::SkyManager()
 {
-	// water
 	m_RenderSky = true;
+
+	// TODO: add a way to set the initial skyset before progressive load
+	m_SkySet = L"default";
 
 	for (uint i = 0; i < ARRAY_SIZE(m_SkyTexture); i++)
 		m_SkyTexture[i] = 0;
@@ -54,16 +67,6 @@ SkyManager::~SkyManager()
 // Progressive load of sky textures
 int SkyManager::LoadSkyTextures()
 {
-	// Note: this must be kept in sync with the IMG_ constants in SkyManager.h
-	static const char* IMAGE_NAMES[6] = {
-		"front",
-		"back",
-		"right",
-		"left",
-		"top",
-		"bottom"
-	};
-
 	const uint num_textures = ARRAY_SIZE(m_SkyTexture);
 
 	// yield after this time is reached. balances increased progress bar
@@ -73,10 +76,8 @@ int SkyManager::LoadSkyTextures()
 	while (cur_loading_tex < num_textures)
 	{
 		char filename[PATH_MAX];
-		// TODO: add a member variable and setter for this. (can't make this
-		// a parameter because this function is called via delay-load code)
-		static const char* const set_name = "day1";
-		snprintf(filename, ARRAY_SIZE(filename), "art/textures/skies/%s/%s.dds", set_name, IMAGE_NAMES[cur_loading_tex]);
+		snprintf(filename, ARRAY_SIZE(filename), "art/textures/skies/%s/%s.dds", 
+			CStr8(m_SkySet).c_str(), IMAGE_NAMES[cur_loading_tex]);
 		Handle ht = ogl_tex_load(filename);
 		if (ht <= 0)
 		{
@@ -104,7 +105,35 @@ void SkyManager::UnloadSkyTextures()
 		ogl_tex_free(m_SkyTexture[i]);
 		m_SkyTexture[i] = 0;
 	}
-	cur_loading_tex = 0; // so they will be reloaded if LoadWaterTextures is called again
+	cur_loading_tex = 0;
+}
+
+
+///////////////////////////////////////////////////////////////////
+// Switch to a different sky set (while the game is running)
+void SkyManager::SetSkySet( CStrW newSet )
+{
+	if( newSet != m_SkySet )
+	{
+		m_SkySet = newSet;
+
+		UnloadSkyTextures();
+
+		for( int i=0; i<ARRAY_SIZE(m_SkyTexture); i++ ) {
+			char filename[PATH_MAX];
+			snprintf(filename, ARRAY_SIZE(filename), "art/textures/skies/%s/%s.dds", 
+				CStr8(m_SkySet).c_str(), IMAGE_NAMES[i]);
+			Handle ht = ogl_tex_load(filename);
+			if (ht <= 0)
+			{
+				LOG(ERROR, LOG_CATEGORY, "SkyManager::SetSkySet failed on \"%s\"", filename);
+				return;
+			}
+			ogl_tex_set_wrap(ht, GL_CLAMP_TO_EDGE);
+			m_SkyTexture[i] = ht;
+			ogl_tex_upload(ht);
+		}
+	}
 }
 
 
@@ -198,20 +227,6 @@ void SkyManager::RenderSky()
 		glVertex3f( -D, +D, +D );
 		glTexCoord2f( 1, 1 );
 		glVertex3f( +D, +D, +D );
-	glEnd();
-
-	// Bottom face (negative Y)
-	// Note: These texcoords not be completely correct (haven't had a good texture to test with)
-	ogl_tex_bind( m_SkyTexture[IMG_BOTTOM] );
-	glBegin( GL_QUADS );
-		glTexCoord2f( 1, 0 );
-		glVertex3f( +D, -D, -D );
-		glTexCoord2f( 1, 1 );
-		glVertex3f( +D, -D, +D );
-		glTexCoord2f( 0, 1 );
-		glVertex3f( -D, -D, +D );
-		glTexCoord2f( 0, 0 );
-		glVertex3f( -D, -D, -D );
 	glEnd();
 
 	glPopMatrix();

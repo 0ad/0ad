@@ -1450,6 +1450,21 @@ void CRenderer::JSI_SetDepthTextureBits(JSContext* ctx, jsval newval)
 	m->shadow->SetDepthTextureBits(depthTextureBits);
 }
 
+jsval CRenderer::JSI_GetSky(JSContext*)
+{
+	return ToJSVal(m->skyManager.GetSkySet());
+}
+
+void CRenderer::JSI_SetSky(JSContext* ctx, jsval newval)
+{
+	CStrW skySet;
+
+	if (!ToPrimitive<CStrW>(ctx, newval, skySet))
+		return;
+
+	m->skyManager.SetSkySet(skySet);
+}
+
 void CRenderer::ScriptingInit()
 {
 	AddProperty(L"fastPlayerColor", &CRenderer::JSI_GetFastPlayerColor, &CRenderer::JSI_SetFastPlayerColor);
@@ -1461,6 +1476,7 @@ void CRenderer::ScriptingInit()
 	AddProperty(L"shadowZBias", &CRenderer::m_ShadowZBias);
 	AddProperty(L"disableCopyShadow", &CRenderer::m_DisableCopyShadow);
 	AddProperty(L"depthTextureBits", &CRenderer::JSI_GetDepthTextureBits, &CRenderer::JSI_SetDepthTextureBits);
+	AddProperty(L"skySet", &CRenderer::JSI_GetSky, &CRenderer::JSI_SetSky);
 
 	CJSObject<CRenderer>::ScriptingInit("Renderer");
 }
