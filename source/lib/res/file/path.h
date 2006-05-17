@@ -25,6 +25,8 @@
 
 #include "lib.h"
 
+#define VFS_PATH_IS_DIR(path) (*path == '\0' || path[strlen(path)-1] == '/')
+
 struct NextNumberedFilenameInfo
 {
 	int next_num;

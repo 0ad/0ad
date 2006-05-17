@@ -88,7 +88,7 @@ extern LibError tree_lookup(const char* path, TFile** ptf, uint flags = 0);
 // to make sure the last component is treated as a directory).
 //
 // output params are only valid if ERR_OK is returned.
-extern LibError tree_lookup_dir(const char* path, TDir** ptd, uint flags = 0);
+extern LibError tree_lookup_dir(const char* V_path, TDir** ptd, uint flags = 0);
 
 
 // iterate over all components in V_dir_path (must reference a directory,
@@ -99,7 +99,7 @@ extern LibError tree_lookup_dir(const char* path, TDir** ptd, uint flags = 0);
 extern LibError tree_add_path(const char* V_dir_path, const Mount* m, TDir** ptd);
 
 
-extern LibError tree_dir_open(const char* path_slash, DirIterator* di);
+extern LibError tree_dir_open(const char* V_dir_path, DirIterator* di);
 extern LibError tree_dir_next_ent(DirIterator* di, DirEnt* ent);
 extern LibError tree_dir_close(DirIterator* di);
 

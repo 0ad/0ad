@@ -105,7 +105,6 @@ public:
 	// iterate over all dir name components.
 	// we could retrieve name via strrchr(path, '/'), but that is slow.
 	const char* V_path;
-	// ends with slash if this is a directory!
 	// this is compared as a normal string (not pointer comparison), but
 	// the pointer passed must obviously remain valid, so it is
 	// usually an atom_fn.
@@ -238,6 +237,11 @@ RealDir rd;	// HACK; removeme
 		RETURN_ERR(path_append(V_new_path_tmp, V_path, name_tmp, flags));
 		const char* V_new_path = file_make_unique_fn_copy(V_new_path_tmp);
 		const char* name = path_name_only(V_new_path);
+		// for directory nodes, V_path ends in slash, so name cannot be
+		// derived via path_last_component. instead, we have to make an
+		// atom_fn out of name_tmp.
+		// this effectively doubles the amount of directory path text,
+		// but it's not that bad.
 		if(type == NT_DIR)
 			name = file_make_unique_fn_copy(name_tmp);
 
@@ -274,7 +278,7 @@ RealDir rd;	// HACK; removeme
 				WARN_RETURN(ERR_TNODE_WRONG_TYPE);
 
 			*pnode = node;
-			return INFO_ALREADY_PRESENT;
+			return INFO_ALREADY_EXISTS;
 		}
 
 		return add(name, type, pnode, m);
@@ -337,8 +341,6 @@ static inline void node_free_all()
 //
 //
 //////////////////////////////////////////////////////////////////////////////
-
-
 
 static void displayR(TDir* td, int indent_level)
 {
@@ -405,6 +407,8 @@ struct LookupCbParams
 		// this works because TDir is derived from TNode.
 		node = (TNode*)td;
 	}
+
+	NO_COPY_CTOR(LookupCbParams);
 };
 
 static LibError lookup_cb(const char* component, bool is_dir, void* ctx)
@@ -546,11 +550,11 @@ LibError tree_add_file(TDir* td, const char* name,
 	TNode* node;
 	LibError ret = td->find_and_add(name, NT_FILE, &node);
 	RETURN_ERR(ret);
-	if(ret == INFO_ALREADY_PRESENT)
+	if(ret == INFO_ALREADY_EXISTS)
 	{
 		TFile* tf = (TFile*)node;
 		if(!mount_should_replace(tf->m, m, tf->size, size, tf->mtime, mtime))
-			return INFO_ALREADY_PRESENT;
+			return INFO_ALREADY_EXISTS;
 
 		stats_vfs_file_remove(tf->size);
 	}
@@ -577,29 +581,29 @@ LibError tree_add_dir(TDir* td, const char* name, TDir** ptd)
 
 
 
-LibError tree_lookup_dir(const char* path, TDir** ptd, uint flags)
+LibError tree_lookup_dir(const char* V_path, TDir** ptd, uint flags)
 {
 	// path is not a directory; TDir::lookup might return a file node
-	if(path[0] != '\0' && path[strlen(path)-1] != '/')
+	if(!VFS_PATH_IS_DIR(V_path))
 		WARN_RETURN(ERR_TNODE_WRONG_TYPE);
 
 	TDir* td = (flags & LF_START_DIR)? *ptd : tree_root;
 	TNode* node;
-	CHECK_ERR(lookup(td, path, flags, &node));
+	CHECK_ERR(lookup(td, V_path, flags, &node));
 		// directories should exist, so warn if this fails
 	*ptd = (TDir*)node;
 	return ERR_OK;
 }
 
 
-LibError tree_lookup(const char* path, TFile** pfile, uint flags)
+LibError tree_lookup(const char* V_path, TFile** pfile, uint flags)
 {
 	// path is not a file; TDir::lookup might return a directory node
-	if(path[0] == '\0' || path[strlen(path)-1] == '/')
+	if(VFS_PATH_IS_DIR(V_path))
 		WARN_RETURN(ERR_TNODE_WRONG_TYPE);
 
 	TNode* node;
-	LibError ret = lookup(tree_root, path, flags, &node);
+	LibError ret = lookup(tree_root, V_path, flags, &node);
 	RETURN_ERR(ret);
 	*pfile = (TFile*)node;
 	return ERR_OK;
@@ -612,6 +616,8 @@ struct AddPathCbParams
 	TDir* td;
 	AddPathCbParams(const Mount* m_)
 		: m(m_), td(tree_root) {}
+
+	NO_COPY_CTOR(AddPathCbParams);
 };
 
 static LibError add_path_cb(const char* component, bool is_dir, void* ctx)
@@ -636,6 +642,8 @@ static LibError add_path_cb(const char* component, bool is_dir, void* ctx)
 // passes back the last directory encountered.
 LibError tree_add_path(const char* V_dir_path, const Mount* m, TDir** ptd)
 {
+	debug_assert(VFS_PATH_IS_DIR(V_dir_path));
+
 	AddPathCbParams p(m);
 	RETURN_ERR(path_foreach_component(V_dir_path, add_path_cb, &p));
 	*ptd = p.td;
@@ -662,12 +670,14 @@ struct TreeDirIterator
 cassert(sizeof(TreeDirIterator) <= DIR_ITERATOR_OPAQUE_SIZE);
 
 
-LibError tree_dir_open(const char* path_slash, DirIterator* di)
+LibError tree_dir_open(const char* V_dir_path, DirIterator* di)
 {
+	debug_assert(VFS_PATH_IS_DIR(V_dir_path));
+
 	TreeDirIterator* tdi = (TreeDirIterator*)di->opaque;
 
 	TDir* td;
-	CHECK_ERR(tree_lookup_dir(path_slash, &td));
+	CHECK_ERR(tree_lookup_dir(V_dir_path, &td));
 
 	// we need to prevent modifications to this directory while an iterator is
 	// active, otherwise entries may be skipped or no longer valid addresses

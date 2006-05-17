@@ -193,7 +193,7 @@ LibError dir_create(const char* P_path, mode_t mode)
 	struct stat s;
 	int ret = stat(N_path, &s);
 	if(ret == 0)
-		return INFO_ALREADY_PRESENT;
+		return INFO_ALREADY_EXISTS;
 
 	errno = 0;
 	ret = mkdir(N_path, mode);

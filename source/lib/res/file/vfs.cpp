@@ -113,17 +113,11 @@ static void VDir_dtor(VDir* vd)
 	}
 }
 
-static LibError VDir_reload(VDir* vd, const char* V_path, Handle UNUSED(hvd))
+static LibError VDir_reload(VDir* vd, const char* V_dir_path, Handle UNUSED(hvd))
 {
-	debug_assert(*V_path == '\0' || V_path[strlen(V_path)-1] == '/');
-/*/*SLASH
-	// add required trailing slash if not already present to make
-	// caller's life easier.
-	char V_path_slash[PATH_MAX];
-	RETURN_ERR(path_append(V_path_slash, path, ""));
-*/
+	debug_assert(VFS_PATH_IS_DIR(V_dir_path));
 
-	RETURN_ERR(xdir_open(V_path, &vd->di));
+	RETURN_ERR(xdir_open(V_dir_path, &vd->di));
 	vd->di_valid = 1;
 	return ERR_OK;
 }
@@ -150,11 +144,11 @@ static LibError VDir_to_string(const VDir* vd, char* buf)
 
 // open a directory for reading its entries via vfs_next_dirent.
 // <v_dir> need not end in '/'; we add it if not present.
-Handle vfs_dir_open(const char* V_dir)
+Handle vfs_dir_open(const char* V_dir_path)
 {
 	// must disallow handle caching because this object is not
 	// copy-equivalent (since the iterator is advanced by each user).
-	return h_alloc(H_VDir, V_dir, RES_NO_CACHE);
+	return h_alloc(H_VDir, V_dir_path, RES_NO_CACHE);
 }
 
 

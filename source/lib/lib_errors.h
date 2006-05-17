@@ -358,7 +358,7 @@ ERR(102, INFO_CANNOT_HANDLE,   "2 (not an error)")
 ERR(103, INFO_NO_REPLACE,      "3 (not an error)")
 ERR(104, INFO_SKIPPED,         "4 (not an error)")
 ERR(105, INFO_ALL_COMPLETE,    "5 (not an error)")
-ERR(106, INFO_ALREADY_PRESENT, "6 (not an error)")
+ERR(106, INFO_ALREADY_EXISTS, "6 (not an error)")
 
 ERR(-100000, ERR_LOGIC, "Logic error in code")
 ERR(-100060, ERR_TIMED_OUT, "Timed out")
@@ -426,8 +426,8 @@ ERR(-100303, ERR_PATH_NON_PORTABLE, "Path contains OS-specific dir separator")
 ERR(-100304, ERR_PATH_NON_CANONICAL, "Path contains unsupported .. or ./")
 ERR(-100305, ERR_PATH_COMPONENT_SEPARATOR, "Path component contains dir separator")
 // .. tree node
-ERR(-100310, ERR_TNODE_NOT_FOUND, "VFile not found")
-ERR(-100311, ERR_TNODE_WRONG_TYPE, "Not a directory")
+ERR(-100310, ERR_TNODE_NOT_FOUND, "File/directory not found")
+ERR(-100311, ERR_TNODE_WRONG_TYPE, "Using a directory as file or vice versa")
 // .. open
 ERR(-100320, ERR_FILE_ACCESS, "Insufficient access rights to open file")
 // .. enum

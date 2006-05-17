@@ -171,6 +171,7 @@ bool mount_should_replace(const Mount* m_old, const Mount* m_new,
 
 
 // given Mount and V_path, return its actual location (portable path).
+// works for any type of path: file or directory.
 LibError mount_realpath(const char* V_path, const Mount* m, char* P_real_path)
 {
 	const char* remove = m->V_mount_point.c_str();
@@ -218,9 +219,7 @@ struct ZipCBParams
 		last_td = 0;
 	}
 
-	// no copy ctor because some members are const
-private:
-	ZipCBParams& operator=(const ZipCBParams&);
+	NO_COPY_CTOR(ZipCBParams);
 };
 
 // called by add_ent's afile_enum for each file in the archive.
@@ -353,9 +352,8 @@ struct TDirAndPath
 
 	TDirAndPath(TDir* d, const char* p)
 		: td(d), path(p) {}
-	// no copy ctor because some members are const
-private:
-	TDirAndPath& operator=(const TDirAndPath&);
+
+	NO_COPY_CTOR(TDirAndPath);
 };
 
 typedef std::deque<TDirAndPath> DirQueue;
@@ -505,10 +503,8 @@ static LibError mount_dir_tree(TDir* td, const Mount& m)
 	// pop to come at end of loop => this is easiest)
 	dir_queue.push_back(TDirAndPath(td, m.P_name.c_str()));
 
-static int seq2;
 	do
 	{
-seq2++;
 		TDir* const td     = dir_queue.front().td;
 		const char* P_path = dir_queue.front().path.c_str();
 
@@ -630,13 +626,8 @@ static inline void remount_all()
 // P_real_path = "." or "./" isn't allowed - see implementation for rationale.
 LibError vfs_mount(const char* V_mount_point, const char* P_real_path, uint flags, uint pri)
 {
-	// callers have a tendency to forget required trailing '/';
-	// complain if it's not there, unless path = "" (root td).
-#ifndef NDEBUG
-	const size_t len = strlen(V_mount_point);
-	if(len && V_mount_point[len-1] != '/')
-		debug_warn("path doesn't end in '/'");
-#endif
+	// make sure caller didn't forget the required trailing '/'.
+	debug_assert(VFS_PATH_IS_DIR(V_mount_point));
 
 	// make sure it's not already mounted, i.e. in mounts.
 	// also prevents mounting a parent directory of a previously mounted
@@ -890,6 +881,8 @@ void mount_detach_real_dir(RealDir* rd)
 
 LibError mount_create_real_dir(const char* V_path, const Mount* m)
 {
+	debug_assert(VFS_PATH_IS_DIR(V_path));
+
 	if(!m || m == MULTIPLE_MOUNTINGS || m->type != MT_FILE)
 		return ERR_OK;
 

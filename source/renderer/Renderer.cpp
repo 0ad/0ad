@@ -105,8 +105,7 @@ private:
 		NumberRows
 	};
 
-	// no copy ctor because some members are const
-	CRendererStatsTable& operator=(const CRendererStatsTable&);
+	NO_COPY_CTOR(CRendererStatsTable);
 };
 
 // Construction

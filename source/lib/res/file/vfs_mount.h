@@ -62,6 +62,7 @@ extern char mount_get_type(const Mount* m);
 extern Handle mount_get_archive(const Mount* m);
 
 // given Mount and V_path, return its actual location (portable path).
+// works for any type of path: file or directory.
 extern LibError mount_realpath(const char* V_path, const Mount* m, char* P_real_path);
 
 

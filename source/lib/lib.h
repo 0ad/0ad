@@ -158,6 +158,15 @@ STMT(\
 // .. wrapped around the parameter name, e.g. void f(int UNUSED(x))
 #define UNUSED(param)
 
+// mark the copy constructor as inaccessible. this squelches
+// "cannot be generated" warnings for classes with const members.
+//
+// intended to be used at end of class definition.
+// must be followed by semicolon.
+#define NO_COPY_CTOR(class_name)\
+	private:\
+	class_name& operator=(const class_name&)
+
 
 /*
 "unreachable code" helpers
