@@ -552,6 +552,9 @@ void CRenderer::SetOptionBool(enum Option opt,bool value)
 		case OPT_SHADOWS:
 			m_Options.m_Shadows=value;
 			break;
+		case OPT_FANCYWATER:
+			m_Options.m_FancyWater=value;
+			break;
 		default:
 			debug_warn("CRenderer::SetOptionBool: unknown option");
 			break;
@@ -569,6 +572,8 @@ bool CRenderer::GetOptionBool(enum Option opt) const
 			return m_Options.m_NoFramebufferObject;
 		case OPT_SHADOWS:
 			return m_Options.m_Shadows;
+		case OPT_FANCYWATER:
+			return m_Options.m_FancyWater;
 		default:
 			debug_warn("CRenderer::GetOptionBool: unknown option");
 			break;

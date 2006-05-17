@@ -22,6 +22,8 @@ bool g_NoGLVBO=false;
 bool g_NoGLFramebufferObject = false;
 // flag to switch on shadows
 bool g_Shadows=false;
+// flag to switch on reflective/refractive water
+bool g_FancyWater=false;
 // flag to switch on fixed frame timing (RC: I'm using this for profiling purposes)
 bool g_FixedFrameTiming=false;
 bool g_VSync = false;
@@ -72,6 +74,7 @@ static void LoadGlobals()
 	CFG_GET_USER_VAL("novbo", Bool, g_NoGLVBO);
 	CFG_GET_USER_VAL("noframebufferobject", Bool, g_NoGLFramebufferObject);
 	CFG_GET_USER_VAL("shadows", Bool, g_Shadows);
+	CFG_GET_USER_VAL("fancywater", Bool, g_FancyWater);
 	CFG_GET_USER_VAL("renderpath", String, g_RenderPath);
 
 	CFG_GET_USER_VAL("lodbias", Float, g_LodBias);

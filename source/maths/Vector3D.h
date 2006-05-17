@@ -59,6 +59,7 @@ class CVector3D
 
 		//Returns length of the vector
 		float GetLength () const;
+		float LengthSquared () const;
 		void Normalize ();
 
 		// Returns 3 element array of floats, e.g. for glVertex3fv

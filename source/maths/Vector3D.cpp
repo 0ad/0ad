@@ -117,9 +117,15 @@ CVector3D CVector3D::Cross (const CVector3D &vector) const
 	return Temp;
 }
 
+
+float CVector3D::LengthSquared () const 
+{
+	return ( SQR(X) + SQR(Y) + SQR(Z) );
+}
+
 float CVector3D::GetLength () const 
 {
-	return sqrtf ( SQR(X) + SQR(Y) + SQR(Z) );
+	return sqrtf ( LengthSquared() );
 }
 
 void CVector3D::Normalize ()

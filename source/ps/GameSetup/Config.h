@@ -7,6 +7,8 @@ extern bool g_NoGLVBO;
 extern bool g_NoGLFramebufferObject;
 // flag to switch on shadows
 extern bool g_Shadows;
+// flag to switch on reflective/refractive water
+extern bool g_FancyWater;
 // flag to switch on fixed frame timing (RC: I'm using this for profiling purposes)
 extern bool g_FixedFrameTiming;
 extern bool g_VSync;

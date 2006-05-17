@@ -91,6 +91,7 @@ public:
 		OPT_NOVBO,
 		OPT_NOFRAMEBUFFEROBJECT,
 		OPT_SHADOWS,
+		OPT_FANCYWATER,
 		OPT_LODBIAS
 	};
 
@@ -136,6 +137,7 @@ public:
 		bool m_NoVBO;
 		bool m_NoFramebufferObject;
 		bool m_Shadows;
+		bool m_FancyWater;
 		float m_LodBias;
 		RenderPath m_RenderPath;
 	} m_Options;
