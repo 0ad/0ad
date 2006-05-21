@@ -1141,6 +1141,24 @@ LibError file_buf_set_real_fn(FileIOBuf buf, const char* atom_fn)
 }
 
 
+// if file_cache_add-ing the given buffer, would it be added?
+// this is referenced by trace_entry_causes_io; see explanation there.
+bool file_cache_would_add(size_t size, const char* UNUSED(atom_fn),
+	uint file_flags)
+{
+	// caller is saying this file shouldn't be cached here.
+	if(file_flags & FILE_CACHED_AT_HIGHER_LEVEL)
+		return false;
+
+	// refuse to cache 0-length files (it would have no benefit and
+	// causes problems due to divide-by-0).
+	if(size == 0)
+		return false;
+
+	return true;
+}
+
+
 // "give" <buf> to the cache, specifying its size and owner filename.
 // since this data may be shared among users of the cache, it is made
 // read-only (via MMU) to make sure no one can corrupt/change it.
@@ -1152,13 +1170,7 @@ LibError file_cache_add(FileIOBuf buf, size_t size, const char* atom_fn,
 {
 	debug_assert(buf);
 
-	// caller is saying this file shouldn't be cached here.
-	if(file_flags & FILE_CACHED_AT_HIGHER_LEVEL)
-		return INFO_SKIPPED;
-
-	// refuse to cache 0-length files (it would have no benefit and
-	// causes problems due to divide-by-0).
-	if(size == 0)
+	if(!file_cache_would_add(size, atom_fn, file_flags))
 		return INFO_SKIPPED;
 
 	// assign cost

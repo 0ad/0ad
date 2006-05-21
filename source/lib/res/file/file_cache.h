@@ -69,6 +69,11 @@ extern void file_buf_add_padding(FileIOBuf exact_buf, size_t exact_size, size_t 
 // afile_read sets things right by calling this.
 extern LibError file_buf_set_real_fn(FileIOBuf buf, const char* atom_fn);
 
+// if file_cache_add-ing the given buffer, would it be added?
+// this is referenced by trace_entry_causes_io; see explanation there.
+extern bool file_cache_would_add(size_t size, const char* atom_fn,
+	uint file_flags);
+
 // "give" <buf> to the cache, specifying its size and owner filename.
 // since this data may be shared among users of the cache, it is made
 // read-only (via MMU) to make sure no one can corrupt/change it.

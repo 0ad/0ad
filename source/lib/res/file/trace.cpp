@@ -349,6 +349,18 @@ void trace_gen_random(size_t num_entries)
 
 // simulate carrying out the entry's TraceOp to determine
 // whether this IO would be satisfied by the file_buf cache.
+//
+// note: TO_IO's handling of uncached buffers means the simulated and
+// real cache contents will diverge if the real caller doesn't free their
+// buffer immediately.
+// this is a bit of a bother, but only slightly influences results
+// because it works by affecting the cache allocator's eviction pattern.
+// alternatives:
+// - only allocate if file_cache_would_add. this would actually
+//   cause divergence whenever skipping any allocation, which is worse.
+// - maintain a list of "buffers we allocated" and use that instead of
+//   file_cache_retrieve in TO_FREE. this would keep both caches in sync but
+//   add considerable complexity (function would no longer be "stateless").
 bool trace_entry_causes_io(const TraceEntry* ent)
 {
 	uint fb_flags = FB_NO_STATS;
@@ -367,17 +379,25 @@ bool trace_entry_causes_io(const TraceEntry* ent)
 		if(file_flags & FILE_WRITE)
 			return false;
 		buf = file_cache_retrieve(atom_fn, &size, fb_flags);
-		// would not be in cache: add to list of real IOs
+		// would not be in cache
 		if(!buf)
 		{
 			buf = file_buf_alloc(size, atom_fn, fb_flags);
-			(void)file_cache_add(buf, size, atom_fn, file_flags);
+			LibError ret = file_cache_add(buf, size, atom_fn, file_flags);
+			// the cache decided not to add buf (see file_cache_would_add).
+			// since TO_FREE below uses the cache to find out which
+			// buffer was allocated for atom_fn, we have to free it manually.
+			// see note above.
+			if(ret == INFO_SKIPPED)
+				(void)file_buf_free(buf, fb_flags);
 			return true;
 		}
 		break;
 	}
 	case TO_FREE:
 		buf = file_cache_retrieve(atom_fn, &size, fb_flags|FB_NO_ACCOUNTING);
+		// note: if buf == 0, file_buf_free is a no-op. this happens in the
+		// abovementioned cached-at-higher-level case.
 		(void)file_buf_free(buf, fb_flags);
 		break;
 	default:

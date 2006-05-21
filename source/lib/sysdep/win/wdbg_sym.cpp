@@ -1895,7 +1895,7 @@ const wchar_t* debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void*
 	ptr_reset_visited();
 
 	LibError err = walk_stack(dump_frame_cb, 0, skip, (const CONTEXT*)pcontext);
-	if(err != ERR_OK)
+	if(err < 0)
 		out(L"(error while building stack trace: %d)", err);
 
 	unlock();
