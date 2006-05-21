@@ -147,7 +147,7 @@ void CTextureManager::RecurseDirectory(CTerrainPropertiesPtr parentProps, const 
 
 	// Load terrains.xml first, if it exists
 	char fn[PATH_MAX];
-	snprintf(fn, PATH_MAX, "%s/%s", cur_dir_path, "terrains.xml");
+	snprintf(fn, PATH_MAX, "%s%s", cur_dir_path, "terrains.xml");
 	if (vfs_exists(fn))
 		props = GetPropertiesFromFile(parentProps, fn);
 	
@@ -184,18 +184,6 @@ CTerrainGroup *CTextureManager::FindGroup(CStr name)
 		return it->second;
 	else
 		return m_TerrainGroups[name] = new CTerrainGroup(name, ++m_LastGroupIndex);
-}
-
-/* There was a GetRandomTexture in MainFrm.cpp (sced) previously that gave compile errors...
-So I thought "better fix it up and put it in CTextureManager instead".. well, it is never used
-except for one *comment* in MainFrm.cpp - d'oh */
-CTextureEntry* CTextureManager::GetRandomTexture()
-{
-	if (!m_TextureEntries.size())
-		return NULL;
-
-	u32 type=rand()%(u32)m_TextureEntries.size();
-	return m_TextureEntries[type];
 }
 
 void CTerrainGroup::AddTerrain(CTextureEntry *pTerrain)

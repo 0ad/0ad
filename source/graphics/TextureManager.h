@@ -88,7 +88,6 @@ public:
 	
 	CTextureEntry* FindTexture(CStr tag);
 	CTextureEntry* FindTexture(Handle handle);
-	CTextureEntry* GetRandomTexture();
 	
 	// Create a texture object for a new terrain texture at path, using the
 	// property sheet props.
