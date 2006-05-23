@@ -6,14 +6,30 @@
   <group>
     <variant frequency="100" name="Base">
       <animations>
-        <animation file="biped/dudeidle.psa" name="Idle" speed="200"/>
-        <animation file="biped/dudewalk_swordshield.psa" name="Walk" speed="20"/>
+		<!-- Class Specific -->
+	    <animation file="biped/dudeidle.psa" name="Idle" speed="200"/>
+        <animation event="0.5" file="biped/inf_jav_atk_a.psa" load="0" name="Melee" speed="100"/>
+        <animation file="biped/dudewalk.psa" name="Walk" speed="20"/>
+		<!-- Stamina Specific -->
+        <animation file="biped/inf_sword_shield_run_a.psa" name="Run" speed="5"/>
+        <animation file="biped/inf_sword_shield_run_b.psa" name="Run" speed="10"/>
+        <animation file="biped/inf_sword_shield_run_c.psa" name="Run" speed="10"/>
+		<!-- Citzen Soldier Specific -->
+        <animation file="biped/chop.psa" name="gather_wood" speed="100"/>
+        <animation file="biped/hoe.psa" name="gather_grain" speed="150"/>
+        <animation file="biped/forage.psa" name="gather_fruit" speed="35"/>
+        <animation file="biped/mine.psa" name="gather_stone" speed="150"/>
         <animation file="biped/dudebuild.psa" name="Build" speed="150"/>
-        <animation file="biped/dudechop.psa" name="Chop" speed="150"/>
-        <animation file="biped/dudedeath_sword.psa" name="Death" speed="200"/>
+		<!-- Shared  -->
+        <animation file="biped/inf_death_a.psa" name="Death" speed="200"/>
+        <animation file="biped/inf_death_b.psa" name="Death" speed="200"/>
+        <animation file="biped/inf_death_c.psa" name="Death" speed="200"/>
+        <animation file="biped/inf_death_d.psa" name="Death" speed="200"/>
+        <animation file="biped/inf_death_e.psa" name="Death" speed="200"/>
+        <animation file="biped/inf_death_f.psa" name="Death" speed="200"/>
+        <animation file="biped/inf_death_g.psa" name="Death" speed="200"/>
         <animation file="biped/dudedecay_sword.psa" name="Corpse" speed="100"/>
-        <animation event="0.5" file="biped/inf_jav_atk_a.psa" load="0" name="Attack" speed="100"/>
-      </animations>
+      </animations>	
       <mesh>skeletal/m_tunic_b.pmd</mesh>
       <props>
         <prop actor="props/units/heads/floppy_b.xml" attachpoint="helmet"/>

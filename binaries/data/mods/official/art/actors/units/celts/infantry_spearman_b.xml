@@ -12,7 +12,7 @@
         <animation event="0.5" file="biped/inf_spear_shield_atk_a.psa" name="Melee" speed="100"/>
         <animation event="0.5" file="biped/inf_spear_shield_atk_b.psa" name="Melee" speed="100"/>
 		<!-- Stamina Specific -->
-        <animation file="biped/inf_sword_shield_run_a.psa" name="Run" speed="10"/>
+        <animation file="biped/inf_sword_shield_run_a.psa" name="Run" speed="5"/>
         <animation file="biped/inf_sword_shield_run_b.psa" name="Run" speed="10"/>
         <animation file="biped/inf_sword_shield_run_c.psa" name="Run" speed="10"/>
 		<!-- Citzen Soldier Specific -->
@@ -54,13 +54,13 @@
       <texture>skeletal/celt_isw_b_04.dds</texture>
     </variant>
   </group>
-  
+
   <group>
     <variant frequency="100" name="Idle"/>
     <variant name="Melee">
       <props>
-        <prop actor="" attachpoint="l_hand"/>        
-		<prop actor="props/units/shields/celt_scutum_b.xml" attachpoint="shield"/>
+        <prop actor="" attachpoint="l_hand"/>
+        <prop actor="props/units/shields/celt_scutum_b.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
       </props>
     </variant>
@@ -76,7 +76,7 @@
         <prop actor="" attachpoint="shield"/>
         <prop actor="props/units/tools/hoe.xml" attachpoint="l_hand"/>
         <prop actor="" attachpoint="r_hand"/>
-	  </props>
+      </props>
     </variant>
     <variant name="gather_fruit">
       <props>
@@ -84,7 +84,7 @@
         <prop actor="" attachpoint="l_hand"/>
         <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
         <prop actor="" attachpoint="r_hand"/>
-	  </props>
+      </props>
     </variant>
     <variant name="gather_stone">
       <props>

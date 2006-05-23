@@ -26,6 +26,10 @@
 		<Health>
 			<Regen_Rate>2.0</Regen_Rate>
 		</Health>
+		
+		<Stamina>
+			<Max>30.0</Max>
+		</Stamina>
 
 		<Loot>
 			<XP>200</XP>
@@ -62,12 +66,12 @@
 		</Loot>		
 
 		<Move>
-			<Speed>10.0</Speed>
+			<Speed>7.0</Speed>
 			<TurningRadius>1.0</TurningRadius>
 			
 			<Run>
-				<Speed>30.0</Speed>
-				<Range>150.0</Range>
+				<Speed>22.0</Speed>
+				<Range>500.0</Range>
 				<RangeMin>10.0</RangeMin>
 			</Run>
 			

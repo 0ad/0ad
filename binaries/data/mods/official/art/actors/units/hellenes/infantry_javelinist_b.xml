@@ -8,11 +8,10 @@
       <animations>
 		<!-- Class Specific -->
 	    <animation file="biped/dudeidle.psa" name="Idle" speed="200"/>
-        <animation event="0.5" file="biped/inf_spear_shield_atk_a.psa" name="Melee" speed="100"/>
-        <animation event="0.5" file="biped/inf_spear_shield_atk_b.psa" name="Melee" speed="100"/>
+        <animation event="0.5" file="biped/inf_jav_atk_a.psa" load="0" name="Melee" speed="100"/>
         <animation file="biped/dudewalk.psa" name="Walk" speed="20"/>
 		<!-- Stamina Specific -->
-        <animation file="biped/inf_sword_shield_run_a.psa" name="Run" speed="10"/>
+        <animation file="biped/inf_sword_shield_run_a.psa" name="Run" speed="5"/>
         <animation file="biped/inf_sword_shield_run_b.psa" name="Run" speed="10"/>
         <animation file="biped/inf_sword_shield_run_c.psa" name="Run" speed="10"/>
 		<!-- Citzen Soldier Specific -->
@@ -30,7 +29,7 @@
         <animation file="biped/inf_death_f.psa" name="Death" speed="200"/>
         <animation file="biped/inf_death_g.psa" name="Death" speed="200"/>
         <animation file="biped/dudedecay_sword.psa" name="Corpse" speed="100"/>
-      </animations>
+      </animations>	
       <mesh>skeletal/m_tunic_b.pmd</mesh>
       <props>
         <prop actor="props/units/heads/thrac_a.xml" attachpoint="head"/>

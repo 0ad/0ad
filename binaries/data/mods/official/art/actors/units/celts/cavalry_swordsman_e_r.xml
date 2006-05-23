@@ -7,13 +7,8 @@
     <variant frequency="100" name="Base">
       <animations>
         <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
-        <animation file="biped/rider_gallop.psa" name="Walk" speed="20"/>
-        <animation file="biped/dudebuild.psa" name="Build" speed="150"/>
-        <animation file="biped/dudechop.psa" name="Chop" speed="150"/>
-        <animation file="biped/dudedeath_sword.psa" name="Death" speed="200"/>
-        <animation file="biped/dudedecay_sword.psa" name="Corpse" speed="100"/>
-        <animation event="0.5" file="biped/dudeattack.psa" name="Attack" speed="100"/>
-        <animation event="0.5" file="biped/dudeattack1.psa" name="Attack" speed="100"/>
+        <animation file="biped/cavalryidle.psa" name="Walk" speed="50"/>
+        <animation file="biped/rider_gallop.psa" name="Run" speed="8"/>
       </animations>
       <mesh>skeletal/m_pants_c.pmd</mesh>
       <props>
