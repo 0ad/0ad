@@ -4,19 +4,6 @@
 
 <sprites>
 
-	<!-- Notes:
-		* Can we make size = 0 0 100% 100% by default? It's seems to be the most common value ("stretched sprite").
-		While we're here:
-		* Ask him to remove the "error drawing sprite of 1x0 size" error, since this can happen legitimately sometimes
-		  (divider of 1 pixel width, progressbar at value 0)
-		* Also ask about clear() function for lists.
-		* Ask about interpretation of special characters (weird question mark).
-		* Text formatting for lists (eg centering).
-		* DDS transparency (ie main menu buttons).
-		* Ask him about the checkbox and whether it's available for use (show first example in Options).
-		* Bug: If you nest an icon into a caption [icon=""], it's no longer possible to vertically center that control's text.
-	-->
-
 	<!--
 	==========================================
 	GENERIC - BACKCOLOR SPRITES
@@ -616,42 +603,6 @@
 		==========================================
 		-->
 
-		<sprite name="load_concept_ce">
-			<image 	texture="loading/ui_concept_female_ce.dds"
-				size="0 0 100% 100%" 
-			/>
-		</sprite>
-
-		<sprite name="load_concept_he">
-			<image 	texture="loading/ui_concept_female_he.dds"
-				size="0 0 100% 100%" 
-			/>
-		</sprite>
-
-		<sprite name="load_concept_pe">
-			<image 	texture="loading/ui_concept_female_pe.dds" 
-				size="0 0 100% 100%" 
-			/>
-		</sprite>
-
-		<sprite name="load_concept_ro">
-			<image 	texture="loading/ui_concept_female_ro.dds"
-				size="0 0 100% 100%" 
-			/>
-		</sprite>
-        
-		<sprite name="load_concept_ca">
-			<image 	texture="loading/ui_concept_female_ca.dds"
-				size="0 0 100% 100%" 
-			/>
-		</sprite>
-        
-		<sprite name="load_concept_ib">
-			<image 	texture="loading/ui_concept_female_ib.dds"
-				size="0 0 100% 100%" 
-			/>
-		</sprite>
-		
 	<!--
 	=================================================================================================================================================
 	 START START START START START START START START START = SESSION GUI = START START START START START START START START START START

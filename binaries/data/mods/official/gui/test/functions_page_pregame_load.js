@@ -67,30 +67,17 @@ function startLoadingScreen()
 		setCursor("cursor-wait");
         console.write ("Loading " + g_GameAttributes.mapFile + " (" + g_GameAttributes.numPlayers + " players) ...");
 
-        // Generate random number for random concept art (should be depending on the selected civ later)
-        var randVar = getRandom(1, 6);
-        
-	switch (randVar) {
-		case 1:
-			sprite = "load_concept_he";
-		break;
-		case 2:
-			sprite = "load_concept_ce";
-		break;
-		case 3:
-			sprite = "load_concept_pe";
-		break;
-		case 4:
-			sprite = "load_concept_ro";
-		break;
-		case 5:
-			sprite = "load_concept_ca";
-		break;
-		case 6:
-			sprite = "load_concept_ib";
-		break;
-	}
-        
+        // Choose random concept art for loading screen background (should depend on the selected civ later when this is specified).
+		var sprite = "";
+		var loadingBkgArray = buildFileList("art/textures/ui/loading/", "*.dds", false);
+		if (loadingBkgArray.length == 0)
+			console.write ("ERROR: Failed to find any matching textures for the loading screen background.");
+		else
+		{
+			// Get a random index from the list of loading screen backgrounds.
+			sprite = "stretched:" + loadingBkgArray[getRandom (0, loadingBkgArray.length-1)];
+			sprite = sprite.replace ("art/textures/ui/", "");
+		}
         getGUIObjectByName ("ldConcept").sprite = sprite;
 
         // janwas: main loop now sets progress / description, but that won't
