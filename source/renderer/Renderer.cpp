@@ -1469,6 +1469,21 @@ void CRenderer::JSI_SetSky(JSContext* ctx, jsval newval)
 	m->skyManager.SetSkySet(skySet);
 }
 
+jsval CRenderer::JSI_GetHorizonHeight(JSContext*)
+{
+	return ToJSVal(m->skyManager.m_HorizonHeight);
+}
+
+void CRenderer::JSI_SetHorizonHeight(JSContext* ctx, jsval newval)
+{
+	float value;
+
+	if (!ToPrimitive<float>(ctx, newval, value))
+		return;
+
+	m->skyManager.m_HorizonHeight = value;
+}
+
 void CRenderer::ScriptingInit()
 {
 	AddProperty(L"fastPlayerColor", &CRenderer::JSI_GetFastPlayerColor, &CRenderer::JSI_SetFastPlayerColor);
@@ -1481,6 +1496,7 @@ void CRenderer::ScriptingInit()
 	AddProperty(L"disableCopyShadow", &CRenderer::m_DisableCopyShadow);
 	AddProperty(L"depthTextureBits", &CRenderer::JSI_GetDepthTextureBits, &CRenderer::JSI_SetDepthTextureBits);
 	AddProperty(L"skySet", &CRenderer::JSI_GetSky, &CRenderer::JSI_SetSky);
+	AddProperty(L"horizonHeight", &CRenderer::JSI_GetHorizonHeight, &CRenderer::JSI_SetHorizonHeight);
 
 	CJSObject<CRenderer>::ScriptingInit("Renderer");
 }

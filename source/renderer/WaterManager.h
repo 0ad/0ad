@@ -23,6 +23,7 @@ class WaterManager
 {
 public:
 	Handle m_WaterTexture[60];
+	Handle m_NormalMap[60];
 	int m_WaterCurrentTex;
 	CColor m_WaterColor;
 	bool m_RenderWater;
@@ -62,6 +63,7 @@ public:
 private:
 	/// State of progressive loading (in # of loaded textures)
 	uint cur_loading_water_tex;
+	uint cur_loading_normal_map;
 };
 
 

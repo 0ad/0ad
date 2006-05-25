@@ -158,7 +158,7 @@ extern LibError LDR_NonprogressiveLoad();
 #define LDR_CHECK_TIMEOUT(completed_jobs, total_jobs)\
 	if(get_time() > end_time)\
 	{\
-		int progress_percent = (completed_jobs*100 / total_jobs);\
+		int progress_percent = ((completed_jobs)*100 / (total_jobs));\
 		/* 0 means "finished", so don't return that! */\
 		if(progress_percent == 0)\
 			progress_percent = 1;\

@@ -20,6 +20,7 @@ class SkyManager
 {
 public:
 	bool m_RenderSky;
+	float m_HorizonHeight;
 
 public:
 	SkyManager();

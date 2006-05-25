@@ -30,6 +30,8 @@
 #include "renderer/TerrainRenderer.h"
 #include "renderer/WaterManager.h"
 
+#include "lib/res/graphics/ogl_shader.h"
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // TerrainRenderer implementation
@@ -59,6 +61,9 @@ struct TerrainRendererInternals
 	 * @todo Merge this list with CPatchRData list
 	 */
 	std::vector<CPatch*> visiblePatches;
+
+	/// Fancy water shader
+	Handle fancyWaterShader;
 };
 
 
@@ -69,10 +74,15 @@ TerrainRenderer::TerrainRenderer()
 {
 	m = new TerrainRendererInternals();
 	m->phase = Phase_Submit;
+	m->fancyWaterShader = 0;
 }
 
 TerrainRenderer::~TerrainRenderer()
 {
+	if( m->fancyWaterShader )
+	{
+		ogl_program_free( m->fancyWaterShader );
+	}
 	delete m;
 }
 
@@ -375,6 +385,14 @@ void TerrainRenderer::RenderWater()
 {
 	PROFILE( "render water" );
 
+	bool fancy = g_Renderer.m_Options.m_FancyWater;
+
+	// If we're using fancy water, make sure its shader is loaded
+	if(fancy && !m->fancyWaterShader)
+	{
+		m->fancyWaterShader = ogl_program_load( "shaders/water_high.xml" );
+		//debug_printf("Loaded the water shader!!\n");
+	}
 
 	//(Crappy) fresnel effect
 	CCamera* Camera=g_Game->GetView()->GetCamera();
@@ -384,15 +402,11 @@ void TerrainRenderer::RenderWater()
 	//Invert and set boundaries
 	FresnelScalar = (1 - FresnelScalar) * 0.4f + 0.6f;
 
-	const int DX[] = {1,1,0,0};
-	const int DZ[] = {0,1,1,0};
-
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 	int mapSize = terrain->GetVerticesPerSide();
 	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
 	WaterManager* WaterMgr = g_Renderer.GetWaterManager();
 	
-
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
 	glDepthMask(GL_FALSE);
@@ -401,27 +415,90 @@ void TerrainRenderer::RenderWater()
 
 	double period = 1.6;
 	int curTex = (int)(time*60/period) % 60;
-	ogl_tex_bind(WaterMgr->m_WaterTexture[curTex], 0);
 
-	glMatrixMode(GL_TEXTURE);
-	glLoadIdentity();
-	float tx = -fmod(time, 20.0)/20.0;
-	float ty = fmod(time, 35.0)/35.0;
-	glTranslatef(tx, ty, 0);
+	if(fancy)
+	{
+		ogl_tex_bind(WaterMgr->m_NormalMap[curTex], 0);
+	}
+	else
+	{
+		ogl_tex_bind(WaterMgr->m_WaterTexture[curTex], 0);
+	}
 
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR_ARB);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PRIMARY_COLOR_ARB);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+	if(!fancy)
+	{
+		// Shift the texture coordinates to make it "flow"
+		glMatrixMode(GL_TEXTURE);
+		glLoadIdentity();
+		float tx = -fmod(time, 20.0)/20.0;
+		float ty = fmod(time, 35.0)/35.0;
+		glTranslatef(tx, ty, 0);
+	}
+
+	if(!fancy)
+	{
+		// Set up texture environment to multiply vertex RGB by texture RGB and use vertex alpha
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR_ARB);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PRIMARY_COLOR_ARB);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+	}
+	else
+	{
+		// Temp stuff for testing
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+	}
 
 	// Set the proper LOD bias
 	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
 	
+	// Some offsets used to go around counterclockwise while keeping code concise
+	const int DX[] = {1,1,0,0};
+	const int DZ[] = {0,1,1,0};
+
+	GLint vertexDepth = 0;	// water depth attribute, if using fancy water
+
+	if(fancy)
+	{
+		ogl_program_use( m->fancyWaterShader );
+
+		const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
+		//SetAmbient(lightenv.m_TerrainAmbientColor);
+		//SetSunDir(lightenv.GetSunDir());
+		//SetSunColor(lightenv.m_SunColor);
+
+		GLint ambient = ogl_program_get_uniform_location( m->fancyWaterShader, "ambient" );
+		GLint sunDir = ogl_program_get_uniform_location( m->fancyWaterShader, "sunDir" );
+		GLint sunColor = ogl_program_get_uniform_location( m->fancyWaterShader, "sunColor" );
+		GLint shininess = ogl_program_get_uniform_location( m->fancyWaterShader, "shininess" );
+		GLint cameraPos = ogl_program_get_uniform_location( m->fancyWaterShader, "cameraPos" );
+		GLint normalMap = ogl_program_get_uniform_location( m->fancyWaterShader, "normalMap" );
+
+		pglUniform3fvARB( ambient, 1, &lightEnv.m_TerrainAmbientColor.X );
+		pglUniform3fvARB( sunDir, 1, &lightEnv.GetSunDir().X );
+		pglUniform3fvARB( sunColor, 1, &lightEnv.m_SunColor.X );
+		pglUniform1fARB( shininess, 200.0f );
+		pglUniform1iARB( normalMap, 0 );	// texture unit 0
+
+		const CCamera& camera = g_Renderer.GetViewCamera();
+		CVector3D camPos = camera.m_Orientation.GetTranslation();
+		pglUniform3fvARB( cameraPos, 1, &camPos.X );
+
+		vertexDepth = ogl_program_get_attrib_location( m->fancyWaterShader, "vertexDepth" );
+	}
+	
+	float repeatFreq = (fancy ? 10.0f : 16.0f);
+
 	glBegin(GL_QUADS);
 
 	for(size_t i=0; i<m->visiblePatches.size(); i++)
@@ -481,14 +558,24 @@ void TerrainRenderer::RenderWater()
 						}
 					}
 
+					if(fancy)
+					{
+						pglVertexAttrib1fARB( vertexDepth, WaterMgr->m_WaterHeight - terrainHeight );
+					}
+
 					glColor4f(WaterMgr->m_WaterColor.r*losMod, WaterMgr->m_WaterColor.g*losMod, WaterMgr->m_WaterColor.b*losMod, alpha * FresnelScalar);
-					pglMultiTexCoord2fARB(GL_TEXTURE0, vertX/16.0f, vertZ/16.0f);
+					pglMultiTexCoord2fARB(GL_TEXTURE0, vertX/repeatFreq, vertZ/repeatFreq);
 					glVertex3f(vertX, WaterMgr->m_WaterHeight, vertZ);
 				}
 			}	//end of x loop
 		}	//end of z loop
 	}
 	glEnd();
+
+	if(fancy)
+	{
+		ogl_program_use( 0 );
+	}
 
 	glLoadIdentity();
 	glMatrixMode(GL_MODELVIEW);

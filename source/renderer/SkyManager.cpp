@@ -15,6 +15,8 @@
 #include "lib/res/graphics/tex.h"
 #include "lib/res/graphics/ogl_tex.h"
 
+#include "maths/MathUtil.h"
+
 #include "ps/CLogger.h"
 #include "ps/Loader.h"
 
@@ -22,6 +24,7 @@
 #include "renderer/Renderer.h"
 
 #include "graphics/Camera.h"
+#include "graphics/LightEnv.h"
 
 #define LOG_CATEGORY "graphics"
 
@@ -49,6 +52,8 @@ SkyManager::SkyManager()
 
 	// TODO: add a way to set the initial skyset before progressive load
 	m_SkySet = L"default";
+
+	m_HorizonHeight = 0;
 
 	for (uint i = 0; i < ARRAY_SIZE(m_SkyTexture); i++)
 		m_SkyTexture[i] = 0;
@@ -155,11 +160,15 @@ void SkyManager::RenderSky()
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 	
-	// Translate so we are at the camera in the X and Z directions,
-	// but put the horizon at Y=0 so it looks right when the camera is higher
+	// Translate so we are at the camera in the X and Z directions, but
+	// put the horizon at a fixed height regardless of camera Y
 	const CCamera& camera = g_Renderer.GetViewCamera();
 	CVector3D pos = camera.m_Orientation.GetTranslation();
-	glTranslatef( pos.X, 0.0f, pos.Z );
+	glTranslatef( pos.X, m_HorizonHeight, pos.Z );
+
+	// Rotate so that the "left" face, which contains the brightest part of each
+	// skymap, is in the direction of the sun from our light environment
+	glRotatef( 90.0f + g_Renderer.GetLightEnv().GetRotation()*180.0f/M_PI, 0.0f, 1.0f, 0.0f );
 
 	// Distance to draw the faces at
 	const float D = 2000.0;
