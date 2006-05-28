@@ -11,10 +11,10 @@ varying float w;
 void main()
 {
 	worldPos = gl_Vertex.xyz;
-	waterColor = gl_Color.xyz;
+	waterColor = gl_Color.rgb;
 	waterDepth = vertexDepth;
 	gl_TexCoord[0] = gl_MultiTexCoord0;
-	gl_TexCoord[1] = reflectionMatrix * gl_Vertex;
+	gl_TexCoord[1] = reflectionMatrix * gl_Vertex;		// projective texturing
 	gl_TexCoord[2] = reflectionMatrix * gl_Vertex;
 	w = gl_TexCoord[1].w;
     gl_Position = ftransform();

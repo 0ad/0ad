@@ -6,20 +6,23 @@ uniform sampler2D normalMap;
 uniform sampler2D reflectionMap;
 uniform sampler2D refractionMap;
 uniform float shininess;
+uniform float waviness;
 
 varying vec3 worldPos;
 varying vec3 waterColor;
 varying float waterDepth;
 varying float w;
 
+const vec3 specularColor = vec3(0.2, 0.2, 0.2);
+
 void main()
 {
-	vec3 n, l, h, v;		// normal, vector to light, half-vector and view vector (vector to eye)
+	vec3 n, l, h, v;		// Normal, light vector, half-vector and view vector (vector to eye)
 	float ndotl, ndoth, ndotv;
 	float fresnel;
-	float temp;
+	float t;
 	vec2 reflCoords, refrCoords;
-	vec3 reflCol, refrCol, specular;
+	vec3 reflColor, refrColor, specular;
 	
 	n = normalize(texture2D(normalMap, gl_TexCoord[0].st).xzy - vec3(0.5, 0.5, 0.5));
 	l = -sunDir;
@@ -30,22 +33,24 @@ void main()
 	ndoth = dot(n, h);
 	ndotv = dot(n, v);
 	
-	fresnel = pow(1.0 - ndotv, 0.8);	// A rather arbitrary Fresnel approximation
+	fresnel = pow(1.0 - ndotv, 0.8);	// A rather random Fresnel approximation
 	
-	reflCoords = 0.5 * (gl_TexCoord[1].xy / gl_TexCoord[1].w) + 0.5;
-	reflCoords += 2.9 * n.xz / w;		// The 2.9 can be tweaked to make reflections "wavier"
+	reflCoords = 0.5 * (gl_TexCoord[1].xy / gl_TexCoord[1].w) + 0.5;	// Unbias texture coords
+	reflCoords += waviness * n.xz / w;
 	
-	refrCoords = 0.5 * (gl_TexCoord[2].xy / gl_TexCoord[2].w) + 0.5;
-	refrCoords -= 2.6 * n.xz / w;		// The 2.6 can be tweaked to make refractions "wavier"
+	refrCoords = 0.5 * (gl_TexCoord[2].xy / gl_TexCoord[2].w) + 0.5;	// Unbias texture coords
+	refrCoords -= waviness * n.xz / w;
 	
-	reflCol = (0.8 + 0.2*ndotl) * texture2D(reflectionMap, reflCoords).rgb;
+	reflColor = texture2D(reflectionMap, reflCoords).rgb;
 	
-	refrCol = (ambient + ndotl * sunColor) * mix(texture2D(refractionMap, refrCoords).rgb, waterColor, 0.3);
+	refrColor = (0.5 + 0.5*ndotl) * mix(texture2D(refractionMap, refrCoords).rgb, waterColor, 0.3);
 	
-	specular = pow(max(0.0, ndoth), shininess) * sunColor * vec3(0.2, 0.2, 0.2);	// specular color can be changed here
+	specular = pow(max(0.0, ndoth), shininess) * sunColor * specularColor;
 	
-	gl_FragColor.rgb = mix(refrCol + 0.3*specular, reflCol + specular, fresnel);
+	gl_FragColor.rgb = mix(refrColor + 0.3*specular, reflColor + specular, fresnel);
 	
-	temp = 8.0 * max(0.0, 0.7-v.y);
-	gl_FragColor.a = 0.15 * waterDepth * (temp + mix(1.2, 2.2, fresnel));
+	// Make alpha vary based on both depth (so it blends with the shore) and view angle (make it
+	// become opaque faster at lower view angles so we can't look "underneath" the water plane)
+	t = 8.0 * max(0.0, 0.7 - v.y);
+	gl_FragColor.a = 0.15 * waterDepth * (1.2 + t + fresnel);
 }
