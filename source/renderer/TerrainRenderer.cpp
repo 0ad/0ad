@@ -500,7 +500,7 @@ void TerrainRenderer::RenderWater()
 		vertexDepth = ogl_program_get_attrib_location( m->fancyWaterShader, "vertexDepth" );
 	}
 	
-	float repeatFreq = (fancy ? 17.0f : 16.0f);
+	float repeatFreq = (fancy ? 18.0f : 16.0f);
 
 	glBegin(GL_QUADS);
 

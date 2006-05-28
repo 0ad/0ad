@@ -106,7 +106,7 @@ int WaterManager::LoadWaterTextures()
 	// Load normalmaps (for fancy water)
 	while (cur_loading_normal_map < num_normal_maps)
 	{
-		snprintf(filename, ARRAY_SIZE(filename), "art/textures/animated/water/%s/normal%02d.dds", 
+		snprintf(filename, ARRAY_SIZE(filename), "art/textures/animated/water/%s/normal%02d.tga", 
 			water_type, cur_loading_normal_map+1);
 		Handle ht = ogl_tex_load(filename);
 		if (ht <= 0)
