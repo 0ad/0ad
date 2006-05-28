@@ -933,6 +933,220 @@ void CRenderer::RenderTransparentModels()
 	}
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// GetModelViewProjectionMatrix: save the current OpenGL model-view-projection matrix
+CMatrix3D CRenderer::GetModelViewProjectionMatrix()
+{
+	CMatrix3D proj;
+	CMatrix3D view;
+
+	glGetFloatv( GL_PROJECTION_MATRIX, &proj._11 );
+    glGetFloatv( GL_MODELVIEW_MATRIX, &view._11 );
+
+	return( proj * view );
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// SetObliqueFrustumClipping: change the near plane to the given clip plane (in world space)
+// Based on code from Game Programming Gems 5, from http://www.terathon.com/code/oblique.html
+// - cp is a clip plane in camera space (cp.dot(v) = 0 for any vector v on the plane)
+// - sign is 1 or -1, to specify the side to clip on
+void CRenderer::SetObliqueFrustumClipping(const CVector4D& cp, int sign)
+{
+    float matrix[16];
+    CVector4D q;
+
+	// First, we'll convert the given clip plane to camera space, then we'll 
+
+	// Get the view matrix and normal matrix (top 3x3 part of view matrix)
+	CMatrix3D viewMatrix;
+	m_ViewCamera.m_Orientation.GetInverse(viewMatrix);
+	CMatrix3D normalMatrix = viewMatrix;
+	normalMatrix._14 = 0;
+	normalMatrix._24 = 0;
+	normalMatrix._34 = 0;
+	normalMatrix._44 = 1;
+	normalMatrix._41 = 0;
+	normalMatrix._42 = 0;
+	normalMatrix._43 = 0;
+
+	// Convert the normal to camera space
+	CVector4D planeNormal(cp.m_X, cp.m_Y, cp.m_Z, 0);
+	planeNormal = normalMatrix.Transform(planeNormal);
+	planeNormal.normalize();
+
+	// Find a point on the plane: we'll take the normal times -D
+	float oldD = cp.m_W;
+	CVector4D pointOnPlane(-oldD * cp.m_X, -oldD * cp.m_Y, -oldD * cp.m_Z, 1);
+	pointOnPlane = viewMatrix.Transform(pointOnPlane);
+	float newD = -pointOnPlane.dot(planeNormal);
+
+	// Now create a clip plane from the new normal and new D
+	CVector4D camPlane = planeNormal;
+	camPlane.m_W = newD;
+
+    // Grab the current projection matrix from OpenGL
+    glGetFloatv(GL_PROJECTION_MATRIX, matrix);
+    
+    // Calculate the clip-space corner point opposite the clipping plane
+    // as (sgn(camPlane.x), sgn(camPlane.y), 1, 1) and
+    // transform it into camera space by multiplying it
+    // by the inverse of the projection matrix
+    
+    q.m_X = (sgn(camPlane.m_X) + matrix[8]) / matrix[0];
+    q.m_Y = (sgn(camPlane.m_Y) + matrix[9]) / matrix[5];
+    q.m_Z = -1.0f;
+    q.m_W = (1.0f + matrix[10]) / matrix[14];
+    
+    // Calculate the scaled plane vector
+    CVector4D c = camPlane * (sign * 2.0f / camPlane.dot(q));
+    
+    // Replace the third row of the projection matrix
+    matrix[2] = c.m_X;
+    matrix[6] = c.m_Y;
+    matrix[10] = c.m_Z + 1.0f;
+    matrix[14] = c.m_W;
+
+    // Load it back into OpenGL
+    glMatrixMode(GL_PROJECTION);
+    glLoadMatrixf(matrix);
+
+	glMatrixMode(GL_MODELVIEW);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// RenderReflections: render the water reflections to the reflection texture
+void CRenderer::RenderReflections()
+{
+	MICROLOG(L"render reflections");
+
+	WaterManager& wm = m->waterManager;
+
+	// Remember old camera
+	CCamera normalCamera = m_ViewCamera;
+
+	// Temporarily change the camera to one that is reflected
+	m_ViewCamera.m_Orientation.Translate(0, -wm.m_WaterHeight, 0);
+	m_ViewCamera.m_Orientation.Scale(1, -1, 1);
+	m_ViewCamera.m_Orientation.Translate(0, wm.m_WaterHeight, 0);
+	SViewPort vp;
+	vp.m_Height = wm.m_ReflectionTextureSize;
+	vp.m_Width = wm.m_ReflectionTextureSize;
+	vp.m_X = 0;
+	vp.m_Y = 0;
+	m_ViewCamera.SetViewPort(&vp);
+	m_ViewCamera.SetProjection(1, 5000, DEGTORAD(25));
+	SetCamera(m_ViewCamera, m_CullCamera);
+
+	CVector4D camPlane(0, 1, 0, -wm.m_WaterHeight);
+	SetObliqueFrustumClipping(camPlane, -1);
+
+	// Save the model-view-projection matrix so the shaders can use it for projective texturing
+	wm.m_ReflectionMatrix = GetModelViewProjectionMatrix();
+
+	// Disable backface culling so trees render properly (it might also be possible to flip
+	// the culling direction here, but this seems to lead to problems)
+	glDisable(GL_CULL_FACE);
+
+	// Make the depth buffer work backwards; there seems to be some oddness with 
+	// oblique frustum clipping and the "sign" parameter here
+	glClearDepth(0);
+	glClear(GL_DEPTH_BUFFER_BIT);
+	glDepthFunc(GL_GEQUAL);
+
+	// Render sky, terrain and models
+	m->skyManager.RenderSky();
+	oglCheck();
+	RenderPatches();
+	oglCheck();
+	RenderModels();
+	oglCheck();
+	RenderTransparentModels();
+	oglCheck();
+
+	// Copy the image to a texture
+	pglActiveTextureARB(GL_TEXTURE0_ARB);
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, wm.m_ReflectionTexture);
+	glCopyTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 0, 0,
+		wm.m_ReflectionTextureSize, wm.m_ReflectionTextureSize);
+
+	//Reset old camera and re-enable backface culling
+	SetCamera(normalCamera, m_CullCamera);
+	glEnable(GL_CULL_FACE);
+	//glClearDepth(1);
+	//glClear(GL_DEPTH_BUFFER_BIT);
+	//glDepthFunc(GL_LEQUAL);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// RenderRefractions: render the water refractions to the refraction texture
+void CRenderer::RenderRefractions()
+{
+	MICROLOG(L"render refractions");
+
+	WaterManager& wm = m->waterManager;
+
+	// Remember old camera
+	CCamera normalCamera = m_ViewCamera;
+
+	// Temporarily change the camera to have a higher FOV (so we get bits on the edge of the view)
+	SViewPort vp;
+	vp.m_Height = wm.m_RefractionTextureSize;
+	vp.m_Width = wm.m_RefractionTextureSize;
+	vp.m_X = 0;
+	vp.m_Y = 0;
+	m_ViewCamera.SetViewPort(&vp);
+	m_ViewCamera.SetProjection(1, 5000, DEGTORAD(25));
+	SetCamera(m_ViewCamera, m_CullCamera);
+
+	CVector4D camPlane(0, 1, 0, -wm.m_WaterHeight);
+	SetObliqueFrustumClipping(camPlane, -1);
+
+	// Save the model-view-projection matrix so the shaders can use it for projective texturing
+	wm.m_RefractionMatrix = GetModelViewProjectionMatrix();
+
+	// Disable backface culling so trees render properly (it might also be possible to flip
+	// the culling direction here, but this seems to lead to problems)
+	//glDisable(GL_CULL_FACE);
+
+	// Make the depth buffer work backwards; there seems to be some oddness with 
+	// oblique frustum clipping and the "sign" parameter here
+	glClearDepth(0);
+	glClearColor(0.5f, 0.5f, 0.5f, 1.0f);	// a neutral gray to blend in with shores
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glDepthFunc(GL_GEQUAL);
+
+	// Render terrain and models
+	//m->skyManager.RenderSky();
+	//oglCheck();
+	RenderPatches();
+	oglCheck();
+	RenderModels();
+	oglCheck();
+	RenderTransparentModels();
+	oglCheck();
+
+	// Copy the image to a texture
+	pglActiveTextureARB(GL_TEXTURE0_ARB);
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, wm.m_RefractionTexture);
+	glCopyTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 0, 0,
+		wm.m_RefractionTextureSize, wm.m_RefractionTextureSize);
+
+	//Reset old camera and re-enable backface culling
+	SetCamera(normalCamera, m_CullCamera);
+	glEnable(GL_CULL_FACE);
+	glClearDepth(1);
+	glDepthFunc(GL_LEQUAL);
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // FlushFrame: force rendering of any batched objects
 void CRenderer::FlushFrame()
@@ -967,6 +1181,15 @@ void CRenderer::FlushFrame()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
 	oglCheck();
+
+	if(m_Options.m_FancyWater)
+	{
+		// render reflected and refracted scenes, then re-clear the screen
+		RenderReflections();
+		RenderRefractions();
+		glClearColor(m_ClearColor[0],m_ClearColor[1],m_ClearColor[2],m_ClearColor[3]);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	}
 
 	// render sky; this is done before everything so that 
 	// (a) we can use a box around the camera instead of placing it "infinitely far away"
@@ -1235,9 +1458,6 @@ bool CRenderer::IsTextureTransparent(CTexture* texture)
 	(void)ogl_tex_get_format(h, &flags, 0);
 	return (flags & TEX_ALPHA) != 0;
 }
-
-
-
 
 static inline void CopyTriple(unsigned char* dst,const unsigned char* src)
 {

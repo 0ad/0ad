@@ -44,6 +44,15 @@ CMatrix3D::CMatrix3D(float a11,float a12,float a13,float a14,float a21,float a22
 	_44=a44;
 }
 
+
+CMatrix3D::CMatrix3D(float data[])
+{
+	for(int i=0; i<16; i++)
+	{
+		_data[i] = data[i];
+	}
+}
+
 //Matrix multiplication
 CMatrix3D CMatrix3D::operator*(const CMatrix3D& matrix) const
 {

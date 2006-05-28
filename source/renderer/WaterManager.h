@@ -12,6 +12,7 @@
 #define WATERMANAGER_H
 
 #include "ps/Overlay.h"
+#include "maths/Matrix3D.h"
 
 /**
  * Class WaterManager: Maintain water settings and textures.
@@ -24,6 +25,13 @@ class WaterManager
 public:
 	Handle m_WaterTexture[60];
 	Handle m_NormalMap[60];
+	GLuint m_ReflectionTexture;
+	GLuint m_RefractionTexture;
+	uint m_ReflectionTextureSize;
+	uint m_RefractionTextureSize;
+	CMatrix3D m_ReflectionMatrix;	// model-view-projection matrix for reflected camera
+	CMatrix3D m_RefractionMatrix;	// model-view-projection matrix for refraction camera
+
 	int m_WaterCurrentTex;
 	CColor m_WaterColor;
 	bool m_RenderWater;

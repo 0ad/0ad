@@ -43,4 +43,11 @@ static inline int RoundUpToPowerOf2(int x)
 	return d<<1;
 }
 
+inline float sgn(float a)
+{
+    if (a > 0.0f) return 1.0f;
+    if (a < 0.0f) return -1.0f;
+    return 0.0f;
+}
+
 #endif

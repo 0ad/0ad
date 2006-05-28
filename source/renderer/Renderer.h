@@ -273,6 +273,9 @@ public:
 	// return the current cull camera
 	const CCamera& GetCullCamera() const { return m_CullCamera; }
 
+	// get the current OpenGL model-view-projection matrix into the given float[]
+	CMatrix3D GetModelViewProjectionMatrix();
+
 	/**
 	 * GetWaterManager: Return the renderer's water manager.
 	 *
@@ -345,8 +348,15 @@ protected:
 	// shadow rendering stuff
 	void RenderShadowMap();
 
+	// render water reflection and refraction textures
+	void RenderReflections();
+	void RenderRefractions();
+
 	// debugging
 	void DisplayFrustum();
+
+	// enable oblique frustum clipping with the given clip plane
+	void SetObliqueFrustumClipping(const CVector4D& clipPlane, int sign);
 
 	// RENDERER DATA:
 	/// Private data that is not needed by inline functions

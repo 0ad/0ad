@@ -448,16 +448,6 @@ void TerrainRenderer::RenderWater()
 		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PRIMARY_COLOR_ARB);
 		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 	}
-	else
-	{
-		// Temp stuff for testing
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-	}
 
 	// Set the proper LOD bias
 	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
@@ -470,25 +460,38 @@ void TerrainRenderer::RenderWater()
 
 	if(fancy)
 	{
-		ogl_program_use( m->fancyWaterShader );
+		// Bind reflection and refraction textures on texture units 1 and 2
+		pglActiveTextureARB( GL_TEXTURE1_ARB );
+		glEnable( GL_TEXTURE_2D );
+		glBindTexture( GL_TEXTURE_2D, WaterMgr->m_ReflectionTexture );
+		pglActiveTextureARB( GL_TEXTURE2_ARB );
+		glEnable( GL_TEXTURE_2D );
+		glBindTexture( GL_TEXTURE_2D, WaterMgr->m_RefractionTexture );
 
-		const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
-		//SetAmbient(lightenv.m_TerrainAmbientColor);
-		//SetSunDir(lightenv.GetSunDir());
-		//SetSunColor(lightenv.m_SunColor);
+		// Bind water shader and set arguments
+		ogl_program_use( m->fancyWaterShader );
 
 		GLint ambient = ogl_program_get_uniform_location( m->fancyWaterShader, "ambient" );
 		GLint sunDir = ogl_program_get_uniform_location( m->fancyWaterShader, "sunDir" );
 		GLint sunColor = ogl_program_get_uniform_location( m->fancyWaterShader, "sunColor" );
 		GLint shininess = ogl_program_get_uniform_location( m->fancyWaterShader, "shininess" );
 		GLint cameraPos = ogl_program_get_uniform_location( m->fancyWaterShader, "cameraPos" );
+		GLint reflectionMatrix = ogl_program_get_uniform_location( m->fancyWaterShader, "reflectionMatrix" );
+		GLint refractionMatrix = ogl_program_get_uniform_location( m->fancyWaterShader, "refractionMatrix" );
 		GLint normalMap = ogl_program_get_uniform_location( m->fancyWaterShader, "normalMap" );
+		GLint reflectionMap = ogl_program_get_uniform_location( m->fancyWaterShader, "reflectionMap" );
+		GLint refractionMap = ogl_program_get_uniform_location( m->fancyWaterShader, "refractionMap" );
 
+		const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
 		pglUniform3fvARB( ambient, 1, &lightEnv.m_TerrainAmbientColor.X );
 		pglUniform3fvARB( sunDir, 1, &lightEnv.GetSunDir().X );
 		pglUniform3fvARB( sunColor, 1, &lightEnv.m_SunColor.X );
 		pglUniform1fARB( shininess, 200.0f );
+		pglUniformMatrix4fvARB( reflectionMatrix, 1, false, &WaterMgr->m_ReflectionMatrix._11 );
+		pglUniformMatrix4fvARB( refractionMatrix, 1, false, &WaterMgr->m_RefractionMatrix._11 );
 		pglUniform1iARB( normalMap, 0 );	// texture unit 0
+		pglUniform1iARB( reflectionMap, 1 );	// texture unit 1
+		pglUniform1iARB( refractionMap, 2 );	// texture unit 2
 
 		const CCamera& camera = g_Renderer.GetViewCamera();
 		CVector3D camPos = camera.m_Orientation.GetTranslation();
@@ -497,7 +500,7 @@ void TerrainRenderer::RenderWater()
 		vertexDepth = ogl_program_get_attrib_location( m->fancyWaterShader, "vertexDepth" );
 	}
 	
-	float repeatFreq = (fancy ? 10.0f : 16.0f);
+	float repeatFreq = (fancy ? 17.0f : 16.0f);
 
 	glBegin(GL_QUADS);
 
@@ -574,6 +577,18 @@ void TerrainRenderer::RenderWater()
 
 	if(fancy)
 	{
+		// Unbind the refraction/reflection textures and the shader
+
+		pglActiveTextureARB( GL_TEXTURE1_ARB );
+		glBindTexture( GL_TEXTURE_2D, 0 );
+		glDisable( GL_TEXTURE_2D );
+
+		pglActiveTextureARB( GL_TEXTURE2_ARB );
+		glBindTexture( GL_TEXTURE_2D, 0 );
+		glDisable( GL_TEXTURE_2D );
+		
+		pglActiveTextureARB( GL_TEXTURE0_ARB );
+
 		ogl_program_use( 0 );
 	}
 
