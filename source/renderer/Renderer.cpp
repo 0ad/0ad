@@ -1111,10 +1111,6 @@ void CRenderer::RenderRefractions()
 	// Save the model-view-projection matrix so the shaders can use it for projective texturing
 	wm.m_RefractionMatrix = GetModelViewProjectionMatrix();
 
-	// Disable backface culling so trees render properly (it might also be possible to flip
-	// the culling direction here, but this seems to lead to problems)
-	//glDisable(GL_CULL_FACE);
-
 	// Make the depth buffer work backwards; there seems to be some oddness with 
 	// oblique frustum clipping and the "sign" parameter here
 	glClearDepth(0);
@@ -1123,8 +1119,6 @@ void CRenderer::RenderRefractions()
 	glDepthFunc(GL_GEQUAL);
 
 	// Render terrain and models
-	//m->skyManager.RenderSky();
-	//oglCheck();
 	RenderPatches();
 	oglCheck();
 	RenderModels();
@@ -1228,6 +1222,10 @@ void CRenderer::FlushFrame()
 		m->terrainRenderer->RenderWater();
 		oglCheck();
 	}
+
+	// Clean up texture blend mode so particles and other things render OK 
+	// (really this should be cleaned up by whoever set it)
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
 	//// Particle Engine Rendering.
 	MICROLOG(L"render particles");
@@ -1682,10 +1680,7 @@ jsval CRenderer::JSI_GetSky(JSContext*)
 void CRenderer::JSI_SetSky(JSContext* ctx, jsval newval)
 {
 	CStrW skySet;
-
-	if (!ToPrimitive<CStrW>(ctx, newval, skySet))
-		return;
-
+	if (!ToPrimitive<CStrW>(ctx, newval, skySet)) return;
 	m->skyManager.SetSkySet(skySet);
 }
 
@@ -1697,11 +1692,44 @@ jsval CRenderer::JSI_GetHorizonHeight(JSContext*)
 void CRenderer::JSI_SetHorizonHeight(JSContext* ctx, jsval newval)
 {
 	float value;
-
-	if (!ToPrimitive<float>(ctx, newval, value))
-		return;
-
+	if (!ToPrimitive<float>(ctx, newval, value)) return;
 	m->skyManager.m_HorizonHeight = value;
+}
+
+jsval CRenderer::JSI_GetWaterShininess(JSContext*)
+{
+	return ToJSVal(m->waterManager.m_Shininess);
+}
+
+void CRenderer::JSI_SetWaterShininess(JSContext* ctx, jsval newval)
+{
+	float value;
+	if (!ToPrimitive<float>(ctx, newval, value)) return;
+	m->waterManager.m_Shininess = value;
+}
+
+jsval CRenderer::JSI_GetWaterWaviness(JSContext*)
+{
+	return ToJSVal(m->waterManager.m_Waviness);
+}
+
+void CRenderer::JSI_SetWaterWaviness(JSContext* ctx, jsval newval)
+{
+	float value;
+	if (!ToPrimitive<float>(ctx, newval, value)) return;
+	m->waterManager.m_Waviness = value;
+}
+
+jsval CRenderer::JSI_GetWaterRepeatPeriod(JSContext*)
+{
+	return ToJSVal(m->waterManager.m_RepeatPeriod);
+}
+
+void CRenderer::JSI_SetWaterRepeatPeriod(JSContext* ctx, jsval newval)
+{
+	float value;
+	if (!ToPrimitive<float>(ctx, newval, value)) return;
+	m->waterManager.m_RepeatPeriod = value;
 }
 
 void CRenderer::ScriptingInit()
@@ -1717,6 +1745,9 @@ void CRenderer::ScriptingInit()
 	AddProperty(L"depthTextureBits", &CRenderer::JSI_GetDepthTextureBits, &CRenderer::JSI_SetDepthTextureBits);
 	AddProperty(L"skySet", &CRenderer::JSI_GetSky, &CRenderer::JSI_SetSky);
 	AddProperty(L"horizonHeight", &CRenderer::JSI_GetHorizonHeight, &CRenderer::JSI_SetHorizonHeight);
+	AddProperty(L"waterShininess", &CRenderer::JSI_GetWaterShininess, &CRenderer::JSI_SetWaterShininess);
+	AddProperty(L"waterWaviness", &CRenderer::JSI_GetWaterWaviness, &CRenderer::JSI_SetWaterWaviness);
+	AddProperty(L"waterRepeatPeriod", &CRenderer::JSI_GetWaterRepeatPeriod, &CRenderer::JSI_SetWaterRepeatPeriod);
 
 	CJSObject<CRenderer>::ScriptingInit("Renderer");
 }

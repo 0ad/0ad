@@ -336,6 +336,12 @@ protected:
 	void JSI_SetSky(JSContext* ctx, jsval newval);
 	jsval JSI_GetHorizonHeight(JSContext*);
 	void JSI_SetHorizonHeight(JSContext* ctx, jsval newval);
+	jsval JSI_GetWaterShininess(JSContext*);
+	void JSI_SetWaterShininess(JSContext* ctx, jsval newval);
+	jsval JSI_GetWaterWaviness(JSContext*);
+	void JSI_SetWaterWaviness(JSContext* ctx, jsval newval);
+	jsval JSI_GetWaterRepeatPeriod(JSContext*);
+	void JSI_SetWaterRepeatPeriod(JSContext* ctx, jsval newval);
 	static void ScriptingInit();
 
 	// patch rendering stuff

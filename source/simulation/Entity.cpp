@@ -1172,11 +1172,8 @@ CVector2D CEntity::getScreenCoords( float height )
 }
 void CEntity::renderBarBorders()
 {
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
-	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
-
-	if ( g_Selection.m_unitUITextures.find(m_healthBorderName) != g_Selection.m_unitUITextures.end() )
+	if ( m_staminaBarHeight >= 0 && 
+		g_Selection.m_unitUITextures.find(m_healthBorderName) != g_Selection.m_unitUITextures.end() )
 	{
 		ogl_tex_bind( g_Selection.m_unitUITextures[m_healthBorderName] );
 		CVector2D pos = getScreenCoords( m_healthBarHeight );
@@ -1196,9 +1193,11 @@ void CEntity::renderBarBorders()
 
 		glEnd();
 	}
-	if ( g_Selection.m_unitUITextures.find(m_staminaBorderName) != g_Selection.m_unitUITextures.end() )
+	if ( m_staminaBarHeight >= 0 && 
+		g_Selection.m_unitUITextures.find(m_staminaBorderName) != g_Selection.m_unitUITextures.end() )
 	{
 		ogl_tex_bind( g_Selection.m_unitUITextures[m_staminaBorderName] );
+
 		CVector2D pos = getScreenCoords( m_staminaBarHeight );
 		float left = pos.x - m_staminaBorderWidth/2;
 		float right = pos.x + m_staminaBorderWidth/2;

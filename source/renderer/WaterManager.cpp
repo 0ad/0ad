@@ -51,6 +51,9 @@ WaterManager::WaterManager()
 	m_ReflectionTexture = 0;
 	m_RefractionTexture = 0;
 	m_WaterTexTimer = 0.0;
+	m_Shininess = 200.0f;
+	m_Waviness = 2.9f;
+	m_RepeatPeriod = 16.0f;
 
 	for (uint i = 0; i < ARRAY_SIZE(m_WaterTexture); i++)
 		m_WaterTexture[i] = 0;

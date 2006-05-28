@@ -345,6 +345,13 @@ void Render()
 
 
 		PROFILE_START( "render health bars" );
+		pglActiveTextureARB(GL_TEXTURE1_ARB);
+		glDisable(GL_TEXTURE_2D);
+		pglActiveTextureARB(GL_TEXTURE2_ARB);
+		glDisable(GL_TEXTURE_2D);
+		pglActiveTextureARB(GL_TEXTURE0_ARB);
+		glMatrixMode(GL_TEXTURE);
+		glLoadIdentity();
 		glMatrixMode(GL_PROJECTION);
 		glPushMatrix();
 		glLoadIdentity();
@@ -353,6 +360,7 @@ void Render()
 		glPushMatrix();
 		glLoadIdentity();
 
+		glEnable( GL_TEXTURE_2D );
 		g_Mouseover.renderBarBorders();
 		g_Selection.renderBarBorders();
 		glDisable( GL_TEXTURE_2D );

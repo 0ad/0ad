@@ -433,10 +433,7 @@ void TerrainRenderer::RenderWater()
 		float tx = -fmod(time, 20.0)/20.0;
 		float ty = fmod(time, 35.0)/35.0;
 		glTranslatef(tx, ty, 0);
-	}
 
-	if(!fancy)
-	{
 		// Set up texture environment to multiply vertex RGB by texture RGB and use vertex alpha
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
@@ -475,6 +472,7 @@ void TerrainRenderer::RenderWater()
 		GLint sunDir = ogl_program_get_uniform_location( m->fancyWaterShader, "sunDir" );
 		GLint sunColor = ogl_program_get_uniform_location( m->fancyWaterShader, "sunColor" );
 		GLint shininess = ogl_program_get_uniform_location( m->fancyWaterShader, "shininess" );
+		GLint waviness = ogl_program_get_uniform_location( m->fancyWaterShader, "waviness" );
 		GLint cameraPos = ogl_program_get_uniform_location( m->fancyWaterShader, "cameraPos" );
 		GLint reflectionMatrix = ogl_program_get_uniform_location( m->fancyWaterShader, "reflectionMatrix" );
 		GLint refractionMatrix = ogl_program_get_uniform_location( m->fancyWaterShader, "refractionMatrix" );
@@ -486,10 +484,11 @@ void TerrainRenderer::RenderWater()
 		pglUniform3fvARB( ambient, 1, &lightEnv.m_TerrainAmbientColor.X );
 		pglUniform3fvARB( sunDir, 1, &lightEnv.GetSunDir().X );
 		pglUniform3fvARB( sunColor, 1, &lightEnv.m_SunColor.X );
-		pglUniform1fARB( shininess, 200.0f );
+		pglUniform1fARB( shininess, WaterMgr->m_Shininess );
+		pglUniform1fARB( waviness, WaterMgr->m_Waviness );
 		pglUniformMatrix4fvARB( reflectionMatrix, 1, false, &WaterMgr->m_ReflectionMatrix._11 );
 		pglUniformMatrix4fvARB( refractionMatrix, 1, false, &WaterMgr->m_RefractionMatrix._11 );
-		pglUniform1iARB( normalMap, 0 );	// texture unit 0
+		pglUniform1iARB( normalMap, 0 );		// texture unit 0
 		pglUniform1iARB( reflectionMap, 1 );	// texture unit 1
 		pglUniform1iARB( refractionMap, 2 );	// texture unit 2
 
@@ -500,7 +499,7 @@ void TerrainRenderer::RenderWater()
 		vertexDepth = ogl_program_get_attrib_location( m->fancyWaterShader, "vertexDepth" );
 	}
 	
-	float repeatFreq = (fancy ? 18.0f : 16.0f);
+	float repeatPeriod = (fancy ? WaterMgr->m_RepeatPeriod : 16.0f);
 
 	glBegin(GL_QUADS);
 
@@ -567,7 +566,7 @@ void TerrainRenderer::RenderWater()
 					}
 
 					glColor4f(WaterMgr->m_WaterColor.r*losMod, WaterMgr->m_WaterColor.g*losMod, WaterMgr->m_WaterColor.b*losMod, alpha * FresnelScalar);
-					pglMultiTexCoord2fARB(GL_TEXTURE0, vertX/repeatFreq, vertZ/repeatFreq);
+					pglMultiTexCoord2fARB(GL_TEXTURE0, vertX/repeatPeriod, vertZ/repeatPeriod);
 					glVertex3f(vertX, WaterMgr->m_WaterHeight, vertZ);
 				}
 			}	//end of x loop
@@ -592,7 +591,13 @@ void TerrainRenderer::RenderWater()
 		ogl_program_use( 0 );
 	}
 
-	glLoadIdentity();
+	if(!fancy)
+	{
+		// Clean up the texture matrix and blend mode
+		glLoadIdentity();
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	}
+
 	glMatrixMode(GL_MODELVIEW);
 	glDepthMask(GL_TRUE);
 	glDisable(GL_BLEND);

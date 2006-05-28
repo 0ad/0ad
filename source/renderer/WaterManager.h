@@ -25,12 +25,6 @@ class WaterManager
 public:
 	Handle m_WaterTexture[60];
 	Handle m_NormalMap[60];
-	GLuint m_ReflectionTexture;
-	GLuint m_RefractionTexture;
-	uint m_ReflectionTextureSize;
-	uint m_RefractionTextureSize;
-	CMatrix3D m_ReflectionMatrix;	// model-view-projection matrix for reflected camera
-	CMatrix3D m_RefractionMatrix;	// model-view-projection matrix for refraction camera
 
 	int m_WaterCurrentTex;
 	CColor m_WaterColor;
@@ -48,6 +42,22 @@ public:
 	float m_SWaterScrollCounter;
 	float m_TWaterScrollCounter;
 	double m_WaterTexTimer;
+
+	// Reflection and refraction textures for fancy water
+	GLuint m_ReflectionTexture;
+	GLuint m_RefractionTexture;
+	uint m_ReflectionTextureSize;
+	uint m_RefractionTextureSize;
+
+	// Model-view-projection matrices for reflected & refracted cameras
+	// (used to let the vertex shader do projective texturing)
+	CMatrix3D m_ReflectionMatrix;
+	CMatrix3D m_RefractionMatrix;
+
+	// Shader parameters for fancy water
+	float m_RepeatPeriod;
+	float m_Shininess;
+	float m_Waviness;
 
 public:
 	WaterManager();
