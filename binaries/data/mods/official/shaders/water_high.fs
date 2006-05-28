@@ -33,12 +33,12 @@ void main()
 	fresnel = pow(1.0 - ndotv, 0.8);	// A rather arbitrary Fresnel approximation
 	
 	reflCoords = 0.5 * (gl_TexCoord[1].xy / gl_TexCoord[1].w) + 0.5;
-	reflCoords += 2.8 * n.xz / w;		// The 2.8 can be tweaked to make reflections "wavier"
+	reflCoords += 2.9 * n.xz / w;		// The 2.9 can be tweaked to make reflections "wavier"
 	
 	refrCoords = 0.5 * (gl_TexCoord[2].xy / gl_TexCoord[2].w) + 0.5;
 	refrCoords -= 2.6 * n.xz / w;		// The 2.6 can be tweaked to make refractions "wavier"
 	
-	reflCol = mix(0.7, 1.0, ndotl) * texture2D(reflectionMap, reflCoords).rgb;
+	reflCol = (0.8 + 0.2*ndotl) * texture2D(reflectionMap, reflCoords).rgb;
 	
 	refrCol = (ambient + ndotl * sunColor) * mix(texture2D(refractionMap, refrCoords).rgb, waterColor, 0.3);
 	
