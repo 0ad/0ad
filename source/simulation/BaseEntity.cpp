@@ -79,6 +79,7 @@ CBaseEntity::CBaseEntity( CPlayer* player )
 	m_corpse = CStrW();
 	m_foundation = CStrW();
 	m_passThroughAllies = false;
+	m_sectorDivs = 4;
 
 	// Sentinel values for stamina and health (so scripts can check if an entity has no stamina or no HP).
 	m_speed=0;

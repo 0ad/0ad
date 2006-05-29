@@ -74,7 +74,7 @@ class CCamera
 		// General helpers that seem to fit here
 
 		// Get the screen-space coordinates corresponding to a given world-space position 
-		void GetScreenCoordinates(const CVector3D& world, float& x, float& y);
+		void GetScreenCoordinates(const CVector3D& world, float& x, float& y) const;
 
 		// Get the point on the terrain corresponding to pixel (px,py) (or the mouse coordinates)
 		CVector3D GetWorldCoordinates(int px, int py);

@@ -41,11 +41,6 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
     m_ahead.y = cos( m_orientation.Y );
 	m_player = 0;
 
-	// set sane default in case someone forgets to add this to the entity's
-	// XML file, which is prone to happen. (prevents crash below when
-	// using this value to resize a vector)
-	const int sane_sectordivs_default = 4;
-
 	/* Anything added to this list MUST be added to BaseEntity.cpp (and variables used should
 		also be added to BaseEntity.h */
 	
@@ -125,14 +120,6 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
 	m_actorSelections = actorSelections;
 	loadBase();
 
-	// this has been the cause of several crashes (due to not being
-	// specified in the XML file), so in addition to the above default,
-	// we'll sanity check its value.
-	if(!(0 <= m_sectorDivs && m_sectorDivs < 360))
-	{
-		debug_warn("invalid entity flank_penalty.sectors value");
-		m_sectorDivs = sane_sectordivs_default;
-	}
 	m_sectorValues.resize(m_sectorDivs);
 	for ( int i=0; i<m_sectorDivs; ++i )
 		m_sectorValues[i] = false;
@@ -889,6 +876,11 @@ void CEntity::interpolate( float relativeoffset )
     m_graphics_position = Interpolate<CVector3D>( m_position_previous, m_position, relativeoffset );
 
     // Avoid wraparound glitches for interpolating angles.
+	
+	m_orientation.X = fmodf(m_orientation.X, 2*PI); // (ensure the following loops can't take forever)
+	m_orientation.Y = fmodf(m_orientation.Y, 2*PI);
+	m_orientation.Z = fmodf(m_orientation.Z, 2*PI);
+
     while( m_orientation.Y < m_orientation_previous.Y - PI )
         m_orientation_previous.Y -= 2 * PI;
     while( m_orientation.Y > m_orientation_previous.Y + PI )

@@ -187,7 +187,7 @@ void CCamera::BuildCameraRay( int px, int py, CVector3D& origin, CVector3D& dir 
 	dir.Normalize();
 }
 
-void CCamera::GetScreenCoordinates( const CVector3D& world, float& x, float& y )
+void CCamera::GetScreenCoordinates( const CVector3D& world, float& x, float& y ) const
 {
 	CMatrix3D transform;
 	m_Orientation.GetInverse( transform );
@@ -203,8 +203,8 @@ void CCamera::GetScreenCoordinates( const CVector3D& world, float& x, float& y )
 
 CVector3D CCamera::GetWorldCoordinates( int px, int py )
 {
-	CHFTracer tracer( g_Game->GetWorld()->GetTerrain() ); int x, z;
-
+	CHFTracer tracer( g_Game->GetWorld()->GetTerrain() );
+	int x, z;
 	CVector3D origin, dir, delta, currentTarget;
 
 	BuildCameraRay( px, py, origin, dir );
