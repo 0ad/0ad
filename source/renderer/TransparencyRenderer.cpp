@@ -546,6 +546,9 @@ u32 TransparentRenderModifier::BeginPass(uint pass)
 	{
 		// First pass: Put down Z for opaque parts of the model,
 		// don't touch the color buffer.
+
+		glDepthMask(1);
+
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
 		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_CONSTANT);

@@ -1176,7 +1176,7 @@ void CRenderer::FlushFrame()
 
 	oglCheck();
 
-	if(m_Options.m_FancyWater)
+	if(m_WaterManager->m_RenderWater && m_Options.m_FancyWater)
 	{
 		// render reflected and refracted scenes, then re-clear the screen
 		RenderReflections();
@@ -1208,18 +1208,21 @@ void CRenderer::FlushFrame()
 	RenderModels();
 	oglCheck();
 
-	// call on the transparency renderer to render all the transparent stuff
+	// render transparent stuff
 	MICROLOG(L"render transparent");
 	RenderTransparentModels();
 	oglCheck();
 
-	// render water (note: we're assuming there's no transparent stuff over water...
-	// we could also do this above render transparent if we assume there's no transparent
-	// stuff underwater)
+	// render water
 	if (m_WaterManager->m_RenderWater)
 	{
 		MICROLOG(L"render water");
 		m->terrainRenderer->RenderWater();
+		oglCheck();
+
+		// render transparent stuff again, so it can overlap the water
+		MICROLOG(L"render transparent 2");
+		RenderTransparentModels();
 		oglCheck();
 	}
 

@@ -287,7 +287,15 @@ void CGameView::RenderTerrain(CTerrain *pTerrain)
 	for (uint j=0; j<patchesPerSide; j++) {
 		for (uint i=0; i<patchesPerSide; i++) {
 			CPatch* patch=pTerrain->GetPatch(i,j);
-			if (frustum.IsBoxVisible (CVector3D(0,0,0),patch->GetBounds())) {
+
+			// If the patch is underwater, calculate a bounding box that also contains the water plane
+			CBound bounds = patch->GetBounds();
+			float waterHeight = g_Renderer.GetWaterManager()->m_WaterHeight + 0.001f;
+			if(bounds[1].Y < waterHeight) {
+				bounds[1].Y = waterHeight;
+			}
+			
+			if (frustum.IsBoxVisible (CVector3D(0,0,0), bounds)) {
 				g_Renderer.Submit(patch);
 			}
 		}
