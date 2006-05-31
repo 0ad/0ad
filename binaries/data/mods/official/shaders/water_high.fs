@@ -39,7 +39,7 @@ void main()
 	reflCoords += waviness * n.xz / w;
 	
 	refrCoords = 0.5 * (gl_TexCoord[2].xy / gl_TexCoord[2].w) + 0.5;	// Unbias texture coords
-	refrCoords -= waviness * n.xz / w;
+	refrCoords -= 0.8 * waviness * n.xz / w;		// Refractions can be slightly less wavy
 	
 	reflColor = texture2D(reflectionMap, reflCoords).rgb;
 	
@@ -51,6 +51,6 @@ void main()
 	
 	// Make alpha vary based on both depth (so it blends with the shore) and view angle (make it
 	// become opaque faster at lower view angles so we can't look "underneath" the water plane)
-	t = 8.0 * max(0.0, 0.7 - v.y);
+	t = 18.0 * max(0.0, 0.7 - v.y);
 	gl_FragColor.a = 0.15 * waterDepth * (1.2 + t + fresnel);
 }
