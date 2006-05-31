@@ -2,6 +2,8 @@
 
 #include "DLLInterface.h"
 
+#include "General/AtlasEventLoop.h"
+
 #include "General/Datafile.h"
 #include "ActorEditor/ActorEditor.h"
 #include "ColourTester/ColourTester.h"
@@ -183,6 +185,20 @@ public:
 			report.Process();
 			OpenDirectory(dir);
 		}
+	}
+
+	virtual int MainLoop()
+	{
+		// Override the default MainLoop so that we can provide our own event loop
+
+		wxEventLoop* old = m_mainLoop;
+		m_mainLoop = new AtlasEventLoop;
+
+		int ret = m_mainLoop->Run();
+
+		delete m_mainLoop;
+		m_mainLoop = old;
+		return ret;
 	}
 };
 

@@ -6,6 +6,8 @@
 #include "wx/evtloop.h"
 #include "wx/tooltip.h"
 
+#include "General/AtlasEventLoop.h"
+
 #include "SnapSplitterWindow/SnapSplitterWindow.h"
 #include "HighResTimer/HighResTimer.h"
 #include "Buttons/ToolButton.h"
@@ -532,6 +534,9 @@ AtlasMessage::Position::Position(const wxPoint& pt)
 	type1.y = pt.y;
 }
 
+//////////////////////////////////////////////////////////////////////////
+
+
 static void QueryCallback()
 {
 	// If this thread completely blocked on the semaphore inside Query, it would
@@ -544,9 +549,66 @@ static void QueryCallback()
 	// This is kind of like wxYield, but without the ProcessPendingEvents -
 	// it's enough to make Windows happy and stop deadlocking, without actually
 	// calling the event handlers (which could lead to nasty recursion)
-	while (wxEventLoop::GetActive()->Pending())
-		wxEventLoop::GetActive()->Dispatch();
+
+// 	while (wxEventLoop::GetActive()->Pending())
+// 		wxEventLoop::GetActive()->Dispatch();
+
+	// Oh dear, we can't use that either - it (at least in wx 2.6.3) still
+	// processes messages, which causes reentry into various things that we
+	// don't want to be reentrant. So do it all manually, accepting Windows
+	// messages and sticking them on a list for later processing (in a custom
+	// event loop class):
+
+	// (TODO: Rethink this entire process on Linux)
+	// (Alt TODO: Could we make the game never pop up windows (or use the Win32
+	// GUI in any other way) when it's running under Atlas, so we wouldn't need
+	// to do any message processing here at all?)
+
+	AtlasEventLoop* evtLoop = (AtlasEventLoop*)wxEventLoop::GetActive();
+
+	while (evtLoop->Pending())
+	{
+		// Based on src/msw/evtloop.cpp's wxEventLoop::Dispatch()
+
+		MSG msg;
+		BOOL rc = ::GetMessage(&msg, (HWND) NULL, 0, 0);
+
+		if (rc == 0)
+		{
+			// got WM_QUIT
+			return;
+		}
+
+		if (rc == -1)
+		{
+			wxLogLastError(wxT("GetMessage"));
+			return;
+		}
+
+		// Our special bits:
+
+		if (msg.message == WM_PAINT)
+		{
+			// "GetMessage does not remove WM_PAINT messages from the queue.
+			// The messages remain in the queue until processed."
+			// So let's process them, to avoid infinite loops...
+			PAINTSTRUCT paint;
+			::BeginPaint(msg.hwnd, &paint);
+			::EndPaint(msg.hwnd, &paint);
+			// Remember that some painting was needed - we'll just repaint
+			// the whole screen when this is finished.
+			evtLoop->NeedsPaint();
+		}
+		else
+		{
+			// Add this message to a queue for later processing. (That's
+			// probably kind of valid, at least in most cases.)
+			MSG* pMsg = new MSG(msg);
+			evtLoop->AddMessage(pMsg);
+		}
+	}
 }
+
 void AtlasMessage::QueryMessage::Post()
 {
 	g_MessagePasser->Query(this, &QueryCallback);

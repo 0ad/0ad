@@ -4,22 +4,22 @@
   <castshadow/>
 
   <group>
-    <variant frequency="10" name="1">
+    <variant frequency="10" name="Base">
       <mesh>props/head_lime.pmd</mesh>
     </variant>
   </group>
 
   <group>
-    <variant>
+    <variant name="head e">
       <texture>props/head/celt_e.dds</texture>
     </variant>
-    <variant>
+    <variant name="head f">
       <texture>props/head/celt_f.dds</texture>
     </variant>
-    <variant>
+    <variant name="head g">
       <texture>props/head/celt_g.dds</texture>
     </variant>
-    <variant>
+    <variant name="head h">
       <texture>props/head/celt_h.dds</texture>
     </variant>
   </group>

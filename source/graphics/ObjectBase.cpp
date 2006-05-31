@@ -486,3 +486,73 @@ std::set<CStrW> CObjectBase::CalculateRandomVariation(const std::set<CStrW>& ini
 
 	return selections;
 }
+
+std::vector<std::vector<CStrW> > CObjectBase::GetVariantGroups() const
+{
+	std::vector<std::vector<CStrW> > groups;
+
+	// Queue of objects (main actor plus props (recursively)) to be processed
+	std::queue<const CObjectBase*> objectsQueue;
+	objectsQueue.push(this);
+
+	// Set of objects already processed, so we don't do them more than once
+	std::set<const CObjectBase*> objectsProcessed;
+
+	while (objectsQueue.size())
+	{
+		const CObjectBase* obj = objectsQueue.front();
+		objectsQueue.pop();
+		// Ignore repeated objects (likely to be props)
+		if (objectsProcessed.find(obj) != objectsProcessed.end())
+			continue;
+
+		objectsProcessed.insert(obj);
+
+		// Iterate through the list of groups
+		for (size_t i = 0; i < obj->m_VariantGroups.size(); ++i)
+		{
+			// Copy the group's variant names into a new vector
+			std::vector<CStrW> group;
+			group.reserve(obj->m_VariantGroups[i].size());
+			for (size_t j = 0; j < obj->m_VariantGroups[i].size(); ++j)
+				group.push_back(obj->m_VariantGroups[i][j].m_VariantName);
+
+			// If this group is identical to one elsewhere, don't bother listing
+			// it twice.
+			// Linear search is theoretically not very efficient, but hopefully
+			// we don't have enough props for that to matter...
+			bool dupe = false;
+			for (size_t j = 0; j < groups.size(); ++j)
+			{
+				if (groups[j] == group)
+				{
+					dupe = true;
+					break;
+				}
+			}
+			if (dupe)
+				continue;
+
+			// Add non-trivial groups (i.e. not just one entry) to the returned list
+			if (obj->m_VariantGroups[i].size() > 1)
+				groups.push_back(group);
+
+			// Add all props onto the queue to be considered
+			for (size_t j = 0; j < obj->m_VariantGroups[i].size(); ++j)
+			{
+				const std::vector<Prop>& props = obj->m_VariantGroups[i][j].m_Props;
+				for (size_t k = 0; k < props.size(); ++k)
+				{
+					if (props[k].m_ModelName.Length())
+					{
+						CObjectBase* prop = g_ObjMan.FindObjectBase(props[k].m_ModelName);
+						if (prop)
+							objectsQueue.push(prop);
+					}
+				}
+			}
+		}
+	}
+
+	return groups;
+}

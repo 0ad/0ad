@@ -47,7 +47,9 @@ CObjectManager::~CObjectManager()
 
 CObjectBase* CObjectManager::FindObjectBase(const char* objectname)
 {
-	// See if the base type has been loaded yet
+	debug_assert(strcmp(objectname, "") != 0);
+
+	// See if the base type has been loaded yet:
 
 	for (uint k = 0; k < m_ObjectTypes.size(); k++)
 	{

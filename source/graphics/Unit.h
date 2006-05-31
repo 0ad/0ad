@@ -57,6 +57,10 @@ public:
 	int GetID() const { return m_ID; }
 	void SetID(int id) { m_ID = id; }
 
+	const std::set<CStrW>& GetActorSelections() const { return m_ActorSelections; }
+	
+	void SetActorSelections(const std::set<CStrW>& selections);
+
 private:
 	// object from which unit was created
 	CObjectEntry* m_Object;

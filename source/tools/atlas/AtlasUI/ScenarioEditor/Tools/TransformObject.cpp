@@ -3,6 +3,7 @@
 #include "Common/Tools.h"
 #include "Common/Brushes.h"
 #include "Common/MiscState.h"
+#include "Common/ObjectSettings.h"
 #include "GameInterface/Messages.h"
 
 using AtlasMessage::Position;
@@ -35,27 +36,41 @@ public:
 		{
 			if (evt.LeftDown())
 			{
-				// TODO: multiple selection
+				// New selection - never merge with movements of other objects
+				ScenarioEditor::GetCommandProc().FinaliseLastCommand();
+
+				// Select the object clicked on:
+
 				AtlasMessage::qPickObject qry(Position(evt.GetPosition()));
 				qry.Post();
+
+				// TODO: handle multiple selections
 				g_SelectedObjects.clear();
+
+				// Check they actually clicked on a valid object
 				if (AtlasMessage::ObjectIDIsValid(qry.id))
 				{
 					g_SelectedObjects.push_back(qry.id);
+					// Remember the screen-space offset of the mouse from the
+					// object's centre, so we can add that back when moving it
+					// (instead of just moving the object's centre to directly
+					// beneath the mouse)
 					obj->m_dx = qry.offsetx;
 					obj->m_dy = qry.offsety;
 					SET_STATE(Dragging);
 				}
 				g_SelectedObjects.NotifyObservers();
 				POST_MESSAGE(SetSelectionPreview, (g_SelectedObjects));
-				ScenarioEditor::GetCommandProc().FinaliseLastCommand();
 				return true;
 			}
 			else if (evt.Dragging() && evt.RightIsDown() || evt.RightDown())
 			{
+				// Dragging with right mouse button -> rotate objects to look
+				// at mouse
 				Position pos (evt.GetPosition());
 				for (size_t i = 0; i < g_SelectedObjects.size(); ++i)
 					POST_COMMAND(RotateObject, (g_SelectedObjects[i], true, pos, 0.f));
+
 				return true;
 			}
 			else
@@ -68,9 +83,18 @@ public:
 			{
 				for (size_t i = 0; i < g_SelectedObjects.size(); ++i)
 					POST_COMMAND(DeleteObject, (g_SelectedObjects[i]));
+
 				g_SelectedObjects.clear();
 				g_SelectedObjects.NotifyObservers();
+
 				POST_MESSAGE(SetSelectionPreview, (g_SelectedObjects));
+				return true;
+			}
+			else if (type == KEY_CHAR && (evt.GetKeyCode() >= '0' && evt.GetKeyCode() <= '9'))
+			{
+				int playerID = evt.GetKeyCode() - '0';
+				g_ObjectSettings.SetPlayerID(playerID);
+				g_ObjectSettings.NotifyObservers();
 				return true;
 			}
 			else

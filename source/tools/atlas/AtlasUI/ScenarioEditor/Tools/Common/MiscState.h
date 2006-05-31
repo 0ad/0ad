@@ -10,9 +10,6 @@ namespace AtlasMessage
 
 extern wxString g_SelectedTexture;
 
-// Observer order:
-//  0 = g_UnitSettings
-//  1 = things that want to access g_UnitSettings
 extern Observable<std::vector<AtlasMessage::ObjectID> > g_SelectedObjects;
 
 #endif // MISCSTATE_H__

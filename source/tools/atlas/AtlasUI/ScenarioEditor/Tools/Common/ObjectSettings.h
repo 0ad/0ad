@@ -19,10 +19,21 @@ public:
 	ObjectSettings();
 	~ObjectSettings();
 
-	int GetPlayerID();
+	int GetPlayerID() const;
 	void SetPlayerID(int playerID);
+
+	struct Group
+	{
+		wxArrayString variants;
+		wxString chosen;
+	};
+
+	const std::vector<Group> GetActorVariation() const;
+
+	const std::set<wxString>& GetActorSelections() const;
 	void SetActorSelections(const std::set<wxString>& selections);
 
+	// Constructs new sObjectSettings object from settings
 	AtlasMessage::sObjectSettings GetSettings() const;
 
 private:
@@ -34,6 +45,9 @@ private:
 	// a new actor, and will accumulate variant names)
 	std::set<wxString> m_ActorSelections;
 
+	// List of actor variant groups (each a list of variant names)
+	std::vector<wxArrayString> m_VariantGroups;
+
 	// Observe changes to unit selection
 	ObservableConnection m_Conn;
 	void OnSelectionChange(const std::vector<AtlasMessage::ObjectID>& selection);
@@ -42,6 +56,6 @@ private:
 	void PostToGame();
 };
 
-extern ObjectSettings g_ObjectSettings;
+extern Observable<ObjectSettings> g_ObjectSettings;
 
 #endif // ObjectSettings_H__

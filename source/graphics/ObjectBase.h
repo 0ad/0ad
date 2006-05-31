@@ -60,11 +60,22 @@ public:
 
 	CObjectBase();
 
+	// Get the variation key (indices of chosen variants from each group)
+	// based on the selection strings
 	std::vector<u8> CalculateVariationKey(const std::vector<std::set<CStrW> >& selections);
 
+	// Get the final actor data, combining all selected variants
 	const Variation BuildVariation(const std::vector<u8>& variationKey);
 
+	// Get a set of selection strings that are complete enough to specify an
+	// exact variation of the actor, using the initial selections wherever possible
+	// and choosing randomly where a choice is necessary. 
 	std::set<CStrW> CalculateRandomVariation(const std::set<CStrW>& initialSelections);
+
+	// Get a list of variant groups for this object, plus for all possible
+	// props. Duplicated groups are removed, if several props share the same
+	// variant names.
+	std::vector<std::vector<CStrW> > GetVariantGroups() const;
 
 	bool Load(const char* filename);
 

@@ -110,14 +110,51 @@ QUERYHANDLER(GetObjectSettings)
 
 	sObjectSettings settings;
 	settings.player = unit->GetPlayerID();
-	// TODO: actor variation
 
+	// Get the unit's possible variants and selected variants
+	std::vector<std::vector<CStrW> > groups = unit->GetObject()->m_Base->GetVariantGroups();
+	const std::set<CStrW>& selections = unit->GetActorSelections();
+
+	// Iterate over variant groups
+	std::vector<std::vector<std::wstring> > variantgroups;
+	std::set<std::wstring> selections_set;
+	variantgroups.reserve(groups.size());
+	for (size_t i = 0; i < groups.size(); ++i)
+	{
+		// Copy variants into output structure
+
+		std::vector<std::wstring> group;
+		group.reserve(groups[i].size());
+		int choice = -1;
+
+		for (size_t j = 0; j < groups[i].size(); ++j)
+		{
+			group.push_back(groups[i][j]);
+
+			// Find the first string in 'selections' that matches one of this
+			// group's variants
+			if (choice == -1)
+				if (selections.find(groups[i][j]) != selections.end())
+					choice = (int)j;
+		}
+
+		// Assuming one of the variants was selected (which it really ought
+		// to be), remember that one's name
+		if (choice != -1)
+			selections_set.insert(groups[i][choice]);
+
+		variantgroups.push_back(group);
+	}
+
+	settings.variantgroups = variantgroups;
+	settings.selections = std::vector<std::wstring> (selections_set.begin(), selections_set.end()); // convert set->vector
 	msg->settings = settings;
 }
 
 BEGIN_COMMAND(SetObjectSettings)
 
 	int m_PlayerOld, m_PlayerNew;
+	std::set<CStrW> m_SelectionsOld, m_SelectionsNew;
 
 	void Do()
 	{
@@ -128,7 +165,12 @@ BEGIN_COMMAND(SetObjectSettings)
 
 		m_PlayerOld = unit->GetPlayerID();
 		m_PlayerNew = settings.player;
-		// TODO: actor variations
+
+		m_SelectionsOld = unit->GetActorSelections();
+
+		std::vector<std::wstring> selections = *settings.selections;
+		copy(selections.begin(), selections.end(),
+			std::insert_iterator<std::set<CStrW> >(m_SelectionsNew, m_SelectionsNew.begin()));
 
 		Redo();
 	}
@@ -139,6 +181,7 @@ BEGIN_COMMAND(SetObjectSettings)
 		if (! unit) return;
 
 		unit->SetPlayerID(m_PlayerNew);
+		unit->SetActorSelections(m_SelectionsNew);
 	}
 
 	void Undo()
@@ -147,6 +190,7 @@ BEGIN_COMMAND(SetObjectSettings)
 		if (! unit) return;
 
 		unit->SetPlayerID(m_PlayerOld);
+		unit->SetActorSelections(m_SelectionsOld);
 	}
 
 END_COMMAND(SetObjectSettings);
@@ -405,10 +449,15 @@ QUERYHANDLER(PickObject)
 
 	if (target)
 	{
+		// Get screen coordinates of the point on the ground underneath the
+		// object's model-centre, so that callers know the offset to use when
+		// working out the screen coordinates to move the object to.
+		// (TODO: http://trac.0ad.homeip.net/ticket/99)
 		CVector3D centre = target->GetModel()->GetTransform().GetTranslation();
 		centre.Y = g_Game->GetWorld()->GetTerrain()->getExactGroundLevel(centre.X, centre.Z);
 		float cx, cy;
 		g_Game->GetView()->GetCamera()->GetScreenCoordinates(centre, cx, cy);
+
 		msg->offsetx = (int)(cx - x);
 		msg->offsety = (int)(cy - y);
 	}
@@ -472,7 +521,8 @@ BEGIN_COMMAND(MoveObject)
 
 	void MergeWithSelf(cMoveObject* prev)
 	{
-		// TODO: merge correctly when prev unit != this unit
+		// TODO: do something valid if prev unit != this unit
+		debug_assert(prev->msg->id == msg->id);
 		prev->m_PosNew = m_PosNew;
 	}
 
@@ -563,7 +613,8 @@ BEGIN_COMMAND(RotateObject)
 
 	void MergeWithSelf(cRotateObject* prev)
 	{
-		// TODO: merge correctly when prev unit != this unit
+		// TODO: do something valid if prev unit != this unit
+		debug_assert(prev->msg->id == msg->id);
 		prev->m_AngleNew = m_AngleNew;
 		prev->m_TransformNew = m_TransformNew;
 	}

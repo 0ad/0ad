@@ -130,6 +130,12 @@ void CUnit::SetEntitySelection(const CStrW& selection)
 	ReloadObject();
 }
 
+void CUnit::SetActorSelections(const std::set<CStrW>& selections)
+{
+	m_ActorSelections = selections;
+	ReloadObject();
+}
+
 void CUnit::ReloadObject()
 {
 	std::vector<std::set<CStrW> > selections;

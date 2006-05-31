@@ -106,6 +106,11 @@ struct sObjectSettings
 {
 	Shareable<int> player;
 	Shareable<std::vector<std::wstring> > selections;
+
+	// Some settings are immutable and therefore are ignored (and should be left
+	// empty) when passed from the editor to the game:
+
+	Shareable<std::vector<std::vector<std::wstring> > > variantgroups;
 };
 SHAREABLE_STRUCT(sObjectSettings);
 
