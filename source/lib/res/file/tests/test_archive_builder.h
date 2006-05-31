@@ -1,0 +1,105 @@
+#include <cxxtest/TestSuite.h>
+
+#include "lib/res/file/archive_builder.h"
+
+class TestArchiveBuilder : public CxxTest::TestSuite 
+{
+	const char* const archive_fn;
+	const size_t NUM_FILES;
+	const size_t MAX_FILE_SIZE;
+
+	std::set<const char*> existing_names;
+	const char* gen_random_name()
+	{
+		// 10 chars is enough for (10-1)*5 bits = 45 bits > u32
+		char name_tmp[10];
+
+		for(;;)
+		{
+			u32 rand_num = rand(0, 100000);
+			base32(4, (u8*)&rand_num, name_tmp);
+
+			// store filename in atom pool
+			const char* atom_fn = file_make_unique_fn_copy(name_tmp);
+			// done if the filename is unique (not been generated yet)
+			if(existing_names.find(atom_fn) == existing_names.end())
+			{
+				existing_names.insert(atom_fn);
+				break;
+			}
+		}
+	}
+
+	struct TestFile
+	{
+		off_t size;
+		u8* data;	// must be delete[]-ed after comparing
+	};
+	// (must be separate array and end with NULL entry (see Filenames))
+	const char* filenames[NUM_FILES+1];
+
+	void generate_random_files()
+	{
+		TestFile files[NUM_FILES];
+		for(size_t i = 0; i < NUM_FILES; i++)
+		{
+			const size_t size = rand(0, MAX_FILE_SIZE);
+			u8* data = new u8[size];
+
+			// random data won't compress at all, and we want to exercise
+			// the uncompressed codepath as well => make some of the files
+			// easily compressible (much less values).
+			const bool make_easily_compressible = (rand(0, 100) > 50);
+			if(make_easily_compressible)
+			{
+				for(size_t i = 0; i < size; i++)
+					data[i] = rand() & 0x0F;
+			}
+			else
+			{
+				for(size_t i = 0; i < size; i++)
+					data[i] = rand() & 0xFF;
+			}
+
+			filenames[i] = gen_random_name();
+			files[i].size = size;
+			files[i].data = data;
+
+			TS_ASSERT_OK(vfs_store(filenames[i], data, size, FILE_NO_AIO));
+		}
+
+		filenames[NUM_FILES] = NULL;
+	}
+
+public:
+	TestArchiveBuilder()
+		: archive_fn("test_archive_random_data.zip"),
+		NUM_FILES(300), MAX_FILE_SIZE(20000) {}
+
+	void test()
+	{
+		generate_random_files();
+
+		// build and open archive
+		TS_ASSERT_OK(archive_build(archive_fn, filenames));
+		Handle ha = archive_open(archive_fn);
+		TS_ASSERT(ha > 0);
+
+		// read in each file and compare file contents
+		for(size_t i = 0; i < num_files; i++)
+		{
+			File f;
+			TS_ASSERT_OK(afile_open(ha, filenames[i], 0, 0, &f));
+			FileIOBuf buf = FILE_BUF_ALLOC;
+			ssize_t bytes_read = afile_read(&f, 0, files[i].size, &buf);
+			TS_ASSERT_EQUAL(bytes_read, files[i].size);
+
+			TS_ASSERT_SAME_DATA(buf, files[i].data);
+
+			TS_ASSERT_OK(file_buf_free(buf));
+			SAFE_ARRAY_DELETE(files[i].data);
+		}
+
+		TS_ASSERT_OK(archive_close(ha));
+	}
+};
