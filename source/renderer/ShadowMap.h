@@ -36,6 +36,13 @@ public:
 	~ShadowMap();
 
 	/**
+	 * RecreateTexture: Destroy the current shadow texture and force creation of
+	 * a new one. Useful when the renderer's size has changed and the texture
+	 * should be resized too.
+	 */
+	void RecreateTexture();
+
+	/**
 	 * GetUseDepthTexture: Return whether rendering uses a depth texture (instead of
 	 * a luminance texture).
 	 *

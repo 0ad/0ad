@@ -96,6 +96,22 @@ ShadowMap::~ShadowMap()
 	delete m;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Force the texture/buffer/etc to be recreated, particularly when the renderer's
+// size has changed
+void ShadowMap::RecreateTexture()
+{
+	if (m->Texture)
+		glDeleteTextures(1, &m->Texture);
+	if (m->Framebuffer)
+		pglDeleteFramebuffersEXT(1, &m->Framebuffer);
+
+	m->Texture = 0;
+	m->Framebuffer = 0;
+
+	// (Texture will be constructed in next SetupFrame)
+}
+
 //////////////////////////////////////////////////////////////////////////////
 // SetupFrame: camera and light direction for this frame
 void ShadowMap::SetupFrame(const CCamera& camera, const CVector3D& lightdir)
@@ -234,7 +250,7 @@ void ShadowMapInternals::CalcShadowMatrices()
 
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
 // Create the shadow map
 void ShadowMapInternals::CreateTexture()
 {

@@ -530,8 +530,7 @@ bool CRenderer::Open(int width, int height, int depth)
 void CRenderer::Resize(int width,int height)
 {
 	// need to recreate the shadow map object to resize the shadow texture
-	delete m->shadow;
-	m->shadow = new ShadowMap;
+	m->shadow->RecreateTexture();
 
 	m_Width = width;
 	m_Height = height;
