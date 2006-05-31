@@ -1028,7 +1028,11 @@ void CRenderer::RenderReflections()
 	// Remember old camera
 	CCamera normalCamera = m_ViewCamera;
 
-	// Temporarily change the camera to one that is reflected
+	// Temporarily change the camera to one that is reflected.
+	// Also, for texturing purposes, make it render to a view port the size of the
+	// water texture, stretch the image according to our aspect ratio so it covers
+	// the whole screen despite being rendered into a square, and cover slightly more
+	// of the view so we can see wavy reflections of slightly off-screen objects.
 	m_ViewCamera.m_Orientation.Translate(0, -wm.m_WaterHeight, 0);
 	m_ViewCamera.m_Orientation.Scale(1, -1, 1);
 	m_ViewCamera.m_Orientation.Translate(0, wm.m_WaterHeight, 0);
@@ -1038,7 +1042,10 @@ void CRenderer::RenderReflections()
 	vp.m_X = 0;
 	vp.m_Y = 0;
 	m_ViewCamera.SetViewPort(&vp);
-	m_ViewCamera.SetProjection(1, 5000, DEGTORAD(25));
+	m_ViewCamera.SetProjection(1, 5000, DEGTORAD(21));	// Slightly higher than view FOV of 20
+	CMatrix3D scaleMat;
+	scaleMat.SetScaling(m_Height/float(std::max(1, m_Width)), 1.0f, 1.0f);
+	m_ViewCamera.m_ProjMat = scaleMat * m_ViewCamera.m_ProjMat;
 	SetCamera(m_ViewCamera, m_CullCamera);
 
 	CVector4D camPlane(0, 1, 0, -wm.m_WaterHeight);
@@ -1094,14 +1101,20 @@ void CRenderer::RenderRefractions()
 	// Remember old camera
 	CCamera normalCamera = m_ViewCamera;
 
-	// Temporarily change the camera to have a higher FOV (so we get bits on the edge of the view)
+	// Temporarily change the camera to make it render to a view port the size of the
+	// water texture, stretch the image according to our aspect ratio so it covers
+	// the whole screen despite being rendered into a square, and cover slightly more
+	// of the view so we can see wavy refractions of slightly off-screen objects.
 	SViewPort vp;
 	vp.m_Height = wm.m_RefractionTextureSize;
 	vp.m_Width = wm.m_RefractionTextureSize;
 	vp.m_X = 0;
 	vp.m_Y = 0;
 	m_ViewCamera.SetViewPort(&vp);
-	m_ViewCamera.SetProjection(1, 5000, DEGTORAD(25));
+	m_ViewCamera.SetProjection(1, 5000, DEGTORAD(21));	// Slightly higher than view FOV of 20
+	CMatrix3D scaleMat;
+	scaleMat.SetScaling(m_Height/float(std::max(1, m_Width)), 1.0f, 1.0f);
+	m_ViewCamera.m_ProjMat = scaleMat * m_ViewCamera.m_ProjMat;
 	SetCamera(m_ViewCamera, m_CullCamera);
 
 	CVector4D camPlane(0, 1, 0, -wm.m_WaterHeight);

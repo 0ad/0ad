@@ -103,12 +103,11 @@ class CCamera
 		// This is the orientation matrix. The inverse of this
 		// is the view matrix
 		CMatrix3D		m_Orientation;
-
-	private:
-		// keep the projection matrix private
-		// so others can't fiddle with it.
+		
+		// Should not be tweaked externally if possible
 		CMatrix3D		m_ProjMat;
 
+	private:
 		float			m_NearPlane;
 		float			m_FarPlane;
 		float			m_FOV;

@@ -15,7 +15,6 @@
 #include "Quaternion.h"
 #include "self_test.h"
 
-
 CMatrix3D::CMatrix3D ()
 {
 }
