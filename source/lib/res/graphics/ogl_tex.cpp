@@ -875,7 +875,7 @@ LibError ogl_tex_get_size(Handle ht, uint* w, uint* h, uint* bpp)
 }
 
 
-// retrieve Tex.flags and the corresponding OpenGL format.
+// retrieve TexFlags and the corresponding OpenGL format.
 // the latter is determined during ogl_tex_upload and is 0 before that.
 // all params are optional and filled if non-NULL.
 LibError ogl_tex_get_format(Handle ht, uint* flags, GLenum* fmt)

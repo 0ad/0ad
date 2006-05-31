@@ -34,6 +34,10 @@
 #include "tex_codec.h"
 
 
+//-----------------------------------------------------------------------------
+// validation
+//-----------------------------------------------------------------------------
+
 // be careful not to use other tex_* APIs here because they call us.
 LibError tex_validate(const Tex* t)
 {
@@ -100,6 +104,54 @@ LibError tex_validate_plain_format(uint bpp, uint flags)
 		return ERR_OK;
 
 	WARN_RETURN(ERR_TEX_FMT_INVALID);
+}
+
+
+//-----------------------------------------------------------------------------
+// mipmaps
+//-----------------------------------------------------------------------------
+
+void tex_util_foreach_mipmap(uint w, uint h, uint bpp, const u8* restrict data,
+	int levels_to_skip, uint data_padding, MipmapCB cb, void* restrict ctx)
+{
+	uint level_w = w, level_h = h;
+	const u8* level_data = data;
+
+	// we iterate through the loop (necessary to skip over image data),
+	// but do not actually call back until the requisite number of
+	// levels have been skipped (i.e. level == 0).
+	int level = -(int)levels_to_skip;
+	if(levels_to_skip == -1)
+		level = 0;
+
+	// until at level 1x1:
+	for(;;)
+	{
+		// used to skip past this mip level in <data>
+		const size_t level_data_size = (size_t)(round_up(level_w, data_padding) * round_up(level_h, data_padding) * bpp/8);
+
+		if(level >= 0)
+			cb((uint)level, level_w, level_h, level_data, level_data_size, ctx);
+
+		level_data += level_data_size;
+
+		// 1x1 reached - done
+		if(level_w == 1 && level_h == 1)
+			break;
+		level_w /= 2;
+		level_h /= 2;
+		// if the texture is non-square, one of the dimensions will become
+		// 0 before the other. to satisfy OpenGL's expectations, change it
+		// back to 1.
+		if(level_w == 0) level_w = 1;
+		if(level_h == 0) level_h = 1;
+		level++;
+
+		// special case: no mipmaps, we were only supposed to call for
+		// the base level
+		if(levels_to_skip == TEX_BASE_LEVEL_ONLY)
+			break;
+	}
 }
 
 
@@ -181,6 +233,34 @@ static void create_level(uint level, uint level_w, uint level_h,
 	cld->prev_level_h = level_h;
 }
 
+
+static LibError add_mipmaps(Tex* t, uint w, uint h, uint bpp,
+	void* new_data, size_t data_size)
+{
+	// this code assumes the image is of POT dimension; we don't
+	// go to the trouble of implementing image scaling because
+	// the only place this is used (ogl_tex_upload) requires POT anyway.
+	if(!is_pow2(w) || !is_pow2(h))
+		WARN_RETURN(ERR_TEX_INVALID_SIZE);
+	t->flags |= TEX_MIPMAPS;	// must come before tex_img_size!
+	const size_t mipmap_size = tex_img_size(t);
+	Handle hm;
+	const u8* mipmap_data = (const u8*)mem_alloc(mipmap_size, 4*KiB, 0, &hm);
+	if(!mipmap_data)
+		WARN_RETURN(ERR_NO_MEM);
+	CreateLevelData cld = { bpp/8, w, h, (const u8*)new_data, data_size };
+	tex_util_foreach_mipmap(w, h, bpp, mipmap_data, 0, 1, create_level, &cld);
+	mem_free_h(t->hm);
+	t->hm = hm;
+	t->ofs = 0;
+
+	return ERR_OK;
+}
+
+
+//-----------------------------------------------------------------------------
+// pixel format conversion (transformation)
+//-----------------------------------------------------------------------------
 
 TIMER_ADD_CLIENT(tc_plain_transform);
 
@@ -289,27 +369,49 @@ TIMER_ACCRUE(tc_plain_transform);
 	t->ofs = 0;
 
 	if(!(t->flags & TEX_MIPMAPS) && transforms & TEX_MIPMAPS)
-	{
-		// this code assumes the image is of POT dimension; we don't
-		// go to the trouble of implementing image scaling because
-		// the only place this is used (ogl_tex_upload) requires POT anyway.
-		if(!is_pow2(w) || !is_pow2(h))
-			WARN_RETURN(ERR_TEX_INVALID_SIZE);
-		t->flags |= TEX_MIPMAPS;	// must come before tex_img_size!
-		const size_t mipmap_size = tex_img_size(t);
-		Handle hm;
-		const u8* mipmap_data = (const u8*)mem_alloc(mipmap_size, 4*KiB, 0, &hm);
-		if(!mipmap_data)
-			WARN_RETURN(ERR_NO_MEM);
-		CreateLevelData cld = { bpp/8, w, h, (const u8*)new_data, data_size };
-		tex_util_foreach_mipmap(w, h, bpp, mipmap_data, 0, 1, create_level, &cld);
-		mem_free_h(t->hm);
-		t->hm = hm;
-		t->ofs = 0;
-	}
+		RETURN_ERR(add_mipmaps(t, w, h, bpp, new_data, data_size));
 
 	CHECK_TEX(t);
 	return ERR_OK;
+}
+
+
+TIMER_ADD_CLIENT(tc_transform);
+
+// change <t>'s pixel format by flipping the state of all TEX_* flags
+// that are set in transforms.
+LibError tex_transform(Tex* t, uint transforms)
+{
+	TIMER_ACCRUE(tc_transform);
+	CHECK_TEX(t);
+
+	const uint target_flags = t->flags ^ transforms;
+	uint remaining_transforms;
+	for(;;)
+	{
+		remaining_transforms = target_flags ^ t->flags;
+		// we're finished (all required transforms have been done)
+		if(remaining_transforms == 0)
+			return ERR_OK;
+
+		LibError ret = tex_codec_transform(t, remaining_transforms);
+		if(ret != 0)
+			break;
+	}
+
+	// last chance
+	RETURN_ERR(plain_transform(t, remaining_transforms));
+	return ERR_OK;
+}
+
+
+// change <t>'s pixel format to the new format specified by <new_flags>.
+// (note: this is equivalent to tex_transform(t, t->flags^new_flags).
+LibError tex_transform_to(Tex* t, uint new_flags)
+{
+	// tex_transform takes care of validating <t>
+	const uint transforms = t->flags ^ new_flags;
+	return tex_transform(t, transforms);
 }
 
 
@@ -369,55 +471,7 @@ bool tex_orientations_match(uint src_flags, uint dst_orientation)
 
 
 //-----------------------------------------------------------------------------
-// util
-//-----------------------------------------------------------------------------
-
-void tex_util_foreach_mipmap(uint w, uint h, uint bpp, const u8* restrict data,
-	int levels_to_skip, uint data_padding, MipmapCB cb, void* restrict ctx)
-{
-	uint level_w = w, level_h = h;
-	const u8* level_data = data;
-
-	// we iterate through the loop (necessary to skip over image data),
-	// but do not actually call back until the requisite number of
-	// levels have been skipped (i.e. level == 0).
-	int level = -(int)levels_to_skip;
-	if(levels_to_skip == -1)
-		level = 0;
-
-	// until at level 1x1:
-	for(;;)
-	{
-		// used to skip past this mip level in <data>
-		const size_t level_data_size = (size_t)(round_up(level_w, data_padding) * round_up(level_h, data_padding) * bpp/8);
-
-		if(level >= 0)
-			cb((uint)level, level_w, level_h, level_data, level_data_size, ctx);
-
-		level_data += level_data_size;
-
-		// 1x1 reached - done
-		if(level_w == 1 && level_h == 1)
-			break;
-		level_w /= 2;
-		level_h /= 2;
-		// if the texture is non-square, one of the dimensions will become
-		// 0 before the other. to satisfy OpenGL's expectations, change it
-		// back to 1.
-		if(level_w == 0) level_w = 1;
-		if(level_h == 0) level_h = 1;
-		level++;
-
-		// special case: no mipmaps, we were only supposed to call for
-		// the base level
-		if(levels_to_skip == -1)
-			break;
-	}
-}
-
-
-//-----------------------------------------------------------------------------
-// API
+// misc. API
 //-----------------------------------------------------------------------------
 
 // indicate if <filename>'s extension is that of a texture format
@@ -437,78 +491,6 @@ bool tex_is_known_extension(const char* filename)
 		return true;
 
 	return false;
-}
-
-
-// split out of tex_load to ease resource cleanup
-static LibError tex_load_impl(FileIOBuf file_, size_t file_size, Tex* t)
-{
-	u8* file = (u8*)file_;
-	const TexCodecVTbl* c;
-	RETURN_ERR(tex_codec_for_header(file, file_size, &c));
-
-	// make sure the entire header has been read
-	const size_t min_hdr_size = c->hdr_size(0);
-	if(file_size < min_hdr_size)
-		WARN_RETURN(ERR_INCOMPLETE_HEADER);
-	const size_t hdr_size = c->hdr_size(file);
-	if(file_size < hdr_size)
-		WARN_RETURN(ERR_INCOMPLETE_HEADER);
-	t->ofs = hdr_size;
-
-	DynArray da;
-	RETURN_ERR(da_wrap_fixed(&da, file, file_size));
-
-	RETURN_ERR(c->decode(&da, t));
-
-	(void)da_free(&da);	// for completeness only; just zeros <da>
-
-	// sanity checks
-	if(!t->w || !t->h || t->bpp > 32)
-		WARN_RETURN(ERR_TEX_FMT_INVALID);
-	// .. note: decode() may have decompressed the image; cannot use file_size.
-	size_t hm_size;
-	(void)mem_get_ptr(t->hm, &hm_size);
-	if(hm_size < t->ofs + tex_img_size(t))
-		WARN_RETURN(ERR_TEX_INVALID_SIZE);
-
-	flip_to_global_orientation(t);
-
-	return ERR_OK;
-}
-
-
-// MEM_DTOR -> file_buf_free adapter (used for mem_wrap-ping FileIOBuf)
-static void file_buf_dtor(void* p, size_t UNUSED(size), uintptr_t UNUSED(ctx))
-{
-	(void)file_buf_free((FileIOBuf)p);
-}
-
-// load the specified image from file into the given Tex object.
-// currently supports BMP, TGA, JPG, JP2, PNG, DDS.
-LibError tex_load(const char* fn, Tex* t, uint file_flags)
-{
-	// load file
-	FileIOBuf file; size_t file_size;
-	// rationale: we need the Handle return value for Tex.hm - the data pointer
-	// must be protected against being accidentally free-d in that case.
-
-	RETURN_ERR(vfs_load(fn, file, file_size, file_flags));
-	Handle hm = mem_wrap((void*)file, file_size, 0, 0, 0, file_buf_dtor, 0, (void*)tex_load);
-	t->hm = hm;
-	LibError ret = tex_load_impl(file, file_size, t);
-	if(ret < 0)
-	{
-		(void)tex_free(t);
-		debug_warn("failed");
-		return ret;
-	}
-
-	// do not free hm! it either still holds the image data (i.e. texture
-	// wasn't compressed) or was replaced by a new buffer for the image data.
-
-	CHECK_TEX(t);
-	return ERR_OK;
 }
 
 
@@ -566,46 +548,7 @@ LibError tex_free(Tex* t)
 
 
 //-----------------------------------------------------------------------------
-
-TIMER_ADD_CLIENT(tc_transform);
-
-// change <t>'s pixel format by flipping the state of all TEX_* flags
-// that are set in transforms.
-LibError tex_transform(Tex* t, uint transforms)
-{
-TIMER_ACCRUE(tc_transform);
-	CHECK_TEX(t);
-
-	const uint target_flags = t->flags ^ transforms;
-	uint remaining_transforms;
-	for(;;)
-	{
-		remaining_transforms = target_flags ^ t->flags;
-		// we're finished (all required transforms have been done)
-		if(remaining_transforms == 0)
-			return ERR_OK;
-
-		LibError ret = tex_codec_transform(t, remaining_transforms);
-		if(ret != 0)
-			break;
-	}
-
-	// last chance
-	RETURN_ERR(plain_transform(t, remaining_transforms));
-	return ERR_OK;
-}
-
-
-// change <t>'s pixel format to the new format specified by <new_flags>.
-// (note: this is equivalent to tex_transform(t, t->flags^new_flags).
-LibError tex_transform_to(Tex* t, uint new_flags)
-{
-	// tex_transform takes care of validating <t>
-	const uint transforms = t->flags ^ new_flags;
-	return tex_transform(t, transforms);
-}
-
-
+// getters
 //-----------------------------------------------------------------------------
 
 // returns a pointer to the image data (pixels), taking into account any
@@ -646,8 +589,6 @@ size_t tex_img_size(const Tex* t)
 }
 
 
-//-----------------------------------------------------------------------------
-
 // return the minimum header size (i.e. offset to pixel data) of the
 // file format indicated by <fn>'s extension (that is all it need contain:
 // e.g. ".bmp"). returns 0 on error (i.e. no codec found).
@@ -663,10 +604,58 @@ size_t tex_hdr_size(const char* fn)
 }
 
 
-// write the specified texture to disk.
-// note: <t> cannot be made const because the image may have to be
-// transformed to write it out in the format determined by <fn>'s extension.
-LibError tex_write(Tex* t, const char* fn)
+//-----------------------------------------------------------------------------
+// read/write from memory and disk
+//-----------------------------------------------------------------------------
+
+LibError tex_decode(const u8* data, size_t data_size, MEM_DTOR dtor, Tex* t)
+{
+	const TexCodecVTbl* c;
+	RETURN_ERR(tex_codec_for_header(data, data_size, &c));
+
+	// make sure the entire header is available
+	const size_t min_hdr_size = c->hdr_size(0);
+	if(data_size < min_hdr_size)
+		WARN_RETURN(ERR_INCOMPLETE_HEADER);
+	const size_t hdr_size = c->hdr_size(data);
+	if(data_size < hdr_size)
+		WARN_RETURN(ERR_INCOMPLETE_HEADER);
+
+	// wrap pointer into a Handle; required for Tex.hm.
+	// rationale: a Handle protects the texture memory from being
+	// accidentally free-d.
+	Handle hm = mem_wrap((void*)data, data_size, 0, 0, 0, dtor, 0, (void*)tex_decode);
+
+	t->hm = hm;
+	t->ofs = hdr_size;
+
+	// for orthogonality, encode and decode both receive the memory as a
+	// DynArray. package data into one and free it again after decoding:
+	DynArray da;
+	RETURN_ERR(da_wrap_fixed(&da, (u8*)data, data_size));
+
+	RETURN_ERR(c->decode(&da, t));
+
+	// note: not reached if decode fails. that's not a problem;
+	// this call just zeroes <da> and could be left out.
+	(void)da_free(&da);
+
+	// sanity checks
+	if(!t->w || !t->h || t->bpp > 32)
+		WARN_RETURN(ERR_TEX_FMT_INVALID);
+	// .. note: can't use data_size - decode may have decompressed the image.
+	size_t hm_size;
+	(void)mem_get_ptr(t->hm, &hm_size);
+	if(hm_size < t->ofs + tex_img_size(t))
+		WARN_RETURN(ERR_TEX_INVALID_SIZE);
+
+	flip_to_global_orientation(t);
+
+	return ERR_OK;
+}
+
+
+LibError tex_encode(Tex* t, const char* fn, DynArray* da)
 {
 	CHECK_TEX(t);
 	CHECK_ERR(tex_validate_plain_format(t->bpp, t->flags));
@@ -676,31 +665,74 @@ LibError tex_write(Tex* t, const char* fn)
 	// most likely the case if in_img == <hm's user pointer> + c->hdr_size(0).
 	// this would make for zero-copy IO.
 
-	DynArray da;
 	const size_t max_out_size = tex_img_size(t)*4 + 256*KiB;
-	RETURN_ERR(da_alloc(&da, max_out_size));
+	RETURN_ERR(da_alloc(da, max_out_size));
 
 	const TexCodecVTbl* c;
 	CHECK_ERR(tex_codec_for_filename(fn, &c));
 
 	// encode into <da>
-	LibError err = c->encode(t, &da);
+	LibError err = c->encode(t, da);
 	if(err < 0)
 	{
-		debug_printf("%s (%s) failed: %d", __func__, c->name, err);
-		debug_warn("failed");
-		goto fail;
+		(void)da_free(da);
+		WARN_RETURN(err);
 	}
 
+	return ERR_OK;
+}
+
+
+
+// MEM_DTOR -> file_buf_free adapter (used for mem_wrap-ping FileIOBuf)
+static void file_buf_dtor(void* p, size_t UNUSED(size), uintptr_t UNUSED(ctx))
+{
+	(void)file_buf_free((FileIOBuf)p);
+}
+
+// load the specified image from file into the given Tex object.
+// currently supports BMP, TGA, JPG, JP2, PNG, DDS.
+LibError tex_load(const char* fn, Tex* t, uint file_flags)
+{
+	// load file
+	FileIOBuf file; size_t file_size;
+	RETURN_ERR(vfs_load(fn, file, file_size, file_flags));
+
+	LibError ret = tex_decode(file, file_size, file_buf_dtor, t);
+	if(ret < 0)
+	{
+		(void)tex_free(t);
+		WARN_RETURN(ret);
+	}
+
+	// do not free hm! it either still holds the image data (i.e. texture
+	// wasn't compressed) or was replaced by a new buffer for the image data.
+
+	CHECK_TEX(t);
+	return ERR_OK;
+}
+
+
+// write the specified texture to disk.
+// note: <t> cannot be made const because the image may have to be
+// transformed to write it out in the format determined by <fn>'s extension.
+LibError tex_write(Tex* t, const char* fn)
+{
+	DynArray da;
+	RETURN_ERR(tex_encode(t, fn, &da));
+
 	// write to disk
+	LibError ret = ERR_OK;
 	{
 	const size_t sector_aligned_size = round_up(da.cur_size, file_sector_size);
 	(void)da_set_size(&da, sector_aligned_size);
 	const ssize_t bytes_written = vfs_store(fn, da.base, da.pos);
-	debug_assert(bytes_written == (ssize_t)da.pos);
+	if(bytes_written > 0)
+		debug_assert(bytes_written == (ssize_t)da.pos);
+	else
+		ret = (LibError)bytes_written;
 	}
 
-fail:
 	(void)da_free(&da);
-	return err;
+	return ret;
 }

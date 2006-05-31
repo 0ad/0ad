@@ -10,7 +10,7 @@
  */
 
 /*
- * Copyright (c) 2004 Jan Wassenberg
+ * Copyright (c) 2004-2005 Jan Wassenberg
  *
  * Redistribution and/or modification are also permitted under the
  * terms of the GNU General Public License as published by the
@@ -21,7 +21,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-/*
+/**
 
 Introduction
 ------------
@@ -55,7 +55,7 @@ close to the final pixel format.
 
 1) one of the exceptions is S3TC compressed textures. glCompressedTexImage2D
    requires these be passed in their original format; decompressing would be
-   counterproductive. In this and similar cases, Tex.flags indicates such
+   counterproductive. In this and similar cases, TexFlags indicates such
    deviations from the plain format.
 
 
@@ -95,92 +95,124 @@ This supports external libraries like libpng that do not know the
 output size beforehand, but avoids the need for a buffer between
 library and IO layer. Read and write are zero-copy.
 
-*/
+**/
 
 #ifndef TEX_H__
 #define TEX_H__
 
 #include "../handle.h"
 
-// flags describing the pixel format. these are to be interpreted as
-// deviations from "plain" format, i.e. uncompressed RGB.
+/**
+ * flags describing the pixel format. these are to be interpreted as
+ * deviations from "plain" format, i.e. uncompressed RGB.
+ **/
 enum TexFlags
 {
-	// flags & TEX_DXT is a field indicating compression.
-	// if 0, the texture is uncompressed;
-	// otherwise, it holds the S3TC type: 1,3,5 or DXT1A.
-	// not converted by default - glCompressedTexImage2D receives
-	// the compressed data.
-	TEX_DXT = 0x7,	// mask
-	// we need a special value for DXT1a to avoid having to consider
-	// flags & TEX_ALPHA to determine S3TC type.
-	// the value is arbitrary; do not rely on it!
+	/**
+	 * flags & TEX_DXT is a field indicating compression.
+	 * if 0, the texture is uncompressed;
+	 * otherwise, it holds the S3TC type: 1,3,5 or DXT1A.
+	 * not converted by default - glCompressedTexImage2D receives
+	 * the compressed data.
+	 **/
+	TEX_DXT = 0x7,	 // mask
+
+	/**
+	 * we need a special value for DXT1a to avoid having to consider
+	 * flags & TEX_ALPHA to determine S3TC type.
+	 * the value is arbitrary; do not rely on it!
+	 **/
 	DXT1A = 7,
 
-	// indicates B and R pixel components are exchanged. depending on
-	// flags & TEX_ALPHA or bpp, this means either BGR or BGRA.
-	// not converted by default - it's an acceptable format for OpenGL.
+	/**
+	 * indicates B and R pixel components are exchanged. depending on
+	 * flags & TEX_ALPHA or bpp, this means either BGR or BGRA.
+	 * not converted by default - it's an acceptable format for OpenGL.
+	 **/
 	TEX_BGR = 0x08,
 
-	// indicates the image contains an alpha channel. this is set for
-	// your convenience - there are many formats containing alpha and
-	// divining this information from them is hard.
-	// (conversion is not applicable here)
+	/**
+	 * indicates the image contains an alpha channel. this is set for
+	 * your convenience - there are many formats containing alpha and
+	 * divining this information from them is hard.
+	 * (conversion is not applicable here)
+	 **/
 	TEX_ALPHA = 0x10,
 
-	// indicates the image is 8bpp greyscale. this is required to
-	// differentiate between alpha-only and intensity formats.
-	// not converted by default - it's an acceptable format for OpenGL.
+	/**
+	 * indicates the image is 8bpp greyscale. this is required to
+	 * differentiate between alpha-only and intensity formats.
+	 * not converted by default - it's an acceptable format for OpenGL.
+	 **/
 	TEX_GREY = 0x20,
 
-	// flags & TEX_ORIENTATION is a field indicating orientation,
-	// i.e. in what order the pixel rows are stored.
-	//
-	// tex_load always sets this to the global orientation
-	// (and flips the image accordingly).
-	// texture codecs may in intermediate steps during loading set this
-	// to 0 if they don't know which way around they are (e.g. DDS),
-	// or to whatever their file contains.
+	/**
+	 * flags & TEX_ORIENTATION is a field indicating orientation,
+	 * i.e. in what order the pixel rows are stored.
+	 *
+	 * tex_load always sets this to the global orientation
+	 * (and flips the image accordingly to match).
+	 * texture codecs may in intermediate steps during loading set this
+	 * to 0 if they don't know which way around they are (e.g. DDS),
+	 * or to whatever their file contains.
+	 **/
 	TEX_BOTTOM_UP = 0x40,
 	TEX_TOP_DOWN  = 0x80,
-	TEX_ORIENTATION = TEX_BOTTOM_UP|TEX_TOP_DOWN,	// mask
+	TEX_ORIENTATION = TEX_BOTTOM_UP|TEX_TOP_DOWN,	 /// mask
 
-	// indicates the image data includes mipmaps. they are stored from lowest
-	// to highest (1x1), one after the other.
-	// (conversion is not applicable here)
+	/**
+	 * indicates the image data includes mipmaps. they are stored from lowest
+	 * to highest (1x1), one after the other.
+	 * (conversion is not applicable here)
+	 **/
 	TEX_MIPMAPS = 0x100
 };
 
 
-// stores all data describing an image.
-// we try to minimize size, since this is stored in OglTex resources
-// (which are big and pushing the h_mgr limit).
+/**
+ * stores all data describing an image.
+ * we try to minimize size, since this is stored in OglTex resources
+ * (which are big and pushing the h_mgr limit).
+ **/
 struct Tex
 {
-	// H_Mem handle to image data. note: during the course of transforms
-	// (which may occur when being loaded), this may be replaced with
-	// a Handle to a new buffer (e.g. if decompressing file contents).
+	/**
+	 * H_Mem handle to image data. note: during the course of transforms
+	 * (which may occur when being loaded), this may be replaced with
+	 * a Handle to a new buffer (e.g. if decompressing file contents).
+	 **/
 	Handle hm;
 
-	// offset to image data in file. this is required since
-	// tex_get_data needs to return the pixels, but mem_get_ptr(hm)
-	// returns the actual file buffer. zero-copy load and
-	// write-back to file is also made possible.
+	/**
+	 * offset to image data in file. this is required since
+	 * tex_get_data needs to return the pixels, but mem_get_ptr(hm)
+	 * returns the actual file buffer. zero-copy load and
+	 * write-back to file is also made possible.
+	 **/
 	size_t ofs;
 
 	uint w : 16;
 	uint h : 16;
 	uint bpp : 16;
 
-	// see TexFlags and "Format Conversion" in docs.
+	/// see TexFlags and "Format Conversion" in docs.
 	uint flags : 16;
 };
 
 
-// set the orientation (either TEX_BOTTOM_UP or TEX_TOP_DOWN) to which
-// all loaded images will automatically be converted
-// (excepting file formats that don't specify their orientation, i.e. DDS).
-// see "Default Orientation" in docs.
+/**
+ * is the texture object valid and self-consistent?
+ * @return LibError
+ **/
+extern LibError tex_validate(const Tex* t);
+
+
+/**
+ * set the orientation to which all loaded images will
+ * automatically be converted (excepting file formats that don't specify
+ * their orientation, i.e. DDS). see "Default Orientation" in docs.
+ * @param orientation either TEX_BOTTOM_UP or TEX_TOP_DOWN
+ **/
 extern void tex_set_global_orientation(int orientation);
 
 
@@ -188,38 +220,51 @@ extern void tex_set_global_orientation(int orientation);
 // open/close
 //
 
-// indicate if <filename>'s extension is that of a texture format
-// supported by tex_load. case-insensitive.
-//
-// rationale: tex_load complains if the given file is of an
-// unsupported type. this API allows users to preempt that warning
-// (by checking the filename themselves), and also provides for e.g.
-// enumerating only images in a file picker.
-// an alternative might be a flag to suppress warning about invalid files,
-// but this is open to misuse.
-extern bool tex_is_known_extension(const char* filename);
-
-// load the specified image from file into the given Tex object.
-// currently supports BMP, TGA, JPG, JP2, PNG, DDS.
+/**
+ * load the specified image from file into a Tex object.
+ *
+ * FYI, currently BMP, TGA, JPG, JP2, PNG, DDS are supported - but don't
+ * rely on this (not all codecs may be included).
+ *
+ * @param fn filename
+ * @param t output texture object
+ * @param file_flags additional flags for vfs_load
+ * @return LibError
+ **/
 extern LibError tex_load(const char* fn, Tex* t, uint file_flags = 0);
 
-// store the given image data into a Tex object; this will be as if
-// it had been loaded via tex_load.
-//
-// rationale: support for in-memory images is necessary for
-//   emulation of glCompressedTexImage2D and useful overall.
-//   however, we don't want to  provide an alternate interface for each API;
-//   these would have to be changed whenever fields are added to Tex.
-//   instead, provide one entry point for specifying images.
-// note: since we do not know how <img> was allocated, the caller must do
-//   so (after calling tex_free, which is required regardless of alloc type).
-//
-// we need only add bookkeeping information and "wrap" it in
-// our Tex struct, hence the name.
+/**
+ * store the given image data into a Tex object; this will be as if
+ * it had been loaded via tex_load.
+ *
+ * rationale: support for in-memory images is necessary for
+ *   emulation of glCompressedTexImage2D and useful overall.
+ *   however, we don't want to provide an alternate interface for each API;
+ *   these would have to be changed whenever fields are added to Tex.
+ *   instead, provide one entry point for specifying images.
+ * note: since we do not know how <img> was allocated, the caller must free
+ *   it themselves (after calling tex_free, which is required regardless of
+ *   alloc type).
+ *
+ * we need only add bookkeeping information and "wrap" it in
+ * our Tex struct, hence the name.
+ *
+ * @param w, h pixel dimensions
+ * @param bpp bits per pixel
+ * @param flags TexFlags
+ * @param img texture data. note: size is calculated from other params.
+ * @param t output texture object.
+ * @return LibError
+ **/
 extern LibError tex_wrap(uint w, uint h, uint bpp, uint flags, void* img, Tex* t);
 
-// free all resources associated with the image and make further
-// use of it impossible.
+/**
+ * free all resources associated with the image and make further
+ * use of it impossible.
+ *
+ * @param t texture object (note: not zeroed afterwards; see impl)
+ * @return LibError
+ **/
 extern LibError tex_free(Tex* t);
 
 
@@ -227,12 +272,21 @@ extern LibError tex_free(Tex* t);
 // modify image
 //
 
-// change <t>'s pixel format by flipping the state of all TEX_* flags
-// that are set in transforms.
+/**
+ * change <t>'s pixel format.
+ *
+ * @param transforms TexFlags that are to be flipped.
+ * @return LibError
+ **/
 extern LibError tex_transform(Tex* t, uint transforms);
 
-// change <t>'s pixel format to the new format specified by <new_flags>.
-// (note: this is equivalent to tex_transform(t, t->flags^new_flags).
+/**
+ * change <t>'s pixel format (2nd version)
+ * (note: this is equivalent to tex_transform(t, t->flags^new_flags).
+ *
+ * @param new_flags desired new value of TexFlags.
+ * @return LibError
+ **/
 extern LibError tex_transform_to(Tex* t, uint new_flags);
 
 
@@ -240,65 +294,115 @@ extern LibError tex_transform_to(Tex* t, uint new_flags);
 // return image information
 //
 
-// since Tex is a struct, its fields are accessible to callers.
-// this is more for C compatibility than convenience; the following should
-// be used instead of direct access to the corresponding fields because
-// they take care of some dirty work.
+/**
+ * rationale: since Tex is a struct, its fields are accessible to callers.
+ * this is more for C compatibility than convenience; the following should
+ * be used instead of direct access to the corresponding fields because
+ * they take care of some dirty work.
+ **/
 
-// returns a pointer to the image data (pixels), taking into account any
-// header(s) that may come before it. see Tex.hm comment above.
+/**
+ * return a pointer to the image data (pixels), taking into account any
+ * header(s) that may come before it. see Tex.hm comment above.
+ *
+ * @param t input texture object
+ * @return pointer to data returned by mem_get_ptr (holds reference)!
+ **/
 extern u8* tex_get_data(const Tex* t);
 
-// return total byte size of the image pixels. (including mipmaps!)
-// this is preferable to calculating manually because it's
-// less error-prone (e.g. confusing bits_per_pixel with bytes).
+/**
+ * return total byte size of the image pixels. (including mipmaps!)
+ * rationale: this is preferable to calculating manually because it's
+ * less error-prone (e.g. confusing bits_per_pixel with bytes).
+ *
+ * @param t input texture object
+ * @return size [bytes]
+ **/
 extern size_t tex_img_size(const Tex* t);
+
+
+/**
+ * special value for levels_to_skip: the callback will only be called
+ * for the base mipmap level (i.e. 100%)
+ **/
+const int TEX_BASE_LEVEL_ONLY = -1;
+
+/**
+ * callback function for each mipmap level.
+ *
+ * @param level number; 0 for base level (i.e. 100%), or the first one
+ * in case some were skipped.
+ * @param level_w, level_h pixel dimensions (powers of 2, never 0)
+ * @param level_data the level's texels
+ * @param level_data_size [bytes]
+ * @param ctx passed through from tex_util_foreach_mipmap.
+ **/
+typedef void (*MipmapCB)(uint level, uint level_w, uint level_h,
+	const u8* level_data, size_t level_data_size, void* ctx);
+
+/**
+ * for a series of mipmaps stored from base to highest, call back for
+ * each level.
+ *
+ * @param w, h pixel dimensions
+ * @param bpp bits per pixel
+ * @param data series of mipmaps
+ * @param levels_to_skip number of levels (counting from base) to skip, or
+ * TEX_BASE_LEVEL_ONLY to only call back for the base image.
+ * rationale: this avoids needing to special case for images with or
+ * without mipmaps.
+ * @param data_padding minimum pixel dimensions of mipmap levels.
+ * this is used in S3TC images, where each level is actually stored in
+ * 4x4 blocks. usually 1 to indicate levels are consecutive.
+ * @param cb MipmapCB to call
+ * @param ctx extra data to pass to cb
+ **/
+extern void tex_util_foreach_mipmap(uint w, uint h, uint bpp, const u8* restrict data,
+	int levels_to_skip, uint data_padding, MipmapCB cb, void* restrict ctx);
 
 
 //
 // image writing
 //
 
-// return the minimum header size (i.e. offset to pixel data) of the
-// file format indicated by <fn>'s extension (that is all it need contain:
-// e.g. ".bmp"). returns 0 on error (i.e. no codec found).
-// this can be used to optimize calls to tex_write: when allocating the
-// buffer that will hold the image, allocate this much extra and
-// pass the pointer as base+hdr_size. this allows writing the header
-// directly into the output buffer and makes for zero-copy IO.
+/**
+ * is the file's extension that of a texture format supported by tex_load?
+ *
+ * rationale: tex_load complains if the given file is of an
+ * unsupported type. this API allows users to preempt that warning
+ * (by checking the filename themselves), and also provides for e.g.
+ * enumerating only images in a file picker.
+ * an alternative might be a flag to suppress warning about invalid files,
+ * but this is open to misuse.
+ *
+ * @param filename only the extension (that after '.') is used. case-insensitive.
+ * @return bool
+ **/
+extern bool tex_is_known_extension(const char* filename);
+
+/**
+ * return the minimum header size (i.e. offset to pixel data) of the
+ * file format corresponding to the filename.
+ *
+ * rationale: this can be used to optimize calls to tex_write: when
+ * allocating the buffer that will hold the image, allocate this much
+ * extra and pass the pointer as base+hdr_size. this allows writing the
+ * header directly into the output buffer and makes for zero-copy IO.
+ *
+ * @param fn filename; only the extension (that after '.') is used.
+ * case-insensitive.
+ * @return size [bytes] or 0 on error (i.e. no codec found).
+ **/
 extern size_t tex_hdr_size(const char* fn);
 
-// write the specified texture to disk.
-// note: <t> cannot be made const because the image may have to be
-// transformed to write it out in the format determined by <fn>'s extension.
+/**
+ * write the specified texture to disk.
+ *
+ * @param t input texture object. note: cannot be made const because the
+ * image may have to be transformed to write it out in the format
+ * determined by <fn>'s extension.
+ * @return LibError
+ **/
 extern LibError tex_write(Tex* t, const char* fn);
 
-
-// internal use only:
-extern LibError tex_validate(const Tex* t);
-
-// check if the given texture format is acceptable: 8bpp grey,
-// 24bpp color or 32bpp color+alpha (BGR / upside down are permitted).
-// basically, this is the "plain" format understood by all codecs and
-// tex_codec_plain_transform.
-extern LibError tex_validate_plain_format(uint bpp, uint flags);
-
-
-// indicate if the orientation specified by <src_flags> matches
-// dst_orientation (if the latter is 0, then the global_orientation).
-// (we ask for src_flags instead of src_orientation so callers don't
-// have to mask off TEX_ORIENTATION)
-extern bool tex_orientations_match(uint src_flags, uint dst_orientation);
-
-typedef void (*MipmapCB)(uint level, uint level_w, uint level_h,
-	const u8* level_data, size_t level_data_size, void* ctx);
-
-// special value for levels_to_skip: the callback will only be called
-// for the base mipmap level (i.e. 100%)
-const int TEX_BASE_LEVEL_ONLY = -1;
-
-extern void tex_util_foreach_mipmap(uint w, uint h, uint bpp, const u8* restrict data,
-	int levels_to_skip, uint data_padding, MipmapCB cb, void* restrict ctx);
-
-
-#endif	// TEX_H__
+#endif	 // TEX_H__

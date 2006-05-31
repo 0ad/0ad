@@ -38,6 +38,7 @@ static inline bool is_dir_sep(char c)
 
 
 // is s2 a subpath of s1, or vice versa?
+// (equal counts as subpath)
 bool path_is_subpath(const char* s1, const char* s2)
 {
 	// make sure s1 is the shorter string
@@ -232,6 +233,8 @@ const char* path_name_only(const char* path)
 		if(!slash)
 			return path;
 	}
+
+// TODO: take max of portableslash, nonportableslash
 
 	const char* name = slash+1;
 	return name;

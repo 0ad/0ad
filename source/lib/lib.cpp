@@ -33,119 +33,9 @@
 
 #include "sysdep/sysdep.h"
 
-#ifndef SELF_TEST_ENABLED
-#define SELF_TEST_ENABLED 0
-#endif
-
-
-// FNV1-A hash - good for strings.
-// if len = 0 (default), treat buf as a C-string;
-// otherwise, hash <len> bytes of buf.
-u32 fnv_hash(const void* buf, size_t len)
-{
-	u32 h = 0x811c9dc5u;
-		// give distinct values for different length 0 buffers.
-		// value taken from FNV; it has no special significance.
-
-	const u8* p = (const u8*)buf;
-
-	// expected case: string
-	if(!len)
-	{
-		while(*p)
-		{
-			h ^= *p++;
-			h *= 0x01000193u;
-		}
-	}
-	else
-	{
-		size_t bytes_left = len;
-		while(bytes_left != 0)
-		{
-			h ^= *p++;
-			h *= 0x01000193u;
-
-			bytes_left--;
-		}
-	}
-
-	return h;
-}
-
-
-// FNV1-A hash - good for strings.
-// if len = 0 (default), treat buf as a C-string;
-// otherwise, hash <len> bytes of buf.
-u64 fnv_hash64(const void* buf, size_t len)
-{
-	u64 h = 0xCBF29CE484222325ull;
-		// give distinct values for different length 0 buffers.
-		// value taken from FNV; it has no special significance.
-
-	const u8* p = (const u8*)buf;
-
-	// expected case: string
-	if(!len)
-	{
-		while(*p)
-		{
-			h ^= *p++;
-			h *= 0x100000001B3ull;
-		}
-	}
-	else
-	{
-		size_t bytes_left = len;
-		while(bytes_left != 0)
-		{
-			h ^= *p++;
-			h *= 0x100000001B3ull;
-
-			bytes_left--;
-		}
-	}
-
-	return h;
-}
-
-
-// special version for strings: first converts to lowercase
-// (useful for comparing mixed-case filenames).
-// note: still need <len>, e.g. to support non-0-terminated strings
-u32 fnv_lc_hash(const char* str, size_t len)
-{
-	u32 h = 0x811c9dc5u;
-		// give distinct values for different length 0 buffers.
-		// value taken from FNV; it has no special significance.
-
-	// expected case: string
-	if(!len)
-	{
-		while(*str)
-		{
-			h ^= tolower(*str++);
-			h *= 0x01000193u;
-		}
-	}
-	else
-	{
-		size_t bytes_left = len;
-		while(bytes_left != 0)
-		{
-			h ^= tolower(*str++);
-			h *= 0x01000193u;
-
-			bytes_left--;
-		}
-	}
-
-	return h;
-}
-
-
-
-
+//-----------------------------------------------------------------------------
+// bit bashing
+//-----------------------------------------------------------------------------
 
 bool is_pow2(uint n)
 {
@@ -196,7 +86,6 @@ int ilog2(uint n)
 	return bit_index;
 }
 
-
 // return log base 2, rounded up.
 uint log2(uint x)
 {
@@ -211,8 +100,17 @@ uint log2(uint x)
 	return l;
 }
 
+int ilog2(const float x)
+{
+	const u32 i = *(u32*)&x;
+	u32 biased_exp = (i >> 23) & 0xff;
+	return (int)biased_exp - 127;
+}
 
-cassert(sizeof(int)*CHAR_BIT == 32);	// otherwise change round_up_to_pow2
+
+// round_up_to_pow2 implementation assumes 32-bit int.
+// if 64, add "x |= (x >> 32);"
+cassert(sizeof(int)*CHAR_BIT == 32);
 
 uint round_up_to_pow2(uint x)
 {
@@ -227,13 +125,8 @@ uint round_up_to_pow2(uint x)
 }
 
 
-int ilog2(const float x)
-{
-	const u32 i = *(u32*)&x;
-	u32 biased_exp = (i >> 23) & 0xff;
-	return (int)biased_exp - 127;
-}
-
+//-----------------------------------------------------------------------------
+// misc arithmetic
 
 
 // multiple must be a power of two.
@@ -261,56 +154,70 @@ u16 addusw(u16 x, u16 y)
 	return (u16)MIN(t+y, 0xffffu);
 }
 
-
 u16 subusw(u16 x, u16 y)
 {
 	long t = x;
 	return (u16)(MAX(t-y, 0));
 }
 
-// zero-extend <size> (truncated to 8) bytes of little-endian data to u64,
-// starting at address <p> (need not be aligned).
-u64 movzx_64le(const u8* p, size_t size)
+
+//-----------------------------------------------------------------------------
+// rand
+
+// return random integer in [min, max).
+// avoids several common pitfalls; see discussion at
+// http://www.azillionmonkeys.com/qed/random.html
+
+// rand() is poorly implemented (e.g. in VC7) and only returns < 16 bits;
+// double that amount by concatenating 2 random numbers.
+// this is not to fix poor rand() randomness - the number returned will be
+// folded down to a much smaller interval anyway. instead, a larger XRAND_MAX
+// decreases the probability of having to repeat the loop.
+#if RAND_MAX < 65536
+static const uint XRAND_MAX = (RAND_MAX+1)*(RAND_MAX+1) - 1;
+static uint xrand()
 {
-	if(size > 8)
-		size = 8;
-
-	u64 data = 0;
-	for(u64 i = 0; i < MIN(size,8); i++)
-		data |= ((u64)p[i]) << (i*8);
-
-	return data;
+	return rand()*(RAND_MAX+1) + rand();
 }
-
-
-// sign-extend <size> (truncated to 8) bytes of little-endian data to i64,
-// starting at address <p> (need not be aligned).
-i64 movsx_64le(const u8* p, size_t size)
+// rand() is already ok; no need to do anything.
+#else
+static const uint XRAND_MAX = RAND_MAX;
+static uint xrand()
 {
-	if(size > 8)
-		size = 8;
+	return rand();
+}
+#endif
 
-	u64 data = movzx_64le(p, size);
-
-	// no point in sign-extending if >= 8 bytes were requested
-	if(size < 8)
+uint rand(uint min_inclusive, uint max_exclusive)
+{
+	const uint range = (max_exclusive-min_inclusive);
+	// huge interval or min >= max
+	if(range == 0 || range > XRAND_MAX)
 	{
-		u64 sign_bit = 1;
-		sign_bit <<= (size*8)-1;
-		// be sure that we don't shift more than variable's bit width
-
-		// number would be negative in the smaller type,
-		// so sign-extend, i.e. set all more significant bits.
-		if(data & sign_bit)
-		{
-			const u64 size_mask = (sign_bit+sign_bit)-1;
-			data |= ~size_mask;
-		}
+		WARN_ERR(ERR_INVALID_PARAM);
+		return 0;
 	}
 
-	return (i64)data;
+	const uint inv_range = XRAND_MAX / range;
+
+	// generate random number in [0, range)
+	// idea: avoid skewed distributions when <range> doesn't evenly divide
+	// XRAND_MAX by simply discarding values in the "remainder".
+	// not expected to run often since XRAND_MAX is large.
+	uint x;
+	do
+		x = xrand();
+	while(x >= range * inv_range);
+	x /= inv_range;
+
+	x += min_inclusive;
+	debug_assert(x < max_exclusive);
+	return x;
 }
 
+
+//-----------------------------------------------------------------------------
+// type conversion
 
 // these avoid a common mistake in using >> (ANSI requires shift count be
 // less than the bit width of the type).
@@ -336,7 +243,6 @@ u16 u32_lo(u32 x)
 }
 
 
-
 u64 u64_from_u32(u32 hi, u32 lo)
 {
 	u64 x = (u64)hi;
@@ -354,6 +260,45 @@ u32 u32_from_u16(u16 hi, u16 lo)
 }
 
 
+// zero-extend <size> (truncated to 8) bytes of little-endian data to u64,
+// starting at address <p> (need not be aligned).
+u64 movzx_64le(const u8* p, size_t size)
+{
+	size = MIN(size, 8);
+
+	u64 data = 0;
+	for(u64 i = 0; i < size; i++)
+		data |= ((u64)p[i]) << (i*8);
+
+	return data;
+}
+
+// sign-extend <size> (truncated to 8) bytes of little-endian data to i64,
+// starting at address <p> (need not be aligned).
+i64 movsx_64le(const u8* p, size_t size)
+{
+	size = MIN(size, 8);
+
+	u64 data = movzx_64le(p, size);
+
+	// no point in sign-extending if >= 8 bytes were requested
+	if(size < 8)
+	{
+		u64 sign_bit = 1;
+		sign_bit <<= (size*8)-1;
+		// be sure that we don't shift more than variable's bit width
+
+		// number would be negative in the smaller type,
+		// so sign-extend, i.e. set all more significant bits.
+		if(data & sign_bit)
+		{
+			const u64 size_mask = (sign_bit+sign_bit)-1;
+			data |= ~size_mask;
+		}
+	}
+
+	return (i64)data;
+}
 
 
 // input in [0, 1); convert to u8 range
@@ -370,7 +315,6 @@ u8 fp_to_u8(double in)
 	return (u8)l;
 }
 
-
 // input in [0, 1); convert to u16 range
 u16 fp_to_u16(double in)
 {
@@ -386,18 +330,18 @@ u16 fp_to_u16(double in)
 }
 
 
-
-
+//-----------------------------------------------------------------------------
+// string processing
 
 // big endian!
-void base32(const int len, const u8* in, u8* out)
+void base32(const size_t len, const u8* in, u8* out)
 {
-	int bits = 0;
-	u32 pool = 0;
+	u32 pool = 0;	// of bits from buffer
+	uint bits =	0;	// # bits currently in buffer
 
-	static u8 tbl[33] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
+	static const u8 tbl[33] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
 
-	for(int i = 0; i < len; i++)
+	for(size_t i = 0; i < len; i++)
 	{
 		if(bits < 5)
 		{
@@ -407,20 +351,12 @@ void base32(const int len, const u8* in, u8* out)
 		}
 
 		bits -= 5;
-		int c = (pool >> bits) & 31;
+		uint c = (pool >> bits) & 31;
 		*out++ = tbl[c];
 	}
 }
 
 
-
-
-
-
-// case-insensitive check if string <s> matches the pattern <w>,
-// which may contain '?' or '*' wildcards. if so, return 1, otherwise 0.
-// idea from http://www.codeproject.com/string/wildcmp.asp .
-// note: NULL wildcard pattern matches everything!
 int match_wildcard(const char* s, const char* w)
 {
 	if(!w)
@@ -520,110 +456,107 @@ int match_wildcardw(const wchar_t* s, const wchar_t* w)
 }
 
 
-
-
-// return random integer in [min, max).
-// avoids several common pitfalls; see discussion at
-// http://www.azillionmonkeys.com/qed/random.html
-
-// rand() is poorly implemented (e.g. in VC7) and only returns < 16 bits;
-// double that amount by concatenating 2 random numbers.
-// this is not to fix poor rand() randomness - the number returned will be
-// folded down to a much smaller interval anyway. instead, a larger XRAND_MAX
-// decreases the probability of having to repeat the loop.
-#if RAND_MAX < 65536
-static const uint XRAND_MAX = (RAND_MAX+1)*(RAND_MAX+1) - 1;
-static uint xrand()
+// FNV1-A hash - good for strings.
+// if len = 0 (default), treat buf as a C-string;
+// otherwise, hash <len> bytes of buf.
+u32 fnv_hash(const void* buf, size_t len)
 {
-	return rand()*(RAND_MAX+1) + rand();
-}
-// rand() is already ok; no need to do anything.
-#else
-static const uint XRAND_MAX = RAND_MAX;
-static uint xrand()
-{
-	return rand();
-}
-#endif
+	u32 h = 0x811c9dc5u;
+	// give distinct values for different length 0 buffers.
+	// value taken from FNV; it has no special significance.
 
-uint rand(uint min_inclusive, uint max_exclusive)
-{
-	const uint range = (max_exclusive-min_inclusive);
-	// huge interval or min >= max
-	if(range == 0 || range > XRAND_MAX)
+	const u8* p = (const u8*)buf;
+
+	// expected case: string
+	if(!len)
 	{
-		WARN_ERR(ERR_INVALID_PARAM);
-		return 0;
+		while(*p)
+		{
+			h ^= *p++;
+			h *= 0x01000193u;
+		}
+	}
+	else
+	{
+		size_t bytes_left = len;
+		while(bytes_left != 0)
+		{
+			h ^= *p++;
+			h *= 0x01000193u;
+
+			bytes_left--;
+		}
 	}
 
-	const uint inv_range = XRAND_MAX / range;
-
-	// generate random number in [0, range)
-	// idea: avoid skewed distributions when <range> doesn't evenly divide
-	// XRAND_MAX by simply discarding values in the "remainder".
-	// not expected to run often since XRAND_MAX is large.
-	uint x;
-	do
-		x = xrand();
-	while(x >= range * inv_range);
-	x /= inv_range;
-
-	x += min_inclusive;
-	debug_assert(x < max_exclusive);
-	return x;
+	return h;
 }
 
 
-//-----------------------------------------------------------------------------
-// built-in self test
-//-----------------------------------------------------------------------------
-
-#if SELF_TEST_ENABLED
-namespace test {
-
-static void test_log2()
+// FNV1-A hash - good for strings.
+// if len = 0 (default), treat buf as a C-string;
+// otherwise, hash <len> bytes of buf.
+u64 fnv_hash64(const void* buf, size_t len)
 {
-	TEST(ilog2(0u) == -1);
-	TEST(ilog2(3u) == -1);
-	TEST(ilog2(0xffffffffu) == -1);
-	TEST(ilog2(1u) == 0);
-	TEST(ilog2(256u) == 8);
-	TEST(ilog2(0x80000000u) == 31);
-}
+	u64 h = 0xCBF29CE484222325ull;
+	// give distinct values for different length 0 buffers.
+	// value taken from FNV; it has no special significance.
 
-static void test_rand()
-{
-	// complain if huge interval or min > max
-	TEST(rand(1, 0) == 0);
-	TEST(rand(2, ~0u) == 0);
+	const u8* p = (const u8*)buf;
 
-	// returned number must be in [min, max)
-	for(int i = 0; i < 100; i++)
+	// expected case: string
+	if(!len)
 	{
-		uint min = rand(), max = min+rand();
-		uint x = rand(min, max);
-		TEST(min <= x && x < max);
+		while(*p)
+		{
+			h ^= *p++;
+			h *= 0x100000001B3ull;
+		}
+	}
+	else
+	{
+		size_t bytes_left = len;
+		while(bytes_left != 0)
+		{
+			h ^= *p++;
+			h *= 0x100000001B3ull;
+
+			bytes_left--;
+		}
 	}
 
-	// make sure both possible values are hit
-	uint ones = 0, twos = 0;
-	for(int i = 0; i < 100; i++)
-	{
-		uint x = rand(1, 3);
-		// paranoia: don't use array (x might not be 1 or 2 - checked below)
-		if(x == 1) ones++; if(x == 2) twos++;
-	}
-	TEST(ones+twos == 100);
-	TEST(ones > 10 && twos > 10);
+	return h;
 }
 
-static void self_test()
+
+// special version for strings: first converts to lowercase
+// (useful for comparing mixed-case filenames).
+// note: still need <len>, e.g. to support non-0-terminated strings
+u32 fnv_lc_hash(const char* str, size_t len)
 {
-	test_log2();
-	test_rand();
+	u32 h = 0x811c9dc5u;
+	// give distinct values for different length 0 buffers.
+	// value taken from FNV; it has no special significance.
+
+	// expected case: string
+	if(!len)
+	{
+		while(*str)
+		{
+			h ^= tolower(*str++);
+			h *= 0x01000193u;
+		}
+	}
+	else
+	{
+		size_t bytes_left = len;
+		while(bytes_left != 0)
+		{
+			h ^= tolower(*str++);
+			h *= 0x01000193u;
+
+			bytes_left--;
+		}
+	}
+
+	return h;
 }
-
-SELF_TEST_RUN;
-
-}	// namespace test
-#endif	// #if SELF_TEST_ENABLED

@@ -540,8 +540,6 @@ ErrorReaction debug_display_error(const wchar_t* description,
 }
 
 
-// notify the user that an assertion failed; displays a stack trace with
-// local variables.
 ErrorReaction debug_assert_failed(const char* expr,
 	const char* file, int line, const char* func)
 {
@@ -561,7 +559,7 @@ ErrorReaction debug_assert_failed(const char* expr,
 	uint skip = 1; void* context = 0;
 	wchar_t buf[400];
 	swprintf(buf, ARRAY_SIZE(buf), L"Assertion failed at %hs:%d (%hs): \"%hs\"", fn_only, line, func, expr);
-	return debug_display_error(buf, DE_ALLOW_SUPPRESS|DE_MANUAL_BREAK, skip,context, fn_only,line);
+	return debug_display_error(buf, DE_ALLOW_SUPPRESS|DE_MANUAL_BREAK, skip, context, fn_only, line);
 }
 
 

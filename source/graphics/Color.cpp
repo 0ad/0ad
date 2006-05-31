@@ -29,7 +29,7 @@ void ColorActivateFastImpl()
 	{
 	}
 #if CPU_IA32
-	else if (ia32_cap(SSE))
+	else if (ia32_cap(IA32_CAP_SSE))
 	{
 		ConvertRGBColorTo4ub = sse_ConvertRGBColorTo4ub;
 	}

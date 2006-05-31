@@ -85,6 +85,17 @@ LibError tex_codec_for_header(const u8* file, size_t file_size, const TexCodecVT
 }
 
 
+const TexCodecVTbl* tex_codec_next(const TexCodecVTbl* prev_codec)
+{
+	// first time
+	if(!prev_codec)
+		return codecs;
+	// middle of list: return next (can be 0 to indicate end of list)
+	else
+		return prev_codec->next;
+}
+
+
 LibError tex_codec_transform(Tex* t, uint transforms)
 {
 	LibError ret = INFO_TEX_CODEC_CANNOT_HANDLE;

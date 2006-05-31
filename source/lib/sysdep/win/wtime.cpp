@@ -190,7 +190,7 @@ static LibError choose_impl()
 	//   will do this as well (if not to save power, for heat reasons).
 	//   frequency changes are too often and drastic to correct,
 	//   and we don't want to mess with the system power settings => unsafe.
-	if(cpu_freq > 0.0 && ia32_cap(TSC))
+	if(cpu_freq > 0.0 && ia32_cap(IA32_CAP_TSC))
 	{
 		safe = (cpus == 1 && cpu_speedstep == 0);
 		SAFETY_OVERRIDE(HRT_TSC);
@@ -299,7 +299,7 @@ static i64 ticks_lk()
 	// TSC
 #if CPU_IA32 && !defined(NO_TSC)
 	case HRT_TSC:
-		return (i64)rdtsc();
+		return (i64)ia32_rdtsc();
 #endif
 
 	// QPC

@@ -42,9 +42,6 @@
 #error ia32.cpp needs inline assembly support!
 #endif
 
-#define SELF_TEST_ENABLED 1
-#include "self_test.h"
-
 // set by ia32_init, referenced by ia32_memcpy (asm)
 extern "C" u32 ia32_memcpy_size_mask = 0;
 
@@ -58,7 +55,7 @@ void ia32_init()
 	// .. check for PREFETCHNTA and MOVNTQ support. these are part of the SSE
 	// instruction set, but also supported on older Athlons as part of
 	// the extended AMD MMX set.
-	if(ia32_cap(SSE) || ia32_cap(AMD_MMX_EXT))
+	if(ia32_cap(IA32_CAP_SSE) || ia32_cap(IA32_CAP_AMD_MMX_EXT))
 		ia32_memcpy_size_mask = ~0u;
 }
 
@@ -183,7 +180,7 @@ __asm{
 // calling conventions.
 // MSC, ICC and GCC currently return 64 bits in edx:eax, which even
 // matches rdtsc output, but we play it safe and return a temporary.
-u64 rdtsc()
+u64 ia32_rdtsc()
 {
 	u64 c;
 #if HAVE_MS_ASM
@@ -226,7 +223,7 @@ void ia32_debug_break()
 void mfence()
 {
 	// Pentium IV
-	if(ia32_cap(SSE2))
+	if(ia32_cap(IA32_CAP_SSE2))
 #if HAVE_MS_ASM
 		__asm mfence
 #elif HAVE_GNU_ASM
@@ -248,7 +245,7 @@ void serialize()
 // CPU / feature detect
 //-----------------------------------------------------------------------------
 
-bool ia32_cap(CpuCap cap)
+bool ia32_cap(IA32Cap cap)
 {
 	// treated as 128 bit field; order: std ecx, std edx, ext ecx, ext edx
 	// keep in sync with enum CpuCap!
@@ -364,7 +361,7 @@ static void get_cpu_type()
 					SAFE_STRCPY(cpu_type, "AMD Athlon");
 				else
 				{
-					if(ia32_cap(AMD_MP))
+					if(ia32_cap(IA32_CAP_AMD_MP))
 						SAFE_STRCPY(cpu_type, "AMD Athlon MP");
 					else
 						SAFE_STRCPY(cpu_type, "AMD Athlon XP");
@@ -465,7 +462,7 @@ static void get_cpu_count()
 	// note: we don't check if it's Intel and P4 or above - HT may be
 	// supported on other CPUs in future. all processors should set this
 	// feature bit correctly, so it's not a problem.
-	if(ia32_cap(HT))
+	if(ia32_cap(IA32_CAP_HT))
 	{
 		log_id_bits = log2(log_cpu_per_package);	// see above
 		last_phys_id = last_log_id = INVALID_ID;
@@ -495,7 +492,7 @@ static void check_for_speedstep()
 {
 	if(vendor == INTEL)
 	{
-		if(ia32_cap(EST))
+		if(ia32_cap(IA32_CAP_EST))
 			cpu_speedstep = 1;
 	}
 	else if(vendor == AMD)
@@ -520,11 +517,11 @@ static void measure_cpu_freq()
 	// make sure the TSC is available, because we're going to
 	// measure actual CPU clocks per known time interval.
 	// counting loop iterations ("bogomips") is unreliable.
-	if(ia32_cap(TSC))
+	if(ia32_cap(IA32_CAP_TSC))
 	{
 		// note: no need to "warm up" cpuid - it will already have been
 		// called several times by the time this code is reached.
-		// (background: it's used in rdtsc() to serialize instruction flow;
+		// (background: it's used in ia32_rdtsc() to serialize instruction flow;
 		// the first call is documented to be slower on Intel CPUs)
 
 		int num_samples = 16;
@@ -550,27 +547,27 @@ static void measure_cpu_freq()
 			do
 			{
 				// note: get_time effectively has a long delay (up to 5 us)
-				// before returning the time. we call it before rdtsc to
+				// before returning the time. we call it before ia32_rdtsc to
 				// minimize the delay between actually sampling time / TSC,
 				// thus decreasing the chance for interference.
 				// (if unavoidable background activity, e.g. interrupts,
 				// delays the second reading, inaccuracy is introduced).
 				t1 = get_time();
-				c1 = rdtsc();
+				c1 = ia32_rdtsc();
 			}
 			while(t1 == t0);
 			// .. wait until start of next tick and at least 1 ms elapsed.
 			do
 			{
 				const double t2 = get_time();
-				const u64 c2 = rdtsc();
+				const u64 c2 = ia32_rdtsc();
 				dc = (i64)(c2 - c1);
 				dt = t2 - t1;
 			}
 			while(dt < 1e-3);
 
 			// .. freq = (delta_clocks) / (delta_seconds);
-			//    cpuid/rdtsc/timer overhead is negligible.
+			//    ia32_rdtsc/timer overhead is negligible.
 			const double freq = dc / dt;
 			samples[i] = freq;
 		}
@@ -676,39 +673,3 @@ LibError ia32_get_call_target(void* ret_addr, void** target)
 
 	WARN_RETURN(ERR_CPU_UNKNOWN_OPCODE);
 }
-
-
-//----------------------------------------------------------------------------
-// built-in self test
-//----------------------------------------------------------------------------
-
-#if SELF_TEST_ENABLED
-namespace test {
-
-	static void test_float_int()
-	{
-		TEST(i32_from_float(0.99999f) == 0);
-		TEST(i32_from_float(1.0f) == 1);
-		TEST(i32_from_float(1.01f) == 1);
-		TEST(i32_from_float(5.6f) == 5);
-
-		TEST(i32_from_double(0.99999) == 0);
-		TEST(i32_from_double(1.0) == 1);
-		TEST(i32_from_double(1.01) == 1);
-		TEST(i32_from_double(5.6) == 5);
-
-		TEST(i64_from_double(0.99999) == 0LL);
-		TEST(i64_from_double(1.0) == 1LL);
-		TEST(i64_from_double(1.01) == 1LL);
-		TEST(i64_from_double(5.6) == 5LL);
-	}
-
-	static void self_test()
-	{
-		test_float_int();
-	}
-
-	SELF_TEST_RUN;
-
-}	// namespace test
-#endif	// #if SELF_TEST_ENABLED

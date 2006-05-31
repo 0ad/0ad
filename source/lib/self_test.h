@@ -172,4 +172,7 @@ extern int self_test_register(SelfTestRecord* r);
 // set/cleared by run_self_test.
 extern bool self_test_active;
 
+#define TS_ASSERT_OK(expr) TS_ASSERT_EQUAL((expr), ERR_OK)
+#define TS_ASSERT_STR_EQUAL(str1, str2) TS_ASSERT(!strcmp((str1), (str2)))
+
 #endif	// #ifndef SELF_TEST_H__

@@ -46,6 +46,7 @@ extern LibError path_component_validate(const char* name);
 
 
 // is s2 a subpath of s1, or vice versa?
+// (equal counts as subpath)
 extern bool path_is_subpath(const char* s1, const char* s2);
 
 // if path is invalid, return a descriptive error code, otherwise ERR_OK.

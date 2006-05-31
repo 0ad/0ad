@@ -89,37 +89,39 @@ extern void* ia32_memcpy(void* dst, const void* src, size_t nbytes);	// asm
 extern uint ia32_control87(uint new_val, uint mask);	// asm
 
 
-extern u64 rdtsc(void);
+extern u64 ia32_rdtsc(void);
 
 extern void ia32_debug_break(void);
 
 
-// CPU caps (128 bits)
+// CPU capability flags (128 bits)
 // do not change the order!
-enum CpuCap
+enum IA32Cap
 {
 	// standard (ecx) - currently only defined by Intel
-	SSE3 = 0+0,		// Streaming SIMD Extensions 3
-	EST  = 0+7,		// Enhanced Speedstep Technology
+	IA32_CAP_SSE3 = 0+0,	// Streaming SIMD Extensions 3
+	IA32_CAP_EST  = 0+7,	// Enhanced Speedstep Technology
 
 	// standard (edx)
-	TSC  = 32+4,	// TimeStamp Counter
-	CMOV = 32+15,	// Conditional MOVe
-	MMX  = 32+23,	// MultiMedia eXtensions
-	SSE  = 32+25,	// Streaming SIMD Extensions
-	SSE2 = 32+26,	// Streaming SIMD Extensions 2
-	HT   = 32+28,	// HyperThreading
+	IA32_CAP_FPU  = 32+0,	// Floating Point Unit
+	IA32_CAP_TSC  = 32+4,	// TimeStamp Counter
+	IA32_CAP_CMOV = 32+15,	// Conditional MOVe
+	IA32_CAP_MMX  = 32+23,	// MultiMedia eXtensions
+	IA32_CAP_SSE  = 32+25,	// Streaming SIMD Extensions
+	IA32_CAP_SSE2 = 32+26,	// Streaming SIMD Extensions 2
+	IA32_CAP_HT   = 32+28,	// HyperThreading
 
 	// extended (ecx)
 
 	// extended (edx) - currently only defined by AMD
-	AMD_MP        = 96+19,	// MultiProcessing capable; reserved on AMD64
-	AMD_MMX_EXT   = 96+22,
-	AMD_3DNOW_PRO = 96+30,
-	AMD_3DNOW     = 96+31
+	IA32_CAP_AMD_MP        = 96+19,	// MultiProcessing capable; reserved on AMD64
+	IA32_CAP_AMD_MMX_EXT   = 96+22,
+	IA32_CAP_AMD_3DNOW_PRO = 96+30,
+	IA32_CAP_AMD_3DNOW     = 96+31
 };
 
-extern bool ia32_cap(CpuCap cap);
+// indicate if the CPU supports the indicated cap.
+extern bool ia32_cap(IA32Cap cap);
 
 
 extern void ia32_get_cpu_info(void);

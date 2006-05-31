@@ -51,7 +51,7 @@ extern void calc_fps(void);
 
 // since TIMER_ACCRUE et al. are called so often, we try to keep
 // overhead to an absolute minimum. this flag allows storing
-// raw tick counts (e.g. CPU cycles returned by rdtsc) instead of
+// raw tick counts (e.g. CPU cycles returned by ia32_rdtsc) instead of
 // absolute time. there are two benefits:
 // - no need to convert from raw->time on every call
 //   (instead, it's only done once when displaying the totals)
@@ -213,7 +213,7 @@ public:
 	{
 #if TIMER_USE_RAW_TICKS
 # if CPU_IA32
-		t0 = rdtsc();
+		t0 = ia32_rdtsc();
 # else
 #  error "port"
 # endif
@@ -226,7 +226,7 @@ public:
 	{
 #if TIMER_USE_RAW_TICKS
 # if CPU_IA32
-		TimerUnit t1 = rdtsc();
+		TimerUnit t1 = ia32_rdtsc();
 # else
 #  error "port"
 # endif

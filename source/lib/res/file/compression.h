@@ -55,7 +55,7 @@ extern void comp_set_output(uintptr_t ctx, void* out, size_t out_size);
 // reliably estimate how much output space is needed.
 // raises a warning for decompression contexts because this operation
 // does not make sense there:
-// - decompression ratio is quite large - ballpark 1000x;
+// - worst-case decompression ratio is quite large - ballpark 1000x;
 // - exact uncompressed size is known to caller (via archive file header).
 // note: buffer is held until comp_free; it can be reused after a
 // comp_reset. this reduces malloc/free calls.

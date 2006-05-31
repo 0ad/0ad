@@ -20,9 +20,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-/*
-
-[KEEP IN SYNC WITH WIKI]
+/**
 
 low-level aka "lib"
 -------------------
@@ -53,7 +51,7 @@ scope
 - low-level helper functions, e.g. ADTs, endian conversion and timing
 - platform-dependent system/feature detection
 
-*/
+**/
 
 #ifndef LIB_H__
 #define LIB_H__
@@ -66,31 +64,51 @@ scope
 #include "lib/types.h"
 #include "sysdep/sysdep.h"
 #include "sysdep/cpu.h"	// CAS
+//#include "sysdep/sysdep.h"	// moved down; see below.
 
 
 #if defined(__cplusplus)
-#define EXTERN_C extern "C"
+# define EXTERN_C extern "C"
 #else
-#define EXTERN_C extern
+# define EXTERN_C extern
 #endif
 
-// package code into a single statement.
-// notes:
-// - for(;;) { break; } and {} don't work because invocations of macros
-//   implemented with STMT often end with ";", thus breaking if() expressions.
-// - we'd really like to eliminate "conditional expression is constant"
-//   warnings. replacing 0 literals with extern volatile variables fools
-//   VC7 but isn't guaranteed to be free of overhead. we will just
-//   squelch the warning (unfortunately non-portable).
+
+const size_t KiB = 1ul << 10;
+const size_t MiB = 1ul << 20;
+const size_t GiB = 1ul << 30;
+
+
+//-----------------------------------------------------------------------------
+// code-generating macros
+//-----------------------------------------------------------------------------
+
+/**
+ * package code into a single statement.
+ *
+ * @param STMT_code__ code to be bundled. (must be interpretable as
+ * a macro argument, i.e. sequence of tokens).
+ * the argument name is chosen to avoid conflicts.
+ *
+ * notes:
+ * - for(;;) { break; } and {} don't work because invocations of macros
+ *   implemented with STMT often end with ";", thus breaking if() expressions.
+ * - we'd really like to eliminate "conditional expression is constant"
+ *   warnings. replacing 0 literals with extern volatile variables fools
+ *   VC7 but isn't guaranteed to be free of overhead. we will just
+ *   squelch the warning (unfortunately non-portable).
+ **/
 #define STMT(STMT_code__) do { STMT_code__; } while(false)
 
 // must come after definition of STMT
 #include "lib/lib_errors.h"
 
-// execute the code passed as a parameter only the first time this is
-// reached.
-// may be called at any time (in particular before main), but is not
-// thread-safe. if that's important, use pthread_once() instead.
+/**
+ * execute the code passed as a parameter only the first time this is
+ * reached.
+ * may be called at any time (in particular before main), but is not
+ * thread-safe. if that's important, use pthread_once() instead.
+ **/
 #define ONCE(ONCE_code__)\
 STMT(\
 	static bool ONCE_done__ = false;\
@@ -101,10 +119,12 @@ STMT(\
 	}\
 )
 
-// execute the code passed as a parameter except the first time this is
-// reached.
-// may be called at any time (in particular before main), but is not
-// thread-safe.
+/**
+ * execute the code passed as a parameter except the first time this is
+ * reached.
+ * may be called at any time (in particular before main), but is not
+ * thread-safe.
+ **/
 #define ONCE_NOT(ONCE_code__)\
 STMT(\
 	static bool ONCE_done__ = false;\
@@ -115,8 +135,13 @@ STMT(\
 )
 
 
-// useful because VC6 may return 0 on failure, instead of throwing.
-// this wraps the exception handling, and creates a NULL pointer on failure.
+/**
+ * C++ new wrapper: allocates an instance of the given type and stores a
+ * pointer to it. sets pointer to 0 on allocation failure.
+ *
+ * this simplifies application code when on VC6, which may or
+ * may not throw/return 0 on failure.
+ **/
 #define SAFE_NEW(type, ptr)\
 	type* ptr;\
 	try\
@@ -128,13 +153,30 @@ STMT(\
 		ptr = 0;\
 	}
 
+/**
+ * delete memory ensuing from new and set the pointer to zero
+ * (thus making double-frees safe / a no-op)
+ **/
 #define SAFE_DELETE(p)\
 STMT(\
 	delete (p);	/* if p == 0, delete is a no-op */ \
 	(p) = 0;\
 )
 
+/**
+ * delete memory ensuing from new[] and set the pointer to zero
+ * (thus making double-frees safe / a no-op)
+ **/
+#define SAFE_ARRAY_DELETE(p)\
+STMT(\
+	delete[] (p);	/* if p == 0, delete is a no-op */ \
+	(p) = 0;\
+)
 
+/**
+ * free memory ensuing from malloc and set the pointer to zero
+ * (thus making double-frees safe / a no-op)
+ **/
 #define SAFE_FREE(p)\
 STMT(\
 	free(p);	/* if p == 0, free is a no-op */ \
@@ -142,33 +184,37 @@ STMT(\
 )
 
 
+//-----------------------------------------------------------------------------
+// source code annotation
+//-----------------------------------------------------------------------------
 
-#ifndef MIN
-#define MIN(a, b) (((a) < (b))? (a) : (b))
-#endif
-
-#ifndef MAX
-#define MAX(a, b) (((a) > (b))? (a) : (b))
-#endif
-
-
-// 2 ways of avoiding "unreferenced formal parameter" warnings:
-// .. inside the function body, e.g. void f(int x) { UNUSED2(x); }
+/**
+ * mark a function local variable or parameter as unused and avoid
+ * the corresponding compiler warning.
+ * use inside the function body, e.g. void f(int x) { UNUSED2(x); }
+ **/
 #define UNUSED2(param) (void)param;
-// .. wrapped around the parameter name, e.g. void f(int UNUSED(x))
+
+/**
+ * mark a function parameter as unused and avoid
+ * the corresponding compiler warning.
+ * wrap around the parameter name, e.g. void f(int UNUSED(x))
+ **/
 #define UNUSED(param)
 
-// mark the copy constructor as inaccessible. this squelches
-// "cannot be generated" warnings for classes with const members.
-//
-// intended to be used at end of class definition.
-// must be followed by semicolon.
+/**
+ * mark the copy constructor as inaccessible. this squelches
+ * "cannot be generated" warnings for classes with const members.
+ *
+ * intended to be used at end of class definition.
+ * must be followed by semicolon.
+ **/
 #define NO_COPY_CTOR(class_name)\
 	private:\
 	class_name& operator=(const class_name&)
 
 
-/*
+/**
 "unreachable code" helpers
 
 unreachable lines of code are often the source or symptom of subtle bugs.
@@ -200,7 +246,9 @@ our implementation of UNREACHABLE solves this dilemna as follows:
 
 this approach still allows for the possiblity of automated
 checking, but does not cause any compiler warnings.
-*/
+**/
+#define UNREACHABLE	// actually defined below.. this is for
+# undef UNREACHABLE	// CppDoc's benefit only.
 
 // 1) final build: optimize assuming this location cannot be reached.
 //    may crash if that turns out to be untrue, but removes checking overhead.
@@ -223,7 +271,7 @@ checking, but does not cause any compiler warnings.
 # endif
 #endif
 
-/*
+/**
 convenient specialization of UNREACHABLE for switch statements whose
 default can never be reached. example usage:
 int x;
@@ -233,17 +281,11 @@ switch(x % 2)
 	case 1: break;
 	NODEFAULT;
 }
-*/
+**/
 #define NODEFAULT default: UNREACHABLE
 
-
-#define ARRAY_SIZE(name) (sizeof(name) / sizeof(name[0]))
-
-
-//
-// compile-time debug_assert, especially useful for testing sizeof().
-// no runtime overhead; may be used anywhere, including file scope.
-//
+//-----------------------------------------------------------------------------
+// cassert
 
 // generate a symbol containing the line number of the macro invocation.
 // used to give a unique name (per file) to types made by cassert.
@@ -254,37 +296,75 @@ switch(x % 2)
 #define MAKE_UID1__(l) MAKE_UID2__(l)
 #define UID__ MAKE_UID1__(__LINE__)
 
-// more descriptive error message, but may cause a struct redefinition
-// warning if used from the same line in different files.
+/**
+ * compile-time debug_assert. causes a compile error if the expression
+ * evaluates to zero/false.
+ *
+ * no runtime overhead; may be used anywhere, including file scope.
+ * especially useful for testing sizeof types.
+ *
+ * this version has a more descriptive error message, but may cause a
+ * struct redefinition warning if used from the same line in different files.
+ *
+ * note: alternative method in C++: specialize a struct only for true;
+ * using it will raise 'incomplete type' errors if instantiated with false.
+ *
+ * @param expression that is expected to evaluate to non-zero at compile-time.
+ **/
 #define cassert(expr) struct UID__ { int CASSERT_FAILURE: (expr); }
 
-// less helpful error message, but redefinition doesn't trigger warnings.
+/**
+ * compile-time debug_assert. causes a compile error if the expression
+ * evaluates to zero/false.
+ *
+ * no runtime overhead; may be used anywhere, including file scope.
+ * especially useful for testing sizeof types.
+ *
+ * this version has a less helpful error message, but redefinition doesn't
+ * trigger warnings.
+ *
+ * @param expression that is expected to evaluate to non-zero at compile-time.
+ **/
 #define cassert2(expr) extern char CASSERT_FAILURE[1][(expr)]
 
-// note: alternative method in C++: specialize a struct only for true;
-// using it will raise 'incomplete type' errors if instantiated with false.
 
+//-----------------------------------------------------------------------------
+// bit bashing
+//-----------------------------------------------------------------------------
 
-
-
-const size_t KiB = 1ul << 10;
-const size_t MiB = 1ul << 20;
-const size_t GiB = 1ul << 30;
-
-
-
-
+/**
+ * value of bit number <n>.
+ *
+ * @param n bit index (0..CHAR_BIT*sizeof(int)-1)
+ **/
 #define BIT(n) (1ul << (n))
 
 
 // these are declared in the header and inlined to aid compiler optimizations
 // (they can easily end up being time-critical).
+// note: GCC can't inline extern functions, while VC's "Whole Program
+// Optimization" can.
 
+/**
+ * a mask that includes the lowest N bits
+ *
+ * @param num_bits number of bits in mask
+ **/
 inline uint bit_mask(uint num_bits)
 {
 	return (1u << num_bits)-1;
 }
 
+/**
+ * extract the value of bits hi_idx:lo_idx within num
+ *
+ * example: bits(0x69, 2, 5) == 0x0A
+ *
+ * @param num number whose bits are to be extracted
+ * @param lo_idx bit index of lowest  bit to include
+ * @param hi_idx bit index of highest bit to include
+ * @return value of extracted bits.
+ **/
 inline uint bits(uint num, uint lo_idx, uint hi_idx)
 {
 	const uint count = (hi_idx - lo_idx)+1;	// # bits to return
@@ -293,93 +373,182 @@ inline uint bits(uint num, uint lo_idx, uint hi_idx)
 	return result;
 }
 
-
-// FNV1-A hash - good for strings.
-// if len = 0 (default), treat buf as a C-string;
-// otherwise, hash <len> bytes of buf.
-extern u32 fnv_hash(const void* buf, size_t len = 0);
-extern u64 fnv_hash64(const void* buf, size_t len = 0);
-
-// special version for strings: first converts to lowercase
-// (useful for comparing mixed-case filenames)
-extern u32 fnv_lc_hash(const char* str, size_t len = 0);
-
-// hash (currently FNV) of a filename
-typedef u32 FnHash;
-
-
-extern u16 addusw(u16 x, u16 y);
-extern u16 subusw(u16 x, u16 y);
-
-// zero-extend <size> (truncated to 8) bytes of little-endian data to u64,
-// starting at address <p> (need not be aligned).
-extern u64 movzx_64le(const u8* p, size_t size);
-
-// sign-extend <size> (truncated to 8) bytes of little-endian data to i64,
-// starting at address <p> (need not be aligned).
-extern i64 movsx_64le(const u8* p, size_t size);
-
-
+/// is the given number a power of two?
 extern bool is_pow2(uint n);
 
-// return -1 if not an integral power of 2,
-// otherwise the base2 logarithm
+/**
+ * @return -1 if not an integral power of 2,
+ * otherwise the base2 logarithm.
+ **/
 extern int ilog2(uint n);
 
-// return log base 2, rounded up.
+/**
+ * @return log base 2, rounded up.
+ **/
 extern uint log2(uint x);
 
+/**
+ * another implementation; uses the FPU normalization hardware.
+ *
+ * @return log base 2, rounded up.
+ **/
+extern int ilog2(const float x);
+
+/**
+ * round up to nearest power of two; no change if already POT.
+ **/
 extern uint round_up_to_pow2(uint x);
 
 
-// multiple must be a power of two.
+//-----------------------------------------------------------------------------
+// misc arithmetic
+
+/// canonical minimum macro
+#ifndef MIN
+#define MIN(a, b) (((a) < (b))? (a) : (b))
+#endif
+
+/// canonical maximum macro
+#ifndef MAX
+#define MAX(a, b) (((a) > (b))? (a) : (b))
+#endif
+
+/// number of array elements
+#define ARRAY_SIZE(name) (sizeof(name) / sizeof(name[0]))
+
+/**
+ * round number up/down to the next given multiple.
+ *
+ * @param multiple: must be a power of two.
+ **/
 extern uintptr_t round_up  (uintptr_t n, uintptr_t multiple);
 extern uintptr_t round_down(uintptr_t n, uintptr_t multiple);
 
-// these avoid a common mistake in using >> (ANSI requires shift count be
-// less than the bit width of the type).
-extern u32 u64_hi(u64 x);
-extern u32 u64_lo(u64 x);
-extern u16 u32_hi(u32 x);
-extern u16 u32_lo(u32 x);
+/// 16-bit saturating (does not overflow) addition.
+extern u16 addusw(u16 x, u16 y);
+/// 16-bit saturating (does not underflow) subtraction.
+extern u16 subusw(u16 x, u16 y);
 
-
-extern u64 u64_from_u32(u32 hi, u32 lo);
-extern u32 u32_from_u16(u16 hi, u16 lo);
-
-
-
-
+/**
+ * are the given floats nearly "equal"?
+ *
+ * @return whether the numbers are within "epsilon" of each other.
+ *
+ * notes:
+ * - the epsilon magic number varies with the magnitude of the inputs.
+ *   we use a sane default, but don't use this routine for very
+ *   large/small comparands.
+ * - floating-point numbers don't magically lose precision. addition,
+ *   subtraction and multiplication results are precise up to the mantissa's
+ *   least-significant bit. only division, sqrt, sin/cos and other
+ *   trancendental operations introduce error.
+ **/
 inline bool feq(float f1, float f2)
 {
-	// the requisite value will change with the magnitude of f1 and f2!
-	// this is a sane default, but don't use this routine for very
-	// large/small comparands.
 	const float epsilon = 0.00001f;
 	return fabsf(f1 - f2) < epsilon;
 }
 
 
+/**
+* return random integer in [min, max).
+* avoids several common pitfalls; see discussion at
+* http://www.azillionmonkeys.com/qed/random.html
+**/
+extern uint rand(uint min_inclusive, uint max_exclusive);
+
+
+//-----------------------------------------------------------------------------
+// type conversion
+
+
+// note: these avoid a common mistake in using >> (ANSI requires
+// shift count be less than the bit width of the type).
+
+extern u32 u64_hi(u64 x);	/// return upper 32-bits
+extern u32 u64_lo(u64 x);	/// return lower 32-bits
+extern u16 u32_hi(u32 x);	/// return upper 16-bits
+extern u16 u32_lo(u32 x);	/// return lower 16-bits
+
+extern u64 u64_from_u32(u32 hi, u32 lo);	/// assemble u64 from u32
+extern u32 u32_from_u16(u16 hi, u16 lo);	/// assemble u32 from u16
+
+/**
+ * zero-extend <size> (truncated to 8) bytes of little-endian data to u64,
+ * starting at address <p> (need not be aligned).
+ **/
+extern u64 movzx_64le(const u8* p, size_t size);
+
+/**
+ * sign-extend <size> (truncated to 8) bytes of little-endian data to i64,
+ * starting at address <p> (need not be aligned).
+ **/
+extern i64 movsx_64le(const u8* p, size_t size);
+
+/// convert double to u8; verifies number is in range.
+extern u8  fp_to_u8 (double in);
+/// convert double to u16; verifies number is in range.
 extern u16 fp_to_u16(double in);
 
 
-// big endian!
-extern void base32(const int len, const u8* in, u8* out);
+//-----------------------------------------------------------------------------
+// string processing
 
-
-// case-insensitive check if string <s> matches the pattern <w>,
-// which may contain '?' or '*' wildcards. if so, return 1, otherwise 0.
-// note: NULL wildcard pattern matches everything!
-extern int match_wildcard(const char* s, const char* w);
-extern int match_wildcardw(const wchar_t* s, const wchar_t* w);
-
-// this is strcpy, but indicates that the programmer checked usage and
-// promises it is safe.
+/**
+ * this is strcpy, but indicates that the programmer checked usage and
+ * promises it is safe.
+ **/
 #define SAFE_STRCPY strcpy
 
-// return random integer in [min, max).
-// avoids several common pitfalls; see discussion at
-// http://www.azillionmonkeys.com/qed/random.html
-extern uint rand(uint min_inclusive, uint max_exclusive);
+
+/**
+ * generate the base32 textual representation of a buffer.
+ *
+ * @param len size [bytes] of input
+ * @param big-endian input data (assumed to be integral number of bytes)
+ * @param output string; zero-terminated. must be big enough
+ * (i.e. at least ceil(len*CHAR_BIT/5) + 1 chars)
+ **/
+extern void base32(const size_t len, const u8* in, u8* out);
+
+
+/**
+ * partial regex implementation: see if string matches pattern.
+ *
+ * @param s input string
+ * @param w pseudo-regex to match against. case-insensitive;
+ * may contain '?' and/or '*' wildcards. if NULL, matches everything.
+ *
+ * @return 1 if they match, otherwise 0.
+ *
+ * algorithmfrom http://www.codeproject.com/string/wildcmp.asp.
+ **/
+extern int match_wildcard(const char* s, const char* w);
+/// unicode version of match_wildcard.
+extern int match_wildcardw(const wchar_t* s, const wchar_t* w);
+
+
+/**
+ * calculate FNV1-A hash.
+ *
+ * @param buf input buffer.
+ * @param len if 0 (default), treat buf as a C-string; otherwise,
+ * indicates how many bytes of buffer to hash.
+ * @return hash result. note: results are distinct for buffers containing
+ * differing amounts of zero bytes because the hash value is seeded.
+ *
+ * rationale: this algorithm was chosen because it delivers 'good' results
+ * for string data and is relatively simple. other good alternatives exist;
+ * see Ozan Yigit's hash roundup.
+ **/
+extern u32 fnv_hash(const void* buf, size_t len = 0);
+/// 64-bit version of fnv_hash.
+extern u64 fnv_hash64(const void* buf, size_t len = 0);
+
+/**
+ * special version of fnv_hash for strings: first converts to lowercase
+ * (useful for comparing mixed-case filenames)
+ **/
+extern u32 fnv_lc_hash(const char* str, size_t len = 0);
 
 #endif	// #ifndef LIB_H__

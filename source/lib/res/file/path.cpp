@@ -199,6 +199,11 @@ LibError file_set_root_dir(const char* argv0, const char* rel_path)
 // arena, which is also more memory-efficient than the heap (no headers).
 static Pool atom_pool;
 
+bool path_is_atom_fn(const char* fn)
+{
+	return pool_contains(&atom_pool, (void*)fn);
+}
+
 // allocate a copy of P_fn in our string pool. strings are equal iff
 // their addresses are equal, thus allowing fast comparison.
 //
@@ -208,7 +213,7 @@ static Pool atom_pool;
 const char* file_make_unique_fn_copy(const char* P_fn)
 {
 	// early out: if already an atom, return immediately.
-	if(pool_contains(&atom_pool, (void*)P_fn))
+	if(path_is_atom_fn(P_fn))
 		return P_fn;
 
 	const size_t fn_len = strlen(P_fn);
@@ -238,12 +243,6 @@ const char* file_make_unique_fn_copy(const char* P_fn)
 
 	stats_unique_name(fn_len);
 	return unique_fn;
-}
-
-
-bool path_is_atom_fn(const char* fn)
-{
-	return pool_contains(&atom_pool, (void*)fn);
 }
 
 
