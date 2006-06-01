@@ -47,7 +47,9 @@ CAStarEngine::CAStarEngine(AStarGoalBase *goal)
 
 CAStarEngine::~CAStarEngine()
 {
-	delete mFlags;
+	if(mFlags) {
+		delete[] mFlags;
+	}
 	std::vector<AStarNode*>::iterator it;
 	for( it = usedNodes.begin(); it != usedNodes.end(); it++)
 	{
@@ -77,7 +79,7 @@ bool CAStarEngine::findPath(
 	clearOpen();
 	clearClosed();
 	PROFILE_START("memset cache");
-	memset(mFlags, 0, mFlagArraySize*mFlagArraySize);
+	memset(mFlags, 0, mFlagArraySize*mFlagArraySize*sizeof(AStarNodeFlag));
 	PROFILE_END("memset cache");
 
 	addToOpen(start);
