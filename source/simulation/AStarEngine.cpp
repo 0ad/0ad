@@ -47,9 +47,7 @@ CAStarEngine::CAStarEngine(AStarGoalBase *goal)
 
 CAStarEngine::~CAStarEngine()
 {
-	if(mFlags) {
-		delete[] mFlags;
-	}
+	delete[] mFlags;
 	std::vector<AStarNode*>::iterator it;
 	for( it = usedNodes.begin(); it != usedNodes.end(); it++)
 	{
@@ -344,8 +342,15 @@ float AStarGoalLowLevel::getTileCost( const CVector2D& loc1, const CVector2D& lo
 
 bool AStarGoalLowLevel::isPassable( const CVector2D &loc, CPlayer* player )
 {
-	CVector2D wloc = TilespaceToWorldspace(loc);
 	CTerrain* pTerrain = g_Game->GetWorld()->GetTerrain();
+	int size = pTerrain->GetTilesPerSide();
+
+	if( loc.x<0 || loc.y<0 || loc.x>=size || loc.y>=size )
+	{
+		return false;
+	}
+
+	CVector2D wloc = TilespaceToWorldspace(loc);
 	float slope = pTerrain->getSlope(wloc.x, wloc.y);
 	if (  slope < MAXSLOPE )
 	{
@@ -396,7 +401,8 @@ std::vector<CVector2D> AStarGoalLowLevel::getNeighbors( const CVector2D &loc, CP
 
 inline AStarNodeFlag* CAStarEngine::GetFlag(const CVector2D &loc)
 {
-	return mFlags + (mFlagArraySize * (long)loc.x) + (long)loc.y;
+	debug_assert(loc.x>=0 && loc.y>=0 && loc.x<mFlagArraySize && loc.y<mFlagArraySize);
+	return mFlags + (mFlagArraySize * (long)loc.x + (long)loc.y);
 }
 
 

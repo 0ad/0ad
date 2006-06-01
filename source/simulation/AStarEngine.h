@@ -60,7 +60,7 @@ class CAStarEngine
 public:
 	CAStarEngine();
 	CAStarEngine(AStarGoalBase* goal);
-	~CAStarEngine();
+	virtual ~CAStarEngine();
 
 	void setGoal(AStarGoalBase* goal) { mGoal = goal; }
 
@@ -154,7 +154,7 @@ public:
 	{
 		mGoal = new AStarGoalLowLevel;
 	}
-	~CAStarEngineLowLevel()
+	virtual ~CAStarEngineLowLevel()
 	{
 		delete mGoal;
 	}
