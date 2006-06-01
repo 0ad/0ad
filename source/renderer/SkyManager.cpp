@@ -53,7 +53,7 @@ SkyManager::SkyManager()
 	// TODO: add a way to set the initial skyset before progressive load
 	m_SkySet = L"default";
 
-	m_HorizonHeight = 0;
+	m_HorizonHeight = -150.0f;
 
 	for (uint i = 0; i < ARRAY_SIZE(m_SkyTexture); i++)
 		m_SkyTexture[i] = 0;
