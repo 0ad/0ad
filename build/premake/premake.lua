@@ -564,8 +564,10 @@ end
 
 --------------------------------
 
-setup_all_libs()
+-- must come first, so that VC sets it as the default project and therefore
+-- allows running via F5 without the "where is the EXE" dialog.
 setup_main_exe()
+setup_all_libs()
 
 if options["atlas"] then
 	setuppackages_atlas()
