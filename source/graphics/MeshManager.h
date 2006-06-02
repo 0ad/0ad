@@ -4,8 +4,8 @@
 #include "Singleton.h"
 #include "CStr.h"
 
-#include "boost/shared_ptr.hpp"
-#include "boost/weak_ptr.hpp"
+#include <boost/shared_ptr.hpp>
+#include <boost/weak_ptr.hpp>
 
 #define g_MeshManager CMeshManager::GetSingleton()
 

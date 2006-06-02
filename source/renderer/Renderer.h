@@ -284,7 +284,7 @@ public:
 	WaterManager* GetWaterManager() { return m_WaterManager; }
 
 	/**
-	 * GetWaterManager: Return the renderer's sky manager.
+	 * GetSkyManager: Return the renderer's sky manager.
 	 *
 	 * @return the SkyManager object used by the renderer
 	 */

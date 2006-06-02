@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#include "bfd.h"
+#include <bfd.h>
 #include <cxxabi.h>
 
 #ifndef bfd_get_section_size

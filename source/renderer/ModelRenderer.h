@@ -1,4 +1,4 @@
-/**
+﻿/**
  * =========================================================================
  * File        : ModelRenderer.h
  * Project     : Pyrogenesis
@@ -13,7 +13,7 @@
 #ifndef MODELRENDERER_H
 #define MODELRENDERER_H
 
-#include "boost/shared_ptr.hpp"
+#include <boost/shared_ptr.hpp>
 
 #include "graphics/Color.h"
 #include "graphics/MeshManager.h"

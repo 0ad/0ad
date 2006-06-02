@@ -6,7 +6,7 @@
 #include "BaseFormation.h"
 #include "EntityFormation.h"
 
-#include "ps/Vector2D.h"
+#include "Vector2D.h"
 
 CFormationManager::~CFormationManager()
 {

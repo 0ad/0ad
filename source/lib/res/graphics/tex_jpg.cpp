@@ -24,8 +24,8 @@
 
 extern "C" {
 // this is not a core library module, so it doesn't define JPEG_INTERNALS
-#include "jpeglib.h"
-#include "jerror.h"
+#include <jpeglib.h>
+#include <jerror.h>
 }
 
 #include "lib.h"

@@ -29,7 +29,7 @@
 #include "lib.h"
 #include "win_internal.h"
 #define _NO_CVCONST_H	// request SymTagEnum be defined
-#include "dbghelp.h"
+#include <dbghelp.h>
 #include <OAIdl.h>	// VARIANT
 #include "posix.h"
 #include "sysdep/cpu.h"

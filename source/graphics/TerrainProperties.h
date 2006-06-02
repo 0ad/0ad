@@ -11,7 +11,7 @@
 #define graphics_TerrainProperties_H
 
 #include "CStr.h"
-#include "boost/shared_ptr.hpp"
+#include <boost/shared_ptr.hpp>
 
 class CTerrainGroup;
 class XMBElement;

@@ -3,7 +3,6 @@
 #include "BoundingObjects.h"
 #include "ogl.h"
 #include "MathUtil.h"
-#include "stdio.h"
 
 bool CBoundingObject::intersects( CBoundingObject* obj )
 {
