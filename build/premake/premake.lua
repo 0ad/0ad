@@ -14,110 +14,57 @@ end
 project.path = options["outpath"]
 project.configs = { "Debug", "Release", "Testing" }
 
-if (OS == "windows") then
+if OS == "windows" then
 	project.nasmpath = "../../build/bin/nasm.exe"
 end
 
-function create_package()
+-- note: Whenever "extern_libs" are specified, they are a table ("array") of
+-- library names, which are assumed to be subdirectories of this path.
+-- They must each contain an "include" [on Windows: also "lib"] subdirectory.
+--
+-- When adding new ones, make sure to also add them in the main_exe link step
+-- (it'd be nice to automate this, but lib names and debug suffixes differ wildly).   
+libraries_dir = "../../../libraries/"
+source_root = "../../../source/" -- default for most projects - overridden by local in others
+
+-- Rationale: packages should not have any additional include paths except for
+-- those required by external libraries. Instead, we should always write the
+-- full relative path, e.g. #include "maths/Vector3d.h". This avoids confusion
+-- ("which file is meant?") and avoids enormous include path lists. 
+
+-- packages: engine static libs, main exe, atlas, atlas frontends
+-- the engine libs are necessary because they are referenced by the separate
+-- test workspace.
+
+
+-- create a package and set the attributes that are common to all packages.
+function create_package_with_cflags (package_name, target_type)
+
+ 	-- Note: don't store in local variable. A global variable needs to
+ 	-- be set for Premake's use; it is implicitly used in e.g. matchfiles()
 	package = newpackage()
 	package.path = project.path
 	package.language = "c++"
-	package.buildflags = { "with-symbols", "no-edit-and-continue" }
-	return package
-end
-
----------------- Main game package (pyrogenesis) ----------------
-
-function setuppackage_engine (projectname)
-
-	-- Start the package part
-	package = create_package()
-
-	package.name = "pyrogenesis"
-	exename = "ps"
-	objdirprefix = "obj/"
-
-	-- Windowed executable on windows, "exe" on all other platforms
-	package.kind = "winexe"
-
-	-- Package target for debug and release build
-	-- On Windows, ".exe" is added on the end, on unices the name is used directly
-	package.config["Debug"].target = exename.."_dbg"
-	package.config["Release"].target = exename
-	package.config["Testing"].target = exename.."_test"
-
-	package.config["Debug"].objdir = objdirprefix.."Debug"
-	package.config["Release"].objdir  = objdirprefix.."Release"
-	package.config["Testing"].objdir = objdirprefix.."Testing"
+	package.name = package_name
+	package.kind = target_type
 
 
-	sourceroot = "../../../source/"
-	librariesroot = "../../../libraries/"
+	------------- target --------------
 
-	source_dirs = {
-		"ps",
-		"ps/scripting",
-		"ps/Network",
-		"ps/GameSetup",
-		"ps/XML",
+	-- Note: On Windows, ".exe" is added on the end, on unices the name is used directly
+	package.config["Debug"  ].target = package_name.."_dbg"
+	package.config["Testing"].target = package_name.."_test"
+	package.config["Release"].target = package_name
 
-		"simulation",
-		"simulation/scripting",
+	local obj_dir_prefix = "obj/"..package_name.."_"
+	package.config["Debug"  ].objdir = obj_dir_prefix.."Debug"
+	package.config["Testing"].objdir = obj_dir_prefix.."Test"
+	package.config["Release"].objdir = obj_dir_prefix.."Release"
 
-		"lib",
-		"lib/sysdep",
-		"lib/res",
-		"lib/res/file",
-		"lib/res/graphics",
-		"lib/res/sound",
 
-		"graphics",
-		"graphics/scripting",
+	------------- build flags --------------
 
-		"maths",
-		"maths/scripting",
-
-		"renderer",
-		"terrain",
-		"sound",
-		"scripting",
-		"i18n",
-
-		"gui",
-		"gui/scripting",
-
-		"tools/atlas/GameInterface",
-		"tools/atlas/GameInterface/Handlers"
-	}
-
-	package.files = sourcesfromdirs(sourceroot, source_dirs)
-	table.insert(package.files, sourceroot.."main.cpp")
-
-	package.trimprefix = sourceroot
-
-	include_dirs = {
-		"ps",
-		"simulation",
-		"lib",
-		"graphics",
-		"maths",
-		"renderer",
-		"terrain",
-		""
-	}
-
-	package.includepaths = {}
-	for i,v in include_dirs do
-		table.insert(package.includepaths, sourceroot .. v)
-	end
-
-	package.libpaths = {}
-
-	table.insert(package.buildflags, "extra-warnings")
-
-	if (OS == "windows") then
-		table.insert(package.buildflags, "no-rtti")
-	end
+	package.buildflags = { "with-symbols", "no-edit-and-continue", "extra-warnings" }
 
 	-- PremakeWiki says with-symbols and optimize are automatically set for
 	-- Debug and Release builds, respectively. doesn't happen though, so do it manually.
@@ -128,11 +75,244 @@ function setuppackage_engine (projectname)
 	package.config["Release"].buildflags = { "no-runtime-checks", "optimize" }
 	package.config["Release"].defines = { "NDEBUG" }
 
-	-- Platform Specifics
-	if (OS == "windows") then
+	-- various platform-specific build flags
+	if OS == "windows" then
+		table.insert(package.buildflags, "no-rtti")
 
-		-- Directories under 'libraries', each containing 'lib' and 'include':
-		external_libraries = {
+		-- use native wchar_t type (not typedef to unsigned short)
+		table.insert(package.buildflags, { "native-wchar_t" })
+	else	-- *nix
+		package.buildoptions = {
+			"-Wall",
+			"-Wunused-parameter",	-- needs to be enabled explicitly
+			"-Wno-switch",		-- enumeration value not handled in switch
+			"-Wno-reorder",		-- order of initialization list in constructors
+			"-Wno-non-virtual-dtor",
+
+			-- speed up math functions by inlining. warning: this may result in
+			-- non-IEEE-conformant results, but haven't noticed any trouble so far.
+			"-ffast-math",
+		}
+		package.defines = {
+			"__STDC_VERSION__=199901L",
+			"CONFIG_USE_MMGR"
+		}
+	end
+
+	return package
+end
+
+
+function package_add_contents(source_root, rel_source_dirs, rel_include_dirs, extern_libs, extra_params)
+
+	-- We don't want the VC project to be deeply nested (once for each
+	-- folder in source_root). Therefore, remove the source_root
+	-- directory from the filenames (where those
+	-- names are used by Premake to construct the project tree), but set
+	-- 'trimprefix' (with Premake altered to recognise that) so the project
+	-- will still point to the correct filenames.
+	package.trimprefix = source_root
+	package.files = sourcesfromdirs(source_root, rel_source_dirs)
+
+	if extra_params["extrasource"] then
+		for i,v in extra_params["extrasource"] do
+			table.insert(package.files, source_root .. v)
+		end
+	end
+	
+	package.includepaths = {
+		-- Put the project-specific PCH directory at the start of the
+		-- include path, so '#include "precompiled.h"' will look in
+		-- there first
+		source_root .. "pch/" .. package.name,
+		-- TODO: don't do this for the independent Atlas packages...
+		
+		-- next is source root dir, for absolute (nonrelative) includes
+		-- (e.g. "lib/precompiled.h")
+		source_root 
+	}
+	for i,v in rel_include_dirs do
+		table.insert(package.includepaths, source_root .. v)
+	end
+
+	-- Add '<libraries root>/<libraryname>/lib' and '/include' to the includepaths and libpaths
+	for i,v in extern_libs do
+		table.insert(package.includepaths, libraries_dir..v.."/include")
+		table.insert(package.libpaths,     libraries_dir..v.."/lib")
+	end
+
+end
+
+
+--------------------------------------------------------------------------------
+-- engine static libraries
+--------------------------------------------------------------------------------
+
+-- the engine is split up into several static libraries. this eases separate
+-- distribution of those components, reduces dependencies a bit, and can]
+-- also speed up builds.
+
+-- note: rel_source_dirs and rel_include_dirs are relative to global source_root.
+function setup_static_lib_package (package_name, rel_source_dirs, extern_libs, extra_params)
+	create_package_with_cflags(package_name, "lib")
+
+	package_add_contents(source_root, rel_source_dirs, {}, extern_libs, extra_params)
+	
+	if OS == "windows" then
+		-- Precompiled Headers
+		-- rationale: we need one PCH per static lib, since one global header would
+		-- increase dependencies. To that end, we can either include them as
+		-- "packagedir/precompiled.h", or add "source/PCH/packagedir" to the
+		-- include path and put the PCH there. The latter is better because
+		-- many packages contain several dirs and it's unclear where there the
+		-- PCH should be stored. This way is also a bit easier to use in that
+		-- source files always include "precompiled.h".
+		-- Notes:
+		-- * Visual Assist manages to use the project include path and can
+		--   correctly open these files from the IDE.
+		-- * precompiled.cpp (needed to "Create" the PCH) also goes in
+		--   the abovementioned dir.		 
+		pch_dir = source_root.."pch/"..package_name.."/"
+		package.pchheader = "precompiled.h"
+		package.pchsource = "precompiled.cpp"
+		table.insert(package.files, pch_dir.."precompiled.cpp")
+
+	end
+end
+
+-- this is where the source tree is chopped up into static libs.
+-- can be changed fairly easily; just copy+paste here, then add the new
+-- library to the setup_main_exe package.links .
+function setup_all_libs ()
+	-- relative to global source_root.
+	local source_dirs = {}
+	-- names of external libraries used (see libraries_dir comment)
+	local extern_libs = {}
+
+	source_dirs = {
+		"ps",
+		"ps/scripting",
+		"ps/Network",
+		"ps/GameSetup",
+		"ps/XML",
+		"simulation",
+		"simulation/scripting",
+		"sound",
+		"scripting",
+		"maths",
+		"maths/scripting"
+	}
+	extern_libs = {
+		"spidermonkey",
+		"xerces",
+		"misc",
+		"zlib",
+		"boost"
+	}
+	setup_static_lib_package("engine", source_dirs, extern_libs, {})
+
+
+	source_dirs = {
+		"graphics",
+		"graphics/scripting",
+		"renderer"
+	}
+	extern_libs = {
+		"misc",	-- i.e. OpenGL. our newer version of these headers is required.
+		"spidermonkey",	-- for graphics/scripting
+		"boost"
+	}
+	setup_static_lib_package("graphics", source_dirs, extern_libs, {})
+
+
+	-- internationalization = i18n
+	-- note: this package isn't large, but is separate because it may be
+	-- useful for other projects.
+	source_dirs = {
+		"i18n"
+	}
+	extern_libs = {
+		"spidermonkey"
+	}
+	setup_static_lib_package("i18n", source_dirs, extern_libs, {})
+
+
+	source_dirs = {
+		"tools/atlas/GameInterface",
+		"tools/atlas/GameInterface/Handlers"
+	}
+	extern_libs = {
+		"boost",
+		"misc",	-- i.e. OpenGL. our newer version of these headers is required.
+		"spidermonkey"
+	}
+	setup_static_lib_package("atlas", source_dirs, extern_libs, {})
+
+
+	source_dirs = {
+		"gui",
+		"gui/scripting"
+	}
+	extern_libs = {
+		"spidermonkey",
+		"misc",	-- i.e. OpenGL. our newer version of these headers is required.
+		"boost"
+	}
+	setup_static_lib_package("gui", source_dirs, extern_libs, {})
+
+
+	source_dirs = {
+		"lib",
+		"lib/sysdep",
+		"lib/res",
+		"lib/res/file",
+		"lib/res/graphics",
+		"lib/res/sound"
+	}
+	extern_libs = {
+		"misc",	-- i.e. OpenGL. our newer version of these headers is required.
+		"libpng",
+		"zlib",
+		"openal",
+		"vorbis",
+		"libjpg",
+		"dbghelp",
+		"directx"
+	}
+	setup_static_lib_package("lowlevel", source_dirs, extern_libs, {})
+	if OS == "windows" then
+		table.insert(package.files, sourcesfromdirs(source_root, {"lib/sysdep/win"}))
+		-- note: RC file must be added to main_exe package.
+	else
+		table.insert(package.files, sourcesfromdirs(source_root, {"lib/sysdep/unix"}))
+		-- (X11 include path isn't standard across distributions)
+		table.insert(package.includepaths, { "/usr/X11R6/include/X11" } )
+		table.insert(package.includepaths, { "/usr/include/X11" } )
+	end
+end
+
+
+-- Bundles static libs together with main.cpp and builds game executable.
+function setup_main_exe ()
+
+	create_package_with_cflags("pyrogenesis", "winexe")
+	table.insert(package.files, "../../../source/main.cpp")
+
+	package.links = {
+		"engine",
+		"graphics",
+		"i18n",
+		"atlas",
+		"gui",
+		"lowlevel"
+	}
+
+	package.libpaths = {}
+
+	-- Platform Specifics
+	if OS == "windows" then
+		-- see libraries_dir comment
+		local extern_libs = {
 			"misc",
 			"libpng",
 			"zlib",
@@ -143,24 +323,24 @@ function setuppackage_engine (projectname)
 			"boost",
 			"libjpg",
 			"dbghelp",
+			"cxxtest",
 			"directx"
 		}
-
 		-- Add '<libraries root>/<libraryname>/lib' and '/include' to the includepaths and libpaths
-		for i,v in external_libraries do
-			table.insert(package.includepaths, librariesroot..v.."/include")
-			table.insert(package.libpaths,     librariesroot..v.."/lib")
+		for i,v in extern_libs do
+			table.insert(package.includepaths, libraries_dir..v.."/include")
+			table.insert(package.libpaths,     libraries_dir..v.."/lib")
 		end
 
-		-- Libraries
-		package.links = { "opengl32" }
-		table.insert(package.files, sourcesfromdirs(sourceroot, {"lib/sysdep/win"}))
-		table.insert(package.files, {sourceroot.."lib/sysdep/win/error_dialog.rc"})
-		table.insert(package.files, {sourceroot.."lib/sysdep/win/icon.rc"})
+
+		table.insert(package.links, { "opengl32" })
+		table.insert(package.files, {source_root.."lib/sysdep/win/icon.rc"})
+		-- from lowlevel static lib; must be added here to be linked in
+		table.insert(package.files, {source_root.."lib/sysdep/win/error_dialog.rc"})
 
 		-- VS2005 generates its own manifest, but earlier ones need us to add it manually
 		if (options["target"] == "vs2002" or options["target"] == "vs2003") then
-			table.insert(package.files, {sourceroot.."lib/sysdep/win/manifest.rc"})
+			table.insert(package.files, {source_root.."lib/sysdep/win/manifest.rc"})
 		end
 
 		package.linkoptions = { "/ENTRY:entry",
@@ -201,18 +381,10 @@ function setuppackage_engine (projectname)
 		-- required to use WinMain() on Windows, otherwise will default to main()
 		table.insert(package.buildflags, { "no-main" })
 
-		-- use native wchar_t type (not typedef to unsigned short)
-		table.insert(package.buildflags, { "native-wchar_t" })
-
-		package.pchheader = "precompiled.h"
-		package.pchsource = "precompiled.cpp"
-
 	else -- Non-Windows, = Unix
 
-		table.insert(package.files, sourcesfromdirs(sourceroot, {"lib/sysdep/unix"}))
-
 		-- Libraries
-		package.links = {
+		table.insert(package.links, {
 			-- OpenGL and X-Windows
 			"GL", "GLU", "X11",
 			"SDL", "png", "jpeg",
@@ -223,33 +395,14 @@ function setuppackage_engine (projectname)
 			"xerces-c", "z", "pthread", "rt", "js",
 			-- Debugging
 			"bfd", "iberty"
-		}
+		})
 		-- For debug_resolve_symbol
 --		package.config["Debug"].links = { "bfd", "iberty" }
 --		package.config["Testing"].links = { "bfd", "iberty" }
 		package.config["Debug"].linkoptions = { "-rdynamic" }
 		package.config["Testing"].linkoptions = { "-rdynamic" }
 
-		package.buildoptions = {
-			"-Wall",
-			"-Wunused-parameter",	-- needs to be enabled explicitly
-			"-Wno-switch",		-- enumeration value not handled in switch
-			"-Wno-reorder",		-- order of initialization list in constructors
-			"-Wno-non-virtual-dtor",
-		}
-
 		table.insert(package.libpaths, { "/usr/X11R6/lib" } )
-		-- Defines
-		package.defines = {
-			"__STDC_VERSION__=199901L",
-			"CONFIG_USE_MMGR" }
-		-- Includes (X11 include path isn't standard across distributions)
-		table.insert(package.includepaths, { "/usr/X11R6/include/X11" } )
-		table.insert(package.includepaths, { "/usr/include/X11" } )
-
-		-- speed up math functions by inlining. warning: this may result in
-		-- non-IEEE-conformant results, but haven't noticed any trouble so far.
-		table.insert(package.buildoptions, { "-ffast-math" })
 	end
 end
 
@@ -257,94 +410,36 @@ end
 
 ---------------- Main Atlas package ----------------
 
-function setuppackage_atlas(package_name, target_type, source_dirs, include_dirs, flags)
+function setuppackage_atlas(package_name, target_type, rel_source_dirs, rel_include_dirs, extern_libs, flags)
 
-	package = create_package()
-	package.name = package_name
-	objdirprefix = "obj/"..package_name.."_"
-
-	package.kind = target_type
-
-	-- Package target for debug and release build
-	package.config["Debug"].target = package_name.."_d"
-	package.config["Release"].target = package_name
-
-	package.config["Debug"].objdir = objdirprefix.."Debug"
-	package.config["Release"].objdir  = objdirprefix.."Release"
-
-	sourceroot = "../../../source/tools/atlas/" .. package_name
-	librariesroot = "../../../libraries/"
-
-	sources = sourcesfromdirs(sourceroot, source_dirs)
-	if flags["extrasource"] then
-		for i,v in flags["extrasource"] do
-			table.insert(sources, sourceroot .. v)
-		end
-	end
-
-	-- We don't want three pointless levels of directories in each project,
-	-- so remove the sourceroot directory from the filenames (where those
-	-- names are used by Premake to construct the project tree), but set
-	-- 'filesprefix' (with Premake altered to recognise that) so the project
-	-- will still point to the correct filenames.
-	package.trimprefix = sourceroot .. "/"
-	package.files = sources
-
-	package.includepaths = {}
-	for i,v in include_dirs do
-		table.insert(package.includepaths, sourceroot .. v)
-	end
-
-	package.libpaths = {}
-
-	if (OS == "windows") then
-		table.insert(package.buildflags, "no-rtti")
-	end
-
-	-- PremakeWiki says with-symbols and optimize are automatically set for
-	-- Debug and Release builds, respectively. doesn't happen though, so do it manually.
-	package.config["Release"].buildflags = { "no-runtime-checks", "optimize" }
-	package.config["Release"].defines = { "NDEBUG" }
+	local source_root = "../../../source/tools/atlas/" .. package_name
+	create_package_with_cflags(package_name, target_type)
+	package_add_contents(source_root, rel_source_dirs, rel_include_dirs, extern_libs, flags)
 
 	-- Platform Specifics
-	if (OS == "windows") then
+	if OS == "windows" then
 
 		table.insert(package.defines, "_UNICODE")
 
-		-- Directories under 'libraries', each containing 'lib' and 'include':
-		external_libraries = {}
-		if (flags["boost"])  then table.insert(external_libraries, "boost") end
-		if (flags["devil"])  then table.insert(external_libraries, "devil") end
-		if (flags["xerces"]) then table.insert(external_libraries, "xerces") end
-		if (flags["zlib"])   then table.insert(external_libraries, "zlib") end
-
-		external_libraries.n = nil; -- remove the array size, else it'll be interpreted as a directory
-
-		-- Add '<libraries root>/<libraryname>/lib' and '/include' to the includepaths and libpaths
-		for i,v in external_libraries do
-			table.insert(package.includepaths,	librariesroot..v.."/include")
-			table.insert(package.libpaths,		librariesroot..v.."/lib")
-		end
-
 		-- Handle wx specially
-		if (flags["wx"]) then
-			table.insert(package.includepaths, librariesroot.."wxwidgets/include/msvc")
-			table.insert(package.includepaths, librariesroot.."wxwidgets/include")
-			table.insert(package.libpaths, librariesroot.."wxwidgets/lib/vc_lib")
+		if flags["wx"] then
+			table.insert(package.includepaths, libraries_dir.."wxwidgets/include/msvc")
+			table.insert(package.includepaths, libraries_dir.."wxwidgets/include")
+			table.insert(package.libpaths, libraries_dir.."wxwidgets/lib/vc_lib")
 		end
 
 		-- Link to required libraries
 		package.links = { "winmm", "comctl32", "rpcrt4" }
 		package.config["Debug"].links = { "wxmsw26ud_gl" }
 		package.config["Release"].links = { "wxmsw26u_gl" }
-		if (flags["depends"]) then
+		if flags["depends"] then
 			listconcat(package.links, flags["depends"])
 		end
 
 		-- required to use WinMain() on Windows, otherwise will default to main()
 		table.insert(package.buildflags, { "no-main" })
 
-		if (flags["pch"]) then
+		if flags["pch"] then
 			package.pchheader = "stdafx.h"
 			package.pchsource = "stdafx.cpp"
 		end
@@ -359,34 +454,18 @@ end
 
 function setuppackage_atlas_frontend (package_name)
 
-	package = create_package()
-	package.name = package_name
-	objdirprefix = "obj/Frontend/"..package_name.."_"
+	create_package_with_cflags(package_name, "winexe")
 
-	package.kind = "winexe"
-
-	-- Package target for debug and release build
-	package.config["Debug"].target = package_name.."_d"
-	package.config["Release"].target = package_name
-
-	package.config["Debug"].objdir = objdirprefix.."Debug"
-	package.config["Release"].objdir = objdirprefix.."Release"
-
-	sourceroot = "../../../source/tools/atlas/AtlasFrontends/"
-
+	local source_root = "../../../source/tools/atlas/AtlasFrontends/"
 	package.files = {
-		sourceroot..package_name..".cpp",
-		sourceroot..package_name..".rc"
+		source_root..package_name..".cpp",
+		source_root..package_name..".rc"
 	}
-	package.trimprefix = sourceroot
-
-	package.includepaths = { sourceroot..".." }
-
-	package.config["Release"].buildflags = { "no-runtime-checks", "optimize" }
-	package.config["Release"].defines = { "NDEBUG" }
+	package.trimprefix = source_root
+	package.includepaths = { source_root..".." }
 
 	-- Platform Specifics
-	if (OS == "windows") then
+	if OS == "windows" then
 		table.insert(package.defines, "_UNICODE")
 		table.insert(package.links, "AtlasUI")
 
@@ -396,8 +475,6 @@ function setuppackage_atlas_frontend (package_name)
 	else -- Non-Windows, = Unix
 		-- TODO
 	end
-
-	package.config["Testing"] = package.config["Debug"]
 
 end
 
@@ -410,7 +487,10 @@ function setuppackages_atlas()
 	},{
 		-- include
 	},{
-		xerces = 1
+		-- extern_libs
+		"xerces"
+	},{
+		-- flags
 	})
 
 	setuppackage_atlas("AtlasUI", "dll", {
@@ -442,11 +522,14 @@ function setuppackages_atlas()
 		"",
 		"/CustomControls"
 	},{
+		-- extern_libs
+		"boost",
+		"devil",
+		"xerces"
+	},{
+		-- flags		
 		pch = 1,
-		boost = 1,
-		devil = 1,
 		wx = 1,
-		xerces = 1,
 		depends = { "AtlasObject", "DatafileIO" },
 		extrasource = { "/Misc/atlas.rc" }
 	})
@@ -463,10 +546,13 @@ function setuppackages_atlas()
 		-- include
 		""
 	},{
+		-- extern_libs
+		"devil",
+		"xerces",
+		"zlib"
+	},{
+		-- flags
 		pch = 1,
-		devil = 1,
-		xerces = 1,
-		zlib = 1
 	})
 
 	setuppackage_atlas_frontend("ActorEditor")
@@ -478,8 +564,9 @@ end
 
 --------------------------------
 
-setuppackage_engine("pyrogenesis")
+setup_all_libs()
+setup_main_exe()
 
-if (options["atlas"]) then
+if options["atlas"] then
 	setuppackages_atlas()
 end
