@@ -140,7 +140,12 @@ struct TexCodecVTbl
 		name##_is_hdr, name##_is_ext, name##_hdr_size,\
 		#name\
 	};\
-	static int dummy = tex_codec_register(&vtbl);
+	/*static int dummy = tex_codec_register(&vtbl);*/\
+	/* note: when building as a static library, pre-main initializers */\
+	/* will not run! as a workaround, we build an externally visible */\
+	/* registration function that must be called via */\
+	/* tex_codec_register_all - see comments there. */\
+	void name##_register() { tex_codec_register(&vtbl); }
 
 
 /**

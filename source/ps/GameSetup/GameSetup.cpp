@@ -81,8 +81,6 @@
 #include "ps/Network/Server.h"
 #include "ps/Network/Client.h"
 
-#include "GameSetup/Config.h"
-
 #include "Atlas.h"
 #include "GameSetup.h"
 #include "Config.h"
@@ -956,6 +954,8 @@ void Init(int argc, char* argv[], uint flags)
 
 		SDL_WM_SetCaption("0 A.D.", "0 A.D.");
 	}
+
+	tex_codec_register_all();
 
 	uint quality = SANE_TEX_QUALITY_DEFAULT;	// TODO: set value from config file
 	SetTextureQuality(quality);

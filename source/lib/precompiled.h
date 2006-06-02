@@ -55,13 +55,10 @@
 // headers made available everywhere for convenience
 //
 
-// note: must not include 
 #include "lib/types.h"
 #include "lib/string_s.h"	// CRT secure string
 #include "lib/self_test.h"
 #include "lib/debug.h"
-#include "ps/Pyrogenesis.h"	// MICROLOG and old error system
-#include <assert.h> // assert()
 
 //
 // memory headers

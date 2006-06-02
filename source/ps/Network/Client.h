@@ -1,8 +1,8 @@
 #ifndef _Network_NetClient_H
 #define _Network_NetClient_H
 
-#include <CStr.h>
-#include <Network/Session.h>
+#include "ps/CStr.h"
+#include "Session.h"
 
 #include "simulation/TurnManager.h"
 #include "simulation/ScriptObject.h"

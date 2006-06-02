@@ -9,7 +9,7 @@
 # ifdef __WXWINDOWS__
 #  undef new
 # else
-#  include "nommgr.h"
+#  include "lib/nommgr.h"
 # endif
 #endif
 

@@ -349,7 +349,7 @@ success:
 	}
 
 	// rationale: don't call this "free" because that would run afoul of the
-	// memory tracker's redirection macro and require #include "nommgr.h".
+	// memory tracker's redirection macro and require #include "lib/nommgr.h".
 	void dealloc(u8* p, size_t size)
 	{
 #ifndef NDEBUG

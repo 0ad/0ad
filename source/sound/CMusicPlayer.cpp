@@ -1,7 +1,7 @@
 #include "precompiled.h"
 
 #include "CMusicPlayer.h"
-#include "CLogger.h"
+#include "ps/CLogger.h"
 
 #include <sstream>
 #include <list>

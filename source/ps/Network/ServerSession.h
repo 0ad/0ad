@@ -10,7 +10,7 @@
 #ifndef _Network_ServerSession_H
 #define _Network_ServerSession_H
 
-#include "Network/Session.h"
+#include "Session.h"
 #include "scripting/ScriptableObject.h"
 
 class CNetServer;

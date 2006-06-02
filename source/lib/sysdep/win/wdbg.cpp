@@ -31,7 +31,7 @@
 #include "lib/posix.h"
 #include "lib/sysdep/cpu.h"
 #include "wdbg.h"
-#include "byte_order.h"		// FOURCC
+#include "lib/byte_order.h"		// FOURCC
 #include "lib/app_hooks.h"
 
 

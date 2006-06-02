@@ -18,13 +18,13 @@
 #include "Vector3D.h"
 #include "MathUtil.h"
 
-class Noise2D 
+class Noise2D
 {
 	/// Frequency in X and Y
 	int freq;
 
 	/// freq*freq random gradient vectors in the unit cube
-	CVector2D** grads;
+	CVector2D_Maths** grads;
 public:
 	Noise2D(int freq);
 	~Noise2D();

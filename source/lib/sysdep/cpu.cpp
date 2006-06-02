@@ -25,7 +25,7 @@
 #include "lib/lib.h"
 
 #if CPU_IA32
-# include "sysdep/ia32.h"
+# include "lib/sysdep/ia32.h"
 #endif
 
 char cpu_type[CPU_TYPE_LEN] = "";

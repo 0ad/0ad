@@ -473,7 +473,7 @@ static void tree_root_init()
 	// must not be called more than once without intervening tree_shutdown.
 	debug_assert(!tree_root);
 
-#include "nommgr.h"	// placement new
+#include "lib/nommgr.h"	// placement new
 	void* mem = node_alloc();
 	if(mem)
 		tree_root = new(mem) TDir("", "", 0);

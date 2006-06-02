@@ -123,6 +123,17 @@ LibError tex_codec_transform(Tex* t, uint transforms)
 // helper functions used by codecs
 //-----------------------------------------------------------------------------
 
+void tex_codec_register_all()
+{
+#define REGISTER_CODEC(name) extern void name##_register(); name##_register()
+	REGISTER_CODEC(bmp);
+	REGISTER_CODEC(dds);
+	REGISTER_CODEC(jpg);
+	REGISTER_CODEC(png);
+	REGISTER_CODEC(tga);
+#undef REGISTER_CODEC
+}
+
 // allocate an array of row pointers that point into the given texture data.
 // <file_orientation> indicates whether the file format is top-down or
 // bottom-up; the row array is inverted if necessary to match global

@@ -23,7 +23,7 @@
 #define PATHFIND_SPARSE_INCLUDED
 
 #include "EntityHandles.h"
-#include "Vector2D.h"
+#include "ps/Vector2D.h"
 #include "Collision.h"
 
 struct sparsePathTree

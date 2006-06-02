@@ -23,7 +23,7 @@
 #include "precompiled.h"
 
 #include "file_internal.h"
-#include "byte_order.h"	// FOURCC
+#include "lib/byte_order.h"	// FOURCC
 
 static const u32 vtbl_magic = FOURCC('F','P','V','T');
 

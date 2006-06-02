@@ -8,7 +8,7 @@
 #include "lib/res/file/vfs_optimizer.h"	// ArchiveBuilderCancel
 #include "scripting/ScriptingHost.h"
 #include "scripting/JSConversions.h"
-#include "scripting/JSInterface_VFS.h"
+#include "ps/scripting/JSInterface_VFS.h"
 
 // shared error handling code
 #define JS_CHECK_FILE_ERR(err)\

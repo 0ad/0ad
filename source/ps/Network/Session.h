@@ -1,8 +1,8 @@
 #ifndef _Network_NetSession_H
 #define _Network_NetSession_H
 
-#include <Network/Network.h>
-#include <Network/SessionManager.h>
+#include "Network.h"
+#include "SessionManager.h"
 
 /*
 	CNetSession

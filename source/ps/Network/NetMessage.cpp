@@ -6,7 +6,7 @@
 #include <map>
 
 #include "simulation/Entity.h"
-#include "Vector2D.h"
+#include "ps/Vector2D.h"
 #define ALLNETMSGS_IMPLEMENT
 
 #include "NetMessage.h"

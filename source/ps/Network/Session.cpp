@@ -1,6 +1,6 @@
 #include "precompiled.h"
 
-#include <Network/Session.h>
+#include "Session.h"
 
 CNetSession::~CNetSession()
 {

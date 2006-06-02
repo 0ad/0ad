@@ -1,7 +1,7 @@
 #include "precompiled.h"
 
 #include "JSInterface_Entity.h"
-#include "scripting/JSInterface_BaseEntity.h"
+#include "JSInterface_BaseEntity.h"
 #include "maths/scripting/JSInterface_Vector3D.h"
 #include "simulation/EntityHandles.h"
 #include "simulation/Entity.h"

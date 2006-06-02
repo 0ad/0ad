@@ -1,7 +1,7 @@
 #ifndef _Network_JSEvents_H
 #define _Network_JSEvents_H
 
-#include "Network/ServerSession.h"
+#include "ServerSession.h"
 
 enum ENetworkJSEvents
 {

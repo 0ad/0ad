@@ -13,7 +13,7 @@
 
 #include "ps/Singleton.h"
 #include "EntityHandles.h"
-#include "Vector2D.h"
+#include "ps/Vector2D.h"
 #include "AStarEngine.h"
 
 #define g_Pathfinder CPathfindEngine::GetSingleton()

@@ -1,7 +1,7 @@
 #ifndef _Network_NetServer_H
 #define _Network_NetServer_H
 
-#include "Network/Session.h"
+#include "Session.h"
 #include "ps/GameAttributes.h"
 #include "simulation/TurnManager.h"
 #include "ps/scripting/JSMap.h"

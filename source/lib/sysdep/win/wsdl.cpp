@@ -34,7 +34,7 @@
 #include "lib/sdl.h"
 #include "lib/lib.h"
 #include "lib/posix.h"
-#include "ogl.h"		// needed to pull in the delay-loaded opengl32.dll
+#include "lib/ogl.h"		// needed to pull in the delay-loaded opengl32.dll
 #include "SDL_vkeys.h"
 
 

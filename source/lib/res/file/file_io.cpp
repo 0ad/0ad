@@ -85,7 +85,7 @@ public:
 		return (aiocb*)pool_alloc(&pool, 0);
 	}
 	// weird name to avoid trouble with mem tracker macros
-	// (renaming is less annoying than #include "nommgr.h")
+	// (renaming is less annoying than #include "lib/nommgr.h")
 	void free_(void* cb)
 	{
 		pool_free(&pool, cb);

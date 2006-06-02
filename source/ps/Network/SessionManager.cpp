@@ -1,8 +1,8 @@
 #include "precompiled.h"
 
-#include <Network/Session.h>
-#include <Network/Network.h>
-#include <CLogger.h>
+#include "Session.h"
+#include "Network.h"
+#include "ps/CLogger.h"
 
 using namespace std;
 

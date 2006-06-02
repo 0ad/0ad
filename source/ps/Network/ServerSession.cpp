@@ -1,7 +1,7 @@
 #include "precompiled.h"
 
-#include "Network/ServerSession.h"
-#include "Network/Server.h"
+#include "ServerSession.h"
+#include "Server.h"
 #include "ps/CLogger.h"
 #include "ps/CConsole.h"
 

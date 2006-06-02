@@ -9,7 +9,9 @@ that of Atlas depending on commandline parameters.
 
 */
 
-#include "precompiled.h"
+// not for any PCH effort, but instead for the (common) definitions
+// included there.
+#include "lib/precompiled.h"
 
 #include "lib/input.h"
 #include "lib/sdl.h"

@@ -2,10 +2,10 @@
 
 #include <algorithm>
 
-#include "Network/Server.h"
-#include "Network/ServerSession.h"
-#include "Network/Network.h"
-#include "Network/JSEvents.h"
+#include "Server.h"
+#include "ServerSession.h"
+#include "Network.h"
+#include "JSEvents.h"
 
 #include "scripting/ScriptableObject.h"
 

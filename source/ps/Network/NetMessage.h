@@ -3,7 +3,7 @@
 
 #include "lib/types.h"
 #include "Serialization.h"
-#include "Network/SocketBase.h"
+#include "SocketBase.h"
 
 // We need the enum from AllNetMessages.h, but we can't create any classes in
 // AllNetMessages, since they in turn require CNetMessage to be defined

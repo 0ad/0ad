@@ -28,6 +28,8 @@ gee@pyro.nu
 //  seem to be defined anywhere in the predefined header.
 #include "ps/Overlay.h"
 
+#include "ps/Pyrogenesis.h"	// deprecated DECLARE_ERROR
+
 //--------------------------------------------------------
 //  Forward declarations
 //--------------------------------------------------------

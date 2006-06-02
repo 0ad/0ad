@@ -9,7 +9,7 @@
 
 #include "BaseFormation.h"
 #include "EntitySupport.h"
-#include "Vector2D.h"
+#include "ps/Vector2D.h"
 
 class CVector2D;
 class CEntity;

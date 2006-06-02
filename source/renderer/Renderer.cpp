@@ -25,6 +25,7 @@
 #include "graphics/Texture.h"
 #include "graphics/LightEnv.h"
 #include "graphics/Terrain.h"
+#include "ps/Pyrogenesis.h"	// MICROLOG
 #include "ps/CLogger.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"

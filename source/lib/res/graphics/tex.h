@@ -221,6 +221,17 @@ extern void tex_set_global_orientation(int orientation);
 //
 
 /**
+ * manually register codecs. must be called before first use of a
+ * codec (e.g. loading a texture).
+ *
+ * this would normally be taken care of by TEX_CODEC_REGISTER, but
+ * no longer works when building as a static library.
+ * workaround: hard-code a list of codecs in tex_codec.cpp and
+ * call their registration functions.
+ **/
+extern void tex_codec_register_all();
+
+/**
  * load the specified image from file into a Tex object.
  *
  * FYI, currently BMP, TGA, JPG, JP2, PNG, DDS are supported - but don't
