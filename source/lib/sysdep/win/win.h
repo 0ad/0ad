@@ -27,7 +27,7 @@
 #error "win.h: do not include if not compiling for Windows"
 #endif
 
-#include "config.h"
+#include "lib/config.h"
 
 #include <wchar.h>
 

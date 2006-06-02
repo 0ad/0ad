@@ -11,7 +11,7 @@
 #ifndef SHADOWMAP_H
 #define SHADOWMAP_H
 
-#include "ogl.h"
+#include "lib/ogl.h"
 
 class CBound;
 class CMatrix3D;

@@ -2,14 +2,14 @@
 
 #include "Projectile.h"
 #include "Entity.h"
-#include "Model.h"
-#include "Unit.h"
-#include "Matrix3D.h"
+#include "graphics/Model.h"
+#include "graphics/Unit.h"
+#include "maths/Matrix3D.h"
 #include "ScriptObject.h"
-#include "Game.h"
+#include "ps/Game.h"
 #include "Collision.h"
-#include "ObjectManager.h"
-#include "CLogger.h"
+#include "graphics/ObjectManager.h"
+#include "ps/CLogger.h"
 
 const double GRAVITY = 0.00001;
 const double GRAVITY_2 = GRAVITY * 0.5;

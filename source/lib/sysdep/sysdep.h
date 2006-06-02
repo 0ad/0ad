@@ -23,7 +23,7 @@
 #ifndef SYSDEP_H_INCLUDED
 #define SYSDEP_H_INCLUDED
 
-#include "config.h"
+#include "lib/config.h"
 
 // some functions among the sysdep API are implemented as macros
 // that redirect to the platform-dependent version. this is done where
@@ -31,9 +31,9 @@
 // always inline them.
 // we therefore need to include those headers.
 #if OS_WIN
-# include "win/win.h"
+# include "lib/sysdep/win/win.h"
 #elif OS_UNIX
-# include "unix/unix.h"
+# include "lib/sysdep/unix/unix.h"
 #endif
 #if CPU_IA32
 #include "ia32.h"
@@ -157,7 +157,7 @@ extern void* alloca(size_t size);
 # define __func__ "(unknown)"
 #endif
 
-#include "debug.h"
+#include "lib/debug.h"
 
 //-----------------------------------------------------------------------------
 // sysdep API

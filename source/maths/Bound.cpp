@@ -10,11 +10,11 @@
 
 // necessary includes
 
-#include "ogl.h"
+#include "lib/ogl.h"
 
 #include <float.h>
 #include "Bound.h"
-#include "Frustum.h"
+#include "graphics/Frustum.h"
 #include "Brush.h"
 
 

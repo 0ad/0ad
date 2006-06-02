@@ -1,10 +1,10 @@
 #include "precompiled.h"
 
 #include "TurnManager.h"
-#include "Network/NetMessage.h"
-#include "Network/Network.h"
-#include "GameRecord.h"
-#include "CLogger.h"
+#include "ps/Network/NetMessage.h"
+#include "ps/Network/Network.h"
+#include "ps/GameRecord.h"
+#include "ps/CLogger.h"
 
 #include <vector>
 

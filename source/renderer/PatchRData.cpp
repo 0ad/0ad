@@ -3,7 +3,7 @@
 
 #include <set>
 #include <algorithm>
-#include "Pyrogenesis.h"
+#include "ps/Pyrogenesis.h"
 #include "lib/res/graphics/ogl_tex.h"
 #include "graphics/LightEnv.h"
 #include "Renderer.h"
@@ -11,8 +11,8 @@
 #include "AlphaMapCalculator.h"
 #include "ps/CLogger.h"
 #include "ps/Profile.h"
-#include "MathUtil.h"
-#include "LOSManager.h"
+#include "maths/MathUtil.h"
+#include "simulation/LOSManager.h"
 
 
 const int BlendOffsets[8][2] = {

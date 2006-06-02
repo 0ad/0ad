@@ -8,7 +8,7 @@
 // Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 
 #include "scripting/ScriptingHost.h"
-#include "Vector3D.h"
+#include "maths/Vector3D.h"
 
 #ifndef JSI_VECTOR3_INCLUDED
 #define JSI_VECTOR3_INCLUDED

@@ -1,10 +1,10 @@
 #include "precompiled.h"
 
 #include "BaseFormationCollection.h"
-#include "ObjectManager.h"
-#include "Model.h"
-#include "CLogger.h"
-#include "VFSUtil.h"
+#include "graphics/ObjectManager.h"
+#include "graphics/Model.h"
+#include "ps/CLogger.h"
+#include "ps/VFSUtil.h"
 
 #define LOG_CATEGORY "formation"
 

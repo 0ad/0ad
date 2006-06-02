@@ -2,16 +2,16 @@
 
 #include "LOSManager.h"
 
-#include "Game.h"
-#include "Player.h"
-#include "Terrain.h"
+#include "ps/Game.h"
+#include "ps/Player.h"
+#include "graphics/Terrain.h"
 #include "Entity.h"
 #include "EntityManager.h"
-#include "Unit.h"
-#include "Bound.h"
-#include "Model.h"
+#include "graphics/Unit.h"
+#include "maths/Bound.h"
+#include "graphics/Model.h"
 #include "lib/allocators.h"
-#include "timer.h"
+#include "lib/timer.h"
 
 using namespace std;
 

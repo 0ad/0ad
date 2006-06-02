@@ -1,6 +1,6 @@
 #include "precompiled.h"
 
-#include "lib.h"
+#include "lib/lib.h"
 #include "lib/sdl.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
@@ -59,14 +59,14 @@
 
 #include "scripting/ScriptingHost.h"
 #include "scripting/GameEvents.h"
-#include "scripting/JSInterface_Entity.h"
-#include "scripting/JSInterface_BaseEntity.h"
-#include "scripting/JSInterface_Vector3D.h"
-#include "scripting/JSInterface_Camera.h"
-#include "scripting/JSInterface_Selection.h"
-#include "scripting/JSInterface_Console.h"
+#include "simulation/scripting/JSInterface_Entity.h"
+#include "simulation/scripting/JSInterface_BaseEntity.h"
+#include "maths/scripting/JSInterface_Vector3D.h"
+#include "graphics/scripting/JSInterface_Camera.h"
+#include "ps/scripting/JSInterface_Selection.h"
+#include "ps/scripting/JSInterface_Console.h"
 #include "graphics/scripting/JSInterface_LightEnv.h"
-#include "scripting/JSCollection.h"
+#include "ps/scripting/JSCollection.h"
 #include "scripting/DOMEvent.h"
 #ifndef NO_GUI
 # include "gui/scripting/JSInterface_IGUIObject.h"
@@ -77,9 +77,9 @@
 #include "sound/CMusicPlayer.h"
 #include "sound/JSI_Sound.h"
 
-#include "Network/SessionManager.h"
-#include "Network/Server.h"
-#include "Network/Client.h"
+#include "ps/Network/SessionManager.h"
+#include "ps/Network/Server.h"
+#include "ps/Network/Client.h"
 
 #include "GameSetup/Config.h"
 

@@ -25,7 +25,7 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "sysdep/gfx.h"
+#include "lib/sysdep/gfx.h"
 #include "lib/res/graphics/ogl_tex.h"
 #include "lib/res/file/file.h"
 #include "lib/res/file/vfs.h"

@@ -3,8 +3,8 @@
 #ifndef CStr_CPP_FIRST
 #define CStr_CPP_FIRST
 
-#include "posix.h" // for htons, ntohs
-#include "Network/Serialization.h"
+#include "lib/posix.h" // for htons, ntohs
+#include "ps/Network/Serialization.h"
 #include <cassert>
 
 #include <sstream>
@@ -12,7 +12,7 @@
 #define UNIDOUBLER_HEADER "CStr.cpp"
 #include "UniDoubler.h"
 
-#include "self_test.h"
+#include "lib/self_test.h"
 
 
 // Only include these function definitions in the first instance of CStr.cpp:

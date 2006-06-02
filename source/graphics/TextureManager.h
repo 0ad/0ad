@@ -7,8 +7,8 @@
 
 #include "lib/res/handle.h"
 
-#include "CStr.h"
-#include "Singleton.h"
+#include "ps/CStr.h"
+#include "ps/Singleton.h"
 
 // access to sole CTextureManager  object
 #define g_TexMan CTextureManager ::GetSingleton()

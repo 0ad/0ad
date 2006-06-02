@@ -5,7 +5,7 @@
 #include "ObjectBase.h"
 #include "Model.h"
 #include "ModelDef.h"
-#include "CLogger.h"
+#include "ps/CLogger.h"
 #include "MaterialManager.h"
 #include "MeshManager.h"
 #include "SkeletonAnim.h"

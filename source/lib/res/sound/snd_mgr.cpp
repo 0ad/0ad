@@ -47,13 +47,13 @@
 
 // for DLL-load hack in alc_init
 #if OS_WIN
-# include "sysdep/win/win_internal.h"
+# include "lib/sysdep/win/win_internal.h"
 #endif
 
 #include "lib/res/res.h"
 #include "snd_mgr.h"
 #include "lib/timer.h"
-#include "app_hooks.h"
+#include "lib/app_hooks.h"
 
 
 #define OGG_HACK

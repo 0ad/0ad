@@ -14,12 +14,12 @@
 #define RENDERER_H
 
 #include <vector>
-#include "ogl.h"
-#include "Camera.h"
-#include "Frustum.h"
-#include "Terrain.h"
-#include "Singleton.h"
-#include "Overlay.h"
+#include "lib/ogl.h"
+#include "graphics/Camera.h"
+#include "graphics/Frustum.h"
+#include "graphics/Terrain.h"
+#include "ps/Singleton.h"
+#include "ps/Overlay.h"
 
 #include "scripting/ScriptableObject.h"
 

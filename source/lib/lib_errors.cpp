@@ -28,7 +28,7 @@
 #include "precompiled.h"
 
 #include "lib_errors.h"
-#include "sysdep/sysdep.h"
+#include "lib/sysdep/sysdep.h"
 
 #include <string.h>
 #include <stdlib.h>	// abs

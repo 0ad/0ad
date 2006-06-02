@@ -17,15 +17,15 @@
 #ifndef BASE_ENTITY_INCLUDED
 #define BASE_ENTITY_INCLUDED
 
-#include "CStr.h"
-#include "ObjectEntry.h"
+#include "ps/CStr.h"
+#include "graphics/ObjectEntry.h"
 
 #include "scripting/ScriptableComplex.h"
 #include "BoundingObjects.h"
 #include "EventHandlers.h"
 #include "EntitySupport.h"
 #include "ScriptObject.h"
-#include "XML/Xeromyces.h"
+#include "ps/XML/Xeromyces.h"
 
 class CPlayer;
 

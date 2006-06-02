@@ -1,6 +1,6 @@
 #include "precompiled.h"
-#include "ogl.h"
-#include "XML/Xeromyces.h"
+#include "lib/ogl.h"
+#include "ps/XML/Xeromyces.h"
 #include "MaterialManager.h"
 
 static float ClampFloat(float value, float min, float max)

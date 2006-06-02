@@ -9,8 +9,8 @@
 #include "precompiled.h"
 
 #include "SkeletonAnimDef.h"
-#include "FilePacker.h"
-#include "FileUnpacker.h"
+#include "ps/FilePacker.h"
+#include "ps/FileUnpacker.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////

@@ -1,18 +1,18 @@
 #include "precompiled.h"
 
-#include "lib.h"
+#include "lib/lib.h"
 
 #include "scripting/DOMEvent.h"
 #include "scripting/JSConversions.h"
 #include "scripting/ScriptableObject.h"
 #include "Network/Client.h"
 #include "Network/JSEvents.h"
-#include "CStr.h"
-#include "CLogger.h"
-#include "CConsole.h"
-#include "Game.h"
-#include "GameAttributes.h"
-#include "Simulation.h"
+#include "ps/CStr.h"
+#include "ps/CLogger.h"
+#include "ps/CConsole.h"
+#include "ps/Game.h"
+#include "ps/GameAttributes.h"
+#include "simulation/Simulation.h"
 
 #define LOG_CAT_NET "net"
 

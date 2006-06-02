@@ -4,13 +4,13 @@
 #include "lib/types.h"
 #include "UnitManager.h"
 #include "Unit.h"
-#include "Game.h"
+#include "ps/Game.h"
 #include "ObjectManager.h"
-#include "BaseEntity.h"
-#include "BaseEntityCollection.h"
-#include "EntityManager.h"
-#include "CLogger.h"
-#include "MathUtil.h"
+#include "simulation/BaseEntity.h"
+#include "simulation/BaseEntityCollection.h"
+#include "simulation/EntityManager.h"
+#include "ps/CLogger.h"
+#include "maths/MathUtil.h"
 #include "Camera.h"
 
 #include "Model.h"
@@ -18,9 +18,9 @@
 #include "TextureManager.h"
 #include "TextureEntry.h"
 
-#include "timer.h"
-#include "Loader.h"
-#include "LoaderThunks.h"
+#include "lib/timer.h"
+#include "ps/Loader.h"
+#include "ps/LoaderThunks.h"
 
 #define LOG_CATEGORY "graphics"
 

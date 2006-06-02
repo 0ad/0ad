@@ -9,8 +9,8 @@
 #define BASEFORM_COLLECTION_INCLUDED
 
 #include <vector>
-#include "CStr.h"
-#include "Singleton.h"
+#include "ps/CStr.h"
+#include "ps/Singleton.h"
 #include "BaseFormation.h"
 
 #define g_EntityFormationCollection CBaseFormationCollection::GetSingleton()

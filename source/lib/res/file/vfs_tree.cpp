@@ -255,12 +255,12 @@ RealDir rd;	// HACK; removeme
 		if(!mem)
 			WARN_RETURN(ERR_NO_MEM);
 		TNode* node;
-#include "nommgr.h"
+#include "lib/nommgr.h"
 		if(type == NT_FILE)
 			node = new(mem) TFile(V_new_path, name, m);
 		else
 			node = new(mem) TDir (V_new_path, name, m);
-#include "mmgr.h"
+#include "lib/mmgr.h"
 
 		children.insert(name, node);
 
@@ -477,7 +477,7 @@ static void tree_root_init()
 	void* mem = node_alloc();
 	if(mem)
 		tree_root = new(mem) TDir("", "", 0);
-#include "mmgr.h"
+#include "lib/mmgr.h"
 }
 
 // destroy the tree root node and free any extra memory held by it.

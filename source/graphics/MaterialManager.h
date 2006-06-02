@@ -2,7 +2,7 @@
 #define __H_MATERIALREADER_H__
 
 #include <map>
-#include "Singleton.h"
+#include "ps/Singleton.h"
 #include "Material.h"
 
 #define g_MaterialManager CMaterialManager::GetSingleton()

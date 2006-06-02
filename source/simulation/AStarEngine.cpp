@@ -7,7 +7,7 @@
 #include "ps/Game.h"
 #include "ps/World.h"
 
-#include "Profile.h"
+#include "ps/Profile.h"
 
 #define DEFAULT_SEARCH_LIMIT 1000
 #define DEFAULT_INIT_NODES 1000

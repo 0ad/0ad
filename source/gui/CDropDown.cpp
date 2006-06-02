@@ -8,7 +8,7 @@ gee@pyro.nu
 #include "GUI.h"
 #include "CDropDown.h"
 
-#include "ogl.h"
+#include "lib/ogl.h"
 
 using namespace std;
 

@@ -1,17 +1,17 @@
 #include "precompiled.h"
 
-#include "posix.h"
-#include "lib.h"
+#include "lib/posix.h"
+#include "lib/lib.h"
 #include <stdio.h>
 #include <map>
 
-#include "Entity.h"
+#include "simulation/Entity.h"
 #include "Vector2D.h"
 #define ALLNETMSGS_IMPLEMENT
 
 #include "NetMessage.h"
 
-#include "CLogger.h"
+#include "ps/CLogger.h"
 
 #define LOG_CAT_NET "net"
 

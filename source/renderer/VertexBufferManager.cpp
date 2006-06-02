@@ -7,7 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "precompiled.h"
 
-#include "ogl.h"
+#include "lib/ogl.h"
 #include "VertexBufferManager.h"
 #include "ps/CLogger.h"
 

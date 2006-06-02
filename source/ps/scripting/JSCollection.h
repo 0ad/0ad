@@ -4,7 +4,7 @@
 // object.
 
 #include "scripting/ScriptingHost.h"
-#include "scripting/JSInterface_Entity.h"
+#include "simulation/scripting/JSInterface_Entity.h"
 #include "simulation/ScriptObject.h"
 #include "scripting/JSConversions.h"
 

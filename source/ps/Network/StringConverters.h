@@ -1,7 +1,7 @@
 #ifndef _StringConverters_H
 #define _StringConverters_H
 
-#include "CStr.h"
+#include "ps/CStr.h"
 #include "simulation/EntityHandles.h"
 
 template <typename _T>

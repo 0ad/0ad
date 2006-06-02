@@ -8,7 +8,7 @@
 #define VECTOR_2D_INCLUDED
 
 #include <math.h>
-#include "Vector3D.h"
+#include "maths/Vector3D.h"
 
 class CVector2D
 {

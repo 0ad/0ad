@@ -13,10 +13,10 @@
 #include "precompiled.h"
 
 #include "Camera.h"
-#include "Renderer.h"
+#include "renderer/Renderer.h"
 #include "HFTracer.h"
-#include "Game.h"
-#include "ogl.h"
+#include "ps/Game.h"
+#include "lib/ogl.h"
 #include "ps/World.h"
 
 CCamera::CCamera ()

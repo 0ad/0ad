@@ -3,9 +3,9 @@
 
 #include "MapIO.h"
 #include "lib/res/handle.h"
-#include "CStr.h"
+#include "ps/CStr.h"
 #include "LightEnv.h"
-#include "FileUnpacker.h"
+#include "ps/FileUnpacker.h"
 
 class CObjectEntry;
 class CTerrain;

@@ -3,8 +3,8 @@
 
 #include <vector>
 #include "MapIO.h"
-#include "CStr.h"
-#include "FilePacker.h"
+#include "ps/CStr.h"
+#include "ps/FilePacker.h"
 
 class CLightEnv;
 class CTerrain;

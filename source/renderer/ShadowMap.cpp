@@ -10,8 +10,8 @@
 
 #include "precompiled.h"
 
-#include "ogl.h"
-#include "CLogger.h"
+#include "lib/ogl.h"
+#include "ps/CLogger.h"
 
 #include "graphics/LightEnv.h"
 

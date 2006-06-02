@@ -18,7 +18,7 @@
 #ifndef ENTITY_MANAGER_INCLUDED
 #define ENTITY_MANAGER_INCLUDED
 
-#include "Singleton.h"
+#include "ps/Singleton.h"
 #include "Entity.h"
 #include "EntityHandles.h"
 #include "EntityPredicate.h"

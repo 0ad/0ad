@@ -18,8 +18,8 @@
 #include "ps/CLogger.h"
 #include "ps/Loader.h"
 
-#include "ogl.h"
-#include "Renderer.h"
+#include "lib/ogl.h"
+#include "renderer/Renderer.h"
 
 // Different textures
 enum PText { DEFAULTTEXT, MAX_TEXTURES };

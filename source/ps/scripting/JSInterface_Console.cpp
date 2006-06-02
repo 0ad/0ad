@@ -4,7 +4,7 @@
 
 #include "precompiled.h"
 #include "JSInterface_Console.h"
-#include "CConsole.h"
+#include "ps/CConsole.h"
 #include "scripting/JSConversions.h"
 
 extern CConsole* g_Console;

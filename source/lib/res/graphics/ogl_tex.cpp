@@ -23,11 +23,11 @@
 
 #include "precompiled.h"
 
-#include "lib.h"
-#include "app_hooks.h"
-#include "sysdep/gfx.h"
-#include "../res.h"
-#include "ogl.h"
+#include "lib/lib.h"
+#include "lib/app_hooks.h"
+#include "lib/sysdep/gfx.h"
+#include "lib/res/res.h"
+#include "lib/ogl.h"
 #include "tex.h"
 #include "ogl_tex.h"
 

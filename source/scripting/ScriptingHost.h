@@ -28,8 +28,8 @@ ERROR_TYPE(Scripting_DefineType, CreationFailed);
 #include <vector>
 #include <map>
 
-#include "Singleton.h"
-#include "CStr.h"
+#include "ps/Singleton.h"
+#include "ps/CStr.h"
 
 class IPropertyOwner
 {

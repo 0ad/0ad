@@ -30,7 +30,7 @@
 #include <stddef.h>
 
 #if OS_WIN
-# include "sysdep/win/wposix_types.h"
+# include "lib/sysdep/win/wposix_types.h"
 #else
 // unix/linux/glibc/gcc says that this macro has to be defined when including
 // stdint.h from C++ for stdint.h to define SIZE_MAX and friends

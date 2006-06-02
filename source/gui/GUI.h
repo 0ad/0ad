@@ -25,10 +25,10 @@ gee@pyro.nu
 #include <vector>
 #include <stddef.h>
 
-#include "Pyrogenesis.h"
-#include "CStr.h"
+#include "ps/Pyrogenesis.h"
+#include "ps/CStr.h"
 #include "lib/types.h"
-#include "ogl.h"
+#include "lib/ogl.h"
 
 #include "GUIbase.h"
 #include "GUIutil.h"

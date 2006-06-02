@@ -11,7 +11,7 @@
 #ifndef PATHFIND_ENGINE_INCLUDED
 #define PATHFIND_ENGINE_INCLUDED
 
-#include "Singleton.h"
+#include "ps/Singleton.h"
 #include "EntityHandles.h"
 #include "Vector2D.h"
 #include "AStarEngine.h"

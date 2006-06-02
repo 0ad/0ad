@@ -1,6 +1,6 @@
 #include <cxxtest/TestSuite.h>
 
-#include "Maths/Matrix3D.h"
+#include "maths/Matrix3D.h"
 
 class TestMatrix : public CxxTest::TestSuite 
 {

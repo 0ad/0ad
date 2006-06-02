@@ -12,7 +12,7 @@
 #ifndef PROFILE_VIEWER_INCLUDED
 #define PROFILE_VIEWER_INCLUDED
 
-#include "input.h"
+#include "lib/input.h"
 #include "ps/CStr.h"
 #include "ps/Singleton.h"
 

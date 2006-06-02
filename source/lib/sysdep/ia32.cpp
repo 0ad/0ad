@@ -22,10 +22,10 @@
 
 #include "precompiled.h"
 
-#include "lib.h"
-#include "posix.h"
+#include "lib/lib.h"
+#include "lib/posix.h"
 #include "ia32.h"
-#include "timer.h"
+#include "lib/timer.h"
 
 // HACK (see call to wtime_reset_impl)
 #if OS_WIN

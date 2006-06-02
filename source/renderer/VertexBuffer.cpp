@@ -8,7 +8,7 @@
 
 #include "precompiled.h"
 #include "ps/Errors.h"
-#include "ogl.h"
+#include "lib/ogl.h"
 #include "Renderer.h"
 #include "VertexBuffer.h"
 #include "VertexBufferManager.h"

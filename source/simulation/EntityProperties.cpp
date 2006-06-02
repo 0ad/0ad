@@ -3,7 +3,7 @@
 /*
 #include "EntityProperties.h"
 #include "BaseEntityCollection.h"
-#include "scripting/JSInterface_BaseEntity.h"
+#include "simulation/scripting/JSInterface_BaseEntity.h"
 
 #undef new // to avoid confusing warnings
 

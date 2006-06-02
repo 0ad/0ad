@@ -1,10 +1,10 @@
 #include "precompiled.h"
 
 #include "Player.h"
-#include "Network/NetMessage.h"
-#include "Entity.h"
-#include "EntityManager.h"
-#include "scripting/JSCollection.h"
+#include "ps/Network/NetMessage.h"
+#include "simulation/Entity.h"
+#include "simulation/EntityManager.h"
+#include "ps/scripting/JSCollection.h"
 #include "simulation/LOSManager.h"
 
 CPlayer::CPlayer(uint playerID):

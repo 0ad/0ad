@@ -12,7 +12,7 @@
 
 // jstypes.h (included via jsapi.h) requires we define
 // "one of XP_BEOS, XP_MAC, XP_OS2, XP_WIN or XP_UNIX".
-#include "config.h"
+#include "lib/config.h"
 #if OS_WIN
 # define XP_WIN
 #elif OS_MAC

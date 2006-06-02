@@ -2,7 +2,7 @@
 
 #include "CLocale.h"
 #include "TSComponent.h"
-#include "StringConvert.h"
+#include "ps/StringConvert.h"
 
 
 #include <algorithm>

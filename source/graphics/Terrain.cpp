@@ -14,11 +14,11 @@
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"
 
-#include "EntityManager.h"
+#include "simulation/EntityManager.h"
 
 #include <string.h>
 #include "Terrain.h"
-#include "MathUtil.h"
+#include "maths/MathUtil.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////

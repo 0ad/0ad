@@ -5,7 +5,7 @@
 #include "precompiled.h"
 #include "JSInterface_Selection.h"
 #include "scripting/JSCollection.h"
-#include "Interact.h"
+#include "ps/Interact.h"
 
 JSBool JSI_Selection::getSelection( JSContext* UNUSED(cx), JSObject* UNUSED(obj),
 	jsval UNUSED(id), jsval* vp )

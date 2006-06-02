@@ -7,8 +7,8 @@ gee@pyro.nu
 #include "precompiled.h"
 
 #include "GUI.h"
-#include "CLogger.h"
-#include "Parser.h"
+#include "ps/CLogger.h"
+#include "ps/Parser.h"
 #include <algorithm>
 
 #define LOG_CATEGORY "gui"

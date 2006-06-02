@@ -1,4 +1,4 @@
-#include "CStr.h"
+#include "ps/CStr.h"
 
 // flag to disable extended GL extensions until fix found - specifically, crashes
 // using VBOs on laptop Radeon cards

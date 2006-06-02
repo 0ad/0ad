@@ -10,7 +10,7 @@ before converting into a string.
 
 #include "Common.h"
 #include "TranslatedString.h"
-#include "CStr.h"
+#include "ps/CStr.h"
 
 namespace I18n
 {

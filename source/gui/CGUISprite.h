@@ -27,7 +27,7 @@ gee@pyro.nu
 //--------------------------------------------------------
 #include "GUIbase.h"
 
-#include "Overlay.h"
+#include "ps/Overlay.h"
 #include "lib/res/graphics/ogl_tex.h"
 
 //--------------------------------------------------------

@@ -4,7 +4,7 @@
 #include <map>
 
 #include "lib/res/handle.h"
-#include "CStr.h"
+#include "ps/CStr.h"
 
 #include "TextureManager.h"
 

@@ -24,7 +24,7 @@
 #define LIB_SDL_H__
 
 #if OS_WIN && !defined(CONFIG_NO_WSDL)
-# include "sysdep/win/wsdl.h"
+# include "lib/sysdep/win/wsdl.h"
 #else
 
 # include <SDL/SDL.h>

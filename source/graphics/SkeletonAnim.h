@@ -9,7 +9,7 @@
 #ifndef _SKELETONANIM_H
 #define _SKELETONANIM_H
 
-#include "Bound.h"
+#include "maths/Bound.h"
 
 class CSkeletonAnimDef;
 

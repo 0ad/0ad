@@ -2,8 +2,8 @@
 
 #include "Network/ServerSession.h"
 #include "Network/Server.h"
-#include "CLogger.h"
-#include "CConsole.h"
+#include "ps/CLogger.h"
+#include "ps/CConsole.h"
 
 extern CConsole *g_Console;
 

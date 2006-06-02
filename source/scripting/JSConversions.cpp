@@ -1,10 +1,10 @@
 #include "precompiled.h"
 #include "JSConversions.h"
-#include "Entity.h"
-#include "ObjectManager.h"
-#include "scripting/JSInterface_Vector3D.h"
-#include "Parser.h"
-#include "BaseEntity.h"
+#include "simulation/Entity.h"
+#include "graphics/ObjectManager.h"
+#include "maths/scripting/JSInterface_Vector3D.h"
+#include "ps/Parser.h"
+#include "simulation/BaseEntity.h"
 #include "lib/sysdep/sysdep.h"	// finite
 
 #include <cfloat>

@@ -1,6 +1,6 @@
 #include "precompiled.h"
 
-#include "Profile.h"
+#include "ps/Profile.h"
 
 #include "EntityOrders.h"
 #include "Entity.h"

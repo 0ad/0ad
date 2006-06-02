@@ -1,7 +1,7 @@
 #ifndef _ps_World_H
 #define _ps_World_H
 
-#include "Terrain.h"
+#include "graphics/Terrain.h"
 
 #include "ps/Errors.h"
 

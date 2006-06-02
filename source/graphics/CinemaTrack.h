@@ -16,8 +16,8 @@
 #include <list>
 #include <map>
 
-#include "CStr.h"
-#include "NUSpline.h"
+#include "ps/CStr.h"
+#include "maths/NUSpline.h"
 
 
 /*

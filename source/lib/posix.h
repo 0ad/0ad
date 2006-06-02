@@ -55,8 +55,8 @@ need only be renamed (e.g. _open, _stat).
 
 #if OS_WIN
 
-#include "sysdep/win/wposix.h"
-#include "sysdep/win/win.h"
+#include "lib/sysdep/win/wposix.h"
+#include "lib/sysdep/win/win.h"
 
 #else
 

@@ -1,9 +1,9 @@
 #include "precompiled.h"
 
 #include "XML.h"
-#include "CStr.h"
-#include "CLogger.h"
-#include "posix.h"		// ptrdiff_t
+#include "ps/CStr.h"
+#include "ps/CLogger.h"
+#include "lib/posix.h"		// ptrdiff_t
 
 #include "lib/res/file/vfs.h"
 #include "lib/res/mem.h"
@@ -76,10 +76,10 @@ BinInputStream *CVFSInputSource::makeStream() const
 {
 	if (m_pBuffer != 0)
 	{
-#include "nommgr.h"
+#include "lib/nommgr.h"
 		return new BinMemInputStream((XMLByte *)m_pBuffer, (unsigned int)m_BufferSize,
 			BinMemInputStream::BufOpt_Reference);
-#include "mmgr.h"
+#include "lib/mmgr.h"
 	}
 	else
 		return NULL;
@@ -100,9 +100,9 @@ const char *prevpathcomp(const char *end, const char *beginning)
 InputSource *CVFSEntityResolver::resolveEntity(const XMLCh *const UNUSED(publicId),
 	const XMLCh *const systemId)
 {
-#include "nommgr.h"
+#include "lib/nommgr.h"
 	CVFSInputSource *ret=new CVFSInputSource();
-#include "mmgr.h"
+#include "lib/mmgr.h"
 	char *path=XMLString::transcode(systemId);
 	char *orgpath=path;
 	

@@ -35,7 +35,7 @@
 #ifndef _SynchedJSObject_H
 #define _SynchedJSObject_H
 
-#include "CStr.h"
+#include "ps/CStr.h"
 #include "ScriptableObject.h"
 
 template <typename T>

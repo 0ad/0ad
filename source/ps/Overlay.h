@@ -12,7 +12,7 @@ by Rich Cross, rich@0ad.wildfiregames.com
 #ifndef COVERLAY_H
 #define COVERLAY_H
 
-#include "types.h"
+#include "lib/types.h"
 
 class CStr8;
 
@@ -222,7 +222,7 @@ public:
 //--------------------------------------------------------
 //  Includes / Compiler directives
 //--------------------------------------------------------
-#include "Texture.h"
+#include "graphics/Texture.h"
 
 
 //--------------------------------------------------------

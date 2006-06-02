@@ -29,7 +29,7 @@
 
 #include "lib.h"
 #include "posix.h"
-#include "sysdep/cpu.h"
+#include "lib/sysdep/cpu.h"
 #include "lockfree.h"
 #include "timer.h"
 

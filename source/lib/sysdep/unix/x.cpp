@@ -23,9 +23,9 @@
 #include <stdlib.h>
 #include <Xatom.h>
 
-#include "lib.h"
-#include "debug.h"
-#include "sysdep/gfx.h"
+#include "lib/lib.h"
+#include "lib/debug.h"
+#include "lib/sysdep/gfx.h"
 
 #include <algorithm>
 

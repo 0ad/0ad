@@ -10,15 +10,15 @@
 
 #include "Model.h"
 #include "ModelDef.h"
-#include "Quaternion.h"
-#include "Bound.h"
+#include "maths/Quaternion.h"
+#include "maths/Bound.h"
 #include "SkeletonAnim.h"
 #include "SkeletonAnimDef.h"
 #include "SkeletonAnimManager.h"
 #include "MeshManager.h"
 #include "lib/res/graphics/ogl_tex.h"
 #include "lib/res/h_mgr.h"
-#include "Profile.h"
+#include "ps/Profile.h"
 
 #include "ps/CLogger.h"
 #define LOG_CATEGORY "graphics"

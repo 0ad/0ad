@@ -27,8 +27,8 @@
 #include "precompiled.h"
 
 #include "Sprite.h"
-#include "Renderer.h"
-#include "ogl.h"
+#include "renderer/Renderer.h"
+#include "lib/ogl.h"
 #include "lib/res/graphics/ogl_tex.h"
 
 CSprite::CSprite() :

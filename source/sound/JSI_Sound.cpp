@@ -1,6 +1,6 @@
 #include "precompiled.h"
 #include "JSI_Sound.h"
-#include "Vector3D.h"
+#include "maths/Vector3D.h"
 
 #include "lib/res/sound/snd_mgr.h"
 #include "lib/res/h_mgr.h"	// h_filename

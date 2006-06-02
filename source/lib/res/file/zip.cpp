@@ -25,11 +25,11 @@
 #include <time.h>
 #include <limits>
 
-#include "lib.h"
-#include "byte_order.h"
-#include "allocators.h"
-#include "timer.h"
-#include "self_test.h"
+#include "lib/lib.h"
+#include "lib/byte_order.h"
+#include "lib/allocators.h"
+#include "lib/timer.h"
+#include "lib/self_test.h"
 #include "file_internal.h"
 
 

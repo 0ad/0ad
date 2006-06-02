@@ -1,7 +1,7 @@
 #include "precompiled.h"
 
 #include "Hotkey.h"
-#include "input.h"
+#include "lib/input.h"
 #include "ConfigDB.h"
 #include "CLogger.h"
 #include "CConsole.h"

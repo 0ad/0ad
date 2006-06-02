@@ -6,11 +6,11 @@
 #ifndef NO_GUI
 #include "gui/CGUI.h"
 #endif
-#include "timer.h"
+#include "lib/timer.h"
 #include "Profile.h"
 #include "Loader.h"
 #include "CStr.h"
-#include "EntityManager.h"
+#include "simulation/EntityManager.h"
 #include "CConsole.h"
 
 #include "ps/World.h"

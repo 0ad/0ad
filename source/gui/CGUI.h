@@ -32,10 +32,10 @@ ERROR_TYPE(GUI, JSOpenFailed);
 
 #include "ps/Overlay.h" // CPos and CRect
 
-#include "Singleton.h"
+#include "ps/Singleton.h"
 #include "lib/input.h"
 
-#include "XML/Xeromyces.h"
+#include "ps/XML/Xeromyces.h"
 
 extern InReaction gui_handler(const SDL_Event* ev);
 

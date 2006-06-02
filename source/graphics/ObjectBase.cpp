@@ -5,8 +5,8 @@
 #include "ObjectBase.h"
 
 #include "ObjectManager.h"
-#include "XML/Xeromyces.h"
-#include "CLogger.h"
+#include "ps/XML/Xeromyces.h"
+#include "ps/CLogger.h"
 #include "lib/timer.h"
 
 #define LOG_CATEGORY "graphics"

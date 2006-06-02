@@ -438,7 +438,7 @@ uintptr_t comp_alloc(ContextType type, CompressionMethod method)
 		cassert(sizeof(ZLibCompressor) <= MAX_COMPRESSOR_SIZE);
 #include "nommgr.h"	// protect placement new
 		c = new(c_mem) ZLibCompressor(type);
-#include "mmgr.h"
+#include "lib/mmgr.h"
 		break;
 #endif
 	default:

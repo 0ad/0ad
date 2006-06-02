@@ -22,10 +22,10 @@
 
 #include "precompiled.h"
 
-#include "lib.h"
-#include "posix.h"
-#include "adts.h"
-#include "sysdep/ia32.h"
+#include "lib/lib.h"
+#include "lib/posix.h"
+#include "lib/adts.h"
+#include "lib/sysdep/ia32.h"
 
 #include "win_internal.h"
 

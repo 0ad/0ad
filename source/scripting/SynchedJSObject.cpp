@@ -1,7 +1,7 @@
 #include "precompiled.h"
 
 #include "SynchedJSObject.h"
-#include "Parser.h"
+#include "ps/Parser.h"
 #include "ScriptCustomTypes.h"
 
 template <>

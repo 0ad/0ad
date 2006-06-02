@@ -14,10 +14,10 @@
 #include "Model.h"
 #include "UnitManager.h"
 #include "Unit.h"
-#include "CConsole.h"
+#include "ps/CConsole.h"
 #include "ObjectManager.h"
 #include "ObjectEntry.h"
-#include "LOSManager.h"
+#include "simulation/LOSManager.h"
 
 extern CConsole* g_Console;
 

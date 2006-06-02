@@ -9,8 +9,8 @@
 #ifndef _MODELDEF_H
 #define _MODELDEF_H
 
-#include "CStr.h"
-#include "Vector3D.h"
+#include "ps/CStr.h"
+#include "maths/Vector3D.h"
 #include "MeshManager.h"
 #include "SkeletonAnimDef.h"
 #include <map>

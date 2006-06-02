@@ -14,8 +14,8 @@
 
 #include "EntityMessage.h"
 #include "EntityHandles.h"
-#include "Singleton.h"
-#include "CStr.h"
+#include "ps/Singleton.h"
+#include "ps/CStr.h"
 #include "scripting/ScriptableObject.h"
 
 class CJSProgressTimer;

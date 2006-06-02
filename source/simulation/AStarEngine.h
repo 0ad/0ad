@@ -2,7 +2,7 @@
 #define __ASTAR_ENGINE_H__
 
 #include "Vector2D.h"
-#include "Player.h"
+#include "ps/Player.h"
 #include "lib/types.h"
 #include <queue>
 

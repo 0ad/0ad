@@ -9,7 +9,7 @@ gee@pyro.nu
 #include "CInput.h"
 
 #include "ps/Font.h"
-#include "ogl.h"
+#include "lib/ogl.h"
 
 #include "lib/res/graphics/unifont.h"
 

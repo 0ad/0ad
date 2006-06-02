@@ -26,7 +26,7 @@
 #include <map>
 #include <list>
 
-#include "lib.h"
+#include "lib/lib.h"
 #include "lib/path_util.h"
 #include "win_internal.h"
 #include "lib/res/file/file.h"	// path_is_subpath

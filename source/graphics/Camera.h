@@ -14,7 +14,7 @@
 #define CAMERA_H
 
 #include "Frustum.h"
-#include "Matrix3D.h"
+#include "maths/Matrix3D.h"
 
 extern int g_mouse_x, g_mouse_y;
 

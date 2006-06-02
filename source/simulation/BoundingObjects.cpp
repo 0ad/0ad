@@ -1,8 +1,8 @@
 #include "precompiled.h"
 
 #include "BoundingObjects.h"
-#include "ogl.h"
-#include "MathUtil.h"
+#include "lib/ogl.h"
+#include "maths/MathUtil.h"
 
 bool CBoundingObject::intersects( CBoundingObject* obj )
 {

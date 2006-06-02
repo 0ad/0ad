@@ -15,12 +15,12 @@
 #ifndef ENTITY_PROPERTIES_INCLUDED
 #define ENTITY_PROPERTIES_INCLUDED
 
-#include "CStr.h"
-#include "Vector3D.h"
+#include "ps/CStr.h"
+#include "maths/Vector3D.h"
 #include "ScriptObject.h"
 
-#include "scripting/JSInterface_Entity.h"
-#include "scripting/JSInterface_Vector3D.h"
+#include "simulation/scripting/JSInterface_Entity.h"
+#include "maths/scripting/JSInterface_Vector3D.h"
 
 #if !GCC_VERSION
 

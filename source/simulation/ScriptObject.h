@@ -6,10 +6,10 @@
 #ifndef SCRIPTOBJECT_INCLUDED
 #define SCRIPTOBJECT_INCLUDED
 
-#include "CStr.h"
+#include "ps/CStr.h"
 #include "scripting/ScriptingHost.h"
 #include "EntityHandles.h"
-#include "scripting/JSInterface_Entity.h"
+#include "simulation/scripting/JSInterface_Entity.h"
 #include "scripting/DOMEvent.h"
 
 class CScriptObject

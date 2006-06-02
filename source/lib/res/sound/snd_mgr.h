@@ -24,7 +24,7 @@
 #ifndef SND_MGR_H__
 #define SND_MGR_H__
 
-#include "../handle.h"
+#include "lib/res/handle.h"
 
 /**
 

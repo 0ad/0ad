@@ -5,7 +5,7 @@ class IGUIObject;
 class CGUI;
 class CStr;
 
-#include "Overlay.h"
+#include "ps/Overlay.h"
 
 class GUITooltip
 {

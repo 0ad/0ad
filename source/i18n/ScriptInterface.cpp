@@ -2,7 +2,7 @@
 
 #include "ScriptInterface.h"
 #include "CLocale.h"
-#include "StringConvert.h"
+#include "ps/StringConvert.h"
 #include "scripting/SpiderMonkey.h"
 
 #include "ps/CLogger.h"

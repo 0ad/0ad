@@ -2,7 +2,7 @@
 #define _Network_NetLog_H
 
 #include <stdio.h>
-#include "ThreadUtil.h"
+#include "ps/ThreadUtil.h"
 
 /*
 	CNetLog: an interface for writing to the network trace log. This log is

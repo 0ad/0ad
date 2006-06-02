@@ -23,7 +23,7 @@
 #include "precompiled.h"
 
 #include "win_internal.h"
-#include "lib.h"
+#include "lib/lib.h"
 #include "wsock.h"
 #include "delay_load.h"
 

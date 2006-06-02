@@ -2,7 +2,7 @@
 
 #include "CLogger.h"
 #include "ConfigDB.h"
-#include "lib.h"
+#include "lib/lib.h"
 #include "lib/path_util.h"
 #include "lib/res/file/file.h"
 

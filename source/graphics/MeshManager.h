@@ -1,8 +1,8 @@
 #ifndef __H_MESHMANAGER_H__
 #define __H_MESHMANAGER_H__
 
-#include "Singleton.h"
-#include "CStr.h"
+#include "ps/Singleton.h"
+#include "ps/CStr.h"
 
 #include <boost/shared_ptr.hpp>
 #include <boost/weak_ptr.hpp>

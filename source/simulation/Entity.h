@@ -28,16 +28,16 @@
 
 #include <deque>
 #include "scripting/ScriptableComplex.h"
-#include "Player.h"
-#include "Vector2D.h"
-#include "Vector3D.h"
-#include "UnitManager.h"
+#include "ps/Player.h"
+#include "ps/Vector2D.h"
+#include "maths/Vector3D.h"
+#include "graphics/UnitManager.h"
 #include "EntityOrders.h"
 #include "EntityHandles.h"
 #include "EntityMessage.h"
 #include "EventHandlers.h"
 #include "ScriptObject.h"
-#include "ObjectEntry.h"
+#include "graphics/ObjectEntry.h"
 #include "EntitySupport.h"
 
 class CBaseEntity;

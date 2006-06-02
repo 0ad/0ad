@@ -4,9 +4,9 @@
 #include <stdio.h>
 #include <wchar.h>
 
-#include "sdl.h"
-#include "lib.h"
-#include "sysdep/sysdep.h"
+#include "lib/sdl.h"
+#include "lib/lib.h"
+#include "lib/sysdep/sysdep.h"
 #include "udbg.h"
 
 #define GNU_SOURCE

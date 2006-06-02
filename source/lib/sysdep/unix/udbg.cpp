@@ -1,9 +1,9 @@
 #include "precompiled.h"
 
-#include "lib.h"
-#include "timer.h"
-#include "sysdep/sysdep.h"
-#include "debug.h"
+#include "lib/lib.h"
+#include "lib/timer.h"
+#include "lib/sysdep/sysdep.h"
+#include "lib/debug.h"
 
 #include <stdarg.h>
 #include <sys/types.h>
@@ -288,7 +288,7 @@ static void find_address_in_section (bfd *abfd, asection *section, void *data)
 }
 
 // BFD functions perform allocs with real malloc - we need to free that data
-#include "nommgr.h"
+#include "lib/nommgr.h"
 void demangle_buf(char *buf, const char *symbol, size_t n)
 {
 	int status=0;

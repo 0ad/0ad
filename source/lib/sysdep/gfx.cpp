@@ -22,8 +22,8 @@
 
 #include "precompiled.h"
 
-#include "lib.h"
-#include "sdl.h"
+#include "lib/lib.h"
+#include "lib/sdl.h"
 #include "gfx.h"
 
 char gfx_card[GFX_CARD_LEN] = "";

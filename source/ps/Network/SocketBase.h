@@ -5,11 +5,11 @@
 //  Includes / Compiler directives
 //--------------------------------------------------------
 
-#include "posix.h"
+#include "lib/posix.h"
 #include "lib/types.h"
-#include "Pyrogenesis.h"
+#include "ps/Pyrogenesis.h"
 #include <string.h>
-#include "CStr.h"
+#include "ps/CStr.h"
 
 //-------------------------------------------------
 // Error Codes

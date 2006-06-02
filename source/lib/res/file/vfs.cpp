@@ -37,7 +37,7 @@
 #include "lib/adts.h"
 #include "lib/timer.h"
 #include "lib/res/res.h"
-#include "sysdep/dir_watch.h"
+#include "lib/sysdep/dir_watch.h"
 #include "file_internal.h"
 
 // not safe to call before main!

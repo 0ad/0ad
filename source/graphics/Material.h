@@ -1,7 +1,7 @@
 #ifndef __H_MATERIAL_H__
 #define __H_MATERIAL_H__
 
-#include "CStr.h"
+#include "ps/CStr.h"
 
 struct CColor;
 

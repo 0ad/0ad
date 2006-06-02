@@ -25,8 +25,8 @@
 #include "win_internal.h"	// includes windows.h; must come before shlobj
 #include <shlobj.h>	// pick_dir
 
-#include "lib.h"
-#include "posix.h"
+#include "lib/lib.h"
+#include "lib/posix.h"
 #include "error_dialog.h"
 #include "lib/res/graphics/tex.h"
 

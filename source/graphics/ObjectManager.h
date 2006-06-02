@@ -3,8 +3,8 @@
 
 #include <vector>
 #include <map>
-#include "Singleton.h"
-#include "CStr.h"
+#include "ps/Singleton.h"
+#include "ps/CStr.h"
 #include "ObjectBase.h"
 
 class CObjectEntry;

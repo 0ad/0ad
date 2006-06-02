@@ -23,7 +23,7 @@
 #ifndef VFS_PATH_H__
 #define VFS_PATH_H__
 
-#include "lib.h"
+#include "lib/lib.h"
 
 #define VFS_PATH_IS_DIR(path) (*path == '\0' || path[strlen(path)-1] == '/')
 

@@ -4,17 +4,17 @@
 
 #include "Entity.h"
 #include "BaseEntity.h"
-#include "Model.h"
-#include "ObjectEntry.h"
-#include "SkeletonAnim.h"
-#include "SkeletonAnimDef.h" // Animation duration
-#include "Unit.h"
+#include "graphics/Model.h"
+#include "graphics/ObjectEntry.h"
+#include "graphics/SkeletonAnim.h"
+#include "graphics/SkeletonAnimDef.h" // Animation duration
+#include "graphics/Unit.h"
 #include "ProductionQueue.h"
-#include "MathUtil.h"
+#include "maths/MathUtil.h"
 
 #include "Collision.h"
 #include "PathfindEngine.h"
-#include "Terrain.h"
+#include "graphics/Terrain.h"
 
 #include "ps/Game.h"
 #include "ps/World.h"

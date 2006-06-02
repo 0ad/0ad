@@ -8,7 +8,7 @@
 
 #include "precompiled.h"
 
-#include "lib.h"
+#include "lib/lib.h"
 
 #include "Patch.h"
 #include "MiniPatch.h"

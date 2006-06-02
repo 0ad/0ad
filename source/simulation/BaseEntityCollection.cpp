@@ -1,11 +1,11 @@
 #include "precompiled.h"
 
 #include "BaseEntityCollection.h"
-#include "ObjectManager.h"
-#include "Model.h"
-#include "CLogger.h"
-#include "VFSUtil.h"
-#include "Player.h"
+#include "graphics/ObjectManager.h"
+#include "graphics/Model.h"
+#include "ps/CLogger.h"
+#include "ps/VFSUtil.h"
+#include "ps/Player.h"
 
 #define LOG_CATEGORY "entity"
 

@@ -24,7 +24,7 @@
 #ifndef ARCHIVE_H__
 #define ARCHIVE_H__
 
-#include "../handle.h"
+#include "lib/res/handle.h"
 #include "file.h"			// FileCB for afile_enum
 #include "compression.h"	// CompressionMethod
 

@@ -26,13 +26,13 @@
 #include <stdio.h>
 #include <typeinfo>
 
-#include "lib.h"
+#include "lib/lib.h"
 #include "win_internal.h"
-#include "posix.h"
-#include "sysdep/cpu.h"
+#include "lib/posix.h"
+#include "lib/sysdep/cpu.h"
 #include "wdbg.h"
 #include "byte_order.h"		// FOURCC
-#include "app_hooks.h"
+#include "lib/app_hooks.h"
 
 
 #pragma data_seg(WIN_CALLBACK_PRE_MAIN(b))

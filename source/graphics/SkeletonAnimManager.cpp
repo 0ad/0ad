@@ -10,9 +10,9 @@
 
 #include "lib/res/res.h"
 #include "Model.h"
-#include "CLogger.h"
+#include "ps/CLogger.h"
 #include "SkeletonAnimManager.h"
-#include "FileUnpacker.h"
+#include "ps/FileUnpacker.h"
 #include <algorithm>
 
 #define LOG_CATEGORY "graphics"

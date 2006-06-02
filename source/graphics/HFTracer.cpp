@@ -10,8 +10,8 @@
 
 #include "HFTracer.h"
 #include "Terrain.h"
-#include "Bound.h"
-#include "Vector3D.h"
+#include "maths/Bound.h"
+#include "maths/Vector3D.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // CHFTracer constructor

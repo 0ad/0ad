@@ -23,7 +23,7 @@
 
 #include "precompiled.h"
 
-#include "sysdep/dir_watch.h"
+#include "lib/sysdep/dir_watch.h"
 #include "lib/res/h_mgr.h"
 #include "file_internal.h"
 

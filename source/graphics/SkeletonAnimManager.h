@@ -12,7 +12,7 @@
 #include <map>
 #include <set>
 #include "SkeletonAnimDef.h"
-#include "Singleton.h"
+#include "ps/Singleton.h"
 
 
 // access to sole CSkeletonAnimManager object

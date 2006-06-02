@@ -11,7 +11,7 @@
 
 #include <vector>
 #include <set>
-#include "Singleton.h"
+#include "ps/Singleton.h"
 
 class CUnit;
 class CModel;

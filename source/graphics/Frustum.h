@@ -16,7 +16,7 @@
 #ifndef FRUSTUM_H
 #define FRUSTUM_H
 
-#include "Plane.h"
+#include "maths/Plane.h"
 
 //10 planes should be enough
 #define MAX_NUM_FRUSTUM_PLANES		(10)

@@ -9,11 +9,11 @@
 
 #include "scripting/ScriptableObject.h"
 
-#include "Game.h"
-#include "Simulation.h"
-#include "Player.h"
-#include "CLogger.h"
-#include "CConsole.h"
+#include "ps/Game.h"
+#include "simulation/Simulation.h"
+#include "ps/Player.h"
+#include "ps/CLogger.h"
+#include "ps/CConsole.h"
 
 #define LOG_CAT_NET "net"
 

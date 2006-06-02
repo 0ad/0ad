@@ -1,6 +1,6 @@
 #include "precompiled.h"
 
-#include "ogl.h"
+#include "lib/ogl.h"
 #include "lib/res/graphics/ogl_shader.h"
 #include "ps/CLogger.h"
 #include "renderer/Renderer.h"

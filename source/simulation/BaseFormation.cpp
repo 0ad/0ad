@@ -1,7 +1,7 @@
 #include "precompiled.h"
 #include "BaseFormation.h"
-#include "CLogger.h"
-#include "CStr.h"
+#include "ps/CLogger.h"
+#include "ps/CStr.h"
 #include "maths/MathUtil.h"
 
 #define LOG_CATEGORY "Formation"

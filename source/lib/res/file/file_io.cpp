@@ -24,7 +24,7 @@
 
 #include <deque>
 
-#include "lib.h"
+#include "lib/lib.h"
 #include "lib/posix.h"
 #include "lib/allocators.h"
 #include "lib/adts.h"

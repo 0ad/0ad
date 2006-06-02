@@ -23,8 +23,8 @@
 
 #include "precompiled.h"
 
-#include "lib.h"
-#include "posix.h"
+#include "lib/lib.h"
+#include "lib/posix.h"
 #include "h_mgr.h"
 #include "lib/allocators.h"	// OverrunProtector
 #include "mem.h"

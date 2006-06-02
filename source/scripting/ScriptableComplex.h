@@ -928,9 +928,9 @@ public:
 	{
 		DeletePreviouslyAssignedProperty( PropertyName );
 		void* mem = jscomplexproperty_suballoc();
-#include "nommgr.h"
+#include "lib/nommgr.h"
 		CJSDynamicComplexProperty* newProp = new(mem) CJSValComplexProperty( Value, false ); 
-#include "mmgr.h"
+#include "lib/mmgr.h"
 		m_Properties[PropertyName] = newProp;
 
 		ReflectorTable::iterator it;
@@ -993,18 +993,18 @@ public:
 	{
 		DeletePreviouslyAssignedProperty( PropertyName );
 		void* mem = jscomplexproperty_suballoc();
-#include "nommgr.h"
+#include "lib/nommgr.h"
 		m_Properties[PropertyName] = new(mem) CJSComplexProperty<PropType, ReadOnly>( Native, PropAllowInheritance, Update, Refresh );
-#include "mmgr.h"
+#include "lib/mmgr.h"
 	}
 	// PropertyName must not already exist! (verified in non-final release)
 	template<typename PropType> void AddReadOnlyProperty( CStrW PropertyName, PropType* Native, bool PropAllowInheritance = true, NotifyFn Update = NULL, NotifyFn Refresh = NULL )
 	{
 		DeletePreviouslyAssignedProperty( PropertyName );
 		void* mem = jscomplexproperty_suballoc();
-#include "nommgr.h"
+#include "lib/nommgr.h"
 		m_Properties[PropertyName] = new(mem) CJSComplexProperty<PropType, true>( Native, PropAllowInheritance, Update, Refresh );
-#include "mmgr.h"
+#include "lib/mmgr.h"
 	}
 };
 

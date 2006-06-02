@@ -15,7 +15,7 @@
 #include "MeshManager.h"
 #include "RenderableObject.h"
 #include "Material.h"
-#include "Overlay.h"
+#include "ps/Overlay.h"
 struct SPropPoint;
 class CObjectEntry;
 class CSkeletonAnim;

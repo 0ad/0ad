@@ -62,7 +62,7 @@ scope
 
 #include "config.h"
 #include "lib/types.h"
-#include "sysdep/sysdep.h"
+#include "lib/sysdep/sysdep.h"
 #include "sysdep/cpu.h"	// CAS
 //#include "sysdep/sysdep.h"	// moved down; see below.
 

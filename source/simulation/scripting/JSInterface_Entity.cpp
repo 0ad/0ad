@@ -2,13 +2,13 @@
 
 #include "JSInterface_Entity.h"
 #include "scripting/JSInterface_BaseEntity.h"
-#include "scripting/JSInterface_Vector3D.h"
-#include "EntityHandles.h"
-#include "Entity.h"
-#include "EntityManager.h"
-#include "BaseEntityCollection.h"
-#include "CConsole.h"
-#include "Scheduler.h"
+#include "maths/scripting/JSInterface_Vector3D.h"
+#include "simulation/EntityHandles.h"
+#include "simulation/Entity.h"
+#include "simulation/EntityManager.h"
+#include "simulation/BaseEntityCollection.h"
+#include "ps/CConsole.h"
+#include "simulation/Scheduler.h"
 
 /*
 JSClass JSI_Entity::JSI_class = {

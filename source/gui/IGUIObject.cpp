@@ -8,7 +8,7 @@ gee@pyro.nu
 #include "GUI.h"
 
 ///// janwas: again, including etiquette?
-#include "Parser.h"
+#include "ps/Parser.h"
 
 /////
 

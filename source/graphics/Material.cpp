@@ -1,11 +1,11 @@
 #include "precompiled.h"
 
-#include "ogl.h"
+#include "lib/ogl.h"
 #include "lib/res/res.h"
 #include "Material.h"
-#include "Player.h"
-#include "Game.h"
-#include "Overlay.h" // for CColor
+#include "ps/Player.h"
+#include "ps/Game.h"
+#include "ps/Overlay.h" // for CColor
 
 CMaterial NullMaterial;
 CMaterial IdentityMaterial;

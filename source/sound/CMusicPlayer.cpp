@@ -1,12 +1,12 @@
 #include "precompiled.h"
 
 #include "CMusicPlayer.h"
-#include <CLogger.h>
+#include "CLogger.h"
 
 #include <sstream>
 #include <list>
 
-#include <res/res.h>
+#include "lib/res/res.h"
 
 #define LOG_CATEGORY "audio"
 

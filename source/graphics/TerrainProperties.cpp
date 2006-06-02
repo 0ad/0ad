@@ -4,13 +4,13 @@
 
 #include "TerrainProperties.h"
 #include "TextureManager.h"
-#include "Overlay.h"
+#include "ps/Overlay.h"
 
-#include "Parser.h"
+#include "ps/Parser.h"
 #include "ps/XML/XeroXMB.h"
-#include "XML/Xeromyces.h"
+#include "ps/XML/Xeromyces.h"
 
-#include "CLogger.h"
+#include "ps/CLogger.h"
 #define LOG_CATEGORY "graphics"
 
 using namespace std;

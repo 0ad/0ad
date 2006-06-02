@@ -3,9 +3,9 @@
 // Mark Thompson (mark@wildfiregames.com / mot20@cam.ac.uk)
 // WIP, not yet functional
 
-#include "Network/Serialization.h"
+#include "ps/Network/Serialization.h"
 #include "JSConversions.h"
-#include "CStr.h"
+#include "ps/CStr.h"
 
 class jsval_ser : public ISerializable
 {

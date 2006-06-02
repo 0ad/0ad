@@ -31,7 +31,7 @@
 #include "lib.h"
 #include "lib/app_hooks.h"
 
-#include "sysdep/sysdep.h"
+#include "lib/sysdep/sysdep.h"
 
 //-----------------------------------------------------------------------------
 // bit bashing

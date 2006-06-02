@@ -143,7 +143,7 @@ the next function to fail, but real apps should check and report errors.
 #ifndef OGL_TEX_H__
 #define OGL_TEX_H__
 
-#include "../handle.h"
+#include "lib/res/handle.h"
 #include "lib/types.h"
 #include "lib/ogl.h"
 #include "tex.h"

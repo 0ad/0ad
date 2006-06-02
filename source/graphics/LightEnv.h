@@ -13,7 +13,7 @@
 #define __LIGHTENV_H
 
 #include "Color.h"
-#include "Vector3D.h"
+#include "maths/Vector3D.h"
 
 class CMapWriter;
 class CMapReader;

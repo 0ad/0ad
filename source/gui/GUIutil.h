@@ -22,9 +22,9 @@ gee@pyro.nu
 //  Includes / Compiler directives
 //--------------------------------------------------------
 #include "GUIbase.h"
-#include "Parser.h"
+#include "ps/Parser.h"
 // TODO Gee: New
-#include "Overlay.h"
+#include "ps/Overlay.h"
 #include "CGUI.h"
 #include "CGUISprite.h"
 #include "IGUIObject.h"

@@ -24,10 +24,10 @@
 
 #include <string.h>
 
-#include "lib.h"
-#include "adts.h"
+#include "lib/lib.h"
+#include "lib/adts.h"
 #include "file_internal.h"
-#include "allocators.h"
+#include "lib/allocators.h"
 
 
 // path types:

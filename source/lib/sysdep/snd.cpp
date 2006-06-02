@@ -22,7 +22,7 @@
 
 #include "precompiled.h"
 
-#include "lib.h"
+#include "lib/lib.h"
 #include "snd.h"
 
 char snd_card[SND_CARD_LEN];

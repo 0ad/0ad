@@ -13,7 +13,7 @@
 
 #include <stdarg.h>	// va_list
 
-#include "../handle.h"
+#include "lib/res/handle.h"
 
 // Load and return a handle to the font defined
 // in fn+".fnt" with texture fn+".tga"

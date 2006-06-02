@@ -23,10 +23,10 @@
 
 #include "precompiled.h"
 
-#include "lib.h"
-#include "adts.h"
-#include "sysdep/sysdep.h"
-#include "byte_order.h"
+#include "lib/lib.h"
+#include "lib/adts.h"
+#include "lib/sysdep/sysdep.h"
+#include "lib/byte_order.h"
 #include "lib/allocators.h"
 #include "file_internal.h"
 

@@ -2,7 +2,7 @@
 #define _StreamSocket_H
 
 #include "lib/types.h"
-#include "Pyrogenesis.h"
+#include "ps/Pyrogenesis.h"
 #include "Network.h"
 #include "SocketBase.h"
 

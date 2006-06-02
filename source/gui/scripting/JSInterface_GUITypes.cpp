@@ -1,7 +1,7 @@
 #include "precompiled.h"
 
 #include "JSInterface_GUITypes.h"
-#include "CStr.h"
+#include "ps/CStr.h"
 
 /**** GUISize ****/
 

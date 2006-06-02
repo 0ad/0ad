@@ -8,9 +8,9 @@
 
 #include "scripting/ScriptingHost.h"
 
-#include "Vector3D.h"
-#include "Camera.h"
-#include "HFTracer.h"
+#include "maths/Vector3D.h"
+#include "graphics/Camera.h"
+#include "graphics/HFTracer.h"
 
 #ifndef JSI_CAMERA_INCLUDED
 #define JSI_CAMERA_INCLUDED

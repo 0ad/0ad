@@ -27,9 +27,9 @@
 
 #include <algorithm>
 
-#include "lib.h"
-#include "timer.h"
-#include "../res.h"
+#include "lib/lib.h"
+#include "lib/timer.h"
+#include "lib/res/res.h"
 #include "tex.h"
 #include "tex_codec.h"
 

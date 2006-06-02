@@ -2,15 +2,15 @@
 #include "precompiled.h"
 #include <string>
 #include <sstream>
-#include "ogl.h"
+#include "lib/ogl.h"
 #include "CinemaTrack.h"
-#include "Game.h"
+#include "ps/Game.h"
 #include "GameView.h"
-#include "MathUtil.h"
+#include "maths/MathUtil.h"
 #include "Camera.h"
-#include "CStr.h"
-#include "Vector3D.h"
-#include "Vector4D.h"
+#include "ps/CStr.h"
+#include "maths/Vector3D.h"
+#include "maths/Vector4D.h"
 #include "lib/res/file/vfs.h"
 #include "lib/res/mem.h"
 

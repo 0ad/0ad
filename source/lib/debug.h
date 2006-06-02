@@ -25,9 +25,9 @@
 
 #include "lib.h" // STMT
 #if OS_WIN
-# include "sysdep/win/wdbg.h"
+# include "lib/sysdep/win/wdbg.h"
 #else
-# include "sysdep/unix/udbg.h"
+# include "lib/sysdep/unix/udbg.h"
 #endif
 
 /**

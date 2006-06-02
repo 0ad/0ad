@@ -10,7 +10,7 @@
 #ifndef graphics_TerrainProperties_H
 #define graphics_TerrainProperties_H
 
-#include "CStr.h"
+#include "ps/CStr.h"
 #include <boost/shared_ptr.hpp>
 
 class CTerrainGroup;

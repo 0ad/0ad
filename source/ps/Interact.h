@@ -9,12 +9,12 @@
 #include <vector>
 
 #include "Singleton.h"
-#include "Entity.h"
-#include "EntityManager.h"
-#include "EntityMessage.h"
-#include "Collision.h"
-#include "Scheduler.h"
-#include "Camera.h"
+#include "simulation/Entity.h"
+#include "simulation/EntityManager.h"
+#include "simulation/EntityMessage.h"
+#include "simulation/Collision.h"
+#include "simulation/Scheduler.h"
+#include "graphics/Camera.h"
 #include "lib/input.h"
 
 #define MAX_BOOKMARKS 10

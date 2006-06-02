@@ -9,8 +9,8 @@ struct SPropPoint;
 #include <map>
 #include <vector>
 #include <set>
-#include "CStr.h"
-#include "Overlay.h"
+#include "ps/CStr.h"
+#include "ps/Overlay.h"
 
 class CObjectEntry
 {

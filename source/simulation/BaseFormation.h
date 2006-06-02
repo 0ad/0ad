@@ -7,7 +7,7 @@
 
 #include <vector>
 #include <map>
-#include "XML/Xeromyces.h"
+#include "ps/XML/Xeromyces.h"
 
 class CStr;
 

@@ -9,7 +9,7 @@
 #ifndef _VERTEXBUFFER_H
 #define _VERTEXBUFFER_H
 
-#include "lib.h"
+#include "lib/lib.h"
 #include "lib/res/graphics/ogl_tex.h"
 
 #include <list>

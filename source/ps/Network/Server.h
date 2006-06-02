@@ -2,10 +2,10 @@
 #define _Network_NetServer_H
 
 #include "Network/Session.h"
-#include "GameAttributes.h"
-#include "TurnManager.h"
-#include "scripting/JSMap.h"
-#include "ScriptObject.h"
+#include "ps/GameAttributes.h"
+#include "simulation/TurnManager.h"
+#include "ps/scripting/JSMap.h"
+#include "simulation/ScriptObject.h"
 
 class CGame;
 

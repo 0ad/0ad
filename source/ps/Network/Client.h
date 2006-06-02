@@ -4,10 +4,10 @@
 #include <CStr.h>
 #include <Network/Session.h>
 
-#include "TurnManager.h"
+#include "simulation/TurnManager.h"
 #include "simulation/ScriptObject.h"
 #include "scripting/ScriptableObject.h"
-#include "scripting/JSMap.h"
+#include "ps/scripting/JSMap.h"
 
 #include <map>
 

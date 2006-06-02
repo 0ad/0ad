@@ -1,17 +1,17 @@
 #include "precompiled.h"
 
 #if OS_WIN
-#include "sysdep/win/win_internal.h"
+#include "lib/sysdep/win/win_internal.h"
 #endif
 
 #include "Network.h"
 #include "NetworkInternal.h"
 
-#include "lib.h"
-#include "CStr.h"
+#include "lib/lib.h"
+#include "ps/CStr.h"
 // ERROR is defined by some windows header. Undef it
 #undef ERROR
-#include "CLogger.h"
+#include "ps/CLogger.h"
 #include "NetLog.h"
 
 #include <errno.h>

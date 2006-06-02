@@ -9,7 +9,7 @@
 #ifndef BOUNDING_OBJECTS_INCLUDED
 #define BOUNDING_OBJECTS_INCLUDED
 
-#include "Vector2D.h"
+#include "ps/Vector2D.h"
 
 class CBoundingBox;
 class CBoundingCircle;

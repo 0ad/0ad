@@ -10,13 +10,13 @@
 
 #include "precompiled.h"
 
-#include "ogl.h"
+#include "lib/ogl.h"
 
 #include <float.h>
 
 #include "Brush.h"
 #include "Bound.h"
-#include "Frustum.h"
+#include "graphics/Frustum.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////

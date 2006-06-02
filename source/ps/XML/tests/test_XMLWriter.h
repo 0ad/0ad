@@ -1,6 +1,6 @@
 #include <cxxtest/TestSuite.h>
 
-#include "ps/xml/XML.h"
+#include "ps/XML/XML.h"
 
 class TestXmlWriter : public CxxTest::TestSuite 
 {

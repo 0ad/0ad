@@ -16,10 +16,10 @@
 #include <algorithm>
 #include <vector>
 
-#include "ogl.h"
-#include "MathUtil.h"
-#include "Vector3D.h"
-#include "Vector4D.h"
+#include "lib/ogl.h"
+#include "maths/MathUtil.h"
+#include "maths/Vector3D.h"
+#include "maths/Vector4D.h"
 
 #include "graphics/LightEnv.h"
 #include "graphics/Model.h"

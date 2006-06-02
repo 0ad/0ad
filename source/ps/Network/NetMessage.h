@@ -86,7 +86,7 @@ public:
 
 typedef CNetMessage * (*NetMessageDeserializer) (const u8 *buffer, uint length);
 
-#include "EntityHandles.h"
+#include "simulation/EntityHandles.h"
 
 struct SNetMessageDeserializerRegistration
 {

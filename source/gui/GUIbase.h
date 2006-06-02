@@ -26,7 +26,7 @@ gee@pyro.nu
 
 // I would like to just forward declare CSize, but it doesn't
 //  seem to be defined anywhere in the predefined header.
-#include "Overlay.h"
+#include "ps/Overlay.h"
 
 //--------------------------------------------------------
 //  Forward declarations

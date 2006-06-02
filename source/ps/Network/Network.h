@@ -45,11 +45,11 @@ MORE INFO
 //  Includes / Compiler directives
 //--------------------------------------------------------
 
-#include "posix.h"
+#include "lib/posix.h"
 #include "lib/types.h"
-#include "Pyrogenesis.h"
-#include "ThreadUtil.h"
-#include "Singleton.h"
+#include "ps/Pyrogenesis.h"
+#include "ps/ThreadUtil.h"
+#include "ps/Singleton.h"
 
 #include "StreamSocket.h"
 

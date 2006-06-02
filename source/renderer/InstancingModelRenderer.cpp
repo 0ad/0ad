@@ -10,10 +10,10 @@
 
 #include "precompiled.h"
 
-#include "ogl.h"
+#include "lib/ogl.h"
 #include "lib/res/graphics/ogl_shader.h"
-#include "Vector3D.h"
-#include "Vector4D.h"
+#include "maths/Vector3D.h"
+#include "maths/Vector4D.h"
 
 #include "ps/CLogger.h"
 

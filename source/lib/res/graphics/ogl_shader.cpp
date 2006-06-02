@@ -10,8 +10,8 @@
 
 #include "precompiled.h"
 
-#include "lib.h"
-#include "../res.h"
+#include "lib/lib.h"
+#include "lib/res/res.h"
 #include "lib/ogl.h"
 
 #include "ps/CLogger.h"

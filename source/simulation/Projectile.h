@@ -7,9 +7,9 @@
 #ifndef PROJECTILE_INCLUDED
 #define PROJECTILE_INCLUDED
 
-#include "Vector3D.h"
-#include "Vector2D.h"
-#include "Singleton.h"
+#include "maths/Vector3D.h"
+#include "ps/Vector2D.h"
+#include "ps/Singleton.h"
 #include "scripting/ScriptableObject.h"
 #include "scripting/DOMEvent.h"
 #include "ScriptObject.h"

@@ -25,11 +25,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "lib.h"
+#include "lib/lib.h"
 #include "win_internal.h"
-#include "allocators.h"
+#include "lib/allocators.h"
 #include "lib/path_util.h"
-#include "posix.h"
+#include "lib/posix.h"
 
 
 // cast intptr_t to HANDLE; centralized for easier changing, e.g. avoiding

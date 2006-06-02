@@ -26,16 +26,16 @@
 #include <stdio.h>
 #include <set>
 
-#include "lib.h"
+#include "lib/lib.h"
 #include "win_internal.h"
 #define _NO_CVCONST_H	// request SymTagEnum be defined
 #include <dbghelp.h>
 #include <OAIdl.h>	// VARIANT
-#include "posix.h"
-#include "sysdep/cpu.h"
+#include "lib/posix.h"
+#include "lib/sysdep/cpu.h"
 #include "wdbg.h"
-#include "debug_stl.h"
-#include "app_hooks.h"
+#include "lib/debug_stl.h"
+#include "lib/app_hooks.h"
 #include "lib/path_util.h"
 #if CPU_IA32
 # include "lib/sysdep/ia32.h"

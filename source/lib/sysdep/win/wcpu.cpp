@@ -22,11 +22,11 @@
 
 #include "precompiled.h"
 
-#include "lib.h"
-#include "posix.h"
+#include "lib/lib.h"
+#include "lib/posix.h"
 #include "win_internal.h"
 
-#include "sysdep/cpu.h"
+#include "lib/sysdep/cpu.h"
 
 // limit allows statically allocated per-CPU structures (for simplicity).
 // we're Windows-specific anyway; such systems won't foreseeably have more.

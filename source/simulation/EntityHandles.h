@@ -21,7 +21,7 @@
 #define ENTITY_HANDLE_INCLUDED
 
 #include "lib/types.h"
-#include "Network/Serialization.h"
+#include "ps/Network/Serialization.h"
 
 #define INVALID_HANDLE 65535
 // The maximum numerical value of an entity handle sent over the network

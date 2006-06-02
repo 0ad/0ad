@@ -11,7 +11,7 @@
 #ifndef OGL_SHADER_H__
 #define OGL_SHADER_H__
 
-#include "../handle.h"
+#include "lib/res/handle.h"
 
 #include "lib/types.h"
 #include "lib/ogl.h"

@@ -5,13 +5,13 @@
 #include "CLogger.h"
 
 #include "Pyrogenesis.h"
-#include "sysdep/sysdep.h"
+#include "lib/sysdep/sysdep.h"
 #include "Hotkey.h"
 #include "scripting/ScriptingHost.h"
-#include "MathUtil.h"
+#include "maths/MathUtil.h"
 
-#include "Network/Client.h"
-#include "Network/Server.h"
+#include "ps/Network/Client.h"
+#include "ps/Network/Server.h"
 
 #include "lib/res/file/vfs.h"
 

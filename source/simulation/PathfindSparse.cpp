@@ -1,7 +1,7 @@
 #include "precompiled.h"
 
 #include "PathfindSparse.h"
-#include "Terrain.h"
+#include "graphics/Terrain.h"
 #include "ps/Game.h"
 #include "ps/World.h"
 

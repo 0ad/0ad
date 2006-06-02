@@ -8,7 +8,7 @@ extern float g_YMinOffset;
 #include "Camera.h"
 #include "CinemaTrack.h"
 #include "ModelDef.h"
-#include "Vector3D.h"
+#include "maths/Vector3D.h"
 #include "LightEnv.h"
 #include "scripting/ScriptableObject.h"
 

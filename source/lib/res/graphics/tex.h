@@ -100,7 +100,7 @@ library and IO layer. Read and write are zero-copy.
 #ifndef TEX_H__
 #define TEX_H__
 
-#include "../handle.h"
+#include "lib/res/handle.h"
 
 /**
  * flags describing the pixel format. these are to be interpreted as

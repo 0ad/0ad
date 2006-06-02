@@ -2,9 +2,9 @@
 #define _PATCHRDATA_H
 
 #include <vector>
-#include "Color.h"
-#include "Vector3D.h"
-#include "RenderableObject.h"
+#include "graphics/Color.h"
+#include "maths/Vector3D.h"
+#include "graphics/RenderableObject.h"
 #include "VertexBufferManager.h"
 
 class CPatch;

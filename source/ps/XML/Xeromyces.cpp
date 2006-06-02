@@ -11,7 +11,7 @@
 #include "Xeromyces.h"
 
 #define ZLIB_DLL
-#include "zlib.h" // for crc32
+#include <zlib.h> // for crc32
 
 #define LOG_CATEGORY "xml"
 

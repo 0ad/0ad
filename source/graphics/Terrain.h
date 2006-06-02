@@ -11,9 +11,9 @@
 #define _TERRAIN_H
 
 #include "Patch.h"
-#include "Vector3D.h"
-#include "Vector2D.h"
-#include "Entity.h"
+#include "maths/Vector3D.h"
+#include "ps/Vector2D.h"
+#include "simulation/Entity.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // CTerrain: main terrain class; contains the heightmap describing elevation

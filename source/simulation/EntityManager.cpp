@@ -3,11 +3,11 @@
 
 #include "EntityManager.h"
 #include "BaseEntityCollection.h"
-#include "ConfigDB.h"
-#include "Profile.h"
-#include "Terrain.h"
-#include "Game.h"
-#include "MathUtil.h"
+#include "ps/ConfigDB.h"
+#include "ps/Profile.h"
+#include "graphics/Terrain.h"
+#include "ps/Game.h"
+#include "maths/MathUtil.h"
 int SELECTION_CIRCLE_POINTS;
 int SELECTION_BOX_POINTS;
 int SELECTION_SMOOTHNESS_UNIFIED = 9;

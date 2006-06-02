@@ -9,9 +9,9 @@
 #ifndef _SKELETONANIMDEF_H
 #define _SKELETONANIMDEF_H
 
-#include "CStr.h"
-#include "Vector3D.h"
-#include "Quaternion.h"
+#include "ps/CStr.h"
+#include "maths/Vector3D.h"
+#include "maths/Quaternion.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////
 // CBoneState: structure describing state of a bone at some point

@@ -2,7 +2,7 @@
 
 #include "FormationManager.h"
 #include "Entity.h"
-#include "CStr.h"
+#include "ps/CStr.h"
 #include "BaseFormation.h"
 #include "EntityFormation.h"
 

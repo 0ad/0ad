@@ -10,8 +10,8 @@
 #define _RENDERABLEOBJECT_H
 
 
-#include "Bound.h"
-#include "Matrix3D.h"
+#include "maths/Bound.h"
+#include "maths/Matrix3D.h"
 
 
 // dirty flags - used as notification to the renderer that some bit of data

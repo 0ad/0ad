@@ -30,13 +30,13 @@ gee@pyro.nu
 #include "ps/XML/Xeromyces.h"
 #include "ps/Font.h"
 
-#include "Pyrogenesis.h"
-#include "input.h"
+#include "ps/Pyrogenesis.h"
+#include "lib/input.h"
 // TODO Gee: Whatever include CRect/CPos/CSize
-#include "Overlay.h"
+#include "ps/Overlay.h"
 
 #include "scripting/ScriptingHost.h"
-#include "Hotkey.h"
+#include "ps/Hotkey.h"
 #include "ps/Globals.h"
 #include "lib/timer.h"
 

@@ -4,8 +4,8 @@
 
 #include "ScriptingHost.h"
 #include "ScriptGlue.h"
-#include "CConsole.h"
-#include "Profile.h"
+#include "ps/CConsole.h"
+#include "ps/Profile.h"
 #include "ps/CLogger.h"
 
 #include "lib/res/res.h"

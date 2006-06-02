@@ -2,7 +2,7 @@
 
 #include "EntityHandles.h"
 #include "EntityManager.h"
-#include "CStr.h"
+#include "ps/CStr.h"
 
 CHandle::CHandle()
 {

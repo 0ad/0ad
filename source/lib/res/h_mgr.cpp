@@ -22,7 +22,7 @@
 
 #include "precompiled.h"
 
-#include "lib.h"
+#include "lib/lib.h"
 #include "h_mgr.h"
 #include "lib/allocators.h"
 

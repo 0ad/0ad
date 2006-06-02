@@ -2,16 +2,16 @@
 
 #include <map>
 
-#include "ogl.h"
+#include "lib/ogl.h"
 #include "lib/res/graphics/ogl_tex.h"
 
-#include "CLogger.h"
+#include "ps/CLogger.h"
 
 #include "TextureEntry.h"
 #include "TextureManager.h"
 #include "TerrainProperties.h"
 #include "Texture.h"
-#include "Renderer.h"
+#include "renderer/Renderer.h"
 
 #define LOG_CATEGORY "graphics"
 

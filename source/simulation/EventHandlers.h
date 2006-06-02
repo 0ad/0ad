@@ -6,7 +6,7 @@
 #define EVENT_HANDLERS_INCLUDED
 
 #include "scripting/DOMEvent.h"
-#include "Vector3D.h"
+#include "maths/Vector3D.h"
 #include "EntityOrders.h"
 
 class CEventInitialize : public CScriptEvent

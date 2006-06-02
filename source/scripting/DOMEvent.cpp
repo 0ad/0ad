@@ -1,8 +1,8 @@
 #include "precompiled.h"
 #include "DOMEvent.h"
-#include "timer.h"
-#include "Profile.h"
-#include "ScriptObject.h"
+#include "lib/timer.h"
+#include "ps/Profile.h"
+#include "simulation/ScriptObject.h"
 
 IEventTarget::~IEventTarget()
 {

@@ -24,7 +24,7 @@
 #ifndef FILE_H
 #define FILE_H
 
-#include "posix.h"		// struct stat
+#include "lib/posix.h"		// struct stat
 
 extern LibError file_init();
 

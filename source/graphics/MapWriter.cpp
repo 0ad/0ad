@@ -14,9 +14,9 @@
 #include "LightEnv.h"
 #include "TextureManager.h"
 #include "TextureEntry.h"
-#include "VFSUtil.h"
-#include "Loader.h"
-#include "MathUtil.h"
+#include "ps/VFSUtil.h"
+#include "ps/Loader.h"
+#include "maths/MathUtil.h"
 #include "graphics/Camera.h"
 
 #include "ps/XML/XMLWriter.h"

@@ -20,11 +20,11 @@
 
 #include <vector>
 #include <map>
-#include "CStr.h"
-#include "Singleton.h"
-#include "ObjectEntry.h"
+#include "ps/CStr.h"
+#include "ps/Singleton.h"
+#include "graphics/ObjectEntry.h"
 #include "BaseEntity.h"
-#include "Game.h"
+#include "ps/Game.h"
 
 #define g_EntityTemplateCollection CBaseEntityCollection::GetSingleton()
 #define NULL_PLAYER (PS_MAX_PLAYERS+1)

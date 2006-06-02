@@ -9,14 +9,14 @@ gee@pyro.nu
 // ---------------------------------------------------------------------------
 
 #include "precompiled.h"
-#include "nommgr.h"
+#include "lib/nommgr.h"
 
 #include "XercesErrorHandler.h"
 #include <iostream>
 #include <stdlib.h>
 #include <string.h>
-#include "Pyrogenesis.h"
-#include "CLogger.h"
+#include "ps/Pyrogenesis.h"
+#include "ps/CLogger.h"
 
 #define LOG_CATEGORY "xml"
 

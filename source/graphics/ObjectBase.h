@@ -7,7 +7,7 @@ class CSkeletonAnim;
 #include <vector>
 #include <set>
 #include <map>
-#include "CStr.h"
+#include "ps/CStr.h"
 
 class CObjectBase
 {

@@ -28,7 +28,7 @@ extern "C" {
 #endif
 
 #if OS_WIN
-#include "sysdep/win/wgl.h"
+#include "lib/sysdep/win/wgl.h"
 #endif
 
 

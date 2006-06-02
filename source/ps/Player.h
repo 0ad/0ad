@@ -5,7 +5,7 @@
 #include "scripting/SynchedJSObject.h"
 #include "scripting/ScriptableObject.h"
 #include "scripting/ScriptCustomTypes.h" 
-#include "EntityHandles.h"
+#include "simulation/EntityHandles.h"
 
 class CNetMessage;
 

@@ -6,8 +6,8 @@ gee@pyro.nu
 
 #include "precompiled.h"
 #include "GUI.h"
-#include "Parser.h"
-#include "i18n.h"
+#include "ps/Parser.h"
+#include "ps/i18n.h"
 
 extern int g_yres;
 

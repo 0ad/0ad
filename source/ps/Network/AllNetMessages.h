@@ -2,7 +2,7 @@
 #define _AllNetMessages_H
 
 #include "lib/types.h"
-#include "CStr.h"
+#include "ps/CStr.h"
 #include "scripting/JSSerialization.h"
 
 enum ENetMessageType

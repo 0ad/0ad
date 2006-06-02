@@ -2,13 +2,13 @@
 
 #include "BaseEntity.h"
 #include "BaseEntityCollection.h"
-#include "ObjectManager.h"
-#include "CStr.h"
-#include "Player.h"
+#include "graphics/ObjectManager.h"
+#include "ps/CStr.h"
+#include "ps/Player.h"
 
 #include "ps/XML/Xeromyces.h"
 
-#include "CLogger.h"
+#include "ps/CLogger.h"
 #define LOG_CATEGORY "entity"
 
 STL_HASH_SET<CStr, CStr_hash_compare> CBaseEntity::scriptsLoaded;

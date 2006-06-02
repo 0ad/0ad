@@ -1,13 +1,13 @@
 #include "precompiled.h"
 
 #include "JSInterface_Camera.h"
-#include "scripting/JSInterface_Vector3D.h"
-#include "Camera.h"
-#include "Vector3D.h"
-#include "Matrix3D.h"
-#include "MathUtil.h"
-#include "Terrain.h"
-#include "Game.h"
+#include "maths/scripting/JSInterface_Vector3D.h"
+#include "graphics/Camera.h"
+#include "maths/Vector3D.h"
+#include "maths/Matrix3D.h"
+#include "maths/MathUtil.h"
+#include "graphics/Terrain.h"
+#include "ps/Game.h"
 #include "graphics/GameView.h"
 
 

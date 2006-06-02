@@ -16,8 +16,8 @@
 #include <map>
 
 #include "lib/res/graphics/unifont.h"
-#include "ogl.h"
-#include "lib.h"
+#include "lib/ogl.h"
+#include "lib/lib.h"
 #include "CStr.h"
 
 #include "lib/input.h"

@@ -23,7 +23,7 @@
 #define _XercesVFS_H
 
 // Temporarily undefine new, because the Xerces headers don't like it
-#include "nommgr.h"
+#include "lib/nommgr.h"
 
 // temporarily go down to W3 because Xerces (in addition to all its other
 // failings) isn't W4-clean.
@@ -53,13 +53,13 @@
 #pragma warning(pop)	// back to W4
 #endif
 
-#include "mmgr.h"		// restore malloc/new macros
+#include "lib/mmgr.h"		// restore malloc/new macros
 
-#include "lib.h"
+#include "lib/lib.h"
 #include "lib/res/handle.h"
 #include "lib/res/file/file.h"
 #include "XercesErrorHandler.h"
-#include "CStr.h"
+#include "ps/CStr.h"
 
 XERCES_CPP_NAMESPACE_USE
 

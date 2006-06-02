@@ -22,7 +22,7 @@
 
 #include "precompiled.h"
 
-#include "lib.h"
+#include "lib/lib.h"
 #include "lib/timer.h"
 #include "file_internal.h"
 

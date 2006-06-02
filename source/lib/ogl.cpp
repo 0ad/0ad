@@ -30,7 +30,7 @@
 #include "lib.h"
 #include "sdl.h"
 #include "ogl.h"
-#include "sysdep/gfx.h"
+#include "lib/sysdep/gfx.h"
 #include "debug.h"
 #include "lib/res/h_mgr.h"
 #include "lib/res/graphics/tex.h"

@@ -14,7 +14,7 @@
 #include <vector>
 #include "Singleton.h"
 #include "scripting/ScriptableObject.h"
-#include "timer.h"
+#include "lib/timer.h"
 
 
 #define PROFILE_AMORTIZE

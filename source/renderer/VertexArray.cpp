@@ -1,8 +1,8 @@
 #include "precompiled.h"
 
-#include "ogl.h"
-#include "Vector3D.h"
-#include "Vector4D.h"
+#include "lib/ogl.h"
+#include "maths/Vector3D.h"
+#include "maths/Vector4D.h"
 #include "graphics/Color.h"
 #include "renderer/VertexArray.h"
 #include "renderer/VertexBuffer.h"

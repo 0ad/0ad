@@ -9,8 +9,8 @@
 #include <deque>
 #include <numeric>
 
-#include "lib.h"	// error codes
-#include "timer.h"
+#include "lib/lib.h"	// error codes
+#include "lib/timer.h"
 #include "CStr.h"
 #include "Loader.h"
 
