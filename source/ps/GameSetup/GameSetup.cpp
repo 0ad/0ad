@@ -973,7 +973,8 @@ void Init(int argc, char* argv[], uint flags)
 	if(!g_Quickstart)
 	{
 		WriteSystemInfo();
-		vfs_display(); // disabled to decrease startup time
+		// note: no longer vfs_display here. it's dog-slow due to unbuffered
+		// file output and very rarely needed.
 	}
 	else
 	{
