@@ -7,43 +7,44 @@
 #include "precompiled.h"
 
 #include "ScriptGlue.h"
-#include "ps/CLogger.h"
-#include "ps/CConsole.h"
-#include "ps/CStr.h"
-#include "simulation/EntityHandles.h"
-#include "simulation/Entity.h"
-#include "simulation/EntityManager.h"
+#include "JSConversions.h"
+#include "GameEvents.h"
 
-#include "simulation/BaseEntityCollection.h"
-#include "simulation/EntityFormation.h"
-#include "simulation/Scheduler.h"
-#include "lib/timer.h"
+#include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
 #include "graphics/MapWriter.h"
-#include "GameEvents.h"
-#include "ps/Interact.h"
-#include "renderer/Renderer.h"
-#include "ps/Game.h"
-#include "simulation/LOSManager.h"
-#include "ps/Network/Server.h"
-#include "ps/Network/Client.h"
-#include "gui/CGUI.h"
-#include "ps/i18n.h"
-#include "simulation/scripting/JSInterface_Entity.h"
-#include "ps/scripting/JSCollection.h"
-#include "simulation/scripting/JSInterface_BaseEntity.h"
-#include "maths/scripting/JSInterface_Vector3D.h"
-#include "ps/scripting/JSInterface_Selection.h"
 #include "graphics/scripting/JSInterface_Camera.h"
-#include "ps/scripting/JSInterface_Console.h"
-#include "ps/scripting/JSInterface_VFS.h"
-#include "simulation/Simulation.h"
-#include "graphics/GameView.h"
 #include "graphics/scripting/JSInterface_LightEnv.h"
-#include "scripting/JSConversions.h"
-#include "renderer/WaterManager.h"
+#include "gui/CGUI.h"
+#include "lib/timer.h"
+#include "maths/scripting/JSInterface_Vector3D.h"
+#include "ps/CConsole.h"
+#include "ps/CLogger.h"
+#include "ps/CStr.h"
+#include "ps/Game.h"
+#include "ps/GameSetup/GameSetup.h"
+#include "ps/Interact.h"
+#include "ps/Network/Client.h"
+#include "ps/Network/Server.h"
+#include "ps/i18n.h"
+#include "ps/scripting/JSCollection.h"
+#include "ps/scripting/JSInterface_Console.h"
+#include "ps/scripting/JSInterface_Selection.h"
+#include "ps/scripting/JSInterface_VFS.h"
+#include "renderer/Renderer.h"
 #include "renderer/SkyManager.h"
+#include "renderer/WaterManager.h"
+#include "simulation/BaseEntityCollection.h"
+#include "simulation/Entity.h"
+#include "simulation/EntityFormation.h"
+#include "simulation/EntityHandles.h"
+#include "simulation/EntityManager.h"
 #include "simulation/FormationManager.h"
+#include "simulation/LOSManager.h"
+#include "simulation/Scheduler.h"
+#include "simulation/Simulation.h"
+#include "simulation/scripting/JSInterface_BaseEntity.h"
+#include "simulation/scripting/JSInterface_Entity.h"
 
 #ifndef NO_GUI
 # include "gui/scripting/JSInterface_IGUIObject.h"
@@ -684,16 +685,16 @@ JSBool crash(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rva
 // returns: true [bool]
 // notes:
 // - writes an indication of how long this took to the console.
-JSBool forceGC( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
+JSBool forceGC(JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval)
 {
 	REQUIRE_NO_PARAMS(forceGC);
 
 	double time = get_time();
-	JS_GC( cx );
+	JS_GC(cx);
 	time = get_time() - time;
-	g_Console->InsertMessage( L"Garbage collection completed in: %f", time );
+	g_Console->InsertMessage(L"Garbage collection completed in: %f", time);
 	*rval = JSVAL_TRUE;
-	return( JS_TRUE );
+	return JS_TRUE ;
 }
 
 
@@ -707,12 +708,30 @@ JSBool forceGC( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, js
 // returns: global object
 // notes:
 // - Useful for accessing an object from another scope.
-JSBool getGUIGlobal( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
+JSBool getGUIGlobal(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
 	REQUIRE_NO_PARAMS(getGUIGlobal);
 
-	*rval = OBJECT_TO_JSVAL( g_GUI.GetScriptObject() );
-	return( JS_TRUE );
+	*rval = OBJECT_TO_JSVAL(g_GUI.GetScriptObject());
+	return JS_TRUE;
+}
+
+// Resets the entire GUI state and reloads the XML files.
+// params:
+// returns:
+JSBool resetGUI(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rval))
+{
+	REQUIRE_NO_PARAMS(resetGUI);
+
+	// Slightly unpleasant code, because CGUI is a Singleton but we don't really
+	// want it to be
+	g_GUI.Destroy();
+	delete &g_GUI;
+	new CGUI;
+	GUI_Init();
+	g_GUI.SendEventToAll("load");
+
+	return JS_TRUE;
 }
 
 
@@ -1155,6 +1174,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 #ifndef NO_GUI
 	JS_FUNC(getGUIObjectByName, JSI_IGUIObject::getByName, 1)	// external
 	JS_FUNC(getGUIGlobal, getGUIGlobal, 0)
+	JS_FUNC(resetGUI, resetGUI, 0)
 #endif
 
 	// Events
