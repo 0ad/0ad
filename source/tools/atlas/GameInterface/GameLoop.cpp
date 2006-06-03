@@ -27,6 +27,7 @@ using namespace AtlasMessage;
 namespace AtlasMessage
 {
 	extern void AtlasRenderSelection();
+	extern void RegisterHandlers();
 }
 
 void AtlasRender()
@@ -85,6 +86,9 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 	// Pass our message handler to Atlas
 	Atlas_SetMessagePasser(&msgPasser);
 
+	// Register all the handlers for message which might be passed back
+	RegisterHandlers();
+
 	// Create a new thread, and launch the Atlas window inside that thread
 	pthread_t gameThread;
 	pthread_create(&gameThread, NULL, LaunchWindow, NULL);
@@ -131,20 +135,6 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 				recent_activity = true;
 
 				std::string name (msg->GetName());
-
-				if (name == "CommandString")
-				{
-					// Allow some laziness: For commands that don't need any data other
-					// than their name, we just use CommandString (and then need to
-					// construct a reference to the appropriate handler for the
-					// given string)
-					name += "_";
-					name += *static_cast<mCommandString*>(msg)->name;
-					// use 'static_cast' when casting messages, to make it clear
-					// that something slightly dangerous is happening - we have
-					// to just assume that GetName is correct, since we can't use
-					// proper RTTI.
-				}
 
 				msgHandlers::const_iterator it = GetMsgHandlers().find(name);
 				if (it != GetMsgHandlers().end())

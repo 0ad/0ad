@@ -18,8 +18,10 @@
 namespace AtlasMessage {
 
 
-MESSAGEHANDLER_STR(init)
+MESSAGEHANDLER(Init)
 {
+	UNUSED2(msg);
+
 	oglInit();
 
 	g_Quickstart = true;
@@ -34,8 +36,10 @@ MESSAGEHANDLER_STR(init)
 }
 
 
-MESSAGEHANDLER_STR(shutdown)
+MESSAGEHANDLER(Shutdown)
 {
+	UNUSED2(msg);
+	
 	// Empty the CommandProc, to get rid of its references to entities before
 	// we kill the EntityManager
 	GetCommandProc().Destroy();
@@ -53,15 +57,9 @@ QUERYHANDLER(Exit)
 }
 
 
-MESSAGEHANDLER_STR(render_enable)
+MESSAGEHANDLER(RenderEnable)
 {
-	g_GameLoop->rendering = true;
-}
-
-
-MESSAGEHANDLER_STR(render_disable)
-{
-	g_GameLoop->rendering = false;
+	g_GameLoop->rendering = msg->enabled;
 }
 
 //////////////////////////////////////////////////////////////////////////

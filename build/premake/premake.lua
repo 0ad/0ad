@@ -23,14 +23,14 @@ end
 -- They must each contain an "include" [on Windows: also "lib"] subdirectory.
 --
 -- When adding new ones, make sure to also add them in the main_exe link step
--- (it'd be nice to automate this, but lib names and debug suffixes differ wildly).   
+-- (it'd be nice to automate this, but lib names and debug suffixes differ wildly).
 libraries_dir = "../../../libraries/"
 source_root = "../../../source/" -- default for most projects - overridden by local in others
 
 -- Rationale: packages should not have any additional include paths except for
 -- those required by external libraries. Instead, we should always write the
 -- full relative path, e.g. #include "maths/Vector3d.h". This avoids confusion
--- ("which file is meant?") and avoids enormous include path lists. 
+-- ("which file is meant?") and avoids enormous include path lists.
 
 -- packages: engine static libs, main exe, atlas, atlas frontends
 -- the engine libs are necessary because they are referenced by the separate
@@ -119,18 +119,20 @@ function package_add_contents(source_root, rel_source_dirs, rel_include_dirs, ex
 			table.insert(package.files, source_root .. v)
 		end
 	end
-	
-	package.includepaths = {
-		-- Put the project-specific PCH directory at the start of the
-		-- include path, so '#include "precompiled.h"' will look in
-		-- there first
-		source_root .. "pch/" .. package.name,
-		-- TODO: don't do this for the independent Atlas packages...
-		
-		-- next is source root dir, for absolute (nonrelative) includes
-		-- (e.g. "lib/precompiled.h")
-		source_root 
-	}
+
+	package.includepaths = {}
+
+	-- Put the project-specific PCH directory at the start of the
+	-- include path, so '#include "precompiled.h"' will look in
+	-- there first
+	if not extra_params["no_default_pch"] then
+		table.insert(package.includepaths, source_root .. "pch/" .. package.name)
+	end
+
+	-- next is source root dir, for absolute (nonrelative) includes
+	-- (e.g. "lib/precompiled.h")
+	table.insert(package.includepaths, source_root)
+
 	for i,v in rel_include_dirs do
 		table.insert(package.includepaths, source_root .. v)
 	end
@@ -157,7 +159,7 @@ function setup_static_lib_package (package_name, rel_source_dirs, extern_libs, e
 	create_package_with_cflags(package_name, "lib")
 
 	package_add_contents(source_root, rel_source_dirs, {}, extern_libs, extra_params)
-	
+
 	if OS == "windows" then
 		-- Precompiled Headers
 		-- rationale: we need one PCH per static lib, since one global header would
@@ -171,7 +173,7 @@ function setup_static_lib_package (package_name, rel_source_dirs, extern_libs, e
 		-- * Visual Assist manages to use the project include path and can
 		--   correctly open these files from the IDE.
 		-- * precompiled.cpp (needed to "Create" the PCH) also goes in
-		--   the abovementioned dir.		 
+		--   the abovementioned dir.
 		pch_dir = source_root.."pch/"..package_name.."/"
 		package.pchheader = "precompiled.h"
 		package.pchsource = "precompiled.cpp"
@@ -296,7 +298,13 @@ end
 function setup_main_exe ()
 
 	create_package_with_cflags("pyrogenesis", "winexe")
+
 	table.insert(package.files, "../../../source/main.cpp")
+
+	-- For VS2005, tell the linker to use the libraries' .obj files instead of
+	-- the .lib, to allow incremental linking.
+	-- (Reduces re-link time from ~20 seconds to ~2 secs)
+	table.insert(package.buildflags, "use-library-dep-inputs")
 
 	package.links = {
 		"engine",
@@ -412,8 +420,12 @@ end
 
 function setuppackage_atlas(package_name, target_type, rel_source_dirs, rel_include_dirs, extern_libs, flags)
 
-	local source_root = "../../../source/tools/atlas/" .. package_name
+	local source_root = "../../../source/tools/atlas/" .. package_name .. "/"
 	create_package_with_cflags(package_name, target_type)
+
+	-- Don't add the default 'sourceroot/pch/projectname' for finding PCH files
+	flags["no_default_pch"] = 1
+
 	package_add_contents(source_root, rel_source_dirs, rel_include_dirs, extern_libs, flags)
 
 	-- Platform Specifics
@@ -481,77 +493,67 @@ end
 ---------------- Atlas packages ----------------
 
 function setuppackages_atlas()
-	setuppackage_atlas("AtlasObject", "lib", {
-		-- src
+	setuppackage_atlas("AtlasObject", "lib",
+	{	-- src
 		""
-	},{
-		-- include
-	},{
-		-- extern_libs
+	},{	-- include
+	},{	-- extern_libs
 		"xerces"
-	},{
-		-- flags
+	},{	-- flags
 	})
 
-	setuppackage_atlas("AtlasUI", "dll", {
-		-- src
-		"/ActorEditor",
-		"/ArchiveViewer",
-		"/ColourTester",
-		"/CustomControls/Buttons",
-		"/CustomControls/DraggableListCtrl",
-		"/CustomControls/EditableListCtrl",
-		"/CustomControls/FileHistory",
-		"/CustomControls/HighResTimer",
-		"/CustomControls/SnapSplitterWindow",
-		"/CustomControls/VirtualDirTreeCtrl",
-		"/CustomControls/Windows",
-		"/FileConverter",
-		"/General",
-		"/Misc",
-		"/ScenarioEditor",
-		"/ScenarioEditor/Sections/Common",
-		"/ScenarioEditor/Sections/Map",
-		"/ScenarioEditor/Sections/Object",
-		"/ScenarioEditor/Sections/Terrain",
-		"/ScenarioEditor/Tools",
-		"/ScenarioEditor/Tools/Common"
-	},{
-		-- include
-		"/..",
-		"",
-		"/CustomControls"
-	},{
-		-- extern_libs
+	setuppackage_atlas("AtlasUI", "dll",
+	{	-- src
+		"ActorEditor",
+		"ArchiveViewer",
+		"ColourTester",
+		"CustomControls/Buttons",
+		"CustomControls/DraggableListCtrl",
+		"CustomControls/EditableListCtrl",
+		"CustomControls/FileHistory",
+		"CustomControls/HighResTimer",
+		"CustomControls/SnapSplitterWindow",
+		"CustomControls/VirtualDirTreeCtrl",
+		"CustomControls/Windows",
+		"FileConverter",
+		"General",
+		"Misc",
+		"ScenarioEditor",
+		"ScenarioEditor/Sections/Common",
+		"ScenarioEditor/Sections/Environment",
+		"ScenarioEditor/Sections/Map",
+		"ScenarioEditor/Sections/Object",
+		"ScenarioEditor/Sections/Terrain",
+		"ScenarioEditor/Tools",
+		"ScenarioEditor/Tools/Common"
+	},{	-- include
+		"..",
+		"CustomControls"
+	},{	-- extern_libs
 		"boost",
 		"devil",
 		"xerces"
-	},{
-		-- flags		
+	},{	-- flags
 		pch = 1,
 		wx = 1,
 		depends = { "AtlasObject", "DatafileIO" },
-		extrasource = { "/Misc/atlas.rc" }
+		extrasource = { "Misc/atlas.rc" }
 	})
 
-	setuppackage_atlas("DatafileIO", "lib", {
-		-- src
+	setuppackage_atlas("DatafileIO", "lib",
+	{	-- src
 		"",
-		"/BAR",
-		"/DDT",
-		"/SCN",
-		"/Stream",
-		"/XMB"
-	},{
-		-- include
-		""
-	},{
-		-- extern_libs
+		"BAR",
+		"DDT",
+		"SCN",
+		"Stream",
+		"XMB"
+	},{	-- include
+	},{	-- extern_libs
 		"devil",
 		"xerces",
 		"zlib"
-	},{
-		-- flags
+	},{	-- flags
 		pch = 1,
 	})
 

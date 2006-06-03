@@ -1,10 +1,12 @@
 function sourcesfromdirs(root, dirs)
 	local res = {}
 	for i,v in dirs do
+		local prefix
+		if v == "" then prefix = root..v else prefix = root..v.."/" end
 		local files = matchfiles(
-			root..v.."/*.cpp",
-			root..v.."/*.h",
-			root..v.."/*.asm")
+			prefix.."*.cpp",
+			prefix.."*.h",
+			prefix.."*.asm")
 		listconcat(res, files)
 	end
 	return res

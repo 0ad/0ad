@@ -51,9 +51,9 @@ struct DataCommand : public Command // so commands can optionally override (De|C
 {
 	void Destruct() {};
 	void Construct() {};
-	// MergeWithSelf should be overridden by commands, and implemented
+	// MergeIntoPrevious should be overridden by commands, and implemented
 	// to update 'prev' to include the effects of 'this'
-	void MergeWithSelf(void*) { debug_warn("MergeWithSelf unimplemented in some command"); }
+	void MergeIntoPrevious(void*) { debug_warn("MergeIntoPrevious unimplemented in some command"); }
 };
 
 #define BEGIN_COMMAND(t) \
@@ -64,16 +64,12 @@ struct DataCommand : public Command // so commands can optionally override (De|C
 		c##t(d##t* data) : msg(data) { Construct(); } \
 		~c##t() { Destruct(); AtlasMessage::ShareableDelete(msg); /* msg was allocated by mDoCommand() */ } \
 		static Command* Create(const void* data) { return new c##t ((d##t*)data); } \
-		virtual void Merge(Command* prev) { MergeWithSelf((c##t*)prev); } \
+		virtual void Merge(Command* prev) { MergeIntoPrevious((c##t*)prev); } \
 		virtual const char* GetType() const { return #t; }
 
 #define END_COMMAND(t) \
 	}; \
-	namespace register_command_##t { \
-		struct init { init() { \
-			bool notAlreadyRegisted = GetCmdHandlers().insert(std::pair<std::string, cmdHandler>("c"#t, &c##t ::Create)).second; \
-			debug_assert(notAlreadyRegisted); \
-		} } init; \
-	};
-
+	cmdHandler c##t##__create() { \
+		return &c##t ::Create; \
+	}
 }

@@ -1,15 +1,20 @@
 #ifndef MESSAGES_H__
 #define MESSAGES_H__
 
+#ifndef MESSAGES_SKIP_SETUP
 #include "MessagesSetup.h"
+#endif
 
 // TODO: organisation, documentation, etc
 
 //////////////////////////////////////////////////////////////////////////
 
-MESSAGE(CommandString,
-		((std::string, name))
-		);
+MESSAGE(Init, );
+
+MESSAGE(Shutdown, );
+
+MESSAGE(RenderEnable,
+		((bool, enabled)));
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -164,6 +169,30 @@ MESSAGE(RotateAround,
 		);
 
 //////////////////////////////////////////////////////////////////////////
+
+struct sEnvironmentSettings
+{
+	float waterheight; // range 0..1 corresponds to min..max terrain height; out-of-bounds values allowed
+	float watershininess;
+	float waterwaviness;
+	
+	float sunrotation; // range 0..2pi
+	float sunelevation; // range -pi/2 .. +pi/2
+
+};
+SHAREABLE_STRUCT(sEnvironmentSettings);
+
+QUERY(GetEnvironmentSettings,
+	  // no inputs
+	  ,
+	  ((sEnvironmentSettings, settings))
+	  );
+
+COMMAND(SetEnvironmentSettings, MERGE,
+		((sEnvironmentSettings, settings))
+		);
+
+//////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
 COMMAND(AlterElevation, MERGE,
@@ -186,7 +215,9 @@ COMMAND(PaintTerrain, MERGE,
 //////////////////////////////////////////////////////////////////////////
 
 typedef int ObjectID;
+FUNCTION(
 inline bool ObjectIDIsValid(ObjectID id) { return (id >= 0); }
+);
 
 QUERY(PickObject,
 	  ((Position, pos))
@@ -230,6 +261,8 @@ COMMAND(SetObjectSettings, NOMERGE,
 
 //////////////////////////////////////////////////////////////////////////
 
+#ifndef MESSAGES_SKIP_SETUP
 #include "MessagesSetup.h"
+#endif
 
 #endif // MESSAGES_H__

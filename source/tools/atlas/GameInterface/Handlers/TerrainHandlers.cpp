@@ -200,7 +200,7 @@ BEGIN_COMMAND(PaintTerrain)
 		g_Game->GetWorld()->GetTerrain()->MakeDirty(RENDERDATA_UPDATE_INDICES);
 	}
 
-	void MergeWithSelf(cPaintTerrain* prev)
+	void MergeIntoPrevious(cPaintTerrain* prev)
 	{
 		prev->m_TerrainDelta.OverlayWith(m_TerrainDelta);
 	}

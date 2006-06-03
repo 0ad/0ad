@@ -436,7 +436,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 #ifndef UI_ONLY
 	POST_MESSAGE(SetContext, (canvas->GetContext()));
 
-	POST_MESSAGE(CommandString, ("init"));
+	POST_MESSAGE(Init, ());
 
 	canvas->InitSize();
 
@@ -444,7 +444,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	// a valid map loaded)
 	POST_MESSAGE(GenerateMap, (9));
 
-	POST_MESSAGE(CommandString, ("render_enable"));
+	POST_MESSAGE(RenderEnable, (true));
 #endif
 
 	// Set up a timer to make sure tool-updates happen frequently (in addition
@@ -460,7 +460,7 @@ void ScenarioEditor::OnClose(wxCloseEvent&)
 	SetCurrentTool(_T(""));
 
 #ifndef UI_ONLY
-	POST_MESSAGE(CommandString, ("shutdown"));
+	POST_MESSAGE(Shutdown, ());
 #endif
 
 	AtlasMessage::qExit().Post();

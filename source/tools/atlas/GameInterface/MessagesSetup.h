@@ -112,12 +112,26 @@ const bool NOMERGE = false;
 	}
 */
 
-#define MESSAGE(name, vals) \
+#define MESSAGE_WITH_INPUTS(name, vals) \
 	MESSAGESTRUCT(name) \
 		m##name( BOOST_PP_SEQ_FOR_EACH_I(B_CONSTRUCTORARGS, ~, vals) ) \
 			: BOOST_PP_SEQ_FOR_EACH_I(B_CONSTRUCTORINIT, ~, vals) {} \
 		BOOST_PP_SEQ_FOR_EACH_I(B_CONSTMEMBERS, ~, vals) \
 	};
+
+#define MESSAGE_WITHOUT_INPUTS(name, vals) \
+	MESSAGESTRUCT(name) \
+		m##name() {} \
+	};
+
+#define MESSAGE(name, vals) \
+	BOOST_PP_IIF( \
+		BOOST_PP_EQUAL(BOOST_PP_SEQ_SIZE((~)vals), 1), \
+		MESSAGE_WITHOUT_INPUTS, \
+		MESSAGE_WITH_INPUTS) \
+	(name, vals)
+
+
 
 #define COMMAND(name, merge, vals) \
 	COMMANDDATASTRUCT(name) \
@@ -151,6 +165,7 @@ const bool NOMERGE = false;
 		QUERY_WITH_INPUTS) \
 	(name, in_vals, out_vals)
 
+#define FUNCTION(def) def
 
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
@@ -172,6 +187,7 @@ const bool NOMERGE = false;
 #undef QUERY_WITHOUT_INPUTS
 #undef QUERY_WITH_INPUTS
 #undef QUERY
+#undef FUNCTION
 
 }
 

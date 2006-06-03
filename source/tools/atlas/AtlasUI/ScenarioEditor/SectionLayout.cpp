@@ -7,6 +7,7 @@
 #include "Sections/Map/Map.h"
 #include "Sections/Terrain/Terrain.h"
 #include "Sections/Object/Object.h"
+#include "Sections/Environment/Environment.h"
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -119,6 +120,7 @@ void SectionLayout::Build()
 	ADD_SIDEBAR(MapSidebar, "Map");
 	ADD_SIDEBAR(TerrainSidebar, "Terrain");
 	ADD_SIDEBAR(ObjectSidebar, "Object");
+	ADD_SIDEBAR(EnvironmentSidebar, "Env.");
 	
 	#undef ADD_SIDEBAR
 

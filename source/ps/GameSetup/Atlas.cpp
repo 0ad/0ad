@@ -36,7 +36,7 @@ static bool ATLAS_IsAvailable()
 		// we need to go with the debug version in debug builds.
 		// note: on Windows, the extension is replaced with .dll by dlopen.
 #ifndef NDEBUG
-		const char* so_name = "AtlasUI_d.so";
+		const char* so_name = "AtlasUI_dbg.so";
 #else
 		const char* so_name = "AtlasUI.so";
 #endif

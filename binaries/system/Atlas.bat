@@ -1,1 +1,1 @@
-ps -editor
+pyrogenesis.exe -editor

@@ -137,7 +137,7 @@ BEGIN_COMMAND(AlterElevation)
 		g_EntityManager.invalidateAll();
 	}
 
-	void MergeWithSelf(cAlterElevation* prev)
+	void MergeIntoPrevious(cAlterElevation* prev)
 	{
 		prev->m_TerrainDelta.OverlayWith(m_TerrainDelta);
 	}
@@ -199,7 +199,7 @@ BEGIN_COMMAND(FlattenElevation)
 		g_EntityManager.invalidateAll();
 	}
 
-	void MergeWithSelf(cFlattenElevation* prev)
+	void MergeIntoPrevious(cFlattenElevation* prev)
 	{
 		prev->m_TerrainDelta.OverlayWith(m_TerrainDelta);
 	}

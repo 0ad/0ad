@@ -525,6 +525,9 @@ int vs_write_cpp()
 					if (prj_has_flag("no-import-lib"))
 						tag_attr("IgnoreImportLibrary=\"%s\"", S_TRUE);
 
+					if (prj_has_flag("use-library-dep-inputs") && version >= VS2005)
+						tag_attr("UseLibraryDependencyInputs=\"%s\"", S_TRUE);
+
 					if (prj_get_numlinkoptions() > 0)
 					{
 						tag_attr_open("AdditionalOptions");

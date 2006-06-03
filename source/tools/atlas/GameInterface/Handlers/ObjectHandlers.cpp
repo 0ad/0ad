@@ -519,7 +519,7 @@ BEGIN_COMMAND(MoveObject)
 		SetPos(m_PosOld);
 	}
 
-	void MergeWithSelf(cMoveObject* prev)
+	void MergeIntoPrevious(cMoveObject* prev)
 	{
 		// TODO: do something valid if prev unit != this unit
 		debug_assert(prev->msg->id == msg->id);
@@ -611,7 +611,7 @@ BEGIN_COMMAND(RotateObject)
 		SetAngle(m_AngleOld, m_TransformOld);
 	}
 
-	void MergeWithSelf(cRotateObject* prev)
+	void MergeIntoPrevious(cRotateObject* prev)
 	{
 		// TODO: do something valid if prev unit != this unit
 		debug_assert(prev->msg->id == msg->id);
