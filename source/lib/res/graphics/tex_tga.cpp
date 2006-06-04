@@ -138,7 +138,7 @@ static LibError tga_decode(DynArray* restrict da, Tex* restrict t)
 	t->h     = h;
 	t->bpp   = bpp;
 	t->flags = flags;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 

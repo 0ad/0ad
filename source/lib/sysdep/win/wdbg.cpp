@@ -264,7 +264,7 @@ static const uint MAX_BREAKPOINTS = 4;
 static LibError brk_disable_all_in_ctx(BreakInfo* UNUSED(bi), CONTEXT* context)
 {
 	context->Dr7 &= ~brk_all_local_enables;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -340,7 +340,7 @@ have_reg:
 	context->Dr7 |= LE;
 
 	brk_all_local_enables |= LE;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -369,7 +369,7 @@ static LibError brk_do_request(HANDLE hThread, void* arg)
 		WARN_RETURN(ERR_FAIL);
 
 	RETURN_ERR(ret);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -752,7 +752,7 @@ static LibError wdbg_init(void)
 		pAddVectoredExceptionHandler(TRUE, vectored_exception_handler);
 #endif
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 

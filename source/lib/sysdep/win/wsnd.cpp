@@ -86,19 +86,19 @@ static LibError add_if_oal_dll(const DirEnt* ent, PathPackage* pp, StringSet* dl
 
 	// skip non-files.
 	if(!DIRENT_IS_DIR(ent))
-		return ERR_OK;
+		return INFO_OK;
 
 	// skip if not an OpenAL DLL.
 	const size_t len = strlen(fn);
 	const bool oal = len >= 7 && !stricmp(fn+len-7, "oal.dll");
 	const bool openal = strstr(fn, "OpenAL") != 0;
 	if(!oal && !openal)
-		return ERR_OK;
+		return INFO_OK;
 
 	// skip if already in StringSet (i.e. has already been dll_list_add-ed)
 	std::pair<StringSet::iterator, bool> ret = dlls->insert(fn);
 	if(!ret.second)	// insert failed - element already there
-		return ERR_OK;
+		return INFO_OK;
 
 	RETURN_ERR(path_package_append_file(pp, fn));
 	return dll_list_add(pp->path);
@@ -123,13 +123,13 @@ static LibError add_oal_dlls_in_dir(const char* dir, StringSet* dlls)
 	for(;;)	// instead of while to avoid warning
 	{
 		LibError err = dir_next_ent(&d, &ent);
-		if(err != ERR_OK)
+		if(err != INFO_OK)
 			break;
 		(void)add_if_oal_dll(&ent, &pp, dlls);
 	}
 
 	(void)dir_close(&d);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -169,7 +169,7 @@ LibError win_get_snd_info()
 	{
 		strcpy_s(snd_card, SND_CARD_LEN, "(none)");
 		strcpy_s(snd_drv_ver, SND_DRV_VER_LEN, "(none)");
-		return ERR_OK;
+		return INFO_OK;
 	}
 
 	// find all DLLs related to OpenAL, retrieve their versions,
@@ -179,5 +179,5 @@ LibError win_get_snd_info()
 	StringSet dlls;	// ensures uniqueness
 	(void)add_oal_dlls_in_dir(win_exe_dir, &dlls);
 	(void)add_oal_dlls_in_dir(win_sys_dir, &dlls);
-	return ERR_OK;
+	return INFO_OK;
 }

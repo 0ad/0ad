@@ -409,7 +409,7 @@ static LibError OglTex_reload(OglTex* ot, const char* fn, Handle h)
 {
 	// we're reusing a freed but still in-memory OglTex object
 	if(ot->flags & OT_IS_UPLOADED)
-		return ERR_OK;
+		return INFO_OK;
 
 	// if we don't already have the texture in memory (*), load from file.
 	// * this happens if the texture is "wrapped".
@@ -424,7 +424,7 @@ static LibError OglTex_reload(OglTex* ot, const char* fn, Handle h)
 	if(ot->flags & OT_NEED_AUTO_UPLOAD)
 		(void)ogl_tex_upload(h);
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 static LibError OglTex_validate(const OglTex* ot)
@@ -466,13 +466,13 @@ static LibError OglTex_validate(const OglTex* ot)
 	// .. note: don't check ot->fmt and ot->int_fmt - they aren't set
 	//    until during ogl_tex_upload.
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 static LibError OglTex_to_string(const OglTex* ot, char* buf)
 {
 	snprintf(buf, H_STRING_LEN, "id=%d", ot->id);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -585,7 +585,7 @@ LibError ogl_tex_set_filter(Handle ht, GLint filter)
 		warn_if_uploaded(ht, ot);
 		ot->state.filter = filter;
 	}
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -605,7 +605,7 @@ LibError ogl_tex_set_wrap(Handle ht, GLint wrap)
 		warn_if_uploaded(ht, ot);
 		ot->state.wrap = wrap;
 	}
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -690,7 +690,7 @@ static LibError get_mipmaps(Tex* t, GLint filter, uint q_flags, int* plevels_to_
 
 	*plevels_to_skip = TEX_BASE_LEVEL_ONLY;
 	if(!need_mipmaps)
-		return ERR_OK;
+		return INFO_OK;
 
 	// image already contains pregenerated mipmaps; we need do nothing.
 	// this is the nicest case, because they are fastest to load
@@ -735,7 +735,7 @@ static LibError get_mipmaps(Tex* t, GLint filter, uint q_flags, int* plevels_to_
 		*plevels_to_skip = log2(reduce);
 	}
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -806,7 +806,7 @@ LibError ogl_tex_upload(const Handle ht, GLenum fmt_ovr, uint q_flags_ovr, GLint
 	// upload already happened; no work to do.
 	// (this also happens if a cached texture is "loaded")
 	if(ot->flags & OT_IS_UPLOADED)
-		return ERR_OK;
+		return INFO_OK;
 
 	debug_assert(ot->flags & OT_TEX_VALID);
 
@@ -851,7 +851,7 @@ LibError ogl_tex_upload(const Handle ht, GLenum fmt_ovr, uint q_flags_ovr, GLint
 		ot->flags &= ~OT_TEX_VALID;
 	}
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -871,7 +871,7 @@ LibError ogl_tex_get_size(Handle ht, uint* w, uint* h, uint* bpp)
 		*h = ot->t.h;
 	if(bpp)
 		*bpp = ot->t.bpp;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -890,7 +890,7 @@ LibError ogl_tex_get_format(Handle ht, uint* flags, GLenum* fmt)
 			debug_warn("hasn't been defined yet!");
 		*fmt = ot->fmt;
 	}
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -906,7 +906,7 @@ LibError ogl_tex_get_data(Handle ht, void** p)
 	H_DEREF(ht, OglTex, ot);
 
 	*p = tex_get_data(&ot->t);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -935,7 +935,7 @@ LibError ogl_tex_bind(Handle ht, uint unit)
 	if(ht == 0)
 	{
 		glDisable(GL_TEXTURE_2D);
-		return ERR_OK;
+		return INFO_OK;
 	}
 
 	// if this fails, the texture unit's state remains unchanged.
@@ -951,7 +951,7 @@ LibError ogl_tex_bind(Handle ht, uint unit)
 
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, ot->id);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 

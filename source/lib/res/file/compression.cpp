@@ -66,7 +66,7 @@ static LibError LibError_from_zlib(int zlib_err, bool warn_if_failed = true)
 	switch(zlib_err)
 	{
 	case Z_OK:
-		return ERR_OK;
+		return INFO_OK;
 	case Z_STREAM_END:
 		err =  ERR_EOF; break;
 	case Z_MEM_ERROR:
@@ -112,7 +112,7 @@ public:
 	{
 		next_out = 0;
 		avail_out = 0;
-		return ERR_OK;
+		return INFO_OK;
 	}
 
 	virtual LibError alloc_output(size_t in_size) = 0;
@@ -266,7 +266,7 @@ have_out_mem:
 		next_out  = out_mem;
 		avail_out = out_mem_size;
 
-		return ERR_OK;
+		return INFO_OK;
 	}
 
 };	// class Compressor
@@ -339,7 +339,7 @@ public:
 		{
 			size_t required_size = (size_t)deflateBound(&zs, (uLong)in_size);
 			RETURN_ERR(alloc_output_impl(required_size));
-			return ERR_OK;
+			return INFO_OK;
 		}
 		else
 			WARN_RETURN(ERR_LOGIC);
@@ -396,7 +396,7 @@ public:
 
 		*out = zs.next_out - zs.total_out;
 		*out_size = zs.total_out;
-		return ERR_OK;
+		return INFO_OK;
 	}
 
 

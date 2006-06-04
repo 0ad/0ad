@@ -63,7 +63,7 @@ static LibError get_ver(const char* module_path, char* out_ver, size_t out_ver_l
 			if(VerQueryValue(buf, subblock, (void**)&in_ver, &in_ver_len))
 			{
 				strcpy_s(out_ver, out_ver_len, in_ver);
-				ret = ERR_OK;
+				ret = INFO_OK;
 			}
 		}
 	}
@@ -135,7 +135,7 @@ LibError dll_list_add(const char* name)
 	if(len > 0)
 	{
 		dll_list_pos += len;
-		return ERR_OK;
+		return INFO_OK;
 	}
 
 	// didn't fit; complain

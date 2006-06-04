@@ -121,7 +121,7 @@ public:
 
 		(void)ogl_tex_set_filter(ht, GL_NEAREST);
 		(void)ogl_tex_upload(ht);
-		return ERR_OK;
+		return INFO_OK;
 	}
 
 	void destroy()
@@ -158,7 +158,7 @@ public:
 			WARN_RETURN(ERR_1);
 		if(ht < 0)
 			WARN_RETURN(ERR_2);
-		return ERR_OK;
+		return INFO_OK;
 	}
 };
 
@@ -214,13 +214,13 @@ static LibError Cursor_reload(Cursor* c, const char* name, Handle)
 	{
 		LibError err=c->gl_cursor.create(filename, hotspotx, hotspoty);
 		
-		if (err == ERR_OK)
+		if (err == INFO_OK)
 			c->gl_sys_cursor = load_empty_sys_cursor();
 		
 		return err;			
 	}
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 static LibError Cursor_validate(const Cursor* c)
@@ -230,14 +230,14 @@ static LibError Cursor_validate(const Cursor* c)
 
 	if(!c->sys_cursor)
 		RETURN_ERR(c->gl_cursor.validate());
-	return ERR_OK;
+	return INFO_OK;
 }
 
 static LibError Cursor_to_string(const Cursor* c, char* buf)
 {
 	const char* type = c->sys_cursor? "sys" : "gl";
 	snprintf(buf, H_STRING_LEN, "(%s)", type);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -268,7 +268,7 @@ LibError cursor_draw(const char* name, int x, int y)
 	if(!name)
 	{
 		WARN_ERR(sys_cursor_set(0));
-		return ERR_OK;
+		return INFO_OK;
 	}
 
 	Handle hc = cursor_load(name);
@@ -287,5 +287,5 @@ LibError cursor_draw(const char* name, int x, int y)
 	}
 
 	(void)cursor_free(hc);
-	return ERR_OK;
+	return INFO_OK;
 }

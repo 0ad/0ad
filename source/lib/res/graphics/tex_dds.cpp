@@ -301,7 +301,7 @@ static LibError s3tc_decompress(Tex* t)
 	t->ofs = 0;
 	t->bpp = out_bpp;
 	t->flags &= ~TEX_DXT;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -492,7 +492,7 @@ static LibError decode_pf(const DDPIXELFORMAT* pf, uint* bpp_, uint* flags_)
 
 	*bpp_ = bpp;
 	*flags_ = flags;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -580,7 +580,7 @@ static LibError decode_sd(const DDSURFACEDESC2* sd, uint* w_, uint* h_,
 	*h_ = h;
 	*bpp_ = bpp;
 	*flags_ = flags;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -618,7 +618,7 @@ static LibError dds_decode(DynArray* restrict da, Tex* restrict t)
 	t->h     = h;
 	t->bpp   = bpp;
 	t->flags = flags;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -640,7 +640,7 @@ static LibError dds_transform(Tex* t, uint transforms)
 	if(dxt && transform_dxt)
 	{
 		RETURN_ERR(s3tc_decompress(t));
-		return ERR_OK;
+		return INFO_OK;
 	}
 	// both are DXT (unsupported; there are no flags we can change while
 	// compressed) or requesting compression (not implemented) or

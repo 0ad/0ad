@@ -448,7 +448,7 @@ LibError lfl_init(LFList* list)
 
 	list->head = 0;
 	atomic_add(&active_data_structures, 1);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -640,7 +640,7 @@ retry:
 	// call list_lookup to ensure # non-released nodes < # threads.
 	else
 		list_lookup(list, key, pos);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -698,7 +698,7 @@ LibError lfh_init(LFHash* hash, size_t num_entries)
 		}
 	}
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 

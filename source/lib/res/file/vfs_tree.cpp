@@ -265,7 +265,7 @@ RealDir rd;	// HACK; removeme
 		children.insert(name, node);
 
 		*pnode = node;
-		return ERR_OK;
+		return INFO_OK;
 	}
 
 	LibError find_and_add(const char* name, TNodeType type, TNode** pnode, const Mount* m = 0)
@@ -447,7 +447,7 @@ static LibError lookup(TDir* td, const char* path, uint flags, TNode** pnode)
 
 	// success.
 	*pnode = p.node;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -567,7 +567,7 @@ LibError tree_add_file(TDir* td, const char* name,
 	stats_vfs_file_add(size);
 
 	set_most_recent_if_newer(mtime);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -576,7 +576,7 @@ LibError tree_add_dir(TDir* td, const char* name, TDir** ptd)
 	TNode* node;
 	RETURN_ERR(td->find_and_add(name, NT_DIR, &node));
 	*ptd = (TDir*)node;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -592,7 +592,7 @@ LibError tree_lookup_dir(const char* V_path, TDir** ptd, uint flags)
 	CHECK_ERR(lookup(td, V_path, flags, &node));
 		// directories should exist, so warn if this fails
 	*ptd = (TDir*)node;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -606,7 +606,7 @@ LibError tree_lookup(const char* V_path, TFile** pfile, uint flags)
 	LibError ret = lookup(tree_root, V_path, flags, &node);
 	RETURN_ERR(ret);
 	*pfile = (TFile*)node;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -647,7 +647,7 @@ LibError tree_add_path(const char* V_dir_path, const Mount* m, TDir** ptd)
 	AddPathCbParams p(m);
 	RETURN_ERR(path_foreach_component(V_dir_path, add_path_cb, &p));
 	*ptd = p.td;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -691,7 +691,7 @@ LibError tree_dir_open(const char* V_dir_path, DirIterator* di)
 	tdi->it  = td->begin();
 	tdi->end = td->end();
 	tdi->td  = td;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -725,7 +725,7 @@ LibError tree_dir_next_ent(DirIterator* di, DirEnt* ent)
 		debug_warn("invalid TNode type");
 	}
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -735,7 +735,7 @@ LibError tree_dir_close(DirIterator* UNUSED(d))
 
 	// no further cleanup needed. we could zero out d but that might
 	// hide bugs; the iterator is safe (will not go beyond end) anyway.
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -780,7 +780,7 @@ LibError tree_stat(const TFile* tf, struct stat* s)
 	s->st_size  = tf->size;
 	s->st_mtime = tf->mtime;
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 

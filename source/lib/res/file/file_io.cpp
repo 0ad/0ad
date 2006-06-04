@@ -150,7 +150,7 @@ LibError file_io_issue(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 	const BlockId disk_pos = block_cache_make_id(f->atom_fn, ofs);
 	stats_io_check_seek(disk_pos);
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -197,7 +197,7 @@ LibError file_io_wait(FileIo* io, void*& p, size_t& size)
 
 	p = (void*)cb->aio_buf;	// cast from volatile void*
 	size = bytes_transferred;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -207,7 +207,7 @@ LibError file_io_discard(FileIo* io)
 	memset(pio->cb, 0, sizeof(aiocb));	// prevent further use.
 	aiocb_allocator.free_(pio->cb);
 	pio->cb = 0;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -224,7 +224,7 @@ LibError file_io_validate(const FileIo* io)
 	if(cb->aio_lio_opcode != LIO_WRITE && cb->aio_lio_opcode != LIO_READ && cb->aio_lio_opcode != LIO_NOP)
 		WARN_RETURN(ERR_3);
 	// all other aiocb fields have no invariants we could check.
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -253,7 +253,7 @@ size_t file_sector_size;
 
 // helper routine used by functions that call back to a FileIOCB.
 //
-// bytes_processed is 0 if return value != { ERR_OK, INFO_CB_CONTINUE }
+// bytes_processed is 0 if return value != { INFO_OK, INFO_CB_CONTINUE }
 // note: don't abort if = 0: zip callback may not actually
 // output anything if passed very little data.
 LibError file_io_call_back(const void* block, size_t size,
@@ -266,7 +266,7 @@ LibError file_io_call_back(const void* block, size_t size,
 		stats_cb_finish();
 
 		// failed - reset byte count in case callback didn't
-		if(ret != ERR_OK && ret != INFO_CB_CONTINUE)
+		if(ret != INFO_OK && ret != INFO_CB_CONTINUE)
 			bytes_processed = 0;
 
 		CHECK_ERR(ret);	// user might not have raised a warning; make sure
@@ -297,7 +297,7 @@ LibError file_io_get_buf(FileIOBuf* pbuf, size_t size,
 
 	// reading into temp buffers - ok.
 	if(!is_write && temp && cb != 0)
-		return ERR_OK;
+		return INFO_OK;
 
 	// reading and want buffer allocated.
 	if(!is_write && alloc)
@@ -305,12 +305,12 @@ LibError file_io_get_buf(FileIOBuf* pbuf, size_t size,
 		*pbuf = file_buf_alloc(size, atom_fn, fb_flags);
 		if(!*pbuf)	// very unlikely (size totally bogus or cache hosed)
 			WARN_RETURN(ERR_NO_MEM);
-		return ERR_OK;
+		return INFO_OK;
 	}
 
 	// writing from user-specified buffer - ok
 	if(is_write && user)
-		return ERR_OK;
+		return INFO_OK;
 
 	WARN_RETURN(ERR_INVALID_PARAM);
 }
@@ -446,7 +446,7 @@ class IOManager
 
 		RETURN_ERR(file_io_get_buf(pbuf, size, f->atom_fn, f->flags, cb));
 
-		return ERR_OK;
+		return INFO_OK;
 	}
 
 	void issue(IOSlot& slot)
@@ -474,7 +474,7 @@ class IOManager
 			LibError ret = file_io_issue(f, ofs, issue_size, buf, &slot.io);
 			// transfer failed - loop will now terminate after
 			// waiting for all pending transfers to complete.
-			if(ret != ERR_OK)
+			if(ret != INFO_OK)
 				err = ret;
 		}
 
@@ -533,7 +533,7 @@ class IOManager
 		{
 			size_t bytes_processed;
 			err = file_io_call_back(block, block_size, cb, ctx, bytes_processed);
-			if(err == INFO_CB_CONTINUE || err == ERR_OK)
+			if(err == INFO_CB_CONTINUE || err == INFO_OK)
 				total_processed += bytes_processed;
 			// else: processing failed.
 			// loop will now terminate after waiting for all
@@ -626,7 +626,7 @@ public:
 				file_buf_add_padding(org_buf, size, ofs_misalign);
 		}
 
-		if(err != INFO_CB_CONTINUE && err != ERR_OK)
+		if(err != INFO_CB_CONTINUE && err != INFO_OK)
 			return (ssize_t)err;
 		return bytes_transferred;
 	}

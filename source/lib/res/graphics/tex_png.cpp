@@ -146,7 +146,7 @@ static LibError png_decode_impl(DynArray* da,
 	t->bpp   = bpp;
 	t->flags = flags;
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -189,7 +189,7 @@ static LibError png_encode_impl(Tex* t,
 	png_set_rows(png_ptr, info_ptr, (png_bytepp)rows);
 	png_write_png(png_ptr, info_ptr, png_transforms, 0);
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 

@@ -168,7 +168,7 @@ static LibError wdir_watch_shutdown()
 		delete it->second;
 	watches.clear();
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -268,7 +268,7 @@ LibError dir_add_watch(const char* dir, intptr_t* _reqnum)
 	}
 
 done:
-	err = ERR_OK;
+	err = INFO_OK;
 	*_reqnum = reqnum;
 
 fail:
@@ -290,7 +290,7 @@ LibError dir_cancel_watch(const intptr_t reqnum)
 	// we're freeing a reference - done.
 	debug_assert(w->refs >= 1);
 	if(--w->refs != 0)
-		return ERR_OK;
+		return INFO_OK;
 
 	// contrary to dox, the RDC IOs do not issue a completion notification.
 	// no packet was received on the IOCP while or after cancelling in a test.
@@ -375,7 +375,7 @@ static void get_packet()
 
 
 // if a file change notification is pending, store its filename in <fn> and
-// return ERR_OK; otherwise, return ERR_AGAIN ('none currently pending') or
+// return INFO_OK; otherwise, return ERR_AGAIN ('none currently pending') or
 // a negative error code.
 // <fn> must hold at least PATH_MAX chars.
 LibError dir_get_changed_file(char* fn)
@@ -391,5 +391,5 @@ LibError dir_get_changed_file(char* fn)
 	strcpy_s(fn, PATH_MAX, fn_s.c_str());
 	pending_events.pop_front();
 
-	return ERR_OK;
+	return INFO_OK;
 }

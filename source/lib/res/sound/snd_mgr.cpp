@@ -182,7 +182,7 @@ LibError snd_dev_set(const char* alc_new_dev_name)
 	{
 		// already using that device - done. (don't re-init)
 		if(alc_dev_name && !strcmp(alc_dev_name, alc_new_dev_name))
-			return ERR_OK;
+			return INFO_OK;
 
 		// store name (need to copy it, since alc_init is called later,
 		// and it must then still be valid)
@@ -195,7 +195,7 @@ LibError snd_dev_set(const char* alc_new_dev_name)
 	{
 		// already using default device - done. (don't re-init)
 		if(alc_dev_name == 0)
-			return ERR_OK;
+			return INFO_OK;
 
 		alc_dev_name = 0;
 	}
@@ -232,7 +232,7 @@ static void alc_shutdown()
 */
 static LibError alc_init()
 {
-	LibError ret = ERR_OK;
+	LibError ret = INFO_OK;
 
 #if WIN_LOADLIBRARY_HACK
 	HMODULE dlls[3];
@@ -346,7 +346,7 @@ LibError snd_set_master_gain(float gain)
 		// position will get sent too.
 		// this isn't called often, so we don't care.
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -561,7 +561,7 @@ LibError snd_set_max_voices(uint limit)
 	if(!al_src_allocated || limit < al_src_allocated)
 	{
 		al_src_cap = limit;
-		return ERR_OK;
+		return INFO_OK;
 	}
 	// user is requesting a cap higher than what we actually allocated.
 	// that's fine (not an error), but we won't set the cap, since it
@@ -569,7 +569,7 @@ LibError snd_set_max_voices(uint limit)
 	// there's no return value to indicate this because the cap is
 	// precisely that - an upper limit only, we don't care if it can't be met.
 	else
-		return ERR_OK;
+		return INFO_OK;
 }
 
 
@@ -591,7 +591,7 @@ static LibError al_init()
 {
 	// only take action on first call, OR when re-initializing.
 	if(al_initialized)
-		return ERR_OK;
+		return INFO_OK;
 
 	RETURN_ERR(alc_init());
 
@@ -601,7 +601,7 @@ static LibError al_init()
 	al_src_init();
 	al_listener_latch();
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -645,7 +645,7 @@ static LibError al_reinit()
 	// not yet initialized. settings have been saved, and will be
 	// applied by the component init routines called from al_init.
 	if(!al_initialized)
-		return ERR_OK;
+		return INFO_OK;
 
 	// re-init (stops all currently playing sounds)
 	al_shutdown();
@@ -682,7 +682,7 @@ LibError snd_dev_prepare_enum()
 		WARN_RETURN(ERR_NO_SYS);
 
 	devs = (const char*)alcGetString(0, ALC_DEVICE_SPECIFIER);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -845,7 +845,7 @@ struct Stream
 static LibError stream_issue(Stream* s)
 {
 	if(s->active_ios >= MAX_IOS)
-		return ERR_OK;
+		return INFO_OK;
 
 	void* buf = io_buf_alloc();
 	if(!buf)
@@ -854,7 +854,7 @@ static LibError stream_issue(Stream* s)
 	Handle h = vfs_io_issue(s->hf, STREAM_BUF_SIZE, buf);
 	RETURN_ERR(h);
 	s->ios[s->active_ios++] = h;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -885,7 +885,7 @@ static LibError stream_buf_get(Stream* s, void*& data, size_t& size)
 
 	// (next stream_buf_discard will free this buffer)
 	s->last_buf = data;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -941,7 +941,7 @@ static LibError stream_open(Stream* s, const char* fn)
 	for(int i = 0; i < MAX_IOS; i++)
 		RETURN_ERR(stream_issue(s));
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -954,7 +954,7 @@ static LibError stream_open(Stream* s, const char* fn)
 */
 static LibError stream_close(Stream* s)
 {
-	LibError ret = ERR_OK;
+	LibError ret = INFO_OK;
 	LibError err;
 
 	// for each pending IO:
@@ -995,7 +995,7 @@ static LibError stream_validate(const Stream* s)
 	if(s->active_ios > MAX_IOS)
 		WARN_RETURN(ERR_1);
 	// <last_buf> has no invariant we could check.
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -1123,7 +1123,7 @@ static LibError SndData_reload(SndData* sd, const char* fn, Handle hsd)
 
 		RETURN_ERR(stream_open(&sd->s, fn));
 		sd->is_valid = 1;
-		return ERR_OK;
+		return INFO_OK;
 	}
 
 	// else: clip
@@ -1175,7 +1175,7 @@ else
 
 	(void)file_buf_free(file);
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 static LibError SndData_validate(const SndData* sd)
@@ -1190,14 +1190,14 @@ static LibError SndData_validate(const SndData* sd)
 	if(sd->is_stream)
 		RETURN_ERR(stream_validate(&sd->s));
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 static LibError SndData_to_string(const SndData* sd, char* buf)
 {
 	const char* type = sd->is_stream? "stream" : "clip";
 	snprintf(buf, H_STRING_LEN, "%s; al_buf=%d", type, sd->al_buf);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -1302,7 +1302,7 @@ static void hsd_list_free_all()
 * @param hsd Handle to SndData.
 * @param al_buf buffer name.
 * @return LibError, most commonly:
-* ERR_OK    = buffer has been returned; more are expected to be available.
+* INFO_OK    = buffer has been returned; more are expected to be available.
 * ERR_EOF   = buffer has been returned but is the last one
 *             (end of file reached)
 * ERR_AGAIN = no buffer returned yet; still streaming in ATM.
@@ -1310,7 +1310,7 @@ static void hsd_list_free_all()
 */
 static LibError snd_data_buf_get(Handle hsd, ALuint& al_buf)
 {
-	LibError err = ERR_OK;
+	LibError err = INFO_OK;
 
 	// in case H_DEREF fails
 	al_buf = 0;
@@ -1346,7 +1346,7 @@ static LibError snd_data_buf_get(Handle hsd, ALuint& al_buf)
 	RETURN_ERR(err);
 
 	// al_buf valid and next IO issued successfully.
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -1364,11 +1364,11 @@ static LibError snd_data_buf_free(Handle hsd, ALuint al_buf)
 	// clip: no-op (caller will later release hsd reference;
 	// when hsd actually unloads, sd->al_buf will be freed).
 	if(!sd->is_stream)
-		return ERR_OK;
+		return INFO_OK;
 
 	// stream: we had allocated an additional buffer, so free it now.
 	al_buf_free(al_buf);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -1638,7 +1638,7 @@ static LibError VSrc_reload(VSrc* vs, const char* fn, Handle hvs)
 	vs->hsd = snd_data_load(snd_fn, is_stream);
 	RETURN_ERR(vs->hsd);
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 static LibError VSrc_validate(const VSrc* vs)
@@ -1654,13 +1654,13 @@ static LibError VSrc_validate(const VSrc* vs)
 	if(*(u8*)&vs->loop > 1 || *(u8*)&vs->relative > 1)
 		WARN_RETURN(ERR_4);
 	// <static_pri> and <cur_pri> have no invariant we could check.
-	return ERR_OK;
+	return INFO_OK;
 }
 
 static LibError VSrc_to_string(const VSrc* vs, char* buf)
 {
 	snprintf(buf, H_STRING_LEN, "al_src = %d", vs->al_src);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -1810,7 +1810,7 @@ static void vsrc_free(VSrc* vs) { snd_free(vs->hvs); }
 static LibError list_free_all()
 {
 	list_foreach(vsrc_free);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -1886,14 +1886,14 @@ static double snd_update_time;
 static LibError vsrc_update(VSrc* vs)
 {
 	if(!vs->al_src)
-		return ERR_OK;
+		return INFO_OK;
 
 	FadeRet ret = fade(vs->fade, snd_update_time, vs->gain);
 	// auto-free after fadeout.
 	if(ret == FADE_TO_0_FINISHED)
 	{
 		vsrc_free(vs);
-		return ERR_OK;	// don't continue - <vs> has been freed.
+		return INFO_OK;	// don't continue - <vs> has been freed.
 	}
 	// fade in progress; latch current gain value.
 	else if(ret == FADE_CHANGED)
@@ -1911,7 +1911,7 @@ static LibError vsrc_update(VSrc* vs)
 		if(num_queued == 0)
 		{
 			snd_free(vs->hvs);
-			return ERR_OK;
+			return INFO_OK;
 		}
 	}
 	// can still read from SndData
@@ -1936,14 +1936,14 @@ static LibError vsrc_update(VSrc* vs)
 			alSourceQueueBuffers(vs->al_src, 1, &al_buf);
 			al_check("vsrc_update alSourceQueueBuffers");
 		}
-		while(to_fill-- && ret == ERR_OK);
+		while(to_fill-- && ret == INFO_OK);
 
 		// SndData has reported that no further buffers are available.
 		if(ret == ERR_EOF)
 			vs->flags |= VS_EOF;
 	}
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -1958,7 +1958,7 @@ static LibError vsrc_grant(VSrc* vs)
 {
 	// already playing - bail
 	if(vs->al_src)
-		return ERR_OK;
+		return INFO_OK;
 
 	// try to alloc source. if none are available, bail -
 	// we get called in that hope that one is available by snd_play.
@@ -1983,7 +1983,7 @@ static LibError vsrc_grant(VSrc* vs)
 
 	alSourcePlay(vs->al_src);
 	AL_CHECK;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -2009,7 +2009,7 @@ static LibError vsrc_reclaim(VSrc* vs)
 	vsrc_deque_finished_bufs(vs);
 
 	al_src_free(vs->al_src);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -2044,7 +2044,7 @@ LibError snd_play(Handle hvs, float static_pri)
 	// either we get a source and playing begins immediately,
 	// or it'll be taken care of on next update.
 	vsrc_grant(vs);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -2068,7 +2068,7 @@ LibError snd_set_pos(Handle hvs, float x, float y, float z, bool relative)
 	vs->relative = relative;
 
 	vsrc_latch(vs);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -2100,7 +2100,7 @@ LibError snd_set_gain(Handle hvs, float gain)
 	vs->gain = gain;
 
 	vsrc_latch(vs);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -2125,7 +2125,7 @@ LibError snd_set_pitch(Handle hvs, float pitch)
 	vs->pitch = pitch;
 
 	vsrc_latch(vs);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -2153,7 +2153,7 @@ LibError snd_set_loop(Handle hvs, bool loop)
 	vs->loop = loop;
 
 	vsrc_latch(vs);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -2211,7 +2211,7 @@ LibError snd_fade(Handle hvs, float initial_gain, float final_gain,
 	(void)fade(fi, cur_time, vs->gain);
 	vsrc_latch(vs);
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -2301,7 +2301,7 @@ static LibError vm_update()
 	list_foreach(reclaim, first_unimportant, 0);
 	list_foreach(grant, 0, first_unimportant);
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -2325,7 +2325,7 @@ LibError snd_update(const float* pos, const float* dir, const float* up)
 	// this fails, so report success here (everything will work once
 	// sound is re-enabled).
 	if(!al_initialized)
-		return ERR_OK;
+		return INFO_OK;
 
 	if(pos)
 		al_listener_set_pos(pos, dir, up);
@@ -2336,7 +2336,7 @@ LibError snd_update(const float* pos, const float* dir, const float* up)
 	snd_update_time = get_time();	// see decl
 	list_foreach((void (*)(VSrc*))vsrc_update);
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -2383,7 +2383,7 @@ LibError snd_disable(bool disabled)
 	{
 		if(al_initialized)
 			debug_warn("already initialized => disable is pointless");
-		return ERR_OK;
+		return INFO_OK;
 	}
 	else
 		return snd_init();

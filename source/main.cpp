@@ -100,7 +100,7 @@ static bool ProgressiveBuildArchive()
 	}
 	else if(ret < 0)
 		DISPLAY_ERROR(L"Archive build failed");
-	else if(ret == ERR_OK)
+	else if(ret == INFO_OK)
 		g_GUI.SendEventToAll("archivebuildercomplete");
 	// in progress
 	else
@@ -123,7 +123,7 @@ static int ProgressiveLoad()
 	switch(ret)
 	{
 		// no load active => no-op (skip code below)
-	case ERR_OK:
+	case INFO_OK:
 		return 0;
 		// current task didn't complete. we only care about this insofar as the
 		// load process is therefore not yet finished.

@@ -69,7 +69,7 @@ bool path_is_subpath(const char* s1, const char* s2)
 }
 
 
-// if path is invalid, return a descriptive error code, otherwise ERR_OK.
+// if path is invalid, return a descriptive error code, otherwise INFO_OK.
 LibError path_validate(const char* path)
 {
 	// disallow "/", because it would create a second 'root' (with name = "").
@@ -105,11 +105,11 @@ LibError path_validate(const char* path)
 			break;
 	}
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
-// if name is invalid, return a descriptive error code, otherwise ERR_OK.
+// if name is invalid, return a descriptive error code, otherwise INFO_OK.
 // (name is a path component, i.e. that between directory separators)
 LibError path_component_validate(const char* name)
 {
@@ -131,7 +131,7 @@ LibError path_component_validate(const char* name)
 			break;
 	}
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -185,7 +185,7 @@ LibError path_append(char* dst, const char* path1, const char* path2, uint flags
 	if(need_terminator)
 		strcpy(dst+len2, "/");	// safe
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -208,7 +208,7 @@ LibError path_replace(char* dst, const char* src, const char* remove, const char
 
 	// prepend replace.
 	RETURN_ERR(path_append(dst, replace, start));
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -222,22 +222,14 @@ LibError path_replace(char* dst, const char* src, const char* remove, const char
 // characters up to the last dir separator, if any).
 const char* path_name_only(const char* path)
 {
-	// first try: look for portable '/'
-	const char* slash = strrchr(path, '/');
-	// not present
-	if(!slash)
-	{
-		// now look for platform-specific DIR_SEP
-		slash = strrchr(path, DIR_SEP);
-		// neither present, it's a filename only
-		if(!slash)
-			return path;
-	}
+	const char* portable_slash = strrchr(path, '/');
+	const char* platform_slash = strrchr(path, DIR_SEP);
+	// neither present, it's a filename only
+	if(!portable_slash && !platform_slash)
+		return path;
 
-// TODO: take max of portableslash, nonportableslash
-
-	const char* name = slash+1;
-	return name;
+	// return name, i.e. component after the last portable or platform slash
+	return MAX(portable_slash, platform_slash)+1;
 }
 
 
@@ -347,7 +339,7 @@ LibError path_foreach_component(const char* path_org, PathComponentCb cb, void* 
 		cur_component = slash+1;
 	}
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -389,7 +381,7 @@ LibError path_package_set_dir(PathPackage* pp, const char* dir)
 
 	pp->end = pp->path+len;
 	pp->chars_left = ARRAY_SIZE(pp->path)-len;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -398,5 +390,5 @@ LibError path_package_set_dir(PathPackage* pp, const char* dir)
 LibError path_package_append_file(PathPackage* pp, const char* path)
 {
 	CHECK_ERR(strcpy_s(pp->end, pp->chars_left, path));
-	return ERR_OK;
+	return INFO_OK;
 }

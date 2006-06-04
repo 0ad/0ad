@@ -313,7 +313,7 @@ have_idx:;
 	if(idx > last_in_use)
 		last_in_use = idx;
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -321,7 +321,7 @@ static LibError free_idx(i32 idx)
 {
 	if(first_free == -1 || idx < first_free)
 		first_free = idx;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -488,7 +488,7 @@ static void warn_if_invalid(HDATA* hd)
 
 	// have the resource validate its user_data
 	LibError err = vtbl->validate(hd->user);
-	debug_assert(err == ERR_OK);
+	debug_assert(err == INFO_OK);
 
 	// make sure empty space in control block isn't touched
 	// .. but only if we're not storing a filename there
@@ -515,7 +515,7 @@ static LibError type_validate(H_Type type)
 	if(type->name == 0)
 		WARN_RETURN(ERR_INVALID_PARAM);
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -567,7 +567,7 @@ static Handle reuse_existing_handle(uintptr_t key, H_Type type, uint flags)
 
 static LibError call_init_and_reload(Handle h, H_Type type, HDATA* hd, const char* fn, va_list* init_args)
 {
-	LibError err = ERR_OK;
+	LibError err = INFO_OK;
 	H_VTbl* vtbl = type;	// exact same thing but for clarity
 
 	// init
@@ -581,7 +581,7 @@ static LibError call_init_and_reload(Handle h, H_Type type, HDATA* hd, const cha
 		try
 		{
 			err = vtbl->reload(hd->user, fn, h);
-			if(err == ERR_OK)
+			if(err == INFO_OK)
 				warn_if_invalid(hd);
 		}
 		catch(std::bad_alloc)
@@ -694,7 +694,7 @@ static LibError h_free_idx(i32 idx, HDATA* hd)
 
 	// still references open or caching requests it stays - do not release.
 	if(hd->refs > 0 || hd->keep_open)
-		return ERR_OK;
+		return INFO_OK;
 
 	// actually release the resource (call dtor, free control block).
 
@@ -732,7 +732,7 @@ static LibError h_free_idx(i32 idx, HDATA* hd)
 
 	free_idx(idx);
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -751,7 +751,7 @@ LibError h_free(Handle& h, H_Type type)
 		// 0-initialized or an error code; don't complain because this
 		// happens often and is harmless.
 		if(h_copy <= 0)
-			return ERR_OK;
+			return INFO_OK;
 		// this was a valid handle but was probably freed in the meantime.
 		// complain because this probably indicates a bug somewhere.
 		WARN_RETURN(ERR_INVALID_HANDLE);
@@ -818,7 +818,7 @@ LibError h_reload(const char* fn)
 		hd->type->dtor(hd->user);
 	}
 
-	LibError ret = ERR_OK;
+	LibError ret = INFO_OK;
 
 	// now reload all affected handles
 	for(i32 i = 0; i <= last_in_use; i++)

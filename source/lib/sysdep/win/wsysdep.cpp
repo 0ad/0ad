@@ -378,7 +378,7 @@ LibError sys_clipboard_set(const wchar_t* text)
 		GlobalUnlock(hMem);
 
 		if(SetClipboardData(CF_UNICODETEXT, hMem) != 0)
-			err = ERR_OK;
+			err = INFO_OK;
 	}
 	}
 
@@ -432,7 +432,7 @@ wchar_t* sys_clipboard_get()
 LibError sys_clipboard_free(wchar_t* copy)
 {
 	free(copy);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -468,7 +468,7 @@ static HCURSOR HCURSOR_from_ptr(void* p)
 //   it is no longer needed and can be freed after this call returns.
 // hotspot (hx,hy) is the offset from its upper-left corner to the
 //   position where mouse clicks are registered.
-// cursor is only valid when ERR_OK is returned; in that case, it must be
+// cursor is only valid when INFO_OK is returned; in that case, it must be
 //   sys_cursor_free-ed when no longer needed.
 LibError sys_cursor_create(uint w, uint h, void* bgra_img,
 	uint hx, uint hy, void** cursor)
@@ -501,7 +501,7 @@ LibError sys_cursor_create(uint w, uint h, void* bgra_img,
 		WARN_RETURN(ERR_FAIL);
 
 	*cursor = ptr_from_HICON(hIcon);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 LibError sys_cursor_create_empty(void **cursor)
@@ -521,7 +521,7 @@ LibError sys_cursor_set(void* cursor)
 	(void)SetCursor(HCURSOR_from_ptr(cursor));
 	// return value (previous cursor) is useless.
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -531,7 +531,7 @@ LibError sys_cursor_free(void* cursor)
 {
 	// bail now to prevent potential confusion below; there's nothing to do.
 	if(!cursor)
-		return ERR_OK;
+		return INFO_OK;
 
 	// if the cursor being freed is active, restore the default arrow
 	// (just for safety).
@@ -564,7 +564,7 @@ LibError sys_error_description_r(int err, char* buf, size_t max_chars)
 	if(!chars_output)
 		WARN_RETURN(ERR_FAIL);
 	debug_assert(chars_output < max_chars);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -596,7 +596,7 @@ wchar_t* sys_get_module_filename(void* addr, wchar_t* path)
 inline LibError sys_get_executable_name(char* n_path, size_t buf_size)
 {
 	DWORD nbytes = GetModuleFileName(0, n_path, (DWORD)buf_size);
-	return nbytes? ERR_OK : ERR_FAIL;
+	return nbytes? INFO_OK : ERR_FAIL;
 }
 
 

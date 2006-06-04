@@ -52,7 +52,7 @@ XMLCh *XMLTranscode(const char *str)
 int CVFSInputSource::OpenFile(const char *path, uint flags = 0)
 {
 	LibError ret = vfs_load(path, m_pBuffer, m_BufferSize, flags);
-	if(ret != ERR_OK)
+	if(ret != INFO_OK)
 	{
 		LOG(ERROR, LOG_CATEGORY, "CVFSInputSource: file %s couldn't be loaded (vfs_load: %d)", path, ret);
 		return -1;

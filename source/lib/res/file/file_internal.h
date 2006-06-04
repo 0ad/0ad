@@ -57,7 +57,7 @@ const size_t FILE_BLOCK_SIZE = 32*KiB;
 
 // helper routine used by functions that call back to a FileIOCB.
 //
-// bytes_processed is 0 if return value != { ERR_OK, INFO_CB_CONTINUE }
+// bytes_processed is 0 if return value != { INFO_OK, INFO_CB_CONTINUE }
 // note: don't abort if = 0: zip callback may not actually
 // output anything if passed very little data.
 extern LibError file_io_call_back(const void* block, size_t size,

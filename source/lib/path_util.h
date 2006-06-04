@@ -36,12 +36,12 @@
 #include "posix.h"	// PATH_MAX
 
 // if path is invalid (see source for criteria), return a
-// descriptive error code, otherwise ERR_OK.
+// descriptive error code, otherwise INFO_OK.
 extern LibError path_validate(const char* path);
 #define CHECK_PATH(path) RETURN_ERR(path_validate(path))
 
 // if name is invalid, (see source for criteria), return a
-// descriptive error code, otherwise ERR_OK.
+// descriptive error code, otherwise INFO_OK.
 extern LibError path_component_validate(const char* name);
 
 
@@ -49,10 +49,10 @@ extern LibError path_component_validate(const char* name);
 // (equal counts as subpath)
 extern bool path_is_subpath(const char* s1, const char* s2);
 
-// if path is invalid, return a descriptive error code, otherwise ERR_OK.
+// if path is invalid, return a descriptive error code, otherwise INFO_OK.
 extern LibError path_validate(const char* path);
 
-// if name is invalid, return a descriptive error code, otherwise ERR_OK.
+// if name is invalid, return a descriptive error code, otherwise INFO_OK.
 // (name is a path component, i.e. that between directory separators)
 extern LibError path_component_validate(const char* name);
 
@@ -112,7 +112,7 @@ extern const char* path_extension(const char* fn);
 // ctx: context parameter that was passed to path_foreach_component.
 // return: INFO_CB_CONTINUE to continue operation normally; anything else
 // will cause path_foreach_component to abort immediately and return that.
-// no need to 'abort' (e.g. return ERR_OK) after a filename is encountered -
+// no need to 'abort' (e.g. return INFO_OK) after a filename is encountered -
 // that's taken care of automatically.
 //
 // rationale:

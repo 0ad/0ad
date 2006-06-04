@@ -80,7 +80,7 @@ static SingleAllocator<PathPackage> pp_allocator;
 
 
 // prepare to iterate (once) over entries in the given directory.
-// if ERR_OK is returned, <d> is ready for subsequent dir_next_ent calls and
+// if INFO_OK is returned, <d> is ready for subsequent dir_next_ent calls and
 // must be freed via dir_close.
 LibError dir_open(const char* P_path, DirIterator* di)
 {
@@ -110,12 +110,12 @@ LibError dir_open(const char* P_path, DirIterator* di)
 		return LibError_from_errno();
 
 	(void)path_package_set_dir(pdi->pp, n_path);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
 // return ERR_DIR_END if all entries have already been returned once,
-// another negative error code, or ERR_OK on success, in which case <ent>
+// another negative error code, or INFO_OK on success, in which case <ent>
 // describes the next (order is unspecified) directory entry.
 LibError dir_next_ent(DirIterator* di, DirEnt* ent)
 {
@@ -167,7 +167,7 @@ get_another_entry:
 	ent->size  = s.st_size;
 	ent->mtime = s.st_mtime;
 	ent->name  = name;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -181,7 +181,7 @@ LibError dir_close(DirIterator* di)
 	errno = 0;
 	if(closedir(pdi->os_dir) < 0)
 		return LibError_from_errno();
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -225,7 +225,7 @@ bool file_exists(const char* fn)
 {
 	struct stat s;
 	const bool warn_if_failed = false;
-	return file_stat_impl(fn, &s, warn_if_failed) == ERR_OK;
+	return file_stat_impl(fn, &s, warn_if_failed) == INFO_OK;
 }
 
 
@@ -300,7 +300,7 @@ LibError file_validate(const File* f)
 	// note: don't check atom_fn - that complains at the end of
 	// file_open if flags & FILE_DONT_SET_FN and has no benefit, really.
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -370,7 +370,7 @@ LibError file_open(const char* P_fn, uint flags, File* f)
 	pf->fd       = fd;
 	CHECK_FILE(f);
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -403,7 +403,7 @@ LibError file_close(File* f)
 	if(f->flags & FILE_WRITE)
 		file_cache_invalidate(f->atom_fn);
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -466,7 +466,7 @@ LibError file_map(File* f, void*& p, size_t& size)
 have_mapping:
 	p = pf->mapping;
 	size = f->size;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -487,7 +487,7 @@ LibError file_unmap(File* f)
 
 	// still more than one reference remaining - done.
 	if(--pf->map_refs > 0)
-		return ERR_OK;
+		return INFO_OK;
 
 	// no more references: remove the mapping
 	void* p = pf->mapping;
@@ -509,7 +509,7 @@ LibError file_init()
 	// convenience
 	file_sector_size = sys_max_sector_size();
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 LibError file_shutdown()
@@ -517,5 +517,5 @@ LibError file_shutdown()
 	stats_dump();
 	path_shutdown();
 	file_io_shutdown();
-	return ERR_OK;
+	return INFO_OK;
 }

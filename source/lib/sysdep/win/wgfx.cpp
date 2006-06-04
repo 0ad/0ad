@@ -56,7 +56,7 @@ LibError gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
 	if(dm.dmFields & (DWORD)DM_DISPLAYFREQUENCY && freq)
 		*freq = (int)dm.dmDisplayFrequency;
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -69,7 +69,7 @@ LibError gfx_get_monitor_size(int& width_mm, int& height_mm)
 	width_mm = GetDeviceCaps(dc, HORZSIZE);
 	height_mm = GetDeviceCaps(dc, VERTSIZE);
 	ReleaseDC(0, dc);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -93,7 +93,7 @@ static LibError import_EnumDisplayDevices()
 		// so this resource leak is unavoidable.
 	}
 
-	return pEnumDisplayDevicesA? ERR_OK : ERR_FAIL;
+	return pEnumDisplayDevicesA? INFO_OK : ERR_FAIL;
 }
 
 
@@ -120,7 +120,7 @@ static LibError win_get_gfx_card()
 			if(dd.StateFlags & DISPLAY_DEVICE_PRIMARY_DEVICE)
 			{
 				strcpy_s(gfx_card, ARRAY_SIZE(gfx_card), (const char*)dd.DeviceString);
-				return ERR_OK;
+				return INFO_OK;
 			}
 		}
 	}
@@ -214,5 +214,5 @@ LibError win_get_gfx_info()
 	// don't exit before trying both
 	RETURN_ERR(err1);
 	RETURN_ERR(err2);
-	return ERR_OK;
+	return INFO_OK;
 }

@@ -60,7 +60,7 @@ LibError tex_codec_for_filename(const char* fn, const TexCodecVTbl** c)
 	{
 		// we found it
 		if((*c)->is_ext(ext))
-			return ERR_OK;
+			return INFO_OK;
 	}
 
 	return ERR_UNKNOWN_FORMAT;	// NOWARN
@@ -78,7 +78,7 @@ LibError tex_codec_for_header(const u8* file, size_t file_size, const TexCodecVT
 	{
 		// we found it
 		if((*c)->is_hdr(file))
-			return ERR_OK;
+			return INFO_OK;
 	}
 
 	WARN_RETURN(ERR_UNKNOWN_FORMAT);
@@ -105,8 +105,8 @@ LibError tex_codec_transform(Tex* t, uint transforms)
 	{
 		LibError err = c->transform(t, transforms);
 		// success
-		if(err == ERR_OK)
-			return ERR_OK;
+		if(err == INFO_OK)
+			return INFO_OK;
 		// something went wrong
 		else if(err != INFO_TEX_CODEC_CANNOT_HANDLE)
 		{
@@ -164,7 +164,7 @@ LibError tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
 	}
 
 	debug_assert(pos == end);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -175,5 +175,5 @@ LibError tex_codec_write(Tex* t, uint transforms, const void* hdr, size_t hdr_si
 	void* img_data = tex_get_data(t); const size_t img_size = tex_img_size(t);
 	RETURN_ERR(da_append(da, hdr, hdr_size));
 	RETURN_ERR(da_append(da, img_data, img_size));
-	return ERR_OK;
+	return INFO_OK;
 }

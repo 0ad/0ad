@@ -365,7 +365,7 @@ static const u8* za_find_id(const u8* buf, size_t size, const void* start, u32 m
 
 // search for ECDR in the last <max_scan_amount> bytes of the file.
 // if found, fill <dst_ecdr> with a copy of the (little-endian) ECDR and
-// return ERR_OK, otherwise IO error or ERR_CORRUPTED.
+// return INFO_OK, otherwise IO error or ERR_CORRUPTED.
 static LibError za_find_ecdr(File* f, size_t max_scan_amount, ECDR* dst_ecdr_le)
 {
 	// don't scan more than the entire file
@@ -386,7 +386,7 @@ static LibError za_find_ecdr(File* f, size_t max_scan_amount, ECDR* dst_ecdr_le)
 	if(ecdr_le)
 	{
 		*dst_ecdr_le = *ecdr_le;
-		ret = ERR_OK;
+		ret = INFO_OK;
 	}
 
 	file_buf_free(buf);
@@ -413,17 +413,17 @@ completely_bogus:
 	// expected case: ECDR at EOF; no file comment (=> we only need to
 	// read 512 bytes)
 	LibError ret = za_find_ecdr(f, ECDR_SIZE, &ecdr_le);
-	if(ret == ERR_OK)
+	if(ret == INFO_OK)
 	{
 have_ecdr:
 		ecdr_decompose(&ecdr_le, cd_entries, cd_ofs, cd_size);
-		return ERR_OK;
+		return INFO_OK;
 	}
 	// last resort: scan last 66000 bytes of file
 	// (the Zip archive comment field - up to 64k - may follow ECDR).
 	// if the zip file is < 66000 bytes, scan the whole file.
 	ret = za_find_ecdr(f, 66000u, &ecdr_le);
-	if(ret == ERR_OK)
+	if(ret == INFO_OK)
 		goto have_ecdr;
 
 	// both ECDR scans failed - this is not a valid Zip file.
@@ -451,7 +451,7 @@ have_ecdr:
 
 // analyse an opened Zip file; call back into archive.cpp to
 // populate the Archive object with a list of the files it contains.
-// returns ERR_OK on success, ERR_CORRUPTED if file is recognizable as
+// returns INFO_OK on success, ERR_CORRUPTED if file is recognizable as
 // a Zip file but invalid, otherwise ERR_UNKNOWN_FORMAT or IO error.
 //
 // fairly slow - must read Central Directory from disk
@@ -471,7 +471,7 @@ LibError zip_populate_archive(File* f, Archive* a)
 	RETURN_ERR(file_io(f, cd_ofs, cd_size, &buf));
 
 	// iterate through Central Directory
-	LibError ret = ERR_OK;
+	LibError ret = INFO_OK;
 	const CDFH* cdfh = (const CDFH*)buf;
 	size_t ofs_to_next_cdfh = 0;
 	for(uint i = 0; i < cd_entries; i++)
@@ -494,7 +494,7 @@ LibError zip_populate_archive(File* f, Archive* a)
 		if(ae.csize && ae.ucsize)
 		{
 			ret = archive_add_file(a, &ae);
-			if(ret != ERR_OK)
+			if(ret != INFO_OK)
 				break;
 		}
 	}
@@ -605,7 +605,7 @@ LibError zip_archive_create(const char* zip_filename, ZipArchive** pza)
 		WARN_RETURN(ERR_NO_MEM);
 	*za = za_copy;
 	*pza = za;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -645,7 +645,7 @@ LibError zip_archive_add_file(ZipArchive* za, const ArchiveEntry* ae, void* file
 
 	za->cd_entries++;
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -669,5 +669,5 @@ LibError zip_archive_finish(ZipArchive* za)
 	(void)file_close(&za->f);
 	(void)pool_destroy(&za->cdfhs);
 	za_mgr.release(za);
-	return ERR_OK;
+	return INFO_OK;
 }

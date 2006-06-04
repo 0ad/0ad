@@ -119,7 +119,7 @@ static LibError VDir_reload(VDir* vd, const char* V_dir_path, Handle UNUSED(hvd)
 
 	RETURN_ERR(xdir_open(V_dir_path, &vd->di));
 	vd->di_valid = 1;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 static LibError VDir_validate(const VDir* vd)
@@ -127,7 +127,7 @@ static LibError VDir_validate(const VDir* vd)
 	// note: <di> is mostly opaque and cannot be validated.
 	if(vd->di.filter && !isprint(vd->di.filter[0]))
 		WARN_RETURN(ERR_1);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 static LibError VDir_to_string(const VDir* vd, char* buf)
@@ -138,7 +138,7 @@ static LibError VDir_to_string(const VDir* vd, char* buf)
 	if(!filter)
 		filter = "*";
 	snprintf(buf, H_STRING_LEN, "(\"%s\")", filter);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -275,7 +275,7 @@ static LibError VFile_reload(VFile* vf, const char* V_path, Handle)
 	// we're done if file is already open. need to check this because
 	// reload order (e.g. if resource opens a file) is unspecified.
 	if(xfile_is_open(&vf->f))
-		return ERR_OK;
+		return INFO_OK;
 
 	TFile* tf;
 	uint lf = (flags & FILE_WRITE)? LF_CREATE_MISSING : 0;
@@ -300,20 +300,20 @@ static LibError VFile_reload(VFile* vf, const char* V_path, Handle)
 	vf->is_valid = 1;
 	vf->tf = tf;
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 static LibError VFile_validate(const VFile* vf)
 {
 	// <ofs> doesn't have any invariant we can check.
 	RETURN_ERR(xfile_validate(&vf->f));
-	return ERR_OK;
+	return INFO_OK;
 }
 
 static LibError VFile_to_string(const VFile* UNUSED(vf), char* buf)
 {
 	strcpy(buf, "");	// safe
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -419,7 +419,7 @@ LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size,
 		// accept more data - this is all it gets and we need to
 		// translate return value to avoid confusing callers.
 		if(ret == INFO_CB_CONTINUE)
-			ret = ERR_OK;
+			ret = INFO_OK;
 		size = actual_size;
 		return ret;
 	}
@@ -448,7 +448,7 @@ LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size,
 	stats_cache(CR_MISS, size, atom_fn);
 
 	(void)vfs_close(hf);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -529,7 +529,7 @@ static LibError VIo_validate(const VIo* vio)
 static LibError VIo_to_string(const VIo* vio, char* buf)
 {
 	snprintf(buf, H_STRING_LEN, "buf=%p size=%d", vio->buf, vio->size);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -621,7 +621,7 @@ static LibError reload_without_rebuild(const char* fn)
 
 	RETURN_ERR(h_reload(fn));
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -726,7 +726,7 @@ LibError vfs_reload_changed_files()
 	for(uint i = 0; i < num_pending; i++)
 		RETURN_ERR(reload_without_rebuild(pending_reloads[i]));
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 

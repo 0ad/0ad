@@ -63,7 +63,7 @@ static LibError wsock_init()
 			debug_warn("WSAStartup failed");
 	}
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 WDLL_LOAD_NOTIFY("ws2_32", wsock_init);
@@ -82,7 +82,7 @@ static LibError wsock_shutdown()
 	while(dll_refs-- > 0)
 		FreeLibrary(hWs2_32Dll);
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 

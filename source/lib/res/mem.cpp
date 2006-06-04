@@ -182,7 +182,7 @@ static void Mem_dtor(Mem* m)
 static LibError Mem_reload(Mem* m, const char* UNUSED(fn), Handle hm)
 {
 	set_alloc(m->raw_p, hm);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 static LibError Mem_validate(const Mem* m)
@@ -195,7 +195,7 @@ static LibError Mem_validate(const Mem* m)
 		WARN_RETURN(ERR_3);
 	if(m->raw_size && m->raw_size < m->size)
 		WARN_RETURN(ERR_4);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 static LibError Mem_to_string(const Mem* m, char* buf)
@@ -210,7 +210,7 @@ static LibError Mem_to_string(const Mem* m, char* buf)
 	}
 
 	snprintf(buf, H_STRING_LEN, "p=%p size=%d owner=%s", m->p, m->size, owner_sym);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -253,7 +253,7 @@ LibError mem_free_h(Handle& hm)
 LibError mem_free_p(void*& p)
 {
 	if(!p)
-		return ERR_OK;
+		return INFO_OK;
 
 	Handle hm;
 	{
@@ -318,7 +318,7 @@ LibError mem_assign_user(Handle hm, void* user_p, size_t user_size)
 
 	m->p = user_p;
 	m->size = user_size;
-	return ERR_OK;
+	return INFO_OK;
 }
 */
 
@@ -420,7 +420,7 @@ LibError mem_get(Handle hm, u8** pp, size_t* psize)
 	if(psize)
 		*psize = m->size;
 	// leave hm locked
-	return ERR_OK;
+	return INFO_OK;
 }
 
 

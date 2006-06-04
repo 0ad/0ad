@@ -137,12 +137,12 @@ struct DirEnt
 #define DIRENT_IS_DIR(p_ent) ((p_ent)->size == -1)
 
 // prepare to iterate (once) over entries in the given directory.
-// if ERR_OK is returned, <d> is ready for subsequent dir_next_ent calls and
+// if INFO_OK is returned, <d> is ready for subsequent dir_next_ent calls and
 // must be freed via dir_close.
 extern LibError dir_open(const char* P_path, DirIterator* d);
 
 // return ERR_DIR_END if all entries have already been returned once,
-// another negative error code, or ERR_OK on success, in which case <ent>
+// another negative error code, or INFO_OK on success, in which case <ent>
 // describes the next (order is unspecified) directory entry.
 extern LibError dir_next_ent(DirIterator* d, DirEnt* ent);
 

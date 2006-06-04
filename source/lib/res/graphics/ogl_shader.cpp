@@ -87,7 +87,7 @@ static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const char* filename, Handle
 	LibError err = ERR_FAIL;
 
 	if (shdr->id)
-		return ERR_OK;
+		return INFO_OK;
 
 	FileIOBuf file;
 	size_t file_size;
@@ -148,7 +148,7 @@ static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const char* filename, Handle
 	}
 
 	(void)file_buf_free(file);
-	return ERR_OK;
+	return INFO_OK;
 
 fail_shadercreated:
 	pglDeleteObjectARB(shdr->id);
@@ -173,13 +173,13 @@ static void Ogl_Shader_dtor(Ogl_Shader* shdr)
 static LibError Ogl_Shader_validate(const Ogl_Shader* UNUSED(shdr))
 {
 	// TODO
-	return ERR_OK;
+	return INFO_OK;
 }
 
 static LibError Ogl_Shader_to_string(const Ogl_Shader* UNUSED(shdr), char* buf)
 {
 	snprintf(buf, H_STRING_LEN, "");
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -212,7 +212,7 @@ LibError ogl_shader_attach(GLhandleARB program, Handle& h)
 
 	pglAttachObjectARB(program, shdr->id);
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -283,7 +283,7 @@ static LibError do_load_shader(
 	// TODO: How will this work with automatic reload?
 	ogl_shader_free(hshader);
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -291,7 +291,7 @@ static LibError do_load_shader(
 static LibError Ogl_Program_reload(Ogl_Program* p, const char* filename, Handle h)
 {
 	if (p->id)
-		return ERR_OK;
+		return INFO_OK;
 
 	oglCheck();
 	
@@ -377,7 +377,7 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const char* filename, Handle 
 		WARN_RETURN(ERR_SHDR_LINK);
 	}
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -394,13 +394,13 @@ static void Ogl_Program_dtor(Ogl_Program* p)
 static LibError Ogl_Program_validate(const Ogl_Program* UNUSED(p))
 {
 	// TODO
-	return ERR_OK;
+	return INFO_OK;
 }
 
 static LibError Ogl_Program_to_string(const Ogl_Program* UNUSED(p), char* buf)
 {
 	snprintf(buf, H_STRING_LEN, "");
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -428,7 +428,7 @@ LibError ogl_program_use(Handle h)
 	if (!h)
 	{
 		pglUseProgramObjectARB(0);
-		return ERR_OK;
+		return INFO_OK;
 	}
 
 	Ogl_Program* p = H_USER_DATA(h, Ogl_Program);
@@ -439,7 +439,7 @@ LibError ogl_program_use(Handle h)
 	}
 
 	pglUseProgramObjectARB(p->id);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 

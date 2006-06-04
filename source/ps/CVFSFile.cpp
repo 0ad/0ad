@@ -26,7 +26,7 @@ PSRETURN CVFSFile::Load(const char* filename, uint flags /* = 0 */)
 	}
 
 	LibError ret = vfs_load(filename, m_Buffer, m_BufferSize, flags);
-	if (ret != ERR_OK)
+	if (ret != INFO_OK)
 	{
 		LOG(ERROR, LOG_CATEGORY, "CVFSFile: file %s couldn't be opened (vfs_load: %d)", filename, ret);
 		return PSRETURN_CVFSFile_LoadFailed;

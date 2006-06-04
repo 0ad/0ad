@@ -137,7 +137,7 @@ extern void ia32_get_current_context(void* pcontext);
 extern void ia32_asm_init();
 
 // checks if there is an IA-32 CALL instruction right before ret_addr.
-// returns ERR_OK if so and ERR_FAIL if not.
+// returns INFO_OK if so and ERR_FAIL if not.
 // also attempts to determine the call target. if that is possible
 // (directly addressed relative or indirect jumps), it is stored in
 // target, which is otherwise 0.

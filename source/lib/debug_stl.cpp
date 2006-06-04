@@ -702,7 +702,7 @@ LibError stl_get_container_info(const char* type_name, const u8* p, size_t size,
 		return ERR_STL_CNT_UNKNOWN;	// NOWARN
 	if(!valid)
 		return ERR_STL_CNT_INVALID;	// NOWARN
-	return ERR_OK;
+	return INFO_OK;
 }
 
 #endif

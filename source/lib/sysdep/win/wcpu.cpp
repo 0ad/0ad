@@ -117,7 +117,7 @@ LibError win_get_cpu_info()
 
 	check_speedstep();
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -163,7 +163,7 @@ LibError sys_on_each_cpu(void (*cb)())
 	// restore to original value
 	SetProcessAffinityMask(hProcess, process_affinity);
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -315,13 +315,13 @@ LibError prof_start()
 
 	sem_init(&exit_flag, 0, 0);
 	pthread_create(&thread, 0, prof_thread_func, 0);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 LibError prof_shutdown()
 {
 	WARN_IF_FALSE(CloseHandle(prof_target_thread));
-	return ERR_OK;
+	return INFO_OK;
 }
 
 

@@ -91,7 +91,7 @@ LibError LDR_BeginRegistering()
 
 	state = REGISTERING;
 	load_requests.clear();
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -116,7 +116,7 @@ LibError LDR_Register(LoadFunc func, void* param, const wchar_t* description,
 
 	const LoadRequest lr(func, param, description, estimated_duration_ms);
 	load_requests.push_back(lr);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -134,7 +134,7 @@ LibError LDR_EndRegistering()
 	estimated_duration_tally = 0.0;
 	task_elapsed_time = 0.0;
 	total_estimated_duration = std::accumulate(load_requests.begin(), load_requests.end(), 0.0, DurationAdder());
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -152,7 +152,7 @@ LibError LDR_Cancel()
 	// the queue doesn't need to be emptied now; that'll happen during the
 	// next LDR_StartRegistering. for now, it is sufficient to set the
 	// state, so that LDR_ProgressiveLoad is a no-op.
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -217,7 +217,7 @@ LibError LDR_ProgressiveLoad(double time_budget, wchar_t* description,
 	// we're called unconditionally from the main loop, so this isn't
 	// an error; there is just nothing to do.
 	if(state != LOADING)
-		return ERR_OK;
+		return INFO_OK;
 
 	while(!load_requests.empty())
 	{
@@ -320,11 +320,11 @@ LibError LDR_NonprogressiveLoad()
 		LibError ret = LDR_ProgressiveLoad(time_budget, description, ARRAY_SIZE(description), &progress_percent);
 		switch(ret)
 		{
-		case ERR_OK:
+		case INFO_OK:
 			debug_warn("No load in progress");
-			return ERR_OK;
+			return INFO_OK;
 		case INFO_ALL_COMPLETE:
-			return ERR_OK;
+			return INFO_OK;
 		case ERR_TIMED_OUT:
 			break;			// continue loading
 		default:

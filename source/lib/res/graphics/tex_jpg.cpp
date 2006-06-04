@@ -499,7 +499,7 @@ static LibError jpg_decode_impl(DynArray* da,
 	// mem data source.
 	(void)jpeg_finish_decompress(cinfo);
 
-	LibError ret = ERR_OK;
+	LibError ret = INFO_OK;
 	if(cinfo->err->num_warnings != 0)
 		ret = WARN_TEX_INVALID_DATA;
 
@@ -560,7 +560,7 @@ static LibError jpg_encode_impl(Tex* t,
 
 	jpeg_finish_compress(cinfo);
 
-	LibError ret = ERR_OK;
+	LibError ret = INFO_OK;
 	if(cinfo->err->num_warnings != 0)
 		ret = WARN_TEX_INVALID_DATA;
 

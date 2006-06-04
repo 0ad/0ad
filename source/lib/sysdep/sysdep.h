@@ -209,7 +209,7 @@ extern LibError sys_clipboard_free(wchar_t* copy);
 //   it is no longer needed and can be freed after this call returns.
 // hotspot (hx,hy) is the offset from its upper-left corner to the
 //   position where mouse clicks are registered.
-// cursor is only valid when ERR_OK is returned; in that case, it must be
+// cursor is only valid when INFO_OK is returned; in that case, it must be
 //   sys_cursor_free-ed when no longer needed.
 extern LibError sys_cursor_create(uint w, uint h, void* bgra_img,
 	uint hx, uint hy, void** cursor);

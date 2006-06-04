@@ -294,7 +294,7 @@ class ConnectionBuilder
 					// note: this happens when trace contains by now
 					// deleted or unarchivable files.
 					TFile* tf;
-					if(tree_lookup(te->atom_fn, &tf) == ERR_OK)
+					if(tree_lookup(te->atom_fn, &tf) == INFO_OK)
 						if(is_archivable(tf))
 							add_connection(connections, te->atom_fn);
 				}
@@ -320,7 +320,7 @@ public:
 
 		add_connections_from_runs(t, connections);
 
-		return ERR_OK;
+		return INFO_OK;
 	}
 };
 
@@ -602,14 +602,14 @@ static LibError vfs_opt_init(const char* trace_filename, const char* archive_fn_
 	Filenames V_fns = &fn_vector[0];
 
 	RETURN_ERR(archive_build_init(archive_fn, V_fns, &ab));
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
 static int vfs_opt_continue()
 {
 	int ret = archive_build_continue(&ab);
-	if(ret == ERR_OK)
+	if(ret == INFO_OK)
 	{
 		// do NOT delete source files! some apps might want to
 		// keep them (e.g. for source control), or name them differently.
@@ -674,7 +674,7 @@ static LibError build_mini_archive(const char* mini_archive_fn_fmt)
 	next_numbered_filename(mini_archive_fn_fmt, &nfi, mini_archive_fn, use_vfs);
 
 	RETURN_ERR(archive_build(mini_archive_fn, V_fns));
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -709,7 +709,7 @@ int vfs_opt_auto_build(const char* trace_filename,
 			RETURN_ERR(build_mini_archive(mini_archive_fn_fmt));
 
 			state = NOP;
-			return ERR_OK;	// "finished"
+			return INFO_OK;	// "finished"
 		}
 	}
 
@@ -717,7 +717,7 @@ int vfs_opt_auto_build(const char* trace_filename,
 	{
 		int ret = vfs_opt_continue();
 		// just finished
-		if(ret == ERR_OK)
+		if(ret == INFO_OK)
 			state = NOP;
 		return ret;
 	}
@@ -731,7 +731,7 @@ LibError vfs_opt_rebuild_main_archive(const char* trace_filename, const char* ar
 	{
 		int ret = vfs_opt_auto_build(trace_filename, archive_fn_fmt, 0, true);
 		RETURN_ERR(ret);
-		if(ret == ERR_OK)
-			return ERR_OK;
+		if(ret == INFO_OK)
+			return INFO_OK;
 	}
 }

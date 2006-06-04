@@ -252,7 +252,7 @@ LibError trace_write_to_file(const char* trace_filename)
 		write_entry(f, ent);
 
 	(void)fclose(f);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -308,7 +308,7 @@ LibError trace_read_from_file(const char* trace_filename, Trace* t)
 	if(t->total_ents == 0)
 		WARN_RETURN(ERR_TRACE_EMPTY);
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -332,7 +332,7 @@ void trace_gen_random(size_t num_entries)
 				struct stat s;
 				LibError ret = vfs_stat(atom_fn, &s);
 				// ought to apply due to vfs_exists above.
-				debug_assert(ret == ERR_OK && S_ISREG(s.st_mode));
+				debug_assert(ret == INFO_OK && S_ISREG(s.st_mode));
 
 				size = s.st_size;
 				break;
@@ -460,6 +460,6 @@ LibError trace_run(const char* trace_filename, uint flags)
 
 	trace_clear();
 
-	return ERR_OK;
+	return INFO_OK;
 }
 

@@ -70,7 +70,7 @@ LibError tex_validate(const Tex* t)
 	if(orientation == (TEX_BOTTOM_UP|TEX_TOP_DOWN))
 		WARN_RETURN(ERR_4);
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 #define CHECK_TEX(t) RETURN_ERR(tex_validate(t))
@@ -94,14 +94,14 @@ LibError tex_validate_plain_format(uint bpp, uint flags)
 	if(grey)
 	{
 		if(bpp == 8 && !alpha)
-			return ERR_OK;
+			return INFO_OK;
 		WARN_RETURN(ERR_TEX_FMT_INVALID);
 	}
 
 	if(bpp == 24 && !alpha)
-		return ERR_OK;
+		return INFO_OK;
 	if(bpp == 32 && alpha)
-		return ERR_OK;
+		return INFO_OK;
 
 	WARN_RETURN(ERR_TEX_FMT_INVALID);
 }
@@ -254,7 +254,7 @@ static LibError add_mipmaps(Tex* t, uint w, uint h, uint bpp,
 	t->hm = hm;
 	t->ofs = 0;
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -292,7 +292,7 @@ TIMER_ACCRUE(tc_plain_transform);
 	RETURN_ERR(tex_validate_plain_format(bpp, flags));
 	// .. nothing to do
 	if(!transforms)
-		return ERR_OK;
+		return INFO_OK;
 
 	// allocate copy of the image data.
 	// rationale: L1 cache is typically A2 => swapping in-place with a
@@ -372,7 +372,7 @@ TIMER_ACCRUE(tc_plain_transform);
 		RETURN_ERR(add_mipmaps(t, w, h, bpp, new_data, data_size));
 
 	CHECK_TEX(t);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -392,7 +392,7 @@ LibError tex_transform(Tex* t, uint transforms)
 		remaining_transforms = target_flags ^ t->flags;
 		// we're finished (all required transforms have been done)
 		if(remaining_transforms == 0)
-			return ERR_OK;
+			return INFO_OK;
 
 		LibError ret = tex_codec_transform(t, remaining_transforms);
 		if(ret != 0)
@@ -401,7 +401,7 @@ LibError tex_transform(Tex* t, uint transforms)
 
 	// last chance
 	RETURN_ERR(plain_transform(t, remaining_transforms));
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -487,7 +487,7 @@ bool tex_is_known_extension(const char* filename)
 {
 	const TexCodecVTbl* dummy;
 	// found codec for it => known extension
-	if(tex_codec_for_filename(filename, &dummy) == ERR_OK)
+	if(tex_codec_for_filename(filename, &dummy) == INFO_OK)
 		return true;
 
 	return false;
@@ -527,7 +527,7 @@ LibError tex_wrap(uint w, uint h, uint bpp, uint flags, void* img, Tex* t)
 	t->ofs = (u8*)img - (u8*)reported_ptr;
 
 	CHECK_TEX(t);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -651,7 +651,7 @@ LibError tex_decode(const u8* data, size_t data_size, MEM_DTOR dtor, Tex* t)
 
 	flip_to_global_orientation(t);
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -679,7 +679,7 @@ LibError tex_encode(Tex* t, const char* fn, DynArray* da)
 		WARN_RETURN(err);
 	}
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -709,7 +709,7 @@ LibError tex_load(const char* fn, Tex* t, uint file_flags)
 	// wasn't compressed) or was replaced by a new buffer for the image data.
 
 	CHECK_TEX(t);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -722,7 +722,7 @@ LibError tex_write(Tex* t, const char* fn)
 	RETURN_ERR(tex_encode(t, fn, &da));
 
 	// write to disk
-	LibError ret = ERR_OK;
+	LibError ret = INFO_OK;
 	{
 	const size_t sector_aligned_size = round_up(da.cur_size, file_sector_size);
 	(void)da_set_size(&da, sector_aligned_size);

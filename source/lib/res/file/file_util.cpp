@@ -33,7 +33,7 @@ LibError file_get_sorted_dirents(const char* P_path, DirEnts& dirents)
 	std::sort(dirents.begin(), dirents.end(), dirent_less);
 
 	(void)dir_close(&d);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -55,8 +55,8 @@ LibError file_get_sorted_dirents(const char* P_path, DirEnts& dirents)
 //   of converting from/to native path (we just give 'em the dirent name).
 LibError file_enum(const char* P_path, const FileCB cb, const uintptr_t user)
 {
-	LibError stat_err = ERR_OK;	// first error encountered by stat()
-	LibError cb_err   = ERR_OK;	// first error returned by cb
+	LibError stat_err = INFO_OK;	// first error encountered by stat()
+	LibError cb_err   = INFO_OK;	// first error returned by cb
 
 	DirEnts dirents;
 	RETURN_ERR(file_get_sorted_dirents(P_path, dirents));
@@ -82,7 +82,7 @@ LibError file_enum(const char* P_path, const FileCB cb, const uintptr_t user)
 		}
 	}
 
-	if(cb_err != ERR_OK)
+	if(cb_err != INFO_OK)
 		return cb_err;
 	return stat_err;
 }
@@ -154,7 +154,7 @@ LibError dir_filtered_next_ent(DirIterator* di, DirEnt* ent, const char* filter)
 		}
 	}
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -234,7 +234,7 @@ LibError vfs_dir_enum(const char* start_path, uint flags, const char* user_filte
 	}
 	while(!dir_queue.empty());
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -271,7 +271,7 @@ void next_numbered_filename(const char* fn_fmt,
 			Handle hd = vfs_dir_open(dir);
 			if(hd > 0)
 			{
-				while(vfs_dir_next_ent(hd, &ent, 0) == ERR_OK)
+				while(vfs_dir_next_ent(hd, &ent, 0) == INFO_OK)
 				{
 					if(!DIRENT_IS_DIR(&ent) && sscanf(ent.name, name_fmt, &num) == 1)
 						max_num = MAX(num, max_num);
@@ -282,9 +282,9 @@ void next_numbered_filename(const char* fn_fmt,
 		else
 		{
 			DirIterator it;
-			if(dir_open(dir, &it) == ERR_OK)
+			if(dir_open(dir, &it) == INFO_OK)
 			{
-				while(dir_next_ent(&it, &ent) == ERR_OK)
+				while(dir_next_ent(&it, &ent) == INFO_OK)
 					if(!DIRENT_IS_DIR(&ent) && sscanf(ent.name, name_fmt, &num) == 1)
 						max_num = MAX(num, max_num);
 				(void)dir_close(&it);

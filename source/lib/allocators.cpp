@@ -59,7 +59,7 @@ static inline size_t round_up_to_page(size_t size)
 static inline LibError LibError_from_mmap(void* ret, bool warn_if_failed = true)
 {
 	if(ret != MAP_FAILED)
-		return ERR_OK;
+		return INFO_OK;
 	return LibError_from_errno(warn_if_failed);
 }
 
@@ -177,7 +177,7 @@ static LibError validate_da(DynArray* da)
 	if(prot & ~(PROT_READ|PROT_WRITE|PROT_EXEC|DA_NOT_OUR_MEM))
 		WARN_RETURN(ERR_6);
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 #define CHECK_DA(da) RETURN_ERR(validate_da(da))
@@ -206,7 +206,7 @@ LibError da_alloc(DynArray* da, size_t max_size)
 	da->prot        = PROT_READ|PROT_WRITE;
 	da->pos         = 0;
 	CHECK_DA(da);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -231,7 +231,7 @@ LibError da_wrap_fixed(DynArray* da, u8* p, size_t size)
 	da->prot        = PROT_READ|PROT_WRITE|DA_NOT_OUR_MEM;
 	da->pos         = 0;
 	CHECK_DA(da);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -260,7 +260,7 @@ LibError da_free(DynArray* da)
 	// da_free is supposed to be called even in the above case.
 	if(!was_wrapped)
 		RETURN_ERR(mem_release(p, size));
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -303,7 +303,7 @@ LibError da_set_size(DynArray* da, size_t new_size)
 
 	da->cur_size = new_size;
 	CHECK_DA(da);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -323,7 +323,7 @@ LibError da_reserve(DynArray* da, size_t size)
 
 	if(da->pos + size > da->cur_size)
 		return da_set_size(da, da->cur_size + expand_amount);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -349,7 +349,7 @@ LibError da_set_prot(DynArray* da, int prot)
 	RETURN_ERR(mem_protect(da->base, da->cur_size, prot));
 
 	CHECK_DA(da);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -370,7 +370,7 @@ LibError da_read(DynArray* da, void* data, size_t size)
 
 	memcpy2(data, da->base+da->pos, size);
 	da->pos += size;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -388,7 +388,7 @@ LibError da_append(DynArray* da, const void* data, size_t size)
 	RETURN_ERR(da_reserve(da, size));
 	memcpy2(da->base+da->pos, data, size);
 	da->pos += size;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -449,7 +449,7 @@ LibError pool_create(Pool* p, size_t max_size, size_t el_size)
 		p->el_size = round_up(el_size, ALIGN);
 	p->freelist = 0;
 	RETURN_ERR(da_alloc(&p->da, max_size));
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -622,7 +622,7 @@ LibError bucket_create(Bucket* b, size_t el_size)
 	*(u8**)b->bucket = 0;	// terminate list
 	b->pos = round_up(sizeof(u8*), ALIGN);
 	b->num_buckets = 1;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 

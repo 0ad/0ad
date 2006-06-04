@@ -415,7 +415,7 @@ const size_t DBG_FILE_LEN = 100;
  *
  * note: all of the output parameters are optional; we pass back as much
  * information as is available and desired.
- * @return LibError; ERR_OK iff any information was successfully
+ * @return LibError; INFO_OK iff any information was successfully
  * retrieved and stored.
  **/
 extern LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line);

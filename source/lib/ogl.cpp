@@ -355,7 +355,7 @@ LibError ogl_get_gfx_info()
 	// add "OpenGL" to differentiate this from the real driver version
 	// (returned by platform-specific detect routines).
 	snprintf(gfx_drv_ver, ARRAY_SIZE(gfx_drv_ver), "OpenGL %s", version);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 

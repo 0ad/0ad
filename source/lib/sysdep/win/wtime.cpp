@@ -199,7 +199,7 @@ static LibError choose_impl()
 			hrt_impl = HRT_TSC;
 			hrt_nominal_freq = cpu_freq;
 			hrt_res = (1.0 / hrt_nominal_freq);
-			return ERR_OK;
+			return INFO_OK;
 		}
 	}
 #endif	// TSC
@@ -258,7 +258,7 @@ static LibError choose_impl()
 			hrt_impl = HRT_QPC;
 			hrt_nominal_freq = (double)qpc_freq;
 			hrt_res = (1.0 / hrt_nominal_freq);
-			return ERR_OK;
+			return INFO_OK;
 		}
 	}
 #endif	// QPC
@@ -279,7 +279,7 @@ static LibError choose_impl()
 		DWORD timer_period;	// [hectonanoseconds]
 		if(GetSystemTimeAdjustment(&adj, &timer_period, &adj_disabled))
 			hrt_res = (timer_period / 1e7);
-		return ERR_OK;
+		return INFO_OK;
 	}
 
 	hrt_impl = HRT_NONE;
@@ -393,7 +393,7 @@ static LibError reset_impl_lk()
 		hrt_cal_ticks = ticks_lk();
 	}
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -597,7 +597,7 @@ static inline LibError init_calibration_thread()
 {
 	sem_init(&exit_flag, 0, 0);
 	pthread_create(&thread, 0, calibration_thread, 0);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -606,7 +606,7 @@ static inline LibError shutdown_calibration_thread()
 	sem_post(&exit_flag);
 	pthread_join(thread, 0);
 	sem_destroy(&exit_flag);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -741,7 +741,7 @@ static LibError wtime_init()
 	// first call latches start times
 	time_ns();
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 

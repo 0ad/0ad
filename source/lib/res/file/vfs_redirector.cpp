@@ -51,7 +51,7 @@ LibError file_open_vfs(const char* V_path, uint flags, TFile* tf,
 	RETURN_ERR(file_open(N_path, flags|FILE_DONT_SET_FN, f));
 	// file_open didn't set fc.atom_fn due to FILE_DONT_SET_FN.
 	f->atom_fn = file_make_unique_fn_copy(V_path);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 static const FileProvider_VTbl archive_vtbl =
@@ -99,7 +99,7 @@ static LibError vtbl_validate(const FileProvider_VTbl* vtbl)
 		WARN_RETURN(ERR_INVALID_PARAM);
 	if(vtbl->magic != vtbl_magic)
 		WARN_RETURN(ERR_CORRUPTED);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 #define CHECK_VTBL(type) RETURN_ERR(vtbl_validate(type))
@@ -163,7 +163,7 @@ const FileProvider_VTbl* vtbl = (c == 'F')? &file_vtbl : &archive_vtbl;
 	// note: don't assign these unless we succeed to avoid the
 	// false impression that all is well.
 	f->type = vtbl;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 LibError xfile_close(File* f)
@@ -173,7 +173,7 @@ LibError xfile_close(File* f)
 	// the dtor after reload fails.
 	// note: this takes care of checking the vtbl.
 	if(!xfile_is_open(f))
-		return ERR_OK;
+		return INFO_OK;
 	LibError ret = f->type->file_close(f);
 	f->type = 0;
 	return ret;

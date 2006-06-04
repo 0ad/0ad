@@ -258,7 +258,7 @@ static LibError aio_h_set(const int fd, const HANDLE h)
 	aio_hs[fd] = h;
 
 	unlock();
-	return ERR_OK;
+	return INFO_OK;
 
 fail:
 	unlock();
@@ -437,7 +437,7 @@ static LibError req_free(Req* r)
 {
 	debug_assert(r->cb != 0 && "req_free: not currently in use");
 	r->cb = 0;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -598,7 +598,7 @@ static int aio_rw(struct aiocb* cb)
 		ok = TRUE;
 	// .. translate from Win32 result code to POSIX
 	LibError err = LibError_from_win32(ok);
-	if(err == ERR_OK)
+	if(err == INFO_OK)
 		ret = 0;
 	LibError_set_errno(err);
 
@@ -799,7 +799,7 @@ int aio_fsync(int, struct aiocb*)
 static LibError waio_init()
 {
 	req_init();
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -807,5 +807,5 @@ static LibError waio_shutdown()
 {
 	req_cleanup();
 	aio_h_cleanup();
-	return ERR_OK;
+	return INFO_OK;
 }

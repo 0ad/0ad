@@ -77,7 +77,7 @@ macros to simplify this task: function calls can be wrapped in an
 
 Consider the following example:
   LibError ret = doWork();
-  if(ret != ERR_OK) { warnUser(ret); return ret; }
+  if(ret != INFO_OK) { warnUser(ret); return ret; }
 This can be replaced by:
   CHECK_ERR(doWork());
 
@@ -182,7 +182,7 @@ extern void error_description_r(LibError err, char* buf, size_t max_chars);
 // conversion to/from other error code definitions.
 // notes:
 // - these functions will raise a warning (before returning any error code
-//   except ERR_OK) unless warn_if_failed is explicitly set to false.
+//   except INFO_OK) unless warn_if_failed is explicitly set to false.
 // - other conversion routines (e.g. to/from Win32) are implemented in
 //   the corresponding modules to keep this header portable.
 
@@ -344,10 +344,10 @@ STMT(\
 // error code is usually negative; positive denotes warnings.
 //   if negative, absolute value must be within [ERR_MIN, ERR_MAX).
 
-// ERR_OK doesn't really need a string, but must be part of enum LibError
+// INFO_OK doesn't really need a string, but must be part of enum LibError
 // due to compiler checks. (and calling error_description_r(0) should
 // never happen, but we set the text accordingly..)
-ERR(0, ERR_OK, "(but return value was 0 which indicates success)")
+ERR(0, INFO_OK, "(but return value was 0 which indicates success)")
 ERR(-1, ERR_FAIL, "Function failed (no details available)")
 
 // note: these values are > 100 to allow multiplexing them with

@@ -1070,7 +1070,7 @@ LibError file_buf_free(FileIOBuf buf, uint fb_flags)
 	const bool from_heap           = (fb_flags & FB_FROM_HEAP) != 0;
 
 	if(!buf)
-		return ERR_OK;
+		return INFO_OK;
 
 	size_t size; const char* atom_fn;
 	bool actually_removed = extant_bufs.find_and_remove(buf, size, atom_fn);
@@ -1107,7 +1107,7 @@ free_immediately:
 		stats_buf_free();
 	trace_notify_free(atom_fn, size);
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -1137,7 +1137,7 @@ LibError file_buf_set_real_fn(FileIOBuf buf, const char* atom_fn)
 	// note: removing and reinserting would be easiest, but would
 	// mess up the epoch field.
 	extant_bufs.replace_owner(buf, atom_fn);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -1182,7 +1182,7 @@ LibError file_cache_add(FileIOBuf buf, size_t size, const char* atom_fn,
 
 	file_cache.add(atom_fn, buf, size, cost);
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -1247,7 +1247,7 @@ LibError file_cache_invalidate(const char* P_fn)
 		free_padded_buf(cached_buf, size);
 	}
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 

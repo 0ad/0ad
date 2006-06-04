@@ -93,7 +93,7 @@ static LibError sym_init()
 	// don't use pthread_once because we need to return success/error code.
 	static uintptr_t already_initialized = 0;
 	if(!CAS(&already_initialized, 0, 1))
-		return ERR_OK;
+		return INFO_OK;
 
 	hProcess = GetCurrentProcess();
 
@@ -120,7 +120,7 @@ static LibError sym_init()
 	IMAGE_NT_HEADERS* header = ImageNtHeader((void*)mod_base);
 	machine = header->FileHeader.Machine;
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -128,7 +128,7 @@ static LibError sym_init()
 static LibError sym_shutdown()
 {
 	SymCleanup(hProcess);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -217,7 +217,7 @@ LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file,
 	}
 
 	unlock();
-	return (successes != 0)? ERR_OK : ERR_FAIL;
+	return (successes != 0)? INFO_OK : ERR_FAIL;
 }
 
 
@@ -302,7 +302,7 @@ static LibError ia32_walk_stack(STACKFRAME64* sf)
 	sf->AddrPC    .Offset = (DWORD64)target;
 	sf->AddrReturn.Offset = (DWORD64)ret_addr;
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 #endif	// #if CPU_IA32 && !CONFIG_OMIT_FP
@@ -416,13 +416,13 @@ static LibError walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip 
 			0, SymFunctionTableAccess64, SymGetModuleBase64, 0);
 		// note: don't use LibError_from_win32 because it raises a warning,
 		// and this "fails" commonly (when no stack frames are left).
-		err = ok? ERR_OK : ERR_FAIL;
+		err = ok? INFO_OK : ERR_FAIL;
 #endif
 
 		// no more frames found - abort. note: also test FP because
 		// StackWalk64 sometimes erroneously reports success.
 		void* fp = (void*)(uintptr_t)sf.AddrFrame .Offset;
-		if(err != ERR_OK || !fp)
+		if(err != INFO_OK || !fp)
 			return ret;
 
 		if(skip)
@@ -454,7 +454,7 @@ static LibError nth_caller_cb(const STACKFRAME64* sf, void* user_arg)
 
 	// return its address
 	*pfunc = (void*)sf->AddrPC.Offset;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -477,7 +477,7 @@ void* debug_get_nth_caller(uint skip, void* pcontext)
 	LibError err = walk_stack(nth_caller_cb, &func, skip, (const CONTEXT*)pcontext);
 
 	unlock();
-	return (err == ERR_OK)? func : 0;
+	return (err == INFO_OK)? func : 0;
 }
 
 
@@ -617,7 +617,7 @@ static LibError out_check_limit()
 	}
 
 	// no limit hit, proceed normally
-	return ERR_OK;
+	return INFO_OK;
 }
 
 //----------------------------------------------------------------------------
@@ -773,7 +773,7 @@ static LibError dump_string(const u8* p, size_t el_size)
 	}
 
 	out(L"\"%s\"", buf);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -817,7 +817,7 @@ static LibError dump_sequence(DebugIterator el_iterator, void* internal,
 		el_p = el_iterator(internal, el_size);
 
 		LibError ret = dump_string(el_p, el_size);
-		if(ret == ERR_OK)
+		if(ret == INFO_OK)
 			return ret;
 	}
 
@@ -847,7 +847,7 @@ static LibError dump_sequence(DebugIterator el_iterator, void* internal,
 			continue;
 		}
 
-		dump_error(err, el_p);	// nop if err == ERR_OK
+		dump_error(err, el_p);	// nop if err == INFO_OK
 		// add separator unless this is the last element (can't just
 		// erase below due to additional "...").
 		if(i != num_elements_to_show-1)
@@ -864,7 +864,7 @@ static LibError dump_sequence(DebugIterator el_iterator, void* internal,
 	state.level--;
 	if(fits_on_one_line)
 		out(L" }");
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -902,7 +902,7 @@ static LibError determine_symbol_address(DWORD id, DWORD UNUSED(type_id), const 
 		// pp is already correct (udt_dump_normal retrieved the offset;
 		// we do it that way so we can check it against the total
 		// UDT size for safety).
-		return ERR_OK;
+		return INFO_OK;
 
 	// this symbol is defined as static in another module =>
 	// there's nothing we can do.
@@ -977,7 +977,7 @@ in_register:
 
 debug_printf("SYM| %ws at %p  flags=%X dk=%d sym->addr=%I64X addrofs=%X addr2=%I64X ofs2=%X\n", sym->Name, *pp, sym->Flags, data_kind, sym->Address, addrofs, addr2, ofs2);
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -1157,7 +1157,7 @@ display_as_hex:
 			out(L" ('%hc')", c);
 	}
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -1258,7 +1258,7 @@ static LibError dump_sym_enum(DWORD type_id, const u8* p, DumpState UNUSED(state
 				WARN_RETURN(ERR_SYM_TYPE_INFO_UNAVAILABLE);
 			out(L"%s", name);
 			LocalFree((HLOCAL)name);
-			return ERR_OK;
+			return INFO_OK;
 		}
 	}
 
@@ -1267,7 +1267,7 @@ static LibError dump_sym_enum(DWORD type_id, const u8* p, DumpState UNUSED(state
 	// note: could goto here after a SGTI fails, but we fail instead
 	// to make sure those errors are noticed.
 	out(L"%I64d", enum_value);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -1296,9 +1296,9 @@ static LibError dump_sym_function_type(DWORD UNUSED(type_id), const u8* p, DumpS
 	lock();
 
 	out(L"0x%p", p);
-	if(err == ERR_OK)
+	if(err == INFO_OK)
 		out(L" (%hs)", name);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -1346,13 +1346,13 @@ static LibError dump_sym_pointer(DWORD type_id, const u8* p, DumpState state)
 	// bail if it's obvious the pointer is bogus
 	// (=> can't display what it's pointing to)
 	if(debug_is_pointer_bogus(p))
-		return ERR_OK;
+		return INFO_OK;
 
 	// avoid duplicates and circular references
 	if(ptr_already_visited(p))
 	{
 		out(L" (see above)");
-		return ERR_OK;
+		return INFO_OK;
 	}
 
 	// display what the pointer is pointing to.
@@ -1420,7 +1420,7 @@ static LibError udt_get_child_type(const wchar_t* child_name,
 
 		*el_type_id = type_id;
 		*el_size = (size_t)size;
-		return ERR_OK;
+		return INFO_OK;
 	}
 
 	// (happens if called for containers that are treated as STL but are not)
@@ -1452,14 +1452,14 @@ static LibError udt_dump_std(const wchar_t* wtype_name, const u8* p, size_t size
 	DWORD el_type_id;
 	size_t el_size;
  	err = udt_get_child_type(L"value_type", num_children, children, &el_type_id, &el_size);
-	if(err != ERR_OK)
+	if(err != INFO_OK)
 		goto not_valid_container;
 	// .. get iterator and # elements
 	size_t el_count;
 	DebugIterator el_iterator;
 	u8 it_mem[DEBUG_STL_MAX_ITERATOR_SIZE];
 	err = stl_get_container_info(ctype_name, p, size, el_size, &el_count, &el_iterator, it_mem);
-	if(err != ERR_OK)
+	if(err != INFO_OK)
 		goto not_valid_container;
 	return dump_sequence(el_iterator, it_mem, el_count, el_type_id, el_size, state);
 not_valid_container:
@@ -1486,7 +1486,7 @@ not_valid_container:
 		text = buf;
 	}
 	out(L"(%hs%hs)", text, stl_simplify_name(ctype_name));
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -1554,7 +1554,7 @@ static LibError udt_dump_suppressed(const wchar_t* type_name, const u8* UNUSED(p
 	// (otherwise, lack of output may be taken for an error)
 	out(L" (..)");
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -1632,7 +1632,7 @@ static LibError udt_dump_normal(const wchar_t* type_name, const u8* p, size_t si
 		}
 
 		displayed_anything = true;
-		dump_error(err, el_p);	// nop if err == ERR_OK
+		dump_error(err, el_p);	// nop if err == INFO_OK
 		out(fits_on_one_line? L", " : L"\r\n");
 
 		if(err == ERR_SYM_SINGLE_SYMBOL_LIMIT)
@@ -1645,7 +1645,7 @@ static LibError udt_dump_normal(const wchar_t* type_name, const u8* p, size_t si
 	{
 		out_erase(2);	// "{ " or "\r\n"
 		out(L"(%s)", type_name);
-		return ERR_OK;
+		return INFO_OK;
 	}
 
 	// remove trailing comma separator
@@ -1657,7 +1657,7 @@ static LibError udt_dump_normal(const wchar_t* type_name, const u8* p, size_t si
 		out(L" }");
 	}
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -1726,7 +1726,7 @@ static LibError dump_sym_unknown(DWORD type_id, const u8* UNUSED(p), DumpState U
 
 	debug_printf("SYM| unknown tag: %d\n", type_tag);
 	out(L"(unknown symbol type)");
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -1837,7 +1837,7 @@ static LibError dump_frame_cb(const STACKFRAME64* sf, void* UNUSED(user_arg))
 		// an alternative would be to check if module=kernel32, but
 		// that would cut off callbacks as well.
 		if(!strcmp(func_name, "_BaseProcessStart@4"))
-			return ERR_OK;
+			return INFO_OK;
 
 		out(L"%hs (%hs:%d)\r\n", func_name, file, line);
 	}

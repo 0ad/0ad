@@ -626,7 +626,7 @@ static LibError mmap_mem(void* start, size_t len, int prot, int flags, int fd, v
 			*pp = 0;
 			// make sure *pp won't be misinterpreted as an error
 			cassert(MAP_FAILED != 0);
-			return ERR_OK;
+			return INFO_OK;
 		}
 	}
 
@@ -636,7 +636,7 @@ static LibError mmap_mem(void* start, size_t len, int prot, int flags, int fd, v
 	if(!p)
 		WARN_RETURN(ERR_NO_MEM);
 	*pp = p;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -673,7 +673,7 @@ static LibError mmap_file_access(int prot, int flags, DWORD& flProtect, DWORD& d
 		}
 	}
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -721,7 +721,7 @@ static LibError mmap_file(void* start, size_t len, int prot, int flags,
 
 	WIN_RESTORE_LAST_ERROR;
 	*pp = p;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 

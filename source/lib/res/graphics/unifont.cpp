@@ -64,7 +64,7 @@ static LibError UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 {
 	// already loaded
 	if(f->ht > 0)
-		return ERR_OK;
+		return INFO_OK;
 
 	f->glyphs_id = new glyphmap_id;
 	f->glyphs_size = new glyphmap_size;
@@ -163,7 +163,7 @@ static LibError UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 	}
 
 	f->ht = ht;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 static LibError UniFont_validate(const UniFont* f)
@@ -178,13 +178,13 @@ static LibError UniFont_validate(const UniFont* f)
 		WARN_RETURN(ERR_3);
 	if(f->ListBase == 0 || f->ListBase > 1000000)	// suspicious
 		WARN_RETURN(ERR_4);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 static LibError UniFont_to_string(const UniFont* UNUSED(f), char* buf)
 {
 	snprintf(buf, H_STRING_LEN, "");
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -208,7 +208,7 @@ LibError unifont_bind(const Handle h)
 	glListBase(f->ListBase);
 	BoundGlyphs = f->glyphs_id;
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -308,11 +308,11 @@ LibError unifont_stringsize(const Handle h, const wchar_t* text, int& width, int
 		if (it == f->glyphs_size->end()) // Missing the missing glyph symbol - give up
 		{
 			debug_warn("Missing the missing glyph in a unifont!\n");
-			return ERR_OK;
+			return INFO_OK;
 		}
 
 		width += it->second; // Add the character's advance distance
 	}
 
-	return ERR_OK;
+	return INFO_OK;
 }

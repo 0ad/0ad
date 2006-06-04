@@ -75,7 +75,7 @@ static LibError LibError_from_GLE(bool warn_if_failed = true)
 LibError LibError_from_win32(DWORD ret, bool warn_if_failed)
 {
 	if(ret != FALSE)
-		return ERR_OK;
+		return INFO_OK;
 	return LibError_from_GLE(warn_if_failed);
 }
 

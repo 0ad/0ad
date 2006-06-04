@@ -73,7 +73,7 @@ enum TreeLookupFlags
 //   a higher-priority file of the same name already exists
 //   (used by VFile_reload when opening for writing).
 //
-// output params are only valid if ERR_OK is returned.
+// output params are only valid if INFO_OK is returned.
 extern LibError tree_lookup(const char* path, TFile** ptf, uint flags = 0);
 
 // starting at VFS root, traverse <path> and pass back information
@@ -87,7 +87,7 @@ extern LibError tree_lookup(const char* path, TFile** ptf, uint flags = 0);
 // <path> can be to a file or dir (in which case it must end in '/',
 // to make sure the last component is treated as a directory).
 //
-// output params are only valid if ERR_OK is returned.
+// output params are only valid if INFO_OK is returned.
 extern LibError tree_lookup_dir(const char* V_path, TDir** ptd, uint flags = 0);
 
 

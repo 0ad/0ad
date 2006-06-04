@@ -121,7 +121,7 @@ static LibError Archive_reload(Archive* a, const char* fn, Handle)
 	RETURN_ERR(zip_populate_archive(&a->f, a));
 	a->is_loaded = 1;
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 static LibError Archive_validate(const Archive* a)
@@ -131,13 +131,13 @@ static LibError Archive_validate(const Archive* a)
 	if(debug_is_pointer_bogus(a->ents))
 		WARN_RETURN(ERR_1);
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 static LibError Archive_to_string(const Archive* a, char* buf)
 {
 	snprintf(buf, H_STRING_LEN, "(%u files)", a->num_files);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -169,7 +169,7 @@ static LibError archive_get_file_info(Archive* a, const char* fn, uintptr_t meme
 	if(memento)
 	{
 		ent = (ArchiveEntry*)memento;
-		return ERR_OK;
+		return INFO_OK;
 	}
 	else
 	{
@@ -178,7 +178,7 @@ static LibError archive_get_file_info(Archive* a, const char* fn, uintptr_t meme
 			if(a->ents[i].atom_fn == atom_fn)
 			{
 				ent = &a->ents[i];
-				return ERR_OK;
+				return INFO_OK;
 			}
 	}
 
@@ -211,7 +211,7 @@ LibError archive_enum(const Handle ha, const FileCB cb, const uintptr_t user)
 			return ret;
 	}
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -223,7 +223,7 @@ LibError archive_allocate_entries(Archive* a, size_t num_entries)
 	a->ents = (ArchiveEntry*)mem_alloc(num_entries * sizeof(ArchiveEntry), 32);
 	if(!a->ents)
 		WARN_RETURN(ERR_NO_MEM);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -235,7 +235,7 @@ LibError archive_allocate_entries(Archive* a, size_t num_entries)
 LibError archive_add_file(Archive* a, const ArchiveEntry* ent)
 {
 	a->ents[a->num_files++] = *ent;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -290,7 +290,7 @@ LibError afile_stat(Handle ha, const char* fn, struct stat* s)
 
 	s->st_size  = ent->ucsize;
 	s->st_mtime = ent->mtime;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -308,7 +308,7 @@ LibError afile_validate(const File* f)
 		WARN_RETURN(ERR_1);
 	// note: af->ctx is 0 if file is not compressed.
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 #define CHECK_AFILE(f) RETURN_ERR(afile_validate(f))
@@ -359,7 +359,7 @@ LibError afile_open(const Handle ha, const char* fn, uintptr_t memento, uint fla
 	af->ctx       = ctx;
 	af->is_mapped = 0;
 	CHECK_AFILE(f);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -371,7 +371,7 @@ LibError afile_close(File* f)
 	// other File fields don't need to be freed/cleared
 	comp_free(af->ctx);
 	af->ctx = 0;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -446,7 +446,7 @@ LibError afile_io_issue(File* f, off_t user_ofs, size_t max_output_size, void* u
 	RETURN_ERR(file_io_issue(&a->f, cofs, csize, cbuf, aio->io));
 
 	af->last_cofs += (off_t)csize;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -489,7 +489,7 @@ LibError afile_io_wait(FileIo* io, void*& buf, size_t& size)
 		size = raw_size;
 	}
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -510,7 +510,7 @@ LibError afile_io_validate(const FileIo* io)
 		WARN_RETURN(ERR_1);
 	// <ctx> and <max_output_size> have no invariants we could check.
 	RETURN_ERR(file_io_validate(aio->io));
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -548,7 +548,7 @@ public:
 		if(user_cb)
 			ret = user_cb(user_cb_ctx, ucblock, ucsize, bytes_processed);
 		if(ucsize_left == 0)
-			ret = ERR_OK;
+			ret = INFO_OK;
 		return ret;
 	}
 
@@ -681,7 +681,7 @@ LibError afile_map(File* f, void*& p, size_t& size)
 	size = f->size;
 
 	af->is_mapped = 1;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 

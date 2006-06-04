@@ -251,7 +251,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 	{
 		// Open file with VFS
 		ret = vfs_load(m_ConfigFile[ns], buffer, buflen);
-		if(ret != ERR_OK)
+		if(ret != INFO_OK)
 		{
 			LOG(ERROR, LOG_CATEGORY, "vfs_load for \"%s\" failed: return was %lld", m_ConfigFile[ns].c_str(), ret);
 			return false;
@@ -259,7 +259,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 	}
 	else
 	{
-		if (file_open(m_ConfigFile[ns], 0, &f)!=ERR_OK)
+		if (file_open(m_ConfigFile[ns], 0, &f)!=INFO_OK)
 		{
 			LOG(ERROR, LOG_CATEGORY, "file_open for \"%s\" failed", m_ConfigFile[ns].c_str());
 			return false;

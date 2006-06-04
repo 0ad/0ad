@@ -235,7 +235,7 @@ LibError debug_write_crashlog(const wchar_t* text)
 	fwprintf(f, L"Last known activity:\n\n %ls\n", debug_log);
 
 	fclose(f);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 

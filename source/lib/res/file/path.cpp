@@ -80,7 +80,7 @@ static LibError convert_path(char* dst, const char* src, Conversion conv = TO_NA
 
 		// end of string - done
 		if(c == '\0')
-			return ERR_OK;
+			return INFO_OK;
 	}
 }
 
@@ -185,7 +185,7 @@ LibError file_set_root_dir(const char* argv0, const char* rel_path)
 	//    (note: already 0-terminated, since it's static)
 	n_root_dir_len = strlen(n_root_dir)+1;	// +1 for trailing DIR_SEP
 	n_root_dir[n_root_dir_len-1] = DIR_SEP;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 

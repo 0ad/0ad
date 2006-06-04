@@ -111,7 +111,7 @@ LibError in_record(const char* fn)
 
 	state = RECORD;
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -135,7 +135,7 @@ LibError in_playback(const char* fn)
 
 	state = PLAYBACK;
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 

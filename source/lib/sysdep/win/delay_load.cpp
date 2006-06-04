@@ -601,7 +601,7 @@ static LibError wdll_shutdown()
 				// changes __puiHead!
 		}
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
