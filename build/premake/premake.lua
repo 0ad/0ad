@@ -298,8 +298,9 @@ end
 function setup_main_exe ()
 
 	create_package_with_cflags("pyrogenesis", "winexe")
-
-	table.insert(package.files, "../../../source/main.cpp")
+	
+	package.files = { source_root .. "main.cpp" }
+	package.includepaths = { source_root }
 
 	-- For VS2005, tell the linker to use the libraries' .obj files instead of
 	-- the .lib, to allow incremental linking.

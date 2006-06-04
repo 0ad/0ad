@@ -119,10 +119,13 @@ int gnu_cpp()
 			io_print(" -s");
 		if (os_is("macosx") && prj_has_flag("dylib"))
 			io_print(" -dynamiclib -flat_namespace");
+		// Use start-group and end-group to get around the problem with the 
+		// order of link arguments.
+		io_print(" -Xlinker --start-group");
 		print_list(prj_get_linkoptions(), " ", "", "", NULL);
 		print_list(prj_get_libpaths(), " -L \"", "\"", "", NULL);
 		print_list(prj_get_links(), " ", "", "", filterLinks);
-		io_print("\n");
+		io_print(" -Xlinker --end-group\n");
 
 		/* Build a list of libraries this target depends on */
 		io_print("  LDDEPS :=");
@@ -322,8 +325,9 @@ static const char* listCppTargets(const char* name)
 	if (is_cpp(name))
 	{
 		const char* ext = path_getextension(name);
+		const char* basename = path_getbasename(name);
 
-		sprintf(g_buffer, "$(OBJDIR)/%s.o: %s\n", path_getbasename(name), name);
+		sprintf(g_buffer, "$(OBJDIR)/%s.o: %s\n", basename, name);
 		strcat(g_buffer, "\t-");
 		if (!g_verbose)
 			strcat(g_buffer, "@");
@@ -350,7 +354,7 @@ static const char* listCppTargets(const char* name)
 			if (matches(ext, ".s"))
 				strcat(g_buffer, "$(CC) -x assembler-with-cpp $(CPPFLAGS) -o $@ -c $<\n");
 			else if (matches(ext, ".c"))
-				strcat(g_buffer, "$(CC) $(CFLAGS) -MF $(OBJDIR)/$(<F).d -o $@ -c $<\n");
+				strcat(g_buffer, "$(CC) $(CFLAGS) -MF $(OBJDIR)/$(<F:%%.c=%%.d) -o $@ -c $<\n");
 			else if (matches(ext, ".asm"))
 			{
 				const char* opts = "";
@@ -360,10 +364,14 @@ static const char* listCppTargets(const char* name)
 				strcat(g_buffer, "\t");
 				if (!g_verbose)
 					strcat(g_buffer, "@");
-				strcat(g_buffer, "nasm "); strcat(g_buffer, opts); strcat(g_buffer, "-M -o $@ $< >$(OBJDIR)/$(<F).d\n");
+				strcat(g_buffer, "nasm "); strcat(g_buffer, opts); strcat(g_buffer, "-M -o $@ $< >$(OBJDIR)/$(<F:%%.asm=%.d)\n");
 			}
 			else
-				strcat(g_buffer, "$(CXX) $(CXXFLAGS) -MF $(OBJDIR)/$(<F).d -o $@ -c $<\n");
+			{
+				strcat(g_buffer, "$(CXX) $(CXXFLAGS) -MF $(OBJDIR)/");
+				strcat(g_buffer, basename);
+				strcat(g_buffer, ".d -o $@ -c $<\n");
+			}
 		}
 
 		return g_buffer;
