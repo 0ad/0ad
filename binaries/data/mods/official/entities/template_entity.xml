@@ -52,10 +52,17 @@
 			<Height>-1.0</Height>
 			<Name></Name>
 		</Rank>
+		
 		<Flank_Penalty>
 			<Sectors>6</Sectors>
 			<Value>.2</Value>
 		</Flank_Penalty>
+		
+		<Elevation>
+			<Rate>1.0</Rate>
+			<Value>0.0</Value>
+		</Elevation>
+
 		<Pitch>
 			<Sectors>7</Sectors>
 			<Value>.1</Value>

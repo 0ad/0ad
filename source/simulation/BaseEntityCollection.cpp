@@ -57,6 +57,7 @@ CBaseEntity* CBaseEntityCollection::getTemplate( CStrW name, CPlayer* player )
 	if( !newTemplate->loadXML( path ) )
 	{
 		LOG(ERROR, LOG_CATEGORY, "CBaseEntityCollection::loadTemplates(): Couldn't load template \"%s\"", path.c_str());
+		delete newTemplate;
 		return( NULL );
 	}
 

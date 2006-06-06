@@ -9,7 +9,6 @@
 #include "ScriptGlue.h"
 #include "JSConversions.h"
 #include "GameEvents.h"
-
 #include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
 #include "graphics/MapWriter.h"
@@ -35,6 +34,7 @@
 #include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
 #include "simulation/BaseEntityCollection.h"
+#include "simulation/BaseTechCollection.h"
 #include "simulation/Entity.h"
 #include "simulation/EntityFormation.h"
 #include "simulation/EntityHandles.h"
@@ -267,9 +267,13 @@ JSBool issueCommand( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rv
 				CreateFormationMessage(messages, msg, entities[i]);
 				formation->SetDuplication(true);
 				entities.erase( entities.begin()+i );	//we don't want to be in two orders
+				--i;
 			}
 			else if ( duplicate )
+			{
 				entities.erase( entities.begin()+i );
+				--i;
+			}
 		}
 	}
 	
@@ -323,6 +327,37 @@ JSBool isFormationLocked( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval
 	CEntity* entity = ToNative<CEntity>( argv[0] );
 	*rval = entity->GetFormation()->IsLocked() ? JS_TRUE : JS_FALSE;
 	return JS_TRUE;
+}
+//-----------------------------------------------------------------------------
+// Techs
+//-----------------------------------------------------------------------------
+
+JSBool getTechTemplate( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
+{
+	REQUIRE_MIN_PARAMS(2, getTechTemplate);
+	
+	CStrW name = ToPrimitive<CStrW>( argv[0] );
+	PS_uint playerID = (PS_uint)ToPrimitive<int>( argv[1] );
+	rval = JSVAL_NULL;
+
+	if ( g_Game->GetPlayer(playerID) )
+	{
+		//The tech will now temporarily belong to this player.  This will change on the next call.
+		CBaseTech* tech = g_BaseTechCollection.getTemplate(name);	
+		if ( tech )
+		{
+			tech->setPlayer( g_Game->GetPlayer(playerID) );
+			*rval = OBJECT_TO_JSVAL(tech->GetScript());
+		}
+		else
+			JS_ReportError(cx, "Invalid tech template name \"%s\" passed for getTechTemplate()", name.c_str() );
+	}
+	else
+		JS_ReportError(cx, "Invalid playerID \"%d\"passed for getTechTemplate()", playerID);
+
+	if ( rval )
+		return JS_TRUE;
+	return JS_FALSE;
 }
 
 //-----------------------------------------------------------------------------
@@ -522,6 +557,16 @@ JSBool cancelTimer( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNU
 	}
 
 	return( JS_TRUE );
+}
+//Set the simulation rate scalar-time becomes time * SimRate.
+//Params: rate [float] : sets SimRate
+JSBool setSimRate(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rval))
+{
+	REQUIRE_MIN_PARAMS(1, setSimRate);
+	REQUIRE_MAX_PARAMS(1, setSimRate);
+
+	g_Game->SetSimRate( ToPrimitive<float>(argv[0]) );
+	return JS_TRUE;
 }
 
 
@@ -1154,7 +1199,9 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC(removeFromFormation, removeFromFormation, 1)
 	JS_FUNC(lockEntityFormation, lockEntityFormation, 1)
 	JS_FUNC(isFormationLocked, isFormationLocked, 1)
-
+	
+	//Tech
+	JS_FUNC(getTechTemplate, getTechTemplate, 2)
 	// Camera
 	JS_FUNC(setCameraTarget, setCameraTarget, 1)
 
@@ -1186,6 +1233,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC(setInterval, setInterval, 2)
 	JS_FUNC(cancelInterval, cancelInterval, 0)
 	JS_FUNC(cancelTimer, cancelTimer, 0)
+	JS_FUNC(setSimRate, setSimRate, 1)
 
 	// Game Setup
 	JS_FUNC(startGame, startGame, 0)

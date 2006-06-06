@@ -345,8 +345,9 @@ void Render()
 		PROFILE_START( "render health bars" );
 		pglActiveTextureARB(GL_TEXTURE1_ARB);
 		glDisable(GL_TEXTURE_2D);
-		pglActiveTextureARB(GL_TEXTURE2_ARB);
-		glDisable(GL_TEXTURE_2D);
+		//Not all hardware supports 3 texture units!
+		//pglActiveTextureARB(GL_TEXTURE2_ARB);
+		//glDisable(GL_TEXTURE_2D);
 		pglActiveTextureARB(GL_TEXTURE0_ARB);
 		glMatrixMode(GL_TEXTURE);
 		glLoadIdentity();

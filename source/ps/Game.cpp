@@ -38,7 +38,8 @@ CGame::CGame():
 	m_pLocalPlayer(NULL),
 	m_GameStarted(false),
 	m_Paused(false),
-	m_Time(0)
+	m_Time(0),
+	m_SimRate(1.0f)
 {
 	debug_printf("CGame::CGame(): Game object CREATED; initializing..\n");
 }
@@ -139,9 +140,9 @@ void CGame::Update(double deltaTime)
 	{
 		return;
 	}
-
+	deltaTime *= m_SimRate;
 	m_Time += deltaTime;
-
+	
 	m_Simulation->Update(deltaTime);
 	
 	// TODO Detect game over and bring up the summary screen or something

@@ -54,14 +54,14 @@ CSprite::~CSprite()
 
 void CSprite::Render() 
 {	
-	BeginBillboard();
-
-	glDisable(GL_CULL_FACE);
-
+	glPushMatrix();
 	glTranslatef(m_translation.X, m_translation.Y, m_translation.Z);
 	glScalef(m_scale.X, m_scale.Y, m_scale.Z);
+	BeginBillboard();
+	glDisable(GL_CULL_FACE);
 
-	ogl_tex_bind(m_texture->GetHandle());
+	if ( m_texture->GetHandle() != 0 )
+		ogl_tex_bind(m_texture->GetHandle());
 
 	glColor4fv(m_colour);
 
@@ -187,7 +187,7 @@ void CSprite::SetColour(float * colour)
 	m_colour[3] = colour[3];
 }
 
-// should be called before any other gl calls
+//Must call glPushMatrix() before this. Should be called before any other gl calls
 void CSprite::BeginBillboard() 
 {
 	float newMatrix[16] = { 1.0f, 0.0f, 0.0f, 0.0f, 
@@ -207,7 +207,6 @@ void CSprite::BeginBillboard()
 	newMatrix[9] = currentMatrix[6];
 	newMatrix[10] = currentMatrix[10];
 
-	glPushMatrix();
 	glMultMatrixf(newMatrix);
 }
 

@@ -65,6 +65,9 @@ public:
 	// Intrinsic properties
 	CBaseEntity* m_base;
 
+	//Attributes table: key=attribute, value=variable name 
+	static std::map<CStr, size_t> m_AttributeTable;
+
 	// The entity to switch to when this dies.
 	CStrW m_corpse;
 
@@ -90,7 +93,7 @@ public:
 	float m_healthDecayRate;
 
 	SEntityAction m_run;
-
+	
 	ActionTable m_actions;
 
 	bool m_selected;
@@ -306,6 +309,7 @@ public:
 
 	// Reset properties after the entity-template we use changes.
 	void loadBase();
+	static void initAttributes(const CEntity* _this);
 
 	void playerChanged(); // Fixes player colour if player is changed by script
 	void reorient(); // Orientation
@@ -404,7 +408,10 @@ public:
 			m_orderQueue.pop_front();
 		return JSVAL_VOID;
 	}
-
+	jsval GetHeight( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+	{
+		return ToJSVal(m_position.Y);
+	}
 	static void ScriptingInit();
 
 private:

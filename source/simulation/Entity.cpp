@@ -32,6 +32,7 @@ extern int g_xres, g_yres;
 
 #include <algorithm>
 using namespace std;
+std::map<CStr, size_t> CEntity::m_AttributeTable;
 
 CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections, CStrW building )
 {
@@ -233,6 +234,61 @@ void CEntity::loadBase()
 	}
 }
 
+void CEntity::initAttributes(const CEntity* _this)
+{
+#define getoffset(member) \
+	(size_t) ((unsigned char*)&_this->member - (unsigned char*)_this) 
+
+#define getoffset_action(member, mem2) \
+	(size_t) ((unsigned char*)&_this->member.mem2 - (unsigned char*)_this) 
+	
+	//Add the attribute name and the variable that holds it
+	CEntity::m_AttributeTable["actions.move.speed_curr"] = getoffset(m_speed);
+	CEntity::m_AttributeTable["actions.move.run.speed"] = getoffset(m_runSpeed);
+	CEntity::m_AttributeTable["actions.move.run.rangemin"] = getoffset_action(m_run, m_MinRange);
+	CEntity::m_AttributeTable["actions.move.run.range"] = getoffset_action(m_run, m_MaxRange);
+	CEntity::m_AttributeTable["actions.move.run.regen_rate"] = getoffset(m_runRegenRate);
+	CEntity::m_AttributeTable["actions.move.run.decay_rate"] = getoffset(m_runDecayRate);
+	CEntity::m_AttributeTable["actions.move.pass_through_allies"] = getoffset(m_passThroughAllies);
+    CEntity::m_AttributeTable["traits.extant"] = getoffset(m_extant);
+    CEntity::m_AttributeTable["traits.corpse"] = getoffset(m_corpse);
+    CEntity::m_AttributeTable["actions.move.turningradius"] = getoffset(m_turningRadius);
+
+    CEntity::m_AttributeTable["traits.health.curr"] = getoffset(m_healthCurr);
+    CEntity::m_AttributeTable["traits.health.max"] = getoffset(m_healthMax);
+	CEntity::m_AttributeTable["traits.health.regen_rate"] = getoffset(m_healthRegenRate);
+	CEntity::m_AttributeTable["traits.health.regen_start"] = getoffset(m_healthRegenStart);
+	CEntity::m_AttributeTable["traits.health.decay_rate"] = getoffset(m_healthDecayRate);
+	//This are not changable from techs until the updated bars are finished
+	
+	/*	CEntity::m_AttributeTable["traits.stamina.curr"] = getoffset(m_staminaCurr);
+    CEntity::m_AttributeTable["traits.stamina.max"] = getoffset(m_staminaMax);
+    CEntity::m_AttributeTable["traits.bars.height"] = getoffset(m_barHeight);
+	CEntity::m_AttributeTable["traits.bars"] = getoffset(m_barOffset);
+	CEntity::m_AttributeTable["traits.bars.width"] = getoffset(m_barWidth);
+	CEntity::m_AttributeTable["traits.bars.border_height"] = getoffset(m_barBorderHeight);
+	CEntity::m_AttributeTable["traits.bars.border_width"] = getoffset(m_barBorderWidth);
+	CEntity::m_AttributeTable["traits.bars.border_name"] = getoffset(m_barBorderName);*/
+	CEntity::m_AttributeTable["traits.flank_penalty.sectors"] = getoffset(m_sectorDivs);
+	CEntity::m_AttributeTable["traits.pitch.sectors"] = getoffset(m_pitchDivs);
+	CEntity::m_AttributeTable["traits.rank.width"] = getoffset(m_rankWidth);
+//	CEntity::m_AttributeTable["traits.rank"] = getoffset(m_rankOffset);
+	CEntity::m_AttributeTable["traits.rank.height"] = getoffset(m_rankHeight);
+	CEntity::m_AttributeTable["traits.rank.name"] = getoffset(m_rankName);
+    CEntity::m_AttributeTable["traits.minimap.type"] = getoffset(m_minimapType);
+    CEntity::m_AttributeTable["traits.minimap.red"] = getoffset(m_minimapR);
+    CEntity::m_AttributeTable["traits.minimap.green"] = getoffset(m_minimapG);
+    CEntity::m_AttributeTable["traits.minimap.blue"] = getoffset(m_minimapB);
+    CEntity::m_AttributeTable["traits.anchor.type"] = getoffset(m_anchorType);
+	CEntity::m_AttributeTable["traits.anchor.conformx"] = getoffset(m_anchorConformX);
+	CEntity::m_AttributeTable["traits.anchor.conformz"] = getoffset(m_anchorConformZ);
+    CEntity::m_AttributeTable["traits.vision.los"] = getoffset(m_los);
+    CEntity::m_AttributeTable["traits.vision.permanent"] = getoffset(m_permanent);
+	CEntity::m_AttributeTable["last_combat_time"] = getoffset(m_lastCombatTime);
+	CEntity::m_AttributeTable["last_run_time"] = getoffset(m_lastRunTime);
+	CEntity::m_AttributeTable["building"] = getoffset(m_building);
+#undef getoffset
+}
 void CEntity::kill()
 {
     g_Selection.removeAll( me );
@@ -1386,6 +1442,7 @@ void CEntity::ScriptingInit()
 	AddMethod<jsval, &CEntity::RegisterOrderChange>( "registerOrderChange", 0 );
 	AddMethod<jsval, &CEntity::GetAttackDirections>( "getAttackDirections", 0 );
 	AddMethod<jsval, &CEntity::FindSector>("findSector", 4);
+	AddMethod<jsval, &CEntity::GetHeight>("getHeight", 0 );
 
     AddClassProperty( L"template", (CBaseEntity* CEntity::*)&CEntity::m_base, false, (NotifyFn)&CEntity::loadBase );
     AddClassProperty( L"traits.id.classes", (GetFn)&CEntity::getClassSet, (SetFn)&CEntity::setClassSet );

@@ -140,7 +140,9 @@ static SHotkeyInfo hotkeyInfo[] =
 	{ HOTKEY_WATER_TOGGLE, "water.toggle", SDLK_q, 0 },
 	{ HOTKEY_WATER_RAISE, "water.toggle", SDLK_a, 0 },
 	{ HOTKEY_WATER_LOWER, "water.toggle", SDLK_z, 0 },
-	{ HOTKEY_PAUSE, "pause", SDLK_PAUSE, 0 }
+	{ HOTKEY_PAUSE, "pause", SDLK_PAUSE, 0 },
+	{ HOTKEY_SPEED_INCREASE, "speed.increase", 0, 0 },
+	{ HOTKEY_SPEED_DECREASE, "speed.decrease", 0, 0 }
 };
 
 /* SDL-type ends */

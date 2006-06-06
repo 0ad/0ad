@@ -54,6 +54,7 @@ CBaseFormation* CBaseFormationCollection::getTemplate( CStrW name )
 	if( !newTemplate->loadXML( path ) )
 	{
 		LOG(ERROR, LOG_CATEGORY, "CBaseFormationCollection::loadTemplates(): Couldn't load template \"%s\"", path.c_str());
+		delete newTemplate;
 		return( NULL );
 	}
 

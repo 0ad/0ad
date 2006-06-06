@@ -2,7 +2,7 @@
 #define _ps_Game_H
 
 #include "ps/Errors.h"
-
+#include "maths/MathUtil.h"
 #include <vector>
 
 class CWorld;
@@ -29,6 +29,7 @@ class CGame
 	bool m_GameStarted;
 
 	float m_Time;
+	float m_SimRate;
 
 	enum EOG
 	{
@@ -91,6 +92,11 @@ public:
 	
 	inline float GetTime()
 	{	return m_Time; }
+
+	inline void SetSimRate(float simRate)
+	{	 m_SimRate=clamp(simRate, 0.0f, simRate); }
+	inline float GetSimRate()
+	{	return m_SimRate;  }
 
 private:
 	PSRETURN RegisterInit(CGameAttributes* pAttribs);

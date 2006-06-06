@@ -377,7 +377,7 @@ function performAttack( evt )
 		dmg.pierce = parseInt(a.damage * a.pierce);
 	}
 	
-	// Add flank bonus
+	// Add flank penalty
 	if(evt.target.traits.flank_penalty)
 	{
 		var flank = (evt.target.getAttackDirections()-1)*evt.target.traits.flank_penalty.value;
@@ -403,7 +403,13 @@ function performAttackRanged( evt )
 	dmg.hack = parseInt(a.damage * a.hack);
 	dmg.pierce = parseInt(a.damage * a.pierce);
 	
-	// Add flank bonus
+	// Add flank penalty and elevation bonus
+	var elevationBonus = (this.getHeight() - evt.target.getHeight())/this.traits.elevation.rate * this.traits.elevation.value;
+	
+	dmg.crush += dmg.crush * elevationBonus;
+	dmg.hack += dmg.hack * elevationBonus;
+	dmg.pierce += dmg.pierce * elevationBonus;
+	console.write( dmg.crush + "|" + dmg.hack );
 	if(evt.target.traits.flank_penalty)
 	{
 		var flank = (evt.target.getAttackDirections()-1)*evt.target.traits.flank_penalty.value;
