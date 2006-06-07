@@ -312,7 +312,7 @@ end
 --------------------------------------------------------------------------------
 
 -- used for main EXE as well as test
-ps_libs = {
+used_extern_libs = {
 	"opengl",
 	"sdl",
 
@@ -347,13 +347,14 @@ function setup_main_exe ()
 	}
 	package_add_contents(source_root, {}, {}, extra_params)
 
-	package_add_extern_libs(ps_libs)
+	package_add_extern_libs(used_extern_libs)
 
 
 	-- Platform Specifics
 	if OS == "windows" then
+
 		tinsert(package.files, source_root.."lib/sysdep/win/icon.rc")
-		-- from lowlevel static lib; must be added here to be linked in
+		-- from "lowlevel" static lib; must be added here to be linked in
 		tinsert(package.files, source_root.."lib/sysdep/win/error_dialog.rc")
 
 		-- VS2005 generates its own manifest, but earlier ones need us to add it manually
@@ -361,13 +362,20 @@ function setup_main_exe ()
 			tinsert(package.files, source_root.."lib/sysdep/win/manifest.rc")
 		end
 
-		package.linkoptions = { "/ENTRY:entry",
+		package.linkoptions = {
+			-- required for win.cpp's init mechanism
+			"/ENTRY:entry",
+
+			-- delay loading of various Windows DLLs (not specific to any of the
+			-- external libraries; those and handled separately)
 			"/DELAYLOAD:oleaut32.dll",
 			"/DELAYLOAD:advapi32.dll",
 			"/DELAYLOAD:user32.dll",
 			"/DELAYLOAD:ws2_32.dll",
 			"/DELAYLOAD:version.dll",
-			"/DELAY:UNLOAD"		-- allow manual unload of delay-loaded DLLs
+
+			-- allow manual unload of delay-loaded DLLs
+			"/DELAY:UNLOAD"
 		}
 
 		-- required to use WinMain() on Windows, otherwise will default to main()
@@ -568,7 +576,7 @@ function setup_tests()
 	
 	package_create("test_2_build", "winexe")
 	package.files = files_in_test_subdirs(source_root, ".cpp")
-	package_add_extern_libs(ps_libs)
+	package_add_extern_libs(used_extern_libs)
 	
 --	package_create("test_1_run"  , "run")
 	-- use package's output target as the file to run
@@ -596,7 +604,7 @@ setup_all_libs()
 	listconcat(main_exe_package.links, static_lib_names)
 
 if options["atlas"] then
-	setuppackages_atlas()
+	setup_atlas_packages()
 	setup_atlas_frontends()
 end
 
