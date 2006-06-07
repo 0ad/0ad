@@ -460,6 +460,26 @@ end
 -- main EXE
 --------------------------------------------------------------------------------
 
+ps_libs = {
+	"opengl",
+	"sdl",
+
+	"libjpg",
+	"libpng",
+	"zlib",
+
+	"spidermonkey",
+	"xerces",
+
+	"openal",
+	"vorbis",
+
+	"boost",
+	"dbghelp",
+	"cxxtest",
+	"directx",
+}
+
 -- Bundles static libs together with main.cpp and builds game executable.
 function setup_main_exe ()
 
@@ -475,26 +495,7 @@ function setup_main_exe ()
 	}
 	package_add_contents(source_root, {}, {}, extra_params)
 
-	local extern_libs = {
-		"opengl",
-		"sdl",
-
-		"libjpg",
-		"libpng",
-		"zlib",
-
-		"spidermonkey",
-		"xerces",
-
-		"openal",
-		"vorbis",
-
-		"boost",
-		"dbghelp",
-		"cxxtest",
-		"directx",
-	}
-	package_add_extern_libs(extern_libs)
+	package_add_extern_libs(ps_libs)
 
 
 	-- Platform Specifics
@@ -538,6 +539,10 @@ function setup_main_exe ()
 	end
 end
 
+
+--------------------------------------------------------------------------------
+-- atlas
+--------------------------------------------------------------------------------
 
 ---------------- Main Atlas package ----------------
 
@@ -657,7 +662,7 @@ function setuppackage_atlas_frontend (package_name)
 		source_root..package_name..".rc"
 	}
 	package.trimprefix = source_root
-	package.includepaths = { source_root..".." }
+	package.includepaths = { source_root .. ".." }
 
 	-- Platform Specifics
 	if OS == "windows" then
@@ -680,7 +685,49 @@ function setup_atlas_frontends()
 	setuppackage_atlas_frontend("FileConverter")
 end
 
---------------------------------
+
+--------------------------------------------------------------------------------
+-- tests
+--------------------------------------------------------------------------------
+
+function files_in_test_subdirs(root, ext)
+
+	-- note: lua doesn't have any directory handling functions at all, ugh.
+	-- premake's matchrecursive on patterns like *tests*.h doesn't work -
+	-- apparently it applies them to filenames, not the complete path.
+	-- our workaround is to enumerate all files of the desired extension,
+	-- and manually filter out the desired */tests/* files.
+	-- this is a bit slow, but hey.
+
+	local pattern = root .. "*" .. ext
+	local all_files = matchrecursive(pattern)
+	local ret = {}
+	for i,v in all_files do
+		if string.find(v, "/tests/") then
+			tinsert(ret, v)
+		end
+	end
+	
+	return ret
+end
+
+
+function setup_tests()
+--	package_create("test_3_gen"  , "cxxtestgen")
+--	package.files = files_in_test_subdirs(source_root, ".h")
+	
+	package_create("test_2_build", "winexe")
+	package.files = files_in_test_subdirs(source_root, ".cpp")
+	package_add_extern_libs(ps_libs)
+	
+--	package_create("test_1_run"  , "run")
+	-- use package's output target as the file to run
+	-- (avoids having to mess around with project.bindir and
+	-- OS-specific application extension, e.g. EXE)
+end
+
+
+
 
 -- must come first, so that VC sets it as the default project and therefore
 -- allows running via F5 without the "where is the EXE" dialog.
@@ -702,3 +749,5 @@ if options["atlas"] then
 	setuppackages_atlas()
 	setup_atlas_frontends()
 end
+
+setup_tests()
