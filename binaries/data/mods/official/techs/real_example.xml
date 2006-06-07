@@ -32,23 +32,17 @@
    
    <Effect>
        <Target>Melee</Target>
-       <Target>some_entity_class_name</Target>
+       <Target>Ranged</Target>
        
-       <Pair>example</Pair>
+       <!--<Pair>example</Pair>-->
  
        <Modifier>
-		<Attribute>traits.health.max</Attribute>
-		<Value>2</Value>
+              <Attribute>traits.health.max</Attribute>
+              <Value>2</Value>
        </Modifier>
-       <Set>
-		<Attribute>traits.health.max</Attribute>
-		<Value>2</Value>
-       </Set>
 	        
       <Script File="" />
       <Function Name="" />
-	
-     
    </Effect>
 
 </Tech>
