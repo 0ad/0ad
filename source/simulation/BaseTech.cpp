@@ -7,6 +7,7 @@
 #include "scripting/ScriptingHost.h"
 #include "ps/XML/Xeromyces.h"
 #include "ps/XML/XeroXMB.h"
+#include "BaseEntity.h"
 
 #define LOG_CATEGORY "Techs"
 
@@ -340,12 +341,12 @@ bool CBaseTech::hasReqEntities()
 }
 bool CBaseTech::hasReqTechs()
 {
-	bool ret=false;
+	bool ret=true;
 	for ( std::vector<CStr>::iterator it=m_ReqTechs.begin(); it != m_ReqTechs.end(); it++ )
 	{
-		if ( g_BaseTechCollection.getTemplate( (CStrW)*it )->isResearched() )
+		if ( !g_BaseTechCollection.getTemplate( (CStrW)*it )->isResearched() )
 		{	
-			ret=true;
+			ret=false;
 			break;
 		}
 	}
@@ -400,7 +401,8 @@ jsval CBaseTech::ApplyEffects( JSContext* cx, uintN argc, jsval* argv )
 		varType = ToPrimitive<CStr>( argv[2] );
 
 	if ( first )
-		m_effectFunction->Run( this->GetScript() );
+		if( m_effectFunction )
+			m_effectFunction->Run( this->GetScript() );
 
 	//Disable other templates
 	for ( std::vector<CStr>::iterator it=m_Pairs.begin(); it != m_Pairs.end(); it++ )
@@ -413,20 +415,29 @@ jsval CBaseTech::ApplyEffects( JSContext* cx, uintN argc, jsval* argv )
 		return JS_FALSE;
 	}
 
+	std::vector<HEntity> entitiesAffected;
+
 	//Find which entities should be affected
-	for ( std::vector<CStr>::iterator it = m_Targets.begin(); it != m_Targets.end(); it++ )
+	for ( size_t i=0; i<entities->size(); ++i )
 	{
-		for ( size_t i=0; i<entities->size(); ++i )
+		for ( std::vector<CStr>::iterator it = m_Targets.begin(); it != m_Targets.end(); it++ )
 		{
-			if ( !(*entities)[i]->m_classes.IsMember( *it ) )
-				entities->erase(entities->begin() + i);
+			if ( (*entities)[i]->m_classes.IsMember( *it ) )
+			{
+				entitiesAffected.push_back( (*entities)[i] );
+				break;
+			}
 		}
 	}
-	CEntityList::iterator HEit = entities->begin();
-	for ( ; HEit != entities->end(); HEit++ )
+
+	std::vector<HEntity>::iterator HEit = entitiesAffected.begin();
+	for ( ; HEit != entitiesAffected.end(); HEit++ )
 	{
 		for ( std::vector<Modifier>::iterator mod=m_Modifiers.begin(); mod!=m_Modifiers.end(); mod++ )
 		{
+			//CEntity* ent = *HEit;
+			//debug_printf("Modifying on %ls\n", ent->m_base->m_Tag.c_str() );
+
 			//Get the member corresponding to the javascript attribute string
 			void* attribute = (char*)&**HEit + (*HEit)->m_AttributeTable[mod->attribute];
 			float modValue = (invert ? -mod->value : mod->value);
@@ -439,25 +450,32 @@ jsval CBaseTech::ApplyEffects( JSContext* cx, uintN argc, jsval* argv )
 				*(float*)attribute += (float)modValue;
 		}
 	}
-	for ( HEit = entities->begin(); HEit != entities->end(); HEit++ )
+
+	for ( HEit = entitiesAffected.begin(); HEit != entitiesAffected.end(); HEit++ )
 	{
 		for ( std::vector<Modifier>::iterator set=m_Sets.begin(); set!=m_Sets.end(); set++ )
 		{	
+			//CEntity* ent = *HEit;
+			//debug_printf("Setting on %ls\n", ent->m_base->m_Tag.c_str() );
+
 			//Get the member corresponding to the javascript attribute string
 			void* attribute = (char*)&**HEit + (*HEit)->m_AttributeTable[set->attribute];
 			float setValue = invert ? -set->value : set->value;
 
 			if ( varType == "int" )
-				*(int*)attribute += (int)setValue;
+				*(int*)attribute = (int)setValue;
 			if ( varType == "double" )
-				*(double*)attribute += (double)setValue;
+				*(double*)attribute = (double)setValue;
 			else
-				*(float*)attribute += (float)setValue;
+				*(float*)attribute = (float)setValue;
 		}
 	}
+
 	if ( !first )
-		m_effectFunction->Run( this->GetScript() );
+		if( m_effectFunction )
+			m_effectFunction->Run( this->GetScript() );
 	delete entities;
+	debug_printf("Done! I think\n");
 	return JS_TRUE;
 }
 
