@@ -352,6 +352,8 @@ static int export_pkgconfig(Package* package, int tbl)
 		config->pchHeader  = export_value(tbl, obj, "pchheader");
 		config->pchSource  = export_value(tbl, obj, "pchsource");
 		config->trimprefix = export_value(tbl, obj, "trimprefix");
+		config->cxxtest_rootoptions  = export_value(tbl, obj, "rootoptions");
+		config->cxxtest_rootfile  = export_value(tbl, obj, "rootfile");
 
 		/* Assign a default target, if none specified */
 		if (config->target == NULL)
@@ -418,6 +420,7 @@ int script_export()
 		config->bindir   = export_value(tbl, obj, "bindir");
 		config->libdir   = export_value(tbl, obj, "libdir");
 		config->nasmpath = export_value(tbl, obj, "nasmpath");
+		config->cxxtest_path = export_value(tbl, obj, "cxxtestpath");
 	}
 
 	/* Copy out the packages */

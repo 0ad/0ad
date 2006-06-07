@@ -248,6 +248,22 @@ const char* prj_get_nasmpath()
 	return buffer;
 }
 
+const char* prj_get_cxxtestpath()
+{
+	strcpy(buffer, path_build(my_pkg->path, my_cfg->prjConfig->cxxtest_path));
+	return buffer;
+}
+
+const char* prj_get_cxxtest_rootoptions()
+{
+	return my_cfg->cxxtest_rootoptions;
+}
+
+const char* prj_get_cxxtest_rootfile()
+{
+	return my_cfg->cxxtest_rootfile;
+}
+
 const char* prj_get_trimprefix()
 {
 	return my_cfg->trimprefix;

@@ -17,6 +17,9 @@ project.configs = { "Debug", "Release", "Testing" }
 
 if OS == "windows" then
 	project.nasmpath = "../../build/bin/nasm.exe"
+	project.cxxtestpath = "../../build/bin/cxxtestgen.pl"
+else
+	project.cxxtestpath = "../../build/bin/cxxtestgen"
 end
 
 source_root = "../../../source/" -- default for most projects - overridden by local in others
@@ -571,17 +574,29 @@ end
 
 
 function setup_tests()
---	package_create("test_3_gen"  , "cxxtestgen")
---	package.files = files_in_test_subdirs(source_root, ".h")
+	package_create("test_3_gen"  , "cxxtestgen")
+	--package.files = files_in_test_subdirs(source_root, ".h")
+	package.files = { source_root .. "lib/tests/test_byte_order.h" }
+	package.rootfile = source_root .. "test_root.cpp"
+	if OS == "windows" then
+		package.rootoptions = "--gui=Win32Gui --have-eh --runner=ParenPrinter"
+	else
+		package.rootoptions = "--error-printer"
+	end
 	
 	package_create("test_2_build", "winexe")
-	package.files = files_in_test_subdirs(source_root, ".cpp")
+	--package.files = files_in_test_subdirs(source_root, ".cpp")
+	package.files = { source_root .. "lib/tests/test_byte_order.cpp" }
+	table.insert(package.files, source_root .. "test_root.cpp")
+	
+	package.includepaths = {source_root}
+	package.links = { "test_3_gen" }
+	listconcat(package.links, static_lib_names)
 	package_add_extern_libs(used_extern_libs)
 	
---	package_create("test_1_run"  , "run")
-	-- use package's output target as the file to run
-	-- (avoids having to mess around with project.bindir and
-	-- OS-specific application extension, e.g. EXE)
+	package_create("test_1_run"  , "run")
+	package.links = { "test_2_build" } -- This determines which project's executable to run
+
 end
 
 

@@ -28,6 +28,7 @@ typedef struct tagPrjConfig
 	const char* bindir;
 	const char* libdir;
 	const char* nasmpath;
+	const char* cxxtest_path;
 } PrjConfig;
 
 typedef struct tagFileConfig
@@ -55,6 +56,8 @@ typedef struct tagPkgConfig
 	const char*  pchSource;
 	const char*  trimprefix;
 	FileConfig** fileconfigs;
+	const char* cxxtest_rootoptions;
+	const char* cxxtest_rootfile;
 } PkgConfig;
 
 typedef struct tagPackage
@@ -112,6 +115,7 @@ const char*  prj_get_objdir();
 const char*  prj_get_prefix();
 const char*  prj_get_name();
 const char*  prj_get_nasmpath();
+const char*  prj_get_cxxtestpath();
 int          prj_get_numbuildoptions();
 int          prj_get_numconfigs();
 int          prj_get_numdefines();
@@ -129,6 +133,8 @@ Package*     prj_get_package_for();
 const char*  prj_get_path();
 const char*  prj_get_pch_header();
 const char*  prj_get_pch_source();
+const char* prj_get_cxxtest_rootoptions();
+const char* prj_get_cxxtest_rootfile();
 const char*  prj_get_pkgfilename(const char* extension);
 const char*  prj_get_pkgname();
 const char*  prj_get_pkgname_for();

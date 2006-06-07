@@ -326,7 +326,7 @@ int vs_write_cpp()
 
 		prj_select_config(i);
 
-		if (prj_is_kind("winexe") || prj_is_kind("exe"))
+		if (prj_is_kind("winexe") || prj_is_kind("exe") || prj_is_kind("cxxtestgen") || prj_is_kind("run"))
 		{
 			configTypeId = 1;
 		}
@@ -390,6 +390,35 @@ int vs_write_cpp()
 				break;
 			case VCCustomBuildTool:
             tag_attr("Name=\"VCCustomBuildTool\"");
+				if (prj_is_kind("run"))
+				{
+					tag_attr("Description=\"Running CxxTest Test Suite\"");
+					tag_attr_open("CommandLine");
+					print_list(prj_get_links(), "", "", " ", vs_filter_links);
+					print_list(prj_get_buildoptions(), " ", "", "", NULL);
+					tag_attr_close();
+					// This so that we're always run (and never "up-to-date")
+					tag_attr("Outputs=\".\\dummy.file.thats.never.created\"");
+				}
+				else if (prj_is_kind("cxxtestgen"))
+				{
+					char *rootfile = strdup(prj_get_cxxtest_rootfile());
+					char *ctpath = strdup(path_translate(prj_get_cxxtestpath(), "windows"));
+					char *options = strdup(prj_get_cxxtest_rootoptions());
+
+					tag_attr("Description=\"Generating test_root.cpp\"");
+					tag_attr("CommandLine=\"%s%s --root %s -o &quot;%s&quot;\"",
+						endsWith(prj_get_cxxtestpath(), ".pl")?"perl ":"",
+						ctpath,
+						options,
+						rootfile);
+
+					tag_attr("Outputs=\"%s\"", rootfile);
+
+					free(options);
+					free(ctpath);
+					free(rootfile);
+				}
 				break;
 			case VCXMLDataGeneratorTool:
             tag_attr("Name=\"VCXMLDataGeneratorTool\"");
@@ -443,7 +472,7 @@ int vs_write_cpp()
             tag_attr("Name=\"VCWebDeploymentTool\"");
 				break;
 			case VCPostBuildEventTool:
-            tag_attr("Name=\"VCPostBuildEventTool\"");
+				tag_attr("Name=\"VCPostBuildEventTool\"");
 				break;
 			case VCCLCompilerTool:
 				tag_attr("Name=\"VCCLCompilerTool\"");
@@ -603,6 +632,48 @@ int vs_write_cpp()
 
 	tag_open("Files");
 	print_source_tree("", vs_list_files);
+	/*if (prj_is_kind("cxxtestgen"))
+	{
+		char *rootfile = strdup(prj_get_cxxtest_rootfile());
+		char *ctpath = strdup(path_translate(prj_get_cxxtestpath(), "windows"));
+		int i;
+
+		tag_open("File");
+		tag_attr_open("RelativePath");
+		if (rootfile[0] != '.')
+			io_print(".\\");
+		io_print(rootfile);
+		tag_attr_close();
+
+		for (i = 0; i < prj_get_numconfigs(); ++i)
+		{
+			char *options;
+			prj_select_config(i);
+
+			options = strdup(prj_get_cxxtest_rootoptions());
+
+			tag_open("FileConfiguration");
+			tag_attr("Name=\"%s|Win32\"", prj_get_cfgname());
+
+			tag_open("Tool");
+			tag_attr("Name=\"VCCustomBuildTool\"");
+			tag_attr("Description=\"Generating test_root.cpp\"");
+			tag_attr("CommandLine=\"%s%s --root %s -o &quot;%s&quot;\"",
+				endsWith(prj_get_cxxtestpath(), ".pl")?"perl ":"",
+				ctpath,
+				options,
+				rootfile);
+
+			tag_attr("Outputs=\"%s\"", rootfile);
+			tag_close("Tool", 0);
+			tag_close("FileConfiguration", 1);
+
+			free(options);
+		}
+		tag_close("File", 1);
+		free(ctpath);
+		free(rootfile);
+	}*/
 	tag_close("Files", 1);
 
 	tag_open("Globals");
@@ -625,7 +696,16 @@ const char* vs_filter_links(const char* name)
 	if (i >= 0)
 	{
 		const char* lang = prj_get_language_for(i);
-		if (matches(lang, "c") || matches(lang, "c++"))
+		const char* kind = prj_get_config_for(i)->kind;
+		if (matches(kind, "cxxtestgen"))
+			return NULL;
+		// note that "run" matches against the /current/ project, not the link
+		// dependency we've been run for
+		else if (prj_is_kind("run"))
+		{
+			return path_translate(prj_get_target_for(i), "windows");
+		}
+		else if (matches(lang, "c") || matches(lang, "c++"))
 		{
 			strcpy(g_buffer, prj_get_libdir_for(i));
 			return path_combine(g_buffer, prj_get_targetname_for(i));
@@ -687,7 +767,8 @@ void vs_list_files(const char* path, int stage)
 
 		/* Add FileConfiguration section if this is a special PCH file, or
 		   if it's a custom-built .asm */
-		if (matches(path_getname(path), pchSource) || endsWith(path, ".asm"))
+		if (matches(path_getname(path), pchSource) || endsWith(path, ".asm")
+			|| (prj_is_kind("cxxtestgen") && endsWith(path, ".h")))
 		{
 			for (i = 0; i < prj_get_numconfigs(); ++i)
 			{
@@ -705,6 +786,21 @@ void vs_list_files(const char* path, int stage)
 						path_translate(prj_get_nasmpath(), "windows"));
 					tag_attr("Outputs=\"$(IntDir)\\$(InputName).obj\"");
 					tag_close("Tool", 0);
+				}
+				else if (prj_is_kind("cxxtestgen") && endsWith(path, ".h"))
+				{
+					char *targetname=strdup(path_swapextension(path, ".h", ".cpp"));
+					
+					tag_open("Tool");
+					tag_attr("Name=\"VCCustomBuildTool\"");
+					tag_attr("Description=\"Generating %s\"", targetname);
+					tag_attr("CommandLine=\"%s%s --part -o &quot;%s&quot; &quot;$(InputPath)&quot;\"",
+						endsWith(prj_get_cxxtestpath(), ".pl")?"perl ":"",
+						path_translate(prj_get_cxxtestpath(), "windows"), targetname);
+					tag_attr("Outputs=\"%s\"", targetname);
+					tag_close("Tool", 0);
+
+					free(targetname);
 				}
 				else /* (.asm doesn't need PCH) */
 				{

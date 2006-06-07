@@ -22,6 +22,7 @@
 #include "os.h"
 
 static const char* filterLinks(const char* name);
+static const char* listCxxTestSources(const char* name);
 static const char* listCppSources(const char* name);
 static const char* listRcSources(const char* name);
 static const char* listCppTargets(const char* name);
@@ -50,6 +51,8 @@ int gnu_cpp()
 		io_print("Windowed Executable");
 	else if (prj_is_kind("dll"))
 		io_print("Shared Library");
+	else if (prj_is_kind("cxxtestgen"))
+		io_print("CxxTest Generator");
 	else if (prj_is_kind("lib"))
 		io_print("Static Library");
 
@@ -133,7 +136,10 @@ int gnu_cpp()
 		io_print("\n");
 
 		/* Build the target name */
-		io_print("  TARGET := %s\n", path_getname(prj_get_target()));
+		if (prj_is_kind("cxxtestgen"))
+			io_print("  TARGET := $(OBJECTS)\n");
+		else
+			io_print("  TARGET := %s\n", path_getname(prj_get_target()));
 		if (os_is("macosx") && prj_is_kind("winexe"))
 			io_print("  MACAPP := %s.app/Contents\n", path_getname(prj_get_target()));
 
@@ -141,6 +147,8 @@ int gnu_cpp()
 		io_print("  BLDCMD = ");
 		if (prj_is_kind("lib"))
 			io_print("ar -cr $(OUTDIR)/$(TARGET) $(OBJECTS); ranlib $(OUTDIR)/$(TARGET)");
+		else if (prj_is_kind("cxxtestgen"))
+			io_print("true");
 		else
 			io_print("$(%s) -o $(OUTDIR)/$(TARGET) $(OBJECTS) $(LDFLAGS) $(RESOURCES)", prj_is_lang("c") ? "CC" : "CXX");
 		io_print("\n");
@@ -150,7 +158,10 @@ int gnu_cpp()
 
 	/* Write out the list of object file targets for all C/C++ sources */
 	io_print("OBJECTS := \\\n");
-	print_list(prj_get_files(), "\t$(OBJDIR)/", " \\\n", "", listCppSources);
+	if (prj_is_kind("cxxtestgen"))
+		print_list(prj_get_files(), "\t", " \\\n", "", listCxxTestSources);
+	else
+		print_list(prj_get_files(), "\t$(OBJDIR)/", " \\\n", "", listCppSources);
 	io_print("\n");
 
 	/* Write out the list of resource files for windows targets */
@@ -184,20 +195,29 @@ int gnu_cpp()
 		io_print("all: $(OUTDIR)/$(MACAPP)/PkgInfo $(OUTDIR)/$(MACAPP)/Info.plist $(OUTDIR)/$(MACAPP)/MacOS/$(TARGET)\n\n");
 		io_print("$(OUTDIR)/$(MACAPP)/MacOS/$(TARGET)");
 	}
+	else if (prj_is_kind("cxxtestgen"))
+		io_print("all");
 	else
 	{
 		io_print("$(OUTDIR)/$(TARGET)");
 	}
 
 	io_print(": $(OBJECTS) $(LDDEPS) $(RESOURCES)\n");
-	if (!g_verbose)
-		io_print("\t@echo Linking %s\n", prj_get_pkgname());
-	io_print("\t-%s$(CMD_MKBINDIR)\n", prefix);
-	io_print("\t-%s$(CMD_MKLIBDIR)\n", prefix);
-	io_print("\t-%s$(CMD_MKOUTDIR)\n", prefix);
-	if (os_is("macosx") && prj_is_kind("winexe"))
-		io_print("\t-%sif [ ! -d $(OUTDIR)/$(MACAPP)/MacOS ]; then mkdir -p $(OUTDIR)/$(MACAPP)/MacOS; fi\n", prefix);
-	io_print("\t%s$(BLDCMD)\n\n", prefix);
+	if (!prj_is_kind("cxxtestgen"))
+	{
+		if (!g_verbose)
+			io_print("\t@echo Linking %s\n", prj_get_pkgname());
+		io_print("\t-%s$(CMD_MKBINDIR)\n", prefix);
+		io_print("\t-%s$(CMD_MKLIBDIR)\n", prefix);
+		io_print("\t-%s$(CMD_MKOUTDIR)\n", prefix);
+		if (os_is("macosx") && prj_is_kind("winexe"))
+			io_print("\t-%sif [ ! -d $(OUTDIR)/$(MACAPP)/MacOS ]; then mkdir -p $(OUTDIR)/$(MACAPP)/MacOS; fi\n", prefix);
+		io_print("\t%s$(BLDCMD)\n\n", prefix);
+	}
+	else
+	{
+		io_print("\t@true\n\n", prefix);
+	}
 
 /*
 	if (prj_is_kind("lib"))
@@ -241,8 +261,9 @@ int gnu_cpp()
 	if (os_is("windows"))
 		print_list(prj_get_files(), "", "", "", listRcTargets);
 
-	/* Include the automatically generated dependency lists */
-	io_print("-include $(OBJECTS:%%.o=%%.d)\n\n");
+	if (!prj_is_kind("cxxtestgen"))
+		/* Include the automatically generated dependency lists */
+		io_print("-include $(OBJECTS:%%.o=%%.d)\n\n");
 
 	io_closefile();
 	return 1;
@@ -261,7 +282,10 @@ static const char* filterLinks(const char* name)
 	if (i >= 0)
 	{
 		const char* lang = prj_get_language_for(i);
-		if (matches(lang, "c++") || matches(lang, "c"))
+		const char *kind = prj_get_config_for(i)->kind;
+		if (matches(kind, "cxxtestgen"))
+			return NULL;
+		else if (matches(lang, "c++") || matches(lang, "c"))
 		{
 			return prj_get_target_for(i);
 		}
@@ -297,6 +321,16 @@ static const char* listCppSources(const char* name)
 }
 
 
+static const char* listCxxTestSources(const char* name)
+{
+	if (endsWith(name, ".h"))
+	{
+		return path_swapextension(name, ".h", ".cpp");
+	}
+
+	return NULL;
+}
+
 /************************************************************************
  * Checks each source code file and filters out everything that is
  * not a windows resource file
@@ -322,10 +356,10 @@ static const char* listRcSources(const char* name)
 
 static const char* listCppTargets(const char* name)
 {
+	const char* ext = path_getextension(name);
+	const char* basename = path_getbasename(name);
 	if (is_cpp(name))
 	{
-		const char* ext = path_getextension(name);
-		const char* basename = path_getbasename(name);
 
 		sprintf(g_buffer, "$(OBJDIR)/%s.o: %s\n", basename, name);
 		strcat(g_buffer, "\t-");
@@ -376,6 +410,19 @@ static const char* listCppTargets(const char* name)
 
 		return g_buffer;
 	}
+	else if (prj_is_kind("cxxtestgen"))
+	{
+		const char *target_name=path_swapextension(name, ".h", ".cpp");
+		sprintf(g_buffer,
+		"%s: %s\n"
+			"%s"
+			"\t%s%s --part -o %s %s\n", target_name, name,
+		g_verbose?"":"\t@echo $(notdir $<)\n",
+		g_verbose?"":"@",
+		"cxxtestgen", target_name, name);
+
+		return g_buffer;
+	}
 	else
 	{
 		return NULL;
@@ -419,7 +466,11 @@ static const char* listLinkerDeps(const char* name)
 	int i = prj_find_package(name);
 	if (i >= 0)
 	{
-		return prj_get_target_for(i);
+		const char *kind = prj_get_config_for(i)->kind;
+		if (!strcmp(kind, "cxxtestgen"))
+			return NULL;
+		else
+			return prj_get_target_for(i);
 	}
 
 	return NULL;

@@ -48,6 +48,8 @@ extern_lib_defs = {
 	},
 	cxxtest = {
 	},
+	misc = {
+	},
 	dbghelp = {
 		win_names  = { "dbghelp" },
 		dbg_suffix = "",
