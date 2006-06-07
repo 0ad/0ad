@@ -36,6 +36,11 @@ std::map<CStr, size_t> CEntity::m_AttributeTable;
 
 CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections, CStrW building )
 {
+	if(m_AttributeTable.size() == 0)	// not nice
+	{
+		initAttributes(this);
+	}
+
     m_position = position;
     m_orientation.Y = orientation;
     m_ahead.x = sin( m_orientation.Y );

@@ -14,24 +14,11 @@ STL_HASH_SET<CStr, CStr_hash_compare> CBaseTech::m_scriptsLoaded;
 
 CBaseTech::CBaseTech() 
 {
+	ONCE( ScriptingInit(); );
+
 	m_researched = m_excluded=false;
-	AddProperty(L"generic", &CBaseTech::m_Generic, true);
-	AddProperty(L"specific", &CBaseTech::m_Specific, true);
-	AddProperty(L"icon", &CBaseTech::m_Icon);	//GUI might want to change this...?
-	AddProperty<int>(L"icon_cell", &CBaseTech::m_IconCell);
-	AddProperty(L"classes", &CBaseTech::m_Classes, true);
-	AddProperty(L"history", &CBaseTech::m_History, true);
-
-	AddProperty<float>(L"time", &CBaseTech::m_ReqTime);	//Techs may upgrade research time and cost of other techs
-	AddProperty<float>(L"food", &CBaseTech::m_ReqFood);
-	AddProperty<float>(L"wood", &CBaseTech::m_ReqWood);
-	AddProperty<float>(L"stone", &CBaseTech::m_ReqStone);
-	AddProperty<float>(L"ore", &CBaseTech::m_ReqOre);
-
 	m_effectFunction = NULL;
 	m_JSFirst = false;
-
-	ONCE( ScriptingInit() );
 } 
 bool CBaseTech::loadXML( CStr filename )
 {
@@ -368,6 +355,19 @@ bool CBaseTech::hasReqTechs()
 
 void CBaseTech::ScriptingInit()
 {
+	AddProperty(L"generic", &CBaseTech::m_Generic, true);
+	AddProperty(L"specific", &CBaseTech::m_Specific, true);
+	AddProperty(L"icon", &CBaseTech::m_Icon);	//GUI might want to change this...?
+	AddProperty<int>(L"icon_cell", &CBaseTech::m_IconCell);
+	AddProperty(L"classes", &CBaseTech::m_Classes, true);
+	AddProperty(L"history", &CBaseTech::m_History, true);
+
+	AddProperty<float>(L"time", &CBaseTech::m_ReqTime);	//Techs may upgrade research time and cost of other techs
+	AddProperty<float>(L"food", &CBaseTech::m_ReqFood);
+	AddProperty<float>(L"wood", &CBaseTech::m_ReqWood);
+	AddProperty<float>(L"stone", &CBaseTech::m_ReqStone);
+	AddProperty<float>(L"ore", &CBaseTech::m_ReqOre);
+
 	AddMethod<jsval, &CBaseTech::ApplyEffects>( "applyEffects", 1 );
 	AddMethod<jsval, &CBaseTech::IsExcluded>( "isExcluded", 0 );
 	AddMethod<jsval, &CBaseTech::IsValid>( "isValid", 0 );
@@ -376,6 +376,8 @@ void CBaseTech::ScriptingInit()
 	AddMethod<jsval, &CBaseTech::IsJSFirst>( "isJSFirst", 0 );
 
 	CJSObject<CBaseTech>::ScriptingInit("TechTemplate");
+
+	debug_printf("CBaseTech::ScriptingInit complete");
 }
 
 jsval CBaseTech::ApplyEffects( JSContext* cx, uintN argc, jsval* argv )

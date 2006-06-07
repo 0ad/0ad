@@ -49,6 +49,7 @@
 
 #include "simulation/BaseEntityCollection.h"
 #include "simulation/BaseFormationCollection.h"
+#include "simulation/BaseTechCollection.h"
 #include "simulation/Entity.h"
 #include "simulation/EntityHandles.h"
 #include "simulation/EntityManager.h"
@@ -1017,7 +1018,9 @@ void Init(int argc, char* argv[], uint flags)
 	// This needs to be done after the renderer has loaded all its actors...
 	new CBaseEntityCollection;
 	new CBaseFormationCollection;
+	new CBaseTechCollection;
 	g_EntityFormationCollection.loadTemplates();
+	g_BaseTechCollection.loadTemplates();
 	new CFormationManager;
 
 	// CEntityManager is managed by CWorld

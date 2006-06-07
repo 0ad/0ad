@@ -338,7 +338,7 @@ JSBool getTechTemplate( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* 
 	
 	CStrW name = ToPrimitive<CStrW>( argv[0] );
 	PS_uint playerID = (PS_uint)ToPrimitive<int>( argv[1] );
-	rval = JSVAL_NULL;
+	*rval = JSVAL_NULL;
 
 	if ( g_Game->GetPlayer(playerID) )
 	{
@@ -347,10 +347,12 @@ JSBool getTechTemplate( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* 
 		if ( tech )
 		{
 			tech->setPlayer( g_Game->GetPlayer(playerID) );
-			*rval = OBJECT_TO_JSVAL(tech->GetScript());
+			//*rval = OBJECT_TO_JSVAL(tech->GetScript());
+			*rval = ToJSVal( tech );
+			//*rval = ToJSVal( 42 );
 		}
 		else
-			JS_ReportError(cx, "Invalid tech template name \"%s\" passed for getTechTemplate()", name.c_str() );
+			JS_ReportError(cx, "Invalid tech template name \"%ls\" passed for getTechTemplate()", name.c_str() );
 	}
 	else
 		JS_ReportError(cx, "Invalid playerID \"%d\"passed for getTechTemplate()", playerID);
