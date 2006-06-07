@@ -2,6 +2,7 @@ addoption("atlas", "Include Atlas scenario editor packages")
 addoption("outpath", "Location for generated project files")
 
 dofile("functions.lua")
+dofile("extern_libs.lua")
 
 -- Set up the Project
 project.name = "pyrogenesis"
@@ -18,13 +19,6 @@ if OS == "windows" then
 	project.nasmpath = "../../build/bin/nasm.exe"
 end
 
--- note: Whenever "extern_libs" are specified, they are a table ("array") of
--- library names, which are assumed to be subdirectories of this path.
--- They must each contain an "include" [on Windows: also "lib"] subdirectory.
---
--- When adding new ones, make sure to also add them in the main_exe link step
--- (it'd be nice to automate this, but lib names and debug suffixes differ wildly).
-libraries_dir = "../../../libraries/"
 source_root = "../../../source/" -- default for most projects - overridden by local in others
 
 -- Rationale: packages should not have any additional include paths except for
@@ -32,10 +26,13 @@ source_root = "../../../source/" -- default for most projects - overridden by lo
 -- full relative path, e.g. #include "maths/Vector3d.h". This avoids confusion
 -- ("which file is meant?") and avoids enormous include path lists.
 
--- packages: engine static libs, main exe, atlas, atlas frontends
--- the engine libs are necessary because they are referenced by the separate
--- test workspace.
 
+-- packages: engine static libs, main exe, atlas, atlas frontends, test.
+
+
+--------------------------------------------------------------------------------
+-- package helper functions
+--------------------------------------------------------------------------------
 
 function package_set_target(package_name)
 
@@ -49,6 +46,7 @@ function package_set_target(package_name)
 	package.config["Testing"].objdir = obj_dir_prefix.."Test"
 	package.config["Release"].objdir = obj_dir_prefix.."Release"
 end
+
 
 function package_set_build_flags()
 
@@ -88,6 +86,7 @@ function package_set_build_flags()
 	end
 end
 
+
 -- create a package and set the attributes that are common to all packages.
 function package_create(package_name, target_type)
 
@@ -103,156 +102,6 @@ function package_create(package_name, target_type)
 	package_set_build_flags()
 
 	return package
-end
-
-
-
--- win_names
--- unix_names
--- dbg_suffix
--- no_delayload
--- add_func
-
-extern_lib_defs = {
-	boost = {
-	},
-	cxxtest = {
-	},
-	dbghelp = {
-		win_names  = { "dbghelp" },
-		dbg_suffix = "",
-	},
-	devil = {
-	},
-	directx = {
-		win_names  = { "ddraw", "dsound" },
-		dbg_suffix = "",
-	},
-	libjpg = {
-		win_names  = { "jpeg-6b" },
-		unix_names = { "jpeg" },
-	},
-	libpng = {
-		win_names  = { "libpng13" },
-		unix_names = { "png" },
-	},
-	openal = {
-		win_names  = { "openal32" },
-		unix_names = { "openal" },
-		dbg_suffix = "",
-	},
-	opengl = {
-		win_names  = { "opengl32", "glu32", "gdi32" },
-		unix_names = { "GL", "GLU", "X11" },
-		dbg_suffix = "",
-	},
-	spidermonkey = {
-		win_names  = { "js32" },
-		unix_names = { "js" },
-	},
-	vorbis = {
-		win_names  = { "vorbisfile" },
-		unix_names = { "vorbisfile" },
-		dbg_suffix = "_d",
-	},
-	wxwindows = {
-		add_func = function()
-			tinsert(package.includepaths, libraries_dir.."wxwidgets/include/msvc")
-			tinsert(package.includepaths, libraries_dir.."wxwidgets/include")
-			tinsert(package.libpaths, libraries_dir.."wxwidgets/lib/vc_lib")
-			package.config["Debug"  ].links = { "wxmsw26ud_gl" }
-			package.config["Release"].links = { "wxmsw26u_gl" }
-		end,
-	},
-	xerces = {
-		win_names  = { "xerces-c_2" },
-		unix_names = { "xerces-c" },
-		no_delayload = 1,
-	},
-	zlib = {
-		win_names  = { "zlib1" },
-		unix_names = { "z" },
-	},
-
-	sdl = {
-		unix_names = { "SDL" },
-	}
-}
-
-
-function add_delayload(name, suffix, def)
-
-	if def["no_delayload"] then
-		return
-	end
-	
-	-- currently only supported by VC; nothing to do on other platforms.
-	if OS ~= "windows" then
-		return
-	end
-
-	-- no extra debug version
-	if suffix == "" then
-		tinsert(package.linkoptions, "/DELAYLOAD:"..name..".dll")
-	else
-		local dbg_cmd = "/DELAYLOAD:" .. name .. suffix .. ".dll"
-		local cmd     = "/DELAYLOAD:" .. name .. ".dll"
-
-		tinsert(package.config["Debug"  ].linkoptions, dbg_cmd)
-		-- 'Testing' config uses 'Debug' DLLs
-		tinsert(package.config["Testing"].linkoptions, dbg_cmd)
-		tinsert(package.config["Release"].linkoptions, cmd)
-	end
-
-end
-
-
-function add_extern_lib(extern_lib, def)
-
-	-- Add '<libraries root>/<libraryname>/lib' and '/include' to the includepaths and libpaths
-	tinsert(package.includepaths, libraries_dir .. extern_lib .. "/include")
-	tinsert(package.libpaths,     libraries_dir .. extern_lib .. "/lib")
-
-	-- careful: make sure to only use *_names when on the correct platform.
-	local names = {}
-	if OS == "windows" then
-		if def.win_names then
-			names = def.win_names
-		end
-	else
-		if def.unix_names then
-			names = def.unix_names
-		end
-	end
-
-	local suffix = "d"
-	if def["dbg_suffix"] then
-		suffix = def["dbg_suffix"]
-	end
-
-	for i,name in names do
-		tinsert(package.config["Debug"  ].links, name .. suffix)
-		-- 'Testing' config uses 'Debug' DLLs
-		tinsert(package.config["Testing"].links, name .. suffix)
-		tinsert(package.config["Release"].links, name)
-
-		add_delayload(name, suffix, def)
-	end
-end
-
-
-function package_add_extern_libs(extern_libs)
-
-	for i,extern_lib in extern_libs do
-		local def = extern_lib_defs[extern_lib]
-		assert(def, "external library not defined")
-
-		if def["add_func"] then
-			def["add_func"]()
-		else
-			add_extern_lib(extern_lib, def)
-		end
-	end
 end
 
 
@@ -305,13 +154,15 @@ end
 -- the engine is split up into several static libraries. this eases separate
 -- distribution of those components, reduces dependencies a bit, and can
 -- also speed up builds.
+-- more to the point, it is necessary to efficiently support a separate
+-- test executable that also includes much of the game code.
 
 -- names of all static libs created. added to the main app project later
 -- (see explanation at end of this file)
 static_lib_names = {}
 
 -- note: rel_source_dirs and rel_include_dirs are relative to global source_root.
-function setup_static_lib_package (package_name, rel_source_dirs, extern_libs, extra_params)
+local function setup_static_lib_package (package_name, rel_source_dirs, extern_libs, extra_params)
 
 	package_create(package_name, "lib")
 	package_add_contents(source_root, rel_source_dirs, {}, extra_params)
@@ -460,6 +311,7 @@ end
 -- main EXE
 --------------------------------------------------------------------------------
 
+-- used for main EXE as well as test
 ps_libs = {
 	"opengl",
 	"sdl",
@@ -544,9 +396,8 @@ end
 -- atlas
 --------------------------------------------------------------------------------
 
----------------- Main Atlas package ----------------
-
-function setuppackage_atlas(package_name, target_type, rel_source_dirs, rel_include_dirs, extern_libs, flags)
+-- setup a typical Atlas component package
+local function setup_atlas_package(package_name, target_type, rel_source_dirs, rel_include_dirs, extern_libs, flags)
 
 	local source_root = "../../../source/tools/atlas/" .. package_name .. "/"
 	package_create(package_name, target_type)
@@ -580,10 +431,10 @@ function setuppackage_atlas(package_name, target_type, rel_source_dirs, rel_incl
 end
 
 
----------------- Atlas packages ----------------
+-- build all Atlas component packages
+function setup_atlas_packages()
 
-function setuppackages_atlas()
-	setuppackage_atlas("AtlasObject", "lib",
+	setup_atlas_package("AtlasObject", "lib",
 	{	-- src
 		""
 	},{	-- include
@@ -592,7 +443,7 @@ function setuppackages_atlas()
 	},{	-- flags
 	})
 
-	setuppackage_atlas("AtlasUI", "dll",
+	setup_atlas_package("AtlasUI", "dll",
 	{	-- src
 		"ActorEditor",
 		"ArchiveViewer",
@@ -627,10 +478,10 @@ function setuppackages_atlas()
 	},{	-- flags
 		pch = 1,
 		depends = { "AtlasObject", "DatafileIO" },
-		extrasource = { "Misc/atlas.rc" }
+		extra_files = { "Misc/atlas.rc" }
 	})
 
-	setuppackage_atlas("DatafileIO", "lib",
+	setup_atlas_package("DatafileIO", "lib",
 	{	-- src
 		"",
 		"BAR",
@@ -650,9 +501,8 @@ function setuppackages_atlas()
 end
 
 
----------------- Atlas 'frontend' tool-launching packages ----------------
-
-function setuppackage_atlas_frontend (package_name)
+-- Atlas 'frontend' tool-launching packages
+local function setup_atlas_frontend_package (package_name)
 
 	package_create(package_name, "winexe")
 
@@ -679,10 +529,10 @@ function setuppackage_atlas_frontend (package_name)
 end
 
 function setup_atlas_frontends()
-	setuppackage_atlas_frontend("ActorEditor")
-	setuppackage_atlas_frontend("ArchiveViewer")
-	setuppackage_atlas_frontend("ColourTester")
-	setuppackage_atlas_frontend("FileConverter")
+	setup_atlas_frontend_package("ActorEditor")
+	setup_atlas_frontend_package("ArchiveViewer")
+	setup_atlas_frontend_package("ColourTester")
+	setup_atlas_frontend_package("FileConverter")
 end
 
 
