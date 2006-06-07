@@ -157,10 +157,17 @@ local function add_extern_lib(extern_lib, def)
 	end
 
 	local suffix = "d"
+	-- library is overriding default suffix (typically "" to indicate there is none)
 	if def["dbg_suffix"] then
 		suffix = def["dbg_suffix"]
 	end
-
+	-- non-Windows doesn't have the distinction of debug vs. release libraries
+	-- (to be more specific, they do, but the two are binary compatible;
+	-- usually only one type - debug or release - is installed at a time).
+	if OS ~= "windows" then
+		suffix = ""
+	end
+	
 	for i,name in names do
 		tinsert(package.config["Debug"  ].links, name .. suffix)
 		-- 'Testing' config uses 'Debug' DLLs
