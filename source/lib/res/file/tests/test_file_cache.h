@@ -1,5 +1,6 @@
 #include <cxxtest/TestSuite.h>
 
+#include "lib/lib.h"
 #include "lib/res/file/file_cache.h"
 
 class TestFileCache : public CxxTest::TestSuite 
@@ -37,7 +38,7 @@ public:
 			}
 
 			// must not already have been allocated
-			TS_ASSERT_EQUAL(allocations.find(p), allocations.end());
+			TS_ASSERT_EQUALS(allocations.find(p), allocations.end());
 			allocations[p] = size;
 		}
 

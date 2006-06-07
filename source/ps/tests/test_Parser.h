@@ -1,5 +1,8 @@
 #include <cxxtest/TestSuite.h>
 
+#include "lib/lib.h"
+#include "ps/Parser.h"
+
 class TestParser : public CxxTest::TestSuite 
 {
 public:
@@ -30,12 +33,12 @@ public:
 		CParserLine Line;
 
 		TS_ASSERT(Line.ParseString(Parser, "12 34"));
-		TS_ASSERT_EQUAL(Line.GetArgCount(), 2);
+		TS_ASSERT_EQUALS(Line.GetArgCount(), 2);
 		TS_ASSERT(Line.GetArgString(0, str) && str == "12");
 		TS_ASSERT(Line.GetArgString(1, str) && str == "34");
 
 		TS_ASSERT(Line.ParseString(Parser, "56"));
-		TS_ASSERT_EQUAL(Line.GetArgCount(), 1);
+		TS_ASSERT_EQUALS(Line.GetArgCount(), 1);
 		TS_ASSERT(Line.GetArgString(0, str) && str == "56");
 
 		TS_ASSERT(! Line.ParseString(Parser, " "));
@@ -52,22 +55,22 @@ public:
 		CParserLine Line;
 
 		TS_ASSERT(Line.ParseString(Parser, "12 34 56"));
-		TS_ASSERT_EQUAL(Line.GetArgCount(), 3);
+		TS_ASSERT_EQUALS(Line.GetArgCount(), 3);
 		TS_ASSERT(Line.GetArgString(0, str) && str == "12");
 		TS_ASSERT(Line.GetArgString(1, str) && str == "34");
 		TS_ASSERT(Line.GetArgString(2, str) && str == "56");
 
 		TS_ASSERT(Line.ParseString(Parser, "78 90"));
-		TS_ASSERT_EQUAL(Line.GetArgCount(), 2);
+		TS_ASSERT_EQUALS(Line.GetArgCount(), 2);
 		TS_ASSERT(Line.GetArgString(0, str) && str == "78");
 		TS_ASSERT(Line.GetArgString(1, str) && str == "90");
 
 		TS_ASSERT(Line.ParseString(Parser, "ab"));
-		TS_ASSERT_EQUAL(Line.GetArgCount(), 1);
+		TS_ASSERT_EQUALS(Line.GetArgCount(), 1);
 		TS_ASSERT(Line.GetArgString(0, str) && str == "ab");
 
 		TS_ASSERT(Line.ParseString(Parser, " "));
-		TS_ASSERT_EQUAL(Line.GetArgCount(), 0);
+		TS_ASSERT_EQUALS(Line.GetArgCount(), 0);
 	}
 
 

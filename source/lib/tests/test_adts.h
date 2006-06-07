@@ -1,9 +1,11 @@
 #include <cxxtest/TestSuite.h>
 
+#include "lib/adts.h"
+
 class TestRingbuf : public CxxTest::TestSuite 
 {
-	const size_t N = 49;	// RingBuf capacity
-	const int S = 100;	// number of test items
+	static const size_t N = 49;	// RingBuf capacity
+	static const int S = 100;	// number of test items
 public:
 	void test_insert_remove()
 	{
@@ -11,7 +13,7 @@ public:
 		for(int i = 1; i < S; i++)
 		{
 			buf.push_back(i);
-			TS_ASSERT_EQUAL(buf.front(), i);
+			TS_ASSERT_EQUALS(buf.front(), i);
 			buf.pop_front();
 		}
 		TS_ASSERT(buf.size() == 0 && buf.empty());
@@ -22,12 +24,12 @@ public:
 		RingBuf<int, N> buf;
 		for(int i = 1; i < S; i++)
 			buf.push_back(i);
-		TS_ASSERT_EQUAL(buf.size(), N);
+		TS_ASSERT_EQUALS(buf.size(), N);
 		int first = buf.front();
-		TS_ASSERT_EQUAL(first, (int)(S-1 -N +1));
+		TS_ASSERT_EQUALS(first, (int)(S-1 -N +1));
 		for(size_t i = 0; i < N; i++)
 		{
-			TS_ASSERT_EQUAL(buf.front(), first);
+			TS_ASSERT_EQUALS(buf.front(), first);
 			first++;
 			buf.pop_front();
 		}
@@ -66,7 +68,7 @@ public:
 			}
 		}
 
-		TS_ASSERT_EQUAL(buf.size(), deq.size());
+		TS_ASSERT_EQUALS(buf.size(), deq.size());
 		RingBuf<int, N>::iterator begin = buf.begin(), end = buf.end();
 		TS_ASSERT(equal(begin, end, deq.begin()));
 	}
@@ -163,14 +165,14 @@ public:
 				removed1 = c1.remove_least_valuable(&value1, &size1);
 				removed2 = c2.remove_least_valuable(&value2, &size2);
 				removed3 = c3.remove_least_valuable(&value3, &size3);
-				TS_ASSERT_EQUAL(removed1, removed2);
-				TS_ASSERT_EQUAL(removed2, removed3);
+				TS_ASSERT_EQUALS(removed1, removed2);
+				TS_ASSERT_EQUALS(removed2, removed3);
 				if (removed1)
 				{
-					TS_ASSERT_EQUAL(size1, size2);
-					TS_ASSERT_EQUAL(value1, value2);
-					TS_ASSERT_EQUAL(size2, size3);
-					TS_ASSERT_EQUAL(value2, value3);
+					TS_ASSERT_EQUALS(size1, size2);
+					TS_ASSERT_EQUALS(value1, value2);
+					TS_ASSERT_EQUALS(size2, size3);
+					TS_ASSERT_EQUALS(value2, value3);
 				}
 			}	// else
 		}	// for i

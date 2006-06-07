@@ -1,5 +1,6 @@
 #include <cxxtest/TestSuite.h>
 
+#include "lib/lib.h"
 #include "lib/self_test.h"
 #include "lib/path_util.h"
 
@@ -17,7 +18,7 @@ class TestPathUtil : public CxxTest::TestSuite
 		LibError correct_ret, const char* correct_result)
 	{
 		char dst[PATH_MAX] = {0};
-		TS_ASSERT_EQUAL(path_replace(dst, src, remove, replace), correct_ret);
+		TS_ASSERT_EQUALS(path_replace(dst, src, remove, replace), correct_ret);
 		if(correct_ret != ERR_FAIL)
 			TS_ASSERT_STR_EQUAL(dst, correct_result);
 	}
@@ -110,15 +111,15 @@ public:
 		// no match
 		TEST_REPLACE("abc/def", "/def", "xx", ERR_FAIL, 0);
 		// normal case: match and remove
-		TEST_REPLACE("abc/def", "abc", "ok", ERR_OK, "ok/def");
+		TEST_REPLACE("abc/def", "abc", "ok", INFO_OK, "ok/def");
 		// caller also stripping /
-		TEST_REPLACE("abc/def", "abc/", "ok", ERR_OK, "ok/def");
+		TEST_REPLACE("abc/def", "abc/", "ok", INFO_OK, "ok/def");
 		// empty remove
-		TEST_REPLACE("abc/def", "", "ok", ERR_OK, "ok/abc/def");
+		TEST_REPLACE("abc/def", "", "ok", INFO_OK, "ok/abc/def");
 		// empty replace
-		TEST_REPLACE("abc/def", "abc", "", ERR_OK, "def");
+		TEST_REPLACE("abc/def", "abc", "", INFO_OK, "def");
 		// remove entire string
-		TEST_REPLACE("abc/def", "abc/def", "", ERR_OK, "");
+		TEST_REPLACE("abc/def", "abc/def", "", INFO_OK, "");
 	}
 
 	void test_name_only()

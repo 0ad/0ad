@@ -1,12 +1,17 @@
 #include <cxxtest/TestSuite.h>
 
+#include "lib/lib.h"
+#include "lib/self_test.h"
+#include "lib/res/file/zip.h"
+#include "lib/res/file/vfs.h"
+#include "lib/res/file/archive.h"
 #include "lib/res/file/archive_builder.h"
 
 class TestArchiveBuilder : public CxxTest::TestSuite 
 {
 	const char* const archive_fn;
-	const size_t NUM_FILES;
-	const size_t MAX_FILE_SIZE;
+	static const size_t NUM_FILES = 300;
+	static const size_t MAX_FILE_SIZE = 20000;
 
 	std::set<const char*> existing_names;
 	const char* gen_random_name()
@@ -17,7 +22,7 @@ class TestArchiveBuilder : public CxxTest::TestSuite
 		for(;;)
 		{
 			u32 rand_num = rand(0, 100000);
-			base32(4, (u8*)&rand_num, name_tmp);
+			base32(4, (u8*)&rand_num, (u8 *)name_tmp);
 
 			// store filename in atom pool
 			const char* atom_fn = file_make_unique_fn_copy(name_tmp);
@@ -25,7 +30,7 @@ class TestArchiveBuilder : public CxxTest::TestSuite
 			if(existing_names.find(atom_fn) == existing_names.end())
 			{
 				existing_names.insert(atom_fn);
-				break;
+				return atom_fn;
 			}
 		}
 	}
@@ -37,6 +42,7 @@ class TestArchiveBuilder : public CxxTest::TestSuite
 	};
 	// (must be separate array and end with NULL entry (see Filenames))
 	const char* filenames[NUM_FILES+1];
+	TestFile files[NUM_FILES+1];
 
 	void generate_random_files()
 	{
@@ -73,10 +79,9 @@ class TestArchiveBuilder : public CxxTest::TestSuite
 
 public:
 	TestArchiveBuilder()
-		: archive_fn("test_archive_random_data.zip"),
-		NUM_FILES(300), MAX_FILE_SIZE(20000) {}
+		: archive_fn("test_archive_random_data.zip") {}
 
-	void test()
+	void test1()
 	{
 		generate_random_files();
 
@@ -86,15 +91,15 @@ public:
 		TS_ASSERT(ha > 0);
 
 		// read in each file and compare file contents
-		for(size_t i = 0; i < num_files; i++)
+		for(size_t i = 0; i < NUM_FILES; i++)
 		{
 			File f;
 			TS_ASSERT_OK(afile_open(ha, filenames[i], 0, 0, &f));
 			FileIOBuf buf = FILE_BUF_ALLOC;
 			ssize_t bytes_read = afile_read(&f, 0, files[i].size, &buf);
-			TS_ASSERT_EQUAL(bytes_read, files[i].size);
+			TS_ASSERT_EQUALS(bytes_read, files[i].size);
 
-			TS_ASSERT_SAME_DATA(buf, files[i].data);
+			TS_ASSERT_SAME_DATA(buf, files[i].data, files[i].size);
 
 			TS_ASSERT_OK(file_buf_free(buf));
 			SAFE_ARRAY_DELETE(files[i].data);

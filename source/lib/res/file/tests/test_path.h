@@ -1,5 +1,7 @@
 #include <cxxtest/TestSuite.h>
 
+#include "lib/lib.h"
+#include "lib/self_test.h"
 #include "lib/res/file/path.h"
 
 class TestPath : public CxxTest::TestSuite 
@@ -38,11 +40,11 @@ public:
 		// .. return same address for same string?
 		const char* atom1 = file_make_unique_fn_copy("a/bc/def");
 		const char* atom2 = file_make_unique_fn_copy("a/bc/def");
-		TS_ASSERT_EQUAL(atom1, atom2);
+		TS_ASSERT_EQUALS(atom1, atom2);
 
 		// .. early out (already in pool) check works?
 		const char* atom3 = file_make_unique_fn_copy(atom1);
-		TS_ASSERT_EQUAL(atom3, atom1);
+		TS_ASSERT_EQUALS(atom3, atom1);
 
 
 		// path_is_atom_fn

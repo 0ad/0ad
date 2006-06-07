@@ -1,5 +1,6 @@
 #include <cxxtest/TestSuite.h>
 
+#include "lib/lib.h"
 #include "lib/string_s.h"
 
 class TestString_s : public CxxTest::TestSuite 
@@ -24,14 +25,14 @@ class TestString_s : public CxxTest::TestSuite
 
 	static void TEST_LEN(const char* string, size_t limit, size_t expected)
 	{
-		TS_ASSERT_EQUAL(tnlen((string), (limit)), (expected));
+		TS_ASSERT_EQUALS(tnlen((string), (limit)), (expected));
 	}
 
 	static void TEST_CPY(char* dst, size_t dst_max, const char* src,
 		int expected_ret, const char* expected_dst)
 	{
 		int ret = tcpy_s((dst), dst_max, (src));
-		TS_ASSERT_EQUAL(ret, expected_ret);
+		TS_ASSERT_EQUALS(ret, expected_ret);
 		if(dst != 0)
 			TS_ASSERT(!tcmp(dst, T(expected_dst)));
 	}
@@ -40,7 +41,7 @@ class TestString_s : public CxxTest::TestSuite
 		int expected_ret, const char* expected_dst)
 	{
 		int ret = tcpy_s((dst), ARRAY_SIZE(dst), (src));
-		TS_ASSERT_EQUAL(ret, expected_ret);
+		TS_ASSERT_EQUALS(ret, expected_ret);
 		if(dst != 0)
 			TS_ASSERT(!tcmp(dst, T(expected_dst)));
 	}
@@ -49,7 +50,7 @@ class TestString_s : public CxxTest::TestSuite
 		int expected_ret, const char* expected_dst)
 	{
 		int ret = tncpy_s((dst), ARRAY_SIZE(dst), (src), (max_src_chars));
-		TS_ASSERT_EQUAL(ret, expected_ret);
+		TS_ASSERT_EQUALS(ret, expected_ret);
 		if(dst != 0)
 			TS_ASSERT(!tcmp(dst, T(expected_dst)));
 	}
@@ -58,7 +59,7 @@ class TestString_s : public CxxTest::TestSuite
 		int expected_ret, const char expected_dst)
 	{
 		int ret = tcat_s((dst), dst_max, (src));
-		TS_ASSERT_EQUAL(ret, expected_ret);
+		TS_ASSERT_EQUALS(ret, expected_ret);
 		if(dst != 0)
 			TS_ASSERT(!tcmp(dst, T(expected_dst)));
 	}
@@ -68,7 +69,7 @@ class TestString_s : public CxxTest::TestSuite
 	{
 		tcpy(dst, T(dst_val));
 		int ret = tcat_s((dst), ARRAY_SIZE(dst), (src));
-		TS_ASSERT_EQUAL(ret, expected_ret);
+		TS_ASSERT_EQUALS(ret, expected_ret);
 		if(dst != 0)
 			TS_ASSERT(!tcmp(dst, T(expected_dst)));
 	}
@@ -79,7 +80,7 @@ class TestString_s : public CxxTest::TestSuite
 	{
 		tcpy(dst, T(dst_val));
 		int ret = tncat_s((dst), ARRAY_SIZE(dst), (src), (max_src_chars));
-		TS_ASSERT_EQUAL(ret, expected_ret);
+		TS_ASSERT_EQUALS(ret, expected_ret);
 		if(dst != 0)
 			TS_ASSERT(!tcmp(dst, T(expected_dst)));
 	}

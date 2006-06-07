@@ -1,11 +1,13 @@
 #include <cxxtest/TestSuite.h>
 
+#include "lib/lib.h"
+#include "lib/self_test.h"
 #include "lib/res/file/compression.h"
 
 class TestCompression : public CxxTest::TestSuite 
 {
 public:
-	void test()
+	void test1()
 	{
 		// generate random input data
 		const size_t data_size = 10000;
@@ -20,8 +22,8 @@ public:
 		uintptr_t c = comp_alloc(CT_COMPRESSION, CM_DEFLATE);
 		{
 		TS_ASSERT(c != 0);
-		TS_ASSERT_OK(comp_alloc_output(c, in_size));
-		const ssize_t cdata_produced = comp_feed(c, in, in_size);
+		TS_ASSERT_OK(comp_alloc_output(c, data_size));
+		const ssize_t cdata_produced = comp_feed(c, data, data_size);
 		TS_ASSERT(cdata_produced > 0);
 		TS_ASSERT_OK(comp_finish(c, &cdata, &csize));
 		TS_ASSERT(cdata_produced <= csize);	// can't have produced more than total
@@ -37,8 +39,8 @@ public:
 		void* ucdata_final; size_t ucsize_final;
 		TS_ASSERT_OK(comp_finish(c, &ucdata_final, &ucsize_final));
 		TS_ASSERT(ucdata_produced <= ucsize_final);	// can't have produced more than total
-		TS_ASSERT_EQUAL(ucdata_final, ucdata);	// output buffer address is same
-		TS_ASSERT_EQUAL(ucsize_final, data_size);	// correct amount of output
+		TS_ASSERT_EQUALS(ucdata_final, ucdata);	// output buffer address is same
+		TS_ASSERT_EQUALS(ucsize_final, data_size);	// correct amount of output
 		}
 
 		// verify data survived intact

@@ -1,5 +1,6 @@
 #include <cxxtest/TestSuite.h>
 
+#include "lib/lib.h"
 #include "lib/sysdep/ia32.h"
 
 // note: ia32_i??_from_*, ia32_rint*, ia32_fm??f are all tested within

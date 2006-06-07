@@ -1,5 +1,7 @@
 #include <cxxtest/TestSuite.h>
 
+#include "lib/lib.h"
+
 #include "lib/self_test.h"
 #include "lib/posix.h"
 #include "lib/lockfree.h"
@@ -28,7 +30,7 @@ public:
 		{
 			int was_inserted;
 
-			user_data = lfl_insert(&list, key+i, sizeof(int), &was_inserted);
+			user_data = lfl_insert(&list, (void *)(key+i), sizeof(int), &was_inserted);
 			TS_ASSERT(user_data != 0 && was_inserted);
 			*(uint*)user_data = sig+i;
 
@@ -40,13 +42,13 @@ public:
 		// make sure all "signatures" are present in list
 		for(uint i = 0; i < ENTRIES; i++)
 		{
-			user_data = lfl_find(&list, key+i);
+			user_data = lfl_find(&list, (void *)(key+i));
 			TS_ASSERT(user_data != 0);
-			TS_ASSERT_EQUAL(*(uint*)user_data, sig+i);
+			TS_ASSERT_EQUALS(*(uint*)user_data, sig+i);
 
 			user_data = lfh_find(&hash, key+i);
 			TS_ASSERT(user_data != 0);
-			TS_ASSERT_EQUAL(*(uint*)user_data, sig+i);
+			TS_ASSERT_EQUALS(*(uint*)user_data, sig+i);
 		}
 
 		lfl_free(&list);
@@ -116,13 +118,13 @@ class TestMultithread : public CxxTest::TestSuite
 				user_data = lfl_find(&list, key);
 				TS_ASSERT(was_in_set == (user_data != 0));
 				if(user_data)
-					TS_ASSERT_EQUAL(*(uintptr_t*)user_data, ~key);
+					TS_ASSERT_EQUALS(*(uintptr_t*)user_data, ~key);
 
 				user_data = lfh_find(&hash, key);
 				// typical failure site if lockfree data structure has bugs.
 				TS_ASSERT(was_in_set == (user_data != 0));
 				if(user_data)
-					TS_ASSERT_EQUAL(*(uintptr_t*)user_data, ~key);
+					TS_ASSERT_EQUALS(*(uintptr_t*)user_data, ~key);
 			}
 			break;
 
@@ -147,10 +149,10 @@ class TestMultithread : public CxxTest::TestSuite
 				int err;
 
 				err = lfl_erase(&list, key);
-				TS_ASSERT(was_in_set == (err == ERR_OK));
+				TS_ASSERT(was_in_set == (err == INFO_OK));
 
 				err = lfh_erase(&hash, key);
-				TS_ASSERT(was_in_set == (err == ERR_OK));
+				TS_ASSERT(was_in_set == (err == INFO_OK));
 			}
 			break;
 

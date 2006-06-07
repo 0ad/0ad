@@ -6,6 +6,14 @@
 #include <cxxtest/TestSuite.h>
 
 #include "lib/debug.h"	// no wdbg_sym interface needed
+#include "lib/sysdep/sysdep.h"
+#include "lib/sysdep/win/win_internal.h"
+
+#include <queue>
+#include <deque>
+#include <list>
+#include <map>
+#include <stack>
 
 class TestWdbgSym : public CxxTest::TestSuite 
 {

@@ -59,7 +59,7 @@ public:
 			// .. make sure the c->name hack worked
 			TexCodecVTbl* correct_c;
 			TS_ASSERT_OK(tex_codec_for_filename(extension, &correct_c));
-			TS_ASSERT_EQUAL(c, correct_c);
+			TS_ASSERT_EQUALS(c, correct_c);
 
 			// for each test width/height combination
 			const uint widths [] = { 4, 5, 4, 256, 384 };
@@ -112,7 +112,7 @@ public:
 		TS_ASSERT_OK(tex_wrap(2, 2, 24, 0, img, &t));
 		TS_ASSERT_OK(tex_transform_to(&t, TEX_MIPMAPS));
 		const u8* const out_img = tex_get_data(&t);
-		TS_ASSERT_EQUAL(tex_img_size(&t, 12+3));
+		TS_ASSERT_EQUALS(tex_img_size(&t, 12+3));
 		TS_ASSERT_SAME_DATA(out_img, img, 12);
 		TS_ASSERT_SAME_DATA(out_img+12, mipmap, 3);
 	}
@@ -121,10 +121,10 @@ public:
 	{
 		Tex t;
 		TS_ASSERT_OK(tex_wrap(100, 100, 32, TEX_ALPHA, 0, &t));
-		TS_ASSERT_EQUAL(tex_img_size(&t), 40000);
+		TS_ASSERT_EQUALS(tex_img_size(&t), 40000);
 
 		// DXT rounds up to 4x4 blocks; DXT1a is 4bpp
 		TS_ASSERT_OK(tex_wrap(97, 97, 32, DXT1A, 0, &t));
-		TS_ASSERT_EQUAL(tex_img_size(&t),  5000);
+		TS_ASSERT_EQUALS(tex_img_size(&t),  5000);
 	}
 };
