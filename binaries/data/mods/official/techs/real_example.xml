@@ -26,12 +26,12 @@
        <Entity>Melee</Entity>
        <Entity>Ranged</Entity>
 
-       <Tech>example</Tech>
+       <!--<Tech>example</Tech>-->
  
    </Req>
    
    <Effect>
-       <Target>Infantry</Target>
+       <Target>Melee</Target>
        <Target>some_entity_class_name</Target>
        
        <Pair>example</Pair>
