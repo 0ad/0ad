@@ -17,7 +17,7 @@ project.configs = { "Debug", "Release", "Testing" }
 
 if OS == "windows" then
 	project.nasmpath = "../../build/bin/nasm.exe"
-	project.cxxtestpath = "../../build/bin/cxxtestgen.pl"
+	project.cxxtestpath = "../../build/bin/cxxtestgen.exe"
 else
 	project.cxxtestpath = "../../build/bin/cxxtestgen"
 end
