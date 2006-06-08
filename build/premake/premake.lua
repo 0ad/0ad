@@ -1,5 +1,6 @@
 addoption("atlas", "Include Atlas scenario editor packages")
 addoption("outpath", "Location for generated project files")
+addoption("without-tests", "Disable generation of test projects")
 
 dofile("functions.lua")
 dofile("extern_libs.lua")
@@ -637,4 +638,6 @@ if options["atlas"] then
 	setup_atlas_frontends()
 end
 
-setup_tests()
+if not options["without-tests"] then
+	setup_tests()
+end
