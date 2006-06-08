@@ -1,7 +1,6 @@
-#include <cxxtest/TestSuite.h>
-
 #include "lib/lib.h"
 #include "lib/self_test.h"
+
 #include "lib/path_util.h"
 
 class TestPathUtil : public CxxTest::TestSuite 
@@ -10,7 +9,7 @@ class TestPathUtil : public CxxTest::TestSuite
 	{
 		char dst[PATH_MAX] = {0};
 		TS_ASSERT_OK(path_append(dst, path1, path2, flags));
-		TS_ASSERT_STR_EQUAL(dst, correct_result);
+		TS_ASSERT_STR_EQUALS(dst, correct_result);
 	}
 
 	// if correct_ret is ERR_FAIL, ignore correct_result.
@@ -20,19 +19,19 @@ class TestPathUtil : public CxxTest::TestSuite
 		char dst[PATH_MAX] = {0};
 		TS_ASSERT_EQUALS(path_replace(dst, src, remove, replace), correct_ret);
 		if(correct_ret != ERR_FAIL)
-			TS_ASSERT_STR_EQUAL(dst, correct_result);
+			TS_ASSERT_STR_EQUALS(dst, correct_result);
 	}
 
 	void TEST_NAME_ONLY(const char* path, const char* correct_result)
 	{
 		const char* result = path_name_only(path);
-		TS_ASSERT_STR_EQUAL(result, correct_result);
+		TS_ASSERT_STR_EQUALS(result, correct_result);
 	}
 
 	void TEST_LAST_COMPONENT(const char* path, const char* correct_result)
 	{
 		const char* result = path_last_component(path);
-		TS_ASSERT_STR_EQUAL(result, correct_result);
+		TS_ASSERT_STR_EQUALS(result, correct_result);
 	}
 
 	void TEST_STRIP_FN(const char* path_readonly, const char* correct_result)
@@ -40,13 +39,13 @@ class TestPathUtil : public CxxTest::TestSuite
 		char path[PATH_MAX];
 		path_copy(path, path_readonly);
 		path_strip_fn(path);
-		TS_ASSERT_STR_EQUAL(path, correct_result);
+		TS_ASSERT_STR_EQUALS(path, correct_result);
 	}
 
 	void TEST_PATH_EXT(const char* path, const char* correct_result)
 	{
 		const char* result = path_extension(path);
-		TS_ASSERT_STR_EQUAL(result, correct_result);
+		TS_ASSERT_STR_EQUALS(result, correct_result);
 	}
 
 	void TEST_PATH_PACKAGE(const char* path, const char* fn,
@@ -55,7 +54,7 @@ class TestPathUtil : public CxxTest::TestSuite
 		PathPackage pp;
 		TS_ASSERT_OK(path_package_set_dir(&pp, path));
 		TS_ASSERT_OK(path_package_append_file(&pp, fn));
-		TS_ASSERT_STR_EQUAL(pp.path, correct_result);
+		TS_ASSERT_STR_EQUALS(pp.path, correct_result);
 	}
 
 

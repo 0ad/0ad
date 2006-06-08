@@ -30,7 +30,6 @@
 // some functions here are called from within mmgr; disable its hooks
 // so that our allocations don't cause infinite recursion.
 #include "nommgr.h"
-#include "self_test.h"
 #include "app_hooks.h"
 #include "lib/path_util.h"
 #include "debug_stl.h"
@@ -543,6 +542,7 @@ ErrorReaction debug_display_error(const wchar_t* description,
 ErrorReaction debug_assert_failed(const char* expr,
 	const char* file, int line, const char* func)
 {
+/*/*
 	// for edge cases in some functions, warnings (=asserts) are raised in
 	// addition to returning an error code. self-tests deliberately trigger
 	// these cases and check for the latter but shouldn't cause the former.
@@ -551,7 +551,7 @@ ErrorReaction debug_assert_failed(const char* expr,
 	// compile-time dependency on self_test.h)
 	if(self_test_active)
 		return ER_CONTINUE;
-
+*/
 	// __FILE__ evaluates to the full path (albeit without drive letter)
 	// which is rather long. we only display the base name for clarity.
 	const char* fn_only = path_name_only(file);
@@ -566,6 +566,7 @@ ErrorReaction debug_assert_failed(const char* expr,
 ErrorReaction debug_warn_err(LibError err,
 	const char* file, int line, const char* func)
 {
+/*/*
 	// for edge cases in some functions, warnings (=asserts) are raised in
 	// addition to returning an error code. self-tests deliberately trigger
 	// these cases and check for the latter but shouldn't cause the former.
@@ -574,7 +575,7 @@ ErrorReaction debug_warn_err(LibError err,
 	// compile-time dependency on self_test.h)
 	if(self_test_active)
 		return ER_CONTINUE;
-
+*/
 	// __FILE__ evaluates to the full path (albeit without drive letter)
 	// which is rather long. we only display the base name for clarity.
 	const char* fn_only = path_name_only(file);

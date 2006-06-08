@@ -3,8 +3,9 @@
 // TODO: compare against known-good result?
 // problem: results may differ by compiler (e.g. due to differing STL)
 
-#include <cxxtest/TestSuite.h>
+#include "lib/self_test.h"
 
+#include "lib/sysdep/win/win_internal.h"	// HWND
 #include "lib/debug.h"	// no wdbg_sym interface needed
 #include "lib/sysdep/sysdep.h"
 #include "lib/sysdep/win/win_internal.h"
@@ -19,7 +20,7 @@ class TestWdbgSym : public CxxTest::TestSuite
 {
 #pragma optimize("", off)
 
-	static void test_array()
+	static void m_test_array()
 	{
 		struct Small
 		{
@@ -57,7 +58,7 @@ class TestWdbgSym : public CxxTest::TestSuite
 		struct Nested* self_ptr;
 	};
 
-	static void test_udt()
+	static void m_test_udt()
 	{
 		Nested nested = { 123 }; nested.self_ptr = &nested;
 
@@ -100,11 +101,11 @@ class TestWdbgSym : public CxxTest::TestSuite
 		}
 		derived;
 
-		test_array();
+		m_test_array();
 	}
 
 	// STL containers and their contents
-	static void test_stl()
+	static void m_test_stl()
 	{
 		std::vector<std::wstring> v_wstring;
 		v_wstring.push_back(L"ws1"); v_wstring.push_back(L"ws2");
@@ -169,7 +170,7 @@ class TestWdbgSym : public CxxTest::TestSuite
 		std::string str_empty;
 		std::wstring wstr_empty;
 
-		test_udt();
+		m_test_udt();
 
 		// uninitialized
 		std::deque<u8> d_u8_uninit;
@@ -197,7 +198,7 @@ class TestWdbgSym : public CxxTest::TestSuite
 
 	// also exercises all basic types because we need to display some values
 	// anyway (to see at a glance whether symbol engine addrs are correct)
-	static void test_addrs(int p_int, double p_double, char* p_pchar, uintptr_t p_uintptr)
+	static void m_test_addrs(int p_int, double p_double, char* p_pchar, uintptr_t p_uintptr)
 	{
 		debug_printf("\nTEST_ADDRS\n");
 
@@ -206,11 +207,11 @@ class TestWdbgSym : public CxxTest::TestSuite
 		wchar_t l_wchars[] = L"wchar string";
 		enum TestEnum { VAL1=1, VAL2=2 } l_enum = VAL1;
 		u8 l_u8s[] = { 1,2,3,4 };
-		void (*l_funcptr)(void) = test_stl;
+		void (*l_funcptr)(void) = m_test_stl;
 
 		static double s_double = -2.718;
 		static char s_chars[] = {'c','h','a','r','s',0};
-		static void (*s_funcptr)(int, double, char*, uintptr_t) = test_addrs;
+		static void (*s_funcptr)(int, double, char*, uintptr_t) = m_test_addrs;
 		static void* s_ptr = (void*)(uintptr_t)0x87654321;
 		static HDC s_hdc = (HDC)0xff0;
 
@@ -225,7 +226,7 @@ class TestWdbgSym : public CxxTest::TestSuite
 		debug_printf("l_u8s     addr=%p val=%d\n", &l_u8s, l_u8s);
 		debug_printf("l_funcptr addr=%p val=%p\n", &l_funcptr, l_funcptr);
 
-		test_stl();
+		m_test_stl();
 
 		int uninit_int; UNUSED2(uninit_int);
 		float uninit_float; UNUSED2(uninit_float);
@@ -237,8 +238,8 @@ class TestWdbgSym : public CxxTest::TestSuite
 #pragma optimize("", on)
 
 public:
-	void test()
+	void test_stack_trace()
 	{
-		test_addrs(123, 3.1415926535897932384626, "pchar string", 0xf00d);
+		m_test_addrs(123, 3.1415926535897932384626, "pchar string", 0xf00d);
 	}
 };

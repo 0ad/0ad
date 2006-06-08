@@ -23,11 +23,11 @@
 #ifndef WIN_H__
 #define WIN_H__
 
+#include "lib/config.h"
+
 #if !OS_WIN
 #error "win.h: do not include if not compiling for Windows"
 #endif
-
-#include "lib/config.h"
 
 #include <wchar.h>
 

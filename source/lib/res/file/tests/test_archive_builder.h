@@ -1,8 +1,7 @@
-#include <cxxtest/TestSuite.h>
-
-#include "lib/lib.h"
 #include "lib/self_test.h"
-#include "lib/res/file/zip.h"
+
+#include "lib/res/file/path.h"
+#include "lib/res/file/file.h"
 #include "lib/res/file/vfs.h"
 #include "lib/res/file/archive.h"
 #include "lib/res/file/archive_builder.h"
@@ -18,14 +17,15 @@ class TestArchiveBuilder : public CxxTest::TestSuite
 	{
 		// 10 chars is enough for (10-1)*5 bits = 45 bits > u32
 		char name_tmp[10];
+		const char* atom_fn;
 
 		for(;;)
 		{
 			u32 rand_num = rand(0, 100000);
-			base32(4, (u8*)&rand_num, (u8 *)name_tmp);
+			base32(4, (const u8*)&rand_num, (u8*)name_tmp);
 
 			// store filename in atom pool
-			const char* atom_fn = file_make_unique_fn_copy(name_tmp);
+			atom_fn = file_make_unique_fn_copy(name_tmp);
 			// done if the filename is unique (not been generated yet)
 			if(existing_names.find(atom_fn) == existing_names.end())
 			{
@@ -33,6 +33,8 @@ class TestArchiveBuilder : public CxxTest::TestSuite
 				return atom_fn;
 			}
 		}
+
+		return atom_fn;
 	}
 
 	struct TestFile
@@ -42,14 +44,15 @@ class TestArchiveBuilder : public CxxTest::TestSuite
 	};
 	// (must be separate array and end with NULL entry (see Filenames))
 	const char* filenames[NUM_FILES+1];
-	TestFile files[NUM_FILES+1];
+	TestFile files[NUM_FILES];
 
 	void generate_random_files()
 	{
-		TestFile files[NUM_FILES];
+		path_init();	// required for file_make_unique_fn_copy
+
 		for(size_t i = 0; i < NUM_FILES; i++)
 		{
-			const size_t size = rand(0, MAX_FILE_SIZE);
+			const off_t size = rand(0, MAX_FILE_SIZE);
 			u8* data = new u8[size];
 
 			// random data won't compress at all, and we want to exercise
@@ -58,12 +61,12 @@ class TestArchiveBuilder : public CxxTest::TestSuite
 			const bool make_easily_compressible = (rand(0, 100) > 50);
 			if(make_easily_compressible)
 			{
-				for(size_t i = 0; i < size; i++)
+				for(off_t i = 0; i < size; i++)
 					data[i] = rand() & 0x0F;
 			}
 			else
 			{
-				for(size_t i = 0; i < size; i++)
+				for(off_t i = 0; i < size; i++)
 					data[i] = rand() & 0xFF;
 			}
 
@@ -81,7 +84,7 @@ public:
 	TestArchiveBuilder()
 		: archive_fn("test_archive_random_data.zip") {}
 
-	void test1()
+	void test_create_archive_with_random_files()
 	{
 		generate_random_files();
 

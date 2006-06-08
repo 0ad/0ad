@@ -448,8 +448,8 @@ private:
 	{
 		if(id != expected_id || magic != MAGIC)
 			return false;
-		TEST(size_pa % BUF_ALIGN == 0);
-		TEST(size_pa <= MAX_CACHE_SIZE);
+		debug_assert(size_pa % BUF_ALIGN == 0);
+		debug_assert(size_pa <= MAX_CACHE_SIZE);
 		return true;
 	}
 
@@ -520,8 +520,8 @@ private:
 
 	void freelist_add(u8* p, size_t size_pa)
 	{
-		TEST((uintptr_t)p % BUF_ALIGN == 0);
-		TEST(size_pa % BUF_ALIGN == 0);
+		debug_assert((uintptr_t)p % BUF_ALIGN == 0);
+		debug_assert(size_pa % BUF_ALIGN == 0);
 		const uint size_class = size_class_of(size_pa);
 
 		// write header and footer into the freed mem
@@ -551,12 +551,12 @@ private:
 
 	void freelist_remove(Header* header)
 	{
-		TEST((uintptr_t)header % BUF_ALIGN == 0);
+		debug_assert((uintptr_t)header % BUF_ALIGN == 0);
 
 		Footer* footer = (Footer*)((u8*)header+header->size_pa-sizeof(Footer));
-		TEST(is_valid_tag(HEADER_ID, header->id, header->magic, header->size_pa));
-		TEST(is_valid_tag(FOOTER_ID, footer->id, footer->magic, footer->size_pa));
-		TEST(header->size_pa == footer->size_pa);
+		debug_assert(is_valid_tag(HEADER_ID, header->id, header->magic, header->size_pa));
+		debug_assert(is_valid_tag(FOOTER_ID, footer->id, footer->magic, footer->size_pa));
+		debug_assert(header->size_pa == footer->size_pa);
 		const uint size_class = size_class_of(header->size_pa);
 
 		header->prev->next = header->next;
@@ -618,7 +618,7 @@ private:
 
 		// apparently all classes above start_size_class are empty,
 		// or the above would have succeeded.
-		TEST(bitmap < BIT(start_size_class+1));
+		debug_assert(bitmap < BIT(start_size_class+1));
 		return 0;
 	}
 
@@ -992,7 +992,7 @@ static FileIOBuf cache_alloc(size_t size)
 		bool removed = file_cache.remove_least_valuable(&discarded_buf, &size);
 		// only false if cache is empty, which can't be the case because
 		// allocation failed.
-		TEST(removed);
+		debug_assert(removed);
 
 		// discarded_buf may be the least valuable entry in cache, but if
 		// still in use (i.e. extant), it must not actually be freed yet!
@@ -1285,4 +1285,20 @@ void file_cache_shutdown()
 	extant_bufs.display_all_remaining();
 	cache_allocator.shutdown();
 	block_mgr.shutdown();
+}
+
+
+// for self test
+
+void* file_cache_allocator_alloc(size_t size)
+{
+	return cache_allocator.alloc(size);
+}
+void file_cache_allocator_free(u8* p, size_t size)
+{
+	return cache_allocator.dealloc(p, size);
+}
+void file_cache_allocator_reset()
+{
+	cache_allocator.reset();
 }

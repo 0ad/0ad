@@ -1,6 +1,7 @@
-#include <cxxtest/TestSuite.h>
+#include "lib/self_test.h"
 
 #include "ps/XML/XML.h"
+#include "ps/XML/XMLwriter.h"
 
 class TestXmlWriter : public CxxTest::TestSuite 
 {

@@ -12,8 +12,6 @@
 #define UNIDOUBLER_HEADER "CStr.cpp"
 #include "UniDoubler.h"
 
-#include "lib/self_test.h"
-
 
 // Only include these function definitions in the first instance of CStr.cpp:
 

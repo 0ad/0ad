@@ -57,7 +57,6 @@
 
 #include "lib/types.h"
 #include "lib/string_s.h"	// CRT secure string
-#include "lib/self_test.h"
 #include "lib/debug.h"
 
 //

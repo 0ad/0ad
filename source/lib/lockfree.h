@@ -120,16 +120,16 @@ extern void lfl_free(LFList* list);
 
 // return pointer to "user data" attached to <key>,
 // or 0 if not found in the list.
-extern void* lfl_find(LFList* list, void* key);
+extern void* lfl_find(LFList* list, uintptr_t key);
 
 // insert into list in order of increasing key. ensures items are unique
 // by first checking if already in the list. returns 0 if out of memory,
 // otherwise a pointer to "user data" attached to <key>. the optional
 // <was_inserted> return variable indicates whether <key> was added.
-extern void* lfl_insert(LFList* list, void* key, size_t additional_bytes, int* was_inserted);
+extern void* lfl_insert(LFList* list, uintptr_t key, size_t additional_bytes, int* was_inserted);
 
 // remove from list; return -1 if not found, or 0 on success.
-extern LibError lfl_erase(LFList* list, void* key);
+extern LibError lfl_erase(LFList* list, uintptr_t key);
 
 
 //

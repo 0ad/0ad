@@ -1,7 +1,7 @@
-#include <cxxtest/TestSuite.h>
+#include "lib/self_test.h"
 
-#include "lib/lib.h"
-#include "../allocators.h"
+#include "lib/allocators.h"
+#include "lib/byte_order.h"
 
 class TestAllocators : public CxxTest::TestSuite 
 {

@@ -1,4 +1,4 @@
-#include <cxxtest/TestSuite.h>
+#include "lib/self_test.h"
 
 #include "lib/sysdep/sysdep.h"
 #include "lib/posix.h"	// fminf etc.

@@ -1,11 +1,10 @@
-#include <cxxtest/TestSuite.h>
+#include "lib/self_test.h"
 
-#include "lib/lib.h"
-
-#include "maths/Matrix3D.h"
-#include "maths/Quaternion.h"
 #include <cstdlib>
 #include <cmath>
+#include "lib/lib.h"
+#include "maths/Matrix3D.h"
+#include "maths/Quaternion.h"
 
 class TestMatrix : public CxxTest::TestSuite 
 {

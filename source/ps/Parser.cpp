@@ -2,7 +2,6 @@
 
 #include "Parser.h"
 #include "lib/lib.h"
-#include "lib/self_test.h"
 
 #if MSC_VERSION
 #pragma warning(disable:4786)

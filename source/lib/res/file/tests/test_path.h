@@ -1,8 +1,9 @@
-#include <cxxtest/TestSuite.h>
+#include "lib/self_test.h"
 
 #include "lib/lib.h"
 #include "lib/self_test.h"
 #include "lib/res/file/path.h"
+#include "lib/res/file/file.h"
 
 class TestPath : public CxxTest::TestSuite 
 {
@@ -12,19 +13,19 @@ public:
 		char N_path[PATH_MAX] = {0};
 		TS_ASSERT_OK(file_make_native_path("a/b/c", N_path));
 	#if OS_WIN
-		TS_ASSERT_STR_EQUAL(N_path, "a\\b\\c");
+		TS_ASSERT_STR_EQUALS(N_path, "a\\b\\c");
 	#else
-		TS_ASSERT_STR_EQUAL(N_path, "a/b/c");
+		TS_ASSERT_STR_EQUALS(N_path, "a/b/c");
 	#endif
 
 		char P_path[PATH_MAX] = {0};
 		TS_ASSERT_OK(file_make_portable_path("a\\b\\c", P_path));
 	#if OS_WIN
-		TS_ASSERT_STR_EQUAL(P_path, "a/b/c"));
+		TS_ASSERT_STR_EQUALS(P_path, "a/b/c");
 	#else
 		// sounds strange, but correct: on non-Windows, \\ didn't
 		// get recognized as separators and weren't converted.
-		TS_ASSERT_STR_EQUAL(P_path, "a\\b\\c"));
+		TS_ASSERT_STR_EQUALS(P_path, "a\\b\\c"));
 	#endif
 
 	}
@@ -55,7 +56,7 @@ public:
 		// see if the atom added above eventually comes out when a
 		// random one is returned from the pool.
 		int tries_left;
-		for(tries_left = 1000; tries != 0; tries--)
+		for(tries_left = 1000; tries_left != 0; tries_left--)
 		{
 			const char* random_name = file_get_random_name();
 			if(random_name == atom1)

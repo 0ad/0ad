@@ -26,8 +26,6 @@
 
 #include "lib.h"
 #include "posix.h"	// SIZE_MAX
-#include "self_test.h"
-
 
 
 // written against http://std.dkuug.dk/jtc1/sc22/wg14/www/docs/n1031.pdf .

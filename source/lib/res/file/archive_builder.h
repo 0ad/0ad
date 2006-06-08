@@ -27,6 +27,8 @@
 // NULL entry.
 typedef const char** Filenames;
 
+struct ZipArchive;
+
 // rationale: this is fairly lightweight and simple, so we don't bother
 // making it opaque.
 struct ArchiveBuildState

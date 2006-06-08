@@ -24,6 +24,8 @@
 #ifndef FILE_CACHE_H__
 #define FILE_CACHE_H__
 
+#include "file.h"	// FileIOBuf
+
 struct BlockId
 {
 	const char* atom_fn;
@@ -107,5 +109,11 @@ extern void file_cache_reset();
 
 extern void file_cache_init();
 extern void file_cache_shutdown();
+
+
+// test access mechanism
+extern void* file_cache_allocator_alloc(size_t size);
+extern void file_cache_allocator_free(u8* p, size_t size);
+extern void file_cache_allocator_reset();
 
 #endif	// #ifndef FILE_CACHE_H__

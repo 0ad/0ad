@@ -1,95 +1,101 @@
-#include <cxxtest/TestSuite.h>
+#include "lib/self_test.h"
 
 #include "lib/lib.h"
 #include "lib/string_s.h"
+
+// note: we only test the char version. this avoids having to
+// expose string_s.cpp's tchar / tcpy etc. macros in the header and/or
+// writing a copy of this test for the unicode version.
+// string_s.cpp's unicode functions are the same anyway
+// (they're implemented via the abovementioned tcpy macro redirection).
 
 class TestString_s : public CxxTest::TestSuite 
 {
 	// note: avoid 4-byte strings - they would trigger WARN_IF_PTR_LEN.
 
-	const tchar* const s0;
-	const tchar* const s1;
-	const tchar* const s5;
-	const tchar* const s10;
+	const char* const s0;
+	const char* const s1;
+	const char* const s5;
+	const char* const s10;
 
-	tchar d1[1];
-	tchar d2[2];
-	tchar d3[3];
-	tchar d5[5];
-	tchar d6[6];
-	tchar d10[10];
-	tchar d11[11];
+	char d1[1];
+	char d2[2];
+	char d3[3];
+	char d5[5];
+	char d6[6];
+	char d10[10];
+	char d11[11];
 
-	tchar no_null[7];
+	char no_null[7];
 
 
 	static void TEST_LEN(const char* string, size_t limit, size_t expected)
 	{
-		TS_ASSERT_EQUALS(tnlen((string), (limit)), (expected));
+		TS_ASSERT_EQUALS(strnlen((string), (limit)), (expected));
 	}
 
 	static void TEST_CPY(char* dst, size_t dst_max, const char* src,
 		int expected_ret, const char* expected_dst)
 	{
-		int ret = tcpy_s((dst), dst_max, (src));
+		int ret = strcpy_s((dst), dst_max, (src));
 		TS_ASSERT_EQUALS(ret, expected_ret);
 		if(dst != 0)
-			TS_ASSERT(!tcmp(dst, T(expected_dst)));
+			TS_ASSERT(!strcmp(dst, expected_dst));
 	}
 
 	static void TEST_CPY2(char* dst, const char* src,
 		int expected_ret, const char* expected_dst)
 	{
-		int ret = tcpy_s((dst), ARRAY_SIZE(dst), (src));
+		int ret = strcpy_s((dst), ARRAY_SIZE(dst), (src));
 		TS_ASSERT_EQUALS(ret, expected_ret);
 		if(dst != 0)
-			TS_ASSERT(!tcmp(dst, T(expected_dst)));
+			TS_ASSERT(!strcmp(dst, expected_dst));
 	}
 
 	static void TEST_NCPY(char* dst, const char* src, size_t max_src_chars,
 		int expected_ret, const char* expected_dst)
 	{
-		int ret = tncpy_s((dst), ARRAY_SIZE(dst), (src), (max_src_chars));
+		int ret = strncpy_s((dst), ARRAY_SIZE(dst), (src), (max_src_chars));
 		TS_ASSERT_EQUALS(ret, expected_ret);
 		if(dst != 0)
-			TS_ASSERT(!tcmp(dst, T(expected_dst)));
+			TS_ASSERT(!strcmp(dst, expected_dst));
 	}
 
 	static void TEST_CAT(char* dst, size_t dst_max, const char* src,
-		int expected_ret, const char expected_dst)
+		int expected_ret, const char* expected_dst)
 	{
-		int ret = tcat_s((dst), dst_max, (src));
+		int ret = strcat_s((dst), dst_max, (src));
 		TS_ASSERT_EQUALS(ret, expected_ret);
 		if(dst != 0)
-			TS_ASSERT(!tcmp(dst, T(expected_dst)));
+			TS_ASSERT(!strcmp(dst, expected_dst));
 	}
 
 	static void TEST_CAT2(char* dst, const char* dst_val, const char* src,
 		int expected_ret, const char* expected_dst)
 	{
-		tcpy(dst, T(dst_val));
-		int ret = tcat_s((dst), ARRAY_SIZE(dst), (src));
+		strcpy(dst, dst_val);
+		int ret = strcat_s((dst), ARRAY_SIZE(dst), (src));
 		TS_ASSERT_EQUALS(ret, expected_ret);
 		if(dst != 0)
-			TS_ASSERT(!tcmp(dst, T(expected_dst)));
+			TS_ASSERT(!strcmp(dst, expected_dst));
 	}
 
 	static void TEST_NCAT(char* dst, const char* dst_val,
 		const char* src, size_t max_src_chars,
 		int expected_ret, const char* expected_dst)
 	{
-		tcpy(dst, T(dst_val));
-		int ret = tncat_s((dst), ARRAY_SIZE(dst), (src), (max_src_chars));
+		strcpy(dst, dst_val);
+		int ret = strncat_s((dst), ARRAY_SIZE(dst), (src), (max_src_chars));
 		TS_ASSERT_EQUALS(ret, expected_ret);
 		if(dst != 0)
-			TS_ASSERT(!tcmp(dst, T(expected_dst)));
+			TS_ASSERT(!strcmp(dst, expected_dst));
 	}
 
 public:
 	TestString_s()
-		: s0(T("")), s1(T("a")), s5(T("abcde")), s10(T("abcdefghij"))
+		: s0(""), s1("a"), s5("abcde"), s10("abcdefghij")
 	{
-		const tchar no_null_[] = { 'n','o','_','n','u','l','l'};
+		const char no_null_tmp[] = { 'n','o','_','n','u','l','l'};
 		memcpy(no_null, no_null_tmp, sizeof(no_null));
 	}
 
@@ -165,7 +171,7 @@ public:
 		TEST_NCPY(d6 ,s5,5, 0,"abcde");
 		TEST_NCPY(d11,s5,5, 0,"abcde");
 
-		tcpy(d5, T("----"));
+		strcpy(d5, "----");
 		TEST_NCPY(d5,s5,0 , 0,"");	// specified behavior! see 3.6.2.1.1 #4
 		TEST_NCPY(d5,s5,1 , 0,"a");
 		TEST_NCPY(d5,s5,4 , 0,"abcd");

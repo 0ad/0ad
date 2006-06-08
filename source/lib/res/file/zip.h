@@ -70,4 +70,10 @@ extern LibError zip_archive_add_file(ZipArchive* za, const ArchiveEntry* ae, voi
 // IO cost: writes out Central Directory to disk (about 70 bytes per file).
 extern LibError zip_archive_finish(ZipArchive* za);
 
+
+// for self-test
+
+extern time_t time_t_from_FAT(u32 fat_timedate);
+extern u32 FAT_from_time_t(time_t time);
+
 #endif	// #ifndef ZIP_H__

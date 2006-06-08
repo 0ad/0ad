@@ -1,6 +1,5 @@
-#include <cxxtest/TestSuite.h>
-
 #include "lib/self_test.h"
+
 #include "lib/lib.h"
 
 class TestLib : public CxxTest::TestSuite 

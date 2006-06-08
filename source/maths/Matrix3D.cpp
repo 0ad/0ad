@@ -13,7 +13,6 @@
 
 #include "Matrix3D.h"
 #include "Quaternion.h"
-#include "lib/self_test.h"
 
 CMatrix3D::CMatrix3D ()
 {

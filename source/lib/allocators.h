@@ -423,7 +423,7 @@ public:
 	{
 		const Allocs::value_type item = std::make_pair(p, size);
 		std::pair<Allocs::iterator, bool> ret = allocs.insert(item);
-		TEST(ret.second == true);	// wasn't already in map
+		debug_assert(ret.second == true);	// wasn't already in map
 	}
 
 	void notify_free(void* p, size_t size)
@@ -435,7 +435,7 @@ public:
 		{
 			// size must match what was passed to notify_alloc
 			const size_t allocated_size = it->second;
-			TEST(size == allocated_size);
+			debug_assert(size == allocated_size);
 
 			allocs.erase(it);
 		}

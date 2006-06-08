@@ -106,6 +106,8 @@ For further details, see below.
 #ifndef SELF_TEST_H__
 #define SELF_TEST_H__
 
+/*/*
+
 // a self test is enabled if at the point of its definition
 // SELF_TEST_ENABLED evaluates to 1 (non-zero).
 // the value #defined below is the global default. you can override it
@@ -172,7 +174,17 @@ extern int self_test_register(SelfTestRecord* r);
 // set/cleared by run_self_test.
 extern bool self_test_active;
 
+*/
+
+
+// for convenience, to avoid having to include all of these manually
+#include "precompiled.h"
+#include "lib_errors.h"
+#include "posix.h"
+
+#include <cxxtest/TestSuite.h>
+
 #define TS_ASSERT_OK(expr) TS_ASSERT_EQUALS((expr), INFO_OK)
-#define TS_ASSERT_STR_EQUAL(str1, str2) TS_ASSERT(!strcmp((str1), (str2)))
+#define TS_ASSERT_STR_EQUALS(str1, str2) TS_ASSERT(!strcmp((str1), (str2)))
 
 #endif	// #ifndef SELF_TEST_H__

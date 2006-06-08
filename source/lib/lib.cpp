@@ -91,7 +91,7 @@ uint log2(uint x)
 {
 	uint bit = 1;
 	uint l = 0;
-	while(bit < x)
+	while(bit < x && bit != 0)	// must detect overflow
 	{
 		l++;
 		bit += bit;

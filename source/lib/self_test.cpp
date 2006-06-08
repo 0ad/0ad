@@ -22,8 +22,9 @@
 
 #include "precompiled.h"
 
-#include "self_test.h"
 #include "timer.h"
+
+/*/*
 
 // checked by debug_assert_failed; disables asserts if true (see above).
 // set/cleared by self_test_run.
@@ -69,3 +70,5 @@ void self_test_run_all()
 	const double dt = get_time() - t0;
 	debug_printf("-- done (elapsed time %.0f ms)\n", dt*1e3);
 }
+
+*/

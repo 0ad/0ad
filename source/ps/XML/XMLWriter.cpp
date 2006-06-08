@@ -4,7 +4,6 @@
 
 #include "ps/CLogger.h"
 #include "lib/res/file/vfs.h"
-#include "lib/self_test.h"
 
 
 // TODO (maybe): Write to the VFS handle frequently, instead of buffering

@@ -29,7 +29,6 @@
 #include "lib/byte_order.h"
 #include "lib/allocators.h"
 #include "lib/timer.h"
-#include "lib/self_test.h"
 #include "file_internal.h"
 
 
@@ -62,7 +61,9 @@ template<typename T> u16 u16_from_larger(T x)
 // timestamp conversion: DOS FAT <-> Unix time_t
 //-----------------------------------------------------------------------------
 
-static time_t time_t_from_FAT(u32 fat_timedate)
+// must not be static because these are tested by unit test
+
+time_t time_t_from_FAT(u32 fat_timedate)
 {
 	const uint fat_time = bits(fat_timedate, 0, 15);
 	const uint fat_date = bits(fat_timedate, 16, 31);
@@ -86,7 +87,7 @@ static time_t time_t_from_FAT(u32 fat_timedate)
 }
 
 
-static u32 FAT_from_time_t(time_t time)
+u32 FAT_from_time_t(time_t time)
 {
 	// (values are adjusted for DST)
 	struct tm* t = localtime(&time);
