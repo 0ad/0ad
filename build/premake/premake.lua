@@ -381,9 +381,6 @@ function setup_main_exe ()
 			"/DELAY:UNLOAD"
 		}
 
-		-- required to use WinMain() on Windows, otherwise will default to main()
-		tinsert(package.buildflags, "no-main")
-
 	else -- Non-Windows, = Unix
 
 		-- Libraries
@@ -551,50 +548,67 @@ end
 -- tests
 --------------------------------------------------------------------------------
 
-function files_in_test_subdirs(root, ext)
+function get_all_test_files(root, src_files, hdr_files)
 
 	-- note: lua doesn't have any directory handling functions at all, ugh.
 	-- premake's matchrecursive on patterns like *tests*.h doesn't work -
 	-- apparently it applies them to filenames, not the complete path.
-	-- our workaround is to enumerate all files of the desired extension,
-	-- and manually filter out the desired */tests/* files.
-	-- this is a bit slow, but hey.
+	-- our workaround is to enumerate all files and manually filter out the
+	-- desired */tests/* files. this is a bit slow, but hey.
 
-	local pattern = root .. "*" .. ext
-	local all_files = matchrecursive(pattern)
-	local ret = {}
+	local all_files = matchrecursive(root .. "*.h")
 	for i,v in all_files do
-		if string.find(v, "/tests/") then
-			tinsert(ret, v)
+		-- header file in subdirectory test
+		if string.sub(v, -2) == ".h" and string.find(v, "/tests/") then
+			tinsert(hdr_files, v)
+			-- add the corresponding source file immediately, instead of
+			-- waiting for it to appear after cxxtestgen. this avoids
+			-- having to recreate workspace 2x after adding a test.
+			tinsert(src_files, string.sub(v, 1, -3) .. ".cpp")
 		end
 	end
 	
-	return ret
 end
 
 
 function setup_tests()
-	package_create("test_3_gen"  , "cxxtestgen")
-	--package.files = files_in_test_subdirs(source_root, ".h")
-	package.files = { source_root .. "lib/tests/test_byte_order.h" }
+
+	local src_files = {}
+	local hdr_files = {}
+	get_all_test_files(source_root, src_files, hdr_files)
+
+
+	package_create("test_3_gen", "cxxtestgen")
+	package.files = hdr_files
 	package.rootfile = source_root .. "test_root.cpp"
 	if OS == "windows" then
 		package.rootoptions = "--gui=Win32Gui --have-eh --runner=ParenPrinter"
 	else
 		package.rootoptions = "--error-printer"
 	end
-	
+
+
 	package_create("test_2_build", "winexe")
-	--package.files = files_in_test_subdirs(source_root, ".cpp")
-	package.files = { source_root .. "lib/tests/test_byte_order.cpp" }
-	table.insert(package.files, source_root .. "test_root.cpp")
-	
-	package.includepaths = {source_root}
-	package.links = { "test_3_gen" }
-	listconcat(package.links, static_lib_names)
+	links = static_lib_names
+	tinsert(links, "test_3_gen")
+	extra_params = {
+		extra_files = { "test_root.cpp" },
+		extra_links = links,
+	}
+	package_add_contents(source_root, {}, {}, extra_params)
+	-- note: these are not relative to source_root and therefore can't be included via package_add_contents.
+	listconcat(package.files, src_files)
 	package_add_extern_libs(used_extern_libs)
+	if OS == "windows" then
+		-- required for win.cpp's init mechanism
+		tinsert(package.linkoptions, "/ENTRY:entry")
+
+		-- from "lowlevel" static lib; must be added here to be linked in
+		tinsert(package.files, source_root.."lib/sysdep/win/error_dialog.rc")
+	end
+
 	
-	package_create("test_1_run"  , "run")
+	package_create("test_1_run", "run")
 	package.links = { "test_2_build" } -- This determines which project's executable to run
 
 end
