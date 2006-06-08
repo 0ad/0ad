@@ -37,6 +37,10 @@ that of Atlas depending on commandline parameters.
 #include "sound/CMusicPlayer.h"
 #include "gui/GUI.h"
 
+#if OS_WIN
+# include "lib/sysdep/win/win.h"
+#endif
+
 #define LOG_CATEGORY "main"
 
 extern bool g_TerrainModified;
@@ -353,6 +357,11 @@ void kill_mainloop()
 
 int main(int argc, char* argv[])
 {
+	// see discussion at declaration of win_pre_main_init.
+#if OS_WIN
+	win_pre_main_init();
+#endif
+
 	debug_printf("MAIN &argc=%p &argv=%p\n", &argc, &argv);
 
 	ATLAS_RunIfOnCmdLine(argc, argv);

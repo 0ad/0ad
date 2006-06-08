@@ -256,9 +256,6 @@ static void at_exit(void)
 }
 
 
-#ifndef NO_MAIN_REDIRECT
-static
-#endif
 void win_pre_main_init()
 {
 	// enable memory tracking and leak detection;
@@ -277,18 +274,6 @@ void win_pre_main_init()
 	// may be incorrect (file_set_root not yet called).
 	// (w)sdl will take care of it anyway.
 }
-
-
-#ifndef NO_MAIN_REDIRECT
-
-#undef main
-extern int app_main(int argc, char* argv[]);
-int main(int argc, char* argv[])
-{
-	win_pre_main_init();
-	return app_main(argc, argv);
-}
-#endif
 
 
 // perform all initialization that needs to run before _cinit

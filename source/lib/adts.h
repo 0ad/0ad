@@ -26,11 +26,11 @@
 #include "lib.h"
 
 #include <cfloat>
-#include <cassert>
 
+#pragma warning(push, 3)	// VC7.1 STL not /W4 clean :(
 #include <list>
 #include <map>
-#include <queue>
+#pragma warning(pop)
 
 
 template<typename Key, typename T> class DHT_Traits

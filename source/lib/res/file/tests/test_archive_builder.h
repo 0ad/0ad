@@ -17,7 +17,6 @@ class TestArchiveBuilder : public CxxTest::TestSuite
 	{
 		// 10 chars is enough for (10-1)*5 bits = 45 bits > u32
 		char name_tmp[10];
-		const char* atom_fn;
 
 		for(;;)
 		{
@@ -25,7 +24,7 @@ class TestArchiveBuilder : public CxxTest::TestSuite
 			base32(4, (const u8*)&rand_num, (u8*)name_tmp);
 
 			// store filename in atom pool
-			atom_fn = file_make_unique_fn_copy(name_tmp);
+			const char* atom_fn = file_make_unique_fn_copy(name_tmp);
 			// done if the filename is unique (not been generated yet)
 			if(existing_names.find(atom_fn) == existing_names.end())
 			{
@@ -33,8 +32,6 @@ class TestArchiveBuilder : public CxxTest::TestSuite
 				return atom_fn;
 			}
 		}
-
-		return atom_fn;
 	}
 
 	struct TestFile

@@ -26,7 +26,7 @@ public:
 		const ssize_t cdata_produced = comp_feed(c, data, data_size);
 		TS_ASSERT(cdata_produced > 0);
 		TS_ASSERT_OK(comp_finish(c, &cdata, &csize));
-		TS_ASSERT(cdata_produced <= csize);	// can't have produced more than total
+		TS_ASSERT(cdata_produced <= (ssize_t)csize);	// can't have produced more than total
 		}
 
 		// decompress
@@ -38,7 +38,7 @@ public:
 		TS_ASSERT(ucdata_produced > 0);
 		void* ucdata_final; size_t ucsize_final;
 		TS_ASSERT_OK(comp_finish(c, &ucdata_final, &ucsize_final));
-		TS_ASSERT(ucdata_produced <= ucsize_final);	// can't have produced more than total
+		TS_ASSERT(ucdata_produced <= (ssize_t)ucsize_final);	// can't have produced more than total
 		TS_ASSERT_EQUALS(ucdata_final, ucdata);	// output buffer address is same
 		TS_ASSERT_EQUALS(ucsize_final, data_size);	// correct amount of output
 		}

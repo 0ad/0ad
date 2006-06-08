@@ -29,7 +29,7 @@ public:
 		{
 			int was_inserted;
 
-			user_data = lfl_insert(&list, (void *)(key+i), sizeof(int), &was_inserted);
+			user_data = lfl_insert(&list, key+i, sizeof(int), &was_inserted);
 			TS_ASSERT(user_data != 0 && was_inserted);
 			*(uint*)user_data = sig+i;
 
@@ -41,7 +41,7 @@ public:
 		// make sure all "signatures" are present in list
 		for(uint i = 0; i < ENTRIES; i++)
 		{
-			user_data = lfl_find(&list, (void *)(key+i));
+			user_data = lfl_find(&list, key+i);
 			TS_ASSERT(user_data != 0);
 			TS_ASSERT_EQUALS(*(uint*)user_data, sig+i);
 
