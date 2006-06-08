@@ -64,7 +64,7 @@ namespace CxxTest
     void doAssertSameData( const char *file, unsigned line,
                            const char *xExpr, const void *x,
                            const char *yExpr, const void *y,
-                           const char *sizeExpr, unsigned size,
+                           const char *sizeExpr, size_t size,
                            const char *message );
 
     template<class X, class Y>

@@ -55,7 +55,7 @@ namespace CxxTest
         void failedAssertSameData( const char *file, unsigned line,
                                    const char *xStr, const char *yStr,
                                    const char *sizeStr, const void *x,
-                                   const void *y, unsigned size );
+                                   const void *y, size_t size );
         void failedAssertDelta( const char *file, unsigned line,
                                 const char *xStr, const char *yStr, const char *dStr,
                                 const char *x, const char *y, const char *d );

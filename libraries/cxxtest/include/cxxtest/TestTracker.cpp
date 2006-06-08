@@ -146,7 +146,7 @@ namespace CxxTest
     void TestTracker::failedAssertSameData( const char *file, unsigned line,
                                             const char *xStr, const char *yStr,
                                             const char *sizeStr, const void *x,
-                                            const void *y, unsigned size )
+                                            const void *y, size_t size )
     {
         countFailure();
         _l->failedAssertSameData( file, line, xStr, yStr, sizeStr, x, y, size );

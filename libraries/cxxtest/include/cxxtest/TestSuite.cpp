@@ -78,7 +78,7 @@ namespace CxxTest
         TS_ABORT();
     }
 
-    bool sameData( const void *x, const void *y, unsigned size )
+    bool sameData( const void *x, const void *y, size_t size )
     {
         if ( size == 0 )
             return true;
@@ -101,7 +101,7 @@ namespace CxxTest
     void doAssertSameData( const char *file, unsigned line,
                            const char *xExpr, const void *x,
                            const char *yExpr, const void *y,
-                           const char *sizeExpr, unsigned size,
+                           const char *sizeExpr, size_t size,
                            const char *message )
     {
         if ( !sameData( x, y, size ) ) {
