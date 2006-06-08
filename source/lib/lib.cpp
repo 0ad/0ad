@@ -354,6 +354,8 @@ void base32(const size_t len, const u8* in, u8* out)
 		uint c = (pool >> bits) & 31;
 		*out++ = tbl[c];
 	}
+
+	*out++ = '\0';
 }
 
 
