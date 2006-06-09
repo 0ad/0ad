@@ -18,6 +18,7 @@ public:
 
 private:
 	CStrW m_Name;
+	CStrW m_Civilization;	// Note: this must be the un-internationalized name of the civ
 	PS_uint m_PlayerID;
 	PS_uint m_LOSToken;
 	SPlayerColour m_Colour;

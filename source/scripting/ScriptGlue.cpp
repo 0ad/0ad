@@ -34,7 +34,7 @@
 #include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
 #include "simulation/BaseEntityCollection.h"
-#include "simulation/BaseTechCollection.h"
+#include "simulation/TechnologyCollection.h"
 #include "simulation/Entity.h"
 #include "simulation/EntityFormation.h"
 #include "simulation/EntityHandles.h"
@@ -332,30 +332,18 @@ JSBool isFormationLocked( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval
 // Techs
 //-----------------------------------------------------------------------------
 
-JSBool getTechTemplate( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
+JSBool getTechnology( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_MIN_PARAMS(2, getTechTemplate);
+	REQUIRE_MIN_PARAMS(1, getTechnology);
 	
 	CStrW name = ToPrimitive<CStrW>( argv[0] );
-	PS_uint playerID = (PS_uint)ToPrimitive<int>( argv[1] );
 	*rval = JSVAL_NULL;
 
-	if ( g_Game->GetPlayer(playerID) )
-	{
-		//The tech will now temporarily belong to this player.  This will change on the next call.
-		CBaseTech* tech = g_BaseTechCollection.getTemplate(name);	
-		if ( tech )
-		{
-			tech->setPlayer( g_Game->GetPlayer(playerID) );
-			//*rval = OBJECT_TO_JSVAL(tech->GetScript());
-			*rval = ToJSVal( tech );
-			//*rval = ToJSVal( 42 );
-		}
-		else
-			JS_ReportError(cx, "Invalid tech template name \"%ls\" passed for getTechTemplate()", name.c_str() );
-	}
+	CTechnology* tech = g_TechnologyCollection.getTechnology( name );	
+	if ( tech )
+		*rval = ToJSVal( tech );
 	else
-		JS_ReportError(cx, "Invalid playerID \"%d\"passed for getTechTemplate()", playerID);
+		JS_ReportError(cx, "Invalid tech template name \"%ls\" passed for getTechnology()", name.c_str() );
 
 	if ( rval )
 		return JS_TRUE;
@@ -1203,7 +1191,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC(isFormationLocked, isFormationLocked, 1)
 	
 	//Tech
-	JS_FUNC(getTechTemplate, getTechTemplate, 2)
+	JS_FUNC(getTechnology, getTechnology, 2)
 	// Camera
 	JS_FUNC(setCameraTarget, setCameraTarget, 1)
 

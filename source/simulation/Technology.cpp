@@ -1,6 +1,6 @@
 #include "precompiled.h"
-#include "BaseTech.h"
-#include "BaseTechCollection.h"
+#include "Technology.h"
+#include "TechnologyCollection.h"
 #include "EntityManager.h"
 #include "ps/CStr.h"
 #include "ps/CLogger.h"
@@ -13,9 +13,9 @@
 
 #define LOG_CATEGORY "Techs"
 
-STL_HASH_SET<CStr, CStr_hash_compare> CBaseTech::m_scriptsLoaded;
+STL_HASH_SET<CStr, CStr_hash_compare> CTechnology::m_scriptsLoaded;
 
-CBaseTech::CBaseTech() 
+CTechnology::CTechnology() 
 {
 	ONCE( ScriptingInit(); );
 
@@ -23,7 +23,7 @@ CBaseTech::CBaseTech()
 	m_effectFunction = NULL;
 	m_JSFirst = false;
 } 
-bool CBaseTech::loadXML( CStr filename )
+bool CTechnology::loadXML( CStr filename )
 {
 	CXeromyces XeroFile;
 
@@ -42,7 +42,7 @@ bool CBaseTech::loadXML( CStr filename )
 	XMBElement Root = XeroFile.getRoot();
 	if ( Root.getNodeName() != el_tech )
 	{
-		LOG( ERROR, LOG_CATEGORY, "CBaseTech: XML root was not \"Tech\" in file %s. Load failed.", filename.c_str() );
+		LOG( ERROR, LOG_CATEGORY, "CTechnology: XML root was not \"Tech\" in file %s. Load failed.", filename.c_str() );
 		return false;
 	}
 	XMBElementList RootChildren = Root.getChildNodes();
@@ -61,14 +61,14 @@ bool CBaseTech::loadXML( CStr filename )
 			continue;
 		if ( !ret )
 		{
-			LOG( ERROR, LOG_CATEGORY, "CBaseTech: Load failed for file %s", filename.c_str() );
+			LOG( ERROR, LOG_CATEGORY, "CTechnology: Load failed for file %s", filename.c_str() );
 			return false;
 		}
 	}
 	
 	return true;	
 }
-bool CBaseTech::loadELID( XMBElement ID, CXeromyces& XeroFile )
+bool CTechnology::loadELID( XMBElement ID, CXeromyces& XeroFile )
 {
 	#define EL(x) int el_##x = XeroFile.getElementID(#x)
 	
@@ -106,13 +106,13 @@ bool CBaseTech::loadELID( XMBElement ID, CXeromyces& XeroFile )
 		else
 		{
 			const char* tagName = XeroFile.getElementString(name).c_str();
-			LOG( ERROR, LOG_CATEGORY, "CBaseTech: invalid tag %s for XML file", tagName );
+			LOG( ERROR, LOG_CATEGORY, "CTechnology: invalid tag %s for XML file", tagName );
 			return false;
 		}
 	}
 	return true;
 }
-bool CBaseTech::loadELReq( XMBElement Req, CXeromyces& XeroFile )
+bool CTechnology::loadELReq( XMBElement Req, CXeromyces& XeroFile )
 {
 	#define EL(x) int el_##x = XeroFile.getElementID(#x)
 	
@@ -156,7 +156,7 @@ bool CBaseTech::loadELReq( XMBElement Req, CXeromyces& XeroFile )
 				else
 				{
 					const char* tagName = XeroFile.getElementString(name).c_str();
-					LOG( ERROR, LOG_CATEGORY, "CBaseTech: invalid tag %s for XML file", tagName );
+					LOG( ERROR, LOG_CATEGORY, "CTechnology: invalid tag %s for XML file", tagName );
 					return false;
 				}
 			}
@@ -168,13 +168,13 @@ bool CBaseTech::loadELReq( XMBElement Req, CXeromyces& XeroFile )
 		else
 		{
 			const char* tagName = XeroFile.getElementString(name).c_str();
-			LOG( ERROR, LOG_CATEGORY, "CBaseTech: invalid tag %s for XML file", tagName );
+			LOG( ERROR, LOG_CATEGORY, "CTechnology: invalid tag %s for XML file", tagName );
 			return false;
 		}
 	}
 	return true;
 }
-bool CBaseTech::loadELEffect( XMBElement effect, CXeromyces& XeroFile, CStr& filename )
+bool CTechnology::loadELEffect( XMBElement effect, CXeromyces& XeroFile, CStr& filename )
 {
 	#define EL(x) int el_##x = XeroFile.getElementID(#x)
 	#define AT(x) int at_##x = XeroFile.getAttributeID(#x)
@@ -219,7 +219,7 @@ bool CBaseTech::loadELEffect( XMBElement effect, CXeromyces& XeroFile, CStr& fil
 				{
 					if ( CEntity::m_AttributeTable.find( modValue ) == CEntity::m_AttributeTable.end() )
 					{
-						LOG( ERROR, LOG_CATEGORY, "CBaseTech::loadXML invalid attribute %s for modifier attribute", modValue);
+						LOG( ERROR, LOG_CATEGORY, "CTechnology::loadXML invalid attribute %s for modifier attribute", modValue);
 						m_Modifiers.pop_back();
 						return false;
 					}
@@ -230,7 +230,7 @@ bool CBaseTech::loadELEffect( XMBElement effect, CXeromyces& XeroFile, CStr& fil
 					m_Modifiers.back().value = modValue.ToFloat();
 				else
 				{
-					LOG( ERROR, LOG_CATEGORY, "CBaseTech::loadXML invalid tag inside \"Modifier\" tag" );
+					LOG( ERROR, LOG_CATEGORY, "CTechnology::loadXML invalid tag inside \"Modifier\" tag" );
 					m_Modifiers.pop_back();
 					return false;
 				}
@@ -250,7 +250,7 @@ bool CBaseTech::loadELEffect( XMBElement effect, CXeromyces& XeroFile, CStr& fil
 				{
 					if ( CEntity::m_AttributeTable.find( setValue ) == CEntity::m_AttributeTable.end() )
 					{
-						LOG( ERROR, LOG_CATEGORY, "CBaseTech::loadXML invalid attribute %s for \"set\" attribute", setValue);
+						LOG( ERROR, LOG_CATEGORY, "CTechnology::loadXML invalid attribute %s for \"set\" attribute", setValue);
 						m_Sets.pop_back();
 						return false;
 					}
@@ -261,7 +261,7 @@ bool CBaseTech::loadELEffect( XMBElement effect, CXeromyces& XeroFile, CStr& fil
 					m_Sets.back().value = setValue.ToFloat();
 				else
 				{
-					LOG( ERROR, LOG_CATEGORY, "CBaseTech::loadXML invalid tag inside \"Set\" tag" );
+					LOG( ERROR, LOG_CATEGORY, "CTechnology::loadXML invalid tag inside \"Set\" tag" );
 					m_Sets.pop_back();
 					return false;
 				}
@@ -297,7 +297,7 @@ bool CBaseTech::loadELEffect( XMBElement effect, CXeromyces& XeroFile, CStr& fil
 				JSFunction* fn = JS_ValueToFunction( g_ScriptingHost.GetContext(), fnval );
 				if( !fn )
 				{
-					LOG( ERROR, LOG_CATEGORY, "CBaseTech::LoadXML: Function does not exist for %hs in file %s. Load failed.", funcName.c_str(), filename.c_str() );
+					LOG( ERROR, LOG_CATEGORY, "CTechnology::LoadXML: Function does not exist for %hs in file %s. Load failed.", funcName.c_str(), filename.c_str() );
 					return false;
 				}
 				m_effectFunction->SetFunction( fn );
@@ -309,13 +309,13 @@ bool CBaseTech::loadELEffect( XMBElement effect, CXeromyces& XeroFile, CStr& fil
 		else
 		{
 			const char* tagName = XeroFile.getElementString(name).c_str();
-			LOG( ERROR, LOG_CATEGORY, "CBaseTech: invalid tag %s for XML file", tagName );
+			LOG( ERROR, LOG_CATEGORY, "CTechnology: invalid tag %s for XML file", tagName );
 			return false;
 		}
 	}
 	return true;
 }
-bool CBaseTech::isTechValid()
+bool CTechnology::isTechValid()
 {
 	if ( m_excluded )
 		return false;
@@ -323,7 +323,7 @@ bool CBaseTech::isTechValid()
 		return true;
 	return false;
 }
-bool CBaseTech::hasReqEntities()
+bool CTechnology::hasReqEntities()
 {
 	bool ret=true;
 	std::vector<HEntity>* entities = m_player->GetControlledEntities();
@@ -341,12 +341,12 @@ bool CBaseTech::hasReqEntities()
 	delete entities;
 	return ret;
 }
-bool CBaseTech::hasReqTechs()
+bool CTechnology::hasReqTechs()
 {
 	bool ret=true;
 	for ( std::vector<CStr>::iterator it=m_ReqTechs.begin(); it != m_ReqTechs.end(); it++ )
 	{
-		if ( !g_BaseTechCollection.getTemplate( (CStrW)*it )->isResearched() )
+		if ( !g_TechnologyCollection.getTechnology( (CStrW)*it )->isResearched() )
 		{	
 			ret=false;
 			break;
@@ -356,59 +356,66 @@ bool CBaseTech::hasReqTechs()
 }
 //JS stuff
 
-void CBaseTech::ScriptingInit()
+void CTechnology::ScriptingInit()
 {
-	AddProperty(L"generic", &CBaseTech::m_Generic, true);
-	AddProperty(L"specific", &CBaseTech::m_Specific, true);
-	AddProperty(L"icon", &CBaseTech::m_Icon);	//GUI might want to change this...?
-	AddProperty<int>(L"icon_cell", &CBaseTech::m_IconCell);
-	AddProperty(L"classes", &CBaseTech::m_Classes, true);
-	AddProperty(L"history", &CBaseTech::m_History, true);
+	AddProperty(L"generic", &CTechnology::m_Generic, true);
+	AddProperty(L"specific", &CTechnology::m_Specific, true);
+	AddProperty(L"icon", &CTechnology::m_Icon);	//GUI might want to change this...?
+	AddProperty<int>(L"icon_cell", &CTechnology::m_IconCell);
+	AddProperty(L"classes", &CTechnology::m_Classes, true);
+	AddProperty(L"history", &CTechnology::m_History, true);
 
-	AddProperty<float>(L"time", &CBaseTech::m_ReqTime);	//Techs may upgrade research time and cost of other techs
-	AddProperty<float>(L"food", &CBaseTech::m_ReqFood);
-	AddProperty<float>(L"wood", &CBaseTech::m_ReqWood);
-	AddProperty<float>(L"stone", &CBaseTech::m_ReqStone);
-	AddProperty<float>(L"ore", &CBaseTech::m_ReqOre);
+	AddProperty<float>(L"time", &CTechnology::m_ReqTime);	//Techs may upgrade research time and cost of other techs
+	AddProperty<float>(L"food", &CTechnology::m_ReqFood);
+	AddProperty<float>(L"wood", &CTechnology::m_ReqWood);
+	AddProperty<float>(L"stone", &CTechnology::m_ReqStone);
+	AddProperty<float>(L"ore", &CTechnology::m_ReqOre);
 
-	AddMethod<jsval, &CBaseTech::ApplyEffects>( "applyEffects", 1 );
-	AddMethod<jsval, &CBaseTech::IsExcluded>( "isExcluded", 0 );
-	AddMethod<jsval, &CBaseTech::IsValid>( "isValid", 0 );
-	AddMethod<jsval, &CBaseTech::IsResearched>( "isResearched", 0 );
-	AddMethod<jsval, &CBaseTech::GetPlayerID>( "getPlayerID", 0 );
-	AddMethod<jsval, &CBaseTech::IsJSFirst>( "isJSFirst", 0 );
+	AddMethod<jsval, &CTechnology::ApplyEffects>( "applyEffects", 1 );
+	AddMethod<jsval, &CTechnology::IsExcluded>( "isExcluded", 0 );
+	AddMethod<jsval, &CTechnology::IsValid>( "isValid", 0 );
+	AddMethod<jsval, &CTechnology::IsResearched>( "isResearched", 0 );
+	AddMethod<jsval, &CTechnology::GetPlayerID>( "getPlayerID", 0 );
+	AddMethod<jsval, &CTechnology::IsJSFirst>( "isJSFirst", 0 );
 
-	CJSObject<CBaseTech>::ScriptingInit("TechTemplate");
+	CJSObject<CTechnology>::ScriptingInit("Technology");
 
-	debug_printf("CBaseTech::ScriptingInit complete");
+	debug_printf("CTechnology::ScriptingInit complete");
 }
 
-jsval CBaseTech::ApplyEffects( JSContext* cx, uintN argc, jsval* argv )
+jsval CTechnology::ApplyEffects( JSContext* cx, uintN argc, jsval* argv )
 {
 	if ( !isTechValid() )
 		return JS_FALSE;
-	else if ( argc < 2 )
+	else if ( argc < 3 )
 	{
-		JS_ReportError(cx, "too few parameters for CBaseTech::ApplyEffects.");
+		JS_ReportError(cx, "too few parameters for CTechnology::ApplyEffects.");
 		return JS_FALSE;
 	}
 
-	//Order overriding for some special case
-	bool first = ToPrimitive<bool>( argv[0] );
-	bool invert = ToPrimitive<bool>( argv[1] );
+	m_player = g_Game->GetPlayer( ToPrimitive<PS_uint>( argv[0] ) );
+	if( m_player == 0 ) 
+	{
+		JS_ReportError(cx, "invalid player number for CTechnology::ApplyEffects.");
+		return JS_FALSE;
+	}
+
+	bool first = ToPrimitive<bool>( argv[1] );
+	bool invert = ToPrimitive<bool>( argv[2] );
 
 	//Optional type overriding if some in some special case the script wants to modify non-floats
 	CStr varType("float");
-	if ( argc == 3 )
-		varType = ToPrimitive<CStr>( argv[2] );
+	if ( argc == 4 )
+		varType = ToPrimitive<CStr>( argv[3] );
 
-	if ( first )
-		if( m_effectFunction )
-			m_effectFunction->Run( this->GetScript() );
+	if ( first &&  m_effectFunction )
+	{
+		m_effectFunction->Run( this->GetScript() );
+	}
 
 	//Disable other templates
 	for ( std::vector<CStr>::iterator it=m_Pairs.begin(); it != m_Pairs.end(); it++ )
-		g_BaseTechCollection.getTemplate(*it)->setExclusion(true);
+		g_TechnologyCollection.getTechnology(*it)->setExclusion(true);
 	
 	std::vector<HEntity>* entities = m_player->GetControlledEntities();
 	if ( entities->empty() )
@@ -473,37 +480,38 @@ jsval CBaseTech::ApplyEffects( JSContext* cx, uintN argc, jsval* argv )
 		}
 	}
 
-	if ( !first )
-		if( m_effectFunction )
-			m_effectFunction->Run( this->GetScript() );
+	if ( !first && m_effectFunction )
+	{
+		m_effectFunction->Run( this->GetScript() );
+	}
 	delete entities;
 	debug_printf("Done! I think\n");
 	return JS_TRUE;
 }
 
-jsval CBaseTech::IsValid( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+jsval CTechnology::IsValid( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	if ( isTechValid() )
 		return JS_TRUE;
 	return JS_FALSE;
 }
-jsval CBaseTech::IsExcluded( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+jsval CTechnology::IsExcluded( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	if ( m_excluded )
 		return JS_TRUE;
 	return JS_FALSE;
 }
-jsval CBaseTech::IsResearched( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+jsval CTechnology::IsResearched( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	if ( isResearched() )
 		return JS_TRUE;
 	return JS_FALSE;
 }
-inline jsval CBaseTech::GetPlayerID( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+inline jsval CTechnology::GetPlayerID( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	return ToJSVal( m_player->GetPlayerID() );
 }
-jsval CBaseTech::IsJSFirst( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+jsval CTechnology::IsJSFirst( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	if ( m_JSFirst )
 		return JS_TRUE;

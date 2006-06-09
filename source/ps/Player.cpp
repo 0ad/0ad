@@ -10,12 +10,15 @@
 CPlayer::CPlayer(uint playerID):
 	m_PlayerID(playerID),
 	m_Name(CStrW(L"Player #")+CStrW(playerID)),
+	m_Civilization(L""),
 	m_Colour(0.7f, 0.7f, 0.7f),
 	m_UpdateCB(0)
 {
 	m_LOSToken = LOS_GetTokenFor(playerID);
 
 	AddSynchedProperty( L"name", &m_Name );
+	AddSynchedProperty( L"civilization", &m_Civilization );
+
 	// HACK - since we have to use setColour to update this, we don't want to
 	// expose a colour property. Meanwhile, we want to have a property "colour"
 	// available to be able to use the update/sync system.
@@ -23,7 +26,6 @@ CPlayer::CPlayer(uint playerID):
 	// to CJSObject's list
 	ISynchedJSProperty *prop=new CSynchedJSProperty<SPlayerColour>(L"colour", &m_Colour, this);
 	m_SynchedProperties[L"colour"]=prop;
-
 }
 
 CPlayer::~CPlayer()

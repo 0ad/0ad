@@ -24,7 +24,7 @@ CPlayerSlot::CPlayerSlot(int slotID, CPlayer *pPlayer):
 	);
 	
 	//AddProperty(L"session", (GetFn)&CPlayerSlot::JSI_GetSession);
-	AddLocalProperty(L"session", &m_pSession, true );	
+	AddLocalProperty(L"session", &m_pSession, true );
 	AddLocalProperty(L"player", &m_pPlayer, true );
 }
 
@@ -183,6 +183,9 @@ namespace PlayerSlotArray_JS
 
 CGameAttributes::CGameAttributes():
 	m_MapFile("test01.pmp"),
+	m_ResourceLevel("default"),
+	m_StartingPhase("default"),
+	m_LOSSetting(2),
 	m_NumSlots(8),
 	m_UpdateCB(NULL),
 	m_PlayerUpdateCB(NULL),
@@ -197,6 +200,8 @@ CGameAttributes::CGameAttributes():
 	JS_SetPrivate(g_ScriptingHost.GetContext(), m_PlayerSlotArrayJS, this);
 
 	AddSynchedProperty(L"mapFile", &m_MapFile);
+	AddSynchedProperty(L"resourceLevel", &m_ResourceLevel);
+	AddSynchedProperty(L"startingPhase", &m_StartingPhase);
 	AddSynchedProperty(L"numSlots", &m_NumSlots, &CGameAttributes::OnNumSlotsUpdate);
 	AddSynchedProperty(L"losSetting", &m_LOSSetting);
 

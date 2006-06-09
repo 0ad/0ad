@@ -82,7 +82,7 @@ PSRETURN CGame::ReallyStartGame()
 {
 #ifndef NO_GUI
 
-	// Call the reallyStartGame function, but only if it exists
+	// Call the reallyStartGame GUI function, but only if it exists
 	jsval fval, rval;
 	JSBool ok = JS_GetProperty(g_ScriptingHost.getContext(), g_GUI.GetScriptObject(), "reallyStartGame", &fval);
 	debug_assert(ok);
@@ -92,6 +92,10 @@ PSRETURN CGame::ReallyStartGame()
 		debug_assert(ok);
 	}
 #endif
+
+	// Call the game startup script 
+	// TODO: Maybe don't do this if we're in Atlas
+	g_ScriptingHost.RunScript( "scripts/game_startup.js" );
 
 	debug_printf("GAME STARTED, ALL INIT COMPLETE\n");
 	m_GameStarted=true;

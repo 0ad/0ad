@@ -2,8 +2,8 @@
 //ajdecker1022@msn.com
 //This class loads all the formation data needs to create an instance of a particular formation.
 
-#ifndef BASEFORMATION_INCLUDED
-#define BASEFORMATION_INCLUDED
+#ifndef FORMATION_INCLUDED
+#define FORMATION_INCLUDED
 
 #include <vector>
 #include <map>
@@ -11,10 +11,10 @@
 
 class CStr;
 
-class CBaseFormation
+class CFormation
 {
 friend class CFormationManager;
-friend class CBaseFormationCollection;
+friend class CFormationCollection;
 friend class CEntityFormation;
 
 struct FormationSlot
@@ -25,8 +25,8 @@ struct FormationSlot
 };
 
 public:
-	CBaseFormation();
-	~CBaseFormation(){}
+	CFormation();
+	~CFormation(){}
 
 	CStr GetBonus(){ return m_bonus; }
 	CStr GetBonusBase(){ return m_bonusBase; }

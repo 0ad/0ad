@@ -6,14 +6,14 @@
 #define FORMATIONMANAGER_INCLUDED
 
 #include "ps/Singleton.h"
-#include "BaseFormationCollection.h"
+#include "FormationCollection.h"
 #include "scripting/DOMEvent.h"
 
 #define g_FormationManager CFormationManager::GetSingleton()
 
 class CEntity;
 class CStr;
-class CBaseFormation;
+class CFormation;
 class CVector2D;
 class CEntityFormation;
 

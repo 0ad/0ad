@@ -1,16 +1,16 @@
 #include "precompiled.h"
-#include "BaseFormation.h"
+#include "Formation.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "maths/MathUtil.h"
 
 #define LOG_CATEGORY "Formation"
 
-CBaseFormation::CBaseFormation()
+CFormation::CFormation()
 {
 	m_numSlots = 0;
 }
-bool CBaseFormation::loadXML(CStr filename)
+bool CFormation::loadXML(CStr filename)
 {
     CXeromyces XeroFile;
 
@@ -52,7 +52,7 @@ bool CBaseFormation::loadXML(CStr filename)
     XMBElement Root = XeroFile.getRoot();
     if( Root.getNodeName() != el_formation )
 	{
-		LOG( ERROR, LOG_CATEGORY, "CBaseFormation::LoadXML: XML root was not \"Formation\" in file %s. Load failed.", filename.c_str() );
+		LOG( ERROR, LOG_CATEGORY, "CFormation::LoadXML: XML root was not \"Formation\" in file %s. Load failed.", filename.c_str() );
 		return( false );
 	}
 
@@ -104,7 +104,7 @@ bool CBaseFormation::loadXML(CStr filename)
 		else
 		{
 			const char* invAttr = XeroFile.getAttributeString(Attr.Name).c_str();
-			LOG( ERROR, LOG_CATEGORY, "CBaseFormation::LoadXML: Invalid attribute %s defined in formation file %s. Load failed.", invAttr, filename.c_str() );
+			LOG( ERROR, LOG_CATEGORY, "CFormation::LoadXML: Invalid attribute %s defined in formation file %s. Load failed.", invAttr, filename.c_str() );
 			return( false );
 		}
 	}
@@ -147,7 +147,7 @@ bool CBaseFormation::loadXML(CStr filename)
 
 				if( order <= 0 )
 				{
-					LOG( ERROR, LOG_CATEGORY, "CBaseFormation::LoadXML: Invalid (negative number or 0) order defined in formation file %s. The game will try to continue anyway.", filename.c_str() );
+					LOG( ERROR, LOG_CATEGORY, "CFormation::LoadXML: Invalid (negative number or 0) order defined in formation file %s. The game will try to continue anyway.", filename.c_str() );
 					continue;
 				}
 				--order;	//We need this to be in line with arrays, so start at 0
@@ -179,7 +179,7 @@ bool CBaseFormation::loadXML(CStr filename)
 	{
 		if ( m_slots.find(i) == m_slots.end() )
 		{
-			LOG( ERROR, LOG_CATEGORY, "CBaseFormation::LoadXML: Missing orders in %s. Load failed.", filename.c_str() );
+			LOG( ERROR, LOG_CATEGORY, "CFormation::LoadXML: Missing orders in %s. Load failed.", filename.c_str() );
 			return false;
 		}
 		else
@@ -192,7 +192,7 @@ bool CBaseFormation::loadXML(CStr filename)
 	return true;
 }
 
-void CBaseFormation::AssignCategory(int order, CStr category)
+void CFormation::AssignCategory(int order, CStr category)
 {
 	category.Remove( CStr(",") );
 	category = category + " ";	//So the final word will be pushed as well

@@ -48,8 +48,8 @@
 #include "maths/MathUtil.h"
 
 #include "simulation/BaseEntityCollection.h"
-#include "simulation/BaseFormationCollection.h"
-#include "simulation/BaseTechCollection.h"
+#include "simulation/FormationCollection.h"
+#include "simulation/TechnologyCollection.h"
 #include "simulation/Entity.h"
 #include "simulation/EntityHandles.h"
 #include "simulation/EntityManager.h"
@@ -788,7 +788,7 @@ void Shutdown()
 	delete &g_JSGameEvents;
 	
 	delete &g_FormationManager;
-	delete &g_BaseTechCollection;
+	delete &g_TechnologyCollection;
 	delete &g_EntityFormationCollection;
 	delete &g_EntityTemplateCollection;
 	TIMER_END("shutdown game scripting stuff");
@@ -1013,10 +1013,10 @@ void Init(int argc, char* argv[], uint flags)
 	TIMER("Init_entitiessection");
 	// This needs to be done after the renderer has loaded all its actors...
 	new CBaseEntityCollection;
-	new CBaseFormationCollection;
-	new CBaseTechCollection;
+	new CFormationCollection;
+	new CTechnologyCollection;
 	g_EntityFormationCollection.loadTemplates();
-	g_BaseTechCollection.loadTemplates();
+	g_TechnologyCollection.loadTechnologies();
 	new CFormationManager;
 
 	// CEntityManager is managed by CWorld
@@ -1088,7 +1088,6 @@ void Init(int argc, char* argv[], uint flags)
 		g_GameAttributes.m_MapFile = g_AutostartMap+".pmp";
 		for (int i=1; i<8; ++i)
 			g_GameAttributes.GetSlot(i)->AssignLocal();
-		g_GameAttributes.m_LOSSetting = 2;
 		g_Game = new CGame();
 
 		PSRETURN ret = g_Game->StartGame(&g_GameAttributes);

@@ -116,8 +116,11 @@ public:
 	typedef void (UpdateCallback)(CStrW name, CStrW newValue, void *data);
 
 	CStrW m_MapFile;
-
+	CStrW m_ResourceLevel;
+	CStrW m_StartingPhase;
 	uint m_LOSSetting;
+
+	// Note: we must use the un-internationalized name of the resource level and starting phase
 
 private:
 	friend JSBool PlayerSlotArray_JS::GetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );

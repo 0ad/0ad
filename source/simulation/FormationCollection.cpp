@@ -1,6 +1,6 @@
 #include "precompiled.h"
 
-#include "BaseFormationCollection.h"
+#include "FormationCollection.h"
 #include "graphics/ObjectManager.h"
 #include "graphics/Model.h"
 #include "ps/CLogger.h"
@@ -9,7 +9,7 @@
 #define LOG_CATEGORY "formation"
 
 
-void CBaseFormationCollection::LoadFile( const char* path )
+void CFormationCollection::LoadFile( const char* path )
 {
 	// Build the formation name -> filename mapping. This is done so that
 	// the formation 'x' can be in units/x.xml, structures/x.xml, etc, and
@@ -23,19 +23,19 @@ void CBaseFormationCollection::LoadFile( const char* path )
 
 static void LoadFormationThunk( const char* path, const DirEnt* UNUSED(ent), void* context )
 {
-	CBaseFormationCollection* this_ = (CBaseFormationCollection*)context;
+	CFormationCollection* this_ = (CFormationCollection*)context;
 	this_->LoadFile(path);
 }
 
-int CBaseFormationCollection::loadTemplates()
+int CFormationCollection::loadTemplates()
 {
-	// Load all files in entities/formations and subdirectories.
-	THROW_ERR( vfs_dir_enum( "entities/formations", VFS_DIR_RECURSIVE, "*.xml",
+	// Load all files in formations and subdirectories.
+	THROW_ERR( vfs_dir_enum( "formations", VFS_DIR_RECURSIVE, "*.xml",
 		LoadFormationThunk, this ) );
 	return 0;
 }
 
-CBaseFormation* CBaseFormationCollection::getTemplate( CStrW name )
+CFormation* CFormationCollection::getTemplate( CStrW name )
 {
 	// Check whether this template has already been loaded
 	templateMap::iterator it = m_templates.find( name );
@@ -50,28 +50,28 @@ CBaseFormation* CBaseFormationCollection::getTemplate( CStrW name )
 	CStr path( filename_it->second );
 
 	//Try to load to the formation
-	CBaseFormation* newTemplate = new CBaseFormation();
+	CFormation* newTemplate = new CFormation();
 	if( !newTemplate->loadXML( path ) )
 	{
-		LOG(ERROR, LOG_CATEGORY, "CBaseFormationCollection::loadTemplates(): Couldn't load template \"%s\"", path.c_str());
+		LOG(ERROR, LOG_CATEGORY, "CFormationCollection::loadTemplates(): Couldn't load template \"%s\"", path.c_str());
 		delete newTemplate;
 		return( NULL );
 	}
 
-	LOG(NORMAL, LOG_CATEGORY, "CBaseFormationCollection::loadTemplates(): Loaded template \"%s\"", path.c_str());
+	LOG(NORMAL, LOG_CATEGORY, "CFormationCollection::loadTemplates(): Loaded template \"%s\"", path.c_str());
 	m_templates[name] = newTemplate;
 
 	return newTemplate;
 }
 
-void CBaseFormationCollection::getBaseFormationNames( std::vector<CStrW>& names )
+void CFormationCollection::getFormationNames( std::vector<CStrW>& names )
 {
 	for( templateFilenameMap::iterator it = m_templateFilenames.begin(); it != m_templateFilenames.end(); ++it )
 		if( ! (it->first.Length() > 8 && it->first.Left(8) == L"template"))
 			names.push_back( it->first );
 }
 
-CBaseFormationCollection::~CBaseFormationCollection()
+CFormationCollection::~CFormationCollection()
 {
 	for( templateMap::iterator it = m_templates.begin(); it != m_templates.end(); ++it )
 		delete( it->second );

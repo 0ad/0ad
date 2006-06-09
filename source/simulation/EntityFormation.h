@@ -1,13 +1,13 @@
 //Andrew aka pyrolink
 //ajdecker1022@msn.com
 //Instances of this class contain the actual information about in-game formations.
-//It is based off of BaseFormation.cpp and uses it as a reference as to what can and cannot
+//It is based off of Formation.cpp and uses it as a reference as to what can and cannot
 //be done in this formation.  This is represented as m_base.
 
 #ifndef ENTITYFORMATION_INCLUDED
 #define ENTITYFORMATION_INCLUDED
 
-#include "BaseFormation.h"
+#include "Formation.h"
 #include "ps/Vector2D.h"
 
 class CVector2D;
@@ -19,7 +19,7 @@ class CEntityFormation
 {
 	friend class CFormationManager;
 public:
-	CEntityFormation( CBaseFormation*& base, size_t index );
+	CEntityFormation( CFormation*& base, size_t index );
 	~CEntityFormation();
 
 	int GetEntityCount() { return m_numEntities; }
@@ -29,7 +29,7 @@ public:
 	CEntityList GetEntityList();
 	CVector2D GetSlotPosition( int order );
 	CVector2D GetPosition() { return m_position; }
-	CBaseFormation* GetBase() { return m_base; }
+	CFormation* GetBase() { return m_base; }
 	void BaseToMovement();
 
 	void SelectAllUnits();
@@ -51,8 +51,8 @@ private:
 	//Prevents other selected units from reordering the formation after one has already done it.
 	bool m_duplication;
 
-	CBaseFormation* m_base;
-	CBaseFormation* m_self;   //Keeps track of base (referred to during movement switching)
+	CFormation* m_base;
+	CFormation* m_self;   //Keeps track of base (referred to during movement switching)
 
 	std::vector<CEntity*> m_entities;	//number of units currently in this formation
 	std::vector<bool> m_angleDivs;	//attack direction penalty-true=being attacked from sector
@@ -64,7 +64,7 @@ private:
 	bool IsBetterUnit( int order, CEntity* entity );
 
 	void UpdateFormation();
-	void SwitchBase( CBaseFormation*& base );
+	void SwitchBase( CFormation*& base );
 
 	void ResetIndex( size_t index );
 	void ResetAllEntities();	//Sets all handles to invalid

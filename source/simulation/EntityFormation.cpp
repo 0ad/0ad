@@ -3,14 +3,14 @@
 #include "EntityFormation.h"
 
 #include "Entity.h"
-#include "BaseFormationCollection.h"
+#include "FormationCollection.h"
 #include "FormationManager.h"
 #include "Simulation.h"
 #include "ps/Game.h"
 #include "ps/Interact.h"
 #include "ps/Network/NetMessage.h"
 
-CEntityFormation::CEntityFormation( CBaseFormation*& base, size_t index )
+CEntityFormation::CEntityFormation( CFormation*& base, size_t index )
 {
 	if (!base)
 		return;
@@ -38,7 +38,7 @@ CEntityFormation::~CEntityFormation()
 		}
 	}
 }
-void CEntityFormation::SwitchBase( CBaseFormation*& base )
+void CEntityFormation::SwitchBase( CFormation*& base )
 {
 	std::vector<CEntity*> copy;
 	copy.resize( m_base->m_numSlots );
@@ -201,8 +201,8 @@ CVector2D CEntityFormation::GetSlotPosition( int order )
 }
 void CEntityFormation::BaseToMovement()
 {
-	CBaseFormation* tmp = m_self;
-	CBaseFormation* move = g_EntityFormationCollection.getTemplate( m_base->m_movement );
+	CFormation* tmp = m_self;
+	CFormation* move = g_EntityFormationCollection.getTemplate( m_base->m_movement );
 	if (!move)
 		return;
 	SwitchBase( move );

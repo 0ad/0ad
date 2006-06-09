@@ -23,7 +23,7 @@
 #include "renderer/WaterManager.h"
 #include "EntityFormation.h"
 #include "simulation/FormationManager.h"
-#include "BaseFormation.h"
+#include "Formation.h"
 #include "graphics/GameView.h"
 #include "graphics/UnitManager.h"
 

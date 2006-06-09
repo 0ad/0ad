@@ -3,7 +3,7 @@
 #include "FormationManager.h"
 #include "Entity.h"
 #include "ps/CStr.h"
-#include "BaseFormation.h"
+#include "Formation.h"
 #include "EntityFormation.h"
 #include "EventHandlers.h"
 
@@ -21,7 +21,7 @@ void CFormationManager::CreateFormation( CEntityList& entities, CStrW& name )
 		debug_warn("Attempting to create a formation with no entities");
 		return;
 	}
-	CBaseFormation* base = g_EntityFormationCollection.getTemplate(name);
+	CFormation* base = g_EntityFormationCollection.getTemplate(name);
 	if (!base)
 		return;
 	if ( entities.size() < (size_t)base->m_required )
@@ -79,7 +79,7 @@ bool CFormationManager::AddUnit( CEntity*& entity, int& form )
 	//Adding too many?
 	if ( (*it)->m_numEntities == (*it)->m_base->m_numSlots )
 	{
-		CBaseFormation* next = g_EntityFormationCollection.getTemplate((*it)->m_base->m_next);
+		CFormation* next = g_EntityFormationCollection.getTemplate((*it)->m_base->m_next);
 		if (next)
 			(*it)->SwitchBase( next );
 	}
@@ -109,7 +109,7 @@ bool CFormationManager::RemoveUnit( CEntity*& entity )
 	FormIterator it = m_formations.begin() + entity->m_formation;
 	if ( (*it)->m_numEntities == (*it)->m_base->m_required )
 	{
-		CBaseFormation* prior = g_EntityFormationCollection.getTemplate((*it)->m_base->m_prior);
+		CFormation* prior = g_EntityFormationCollection.getTemplate((*it)->m_base->m_prior);
 		//Disband formation
 		if (!prior)
 		{

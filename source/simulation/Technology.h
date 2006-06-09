@@ -2,8 +2,8 @@
 //ajdecker1022@msn.com
 //Holds template information for technologies and research
 
-#ifndef BASETECH_INCLUDED
-#define BASETECH_INCLUDED
+#ifndef TECHNOLOGY_INCLUDED
+#define TECHNOLOGY_INCLUDED
 
 #include <vector>
 #include "scripting/ScriptableObject.h"
@@ -12,9 +12,9 @@ class CStr;
 class XMBElement;
 class CXeromyces;
 
-class CBaseTech : public CJSObject<CBaseTech>
+class CTechnology : public CJSObject<CTechnology>
 {
-	friend class CBaseTechCollection;
+	friend class CTechnologyCollection;
 	
 	typedef struct Modifier
 	{
@@ -25,8 +25,8 @@ class CBaseTech : public CJSObject<CBaseTech>
 	static STL_HASH_SET<CStr, CStr_hash_compare> m_scriptsLoaded;
 
 public:
-	CBaseTech();
-	~CBaseTech() {} 
+	CTechnology();
+	~CTechnology() {} 
 	
 	//JS functions
 	static void ScriptingInit();
@@ -75,6 +75,8 @@ private:
 	CScriptObject* m_effectFunction;
 	
 	bool m_JSFirst;	//Should JS effect function run before C++
+
+	// TODO: Make these per-player
 	bool m_excluded;
 	bool m_researched;
 
