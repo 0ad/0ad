@@ -17,6 +17,7 @@
 #include "ps/Network/Server.h"
 #include "ps/Pyrogenesis.h"
 #include "scripting/ScriptingHost.h"
+#include "simulation/Entity.h"
 
 CConsole* g_Console = 0;
 

@@ -6,7 +6,7 @@
 #define BASETECH_INCLUDED
 
 #include <vector>
-#include "scripting/ScriptableComplex.h"
+#include "scripting/ScriptableObject.h"
 
 class CStr;
 class XMBElement;

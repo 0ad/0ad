@@ -1,9 +1,11 @@
 #include "precompiled.h"
-#include "Aura.h"
-#include "EntityManager.h"
-#include <algorithm>
 
-using namespace std;
+#include "Aura.h"
+
+#include "EntityManager.h"
+#include "Entity.h"
+
+#include <algorithm>
 
 CAura::CAura( JSContext* cx, CEntity* source, CStrW& name, float radius, size_t tickRate, JSObject* handler )
 		: m_cx(cx), m_source(source), m_name(name), m_radius(radius), m_handler(handler),
@@ -19,13 +21,13 @@ CAura::~CAura()
 
 void CAura::Update( size_t timestep )
 {
-	vector<CEntity*> inRange;
+	std::vector<CEntity*> inRange;
 	CVector3D pos = m_source->m_position;
 	g_EntityManager.GetInRange( pos.X, pos.Z, m_radius, inRange );
 
-	vector<CEntity*> prevInfluenced, curInfluenced, entered, exited;
+	std::vector<CEntity*> prevInfluenced, curInfluenced, entered, exited;
 
-	for( vector<HEntity>::iterator it = m_influenced.begin(); it != m_influenced.end(); it++ )
+	for( std::vector<HEntity>::iterator it = m_influenced.begin(); it != m_influenced.end(); it++ )
 	{
 		CEntity* ent = *it;
 		if( ent->m_extant )
@@ -36,7 +38,7 @@ void CAura::Update( size_t timestep )
 
 	m_influenced.clear();
 
-	for( vector<CEntity*>::iterator it = inRange.begin(); it != inRange.end(); it++ )
+	for( std::vector<CEntity*>::iterator it = inRange.begin(); it != inRange.end(); it++ )
 	{
 		CEntity* ent = *it;
 		if(ent != m_source)
@@ -59,11 +61,11 @@ void CAura::Update( size_t timestep )
 	if( JS_GetUCProperty( m_cx, m_handler, enterName16.c_str(), enterName16.length(), &enterFunction )
 		&& enterFunction != JSVAL_VOID)
 	{
-		back_insert_iterator<vector<CEntity*> > ins( entered );
+		std::back_insert_iterator<std::vector<CEntity*> > ins( entered );
 		set_difference( curInfluenced.begin(), curInfluenced.end(), 
 			prevInfluenced.begin(), prevInfluenced.end(), 
 			ins );
-		for( vector<CEntity*>::iterator it = entered.begin(); it != entered.end(); it++ )
+		for( std::vector<CEntity*>::iterator it = entered.begin(); it != entered.end(); it++ )
 		{
 			argv[0] = OBJECT_TO_JSVAL( (*it)->GetScript() );
 			JS_CallFunctionValue( m_cx, m_handler, enterFunction, 1, argv, &rval );
@@ -78,11 +80,11 @@ void CAura::Update( size_t timestep )
 	if( JS_GetUCProperty( m_cx, m_handler, exitName16.c_str(), exitName16.length(), &exitFunction )
 		&& exitFunction != JSVAL_VOID )
 	{
-		back_insert_iterator<vector<CEntity*> > ins( exited );
+		std::back_insert_iterator<std::vector<CEntity*> > ins( exited );
 		set_difference( prevInfluenced.begin(), prevInfluenced.end(), 
 			curInfluenced.begin(), curInfluenced.end(), 
 			ins );
-		for( vector<CEntity*>::iterator it = exited.begin(); it != exited.end(); it++ )
+		for( std::vector<CEntity*>::iterator it = exited.begin(); it != exited.end(); it++ )
 		{
 			argv[0] = OBJECT_TO_JSVAL( (*it)->GetScript() );
 			JS_CallFunctionValue( m_cx, m_handler, exitFunction, 1, argv, &rval );
@@ -101,7 +103,7 @@ void CAura::Update( size_t timestep )
 		if( JS_GetUCProperty( m_cx, m_handler, tickName16.c_str(), tickName16.length(), &tickFunction )
 			&& tickFunction != JSVAL_VOID )
 		{
-			for( vector<CEntity*>::iterator it = curInfluenced.begin(); it != curInfluenced.end(); it++ )
+			for( std::vector<CEntity*>::iterator it = curInfluenced.begin(); it != curInfluenced.end(); it++ )
 			{
 				argv[0] = OBJECT_TO_JSVAL( (*it)->GetScript() );
 				JS_CallFunctionValue( m_cx, m_handler, tickFunction, 1, argv, &rval );
@@ -124,7 +126,7 @@ void CAura::RemoveAll()
 		&& exitFunction != JSVAL_VOID )
 	{
 		// Call the exit function on everything in our influence
-		for( vector<HEntity>::iterator it = m_influenced.begin(); it != m_influenced.end(); it++ )
+		for( std::vector<HEntity>::iterator it = m_influenced.begin(); it != m_influenced.end(); it++ )
 		{
 			CEntity* ent = *it;
 			if( ent->m_extant )

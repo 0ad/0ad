@@ -9,14 +9,14 @@
 #include <vector>
 
 #include "Singleton.h"
-#include "simulation/Entity.h"
-#include "simulation/EntityManager.h"
-#include "simulation/EntityMessage.h"
-#include "simulation/Collision.h"
-#include "simulation/Scheduler.h"
-#include "graphics/Camera.h"
+#include "simulation/EntityHandles.h"
+#include "ps/Vector2D.h"
 #include "lib/input.h"
 #include "lib/res/handle.h"
+
+class CVector3D;
+class CUnit;
+class CBoundingObject;
 
 #define MAX_BOOKMARKS 10
 #define MAX_GROUPS    20

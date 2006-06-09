@@ -1,8 +1,9 @@
-#include "Entity.h"
-#include "EntityHandles.h"
-
 #ifndef __AURA_H__
 #define __AURA_H__
+
+#include "EntityHandles.h"
+
+class CEntity;
 
 class CAura
 {

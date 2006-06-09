@@ -1,6 +1,8 @@
 #include "precompiled.h"
 #include "ScriptableComplex.h"
 
+#include "lib/allocators.h"
+
 // suballocator for CJSComplex.m_Properties elements
 static Bucket bucket;
 // HACK: it needs to be created/destroyed; since there is no

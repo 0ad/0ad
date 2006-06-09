@@ -33,9 +33,9 @@
 #include "EntityOrders.h"
 #include "EntityHandles.h"
 #include "EntityMessage.h"
-#include "EventHandlers.h"
 #include "ScriptObject.h"
 #include "EntitySupport.h"
+#include "scripting/DOMEvent.h"
 
 class CAura;
 class CBaseEntity;

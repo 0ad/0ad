@@ -1,5 +1,8 @@
 #include "precompiled.h"
+
 #include "EntityFormation.h"
+
+#include "Entity.h"
 #include "BaseFormationCollection.h"
 #include "FormationManager.h"
 #include "Simulation.h"

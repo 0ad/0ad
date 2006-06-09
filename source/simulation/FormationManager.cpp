@@ -5,6 +5,7 @@
 #include "ps/CStr.h"
 #include "BaseFormation.h"
 #include "EntityFormation.h"
+#include "EventHandlers.h"
 
 #include "ps/Vector2D.h"
 

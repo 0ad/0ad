@@ -1,9 +1,11 @@
-#include "Entity.h"
-#include "EntityHandles.h"
-#include <vector>
-
 #ifndef __PRODUCTIONQUEUE_H__
 #define __PRODUCTIONQUEUE_H__
+
+#include "EntityHandles.h"
+#include "scripting/ScriptableObject.h"
+#include <vector>
+
+class CEntity;
 
 class CProductionItem : public CJSObject<CProductionItem>
 {

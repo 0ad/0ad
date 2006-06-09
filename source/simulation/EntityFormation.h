@@ -8,11 +8,11 @@
 #define ENTITYFORMATION_INCLUDED
 
 #include "BaseFormation.h"
-#include "EntitySupport.h"
 #include "ps/Vector2D.h"
 
 class CVector2D;
 class CEntity;
+struct CEntityList;
 struct SClassSet;
 
 class CEntityFormation

@@ -2,6 +2,7 @@
 #define _Network_JSEvents_H
 
 #include "ServerSession.h"
+#include "scripting/DOMEvent.h"
 
 enum ENetworkJSEvents
 {

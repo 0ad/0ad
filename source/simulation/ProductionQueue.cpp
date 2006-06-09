@@ -1,6 +1,8 @@
 #include "precompiled.h"
 #include "ProductionQueue.h"
 #include "EntityManager.h"
+#include "EventHandlers.h"
+#include "Entity.h"
 #include <algorithm>
 
 using namespace std;

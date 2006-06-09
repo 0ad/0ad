@@ -111,7 +111,7 @@ bool CScriptObject::DispatchEvent( JSObject* Context, CScriptEvent* evt )
 	return( evt->m_Blocked );
 }
 
-void CScriptObject::Compile( CStrW FileNameTag, CStrW FunctionBody )
+void CScriptObject::Compile( const CStrW& FileNameTag, const CStrW& FunctionBody )
 {
 	if( Function )
 		JS_RemoveRoot( g_ScriptingHost.GetContext(), &Function );

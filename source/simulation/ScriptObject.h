@@ -6,11 +6,8 @@
 #ifndef SCRIPTOBJECT_INCLUDED
 #define SCRIPTOBJECT_INCLUDED
 
-#include "ps/CStr.h"
-#include "scripting/ScriptingHost.h"
-#include "EntityHandles.h"
-#include "simulation/scripting/JSInterface_Entity.h"
-#include "scripting/DOMEvent.h"
+class CStrW;
+class CScriptEvent;
 
 class CScriptObject
 {
@@ -31,7 +28,7 @@ public:
 	// Initialize in various ways: from a JS function, a string to be compiled, or a jsval containing either.
 	void SetFunction( JSFunction* _Function );
 	void SetJSVal( jsval v );
-	void Compile( CStrW FileNameTag, CStrW FunctionBody );
+	void Compile( const CStrW& FileNameTag, const CStrW& FunctionBody );
 
 	inline bool Defined()
 	{

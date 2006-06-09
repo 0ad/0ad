@@ -7,8 +7,6 @@
 #include "simulation/ScriptObject.h"
 #include "JSConversions.h"
 
-#include "lib/allocators.h"
-
 #include <set>
 
 #ifndef SCRIPTABLE_COMPLEX_INCLUDED

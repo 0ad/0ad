@@ -6,6 +6,7 @@
 #include "JSInterface_Selection.h"
 #include "ps/scripting/JSCollection.h"
 #include "ps/Interact.h"
+#include "simulation/Entity.h"
 
 JSBool JSI_Selection::getSelection( JSContext* UNUSED(cx), JSObject* UNUSED(obj),
 	jsval UNUSED(id), jsval* vp )

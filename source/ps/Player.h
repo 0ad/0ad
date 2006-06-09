@@ -5,9 +5,9 @@
 #include "scripting/SynchedJSObject.h"
 #include "scripting/ScriptableObject.h"
 #include "scripting/ScriptCustomTypes.h" 
-#include "simulation/EntityHandles.h"
 
 class CNetMessage;
+class HEntity;
 
 typedef SColour SPlayerColour;
 
