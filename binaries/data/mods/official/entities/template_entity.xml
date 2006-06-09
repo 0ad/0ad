@@ -72,7 +72,7 @@
 
 	
 	
-	<Script File="entities/template_entity_script.js" />
+	<Script File="scripts/entity_functions.js" />
 	<Event On="Initialize" Function="entityInit" />
 	<Event On="PrepareOrder" Function="entityEventPrepareOrder" />
 </Entity>	

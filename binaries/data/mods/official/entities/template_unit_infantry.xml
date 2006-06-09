@@ -99,6 +99,6 @@
 		
 	</Actions>
 
-	<Script File="entities/template_entity_script.js" />
+	<Script File="scripts/entity_functions.js" />
 	<Event On="StartConstruction" Function="entityStartConstruction" />
 </Entity>

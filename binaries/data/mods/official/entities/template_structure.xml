@@ -36,7 +36,7 @@
 		</Vision>
 	</Traits>
 
-	<Script File="entities/template_entity_script.js" />
+	<Script File="scripts/entity_functions.js" />
 	<Event On="StartProduction" Function="entityStartProduction" />
 	<Event On="CancelProduction" Function="entityCancelProduction" />
 	<Event On="FinishProduction" Function="entityFinishProduction" />

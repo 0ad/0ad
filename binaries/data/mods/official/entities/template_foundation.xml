@@ -22,6 +22,6 @@
 
 	</Traits>
 	
-	<Script File="entities/template_entity_script.js" />
+	<Script File="scripts/entity_functions.js" />
 	<Event On="Death" Function="foundationDestroyed" />
 </Entity>
