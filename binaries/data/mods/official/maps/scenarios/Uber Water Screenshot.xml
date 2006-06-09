@@ -1,0 +1,1087 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<Scenario>
+	<Environment>
+		<SunColour r="1" g="1" b="1" />
+		<SunElevation angle="0.785398" />
+		<SunRotation angle="5.49779" />
+		<TerrainAmbientColour r="0.4" g="0.4" b="0.4" />
+		<UnitsAmbientColour r="0.4" g="0.4" b="0.4" />
+	</Environment>
+	<Camera>
+		<Position x="313.032" y="72.2038" z="-162.702" />
+		<Rotation angle="-0.025093" />
+		<Declination angle="0.130086" />
+	</Camera>
+	<Entities>
+		<Entity>
+			<Template>hele_ship_trireme</Template>
+			<Player>2</Player>
+			<Position x="339.607" y="0" z="28.9133" />
+			<Orientation angle="-0.335593" />
+		</Entity>
+		<Entity>
+			<Template>hele_ship_bireme</Template>
+			<Player>1</Player>
+			<Position x="333.887" y="2.17839" z="232.049" />
+			<Orientation angle="2.65651" />
+		</Entity>
+		<Entity>
+			<Template>pers_barracks</Template>
+			<Player>1</Player>
+			<Position x="278.169" y="17.7768" z="344.237" />
+			<Orientation angle="-2.72601" />
+		</Entity>
+		<Entity>
+			<Template>pers_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="257.876" y="10.9498" z="306.799" />
+			<Orientation angle="-2.52713" />
+		</Entity>
+		<Entity>
+			<Template>pers_dock</Template>
+			<Player>1</Player>
+			<Position x="325.289" y="4.95839" z="254.633" />
+			<Orientation angle="-1.95226" />
+		</Entity>
+		<Entity>
+			<Template>pers_fortress</Template>
+			<Player>1</Player>
+			<Position x="303.771" y="17.5424" z="318.365" />
+			<Orientation angle="-1.36763" />
+		</Entity>
+		<Entity>
+			<Template>pers_house</Template>
+			<Player>1</Player>
+			<Position x="285.707" y="17.5424" z="321.767" />
+			<Orientation angle="-1.7409" />
+		</Entity>
+		<Entity>
+			<Template>pers_house</Template>
+			<Player>1</Player>
+			<Position x="319.743" y="17.8495" z="313.991" />
+			<Orientation angle="2.35619" />
+		</Entity>
+		<Entity>
+			<Template>pers_house</Template>
+			<Player>1</Player>
+			<Position x="327.809" y="19.2472" z="318.589" />
+			<Orientation angle="2.35619" />
+		</Entity>
+		<Entity>
+			<Template>pers_house</Template>
+			<Player>1</Player>
+			<Position x="323.335" y="19.2837" z="329.519" />
+			<Orientation angle="-1.65585" />
+		</Entity>
+		<Entity>
+			<Template>pers_house</Template>
+			<Player>1</Player>
+			<Position x="263.8" y="10.9498" z="322.577" />
+			<Orientation angle="2.44865" />
+		</Entity>
+		<Entity>
+			<Template>pers_house</Template>
+			<Player>1</Player>
+			<Position x="255.231" y="10.9498" z="325.395" />
+			<Orientation angle="2.35619" />
+		</Entity>
+		<Entity>
+			<Template>pers_house</Template>
+			<Player>1</Player>
+			<Position x="244.749" y="10.9498" z="323.383" />
+			<Orientation angle="0.666424" />
+		</Entity>
+		<Entity>
+			<Template>pers_house</Template>
+			<Player>1</Player>
+			<Position x="237.858" y="10.9498" z="314.951" />
+			<Orientation angle="-1.22899" />
+		</Entity>
+		<Entity>
+			<Template>pers_market</Template>
+			<Player>1</Player>
+			<Position x="231.058" y="10.9498" z="299.281" />
+			<Orientation angle="-2.51411" />
+		</Entity>
+		<Entity>
+			<Template>pers_mill</Template>
+			<Player>1</Player>
+			<Position x="245.053" y="10.9498" z="288.977" />
+			<Orientation angle="0.632083" />
+		</Entity>
+		<Entity>
+			<Template>pers_scout_tower</Template>
+			<Player>1</Player>
+			<Position x="240.976" y="24.3423" z="397.234" />
+			<Orientation angle="-1.02674" />
+		</Entity>
+		<Entity>
+			<Template>pers_scout_tower</Template>
+			<Player>1</Player>
+			<Position x="382.028" y="15.399" z="300.936" />
+			<Orientation angle="2.35619" />
+		</Entity>
+		<Entity>
+			<Template>pers_scout_tower</Template>
+			<Player>1</Player>
+			<Position x="196.125" y="14.488" z="287.993" />
+			<Orientation angle="-2.52144" />
+		</Entity>
+		<Entity>
+			<Template>pers_scout_tower</Template>
+			<Player>1</Player>
+			<Position x="331.731" y="8.68473" z="276.769" />
+			<Orientation angle="2.35619" />
+		</Entity>
+		<Entity>
+			<Template>pers_scout_tower</Template>
+			<Player>1</Player>
+			<Position x="314.654" y="8.37547" z="273.672" />
+			<Orientation angle="-2.4454" />
+		</Entity>
+		<Entity>
+			<Template>celt_ship_merchant</Template>
+			<Player>1</Player>
+			<Position x="298.539" y="4.32573" z="264.363" />
+			<Orientation angle="-1.24451" />
+		</Entity>
+		<Entity>
+			<Template>celt_ship_merchant</Template>
+			<Player>1</Player>
+			<Position x="291.642" y="4.1217" z="271.252" />
+			<Orientation angle="0.09612" />
+		</Entity>
+		<Entity>
+			<Template>celt_ship_merchant</Template>
+			<Player>1</Player>
+			<Position x="314.328" y="4.88368" z="251.141" />
+			<Orientation angle="-2.30447" />
+		</Entity>
+		<Entity>
+			<Template>pers_mill</Template>
+			<Player>1</Player>
+			<Position x="386.323" y="26.0751" z="346.639" />
+			<Orientation angle="-2.74289" />
+		</Entity>
+		<Entity>
+			<Template>pers_temple</Template>
+			<Player>1</Player>
+			<Position x="367.854" y="25.3719" z="343.524" />
+			<Orientation angle="-2.22386" />
+		</Entity>
+		<Entity>
+			<Template>hele_ship_bireme</Template>
+			<Player>2</Player>
+			<Position x="291.226" y="0" z="42.2936" />
+			<Orientation angle="0.343453" />
+		</Entity>
+	</Entities>
+	<Nonentities>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="316.21" y="29.7887" z="384.261" />
+			<Orientation angle="-0.668974" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="330.511" y="32.6386" z="396.747" />
+			<Orientation angle="-1.45688" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="301.228" y="30.5886" z="411.467" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="297.654" y="30.7457" z="416.544" />
+			<Orientation angle="-2.28349" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="271.482" y="28.5006" z="400.546" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="273.511" y="28.6221" z="398.147" />
+			<Orientation angle="1.79564" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="293.148" y="29.7017" z="395.642" />
+			<Orientation angle="0.968645" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="304.763" y="30.7724" z="396.265" />
+			<Orientation angle="2.11208" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="309.522" y="30.7606" z="392.96" />
+			<Orientation angle="1.05431" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="325.056" y="32.3994" z="404.619" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="321.577" y="31.7225" z="413.527" />
+			<Orientation angle="-0.667725" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="314.582" y="32.1795" z="421.748" />
+			<Orientation angle="-2.04768" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="190.727" y="23.8454" z="406.217" />
+			<Orientation angle="-1.81163" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="156.611" y="23.6514" z="403.98" />
+			<Orientation angle="-0.311635" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="150.866" y="25.1352" z="419.572" />
+			<Orientation angle="0.408689" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="159.322" y="26.8688" z="432.267" />
+			<Orientation angle="1.73414" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="185.501" y="26.6771" z="428.589" />
+			<Orientation angle="2.22033" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="205.335" y="26.2888" z="418.156" />
+			<Orientation angle="1.87754" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="211.544" y="25.4534" z="415.655" />
+			<Orientation angle="1.76243" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="221.794" y="24.1861" z="408.408" />
+			<Orientation angle="-2.43205" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="202.112" y="22.0031" z="392.925" />
+			<Orientation angle="-1.68623" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="187.012" y="22.8795" z="387.755" />
+			<Orientation angle="-2.09755" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="170.985" y="23.6882" z="379.717" />
+			<Orientation angle="-1.69597" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="156.199" y="24.9359" z="376.57" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="148.655" y="24.5582" z="393.977" />
+			<Orientation angle="-2.17031" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="238.551" y="25.7106" z="415.446" />
+			<Orientation angle="1.15918" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="251.867" y="27.6704" z="417.942" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="256.558" y="27.4603" z="411.198" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="157.14" y="23.8132" z="407.861" />
+			<Orientation angle="2.16213" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="177.613" y="24.157" z="397.416" />
+			<Orientation angle="1.3812" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="183.218" y="24.0727" z="403.714" />
+			<Orientation angle="0.666697" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="195.001" y="25.4567" z="417.409" />
+			<Orientation angle="0.660263" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="204.28" y="27.4523" z="425.646" />
+			<Orientation angle="1.61738" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="220.399" y="27.3366" z="421.651" />
+			<Orientation angle="2.11188" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="236.547" y="27.1031" z="420.078" />
+			<Orientation angle="0.366814" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="241.071" y="29.6413" z="426.391" />
+			<Orientation angle="1.24865" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="254.237" y="30.1605" z="426.199" />
+			<Orientation angle="1.90395" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="260.296" y="30.2248" z="424.487" />
+			<Orientation angle="1.68299" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="268.046" y="30.2369" z="420.818" />
+			<Orientation angle="2.88401" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="266.872" y="28.9997" z="413.177" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="252.716" y="28.1637" z="419.5" />
+			<Orientation angle="-1.44992" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="229.282" y="27.0291" z="419.699" />
+			<Orientation angle="-2.10277" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="221.944" y="26.6596" z="419.537" />
+			<Orientation angle="-1.61183" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="200.643" y="26.2515" z="418.897" />
+			<Orientation angle="-1.6766" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="177.098" y="23.8363" z="421.368" />
+			<Orientation angle="-1.98242" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="161.535" y="24.1323" z="415.247" />
+			<Orientation angle="-2.44849" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="155.537" y="23.8758" z="408.184" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="173.754" y="23.5733" z="411.35" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="178.728" y="24.0058" z="405.943" />
+			<Orientation angle="2.36718" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="195.298" y="23.0251" z="396.751" />
+			<Orientation angle="1.15917" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="207.771" y="22.5199" z="402.426" />
+			<Orientation angle="1.31432" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="213.836" y="23.4991" z="407.444" />
+			<Orientation angle="0.578882" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="212.769" y="30.6324" z="456.414" />
+			<Orientation angle="0.0380276" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="213.584" y="33.072" z="468.356" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="210.886" y="33.2729" z="473.5" />
+			<Orientation angle="-1.77087" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="198.958" y="34.7607" z="472.058" />
+			<Orientation angle="-3.05338" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="197.436" y="33.6997" z="463.988" />
+			<Orientation angle="-2.59186" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="196.887" y="32.4667" z="456.777" />
+			<Orientation angle="1.85544" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="220.819" y="32.0712" z="449.19" />
+			<Orientation angle="-2.53719" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="217.623" y="32.2109" z="437.212" />
+			<Orientation angle="1.65629" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="295.345" y="34.0437" z="429.512" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="294.185" y="32.5045" z="425.406" />
+			<Orientation angle="1.8729" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="306.08" y="32.6043" z="422.421" />
+			<Orientation angle="2.13415" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="319.477" y="31.6899" z="414.341" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="322.217" y="31.8251" z="412.15" />
+			<Orientation angle="-2.99834" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="309.026" y="31.184" z="403.297" />
+			<Orientation angle="-0.76887" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="296.333" y="30.3695" z="414.263" />
+			<Orientation angle="-1.13747" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="279.639" y="31.2848" z="422.386" />
+			<Orientation angle="-0.647483" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="279.726" y="32.7252" z="427.828" />
+			<Orientation angle="1.14681" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="378.091" y="31.965" z="400.632" />
+			<Orientation angle="2.03977" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="398.473" y="31.4025" z="393.542" />
+			<Orientation angle="0.860186" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="403.2" y="30.3062" z="407.18" />
+			<Orientation angle="0.161728" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="407.533" y="32.0454" z="419.076" />
+			<Orientation angle="1.28036" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="427.744" y="32.5363" z="423.554" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="426.286" y="31.1378" z="419.606" />
+			<Orientation angle="-2.83806" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="414.765" y="30.125" z="413.853" />
+			<Orientation angle="-1.55397" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="402.246" y="30.2407" z="412.775" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="405.257" y="30.5946" z="401.886" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="411.509" y="29.9612" z="406.37" />
+			<Orientation angle="0.0817169" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="413.145" y="32.4328" z="420.429" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="416.75" y="34.8479" z="426.978" />
+			<Orientation angle="1.41195" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="426.286" y="36.4888" z="433.627" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="476.834" y="36.0283" z="421.076" />
+			<Orientation angle="1.29207" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="487.947" y="38.9845" z="420.826" />
+			<Orientation angle="1.79389" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="496.742" y="39.7329" z="417.139" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="501.667" y="39.1196" z="412.169" />
+			<Orientation angle="1.54343" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="513.882" y="39.932" z="412.175" />
+			<Orientation angle="-1.56134" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="504.255" y="39.0638" z="410.494" />
+			<Orientation angle="-1.88287" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="495.007" y="37.7805" z="399.582" />
+			<Orientation angle="-3.08351" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="497.47" y="36.077" z="385.661" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="531.839" y="38.3568" z="405.436" />
+			<Orientation angle="-3.03513" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="551.96" y="36.8323" z="402.041" />
+			<Orientation angle="1.18668" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="575.134" y="38.338" z="413.482" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="575.415" y="38.8461" z="415.494" />
+			<Orientation angle="-2.30053" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="560.106" y="39.4658" z="412.832" />
+			<Orientation angle="-1.34564" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="548.959" y="40.2166" z="413.67" />
+			<Orientation angle="-1.61138" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="527.928" y="40.9682" z="415.608" />
+			<Orientation angle="-2.02348" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="515.965" y="39.2091" z="408.651" />
+			<Orientation angle="2.51033" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="522.827" y="37.3305" z="398.924" />
+			<Orientation angle="-2.50109" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="516.271" y="36.8694" z="392.973" />
+			<Orientation angle="0.804402" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="427.536" y="29.5864" z="409.81" />
+			<Orientation angle="-1.62464" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="418.19" y="30.1946" z="399.273" />
+			<Orientation angle="-0.954001" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="407.075" y="30.67" z="398.989" />
+			<Orientation angle="-1.44159" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="441.083" y="29.9348" z="405.777" />
+			<Orientation angle="0.423223" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="464.123" y="34.0215" z="408.924" />
+			<Orientation angle="2.09204" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="479.824" y="36.9259" z="397.94" />
+			<Orientation angle="1.7875" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="498.431" y="36.3035" z="386.969" />
+			<Orientation angle="0.886822" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="512.384" y="36.9308" z="392.183" />
+			<Orientation angle="2.05727" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="531.282" y="35.63" z="390.08" />
+			<Orientation angle="1.09478" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="539.229" y="36.0216" z="394.397" />
+			<Orientation angle="1.15917" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="551.255" y="35.9156" z="397.089" />
+			<Orientation angle="1.2361" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="562.972" y="36.1973" z="401.086" />
+			<Orientation angle="1.5369" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="568.201" y="36.2678" z="403.09" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="540.078" y="37.8254" z="403.86" />
+			<Orientation angle="-1.51125" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="528.788" y="36.835" z="398.01" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="432.017" y="22.8869" z="322.045" />
+			<Orientation angle="-1.30354" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="189.544" y="14.0067" z="321.657" />
+			<Orientation angle="0.604637" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="233.223" y="18.8016" z="358.264" />
+			<Orientation angle="0.121929" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="173.186" y="16.9886" z="348.196" />
+			<Orientation angle="-1.84938" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="127.925" y="15.7612" z="331.546" />
+			<Orientation angle="1.03914" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="137.423" y="9.52298" z="261.197" />
+			<Orientation angle="1.98887" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="154.033" y="8.36571" z="254.654" />
+			<Orientation angle="2.03974" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="160.896" y="8.35912" z="251.434" />
+			<Orientation angle="1.35634" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="168.108" y="7.97066" z="255.093" />
+			<Orientation angle="1.01488" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="181.335" y="8.73973" z="264.802" />
+			<Orientation angle="-0.557033" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="177.021" y="9.54515" z="271.641" />
+			<Orientation angle="-0.386106" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="163.633" y="9.49275" z="280.384" />
+			<Orientation angle="-2.50305" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="139.388" y="9.10634" z="268.93" />
+			<Orientation angle="2.43882" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="151.194" y="8.33745" z="263.431" />
+			<Orientation angle="1.54155" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="163.935" y="8.53073" z="266.298" />
+			<Orientation angle="1.60302" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="176.151" y="8.82474" z="267.795" />
+			<Orientation angle="-0.246507" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="173.953" y="9.96925" z="275.107" />
+			<Orientation angle="-2.79706" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="169.192" y="8.21597" z="263.01" />
+			<Orientation angle="1.90682" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="172.941" y="8.15929" z="262.175" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="170.161" y="8.80032" z="268.902" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="155.29" y="8.49817" z="273.616" />
+			<Orientation angle="3.12001" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="147.516" y="8.55556" z="270.423" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="144.597" y="9.40605" z="279.988" />
+			<Orientation angle="1.2399" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="162.431" y="9.96815" z="284.162" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="167.082" y="10.1042" z="282.42" />
+			<Orientation angle="2.02101" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="174.965" y="10.5166" z="277.515" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="151.616" y="9.91203" z="285.335" />
+			<Orientation angle="-1.48208" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="154" y="8.39775" z="269.806" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="176.239" y="11.2788" z="281.161" />
+			<Orientation angle="2.40971" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="366.037" y="16.3312" z="310.089" />
+			<Orientation angle="-1.4817" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="399.935" y="16.1917" z="304.321" />
+			<Orientation angle="1.35443" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="409.307" y="18.3707" z="307.833" />
+			<Orientation angle="0.310803" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak.xml</Actor>
+			<Position x="411.477" y="19.8551" z="313.485" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/poplar.xml</Actor>
+			<Position x="334.46" y="19.436" z="348.498" />
+			<Orientation angle="-1.26453" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/poplar.xml</Actor>
+			<Position x="325.907" y="23.3202" z="359.032" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/poplar.xml</Actor>
+			<Position x="408.595" y="26.7395" z="336.203" />
+			<Orientation angle="-1.43464" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="341.751" y="19.7935" z="333.079" />
+			<Orientation angle="0.14837" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="349.13" y="18.4443" z="327.53" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="302.267" y="19.1706" z="340.965" />
+			<Orientation angle="-1.35975" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="272.018" y="12.0317" z="311.585" />
+			<Orientation angle="-1.22344" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="260.388" y="26.7755" z="392.331" />
+			<Orientation angle="-1.43504" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="237.975" y="14.8937" z="339.329" />
+			<Orientation angle="-1.65156" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="478.516" y="14.9281" z="290.774" />
+			<Orientation angle="-1.43574" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="452.836" y="15.3786" z="293.417" />
+			<Orientation angle="2.20978" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="462.509" y="12.5317" z="283.068" />
+			<Orientation angle="2.07101" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="469.456" y="12.2709" z="280.961" />
+			<Orientation angle="1.21468" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="485.621" y="13.7259" z="285.081" />
+			<Orientation angle="1.21746" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="498.682" y="15.0848" z="288.24" />
+			<Orientation angle="0.896966" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="511.721" y="17.9069" z="294.886" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="516.155" y="17.6651" z="292.177" />
+			<Orientation angle="-2.26888" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="503.188" y="14.8051" z="285.663" />
+			<Orientation angle="-1.83627" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="474.257" y="14.5621" z="289.951" />
+			<Orientation angle="-0.401481" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="469.719" y="17.4554" z="300.974" />
+			<Orientation angle="-1.64217" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="454.379" y="15.69" z="294.459" />
+			<Orientation angle="2.31913" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="476.815" y="15.5998" z="293.748" />
+			<Orientation angle="0.924755" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="490.001" y="17.9734" z="300.784" />
+			<Orientation angle="1.56417" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="493.778" y="17.4333" z="297.964" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="504.096" y="20.3701" z="307.081" />
+			<Orientation angle="0.167113" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="491.393" y="23.0852" z="323.517" />
+			<Orientation angle="-2.05083" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="474.183" y="21.7016" z="319.66" />
+			<Orientation angle="-2.24086" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="481.189" y="19.7194" z="309.583" />
+			<Orientation angle="0.555927" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="500.164" y="21.4333" z="313.963" />
+			<Orientation angle="-1.55124" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="468.762" y="19.6051" z="309.986" />
+			<Orientation angle="-1.38884" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="463.117" y="18.6624" z="305.763" />
+			<Orientation angle="3.10714" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="462.942" y="15.6661" z="294.882" />
+			<Orientation angle="2.35619" />
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="402.074" y="13.9002" z="287.614" />
+			<Orientation angle="-2.21965" />
+		</Nonentity>
+	</Nonentities>
+</Scenario>
