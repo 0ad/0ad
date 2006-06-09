@@ -19,12 +19,15 @@
 #define ENTITY_MANAGER_INCLUDED
 
 #include "ps/Singleton.h"
-#include "Entity.h"
 #include "EntityHandles.h"
 #include "EntityPredicate.h"
 #include "EntityMessage.h"
 #include "ps/Game.h"
 #include "ps/World.h"
+#include "ps/CStr.h"
+#include "maths/Vector3D.h"
+
+class CBaseEntity;
 
 #define MAX_HANDLES 4096
 

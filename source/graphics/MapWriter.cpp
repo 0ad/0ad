@@ -18,6 +18,8 @@
 #include "ps/Loader.h"
 #include "maths/MathUtil.h"
 #include "graphics/Camera.h"
+#include "ps/Player.h"
+#include "graphics/Patch.h"
 
 #include "ps/XML/XMLWriter.h"
 #include "simulation/Entity.h"

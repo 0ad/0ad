@@ -1,8 +1,6 @@
 #ifndef _ps_World_H
 #define _ps_World_H
 
-#include "graphics/Terrain.h"
-
 #include "ps/Errors.h"
 
 #ifndef ERROR_GROUP_GAME_DEFINED
@@ -18,12 +16,13 @@ class CUnitManager;
 class CEntityManager;
 class CProjectileManager;
 class CLOSManager;
+class CTerrain;
 
 class CWorld
 {
 	CGame *m_pGame;
 	
-	CTerrain m_Terrain;
+	CTerrain *m_Terrain;
 
 	CUnitManager *m_UnitManager;
 	CEntityManager *m_EntityManager;
@@ -44,7 +43,7 @@ public:
 	void RewriteMap();
 
 	inline CTerrain *GetTerrain()
-	{	return &m_Terrain; }
+	{	return m_Terrain; }
 	inline CUnitManager *GetUnitManager()
 	{	return m_UnitManager; }
 	inline CEntityManager *GetEntityManager()

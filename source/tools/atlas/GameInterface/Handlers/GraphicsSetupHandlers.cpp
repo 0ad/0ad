@@ -6,7 +6,8 @@
 
 #include "renderer/Renderer.h"
 #include "graphics/GameView.h"
-#include "gui/GUI.h"
+#include "gui/GUIbase.h"
+#include "gui/CGUI.h"
 #include "ps/CConsole.h"
 #include "ps/Game.h"
 #include "maths/MathUtil.h"

@@ -4,10 +4,11 @@
 
 #include "../CommandProc.h"
 
+#include "graphics/LightEnv.h"
+#include "graphics/Terrain.h"
+#include "ps/World.h"
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"
-#include "ps/World.h"
-#include "graphics/LightEnv.h"
 
 namespace AtlasMessage {
 

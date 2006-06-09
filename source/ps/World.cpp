@@ -21,6 +21,7 @@
 #include "simulation/Projectile.h"
 #include "simulation/LOSManager.h"
 #include "graphics/GameView.h"
+#include "graphics/Terrain.h"
 
 #define LOG_CATEGORY "world"
 
@@ -31,7 +32,7 @@ CLightEnv g_LightEnv;
 
 CWorld::CWorld(CGame *pGame):
 	m_pGame(pGame),
-	m_Terrain(),
+	m_Terrain(new CTerrain()),
 	m_UnitManager(&g_UnitMan),
 	m_EntityManager(new CEntityManager()),
 	m_ProjectileManager(new CProjectileManager()),
@@ -54,7 +55,7 @@ void CWorld::Initialize(CGameAttributes *pAttribs)
 
 		try {
 			reader = new CMapReader;
-			reader->LoadMap(mapfilename, &m_Terrain, m_UnitManager, &g_LightEnv, m_pGame->GetView()->GetCamera());
+			reader->LoadMap(mapfilename, m_Terrain, m_UnitManager, &g_LightEnv, m_pGame->GetView()->GetCamera());
 				// fails immediately, or registers for delay loading
 		} catch (PSERROR_File&) {
 			delete reader;
@@ -73,6 +74,7 @@ void CWorld::RegisterInit(CGameAttributes *pAttribs)
 
 CWorld::~CWorld()
 {
+	delete m_Terrain;
 	delete m_EntityManager;
 	delete m_ProjectileManager;
 	delete m_LOSManager;
@@ -81,5 +83,5 @@ CWorld::~CWorld()
 
 void CWorld::RewriteMap()
 {
-	CMapWriter::RewriteAllMaps(&m_Terrain, m_UnitManager, &g_LightEnv, m_pGame->GetView()->GetCamera());
+	CMapWriter::RewriteAllMaps(m_Terrain, m_UnitManager, &g_LightEnv, m_pGame->GetView()->GetCamera());
 }

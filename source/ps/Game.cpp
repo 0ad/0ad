@@ -11,6 +11,7 @@
 #include "Loader.h"
 #include "CStr.h"
 #include "simulation/EntityManager.h"
+#include "simulation/Entity.h"
 #include "CConsole.h"
 
 #include "ps/World.h"

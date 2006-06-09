@@ -38,7 +38,6 @@
 
 #include "EntityHandles.h"
 #include "ps/Vector2D.h"
-#include "scripting/DOMEvent.h"
 
 // An order data field, which could represent different things depending on the type of order.
 struct SOrderData

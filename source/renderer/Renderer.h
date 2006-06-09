@@ -16,17 +16,13 @@
 #include <vector>
 #include "lib/ogl.h"
 #include "graphics/Camera.h"
-#include "graphics/Frustum.h"
-#include "graphics/Terrain.h"
 #include "ps/Singleton.h"
-#include "ps/Overlay.h"
 
 #include "scripting/ScriptableObject.h"
 
 #include "renderer/ModelRenderer.h"
 
 // necessary declarations
-class CCamera;
 class CPatch;
 class CSprite;
 class CParticleSys;
@@ -35,7 +31,6 @@ class CMaterial;
 class CModel;
 class CLightEnv;
 class CTexture;
-class CTerrain;
 
 class RenderPathVertexShader;
 class WaterManager;

@@ -15,9 +15,6 @@
 #include <deque>
 #include <map>
 
-#include "lib/res/graphics/unifont.h"
-#include "lib/ogl.h"
-#include "lib/lib.h"
 #include "CStr.h"
 
 #include "lib/input.h"

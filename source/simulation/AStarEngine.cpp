@@ -6,6 +6,8 @@
 #include "Collision.h"
 #include "ps/Game.h"
 #include "ps/World.h"
+#include "graphics/Patch.h"
+#include "graphics/Terrain.h"
 
 #include "ps/Profile.h"
 

@@ -14,6 +14,7 @@
 #include "ParticleEmitter.h"
 #include "lib/res/graphics/tex.h"
 #include "lib/res/graphics/ogl_tex.h"
+#include "graphics/Texture.h"
 
 #include "ps/CLogger.h"
 #include "ps/Loader.h"

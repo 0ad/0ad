@@ -191,7 +191,7 @@ local function setup_static_lib_package (package_name, rel_source_dirs, extern_l
 		pch_dir = source_root.."pch/"..package_name.."/"
 		package.pchheader = "precompiled.h"
 		package.pchsource = "precompiled.cpp"
-		tinsert(package.files, pch_dir.."precompiled.cpp")
+		tinsert(package.files, { pch_dir.."precompiled.cpp", pch_dir.."precompiled.h" })
 
 	end
 	
@@ -431,6 +431,10 @@ local function setup_atlas_package(package_name, target_type, rel_source_dirs, r
 		if flags["pch"] then
 			package.pchheader = "stdafx.h"
 			package.pchsource = "stdafx.cpp"
+		end
+
+		if flags["depends"] then
+			listconcat(package.links, flags["depends"])
 		end
 
 	else -- Non-Windows, = Unix

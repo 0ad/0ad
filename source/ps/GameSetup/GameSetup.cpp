@@ -788,6 +788,7 @@ void Shutdown()
 	delete &g_JSGameEvents;
 	
 	delete &g_FormationManager;
+	delete &g_BaseTechCollection;
 	delete &g_EntityFormationCollection;
 	delete &g_EntityTemplateCollection;
 	TIMER_END("shutdown game scripting stuff");

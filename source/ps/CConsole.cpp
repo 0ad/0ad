@@ -2,22 +2,21 @@
 #include <wctype.h>
 
 #include "CConsole.h"
-#include "CLogger.h"
 
-#include "Pyrogenesis.h"
+#include "lib/lib.h"
+#include "lib/ogl.h"
+#include "lib/res/file/vfs.h"
+#include "lib/res/graphics/unifont.h"
 #include "lib/sysdep/sysdep.h"
-#include "Hotkey.h"
-#include "scripting/ScriptingHost.h"
 #include "maths/MathUtil.h"
-
+#include "ps/CLogger.h"
+#include "ps/Globals.h"
+#include "ps/Hotkey.h"
+#include "ps/Interact.h"
 #include "ps/Network/Client.h"
 #include "ps/Network/Server.h"
-
-#include "lib/res/file/vfs.h"
-
-#include "Interact.h"
-#include "ps/Globals.h"
-
+#include "ps/Pyrogenesis.h"
+#include "scripting/ScriptingHost.h"
 
 CConsole* g_Console = 0;
 

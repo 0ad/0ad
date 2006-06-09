@@ -1,26 +1,27 @@
 #include "precompiled.h"
 
-#include "gui/MiniMap.h"
-#include "ps/Game.h"
-
 #include <math.h>
-#include "lib/ogl.h"
-#include "renderer/Renderer.h"
+
+#include "graphics/GameView.h"
+#include "graphics/MiniPatch.h"
+#include "graphics/Model.h"
+#include "graphics/Terrain.h"
 #include "graphics/TextureEntry.h"
 #include "graphics/TextureManager.h"
 #include "graphics/Unit.h"
 #include "graphics/UnitManager.h"
-#include "simulation/Entity.h"
+#include "gui/MiniMap.h"
+#include "lib/ogl.h"
 #include "maths/Bound.h"
-#include "graphics/Model.h"
-#include "scripting/GameEvents.h"
-#include "graphics/Terrain.h"
-#include "ps/Profile.h"
-#include "simulation/LOSManager.h"
-#include "graphics/GameView.h"
-#include "renderer/WaterManager.h"
+#include "ps/Game.h"
 #include "ps/Interact.h"
 #include "ps/Network/NetMessage.h"
+#include "ps/Profile.h"
+#include "renderer/Renderer.h"
+#include "renderer/WaterManager.h"
+#include "scripting/GameEvents.h"
+#include "simulation/Entity.h"
+#include "simulation/LOSManager.h"
 
 
 bool g_TerrainModified = false;

@@ -4,6 +4,7 @@
 #include "graphics/ObjectManager.h"
 #include "maths/scripting/JSInterface_Vector3D.h"
 #include "ps/Parser.h"
+#include "ps/Player.h"
 #include "simulation/BaseEntity.h"
 #include "lib/sysdep/sysdep.h"	// finite
 

@@ -10,10 +10,22 @@
 #ifndef _TERRAIN_H
 #define _TERRAIN_H
 
-#include "Patch.h"
 #include "maths/Vector3D.h"
-#include "ps/Vector2D.h"
-#include "simulation/Entity.h"
+
+class CEntity;
+class CPatch;
+class CMiniPatch;
+class CVector2D;
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Terrain Constants:
+//
+// CELL_SIZE: size of each tile in x and z
+const int	CELL_SIZE = 4;	
+// HEIGHT_SCALE: vertical scale of terrain - terrain has a coordinate range of 
+// 0 to 65536*HEIGHT_SCALE
+const float HEIGHT_SCALE = 0.35f/256.0f;
 
 ///////////////////////////////////////////////////////////////////////////////
 // CTerrain: main terrain class; contains the heightmap describing elevation
@@ -36,14 +48,16 @@ public:
 	// return number of patches along edge of the terrain
 	u32 GetPatchesPerSide() const { return m_MapSizePatches; }
 
-	inline bool isOnMap(float x, float z) const 
+	bool isOnMap(float x, float z) const
 	{
-		return ((x >= 0.0f) && (x < (float)((m_MapSize-1) * CELL_SIZE)) && (z >= 0.0f) && (z < (float)((m_MapSize-1) * CELL_SIZE)));
+		return ((x >= 0.0f) && (x < (float)((m_MapSize-1) * CELL_SIZE))
+		     && (z >= 0.0f) && (z < (float)((m_MapSize-1) * CELL_SIZE)));
 	}
-	inline bool isOnMap(const CVector2D& v) const { return isOnMap(v.x, v.y); }
+	bool isOnMap(const CVector2D& v) const;
+
 	float getVertexGroundLevel(int i, int j) const;
 	float getExactGroundLevel(float x, float z) const;
-	inline float getExactGroundLevel(const CVector2D& v) const { return getExactGroundLevel(v.x, v.y); }
+	float getExactGroundLevel(const CVector2D& v) const;
 
 	float getSlope(float x, float z) const ;
 	//Find the slope of in X and Z axes depending on the way the entity is facing

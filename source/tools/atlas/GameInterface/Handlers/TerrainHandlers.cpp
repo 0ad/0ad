@@ -4,6 +4,7 @@
 
 #include "../CommandProc.h"
 
+#include "graphics/Patch.h"
 #include "graphics/TextureManager.h"
 #include "graphics/TextureEntry.h"
 #include "graphics/Terrain.h"

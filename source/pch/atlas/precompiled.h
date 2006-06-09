@@ -2,3 +2,4 @@
 
 // Atlas-specific PCH:
 
+#include "tools/atlas/GameInterface/Messages.h"

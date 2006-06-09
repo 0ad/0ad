@@ -9,6 +9,7 @@
 #include "ps/World.h"
 #include "maths/MathUtil.h"
 #include "simulation/EntityManager.h"
+#include "graphics/RenderableObject.h"
 
 #include "../Brushes.h"
 #include "../DeltaArray.h"

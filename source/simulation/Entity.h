@@ -28,23 +28,22 @@
 
 #include <deque>
 #include "scripting/ScriptableComplex.h"
-#include "ps/Player.h"
 #include "ps/Vector2D.h"
 #include "maths/Vector3D.h"
-#include "graphics/UnitManager.h"
 #include "EntityOrders.h"
 #include "EntityHandles.h"
 #include "EntityMessage.h"
 #include "EventHandlers.h"
 #include "ScriptObject.h"
-#include "graphics/ObjectEntry.h"
 #include "EntitySupport.h"
 
+class CAura;
 class CBaseEntity;
 class CBoundingObject;
-class CUnit;
-class CAura;
+class CPlayer;
 class CProductionQueue;
+class CSkeletonAnim;
+class CUnit;
 
 class CEntityFormation;
 

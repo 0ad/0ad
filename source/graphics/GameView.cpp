@@ -29,6 +29,8 @@
 #include "ps/Globals.h"
 #include "renderer/WaterManager.h"
 #include "renderer/SkyManager.h"
+#include "graphics/UnitManager.h"
+#include "graphics/Patch.h"
 
 #include "maths/Quaternion.h"
 #include "Unit.h"

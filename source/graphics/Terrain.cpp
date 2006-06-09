@@ -15,11 +15,12 @@
 #include "renderer/WaterManager.h"
 
 #include "simulation/EntityManager.h"
+#include "simulation/Entity.h"
 
 #include <string.h>
 #include "Terrain.h"
+#include "Patch.h"
 #include "maths/MathUtil.h"
-
 
 ///////////////////////////////////////////////////////////////////////////////
 // CTerrain constructor
@@ -72,6 +73,18 @@ bool CTerrain::Initialize(u32 size,const u16* data)
 	InitialisePatches();
 
 	return true;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+bool CTerrain::isOnMap(const CVector2D& v) const
+{
+	return isOnMap(v.x, v.y);
+}
+
+float CTerrain::getExactGroundLevel(const CVector2D& v) const
+{
+	return getExactGroundLevel(v.x, v.y);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

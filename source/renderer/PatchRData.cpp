@@ -13,7 +13,8 @@
 #include "ps/Profile.h"
 #include "maths/MathUtil.h"
 #include "simulation/LOSManager.h"
-
+#include "graphics/Patch.h"
+#include "graphics/Terrain.h"
 
 const int BlendOffsets[8][2] = {
 	{  0, -1 },

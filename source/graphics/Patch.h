@@ -9,22 +9,16 @@
 #ifndef _PATCH_H
 #define _PATCH_H
 
+#include "MiniPatch.h"
+#include "RenderableObject.h"
+
+class CTerrain;
+
 ///////////////////////////////////////////////////////////////////////////////
 // Terrain Constants:
 //
 // PATCH_SIZE: number of tiles in each patch
 const int	PATCH_SIZE = 16;
-// CELL_SIZE: size of each tile in x and z
-const int	CELL_SIZE = 4;	
-// HEIGHT_SCALE: vertical scale of terrain - terrain has a coordinate range of 
-// 0 to 65536*HEIGHT_SCALE
-const float HEIGHT_SCALE = 0.35f/256.0f;
-
-
-#include "MiniPatch.h"
-#include "RenderableObject.h"
-
-class CTerrain;
 
 ///////////////////////////////////////////////////////////////////////////////
 // CPatch: a single terrain patch, PATCH_SIZE tiles square

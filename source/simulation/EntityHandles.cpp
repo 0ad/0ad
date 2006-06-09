@@ -2,7 +2,9 @@
 
 #include "EntityHandles.h"
 #include "EntityManager.h"
+#include "Entity.h"
 #include "ps/CStr.h"
+#include "ps/Network/Serialization.h"
 
 CHandle::CHandle()
 {

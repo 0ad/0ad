@@ -25,6 +25,7 @@
 #include "simulation/FormationManager.h"
 #include "BaseFormation.h"
 #include "graphics/GameView.h"
+#include "graphics/UnitManager.h"
 
 
 extern CConsole* g_Console;

@@ -8,6 +8,8 @@
 #include "graphics/Terrain.h"
 #include "ps/Game.h"
 #include "maths/MathUtil.h"
+#include "Entity.h"
+
 int SELECTION_CIRCLE_POINTS;
 int SELECTION_BOX_POINTS;
 int SELECTION_SMOOTHNESS_UNIFIED = 9;

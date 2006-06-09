@@ -9,6 +9,8 @@
 #include "ps/Game.h"
 #include "Collision.h"
 #include "graphics/ObjectManager.h"
+#include "graphics/ObjectEntry.h"
+#include "graphics/Terrain.h"
 #include "ps/CLogger.h"
 
 const double GRAVITY = 0.00001;

@@ -8,6 +8,8 @@
 #include "ps/XML/Xeromyces.h"
 #include "ps/XML/XeroXMB.h"
 #include "BaseEntity.h"
+#include "Entity.h"
+#include "ps/Player.h"
 
 #define LOG_CATEGORY "Techs"
 
