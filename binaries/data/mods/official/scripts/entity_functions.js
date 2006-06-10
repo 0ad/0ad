@@ -64,6 +64,7 @@ function entityInit()
 			// Might happen if the player clicks to place 2 buildings really fast
 			console.write( "Could not begin construction: " + result );
 			evt.preventDefault();
+			return;
 		}
 	}
 	
@@ -250,13 +251,10 @@ function entityInit()
 	// If the entity either costs population or adds to it,
 	if (this.traits.population)
 	{
-		console.write("Here: " + this.traits.population.add + " " + this.traits.population.rem 
-			+ " " + this.player.resources.population + " " + this.player);
-	
 		// If the entity increases the population limit (provides Housing),
 		if (this.traits.population.add)
 			this.player.resources.housing += parseInt(this.traits.population.add);
-		// If the entity occupies population slots (occupies Housing),
+		// If the entity takes up Housing,
 		if (this.traits.population.rem)
 			this.player.resources.population += parseInt(this.traits.population.rem);
 	}
@@ -1198,6 +1196,12 @@ function entityStartProduction( evt )
 					break;
 				}
 			}
+			
+			// Reserve population space for the unit
+			if( template.traits.population && template.traits.population.rem )
+			{
+				this.player.resources.population += parseInt(template.traits.population.rem);
+			}
 	
 			// Set the amount of time it will take to complete production of the production object.
 			evt.time = getEntityTemplate( evt.name, this.player ).traits.creation.time;
@@ -1207,6 +1211,7 @@ function entityStartProduction( evt )
 			// If not, output the error message.
 			console.write(result);
 			evt.preventDefault();
+			return;
 		}
 	}
 	else
@@ -1240,6 +1245,12 @@ function entityCancelProduction( evt )
 				break;
 			}
 		}
+		
+		// Give back the reserved population space
+		if( template.traits.population && template.traits.population.rem )
+		{
+			this.player.resources.population -= parseInt(template.traits.population.rem);
+		}
 	}
 }
 
@@ -1250,6 +1261,12 @@ function entityFinishProduction( evt )
 	if(evt.productionType == PRODUCTION_TRAIN) 
 	{
 		var template =  getEntityTemplate( evt.name, this.player );
+	
+		// Give back reserved population space (the unit will take it up again in its initialize event, if we find space to place it)
+		if( template.traits.population && template.traits.population.rem )
+		{
+			this.player.resources.population -= parseInt(template.traits.population.rem);
+		}
 	
 		// Code to find a free space around an object is tedious and slow, so 
 		// I wrote it in C. Takes the template object so it can determine how
