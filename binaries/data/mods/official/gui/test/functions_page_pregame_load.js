@@ -44,10 +44,6 @@ function startMap (mapName, losSetting, openWindow)
 
 	// Set starting UI layout.
 	GUIType=rb;
-	
-	// Initialise Resource Pools by attaching them to the Player object.
-	// (CPlayer code takes care of giving a copy to each player.)
-	createResources();
 
 	// Set session UI sprites to match the skin for the player's civilisation.
 	// (We don't have skins for all civs yet, so we're using the standard menu skin. But it should be settable from here later.)
@@ -137,6 +133,9 @@ function setupSession ()
     // Fade out main theme and fade in session theme.
     crossFade(curr_music, curr_session_playlist_1); // , g_ConfigDB.system["sound.mastergain"]);
 
+	// Create the resouce counters
+	createResourceCounters();
+	
     // Start refreshing the session controls.
 	setInterval( snRefresh, 1, 100 );
 }

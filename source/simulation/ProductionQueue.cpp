@@ -61,6 +61,12 @@ CProductionQueue::~CProductionQueue()
 {
 	for( size_t i=0; i < m_items.size(); ++i )
 	{
+		// Cancel production of the item
+		CProductionItem* item = m_items[i];
+		CEventCancelProduction evt( item->m_type, item->m_name );
+		m_owner->DispatchEvent( &evt );
+
+		// Free its memory
 		delete m_items[i];
 	}
 }
@@ -78,7 +84,6 @@ void CProductionQueue::Update( size_t timestep )
 		front->Update( timestep );
 		if( front->IsComplete() )
 		{
-			debug_printf("Production complete!\n");
 			CEventFinishProduction evt( front->m_type, front->m_name );
 			m_owner->DispatchEvent( &evt );
 			m_items.erase( m_items.begin() );

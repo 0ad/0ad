@@ -357,6 +357,9 @@ function snRefresh()
 		// Update manual if it's open.
 		refreshManual();
 	}
+	
+	// Always refresh resources
+	refreshResources();
 }
 
 // ====================================================================

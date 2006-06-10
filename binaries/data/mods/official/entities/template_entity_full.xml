@@ -23,5 +23,6 @@
 	<Event On="Formation" Function="entityEventFormation" />
 	<Event On="Idle" Function="entityEventIdle" />
 	<Event On="Movement" Function="entityEventMovement" />
+	<Event On="Death" Function="entityDestroyed" />
 
 </Entity>

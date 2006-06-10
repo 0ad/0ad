@@ -32,7 +32,40 @@ function entityInit()
 {
 	// Initialise an entity when it is first spawned (generate starting hitpoints, etc).
 
-	this.addCreateQueue = entityAddCreateQueue;
+	// If the entity is a foundation, we must deduct resource costs here
+	if( this.building )
+	{
+		var template = getEntityTemplate( this.building, this.player );
+		var result = checkEntityReqs( this.player, template );	
+
+		if (result == true) // If the entry meets requirements to be added to the queue (eg sufficient resources) 
+		{
+			// Cycle through all costs of this entry.
+			var pool = template.traits.creation.resource;
+			for ( resource in pool )
+			{
+				switch ( resource.toString() )
+				{
+					case "population":
+					case "housing":
+					break;
+					default:
+						// Deduct the given quantity of resources.
+						this.player.resources[resource.toString()] -= parseInt(pool[resource]);
+
+						console.write ("Spent " + pool[resource] + " " + resource + " to build " + 
+							template.traits.id.generic);
+					break;
+				}
+			}
+		}
+		else
+		{
+			// Might happen if the player clicks to place 2 buildings really fast
+			console.write( "Could not begin construction: " + result );
+			evt.preventDefault();
+		}
+	}
 	
 	// If this is a foundation, initialize traits from the building we're converting into
 	if( this.building && this.building != "" )
@@ -217,12 +250,15 @@ function entityInit()
 	// If the entity either costs population or adds to it,
 	if (this.traits.population)
 	{
+		console.write("Here: " + this.traits.population.add + " " + this.traits.population.rem 
+			+ " " + this.player.resources.population + " " + this.player);
+	
 		// If the entity increases the population limit (provides Housing),
 		if (this.traits.population.add)
-			getGUIGlobal().giveResources ("Housing", this.traits.population.add);
+			this.player.resources.housing += parseInt(this.traits.population.add);
 		// If the entity occupies population slots (occupies Housing),
 		if (this.traits.population.rem)
-			getGUIGlobal().giveResources ("Population", this.traits.population.rem);
+			this.player.resources.population += parseInt(this.traits.population.rem);
 	}
 	
 	// Build Unit AI Stance list, and set default stance.
@@ -331,6 +367,22 @@ function attachAuras()
 
 // ====================================================================
 
+function entityDestroyed( evt )
+{
+	// If the entity either costs population or adds to it,
+	if (this.traits.population)
+	{
+		// If the entity increases the population limit (provides Housing),
+		if (this.traits.population.add)
+			this.player.resources.housing -= parseInt(this.traits.population.add);
+		// If the entity occupies population slots (occupies Housing),
+		if (this.traits.population.rem)
+			this.player.resources.population -= parseInt(this.traits.population.rem);
+	}
+}
+
+// ====================================================================
+
 function foundationDestroyed( evt )
 {
 	if( this.building != "" )	// Check that we're *really* a foundation since the event handler is kept when we change templates (probably a bug)
@@ -344,7 +396,7 @@ function foundationDestroyed( evt )
 		for( r in resources )
 		{
 			amount = parseInt( fractionToReturn * parseInt(resources[r]) );
-			getGUIGlobal().giveResources( r.toString(), amount );
+			this.player.resources[r.toString()] += amount;
 		}
 	}
 }
@@ -510,7 +562,7 @@ function performGather( evt )
 		// Remove amount from target.
 		s.curr -= gather_amt;
 		// Add extracted resources to player's resource pool.
-		getGUIGlobal().giveResources(s.type.toString(), parseInt(gather_amt));
+		this.player.resources[s.type.toString()] += gather_amt;
 		
 		// Kill the target if it's now out of resources
 		if( s.curr == 0 )
@@ -531,12 +583,12 @@ function performHeal( evt )
 	}
 
 	// Cycle through all resources.
-	pool = this.player.resource;
+	pool = this.player.resources;
 	for( resource in pool )
 	{
 		switch( resource.toString() )
 		{
-			case "Population" || "Housing":
+			case "population" || "housing":
 			break;
 			default:
 				// Make sure we have enough resources.
@@ -558,17 +610,17 @@ function performHeal( evt )
 	}
 
 	// Cycle through all resources.
-	pool = this.player.resource;
+	pool = this.player.resources;
 	for( resource in pool )
 	{
 		switch( resource.toString() )
 		{
-			case "Population":
-			case "Housing":
+			case "population":
+			case "housing":
 				break;
 			default:
 				// Deduct resources to pay for healing.
-				getGUIGlobal().deductResources(toTitleCase (resource.toString()), parseInt(evt.target.actions.heal.cost * evt.target.traits.creation.cost[resource]));
+				this.player.resources[resource.toString()] -= parseInt(evt.target.actions.heal.cost * evt.target.traits.creation.cost[resource]);
 				break;
 		}
 	}
@@ -604,7 +656,7 @@ function performBuild( evt )
 			t.attachAuras();
 			
 			if (t.traits.population && t.traits.population.add)
-				getGUIGlobal().giveResources ("Housing", t.traits.population.add);
+				this.player.resources.housing += parseInt(t.traits.population.add);
 		}
 		evt.preventDefault();	// Stop performing this action
 	}
@@ -637,7 +689,7 @@ function performRepair( evt )
 	for( r in resources )
 	{
 		amount = parseInt( fraction * parseInt(resources[r]) );
-		getGUIGlobal().deductResources( r.toString(), amount );
+		this.player.resources[r.toString()] -= parseInt(amount);
 	}
 
 	// Heal the building
@@ -648,7 +700,7 @@ function performRepair( evt )
 	for( r in resources )
 	{
 		amount = parseInt( fraction * parseInt(resources[r]) );
-		getGUIGlobal().deductResources( r.toString(), amount );
+		this.player.resources[r.toString()] -= parseInt(amount);
 	}
 }
 
@@ -728,7 +780,7 @@ function damage( dmg, inflictor )
 							// Notify player.
 							console.write ("Spoils of war! " + this.traits.loot[loot] + " " + loot.toString() + "!");
 							// Give the inflictor his resources.
-							getGUIGlobal().giveResources( loot.toString(), parseInt(this.traits.loot[loot]) );
+							this.player.resources[loot.toString()] -= parseInt(this.traits.loot[loot]);
 						}
 						break;
 				}
@@ -1124,7 +1176,7 @@ function entityStartProduction( evt )
 	if(evt.productionType == PRODUCTION_TRAIN) 
 	{
 		var template = getEntityTemplate( evt.name, this.player );
-		var result = entityCheckQueueReq( this, template );	
+		var result = checkEntityReqs( this.player, template );	
 
 		if (result == true) // If the entry meets requirements to be added to the queue (eg sufficient resources) 
 		{
@@ -1132,14 +1184,14 @@ function entityStartProduction( evt )
 			var pool = template.traits.creation.resource;
 			for ( resource in pool )
 			{
-				switch ( getGUIGlobal().toTitleCase(resource.toString()) )
+				switch ( resource.toString() )
 				{
-					case "Population":
-					case "Housing":
+					case "population":
+					case "housing":
 					break;
 					default:
 						// Deduct the given quantity of resources.
-						getGUIGlobal().deductResources (resource.toString(), parseInt(pool[resource]));
+						this.player.resources[resource.toString()] -= parseInt(pool[resource]);
 
 						console.write ("Spent " + pool[resource] + " " + resource + " to purchase " + 
 							template.traits.id.generic);
@@ -1174,14 +1226,14 @@ function entityCancelProduction( evt )
 		var pool = template.traits.creation.resource;
 		for ( resource in pool )
 		{
-			switch ( getGUIGlobal().toTitleCase(resource.toString()) )
+			switch ( resource.toString() )
 			{
-				case "Population":
-				case "Housing":
+				case "population":
+				case "housing":
 				break;
 				default:
-					// Deduct the given quantity of resources.
-					getGUIGlobal().addResources (resource.toString(), parseInt(pool[resource]));
+					// Refund the given quantity of resources.
+					this.player.resources[resource.toString()] += parseInt(pool[resource]);
 
 					console.write ("Got back " + pool[resource] + " " + resource + " from cancelling " + 
 						template.traits.id.generic);
@@ -1214,23 +1266,21 @@ function entityFinishProduction( evt )
 		}
 		else
 		{
-			var created = new Entity( template, position );
+			var created = new Entity( template, position, 0, this.player );
 		
 			// Above shouldn't ever fail, but just in case...
 			if( created )
 			{
 				console.write( "Created: ", template.tag );
-		
-				// Entities start under Gaia control - make the controller
-				// the same as our controller
-				created.player = this.player;
 			}
 		}		
 	}
 }
 
-// ====================================================================
+// Old training queue system
 
+// ====================================================================
+/*
 function entityAddCreateQueue( template, tab, list )
 {
 	// Make sure we have a queue to put things in...
@@ -1326,7 +1376,7 @@ function entityCreateComplete()
 function attemptAddToBuildQueue( entity, create_tag, tab, list )
 {
 	template = getEntityTemplate( create_tag, entity.player );
-	result = entityCheckQueueReq( entity, template );	
+	result = checkEntityReqs( entity, template );	
 
 	if (result == true) // If the entry meets requirements to be added to the queue (eg sufficient resources) 
 	{
@@ -1334,14 +1384,14 @@ function attemptAddToBuildQueue( entity, create_tag, tab, list )
 		pool = template.traits.creation.resource;
 		for ( resource in pool )
 		{
-			switch ( getGUIGlobal().toTitleCase(resource.toString()) )
+			switch ( resource.toString() )
 			{
-				case "Population":
-				case "Housing":
+				case "population":
+				case "housing":
 				break;
 				default:
 					// Deduct the given quantity of resources.
-					getGUIGlobal().deductResources (resource.toString(), parseInt(pool[resource]));
+					this.player.resources[resource.toString()] -= parseInt(pool[resource]);
 
 					console.write ("Spent " + pool[resource] + " " + resource + " to purchase " + 
 						template.traits.id.generic);
@@ -1361,10 +1411,10 @@ function attemptAddToBuildQueue( entity, create_tag, tab, list )
 		return false;
 	}
 }
-
+*/
 // ====================================================================
 
-function entityCheckQueueReq( entity, template ) 
+function checkEntityReqs( player, template ) 
 { 
 	// Determines if the given entity meets requirements for production by the player, and returns an appropriate 
 	// error string.
@@ -1374,14 +1424,14 @@ function entityCheckQueueReq( entity, template )
 	var resources = template.traits.creation.resource;
 	for( resource in resources )
 	{
-		switch( getGUIGlobal().toTitleCase(resource.toString()) )
+		switch( resource.toString() )
 		{
-			case "Population":
-			case "Housing": // Ignore housing. It's handled in combination with population.
+			case "population":
+			case "housing": // Ignore housing. It's handled in combination with population.
 			break
 			default:
 				// If the item costs more of this resource type than we have,
-				var cur = getGUIGlobal().getResources(resource);
+				var cur = player.resources[resource];
 				var req = parseInt(resources[resource]);
 				if (req > cur)
 				{
@@ -1399,7 +1449,7 @@ function entityCheckQueueReq( entity, template )
 	if(template.traits.population && template.traits.population.rem) 
 	{
 		var req = parseInt(template.traits.population.rem);
-		var space = getGUIGlobal().getResources("Housing") - getGUIGlobal().getResources("Population");
+		var space = player.resources.housing - player.resources.population;
 	
 		// If the item costs more of this resource type than we have,
 		if (req > space)

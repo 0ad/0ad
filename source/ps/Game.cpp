@@ -93,10 +93,6 @@ PSRETURN CGame::ReallyStartGame()
 	}
 #endif
 
-	// Call the game startup script 
-	// TODO: Maybe don't do this if we're in Atlas
-	g_ScriptingHost.RunScript( "scripts/game_startup.js" );
-
 	debug_printf("GAME STARTED, ALL INIT COMPLETE\n");
 	m_GameStarted=true;
 

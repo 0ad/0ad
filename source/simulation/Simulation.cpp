@@ -49,6 +49,10 @@ int CSimulation::Initialize(CGameAttributes* pAttribs)
 {
 	m_pTurnManager->Initialize(m_pGame->GetNumPlayers());
 
+	// Call the game startup script 
+	// TODO: Maybe don't do this if we're in Atlas
+	g_ScriptingHost.RunScript( "scripts/game_startup.js" );
+
 	g_EntityManager.InitializeAll();
 
 	// 2006-03-04: ~33ms
@@ -348,11 +352,13 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 				CVector3D pos(msg->m_X/1000.0f, msg->m_Y/1000.0f, msg->m_Z/1000.0f);
 				HEntity newObj = g_EntityManager.createFoundation( msg->m_Template, player, pos, msg->m_Angle/1000.0f );
 				newObj->SetPlayer(player);
-				
-				// Order all the selected units to work on the new object using the given action
-				order.m_type = CEntityOrder::ORDER_START_CONSTRUCTION;
-				order.m_data[0].entity = newObj;
-				QueueOrder(order, msg->m_Entities, false);
+				if( newObj->Initialize() )
+				{
+					// Order all the selected units to work on the new object using the given action
+					order.m_type = CEntityOrder::ORDER_START_CONSTRUCTION;
+					order.m_data[0].entity = newObj;
+					QueueOrder(order, msg->m_Entities, false);
+				}
 			} while(0)
 			break;
 		

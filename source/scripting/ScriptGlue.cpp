@@ -343,11 +343,9 @@ JSBool getTechnology( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* ar
 	if ( tech )
 		*rval = ToJSVal( tech );
 	else
-		JS_ReportError(cx, "Invalid tech template name \"%ls\" passed for getTechnology()", name.c_str() );
+		g_Console->InsertMessage( L"Warning: Invalid tech template name \"%ls\" passed for getTechnology()", name.c_str() );
 
-	if ( rval )
-		return JS_TRUE;
-	return JS_FALSE;
+	return JS_TRUE;
 }
 
 //-----------------------------------------------------------------------------

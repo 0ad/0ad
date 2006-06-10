@@ -654,11 +654,9 @@ bool CEntity::processProduce( CEntityOrder* order )
 {
 	int type = order->m_data[1].data;
 	CStrW name = order->m_data[0].string;
-	debug_printf("Trying to produce %d %ls\n", type, name.c_str() );
 	CEventStartProduction evt( type, name );
 	if( DispatchEvent( &evt ) && evt.GetTime() >= 0 )
 	{
-		debug_printf("Production started, time is %f\n", evt.GetTime());
 		m_productionQueue->AddItem( type, name, evt.GetTime() );
 	}
 	return( false );

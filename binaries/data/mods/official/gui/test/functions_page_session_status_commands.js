@@ -443,7 +443,7 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 									case "structciv":
 									case "structmil":
 										// Select building placement cursor.
-										startPlacing (Crd[getCrd (this.name, true)].entity);
+										tryConstruction( Crd[getCrd (this.name, true)].entity );
 									break;
 									case "garrison":
 										// Remove this item from the entity's garrison inventory.
@@ -525,6 +525,26 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 	}
 	// Invalid property ... Cancel tab update.
 	return false;
+}
+
+// ====================================================================
+
+function tryConstruction( name )
+{
+	// Start the building placement cursor for the given template, if we have enough resources
+
+	var result = checkEntityReqs( localPlayer, getEntityTemplate( name ) );
+
+	if (result == true) // If the entry meets requirements to be built (i.e. resources)
+	{
+		// Show the building placement cursor
+		startPlacing( name );
+	}
+	else
+	{	
+		// If not, output the error message.
+		console.write( result );
+	}
 }
 
 // ====================================================================

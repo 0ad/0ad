@@ -267,7 +267,7 @@ public:
 	void kill();
 
 	// Process initialization
-	void Initialize();
+	bool Initialize();
 
 	// Process tick.
 	void Tick();

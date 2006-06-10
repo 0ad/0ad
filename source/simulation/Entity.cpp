@@ -164,8 +164,6 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
 	m_building = building;
 	
     m_player = g_Game->GetPlayer( 0 );
-
-    Initialize();
 }
 
 CEntity::~CEntity()
@@ -771,10 +769,15 @@ void UpdateAuras_Normal( SAura& aura, CEntity* e )
 
 #endif
 
-void CEntity::Initialize()
+bool CEntity::Initialize()
 {
     CEventInitialize evt;
-    DispatchEvent( &evt );
+    if( !DispatchEvent( &evt ) ) 
+	{
+		kill();
+		return false;
+	}
+	return true;
 }
 
 void CEntity::Tick()
@@ -1468,6 +1471,8 @@ JSBool CEntity::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsva
     JSObject* jsBaseEntity = JSVAL_TO_OBJECT( argv[0] );
     CStrW templateName;
 
+	CPlayer* player = g_Game->GetPlayer( 0 );
+
     CBaseEntity* baseEntity = NULL;
     if( JSVAL_IS_OBJECT( argv[0] ) ) // only set baseEntity if jsBaseEntity is a valid object
         baseEntity = ToNative<CBaseEntity>( cx, jsBaseEntity );
@@ -1516,8 +1521,22 @@ JSBool CEntity::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsva
         }
     }
 
+    if( argc >= 4 )
+    {
+        try
+        {
+            player = ToPrimitive<CPlayer*>( argv[3] );
+        }
+        catch( PSERROR_Scripting_ConversionFailed )
+        {
+			player = g_Game->GetPlayer( 0 );
+        }
+    }
+
 	std::set<CStrW> selections; // TODO: let scripts specify selections?
     HEntity handle = g_EntityManager.create( baseEntity, position, orientation, selections );
+	handle->SetPlayer( player );
+	handle->Initialize();
 
     *rval = ToJSVal<CEntity>( *handle );
     return( JS_TRUE );

@@ -93,6 +93,18 @@ HEntity CEntityManager::create( CBaseEntity* base, CVector3D position, float ori
 	return( HEntity( m_nextalloc++ ) );
 }
 
+HEntity CEntityManager::create( CStrW templateName, CPlayer* player, CVector3D position, float orientation )
+{
+	CBaseEntity* base = g_EntityTemplateCollection.getTemplate( templateName, player );
+	debug_assert( base );
+	if( !base )
+		return HEntity();
+
+	std::set<CStrW> selections;
+
+	return create( base, position, orientation, selections );
+}
+
 HEntity CEntityManager::createFoundation( CStrW templateName, CPlayer* player, CVector3D position, float orientation )
 {
 	CBaseEntity* base = g_EntityTemplateCollection.getTemplate( templateName, player );
