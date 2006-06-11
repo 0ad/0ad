@@ -2,6 +2,9 @@
 #include "SnapSplitterWindow/SnapSplitterWindow.h"
 #include "FilePreviewer.h"
 
+#include "wx/filename.h"
+#include "wx/listctrl.h"
+
 namespace DatafileIO
 {
 	class BARReader;

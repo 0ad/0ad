@@ -5,6 +5,8 @@
 #include "ColourTesterImageCtrl.h"
 #include "General/Datafile.h"
 
+#include "wx/colordlg.h"
+
 #include <sstream>
 
 //////////////////////////////////////////////////////////////////////////

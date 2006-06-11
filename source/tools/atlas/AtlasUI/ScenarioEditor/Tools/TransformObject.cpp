@@ -77,7 +77,7 @@ public:
 				return false;
 		}
 
-		bool OnKey(TransformObject* obj, wxKeyEvent& evt, KeyEventType type)
+		bool OnKey(TransformObject* WXUNUSED(obj), wxKeyEvent& evt, KeyEventType type)
 		{
 			if (type == KEY_CHAR && evt.GetKeyCode() == WXK_DELETE)
 			{

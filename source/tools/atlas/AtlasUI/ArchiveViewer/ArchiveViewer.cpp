@@ -17,6 +17,7 @@ using namespace DatafileIO;
 #include "wx/tooltip.h"
 #include "wx/msw/registry.h"
 #include "wx/progdlg.h"
+#include "wx/regex.h"
 
 // Possible TODO: Remove duplication of AtlasWindow code
 

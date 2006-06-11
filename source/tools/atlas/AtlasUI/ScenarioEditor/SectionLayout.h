@@ -1,3 +1,6 @@
+#ifndef SECTIONLAYOUT_H__
+#define SECTIONLAYOUT_H__
+
 class SnapSplitterWindow;
 
 class SectionLayout
@@ -16,3 +19,5 @@ private:
 	SnapSplitterWindow* m_HorizSplitter;
 	SnapSplitterWindow* m_VertSplitter;
 };
+
+#endif // SECTIONLAYOUT_H__

@@ -23,7 +23,13 @@ sEnvironmentSettings GetSettings()
 
 	s.sunrotation = g_LightEnv.GetRotation();
 	s.sunelevation = g_LightEnv.GetElevation();
-	
+
+#define COLOUR(A, B) A = Colour(B.X*255, B.Y*255, B.Z*255)
+	COLOUR(s.suncolour, g_LightEnv.m_SunColor);
+	COLOUR(s.terraincolour, g_LightEnv.m_TerrainAmbientColor);
+	COLOUR(s.unitcolour, g_LightEnv.m_UnitsAmbientColor);
+#undef COLOUR
+
 	return s;
 }
 
@@ -36,6 +42,12 @@ void SetSettings(const sEnvironmentSettings& s)
 
 	g_LightEnv.SetRotation(s.sunrotation);
 	g_LightEnv.SetElevation(s.sunelevation);
+
+#define COLOUR(A, B) B = RGBColor(A.r/255.f, A.g/255.f, A.b/255.f)
+	COLOUR(s.suncolour, g_LightEnv.m_SunColor);
+	COLOUR(s.terraincolour, g_LightEnv.m_TerrainAmbientColor);
+	COLOUR(s.unitcolour, g_LightEnv.m_UnitsAmbientColor);
+#undef COLOUR
 }
 
 BEGIN_COMMAND(SetEnvironmentSettings)

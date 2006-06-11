@@ -43,6 +43,12 @@ public:
 		}
 	}
 
+	Observable<T>* operator=(const T& rhs)
+	{
+		*dynamic_cast<T*>(this) = rhs;
+		return this;
+	}
+
 private:
  	boost::signal<void (const T&)> m_Signal;
 };

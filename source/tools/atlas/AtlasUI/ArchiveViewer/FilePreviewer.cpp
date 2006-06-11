@@ -6,6 +6,7 @@
 #include "DatafileIO/DDT/DDT.h"
 
 #include "wx/sound.h"
+#include "wx/image.h"
 
 using namespace DatafileIO;
 

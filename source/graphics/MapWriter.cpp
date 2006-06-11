@@ -20,6 +20,7 @@
 #include "graphics/Camera.h"
 #include "ps/Player.h"
 #include "graphics/Patch.h"
+#include "renderer/WaterManager.h"
 
 #include "ps/XML/XMLWriter.h"
 #include "simulation/Entity.h"
@@ -34,7 +35,8 @@ CMapWriter::CMapWriter()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // SaveMap: try to save the current map to the given file
-void CMapWriter::SaveMap(const char* filename, CTerrain *pTerrain, CUnitManager *pUnitMan, CLightEnv *pLightEnv, CCamera *pCamera)
+void CMapWriter::SaveMap(const char* filename, CTerrain* pTerrain, CUnitManager* pUnitMan,
+						 WaterManager* pWaterMan, CLightEnv* pLightEnv, CCamera* pCamera)
 {
 	CFilePacker packer(FILE_VERSION, "PSMP");
 
@@ -46,13 +48,13 @@ void CMapWriter::SaveMap(const char* filename, CTerrain *pTerrain, CUnitManager 
 
 	CStr filename_xml (filename);
 	filename_xml = filename_xml.Left(filename_xml.Length()-4) + ".xml";
-	WriteXML(filename_xml, pUnitMan, pLightEnv, pCamera);
+	WriteXML(filename_xml, pUnitMan, pWaterMan, pLightEnv, pCamera);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // GetHandleIndex: return the index of the given handle in the given list; or 0xffff if
 // handle isn't in list
-static u16 GetHandleIndex(const Handle handle,const std::vector<Handle>& handles)
+static u16 GetHandleIndex(const Handle handle, const std::vector<Handle>& handles)
 {
 	const uint limit = MIN((uint)handles.size(), 0xFFFE);	// paranoia
 	for (uint i=0;i<limit;i++) {
@@ -126,7 +128,7 @@ void CMapWriter::PackMap(CFilePacker& packer, CTerrain* pTerrain,
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // PackTerrain: pack the terrain onto the end of the output data stream
 //		- data: map size, heightmap, list of textures used by map, texture tile assignments
-void CMapWriter::PackTerrain(CFilePacker& packer, CTerrain *pTerrain)
+void CMapWriter::PackTerrain(CFilePacker& packer, CTerrain* pTerrain)
 {
 	// pack map size
 	u32 mapsize=pTerrain->GetPatchesPerSide();
@@ -156,7 +158,7 @@ void CMapWriter::PackTerrain(CFilePacker& packer, CTerrain *pTerrain)
 
 
 
-void CMapWriter::WriteXML(const char* filename, CUnitManager* pUnitMan, CLightEnv *pLightEnv, CCamera *pCamera)
+void CMapWriter::WriteXML(const char* filename, CUnitManager* pUnitMan, WaterManager* pWaterMan, CLightEnv* pLightEnv, CCamera* pCamera)
 {
 	Handle h = vfs_open(filename, FILE_WRITE_TO_TARGET|FILE_NO_AIO);
 	if (h <= 0)
@@ -198,6 +200,23 @@ void CMapWriter::WriteXML(const char* filename, CUnitManager* pUnitMan, CLightEn
 				XML_Attribute("r", pLightEnv->m_UnitsAmbientColor.X);
 				XML_Attribute("g", pLightEnv->m_UnitsAmbientColor.Y);
 				XML_Attribute("b", pLightEnv->m_UnitsAmbientColor.Z);
+			}
+
+			{
+				XML_Element("Water");
+				{
+					XML_Element("WaterBody");
+					XML_Setting("Type", "default");
+					{
+						XML_Element("Colour");
+						XML_Attribute("r", pWaterMan->m_WaterColor.r);
+						XML_Attribute("g", pWaterMan->m_WaterColor.g);
+						XML_Attribute("b", pWaterMan->m_WaterColor.b);
+					}
+					XML_Setting("Height", pWaterMan->m_WaterHeight);
+					XML_Setting("Shininess", pWaterMan->m_Shininess);
+					XML_Setting("Waviness", pWaterMan->m_Waviness);
+				}
 			}
 		}
 
@@ -306,7 +325,8 @@ void CMapWriter::WriteXML(const char* filename, CUnitManager* pUnitMan, CLightEn
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // RewriteAllMaps
-void CMapWriter::RewriteAllMaps(CTerrain *pTerrain, CUnitManager *pUnitMan, CLightEnv *pLightEnv, CCamera *pCamera)
+void CMapWriter::RewriteAllMaps(CTerrain* pTerrain, CUnitManager* pUnitMan,
+								WaterManager* pWaterMan, CLightEnv* pLightEnv, CCamera* pCamera)
 {
 	VFSUtil::FileList files;
 	VFSUtil::FindFiles("maps/scenarios", "*.pmp", files);
@@ -315,13 +335,13 @@ void CMapWriter::RewriteAllMaps(CTerrain *pTerrain, CUnitManager *pUnitMan, CLig
 	{
 		CMapReader* reader = new CMapReader;
 		LDR_BeginRegistering();
-		reader->LoadMap(*it, pTerrain, pUnitMan, pLightEnv, pCamera);
+		reader->LoadMap(*it, pTerrain, pUnitMan, pWaterMan, pLightEnv, pCamera);
 		LDR_EndRegistering();
 		LDR_NonprogressiveLoad();
 
 		CStr n (*it);
 		n.Replace("scenarios/", "scenarios/new/");
 		CMapWriter writer;
-		writer.SaveMap(n, pTerrain, pUnitMan, pLightEnv, pCamera);
+		writer.SaveMap(n, pTerrain, pUnitMan, pWaterMan, pLightEnv, pCamera);
 	}
 }

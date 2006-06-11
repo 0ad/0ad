@@ -13,6 +13,7 @@
 
 #include "ps/Overlay.h"
 #include "maths/Matrix3D.h"
+#include "lib/ogl.h"
 
 /**
  * Class WaterManager: Maintain water settings and textures.

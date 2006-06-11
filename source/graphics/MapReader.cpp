@@ -14,6 +14,7 @@
 #include "maths/MathUtil.h"
 #include "Camera.h"
 #include "graphics/Patch.h"
+#include "renderer/WaterManager.h"
 
 #include "Model.h"
 #include "Terrain.h"
@@ -35,16 +36,17 @@ CMapReader::CMapReader()
 
 // LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
 void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain_, CUnitManager *pUnitMan_,
-						 CLightEnv *pLightEnv_, CCamera *pCamera_)
+						 WaterManager* pWaterMan_, CLightEnv *pLightEnv_, CCamera *pCamera_)
 {
 	// latch parameters (held until DelayedLoadFinished)
 	pTerrain = pTerrain_;
 	pUnitMan = pUnitMan_;
 	pLightEnv = pLightEnv_;
 	pCamera = pCamera_;
+	pWaterMan = pWaterMan_;
 
 	// [25ms]
-	unpacker.Read(filename,"PSMP");
+	unpacker.Read(filename, "PSMP");
 
 	// check version
 	if (unpacker.GetVersion() < FILE_READ_VERSION) {
@@ -332,6 +334,13 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 	EL(terrainambientcolour);
 	EL(unitsambientcolour);
 	EL(terrainshadowtransparency);
+	EL(water);
+	EL(waterbody);
+	EL(type);
+	EL(colour);
+	EL(height);
+	EL(shininess);
+	EL(waviness);
 	AT(r); AT(g); AT(b);
 #undef AT
 #undef EL
@@ -373,6 +382,45 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 		else if (element_name == el_terrainshadowtransparency)
 		{
 			m_MapReader.m_LightEnv.SetTerrainShadowTransparency(CStr(element.getText()).ToFloat());
+		}
+		else if (element_name == el_water)
+		{
+			XERO_ITER_EL(element, waterbody)
+			{
+				debug_assert(waterbody.getNodeName() == el_waterbody);
+				XERO_ITER_EL(waterbody, waterelement)
+				{
+					int element_name = waterelement.getNodeName();
+					if (element_name == el_type)
+					{
+						// TODO: implement this, when WaterManager supports it
+					}
+					else if (element_name == el_colour)
+					{
+						XMBAttributeList attrs = waterelement.getAttributes();
+						m_MapReader.pWaterMan->m_WaterColor = CColor(
+							CStr(attrs.getNamedItem(at_r)).ToFloat(),
+							CStr(attrs.getNamedItem(at_g)).ToFloat(),
+							CStr(attrs.getNamedItem(at_b)).ToFloat(),
+							1.f);
+					}
+					else if (element_name == el_height)
+					{
+						m_MapReader.pWaterMan->m_WaterHeight = CStr(waterelement.getText()).ToFloat();
+					}
+					else if (element_name == el_shininess)
+					{
+						m_MapReader.pWaterMan->m_Shininess = CStr(waterelement.getText()).ToFloat();
+					}
+					else if (element_name == el_waviness)
+					{
+						m_MapReader.pWaterMan->m_Waviness = CStr(waterelement.getText()).ToFloat();
+					}
+					else
+						debug_warn("Invalid map XML data");
+				}
+
+			}
 		}
 		else
 			debug_warn("Invalid map XML data");

@@ -50,7 +50,7 @@ void SnapSplitterWindow::OnSashPosChanging(wxSplitterEvent& evt)
 	}
 }
 
-void SnapSplitterWindow::OnDoubleClick(wxSplitterEvent& evt)
+void SnapSplitterWindow::OnDoubleClick(wxSplitterEvent& WXUNUSED(evt))
 {
 	int defaultPos = ConvertSashPosition(m_DefaultSashPosition);
 	SetSashPosition(defaultPos);

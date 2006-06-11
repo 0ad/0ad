@@ -8,6 +8,8 @@
 
 #include "GameInterface/Messages.h"
 
+#include "wx/filename.h"
+
 static void LoadMap(void*)
 {
 	wxFileDialog dlg (NULL, wxFileSelectorPromptStr, Datafile::GetDataDirectory()+_T("/mods/official/maps/scenarios"),

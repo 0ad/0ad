@@ -11,29 +11,40 @@
 
 // Include useful wx headers
 #include "wx/wxprec.h"
-#include "wx/listctrl.h"
-#include "wx/docview.h"
-#include "wx/cmdproc.h"
-#include "wx/dialog.h"
-#include "wx/filename.h"
+
 #include "wx/artprov.h"
-#include "wx/file.h"
-#include "wx/dir.h"
+#include "wx/cmdproc.h"
 #include "wx/colordlg.h"
-#include "wx/regex.h"
+#include "wx/config.h"
+#include "wx/dialog.h"
+#include "wx/dir.h"
+#include "wx/dnd.h"
+#include "wx/docview.h"
+#include "wx/file.h"
+#include "wx/filename.h"
+#include "wx/filesys.h"
+#include "wx/glcanvas.h"
 #include "wx/image.h"
-#include "wx/splitter.h"
+#include "wx/listctrl.h"
+#include "wx/mstream.h"
+#include "wx/progdlg.h"
+#include "wx/regex.h"
+#include "wx/sound.h"
 #include "wx/spinctrl.h"
+#include "wx/splitter.h"
+#include "wx/tooltip.h"
+#include "wx/treectrl.h"
+#include "wx/wfstream.h"
+#include "wx/zstream.h"
 
 #include <vector>
 #include <string>
 #include <set>
 #include <stack>
 #include <map>
+#include <limits>
+#include <cassert>
 
-#include <boost/preprocessor/seq/for_each_i.hpp>
-#include <boost/preprocessor/tuple/elem.hpp>
-#include <boost/preprocessor/punctuation/comma_if.hpp>
 #include <boost/signals.hpp>
 #include <boost/bind.hpp>
 

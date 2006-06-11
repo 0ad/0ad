@@ -13,6 +13,8 @@
 #include "wx/wfstream.h"
 #include "wx/progdlg.h"
 #include "wx/config.h"
+#include "wx/regex.h"
+
 using namespace DatafileIO;
 
 //#define QUIET

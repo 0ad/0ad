@@ -4,7 +4,7 @@
 
 IMPLEMENT_DYNAMIC_CLASS(Sidebar, wxPanel)
 
-Sidebar::Sidebar(wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
+Sidebar::Sidebar(wxWindow* sidebarContainer, wxWindow* WXUNUSED(bottomBarContainer))
 	: wxPanel(sidebarContainer), m_BottomBar(NULL), m_AlreadyDisplayed(false)
 {
 	m_MainSizer = new wxBoxSizer(wxVERTICAL);

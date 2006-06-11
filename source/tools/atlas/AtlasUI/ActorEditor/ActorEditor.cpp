@@ -7,7 +7,7 @@
 #include "AtlasObject/AtlasObjectText.h"
 #include "General/Datafile.h"
 
-#include "wx/ffile.h"
+#include "wx/file.h"
 
 BEGIN_EVENT_TABLE(ActorEditor, AtlasWindow)
 	EVT_MENU(ID_CreateEntity, OnCreateEntity)

@@ -18,7 +18,7 @@ struct Position
 	Position() : type(0) { type0.x = type0.y = type0.z = 0.f;  }
 
 	// Constructs a position with specified world-space coordinates
-	Position(float x_, float y_, float z_) : type(0) { type0.x = x_; type0.y = y_; type0.z = z_; }
+	Position(float x, float y, float z) : type(0) { type0.x = x; type0.y = y; type0.z = z; }
 	
 	// Constructs a position on the terrain underneath the screen-space coordinates
 	Position(const wxPoint& pt); // (implementation in ScenarioEditor.cpp)
@@ -44,8 +44,23 @@ struct Position
 	void GetWorldSpace(CVector3D& vec, const CVector3D& prev) const;
 	void GetScreenSpace(float& x, float& y) const;
 };
-
 SHAREABLE_STRUCT(Position);
+
+struct Colour
+{
+	Colour()
+		: r(255), g(0), b(255)
+	{
+	}
+
+	Colour(unsigned char r, unsigned char g, unsigned char b)
+		: r(r), g(g), b(b)
+	{
+	}
+
+	unsigned char r, g, b;
+};
+SHAREABLE_STRUCT(Colour);
 
 }
 

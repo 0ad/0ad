@@ -15,6 +15,7 @@
 
 #include "wx/config.h"
 #include "wx/debugrpt.h"
+#include "wx/file.h"
 
 // Shared memory allocation functions
 ATLASDLLIMPEXP void* ShareableMalloc(size_t n)

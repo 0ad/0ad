@@ -12,6 +12,7 @@
 #include "ps/Game.h"
 #include "ps/GameAttributes.h"
 #include "ps/Loader.h"
+#include "renderer/Renderer.h"
 #include "simulation/LOSManager.h"
 #include "simulation/Simulation.h"
 
@@ -108,7 +109,7 @@ MESSAGEHANDLER(SaveMap)
 	CMapWriter writer;
 	writer.SaveMap(CStr(L"maps/scenarios/" + *msg->filename),
 		g_Game->GetWorld()->GetTerrain(), g_Game->GetWorld()->GetUnitManager(),
-		&g_LightEnv, g_Game->GetView()->GetCamera());
+		g_Renderer.GetWaterManager(), &g_LightEnv, g_Game->GetView()->GetCamera());
 }
 
 }

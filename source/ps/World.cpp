@@ -1,27 +1,27 @@
 #include "precompiled.h"
 
-#include "CStr.h"
-#include "CLogger.h"
-#include "ps/Errors.h"
-
-#include "World.h"
-#include "graphics/MapReader.h"
-#include "Game.h"
-#include "GameAttributes.h"
-#include "graphics/Terrain.h"
+#include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
+#include "graphics/MapReader.h"
+#include "graphics/MapWriter.h"
+#include "graphics/Terrain.h"
+#include "graphics/Terrain.h"
+#include "graphics/UnitManager.h"
+#include "lib/timer.h"
+#include "ps/CLogger.h"
+#include "ps/CStr.h"
+#include "ps/Errors.h"
+#include "ps/Game.h"
+#include "ps/GameAttributes.h"
+#include "ps/Loader.h"
+#include "ps/LoaderThunks.h"
+#include "ps/World.h"
+#include "renderer/Renderer.h"
 #include "simulation/BaseEntityCollection.h"
 #include "simulation/EntityManager.h"
-#include "lib/timer.h"
-#include "Loader.h"
-#include "LoaderThunks.h"
-#include "graphics/MapWriter.h"
-#include "graphics/UnitManager.h"
 #include "simulation/EntityManager.h"
-#include "simulation/Projectile.h"
 #include "simulation/LOSManager.h"
-#include "graphics/GameView.h"
-#include "graphics/Terrain.h"
+#include "simulation/Projectile.h"
 
 #define LOG_CATEGORY "world"
 
@@ -55,7 +55,8 @@ void CWorld::Initialize(CGameAttributes *pAttribs)
 
 		try {
 			reader = new CMapReader;
-			reader->LoadMap(mapfilename, m_Terrain, m_UnitManager, &g_LightEnv, m_pGame->GetView()->GetCamera());
+			reader->LoadMap(mapfilename, m_Terrain, m_UnitManager, g_Renderer.GetWaterManager(),
+				&g_LightEnv, m_pGame->GetView()->GetCamera());
 				// fails immediately, or registers for delay loading
 		} catch (PSERROR_File&) {
 			delete reader;
@@ -83,5 +84,6 @@ CWorld::~CWorld()
 
 void CWorld::RewriteMap()
 {
-	CMapWriter::RewriteAllMaps(m_Terrain, m_UnitManager, &g_LightEnv, m_pGame->GetView()->GetCamera());
+	CMapWriter::RewriteAllMaps(m_Terrain, m_UnitManager,
+		g_Renderer.GetWaterManager(), &g_LightEnv, m_pGame->GetView()->GetCamera());
 }

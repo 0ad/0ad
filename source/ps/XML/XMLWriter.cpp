@@ -80,7 +80,7 @@ void XMLWriter_File::ElementEnd(const char* name, int type)
 	switch (type)
 	{
 	case EL_ATTR:
-		m_Data += " />";
+		m_Data += "/>";
 		break;
 	case EL_TEXT:
 		m_Data += "</";

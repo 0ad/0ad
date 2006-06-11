@@ -12,6 +12,8 @@
 #include "GameInterface/Messages.h"
 
 #include "wx/spinctrl.h"
+#include "wx/listctrl.h"
+#include "wx/image.h"
 
 class TextureNotebook;
 

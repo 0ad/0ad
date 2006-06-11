@@ -1,4 +1,5 @@
 #include "wx/image.h"
+#include "wx/filename.h"
 
 class ColourTesterImageCtrl : public wxWindow
 {

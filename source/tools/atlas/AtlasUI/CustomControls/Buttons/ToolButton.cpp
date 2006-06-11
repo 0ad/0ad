@@ -2,6 +2,8 @@
 
 #include "wx/sysopt.h"
 #include "wx/wfstream.h"
+#include "wx/filename.h"
+#include "wx/image.h"
 
 #include "ToolButton.h"
 #include "ScenarioEditor/Tools/Common/Tools.h"

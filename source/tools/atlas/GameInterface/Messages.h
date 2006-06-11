@@ -179,6 +179,12 @@ struct sEnvironmentSettings
 	float sunrotation; // range 0..2pi
 	float sunelevation; // range -pi/2 .. +pi/2
 
+	Colour suncolour;
+	Colour terraincolour;
+	Colour unitcolour;
+
+	// (Note: None of these are declared as Shareable<> - they're all sufficiently
+	// primitive types, and this makes it easier to manipulate them)
 };
 SHAREABLE_STRUCT(sEnvironmentSettings);
 

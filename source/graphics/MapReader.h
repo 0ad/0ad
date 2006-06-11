@@ -10,6 +10,7 @@
 class CObjectEntry;
 class CTerrain;
 class CUnitManager;
+class WaterManager;
 class CLightEnv;
 class CCamera;
 
@@ -23,7 +24,8 @@ public:
 	// constructor
 	CMapReader();
 	// LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
-	void LoadMap(const char* filename, CTerrain *pTerrain, CUnitManager *pUnitMan, CLightEnv *pLightEnv, CCamera *pCamera);
+	void LoadMap(const char* filename, CTerrain *pTerrain, CUnitManager *pUnitMan,
+		WaterManager* pWaterMan, CLightEnv *pLightEnv, CCamera *pCamera);
 
 private:
 	// UnpackTerrain: unpack the terrain from the input stream
@@ -64,6 +66,7 @@ private:
 	CFileUnpacker unpacker;
 	CTerrain* pTerrain;
 	CUnitManager* pUnitMan;
+	WaterManager* pWaterMan;
 	CLightEnv* pLightEnv;
 	CCamera* pCamera;
 	CStr filename_xml;

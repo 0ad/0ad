@@ -5,6 +5,7 @@
 #include "wx/glcanvas.h"
 #include "wx/evtloop.h"
 #include "wx/tooltip.h"
+#include "wx/image.h"
 
 #include "General/AtlasEventLoop.h"
 
@@ -202,6 +203,8 @@ public:
 			return;
 		}
 
+		// Global mouse event handlers (for camera motion)
+
 		if (evt.GetWheelRotation())
 		{
 			float speed = 16.f;
@@ -218,7 +221,7 @@ public:
 		{
 			if (evt.MiddleIsDown())
 			{
-				if (wxGetKeyState(WXK_CONTROL))
+				if (wxGetKeyState(WXK_CONTROL) || evt.RightIsDown())
 					m_MouseState = ROTATEAROUND;
 				else
 					m_MouseState = SCROLL;

@@ -27,11 +27,6 @@ class CLightEnv
 friend class CMapWriter;
 friend class CMapReader;
 friend class CXMLReader;
-/* Trying to compile ScEd? ;)
-friend class CEditorData;
-friend class CMainFrame;
-friend class CLightSettingsDlg;
-*/
 private:
 	/**
 	 * m_Elevation: Height of sun above the horizon, in radians.

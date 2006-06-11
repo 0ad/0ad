@@ -612,6 +612,8 @@ function setup_tests()
 		tinsert(package.files, source_root.."lib/sysdep/win/error_dialog.rc")
 	end
 
+	tinsert(package.buildflags, "use-library-dep-inputs")
+
 	
 	package_create("test_1_run", "run")
 	package.links = { "test_2_build" } -- This determines which project's executable to run

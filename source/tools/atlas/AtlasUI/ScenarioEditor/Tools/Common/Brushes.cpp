@@ -4,6 +4,8 @@
 
 #include "GameInterface/Messages.h"
 
+#include "wx/spinctrl.h"
+
 Brush::Brush()
 : m_Shape(CIRCLE), m_Size(4), m_Strength(1.f), m_IsActive(false)
 {

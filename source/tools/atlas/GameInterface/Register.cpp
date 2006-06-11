@@ -1,5 +1,10 @@
 #include "precompiled.h"
 
+// We want to include Messages.h below, with some different definitions,
+// even if it was already included by precompiled.h, so cheat and undefine
+// its include-guard
+#undef MESSAGES_H__
+
 #include "SharedTypes.h"
 #include "Shareable.h"
 

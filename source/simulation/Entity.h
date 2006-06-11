@@ -49,7 +49,7 @@ class CEntityFormation;
 
 // TODO MT: Put this is /some/ sort of order...
 
-class CEntity : public  CJSComplex<CEntity>, public IEventTarget
+class CEntity : public CJSComplex<CEntity>, public IEventTarget
 {
 	friend class CEntityManager;
 

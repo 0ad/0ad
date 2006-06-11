@@ -18,6 +18,7 @@
 #include "wx/colour.h"
 #include "wx/colordlg.h"
 #include "wx/regex.h"
+#include "wx/filename.h"
 
 #include <string>
 
