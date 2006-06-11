@@ -190,7 +190,7 @@ void WriteScreenshot(const char* extension)
 	glReadPixels(0, 0, w, h, fmt, GL_UNSIGNED_BYTE, img);
 	(void)tex_write(&t, fn);
 	(void)tex_free(&t);
-	(void)file_buf_free(buf);
+	(void)file_buf_free(buf, FB_FROM_HEAP);
 }
 
 
@@ -295,5 +295,5 @@ void WriteBigScreenshot(const char* extension, int tiles)
 	(void)tex_write(&t, fn);
 	(void)tex_free(&t);
 	free(tile_data);
-	(void)file_buf_free(img_buf);
+	(void)file_buf_free(img_buf, FB_FROM_HEAP);
 }

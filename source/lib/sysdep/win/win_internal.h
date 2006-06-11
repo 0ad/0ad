@@ -396,7 +396,6 @@ enum
 	WAIO_CS,
 	WIN_CS,
 	WDBG_CS,
-	WPTHREAD_CS,
 
 	NUM_CS
 };

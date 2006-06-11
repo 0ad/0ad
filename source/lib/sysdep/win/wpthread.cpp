@@ -31,6 +31,12 @@
 #include "win_internal.h"
 #include "../cpu.h"	// CAS
 
+#pragma data_seg(WIN_CALLBACK_PRE_LIBC(b))
+WIN_REGISTER_FUNC(wpthread_init);
+#pragma data_seg(WIN_CALLBACK_POST_ATEXIT(y))
+WIN_REGISTER_FUNC(wpthread_shutdown);
+#pragma data_seg()
+
 
 static HANDLE HANDLE_from_pthread(pthread_t p)
 {
@@ -43,11 +49,9 @@ static pthread_t pthread_from_HANDLE(HANDLE h)
 }
 
 
-//////////////////////////////////////////////////////////////////////////////
-//
+//-----------------------------------------------------------------------------
 // misc
-//
-//////////////////////////////////////////////////////////////////////////////
+//-----------------------------------------------------------------------------
 
 pthread_t pthread_self(void)
 {
@@ -100,11 +104,9 @@ int pthread_setschedparam(pthread_t thread, int policy, const struct sched_param
 }
 
 
-//////////////////////////////////////////////////////////////////////////////
-//
+//-----------------------------------------------------------------------------
 // thread-local storage
-//
-//////////////////////////////////////////////////////////////////////////////
+//-----------------------------------------------------------------------------
 
 // minimum amount of TLS slots every Windows version provides;
 // used to validate indices.
@@ -141,7 +143,7 @@ int pthread_key_create(pthread_key_t* key, void (*dtor)(void*))
 	}
 
 	// not enough slots; we have a valid key, but its dtor won't be called.
-	debug_warn("increase pthread MAX_DTORS");
+	WARN_ERR(ERR_LIMIT);
 	return -1;
 
 have_slot:
@@ -181,7 +183,7 @@ void* pthread_getspecific(pthread_key_t key)
 			SetLastError(last_err);
 	}
 	else
-		debug_warn("pthread_getspecific: TlsGetValue failed");
+		WARN_ERR(ERR_FAIL);
 
 	return data;
 }
@@ -230,112 +232,9 @@ again:
 }
 
 
-//////////////////////////////////////////////////////////////////////////////
-//
-// threads
-//
-//////////////////////////////////////////////////////////////////////////////
-
-// _beginthreadex cannot call the user's thread function directly due to
-// differences in calling convention; we need to pass its address and
-// the user-specified data pointer to our trampoline.
-// a) a local variable in pthread_create isn't safe because the
-//    new thread might not start before pthread_create returns.
-// b) allocating on the heap would work but we're trying to keep that
-//    to a minimum.
-// c) we therefore use static data protected by a critical section.
-static struct FuncAndArg
-{
-	void* (*func)(void*);
-	void* arg;
-}
-func_and_arg;
-
-
-// bridge calling conventions required by _beginthreadex and POSIX.
-static unsigned __stdcall thread_start(void* UNUSED(param))
-{
-	void* (*func)(void*) = func_and_arg.func;
-	void* arg           = func_and_arg.arg;
-	win_unlock(WPTHREAD_CS);
-
-	void* ret = (void*)-1;
-	__try
-	{
-		ret = func(arg);
-	}
-	__except(wdbg_exception_filter(GetExceptionInformation()))
-	{
-	}
-
-	call_tls_dtors();
-
-	return (unsigned)(uintptr_t)ret;
-}
-
-
-int pthread_create(pthread_t* thread_id, const void* UNUSED(attr), void* (*func)(void*), void* arg)
-{
-	win_lock(WPTHREAD_CS);
-	func_and_arg.func = func;
-	func_and_arg.arg  = arg;
-
-	// _beginthreadex has more overhead and no value added vs.
-	// CreateThread, but it avoids small memory leaks in
-	// ExitThread when using the statically-linked CRT (-> MSDN).
-	const uintptr_t id = _beginthreadex(0, 0, thread_start, 0, 0, 0);
-	if(!id)
-	{
-		win_unlock(WPTHREAD_CS);
-		debug_warn("_beginthreadex failed");
-		return -1;
-	}
-
-	// SUSv3 doesn't specify whether this is optional - go the safe route.
-	if(thread_id)
-		*thread_id = (pthread_t)id;
-
-	return 0;
-}
-
-
-int pthread_cancel(pthread_t thread)
-{
-	HANDLE hThread = HANDLE_from_pthread(thread);
-	TerminateThread(hThread, 0);
-	debug_printf("WARNING: pthread_cancel is unsafe\n");
-	return 0;
-}
-
-
-int pthread_join(pthread_t thread, void** value_ptr)
-{
-	HANDLE hThread = HANDLE_from_pthread(thread);
-
-	// note: pthread_join doesn't call for a timeout. if this wait
-	// locks up the process, at least it'll be easy to see why.
-	DWORD ret = WaitForSingleObject(hThread, INFINITE);
-	if(ret != WAIT_OBJECT_0)
-	{
-		debug_warn("pthread_join: WaitForSingleObject failed");
-		return -1;
-	}
-
-	// pass back the code that was passed to pthread_exit.
-	// SUS says <*value_ptr> need only be set on success!
-	if(value_ptr)
-		GetExitCodeThread(hThread, (LPDWORD)value_ptr);
-
-	CloseHandle(hThread);
-	return 0;
-}
-
-
-//////////////////////////////////////////////////////////////////////////////
-//
-// locks
-//
-//////////////////////////////////////////////////////////////////////////////
+//-----------------------------------------------------------------------------
+// mutex
+//-----------------------------------------------------------------------------
 
 // rationale: CRITICAL_SECTIONS have less overhead than Win32 Mutex.
 // disadvantage is that pthread_mutex_timedlock isn't supported, but
@@ -403,7 +302,9 @@ int pthread_mutex_timedlock(pthread_mutex_t* UNUSED(m), const struct timespec* U
 }
 
 
-//////////////////////////////////////////////////////////////////////////////
+//-----------------------------------------------------------------------------
+// semaphore
+//-----------------------------------------------------------------------------
 
 
 static HANDLE HANDLE_from_sem_t(sem_t* sem)
@@ -432,8 +333,7 @@ int sem_wait(sem_t* sem)
 {
 	HANDLE h = HANDLE_from_sem_t(sem);
 	DWORD ret = WaitForSingleObject(h, INFINITE);
-	if(ret != WAIT_OBJECT_0)
-		debug_warn("unexpected WaitForSingleObject return value");
+	debug_assert(ret == WAIT_OBJECT_0);
 	return 0;
 }
 
@@ -482,7 +382,7 @@ static DWORD calc_timeout_length_ms(const struct timespec* abs_timeout,
 	//          that's the Win32 INFINITE value.
 	if(length_ms >= 0xffffffff)
 	{
-		debug_warn("calc_timeout_length_ms: 32-bit overflow");
+		WARN_ERR(ERR_LIMIT);
 		length_ms = 0xfffffffe;
 	}
 	return (DWORD)(length_ms & 0xffffffff);
@@ -541,8 +441,143 @@ int sem_msgwait_np(sem_t* sem)
 	else
 	{
 		errno = EINVAL;
-		debug_warn("unexpected MsgWaitForMultipleObjects return value");
+		WARN_ERR(ERR_FAIL);
 	}
 	return -1;
+}
 
+
+//-----------------------------------------------------------------------------
+// threads
+//-----------------------------------------------------------------------------
+
+// _beginthreadex cannot call the user's thread function directly due to
+// differences in calling convention; we need to pass its address and
+// the user-specified data pointer to our trampoline.
+//
+// rationale:
+// - a local variable in pthread_create isn't safe because the
+//   new thread might not start before pthread_create returns.
+// - using one static FuncAndArg protected by critical section doesn't
+//   work. win_lock allows recursive locking, so if creating 2 threads,
+//   the parent thread may create both without being stopped and thus
+//   stomp on the first thread's func_and_arg.
+// - stashing func and arg in TLS would work, but it is a
+//   very limited resource.
+// - heap allocations are the obvious safe solution, but we're trying to
+//   minimize those here.
+// - blocking pthread_create until the trampoline has latched func_and_arg
+//   works. this seems a bit easier to understand than nonrecursive CS.
+
+struct FuncAndArg
+{
+	void* (*func)(void*);
+	void* arg;
+
+	FuncAndArg(void* (*func_)(void*), void* arg_)
+		: func(func_), arg(arg_) {}
+};
+
+
+static sem_t sem_thread_create;
+
+// bridge calling conventions required by _beginthreadex and POSIX.
+static unsigned __stdcall thread_start(void* param)
+{
+	const FuncAndArg* func_and_arg = (const FuncAndArg*)param;
+	void* (*func)(void*) = func_and_arg->func;
+	void* arg            = func_and_arg->arg;
+	// allow creator to run again.
+	// potentially pulls rug out from under <param>.
+	int err = sem_post(&sem_thread_create);
+	debug_assert(err == 0);
+
+	void* ret = (void*)-1;
+	__try
+	{
+		ret = func(arg);
+	}
+	__except(wdbg_exception_filter(GetExceptionInformation()))
+	{
+	}
+
+	call_tls_dtors();
+
+	return (unsigned)(uintptr_t)ret;
+}
+
+
+int pthread_create(pthread_t* thread_id, const void* UNUSED(attr), void* (*func)(void*), void* arg)
+{
+	const FuncAndArg func_and_arg(func, arg);
+
+	// _beginthreadex has more overhead and no value added vs.
+	// CreateThread, but it avoids small memory leaks in
+	// ExitThread when using the statically-linked CRT (-> MSDN).
+	const uintptr_t id = _beginthreadex(0, 0, thread_start, (void*)&func_and_arg, 0, 0);
+	if(!id)
+	{
+		WARN_ERR(ERR_FAIL);
+		return -1;
+	}
+
+	// block until thread_start has latched func_and_arg.
+	// (forces thread-switch)
+	int err = sem_wait(&sem_thread_create);
+	debug_assert(err == 0);
+
+	// SUSv3 doesn't specify whether this is optional - go the safe route.
+	if(thread_id)
+		*thread_id = (pthread_t)id;
+
+	return 0;
+}
+
+
+int pthread_cancel(pthread_t thread)
+{
+	HANDLE hThread = HANDLE_from_pthread(thread);
+	TerminateThread(hThread, 0);
+	debug_printf("WARNING: pthread_cancel is unsafe\n");
+	return 0;
+}
+
+
+int pthread_join(pthread_t thread, void** value_ptr)
+{
+	HANDLE hThread = HANDLE_from_pthread(thread);
+
+	// note: pthread_join doesn't call for a timeout. if this wait
+	// locks up the process, at least it'll be easy to see why.
+	DWORD ret = WaitForSingleObject(hThread, INFINITE);
+	if(ret != WAIT_OBJECT_0)
+	{
+		WARN_ERR(ERR_FAIL);
+		return -1;
+	}
+
+	// pass back the code that was passed to pthread_exit.
+	// SUS says <*value_ptr> need only be set on success!
+	if(value_ptr)
+		GetExitCodeThread(hThread, (LPDWORD)value_ptr);
+
+	CloseHandle(hThread);
+	return 0;
+}
+
+
+
+
+static LibError wpthread_init()
+{
+	int err = sem_init(&sem_thread_create, 0, 0);
+	debug_assert(err == 0);
+	return INFO_OK;
+}
+
+static LibError wpthread_shutdown()
+{
+	int err = sem_destroy(&sem_thread_create);
+	debug_assert(err == 0);
+	return INFO_OK;
 }

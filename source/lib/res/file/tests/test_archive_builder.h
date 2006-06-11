@@ -46,6 +46,7 @@ class TestArchiveBuilder : public CxxTest::TestSuite
 	void generate_random_files()
 	{
 		path_init();	// required for file_make_unique_fn_copy
+		vfs_init();
 
 		for(size_t i = 0; i < NUM_FILES; i++)
 		{

@@ -92,6 +92,9 @@ CStrW CStr8::FromUTF8() const
 {
 	CStrW result;
 
+	if(empty())
+		return result;
+
 	const unsigned char* source = (const unsigned char*)&*begin();
 	const unsigned char* sourceEnd = source + length();
 	while (source < sourceEnd)
