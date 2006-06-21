@@ -1,5 +1,7 @@
 #include "../Common/Sidebar.h"
 
+class VariableListBox;
+
 class EnvironmentSidebar : public Sidebar
 {
 public:
@@ -7,4 +9,7 @@ public:
 
 protected:
 	virtual void OnFirstDisplay();
+
+private:
+	VariableListBox* m_SkyList;
 };

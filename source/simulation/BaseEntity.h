@@ -44,7 +44,6 @@ public:
 
 	// Base stats
 	CBaseEntity* m_base;
-	CStrW m_corpse;
 	bool m_extant;
 
 	// The unmodified, no-player version of this template
@@ -93,6 +92,10 @@ public:
 	float m_rankWidth;
 	float m_rankHeight;
 	CStr m_rankName;
+	//Rally name
+	CStr m_rallyName;
+	float m_rallyWidth;
+	float m_rallyHeight;
 
 	// Minimap properties
 	CStrW m_minimapType;

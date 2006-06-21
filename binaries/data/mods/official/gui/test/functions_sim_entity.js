@@ -37,7 +37,15 @@ function worldClickHandler(event)
 	{
 		return;
 	}
-	
+
+	//setting rally point
+	if ( getCursorName() == "cursor-rally" )
+	{	
+		for ( var i=0; i<selection.length; i++ )
+			selection[i].setRallyPoint();	
+		setCursor("arrow-default");
+		return;
+	}
 	switch (cmd)
 	{
 		// location target commands
@@ -103,7 +111,6 @@ function worldClickHandler(event)
 		default:
 			console.write("worldClickHandler: Unknown order: "+cmd);
 			return;
-		break;
 	}
 	
 	if (event.clicks == 2)

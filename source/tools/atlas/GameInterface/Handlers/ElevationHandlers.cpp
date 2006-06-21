@@ -79,15 +79,12 @@ protected:
 
 	
 BEGIN_COMMAND(AlterElevation)
-
+{
 	TerrainArray m_TerrainDelta;
 
-	void Construct()
+	cAlterElevation()
 	{
 		m_TerrainDelta.Init();
-	}
-	void Destruct()
-	{
 	}
 
 	void Do()
@@ -142,21 +139,18 @@ BEGIN_COMMAND(AlterElevation)
 	{
 		prev->m_TerrainDelta.OverlayWith(m_TerrainDelta);
 	}
-
+};
 END_COMMAND(AlterElevation)
 
 //////////////////////////////////////////////////////////////////////////
 
 BEGIN_COMMAND(FlattenElevation)
-
+{
 	TerrainArray m_TerrainDelta;
 
-	void Construct()
+	cFlattenElevation()
 	{
 		m_TerrainDelta.Init();
-	}
-	void Destruct()
-	{
 	}
 
 	void Do()
@@ -204,7 +198,7 @@ BEGIN_COMMAND(FlattenElevation)
 	{
 		prev->m_TerrainDelta.OverlayWith(m_TerrainDelta);
 	}
-
+};
 END_COMMAND(FlattenElevation)
 
 }

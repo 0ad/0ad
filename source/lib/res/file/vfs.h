@@ -292,8 +292,8 @@ extern LibError vfs_set_write_target(const char* P_target_dir);
 //
 
 // open the directory for reading its entries via vfs_next_dirent.
-// <v_dir> need not end in '/'; we add it if not present.
-extern Handle vfs_dir_open(const char* dir);
+// V_dir must end in '/' to indicate it's a directory path.
+extern Handle vfs_dir_open(const char* V_dir_path);
 
 // close the handle to a directory.
 // all DirEnt.name strings are now invalid.

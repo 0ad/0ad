@@ -172,19 +172,18 @@ MESSAGE(RotateAround,
 
 struct sEnvironmentSettings
 {
-	float waterheight; // range 0..1 corresponds to min..max terrain height; out-of-bounds values allowed
-	float watershininess;
-	float waterwaviness;
+	Shareable<float> waterheight; // range 0..1 corresponds to min..max terrain height; out-of-bounds values allowed
+	Shareable<float> watershininess;
+	Shareable<float> waterwaviness;
 	
-	float sunrotation; // range 0..2pi
-	float sunelevation; // range -pi/2 .. +pi/2
+	Shareable<float> sunrotation; // range 0..2pi
+	Shareable<float> sunelevation; // range -pi/2 .. +pi/2
 
-	Colour suncolour;
-	Colour terraincolour;
-	Colour unitcolour;
+	Shareable<std::wstring> skyset;
 
-	// (Note: None of these are declared as Shareable<> - they're all sufficiently
-	// primitive types, and this makes it easier to manipulate them)
+	Shareable<Colour> suncolour;
+	Shareable<Colour> terraincolour;
+	Shareable<Colour> unitcolour;
 };
 SHAREABLE_STRUCT(sEnvironmentSettings);
 
@@ -197,6 +196,13 @@ QUERY(GetEnvironmentSettings,
 COMMAND(SetEnvironmentSettings, MERGE,
 		((sEnvironmentSettings, settings))
 		);
+
+QUERY(GetSkySets,
+	  // no inputs
+	  ,
+	  ((std::vector<std::wstring>, skysets))
+	  );
+
 
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////

@@ -154,7 +154,7 @@ QUERYHANDLER(GetObjectSettings)
 }
 
 BEGIN_COMMAND(SetObjectSettings)
-
+{
 	int m_PlayerOld, m_PlayerNew;
 	std::set<CStrW> m_SelectionsOld, m_SelectionsNew;
 
@@ -194,7 +194,7 @@ BEGIN_COMMAND(SetObjectSettings)
 		unit->SetPlayerID(m_PlayerOld);
 		unit->SetActorSelections(m_SelectionsOld);
 	}
-
+};
 END_COMMAND(SetObjectSettings);
 
 //////////////////////////////////////////////////////////////////////////
@@ -320,7 +320,7 @@ MESSAGEHANDLER(ObjectPreview)
 }
 
 BEGIN_COMMAND(CreateObject)
-
+{
 	CVector3D m_Pos;
 	float m_Angle;
 	int m_ID;
@@ -430,7 +430,7 @@ BEGIN_COMMAND(CreateObject)
 			}
 		}
 	}
-
+};
 END_COMMAND(CreateObject)
 
 
@@ -471,7 +471,7 @@ QUERYHANDLER(PickObject)
 
 
 BEGIN_COMMAND(MoveObject)
-
+{
 	CVector3D m_PosOld, m_PosNew;
 
 	void Do()
@@ -527,12 +527,12 @@ BEGIN_COMMAND(MoveObject)
 		debug_assert(prev->msg->id == msg->id);
 		prev->m_PosNew = m_PosNew;
 	}
-
+};
 END_COMMAND(MoveObject)
 
 
 BEGIN_COMMAND(RotateObject)
-
+{
 	float m_AngleOld, m_AngleNew;
 	CMatrix3D m_TransformOld, m_TransformNew;
 
@@ -620,20 +620,20 @@ BEGIN_COMMAND(RotateObject)
 		prev->m_AngleNew = m_AngleNew;
 		prev->m_TransformNew = m_TransformNew;
 	}
-
+};
 END_COMMAND(RotateObject)
 
 
 BEGIN_COMMAND(DeleteObject)
-
+{
 	CUnit* m_UnitInLimbo;
 
-	void Construct()
+	cDeleteObject()
 	{
 		m_UnitInLimbo = NULL;
 	}
 
-	void Destruct()
+	~cDeleteObject()
 	{
 		if (m_UnitInLimbo)
 		{
@@ -672,7 +672,7 @@ BEGIN_COMMAND(DeleteObject)
 		g_UnitMan.AddUnit(m_UnitInLimbo);
 		m_UnitInLimbo = NULL;
 	}
-
+};
 END_COMMAND(DeleteObject)
 
 

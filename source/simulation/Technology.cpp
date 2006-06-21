@@ -14,13 +14,15 @@
 #define LOG_CATEGORY "Techs"
 
 STL_HASH_SET<CStr, CStr_hash_compare> CTechnology::m_scriptsLoaded;
+bool CTechnology::m_excluded[PS_MAX_PLAYERS+1];
 
 CTechnology::CTechnology() 
 {
 	ONCE( ScriptingInit(); );
 
-	m_researched = m_excluded=false;
-	m_effectFunction = NULL;
+	m_researched=false;
+	for ( PS_uint i=0; i<PS_MAX_PLAYERS; ++i )
+		m_excluded[i] = false;
 	m_JSFirst = false;
 } 
 bool CTechnology::loadXML( CStr filename )
@@ -300,10 +302,10 @@ bool CTechnology::loadELEffect( XMBElement effect, CXeromyces& XeroFile, CStr& f
 					LOG( ERROR, LOG_CATEGORY, "CTechnology::LoadXML: Function does not exist for %hs in file %s. Load failed.", funcName.c_str(), filename.c_str() );
 					return false;
 				}
-				m_effectFunction->SetFunction( fn );
+				m_effectFunction.SetFunction( fn );
 			}
 			else if ( Inline != CStr() )
-				m_effectFunction->Compile( CStrW( filename ) + L"::" + (CStrW)funcName + L" (" + CStrW( element.getLineNumber() ) + L")", Inline );
+				m_effectFunction.Compile( CStrW( filename ) + L"::" + (CStrW)funcName + L" (" + CStrW( element.getLineNumber() ) + L")", Inline );
 			//(No error needed; scripts are optional)
 		}
 		else
@@ -317,7 +319,9 @@ bool CTechnology::loadELEffect( XMBElement effect, CXeromyces& XeroFile, CStr& f
 }
 bool CTechnology::isTechValid()
 {
-	if ( m_excluded )
+	if ( !m_player )
+		return false;
+	if ( m_excluded[m_player->GetPlayerID()])
 		return false;
 	if ( hasReqEntities() && hasReqTechs() )
 		return true;
@@ -385,20 +389,19 @@ void CTechnology::ScriptingInit()
 
 jsval CTechnology::ApplyEffects( JSContext* cx, uintN argc, jsval* argv )
 {
-	if ( !isTechValid() )
-		return JS_FALSE;
-	else if ( argc < 3 )
+	if ( argc < 3 )
 	{
 		JS_ReportError(cx, "too few parameters for CTechnology::ApplyEffects.");
 		return JS_FALSE;
 	}
-
 	m_player = g_Game->GetPlayer( ToPrimitive<PS_uint>( argv[0] ) );
-	if( m_player == 0 ) 
+	if( !m_player ) 
 	{
 		JS_ReportError(cx, "invalid player number for CTechnology::ApplyEffects.");
 		return JS_FALSE;
 	}
+	if ( !isTechValid() )
+		return JS_FALSE;
 
 	bool first = ToPrimitive<bool>( argv[1] );
 	bool invert = ToPrimitive<bool>( argv[2] );
@@ -408,24 +411,24 @@ jsval CTechnology::ApplyEffects( JSContext* cx, uintN argc, jsval* argv )
 	if ( argc == 4 )
 		varType = ToPrimitive<CStr>( argv[3] );
 
-	if ( first &&  m_effectFunction )
+	if ( first )
 	{
-		m_effectFunction->Run( this->GetScript() );
+		m_effectFunction.Run( this->GetScript() );
 	}
 
 	//Disable other templates
 	for ( std::vector<CStr>::iterator it=m_Pairs.begin(); it != m_Pairs.end(); it++ )
-		g_TechnologyCollection.getTechnology(*it)->setExclusion(true);
-	
+		g_TechnologyCollection.getTechnology(*it)->setExclusion(m_player->GetPlayerID(), true);
+	setExclusion(m_player->GetPlayerID(), true);
+
 	std::vector<HEntity>* entities = m_player->GetControlledEntities();
 	if ( entities->empty() )
 	{
 		delete entities;
 		return JS_FALSE;
 	}
-
+	
 	std::vector<HEntity> entitiesAffected;
-
 	//Find which entities should be affected
 	for ( size_t i=0; i<entities->size(); ++i )
 	{
@@ -453,7 +456,7 @@ jsval CTechnology::ApplyEffects( JSContext* cx, uintN argc, jsval* argv )
 
 			if ( varType == "int" )
 				*(int*)attribute += (int)modValue;
-			if ( varType == "double" )
+			else if ( varType == "double" )
 				*(double*)attribute += (double)modValue;
 			else
 				*(float*)attribute += (float)modValue;
@@ -473,19 +476,18 @@ jsval CTechnology::ApplyEffects( JSContext* cx, uintN argc, jsval* argv )
 
 			if ( varType == "int" )
 				*(int*)attribute = (int)setValue;
-			if ( varType == "double" )
+			else if ( varType == "double" )
 				*(double*)attribute = (double)setValue;
 			else
 				*(float*)attribute = (float)setValue;
 		}
 	}
 
-	if ( !first && m_effectFunction )
+	if ( !first )
 	{
-		m_effectFunction->Run( this->GetScript() );
+		m_effectFunction.Run( this->GetScript() );
 	}
 	delete entities;
-	debug_printf("Done! I think\n");
 	return JS_TRUE;
 }
 
@@ -497,7 +499,7 @@ jsval CTechnology::IsValid( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UN
 }
 jsval CTechnology::IsExcluded( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-	if ( m_excluded )
+	if ( m_excluded[m_player->GetPlayerID()] )
 		return JS_TRUE;
 	return JS_FALSE;
 }

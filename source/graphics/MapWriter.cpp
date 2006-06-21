@@ -3,29 +3,30 @@
 #include "lib/types.h"
 #include "lib/res/file/vfs.h"
 
-#include "MapWriter.h"
-#include "MapReader.h"
-#include "UnitManager.h"
-#include "Unit.h"
-#include "ObjectManager.h"
-#include "ObjectBase.h"
-#include "Model.h"
-#include "Terrain.h"
+#include "Camera.h"
 #include "LightEnv.h"
-#include "TextureManager.h"
+#include "MapReader.h"
+#include "MapWriter.h"
+#include "Model.h"
+#include "ObjectBase.h"
+#include "ObjectManager.h"
+#include "Patch.h"
+#include "Terrain.h"
 #include "TextureEntry.h"
-#include "ps/VFSUtil.h"
-#include "ps/Loader.h"
-#include "maths/MathUtil.h"
-#include "graphics/Camera.h"
-#include "ps/Player.h"
-#include "graphics/Patch.h"
-#include "renderer/WaterManager.h"
+#include "TextureManager.h"
+#include "Unit.h"
+#include "UnitManager.h"
 
+#include "maths/MathUtil.h"
+#include "ps/Loader.h"
+#include "ps/Player.h"
+#include "ps/VFSUtil.h"
 #include "ps/XML/XMLWriter.h"
-#include "simulation/Entity.h"
+#include "renderer/SkyManager.h"
+#include "renderer/WaterManager.h"
 #include "simulation/BaseEntity.h"
 #include "simulation/BaseEntityCollection.h"
+#include "simulation/Entity.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // CMapWriter constructor: nothing to do at the minute
@@ -35,20 +36,21 @@ CMapWriter::CMapWriter()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // SaveMap: try to save the current map to the given file
-void CMapWriter::SaveMap(const char* filename, CTerrain* pTerrain, CUnitManager* pUnitMan,
-						 WaterManager* pWaterMan, CLightEnv* pLightEnv, CCamera* pCamera)
+void CMapWriter::SaveMap(const char* filename, CTerrain* pTerrain,
+						 CUnitManager* pUnitMan, WaterManager* pWaterMan, SkyManager* pSkyMan,
+						 CLightEnv* pLightEnv, CCamera* pCamera)
 {
 	CFilePacker packer(FILE_VERSION, "PSMP");
 
 	// build necessary data
-	PackMap(packer, pTerrain, pUnitMan, pLightEnv);
+	PackMap(packer, pTerrain);
 
 	// write it out
 	packer.Write(filename);
 
 	CStr filename_xml (filename);
 	filename_xml = filename_xml.Left(filename_xml.Length()-4) + ".xml";
-	WriteXML(filename_xml, pUnitMan, pWaterMan, pLightEnv, pCamera);
+	WriteXML(filename_xml, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -118,8 +120,7 @@ void CMapWriter::EnumTerrainTextures(CTerrain *pTerrain,
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // PackMap: pack the current world into a raw data stream
-void CMapWriter::PackMap(CFilePacker& packer, CTerrain* pTerrain,
-	CUnitManager* UNUSED(pUnitMan), CLightEnv* UNUSED(pLightEnv))
+void CMapWriter::PackMap(CFilePacker& packer, CTerrain* pTerrain)
 {
 	// now pack everything up
 	PackTerrain(packer, pTerrain);
@@ -158,7 +159,9 @@ void CMapWriter::PackTerrain(CFilePacker& packer, CTerrain* pTerrain)
 
 
 
-void CMapWriter::WriteXML(const char* filename, CUnitManager* pUnitMan, WaterManager* pWaterMan, CLightEnv* pLightEnv, CCamera* pCamera)
+void CMapWriter::WriteXML(const char* filename,
+						  CUnitManager* pUnitMan, WaterManager* pWaterMan, SkyManager* pSkyMan,
+						  CLightEnv* pLightEnv, CCamera* pCamera)
 {
 	Handle h = vfs_open(filename, FILE_WRITE_TO_TARGET|FILE_NO_AIO);
 	if (h <= 0)
@@ -175,6 +178,7 @@ void CMapWriter::WriteXML(const char* filename, CUnitManager* pUnitMan, WaterMan
 		{
 			XML_Element("Environment");
 
+			XML_Setting("SkySet", pSkyMan->GetSkySet());
 			{
 				XML_Element("SunColour");
 				XML_Attribute("r", pLightEnv->m_SunColor.X); // yes, it's X/Y/Z...
@@ -326,7 +330,8 @@ void CMapWriter::WriteXML(const char* filename, CUnitManager* pUnitMan, WaterMan
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // RewriteAllMaps
 void CMapWriter::RewriteAllMaps(CTerrain* pTerrain, CUnitManager* pUnitMan,
-								WaterManager* pWaterMan, CLightEnv* pLightEnv, CCamera* pCamera)
+								WaterManager* pWaterMan, SkyManager* pSkyMan,
+								CLightEnv* pLightEnv, CCamera* pCamera)
 {
 	VFSUtil::FileList files;
 	VFSUtil::FindFiles("maps/scenarios", "*.pmp", files);
@@ -335,13 +340,13 @@ void CMapWriter::RewriteAllMaps(CTerrain* pTerrain, CUnitManager* pUnitMan,
 	{
 		CMapReader* reader = new CMapReader;
 		LDR_BeginRegistering();
-		reader->LoadMap(*it, pTerrain, pUnitMan, pWaterMan, pLightEnv, pCamera);
+		reader->LoadMap(*it, pTerrain, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera);
 		LDR_EndRegistering();
 		LDR_NonprogressiveLoad();
 
 		CStr n (*it);
 		n.Replace("scenarios/", "scenarios/new/");
 		CMapWriter writer;
-		writer.SaveMap(n, pTerrain, pUnitMan, pWaterMan, pLightEnv, pCamera);
+		writer.SaveMap(n, pTerrain, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera);
 	}
 }

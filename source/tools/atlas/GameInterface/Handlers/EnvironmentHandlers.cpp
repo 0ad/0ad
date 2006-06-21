@@ -8,6 +8,7 @@
 #include "graphics/Terrain.h"
 #include "ps/World.h"
 #include "renderer/Renderer.h"
+#include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
 
 namespace AtlasMessage {
@@ -23,6 +24,8 @@ sEnvironmentSettings GetSettings()
 
 	s.sunrotation = g_LightEnv.GetRotation();
 	s.sunelevation = g_LightEnv.GetElevation();
+
+	s.skyset = g_Renderer.GetSkyManager()->GetSkySet();
 
 #define COLOUR(A, B) A = Colour(B.X*255, B.Y*255, B.Z*255)
 	COLOUR(s.suncolour, g_LightEnv.m_SunColor);
@@ -43,7 +46,9 @@ void SetSettings(const sEnvironmentSettings& s)
 	g_LightEnv.SetRotation(s.sunrotation);
 	g_LightEnv.SetElevation(s.sunelevation);
 
-#define COLOUR(A, B) B = RGBColor(A.r/255.f, A.g/255.f, A.b/255.f)
+	g_Renderer.GetSkyManager()->SetSkySet(*s.skyset);
+
+#define COLOUR(A, B) B = RGBColor(A->r/255.f, A->g/255.f, A->b/255.f)
 	COLOUR(s.suncolour, g_LightEnv.m_SunColor);
 	COLOUR(s.terraincolour, g_LightEnv.m_TerrainAmbientColor);
 	COLOUR(s.unitcolour, g_LightEnv.m_UnitsAmbientColor);
@@ -51,7 +56,7 @@ void SetSettings(const sEnvironmentSettings& s)
 }
 
 BEGIN_COMMAND(SetEnvironmentSettings)
-
+{
 	sEnvironmentSettings m_OldSettings, m_NewSettings;
 
 	void Do()
@@ -75,12 +80,18 @@ BEGIN_COMMAND(SetEnvironmentSettings)
 	{
 		prev->m_NewSettings = m_NewSettings;
 	}
-
+};
 END_COMMAND(SetEnvironmentSettings)
 
 QUERYHANDLER(GetEnvironmentSettings)
 {
 	msg->settings = GetSettings();
+}
+
+QUERYHANDLER(GetSkySets)
+{
+	std::vector<CStrW> skies = g_Renderer.GetSkyManager()->GetSkySets();
+	msg->skysets = std::vector<std::wstring>(skies.begin(), skies.end());
 }
 
 }

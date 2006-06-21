@@ -12,7 +12,7 @@ extern msgHandlers& GetMsgHandlers();
 
 #define THINGHANDLER(prefix, expectedtype, t) \
 	void f##t(prefix##t*); \
-	void f##t##__wrapper(IMessage* msg) { \
+	void f##t##_wrapper(IMessage* msg) { \
 		debug_assert(msg->GetType() == IMessage::expectedtype); \
 		f##t (static_cast<prefix##t*>(msg)); \
 	} \

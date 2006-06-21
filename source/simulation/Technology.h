@@ -7,8 +7,9 @@
 
 #include <vector>
 #include "scripting/ScriptableObject.h"
+#include "simulation/ScriptObject.h"
+#include "ps/Game.h"
 
-class CStr;
 class XMBElement;
 class CXeromyces;
 
@@ -37,12 +38,11 @@ public:
 	jsval IsExcluded( JSContext* cx, uintN argc, jsval* argv );
 	inline jsval GetPlayerID( JSContext* cx, uintN argc, jsval* argv );
 	
-	
 	bool isTechValid();
 	inline bool isResearched() { return m_researched; }
 
 	void setPlayer( CPlayer* player ) { m_player=player; }
-	void setExclusion( bool exclude ) { m_excluded=exclude; }
+	void setExclusion( PS_uint player, bool exclude ) { m_excluded[player]=exclude; }
 
 	bool loadXML( CStr filename );
 	bool loadELID( XMBElement ID, CXeromyces& XeroFile );
@@ -72,12 +72,11 @@ private:
 	std::vector<Modifier> m_Sets;
 	
 	CPlayer* m_player;	//Which player this tech belongs to
-	CScriptObject* m_effectFunction;
+	CScriptObject m_effectFunction;
 	
 	bool m_JSFirst;	//Should JS effect function run before C++
 
-	// TODO: Make these per-player
-	bool m_excluded;
+	static bool m_excluded[PS_MAX_PLAYERS+1];	//Gaia is not counted in max_players
 	bool m_researched;
 
 	bool hasReqEntities();

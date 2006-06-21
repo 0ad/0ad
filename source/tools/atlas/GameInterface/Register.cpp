@@ -23,16 +23,16 @@ typedef std::map<std::string, cmdHandler> cmdHandlers;
 extern cmdHandlers& GetCmdHandlers();
 
 #define MESSAGE(name, vals) \
-	extern void f##name##__wrapper(AtlasMessage::IMessage*); \
-	AtlasMessage::GetMsgHandlers().insert(std::pair<std::string, AtlasMessage::msgHandler>(#name, &f##name##__wrapper));
+	extern void f##name##_wrapper(AtlasMessage::IMessage*); \
+	AtlasMessage::GetMsgHandlers().insert(std::pair<std::string, AtlasMessage::msgHandler>(#name, &f##name##_wrapper));
 
 #define QUERY(name, in_vals, out_vals) \
-	extern void f##name##__wrapper(AtlasMessage::IMessage*); \
-	AtlasMessage::GetMsgHandlers().insert(std::pair<std::string, AtlasMessage::msgHandler>(#name, &f##name##__wrapper));
+	extern void f##name##_wrapper(AtlasMessage::IMessage*); \
+	AtlasMessage::GetMsgHandlers().insert(std::pair<std::string, AtlasMessage::msgHandler>(#name, &f##name##_wrapper));
 
 #define COMMAND(name, merge, vals) \
-	extern cmdHandler c##name##__create(); \
-	GetCmdHandlers().insert(std::pair<std::string, cmdHandler>("c"#name, c##name##__create()));
+	extern cmdHandler c##name##_create(); \
+	GetCmdHandlers().insert(std::pair<std::string, cmdHandler>("c"#name, c##name##_create()));
 
 #define FUNCTION(def)
 
@@ -53,4 +53,3 @@ void RegisterHandlers()
 }
 
 }
-

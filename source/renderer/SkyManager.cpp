@@ -19,6 +19,7 @@
 
 #include "ps/CLogger.h"
 #include "ps/Loader.h"
+#include "ps/VFSUtil.h"
 
 #include "renderer/SkyManager.h"
 #include "renderer/Renderer.h"
@@ -141,6 +142,42 @@ void SkyManager::SetSkySet( CStrW newSet )
 	}
 }
 
+///////////////////////////////////////////////////////////////////
+// Generate list of available skies
+std::vector<CStrW> SkyManager::GetSkySets() const
+{
+	std::vector<CStrW> skies;
+
+	// Find all subdirectories in art/textures/skies
+
+	const char* dirname = "art/textures/skies/";
+	Handle dir = vfs_dir_open(dirname);
+	if (dir <= 0)
+	{
+		LOG(ERROR, "vfs", "Error opening directory '%s' (%lld)", dirname, dir);
+		return std::vector<CStrW>(1, GetSkySet()); // just return what we currently have
+	}
+
+	const char* filter = "/";
+	int err;
+	DirEnt entry;
+	while ((err = vfs_dir_next_ent(dir, &entry, filter)) == 0)
+	{
+		skies.push_back(CStr(entry.name));
+	}
+
+	if (err != ERR_DIR_END)
+	{
+		LOG(ERROR, "vfs", "Error reading files from directory '%s' (%d)", dirname, err);
+		return std::vector<CStrW>(1, GetSkySet()); // just return what we currently have
+	}
+
+	vfs_dir_close(dir);
+
+	sort(skies.begin(), skies.end());
+
+	return skies;
+}
 
 ///////////////////////////////////////////////////////////////////
 // Render sky

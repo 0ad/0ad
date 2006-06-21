@@ -15,6 +15,7 @@
 #include "Camera.h"
 #include "graphics/Patch.h"
 #include "renderer/WaterManager.h"
+#include "renderer/SkyManager.h"
 
 #include "Model.h"
 #include "Terrain.h"
@@ -35,8 +36,9 @@ CMapReader::CMapReader()
 
 
 // LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
-void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain_, CUnitManager *pUnitMan_,
-						 WaterManager* pWaterMan_, CLightEnv *pLightEnv_, CCamera *pCamera_)
+void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain_,
+						 CUnitManager *pUnitMan_, WaterManager* pWaterMan_, SkyManager* pSkyMan_,
+						 CLightEnv *pLightEnv_, CCamera *pCamera_)
 {
 	// latch parameters (held until DelayedLoadFinished)
 	pTerrain = pTerrain_;
@@ -44,6 +46,7 @@ void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain_, CUnitManager
 	pLightEnv = pLightEnv_;
 	pCamera = pCamera_;
 	pWaterMan = pWaterMan_;
+	pSkyMan = pSkyMan_;
 
 	// [25ms]
 	unpacker.Read(filename, "PSMP");
@@ -328,6 +331,7 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 {
 #define EL(x) int el_##x = xmb_file.getElementID(#x)
 #define AT(x) int at_##x = xmb_file.getAttributeID(#x)
+	EL(skyset);
 	EL(suncolour);
 	EL(sunelevation);
 	EL(sunrotation);
@@ -350,7 +354,12 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 		int element_name = element.getNodeName();
 
 		XMBAttributeList attrs = element.getAttributes();
-		if (element_name == el_suncolour)
+
+		if (element_name == el_skyset)
+		{
+			m_MapReader.pSkyMan->SetSkySet(element.getText());
+		}
+		else if (element_name == el_suncolour)
 		{
 			m_MapReader.m_LightEnv.m_SunColor = RGBColor(
 				CStr(attrs.getNamedItem(at_r)).ToFloat(),

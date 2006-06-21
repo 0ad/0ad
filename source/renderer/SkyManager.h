@@ -47,16 +47,22 @@ public:
 	void RenderSky();
 
 	/**
-	 * GetSkySet(): Return the currently selected sky set name
+	 * GetSkySet(): Return the currently selected sky set name.
 	 */
-	inline CStrW GetSkySet() {
+	inline CStrW GetSkySet() const {
 		return m_SkySet;
 	}
 
 	/**
-	 * GetSkySet(): Set the sky set name, potentially loading the textures
+	 * GetSkySet(): Set the sky set name, potentially loading the textures.
 	 */
 	void SetSkySet(CStrW name);
+
+	/**
+	 * Return a sorted list of available sky sets, in a form suitable
+	 * for passing to SetSkySet.
+	 */
+	std::vector<CStrW> GetSkySets() const;
 
 private:
 	/// Name of current skyset (a directory within art/textures/skies)

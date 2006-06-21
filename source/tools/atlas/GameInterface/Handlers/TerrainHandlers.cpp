@@ -99,7 +99,7 @@ QUERYHANDLER(GetTerrainGroupPreviews)
 //////////////////////////////////////////////////////////////////////////
 
 BEGIN_COMMAND(PaintTerrain)
-
+{
 	struct TerrainTile
 	{
 		TerrainTile(Handle t, int p) : tex(t), priority(p) {}
@@ -155,12 +155,9 @@ BEGIN_COMMAND(PaintTerrain)
 
 	TerrainArray m_TerrainDelta;
 
-	void Construct()
+	cPaintTerrain()
 	{
 		m_TerrainDelta.Init();
-	}
-	void Destruct()
-	{
 	}
 
 	void Do()
@@ -205,7 +202,7 @@ BEGIN_COMMAND(PaintTerrain)
 	{
 		prev->m_TerrainDelta.OverlayWith(m_TerrainDelta);
 	}
-
+};
 END_COMMAND(PaintTerrain)
 
 

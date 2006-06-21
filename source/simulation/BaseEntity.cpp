@@ -30,8 +30,7 @@ CBaseEntity::CBaseEntity( CPlayer* player )
 	AddProperty( L"actions.move.run.decay_rate", &m_runDecayRate );
 	AddProperty( L"actions.move.pass_through_allies", &m_passThroughAllies );
 	AddProperty( L"actor", &m_actorName );
-	AddProperty( L"traits.extant", &m_extant );
-	AddProperty( L"traits.corpse", &m_corpse );		
+	AddProperty( L"traits.extant", &m_extant );	
 	AddProperty( L"traits.health.curr", &m_healthCurr );
     AddProperty( L"traits.health.max", &m_healthMax );
     AddProperty( L"traits.health.bar_height", &m_healthBarHeight );
@@ -51,6 +50,9 @@ CBaseEntity::CBaseEntity( CPlayer* player )
 	AddProperty( L"traits.stamina.border_height", &m_staminaBorderHeight);
 	AddProperty( L"traits.stamina.border_width", &m_staminaBorderWidth );
 	AddProperty( L"traits.stamina.border_name", &m_staminaBorderName );
+	AddProperty( L"traits.rally.name", &m_rallyName );
+	AddProperty( L"traits.rally.width", &m_rallyWidth );
+	AddProperty( L"traits.rally.height", &m_rallyHeight );
 	AddProperty( L"traits.flank_penalty.sectors", &m_sectorDivs );
 	AddProperty( L"traits.pitch.sectors", &m_pitchDivs );
 	AddProperty( L"traits.rank.width", &m_rankWidth );
@@ -76,7 +78,6 @@ CBaseEntity::CBaseEntity( CPlayer* player )
 	// Initialize, make life a little easier on the scriptors
 	m_speed = m_turningRadius = 0.0f;
 	m_extant = true; 
-	m_corpse = CStrW();
 	m_foundation = CStrW();
 	m_passThroughAllies = false;
 	m_sectorDivs = 4;

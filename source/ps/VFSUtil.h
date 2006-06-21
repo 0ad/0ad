@@ -8,7 +8,7 @@ namespace VFSUtil
 typedef std::vector<CStr> FileList;
 
 // Puts the list of files inside 'dirname' matching 'filter' into 'files'.
-// 'dirname' shouldn't end with a slash.
+// 'dirname' must end with a slash.
 // 'filter': see vfs_next_dirent
 // 'files' is initially cleared, and undefined on failure.
 // On failure, logs an error and returns false.

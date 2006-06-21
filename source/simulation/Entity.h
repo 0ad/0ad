@@ -67,9 +67,6 @@ public:
 	//Attributes table: key=attribute, value=variable name 
 	static std::map<CStr, size_t> m_AttributeTable;
 
-	// The entity to switch to when this dies.
-	CStrW m_corpse;
-
 	// The class types this entity has
 	SClassSet m_classes;
 
@@ -144,6 +141,10 @@ public:
 	float m_rankHeight;
 	float m_rankWidth;
 	CStr m_rankName;
+	//Rally texture
+	CStr m_rallyTexture;
+	float m_rallyWidth;
+	float m_rallyHeight;
 
 	bool m_healthDecay;
 
@@ -182,6 +183,8 @@ public:
 	
 	CVector2D m_orientation_unclamped;
 
+	CVector3D m_rallyPoint;	
+	bool m_hasRallyPoint;
 
 	// If the actor's current transform data is valid (i.e. the entity hasn't
 	// moved since it was last calculated, and the terrain hasn't been changed).
@@ -298,6 +301,7 @@ public:
 	void renderHealthBar();
 	void renderStaminaBar();
 	void renderRank();
+	void renderRallyPoint();
 	CVector2D getScreenCoords( float height );
 	// After a collision, recalc the path to the next fixed waypoint.
 	void repath();
@@ -355,6 +359,10 @@ public:
 
 	bool Kill( JSContext* cx, uintN argc, jsval* argv );
 	jsval GetSpawnPoint( JSContext* cx, uintN argc, jsval* argv );
+
+	inline jsval HasRallyPoint( JSContext* cx, uintN argc, jsval* argv );
+	inline jsval GetRallyPoint( JSContext* cx, uintN argc, jsval* argv );
+	inline jsval SetRallyPoint( JSContext* cx, uintN argc, jsval* argv );
 
 	jsval AddAura( JSContext* cx, uintN argc, jsval* argv );
 	jsval RemoveAura( JSContext* cx, uintN argc, jsval* argv );

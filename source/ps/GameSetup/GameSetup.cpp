@@ -379,6 +379,9 @@ void Render()
 		PROFILE_END( "render health bars" );
 
 		glPopAttrib();
+		//Depth test is now enabled
+		g_Selection.renderRallyPoints();
+		g_Mouseover.renderRallyPoints();
 	}
 	else
 	{

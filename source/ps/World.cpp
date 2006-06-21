@@ -56,7 +56,7 @@ void CWorld::Initialize(CGameAttributes *pAttribs)
 		try {
 			reader = new CMapReader;
 			reader->LoadMap(mapfilename, m_Terrain, m_UnitManager, g_Renderer.GetWaterManager(),
-				&g_LightEnv, m_pGame->GetView()->GetCamera());
+				g_Renderer.GetSkyManager(), &g_LightEnv, m_pGame->GetView()->GetCamera());
 				// fails immediately, or registers for delay loading
 		} catch (PSERROR_File&) {
 			delete reader;
@@ -85,5 +85,6 @@ CWorld::~CWorld()
 void CWorld::RewriteMap()
 {
 	CMapWriter::RewriteAllMaps(m_Terrain, m_UnitManager,
-		g_Renderer.GetWaterManager(), &g_LightEnv, m_pGame->GetView()->GetCamera());
+		g_Renderer.GetWaterManager(), g_Renderer.GetSkyManager(),
+		&g_LightEnv, m_pGame->GetView()->GetCamera());
 }

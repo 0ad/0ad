@@ -834,11 +834,14 @@ JSBool vmem( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rva
 JSBool setCursor( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rval) )
 {
 	REQUIRE_PARAMS(1, setCursor);
-
 	g_CursorName = g_ScriptingHost.ValueToString(argv[0]);
 	return JS_TRUE;
 }
-
+JSBool getCursorName( JSContext* UNUSED(cx), JSObject*, uint UNUSED(argc), jsval* UNUSED(argv), jsval* rval )
+{
+	*rval = ToJSVal(g_CursorName);
+	return JS_TRUE;
+}
 
 // Trigger a rewrite of all maps.
 // params:
@@ -1258,6 +1261,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC(_rewriteMaps, _rewriteMaps, 0)
 	JS_FUNC(_lodbias, _lodbias, 0)
 	JS_FUNC(setCursor, setCursor, 1)
+	JS_FUNC(getCursorName, getCursorName, 0)
 	JS_FUNC(getFPS, getFPS, 0)
 
 	// Miscellany

@@ -247,7 +247,23 @@ void CSelectedEntities::renderOverlays()
 	glDisable( GL_TEXTURE_2D );
 	glPopMatrix();
 }
+void CSelectedEntities::renderRallyPoints()
+{
+	glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+	glEnable( GL_BLEND );
 
+	std::vector<HEntity>::iterator it;
+	for( it = m_selected.begin(); it < m_selected.end(); it++ )
+		(*it)->renderRallyPoint();
+
+	if( m_group_highlight != -1 )
+	{
+		std::vector<HEntity>::iterator it;
+		for( it = m_groups[m_group_highlight].begin(); it < m_groups[m_group_highlight].end(); it++ )
+			(*it)->renderRallyPoint();
+	}
+	glDisable( GL_BLEND );
+}
 void CSelectedEntities::setSelection( HEntity entity )
 {
 	m_group = -1;
@@ -868,7 +884,17 @@ void CMouseoverEntities::renderBarBorders()
 
 	glDisable( GL_BLEND );
 }
+void CMouseoverEntities::renderRallyPoints()
+{
+	glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+	glEnable( GL_BLEND );
 
+	std::vector<SMouseoverFader>::iterator it;
+	for( it = m_mouseover.begin(); it < m_mouseover.end(); it++ )
+		it->entity->renderRallyPoint();
+
+	glDisable( GL_BLEND );
+}
 // Helper function for CSelectedEntities::loadUnitUITextures
 static void LoadUnitUIThunk( const char* path, const DirEnt* UNUSED(ent), void* context )
 {
@@ -876,12 +902,7 @@ static void LoadUnitUIThunk( const char* path, const DirEnt* UNUSED(ent), void* 
 	CStr name(path);
 
 	if ( !tex_is_known_extension(path) )
-	{
-		if ( name.BeforeLast(".") == name )		//this is a directory (contains no ".")
-			return;
-		LOG(ERROR, LOG_CATEGORY, "Unknown rank texture extension (%s)", path);
 		return;
-	}
 	Handle tmp = ogl_tex_load(path);
 	if (tmp <= 0)
 	{

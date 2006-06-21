@@ -25,8 +25,8 @@
 #include "simulation/FormationManager.h"
 #include "Formation.h"
 #include "graphics/GameView.h"
+#include "graphics/Sprite.h"
 #include "graphics/UnitManager.h"
-
 
 extern CConsole* g_Console;
 extern int g_xres, g_yres;
@@ -61,7 +61,6 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
     AddProperty( L"selected", &m_selected, false, (NotifyFn)&CEntity::checkSelection );
     AddProperty( L"group", &m_grouped, false, (NotifyFn)&CEntity::checkGroup );
     AddProperty( L"traits.extant", &m_extant );
-    AddProperty( L"traits.corpse", &m_corpse );
     AddProperty( L"actions.move.turningradius", &m_turningRadius );
     AddProperty( L"position", &m_graphics_position, false, (NotifyFn)&CEntity::teleport );
     AddProperty( L"orientation", &(m_orientation.Y), false, (NotifyFn)&CEntity::reorient );
@@ -85,6 +84,9 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
 	AddProperty( L"traits.stamina.border_height", &m_staminaBorderHeight);
 	AddProperty( L"traits.stamina.border_width", &m_staminaBorderWidth );
 	AddProperty( L"traits.stamina.border_name", &m_staminaBorderName );
+	AddProperty( L"traits.rally.name", &m_rallyTexture );
+	AddProperty( L"traits.rally.width", &m_rallyWidth );
+	AddProperty( L"traits.rally.height", &m_rallyHeight );
 	AddProperty( L"traits.flank_penalty.sectors", &m_sectorDivs);
 	AddProperty( L"traits.pitch.sectors", &m_pitchDivs );
 	AddProperty( L"traits.rank.width", &m_rankWidth );
@@ -140,6 +142,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
     m_graphics_position = m_position;
     m_graphics_orientation = m_orientation;
     m_actor_transform_valid = false;
+	m_hasRallyPoint = false;
 
     m_destroyed = false;
 
@@ -255,7 +258,6 @@ void CEntity::initAttributes(const CEntity* _this)
 	CEntity::m_AttributeTable["actions.move.run.decay_rate"] = getoffset(m_runDecayRate);
 	CEntity::m_AttributeTable["actions.move.pass_through_allies"] = getoffset(m_passThroughAllies);
     CEntity::m_AttributeTable["traits.extant"] = getoffset(m_extant);
-    CEntity::m_AttributeTable["traits.corpse"] = getoffset(m_corpse);
     CEntity::m_AttributeTable["actions.move.turningradius"] = getoffset(m_turningRadius);
 
     CEntity::m_AttributeTable["traits.health.curr"] = getoffset(m_healthCurr);
@@ -594,11 +596,6 @@ void CEntity::update( size_t timestep )
                 m_actor->SetRandomAnimation( "idle" );
 			}
         }
-        else if( !m_actor->GetModel()->GetAnimation() )
-		{
-			m_actor->SetEntitySelection( L"corpse" );
-            m_actor->SetRandomAnimation( "corpse" );
-		}
     }
 
     if( m_lastState != -1 )
@@ -1382,8 +1379,32 @@ void CEntity::renderRank()
 
     glEnd();
 }
+void CEntity::renderRallyPoint()
+{
+	if ( !m_hasRallyPoint || g_Selection.m_unitUITextures.find(m_rallyTexture) == 
+							g_Selection.m_unitUITextures.end() )
+	{
+		return;
+	}
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
 
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);	
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
 
+	CSprite sprite;
+	CTexture tex;
+	tex.SetHandle( g_Selection.m_unitUITextures[m_rallyTexture] );
+	sprite.SetTexture(&tex);
+	CVector3D rally = m_rallyPoint;
+	rally.Y += m_rallyHeight/2.f + .1f;
+	sprite.SetTranslation(rally);
+	sprite.Render();
+}
 void CEntity::CalculateRun(float timestep)
 {
 	if( m_staminaMax > 0 )
@@ -1452,6 +1473,9 @@ void CEntity::ScriptingInit()
 	AddMethod<jsval, &CEntity::GetAttackDirections>( "getAttackDirections", 0 );
 	AddMethod<jsval, &CEntity::FindSector>("findSector", 4);
 	AddMethod<jsval, &CEntity::GetHeight>("getHeight", 0 );
+	AddMethod<jsval, &CEntity::HasRallyPoint>("hasRallyPoint", 0 );
+	AddMethod<jsval, &CEntity::SetRallyPoint>("setRallyPoint", 0 );
+	AddMethod<jsval, &CEntity::GetRallyPoint>("getRallyPoint", 0 );
 
     AddClassProperty( L"template", (CBaseEntity* CEntity::*)&CEntity::m_base, false, (NotifyFn)&CEntity::loadBase );
     AddClassProperty( L"traits.id.classes", (GetFn)&CEntity::getClassSet, (SetFn)&CEntity::setClassSet );
@@ -1685,22 +1709,6 @@ bool CEntity::Kill( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(arg
     }
     m_aurasInfluencingMe.clear();
 
-    // Change this entity's template to the corpse entity - but note
-    // we don't fiddle with the actors or bounding information that we
-    // usually do when changing templates.
-
-    if(m_corpse == L"null")
-    {
-        kill();
-    }
-
-    CBaseEntity* corpse = g_EntityTemplateCollection.getTemplate( m_corpse );
-    if( corpse )
-    {
-        m_base = corpse;
-        SetBase( m_base );
-    }
-
     if( m_bounds )
     {
         delete( m_bounds );
@@ -1723,8 +1731,8 @@ bool CEntity::Kill( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(arg
 
     if( m_actor )
 	{
-		m_actor->SetEntitySelection( L"death" );
-        m_actor->SetRandomAnimation( "death", true );
+		m_actor->SetEntitySelection( L"death" );       
+		m_actor->SetRandomAnimation( "death", true );
 	}
 
     return( true );
@@ -2211,4 +2219,18 @@ jsval CEntity::FindSector( JSContext* cx, uintN argc, jsval* argv )
 	}
 	debug_warn("JS - FindSector(): invalid parameters");
 	return ToJSVal(-1);
+}
+jsval CEntity::HasRallyPoint( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+{
+	return ToJSVal( m_hasRallyPoint );
+}
+jsval CEntity::GetRallyPoint( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+{
+	return ToJSVal( m_rallyPoint );
+}
+jsval CEntity::SetRallyPoint( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+{
+	m_hasRallyPoint = true;
+	m_rallyPoint = g_Game->GetView()->GetCamera()->GetWorldCoordinates();
+	return JS_TRUE;
 }

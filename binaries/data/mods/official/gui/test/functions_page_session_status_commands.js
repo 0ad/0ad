@@ -246,10 +246,22 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 		{
 			case "command":
 				// An array of actions for the command "tabs" can be triggered by clicking the individual commands. We'll set them here.
-				tabObject.onPress = function (event)
+				switch(tab)
 				{
-				}			
+				case "rally":
+					tabObject.onPress = function (event)
+					{
+						setCursor("cursor-rally");
+					}
+					break;
+				default:
+					tabObject.onPress =  function (event)
+					{
+					}	
+					break;
+				}		
 			break;
+		
 			default:
 				// Set tab function when user moves mouse over tab.
 				tabObject.onMouseEnter = function (event)
@@ -1090,7 +1102,6 @@ function UpdateListold(listIcon, listCounter)
 					snStatusPaneCommand[listCounter][createLoop+1].last++;
 				}
 				else
-				{
 					guiHide("snStatusPaneCommand" + listCounter + "_" + parseInt(createLoop+1));
 				}
 			}

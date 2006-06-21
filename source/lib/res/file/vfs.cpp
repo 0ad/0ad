@@ -143,7 +143,7 @@ static LibError VDir_to_string(const VDir* vd, char* buf)
 
 
 // open a directory for reading its entries via vfs_next_dirent.
-// <v_dir> need not end in '/'; we add it if not present.
+// V_dir must end in '/' to indicate it's a directory path.
 Handle vfs_dir_open(const char* V_dir_path)
 {
 	// must disallow handle caching because this object is not

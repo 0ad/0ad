@@ -459,7 +459,7 @@ function performAttackRanged( evt )
 	dmg.crush += dmg.crush * elevationBonus;
 	dmg.hack += dmg.hack * elevationBonus;
 	dmg.pierce += dmg.pierce * elevationBonus;
-	console.write( dmg.crush + "|" + dmg.hack );
+
 	if(evt.target.traits.flank_penalty)
 	{
 		var flank = (evt.target.getAttackDirections()-1)*evt.target.traits.flank_penalty.value;
@@ -948,7 +948,13 @@ function entityEventTargetChanged( evt )
 	// If we can gather, and the target supplies, gather. If it's our enemy, and we're armed, attack. 
 	// If all else fails, move (or run on a right-click).
 	
-	
+	if ( getCursorName() == "cursor-rally" )
+	{
+		evt.defaultCursor = "cursor-rally";
+		evt.defaultOrder = -1;	
+		return;
+	}	
+
 	evt.defaultOrder = NMT_Goto;
 	evt.defaultCursor = "arrow-default";
 	evt.defaultAction = ACTION_NONE;
@@ -1289,6 +1295,8 @@ function entityFinishProduction( evt )
 			if( created )
 			{
 				console.write( "Created: ", template.tag );
+				var rally = this.getRallyPoint();
+				created.order( ORDER_GOTO, rally.x, rally.z );	
 			}
 		}		
 	}
