@@ -131,7 +131,7 @@ function setupSession ()
     // Select session peace track.
     curr_session_playlist_1 = newRandomSound("music", "peace");
     // Fade out main theme and fade in session theme.
-    crossFade(curr_music, curr_session_playlist_1); // , g_ConfigDB.system["sound.mastergain"]);
+    crossFade(curr_music, curr_session_playlist_1, 1)
 
 	// Create the resouce counters
 	createResourceCounters();
@@ -156,7 +156,7 @@ function endSession (closeType)
                         
                         // Fade out current music and return to playing menu theme.
                         curr_music = newRandomSound("music", "menu");
-                        crossFade(curr_session_playlist_1, curr_music); // , 1);
+                        crossFade(curr_session_playlist_1, curr_music, 1);
 
                         // Stop refreshing the session controls.
                         cancelInterval();
