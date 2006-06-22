@@ -387,6 +387,32 @@ extern ErrorReaction debug_warn_err(LibError err,
 	const char* file, int line, const char* func);
 
 
+/**
+ * suppress (prevent from showing) the next error dialog for a
+ * specific LibError.
+ *
+ * rationale: for edge cases in some functions, warnings are raised in
+ * addition to returning an error code. self-tests deliberately trigger
+ * these cases and check for the latter but shouldn't cause the former.
+ * we therefore need to squelch them.
+ *
+ * @param err the LibError to skip. if the next error to be raised matches
+ * this, it is skipped. after that (regardless of whether it matched),
+ * the skip request is reset, i.e. forgotten.
+ *
+ * note: this is thread-safe, but to prevent confusion, only one
+ * concurrent skip request is allowed.
+ */
+extern void debug_skip_next_err(LibError err);
+
+/**
+ * same as debug_skip_next_err, but for asserts.
+ * note that this is implemented in terms of it, so only one assert or
+ * error skip request may be active at a time.
+ */
+extern void debug_skip_assert();
+
+
 //-----------------------------------------------------------------------------
 // breakpoints
 //-----------------------------------------------------------------------------

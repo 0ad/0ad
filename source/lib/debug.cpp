@@ -640,9 +640,49 @@ ErrorReaction debug_display_error(const wchar_t* description,
 
 
 
+static uintptr_t will_skip_next_error;	// set/reset via CAS for thread-safety.
+static LibError err_to_skip;
+
+void debug_skip_next_err(LibError err)
+{
+	if(CAS(&will_skip_next_error, 0, 1))
+		err_to_skip = err;
+	else
+		debug_warn("internal error: concurrent attempt to skip assert/error");
+
+}
+
+static bool should_skip_this_error(LibError err)
+{
+	// (compare before resetting strobe - err_to_skip may change afterwards)
+	bool should_skip = (err_to_skip == err);
+	// (use CAS to ensure only one error is skipped)
+	if(CAS(&will_skip_next_error, 1, 0))
+		return should_skip;
+
+	return false;
+}
+
+// to share code between assert and error skip mechanism, we treat the former as
+// an error. choose the code such that no one would want to warn of it.
+static const LibError assert_err = INFO_OK;
+
+void debug_skip_next_assert()
+{
+	debug_skip_next_err(INFO_OK);
+}
+
+static bool should_skip_this_assert()
+{
+	return should_skip_this_error(INFO_OK);
+}
+
+
 ErrorReaction debug_assert_failed(const char* expr, u8* suppress,
 	const char* file, int line, const char* func)
 {
+	if(should_skip_this_assert())
+		return ER_CONTINUE;
 	uint skip = 1; void* context = 0;
 	wchar_t buf[400];
 	swprintf(buf, ARRAY_SIZE(buf), L"Assertion failed: \"%hs\"", expr);
@@ -653,11 +693,8 @@ ErrorReaction debug_assert_failed(const char* expr, u8* suppress,
 ErrorReaction debug_warn_err(LibError err, u8* suppress,
 	const char* file, int line, const char* func)
 {
-	// for edge cases in some functions, warnings (=asserts) are raised in
-	// addition to returning an error code. self-tests deliberately trigger
-	// these cases and check for the latter but shouldn't cause the former.
-	// we therefore squelch them here.
-	//TODO squelch certain errors once
+	if(should_skip_this_error(err))
+		return ER_CONTINUE;
 
 	uint skip = 1; void* context = 0;
 	wchar_t buf[400];

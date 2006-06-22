@@ -107,15 +107,15 @@ public:
 	void test_param_validation()
 	{
 	#if !HAVE_STRING_S
-		expect(ERR_INVALID_PARAM);
+		debug_skip_next_err(ERR_INVALID_PARAM);
 		TEST_CPY(0 ,0,0 , EINVAL,"");	// all invalid
-		expect(ERR_INVALID_PARAM);
+		debug_skip_next_err(ERR_INVALID_PARAM);
 		TEST_CPY(0 ,0,s1, EINVAL,"");	// dst = 0, max = 0
-		expect(ERR_INVALID_PARAM);
+		debug_skip_next_err(ERR_INVALID_PARAM);
 		TEST_CPY(0 ,1,s1, EINVAL,"");	// dst = 0, max > 0
-		expect(ERR_INVALID_PARAM);
+		debug_skip_next_err(ERR_INVALID_PARAM);
 		TEST_CPY(d1,1,0 , EINVAL,"");	// src = 0
-		expect(ERR_INVALID_PARAM);
+		debug_skip_next_err(ERR_INVALID_PARAM);
 		TEST_CPY(d1,0,s1, ERANGE,"");	// max_dst_chars = 0
 
 		TEST_CPY2(d1,1, s1, ERANGE,"");
