@@ -7,19 +7,23 @@ uniform sampler2D reflectionMap;
 uniform sampler2D refractionMap;
 uniform float shininess;
 uniform float waviness;
+uniform vec3 tint;
+uniform float murkiness;
+uniform float fullDepth;
 
 varying vec3 worldPos;
-varying vec3 waterColor;
 varying float waterDepth;
 varying float w;
 
-const vec3 specularColor = vec3(0.2, 0.2, 0.2);
+const vec3 specularColor = vec3(0.15, 0.15, 0.15);
 
 void main()
 {
 	vec3 n, l, h, v;		// Normal, light vector, half-vector and view vector (vector to eye)
 	float ndotl, ndoth, ndotv;
 	float fresnel;
+	float myMurkiness;		// Murkiness and tint at this pixel (tweaked based on lighting and depth)
+	vec3 myTint;
 	float t;
 	vec2 reflCoords, refrCoords;
 	vec3 reflColor, refrColor, specular;
@@ -43,7 +47,9 @@ void main()
 	
 	reflColor = texture2D(reflectionMap, reflCoords).rgb;
 	
-	refrColor = (0.5 + 0.5*ndotl) * mix(texture2D(refractionMap, refrCoords).rgb, waterColor, 0.3);
+	myMurkiness = murkiness * min(waterDepth / fullDepth, 1.0);
+	myTint = (ambient + ndotl * sunColor) * tint;
+	refrColor = (0.6 + 0.4*ndotl) * mix(texture2D(refractionMap, refrCoords).rgb, myTint, myMurkiness);
 	
 	specular = pow(max(0.0, ndoth), shininess) * sunColor * specularColor;
 	
