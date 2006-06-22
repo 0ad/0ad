@@ -56,9 +56,11 @@ public:
 	CMatrix3D m_RefractionMatrix;
 
 	// Shader parameters for fancy water
+	CColor m_WaterTint;
 	float m_RepeatPeriod;
 	float m_Shininess;
 	float m_Waviness;
+	float m_Murkiness;
 
 public:
 	WaterManager();

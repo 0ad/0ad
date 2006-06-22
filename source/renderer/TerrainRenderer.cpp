@@ -474,6 +474,9 @@ void TerrainRenderer::RenderWater()
 		GLint sunColor = ogl_program_get_uniform_location( m->fancyWaterShader, "sunColor" );
 		GLint shininess = ogl_program_get_uniform_location( m->fancyWaterShader, "shininess" );
 		GLint waviness = ogl_program_get_uniform_location( m->fancyWaterShader, "waviness" );
+		GLint murkiness = ogl_program_get_uniform_location( m->fancyWaterShader, "murkiness" );
+		GLint fullDepth = ogl_program_get_uniform_location( m->fancyWaterShader, "fullDepth" );
+		GLint tint = ogl_program_get_uniform_location( m->fancyWaterShader, "tint" );
 		GLint cameraPos = ogl_program_get_uniform_location( m->fancyWaterShader, "cameraPos" );
 		GLint reflectionMatrix = ogl_program_get_uniform_location( m->fancyWaterShader, "reflectionMatrix" );
 		GLint refractionMatrix = ogl_program_get_uniform_location( m->fancyWaterShader, "refractionMatrix" );
@@ -487,6 +490,9 @@ void TerrainRenderer::RenderWater()
 		pglUniform3fvARB( sunColor, 1, &lightEnv.m_SunColor.X );
 		pglUniform1fARB( shininess, WaterMgr->m_Shininess );
 		pglUniform1fARB( waviness, WaterMgr->m_Waviness );
+		pglUniform1fARB( murkiness, WaterMgr->m_Murkiness );
+		pglUniform1fARB( fullDepth, WaterMgr->m_WaterFullDepth );
+		pglUniform3fvARB( tint, 1, WaterMgr->m_WaterTint.FloatArray() );
 		pglUniformMatrix4fvARB( reflectionMatrix, 1, false, &WaterMgr->m_ReflectionMatrix._11 );
 		pglUniformMatrix4fvARB( refractionMatrix, 1, false, &WaterMgr->m_RefractionMatrix._11 );
 		pglUniform1iARB( normalMap, 0 );		// texture unit 0
@@ -565,8 +571,11 @@ void TerrainRenderer::RenderWater()
 					{
 						pglVertexAttrib1fARB( vertexDepth, WaterMgr->m_WaterHeight - terrainHeight );
 					}
-
-					glColor4f(WaterMgr->m_WaterColor.r*losMod, WaterMgr->m_WaterColor.g*losMod, WaterMgr->m_WaterColor.b*losMod, alpha * FresnelScalar);
+					else
+					{
+						glColor4f(WaterMgr->m_WaterColor.r*losMod, WaterMgr->m_WaterColor.g*losMod, 
+							WaterMgr->m_WaterColor.b*losMod, alpha * FresnelScalar);
+					}
 					pglMultiTexCoord2fARB(GL_TEXTURE0, vertX/repeatPeriod, vertZ/repeatPeriod);
 					glVertex3f(vertX, WaterMgr->m_WaterHeight, vertZ);
 				}

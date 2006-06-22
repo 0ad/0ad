@@ -319,6 +319,7 @@ protected:
 	friend class TerrainRenderer;
 
 	// scripting
+	static void ScriptingInit();
 	jsval JSI_GetFastPlayerColor(JSContext*);
 	void JSI_SetFastPlayerColor(JSContext* ctx, jsval newval);
 	jsval JSI_GetRenderPath(JSContext*);
@@ -337,7 +338,8 @@ protected:
 	void JSI_SetWaterWaviness(JSContext* ctx, jsval newval);
 	jsval JSI_GetWaterRepeatPeriod(JSContext*);
 	void JSI_SetWaterRepeatPeriod(JSContext* ctx, jsval newval);
-	static void ScriptingInit();
+	jsval JSI_GetWaterMurkiness(JSContext*);
+	void JSI_SetWaterMurkiness(JSContext* ctx, jsval newval);
 
 	// patch rendering stuff
 	void RenderPatches();

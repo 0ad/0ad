@@ -1724,6 +1724,18 @@ void CRenderer::JSI_SetWaterShininess(JSContext* ctx, jsval newval)
 	m->waterManager.m_Shininess = value;
 }
 
+jsval CRenderer::JSI_GetWaterMurkiness(JSContext*)
+{
+	return ToJSVal(m->waterManager.m_Murkiness);
+}
+
+void CRenderer::JSI_SetWaterMurkiness(JSContext* ctx, jsval newval)
+{
+	float value;
+	if (!ToPrimitive<float>(ctx, newval, value)) return;
+	m->waterManager.m_Murkiness = value;
+}
+
 jsval CRenderer::JSI_GetWaterWaviness(JSContext*)
 {
 	return ToJSVal(m->waterManager.m_Waviness);
@@ -1764,6 +1776,7 @@ void CRenderer::ScriptingInit()
 	AddProperty(L"waterShininess", &CRenderer::JSI_GetWaterShininess, &CRenderer::JSI_SetWaterShininess);
 	AddProperty(L"waterWaviness", &CRenderer::JSI_GetWaterWaviness, &CRenderer::JSI_SetWaterWaviness);
 	AddProperty(L"waterRepeatPeriod", &CRenderer::JSI_GetWaterRepeatPeriod, &CRenderer::JSI_SetWaterRepeatPeriod);
+	AddProperty(L"waterMurkiness", &CRenderer::JSI_GetWaterMurkiness, &CRenderer::JSI_SetWaterMurkiness);
 
 	CJSObject<CRenderer>::ScriptingInit("Renderer");
 }

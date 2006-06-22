@@ -53,6 +53,8 @@ WaterManager::WaterManager()
 	m_WaterTexTimer = 0.0;
 	m_Shininess = 200.0f;
 	m_Waviness = 8.0f;
+	m_WaterTint = CColor(0.25f, 0.3f, 0.55f, 1.0f);
+	m_Murkiness = 0.3f;
 	m_RepeatPeriod = 16.0f;
 
 	for (uint i = 0; i < ARRAY_SIZE(m_WaterTexture); i++)
