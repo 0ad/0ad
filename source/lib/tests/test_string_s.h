@@ -29,7 +29,7 @@ class TestString_s : public CxxTest::TestSuite
 	char no_null[7];
 
 
-	static void TEST_LEN(const char* string, size_t limit, size_t expected)
+	static void TEST_LEN(const char* string, size_t limit,
 	{
 		TS_ASSERT_EQUALS(strnlen((string), (limit)), (expected));
 	}
@@ -37,13 +37,13 @@ class TestString_s : public CxxTest::TestSuite
 	static void TEST_CPY(char* dst, size_t dst_max, const char* src,
 		int expected_ret, const char* expected_dst)
 	{
-		int ret = strcpy_s((dst), dst_max, (src));
+		int ret = strcpy_s(dst, dst_max, src);
 		TS_ASSERT_EQUALS(ret, expected_ret);
 		if(dst != 0)
 			TS_ASSERT(!strcmp(dst, expected_dst));
 	}
 
-	static void TEST_CPY2(char* dst, const char* src,
+	static void TEST_CPY2(char* dst, size_t max_dst_chars, const char* src,
 		int expected_ret, const char* expected_dst)
 	{
 		int ret = strcpy_s((dst), ARRAY_SIZE(dst), (src));
@@ -52,40 +52,39 @@ class TestString_s : public CxxTest::TestSuite
 			TS_ASSERT(!strcmp(dst, expected_dst));
 	}
 
-	static void TEST_NCPY(char* dst, const char* src, size_t max_src_chars,
+	static void TEST_NCPY(char* dst, size_t max_dst_chars, const char* src, size_t max_src_chars,
 		int expected_ret, const char* expected_dst)
 	{
-		int ret = strncpy_s((dst), ARRAY_SIZE(dst), (src), (max_src_chars));
+		int ret = strncpy_s(dst, max_dst_chars, src, max_src_chars);
 		TS_ASSERT_EQUALS(ret, expected_ret);
 		if(dst != 0)
 			TS_ASSERT(!strcmp(dst, expected_dst));
 	}
 
-	static void TEST_CAT(char* dst, size_t dst_max, const char* src,
-		int expected_ret, const char* expected_dst)
+	static void TEST_CAT(char* dst, size_t max_dst_chars, const char* src,
+		int expected_ret, const char expected_dst)
 	{
-		int ret = strcat_s((dst), dst_max, (src));
+		int ret = strcat_s(dst, max_dst_chars, src);
 		TS_ASSERT_EQUALS(ret, expected_ret);
 		if(dst != 0)
 			TS_ASSERT(!strcmp(dst, expected_dst));
 	}
 
-	static void TEST_CAT2(char* dst, const char* dst_val, const char* src,
-		int expected_ret, const char* expected_dst)
+	static void TEST_CAT2(char* dst, size_t max_dst_chars, const char* src,
+		const char* dst_val, int expected_ret, const char* expected_dst)
 	{
 		strcpy(dst, dst_val);
-		int ret = strcat_s((dst), ARRAY_SIZE(dst), (src));
+		int ret = strcat_s(dst, max_dst_chars, src);
 		TS_ASSERT_EQUALS(ret, expected_ret);
 		if(dst != 0)
 			TS_ASSERT(!strcmp(dst, expected_dst));
 	}
 
-	static void TEST_NCAT(char* dst, const char* dst_val,
-		const char* src, size_t max_src_chars,
-		int expected_ret, const char* expected_dst)
+	static void TEST_NCAT(char* dst, size_t max_dst_chars, const char* src, size_t max_src_chars,
+		const char* dst_val, int expected_ret, const char* expected_dst)
 	{
 		strcpy(dst, dst_val);
-		int ret = strncat_s((dst), ARRAY_SIZE(dst), (src), (max_src_chars));
+		int ret = strncat_s(dst, max_dst_chars, src, (max_src_chars));
 		TS_ASSERT_EQUALS(ret, expected_ret);
 		if(dst != 0)
 			TS_ASSERT(!strcmp(dst, expected_dst));
@@ -108,19 +107,24 @@ public:
 	void test_param_validation()
 	{
 	#if !HAVE_STRING_S
+		expect(ERR_INVALID_PARAM);
 		TEST_CPY(0 ,0,0 , EINVAL,"");	// all invalid
+		expect(ERR_INVALID_PARAM);
 		TEST_CPY(0 ,0,s1, EINVAL,"");	// dst = 0, max = 0
+		expect(ERR_INVALID_PARAM);
 		TEST_CPY(0 ,1,s1, EINVAL,"");	// dst = 0, max > 0
+		expect(ERR_INVALID_PARAM);
 		TEST_CPY(d1,1,0 , EINVAL,"");	// src = 0
+		expect(ERR_INVALID_PARAM);
 		TEST_CPY(d1,0,s1, ERANGE,"");	// max_dst_chars = 0
 
-		TEST_CPY2(d1 ,s1, ERANGE,"");
-		TEST_CPY2(d1 ,s5, ERANGE,"");
-		TEST_CPY2(d5 ,s5, ERANGE,"");
+		TEST_CPY2(d1,1, s1, ERANGE,"");
+		TEST_CPY2(d1,1, s5, ERANGE,"");
+		TEST_CPY2(d5,5, s5, ERANGE,"");
 
-		TEST_NCPY(d1 ,s1,1, ERANGE,"");
-		TEST_NCPY(d1 ,s5,1, ERANGE,"");
-		TEST_NCPY(d5 ,s5,5, ERANGE,"");
+		TEST_NCPY(d1,1 ,s1,1, ERANGE,"");
+		TEST_NCPY(d1,1 ,s5,1, ERANGE,"");
+		TEST_NCPY(d5,5 ,s5,5, ERANGE,"");
 
 		TEST_CAT(0 ,0,0 , EINVAL,"");	// all invalid
 		TEST_CAT(0 ,0,s1, EINVAL,"");	// dst = 0, max = 0
@@ -129,17 +133,17 @@ public:
 		TEST_CAT(d1,0,s1, ERANGE,"");	// max_dst_chars = 0
 		TEST_CAT(no_null,5,s1, ERANGE,"");	// dst not terminated
 
-		TEST_CAT2(d1 ,"" ,s1, ERANGE,"");
-		TEST_CAT2(d1 ,"" ,s5, ERANGE,"");
-		TEST_CAT2(d10,"" ,s10, ERANGE,"");		// empty, total overflow
-		TEST_CAT2(d10,"12345",s5 , ERANGE,"");	// not empty, overflow
-		TEST_CAT2(d10,"12345",s10, ERANGE,"");	// not empty, total overflow
+		TEST_CAT2(d1,1, s1, "",ERANGE,"");
+		TEST_CAT2(d1,1, s5, "",ERANGE,"");
+		TEST_CAT2(d10,10, s10, "",ERANGE,"");		// empty, total overflow
+		TEST_CAT2(d10,10, s5, "12345",ERANGE,"");	// not empty, overflow
+		TEST_CAT2(d10,10, s10, "12345",ERANGE,"");	// not empty, total overflow
 
-		TEST_NCAT(d1 ,"" ,s1,1, ERANGE,"");
-		TEST_NCAT(d1 ,"" ,s5,5, ERANGE,"");
-		TEST_NCAT(d10,"" ,s10,10, ERANGE,"");		// empty, total overflow
-		TEST_NCAT(d10,"12345",s5 ,5 , ERANGE,"");	// not empty, overflow
-		TEST_NCAT(d10,"12345",s10,10, ERANGE,"");	// not empty, total overflow
+		TEST_NCAT(d1,1, s1,1, "",ERANGE,"");
+		TEST_NCAT(d1,1, s5,5, "",ERANGE,"");
+		TEST_NCAT(d10,10, s10,10, "",ERANGE,"");		// empty, total overflow
+		TEST_NCAT(d10,10, s5,5, "12345",ERANGE,"");		// not empty, overflow
+		TEST_NCAT(d10,10, s10,10, "12345",ERANGE,"");	// not empty, total overflow
 	#endif
 	}
 
@@ -163,41 +167,41 @@ public:
 
 	void test_copy()
 	{
-		TEST_CPY2(d2 ,s1, 0,"a");
-		TEST_CPY2(d6 ,s5, 0,"abcde");
-		TEST_CPY2(d11,s5, 0,"abcde");
+		TEST_CPY2(d2,2 ,s1, 0,"a");
+		TEST_CPY2(d6,6 ,s5, 0,"abcde");
+		TEST_CPY2(d11,11, s5, 0,"abcde");
 
-		TEST_NCPY(d2 ,s1,1, 0,"a");
-		TEST_NCPY(d6 ,s5,5, 0,"abcde");
-		TEST_NCPY(d11,s5,5, 0,"abcde");
+		TEST_NCPY(d2,2 ,s1,1, 0,"a");
+		TEST_NCPY(d6,6 ,s5,5, 0,"abcde");
+		TEST_NCPY(d11,11, s5,5, 0,"abcde");
 
 		strcpy(d5, "----");
-		TEST_NCPY(d5,s5,0 , 0,"");	// specified behavior! see 3.6.2.1.1 #4
-		TEST_NCPY(d5,s5,1 , 0,"a");
-		TEST_NCPY(d5,s5,4 , 0,"abcd");
-		TEST_NCPY(d6,s5,5 , 0,"abcde");
-		TEST_NCPY(d6,s5,10, 0,"abcde");
+		TEST_NCPY(d5,5, s5,0 , 0,"");	// specified behavior! see 3.6.2.1.1 #4
+		TEST_NCPY(d5,5, s5,1 , 0,"a");
+		TEST_NCPY(d5,5, s5,4 , 0,"abcd");
+		TEST_NCPY(d6,6, s5,5 , 0,"abcde");
+		TEST_NCPY(d6,6, s5,10, 0,"abcde");
 	}
 
 
 	void test_concatenate()
 	{
-		TEST_CAT2(d3 ,"1",s1, 0,"1a");
-		TEST_CAT2(d5 ,"1",s1, 0,"1a");
-		TEST_CAT2(d6 ,"" ,s5, 0,"abcde");
-		TEST_CAT2(d10,"" ,s5, 0,"abcde");
-		TEST_CAT2(d10,"1234" ,s5 , 0,"1234abcde");
+		TEST_CAT2(d3,3, s1, ,"1",0,"1a");
+		TEST_CAT2(d5,5, s1, "1",0,"1a");
+		TEST_CAT2(d6,6, s5, "",0,"abcde");
+		TEST_CAT2(d10,10, s5, "",0,"abcde");
+		TEST_CAT2(d10,10, s5, "1234",0,"1234abcde");
 
-		TEST_NCAT(d3 ,"1",s1,1, 0,"1a");
-		TEST_NCAT(d5 ,"1",s1,1, 0,"1a");
-		TEST_NCAT(d6 ,"" ,s5,5, 0,"abcde");
-		TEST_NCAT(d10,"" ,s5,5, 0,"abcde");
-		TEST_NCAT(d10,"1234" ,s5 ,5 , 0,"1234abcde");
+		TEST_NCAT(d3,3, s1,1, "1",0,"1a");
+		TEST_NCAT(d5,5, s1,1, "1",0,"1a");
+		TEST_NCAT(d6,6, s5,5, "",0,"abcde");
+		TEST_NCAT(d10,10, s5,5, "",0,"abcde");
+		TEST_NCAT(d10,10, s5,5, "1234",0,"1234abcde");
 
-		TEST_NCAT(d5,"----",s5,0 , 0,"----");
-		TEST_NCAT(d5,"",s5,1 , 0,"a");
-		TEST_NCAT(d5,"",s5,4 , 0,"abcd");
-		TEST_NCAT(d5,"12",s5,2 , 0,"12ab");
-		TEST_NCAT(d6,"",s5,10, 0,"abcde");
+		TEST_NCAT(d5,5, s5,0, "----",0,"----");
+		TEST_NCAT(d5,5, s5,1, "",0,"a");
+		TEST_NCAT(d5,5, s5,4, "",0,"abcd");
+		TEST_NCAT(d5,5, s5,2, "12",0,"12ab");
+		TEST_NCAT(d6,6, s5,10, "",0,"abcde");
 	}
 };

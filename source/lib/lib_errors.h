@@ -337,7 +337,9 @@ ERR(105, INFO_ALL_COMPLETE,    "5 (not an error)")
 ERR(106, INFO_ALREADY_EXISTS, "6 (not an error)")
 
 ERR(-100000, ERR_LOGIC, "Logic error in code")
-ERR(-100060, ERR_TIMED_OUT, "Timed out")
+ERR(-100001, ERR_TIMED_OUT, "Timed out")
+ERR(-100002, ERR_STRING_NOT_TERMINATED, "Invalid string (no 0 terminator found in buffer)")
+
 
 // these are for cases where we just want a distinct value to display and
 // a symbolic name + string would be overkill (e.g. the various

@@ -34,6 +34,8 @@
 #endif
 
 
+#pragma data_seg(WIN_CALLBACK_PRE_MAIN(k))
+WIN_REGISTER_FUNC(wsock_init);
 #pragma data_seg(WIN_CALLBACK_POST_ATEXIT(b))
 WIN_REGISTER_FUNC(wsock_shutdown);
 #pragma data_seg()
@@ -51,7 +53,7 @@ static int dll_refs;
 
 // called from delay loader the first time a wsock function is called
 // (shortly before the actual wsock function is called).
-static LibError wsock_init()
+static LibError wsock_actual_init()
 {
 	hWs2_32Dll = LoadLibrary("ws2_32.dll");
 
@@ -66,9 +68,14 @@ static LibError wsock_init()
 	return INFO_OK;
 }
 
-WDLL_LOAD_NOTIFY("ws2_32", wsock_init);
 
-
+// called via module init mechanism. triggers wsock_actual_init when
+// someone first calls a wsock function.
+static LibError wsock_init()
+{
+	WDLL_LOAD_NOTIFY("ws2_32", wsock_actual_init);
+	return INFO_OK;
+}
 
 static LibError wsock_shutdown()
 {

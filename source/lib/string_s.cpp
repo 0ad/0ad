@@ -59,10 +59,10 @@
 
 // return <retval> and raise an assertion if <condition> doesn't hold.
 // usable as a statement.
-#define ENFORCE(condition, retval) STMT(\
+#define ENFORCE(condition, err_to_warn,	retval) STMT(\
 	if(!(condition))                    \
 	{                                   \
-		debug_assert(condition);        \
+		DEBUG_WARN_ERR(err_to_warn);    \
 		return retval;                  \
 	}                                   \
 )
@@ -113,10 +113,10 @@ int tncpy_s(tchar* dst, size_t max_dst_chars, const tchar* src, size_t max_src_c
 	// the MS implementation returns EINVAL and allows dst = 0 if
 	// max_dst_chars = max_src_chars = 0. no mention of this in
 	// 3.6.2.1.1, so don't emulate that behavior.
-	ENFORCE(dst != 0, EINVAL);
-	ENFORCE(max_dst_chars != 0, ERANGE);
+	ENFORCE(dst != 0, ERR_INVALID_PARAM, EINVAL);
+	ENFORCE(max_dst_chars != 0, ERR_INVALID_PARAM, ERANGE);
 	*dst = '\0';	// in case src ENFORCE is triggered
-	ENFORCE(src != 0, EINVAL);
+	ENFORCE(src != 0, ERR_INVALID_PARAM, EINVAL);
 
 	WARN_IF_PTR_LEN(max_dst_chars);
 	WARN_IF_PTR_LEN(max_src_chars);
@@ -135,11 +135,11 @@ int tncpy_s(tchar* dst, size_t max_dst_chars, const tchar* src, size_t max_src_c
 	}
 
 	// which limit did we hit?
-	// .. dest, and last character wasn't null: overflow.
+	// .. dst, and last character wasn't null: overflow.
 	if(max_dst_chars <= max_src_chars)
 	{
 		*dst = '\0';
-		ENFORCE(0 && "Buffer too small", ERANGE);
+		ENFORCE(0, ERR_BUF_SIZE, ERANGE);
 	}
 	// .. source: success, but still need to null-terminate the destination.
 	*p = '\0';
@@ -163,8 +163,8 @@ int tcpy_s(tchar* dst, size_t max_dst_chars, const tchar* src)
 // 0 is returned to indicate success and that <dst> is null-terminated.
 int tncat_s(tchar* dst, size_t max_dst_chars, const tchar* src, size_t max_src_chars)
 {
-	ENFORCE(dst != 0, EINVAL);
-	ENFORCE(max_dst_chars != 0, ERANGE);
+	ENFORCE(dst != 0, ERR_INVALID_PARAM, EINVAL);
+	ENFORCE(max_dst_chars != 0, ERR_INVALID_PARAM, ERANGE);
 	// src is checked in tncpy_s
 
 	// WARN_IF_PTR_LEN not necessary: both max_dst_chars and max_src_chars
@@ -174,7 +174,7 @@ int tncat_s(tchar* dst, size_t max_dst_chars, const tchar* src, size_t max_src_c
 	if(dst_len == max_dst_chars)
 	{
 		*dst = '\0';
-		ENFORCE(0 && "Destination string not null-terminated", ERANGE);
+		ENFORCE(0, ERR_STRING_NOT_TERMINATED, ERANGE);
 	}
 
 	tchar* const end = dst+dst_len;

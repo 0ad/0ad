@@ -502,9 +502,6 @@ extern const wchar_t* debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip
  **/
 extern void debug_puts(const char* text);
 
-/// abstraction of all STL iterators used by debug_stl.
-typedef const u8* (*DebugIterator)(void* internal, size_t el_size);
-
 /**
  * return address of the Nth function on the call stack.
  *
