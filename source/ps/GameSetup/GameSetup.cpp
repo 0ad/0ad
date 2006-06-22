@@ -5,9 +5,7 @@
 #include "lib/ogl.h"
 #include "lib/timer.h"
 #include "lib/input.h"
-#if CPU_IA32
-# include "lib/sysdep/ia32.h"
-#endif
+#include "lib/sysdep/cpu.h"
 #include "lib/sysdep/gfx.h"
 #include "lib/res/res.h"
 #include "lib/res/file/trace.h"

@@ -27,6 +27,7 @@
 #error "win_internal.h: do not include if not compiling for Windows"
 #endif
 
+#include "lib/lib.h"	// BIT
 #include "lib/types.h"	// intptr_t
 
 
@@ -374,14 +375,11 @@ extern int mainCRTStartup(void);
 #endif
 }
 
-#define BIT(n) (1ul << (n))
 #define FD_READ    BIT(0)
 #define FD_WRITE   BIT(1)
 #define FD_ACCEPT  BIT(3)
 #define FD_CONNECT BIT(4)
 #define FD_CLOSE   BIT(5)
-
-
 
 
 //

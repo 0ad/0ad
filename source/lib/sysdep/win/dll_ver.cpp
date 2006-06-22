@@ -42,7 +42,13 @@ static LibError get_ver(const char* module_path, char* out_ver, size_t out_ver_l
 	DWORD unused;
 	const DWORD ver_size = GetFileVersionInfoSize(module_path, &unused);
 	if(!ver_size)
-		WARN_RETURN(ERR_FAIL);
+	{
+		wchar_t buf[1000];
+		swprintf(buf, 1000, L"path: %hs; GLE: %08X", module_path, GetLastError());
+		DISPLAY_ERROR(buf);
+		return ERR_FAIL;
+//		WARN_RETURN(ERR_FAIL);
+	}
 	void* buf = malloc(ver_size);
 	if(!buf)
 		WARN_RETURN(ERR_NO_MEM);

@@ -190,7 +190,7 @@ static void dlg_resize(HWND hDlg, WPARAM wParam, LPARAM lParam)
 struct DialogParams
 {
 	const wchar_t* text;
-	int flags;
+	uint flags;
 };
 
 
@@ -300,12 +300,12 @@ static INT_PTR CALLBACK error_dialog_proc(HWND hDlg, unsigned int msg, WPARAM wP
 
 // show error dialog with the given text and return user's reaction.
 // exits directly if 'exit' is clicked.
-ErrorReaction sys_display_error(const wchar_t* text, int flags)
+ErrorReaction sys_display_error(const wchar_t* text, uint flags)
 {
 	// note: other threads might still be running, crash and take down the
 	// process before we have a chance to display this error message.
 	// ideally we would suspend them all and resume when finished; however,
-	// they may be holding systemwide locks (e.g. heap or loader) that
+	// they may be holding system-wide locks (e.g. heap or loader) that
 	// are potentially needed by DialogBoxParam. in that case, deadlock
 	// would result; this is much worse than a crash because no error
 	// at all is displayed to the end-user. therefore, do nothing here.

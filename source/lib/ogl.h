@@ -28,6 +28,9 @@ extern "C" {
 #endif
 
 #if OS_WIN
+// wgl.h is a private header and should only be included from here.
+// if this isn't defined, it'll complain.
+#define WGL_HEADER_NEEDED
 #include "lib/sysdep/win/wgl.h"
 #endif
 

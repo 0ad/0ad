@@ -24,6 +24,10 @@ struct DllLoadNotify;
 
 extern void wdll_add_notify(DllLoadNotify*);
 
+// note: this mechanism relies on the compiler calling non-local static
+// object ctors, which doesn't happen if compiling this code into
+// a static library. recommended workaround is to call wdll_add_notify via
+// win.cpp module init mechanism.
 struct DllLoadNotify
 {
 	const char* dll_name;

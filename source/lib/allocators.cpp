@@ -22,10 +22,9 @@
 
 #include "precompiled.h"
 
-#include "posix.h"
-#include "sysdep/cpu.h"	// CAS
+#include "lib/posix.h"		// PROT_* constants for da_set_prot
+#include "lib/sysdep/cpu.h"	// CAS
 #include "byte_order.h"
-
 #include "allocators.h"
 
 

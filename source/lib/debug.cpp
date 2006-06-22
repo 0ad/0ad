@@ -27,6 +27,7 @@
 
 #include "lib.h"
 #include "posix.h"
+#include "lib/sysdep/cpu.h"	// CAS
 // some functions here are called from within mmgr; disable its hooks
 // so that our allocations don't cause infinite recursion.
 #include "nommgr.h"
@@ -312,7 +313,7 @@ static const char* symbol_string_build(void* symbol, const char* name, const cha
 	if(name)
 	{
 		snprintf(string+len, STRING_MAX-1-len, "%s", name);
-		stl_simplify_name(string+len);
+		debug_stl_simplify_name(string+len);
 	}
 
 	return string;
@@ -452,79 +453,103 @@ void debug_display_msgw(const wchar_t* caption, const wchar_t* msg)
 }
 
 
-// display the error dialog. shows <description> along with a stack trace.
-// context and skip are as with debug_dump_stack.
-// flags: see DisplayErrorFlags. file and line indicate where the error
-// occurred and are typically passed as __FILE__, __LINE__.
-ErrorReaction debug_display_error(const wchar_t* description,
-	int flags, uint skip, void* context, const char* file, int line)
+// when an error has come up and user clicks Exit, we don't want any further
+// errors (e.g. caused by atexit handlers) to come up, possibly causing an
+// infinite loop. it sucks to hide errors, but we assume that whoever clicked
+// exit really doesn't want to see any more errors.
+static bool exit_requested;
+
+// this logic is applicable to any type of error. special cases such as
+// suppressing certain expected WARN_ERRs are done there.
+static bool should_suppress_error(u8* suppress)
 {
-	if(!file || file[0] == '\0')
-		file = "unknown";
-	if(line <= 0)
-		line = 0;
+	if(!suppress)
+		return false;
 
-	// translate
-	description = ah_translate(description);
+	if(*suppress == DEBUG_SUPPRESS)
+		return true;
 
-	// display in output window; double-click will navigate to error location.
-	const char* fn_only = path_name_only(file);
-	debug_wprintf(L"%hs(%d): %ls\n", fn_only, line, description);
+	if(exit_requested)
+		return true;
 
-	// allocate memory for the stack trace. this needs to be quite large,
-	// so preallocating is undesirable. it must work even if the heap is
-	// corrupted (since that's an error we might want to display), so
-	// we cannot rely on the heap alloc alone. what we do is try malloc,
-	// fall back to alloca if it failed, and give up after that.
-	wchar_t* text = 0;
-	size_t max_chars = 256*KiB;
-	// .. try allocating from heap
-	void* heap_mem = malloc(max_chars*sizeof(wchar_t));
-	text = (wchar_t*)heap_mem;
-	// .. heap alloc failed; try allocating from stack
-	if(!text)
+	return false;
+}
+
+static const wchar_t* build_error_message(wchar_t* buf, size_t max_chars,
+	const wchar_t* description,
+	const char* fn_only, int line, const char* func,
+	uint skip, void* context,
+	bool is_nested_error)
+{
+	if(!buf)
+		return L"(insufficient memory to generate error message)";
+
+	static const wchar_t fmt[] =
+		L"%ls\r\n"
+		L"Location: %hs:%d (%hs)\r\n"
+		L"\r\n"
+		L"Call stack:\r\n"
+		L"\r\n";
+	int len = swprintf(buf,max_chars,fmt, description, fn_only, line, func);
+	if(len < 0)
+		return L"(error while formatting error message)";
+
+	// add stack trace to end of message
+	wchar_t* pos = buf+len; const size_t chars_left = max_chars-len;
+	if(!is_nested_error)
 	{
-		max_chars = 128*KiB;	// (stack limit is usually 1 MiB)
-		text = (wchar_t*)alloca(max_chars*sizeof(wchar_t));
+		if(!context)
+			skip++;	// skip this frame
+		debug_dump_stack(pos, chars_left, skip, context);
 	}
-
-	// alloc succeeded; proceed
-	if(text)
-	{
-		static const wchar_t fmt[] = L"%ls\r\n\r\nCall stack:\r\n\r\n";
-		int len = swprintf(text, max_chars, fmt, description);
-		// paranoia - only dump stack if this string output succeeded.
-		if(len >= 0)
-		{
-			if(!context)
-				skip++;	// skip this frame
-			debug_dump_stack(text+len, max_chars-len, skip, context);
-		}
-	}
+	// .. except when a stack trace is currently already in progress
+	//    (debug_dump_stack is not reentrant due to use of global buffer!)
 	else
-		text = L"(insufficient memory to display error message)";
-
-	debug_write_crashlog(text);
-	ErrorReaction er = sys_display_error(text, flags);
-
-	// note: debug_break-ing here to make sure the app doesn't continue
-	// running is no longer necessary. debug_display_error now determines our
-	// window handle and is modal.
-
-	// handle "break" request unless the caller wants to (doing so here
-	// instead of within the dlgproc yields a correct call stack)
-	if(er == ER_BREAK && !(flags & DE_MANUAL_BREAK))
 	{
-		debug_break();
-		er = ER_CONTINUE;
+		wcscpy_s(pos, chars_left,
+			L"(cannot start a nested stack trace; what probably happened is that "
+			L"an debug_assert/debug_warn/CHECK_ERR fired during the current trace.)"
+		);
 	}
 
-	free(heap_mem);	// no-op if not allocated from heap
-		// after debug_break to ease debugging, but before exit to avoid leak.
+	return buf;
+}
 
-	// exit requested. do so here to disburden callers.
-	if(er == ER_EXIT)
+static ErrorReaction call_display_error(const wchar_t* text, uint flags)
+{
+	// first try app hook implementation
+	ErrorReaction er = ah_display_error(text, flags);
+	// .. it's only a stub: default to normal implementation
+	if(er == ER_NOT_IMPLEMENTED)
+		er = sys_display_error(text, flags);
+
+	return er;
+}
+
+static ErrorReaction carry_out_ErrorReaction(ErrorReaction er, uint flags, u8* suppress)
+{
+	const bool manual_break = (flags & DE_MANUAL_BREAK) != 0;
+
+	switch(er)
 	{
+	case ER_BREAK:
+		// handle "break" request unless the caller wants to (doing so here
+		// instead of within the dlgproc yields a correct call stack)
+		if(!manual_break)
+		{
+			debug_break();
+			er = ER_CONTINUE;
+		}
+		break;
+
+	case ER_SUPPRESS:
+		*suppress = DEBUG_SUPPRESS;
+		er = ER_CONTINUE;
+		break;
+
+	case ER_EXIT:
+		exit_requested = true;	// see declaration
+
 		// disable memory-leak reporting to avoid a flood of warnings
 		// (lots of stuff will leak since we exit abnormally).
 		debug_heap_enable(DEBUG_HEAP_NONE);
@@ -538,53 +563,107 @@ ErrorReaction debug_display_error(const wchar_t* description,
 	return er;
 }
 
-
-ErrorReaction debug_assert_failed(const char* expr,
-	const char* file, int line, const char* func)
+ErrorReaction debug_display_error(const wchar_t* description,
+	uint flags, uint skip, void* context,
+	const char* file, int line, const char* func,
+	u8* suppress)
 {
-/*/*
-	// for edge cases in some functions, warnings (=asserts) are raised in
-	// addition to returning an error code. self-tests deliberately trigger
-	// these cases and check for the latter but shouldn't cause the former.
-	// we therefore squelch them here.
-	// (note: don't do so in lib.h's CHECK_ERR or debug_assert to reduce
-	// compile-time dependency on self_test.h)
-	if(self_test_active)
+	// "suppressing" this error means doing nothing and returning ER_CONTINUE.
+	if(should_suppress_error(suppress))
 		return ER_CONTINUE;
-*/
-	// __FILE__ evaluates to the full path (albeit without drive letter)
-	// which is rather long. we only display the base name for clarity.
+
+	// fix up params
+	// .. translate
+	description = ah_translate(description);
+	// .. caller supports a suppress flag; set the corresponding flag so that
+	//    the error display implementation enables the Suppress option.
+	if(suppress)
+		flags |= DE_ALLOW_SUPPRESS;
+	// .. deal with incomplete file/line info
+	if(!file || file[0] == '\0')
+		file = "unknown";
+	if(line <= 0)
+		line = 0;
+	if(!func || func[0] == '\0')
+		func = "?";
+	// .. _FILE__ evaluates to the full path (albeit without drive letter)
+	//    which is rather long. we only display the base name for clarity.
 	const char* fn_only = path_name_only(file);
 
-	uint skip = 1; void* context = 0;
-	wchar_t buf[400];
-	swprintf(buf, ARRAY_SIZE(buf), L"Assertion failed at %hs:%d (%hs): \"%hs\"", fn_only, line, func, expr);
-	return debug_display_error(buf, DE_ALLOW_SUPPRESS|DE_MANUAL_BREAK, skip, context, fn_only, line);
+
+	// display in output window; double-click will navigate to error location.
+	debug_wprintf(L"%hs(%d): %ls\n", fn_only, line, description);
+
+
+	// allocate memory for the error message. this needs to be quite large,
+	// so preallocating is undesirable. 
+	// note: this code can't be moved into a subroutine due to alloca.
+	wchar_t* buf = 0;
+	size_t max_chars = 256*KiB;
+	// .. try allocating from heap. can't rely on this because we might
+	//    be called upon to report heap corruption errors.
+	void* heap_mem = malloc((max_chars+1)*sizeof(wchar_t));
+	buf = (wchar_t*)heap_mem;
+	// .. heap alloc failed; try allocating from stack. if this fails,
+	//    we give up and simply display a static error message.
+	if(!buf)
+	{
+		max_chars = 128*KiB;	// (stack limit is usually 1 MiB)
+		buf = (wchar_t*)alloca((max_chars+1)*sizeof(wchar_t));
+	}
+
+	static uintptr_t already_in_progress;
+	const bool is_nested = !CAS(&already_in_progress, 0, 1);
+
+	const wchar_t* text = build_error_message(buf, max_chars, description,
+		fn_only, line, func, skip, context, is_nested);
+
+	if(!is_nested)	// avoids potential infinite loop
+		debug_write_crashlog(text);
+
+	ErrorReaction er = call_display_error(text, flags);
+
+
+	// note: debug_break-ing here to make sure the app doesn't continue
+	// running is no longer necessary. debug_display_error now determines our
+	// window handle and is modal.
+
+	// must happen before carry_out_ErrorReaction because that may exit.
+	// note: no-op if not allocated from heap.
+	free(heap_mem);
+
+	already_in_progress = 0;
+
+	return carry_out_ErrorReaction(er, flags, suppress);
 }
 
 
-ErrorReaction debug_warn_err(LibError err,
+
+
+ErrorReaction debug_assert_failed(const char* expr, u8* suppress,
 	const char* file, int line, const char* func)
 {
-/*/*
+	uint skip = 1; void* context = 0;
+	wchar_t buf[400];
+	swprintf(buf, ARRAY_SIZE(buf), L"Assertion failed: \"%hs\"", expr);
+	return debug_display_error(buf, DE_MANUAL_BREAK, skip,context, file,line,func, suppress);
+}
+
+
+ErrorReaction debug_warn_err(LibError err, u8* suppress,
+	const char* file, int line, const char* func)
+{
 	// for edge cases in some functions, warnings (=asserts) are raised in
 	// addition to returning an error code. self-tests deliberately trigger
 	// these cases and check for the latter but shouldn't cause the former.
 	// we therefore squelch them here.
-	// (note: don't do so in lib.h's CHECK_ERR or debug_assert to reduce
-	// compile-time dependency on self_test.h)
-	if(self_test_active)
-		return ER_CONTINUE;
-*/
-	// __FILE__ evaluates to the full path (albeit without drive letter)
-	// which is rather long. we only display the base name for clarity.
-	const char* fn_only = path_name_only(file);
+	//TODO squelch certain errors once
 
 	uint skip = 1; void* context = 0;
 	wchar_t buf[400];
 	char err_buf[200]; error_description_r(err, err_buf, ARRAY_SIZE(err_buf));
-	swprintf(buf, ARRAY_SIZE(buf), L"Function call failed at %hs:%d (%hs): return value was %d (%hs)", fn_only, line, func, err, err_buf);
-	return debug_display_error(buf, DE_ALLOW_SUPPRESS|DE_MANUAL_BREAK, skip,context, fn_only,line);
+	swprintf(buf, ARRAY_SIZE(buf), L"Function call failed: return value was %d (%hs)", err, err_buf);
+	return debug_display_error(buf, DE_MANUAL_BREAK, skip,context, file,line,func, suppress);
 }
 
 

@@ -26,7 +26,8 @@
 #include <map>
 
 #include "lib/types.h"
-#include "lib/posix.h"	// PROT_* constants for da_set_prot
+#include "lib/sysdep/cpu.h"	// CAS
+#include "lib/posix.h"		// PROT_* constants for da_set_prot
 
 //
 // page aligned allocator

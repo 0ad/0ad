@@ -145,6 +145,12 @@ static void log(const wchar_t* text)
 }
 
 
+static ErrorReaction display_error(const wchar_t* UNUSED(text), uint UNUSED(flags))
+{
+	return ER_NOT_IMPLEMENTED;
+}
+
+
 //-----------------------------------------------------------------------------
 
 // contains the current set of hooks. starts with the stub values and

@@ -145,30 +145,6 @@ enum LibError {
 	LIB_ERROR_DUMMY
 };
 
-// choices offered by the shared error dialog
-enum ErrorReaction
-{
-	// ignore, continue as if nothing happened.
-	// note: don't start at 0 because that is interpreted as a
-	// DialogBoxParam failure.
-	ER_CONTINUE = 1,
-
-	// ignore and do not report again.
-	// only returned if DE_ALLOW_SUPPRESS was passed.
-	// note: non-persistent; only applicable during this program run.
-	ER_SUPPRESS,
-
-	// trigger breakpoint, i.e. enter debugger.
-	// only returned if DE_MANUAL_BREAK was passed; otherwise,
-	// debug_display_error will trigger a breakpoint itself.
-	ER_BREAK,
-
-	// exit the program immediately.
-	// never returned; debug_display_error exits immediately.
-	ER_EXIT
-};
-
-
 
 // generate textual description of an error code.
 // stores up to <max_chars> in the given buffer.

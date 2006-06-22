@@ -25,6 +25,7 @@
 
 #include "lib/allocators.h"
 #include "lib/timer.h"
+#include "lib/sysdep/cpu.h"
 #include "file_internal.h"
 
 static uintptr_t trace_initialized;	// set via CAS

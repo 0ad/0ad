@@ -69,7 +69,7 @@
 // we hold a reference to prevent the actual unload. everything works ATM;
 // hopefully, OpenAL doesn't rely on them actually being unloaded.
 #if OS_WIN
-# define WIN_LOADLIBRARY_HACK 1
+# define WIN_LOADLIBRARY_HACK 0
 #endif
 
 

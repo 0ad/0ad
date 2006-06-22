@@ -22,21 +22,22 @@
 
 #include "precompiled.h"
 
-#include "lib/lib.h"
-#include "lib/posix.h"
-#include "ia32.h"
-#include "lib/timer.h"
-
-// HACK (see call to wtime_reset_impl)
-#if OS_WIN
-#include "lib/sysdep/win/wtime.h"
-#endif
-
 #include <string.h>
 #include <stdio.h>
 
 #include <vector>
 #include <algorithm>
+
+#include "lib/lib.h"
+#include "lib/posix.h"
+#include "lib/timer.h"
+#include "ia32.h"
+#include "cpu.h"
+
+// HACK (see call to wtime_reset_impl)
+#if OS_WIN
+#include "lib/sysdep/win/wtime.h"
+#endif
 
 #if !HAVE_MS_ASM && !HAVE_GNU_ASM
 #error ia32.cpp needs inline assembly support!

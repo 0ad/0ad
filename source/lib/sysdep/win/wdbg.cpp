@@ -596,29 +596,18 @@ static const wchar_t* get_exception_description(const EXCEPTION_POINTERS* ep)
 }
 
 
-// return an indication of where the exception <er> occurred (lang. neutral).
-// it is only valid until the next call, since static storage is used.
-static const wchar_t* get_exception_locus(const EXCEPTION_POINTERS* ep)
+// return location at which the exception <er> occurred.
+// params: see debug_resolve_symbol.
+static void get_exception_locus(const EXCEPTION_POINTERS* ep,
+	char* file, int* line, char* func)
 {
 	// HACK: <ep> provides no useful information - ExceptionAddress always
 	// points to kernel32!RaiseException. we use debug_get_nth_caller to
 	// determine the real location.
 
-	void* func = debug_get_nth_caller(1, ep->ContextRecord);
-		// skip RaiseException
-
-	char func_name[DBG_SYMBOL_LEN];
-	char file[DBG_FILE_LEN] = {0};
-	int line = 0;
-	(void)debug_resolve_symbol(func, func_name, file, &line);
-		// note: file is the base path only (no drive letter), so there are
-		// no problems with wdbg_exception_filter's "%[^:]" format string.
-
-	// note: keep formatting in sync with wdbg_exception_filter, which
-	// extracts file/line for use with debug_display_error.
-	static wchar_t locus[256];
-	swprintf(locus, ARRAY_SIZE(locus), L"%hs (%hs:%d)", func_name, file, line);
-	return locus;
+	const uint skip = 1;	// skip RaiseException
+	void* func_addr = debug_get_nth_caller(skip, ep->ContextRecord);
+	(void)debug_resolve_symbol(func_addr, func, file, line);
 }
 
 
@@ -675,7 +664,7 @@ extern void wdbg_write_minidump(EXCEPTION_POINTERS* ep);
 LONG WINAPI wdbg_exception_filter(EXCEPTION_POINTERS* ep)
 {
 	// note: we risk infinite recursion if someone raises an SEH exception
-	// from within this function. therefore, abort immediately if we've
+	// from within this function. therefore, abort immediately if we have
 	// already been called; the first error is the most important, anyway.
 	static uintptr_t already_crashed = 0;
 	if(!CAS(&already_crashed, 0, 1))
@@ -689,13 +678,10 @@ LONG WINAPI wdbg_exception_filter(EXCEPTION_POINTERS* ep)
 
 	// extract details from ExceptionRecord.
 	const wchar_t* description = get_exception_description(ep);
-	const wchar_t* locus       = get_exception_locus      (ep);
-
-	wchar_t fmt[50]; wchar_t func_name[DBG_SYMBOL_LEN] = L"?"; char file[DBG_FILE_LEN] = "?"; int line = 0;
-	swprintf(fmt, ARRAY_SIZE(fmt), L"%%%ds (%%%dh[^:]:%%d)", DBG_SYMBOL_LEN, DBG_FILE_LEN);
-		// bake in the string limits (future-proof)
-	(void)swscanf(locus, fmt, func_name, file, &line);
-		// don't care whether all 3 fields were filled (they default to "?")
+	char file[DBG_FILE_LEN] = {0};
+	int line = 0;
+	char func_name[DBG_SYMBOL_LEN] = {0};
+	get_exception_locus(ep, file, &line, func_name);
 
 	// this must happen before the error dialog because user could choose to
 	// exit immediately there.
@@ -707,13 +693,14 @@ LONG WINAPI wdbg_exception_filter(EXCEPTION_POINTERS* ep)
 		L"\r\n"
 		L"Please let us know at http://bugs.wildfiregames.com/ and attach the crashlog.txt and crashlog.dmp files.\r\n"
 		L"\r\n"
-		L"Details: unhandled exception (%s at %s)\r\n";
-	swprintf(buf, ARRAY_SIZE(buf), msg_fmt, description, locus);
-	int flags = 0;
+		L"Details: unhandled exception (%s)\r\n";
+	swprintf(buf, ARRAY_SIZE(buf), msg_fmt, description);
+	uint flags = 0;
+
 	if(ep->ExceptionRecord->ExceptionFlags & EXCEPTION_NONCONTINUABLE)
 		flags = DE_NO_CONTINUE;
-	ErrorReaction er = debug_display_error(buf, flags, 1,ep->ContextRecord, file,line);
-	debug_assert(er > 0);
+	ErrorReaction er = debug_display_error(buf, flags, 1,ep->ContextRecord, file,line,func_name, NULL);
+	debug_assert(er == ER_CONTINUE);	// nothing else possible
 
 	// invoke the Win32 default handler - it calls ExitProcess for
 	// most exception types.

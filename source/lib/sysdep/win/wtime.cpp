@@ -22,19 +22,19 @@
 
 #include "precompiled.h"
 
+#include <algorithm>
+#include <numeric>
+#include <cmath>
+#include <ctime>
+
+#include "win_internal.h"
+#include <process.h>	// _beginthreadex
+
 #include "lib/lib.h"
 #include "lib/posix.h"
 #include "lib/adts.h"
 #include "lib/sysdep/ia32.h"
-
-#include "win_internal.h"
-
-#include <math.h>
-#include <process.h>	// _beginthreadex
-#include <time.h>
-
-#include <algorithm>
-#include <numeric>
+#include "lib/sysdep/cpu.h"
 
 
 // define to disable time sources (useful for simulating other systems)

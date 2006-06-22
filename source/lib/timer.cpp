@@ -23,16 +23,16 @@
 
 #include "precompiled.h"
 
+#include <numeric>
+#include <math.h>
+#include <stdarg.h>
+
 #include "lib.h"
 #include "posix.h"
 #include "timer.h"
 #include "adts.h"
 
-#include <numeric>
-#include <math.h>
-#include <stdarg.h>
-
-#include "lib/sysdep/ia32.h"
+#include "lib/sysdep/cpu.h"
 
 // rationale for wrapping gettimeofday and clock_gettime, instead of emulating
 // them where not available: allows returning higher-resolution timer values

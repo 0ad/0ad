@@ -22,24 +22,22 @@
 
 #include "precompiled.h"
 
-#include "lib/lib.h"
-#include "lib/posix.h"
-#include "win_internal.h"
-
-
 #include <stdlib.h>
 #include <malloc.h>		// _aligned_malloc
 
-
-#define lock() win_lock(WAIO_CS)
-#define unlock() win_unlock(WAIO_CS)
-
+#include "lib/lib.h"
+#include "lib/posix.h"
+#include "win_internal.h"
 
 #pragma data_seg(WIN_CALLBACK_PRE_LIBC(c))
 WIN_REGISTER_FUNC(waio_init);
 #pragma data_seg(WIN_CALLBACK_POST_ATEXIT(x))
 WIN_REGISTER_FUNC(waio_shutdown);
 #pragma data_seg()
+
+#define lock() win_lock(WAIO_CS)
+#define unlock() win_unlock(WAIO_CS)
+
 
 // return the largest sector size [bytes] of any storage medium
 // (HD, optical, etc.) in the system.

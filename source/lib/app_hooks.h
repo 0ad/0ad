@@ -107,6 +107,8 @@ FUNC(const wchar_t*, translate, (const wchar_t* text), (text), return)
 // default implementation uses stdout.
 FUNC(void, log, (const wchar_t* text), (text), (void))
 
+FUNC(ErrorReaction, display_error, (const wchar_t* text, uint flags), (text, flags), return)
+
 #endif	// #ifdef FUNC
 
 

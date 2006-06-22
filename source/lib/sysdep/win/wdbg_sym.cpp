@@ -1458,7 +1458,7 @@ static LibError udt_dump_std(const wchar_t* wtype_name, const u8* p, size_t size
 	size_t el_count;
 	DebugIterator el_iterator;
 	u8 it_mem[DEBUG_STL_MAX_ITERATOR_SIZE];
-	err = stl_get_container_info(ctype_name, p, size, el_size, &el_count, &el_iterator, it_mem);
+	err = debug_stl_get_container_info(ctype_name, p, size, el_size, &el_count, &el_iterator, it_mem);
 	if(err != INFO_OK)
 		goto not_valid_container;
 	return dump_sequence(el_iterator, it_mem, el_count, el_type_id, el_size, state);
@@ -1485,7 +1485,7 @@ not_valid_container:
 		snprintf(buf, ARRAY_SIZE(buf), "error %d while analyzing ", err);
 		text = buf;
 	}
-	out(L"(%hs%hs)", text, stl_simplify_name(ctype_name));
+	out(L"(%hs%hs)", text, debug_stl_simplify_name(ctype_name));
 	return INFO_OK;
 }
 
@@ -1871,16 +1871,6 @@ static LibError dump_frame_cb(const STACKFRAME64* sf, void* UNUSED(user_arg))
 // cluttering up the trace. returns the buffer for convenience.
 const wchar_t* debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* pcontext)
 {
-	static uintptr_t already_in_progress;
-	if(!CAS(&already_in_progress, 0, 1))
-	{
-		wcscpy_s(buf, max_chars,
-			L"(cannot start a nested stack trace; what probably happened is that "
-			L"an debug_assert/debug_warn/CHECK_ERR fired during the current trace.)"
-		);
-		return buf;
-	}
-
 	if(!pcontext)
 		skip++;	// skip this frame
 
@@ -1895,7 +1885,6 @@ const wchar_t* debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void*
 
 	unlock();
 
-	already_in_progress = 0;
 	return buf;
 }
 

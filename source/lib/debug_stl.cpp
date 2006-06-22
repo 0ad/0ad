@@ -29,7 +29,7 @@
 #include "debug_stl.h"
 #include "lib.h"	// match_wildcard
 
-// used in stl_simplify_name.
+// used in debug_stl_simplify_name.
 // note: strcpy is safe because replacement happens in-place and
 // src is longer than dst (otherwise, we wouldn't be replacing).
 #define REPLACE(what, with)\
@@ -63,7 +63,7 @@
 //
 // see http://www.bdsoft.com/tools/stlfilt.html and
 // http://www.moderncppdesign.com/publications/better_template_error_messages.html
-char* stl_simplify_name(char* name)
+char* debug_stl_simplify_name(char* name)
 {
 	// used when stripping everything inside a < > to continue until
 	// the final bracket is matched (at the original nesting level).
@@ -506,14 +506,14 @@ public:
 // standard container adapters
 //
 
-// stl_get_container_info makes sure this was actually instantiated with
+// debug_stl_get_container_info makes sure this was actually instantiated with
 // container = deque as we assume.
 class Any_queue : public Any_deque
 {
 };
 
 
-// stl_get_container_info makes sure this was actually instantiated with
+// debug_stl_get_container_info makes sure this was actually instantiated with
 // container = deque as we assume.
 class Any_stack : public Any_deque
 {
@@ -643,7 +643,7 @@ template<class T> bool get_container_info(T* t, size_t size, size_t el_size,
 // return number of elements and an iterator (any data it needs is stored in
 // it_mem, which must hold DEBUG_STL_MAX_ITERATOR_SIZE bytes).
 // returns 0 on success or an StlContainerError.
-LibError stl_get_container_info(const char* type_name, const u8* p, size_t size,
+LibError debug_stl_get_container_info(const char* type_name, const u8* p, size_t size,
 	size_t el_size, size_t* el_count, DebugIterator* el_iterator, void* it_mem)
 {
 	// HACK: The debug_stl code breaks VS2005's STL badly, causing crashes in

@@ -3,6 +3,7 @@
 #include "lib/lib.h"
 #include "lib/posix.h"
 #include "lib/lockfree.h"
+#include "lib/sysdep/cpu.h"	// atomic_add
 #include "lib/timer.h"
 
 // make sure the data structures work at all; doesn't test thread-safety.

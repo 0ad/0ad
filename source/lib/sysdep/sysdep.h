@@ -24,6 +24,8 @@
 #define SYSDEP_H_INCLUDED
 
 #include "lib/config.h"
+#include "lib/debug.h"	// ErrorReaction
+
 
 // some functions among the sysdep API are implemented as macros
 // that redirect to the platform-dependent version. this is done where
@@ -157,7 +159,6 @@ extern void* alloca(size_t size);
 # define __func__ "(unknown)"
 #endif
 
-#include "lib/debug.h"
 
 //-----------------------------------------------------------------------------
 // sysdep API
@@ -173,9 +174,10 @@ extern void* alloca(size_t size);
 extern void sys_display_msg(const char* caption, const char* msg);
 extern void sys_display_msgw(const wchar_t* caption, const wchar_t* msg);
 
-// show the error dialog. flags: see DisplayErrorFlags.
+// show the error dialog. flags: see DebugDisplayErrorFlags.
 // called from debug_display_error.
-extern ErrorReaction sys_display_error(const wchar_t* text, int flags);
+// can be overridden by means of ah_display_error.
+extern ErrorReaction sys_display_error(const wchar_t* text, uint flags);
 
 
 //

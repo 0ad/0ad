@@ -6,6 +6,7 @@
 #include "lib/timer.h"
 #include "lib/sysdep/gfx.h"
 #include "lib/sysdep/snd.h"
+#include "lib/sysdep/cpu.h"
 #include "lib/res/res.h"
 #include "lib/res/graphics/tex.h"
 

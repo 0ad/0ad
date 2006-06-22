@@ -23,6 +23,7 @@
 #include "precompiled.h"
 
 #include "lib/lib.h"
+#include "cpu.h"
 
 #if CPU_IA32
 # include "lib/sysdep/ia32.h"

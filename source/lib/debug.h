@@ -107,114 +107,6 @@ extern void debug_heap_enable(DebugHeapChecks what);
 
 
 //-----------------------------------------------------------------------------
-// debug_assert
-//-----------------------------------------------------------------------------
-
-/**
- * make sure the expression <expr> evaluates to non-zero. used to validate
- * invariants in the program during development and thus gives a
- * very helpful warning if something isn't going as expected.
- * sprinkle these liberally throughout your code!
- *
- * recommended use is debug_assert(expression && "descriptive string") -
- * the string can pass more information about the problem on to whomever
- * is seeing the error.
- *
- * rationale: we call this "debug_assert" instead of "assert" for the
- * following reasons:
- * - consistency (everything here is prefixed with debug_) and
- * - to avoid inadvertent use of the much less helpful built-in CRT assert.
- *   if we were to override assert, it would be difficult to tell whether
- *   user source has included <assert.h> (possibly indirectly via other
- *   headers) and thereby stomped on our definition.
- *
- * implementation rationale: 0x55 and 0xAA are distinctive values and
- * thus help debug the symbol engine.
- **/
-#define debug_assert(expr) \
-STMT(\
-	static unsigned char suppress__ = 0x55;\
-	if(suppress__ == 0x55 && !(expr))\
-	{\
-		switch(debug_assert_failed(#expr, __FILE__, __LINE__, __func__))\
-		{\
-		case ER_SUPPRESS:\
-			suppress__ = 0xAA;\
-			break;\
-		case ER_CONTINUE:\
-			break;\
-		default:\
-		case ER_BREAK:\
-			debug_break();\
-			break;\
-		}\
-	}\
-)
-
-/**
- * show a dialog to make sure unexpected states in the program are noticed.
- * this is less error-prone than "debug_assert(0 && "text");" and avoids
- * "conditional expression is constant" warnings. we'd really like to
- * completely eliminate the problem; replacing 0 literals with extern
- * volatile variables fools VC7 but isn't guaranteed to be free of overhead.
- * we therefore just squelch the warning (unfortunately non-portable).
- **/
-#define debug_warn(str) debug_assert((str) && 0)
-
-
-/**
- * if (LibError)err indicates an function failed, display the error dialog.
- * used by CHECK_ERR et al., which wrap function calls and automatically
- * warn user and return to caller.
- **/
-#define DEBUG_WARN_ERR(err)\
-STMT(\
-	static unsigned char suppress__ = 0x55;\
-	if(suppress__ == 0x55)\
-	{\
-		switch(debug_warn_err(err, __FILE__, __LINE__, __func__))\
-		{\
-		case ER_SUPPRESS:\
-			suppress__ = 0xAA;\
-			break;\
-		case ER_CONTINUE:\
-			break;\
-		default:\
-		case ER_BREAK:\
-			debug_break();\
-			break;\
-		}\
-	}\
-)
-
-
-/**
- * called when a debug_assert fails;
- * notifies the user via debug_display_error.
- *
- * @param assert_expr the expression that failed; typically passed as
- * #expr in the assert macro.
- * @param file, line source file name and line number of the spot that failed
- * @param func name of the function containing it
- * @return ErrorReaction (user's choice: continue running or stop?)
- **/
-extern ErrorReaction debug_assert_failed(const char* assert_expr,
-	const char* file, int line, const char* func);
-
-/**
- * called when a DEBUG_WARN_ERR indicates an error occurred;
- * notifies the user via debug_display_error.
- *
- * @param err LibError value indicating the error that occurred
- * @param file, line source file name and line number of the spot that failed
- * @param func name of the function containing it
- * @return ErrorReaction (user's choice: continue running or stop?)
- **/
-extern ErrorReaction debug_warn_err(LibError err,
-	const char* file, int line, const char* func);
-
-
-//-----------------------------------------------------------------------------
 // output
 //-----------------------------------------------------------------------------
 
@@ -239,18 +131,22 @@ extern void debug_wprintf(const wchar_t* fmt, ...);
 extern void debug_display_msgw(const wchar_t* caption, const wchar_t* msg);
 
 /// flags to customize debug_display_error behavior
-enum DisplayErrorFlags
+enum DebugDisplayErrorFlags
 {
 	/**
-	 * allow the suppress button (requires calling via macro that
-	 * maintains a 'suppress' bool; see debug_assert)
+	 * disallow the Continue button. used e.g. if an exception is fatal.
 	 **/
-	DE_ALLOW_SUPPRESS = 1,
+	DE_NO_CONTINUE    = 1,
 
 	/**
-	 * disallow the continue button. used e.g. if an exception is fatal.
+	 * enable the Suppress button. set automatically by debug_display_error if
+	 * it receives a non-NULL suppress pointer. a flag is necessary because
+	 * the sys_display_error interface doesn't get that pointer.
+	 * rationale for automatic setting: this may prevent someone from
+	 * forgetting to specify it, and disabling Suppress despite having
+	 * passed a non-NULL pointer doesn't make much sense.
 	 **/
-	DE_NO_CONTINUE    = 2,
+	DE_ALLOW_SUPPRESS = 2,
 
 	/**
 	 * do not trigger a breakpoint inside debug_display_error; caller
@@ -261,23 +157,80 @@ enum DisplayErrorFlags
 };
 
 /**
+ * value for suppress flag once set by debug_display_error.
+ * rationale: this value is fairly distinctive and helps when
+ * debugging the symbol engine.
+ * initial value is 0 rather that another constant; this avoids
+ * allocating .rdata space.
+ **/
+const u8 DEBUG_SUPPRESS = 0xAB;
+
+/**
+ * choices offered by the shared error dialog
+ **/
+enum ErrorReaction
+{
+	/**
+	 * ignore, continue as if nothing happened.
+	 * note: value doesn't start at 0 because that is interpreted as a
+	 * DialogBoxParam failure.
+	 **/
+	ER_CONTINUE = 1,
+
+	/**
+	 * trigger breakpoint, i.e. enter debugger.
+	 * only returned if DE_MANUAL_BREAK was passed; otherwise,
+	 * debug_display_error will trigger a breakpoint itself.
+	 **/
+	ER_BREAK,
+
+	/**
+	 * ignore and do not report again.
+	 * note: non-persistent; only applicable during this program run.
+	 * acted on by debug_display_error; never returned to caller.
+	 **/
+	ER_SUPPRESS,
+
+	/**
+	 * exit the program immediately.
+	 * acted on by debug_display_error; never returned to caller.
+	 **/
+	ER_EXIT,
+
+	/**
+	 * special return value for the display_error app hook stub to indicate
+	 * that it has done nothing and that the normal sys_display_error
+	 * implementation should be called instead.
+	 * acted on by debug_display_error; never returned to caller.
+	 **/
+	ER_NOT_IMPLEMENTED
+};
+
+/**
  * display an error dialog with a message and stack trace.
  *
  * @param description text to show.
- * @param flags: see DisplayErrorFlags.
+ * @param flags: see DebugDisplayErrorFlags.
  * @param context, skip: see debug_dump_stack.
- * @param file, line: location of the error (typically passed as
- * __FILE__, __LINE__ from a macro)
+ * @param file, line, func: location of the error (typically passed as
+ * __FILE__, __LINE__, __func__ from a macro)
+ * @param suppress pointer to a caller-allocated flag that can be used to
+ * suppress this error. if NULL, this functionality is skipped and the
+ * "Suppress" dialog button will be disabled.
+ * note: this flag is read and written exclusively here; caller only
+ * provides the storage. values: see DEBUG_SUPPRESS above.
  * @return ErrorReaction (user's choice: continue running or stop?)
  **/
 extern ErrorReaction debug_display_error(const wchar_t* description,
-	int flags, uint skip, void* context, const char* file, int line);
+	uint flags, uint skip, void* context,
+	const char* file, int line, const char* func,
+	u8* suppress);
 
 /**
  * convenience version, in case the advanced parameters aren't needed.
  * macro instead of providing overload/default values for C compatibility.
  **/
-#define DISPLAY_ERROR(text) debug_display_error(text, 0, 0,0, __FILE__,__LINE__)
+#define DISPLAY_ERROR(text) debug_display_error(text, 0, 0,0, __FILE__,__LINE__,__func__, 0)
 
 
 //
@@ -334,6 +287,104 @@ extern void debug_wprintf_mem(const wchar_t* fmt, ...);
  * write all logs and <text> out to crashlog.txt (unicode format).
  **/
 extern LibError debug_write_crashlog(const wchar_t* text);
+
+
+//-----------------------------------------------------------------------------
+// debug_assert
+//-----------------------------------------------------------------------------
+
+/**
+ * make sure the expression <expr> evaluates to non-zero. used to validate
+ * invariants in the program during development and thus gives a
+ * very helpful warning if something isn't going as expected.
+ * sprinkle these liberally throughout your code!
+ *
+ * recommended use is debug_assert(expression && "descriptive string") -
+ * the string can pass more information about the problem on to whomever
+ * is seeing the error.
+ *
+ * rationale: we call this "debug_assert" instead of "assert" for the
+ * following reasons:
+ * - consistency (everything here is prefixed with debug_) and
+ * - to avoid inadvertent use of the much less helpful built-in CRT assert.
+ *   if we were to override assert, it would be difficult to tell whether
+ *   user source has included <assert.h> (possibly indirectly via other
+ *   headers) and thereby stomped on our definition.
+ **/
+#define debug_assert(expr) \
+STMT(\
+	static u8 suppress__;\
+	if(!(expr))\
+	{\
+		switch(debug_assert_failed(#expr, &suppress__, __FILE__, __LINE__, __func__))\
+		{\
+		case ER_BREAK:\
+			debug_break();\
+			break;\
+		default:\
+			break;\
+		}\
+	}\
+)
+
+/**
+ * show a dialog to make sure unexpected states in the program are noticed.
+ * this is less error-prone than "debug_assert(0 && "text");" and avoids
+ * "conditional expression is constant" warnings. we'd really like to
+ * completely eliminate the problem; replacing 0 literals with extern
+ * volatile variables fools VC7 but isn't guaranteed to be free of overhead.
+ * we therefore just squelch the warning (unfortunately non-portable).
+ **/
+#define debug_warn(str) debug_assert((str) && 0)
+
+
+/**
+ * if (LibError)err indicates an function failed, display the error dialog.
+ * used by CHECK_ERR et al., which wrap function calls and automatically
+ * warn user and return to caller.
+ **/
+#define DEBUG_WARN_ERR(err)\
+STMT(\
+	static u8 suppress__;\
+	switch(debug_warn_err(err, &suppress__, __FILE__, __LINE__, __func__))\
+	{\
+	case ER_BREAK:\
+		debug_break();\
+		break;\
+	default:\
+		break;\
+	}\
+)
+
+
+/**
+ * called when a debug_assert fails;
+ * notifies the user via debug_display_error.
+ *
+ * @param assert_expr the expression that failed; typically passed as
+ * #expr in the assert macro.
+ * @param suppress see debug_display_error.
+ * @param file, line source file name and line number of the spot that failed
+ * @param func name of the function containing it
+ * @return ErrorReaction (user's choice: continue running or stop?)
+ **/
+extern ErrorReaction debug_assert_failed(const char* assert_expr,
+	u8* suppress,
+	const char* file, int line, const char* func);
+
+/**
+ * called when a DEBUG_WARN_ERR indicates an error occurred;
+ * notifies the user via debug_display_error.
+ *
+ * @param err LibError value indicating the error that occurred
+ * @param suppress see debug_display_error.
+ * @param file, line source file name and line number of the spot that failed
+ * @param func name of the function containing it
+ * @return ErrorReaction (user's choice: continue running or stop?)
+ **/
+extern ErrorReaction debug_warn_err(LibError err,
+	u8* suppress,
+	const char* file, int line, const char* func);
 
 
 //-----------------------------------------------------------------------------
@@ -434,6 +485,8 @@ extern LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char
  * for exceptions. otherwise, tracing starts from the current call stack.
  * @return buf for convenience; writes an error string into it if
  * something goes wrong.
+ *
+ * not reentrant! (pointer to buf is stored in static variable)
  **/
 extern const wchar_t* debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* context);
 

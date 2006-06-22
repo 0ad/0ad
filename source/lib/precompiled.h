@@ -57,7 +57,9 @@
 
 #include "lib/types.h"
 #include "lib/string_s.h"	// CRT secure string
-#include "lib/debug.h"
+#include "lib/sysdep/sysdep.h"
+#include "lib/debug.h"		// (sysdep.h pulls in debug.h)
+
 
 //
 // memory headers

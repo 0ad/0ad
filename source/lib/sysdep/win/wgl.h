@@ -23,8 +23,8 @@
 // RAGE! Win32 OpenGL headers are full of crap we have to emulate
 // (must not include windows.h)
 
-#if !OS_WIN
-#error "wgl.h: do not include if not compiling for Windows"
+#ifndef WGL_HEADER_NEEDED
+#error "wgl.h: why is this included from anywhere but ogl.h?"
 #endif
 
 

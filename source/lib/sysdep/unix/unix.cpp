@@ -61,13 +61,13 @@ LibError sys_on_each_cpu(void(*cb)())
 	return ERR_NO_SYS;
 }
 
-ErrorReaction sys_display_error(const wchar_t* text, int flags)
+ErrorReaction sys_display_error(const wchar_t* text, uint flags)
 {
 	printf("%ls\n\n", text);
 
-	const bool manual_break   = flags & DE_MANUAL_BREAK;
-	const bool allow_suppress = flags & DE_ALLOW_SUPPRESS;
-	const bool no_continue    = flags & DE_NO_CONTINUE;
+	const bool manual_break   = (flags & DE_MANUAL_BREAK  ) != 0;
+	const bool allow_suppress = (flags & DE_ALLOW_SUPPRESS) != 0;
+	const bool no_continue    = (flags & DE_NO_CONTINUE   ) != 0;
 
 	// until valid input given:
 	for(;;)

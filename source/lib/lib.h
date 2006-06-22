@@ -59,12 +59,8 @@ scope
 #include <stddef.h>
 #include <math.h>	// fabsf
 
-
 #include "config.h"
 #include "lib/types.h"
-#include "lib/sysdep/sysdep.h"
-#include "sysdep/cpu.h"	// CAS
-//#include "sysdep/sysdep.h"	// moved down; see below.
 
 
 #if defined(__cplusplus)
