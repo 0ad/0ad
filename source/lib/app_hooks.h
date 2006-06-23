@@ -73,6 +73,10 @@ and call set_app_hooks.
 //   a return value.
 #ifdef FUNC
 
+// for convenience; less confusing than FUNC(void, [..], (void))
+#define VOID_FUNC(name, params, param_names)\
+	FUNC(void, name, params, param_names, (void))
+
 // override default decision on using OpenGL extensions relating to
 // texture upload. this should call ogl_tex_override to disable/force
 // their use if the current card/driver combo respectively crashes or
@@ -80,7 +84,7 @@ and call set_app_hooks.
 //
 // default implementation works but is hardwired in code and therefore
 // not expandable.
-FUNC(void, override_gl_upload_caps, (void), (), (void))
+VOID_FUNC(override_gl_upload_caps, (void), ())
 
 // return full native path of the directory into which crashdumps should be
 // written. must end with directory separator (e.g. '/').
@@ -95,7 +99,7 @@ FUNC(const char*, get_log_dir, (void), (), return)
 // used when writing a crashlog so that all relevant info is in one file.
 //
 // default implementation gathers 0ad data but is fail-safe.
-FUNC(void, bundle_logs, (FILE* f), (f), (void))
+VOID_FUNC(bundle_logs, (FILE* f), (f))
 
 // return localized version of <text> if i18n functionality is available.
 //
@@ -105,9 +109,11 @@ FUNC(const wchar_t*, translate, (const wchar_t* text), (text), return)
 // write <text> to the app's log.
 //
 // default implementation uses stdout.
-FUNC(void, log, (const wchar_t* text), (text), (void))
+VOID_FUNC(log, (const wchar_t* text), (text))
 
 FUNC(ErrorReaction, display_error, (const wchar_t* text, uint flags), (text, flags), return)
+
+#undef VOID_FUNC
 
 #endif	// #ifdef FUNC
 

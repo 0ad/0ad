@@ -24,7 +24,7 @@
 #define WSDL_H__
 
 #include "lib/types.h"
-#include "SDL_keysym.h"
+#include "SDL/SDL_keysym.h"
 
 #ifdef __cplusplus
 extern "C" {

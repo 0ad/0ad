@@ -5,6 +5,7 @@
 #include "lib/ogl.h"
 #include "lib/timer.h"
 #include "lib/input.h"
+#include "lib/app_hooks.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/gfx.h"
 #include "lib/res/res.h"
@@ -914,6 +915,11 @@ void Init(int argc, char* argv[], uint flags)
 	// this uses LOG and must therefore come after CLogger init.
 	MICROLOG(L"init i18n");
 	I18n::LoadLanguage(NULL);
+
+	// override ah_translate with our i18n code.
+	AppHooks hooks = {0};
+	hooks.translate = psTranslate;
+	set_app_hooks(&hooks);
 
 	// Set up the console early, so that debugging
 	// messages can be logged to it. (The console's size

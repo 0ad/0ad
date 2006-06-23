@@ -22,4 +22,8 @@ DECLARE_ERROR(PS_FAIL);
 
 #define MICROLOG debug_wprintf_mem
 
+
+// overrides ah_translate. registered in GameSetup.cpp
+extern const wchar_t* psTranslate(const wchar_t* text);
+
 #endif

@@ -49,6 +49,13 @@ extern float spf;	// for time-since-last-frame use
 extern void calc_fps(void);
 
 
+//
+// cumulative timer API
+//
+
+// this supplements in-game profiling by providing low-overhead,
+// high resolution time accounting.
+
 // since TIMER_ACCRUE et al. are called so often, we try to keep
 // overhead to an absolute minimum. this flag allows storing
 // raw tick counts (e.g. CPU cycles returned by ia32_rdtsc) instead of
@@ -72,15 +79,6 @@ typedef i64 TimerUnit;
 #else
 typedef double TimerUnit;
 #endif
-
-
-//
-// cumulative timer API
-//
-
-// this supplements in-game profiling by providing low-overhead,
-// high resolution time accounting.
-
 
 // opaque - do not access its fields!
 // note: must be defined here because clients instantiate them;
@@ -202,44 +200,60 @@ Example usage:
 #define TIMER_END(description) }
 
 
-// used via TIMER_ACCRUE
-class ScopeTimerAccrue
+#if TIMER_USE_RAW_TICKS
+
+#if CPU_IA32
+// fast, not usable as wall-clock (http://www.gamedev.net/reference/programming/features/timing)
+class TimerRdtsc
 {
-	TimerUnit t0;
+public:
+	typedef i64 unit;
+	unit get_timestamp() const
+	{
+		return ia32_rdtsc();
+	}
+};
+#else
+# error "port"
+#endif	// CPU_IA32
+
+#else
+
+class TimerNormal
+{
+public:
+	typedef double unit;
+	unit get_timestamp() const
+	{
+		return get_time();
+	}
+};
+
+#endif	// TIMER_USE_RAW_TICKS
+
+
+// used via TIMER_ACCRUE
+template<class TimerImpl = TimerRdtsc> class ScopeTimerAccrue
+{
+	TimerImpl impl;
+	typename TimerImpl::unit t0;
 	TimerClient* tc;
 
 public:
-	ScopeTimerAccrue(TimerClient* tc_)
+	ScopeTimerAccrue<TimerImpl>(TimerClient* tc_)
 	{
-#if TIMER_USE_RAW_TICKS
-# if CPU_IA32
-		t0 = ia32_rdtsc();
-# else
-#  error "port"
-# endif
-#else
-		t0 = get_time();
-#endif
+		t0 = impl.get_timestamp();
 		tc = tc_;
 	}
-	~ScopeTimerAccrue()
+	~ScopeTimerAccrue<TimerImpl>()
 	{
-#if TIMER_USE_RAW_TICKS
-# if CPU_IA32
-		TimerUnit t1 = ia32_rdtsc();
-# else
-#  error "port"
-# endif
-#else
-		TimerUnit t1 = get_time();
-#endif
-		TimerUnit dt = t1-t0;
+		TimerImpl::unit dt = impl.get_timestamp() - t0;
 		timer_bill_client(tc, dt);
 	}
 
 	// disallow copying (makes no sense)
 private:
-	ScopeTimerAccrue& operator=(const ScopeTimerAccrue&);
+	ScopeTimerAccrue<TimerImpl>& operator=(const ScopeTimerAccrue<TimerImpl>&);
 };
 
 
@@ -272,6 +286,6 @@ Example usage:
 	[at exit]
 	timer_display_client_totals();
 */
-#define TIMER_ACCRUE(client) ScopeTimerAccrue UID__(client)
+#define TIMER_ACCRUE(client) ScopeTimerAccrue<> UID__(client)
 
 #endif	// #ifndef TIMER_H

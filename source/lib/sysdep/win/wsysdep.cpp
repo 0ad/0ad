@@ -547,19 +547,20 @@ LibError sys_cursor_free(void* cursor)
 // misc
 //-----------------------------------------------------------------------------
 
-// OS-specific backend for error_description_r.
-// NB: it is expected to be rare that OS return/error codes are actually
-// seen by user code, but we still translate them for completeness.
-LibError sys_error_description_r(int err, char* buf, size_t max_chars)
+LibError sys_error_description_r(int user_err, char* buf, size_t max_chars)
 {
+	DWORD err = (DWORD)user_err;
 	// not in our range (Win32 error numbers are positive)
-	if(err < 0)
+	if(user_err < 0)
 		return ERR_FAIL;	// NOWARN
+	// user doesn't know error code; get current error state
+	if(!user_err)
+		err = GetLastError();
 
 	const LPCVOID source = 0;	// ignored (we're not using FROM_HMODULE etc.)
 	const DWORD lang_id = 0;	// look for neutral, then current locale
 	va_list* args = 0;			// we don't care about "inserts"
-	DWORD chars_output = FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, source, (DWORD)err,
+	DWORD chars_output = FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, source, err,
 		lang_id, buf, (DWORD)max_chars, args);
 	if(!chars_output)
 		WARN_RETURN(ERR_FAIL);

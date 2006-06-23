@@ -47,7 +47,8 @@
 #endif
 
 
-// automatic module shutdown (before process termination)
+#pragma data_seg(WIN_CALLBACK_PRE_LIBC(b))
+WIN_REGISTER_FUNC(wdbg_sym_init);
 #pragma data_seg(WIN_CALLBACK_POST_ATEXIT(b))
 WIN_REGISTER_FUNC(wdbg_sym_shutdown);
 #pragma data_seg()
@@ -225,6 +226,7 @@ LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file,
 // stack walk
 //----------------------------------------------------------------------------
 
+static VOID (*pRtlCaptureContext)(PCONTEXT*);
 
 /*
 Subroutine linkage example code:
@@ -354,12 +356,7 @@ static LibError walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip 
 #if CPU_IA32
 		ia32_get_current_context(&context);
 #else
-		// try to import RtlCaptureContext (available on WinXP and later)
-		// .. note: kernel32 is always loaded into every process, so we
-		//    don't need LoadLibrary/FreeLibrary.
-		HMODULE hKernel32Dll = GetModuleHandle("kernel32.dll");
-		VOID (*pRtlCaptureContext)(PCONTEXT*);
-		*(void**)&pRtlCaptureContext = GetProcAddress(hKernel32Dll, "RtlCaptureContext");
+		// preferred implementation (was imported during module init)
 		if(pRtlCaptureContext)
 			pRtlCaptureContext(&context);
 		// not available: raise+handle an exception; grab the reported context.
@@ -524,7 +521,7 @@ static wchar_t* out_pos;
 // new position exceeds the limit and aborts if so.
 // slight wrinkle: since we don't want each level of UDTs to successively
 // realize the limit has been hit and display the error message, we
-// return ERR_SYM_SINGLE_SYMBOL_LIMIT once and thereafter ERR_SYM_SUPPRESS_OUTPUT.
+// return ERR_SYM_SINGLE_SYMBOL_LIMIT once and thereafter INFO_SYM_SUPPRESS_OUTPUT.
 //
 // * example: local variables, as opposed to child symbols in a UDT.
 static wchar_t* out_latched_pos;
@@ -609,7 +606,7 @@ static void out_latch_pos()
 static LibError out_check_limit()
 {
 	if(out_have_warned_of_limit)
-		return ERR_SYM_SUPPRESS_OUTPUT;	// NOWARN
+		return INFO_SYM_SUPPRESS_OUTPUT;
 	if(out_pos - out_latched_pos > 3000)	// ~30 lines
 	{
 		out_have_warned_of_limit = true;
@@ -736,7 +733,7 @@ static void dump_error(LibError err, const u8* p)
 	case ERR_SYM_INTERNAL_ERROR:
 		out(L"(unavailable - internal error)\r\n");
 		break;
-	case ERR_SYM_SUPPRESS_OUTPUT:
+	case INFO_SYM_SUPPRESS_OUTPUT:
 		// not an error; do not output anything. handled by caller.
 		break;
 	default:
@@ -840,7 +837,7 @@ static LibError dump_sequence(DebugIterator el_iterator, void* internal,
 
 		// there was no output for this child; undo its indentation (if any),
 		// skip everything below and proceed with the next child.
-		if(err == ERR_SYM_SUPPRESS_OUTPUT)
+		if(err == INFO_SYM_SUPPRESS_OUTPUT)
 		{
 			if(!fits_on_one_line)
 				UNINDENT;
@@ -1276,7 +1273,7 @@ static LibError dump_sym_enum(DWORD type_id, const u8* p, DumpState UNUSED(state
 static LibError dump_sym_function(DWORD UNUSED(type_id), const u8* UNUSED(p),
 	DumpState UNUSED(state))
 {
-	return ERR_SYM_SUPPRESS_OUTPUT;	// NOWARN
+	return INFO_SYM_SUPPRESS_OUTPUT;
 }
 
 
@@ -1624,7 +1621,7 @@ static LibError udt_dump_normal(const wchar_t* type_name, const u8* p, size_t si
 
 		// there was no output for this child; undo its indentation (if any),
 		// skip everything below and proceed with the next child.
-		if(err == ERR_SYM_SUPPRESS_OUTPUT)
+		if(err == INFO_SYM_SUPPRESS_OUTPUT)
 		{
 			if(!fits_on_one_line)
 				UNINDENT;
@@ -1710,7 +1707,7 @@ done:
 static LibError dump_sym_vtable(DWORD UNUSED(type_id), const u8* UNUSED(p), DumpState UNUSED(state))
 {
 	// unsupported (vtable internals are undocumented; too much work).
-	return ERR_SYM_SUPPRESS_OUTPUT;	// NOWARN
+	return INFO_SYM_SUPPRESS_OUTPUT;
 }
 
 
@@ -1790,7 +1787,7 @@ static BOOL CALLBACK dump_sym_cb(SYMBOL_INFO* sym, ULONG UNUSED(size), void* UNU
 	INDENT;
 	LibError err = dump_sym(sym->Index, p, state);
 	dump_error(err, p);
-	if(err == ERR_SYM_SUPPRESS_OUTPUT)
+	if(err == INFO_SYM_SUPPRESS_OUTPUT)
 		UNINDENT;
 	else
 		out(L"\r\n");
@@ -1931,6 +1928,20 @@ fail:
 }
 
 
+
+static LibError wdbg_sym_init()
+{
+	// try to import RtlCaptureContext (available on WinXP and later).
+	// it's used in walk_stack; import here to avoid overhead of doing so
+	// on every call. if not available, walk_stack emulates it.
+	//
+	// note: kernel32 is always loaded into every process, so we
+	// don't need LoadLibrary/FreeLibrary.
+	HMODULE hKernel32Dll = GetModuleHandle("kernel32.dll");
+	*(void**)&pRtlCaptureContext = GetProcAddress(hKernel32Dll, "RtlCaptureContext");
+
+	return INFO_OK;
+}
 
 
 static LibError wdbg_sym_shutdown()

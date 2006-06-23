@@ -109,6 +109,11 @@ function package_create(package_name, target_type)
 end
 
 
+-- extra_params: table including zero or more of the following:
+-- * no_default_pch: (any type) prevents adding the PCH include dir.
+--   see setup_static_lib_package() for explanation of this scheme and rationale.
+-- * extra_files: table of filenames (relative to source_root) to add to project
+-- * extra_links: table of library names to add to link step
 function package_add_contents(source_root, rel_source_dirs, rel_include_dirs, extra_params)
 
 	-- We don't want the VC project to be deeply nested (once for each
@@ -161,10 +166,12 @@ end
 -- more to the point, it is necessary to efficiently support a separate
 -- test executable that also includes much of the game code.
 
--- names of all static libs created. added to the main app project later
--- (see explanation at end of this file)
+-- names of all static libs created. automatically added to the
+-- main app project later (see explanation at end of this file)
 static_lib_names = {}
 
+-- set up one of the static libraries into which the main engine code is split.
+-- extra_params: see package_add_contents().
 -- note: rel_source_dirs and rel_include_dirs are relative to global source_root.
 local function setup_static_lib_package (package_name, rel_source_dirs, extern_libs, extra_params)
 
@@ -223,6 +230,7 @@ function setup_all_libs ()
 	}
 	extern_libs = {
 		"spidermonkey",
+		"sdl",	-- key definitions
 		"xerces",
 		"opengl",
 		"zlib",
@@ -238,6 +246,7 @@ function setup_all_libs ()
 	}
 	extern_libs = {
 		"opengl",
+		"sdl",	-- key definitions
 		"spidermonkey",	-- for graphics/scripting
 		"boost"
 	}
@@ -262,6 +271,7 @@ function setup_all_libs ()
 	}
 	extern_libs = {
 		"boost",
+		"sdl",	-- key definitions
 		"opengl",
 		"spidermonkey"
 	}
@@ -274,6 +284,7 @@ function setup_all_libs ()
 	}
 	extern_libs = {
 		"spidermonkey",
+		"sdl",	-- key definitions
 		"opengl",
 		"boost"
 	}
@@ -289,6 +300,7 @@ function setup_all_libs ()
 		"lib/res/sound"
 	}
 	extern_libs = {
+		"sdl",
 		"opengl",
 		"libpng",
 		"zlib",
@@ -406,15 +418,17 @@ end
 --------------------------------------------------------------------------------
 
 -- setup a typical Atlas component package
-local function setup_atlas_package(package_name, target_type, rel_source_dirs, rel_include_dirs, extern_libs, flags)
+-- extra_params: as in package_add_contents; also zero or more of the following:
+-- * pch: (any type) set stdafx.h and .cpp as PCH
+local function setup_atlas_package(package_name, target_type, rel_source_dirs, rel_include_dirs, extern_libs, extra_params)
 
 	local source_root = "../../../source/tools/atlas/" .. package_name .. "/"
 	package_create(package_name, target_type)
 
 	-- Don't add the default 'sourceroot/pch/projectname' for finding PCH files
-	flags["no_default_pch"] = 1
+	extra_params["no_default_pch"] = 1
 
-	package_add_contents(source_root, rel_source_dirs, rel_include_dirs, flags)
+	package_add_contents(source_root, rel_source_dirs, rel_include_dirs, extra_params)
 	package_add_extern_libs(extern_libs)
 
 	-- Platform Specifics
@@ -428,13 +442,9 @@ local function setup_atlas_package(package_name, target_type, rel_source_dirs, r
 		-- required to use WinMain() on Windows, otherwise will default to main()
 		tinsert(package.buildflags, "no-main")
 
-		if flags["pch"] then
+		if extra_params["pch"] then
 			package.pchheader = "stdafx.h"
 			package.pchsource = "stdafx.cpp"
-		end
-
-		if flags["depends"] then
-			listconcat(package.links, flags["depends"])
 		end
 
 	else -- Non-Windows, = Unix
@@ -453,7 +463,7 @@ function setup_atlas_packages()
 	},{	-- include
 	},{	-- extern_libs
 		"xerces"
-	},{	-- flags
+	},{	-- extra_params
 	})
 
 	setup_atlas_package("AtlasUI", "dll",
@@ -488,9 +498,9 @@ function setup_atlas_packages()
 		"devil",
 		"xerces",
 		"wxwidgets"
-	},{	-- flags
+	},{	-- extra_params
 		pch = 1,
-		depends = { "AtlasObject", "DatafileIO" },
+		extra_links = { "AtlasObject", "DatafileIO" },
 		extra_files = { "Misc/atlas.rc" }
 	})
 
@@ -507,7 +517,7 @@ function setup_atlas_packages()
 		"devil",
 		"xerces",
 		"zlib"
-	},{	-- flags
+	},{	-- extra_params
 		pch = 1,
 	})
 

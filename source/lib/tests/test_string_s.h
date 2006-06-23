@@ -30,8 +30,9 @@ class TestString_s : public CxxTest::TestSuite
 
 
 	static void TEST_LEN(const char* string, size_t limit,
+		size_t expected_len)
 	{
-		TS_ASSERT_EQUALS(strnlen((string), (limit)), (expected));
+		TS_ASSERT_EQUALS(strnlen((string), (limit)), (expected_len));
 	}
 
 	static void TEST_CPY(char* dst, size_t dst_max, const char* src,
@@ -46,7 +47,7 @@ class TestString_s : public CxxTest::TestSuite
 	static void TEST_CPY2(char* dst, size_t max_dst_chars, const char* src,
 		int expected_ret, const char* expected_dst)
 	{
-		int ret = strcpy_s((dst), ARRAY_SIZE(dst), (src));
+		int ret = strcpy_s((dst), max_dst_chars, (src));
 		TS_ASSERT_EQUALS(ret, expected_ret);
 		if(dst != 0)
 			TS_ASSERT(!strcmp(dst, expected_dst));
@@ -62,7 +63,7 @@ class TestString_s : public CxxTest::TestSuite
 	}
 
 	static void TEST_CAT(char* dst, size_t max_dst_chars, const char* src,
-		int expected_ret, const char expected_dst)
+		int expected_ret, const char* expected_dst)
 	{
 		int ret = strcat_s(dst, max_dst_chars, src);
 		TS_ASSERT_EQUALS(ret, expected_ret);
@@ -186,7 +187,7 @@ public:
 
 	void test_concatenate()
 	{
-		TEST_CAT2(d3,3, s1, ,"1",0,"1a");
+		TEST_CAT2(d3,3, s1, "1",0,"1a");
 		TEST_CAT2(d5,5, s1, "1",0,"1a");
 		TEST_CAT2(d6,6, s5, "",0,"abcde");
 		TEST_CAT2(d10,10, s5, "",0,"abcde");

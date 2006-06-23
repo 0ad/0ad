@@ -233,9 +233,12 @@ extern LibError sys_cursor_free(void* cursor);
 // misc
 //
 
-// OS-specific backend for error_description_r.
-// NB: it is expected to be rare that OS return/error codes are actually
-// seen by user code, but we still translate them for completeness.
+// describe the current OS error state.
+//
+// err: if not 0, use that as the error code to translate; otherwise,
+// uses GetLastError or similar.
+// rationale: it is expected to be rare that OS return/error codes are
+// actually seen by user code, but we leave the possibility open.
 extern LibError sys_error_description_r(int err, char* buf, size_t max_chars);
 
 // determine filename of the module to whom the given address belongs.

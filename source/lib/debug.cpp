@@ -484,13 +484,29 @@ static const wchar_t* build_error_message(wchar_t* buf, size_t max_chars,
 	if(!buf)
 		return L"(insufficient memory to generate error message)";
 
+	char errno_description[100] = {'?'};
+	LibError errno_equiv = LibError_from_errno(false);
+	if(errno_equiv != ERR_FAIL)	// meaningful translation
+		error_description_r(errno_equiv, errno_description, ARRAY_SIZE(errno_description));
+
+	char os_error[100];
+	if(sys_error_description_r(0, os_error, ARRAY_SIZE(os_error)) != INFO_OK)
+		strcpy_s(os_error, ARRAY_SIZE(os_error), "?");
+
 	static const wchar_t fmt[] =
 		L"%ls\r\n"
 		L"Location: %hs:%d (%hs)\r\n"
+		L"errno = %d (%hs)\r\n"
+		L"OS error = %hs\r\n"
 		L"\r\n"
 		L"Call stack:\r\n"
 		L"\r\n";
-	int len = swprintf(buf,max_chars,fmt, description, fn_only, line, func);
+	int len = swprintf(buf,max_chars,fmt,
+		description,
+		fn_only, line, func,
+		errno, errno_description,
+		os_error
+	);
 	if(len < 0)
 		return L"(error while formatting error message)";
 

@@ -109,32 +109,9 @@ static void bundle_logs(FILE* f)
 }
 
 
-// TODO: leaks memory returned by wcsdup
+
 static const wchar_t* translate(const wchar_t* text)
 {
-#if HAVE_I18N
-	// make sure i18n system is (already|still) initialized.
-	if(g_CurrentLocale)
-	{
-		// be prepared for this to fail, because translation potentially
-		// involves script code and the JS context might be corrupted.
-#if OS_WIN
-		__try
-#endif
-		{
-			const wchar_t* text2 = wcsdup(I18n::translate(text).c_str());
-			// only overwrite if wcsdup succeeded, i.e. not out of memory.
-			if(text2)
-				text = text2;
-		}
-#if OS_WIN
-		__except(EXCEPTION_EXECUTE_HANDLER)
-#endif
-		{
-		}
-	}
-#endif
-
 	return text;
 }
 

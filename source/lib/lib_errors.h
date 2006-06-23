@@ -457,18 +457,18 @@ ERR(-100800, ERR_SYM_NO_STACK_FRAMES_FOUND, "No stack frames found")
 ERR(-100801, ERR_SYM_UNRETRIEVABLE_STATIC, "Value unretrievable (stored in external module)")
 ERR(-100802, ERR_SYM_UNRETRIEVABLE_REG, "Value unretrievable (stored in register)")
 ERR(-100803, ERR_SYM_TYPE_INFO_UNAVAILABLE, "Error getting type_info")
+ERR(-100804, ERR_SYM_INTERNAL_ERROR, "Exception raised while processing a symbol")
+ERR(-100805, ERR_SYM_UNSUPPORTED, "Symbol type not (fully) supported")
+ERR(-100806, ERR_SYM_CHILD_NOT_FOUND, "Symbol does not have the given child")
 // .. this limit is to prevent infinite recursion.
-ERR(-100804, ERR_SYM_NESTING_LIMIT, "Symbol nesting too deep or infinite recursion")
+ERR(-100807, ERR_SYM_NESTING_LIMIT, "Symbol nesting too deep or infinite recursion")
 // .. this limit is to prevent large symbols (e.g. arrays or linked lists) from
 //    hogging all stack trace buffer space.
-ERR(-100805, ERR_SYM_SINGLE_SYMBOL_LIMIT, "Symbol has produced too much output")
-ERR(-100806, ERR_SYM_INTERNAL_ERROR, "Exception raised while processing a symbol")
-ERR(-100807, ERR_SYM_UNSUPPORTED, "Symbol type not (fully) supported")
+ERR(-100808, ERR_SYM_SINGLE_SYMBOL_LIMIT, "Symbol has produced too much output")
 // .. one of the dump_sym* functions decided not to output anything at
 //    all (e.g. for member functions in UDTs - we don't want those).
 //    therefore, skip any post-symbol formatting (e.g. ",") as well.
-ERR(-100808, ERR_SYM_SUPPRESS_OUTPUT, "Symbol was suppressed")
-ERR(-100809, ERR_SYM_CHILD_NOT_FOUND, "Symbol does not have the given child")
+ERR(+100809, INFO_SYM_SUPPRESS_OUTPUT, "Symbol was suppressed")
 
 // STL debug
 ERR(-100900, ERR_STL_CNT_UNKNOWN, "Unknown STL container type_name")

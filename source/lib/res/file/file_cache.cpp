@@ -27,7 +27,7 @@
 
 #include "lib/allocators.h"
 #include "lib/byte_order.h"
-#include "lib/adts.h"
+#include "lib/cache_adt.h"
 #include "file_internal.h"
 
 //-----------------------------------------------------------------------------

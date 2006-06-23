@@ -35,7 +35,6 @@
 #include "lib/lib.h"
 #include "lib/posix.h"
 #include "lib/ogl.h"		// needed to pull in the delay-loaded opengl32.dll
-#include "SDL_vkeys.h"
 
 
 // for easy removal of DirectDraw dependency (used to query total video mem)
@@ -573,6 +572,10 @@ static void queue_key_event(uint type, uint sdlk, WCHAR unicode_char)
 
 
 static Uint8 keys[SDLK_LAST];
+
+// winuser.h promises VK_0 and VK_A etc. match ASCII value.
+#define VK_0 '0'
+#define VK_A 'A'
 
 static void init_vkmap(SDLKey (&VK_keymap)[256])
 {
