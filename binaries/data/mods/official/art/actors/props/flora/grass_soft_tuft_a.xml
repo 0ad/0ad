@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <group>
+    <variant name="texture1">
+      <texture>gaia/grass_field_lush_short_c.dds</texture>
+    </variant>
+    <variant name="texture2">
+      <texture>gaia/grass_field_lush_short_d.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant name="mesh1-short">
+      <mesh>gaia/wrld_fol_grasscluster_a_1.pmd</mesh>
+    </variant>
+    <variant name="mesh2-tall">
+      <mesh>gaia/wrld_fol_grasscluster_a_2.pmd</mesh>
+    </variant>
+    <variant name="mesh3-mixed">
+      <mesh>gaia/wrld_fol_grasscluster_a_3.pmd</mesh>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>
