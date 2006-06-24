@@ -13,10 +13,15 @@
       <mesh>skeletal/m_tunic_a.pmd</mesh>
       <props>
         <prop actor="props/units/heads/head_hele_a.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/xiphos.xml" attachpoint="r_hand"/>
         <prop actor="props/units/heads/hele_straw.xml" attachpoint="helmet"/>
+        <prop actor="props/units/weapons/xiphos.xml" attachpoint="r_hand"/>
       </props>
-      <texture>skeletal/hele_isp_b.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant>
+      <texture>skeletal/hele_isp_e.dds</texture>
     </variant>
   </group>
 

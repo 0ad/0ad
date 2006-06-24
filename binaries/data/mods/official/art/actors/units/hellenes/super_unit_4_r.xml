@@ -12,11 +12,20 @@
       </animations>
       <mesh>skeletal/m_tunic_a.pmd</mesh>
       <props>
+        <prop actor="props/units/heads/head_hele_a.xml" attachpoint="head"/>
         <prop actor="props/units/heads/hele_cav_e.xml" attachpoint="helmet"/>
-        <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/spear_long.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/cape_a.xml" attachpoint="back"/>
       </props>
-      <texture>skeletal/hele_hetairoi.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant name="armor-linen">
+      <texture>skeletal/hele_hetairoi_a.dds</texture>
+    </variant>
+    <variant name="armor-mail">
+      <texture>skeletal/hele_hetairoi_b.dds</texture>
     </variant>
   </group>
 

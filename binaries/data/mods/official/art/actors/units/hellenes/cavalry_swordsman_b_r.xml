@@ -14,8 +14,14 @@
       <props>
         <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/xiphos.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/heads/hele_straw.xml" attachpoint="helmet"/>
       </props>
-      <texture>skeletal/hele_iar_b.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant>
+      <texture>skeletal/hele_isp_b.dds</texture>
     </variant>
   </group>
 
