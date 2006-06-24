@@ -248,6 +248,7 @@ const char* file_make_unique_fn_copy(const char* P_fn)
 
 void path_init()
 {
+	ONCE_NOT(return;);
 	pool_create(&atom_pool, 8*MiB, POOL_VARIABLE_ALLOCS);
 }
 
@@ -263,17 +264,28 @@ const char* file_get_random_name()
 	debug_assert(atom_pool.da.pos != 0);
 
 again:
-	const size_t start_ofs = (size_t)rand(0, (uint)atom_pool.da.pos-1);
+	const size_t start_ofs = (size_t)rand(0, (uint)atom_pool.da.pos);
 
-	// scan ahead to next string boundary
+	// scan back to start of string (don't scan ahead; this must
+	// work even if atom_pool only contains one entry).
 	const char* start = (const char*)atom_pool.da.base+start_ofs;
-	const char* next_0 = strchr(start, '\0')+1;
-	// .. at end of storage: restart
-	if((u8*)next_0 >= atom_pool.da.base+atom_pool.da.pos)
-		goto again;
-	// .. skip all '\0' (may be several due to pool alignment)
-	const char* next_name = next_0;
-	while(*next_name == '\0') next_name++;
+	for(size_t i = 0; i < start_ofs; i++)
+	{
+		if(*start == '\0')
+			break;
+		start--;
+	}
 
+	// skip past the '\0' we found. loop is needed because there may be
+	// several if we land in padding (due to pool alignment).
+	size_t chars_left = atom_pool.da.pos - start_ofs;
+	for(; *start == '\0'; start++)
+	{
+		// we had landed in padding at the end of the buffer.
+		if(chars_left-- == 0)
+			goto again;
+	}
+
+	const char* next_name = start;
 	return next_name;
 }

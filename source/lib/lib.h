@@ -373,25 +373,26 @@ inline uint bits(uint num, uint lo_idx, uint hi_idx)
 extern bool is_pow2(uint n);
 
 /**
- * @return -1 if not an integral power of 2,
- * otherwise the base2 logarithm.
+ * base-2 logarithm; return -1 for non-integral powers of 2.
  **/
 extern int ilog2(uint n);
 
 /**
- * @return log base 2, rounded up.
+ * base-2 logarithm, rounded up.
+ *
+ * @param n input; MUST be > 0, else results are undefined.
  **/
 extern uint log2(uint x);
 
 /**
- * another implementation; uses the FPU normalization hardware.
+ * base-2 logarithm (uses the FPU normalization hardware).
  *
- * @return log base 2, rounded up.
+ * @param n input; MUST be > 0, else results are undefined.
  **/
 extern int ilog2(const float x);
 
 /**
- * round up to nearest power of two; no change if already POT.
+ * round up to next larger power of two.
  **/
 extern uint round_up_to_pow2(uint x);
 

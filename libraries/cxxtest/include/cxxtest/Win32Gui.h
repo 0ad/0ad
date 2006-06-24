@@ -325,13 +325,13 @@ namespace CxxTest
             if ( message == WM_CREATE )
                 setUp( window, (LPCREATESTRUCT)lParam );
 
-            Win32Gui *that = (Win32Gui *)GetWindowLong( window, GWL_USERDATA );
+            Win32Gui *that = (Win32Gui *)(uintptr_t)GetWindowLong( window, GWL_USERDATA );
             return that->handle( window, message, wParam, lParam );
         }
 
         static void setUp( HWND window, LPCREATESTRUCT create )
         {
-            SetWindowLong( window, GWL_USERDATA, (LONG)create->lpCreateParams );
+            SetWindowLong( window, GWL_USERDATA, (LONG)(uintptr_t)create->lpCreateParams );
         }
 
         LRESULT handle( HWND window, UINT message, WPARAM wParam, LPARAM lParam )

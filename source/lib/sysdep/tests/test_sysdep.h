@@ -29,12 +29,12 @@ public:
 		TS_ASSERT_EQUALS(rintf(0.99999f), 1.0f);
 		TS_ASSERT_EQUALS(rintf(1.0f), 1.0f);
 		TS_ASSERT_EQUALS(rintf(1.01f), 1.0f);
-		TS_ASSERT_EQUALS(rintf(5.6f), 5.0f);
+		TS_ASSERT_EQUALS(rintf(5.6f), 6.0f);
 
 		TS_ASSERT_EQUALS(rint(0.99999), 1.0);
 		TS_ASSERT_EQUALS(rint(1.0), 1.0);
 		TS_ASSERT_EQUALS(rint(1.01), 1.0);
-		TS_ASSERT_EQUALS(rint(5.6), 5.0);
+		TS_ASSERT_EQUALS(rint(5.6), 6.0);
 	}
 
 	void test_min_max()

@@ -108,7 +108,7 @@ public:
 	{
 		u8 img[] = { 0x10,0x20,0x30, 0x40,0x60,0x80, 0xA0,0xA4,0xA8, 0xC0,0xC1,0xC2 };
 		// assumes 2x2 box filter algorithm with rounding
-		const u8 mipmap[] = { 0x70,0x79,0x87 };
+		const u8 mipmap[] = { 0x6C,0x79,0x87 };
 		Tex t;
 		TS_ASSERT_OK(tex_wrap(2, 2, 24, 0, img, &t));
 		TS_ASSERT_OK(tex_transform_to(&t, TEX_MIPMAPS));
@@ -120,14 +120,15 @@ public:
 
 	void test_img_size()
 	{
-		Tex t;
 		char dummy_img[100*100*4];	// required
 
+		Tex t;
 		TS_ASSERT_OK(tex_wrap(100, 100, 32, TEX_ALPHA, dummy_img, &t));
 		TS_ASSERT_EQUALS(tex_img_size(&t), 40000);
 
 		// DXT rounds up to 4x4 blocks; DXT1a is 4bpp
-		TS_ASSERT_OK(tex_wrap(97, 97, 32, DXT1A, dummy_img, &t));
-		TS_ASSERT_EQUALS(tex_img_size(&t),  5000);
+		Tex t2;
+		TS_ASSERT_OK(tex_wrap(97, 97, 4, DXT1A, dummy_img, &t2));
+		TS_ASSERT_EQUALS(tex_img_size(&t2),  5000);
 	}
 };

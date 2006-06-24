@@ -246,10 +246,15 @@ const char* path_last_component(const char* path)
 
 	for(;;)
 	{
+		// catches empty path and those with trailing separator
 		if(*pos == '\0')
 			break;
 		last_component = pos;
 		const size_t component_len = strcspn(pos, separators);
+		// catches paths without trailing separator
+		// (the 'pos +=' would skip their 0-terminator)
+		if(pos[component_len] == '\0')
+			break;
 		pos += component_len+1;	// +1 for separator
 	}
 

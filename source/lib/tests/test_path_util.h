@@ -155,13 +155,13 @@ public:
 		// now paths (mostly copied from above test series)
 
 		// path
-		TEST_LAST_COMPONENT("abc/def/", "def");
+		TEST_LAST_COMPONENT("abc/def/", "def/");
 		// nonportable path
-		TEST_LAST_COMPONENT("abc\\def\\ghi\\", "ghi");
+		TEST_LAST_COMPONENT("abc\\def\\ghi\\", "ghi\\");
 		// mixed path
-		TEST_LAST_COMPONENT("abc/def\\ghi/", "ghi");
+		TEST_LAST_COMPONENT("abc/def\\ghi/", "ghi/");
 		// mixed path (2)
-		TEST_LAST_COMPONENT("abc\\def/ghi\\", "ghi");
+		TEST_LAST_COMPONENT("abc\\def/ghi\\", "ghi\\");
 	}
 
 	void test_strip_fn()
@@ -179,9 +179,9 @@ public:
 		// empty
 		TEST_STRIP_FN("", "");
 		// path
-		TEST_LAST_COMPONENT("abc/def/", "");
+		TEST_STRIP_FN("abc/def/", "abc/def/");
 		// nonportable path
-		TEST_LAST_COMPONENT("abc\\def\\ghi\\", "");
+		TEST_STRIP_FN("abc\\def\\ghi\\", "abc\\def\\ghi\\");
 	}
 
 	// note: no need to test path_dir_only - it is implemented exactly as

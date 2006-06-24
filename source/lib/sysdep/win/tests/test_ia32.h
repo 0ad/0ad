@@ -21,6 +21,8 @@ public:
 
 	void test_ia32_cap()
 	{
+		ia32_init();
+
 		// make sure the really common/basic caps end up reported as true
 		TS_ASSERT(ia32_cap(IA32_CAP_FPU));
 		TS_ASSERT(ia32_cap(IA32_CAP_TSC));

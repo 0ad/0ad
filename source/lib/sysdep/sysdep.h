@@ -94,7 +94,8 @@ extern void* alloca(size_t size);
 #endif
 
 // emulate some C99 functions if not already available:
-//   rint: round float to nearest integral value.
+//   rint: round float to nearest integral value, according to
+//     current rounding mode.
 //   fminf/fmaxf: return minimum/maximum of two floats.
 #if !HAVE_C99
 // .. fast IA-32 versions

@@ -14,7 +14,7 @@ public:
 		TS_ASSERT_EQUALS(fnv_lc_hash("ABcDeF", 6), h1);	// same result if case differs
 
 		TS_ASSERT_EQUALS(fnv_hash64(""), 0xCBF29CE484222325ull);	// verify initial value
-		const u64 h2 = fnv_hash("abcdef");
+		const u64 h2 = fnv_hash64("abcdef");
 		TS_ASSERT_EQUALS(h2, 0xD80BDA3FBE244A0Aull);		// verify value for simple string
 		TS_ASSERT_EQUALS(fnv_hash64("abcdef", 6), h2);	// same result if hashing buffer
 	}
@@ -40,7 +40,6 @@ public:
 
 	void test_log2()
 	{
-		TS_ASSERT_EQUALS(log2(0u), 1u);
 		TS_ASSERT_EQUALS(log2(3u), 2u);
 		TS_ASSERT_EQUALS(log2(0xffffffffu), 32u);
 		TS_ASSERT_EQUALS(log2(1u), 0u);
@@ -50,7 +49,6 @@ public:
 
 	void test_ilog2f()
 	{
-		TS_ASSERT_EQUALS(ilog2(0.f), 0);
 		TS_ASSERT_EQUALS(ilog2(1.f), 0);
 		TS_ASSERT_EQUALS(ilog2(3.f), 1);
 		TS_ASSERT_EQUALS(ilog2(256.f), 8);
@@ -61,7 +59,7 @@ public:
 		TS_ASSERT_EQUALS(round_up_to_pow2(0u), 1u);
 		TS_ASSERT_EQUALS(round_up_to_pow2(1u), 2u);
 		TS_ASSERT_EQUALS(round_up_to_pow2(127u), 128u);
-		TS_ASSERT_EQUALS(round_up_to_pow2(128u), 128u);
+		TS_ASSERT_EQUALS(round_up_to_pow2(128u), 256u);
 		TS_ASSERT_EQUALS(round_up_to_pow2(129u), 256u);
 	}
 
@@ -205,7 +203,9 @@ public:
 	void test_rand()
 	{
 		// complain if huge interval or min > max
+		debug_skip_next_err(ERR_INVALID_PARAM);
 		TS_ASSERT_EQUALS(rand(1, 0), 0);
+		debug_skip_next_err(ERR_INVALID_PARAM);
 		TS_ASSERT_EQUALS(rand(2, ~0u), 0);
 
 		// returned number must be in [min, max)
@@ -222,7 +222,7 @@ public:
 		{
 			uint x = rand(1, 3);
 			// paranoia: don't use array (x might not be 1 or 2 - checked below)
-			if(x, 1) ones++; if(x, 2) twos++;
+			if(x == 1) ones++; if(x == 2) twos++;
 		}
 		TS_ASSERT_EQUALS(ones+twos, 100);
 		TS_ASSERT(ones > 10 && twos > 10);

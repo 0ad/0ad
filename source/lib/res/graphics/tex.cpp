@@ -395,7 +395,7 @@ LibError tex_transform(Tex* t, uint transforms)
 			return INFO_OK;
 
 		LibError ret = tex_codec_transform(t, remaining_transforms);
-		if(ret != 0)
+		if(ret != INFO_OK)
 			break;
 	}
 
