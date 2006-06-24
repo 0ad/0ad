@@ -614,7 +614,7 @@ public:
 		const FileOp fo = is_write? FO_WRITE : FO_READ;
 		double start_time = 0.0;
 		stats_io_sync_start(&start_time);
-			ssize_t bytes_transferred = no_aio? lowio() : aio();
+		ssize_t bytes_transferred = no_aio? lowio() : aio();
 		stats_io_sync_finish(fi, fo, bytes_transferred, &start_time);
 
 		// we allocated the memory: skip any leading padding

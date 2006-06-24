@@ -2,6 +2,7 @@
 
 #include "lib/res/file/path.h"
 #include "lib/res/file/file.h"
+#include "lib/res/file/file_cache.h"
 #include "lib/res/file/vfs.h"
 #include "lib/res/file/archive.h"
 #include "lib/res/file/archive_builder.h"
@@ -9,7 +10,7 @@
 class TestArchiveBuilder : public CxxTest::TestSuite 
 {
 	const char* const archive_fn;
-	static const size_t NUM_FILES = 300;
+	static const size_t NUM_FILES = 100;
 	static const size_t MAX_FILE_SIZE = 20000;
 
 	std::set<const char*> existing_names;
@@ -45,9 +46,6 @@ class TestArchiveBuilder : public CxxTest::TestSuite
 
 	void generate_random_files()
 	{
-		path_init();	// required for file_make_unique_fn_copy
-		vfs_init();
-
 		for(size_t i = 0; i < NUM_FILES; i++)
 		{
 			const off_t size = rand(0, MAX_FILE_SIZE);
@@ -72,9 +70,11 @@ class TestArchiveBuilder : public CxxTest::TestSuite
 			files[i].size = size;
 			files[i].data = data;
 
-			TS_ASSERT_OK(vfs_store(filenames[i], data, size, FILE_NO_AIO));
+			ssize_t bytes_written = vfs_store(filenames[i], data, size, FILE_NO_AIO);
+			TS_ASSERT_EQUALS(bytes_written, size);
 		}
 
+		// 0-terminate the list - see Filenames decl.
 		filenames[NUM_FILES] = NULL;
 	}
 
@@ -82,18 +82,34 @@ public:
 	TestArchiveBuilder()
 		: archive_fn("test_archive_random_data.zip") {}
 
+	void setUp()
+	{
+		(void)file_init();
+		path_init();	// required for file_make_unique_fn_copy
+		(void)file_set_root_dir(0, ".");
+		vfs_init();
+		TS_ASSERT_OK(dir_create("archivetest", S_IRWXU|S_IRWXG|S_IRWXO));
+		TS_ASSERT_OK(vfs_mount("", "archivetest"));
+	}
+
+	void tearDown()
+	{
+		vfs_shutdown();
+		dir_delete("archivetest");
+	}
+
 	void test_create_archive_with_random_files()
 	{
-		return;
-
 		generate_random_files();
-
-		// build and open archive
 		TS_ASSERT_OK(archive_build(archive_fn, filenames));
-		Handle ha = archive_open(archive_fn);
-		TS_ASSERT(ha > 0);
+
+		// wipe out file cache, otherwise we're just going to get back
+		// the file contents read during archive_build .
+		file_cache_reset();
 
 		// read in each file and compare file contents
+		Handle ha = archive_open(archive_fn);
+		TS_ASSERT(ha > 0);
 		for(size_t i = 0; i < NUM_FILES; i++)
 		{
 			File f;
@@ -107,7 +123,6 @@ public:
 			TS_ASSERT_OK(file_buf_free(buf));
 			SAFE_ARRAY_DELETE(files[i].data);
 		}
-
 		TS_ASSERT_OK(archive_close(ha));
 	}
 };

@@ -152,6 +152,7 @@ extern LibError dir_close(DirIterator* d);
 
 
 extern LibError dir_create(const char* P_path, mode_t mode);
+extern LibError dir_delete(const char* P_path);
 
 
 #ifdef __cplusplus

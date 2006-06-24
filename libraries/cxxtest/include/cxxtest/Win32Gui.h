@@ -28,10 +28,10 @@ namespace CxxTest
     {
     public:
         void enterGui( int &argc, char **argv )
-	{
-	    parseCommandLine( argc, argv );
-	}
-	
+        {
+            parseCommandLine( argc, argv );
+        }
+
         void enterWorld( const WorldDescription &wd )
         {
             getTotalTests( wd );
@@ -39,25 +39,25 @@ namespace CxxTest
             startGuiThread();
         }
 
-	void guiEnterSuite( const char *suiteName )
-	{
-	    showSuiteName( suiteName );
+        void guiEnterSuite( const char *suiteName )
+        {
+            showSuiteName( suiteName );
             reset( _suiteStart );
-	}
+        }
 
         void guiEnterTest( const char *suiteName, const char *testName )
         {
             ++ _testsDone;
             setTestCaption( suiteName, testName );
             showTestName( testName );
-	    showTestsDone();
+            showTestsDone();
             progressBarMessage( PBM_STEPIT );
             reset( _testStart );
         }
 
         void yellowBar()
         {
-	    setColor( 255, 255, 0 );
+            setColor( 255, 255, 0 );
             setIcon( IDI_WARNING );
             getTotalTests();
         }
@@ -66,8 +66,8 @@ namespace CxxTest
         {
             if ( _startMinimized )
                 showMainWindow( SW_SHOWNORMAL );
-	    setColor( 255, 0, 0 );
-	    setIcon( IDI_ERROR );
+            setColor( 255, 0, 0 );
+            setIcon( IDI_ERROR );
             getTotalTests();
         }
 
@@ -106,7 +106,7 @@ namespace CxxTest
         void parseCommandLine( int argc, char **argv )
         {
             _startMinimized = _keep = false;
-	    _title = argv[0];
+            _title = argv[0];
             
             for ( int i = 1; i < argc; ++ i )
             {
@@ -118,7 +118,7 @@ namespace CxxTest
                     _title = argv[++i];
             }
         }
-        
+
         void getTotalTests()
         {
             getTotalTests( tracker().world() );
@@ -133,7 +133,7 @@ namespace CxxTest
         void startGuiThread()
         {
             _canStartTests = CreateEvent( NULL, TRUE, FALSE, NULL );
-			DWORD threadId;
+            DWORD threadId;
             _gui = CreateThread( NULL, 0, &(Win32Gui::guiThread), (LPVOID)this, 0, &threadId );
             WaitForSingleObject( _canStartTests, INFINITE );
         }
@@ -186,14 +186,13 @@ namespace CxxTest
         {
             HMODULE dll = LoadLibraryA( "comctl32.dll" );
             if ( !dll )
-		return;
-		
-	    typedef void (WINAPI *FUNC)( void );
-	    FUNC func = (FUNC)GetProcAddress( dll, "InitCommonControls" );
-	    if ( !func )
                 return;
 
-	    func();
+            typedef void (WINAPI *FUNC)( void );
+            FUNC func = (FUNC)GetProcAddress( dll, "InitCommonControls" );
+            if ( !func )
+                return;
+            func();
         }
 
         void createProgressBar()
@@ -203,7 +202,7 @@ namespace CxxTest
 #ifdef PBM_SETRANGE32
             progressBarMessage( PBM_SETRANGE32, 0, _numTotalTests );
 #else // No PBM_SETRANGE32, use PBM_SETRANGE
-	    progressBarMessage( PBM_SETRANGE, 0, MAKELPARAM( 0, (WORD)_numTotalTests ) );
+        progressBarMessage( PBM_SETRANGE, 0, MAKELPARAM( 0, (WORD)_numTotalTests ) );
 #endif // PBM_SETRANGE32
             progressBarMessage( PBM_SETPOS, 0 );
             progressBarMessage( PBM_SETSTEP, 1 );
@@ -432,15 +431,15 @@ namespace CxxTest
         void showSuiteName( const char *suiteName )
         {
             setStatusPart( STATUS_SUITE_NAME, suiteName );
-	}
+        }
 
-	void showTestName( const char *testName )
-	{
+        void showTestName( const char *testName )
+        {
             setStatusPart( STATUS_TEST_NAME, testName );
-	}
+        }
 
-	void showTestsDone()
-	{
+        void showTestsDone()
+        {
             wsprintfA( _statusTestsDone, "%u of %s (%u%%)",
                        _testsDone, _strTotalTests,
                        (_testsDone * 100) / _numTotalTests );

@@ -47,8 +47,15 @@ class TestWdbgSym : public CxxTest::TestSuite
 		// note: prefer simple error (which also generates stack trace) to
 		// exception, because it is guaranteed to work (no issues with the
 		// debugger swallowing exceptions).
-		DISPLAY_ERROR(L"wdbg_sym self test: check if stack trace below is ok.");
+		//DISPLAY_ERROR(L"wdbg_sym self test: check if stack trace below is ok.");
 		//RaiseException(0xf001,0,0,0);
+
+		// note: we don't want any kind of dialog to be raised, because
+		// this test now always runs. therefore, just make sure a decent
+		// amount of text (not just "(failed)" error messages) was produced.
+		wchar_t buf[60000] = {'\0'};
+		debug_dump_stack(buf, ARRAY_SIZE(buf), 0, 0);
+		TS_ASSERT(wcslen(buf) > 500);
 	}
 
 	// also used by test_stl as an element type

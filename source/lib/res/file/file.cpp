@@ -201,6 +201,60 @@ LibError dir_create(const char* P_path, mode_t mode)
 }
 
 
+// note: we have to recursively empty the directory before it can
+// be deleted (required by Windows and POSIX rmdir()).
+LibError dir_delete(const char* P_path)
+{
+	char N_path[PATH_MAX];
+	RETURN_ERR(file_make_full_native_path(P_path, N_path));
+	PathPackage N_pp;
+	RETURN_ERR(path_package_set_dir(&N_pp, N_path));
+
+	DirIterator di;
+	RETURN_ERR(dir_open(P_path, &di));
+
+	LibError ret;
+
+	for(;;)
+	{
+		DirEnt ent;
+		ret = dir_next_ent(&di, &ent);
+		if(ret == ERR_DIR_END)
+			break;
+		if(ret != INFO_OK) goto fail;
+
+		if(DIRENT_IS_DIR(&ent))
+		{
+			char P_subdir[PATH_MAX];
+			ret = path_append(P_subdir, P_path, ent.name);
+			if(ret != INFO_OK) goto fail;
+			ret = dir_delete(P_subdir);
+			if(ret != INFO_OK) goto fail;
+		}
+		else
+		{
+			ret = path_package_append_file(&N_pp, ent.name);
+			if(ret != INFO_OK) goto fail;
+
+			errno = 0;
+			int posix_ret = unlink(N_pp.path);
+			ret = LibError_from_posix(posix_ret);
+			if(ret != INFO_OK) goto fail;
+		}
+	}
+
+	// must happen before rmdir
+	RETURN_ERR(dir_close(&di));
+
+	errno = 0;
+	int posix_ret = rmdir(N_path);
+	return LibError_from_posix(posix_ret);
+
+fail:
+	RETURN_ERR(dir_close(&di));
+	return ret;
+}
+
 
 // get file information. output param is zeroed on error.
 static LibError file_stat_impl(const char* fn, struct stat* s, bool warn_if_failed = true)

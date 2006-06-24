@@ -235,6 +235,8 @@ extern int chdir(const char*);
 #undef getcwd
 extern char* getcwd(char*, size_t);
 
+extern _CRTIMP int rmdir(const char*);
+
 // user tests if available via #ifdef; can't use enum.
 #define _SC_PAGESIZE      1
 #define _SC_PAGE_SIZE     1
