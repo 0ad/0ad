@@ -99,8 +99,7 @@
 #include <cctype>
 #include <cerrno>
 #include <cfloat>
-//#include <ciso646>
-	// defines e.g. "and" to "&". unnecessary and causes trouble with asm.
+//#include <ciso646> // defines e.g. "and" to "&". unnecessary and causes trouble with asm.
 #include <climits>
 #include <clocale>
 #include <cmath>

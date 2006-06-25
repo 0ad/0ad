@@ -782,8 +782,21 @@ void vs_list_files(const char* path, int stage)
 					tag_open("Tool");
 					tag_attr("Name=\"VCCustomBuildTool\"");
 					tag_attr("Description=\"Assembling $(InputPath)\"");
-					tag_attr("CommandLine=\"%s -f win32 -o &quot;$(IntDir)\\$(InputName).obj&quot; &quot;$(InputPath)&quot;\"",
-						path_translate(prj_get_nasmpath(), "windows"));
+
+					{
+					// note: copy into our strings because path_* use static buffers.
+					char nasm_path[512];	// PATH_MAX isn't defined
+					char input_dir[512];
+					strcpy(nasm_path, path_translate(prj_get_nasmpath(), "windows"));
+					// note: NASM chokes on -i"path" and says "no input file".
+					// we therefore use the *relative* input directory, not VC's $(InputDir) -
+					// this is more likely not to contain a space in directory name.
+					strcpy(input_dir, path_translate(path_getdir(path) , "windows"));
+					// required - NASM just concatenates include path and filename.
+					strcat(input_dir, "\\");
+					tag_attr("CommandLine=\"%s -i %s -f win32 &quot;$(InputPath)&quot; -o &quot;$(IntDir)\\$(InputName).obj&quot;\"",
+						nasm_path, input_dir);
+					}
 					tag_attr("Outputs=\"$(IntDir)\\$(InputName).obj\"");
 					tag_close("Tool", 0);
 				}
