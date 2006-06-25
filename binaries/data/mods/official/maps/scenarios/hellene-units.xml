@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<Scenario>
+	<Environment>
+		<SkySet>default</SkySet>
+		<SunColour r="1" g="1" b="1"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="5.49779"/>
+		<TerrainAmbientColour r="0.4" g="0.4" b="0.4"/>
+		<UnitsAmbientColour r="0.4" g="0.4" b="0.4"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.3" g="0.35" b="0.7"/>
+				<Height>5</Height>
+				<Shininess>200</Shininess>
+				<Waviness>8</Waviness>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="100.294" y="78.0742" z="22.8404"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
+	</Camera>
+	<Entities>
+		<Entity>
+			<Template>hele_cavalry_swordsman_b</Template>
+			<Player>1</Player>
+			<Position x="85.1584" y="22.4" z="110.835"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_cavalry_swordsman_b</Template>
+			<Player>1</Player>
+			<Position x="82.2527" y="22.4" z="113.85"/>
+			<Orientation angle="-0.773192"/>
+		</Entity>
+		<Entity>
+			<Template>hele_cavalry_swordsman_a</Template>
+			<Player>1</Player>
+			<Position x="87.4889" y="22.4" z="113.246"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_cavalry_swordsman_a</Template>
+			<Player>1</Player>
+			<Position x="84.4994" y="22.4" z="115.805"/>
+			<Orientation angle="-0.817859"/>
+		</Entity>
+		<Entity>
+			<Template>hele_cavalry_swordsman_e</Template>
+			<Player>1</Player>
+			<Position x="89.3176" y="22.4" z="115.443"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_cavalry_swordsman_e</Template>
+			<Player>1</Player>
+			<Position x="86.1324" y="22.4" z="117.948"/>
+			<Orientation angle="-0.785016"/>
+		</Entity>
+		<Entity>
+			<Template>hele_super_cavalry_m</Template>
+			<Player>1</Player>
+			<Position x="92.7341" y="22.4" z="118.621"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_super_cavalry_m</Template>
+			<Player>1</Player>
+			<Position x="88.7774" y="22.4" z="122.358"/>
+			<Orientation angle="-0.669516"/>
+		</Entity>
+		<Entity>
+			<Template>hele_super_cavalry_m</Template>
+			<Player>1</Player>
+			<Position x="94.5517" y="22.4" z="120.256"/>
+			<Orientation angle="2.46812"/>
+		</Entity>
+		<Entity>
+			<Template>hele_super_cavalry_m</Template>
+			<Player>1</Player>
+			<Position x="90.4652" y="22.4" z="124.421"/>
+			<Orientation angle="-0.704783"/>
+		</Entity>
+		<Entity>
+			<Template>hele_super_cavalry_p</Template>
+			<Player>1</Player>
+			<Position x="99.9563" y="22.4" z="124.69"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_super_cavalry_p</Template>
+			<Player>1</Player>
+			<Position x="101.603" y="22.4" z="126.155"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_super_cavalry_p</Template>
+			<Player>1</Player>
+			<Position x="96.7416" y="22.4" z="128.561"/>
+			<Orientation angle="-0.894164"/>
+		</Entity>
+		<Entity>
+			<Template>hele_super_cavalry_p</Template>
+			<Player>1</Player>
+			<Position x="98.1765" y="22.4" z="130.077"/>
+			<Orientation angle="-0.342672"/>
+		</Entity>
+		<Entity>
+			<Template>hele_super_infantry_m</Template>
+			<Player>1</Player>
+			<Position x="104.993" y="22.4" z="129.16"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_super_infantry_m</Template>
+			<Player>1</Player>
+			<Position x="106.643" y="22.4" z="130.699"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_super_infantry_m</Template>
+			<Player>1</Player>
+			<Position x="102.301" y="22.4" z="133.958"/>
+			<Orientation angle="-0.890802"/>
+		</Entity>
+		<Entity>
+			<Template>hele_super_infantry_m</Template>
+			<Player>1</Player>
+			<Position x="104.124" y="22.4" z="135.218"/>
+			<Orientation angle="-0.655299"/>
+		</Entity>
+		<Entity>
+			<Template>hele_super_infantry_p</Template>
+			<Player>1</Player>
+			<Position x="110.354" y="22.4" z="134.34"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_super_infantry_p</Template>
+			<Player>1</Player>
+			<Position x="107.7" y="22.4" z="138.041"/>
+			<Orientation angle="-0.825363"/>
+		</Entity>
+		<Entity>
+			<Template>hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="113.849" y="22.4" z="137.387"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="111.196" y="22.4" z="140.914"/>
+			<Orientation angle="-0.772196"/>
+		</Entity>
+		<Entity>
+			<Template>hele_infantry_archer_a</Template>
+			<Player>1</Player>
+			<Position x="116.605" y="22.4" z="139.96"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_infantry_archer_a</Template>
+			<Player>1</Player>
+			<Position x="113.588" y="22.4" z="143.935"/>
+			<Orientation angle="-0.759762"/>
+		</Entity>
+		<Entity>
+			<Template>hele_infantry_archer_e</Template>
+			<Player>1</Player>
+			<Position x="119.123" y="22.4" z="143.414"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_infantry_archer_e</Template>
+			<Player>1</Player>
+			<Position x="116.407" y="22.4" z="146.652"/>
+			<Orientation angle="-0.931901"/>
+		</Entity>
+		<Entity>
+			<Template>hele_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="121.721" y="22.4" z="146.186"/>
+			<Orientation angle="2.62335"/>
+		</Entity>
+		<Entity>
+			<Template>hele_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="119.45" y="22.4" z="149.169"/>
+			<Orientation angle="-0.648275"/>
+		</Entity>
+		<Entity>
+			<Template>hele_infantry_javelinist_a</Template>
+			<Player>1</Player>
+			<Position x="123.996" y="22.4" z="148.574"/>
+			<Orientation angle="2.69571"/>
+		</Entity>
+		<Entity>
+			<Template>hele_infantry_javelinist_a</Template>
+			<Player>1</Player>
+			<Position x="121.931" y="22.4" z="152.606"/>
+			<Orientation angle="-0.706046"/>
+		</Entity>
+		<Entity>
+			<Template>hele_infantry_javelinist_e</Template>
+			<Player>1</Player>
+			<Position x="126.882" y="22.4" z="151.853"/>
+			<Orientation angle="2.63329"/>
+		</Entity>
+		<Entity>
+			<Template>hele_infantry_javelinist_e</Template>
+			<Player>1</Player>
+			<Position x="124.72" y="22.4" z="154.267"/>
+			<Orientation angle="-0.595314"/>
+		</Entity>
+		<Entity>
+			<Template>hele_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="130.68" y="22.4" z="155.524"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="128.057" y="22.4" z="158.552"/>
+			<Orientation angle="-0.610134"/>
+		</Entity>
+		<Entity>
+			<Template>hele_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="132.797" y="22.4" z="157.877"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="130.496" y="22.4" z="160.672"/>
+			<Orientation angle="-0.53906"/>
+		</Entity>
+		<Entity>
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="135.565" y="22.4" z="160.835"/>
+			<Orientation angle="2.32964"/>
+		</Entity>
+		<Entity>
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="133.319" y="22.4" z="163.918"/>
+			<Orientation angle="-0.838201"/>
+		</Entity>
+		<Entity>
+			<Template>hele_ship_bireme</Template>
+			<Player>1</Player>
+			<Position x="142.655" y="22.4" z="171.47"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="156.466" y="22.4" z="180.413"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_temple</Template>
+			<Player>1</Player>
+			<Position x="72.0732" y="22.4" z="99.2553"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_hero_alexander</Template>
+			<Player>1</Player>
+			<Position x="92.1857" y="22.4" z="102.023"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_hero_demetrius</Template>
+			<Player>1</Player>
+			<Position x="94.7663" y="22.4" z="103.658"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_hero_leonidas</Template>
+			<Player>1</Player>
+			<Position x="96.4802" y="22.4" z="106.261"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_hero_philip</Template>
+			<Player>1</Player>
+			<Position x="98.1492" y="22.4" z="108.503"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_hero_themistocles</Template>
+			<Player>1</Player>
+			<Position x="100.023" y="22.4" z="110.089"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_hero_xenophon</Template>
+			<Player>1</Player>
+			<Position x="102.102" y="22.4" z="112.87"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+	</Entities>
+	<Nonentities>
+		<Nonentity>
+			<Actor>structures/hellenes/temple.xml</Actor>
+			<Position x="70.5547" y="22.4" z="147.589"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>units/hellenes/xenophon.xml</Actor>
+			<Position x="70.1742" y="22.4" z="142.022"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+	</Nonentities>
+</Scenario>
