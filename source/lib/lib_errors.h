@@ -21,7 +21,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-/*
+/**
 
 Error handling system
 
@@ -125,7 +125,7 @@ Notes:
 - unfortunately Intellisense isn't smart enough to pick up the
   ERR_* definitions. This is the price of automatically associating
   descriptive text with the error code.
-*/
+**/
 
 #ifndef ERRORS_H__
 #define ERRORS_H__
@@ -145,38 +145,65 @@ enum LibError {
 	LIB_ERROR_DUMMY
 };
 
-
-// generate textual description of an error code.
-// stores up to <max_chars> in the given buffer.
-// if error is unknown/invalid, the string will be something like
-// "Unknown error (65536, 0x10000)".
+/**
+ * generate textual description of an error code.
+ *
+ * @param err LibError to be translated. if despite type checking we
+ * get an invalid enum value, the string will be something like
+ * "Unknown error (65536, 0x10000)".
+ * @param buf destination buffer
+ * @param max_chars size of buffer [characters]
+ **/
 extern void error_description_r(LibError err, char* buf, size_t max_chars);
 
 
 //-----------------------------------------------------------------------------
 
 // conversion to/from other error code definitions.
-// notes:
-// - these functions will raise a warning (before returning any error code
-//   except INFO_OK) unless warn_if_failed is explicitly set to false.
-// - other conversion routines (e.g. to/from Win32) are implemented in
-//   the corresponding modules to keep this header portable.
+// note: other conversion routines (e.g. to/from Win32) are implemented in
+// the corresponding modules to keep this header portable.
 
-// return the LibError equivalent of errno, or ERR_FAIL if there's no equal.
-// only call after a POSIX function indicates failure.
-// raises a warning (avoids having to on each call site).
+/**
+ * translate errno to LibError.
+ *
+ * should only be called directly after a POSIX function indicates failure;
+ * errno may otherwise still be set from another error cause.
+ *
+ * @param warn_if_failed if set, raise a warning when returning an error
+ * (i.e. ERR_*, but not INFO_OK). this avoids having to wrap all
+ * call sites in WARN_ERR etc.
+ * @return LibError equivalent of errno, or ERR_FAIL if there's no equal.
+ **/
 extern LibError LibError_from_errno(bool warn_if_failed = true);
 
-// translate the return value of any POSIX function into LibError.
-// ret is typically to -1 to indicate error and 0 on success.
-// you should set errno to 0 before calling the POSIX function to
-// make sure we do not return any stale errors.
+/**
+ * translate a POSIX function's return/error indication to LibError.
+ *
+ * you should set errno to 0 before calling the POSIX function to
+ * make sure we do not return any stale errors. typical usage:
+ * errno = 0;
+ * int ret = posix_func(..);
+ * return LibError_from_posix(ret);
+ *
+ * @param ret return value of a POSIX function: 0 indicates success,
+ * -1 is error.
+ * @param warn_if_failed if set, raise a warning when returning an error
+ * (i.e. ERR_*, but not INFO_OK). this avoids having to wrap all
+ * call sites in WARN_ERR etc.
+ * @return INFO_OK if the POSIX function succeeded, else the LibError
+ * equivalent of errno, or ERR_FAIL if there's no equal.
+ **/
 extern LibError LibError_from_posix(int ret, bool warn_if_failed = true);
 
-// set errno to the equivalent of <err>. used in wposix - underlying
-// functions return LibError but must be translated to errno at
-// e.g. the mmap interface level. higher-level code that calls mmap will
-// in turn convert back to LibError.
+/**
+ * set errno to the equivalent of a LibError.
+ *
+ * used in wposix - underlying functions return LibError but must be
+ * translated to errno at e.g. the mmap interface level. higher-level code
+ * that calls mmap will in turn convert back to LibError.
+ *
+ * @param err error code to set
+ **/
 extern void LibError_set_errno(LibError err);
 
 

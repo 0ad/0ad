@@ -75,43 +75,60 @@ extern "C" {
 // extensions
 //
 
-// check if the extension <ext> is supported by the OpenGL implementation.
-// takes subsequently added core support for some extensions into account.
+/**
+ * check if an extension is supported by the OpenGL implementation.
+ *
+ * takes subsequently added core support for some extensions into account
+ * (in case drivers forget to advertise extensions).
+ *
+ * @param ext extension string; exact case.
+ * @return bool.
+ **/
 extern bool oglHaveExtension(const char* ext);
 
-// check if the OpenGL implementation is at least at <version>.
-// (format: "%d.%d" major minor)
+/**
+ * make sure the OpenGL implementation version matches or is newer than
+ * the given version.
+ *
+ * @param version version string; format: ("%d.%d", major, minor).
+ * example: "1.2".
+ **/
 extern bool oglHaveVersion(const char* version);
 
-// check if all given extension strings (passed as const char* parameters,
-// terminated by a 0 pointer) are supported by the OpenGL implementation,
-// as determined by oglHaveExtension.
-// returns 0 if all are present; otherwise, the first extension in the
-// list that's not supported (useful for reporting errors).
-//
-// note: dummy parameter is necessary to access parameter va_list.
-//
-// rationale: see source.
+/**
+ * check if a list of extensions are all supported (as determined by
+ * oglHaveExtension).
+ *
+ * @param dummy value ignored; varargs requires a placeholder.
+ * follow it by a list of const char* extension string parameters,
+ * terminated by a 0 pointer.
+ * @return 0 if all are present; otherwise, the first extension in the
+ * list that's not supported (useful for reporting errors).
+ **/
 extern const char* oglHaveExtensions(int dummy, ...);
 
-// return a C string of unspecified length containing a space-separated
-// list of all extensions the OpenGL implementation advertises.
-// (useful for crash logs).
+/**
+ * get a list of all supported extensions.
+ *
+ * useful for crash logs / system information.
+ *
+ * @return read-only C string of unspecified length containing all
+ * advertised extension names, separated by space.
+ **/
 extern const char* oglExtList(void);
 
 
+// declare extension function pointers
 #if OS_WIN
 # define CALL_CONV __stdcall
 #else
 # define CALL_CONV
 #endif
-
 #define FUNC(ret, name, params) extern ret (CALL_CONV *p##name) params;
 #define FUNC2(ret, nameARB, nameCore, version, params) extern ret (CALL_CONV *p##nameARB) params;
 #include "glext_funcs.h"
 #undef FUNC2
 #undef FUNC
-
 // leave CALL_CONV defined for ogl.cpp
 
 
@@ -119,13 +136,17 @@ extern const char* oglExtList(void);
 // implementation limits / feature detect
 //
 
-extern int ogl_max_tex_size;				// [pixels]
-extern int ogl_max_tex_units;				// limit on GL_TEXTUREn
+extern int ogl_max_tex_size;				/// [pixels]
+extern int ogl_max_tex_units;				/// limit on GL_TEXTUREn
 
-// set sysdep/gfx.h gfx_card and gfx_drv_ver. called by gfx_detect.
-//
-// fails if OpenGL not ready for use.
-// gfx_card and gfx_drv_ver are unchanged on failure.
+/**
+ * set sysdep/gfx.h gfx_card and gfx_drv_ver. called by gfx_detect.
+ * 
+ * fails if OpenGL not ready for use.
+ * gfx_card and gfx_drv_ver are unchanged on failure.
+ *
+ * @return LibError
+ **/
 extern LibError ogl_get_gfx_info(void);
 
 
@@ -133,30 +154,43 @@ extern LibError ogl_get_gfx_info(void);
 // misc
 //
 
-// in non-release builds, enable oglCheck, which breaks into the debugger
-// if an OpenGL error was raised since the last call.
-// add these calls everywhere to close in on the error cause.
-//
-// reports a bogus invalid_operation error if called before OpenGL is
-// initialized, so don't!
-#ifndef NDEBUG
+/**
+ * raise a warning (break into the debugger) if an OpenGL error is pending.
+ * resets the OpenGL error state afterwards.
+ *
+ * when an error is reported, insert calls to this in a binary-search scheme
+ * to quickly narrow down the actual error location.
+ * 
+ * reports a bogus invalid_operation error if called before OpenGL is
+ * initialized, so don't!
+ *
+ * disabled in release mode for efficiency and to avoid annoying errors.
+ **/
 extern void oglCheck(void);
-#else
+#ifdef NDEBUG
 # define oglCheck()
 #endif
 
-// ignore and reset the specified error (as returned by glGetError).
-// any other errors that have occurred are reported as oglCheck would.
-//
-// this is useful for suppressing annoying error messages, e.g.
-// "invalid enum" for GL_CLAMP_TO_EDGE even though we've already
-// warned the user that their OpenGL implementation is too old.
+/**
+ * ignore and reset the specified OpenGL error.
+ *
+ * this is useful for suppressing annoying error messages, e.g.
+ * "invalid enum" for GL_CLAMP_TO_EDGE even though we've already
+ * warned the user that their OpenGL implementation is too old.
+ *
+ * call after the fact, i.e. the error has been raised. if another or
+ * different error is pending, those are reported immediately.
+ *
+ * @param err_to_ignore: one of the glGetError enums.
+ **/
 extern void oglSquelchError(GLenum err_to_ignore);
 
 
-// call before using any of the above, and after each video mode change.
-//
-// fails if OpenGL not ready for use.
+/**
+ * initialization: import extension function pointers and do feature detect.
+ * call before using any of the above, and after each video mode change.
+ * fails if OpenGL not ready for use.
+ **/
 extern void oglInit(void);
 
 

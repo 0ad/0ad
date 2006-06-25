@@ -50,7 +50,7 @@ Usage
 In the simplest case, the stubs are already acceptable. Otherwise,
 you need to implement a new version of some hooks, fill an
 AppHooks struct with pointers to those functions (zero the rest),
-and call set_app_hooks.
+and call app_hooks_update.
 
 */
 
@@ -77,40 +77,82 @@ and call set_app_hooks.
 #define VOID_FUNC(name, params, param_names)\
 	FUNC(void, name, params, param_names, (void))
 
-// override default decision on using OpenGL extensions relating to
-// texture upload. this should call ogl_tex_override to disable/force
-// their use if the current card/driver combo respectively crashes or
-// supports it even though the extension isn't advertised.
-//
-// default implementation works but is hardwired in code and therefore
-// not expandable.
+/**
+ * override default decision on using OpenGL extensions relating to
+ * texture upload.
+ *
+ * this should call ogl_tex_override to disable/force their use if the
+ * current card/driver combo respectively crashes or
+ * supports it even though the extension isn't advertised.
+ *
+ * the default implementation works but is hardwired in code and therefore
+ * not expandable.
+ **/
 VOID_FUNC(override_gl_upload_caps, (void), ())
 
-// return full native path of the directory into which crashdumps should be
-// written. must end with directory separator (e.g. '/').
-// if implementing via static storage, be sure to guarantee reentrancy
-// (e.g. by only filling the string once).
-// must be callable at any time - in particular, before VFS init.
-// this means file_make_full_native_path cannot be used; it is best
-// to specify a path relative to sys_get_executable_name.
+/**
+ * return path to directory into which crash dumps should be written.
+ *
+ * if implementing via static storage, be sure to guarantee reentrancy
+ * (e.g. by only filling the string once).
+ * must be callable at any time - in particular, before VFS init.
+ * this means file_make_full_native_path cannot be used; it is best
+ * to specify a path relative to sys_get_executable_name.
+ *
+ * @return full native path; must end with directory separator (e.g. '/').
+ **/
 FUNC(const char*, get_log_dir, (void), (), return)
 
-// gather all app-related logs/information and write it into <f>.
-// used when writing a crashlog so that all relevant info is in one file.
-//
-// default implementation gathers 0ad data but is fail-safe.
+/**
+ * gather all app-related logs/information and write it to file.
+ *
+ * used when writing a crash log so that all relevant info is in one file.
+ *
+ * the default implementation attempts to gather 0ad data, but is
+ * fail-safe (doesn't complain if file not found).
+ *
+ * @param f file into which to write.
+ **/
 VOID_FUNC(bundle_logs, (FILE* f), (f))
 
-// return localized version of <text> if i18n functionality is available.
-//
-// default implementation just returns the pointer unchanged.
+/**
+ * translate text to the current locale.
+ *
+ * @param text to translate.
+ * @return pointer to localized text; must be freed via translate_free.
+ *
+ * the default implementation just returns the pointer unchanged.
+ **/
 FUNC(const wchar_t*, translate, (const wchar_t* text), (text), return)
 
-// write <text> to the app's log.
-//
-// default implementation uses stdout.
+/**
+ * free text that was returned by translate.
+ *
+ * @param text to free.
+ *
+ * the default implementation does nothing.
+ **/
+VOID_FUNC(translate_free, (const wchar_t* text), (text))
+
+/**
+ * write text to the app's log.
+ *
+ * @param text to write.
+ *
+ * the default implementation uses stdout.
+ **/
 VOID_FUNC(log, (const wchar_t* text), (text))
 
+/**
+ * display an error dialog, thus overriding sys_display_error.
+ *
+ * @param text error message.
+ * @param flags see DebugDisplayErrorFlags.
+ * @return ErrorReaction.
+ *
+ * the default implementation just returns ER_NOT_IMPLEMENTED, which
+ * causes the normal sys_display_error to be used.
+ **/
 FUNC(ErrorReaction, display_error, (const wchar_t* text, uint flags), (text, flags), return)
 
 #undef VOID_FUNC
@@ -124,7 +166,9 @@ FUNC(ErrorReaction, display_error, (const wchar_t* text, uint flags), (text, fla
 #ifndef APP_HOOKS_H__
 #define APP_HOOKS_H__
 
-// holds a function pointer for each hook. passed to set_app_hooks.
+/**
+ * holds a function pointer for each hook. passed to app_hooks_update.
+ **/
 struct AppHooks
 {
 #define FUNC(ret, name, params, param_names, call_prefix) ret (*name) params;
@@ -135,10 +179,14 @@ struct AppHooks
 	int dummy;
 };
 
-// register the specified hook function pointers. any of them that
-// are non-zero override the previous function pointer value
-// (these default to the stub hooks which are functional but basic).
-extern void set_app_hooks(AppHooks* ah);
+/**
+ * update the app hook function pointers.
+ *
+ * @param ah AppHooks struct. any of its function pointers that are non-zero
+ * override the previous function pointer value
+ * (these default to the stub hooks which are functional but basic).
+ **/
+extern void app_hooks_update(AppHooks* ah);
 
 
 // trampolines used by lib code to call the hooks. they encapsulate
