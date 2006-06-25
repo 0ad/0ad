@@ -6,22 +6,15 @@
   <group>
     <variant frequency="100" name="Base">
       <animations>
-		<!-- Class Specific -->
-        <animation file="biped/inf_idle_spear.psa" name="Idle" speed="200"/>
-        <animation file="biped/walk_spearshield.psa" name="Walk" speed="20"/>
-        <animation event="0.5" file="biped/inf_spear_shield_atk_a.psa" name="Melee" speed="100"/>
-        <animation event="0.5" file="biped/inf_spear_shield_atk_b.psa" name="Melee" speed="100"/>
-		<!-- Stamina Specific -->
-        <animation file="biped/inf_sword_shield_run_a.psa" name="Run" speed="5"/>
-        <animation file="biped/inf_sword_shield_run_b.psa" name="Run" speed="10"/>
-        <animation file="biped/inf_sword_shield_run_c.psa" name="Run" speed="10"/>
-		<!-- Citzen Soldier Specific -->
+        <animation file="biped/inf_hoplite_idle_a.psa" name="Idle" speed="200"/>
+        <animation file="biped/inf_hoplite_walk.psa" name="Walk" speed="20"/>
+        <animation event="0.5" file="biped/inf_hoplite_atk_a.psa" name="Melee" speed="100"/>
+        <animation file="biped/inf_hoplite_shield_run_a.psa" name="Run" speed="10"/>
         <animation file="biped/chop.psa" name="gather_wood" speed="100"/>
         <animation file="biped/hoe.psa" name="gather_grain" speed="150"/>
         <animation file="biped/forage.psa" name="gather_fruit" speed="35"/>
         <animation file="biped/mine.psa" name="gather_stone" speed="150"/>
         <animation file="biped/dudebuild.psa" name="Build" speed="150"/>
-		<!-- Shared  -->
         <animation file="biped/inf_death_a.psa" name="Death" speed="200"/>
         <animation file="biped/inf_death_b.psa" name="Death" speed="200"/>
         <animation file="biped/inf_death_c.psa" name="Death" speed="200"/>
@@ -35,9 +28,14 @@
       <props>
         <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/shields/hele_round_b.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="r_hand"/>
         <prop actor="props/units/heads/hele_hoplite_b.xml" attachpoint="helmet"/>
       </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant name="armor-tunic">
       <texture>skeletal/hele_isp_b.dds</texture>
     </variant>
   </group>
