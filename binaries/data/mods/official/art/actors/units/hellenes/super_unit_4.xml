@@ -27,7 +27,7 @@
   </group>
 
   <group>
-    <variant>
+    <variant name="saddle-leopard">
       <props>
         <prop actor="units/hellenes/super_unit_4_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/hele_saddle_h1.xml" attachpoint="chest"/>
@@ -38,7 +38,7 @@
       </props>
       <texture>skeletal/horse_hele_j.dds</texture>
     </variant>
-    <variant>
+    <variant name="saddle-leopard">
       <props>
         <prop actor="units/hellenes/super_unit_4_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/hele_saddle_h1.xml" attachpoint="chest"/>
@@ -49,7 +49,7 @@
       </props>
       <texture>skeletal/horse_hele_h.dds</texture>
     </variant>
-    <variant>
+    <variant name="saddle-lion">
       <props>
         <prop actor="units/hellenes/super_unit_4_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/hele_saddle_h2.xml" attachpoint="chest"/>
@@ -60,7 +60,7 @@
       </props>
       <texture>skeletal/horse_hele_i.dds</texture>
     </variant>
-    <variant>
+    <variant name="saddle-lion">
       <props>
         <prop actor="units/hellenes/super_unit_4_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/hele_saddle_h2.xml" attachpoint="chest"/>

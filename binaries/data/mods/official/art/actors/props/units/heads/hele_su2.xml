@@ -4,13 +4,14 @@
   <castshadow/>
 
   <group>
-    <variant name="l">
-      <mesh>props/helmet/hele_helmet_l.pmd</mesh>
-      <texture>props/helmet/hele_c1.dds</texture>
+    <variant>
+      <mesh>props/helmet/hele_helmet_s.pmd</mesh>
     </variant>
-    <variant name="k">
-      <mesh>props/helmet/hele_helmet_k.pmd</mesh>
-      <texture>props/helmet/hele_b1.dds</texture>
+  </group>
+
+  <group>
+    <variant>
+      <texture>props/helmet/hele_h1.dds</texture>
     </variant>
   </group>
 

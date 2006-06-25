@@ -12,8 +12,8 @@
       </animations>
       <mesh>skeletal/m_tunic_a.pmd</mesh>
       <props>
-        <prop actor="props/units/heads/hele_hoplite_e.xml" attachpoint="helmet"/>
-        <prop actor="props/units/heads/head_hele_h.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/hele_helmet_csw_e.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/head_hele_e.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/xiphos.xml" attachpoint="r_hand"/>
         <prop actor="props/temp/l_sheath.xml" attachpoint="l_hip"/>
       </props>
@@ -24,7 +24,7 @@
     <variant name="armor-cavsword_e">
       <texture>skeletal/hele_csw_e.dds</texture>
     </variant>
-    <variant name="aromor-infspear_a">
+    <variant name="armor-infspear_a">
       <texture>skeletal/hele_isp_a.dds</texture>
     </variant>
   </group>
