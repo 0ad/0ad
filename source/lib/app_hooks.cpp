@@ -109,10 +109,15 @@ static void bundle_logs(FILE* f)
 }
 
 
-
 static const wchar_t* translate(const wchar_t* text)
 {
 	return text;
+}
+
+
+static void translate_free(const wchar_t* text)
+{
+	// no-op - translate() doesn't own the pointer.
 }
 
 
@@ -131,7 +136,7 @@ static ErrorReaction display_error(const wchar_t* UNUSED(text), uint UNUSED(flag
 //-----------------------------------------------------------------------------
 
 // contains the current set of hooks. starts with the stub values and
-// may be changed via set_app_hooks.
+// may be changed via app_hooks_update.
 //
 // rationale: we don't ever need to switch "hook sets", so one global struct
 // is fine. by always having one defined, we also avoid having to check
@@ -149,7 +154,7 @@ static AppHooks ah =
 // register the specified hook function pointers. any of them that
 // are non-zero override the previous function pointer value
 // (these default to the stub hooks which are functional but basic).
-void set_app_hooks(AppHooks* ah_)
+void app_hooks_update(AppHooks* ah_)
 {
 	debug_assert(ah_);
 	ONCE_NOT(debug_warn("app hooks already set"));

@@ -6,11 +6,12 @@
 DEFINE_ERROR(PS_OK, "OK");
 DEFINE_ERROR(PS_FAIL, "Fail");
 
+
+static const wchar_t* translate_no_mem = L"(no mem)";
+
 // overrides ah_translate. registered in GameSetup.cpp
 const wchar_t* psTranslate(const wchar_t* text)
 {
-	// TODO: leaks memory returned by wcsdup
-
 	// make sure i18n system is (already|still) initialized.
 	if(g_CurrentLocale)
 	{
@@ -19,15 +20,21 @@ const wchar_t* psTranslate(const wchar_t* text)
 		try
 		{
 			CStrW ret = I18n::translate(text);
-			const wchar_t* text2 = wcsdup(ret.c_str());
-			// only overwrite if wcsdup succeeded, i.e. not out of memory.
-			if(text2)
-				text = text2;
+			const wchar_t* ret_dup = wcsdup(ret.c_str());
+			return ret_dup? ret_dup : translate_no_mem;
 		}
 		catch(...)
 		{
 		}
 	}
 
-	return text;
+	// i18n not available: at least try and return the text (unchanged)
+	const wchar_t* ret_dup = wcsdup(text);
+	return ret_dup? ret_dup : translate_no_mem;
+}
+
+void psTranslateFree(const wchar_t* text)
+{
+	if(text != translate_no_mem)
+		free((void*)text);
 }

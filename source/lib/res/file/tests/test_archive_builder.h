@@ -10,7 +10,7 @@
 class TestArchiveBuilder : public CxxTest::TestSuite 
 {
 	const char* const archive_fn;
-	static const size_t NUM_FILES = 100;
+	static const size_t NUM_FILES = 30;
 	static const size_t MAX_FILE_SIZE = 20000;
 
 	std::set<const char*> existing_names;
@@ -96,6 +96,7 @@ public:
 	{
 		vfs_shutdown();
 		dir_delete("archivetest");
+		file_delete(archive_fn);
 	}
 
 	void test_create_archive_with_random_files()

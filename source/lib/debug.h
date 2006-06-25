@@ -397,8 +397,8 @@ extern ErrorReaction debug_warn_err(LibError err,
  * we therefore need to squelch them.
  *
  * @param err the LibError to skip. if the next error to be raised matches
- * this, it is skipped. after that (regardless of whether it matched),
- * the skip request is reset, i.e. forgotten.
+ * this, it is skipped. otherwise, we raise a warning to help catch
+ * erroneous usage. either way, the skip request is reset afterwards.
  *
  * note: this is thread-safe, but to prevent confusion, only one
  * concurrent skip request is allowed.

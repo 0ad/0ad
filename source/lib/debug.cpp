@@ -656,13 +656,16 @@ ErrorReaction debug_display_error(const wchar_t* description,
 
 
 
-static uintptr_t will_skip_next_error;	// set/reset via CAS for thread-safety.
-static LibError err_to_skip;
+// strobe indicating expected_err is valid and the next error should be
+// compared against that / skipped if equal to it.
+// set/reset via CAS for thread-safety (hence uintptr_t).
+static uintptr_t expected_err_valid;
+static LibError expected_err;
 
 void debug_skip_next_err(LibError err)
 {
-	if(CAS(&will_skip_next_error, 0, 1))
-		err_to_skip = err;
+	if(CAS(&expected_err_valid, 0, 1))
+		expected_err = err;
 	else
 		debug_warn("internal error: concurrent attempt to skip assert/error");
 
@@ -670,11 +673,15 @@ void debug_skip_next_err(LibError err)
 
 static bool should_skip_this_error(LibError err)
 {
-	// (compare before resetting strobe - err_to_skip may change afterwards)
-	bool should_skip = (err_to_skip == err);
+	// (compare before resetting strobe - expected_err may change afterwards)
+	bool was_expected_err = (expected_err == err);
 	// (use CAS to ensure only one error is skipped)
-	if(CAS(&will_skip_next_error, 1, 0))
-		return should_skip;
+	if(CAS(&expected_err_valid, 1, 0))
+	{
+		if(!was_expected_err)
+			debug_warn("anticipated error was not raised");
+		return was_expected_err;
+	}
 
 	return false;
 }
