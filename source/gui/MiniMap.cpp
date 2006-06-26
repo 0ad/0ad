@@ -429,12 +429,10 @@ void CMiniMap::RebuildTerrainTexture()
 	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_MapSize - 1, m_MapSize - 1, GL_BGRA_EXT, GL_UNSIGNED_BYTE, m_TerrainData);
 }
 
-TIMER_ADD_CLIENT(tc_minimap_rebuildlos);
 
 void CMiniMap::RebuildLOSTexture()
 {
 	PROFILE_START("rebuild minimap: los");
-	TIMER_ACCRUE(tc_minimap_rebuildlos);
 
 	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
 	CPlayer* player = g_Game->GetLocalPlayer();

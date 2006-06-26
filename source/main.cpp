@@ -362,8 +362,6 @@ int main(int argc, char* argv[])
 	win_pre_main_init();
 #endif
 
-	debug_printf("MAIN &argc=%p &argv=%p\n", &argc, &argv);
-
 	ATLAS_RunIfOnCmdLine(argc, argv);
 
 	Init(argc, argv, 0);

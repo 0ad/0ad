@@ -203,15 +203,13 @@ static void ParseCommandLineArgs(int argc, char* argv[])
 
 void CONFIG_Init(int argc, char* argv[])
 {
-	debug_printf("CFG_Init &argc=%p &argv=%p\n", &argc, &argv);
-
 	TIMER("CONFIG_Init");
 	MICROLOG(L"init config");
 
 	new CConfigDB;
 
 	g_ConfigDB.SetConfigFile(CFG_SYSTEM, false, "config/system.cfg");
-	g_ConfigDB.Reload(CFG_SYSTEM);
+	g_ConfigDB.Reload(CFG_SYSTEM);	// 216ms
 
 	g_ConfigDB.SetConfigFile(CFG_MOD, true, "config/mod.cfg");
 	// No point in reloading mod.cfg here - we haven't mounted mods yet
@@ -220,5 +218,5 @@ void CONFIG_Init(int argc, char* argv[])
 
 	// Collect information from system.cfg, the profile file,
 	// and any command-line overrides to fill in the globals.
-	LoadGlobals();
+	LoadGlobals();	// 64ms
 }
