@@ -13,6 +13,7 @@
 #include "lib/timer.h"
 #include "CStr.h"
 #include "Loader.h"
+#include "LoaderThunks.h"
 
 
 // set by LDR_EndRegistering; may be 0 during development when
