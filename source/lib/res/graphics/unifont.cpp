@@ -10,16 +10,16 @@
 
 #include "precompiled.h"
 
-#include "lib/lib.h"
-#include "lib/res/res.h"
-#include "lib/ogl.h"
-#include "ogl_tex.h"
-
 #include <string>
 #include <sstream>
 #include <map>
 
 #include <stdio.h>
+
+#include "lib/lib.h"
+#include "lib/res/res.h"
+#include "lib/ogl.h"
+#include "ogl_tex.h"
 
 // This isn't particularly efficient - it can be improved if we
 // (a) care enough, and (b) know about fixed ranges of characters
@@ -60,6 +60,7 @@ static void UniFont_dtor(UniFont* f)
 	SAFE_DELETE(f->glyphs_size);
 }
 
+// [10..70ms]
 static LibError UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 {
 	// already loaded
@@ -77,7 +78,7 @@ static LibError UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 	const std::string FilenameFnt = FilenameBase+".fnt";
 	const char* fnt_fn = FilenameFnt.c_str();
 	FileIOBuf buf; size_t size;
-	RETURN_ERR(vfs_load(fnt_fn, buf, size));
+	RETURN_ERR(vfs_load(fnt_fn, buf, size));	// [cumulative for 12: 36ms]
 	std::istringstream FNTStream (std::string((const char*)buf, (int)size));
 	(void)file_buf_free(buf);
 
@@ -103,6 +104,7 @@ static LibError UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 	if (f->ListBase == 0) // My Voodoo2 drivers didn't support display lists (although I'd be surprised if they got this far)
 		WARN_RETURN(ERR_FAIL);
 
+	// [cumulative for 12: 256ms]
 	for (int i = 0; i < NumGlyphs; ++i)
 	{
 		int          Codepoint, TextureX, TextureY, Width, Height, OffsetX, OffsetY, Advance;
@@ -126,7 +128,7 @@ static LibError UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 
 		// It might be better to use vertex arrays instead of display lists,
 		// but this works well enough for now.
-
+		// [cumulative for 12: 180ms]
 		glNewList(f->ListBase+i, GL_COMPILE);
 			glBegin(GL_QUADS);
 				glTexCoord2f(u,   -v);   glVertex2i(OffsetX,       -OffsetY);
@@ -137,6 +139,7 @@ static LibError UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 			glTranslatef((GLfloat)Advance, 0, 0);
 		glEndList();
 
+		// [cumulative for 12: 20ms]
 		(*f->glyphs_id)[(wchar_t)Codepoint] = (unsigned short)i;
 		(*f->glyphs_size)[(wchar_t)Codepoint] = Advance;
 	}
@@ -144,13 +147,12 @@ static LibError UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 	debug_assert(f->Height); // Ensure the height has been found (which should always happen if the font includes an 'I')
 
 	// Load glyph texture
+	// [cumulative for 12: 20ms]
 	std::string FilenameTex = FilenameBase+".tga";  
 	const char* tex_fn = FilenameTex.c_str();   
 	Handle ht = ogl_tex_load(tex_fn);
 	RETURN_ERR(ht);
-
 	(void)ogl_tex_set_filter(ht, GL_NEAREST);
-
 	// override is necessary because the GL format is chosen as LUMINANCE,
 	// but we want ALPHA. there is no way of knowing what format
 	// 8bpp textures are in - we could adopt a naming convention and
@@ -163,6 +165,7 @@ static LibError UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 	}
 
 	f->ht = ht;
+
 	return INFO_OK;
 }
 

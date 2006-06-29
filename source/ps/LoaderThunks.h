@@ -17,6 +17,13 @@
 #pragma warning(disable: 4121)
 #endif
 
+// does this return code indicate the coroutine yielded and
+// wasn't yet finished?
+static bool ldr_was_interrupted(int ret)
+{
+	return (0 < ret && ret <= 100);
+}
+
 template<class T> struct MemFun_t
 {
 	T* const this_;
@@ -33,7 +40,8 @@ template<class T> static int MemFunThunk(void* param, double UNUSED(time_left))
 {
 	MemFun_t<T>* const mf = (MemFun_t<T>*)param;
 	int ret = (mf->this_->*mf->func)();
-	if(ret <= 0)	// did not time out
+
+	if(!ldr_was_interrupted(ret))
 		delete mf;
 	return ret;
 }
@@ -66,7 +74,7 @@ template<class T, class Arg> static int MemFun1Thunk(void* param, double UNUSED(
 {
 	MemFun1_t<T, Arg>* const mf = (MemFun1_t<T, Arg>*)param;
 	int ret = (mf->this_->*mf->func)(mf->arg);
-	if(ret <= 0)	// did not time out
+	if(!ldr_was_interrupted(ret))
 		delete mf;
 	return ret;
 }

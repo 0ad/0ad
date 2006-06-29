@@ -233,12 +233,13 @@ LibError LDR_ProgressiveLoad(double time_budget, wchar_t* description,
 		// call this task's function and bill elapsed time.
 		const double t0 = get_time();
 		int status = lr.func(lr.param, time_left);
+		const bool timed_out = ldr_was_interrupted(status);
 		const double elapsed_time = get_time() - t0;
 		time_left -= elapsed_time;
 		task_elapsed_time += elapsed_time;
 
 		// either finished entirely, or failed => remove from queue.
-		if(status <= 0)
+		if(!timed_out)
 		{
 			debug_printf("LOADER| completed %ls in %g ms; estimate was %g ms\n", lr.description.c_str(), task_elapsed_time*1e3, estimated_duration*1e3);
 			task_elapsed_time = 0.0;
@@ -254,18 +255,15 @@ LibError LDR_ProgressiveLoad(double time_budget, wchar_t* description,
 			// function interrupted itself; add its estimated progress.
 			// note: monotonicity is guaranteed since we never add more than
 			//   its estimated_duration_ms.
-			if(status > 0)
-			{
-				status = MIN(status, 100);	// clamp in case estimate is too high
+			if(timed_out)
 				current_estimate += estimated_duration * status/100.0;
-			}
 
 			progress = current_estimate / total_estimated_duration;
 		}
 
 		// do we need to continue?
 		// .. function interrupted itself, i.e. timed out; abort.
-		if(status > 0)
+		if(timed_out)
 		{
 			ret = ERR_TIMED_OUT;
 			goto done;

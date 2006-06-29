@@ -214,11 +214,8 @@ bool CObjectBase::Load(const char* filename)
 	return true;
 }
 
-TIMER_ADD_CLIENT(tc_CalculateVariationKey)
-
 std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<std::set<CStrW> >& selections)
 {
-	TIMER_ACCRUE(tc_CalculateVariationKey);
 	// (TODO: see CObjectManager::FindObjectVariation for an opportunity to
 	// call this function a bit less frequently)
 

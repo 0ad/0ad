@@ -98,9 +98,10 @@ extern LibError LDR_BeginRegistering();
 //   it will then be de-queued.
 // - if the work can be split into smaller subtasks, process those until
 //   <time_left> is reached or exceeded and then return an estimate
-//   of progress in percent (!= 0, or it's treated as "finished").
-// - on failure, return a negative error code; LDR_ProgressiveLoad
-//   will abort immediately and return that.
+//   of progress in percent (<= 100, otherwise it's a warning;
+//   != 0, or it's treated as "finished")
+// - on failure, return a negative error code or 'warning' (see above);
+//   LDR_ProgressiveLoad will abort immediately and return that.
 typedef int (*LoadFunc)(void* param, double time_left);
 
 // register a task (later processed in FIFO order).

@@ -489,9 +489,11 @@ void Render()
 static void InitScripting()
 {
 	TIMER("InitScripting");
-	// Create the scripting host.  This needs to be done before the GUI is created.
-	new ScriptingHost;
 
+	// Create the scripting host.  This needs to be done before the GUI is created.
+	// [7ms]
+	new ScriptingHost;
+	
 	// It would be nice for onLoad code to be able to access the setTimeout() calls.
 	new CScheduler;
 
@@ -515,7 +517,7 @@ static void InitScripting()
 	CScriptEvent::ScriptingInit();
 	CJSProgressTimer::ScriptingInit();
 	CProjectile::ScriptingInit();
-	
+
 	g_ScriptingHost.DefineConstant( "FORMATION_ENTER", CFormationEvent::FORMATION_ENTER );
 	g_ScriptingHost.DefineConstant( "FORMATION_LEAVE", CFormationEvent::FORMATION_LEAVE );
 	g_ScriptingHost.DefineConstant( "FORMATION_DAMAGE", CFormationEvent::FORMATION_DAMAGE );
@@ -542,7 +544,6 @@ static void InitScripting()
 	g_ScriptingHost.DefineConstant( "ORDER_GENERIC", CEntityOrder::ORDER_GENERIC );
 	g_ScriptingHost.DefineConstant( "ORDER_PRODUCE", CEntityOrder::ORDER_PRODUCE );
 	g_ScriptingHost.DefineConstant( "ORDER_START_CONSTRUCTION", CEntityOrder::ORDER_START_CONSTRUCTION );
-
 
 #define REG_JS_CONSTANT(_name) g_ScriptingHost.DefineConstant(#_name, _name)
 	REG_JS_CONSTANT(SDL_BUTTON_LEFT);
@@ -581,6 +582,7 @@ static void InitVfs(const char* argv0)
 	(void)file_set_root_dir(argv0, "../data");
 
 	vfs_init();
+
 	vfs_mount("screenshots/", "screenshots");
 	vfs_mount("profiles/", "profiles", VFS_MOUNT_RECURSIVE);
 
@@ -590,9 +592,12 @@ static void InitVfs(const char* argv0)
 	// - we mount as archivable so that all files will be added to archive.
 	//   even though we write out XMBs here, they will eventually be read,
 	//   so putting them in an archive boosts performance.
+	//
+	// [hot: 16ms]
 	vfs_mount("cache/", "cache", VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES|VFS_MOUNT_ARCHIVABLE);
 
 	// --- this belongs in a LoadMod function
+	// [hot: 150ms]
 	vfs_mount("", "mods/official", VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES|VFS_MOUNT_WATCH|VFS_MOUNT_ARCHIVABLE);
 	// ---
 
@@ -869,16 +874,10 @@ void Shutdown()
 }
 
 
-// workaround for VC7 EBP-trashing bug, which confuses the stack trace code.
-#if MSC_VERSION
-# pragma optimize("", off)
-#endif
-
 void Init(int argc, char* argv[], uint flags)
 {
 	const bool setup_vmode = (flags & INIT_HAVE_VMODE) == 0;
 
-	debug_printf("INIT &argc=%p &argv=%p\n", &argc, &argv);
 	MICROLOG(L"Init");
 
 	debug_set_thread_name("main");
@@ -905,7 +904,7 @@ void Init(int argc, char* argv[], uint flags)
 	// (required for finding our output log files).
 	new CLogger;
 
-	// Call LoadLanguage(NULL) to initialise the I18n system, but
+	// Call LoadLanguage(NULL) to initialize the I18n system, but
 	// without loading an actual language file - translate() will
 	// just show the English key text, which is better than crashing
 	// from a null pointer when attempting to translate e.g. error messages.
@@ -1106,9 +1105,3 @@ void Init(int argc, char* argv[], uint flags)
 	}
 
 }
-
-#if MSC_VERSION
-# pragma optimize("", on)	// restore; see above.
-#endif
-
-

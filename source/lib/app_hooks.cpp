@@ -115,7 +115,7 @@ static const wchar_t* translate(const wchar_t* text)
 }
 
 
-static void translate_free(const wchar_t* text)
+static void translate_free(const wchar_t* UNUSED(text))
 {
 	// no-op - translate() doesn't own the pointer.
 }

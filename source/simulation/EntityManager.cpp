@@ -221,6 +221,9 @@ void CEntityManager::dispatchAll( CMessage* msg )
 }
 */
 
+TIMER_ADD_CLIENT(tc_1);
+TIMER_ADD_CLIENT(tc_2);
+
 void CEntityManager::InitializeAll()
 {
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
@@ -233,10 +236,11 @@ void CEntityManager::InitializeAll()
 	{
 		if( m_entities[i].m_refcount && !m_entities[i].m_entity->m_destroyed )
 		{
+			// [2006-06-26 2780ms total]
 			CEntity* e = m_entities[i].m_entity;
 			e->Initialize();
 
-			// 2006-03-04 ~8ms total
+			// [2006-06-26 8ms total]
 			e->updateCollisionPatch();
 		}
 	}

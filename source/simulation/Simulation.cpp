@@ -51,11 +51,13 @@ int CSimulation::Initialize(CGameAttributes* pAttribs)
 
 	// Call the game startup script 
 	// TODO: Maybe don't do this if we're in Atlas
+	// [2006-06-26 20ms]
 	g_ScriptingHost.RunScript( "scripts/game_startup.js" );
 
+	// [2006-06-26 3647ms]
 	g_EntityManager.InitializeAll();
 
-	// 2006-03-04: ~33ms
+	// [2006-06-26: 61ms]
 	m_pWorld->GetLOSManager()->Initialize(pAttribs->m_LOSSetting);
 
 	return 0;
