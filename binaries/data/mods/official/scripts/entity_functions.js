@@ -26,11 +26,15 @@ const ACTION_REPAIR = 6;
 const PRODUCTION_TRAIN = 1;
 const PRODUCTION_RESEARCH = 2;
 
+
 // ====================================================================
 
 function entityInit()
 {
 	// Initialise an entity when it is first spawned (generate starting hitpoints, etc).
+	
+	// This function is called for all "full" entities - those inheriting from template_entity_full; there is a simpler version below
+	// called entityInitQuasi for quasi-entities (rocks, trees, etc) for which most of the things dealt with here don't apply.
 
 	// If the entity is a foundation, we must deduct resource costs here
 	if( this.building )
@@ -320,6 +324,58 @@ function entityInit()
 	//	console.write ("A new " + this.traits.id.specific + " (" + this.traits.id.generic + ") called " + this.traits.id.personal.name + " has entered your dungeon.")
 	//else	
 	//	console.write ("A new " + this.traits.id.specific + " (" + this.traits.id.generic + ") has entered your dungeon.")
+}
+
+// ====================================================================
+
+function entityInitQuasi()
+{
+	// Initialization function for quasi-entities like trees, rocks, etc; only sets up resources
+
+	if (this.traits.supply)
+	{
+		// If entity has supply, set current to same.
+		if (this.traits.supply.max)
+			this.traits.supply.curr = this.traits.supply.max;
+
+		// If entity has type of supply and no subtype, set subtype to same
+		// (so we don't have to say type="wood", subtype="wood"
+		if (this.traits.supply.type && !this.traits.supply.subtype)
+			this.traits.supply.subtype = this.traits.supply.type;
+			
+		// The "dropsitecount" array holds the number of units with gather aura in range of the object;
+		// this is important so that if you have two mills near something and one of them is destroyed,
+		// you can still gather from the thing. Initialize it to 0 (ungatherable) for every player unless
+		// the entity is forageable (e.g. for huntable animals).
+		this.traits.supply.dropsitecount = new Array();
+		initialCount = this.traits.supply.subtype.meat ? 1 : 0;
+		for( i=0; i<=8; i++ )
+		{
+			this.traits.supply.dropsitecount[i] = initialCount;
+		}
+	}
+	
+	// Generate civ code (1st four characters of civ name, in lower case eg "Carthaginians" => "cart").
+	if (this.traits.id && this.traits.id.civ)
+	{
+		this.traits.id.civ_code = this.traits.id.civ.toString().substring (0, 4);
+		this.traits.id.civ_code = this.traits.id.civ_code.toString().toLowerCase();
+
+		// Exception to make the Romans into rome.
+		if (this.traits.id.civ_code == "roma") this.traits.id.civ_code = "rome";
+		// Exception to make the Hellenes into hele.
+		if (this.traits.id.civ_code == "hell") this.traits.id.civ_code = "hele";
+	}
+	
+	if(!this.traits.id)
+	{
+		this.traits.id = new Object();
+	}
+	
+	if(!this.traits.promotion)
+	{
+		this.traits.promotion = new Object();
+	}
 }
 
 // ====================================================================

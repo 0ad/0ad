@@ -78,6 +78,5 @@
 	
 	
 	<Script File="scripts/entity_functions.js" />
-	<Event On="Initialize" Function="entityInit" />
 	<Event On="PrepareOrder" Function="entityEventPrepareOrder" />
 </Entity>	
