@@ -647,11 +647,12 @@ LibError ia32_get_call_target(void* ret_addr, void** target)
 	if(len >= 6 && c[6] == 0xFF && c[-5] == 0x15)
 	{
 		void* addr_of_target = *(void**)(c-4);
-		if(!debug_is_pointer_bogus(addr_of_target))
-		{
-			*target = *(void**)addr_of_target;
-			return INFO_OK;
-		}
+		// there are no meaningful checks we can perform: we're called from
+		// the stack trace code, so ring0 addresses may be legit.
+		// even if the pointer is 0, it's better to pass its value on
+		// (may help in tracking down memory corruption)
+		*target = *(void**)addr_of_target;
+		return INFO_OK;
 	}
 	// .. CALL [r32]                  => FF 00-3F(!14/15)
 	if(len >= 2 && c[-2] == 0xFF && c[-1] < 0x40 && c[-1] != 0x14 && c[-1] != 0x15)

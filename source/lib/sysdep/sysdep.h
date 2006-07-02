@@ -110,7 +110,7 @@ extern void* alloca(size_t size);
 #  define FP_INFINITE  (FP_NAN | FP_NORMAL)
 #  define FP_ZERO      IA32_FP_ZERO
 #  define FP_SUBNORMAL (FP_NORMAL | FP_ZERO)
-#  define fpclassify ia32_fpclassify
+#  define fpclassify(x) ( (sizeof(x) == sizeof(float))? ia32_fpclassifyf(x) : ia32_fpclassify(x) )
 // .. portable C emulation
 # else
    extern float rintf(float f);
