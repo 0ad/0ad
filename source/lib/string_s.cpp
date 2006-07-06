@@ -70,10 +70,14 @@
 // raise a debug warning if <len> is the size of a pointer.
 // catches bugs such as: tchar* s = ..; tcpy_s(s, sizeof(s), T(".."));
 // if warnings get annoying, replace with debug_printf. usable as a statement.
-#define WARN_IF_PTR_LEN(len) STMT(                            \
+//
+// currently disabled due to high risk of false positives.
+#define WARN_IF_PTR_LEN(len)\
+/*
+STMT(                                                         \
 	if(len == sizeof(char*))                                  \
 		debug_warn("make sure string buffer size is correct");\
-)
+)*/
 
 
 // skip our implementation if already available, but not the
