@@ -236,70 +236,7 @@ CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSConte
 	}
 }
 
-CNetCommand *CNetMessage::CastCommand(CNetMessage*& message, const CEntityList& entities, const ENetMessageType type)
-{
-	 #define CopyPositionMessage(_msg) \
-		case NMT_ ## _msg: \
-		{ \
-			C##_msg *msg = new C##_msg(); \
-			C##_msg *castmsg = static_cast<C##_msg*>(message); \
-			msg->m_TargetX = castmsg->m_TargetX; \
-			msg->m_TargetY = castmsg->m_TargetY; \
-			msg->m_Entities = entities; \
-			return msg; \
-		}
-	
-	#define CopyEntityMessage(_msg) \
-		case NMT_ ## _msg: \
-		{ \
-			C##_msg *msg = new C##_msg(); \
-			C##_msg *castmsg = static_cast<C##_msg*>(message); \
-			msg->m_Entities = entities; \
-			msg->m_Target = castmsg->Target; \
-			return msg; \
-		}
-
-	#define CopyEntityIntMessage(_msg) \
-		case NMT_ ## _msg: \
-		{ \
-			C##_msg *msg = new C##_msg(); \
-			C##_msg *castmsg = static_cast<C##_msg*>(message); \
-			msg->m_Entities = entities; \
-			msg->m_Target = castmsg->m_Target; \
-			msg->m_Action = castmsg->m_Action; \
-			return msg; \
-		}
-	
-	#define CopyProduceMessage(_msg) \
-		case NMT_ ## _msg: \
-		{ \
-			C##_msg *msg = new C##_msg(); \
-			C##_msg *castmsg = static_cast<C##_msg*>(message); \
-			msg->m_Entities = entities; \
-			msg->m_Name = castmsg->m_Name; \
-			msg->m_Type = castmsg->m_Type; \
-			return msg; \
-		}
-
-	switch (type)
-	{
-		CopyPositionMessage(Goto)
-		CopyPositionMessage(Run)
-		CopyPositionMessage(Patrol)
-		CopyPositionMessage(AddWaypoint)
-		CopyPositionMessage(FormationGoto)
-
-		CopyEntityIntMessage(Generic)
-		CopyEntityIntMessage(NotifyRequest)
-		CopyEntityIntMessage(FormationGeneric)
-		
-		CopyProduceMessage(Produce)
-
-		default:
-			return NULL;
-	}
-} 
-CNetMessage *CNetMessage::CreatePositionMessage( const CEntityList& entities, const ENetMessageType type, CVector2D pos )
+CNetMessage *CNetMessage::CreatePositionMessage( const CEntityList& entities, const int type, CVector2D pos )
 {
 	#define PosMessage(_msg) \
 		case NMT_ ## _msg: \
@@ -323,7 +260,7 @@ CNetMessage *CNetMessage::CreatePositionMessage( const CEntityList& entities, co
 			return NULL;
 	}
 }
-CNetMessage *CNetMessage::CreateEntityIntMessage( const CEntityList& entities, const ENetMessageType type, HEntity& target, int action )
+CNetMessage *CNetMessage::CreateEntityIntMessage( const CEntityList& entities, const int type, HEntity& target, int action )
 {
 	#define EntMessage(_msg) \
 		case NMT_ ## _msg: \
@@ -345,7 +282,7 @@ CNetMessage *CNetMessage::CreateEntityIntMessage( const CEntityList& entities, c
 		return NULL;
 	}
 }
-CNetMessage *CNetMessage::CreateProduceMessage( const CEntityList& entities, const ENetMessageType type, int proType, CStrW name )
+CNetMessage *CNetMessage::CreateProduceMessage( const CEntityList& entities, const int type, int proType, CStrW name )
 {
 	#define ProMessage(_msg)\
 		case NMT_ ## _msg: \

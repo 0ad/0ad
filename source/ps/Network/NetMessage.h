@@ -75,13 +75,11 @@ public:
 	static void ScriptingInit();
 	
 	static CNetCommand *CommandFromJSArgs(const CEntityList &entities, JSContext* cx, uintN argc, jsval* argv);
-	//This, in a sense, a netmessage typecast. It copies the target data from "message", creates
-	//a message of type "type", and assigns the message entities as "entities".
-	static CNetCommand *CastCommand(CNetMessage*& message, const CEntityList &entities, const ENetMessageType type);
+	
 	//These can create a net message without JS args
-	static CNetMessage *CreatePositionMessage( const CEntityList& entities, const ENetMessageType type, CVector2D pos );
-	static CNetMessage *CreateEntityIntMessage( const CEntityList& entities, const ENetMessageType type, HEntity& target, int action );
-	static CNetMessage *CreateProduceMessage( const CEntityList& entities, const ENetMessageType type, int proType, CStrW name );
+	static CNetMessage *CreatePositionMessage( const CEntityList& entities, const int type, CVector2D pos );
+	static CNetMessage *CreateEntityIntMessage( const CEntityList& entities, const int type, HEntity& target, int action );
+	static CNetMessage *CreateProduceMessage( const CEntityList& entities, const int type, int proType, CStrW name );
 };
 
 typedef CNetMessage * (*NetMessageDeserializer) (const u8 *buffer, uint length);

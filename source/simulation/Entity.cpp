@@ -1104,7 +1104,7 @@ int CEntity::findSector( int divs, float angle, float maxAngle, bool negative )
 	}
 	else
 	{
-		int i=0;
+		int i=1;
 		for (  float tracker=0.0f; tracker<maxAngle; tracker+=step, ++i )
 		{
 			if ( angle > tracker && angle <= tracker+step )
@@ -2188,37 +2188,8 @@ jsval CEntity::FindSector( JSContext* cx, uintN argc, jsval* argv )
 	float angle = ToPrimitive<float>( argv[1] );
 	float maxAngle = ToPrimitive<float>( argv[2] );
 	bool negative = ToPrimitive<bool>( argv[3] );
-	float step = maxAngle/divs;
 
-	if ( negative )
-	{
-		float tracker;
-		int i=1, sectorRemainder;
-		for ( tracker=-maxAngle/2.0f; tracker+step<0.0f; tracker+=step, ++i )
-		{
-			if ( angle > tracker && angle <= tracker+step ) 
-				return ToJSVal(i);
-		}
-		sectorRemainder = i;
-		i=divs;
-		for ( tracker=maxAngle/2.0f; tracker-step>0.0f; tracker-=step, --i )
-		{
-			if ( angle < tracker && angle >= tracker-step ) 
-				return ToJSVal(i);
-		}
-		return ToJSVal(sectorRemainder);
-	}
-	else
-	{
-		int i=1;
-		for (  float tracker=0.0f; tracker<maxAngle; tracker+=step, ++i )
-		{
-			if ( angle > tracker && angle <= tracker+step )
-				return ToJSVal(i);
-		}
-	}
-	debug_warn("JS - FindSector(): invalid parameters");
-	return ToJSVal(-1);
+	return ToJSVal( findSector(divs, angle, maxAngle, negative) );
 }
 jsval CEntity::HasRallyPoint( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {

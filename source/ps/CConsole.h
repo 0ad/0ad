@@ -39,7 +39,8 @@ private:
 	// "position" in show/hide animation, how visible the console is (0..1).
 	// allows implementing other animations than sliding, e.g. fading in/out.
 	float m_fVisibleFrac;
-
+	
+	std::vector<std::wstring> m_helpText;
 	std::map<std::wstring, fptr> m_mapFuncList;
 
 	std::deque<std::wstring> m_deqMsgHistory;
@@ -110,7 +111,9 @@ public:
 	bool IsActive() { return m_bVisible; }
 
 	int m_iFontHeight;
+	int m_iFontWidth;
 	int m_iFontOffset; // distance to move up before drawing
+	size_t m_charsPerPage;
 };
 
 extern CConsole* g_Console;

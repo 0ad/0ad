@@ -270,8 +270,59 @@ COMMAND(SetObjectSettings, NOMERGE,
 		((sObjectSettings, settings))
 		);
 
-
 //////////////////////////////////////////////////////////////////////////
+
+struct sCinemaSplineNode 
+{ 
+    float x, y, z, t; 
+}; 
+SHAREABLE_STRUCT(sCinemaSplineNode);
+
+struct sCinemaPath 
+{ 
+    std::vector<sCinemaSplineNode> nodes; 
+	float duration, x, y, z;
+    int mode, growth, change, style;	//change == switch point
+
+};
+SHAREABLE_STRUCT(sCinemaPath);
+
+struct sCinemaTrack 
+{ 
+    Shareable<std::wstring> name;
+	float x, y, z, timescale, duration;
+    std::vector<sCinemaPath> paths; 
+}; 
+SHAREABLE_STRUCT(sCinemaTrack);
+
+struct eCinemaMovementMode { enum { SMOOTH, IMMEDIATE_PATH, IMMEDIATE_TRACK }; };
+SHAREABLE_STRUCT(eCinemaMovementMode);
+
+struct sCinemaIcon 
+{ 
+	Shareable<std::wstring> name; 
+	Shareable< std::vector<unsigned char> > imageData; 
+};
+SHAREABLE_STRUCT(sCinemaIcon);
+
+QUERY(GetCinemaTracks, 
+	  , //no input
+	  ((std::vector<AtlasMessage::sCinemaTrack> , tracks)) );
+
+QUERY(GetCinemaIcons,
+	  ,
+	  ((std::vector<sCinemaIcon>, images)) );
+		
+
+COMMAND(SetCinemaTracks, 
+		MERGE, 
+		 ((std::vector<AtlasMessage::sCinemaTrack> , tracks))
+		((float, timescale)) ); 
+
+MESSAGE(CinemaMovement, 
+		((std::wstring, track)) 
+		((int, mode))
+		((float, t)) );
 
 #ifndef MESSAGES_SKIP_SETUP
 #include "MessagesSetup.h"

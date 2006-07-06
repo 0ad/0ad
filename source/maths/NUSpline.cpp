@@ -199,7 +199,22 @@ void TNSpline::RemoveNode(const int index)
   }
   NodeCount--;
 }
-
+void TNSpline::UpdateNodeTime(const int index, float time)
+{ 
+	if (NodeCount == 0 || index > NodeCount - 1 )
+	{
+		 return;
+	}
+	Node[index].Distance = time; 
+}
+void TNSpline::UpdateNodePos(const int index, const CVector3D &pos)
+{ 
+	if (NodeCount == 0 || index > NodeCount - 1 )
+	{
+		 return;
+	}
+	Node[index].Position = pos; 
+}
 void TNSpline::Constrain()
 {
   if ( NodeCount < 3 )

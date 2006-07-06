@@ -203,25 +203,34 @@ JSBool getEntityTemplate( JSContext* cx, JSObject*, uint argc, jsval* argv, jsva
 	return( JS_TRUE );
 }
 //Used to create net messages for formations--msgList.front() is the original message. see issueCommand
-void CreateFormationMessage( std::vector<CNetMessage*>& msgList, CNetMessage*& msg, HEntity formationEnt )
+void CreateFormationMessage( std::vector<CNetMessage*>& msgList, CNetMessage* msg, CEntityList& formation )
 {
-	if ( formationEnt->GetFormation()->IsDuplication() || msgList.empty() )
-		return;
-		
-	CNetMessage* tmp;
-	ENetMessageType type=msg->GetType();
-	CEntityList formation = formationEnt->GetFormation()->GetEntityList(); 
-	if ( type == NMT_Goto || type == NMT_Run )
+	CNetMessage* retMsg;
+	const int type = msg->GetType();
+
+	if ( type == NMT_Goto )
 	{
 		//formationEnt->GetFormation()->BaseToMovement();
-		tmp = CNetMessage::CastCommand(msg, formation, NMT_FormationGoto);
+		CGoto* tmp = static_cast<CGoto*>(msg);
+		retMsg = CNetMessage::CreatePositionMessage( formation, NMT_FormationGoto, 
+						CVector2D(tmp->m_TargetX, tmp->m_TargetY) );
+	}
+	else if( type == NMT_Run )
+	{
+		CGoto* tmp = static_cast<CGoto*>(msg);
+		retMsg = CNetMessage::CreatePositionMessage( formation, NMT_FormationGoto, 
+						CVector2D(tmp->m_TargetX, tmp->m_TargetY) );
 	}
 	else if ( type == NMT_Generic )
-		tmp = CNetMessage::CastCommand(msg, formation, NMT_FormationGeneric);
+	{
+		CGeneric* tmp = static_cast<CGeneric*>(msg);
+		retMsg = CNetMessage::CreateEntityIntMessage(formation, NMT_FormationGeneric, 
+					tmp->m_Target, tmp->m_Action);
+	}
 	else
 		return;
 	
-	msgList.push_back(tmp); 
+	msgList.push_back(retMsg); 
 }
 
 // Issue a command (network message) to an entity or collection.
@@ -234,13 +243,16 @@ JSBool issueCommand( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rv
 	debug_assert(JSVAL_IS_OBJECT(argv[0]));
 	*rval = JSVAL_NULL;
 	
-	CEntityList entities;
+	CEntityList entities, msgEntities;
 
 	if (JS_GetClass(JSVAL_TO_OBJECT(argv[0])) == &CEntity::JSI_class)
 		entities.push_back( (ToNative<CEntity>(argv[0])) ->me);
 	else
 		entities = *EntityCollection::RetrieveSet(cx, JSVAL_TO_OBJECT(argv[0]));
-
+	
+	msgEntities = entities;
+	std::map<int, CEntityList> entityStore;
+	
 	//Destroy old notifiers if we're explicitly being reassigned
 	for ( size_t i=0; i < entities.size(); i++)
 	{
@@ -248,11 +260,7 @@ JSBool issueCommand( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rv
 			entities[i]->DestroyAllNotifiers();
 	}
 	std::vector<CNetMessage*> messages;
-	CNetMessage* msg = CNetMessage::CommandFromJSArgs(entities, cx, argc-1, argv+1);
-	if (!msg)
-		return JS_TRUE;
 	
-	messages.push_back(msg);
 	//Generate messages for formations
 	for (size_t i=0; i < entities.size(); i++ )
 	{
@@ -264,18 +272,23 @@ JSBool issueCommand( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rv
 			if ( formation->IsLocked() && !duplicate)
 			{
 				formation->SelectAllUnits();
-				CreateFormationMessage(messages, msg, entities[i]);
+				entityStore[entities[i]->m_formation] = formation->GetEntityList();
 				formation->SetDuplication(true);
-				entities.erase( entities.begin()+i );	//we don't want to be in two orders
-				--i;
-			}
-			else if ( duplicate )
-			{
-				entities.erase( entities.begin()+i );
-				--i;
 			}
 		}
+		else
+			msgEntities.push_back( entities[i] );
 	}
+	CNetMessage* msg = CNetMessage::CommandFromJSArgs(msgEntities, cx, argc-1, argv+1);
+	if (!msg)
+	{
+		return JS_TRUE;
+		delete msg;
+	}
+	messages.push_back(msg);
+	
+	for ( std::map<int, CEntityList>::iterator it=entityStore.begin(); it!=entityStore.end(); it++)
+		CreateFormationMessage(messages, msg, it->second);
 	
 	for ( std::vector<CNetMessage*>::iterator it=messages.begin(); it != messages.end(); it++ )
 	{

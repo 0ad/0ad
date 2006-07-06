@@ -33,11 +33,34 @@ CConsole::CConsole()
 	FlushBuffer();
 
 	m_iMsgHistPos = 1;
+	m_charsPerPage=0;
 
 	InsertMessage(L"[ 0 A.D. Console v0.12 ]   type \"\\info\" for help");
 	InsertMessage(L"");
-}
 
+	if (vfs_exists("gui/text/help.txt"))
+	{
+		FileIOBuf buf;
+		size_t size;
+		if ( vfs_load("gui/text/help.txt", buf, size) < 0 )
+		{
+			LOG( ERROR,"Console", "Help file not found for console" );
+			file_buf_free(buf);
+			return;
+		}
+		const char* text = (const char*)buf;
+		CStrW temp = CStrW( CStr(text) );
+		size_t i=0, strings = temp.Length()/1024 ;
+
+		for ( ; i<strings; ++i )
+				m_helpText.push_back( temp.substr(i*1024, 1023) );
+
+		m_helpText.push_back( temp.substr(strings*1024) );
+		file_buf_free(buf);
+	}
+	else
+		InsertMessage(L"No help file found.");
+}
 
 CConsole::~CConsole()
 {
@@ -505,16 +528,37 @@ void CConsole::InsertMessage(const wchar_t* szMessage, ...)
 		wcscpy(szBuffer+CONSOLE_MESSAGE_SIZE-4, L"...");
 	}
 	va_end(args);
-
-	// Split into lines and add each one individually
-	wchar_t* lineStart = szBuffer;
-	wchar_t* lineEnd;
-	while ( (lineEnd = wcschr(lineStart, '\n')) != NULL)
+	
+	//Insert newlines to wraparound text where needed
+	CStrW wrapAround( szBuffer ), newline(L'\n');
+	size_t oldNewline=0;
+	size_t distance;
+	
+	//make sure everything has been initialized
+	if ( m_charsPerPage != 0 )
 	{
-		m_deqMsgHistory.push_front(std::wstring(lineStart, lineEnd));
-		lineStart = lineEnd+1;
+		while ( oldNewline+m_charsPerPage < wrapAround.length() )
+		{
+			distance = wrapAround.find(newline, oldNewline) - oldNewline;
+			if ( distance > m_charsPerPage )
+			{
+				oldNewline += m_charsPerPage;
+				wrapAround.insert( oldNewline++, newline );
+			}
+			else
+				oldNewline += distance+1;
+		}
 	}
-	m_deqMsgHistory.push_front(std::wstring(lineStart));
+	// Split into lines and add each one individually
+	oldNewline = 0;
+
+	while ( (distance = wrapAround.find(newline, oldNewline)) != wrapAround.npos)
+	{
+		distance -= oldNewline;
+		m_deqMsgHistory.push_front(wrapAround.substr(oldNewline, distance));
+		oldNewline += distance+1;
+	}
+	m_deqMsgHistory.push_front(wrapAround.substr(oldNewline));
 }
 
 const wchar_t* CConsole::GetBuffer()
@@ -577,6 +621,7 @@ void CConsole::ProcessBuffer(const wchar_t* szLine){
 			InsertMessage(L"   -View commands \"\\commands\"");
 			InsertMessage(L"   -Call command \"\\<command>\"");
 			InsertMessage(L"   -Say \"<string>\"");
+			InsertMessage(L"   -Help - Lists functions usable from console");
 			InsertMessage(L"");
 		}
 		else if (!wcscmp(szCommand, L"commands"))
@@ -590,6 +635,13 @@ void CConsole::ProcessBuffer(const wchar_t* szLine){
 				InsertMessage(L"   \\%ls", Iter->first.data());
 
 			InsertMessage(L"");
+		}
+		else if (! (wcscmp(szCommand, L"Help") && wcscmp(szCommand, L"help")) )
+		{
+			InsertMessage(L"");
+			InsertMessage(L"[Help]");
+			for ( std::vector<std::wstring>::iterator it=m_helpText.begin(); it!=m_helpText.end(); it++ )
+				InsertMessage( it->c_str() );
 		}
 		else
 		{

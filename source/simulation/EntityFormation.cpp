@@ -84,7 +84,7 @@ bool CEntityFormation::AddUnit( CEntity*& entity )
 }
 void CEntityFormation::RemoveUnit( CEntity*& entity )
 {
-	if ( !IsValidOrder(entity->m_formationSlot) || !entity )
+	if ( !(IsValidOrder(entity->m_formationSlot) && entity) )
 		return;
 
 	m_entities[entity->m_formationSlot] = NULL;
@@ -110,7 +110,7 @@ bool CEntityFormation::IsSlotAppropriate( int order, CEntity* entity )
 }
 bool CEntityFormation::IsBetterUnit( int order, CEntity* entity )
 {
-	if ( !( IsValidOrder(order) || entity ) )
+	if ( !( IsValidOrder(order) && entity ) )
 		return false;
 	//Adding to an empty slot, check if we're elligible
 	if ( !m_entities[order] )

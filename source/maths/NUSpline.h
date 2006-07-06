@@ -24,12 +24,12 @@ public:
   void AddNode(const CVector3D &pos);
   void BuildSpline();
   CVector3D GetPosition(float time);
-
-  std::vector<SplineData> Node;
+  
   float MaxDistance;
   int NodeCount;
 
 protected:
+  std::vector<SplineData> Node;
   CVector3D GetStartVelocity(int index);
   CVector3D GetEndVelocity(int index);
 };
@@ -48,8 +48,10 @@ public:
   void PushNode() { Node.push_back( SplineData() ); }
   void InsertNode(const int index, const CVector3D &pos, float timePeriod);
   void RemoveNode(const int index);
-
-  void BuildSpline(){ RNSpline::BuildSpline(); for (int i=0;i<5;i++) { Smooth(); Smooth(); Smooth(); } }
+  void UpdateNodeTime(const int index, float time);
+  void UpdateNodePos(const int index, const CVector3D &pos);
+  
+  void BuildSpline(){ RNSpline::BuildSpline();  Smooth(); Smooth(); Smooth(); }
   void Smooth(){ for( int x=0; x<3; x++ ) { SNSpline::Smooth(); Constrain(); }  }
   void Constrain(); 
 };

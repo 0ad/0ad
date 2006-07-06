@@ -15,21 +15,13 @@
 
 #include <list>
 #include <map>
-
 #include "ps/CStr.h"
 #include "maths/NUSpline.h"
-
 
 /*
 	Andrew (aka pyrolink)
 	Contact: ajdecker1022@msn.com
 	desc: contains various functions used for cinematic camera tracks
-	Note: There are some differences between the common 'things' of this and the Atlas
-	version.  
-		The Play functions for both are essentially the same, but Atlas does not support queued tracks.
-	The difference between the Track Manager and Cinema Manager is the track manager
-	is for adding and deleting tracks to the list, in the editor.  The Cinema Manager is
-	for taking care of the queued up Tracks, i.e. when they are to be destroyed/added.
 */
 
 class CVector3D;
@@ -39,12 +31,12 @@ class CCamera;
 //For loading data
 class CCinemaData
 {
-public:	
+public:
 	CCinemaData() {}
 	~CCinemaData() {}
-
-	float m_TotalDuration;
-	//X=x rotation in degrees...etc
+	
+	const CCinemaData* GetData() const { return this; }
+	
 	CVector3D m_TotalRotation;
 	
 	//Distortion variables
@@ -56,17 +48,14 @@ public:
 
 };
 
-
-class CCinemaPath : public CCinemaData
+//Once the data is part of the path, it shouldn't be changeable
+class CCinemaPath : private CCinemaData, public TNSpline
 {
+	friend class CCinemaTrack;
 public:
-	CCinemaPath(CCinemaData data);
-	CCinemaPath() { DistStylePtr = &CCinemaPath::EaseDefault;  DistModePtr = &CCinemaPath::EaseIn; }
+	CCinemaPath(const CCinemaData& data, const TNSpline& spline);
 	~CCinemaPath() { DistStylePtr = NULL;  DistModePtr = NULL; }
 	
-	float m_TimeElapsed;
-	
-	//Resets Rotation-Must call before MoveToPointAt()!!!
 	void ResetRotation(float t);
 	//sets camera position to calculated point on spline
 	void MoveToPointAt(float t, const CVector3D &startRotation);
@@ -89,72 +78,86 @@ public:
 	float (CCinemaPath::*DistStylePtr)(float ratio);
 	float (CCinemaPath::*DistModePtr)(float ratio);
 
+	const CCinemaData* GetData() const { return CCinemaData::GetData(); }
+
 public:
 
-	//Used when time and position are already set (usually from loaded file)
-	void AddNode(const CVector3D &pos, float timePeriod) { m_Spline.AddNode(pos, timePeriod); }
-	void PushNode() { m_Spline.Node.push_back( SplineData() ); }
-	void InsertNode(const int index, const CVector3D &pos, float timePeriod) { m_Spline.InsertNode(index, pos, timePeriod); }
-	void RemoveNode(const int index) { m_Spline.RemoveNode(index); }
-	
-	void UpdateNodeTime(const int index, float time) { m_Spline.Node[index].Distance = time; }
-    void UpdateNodePos(const int index, const CVector3D &pos) { m_Spline.Node[index].Position = pos; }
 	void DrawSpline(CVector4D RGBA, int smoothness);
 
-	int GetNodeCount() { return m_Spline.NodeCount; }
-	CVector3D GetNodePosition(const int index) { return m_Spline.Node[index].Position; }
-	float GetNodeDuration(const int index) { return m_Spline.Node[index].Distance; }
-	float GetDuration() { return m_Spline.MaxDistance; }
-
-	//Called when nodes have been added
-	void UpdateSpline() { m_Spline.BuildSpline(); }
-	void SetSpline( TNSpline spline ) { m_Spline = spline; }
+	inline CVector3D GetNodePosition(const int index) const { return Node[index].Position; }
+	inline float GetNodeDuration(const int index) const { return Node[index].Distance; }
+	inline float GetDuration() const { return MaxDistance; }
+	inline float GetElapsedTime() const { return m_TimeElapsed; }
+	const std::vector<SplineData>& GetAllNodes() const { return Node; } 
+//	inline void SetElapsedTime(float time) { m_TimeElapsed = time; }
 	
 private:
-	TNSpline m_Spline;
+	float m_TimeElapsed;
 
 };
 
 class CCinemaTrack
 {
+	friend class CCinemaManager;
 public: 
 	CCinemaTrack() {}
 	~CCinemaTrack() {}
 	
-	std::vector<CCinemaPath> m_Paths;
-	std::vector<CCinemaPath>::iterator m_CPA;	//current path
-	CVector3D m_StartRotation;
-	
-	void AddPath(CCinemaData path, TNSpline &spline);
-	bool Validate();
+	void AddPath(CCinemaData& data, TNSpline& spline);
+	inline void SetTimeScale(float scale) { m_TimeScale = scale; }
+	inline void SetStartRotation(CVector3D rotation) { m_StartRotation = rotation; }
+	void UpdateDuration();
 
 	//DOES NOT set CPA to Paths.begin().  Returns-false indicates it's finished, 
 	//true means it's still playing. 
-	bool Play(float DeltaTime);	
+	bool Play(float DeltaTime);
+	bool Validate();
+	void MoveToPointAt(float t);
+	void MoveToPointAbsolute(float time);	//Time, not ratio, in terms of track
 
+	inline const CVector3D& GetRotation() const { return m_StartRotation; }
+	inline float GetTimeScale() const { return m_TimeScale; }
+	inline float GetTotalDuration() const { return m_TotalDuration; }
+	inline const std::vector<CCinemaPath>& GetAllPaths() const { return m_Paths; }
+
+private:
+	std::vector<CCinemaPath> m_Paths;
+	std::vector<CCinemaPath>::iterator m_CPA;	//current path
+	CVector3D m_StartRotation;
+	float m_TimeScale;	//a negative timescale results in backwards play
+	float m_AbsoluteTime;	//Current time of track, in absolute terms (not path)
+	float m_TotalDuration;
+
+	bool ValidateForward();
+	bool ValidateRewind();
 };
-
 
 //Class for in game playing of cinematics
 class CCinemaManager
 {
 public:
-	CCinemaManager() {}
+	CCinemaManager() { m_Active=false; }
 	~CCinemaManager() {}
 	
-	void AddTrack(CCinemaTrack track, CStr name);
+	void AddTrack(CCinemaTrack track, CStrW name);
 	int LoadTracks();	//Loads tracks from file
-	int HACK_WriteTrack(CCinemaTrack track);
-
 	
 	//Adds track to list of being played.  (Called by triggers?)
-	void QueueTrack(CStr name, bool queue);
+	void QueueTrack(CStrW name, bool queue);
+	void OverrideTrack(CStrW name);	//clears track queue and replaces with 'name'
 	bool Update(float DeltaTime);
-	bool IsPlaying();
+	
+	inline bool IsPlaying() const { return !m_TrackQueue.empty(); }
+	bool HasTrack(CStrW name) const { return m_Tracks.find(name) != m_Tracks.end(); }
+	inline bool IsActive() const { return m_Active; }
+	inline void SetActive(bool active) { m_Active=active; }
 
-
+	CCinemaTrack* GetTrack(CStrW name) { debug_assert(HasTrack(name)); return &m_Tracks[name]; } 
+	inline const std::map<CStrW, CCinemaTrack>& GetAllTracks() { return m_Tracks; }
+	inline void SetAllTracks( const std::map<CStrW, CCinemaTrack>& tracks) { m_Tracks = tracks; }
 private:
-	std::map<CStr, CCinemaTrack> m_Tracks;
+	bool m_Active;
+	std::map<CStrW, CCinemaTrack> m_Tracks;
 	std::list<CCinemaTrack> m_TrackQueue;
 };
 

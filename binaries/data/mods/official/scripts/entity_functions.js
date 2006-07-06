@@ -909,7 +909,7 @@ function entityEventNotification( evt )
 	//This is used to adjust the flank penalty (we're no longer being attacked).
 	if ( this.getCurrentRequest() == NOTIFY_ORDER_CHANGE )
 	{
-		this.registerOrderChange();
+		this.registerOrderChange( evt.target );
 		destroyNotifier( evt.target );
 		return;
 	}
@@ -1087,6 +1087,12 @@ function entityEventTargetChanged( evt )
 			evt.secondaryAction = ACTION_REPAIR;
 		    evt.secondaryCursor = "action-build";
 		}
+	}
+	//Rally point
+	else if ( this.building )
+	{
+		evt.defaultOrder = -1;
+		evt.defaultCursor = "cursor-rally";
 	}
 
 		

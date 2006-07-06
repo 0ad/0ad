@@ -164,6 +164,8 @@ public:
 
 	inline CCamera *GetCamera()
 	{	return &m_ViewCamera; }
+	inline CCinemaManager* GetCinema()
+	{	return &m_TrackManager;	};
 };
 extern InReaction game_view_handler(const SDL_Event* ev);
 
