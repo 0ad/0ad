@@ -116,7 +116,7 @@ void* debug_get_nth_caller(uint n, void *UNUSED(context))
 	return bt[n+1]; // n==1 => bt[2], and so forth
 }
 
-const wchar_t* debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* UNUSED(context))
+LibError debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* UNUSED(context))
 {
 	++skip; // Skip ourselves too
 
@@ -159,7 +159,7 @@ const wchar_t* debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void*
 		bufpos += len;
 	}
 
-	return buf;
+	return INFO_OK;
 }
 
 static int slurp_symtab(symbol_file_context *ctx)

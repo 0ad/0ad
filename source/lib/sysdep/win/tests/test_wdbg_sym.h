@@ -53,9 +53,16 @@ class TestWdbgSym : public CxxTest::TestSuite
 		// note: we don't want any kind of dialog to be raised, because
 		// this test now always runs. therefore, just make sure a decent
 		// amount of text (not just "(failed)" error messages) was produced.
-		wchar_t buf[60000] = {'\0'};
-		debug_dump_stack(buf, ARRAY_SIZE(buf), 0, 0);
-		TS_ASSERT(wcslen(buf) > 500);
+		//
+		// however, we can't call debug_dump_stack directly because
+		// it'd be reentered if an actual error comes up.
+		// therefore, use debug_display_error with DE_HIDE_DIALOG.
+		// unfortunately this means we can no longer get at the error text.
+		// a sanity check of the text length has been added to debug_display_error
+		ErrorMessageMem emm = {0,0,0};
+		const wchar_t* text = debug_error_message_build(L"dummy", 0,0,0, 0,0, &emm);
+		TS_ASSERT(wcslen(text) > 500);
+		debug_error_message_free(&emm);
 	}
 
 	// also used by test_stl as an element type

@@ -216,6 +216,11 @@ void debug_wprintf(const wchar_t* fmt, ...)
 
 LibError debug_write_crashlog(const wchar_t* text)
 {
+	// avoid potential infinite loop if an error occurs here.
+	static uintptr_t in_progress;
+	if(!CAS(&in_progress, 0, 1))
+		return ERR_REENTERED;	// NOWARN
+
 	// note: we go through some gyrations here (strcpy+strcat) to avoid
 	// dependency on file code (path_append).
 	char N_path[PATH_MAX];
@@ -223,7 +228,10 @@ LibError debug_write_crashlog(const wchar_t* text)
 	strcat_s(N_path, ARRAY_SIZE(N_path), "crashlog.txt");
 	FILE* f = fopen(N_path, "w");
 	if(!f)
+	{
+		in_progress = 0;
 		WARN_RETURN(ERR_FILE_ACCESS);
+	}
 
 	fputwc(0xfeff, f);	// BOM
 	fwprintf(f, L"%ls\n", text);
@@ -235,6 +243,7 @@ LibError debug_write_crashlog(const wchar_t* text)
 	fwprintf(f, L"Last known activity:\n\n %ls\n", debug_log);
 
 	fclose(f);
+	in_progress = 0;
 	return INFO_OK;
 }
 
@@ -475,19 +484,63 @@ static bool should_suppress_error(u8* suppress)
 	return false;
 }
 
-static const wchar_t* build_error_message(wchar_t* buf, size_t max_chars,
+static wchar_t* alloc_mem(void* alloca_buf, size_t alloca_buf_size,
+	void*& heap_mem, size_t& max_chars)
+{
+	void* chosen_buf;
+	size_t chosen_size;
+
+	// rationale:
+	// - this needs to be quite large, so preallocating is undesirable.
+	// - prefer malloc to alloca because it allows returning larger
+	//   buffers (stack space may be quite limited).
+	// - do not rely on malloc because we might be called upon to report
+	//   heap corruption errors. therefore, the caller should allocate some
+	//   scratch memory via alloca, which is used as an (optional) backup.
+	// - note: we can't alloca here because it'd be lost after
+	//   function return, but must be passed on to debug_display_error.
+
+	// try allocating from heap.
+	chosen_size = 500*KiB;	// 'enough'
+	chosen_buf = heap_mem = malloc(chosen_size);
+	// .. failed; use alloca_buf.
+	if(!chosen_buf)
+	{
+		// caller didn't set it up => we have no memory to return; abort.
+		if(!alloca_buf)
+			return 0;
+
+		chosen_buf  = alloca_buf;
+		chosen_size = alloca_buf_size;
+	}
+
+	max_chars = chosen_size / sizeof(wchar_t);
+	return (wchar_t*)chosen_buf;
+}
+
+
+void debug_error_message_free(ErrorMessageMem* emm)
+{
+	// note: no-op if wasn't allocated from heap.
+	free(emm->heap_mem);
+}
+
+// split out of debug_display_error because it's used by the self-test.
+const wchar_t* debug_error_message_build(
 	const wchar_t* description,
 	const char* fn_only, int line, const char* func,
 	uint skip, void* context,
-	bool is_nested_error)
+	ErrorMessageMem* emm)
 {
+	size_t max_chars;
+	wchar_t* buf = alloc_mem(emm->alloca_buf, emm->alloca_buf_size, emm->heap_mem, max_chars);
 	if(!buf)
 		return L"(insufficient memory to generate error message)";
 
-	char errno_description[100] = {'?'};
+	char description_buf[100] = {'?'};
 	LibError errno_equiv = LibError_from_errno(false);
 	if(errno_equiv != ERR_FAIL)	// meaningful translation
-		error_description_r(errno_equiv, errno_description, ARRAY_SIZE(errno_description));
+		error_description_r(errno_equiv, description_buf, ARRAY_SIZE(description_buf));
 
 	char os_error[100];
 	if(sys_error_description_r(0, os_error, ARRAY_SIZE(os_error)) != INFO_OK)
@@ -504,7 +557,7 @@ static const wchar_t* build_error_message(wchar_t* buf, size_t max_chars,
 	int len = swprintf(buf,max_chars,fmt,
 		description,
 		fn_only, line, func,
-		errno, errno_description,
+		errno, description_buf,
 		os_error
 	);
 	if(len < 0)
@@ -512,19 +565,21 @@ static const wchar_t* build_error_message(wchar_t* buf, size_t max_chars,
 
 	// add stack trace to end of message
 	wchar_t* pos = buf+len; const size_t chars_left = max_chars-len;
-	if(!is_nested_error)
-	{
-		if(!context)
-			skip++;	// skip this frame
-		debug_dump_stack(pos, chars_left, skip, context);
-	}
-	// .. except when a stack trace is currently already in progress
-	//    (debug_dump_stack is not reentrant due to use of global buffer!)
-	else
+	if(!context)
+		skip += 2;	// skip debug_error_message_build and debug_display_error
+	LibError ret = debug_dump_stack(pos, chars_left, skip, context);
+	if(ret == ERR_REENTERED)
 	{
 		wcscpy_s(pos, chars_left,
 			L"(cannot start a nested stack trace; what probably happened is that "
 			L"an debug_assert/debug_warn/CHECK_ERR fired during the current trace.)"
+		);
+	}
+	else if(ret != INFO_OK)
+	{
+		swprintf(pos, chars_left,
+			L"(error while dumping stack: %hs)",
+			error_description_r(ret, description_buf, ARRAY_SIZE(description_buf))
 		);
 	}
 
@@ -606,49 +661,25 @@ ErrorReaction debug_display_error(const wchar_t* description,
 	//    which is rather long. we only display the base name for clarity.
 	const char* fn_only = path_name_only(file);
 
-
 	// display in output window; double-click will navigate to error location.
 	debug_wprintf(L"%hs(%d): %ls\n", fn_only, line, description);
 
 
-	// allocate memory for the error message. this needs to be quite large,
-	// so preallocating is undesirable. 
-	// note: this code can't be moved into a subroutine due to alloca.
-	wchar_t* buf = 0;
-	size_t max_chars = 256*KiB;
-	// .. try allocating from heap. can't rely on this because we might
-	//    be called upon to report heap corruption errors.
-	void* heap_mem = malloc((max_chars+1)*sizeof(wchar_t));
-	buf = (wchar_t*)heap_mem;
-	// .. heap alloc failed; try allocating from stack. if this fails,
-	//    we give up and simply display a static error message.
-	if(!buf)
-	{
-		max_chars = 128*KiB;	// (stack limit is usually 1 MiB)
-		buf = (wchar_t*)alloca((max_chars+1)*sizeof(wchar_t));
-	}
+	ErrorMessageMem emm;
+	emm.alloca_buf_size = 50000;
+	emm.alloca_buf = alloca(emm.alloca_buf_size);
+	const wchar_t* text = debug_error_message_build(description,
+		fn_only, line, func, skip, context, &emm);
 
-	static uintptr_t already_in_progress;
-	const bool is_nested = !CAS(&already_in_progress, 0, 1);
-
-	const wchar_t* text = build_error_message(buf, max_chars, description,
-		fn_only, line, func, skip, context, is_nested);
-
-	if(!is_nested)	// avoids potential infinite loop
-		debug_write_crashlog(text);
-
+	debug_write_crashlog(text);
 	ErrorReaction er = call_display_error(text, flags);
-
 
 	// note: debug_break-ing here to make sure the app doesn't continue
 	// running is no longer necessary. debug_display_error now determines our
 	// window handle and is modal.
 
 	// must happen before carry_out_ErrorReaction because that may exit.
-	// note: no-op if not allocated from heap.
-	free(heap_mem);
-
-	already_in_progress = 0;
+	debug_error_message_free(&emm);
 
 	return carry_out_ErrorReaction(er, flags, suppress);
 }

@@ -153,8 +153,9 @@ enum LibError {
  * "Unknown error (65536, 0x10000)".
  * @param buf destination buffer
  * @param max_chars size of buffer [characters]
+ * @return buf (allows using this function in expressions)
  **/
-extern void error_description_r(LibError err, char* buf, size_t max_chars);
+extern char* error_description_r(LibError err, char* buf, size_t max_chars);
 
 
 //-----------------------------------------------------------------------------
@@ -365,7 +366,8 @@ ERR(106, INFO_ALREADY_EXISTS, "6 (not an error)")
 
 ERR(-100000, ERR_LOGIC, "Logic error in code")
 ERR(-100001, ERR_TIMED_OUT, "Timed out")
-ERR(-100002, ERR_STRING_NOT_TERMINATED, "Invalid string (no 0 terminator found in buffer)")
+ERR(-100002, ERR_REENTERED, "Single-call function was reentered")
+ERR(-100010, ERR_STRING_NOT_TERMINATED, "Invalid string (no 0 terminator found in buffer)")
 
 
 // these are for cases where we just want a distinct value to display and

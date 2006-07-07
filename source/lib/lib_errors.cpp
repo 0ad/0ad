@@ -55,7 +55,7 @@ static const char* LibError_description(LibError err)
 // stores up to <max_chars> in the given buffer.
 // if error is unknown/invalid, the string will be something like
 // "Unknown error (65536, 0x10000)".
-void error_description_r(LibError err, char* buf, size_t max_chars)
+char* error_description_r(LibError err, char* buf, size_t max_chars)
 {
 	// lib error
 	const char* str = LibError_description(err);
@@ -64,11 +64,14 @@ void error_description_r(LibError err, char* buf, size_t max_chars)
 		// <err> was one of our error codes (chosen so as not to conflict
 		// with any others), so we're done.
 		strcpy_s(buf, max_chars, str);
-		return;
+	}
+	// unknown
+	else
+	{
+		snprintf(buf, max_chars, "Unknown error (%d, 0x%X)", err, err);
 	}
 
-	// fallback
-	snprintf(buf, max_chars, "Unknown error (%d, 0x%X)", err, err);
+	return buf;
 }
 
 

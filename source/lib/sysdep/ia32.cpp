@@ -644,7 +644,7 @@ LibError ia32_get_call_target(void* ret_addr, void** target)
 	if(len >= 3 && c[-3] == 0xFF && c[-2] == 0x14)
 		return INFO_OK;
 	// .. CALL [disp32]               => FF 15 disp32
-	if(len >= 6 && c[6] == 0xFF && c[-5] == 0x15)
+	if(len >= 6 && c[-6] == 0xFF && c[-5] == 0x15)
 	{
 		void* addr_of_target = *(void**)(c-4);
 		// there are no meaningful checks we can perform: we're called from

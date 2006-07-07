@@ -65,7 +65,6 @@ static void lock()
 {
 	win_lock(WDBG_CS);
 }
-
 static void unlock()
 {
 	win_unlock(WDBG_CS);
@@ -158,21 +157,14 @@ struct TI_FINDCHILDREN_PARAMS2
 };
 
 
-// read and return symbol information for the given address. all of the
-// output parameters are optional; we pass back as much information as is
-// available and desired. return 0 iff any information was successfully
-// retrieved and stored.
-// sym_name and file must hold at least the number of chars above;
-// file is the base name only, not path (see rationale in wdbg_sym).
-// the PDB implementation is rather slow (~500µs).
-LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line)
+// actual implementation; made available so that functions already under
+// the lock don't have to unlock (slow) to avoid recursive locking.
+static LibError debug_resolve_symbol_lk(void* ptr_of_interest, char* sym_name, char* file, int* line)
 {
 	sym_init();
 
 	const DWORD64 addr = (DWORD64)ptr_of_interest;
 	int successes = 0;
-
-	lock();
 
 	// get symbol name (if requested)
 	if(sym_name)
@@ -217,8 +209,22 @@ LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file,
 		}
 	}
 
-	unlock();
 	return (successes != 0)? INFO_OK : ERR_FAIL;
+}
+
+// read and return symbol information for the given address. all of the
+// output parameters are optional; we pass back as much information as is
+// available and desired. return 0 iff any information was successfully
+// retrieved and stored.
+// sym_name and file must hold at least the number of chars above;
+// file is the base name only, not path (see rationale in wdbg_sym).
+// the PDB implementation is rather slow (~500µs).
+LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line)
+{
+	lock();
+	LibError ret = debug_resolve_symbol_lk(ptr_of_interest, sym_name, file, line);
+	unlock();
+	return ret;
 }
 
 
@@ -319,6 +325,12 @@ static LibError ia32_walk_stack(STACKFRAME64* sf)
 // dump_frame_cb needs the frame pointer for reg-relative variables.
 typedef LibError (*StackFrameCallback)(const STACKFRAME64*, void*);
 
+static void skip_this_frame(uint& skip, void* context)
+{
+	if(!context)
+		skip++;
+}
+
 // iterate over a call stack, calling back for each frame encountered.
 // if <pcontext> != 0, we start there; otherwise, at the current context.
 // return an error if callback never succeeded (returned 0).
@@ -338,7 +350,7 @@ static LibError walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip 
 	// .. need to determine context ourselves.
 	else
 	{
-		skip++;	// skip this frame
+		skip_this_frame(skip, (void*)pcontext);
 
 		// there are 4 ways to do so, in order of preference:
 		// - asm (easy to use but currently only implemented on IA32)
@@ -418,7 +430,7 @@ static LibError walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip 
 
 		// no more frames found - abort. note: also test FP because
 		// StackWalk64 sometimes erroneously reports success.
-		void* fp = (void*)(uintptr_t)sf.AddrFrame .Offset;
+		void* fp = (void*)(uintptr_t)sf.AddrFrame.Offset;
 		if(err != INFO_OK || !fp)
 			return ret;
 
@@ -429,9 +441,12 @@ static LibError walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip 
 		}
 
 		ret = cb(&sf, user_arg);
+		// callback is allowing us to continue
+		if(ret == INFO_CB_CONTINUE)
+			ret = INFO_OK;	//  make sure this is never returned
 		// callback reports it's done; stop calling it and return that value.
 		// (can be either success or failure)
-		if(ret != INFO_CB_CONTINUE)
+		else
 		{
 			debug_assert(ret <= 0);	// shouldn't return > 0
 			return ret;
@@ -465,12 +480,10 @@ static LibError nth_caller_cb(const STACKFRAME64* sf, void* user_arg)
 // this is fast enough to allow that.
 void* debug_get_nth_caller(uint skip, void* pcontext)
 {
-	if(!pcontext)
-		skip++;	// skip this frame
-
 	lock();
 
 	void* func;
+	skip_this_frame(skip, pcontext);
 	LibError err = walk_stack(nth_caller_cb, &func, skip, (const CONTEXT*)pcontext);
 
 	unlock();
@@ -1196,9 +1209,7 @@ static LibError dump_sym_data(DWORD id, const u8* p, DumpState state)
 		DWORD type_id;
 		if(!SymGetTypeInfo(hProcess, mod_base, id, TI_GET_TYPEID, &type_id))
 			WARN_RETURN(ERR_SYM_TYPE_INFO_UNAVAILABLE);
-		LibError ret = determine_symbol_address(id, type_id, &p);
-		if(ret != 0)
-			return ret;
+		RETURN_ERR(determine_symbol_address(id, type_id, &p));
 
 		// display value recursively
 		return dump_sym(type_id, p, state);
@@ -1285,12 +1296,8 @@ static LibError dump_sym_function_type(DWORD UNUSED(type_id), const u8* p, DumpS
 	// unfortunately the one thing we care about, its name,
 	// isn't exposed via TI_GET_SYMNAME, so we resolve it ourselves.
 
-	unlock();	// prevent recursive lock
-
 	char name[DBG_SYMBOL_LEN];
-	LibError err = debug_resolve_symbol((void*)p, name, 0, 0);
-
-	lock();
+	LibError err = debug_resolve_symbol_lk((void*)p, name, 0, 0);
 
 	out(L"0x%p", p);
 	if(err == INFO_OK)
@@ -1826,10 +1833,11 @@ static LibError dump_frame_cb(const STACKFRAME64* sf, void* UNUSED(user_arg))
 	void* func = (void*)sf->AddrPC.Offset;
 
 	char func_name[DBG_SYMBOL_LEN]; char file[DBG_FILE_LEN]; int line;
-	if(debug_resolve_symbol(func, func_name, file, &line) == 0)
+	LibError ret = debug_resolve_symbol_lk(func, func_name, file, &line);
+	if(ret == INFO_OK)
 	{
 		// don't trace back further than the app's entry point
-		// (noone wants to see this frame). checking for the
+		// (no one wants to see this frame). checking for the
 		// function name isn't future-proof, but not stopping is no big deal.
 		// an alternative would be to check if module=kernel32, but
 		// that would cut off callbacks as well.
@@ -1858,31 +1866,23 @@ static LibError dump_frame_cb(const STACKFRAME64* sf, void* UNUSED(user_arg))
 }
 
 
-// write a complete stack trace (including values of local variables) into
-// the specified buffer. if <context> is nonzero, it is assumed to be a
-// platform-specific representation of execution state (e.g. Win32 CONTEXT)
-// and tracing starts there; this is useful for exceptions.
-// otherwise, tracing starts at the current stack position, and the given
-// number of stack frames (i.e. functions) above the caller are skipped.
-// this prevents functions like debug_assert_failed from
-// cluttering up the trace. returns the buffer for convenience.
-const wchar_t* debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* pcontext)
+LibError debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* pcontext)
 {
-	if(!pcontext)
-		skip++;	// skip this frame
-
+	static uintptr_t already_in_progress;
+	if(!CAS(&already_in_progress, 0, 1))
+		return ERR_REENTERED;	// NOWARN
 	lock();
 
 	out_init(buf, max_chars);
 	ptr_reset_visited();
 
-	LibError err = walk_stack(dump_frame_cb, 0, skip, (const CONTEXT*)pcontext);
-	if(err < 0)
-		out(L"(error while building stack trace: %d)", err);
+	skip_this_frame(skip, pcontext);
+	LibError ret = walk_stack(dump_frame_cb, 0, skip, (const CONTEXT*)pcontext);
 
 	unlock();
+	already_in_progress = 0;
 
-	return buf;
+	return ret;
 }
 
 

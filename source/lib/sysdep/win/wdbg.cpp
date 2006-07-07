@@ -804,7 +804,7 @@ bool debug_is_stack_ptr(void* p)
 	// not aligned
 	if(addr % sizeof(void*))
 		return false;
-	// out of bounds (note: IA32 stack grows downwards)
+	// out of bounds (note: IA-32 stack grows downwards)
 	NT_TIB* tib = get_tib();
 	if(!(tib->StackLimit < p && p < tib->StackBase))
 		return false;
