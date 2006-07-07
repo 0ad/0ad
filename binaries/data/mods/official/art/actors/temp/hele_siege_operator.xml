@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant>
+      <animations>
+        <animation file="biped/inf_jav_atk_a.psa" name="Idle" speed="100"/>
+        <animation file="biped/inf_spear_shield_atk_a.psa" name="Idle" speed="100"/>
+      </animations>
+      <mesh>skeletal/m_tunic_a.pmd</mesh>
+      <props>
+        <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/hele_helmet_sacredband.xml" attachpoint="helmet"/>
+      </props>
+      <texture>skeletal/hele_iar_b.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>
