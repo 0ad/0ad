@@ -67,6 +67,7 @@ CBaseEntity::CBaseEntity( CPlayer* player )
 	AddProperty( L"traits.anchor.conformz", &m_anchorConformZ );
 	AddProperty( L"traits.vision.los", &m_los );
 	AddProperty( L"traits.vision.permanent", &m_permanent );
+	AddProperty( L"traits.is_territory_centre", &m_isTerritoryCentre );
 	AddProperty( L"traits.foundation", &m_foundation );
 
 	for( int t = 0; t < EVENT_LAST; t++ )

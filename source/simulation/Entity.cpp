@@ -22,7 +22,8 @@
 #include "ps/CConsole.h"
 #include "renderer/WaterManager.h"
 #include "EntityFormation.h"
-#include "simulation/FormationManager.h"
+#include "FormationManager.h"
+#include "TerritoryManager.h"
 #include "Formation.h"
 #include "graphics/GameView.h"
 #include "graphics/Sprite.h"
@@ -101,6 +102,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
 	AddProperty( L"traits.anchor.conformz", &m_anchorConformZ );
     AddProperty( L"traits.vision.los", &m_los );
     AddProperty( L"traits.vision.permanent", &m_permanent );
+	AddProperty( L"traits.is_territory_centre", &m_isTerritoryCentre );
 	AddProperty( L"last_combat_time", &m_lastCombatTime );
 	AddProperty( L"last_run_time", &m_lastRunTime );
 	AddProperty( L"building", &m_building );
@@ -165,6 +167,8 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
     m_grouped = -1;
 
 	m_building = building;
+
+	m_associatedTerritory = 0;
 	
     m_player = g_Game->GetPlayer( 0 );
 }

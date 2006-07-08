@@ -21,6 +21,7 @@
 #include "simulation/EntityManager.h"
 #include "simulation/EntityManager.h"
 #include "simulation/LOSManager.h"
+#include "simulation/TerritoryManager.h"
 #include "simulation/Projectile.h"
 
 #define LOG_CATEGORY "world"
@@ -36,7 +37,8 @@ CWorld::CWorld(CGame *pGame):
 	m_UnitManager(&g_UnitMan),
 	m_EntityManager(new CEntityManager()),
 	m_ProjectileManager(new CProjectileManager()),
-	m_LOSManager(new CLOSManager())
+	m_LOSManager(new CLOSManager()),
+	m_TerritoryManager(new CTerritoryManager())
 {}
 
 void CWorld::Initialize(CGameAttributes *pAttribs)

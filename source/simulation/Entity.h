@@ -44,6 +44,7 @@ class CPlayer;
 class CProductionQueue;
 class CSkeletonAnim;
 class CUnit;
+class CTerritory;
 
 class CEntityFormation;
 
@@ -162,6 +163,12 @@ public:
 	// LOS
 	int m_los;
 	bool m_permanent;
+
+	// Is this object a territory centre? (e.g. Settlements in 0AD)
+	bool m_isTerritoryCentre;
+
+	// If the object is a territory centre, this points to its territory
+	CTerritory* m_associatedTerritory;
 
 	// Auras
 	AuraTable m_auras;

@@ -22,6 +22,7 @@
 #include "scripting/GameEvents.h"
 #include "simulation/Entity.h"
 #include "simulation/LOSManager.h"
+#include "simulation/TerritoryManager.h"
 
 
 bool g_TerrainModified = false;
@@ -195,7 +196,7 @@ void CMiniMap::DrawViewRect()
 	glScissor((int)m_CachedActualSize.left, 0, (int)m_CachedActualSize.right, (int)m_CachedActualSize.GetHeight());
 	glEnable(GL_SCISSOR_TEST);
 	glEnable(GL_LINE_SMOOTH);
-	glLineWidth(2);
+	glLineWidth(2.0f);
 	glColor3f(1.0f, 0.3f, 0.3f);
 
 	// Draw the viewing rectangle with the ScEd's conversion algorithm
@@ -209,7 +210,7 @@ void CMiniMap::DrawViewRect()
 
 	// restore state
 	glDisable(GL_SCISSOR_TEST);
-	glDisable(GL_POINT_SMOOTH);
+	glDisable(GL_LINE_SMOOTH);
 	glLineWidth(1.0f);
 }
 
@@ -219,6 +220,8 @@ void CMiniMap::Draw()
 	// happens when the game is started, so abort until then.
 	if(!(GetGUI() && g_Game && g_Game->IsGameStarted()))
 		return;
+
+	glDisable(GL_DEPTH_TEST);
 
 	// Set our globals in case they hadn't been set before
 	m_Camera      = g_Game->GetView()->GetCamera();
@@ -276,6 +279,52 @@ void CMiniMap::Draw()
 	glVertex3f(x, y2, z);
 	glEnd();
 
+	// Shade territories by player
+	CTerritoryManager* territoryMgr = g_Game->GetWorld()->GetTerritoryManager();
+	std::vector<CTerritory*>& territories = territoryMgr->GetTerritories();
+	glDisable(GL_TEXTURE_2D);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	for( size_t i=0; i<territories.size(); i++ )
+	{
+		if( territories[i]->owner->GetPlayerID() == 0 )
+			continue;
+		std::vector<CVector2D>& boundary = territories[i]->boundary;
+		SPlayerColour col = territories[i]->owner->GetColour();
+		glColor4f(col.r, col.g, col.b, 0.25f);
+		glBegin(GL_POLYGON);
+		for( size_t j=0; j<boundary.size(); j++ )
+		{
+			float fx = boundary[j].x / (m_Terrain->GetTilesPerSide() * CELL_SIZE);
+			float fy = boundary[j].y / (m_Terrain->GetTilesPerSide() * CELL_SIZE);
+			glVertex3f( x*(1-fx) + x2*fx, y*(1-fy) + y2*fy, z );
+		}
+		glEnd();
+	}
+	glDisable(GL_BLEND);
+
+	// Draw territory boundaries
+	glEnable(GL_LINE_SMOOTH);
+	glLineWidth(1.0f);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glColor4f(0.8f, 0.8f, 0.8f, 0.8f);
+	for( size_t i=0; i<territories.size(); i++ )
+	{
+		std::vector<CVector2D>& boundary = territories[i]->boundary;
+		glBegin(GL_LINE_LOOP);
+		for( size_t j=0; j<boundary.size(); j++ )
+		{
+			float fx = boundary[j].x / (m_Terrain->GetTilesPerSide() * CELL_SIZE);
+			float fy = boundary[j].y / (m_Terrain->GetTilesPerSide() * CELL_SIZE);
+			glVertex3f( x*(1-fx) + x2*fx, y*(1-fy) + y2*fy, z );
+		}
+		glEnd();
+	}
+	glLineWidth(1.0f);
+	glDisable(GL_LINE_SMOOTH);
+	glDisable(GL_BLEND);
+
 	// Draw the LOS quad in black, using alpha values from the LOS texture
 	g_Renderer.BindTexture(0, m_LOSTexture);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
@@ -308,9 +357,7 @@ void CMiniMap::Draw()
 	CUnit *unit = 0;
 	CVector2D pos;
 	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
-	glDisable(GL_DEPTH_TEST);
 	glEnable(GL_POINT_SMOOTH);
-	glDisable(GL_TEXTURE_2D);
 	glPointSize(3.0f);
 	// REMOVED: glColor3f(1.0f, 1.0f, 1.0f);
 	glBegin(GL_POINTS);
@@ -343,7 +390,7 @@ void CMiniMap::Draw()
 
 	// Reset everything back to normal
 	glPointSize(1.0f);
-	glDisable(GL_LINE_SMOOTH);
+	glDisable(GL_POINT_SMOOTH);
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_DEPTH_TEST);
 }

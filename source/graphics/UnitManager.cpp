@@ -18,6 +18,7 @@
 #include "ObjectManager.h"
 #include "ObjectEntry.h"
 #include "simulation/LOSManager.h"
+#include "simulation/TerritoryManager.h"
 
 extern CConsole* g_Console;
 

@@ -16,6 +16,7 @@ class CUnitManager;
 class CEntityManager;
 class CProjectileManager;
 class CLOSManager;
+class CTerritoryManager;
 class CTerrain;
 
 class CWorld
@@ -28,6 +29,7 @@ class CWorld
 	CEntityManager *m_EntityManager;
 	CProjectileManager *m_ProjectileManager;
 	CLOSManager *m_LOSManager;
+	CTerritoryManager *m_TerritoryManager;
 
 public:
 	CWorld(CGame *pGame);
@@ -52,6 +54,8 @@ public:
 	{	return m_ProjectileManager; }
 	inline CLOSManager *GetLOSManager()
 	{	return m_LOSManager; }
+	inline CTerritoryManager *GetTerritoryManager()
+	{	return m_TerritoryManager; }
 
 private:
 	// squelch "unable to generate" warnings

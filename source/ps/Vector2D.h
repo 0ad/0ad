@@ -96,6 +96,10 @@ public:
 	{
 		return( sqrt( x * x + y * y ) );
 	}
+	inline float length2() const
+	{
+		return( x * x + y * y );
+	}
 	CVector2D normalize() const
 	{
 		float l = length();

@@ -110,6 +110,9 @@ public:
 	int m_los;
 	bool m_permanent;
 
+	// Is this object a territory centre? (e.g. Settlements in 0AD)
+	bool m_isTerritoryCentre;
+
 	// Foundation entity, or "" for none
 	CStrW m_foundation;
 

@@ -1221,7 +1221,7 @@ void CRenderer::FlushFrame()
 	RenderModels();
 	oglCheck();
 
-	// render transparent stuff
+	// render transparent stuff, so it can overlap models/terrain
 	MICROLOG(L"render transparent");
 	RenderTransparentModels();
 	oglCheck();
@@ -1232,12 +1232,21 @@ void CRenderer::FlushFrame()
 		MICROLOG(L"render water");
 		m->terrainRenderer->RenderWater();
 		oglCheck();
-
+		
 		// render transparent stuff again, so it can overlap the water
 		MICROLOG(L"render transparent 2");
 		RenderTransparentModels();
 		oglCheck();
+		
+		// TODO: Maybe think of a better way to deal with transparent objects;
+		// they can appear both under and above water (seaweed vs. trees), but doing
+		// 2 renders causes (a) inefficiency and (b) darker over-water objects (e.g.
+		// trees) than usual because the transparent bits get overwritten twice.
+		// This doesn't look particularly bad, but it is noticeable if you try
+		// turning the water off. On the other hand every user will have water
+		// on all the time, so it might not be worth worrying about.
 	}
+
 
 	// Clean up texture blend mode so particles and other things render OK 
 	// (really this should be cleaned up by whoever set it)

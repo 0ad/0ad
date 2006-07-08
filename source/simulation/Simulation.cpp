@@ -25,6 +25,8 @@
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"
 #include "simulation/Entity.h"
+#include "simulation/LOSManager.h"
+#include "simulation/TerritoryManager.h"
 
 #include "gui/CGUI.h"
 
@@ -59,6 +61,8 @@ int CSimulation::Initialize(CGameAttributes* pAttribs)
 
 	// [2006-06-26: 61ms]
 	m_pWorld->GetLOSManager()->Initialize(pAttribs->m_LOSSetting);
+
+	m_pWorld->GetTerritoryManager()->Initialize();
 
 	return 0;
 }
