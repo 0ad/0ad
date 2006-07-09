@@ -13,13 +13,15 @@
 
 			<Icon_Cell>47</Icon_Cell>
 
-			<Classes>Housing, Village</Classes>
+			<Classes>Housing, Village, CivilCentre</Classes>
 
 			<Rollover>The heart of the player's empire. Trains economic units, and can only be built on settlements.</Rollover>
 		
 		</Id>
 		
 		<Foundation>foundation_5x5</Foundation>
+		
+		<Socket>Settlement</Socket>
 
  		<Footprint>
  			<Width>24.0</Width>

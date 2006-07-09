@@ -417,6 +417,11 @@ function attachAuras()
 			this.addAura ( "trample", a.radius, a.speed, new TrampleAura( this ) );
 		}
 	}		
+	
+	if( this.hasClass("Settlement") )
+	{
+		this.addAura ( "settlement", 0.1, 0, new SettlementAura( this ) );
+	}
 }
 
 // ====================================================================
@@ -1844,6 +1849,39 @@ function TrampleAura( source )
 			e.damage( dmg, this.source );
 		}
 	};
+}
+
+// ====================================================================
+
+function SettlementAura( source )
+{
+	// Defines the effects of the Settlement Aura. Changes ownership of entity when a civil center is on it.
+
+	this.source = source;
+	
+	this.affects = function( e ) 
+	{
+		return ( e.hasClass("CivilCentre") );
+	}
+	
+	this.onEnter = function( e ) 
+	{
+		if( this.affects( e ) ) 
+		{
+			// If a new Civ Centre has entered our radius, it must mean it's on us; switch player and become invisible
+			source.player = e.player;
+			source.visible = false;
+		}
+	};
+	
+	this.onExit = function( e ) 
+	{
+		if( this.affects( e ) ) 
+		{
+			// If a Civ Centre has entered our radius, it must mean the one on us died; become visible again
+			source.visible = true;
+		}
+	}
 }
 
 // ====================================================================

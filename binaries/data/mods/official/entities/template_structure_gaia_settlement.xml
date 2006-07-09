@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
 <Entity 
-	Parent="template_structure"
+	Parent="template_entity_full"
 >
 	<Traits>
 	
@@ -23,8 +23,6 @@
 		</Id>
 		
 		<Is_Territory_Centre>true</Is_Territory_Centre>
-		
-		<Foundation>foundation_5x5</Foundation>
 		
  		<Footprint>
  			<Width>24.0</Width>
