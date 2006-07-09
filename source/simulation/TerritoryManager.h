@@ -24,10 +24,10 @@ class CTerritory
 {
 public:
 	CPlayer* owner;						// owner of the territory, or Gaia for none
-	CEntity* centre;						// centre object of this territory
+	HEntity centre;						// centre object of this territory
 	std::vector<CVector2D> boundary;		// boundary polygon, in map coordinates
 
-	CTerritory(CPlayer* owner_, CEntity* centre_, std::vector<CVector2D> boundary_)
+	CTerritory(CPlayer* owner_, HEntity centre_, std::vector<CVector2D> boundary_)
 		: owner(owner_), centre(centre_), boundary(boundary_) {}
 };
 

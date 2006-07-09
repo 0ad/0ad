@@ -105,6 +105,9 @@ public:
 	// If this unit is still active in the gameworld - i.e. not a corpse.
 	bool m_extant;
 
+	// If this is false, the unit will not be drawn and cannot be interacted with using the mouse.
+	bool m_visible;
+
 	bool m_isRunning;	//is it actually running
 	bool m_shouldRun;	//if run was issued, it will remain true until it is stopped
 	bool m_triggerRun;	//used in SetRun, corrects 1 frame stamina imbalance

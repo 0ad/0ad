@@ -1310,29 +1310,29 @@ bool CBuildingPlacer::activate(CStrW& templateName)
 	m_totalTime = 0;
 	m_valid = false;
 
-	CBaseEntity* base = g_EntityTemplateCollection.getTemplate( m_templateName );
+	m_template = g_EntityTemplateCollection.getTemplate( m_templateName );
 
-	if( !base )
+	if( !m_template )
 	{
 		deactivate();
 		return false;
 	}
 
 	// m_actor
-	CStr actorName ( base->m_actorName );	// convert CStrW->CStr8
+	CStr actorName ( m_template->m_actorName );	// convert CStrW->CStr8
 
 	std::set<CStrW> selections;
 	m_actor = g_UnitMan.CreateUnit( actorName, 0, selections );
 	m_actor->SetPlayerID(g_Game->GetLocalPlayer()->GetPlayerID());
 
 	// m_bounds
-	if( base->m_bound_type == CBoundingObject::BOUND_CIRCLE )
+	if( m_template->m_bound_type == CBoundingObject::BOUND_CIRCLE )
 	{
- 		m_bounds = new CBoundingCircle( 0, 0, base->m_bound_circle );
+ 		m_bounds = new CBoundingCircle( 0, 0, m_template->m_bound_circle );
 	}
-	else if( base->m_bound_type == CBoundingObject::BOUND_OABB )
+	else if( m_template->m_bound_type == CBoundingObject::BOUND_OABB )
 	{
-		m_bounds = new CBoundingBox( 0, 0, CVector2D(1, 0), base->m_bound_box );
+		m_bounds = new CBoundingBox( 0, 0, CVector2D(1, 0), m_template->m_bound_box );
 	}
 
 	return true;
@@ -1341,7 +1341,8 @@ bool CBuildingPlacer::activate(CStrW& templateName)
 void CBuildingPlacer::mousePressed()
 {
 	CCamera &g_Camera=*g_Game->GetView()->GetCamera();
-	clickPos = g_Camera.GetWorldCoordinates();
+	if( m_template->m_socket == L"" )
+		clickPos = g_Camera.GetWorldCoordinates();
 	m_clicked = true;
 }
 
@@ -1349,12 +1350,9 @@ void CBuildingPlacer::mouseReleased()
 {
 	deactivate();	// do it first in case we fail for any reason
 
-	if(m_valid)
+	if( m_valid )
 	{
-		//HEntity ent = g_EntityManager.createFoundation( m_templateName, clickPos, m_angle );
-		//ent->SetPlayer(g_Game->GetLocalPlayer());
-
-		// Issue a command accross the network
+		// issue a place object command accross the network
 		CPlaceObject *msg = new CPlaceObject();
 		msg->m_Entities = g_Selection.m_selected;
 		msg->m_Template = m_templateName;
@@ -1383,8 +1381,9 @@ void CBuildingPlacer::update( float timeStep )
 
 	m_totalTime += timeStep;
 
-	if(m_clicked)
+	if( m_clicked && m_template->m_socket == L"" )
 	{
+		// Rotate object
 		m_timeSinceClick += timeStep;
 		CCamera &g_Camera=*g_Game->GetView()->GetCamera();
 		CVector3D mousePos = g_Camera.GetWorldCoordinates();
@@ -1404,7 +1403,7 @@ void CBuildingPlacer::update( float timeStep )
 	}
 
 	CVector3D pos;
-	if(m_clicked)
+	if( m_clicked )
 	{
 		pos = clickPos;
 	}
@@ -1413,6 +1412,23 @@ void CBuildingPlacer::update( float timeStep )
 		CCamera &g_Camera=*g_Game->GetView()->GetCamera();
 		pos = g_Camera.GetWorldCoordinates();
 	}
+
+	bool onSocket = false;
+	if( m_template->m_socket != L"" )
+	{
+		// If we're on a socket of our type, remember that and snap ourselves to it
+		m_bounds->setPosition(pos.X, pos.Z);	// first, move bounds to mouse pos
+		CEntity* ent = getCollisionEntity( m_bounds, 0, L"" );	// now, check what we intersect
+		if( ent && ent->m_classes.IsMember( m_template->m_socket ) )	// if it's a socket, snap to it
+		{
+			onSocket = true;
+			m_angle = atan2f( ent->m_ahead.x, ent->m_ahead.y );
+			pos = ent->m_position;
+			clickPos = ent->m_position;
+		}
+	}
+
+	// Set position and angle to the location we decided on
 
 	CMatrix3D m;
 	float s = sin( m_angle );
@@ -1425,52 +1441,33 @@ void CBuildingPlacer::update( float timeStep )
 
 	m_bounds->setPosition(pos.X, pos.Z);
 
-	if(m_bounds->m_type == CBoundingObject::BOUND_OABB)
+	if( m_bounds->m_type == CBoundingObject::BOUND_OABB )
 	{
 		CBoundingBox* box = (CBoundingBox*) m_bounds;
-		box->setOrientation(m_angle);
+		box->setOrientation( m_angle );
 	}
 
+	// It's valid to place the object here if the position is on the map and it's
+	// unobstructed by anything except possibly our socket (which we find out by
+	// by passing an ignoreClass to getCollisionObject); also, if we are a
+	// socketted object, we check that we are in fact on a socket, using onSocket.
+
 	CTerrain *pTerrain=g_Game->GetWorld()->GetTerrain();
-	m_valid = pTerrain->isOnMap(pos.X, pos.Z) && getCollisionObject(m_bounds)==0;
+	m_valid = pTerrain->isOnMap( pos.X, pos.Z ) 
+				&& ( m_template->m_socket == L"" || onSocket )
+				&& ( getCollisionObject( m_bounds, 0, m_template->m_socket ) == 0 );
+
+	// Flash our actor red if the position is invalid.
 
 	CColor col;
-	if(m_valid)
+	if( m_valid )
 	{
 		col = CColor(1.0f, 1.0f, 1.0f, 1.0f);
 	}
 	else
 	{
-		float add = (sin(4*PI*m_totalTime) + 1.0f) * 0.08f;
-		col = CColor(1.4f+add, 0.4f+add, 0.4f+add, 1.0f);
+		float add = ( sin(4*PI*m_totalTime) + 1.0f ) * 0.08f;
+		col = CColor( 1.4f+add, 0.4f+add, 0.4f+add, 1.0f );
 	}
-	m_actor->GetModel()->SetShadingColor(col);
-}
-
-void CBuildingPlacer::render()
-{
-	// do nothing special - our CUnit will get rendered by the UnitManager
-
-	/*if(!m_active)
-		return;
-
-	CVector3D pos;
-	if(m_clicked)
-	{
-		pos = clickPos;
-	}
-	else
-	{
-		CCamera &g_Camera=*g_Game->GetView()->GetCamera();
-		pos = g_Camera.GetWorldCoordinates();
-	}
-
-	glBegin(GL_LINE_STRIP);
-	glColor3f(1,1,1);
-	glVertex3f(pos.X, pos.Y+6, pos.Z);
-	glColor3f(1,1,1);
-	glVertex3f(pos.X, pos.Y, pos.Z);
-	glColor3f(1,1,1);
-	glVertex3f(pos.X + 3*sin(m_angle), pos.Y, pos.Z + 3*cos(m_angle));
-	glEnd();*/
+	m_actor->GetModel()->SetShadingColor( col );
 }

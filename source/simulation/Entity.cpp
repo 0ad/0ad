@@ -106,6 +106,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
 	AddProperty( L"last_combat_time", &m_lastCombatTime );
 	AddProperty( L"last_run_time", &m_lastRunTime );
 	AddProperty( L"building", &m_building );
+	AddProperty( L"visible", &m_visible );
 
 	m_productionQueue = new CProductionQueue( this );
 	AddProperty( L"production_queue", m_productionQueue );
@@ -167,6 +168,8 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
     m_grouped = -1;
 
 	m_building = building;
+
+	m_visible = true;
 
 	m_associatedTerritory = 0;
 	
@@ -242,6 +245,13 @@ void CEntity::loadBase()
 	{
 		// Make sure the actor has the right player colour
 		m_actor->SetPlayerID( m_player->GetPlayerID() );
+	}
+
+	// Re-enter all our auras so they can take into account our new traits
+	for( AuraSet::iterator it = m_aurasInfluencingMe.begin();
+				it != m_aurasInfluencingMe.end(); it++ )
+	{
+		(*it)->Remove( this );
 	}
 }
 
@@ -340,6 +350,10 @@ void CEntity::SetPlayer(CPlayer *pPlayer)
     // Store the ID of the player in the associated model
     if( m_actor )
         m_actor->SetPlayerID( m_player->GetPlayerID() );
+
+	// If we're a territory centre, change the territory's owner
+	if( m_associatedTerritory )
+		m_associatedTerritory->owner = pPlayer;
 }
 
 void CEntity::updateActorTransforms()
@@ -909,8 +923,13 @@ void CEntity::teleport()
 
 void CEntity::playerChanged()
 {
+	// Set actor player colour
     if( m_actor )
         m_actor->SetPlayerID( m_player->GetPlayerID() );
+	
+	// If we're a territory centre, change the territory's owner
+	if( m_associatedTerritory )
+		m_associatedTerritory->owner = m_player;
 }
 
 void CEntity::checkSelection()
@@ -992,6 +1011,8 @@ void CEntity::invalidateActor()
 
 void CEntity::render()
 {
+	if( !m_visible ) return;
+
     if( !m_orderQueue.empty() )
     {
         std::deque<CEntityOrder>::iterator it;
@@ -1120,15 +1141,17 @@ int CEntity::findSector( int divs, float angle, float maxAngle, bool negative )
 }
 void CEntity::renderSelectionOutline( float alpha )
 {
-    if( !m_bounds )
+    if( !m_bounds || !m_visible )
         return;
 
-    if( getCollisionObject( this ) )
-        glColor4f( 1.0f, 0.5f, 0.5f, alpha );
+	if( getCollisionObject( m_bounds, m_player, m_base->m_socket ) )
+	{
+        glColor4f( 1.0f, 0.5f, 0.5f, alpha );	// We're colliding with another unit; colour outline pink
+	}
     else
     {
         const SPlayerColour& col = m_player->GetColour();
-        glColor3f( col.r, col.g, col.b );
+        glColor3f( col.r, col.g, col.b );		// Colour outline with player colour
     }
 
     glBegin( GL_LINE_LOOP );
@@ -1229,7 +1252,10 @@ CVector2D CEntity::getScreenCoords( float height )
 	return CVector2D( sx, sy );
 }
 void CEntity::renderBarBorders()
-{
+{ 
+	if( !m_visible )
+		return;
+
 	if ( m_staminaBarHeight >= 0 && 
 		g_Selection.m_unitUITextures.find(m_healthBorderName) != g_Selection.m_unitUITextures.end() )
 	{
@@ -1275,7 +1301,7 @@ void CEntity::renderBarBorders()
 }
 void CEntity::renderHealthBar()
 {
-    if( !m_bounds )
+    if( !m_bounds || !m_visible )
         return;
     if( m_healthBarHeight < 0 )
         return;  // negative bar height means don't display health bar
@@ -1312,7 +1338,7 @@ void CEntity::renderHealthBar()
 
 void CEntity::renderStaminaBar()
 {
-    if( !m_bounds )
+    if( !m_bounds || !m_visible )
         return;
     if( m_staminaBarHeight < 0 )
         return;  // negative bar height means don't display stamina bar
@@ -1346,7 +1372,7 @@ void CEntity::renderStaminaBar()
 }
 void CEntity::renderRank()
 {
-	if( !m_bounds )
+	if( !m_bounds || !m_visible )
         return;
     if( m_rankHeight < 0 )
         return;  // negative height means don't display rank
@@ -1385,6 +1411,9 @@ void CEntity::renderRank()
 }
 void CEntity::renderRallyPoint()
 {
+	if( !m_visible )
+		return;
+
 	if ( !m_hasRallyPoint || g_Selection.m_unitUITextures.find(m_rallyTexture) == 
 							g_Selection.m_unitUITextures.end() )
 	{

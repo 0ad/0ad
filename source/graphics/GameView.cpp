@@ -195,6 +195,10 @@ void CGameView::RenderModels(CUnitManager *pUnitMan, CProjectileManager *pProjec
 	const std::vector<CUnit*>& units=pUnitMan->GetUnits();
 	for (uint i=0;i<units.size();++i)
 	{
+		CEntity* ent = units[i]->GetEntity();
+		if( ent && !ent->m_visible )
+			continue;
+
 		int status = losMgr->GetUnitStatus(units[i], g_Game->GetLocalPlayer());
 		CModel* model = units[i]->GetModel();
 

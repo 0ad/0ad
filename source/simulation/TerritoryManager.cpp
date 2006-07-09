@@ -73,7 +73,7 @@ void CTerritoryManager::Recalculate()
 		boundary.push_back( CVector2D(mapSize, mapSize) );
 		boundary.push_back( CVector2D(mapSize, 0) );
 
-		CTerritory* ter = new CTerritory( g_Game->GetPlayer(0), 0, boundary );
+		CTerritory* ter = new CTerritory( g_Game->GetPlayer(0), HEntity(), boundary );
 
 		m_Territories.push_back(ter);
 
@@ -93,7 +93,7 @@ void CTerritoryManager::Recalculate()
 			std::vector<CVector2D> boundary;
 			CalculateBoundary( centres, i, boundary );
 			
-			CTerritory* ter = new CTerritory( centres[i]->GetPlayer(), centres[i], boundary );
+			CTerritory* ter = new CTerritory( centres[i]->GetPlayer(), centres[i]->me, boundary );
 
 			centres[i]->m_associatedTerritory = ter;
 			m_Territories.push_back(ter);
@@ -201,6 +201,4 @@ void CTerritoryManager::CalculateBoundary( std::vector<CEntity*>& centres, size_
 			boundary = newBoundary;
 		}
 	}
-
-	debug_printf("Created a boundary polygon with %d edges around index %d\n", boundary.size(), myIndex);
 }

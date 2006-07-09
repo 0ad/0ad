@@ -332,16 +332,6 @@ void Render()
 		glDisable( GL_DEPTH_TEST );
 		PROFILE_END( "render selection" );
 
-		PROFILE_START( "render building placement cursor" );
-		if( g_BuildingPlacer.m_active )
-		{
-			//glEnable( GL_DEPTH_TEST );
-			g_BuildingPlacer.render();
-			//glDisable( GL_DEPTH_TEST );
-		}
-		PROFILE_END( "render building placement cursor" );
-
-
 		PROFILE_START( "render health bars" );
 		pglActiveTextureARB(GL_TEXTURE1_ARB);
 		glDisable(GL_TEXTURE_2D);

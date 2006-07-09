@@ -16,6 +16,7 @@
 #include "SkeletonAnimDef.h"
 #include "SkeletonAnimManager.h"
 #include "MeshManager.h"
+#include "ObjectEntry.h"
 #include "lib/res/graphics/ogl_tex.h"
 #include "lib/res/h_mgr.h"
 #include "ps/Profile.h"
@@ -500,6 +501,8 @@ void CModel::SetPlayerColor(CColor& colour)
 void CModel::SetShadingColor(CColor& colour)
 {
 	m_ShadingColor = colour;
-	for (std::vector<Prop>::iterator it = m_Props.begin(); it != m_Props.end(); ++it)
+	for( std::vector<Prop>::iterator it = m_Props.begin(); it != m_Props.end(); ++it )
+	{
 		it->m_Model->SetShadingColor(colour);
+	}
 }

@@ -16,6 +16,7 @@
 
 class CVector3D;
 class CUnit;
+class CBaseEntity;
 class CBoundingObject;
 
 #define MAX_BOOKMARKS 10
@@ -154,6 +155,7 @@ struct CBuildingPlacer : public Singleton<CBuildingPlacer>
 	}
 
 	CStrW m_templateName;
+	CBaseEntity* m_template;
 	bool m_active;
 	bool m_clicked;
 	bool m_dragged;
@@ -170,7 +172,6 @@ struct CBuildingPlacer : public Singleton<CBuildingPlacer>
 	void mousePressed();
 	void mouseReleased();
 	void update( float timeStep );
-	void render();
 };
 
 bool isMouseoverType( CEntity* ev, void* userdata );

@@ -116,6 +116,9 @@ public:
 	// Foundation entity, or "" for none
 	CStrW m_foundation;
 
+	// Socket entity that we can be built on, or "" for free placement
+	CStrW m_socket;
+
 	float m_speed;
 	float m_runSpeed;
 	float m_runRegenRate;

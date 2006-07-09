@@ -69,6 +69,7 @@ CBaseEntity::CBaseEntity( CPlayer* player )
 	AddProperty( L"traits.vision.permanent", &m_permanent );
 	AddProperty( L"traits.is_territory_centre", &m_isTerritoryCentre );
 	AddProperty( L"traits.foundation", &m_foundation );
+	AddProperty( L"traits.socket", &m_socket );
 
 	for( int t = 0; t < EVENT_LAST; t++ )
 	{
@@ -80,6 +81,7 @@ CBaseEntity::CBaseEntity( CPlayer* player )
 	m_speed = m_turningRadius = 0.0f;
 	m_extant = true; 
 	m_foundation = CStrW();
+	m_socket = CStrW();
 	m_passThroughAllies = false;
 	m_sectorDivs = 4;
 

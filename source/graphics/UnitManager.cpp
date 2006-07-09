@@ -17,6 +17,7 @@
 #include "ps/CConsole.h"
 #include "ObjectManager.h"
 #include "ObjectEntry.h"
+#include "simulation/Entity.h"
 #include "simulation/LOSManager.h"
 #include "simulation/TerritoryManager.h"
 
@@ -95,6 +96,10 @@ CUnit* CUnitManager::PickUnit(const CVector3D& origin, const CVector3D& dir) con
 	for (uint i=0; i<m_Units.size(); i++) {
 		CUnit* unit = m_Units[i];
 		float tmin, tmax;
+		
+		CEntity* ent = unit->GetEntity();
+		if( ent && !ent->m_visible )
+			continue;
 		
 		if (unit->GetModel()->GetBounds().RayIntersect(origin, dir, tmin, tmax)
 			&& losMgr->GetUnitStatus(unit, g_Game->GetLocalPlayer()) != UNIT_HIDDEN)

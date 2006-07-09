@@ -282,8 +282,8 @@ JSBool issueCommand( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rv
 	CNetMessage* msg = CNetMessage::CommandFromJSArgs(msgEntities, cx, argc-1, argv+1);
 	if (!msg)
 	{
-		return JS_TRUE;
 		delete msg;
+		return JS_TRUE;
 	}
 	messages.push_back(msg);
 	
