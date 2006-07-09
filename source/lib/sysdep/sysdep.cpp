@@ -56,9 +56,9 @@ uint fpclassify(double d)
 	// really sucky stub implementation; doesn't attempt to cover all cases.
 
 	if(d != d)
-		return IA32_FP_NAN;
+		return FP_NAN;
 	else
-		return IA32_FP_NORMAL;
+		return FP_NORMAL;
 }
 
 uint fpclassifyf(float f)

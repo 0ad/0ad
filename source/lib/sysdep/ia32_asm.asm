@@ -159,6 +159,7 @@ sym(ia32_fpclassify):
 	fld		qword [esp+4]
 	fxam
 	fnstsw	ax
+	fstp	st0
 	and		eax, FP_CLASSIFY_MASK
 	ret
 
@@ -168,6 +169,7 @@ sym(ia32_fpclassifyf):
 	fld		dword [esp+4]
 	fxam
 	fnstsw	ax
+	fstp	st0
 	and		eax, FP_CLASSIFY_MASK
 	ret
 
