@@ -234,9 +234,10 @@ public:
 	int m_currentNotification;	//Current order in the form of a notification code
 	int m_currentRequest;	//Notification we our notifiers are sending
 
+	std::vector<bool> m_sectorValues;
+
 	/* JW: these have all been 'moved' (1) into BaseEntity:
 	   1: were already present there, just removed from here
-	std::vector<bool> m_sectorValues;
 	int m_sectorDivs;
 
 	int m_pitchDivs;

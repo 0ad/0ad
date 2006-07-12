@@ -251,6 +251,11 @@ void CEntity::loadBase()
 	{
 		(*it)->Remove( this );
 	}
+
+	// Resize sectors array	
+	m_sectorValues.resize(m_base->m_sectorDivs);
+	for ( int i=0; i<m_base->m_sectorDivs; ++i )
+		m_sectorValues[i] = false;
 }
 
 void CEntity::initAttributes(const CEntity* _this)
@@ -2183,7 +2188,7 @@ jsval CEntity::RegisterDamage( JSContext* cx, uintN argc, jsval* argv )
 	float angle = acosf( up.dot(posDelta) );
 	//Find what section it is between and "activate" it
 	int sector = findSector(m_base->m_sectorDivs, angle, DEGTORAD(360.0f))-1;
-	m_base->m_sectorValues[sector]=true;
+	m_sectorValues[sector]=true;
 	return JS_TRUE;
 }
 jsval CEntity::RegisterOrderChange( JSContext* cx, uintN argc, jsval* argv )
@@ -2202,14 +2207,14 @@ jsval CEntity::RegisterOrderChange( JSContext* cx, uintN argc, jsval* argv )
 	float angle = acosf( up.dot(posDelta) );
 	//Find what section it is between and "deactivate" it
 	int sector = MAX( 0.0, findSector(m_base->m_sectorDivs, angle, DEGTORAD(360.0f)) );
-	m_base->m_sectorValues[sector]=false;
+	m_sectorValues[sector]=false;
 	return JS_TRUE;
 }
 jsval CEntity::GetAttackDirections( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	int directions=0;
 
-	for ( std::vector<bool>::iterator it=m_base->m_sectorValues.begin(); it != m_base->m_sectorValues.end(); it++ )
+	for ( std::vector<bool>::iterator it=m_sectorValues.begin(); it != m_sectorValues.end(); it++ )
 	{
 		if ( *it )
 			++directions;

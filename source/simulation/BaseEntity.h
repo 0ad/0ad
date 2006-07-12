@@ -128,7 +128,6 @@ public:
 	SEntityAction m_run;
 	SEntityAction m_generic;
 
-	std::vector<bool> m_sectorValues;
 	int m_sectorDivs;
 	int m_pitchDivs;
 	float m_anchorConformX;
