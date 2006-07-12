@@ -14,6 +14,7 @@
 #include "wx/spinctrl.h"
 #include "wx/listctrl.h"
 #include "wx/image.h"
+#include "wx/busyinfo.h"
 
 class TextureNotebook;
 
@@ -77,6 +78,8 @@ public:
 				SetSelection(m_ListCtrl->GetItemData(sel));
 			return;
 		}
+
+		wxBusyInfo busy (_("Loading terrain previews"));
 
 		m_TextureNames.Clear();
 
@@ -160,6 +163,8 @@ public:
 
 	void LoadTerrain()
 	{
+		wxBusyInfo busy (_("Loading terrain groups"));
+
 		DeleteAllPages();
 		m_TerrainGroups.Clear();
 

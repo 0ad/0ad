@@ -1,5 +1,7 @@
 #include "../Common/Sidebar.h"
 
+#include "General/Observable.h"
+
 class VariableListBox;
 
 class EnvironmentSidebar : public Sidebar
@@ -12,4 +14,5 @@ protected:
 
 private:
 	VariableListBox* m_SkyList;
+	ObservableConnection m_Conn;
 };

@@ -12,6 +12,11 @@ public:
 	void OnTimer(wxTimerEvent& event);
 	void OnIdle(wxIdleEvent& event);
 	
+// 	void OnNew(wxCommandEvent& event);
+	void OnOpen(wxCommandEvent& event);
+	void OnSave(wxCommandEvent& event);
+	void OnSaveAs(wxCommandEvent& event);
+
 	void OnQuit(wxCommandEvent& event);
 	void OnUndo(wxCommandEvent& event);
 	void OnRedo(wxCommandEvent& event);
@@ -26,6 +31,9 @@ private:
 	wxTimer m_Timer;
 
 	SectionLayout m_SectionLayout;
+
+	void SetOpenFilename(const wxString& filename);
+	wxString m_OpenFilename;
 
 	DECLARE_EVENT_TABLE();
 };

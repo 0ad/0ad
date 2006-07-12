@@ -29,6 +29,10 @@ CTerritoryManager::~CTerritoryManager()
 		matrix_free( (void**) m_TerritoryMatrix );
 		m_TerritoryMatrix = 0;
 	}
+
+	for( size_t i=0; i<m_Territories.size(); i++)
+		delete m_Territories[i];
+	m_Territories.clear();
 }
 
 void CTerritoryManager::Initialize() 
@@ -65,7 +69,7 @@ void CTerritoryManager::Recalculate()
 	int mapSize = m_TilesPerSide * CELL_SIZE;
 
 	// If there aren't any centre objects, create one big Gaia territory which spans the whole map
-	if( centres.size() == 0 )
+	if( centres.empty() )
 	{
 		std::vector<CVector2D> boundary;
 		boundary.push_back( CVector2D(0, 0) );

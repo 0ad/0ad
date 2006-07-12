@@ -2,6 +2,7 @@
 #define SECTIONLAYOUT_H__
 
 class SnapSplitterWindow;
+class SidebarBook;
 
 class SectionLayout
 {
@@ -14,10 +15,14 @@ public:
 	void SetCanvas(wxWindow*);
 	void Build();
 
+	void SelectPage(const wxString& classname);
+
 private:
+	SidebarBook* m_SidebarBook;
 	wxWindow* m_Canvas;
 	SnapSplitterWindow* m_HorizSplitter;
 	SnapSplitterWindow* m_VertSplitter;
+	std::map<std::wstring, int> m_PageMappings;
 };
 
 #endif // SECTIONLAYOUT_H__

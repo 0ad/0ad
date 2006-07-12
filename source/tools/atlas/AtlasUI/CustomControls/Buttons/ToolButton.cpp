@@ -54,14 +54,19 @@ BEGIN_EVENT_TABLE(ToolButtonBar, wxToolBar)
 	EVT_TOOL(wxID_ANY, ToolButtonBar::OnTool)
 END_EVENT_TABLE()
 
-ToolButtonBar::ToolButtonBar(wxWindow* parent, int baseID)
+ToolButtonBar::ToolButtonBar(wxWindow* parent, SectionLayout* sectionLayout, int baseID)
 : wxToolBar(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER|wxTB_FLAT|wxTB_HORIZONTAL)
-, m_Id(baseID), m_Size(-1)
+, m_SectionLayout(sectionLayout), m_Id(baseID), m_Size(-1)
 {
+	/* "msw.remap: If 1 (the default), wxToolBar bitmap colours will be remapped
+	   to the current theme's values. Set this to 0 to disable this functionality,
+	   for example if you're using more than 16 colours in your tool bitmaps." */
 	wxSystemOptions::SetOption(wxT("msw.remap"), 0); // (has global effect)
 }
 
-void ToolButtonBar::AddToolButton(const wxString& shortLabel, const wxString& longLabel, const wxString& iconPNGFilename, const wxString& toolName)
+void ToolButtonBar::AddToolButton(const wxString& shortLabel, const wxString& longLabel,
+								  const wxString& iconPNGFilename, const wxString& toolName,
+								  const wxString& sectionPage)
 {
 	wxFileName iconPath (_T("tools/atlas/toolbar/"));
 	iconPath.MakeAbsolute(Datafile::GetDataDirectory());
@@ -89,7 +94,7 @@ void ToolButtonBar::AddToolButton(const wxString& shortLabel, const wxString& lo
 		img = img.Scale(m_Size, m_Size);
 
 	AddCheckTool(m_Id, shortLabel, wxBitmap(img), wxNullBitmap, longLabel);
-	m_Buttons[m_Id] = toolName;
+	m_Buttons[m_Id] = Button(toolName, sectionPage);
 	
 	RegisterToolBarButton(this, m_Id, toolName);
 
@@ -98,7 +103,9 @@ void ToolButtonBar::AddToolButton(const wxString& shortLabel, const wxString& lo
 
 void ToolButtonBar::OnTool(wxCommandEvent& evt)
 {
-	std::map<int, wxString>::iterator it = m_Buttons.find(evt.GetId());
+	std::map<int, Button>::iterator it = m_Buttons.find(evt.GetId());
 	wxCHECK_RET(it != m_Buttons.end(), _T("Invalid toolbar button"));
-	SetCurrentTool(it->second);
+	SetCurrentTool(it->second.name);
+	if (! it->second.sectionPage.IsEmpty())
+		m_SectionLayout->SelectPage(it->second.sectionPage);
 }

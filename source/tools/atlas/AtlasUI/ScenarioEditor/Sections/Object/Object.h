@@ -9,15 +9,8 @@ public:
 	void SetObjectFilter(int type);
 
 protected:
-	void OnFirstDisplay();
+	virtual void OnFirstDisplay();
 
 private:
 	ObjectSidebarImpl* p;
-};
-
-class ObjectBottomBar : public wxPanel
-{
-public:
-	ObjectBottomBar(wxWindow* parent);
-private:
 };

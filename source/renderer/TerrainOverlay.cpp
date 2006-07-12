@@ -83,6 +83,8 @@ void TerrainOverlay::RenderOverlays()
 	glPolygonOffset(-1.f, -1.f);
 	glEnable(GL_POLYGON_OFFSET_LINE);
 
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+
 	std::for_each(g_TerrainOverlayList.begin(), g_TerrainOverlayList.end(),
 		render1st());
 

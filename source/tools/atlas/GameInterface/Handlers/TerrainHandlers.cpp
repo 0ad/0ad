@@ -177,11 +177,13 @@ BEGIN_COMMAND(PaintTerrain)
 		Handle texture = texentry->GetHandle();
 
 		for (int dy = 0; dy < g_CurrentBrush.m_H; ++dy)
+		{
 			for (int dx = 0; dx < g_CurrentBrush.m_W; ++dx)
 			{
 				if (g_CurrentBrush.Get(dx, dy) > 0.5f) // TODO: proper solid brushes
 					m_TerrainDelta.PaintTile(x0+dx, y0+dy, texture, msg->priority);
 			}
+		}
 
 		g_Game->GetWorld()->GetTerrain()->MakeDirty(x0, y0, x0+g_CurrentBrush.m_W, y0+g_CurrentBrush.m_H, RENDERDATA_UPDATE_INDICES);
 	}

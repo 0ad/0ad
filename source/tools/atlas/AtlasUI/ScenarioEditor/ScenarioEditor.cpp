@@ -6,8 +6,10 @@
 #include "wx/evtloop.h"
 #include "wx/tooltip.h"
 #include "wx/image.h"
+#include "wx/busyinfo.h"
 
 #include "General/AtlasEventLoop.h"
+#include "General/Datafile.h"
 
 #include "SnapSplitterWindow/SnapSplitterWindow.h"
 #include "HighResTimer/HighResTimer.h"
@@ -308,12 +310,11 @@ ATLASDLLIMPEXP void Atlas_NotifyEndOfFrame()
 enum
 {
 	ID_Quit = 1,
-//	ID_New,
-//	//	ID_Import,
-//	//	ID_Export,
-//	ID_Open,
-//	ID_Save,
-//	ID_SaveAs,
+
+// 	ID_New,
+	ID_Open,
+	ID_Save,
+	ID_SaveAs,
 
 	ID_Wireframe,
 	ID_MessageTrace,
@@ -325,6 +326,11 @@ enum
 BEGIN_EVENT_TABLE(ScenarioEditor, wxFrame)
 	EVT_CLOSE(ScenarioEditor::OnClose)
 	EVT_TIMER(wxID_ANY, ScenarioEditor::OnTimer)
+
+// 	EVT_MENU(ID_New, ScenarioEditor::OnNew)
+	EVT_MENU(ID_Open, ScenarioEditor::OnOpen)
+	EVT_MENU(ID_Save, ScenarioEditor::OnSave)
+	EVT_MENU(ID_SaveAs, ScenarioEditor::OnSaveAs)
 
 	EVT_MENU(ID_Quit, ScenarioEditor::OnQuit)
 	EVT_MENU(wxID_UNDO, ScenarioEditor::OnUndo)
@@ -342,12 +348,18 @@ static AtlasWindowCommandProc g_CommandProc;
 AtlasWindowCommandProc& ScenarioEditor::GetCommandProc() { return g_CommandProc; }
 
 ScenarioEditor::ScenarioEditor(wxWindow* parent)
-: wxFrame(parent, wxID_ANY, _("Atlas - Scenario Editor"), wxDefaultPosition, wxSize(1024, 768))
+: wxFrame(parent, wxID_ANY, _T(""), wxDefaultPosition, wxSize(1024, 768))
 {
 	// Global application initialisation:
-	//	wxLog::SetTraceMask(wxTraceMessages);
+
+	// wxLog::SetTraceMask(wxTraceMessages);
+
+	SetOpenFilename(_T(""));
+
 	SetIcon(wxIcon(_T("ICON_ScenarioEditor")));
+
 	wxToolTip::Enable(true);
+
 	wxImage::AddHandler(new wxPNGHandler);
 
 	//////////////////////////////////////////////////////////////////////////
@@ -359,20 +371,18 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	wxMenu *menuFile = new wxMenu;
 	menuBar->Append(menuFile, _("&File"));
 	{
-//		menuFile->Append(ID_New, _("&New"));
-//		//		menuFile->Append(ID_Import, _("&Import..."));
-//		//		menuFile->Append(ID_Export, _("&Export..."));
-//		menuFile->Append(ID_Open, _("&Open..."));
-//		menuFile->Append(ID_Save, _("&Save"));
-//		menuFile->Append(ID_SaveAs, _("Save &As..."));
-//		menuFile->AppendSeparator();//-----------
+// 		menuFile->Append(ID_New, _("&New"));
+		menuFile->Append(ID_Open, _("&Open..."));
+		menuFile->Append(ID_Save, _("&Save"));
+		menuFile->Append(ID_SaveAs, _("Save &As..."));
+		menuFile->AppendSeparator();//-----------
 		menuFile->Append(ID_Quit,   _("E&xit"));
-//		m_FileHistory.UseMenu(menuFile);//-------
-//		m_FileHistory.AddFilesToMenu();
+// 		m_FileHistory.UseMenu(menuFile);//-------
+// 		m_FileHistory.AddFilesToMenu();
 	}
 
-//	m_menuItem_Save = menuFile->FindItem(ID_Save); // remember this item, to let it be greyed out
-//	wxASSERT(m_menuItem_Save);
+// 	m_menuItem_Save = menuFile->FindItem(ID_Save); // remember this item, to let it be greyed out
+// 	wxASSERT(m_menuItem_Save);
 
 	wxMenu *menuEdit = new wxMenu;
 	menuBar->Append(menuEdit, _("&Edit"));
@@ -393,25 +403,26 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 		menuMisc->Append(ID_Screenshot, _("&Screenshot"));
 	}
 
+
+	m_SectionLayout.SetWindow(this);
+
 	// Toolbar:
 
-	ToolButtonBar* toolbar = new ToolButtonBar(this, ID_Toolbar);
+	ToolButtonBar* toolbar = new ToolButtonBar(this, &m_SectionLayout, ID_Toolbar);
 	// TODO: configurable small vs large icon images
-	// (button label; tooltip text; image; internal tool name)
-	toolbar->AddToolButton(_("Default"), _("Default"), _T("default.png"), _T(""));
-	toolbar->AddToolButton(_("Move"), _("Move/rotate object"), _T("moveobject.png"), _T("TransformObject"));
-	toolbar->AddToolButton(_("Elevation"), _("Alter terrain elevation"), _T("alterelevation.png"), _T("AlterElevation"));
-	toolbar->AddToolButton(_("Flatten"), _("Flatten terrain elevation"), _T("flattenelevation.png"), _T("FlattenElevation"));
-	toolbar->AddToolButton(_("Paint Terrain"), _("Paint terrain texture"), _T("paintterrain.png"), _T("PaintTerrain"));
+
+	// (button label; tooltip text; image; internal tool name; section to switch to)
+	toolbar->AddToolButton(_("Default"),       _("Default"),                   _T("default.png"),          _T(""),                 _T(""));
+	toolbar->AddToolButton(_("Move"),          _("Move/rotate object"),        _T("moveobject.png"),       _T("TransformObject"),  _T("ObjectSidebar"));
+	toolbar->AddToolButton(_("Elevation"),     _("Alter terrain elevation"),   _T("alterelevation.png"),   _T("AlterElevation"),   _T("TerrainSidebar"));
+	toolbar->AddToolButton(_("Flatten"),       _("Flatten terrain elevation"), _T("flattenelevation.png"), _T("FlattenElevation"), _T("TerrainSidebar"));
+	toolbar->AddToolButton(_("Paint Terrain"), _("Paint terrain texture"),     _T("paintterrain.png"),     _T("PaintTerrain"),     _T("TerrainSidebar"));
+
 	toolbar->Realize();
 	SetToolBar(toolbar);
 	// Set the default tool to be selected
 	SetCurrentTool(_T(""));
 
-	//////////////////////////////////////////////////////////////////////////
-	// Main window
-
-	m_SectionLayout.SetWindow(this);
 
 	// Set up GL canvas:
 
@@ -509,6 +520,96 @@ void ScenarioEditor::OnUndo(wxCommandEvent&)
 void ScenarioEditor::OnRedo(wxCommandEvent&)
 {
 	GetCommandProc().Redo();
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+// TODO (eventually): replace all this file-handling stuff with the Workspace Editor
+
+void ScenarioEditor::OnOpen(wxCommandEvent& WXUNUSED(event))
+{
+	wxFileDialog dlg (NULL, wxFileSelectorPromptStr,
+		Datafile::GetDataDirectory() + _T("/mods/official/maps/scenarios"), m_OpenFilename,
+		_T("PMP files (*.pmp)|*.pmp|All files (*.*)|*.*"),
+		wxOPEN);
+
+	wxString cwd = wxFileName::GetCwd();
+	
+	if (dlg.ShowModal() == wxID_OK)
+	{
+		wxBusyInfo busy(_("Loading map"));
+		wxBusyCursor busyc;
+
+		// TODO: Work when the map is not in .../maps/scenarios/
+		std::wstring map = dlg.GetFilename().c_str();
+
+		// Deactivate tools, so they don't carry forwards into the new CWorld
+		// and crash.
+		SetCurrentTool(_T(""));
+		// TODO: clear the undo buffer, etc
+
+		POST_MESSAGE(LoadMap, (map));
+
+		SetOpenFilename(dlg.GetFilename());
+
+		// Wait for it to load, while the wxBusyInfo is telling the user that we're doing that
+		AtlasMessage::qPing qry;
+		qry.Post();
+	}
+	
+	wxCHECK_RET(cwd == wxFileName::GetCwd(), _T("cwd changed"));
+		// paranoia - MSDN says OFN_NOCHANGEDIR (used when we don't give wxCHANGE_DIR)
+		// "is ineffective for GetOpenFileName", but it seems to work anyway
+
+	// TODO: Make this a non-undoable command
+}
+
+void ScenarioEditor::OnSave(wxCommandEvent& event)
+{
+	if (m_OpenFilename.IsEmpty())
+		OnSaveAs(event);
+	else
+	{
+		wxBusyInfo busy(_("Saving map"));
+
+		std::wstring map = m_OpenFilename.c_str();
+		POST_MESSAGE(SaveMap, (map));
+
+		// Wait for it to finish saving
+		AtlasMessage::qPing qry;
+		qry.Post();
+	}
+}
+
+void ScenarioEditor::OnSaveAs(wxCommandEvent& WXUNUSED(event))
+{
+	wxFileDialog dlg (NULL, wxFileSelectorPromptStr,
+		Datafile::GetDataDirectory() + _T("/mods/official/maps/scenarios"), m_OpenFilename,
+		_T("PMP files (*.pmp)|*.pmp|All files (*.*)|*.*"),
+		wxSAVE | wxOVERWRITE_PROMPT);
+
+	if (dlg.ShowModal() == wxID_OK)
+	{
+		wxBusyInfo busy(_("Saving map"));
+
+		// TODO: Work when the map is not in .../maps/scenarios/
+		std::wstring map = dlg.GetFilename().c_str();
+		POST_MESSAGE(SaveMap, (map));
+
+		SetOpenFilename(dlg.GetFilename());
+
+		// Wait for it to finish saving
+		AtlasMessage::qPing qry;
+		qry.Post();
+	}
+}
+
+void ScenarioEditor::SetOpenFilename(const wxString& filename)
+{
+	SetTitle(wxString::Format(_("Atlas - Scenario Editor - %s"),
+		filename.IsEmpty() ? _("(untitled)") : filename));
+
+	m_OpenFilename = filename;
 }
 
 //////////////////////////////////////////////////////////////////////////

@@ -18,6 +18,10 @@ MESSAGE(RenderEnable,
 
 //////////////////////////////////////////////////////////////////////////
 
+QUERY(Ping, , );
+
+//////////////////////////////////////////////////////////////////////////
+
 MESSAGE(SetContext,
 		((void*, context))
 		);
@@ -175,8 +179,8 @@ struct sEnvironmentSettings
 	Shareable<float> waterheight; // range 0..1 corresponds to min..max terrain height; out-of-bounds values allowed
 	Shareable<float> watershininess;
 	Shareable<float> waterwaviness;
-	
-	Shareable<float> sunrotation; // range 0..2pi
+
+	Shareable<float> sunrotation; // range -pi..+pi
 	Shareable<float> sunelevation; // range -pi/2 .. +pi/2
 
 	Shareable<std::wstring> skyset;
@@ -272,57 +276,60 @@ COMMAND(SetObjectSettings, NOMERGE,
 
 //////////////////////////////////////////////////////////////////////////
 
-struct sCinemaSplineNode 
-{ 
-    float x, y, z, t; 
-}; 
+struct sCinemaSplineNode
+{
+	Shareable<float> x, y, z, t;
+};
 SHAREABLE_STRUCT(sCinemaSplineNode);
 
-struct sCinemaPath 
-{ 
-    std::vector<sCinemaSplineNode> nodes; 
-	float duration, x, y, z;
-    int mode, growth, change, style;	//change == switch point
-
+struct sCinemaPath
+{
+	Shareable<std::vector<AtlasMessage::sCinemaSplineNode> > nodes;
+	Shareable<float> duration, x, y, z;
+	Shareable<int> mode, growth, change, style;	//change == switch point
 };
 SHAREABLE_STRUCT(sCinemaPath);
 
-struct sCinemaTrack 
-{ 
-    Shareable<std::wstring> name;
-	float x, y, z, timescale, duration;
-    std::vector<sCinemaPath> paths; 
-}; 
+struct sCinemaTrack
+{
+	Shareable<std::wstring> name;
+	Shareable<float> x, y, z, timescale, duration;
+	Shareable<std::vector<AtlasMessage::sCinemaPath> > paths;
+};
 SHAREABLE_STRUCT(sCinemaTrack);
 
 struct eCinemaMovementMode { enum { SMOOTH, IMMEDIATE_PATH, IMMEDIATE_TRACK }; };
-SHAREABLE_STRUCT(eCinemaMovementMode);
 
-struct sCinemaIcon 
-{ 
-	Shareable<std::wstring> name; 
-	Shareable< std::vector<unsigned char> > imageData; 
+struct sCinemaIcon
+{
+	Shareable<std::wstring> name;
+	Shareable<std::vector<unsigned char> > imageData;
 };
 SHAREABLE_STRUCT(sCinemaIcon);
 
-QUERY(GetCinemaTracks, 
+QUERY(GetCinemaTracks,
 	  , //no input
-	  ((std::vector<AtlasMessage::sCinemaTrack> , tracks)) );
+	  ((std::vector<AtlasMessage::sCinemaTrack> , tracks))
+	  );
 
 QUERY(GetCinemaIcons,
 	  ,
-	  ((std::vector<sCinemaIcon>, images)) );
-		
+	  ((std::vector<AtlasMessage::sCinemaIcon>, images))
+	  );
 
-COMMAND(SetCinemaTracks, 
-		MERGE, 
-		 ((std::vector<AtlasMessage::sCinemaTrack> , tracks))
-		((float, timescale)) ); 
 
-MESSAGE(CinemaMovement, 
-		((std::wstring, track)) 
+COMMAND(SetCinemaTracks, MERGE,
+		((std::vector<AtlasMessage::sCinemaTrack>, tracks))
+		((float, timescale))
+		);
+
+MESSAGE(CinemaMovement,
+		((std::wstring, track))
 		((int, mode))
-		((float, t)) );
+		((float, t))
+		);
+
+//////////////////////////////////////////////////////////////////////////
 
 #ifndef MESSAGES_SKIP_SETUP
 #include "MessagesSetup.h"

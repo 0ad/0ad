@@ -1,6 +1,7 @@
 //#include "wx/tglbtn.h"
 
 class ITool;
+class SectionLayout;
 
 class ToolButton : public wxButton
 {
@@ -22,8 +23,9 @@ private:
 class ToolButtonBar : public wxToolBar
 {
 public:
-	ToolButtonBar(wxWindow* parent, int baseID);
-	void AddToolButton(const wxString& shortLabel, const wxString& longLabel, const wxString& iconPNGFilename, const wxString& toolName);
+	ToolButtonBar(wxWindow* parent, SectionLayout* sectionLayout, int baseID);
+	void AddToolButton(const wxString& shortLabel, const wxString& longLabel,
+		const wxString& iconPNGFilename, const wxString& toolName, const wxString& sectionPage);
 
 protected:
 	void OnTool(wxCommandEvent& evt);
@@ -31,7 +33,15 @@ protected:
 private:
 	int m_Id;
 	int m_Size;
-	std::map<int, wxString> m_Buttons;
+	struct Button
+	{
+		Button() {}
+		Button(const wxString& name, const wxString& sectionPage) : name(name), sectionPage(sectionPage) {}
+		wxString name;
+		wxString sectionPage;
+	};
+	std::map<int, Button> m_Buttons;
+	SectionLayout* m_SectionLayout;
 
 	DECLARE_EVENT_TABLE();
 };

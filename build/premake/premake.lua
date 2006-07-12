@@ -447,6 +447,10 @@ local function setup_atlas_package(package_name, target_type, rel_source_dirs, r
 			package.pchsource = "stdafx.cpp"
 		end
 
+		if extra_params["extra_links"] then 
+			listconcat(package.links, extra_params["extra_links"]) 
+		end
+
 	else -- Non-Windows, = Unix
 		-- TODO
 	end
@@ -472,6 +476,7 @@ function setup_atlas_packages()
 		"ArchiveViewer",
 		"ColourTester",
 		"CustomControls/Buttons",
+		"CustomControls/ColourDialog",
 		"CustomControls/DraggableListCtrl",
 		"CustomControls/EditableListCtrl",
 		"CustomControls/FileHistory",
@@ -484,6 +489,7 @@ function setup_atlas_packages()
 		"Misc",
 		"ScenarioEditor",
 		"ScenarioEditor/Sections/Common",
+		"ScenarioEditor/Sections/Cinematic",
 		"ScenarioEditor/Sections/Environment",
 		"ScenarioEditor/Sections/Map",
 		"ScenarioEditor/Sections/Object",

@@ -8,45 +8,180 @@
 #include "Sections/Terrain/Terrain.h"
 #include "Sections/Object/Object.h"
 #include "Sections/Environment/Environment.h"
+#include "Sections/Cinematic/Cinematic.h"
+
+#include "General/Datafile.h"
 
 //////////////////////////////////////////////////////////////////////////
 
-class SidebarNotebook : public wxNotebook
+class SidebarButton : public wxBitmapButton
 {
 public:
-	SidebarNotebook(wxWindow *parent, SnapSplitterWindow* splitter)
-		: wxNotebook(parent, wxID_ANY), m_Splitter(splitter)
+	SidebarButton(wxWindow* parent, const wxBitmap& bitmap, SidebarBook* book, size_t id)
+		: wxBitmapButton(parent, wxID_ANY, bitmap, wxDefaultPosition, wxSize(28, 28))
+		, m_Book(book), m_Id(id)
 	{
+		SetSelectedAppearance(false);
+	}
+
+	void OnClick(wxCommandEvent& event);
+
+	void SetSelectedAppearance(bool selected)
+	{
+		if (selected)
+			SetBackgroundColour(wxColour(0xee, 0xcc, 0x55));
+		else
+			SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE));
+	}
+
+private:
+	SidebarBook* m_Book;
+	size_t m_Id;
+
+	DECLARE_EVENT_TABLE();
+};
+
+BEGIN_EVENT_TABLE(SidebarButton, wxButton)
+	EVT_BUTTON(wxID_ANY, SidebarButton::OnClick)
+END_EVENT_TABLE();
+
+
+class SidebarBook : public wxPanel
+{
+private:
+	struct SidebarPage
+	{
+		SidebarPage() : button(NULL), bar(NULL) {}
+		SidebarPage(SidebarButton* button, Sidebar* bar) : button(button), bar(bar) {}
+		SidebarButton* button;
+		Sidebar* bar;
+	};
+
+public:
+	SidebarBook(wxWindow *parent, SnapSplitterWindow* splitter)
+		: wxPanel(parent), m_Splitter(splitter), m_SelectedPage(-1)
+	{
+		m_ButtonsSizer = new wxGridSizer(6, 5, 5);
+
+		wxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
+
+		mainSizer->Add(m_ButtonsSizer);
+
+		m_ContentWindow = new wxPanel(this);
+		mainSizer->Add(m_ContentWindow, wxSizerFlags().Expand().Proportion(1).Border(wxALL, 4));
+
+		SetSizer(mainSizer);
 	}
 
 	// Only allow Sidebar objects to be added
-	bool AddPage(Sidebar* sidebar, const wxString& text)
+	bool AddPage(Sidebar* sidebar, const wxString& iconPNGFilename, const wxString& tooltip)
 	{
-		return wxNotebook::AddPage(sidebar, text);
+		wxImage img (1, 1, true);
+
+		// Load the icon
+		wxFileName iconPath (_T("tools/atlas/toolbar/"));
+		iconPath.MakeAbsolute(Datafile::GetDataDirectory());
+		iconPath.SetFullName(iconPNGFilename);
+		wxFileInputStream fstr (iconPath.GetFullPath());
+		if (! fstr.Ok())
+		{
+			wxLogError(_("Failed to open toolbar icon file '%s'"), iconPath.GetFullPath());
+		}
+		else
+		{
+			img = wxImage(fstr, wxBITMAP_TYPE_PNG);
+			if (! img.Ok())
+			{
+				wxLogError(_("Failed to load toolbar icon image '%s'"), iconPath.GetFullPath());
+				img = wxImage (1, 1, true);
+			}
+		}
+
+		// Create the button for the sidebar toolbar
+		SidebarButton* button = new SidebarButton(this, img, this, m_Pages.size());
+		button->SetToolTip(tooltip);
+
+		m_ButtonsSizer->Add(button);
+
+		m_Pages.push_back(SidebarPage(button, sidebar));
+
+		sidebar->Show(false);
+
+		// If this is the first page, make it selected by default
+		if (m_Pages.size() == 1)
+			SetSelection(0);
+
+		return true;
+	}
+
+	size_t GetPageCount()
+	{
+		return m_Pages.size();
+	}
+
+	wxWindow* GetContentWindow()
+	{
+		return m_ContentWindow;
+	}
+
+	void RepositionSelectedPage()
+	{
+		if (m_SelectedPage != -1 && m_Pages[m_SelectedPage].bar)
+		{
+			m_Pages[m_SelectedPage].bar->SetSize(m_ContentWindow->GetSize());
+		}
+	}
+
+	void OnSize(wxSizeEvent& event)
+	{
+		Layout();
+		RepositionSelectedPage();
+		event.Skip();
+	}
+
+	void SetSelection(size_t page)
+	{
+		if (page < m_Pages.size())
+		{
+			// If selecting the same one twice, don't do anything
+			if ((ssize_t)page == m_SelectedPage)
+				return;
+
+			SidebarPage oldPage;
+			if (m_SelectedPage != -1)
+				oldPage = m_Pages[m_SelectedPage];
+
+			if (oldPage.bar)
+				oldPage.bar->Show(false);
+
+			m_SelectedPage = (ssize_t)page;
+			RepositionSelectedPage();
+			m_Pages[m_SelectedPage].bar->Show(true);
+
+			OnPageChanged(oldPage, m_Pages[m_SelectedPage]);
+		}
 	}
 
 protected:
-	void OnPageChanged(wxNotebookEvent& event)
+
+	void OnPageChanged(SidebarPage oldPage, SidebarPage newPage)
 	{
-		Sidebar* oldPage = NULL;
-		Sidebar* newPage = NULL;
+		if (oldPage.bar)
+		{
+			oldPage.bar->OnSwitchAway();
+			oldPage.button->SetSelectedAppearance(false);
+		}
 
-		if (event.GetOldSelection() != -1)
-			oldPage = wxDynamicCast(GetPage(event.GetOldSelection()), Sidebar);
-
-		if (event.GetSelection() != -1)
-			newPage = wxDynamicCast(GetPage(event.GetSelection()), Sidebar);
-
-		if (oldPage)
-			oldPage->OnSwitchAway();
-
-		if (newPage)
-			newPage->OnSwitchTo();
+		if (newPage.bar)
+		{
+			newPage.bar->OnSwitchTo();
+			newPage.button->SetSelectedAppearance(true);
+		}
 
 		if (m_Splitter->IsSplit())
 		{
 			wxWindow* bottom;
-			if (newPage && NULL != (bottom = newPage->GetBottomBar()))
+			if (newPage.bar && NULL != (bottom = newPage.bar->GetBottomBar()))
 			{
 				m_Splitter->ReplaceWindow(m_Splitter->GetWindow2(), bottom);
 			}
@@ -58,23 +193,32 @@ protected:
 		else
 		{
 			wxWindow* bottom;
-			if (newPage && NULL != (bottom = newPage->GetBottomBar()))
+			if (newPage.bar && NULL != (bottom = newPage.bar->GetBottomBar()))
 			{
 				m_Splitter->SplitHorizontally(m_Splitter->GetWindow1(), bottom);
 			}
 		}
-		event.Skip();
 	}
 
 private:
+	wxSizer* m_ButtonsSizer;
+ 	wxWindow* m_ContentWindow;
 	SnapSplitterWindow* m_Splitter;
+
+	std::vector<SidebarPage> m_Pages;
+	ssize_t m_SelectedPage;
 
 	DECLARE_EVENT_TABLE();
 };
 
-BEGIN_EVENT_TABLE(SidebarNotebook, wxNotebook)
-	EVT_NOTEBOOK_PAGE_CHANGED(wxID_ANY, SidebarNotebook::OnPageChanged)
+BEGIN_EVENT_TABLE(SidebarBook, wxPanel)
+	EVT_SIZE(SidebarBook::OnSize)
 END_EVENT_TABLE();
+
+void SidebarButton::OnClick(wxCommandEvent& WXUNUSED(event))
+{
+	m_Book->SetSelection(m_Id);
+}
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -108,25 +252,35 @@ void SectionLayout::Build()
 {
 	// TODO: wxWidgets bug (http://sourceforge.net/tracker/index.php?func=detail&aid=1298803&group_id=9863&atid=109863)
 	// - pressing menu keys (e.g. alt+f) with notebook tab focussed causes application to freeze
-	SidebarNotebook* sidebarBook = new SidebarNotebook(m_HorizSplitter, m_VertSplitter);
+
+	m_SidebarBook = new SidebarBook(m_HorizSplitter, m_VertSplitter);
 	Sidebar* sidebar;
 
-	#define ADD_SIDEBAR(classname, label) \
-		sidebar = new classname(sidebarBook, m_VertSplitter); \
+	#define ADD_SIDEBAR(classname, icon, tooltip) \
+		sidebar = new classname(m_SidebarBook->GetContentWindow(), m_VertSplitter); \
 		if (sidebar->GetBottomBar()) \
 			sidebar->GetBottomBar()->Show(false); \
-		sidebarBook->AddPage(sidebar, _(label));
+		m_SidebarBook->AddPage(sidebar, icon, tooltip); \
+		m_PageMappings.insert(std::make_pair(L#classname, (int)m_SidebarBook->GetPageCount()-1));
 	
-	ADD_SIDEBAR(MapSidebar, "Map");
-	ADD_SIDEBAR(TerrainSidebar, "Terrain");
-	ADD_SIDEBAR(ObjectSidebar, "Object");
-	ADD_SIDEBAR(EnvironmentSidebar, "Env.");
-	
+	ADD_SIDEBAR(MapSidebar,         _T("map.png"),         _("Map"));
+	ADD_SIDEBAR(TerrainSidebar,     _T("terrain.png"),     _("Terrain"));
+	ADD_SIDEBAR(ObjectSidebar,      _T("object.png"),      _("Object"));
+	ADD_SIDEBAR(EnvironmentSidebar, _T("environment.png"), _("Environment"));
+ 	ADD_SIDEBAR(CinematicSidebar,   _T("cinematic.png"),   _("Cinematics"));
+
 	#undef ADD_SIDEBAR
 
 	m_VertSplitter->SetDefaultSashPosition(-165);
 	m_VertSplitter->Initialize(m_Canvas);
 
 	m_HorizSplitter->SetDefaultSashPosition(200);
-	m_HorizSplitter->SplitVertically(sidebarBook, m_VertSplitter);
+	m_HorizSplitter->SplitVertically(m_SidebarBook, m_VertSplitter);
+}
+
+void SectionLayout::SelectPage(const wxString& classname)
+{
+	std::map<std::wstring, int>::iterator it = m_PageMappings.find(classname.c_str());
+	if (it != m_PageMappings.end())
+		m_SidebarBook->SetSelection(it->second);
 }

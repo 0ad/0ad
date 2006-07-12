@@ -68,22 +68,29 @@ std::vector<sCinemaTrack> GetCurrentTracks()
 
 	for ( std::map<CStrW, CCinemaTrack>::const_iterator it=tracks.begin(); it!=tracks.end(); it++  )
 	{
-		const CCinemaTrack track = it->second;
-		atlasTracks.push_back( ConstructCinemaTrack(track) );
-		atlasTracks.back().name = it->first;
+		sCinemaTrack atlasTrack = ConstructCinemaTrack(it->second);
+
+		atlasTrack.name = it->first;
 		const std::vector<CCinemaPath>& paths = it->second.GetAllPaths();
-		
+
+		std::vector<sCinemaPath> atlasPaths;
+
 		for ( std::vector<CCinemaPath>::const_iterator it2=paths.begin(); it2!=paths.end(); it2++ )
 		{
-			const CCinemaData* data = it2->GetData();	//Get data part of path
-			atlasTracks.back().paths.push_back( ConstructCinemaPath(data) );
+			sCinemaPath path = ConstructCinemaPath(it2->GetData());	//Get data part of path
 			const std::vector<SplineData>& nodes = it2->GetAllNodes();
+
+			std::vector<sCinemaSplineNode> atlasNodes;
 			
 			for ( size_t i=0; i<nodes.size(); ++i )
 			{
-				atlasTracks.back().paths.back().nodes.push_back( ConstructCinemaNode(nodes[i]) );
+				atlasNodes.push_back( ConstructCinemaNode(nodes[i]) );
 			}
+			path.nodes = atlasNodes;
+			atlasPaths.push_back(path);
 		}
+		atlasTrack.paths = atlasPaths;
+		atlasTracks.push_back(atlasTrack);
 	}
 	return atlasTracks;
 }
@@ -97,12 +104,12 @@ void SetCurrentTracks(const std::vector<sCinemaTrack>& atlasTracks)
 		tracks[trackName] = CCinemaTrack();
 		tracks[trackName].SetStartRotation( CVector3D(it->x, it->y, it->z) );
 		tracks[trackName].SetTimeScale(it->timescale);
-		const std::vector<sCinemaPath>& paths = it->paths;
+		const std::vector<sCinemaPath> paths = *it->paths;
 		
 		for ( std::vector<sCinemaPath>::const_iterator it2=paths.begin(); it2!=paths.end(); it2++ )
 		{
 			const sCinemaPath& atlasPath = *it2;
-			const std::vector<sCinemaSplineNode>& nodes = atlasPath.nodes;
+			const std::vector<sCinemaSplineNode> nodes = *atlasPath.nodes;
 			TNSpline spline;
 			CCinemaData data = ConstructCinemaData(atlasPath);
 
@@ -149,7 +156,7 @@ QUERYHANDLER(GetCinemaIcons)
 			file_buf_free(buf);
 			icon.name = name;
 			icon.imageData = data;
-			iconList.push_back(icon);			
+			iconList.push_back(icon);
 		}
 	}
 	msg->images = iconList;
@@ -194,11 +201,3 @@ QUERYHANDLER(GetCinemaTracks)
 }
 
 }
-		
-		
-
-
-
-
-	
-		

@@ -10,6 +10,8 @@
 
 #include "GameInterface/Messages.h"
 
+#include "wx/busyinfo.h"
+
 class ObjectSelectListBox : public wxListBox
 {
 public:
@@ -60,6 +62,13 @@ END_EVENT_TABLE();
 
 //////////////////////////////////////////////////////////////////////////
 
+
+class ObjectBottomBar : public wxPanel
+{
+public:
+	ObjectBottomBar(wxWindow* parent);
+};
+
 struct ObjectSidebarImpl
 {
 	ObjectSidebarImpl() : m_BottomBar(NULL), m_ObjectListBox(NULL) { }
@@ -89,6 +98,8 @@ ObjectSidebar::~ObjectSidebar()
 
 void ObjectSidebar::OnFirstDisplay()
 {
+	wxBusyInfo busy (_("Loading list of objects"));
+
 	// Get the list of objects from the game
 	AtlasMessage::qGetObjectsList qry;
 	qry.Post();

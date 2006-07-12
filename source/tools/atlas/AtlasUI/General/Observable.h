@@ -14,6 +14,11 @@ public:
 		return m_Signal.connect(order, boost::bind(std::mem_fun(callback), obj, _1));
 	}
 
+	ObservableConnection RegisterObserver(int order, void (*callback) (const T&))
+	{
+		return m_Signal.connect(order, callback);
+	}
+
 	void RemoveObserver(const ObservableConnection& conn)
 	{
 		conn.disconnect();

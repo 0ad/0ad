@@ -81,6 +81,7 @@ CWorld::~CWorld()
 	delete m_EntityManager;
 	delete m_ProjectileManager;
 	delete m_LOSManager;
+	delete m_TerritoryManager;
 }
 
 

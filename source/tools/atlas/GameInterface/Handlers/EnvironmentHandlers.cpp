@@ -6,6 +6,7 @@
 
 #include "graphics/LightEnv.h"
 #include "graphics/Terrain.h"
+#include "maths/MathUtil.h"
 #include "ps/World.h"
 #include "renderer/Renderer.h"
 #include "renderer/SkyManager.h"
@@ -22,7 +23,10 @@ sEnvironmentSettings GetSettings()
 	s.watershininess = wm->m_Shininess;
 	s.waterwaviness = wm->m_Waviness;
 
-	s.sunrotation = g_LightEnv.GetRotation();
+	float sunrotation = g_LightEnv.GetRotation();
+	if (sunrotation > PI)
+		sunrotation -= PI*2;
+	s.sunrotation = sunrotation;
 	s.sunelevation = g_LightEnv.GetElevation();
 
 	s.skyset = g_Renderer.GetSkyManager()->GetSkySet();

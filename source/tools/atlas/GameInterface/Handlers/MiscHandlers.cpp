@@ -19,5 +19,9 @@ MESSAGEHANDLER(Screenshot)
 	WriteBigScreenshot("bmp", msg->tiles);
 }
 
+QUERYHANDLER(Ping)
+{
+	UNUSED2(msg);
+}
 
 }
