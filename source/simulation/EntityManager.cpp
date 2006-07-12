@@ -311,8 +311,8 @@ void CEntityManager::conformAll()
 			while( targetXZ.y > PI ) targetXZ.y -= 2 * PI;
 			while( targetXZ.y < -PI ) targetXZ.y += 2 * PI;
 	
-			entity->m_orientation.X = clamp( targetXZ.x, -entity->m_anchorConformX, entity->m_anchorConformX );
-			entity->m_orientation.Z = clamp( targetXZ.y, -entity->m_anchorConformZ, entity->m_anchorConformZ );
+			entity->m_orientation.X = clamp( targetXZ.x, -entity->m_base->m_anchorConformX, entity->m_base->m_anchorConformX );
+			entity->m_orientation.Z = clamp( targetXZ.y, -entity->m_base->m_anchorConformZ, entity->m_base->m_anchorConformZ );
 			entity->m_orientation_unclamped.x = targetXZ.x;
 			entity->m_orientation_unclamped.y = targetXZ.y;
 			entity->updateActorTransforms();

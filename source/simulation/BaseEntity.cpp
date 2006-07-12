@@ -84,6 +84,9 @@ CBaseEntity::CBaseEntity( CPlayer* player )
 	m_socket = CStrW();
 	m_passThroughAllies = false;
 	m_sectorDivs = 4;
+	m_sectorValues.resize(m_sectorDivs);
+	for ( int i=0; i<m_sectorDivs; ++i )
+		m_sectorValues[i] = false;
 
 	// Sentinel values for stamina and health (so scripts can check if an entity has no stamina or no HP).
 	m_speed=0;

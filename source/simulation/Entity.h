@@ -37,8 +37,13 @@
 #include "EntitySupport.h"
 #include "scripting/DOMEvent.h"
 
+// JW: must be pulled in because CEntity no longer mirrors CBaseEntity exactly.
+// some fields have been moved out of CEntity and are accessed via m_base,
+// so CBaseEntity must be fully defined.
+#include "BaseEntity.h"
+
 class CAura;
-class CBaseEntity;
+//class CBaseEntity;	// see comment above
 class CBoundingObject;
 class CPlayer;
 class CProductionQueue;
@@ -122,28 +127,12 @@ public:
 	//SP properties
 	float m_staminaCurr;
 	float m_staminaMax;
-	float m_staminaBarHeight;
-	int m_staminaBarSize;
-	float m_staminaBarWidth;
-
-	int m_staminaBorderWidth;
-	int m_staminaBorderHeight;
-	CStr m_staminaBorderName;
 
 	// HP properties
 	float m_healthCurr;
 	float m_healthMax;
-	float m_healthBarHeight;
-	int m_healthBarSize;
-	float m_healthBarWidth;
-
-	int m_healthBorderWidth;
-	int m_healthBorderHeight;
-	CStr m_healthBorderName;
 
 	//Rank properties
-	float m_rankHeight;
-	float m_rankWidth;
 	CStr m_rankName;
 	//Rally texture
 	CStr m_rallyTexture;
@@ -152,16 +141,6 @@ public:
 
 	bool m_healthDecay;
 
-	// Minimap properties
-	CStrW m_minimapType;
-	int m_minimapR;
-	int m_minimapG;
-	int m_minimapB;
-
-	// Y anchor
-	CStrW m_anchorType;
-	float m_anchorConformX;
-	float m_anchorConformZ;
 
 	// LOS
 	int m_los;
@@ -232,10 +211,45 @@ public:
 	int m_currentRequest;	//Notification we our notifiers are sending
 	bool m_destroyNotifiers;	//True: we destroy them. False: the script does.
 
+	/* JW: these have all been 'moved' (1) into BaseEntity:
+	   1: were already present there, just removed from here
 	std::vector<bool> m_sectorValues;
 	int m_sectorDivs;
-	
+
 	int m_pitchDivs;
+
+	float m_staminaBarHeight;
+	int m_staminaBarSize;
+	float m_staminaBarWidth;
+
+	float m_healthBarHeight;
+	int m_healthBarSize;
+	float m_healthBarWidth;
+
+	int m_staminaBorderWidth;
+	int m_staminaBorderHeight;
+	CStr m_staminaBorderName;
+
+	float m_rankHeight;
+	float m_rankWidth;
+
+	// Minimap properties
+	CStrW m_minimapType;
+	int m_minimapR;
+	int m_minimapG;
+	int m_minimapB;
+
+	// Y anchor
+	CStrW m_anchorType;
+	float m_anchorConformX;
+	float m_anchorConformZ;
+
+	int m_healthBorderWidth;
+	int m_healthBorderHeight;
+	CStr m_healthBorderName;
+	*/
+
+
 
 private:
 	CEntity( CBaseEntity* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections, CStrW building = L"" );

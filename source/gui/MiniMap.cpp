@@ -367,7 +367,7 @@ void CMiniMap::Draw()
 		if(unit && unit->GetEntity() && losMgr->GetUnitStatus(unit, g_Game->GetLocalPlayer()) != UNIT_HIDDEN)
 		{
 			CEntity* entity = unit->GetEntity();
-			CStrW& type = entity->m_minimapType;
+			CStrW& type = entity->m_base->m_minimapType;
 
 			if(type==L"Unit" || type==L"Structure" || type==L"Hero") {
 				// Use the player colour
@@ -375,7 +375,7 @@ void CMiniMap::Draw()
 				glColor3f(colour.r, colour.g, colour.b);
 			}
 			else {
-				glColor3f(entity->m_minimapR/255.0f, entity->m_minimapG/255.0f, entity->m_minimapB/255.0f);
+				glColor3f(entity->m_base->m_minimapR/255.0f, entity->m_base->m_minimapG/255.0f, entity->m_base->m_minimapB/255.0f);
 			}
 
 

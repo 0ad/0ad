@@ -68,38 +68,38 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
     AddProperty( L"player", &m_player, false, (NotifyFn)&CEntity::playerChanged );
     AddProperty( L"traits.health.curr", &m_healthCurr );
     AddProperty( L"traits.health.max", &m_healthMax );
-    AddProperty( L"traits.health.bar_height", &m_healthBarHeight );
-	AddProperty( L"traits.health.bar_size", &m_healthBarSize );
-	AddProperty( L"traits.health.bar_width", &m_healthBarWidth );
-	AddProperty( L"traits.health.border_height", &m_healthBorderHeight);
-	AddProperty( L"traits.health.border_width", &m_healthBorderWidth );
-	AddProperty( L"traits.health.border_name", &m_healthBorderName );
+    //AddProperty( L"traits.health.bar_height", &m_base->m_healthBarHeight );
+	//AddProperty( L"traits.health.bar_size", &m_base->m_healthBarSize );
+	//AddProperty( L"traits.health.bar_width", &m_base->m_healthBarWidth );
+	//AddProperty( L"traits.health.border_height", &m_base->m_healthBorderHeight);
+	//AddProperty( L"traits.health.border_width", &m_base->m_healthBorderWidth );
+	//AddProperty( L"traits.health.border_name", &m_base->m_healthBorderName );
 	AddProperty( L"traits.health.regen_rate", &m_healthRegenRate );
 	AddProperty( L"traits.health.regen_start", &m_healthRegenStart );
 	AddProperty( L"traits.health.decay_rate", &m_healthDecayRate );
 	AddProperty( L"traits.stamina.curr", &m_staminaCurr );
     AddProperty( L"traits.stamina.max", &m_staminaMax );
-    AddProperty( L"traits.stamina.bar_height", &m_staminaBarHeight );
-	AddProperty( L"traits.stamina.bar_size", &m_staminaBarSize );
-	AddProperty( L"traits.stamina.bar_width", &m_staminaBarWidth );
-	AddProperty( L"traits.stamina.border_height", &m_staminaBorderHeight);
-	AddProperty( L"traits.stamina.border_width", &m_staminaBorderWidth );
-	AddProperty( L"traits.stamina.border_name", &m_staminaBorderName );
+    //AddProperty( L"traits.stamina.bar_height", &m_base->m_staminaBarHeight );
+	//AddProperty( L"traits.stamina.bar_size", &m_base->m_staminaBarSize );
+	//AddProperty( L"traits.stamina.bar_width", &m_base->m_staminaBarWidth );
+	//AddProperty( L"traits.stamina.border_height", &m_base->m_staminaBorderHeight);
+	//AddProperty( L"traits.stamina.border_width", &m_base->m_staminaBorderWidth );
+	//AddProperty( L"traits.stamina.border_name", &m_base->m_staminaBorderName );
 	AddProperty( L"traits.rally.name", &m_rallyTexture );
 	AddProperty( L"traits.rally.width", &m_rallyWidth );
 	AddProperty( L"traits.rally.height", &m_rallyHeight );
-	AddProperty( L"traits.flank_penalty.sectors", &m_sectorDivs);
-	AddProperty( L"traits.pitch.sectors", &m_pitchDivs );
-	AddProperty( L"traits.rank.width", &m_rankWidth );
-	AddProperty( L"traits.rank.height", &m_rankHeight );
+	//AddProperty( L"traits.flank_penalty.sectors", &m_base->m_sectorDivs);
+	//AddProperty( L"traits.pitch.sectors", &m_base->m_pitchDivs );
+	//AddProperty( L"traits.rank.width", &m_base->m_rankWidth );
+	//AddProperty( L"traits.rank.height", &m_base->m_rankHeight );
 	AddProperty( L"traits.rank.name", &m_rankName );
-    AddProperty( L"traits.minimap.type", &m_minimapType );
-    AddProperty( L"traits.minimap.red", &m_minimapR );
-    AddProperty( L"traits.minimap.green", &m_minimapG );
-    AddProperty( L"traits.minimap.blue", &m_minimapB );
-    AddProperty( L"traits.anchor.type", &m_anchorType );
-	AddProperty( L"traits.anchor.conformx", &m_anchorConformX );
-	AddProperty( L"traits.anchor.conformz", &m_anchorConformZ );
+    //AddProperty( L"traits.minimap.type", &m_base->m_minimapType );
+    //AddProperty( L"traits.minimap.red", &m_base->m_minimapR );
+    //AddProperty( L"traits.minimap.green", &m_base->m_minimapG );
+    //AddProperty( L"traits.minimap.blue", &m_base->m_minimapB );
+    //AddProperty( L"traits.anchor.type", &m_base->m_anchorType );
+	//AddProperty( L"traits.anchor.conformx", &m_base->m_anchorConformX );
+	//AddProperty( L"traits.anchor.conformz", &m_base->m_anchorConformZ );
     AddProperty( L"traits.vision.los", &m_los );
     AddProperty( L"traits.vision.permanent", &m_permanent );
 	AddProperty( L"traits.is_territory_centre", &m_isTerritoryCentre );
@@ -132,10 +132,6 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
 	m_actorSelections = actorSelections;
 	loadBase();
 
-	m_sectorValues.resize(m_sectorDivs);
-	for ( int i=0; i<m_sectorDivs; ++i )
-		m_sectorValues[i] = false;
-	
     if( m_bounds )
         m_bounds->setPosition( m_position.X, m_position.Z );
 
@@ -262,7 +258,12 @@ void CEntity::initAttributes(const CEntity* _this)
 
 #define getoffset_action(member, mem2) \
 	(size_t) ((unsigned char*)&_this->member.mem2 - (unsigned char*)_this) 
-	
+
+// JW: temporarily disabled (-> techs are dead) until we replace getoffset with CJSComplex.
+// it is no longer safe to use this because some fields are no longer present inside CEntity.
+// they must be accessed via m_base instead.
+#if 0
+
 	//Add the attribute name and the variable that holds it
 	CEntity::m_AttributeTable["actions.move.speed_curr"] = getoffset(m_speed);
 	CEntity::m_AttributeTable["actions.move.run.speed"] = getoffset(m_runSpeed);
@@ -307,6 +308,8 @@ void CEntity::initAttributes(const CEntity* _this)
 	CEntity::m_AttributeTable["last_combat_time"] = getoffset(m_lastCombatTime);
 	CEntity::m_AttributeTable["last_run_time"] = getoffset(m_lastRunTime);
 	CEntity::m_AttributeTable["building"] = getoffset(m_building);
+#endif
+
 #undef getoffset
 }
 void CEntity::kill()
@@ -1097,7 +1100,7 @@ float CEntity::getAnchorLevel( float x, float z )
 {
     CTerrain *pTerrain = g_Game->GetWorld()->GetTerrain();
     float groundLevel = pTerrain->getExactGroundLevel( x, z );
-    if( m_anchorType==L"Ground" )
+    if( m_base->m_anchorType==L"Ground" )
     {
         return groundLevel;
     }
@@ -1256,17 +1259,17 @@ void CEntity::renderBarBorders()
 	if( !m_visible )
 		return;
 
-	if ( m_staminaBarHeight >= 0 && 
-		g_Selection.m_unitUITextures.find(m_healthBorderName) != g_Selection.m_unitUITextures.end() )
+	if ( m_base->m_staminaBarHeight >= 0 && 
+		g_Selection.m_unitUITextures.find(m_base->m_healthBorderName) != g_Selection.m_unitUITextures.end() )
 	{
-		ogl_tex_bind( g_Selection.m_unitUITextures[m_healthBorderName] );
-		CVector2D pos = getScreenCoords( m_healthBarHeight );
+		ogl_tex_bind( g_Selection.m_unitUITextures[m_base->m_healthBorderName] );
+		CVector2D pos = getScreenCoords( m_base->m_healthBarHeight );
 
-		float left = pos.x - m_healthBorderWidth/2;
-		float right = pos.x + m_healthBorderWidth/2;
+		float left = pos.x - m_base->m_healthBorderWidth/2;
+		float right = pos.x + m_base->m_healthBorderWidth/2;
 		pos.y = g_yres - pos.y;
-		float bottom = pos.y + m_healthBorderHeight/2;
-		float top = pos.y - m_healthBorderHeight/2;
+		float bottom = pos.y + m_base->m_healthBorderHeight/2;
+		float top = pos.y - m_base->m_healthBorderHeight/2;
 
 		glBegin(GL_QUADS);
 
@@ -1277,17 +1280,17 @@ void CEntity::renderBarBorders()
 
 		glEnd();
 	}
-	if ( m_staminaBarHeight >= 0 && 
-		g_Selection.m_unitUITextures.find(m_staminaBorderName) != g_Selection.m_unitUITextures.end() )
+	if ( m_base->m_staminaBarHeight >= 0 && 
+		g_Selection.m_unitUITextures.find(m_base->m_staminaBorderName) != g_Selection.m_unitUITextures.end() )
 	{
-		ogl_tex_bind( g_Selection.m_unitUITextures[m_staminaBorderName] );
+		ogl_tex_bind( g_Selection.m_unitUITextures[m_base->m_staminaBorderName] );
 
-		CVector2D pos = getScreenCoords( m_staminaBarHeight );
-		float left = pos.x - m_staminaBorderWidth/2;
-		float right = pos.x + m_staminaBorderWidth/2;
+		CVector2D pos = getScreenCoords( m_base->m_staminaBarHeight );
+		float left = pos.x - m_base->m_staminaBorderWidth/2;
+		float right = pos.x + m_base->m_staminaBorderWidth/2;
 		pos.y = g_yres - pos.y;
-		float bottom = pos.y + m_staminaBorderHeight/2;
-		float top = pos.y - m_staminaBorderHeight/2;
+		float bottom = pos.y + m_base->m_staminaBorderHeight/2;
+		float top = pos.y - m_base->m_staminaBorderHeight/2;
 
 		glBegin(GL_QUADS);
 
@@ -1303,30 +1306,30 @@ void CEntity::renderHealthBar()
 {
     if( !m_bounds || !m_visible )
         return;
-    if( m_healthBarHeight < 0 )
+    if( m_base->m_healthBarHeight < 0 )
         return;  // negative bar height means don't display health bar
 
     float fraction;
 	if(m_healthMax == 0) fraction = 1.0f;
 	else fraction = clamp(m_healthCurr / m_healthMax, 0.0f, 1.0f);
 
-	CVector2D pos = getScreenCoords( m_healthBarHeight );
-    float x1 = pos.x - m_healthBarSize/2;
-    float x2 = pos.x + m_healthBarSize/2;
+	CVector2D pos = getScreenCoords( m_base->m_healthBarHeight );
+    float x1 = pos.x - m_base->m_healthBarSize/2;
+    float x2 = pos.x + m_base->m_healthBarSize/2;
     float y = g_yres - pos.y;
 
-	glLineWidth( m_healthBarWidth );
+	glLineWidth( m_base->m_healthBarWidth );
 	glBegin(GL_LINES);
 
     // green part of bar
     glColor3f( 0, 1, 0 );
     glVertex3f( x1, y, 0 );
     glColor3f( 0, 1, 0 );
-    glVertex3f( x1 + m_healthBarSize*fraction, y, 0 );
+    glVertex3f( x1 + m_base->m_healthBarSize*fraction, y, 0 );
 
     // red part of bar
     glColor3f( 1, 0, 0 );
-    glVertex3f( x1 + m_healthBarSize*fraction, y, 0 );
+    glVertex3f( x1 + m_base->m_healthBarSize*fraction, y, 0 );
     glColor3f( 1, 0, 0 );
     glVertex3f( x2, y, 0 );
 
@@ -1340,30 +1343,30 @@ void CEntity::renderStaminaBar()
 {
     if( !m_bounds || !m_visible )
         return;
-    if( m_staminaBarHeight < 0 )
+    if( m_base->m_staminaBarHeight < 0 )
         return;  // negative bar height means don't display stamina bar
 
     float fraction;
 	if(m_staminaMax == 0) fraction = 1.0f;
 	else fraction = clamp(m_staminaCurr / m_staminaMax, 0.0f, 1.0f);
 
-    CVector2D pos = getScreenCoords( m_staminaBarHeight );
-    float x1 = pos.x - m_staminaBarSize/2;
-    float x2 = pos.x + m_staminaBarSize/2;
+    CVector2D pos = getScreenCoords( m_base->m_staminaBarHeight );
+    float x1 = pos.x - m_base->m_staminaBarSize/2;
+    float x2 = pos.x + m_base->m_staminaBarSize/2;
     float y = g_yres - pos.y;
 
-	glLineWidth( m_staminaBarWidth );
+	glLineWidth( m_base->m_staminaBarWidth );
     glBegin(GL_LINES);
 
     // blue part of bar
     glColor3f( 0.1f, 0.1f, 1 );
     glVertex3f( x1, y, 0 );
     glColor3f( 0.1f, 0.1f, 1 );
-    glVertex3f( x1 + m_staminaBarSize*fraction, y, 0 );
+    glVertex3f( x1 + m_base->m_staminaBarSize*fraction, y, 0 );
 
     // purple part of bar
     glColor3f( 0.3f, 0, 0.3f );
-    glVertex3f( x1 + m_staminaBarSize*fraction, y, 0 );
+    glVertex3f( x1 + m_base->m_staminaBarSize*fraction, y, 0 );
     glColor3f( 0.3f, 0, 0.3f );
     glVertex3f( x2, y, 0 );
 
@@ -1374,7 +1377,7 @@ void CEntity::renderRank()
 {
 	if( !m_bounds || !m_visible )
         return;
-    if( m_rankHeight < 0 )
+    if( m_base->m_rankHeight < 0 )
         return;  // negative height means don't display rank
 	//Check for valid texture
 	if( g_Selection.m_unitUITextures.find( m_rankName ) == g_Selection.m_unitUITextures.end() )
@@ -1386,12 +1389,12 @@ void CEntity::renderRank()
     CVector3D above;
     above.X = m_position.X;
     above.Z = m_position.Z;
-    above.Y = getAnchorLevel(m_position.X, m_position.Z) + m_rankHeight;
+    above.Y = getAnchorLevel(m_position.X, m_position.Z) + m_base->m_rankHeight;
     g_Camera->GetScreenCoordinates(above, sx, sy);
-    int size = m_rankWidth/2;
+    int size = m_base->m_rankWidth/2;
 
-	float x1 = sx + m_healthBarSize/2;
-    float x2 = sx + m_healthBarSize/2 + 2*size;
+	float x1 = sx + m_base->m_healthBarSize/2;
+    float x2 = sx + m_base->m_healthBarSize/2 + 2*size;
     float y1 = g_yres - (sy - size);	//top
 	float y2 = g_yres - (sy + size);	//bottom
 
@@ -2176,8 +2179,8 @@ jsval CEntity::RegisterDamage( JSContext* cx, uintN argc, jsval* argv )
 
 	float angle = acosf( up.dot(posDelta) );
 	//Find what section it is between and "activate" it
-	int sector = findSector(m_sectorDivs, angle, DEGTORAD(360.0f))-1;
-	m_sectorValues[sector]=true;
+	int sector = findSector(m_base->m_sectorDivs, angle, DEGTORAD(360.0f))-1;
+	m_base->m_sectorValues[sector]=true;
 	return JS_TRUE;
 }
 jsval CEntity::RegisterOrderChange( JSContext* cx, uintN argc, jsval* argv )
@@ -2195,15 +2198,15 @@ jsval CEntity::RegisterOrderChange( JSContext* cx, uintN argc, jsval* argv )
 
 	float angle = acosf( up.dot(posDelta) );
 	//Find what section it is between and "deactivate" it
-	int sector = MAX( 0.0, findSector(m_sectorDivs, angle, DEGTORAD(360.0f)) );
-	m_sectorValues[sector]=false;
+	int sector = MAX( 0.0, findSector(m_base->m_sectorDivs, angle, DEGTORAD(360.0f)) );
+	m_base->m_sectorValues[sector]=false;
 	return JS_TRUE;
 }
 jsval CEntity::GetAttackDirections( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	int directions=0;
 
-	for ( std::vector<bool>::iterator it=m_sectorValues.begin(); it != m_sectorValues.end(); it++ )
+	for ( std::vector<bool>::iterator it=m_base->m_sectorValues.begin(); it != m_base->m_sectorValues.end(); it++ )
 	{
 		if ( *it )
 			++directions;

@@ -143,8 +143,9 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 	while( targetXZ.y > PI ) targetXZ.y -= 2 * PI;
 	while( targetXZ.y < -PI ) targetXZ.y += 2 * PI;
 	
-	m_orientation.X = clamp( targetXZ.x, -m_anchorConformX, m_anchorConformX );
-	m_orientation.Z = clamp( targetXZ.y, -m_anchorConformZ, m_anchorConformZ );
+	float cX = m_base->m_anchorConformX, cZ = m_base->m_anchorConformZ;
+	m_orientation.X = clamp( targetXZ.x, -cX, cX );
+	m_orientation.Z = clamp( targetXZ.y, -cZ, cZ );
 	m_orientation_unclamped.x = targetXZ.x;
 	m_orientation_unclamped.y = targetXZ.y;
 

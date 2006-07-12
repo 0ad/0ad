@@ -367,7 +367,7 @@ int main(int argc, char* argv[])
 	Init(argc, argv, 0);
 	MainControllerInit();
 
-//debug_filter_add("LOADER");
+debug_filter_add("LOADER");
 
 //trace_gen_random(5000);
 //trace_write_to_file("../logs/trace.txt");
