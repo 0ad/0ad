@@ -120,7 +120,8 @@ public:
 	float m_healthRegenStart;
 	float m_healthDecayRate;
 
-	SEntityAction m_run;
+	float m_runMaxRange;
+	float m_runMinRange;
 	
 	ActionTable m_actions;
 

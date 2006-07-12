@@ -51,67 +51,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
     m_ahead.y = cos( m_orientation.Y );
 	m_player = 0;
 
-	/* Anything added to this list MUST be added to BaseEntity.cpp (and variables used should
-		also be added to BaseEntity.h */
-	
-    AddProperty( L"actions.move.speed_curr", &m_speed );
-	AddProperty( L"actions.move.run.speed", &m_runSpeed );
-	AddProperty( L"actions.move.run.rangemin", &( m_run.m_MinRange ) );
-	AddProperty( L"actions.move.run.range", &( m_run.m_MaxRange ) );
-	AddProperty( L"actions.move.run.regen_rate", &m_runRegenRate );
-	AddProperty( L"actions.move.run.decay_rate", &m_runDecayRate );
-	AddProperty( L"actions.move.pass_through_allies", &m_passThroughAllies );
-    AddProperty( L"selected", &m_selected, false, (NotifyFn)&CEntity::checkSelection );
-    AddProperty( L"group", &m_grouped, false, (NotifyFn)&CEntity::checkGroup );
-    AddProperty( L"traits.extant", &m_extant );
-    AddProperty( L"actions.move.turningradius", &m_turningRadius );
-    AddProperty( L"position", &m_graphics_position, false, (NotifyFn)&CEntity::teleport );
-    AddProperty( L"orientation", &(m_orientation.Y), false, (NotifyFn)&CEntity::reorient );
-    AddProperty( L"player", &m_player, false, (NotifyFn)&CEntity::playerChanged );
-    AddProperty( L"traits.health.curr", &m_healthCurr );
-    AddProperty( L"traits.health.max", &m_healthMax );
-    //AddProperty( L"traits.health.bar_height", &m_base->m_healthBarHeight );
-	//AddProperty( L"traits.health.bar_size", &m_base->m_healthBarSize );
-	//AddProperty( L"traits.health.bar_width", &m_base->m_healthBarWidth );
-	//AddProperty( L"traits.health.border_height", &m_base->m_healthBorderHeight);
-	//AddProperty( L"traits.health.border_width", &m_base->m_healthBorderWidth );
-	//AddProperty( L"traits.health.border_name", &m_base->m_healthBorderName );
-	AddProperty( L"traits.health.regen_rate", &m_healthRegenRate );
-	AddProperty( L"traits.health.regen_start", &m_healthRegenStart );
-	AddProperty( L"traits.health.decay_rate", &m_healthDecayRate );
-	AddProperty( L"traits.stamina.curr", &m_staminaCurr );
-    AddProperty( L"traits.stamina.max", &m_staminaMax );
-    //AddProperty( L"traits.stamina.bar_height", &m_base->m_staminaBarHeight );
-	//AddProperty( L"traits.stamina.bar_size", &m_base->m_staminaBarSize );
-	//AddProperty( L"traits.stamina.bar_width", &m_base->m_staminaBarWidth );
-	//AddProperty( L"traits.stamina.border_height", &m_base->m_staminaBorderHeight);
-	//AddProperty( L"traits.stamina.border_width", &m_base->m_staminaBorderWidth );
-	//AddProperty( L"traits.stamina.border_name", &m_base->m_staminaBorderName );
-	AddProperty( L"traits.rally.name", &m_rallyTexture );
-	AddProperty( L"traits.rally.width", &m_rallyWidth );
-	AddProperty( L"traits.rally.height", &m_rallyHeight );
-	//AddProperty( L"traits.flank_penalty.sectors", &m_base->m_sectorDivs);
-	//AddProperty( L"traits.pitch.sectors", &m_base->m_pitchDivs );
-	//AddProperty( L"traits.rank.width", &m_base->m_rankWidth );
-	//AddProperty( L"traits.rank.height", &m_base->m_rankHeight );
-	AddProperty( L"traits.rank.name", &m_rankName );
-    //AddProperty( L"traits.minimap.type", &m_base->m_minimapType );
-    //AddProperty( L"traits.minimap.red", &m_base->m_minimapR );
-    //AddProperty( L"traits.minimap.green", &m_base->m_minimapG );
-    //AddProperty( L"traits.minimap.blue", &m_base->m_minimapB );
-    //AddProperty( L"traits.anchor.type", &m_base->m_anchorType );
-	//AddProperty( L"traits.anchor.conformx", &m_base->m_anchorConformX );
-	//AddProperty( L"traits.anchor.conformz", &m_base->m_anchorConformZ );
-    AddProperty( L"traits.vision.los", &m_los );
-    AddProperty( L"traits.vision.permanent", &m_permanent );
-	AddProperty( L"traits.is_territory_centre", &m_isTerritoryCentre );
-	AddProperty( L"last_combat_time", &m_lastCombatTime );
-	AddProperty( L"last_run_time", &m_lastRunTime );
-	AddProperty( L"building", &m_building );
-	AddProperty( L"visible", &m_visible );
-
 	m_productionQueue = new CProductionQueue( this );
-	AddProperty( L"production_queue", m_productionQueue );
 
     for( int t = 0; t < EVENT_LAST; t++ )
     {
@@ -1520,8 +1460,67 @@ void CEntity::ScriptingInit()
 	AddMethod<jsval, &CEntity::SetRallyPoint>("setRallyPoint", 0 );
 	AddMethod<jsval, &CEntity::GetRallyPoint>("getRallyPoint", 0 );
 
-    AddClassProperty( L"template", (CBaseEntity* CEntity::*)&CEntity::m_base, false, (NotifyFn)&CEntity::loadBase );
     AddClassProperty( L"traits.id.classes", (GetFn)&CEntity::getClassSet, (SetFn)&CEntity::setClassSet );
+	AddClassProperty( L"template", (CBaseEntity* CEntity::*)&CEntity::m_base, false, (NotifyFn)&CEntity::loadBase );
+
+	/* Anything inherited property MUST be added to BaseEntity.cpp as well */
+
+    AddClassProperty( L"actions.move.speed_curr", &CEntity::m_speed );
+	AddClassProperty( L"actions.move.run.speed", &CEntity::m_runSpeed );
+	AddClassProperty( L"actions.move.run.rangemin", &CEntity::m_runMinRange );
+	AddClassProperty( L"actions.move.run.range", &CEntity::m_runMaxRange );
+	AddClassProperty( L"actions.move.run.regen_rate", &CEntity::m_runRegenRate );
+	AddClassProperty( L"actions.move.run.decay_rate", &CEntity::m_runDecayRate );
+	AddClassProperty( L"actions.move.pass_through_allies", &CEntity::m_passThroughAllies );
+    AddClassProperty( L"selected", &CEntity::m_selected, false, (NotifyFn)&CEntity::checkSelection );
+    AddClassProperty( L"group", &CEntity::m_grouped, false, (NotifyFn)&CEntity::checkGroup );
+    AddClassProperty( L"traits.extant", &CEntity::m_extant );
+    AddClassProperty( L"actions.move.turningradius", &CEntity::m_turningRadius );
+    AddClassProperty( L"position", &CEntity::m_graphics_position, false, (NotifyFn)&CEntity::teleport );
+	AddClassProperty( L"orientation", &CEntity::m_orientation, false, (NotifyFn)&CEntity::reorient );
+    AddClassProperty( L"player", &CEntity::m_player, false, (NotifyFn)&CEntity::playerChanged );
+    AddClassProperty( L"traits.health.curr", &CEntity::m_healthCurr );
+    AddClassProperty( L"traits.health.max", &CEntity::m_healthMax );
+    //AddClassProperty( L"traits.health.bar_height", &CEntity::m_base->m_healthBarHeight );
+	//AddClassProperty( L"traits.health.bar_size", &CEntity::m_base->m_healthBarSize );
+	//AddClassProperty( L"traits.health.bar_width", &CEntity::m_base->m_healthBarWidth );
+	//AddClassProperty( L"traits.health.border_height", &CEntity::m_base->m_healthBorderHeight);
+	//AddClassProperty( L"traits.health.border_width", &CEntity::m_base->m_healthBorderWidth );
+	//AddClassProperty( L"traits.health.border_name", &CEntity::m_base->m_healthBorderName );
+	AddClassProperty( L"traits.health.regen_rate", &CEntity::m_healthRegenRate );
+	AddClassProperty( L"traits.health.regen_start", &CEntity::m_healthRegenStart );
+	AddClassProperty( L"traits.health.decay_rate", &CEntity::m_healthDecayRate );
+	AddClassProperty( L"traits.stamina.curr", &CEntity::m_staminaCurr );
+    AddClassProperty( L"traits.stamina.max", &CEntity::m_staminaMax );
+    //AddClassProperty( L"traits.stamina.bar_height", &CEntity::m_base->m_staminaBarHeight );
+	//AddClassProperty( L"traits.stamina.bar_size", &CEntity::m_base->m_staminaBarSize );
+	//AddClassProperty( L"traits.stamina.bar_width", &CEntity::m_base->m_staminaBarWidth );
+	//AddClassProperty( L"traits.stamina.border_height", &CEntity::m_base->m_staminaBorderHeight);
+	//AddClassProperty( L"traits.stamina.border_width", &CEntity::m_base->m_staminaBorderWidth );
+	//AddClassProperty( L"traits.stamina.border_name", &CEntity::m_base->m_staminaBorderName );
+	AddClassProperty( L"traits.rally.name", &CEntity::m_rallyTexture );
+	AddClassProperty( L"traits.rally.width", &CEntity::m_rallyWidth );
+	AddClassProperty( L"traits.rally.height", &CEntity::m_rallyHeight );
+	//AddClassProperty( L"traits.flank_penalty.sectors", &CEntity::m_base->m_sectorDivs);
+	//AddClassProperty( L"traits.pitch.sectors", &CEntity::m_base->m_pitchDivs );
+	//AddClassProperty( L"traits.rank.width", &CEntity::m_base->m_rankWidth );
+	//AddClassProperty( L"traits.rank.height", &CEntity::m_base->m_rankHeight );
+	AddClassProperty( L"traits.rank.name", &CEntity::m_rankName );
+    //AddClassProperty( L"traits.minimap.type", &CEntity::m_base->m_minimapType );
+    //AddClassProperty( L"traits.minimap.red", &CEntity::m_base->m_minimapR );
+    //AddClassProperty( L"traits.minimap.green", &CEntity::m_base->m_minimapG );
+    //AddClassProperty( L"traits.minimap.blue", &CEntity::m_base->m_minimapB );
+    //AddClassProperty( L"traits.anchor.type", &CEntity::m_base->m_anchorType );
+	//AddClassProperty( L"traits.anchor.conformx", &CEntity::m_base->m_anchorConformX );
+	//AddClassProperty( L"traits.anchor.conformz", &CEntity::m_base->m_anchorConformZ );
+    AddClassProperty( L"traits.vision.los", &CEntity::m_los );
+    AddClassProperty( L"traits.vision.permanent", &CEntity::m_permanent );
+	AddClassProperty( L"traits.is_territory_centre", &CEntity::m_isTerritoryCentre );
+	AddClassProperty( L"last_combat_time", &CEntity::m_lastCombatTime );
+	AddClassProperty( L"last_run_time", &CEntity::m_lastRunTime );
+	AddClassProperty( L"building", &CEntity::m_building );
+	AddClassProperty( L"visible", &CEntity::m_visible );
+	AddClassProperty( L"production_queue", &CEntity::m_productionQueue );
 
     CJSComplex<CEntity>::ScriptingInit( "Entity", Construct, 2 );
 }

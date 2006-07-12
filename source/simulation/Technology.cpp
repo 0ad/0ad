@@ -218,16 +218,7 @@ bool CTechnology::loadELEffect( XMBElement effect, CXeromyces& XeroFile, CStr& f
 				CStr modValue = CStr(modElement.getText());
 
 				if ( modElement.getNodeName() == el_attribute)
-				{
-					if ( CEntity::m_AttributeTable.find( modValue ) == CEntity::m_AttributeTable.end() )
-					{
-						LOG( ERROR, LOG_CATEGORY, "CTechnology::loadXML invalid attribute %s for modifier attribute", modValue);
-						m_Modifiers.pop_back();
-						return false;
-					}
-					else
-						m_Modifiers.back().attribute = modValue;
-				}
+					m_Modifiers.back().attribute = modValue;
 				else if ( modElement.getNodeName() == el_value )
 					m_Modifiers.back().value = modValue.ToFloat();
 				else
@@ -249,16 +240,7 @@ bool CTechnology::loadELEffect( XMBElement effect, CXeromyces& XeroFile, CStr& f
 				CStr setValue = CStr(setElement.getText());
 
 				if ( setElement.getNodeName() == el_attribute)
-				{
-					if ( CEntity::m_AttributeTable.find( setValue ) == CEntity::m_AttributeTable.end() )
-					{
-						LOG( ERROR, LOG_CATEGORY, "CTechnology::loadXML invalid attribute %s for \"set\" attribute", setValue);
-						m_Sets.pop_back();
-						return false;
-					}
-					else
-						m_Sets.back().attribute = setValue;
-				}
+					m_Sets.back().attribute = setValue;
 				else if ( setElement.getNodeName() == el_value )
 					m_Sets.back().value = setValue.ToFloat();
 				else
@@ -447,39 +429,28 @@ jsval CTechnology::ApplyEffects( JSContext* cx, uintN argc, jsval* argv )
 	{
 		for ( std::vector<Modifier>::iterator mod=m_Modifiers.begin(); mod!=m_Modifiers.end(); mod++ )
 		{
-			//CEntity* ent = *HEit;
-			//debug_printf("Modifying on %ls\n", ent->m_base->m_Tag.c_str() );
-
-			//Get the member corresponding to the javascript attribute string
-			void* attribute = (char*)&**HEit + (*HEit)->m_AttributeTable[mod->attribute];
+			CEntity* ent = *HEit;
 			float modValue = (invert ? -mod->value : mod->value);
 
-			if ( varType == "int" )
-				*(int*)attribute += (int)modValue;
-			else if ( varType == "double" )
-				*(double*)attribute += (double)modValue;
-			else
-				*(float*)attribute += (float)modValue;
+			jsval oldVal;
+			if( ent->GetProperty( g_ScriptingHost.getContext(), mod->attribute, &oldVal ) )
+			{
+				jsval newVal = ToJSVal( ToPrimitive<float>(oldVal) + modValue );
+				ent->SetProperty( g_ScriptingHost.GetContext(), mod->attribute, &newVal );
+			}
 		}
 	}
 
-	for ( HEit = entitiesAffected.begin(); HEit != entitiesAffected.end(); HEit++ )
+	if( !invert )		// can't invert Set effects, so just ignore them if invert is true
 	{
-		for ( std::vector<Modifier>::iterator set=m_Sets.begin(); set!=m_Sets.end(); set++ )
-		{	
-			//CEntity* ent = *HEit;
-			//debug_printf("Setting on %ls\n", ent->m_base->m_Tag.c_str() );
-
-			//Get the member corresponding to the javascript attribute string
-			void* attribute = (char*)&**HEit + (*HEit)->m_AttributeTable[set->attribute];
-			float setValue = invert ? -set->value : set->value;
-
-			if ( varType == "int" )
-				*(int*)attribute = (int)setValue;
-			else if ( varType == "double" )
-				*(double*)attribute = (double)setValue;
-			else
-				*(float*)attribute = (float)setValue;
+		for ( HEit = entitiesAffected.begin(); HEit != entitiesAffected.end(); HEit++ )
+		{
+			for ( std::vector<Modifier>::iterator mod=m_Sets.begin(); mod!=m_Sets.end(); mod++ )
+			{
+				CEntity* ent = *HEit;
+				jsval newVal = ToJSVal( mod->value );
+				ent->SetProperty( g_ScriptingHost.GetContext(), mod->attribute, &newVal );
+			}
 		}
 	}
 
@@ -497,22 +468,26 @@ jsval CTechnology::IsValid( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UN
 		return JS_TRUE;
 	return JS_FALSE;
 }
+
 jsval CTechnology::IsExcluded( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	if ( m_excluded[m_player->GetPlayerID()] )
 		return JS_TRUE;
 	return JS_FALSE;
 }
+
 jsval CTechnology::IsResearched( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	if ( isResearched() )
 		return JS_TRUE;
 	return JS_FALSE;
 }
+
 inline jsval CTechnology::GetPlayerID( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	return ToJSVal( m_player->GetPlayerID() );
 }
+
 jsval CTechnology::IsJSFirst( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	if ( m_JSFirst )

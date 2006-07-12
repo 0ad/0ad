@@ -34,8 +34,8 @@ enum EGotoSituation
 float CEntity::processChooseMovement( float distance )
 {
 	// Should we run or walk
-	if (entf_get(ENTF_SHOULD_RUN) && m_staminaCurr > 0 && distance < m_run.m_MaxRange && 
-		( distance > m_run.m_MinRange || entf_get(ENTF_IS_RUNNING) ) )
+	if (entf_get(ENTF_SHOULD_RUN) && m_staminaCurr > 0 && distance < m_runMaxRange && 
+		( distance > m_runMinRange || entf_get(ENTF_IS_RUNNING) ) )
 	{	
 		if ( m_actor )
 		{

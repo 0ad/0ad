@@ -44,7 +44,7 @@ public:
 
 	// Base stats
 	CBaseEntity* m_base;
-	bool m_extant;
+	//bool m_extant;
 
 	// The unmodified, no-player version of this template
 	CBaseEntity* m_unmodified;
@@ -125,8 +125,8 @@ public:
 	float m_runDecayRate;
 	bool m_passThroughAllies;
 
-	SEntityAction m_run;
-	SEntityAction m_generic;
+	float m_runMaxRange;
+	float m_runMinRange;
 
 	int m_sectorDivs;
 	int m_pitchDivs;

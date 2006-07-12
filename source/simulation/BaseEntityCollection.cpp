@@ -64,23 +64,6 @@ CBaseEntity* CBaseEntityCollection::getTemplate( CStrW name, CPlayer* player )
 	LOG(NORMAL, LOG_CATEGORY, "CBaseEntityCollection::loadTemplates(): Loaded template \"%s\"", path.c_str());
 	m_templates[id][name] = newTemplate;
 
-	// Load the entity's parent, if it has one
-	if( newTemplate->m_Base_Name.Length() )
-	{
-		CBaseEntity* base = getTemplate( newTemplate->m_Base_Name, player );
-		if( base )
-		{
-			newTemplate->m_base = base;
-			newTemplate->loadBase();
-		}
-		else
-		{
-			LOG( WARNING, LOG_CATEGORY, "Parent template \"%ls\" does not exist in template \"%ls\"", newTemplate->m_Base_Name.c_str(), newTemplate->m_Tag.c_str() );
-			// (The requested entity will still be returned, but with no parent.
-			// Is this a reasonable thing to do?)
-		}
-	}
-
 	return newTemplate;
 }
 

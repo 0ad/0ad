@@ -21,55 +21,6 @@ CBaseEntity::CBaseEntity( CPlayer* player )
 	AddProperty( L"tag", &m_Tag, false );
 	AddProperty( L"parent", &m_base, false );
 	AddProperty( L"unmodified", &m_unmodified, false );
-	AddProperty( L"actions.move.speed_curr", &m_speed );
-	AddProperty( L"actions.move.turningradius", &m_turningRadius );
-	AddProperty( L"actions.move.run.speed", &m_runSpeed );
-	AddProperty( L"actions.move.run.rangemin", &( m_run.m_MinRange ) );
-	AddProperty( L"actions.move.run.range", &( m_run.m_MaxRange ) );
-	AddProperty( L"actions.move.run.regen_rate", &m_runRegenRate );
-	AddProperty( L"actions.move.run.decay_rate", &m_runDecayRate );
-	AddProperty( L"actions.move.pass_through_allies", &m_passThroughAllies );
-	AddProperty( L"actor", &m_actorName );
-	AddProperty( L"traits.extant", &m_extant );	
-	AddProperty( L"traits.health.curr", &m_healthCurr );
-    AddProperty( L"traits.health.max", &m_healthMax );
-    AddProperty( L"traits.health.bar_height", &m_healthBarHeight );
-	AddProperty( L"traits.health.bar_size", &m_healthBarSize );
-	AddProperty( L"traits.health.bar_width", &m_healthBarWidth );
-	AddProperty( L"traits.health.border_height", &m_healthBorderHeight);
-	AddProperty( L"traits.health.border_width", &m_healthBorderWidth );
-	AddProperty( L"traits.health.border_name", &m_healthBorderName );
-	AddProperty( L"traits.health.regen_rate", &m_healthRegenRate );
-	AddProperty( L"traits.health.regen_start", &m_healthRegenStart );
-	AddProperty( L"traits.health.decay_rate", &m_healthDecayRate );
-	AddProperty( L"traits.stamina.curr", &m_staminaCurr );
-    AddProperty( L"traits.stamina.max", &m_staminaMax );
-    AddProperty( L"traits.stamina.bar_height", &m_staminaBarHeight );
-	AddProperty( L"traits.stamina.bar_size", &m_staminaBarSize );
-	AddProperty( L"traits.stamina.bar_width", &m_staminaBarWidth );
-	AddProperty( L"traits.stamina.border_height", &m_staminaBorderHeight);
-	AddProperty( L"traits.stamina.border_width", &m_staminaBorderWidth );
-	AddProperty( L"traits.stamina.border_name", &m_staminaBorderName );
-	AddProperty( L"traits.rally.name", &m_rallyName );
-	AddProperty( L"traits.rally.width", &m_rallyWidth );
-	AddProperty( L"traits.rally.height", &m_rallyHeight );
-	AddProperty( L"traits.flank_penalty.sectors", &m_sectorDivs );
-	AddProperty( L"traits.pitch.sectors", &m_pitchDivs );
-	AddProperty( L"traits.rank.width", &m_rankWidth );
-	AddProperty( L"traits.rank.height", &m_rankHeight );
-	AddProperty( L"traits.rank.name", &m_rankName );
-	AddProperty( L"traits.minimap.type", &m_minimapType );
-	AddProperty( L"traits.minimap.red", &m_minimapR );
-	AddProperty( L"traits.minimap.green", &m_minimapG );
-	AddProperty( L"traits.minimap.blue", &m_minimapB );
-	AddProperty( L"traits.anchor.type", &m_anchorType );
-	AddProperty( L"traits.anchor.conformx", &m_anchorConformX );
-	AddProperty( L"traits.anchor.conformz", &m_anchorConformZ );
-	AddProperty( L"traits.vision.los", &m_los );
-	AddProperty( L"traits.vision.permanent", &m_permanent );
-	AddProperty( L"traits.is_territory_centre", &m_isTerritoryCentre );
-	AddProperty( L"traits.foundation", &m_foundation );
-	AddProperty( L"traits.socket", &m_socket );
 
 	for( int t = 0; t < EVENT_LAST; t++ )
 	{
@@ -79,7 +30,7 @@ CBaseEntity::CBaseEntity( CPlayer* player )
 
 	// Initialize, make life a little easier on the scriptors
 	m_speed = m_turningRadius = 0.0f;
-	m_extant = true; 
+	//m_extant = true; 
 	m_foundation = CStrW();
 	m_socket = CStrW();
 	m_passThroughAllies = false;
@@ -236,6 +187,23 @@ bool CBaseEntity::loadXML( CStr filename )
 	m_Tag = CStr(filename).AfterLast("/").BeforeLast(".xml");
 
 	m_Base_Name = Root.getAttributes().getNamedItem( at_parent );
+
+	// Load our parent, if we have one
+	if( m_Base_Name.Length() )
+	{
+		CBaseEntity* base = g_EntityTemplateCollection.getTemplate( m_Base_Name, m_player );
+		if( base )
+		{
+			m_base = base;
+			loadBase();
+		}
+		else
+		{
+			LOG( WARNING, LOG_CATEGORY, "Parent template \"%ls\" does not exist in template \"%ls\"", m_Base_Name.c_str(), m_Tag.c_str() );
+			// (The requested entity will still be returned, but with no parent.
+			// Is this a reasonable thing to do?)
+		}
+	}
 	
 	for (int i = 0; i < RootChildren.Count; ++i)
 	{
@@ -381,7 +349,7 @@ void CBaseEntity::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement&
 		if( !Existing->m_Intrinsic )
 			LOG( WARNING, LOG_CATEGORY, "CBaseEntity::XMLAddProperty: %ls already defined for %ls. Property trees will be merged.", PropertyName.c_str(), m_Tag.c_str() );
 		Existing->Set( this, JSParseString( Source.getText() ) );
-		Existing->m_Inherited = false;
+		//Existing->m_Inherited = false;
 	}
 	else
 	{
@@ -436,7 +404,57 @@ void CBaseEntity::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement&
 void CBaseEntity::ScriptingInit()
 {
 	AddMethod<jsval, &CBaseEntity::ToString>( "toString", 0 );
+
 	AddClassProperty( L"traits.id.classes", (GetFn)&CBaseEntity::getClassSet, (SetFn)&CBaseEntity::setClassSet );
+	
+	AddClassProperty( L"actions.move.speed_curr", &CBaseEntity::m_speed );
+	AddClassProperty( L"actions.move.turningradius", &CBaseEntity::m_turningRadius );
+	AddClassProperty( L"actions.move.run.speed", &CBaseEntity::m_runSpeed );
+	AddClassProperty( L"actions.move.run.rangemin", &CBaseEntity::m_runMinRange );
+	AddClassProperty( L"actions.move.run.range", &CBaseEntity::m_runMaxRange );
+	AddClassProperty( L"actions.move.run.regen_rate", &CBaseEntity::m_runRegenRate );
+	AddClassProperty( L"actions.move.run.decay_rate", &CBaseEntity::m_runDecayRate );
+	AddClassProperty( L"actions.move.pass_through_allies", &CBaseEntity::m_passThroughAllies );
+	AddClassProperty( L"actor", &CBaseEntity::m_actorName );
+	AddClassProperty( L"traits.health.curr", &CBaseEntity::m_healthCurr );
+    AddClassProperty( L"traits.health.max", &CBaseEntity::m_healthMax );
+    AddClassProperty( L"traits.health.bar_height", &CBaseEntity::m_healthBarHeight );
+	AddClassProperty( L"traits.health.bar_size", &CBaseEntity::m_healthBarSize );
+	AddClassProperty( L"traits.health.bar_width", &CBaseEntity::m_healthBarWidth );
+	AddClassProperty( L"traits.health.border_height", &CBaseEntity::m_healthBorderHeight);
+	AddClassProperty( L"traits.health.border_width", &CBaseEntity::m_healthBorderWidth );
+	AddClassProperty( L"traits.health.border_name", &CBaseEntity::m_healthBorderName );
+	AddClassProperty( L"traits.health.regen_rate", &CBaseEntity::m_healthRegenRate );
+	AddClassProperty( L"traits.health.regen_start", &CBaseEntity::m_healthRegenStart );
+	AddClassProperty( L"traits.health.decay_rate", &CBaseEntity::m_healthDecayRate );
+	AddClassProperty( L"traits.stamina.curr", &CBaseEntity::m_staminaCurr );
+    AddClassProperty( L"traits.stamina.max", &CBaseEntity::m_staminaMax );
+    AddClassProperty( L"traits.stamina.bar_height", &CBaseEntity::m_staminaBarHeight );
+	AddClassProperty( L"traits.stamina.bar_size", &CBaseEntity::m_staminaBarSize );
+	AddClassProperty( L"traits.stamina.bar_width", &CBaseEntity::m_staminaBarWidth );
+	AddClassProperty( L"traits.stamina.border_height", &CBaseEntity::m_staminaBorderHeight);
+	AddClassProperty( L"traits.stamina.border_width", &CBaseEntity::m_staminaBorderWidth );
+	AddClassProperty( L"traits.stamina.border_name", &CBaseEntity::m_staminaBorderName );
+	AddClassProperty( L"traits.rally.name", &CBaseEntity::m_rallyName );
+	AddClassProperty( L"traits.rally.width", &CBaseEntity::m_rallyWidth );
+	AddClassProperty( L"traits.rally.height", &CBaseEntity::m_rallyHeight );
+	AddClassProperty( L"traits.flank_penalty.sectors", &CBaseEntity::m_sectorDivs );
+	AddClassProperty( L"traits.pitch.sectors", &CBaseEntity::m_pitchDivs );
+	AddClassProperty( L"traits.rank.width", &CBaseEntity::m_rankWidth );
+	AddClassProperty( L"traits.rank.height", &CBaseEntity::m_rankHeight );
+	AddClassProperty( L"traits.rank.name", &CBaseEntity::m_rankName );
+	AddClassProperty( L"traits.minimap.type", &CBaseEntity::m_minimapType );
+	AddClassProperty( L"traits.minimap.red", &CBaseEntity::m_minimapR );
+	AddClassProperty( L"traits.minimap.green", &CBaseEntity::m_minimapG );
+	AddClassProperty( L"traits.minimap.blue", &CBaseEntity::m_minimapB );
+	AddClassProperty( L"traits.anchor.type", &CBaseEntity::m_anchorType );
+	AddClassProperty( L"traits.anchor.conformx", &CBaseEntity::m_anchorConformX );
+	AddClassProperty( L"traits.anchor.conformz", &CBaseEntity::m_anchorConformZ );
+	AddClassProperty( L"traits.vision.los", &CBaseEntity::m_los );
+	AddClassProperty( L"traits.vision.permanent", &CBaseEntity::m_permanent );
+	AddClassProperty( L"traits.is_territory_centre", &CBaseEntity::m_isTerritoryCentre );
+	AddClassProperty( L"traits.foundation", &CBaseEntity::m_foundation );
+	AddClassProperty( L"traits.socket", &CBaseEntity::m_socket );
 
 	CJSComplex<CBaseEntity>::ScriptingInit( "EntityTemplate" );
 }

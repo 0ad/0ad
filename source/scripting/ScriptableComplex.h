@@ -278,7 +278,6 @@ template<typename T> JSClass CJSComplexPropertyAccessor<T>::JSI_Class = {
 	NULL, NULL, NULL, NULL 
 };
 
-
 template<typename T, bool ReadOnly> class CJSSharedProperty : public IJSComplexProperty
 {
 	T IJSComplex::*m_Data;
@@ -304,9 +303,11 @@ public:
 		if( m_Freshen ) (owner->*m_Freshen)();
 		return( ToJSVal( owner->*m_Data ) );
 	}
-	void ImmediateCopy( IJSComplex* UNUSED(CopyTo), IJSComplex* UNUSED(CopyFrom), IJSComplexProperty* UNUSED(CopyProperty) )
+	void ImmediateCopy( IJSComplex* CopyTo, IJSComplex* CopyFrom, IJSComplexProperty* CopyProperty )
 	{
-		debug_warn( "Inheritance not supported for CJSSharedProperties" );
+		CJSSharedProperty* otherProp = (CJSSharedProperty*) CopyProperty;
+		T IJSComplex::*otherData = otherProp->m_Data;
+		CopyTo->*m_Data = CopyFrom->*otherData;
 	}
 	void Set( JSContext* cx, IJSComplex* owner, jsval Value )
 	{
