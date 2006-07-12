@@ -34,8 +34,8 @@ enum EGotoSituation
 float CEntity::processChooseMovement( float distance )
 {
 	// Should we run or walk
-	if (m_shouldRun && m_staminaCurr > 0 && distance < m_run.m_MaxRange && 
-		( distance > m_run.m_MinRange || m_isRunning ) )
+	if (entf_get(ENTF_SHOULD_RUN) && m_staminaCurr > 0 && distance < m_run.m_MaxRange && 
+		( distance > m_run.m_MinRange || entf_get(ENTF_IS_RUNNING) ) )
 	{	
 		if ( m_actor )
 		{
@@ -46,7 +46,7 @@ float CEntity::processChooseMovement( float distance )
 
 				// Animation desync
 				m_actor->GetModel()->Update( rand( 0, 1000 ) / 1000.0f );
-				m_isRunning = true;
+				entf_set(ENTF_IS_RUNNING);
 			}
 		}
 		return m_runSpeed;
@@ -63,7 +63,7 @@ float CEntity::processChooseMovement( float distance )
 
 				// Animation desync
 				m_actor->GetModel()->Update( rand( 0, 1000 ) / 1000.0f );
-				m_isRunning = false;
+				entf_clear(ENTF_IS_RUNNING);
 			}
 		}
 		return m_speed;
@@ -255,8 +255,8 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 		else
 		{
 			m_orderQueue.pop_front();
-			//m_isRunning = false;
-			//m_shouldRun = false;
+			//entf_clear(ENTF_IS_RUNNING);
+			//entf_clear(ENTF_SHOULD_RUN);
 		}
 		return( false );
 	case COLLISION_OVERLAPPING_OBJECTS:
@@ -264,8 +264,8 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 	case COLLISION_WITH_DESTINATION:
 		// We're here...
 		m_orderQueue.pop_front();
-		//m_isRunning = false;
-		//m_shouldRun = false;
+		//entf_clear(ENTF_IS_RUNNING);
+		//entf_clear(ENTF_SHOULD_RUN);
 		
 		return( false );
 	case COLLISION_NEAR_DESTINATION:
@@ -329,8 +329,8 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 	case WOULD_LEAVE_MAP:
 		// Just stop here, repath if necessary.
 		m_orderQueue.pop_front();
-		//m_isRunning = false;
-		//m_shouldRun = false;
+		//entf_clear(ENTF_IS_RUNNING);
+		//entf_clear(ENTF_SHOULD_RUN);
 		return( false );
 	default:
 		
@@ -349,7 +349,7 @@ bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timeste
 	if( Distance < action->m_MaxRange ) 
 	{
 		(int&)current->m_type = transition;
-		m_isRunning = false;
+		entf_clear(ENTF_IS_RUNNING);
 		return( true );
 	}
 	
@@ -374,7 +374,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 			// Start the animation. Actual damage/gather will be done in a 
 			// few hundred ms, at the 'action point' of the animation we're
 			// now setting.
-			m_isRunning = false;
+			entf_clear(ENTF_IS_RUNNING);
 			// TODO: this is set to be looping, because apparently it otherwise
 			// plays one frame of 'idle' after e.g. attacks. But this way means
 			// animations sometimes play ~1.5 times then repeat, which looks
@@ -395,8 +395,8 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 			{
 				// Cancel current order
 				popOrder();
-				m_isRunning = false;
-				m_shouldRun = false;
+				entf_clear(ENTF_IS_RUNNING);
+				entf_clear(ENTF_SHOULD_RUN);
 				m_actor->SetEntitySelection( L"idle" );
 				m_actor->SetRandomAnimation( "idle" );
 				return( false );
@@ -422,8 +422,8 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		//heal or if defensive stance), the unit should expand and continue the order.
 		
 		popOrder();
-		m_isRunning = false;
-		m_shouldRun = false;
+		entf_clear(ENTF_IS_RUNNING);
+		entf_clear(ENTF_SHOULD_RUN);
 		return( false );
 	}
 
@@ -438,8 +438,8 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		if( delta.within( adjMinRange ) )
 		{
 			// Too close... do nothing.
-			m_isRunning = false;
-			m_shouldRun = false;
+			entf_clear(ENTF_IS_RUNNING);
+			entf_clear(ENTF_SHOULD_RUN);
 			return( false );
 		}
 	}
@@ -508,7 +508,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		// Close enough, but turn to face them.  
 		m_orientation.Y = atan2( delta.x, delta.y );
 		m_ahead = delta.normalize();
-		m_isRunning = false;
+		entf_clear(ENTF_IS_RUNNING);
 	}
 
 	// Pick our animation, calculate the time to play it, and start the timer.
@@ -534,7 +534,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 	{
 		// If we've just transitioned, play idle. Otherwise, let the previous animation complete, if it
 		// hasn't already.
-		if( m_transition )
+		if( entf_get(ENTF_TRANSITION) )
 		{
 			// (don't change actor's entity-selection)
 			m_actor->SetRandomAnimation( "idle" );
@@ -593,8 +593,8 @@ bool CEntity::processGoto( CEntityOrder* current, size_t UNUSED(timestep_millis)
 	// Let's just check we're going somewhere...
 	if( Distance < 0.1f ) 
 	{
-		//m_isRunning = false;
-		//m_shouldRun = false;
+		//entf_clear(ENTF_IS_RUNNING);
+		//entf_clear(ENTF_SHOULD_RUN);
 		return( false );
 	}
 
@@ -617,8 +617,8 @@ bool CEntity::processGotoWaypoint( CEntityOrder* current, size_t UNUSED(timestep
 	// Let's just check we're going somewhere...
 	if( Distance < 0.1f ) 
 	{
-		m_isRunning = false;
-		//m_shouldRun = false;
+		entf_clear(ENTF_IS_RUNNING);
+		//entf_clear(ENTF_SHOULD_RUN);
 		return( false );
 	}
 

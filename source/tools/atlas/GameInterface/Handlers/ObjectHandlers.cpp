@@ -657,7 +657,7 @@ BEGIN_COMMAND(DeleteObject)
 		if (unit->GetEntity())
 		{
 			// HACK: I don't know the proper way of undoably deleting entities...
-			unit->GetEntity()->m_destroyed = true;
+			unit->GetEntity()->entf_set(ENTF_DESTROYED);
 		}
 
 		g_UnitMan.RemoveUnit(unit);
@@ -667,7 +667,7 @@ BEGIN_COMMAND(DeleteObject)
 	void Undo()
 	{
 		if (m_UnitInLimbo->GetEntity())
-			m_UnitInLimbo->GetEntity()->m_destroyed = false;
+			m_UnitInLimbo->GetEntity()->entf_clear(ENTF_DESTROYED);
 
 		g_UnitMan.AddUnit(m_UnitInLimbo);
 		m_UnitInLimbo = NULL;

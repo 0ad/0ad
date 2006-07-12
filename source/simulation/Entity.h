@@ -53,6 +53,32 @@ class CTerritory;
 
 class CEntityFormation;
 
+
+// 
+enum EntityFlags
+{
+	// If this unit has been removed from the gameworld but has still
+	// has references.
+	ENTF_DESTROYED                  = 0x0001,
+
+	// State transition in the FSM (animations should be reset)
+	ENTF_TRANSITION                 = 0x0002,
+
+	ENTF_HAS_RALLY_POINT            = 0x0004,
+
+	ENTF_HEALTH_DECAY               = 0x0008,
+
+	// if set, we destroy them; otherwise, the script does.
+	ENTF_DESTROY_NOTIFIERS          = 0x0010,
+
+	// is it actually running
+	ENTF_IS_RUNNING                 = 0x0020,
+	// if run was issued, it will remain true until it is stopped
+	ENTF_SHOULD_RUN                 = 0x0040,
+	// used in SetRun, corrects 1 frame stamina imbalance
+	ENTF_TRIGGER_RUN                = 0x0080
+};
+
 // TODO MT: Put this is /some/ sort of order...
 
 class CEntity : public CJSComplex<CEntity>, public IEventTarget
@@ -100,12 +126,19 @@ public:
 
 	bool m_selected;
 	i32 m_grouped;
-	int m_formation;	//Indice of which formation we're in
-	int m_formationSlot;	//The slot of the above formation
+	int m_formation;	// Index of which formation we're in
+	int m_formationSlot;	// The slot of the above formation
 
-	// If this unit has been removed from the gameworld but has still
-	// has references.
-	bool m_destroyed;
+	uint ent_flags;
+	bool entf_get(uint desired_flag) const { return (ent_flags & desired_flag) != 0; }
+	void entf_set(uint desired_flag) { ent_flags |= desired_flag; }
+	void entf_clear(uint desired_flag) { ent_flags &= ~desired_flag; }
+	void entf_set_to(uint desired_flag, bool value)
+	{
+		ent_flags &= ~desired_flag;
+		const uint mask = value? ~0u : 0;
+		ent_flags |= desired_flag & mask;
+	}
 
 	// If this unit is still active in the gameworld - i.e. not a corpse.
 	bool m_extant;
@@ -113,9 +146,6 @@ public:
 	// If this is false, the unit will not be drawn and cannot be interacted with using the mouse.
 	bool m_visible;
 
-	bool m_isRunning;	//is it actually running
-	bool m_shouldRun;	//if run was issued, it will remain true until it is stopped
-	bool m_triggerRun;	//used in SetRun, corrects 1 frame stamina imbalance
 	int m_frameCheck;	//counts the frame
 
 	float m_lastCombatTime;
@@ -138,9 +168,6 @@ public:
 	CStr m_rallyTexture;
 	float m_rallyWidth;
 	float m_rallyHeight;
-
-	bool m_healthDecay;
-
 
 	// LOS
 	int m_los;
@@ -172,8 +199,7 @@ public:
 	
 	CVector2D m_orientation_unclamped;
 
-	CVector3D m_rallyPoint;	
-	bool m_hasRallyPoint;
+	CVector3D m_rallyPoint;	// valid iff ENT_HAS_RALLY_POINT
 
 	// If the actor's current transform data is valid (i.e. the entity hasn't
 	// moved since it was last calculated, and the terrain hasn't been changed).
@@ -192,9 +218,7 @@ public:
 	CUnit* m_actor;
 	std::set<CStrW> m_actorSelections;
 
-	// State transition in the FSM (animations should be reset)
-	bool m_transition;
-	int m_lastState;
+	int m_lastState;	// used in animation FSM
 
 	// Position in the current state's cycle
 	static const size_t NOT_IN_CYCLE = (size_t)-1;
@@ -209,7 +233,6 @@ public:
 	std::vector<CEntity*> m_notifiers;
 	int m_currentNotification;	//Current order in the form of a notification code
 	int m_currentRequest;	//Notification we our notifiers are sending
-	bool m_destroyNotifiers;	//True: we destroy them. False: the script does.
 
 	/* JW: these have all been 'moved' (1) into BaseEntity:
 	   1: were already present there, just removed from here

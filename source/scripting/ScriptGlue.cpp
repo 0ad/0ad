@@ -256,7 +256,7 @@ JSBool issueCommand( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rv
 	//Destroy old notifiers if we're explicitly being reassigned
 	for ( size_t i=0; i < entities.size(); i++)
 	{
-		if ( entities[i]->m_destroyNotifiers )
+		if ( entities[i]->entf_get(ENTF_DESTROY_NOTIFIERS))
 			entities[i]->DestroyAllNotifiers();
 	}
 	std::vector<CNetMessage*> messages;

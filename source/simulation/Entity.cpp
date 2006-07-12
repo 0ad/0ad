@@ -38,6 +38,8 @@ std::map<CStr, size_t> CEntity::m_AttributeTable;
 
 CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections, CStrW building )
 {
+	ent_flags = 0;
+
 	if(m_AttributeTable.size() == 0)	// not nice
 	{
 		initAttributes(this);
@@ -124,7 +126,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
     m_bounds = NULL;
 
     m_lastState = -1;
-    m_transition = true;
+    entf_set(ENTF_TRANSITION);
     m_fsm_cyclepos = NOT_IN_CYCLE;
 
     m_base = base;
@@ -140,24 +142,24 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
 
     m_graphics_position = m_position;
     m_graphics_orientation = m_orientation;
-    m_actor_transform_valid = false;
-	m_hasRallyPoint = false;
+	m_actor_transform_valid = false;
+	entf_clear(ENTF_HAS_RALLY_POINT);
 
-    m_destroyed = false;
+	entf_clear(ENTF_DESTROYED);
 
     m_selected = false;
-	m_isRunning = false;
-	m_shouldRun = false;
-	m_triggerRun = false;
+	entf_clear(ENTF_IS_RUNNING);
+	entf_clear(ENTF_SHOULD_RUN);
+	entf_clear(ENTF_TRIGGER_RUN);
 
-	m_healthDecay = false;
+	entf_clear(ENTF_HEALTH_DECAY);
 
 	m_frameCheck = 0;
 	m_lastCombatTime = 0;
 	m_lastRunTime = 0;
 	m_currentNotification = 0;
 	m_currentRequest = 0;
-	m_destroyNotifiers = true;
+	entf_set(ENTF_DESTROY_NOTIFIERS);
 
 	m_formationSlot = -1;
 	m_formation = -1;
@@ -193,7 +195,7 @@ CEntity::~CEntity()
     }
     m_auras.clear();
 	
-	m_destroyNotifiers=true;
+	entf_set(ENTF_DESTROY_NOTIFIERS);
 	for ( size_t i=0; i<m_listeners.size(); i++ )
 		m_listeners[i].m_sender->DestroyNotifier( this );
 	DestroyAllNotifiers();
@@ -319,7 +321,7 @@ void CEntity::kill()
 	CEntity* remove = this;
 	g_FormationManager.RemoveUnit(remove);
 	
-	m_destroyNotifiers=true;
+	entf_set(ENTF_DESTROY_NOTIFIERS);
 	for ( size_t i=0; i<m_listeners.size(); i++ )
 		m_listeners[i].m_sender->DestroyNotifier( this );
 	DestroyAllNotifiers();
@@ -330,7 +332,7 @@ void CEntity::kill()
 
     m_extant = false;
 
-    m_destroyed = true;
+	entf_set(ENTF_DESTROYED);
     //Shutdown(); // PT: tentatively removed - this seems to be called by ~CJSComplex, and we don't want to do it twice
 
     if( m_actor )
@@ -464,13 +466,13 @@ void CEntity::update( size_t timestep )
 	CalculateRun( timestep );
 	CalculateHealth( timestep );
 
-	if ( m_triggerRun )
+	if ( entf_get(ENTF_TRIGGER_RUN) )
 		m_frameCheck++;
 
 	if ( m_frameCheck != 0 )
 	{
-		m_shouldRun = true;
-		m_triggerRun = false;
+		entf_set(ENTF_SHOULD_RUN);
+		entf_clear(ENTF_TRIGGER_RUN);
 		m_frameCheck = 0;
 	}
 
@@ -494,7 +496,7 @@ void CEntity::update( size_t timestep )
 
     PROFILE_START( "state processing" );
 
-	if( m_isRunning )
+	if( entf_get(ENTF_IS_RUNNING) )
 	{
 		m_lastRunTime = g_Game->GetTime();
 	}
@@ -505,7 +507,7 @@ void CEntity::update( size_t timestep )
 
         if( current->m_type != m_lastState )
         {
-            m_transition = true;
+            entf_set(ENTF_TRANSITION);
             m_fsm_cyclepos = NOT_IN_CYCLE;
 
             PROFILE( "state transition / order" );
@@ -533,7 +535,7 @@ void CEntity::update( size_t timestep )
         }
         else
 		{
-            m_transition = false;
+            entf_clear(ENTF_TRANSITION);
 		}
 
         switch( current->m_type )
@@ -598,8 +600,8 @@ void CEntity::update( size_t timestep )
 	if( m_orderQueue.empty() ) 
 	{
 		// If we have no orders, stop running
-		m_isRunning = false;
-		m_shouldRun = false;
+		entf_clear(ENTF_IS_RUNNING);
+		entf_clear(ENTF_SHOULD_RUN);
 	}
 
     PROFILE_END( "state processing" );
@@ -872,7 +874,7 @@ int CEntity::DestroyNotifier( CEntity* target )
 }
 void CEntity::DestroyAllNotifiers()
 {
-	debug_assert(m_destroyNotifiers);
+	debug_assert(entf_get(ENTF_DESTROY_NOTIFIERS));
 	//Make them stop listening to us
 	while ( ! m_notifiers.empty() )
 		DestroyNotifier( m_notifiers[0] );
@@ -1417,7 +1419,7 @@ void CEntity::renderRallyPoint()
 	if( !m_visible )
 		return;
 
-	if ( !m_hasRallyPoint || g_Selection.m_unitUITextures.find(m_rallyTexture) == 
+	if ( !entf_get(ENTF_HAS_RALLY_POINT) || g_Selection.m_unitUITextures.find(m_rallyTexture) == 
 							g_Selection.m_unitUITextures.end() )
 	{
 		return;
@@ -1445,7 +1447,7 @@ void CEntity::CalculateRun(float timestep)
 {
 	if( m_staminaMax > 0 )
 	{
-		if ( m_isRunning && m_runDecayRate > 0 )
+		if ( entf_get(ENTF_IS_RUNNING) && m_runDecayRate > 0 )
 		{
 			m_staminaCurr = max( 0.0f, m_staminaCurr - timestep / 1000.0f / m_runDecayRate * m_staminaMax );
 		}
@@ -1458,7 +1460,7 @@ void CEntity::CalculateRun(float timestep)
 
 void CEntity::CalculateHealth(float timestep)
 {
-	if ( m_healthDecay && m_healthDecayRate > 0 )
+	if ( entf_get(ENTF_HEALTH_DECAY) && m_healthDecayRate > 0 )
 	{
 		m_healthCurr = max( 0.0f, m_healthCurr - timestep / 1000.0f / m_healthDecayRate * m_healthMax );
 	}
@@ -1656,11 +1658,11 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 				return( false );
 			}
 			if ( orderCode == CEntityOrder::ORDER_RUN )
-				m_triggerRun = true;
+				entf_set(ENTF_TRIGGER_RUN);
 			//It's not a notification order
 			if ( argc == 3 )
 			{
-				if ( m_destroyNotifiers )
+				if ( entf_get(ENTF_DESTROY_NOTIFIERS) )
 				{
 					m_currentRequest=0;
 					DestroyAllNotifiers();
@@ -1692,7 +1694,7 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 			//It's not a notification order
 			if ( argc == 3 )
 			{
-				if ( m_destroyNotifiers )
+				if ( entf_get(ENTF_DESTROY_NOTIFIERS) )
 				{
 					m_currentRequest=0;
 					DestroyAllNotifiers();
@@ -1974,7 +1976,7 @@ bool CEntity::RequestNotification( JSContext* cx, uintN argc, jsval* argv )
 	CEntity *target = ToNative<CEntity>( argv[0] );
 	(int&)notify.m_type = ToPrimitive<int>( argv[1] );
 	bool tmpDestroyNotifiers = ToPrimitive<bool>( argv[2] );
-	m_destroyNotifiers = !ToPrimitive<bool>( argv[3] );
+	entf_set_to(ENTF_DESTROY_NOTIFIERS, !ToPrimitive<bool>( argv[3] ));
 
 	if (target == this)
 		return false;
@@ -1985,7 +1987,7 @@ bool CEntity::RequestNotification( JSContext* cx, uintN argc, jsval* argv )
 	if ( tmpDestroyNotifiers )
 		DestroyAllNotifiers();
 	//If new request is not the same and we're destroy notifiers, reset
-	else if ( !(notify.m_type & m_currentRequest) && m_destroyNotifiers )
+	else if ( !(notify.m_type & m_currentRequest) && entf_get(ENTF_DESTROY_NOTIFIERS))
 		DestroyAllNotifiers();
 
 	m_currentRequest = notify.m_type;
@@ -2113,7 +2115,7 @@ jsval CEntity::DestroyNotifier( JSContext* cx, uintN argc, jsval* argv )
 
 jsval CEntity::TriggerRun( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-	m_triggerRun = true;
+	entf_set(ENTF_TRIGGER_RUN);
 	return JSVAL_VOID;
 }
 
@@ -2124,13 +2126,14 @@ jsval CEntity::SetRun( JSContext* cx, uintN argc, jsval* argv )
 		JS_ReportError( cx, "Too few parameters" );
 		return( false );
 	}
-	m_shouldRun = ToPrimitive<bool> ( argv[0] );
-	m_isRunning = m_shouldRun;
+	bool should_run = ToPrimitive<bool> ( argv[0] );
+	entf_set_to(ENTF_SHOULD_RUN, should_run);
+	entf_set_to(ENTF_IS_RUNNING, should_run);
 	return JSVAL_VOID;
 }
 jsval CEntity::GetRunState( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-	return BOOLEAN_TO_JSVAL( m_shouldRun );
+	return BOOLEAN_TO_JSVAL( entf_get(ENTF_SHOULD_RUN) );
 }
 jsval CEntity::GetFormationPenalty( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
@@ -2229,7 +2232,7 @@ jsval CEntity::FindSector( JSContext* cx, uintN argc, jsval* argv )
 }
 jsval CEntity::HasRallyPoint( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-	return ToJSVal( m_hasRallyPoint );
+	return ToJSVal( entf_get(ENTF_HAS_RALLY_POINT) );
 }
 jsval CEntity::GetRallyPoint( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
@@ -2237,7 +2240,7 @@ jsval CEntity::GetRallyPoint( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* 
 }
 jsval CEntity::SetRallyPoint( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-	m_hasRallyPoint = true;
+	entf_set(ENTF_HAS_RALLY_POINT);
 	m_rallyPoint = g_Game->GetView()->GetCamera()->GetWorldCoordinates();
 	return JS_TRUE;
 }

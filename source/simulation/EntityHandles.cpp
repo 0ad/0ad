@@ -53,7 +53,7 @@ HEntity::operator bool() const
 		return( false );
 	
 	debug_assert( g_EntityManager.m_entities[m_handle].m_refcount );
-	return( !g_EntityManager.m_entities[m_handle].m_entity->m_destroyed );
+	return( !g_EntityManager.m_entities[m_handle].m_entity->entf_get(ENTF_DESTROYED) );
 }
 
 bool HEntity::operator!() const
@@ -62,7 +62,7 @@ bool HEntity::operator!() const
 		return( true );
 	
 	debug_assert( g_EntityManager.m_entities[m_handle].m_refcount );
-	return( g_EntityManager.m_entities[m_handle].m_entity->m_destroyed );
+	return( g_EntityManager.m_entities[m_handle].m_entity->entf_get(ENTF_DESTROYED) );
 }
 
 void HEntity::addRef()
