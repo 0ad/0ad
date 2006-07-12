@@ -96,9 +96,6 @@ public:
 	// Intrinsic properties
 	CBaseEntity* m_base;
 
-	//Attributes table: key=attribute, value=variable name 
-	static std::map<CStr, size_t> m_AttributeTable;
-
 	// The class types this entity has
 	SClassSet m_classes;
 
