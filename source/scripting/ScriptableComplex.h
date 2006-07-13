@@ -854,35 +854,41 @@ public:
 		// For each intrinsic property we have,
 		for( it = m_Properties.begin(); it != m_Properties.end(); it++ )
 		{
-			if( !it->second->m_Intrinsic || !it->second->m_Inherited )
+			const CStrW& prop_name = it->first;
+			IJSComplexProperty* prop = it->second;
+
+			if( !prop->m_Intrinsic || !prop->m_Inherited )
 				continue;
 			
 			// Attempt to locate it in the parent
-			IJSComplexProperty* cp = m_Parent->HasProperty( it->first );
+			IJSComplexProperty* parent_prop = m_Parent->HasProperty( prop_name );
 
 			// If it doesn't have it, we've inherited from an object of a different type
 			// This isn't allowed at the moment; but I don't have an totally convincing
 			// reason for forbidding it entirely. Mind, I can't think of any use for it,
 			// either.
 			// If it can be inherited, inherit it.
-			if( cp && cp->m_AllowsInheritance )
+			if( parent_prop && parent_prop->m_AllowsInheritance )
 			{
-				debug_assert( cp->m_Intrinsic );
-				it->second->ImmediateCopy( this, m_Parent, cp );
+				debug_assert( parent_prop->m_Intrinsic );
+				prop->ImmediateCopy( this, m_Parent, parent_prop );
 			}
 		}
 		// Do the same for the shared properties table, too
 		for( it = m_IntrinsicProperties.begin(); it != m_IntrinsicProperties.end(); it++ )
 		{
-			if( !it->second->m_Inherited )
+			const CStrW& prop_name = it->first;
+			IJSComplexProperty* prop = it->second;
+
+			if( !prop->m_Inherited )
 				continue;
 			
-			IJSComplexProperty* cp = m_Parent->HasProperty( it->first );
+			IJSComplexProperty* parent_prop = m_Parent->HasProperty( prop_name );
 
-			if( cp && cp->m_AllowsInheritance )
+			if( parent_prop && parent_prop->m_AllowsInheritance )
 			{
-				debug_assert( cp->m_Intrinsic );
-				it->second->ImmediateCopy( this, m_Parent, cp );
+				debug_assert( parent_prop->m_Intrinsic );
+				prop->ImmediateCopy( this, m_Parent, parent_prop );
 			}
 		}
 
@@ -969,12 +975,12 @@ public:
 	}
 
 	// helper routine for Add*Property. Their interface requires the
-	// property not already exist; we check for this (in non-final builds)
+	// property not already exist; we check for this (in debug builds)
 	// and if so, warn and free the previously new-ed memory in
 	// m_Properties[PropertyName] (avoids mem leak).
 	void DeletePreviouslyAssignedProperty( CStrW PropertyName )
 	{
-#if !CONFIG_FINAL
+#ifdef NDEBUG
 		UNUSED2(PropertyName);
 #else
 		PropertyTable::iterator it;
@@ -987,7 +993,7 @@ public:
 #endif
 	}
 
-	// PropertyName must not already exist! (verified in non-final release)
+	// PropertyName must not already exist! (verified in debug build)
 	template<typename PropType> void AddProperty( CStrW PropertyName, PropType* Native, bool PropAllowInheritance = true, NotifyFn Update = NULL, NotifyFn Refresh = NULL )
 	{
 		DeletePreviouslyAssignedProperty( PropertyName );
@@ -996,7 +1002,7 @@ public:
 		m_Properties[PropertyName] = new(mem) CJSComplexProperty<PropType, ReadOnly>( Native, PropAllowInheritance, Update, Refresh );
 #include "lib/mmgr.h"
 	}
-	// PropertyName must not already exist! (verified in non-final release)
+	// PropertyName must not already exist! (verified in debug build)
 	template<typename PropType> void AddReadOnlyProperty( CStrW PropertyName, PropType* Native, bool PropAllowInheritance = true, NotifyFn Update = NULL, NotifyFn Refresh = NULL )
 	{
 		DeletePreviouslyAssignedProperty( PropertyName );
