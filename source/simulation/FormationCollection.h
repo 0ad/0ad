@@ -1,7 +1,7 @@
 //FormationCollection.h
 //Andrew aka pyrolink:  ajdecker1022@msn.com
 
-//Nearly identical to BaseEntityCollection and associates i.e. BaseEntity, Entity.
+//Nearly identical to EntityTemplateCollection and associates i.e. EntityTemplate, Entity.
 //This is the manager of the entity formation "templates"
 
 

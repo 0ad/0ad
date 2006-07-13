@@ -4,7 +4,7 @@
 // 
 // Extended properties table, primarily intended for data-inheritable properties and those defined by JavaScript functions.
 //
-// Usage: These properties are accessed via functions in CEntity/CBaseEntity
+// Usage: These properties are accessed via functions in CEntity/CEntityTemplate
 //
 
 // TODO: Fix the silent failures of the conversion functions: need to work out what to do in these cases.
@@ -27,7 +27,7 @@
 
 
 class IBoundPropertyOwner;
-class CBaseEntity;
+class CEntityTemplate;
 
 // Property interface
 
@@ -125,28 +125,28 @@ public:
 
 // And an explicit one:
 
-template<> class CBoundProperty<CBaseEntity*> : public IBoundProperty
+template<> class CBoundProperty<CEntityTemplate*> : public IBoundProperty
 {
-	CBaseEntity* m_data;
+	CEntityTemplate* m_data;
 
 public:
 	CBoundProperty() { m_data = NULL; }
-	CBoundProperty( CBaseEntity* copy ) { m_data = copy; }
+	CBoundProperty( CEntityTemplate* copy ) { m_data = copy; }
 
-	operator CBaseEntity*&() { return( m_data ); }
-	operator CBaseEntity*() const { return( m_data ); }
-	CBaseEntity*& operator=( CBaseEntity* copy ) { return( m_data = copy ); }
+	operator CEntityTemplate*&() { return( m_data ); }
+	operator CEntityTemplate*() const { return( m_data ); }
+	CEntityTemplate*& operator=( CEntityTemplate* copy ) { return( m_data = copy ); }
 
 	// Standard pointerish things
 
-	CBaseEntity& operator*() { return( *m_data ); }
-	CBaseEntity* operator->() { return( m_data ); }
+	CEntityTemplate& operator*() { return( *m_data ); }
+	CEntityTemplate* operator->() { return( m_data ); }
 
 	void set( const jsval value );
 	jsval tojsval();
 	bool rebuild( IBoundProperty* parent, bool triggerFn = true )
 	{
-		return( false ); // Can't inherit a CBaseEntity*
+		return( false ); // Can't inherit a CEntityTemplate*
 	}
 };
 

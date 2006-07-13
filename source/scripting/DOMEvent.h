@@ -48,7 +48,7 @@ public:
 		before = obj;
 	}
 	// Set target that will receive each event after it is processed.
-	// used by Entity and BaseEntity.
+	// used by Entity and EntityTemplate.
 	inline void SetNextObject( IEventTarget* obj )
 	{
 		after = obj;

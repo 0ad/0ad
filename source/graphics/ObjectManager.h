@@ -8,7 +8,7 @@
 #include "ObjectBase.h"
 
 class CObjectEntry;
-class CBaseEntity;
+class CEntityTemplate;
 class CMatrix3D;
 
 // access to sole CObjectManager object

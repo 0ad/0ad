@@ -1,7 +1,7 @@
 #include "precompiled.h"
 
-#include "BaseEntity.h"
-#include "BaseEntityCollection.h"
+#include "EntityTemplate.h"
+#include "EntityTemplateCollection.h"
 #include "graphics/ObjectManager.h"
 #include "ps/CStr.h"
 #include "ps/Player.h"
@@ -11,9 +11,9 @@
 #include "ps/CLogger.h"
 #define LOG_CATEGORY "entity"
 
-STL_HASH_SET<CStr, CStr_hash_compare> CBaseEntity::scriptsLoaded;
+STL_HASH_SET<CStr, CStr_hash_compare> CEntityTemplate::scriptsLoaded;
 
-CBaseEntity::CBaseEntity( CPlayer* player )
+CEntityTemplate::CEntityTemplate( CPlayer* player )
 {
 	m_player = player;
 	m_base = NULL;
@@ -48,7 +48,7 @@ CBaseEntity::CBaseEntity( CPlayer* player )
 	m_bound_box = NULL;
 }
 
-CBaseEntity::~CBaseEntity()
+CEntityTemplate::~CEntityTemplate()
 {
 	if( m_bound_box )
 		delete( m_bound_box );
@@ -56,7 +56,7 @@ CBaseEntity::~CBaseEntity()
 		delete( m_bound_circle );
 }
 
-void CBaseEntity::loadBase()
+void CEntityTemplate::loadBase()
 { 
 	// Don't bother if we're providing a replacement.
 	if( m_bound_type == CBoundingObject::BOUND_NONE )
@@ -81,7 +81,7 @@ void CBaseEntity::loadBase()
 	SetNextObject( m_base );
 }
 
-jsval CBaseEntity::getClassSet()
+jsval CEntityTemplate::getClassSet()
 {
 	STL_HASH_SET<CStrW, CStrW_hash_compare>::iterator it;
 	it = m_classes.m_Set.begin();
@@ -91,7 +91,7 @@ jsval CBaseEntity::getClassSet()
 	return( ToJSVal( result ) );
 }
 
-void CBaseEntity::setClassSet( jsval value )
+void CEntityTemplate::setClassSet( jsval value )
 {
 	// Get the set that was passed in.
 	CStr temp = ToPrimitive<CStrW>( value );
@@ -139,7 +139,7 @@ void CBaseEntity::setClassSet( jsval value )
 	rebuildClassSet();
 }
 
-void CBaseEntity::rebuildClassSet()
+void CEntityTemplate::rebuildClassSet()
 {
 	m_classes.Rebuild();
 	InheritorsList::iterator it;
@@ -147,7 +147,7 @@ void CBaseEntity::rebuildClassSet()
 		(*it)->rebuildClassSet();
 }
 
-bool CBaseEntity::loadXML( CStr filename )
+bool CEntityTemplate::loadXML( CStr filename )
 {
 	CXeromyces XeroFile;
 	if (XeroFile.Load(filename) != PSRETURN_OK)
@@ -178,7 +178,7 @@ bool CBaseEntity::loadXML( CStr filename )
 
 	if( Root.getNodeName() != el_entity )
 	{
-		LOG( ERROR, LOG_CATEGORY, "CBaseEntity::LoadXML: XML root was not \"Entity\" in file %s. Load failed.", filename.c_str() );
+		LOG( ERROR, LOG_CATEGORY, "CEntityTemplate::LoadXML: XML root was not \"Entity\" in file %s. Load failed.", filename.c_str() );
 		return( false );
 	}
 
@@ -191,7 +191,7 @@ bool CBaseEntity::loadXML( CStr filename )
 	// Load our parent, if we have one
 	if( m_Base_Name.Length() )
 	{
-		CBaseEntity* base = g_EntityTemplateCollection.getTemplate( m_Base_Name, m_player );
+		CEntityTemplate* base = g_EntityTemplateCollection.getTemplate( m_Base_Name, m_player );
 		if( base )
 		{
 			m_base = base;
@@ -307,7 +307,7 @@ bool CBaseEntity::loadXML( CStr filename )
 						JSFunction* fn = JS_ValueToFunction( g_ScriptingHost.GetContext(), fnval );
 						if( !fn )
 						{
-							LOG( ERROR, LOG_CATEGORY, "CBaseEntity::LoadXML: Function does not exist for event %hs in file %s. Load failed.", EventName.c_str(), filename.c_str() );
+							LOG( ERROR, LOG_CATEGORY, "CEntityTemplate::LoadXML: Function does not exist for event %hs in file %s. Load failed.", EventName.c_str(), filename.c_str() );
 							break;
 						}
 						m_EventHandlers[eventID].SetFunction( fn );
@@ -338,7 +338,7 @@ bool CBaseEntity::loadXML( CStr filename )
 	return true;
 }
 
-void CBaseEntity::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement& Source, CStrW BasePropertyName )
+void CEntityTemplate::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement& Source, CStrW BasePropertyName )
 {
 	// Add a property, put the node text into it.
 	CStrW PropertyName = BasePropertyName + CStr8( XeroFile.getElementString( Source.getNodeName() ) );
@@ -347,7 +347,7 @@ void CBaseEntity::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement&
 	if( Existing )
 	{	
 		if( !Existing->m_Intrinsic )
-			LOG( WARNING, LOG_CATEGORY, "CBaseEntity::XMLAddProperty: %ls already defined for %ls. Property trees will be merged.", PropertyName.c_str(), m_Tag.c_str() );
+			LOG( WARNING, LOG_CATEGORY, "CEntityTemplate::XMLAddProperty: %ls already defined for %ls. Property trees will be merged.", PropertyName.c_str(), m_Tag.c_str() );
 		Existing->Set( this, JSParseString( Source.getText() ) );
 		//Existing->m_Inherited = false;
 	}
@@ -401,72 +401,72 @@ void CBaseEntity::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement&
 
 // Scripting initialization
 
-void CBaseEntity::ScriptingInit()
+void CEntityTemplate::ScriptingInit()
 {
-	AddMethod<jsval, &CBaseEntity::ToString>( "toString", 0 );
+	AddMethod<jsval, &CEntityTemplate::ToString>( "toString", 0 );
 
-	AddClassProperty( L"traits.id.classes", (GetFn)&CBaseEntity::getClassSet, (SetFn)&CBaseEntity::setClassSet );
+	AddClassProperty( L"traits.id.classes", (GetFn)&CEntityTemplate::getClassSet, (SetFn)&CEntityTemplate::setClassSet );
 	
-	AddClassProperty( L"actions.move.speed_curr", &CBaseEntity::m_speed );
-	AddClassProperty( L"actions.move.turningradius", &CBaseEntity::m_turningRadius );
-	AddClassProperty( L"actions.move.run.speed", &CBaseEntity::m_runSpeed );
-	AddClassProperty( L"actions.move.run.rangemin", &CBaseEntity::m_runMinRange );
-	AddClassProperty( L"actions.move.run.range", &CBaseEntity::m_runMaxRange );
-	AddClassProperty( L"actions.move.run.regen_rate", &CBaseEntity::m_runRegenRate );
-	AddClassProperty( L"actions.move.run.decay_rate", &CBaseEntity::m_runDecayRate );
-	AddClassProperty( L"actions.move.pass_through_allies", &CBaseEntity::m_passThroughAllies );
-	AddClassProperty( L"actor", &CBaseEntity::m_actorName );
-	AddClassProperty( L"traits.health.curr", &CBaseEntity::m_healthCurr );
-    AddClassProperty( L"traits.health.max", &CBaseEntity::m_healthMax );
-    AddClassProperty( L"traits.health.bar_height", &CBaseEntity::m_healthBarHeight );
-	AddClassProperty( L"traits.health.bar_size", &CBaseEntity::m_healthBarSize );
-	AddClassProperty( L"traits.health.bar_width", &CBaseEntity::m_healthBarWidth );
-	AddClassProperty( L"traits.health.border_height", &CBaseEntity::m_healthBorderHeight);
-	AddClassProperty( L"traits.health.border_width", &CBaseEntity::m_healthBorderWidth );
-	AddClassProperty( L"traits.health.border_name", &CBaseEntity::m_healthBorderName );
-	AddClassProperty( L"traits.health.regen_rate", &CBaseEntity::m_healthRegenRate );
-	AddClassProperty( L"traits.health.regen_start", &CBaseEntity::m_healthRegenStart );
-	AddClassProperty( L"traits.health.decay_rate", &CBaseEntity::m_healthDecayRate );
-	AddClassProperty( L"traits.stamina.curr", &CBaseEntity::m_staminaCurr );
-    AddClassProperty( L"traits.stamina.max", &CBaseEntity::m_staminaMax );
-    AddClassProperty( L"traits.stamina.bar_height", &CBaseEntity::m_staminaBarHeight );
-	AddClassProperty( L"traits.stamina.bar_size", &CBaseEntity::m_staminaBarSize );
-	AddClassProperty( L"traits.stamina.bar_width", &CBaseEntity::m_staminaBarWidth );
-	AddClassProperty( L"traits.stamina.border_height", &CBaseEntity::m_staminaBorderHeight);
-	AddClassProperty( L"traits.stamina.border_width", &CBaseEntity::m_staminaBorderWidth );
-	AddClassProperty( L"traits.stamina.border_name", &CBaseEntity::m_staminaBorderName );
-	AddClassProperty( L"traits.rally.name", &CBaseEntity::m_rallyName );
-	AddClassProperty( L"traits.rally.width", &CBaseEntity::m_rallyWidth );
-	AddClassProperty( L"traits.rally.height", &CBaseEntity::m_rallyHeight );
-	AddClassProperty( L"traits.flank_penalty.sectors", &CBaseEntity::m_sectorDivs );
-	AddClassProperty( L"traits.pitch.sectors", &CBaseEntity::m_pitchDivs );
-	AddClassProperty( L"traits.rank.width", &CBaseEntity::m_rankWidth );
-	AddClassProperty( L"traits.rank.height", &CBaseEntity::m_rankHeight );
-	AddClassProperty( L"traits.rank.name", &CBaseEntity::m_rankName );
-	AddClassProperty( L"traits.minimap.type", &CBaseEntity::m_minimapType );
-	AddClassProperty( L"traits.minimap.red", &CBaseEntity::m_minimapR );
-	AddClassProperty( L"traits.minimap.green", &CBaseEntity::m_minimapG );
-	AddClassProperty( L"traits.minimap.blue", &CBaseEntity::m_minimapB );
-	AddClassProperty( L"traits.anchor.type", &CBaseEntity::m_anchorType );
-	AddClassProperty( L"traits.anchor.conformx", &CBaseEntity::m_anchorConformX );
-	AddClassProperty( L"traits.anchor.conformz", &CBaseEntity::m_anchorConformZ );
-	AddClassProperty( L"traits.vision.los", &CBaseEntity::m_los );
-	AddClassProperty( L"traits.vision.permanent", &CBaseEntity::m_permanent );
-	AddClassProperty( L"traits.is_territory_centre", &CBaseEntity::m_isTerritoryCentre );
-	AddClassProperty( L"traits.foundation", &CBaseEntity::m_foundation );
-	AddClassProperty( L"traits.socket", &CBaseEntity::m_socket );
+	AddClassProperty( L"actions.move.speed_curr", &CEntityTemplate::m_speed );
+	AddClassProperty( L"actions.move.turningradius", &CEntityTemplate::m_turningRadius );
+	AddClassProperty( L"actions.move.run.speed", &CEntityTemplate::m_runSpeed );
+	AddClassProperty( L"actions.move.run.rangemin", &CEntityTemplate::m_runMinRange );
+	AddClassProperty( L"actions.move.run.range", &CEntityTemplate::m_runMaxRange );
+	AddClassProperty( L"actions.move.run.regen_rate", &CEntityTemplate::m_runRegenRate );
+	AddClassProperty( L"actions.move.run.decay_rate", &CEntityTemplate::m_runDecayRate );
+	AddClassProperty( L"actions.move.pass_through_allies", &CEntityTemplate::m_passThroughAllies );
+	AddClassProperty( L"actor", &CEntityTemplate::m_actorName );
+	AddClassProperty( L"traits.health.curr", &CEntityTemplate::m_healthCurr );
+    AddClassProperty( L"traits.health.max", &CEntityTemplate::m_healthMax );
+    AddClassProperty( L"traits.health.bar_height", &CEntityTemplate::m_healthBarHeight );
+	AddClassProperty( L"traits.health.bar_size", &CEntityTemplate::m_healthBarSize );
+	AddClassProperty( L"traits.health.bar_width", &CEntityTemplate::m_healthBarWidth );
+	AddClassProperty( L"traits.health.border_height", &CEntityTemplate::m_healthBorderHeight);
+	AddClassProperty( L"traits.health.border_width", &CEntityTemplate::m_healthBorderWidth );
+	AddClassProperty( L"traits.health.border_name", &CEntityTemplate::m_healthBorderName );
+	AddClassProperty( L"traits.health.regen_rate", &CEntityTemplate::m_healthRegenRate );
+	AddClassProperty( L"traits.health.regen_start", &CEntityTemplate::m_healthRegenStart );
+	AddClassProperty( L"traits.health.decay_rate", &CEntityTemplate::m_healthDecayRate );
+	AddClassProperty( L"traits.stamina.curr", &CEntityTemplate::m_staminaCurr );
+    AddClassProperty( L"traits.stamina.max", &CEntityTemplate::m_staminaMax );
+    AddClassProperty( L"traits.stamina.bar_height", &CEntityTemplate::m_staminaBarHeight );
+	AddClassProperty( L"traits.stamina.bar_size", &CEntityTemplate::m_staminaBarSize );
+	AddClassProperty( L"traits.stamina.bar_width", &CEntityTemplate::m_staminaBarWidth );
+	AddClassProperty( L"traits.stamina.border_height", &CEntityTemplate::m_staminaBorderHeight);
+	AddClassProperty( L"traits.stamina.border_width", &CEntityTemplate::m_staminaBorderWidth );
+	AddClassProperty( L"traits.stamina.border_name", &CEntityTemplate::m_staminaBorderName );
+	AddClassProperty( L"traits.rally.name", &CEntityTemplate::m_rallyName );
+	AddClassProperty( L"traits.rally.width", &CEntityTemplate::m_rallyWidth );
+	AddClassProperty( L"traits.rally.height", &CEntityTemplate::m_rallyHeight );
+	AddClassProperty( L"traits.flank_penalty.sectors", &CEntityTemplate::m_sectorDivs );
+	AddClassProperty( L"traits.pitch.sectors", &CEntityTemplate::m_pitchDivs );
+	AddClassProperty( L"traits.rank.width", &CEntityTemplate::m_rankWidth );
+	AddClassProperty( L"traits.rank.height", &CEntityTemplate::m_rankHeight );
+	AddClassProperty( L"traits.rank.name", &CEntityTemplate::m_rankName );
+	AddClassProperty( L"traits.minimap.type", &CEntityTemplate::m_minimapType );
+	AddClassProperty( L"traits.minimap.red", &CEntityTemplate::m_minimapR );
+	AddClassProperty( L"traits.minimap.green", &CEntityTemplate::m_minimapG );
+	AddClassProperty( L"traits.minimap.blue", &CEntityTemplate::m_minimapB );
+	AddClassProperty( L"traits.anchor.type", &CEntityTemplate::m_anchorType );
+	AddClassProperty( L"traits.anchor.conformx", &CEntityTemplate::m_anchorConformX );
+	AddClassProperty( L"traits.anchor.conformz", &CEntityTemplate::m_anchorConformZ );
+	AddClassProperty( L"traits.vision.los", &CEntityTemplate::m_los );
+	AddClassProperty( L"traits.vision.permanent", &CEntityTemplate::m_permanent );
+	AddClassProperty( L"traits.is_territory_centre", &CEntityTemplate::m_isTerritoryCentre );
+	AddClassProperty( L"traits.foundation", &CEntityTemplate::m_foundation );
+	AddClassProperty( L"traits.socket", &CEntityTemplate::m_socket );
 
-	CJSComplex<CBaseEntity>::ScriptingInit( "EntityTemplate" );
+	CJSComplex<CEntityTemplate>::ScriptingInit( "EntityTemplate" );
 }
 
 // Script-bound functions
 
-JSObject* CBaseEntity::GetScriptExecContext( IEventTarget* target )
+JSObject* CEntityTemplate::GetScriptExecContext( IEventTarget* target )
 { 
 	return( target->GetScriptExecContext( target ) );
 }
 
-jsval CBaseEntity::ToString( JSContext* cx, uintN UNUSED(argc), jsval* UNUSED(argv) )
+jsval CEntityTemplate::ToString( JSContext* cx, uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	wchar_t buffer[256];
 	if( m_player == 0 )

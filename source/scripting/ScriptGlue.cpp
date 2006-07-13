@@ -33,7 +33,7 @@
 #include "renderer/Renderer.h"
 #include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
-#include "simulation/BaseEntityCollection.h"
+#include "simulation/EntityTemplateCollection.h"
 #include "simulation/TechnologyCollection.h"
 #include "simulation/Entity.h"
 #include "simulation/EntityFormation.h"
@@ -43,8 +43,6 @@
 #include "simulation/LOSManager.h"
 #include "simulation/Scheduler.h"
 #include "simulation/Simulation.h"
-#include "simulation/scripting/JSInterface_BaseEntity.h"
-#include "simulation/scripting/JSInterface_Entity.h"
 
 #ifndef NO_GUI
 # include "gui/scripting/JSInterface_IGUIObject.h"
@@ -192,7 +190,7 @@ JSBool getEntityTemplate( JSContext* cx, JSObject*, uint argc, jsval* argv, jsva
 		return( JS_TRUE );
 	}
 
-	CBaseEntity* v = g_EntityTemplateCollection.getTemplate( templateName, player );
+	CEntityTemplate* v = g_EntityTemplateCollection.getTemplate( templateName, player );
 	if( !v )
 	{
 		JS_ReportError( cx, "No such template: %s", CStr8(templateName).c_str() );

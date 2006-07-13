@@ -5,7 +5,7 @@
 #include "maths/scripting/JSInterface_Vector3D.h"
 #include "ps/Parser.h"
 #include "ps/Player.h"
-#include "simulation/BaseEntity.h"
+#include "simulation/EntityTemplate.h"
 #include "lib/sysdep/sysdep.h"	// finite
 
 #include <cfloat>
@@ -38,20 +38,20 @@ template<> JSObject* ToScript<CPlayer*>( CPlayer** Native )
 	return( ToScript<CPlayer>( *Native ) );
 }
 
-// CBaseEntity*
+// CEntityTemplate*
 
-template<> bool ToPrimitive<CBaseEntity*>( JSContext* cx, jsval v, CBaseEntity*& Storage )
+template<> bool ToPrimitive<CEntityTemplate*>( JSContext* cx, jsval v, CEntityTemplate*& Storage )
 {
 	if( !JSVAL_IS_OBJECT( v ) || ( v == JSVAL_NULL ) ) return( false );
-	CBaseEntity* Data = (CBaseEntity*)JS_GetInstancePrivate( cx, JSVAL_TO_OBJECT( v ), &CBaseEntity::JSI_class, NULL );
+	CEntityTemplate* Data = (CEntityTemplate*)JS_GetInstancePrivate( cx, JSVAL_TO_OBJECT( v ), &CEntityTemplate::JSI_class, NULL );
 	if( !Data ) return( false );
 	Storage = Data;
 	return( true );
 }
 
-template<> JSObject* ToScript<CBaseEntity*>( CBaseEntity** Native )
+template<> JSObject* ToScript<CEntityTemplate*>( CEntityTemplate** Native )
 {
-	return( ToScript<CBaseEntity>( *Native ) );
+	return( ToScript<CEntityTemplate>( *Native ) );
 }
 
 // CVector3D

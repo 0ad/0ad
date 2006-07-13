@@ -46,7 +46,7 @@
 #include "renderer/VertexBufferManager.h"
 #include "maths/MathUtil.h"
 
-#include "simulation/BaseEntityCollection.h"
+#include "simulation/EntityTemplateCollection.h"
 #include "simulation/FormationCollection.h"
 #include "simulation/TechnologyCollection.h"
 #include "simulation/Entity.h"
@@ -59,8 +59,6 @@
 
 #include "scripting/ScriptingHost.h"
 #include "scripting/GameEvents.h"
-#include "simulation/scripting/JSInterface_Entity.h"
-#include "simulation/scripting/JSInterface_BaseEntity.h"
 #include "maths/scripting/JSInterface_Vector3D.h"
 #include "graphics/scripting/JSInterface_Camera.h"
 #include "ps/scripting/JSInterface_Selection.h"
@@ -489,7 +487,7 @@ static void InitScripting()
 
 	// Register the JavaScript interfaces with the runtime
 	CEntity::ScriptingInit();
-	CBaseEntity::ScriptingInit();
+	CEntityTemplate::ScriptingInit();
 	JSI_Sound::ScriptingInit();
 	CProfileNode::ScriptingInit();
 
@@ -1011,7 +1009,7 @@ void Init(int argc, char* argv[], uint flags)
 	{
 	TIMER("Init_entitiessection");
 	// This needs to be done after the renderer has loaded all its actors...
-	new CBaseEntityCollection;
+	new CEntityTemplateCollection;
 	new CFormationCollection;
 	new CTechnologyCollection;
 	g_EntityFormationCollection.loadTemplates();

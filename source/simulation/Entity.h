@@ -37,13 +37,13 @@
 #include "EntitySupport.h"
 #include "scripting/DOMEvent.h"
 
-// JW: must be pulled in because CEntity no longer mirrors CBaseEntity exactly.
+// JW: must be pulled in because CEntity no longer mirrors CEntityTemplate exactly.
 // some fields have been moved out of CEntity and are accessed via m_base,
-// so CBaseEntity must be fully defined.
-#include "BaseEntity.h"
+// so CEntityTemplate must be fully defined.
+#include "EntityTemplate.h"
 
 class CAura;
-//class CBaseEntity;	// see comment above
+//class CEntityTemplate;	// see comment above
 class CBoundingObject;
 class CPlayer;
 class CProductionQueue;
@@ -94,7 +94,7 @@ public:
 	CPlayer* m_player;
 
 	// Intrinsic properties
-	CBaseEntity* m_base;
+	CEntityTemplate* m_base;
 
 	// The class types this entity has
 	SClassSet m_classes;
@@ -234,7 +234,7 @@ public:
 
 	std::vector<bool> m_sectorValues;
 
-	/* JW: these have all been 'moved' (1) into BaseEntity:
+	/* JW: these have all been 'moved' (1) into EntityTemplate:
 	   1: were already present there, just removed from here
 	int m_sectorDivs;
 
@@ -274,7 +274,7 @@ public:
 
 
 private:
-	CEntity( CBaseEntity* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections, CStrW building = L"" );
+	CEntity( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections, CStrW building = L"" );
 
 	uint processGotoHelper( CEntityOrder* current, size_t timestep_milli, HEntity& collide );
 

@@ -3,7 +3,7 @@
 #include "precompiled.h"
 
 #include "Entity.h"
-#include "BaseEntity.h"
+#include "EntityTemplate.h"
 #include "graphics/Model.h"
 #include "graphics/ObjectEntry.h"
 #include "graphics/SkeletonAnim.h"

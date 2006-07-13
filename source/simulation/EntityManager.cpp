@@ -2,7 +2,7 @@
 #include "precompiled.h"
 
 #include "EntityManager.h"
-#include "BaseEntityCollection.h"
+#include "EntityTemplateCollection.h"
 #include "ps/ConfigDB.h"
 #include "ps/Profile.h"
 #include "graphics/Terrain.h"
@@ -70,7 +70,7 @@ void CEntityManager::deleteAll()
 	m_extant = true;
 }
 
-HEntity CEntityManager::create( CBaseEntity* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections )
+HEntity CEntityManager::create( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections )
 {
 	debug_assert( base );
 	if( !base )
@@ -95,7 +95,7 @@ HEntity CEntityManager::create( CBaseEntity* base, CVector3D position, float ori
 
 HEntity CEntityManager::create( CStrW templateName, CPlayer* player, CVector3D position, float orientation )
 {
-	CBaseEntity* base = g_EntityTemplateCollection.getTemplate( templateName, player );
+	CEntityTemplate* base = g_EntityTemplateCollection.getTemplate( templateName, player );
 	debug_assert( base );
 	if( !base )
 		return HEntity();
@@ -107,7 +107,7 @@ HEntity CEntityManager::create( CStrW templateName, CPlayer* player, CVector3D p
 
 HEntity CEntityManager::createFoundation( CStrW templateName, CPlayer* player, CVector3D position, float orientation )
 {
-	CBaseEntity* base = g_EntityTemplateCollection.getTemplate( templateName, player );
+	CEntityTemplate* base = g_EntityTemplateCollection.getTemplate( templateName, player );
 	debug_assert( base );
 	if( !base )
 		return HEntity();
@@ -117,7 +117,7 @@ HEntity CEntityManager::createFoundation( CStrW templateName, CPlayer* player, C
 	if( base->m_foundation == L"" )
 		return create( base, position, orientation, selections );	// Entity has no foundation, so just create it
 
-	CBaseEntity* foundation = g_EntityTemplateCollection.getTemplate( base->m_foundation );
+	CEntityTemplate* foundation = g_EntityTemplateCollection.getTemplate( base->m_foundation );
 	debug_assert( foundation );
 	if( !foundation )
 		return HEntity();

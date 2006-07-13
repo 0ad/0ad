@@ -1,4 +1,4 @@
-// BaseEntityCollection.h
+// EntityTemplateCollection.h
 //
 // Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 // 
@@ -23,30 +23,30 @@
 #include "ps/CStr.h"
 #include "ps/Singleton.h"
 #include "graphics/ObjectEntry.h"
-#include "BaseEntity.h"
+#include "EntityTemplate.h"
 #include "ps/Game.h"
 
-#define g_EntityTemplateCollection CBaseEntityCollection::GetSingleton()
+#define g_EntityTemplateCollection CEntityTemplateCollection::GetSingleton()
 #define NULL_PLAYER (PS_MAX_PLAYERS+1)
 
 class CPlayer;
 
-class CBaseEntityCollection : public Singleton<CBaseEntityCollection>
+class CEntityTemplateCollection : public Singleton<CEntityTemplateCollection>
 {
-	typedef STL_HASH_MAP<CStrW, CBaseEntity*, CStrW_hash_compare> templateMap;
+	typedef STL_HASH_MAP<CStrW, CEntityTemplate*, CStrW_hash_compare> templateMap;
 	typedef STL_HASH_MAP<CStrW, CStr, CStrW_hash_compare> templateFilenameMap;
 	
 	templateMap m_templates[PS_MAX_PLAYERS + 2];
 	templateFilenameMap m_templateFilenames;
 public:
-	~CBaseEntityCollection();
-	CBaseEntity* getTemplate( CStrW entityType, CPlayer* player = 0 );
+	~CEntityTemplateCollection();
+	CEntityTemplate* getTemplate( CStrW entityType, CPlayer* player = 0 );
 	int loadTemplates();
 	void LoadFile( const char* path );
 
 	// Create a list of the names of all base entities, excluding template_*,
 	// for display in ScEd's entity-selection box.
-	void getBaseEntityNames( std::vector<CStrW>& names );
+	void getEntityTemplateNames( std::vector<CStrW>& names );
 };
 
 #endif

@@ -10,7 +10,7 @@
 #include "ObjectEntry.h"
 #include "simulation/Entity.h"
 #include "simulation/EntityManager.h"
-#include "simulation/BaseEntity.h"
+#include "simulation/EntityTemplate.h"
 #include "ps/Game.h"
 #include "Model.h"
 #include "Unit.h"

@@ -6,7 +6,7 @@
 
 #include "Entity.h"
 #include "EntityManager.h"
-#include "BaseEntityCollection.h"
+#include "EntityTemplateCollection.h"
 #include "graphics/Unit.h"
 #include "Aura.h"
 #include "ProductionQueue.h"
@@ -35,7 +35,7 @@ extern int g_xres, g_yres;
 #include <algorithm>
 using namespace std;
 
-CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections, CStrW building )
+CEntity::CEntity( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections, CStrW building )
 {
 	ent_flags = 0;
 
@@ -1395,9 +1395,9 @@ void CEntity::ScriptingInit()
 	AddMethod<jsval, &CEntity::GetRallyPoint>("getRallyPoint", 0 );
 
     AddClassProperty( L"traits.id.classes", (GetFn)&CEntity::getClassSet, (SetFn)&CEntity::setClassSet );
-	AddClassProperty( L"template", (CBaseEntity* CEntity::*)&CEntity::m_base, false, (NotifyFn)&CEntity::loadBase );
+	AddClassProperty( L"template", (CEntityTemplate* CEntity::*)&CEntity::m_base, false, (NotifyFn)&CEntity::loadBase );
 
-	/* Anything inherited property MUST be added to BaseEntity.cpp as well */
+	/* Anything inherited property MUST be added to EntityTemplate.cpp as well */
 
     AddClassProperty( L"actions.move.speed_curr", &CEntity::m_speed );
 	AddClassProperty( L"actions.move.run.speed", &CEntity::m_runSpeed );
@@ -1468,14 +1468,14 @@ JSBool CEntity::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsva
     CVector3D position;
     float orientation = (float)( PI * ( (double)( rand() & 0x7fff ) / (double)0x4000 ) );
 
-    JSObject* jsBaseEntity = JSVAL_TO_OBJECT( argv[0] );
+    JSObject* jsEntityTemplate = JSVAL_TO_OBJECT( argv[0] );
     CStrW templateName;
 
 	CPlayer* player = g_Game->GetPlayer( 0 );
 
-    CBaseEntity* baseEntity = NULL;
-    if( JSVAL_IS_OBJECT( argv[0] ) ) // only set baseEntity if jsBaseEntity is a valid object
-        baseEntity = ToNative<CBaseEntity>( cx, jsBaseEntity );
+    CEntityTemplate* baseEntity = NULL;
+    if( JSVAL_IS_OBJECT( argv[0] ) ) // only set baseEntity if jsEntityTemplate is a valid object
+        baseEntity = ToNative<CEntityTemplate>( cx, jsEntityTemplate );
 
     if( !baseEntity )
     {
@@ -1719,7 +1719,7 @@ jsval CEntity::GetSpawnPoint( JSContext* UNUSED(cx), uintN argc, jsval* argv )
     float spawn_clearance = 2.0f;
     if( argc >= 1 )
     {
-        CBaseEntity* be = ToNative<CBaseEntity>( argv[0] );
+        CEntityTemplate* be = ToNative<CEntityTemplate>( argv[0] );
         if( be )
         {
             switch( be->m_bound_type )

@@ -27,7 +27,7 @@
 #include "ps/CStr.h"
 #include "maths/Vector3D.h"
 
-class CBaseEntity;
+class CEntityTemplate;
 
 #define MAX_HANDLES 4096
 
@@ -53,7 +53,7 @@ public:
 	CEntityManager();
 	~CEntityManager();
 
-	HEntity create( CBaseEntity* base, CVector3D position, float orientation, 
+	HEntity create( CEntityTemplate* base, CVector3D position, float orientation, 
 		const std::set<CStrW>& actorSelections );
 
 	HEntity create( CStrW templateName, CPlayer* player, CVector3D position, 

@@ -17,7 +17,7 @@
 #include "ps/LoaderThunks.h"
 #include "ps/World.h"
 #include "renderer/Renderer.h"
-#include "simulation/BaseEntityCollection.h"
+#include "simulation/EntityTemplateCollection.h"
 #include "simulation/EntityManager.h"
 #include "simulation/EntityManager.h"
 #include "simulation/LOSManager.h"
@@ -44,7 +44,7 @@ CWorld::CWorld(CGame *pGame):
 void CWorld::Initialize(CGameAttributes *pAttribs)
 {
 	// TODO: Find a better way of handling these global things
-	ONCE(RegMemFun(CBaseEntityCollection::GetSingletonPtr(), &CBaseEntityCollection::loadTemplates, L"LoadTemplates", 15));
+	ONCE(RegMemFun(CEntityTemplateCollection::GetSingletonPtr(), &CEntityTemplateCollection::loadTemplates, L"LoadTemplates", 15));
 
 	// Load the map, if one was specified
 	if (pAttribs->m_MapFile.Length())

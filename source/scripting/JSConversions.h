@@ -8,7 +8,7 @@
 
 class CEntity;
 class HEntity;
-class CBaseEntity;
+class CEntityTemplate;
 class CStrW;
 class CScriptObject;
 class CObjectEntry;
@@ -95,9 +95,9 @@ template<> CVector3D* ToNative<CVector3D>( JSContext* cx, JSObject* obj );
 template<> JSObject* ToScript<CVector3D>( CVector3D* Native );
 template<> jsval ToJSVal<CVector3D>( const CVector3D& Native );
 
-// CBaseEntity
-template<> bool ToPrimitive<CBaseEntity*>( JSContext* cx, jsval v, CBaseEntity*& Storage );
-template<> JSObject* ToScript<CBaseEntity*>( CBaseEntity** Native );
+// CEntityTemplate
+template<> bool ToPrimitive<CEntityTemplate*>( JSContext* cx, jsval v, CEntityTemplate*& Storage );
+template<> JSObject* ToScript<CEntityTemplate*>( CEntityTemplate** Native );
 
 // CObjectEntry
 template<> bool ToPrimitive<CObjectEntry>( JSContext* cx, jsval v, CObjectEntry*& Storage );

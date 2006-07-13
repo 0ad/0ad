@@ -16,7 +16,7 @@
 
 class CVector3D;
 class CUnit;
-class CBaseEntity;
+class CEntityTemplate;
 class CBoundingObject;
 
 #define MAX_BOOKMARKS 10
@@ -155,7 +155,7 @@ struct CBuildingPlacer : public Singleton<CBuildingPlacer>
 	}
 
 	CStrW m_templateName;
-	CBaseEntity* m_template;
+	CEntityTemplate* m_template;
 	bool m_active;
 	bool m_clicked;
 	bool m_dragged;

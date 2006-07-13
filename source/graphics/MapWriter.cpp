@@ -24,8 +24,8 @@
 #include "ps/XML/XMLWriter.h"
 #include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
-#include "simulation/BaseEntity.h"
-#include "simulation/BaseEntityCollection.h"
+#include "simulation/EntityTemplate.h"
+#include "simulation/EntityTemplateCollection.h"
 #include "simulation/Entity.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

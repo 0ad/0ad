@@ -2,8 +2,8 @@
 
 /*
 #include "EntityProperties.h"
-#include "BaseEntityCollection.h"
-#include "simulation/scripting/JSInterface_BaseEntity.h"
+#include "EntityTemplateCollection.h"
+#include "simulation/scripting/JSInterface_EntityTemplate.h"
 
 #undef new // to avoid confusing warnings
 
@@ -180,20 +180,20 @@ jsval CBoundObjectProperty<CScriptObject>::tojsval()
 
 //--
 
-void CBoundProperty<CBaseEntity*>::set( const jsval value )
+void CBoundProperty<CEntityTemplate*>::set( const jsval value )
 {
 	JSObject* baseEntity = JSVAL_TO_OBJECT( value );
-	CBaseEntity* base = NULL;
+	CEntityTemplate* base = NULL;
 
-	if( JSVAL_IS_OBJECT( value ) && ( base = ToNative<CBaseEntity>( g_ScriptingHost.GetContext(), baseEntity ) ) )
+	if( JSVAL_IS_OBJECT( value ) && ( base = ToNative<CEntityTemplate>( g_ScriptingHost.GetContext(), baseEntity ) ) )
 	{
 		m_data = base;
 	}
 	else
-		JS_ReportError( g_ScriptingHost.getContext(), "[BaseEntity] Invalid reference" );
+		JS_ReportError( g_ScriptingHost.getContext(), "[EntityTemplate] Invalid reference" );
 }
 
-jsval CBoundProperty<CBaseEntity*>::tojsval()
+jsval CBoundProperty<CEntityTemplate*>::tojsval()
 {
 	JSObject* baseEntity = m_data->GetScript();
 	return( OBJECT_TO_JSVAL( baseEntity ) );

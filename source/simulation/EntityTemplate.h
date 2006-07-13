@@ -1,4 +1,4 @@
-// BaseEntity.h
+// EntityTemplate.h
 //
 // Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 // 
@@ -29,25 +29,25 @@
 
 class CPlayer;
 
-class CBaseEntity : public CJSComplex<CBaseEntity>, public IEventTarget
+class CEntityTemplate : public CJSComplex<CEntityTemplate>, public IEventTarget
 {
 public:
 	CPlayer* m_player;		// Which player this template is for, or null for the no-player template
 							// used to read unmodified values for upgrades and such.
 
-	CBaseEntity( CPlayer* player );
-	~CBaseEntity();
+	CEntityTemplate( CPlayer* player );
+	~CEntityTemplate();
 	// Load from XML
 	bool loadXML( CStr filename );
 	// Load a tree of properties from an XML (XMB) node.
 	void XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement& Source, CStrW BasePropertyName );
 
 	// Base stats
-	CBaseEntity* m_base;
+	CEntityTemplate* m_base;
 	//bool m_extant;
 
 	// The unmodified, no-player version of this template
-	CBaseEntity* m_unmodified;
+	CEntityTemplate* m_unmodified;
 
 	// The class types this entity has
 	SClassSet m_classes;
@@ -152,8 +152,8 @@ public:
 
 private:
 	// squelch "unable to generate" warnings
-	CBaseEntity(const CBaseEntity& rhs);
-	const CBaseEntity& operator=(const CBaseEntity& rhs);
+	CEntityTemplate(const CEntityTemplate& rhs);
+	const CEntityTemplate& operator=(const CEntityTemplate& rhs);
 
 	static STL_HASH_SET<CStr, CStr_hash_compare> scriptsLoaded;
 };

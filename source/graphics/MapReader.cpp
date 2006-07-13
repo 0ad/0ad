@@ -7,8 +7,8 @@
 #include "ps/Game.h"
 #include "ObjectManager.h"
 #include "simulation/Entity.h"
-#include "simulation/BaseEntity.h"
-#include "simulation/BaseEntityCollection.h"
+#include "simulation/EntityTemplate.h"
+#include "simulation/EntityTemplateCollection.h"
 #include "simulation/EntityManager.h"
 #include "ps/CLogger.h"
 #include "maths/MathUtil.h"
@@ -533,7 +533,7 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 				debug_warn("Invalid map XML data");
 		}
 
-		CBaseEntity* base = g_EntityTemplateCollection.getTemplate( TemplateName, g_Game->GetPlayer(PlayerID) );
+		CEntityTemplate* base = g_EntityTemplateCollection.getTemplate( TemplateName, g_Game->GetPlayer(PlayerID) );
 		if (! base)
 			LOG(ERROR, LOG_CATEGORY, "Failed to load entity template '%ls'", TemplateName.c_str());
 		else

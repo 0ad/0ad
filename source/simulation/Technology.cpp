@@ -7,7 +7,7 @@
 #include "scripting/ScriptingHost.h"
 #include "ps/XML/Xeromyces.h"
 #include "ps/XML/XeroXMB.h"
-#include "BaseEntity.h"
+#include "EntityTemplate.h"
 #include "Entity.h"
 #include "ps/Player.h"
 

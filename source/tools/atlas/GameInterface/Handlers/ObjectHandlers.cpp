@@ -17,7 +17,7 @@
 #include "ps/CLogger.h"
 #include "ps/Game.h"
 #include "ps/World.h"
-#include "simulation/BaseEntityCollection.h"
+#include "simulation/EntityTemplateCollection.h"
 #include "simulation/Entity.h"
 #include "simulation/EntityManager.h"
 
@@ -35,10 +35,10 @@ QUERYHANDLER(GetObjectsList)
 	std::vector<sObjectsListItem> objects;
 	{
 		std::vector<CStrW> names;
-		g_EntityTemplateCollection.getBaseEntityNames(names);
+		g_EntityTemplateCollection.getEntityTemplateNames(names);
 		for (std::vector<CStrW>::iterator it = names.begin(); it != names.end(); ++it)
 		{
-			//CBaseEntity* baseent = g_EntityTemplateCollection.getTemplate(*it);
+			//CEntityTemplate* baseent = g_EntityTemplateCollection.getTemplate(*it);
 			sObjectsListItem e;
 			e.id = L"(e) " + *it;
 			e.name = *it; //baseent->m_Tag
@@ -267,7 +267,7 @@ MESSAGEHANDLER(ObjectPreview)
 			// Create new unit
 			if (isEntity)
 			{
-				CBaseEntity* base = g_EntityTemplateCollection.getTemplate(name);
+				CEntityTemplate* base = g_EntityTemplateCollection.getTemplate(name);
 				if (base) // (ignore errors)
 				{
 					g_PreviewUnit = g_UnitMan.CreateUnit(base->m_actorName, NULL, selections);
@@ -364,7 +364,7 @@ BEGIN_COMMAND(CreateObject)
 
 			if (isEntity)
 			{
-				CBaseEntity* base = g_EntityTemplateCollection.getTemplate(name);
+				CEntityTemplate* base = g_EntityTemplateCollection.getTemplate(name);
 				if (! base)
 					LOG(ERROR, LOG_CATEGORY, "Failed to load entity template '%ls'", name.c_str());
 				else

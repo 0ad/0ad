@@ -25,7 +25,7 @@
 #include "ps/World.h"
 #include "renderer/Renderer.h"
 #include "scripting/GameEvents.h"
-#include "simulation/BaseEntityCollection.h"
+#include "simulation/EntityTemplateCollection.h"
 #include "simulation/BoundingObjects.h"
 #include "simulation/Collision.h"
 #include "simulation/Entity.h"
@@ -1276,7 +1276,7 @@ bool isMouseoverType( CEntity* ev, void* UNUSED(userdata) )
 	std::vector<SMouseoverFader>::iterator it;
 	for( it = g_Mouseover.m_mouseover.begin(); it < g_Mouseover.m_mouseover.end(); it++ )
 	{
-		if( it->isActive && ( (CBaseEntity*)it->entity->m_base == (CBaseEntity*)ev->m_base )
+		if( it->isActive && ( (CEntityTemplate*)it->entity->m_base == (CEntityTemplate*)ev->m_base )
 				&& ( it->entity->GetPlayer() == ev->GetPlayer() ) )
 			return( true );
 	}
