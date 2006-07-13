@@ -403,6 +403,27 @@ function entityInitQuasi()
 	}
 	
 	stopXTimer(8);
+	
+	var ob = new Object();
+	ob.traits = new Object();
+	ob.traits.id = new Object();
+	ob.traits.id.civ = "hellenes";
+	
+	startXTimer(9);
+	
+	if (ob.traits.id && ob.traits.id.civ)
+	{
+	    var id = ob.traits.id; 
+		id.civ_code = id.civ.toString().substring (0, 4);
+		id.civ_code = id.civ_code.toString().toLowerCase();
+
+		// Exception to make the Romans into rome.
+		if (id.civ_code == "roma") id.civ_code = "rome";
+		// Exception to make the Hellenes into hele.
+		if (id.civ_code == "hell") id.civ_code = "hele";
+	}
+	
+	stopXTimer(9);
 }
 
 // ====================================================================
