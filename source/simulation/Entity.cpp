@@ -101,6 +101,7 @@ CEntity::CEntity( CBaseEntity* base, CVector3D position, float orientation, cons
 
 	m_building = building;
 
+	m_extant = true;
 	m_visible = true;
 
 	m_associatedTerritory = 0;
