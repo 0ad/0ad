@@ -569,10 +569,11 @@ JSBool setSimRate(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSE
 }
 
 
-static const uint MAX_XTIMERS = 10;
+static const uint MAX_XTIMERS = 20;
 typedef TimerRdtsc XTimerImpl;	// type must be kept in sync with timer.h TIMER_USE_RAW_TICKS
 static XTimerImpl xtimer_impl;
 static XTimerImpl::unit xstart_times[MAX_XTIMERS];
+static XTimerImpl::unit xoverhead;
 static TimerClient xclients[MAX_XTIMERS];
 static char xdescription_buf[MAX_XTIMERS * 11];
 
@@ -585,6 +586,17 @@ static void initXTimers()
 		pos += sprintf(pos, "xtimer %d", i)+1;
 		timer_add_client(&xclients[i], description);
 	}
+
+	static const char* calibration_script =
+		"startXTimer(0);\n"
+		"stopXTimer(0);\n"
+		"startXTimer(0);\n"
+		"stopXTimer(0);\n"
+		"startXTimer(0);\n"
+		"stopXTimer(0);\n"
+		"\n";
+	g_ScriptingHost.RunMemScript(calibration_script, strlen(calibration_script));
+	xoverhead = xclients[0].sum / 3;
 }
 
 JSBool startXTimer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rval))
@@ -610,7 +622,7 @@ JSBool stopXTimer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSE
 	debug_assert(slot < MAX_XTIMERS);
 
 	debug_assert(xstart_times[slot] != 0);
-	XTimerImpl::unit dt = xtimer_impl.get_timestamp() - xstart_times[slot];
+	XTimerImpl::unit dt = xtimer_impl.get_timestamp() - xstart_times[slot] - xoverhead;
 	xstart_times[slot] = 0;
 	timer_bill_client(&xclients[slot], dt);
 	return( JS_TRUE );
