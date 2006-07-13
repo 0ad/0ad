@@ -406,6 +406,14 @@ function entityInitQuasi()
 	
 	var ob = new Object();
 	ob.traits = new Object();
+	
+	for(var i=0; i<100; i++) {
+		ob["temp"+i] = "blah";
+	}
+	for(var i=0; i<100; i++) {
+		ob.traits["temp"+i] = "blah";
+	}
+	
 	ob.traits.id = new Object();
 	ob.traits.id.civ = "hellenes";
 	
