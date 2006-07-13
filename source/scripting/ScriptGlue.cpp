@@ -569,6 +569,54 @@ JSBool setSimRate(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSE
 }
 
 
+static const uint MAX_XTIMERS = 10;
+typedef TimerRdtsc XTimerImpl;	// type must be kept in sync with timer.h TIMER_USE_RAW_TICKS
+static XTimerImpl xtimer_impl;
+static XTimerImpl::unit xstart_times[MAX_XTIMERS];
+static TimerClient xclients[MAX_XTIMERS];
+static char xdescription_buf[MAX_XTIMERS * 11];
+
+static void initXTimers()
+{
+	char* pos = xdescription_buf;
+	for(uint i = 0; i < MAX_XTIMERS; i++)
+	{
+		const char* description = pos;
+		pos += sprintf(pos, "xtimer %d", i)+1;
+		timer_add_client(&xclients[i], description);
+	}
+}
+
+JSBool startXTimer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rval))
+{
+	ONCE(initXTimers());
+
+	REQUIRE_MIN_PARAMS(1, startXTimer);
+	REQUIRE_MIN_PARAMS(1, startXTimer);
+	uint slot = ToPrimitive<uint>(argv[0]);
+	debug_assert(slot < MAX_XTIMERS);
+
+	debug_assert(xstart_times[slot] == 0);
+	xstart_times[slot] = xtimer_impl.get_timestamp();
+	return( JS_TRUE );
+}
+
+
+JSBool stopXTimer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rval))
+{
+	REQUIRE_MIN_PARAMS(1, stopXTimer);
+	REQUIRE_MIN_PARAMS(1, stopXTimer);
+	uint slot = ToPrimitive<uint>(argv[0]);
+	debug_assert(slot < MAX_XTIMERS);
+
+	debug_assert(xstart_times[slot] != 0);
+	XTimerImpl::unit dt = xtimer_impl.get_timestamp() - xstart_times[slot];
+	xstart_times[slot] = 0;
+	timer_bill_client(&xclients[slot], dt);
+	return( JS_TRUE );
+}
+
+
 //-----------------------------------------------------------------------------
 // Game Setup
 //-----------------------------------------------------------------------------
@@ -1255,6 +1303,9 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC(cancelInterval, cancelInterval, 0)
 	JS_FUNC(cancelTimer, cancelTimer, 0)
 	JS_FUNC(setSimRate, setSimRate, 1)
+
+	JS_FUNC(startXTimer, startXTimer, 1)
+	JS_FUNC(stopXTimer, stopXTimer, 1)
 
 	// Game Setup
 	JS_FUNC(startGame, startGame, 0)
