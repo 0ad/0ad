@@ -377,9 +377,9 @@ function entityInitQuasi()
 	startXTimer(7);
 	
 	// Generate civ code (1st four characters of civ name, in lower case eg "Carthaginians" => "cart").
-	if (this.traits.id && this.traits.id.civ)
+	var id = this.traits.id; 
+	if (id && id.civ)
 	{
-	    var id = this.traits.id; 
 		id.civ_code = id.civ.toString().substring (0, 4);
 		id.civ_code = id.civ_code.toString().toLowerCase();
 
