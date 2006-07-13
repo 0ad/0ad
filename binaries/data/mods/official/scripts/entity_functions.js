@@ -36,6 +36,8 @@ function entityInit()
 	// This function is called for all "full" entities - those inheriting from template_entity_full; there is a simpler version below
 	// called entityInitQuasi for quasi-entities (rocks, trees, etc) for which most of the things dealt with here don't apply.
 
+    startXTimer(1);
+
 	// If the entity is a foundation, we must deduct resource costs here
 	if( this.building )
 	{
@@ -71,6 +73,9 @@ function entityInit()
 			return;
 		}
 	}
+	
+	stopXTimer(1);
+	startXTimer(2);
 	
 	// If this is a foundation, initialize traits from the building we're converting into
 	if( this.building && this.building != "" )
@@ -109,6 +114,9 @@ function entityInit()
 	// If entity has stamina, set current to same.
 	if ( this.traits.stamina && this.traits.stamina.max )
 		this.traits.stamina.curr = this.traits.stamina.max
+
+    stopXTimer(2);
+    startXTimer(3);
 
 	if (this.traits.supply)
 	{
@@ -193,6 +201,9 @@ function entityInit()
 		this.traits.promotion.rank = "0";
 	}
 	
+	stopXTimer(3);
+	startXTimer(4);
+	
 	// Register our actions with the generic order system
 	if( this.actions )
 	{
@@ -245,6 +256,9 @@ function entityInit()
 	this.GotoInRange = GotoInRange;
 	this.attachAuras = attachAuras;
 
+    stopXTimer(4);
+    startXTimer(5);
+
 	this.attachAuras();
 	
 	if ( !this.traits.id )
@@ -291,6 +305,8 @@ function entityInit()
 		}
 	}
 	
+	
+	stopXTimer(5);
 /*	
 	// Generate entity's personal name (if it needs one).
 	if (this.traits.id.personal)
@@ -332,6 +348,8 @@ function entityInitQuasi()
 {
 	// Initialization function for quasi-entities like trees, rocks, etc; only sets up resources
 
+    startXTimer(6);
+
 	if (this.traits.supply)
 	{
 		// If entity has supply, set current to same.
@@ -355,17 +373,24 @@ function entityInitQuasi()
 		}
 	}
 	
+	stopXTimer(6);
+	startXTimer(7);
+	
 	// Generate civ code (1st four characters of civ name, in lower case eg "Carthaginians" => "cart").
 	if (this.traits.id && this.traits.id.civ)
 	{
-		this.traits.id.civ_code = this.traits.id.civ.toString().substring (0, 4);
-		this.traits.id.civ_code = this.traits.id.civ_code.toString().toLowerCase();
+	    var id = this.traits.id; 
+		id.civ_code = id.civ.toString().substring (0, 4);
+		id.civ_code = id.civ_code.toString().toLowerCase();
 
 		// Exception to make the Romans into rome.
-		if (this.traits.id.civ_code == "roma") this.traits.id.civ_code = "rome";
+		if (id.civ_code == "roma") id.civ_code = "rome";
 		// Exception to make the Hellenes into hele.
-		if (this.traits.id.civ_code == "hell") this.traits.id.civ_code = "hele";
+		if (id.civ_code == "hell") id.civ_code = "hele";
 	}
+	
+	stopXTimer(7);
+	startXTimer(8);
 	
 	if(!this.traits.id)
 	{
@@ -376,6 +401,8 @@ function entityInitQuasi()
 	{
 		this.traits.promotion = new Object();
 	}
+	
+	stopXTimer(8);
 }
 
 // ====================================================================
