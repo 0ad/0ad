@@ -1,4 +1,4 @@
-/**
+﻿/**
  * =========================================================================
  * File        : LightEnv.cpp
  * Project     : Pyrogenesis
@@ -19,9 +19,9 @@ CLightEnv::CLightEnv()
 	: m_Elevation(DEGTORAD(45)),
 	m_Rotation(DEGTORAD(315)),
 	m_TerrainShadowTransparency(0.0),
-	m_SunColor(1,1,1),
-	m_TerrainAmbientColor(0.4f,0.4f,0.4f),
-	m_UnitsAmbientColor(0.4f,0.4f,0.4f)
+	m_SunColor(1, 1, 1),
+	m_TerrainAmbientColor(164/255.f, 164/255.f, 164/255.f),
+	m_UnitsAmbientColor(164/255.f, 164/255.f, 164/255.f)
 {
 	CalculateSunDirection();
 }
