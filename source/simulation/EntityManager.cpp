@@ -31,10 +31,9 @@ CEntityManager::CEntityManager()
 	SELECTION_BOX_POINTS = 1 + SELECTION_SMOOTHNESS_UNIFIED;
 }
 
-CEntityManager::~CEntityManager()
-{	
-	m_extant = false;
-	
+
+void CEntityManager::deleteAllHelper()
+{
 	for( int i = 0; i < MAX_HANDLES; i++ )
 	{
 		if( m_entities[i].m_refcount )
@@ -44,6 +43,18 @@ CEntityManager::~CEntityManager()
 			m_entities[i].m_refcount = 0;
 		}
 	}
+}
+
+bool CEntityManager::isEntityRefd(int index)
+{
+	return m_entities[index].m_refcount && !m_entities[index].m_entity->entf_get(ENTF_DESTROYED);
+}
+
+
+CEntityManager::~CEntityManager()
+{	
+	m_extant = false;
+	deleteAllHelper();
 
 	// Delete entities that were killed, but not yet reaped by a call to updateAll,
 	// to avoid memory leak warnings upon exiting
@@ -59,13 +70,7 @@ CEntityManager::~CEntityManager()
 void CEntityManager::deleteAll()
 {
 	m_extant = false;
-	for( int i = 0; i < MAX_HANDLES; i++ )
-		if( m_entities[i].m_refcount )
-		{
-			delete( m_entities[i].m_entity );
-			m_entities[i].m_entity = 0;
-			m_entities[i].m_refcount = 0;
-		}
+	deleteAllHelper();
 	m_nextalloc = 0;
 	m_extant = true;
 }
@@ -118,25 +123,7 @@ HEntity CEntityManager::createFoundation( CStrW templateName, CPlayer* player, C
 		return create( base, position, orientation, selections );	// Entity has no foundation, so just create it
 
 	CEntityTemplate* foundation = g_EntityTemplateCollection.getTemplate( base->m_foundation );
-	debug_assert( foundation );
-	if( !foundation )
-		return HEntity();
-
-	while( m_entities[m_nextalloc].m_refcount )
-	{
-		m_nextalloc++;
-		if(m_nextalloc >= MAX_HANDLES)
-		{
-			debug_warn("Ran out of entity handles!");
-			return HEntity();
-		}
-	}
-
-	m_entities[m_nextalloc].m_entity = new CEntity( foundation, position, orientation, selections, templateName );
-	if( m_collisionPatches)
-		m_entities[m_nextalloc].m_entity->updateCollisionPatch();
-	m_entities[m_nextalloc].m_entity->me = HEntity( m_nextalloc );
-	return( HEntity( m_nextalloc++ ) );
+	return create( foundation, position, orientation, selections );
 }
 
 HEntity* CEntityManager::getByHandle( u16 index )
@@ -156,7 +143,7 @@ std::vector<HEntity>* CEntityManager::matches( EntityPredicate predicate, void* 
 {
 	std::vector<HEntity>* matchlist = new std::vector<HEntity>;
 	for( int i = 0; i < MAX_HANDLES; i++ )
-		if( m_entities[i].m_refcount && !m_entities[i].m_entity->entf_get(ENTF_DESTROYED) )
+		if( isEntityRefd(i) )
 			if( predicate( m_entities[i].m_entity, userdata ) )
 				matchlist->push_back( HEntity( i ) );
 	return( matchlist );
@@ -166,7 +153,7 @@ std::vector<HEntity>* CEntityManager::getExtant()
 {
 	std::vector<HEntity>* activelist = new std::vector<HEntity>;
 	for( int i = 0; i < MAX_HANDLES; i++ )
-		if( m_entities[i].m_refcount && !m_entities[i].m_entity->entf_get(ENTF_DESTROYED) )
+		if( isEntityRefd(i) )
 			activelist->push_back( HEntity( i ) );
 	return( activelist );
 }
@@ -175,7 +162,7 @@ void CEntityManager::GetExtant( std::vector<CEntity*>& results )
 {
 	results.clear();
 	for( int i = 0; i < MAX_HANDLES; i++ )
-		if( m_entities[i].m_refcount && !m_entities[i].m_entity->entf_get(ENTF_DESTROYED) && m_entities[i].m_entity->m_extant )
+		if( isEntityRefd(i) && m_entities[i].m_entity->m_extant )
 			results.push_back( m_entities[i].m_entity );
 }
 
@@ -234,7 +221,7 @@ void CEntityManager::InitializeAll()
 
 	for( int i = 0; i < MAX_HANDLES; i++ )
 	{
-		if( m_entities[i].m_refcount && !m_entities[i].m_entity->entf_get(ENTF_DESTROYED) )
+		if( isEntityRefd(i) )
 		{
 			// [2006-06-26 2780ms total]
 			CEntity* e = m_entities[i].m_entity;
@@ -249,7 +236,7 @@ void CEntityManager::InitializeAll()
 void CEntityManager::TickAll()
 {
 	for( int i = 0; i < MAX_HANDLES; i++ )
-		if( m_entities[i].m_refcount && !m_entities[i].m_entity->entf_get(ENTF_DESTROYED) && m_entities[i].m_entity->m_extant )
+		if( isEntityRefd(i) && m_entities[i].m_entity->m_extant )
 			m_entities[i].m_entity->Tick();
 }
 
@@ -278,7 +265,7 @@ void CEntityManager::updateAll( size_t timestep )
 
 	PROFILE_START( "update all" );
 	for( int i = 0; i < MAX_HANDLES; i++ )
-		if( m_entities[i].m_refcount && !m_entities[i].m_entity->entf_get(ENTF_DESTROYED) )
+		if( isEntityRefd(i) )
 			m_entities[i].m_entity->update( timestep );
 	PROFILE_END( "update all" );
 }
@@ -286,14 +273,14 @@ void CEntityManager::updateAll( size_t timestep )
 void CEntityManager::interpolateAll( float relativeoffset )
 {
 	for( int i = 0; i < MAX_HANDLES; i++ )
-		if( m_entities[i].m_refcount && !m_entities[i].m_entity->entf_get(ENTF_DESTROYED) )
+		if( isEntityRefd(i) )
 			m_entities[i].m_entity->interpolate( relativeoffset );
 }
 
 void CEntityManager::renderAll()
 {
 	for( int i = 0; i < MAX_HANDLES; i++ )
-		if( m_entities[i].m_refcount && !m_entities[i].m_entity->entf_get(ENTF_DESTROYED) )
+		if( isEntityRefd(i) )
 			m_entities[i].m_entity->render();
 }
 void CEntityManager::conformAll()
@@ -301,7 +288,7 @@ void CEntityManager::conformAll()
 	PROFILE_START("conform all");
 	for ( int i=0; i < MAX_HANDLES; i++ )
 	{
-		if( m_entities[i].m_refcount && !m_entities[i].m_entity->entf_get(ENTF_DESTROYED) )
+		if( isEntityRefd(i) )
 		{
 			CEntity* entity = m_entities[i].m_entity;
 			CVector2D targetXZ = g_Game->GetWorld()->GetTerrain()->getSlopeAngleFace( entity->m_position.X, entity->m_position.Z, entity );
@@ -324,7 +311,7 @@ void CEntityManager::conformAll()
 void CEntityManager::invalidateAll()
 {
 	for( int i = 0; i < MAX_HANDLES; i++ )
-		if( m_entities[i].m_refcount && !m_entities[i].m_entity->entf_get(ENTF_DESTROYED) )
+		if( isEntityRefd(i) )
 			m_entities[i].m_entity->invalidateActor();
 }
 

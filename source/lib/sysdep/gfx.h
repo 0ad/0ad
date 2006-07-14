@@ -28,23 +28,59 @@ extern "C" {
 #endif
 
 const size_t GFX_CARD_LEN = 128;
-extern char gfx_card[GFX_CARD_LEN];		// default: ""
+/**
+ * description of graphics card.
+ * initial value is "".
+ **/
+extern char gfx_card[GFX_CARD_LEN];
 
-const size_t GFX_DRV_VER_LEN = 256;		// increased from 64 by joe cocovich to accomodate unused drivers still in registry
-extern char gfx_drv_ver[GFX_DRV_VER_LEN];	// default: ""
+// note: increased from 64 by Joe Cocovich; this large size is necessary
+// because there must be enough space to list the versions of all drivers
+// mentioned in the registry (including unused remnants).
+const size_t GFX_DRV_VER_LEN = 256;
+/**
+ * (OpenGL) graphics driver identification and version.
+ * initial value is "".
+ **/
+extern char gfx_drv_ver[GFX_DRV_VER_LEN];
 
-extern int gfx_mem;	// [MiB]; approximate
+/**
+ * approximate amount of graphics memory [MiB]
+ **/
+extern int gfx_mem;
 
-// detect graphics card and set the above information.
+/**
+ * detect graphics card and set the above information.
+ **/
 extern void gfx_detect(void);
 
 
-// useful for choosing a video mode.
-// if we fail, outputs are unchanged (assumed initialized to defaults)
+/**
+ * get current video mode.
+ *
+ * this is useful when choosing a new video mode.
+ *
+ * @param xres, yres (optional out) resolution [pixels]
+ * @param bpp (optional out) bits per pixel
+ * @param freq (optional out) vertical refresh rate [Hz]
+ * @return LibError; INFO_OK unless: some information was requested
+ * (i.e. pointer is non-NULL) but cannot be returned.
+ * on failure, the outputs are all left unchanged (they are
+ * assumed initialized to defaults)
+ **/
 extern LibError gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq);
 
-// useful for determining aspect ratio.
-// if we fail, outputs are unchanged (assumed initialized to defaults)
+/**
+ * get monitor dimensions.
+ *
+ * this is useful for determining aspect ratio.
+ *
+ * @param width_mm (out) screen width [mm]
+ * @param height_mm (out) screen height [mm]
+ * @return LibError. on failure, the outputs are all left unchanged
+ * on failure, the outputs are all left unchanged (they are
+ * assumed initialized to defaults)
+ **/
 extern LibError gfx_get_monitor_size(int& width_mm, int& height_mm);
 
 

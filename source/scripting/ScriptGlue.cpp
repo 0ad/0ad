@@ -587,16 +587,22 @@ static void initXTimers()
 		timer_add_client(&xclients[i], description);
 	}
 
+	// call several times to get a good approximation of 'hot' performance.
+	// note: don't use a separate timer slot to warm up and then judge
+	// overhead from another: that causes worse results (probably some
+	// caching effects inside JS, but I don't entirely understand why).
 	static const char* calibration_script =
 		"startXTimer(0);\n"
-		"stopXTimer(0);\n"
+		"stopXTimer (0);\n"
 		"startXTimer(0);\n"
-		"stopXTimer(0);\n"
+		"stopXTimer (0);\n"
 		"startXTimer(0);\n"
-		"stopXTimer(0);\n"
+		"stopXTimer (0);\n"
+		"startXTimer(0);\n"
+		"stopXTimer (0);\n"
 		"\n";
 	g_ScriptingHost.RunMemScript(calibration_script, strlen(calibration_script));
-	xoverhead = xclients[0].sum / 3;
+	xoverhead = xclients[0].sum/4;
 }
 
 JSBool startXTimer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rval))

@@ -48,6 +48,8 @@ friend class CHandle;
 	void destroy( u16 handle );
 	int m_collisionPatchesPerSide;
 	std::vector<CEntity*>* m_collisionPatches;
+	bool isEntityRefd(int index);
+	void deleteAllHelper();
 public:
 	
 	CEntityManager();
