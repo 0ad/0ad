@@ -19,6 +19,7 @@ struct SHotkeyMapping
 	int mapsTo;
 	bool negation;
 	std::vector<int> requires;
+	SHotkeyMapping() : mapsTo(-1) {}
 };
 
 typedef std::vector<SHotkeyMapping> KeyMapping;
@@ -154,6 +155,7 @@ struct SHotkeyMappingGUI
 	CStr mapsTo;
 	bool negation;
 	std::vector<int> requires;
+	SHotkeyMappingGUI() : mapsTo(-1) {}
 };
 
 typedef std::vector<SHotkeyMappingGUI> GuiMapping;
@@ -587,8 +589,10 @@ InReaction hotkeyInputHandler( const SDL_Event* ev )
 			{
 				if( !g_mouse_buttons[(*itKey)-SDLK_LAST] ) accept = false;
 			}
-			else
+			else if( *itKey < HOTKEY_NEGATION_FLAG )
+			{
 				if( !unified[(*itKey)-UNIFIED_SHIFT] ) accept = false;
+			}
 		}
 
 		debug_assert(it->mapsTo < ARRAY_SIZE(hotkeys));
