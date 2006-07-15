@@ -350,27 +350,28 @@ function entityInitQuasi()
 
     startXTimer(6);
 
-	if (this.traits.supply)
+	var s = this.traits.supply;
+	if (s)
 	{
 		// If entity has supply, set current to same.
-		if (this.traits.supply.max)
-			this.traits.supply.curr = this.traits.supply.max;
+		s.curr = s.max;
 
 		// If entity has type of supply and no subtype, set subtype to same
 		// (so we don't have to say type="wood", subtype="wood"
-		if (this.traits.supply.type && !this.traits.supply.subtype)
-			this.traits.supply.subtype = this.traits.supply.type;
+		if (s.type && !s.subtype)
+			s.subtype = s.type;
 			
 		// The "dropsitecount" array holds the number of units with gather aura in range of the object;
 		// this is important so that if you have two mills near something and one of them is destroyed,
 		// you can still gather from the thing. Initialize it to 0 (ungatherable) for every player unless
 		// the entity is forageable (e.g. for huntable animals).
-		this.traits.supply.dropsitecount = new Array();
-		initialCount = this.traits.supply.subtype.meat ? 1 : 0;
+		var ar = new Array();
+		initialCount = s.subtype.meat ? 1 : 0;
 		for( i=0; i<=8; i++ )
 		{
-			this.traits.supply.dropsitecount[i] = initialCount;
+			ar[i] = initialCount;
 		}
+		s.dropsitecount = ar;
 	}
 	
 	stopXTimer(6);
@@ -380,19 +381,21 @@ function entityInitQuasi()
 	var id = this.traits.id; 
 	if (id && id.civ)
 	{
-		id.civ_code = id.civ.toString().substring (0, 4);
-		id.civ_code = id.civ_code.toString().toLowerCase();
+		var civCode = id.civ.toString().substring (0, 4);
+		civCode = civCode.toString().toLowerCase();
 
 		// Exception to make the Romans into rome.
-		if (id.civ_code == "roma") id.civ_code = "rome";
+		if (civCode == "roma") civCode = "rome";
 		// Exception to make the Hellenes into hele.
-		if (id.civ_code == "hell") id.civ_code = "hele";
+		if (civCode == "hell") civCode = "hele";
+		
+		id.civ_code = civCode;
 	}
 	
 	stopXTimer(7);
 	startXTimer(8);
 	
-	if(!this.traits.id)
+	if(!id)
 	{
 		this.traits.id = new Object();
 	}
@@ -419,6 +422,7 @@ function entityInitQuasi()
 	
 	startXTimer(9);
 	
+	// ~100 MS with ob = new Object() as above, ~400 MS with ob = this
 	if (ob.traits.id && ob.traits.id.civ)
 	{
 	    var id = ob.traits.id; 
@@ -671,11 +675,12 @@ function performGather( evt )
 	{
 		if( s.curr <= gather_amt )
 		{
-			gather_amt = s.curr;
+			gather_amt = s.curr.valueOf();
 		}
-
+		
 		// Remove amount from target.
 		s.curr -= gather_amt;
+		
 		// Add extracted resources to player's resource pool.
 		this.player.resources[s.type.toString()] += gather_amt;
 		
