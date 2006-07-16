@@ -34,6 +34,15 @@
 		<Vision>
 			<LOS>9</LOS>
 		</Vision>
+				
+		<Display>
+			<Bars>
+				<Enabled>true</Enabled>
+				<Offset>12.0</Offset>
+				<Width>6.0</Width>
+				<Height>0.6</Height>
+			</Bars>
+		</Display>
 	</Traits>
 
 	<Script File="scripts/entity_functions.js" />

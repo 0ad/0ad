@@ -39,6 +39,7 @@
 			<Border_Name>bar.dds</Border_Name>
 		</Health>
 		<Stamina>
+			<Max>0.0</Max>
 			<Bar_Height>-1.0</Bar_Height>
 			<Bar_Size>20</Bar_Size>
 			<Bar_Width>2.0</Bar_Width>
@@ -72,6 +73,14 @@
 			<Sectors>7</Sectors>
 			<Value>.1</Value>
 		</Pitch>
+		
+		<Display>
+			<Bars>
+				<Enabled>false</Enabled>
+				<Border>bar.dds</Border>
+				<Border_Size>0.2</Border_Size>
+			</Bars>
+		</Display>
 
 		<Is_Territory_Centre>false</Is_Territory_Centre>
 		

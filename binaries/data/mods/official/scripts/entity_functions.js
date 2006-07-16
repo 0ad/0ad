@@ -144,57 +144,16 @@ function entityInit()
 	if (!this.traits.promotion)
 		this.traits.promotion = new Object();
 		
+	this.setupRank = setupRank;
+		
 	// If entity becomes another entity after it gains enough experience points, set up secondary attributes.
 	if (this.traits.promotion.req)
 	{
-		// Get the name of the entity. 
-		entityName = this.tag.toString();
-	
-		// Determine whether current is basic, advanced or elite, and set rank to suit.
-		switch (entityName.substring (entityName.length-2, entityName.length))
-		{
-			case "_b":
-				// Basic. Upgrades to Advanced.
-				this.traits.promotion.rank = "1";
-				nextSuffix = "_a";
-				// Set rank image to put over entity's head.
-				this.traits.rank.name = "";
-			break;
-			case "_a":
-				// Advanced. Upgrades to Elite.
-				this.traits.promotion.rank = "2";
-				nextSuffix = "_e";
-				// Set rank image to put over entity's head.
-				this.traits.rank.name = "advanced.dds";				
-			break;
-			case "_e":
-				// Elite. Maximum rank.
-				this.traits.promotion.rank = "3";
-				nextSuffix = "";
-				// Set rank image to put over entity's head.
-				this.traits.rank.name = "elite.dds";				
-			break;
-			default:
-				// Does not gain promotions.
-				this.traits.promotion.rank = "0"
-				nextSuffix = ""
-			break;
-		}
-		
+		this.setupRank();
+			
 		// Give the entity an initial value of 0 earned XP at startup if a default value is not specified.
 		if (!this.traits.promotion.curr)
-			this.traits.promotion.curr = 0
-	
-		// The entity it should become (unless specified otherwise) is the base entity plus promotion suffix.
-		if (!this.traits.promotion.newentity && nextSuffix != "" && this.traits.promotion.rank != "0")
-			this.traits.promotion.newentity = entityName.substring (0, entityName.length-2) + nextSuffix
-
-		// If entity is an additional rank and the correct actor has not been specified
-		// (it's just inherited the Basic), point it to the correct suffix. (Saves us specifying it each time.)
-		actorStr = this.actor.toString();
-		if (this.traits.promotion.rank > "1"
-			&& actorStr.substring (actorStr.length-5, actorStr.length) != nextSuffix + ".xml")
-			this.actor = actorStr.substring (1,actorStr.length-5) + nextSuffix + ".xml";
+			this.traits.promotion.curr = 0;	
 	}
 	else
 	{
@@ -436,6 +395,57 @@ function entityInitQuasi()
 	}
 	
 	stopXTimer(9);
+}
+
+// ====================================================================
+
+// Setup entity's next rank
+function setupRank()
+{
+	// Get the name of the entity. 
+	entityName = this.tag.toString();
+
+	// Determine whether current is basic, advanced or elite, and set rank to suit.
+	switch (entityName.substring (entityName.length-2, entityName.length))
+	{
+		case "_b":
+			// Basic. Upgrades to Advanced.
+			this.traits.promotion.rank = "1";
+			nextSuffix = "_a";
+			// Set rank image to put over entity's head.
+			this.traits.rank.name = "";
+		break;
+		case "_a":
+			// Advanced. Upgrades to Elite.
+			this.traits.promotion.rank = "2";
+			nextSuffix = "_e";
+			// Set rank image to put over entity's head.
+			this.traits.rank.name = "advanced.dds";				
+		break;
+		case "_e":
+			// Elite. Maximum rank.
+			this.traits.promotion.rank = "3";
+			nextSuffix = "";
+			// Set rank image to put over entity's head.
+			this.traits.rank.name = "elite.dds";				
+		break;
+		default:
+			// Does not gain promotions.
+			this.traits.promotion.rank = "0"
+			nextSuffix = ""
+		break;
+	}
+
+	// If entity is an additional rank and the correct actor has not been specified
+	// (it's just inherited the Basic), point it to the correct suffix. (Saves us specifying it each time.)
+	actorStr = this.actor.toString();
+	if (this.traits.promotion.rank > "1"
+		&& actorStr.substring (actorStr.length-5, actorStr.length) != nextSuffix + ".xml")
+		this.actor = actorStr.substring (1,actorStr.length-5) + nextSuffix + ".xml";
+		
+	// The entity it should become (unless specified otherwise) is the base entity plus promotion suffix.
+	if (!this.traits.promotion.newentity && nextSuffix != "" && this.traits.promotion.rank != "0")
+		this.traits.promotion.newentity = entityName.substring (0, entityName.length-2) + nextSuffix;
 }
 
 // ====================================================================
@@ -891,6 +901,8 @@ function damage( dmg, inflictor )
 
 								// Transmogrify him into his next rank.
 								inflictor.template = getEntityTemplate( inflictor.traits.promotion.newentity, inflictor.player );
+								
+								inflictor.setupRank();
 							}
 						}
 						break;
