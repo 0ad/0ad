@@ -318,57 +318,57 @@ void Render()
 		{
 			PROFILE( "render entity overlays" );
 			glColor3f( 1.0f, 0.0f, 1.0f );
-
-			MICROLOG(L"render entities");
 			g_EntityManager.renderAll(); // <-- collision outlines, pathing routes
 		}
 
-		PROFILE_START( "render selection" );
+		PROFILE_START( "render entity outlines" );
 		glEnable( GL_DEPTH_TEST );
 		g_Mouseover.renderSelectionOutlines();
 		g_Selection.renderSelectionOutlines();
 		glDisable( GL_DEPTH_TEST );
-		PROFILE_END( "render selection" );
+		PROFILE_END( "render entity outlines" );
 
-		PROFILE_START( "render health bars" );
+		PROFILE_START( "render entity bars" );
 		pglActiveTextureARB(GL_TEXTURE1_ARB);
 		glDisable(GL_TEXTURE_2D);
-		//Not all hardware supports 3 texture units!
-		//pglActiveTextureARB(GL_TEXTURE2_ARB);
-		//glDisable(GL_TEXTURE_2D);
 		pglActiveTextureARB(GL_TEXTURE0_ARB);
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+		glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
 		glMatrixMode(GL_TEXTURE);
 		glLoadIdentity();
-		glMatrixMode(GL_PROJECTION);
+		/*glMatrixMode(GL_PROJECTION);
 		glPushMatrix();
 		glLoadIdentity();
-		glOrtho(0.f, (float)g_xres, 0.f, (float)g_yres, -1.f, 1000.f);
+		glOrtho(0.f, (float)g_xres, 0.f, (float)g_yres, -1.0f, 1000.f);
 		glMatrixMode(GL_MODELVIEW);
 		glPushMatrix();
-		glLoadIdentity();
+		glLoadIdentity();*/
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-		glEnable( GL_TEXTURE_2D );
-		g_Mouseover.renderBarBorders();
-		g_Selection.renderBarBorders();
-		glDisable( GL_TEXTURE_2D );
-		g_Mouseover.renderHealthBars();
-		g_Selection.renderHealthBars();
-		g_Mouseover.renderStaminaBars();
-		g_Selection.renderStaminaBars();
-		glEnable( GL_TEXTURE_2D );
-		g_Selection.renderRanks();
-		g_Mouseover.renderRanks();
+		g_Mouseover.renderBars();
+		g_Selection.renderBars();
 		
-		glPopMatrix();
+		glDisable(GL_BLEND);
+		/*glPopMatrix();
 		glMatrixMode(GL_PROJECTION);
 		glPopMatrix();
-		glMatrixMode(GL_MODELVIEW);
-		PROFILE_END( "render health bars" );
+		glMatrixMode(GL_MODELVIEW);*/
+		PROFILE_END( "render entity bars" );
 
 		glPopAttrib();
-		//Depth test is now enabled
+
+		// Depth test is now enabled
+		PROFILE_START( "render rally points" );
 		g_Selection.renderRallyPoints();
 		g_Mouseover.renderRallyPoints();
+		PROFILE_END( "render rally points" );
 	}
 	else
 	{

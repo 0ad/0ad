@@ -452,6 +452,12 @@ void CEntityTemplate::ScriptingInit()
 	AddClassProperty( L"traits.anchor.conformz", &CEntityTemplate::m_anchorConformZ );
 	AddClassProperty( L"traits.vision.los", &CEntityTemplate::m_los );
 	AddClassProperty( L"traits.vision.permanent", &CEntityTemplate::m_permanent );
+	AddClassProperty( L"traits.display.bars.enabled", &CEntityTemplate::m_barsEnabled );
+	AddClassProperty( L"traits.display.bars.offset", &CEntityTemplate::m_barOffset );
+	AddClassProperty( L"traits.display.bars.height", &CEntityTemplate::m_barHeight );
+	AddClassProperty( L"traits.display.bars.width", &CEntityTemplate::m_barWidth );
+	AddClassProperty( L"traits.display.bars.border", &CEntityTemplate::m_barBorder );
+	AddClassProperty( L"traits.display.bars.border_size", &CEntityTemplate::m_barBorderSize );
 	AddClassProperty( L"traits.is_territory_centre", &CEntityTemplate::m_isTerritoryCentre );
 	AddClassProperty( L"traits.foundation", &CEntityTemplate::m_foundation );
 	AddClassProperty( L"traits.socket", &CEntityTemplate::m_socket );

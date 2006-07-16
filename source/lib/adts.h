@@ -457,4 +457,190 @@ public:
 };
 
 
+// Matei's slightly friendlier hashtable for value-type keys
+template<typename K, typename T, typename HashCompare >
+class MateiHashTbl
+{
+	static const size_t initial_entries = 16;
+
+	struct Entry {
+		bool valid;
+		K key;
+		T value;
+		Entry() : valid(false) {}
+		Entry(const K& k, T v) { key=k; value=v; }
+		Entry& operator=(const Entry& other) {
+			valid = other.valid;
+			key = other.key;
+			value = other.value;
+			return *this;
+		}
+	};
+
+	Entry* tbl;
+	u16 num_entries;
+	u16 max_entries;	// when initialized, = 2**n for faster modulo
+	HashCompare hashFunc;
+
+	Entry& get_slot(K key) const
+	{
+		size_t hash = hashFunc(key);
+		//debug_assert(max_entries != 0);	// otherwise, mask will be incorrect
+		const uint mask = max_entries-1;
+		for(;;)
+		{
+			Entry& e = tbl[hash & mask];
+			// empty slot encountered => not found
+			if(!e.valid)
+				return e;
+			// keys are actually equal => found it
+			if(e.key == key)
+				return e;
+			// keep going (linear probing)
+			hash++;
+		}
+	}
+
+	void expand_tbl()
+	{
+		// alloc a new table (but don't assign it to <tbl> unless successful)
+		Entry* old_tbl = tbl;
+		tbl = new Entry[max_entries*2];
+		if(!tbl)
+		{
+			tbl = old_tbl;
+			throw std::bad_alloc();
+		}
+
+		max_entries += max_entries;
+		// must be set before get_slot
+
+		// newly initialized, nothing to copy - done
+		if(!old_tbl)
+			return;
+
+		// re-hash from old table into the new one
+		for(size_t i = 0; i < max_entries/2u; i++)
+		{
+			Entry& e = old_tbl[i];
+			if(e.valid)
+				get_slot(e.key) = e;
+		}
+		delete[] old_tbl;
+	}
+
+	void delete_contents()
+	{
+		if(tbl) 
+		{ 
+			delete[] tbl; 
+			tbl = 0; 
+		}
+	}
+
+public:
+
+	MateiHashTbl()
+	{
+		tbl = 0;
+		num_entries = 0;
+		max_entries = initial_entries/2;	// will be doubled in expand_tbl
+		//debug_assert(is_pow2(max_entries));
+		expand_tbl();
+	}
+
+	~MateiHashTbl()
+	{
+		delete_contents();
+	}
+
+	void clear()
+	{
+		delete_contents();
+		num_entries = 0;
+		// rationale: must not set to 0 because expand_tbl only doubles the size.
+		// don't keep the previous size because it may have become huge and
+		// there is no provision for shrinking.
+		max_entries = initial_entries/2;	// will be doubled in expand_tbl
+		expand_tbl();
+	}
+
+	bool contains(const K& key) const 
+	{
+		return get_slot(key).valid;
+	}
+
+	T& operator[](const K& key)
+	{
+		Entry* slot = &get_slot(key);
+		if(slot->valid) 
+		{
+			return slot->value;
+		}
+
+		// no element exists for this key - insert it into the table
+		// (this is slightly different from STL::hash_map in that we insert a new element
+		// on a get for a nonexistent key, but hopefully that's not a problem)
+
+		// if more than 75% full, increase table size and find slot again
+		if(num_entries*4 >= max_entries*3)
+		{
+			expand_tbl();
+			slot = &get_slot(key);	// find slot again since we expanded
+		}
+
+		slot->valid = true;
+		slot->key = key;
+		num_entries++;
+		return slot->value;
+	}
+
+	size_t size() const
+	{
+		return num_entries;
+	}
+
+	// Not an STL iterator, more like a Java one
+	// Usage: for(HashTable::Iterator it(table); it.valid(); it.advance()) { do stuff to it.key() and it.value() }
+	class Iterator 
+	{
+	private:
+		Entry* pos;
+		Entry* end;
+		
+	public:
+		Iterator(const MateiHashTbl& ht)
+		{
+			pos = ht.tbl;
+			end = ht.tbl + ht.max_entries;
+			while(pos < end && !pos->valid)
+				pos++;
+		};
+
+		bool valid() const
+		{
+			return pos < end;
+		}
+
+		void advance()
+		{
+			do {
+				pos++;
+			}
+			while(pos < end && !pos->valid);
+		}
+
+		const K& key() 
+		{
+			return pos->key;
+		}
+		
+		T& value() 
+		{
+			return pos->value;
+		}
+	};
+};
+
+
 #endif	// #ifndef ADTS_H__

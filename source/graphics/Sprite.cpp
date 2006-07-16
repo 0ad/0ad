@@ -60,7 +60,7 @@ void CSprite::Render()
 	BeginBillboard();
 	glDisable(GL_CULL_FACE);
 
-	if ( m_texture->GetHandle() != 0 )
+	if ( m_texture && m_texture->GetHandle() != 0 )
 		ogl_tex_bind(m_texture->GetHandle());
 
 	glColor4fv(m_colour);
@@ -185,6 +185,14 @@ void CSprite::SetColour(float * colour)
 	m_colour[1] = colour[1];
 	m_colour[2] = colour[2];
 	m_colour[3] = colour[3];
+}
+
+void CSprite::SetColour(float r, float g, float b, float a)
+{
+	m_colour[0] = r;
+	m_colour[1] = g;
+	m_colour[2] = b;
+	m_colour[3] = a;
 }
 
 //Must call glPushMatrix() before this. Should be called before any other gl calls

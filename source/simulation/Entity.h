@@ -36,6 +36,7 @@
 #include "ScriptObject.h"
 #include "EntitySupport.h"
 #include "scripting/DOMEvent.h"
+#include "scripting/ScriptCustomTypes.h"
 
 // JW: must be pulled in because CEntity no longer mirrors CEntityTemplate exactly.
 // some fields have been moved out of CEntity and are accessed via m_base,
@@ -343,12 +344,23 @@ public:
 	// Things like selection circles and debug info - possibly move to gui if/when it becomes responsible for (and capable of) it.
 	void render();
 	void renderSelectionOutline( float alpha = 1.0f );
-	void renderBarBorders( );
+	void renderBars();
+	void renderBarBorders();
 	void renderHealthBar();
 	void renderStaminaBar();
 	void renderRank();
 	void renderRallyPoint();
+	
+	// Utility functions for rendering:
+
+	// Draw rectangle around the given centre, aligned with the given axes
+	void drawRect(CVector3D& centre, CVector3D& up, CVector3D& right, float x1, float y1, float x2, float y2);
+	void drawBar(CVector3D& centre, CVector3D& up, CVector3D& right, 
+		float x1, float y1, float x2, float y2,
+		SColour col1, SColour col2, float currVal, float maxVal);
+
 	CVector2D getScreenCoords( float height );
+
 	// After a collision, recalc the path to the next fixed waypoint.
 	void repath();
 

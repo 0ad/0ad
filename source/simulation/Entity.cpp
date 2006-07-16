@@ -89,8 +89,8 @@ CEntity::CEntity( CEntityTemplate* base, CVector3D position, float orientation, 
 	entf_clear(ENTF_HEALTH_DECAY);
 
 	m_frameCheck = 0;
-	m_lastCombatTime = 0;
-	m_lastRunTime = 0;
+	m_lastCombatTime = -100;
+	m_lastRunTime = -100;
 	m_currentNotification = 0;
 	m_currentRequest = 0;
 	entf_set(ENTF_DESTROY_NOTIFIERS);
@@ -1123,6 +1123,7 @@ void CEntity::renderSelectionOutline( float alpha )
 
     glEnd();
 }
+
 CVector2D CEntity::getScreenCoords( float height )
 {
 	CCamera &g_Camera=*g_Game->GetView()->GetCamera();
@@ -1135,6 +1136,92 @@ CVector2D CEntity::getScreenCoords( float height )
     g_Camera.GetScreenCoordinates(above, sx, sy);
 	return CVector2D( sx, sy );
 }
+
+void CEntity::drawRect( CVector3D& centre, CVector3D& up, CVector3D& right, float x1, float y1, float x2, float y2 )
+{
+	glBegin(GL_QUADS);
+	const int X[] = {1,1,0,0};	// which X and Y to choose at each vertex
+	const int Y[] = {0,1,1,0};
+	for( int i=0; i<4; i++ ) 
+	{
+		CVector3D vec = centre + right * (X[i] ? x1 : x2) + up * (Y[i] ? y1 : y2);
+		glTexCoord2f( X[i], Y[i] );
+		glVertex3fv( &vec.X );
+	}
+	glEnd();
+}
+
+void CEntity::drawBar( CVector3D& centre, CVector3D& up, CVector3D& right, 
+		float x1, float y1, float x2, float y2,
+		SColour col1, SColour col2, float currVal, float maxVal )
+{
+	// Figure out fraction that should be col1
+	float fraction;
+	if(maxVal == 0) fraction = 1.0f;
+	else fraction = clamp( currVal / maxVal, 0.0f, 1.0f );
+
+	// Draw the border at full size
+	ogl_tex_bind( g_Selection.m_unitUITextures[m_base->m_barBorder] );
+	drawRect( centre, up, right, x1, y1, x2, y2 );
+	ogl_tex_bind( 0 );
+
+	// Make the bar contents slightly smaller than the border
+	x1 += m_base->m_barBorderSize;
+	y1 += m_base->m_barBorderSize;
+	x2 -= m_base->m_barBorderSize;
+	y2 -= m_base->m_barBorderSize;
+	
+	// Draw the bar contents
+	float xMid = x2 * fraction + x1 * (1.0f - fraction);
+	glColor3fv( &col1.r );
+	drawRect( centre, up, right, x1, y1, xMid, y2 );
+	glColor3fv( &col2.r );
+	drawRect( centre, up, right, xMid, y1, x2, y2 );
+}
+
+void CEntity::renderBars()
+{
+	if( !m_base->m_barsEnabled || !m_bounds || !m_visible)
+		return;
+
+	snapToGround();
+	CVector3D centre = m_graphics_position;
+	centre.Y += m_base->m_barOffset;
+	CVector3D up = g_Game->GetView()->GetCamera()->m_Orientation.GetUp();
+	CVector3D right = -g_Game->GetView()->GetCamera()->m_Orientation.GetLeft();
+
+	float w = m_base->m_barWidth;
+	float h = m_base->m_barHeight;
+	float borderSize = m_base->m_barBorderSize;
+
+	// Draw the health and stamina bars; if the unit has no stamina, the health bar is
+	// drawn centered, otherwise it's offset slightly up and the stamina bar is offset
+	// slightly down so that they overlap over an area of size borderSize.
+
+	bool hasStamina = (m_staminaMax > 0);
+
+	float off = hasStamina ? (h/2 - borderSize/2) : 0;
+	drawBar( centre, up, right, -w/2, off-h/2, w/2, off+h/2, 
+			SColour(0,1,0), SColour(1,0,0), m_healthCurr, m_healthMax );
+
+	if( hasStamina ) 
+	{
+		drawBar( centre, up, right, -w/2, borderSize/2-h, w/2, borderSize/2, 
+				SColour(0,0,1), SColour(0.4f,0.4f,0.1f), m_staminaCurr, m_staminaMax );
+	}
+
+	// Draw the rank icon
+
+	std::map<CStr, Handle>::iterator it = g_Selection.m_unitUITextures.find( m_rankName );
+	if( it != g_Selection.m_unitUITextures.end() )
+	{
+		float size = hasStamina ? (2*h - 3*borderSize) : h;
+		ogl_tex_bind( it->second );
+		drawRect( centre, up, right, w/2, -size/2, w/2+size, size/2 );
+		ogl_tex_bind( 0 );
+	}
+}
+
 void CEntity::renderBarBorders()
 { 
 	if( !m_visible )
@@ -1183,6 +1270,7 @@ void CEntity::renderBarBorders()
 		glEnd();
 	}
 }
+
 void CEntity::renderHealthBar()
 {
     if( !m_bounds || !m_visible )
@@ -1217,7 +1305,6 @@ void CEntity::renderHealthBar()
     glEnd();
 
 	glLineWidth(1.0f);
-
 }
 
 void CEntity::renderStaminaBar()
@@ -1254,6 +1341,7 @@ void CEntity::renderStaminaBar()
     glEnd();
 	glLineWidth(1.0f);
 }
+
 void CEntity::renderRank()
 {
 	if( !m_bounds || !m_visible )
@@ -1293,6 +1381,7 @@ void CEntity::renderRank()
 
     glEnd();
 }
+
 void CEntity::renderRallyPoint()
 {
 	if( !m_visible )
@@ -1322,6 +1411,7 @@ void CEntity::renderRallyPoint()
 	sprite.SetTranslation(rally);
 	sprite.Render();
 }
+
 void CEntity::CalculateRun(float timestep)
 {
 	if( m_staminaMax > 0 )

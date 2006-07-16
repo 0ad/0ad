@@ -65,32 +65,44 @@ public:
 	//SP properties
 	float m_staminaCurr;
 	float m_staminaMax;
-	float m_staminaBarHeight;
-	int m_staminaBarSize;
-	float m_staminaBarWidth;
-
-	int m_staminaBorderWidth;
-	int m_staminaBorderHeight;
-	CStr m_staminaBorderName;
 
 	// HP properties
 	float m_healthCurr;
 	float m_healthMax;
-	float m_healthBarHeight;
-	int m_healthBarSize;
-	float m_healthBarWidth;
 
-	int m_healthBorderWidth;
-	int m_healthBorderHeight;
-	CStr m_healthBorderName;
-	
+
 	float m_healthRegenRate;
 	float m_healthRegenStart;
 	float m_healthDecayRate;
 
-	//Rank properties
+	// Display properties
+
+	bool m_barsEnabled;
+	float m_barOffset;
+	float m_barHeight;
+	float m_barWidth;
+	float m_barBorderSize;
+	CStr m_barBorder;
+
+	float m_staminaBarHeight;
+	int m_staminaBarSize;
+	float m_staminaBarWidth;
+	int m_staminaBorderWidth;
+	int m_staminaBorderHeight;
+	CStr m_staminaBorderName;
+
+	float m_healthBarHeight;
+	int m_healthBarSize;
+	float m_healthBarWidth;
+	int m_healthBorderWidth;
+	int m_healthBorderHeight;
+	CStr m_healthBorderName;
+
 	float m_rankWidth;
 	float m_rankHeight;
+	
+
+	//Rank properties
 	CStr m_rankName;
 	//Rally name
 	CStr m_rallyName;

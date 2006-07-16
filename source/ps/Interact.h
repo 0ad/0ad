@@ -77,11 +77,12 @@ struct CSelectedEntities : public Singleton<CSelectedEntities>
 
 	void renderSelectionOutlines();
 	void renderOverlays();
+	void renderRallyPoints();
+	void renderBars();
 	void renderHealthBars();
 	void renderStaminaBars();
 	void renderRanks();
 	void renderBarBorders();
-	void renderRallyPoints();
 	
 	void destroyUnitUITextures();
 	int loadUnitUITextures();
@@ -134,11 +135,12 @@ struct CMouseoverEntities : public Singleton<CMouseoverEntities>
 
 	void renderSelectionOutlines();
 	void renderOverlays();
+	void renderRallyPoints();
+	void renderBars();
 	void renderHealthBars();
 	void renderStaminaBars();
 	void renderRanks();
 	void renderBarBorders();
-	void renderRallyPoints();
 
 	bool isBandbox() { return( m_bandbox ); }
 	void startBandbox( u16 x, u16 y );
