@@ -86,17 +86,17 @@ public:
 	virtual void rebuildClassSet() = 0;
 	
 	// Check for a property
-	virtual IJSComplexProperty* HasProperty( CStrW PropertyName ) = 0;
+	virtual IJSComplexProperty* HasProperty( const CStrW& PropertyName ) = 0;
 
 	// Get all properties of an object
 	virtual void FillEnumerateSet( IteratorState* it, CStrW* PropertyRoot = NULL ) = 0;
 
 	// Retrieve the value of a property (returning false if that property is not defined)
-	virtual bool GetProperty( JSContext* cx, CStrW PropertyName, jsval* vp ) = 0;
+	virtual bool GetProperty( JSContext* cx, const CStrW& PropertyName, jsval* vp ) = 0;
 	
 	// Add a property (with immediate value)
-	virtual void AddProperty( CStrW PropertyName, jsval Value ) = 0;
-	virtual void AddProperty( CStrW PropertyName, CStrW Value ) = 0;
+	virtual void AddProperty( const CStrW& PropertyName, jsval Value ) = 0;
+	virtual void AddProperty( const CStrW& PropertyName, const CStrW& Value ) = 0;
 
 	inline IJSComplex() {}
 };
@@ -110,13 +110,13 @@ template<typename T> class CJSComplexPropertyAccessor
 	template<typename Q, bool ReadOnly> friend class CJSComplex;
 
 public:
-	CJSComplexPropertyAccessor( T* Owner, CStrW PropertyRoot )
+	CJSComplexPropertyAccessor( T* Owner, const CStrW& PropertyRoot )
 	{
 		m_Owner = Owner;
 		m_PropertyRoot = PropertyRoot;
 	}
 
-	static JSObject* CreateAccessor( JSContext* cx, T* Owner, CStrW PropertyRoot )
+	static JSObject* CreateAccessor( JSContext* cx, T* Owner, const CStrW& PropertyRoot )
 	{
 		JSObject* Accessor = JS_NewObject( cx, &JSI_Class, NULL, NULL );
 		JS_SetPrivate( cx, Accessor, new CJSComplexPropertyAccessor( Owner, PropertyRoot ) );
@@ -508,8 +508,8 @@ public:
 	bool m_EngineOwned;
 
 	// JS Property access
-	bool GetProperty( JSContext* cx, CStrW PropertyName, jsval* vp );
-	void SetProperty( JSContext* cx, CStrW PropertyName, jsval* vp )
+	bool GetProperty( JSContext* cx, const CStrW& PropertyName, jsval* vp );
+	void SetProperty( JSContext* cx, const CStrW& PropertyName, jsval* vp )
 	{
 		if( !ReadOnly )
 		{
@@ -552,7 +552,7 @@ public:
 			}
 		}
 	}
-	void WatchNotify( JSContext* cx, CStrW PropertyName, jsval* newval )
+	void WatchNotify( JSContext* cx, const CStrW& PropertyName, jsval* newval )
 	{
 		if( m_Watches.empty() ) return;
 
@@ -898,7 +898,7 @@ public:
 			(*c)->Rebuild();
 	
 	}
-	IJSComplexProperty* HasProperty( CStrW PropertyName )
+	IJSComplexProperty* HasProperty( const CStrW& PropertyName )
 	{
 		PropertyTable::iterator it;
 		it = T::m_IntrinsicProperties.find( PropertyName );
@@ -929,7 +929,7 @@ public:
 		if( m_Parent )
 			m_Parent->FillEnumerateSet( it, PropertyRoot );
 	}
-	void AddProperty( CStrW PropertyName, jsval Value )
+	void AddProperty( const CStrW& PropertyName, jsval Value )
 	{
 		DeletePreviouslyAssignedProperty( PropertyName );
 		void* mem = jscomplexproperty_suballoc();
@@ -951,11 +951,11 @@ public:
 		}
 	}
 
-	void AddProperty( CStrW PropertyName, CStrW Value )
+	void AddProperty( const CStrW& PropertyName, const CStrW& Value )
 	{
 		AddProperty( PropertyName, JSParseString( Value ) );
 	}
-	static void AddClassProperty( CStrW PropertyName, GetFn Getter, SetFn Setter = NULL )
+	static void AddClassProperty( const CStrW& PropertyName, GetFn Getter, SetFn Setter = NULL )
 	{
 		T::m_IntrinsicProperties[PropertyName] = new CJSFunctionComplexProperty( Getter, Setter );
 	}
@@ -965,11 +965,11 @@ public:
 		JSFunctionSpec FnInfo = { Name, CNativeComplexFunction<T, ReadOnly, ReturnType, NativeFunction>::JSFunction, MinArgs, 0, 0 };
 		T::m_Methods.push_back( FnInfo );
 	}
-	template<typename PropType> static void AddClassProperty( CStrW PropertyName, PropType T::*Native, bool PropAllowInheritance = true, NotifyFn Update = NULL, NotifyFn Refresh = NULL )
+	template<typename PropType> static void AddClassProperty( const CStrW& PropertyName, PropType T::*Native, bool PropAllowInheritance = true, NotifyFn Update = NULL, NotifyFn Refresh = NULL )
 	{
 		T::m_IntrinsicProperties[PropertyName] = new CJSSharedProperty<PropType, ReadOnly>( (PropType IJSComplex::*)Native, PropAllowInheritance, Update, Refresh );
 	}
-	template<typename PropType> static void AddReadOnlyClassProperty( CStrW PropertyName, PropType T::*Native, bool PropAllowInheritance = true, NotifyFn Update = NULL, NotifyFn Refresh = NULL )
+	template<typename PropType> static void AddReadOnlyClassProperty( const CStrW& PropertyName, PropType T::*Native, bool PropAllowInheritance = true, NotifyFn Update = NULL, NotifyFn Refresh = NULL )
 	{
 		T::m_IntrinsicProperties[PropertyName] = new CJSSharedProperty<PropType, true>( (PropType IJSComplex::*)Native, PropAllowInheritance, Update, Refresh );
 	}
@@ -978,7 +978,7 @@ public:
 	// property not already exist; we check for this (in debug builds)
 	// and if so, warn and free the previously new-ed memory in
 	// m_Properties[PropertyName] (avoids mem leak).
-	void DeletePreviouslyAssignedProperty( CStrW PropertyName )
+	void DeletePreviouslyAssignedProperty( const CStrW& PropertyName )
 	{
 #ifdef NDEBUG
 		UNUSED2(PropertyName);
@@ -994,7 +994,7 @@ public:
 	}
 
 	// PropertyName must not already exist! (verified in debug build)
-	template<typename PropType> void AddProperty( CStrW PropertyName, PropType* Native, bool PropAllowInheritance = true, NotifyFn Update = NULL, NotifyFn Refresh = NULL )
+	template<typename PropType> void AddProperty( const CStrW& PropertyName, PropType* Native, bool PropAllowInheritance = true, NotifyFn Update = NULL, NotifyFn Refresh = NULL )
 	{
 		DeletePreviouslyAssignedProperty( PropertyName );
 		void* mem = jscomplexproperty_suballoc();
@@ -1003,7 +1003,7 @@ public:
 #include "lib/mmgr.h"
 	}
 	// PropertyName must not already exist! (verified in debug build)
-	template<typename PropType> void AddReadOnlyProperty( CStrW PropertyName, PropType* Native, bool PropAllowInheritance = true, NotifyFn Update = NULL, NotifyFn Refresh = NULL )
+	template<typename PropType> void AddReadOnlyProperty( const CStrW& PropertyName, PropType* Native, bool PropAllowInheritance = true, NotifyFn Update = NULL, NotifyFn Refresh = NULL )
 	{
 		DeletePreviouslyAssignedProperty( PropertyName );
 		void* mem = jscomplexproperty_suballoc();
@@ -1029,7 +1029,7 @@ template<typename T, bool ReadOnly> JSPropertySpec CJSComplex<T, ReadOnly>::JSI_
 template<typename T, bool ReadOnly> std::vector<JSFunctionSpec> CJSComplex<T, ReadOnly>::m_Methods;
 template<typename T, bool ReadOnly> typename CJSComplex<T, ReadOnly>::PropertyTable CJSComplex<T, ReadOnly>::m_IntrinsicProperties;
 
-template<typename T, bool ReadOnly> bool CJSComplex<T, ReadOnly>::GetProperty( JSContext* cx, CStrW PropertyName, jsval* vp )
+template<typename T, bool ReadOnly> bool CJSComplex<T, ReadOnly>::GetProperty( JSContext* cx, const CStrW& PropertyName, jsval* vp )
 {
 	IJSComplexProperty* Property = HasProperty( PropertyName );
 	if( Property && Property->m_Intrinsic )

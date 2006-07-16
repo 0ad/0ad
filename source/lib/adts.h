@@ -487,6 +487,7 @@ class MateiHashTbl
 		size_t hash = hashFunc(key);
 		//debug_assert(max_entries != 0);	// otherwise, mask will be incorrect
 		const uint mask = max_entries-1;
+		int stride = 1;	// for quadratic probing
 		for(;;)
 		{
 			Entry& e = tbl[hash & mask];
@@ -496,8 +497,9 @@ class MateiHashTbl
 			// keys are actually equal => found it
 			if(e.key == key)
 				return e;
-			// keep going (linear probing)
-			hash++;
+			// keep going (quadratic probing)
+			hash += stride;
+			stride++;
 		}
 	}
 
@@ -583,7 +585,7 @@ public:
 		// on a get for a nonexistent key, but hopefully that's not a problem)
 
 		// if more than 75% full, increase table size and find slot again
-		if(num_entries*4 >= max_entries*3)
+		if(num_entries*4 >= max_entries*2)
 		{
 			expand_tbl();
 			slot = &get_slot(key);	// find slot again since we expanded
