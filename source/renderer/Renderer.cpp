@@ -344,7 +344,7 @@ CRenderer::CRenderer()
 	m_Options.m_Shadows=true;
 	m_Options.m_RenderPath = RP_DEFAULT;
 
-	m_ShadowZBias = 0.01f;
+	m_ShadowZBias = 0.02f;
 
 	for (uint i=0;i<MaxTextureUnits;i++) {
 		m_ActiveTextures[i]=0;

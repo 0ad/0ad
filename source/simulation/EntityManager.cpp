@@ -75,7 +75,8 @@ void CEntityManager::deleteAll()
 	m_extant = true;
 }
 
-HEntity CEntityManager::create( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections )
+HEntity CEntityManager::create( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections,
+								CStrW building)
 {
 	debug_assert( base );
 	if( !base )
@@ -91,14 +92,14 @@ HEntity CEntityManager::create( CEntityTemplate* base, CVector3D position, float
 		}
 	}
 
-	m_entities[m_nextalloc].m_entity = new CEntity( base, position, orientation, actorSelections );
+	m_entities[m_nextalloc].m_entity = new CEntity( base, position, orientation, actorSelections, building );
 	if( m_collisionPatches)
 		m_entities[m_nextalloc].m_entity->updateCollisionPatch();
 	m_entities[m_nextalloc].m_entity->me = HEntity( m_nextalloc );
 	return( HEntity( m_nextalloc++ ) );
 }
 
-HEntity CEntityManager::create( CStrW templateName, CPlayer* player, CVector3D position, float orientation )
+HEntity CEntityManager::create( CStrW templateName, CPlayer* player, CVector3D position, float orientation, CStrW building )
 {
 	CEntityTemplate* base = g_EntityTemplateCollection.getTemplate( templateName, player );
 	debug_assert( base );
@@ -107,7 +108,7 @@ HEntity CEntityManager::create( CStrW templateName, CPlayer* player, CVector3D p
 
 	std::set<CStrW> selections;
 
-	return create( base, position, orientation, selections );
+	return create( base, position, orientation, selections, building );
 }
 
 HEntity CEntityManager::createFoundation( CStrW templateName, CPlayer* player, CVector3D position, float orientation )
@@ -123,7 +124,7 @@ HEntity CEntityManager::createFoundation( CStrW templateName, CPlayer* player, C
 		return create( base, position, orientation, selections );	// Entity has no foundation, so just create it
 
 	CEntityTemplate* foundation = g_EntityTemplateCollection.getTemplate( base->m_foundation );
-	return create( foundation, position, orientation, selections );
+	return create( foundation, position, orientation, selections, templateName );
 }
 
 HEntity* CEntityManager::getByHandle( u16 index )

@@ -56,10 +56,10 @@ public:
 	~CEntityManager();
 
 	HEntity create( CEntityTemplate* base, CVector3D position, float orientation, 
-		const std::set<CStrW>& actorSelections );
+		const std::set<CStrW>& actorSelections, CStrW building = L"" );
 
 	HEntity create( CStrW templateName, CPlayer* player, CVector3D position, 
-		float orientation );
+		float orientation, CStrW building = L"" );
 
 	HEntity createFoundation( CStrW templateName, CPlayer* player, CVector3D position, 
 		float orientation );
