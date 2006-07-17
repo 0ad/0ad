@@ -915,6 +915,7 @@ function damage( dmg, inflictor )
 								// Transmogrify him into his next rank.
 								inflictor.template = getEntityTemplate( inflictor.traits.promotion.newentity, inflictor.player );
 								
+								inflictor.traits.promotion.newentity = null;		// So that setupRank() can set it properly
 								inflictor.setupRank();
 								console.write("New promotion values: " + inflictor.traits.promotion.curr + " / " + inflictor.traits.promotion.req);
 							}
