@@ -24,6 +24,5 @@
 	<Event On="Idle" Function="entityEventIdle" />
 	<Event On="Movement" Function="entityEventMovement" />
 	<Event On="Death" Function="entityDestroyed" />
-
 	<Event On="Initialize" Function="entityInit" />
 </Entity>

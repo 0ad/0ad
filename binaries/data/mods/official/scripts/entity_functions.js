@@ -39,6 +39,7 @@ function entityInit()
     startXTimer(1);
 
 	// If the entity is a foundation, we must deduct resource costs here
+	console.write("Blah: " + this + " " + this.building);
 	if( this.building )
 	{
 		var template = getEntityTemplate( this.building, this.player );
@@ -46,6 +47,7 @@ function entityInit()
 
 		if (result == true) // If the entry meets requirements to be added to the queue (eg sufficient resources) 
 		{
+			console.write("There");
 			// Cycle through all costs of this entry.
 			var pool = template.traits.creation.resource;
 			for ( resource in pool )
@@ -77,14 +79,33 @@ function entityInit()
 	stopXTimer(1);
 	startXTimer(2);
 	
+	// Attach our functions to ourselves
+	this.performAttack = performAttack;
+	this.performAttackRanged = performAttackRanged;
+	this.performGather = performGather;
+	this.performHeal = performHeal;
+	this.performBuild = performBuild;
+	this.performRepair = performRepair;
+	this.damage = damage;
+	this.entityComplete = entityComplete;
+	this.GotoInRange = GotoInRange;
+	this.attachAuras = attachAuras;
+	this.setupRank = setupRank;
+	
+	// Some temp variables to speed up property access
+	var id = this.traits.id;
+	var supply = this.traits.supply;
+	var health = this.traits.health;
+	var stamina = this.traits.stamina;
+	
 	// If this is a foundation, initialize traits from the building we're converting into
 	if( this.building && this.building != "" )
 	{
 		var building = getEntityTemplate( this.building, this.player );
-		this.traits.id.generic = building.traits.id.generic;
-		this.traits.id.specific = building.traits.id.specific;
-		this.traits.id.civ = building.traits.id.civ;
-		this.traits.id.icon_cell = building.traits.id.icon_cell;
+		id.generic = building.traits.id.generic;
+		id.specific = building.traits.id.specific;
+		id.civ = building.traits.id.civ;
+		id.icon_cell = building.traits.id.icon_cell;
 		this.traits.health.max = building.traits.health.max;
 		this.build_points = new Object();
 		this.build_points.curr = 0.0;
@@ -92,15 +113,16 @@ function entityInit()
 	}
 	
 	// Generate civ code (1st four characters of civ name, in lower case eg "Carthaginians" => "cart").
-	if (this.traits.id && this.traits.id.civ)
+	if( !id.civ_code && id.civ )
 	{
-		this.traits.id.civ_code = this.traits.id.civ.toString().substring (0, 4);
-		this.traits.id.civ_code = this.traits.id.civ_code.toString().toLowerCase();
+		var civ_code = id.civ.toString().substring (0, 4);
+		civ_code = civ_code.toString().toLowerCase();
 
-		// Exception to make the Romans into rome.
-		if (this.traits.id.civ_code == "roma") this.traits.id.civ_code = "rome";
-		// Exception to make the Hellenes into hele.
-		if (this.traits.id.civ_code == "hell") this.traits.id.civ_code = "hele";
+		// Exception to make the Romans into rome and Hellenes into hele.
+		if (civ_code == "roma") civ_code = "rome";
+		else if (civ_code == "hell") civ_code = "hele";
+		
+		id.civ_code = civ_code;
 	}
 
 	// If entity can contain garrisoned units, empty it.
@@ -108,43 +130,41 @@ function entityInit()
 		this.traits.garrison.curr = 0;
 
 	// If entity has health, set current to same, unless it's a foundation, in which case we set it to 0.
-	if ( this.traits.health && this.traits.health.max  )
-		this.traits.health.curr = ( this.building!="" ? 0.0 : this.traits.health.max );
+	if ( health && health.max  )
+		health.curr = ( this.building!="" ? 0.0 : health.max );
 
 	// If entity has stamina, set current to same.
-	if ( this.traits.stamina && this.traits.stamina.max )
-		this.traits.stamina.curr = this.traits.stamina.max
+	if ( stamina && stamina.max )
+		stamina.curr = stamina.max
 
     stopXTimer(2);
     startXTimer(3);
 
-	if (this.traits.supply)
+	if( supply )
 	{
 		// If entity has supply, set current to same.
-		if (this.traits.supply.max)
-			this.traits.supply.curr = this.traits.supply.max;
+		supply.curr = supply.max;
 
 		// If entity has type of supply and no subtype, set subtype to same
 		// (so we don't have to say type="wood", subtype="wood"
-		if (this.traits.supply.type && !this.traits.supply.subtype)
-			this.traits.supply.subtype = this.traits.supply.type;
+		if (supply.type && !supply.subtype)
+			supply.subtype = supply.type;
 			
-		// The "dropsitecount" array holds the number of units with gather aura in range of the object;
+		// The "dropsite_count" array holds the number of units with gather aura in range of the object;
 		// this is important so that if you have two mills near something and one of them is destroyed,
 		// you can still gather from the thing. Initialize it to 0 (ungatherable) for every player unless
 		// the entity is forageable (e.g. for huntable animals).
-		this.traits.supply.dropsitecount = new Array();
-		initialCount = this.traits.supply.subtype.meat ? 1 : 0;
+		var dropsite_count = new Array();
+		initialCount = supply.subtype.meat ? 1 : 0;
 		for( i=0; i<=8; i++ )
 		{
-			this.traits.supply.dropsitecount[i] = initialCount;
+			dropsite_count[i] = initialCount;
 		}
+		supply.dropsite_count = dropsite_count;
 	}
 
 	if (!this.traits.promotion)
 		this.traits.promotion = new Object();
-		
-	this.setupRank = setupRank;
 		
 	// If entity becomes another entity after it gains enough experience points, set up secondary attributes.
 	if (this.traits.promotion.req)
@@ -201,29 +221,11 @@ function entityInit()
 			this.setActionParams( ACTION_REPAIR, 0.0, 2.0, this.actions.repair.speed, "build" );
 		}
 	}
-	
-	// Attach functions to ourselves
-	
-	this.performAttack = performAttack;
-	this.performAttackRanged = performAttackRanged;
-	this.performGather = performGather;
-	this.performHeal = performHeal;
-	this.performBuild = performBuild;
-	this.performRepair = performRepair;
-	this.damage = damage;
-	this.entityComplete = entityComplete;
-	this.GotoInRange = GotoInRange;
-	this.attachAuras = attachAuras;
 
     stopXTimer(4);
     startXTimer(5);
 
 	this.attachAuras();
-	
-	if ( !this.traits.id )
-	{
-		this.traits.id = new Object();
-	}
 	
 	// If the entity either costs population or adds to it,
 	if (this.traits.population)
@@ -236,7 +238,7 @@ function entityInit()
 			this.player.resources.population += parseInt(this.traits.population.rem);
 	}
 	
-	// Build Unit AI Stance list, and set default stance.
+	// Build Unit AI Stance list, and set default stance.  ---> Can eventually be done in C++, since stances will likely be implemented in C++.
 	if (this.actions && this.actions.move)
 	{
 		if ( !this.traits.ai )
@@ -309,70 +311,59 @@ function entityInitQuasi()
 
     startXTimer(6);
 
-	var s = this.traits.supply;
-	if (s)
+	var supply = this.traits.supply;
+	if( supply )
 	{
 		// If entity has supply, set current to same.
-		s.curr = s.max;
+		supply.curr = supply.max;
 
 		// If entity has type of supply and no subtype, set subtype to same
 		// (so we don't have to say type="wood", subtype="wood"
-		if (s.type && !s.subtype)
-			s.subtype = s.type;
+		if (supply.type && !supply.subtype)
+			supply.subtype = supply.type;
 			
-		// The "dropsitecount" array holds the number of units with gather aura in range of the object;
+		// The "dropsite_count" array holds the number of units with gather aura in range of the object;
 		// this is important so that if you have two mills near something and one of them is destroyed,
 		// you can still gather from the thing. Initialize it to 0 (ungatherable) for every player unless
 		// the entity is forageable (e.g. for huntable animals).
-		var ar = new Array();
-		initialCount = s.subtype.meat ? 1 : 0;
+		var dropsite_count = new Array();
+		initialCount = supply.subtype.meat ? 1 : 0;
 		for( i=0; i<=8; i++ )
 		{
-			ar[i] = initialCount;
+			dropsite_count[i] = initialCount;
 		}
-		s.dropsitecount = ar;
+		supply.dropsite_count = dropsite_count;
 	}
 	
 	stopXTimer(6);
 	startXTimer(7);
 	
 	// Generate civ code (1st four characters of civ name, in lower case eg "Carthaginians" => "cart").
-	var id = this.traits.id; 
-	if (id && id.civ)
+	var id = this.traits.id;
+	if( !id.civ_code && id.civ )
 	{
-		var civCode = id.civ.toString().substring (0, 4);
-		civCode = civCode.toString().toLowerCase();
+		var civ_code = id.civ.toString().substring (0, 4);
+		civ_code = civ_code.toString().toLowerCase();
 
-		// Exception to make the Romans into rome.
-		if (civCode == "roma") civCode = "rome";
-		// Exception to make the Hellenes into hele.
-		if (civCode == "hell") civCode = "hele";
+		// Exception to make the Romans into rome and Hellenes into hele.
+		if (civ_code == "roma") civ_code = "rome";
+		else if (civ_code == "hell") civ_code = "hele";
 		
-		id.civ_code = civCode;
+		id.civ_code = civ_code;
 	}
 	
 	stopXTimer(7);
-	startXTimer(8);
 	
-	if(!id)
-	{
-		this.traits.id = new Object();
-	}
-	
-	if(!this.traits.promotion)
-	{
-		this.traits.promotion = new Object();
-	}
-	
-	stopXTimer(8);
+	// Profiling code for comparing performance of pure JavaScript objects vs. CJSComplex.
+	// This should be removed when we're done optimizing entity init.
 	
 	var ob = new Object();
 	ob.traits = new Object();
 	
-	for(var i=0; i<100; i++) {
+	for(var i=0; i<10; i++) {
 		ob["temp"+i] = "blah";
 	}
-	for(var i=0; i<100; i++) {
+	for(var i=0; i<10; i++) {
 		ob.traits["temp"+i] = "blah";
 	}
 	
@@ -382,7 +373,7 @@ function entityInitQuasi()
 	startXTimer(9);
 	
 	// ~100 MS with ob = new Object() as above, ~400 MS with ob = this
-	if (ob.traits.id && ob.traits.id.civ)
+	if( ob.traits.id && ob.traits.id.civ )
 	{
 	    var id = ob.traits.id; 
 		id.civ_code = id.civ.toString().substring (0, 4);
@@ -404,34 +395,37 @@ function setupRank()
 {
 	// Get the name of the entity. 
 	entityName = this.tag.toString();
+	
+	// For accessing the this.traits.promotion object quicker
+	var promotion = this.traits.promotion;
 
 	// Determine whether current is basic, advanced or elite, and set rank to suit.
 	switch (entityName.substring (entityName.length-2, entityName.length))
 	{
 		case "_b":
 			// Basic. Upgrades to Advanced.
-			this.traits.promotion.rank = "1";
+			promotion.rank = "1";
 			nextSuffix = "_a";
 			// Set rank image to put over entity's head.
 			this.traits.rank.name = "";
 		break;
 		case "_a":
 			// Advanced. Upgrades to Elite.
-			this.traits.promotion.rank = "2";
+			promotion.rank = "2";
 			nextSuffix = "_e";
 			// Set rank image to put over entity's head.
 			this.traits.rank.name = "advanced.dds";				
 		break;
 		case "_e":
 			// Elite. Maximum rank.
-			this.traits.promotion.rank = "3";
+			promotion.rank = "3";
 			nextSuffix = "";
 			// Set rank image to put over entity's head.
 			this.traits.rank.name = "elite.dds";				
 		break;
 		default:
 			// Does not gain promotions.
-			this.traits.promotion.rank = "0"
+			promotion.rank = "0"
 			nextSuffix = ""
 		break;
 	}
@@ -439,13 +433,13 @@ function setupRank()
 	// If entity is an additional rank and the correct actor has not been specified
 	// (it's just inherited the Basic), point it to the correct suffix. (Saves us specifying it each time.)
 	actorStr = this.actor.toString();
-	if (this.traits.promotion.rank > "1"
+	if (promotion.rank > "1"
 		&& actorStr.substring (actorStr.length-5, actorStr.length) != nextSuffix + ".xml")
 		this.actor = actorStr.substring (1,actorStr.length-5) + nextSuffix + ".xml";
 		
 	// The entity it should become (unless specified otherwise) is the base entity plus promotion suffix.
-	if (!this.traits.promotion.newentity && nextSuffix != "" && this.traits.promotion.rank != "0")
-		this.traits.promotion.newentity = entityName.substring (0, entityName.length-2) + nextSuffix;
+	if (!promotion.newentity && nextSuffix != "" && promotion.rank != "0")
+		promotion.newentity = entityName.substring (0, entityName.length-2) + nextSuffix;
 }
 
 // ====================================================================
@@ -669,7 +663,7 @@ function performGather( evt )
 	g = this.actions.gather;
 	s = evt.target.traits.supply;
 	
-	if( !s.dropsitecount[this.player.id] )
+	if( !s.dropsite_count[this.player.id] )
 	{
 		// Entity has become ungatherable for us, probably meaning our mill near it was killed; cancel order
 		evt.preventDefault();
@@ -903,6 +897,7 @@ function damage( dmg, inflictor )
 								inflictor.template = getEntityTemplate( inflictor.traits.promotion.newentity, inflictor.player );
 								
 								inflictor.setupRank();
+								console.write("New promotion values: " + inflictor.traits.promotion.curr + " / " + inflictor.traits.promotion.req);
 							}
 						}
 						break;
@@ -1603,8 +1598,8 @@ function checkEntityReqs( player, template )
 					// Return an error.
 					return ("Insufficient " + resource + "; " + (req-cur) + " more required."); 
 				}
-				else
-					console.write("Player has at least " + req + " " + resource + ".");
+				//else
+				//	console.write("Player has at least " + req + " " + resource + ".");
 			break;
 		}
 	}
@@ -1646,7 +1641,7 @@ function canGather( source, target )
 	return ( g && s && g.resource && g.resource[s.type] &&
 		( s.subtype==s.type || g.resource[s.type][s.subtype] ) &&
 		( s.curr > 0 || s.max == 0 ) && 
-		s.dropsitecount[source.player.id] );
+		s.dropsite_count[source.player.id] );
 }
 
 // ====================================================================
@@ -1746,7 +1741,7 @@ function DropsiteAura( source, types )
 		if( this.affects( e ) ) 
 		{
 			//console.write( "Dropsite aura: adding +1 for " + this.source.player.id + " on " + e );
-			e.traits.supply.dropsitecount[this.source.player.id]++;
+			e.traits.supply.dropsite_count[this.source.player.id]++;
 		}
 	};
 	
@@ -1755,7 +1750,7 @@ function DropsiteAura( source, types )
 		if( this.affects( e ) ) 
 		{
 			//console.write( "Dropsite aura: adding -1 for " + this.source.player.id + " on " + e );
-			e.traits.supply.dropsitecount[this.source.player.id]--;
+			e.traits.supply.dropsite_count[this.source.player.id]--;
 		}
 	};
 }

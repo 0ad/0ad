@@ -69,7 +69,8 @@ function addArrayElement(Array)
 
 function toTitleCase (string)
 {
-	if (!string) console.write ("toTileCase(): String " + string + " has no properties.");
+	if (!string)
+		return string;
 
 	// Returns the title-case version of a given string.
 	string = string.toString();

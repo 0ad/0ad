@@ -84,7 +84,7 @@ textCaption += '[font=verdana10][color="' + Math.round(selection[0].player.getCo
 		var rankObject = getGUIObjectByName ("snStatusPaneRank");
 
 		// Don't show a rank icon for Basic or unranked units.
-		if (selection[0].traits.promotion.rank > 1)
+		if (selection[0].traits.promotion && selection[0].traits.promotion.rank > 1)
 		{
 			rankObject.cell_id = selection[0].traits.promotion.rank-2;
 			rankObject.tooltip = "Next Promotion: " + selection[0].traits.promotion.curr + "/" + selection[0].traits.promotion.req;
