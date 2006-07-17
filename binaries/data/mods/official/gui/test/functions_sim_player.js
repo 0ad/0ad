@@ -14,7 +14,6 @@ function createResourceCounters()
 	addResourceCounter(2, "stone");
 	addResourceCounter(3, "ore");
 	addResourceCounter(4, "population");
-	addResourceCounter(5, "housing");
 }
 
 // ====================================================================
@@ -44,19 +43,40 @@ function addResourceCounter (index, resourceName)
 
 // ====================================================================
 
+// HACK: Keep track of old resource values so we only update resource counters as necessary.
+// We should really find a *much* faster way to render those counters, since resource values are bound to change quite quickly in a real game.
+var oldResources = new Object();
+
 function refreshResources ()
 {
 	// Refreshes all resource counters after update.
 
 	var resourcePool = localPlayer.resources;
-	var resourceCount = 0;
+	
+	var shouldRefresh = false;
 	for (var currResource in resourcePool) 
 	{
-		if(currResource != "housing")
+		if( oldResources[currResource] != localPlayer.resources[currResource] )
 		{
-			// Pass the array index of the resource as the second parameter (as we'll need that to determine the centered screen position of each counter).
-			refreshResource (toTitleCase(currResource), resourceUIArray[resourceCount]);
-			resourceCount++;
+			oldResources[currResource] = localPlayer.resources[currResource].valueOf();
+			shouldRefresh = true;
+		}
+	}
+	
+	if( shouldRefresh )
+	{
+		for( var i=0; i<2; i++ )	// 2 refreshes seem to be necessary for proper alignment
+		{
+			var resourceCount = 0;
+			for (var currResource in resourcePool) 
+			{
+				if(currResource != "housing")
+				{
+					// Pass the array index of the resource as the second parameter (as we'll need that to determine the centered screen position of each counter).
+					refreshResource (toTitleCase(currResource), resourceUIArray[resourceCount]);
+					resourceCount++;
+				}
+			}
 		}
 	}
 }
