@@ -33,14 +33,14 @@ public:
 	typedef void (IJSObject::*SetFn)( JSContext* cx, jsval value );
 
 	// Return a pointer to a property, if it exists
-	virtual IJSProperty* HasProperty( CStrW PropertyName ) = 0;
+	virtual IJSProperty* HasProperty( const CStrW& PropertyName ) = 0;
 
 	// Retrieve the value of a property (returning false if that property is not defined)
-	virtual bool GetProperty( JSContext* cx, CStrW PropertyName, jsval* vp ) = 0;
+	virtual bool GetProperty( JSContext* cx, const CStrW& PropertyName, jsval* vp ) = 0;
 	
 	// Add a property (with immediate value)
-	virtual void AddProperty( CStrW PropertyName, jsval Value ) = 0;
-	virtual void AddProperty( CStrW PropertyName, CStrW Value ) = 0;
+	virtual void AddProperty( const CStrW& PropertyName, jsval Value ) = 0;
+	virtual void AddProperty( const CStrW& PropertyName, CStrW Value ) = 0;
 	
 	inline IJSObject() {}
 };
@@ -224,7 +224,7 @@ public:
 	}
 
 	// JS Property access
-	bool GetProperty( JSContext* cx, CStrW PropertyName, jsval* vp )
+	bool GetProperty( JSContext* cx, const CStrW& PropertyName, jsval* vp )
 	{
 		IJSProperty* Property = HasProperty( PropertyName );
 		if( Property )
@@ -232,7 +232,7 @@ public:
 
 		return( true );
 	}
-	void SetProperty( JSContext* cx, CStrW PropertyName, jsval* vp )
+	void SetProperty( JSContext* cx, const CStrW& PropertyName, jsval* vp )
 	{
 		if( !ReadOnly )
 		{
@@ -251,7 +251,7 @@ public:
 		}
 	}
 
-	IJSProperty* HasProperty( CStrW PropertyName )
+	IJSProperty* HasProperty( const CStrW& PropertyName )
 	{
 		PropertyTable::iterator it;
 
@@ -275,17 +275,17 @@ public:
 		return( NULL );
 	}
 
-	void AddProperty( CStrW PropertyName, jsval Value )
+	void AddProperty( const CStrW& PropertyName, jsval Value )
 	{
 		debug_assert( !HasProperty( PropertyName ) );
 		CJSValProperty* newProp = new CJSValProperty( Value ); 
 		m_ScriptProperties[PropertyName] = newProp;
 	}
-	void AddProperty( CStrW PropertyName, CStrW Value )
+	void AddProperty( const CStrW& PropertyName, CStrW Value )
 	{
 		AddProperty( PropertyName, JSParseString( Value ) );
 	}
-	static void AddProperty( CStrW PropertyName, TGetFn Getter, TSetFn Setter = NULL )
+	static void AddProperty( const CStrW& PropertyName, TGetFn Getter, TSetFn Setter = NULL )
 	{
 		m_NativeProperties[PropertyName] = new CJSFunctionProperty( (GetFn)Getter, (SetFn)Setter );
 	}
@@ -295,7 +295,7 @@ public:
 		JSFunctionSpec FnInfo = { Name, CNativeFunction<T, ReadOnly, ReturnType, NativeFunction>::JSFunction, (uint8)MinArgs, 0, 0 };
 		m_Methods.push_back( FnInfo );
 	}
-	template<typename PropType> static void AddProperty( CStrW PropertyName, PropType T::*Native, bool PropReadOnly = ReadOnly )
+	template<typename PropType> static void AddProperty( const CStrW& PropertyName, PropType T::*Native, bool PropReadOnly = ReadOnly )
 	{
 		IJSProperty* prop;
 		if( PropReadOnly )
@@ -309,7 +309,7 @@ public:
 		m_NativeProperties[PropertyName] = prop;
 	}
 #ifdef ALLOW_NONSHARED_NATIVES
-	template<typename PropType> void AddLocalProperty( CStrW PropertyName, PropType* Native, bool PropReadOnly = ReadOnly )
+	template<typename PropType> void AddLocalProperty( const CStrW& PropertyName, PropType* Native, bool PropReadOnly = ReadOnly )
 	{
 		IJSProperty* prop;
 		if( PropReadOnly )

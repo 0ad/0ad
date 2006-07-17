@@ -6,17 +6,15 @@
 //
 // General note: Template, Base Entity, and Entity Class are used more-or-less interchangably.
 // 
-// Usage: g_EntityTemplateCollection.loadTemplates(): initializes the lists from entities/templates
-//        After that, you can:
-//			Find an entity class by the actor it uses: g_EntityTemplateCollection.getTemplateByActor()
-//				Note that this is included solely for loading ScnEd 4,5 and 6 format map files. Don't rely on this
-//				working all the time.
-//	        Find an entity class by its name: g_EntityTemplateCollection.getTemplate()
-//		  g_EntityManager will also use this class to lookup entity templates when you instantiate an entity with 
-//			a class name string.
+// Usage: g_EntityTemplateCollection.loadTemplates(): loads all templates
+//        g_EntityTemplateCollection.getTemplate(name): get a template by name
+//
+// EntityTemplateCollection will look at all subdirectiroes of entities/, but each template's
+// name will only be its filename; thus, no two templates should have the same filename,
+// but subdirectories can be created in entities/ to organize the files nicely.
 
-#ifndef BASEENT_COLLECTION_INCLUDED
-#define BASEENT_COLLECTION_INCLUDED
+#ifndef ENTITY_TEMPLATE_COLLECTION_INCLUDED
+#define ENTITY_TEMPLATE_COLLECTION_INCLUDED
 
 #include <vector>
 #include <map>

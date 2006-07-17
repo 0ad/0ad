@@ -56,12 +56,12 @@ CEntityTemplate* CEntityTemplateCollection::getTemplate( CStrW name, CPlayer* pl
 	CEntityTemplate* newTemplate = new CEntityTemplate( player );
 	if( !newTemplate->loadXML( path ) )
 	{
-		LOG(ERROR, LOG_CATEGORY, "CEntityTemplateCollection::loadTemplates(): Couldn't load template \"%s\"", path.c_str());
+		LOG(ERROR, LOG_CATEGORY, "CEntityTemplateCollection::getTemplate(): Couldn't load template \"%s\"", path.c_str());
 		delete newTemplate;
 		return( NULL );
 	}
 
-	LOG(NORMAL, LOG_CATEGORY, "CEntityTemplateCollection::loadTemplates(): Loaded template \"%s\"", path.c_str());
+	LOG(NORMAL, LOG_CATEGORY, "CEntityTemplateCollection::getTemplate(): Loaded template \"%s\"", path.c_str());
 	m_templates[id][name] = newTemplate;
 
 	return newTemplate;

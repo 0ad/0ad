@@ -1160,7 +1160,7 @@ void CEntity::drawBar( CVector3D& centre, CVector3D& up, CVector3D& right,
 	if(maxVal == 0) fraction = 1.0f;
 	else fraction = clamp( currVal / maxVal, 0.0f, 1.0f );
 
-	// Draw the border at full size
+	/*// Draw the border at full size
 	ogl_tex_bind( g_Selection.m_unitUITextures[m_base->m_barBorder] );
 	drawRect( centre, up, right, x1, y1, x2, y2 );
 	ogl_tex_bind( 0 );
@@ -1169,7 +1169,7 @@ void CEntity::drawBar( CVector3D& centre, CVector3D& up, CVector3D& right,
 	x1 += m_base->m_barBorderSize;
 	y1 += m_base->m_barBorderSize;
 	x2 -= m_base->m_barBorderSize;
-	y2 -= m_base->m_barBorderSize;
+	y2 -= m_base->m_barBorderSize;*/
 	
 	// Draw the bar contents
 	float xMid = x2 * fraction + x1 * (1.0f - fraction);
@@ -1200,13 +1200,19 @@ void CEntity::renderBars()
 
 	bool hasStamina = (m_staminaMax > 0);
 
-	float off = hasStamina ? (h/2 - borderSize/2) : 0;
+	float backgroundW = w+2*borderSize;
+	float backgroundH = hasStamina ? 2*h+2*borderSize : h+2*borderSize;
+	ogl_tex_bind( g_Selection.m_unitUITextures[m_base->m_barBorder] );
+	drawRect( centre, up, right, -backgroundW/2, -backgroundH/2, backgroundW/2, backgroundH/2 );
+	ogl_tex_bind( 0 );
+
+	float off = hasStamina ? h/2 : 0;
 	drawBar( centre, up, right, -w/2, off-h/2, w/2, off+h/2, 
 			SColour(0,1,0), SColour(1,0,0), m_healthCurr, m_healthMax );
 
 	if( hasStamina ) 
 	{
-		drawBar( centre, up, right, -w/2, borderSize/2-h, w/2, borderSize/2, 
+		drawBar( centre, up, right, -w/2, -h, w/2, 0, 
 				SColour(0,0,1), SColour(0.4f,0.4f,0.1f), m_staminaCurr, m_staminaMax );
 	}
 
@@ -1215,9 +1221,9 @@ void CEntity::renderBars()
 	std::map<CStr, Handle>::iterator it = g_Selection.m_unitUITextures.find( m_rankName );
 	if( it != g_Selection.m_unitUITextures.end() )
 	{
-		float size = hasStamina ? (2*h - 3*borderSize) : h;
+		float size = 2*h + borderSize;
 		ogl_tex_bind( it->second );
-		drawRect( centre, up, right, w/2, -size/2, w/2+size, size/2 );
+		drawRect( centre, up, right, w/2+borderSize, -size/2, w/2+borderSize+size, size/2 );
 		ogl_tex_bind( 0 );
 	}
 }
