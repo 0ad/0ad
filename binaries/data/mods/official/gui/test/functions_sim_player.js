@@ -14,6 +14,12 @@ function createResourceCounters()
 	addResourceCounter(2, "stone");
 	addResourceCounter(3, "ore");
 	addResourceCounter(4, "population");
+	
+	refreshResource("Food", 0);
+	refreshResource("Wood", 1);
+	refreshResource("Stone", 2);
+	refreshResource("Ore", 3);
+	refreshResource("Population", 4);
 }
 
 // ====================================================================
