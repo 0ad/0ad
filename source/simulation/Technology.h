@@ -26,7 +26,7 @@ class CTechnology : public CJSObject<CTechnology>
 	static STL_HASH_SET<CStr, CStr_hash_compare> m_scriptsLoaded;
 
 public:
-	CTechnology();
+	CTechnology(CPlayer* player);
 	~CTechnology() {} 
 	
 	//JS functions
@@ -41,8 +41,7 @@ public:
 	bool isTechValid();
 	inline bool isResearched() { return m_researched; }
 
-	void setPlayer( CPlayer* player ) { m_player=player; }
-	void setExclusion( PS_uint player, bool exclude ) { m_excluded[player]=exclude; }
+	void setExclusion( bool exclude ) { m_excluded=exclude; }
 
 	bool loadXML( CStr filename );
 	bool loadELID( XMBElement ID, CXeromyces& XeroFile );
@@ -76,7 +75,7 @@ private:
 	
 	bool m_JSFirst;	//Should JS effect function run before C++
 
-	static bool m_excluded[PS_MAX_PLAYERS+1];	//Gaia is not counted in max_players
+	bool m_excluded;
 	bool m_researched;
 
 	bool hasReqEntities();

@@ -521,7 +521,8 @@ public:
 				WatchNotify( cx, PropertyName, vp );
 				prop->Set( cx, this, *vp );
 				
-				prop->m_Inherited = false;
+				if(!prop->m_Intrinsic)
+					prop->m_Inherited = false;
 
 				// If it's a C++ property, reflect this change in objects that inherit this.
 				if( prop->m_AllowsInheritance && prop->m_Intrinsic )

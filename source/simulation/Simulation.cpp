@@ -27,6 +27,7 @@
 #include "simulation/Entity.h"
 #include "simulation/LOSManager.h"
 #include "simulation/TerritoryManager.h"
+#include "simulation/EntityTemplateCollection.h"
 
 #include "gui/CGUI.h"
 

@@ -345,12 +345,25 @@ JSBool isFormationLocked( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval
 
 JSBool getTechnology( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_MIN_PARAMS(1, getTechnology);
+	REQUIRE_MIN_PARAMS(2, getTechnology);
 	
-	CStrW name = ToPrimitive<CStrW>( argv[0] );
+	CStrW name;
+	CPlayer* player;
+	
+	try
+	{
+		name = g_ScriptingHost.ValueToUCString( argv[0] );
+		player = ToNative<CPlayer>( argv[1] );
+	}
+	catch( PSERROR_Scripting_ConversionFailed )
+	{
+		JS_ReportError( cx, "Invalid parameters for getTechnology (expected name and player)" );
+		return( JS_TRUE );
+	}
+
 	*rval = JSVAL_NULL;
 
-	CTechnology* tech = g_TechnologyCollection.getTechnology( name );	
+	CTechnology* tech = g_TechnologyCollection.getTechnology( name, player );	
 	if ( tech )
 		*rval = ToJSVal( tech );
 	else

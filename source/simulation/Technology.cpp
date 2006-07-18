@@ -7,22 +7,21 @@
 #include "scripting/ScriptingHost.h"
 #include "ps/XML/Xeromyces.h"
 #include "ps/XML/XeroXMB.h"
-#include "EntityTemplate.h"
 #include "Entity.h"
+#include "EntityTemplate.h"
+#include "EntityTemplateCollection.h"
 #include "ps/Player.h"
 
 #define LOG_CATEGORY "Techs"
 
 STL_HASH_SET<CStr, CStr_hash_compare> CTechnology::m_scriptsLoaded;
-bool CTechnology::m_excluded[PS_MAX_PLAYERS+1];
 
-CTechnology::CTechnology() 
+CTechnology::CTechnology( CPlayer* player ) : m_player(player)
 {
 	ONCE( ScriptingInit(); );
 
 	m_researched=false;
-	for ( PS_uint i=0; i<PS_MAX_PLAYERS; ++i )
-		m_excluded[i] = false;
+	m_excluded = false;
 	m_JSFirst = false;
 } 
 bool CTechnology::loadXML( CStr filename )
@@ -303,7 +302,7 @@ bool CTechnology::isTechValid()
 {
 	if ( !m_player )
 		return false;
-	if ( m_excluded[m_player->GetPlayerID()])
+	if ( m_excluded )
 		return false;
 	if ( hasReqEntities() && hasReqTechs() )
 		return true;
@@ -332,7 +331,7 @@ bool CTechnology::hasReqTechs()
 	bool ret=true;
 	for ( std::vector<CStr>::iterator it=m_ReqTechs.begin(); it != m_ReqTechs.end(); it++ )
 	{
-		if ( !g_TechnologyCollection.getTechnology( (CStrW)*it )->isResearched() )
+		if ( !g_TechnologyCollection.getTechnology( (CStrW)*it, m_player )->isResearched() )
 		{	
 			ret=false;
 			break;
@@ -357,7 +356,7 @@ void CTechnology::ScriptingInit()
 	AddProperty<float>(L"stone", &CTechnology::m_ReqStone);
 	AddProperty<float>(L"ore", &CTechnology::m_ReqOre);
 
-	AddMethod<jsval, &CTechnology::ApplyEffects>( "applyEffects", 1 );
+	AddMethod<jsval, &CTechnology::ApplyEffects>( "applyEffects", 2 );
 	AddMethod<jsval, &CTechnology::IsExcluded>( "isExcluded", 0 );
 	AddMethod<jsval, &CTechnology::IsValid>( "isValid", 0 );
 	AddMethod<jsval, &CTechnology::IsResearched>( "isResearched", 0 );
@@ -371,47 +370,30 @@ void CTechnology::ScriptingInit()
 
 jsval CTechnology::ApplyEffects( JSContext* cx, uintN argc, jsval* argv )
 {
-	if ( argc < 3 )
+	if ( argc < 2 )
 	{
 		JS_ReportError(cx, "too few parameters for CTechnology::ApplyEffects.");
-		return JS_FALSE;
-	}
-	m_player = g_Game->GetPlayer( ToPrimitive<PS_uint>( argv[0] ) );
-	if( !m_player ) 
-	{
-		JS_ReportError(cx, "invalid player number for CTechnology::ApplyEffects.");
 		return JS_FALSE;
 	}
 	if ( !isTechValid() )
 		return JS_FALSE;
 
-	bool first = ToPrimitive<bool>( argv[1] );
-	bool invert = ToPrimitive<bool>( argv[2] );
-
-	//Optional type overriding if some in some special case the script wants to modify non-floats
-	CStr varType("float");
-	if ( argc == 4 )
-		varType = ToPrimitive<CStr>( argv[3] );
+	bool first = ToPrimitive<bool>( argv[0] );
+	bool invert = ToPrimitive<bool>( argv[1] );
 
 	if ( first )
 	{
 		m_effectFunction.Run( this->GetScript() );
 	}
 
-	//Disable other templates
+	// Disable any paired techs
 	for ( std::vector<CStr>::iterator it=m_Pairs.begin(); it != m_Pairs.end(); it++ )
-		g_TechnologyCollection.getTechnology(*it)->setExclusion(m_player->GetPlayerID(), true);
-	setExclusion(m_player->GetPlayerID(), true);
+		g_TechnologyCollection.getTechnology(*it, m_player)->setExclusion(true);
+	setExclusion(true);
 
+	// Get the entities that should be affected
 	std::vector<HEntity>* entities = m_player->GetControlledEntities();
-	if ( entities->empty() )
-	{
-		delete entities;
-		return JS_FALSE;
-	}
-	
 	std::vector<HEntity> entitiesAffected;
-	//Find which entities should be affected
 	for ( size_t i=0; i<entities->size(); ++i )
 	{
 		for ( std::vector<CStr>::iterator it = m_Targets.begin(); it != m_Targets.end(); it++ )
@@ -423,15 +405,17 @@ jsval CTechnology::ApplyEffects( JSContext* cx, uintN argc, jsval* argv )
 			}
 		}
 	}
+	delete entities;
 
-	std::vector<HEntity>::iterator HEit = entitiesAffected.begin();
-	for ( ; HEit != entitiesAffected.end(); HEit++ )
+	std::vector<HEntity>::iterator entIt;
+
+	for ( std::vector<Modifier>::iterator mod=m_Modifiers.begin(); mod!=m_Modifiers.end(); mod++ )
 	{
-		for ( std::vector<Modifier>::iterator mod=m_Modifiers.begin(); mod!=m_Modifiers.end(); mod++ )
-		{
-			CEntity* ent = *HEit;
-			float modValue = (invert ? -mod->value : mod->value);
+		float modValue = (invert ? -mod->value : mod->value);
 
+		for ( entIt = entitiesAffected.begin(); entIt != entitiesAffected.end(); entIt++ )
+		{
+			CEntity* ent = *entIt;
 			jsval oldVal;
 			if( ent->GetProperty( g_ScriptingHost.getContext(), mod->attribute, &oldVal ) )
 			{
@@ -443,11 +427,11 @@ jsval CTechnology::ApplyEffects( JSContext* cx, uintN argc, jsval* argv )
 
 	if( !invert )		// can't invert Set effects, so just ignore them if invert is true
 	{
-		for ( HEit = entitiesAffected.begin(); HEit != entitiesAffected.end(); HEit++ )
+		for ( std::vector<Modifier>::iterator mod=m_Sets.begin(); mod!=m_Sets.end(); mod++ )
 		{
-			for ( std::vector<Modifier>::iterator mod=m_Sets.begin(); mod!=m_Sets.end(); mod++ )
+			for ( entIt = entitiesAffected.begin(); entIt != entitiesAffected.end(); entIt++ )
 			{
-				CEntity* ent = *HEit;
+				CEntity* ent = *entIt;
 				jsval newVal = ToJSVal( mod->value );
 				ent->SetProperty( g_ScriptingHost.GetContext(), mod->attribute, &newVal );
 			}
@@ -458,7 +442,6 @@ jsval CTechnology::ApplyEffects( JSContext* cx, uintN argc, jsval* argv )
 	{
 		m_effectFunction.Run( this->GetScript() );
 	}
-	delete entities;
 	return JS_TRUE;
 }
 
@@ -471,7 +454,7 @@ jsval CTechnology::IsValid( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UN
 
 jsval CTechnology::IsExcluded( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-	if ( m_excluded[m_player->GetPlayerID()] )
+	if ( m_excluded )
 		return JS_TRUE;
 	return JS_FALSE;
 }

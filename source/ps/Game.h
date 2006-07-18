@@ -14,7 +14,7 @@ class CGameAttributes;
 
 // Default player limit (not counting the Gaia player)
 // This may be overridden by system.cfg ("max_players")
-#define PS_MAX_PLAYERS 6
+#define PS_MAX_PLAYERS 8
 
 class CGame
 {

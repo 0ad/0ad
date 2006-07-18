@@ -46,6 +46,11 @@ CEntityTemplate::CEntityTemplate( CPlayer* player )
 	m_bound_type = CBoundingObject::BOUND_NONE;
 	m_bound_circle = NULL;
 	m_bound_box = NULL;
+
+	// If these aren't set, we can get an infinite loop in CEntity::interpolate, which is nasty; they
+	// should be set in template_entity, but do this in case some entity forgets to inherit from that
+	m_anchorConformX = 0;
+	m_anchorConformZ = 0;
 }
 
 CEntityTemplate::~CEntityTemplate()

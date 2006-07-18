@@ -15,20 +15,16 @@
 
 class CTechnologyCollection : public Singleton<CTechnologyCollection>
 {
-	
-	typedef std::map<CStrW, CTechnology*> templateMap;
-	typedef std::map<CStrW, CStr> templateFilenameMap;
-	templateMap m_templates;
-	templateFilenameMap m_templateFilenames;
+	typedef std::map<CStrW, CTechnology*> TechMap;
+	typedef std::map<CStrW, CStr> TechFilenameMap;
+
+	TechMap m_techs[PS_MAX_PLAYERS+1];
+	TechFilenameMap m_techFilenames;
 public:
 	~CTechnologyCollection();
-	CTechnology* getTechnology( CStrW techType );
+	CTechnology* getTechnology( CStrW techType, CPlayer* player );
 	int loadTechnologies();
 	void LoadFile( const char* path );
-
-	// Create a list of the names of all base techs, excluding template_*,
-	// for display in ScEd's entity-selection box.
-	void getTechnologyNames( std::vector<CStrW>& names );
 };
 
 #endif

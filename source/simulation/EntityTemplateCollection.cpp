@@ -6,6 +6,7 @@
 #include "ps/CLogger.h"
 #include "ps/VFSUtil.h"
 #include "ps/Player.h"
+#include "ps/Game.h"
 
 #define LOG_CATEGORY "entity"
 
@@ -29,9 +30,24 @@ static void LoadFileThunk( const char* path, const DirEnt* UNUSED(ent), void* co
 
 int CEntityTemplateCollection::loadTemplates()
 {
-	// Load all files in entities/ and its subdirectories.
+	// List all files in entities/ and its subdirectories.
 	THROW_ERR( vfs_dir_enum( "entities/", VFS_DIR_RECURSIVE, "*.xml",
 		LoadFileThunk, this ) );
+
+	/*// Load all the templates; this is necessary so that we can apply techs to them
+	// (otherwise a tech can't affect the template of a unit that doesn't yet exist)
+	for( TemplateFilenameMap::iterator it = m_templateFilenames.begin(); it != m_templateFilenames.end(); ++it )
+	{
+		// Load the no-player version of this template (used by techs for base values)
+		getTemplate( it->first, 0 );
+
+		for( uint i=0; i<=g_Game->GetNumPlayers(); i++ )
+		{
+			// TODO: Load the template just once and clone it to get these player templates
+			getTemplate( it->first, g_Game->GetPlayer(i) );
+		}
+	}*/
+
 	return 0;
 }
 
@@ -41,12 +57,12 @@ CEntityTemplate* CEntityTemplateCollection::getTemplate( CStrW name, CPlayer* pl
 	int id = ( player == 0 ? NULL_PLAYER : player->GetPlayerID() );
 
 	// Check whether this template has already been loaded
-	templateMap::iterator it = m_templates[id].find( name );
+	TemplateMap::iterator it = m_templates[id].find( name );
 	if( it != m_templates[id].end() )
 		return( it->second );
 
 	// Find the filename corresponding to this template
-	templateFilenameMap::iterator filename_it = m_templateFilenames.find( name );
+	TemplateFilenameMap::iterator filename_it = m_templateFilenames.find( name );
 	if( filename_it == m_templateFilenames.end() )
 		return( NULL );
 
@@ -69,14 +85,24 @@ CEntityTemplate* CEntityTemplateCollection::getTemplate( CStrW name, CPlayer* pl
 
 void CEntityTemplateCollection::getEntityTemplateNames( std::vector<CStrW>& names )
 {
-	for( templateFilenameMap::iterator it = m_templateFilenames.begin(); it != m_templateFilenames.end(); ++it )
+	for( TemplateFilenameMap::iterator it = m_templateFilenames.begin(); it != m_templateFilenames.end(); ++it )
 		if( ! (it->first.Length() > 8 && it->first.Left(8) == L"template"))
 			names.push_back( it->first );
+}
+
+void CEntityTemplateCollection::getPlayerTemplates( CPlayer* player, std::vector<CEntityTemplate*>& dest )
+{
+	int id = ( player == 0 ? NULL_PLAYER : player->GetPlayerID() );
+
+	for( TemplateMap::iterator it = m_templates[id].begin(); it != m_templates[id].end(); ++it )
+	{
+		dest.push_back( it->second );
+	}
 }
 
 CEntityTemplateCollection::~CEntityTemplateCollection()
 {
 	for( int id = 0; id < PS_MAX_PLAYERS + 2; id++ )
-		for( templateMap::iterator it = m_templates[id].begin(); it != m_templates[id].end(); ++it )
+		for( TemplateMap::iterator it = m_templates[id].begin(); it != m_templates[id].end(); ++it )
 			delete( it->second );
 }

@@ -40,9 +40,13 @@ CEntity::CEntity( CEntityTemplate* base, CVector3D position, float orientation, 
 	ent_flags = 0;
 
     m_position = position;
+	m_orientation.X = 0;
     m_orientation.Y = orientation;
+	m_orientation.Z = 0;
     m_ahead.x = sin( m_orientation.Y );
     m_ahead.y = cos( m_orientation.Y );
+    m_position_previous = m_position;
+    m_orientation_previous = m_orientation;
 	m_player = 0;
 
 	m_productionQueue = new CProductionQueue( this );
@@ -70,9 +74,6 @@ CEntity::CEntity( CEntityTemplate* base, CVector3D position, float orientation, 
 
     if( m_bounds )
         m_bounds->setPosition( m_position.X, m_position.Z );
-
-    m_position_previous = m_position;
-    m_orientation_previous = m_orientation;
 
     m_graphics_position = m_position;
     m_graphics_orientation = m_orientation;
@@ -107,6 +108,8 @@ CEntity::CEntity( CEntityTemplate* base, CVector3D position, float orientation, 
 	m_associatedTerritory = 0;
 	
     m_player = g_Game->GetPlayer( 0 );
+
+	debug_printf("traits.health.max = %f\n", m_healthMax);
 }
 
 CEntity::~CEntity()
