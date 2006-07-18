@@ -63,7 +63,6 @@ public:
 	CBoundingObject::EBoundingType m_bound_type;
 	
 	//SP properties
-	float m_staminaCurr;
 	float m_staminaMax;
 
 	// HP properties

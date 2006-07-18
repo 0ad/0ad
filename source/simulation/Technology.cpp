@@ -300,17 +300,16 @@ bool CTechnology::loadELEffect( XMBElement effect, CXeromyces& XeroFile, CStr& f
 }
 bool CTechnology::isTechValid()
 {
-	if ( !m_player )
-		return false;
 	if ( m_excluded )
 		return false;
 	if ( hasReqEntities() && hasReqTechs() )
 		return true;
 	return false;
 }
+
 bool CTechnology::hasReqEntities()
 {
-	bool ret=true;
+	bool ret = false;
 	std::vector<HEntity>* entities = m_player->GetControlledEntities();
 	for ( std::vector<CStr>::iterator it=m_ReqEntities.begin(); it != m_ReqEntities.end(); it++ )
 	{
@@ -318,7 +317,7 @@ bool CTechnology::hasReqEntities()
 		{
 			if ( (*it2)->m_classes.IsMember(*it) )
 			{	
-				ret=true;
+				ret = true;
 				break;
 			}
 		}
@@ -326,19 +325,55 @@ bool CTechnology::hasReqEntities()
 	delete entities;
 	return ret;
 }
+
 bool CTechnology::hasReqTechs()
 {
-	bool ret=true;
+	bool ret = true;
 	for ( std::vector<CStr>::iterator it=m_ReqTechs.begin(); it != m_ReqTechs.end(); it++ )
 	{
 		if ( !g_TechnologyCollection.getTechnology( (CStrW)*it, m_player )->isResearched() )
 		{	
-			ret=false;
+			ret = false;
 			break;
 		}
 	}
 	return ret;
 }
+
+void CTechnology::apply( CEntity* entity )
+{
+	// Find out if the unit has one of our target classes
+	bool ok = false;
+	for ( std::vector<CStr>::iterator it = m_Targets.begin(); it != m_Targets.end(); it++ )
+	{
+		if ( entity->m_classes.IsMember( *it ) )
+		{
+			ok = true;
+			break;
+		}
+	}
+	if( !ok ) return;
+
+	// Apply modifiers
+	for ( std::vector<Modifier>::iterator mod=m_Modifiers.begin(); mod!=m_Modifiers.end(); mod++ )
+	{
+		jsval oldVal;
+		if( entity->GetProperty( g_ScriptingHost.getContext(), mod->attribute, &oldVal ) )
+		{
+			jsval newVal = ToJSVal( ToPrimitive<float>(oldVal) + mod->value );
+			entity->SetProperty( g_ScriptingHost.GetContext(), mod->attribute, &newVal );
+		}
+	}
+
+	// Apply sets
+	for ( std::vector<Modifier>::iterator mod=m_Sets.begin(); mod!=m_Sets.end(); mod++ )
+	{
+		jsval newVal = ToJSVal( mod->value );
+		entity->SetProperty( g_ScriptingHost.GetContext(), mod->attribute, &newVal );
+	}
+}
+
+
 //JS stuff
 
 void CTechnology::ScriptingInit()
@@ -368,81 +403,38 @@ void CTechnology::ScriptingInit()
 	debug_printf("CTechnology::ScriptingInit complete");
 }
 
-jsval CTechnology::ApplyEffects( JSContext* cx, uintN argc, jsval* argv )
+jsval CTechnology::ApplyEffects( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-	if ( argc < 2 )
-	{
-		JS_ReportError(cx, "too few parameters for CTechnology::ApplyEffects.");
-		return JS_FALSE;
-	}
 	if ( !isTechValid() )
-		return JS_FALSE;
-
-	bool first = ToPrimitive<bool>( argv[0] );
-	bool invert = ToPrimitive<bool>( argv[1] );
-
-	if ( first )
 	{
-		m_effectFunction.Run( this->GetScript() );
+		return JSVAL_FALSE;
 	}
 
 	// Disable any paired techs
 	for ( std::vector<CStr>::iterator it=m_Pairs.begin(); it != m_Pairs.end(); it++ )
 		g_TechnologyCollection.getTechnology(*it, m_player)->setExclusion(true);
+
+	// Disable ourselves so we can't be researched twice
 	setExclusion(true);
 
-	// Get the entities that should be affected
+	// Apply effects to all entities
 	std::vector<HEntity>* entities = m_player->GetControlledEntities();
-	std::vector<HEntity> entitiesAffected;
 	for ( size_t i=0; i<entities->size(); ++i )
 	{
-		for ( std::vector<CStr>::iterator it = m_Targets.begin(); it != m_Targets.end(); it++ )
-		{
-			if ( (*entities)[i]->m_classes.IsMember( *it ) )
-			{
-				entitiesAffected.push_back( (*entities)[i] );
-				break;
-			}
-		}
+		apply( (*entities)[i] );
 	}
 	delete entities;
-
-	std::vector<HEntity>::iterator entIt;
-
-	for ( std::vector<Modifier>::iterator mod=m_Modifiers.begin(); mod!=m_Modifiers.end(); mod++ )
-	{
-		float modValue = (invert ? -mod->value : mod->value);
-
-		for ( entIt = entitiesAffected.begin(); entIt != entitiesAffected.end(); entIt++ )
-		{
-			CEntity* ent = *entIt;
-			jsval oldVal;
-			if( ent->GetProperty( g_ScriptingHost.getContext(), mod->attribute, &oldVal ) )
-			{
-				jsval newVal = ToJSVal( ToPrimitive<float>(oldVal) + modValue );
-				ent->SetProperty( g_ScriptingHost.GetContext(), mod->attribute, &newVal );
-			}
-		}
-	}
-
-	if( !invert )		// can't invert Set effects, so just ignore them if invert is true
-	{
-		for ( std::vector<Modifier>::iterator mod=m_Sets.begin(); mod!=m_Sets.end(); mod++ )
-		{
-			for ( entIt = entitiesAffected.begin(); entIt != entitiesAffected.end(); entIt++ )
-			{
-				CEntity* ent = *entIt;
-				jsval newVal = ToJSVal( mod->value );
-				ent->SetProperty( g_ScriptingHost.GetContext(), mod->attribute, &newVal );
-			}
-		}
-	}
-
-	if ( !first )
+	
+	// Run one-time tech script
+	if( m_effectFunction )
 	{
 		m_effectFunction.Run( this->GetScript() );
 	}
-	return JS_TRUE;
+
+	// Add ourselves to player's researched techs
+	m_player->AddActiveTech( this );
+
+	return JSVAL_TRUE;
 }
 
 jsval CTechnology::IsValid( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )

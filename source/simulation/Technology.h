@@ -12,6 +12,7 @@
 
 class XMBElement;
 class CXeromyces;
+class CEntity;
 
 class CTechnology : public CJSObject<CTechnology>
 {
@@ -38,6 +39,8 @@ public:
 	jsval IsExcluded( JSContext* cx, uintN argc, jsval* argv );
 	inline jsval GetPlayerID( JSContext* cx, uintN argc, jsval* argv );
 	
+	void apply( CEntity* entity );
+
 	bool isTechValid();
 	inline bool isResearched() { return m_researched; }
 

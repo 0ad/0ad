@@ -8,6 +8,7 @@
 
 class CNetMessage;
 class HEntity;
+class CTechnology;
 
 typedef SColour SPlayerColour;
 
@@ -26,6 +27,8 @@ private:
 	UpdateCallback *m_UpdateCB;
 	void *m_UpdateCBData;
 	
+	std::vector<CTechnology*> m_ActiveTechs;
+
 	virtual void Update(CStrW name, ISynchedJSProperty *prop);
 	
 public:
@@ -59,6 +62,16 @@ public:
 	}
 	void SetValue(CStrW name, CStrW value);
 	
+	inline void AddActiveTech(CTechnology* tech)
+	{
+		m_ActiveTechs.push_back(tech);
+	}
+
+	inline const std::vector<CTechnology*>& GetActiveTechs()
+	{
+		return m_ActiveTechs;
+	}
+
 	// Caller frees...
 	std::vector<HEntity>* GetControlledEntities();
 

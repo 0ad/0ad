@@ -37,8 +37,7 @@ CEntityTemplate::CEntityTemplate( CPlayer* player )
 	m_sectorDivs = 4;
 
 	// Sentinel values for stamina and health (so scripts can check if an entity has no stamina or no HP).
-	m_speed=0;
-	m_staminaCurr = 0;
+	m_speed = 0;
 	m_staminaMax = 0;
 	m_healthMax = 0;
 
@@ -430,7 +429,6 @@ void CEntityTemplate::ScriptingInit()
 	AddClassProperty( L"traits.health.regen_rate", &CEntityTemplate::m_healthRegenRate );
 	AddClassProperty( L"traits.health.regen_start", &CEntityTemplate::m_healthRegenStart );
 	AddClassProperty( L"traits.health.decay_rate", &CEntityTemplate::m_healthDecayRate );
-	AddClassProperty( L"traits.stamina.curr", &CEntityTemplate::m_staminaCurr );
     AddClassProperty( L"traits.stamina.max", &CEntityTemplate::m_staminaMax );
     AddClassProperty( L"traits.stamina.bar_height", &CEntityTemplate::m_staminaBarHeight );
 	AddClassProperty( L"traits.stamina.bar_size", &CEntityTemplate::m_staminaBarSize );

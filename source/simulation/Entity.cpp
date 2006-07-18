@@ -25,6 +25,7 @@
 #include "FormationManager.h"
 #include "TerritoryManager.h"
 #include "Formation.h"
+#include "TechnologyCollection.h"
 #include "graphics/GameView.h"
 #include "graphics/Sprite.h"
 #include "graphics/UnitManager.h"
@@ -671,6 +672,14 @@ void UpdateAuras_Normal( SAura& aura, CEntity* e )
 
 bool CEntity::Initialize()
 {
+	// Apply our player's active techs to ourselves (we do this here since m_player isn't yet set in the constructor)
+	const std::vector<CTechnology*>& techs = m_player->GetActiveTechs();
+	for( int i=0; i<techs.size(); i++ )
+	{
+		techs[i]->apply( this );
+	}
+
+	// Dispatch the initialize script event
     CEventInitialize evt;
     if( !DispatchEvent( &evt ) ) 
 	{

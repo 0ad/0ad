@@ -5,7 +5,6 @@
 #ifndef TECHNOLOGY_COLLECTION_INCLUDED
 #define TECHNOLOGY_COLLECTION_INCLUDED
 
-#include <vector>
 #include "ps/CStr.h"
 #include "ps/Singleton.h"
 #include "Technology.h"
@@ -20,9 +19,13 @@ class CTechnologyCollection : public Singleton<CTechnologyCollection>
 
 	TechMap m_techs[PS_MAX_PLAYERS+1];
 	TechFilenameMap m_techFilenames;
+
 public:
-	~CTechnologyCollection();
+	std::vector<CTechnology*> activeTechs[PS_MAX_PLAYERS+1];
+
 	CTechnology* getTechnology( CStrW techType, CPlayer* player );
+	~CTechnologyCollection();
+
 	int loadTechnologies();
 	void LoadFile( const char* path );
 };
