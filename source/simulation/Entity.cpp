@@ -108,8 +108,6 @@ CEntity::CEntity( CEntityTemplate* base, CVector3D position, float orientation, 
 	m_associatedTerritory = 0;
 	
     m_player = g_Game->GetPlayer( 0 );
-
-	debug_printf("traits.health.max = %f\n", m_healthMax);
 }
 
 CEntity::~CEntity()

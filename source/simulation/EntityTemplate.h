@@ -67,7 +67,6 @@ public:
 	float m_staminaMax;
 
 	// HP properties
-	float m_healthCurr;
 	float m_healthMax;
 
 

@@ -40,7 +40,6 @@ CEntityTemplate::CEntityTemplate( CPlayer* player )
 	m_speed=0;
 	m_staminaCurr = 0;
 	m_staminaMax = 0;
-	m_healthCurr = 0;
 	m_healthMax = 0;
 
 	m_bound_type = CBoundingObject::BOUND_NONE;
@@ -421,7 +420,6 @@ void CEntityTemplate::ScriptingInit()
 	AddClassProperty( L"actions.move.run.decay_rate", &CEntityTemplate::m_runDecayRate );
 	AddClassProperty( L"actions.move.pass_through_allies", &CEntityTemplate::m_passThroughAllies );
 	AddClassProperty( L"actor", &CEntityTemplate::m_actorName );
-	AddClassProperty( L"traits.health.curr", &CEntityTemplate::m_healthCurr );
     AddClassProperty( L"traits.health.max", &CEntityTemplate::m_healthMax );
     AddClassProperty( L"traits.health.bar_height", &CEntityTemplate::m_healthBarHeight );
 	AddClassProperty( L"traits.health.bar_size", &CEntityTemplate::m_healthBarSize );
