@@ -33,10 +33,10 @@ for(var i=0; i<players.length; i++)
 // Give the players their civ techs (which will set up their civ bonuses)
 for(var i=0; i<players.length; i++)
 {
-	var tech = getTechnology( "civ_" + players[i].civilization.toLowerCase() );
+	var tech = getTechnology( "civ_" + players[i].civilization.toLowerCase(), players[i] );
 	if( tech != null )
 	{
-		tech.applyEffects( i, false, false );
+		tech.applyEffects( false, false );
 	}
 }
 

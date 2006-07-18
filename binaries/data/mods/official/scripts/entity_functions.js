@@ -503,7 +503,7 @@ function attachAuras()
 	
 	if( this.hasClass("Settlement") )
 	{
-		this.addAura ( "settlement", 0.1, 0, new SettlementAura( this ) );
+		this.addAura ( "settlement", 1.0, 0, new SettlementAura( this ) );
 	}
 }
 
