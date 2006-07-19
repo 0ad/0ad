@@ -23,6 +23,7 @@ CTechnology::CTechnology( CPlayer* player ) : m_player(player)
 	m_researched=false;
 	m_excluded = false;
 	m_JSFirst = false;
+	m_inProgress = false;
 } 
 bool CTechnology::loadXML( CStr filename )
 {
@@ -300,7 +301,7 @@ bool CTechnology::loadELEffect( XMBElement effect, CXeromyces& XeroFile, CStr& f
 }
 bool CTechnology::isTechValid()
 {
-	if ( m_excluded )
+	if ( m_excluded || m_inProgress )
 		return false;
 	if ( hasReqEntities() && hasReqTechs() )
 		return true;
@@ -309,21 +310,27 @@ bool CTechnology::isTechValid()
 
 bool CTechnology::hasReqEntities()
 {
-	bool ret = false;
 	std::vector<HEntity>* entities = m_player->GetControlledEntities();
 	for ( std::vector<CStr>::iterator it=m_ReqEntities.begin(); it != m_ReqEntities.end(); it++ )
 	{
+		// For each required class, check that we have it
+		bool got = false;
 		for( CEntityList::iterator it2=entities->begin(); it2 != entities->end(); it2++ )
 		{
 			if ( (*it2)->m_classes.IsMember(*it) )
 			{	
-				ret = true;
+				got = true;
 				break;
 			}
 		}
+		if( !got )
+		{
+			delete entities;
+			return false;
+		}
 	}
 	delete entities;
-	return ret;
+	return true;
 }
 
 bool CTechnology::hasReqTechs()
@@ -390,6 +397,7 @@ void CTechnology::ScriptingInit()
 	AddProperty<float>(L"wood", &CTechnology::m_ReqWood);
 	AddProperty<float>(L"stone", &CTechnology::m_ReqStone);
 	AddProperty<float>(L"ore", &CTechnology::m_ReqOre);
+	AddProperty<bool>(L"in_progress", &CTechnology::m_inProgress);
 
 	AddMethod<jsval, &CTechnology::ApplyEffects>( "applyEffects", 2 );
 	AddMethod<jsval, &CTechnology::IsExcluded>( "isExcluded", 0 );
@@ -405,6 +413,9 @@ void CTechnology::ScriptingInit()
 
 jsval CTechnology::ApplyEffects( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
+	// Unmark ourselves as in progress
+	m_inProgress = false;
+
 	if ( !isTechValid() )
 	{
 		return JSVAL_FALSE;
@@ -439,23 +450,17 @@ jsval CTechnology::ApplyEffects( JSContext* UNUSED(cx), uintN UNUSED(argc), jsva
 
 jsval CTechnology::IsValid( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-	if ( isTechValid() )
-		return JS_TRUE;
-	return JS_FALSE;
+	return ToJSVal( isTechValid() );
 }
 
 jsval CTechnology::IsExcluded( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-	if ( m_excluded )
-		return JS_TRUE;
-	return JS_FALSE;
+	return ToJSVal( m_excluded );
 }
 
 jsval CTechnology::IsResearched( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-	if ( isResearched() )
-		return JS_TRUE;
-	return JS_FALSE;
+	return ToJSVal( isResearched() );
 }
 
 inline jsval CTechnology::GetPlayerID( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
@@ -465,9 +470,7 @@ inline jsval CTechnology::GetPlayerID( JSContext* UNUSED(cx), uintN UNUSED(argc)
 
 jsval CTechnology::IsJSFirst( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-	if ( m_JSFirst )
-		return JS_TRUE;
-	return JS_FALSE;
+	return ToJSVal( m_JSFirst );
 }
 
 

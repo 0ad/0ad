@@ -80,6 +80,7 @@ private:
 
 	bool m_excluded;
 	bool m_researched;
+	bool m_inProgress;
 
 	bool hasReqEntities();
 	bool hasReqTechs();
