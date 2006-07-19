@@ -15,7 +15,7 @@
    </ID>
    
    <Req>
-       <Time>120</Time>
+       <Time>5</Time>
        <Resource>
                <Food>50</Food>
                <Wood>80</Wood>
@@ -25,35 +25,21 @@
        
        <Entity>Melee</Entity>
        <Entity>Ranged</Entity>
-       <Entity>some_entity_class_name</Entity>
+       <!--<Entity>some_entity_class_name</Entity>-->
       
-       <Tech>otherexample</Tech>
-       <Tech>tech_file_name</Tech>
+       <!--<Tech>otherexample</Tech>
+		<Tech>tech_file_name</Tech>-->
    </Req>
    
    <Effect>
        <Target>Infantry</Target>
        <Target>some_entity_class_name</Target>
        
-       <Pair>tech_shared_wood_gather_1</Pair>
-       <Pair>some_tech_name</Pair>
+       <Pair>real_example</Pair>
        
-       <Modifier>
-		<Attribute>traits.health.max</Attribute>
-		<Value>2</Value>
-       </Modifier>
-       <Modifier>
-		<Attribute>traits.some_attribute</Attribute>
-		<Value>2</Value>
-       </Modifier>
-
        <Set>
 		<Attribute>traits.health.max</Attribute>
-		<Value>2</Value>
-       </Set>
-       <Set>
-		<Attribute>traits.some_attribute</Attribute>
-		<Value>2</Value>
+		<Value>17</Value>
        </Set>
 	        
    

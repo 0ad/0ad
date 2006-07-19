@@ -15,7 +15,7 @@
    </ID>
    
    <Req>
-       <Time>120</Time>
+       <Time>5</Time>
        <Resource>
                <Food>50</Food>
                <Wood>80</Wood>
@@ -38,7 +38,7 @@
  
        <Modifier>
               <Attribute>traits.health.max</Attribute>
-              <Value>2</Value>
+              <Value>5</Value>
        </Modifier>
 	        
       <Script File="scripts/tech_functions.js" />

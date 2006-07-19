@@ -1328,11 +1328,13 @@ function entityStartConstruction( evt )
 
 // ====================================================================
 
+const TECH_RESOURCES = new Array("food", "wood", "stone", "ore");
+
 function entityStartProduction( evt )
 {
 	console.write("StartProduction: " + evt.productionType + " " + evt.name);
 	
-	if(evt.productionType == PRODUCTION_TRAIN) 
+	if( evt.productionType == PRODUCTION_TRAIN ) 
 	{
 		var template = getEntityTemplate( evt.name, this.player );
 		var result = checkEntityReqs( this.player, template );	
@@ -1375,6 +1377,50 @@ function entityStartProduction( evt )
 			return;
 		}
 	}
+	else if( evt.productionType == PRODUCTION_RESEARCH ) 
+	{
+		var tech = getTechnology( evt.name, this.player );
+		
+		if( !tech )
+		{
+			console.write( "No such tech: " + evt.name );
+			evt.preventDefault();
+			return;
+		}
+		
+		// Check tech requirements other than resources
+		if( !tech.isValid() ) 
+		{
+			console.write( "Tech " + evt.name + " is currently unavailable" );
+			evt.preventDefault();
+			return;
+		}
+		
+		// Check for sufficient resources
+		for( i in TECH_RESOURCES )
+		{
+			var res = TECH_RESOURCES[i];
+			if( this.player.resources[res] < tech[res] )
+			{
+				console.write( "Cannot afford " + evt.name + ": need " + tech[res] + " " + res );
+				evt.preventDefault();
+				return;
+			}
+		}
+		
+		// Subtract resources
+		for( i in TECH_RESOURCES )
+		{
+			var res = TECH_RESOURCES[i];
+			this.player.resources[res] -= tech[res];
+		}
+		
+		// Mark it as in progress
+		tech.in_progress = true;
+		
+		// Set the amount of time it will take to complete production of the tech.
+		evt.time = tech.time;
+	}
 	else
 	{
 		evt.preventDefault();
@@ -1385,7 +1431,7 @@ function entityCancelProduction( evt )
 {
 	console.write("CancelProduction: " + evt.productionType + " " + evt.name);
 	
-	if(evt.productionType == PRODUCTION_TRAIN) 
+	if( evt.productionType == PRODUCTION_TRAIN )
 	{
 		// Give back all the resources spent on this entry.
 		var template = getEntityTemplate( evt.name, this.player );
@@ -1413,13 +1459,27 @@ function entityCancelProduction( evt )
 			this.player.resources.population -= parseInt(template.traits.population.rem);
 		}
 	}
+	else if( evt.productionType == PRODUCTION_RESEARCH )
+	{
+		var tech = getTechnology( evt.name, this.player );
+		
+		// Give back the player's resources
+		for( i in TECH_RESOURCES )
+		{
+			var res = TECH_RESOURCES[i];
+			this.player.resources[res] += tech[res];
+		}
+		
+		// Unmark tech as in progress
+		tech.in_progress = false;
+	}
 }
 
 function entityFinishProduction( evt )
 {
 	console.write("FinishProduction: " + evt.productionType + " " + evt.name);
 	
-	if(evt.productionType == PRODUCTION_TRAIN) 
+	if( evt.productionType == PRODUCTION_TRAIN ) 
 	{
 		var template =  getEntityTemplate( evt.name, this.player );
 	
@@ -1454,6 +1514,12 @@ function entityFinishProduction( evt )
 				created.order( ORDER_GOTO, rally.x, rally.z );	
 			}
 		}		
+	}
+	else if( evt.productionType == PRODUCTION_RESEARCH ) 
+	{
+		// Apply the tech's effects
+		var tech = getTechnology( evt.name, this.player );
+		tech.applyEffects();
 	}
 }
 
