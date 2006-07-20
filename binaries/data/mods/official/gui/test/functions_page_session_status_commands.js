@@ -336,7 +336,7 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 			for (var createLoop = 1; createLoop < snStatusPaneCommand.list.max; createLoop++)
 			{
 				// (Skip research list for the moment, since we don't have any portraits for techs. But we should remove the research condition later.)
-				if (createLoop < listArray.length && type != "command" && tab != "research")
+				if (createLoop < listArray.length && type != "command")
 				{
 					// Get name of current button.
 					var listObject = getGUIObjectByName ("snStatusPaneCommand" + tabCounter + "_" + (createLoop+1));
@@ -412,6 +412,7 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 							{
 								case "selection":
 								case "garrison":
+								case "research":
 									// Get name of item to display in list.
 									// (These already know the full name of the entity tag, so we don't prefix it.)
 									var itemName = listArray[createLoop];
@@ -424,17 +425,35 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 
 //console.write ("4th: " + "snStatusPaneCommand" + tabCounter + "_1" + "|" + "IconSheet" + "|" + cellSheet + "Button" + "|" + createLoop + "|" + listArray[createLoop]);				
 
-							// Set tooltip.
-							listObject.tooltip = getEntityTemplate(itemName).traits.id.civ + " " + getEntityTemplate(itemName).traits.id.generic;
-							
-							// Store name of entity to display in list in this button's coordinate.
-							Crd[getCrd (listObject.name, true)].entity = new Object(itemName);
-							
-							// Set portrait.
-							setPortrait (listObject.name, 
-								getEntityTemplate(itemName).traits.id.icon, 
-								"Button" + toTitleCase(selection[0].traits.id.civ_code), 
-								getEntityTemplate(itemName).traits.id.icon_cell);
+							switch (tab)
+							{
+								case "research":
+									// Store name of tech to display in list in this button's coordinate.
+									Crd[getCrd (listObject.name, true)].entity = getTechnology(itemName, selection[0].player);							
+									
+									// Set tooltip.
+									listObject.tooltip = Crd[getCrd (listObject.name, true)].entity.generic + " (" + Crd[getCrd (listObject.name, true)].entity.specific + ")";
+									
+									// Set portrait.
+									setPortrait (listObject.name, 
+										Crd[getCrd (listObject.name, true)].entity.icon, 
+										"Button", 
+										Crd[getCrd (listObject.name, true)].entity.icon_cell);						
+								break;
+								default:
+									// Store name of entity to display in list in this button's coordinate.
+									Crd[getCrd (listObject.name, true)].entity = new Object(itemName);
+
+									// Set tooltip.
+									listObject.tooltip = getEntityTemplate(itemName).traits.id.civ + " " + getEntityTemplate(itemName).traits.id.generic;
+									
+									// Set portrait.
+									setPortrait (listObject.name, 
+										getEntityTemplate(itemName).traits.id.icon, 
+										"Button" + toTitleCase(selection[0].traits.id.civ_code), 
+										getEntityTemplate(itemName).traits.id.icon_cell);
+								break;
+							}
 								
 							// Set item function.
 							listObject.onPress = function (event)
@@ -445,8 +464,8 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 										// TODO: Remove this item from the production queue if right-clicked.
 										issueCommand(selection, NMT_Produce, PRODUCTION_TRAIN, ""+(Crd[getCrd (this.name, true)].entity));
 									case "research":
-										// Add this item to the production queue if left-clicked.
-										// Remove this item from the production queue if right-clicked.
+										// TODO: Remove this item from the production queue if right-clicked.
+										issueCommand(selection, NMT_Produce, PRODUCTION_RESEARCH, ""+(Crd[getCrd (this.name, true)].entity));
 									break;
 									case "barter":
 										// Buy a quantity of this resource if left-clicked.
