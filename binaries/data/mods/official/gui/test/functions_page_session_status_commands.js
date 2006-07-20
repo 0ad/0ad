@@ -465,7 +465,7 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 										issueCommand(selection, NMT_Produce, PRODUCTION_TRAIN, ""+(Crd[getCrd (this.name, true)].entity));
 									case "research":
 										// TODO: Remove this item from the production queue if right-clicked.
-										issueCommand(selection, NMT_Produce, PRODUCTION_RESEARCH, ""+(Crd[getCrd (this.name, true)].entity));
+										issueCommand(selection, NMT_Produce, PRODUCTION_RESEARCH, ""+(Crd[getCrd (this.name, true)].entity.name));
 									break;
 									case "barter":
 										// Buy a quantity of this resource if left-clicked.
