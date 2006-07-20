@@ -39,7 +39,6 @@ function entityInit()
     startXTimer(1);
 
 	// If the entity is a foundation, we must deduct resource costs here
-	console.write("Blah: " + this + " " + this.building);
 	if( this.building )
 	{
 		var template = getEntityTemplate( this.building, this.player );
