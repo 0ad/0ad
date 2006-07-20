@@ -191,14 +191,14 @@ CConfigDB::CConfigDB()
 	g_ScriptingHost.SetGlobal("g_ConfigDB", OBJECT_TO_JSVAL(js_ConfigDB));
 }
 
-CConfigValue *CConfigDB::GetValue(EConfigNamespace ns, CStr name)
+CConfigValue *CConfigDB::GetValue(EConfigNamespace ns, const CStr& name)
 {
 	CConfigValueSet* values = GetValues( ns, name );
 	if( !values ) return( NULL );
 	return &( (*values)[0] );
 }
 
-CConfigValueSet *CConfigDB::GetValues(EConfigNamespace ns, CStr name )
+CConfigValueSet *CConfigDB::GetValues(EConfigNamespace ns, const CStr& name )
 {
 	debug_assert(ns < CFG_LAST && ns >= 0);
 
@@ -216,7 +216,7 @@ CConfigValueSet *CConfigDB::GetValues(EConfigNamespace ns, CStr name )
 	return( NULL );
 }	
 
-CConfigValue *CConfigDB::CreateValue(EConfigNamespace ns, CStr name)
+CConfigValue *CConfigDB::CreateValue(EConfigNamespace ns, const CStr& name)
 {
 	debug_assert(ns < CFG_LAST && ns >= 0);
 	
@@ -227,7 +227,7 @@ CConfigValue *CConfigDB::CreateValue(EConfigNamespace ns, CStr name)
 	return &(it->second[0]);
 }
 
-void CConfigDB::SetConfigFile(EConfigNamespace ns, bool useVFS, CStr path)
+void CConfigDB::SetConfigFile(EConfigNamespace ns, bool useVFS, const CStr& path)
 {
 	debug_assert(ns < CFG_LAST && ns >= 0);
 	
@@ -326,7 +326,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 	return true;
 }
 
-bool CConfigDB::WriteFile(EConfigNamespace ns, bool useVFS, CStr path)
+bool CConfigDB::WriteFile(EConfigNamespace ns, bool useVFS, const CStr& path)
 {
 	debug_assert(ns >= 0 && ns < CFG_LAST);
 

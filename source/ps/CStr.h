@@ -90,7 +90,7 @@ public:
 	CStr(std::tstring String)	: std::tstring(String) {}
 
 	// Named constructor, to avoid overload overload.
-	static CStr Repeat(CStr String, size_t Reps);
+	static CStr Repeat(const CStr& String, size_t Reps);
 	
 	// CStr(8|W) construction from utf16strings.
 	// allowed on MSVC as of 2006-02-03 because utf16string is
@@ -100,7 +100,7 @@ public:
 	// Transparent CStrW/8 conversion. Non-ASCII characters are not
 	// handled correctly.
 	#ifndef _UNICODE
-		CStr8(const CStrW &wideStr);
+		CStr8(const CStrW& wideStr);
 	#else
 		CStrW(const CStr8 &asciiStr);
 	#endif

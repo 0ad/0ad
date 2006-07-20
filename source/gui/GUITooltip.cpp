@@ -64,7 +64,7 @@ GUITooltip::GUITooltip()
 
 const double CooldownTime = 0.25; // TODO: Don't hard-code this value
 
-static bool GetTooltip(IGUIObject* obj, CStr &style)
+static bool GetTooltip(IGUIObject* obj, CStr&style)
 {
 	if (obj && obj->SettingExists("tooltip_style")
 		&& GUI<CStr>::GetSetting(obj, "tooltip_style", style) == PS_OK)

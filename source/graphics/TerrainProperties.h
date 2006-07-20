@@ -50,7 +50,7 @@ public:
 	static CTerrainPropertiesPtr FromXML(CTerrainPropertiesPtr parent, const char* path);
 	
 	// Save the object to an XML file. Implement when needed! ;-)
-	// bool WriteXML(CStr path);
+	// bool WriteXML(const CStr& path);
 	
 	inline CTerrainPropertiesPtr GetParent() const
 	{	return m_pParent; }

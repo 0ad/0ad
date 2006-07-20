@@ -73,7 +73,7 @@ CTerrainPropertiesPtr CTextureManager::GetPropertiesFromFile(CTerrainPropertiesP
 	return CTerrainProperties::FromXML(props, path);
 }
 
-CTextureEntry *CTextureManager::AddTexture(CTerrainPropertiesPtr props, CStr path)
+CTextureEntry *CTextureManager::AddTexture(CTerrainPropertiesPtr props, const CStr& path)
 {
 	CTextureEntry *entry = new CTextureEntry(props, path);
 	m_TextureEntries.push_back(entry);
@@ -177,7 +177,7 @@ int CTextureManager::LoadTerrainTextures()
 	return 0;
 }
 
-CTerrainGroup *CTextureManager::FindGroup(CStr name)
+CTerrainGroup *CTextureManager::FindGroup(const CStr& name)
 {
 	TerrainGroupMap::const_iterator it=m_TerrainGroups.find(name);
 	if (it != m_TerrainGroups.end())

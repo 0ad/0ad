@@ -57,11 +57,11 @@ public:
 	// Register a handler for the given event type.
 	// Returns false if the handler was already present
 	bool AddHandler( int TypeCode, DOMEventHandler handler );
-	bool AddHandler( CStrW TypeString, DOMEventHandler handler );
+	bool AddHandler( const CStrW& TypeString, DOMEventHandler handler );
 	// Remove a previously registered handler for the specified event.
 	// Returns false if the handler was not present
 	bool RemoveHandler( int TypeCode, DOMEventHandler handler );
-	bool RemoveHandler( CStrW TypeString, DOMEventHandler handler );
+	bool RemoveHandler( const CStrW& TypeString, DOMEventHandler handler );
 
 	// called by ScriptGlue.cpp for add|RemoveGlobalHandler
 	bool AddHandlerJS( JSContext* cx, uintN argc, jsval* argv );

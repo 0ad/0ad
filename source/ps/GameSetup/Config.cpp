@@ -46,7 +46,7 @@ CStr g_AutostartMap = "";
 // config and profile
 //----------------------------------------------------------------------------
 
-static void LoadProfile( CStr profile )
+static void LoadProfile( const CStr& profile )
 {
 	CStr base = CStr( "profiles/" ) + profile;
 	g_ConfigDB.SetConfigFile(CFG_USER, true, base +  "/settings/user.cfg");

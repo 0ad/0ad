@@ -31,7 +31,7 @@ struct SClassSet
 
 	inline SClassSet() { m_Parent = NULL; }
 
-	inline bool IsMember( CStrW Test )
+	inline bool IsMember( const CStrW& Test )
 		{ return( m_Set.find( Test ) != m_Set.end() ); }
 
 	inline void SetParent( SClassSet* Parent )

@@ -301,9 +301,9 @@ void CList::Draw()
 }
 
 void CList::DrawList(const int &selected,
-					 const CStr &_sprite, 
-					 const CStr &_sprite_selected, 
-					 const CStr &_textcolor)
+					 const CStr& _sprite, 
+					 const CStr& _sprite_selected, 
+					 const CStr& _textcolor)
 {
 	float bz = GetBufferedZ();
 

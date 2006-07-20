@@ -28,7 +28,7 @@ int CTechnologyCollection::loadTechnologies()
 	return 0;
 }
 
-CTechnology* CTechnologyCollection::getTechnology( CStrW name, CPlayer* player )
+CTechnology* CTechnologyCollection::getTechnology( const CStrW& name, CPlayer* player )
 {
 	// Find player ID
 	debug_assert( player != 0 );

@@ -142,13 +142,13 @@ class CGUISpriteInstance
 {
 public:
 	CGUISpriteInstance();
-	CGUISpriteInstance(CStr SpriteName);
+	CGUISpriteInstance(const CStr& SpriteName);
 	CGUISpriteInstance(const CGUISpriteInstance &Sprite);
-	CGUISpriteInstance &operator=(CStr SpriteName);
+	CGUISpriteInstance &operator=(const CStr& SpriteName);
 	void Draw(CRect Size, int CellID, std::map<CStr, CGUISprite> &Sprites);
 	void Invalidate();
 	bool IsEmpty() const;
-	CStr GetName() { return m_SpriteName; }
+	const CStr& GetName() { return m_SpriteName; }
 
 private:
 	CStr m_SpriteName;

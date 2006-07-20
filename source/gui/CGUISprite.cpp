@@ -32,7 +32,7 @@ CGUISpriteInstance::CGUISpriteInstance()
 {
 }
 
-CGUISpriteInstance::CGUISpriteInstance(CStr SpriteName)
+CGUISpriteInstance::CGUISpriteInstance(const CStr& SpriteName)
 : m_SpriteName(SpriteName)
 {
 }
@@ -42,7 +42,7 @@ CGUISpriteInstance::CGUISpriteInstance(const CGUISpriteInstance &Sprite)
 {
 }
 
-CGUISpriteInstance &CGUISpriteInstance::operator=(CStr SpriteName)
+CGUISpriteInstance &CGUISpriteInstance::operator=(const CStr& SpriteName)
 {
 	m_SpriteName = SpriteName;
 	m_DrawCallCache.clear();

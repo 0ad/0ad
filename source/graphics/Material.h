@@ -55,9 +55,9 @@ public:
 	void Unbind();
 	float GetHash() { return m_Hash; }
 
-	CStr GetTexture() { return m_Texture; }
-	CStr GetVertexProgram() { return m_VertexProgram; }
-	CStr GetFragmentProgram() { return m_FragmentProgram; }
+	const CStr& GetTexture() { return m_Texture; }
+	const CStr& GetVertexProgram() { return m_VertexProgram; }
+	const CStr& GetFragmentProgram() { return m_FragmentProgram; }
 	SMaterialColor GetDiffuse();
 	SMaterialColor GetAmbient();
 	SMaterialColor GetSpecular();
@@ -78,9 +78,9 @@ public:
 	void SetPlayerColor(int id);
 	void SetPlayerColor(CColor &colour);
 
-	void SetTexture(const CStr &texture);
-	void SetVertexProgram(const CStr &prog);
-	void SetFragmentProgram(const CStr &prog);
+	void SetTexture(const CStr& texture);
+	void SetVertexProgram(const CStr& prog);
+	void SetFragmentProgram(const CStr& prog);
 	void SetDiffuse(const SMaterialColor &color);
 	void SetAmbient(const SMaterialColor &color);
 	void SetSpecular(const SMaterialColor &color);

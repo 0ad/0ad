@@ -119,7 +119,7 @@ public:
     double ValueToDouble(const jsval value);
 
 	jsval UTF16ToValue(const utf16string &str);
-	jsval UCStringToValue(const CStrW &str);
+	jsval UCStringToValue(const CStrW& str);
 
 	static void ErrorReporter(JSContext * context, const char * message, JSErrorReport * report);
 };

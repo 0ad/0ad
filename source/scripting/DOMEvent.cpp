@@ -80,7 +80,7 @@ bool IEventTarget::AddHandler( int TypeCode, DOMEventHandler handler )
 	return( true );
 }
 
-bool IEventTarget::AddHandler( CStrW TypeString, DOMEventHandler handler )
+bool IEventTarget::AddHandler( const CStrW& TypeString, DOMEventHandler handler )
 {
 	HandlerMap::iterator it;
 	HandlerRange range = m_Handlers_name.equal_range( TypeString );
@@ -103,7 +103,7 @@ bool IEventTarget::RemoveHandler( int TypeCode, DOMEventHandler handler )
 	return( false );
 }
 
-bool IEventTarget::RemoveHandler( CStrW TypeString, DOMEventHandler handler )
+bool IEventTarget::RemoveHandler( const CStrW& TypeString, DOMEventHandler handler )
 {
 	HandlerMap::iterator it;
 	HandlerRange range = m_Handlers_name.equal_range( TypeString );

@@ -51,7 +51,7 @@ namespace GUIRenderer
 
 namespace GUIRenderer
 {
-	void UpdateDrawCallCache(DrawCalls &Calls, CStr &SpriteName, CRect& Size, int CellID, std::map<CStr, CGUISprite> &Sprites);
+	void UpdateDrawCallCache(DrawCalls &Calls, CStr&SpriteName, CRect& Size, int CellID, std::map<CStr, CGUISprite> &Sprites);
 
 	void Draw(DrawCalls &Calls);
 }

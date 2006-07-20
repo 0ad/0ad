@@ -275,7 +275,7 @@ public:
 	/**
 	 * Get String, without tags
 	 */
-	CStrW GetRawString() const { return m_RawString; }
+	const CStrW& GetRawString() const { return m_RawString; }
 
 	/**
 	 * Generate Text Call from specified range. The range

@@ -133,7 +133,7 @@ PS_RESULT CNetServer::Bind(const CSocketAddress &address)
 	return res;
 }
 
-void FillSetGameConfigCB(CStrW name, ISynchedJSProperty *prop, void *userdata)
+void FillSetGameConfigCB(const CStrW& name, ISynchedJSProperty *prop, void *userdata)
 {
 	CSetGameConfig *pMsg=(CSetGameConfig *)userdata;
 	size_t size=pMsg->m_Values.size();
@@ -147,7 +147,7 @@ void CNetServer::FillSetGameConfig(CSetGameConfig *pMsg)
 	m_pGameAttributes->IterateSynchedProperties(FillSetGameConfigCB, pMsg);
 }
 
-void FillSetPlayerConfigCB(CStrW name, ISynchedJSProperty *prop, void *userdata)
+void FillSetPlayerConfigCB(const CStrW& name, ISynchedJSProperty *prop, void *userdata)
 {
 	CSetPlayerConfig *pMsg=(CSetPlayerConfig *)userdata;
 	size_t size=pMsg->m_Values.size();
@@ -219,7 +219,7 @@ void CNetServer::AddSession(CNetServerSession *pSession)
 	OnClientConnect(pSession);
 }
 
-void CNetServer::AttributeUpdate(CStrW name, CStrW newValue, void *userdata)
+void CNetServer::AttributeUpdate(const CStrW& name, const CStrW& newValue, void *userdata)
 {
 	CNetServer *pServer=(CNetServer *)userdata;
 	g_Console->InsertMessage(L"AttributeUpdate: %ls = \"%ls\"", name.c_str(), newValue.c_str());
@@ -232,7 +232,7 @@ void CNetServer::AttributeUpdate(CStrW name, CStrW newValue, void *userdata)
 	pServer->Broadcast(pMsg);
 }
 
-void CNetServer::PlayerAttributeUpdate(CStrW name, CStrW newValue, CPlayer *pPlayer, void *userdata)
+void CNetServer::PlayerAttributeUpdate(const CStrW& name, const CStrW& newValue, CPlayer *pPlayer, void *userdata)
 {
 	CNetServer *pServer=(CNetServer *)userdata;
 	g_Console->InsertMessage(L"PlayerAttributeUpdate(%d): %ls = \"%ls\"", pPlayer->GetPlayerID(), name.c_str(), newValue.c_str());
@@ -404,7 +404,7 @@ void CNetServer::QueueIncomingCommand(CNetMessage *pMsg)
 	QueueMessage(2, pMsg);
 }
 
-void CNetServer::OnChat(CStrW from, CStrW message)
+void CNetServer::OnChat(const CStrW& from, const CStrW& message)
 {
 	if (m_OnChat.Defined())
 	{

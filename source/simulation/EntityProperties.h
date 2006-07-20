@@ -158,7 +158,7 @@ template<> class CBoundProperty<jsval> : public IBoundProperty
 public:
 	CBoundProperty() { m_data = JSVAL_NULL; m_inherited = true; RootJSVal(); }
 	CBoundProperty( const jsval value ) { set( value ); m_inherited = false; RootJSVal(); }
-	CBoundProperty( CStrW value ) 
+	CBoundProperty( const CStrW& value ) 
 	{
 		m_data = STRING_TO_JSVAL( JS_NewUCStringCopyZ( g_ScriptingHost.getContext(), value ) );
 		RootJSVal();

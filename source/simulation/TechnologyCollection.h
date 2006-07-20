@@ -23,7 +23,7 @@ class CTechnologyCollection : public Singleton<CTechnologyCollection>
 public:
 	std::vector<CTechnology*> activeTechs[PS_MAX_PLAYERS+1];
 
-	CTechnology* getTechnology( CStrW techType, CPlayer* player );
+	CTechnology* getTechnology( const CStrW& techType, CPlayer* player );
 	~CTechnologyCollection();
 
 	int loadTechnologies();

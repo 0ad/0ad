@@ -49,14 +49,14 @@ public:
 	/**
 	 * GetSkySet(): Return the currently selected sky set name.
 	 */
-	inline CStrW GetSkySet() const {
+	inline const CStrW& GetSkySet() const {
 		return m_SkySet;
 	}
 
 	/**
 	 * GetSkySet(): Set the sky set name, potentially loading the textures.
 	 */
-	void SetSkySet(CStrW name);
+	void SetSkySet(const CStrW& name);
 
 	/**
 	 * Return a sorted list of available sky sets, in a form suitable

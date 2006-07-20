@@ -331,13 +331,13 @@ void CCinemaTrack::MoveToPointAbsolute(float time)
 		m_CPA->MoveToPointAt(m_CPA->m_TimeElapsed, m_StartRotation);
 }
 
-void CCinemaManager::AddTrack(CCinemaTrack track, CStrW name)
+void CCinemaManager::AddTrack(CCinemaTrack track, const CStrW& name)
 {
 	debug_assert( m_Tracks.find( name ) == m_Tracks.end() );
 	m_Tracks[name] = track;
 }
 
-void CCinemaManager::QueueTrack(CStrW name, bool queue )
+void CCinemaManager::QueueTrack(const CStrW& name, bool queue )
 {
 	if (!m_TrackQueue.empty() && queue == false)
 	{
@@ -350,7 +350,7 @@ void CCinemaManager::QueueTrack(CStrW name, bool queue )
 		m_TrackQueue.back().m_CPA = m_TrackQueue.back().m_Paths.begin();
 	}
 }
-void CCinemaManager::OverrideTrack(CStrW name)
+void CCinemaManager::OverrideTrack(const CStrW& name)
 {
 	m_TrackQueue.clear();
 	debug_assert(HasTrack(name));

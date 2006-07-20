@@ -20,7 +20,7 @@ CNetClient *g_NetClient=NULL;
 extern "C" int fps;
 extern CConsole *g_Console;
 
-CNetClient::CServerSession::CServerSession(int sessionID, const CStrW &name):
+CNetClient::CServerSession::CServerSession(int sessionID, const CStrW& name):
 	m_SessionID(sessionID),
 	m_Name(name)
 {
@@ -387,7 +387,7 @@ bool CNetClient::ChatHandler(CNetMessage *pMsg, CNetSession *pSession)
 	}
 }
 
-void CNetClient::OnClientConnect(int sessionID, const CStrW &name)
+void CNetClient::OnClientConnect(int sessionID, const CStrW& name)
 {
 	// Find existing server session, if any, and delete it
 	SessionMap::iterator it=m_ServerSessions.find(sessionID);

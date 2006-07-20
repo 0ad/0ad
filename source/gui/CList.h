@@ -109,8 +109,8 @@ protected:
 
 	// Extended drawing interface, this is so that classes built on the this one
 	//  can use other sprite names.
-	void DrawList(const int &selected, const CStr &_sprite, 
-				  const CStr &_sprite_selected, const CStr &_textcolor);
+	void DrawList(const int &selected, const CStr& _sprite, 
+				  const CStr& _sprite_selected, const CStr& _textcolor);
 
 	// Get the area of the list. This is so that i can easily be changed, like in CDropDown
 	//  where the area is not equal to m_CachedActualSize.

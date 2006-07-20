@@ -282,7 +282,7 @@ CNetMessage *CNetMessage::CreateEntityIntMessage( const CEntityList& entities, c
 		return NULL;
 	}
 }
-CNetMessage *CNetMessage::CreateProduceMessage( const CEntityList& entities, const int type, int proType, CStrW name )
+CNetMessage *CNetMessage::CreateProduceMessage( const CEntityList& entities, const int type, int proType, const CStrW& name )
 {
 	#define ProMessage(_msg)\
 		case NMT_ ## _msg: \

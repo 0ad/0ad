@@ -113,7 +113,7 @@ class CGameAttributes:
 	public Singleton<CGameAttributes>
 {
 public:
-	typedef void (UpdateCallback)(CStrW name, CStrW newValue, void *data);
+	typedef void (UpdateCallback)(const CStrW& name, const CStrW& newValue, void *data);
 
 	CStrW m_MapFile;
 	CStrW m_ResourceLevel;
@@ -143,7 +143,7 @@ private:
 	PlayerSlotAssignmentCB *m_PlayerSlotAssignmentCB;
 	void *m_PlayerSlotAssignmentCBData;
 	
-	virtual void Update(CStrW name, ISynchedJSProperty *attrib);	
+	virtual void Update(const CStrW& name, ISynchedJSProperty *attrib);	
 	static void OnNumSlotsUpdate(CSynchedJSObjectBase *owner);
 
 	jsval JSI_GetPlayerSlots(JSContext* cx);
@@ -154,7 +154,7 @@ public:
 	CGameAttributes();
 	virtual ~CGameAttributes();
 	
-	void SetValue(CStrW name, CStrW value);
+	void SetValue(const CStrW& name, const CStrW& value);
 	
 	inline void SetUpdateCallback(UpdateCallback *cb, void *userdata)
 	{

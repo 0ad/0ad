@@ -167,7 +167,7 @@ public:
 	void SetRenderPath(RenderPath rp);
 	RenderPath GetRenderPath() const { return m_Options.m_RenderPath; }
 	static CStr GetRenderPathName(RenderPath rp);
-	static RenderPath GetRenderPathByName(CStr name);
+	static RenderPath GetRenderPathByName(const CStr& name);
 
 	// return view width
 	int GetWidth() const { return m_Width; }

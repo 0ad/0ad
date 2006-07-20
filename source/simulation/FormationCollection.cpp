@@ -35,7 +35,7 @@ int CFormationCollection::loadTemplates()
 	return 0;
 }
 
-CFormation* CFormationCollection::getTemplate( CStrW name )
+CFormation* CFormationCollection::getTemplate( const CStrW& name )
 {
 	// Check whether this template has already been loaded
 	templateMap::iterator it = m_templates.find( name );

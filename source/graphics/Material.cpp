@@ -148,19 +148,19 @@ void CMaterial::SetPlayerColor(CColor &colour)
 }
 
 
-void CMaterial::SetTexture(const CStr &texture)
+void CMaterial::SetTexture(const CStr&  texture)
 {
     m_Texture = texture;
     ComputeHash();
 }
 
-void CMaterial::SetVertexProgram(const CStr &prog)
+void CMaterial::SetVertexProgram(const CStr& prog)
 {
     m_VertexProgram = prog;
     ComputeHash();
 }
 
-void CMaterial::SetFragmentProgram(const CStr &prog)
+void CMaterial::SetFragmentProgram(const CStr& prog)
 {
     m_FragmentProgram = prog;
     ComputeHash();

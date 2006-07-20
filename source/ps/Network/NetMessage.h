@@ -79,7 +79,7 @@ public:
 	//These can create a net message without JS args
 	static CNetMessage *CreatePositionMessage( const CEntityList& entities, const int type, CVector2D pos );
 	static CNetMessage *CreateEntityIntMessage( const CEntityList& entities, const int type, HEntity& target, int action );
-	static CNetMessage *CreateProduceMessage( const CEntityList& entities, const int type, int proType, CStrW name );
+	static CNetMessage *CreateProduceMessage( const CEntityList& entities, const int type, int proType, const CStrW& name );
 };
 
 typedef CNetMessage * (*NetMessageDeserializer) (const u8 *buffer, uint length);

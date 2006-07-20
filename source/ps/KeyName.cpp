@@ -295,7 +295,7 @@ void initKeyNameMap()
 	};
 }
 
-int getKeyCode( CStr keyname )
+int getKeyCode( const CStr& keyname )
 {
 	std::map<CStr,int>::iterator it;
 	it = keymap.find( keyname.LowerCase() );

@@ -321,7 +321,7 @@ void CGUI::TickObjects()
 	m_Tooltip.Update(pNearest, m_MousePos, this);
 }
 
-void CGUI::SendEventToAll(CStr EventName)
+void CGUI::SendEventToAll(const CStr& EventName)
 {
 	// janwas 2006-03-03: spoke with Ykkrosh about EventName case.
 	// when registering, case is converted to lower - this avoids surprise
@@ -621,7 +621,7 @@ struct SGenerateTextImage
 	// TODO Gee: CRect => CPoint ?
 	void SetupSpriteCall(const bool Left, SGUIText::SSpriteCall &SpriteCall, 
 						 const float width, const float y,
-						 const CSize &Size, const CStr &TextureName, 
+						 const CSize &Size, const CStr& TextureName, 
 						 const float BufferZone, const int CellID)
 	{
 		// TODO Gee: Temp hardcoded values
@@ -1001,7 +1001,7 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 	// -- GL
 }
 
-bool CGUI::GetPreDefinedColor(const CStr &name, CColor &Output)
+bool CGUI::GetPreDefinedColor(const CStr& name, CColor &Output)
 {
 	if (m_PreDefinedColors.count(name) == 0)
 	{

@@ -25,7 +25,7 @@ class CFormationCollection : public Singleton<CFormationCollection>
 	templateFilenameMap m_templateFilenames;
 public:
 	~CFormationCollection();
-	CFormation* getTemplate( CStrW formationType );
+	CFormation* getTemplate( const CStrW& formationType );
 	int loadTemplates();
 	void LoadFile( const char* path );
 

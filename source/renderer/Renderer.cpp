@@ -666,7 +666,7 @@ CStr CRenderer::GetRenderPathName(RenderPath rp)
 	}
 }
 
-CRenderer::RenderPath CRenderer::GetRenderPathByName(CStr name)
+CRenderer::RenderPath CRenderer::GetRenderPathByName(const CStr& name)
 {
 	if (name == "fixed")
 		return RP_FIXED;

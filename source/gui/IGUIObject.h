@@ -160,7 +160,7 @@ public:
 	//@{
 
 	/// Get object name, name is unique
-	CStr GetName() const { return m_Name; }
+	const CStr& GetName() const { return m_Name; }
 
 	/// Get object name
 	void SetName(const CStr& Name) { m_Name = Name; }

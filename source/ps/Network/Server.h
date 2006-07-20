@@ -100,7 +100,7 @@ protected:
 	void QueueIncomingCommand(CNetMessage *pMsg);
 	
 	// Call the JS callback for incoming events
-	void OnChat(CStrW from, CStrW message);
+	void OnChat(const CStrW& from, const CStrW& message);
 	void OnClientConnect(CNetServerSession *pSession);
 	void OnClientDisconnect(CNetServerSession *pSession);
 	
@@ -129,10 +129,10 @@ public:
 	static void GetDefaultListenAddress(CSocketAddress &address);
 	PS_RESULT Bind(const CSocketAddress &address);
 	
-	inline void SetPassword(CStr password)
+	inline void SetPassword(const CStr& password)
 	{	m_Password=password;	}
 
-	inline CStrW GetServerPlayerName()
+	inline const CStrW& GetServerPlayerName()
 	{	return m_ServerPlayerName; }
 
 	inline ENetServerState GetServerState()

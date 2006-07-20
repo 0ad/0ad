@@ -39,7 +39,7 @@ class CEntityTemplateCollection : public Singleton<CEntityTemplateCollection>
 	TemplateFilenameMap m_templateFilenames;
 public:
 	~CEntityTemplateCollection();
-	CEntityTemplate* getTemplate( CStrW entityType, CPlayer* player = 0 );
+	CEntityTemplate* getTemplate( const CStrW& entityType, CPlayer* player = 0 );
 
 	// Load list of template filenames
 	int loadTemplates();

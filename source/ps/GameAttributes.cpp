@@ -387,7 +387,7 @@ void CGameAttributes::FinalizeSlots()
 	m_NumSlots=assignedSlots;
 }
 
-void CGameAttributes::SetValue(CStrW name, CStrW value)
+void CGameAttributes::SetValue(const CStrW& name, const CStrW& value)
 {
 	ISynchedJSProperty *prop=GetSynchedProperty(name);
 	if (prop)
@@ -396,7 +396,7 @@ void CGameAttributes::SetValue(CStrW name, CStrW value)
 	}
 }
 
-void CGameAttributes::Update(CStrW name, ISynchedJSProperty *attrib)
+void CGameAttributes::Update(const CStrW& name, ISynchedJSProperty *attrib)
 {
 	if (m_UpdateCB)
 		m_UpdateCB(name, attrib->ToString(), m_UpdateCBData);

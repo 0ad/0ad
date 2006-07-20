@@ -15,7 +15,7 @@ typedef SColour SPlayerColour;
 class CPlayer : public CSynchedJSObject<CPlayer>
 {
 public:
-	typedef void (UpdateCallback)(CStrW name, CStrW value, CPlayer *player, void *userdata);
+	typedef void (UpdateCallback)(const CStrW& name, const CStrW& value, CPlayer *player, void *userdata);
 
 private:
 	CStrW m_Name;
@@ -29,7 +29,7 @@ private:
 	
 	std::vector<CTechnology*> m_ActiveTechs;
 
-	virtual void Update(CStrW name, ISynchedJSProperty *prop);
+	virtual void Update(const CStrW& name, ISynchedJSProperty *prop);
 	
 public:
 	CPlayer( uint playerID );
@@ -45,9 +45,9 @@ public:
 	inline PS_uint GetLOSToken() const
 	{	return m_LOSToken; }
 	
-	inline const CStrW &GetName() const
+	inline const CStrW& GetName() const
 	{	return m_Name; }
-	inline void SetName(const CStrW &name)
+	inline void SetName(const CStrW& name)
 	{	m_Name = name; }
 	
 	inline const SPlayerColour &GetColour() const
@@ -60,7 +60,7 @@ public:
 		m_UpdateCB=cb;
 		m_UpdateCBData=userdata;
 	}
-	void SetValue(CStrW name, CStrW value);
+	void SetValue(const CStrW& name, const CStrW& value);
 	
 	inline void AddActiveTech(CTechnology* tech)
 	{

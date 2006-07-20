@@ -362,7 +362,7 @@ CStrW ScriptingHost::ValueToUCString( const jsval value )
 	return CStrW(ValueToUTF16(value));
 }
 
-jsval ScriptingHost::UCStringToValue( const CStrW &str )
+jsval ScriptingHost::UCStringToValue( const CStrW& str )
 {
 	utf16string utf16=str.utf16();
 	return UTF16ToValue(utf16);

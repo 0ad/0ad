@@ -119,7 +119,7 @@ public:
 	/**
 	 * Sends a specified event to every object
 	 */
-	void SendEventToAll(CStr EventName);
+	void SendEventToAll(const CStr& EventName);
 
 	/**
 	 * Displays the whole GUI
@@ -252,18 +252,18 @@ public:
 	/**
 	 * Check if an icon exists
 	 */
-	bool IconExists(const CStr &str) const { return (m_Icons.count(str) != 0); }
+	bool IconExists(const CStr& str) const { return (m_Icons.count(str) != 0); }
 
 	/**
 	 * Get Icon (a copy, can never be changed)
 	 */
-	SGUIIcon GetIcon(const CStr &str) const { return m_Icons.find(str)->second; }
+	SGUIIcon GetIcon(const CStr& str) const { return m_Icons.find(str)->second; }
 
 	/**
 	 * Get pre-defined color (if it exists)
 	 * Returns false if it fails.
 	 */
-	bool GetPreDefinedColor(const CStr &name, CColor &Output);
+	bool GetPreDefinedColor(const CStr& name, CColor &Output);
 
 private:
 

@@ -36,54 +36,54 @@ extern int g_xres, g_yres;
 #include <algorithm>
 using namespace std;
 
-CEntity::CEntity( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections, CStrW building )
+CEntity::CEntity( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections, const CStrW& building )
 {
 	ent_flags = 0;
 
-    m_position = position;
+	m_position = position;
 	m_orientation.X = 0;
-    m_orientation.Y = orientation;
+	m_orientation.Y = orientation;
 	m_orientation.Z = 0;
-    m_ahead.x = sin( m_orientation.Y );
-    m_ahead.y = cos( m_orientation.Y );
-    m_position_previous = m_position;
-    m_orientation_previous = m_orientation;
+	m_ahead.x = sin( m_orientation.Y );
+	m_ahead.y = cos( m_orientation.Y );
+	m_position_previous = m_position;
+	m_orientation_previous = m_orientation;
 	m_player = 0;
 
 	m_productionQueue = new CProductionQueue( this );
 
-    for( int t = 0; t < EVENT_LAST; t++ )
-    {
-        AddProperty( EventNames[t], &m_EventHandlers[t], false );
-        AddHandler( t, &m_EventHandlers[t] );
-    }
+	for( int t = 0; t < EVENT_LAST; t++ )
+	{
+		AddProperty( EventNames[t], &m_EventHandlers[t], false );
+		AddHandler( t, &m_EventHandlers[t] );
+	}
 
-    m_collisionPatch = NULL;
+	m_collisionPatch = NULL;
 
-    // Set our parent unit and build us an actor.
-    m_actor = NULL;
-    m_bounds = NULL;
+	// Set our parent unit and build us an actor.
+	m_actor = NULL;
+	m_bounds = NULL;
 
-    m_lastState = -1;
-    entf_set(ENTF_TRANSITION);
-    m_fsm_cyclepos = NOT_IN_CYCLE;
+	m_lastState = -1;
+	entf_set(ENTF_TRANSITION);
+	m_fsm_cyclepos = NOT_IN_CYCLE;
 
-    m_base = base;
+	m_base = base;
 
 	m_actorSelections = actorSelections;
 	loadBase();
 
-    if( m_bounds )
-        m_bounds->setPosition( m_position.X, m_position.Z );
+	if( m_bounds )
+	m_bounds->setPosition( m_position.X, m_position.Z );
 
-    m_graphics_position = m_position;
-    m_graphics_orientation = m_orientation;
+	m_graphics_position = m_position;
+	m_graphics_orientation = m_orientation;
 	m_actor_transform_valid = false;
 	entf_clear(ENTF_HAS_RALLY_POINT);
 
 	entf_clear(ENTF_DESTROYED);
 
-    m_selected = false;
+	m_selected = false;
 	entf_clear(ENTF_IS_RUNNING);
 	entf_clear(ENTF_SHOULD_RUN);
 	entf_clear(ENTF_TRIGGER_RUN);
@@ -99,7 +99,7 @@ CEntity::CEntity( CEntityTemplate* base, CVector3D position, float orientation, 
 
 	m_formationSlot = -1;
 	m_formation = -1;
-    m_grouped = -1;
+	m_grouped = -1;
 
 	m_building = building;
 
@@ -107,31 +107,31 @@ CEntity::CEntity( CEntityTemplate* base, CVector3D position, float orientation, 
 	m_visible = true;
 
 	m_associatedTerritory = 0;
-	
-    m_player = g_Game->GetPlayer( 0 );
+
+	m_player = g_Game->GetPlayer( 0 );
 }
 
 CEntity::~CEntity()
 {
-    if( m_actor )
-    {
-        g_UnitMan.RemoveUnit( m_actor );
-        delete( m_actor );
-    }
+	if( m_actor )
+	{
+		g_UnitMan.RemoveUnit( m_actor );
+		delete( m_actor );
+	}
 
-    if( m_bounds )
-    {
-        delete( m_bounds );
-    }
+	if( m_bounds )
+	{
+		delete( m_bounds );
+	}
 
 	delete m_productionQueue;
 
-    for( AuraTable::iterator it = m_auras.begin(); it != m_auras.end(); it++ )
-    {
-        delete it->second;
-    }
-    m_auras.clear();
-	
+	for( AuraTable::iterator it = m_auras.begin(); it != m_auras.end(); it++ )
+	{
+		delete it->second;
+	}
+	m_auras.clear();
+
 	entf_set(ENTF_DESTROY_NOTIFIERS);
 	for ( size_t i=0; i<m_listeners.size(); i++ )
 		m_listeners[i].m_sender->DestroyNotifier( this );
@@ -143,38 +143,38 @@ CEntity::~CEntity()
 
 void CEntity::loadBase()
 {
-    if( m_actor )
-    {
-        g_UnitMan.RemoveUnit( m_actor );
-        delete( m_actor );
-        m_actor = NULL;
-    }
-    if( m_bounds )
-    {
-        delete( m_bounds );
-        m_bounds = NULL;
-    }
+	if( m_actor )
+	{
+		g_UnitMan.RemoveUnit( m_actor );
+		delete( m_actor );
+		m_actor = NULL;
+	}
+	if( m_bounds )
+	{
+		delete( m_bounds );
+		m_bounds = NULL;
+	}
 
-    CStr actorName ( m_base->m_actorName ); // convert CStrW->CStr8
+	CStr actorName ( m_base->m_actorName ); // convert CStrW->CStr8
 
 	m_actor = g_UnitMan.CreateUnit( actorName, this, m_actorSelections );
 
-    // Set up our instance data
+	// Set up our instance data
 
-    SetBase( m_base );
-    m_classes.SetParent( &( m_base->m_classes ) );
-    SetNextObject( m_base );
+	SetBase( m_base );
+	m_classes.SetParent( &( m_base->m_classes ) );
+	SetNextObject( m_base );
 
-    if( m_base->m_bound_type == CBoundingObject::BOUND_CIRCLE )
-    {
-        m_bounds = new CBoundingCircle( m_position.X, m_position.Z, m_base->m_bound_circle );
-    }
-    else if( m_base->m_bound_type == CBoundingObject::BOUND_OABB )
-    {
-        m_bounds = new CBoundingBox( m_position.X, m_position.Z, m_ahead, m_base->m_bound_box );
-    }
+	if( m_base->m_bound_type == CBoundingObject::BOUND_CIRCLE )
+	{
+		m_bounds = new CBoundingCircle( m_position.X, m_position.Z, m_base->m_bound_circle );
+	}
+	else if( m_base->m_bound_type == CBoundingObject::BOUND_OABB )
+	{
+		m_bounds = new CBoundingBox( m_position.X, m_position.Z, m_ahead, m_base->m_bound_box );
+	}
 
-    m_actor_transform_valid = false;
+	m_actor_transform_valid = false;
 
 	if( m_player )
 	{
@@ -184,7 +184,7 @@ void CEntity::loadBase()
 
 	// Re-enter all our auras so they can take into account our new traits
 	for( AuraSet::iterator it = m_aurasInfluencingMe.begin();
-				it != m_aurasInfluencingMe.end(); it++ )
+		it != m_aurasInfluencingMe.end(); it++ )
 	{
 		(*it)->Remove( this );
 	}
@@ -197,45 +197,43 @@ void CEntity::loadBase()
 
 void CEntity::kill()
 {
-    g_Selection.removeAll( me );
+	g_Selection.removeAll( me );
 
 	CEntity* remove = this;
 	g_FormationManager.RemoveUnit(remove);
-	
+
 	entf_set(ENTF_DESTROY_NOTIFIERS);
 	for ( size_t i=0; i<m_listeners.size(); i++ )
 		m_listeners[i].m_sender->DestroyNotifier( this );
 	DestroyAllNotifiers();
 
-	if( m_bounds )
-        delete( m_bounds );
-    m_bounds = NULL;
+	SAFE_DELETE(m_bounds);
 
-    m_extant = false;
+	m_extant = false;
 
 	entf_set(ENTF_DESTROYED);
-    //Shutdown(); // PT: tentatively removed - this seems to be called by ~CJSComplex, and we don't want to do it twice
+	//Shutdown(); // PT: tentatively removed - this seems to be called by ~CJSComplex, and we don't want to do it twice
 
-    if( m_actor )
-    {
-        g_UnitMan.RemoveUnit( m_actor );
-        delete( m_actor );
-        m_actor = NULL;
-    }
+	if( m_actor )
+	{
+		g_UnitMan.RemoveUnit( m_actor );
+		delete( m_actor );
+		m_actor = NULL;
+	}
 
-    updateCollisionPatch();
+	updateCollisionPatch();
 
 
-    me = HEntity(); // will deallocate the entity, assuming nobody else has a reference to it
+me = HEntity(); // will deallocate the entity, assuming nobody else has a reference to it
 }
 
 void CEntity::SetPlayer(CPlayer *pPlayer)
 {
-    m_player = pPlayer;
+	m_player = pPlayer;
 
-    // Store the ID of the player in the associated model
-    if( m_actor )
-        m_actor->SetPlayerID( m_player->GetPlayerID() );
+	// Store the ID of the player in the associated model
+	if( m_actor )
+		m_actor->SetPlayerID( m_player->GetPlayerID() );
 
 	// If we're a territory centre, change the territory's owner
 	if( m_associatedTerritory )
@@ -244,7 +242,7 @@ void CEntity::SetPlayer(CPlayer *pPlayer)
 
 void CEntity::updateActorTransforms()
 {
-    CMatrix3D m;
+	CMatrix3D m;
 	CMatrix3D mXZ;
 	float Cos = cosf( m_graphics_orientation.Y );
 	float Sin = sinf( m_graphics_orientation.Y );
@@ -253,96 +251,95 @@ void CEntity::updateActorTransforms()
 	m._21=0.0f; m._22=1.0f; m._23=0.0f; m._24=0.0f;
 	m._31=Sin; m._32=0.0f; m._33=-Cos;  m._34=0.0f;
 	m._41=0.0f; m._42=0.0f; m._43=0.0f; m._44=1.0f;
-  
+
 	mXZ.SetXRotation( m_graphics_orientation.X );
 	mXZ.RotateZ( m_graphics_orientation.Z );
 	mXZ = m*mXZ;
 	mXZ.Translate(m_graphics_position);
 
-    if( m_actor )
-        m_actor->GetModel()->SetTransform( mXZ );
+	if( m_actor )
+		m_actor->GetModel()->SetTransform( mXZ );
 }
 
 void CEntity::snapToGround()
 {
-    m_graphics_position.Y = getAnchorLevel( m_graphics_position.X, m_graphics_position.Z );
+	m_graphics_position.Y = getAnchorLevel( m_graphics_position.X, m_graphics_position.Z );
 }
 
 jsval CEntity::getClassSet()
 {
-    STL_HASH_SET<CStrW, CStrW_hash_compare>::iterator it;
-    it = m_classes.m_Set.begin();
-    CStrW result = L"";
-    if( it != m_classes.m_Set.end() )
-    {
-        result = *( it++ );
-        for( ; it != m_classes.m_Set.end(); it++ )
-            result += L" " + *it;
-    }
-    return( ToJSVal( result ) );
+	STL_HASH_SET<CStrW, CStrW_hash_compare>::iterator it;
+	it = m_classes.m_Set.begin();
+	CStrW result = L"";
+	if( it != m_classes.m_Set.end() )
+	{
+		result = *( it++ );
+		for( ; it != m_classes.m_Set.end(); it++ )
+			result += L" " + *it;
+	}
+	return( ToJSVal( result ) );
 }
 
 void CEntity::setClassSet( jsval value )
 {
-    // Get the set that was passed in.
-    CStr temp = ToPrimitive<CStrW>( value );
-    CStr entry;
+	// Get the set that was passed in.
+	CStr temp = ToPrimitive<CStrW>( value );
+	CStr entry;
 
-    m_classes.m_Added.clear();
-    m_classes.m_Removed.clear();
+	m_classes.m_Added.clear();
+	m_classes.m_Removed.clear();
 
-    while( true )
-    {
-        long brk_sp = temp.Find( ' ' );
-        long brk_cm = temp.Find( ',' );
-        long brk = ( brk_sp == -1 ) ? brk_cm : ( brk_cm == -1 ) ? brk_sp : ( brk_sp < brk_cm ) ? brk_sp : brk_cm;
+	while( true )
+	{
+		long brk_sp = temp.Find( ' ' );
+		long brk_cm = temp.Find( ',' );
+		long brk = ( brk_sp == -1 ) ? brk_cm : ( brk_cm == -1 ) ? brk_sp : ( brk_sp < brk_cm ) ? brk_sp : brk_cm;
 
-        if( brk == -1 )
-        {
-            entry = temp;
-        }
-        else
-        {
-            entry = temp.GetSubstring( 0, brk );
-            temp = temp.GetSubstring( brk + 1, temp.Length() );
-        }
+		if( brk == -1 )
+		{
+			entry = temp;
+		}
+		else
+		{
+			entry = temp.GetSubstring( 0, brk );
+			temp = temp.GetSubstring( brk + 1, temp.Length() );
+		}
 
-        if( brk != 0 )
-        {
+		if( brk != 0 )
+		{
+			if( entry[0] == '-' )
+			{
+				entry = entry.GetSubstring( 1, entry.Length() );
+				if( entry.Length() )
+					m_classes.m_Removed.push_back( entry );
+			}
+			else
+			{
+				if( entry[0] == '+' )
+					entry = entry.GetSubstring( 1, entry.Length() );
+				if( entry.Length() )
+					m_classes.m_Added.push_back( entry );
+			}
+		}
+		if( brk == -1 )
+		break;
+	}
 
-            if( entry[0] == '-' )
-            {
-                entry = entry.GetSubstring( 1, entry.Length() );
-                if( entry.Length() )
-                    m_classes.m_Removed.push_back( entry );
-            }
-            else
-            {
-                if( entry[0] == '+' )
-                    entry = entry.GetSubstring( 1, entry.Length() );
-                if( entry.Length() )
-                    m_classes.m_Added.push_back( entry );
-            }
-        }
-        if( brk == -1 )
-            break;
-    }
-
-    rebuildClassSet();
+	rebuildClassSet();
 }
 
 void CEntity::rebuildClassSet()
 {
-    m_classes.Rebuild();
-    InheritorsList::iterator it;
-    for( it = m_Inheritors.begin(); it != m_Inheritors.end(); it++ )
-        (*it)->rebuildClassSet();
+	m_classes.Rebuild();
+	InheritorsList::iterator it;
+	for( it = m_Inheritors.begin(); it != m_Inheritors.end(); it++ )
+		(*it)->rebuildClassSet();
 }
 
 void CEntity::update( size_t timestep )
 {
-    m_position_previous = m_position;
-    m_orientation_previous = m_orientation;
+	m_position_previous = m_position;
+	m_orientation_previous = m_orientation;
 	
 	CalculateRun( timestep );
 	CalculateHealth( timestep );
@@ -360,75 +357,75 @@ void CEntity::update( size_t timestep )
 	m_productionQueue->Update( timestep );
 
 	// Note: aura processing is done before state processing because the state
-    // processing code is filled with all kinds of returns
+	// processing code is filled with all kinds of returns
 
-    PROFILE_START( "aura processing" );
+	PROFILE_START( "aura processing" );
 
-    for( AuraTable::iterator it = m_auras.begin(); it != m_auras.end(); it++ )
-    {
-        it->second->Update( timestep );
-    }
+	for( AuraTable::iterator it = m_auras.begin(); it != m_auras.end(); it++ )
+	{
+		it->second->Update( timestep );
+	}
 
-    PROFILE_END( "aura processing" );
+	PROFILE_END( "aura processing" );
 
-    // The process[...] functions return 'true' if the order at the top of the stack
-    // still needs to be (re-)evaluated; else 'false' to terminate the processing of
-    // this entity in this timestep.
+	// The process[...] functions return 'true' if the order at the top of the stack
+	// still needs to be (re-)evaluated; else 'false' to terminate the processing of
+	// this entity in this timestep.
 
-    PROFILE_START( "state processing" );
+	PROFILE_START( "state processing" );
 
 	if( entf_get(ENTF_IS_RUNNING) )
 	{
 		m_lastRunTime = g_Game->GetTime();
 	}
 
-    while( !m_orderQueue.empty() )
+	while( !m_orderQueue.empty() )
 	{
-        CEntityOrder* current = &m_orderQueue.front();
+		CEntityOrder* current = &m_orderQueue.front();
 
-        if( current->m_type != m_lastState )
-        {
-            entf_set(ENTF_TRANSITION);
-            m_fsm_cyclepos = NOT_IN_CYCLE;
-
-            PROFILE( "state transition / order" );
-
-            CEntity* target = NULL;
-            if( current->m_data[0].entity )
-                target = &( *( current->m_data[0].entity ) );
-
-            CVector3D worldPosition = (CVector3D)current->m_data[0].location;
-
-            CEventOrderTransition evt( m_lastState, current->m_type, target, worldPosition );
-
-            if( !DispatchEvent( &evt ) )
-            {
-                m_orderQueue.pop_front();
-                continue;
-            }
-            else if( target )
-            {
-                current->m_data[0].location = worldPosition;
-                current->m_data[0].entity = target->me;
-            }
-
-            m_lastState = current->m_type;
-        }
-        else
+		if( current->m_type != m_lastState )
 		{
-            entf_clear(ENTF_TRANSITION);
+			entf_set(ENTF_TRANSITION);
+			m_fsm_cyclepos = NOT_IN_CYCLE;
+
+			PROFILE( "state transition / order" );
+
+			CEntity* target = NULL;
+			if( current->m_data[0].entity )
+				target = &( *( current->m_data[0].entity ) );
+
+			CVector3D worldPosition = (CVector3D)current->m_data[0].location;
+
+			CEventOrderTransition evt( m_lastState, current->m_type, target, worldPosition );
+
+			if( !DispatchEvent( &evt ) )
+			{
+				m_orderQueue.pop_front();
+				continue;
+			}
+			else if( target )
+			{
+				current->m_data[0].location = worldPosition;
+				current->m_data[0].entity = target->me;
+			}
+
+			m_lastState = current->m_type;
+		}
+		else
+		{
+			entf_clear(ENTF_TRANSITION);
 		}
 
-        switch( current->m_type )
-        {
-            case CEntityOrder::ORDER_GOTO_NOPATHING:
-            case CEntityOrder::ORDER_GOTO_COLLISION:
-            case CEntityOrder::ORDER_GOTO_SMOOTHED:
+		switch( current->m_type )
+		{
+			case CEntityOrder::ORDER_GOTO_NOPATHING:
+			case CEntityOrder::ORDER_GOTO_COLLISION:
+			case CEntityOrder::ORDER_GOTO_SMOOTHED:
 				if( processGotoNoPathing( current, timestep ) )
 					break;
 				updateCollisionPatch();
 				return;
-            case CEntityOrder::ORDER_GENERIC:
+			case CEntityOrder::ORDER_GENERIC:
 				if( processGeneric( current, timestep ) )
 					break;
 				updateCollisionPatch();
@@ -440,11 +437,11 @@ void CEntity::update( size_t timestep )
 					DispatchEvent( &evt );
 				}
 				break;
-            case CEntityOrder::ORDER_PRODUCE:
+			case CEntityOrder::ORDER_PRODUCE:
 				processProduce( current );
 				m_orderQueue.pop_front();
 				break;
-            case CEntityOrder::ORDER_GENERIC_NOPATHING:
+			case CEntityOrder::ORDER_GENERIC_NOPATHING:
 				if( processGenericNoPathing( current, timestep ) )
 					break;
 				updateCollisionPatch();
@@ -459,24 +456,24 @@ void CEntity::update( size_t timestep )
 					break;
 				updateCollisionPatch();
 				return;
-            case CEntityOrder::ORDER_GOTO:
+			case CEntityOrder::ORDER_GOTO:
 			case CEntityOrder::ORDER_RUN:
 				if( processGoto( current, timestep ) )
 					break;
 				updateCollisionPatch();
 				return;
-            case CEntityOrder::ORDER_PATROL:
+			case CEntityOrder::ORDER_PATROL:
 				if( processPatrol( current, timestep ) )
 					break;
 				updateCollisionPatch();
 				return;
-            case CEntityOrder::ORDER_PATH_END_MARKER:
+			case CEntityOrder::ORDER_PATH_END_MARKER:
 				m_orderQueue.pop_front();
 				break;
-            default:
+			default:
 				debug_warn( "Invalid entity order" );
 		}
-    }
+	}
 
 	if( m_orderQueue.empty() ) 
 	{
@@ -485,188 +482,188 @@ void CEntity::update( size_t timestep )
 		entf_clear(ENTF_SHOULD_RUN);
 	}
 
-    PROFILE_END( "state processing" );
+	PROFILE_END( "state processing" );
 
 	// If we get to here, it means we're idle or dead (no orders); update the animation
 
-    if( m_actor )
-    {
-        PROFILE( "animation updates" );
-        if( m_extant )
-        {
-            if( ( m_lastState != -1 ) || !m_actor->GetModel()->GetAnimation() )
+	if( m_actor )
+	{
+		PROFILE( "animation updates" );
+		if( m_extant )
+		{
+			if( ( m_lastState != -1 ) || !m_actor->GetModel()->GetAnimation() )
 			{
 				m_actor->SetEntitySelection( L"idle" );
-                m_actor->SetRandomAnimation( "idle" );
+				m_actor->SetRandomAnimation( "idle" );
 			}
-        }
-    }
+		}
+	}
 
-    if( m_lastState != -1 )
-    {
-        PROFILE( "state transition event" );
-        CEntity* d0;
-        CVector3D d1;
-        CEventOrderTransition evt( m_lastState, -1, d0, d1 );
-        DispatchEvent( &evt );
+	if( m_lastState != -1 )
+	{
+		PROFILE( "state transition event" );
+		CEntity* d0;
+		CVector3D d1;
+		CEventOrderTransition evt( m_lastState, -1, d0, d1 );
+		DispatchEvent( &evt );
 
-        m_lastState = -1;
-    }
+		m_lastState = -1;
+	}
 }
 
 void CEntity::updateCollisionPatch()
 {
-    vector<CEntity*>* newPatch = g_EntityManager.getCollisionPatch( this );
-    if( newPatch != m_collisionPatch )
-    {
-        if( m_collisionPatch )
-        {
-            // remove ourselves from old patch
-            vector<CEntity*>& old = *m_collisionPatch;
-            if( old.size() == 1 )
-            {
-                // we were the only ones there, just pop us
-                old.pop_back();
-            }
-            else
-            {
-                // find our location and put in the last guy in the patch, then pop back
-                for( size_t i=0; i < old.size(); i++ )
-                {
-                    if( old[i] == this )
-                    {
-                        old[i] = old.back();
-                        old.pop_back();
-                        break;
-                    }
-                }
-            }
-        }
+	vector<CEntity*>* newPatch = g_EntityManager.getCollisionPatch( this );
+	if( newPatch != m_collisionPatch )
+	{
+		if( m_collisionPatch )
+		{
+			// remove ourselves from old patch
+			vector<CEntity*>& old = *m_collisionPatch;
+			if( old.size() == 1 )
+			{
+				// we were the only ones there, just pop us
+				old.pop_back();
+			}
+			else
+			{
+				// find our location and put in the last guy in the patch, then pop back
+				for( size_t i=0; i < old.size(); i++ )
+				{
+					if( old[i] == this )
+					{
+						old[i] = old.back();
+						old.pop_back();
+						break;
+					}
+				}
+			}
+		}
 
-        if( m_extant )
-        {
-            // add ourselves to new patch
-            newPatch->push_back( this );
-            m_collisionPatch = newPatch;
-        }
-    }
+		if( m_extant )
+		{
+			// add ourselves to new patch
+			newPatch->push_back( this );
+			m_collisionPatch = newPatch;
+		}
+	}
 }
 
 #if AURA_TEST
 void CEntity::UpdateAuras( size_t timestep_millis )
 {
-    std::vector<SAura>::iterator it_a;
-    for( it_a = m_Auras.begin(); it_a != m_Auras.end(); it_a++ )
-    {
-        SAuraData& d = it_a->m_Data;
-        std::set<CEntity*>
-        & inRange = GetEntitiesWithinRange( m_position, d.m_Radius );
+	std::vector<SAura>::iterator it_a;
+	for( it_a = m_Auras.begin(); it_a != m_Auras.end(); it_a++ )
+	{
+		SAuraData& d = it_a->m_Data;
+		std::set<CEntity*>
+		& inRange = GetEntitiesWithinRange( m_position, d.m_Radius );
 
-        std::vector<CEntity*>::iterator it1 = inRange.begin();
-        std::vector<SAuraInstance>::iterator it2 = it_a->m_Influenced.begin();
+		std::vector<CEntity*>::iterator it1 = inRange.begin();
+		std::vector<SAuraInstance>::iterator it2 = it_a->m_Influenced.begin();
 
-        while( WORLD_IS_ROUND )
-        {
-            if( it1 == inRange.end() )
-            {
-                // No more in range => anything else in the influenced set must have gone
-                // out of range.
-                for( ; it2 != it_a->m_Influenced.end(); it2++ )
-                    UpdateAuras_LeaveRange( *it_a, it2->GetEntity() );
+		while( WORLD_IS_ROUND )
+		{
+			if( it1 == inRange.end() )
+			{
+				// No more in range => anything else in the influenced set must have gone
+				// out of range.
+				for( ; it2 != it_a->m_Influenced.end(); it2++ )
+					UpdateAuras_LeaveRange( *it_a, it2->GetEntity() );
 
-                break;
-            }
-            if( it2 == it_a->m_Influenced.end() )
-            {
-                // Everything else in the in-range set has only just come into range
-                for( ; it1 != inRange.end(); it1++ )
-                    UpdateAuras_EnterRange( *it_a, *it );
-                break;
-            }
-            CEntity* e1 = *it1, e2 = it2->GetEntity();
-            if( e1 < e2 )
-            {
-                // A new entity e1 has just come into range.
-                // Check to see if it can be affected by the aura.
-                UpdateAuras_EnterRange( *it_a, e1 );
-                ++it1;
-            }
-            else if( e1 == e2 )
-            {
-                // The entity e1/e2 was previously in range, and still is.
-                UpdateAuras_Normal( *it_a, e1 );
-                ++it1;
-                ++it2;
-            }
-            else
-            {
-                // The entity e2 was previously in range, but is no longer.
-                UpdateAuras_LeaveRange( *it_a, e2 );
-                ++it2;
-            }
-        }
-    }
+				break;
+			}
+			if( it2 == it_a->m_Influenced.end() )
+			{
+				// Everything else in the in-range set has only just come into range
+				for( ; it1 != inRange.end(); it1++ )
+					UpdateAuras_EnterRange( *it_a, *it );
+				break;
+			}
+			CEntity* e1 = *it1, e2 = it2->GetEntity();
+			if( e1 < e2 )
+			{
+				// A new entity e1 has just come into range.
+				// Check to see if it can be affected by the aura.
+				UpdateAuras_EnterRange( *it_a, e1 );
+				++it1;
+			}
+			else if( e1 == e2 )
+			{
+				// The entity e1/e2 was previously in range, and still is.
+				UpdateAuras_Normal( *it_a, e1 );
+				++it1;
+				++it2;
+			}
+			else
+			{
+				// The entity e2 was previously in range, but is no longer.
+				UpdateAuras_LeaveRange( *it_a, e2 );
+				++it2;
+			}
+		}
+	}
 }
 
 void UpdateAuras_EnterRange( SAura& aura, CEntity* e )
 {
-    if( aura.m_Recharge )
-        return( false );
-    // Check to see if the entity is eligable
-    if( !UpdateAuras_IsEligable( aura.m_Data, e ) )
-        return; // Do nothing.
+	if( aura.m_Recharge )
+		return( false );
+	// Check to see if the entity is eligable
+	if( !UpdateAuras_IsEligable( aura.m_Data, e ) )
+		return; // Do nothing.
 
-    SAuraInstance ai;
-    ai.m_Influenced = e;
-    ai.m_EnteredRange = ai.m_LastInRange = 0;
-    ai.m_Applied = -1;
+	SAuraInstance ai;
+	ai.m_Influenced = e;
+	ai.m_EnteredRange = ai.m_LastInRange = 0;
+	ai.m_Applied = -1;
 
-    // If there's no timer, apply the effect now.
-    if( aura.m_Data.m_Time == 0 )
-    {
-        e->ApplyAuraEffect( aura.m_Data );
-        ai.m_Applied = 0;
-        aura.m_Recharge = aura.m_Data.m_Cooldown;
-    }
+	// If there's no timer, apply the effect now.
+	if( aura.m_Data.m_Time == 0 )
+	{
+		e->ApplyAuraEffect( aura.m_Data );
+		ai.m_Applied = 0;
+		aura.m_Recharge = aura.m_Data.m_Cooldown;
+	}
 
-    aura.m_Influenced.push_back( ai );
+	aura.m_Influenced.push_back( ai );
 }
 
 void UpdateAuras_Normal( SAura& aura, CEntity* e )
 {
-    // Is the entity no longer eligable?
-    if( !UpdateAuras_IsEligable( aura.m_Data, e ) )
-    {
-        //}
-    }
+	// Is the entity no longer eligable?
+	if( !UpdateAuras_IsEligable( aura.m_Data, e ) )
+	{
+		//}
+	}
 
-    bool UpdateAuras_IsEligable( SAuraData& aura, CEntity* e )
-    {
-        if( e == this )
-        {
-            if( !( aura.m_Allegiance & SAuraData::SELF ) )
-                return( false );
-        }
-        else if( e->m_player == GetGaiaPlayer() )
-        {
-            if( !( aura.m_Allegiance & SAuraData::GAIA ) )
-                return( false );
-        }
-        else if( e->m_player == m_player )
-        {
-            if( !( aura.m_Allegiance & SAuraData::PLAYER ) )
-                return( false );
-        }
-        // TODO: Allied players
-        else
-        {
-            if( !( aura.m_Allegiance & SAuraData::ENEMY ) )
-                return( false );
-        }
-        if( e->m_hp > e->m_hp_max * aura.m_Hitpoints )
-            return( false );
-        return( true );
-    }
+	bool UpdateAuras_IsEligable( SAuraData& aura, CEntity* e )
+	{
+		if( e == this )
+		{
+			if( !( aura.m_Allegiance & SAuraData::SELF ) )
+				return( false );
+		}
+		else if( e->m_player == GetGaiaPlayer() )
+		{
+			if( !( aura.m_Allegiance & SAuraData::GAIA ) )
+				return( false );
+		}
+		else if( e->m_player == m_player )
+		{
+			if( !( aura.m_Allegiance & SAuraData::PLAYER ) )
+				return( false );
+		}
+		// TODO: Allied players
+		else
+		{
+			if( !( aura.m_Allegiance & SAuraData::ENEMY ) )
+				return( false );
+		}
+		if( e->m_hp > e->m_hp_max * aura.m_Hitpoints )
+			return( false );
+		return( true );
+	}
 
 #endif
 
@@ -691,13 +688,13 @@ bool CEntity::Initialize()
 
 void CEntity::Tick()
 {
-    CEventTick evt;
-    DispatchEvent( &evt );
+	CEventTick evt;
+	DispatchEvent( &evt );
 }
 
 void CEntity::clearOrders()
 {
-    if ( m_orderQueue.empty() )
+	if ( m_orderQueue.empty() )
 		return;
 	CIdleEvent evt( m_orderQueue.front(), m_currentNotification );
 	DispatchEvent(&evt);
@@ -716,13 +713,13 @@ void CEntity::pushOrder( CEntityOrder& order )
 {
 	CEventPrepareOrder evt( order.m_data[0].entity, order.m_type, order.m_data[1].data, order.m_data[0].string );
 	if( DispatchEvent(&evt) )
-    {
+	{
 		m_orderQueue.push_back( order );
 		if(evt.m_notifyType != CEntityListener::NOTIFY_NONE)
 		{
 			CheckListeners( evt.m_notifyType, evt.m_notifySource );
 		}
-    }
+	}
 }
 
 void CEntity::DispatchNotification( CEntityOrder order, int type )
@@ -781,45 +778,45 @@ void CEntity::DispatchFormationEvent( int type )
 }
 void CEntity::repath()
 {
-    CVector2D destination;
-    if( m_orderQueue.empty() )
-        return;
+	CVector2D destination;
+	if( m_orderQueue.empty() )
+		return;
 
-    while( !m_orderQueue.empty() &&
-            ( ( m_orderQueue.front().m_type == CEntityOrder::ORDER_GOTO_COLLISION )
-              || ( m_orderQueue.front().m_type == CEntityOrder::ORDER_GOTO_NOPATHING )
-              || ( m_orderQueue.front().m_type == CEntityOrder::ORDER_GOTO_SMOOTHED ) ) )
-    {
-        destination = m_orderQueue.front().m_data[0].location;
-        m_orderQueue.pop_front();
-    }
-    g_Pathfinder.requestPath( me, destination );
+	while( !m_orderQueue.empty() &&
+			( ( m_orderQueue.front().m_type == CEntityOrder::ORDER_GOTO_COLLISION )
+			  || ( m_orderQueue.front().m_type == CEntityOrder::ORDER_GOTO_NOPATHING )
+			  || ( m_orderQueue.front().m_type == CEntityOrder::ORDER_GOTO_SMOOTHED ) ) )
+	{
+		destination = m_orderQueue.front().m_data[0].location;
+		m_orderQueue.pop_front();
+	}
+	g_Pathfinder.requestPath( me, destination );
 }
 
 void CEntity::reorient()
 {
-    m_orientation = m_graphics_orientation;
+	m_orientation = m_graphics_orientation;
 
-    m_ahead.x = sin( m_orientation.Y );
-    m_ahead.y = cos( m_orientation.Y );
-    if( m_bounds->m_type == CBoundingObject::BOUND_OABB )
-        ((CBoundingBox*)m_bounds)->setOrientation( m_ahead );
-    updateActorTransforms();
+	m_ahead.x = sin( m_orientation.Y );
+	m_ahead.y = cos( m_orientation.Y );
+	if( m_bounds->m_type == CBoundingObject::BOUND_OABB )
+		((CBoundingBox*)m_bounds)->setOrientation( m_ahead );
+	updateActorTransforms();
 }
 
 void CEntity::teleport()
 {
-    m_position = m_graphics_position;
-    m_bounds->setPosition( m_position.X, m_position.Z );
-    updateCollisionPatch();
-    repath();
+	m_position = m_graphics_position;
+	m_bounds->setPosition( m_position.X, m_position.Z );
+	updateCollisionPatch();
+	repath();
 }
 
 void CEntity::playerChanged()
 {
 	// Set actor player colour
-    if( m_actor )
-        m_actor->SetPlayerID( m_player->GetPlayerID() );
+	if( m_actor )
+		m_actor->SetPlayerID( m_player->GetPlayerID() );
 	
 	// If we're a territory centre, change the territory's owner
 	if( m_associatedTerritory )
@@ -828,177 +825,177 @@ void CEntity::playerChanged()
 
 void CEntity::checkSelection()
 {
-    if( m_selected )
-    {
-        if( !g_Selection.isSelected( me ) )
-            g_Selection.addSelection( me );
-    }
-    else
-    {
-        if( g_Selection.isSelected( me ) )
-            g_Selection.removeSelection( me );
-    }
+	if( m_selected )
+	{
+		if( !g_Selection.isSelected( me ) )
+			g_Selection.addSelection( me );
+	}
+	else
+	{
+		if( g_Selection.isSelected( me ) )
+			g_Selection.removeSelection( me );
+	}
 }
 
 void CEntity::checkGroup()
 {
-    g_Selection.changeGroup( me, -1 ); // Ungroup
-    if( ( m_grouped >= 0 ) && ( m_grouped < MAX_GROUPS ) )
-        g_Selection.changeGroup( me, m_grouped );
+	g_Selection.changeGroup( me, -1 ); // Ungroup
+	if( ( m_grouped >= 0 ) && ( m_grouped < MAX_GROUPS ) )
+		g_Selection.changeGroup( me, m_grouped );
 }
 
 void CEntity::interpolate( float relativeoffset )
 {
-    CVector3D old_graphics_position = m_graphics_position;
-    CVector3D old_graphics_orientation = m_graphics_orientation;
+	CVector3D old_graphics_position = m_graphics_position;
+	CVector3D old_graphics_orientation = m_graphics_orientation;
 
-    m_graphics_position = Interpolate<CVector3D>( m_position_previous, m_position, relativeoffset );
+	m_graphics_position = Interpolate<CVector3D>( m_position_previous, m_position, relativeoffset );
 
-    // Avoid wraparound glitches for interpolating angles.
+	// Avoid wraparound glitches for interpolating angles.
 	
 	m_orientation.X = fmodf(m_orientation.X, 2*PI); // (ensure the following loops can't take forever)
 	m_orientation.Y = fmodf(m_orientation.Y, 2*PI);
 	m_orientation.Z = fmodf(m_orientation.Z, 2*PI);
 
-    while( m_orientation.Y < m_orientation_previous.Y - PI )
-        m_orientation_previous.Y -= 2 * PI;
-    while( m_orientation.Y > m_orientation_previous.Y + PI )
-        m_orientation_previous.Y += 2 * PI;
+	while( m_orientation.Y < m_orientation_previous.Y - PI )
+		m_orientation_previous.Y -= 2 * PI;
+	while( m_orientation.Y > m_orientation_previous.Y + PI )
+		m_orientation_previous.Y += 2 * PI;
 
 	while( m_orientation.X < m_orientation_previous.X - PI )
-        m_orientation_previous.X -= 2 * PI;
-    while( m_orientation.X > m_orientation_previous.X + PI )
-        m_orientation_previous.X += 2 * PI;
+		m_orientation_previous.X -= 2 * PI;
+	while( m_orientation.X > m_orientation_previous.X + PI )
+		m_orientation_previous.X += 2 * PI;
 
 	while( m_orientation.Z < m_orientation_previous.Z - PI )
-        m_orientation_previous.Z -= 2 * PI;
-    while( m_orientation.Z > m_orientation_previous.Z + PI )
-        m_orientation_previous.Z += 2 * PI;
+		m_orientation_previous.Z -= 2 * PI;
+	while( m_orientation.Z > m_orientation_previous.Z + PI )
+		m_orientation_previous.Z += 2 * PI;
 
-    m_graphics_orientation = Interpolate<CVector3D>( m_orientation_previous, m_orientation, relativeoffset );
+	m_graphics_orientation = Interpolate<CVector3D>( m_orientation_previous, m_orientation, relativeoffset );
 
-    // Mark the actor transform data as invalid if the entity has moved since
-    // the last call to 'interpolate'.
-    // position.Y is ignored because we can't determine the new value without
-    // calling snapToGround, which is slow. TODO: This may need to be adjusted to
-    // handle flying units or moving terrain.
-    if( m_graphics_orientation != old_graphics_orientation ||
-        m_graphics_position.X != old_graphics_position.X ||
-        m_graphics_position.Z != old_graphics_position.Z		
+	// Mark the actor transform data as invalid if the entity has moved since
+	// the last call to 'interpolate'.
+	// position.Y is ignored because we can't determine the new value without
+	// calling snapToGround, which is slow. TODO: This may need to be adjusted to
+	// handle flying units or moving terrain.
+	if( m_graphics_orientation != old_graphics_orientation ||
+		m_graphics_position.X != old_graphics_position.X ||
+		m_graphics_position.Z != old_graphics_position.Z		
 		)
 	{															
-        m_actor_transform_valid = false;
+		m_actor_transform_valid = false;
 	}
-    // Update the actor transform data when necessary.
-    if( !m_actor_transform_valid )
-    {
-        snapToGround();
-        updateActorTransforms();
-        m_actor_transform_valid = true;
-    }
+	// Update the actor transform data when necessary.
+	if( !m_actor_transform_valid )
+	{
+		snapToGround();
+		updateActorTransforms();
+		m_actor_transform_valid = true;
+	}
 }
 
 void CEntity::invalidateActor()
 {
-    m_actor_transform_valid = false;
+	m_actor_transform_valid = false;
 }
 
 void CEntity::render()
 {
 	if( !m_visible ) return;
 
-    if( !m_orderQueue.empty() )
-    {
-        std::deque<CEntityOrder>::iterator it;
-        CBoundingObject* destinationCollisionObject;
-        float x0, y0, x, y;
+	if( !m_orderQueue.empty() )
+	{
+		std::deque<CEntityOrder>::iterator it;
+		CBoundingObject* destinationCollisionObject;
+		float x0, y0, x, y;
 
-        x = m_orderQueue.front().m_data[0].location.x;
-        y = m_orderQueue.front().m_data[0].location.y;
+		x = m_orderQueue.front().m_data[0].location.x;
+		y = m_orderQueue.front().m_data[0].location.y;
 
-        for( it = m_orderQueue.begin(); it < m_orderQueue.end(); it++ )
-        {
-            if( it->m_type == CEntityOrder::ORDER_PATROL )
-                break;
-            x = it->m_data[0].location.x;
-            y = it->m_data[0].location.y;
-        }
-        destinationCollisionObject = getContainingObject( CVector2D( x, y ) );
+		for( it = m_orderQueue.begin(); it < m_orderQueue.end(); it++ )
+		{
+			if( it->m_type == CEntityOrder::ORDER_PATROL )
+				break;
+			x = it->m_data[0].location.x;
+			y = it->m_data[0].location.y;
+		}
+		destinationCollisionObject = getContainingObject( CVector2D( x, y ) );
 
-        glShadeModel( GL_FLAT );
-        glBegin( GL_LINE_STRIP );
+		glShadeModel( GL_FLAT );
+		glBegin( GL_LINE_STRIP );
 
-        glVertex3f( m_position.X, m_position.Y + 0.25f, m_position.Z );
+		glVertex3f( m_position.X, m_position.Y + 0.25f, m_position.Z );
 
-        x = m_position.X;
-        y = m_position.Z;
+		x = m_position.X;
+		y = m_position.Z;
 
-        for( it = m_orderQueue.begin(); it < m_orderQueue.end(); it++ )
-        {
-            x0 = x;
-            y0 = y;
-            x = it->m_data[0].location.x;
-            y = it->m_data[0].location.y;
-            rayIntersectionResults r;
-            CVector2D fwd( x - x0, y - y0 );
-            float l = fwd.length();
-            fwd = fwd.normalize();
-            CVector2D rgt = fwd.beta();
-            if( getRayIntersection( CVector2D( x0, y0 ), fwd, rgt, l, m_bounds->m_radius, destinationCollisionObject, &r ) )
-            {
-                glEnd();
-                glBegin( GL_LINES );
-                glColor3f( 1.0f, 0.0f, 0.0f );
-                glVertex3f( x0 + fwd.x * r.distance, getAnchorLevel( x0 + fwd.x * r.distance, y0 + fwd.y * r.distance ) + 0.25f, y0 + fwd.y * r.distance );
-                glVertex3f( r.position.x, getAnchorLevel( r.position.x, r.position.y ) + 0.25f, r.position.y );
-                glEnd();
-                glBegin( GL_LINE_STRIP );
-                glVertex3f( x0, getAnchorLevel( x0, y0 ), y0 );
-            }
-            switch( it->m_type )
-            {
-                case CEntityOrder::ORDER_GOTO:
-                glColor3f( 1.0f, 0.0f, 0.0f );
-                break;
-                case CEntityOrder::ORDER_GOTO_COLLISION:
-                glColor3f( 1.0f, 0.5f, 0.5f );
-                break;
-                case CEntityOrder::ORDER_GOTO_NOPATHING:
-                case CEntityOrder::ORDER_GOTO_SMOOTHED:
-                glColor3f( 0.5f, 0.5f, 0.5f );
-                break;
-                case CEntityOrder::ORDER_PATROL:
-                glColor3f( 0.0f, 1.0f, 0.0f );
-                break;
-                default:
-                continue;
-            }
+		for( it = m_orderQueue.begin(); it < m_orderQueue.end(); it++ )
+		{
+			x0 = x;
+			y0 = y;
+			x = it->m_data[0].location.x;
+			y = it->m_data[0].location.y;
+			rayIntersectionResults r;
+			CVector2D fwd( x - x0, y - y0 );
+			float l = fwd.length();
+			fwd = fwd.normalize();
+			CVector2D rgt = fwd.beta();
+			if( getRayIntersection( CVector2D( x0, y0 ), fwd, rgt, l, m_bounds->m_radius, destinationCollisionObject, &r ) )
+			{
+				glEnd();
+				glBegin( GL_LINES );
+				glColor3f( 1.0f, 0.0f, 0.0f );
+				glVertex3f( x0 + fwd.x * r.distance, getAnchorLevel( x0 + fwd.x * r.distance, y0 + fwd.y * r.distance ) + 0.25f, y0 + fwd.y * r.distance );
+				glVertex3f( r.position.x, getAnchorLevel( r.position.x, r.position.y ) + 0.25f, r.position.y );
+				glEnd();
+				glBegin( GL_LINE_STRIP );
+				glVertex3f( x0, getAnchorLevel( x0, y0 ), y0 );
+			}
+			switch( it->m_type )
+			{
+				case CEntityOrder::ORDER_GOTO:
+				glColor3f( 1.0f, 0.0f, 0.0f );
+				break;
+				case CEntityOrder::ORDER_GOTO_COLLISION:
+				glColor3f( 1.0f, 0.5f, 0.5f );
+				break;
+				case CEntityOrder::ORDER_GOTO_NOPATHING:
+				case CEntityOrder::ORDER_GOTO_SMOOTHED:
+				glColor3f( 0.5f, 0.5f, 0.5f );
+				break;
+				case CEntityOrder::ORDER_PATROL:
+				glColor3f( 0.0f, 1.0f, 0.0f );
+				break;
+				default:
+				continue;
+			}
 
-            glVertex3f( x, getAnchorLevel( x, y ) + 0.25f, y );
-        }
+			glVertex3f( x, getAnchorLevel( x, y ) + 0.25f, y );
+		}
 
-        glEnd();
-        glShadeModel( GL_SMOOTH );
-    }
+		glEnd();
+		glShadeModel( GL_SMOOTH );
+	}
 
-    glColor3f( 1.0f, 1.0f, 1.0f );
-    if( getCollisionObject( this ) )
-        glColor3f( 0.5f, 0.5f, 1.0f );
-    m_bounds->render( getAnchorLevel( m_position.X, m_position.Z ) + 0.25f ); //m_position.Y + 0.25f );
+	glColor3f( 1.0f, 1.0f, 1.0f );
+	if( getCollisionObject( this ) )
+		glColor3f( 0.5f, 0.5f, 1.0f );
+	m_bounds->render( getAnchorLevel( m_position.X, m_position.Z ) + 0.25f ); //m_position.Y + 0.25f );
 }
 
 float CEntity::getAnchorLevel( float x, float z )
 {
-    CTerrain *pTerrain = g_Game->GetWorld()->GetTerrain();
-    float groundLevel = pTerrain->getExactGroundLevel( x, z );
-    if( m_base->m_anchorType==L"Ground" )
-    {
-        return groundLevel;
-    }
-    else
-    {
-        return max( groundLevel, g_Renderer.GetWaterManager()->m_WaterHeight );
-    }
+	CTerrain *pTerrain = g_Game->GetWorld()->GetTerrain();
+	float groundLevel = pTerrain->getExactGroundLevel( x, z );
+	if( m_base->m_anchorType==L"Ground" )
+	{
+		return groundLevel;
+	}
+	else
+	{
+		return max( groundLevel, g_Renderer.GetWaterManager()->m_WaterHeight );
+	}
 }
 int CEntity::findSector( int divs, float angle, float maxAngle, bool negative )
 {
@@ -1035,115 +1032,115 @@ int CEntity::findSector( int divs, float angle, float maxAngle, bool negative )
 }
 void CEntity::renderSelectionOutline( float alpha )
 {
-    if( !m_bounds || !m_visible )
-        return;
+	if( !m_bounds || !m_visible )
+		return;
 
 	if( getCollisionObject( m_bounds, m_player, m_base->m_socket ) )
 	{
-        glColor4f( 1.0f, 0.5f, 0.5f, alpha );	// We're colliding with another unit; colour outline pink
+		glColor4f( 1.0f, 0.5f, 0.5f, alpha );	// We're colliding with another unit; colour outline pink
 	}
-    else
-    {
-        const SPlayerColour& col = m_player->GetColour();
-        glColor3f( col.r, col.g, col.b );		// Colour outline with player colour
-    }
+	else
+	{
+		const SPlayerColour& col = m_player->GetColour();
+		glColor3f( col.r, col.g, col.b );		// Colour outline with player colour
+	}
 
-    glBegin( GL_LINE_LOOP );
+	glBegin( GL_LINE_LOOP );
 
-    CVector3D pos = m_graphics_position;
+	CVector3D pos = m_graphics_position;
 
-    switch( m_bounds->m_type )
-    {
-        case CBoundingObject::BOUND_CIRCLE:
-        {
-            float radius = ((CBoundingCircle*)m_bounds)->m_radius;
-            for( int i = 0; i < SELECTION_CIRCLE_POINTS; i++ )
-            {
-                float ang = i * 2 * PI / (float)SELECTION_CIRCLE_POINTS;
-                float x = pos.X + radius * sin( ang );
-                float y = pos.Z + radius * cos( ang );
+	switch( m_bounds->m_type )
+	{
+		case CBoundingObject::BOUND_CIRCLE:
+		{
+			float radius = ((CBoundingCircle*)m_bounds)->m_radius;
+			for( int i = 0; i < SELECTION_CIRCLE_POINTS; i++ )
+			{
+				float ang = i * 2 * PI / (float)SELECTION_CIRCLE_POINTS;
+				float x = pos.X + radius * sin( ang );
+				float y = pos.Z + radius * cos( ang );
 #ifdef SELECTION_TERRAIN_CONFORMANCE
 
-                glVertex3f( x, getAnchorLevel( x, y ) + 0.25f, y );
+				glVertex3f( x, getAnchorLevel( x, y ) + 0.25f, y );
 #else
 
-                glVertex3f( x, pos.Y + 0.25f, y );
+				glVertex3f( x, pos.Y + 0.25f, y );
 #endif
 
-            }
-            break;
-        }
-        case CBoundingObject::BOUND_OABB:
-        {
-            CVector2D p, q;
-            CVector2D u, v;
-            q.x = pos.X;
-            q.y = pos.Z;
-            float d = ((CBoundingBox*)m_bounds)->m_d;
-            float w = ((CBoundingBox*)m_bounds)->m_w;
+			}
+			break;
+		}
+		case CBoundingObject::BOUND_OABB:
+		{
+			CVector2D p, q;
+			CVector2D u, v;
+			q.x = pos.X;
+			q.y = pos.Z;
+			float d = ((CBoundingBox*)m_bounds)->m_d;
+			float w = ((CBoundingBox*)m_bounds)->m_w;
 
-            u.x = sin( m_graphics_orientation.Y );
-            u.y = cos( m_graphics_orientation.Y );
-            v.x = u.y;
-            v.y = -u.x;
+			u.x = sin( m_graphics_orientation.Y );
+			u.y = cos( m_graphics_orientation.Y );
+			v.x = u.y;
+			v.y = -u.x;
 
 #ifdef SELECTION_TERRAIN_CONFORMANCE
 
-            for( int i = SELECTION_BOX_POINTS; i > -SELECTION_BOX_POINTS; i-- )
-            {
-                p = q + u * d + v * ( w * (float)i / (float)SELECTION_BOX_POINTS );
-                glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
-            }
+			for( int i = SELECTION_BOX_POINTS; i > -SELECTION_BOX_POINTS; i-- )
+			{
+				p = q + u * d + v * ( w * (float)i / (float)SELECTION_BOX_POINTS );
+				glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
+			}
 
-            for( int i = SELECTION_BOX_POINTS; i > -SELECTION_BOX_POINTS; i-- )
-            {
-                p = q + u * ( d * (float)i / (float)SELECTION_BOX_POINTS ) - v * w;
-                glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
-            }
+			for( int i = SELECTION_BOX_POINTS; i > -SELECTION_BOX_POINTS; i-- )
+			{
+				p = q + u * ( d * (float)i / (float)SELECTION_BOX_POINTS ) - v * w;
+				glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
+			}
 
-            for( int i = -SELECTION_BOX_POINTS; i < SELECTION_BOX_POINTS; i++ )
-            {
-                p = q - u * d + v * ( w * (float)i / (float)SELECTION_BOX_POINTS );
-                glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
-            }
+			for( int i = -SELECTION_BOX_POINTS; i < SELECTION_BOX_POINTS; i++ )
+			{
+				p = q - u * d + v * ( w * (float)i / (float)SELECTION_BOX_POINTS );
+				glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
+			}
 
-            for( int i = -SELECTION_BOX_POINTS; i < SELECTION_BOX_POINTS; i++ )
-            {
-                p = q + u * ( d * (float)i / (float)SELECTION_BOX_POINTS ) + v * w;
-                glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
-            }
+			for( int i = -SELECTION_BOX_POINTS; i < SELECTION_BOX_POINTS; i++ )
+			{
+				p = q + u * ( d * (float)i / (float)SELECTION_BOX_POINTS ) + v * w;
+				glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
+			}
 #else
-            p = q + u * h + v * w;
-            glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
+			p = q + u * h + v * w;
+			glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
 
-            p = q + u * h - v * w;
-            glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
+			p = q + u * h - v * w;
+			glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
 
-            p = q - u * h + v * w;
-            glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
+			p = q - u * h + v * w;
+			glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
 
-            p = q + u * h + v * w;
-            glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
+			p = q + u * h + v * w;
+			glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
 #endif
 
 
-            break;
-        }
-    }
+			break;
+		}
+	}
 
-    glEnd();
+	glEnd();
 }
 
 CVector2D CEntity::getScreenCoords( float height )
 {
 	CCamera &g_Camera=*g_Game->GetView()->GetCamera();
 
-    float sx, sy;
-    CVector3D above;
-    above.X = m_position.X;
-    above.Z = m_position.Z;
-    above.Y = getAnchorLevel(m_position.X, m_position.Z) + height;
-    g_Camera.GetScreenCoordinates(above, sx, sy);
+	float sx, sy;
+	CVector3D above;
+	above.X = m_position.X;
+	above.Z = m_position.Z;
+	above.Y = getAnchorLevel(m_position.X, m_position.Z) + height;
+	g_Camera.GetScreenCoordinates(above, sx, sy);
 	return CVector2D( sx, sy );
 }
 
@@ -1289,98 +1286,98 @@ void CEntity::renderBarBorders()
 
 void CEntity::renderHealthBar()
 {
-    if( !m_bounds || !m_visible )
-        return;
-    if( m_base->m_healthBarHeight < 0 )
-        return;  // negative bar height means don't display health bar
+	if( !m_bounds || !m_visible )
+		return;
+	if( m_base->m_healthBarHeight < 0 )
+		return;  // negative bar height means don't display health bar
 
-    float fraction;
+	float fraction;
 	if(m_healthMax == 0) fraction = 1.0f;
 	else fraction = clamp(m_healthCurr / m_healthMax, 0.0f, 1.0f);
 
 	CVector2D pos = getScreenCoords( m_base->m_healthBarHeight );
-    float x1 = pos.x - m_base->m_healthBarSize/2;
-    float x2 = pos.x + m_base->m_healthBarSize/2;
-    float y = g_yres - pos.y;
+	float x1 = pos.x - m_base->m_healthBarSize/2;
+	float x2 = pos.x + m_base->m_healthBarSize/2;
+	float y = g_yres - pos.y;
 
 	glLineWidth( m_base->m_healthBarWidth );
 	glBegin(GL_LINES);
 
-    // green part of bar
-    glColor3f( 0, 1, 0 );
-    glVertex3f( x1, y, 0 );
-    glColor3f( 0, 1, 0 );
-    glVertex3f( x1 + m_base->m_healthBarSize*fraction, y, 0 );
+	// green part of bar
+	glColor3f( 0, 1, 0 );
+	glVertex3f( x1, y, 0 );
+	glColor3f( 0, 1, 0 );
+	glVertex3f( x1 + m_base->m_healthBarSize*fraction, y, 0 );
 
-    // red part of bar
-    glColor3f( 1, 0, 0 );
-    glVertex3f( x1 + m_base->m_healthBarSize*fraction, y, 0 );
-    glColor3f( 1, 0, 0 );
-    glVertex3f( x2, y, 0 );
+	// red part of bar
+	glColor3f( 1, 0, 0 );
+	glVertex3f( x1 + m_base->m_healthBarSize*fraction, y, 0 );
+	glColor3f( 1, 0, 0 );
+	glVertex3f( x2, y, 0 );
 
-    glEnd();
+	glEnd();
 
 	glLineWidth(1.0f);
 }
 
 void CEntity::renderStaminaBar()
 {
-    if( !m_bounds || !m_visible )
-        return;
-    if( m_base->m_staminaBarHeight < 0 )
-        return;  // negative bar height means don't display stamina bar
+	if( !m_bounds || !m_visible )
+		return;
+	if( m_base->m_staminaBarHeight < 0 )
+		return;  // negative bar height means don't display stamina bar
 
-    float fraction;
+	float fraction;
 	if(m_staminaMax == 0) fraction = 1.0f;
 	else fraction = clamp(m_staminaCurr / m_staminaMax, 0.0f, 1.0f);
 
-    CVector2D pos = getScreenCoords( m_base->m_staminaBarHeight );
-    float x1 = pos.x - m_base->m_staminaBarSize/2;
-    float x2 = pos.x + m_base->m_staminaBarSize/2;
-    float y = g_yres - pos.y;
+	CVector2D pos = getScreenCoords( m_base->m_staminaBarHeight );
+	float x1 = pos.x - m_base->m_staminaBarSize/2;
+	float x2 = pos.x + m_base->m_staminaBarSize/2;
+	float y = g_yres - pos.y;
 
 	glLineWidth( m_base->m_staminaBarWidth );
-    glBegin(GL_LINES);
+	glBegin(GL_LINES);
 
-    // blue part of bar
-    glColor3f( 0.1f, 0.1f, 1 );
-    glVertex3f( x1, y, 0 );
-    glColor3f( 0.1f, 0.1f, 1 );
-    glVertex3f( x1 + m_base->m_staminaBarSize*fraction, y, 0 );
+	// blue part of bar
+	glColor3f( 0.1f, 0.1f, 1 );
+	glVertex3f( x1, y, 0 );
+	glColor3f( 0.1f, 0.1f, 1 );
+	glVertex3f( x1 + m_base->m_staminaBarSize*fraction, y, 0 );
 
-    // purple part of bar
-    glColor3f( 0.3f, 0, 0.3f );
-    glVertex3f( x1 + m_base->m_staminaBarSize*fraction, y, 0 );
-    glColor3f( 0.3f, 0, 0.3f );
-    glVertex3f( x2, y, 0 );
+	// purple part of bar
+	glColor3f( 0.3f, 0, 0.3f );
+	glVertex3f( x1 + m_base->m_staminaBarSize*fraction, y, 0 );
+	glColor3f( 0.3f, 0, 0.3f );
+	glVertex3f( x2, y, 0 );
 
-    glEnd();
+	glEnd();
 	glLineWidth(1.0f);
 }
 
 void CEntity::renderRank()
 {
 	if( !m_bounds || !m_visible )
-        return;
-    if( m_base->m_rankHeight < 0 )
-        return;  // negative height means don't display rank
+		return;
+	if( m_base->m_rankHeight < 0 )
+		return;  // negative height means don't display rank
 	//Check for valid texture
 	if( g_Selection.m_unitUITextures.find( m_rankName ) == g_Selection.m_unitUITextures.end() )
 		return;
 
-    CCamera *g_Camera=g_Game->GetView()->GetCamera();
+	CCamera *g_Camera=g_Game->GetView()->GetCamera();
 
-    float sx, sy;
-    CVector3D above;
-    above.X = m_position.X;
-    above.Z = m_position.Z;
-    above.Y = getAnchorLevel(m_position.X, m_position.Z) + m_base->m_rankHeight;
-    g_Camera->GetScreenCoordinates(above, sx, sy);
-    int size = m_base->m_rankWidth/2;
+	float sx, sy;
+	CVector3D above;
+	above.X = m_position.X;
+	above.Z = m_position.Z;
+	above.Y = getAnchorLevel(m_position.X, m_position.Z) + m_base->m_rankHeight;
+	g_Camera->GetScreenCoordinates(above, sx, sy);
+	int size = m_base->m_rankWidth/2;
 
 	float x1 = sx + m_base->m_healthBarSize/2;
-    float x2 = sx + m_base->m_healthBarSize/2 + 2*size;
-    float y1 = g_yres - (sy - size);	//top
+	float x2 = sx + m_base->m_healthBarSize/2 + 2*size;
+	float y1 = g_yres - (sy - size);	//top
 	float y2 = g_yres - (sy + size);	//bottom
 
 	ogl_tex_bind(g_Selection.m_unitUITextures[m_rankName]);
@@ -1390,12 +1387,12 @@ void CEntity::renderRank()
 
 	glBegin(GL_QUADS);
 
-    glTexCoord2f(1.0f, 0.0f); glVertex3f( x2, y2, 0 );
-    glTexCoord2f(1.0f, 1.0f); glVertex3f( x2, y1, 0 );
-    glTexCoord2f(0.0f, 1.0f); glVertex3f( x1, y1, 0 );
-    glTexCoord2f(0.0f, 0.0f); glVertex3f( x1, y2, 0 );
+	glTexCoord2f(1.0f, 0.0f); glVertex3f( x2, y2, 0 );
+	glTexCoord2f(1.0f, 1.0f); glVertex3f( x2, y1, 0 );
+	glTexCoord2f(0.0f, 1.0f); glVertex3f( x1, y1, 0 );
+	glTexCoord2f(0.0f, 0.0f); glVertex3f( x1, y2, 0 );
 
-    glEnd();
+	glEnd();
 }
 
 void CEntity::renderRallyPoint()
@@ -1465,17 +1462,17 @@ void CEntity::CalculateHealth(float timestep)
 
 void CEntity::ScriptingInit()
 {
-    AddMethod<jsval, &CEntity::ToString>( "toString", 0 );
-    AddMethod<bool, &CEntity::OrderSingle>( "order", 1 );
-    AddMethod<bool, &CEntity::OrderQueued>( "orderQueued", 1 );
+	AddMethod<jsval, &CEntity::ToString>( "toString", 0 );
+	AddMethod<bool, &CEntity::OrderSingle>( "order", 1 );
+	AddMethod<bool, &CEntity::OrderQueued>( "orderQueued", 1 );
 	AddMethod<jsval, &CEntity::TerminateOrder>( "terminateOrder", 1 );
-    AddMethod<bool, &CEntity::Kill>( "kill", 0 );
-    AddMethod<bool, &CEntity::IsIdle>( "isIdle", 0 );
-    AddMethod<bool, &CEntity::HasClass>( "hasClass", 1 );
-    AddMethod<jsval, &CEntity::GetSpawnPoint>( "getSpawnPoint", 1 );
-    AddMethod<jsval, &CEntity::AddAura>( "addAura", 3 );
-    AddMethod<jsval, &CEntity::RemoveAura>( "removeAura", 1 );
-    AddMethod<jsval, &CEntity::SetActionParams>( "setActionParams", 5 );
+	AddMethod<bool, &CEntity::Kill>( "kill", 0 );
+	AddMethod<bool, &CEntity::IsIdle>( "isIdle", 0 );
+	AddMethod<bool, &CEntity::HasClass>( "hasClass", 1 );
+	AddMethod<jsval, &CEntity::GetSpawnPoint>( "getSpawnPoint", 1 );
+	AddMethod<jsval, &CEntity::AddAura>( "addAura", 3 );
+	AddMethod<jsval, &CEntity::RemoveAura>( "removeAura", 1 );
+	AddMethod<jsval, &CEntity::SetActionParams>( "setActionParams", 5 );
 	AddMethod<int, &CEntity::GetCurrentRequest>( "getCurrentRequest", 0 );
 	AddMethod<bool, &CEntity::ForceCheckListeners>( "forceCheckListeners", 2 );
 	AddMethod<bool, &CEntity::RequestNotification>( "requestNotification", 4 );
@@ -1500,28 +1497,28 @@ void CEntity::ScriptingInit()
 	AddMethod<jsval, &CEntity::SetRallyPoint>("setRallyPoint", 0 );
 	AddMethod<jsval, &CEntity::GetRallyPoint>("getRallyPoint", 0 );
 
-    AddClassProperty( L"traits.id.classes", (GetFn)&CEntity::getClassSet, (SetFn)&CEntity::setClassSet );
+	AddClassProperty( L"traits.id.classes", (GetFn)&CEntity::getClassSet, (SetFn)&CEntity::setClassSet );
 	AddClassProperty( L"template", (CEntityTemplate* CEntity::*)&CEntity::m_base, false, (NotifyFn)&CEntity::loadBase );
 
 	/* Anything inherited property MUST be added to EntityTemplate.cpp as well */
 
-    AddClassProperty( L"actions.move.speed_curr", &CEntity::m_speed );
+	AddClassProperty( L"actions.move.speed_curr", &CEntity::m_speed );
 	AddClassProperty( L"actions.move.run.speed", &CEntity::m_runSpeed );
 	AddClassProperty( L"actions.move.run.rangemin", &CEntity::m_runMinRange );
 	AddClassProperty( L"actions.move.run.range", &CEntity::m_runMaxRange );
 	AddClassProperty( L"actions.move.run.regen_rate", &CEntity::m_runRegenRate );
 	AddClassProperty( L"actions.move.run.decay_rate", &CEntity::m_runDecayRate );
 	AddClassProperty( L"actions.move.pass_through_allies", &CEntity::m_passThroughAllies );
-    AddClassProperty( L"selected", &CEntity::m_selected, false, (NotifyFn)&CEntity::checkSelection );
-    AddClassProperty( L"group", &CEntity::m_grouped, false, (NotifyFn)&CEntity::checkGroup );
-    AddClassProperty( L"traits.extant", &CEntity::m_extant );
-    AddClassProperty( L"actions.move.turningradius", &CEntity::m_turningRadius );
-    AddClassProperty( L"position", &CEntity::m_graphics_position, false, (NotifyFn)&CEntity::teleport );
+	AddClassProperty( L"selected", &CEntity::m_selected, false, (NotifyFn)&CEntity::checkSelection );
+	AddClassProperty( L"group", &CEntity::m_grouped, false, (NotifyFn)&CEntity::checkGroup );
+	AddClassProperty( L"traits.extant", &CEntity::m_extant );
+	AddClassProperty( L"actions.move.turningradius", &CEntity::m_turningRadius );
+	AddClassProperty( L"position", &CEntity::m_graphics_position, false, (NotifyFn)&CEntity::teleport );
 	AddClassProperty( L"orientation", &CEntity::m_orientation, false, (NotifyFn)&CEntity::reorient );
-    AddClassProperty( L"player", &CEntity::m_player, false, (NotifyFn)&CEntity::playerChanged );
-    AddClassProperty( L"traits.health.curr", &CEntity::m_healthCurr );
-    AddClassProperty( L"traits.health.max", &CEntity::m_healthMax );
-    //AddClassProperty( L"traits.health.bar_height", &CEntity::m_base->m_healthBarHeight );
+	AddClassProperty( L"player", &CEntity::m_player, false, (NotifyFn)&CEntity::playerChanged );
+	AddClassProperty( L"traits.health.curr", &CEntity::m_healthCurr );
+	AddClassProperty( L"traits.health.max", &CEntity::m_healthMax );
+	//AddClassProperty( L"traits.health.bar_height", &CEntity::m_base->m_healthBarHeight );
 	//AddClassProperty( L"traits.health.bar_size", &CEntity::m_base->m_healthBarSize );
 	//AddClassProperty( L"traits.health.bar_width", &CEntity::m_base->m_healthBarWidth );
 	//AddClassProperty( L"traits.health.border_height", &CEntity::m_base->m_healthBorderHeight);
@@ -1531,8 +1528,8 @@ void CEntity::ScriptingInit()
 	AddClassProperty( L"traits.health.regen_start", &CEntity::m_healthRegenStart );
 	AddClassProperty( L"traits.health.decay_rate", &CEntity::m_healthDecayRate );
 	AddClassProperty( L"traits.stamina.curr", &CEntity::m_staminaCurr );
-    AddClassProperty( L"traits.stamina.max", &CEntity::m_staminaMax );
-    //AddClassProperty( L"traits.stamina.bar_height", &CEntity::m_base->m_staminaBarHeight );
+	AddClassProperty( L"traits.stamina.max", &CEntity::m_staminaMax );
+	//AddClassProperty( L"traits.stamina.bar_height", &CEntity::m_base->m_staminaBarHeight );
 	//AddClassProperty( L"traits.stamina.bar_size", &CEntity::m_base->m_staminaBarSize );
 	//AddClassProperty( L"traits.stamina.bar_width", &CEntity::m_base->m_staminaBarWidth );
 	//AddClassProperty( L"traits.stamina.border_height", &CEntity::m_base->m_staminaBorderHeight);
@@ -1546,15 +1543,15 @@ void CEntity::ScriptingInit()
 	//AddClassProperty( L"traits.rank.width", &CEntity::m_base->m_rankWidth );
 	//AddClassProperty( L"traits.rank.height", &CEntity::m_base->m_rankHeight );
 	AddClassProperty( L"traits.rank.name", &CEntity::m_rankName );
-    //AddClassProperty( L"traits.minimap.type", &CEntity::m_base->m_minimapType );
-    //AddClassProperty( L"traits.minimap.red", &CEntity::m_base->m_minimapR );
-    //AddClassProperty( L"traits.minimap.green", &CEntity::m_base->m_minimapG );
-    //AddClassProperty( L"traits.minimap.blue", &CEntity::m_base->m_minimapB );
-    //AddClassProperty( L"traits.anchor.type", &CEntity::m_base->m_anchorType );
+	//AddClassProperty( L"traits.minimap.type", &CEntity::m_base->m_minimapType );
+	//AddClassProperty( L"traits.minimap.red", &CEntity::m_base->m_minimapR );
+	//AddClassProperty( L"traits.minimap.green", &CEntity::m_base->m_minimapG );
+	//AddClassProperty( L"traits.minimap.blue", &CEntity::m_base->m_minimapB );
+	//AddClassProperty( L"traits.anchor.type", &CEntity::m_base->m_anchorType );
 	//AddClassProperty( L"traits.anchor.conformx", &CEntity::m_base->m_anchorConformX );
 	//AddClassProperty( L"traits.anchor.conformz", &CEntity::m_base->m_anchorConformZ );
-    AddClassProperty( L"traits.vision.los", &CEntity::m_los );
-    AddClassProperty( L"traits.vision.permanent", &CEntity::m_permanent );
+	AddClassProperty( L"traits.vision.los", &CEntity::m_los );
+	AddClassProperty( L"traits.vision.permanent", &CEntity::m_permanent );
 	AddClassProperty( L"traits.is_territory_centre", &CEntity::m_isTerritoryCentre );
 	AddClassProperty( L"last_combat_time", &CEntity::m_lastCombatTime );
 	AddClassProperty( L"last_run_time", &CEntity::m_lastRunTime );
@@ -1562,130 +1559,130 @@ void CEntity::ScriptingInit()
 	AddClassProperty( L"visible", &CEntity::m_visible );
 	AddClassProperty( L"production_queue", &CEntity::m_productionQueue );
 
-    CJSComplex<CEntity>::ScriptingInit( "Entity", Construct, 2 );
+	CJSComplex<CEntity>::ScriptingInit( "Entity", Construct, 2 );
 }
 
 // Script constructor
 
 JSBool CEntity::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
 {
-    debug_assert( argc >= 2 );
+	debug_assert( argc >= 2 );
 
-    CVector3D position;
-    float orientation = (float)( PI * ( (double)( rand() & 0x7fff ) / (double)0x4000 ) );
+	CVector3D position;
+	float orientation = (float)( PI * ( (double)( rand() & 0x7fff ) / (double)0x4000 ) );
 
-    JSObject* jsEntityTemplate = JSVAL_TO_OBJECT( argv[0] );
-    CStrW templateName;
+	JSObject* jsEntityTemplate = JSVAL_TO_OBJECT( argv[0] );
+	CStrW templateName;
 
 	CPlayer* player = g_Game->GetPlayer( 0 );
 
-    CEntityTemplate* baseEntity = NULL;
-    if( JSVAL_IS_OBJECT( argv[0] ) ) // only set baseEntity if jsEntityTemplate is a valid object
-        baseEntity = ToNative<CEntityTemplate>( cx, jsEntityTemplate );
+	CEntityTemplate* baseEntity = NULL;
+	if( JSVAL_IS_OBJECT( argv[0] ) ) // only set baseEntity if jsEntityTemplate is a valid object
+		baseEntity = ToNative<CEntityTemplate>( cx, jsEntityTemplate );
 
-    if( !baseEntity )
-    {
-        try
-        {
-            templateName = g_ScriptingHost.ValueToUCString( argv[0] );
-        }
-        catch( PSERROR_Scripting_ConversionFailed )
-        {
-            *rval = JSVAL_NULL;
-            JS_ReportError( cx, "Invalid template identifier" );
-            return( JS_TRUE );
-        }
-        baseEntity = g_EntityTemplateCollection.getTemplate( templateName );
-    }
+	if( !baseEntity )
+	{
+		try
+		{
+			templateName = g_ScriptingHost.ValueToUCString( argv[0] );
+		}
+		catch( PSERROR_Scripting_ConversionFailed )
+		{
+			*rval = JSVAL_NULL;
+			JS_ReportError( cx, "Invalid template identifier" );
+			return( JS_TRUE );
+		}
+		baseEntity = g_EntityTemplateCollection.getTemplate( templateName );
+	}
 
-    if( !baseEntity )
-    {
-        *rval = JSVAL_NULL;
-        JS_ReportError( cx, "No such template: %s", CStr8(templateName).c_str() );
-        return( JS_TRUE );
-    }
+	if( !baseEntity )
+	{
+		*rval = JSVAL_NULL;
+		JS_ReportError( cx, "No such template: %s", CStr8(templateName).c_str() );
+		return( JS_TRUE );
+	}
 
-    JSI_Vector3D::Vector3D_Info* jsVector3D = NULL;
-    if( JSVAL_IS_OBJECT( argv[1] ) )
-        jsVector3D = (JSI_Vector3D::Vector3D_Info*)JS_GetInstancePrivate( cx, JSVAL_TO_OBJECT( argv[1] ), &JSI_Vector3D::JSI_class, NULL );
+	JSI_Vector3D::Vector3D_Info* jsVector3D = NULL;
+	if( JSVAL_IS_OBJECT( argv[1] ) )
+		jsVector3D = (JSI_Vector3D::Vector3D_Info*)JS_GetInstancePrivate( cx, JSVAL_TO_OBJECT( argv[1] ), &JSI_Vector3D::JSI_class, NULL );
 
-    if( jsVector3D )
-    {
-        position = *( jsVector3D->vector );
-    }
+	if( jsVector3D )
+	{
+		position = *( jsVector3D->vector );
+	}
 
-    if( argc >= 3 )
-    {
-        try
-        {
-            orientation = ToPrimitive<float>( argv[2] );
-        }
-        catch( PSERROR_Scripting_ConversionFailed )
-        {
-            // TODO: Net-safe random for this parameter.
-            orientation = 0.0f;
-        }
-    }
+	if( argc >= 3 )
+	{
+		try
+		{
+			orientation = ToPrimitive<float>( argv[2] );
+		}
+		catch( PSERROR_Scripting_ConversionFailed )
+		{
+			// TODO: Net-safe random for this parameter.
+			orientation = 0.0f;
+		}
+	}
 
-    if( argc >= 4 )
-    {
-        try
-        {
-            player = ToPrimitive<CPlayer*>( argv[3] );
-        }
-        catch( PSERROR_Scripting_ConversionFailed )
-        {
+	if( argc >= 4 )
+	{
+		try
+		{
+			player = ToPrimitive<CPlayer*>( argv[3] );
+		}
+		catch( PSERROR_Scripting_ConversionFailed )
+		{
 			player = g_Game->GetPlayer( 0 );
-        }
-    }
+		}
+	}
 
 	std::set<CStrW> selections; // TODO: let scripts specify selections?
-    HEntity handle = g_EntityManager.create( baseEntity, position, orientation, selections );
+	HEntity handle = g_EntityManager.create( baseEntity, position, orientation, selections );
 	handle->SetPlayer( player );
 	handle->Initialize();
 
-    *rval = ToJSVal<CEntity>( *handle );
-    return( JS_TRUE );
+	*rval = ToJSVal<CEntity>( *handle );
+	return( JS_TRUE );
 }
 
 // Script-bound methods
 
 jsval CEntity::ToString( JSContext* cx, uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-    wchar_t buffer[256];
-    swprintf( buffer, 256, L"[object Entity: %ls]", m_base->m_Tag.c_str() );
-    buffer[255] = 0;
-    utf16string str16(buffer, buffer+wcslen(buffer));
-    return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, str16.c_str() ) ) );
+	wchar_t buffer[256];
+	swprintf( buffer, 256, L"[object Entity: %ls]", m_base->m_Tag.c_str() );
+	buffer[255] = 0;
+	utf16string str16(buffer, buffer+wcslen(buffer));
+	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, str16.c_str() ) ) );
 }
 
 bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 {
-    // This needs to be sorted (uses Scheduler rather than network messaging)
-    debug_assert( argc >= 1 );
+	// This needs to be sorted (uses Scheduler rather than network messaging)
+	debug_assert( argc >= 1 );
 
-    int orderCode;
+	int orderCode;
 
-    try
-    {
-        orderCode = ToPrimitive<int>( argv[0] );
-    }
-    catch( PSERROR_Scripting_ConversionFailed )
-    {
-        JS_ReportError( cx, "Invalid order type" );
-        return( false );
-    }
+	try
+	{
+		orderCode = ToPrimitive<int>( argv[0] );
+	}
+	catch( PSERROR_Scripting_ConversionFailed )
+	{
+		JS_ReportError( cx, "Invalid order type" );
+		return( false );
+	}
 
-    CEntityOrder newOrder;
+	CEntityOrder newOrder;
 	CEntity* target;
 
-    (int&)newOrder.m_type = orderCode;
+	(int&)newOrder.m_type = orderCode;
 
-    switch( orderCode )
-    {
-        case CEntityOrder::ORDER_GOTO:
+	switch( orderCode )
+	{
+		case CEntityOrder::ORDER_GOTO:
 		case CEntityOrder::ORDER_RUN:
-        case CEntityOrder::ORDER_PATROL:
+		case CEntityOrder::ORDER_PATROL:
 			if( argc < 3 )
 			{
 				JS_ReportError( cx, "Too few parameters" );
@@ -1713,7 +1710,7 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 				}
 			}
 			break;
-        case CEntityOrder::ORDER_GENERIC:
+		case CEntityOrder::ORDER_GENERIC:
 			if( argc < 3 )
 			{
 				JS_ReportError( cx, "Too few parameters" );
@@ -1745,7 +1742,7 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 				}
 			}
 			break;
-        case CEntityOrder::ORDER_PRODUCE:
+		case CEntityOrder::ORDER_PRODUCE:
 			if( argc < 3 )
 			{
 				JS_ReportError( cx, "Too few parameters" );
@@ -1761,251 +1758,251 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 				return( false );
 			}
 			break;
-        default:
+		default:
 			JS_ReportError( cx, "Invalid order type" );
 			return( false );
-    }
+	}
 
-    if( !Queued )
-        clearOrders();
-    pushOrder( newOrder );
+	if( !Queued )
+		clearOrders();
+	pushOrder( newOrder );
 
-    return( true );
+	return( true );
 }
 
 bool CEntity::Kill( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-    CEventDeath evt;
-    DispatchEvent( &evt );
+	CEventDeath evt;
+	DispatchEvent( &evt );
 
-    for( AuraTable::iterator it = m_auras.begin(); it != m_auras.end(); it++ )
-    {
-        it->second->RemoveAll();
-        delete it->second;
-    }
-    m_auras.clear();
+	for( AuraTable::iterator it = m_auras.begin(); it != m_auras.end(); it++ )
+	{
+		it->second->RemoveAll();
+		delete it->second;
+	}
+	m_auras.clear();
 
-    for( AuraSet::iterator it = m_aurasInfluencingMe.begin(); it != m_aurasInfluencingMe.end(); it++ )
-    {
-        (*it)->Remove( this );
-    }
-    m_aurasInfluencingMe.clear();
+	for( AuraSet::iterator it = m_aurasInfluencingMe.begin(); it != m_aurasInfluencingMe.end(); it++ )
+	{
+		(*it)->Remove( this );
+	}
+	m_aurasInfluencingMe.clear();
 
-    if( m_bounds )
-    {
-        delete( m_bounds );
-        m_bounds = NULL;
-    }
+	if( m_bounds )
+	{
+		delete( m_bounds );
+		m_bounds = NULL;
+	}
 
-    if( m_extant )
-    {
-        m_extant = false;
-    }
+	if( m_extant )
+	{
+		m_extant = false;
+	}
 
-    updateCollisionPatch();
+	updateCollisionPatch();
 
-    g_Selection.removeAll( me );
+	g_Selection.removeAll( me );
 
-    clearOrders();
+	clearOrders();
 
 	g_EntityManager.SetDeath(true);
 
 
-    if( m_actor )
+	if( m_actor )
 	{
-		m_actor->SetEntitySelection( L"death" );       
+		m_actor->SetEntitySelection( L"death" );	   
 		m_actor->SetRandomAnimation( "death", true );
 	}
 
-    return( true );
+	return( true );
 }
 
 jsval CEntity::GetSpawnPoint( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 {
-    float spawn_clearance = 2.0f;
-    if( argc >= 1 )
-    {
-        CEntityTemplate* be = ToNative<CEntityTemplate>( argv[0] );
-        if( be )
-        {
-            switch( be->m_bound_type )
-            {
-                case CBoundingObject::BOUND_CIRCLE:
-                spawn_clearance = be->m_bound_circle->m_radius;
-                break;
-                case CBoundingObject::BOUND_OABB:
-                spawn_clearance = be->m_bound_box->m_radius;
-                break;
-                default:
-                debug_warn("No bounding information for spawned object!" );
-            }
-        }
-        else
-            spawn_clearance = ToPrimitive<float>( argv[0] );
-    }
-    else
-        debug_warn("No arguments to Entity::GetSpawnPoint()" );
+	float spawn_clearance = 2.0f;
+	if( argc >= 1 )
+	{
+		CEntityTemplate* be = ToNative<CEntityTemplate>( argv[0] );
+		if( be )
+		{
+			switch( be->m_bound_type )
+			{
+				case CBoundingObject::BOUND_CIRCLE:
+				spawn_clearance = be->m_bound_circle->m_radius;
+				break;
+				case CBoundingObject::BOUND_OABB:
+				spawn_clearance = be->m_bound_box->m_radius;
+				break;
+				default:
+				debug_warn("No bounding information for spawned object!" );
+			}
+		}
+		else
+			spawn_clearance = ToPrimitive<float>( argv[0] );
+	}
+	else
+		debug_warn("No arguments to Entity::GetSpawnPoint()" );
 
-    // TODO: Make netsafe.
-    CBoundingCircle spawn( 0.0f, 0.0f, spawn_clearance, 0.0f );
+	// TODO: Make netsafe.
+	CBoundingCircle spawn( 0.0f, 0.0f, spawn_clearance, 0.0f );
 
-    if( m_bounds->m_type == CBoundingObject::BOUND_OABB )
-    {
-        CBoundingBox* oabb = (CBoundingBox*)m_bounds;
+	if( m_bounds->m_type == CBoundingObject::BOUND_OABB )
+	{
+		CBoundingBox* oabb = (CBoundingBox*)m_bounds;
 
-        // Pick a start point
+		// Pick a start point
 
-        int edge = rand() & 3;
-        int point;
+		int edge = rand() & 3;
+		int point;
 
-        double max_w = oabb->m_w + spawn_clearance + 1.0;
-        double max_d = oabb->m_d + spawn_clearance + 1.0;
-        int w_count = (int)( max_w * 2 );
-        int d_count = (int)( max_d * 2 );
+		double max_w = oabb->m_w + spawn_clearance + 1.0;
+		double max_d = oabb->m_d + spawn_clearance + 1.0;
+		int w_count = (int)( max_w * 2 );
+		int d_count = (int)( max_d * 2 );
 
-        CVector2D w_step = oabb->m_v * (float)( max_w / w_count );
-        CVector2D d_step = oabb->m_u * (float)( max_d / d_count );
-        CVector2D pos( m_position );
-        if( edge & 1 )
-        {
-            point = rand() % ( 2 * d_count ) - d_count;
-            pos += ( oabb->m_v * (float)max_w + d_step * (float)point ) * ( ( edge & 2 ) ? -1.0f : 1.0f );
-        }
-        else
-        {
-            point = rand() % ( 2 * w_count ) - w_count;
-            pos += ( oabb->m_u * (float)max_d + w_step * (float)point ) * ( ( edge & 2 ) ? -1.0f : 1.0f );
-        }
+		CVector2D w_step = oabb->m_v * (float)( max_w / w_count );
+		CVector2D d_step = oabb->m_u * (float)( max_d / d_count );
+		CVector2D pos( m_position );
+		if( edge & 1 )
+		{
+			point = rand() % ( 2 * d_count ) - d_count;
+			pos += ( oabb->m_v * (float)max_w + d_step * (float)point ) * ( ( edge & 2 ) ? -1.0f : 1.0f );
+		}
+		else
+		{
+			point = rand() % ( 2 * w_count ) - w_count;
+			pos += ( oabb->m_u * (float)max_d + w_step * (float)point ) * ( ( edge & 2 ) ? -1.0f : 1.0f );
+		}
 
-        int start_edge = edge;
-        int start_point = point;
+		int start_edge = edge;
+		int start_point = point;
 
-        spawn.m_pos = pos;
+		spawn.m_pos = pos;
 
-        // Then step around the edge (clockwise) until a free space is found, or
-        // we've gone all the way around.
-        while( getCollisionObject( &spawn ) )
-        {
-            switch( edge )
-            {
-                case 0:
-                point++;
-                pos += w_step;
-                if( point >= w_count )
-                {
-                    edge = 1;
-                    point = -d_count;
-                }
-                break;
-                case 1:
-                point++;
-                pos -= d_step;
-                if( point >= d_count )
-                {
-                    edge = 2;
-                    point = w_count;
-                }
-                break;
-                case 2:
-                point--;
-                pos -= w_step;
-                if( point <= -w_count )
-                {
-                    edge = 3;
-                    point = d_count;
-                }
-                break;
-                case 3:
-                point--;
-                pos += d_step;
-                if( point <= -d_count )
-                {
-                    edge = 0;
-                    point = -w_count;
-                }
-                break;
-            }
-            if( ( point == start_point ) && ( edge == start_edge ) )
-                return( JSVAL_NULL );
-            spawn.m_pos = pos;
-        }
-        CVector3D rval( pos.x, getAnchorLevel( pos.x, pos.y ), pos.y );
-        return( ToJSVal( rval ) );
-    }
-    else if( m_bounds->m_type == CBoundingObject::BOUND_CIRCLE )
-    {
-        float ang;
-        ang = (float)( rand() & 0x7fff ) / (float)0x4000; /* 0...2 */
-        ang *= PI;
-        float radius = m_bounds->m_radius + 1.0f + spawn_clearance;
-        float d_ang = spawn_clearance / ( 2.0f * radius );
-        float ang_end = ang + 2.0f * PI;
-        float x = 0.0f, y = 0.0f; // make sure they're initialized
-        for( ; ang < ang_end; ang += d_ang )
-        {
-            x = m_position.X + radius * cos( ang );
-            y = m_position.Z + radius * sin( ang );
-            spawn.setPosition( x, y );
-            if( !getCollisionObject( &spawn ) )
-                break;
-        }
-        if( ang < ang_end )
-        {
-            // Found a satisfactory position...
-            CVector3D pos( x, 0, y );
-            pos.Y = getAnchorLevel( x, y );
-            return( ToJSVal( pos ) );
-        }
-        else
-            return( JSVAL_NULL );
-    }
-    return( JSVAL_NULL );
+		// Then step around the edge (clockwise) until a free space is found, or
+		// we've gone all the way around.
+		while( getCollisionObject( &spawn ) )
+		{
+			switch( edge )
+			{
+				case 0:
+				point++;
+				pos += w_step;
+				if( point >= w_count )
+				{
+					edge = 1;
+					point = -d_count;
+				}
+				break;
+				case 1:
+				point++;
+				pos -= d_step;
+				if( point >= d_count )
+				{
+					edge = 2;
+					point = w_count;
+				}
+				break;
+				case 2:
+				point--;
+				pos -= w_step;
+				if( point <= -w_count )
+				{
+					edge = 3;
+					point = d_count;
+				}
+				break;
+				case 3:
+				point--;
+				pos += d_step;
+				if( point <= -d_count )
+				{
+					edge = 0;
+					point = -w_count;
+				}
+				break;
+			}
+			if( ( point == start_point ) && ( edge == start_edge ) )
+				return( JSVAL_NULL );
+			spawn.m_pos = pos;
+		}
+		CVector3D rval( pos.x, getAnchorLevel( pos.x, pos.y ), pos.y );
+		return( ToJSVal( rval ) );
+	}
+	else if( m_bounds->m_type == CBoundingObject::BOUND_CIRCLE )
+	{
+		float ang;
+		ang = (float)( rand() & 0x7fff ) / (float)0x4000; /* 0...2 */
+		ang *= PI;
+		float radius = m_bounds->m_radius + 1.0f + spawn_clearance;
+		float d_ang = spawn_clearance / ( 2.0f * radius );
+		float ang_end = ang + 2.0f * PI;
+		float x = 0.0f, y = 0.0f; // make sure they're initialized
+		for( ; ang < ang_end; ang += d_ang )
+		{
+			x = m_position.X + radius * cos( ang );
+			y = m_position.Z + radius * sin( ang );
+			spawn.setPosition( x, y );
+			if( !getCollisionObject( &spawn ) )
+				break;
+		}
+		if( ang < ang_end )
+		{
+			// Found a satisfactory position...
+			CVector3D pos( x, 0, y );
+			pos.Y = getAnchorLevel( x, y );
+			return( ToJSVal( pos ) );
+		}
+		else
+			return( JSVAL_NULL );
+	}
+	return( JSVAL_NULL );
 }
 
 jsval CEntity::AddAura( JSContext* cx, uintN argc, jsval* argv )
 {
-    debug_assert( argc >= 4 );
-    debug_assert( JSVAL_IS_OBJECT(argv[3]) );
+	debug_assert( argc >= 4 );
+	debug_assert( JSVAL_IS_OBJECT(argv[3]) );
 
-    CStrW name = ToPrimitive<CStrW>( argv[0] );
-    float radius = ToPrimitive<float>( argv[1] );
+	CStrW name = ToPrimitive<CStrW>( argv[0] );
+	float radius = ToPrimitive<float>( argv[1] );
 	size_t tickRate = max( 0, ToPrimitive<int>( argv[2] ) );	// since it's a size_t we don't want it to be negative
-    JSObject* handler = JSVAL_TO_OBJECT( argv[3] );
+	JSObject* handler = JSVAL_TO_OBJECT( argv[3] );
 
-    if( m_auras[name] )
-    {
-        delete m_auras[name];
-    }
-    m_auras[name] = new CAura( cx, this, name, radius, tickRate, handler );
+	if( m_auras[name] )
+	{
+		delete m_auras[name];
+	}
+	m_auras[name] = new CAura( cx, this, name, radius, tickRate, handler );
 
-    return JSVAL_VOID;
+	return JSVAL_VOID;
 }
 
 jsval CEntity::RemoveAura( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 {
-    debug_assert( argc >= 1 );
-    CStrW name = ToPrimitive<CStrW>( argv[0] );
-    if( m_auras[name] )
-    {
-        delete m_auras[name];
-        m_auras.erase(name);
-    }
-    return JSVAL_VOID;
+	debug_assert( argc >= 1 );
+	CStrW name = ToPrimitive<CStrW>( argv[0] );
+	if( m_auras[name] )
+	{
+		delete m_auras[name];
+		m_auras.erase(name);
+	}
+	return JSVAL_VOID;
 }
 
 jsval CEntity::SetActionParams( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 {
-    debug_assert( argc == 5 );
+	debug_assert( argc == 5 );
 
-    int id = ToPrimitive<int>( argv[0] );
-    float minRange = ToPrimitive<int>( argv[1] );
-    float maxRange = ToPrimitive<int>( argv[2] );
-    uint speed = ToPrimitive<uint>( argv[3] );
-    CStr8 animation = ToPrimitive<CStr8>( argv[4] );
+	int id = ToPrimitive<int>( argv[0] );
+	float minRange = ToPrimitive<int>( argv[1] );
+	float maxRange = ToPrimitive<int>( argv[2] );
+	uint speed = ToPrimitive<uint>( argv[3] );
+	CStr8 animation = ToPrimitive<CStr8>( argv[4] );
 
 	m_actions[id] = SEntityAction( minRange, maxRange, speed, animation );
 
-    return JSVAL_VOID;
+	return JSVAL_VOID;
 }
 
 bool CEntity::RequestNotification( JSContext* cx, uintN argc, jsval* argv )
@@ -2052,7 +2049,7 @@ bool CEntity::RequestNotification( JSContext* cx, uintN argc, jsval* argv )
 			 case CEntityListener::NOTIFY_HEAL:
 			 case CEntityListener::NOTIFY_ATTACK:
 			 case CEntityListener::NOTIFY_GATHER:
-		     case CEntityListener::NOTIFY_DAMAGE:
+			 case CEntityListener::NOTIFY_DAMAGE:
 				 DispatchNotification( order, result );
 				 break;
 			 default:

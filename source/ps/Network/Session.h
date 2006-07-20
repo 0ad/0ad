@@ -62,7 +62,7 @@ public:
 			return false;
 	}
 
-	inline CStrW GetName()
+	inline const CStrW& GetName()
 	{
 		return m_Name;
 	}

@@ -28,18 +28,18 @@ public:
 	CFormation();
 	~CFormation(){}
 
-	CStr GetBonus(){ return m_bonus; }
-	CStr GetBonusBase(){ return m_bonusBase; }
-	CStr GetBonusType(){ return m_bonusType; }
+	const CStr& GetBonus(){ return m_bonus; }
+	const CStr& GetBonusBase(){ return m_bonusBase; }
+	const CStr& GetBonusType(){ return m_bonusType; }
 	float GetBonusVal(){ return m_bonusVal; }
 
-	CStr GetPenalty(){ return m_penalty; }
-	CStr GetPenaltyBase(){ return m_penaltyBase; }
-	CStr GetPenaltyType(){ return m_penaltyType; }
+	const CStr& GetPenalty(){ return m_penalty; }
+	const CStr& GetPenaltyBase(){ return m_penaltyBase; }
+	const CStr& GetPenaltyType(){ return m_penaltyType; }
 	float GetPenaltyVal(){ return m_penaltyVal; }
 
-	CStr GetAnglePenalty(){ return m_anglePenalty; }
-	CStr GetAnglePenaltyType(){ return m_anglePenaltyType; }
+	const CStr& GetAnglePenalty(){ return m_anglePenalty; }
+	const CStr& GetAnglePenaltyType(){ return m_anglePenaltyType; }
 	int GetAnglePenaltyDivs(){ return m_anglePenaltyDivs; }
 	float GetAnglePenaltyVal(){ return m_anglePenaltyVal; }
 
@@ -76,7 +76,7 @@ private:
 	//The key is the "order" of the slot
 	std::map<int, FormationSlot> m_slots;
 
-	bool loadXML(CStr filename);
+	bool loadXML(const CStr& filename);
 	void AssignCategory(int order, CStr category);	//takes care of formatting strings
 };
 #endif

@@ -92,7 +92,7 @@ public:
 
 	bool StoreVFS(Handle h);
 
-	CStr HACK_GetData() { return m_Data; }
+	const CStr& HACK_GetData() { return m_Data; }
 
 private:
 

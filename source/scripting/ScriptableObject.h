@@ -40,7 +40,7 @@ public:
 	
 	// Add a property (with immediate value)
 	virtual void AddProperty( const CStrW& PropertyName, jsval Value ) = 0;
-	virtual void AddProperty( const CStrW& PropertyName, CStrW Value ) = 0;
+	virtual void AddProperty( const CStrW& PropertyName, const CStrW& Value ) = 0;
 	
 	inline IJSObject() {}
 };
@@ -281,7 +281,7 @@ public:
 		CJSValProperty* newProp = new CJSValProperty( Value ); 
 		m_ScriptProperties[PropertyName] = newProp;
 	}
-	void AddProperty( const CStrW& PropertyName, CStrW Value )
+	void AddProperty( const CStrW& PropertyName, const CStrW& Value )
 	{
 		AddProperty( PropertyName, JSParseString( Value ) );
 	}

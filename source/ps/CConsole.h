@@ -100,7 +100,7 @@ public:
 
 	void SetBuffer(const wchar_t* szMessage, ...);
 
-	void UseHistoryFile( CStr filename, int historysize );
+	void UseHistoryFile( const CStr& filename, int historysize );
 
 	// Only returns a pointer to the buffer; copy out of here if you want to keep it.
 	const wchar_t* GetBuffer();

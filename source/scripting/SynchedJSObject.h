@@ -39,14 +39,14 @@
 #include "ScriptableObject.h"
 
 template <typename T>
-void SetFromNetString(T &data, CStrW string);
+void SetFromNetString(T &data, const CStrW& string);
 
 template <typename T>
 CStrW ToNetString(const T &data);
 
 #define TYPE(type) \
 	template <> CStrW ToNetString(const type &data); \
-	template <> void SetFromNetString(type &data, CStrW string);
+	template <> void SetFromNetString(type &data, const CStrW& string);
 
 TYPE(uint)
 TYPE(CStrW)
@@ -56,7 +56,7 @@ TYPE(CStrW)
 class ISynchedJSProperty: public IJSProperty
 {
 public:
-	virtual void FromString(CStrW value)=0;
+	virtual void FromString(const CStrW& value)=0;
 	virtual CStrW ToString()=0;
 };
 
@@ -95,7 +95,7 @@ struct CSynchedJSObjectBase
 			*m_Data = *( ((CSynchedJSProperty<PropType, ReadOnly>*)other)->m_Data );
 		}
 		
-		virtual void FromString(CStrW value)
+		virtual void FromString(const CStrW& value)
 		{
 			SetFromNetString(*m_Data, value);
 			if (m_Update)
@@ -108,7 +108,7 @@ struct CSynchedJSObjectBase
 		}
 		
 	public:
-		inline CSynchedJSProperty(CStrW name, PropType* native, CSynchedJSObjectBase *owner, UpdateFn update=NULL):
+		inline CSynchedJSProperty(const CStrW& name, PropType* native, CSynchedJSObjectBase *owner, UpdateFn update=NULL):
 			m_Data(native),
 			m_Name(name),
 			m_Owner(owner),
@@ -126,12 +126,12 @@ protected:
 	
 	// Called every time a property changes.
 	// This is where the individual callbacks are dispatched from.
-	virtual void Update(CStrW name, ISynchedJSProperty *prop)=0;
+	virtual void Update(const CStrW& name, ISynchedJSProperty *prop)=0;
 
 public:
-	ISynchedJSProperty *GetSynchedProperty(CStrW name);
+	ISynchedJSProperty *GetSynchedProperty(const CStrW& name);
 
-	typedef void (IterateCB)(CStrW name, ISynchedJSProperty *prop, void *userdata);
+	typedef void (IterateCB)(const CStrW& name, ISynchedJSProperty *prop, void *userdata);
 	void IterateSynchedProperties(IterateCB *cb, void *userdata);
 };
 

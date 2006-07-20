@@ -16,7 +16,7 @@
 // Only include these function definitions in the first instance of CStr.cpp:
 
 CStrW::CStrW(const CStr8 &asciStr) : std::wstring(asciStr.begin(), asciStr.end()) {}
-CStr8::CStr8(const CStrW &wideStr) : std:: string(wideStr.begin(), wideStr.end()) {}
+CStr8::CStr8(const CStrW& wideStr) : std:: string(wideStr.begin(), wideStr.end()) {}
 
 // UTF conversion code adapted from http://www.unicode.org/Public/PROGRAMS/CVTUTF/ConvertUTF.c
 
@@ -156,7 +156,7 @@ using namespace std;
  #define _totupper toupper
 #endif
 
-CStr CStr::Repeat(CStr String, size_t Reps)
+CStr CStr::Repeat(const CStr& String, size_t Reps)
 {
 	CStr ret;
 	ret.reserve(String.Length() * Reps);

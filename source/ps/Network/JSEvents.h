@@ -29,7 +29,7 @@ class CChatEvent: public CScriptEvent
 	CStrW m_Message;
 	
 public:
-	CChatEvent(CStrW sender, CStrW message):
+	CChatEvent(const CStrW& sender, const CStrW& message):
 		CScriptEvent(L"chat", NET_JS_EVENT_CHAT, false ),
 		m_Sender(sender),
 		m_Message(message)
@@ -45,7 +45,7 @@ class CConnectCompleteEvent: public CScriptEvent
 	bool m_Success;
 	
 public:
-	CConnectCompleteEvent(CStrW message, bool success):
+	CConnectCompleteEvent(const CStrW& message, bool success):
 		CScriptEvent(L"connectComplete", NET_JS_EVENT_CONNECT_COMPLETE, false),
 		m_Message(message),
 		m_Success(success)
@@ -60,7 +60,7 @@ class CDisconnectEvent: public CScriptEvent
 	CStrW m_Message;
 	
 public:
-	CDisconnectEvent(CStrW message):
+	CDisconnectEvent(const CStrW& message):
 		CScriptEvent(L"disconnect", NET_JS_EVENT_DISCONNECT, false),
 		m_Message(message)
 	{
@@ -76,7 +76,7 @@ class CClientConnectDisconnectCommon: public CScriptEvent
 	
 public:
 	CClientConnectDisconnectCommon(const wchar_t* UNUSED(eventName), int UNUSED(eventType),
-		int sessionID, const CStrW &name, CNetServerSession* pSession)
+		int sessionID, const CStrW& name, CNetServerSession* pSession)
 		: CScriptEvent(L"clientConnect", NET_JS_EVENT_CLIENT_CONNECT, false),
 		m_SessionID(sessionID),
 		m_Name(name),
@@ -91,7 +91,7 @@ public:
 
 struct CClientConnectEvent: public CClientConnectDisconnectCommon
 {
-	CClientConnectEvent(int sessionID, const CStrW &name):
+	CClientConnectEvent(int sessionID, const CStrW& name):
 		CClientConnectDisconnectCommon(
 			L"clientConnect",
 			NET_JS_EVENT_CLIENT_CONNECT,
@@ -112,7 +112,7 @@ struct CClientConnectEvent: public CClientConnectDisconnectCommon
 
 struct CClientDisconnectEvent: public CClientConnectDisconnectCommon
 {
-	CClientDisconnectEvent(int sessionID, const CStrW &name):
+	CClientDisconnectEvent(int sessionID, const CStrW& name):
 		CClientConnectDisconnectCommon(
 			L"clientDisconnect",
 			NET_JS_EVENT_CLIENT_DISCONNECT,

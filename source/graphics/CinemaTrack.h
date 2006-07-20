@@ -139,20 +139,20 @@ public:
 	CCinemaManager() { m_Active=false; }
 	~CCinemaManager() {}
 	
-	void AddTrack(CCinemaTrack track, CStrW name);
+	void AddTrack(CCinemaTrack track, const CStrW& name);
 	int LoadTracks();	//Loads tracks from file
 	
 	//Adds track to list of being played.  (Called by triggers?)
-	void QueueTrack(CStrW name, bool queue);
-	void OverrideTrack(CStrW name);	//clears track queue and replaces with 'name'
+	void QueueTrack(const CStrW& name, bool queue);
+	void OverrideTrack(const CStrW& name);	//clears track queue and replaces with 'name'
 	bool Update(float DeltaTime);
 	
 	inline bool IsPlaying() const { return !m_TrackQueue.empty(); }
-	bool HasTrack(CStrW name) const { return m_Tracks.find(name) != m_Tracks.end(); }
+	bool HasTrack(const CStrW& name) const { return m_Tracks.find(name) != m_Tracks.end(); }
 	inline bool IsActive() const { return m_Active; }
 	inline void SetActive(bool active) { m_Active=active; }
 
-	CCinemaTrack* GetTrack(CStrW name) { debug_assert(HasTrack(name)); return &m_Tracks[name]; } 
+	CCinemaTrack* GetTrack(const CStrW& name) { debug_assert(HasTrack(name)); return &m_Tracks[name]; } 
 	inline const std::map<CStrW, CCinemaTrack>& GetAllTracks() { return m_Tracks; }
 	inline void SetAllTracks( const std::map<CStrW, CCinemaTrack>& tracks) { m_Tracks = tracks; }
 private:

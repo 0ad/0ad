@@ -38,9 +38,9 @@ public:
 	CEntityTemplate( CPlayer* player );
 	~CEntityTemplate();
 	// Load from XML
-	bool loadXML( CStr filename );
+	bool loadXML( const CStr& filename );
 	// Load a tree of properties from an XML (XMB) node.
-	void XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement& Source, CStrW BasePropertyName );
+	void XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement& Source, const CStrW& BasePropertyName );
 
 	// Base stats
 	CEntityTemplate* m_base;

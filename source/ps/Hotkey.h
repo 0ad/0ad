@@ -118,7 +118,7 @@ extern void hotkeyRegisterGUIObject( const CStr& objName, const CStr& hotkeyName
 
 extern void initKeyNameMap();
 extern CStr getKeyName( int keycode );
-extern int getKeyCode( CStr keyname );
+extern int getKeyCode( const CStr& keyname );
 
 extern bool keyRespondsTo( int hotkey, int sdlkey );
 

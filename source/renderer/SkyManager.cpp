@@ -117,7 +117,7 @@ void SkyManager::UnloadSkyTextures()
 
 ///////////////////////////////////////////////////////////////////
 // Switch to a different sky set (while the game is running)
-void SkyManager::SetSkySet( CStrW newSet )
+void SkyManager::SetSkySet( const CStrW& newSet )
 {
 	if( newSet != m_SkySet )
 	{

@@ -11,16 +11,16 @@ CStrW ToNetString(const uint &val)
 }
 
 template <>
-void SetFromNetString(uint &val, CStrW string)
+void SetFromNetString(uint &val, const CStrW& string)
 {
 	val=string.ToUInt();
 }
 
 template <>
-CStrW ToNetString(const CStrW &data)
+CStrW ToNetString(const CStrW& data)
 {	return data; }
 
-template <> void SetFromNetString(CStrW &data, CStrW string)
+template <> void SetFromNetString(CStrW& data, const CStrW& string)
 {	data=string; }
 
 template <>
@@ -34,7 +34,7 @@ CStrW ToNetString(const SColour &data)
 }
 
 template <>
-void SetFromNetString(SColour &data, CStrW wstring)
+void SetFromNetString(SColour &data, const CStrW& wstring)
 {
 	CParser &parser(CParserCache::Get("$value_$value_$value_$value"));
 	CParserLine line;
@@ -67,7 +67,7 @@ void CSynchedJSObjectBase::IterateSynchedProperties(IterateCB *cb, void *userdat
 	}
 }
 
-ISynchedJSProperty *CSynchedJSObjectBase::GetSynchedProperty(CStrW name)
+ISynchedJSProperty *CSynchedJSObjectBase::GetSynchedProperty(const CStrW& name)
 {
 	SynchedPropertyIterator prop=m_SynchedProperties.find(name);
 	if (prop != m_SynchedProperties.end())

@@ -23,7 +23,7 @@ class CNetClient: public CNetSession, protected CTurnManager, public CJSObject<C
 		static void ScriptingInit();
 		
 	public:
-		CServerSession(int sessionID, const CStrW &name);
+		CServerSession(int sessionID, const CStrW& name);
 	
 		int m_SessionID;
 		CStrW m_Name;
@@ -48,7 +48,7 @@ class CNetClient: public CNetSession, protected CTurnManager, public CJSObject<C
 	CScriptObject m_OnClientConnect;
 	CScriptObject m_OnClientDisconnect;
 
-	void OnClientConnect(int sessionID, const CStrW &name);
+	void OnClientConnect(int sessionID, const CStrW& name);
 	void OnClientDisconnect(int sessionID);
 
 	// JS Interface Functions

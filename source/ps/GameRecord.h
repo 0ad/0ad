@@ -12,8 +12,8 @@ class CGameRecord
 	CTurnManager *m_pTurnManager;
 
 public:
-	void Load(CStr filename);
-	void Record(CStr filename);
+	void Load(const CStr& filename);
+	void Record(const CStr& filename);
 
 	bool IsRecording();
 

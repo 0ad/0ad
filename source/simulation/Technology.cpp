@@ -25,7 +25,7 @@ CTechnology::CTechnology( CPlayer* player ) : m_player(player)
 	m_JSFirst = false;
 	m_inProgress = false;
 } 
-bool CTechnology::loadXML( CStr filename )
+bool CTechnology::loadXML( const CStr& filename )
 {
 	CXeromyces XeroFile;
 
@@ -176,7 +176,7 @@ bool CTechnology::loadELReq( XMBElement Req, CXeromyces& XeroFile )
 	}
 	return true;
 }
-bool CTechnology::loadELEffect( XMBElement effect, CXeromyces& XeroFile, CStr& filename )
+bool CTechnology::loadELEffect( XMBElement effect, CXeromyces& XeroFile, const CStr& filename )
 {
 	#define EL(x) int el_##x = XeroFile.getElementID(#x)
 	#define AT(x) int at_##x = XeroFile.getAttributeID(#x)

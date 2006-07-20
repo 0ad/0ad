@@ -150,7 +150,7 @@ void CEntityTemplate::rebuildClassSet()
 		(*it)->rebuildClassSet();
 }
 
-bool CEntityTemplate::loadXML( CStr filename )
+bool CEntityTemplate::loadXML( const CStr& filename )
 {
 	CXeromyces XeroFile;
 	if (XeroFile.Load(filename) != PSRETURN_OK)
@@ -341,10 +341,10 @@ bool CEntityTemplate::loadXML( CStr filename )
 	return true;
 }
 
-void CEntityTemplate::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement& Source, CStrW BasePropertyName )
+void CEntityTemplate::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement& Source, const CStrW& BasePropertyName )
 {
 	// Add a property, put the node text into it.
-	CStrW PropertyName = BasePropertyName + CStr8( XeroFile.getElementString( Source.getNodeName() ) );
+	CStrW PropertyName = BasePropertyName + CStrW( XeroFile.getElementString( Source.getNodeName() ) );
 
 	IJSComplexProperty* Existing = HasProperty( PropertyName );
 	if( Existing )

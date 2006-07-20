@@ -72,14 +72,14 @@ public:
 	//
 	// Returns a pointer to the config value structure for the variable, or
 	// NULL if such a variable could not be found
-	CConfigValue *GetValue(EConfigNamespace ns, CStr name);
+	CConfigValue *GetValue(EConfigNamespace ns, const CStr& name);
 	
 	// GetValues()
 	// Attempt to retrieve a vector of values corresponding to the given setting;
 	// will search all namespaces from system up to the specified namespace.
 	// 
 	// Returns a pointer to the vector, or NULL if the setting could not be found.
-	CConfigValueSet *GetValues(EConfigNamespace ns, CStr name);
+	CConfigValueSet *GetValues(EConfigNamespace ns, const CStr& name);
 
 	// CreateValue()
 	// Create a new config value in the specified namespace. If such a
@@ -88,7 +88,7 @@ public:
 	//
 	// Returns a pointer to the value of the newly created config variable, or
 	// that of the already existing config variable.
-	CConfigValue *CreateValue(EConfigNamespace ns, CStr name);
+	CConfigValue *CreateValue(EConfigNamespace ns, const CStr& name);
 	
 	// SetConfigFile()
 	// Set the path to the config file used to populate the specified namespace
@@ -99,7 +99,7 @@ public:
 	//		VFS: relative to VFS root
 	//		non-VFS: relative to current working directory (binaries/data/)
 	// 'useVFS': true if the path is a VFS path, false if it is a real path
-	void SetConfigFile(EConfigNamespace ns, bool useVFS, CStr path);
+	void SetConfigFile(EConfigNamespace ns, bool useVFS, const CStr& path);
 	
 	// Reload()
 	// Reload the config file associated with the specified config namespace
@@ -117,7 +117,7 @@ public:
 	// Returns:
 	//	true:	if the config namespace was successfully written to the file
 	//	false:	if an error occured
-	bool WriteFile(EConfigNamespace ns, bool useVFS, CStr path);
+	bool WriteFile(EConfigNamespace ns, bool useVFS, const CStr& path);
 };
 
 

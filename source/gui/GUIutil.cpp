@@ -159,7 +159,7 @@ bool __ParseString<CPos>(const CStr& Value, CPos &Output)
 }
 
 template <>
-bool __ParseString<EAlign>(const CStr &Value, EAlign &Output)
+bool __ParseString<EAlign>(const CStr& Value, EAlign &Output)
 {
 	if (Value == "left")
 		Output = EAlign_Left;
@@ -176,7 +176,7 @@ bool __ParseString<EAlign>(const CStr &Value, EAlign &Output)
 }
 
 template <>
-bool __ParseString<EVAlign>(const CStr &Value, EVAlign &Output)
+bool __ParseString<EVAlign>(const CStr& Value, EVAlign &Output)
 {
 	if (Value == "top")
 		Output = EVAlign_Top;
@@ -203,7 +203,7 @@ bool __ParseString<CGUIString>(const CStr& Value, CGUIString &Output)
 }
 
 template <>
-bool __ParseString<CStr>(const CStr& Value, CStr &Output)
+bool __ParseString<CStr>(const CStr& Value, CStr&Output)
 {
 	// Do very little.
 	Output = Value;
@@ -211,7 +211,7 @@ bool __ParseString<CStr>(const CStr& Value, CStr &Output)
 }
 
 template <>
-bool __ParseString<CStrW>(const CStr& Value, CStrW &Output)
+bool __ParseString<CStrW>(const CStr& Value, CStrW& Output)
 {
 	// Translate the Value and retrieve the localised string in
 	//  Unicode.

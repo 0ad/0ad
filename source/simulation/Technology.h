@@ -46,10 +46,10 @@ public:
 
 	void setExclusion( bool exclude ) { m_excluded=exclude; }
 
-	bool loadXML( CStr filename );
+	bool loadXML( const CStr& filename );
 	bool loadELID( XMBElement ID, CXeromyces& XeroFile );
 	bool loadELReq( XMBElement Req, CXeromyces& XeroFile );
-	bool loadELEffect( XMBElement Effect, CXeromyces& XeroFile, CStr& filename );
+	bool loadELEffect( XMBElement Effect, CXeromyces& XeroFile, const CStr& filename );
 
 private:
 	CStr m_Generic;

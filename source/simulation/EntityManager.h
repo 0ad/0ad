@@ -58,10 +58,10 @@ public:
 	HEntity create( CEntityTemplate* base, CVector3D position, float orientation, 
 		const std::set<CStrW>& actorSelections, CStrW building = L"" );
 
-	HEntity create( CStrW templateName, CPlayer* player, CVector3D position, 
+	HEntity create( const CStrW& templateName, CPlayer* player, CVector3D position, 
 		float orientation, CStrW building = L"" );
 
-	HEntity createFoundation( CStrW templateName, CPlayer* player, CVector3D position, 
+	HEntity createFoundation( const CStrW& templateName, CPlayer* player, CVector3D position, 
 		float orientation );
 
 	HEntity* getByHandle( u16 index );

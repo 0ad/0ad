@@ -10,7 +10,7 @@ CFormation::CFormation()
 {
 	m_numSlots = 0;
 }
-bool CFormation::loadXML(CStr filename)
+bool CFormation::loadXML(const CStr& filename)
 {
     CXeromyces XeroFile;
 

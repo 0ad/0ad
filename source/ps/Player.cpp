@@ -51,13 +51,13 @@ void CPlayer::ScriptingInit()
 	CJSObject<CPlayer>::ScriptingInit( "Player" );
 }
 
-void CPlayer::Update(CStrW name, ISynchedJSProperty *prop)
+void CPlayer::Update(const CStrW& name, ISynchedJSProperty *prop)
 {
 	if (m_UpdateCB)
 		m_UpdateCB(name, prop->ToString(), this, m_UpdateCBData);
 }
 
-void CPlayer::SetValue(CStrW name, CStrW value)
+void CPlayer::SetValue(const CStrW& name, const CStrW& value)
 {
 	ISynchedJSProperty *prop=GetSynchedProperty(name);
 	if (prop)

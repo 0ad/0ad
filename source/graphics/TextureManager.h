@@ -91,14 +91,14 @@ public:
 	
 	// Create a texture object for a new terrain texture at path, using the
 	// property sheet props.
-	CTextureEntry *AddTexture(CTerrainPropertiesPtr props, CStr path);
+	CTextureEntry *AddTexture(CTerrainPropertiesPtr props, const CStr& path);
 	
 	// Remove the texture from all our maps and lists and delete it afterwards.
 	void DeleteTexture(CTextureEntry* entry);
 	
 	// Find or create a new texture group. All terrain groups are owned by the
 	// texturemanager (TerrainTypeManager)
-	CTerrainGroup *FindGroup(CStr name);
+	CTerrainGroup *FindGroup(const CStr& name);
 	// Use the default group for all terrain types that don't have their own
 	// ScEd currently relies on every texture having one group (and is happy ignorant of any
 	// extra groups that might exist)

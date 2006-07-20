@@ -145,7 +145,7 @@ public:
 	CModelDefRPrivate* GetRenderData(const void* key) const;
 
 	// accessor: get model name (for debugging)
-	CStr GetName() const { return m_Name; }
+	const CStr& GetName() const { return m_Name; }
 
 public:
 	// vertex data

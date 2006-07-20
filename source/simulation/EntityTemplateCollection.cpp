@@ -51,7 +51,7 @@ int CEntityTemplateCollection::loadTemplates()
 	return 0;
 }
 
-CEntityTemplate* CEntityTemplateCollection::getTemplate( CStrW name, CPlayer* player )
+CEntityTemplate* CEntityTemplateCollection::getTemplate( const CStrW& name, CPlayer* player )
 {
 	// Find player ID
 	int id = ( player == 0 ? NULL_PLAYER : player->GetPlayerID() );

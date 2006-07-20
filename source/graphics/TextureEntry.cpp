@@ -21,7 +21,7 @@ map<Handle, CTextureEntry *> CTextureEntry::m_LoadedTextures;
 
 /////////////////////////////////////////////////////////////////////////////////////
 // CTextureEntry constructor
-CTextureEntry::CTextureEntry(CTerrainPropertiesPtr props, CStr path):
+CTextureEntry::CTextureEntry(CTerrainPropertiesPtr props, const CStr& path):
 	m_pProperties(props),
 	m_Bitmap(NULL),
 	m_Handle(-1),

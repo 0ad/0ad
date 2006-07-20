@@ -52,7 +52,7 @@ private:
 public:
 	// Most of the texture's data is delay-loaded, so after the constructor has
 	// been called, the texture entry is ready to be used.
-	CTextureEntry(CTerrainPropertiesPtr props, CStr path);
+	CTextureEntry(CTerrainPropertiesPtr props, const CStr& path);
 	~CTextureEntry();
 
 	CStr GetTag() const

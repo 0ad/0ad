@@ -275,7 +275,7 @@ public:
 
 
 private:
-	CEntity( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections, CStrW building = L"" );
+	CEntity( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections, const CStrW& building = L"" );
 
 	uint processGotoHelper( CEntityOrder* current, size_t timestep_milli, HEntity& collide );
 
