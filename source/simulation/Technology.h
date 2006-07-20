@@ -27,7 +27,7 @@ class CTechnology : public CJSObject<CTechnology>
 	static STL_HASH_SET<CStr, CStr_hash_compare> m_scriptsLoaded;
 
 public:
-	CTechnology(CPlayer* player);
+	CTechnology(const CStrW& name, CPlayer* player);
 	~CTechnology() {} 
 	
 	//JS functions
@@ -35,7 +35,6 @@ public:
 	jsval ApplyEffects( JSContext* cx, uintN argc, jsval* argv );
 	jsval IsValid( JSContext* cx, uintN argc, jsval* argv );
 	jsval IsResearched( JSContext* cx, uintN argc, jsval* argv );
-	jsval IsJSFirst( JSContext* cx, uintN argc, jsval* argv );
 	jsval IsExcluded( JSContext* cx, uintN argc, jsval* argv );
 	inline jsval GetPlayerID( JSContext* cx, uintN argc, jsval* argv );
 	
@@ -52,13 +51,15 @@ public:
 	bool loadELEffect( XMBElement Effect, CXeromyces& XeroFile, const CStr& filename );
 
 private:
-	CStr m_Generic;
-	CStr m_Specific;
+	CStrW m_Name;	// name of the tech file
 
-	CStr m_Icon;
+	CStrW m_Generic;
+	CStrW m_Specific;
+
+	CStrW m_Icon;
 	int m_IconCell;
-	CStr m_Classes;
-	CStr m_History;
+	CStrW m_Classes;
+	CStrW m_History;
 
 	float m_ReqTime;
 	float m_ReqWood;
@@ -74,9 +75,8 @@ private:
 	std::vector<Modifier> m_Sets;
 	
 	CPlayer* m_player;	//Which player this tech belongs to
+
 	CScriptObject m_effectFunction;
-	
-	bool m_JSFirst;	//Should JS effect function run before C++
 
 	bool m_excluded;
 	bool m_researched;

@@ -16,13 +16,12 @@
 
 STL_HASH_SET<CStr, CStr_hash_compare> CTechnology::m_scriptsLoaded;
 
-CTechnology::CTechnology( CPlayer* player ) : m_player(player)
+CTechnology::CTechnology( const CStrW& name, CPlayer* player ) : m_Name(name), m_player(player)
 {
 	ONCE( ScriptingInit(); );
 
 	m_researched=false;
 	m_excluded = false;
-	m_JSFirst = false;
 	m_inProgress = false;
 } 
 bool CTechnology::loadXML( const CStr& filename )
@@ -89,7 +88,7 @@ bool CTechnology::loadELID( XMBElement ID, CXeromyces& XeroFile )
 	{
 		XMBElement element = children.item(i);
 		int name = element.getNodeName();
-		CStr value = CStr(element.getText());
+		CStrW value = element.getText();
 		
 		if ( name == el_generic )
 			m_Generic = value;
@@ -134,7 +133,7 @@ bool CTechnology::loadELReq( XMBElement Req, CXeromyces& XeroFile )
 	{
 		XMBElement element = children.item(i);
 		int name = element.getNodeName();
-		CStr value = element.getText();
+		CStrW value = element.getText();
 		
 		if ( name == el_time )
 			m_ReqTime = value.ToFloat();
@@ -145,7 +144,7 @@ bool CTechnology::loadELReq( XMBElement Req, CXeromyces& XeroFile )
 			{
 				XMBElement resElement = resChildren.item(j);
 				int resName = resElement.getNodeName();
-				CStr resValue = CStr(resElement.getText());
+				CStrW resValue = resElement.getText();
 
 				if ( resName == el_food )	//NOT LOADED-GET CHILD NODES
 					m_ReqFood = resValue.ToFloat();
@@ -190,7 +189,6 @@ bool CTechnology::loadELEffect( XMBElement effect, CXeromyces& XeroFile, const C
 	EL(script);
 	EL(function);
 	AT(name);
-	AT(order);
 	AT(file);
 	
 	#undef EL
@@ -215,7 +213,7 @@ bool CTechnology::loadELEffect( XMBElement effect, CXeromyces& XeroFile, const C
 			for ( int j=0; j<modChildren.Count; ++j )
 			{
 				XMBElement modElement = modChildren.item(j);
-				CStr modValue = CStr(modElement.getText());
+				CStrW modValue = modElement.getText();
 
 				if ( modElement.getNodeName() == el_attribute)
 					m_Modifiers.back().attribute = modValue;
@@ -237,7 +235,7 @@ bool CTechnology::loadELEffect( XMBElement effect, CXeromyces& XeroFile, const C
 			for ( int j=0; j<setChildren.Count; ++j )
 			{
 				XMBElement setElement = setChildren.item(j);
-				CStr setValue = CStr(setElement.getText());
+				CStrW setValue = setElement.getText();
 
 				if ( setElement.getNodeName() == el_attribute)
 					m_Sets.back().attribute = setValue;
@@ -270,8 +268,6 @@ bool CTechnology::loadELEffect( XMBElement effect, CXeromyces& XeroFile, const C
 		{
 			utf16string funcName = element.getAttributes().getNamedItem( at_name );
 			CStr Inline = element.getText();
-			//default to first
-			m_JSFirst = (utf16string() == element.getAttributes().getNamedItem( at_order ));
 
 			if ( funcName != utf16string() )
 			{
@@ -385,6 +381,8 @@ void CTechnology::apply( CEntity* entity )
 
 void CTechnology::ScriptingInit()
 {
+	AddProperty(L"name", &CTechnology::m_Name, true);
+	AddProperty(L"player", &CTechnology::m_player, true);
 	AddProperty(L"generic", &CTechnology::m_Generic, true);
 	AddProperty(L"specific", &CTechnology::m_Specific, true);
 	AddProperty(L"icon", &CTechnology::m_Icon);	//GUI might want to change this...?
@@ -404,7 +402,6 @@ void CTechnology::ScriptingInit()
 	AddMethod<jsval, &CTechnology::IsValid>( "isValid", 0 );
 	AddMethod<jsval, &CTechnology::IsResearched>( "isResearched", 0 );
 	AddMethod<jsval, &CTechnology::GetPlayerID>( "getPlayerID", 0 );
-	AddMethod<jsval, &CTechnology::IsJSFirst>( "isJSFirst", 0 );
 
 	CJSObject<CTechnology>::ScriptingInit("Technology");
 
@@ -466,11 +463,6 @@ jsval CTechnology::IsResearched( JSContext* UNUSED(cx), uintN UNUSED(argc), jsva
 inline jsval CTechnology::GetPlayerID( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	return ToJSVal( m_player->GetPlayerID() );
-}
-
-jsval CTechnology::IsJSFirst( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
-{
-	return ToJSVal( m_JSFirst );
 }
 
 

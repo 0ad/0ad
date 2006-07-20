@@ -48,7 +48,7 @@ CTechnology* CTechnologyCollection::getTechnology( const CStrW& name, CPlayer* p
 	CStr path( filename_it->second );
 
 	//Try to load to the tech
-	CTechnology* newTemplate = new CTechnology( player );
+	CTechnology* newTemplate = new CTechnology( name, player );
 	if( !newTemplate->loadXML( path ) )
 	{
 		LOG(ERROR, LOG_CATEGORY, "CTechnologyCollection::getTechnology(): Couldn't load tech \"%s\"", path.c_str());
