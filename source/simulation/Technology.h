@@ -22,7 +22,8 @@ class CTechnology : public CJSObject<CTechnology>
 	{
 		CStr attribute;
 		float value;
-		Modifier() { value = 0; }
+		bool isPercent;
+		Modifier(): value(0), isPercent(false) {}
 	};
 	static STL_HASH_SET<CStr, CStr_hash_compare> m_scriptsLoaded;
 

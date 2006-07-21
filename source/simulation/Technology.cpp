@@ -218,7 +218,21 @@ bool CTechnology::loadELEffect( XMBElement effect, CXeromyces& XeroFile, const C
 				if ( modElement.getNodeName() == el_attribute)
 					m_Modifiers.back().attribute = modValue;
 				else if ( modElement.getNodeName() == el_value )
+				{
+					if( modValue.size() == 0)
+					{
+						LOG( ERROR, LOG_CATEGORY, "CTechnology::loadXML invalid Modifier value (empty string)" );
+						m_Modifiers.pop_back();
+						return false;
+					}
+
+					if( modValue[modValue.size()-1] == '%' )
+					{
+						m_Modifiers.back().isPercent = true;
+						modValue = modValue.substr( 0, modValue.size()-1 );
+					}
 					m_Modifiers.back().value = modValue.ToFloat();
+				}
 				else
 				{
 					LOG( ERROR, LOG_CATEGORY, "CTechnology::loadXML invalid tag inside \"Modifier\" tag" );
@@ -299,13 +313,20 @@ bool CTechnology::isTechValid()
 {
 	if ( m_excluded || m_inProgress )
 		return false;
-	if ( hasReqEntities() && hasReqTechs() )
-		return true;
-	return false;
+
+	for( size_t i=0; i<m_Pairs.size(); i++ )
+	{
+		if( g_TechnologyCollection.getTechnology( m_Pairs[i], m_player )->m_inProgress )
+			return false;
+	}
+
+	return ( hasReqEntities() && hasReqTechs() );
 }
 
 bool CTechnology::hasReqEntities()
 {
+	// Check whether we have ALL the required entities.
+
 	std::vector<HEntity>* entities = m_player->GetControlledEntities();
 	for ( std::vector<CStr>::iterator it=m_ReqEntities.begin(); it != m_ReqEntities.end(); it++ )
 	{
@@ -331,16 +352,20 @@ bool CTechnology::hasReqEntities()
 
 bool CTechnology::hasReqTechs()
 {
-	bool ret = true;
+	// Check whether we have ANY of the required techs (this is slightly confusing but required for 
+	// the way the tech system is currently planned; ideally we'd have an <Or> or <And> in the XML).
+
+	if ( m_ReqTechs.size() == 0 )
+		return true;
+
 	for ( std::vector<CStr>::iterator it=m_ReqTechs.begin(); it != m_ReqTechs.end(); it++ )
 	{
-		if ( !g_TechnologyCollection.getTechnology( (CStrW)*it, m_player )->isResearched() )
+		if ( g_TechnologyCollection.getTechnology( (CStrW)*it, m_player )->isResearched() )
 		{	
-			ret = false;
-			break;
+			return true;
 		}
 	}
-	return ret;
+	return false;
 }
 
 void CTechnology::apply( CEntity* entity )
@@ -363,7 +388,19 @@ void CTechnology::apply( CEntity* entity )
 		jsval oldVal;
 		if( entity->GetProperty( g_ScriptingHost.getContext(), mod->attribute, &oldVal ) )
 		{
-			jsval newVal = ToJSVal( ToPrimitive<float>(oldVal) + mod->value );
+			float modValue;
+			if( mod->isPercent )
+			{
+				jsval baseVal;
+				entity->m_base->m_unmodified->GetProperty( g_ScriptingHost.getContext(), mod->attribute, &baseVal );
+				modValue = ToPrimitive<float>(baseVal) * mod->value / 100.0f;
+			}
+			else
+			{
+				modValue = mod->value;
+			}
+
+			jsval newVal = ToJSVal( ToPrimitive<float>(oldVal) + modValue );
 			entity->SetProperty( g_ScriptingHost.GetContext(), mod->attribute, &newVal );
 		}
 	}
@@ -423,7 +460,10 @@ jsval CTechnology::ApplyEffects( JSContext* UNUSED(cx), uintN UNUSED(argc), jsva
 		g_TechnologyCollection.getTechnology(*it, m_player)->setExclusion(true);
 
 	// Disable ourselves so we can't be researched twice
-	setExclusion(true);
+	m_excluded = true;
+
+	// Mark ourselves as researched
+	m_researched = true;
 
 	// Apply effects to all entities
 	std::vector<HEntity>* entities = m_player->GetControlledEntities();
@@ -436,7 +476,9 @@ jsval CTechnology::ApplyEffects( JSContext* UNUSED(cx), uintN UNUSED(argc), jsva
 	// Run one-time tech script
 	if( m_effectFunction )
 	{
-		m_effectFunction.Run( this->GetScript() );
+		jsval rval;
+		jsval arg = ToJSVal( m_player );
+		m_effectFunction.Run( this->GetScript(), &rval, 1, &arg );
 	}
 
 	// Add ourselves to player's researched techs
