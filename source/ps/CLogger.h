@@ -65,9 +65,7 @@ private:
 	// Used to remember LogOnce messages
 	std::set<std::string> m_LoggedOnce;
 
-	// squelch "unable to generate" warnings
-	CLogger(const CLogger& rhs);
-	const CLogger& operator=(const CLogger& rhs);
+	NO_COPY_CTOR(CLogger);
 };
 
 #endif

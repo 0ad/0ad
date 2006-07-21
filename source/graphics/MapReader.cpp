@@ -282,9 +282,7 @@ private:
 	int ReadEntities(XMBElement parent, double end_time);
 	int ReadNonEntities(XMBElement parent, double end_time);
 
-	// squelch "unable to generate" warnings
-	CXMLReader(const CXMLReader& rhs);
-	const CXMLReader& operator=(const CXMLReader& rhs);
+	NO_COPY_CTOR(CXMLReader);
 };
 
 

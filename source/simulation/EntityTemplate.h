@@ -161,11 +161,9 @@ public:
 	static void ScriptingInit();
 
 private:
-	// squelch "unable to generate" warnings
-	CEntityTemplate(const CEntityTemplate& rhs);
-	const CEntityTemplate& operator=(const CEntityTemplate& rhs);
-
 	static STL_HASH_SET<CStr, CStr_hash_compare> scriptsLoaded;
+
+	NO_COPY_CTOR(CEntityTemplate);
 };
 
 #endif

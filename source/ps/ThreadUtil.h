@@ -159,9 +159,7 @@ public:
 private:
 	pthread_mutex_t &m_Mutex;
 
-	// squelch "unable to generate" warnings
-	CScopeLock(const CScopeLock& rhs);
-	const CScopeLock& operator=(const CScopeLock& rhs);
+	NO_COPY_CTOR(CScopeLock);
 };
 
 // CLocker

@@ -31,9 +31,7 @@ template<class T> struct MemFun_t
 	MemFun_t(T* this__, int(T::*func_)(void))
 		: this_(this__), func(func_) {}
 
-	// squelch "unable to generate" warnings
-	MemFun_t(const MemFun_t& rhs);
-	const MemFun_t& operator=(const MemFun_t& rhs);
+	NO_COPY_CTOR(MemFun_t);
 };
 
 template<class T> static int MemFunThunk(void* param, double UNUSED(time_left))
@@ -65,9 +63,7 @@ template<class T, class Arg> struct MemFun1_t
 	MemFun1_t(T* this__, int(T::*func_)(Arg), Arg arg_)
 		: this_(this__), func(func_), arg(arg_) {}
 
-	// squelch "unable to generate" warnings
-	MemFun1_t(const MemFun1_t& rhs);
-	const MemFun1_t& operator=(const MemFun1_t& rhs);
+	NO_COPY_CTOR(MemFun1_t);
 };
 
 template<class T, class Arg> static int MemFun1Thunk(void* param, double UNUSED(time_left))

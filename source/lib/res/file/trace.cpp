@@ -65,24 +65,25 @@ void trace_enable(bool want_enabled)
 }
 
 
-static void trace_add(TraceOp op, const char* P_fn, size_t size,
+static LibError trace_add(TraceOp op, const char* P_fn, size_t size,
 	uint flags = 0, double timestamp = 0.0)
 {
 	trace_init();
 	if(!trace_enabled)
-		return;
+		return INFO_OK;
 
 	if(timestamp == 0.0)
 		timestamp = get_time();
 
 	TraceEntry* t = (TraceEntry*)pool_alloc(&trace_pool, 0);
 	if(!t)
-		return;
+		return ERR_LIMIT;	// NOWARN
 	t->timestamp = timestamp;
 	t->atom_fn   = file_make_unique_fn_copy(P_fn);
 	t->size      = size;
 	t->op        = op;
 	t->flags     = flags;
+	return INFO_OK;
 }
 
 static void trace_get_raw_ents(const TraceEntry*& ents, size_t& num_ents)
@@ -125,6 +126,8 @@ static const uint MAX_RUNS = 100;
 static TraceRun runs[MAX_RUNS];
 
 // note: the last entry may be one past number of actual entries.
+// WARNING: due to misfeature in DelimiterAdder, indices are added twice.
+// this is fixed in trace_get; just don't rely on run_start_indices.size()!
 static std::vector<size_t> run_start_indices;
 
 class DelimiterAdder
@@ -186,8 +189,11 @@ void trace_get(Trace* t)
 		// run_start_indices.back() may be = num_ents (could happen if
 		// a zero-length run gets written out); skip that to avoid
 		// zero-length run here.
+		// also fixes DelimiterAdder misbehavior of adding 2 indices per run.
 		if(last_start_idx == start_idx)
 			continue;
+
+		debug_assert(start_idx < t->total_ents);
 
 		TraceRun& run = runs[t->num_runs++];
 		run.num_ents = last_start_idx - start_idx;
@@ -295,7 +301,14 @@ LibError trace_read_from_file(const char* trace_filename, Trace* t)
 		}
 
 		if(delim_adder(i, timestamp, P_path) != DelimiterAdder::SKIP_ADD)
-			trace_add(op, P_path, size, flags, timestamp);
+		{
+			LibError ret = trace_add(op, P_path, size, flags, timestamp);
+			// storage in trace pool exhausted. must abort to avoid later
+			// adding delimiters for items that weren't actually stored
+			// into the pool.
+			if(ret == ERR_LIMIT)
+				break;
+		}
 	}
 
 	fclose(f);

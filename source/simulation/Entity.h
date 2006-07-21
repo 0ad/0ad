@@ -481,10 +481,7 @@ public:
 	}
 	static void ScriptingInit();
 
-private:
-	// squelch "unable to generate" warnings
-	CEntity(const CEntity& rhs);
-	const CEntity& operator=(const CEntity& rhs);
+	NO_COPY_CTOR(CEntity);
 };
 
 // General entity globals

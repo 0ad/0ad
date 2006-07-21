@@ -36,9 +36,7 @@ namespace I18n
 	private:
 		const StrImW String;
 
-		// squelch "unable to generate" warnings
-		TSComponentString(const TSComponentString& rhs);
-		const TSComponentString& operator=(const TSComponentString& rhs);
+		NO_COPY_CTOR(TSComponentString);
 	};
 
 
@@ -69,9 +67,7 @@ namespace I18n
 		const std::string Name;
 		std::vector<ScriptValue*> Params;
 
-		// squelch "unable to generate" warnings
-		TSComponentFunction(const TSComponentFunction& rhs);
-		const TSComponentFunction& operator=(const TSComponentFunction& rhs);
+		NO_COPY_CTOR(TSComponentFunction);
 	};
 
 

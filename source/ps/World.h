@@ -57,10 +57,7 @@ public:
 	inline CTerritoryManager *GetTerritoryManager()
 	{	return m_TerritoryManager; }
 
-private:
-	// squelch "unable to generate" warnings
-	CWorld(const CWorld& rhs);
-	const CWorld& operator=(const CWorld& rhs);
+	NO_COPY_CTOR(CWorld);
 };
 
 // rationale: see definition.
