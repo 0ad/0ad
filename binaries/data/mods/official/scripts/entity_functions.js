@@ -689,9 +689,9 @@ function performGather( evt )
 	}
 
 	if( g.resource[s.type][s.subtype])
-		gather_amt = parseInt( g.resource[s.type][s.subtype] );
+		gather_amt = parseFloat( g.resource[s.type][s.subtype] );
 	else
-		gather_amt = parseInt( g.resource[s.type] );
+		gather_amt = parseFloat( g.resource[s.type] );
 
 	if( s.max > 0 )
 	{

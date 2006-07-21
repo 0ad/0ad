@@ -106,7 +106,7 @@ function refreshResource (resourceName, resourceIndex)
 	var resourceIconObject = getGUIObjectByName ("snResourceCounterIcon_" + (resourceIndex + 1));
 	
 	// Update counter caption (since we need to have up-to-date text to determine the length of the counter).
-	var caption = localPlayer.resources[resourceName.toLowerCase()];
+	var caption = parseInt( localPlayer.resources[resourceName.toLowerCase()] );
 	// The Population counter also lists the amount of available housing.		
 	if (resourceName == "Population")
 		caption	+= "/" + localPlayer.resources["housing"];	

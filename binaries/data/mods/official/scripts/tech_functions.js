@@ -1,4 +1,4 @@
-function techExample()
+function techExample( player )
 {
-	console.write("Dude, it works!");
+	console.write("Player " + player + " got the tech!");
 }
