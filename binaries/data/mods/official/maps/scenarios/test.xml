@@ -19,9 +19,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="222.707" y="88.769" z="81.0716"/>
-		<Rotation angle="-0.00923317"/>
-		<Declination angle="0.59257"/>
+		<Position x="41.5687" y="87.3906" z="40.2233"/>
+		<Rotation angle="0.0121822"/>
+		<Declination angle="0.706651"/>
 	</Camera>
 	<Entities>
 		<Entity>
@@ -63,8 +63,8 @@
 		<Entity>
 			<Template>hele_farmstead</Template>
 			<Player>1</Player>
-			<Position x="39.8988" y="5.56035" z="138.59"/>
-			<Orientation angle="2.35619"/>
+			<Position x="40.0236" y="5.56035" z="138.622"/>
+			<Orientation angle="-2.3468"/>
 		</Entity>
 		<Entity>
 			<Template>hele_fortress</Template>
@@ -183,7 +183,7 @@
 		<Entity>
 			<Template>hele_market</Template>
 			<Player>1</Player>
-			<Position x="54.9042" y="5.56035" z="163.169"/>
+			<Position x="65.1339" y="5.56035" z="173.631"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity>
@@ -249,7 +249,7 @@
 		<Entity>
 			<Template>hele_support_trader</Template>
 			<Player>1</Player>
-			<Position x="59.8344" y="5.56035" z="149.866"/>
+			<Position x="73.4296" y="5.56034" z="162.912"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity>
@@ -1023,19 +1023,19 @@
 		<Entity>
 			<Template>flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="24.619" y="5.56035" z="143.512"/>
+			<Position x="60.4926" y="5.56035" z="148.825"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity>
 			<Template>flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="26.8456" y="5.56035" z="138.576"/>
+			<Position x="57.1169" y="5.56035" z="152.675"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity>
 			<Template>flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="21.6004" y="5.56035" z="135.86"/>
+			<Position x="63.8752" y="5.56034" z="145.349"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity>
@@ -1254,6 +1254,26 @@
 			<Actor>structures/hellenes/house.xml</Actor>
 			<Position x="183.088" y="8.34395" z="220.768"/>
 			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>structures/plot_corral.xml</Actor>
+			<Position x="52.8492" y="5.56035" z="143.189"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>structures/plot_field.xml</Actor>
+			<Position x="26.8867" y="5.56035" z="133.87"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>structures/plot_orchard.xml</Actor>
+			<Position x="35.6317" y="5.56035" z="151.23"/>
+			<Orientation angle="0.823882"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>structures/plot.xml</Actor>
+			<Position x="44.014" y="5.56036" z="125.595"/>
+			<Orientation angle="0.785888"/>
 		</Nonentity>
 	</Nonentities>
 </Scenario>
