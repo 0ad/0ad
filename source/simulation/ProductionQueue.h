@@ -38,6 +38,7 @@ public:
 
 	void AddItem( int type, const CStrW& name, float totalTime );
 	void Update( size_t timestep );
+	void CancelAll();
 
 	jsval JSI_GetLength( JSContext* cx );
 	jsval JSI_Get( JSContext* cx, uintN argc, jsval* argv );

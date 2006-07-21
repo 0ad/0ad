@@ -372,7 +372,6 @@ public:
 	void loadBase();
 	static void initAttributes(const CEntity* _this);
 
-	void playerChanged(); // Fixes player colour if player is changed by script
 	void reorient(); // Orientation
 	void teleport(); // Fixes things if the position is changed by something externally.
 	void checkSelection(); // In case anyone tries to select/deselect this through JavaScript.
@@ -438,6 +437,9 @@ public:
 	void CheckListeners( int type, CEntity *target );
 	jsval DestroyAllNotifiers( JSContext* cx, uintN argc, jsval* argv );
 	jsval DestroyNotifier( JSContext* cx, uintN argc, jsval* argv );
+
+	jsval JSI_GetPlayer();
+	void JSI_SetPlayer(jsval val);
 
 	bool IsInFormation( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 	{

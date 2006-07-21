@@ -183,8 +183,7 @@ void CEntity::loadBase()
 	}
 
 	// Re-enter all our auras so they can take into account our new traits
-	for( AuraSet::iterator it = m_aurasInfluencingMe.begin();
-		it != m_aurasInfluencingMe.end(); it++ )
+	for( AuraSet::iterator it = m_aurasInfluencingMe.begin(); it != m_aurasInfluencingMe.end(); it++ )
 	{
 		(*it)->Remove( this );
 	}
@@ -671,7 +670,7 @@ bool CEntity::Initialize()
 {
 	// Apply our player's active techs to ourselves (we do this here since m_player isn't yet set in the constructor)
 	const std::vector<CTechnology*>& techs = m_player->GetActiveTechs();
-	for( int i=0; i<techs.size(); i++ )
+	for( size_t i=0; i<techs.size(); i++ )
 	{
 		techs[i]->apply( this );
 	}
@@ -810,17 +809,6 @@ void CEntity::teleport()
 	m_bounds->setPosition( m_position.X, m_position.Z );
 	updateCollisionPatch();
 	repath();
-}
-
-void CEntity::playerChanged()
-{
-	// Set actor player colour
-	if( m_actor )
-		m_actor->SetPlayerID( m_player->GetPlayerID() );
-	
-	// If we're a territory centre, change the territory's owner
-	if( m_associatedTerritory )
-		m_associatedTerritory->owner = m_player;
 }
 
 void CEntity::checkSelection()
@@ -1515,7 +1503,7 @@ void CEntity::ScriptingInit()
 	AddClassProperty( L"actions.move.turningradius", &CEntity::m_turningRadius );
 	AddClassProperty( L"position", &CEntity::m_graphics_position, false, (NotifyFn)&CEntity::teleport );
 	AddClassProperty( L"orientation", &CEntity::m_orientation, false, (NotifyFn)&CEntity::reorient );
-	AddClassProperty( L"player", &CEntity::m_player, false, (NotifyFn)&CEntity::playerChanged );
+	AddClassProperty( L"player", (GetFn)&CEntity::JSI_GetPlayer, (SetFn)&CEntity::JSI_SetPlayer );
 	AddClassProperty( L"traits.health.curr", &CEntity::m_healthCurr );
 	AddClassProperty( L"traits.health.max", &CEntity::m_healthMax );
 	//AddClassProperty( L"traits.health.bar_height", &CEntity::m_base->m_healthBarHeight );
@@ -1654,6 +1642,47 @@ jsval CEntity::ToString( JSContext* cx, uintN UNUSED(argc), jsval* UNUSED(argv) 
 	buffer[255] = 0;
 	utf16string str16(buffer, buffer+wcslen(buffer));
 	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, str16.c_str() ) ) );
+}
+
+jsval CEntity::JSI_GetPlayer()
+{
+	return ToJSVal<CPlayer>( m_player );
+}
+
+void CEntity::JSI_SetPlayer( jsval val )
+{
+	CPlayer* newPlayer = 0;
+
+	try 
+	{
+		newPlayer = ToPrimitive<CPlayer*>( val );
+	}
+	catch( PSERROR_Scripting_ConversionFailed )
+	{
+		JS_ReportError( g_ScriptingHost.getContext(), "Invalid value given to entity.player - should be a Player object." );
+		return;
+	}
+
+	// Cancel all production to refund the old player
+	m_productionQueue->CancelAll();
+
+	// Exit all our auras so we can re-enter them as the new player
+	for( AuraSet::iterator it = m_aurasInfluencingMe.begin(); it != m_aurasInfluencingMe.end(); it++ )
+	{
+		(*it)->Remove( this );
+	}
+	
+	// Switch player
+	m_player = newPlayer;
+
+	// Set actor player colour
+	if( m_actor )
+		m_actor->SetPlayerID( newPlayer->GetPlayerID() );
+	
+	// If we're a territory centre, change the territory's owner
+	if( m_associatedTerritory )
+		m_associatedTerritory->owner = newPlayer;
+
 }
 
 bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )

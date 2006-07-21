@@ -59,6 +59,16 @@ CProductionQueue::CProductionQueue( CEntity* owner  )
 
 CProductionQueue::~CProductionQueue()
 {
+	CancelAll();
+}
+
+void CProductionQueue::AddItem( int type, const CStrW& name, float totalTime )
+{
+	m_items.push_back( new CProductionItem( type, name, totalTime ) );
+}
+
+void CProductionQueue::CancelAll()
+{
 	for( size_t i=0; i < m_items.size(); ++i )
 	{
 		// Cancel production of the item
@@ -69,11 +79,7 @@ CProductionQueue::~CProductionQueue()
 		// Free its memory
 		delete m_items[i];
 	}
-}
-
-void CProductionQueue::AddItem( int type, const CStrW& name, float totalTime )
-{
-	m_items.push_back( new CProductionItem( type, name, totalTime ) );
+	m_items.clear();
 }
 
 void CProductionQueue::Update( size_t timestep )
