@@ -18,5 +18,16 @@
 	</Traits>
 
 	<Actor>structures/hellenes/barracks.xml</Actor>
+	
+	<Actions>
+		<Create>
+			<List>
+				<Research>
+					<Hele_Spearman_Armour_1 />
+					<Hele_Spearman_Speed_1 />
+				</Research>
+			</List>
+		</Create>
+	</Actions>
 
 </Entity>
