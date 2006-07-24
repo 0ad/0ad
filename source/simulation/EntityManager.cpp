@@ -76,7 +76,7 @@ void CEntityManager::deleteAll()
 }
 
 HEntity CEntityManager::create( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections,
-								CStrW building)
+								const CStrW* building)
 {
 	debug_assert( base );
 	if( !base )
@@ -99,7 +99,7 @@ HEntity CEntityManager::create( CEntityTemplate* base, CVector3D position, float
 	return( HEntity( m_nextalloc++ ) );
 }
 
-HEntity CEntityManager::create( const CStrW& templateName, CPlayer* player, CVector3D position, float orientation, CStrW building )
+HEntity CEntityManager::create( const CStrW& templateName, CPlayer* player, CVector3D position, float orientation, const CStrW* building )
 {
 	CEntityTemplate* base = g_EntityTemplateCollection.getTemplate( templateName, player );
 	debug_assert( base );
@@ -123,8 +123,9 @@ HEntity CEntityManager::createFoundation( const CStrW& templateName, CPlayer* pl
 	if( base->m_foundation == L"" )
 		return create( base, position, orientation, selections );	// Entity has no foundation, so just create it
 
+	// Else, place the foundation object, telling it to convert into the right template when built.
 	CEntityTemplate* foundation = g_EntityTemplateCollection.getTemplate( base->m_foundation );
-	return create( foundation, position, orientation, selections, templateName );
+	return create( foundation, position, orientation, selections, &templateName );
 }
 
 HEntity* CEntityManager::getByHandle( u16 index )

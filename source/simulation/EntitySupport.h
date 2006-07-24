@@ -19,37 +19,26 @@ struct SEntityAction
 		: m_MinRange(minRange), m_MaxRange(maxRange), m_Speed(speed), m_Animation(animation) {}
 };
 
-struct SClassSet
+class CClassSet
 {
-	SClassSet* m_Parent;
+	CClassSet* m_Parent;
+	typedef std::vector<CStrW> Set;
+	Set m_Members;
+	Set m_AddedMembers;		// Members that this set adds to on top of those in its parent
+	Set m_RemovedMembers;		// Members that this set removes even if its parent has them
 
-	typedef STL_HASH_SET<CStrW, CStrW_hash_compare> ClassSet;
+public:
+	CClassSet() : m_Parent(NULL) {}
 
-	ClassSet m_Set;
-	std::vector<CStrW> m_Added;
-	std::vector<CStrW> m_Removed;
+	bool IsMember( const CStrW& Test );
+	
+	void Rebuild();
 
-	inline SClassSet() { m_Parent = NULL; }
-
-	inline bool IsMember( const CStrW& Test )
-		{ return( m_Set.find( Test ) != m_Set.end() ); }
-
-	inline void SetParent( SClassSet* Parent )
+	inline void SetParent( CClassSet* Parent )
 		{ m_Parent = Parent; Rebuild(); }
 
-	void Rebuild()
-	{
-		if( m_Parent )
-			m_Set = m_Parent->m_Set;
-		else
-			m_Set.clear();
-
-		std::vector<CStrW>::iterator it;
-		for( it = m_Removed.begin(); it != m_Removed.end(); it++ )
-			m_Set.erase( *it );
-		for( it = m_Added.begin(); it != m_Added.end(); it++ )
-			m_Set.insert( *it );
-	}
+	CStrW getMemberList();
+	void setFromMemberList(const CStrW& list);
 };
 
 #endif

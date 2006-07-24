@@ -50,7 +50,7 @@ public:
 	CEntityTemplate* m_unmodified;
 
 	// The class types this entity has
-	SClassSet m_classes;
+	CClassSet m_classes;
 
 	CStrW m_Base_Name; // <- We don't guarantee the order XML files will be loaded in, so we'll store the name of the
 					   //    parent entity referenced, then, after all files are loaded, attempt to match names to objects.

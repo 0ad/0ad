@@ -1445,7 +1445,7 @@ void CBuildingPlacer::update( float timeStep )
 	{
 		// If we're on a socket of our type, remember that and snap ourselves to it
 		m_bounds->setPosition(pos.X, pos.Z);	// first, move bounds to mouse pos
-		CEntity* ent = getCollisionEntity( m_bounds, 0, L"" );	// now, check what we intersect
+		CEntity* ent = getCollisionEntity( m_bounds, 0 );	// now, check what we intersect
 		if( ent && ent->m_classes.IsMember( m_template->m_socket ) )	// if it's a socket, snap to it
 		{
 			onSocket = true;
@@ -1482,7 +1482,7 @@ void CBuildingPlacer::update( float timeStep )
 	CTerrain *pTerrain=g_Game->GetWorld()->GetTerrain();
 	m_valid = pTerrain->isOnMap( pos.X, pos.Z ) 
 				&& ( m_template->m_socket == L"" || onSocket )
-				&& ( getCollisionObject( m_bounds, 0, m_template->m_socket ) == 0 );
+				&& ( getCollisionObject( m_bounds, 0, &m_template->m_socket ) == 0 );
 
 	// Flash our actor red if the position is invalid.
 

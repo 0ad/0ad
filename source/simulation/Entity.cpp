@@ -36,7 +36,7 @@ extern int g_xres, g_yres;
 #include <algorithm>
 using namespace std;
 
-CEntity::CEntity( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections, const CStrW& building )
+CEntity::CEntity( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections, const CStrW* building )
 {
 	ent_flags = 0;
 
@@ -101,7 +101,8 @@ CEntity::CEntity( CEntityTemplate* base, CVector3D position, float orientation, 
 	m_formation = -1;
 	m_grouped = -1;
 
-	m_building = building;
+	if( building )
+		m_building = *building;
 
 	m_extant = true;
 	m_visible = true;
@@ -265,64 +266,17 @@ void CEntity::snapToGround()
 	m_graphics_position.Y = getAnchorLevel( m_graphics_position.X, m_graphics_position.Z );
 }
 
+
 jsval CEntity::getClassSet()
 {
-	STL_HASH_SET<CStrW, CStrW_hash_compare>::iterator it;
-	it = m_classes.m_Set.begin();
-	CStrW result = L"";
-	if( it != m_classes.m_Set.end() )
-	{
-		result = *( it++ );
-		for( ; it != m_classes.m_Set.end(); it++ )
-			result += L" " + *it;
-	}
+	CStrW result = m_classes.getMemberList(); 
 	return( ToJSVal( result ) );
 }
 
 void CEntity::setClassSet( jsval value )
 {
-	// Get the set that was passed in.
-	CStr temp = ToPrimitive<CStrW>( value );
-	CStr entry;
-
-	m_classes.m_Added.clear();
-	m_classes.m_Removed.clear();
-
-	while( true )
-	{
-		long brk_sp = temp.Find( ' ' );
-		long brk_cm = temp.Find( ',' );
-		long brk = ( brk_sp == -1 ) ? brk_cm : ( brk_cm == -1 ) ? brk_sp : ( brk_sp < brk_cm ) ? brk_sp : brk_cm;
-
-		if( brk == -1 )
-		{
-			entry = temp;
-		}
-		else
-		{
-			entry = temp.GetSubstring( 0, brk );
-			temp = temp.GetSubstring( brk + 1, temp.Length() );
-		}
-
-		if( brk != 0 )
-		{
-			if( entry[0] == '-' )
-			{
-				entry = entry.GetSubstring( 1, entry.Length() );
-				if( entry.Length() )
-					m_classes.m_Removed.push_back( entry );
-			}
-			else
-			{
-				if( entry[0] == '+' )
-					entry = entry.GetSubstring( 1, entry.Length() );
-				if( entry.Length() )
-					m_classes.m_Added.push_back( entry );
-			}
-		}
-		if( brk == -1 )
-		break;
-	}
+	CStr memberCmdList = ToPrimitive<CStrW>( value );
+	m_classes.setFromMemberList(memberCmdList);
 
 	rebuildClassSet();
 }
@@ -340,8 +294,7 @@ void CEntity::update( size_t timestep )
 	m_position_previous = m_position;
 	m_orientation_previous = m_orientation;
 	
-	CalculateRun( timestep );
-	CalculateHealth( timestep );
+	CalculateRegen( timestep );
 
 	if ( entf_get(ENTF_TRIGGER_RUN) )
 		m_frameCheck++;
@@ -1023,7 +976,7 @@ void CEntity::renderSelectionOutline( float alpha )
 	if( !m_bounds || !m_visible )
 		return;
 
-	if( getCollisionObject( m_bounds, m_player, m_base->m_socket ) )
+	if( getCollisionObject( m_bounds, m_player, &m_base->m_socket ) )
 	{
 		glColor4f( 1.0f, 0.5f, 0.5f, alpha );	// We're colliding with another unit; colour outline pink
 	}
@@ -1413,31 +1366,41 @@ void CEntity::renderRallyPoint()
 	sprite.Render();
 }
 
-void CEntity::CalculateRun(float timestep)
+
+static inline float regen(float cur, float limit, float timestep, float regen_rate)
 {
-	if( m_staminaMax > 0 )
-	{
-		if ( entf_get(ENTF_IS_RUNNING) && m_runDecayRate > 0 )
-		{
-			m_staminaCurr = max( 0.0f, m_staminaCurr - timestep / 1000.0f / m_runDecayRate * m_staminaMax );
-		}
-		else if ( m_orderQueue.empty() && m_runRegenRate > 0 )
-		{
-			m_staminaCurr = min( m_staminaMax, m_staminaCurr + timestep / 1000.0f / m_runRegenRate * m_staminaMax );
-		}
-	}
+	if(regen_rate <= 0)
+		return cur;
+	return std::min(limit, cur + timestep / 1000.0f * regen_rate * limit );
 }
 
-void CEntity::CalculateHealth(float timestep)
+static inline float decay(float cur, float limit, float timestep, float decay_rate)
 {
-	if ( entf_get(ENTF_HEALTH_DECAY) && m_healthDecayRate > 0 )
+	if(decay_rate <= 0)
+		return cur;
+	return std::max(0.0f, cur - timestep / 1000.0f * decay_rate * limit);
+}
+
+
+
+
+void CEntity::CalculateRegen(float timestep)
+{
+	// Health regen
+	if(entf_get(ENTF_HEALTH_DECAY))
+		m_healthCurr = decay(m_healthCurr, m_healthMax, timestep, m_healthDecayRate);
+	else if(g_Game->GetTime() - m_lastCombatTime > m_healthRegenStart)
+		m_healthCurr = regen(m_healthCurr, m_healthMax, timestep, m_healthRegenRate);
+	
+	// Stamina regen
+	if( m_staminaMax > 0 )
 	{
-		m_healthCurr = max( 0.0f, m_healthCurr - timestep / 1000.0f / m_healthDecayRate * m_healthMax );
+		if(entf_get(ENTF_IS_RUNNING))
+			m_staminaCurr = decay(m_staminaCurr, m_staminaMax, timestep, m_runDecayRate);
+		else if(m_orderQueue.empty())
+			m_staminaCurr = regen(m_staminaCurr, m_staminaMax, timestep, m_runRegenRate);
 	}
-	else if ( m_healthRegenRate > 0 && g_Game->GetTime() - m_lastCombatTime > m_healthRegenStart )
-	{
-		m_healthCurr = min( m_healthMax, m_healthCurr + timestep / 1000.0f / m_healthRegenRate * m_healthMax );
-	}
+
 }
 
 /*

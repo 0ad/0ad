@@ -86,58 +86,14 @@ void CEntityTemplate::loadBase()
 
 jsval CEntityTemplate::getClassSet()
 {
-	STL_HASH_SET<CStrW, CStrW_hash_compare>::iterator it;
-	it = m_classes.m_Set.begin();
-	CStrW result = *( it++ );
-	for( ; it != m_classes.m_Set.end(); it++ )
-		result += L" " + *it;
+	CStrW result = m_classes.getMemberList(); 
 	return( ToJSVal( result ) );
 }
 
 void CEntityTemplate::setClassSet( jsval value )
 {
-	// Get the set that was passed in.
-	CStr temp = ToPrimitive<CStrW>( value );
-	CStr entry;
-	
-	m_classes.m_Added.clear();
-	m_classes.m_Removed.clear();
-
-	while( true )
-	{
-		long brk_sp = temp.Find( ' ' );
-		long brk_cm = temp.Find( ',' );
-		long brk = ( brk_sp == -1 ) ? brk_cm : ( brk_cm == -1 ) ? brk_sp : ( brk_sp < brk_cm ) ? brk_sp : brk_cm; 
-
-		if( brk == -1 )
-		{
-			entry = temp;
-		}
-		else
-		{
-			entry = temp.GetSubstring( 0, brk );
-			temp = temp.GetSubstring( brk + 1, temp.Length() );
-		}
-
-		if( brk != 0 )
-		{
-			
-			if( entry[0] == '-' )
-			{
-				entry = entry.GetSubstring( 1, entry.Length() );
-				if( entry.Length() )
-					m_classes.m_Removed.push_back( entry );
-			}
-			else
-			{	
-				if( entry[0] == '+' )
-					entry = entry.GetSubstring( 1, entry.Length() );
-				if( entry.Length() )
-					m_classes.m_Added.push_back( entry );
-			}
-		}		
-		if( brk == -1 ) break;
-	}
+	CStr memberCmdList = ToPrimitive<CStrW>( value );
+	m_classes.setFromMemberList(memberCmdList);
 
 	rebuildClassSet();
 }

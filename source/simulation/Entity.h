@@ -98,7 +98,7 @@ public:
 	CEntityTemplate* m_base;
 
 	// The class types this entity has
-	SClassSet m_classes;
+	CClassSet m_classes;
 
 	// Production queue
 	CProductionQueue* m_productionQueue;
@@ -275,7 +275,7 @@ public:
 
 
 private:
-	CEntity( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections, const CStrW& building = L"" );
+	CEntity( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections, const CStrW* building = 0 );
 
 	uint processGotoHelper( CEntityOrder* current, size_t timestep_milli, HEntity& collide );
 
@@ -294,6 +294,8 @@ private:
 	bool processPatrol( CEntityOrder* current, size_t timestep_milli );
 
 	float processChooseMovement( float distance );
+	
+	bool shouldRun( float distance );		// Given our distance to a target, can we be running?
 
 public:
 	~CEntity();
@@ -365,8 +367,7 @@ public:
 	void repath();
 
 	//Calculate stamina points
-	void CalculateRun(float timestep);
-	void CalculateHealth(float timestep);
+	void CalculateRegen(float timestep);
 
 	// Reset properties after the entity-template we use changes.
 	void loadBase();

@@ -13,7 +13,7 @@
 class CVector2D;
 class CEntity;
 struct CEntityList;
-struct SClassSet;
+class CClassSet;
 
 class CEntityFormation
 {

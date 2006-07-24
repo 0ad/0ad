@@ -31,43 +31,52 @@ enum EGotoSituation
 	WOULD_LEAVE_MAP
 };
 
+bool CEntity::shouldRun(float distance)
+{
+	if (!entf_get(ENTF_SHOULD_RUN))
+		return false;
+
+	// tired
+	if(m_staminaCurr <= 0)
+		return false;
+
+	if(distance >= m_runMaxRange)
+		return false; 
+
+	// don't start running if less than minimum
+	if( distance <= m_runMinRange && !entf_get(ENTF_IS_RUNNING) )
+		return false;
+		
+	return true;
+}
+
 float CEntity::processChooseMovement( float distance )
 {
-	// Should we run or walk
-	if (entf_get(ENTF_SHOULD_RUN) && m_staminaCurr > 0 && distance < m_runMaxRange && 
-		( distance > m_runMinRange || entf_get(ENTF_IS_RUNNING) ) )
-	{	
-		if ( m_actor )
-		{
-			if ( !m_actor->IsPlayingAnimation( "run" ) )
-			{
-				m_actor->SetEntitySelection( L"run" );
-				m_actor->SetRandomAnimation( "run", false, m_runSpeed );
+	bool should_run = shouldRun(distance);
+	
+	const float speed = should_run? m_runSpeed : m_speed;
+	const char* anim_name = should_run? "run" : "walk";
 
-				// Animation desync
-				m_actor->GetModel()->Update( rand( 0, 1000 ) / 1000.0f );
-				entf_set(ENTF_IS_RUNNING);
-			}
-		}
-		return m_runSpeed;
-	}
-	else
+	// TODO: the animation code requires unicode for now. will be changed to
+	// 8bit later (for consistency; note that filenames etc. need not be
+	// unicode), so remove this then. 
+	const CStrW u_anim_name = anim_name;
+
+	if ( m_actor )
 	{
-		if ( m_actor )
+		if ( !m_actor->IsPlayingAnimation( anim_name ) )
 		{
-			// Should we update animation?
-			if ( !m_actor->IsPlayingAnimation( "walk" ) )
-			{
-				m_actor->SetEntitySelection( L"walk" );
-				m_actor->SetRandomAnimation( "walk", false, m_speed );
+			m_actor->SetEntitySelection( u_anim_name );
+			m_actor->SetRandomAnimation( anim_name, false, speed );
 
-				// Animation desync
-				m_actor->GetModel()->Update( rand( 0, 1000 ) / 1000.0f );
-				entf_clear(ENTF_IS_RUNNING);
-			}
+			// Animation desync
+			m_actor->GetModel()->Update( rand( 0, 1000 ) / 1000.0f );
+			
+			entf_set_to(ENTF_IS_RUNNING, should_run);
 		}
-		return m_speed;
 	}
+	
+	return speed;
 }
 
 // Does all the shared processing for line-of-sight gotos
