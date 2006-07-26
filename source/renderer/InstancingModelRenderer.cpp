@@ -4,7 +4,7 @@
  * Project     : Pyrogenesis
  * Description : Implementation of InstancingModelRenderer
  *
- * @author  Nicolai Hähnle <nicolai@wildfiregames.com>
+ * @author  Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 

@@ -178,6 +178,25 @@ sym(ia32_fpclassifyf):
 ; misc
 ;-------------------------------------------------------------------------------
 
+; rationale: the common return convention for 64-bit values is in edx:eax.
+; with inline asm, we'd have to MOV data to a temporary and return that;
+; this is less efficient (-> important for low-overhead profiling) than
+; making use of the convention.
+;
+; however, speed is not the main reason for providing this routine.
+; xcode complains about CPUID clobbering ebx, so we use external asm
+; where possible (IA-32 CPUs).
+;
+; extern "C" u64 ia32_rdtsc_edx_eax()
+global sym(ia32_rdtsc_edx_eax)
+sym(ia32_rdtsc_edx_eax):
+	push	ebx
+	cpuid
+	pop		ebx
+	rdtsc
+	ret
+
+
 ; write the current execution state (e.g. all register values) into
 ; (Win32::CONTEXT*)pcontext (defined as void* to avoid dependency).
 ; optimized for size; this must be straight asm because __declspec(naked)

@@ -4,7 +4,7 @@
  * Project     : Pyrogenesis
  * Description : Shadow mapping related texture and matrix management
  *
- * @author Nicolai Hähnle <nicolai@wildfiregames.com>
+ * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 

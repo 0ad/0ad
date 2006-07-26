@@ -6,7 +6,7 @@
  *             : of some ModelRenderers. This file defines some common
  *             : RenderModifiers in addition to the base class.
  *
- * @author Nicolai Hähnle <nicolai@wildfiregames.com>
+ * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 

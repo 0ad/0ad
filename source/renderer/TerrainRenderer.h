@@ -5,7 +5,7 @@
  * Description : Terrain rendering (everything related to patches and
  *             : water) is encapsulated in TerrainRenderer
  *
- * @author Nicolai Hähnle <nicolai@wildfiregames.com>
+ * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 

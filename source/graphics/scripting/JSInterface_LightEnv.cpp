@@ -4,7 +4,7 @@
  * Project     : Pyrogenesis
  * Description : Provide the LightEnv object type for JavaScript
  *
- * @author Nicolai Hähnle <nicolai@wildfiregames.com>
+ * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 

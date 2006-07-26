@@ -89,7 +89,13 @@ extern void* ia32_memcpy(void* dst, const void* src, size_t nbytes);	// asm
 extern uint ia32_control87(uint new_val, uint mask);	// asm
 
 
-extern u64 ia32_rdtsc(void);
+extern u64 ia32_rdtsc_edx_eax(void);
+extern u64 ia32_rdtsc_safe(void);
+#if CONFIG_RETURN64_EDX_EAX
+# define ia32_rdtsc ia32_rdtsc_edx_eax
+#else
+# define ia32_rdtsc ia32_rdtsc_safe
+#endif
 
 extern void ia32_debug_break(void);
 

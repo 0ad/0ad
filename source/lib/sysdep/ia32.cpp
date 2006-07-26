@@ -175,13 +175,12 @@ __asm{
 
 //-----------------------------------------------------------------------------
 
-// rationale: this function should return its output (instead of setting
-// out params) to simplify its callers. it is written in inline asm
-// (instead of moving to ia32.asm) to insulate from changing compiler
-// calling conventions.
-// MSC, ICC and GCC currently return 64 bits in edx:eax, which even
-// matches rdtsc output, but we play it safe and return a temporary.
-u64 ia32_rdtsc()
+// this RDTSC implementation writes edx:eax to a temporary and returns that.
+// rationale: this insulates against changing compiler calling conventions,
+// at the cost of some efficiency.
+// use ia32_rdtsc_edx_eax instead if the return convention is known to be
+// edx:eax (should be the case on all 32-bit x86).
+u64 ia32_rdtsc_safe()
 {
 	u64 c;
 #if HAVE_MS_ASM
@@ -193,11 +192,13 @@ __asm
 	mov			dword ptr [c+4], edx
 }
 #elif HAVE_GNU_ASM
+	// note: we save+restore EBX to avoid xcode complaining about a
+	// "PIC register" being clobbered, whatever that means.
 	__asm__ __volatile__ (
-		"cpuid; rdtsc"
+		"pushl %%ebx; cpuid; popl %%ebx; rdtsc"
 		: "=A" (c)
 		: /* no input */
-		: "ebx", "ecx" /* cpuid clobbers ebx and ecx */);
+		: "ecx" /* cpuid clobbers eax..edx, but the rest are covered */);
 #endif
 	return c;
 }

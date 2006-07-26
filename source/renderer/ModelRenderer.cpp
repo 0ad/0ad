@@ -4,7 +4,7 @@
  * Project     : Pyrogenesis
  * Description : Implementation of ModelRenderer and BatchModelRenderer
  *
- * @author Nicolai Hähnle <nicolai@wildfiregames.com>
+ * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 

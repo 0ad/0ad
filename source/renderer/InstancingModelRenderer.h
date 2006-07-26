@@ -5,7 +5,7 @@
  * Description : Special ModelVertexRender that only works for non-animated
  *             : models, but is very fast for instanced models.
  *
- * @author Nicolai Hähnle <nicolai@wildfiregames.com>
+ * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 

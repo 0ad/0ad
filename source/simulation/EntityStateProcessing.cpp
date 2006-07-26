@@ -60,7 +60,7 @@ float CEntity::processChooseMovement( float distance )
 	// TODO: the animation code requires unicode for now. will be changed to
 	// 8bit later (for consistency; note that filenames etc. need not be
 	// unicode), so remove this then. 
-	const CStrW u_anim_name = anim_name;
+	const CStrW u_anim_name(anim_name);
 
 	if ( m_actor )
 	{

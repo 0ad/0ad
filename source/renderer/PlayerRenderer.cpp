@@ -5,7 +5,7 @@
  * Description : Implementation of player colour RenderModifiers.
  *
  * @author John M. Mena <JohnMMena@hotmail.com>
- * @author Nicolai Hähnle <nicolai@wildfiregames.com>
+ * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 

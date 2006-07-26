@@ -340,7 +340,7 @@ double ScriptingHost::ValueToDouble(const jsval value)
 
 	JSBool ok = JS_ValueToNumber(m_Context, value, &d);
 
-	if (ok == JS_FALSE || !finite(d))
+	if (ok == JS_FALSE || !isfinite(d))
 		throw PSERROR_Scripting_ConversionFailed();
 
 	return d;

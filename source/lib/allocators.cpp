@@ -62,6 +62,14 @@ static inline LibError LibError_from_mmap(void* ret, bool warn_if_failed = true)
 	return LibError_from_errno(warn_if_failed);
 }
 
+// "anonymous" effectively means mapping /dev/zero, but is more efficient.
+// MAP_ANONYMOUS is not in SUSv3, but is a very common extension.
+// unfortunately, MacOS X only defines MAP_ANON, which Solaris says is
+// deprecated. workaround there: define MAP_ANONYMOUS in terms of MAP_ANON.
+#ifndef MAP_ANONYMOUS
+# define MAP_ANONYMOUS MAP_ANON
+#endif
+
 static const int mmap_flags = MAP_PRIVATE|MAP_ANONYMOUS;
 
 static LibError mem_reserve(size_t size, u8** pp)

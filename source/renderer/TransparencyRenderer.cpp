@@ -7,7 +7,7 @@
  *             : rendering.
  *
  * @author Rich Cross <rich@wildfiregames.com>
- * @author Nicolai Hähnle <nicolai@wildfiregames.com>
+ * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 

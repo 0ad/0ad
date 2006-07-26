@@ -6,7 +6,7 @@
  *             : with e.g. FixedFunctionModelRenderer
  *
  * @author John M. Mena <JohnMMena@hotmail.com>
- * @author Nicolai Hähnle <nicolai@wildfiregames.com>
+ * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 

@@ -4,7 +4,7 @@
  * Project     : Pyrogenesis
  * Description : Water settings (speed, height) and texture management
  *
- * @author Nicolai Hähnle <nicolai@wildfiregames.com>
+ * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 

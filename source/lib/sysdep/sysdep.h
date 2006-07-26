@@ -127,14 +127,12 @@ extern void* alloca(size_t size);
 # endif
 
 # define isnan(d) (fpclassify(d) == FP_NAN)
+# define isfinite(d) ((fpclassify(d) & (FP_NORMAL|FP_ZERO)) != 0)
+# define isinf(d) (fpclassify(d) == FP_NAN|FP_NORMAL)
+# define isnormal(d) (fpclassify(d) == FP_NORMAL)
+//# define signbit
 #endif
 
-// finite: return 0 iff the given double is infinite or NaN.
-#if OS_WIN
-# define finite _finite
-#else
-# define finite __finite
-#endif
 
 // C99 restrict
 // .. for some reason, g++-3.3 claims to support C99 (according to

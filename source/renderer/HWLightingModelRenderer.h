@@ -5,7 +5,7 @@
  * Description : ModelVertexRenderer that transforms models on the CPU
  *             : but performs lighting in a vertex shader.
  *
- * @author Nicolai Hähnle <nicolai@wildfiregames.com>
+ * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 

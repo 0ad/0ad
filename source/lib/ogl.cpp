@@ -332,8 +332,8 @@ void oglSquelchError(GLenum err_to_ignore)
 // feature and limit detect
 //----------------------------------------------------------------------------
 
-int ogl_max_tex_size = -1;				// [pixels]
-int ogl_max_tex_units = -1;				// limit on GL_TEXTUREn
+GLint ogl_max_tex_size = -1;				// [pixels]
+GLint ogl_max_tex_units = -1;				// limit on GL_TEXTUREn
 
 
 // set sysdep/gfx.h gfx_card and gfx_drv_ver. called by gfx_detect.

@@ -5,7 +5,7 @@
  * Description : Definition of ModelVertexRenderer, the abstract base class
  *             : for model vertex transformation implementations.
  *
- * @author Nicolai Hähnle <nicolai@wildfiregames.com>
+ * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 

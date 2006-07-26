@@ -48,6 +48,13 @@
 # endif
 #endif
 
+// (only applicable if CPU_IA32) 64-bit values will be returned in EDX:EAX.
+// this chiefly affects ia32_rdtsc. if not set, a safer but slower fallback
+// will be used that doesn't assume anything about return convention.
+#ifndef CONFIG_RETURN64_EDX_EAX
+# define CONFIG_RETURN64_EDX_EAX 1
+#endif
+
 // this enables/disables the actual checking done by OverrunProtector-s
 // (quite slow, entailing mprotect() before/after each access).
 // define to 1 here or in the relevant module if you suspect mem corruption.

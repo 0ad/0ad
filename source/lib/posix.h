@@ -82,6 +82,8 @@ need only be renamed (e.g. _open, _stat).
 #include <sys/utsname.h>
 #include <dlfcn.h>
 
+#include <sys/stat.h>
+
 #include <sys/socket.h>
 #include <netdb.h>
 #include <netinet/in.h>

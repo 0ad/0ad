@@ -4,7 +4,7 @@
  * Project     : Pyrogenesis
  * Description : CBrush, a class representing a convex object
  *
- * @author Nicolai Hähnle <nicolai@wildfiregames.com>
+ * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 

@@ -62,7 +62,7 @@ double get_time()
 	gettimeofday(&cur, 0);
 	t = (cur.tv_sec - start.tv_sec) + (cur.tv_usec - start.tv_usec)*1e-6;
 #else
-#error "get_time: add timer implementation for this platform!"
+# error "get_time: add timer implementation for this platform!"
 #endif
 
 	// make sure time is monotonic (never goes backwards)

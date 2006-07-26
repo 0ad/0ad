@@ -6,7 +6,7 @@
  *             : that manages a per-frame list of submitted models,
  *             : as well as simple helper classes.
  *
- * @author Nicolai Hähnle <nicolai@wildfiregames.com>
+ * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 

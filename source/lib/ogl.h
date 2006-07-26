@@ -136,8 +136,8 @@ extern const char* oglExtList(void);
 // implementation limits / feature detect
 //
 
-extern int ogl_max_tex_size;				/// [pixels]
-extern int ogl_max_tex_units;				/// limit on GL_TEXTUREn
+extern GLint ogl_max_tex_size;				/// [pixels]
+extern GLint ogl_max_tex_units;				/// limit on GL_TEXTUREn
 
 /**
  * set sysdep/gfx.h gfx_card and gfx_drv_ver. called by gfx_detect.
