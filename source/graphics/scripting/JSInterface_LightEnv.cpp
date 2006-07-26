@@ -77,21 +77,13 @@ struct LightEnv_Info : public IPropertyOwner
  * construct: the LightEnv constructor has been called from JavaScript, so create a new
  * LightEnv object
  */
-JSBool construct(JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* UNUSED(argv), jsval* rval)
+JSBool construct(JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval)
 {
 	JSObject* lightenv = JS_NewObject(cx, &JSI_class, NULL, NULL);
 
-	if(argc == 0)
-	{
-		JS_SetPrivate(cx, lightenv, new LightEnv_Info);
-	}
-	else
-	{
-		JS_ReportError(cx, "[LightEnv] Too many arguments to constructor");
-		*rval = JSVAL_NULL;
-		return JS_TRUE;
-	}
+	JSU_REQUIRE_NO_PARAMS();
 
+	JS_SetPrivate(cx, lightenv, new LightEnv_Info);
 	*rval = OBJECT_TO_JSVAL(lightenv);
 	return JS_TRUE;
 }

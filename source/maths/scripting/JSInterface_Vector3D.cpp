@@ -159,28 +159,21 @@ JSBool JSI_Vector3D::construct( JSContext* cx, JSObject* UNUSED(obj), uintN argc
 		*rval = OBJECT_TO_JSVAL( vector );
 		return( JS_TRUE );
 	}
-	else if( argc == 3 )
+
+	JSU_REQUIRE_PARAMS(3);
+	try
 	{
-		try
-		{
-			float x = ToPrimitive<float>( argv[0] );
-			float y = ToPrimitive<float>( argv[1] );
-			float z = ToPrimitive<float>( argv[2] );
-			JS_SetPrivate( cx, vector, new Vector3D_Info( x, y, z ) );
-			*rval = OBJECT_TO_JSVAL( vector );
-			return( JS_TRUE );
-		}
-		catch (PSERROR_Scripting_ConversionFailed)
-		{
-			// Invalid input (i.e. can't be coerced into doubles) - fail
-			JS_ReportError( cx, "Invalid parameters to Vector3D constructor" );
-			*rval = JSVAL_NULL;
-			return( JS_FALSE );
-		}
+		float x = ToPrimitive<float>( argv[0] );
+		float y = ToPrimitive<float>( argv[1] );
+		float z = ToPrimitive<float>( argv[2] );
+		JS_SetPrivate( cx, vector, new Vector3D_Info( x, y, z ) );
+		*rval = OBJECT_TO_JSVAL( vector );
+		return( JS_TRUE );
 	}
-	else
+	catch (PSERROR_Scripting_ConversionFailed)
 	{
-		JS_ReportError( cx, "Invalid number of parameters to Vector3D constructor" );
+		// Invalid input (i.e. can't be coerced into doubles) - fail
+		JS_ReportError( cx, "Invalid parameters to Vector3D constructor" );
 		*rval = JSVAL_NULL;
 		return( JS_FALSE );
 	}

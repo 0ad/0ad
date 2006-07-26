@@ -60,37 +60,6 @@ extern bool g_TerrainModified;
 // all property accessors have the following signature:
 //   JSBool accessor(JSContext* cx, JSObject* globalObject, jsval id, jsval* vp);
 
-// consistent argc checking for normal function wrappers: reports an
-// error via JS and returns if number of parameters is incorrect.
-// .. require exact number (most common case)
-#define REQUIRE_PARAMS(exact_number, func_name)\
-	if(argc != exact_number)\
-	{\
-		JS_ReportError(cx, #func_name ": number of parameters passed doesn't match expected count");\
-		return JS_FALSE;\
-	}
-// .. require 0 params (avoids L4 warning "unused argv param")
-#define REQUIRE_NO_PARAMS(func_name)\
-	UNUSED2(argv);\
-	if(argc != 0)\
-	{\
-		JS_ReportError(cx, #func_name ": number of parameters passed doesn't match expected count");\
-		return JS_FALSE;\
-	}
-// .. accept at most N params (e.g. buildTime)
-#define REQUIRE_MAX_PARAMS(max_number, func_name)\
-	if(argc > max_number)\
-	{\
-		JS_ReportError(cx, #func_name ": too many parameters passed");\
-		return JS_FALSE;\
-	}
-// .. accept at least N params (e.g. issueCommand)
-#define REQUIRE_MIN_PARAMS(min_number, func_name)\
-	if(argc < min_number)\
-	{\
-		JS_ReportError(cx, #func_name ": too few parameters passed");\
-		return JS_FALSE;\
-	}
 
 //-----------------------------------------------------------------------------
 // Output
@@ -102,9 +71,9 @@ extern bool g_TerrainModified;
 // notes:
 // - Each argument is converted to a string and then written to the log.
 // - Output is in NORMAL style (see LOG).
-JSBool WriteLog(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rval))
+JSBool WriteLog(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
-	REQUIRE_MIN_PARAMS(1, WriteLog);
+	JSU_REQUIRE_PARAMS(1);
 
 	CStr logMessage;
 
@@ -125,6 +94,7 @@ JSBool WriteLog(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(
 
 	LOG( NORMAL, "script", logMessage );
 
+	*rval = JSVAL_TRUE;
 	return JS_TRUE;
 }
 
@@ -138,7 +108,7 @@ JSBool WriteLog(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(
 // returns: entity
 JSBool getEntityByHandle( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_PARAMS(1, getEntityByHandle);
+	JSU_REQUIRE_PARAMS(1);
 	*rval = JSVAL_NULL;
 
 	i32 handle;
@@ -169,8 +139,7 @@ JSBool getEntityByHandle( JSContext* cx, JSObject*, uint argc, jsval* argv, jsva
 // returns: entity template object
 JSBool getEntityTemplate( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_MIN_PARAMS(1, getEntityTemplate);
-	REQUIRE_MAX_PARAMS(2, getEntityTemplate);
+	JSU_REQUIRE_PARAM_RANGE(1, 2);
 	*rval = JSVAL_NULL;
 
 	CStrW templateName;
@@ -237,7 +206,9 @@ void CreateFormationMessage( std::vector<CNetMessage*>& msgList, CNetMessage* ms
 // returns: command in serialized form [string]
 JSBool issueCommand( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_MIN_PARAMS(2, issueCommand);
+	// at least one for target object, and then 1 or more for the CommandFromJSArgs
+	JSU_REQUIRE_MIN_PARAMS(2);
+
 	debug_assert(JSVAL_IS_OBJECT(argv[0]));
 	*rval = JSVAL_NULL;
 	
@@ -300,7 +271,7 @@ JSBool issueCommand( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rv
 //Formation stuff
 JSBool createEntityFormation( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_MIN_PARAMS(2, createEntityFormation);
+	JSU_REQUIRE_PARAMS(2);
 	
 	CEntityList entities = *EntityCollection::RetrieveSet(cx, JSVAL_TO_OBJECT(argv[0]));
 	CStrW name = ToPrimitive<CStrW>( argv[1] );
@@ -311,7 +282,7 @@ JSBool createEntityFormation( JSContext* cx, JSObject* UNUSED(obj), uint argc, j
 }
 JSBool removeFromFormation( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_MIN_PARAMS(1, removeFromFormation);
+	JSU_REQUIRE_PARAMS(1);
 	
 	CEntityList entities;
 	if (JS_GetClass(JSVAL_TO_OBJECT(argv[0])) == &CEntity::JSI_class)
@@ -324,7 +295,7 @@ JSBool removeFromFormation( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsv
 }
 JSBool lockEntityFormation( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_MIN_PARAMS(1, lockEntityFormation);
+	JSU_REQUIRE_PARAMS(1);
 
 	CEntity* entity = ToNative<CEntity>( argv[0] );
 	entity->GetFormation()->SetLock( ToPrimitive<bool>( argv[1] ) );
@@ -333,7 +304,7 @@ JSBool lockEntityFormation( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsv
 }
 JSBool isFormationLocked( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_MIN_PARAMS(1, isFormationLocked);
+	JSU_REQUIRE_PARAMS(1);
 
 	CEntity* entity = ToNative<CEntity>( argv[0] );
 	*rval = entity->GetFormation()->IsLocked() ? JS_TRUE : JS_FALSE;
@@ -345,7 +316,7 @@ JSBool isFormationLocked( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval
 
 JSBool getTechnology( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_MIN_PARAMS(2, getTechnology);
+	JSU_REQUIRE_PARAMS(2);
 	
 	CStrW name;
 	CPlayer* player;
@@ -381,7 +352,7 @@ JSBool getTechnology( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* ar
 // returns: whether it was actually newly registered [bool]
 JSBool AddGlobalHandler( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_PARAMS(2, AddGlobalHandler);
+	JSU_REQUIRE_PARAMS(2);
 
 	*rval = BOOLEAN_TO_JSVAL( g_JSGameEvents.AddHandlerJS( cx, argc, argv ) );
 	return( JS_TRUE );
@@ -393,7 +364,7 @@ JSBool AddGlobalHandler( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval*
 // returns: whether it was successfully removed [bool]
 JSBool RemoveGlobalHandler( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_PARAMS(2, RemoveGlobalHandler);
+	JSU_REQUIRE_PARAMS(2);
 
 	*rval = BOOLEAN_TO_JSVAL( g_JSGameEvents.RemoveHandlerJS( cx, argc, argv ) );
 	return( JS_TRUE );
@@ -422,8 +393,7 @@ JSBool RemoveGlobalHandler( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsv
 //   'this' reference is usually maintained)
 JSBool setTimeout( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_MIN_PARAMS(2, setTimeout);
-	REQUIRE_MAX_PARAMS(3, setTimeout);
+	JSU_REQUIRE_PARAM_RANGE(2, 3);
 
 	size_t delay;
 	try
@@ -482,8 +452,7 @@ JSBool setTimeout( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval
 // - setTimeout's notes apply here as well.
 JSBool setInterval( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_MIN_PARAMS(2, setInterval);
-	REQUIRE_MAX_PARAMS(3, setInterval);
+	JSU_REQUIRE_PARAM_RANGE(2, 3);
 
 	size_t first, interval;
 	try
@@ -536,9 +505,9 @@ JSBool setInterval( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rva
 // notes:
 // - Execution continues until the end of the triggered function or
 //   script fragment, but is not triggered again.
-JSBool cancelInterval( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rval) )
+JSBool cancelInterval( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_NO_PARAMS(cancelInterval);
+	JSU_REQUIRE_NO_PARAMS();
 
 	g_Scheduler.m_abortInterval = true;
 	return( JS_TRUE );
@@ -552,10 +521,9 @@ JSBool cancelInterval( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* 
 // notes:
 // - Execution continues until the end of the triggered function or
 //   script fragment, but is not triggered again.
-JSBool cancelTimer( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rval) )
+JSBool cancelTimer( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_MIN_PARAMS(1, cancelTimer);
-	REQUIRE_MAX_PARAMS(1, cancelTimer);
+	JSU_REQUIRE_PARAMS(1);
 
 	try
 	{
@@ -572,10 +540,9 @@ JSBool cancelTimer( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNU
 }
 //Set the simulation rate scalar-time becomes time * SimRate.
 //Params: rate [float] : sets SimRate
-JSBool setSimRate(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rval))
+JSBool setSimRate(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
-	REQUIRE_MIN_PARAMS(1, setSimRate);
-	REQUIRE_MAX_PARAMS(1, setSimRate);
+	JSU_REQUIRE_PARAMS(1);
 
 	g_Game->SetSimRate( ToPrimitive<float>(argv[0]) );
 	return JS_TRUE;
@@ -618,12 +585,11 @@ static void initXTimers()
 	xoverhead = xclients[0].sum/4;
 }
 
-JSBool startXTimer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rval))
+JSBool startXTimer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
 	ONCE(initXTimers());
 
-	REQUIRE_MIN_PARAMS(1, startXTimer);
-	REQUIRE_MIN_PARAMS(1, startXTimer);
+	JSU_REQUIRE_PARAMS(1);
 	uint slot = ToPrimitive<uint>(argv[0]);
 	debug_assert(slot < MAX_XTIMERS);
 
@@ -633,10 +599,9 @@ JSBool startXTimer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUS
 }
 
 
-JSBool stopXTimer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rval))
+JSBool stopXTimer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
-	REQUIRE_MIN_PARAMS(1, stopXTimer);
-	REQUIRE_MIN_PARAMS(1, stopXTimer);
+	JSU_REQUIRE_PARAMS(1);
 	uint slot = ToPrimitive<uint>(argv[0]);
 	debug_assert(slot < MAX_XTIMERS);
 
@@ -657,7 +622,7 @@ JSBool stopXTimer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSE
 // returns: net server object
 JSBool createServer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
-	REQUIRE_NO_PARAMS(createServer);
+	JSU_REQUIRE_NO_PARAMS();
 
 	if( !g_Game )
 		g_Game = new CGame();
@@ -674,7 +639,7 @@ JSBool createServer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rva
 // returns: net client object
 JSBool createClient(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
-	REQUIRE_NO_PARAMS(createClient);
+	JSU_REQUIRE_NO_PARAMS();
 
 	if( !g_Game )
 		g_Game = new CGame();
@@ -697,7 +662,7 @@ JSBool createClient(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rva
 //   after merging CGame and CGameAttributes
 JSBool startGame(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
-	REQUIRE_NO_PARAMS(startGame);
+	JSU_REQUIRE_NO_PARAMS();
 
 	*rval = BOOLEAN_TO_JSVAL(JS_TRUE);
 
@@ -732,9 +697,9 @@ JSBool startGame(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 // Immediately ends the current game (if any).
 // params:
 // returns:
-JSBool endGame(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rval))
+JSBool endGame(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
-	REQUIRE_NO_PARAMS(endGame);
+	JSU_REQUIRE_NO_PARAMS();
 
 	EndGame();
 	return JS_TRUE;
@@ -753,9 +718,9 @@ JSBool endGame(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(r
 // Replaces the current language (locale) with a new one.
 // params: language id [string] as in I18n::LoadLanguage
 // returns:
-JSBool loadLanguage(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rval))
+JSBool loadLanguage(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
-	REQUIRE_PARAMS(1, loadLanguage);
+	JSU_REQUIRE_PARAMS(1);
 
 	CStr lang = g_ScriptingHost.ValueToString(argv[0]);
 	I18n::LoadLanguage(lang);
@@ -769,7 +734,7 @@ JSBool loadLanguage(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNU
 // returns: language id [string] as in I18n::LoadLanguage
 JSBool getLanguageID(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
-	REQUIRE_NO_PARAMS(getLanguageID);
+	JSU_REQUIRE_NO_PARAMS();
 	*rval = JSVAL_NULL;
 
 	JSString* s = JS_NewStringCopyZ(cx, I18n::CurrentLanguageName());
@@ -794,9 +759,9 @@ JSBool getLanguageID(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rv
 // notes:
 // - currently implemented via access violation (read of address 0)
 // - useful for testing the crashlog/stack trace code.
-JSBool crash(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rval))
+JSBool crash(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
-	REQUIRE_NO_PARAMS(crash);
+	JSU_REQUIRE_NO_PARAMS();
 
 	MICROLOG(L"Crashing at user's request.");
 	return *(JSBool*)0;
@@ -810,7 +775,7 @@ JSBool crash(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rva
 // - writes an indication of how long this took to the console.
 JSBool forceGC(JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval)
 {
-	REQUIRE_NO_PARAMS(forceGC);
+	JSU_REQUIRE_NO_PARAMS();
 
 	double time = get_time();
 	JS_GC(cx);
@@ -833,7 +798,7 @@ JSBool forceGC(JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsv
 // - Useful for accessing an object from another scope.
 JSBool getGUIGlobal(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
-	REQUIRE_NO_PARAMS(getGUIGlobal);
+	JSU_REQUIRE_NO_PARAMS();
 
 	*rval = OBJECT_TO_JSVAL(g_GUI.GetScriptObject());
 	return JS_TRUE;
@@ -842,9 +807,9 @@ JSBool getGUIGlobal(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rva
 // Resets the entire GUI state and reloads the XML files.
 // params:
 // returns:
-JSBool resetGUI(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rval))
+JSBool resetGUI(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
-	REQUIRE_NO_PARAMS(resetGUI);
+	JSU_REQUIRE_NO_PARAMS();
 
 	// Slightly unpleasant code, because CGUI is a Singleton but we don't really
 	// want it to be
@@ -870,7 +835,7 @@ JSBool resetGUI(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(
 //   filter it, so it is both accurate and free of jitter.
 JSBool getFPS( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_NO_PARAMS(getFPS);
+	JSU_REQUIRE_NO_PARAMS();
 
 	*rval = INT_TO_JSVAL(fps);
 	return JS_TRUE;
@@ -883,9 +848,9 @@ JSBool getFPS( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 // notes:
 // - Exit happens after the current main loop iteration ends
 //   (since this only sets a flag telling it to end)
-JSBool exitProgram( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rval) )
+JSBool exitProgram( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_NO_PARAMS(exitProgram);
+	JSU_REQUIRE_NO_PARAMS();
 
 	kill_mainloop();
 	return JS_TRUE;
@@ -899,9 +864,9 @@ JSBool exitProgram( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNU
 // - Not supported on all platforms.
 // - Only a rough approximation; do not base low-level decisions
 //   ("should I allocate one more texture?") on this.
-JSBool vmem( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rval) )
+JSBool vmem( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_NO_PARAMS(vmem);
+	JSU_REQUIRE_NO_PARAMS();
 
 #if OS_WIN
 	int left, total;
@@ -921,9 +886,9 @@ JSBool vmem( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rva
 // returns:
 // notes:
 // - Cursors are stored in "art\textures\cursors"
-JSBool setCursor( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rval) )
+JSBool setCursor( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_PARAMS(1, setCursor);
+	JSU_REQUIRE_PARAMS(1);
 	g_CursorName = g_ScriptingHost.ValueToString(argv[0]);
 	return JS_TRUE;
 }
@@ -938,9 +903,9 @@ JSBool getCursorName( JSContext* UNUSED(cx), JSObject*, uint UNUSED(argc), jsval
 // returns:
 // notes:
 // - Usefulness is unclear. If you need it, consider renaming this and updating the docs.
-JSBool _rewriteMaps( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rval) )
+JSBool _rewriteMaps( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_NO_PARAMS(_rewriteMaps);
+	JSU_REQUIRE_NO_PARAMS();
 
 	g_Game->GetWorld()->RewriteMap();
 	return JS_TRUE;
@@ -953,9 +918,9 @@ JSBool _rewriteMaps( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UN
 // notes:
 // - value is as required by GL_TEXTURE_LOD_BIAS.
 // - useful for adjusting image "sharpness" (since it affects which mipmap level is chosen)
-JSBool _lodbias( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED(rval) )
+JSBool _lodbias( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_PARAMS(1, _lodbias);
+	JSU_REQUIRE_PARAMS(1);
 
 	g_Renderer.SetOptionFloat(CRenderer::OPT_LODBIAS, ToPrimitive<float>(argv[0]));
 	return JS_TRUE;
@@ -967,7 +932,7 @@ JSBool _lodbias( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* UNUSED
 // returns: success [bool]
 JSBool setCameraTarget( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_PARAMS(1, setCameraTarget);
+	JSU_REQUIRE_PARAMS(1);
 	*rval = JSVAL_NULL;
 
 	CVector3D* target = ToNative<CVector3D>( argv[0] );
@@ -999,7 +964,7 @@ JSBool setCameraTarget( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* 
 //   last compiled; since the auto-build does full rebuilds, that is moot.
 JSBool buildTime( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_MAX_PARAMS(1, buildTime);
+	JSU_REQUIRE_PARAM_RANGE(0, 1);
 
 	// buildTime( ) = "date time"
 	// buildTime(0) = "date"
@@ -1019,7 +984,7 @@ JSBool buildTime( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval 
 // returns: Euclidean distance [float]
 JSBool v3dist( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_PARAMS(2, v3dist);
+	JSU_REQUIRE_PARAMS(2);
 
 	CVector3D* a = ToNative<CVector3D>( argv[0] );
 	CVector3D* b = ToNative<CVector3D>( argv[1] );
@@ -1036,7 +1001,7 @@ JSBool v3dist( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsv
 // - Useful for accessing an object from another scope.
 JSBool getGlobal( JSContext* cx, JSObject* globalObject, uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_NO_PARAMS(getGlobal);
+	JSU_REQUIRE_NO_PARAMS();
 
 	*rval = OBJECT_TO_JSVAL( globalObject );
 	return( JS_TRUE );
@@ -1069,7 +1034,7 @@ JSBool startPlacing( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, j
 // Toggles drawing the sky
 JSBool toggleSky( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_NO_PARAMS( toggleSky );
+	JSU_REQUIRE_NO_PARAMS();
 	g_Renderer.GetSkyManager()->m_RenderSky = !g_Renderer.GetSkyManager()->m_RenderSky;
 	*rval = JSVAL_VOID;
 	return( JS_TRUE );
@@ -1078,7 +1043,7 @@ JSBool toggleSky( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsva
 // Toggles drawing the water plane
 JSBool toggleWater( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_NO_PARAMS( toggleWater );
+	JSU_REQUIRE_NO_PARAMS();
 	g_Renderer.GetWaterManager()->m_RenderWater = !g_Renderer.GetWaterManager()->m_RenderWater;
 	*rval = JSVAL_VOID;
 	return( JS_TRUE );
@@ -1087,7 +1052,7 @@ JSBool toggleWater( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, js
 // Sets the water plane height
 JSBool setWaterHeight( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_PARAMS( 1, setWaterHeight );
+	JSU_REQUIRE_PARAMS( 1 );
 	float newHeight;
 	if(!ToPrimitive( g_ScriptingHost.GetContext(), argv[0], newHeight ))
 	{
@@ -1104,7 +1069,7 @@ JSBool setWaterHeight( JSContext* cx, JSObject* UNUSED(globalObject), uint argc,
 // Gets the water plane height
 JSBool getWaterHeight( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_NO_PARAMS( getWaterHeight );
+	JSU_REQUIRE_NO_PARAMS();
 	*rval = ToJSVal(g_Renderer.GetWaterManager()->m_WaterHeight);
 	return( JS_TRUE );
 }
@@ -1112,7 +1077,7 @@ JSBool getWaterHeight( JSContext* cx, JSObject* UNUSED(globalObject), uint argc,
 // Sets the water color
 JSBool setWaterColor( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_PARAMS( 3, setWaterColor );
+	JSU_REQUIRE_PARAMS( 3 );
 	float r,g,b;
 	if(!ToPrimitive( g_ScriptingHost.GetContext(), argv[0], r )
 		|| !ToPrimitive( g_ScriptingHost.GetContext(), argv[1], g )
@@ -1130,7 +1095,7 @@ JSBool setWaterColor( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, 
 // Sets the water tint (used to tint reflections in fancy water)
 JSBool setWaterTint( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_PARAMS( 3, setWaterTint );
+	JSU_REQUIRE_PARAMS( 3 );
 	float r,g,b;
 	if(!ToPrimitive( g_ScriptingHost.GetContext(), argv[0], r )
 		|| !ToPrimitive( g_ScriptingHost.GetContext(), argv[1], g )
@@ -1148,7 +1113,7 @@ JSBool setWaterTint( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, j
 // Sets the max water alpha (achieved when it is at WaterFullDepth or deeper)
 JSBool setWaterMaxAlpha( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_PARAMS( 1, setWaterMaxAlpha );
+	JSU_REQUIRE_PARAMS( 1 );
 	float val;
 	if(!ToPrimitive( g_ScriptingHost.GetContext(), argv[0], val ))
 	{
@@ -1164,7 +1129,7 @@ JSBool setWaterMaxAlpha( JSContext* cx, JSObject* UNUSED(globalObject), uint arg
 // Sets the water full depth (when it is colored WaterMaxAlpha)
 JSBool setWaterFullDepth( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_PARAMS( 1, setWaterFullDepth );
+	JSU_REQUIRE_PARAMS( 1 );
 	float val;
 	if(!ToPrimitive( g_ScriptingHost.GetContext(), argv[0], val ))
 	{
@@ -1180,7 +1145,7 @@ JSBool setWaterFullDepth( JSContext* cx, JSObject* UNUSED(globalObject), uint ar
 // Sets the water alpha offset (added to tweak water alpha near the shore)
 JSBool setWaterAlphaOffset( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_PARAMS( 1, setWaterAlphaOffset );
+	JSU_REQUIRE_PARAMS( 1 );
 	float val;
 	if(!ToPrimitive( g_ScriptingHost.GetContext(), argv[0], val ))
 	{
@@ -1196,7 +1161,7 @@ JSBool setWaterAlphaOffset( JSContext* cx, JSObject* UNUSED(globalObject), uint 
 // Is the game paused?
 JSBool isPaused( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_NO_PARAMS( isPaused );
+	JSU_REQUIRE_NO_PARAMS();
 
 	if( !g_Game )
 	{
@@ -1209,9 +1174,9 @@ JSBool isPaused( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval
 }
 
 // Pause/unpause the game
-JSBool setPaused( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* UNUSED(rval) )
+JSBool setPaused( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_PARAMS( 1, setPaused );
+	JSU_REQUIRE_PARAMS( 1 );
 
 	if( !g_Game )
 	{
@@ -1234,7 +1199,7 @@ JSBool setPaused( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsva
 // Get game time
 JSBool getGameTime( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_NO_PARAMS( getGameTime );
+	JSU_REQUIRE_NO_PARAMS();
 
 	if( !g_Game )
 	{
@@ -1249,8 +1214,7 @@ JSBool getGameTime( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, js
 // Reveal map
 JSBool revealMap( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
-	REQUIRE_MIN_PARAMS( 0, revealMap );
-	REQUIRE_MAX_PARAMS( 1, revealMap );
+	JSU_REQUIRE_PARAM_RANGE(0, 1);
 
 	uint newValue;
 	if(argc == 0)

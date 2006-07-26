@@ -31,6 +31,7 @@
 
 // include any further required headers here
 
+#include "JSUtil.h"
 
 // Make JS debugging a little easier by automatically naming GC roots
 // Don't simply #define NAME_ALL_GC_ROOTS, because jsapi.h is horridly broken

@@ -1651,10 +1651,9 @@ void CEntity::JSI_SetPlayer( jsval val )
 bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 {
 	// This needs to be sorted (uses Scheduler rather than network messaging)
-	debug_assert( argc >= 1 );
 
 	int orderCode;
-
+	debug_assert(argc >= 1);
 	try
 	{
 		orderCode = ToPrimitive<int>( argv[0] );
@@ -1675,11 +1674,7 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 		case CEntityOrder::ORDER_GOTO:
 		case CEntityOrder::ORDER_RUN:
 		case CEntityOrder::ORDER_PATROL:
-			if( argc < 3 )
-			{
-				JS_ReportError( cx, "Too few parameters" );
-				return( false );
-			}
+			JSU_REQUIRE_PARAMS_CPP(3);
 			try
 			{
 				newOrder.m_data[0].location.x = ToPrimitive<float>( argv[1] );
@@ -1703,11 +1698,7 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 			}
 			break;
 		case CEntityOrder::ORDER_GENERIC:
-			if( argc < 3 )
-			{
-				JS_ReportError( cx, "Too few parameters" );
-				return( false );
-			}
+			JSU_REQUIRE_PARAMS_CPP(3);
 			target = ToNative<CEntity>( argv[1] );
 			if( !target )
 			{
@@ -1735,11 +1726,7 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 			}
 			break;
 		case CEntityOrder::ORDER_PRODUCE:
-			if( argc < 3 )
-			{
-				JS_ReportError( cx, "Too few parameters" );
-				return( false );
-			}
+			JSU_REQUIRE_PARAMS_CPP(3);
 			try {
 				newOrder.m_data[0].string = ToPrimitive<CStrW>(argv[2]);
 				newOrder.m_data[1].data = ToPrimitive<int>(argv[1]);
@@ -1999,11 +1986,7 @@ jsval CEntity::SetActionParams( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 
 bool CEntity::RequestNotification( JSContext* cx, uintN argc, jsval* argv )
 {
-	if( argc < 4 )
-	{
-		JS_ReportError( cx, "Too few parameters" );
-		return( false );
-	}
+	JSU_REQUIRE_PARAMS_CPP(4);
 
 	CEntityListener notify;
 	CEntity *target = ToNative<CEntity>( argv[0] );
@@ -2061,11 +2044,7 @@ int CEntity::GetCurrentRequest( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval
 }
 bool CEntity::ForceCheckListeners( JSContext *cx, uintN argc, jsval* argv )
 {
-	if( argc < 2 )
-	{
-		JS_ReportError( cx, "Too few parameters" );
-		return false;
-	}
+	JSU_REQUIRE_PARAMS_CPP(2);
 	int type = ToPrimitive<int>( argv[0] );	   //notify code
 	m_currentNotification = type;
 
@@ -2137,11 +2116,7 @@ jsval CEntity::DestroyAllNotifiers( JSContext* UNUSED(cx), uintN UNUSED(argc), j
 }
 jsval CEntity::DestroyNotifier( JSContext* cx, uintN argc, jsval* argv )
 {
-	if ( argc < 1 )
-	{
-		JS_ReportError(cx, "too few parameters: CEntity::DestroyNotifier");
-		return JS_FALSE;
-	}
+	JSU_REQUIRE_PARAMS_CPP(1);
 	DestroyNotifier( ToNative<CEntity>( argv[0] ) );
 	return JS_TRUE;
 }
@@ -2154,11 +2129,7 @@ jsval CEntity::TriggerRun( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNU
 
 jsval CEntity::SetRun( JSContext* cx, uintN argc, jsval* argv )
 {
-	if( argc < 1 )
-	{
-		JS_ReportError( cx, "Too few parameters" );
-		return( false );
-	}
+	JSU_REQUIRE_PARAMS_CPP(1);
 	bool should_run = ToPrimitive<bool> ( argv[0] );
 	entf_set_to(ENTF_SHOULD_RUN, should_run);
 	entf_set_to(ENTF_IS_RUNNING, should_run);
@@ -2203,11 +2174,7 @@ jsval CEntity::GetFormationBonusVal( JSContext* UNUSED(cx), uintN UNUSED(argc), 
 
 jsval CEntity::RegisterDamage( JSContext* cx, uintN argc, jsval* argv )
 {
-	if ( argc < 1 )
-	{
-		JS_ReportError( cx, "Too few parameters" );
-		return( false );
-	}
+	JSU_REQUIRE_PARAMS_CPP(1);
 	CEntity* inflictor = ToNative<CEntity>( argv[0] );
 	CVector2D up(1.0f, 0.0f);
 	CVector2D pos = CVector2D( inflictor->m_position.X, inflictor->m_position.Z );
@@ -2221,11 +2188,7 @@ jsval CEntity::RegisterDamage( JSContext* cx, uintN argc, jsval* argv )
 }
 jsval CEntity::RegisterOrderChange( JSContext* cx, uintN argc, jsval* argv )
 {
-	if ( argc < 1 )
-	{
-		JS_ReportError( cx, "Too few parameters" );
-		return( false );
-	}
+	JSU_REQUIRE_PARAMS_CPP(1);
 	CEntity* idleEntity = ToNative<CEntity>( argv[0] );
 
 	CVector2D up(1.0f, 0.0f);
@@ -2251,11 +2214,7 @@ jsval CEntity::GetAttackDirections( JSContext* UNUSED(cx), uintN UNUSED(argc), j
 }
 jsval CEntity::FindSector( JSContext* cx, uintN argc, jsval* argv )
 {
-	if ( argc < 4 )
-	{
-		JS_ReportError( cx, "Too few parameters" );
-		return( false );
-	}
+	JSU_REQUIRE_PARAMS_CPP(4);
 	int divs = ToPrimitive<int>( argv[0] );
 	float angle = ToPrimitive<float>( argv[1] );
 	float maxAngle = ToPrimitive<float>( argv[2] );

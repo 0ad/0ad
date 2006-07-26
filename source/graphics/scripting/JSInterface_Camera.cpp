@@ -217,19 +217,12 @@ JSBool JSI_Camera::lookAt( JSContext* cx, JSObject* obj, uint argc, jsval* argv,
 	JSI_Vector3D::Vector3D_Info* v = NULL;
 	Camera_Info* cameraInfo = (Camera_Info*)JS_GetPrivate( cx, obj );
 
-	if( 2 <= argc && argc <= 3 )
-	{
-		cameraInfo->m_sv_Position = GETVECTOR( argv[0] );
-		cameraInfo->m_sv_Orientation = ( GETVECTOR( argv[1] ) - GETVECTOR( argv[0] ) );
-		cameraInfo->m_sv_Orientation.Normalize();
-	}
-	else
-	{
-		JS_ReportError( cx, "[Camera] lookAt: incorrect argument count" );
-		*rval = JSVAL_FALSE;
-		return( JS_TRUE );
-	}
-	
+	JSU_REQUIRE_PARAM_RANGE(2, 3);
+
+	cameraInfo->m_sv_Position = GETVECTOR( argv[0] );
+	cameraInfo->m_sv_Orientation = ( GETVECTOR( argv[1] ) - GETVECTOR( argv[0] ) );
+	cameraInfo->m_sv_Orientation.Normalize();
+
 	if( argc == 2 )
 	{
 		cameraInfo->m_sv_Up = CVector3D( 0.0f, 1.0f, 0.0f );
@@ -265,31 +258,28 @@ JSBool JSI_Camera::construct( JSContext* cx, JSObject* UNUSED(obj),
 
 	JSObject* camera = JS_NewObject( cx, &JSI_Camera::JSI_class, NULL, NULL );
 
-	if( argc == 0 )
+	JSU_REQUIRE_PARAM_RANGE(0, 3);
+	Camera_Info* camera_info = 0;
+	switch(argc)
 	{
-		JS_SetPrivate( cx, camera, new Camera_Info() );
-	}
-	else if( argc == 1 )
-	{
-		JS_SetPrivate( cx, camera, new Camera_Info( GETVECTOR( argv[0] ) ) );
-	}
-	else if( argc == 2 )
-	{
-		JS_SetPrivate( cx, camera, new Camera_Info( GETVECTOR( argv[0] ), GETVECTOR( argv[1] ) ) );
-	}
-	else if( argc == 3 )
-	{
-		JS_SetPrivate( cx, camera, new Camera_Info( GETVECTOR( argv[0] ), GETVECTOR( argv[1] ), GETVECTOR( argv[2] ) ) );
-	}
-	else
-	{
-		JS_ReportError( cx, "[Camera] Too many arguments to constructor" );
-		*rval = JSVAL_NULL;
-		return( JS_TRUE );
+	case 0:
+		camera_info = new Camera_Info();
+		break;
+	case 1:
+		camera_info = new Camera_Info( GETVECTOR( argv[0] ) );
+		break;
+	case 2:
+		camera_info = new Camera_Info( GETVECTOR( argv[0] ), GETVECTOR( argv[1] ) );
+		break;
+	case 3:
+		camera_info = new Camera_Info( GETVECTOR( argv[0] ), GETVECTOR( argv[1] ), GETVECTOR( argv[2] ) );
+		break;
+	NODEFAULT;
 	}
 
 #undef GET_VECTOR
 
+	JS_SetPrivate( cx, camera, camera_info );
 	*rval = OBJECT_TO_JSVAL( camera );
 	return( JS_TRUE );
 }
