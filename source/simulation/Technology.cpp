@@ -441,8 +441,6 @@ void CTechnology::ScriptingInit()
 	AddMethod<jsval, &CTechnology::GetPlayerID>( "getPlayerID", 0 );
 
 	CJSObject<CTechnology>::ScriptingInit("Technology");
-
-	debug_printf("CTechnology::ScriptingInit complete");
 }
 
 jsval CTechnology::ApplyEffects( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )

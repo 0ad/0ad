@@ -59,6 +59,7 @@
 
 #include "scripting/ScriptingHost.h"
 #include "scripting/GameEvents.h"
+#include "scripting/ScriptableComplex.h"
 #include "maths/scripting/JSInterface_Vector3D.h"
 #include "graphics/scripting/JSInterface_Camera.h"
 #include "ps/scripting/JSInterface_Selection.h"
@@ -501,7 +502,8 @@ static void InitScripting()
 	CPlayer::ScriptingInit();
 
 	PlayerCollection::Init( "PlayerCollection" );
-	CJSComplexPropertyAccessor<CEntity>::ScriptingInit(); // <-- Doesn't really matter which we use, but we know CJSPropertyAccessor<T> is already being compiled for T = CEntity.
+	//CJSComplexPropertyAccessor<CEntity>::ScriptingInit(); // <-- Doesn't really matter which we use, but we know CJSPropertyAccessor<T> is already being compiled for T = CEntity.
+	ScriptableComplex_InitComplexPropertyAccessor<CEntity>();
 	CScriptEvent::ScriptingInit();
 	CJSProgressTimer::ScriptingInit();
 	CProjectile::ScriptingInit();

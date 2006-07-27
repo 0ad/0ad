@@ -3,7 +3,11 @@
 
 #include "lib/allocators.h"
 
+//-----------------------------------------------------------------------------
 // suballocator for CJSComplex.m_Properties elements
+// (must come after property defs)
+//-----------------------------------------------------------------------------
+
 static Bucket bucket;
 // HACK: it needs to be created/destroyed; since there is no
 // global init/shutdown call here, we keep a refcnt. this assumes that
@@ -38,3 +42,4 @@ void jscomplexproperty_suballoc_free(IJSComplexProperty* p)
 	p->~IJSComplexProperty();
 	bucket_free(&bucket, p);
 }
+
