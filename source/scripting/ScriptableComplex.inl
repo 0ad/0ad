@@ -1,3 +1,40 @@
+/*
+rationale:
+we are changing CJSComplex often for purposes of optimization. this triggers
+close to a full rebuild, which is unacceptable.
+ideally, we would move the method implementations into a cpp file, and
+then only that need be recompiled.
+unfortunately that is exactly what the export keyword enables,
+which is not likely to be implemented in VC.
+
+several workarounds have been investigated.
+1) reduce symptoms of the problem by reducing #includes of entity.h, which is
+   what pulls CJSComplex in. done; it's been removed entirely from headers and
+   is currently only left in ~30 cpp files (could probably be
+   further reduced)
+
+2) de-templatize CJSComplex. result would be enabling the normal split of
+   interface vs. implementation in cpp file.
+
+   this would be mostly feasible because it's really only used by
+   CEntity and CEntityTemplate. however, since there are 2 users, the
+   static class data (notably m_Methods) would have to be duplicated for each.
+   one possibility would be an 'array' of each, indexed via class id.
+
+   also, static data could be reduced by having property lookup be done
+   via per-property hash tables, instead of the root object holding one
+   large table of the entire property names (e.g. traits.health.max).
+   in retrospect, this would probably have been better, but is probably
+   too much work to change now.
+
+3) instead of CEntity IS-A CJSComplex, use composition and pImpl. this would
+   decouple entity.h from changes in scriptablecomplex.h.
+   however, we'd have to dynamically allocate the CJSComplex in each entity
+   (required by pImpl and less efficient/more annoying). also, there would
+   potentially be trouble with ToJSVal, since we no longer derive from
+   CJSComplex.
+   this is not deemed worth the effort due to steps taken in #1.
+*/
 
 #ifndef SCRIPTABLE_COMPLEX_INL_INCLUDED
 #define SCRIPTABLE_COMPLEX_INL_INCLUDED

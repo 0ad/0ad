@@ -502,8 +502,12 @@ static void InitScripting()
 	CPlayer::ScriptingInit();
 
 	PlayerCollection::Init( "PlayerCollection" );
-	//CJSComplexPropertyAccessor<CEntity>::ScriptingInit(); // <-- Doesn't really matter which we use, but we know CJSPropertyAccessor<T> is already being compiled for T = CEntity.
+
+	// call CJSComplexPropertyAccessor's ScriptingInit. doesn't really
+	// matter which <T> we use, but we know CJSPropertyAccessor<T> is
+	// already being compiled for T = CEntity.
 	ScriptableComplex_InitComplexPropertyAccessor<CEntity>();
+
 	CScriptEvent::ScriptingInit();
 	CJSProgressTimer::ScriptingInit();
 	CProjectile::ScriptingInit();

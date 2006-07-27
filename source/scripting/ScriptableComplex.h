@@ -182,23 +182,21 @@ public:
 
 	void FillEnumerateSet( IteratorState* it, CStrW* PropertyRoot = NULL );
 	
-	void AddProperty( const CStrW& PropertyName, jsval Value );
 	
+	void AddProperty( const CStrW& PropertyName, jsval Value );
 	void AddProperty( const CStrW& PropertyName, const CStrW& Value );
 
 	static void AddClassProperty( const CStrW& PropertyName, GetFn Getter, SetFn Setter = NULL );
 
-
 	// these functions are themselves templatized. we don't want to implement
 	// them in the header because that would drag in many dependencies.
 	//
-	// therefore, the publicly visibleare functions  actually onl/ to y thunks
-	// external friend functions implemented in the cpp file.
+	// therefore, the publicly visible functions actually only call out to
+	// external friend functions implemented in the .inl file.
 	// these receive the template parameters from the class as well as the
 	// ones added for the member function.
 	// 
 	// for non-static members, the friends additionally take a "this" pointer.
-
 	template<typename ReturnType, ReturnType (T::*NativeFunction)( JSContext* cx, uintN argc, jsval* argv )> 
 	static void AddMethod( const char* Name, uintN MinArgs )
 	{
@@ -266,10 +264,10 @@ void ScriptableComplex_InitComplexPropertyAccessor();
 
 
 
-//-----------------------------------------------------------------------------
+//
 // suballocator for CJSComplex.m_Properties elements
-//-----------------------------------------------------------------------------
-
+// (referenced from implementation in .inl)
+//
 extern void jscomplexproperty_suballoc_attach();
 extern void jscomplexproperty_suballoc_detach();
 extern void* jscomplexproperty_suballoc();
@@ -277,7 +275,6 @@ extern void jscomplexproperty_suballoc_free(IJSComplexProperty* p);
 
 
 #include "ScriptableComplex.inl"
-
 
 #endif
 

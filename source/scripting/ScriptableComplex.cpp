@@ -5,7 +5,7 @@
 
 //-----------------------------------------------------------------------------
 // suballocator for CJSComplex.m_Properties elements
-// (must come after property defs)
+// (must come after property defs, which are currently in the header)
 //-----------------------------------------------------------------------------
 
 static Bucket bucket;
@@ -42,4 +42,3 @@ void jscomplexproperty_suballoc_free(IJSComplexProperty* p)
 	p->~IJSComplexProperty();
 	bucket_free(&bucket, p);
 }
-
