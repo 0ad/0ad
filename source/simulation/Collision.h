@@ -16,7 +16,10 @@
 #define COLLISION_INCLUDED
 
 #include "BoundingObjects.h"
-#include "Entity.h"
+
+class CEntity;
+class CPlayer;
+#include "EntityHandles.h"
 
 struct rayIntersectionResults
 {

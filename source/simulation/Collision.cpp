@@ -1,6 +1,7 @@
 #include "precompiled.h"
 
 #include "Collision.h"
+#include "Entity.h"
 #include "EntityManager.h"
 
 #include <float.h>
