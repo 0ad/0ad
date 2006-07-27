@@ -273,9 +273,6 @@ extern void jscomplexproperty_suballoc_detach();
 extern void* jscomplexproperty_suballoc();
 extern void jscomplexproperty_suballoc_free(IJSComplexProperty* p);
 
-
-#include "ScriptableComplex.inl"
-
 #endif
 
 

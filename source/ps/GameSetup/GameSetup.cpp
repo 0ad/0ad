@@ -57,6 +57,7 @@
 #include "simulation/Scheduler.h"
 #include "simulation/Projectile.h"
 
+#include "scripting/ScriptableComplex.inl"
 #include "scripting/ScriptingHost.h"
 #include "scripting/GameEvents.h"
 #include "scripting/ScriptableComplex.h"

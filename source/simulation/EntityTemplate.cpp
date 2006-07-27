@@ -5,7 +5,7 @@
 #include "graphics/ObjectManager.h"
 #include "ps/CStr.h"
 #include "ps/Player.h"
-
+#include "scripting/ScriptableComplex.inl"
 #include "ps/XML/Xeromyces.h"
 
 #include "ps/CLogger.h"

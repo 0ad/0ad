@@ -1,5 +1,6 @@
 #include "precompiled.h"
 #include "ScriptableComplex.h"
+#include "ScriptableComplex.inl"
 
 #include "lib/allocators.h"
 

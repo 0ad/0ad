@@ -4,6 +4,7 @@
 #include "graphics/Terrain.h"
 #include "ps/Game.h"
 #include "ps/World.h"
+#include "Entity.h"
 
 int SPF_RECURSION_DEPTH = 10;
 

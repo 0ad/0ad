@@ -29,6 +29,7 @@
 #include "graphics/GameView.h"
 #include "graphics/Sprite.h"
 #include "graphics/UnitManager.h"
+#include "scripting/ScriptableComplex.inl"
 
 extern CConsole* g_Console;
 extern int g_xres, g_yres;

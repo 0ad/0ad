@@ -11,6 +11,7 @@
 #include "EntityTemplate.h"
 #include "EntityTemplateCollection.h"
 #include "ps/Player.h"
+#include "scripting/ScriptableComplex.inl"
 
 #define LOG_CATEGORY "Techs"
 
