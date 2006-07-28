@@ -6,6 +6,7 @@ function sourcesfromdirs(root, dirs)
 		local files = matchfiles(
 			prefix.."*.cpp",
 			prefix.."*.h",
+			prefix.."*.inl",
 			prefix.."*.asm")
 		listconcat(res, files)
 	end
