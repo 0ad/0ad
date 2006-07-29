@@ -215,7 +215,7 @@ public:
 	CScriptObject m_EventHandlers[EVENT_LAST];
 
 	CUnit* m_actor;
-	std::set<CStrW> m_actorSelections;
+	std::set<CStr8> m_actorSelections;
 
 	int m_lastState;	// used in animation FSM
 
@@ -275,7 +275,7 @@ public:
 
 
 private:
-	CEntity( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections, const CStrW* building = 0 );
+	CEntity( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStr8>& actorSelections, const CStrW* building = 0 );
 
 	uint processGotoHelper( CEntityOrder* current, size_t timestep_milli, HEntity& collide );
 

@@ -68,8 +68,8 @@ public:
 	
 	CObjectBase* FindObjectBase(const char* objname);
 
-	CObjectEntry* FindObjectVariation(const char* objname, const std::vector<std::set<CStrW> >& selections);
-	CObjectEntry* FindObjectVariation(CObjectBase* base, const std::vector<std::set<CStrW> >& selections);
+	CObjectEntry* FindObjectVariation(const char* objname, const std::vector<std::set<CStr8> >& selections);
+	CObjectEntry* FindObjectVariation(CObjectBase* base, const std::vector<std::set<CStr8> >& selections);
 
 	// Get all names, quite slowly. (Intended only for ScEd.)
 	void GetAllObjectNames(std::vector<CStr>& names);

@@ -75,7 +75,7 @@ void CEntityManager::deleteAll()
 	m_extant = true;
 }
 
-HEntity CEntityManager::create( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections,
+HEntity CEntityManager::create( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStr8>& actorSelections,
 								const CStrW* building)
 {
 	debug_assert( base );
@@ -106,7 +106,7 @@ HEntity CEntityManager::create( const CStrW& templateName, CPlayer* player, CVec
 	if( !base )
 		return HEntity();
 
-	std::set<CStrW> selections;
+	std::set<CStr8> selections;
 
 	return create( base, position, orientation, selections, building );
 }
@@ -118,7 +118,7 @@ HEntity CEntityManager::createFoundation( const CStrW& templateName, CPlayer* pl
 	if( !base )
 		return HEntity();
 
-	std::set<CStrW> selections;
+	std::set<CStr8> selections;
 
 	if( base->m_foundation == L"" )
 		return create( base, position, orientation, selections );	// Entity has no foundation, so just create it

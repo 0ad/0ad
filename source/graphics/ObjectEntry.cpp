@@ -38,7 +38,7 @@ CObjectEntry::~CObjectEntry()
 }
 
 
-bool CObjectEntry::BuildVariation(const std::vector<std::set<CStrW> >& selections, const std::vector<u8>& variationKey)
+bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr8> >& selections, const std::vector<u8>& variationKey)
 {
 	CObjectBase::Variation variation = m_Base->BuildVariation(variationKey);
 

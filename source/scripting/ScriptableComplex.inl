@@ -1,4 +1,8 @@
 /*
+Implementation of CJSComplex's functions and related helper functions and classes.
+This file must be #included in any CPP file that accesses these functions directly,
+but may be omitted in those that don't.
+
 rationale:
 we are changing CJSComplex often for purposes of optimization. this triggers
 close to a full rebuild, which is unacceptable.
@@ -34,6 +38,15 @@ several workarounds have been investigated.
    potentially be trouble with ToJSVal, since we no longer derive from
    CJSComplex.
    this is not deemed worth the effort due to steps taken in #1.
+
+We decided to split off the implementation of CJSComplex as well as many of its
+helper classes into a separate header, ScriptableComplex.inl. This way, 
+ScriptableComplex.h does not need to be modified unless we change the API,
+but the implementations of CJSComplex's methods can be changed. However, this
+also means that this header (ScriptableComplex.inl) must be #included in any
+CPP file that directly accesses ScriptableComplex's methods - otherwise, the
+linker won't find the definitions of these functions. Right now this is only
+5 files, which results in much faster rebuilds after modifying this code.
 */
 
 #ifndef SCRIPTABLE_COMPLEX_INL_INCLUDED

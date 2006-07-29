@@ -1,7 +1,18 @@
-// ScriptableComplex.h
-//
-// The version of CJSObject<> that retains the ability to use inheritance
-// in its objects. Shouldn't be used any more for anything but entity code.
+/* 
+ScriptableComplex.h
+
+The version of CJSObject<> that retains the ability to use inheritance
+in its objects. Shouldn't be used any more for anything but entity code.
+
+This file contains only declarations of class CJSComplex and its methods.
+Their implementations are in ScriptableComplex.inl. Because CJSComplex is 
+a templated class, any source file that uses these methods directly must 
+#include ScritpableComplex.inl to link to them. However, files that
+only need to know that something is a CJSComplex need not do this. This
+was done to speed up compile times after modifying CJSComplex's internals:
+before, 30+ files had to be recompiled because they #included Entity.j
+which #includes ScriptableComplex.h.
+*/
 
 #include "scripting/ScriptingHost.h"
 #include "simulation/ScriptObject.h"

@@ -214,7 +214,7 @@ bool CObjectBase::Load(const char* filename)
 	return true;
 }
 
-std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<std::set<CStrW> >& selections)
+std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<std::set<CStr8> >& selections)
 {
 	// (TODO: see CObjectManager::FindObjectVariation for an opportunity to
 	// call this function a bit less frequently)
@@ -252,7 +252,7 @@ std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<std::set<CS
 			// Determine the first variant that matches the provided strings,
 			// starting with the highest priority selections set:
 
-			for (std::vector<std::set<CStrW> >::const_iterator selset = selections.begin(); selset < selections.end(); ++selset)
+			for (std::vector<std::set<CStr8> >::const_iterator selset = selections.begin(); selset < selections.end(); ++selset)
 			{
 				debug_assert(grp->size() < 256); // else they won't fit in 'choices'
 
@@ -367,9 +367,9 @@ const CObjectBase::Variation CObjectBase::BuildVariation(const std::vector<u8>& 
 	return variation;
 }
 
-std::set<CStrW> CObjectBase::CalculateRandomVariation(const std::set<CStrW>& initialSelections)
+std::set<CStr8> CObjectBase::CalculateRandomVariation(const std::set<CStr8>& initialSelections)
 {
-	std::set<CStrW> selections = initialSelections;
+	std::set<CStr8> selections = initialSelections;
 
 	std::map<CStr, CStr> chosenProps;
 
@@ -471,9 +471,9 @@ std::set<CStrW> CObjectBase::CalculateRandomVariation(const std::set<CStrW>& ini
 		CObjectBase* prop = g_ObjMan.FindObjectBase(it->second);
 		if (prop)
 		{
-			std::set<CStrW> propSelections = prop->CalculateRandomVariation(selections);
+			std::set<CStr8> propSelections = prop->CalculateRandomVariation(selections);
 			// selections = union(propSelections, selections)
-			std::set<CStrW> newSelections;
+			std::set<CStr8> newSelections;
 			std::set_union(propSelections.begin(), propSelections.end(),
 				selections.begin(), selections.end(),
 				std::inserter(newSelections, newSelections.begin()));
@@ -484,9 +484,9 @@ std::set<CStrW> CObjectBase::CalculateRandomVariation(const std::set<CStrW>& ini
 	return selections;
 }
 
-std::vector<std::vector<CStrW> > CObjectBase::GetVariantGroups() const
+std::vector<std::vector<CStr8> > CObjectBase::GetVariantGroups() const
 {
-	std::vector<std::vector<CStrW> > groups;
+	std::vector<std::vector<CStr8> > groups;
 
 	// Queue of objects (main actor plus props (recursively)) to be processed
 	std::queue<const CObjectBase*> objectsQueue;
@@ -509,7 +509,7 @@ std::vector<std::vector<CStrW> > CObjectBase::GetVariantGroups() const
 		for (size_t i = 0; i < obj->m_VariantGroups.size(); ++i)
 		{
 			// Copy the group's variant names into a new vector
-			std::vector<CStrW> group;
+			std::vector<CStr8> group;
 			group.reserve(obj->m_VariantGroups[i].size());
 			for (size_t j = 0; j < obj->m_VariantGroups[i].size(); ++j)
 				group.push_back(obj->m_VariantGroups[i][j].m_VariantName);

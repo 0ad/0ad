@@ -37,7 +37,7 @@ extern int g_xres, g_yres;
 #include <algorithm>
 using namespace std;
 
-CEntity::CEntity( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStrW>& actorSelections, const CStrW* building )
+CEntity::CEntity( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStr8>& actorSelections, const CStrW* building )
 {
 	ent_flags = 0;
 
@@ -1588,7 +1588,7 @@ JSBool CEntity::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsva
 		}
 	}
 
-	std::set<CStrW> selections; // TODO: let scripts specify selections?
+	std::set<CStr8> selections; // TODO: let scripts specify selections?
 	HEntity handle = g_EntityManager.create( baseEntity, position, orientation, selections );
 	handle->SetPlayer( player );
 	handle->Initialize();

@@ -215,7 +215,7 @@ int CMapReader::ApplyData()
 			// loaded on demand)
 		}
 
-		std::set<CStrW> selections; // TODO: read from file
+		std::set<CStr8> selections; // TODO: read from file
 		CUnit* unit = g_UnitMan.CreateUnit(m_ObjectTypes.at(m_Objects[i].m_ObjectIndex), NULL, selections);
 
 		if (unit)
@@ -536,7 +536,7 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 			LOG(ERROR, LOG_CATEGORY, "Failed to load entity template '%ls'", TemplateName.c_str());
 		else
 		{
-			std::set<CStrW> selections; // TODO: read from file
+			std::set<CStr8> selections; // TODO: read from file
 
 			HEntity ent = g_EntityManager.create(base, Position, Orientation, selections);
 
@@ -602,7 +602,7 @@ int CXMLReader::ReadNonEntities(XMBElement parent, double end_time)
 				debug_warn("Invalid map XML data");
 		}
 
-		std::set<CStrW> selections; // TODO: read from file
+		std::set<CStr8> selections; // TODO: read from file
 
 		CUnit* unit = g_UnitMan.CreateUnit(ActorName, NULL, selections);
 

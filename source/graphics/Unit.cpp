@@ -7,7 +7,7 @@
 #include "SkeletonAnim.h"
 #include "SkeletonAnimDef.h"
 
-CUnit::CUnit(CObjectEntry* object, CEntity* entity, const std::set<CStrW>& actorSelections)
+CUnit::CUnit(CObjectEntry* object, CEntity* entity, const std::set<CStr8>& actorSelections)
 : m_Object(object), m_Model(object->m_Model->Clone()), m_Entity(entity),
   m_ID(-1), m_ActorSelections(actorSelections)
 {
@@ -130,7 +130,7 @@ void CUnit::SetEntitySelection(const CStrW& selection)
 	ReloadObject();
 }
 
-void CUnit::SetActorSelections(const std::set<CStrW>& selections)
+void CUnit::SetActorSelections(const std::set<CStr8>& selections)
 {
 	m_ActorSelections = selections;
 	ReloadObject();
@@ -138,7 +138,7 @@ void CUnit::SetActorSelections(const std::set<CStrW>& selections)
 
 void CUnit::ReloadObject()
 {
-	std::vector<std::set<CStrW> > selections;
+	std::vector<std::set<CStr8> > selections;
 	// TODO: push world selections (seasons, etc) (and reload whenever they're changed)
 	selections.push_back(m_EntitySelections);
 	selections.push_back(m_ActorSelections);

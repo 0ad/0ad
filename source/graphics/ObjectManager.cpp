@@ -80,11 +80,11 @@ CObjectBase* CObjectManager::FindObjectBase(const char* objectname)
 
 CObjectEntry* CObjectManager::FindObject(const char* objname)
 {
-	std::vector<std::set<CStrW> > selections; // TODO - should this really be empty?
+	std::vector<std::set<CStr8> > selections; // TODO - should this really be empty?
 	return FindObjectVariation(objname, selections);
 }
 
-CObjectEntry* CObjectManager::FindObjectVariation(const char* objname, const std::vector<std::set<CStrW> >& selections)
+CObjectEntry* CObjectManager::FindObjectVariation(const char* objname, const std::vector<std::set<CStr8> >& selections)
 {
 	CObjectBase* base = FindObjectBase(objname);
 
@@ -94,7 +94,7 @@ CObjectEntry* CObjectManager::FindObjectVariation(const char* objname, const std
 	return FindObjectVariation(base, selections);
 }
 
-CObjectEntry* CObjectManager::FindObjectVariation(CObjectBase* base, const std::vector<std::set<CStrW> >& selections)
+CObjectEntry* CObjectManager::FindObjectVariation(CObjectBase* base, const std::vector<std::set<CStr8> >& selections)
 {
 	PROFILE( "object variation loading" );
 

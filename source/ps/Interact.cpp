@@ -1348,7 +1348,7 @@ bool CBuildingPlacer::activate(CStrW& templateName)
 	// m_actor
 	CStr actorName ( m_template->m_actorName );	// convert CStrW->CStr8
 
-	std::set<CStrW> selections;
+	std::set<CStr8> selections;
 	m_actor = g_UnitMan.CreateUnit( actorName, 0, selections );
 	m_actor->SetPlayerID(g_Game->GetLocalPlayer()->GetPlayerID());
 

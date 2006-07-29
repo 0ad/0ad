@@ -15,7 +15,7 @@ class CStrW;
 class CUnit
 {
 public:
-	CUnit(CObjectEntry* object, CEntity* entity, const std::set<CStrW>& actorSelections);
+	CUnit(CObjectEntry* object, CEntity* entity, const std::set<CStr8>& actorSelections);
 
 	// destructor
 	~CUnit();
@@ -57,9 +57,9 @@ public:
 	int GetID() const { return m_ID; }
 	void SetID(int id) { m_ID = id; }
 
-	const std::set<CStrW>& GetActorSelections() const { return m_ActorSelections; }
+	const std::set<CStr8>& GetActorSelections() const { return m_ActorSelections; }
 	
-	void SetActorSelections(const std::set<CStrW>& selections);
+	void SetActorSelections(const std::set<CStr8>& selections);
 
 private:
 	// object from which unit was created
@@ -76,9 +76,9 @@ private:
 	int m_ID;
 
 	// actor-level selections for this unit
-	std::set<CStrW> m_ActorSelections;
+	std::set<CStr8> m_ActorSelections;
 	// entity-level selections for this unit
-	std::set<CStrW> m_EntitySelections;
+	std::set<CStr8> m_EntitySelections;
 
 	void ReloadObject();
 };

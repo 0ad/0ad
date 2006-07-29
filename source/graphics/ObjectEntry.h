@@ -19,7 +19,7 @@ public:
 	~CObjectEntry();
 
 	// Construct this actor, using the specified variation selections
-	bool BuildVariation(const std::vector<std::set<CStrW> >& selections, const std::vector<u8>& variationKey);
+	bool BuildVariation(const std::vector<std::set<CStr8> >& selections, const std::vector<u8>& variationKey);
 
 	// Base actor. Contains all the things that don't change between
 	// different variations of the actor.
