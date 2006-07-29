@@ -45,6 +45,7 @@ public:
 
 class HEntity
 {
+	friend class CEntity;
 	friend class CEntityManager;
 	friend struct CEntityList;
 	u16 m_handle;

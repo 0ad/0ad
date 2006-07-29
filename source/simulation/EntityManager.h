@@ -38,18 +38,26 @@ class CEntityTemplate;
 
 class CEntityManager
 {
+friend class CEntity;
 friend class HEntity;
 friend class CHandle;
 	CHandle m_entities[MAX_HANDLES];
+	std::vector<bool> m_refd;
 	std::vector<CEntity*> m_reaper;
+	std::vector<CEntity*>* m_collisionPatches;
 	int m_nextalloc;
 	static bool m_extant;
 	bool m_death;
-	void destroy( u16 handle );
 	int m_collisionPatchesPerSide;
-	std::vector<CEntity*>* m_collisionPatches;
-	bool isEntityRefd(int index);
+
+	void destroy( u16 handle );
 	void deleteAllHelper();
+	
+	inline bool isEntityRefd( u16 index )
+	{
+		return m_refd[index];
+		//return m_entities[index].m_refcount && !m_entities[index].m_entity->entf_get(ENTF_DESTROYED);
+	}
 public:
 	
 	CEntityManager();

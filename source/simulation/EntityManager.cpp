@@ -22,6 +22,7 @@ CEntityManager::CEntityManager()
 	m_nextalloc = 0;
 	m_extant = true;
 	m_death = false;
+	m_refd.resize( MAX_HANDLES );
 
 	// Also load a couple of global entity settings
 	CConfigValue* cfg = g_ConfigDB.GetValue( CFG_USER, "selection.outline.quality" );
@@ -44,12 +45,6 @@ void CEntityManager::deleteAllHelper()
 		}
 	}
 }
-
-bool CEntityManager::isEntityRefd(int index)
-{
-	return m_entities[index].m_refcount && !m_entities[index].m_entity->entf_get(ENTF_DESTROYED);
-}
-
 
 CEntityManager::~CEntityManager()
 {	

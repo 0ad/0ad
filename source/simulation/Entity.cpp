@@ -213,6 +213,7 @@ void CEntity::kill()
 	m_extant = false;
 
 	entf_set(ENTF_DESTROYED);
+	g_EntityManager.m_refd[me.m_handle] = false;
 	//Shutdown(); // PT: tentatively removed - this seems to be called by ~CJSComplex, and we don't want to do it twice
 
 	if( m_actor )
@@ -292,6 +293,8 @@ void CEntity::rebuildClassSet()
 
 void CEntity::update( size_t timestep )
 {
+	if( !m_extant ) return;
+
 	m_position_previous = m_position;
 	m_orientation_previous = m_orientation;
 	

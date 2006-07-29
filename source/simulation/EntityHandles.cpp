@@ -71,6 +71,7 @@ void HEntity::addRef()
 	{
 		debug_assert( m_handle < MAX_HANDLES );
 		g_EntityManager.m_entities[m_handle].m_refcount++;
+		g_EntityManager.m_refd[m_handle] = true;
 		/*/*updatecache*/
 	}
 }
@@ -80,7 +81,10 @@ void HEntity::decRef()
 	if( m_handle != INVALID_HANDLE )
 	{
 		if( --g_EntityManager.m_entities[m_handle].m_refcount == 0 )
+		{
+			g_EntityManager.m_refd[m_handle] = false;
 			g_EntityManager.destroy( m_handle );
+		}
 	}
 }
 
