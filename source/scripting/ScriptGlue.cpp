@@ -443,7 +443,6 @@ JSBool setTimeout( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval
 	}
 }
 
-
 // Request a callback be executed periodically.
 // params: callback [fragment or function], initial delay in ms [int], period in ms [int]
 //   OR callback [fragment or function], period in ms [int] (initial delay = period)
@@ -497,7 +496,6 @@ JSBool setInterval( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rva
 	}
 }
 
-
 // Cause all periodic functions registered via setInterval to
 //   no longer be called.
 // params:
@@ -512,7 +510,6 @@ JSBool cancelInterval( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* 
 	g_Scheduler.m_abortInterval = true;
 	return( JS_TRUE );
 }
-
 
 // Cause the scheduled task (timeout or interval) with the given ID to
 //   no longer be called.
@@ -538,6 +535,7 @@ JSBool cancelTimer( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rva
 
 	return( JS_TRUE );
 }
+
 //Set the simulation rate scalar-time becomes time * SimRate.
 //Params: rate [float] : sets SimRate
 JSBool setSimRate(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
@@ -548,6 +546,28 @@ JSBool setSimRate(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 	return JS_TRUE;
 }
 
+//Generate a random float in [0, 1) using the simulation's random generator
+JSBool simRand(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
+{
+	JSU_REQUIRE_NO_PARAMS();
+
+	*rval = ToJSVal( g_Game->GetSimulation()->RandFloat() );
+	return JS_TRUE;
+}
+
+//Generate a random float int between 0 and the given number - 1 using the simulation's RNG
+JSBool simRandInt(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
+{
+	JSU_REQUIRE_PARAMS(1);
+	JSU_ASSERT(JSVAL_IS_INT(argv[0]), "simRandInt(): first parameter must be an int");
+
+	*rval = ToJSVal( g_Game->GetSimulation()->RandInt(ToPrimitive<int>(argv[0])) );
+	return JS_TRUE;
+}
+
+// Script profiling functions: Begin timing a piece of code with startXTimer(num)
+// and stop timing with stopXTimer(num). The results will be printed to stdout
+// when the game exits.
 
 static const uint MAX_XTIMERS = 20;
 typedef TimerRdtsc XTimerImpl;	// type must be kept in sync with timer.h TIMER_USE_RAW_TICKS
@@ -1299,6 +1319,11 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC(cancelTimer, cancelTimer, 0)
 	JS_FUNC(setSimRate, setSimRate, 1)
 
+	// Random number generator
+	JS_FUNC(simRand, simRand, 0)
+	JS_FUNC(simRandInt, simRandInt, 1)
+
+	// Profiling
 	JS_FUNC(startXTimer, startXTimer, 1)
 	JS_FUNC(stopXTimer, stopXTimer, 1)
 

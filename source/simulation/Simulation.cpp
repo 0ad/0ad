@@ -35,12 +35,14 @@ using namespace std;
 
 extern CConsole *g_Console;
 
-CSimulation::CSimulation(CGame *pGame):
+CSimulation::CSimulation(CGame *pGame, uint randomSeed):
 	m_pGame(pGame),
 	m_pWorld(pGame->GetWorld()),
 	m_pTurnManager((g_SinglePlayerTurnManager=new CSinglePlayerTurnManager())),
 	m_DeltaTime(0)
-{}
+{
+	m_Random.seed((unsigned long) randomSeed);
+}
 
 CSimulation::~CSimulation()
 {

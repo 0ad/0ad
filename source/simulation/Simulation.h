@@ -2,6 +2,7 @@
 #define _Simulation_H
 
 #include "lib/types.h"
+#include <boost/random.hpp>
 
 class CGame;
 class CGameAttributes;
@@ -16,6 +17,9 @@ class CSimulation
 	CTurnManager *m_pTurnManager;
 	
 	double m_DeltaTime;
+
+	// Random number generator
+	boost::mt19937 m_Random;
 	
 	// Simulate: move the deterministic simulation forward by one interval
 	void Simulate();
@@ -25,7 +29,7 @@ class CSimulation
 	void Interpolate(double frameTime, double offset);
 
 public:
-	CSimulation(CGame *pGame);
+	CSimulation(CGame *pGame, uint randomSeed=0);
 	~CSimulation();
 	
 	inline void SetTurnManager(CTurnManager *pTurnManager)
@@ -49,6 +53,18 @@ public:
 	static uint TranslateMessage(CNetMessage *, uint oldMask, void *userdata);
 
 	void QueueLocalCommand(CNetMessage *pMsg);
+
+	// Get a random integer between 0 and maxVal-1 from the simulation's random number generator
+	int RandInt(int maxVal) 
+	{
+		return m_Random() % maxVal;
+	}
+
+	// Get a random float in [0, 1) from the simulation's random number generator
+	float RandFloat() 
+	{
+		return float(m_Random()) * (1.0f/4294967296.0f);
+	}
 };
 
 #endif
