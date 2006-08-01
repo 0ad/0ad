@@ -215,7 +215,7 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 			default:
 				if (type == "pick" && cellSheet != "Tab")	// Force the tab background for pick lists,
 					setPortrait ("snStatusPaneCommand" + tabCounter + "_1", "IconSheet", cellSheet + "TabButton", cellGroup[cellSheet][tab].id);			
-				else						// Use the vertical tab. (Extends up).
+				else
 					setPortrait ("snStatusPaneCommand" + tabCounter + "_1", "IconSheet", cellSheet + "Button", cellGroup[cellSheet][tab].id);
 			break;
 		}
@@ -462,7 +462,7 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 								{
 									case "train":
 										// TODO: Remove this item from the production queue if right-clicked.
-										issueCommand(selection, NMT_Produce, PRODUCTION_TRAIN, ""+(Crd[getCrd (this.name, true)].entity));
+										issueCommand(selection, NMT_Produce, PRODUCTION_TRAiN, ""+(Crd[getCrd (this.name, true)].entity));
 									case "research":
 										// TODO: Remove this item from the production queue if right-clicked.
 										issueCommand(selection, NMT_Produce, PRODUCTION_RESEARCH, ""+(Crd[getCrd (this.name, true)].entity.name));
@@ -471,8 +471,8 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 										// Buy a quantity of this resource if left-clicked.
 										// Sell a quantity of this resource if right-clicked.
 									break;
-									case "structciv":
-									case "structmil":
+									case "structCiv":
+									case "structMil":
 										// Select building placement cursor.
 										tryConstruction( Crd[getCrd (this.name, true)].entity );
 									break;
@@ -625,7 +625,7 @@ function refreshCommandButtons()
 		tabCounter = snStatusPaneCommand.split;
 		// Update commands. (Click "tab" button to do something; no list.)		
 		updateTab ("patrol", "command", "", "selection[0].actions.patrol", "");
-		updateTab ("townbell", "command", "", "selection[0].actions.townbell", "");				
+		updateTab ("townbell", "command", "", "selection[0].actions.townBell", "");				
 		updateTab ("rally", "command", "", "selection[0].actions.create.rally", "");		
 		updateTab ("explore", "command", "", "selection[0].actions.explore", "");		
 		updateTab ("retreat", "command", "", "selection[0].actions.retreat", "");			

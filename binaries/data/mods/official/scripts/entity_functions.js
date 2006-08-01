@@ -144,17 +144,17 @@ function entityInit()
 		// If entity has supply, set current to same.
 		supply.curr = supply.max;
 
-		// If entity has type of supply and no subtype, set subtype to same
-		// (so we don't have to say type="wood", subtype="wood"
-		if (supply.type && !supply.subtype)
-			supply.subtype = supply.type;
+		// If entity has type of supply and no subType, set subType to same
+		// (so we don't have to say type="wood", subType="wood"
+		if (supply.type && !supply.subType)
+			supply.subType = supply.type;
 			
 		// The "dropsite_count" array holds the number of units with gather aura in range of the object;
 		// this is important so that if you have two mills near something and one of them is destroyed,
 		// you can still gather from the thing. Initialize it to 0 (ungatherable) for every player unless
 		// the entity is forageable (e.g. for huntable animals).
 		var dropsite_count = new Array();
-		initialCount = supply.subtype.meat ? 1 : 0;
+		initialCount = supply.subType.meat ? 1 : 0;
 		for( i=0; i<=8; i++ )
 		{
 			dropsite_count[i] = initialCount;
@@ -237,7 +237,7 @@ function entityInit()
 			this.player.resources.population += parseInt(this.traits.population.rem);
 	}
 	
-	// Build Unit AI Stance list, and set default stance.  ---> Can eventually be done in C++, since stances will likely be implemented in C++.
+	// Build Unit Ai Stance list, and set default stance.  ---> Can eventually be done in C++, since stances will likely be implemented in C++.
 	if (this.actions && this.actions.move)
 	{
 		if ( !this.traits.ai )
@@ -316,17 +316,17 @@ function entityInitQuasi()
 		// If entity has supply, set current to same.
 		supply.curr = supply.max;
 
-		// If entity has type of supply and no subtype, set subtype to same
-		// (so we don't have to say type="wood", subtype="wood"
-		if (supply.type && !supply.subtype)
-			supply.subtype = supply.type;
+		// If entity has type of supply and no subType, set subType to same
+		// (so we don't have to say type="wood", subType="wood"
+		if (supply.type && !supply.subType)
+			supply.subType = supply.type;
 			
 		// The "dropsite_count" array holds the number of units with gather aura in range of the object;
 		// this is important so that if you have two mills near something and one of them is destroyed,
 		// you can still gather from the thing. Initialize it to 0 (ungatherable) for every player unless
 		// the entity is forageable (e.g. for huntable animals).
 		var dropsite_count = new Array();
-		initialCount = supply.subtype.meat ? 1 : 0;
+		initialCount = supply.subType.meat ? 1 : 0;
 		for( i=0; i<=8; i++ )
 		{
 			dropsite_count[i] = initialCount;
@@ -688,8 +688,8 @@ function performGather( evt )
 		return;
 	}
 
-	if( g.resource[s.type][s.subtype])
-		gather_amt = parseFloat( g.resource[s.type][s.subtype] );
+	if( g.resource[s.type][s.subType])
+		gather_amt = parseFloat( g.resource[s.type][s.subType] );
 	else
 		gather_amt = parseFloat( g.resource[s.type] );
 
@@ -880,7 +880,7 @@ function damage( dmg, inflictor )
 			{
 				switch( loot.toString().toUpperCase() )
 				{
-					case "XP":
+						case "XP":
 						// If the inflictor gains promotions, and he's capable of earning more ranks,
 						if (inflictor.traits.promotion && inflictor.traits.promotion.curr && inflictor.traits.promotion.req
 								&& inflictor.traits.promotion.newentity && inflictor.traits.promotion.newentity != ""
@@ -957,7 +957,7 @@ function damage( dmg, inflictor )
 	else if( inflictor && this.actions && this.actions.attack )
 	{
 		// If we're not already doing something else, take a measured response - hit 'em back.
-		// You know, I think this is quite possibly the first AI code the AI divlead has written
+		// You know, I think this is quite possibly the first Ai code the Ai divlead has written
 		// for 0 A.D....
 		//When the entity changes order, we can readjust flank penalty. We must destroy the notifiers ourselves 				later,however.
 		this.requestNotification( inflictor, NOTIFY_ORDER_CHANGE, false, true );			
@@ -1150,12 +1150,12 @@ function entityEventTargetChanged( evt )
 			evt.defaultOrder = NMT_Generic;
 			evt.defaultAction = ACTION_GATHER;
 		    // Set cursor (eg "action-gather-fruit").
-		    evt.defaultCursor = "action-gather-" + evt.target.traits.supply.subtype;
+		    evt.defaultCursor = "action-gather-" + evt.target.traits.supply.subType;
 
 			evt.secondaryOrder = NMT_Generic;
 			evt.secondaryAction = ACTION_GATHER;
 		  	// Set cursor (eg "action-gather-fruit").
-		    evt.secondaryCursor = "action-gather-" + evt.target.traits.supply.subtype;
+		    evt.secondaryCursor = "action-gather-" + evt.target.traits.supply.subType;
 		}
 		
 		if ( canBuild( this, evt.target ) )
@@ -1196,7 +1196,7 @@ function entityEventPrepareOrder( evt )
 {
 	// This event gives us a chance to veto any order we're given before we execute it.
 	// Not sure whether this really belongs here like this: the alternative is to override it in
-	// subtypes - then you wouldn't need to check tags, you could hardcode results.
+	// subTypes - then you wouldn't need to check tags, you could hardcode results.
 
 	if ( !this.actions )
 	{
@@ -1270,7 +1270,7 @@ function entityEventPrepareOrder( evt )
 					// Change our gather animation based on the type of target
 					var a = this.actions.gather;
 					this.setActionParams( ACTION_GATHER, 0.0, a.range, a.speed,
-						"gather_" + evt.target.traits.supply.subtype );
+						"gather_" + evt.target.traits.supply.subType );
 						
 					break;
 					
@@ -1718,13 +1718,13 @@ function checkEntityReqs( player, template )
 
 function canGather( source, target )
 {
-	// Checks whether we're allowed to gather from a target entity (this involves looking at both the type and subtype).
+	// Checks whether we're allowed to gather from a target entity (this involves looking at both the type and subType).
 	if( !source.actions )
 		return false;
 	g = source.actions.gather;
 	s = target.traits.supply;
 	return ( g && s && g.resource && g.resource[s.type] &&
-		( s.subtype==s.type || g.resource[s.type][s.subtype] ) &&
+		( s.subType==s.type || g.resource[s.type][s.subType] ) &&
 		( s.curr > 0 || s.max == 0 ) && 
 		s.dropsite_count[source.player.id] );
 }
@@ -1744,7 +1744,7 @@ function canBuild( source, target )
 
 function canRepair( source, target )
 {
-	// Checks whether we're allowed to gather from a target entity (this involves looking at both the type and subtype).
+	// Checks whether we're allowed to gather from a target entity (this involves looking at both the type and subType).
 	if( !source.actions )
 		return false;
 	r = source.actions.repair;
