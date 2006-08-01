@@ -34,7 +34,7 @@ CTerrainPropertiesPtr CTerrainProperties::FromXML(CTerrainPropertiesPtr parent, 
 	CStr rootName = XeroFile.getElementString(root.getNodeName());
 
 	// Check that we've got the right kind of xml document
-	if (rootName != "terrains")
+	if (rootName != "Terrains")
 	{
 		LOG(ERROR,
 			LOG_CATEGORY,

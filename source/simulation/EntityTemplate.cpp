@@ -117,25 +117,25 @@ bool CEntityTemplate::loadXML( const CStr& filename )
 	#define EL(x) int el_##x = XeroFile.getElementID(#x)
 	#define AT(x) int at_##x = XeroFile.getAttributeID(#x)
 	// Only the ones we can't load using normal methods.
-	EL(entity);
-	EL(script);
-	EL(event);
-	EL(traits);
-	EL(footprint);
-	EL(depth);
-	EL(height);
-	EL(radius);
-	EL(width);
-	AT(parent);
-	AT(on);
-	AT(file);
-	AT(function);
+	EL(Entity);
+	EL(Script);
+	EL(Event);
+	EL(Traits);
+	EL(Footprint);
+	EL(Depth);
+	EL(Height);
+	EL(Radius);
+	EL(Width);
+	AT(Parent);
+	AT(On);
+	AT(File);
+	AT(Function);
 	#undef AT
 	#undef EL
 
 	XMBElement Root = XeroFile.getRoot();
 
-	if( Root.getNodeName() != el_entity )
+	if( Root.getNodeName() != el_Entity )
 	{
 		LOG( ERROR, LOG_CATEGORY, "CEntityTemplate::LoadXML: XML root was not \"Entity\" in file %s. Load failed.", filename.c_str() );
 		return( false );
@@ -145,7 +145,7 @@ bool CEntityTemplate::loadXML( const CStr& filename )
 
 	m_Tag = CStr(filename).AfterLast("/").BeforeLast(".xml");
 
-	m_Base_Name = Root.getAttributes().getNamedItem( at_parent );
+	m_Base_Name = Root.getAttributes().getNamedItem( at_Parent );
 
 	// Load our parent, if we have one
 	if( m_Base_Name.Length() )
@@ -169,9 +169,9 @@ bool CEntityTemplate::loadXML( const CStr& filename )
 		XMBElement Child = RootChildren.item(i);
 
 		int ChildName = Child.getNodeName();
-		if( ChildName == el_script )
+		if( ChildName == el_Script )
 		{
-			CStr Include = Child.getAttributes().getNamedItem( at_file );
+			CStr Include = Child.getAttributes().getNamedItem( at_File );
 
 			if( Include.Length() && scriptsLoaded.find( Include ) == scriptsLoaded.end() )
 			{
@@ -185,14 +185,14 @@ bool CEntityTemplate::loadXML( const CStr& filename )
 				g_ScriptingHost.RunMemScript( Inline.c_str(), Inline.Length(), filename.c_str(), Child.getLineNumber() );
 			}
 		}
-		else if (ChildName == el_traits)
+		else if (ChildName == el_Traits)
 		{
 			XMBElementList TraitChildren = Child.getChildNodes();
 			for(int j = 0; j < TraitChildren.Count; ++j)
 			{
 				XMBElement TraitChild = TraitChildren.item(j);
 				int TraitChildName = TraitChild.getNodeName();
-				if( TraitChildName == el_footprint )
+				if( TraitChildName == el_Footprint )
 				{
 					XMBElementList FootprintChildren = TraitChild.getChildNodes();
 					float radius=0, height=0, width=0, depth=0;
@@ -201,20 +201,20 @@ bool CEntityTemplate::loadXML( const CStr& filename )
 					{
 						XMBElement FootprintChild = FootprintChildren.item(k);
 						int FootprintChildName = FootprintChild.getNodeName();
-						if( FootprintChildName == el_radius )
+						if( FootprintChildName == el_Radius )
 						{
 							hadRadius = true;
 							radius = CStrW( FootprintChild.getText() ).ToFloat();
 						}
-						else if( FootprintChildName == el_width )
+						else if( FootprintChildName == el_Width )
 						{
 							width = CStrW( FootprintChild.getText() ).ToFloat();
 						}
-						else if( FootprintChildName == el_height )
+						else if( FootprintChildName == el_Height )
 						{
 							height = CStrW( FootprintChild.getText() ).ToFloat();
 						}
-						else if( FootprintChildName == el_depth )
+						else if( FootprintChildName == el_Depth )
 						{
 							hadDepth = true;
 							depth = CStrW( FootprintChild.getText() ).ToFloat();
@@ -244,13 +244,13 @@ bool CEntityTemplate::loadXML( const CStr& filename )
 			// important so that scripts can see traits
 			XMLLoadProperty( XeroFile, Child, CStrW() );
 		}
-		else if( ChildName == el_event )
+		else if( ChildName == el_Event )
 		{
 			// Action...On for consistency with the GUI.
-			CStrW EventName = L"on" + (CStrW)Child.getAttributes().getNamedItem( at_on );
+			CStrW EventName = L"on" + (CStrW)Child.getAttributes().getNamedItem( at_On );
 
 			CStrW Code (Child.getText());
-			utf16string ExternalFunction = Child.getAttributes().getNamedItem( at_function );
+			utf16string ExternalFunction = Child.getAttributes().getNamedItem( at_Function );
 
 			// Does a property with this name already exist?
 
@@ -297,10 +297,35 @@ bool CEntityTemplate::loadXML( const CStr& filename )
 	return true;
 }
 
+/**
+ * Converts the given string, consisting of underscores and letters,
+ * to camelCase: the first letter of each underscore-separated "word"
+ * is changed to lowercase. For example, the string MiniMap_Colour
+ * is converted to miniMap_colour. This is consistent with the 
+ * previous casing of entity attributes (all lowercase, with words
+ * separated by underscores), while allowing us to switch over to
+ * camelCase identifiers.
+ *
+ * @param const std::string & str The string to convert.
+ * @return std::string The given string in camelCase.
+ **/
+std::string toCamelCase( const std::string& str )
+{
+	std::string ret = str;
+	for( size_t i=0; i<ret.size(); i++ )
+	{
+		if( i==0 || ret[i-1] == '_' )
+		{
+			ret[i] = tolower( ret[i] );
+		}
+	}
+	return ret;
+}
+
 void CEntityTemplate::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement& Source, const CStrW& BasePropertyName )
 {
 	// Add a property, put the node text into it.
-	CStrW PropertyName = BasePropertyName + CStrW( XeroFile.getElementString( Source.getNodeName() ) );
+	CStrW PropertyName = BasePropertyName + CStrW( toCamelCase( XeroFile.getElementString( Source.getNodeName() ) ) );
 
 	IJSComplexProperty* Existing = HasProperty( PropertyName );
 	if( Existing )
@@ -332,7 +357,7 @@ void CEntityTemplate::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElem
 	for( unsigned int AttributeID = 0; AttributeID < (unsigned int)AttributeSet.Count; AttributeID++ )
 	{
 		XMBAttribute Attribute = AttributeSet.item( AttributeID );
-		CStrW AttributeName = PropertyName + CStr8( XeroFile.getAttributeString( Attribute.Name ) );
+		CStrW AttributeName = PropertyName + CStr8( toCamelCase( XeroFile.getAttributeString( Attribute.Name ) ) );
 		Existing = HasProperty( AttributeName );
 		
 		if( Existing )
@@ -367,9 +392,9 @@ void CEntityTemplate::ScriptingInit()
 	AddClassProperty( L"traits.id.classes", (GetFn)&CEntityTemplate::getClassSet, (SetFn)&CEntityTemplate::setClassSet );
 	
 	AddClassProperty( L"actions.move.speed_curr", &CEntityTemplate::m_speed );
-	AddClassProperty( L"actions.move.turningradius", &CEntityTemplate::m_turningRadius );
+	AddClassProperty( L"actions.move.turningRadius", &CEntityTemplate::m_turningRadius );
 	AddClassProperty( L"actions.move.run.speed", &CEntityTemplate::m_runSpeed );
-	AddClassProperty( L"actions.move.run.rangemin", &CEntityTemplate::m_runMinRange );
+	AddClassProperty( L"actions.move.run.rangeMin", &CEntityTemplate::m_runMinRange );
 	AddClassProperty( L"actions.move.run.range", &CEntityTemplate::m_runMaxRange );
 	AddClassProperty( L"actions.move.run.regen_rate", &CEntityTemplate::m_runRegenRate );
 	AddClassProperty( L"actions.move.run.decay_rate", &CEntityTemplate::m_runDecayRate );
@@ -400,13 +425,13 @@ void CEntityTemplate::ScriptingInit()
 	AddClassProperty( L"traits.rank.width", &CEntityTemplate::m_rankWidth );
 	AddClassProperty( L"traits.rank.height", &CEntityTemplate::m_rankHeight );
 	AddClassProperty( L"traits.rank.name", &CEntityTemplate::m_rankName );
-	AddClassProperty( L"traits.minimap.type", &CEntityTemplate::m_minimapType );
-	AddClassProperty( L"traits.minimap.red", &CEntityTemplate::m_minimapR );
-	AddClassProperty( L"traits.minimap.green", &CEntityTemplate::m_minimapG );
-	AddClassProperty( L"traits.minimap.blue", &CEntityTemplate::m_minimapB );
+	AddClassProperty( L"traits.miniMap.type", &CEntityTemplate::m_minimapType );
+	AddClassProperty( L"traits.miniMap.red", &CEntityTemplate::m_minimapR );
+	AddClassProperty( L"traits.miniMap.green", &CEntityTemplate::m_minimapG );
+	AddClassProperty( L"traits.miniMap.blue", &CEntityTemplate::m_minimapB );
 	AddClassProperty( L"traits.anchor.type", &CEntityTemplate::m_anchorType );
-	AddClassProperty( L"traits.anchor.conformx", &CEntityTemplate::m_anchorConformX );
-	AddClassProperty( L"traits.anchor.conformz", &CEntityTemplate::m_anchorConformZ );
+	AddClassProperty( L"traits.anchor.conformX", &CEntityTemplate::m_anchorConformX );
+	AddClassProperty( L"traits.anchor.conformZ", &CEntityTemplate::m_anchorConformZ );
 	AddClassProperty( L"traits.vision.los", &CEntityTemplate::m_los );
 	AddClassProperty( L"traits.vision.permanent", &CEntityTemplate::m_permanent );
 	AddClassProperty( L"traits.display.bars.enabled", &CEntityTemplate::m_barsEnabled );

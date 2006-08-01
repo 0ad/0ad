@@ -367,7 +367,7 @@ bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timeste
 	// The pathfinder will push its result back into this unit's queue and
 	// add back the current order at the end with the transition type.
 	(int&)current->m_type = transition;
-	g_Pathfinder.requestContactPath( me, current );
+	g_Pathfinder.requestContactPath( me, current, action->m_MaxRange );
 
 	return( true );
 }
@@ -633,7 +633,8 @@ bool CEntity::processGotoWaypoint( CEntityOrder* current, size_t UNUSED(timestep
 
 	processChooseMovement( Distance );
 
-	g_Pathfinder.requestLowLevelPath( me, path_to, contact );
+	float radius = *((float*)&current->m_data[0].data);
+	g_Pathfinder.requestLowLevelPath( me, path_to, contact, radius );
 
 	return( true );
 }

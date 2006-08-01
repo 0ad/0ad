@@ -142,7 +142,7 @@ private:
 
 
 CXeromyces::CXeromyces()
-	: XMBFileHandle(0), XMBBuffer(NULL)
+: XMBFileHandle(0), XMBBuffer(NULL)
 {
 }
 
@@ -248,7 +248,7 @@ PSRETURN CXeromyces::Load(const char* filename)
 
 	const int bufLen = 22;
 	char buf[bufLen+1];
-	if (sprintf(buf, "_%08x%08xA.xmb", (int)xmlStat.st_mtime & ~1, (int)xmlStat.st_size) != bufLen)
+	if (sprintf(buf, "_%08x%08xB.xmb", (int)xmlStat.st_mtime & ~1, (int)xmlStat.st_size) != bufLen)
 	{
 		debug_warn("Failed to create filename (?!)");
 		return PSRETURN_Xeromyces_XMLOpenFailed;
@@ -373,6 +373,7 @@ void XeroHandler::endDocument()
 {
 }
 
+/*
 // Silently clobbers non-ASCII characters
 std::string lowercase_ascii(const XMLCh *a)
 {
@@ -383,10 +384,31 @@ std::string lowercase_ascii(const XMLCh *a)
 		b[i] = (char)towlower(a[i]);
 	return b;
 }
+*/
+
+/**
+ * Return an ASCII version of the given 16-bit string, ignoring
+ * any non-ASCII characters.
+ *
+ * @param const XMLCh * a Input string.
+ * @return std::string 8-bit ASCII version of <code>a</code>.
+ **/
+std::string toAscii( const XMLCh* a )
+{
+	std::string b;
+	uint len=XMLString::stringLen(a);
+	b.reserve(len);
+	for (uint i = 0; i < len; ++i)
+	{
+		if(iswascii(a[i]))
+			b += (char) a[i];
+	}
+	return b;
+}
 
 void XeroHandler::startElement(const XMLCh* const UNUSED(uri), const XMLCh* const localname, const XMLCh* const UNUSED(qname), const Attributes& attrs)
 {
-	std::string elementName = lowercase_ascii(localname);
+	std::string elementName = toAscii(localname);
 	ElementNames.insert(elementName);
 
 	// Create a new element
@@ -397,7 +419,7 @@ void XeroHandler::startElement(const XMLCh* const UNUSED(uri), const XMLCh* cons
 	// Store all the attributes in the new element
 	for (unsigned int i = 0; i < attrs.getLength(); ++i)
 	{
-		std::string attrName = lowercase_ascii(attrs.getLocalName(i));
+		std::string attrName = toAscii(attrs.getLocalName(i));
 		AttributeNames.insert(attrName);
 		XMLAttribute* a = new XMLAttribute;
 		a->name = attrName;

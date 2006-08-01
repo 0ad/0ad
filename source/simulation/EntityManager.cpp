@@ -167,6 +167,8 @@ void CEntityManager::GetInRange( float x, float z, float radius, std::vector<CEn
 {
 	results.clear();
 
+	float radiusSq = radius * radius;
+
 	int cx = (int) ( x / COLLISION_PATCH_SIZE );
 	int cz = (int) ( z / COLLISION_PATCH_SIZE );
 
@@ -182,12 +184,12 @@ void CEntityManager::GetInRange( float x, float z, float radius, std::vector<CEn
 		for( int pz = minZ; pz <= maxZ; pz++ ) 
 		{
 			std::vector<CEntity*>& vec = m_collisionPatches[ px * m_collisionPatchesPerSide + pz ];
-			for( std::vector<CEntity*>::iterator it = vec.begin(); it != vec.end(); it++ )
+			for( size_t i=0; i<vec.size(); i++ )
 			{
-				CEntity* e = *it;
+				CEntity* e = vec[i];
 				float dx = x - e->m_position.X;
 				float dz = z - e->m_position.Z;
-				if(dx*dx + dz*dz <= radius*radius)
+				if(dx*dx + dz*dz <= radiusSq)
 				{
 					results.push_back( e );
 				}

@@ -1455,7 +1455,7 @@ void CEntity::ScriptingInit()
 	AddClassProperty( L"traits.id.classes", (GetFn)&CEntity::getClassSet, (SetFn)&CEntity::setClassSet );
 	AddClassProperty( L"template", (CEntityTemplate* CEntity::*)&CEntity::m_base, false, (NotifyFn)&CEntity::loadBase );
 
-	/* Anything inherited property MUST be added to EntityTemplate.cpp as well */
+	/* Any inherited property MUST be added to EntityTemplate.cpp as well */
 
 	AddClassProperty( L"actions.move.speed_curr", &CEntity::m_speed );
 	AddClassProperty( L"actions.move.run.speed", &CEntity::m_runSpeed );
@@ -1467,44 +1467,21 @@ void CEntity::ScriptingInit()
 	AddClassProperty( L"selected", &CEntity::m_selected, false, (NotifyFn)&CEntity::checkSelection );
 	AddClassProperty( L"group", &CEntity::m_grouped, false, (NotifyFn)&CEntity::checkGroup );
 	AddClassProperty( L"traits.extant", &CEntity::m_extant );
-	AddClassProperty( L"actions.move.turningradius", &CEntity::m_turningRadius );
+	AddClassProperty( L"actions.move.turningRadius", &CEntity::m_turningRadius );
 	AddClassProperty( L"position", &CEntity::m_graphics_position, false, (NotifyFn)&CEntity::teleport );
 	AddClassProperty( L"orientation", &CEntity::m_orientation, false, (NotifyFn)&CEntity::reorient );
 	AddClassProperty( L"player", (GetFn)&CEntity::JSI_GetPlayer, (SetFn)&CEntity::JSI_SetPlayer );
 	AddClassProperty( L"traits.health.curr", &CEntity::m_healthCurr );
 	AddClassProperty( L"traits.health.max", &CEntity::m_healthMax );
-	//AddClassProperty( L"traits.health.bar_height", &CEntity::m_base->m_healthBarHeight );
-	//AddClassProperty( L"traits.health.bar_size", &CEntity::m_base->m_healthBarSize );
-	//AddClassProperty( L"traits.health.bar_width", &CEntity::m_base->m_healthBarWidth );
-	//AddClassProperty( L"traits.health.border_height", &CEntity::m_base->m_healthBorderHeight);
-	//AddClassProperty( L"traits.health.border_width", &CEntity::m_base->m_healthBorderWidth );
-	//AddClassProperty( L"traits.health.border_name", &CEntity::m_base->m_healthBorderName );
 	AddClassProperty( L"traits.health.regen_rate", &CEntity::m_healthRegenRate );
 	AddClassProperty( L"traits.health.regen_start", &CEntity::m_healthRegenStart );
 	AddClassProperty( L"traits.health.decay_rate", &CEntity::m_healthDecayRate );
 	AddClassProperty( L"traits.stamina.curr", &CEntity::m_staminaCurr );
 	AddClassProperty( L"traits.stamina.max", &CEntity::m_staminaMax );
-	//AddClassProperty( L"traits.stamina.bar_height", &CEntity::m_base->m_staminaBarHeight );
-	//AddClassProperty( L"traits.stamina.bar_size", &CEntity::m_base->m_staminaBarSize );
-	//AddClassProperty( L"traits.stamina.bar_width", &CEntity::m_base->m_staminaBarWidth );
-	//AddClassProperty( L"traits.stamina.border_height", &CEntity::m_base->m_staminaBorderHeight);
-	//AddClassProperty( L"traits.stamina.border_width", &CEntity::m_base->m_staminaBorderWidth );
-	//AddClassProperty( L"traits.stamina.border_name", &CEntity::m_base->m_staminaBorderName );
 	AddClassProperty( L"traits.rally.name", &CEntity::m_rallyTexture );
 	AddClassProperty( L"traits.rally.width", &CEntity::m_rallyWidth );
 	AddClassProperty( L"traits.rally.height", &CEntity::m_rallyHeight );
-	//AddClassProperty( L"traits.flank_penalty.sectors", &CEntity::m_base->m_sectorDivs);
-	//AddClassProperty( L"traits.pitch.sectors", &CEntity::m_base->m_pitchDivs );
-	//AddClassProperty( L"traits.rank.width", &CEntity::m_base->m_rankWidth );
-	//AddClassProperty( L"traits.rank.height", &CEntity::m_base->m_rankHeight );
 	AddClassProperty( L"traits.rank.name", &CEntity::m_rankName );
-	//AddClassProperty( L"traits.minimap.type", &CEntity::m_base->m_minimapType );
-	//AddClassProperty( L"traits.minimap.red", &CEntity::m_base->m_minimapR );
-	//AddClassProperty( L"traits.minimap.green", &CEntity::m_base->m_minimapG );
-	//AddClassProperty( L"traits.minimap.blue", &CEntity::m_base->m_minimapB );
-	//AddClassProperty( L"traits.anchor.type", &CEntity::m_base->m_anchorType );
-	//AddClassProperty( L"traits.anchor.conformx", &CEntity::m_base->m_anchorConformX );
-	//AddClassProperty( L"traits.anchor.conformz", &CEntity::m_base->m_anchorConformZ );
 	AddClassProperty( L"traits.vision.los", &CEntity::m_los );
 	AddClassProperty( L"traits.vision.permanent", &CEntity::m_permanent );
 	AddClassProperty( L"traits.is_territory_centre", &CEntity::m_isTerritoryCentre );

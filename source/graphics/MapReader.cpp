@@ -313,7 +313,7 @@ void CXMLReader::Init(const CStr& xml_filename)
 #undef EL
 
 	XMBElement root = xmb_file.getRoot();
-	debug_assert(xmb_file.getElementString(root.getNodeName()) == "scenario");
+	debug_assert(xmb_file.getElementString(root.getNodeName()) == "Scenario");
 	nodes = root.getChildNodes();
 
 	// find out total number of entities+nonentities
@@ -643,21 +643,21 @@ int CXMLReader::ProgressiveRead()
 	{
 		XMBElement node = nodes.item(node_idx);
 		CStr name = xmb_file.getElementString(node.getNodeName());
-		if (name == "environment")
+		if (name == "Environment")
 		{
 			ReadEnvironment(node);
 		}
-		else if (name == "camera")
+		else if (name == "Camera")
 		{
 			ReadCamera(node);
 		}
-		else if (name == "entities")
+		else if (name == "Entities")
 		{
 			ret = ReadEntities(node, end_time);
 			if (ret != 0)	// error or timed out
 				return ret;
 		}
-		else if (name == "nonentities")
+		else if (name == "Nonentities")
 		{
 			ret = ReadNonEntities(node, end_time);
 			if (ret != 0)	// error or timed out

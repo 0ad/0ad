@@ -20,16 +20,17 @@ void CPathfindEngine::requestPath( HEntity entity, const CVector2D& destination 
 	CEntityOrder waypoint;
 	waypoint.m_type = CEntityOrder::ORDER_GOTO_WAYPOINT;
 	waypoint.m_data[0].location = destination;
+	*((float*)&waypoint.m_data[0].data) = 0.0f;
 	entity->m_orderQueue.push_front( waypoint );
 }
 
-void CPathfindEngine::requestLowLevelPath( HEntity entity, const CVector2D& destination, bool contact )
+void CPathfindEngine::requestLowLevelPath( HEntity entity, const CVector2D& destination, bool contact, float radius )
 {
 	PROFILE_START("Pathfinding");
 	
 	CVector2D source( entity->m_position.X, entity->m_position.Z );
 
-	if ( mLowPathfinder.findPath(source, destination, entity->m_player) )
+	if ( mLowPathfinder.findPath(source, destination, entity->m_player, radius) )
 	{
 		std::vector<CVector2D> path = mLowPathfinder.getLastPath();
 		if( path.size() > 0 )
@@ -64,12 +65,13 @@ void CPathfindEngine::requestLowLevelPath( HEntity entity, const CVector2D& dest
 	PROFILE_END("Pathfinding");
 }
 
-void CPathfindEngine::requestContactPath( HEntity entity, CEntityOrder* current )
+void CPathfindEngine::requestContactPath( HEntity entity, CEntityOrder* current, float range )
 {
 	/* TODO: Same as non-contact: need high-level planner */
 	CEntityOrder waypoint;
 	waypoint.m_type = CEntityOrder::ORDER_GOTO_WAYPOINT_CONTACT;
 	waypoint.m_data[0].location = current->m_data[0].entity->m_position;
+	*((float*)&waypoint.m_data[0].data) = std::max( current->m_data[0].entity->m_bounds->m_radius, range );
 	entity->m_orderQueue.push_front( waypoint );
 
 	//pathSparse( entity, current->m_data[0].entity->m_position );

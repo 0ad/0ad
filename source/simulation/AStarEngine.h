@@ -64,7 +64,7 @@ public:
 
 	void setGoal(AStarGoalBase* goal) { mGoal = goal; }
 
-	bool findPath( const CVector2D& src, const CVector2D& dest, CPlayer* player=0 );
+	bool findPath( const CVector2D& src, const CVector2D& dest, CPlayer* player=0, float radius=0.0f );
 	std::vector<CVector2D> getLastPath();
 
 	// The maximum number of nodes that will be expanded before failure is declared
@@ -116,12 +116,19 @@ private:
 
 };
 
-
+/**
+ * An A* goal consists of a destination tile and a radius within which a
+ * unit must get to the destination. The radius is necessary because for
+ * actions on a target unit, like attacking or building, the destination
+ * tile is obstructed by that unit and what we really want is not to get
+ * to that tile but to get close enough to perform our action.
+ **/
 class AStarGoalBase
 {
 public:
 	AStarGoalBase() {}
 	virtual void setDestination( const CVector2D& ) = 0;
+	virtual void setRadius( float r ) = 0;
 	virtual float distanceToGoal( const CVector2D& ) = 0;
 	virtual bool atGoal( const CVector2D& ) = 0;
 	virtual float getTileCost( const CVector2D&, const CVector2D& ) = 0;
@@ -129,13 +136,15 @@ public:
 	virtual std::vector<CVector2D> getNeighbors( const CVector2D&, CPlayer* player=0 ) = 0;
 	virtual CVector2D getCoord( const CVector2D& ) = 0;
 	virtual CVector2D getTile( const CVector2D& ) = 0;
+	virtual float getRadius() = 0;
 };
 
 class AStarGoalLowLevel : public AStarGoalBase
 {
 public:
-	AStarGoalLowLevel() {}
+	AStarGoalLowLevel(): radius(0.0f) {}
 	void setDestination( const CVector2D& dest );
+	void setRadius( float r );
 	float distanceToGoal( const CVector2D& loc );
 	bool atGoal( const CVector2D& loc );
 	float getTileCost( const CVector2D& loc1, const CVector2D& loc2 );
@@ -143,8 +152,10 @@ public:
 	std::vector<CVector2D> getNeighbors( const CVector2D& loc, CPlayer* player=0 );
 	CVector2D getCoord( const CVector2D& loc);
 	CVector2D getTile( const CVector2D& loc);
+	float getRadius();
 private:
 	CVector2D coord;
+	float radius;
 };
 
 class CAStarEngineLowLevel : public CAStarEngine

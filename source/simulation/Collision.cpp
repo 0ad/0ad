@@ -49,6 +49,7 @@ CEntity* GetCollisionObject( float x, float y )
 CBoundingObject* getCollisionObject( CBoundingObject* bounds, CPlayer* player, const CStrW* ignoreClass )
 {
 	std::vector<CEntity*> entities;
+	entities.reserve(8);
 	g_EntityManager.GetInRange( bounds->m_pos.x, bounds->m_pos.y, COLLISION_RANGE, entities );
 	std::vector<CEntity*>::iterator it;
 
@@ -76,6 +77,7 @@ CBoundingObject* getCollisionObject( CBoundingObject* bounds, CPlayer* player, c
 CEntity* getCollisionEntity( CBoundingObject* bounds, CPlayer* player, const CStrW* ignoreClass )
 {
 	std::vector<CEntity*> entities;
+	entities.reserve(8);
 	g_EntityManager.GetInRange( bounds->m_pos.x, bounds->m_pos.y, COLLISION_RANGE, entities );
 	std::vector<CEntity*>::iterator it;
 
@@ -108,6 +110,7 @@ HEntity getCollisionObject( CEntity* entity )
 #endif
 
 	std::vector<CEntity*> entities;
+	entities.reserve(8);
 	g_EntityManager.GetInRange( entity->m_position.X, entity->m_position.Z, COLLISION_RANGE, entities );
 	std::vector<CEntity*>::iterator it;
 

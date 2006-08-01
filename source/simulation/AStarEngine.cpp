@@ -63,12 +63,13 @@ CAStarEngine::~CAStarEngine()
 
 
 bool CAStarEngine::findPath( 
-	const CVector2D &src, const CVector2D &dest, CPlayer* player )
+	const CVector2D &src, const CVector2D &dest, CPlayer* player, float radius )
 {
 	mSolved = false;
 	int iterations = 0;
 
 	mGoal->setDestination(dest);
+	mGoal->setRadius(radius);
 
 	AStarNode *start = getFreeASNode();
 	start->coord = mGoal->getTile(src);
@@ -327,19 +328,32 @@ void AStarGoalLowLevel::setDestination( const CVector2D &dest )
 	coord = WorldspaceToTilespace(dest);
 }
 
+
+void AStarGoalLowLevel::setRadius( float r )
+{
+	radius = r;
+}
+
+float AStarGoalLowLevel::getRadius()
+{
+	return radius;
+}
+
 float AStarGoalLowLevel::distanceToGoal( const CVector2D &loc )
 {
-	return 3*((coord-loc).length());
+	return ((coord-loc).length());
 }
 
 bool AStarGoalLowLevel::atGoal( const CVector2D &loc )
 {
-	return (coord.x == loc.x) && (coord.y == loc.y);
+	float dx = coord.x - loc.x;
+	float dy = coord.y - loc.y;
+	return dx*dx + dy*dy <= radius*radius;
 }
 
 float AStarGoalLowLevel::getTileCost( const CVector2D& loc1, const CVector2D& loc2 )
 {
-	return (loc2-loc1).length();
+	return (loc2-loc1).length() - radius;
 }
 
 bool AStarGoalLowLevel::isPassable( const CVector2D &loc, CPlayer* player )
