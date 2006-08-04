@@ -64,6 +64,19 @@
 #endif
 
 
+// try to define _W64, if not already done
+// (this is useful for catching pointer size bugs)
+#ifndef _W64
+# if MSC_VER
+#  define _W64 __w64
+# elif GCC_VER
+#  define _W64 __attribute__((mode (__pointer__)))
+# else
+#  define _W64
+# endif
+#endif
+
+
 #ifdef __cplusplus
 extern "C" {
 #endif

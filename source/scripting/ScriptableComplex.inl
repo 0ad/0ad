@@ -58,7 +58,7 @@ linker won't find the definitions of these functions. Right now this is only
 //-----------------------------------------------------------------------------
 
 
-template<typename T, bool ReadOnly = false> class CJSComplex;
+template<typename T, bool ReadOnly> class CJSComplex;
 
 template<typename T> class CJSComplexPropertyAccessor
 {

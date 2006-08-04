@@ -178,7 +178,7 @@
 # define OS_LINUX 0
 #endif
 // .. Mac OS X
-#if defined(__MACOSX__)
+#if (defined(__APPLE__) && defined(__MACH__))
 # define OS_MACOSX 1
 #else
 # define OS_MACOSX 0
