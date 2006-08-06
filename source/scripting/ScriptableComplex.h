@@ -10,7 +10,7 @@ a templated class, any source file that uses these methods directly must
 #include ScritpableComplex.inl to link to them. However, files that
 only need to know that something is a CJSComplex need not do this. This
 was done to speed up compile times after modifying CJSComplex's internals:
-before, 30+ files had to be recompiled because they #included Entity.j
+before, 30+ files had to be recompiled because they #included Entity.h
 which #includes ScriptableComplex.h.
 */
 

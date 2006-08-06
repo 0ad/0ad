@@ -62,7 +62,7 @@ public:
 
 	// Get the variation key (indices of chosen variants from each group)
 	// based on the selection strings
-	std::vector<u8> CalculateVariationKey(const std::vector<std::set<CStr8> >& selections);
+	std::vector<u8> CalculateVariationKey(const std::vector<std::set<CStr> >& selections);
 
 	// Get the final actor data, combining all selected variants
 	const Variation BuildVariation(const std::vector<u8>& variationKey);
@@ -70,12 +70,12 @@ public:
 	// Get a set of selection strings that are complete enough to specify an
 	// exact variation of the actor, using the initial selections wherever possible
 	// and choosing randomly where a choice is necessary. 
-	std::set<CStr8> CalculateRandomVariation(const std::set<CStr8>& initialSelections);
+	std::set<CStr> CalculateRandomVariation(const std::set<CStr>& initialSelections);
 
 	// Get a list of variant groups for this object, plus for all possible
 	// props. Duplicated groups are removed, if several props share the same
 	// variant names.
-	std::vector<std::vector<CStr8> > GetVariantGroups() const;
+	std::vector<std::vector<CStr> > GetVariantGroups() const;
 
 	bool Load(const char* filename);
 

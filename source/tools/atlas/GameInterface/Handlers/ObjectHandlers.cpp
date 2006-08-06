@@ -114,24 +114,24 @@ QUERYHANDLER(GetObjectSettings)
 	settings.player = unit->GetPlayerID();
 
 	// Get the unit's possible variants and selected variants
-	std::vector<std::vector<CStr8> > groups = unit->GetObject()->m_Base->GetVariantGroups();
-	const std::set<CStr8>& selections = unit->GetActorSelections();
+	std::vector<std::vector<CStr> > groups = unit->GetObject()->m_Base->GetVariantGroups();
+	const std::set<CStr>& selections = unit->GetActorSelections();
 
 	// Iterate over variant groups
-	std::vector<std::vector<std::string> > variantgroups;
-	std::set<std::string> selections_set;
+	std::vector<std::vector<std::wstring> > variantgroups;
+	std::set<std::wstring> selections_set;
 	variantgroups.reserve(groups.size());
 	for (size_t i = 0; i < groups.size(); ++i)
 	{
 		// Copy variants into output structure
 
-		std::vector<std::string> group;
+		std::vector<std::wstring> group;
 		group.reserve(groups[i].size());
 		int choice = -1;
 
 		for (size_t j = 0; j < groups[i].size(); ++j)
 		{
-			group.push_back(groups[i][j]);
+			group.push_back(CStrW(groups[i][j]));
 
 			// Find the first string in 'selections' that matches one of this
 			// group's variants
@@ -143,20 +143,20 @@ QUERYHANDLER(GetObjectSettings)
 		// Assuming one of the variants was selected (which it really ought
 		// to be), remember that one's name
 		if (choice != -1)
-			selections_set.insert(groups[i][choice]);
+			selections_set.insert(CStrW(groups[i][choice]));
 
 		variantgroups.push_back(group);
 	}
 
 	settings.variantgroups = variantgroups;
-	settings.selections = std::vector<std::string> (selections_set.begin(), selections_set.end()); // convert set->vector
+	settings.selections = std::vector<std::wstring> (selections_set.begin(), selections_set.end()); // convert set->vector
 	msg->settings = settings;
 }
 
 BEGIN_COMMAND(SetObjectSettings)
 {
 	int m_PlayerOld, m_PlayerNew;
-	std::set<CStr8> m_SelectionsOld, m_SelectionsNew;
+	std::set<CStr> m_SelectionsOld, m_SelectionsNew;
 
 	void Do()
 	{
@@ -170,9 +170,11 @@ BEGIN_COMMAND(SetObjectSettings)
 
 		m_SelectionsOld = unit->GetActorSelections();
 
-		std::vector<std::string> selections = *settings.selections;
-		copy(selections.begin(), selections.end(),
-			std::insert_iterator<std::set<CStr8> >(m_SelectionsNew, m_SelectionsNew.begin()));
+		std::vector<std::wstring> selections = *settings.selections;
+		for (std::vector<std::wstring>::iterator it = selections.begin(); it != selections.end(); ++it)
+		{
+			m_SelectionsNew.insert(CStr(*it));
+		}
 
 		Redo();
 	}
