@@ -35,13 +35,12 @@ using namespace std;
 
 extern CConsole *g_Console;
 
-CSimulation::CSimulation(CGame *pGame, uint randomSeed):
+CSimulation::CSimulation(CGame *pGame):
 	m_pGame(pGame),
 	m_pWorld(pGame->GetWorld()),
 	m_pTurnManager((g_SinglePlayerTurnManager=new CSinglePlayerTurnManager())),
 	m_DeltaTime(0)
 {
-	m_Random.seed((unsigned long) randomSeed);
 }
 
 CSimulation::~CSimulation()
@@ -52,6 +51,8 @@ CSimulation::~CSimulation()
 
 int CSimulation::Initialize(CGameAttributes* pAttribs)
 {
+	m_Random.seed(0);		// TODO: Store a random seed in CGameAttributes and synchronize it accross the network
+
 	m_pTurnManager->Initialize(m_pGame->GetNumPlayers());
 
 	// Call the game startup script 
@@ -388,4 +389,19 @@ uint CSimulation::GetMessageMask(CNetMessage* UNUSED(pMsg), uint UNUSED(oldMask)
 void CSimulation::QueueLocalCommand(CNetMessage *pMsg)
 {
 	m_pTurnManager->QueueLocalCommand(pMsg);
+}
+
+
+// Get a random integer between 0 and maxVal-1 from the simulation's random number generator
+int CSimulation::RandInt(int maxVal) 
+{
+	boost::uniform_smallint<int> distr(0, maxVal-1);
+	return distr(m_Random);
+}
+
+// Get a random float in [0, 1) from the simulation's random number generator
+float CSimulation::RandFloat() 
+{
+	boost::uniform_01<boost::mt19937, float> distr(m_Random);
+	return distr();
 }

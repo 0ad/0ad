@@ -29,7 +29,7 @@ class CSimulation
 	void Interpolate(double frameTime, double offset);
 
 public:
-	CSimulation(CGame *pGame, uint randomSeed=0);
+	CSimulation(CGame *pGame);
 	~CSimulation();
 	
 	inline void SetTurnManager(CTurnManager *pTurnManager)
@@ -55,16 +55,10 @@ public:
 	void QueueLocalCommand(CNetMessage *pMsg);
 
 	// Get a random integer between 0 and maxVal-1 from the simulation's random number generator
-	int RandInt(int maxVal) 
-	{
-		return m_Random() % maxVal;
-	}
+	int RandInt(int maxVal);
 
 	// Get a random float in [0, 1) from the simulation's random number generator
-	float RandFloat() 
-	{
-		return float(m_Random()) * (1.0f/4294967296.0f);
-	}
+	float RandFloat();
 };
 
 #endif
