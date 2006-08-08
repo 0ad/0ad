@@ -1475,18 +1475,12 @@ void CBuildingPlacer::update( float timeStep )
 		box->setOrientation( m_angle );
 	}
 
-	// It's valid to place the object here if the position is on the map and it's
-	// unobstructed by anything except possibly our socket (which we find out by
-	// by passing an ignoreClass to getCollisionObject); also, if we are a
-	// socketted object, we check that we are in fact on a socket, using onSocket.
-
+	// Check whether the placement location is valid (look at whether we're
+	// on the map, who owns the territory, whether we are on a socket, and 
+	// whether we are coliding with anything).
 	CTerrain *pTerrain=g_Game->GetWorld()->GetTerrain();
-
 	if( pTerrain->isOnMap( pos.X, pos.Z ) )
 	{
-		m_valid = ( m_template->m_socket == L"" || onSocket )
-				&& ( getCollisionObject( m_bounds, 0, &m_template->m_socket ) == 0 );
-		
 		// Check that we are being placed in a valid territory; currently, m_territoryRestriction
 		// can be either "Allied" for placing in allied territories, or nothing. Since there's no
 		// diplomacy yet, "allied" just means "owned by us" for now.
@@ -1494,6 +1488,15 @@ void CBuildingPlacer::update( float timeStep )
 		if( m_template->m_territoryRestriction == L"Allied"  && territory->owner != g_Game->GetLocalPlayer() )
 		{
 			m_valid = false;
+		}
+		else
+		{
+			// It's valid to place the object here if the position is unobstructed by
+			// anything except possibly our socket (which we find out by passing an
+			// ignoreClass to getCollisionObject); also, if we are a socketted object,
+			// we check that we are actually on a socket, using onSocket (set above).
+			m_valid = ( m_template->m_socket == L"" || onSocket )
+					&& ( getCollisionObject( m_bounds, 0, &m_template->m_socket ) == 0 );
 		}
 	}
 	else
