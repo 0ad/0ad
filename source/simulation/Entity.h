@@ -109,7 +109,6 @@ public:
 	float m_runSpeed;
 	float m_runRegenRate;
 	float m_runDecayRate;
-	bool m_passThroughAllies;
 
 	float m_maxActorPitch;
 	float m_minActorPitch;
@@ -163,17 +162,9 @@ public:
 
 	//Rank properties
 	CStr m_rankName;
-	//Rally texture
-	CStr m_rallyTexture;
-	float m_rallyWidth;
-	float m_rallyHeight;
 
 	// LOS
 	int m_los;
-	bool m_permanent;
-
-	// Is this object a territory centre? (e.g. Settlements in 0AD)
-	bool m_isTerritoryCentre;
 
 	// If the object is a territory centre, this points to its territory
 	CTerritory* m_associatedTerritory;
@@ -234,45 +225,6 @@ public:
 	int m_currentRequest;	//Notification we our notifiers are sending
 
 	std::vector<bool> m_sectorValues;
-
-	/* JW: these have all been 'moved' (1) into EntityTemplate:
-	   1: were already present there, just removed from here
-	int m_sectorDivs;
-
-	int m_pitchDivs;
-
-	float m_staminaBarHeight;
-	int m_staminaBarSize;
-	float m_staminaBarWidth;
-
-	float m_healthBarHeight;
-	int m_healthBarSize;
-	float m_healthBarWidth;
-
-	int m_staminaBorderWidth;
-	int m_staminaBorderHeight;
-	CStr m_staminaBorderName;
-
-	float m_rankHeight;
-	float m_rankWidth;
-
-	// Minimap properties
-	CStrW m_minimapType;
-	int m_minimapR;
-	int m_minimapG;
-	int m_minimapB;
-
-	// Y anchor
-	CStrW m_anchorType;
-	float m_anchorConformX;
-	float m_anchorConformZ;
-
-	int m_healthBorderWidth;
-	int m_healthBorderHeight;
-	CStr m_healthBorderName;
-	*/
-
-
 
 private:
 	CEntity( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStr8>& actorSelections, const CStrW* building = 0 );

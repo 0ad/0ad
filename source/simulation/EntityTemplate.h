@@ -118,7 +118,7 @@ public:
 
 	// LOS
 	int m_los;
-	bool m_permanent;
+	bool m_visionPermanent;
 
 	// Is this object a territory centre? (e.g. Settlements in 0AD)
 	bool m_isTerritoryCentre;
@@ -128,6 +128,9 @@ public:
 
 	// Socket entity that we can be built on, or "" for free placement
 	CStrW m_socket;
+
+	// Can be "allied" to allow placement only in allied territories, or "" or "all" for all territories
+	CStrW m_territoryRestriction;
 
 	float m_speed;
 	float m_runSpeed;

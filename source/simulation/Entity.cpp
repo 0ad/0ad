@@ -1345,7 +1345,7 @@ void CEntity::renderRallyPoint()
 	if( !m_visible )
 		return;
 
-	if ( !entf_get(ENTF_HAS_RALLY_POINT) || g_Selection.m_unitUITextures.find(m_rallyTexture) == 
+	if ( !entf_get(ENTF_HAS_RALLY_POINT) || g_Selection.m_unitUITextures.find(m_base->m_rallyName) == 
 							g_Selection.m_unitUITextures.end() )
 	{
 		return;
@@ -1362,10 +1362,10 @@ void CEntity::renderRallyPoint()
 
 	CSprite sprite;
 	CTexture tex;
-	tex.SetHandle( g_Selection.m_unitUITextures[m_rallyTexture] );
+	tex.SetHandle( g_Selection.m_unitUITextures[m_base->m_rallyName] );
 	sprite.SetTexture(&tex);
 	CVector3D rally = m_rallyPoint;
-	rally.Y += m_rallyHeight/2.f + .1f;
+	rally.Y += m_base->m_rallyHeight/2.f + .1f;
 	sprite.SetTranslation(rally);
 	sprite.Render();
 }
@@ -1457,13 +1457,12 @@ void CEntity::ScriptingInit()
 
 	/* Any inherited property MUST be added to EntityTemplate.cpp as well */
 
-	AddClassProperty( L"actions.move.speed_curr", &CEntity::m_speed );
+	AddClassProperty( L"actions.move.speedCurr", &CEntity::m_speed );
 	AddClassProperty( L"actions.move.run.speed", &CEntity::m_runSpeed );
 	AddClassProperty( L"actions.move.run.rangemin", &CEntity::m_runMinRange );
 	AddClassProperty( L"actions.move.run.range", &CEntity::m_runMaxRange );
-	AddClassProperty( L"actions.move.run.regen_rate", &CEntity::m_runRegenRate );
-	AddClassProperty( L"actions.move.run.decay_rate", &CEntity::m_runDecayRate );
-	AddClassProperty( L"actions.move.pass_through_allies", &CEntity::m_passThroughAllies );
+	AddClassProperty( L"actions.move.run.regenRate", &CEntity::m_runRegenRate );
+	AddClassProperty( L"actions.move.run.decayRate", &CEntity::m_runDecayRate );
 	AddClassProperty( L"selected", &CEntity::m_selected, false, (NotifyFn)&CEntity::checkSelection );
 	AddClassProperty( L"group", &CEntity::m_grouped, false, (NotifyFn)&CEntity::checkGroup );
 	AddClassProperty( L"traits.extant", &CEntity::m_extant );
@@ -1473,23 +1472,18 @@ void CEntity::ScriptingInit()
 	AddClassProperty( L"player", (GetFn)&CEntity::JSI_GetPlayer, (SetFn)&CEntity::JSI_SetPlayer );
 	AddClassProperty( L"traits.health.curr", &CEntity::m_healthCurr );
 	AddClassProperty( L"traits.health.max", &CEntity::m_healthMax );
-	AddClassProperty( L"traits.health.regen_rate", &CEntity::m_healthRegenRate );
-	AddClassProperty( L"traits.health.regen_start", &CEntity::m_healthRegenStart );
-	AddClassProperty( L"traits.health.decay_rate", &CEntity::m_healthDecayRate );
+	AddClassProperty( L"traits.health.regenRate", &CEntity::m_healthRegenRate );
+	AddClassProperty( L"traits.health.regenStart", &CEntity::m_healthRegenStart );
+	AddClassProperty( L"traits.health.decayRate", &CEntity::m_healthDecayRate );
 	AddClassProperty( L"traits.stamina.curr", &CEntity::m_staminaCurr );
 	AddClassProperty( L"traits.stamina.max", &CEntity::m_staminaMax );
-	AddClassProperty( L"traits.rally.name", &CEntity::m_rallyTexture );
-	AddClassProperty( L"traits.rally.width", &CEntity::m_rallyWidth );
-	AddClassProperty( L"traits.rally.height", &CEntity::m_rallyHeight );
 	AddClassProperty( L"traits.rank.name", &CEntity::m_rankName );
 	AddClassProperty( L"traits.vision.los", &CEntity::m_los );
-	AddClassProperty( L"traits.vision.permanent", &CEntity::m_permanent );
-	AddClassProperty( L"traits.is_territory_centre", &CEntity::m_isTerritoryCentre );
-	AddClassProperty( L"last_combat_time", &CEntity::m_lastCombatTime );
-	AddClassProperty( L"last_run_time", &CEntity::m_lastRunTime );
+	AddClassProperty( L"lastCombatTime", &CEntity::m_lastCombatTime );
+	AddClassProperty( L"lastRunTime", &CEntity::m_lastRunTime );
 	AddClassProperty( L"building", &CEntity::m_building );
 	AddClassProperty( L"visible", &CEntity::m_visible );
-	AddClassProperty( L"production_queue", &CEntity::m_productionQueue );
+	AddClassProperty( L"productionQueue", &CEntity::m_productionQueue );
 
 	CJSComplex<CEntity>::ScriptingInit( "Entity", Construct, 2 );
 }

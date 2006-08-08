@@ -49,7 +49,6 @@ CEntity* GetCollisionObject( float x, float y )
 CBoundingObject* getCollisionObject( CBoundingObject* bounds, CPlayer* player, const CStrW* ignoreClass )
 {
 	std::vector<CEntity*> entities;
-	entities.reserve(8);
 	g_EntityManager.GetInRange( bounds->m_pos.x, bounds->m_pos.y, COLLISION_RANGE, entities );
 	std::vector<CEntity*>::iterator it;
 
@@ -60,7 +59,7 @@ CBoundingObject* getCollisionObject( CBoundingObject* bounds, CPlayer* player, c
 
 		/* If the unit is marked to ignore ally collisions, and the player parameter 
 		   is passed in and the same player as the unit, then ignore the (potential) collision */
-		if( player && (*it)->m_passThroughAllies && (*it)->m_player == player ) continue;
+		if( player && (*it)->m_base->m_passThroughAllies && (*it)->m_player == player ) continue;
 
 		if( ignoreClass && (*it)->m_classes.IsMember( *ignoreClass ) ) continue;
 
@@ -77,7 +76,6 @@ CBoundingObject* getCollisionObject( CBoundingObject* bounds, CPlayer* player, c
 CEntity* getCollisionEntity( CBoundingObject* bounds, CPlayer* player, const CStrW* ignoreClass )
 {
 	std::vector<CEntity*> entities;
-	entities.reserve(8);
 	g_EntityManager.GetInRange( bounds->m_pos.x, bounds->m_pos.y, COLLISION_RANGE, entities );
 	std::vector<CEntity*>::iterator it;
 
@@ -88,7 +86,7 @@ CEntity* getCollisionEntity( CBoundingObject* bounds, CPlayer* player, const CSt
 
 		/* If the unit is marked to ignore ally collisions, and the player parameter 
 		   is passed in and the same player as the unit, then ignore the (potential) collision */
-		if( player && (*it)->m_passThroughAllies && (*it)->m_player == player ) continue;
+		if( player && (*it)->m_base->m_passThroughAllies && (*it)->m_player == player ) continue;
 
 		if( ignoreClass && (*it)->m_classes.IsMember( *ignoreClass ) ) continue;
 
@@ -110,7 +108,6 @@ HEntity getCollisionObject( CEntity* entity )
 #endif
 
 	std::vector<CEntity*> entities;
-	entities.reserve(8);
 	g_EntityManager.GetInRange( entity->m_position.X, entity->m_position.Z, COLLISION_RANGE, entities );
 	std::vector<CEntity*>::iterator it;
 

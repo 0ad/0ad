@@ -32,6 +32,7 @@
 #include "simulation/EntityFormation.h"
 #include "simulation/EntityManager.h"
 #include "simulation/FormationManager.h"
+#include "simulation/TerritoryManager.h"
 #include "simulation/Simulation.h"
 
 #include "ps/CLogger.h"
@@ -1350,7 +1351,7 @@ bool CBuildingPlacer::activate(CStrW& templateName)
 
 	std::set<CStr8> selections;
 	m_actor = g_UnitMan.CreateUnit( actorName, 0, selections );
-	m_actor->SetPlayerID(g_Game->GetLocalPlayer()->GetPlayerID());
+	m_actor->SetPlayerID( g_Game->GetLocalPlayer()->GetPlayerID() );
 
 	// m_bounds
 	if( m_template->m_bound_type == CBoundingObject::BOUND_CIRCLE )
@@ -1480,9 +1481,25 @@ void CBuildingPlacer::update( float timeStep )
 	// socketted object, we check that we are in fact on a socket, using onSocket.
 
 	CTerrain *pTerrain=g_Game->GetWorld()->GetTerrain();
-	m_valid = pTerrain->isOnMap( pos.X, pos.Z ) 
-				&& ( m_template->m_socket == L"" || onSocket )
+
+	if( pTerrain->isOnMap( pos.X, pos.Z ) )
+	{
+		m_valid = ( m_template->m_socket == L"" || onSocket )
 				&& ( getCollisionObject( m_bounds, 0, &m_template->m_socket ) == 0 );
+		
+		// Check that we are being placed in a valid territory; currently, m_territoryRestriction
+		// can be either "Allied" for placing in allied territories, or nothing. Since there's no
+		// diplomacy yet, "allied" just means "owned by us" for now.
+		CTerritory* territory = g_Game->GetWorld()->GetTerritoryManager()->GetTerritory( pos.X, pos.Z );
+		if( m_template->m_territoryRestriction == L"Allied"  && territory->owner != g_Game->GetLocalPlayer() )
+		{
+			m_valid = false;
+		}
+	}
+	else
+	{
+		m_valid = false;
+	}
 
 	// Flash our actor red if the position is invalid.
 

@@ -470,6 +470,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		case ALREADY_AT_DESTINATION:
 		case REACHED_DESTINATION:
 		case COLLISION_WITH_DESTINATION:
+		case WOULD_LEAVE_MAP:
 			// Not too far any more...
 			break;
 		case NORMAL:

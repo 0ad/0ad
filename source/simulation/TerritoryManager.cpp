@@ -62,7 +62,7 @@ void CTerritoryManager::Recalculate()
 	g_EntityManager.GetExtant(entities);
 	for( size_t i=0; i<entities.size(); i++ )
 	{
-		if( entities[i]->m_isTerritoryCentre ) 
+		if( entities[i]->m_base->m_isTerritoryCentre ) 
 			centres.push_back(entities[i]);
 	}
 

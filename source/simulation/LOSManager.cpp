@@ -217,7 +217,7 @@ EUnitLOSStatus CLOSManager::GetUnitStatus(CUnit* unit, CPlayer* player)
 
 	if(status & LOS_EXPLORED)
 	{
-		if(unit->GetEntity() == 0 || unit->GetEntity()->m_permanent)
+		if(unit->GetEntity() == 0 || unit->GetEntity()->m_base->m_visionPermanent)
 		{
 			// both actors (which are usually for decoration) and units with the 
 			// permanent flag should be remembered
