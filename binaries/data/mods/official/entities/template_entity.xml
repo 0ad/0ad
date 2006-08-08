@@ -27,25 +27,25 @@
  		</Armour>
 
 		<Health> 
-			<Bar_Height>-1.0</Bar_Height>
-			<Bar_Size>20</Bar_Size>
-			<Bar_Width>2.0</Bar_Width>
-			<Regen_Rate>0.2</Regen_Rate>
-			<Regen_Start>15.0</Regen_Start>
-			<Decay_Rate>0.2</Decay_Rate>
+			<BarHeight>-1.0</BarHeight>
+			<BarSize>20</BarSize>
+			<BarWidth>2.0</BarWidth>
+			<RegenRate>0.2</RegenRate>
+			<RegenStart>15.0</RegenStart>
+			<DecayRate>0.2</DecayRate>
 
-			<Border_Height>7</Border_Height>
-			<Border_Width>28</Border_Width>
-			<Border_Name>bar.dds</Border_Name>
+			<BorderHeight>7</BorderHeight>
+			<BorderWidth>28</BorderWidth>
+			<BorderName>bar.dds</BorderName>
 		</Health>
 		<Stamina>
 			<Max>0.0</Max>
-			<Bar_Height>-1.0</Bar_Height>
-			<Bar_Size>20</Bar_Size>
-			<Bar_Width>2.0</Bar_Width>
-			<Border_Height>7</Border_Height>
-			<Border_Width>28</Border_Width>
-			<Border_Name>bar.dds</Border_Name>
+			<BarHeight>-1.0</BarHeight>
+			<BarSize>20</BarSize>
+			<BarWidth>2.0</BarWidth>
+			<BorderHeight>7</BorderHeight>
+			<BorderWidth>28</BorderWidth>
+			<BorderName>bar.dds</BorderName>
 		</Stamina>
 		<Rank>
 			<Width>7.0</Width>
@@ -59,10 +59,10 @@
 			<Width>7.0</Width>
 		</Rally>
 		
-		<Flank_Penalty>
+		<FlankPenalty>
 			<Sectors>6</Sectors>
 			<Value>.2</Value>
-		</Flank_Penalty>
+		</FlankPenalty>
 		
 		<Elevation>
 			<Rate>1.0</Rate>
@@ -78,11 +78,11 @@
 			<Bars>
 				<Enabled>false</Enabled>
 				<Border>bar.dds</Border>
-				<Border_Size>0.15</Border_Size>
+				<BorderSize>0.15</BorderSize>
 			</Bars>
 		</Display>
 
-		<Is_Territory_Centre>false</Is_Territory_Centre>
+		<IsTerritoryCentre>false</IsTerritoryCentre>
 		
 	</Traits>
 

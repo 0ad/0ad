@@ -19,9 +19,12 @@
 		
 		</Id>
 		
-		<Foundation>foundation_5x5</Foundation>
 		
-		<Socket>Settlement</Socket>
+		<Creation>
+			<TerritoryRestriction>All</TerritoryRestriction>
+			<Foundation>foundation_5x5</Foundation>
+			<Socket>Settlement</Socket>
+		</Creation>
 
  		<Footprint>
  			<Width>24.0</Width>

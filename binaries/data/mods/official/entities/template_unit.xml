@@ -48,14 +48,14 @@
 	
 		<Health>
 			<Max>100</Max>
-			<Bar_Height>5.0</Bar_Height>
+			<BarHeight>5.0</BarHeight>
 			<Bar_Size>20</Bar_Size>
 			<Healable />
 		</Health>
 		
 		<Stamina>
 			<Max>5.0</Max>
-			<Bar_Height>5.3</Bar_Height>
+			<BarHeight>5.3</BarHeight>
 			<Bar_Size>20</Bar_Size>
 		</Stamina>
 
@@ -93,11 +93,11 @@
 				<Range>50.0</Range>
 				<RangeMin>0.0</RangeMin>
 
-				<Regen_Rate>0.1</Regen_Rate>
-				<Decay_Rate>0.2</Decay_Rate>
+				<RegenRate>0.1</RegenRate>
+				<DecayRate>0.2</DecayRate>
 			</Run>			
 			
-			<Pass_Through_Allies>true</Pass_Through_Allies>
+			<PassThroughAllies>true</PassThroughAllies>
 		</Move>
 		
 		<Patrol />

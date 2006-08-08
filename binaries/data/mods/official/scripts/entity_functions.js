@@ -106,9 +106,9 @@ function entityInit()
 		id.civ = building.traits.id.civ;
 		id.icon_cell = building.traits.id.icon_cell;
 		this.traits.health.max = building.traits.health.max;
-		this.build_points = new Object();
-		this.build_points.curr = 0.0;
-		this.build_points.max = parseFloat( building.traits.creation.time );
+		this.buildPoints = new Object();
+		this.buildPoints.curr = 0.0;
+		this.buildPoints.max = parseFloat( building.traits.creation.time );
 	}
 	
 	// Generate civ code (1st four characters of civ name, in lower case eg "Carthaginians" => "cart").
@@ -149,17 +149,17 @@ function entityInit()
 		if (supply.type && !supply.subType)
 			supply.subType = supply.type;
 			
-		// The "dropsite_count" array holds the number of units with gather aura in range of the object;
+		// The "dropsiteCount" array holds the number of units with gather aura in range of the object;
 		// this is important so that if you have two mills near something and one of them is destroyed,
 		// you can still gather from the thing. Initialize it to 0 (ungatherable) for every player unless
 		// the entity is forageable (e.g. for huntable animals).
-		var dropsite_count = new Array();
+		var dropsiteCount = new Array();
 		initialCount = supply.subType.meat ? 1 : 0;
 		for( i=0; i<=8; i++ )
 		{
-			dropsite_count[i] = initialCount;
+			dropsiteCount[i] = initialCount;
 		}
-		supply.dropsite_count = dropsite_count;
+		supply.dropsiteCount = dropsiteCount;
 	}
 
 	if (!this.traits.promotion)
@@ -186,7 +186,7 @@ function entityInit()
 	if( this.actions )
 	{
 		if ( this.actions.move && this.actions.move.speed )
-			this.actions.move.speed_curr = this.actions.move.speed;
+			this.actions.move.speedCurr = this.actions.move.speed;
 			
 		if( this.actions.attack && this.actions.attack.melee )
 		{
@@ -321,17 +321,17 @@ function entityInitQuasi()
 		if (supply.type && !supply.subType)
 			supply.subType = supply.type;
 			
-		// The "dropsite_count" array holds the number of units with gather aura in range of the object;
+		// The "dropsiteCount" array holds the number of units with gather aura in range of the object;
 		// this is important so that if you have two mills near something and one of them is destroyed,
 		// you can still gather from the thing. Initialize it to 0 (ungatherable) for every player unless
 		// the entity is forageable (e.g. for huntable animals).
-		var dropsite_count = new Array();
+		var dropsiteCount = new Array();
 		initialCount = supply.subType.meat ? 1 : 0;
 		for( i=0; i<=8; i++ )
 		{
-			dropsite_count[i] = initialCount;
+			dropsiteCount[i] = initialCount;
 		}
-		supply.dropsite_count = dropsite_count;
+		supply.dropsiteCount = dropsiteCount;
 	}
 	
 	stopXTimer(6);
@@ -530,7 +530,7 @@ function foundationDestroyed( evt )
 	{
 		//console.write( "Hari Seldon made a small calculation error." );
 		
-		var bp = this.build_points;
+		var bp = this.buildPoints;
 		var fractionToReturn = (bp.max - bp.curr) / bp.max;
 		
 		var resources = getEntityTemplate( this.building, this.player ).traits.creation.resource;
@@ -546,7 +546,7 @@ function foundationDestroyed( evt )
 
 function performAttack( evt )
 {
-	this.last_combat_time = getGameTime();
+	this.lastCombatTime = getGameTime();
 	
 	var curr_hit = getGUIGlobal().newRandomSound("voice", "hit", this.traits.audio.path);
 	curr_hit.play();
@@ -571,9 +571,9 @@ function performAttack( evt )
 	}
 	
 	// Add flank penalty
-	if(evt.target.traits.flank_penalty)
+	if(evt.target.traits.flankPenalty)
 	{
-		var flank = (evt.target.getAttackDirections()-1)*evt.target.traits.flank_penalty.value;
+		var flank = (evt.target.getAttackDirections()-1)*evt.target.traits.flankPenalty.value;
 		dmg.crush += dmg.crush * flank;
 		dmg.hack += dmg.hack * flank;
 		dmg.pierce += dmg.pierce * flank;
@@ -587,7 +587,7 @@ function performAttack( evt )
 
 function performAttackRanged( evt )
 {
-	this.last_combat_time = getGameTime();
+	this.lastCombatTime = getGameTime();
 
 	// Create a projectile from us, to the target, that will do some damage when it hits them.
 	dmg = new DamageType();
@@ -603,9 +603,9 @@ function performAttackRanged( evt )
 	dmg.hack += dmg.hack * elevationBonus;
 	dmg.pierce += dmg.pierce * elevationBonus;
 
-	if(evt.target.traits.flank_penalty)
+	if(evt.target.traits.flankPenalty)
 	{
-		var flank = (evt.target.getAttackDirections()-1)*evt.target.traits.flank_penalty.value;
+		var flank = (evt.target.getAttackDirections()-1)*evt.target.traits.flankPenalty.value;
 		dmg.crush += dmg.crush * flank;
 		dmg.hack += dmg.hack * flank;
 		dmg.pierce += dmg.pierce * flank;
@@ -681,7 +681,7 @@ function performGather( evt )
 	g = this.actions.gather;
 	s = evt.target.traits.supply;
 	
-	if( !s.dropsite_count[this.player.id] )
+	if( !s.dropsiteCount[this.player.id] )
 	{
 		// Entity has become ungatherable for us, probably meaning our mill near it was killed; cancel order
 		evt.preventDefault();
@@ -780,7 +780,7 @@ function performBuild( evt )
 	
 	var t = evt.target;
 	var b = this.actions.build;
-	var bp = t.build_points;
+	var bp = t.buildPoints;
 	var hp = t.traits.health;
 	
 	var points = parseFloat( b.rate ) * parseFloat( b.speed ) / 1000.0;
@@ -852,7 +852,7 @@ function damage( dmg, inflictor )
 {	
 	if(!this.traits.armour) return;		// corpses have no armour, everything else should
 	
-	this.last_combat_time = getGameTime();
+	this.lastCombatTime = getGameTime();
 	
 	// Apply armour and work out how much damage we actually take
 	crushDamage = parseInt(dmg.crush - this.traits.armour.value * this.traits.armour.crush);
@@ -1073,15 +1073,15 @@ function entityEventMovement( evt )
 	{	
 		sector += ((divs+1)/2 - sector)*2;
 		sector -= (divs+1)/2;
-		this.actions.move.speed_curr = this.actions.move.speed;
-		this.actions.move.speed_curr += 									this.actions.move.speed*this.traits.pitch.value*sector;
+		this.actions.move.speedCurr = this.actions.move.speed;
+		this.actions.move.speedCurr += 									this.actions.move.speed*this.traits.pitch.value*sector;
 	}
 	else
 	{
 		sector += ((divs)/2 - sector)*2;
 		sector -= (divs)/2;
-		this.actions.move.speed_curr = this.actions.move.speed;
-		this.actions.move.speed_curr += 						this.actions.move.speed*this.traits.pitch.value*sector;
+		this.actions.move.speedCurr = this.actions.move.speed;
+		this.actions.move.speedCurr += 						this.actions.move.speed*this.traits.pitch.value*sector;
 	}
 }	
 
@@ -1726,7 +1726,7 @@ function canGather( source, target )
 	return ( g && s && g.resource && g.resource[s.type] &&
 		( s.subType==s.type || g.resource[s.type][s.subType] ) &&
 		( s.curr > 0 || s.max == 0 ) && 
-		s.dropsite_count[source.player.id] );
+		s.dropsiteCount[source.player.id] );
 }
 
 // ====================================================================
@@ -1826,7 +1826,7 @@ function DropsiteAura( source, types )
 		if( this.affects( e ) ) 
 		{
 			//console.write( "Dropsite aura: adding +1 for " + this.source.player.id + " on " + e );
-			e.traits.supply.dropsite_count[this.source.player.id]++;
+			e.traits.supply.dropsiteCount[this.source.player.id]++;
 		}
 	};
 	
@@ -1835,7 +1835,7 @@ function DropsiteAura( source, types )
 		if( this.affects( e ) ) 
 		{
 			//console.write( "Dropsite aura: adding -1 for " + this.source.player.id + " on " + e );
-			e.traits.supply.dropsite_count[this.source.player.id]--;
+			e.traits.supply.dropsiteCount[this.source.player.id]--;
 		}
 	};
 }
@@ -1975,7 +1975,7 @@ function TrampleAura( source )
 		// Check if the target is an enemy foot unit with health and if we were running in the last 3 seconds
 		var a = this.source.traits.auras.trample;
 		return ( e.player.id != this.source.player.id && e.traits.health && e.hasClass("Foot")
-			&& (getGameTime() - this.source.last_run_time < a.duration) );
+			&& (getGameTime() - this.source.lastRunTime < a.duration) );
 	}
 	
 	this.onTick = function( e )
@@ -1990,9 +1990,9 @@ function TrampleAura( source )
 			dmg.pierce = parseInt(a.damage * a.pierce);
 
 			// Add flank bonus
-			if(e.traits.flank_penalty)
+			if(e.traits.flankPenalty)
 			{
-				var flank = (e.getAttackDirections()-1)*e.traits.flank_penalty.value;
+				var flank = (e.getAttackDirections()-1)*e.traits.flankPenalty.value;
 				dmg.crush += dmg.crush * flank;
 				dmg.hack += dmg.hack * flank;
 				dmg.pierce += dmg.pierce * flank;

@@ -18,6 +18,7 @@
 		</Id>
 
 		<Creation>
+			<TerritoryRestriction>Allied</TerritoryRestriction>
  			<Time>10</Time>
  			<Resource>
  				<Food>0</Food>
@@ -27,7 +28,7 @@
  		</Creation>		
 		
 		<Health>
-			<Bar_Height>12.0</Bar_Height>
+			<BarHeight>12.0</BarHeight>
 			<Repairable />
 		</Health>
 
