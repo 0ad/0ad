@@ -56,6 +56,7 @@ clPlayer = createTileClass();
 clHill = createTileClass();
 clForest = createTileClass();
 clWater = createTileClass();
+clSettlement = createTileClass();
 clDirt = createTileClass();
 clRock = createTileClass();
 clFood = createTileClass();
@@ -133,6 +134,13 @@ for(i=1; i<=NUM_PLAYERS; i++) {
 		true, null,	ix, iy
 	);
 	createObjectGroup(group, i);
+	
+	// Create the Settlement under the TC
+	group = new SimpleGroup(
+		[new SimpleObject("special_settlement", 1,1, 0,0)],
+		true, null, ix, iy
+	);
+	createObjectGroup(group, 0);
 	
 	// create berry bushes
 	bbAngle = randFloat()*2*PI;
@@ -258,11 +266,19 @@ createObjectGroups(group, 0,
 	3 * NUM_PLAYERS, 100
 );
 
+// create settlements
+println("Creating settlements...");
+group = new SimpleGroup([new SimpleObject("special_settlement", 1,1, 0,0)], true, clSettlement);
+createObjectGroups(group, 0,
+	avoidClasses(clWater, 0, clForest, 0, clPlayer, 15, clHill, 0, clRock, 5, clSettlement, 35),
+	2 * NUM_PLAYERS, 50
+);
+
 // create small decorative rocks
 println("Creating large decorative rocks...");
 group = new SimpleGroup([new SimpleObject(oRockMedium, 1,3, 0,1)], true);
 createObjectGroups(group, 0,
-	avoidClasses(clForest, 0, clPlayer, 0, clHill, 0),
+	avoidClasses(clForest, 0, clPlayer, 0, clHill, 0, clSettlement, 3),
 	SIZE*SIZE/1000, 50
 );
 
@@ -271,7 +287,7 @@ println("Creating large decorative rocks...");
 group = new SimpleGroup([new SimpleObject(oRockLarge, 1,2, 0,1),
 	new SimpleObject(oRockMedium, 1,3, 0,2)], true);
 createObjectGroups(group, 0,
-	avoidClasses(clForest, 0, clPlayer, 0, clHill, 0),
+	avoidClasses(clForest, 0, clPlayer, 0, clHill, 0, clSettlement, 5),
 	SIZE*SIZE/2000, 50
 );
 
@@ -279,7 +295,7 @@ createObjectGroups(group, 0,
 println("Creating deer...");
 group = new SimpleGroup([new SimpleObject(oDeer, 5,7, 0,4)], true, clFood);
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0, clFood, 20),
+	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0, clFood, 20, clSettlement, 5),
 	3 * NUM_PLAYERS, 50
 );
 
@@ -287,7 +303,7 @@ createObjectGroups(group, 0,
 println("Creating sheep...");
 group = new SimpleGroup([new SimpleObject(oSheep, 2,3, 0,2)], true, clFood);
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0, clFood, 20),
+	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0, clFood, 20, clSettlement, 5),
 	3 * NUM_PLAYERS, 50
 );
 
@@ -295,7 +311,7 @@ createObjectGroups(group, 0,
 println("Creating straggler trees...");
 group = new SimpleGroup([new SimpleObject(oTree, 1,1, 0,0)], true);
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 1),
+	avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 1, clSettlement, 2),
 	SIZE*SIZE/1100
 );
 
