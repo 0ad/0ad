@@ -6,24 +6,23 @@
   <group>
     <variant frequency="100" name="Base">
       <animations>
-        <animation file="biped/inf_idle_spear.psa" name="Idle" speed="200"/>
+        <animation file="biped/inf_hoplite_idle_a.psa" name="Idle" speed="200"/>
         <animation file="biped/walk_spearshield.psa" name="Walk" speed="28"/>
         <animation file="biped/inf_sword_shield_run_a.psa" name="Run" speed="112"/>
         <animation file="biped/dudebuild.psa" name="Build" speed="150"/>
         <animation file="biped/dudechop.psa" name="Chop" speed="150"/>
         <animation file="biped/dudedeath_sword.psa" name="Death" speed="200"/>
         <animation file="biped/dudedecay_sword.psa" name="Corpse" speed="100"/>
-        <animation event="0.5" file="biped/inf_spear_shield_atk_a.psa" name="Attack" speed="100"/>
-        <animation event="0.5" file="biped/inf_spear_shield_atk_b.psa" name="Attack" speed="100"/>
+        <animation event="0.5" file="biped/inf_hoplite_atk_a.psa" name="Attack" speed="100"/>
       </animations>
-      <mesh>skeletal/m_tunic_a.pmd</mesh>
+      <mesh>skeletal/m_tunic_b.pmd</mesh>
       <props>
         <prop actor="props/units/heads/rome_monte_e.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/shields/rome_scutum_e.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="r_hand"/>
       </props>
-      <texture>skeletal/rome_isw_e.dds</texture>
+      <texture>skeletal/rome_isp_e.dds</texture>
     </variant>
   </group>
 
@@ -33,7 +32,7 @@
       <props>
         <prop attachpoint="l_hand"/>
         <prop actor="props/units/shields/rome_scutum_b.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/gladus.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="r_hand"/>
       </props>
     </variant>
     <variant name="gather_wood">
