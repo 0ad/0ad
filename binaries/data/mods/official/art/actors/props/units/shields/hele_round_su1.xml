@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
 
+  <castshadow/>
+
   <group>
     <variant name="base">
       <mesh>props/shield/round_h_f.pmd</mesh>
@@ -11,8 +13,17 @@
   </group>
 
   <group>
-    <variant name="n">
-      <texture>props/shield/hele_round_n.dds</texture>
+    <variant name="shield-mora-a">
+      <texture>props/shield/hele_spartan_a.dds</texture>
+    </variant>
+    <variant name="shield-mora-b">
+      <texture>props/shield/hele_spartan_b.dds</texture>
+    </variant>
+    <variant name="shield-mora-c">
+      <texture>props/shield/hele_spartan_c.dds</texture>
+    </variant>
+    <variant name="shield-mora-d">
+      <texture>props/shield/hele_spartan_d.dds</texture>
     </variant>
   </group>
 
