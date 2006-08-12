@@ -102,7 +102,21 @@
 //#include <ciso646> // defines e.g. "and" to "&". unnecessary and causes trouble with asm.
 #include <climits>
 #include <clocale>
-#include <cmath>
+// Don't use <cmath>! libstdc++ on MacOSX is 'clever' and insists on
+// 'strict conformance'. That means #undef-ing C99 math macros such as
+// isfinite, which is a misguided (who cares if namespace includes isfinite;
+// that is a well-known and unlikely to be reimplemented macro) and
+// annoying incompatibility with C99.
+// simply using math.h avoids the #undefs and is fine because we don't
+// use std::cos anywhere. possible alternate fixes:
+// - add an e.g. std::isfinite version of our HAVE_C99 emulation macros
+//   (a good bit of work)
+// - #define isfinite to std::isfinite (destroys the utility of
+//   namespaces)
+// - use _GLIBCXX_USE_C99_FP_MACROS_DYNAMIC to prevent libstdc++ from
+//   #undefing the macros (might work, but hacky and potentially confusing)
+//#include <cmath>
+#include <math.h>
 // Including setjmp.h here causes incompatibilities with libpng on Debian/Ubuntu
 //#include <csetjmp>
 #include <csignal>
