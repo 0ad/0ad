@@ -115,6 +115,8 @@ HEntity getCollisionObject( CEntity* entity )
 	{
 		if( !(*it)->m_bounds ) continue;
 		if( (*it)->m_bounds == entity->m_bounds ) continue;
+		if( entity->m_base->m_passThroughAllies && (*it)->m_base->m_passThroughAllies
+			&& entity->m_player == (*it)->m_player ) continue;
 		if( entity->m_bounds->intersects( (*it)->m_bounds ) )
 		{
 			HEntity collisionObject = HEntity((*it)->me);

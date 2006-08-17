@@ -158,10 +158,11 @@ void RandomizeLocations(CEntityOrder order, const vector <HEntity> &entities, bo
 		float _x, _y;
 		CEntityOrder randomizedOrder = order;
 		
+		CSimulation* sim = g_Game->GetSimulation();
 		do
 		{
-			_x = (float)( rand() % 20000 ) / 10000.0f - 1.0f;
-			_y = (float)( rand() % 20000 ) / 10000.0f - 1.0f;
+			_x = sim->RandFloat() * 2.0f - 1.0f;
+			_y = sim->RandFloat() * 2.0f - 1.0f;
 		}
 		while( ( _x * _x ) + ( _y * _y ) > 1.0f );
 
@@ -402,6 +403,9 @@ int CSimulation::RandInt(int maxVal)
 // Get a random float in [0, 1) from the simulation's random number generator
 float CSimulation::RandFloat() 
 {
-	boost::uniform_01<boost::mt19937, float> distr(m_Random);
-	return distr();
+	// Cannot use uniform_01 here because it is not a real distribution, but rather an
+	// utility class that makes a copy of the generator, and therefore it would repeatedly
+	// return the same values because it never modifies our copy of the generator.
+	boost::uniform_real<float> distr(0.0f, 1.0f);
+	return distr(m_Random);
 }

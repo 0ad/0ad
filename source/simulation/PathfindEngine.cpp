@@ -51,9 +51,30 @@ void CPathfindEngine::requestLowLevelPath( HEntity entity, const CVector2D& dest
 				node.m_data[0].location = *it;
 				entity->m_orderQueue.push_back(node);
 			}
-			node.m_type = CEntityOrder::ORDER_PATH_END_MARKER;
-			node.m_data[0].location = *it;
+			// Hack to make pathfinding slightly more precise:
+			// If the radius was 0, make the final node be exactly at the destination
+			// (otherwise, go to wherever the pathfinder tells us since we just want to be in range)
+			CVector2D finalDest = (radius==0 ? destination : (*it));
+			node.m_type = CEntityOrder::ORDER_GOTO_NOPATHING;
+			node.m_data[0].location = finalDest;
 			entity->m_orderQueue.push_back(node);
+			node.m_type = CEntityOrder::ORDER_PATH_END_MARKER;
+			node.m_data[0].location = finalDest;
+			entity->m_orderQueue.push_back(node);
+		}
+		else {
+			// Hack to make pathfinding slightly more precise:
+			// If radius = 0, we are still moving within the same tile, so add a GOTO order anyway
+			if(radius == 0)
+			{
+				CEntityOrder node;
+				node.m_type = CEntityOrder::ORDER_GOTO_NOPATHING;
+				node.m_data[0].location = destination;
+				entity->m_orderQueue.push_back(node);
+				node.m_type = CEntityOrder::ORDER_PATH_END_MARKER;
+				node.m_data[0].location = destination;
+				entity->m_orderQueue.push_back(node);
+			}
 		}
 	}
 	else
