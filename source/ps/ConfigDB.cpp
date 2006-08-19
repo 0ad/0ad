@@ -244,7 +244,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 	parser.InputTaskType("CommentOrBlank", "_[;[$rest]]");
 
 	FileIOBuf buffer;
-	uint buflen;
+	size_t buflen;
 	File f;
 	LibError ret;
 	if (m_UseVFS[ns])
