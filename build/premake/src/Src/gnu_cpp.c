@@ -391,14 +391,26 @@ static const char* listCppTargets(const char* name)
 				strcat(g_buffer, "$(CC) $(CFLAGS) -MF $(OBJDIR)/$(<F:%%.c=%%.d) -o $@ -c $<\n");
 			else if (matches(ext, ".asm"))
 			{
+				char input_dir[512];						
+				strcpy(input_dir, path_translate(path_getdir(name) , NULL));
+				strcat(input_dir, "/");
+
+
 				const char* opts = "";
 				if (!os_is("windows"))
 					opts = "-dDONT_USE_UNDERLINE=1 ";
-				strcat(g_buffer, "nasm "); strcat(g_buffer, opts); strcat(g_buffer, "-f elf -o $@ $<\n");
+				
+				strcat(g_buffer, "nasm "); strcat(g_buffer, opts); 
+				strcat(g_buffer, " -i"); strcat(g_buffer,input_dir ); 
+				strcat(g_buffer, " -f elf -o $@ $<\n");
 				strcat(g_buffer, "\t");
+				
 				if (!g_verbose)
 					strcat(g_buffer, "@");
-				strcat(g_buffer, "nasm "); strcat(g_buffer, opts); strcat(g_buffer, "-M -o $@ $< >$(OBJDIR)/$(<F:%%.asm=%.d)\n");
+
+				strcat(g_buffer, "nasm "); strcat(g_buffer, opts); 
+				strcat(g_buffer, " -i"); strcat(g_buffer,input_dir );
+				strcat(g_buffer, " -M -o $@ $< >$(OBJDIR)/$(<F:%%.asm=%.d)\n");
 			}
 			else
 			{
