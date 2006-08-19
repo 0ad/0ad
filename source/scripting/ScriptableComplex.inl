@@ -675,7 +675,7 @@ JSBool CJSComplex<T, ReadOnly>::UnWatchAll( JSContext* cx, JSObject* obj, uintN 
 
 
 template<typename T, bool ReadOnly> 
-void CJSComplex<T, ReadOnly>::ScriptingInit( const char* ClassName, JSNative Constructor = NULL, uintN ConstructorMinArgs = 0 )
+void CJSComplex<T, ReadOnly>::ScriptingInit( const char* ClassName, JSNative Constructor, uintN ConstructorMinArgs )
 {
 	JSFunctionSpec* JSI_methods = new JSFunctionSpec[ m_Methods.size() + 3 ];
 	unsigned int MethodID;
@@ -913,7 +913,7 @@ IJSComplexProperty* CJSComplex<T, ReadOnly>::HasProperty( const CStrW& PropertyN
 
 
 template<typename T, bool ReadOnly>
-void CJSComplex<T, ReadOnly>::FillEnumerateSet( IteratorState* it, CStrW* PropertyRoot = NULL )
+void CJSComplex<T, ReadOnly>::FillEnumerateSet( IteratorState* it, CStrW* PropertyRoot)
 {
 	PropertyTable::iterator iit;
 	if( PropertyRoot )

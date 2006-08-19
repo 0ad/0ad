@@ -146,7 +146,6 @@ extern void* alloca(size_t size);
 //# define signbit
 #endif
 
-
 // C99 restrict
 // .. for some reason, g++-3.3 claims to support C99 (according to
 //    __STDC_VERSION__) but doesn't have the restrict keyword.

@@ -247,7 +247,7 @@ public:
 	}
 	~ScopeTimerAccrue<TimerImpl>()
 	{
-		TimerImpl::unit dt = impl.get_timestamp() - t0;
+		typename TimerImpl::unit dt = impl.get_timestamp() - t0;
 		timer_bill_client(tc, dt);
 	}
 

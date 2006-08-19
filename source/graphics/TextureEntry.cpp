@@ -103,7 +103,7 @@ void CTextureEntry::BuildBaseColor()
 	// jw: this is horribly inefficient (taking 750ms for 10 texture types),
 	// but it is no longer called, since terrain XML files are supposed to
 	// include a minimap color attribute. therefore, leave it as-is.
-	int width,height;
+	GLint width,height;
 	glGetTexLevelParameteriv(GL_TEXTURE_2D,0,GL_TEXTURE_WIDTH,&width);
 	glGetTexLevelParameteriv(GL_TEXTURE_2D,0,GL_TEXTURE_HEIGHT,&height);
 
