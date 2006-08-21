@@ -353,7 +353,15 @@ struct TDirAndPath
 	TDirAndPath(TDir* d, const char* p)
 		: td(d), path(p) {}
 
-	NO_COPY_CTOR(TDirAndPath);
+	// copy ctor needed for STL
+	TDirAndPath(const TDirAndPath& rhs)
+		: td(rhs.td), path(rhs.path) {}
+
+	// can't implement or generate assignment operator because of the
+	// const member. just disallow its use.
+	// NB: can't use NO_COPY_CTOR because we need one for STL.
+private:
+	TDirAndPath& operator=(const TDirAndPath& rhs);
 };
 
 typedef std::deque<TDirAndPath> DirQueue;

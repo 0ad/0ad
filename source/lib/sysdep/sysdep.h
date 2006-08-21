@@ -144,6 +144,13 @@ extern void* alloca(size_t size);
 # define isinf(d) (fpclassify(d) == FP_NAN|FP_NORMAL)
 # define isnormal(d) (fpclassify(d) == FP_NORMAL)
 //# define signbit
+#else
+// Some systems have C99 support but in C++ they provide only std::isfinite
+// and not isfinite. C99 specifies that isfinite is a macro, so define it if
+// it doesn't already exist.
+# ifndef isfinite
+#  define isfinite std::isfinite
+# endif
 #endif
 
 // C99 restrict

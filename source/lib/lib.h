@@ -207,7 +207,8 @@ STMT(\
  **/
 #define NO_COPY_CTOR(class_name)\
 	private:\
-	class_name& operator=(const class_name&)
+	class_name& operator=(const class_name&);\
+	class_name(const class_name&)
 
 
 /**
