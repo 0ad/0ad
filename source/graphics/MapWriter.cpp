@@ -4,6 +4,7 @@
 #include "lib/res/file/vfs.h"
 
 #include "Camera.h"
+#include "CinemaTrack.h"
 #include "LightEnv.h"
 #include "MapReader.h"
 #include "MapWriter.h"
@@ -18,6 +19,7 @@
 #include "UnitManager.h"
 
 #include "maths/MathUtil.h"
+#include "maths/NUSpline.h"
 #include "ps/Loader.h"
 #include "ps/Player.h"
 #include "ps/VFSUtil.h"
@@ -38,7 +40,7 @@ CMapWriter::CMapWriter()
 // SaveMap: try to save the current map to the given file
 void CMapWriter::SaveMap(const char* filename, CTerrain* pTerrain,
 						 CUnitManager* pUnitMan, WaterManager* pWaterMan, SkyManager* pSkyMan,
-						 CLightEnv* pLightEnv, CCamera* pCamera)
+						 CLightEnv* pLightEnv, CCamera* pCamera, CCinemaManager* pCinema)
 {
 	CFilePacker packer(FILE_VERSION, "PSMP");
 
@@ -50,7 +52,7 @@ void CMapWriter::SaveMap(const char* filename, CTerrain* pTerrain,
 
 	CStr filename_xml (filename);
 	filename_xml = filename_xml.Left(filename_xml.Length()-4) + ".xml";
-	WriteXML(filename_xml, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera);
+	WriteXML(filename_xml, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -156,12 +158,9 @@ void CMapWriter::PackTerrain(CFilePacker& packer, CTerrain* pTerrain)
 	// pack tile data
 	packer.PackRaw(&tiles[0],(u32)(sizeof(STileDesc)*tiles.size()));	
 }
-
-
-
 void CMapWriter::WriteXML(const char* filename,
 						  CUnitManager* pUnitMan, WaterManager* pWaterMan, SkyManager* pSkyMan,
-						  CLightEnv* pLightEnv, CCamera* pCamera)
+						  CLightEnv* pLightEnv, CCamera* pCamera, CCinemaManager* pCinema)
 {
 	Handle h = vfs_open(filename, FILE_WRITE_TO_TARGET|FILE_NO_AIO);
 	if (h <= 0)
@@ -318,6 +317,71 @@ void CMapWriter::WriteXML(const char* filename,
 				}
 			}
 		}
+		const std::map<CStrW, CCinemaTrack>& tracks = pCinema->GetAllTracks();
+		std::map<CStrW, CCinemaTrack>::const_iterator it = tracks.begin();
+		
+		{
+			XML_Element("Tracks");
+
+			for ( ; it != tracks.end(); it++ )
+			{
+				const std::vector<CCinemaPath>& paths = it->second.GetAllPaths();
+				CStrW name = it->first;
+				size_t numPaths = paths.size();
+				CVector3D startRotation = it->second.GetRotation();
+				float timescale = it->second.GetTimescale();
+	
+				{
+					XML_Element("Track");
+					XML_Attribute("name", name);
+					XML_Attribute("timescale", timescale);
+					
+					{
+						XML_Element("StartRotation");
+						XML_Attribute("x", startRotation.X);
+						XML_Attribute("y", startRotation.Y);
+						XML_Attribute("z", startRotation.Z);
+					}
+						
+					for ( size_t i=0; i<numPaths; ++i )
+					{
+						const std::vector<SplineData>& nodes = 
+									paths[i].GetAllNodes();
+						const CCinemaData* data = paths[i].GetData();
+						{
+							XML_Element("Path");
+					
+							{	
+									CVector3D rot = data->m_TotalRotation;
+									XML_Element("Rotation");
+									XML_Attribute("x", rot.X);
+									XML_Attribute("y", rot.Y);
+									XML_Attribute("z", rot.Z);
+							}
+						
+							{
+								XML_Element("Distortion");
+								XML_Attribute("mode", data->m_Mode);
+								XML_Attribute("style", data->m_Style);
+								XML_Attribute("growth", data->m_Growth);
+								XML_Attribute("switch", data->m_Switch);
+							}
+		
+							for ( int j=(int)nodes.size()-1; j >= 0; --j )
+							{
+								{
+									XML_Element("Node");
+									XML_Attribute("x", nodes[j].Position.X);
+									XML_Attribute("y", nodes[j].Position.Y);
+									XML_Attribute("z", nodes[j].Position.Z);
+									XML_Attribute("t", nodes[j].Distance);
+								}
+							}	 
+						}   //path data
+					} 
+				}	//track data
+			}
+		}	//(Did this really happen) - I blame XML 
 	}
 
 	if (! XML_StoreVFS(h))
@@ -331,7 +395,7 @@ void CMapWriter::WriteXML(const char* filename,
 // RewriteAllMaps
 void CMapWriter::RewriteAllMaps(CTerrain* pTerrain, CUnitManager* pUnitMan,
 								WaterManager* pWaterMan, SkyManager* pSkyMan,
-								CLightEnv* pLightEnv, CCamera* pCamera)
+								CLightEnv* pLightEnv, CCamera* pCamera, CCinemaManager* pCinema)
 {
 	VFSUtil::FileList files;
 	VFSUtil::FindFiles("maps/scenarios", "*.pmp", files);
@@ -340,13 +404,13 @@ void CMapWriter::RewriteAllMaps(CTerrain* pTerrain, CUnitManager* pUnitMan,
 	{
 		CMapReader* reader = new CMapReader;
 		LDR_BeginRegistering();
-		reader->LoadMap(*it, pTerrain, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera);
+		reader->LoadMap(*it, pTerrain, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema);
 		LDR_EndRegistering();
 		LDR_NonprogressiveLoad();
 
 		CStr n (*it);
 		n.Replace("scenarios/", "scenarios/new/");
 		CMapWriter writer;
-		writer.SaveMap(n, pTerrain, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera);
+		writer.SaveMap(n, pTerrain, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema);
 	}
 }

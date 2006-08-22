@@ -199,8 +199,14 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 
 		// Be nice to the processor (by sleeping lots) if we're not doing anything
 		// useful, and nice to the user (by just yielding to other threads) if we are
-		
-		if (time - last_activity > 0.5) // if there was no recent activity...
+		bool yield = time - last_activity > 0.5;
+		if ( state.worldloaded )
+		{
+			if ( g_Game->GetView()->GetCinema()->IsPlaying() )
+				g_Game->GetView()->GetCinema()->Update(state.frameLength);
+			yield = false;
+		}
+		if (yield) // if there was no recent activity...
 		{
 			double sleepUntil = time + 0.5; // only redraw at 2fps
 			while (time < sleepUntil)

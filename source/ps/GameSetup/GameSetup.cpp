@@ -365,12 +365,18 @@ void Render()
 		PROFILE_END( "render entity bars" );
 
 		glPopAttrib();
+		glMatrixMode(GL_MODELVIEW);
 
 		// Depth test is now enabled
 		PROFILE_START( "render rally points" );
 		g_Selection.renderRallyPoints();
 		g_Mouseover.renderRallyPoints();
 		PROFILE_END( "render rally points" );
+		
+		PROFILE_START( "render cinematic splines" );
+		//Sets/resets renderering properties itself
+		g_Game->GetView()->GetCinema()->DrawAllSplines();
+		PROFILE_END( "render cinematic splines" );
 	}
 	else
 	{

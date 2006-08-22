@@ -16,6 +16,8 @@ namespace AtlasMessage {
 
 MESSAGEHANDLER(ScrollConstant)
 {
+	if ( g_Game->GetView()->GetCinema()->IsPlaying() )
+		return;
 	if (msg->dir < 0 || msg->dir > 3)
 	{
 		debug_warn("ScrollConstant: invalid direction");
@@ -28,6 +30,8 @@ MESSAGEHANDLER(ScrollConstant)
 
 MESSAGEHANDLER(Scroll)
 {
+	if ( g_Game->GetView()->GetCinema()->IsPlaying() )
+		return;
 	static CVector3D targetPos;
 	static float targetDistance = 0.f;
 
@@ -75,11 +79,15 @@ MESSAGEHANDLER(Scroll)
 
 MESSAGEHANDLER(SmoothZoom)
 {
+	if ( g_Game->GetView()->GetCinema()->IsPlaying() )
+		return;
 	g_GameLoop->input.zoomDelta += msg->amount;
 }
 
 MESSAGEHANDLER(RotateAround)
 {
+	if ( g_Game->GetView()->GetCinema()->IsPlaying() )
+		return;
 	static CVector3D focusPos;
 	static float lastX = 0.f, lastY = 0.f;
 

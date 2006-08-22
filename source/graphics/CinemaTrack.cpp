@@ -15,86 +15,95 @@
 #include "lib/res/mem.h"
 
 CCinemaPath::CCinemaPath(const CCinemaData& data, const TNSpline& spline)
-: CCinemaData(data), TNSpline(spline)
+: CCinemaData(data), TNSpline(spline), m_TimeElapsed(0.f)
 { 
 	DistStylePtr = &CCinemaPath::EaseDefault;  
 	DistModePtr = &CCinemaPath::EaseIn; 
 }
 
-void CCinemaPath::DrawSpline(CVector4D RGBA, int smoothness)
+void CCinemaPath::DrawSpline(const CVector4D& RGBA, int smoothness, bool lines) const
 {
-	if (NodeCount < 3 || DistModePtr == NULL)
+	if (NodeCount < 2 || DistModePtr == NULL)
 		return;
+	if ( NodeCount == 2 )
+		smoothness = 2;
+
 	float start = MaxDistance / smoothness;
-	CVector3D tmp;
 	float time=0;
-
+	
 	glColor4f( RGBA.m_X, RGBA.m_Y, RGBA.m_Z, RGBA.m_W );
-	glLineWidth(2.0f);
-	glBegin(GL_LINE_STRIP);
-	for (int i=0; i<smoothness; i++)
-	{
-		//Find distorted time
-		time = (this->*DistModePtr)(start*i / MaxDistance);
-		tmp = GetPosition(time);
-		glVertex3f( tmp.X, tmp.Y, tmp.Z );
-	}
-	glEnd();
-	glLineWidth(1.0f);
+	if ( lines )
+	{	
+		glLineWidth(1.8f);
+		glEnable(GL_LINE_SMOOTH);
+		glBegin(GL_LINE_STRIP);
 
-	glPointSize(6.0f);
-	//Draw spline endpoints
-	glBegin(GL_POINTS);
-		tmp = GetPosition(0);
-		glVertex3f( tmp.X, tmp.Y, tmp.Z );
-		tmp = GetPosition(1);
-		glVertex3f( tmp.X, tmp.Y, tmp.Z );
-	glEnd();
-	glPointSize(1.0f);
+		for (int i=0; i<smoothness; ++i)
+		{
+			//Find distorted time
+			time = start*i / MaxDistance;
+			CVector3D tmp = GetPosition(time);
+			glVertex3f( tmp.X, tmp.Y, tmp.Z );
+		}
+		glEnd();
+		glDisable(GL_LINE_SMOOTH);
+		glLineWidth(1.0f);
+	}
+	else
+	{
+		smoothness /= 2;
+		start = MaxDistance / smoothness;
+		glEnable(GL_POINT_SMOOTH);
+		glPointSize(3.0f);
+		glBegin(GL_POINTS);
+
+		for (int i=0; i<smoothness; ++i)
+		{
+			//Find distorted time
+			time = (this->*DistModePtr)(start*i / MaxDistance);
+			CVector3D tmp = GetPosition(time);
+			glVertex3f( tmp.X, tmp.Y, tmp.Z );
+		}
+		glColor3f(1.0f, 1.0f, 0.0f);	//yellow
+
+		for ( size_t i=0; i<Node.size(); ++i )
+			glVertex3f(Node[i].Position.X, Node[i].Position.Y, Node[i].Position.Z);
+
+		glEnd();
+		glPointSize(1.0f);
+		glDisable(GL_POINT_SMOOTH);
+	}
 }
 void CCinemaPath::MoveToPointAt(float t, const CVector3D &startRotation)
 {
 	CCamera *Cam=g_Game->GetView()->GetCamera();
 	t = (this->*DistModePtr)(t);
 	CVector3D rot = startRotation + m_TotalRotation * t;
-	Cam->m_Orientation.SetXRotation(fmodf(rot.X, 360.0f));
-	Cam->m_Orientation.RotateY(fmodf(rot.Y, 360.0f));
-	Cam->m_Orientation.RotateZ(fmodf(rot.Z, 360.0f));
+	Cam->m_Orientation.SetXRotation(fmodf(rot.X, DEGTORAD(360.0f)) );
+	Cam->m_Orientation.RotateY( fmodf(rot.Y, DEGTORAD(360.0f)) );
+	Cam->m_Orientation.RotateZ( fmodf(rot.Z, DEGTORAD(360.0f)) );
 
 	CVector3D pos = GetPosition(t);
 	Cam->m_Orientation.Translate(pos);
+	Cam->UpdateFrustum();
 }
-
-
-void CCinemaPath::ResetRotation(float t)
-{
-	CCamera *Cam=g_Game->GetView()->GetCamera();
-	t = (this->*DistModePtr)(t);
-	CVector3D rot = m_TotalRotation * t;
-
-	//rotate in reverse order and reverse angles
-	Cam->m_Orientation.RotateZ(-fmodf(rot.Z, 360));
-	Cam->m_Orientation.RotateY(-fmodf(rot.Y, 360));
-	Cam->m_Orientation.RotateX(-fmodf(rot.X, 360));
-}
-
 
 //Distortion mode functions
-float CCinemaPath::EaseIn(float t)
+float CCinemaPath::EaseIn(float t) const
 {
 	return (this->*DistStylePtr)(t);
 }
-float CCinemaPath::EaseOut(float t)
+float CCinemaPath::EaseOut(float t) const
 {
 	return 1.0f - EaseIn(1.0f-t);
 }
-float CCinemaPath::EaseInOut(float t)
+float CCinemaPath::EaseInOut(float t) const
 {
 	if (t < m_Switch)
 		return EaseIn(1.0f/m_Switch * t) * m_Switch;
 	return EaseOut(1.0f/m_Switch * (t-m_Switch)) * m_Switch + m_Switch;
 }
-float CCinemaPath::EaseOutIn(float t)
+float CCinemaPath::EaseOutIn(float t) const
 {
 	if (t < m_Switch)
 		return EaseOut(1.0f/m_Switch * t) * m_Switch;
@@ -103,22 +112,22 @@ float CCinemaPath::EaseOutIn(float t)
 
 
 //Distortion style functions
-float CCinemaPath::EaseDefault(float t)
+float CCinemaPath::EaseDefault(float t) const
 {
 	return t;
 }
-float CCinemaPath::EaseGrowth(float t)
+float CCinemaPath::EaseGrowth(float t) const
 {
 	return pow(t, m_Growth);
 }
 
-float CCinemaPath::EaseExpo(float t)
+float CCinemaPath::EaseExpo(float t) const
 {
 	if(t == 0)
 		return t;
     return powf(m_Growth, 10*(t-1.0f));
 }
-float CCinemaPath::EaseCircle(float t)
+float CCinemaPath::EaseCircle(float t) const
 {
 	 t = -(sqrt(1.0f - t*t) - 1.0f);
      if(m_GrowthCount > 1.0f)
@@ -129,7 +138,7 @@ float CCinemaPath::EaseCircle(float t)
 	 return t;
 }
 
-float CCinemaPath::EaseSine(float t)
+float CCinemaPath::EaseSine(float t) const
 {
      t = 1.0f - cos(t * PI/2);
      if(m_GrowthCount > 1.0f)
@@ -140,10 +149,14 @@ float CCinemaPath::EaseSine(float t)
 	 return t;
 }
 
-
 //-------CinemaTrack functions------
 //AddPath-For building tracks from loaded file
-void CCinemaTrack::AddPath(CCinemaData& data, TNSpline& spline)
+CCinemaTrack::CCinemaTrack() : m_AbsoluteTime(0), m_Timescale(1),
+	m_TotalDuration(0)
+{
+	 m_CPA = m_Paths.end(); 
+}
+void CCinemaTrack::AddPath(const CCinemaData& data, const TNSpline& spline)
 {
 	CCinemaPath path(data, spline);
 	path.m_TimeElapsed=0;
@@ -156,16 +169,16 @@ void CCinemaTrack::AddPath(CCinemaData& data, TNSpline& spline)
 	//Set distortion mode and style
 	switch(data.m_Mode)
 	{
-	case EM_IN:
+	case CCinemaPath::EM_IN:
 		SetTemp->DistModePtr = &CCinemaPath::EaseIn;
 		break;
-	case EM_OUT:
+	case CCinemaPath::EM_OUT:
 		SetTemp->DistModePtr = &CCinemaPath::EaseOut;
 		break;
-	case EM_INOUT:
+	case CCinemaPath::EM_INOUT:
 		SetTemp->DistModePtr = &CCinemaPath::EaseInOut;
 		break;
-	case EM_OUTIN:
+	case CCinemaPath::EM_OUTIN:
 		SetTemp->DistModePtr = &CCinemaPath::EaseOutIn;
 		break;
 	default:
@@ -175,19 +188,19 @@ void CCinemaTrack::AddPath(CCinemaData& data, TNSpline& spline)
 
 	switch (data.m_Style)
 	{
-	case ES_DEFAULT:
+	case CCinemaPath::ES_DEFAULT:
 		SetTemp->DistStylePtr = &CCinemaPath::EaseDefault;
 		break;
-	case ES_GROWTH:
+	case CCinemaPath::ES_GROWTH:
 		SetTemp->DistStylePtr = &CCinemaPath::EaseGrowth;
 		break;
-	case ES_EXPO:
+	case CCinemaPath::ES_EXPO:
 		SetTemp->DistStylePtr = &CCinemaPath::EaseExpo;
 		break;
-	case ES_CIRCLE:
+	case CCinemaPath::ES_CIRCLE:
 		SetTemp->DistStylePtr = &CCinemaPath::EaseCircle;
 		break;
-	case ES_SINE:
+	case CCinemaPath::ES_SINE:
 		SetTemp->DistStylePtr = &CCinemaPath::EaseSine;
 		break;
 	default:
@@ -195,8 +208,16 @@ void CCinemaTrack::AddPath(CCinemaData& data, TNSpline& spline)
 		break;
 	}
 	UpdateDuration();
-
 }
+void CCinemaTrack::AddPath(const CCinemaPath& path)
+{
+	m_Paths.push_back(path);
+	m_Paths.back().BuildSpline();
+	m_Paths.back().m_TimeElapsed = 0;
+
+	UpdateDuration();
+}
+
 void CCinemaTrack::UpdateDuration()
 {
 	m_TotalDuration=0;
@@ -257,6 +278,7 @@ bool CCinemaTrack::ValidateForward()
 	{
 		if (m_CPA == m_Paths.end() - 1)			
 		{
+			m_CPA->MoveToPointAt(1.f, CalculateRotation());
 			return false;
 		}
 		//Make sure it's within limits of path
@@ -281,7 +303,7 @@ bool CCinemaTrack::ValidateForward()
 				}		
 				else
 				{
-					m_CPA->m_TimeElapsed+=Pos;
+					m_CPA->m_TimeElapsed = Pos;
 					break;
 				}
 			}
@@ -289,46 +311,31 @@ bool CCinemaTrack::ValidateForward()
 	}	
 	return true;
 }
+CVector3D CCinemaTrack::CalculateRotation()
+{
+	if ( m_CPA == m_Paths.begin() )
+		return m_StartRotation;
+	CVector3D startRotation(0.f, 0.f, 0.f);
+	for ( std::vector<CCinemaPath>::iterator it=m_Paths.begin(); it!=m_CPA; ++it )
+		startRotation += it->GetData()->m_TotalRotation;
+	return startRotation + m_StartRotation;
+}
+
 bool CCinemaTrack::Play(float DeltaTime)
 {
-	if (m_CPA->m_TimeElapsed == 0)
-	{
-		 if (m_CPA == m_Paths.begin())
-		 {
-			 //Set camera to start at starting rotations
-			 CCamera *Cam=g_Game->GetView()->GetCamera();
-			 Cam->m_Orientation.SetIdentity();
-			 Cam->SetProjection (1, 5000, DEGTORAD(20));
-			 Cam->m_Orientation.SetXRotation(m_StartRotation.X);
-			 Cam->m_Orientation.RotateY(m_StartRotation.Y);
-			 Cam->m_Orientation.RotateZ(m_StartRotation.Z);
-
-		 }
-	}
-	m_CPA->m_TimeElapsed += m_TimeScale*DeltaTime;
-	m_AbsoluteTime += m_TimeScale*DeltaTime;
+	m_CPA->m_TimeElapsed += m_Timescale*DeltaTime;
+	m_AbsoluteTime += m_Timescale*DeltaTime;
 
 	if (!Validate())
 		return false;
-	m_CPA->MoveToPointAt( m_CPA->GetElapsedTime() / m_CPA->GetDuration(), m_StartRotation);
+	CVector3D rotation = CalculateRotation();
+	m_CPA->MoveToPointAt( m_CPA->GetElapsedTime() / m_CPA->GetDuration(), rotation);
 	return true;
 }
-void CCinemaTrack::MoveToPointAt(float t)
+
+CCinemaManager::CCinemaManager() : m_DrawCurrentSpline(false), 
+			m_DrawAllSplines(false), m_Active(true), m_CurrentTrack(false)
 {
-	m_CPA->m_TimeElapsed = t;
-	if ( !Validate() )
-		return;
-	MoveToPointAt(m_CPA->m_TimeElapsed / m_CPA->GetDuration());
-}
-void CCinemaTrack::MoveToPointAbsolute(float time)
-{
-	m_CPA = m_Paths.begin();
-	m_AbsoluteTime = m_CPA->m_TimeElapsed = time;
-	
-	if (!ValidateForward())
-		return;
-	else
-		m_CPA->MoveToPointAt(m_CPA->m_TimeElapsed, m_StartRotation);
 }
 
 void CCinemaManager::AddTrack(CCinemaTrack track, const CStrW& name)
@@ -346,6 +353,8 @@ void CCinemaManager::QueueTrack(const CStrW& name, bool queue )
 	else
 	{
 		debug_assert(HasTrack(name));
+		if ( m_Tracks[name].m_Paths.empty() )
+			return;
 		m_TrackQueue.push_back(m_Tracks[name]);
 		m_TrackQueue.back().m_CPA = m_TrackQueue.back().m_Paths.begin();
 	}
@@ -354,7 +363,96 @@ void CCinemaManager::OverrideTrack(const CStrW& name)
 {
 	m_TrackQueue.clear();
 	debug_assert(HasTrack(name));
+	if ( m_Tracks[name].m_Paths.empty() )
+		return;
 	m_TrackQueue.push_back( m_Tracks[name] );
+	m_TrackQueue.back().m_CPA = m_TrackQueue.back().m_Paths.begin();
+}
+void CCinemaManager::SetAllTracks( const std::map<CStrW, CCinemaTrack>& tracks)
+{
+	m_Tracks = tracks;
+	for ( std::map<CStrW, CCinemaTrack>::iterator it=m_Tracks.begin();
+			it != m_Tracks.end(); ++it )
+	{
+		it->second.m_CPA = it->second.m_Paths.begin();
+	}
+}
+void CCinemaManager::SetCurrentTrack(const CStrW& name, bool all, bool current, bool drawLines)
+{
+	debug_assert(HasTrack(name));
+	m_CurrentTrack = &m_Tracks[name];
+	m_DrawAllSplines = all;
+	m_DrawCurrentSpline = current;
+	m_DrawLines = drawLines;
+	DrawAllSplines();
+}
+void CCinemaManager::SetCurrentPath(const int path)
+{
+	debug_assert(m_CurrentTrack);
+	m_CurrentPath = path;
+	m_CurrentTrack->m_CPA = m_CurrentTrack->m_Paths.begin() + path;
+}
+bool CCinemaManager::HasTrack(const CStrW& name) const
+{ 
+	return m_Tracks.find(name) != m_Tracks.end();
+}
+
+void CCinemaManager::DrawAllSplines() const
+{
+	if ( !(m_DrawAllSplines || m_DrawCurrentSpline) )
+		return;
+	static const int smoothness = 200;
+	
+	if ( m_DrawAllSplines )
+	{
+		for ( std::vector<CCinemaPath>::iterator it = m_CurrentTrack->m_Paths.begin(); 
+						it != m_CurrentTrack->m_Paths.end(); ++it )
+		{			
+			it->DrawSpline(CVector4D(0.f, 0.f, 1.f, 1.f), smoothness, m_DrawLines);
+		}
+	}
+	if ( m_DrawCurrentSpline && m_CurrentTrack->m_CPA != 
+									m_CurrentTrack->m_Paths.end() )
+	{
+		if ( m_DrawAllSplines )
+		{
+			m_CurrentTrack->m_CPA->DrawSpline(CVector4D(1.f, 0.f, 0.f, 1.f), 
+												smoothness, m_DrawLines);
+		}
+		else
+		{
+			m_CurrentTrack->m_CPA->DrawSpline(CVector4D(0.f, 0.f, 1.f, 1.f), 
+											smoothness, m_DrawLines);
+		}
+	}
+}
+void CCinemaManager::MoveToPointAt(float time)
+{
+	debug_assert(m_CurrentTrack);
+	StopPlaying();
+	if ( m_CurrentTrack->m_Paths.empty() )
+		return;
+
+	m_CurrentTrack->m_CPA->m_TimeElapsed = time;
+	if ( !m_CurrentTrack->Validate() )
+		return;
+	m_CurrentTrack->m_CPA->MoveToPointAt(m_CurrentTrack->m_CPA->m_TimeElapsed / 
+		m_CurrentTrack->m_CPA->GetDuration(), m_CurrentTrack->CalculateRotation());
+}
+void CCinemaManager::MoveToPointAbsolute(float time)
+{
+	debug_assert(m_CurrentTrack);
+	g_Game->GetView()->GetCinema()->StopPlaying();
+	if ( m_CurrentTrack->m_Paths.empty() )
+		return;
+
+	m_CurrentTrack->m_CPA = m_CurrentTrack->m_Paths.begin();
+	m_CurrentTrack->m_AbsoluteTime = m_CurrentTrack->m_CPA->m_TimeElapsed = time;
+	
+	if (!m_CurrentTrack->ValidateForward())
+		return;
+	m_CurrentTrack->m_CPA->MoveToPointAt(m_CurrentTrack->m_CPA->m_TimeElapsed / 
+	m_CurrentTrack->m_CPA->GetDuration(), m_CurrentTrack->CalculateRotation());
 }
 bool CCinemaManager::Update(float DeltaTime)
 {
@@ -364,71 +462,4 @@ bool CCinemaManager::Update(float DeltaTime)
 		return false;
 	}
 	return true;
-}
-
-int CCinemaManager::LoadTracks()
-{
-	unsigned int fileID;
-	int numTracks;
-
-	//NOTE: How do you find the current scenario's cinematics?
-	FileIOBuf buf; size_t size;
-	RETURN_ERR(vfs_load("FILENAME", buf, size));
-	std::istringstream Stream(std::string((const char*)buf, (int)size), std::istringstream::binary);
-	(void)file_buf_free(buf);
-
-	//Read in lone data
-	Stream >> fileID;
-	Stream >> numTracks;
-
-	if (fileID != 0x0ADC)
-	{
-		debug_printf("Cinematic file not found for (FILENAME)!");
-		return 0;
-	}
-	for (int i=0; i < numTracks; i++)
-	{
-		CCinemaTrack tmpTrack;
-
-		CVector3D tmpPos;
-		float tmpTime;
-		int numPaths;
-		CStr Name;
-
-		Stream >> Name;
-		Stream >> numPaths;
-		Stream >> tmpTrack.m_StartRotation.X;
-		Stream >> tmpTrack.m_StartRotation.Y;
-		Stream >> tmpTrack.m_StartRotation.Z;
-
-		for (int j=0; j < numPaths; j++)
-		{
-			CCinemaData tmpData;
-			TNSpline tmpSpline;
-			int numNodes;
-			//load main data
-			Stream >> numNodes;
-			Stream >> tmpData.m_TotalRotation.X;
-			Stream >> tmpData.m_TotalRotation.Y;
-			Stream >> tmpData.m_TotalRotation.Z;
-			Stream >> tmpData.m_Growth;
-			tmpData.m_GrowthCount = tmpData.m_Growth;
-			Stream >> tmpData.m_Switch;
-			Stream >> tmpData.m_Mode;
-			Stream >> tmpData.m_Style;
-
-			//Get point data for path
-			for (int x=0; x<numNodes; x++)
-			{
-				Stream >> tmpPos.X;
-				Stream >> tmpPos.Y;
-				Stream >> tmpPos.Z;
-				Stream >> tmpTime;
-				tmpSpline.AddNode( tmpPos, tmpTime );
-			}
-			tmpTrack.AddPath(tmpData, tmpSpline);
-		}
-		AddTrack(tmpTrack, Name);
-	}
-	return 0;
 }

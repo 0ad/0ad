@@ -2,17 +2,6 @@
 #ifndef H_CinemaTracks_H
 #define H_CinemaTracks_H
 
-#define EM_IN 0
-#define EM_OUT 1
-#define EM_INOUT 2
-#define EM_OUTIN 3
-
-#define ES_DEFAULT 0
-#define ES_GROWTH 1
-#define ES_EXPO 2
-#define ES_CIRCLE 3
-#define ES_SINE 4
-
 #include <list>
 #include <map>
 #include "ps/CStr.h"
@@ -22,6 +11,7 @@
 	Andrew (aka pyrolink)
 	Contact: ajdecker1022@msn.com
 	desc: contains various functions used for cinematic camera tracks
+	See also: CinemaHandler.cpp, Cinematic.h/.cpp
 */
 
 class CVector3D;
@@ -32,15 +22,16 @@ class CCamera;
 class CCinemaData
 {
 public:
-	CCinemaData() {}
-	~CCinemaData() {}
+	CCinemaData() : m_GrowthCount(0), m_Growth(0), m_Switch(0), 
+					m_Mode(0), m_Style(0) {}
+	virtual ~CCinemaData() {}
 	
 	const CCinemaData* GetData() const { return this; }
 	
 	CVector3D m_TotalRotation;
 	
 	//Distortion variables
-	float m_GrowthCount;
+	mutable float m_GrowthCount;
 	float m_Growth;
 	float m_Switch;
 	int m_Mode;
@@ -51,112 +42,120 @@ public:
 //Once the data is part of the path, it shouldn't be changeable
 class CCinemaPath : private CCinemaData, public TNSpline
 {
-	friend class CCinemaTrack;
+	//friend class CCinemaTrack;
 public:
 	CCinemaPath(const CCinemaData& data, const TNSpline& spline);
 	~CCinemaPath() { DistStylePtr = NULL;  DistModePtr = NULL; }
 	
-	void ResetRotation(float t);
+	enum { EM_IN, EM_OUT, EM_INOUT, EM_OUTIN };
+	enum { ES_DEFAULT, ES_GROWTH, ES_EXPO, ES_CIRCLE, ES_SINE };
+	
 	//sets camera position to calculated point on spline
 	void MoveToPointAt(float t, const CVector3D &startRotation);
 	
-	//void MoveToPointAt(float t);
-	
 	//Distortion mode functions-change how ratio is passed to distortion style functions
-	float EaseIn(float t);
-	float EaseOut(float t);
-	float EaseInOut(float t);
-	float EaseOutIn(float t);
+	float EaseIn(float t) const;
+	float EaseOut(float t) const;
+	float EaseInOut(float t) const;
+	float EaseOutIn(float t) const;
 
 	//Distortion style functions
-	float EaseDefault(float t);
-	float EaseGrowth(float t);
-	float EaseExpo(float t);
-	float EaseCircle(float t);
-	float EaseSine(float t);
+	float EaseDefault(float t) const;
+	float EaseGrowth(float t) const;
+	float EaseExpo(float t) const;
+	float EaseCircle(float t) const;
+	float EaseSine(float t) const;
 	
-	float (CCinemaPath::*DistStylePtr)(float ratio);
-	float (CCinemaPath::*DistModePtr)(float ratio);
+	float (CCinemaPath::*DistStylePtr)(float ratio) const;
+	float (CCinemaPath::*DistModePtr)(float ratio) const;
 
 	const CCinemaData* GetData() const { return CCinemaData::GetData(); }
 
 public:
 
-	void DrawSpline(CVector4D RGBA, int smoothness);
+	void DrawSpline(const CVector4D& RGBA, int smoothness, bool lines) const;
 
 	inline CVector3D GetNodePosition(const int index) const { return Node[index].Position; }
 	inline float GetNodeDuration(const int index) const { return Node[index].Distance; }
 	inline float GetDuration() const { return MaxDistance; }
 	inline float GetElapsedTime() const { return m_TimeElapsed; }
 	const std::vector<SplineData>& GetAllNodes() const { return Node; } 
-//	inline void SetElapsedTime(float time) { m_TimeElapsed = time; }
 	
-private:
 	float m_TimeElapsed;
-
 };
 
 class CCinemaTrack
 {
 	friend class CCinemaManager;
 public: 
-	CCinemaTrack() {}
+	CCinemaTrack();
 	~CCinemaTrack() {}
 	
-	void AddPath(CCinemaData& data, TNSpline& spline);
-	inline void SetTimeScale(float scale) { m_TimeScale = scale; }
+	void AddPath(const CCinemaData& data, const TNSpline& spline);
+	void AddPath(const CCinemaPath& path);
+	inline void SetTimescale(float scale) { m_Timescale = scale; }
 	inline void SetStartRotation(CVector3D rotation) { m_StartRotation = rotation; }
 	void UpdateDuration();
 
-	//DOES NOT set CPA to Paths.begin().  Returns-false indicates it's finished, 
-	//true means it's still playing. 
+	//Returns false if finished
 	bool Play(float DeltaTime);
 	bool Validate();
-	void MoveToPointAt(float t);
-	void MoveToPointAbsolute(float time);	//Time, not ratio, in terms of track
 
 	inline const CVector3D& GetRotation() const { return m_StartRotation; }
-	inline float GetTimeScale() const { return m_TimeScale; }
+	inline float GetTimescale() const { return m_Timescale; }
 	inline float GetTotalDuration() const { return m_TotalDuration; }
 	inline const std::vector<CCinemaPath>& GetAllPaths() const { return m_Paths; }
-
+	
+	
 private:
 	std::vector<CCinemaPath> m_Paths;
 	std::vector<CCinemaPath>::iterator m_CPA;	//current path
 	CVector3D m_StartRotation;
-	float m_TimeScale;	//a negative timescale results in backwards play
+	float m_Timescale;	//a negative timescale results in backwards play
 	float m_AbsoluteTime;	//Current time of track, in absolute terms (not path)
 	float m_TotalDuration;
 
 	bool ValidateForward();
 	bool ValidateRewind();
+	CVector3D CalculateRotation();
 };
 
-//Class for in game playing of cinematics
+//Class for in game playing of cinematics. Should only be instantiated
+//in CGameView. 
 class CCinemaManager
 {
 public:
-	CCinemaManager() { m_Active=false; }
+	CCinemaManager();
 	~CCinemaManager() {}
-	
+
 	void AddTrack(CCinemaTrack track, const CStrW& name);
-	int LoadTracks();	//Loads tracks from file
-	
-	//Adds track to list of being played.  (Called by triggers?)
+
+	//Adds track to list of being played. 
 	void QueueTrack(const CStrW& name, bool queue);
 	void OverrideTrack(const CStrW& name);	//clears track queue and replaces with 'name'
 	bool Update(float DeltaTime);
 	
+	//These stop track play, and accept time, not ratio of time
+	void MoveToPointAt(float time);
+	void MoveToPointAbsolute(float time);	//Time in terms of track
+
+	inline void StopPlaying() { m_TrackQueue.clear(); }
+	void DrawAllSplines() const;
+	
 	inline bool IsPlaying() const { return !m_TrackQueue.empty(); }
-	bool HasTrack(const CStrW& name) const { return m_Tracks.find(name) != m_Tracks.end(); }
+	bool HasTrack(const CStrW& name) const; 
 	inline bool IsActive() const { return m_Active; }
 	inline void SetActive(bool active) { m_Active=active; }
 
-	CCinemaTrack* GetTrack(const CStrW& name) { debug_assert(HasTrack(name)); return &m_Tracks[name]; } 
 	inline const std::map<CStrW, CCinemaTrack>& GetAllTracks() { return m_Tracks; }
-	inline void SetAllTracks( const std::map<CStrW, CCinemaTrack>& tracks) { m_Tracks = tracks; }
+	void SetAllTracks( const std::map<CStrW, CCinemaTrack>& tracks);
+	void SetCurrentTrack(const CStrW& name, bool all, bool current, bool lines);
+	void SetCurrentPath(int path);
+
 private:
-	bool m_Active;
+	bool m_Active, m_DrawCurrentSpline, m_DrawAllSplines, m_DrawLines;
+	int m_CurrentPath;
+	CCinemaTrack* m_CurrentTrack;
 	std::map<CStrW, CCinemaTrack> m_Tracks;
 	std::list<CCinemaTrack> m_TrackQueue;
 };

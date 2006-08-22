@@ -91,6 +91,35 @@ void CQuaternion::FromEulerAngles (float x, float y, float z)
 
 	(*this) = QYaw * QPitch * QRoll;
 }
+CVector3D CQuaternion::ToEulerAngles()
+{
+    float heading, attitude, bank;
+	float sqw = m_W * m_W;
+    float sqx = m_V.X*m_V.X;
+    float sqy = m_V.Y*m_V.Y;
+    float sqz = m_V.Z*m_V.Z;
+	float unit = sqx + sqy + sqz + sqw; // if normalised is one, otherwise is correction factor
+	float test = m_V.X*m_V.Y + m_V.Z*m_W;
+	if (test > (.5f-EPSILON)*unit) 
+	{ // singularity at north pole
+		heading = 2 * atan2( m_V.X, m_W);
+		attitude = PI/2;
+		bank = 0;
+	}
+	else if (test < (-.5f+EPSILON)*unit) 
+	{ // singularity at south pole
+		heading = -2 * atan2(m_V.X, m_W);
+		attitude = -PI/2;
+		bank = 0;
+	}
+	else 
+	{
+		heading = atan2(2.f * (m_V.X*m_V.Y + m_V.Z*m_W),(sqx - sqy - sqz + sqw));
+	    bank = atan2(2.f * (m_V.Y*m_V.Z + m_V.X*m_W),(-sqx - sqy + sqz + sqw));  
+		attitude = asin(-2.f * (m_V.X*m_V.Z - m_V.Y*m_W));
+	}
+	return CVector3D(bank, attitude, heading);
+}
 
 CMatrix3D CQuaternion::ToMatrix () const
 {

@@ -279,6 +279,10 @@ COMMAND(SetObjectSettings, NOMERGE,
 struct sCinemaSplineNode
 {
 	Shareable<float> x, y, z, t;
+public:
+	sCinemaSplineNode(float px, float py, float pz) : x(px), y(py), z(pz), t(0.0f){}
+	sCinemaSplineNode() {}
+	void SetTime(float _t) { t = _t; }
 };
 SHAREABLE_STRUCT(sCinemaSplineNode);
 
@@ -287,6 +291,22 @@ struct sCinemaPath
 	Shareable<std::vector<AtlasMessage::sCinemaSplineNode> > nodes;
 	Shareable<float> duration, x, y, z;
 	Shareable<int> mode, growth, change, style;	//change == switch point
+
+	sCinemaPath(float rx, float ry, float rz) : x(rx), y(ry), z(rz),
+			mode(0), style(0), change(0), growth(0), duration(0) {}
+	sCinemaPath() : x(0), y(0), z(0), mode(0), style(0),
+								change(0), growth(0), duration(0) {}
+	
+	AtlasMessage::sCinemaPath operator-(const AtlasMessage::sCinemaPath& path)
+	{
+		return AtlasMessage::sCinemaPath(x - path.x, y - path.y,
+								z - path.z);
+	}
+	AtlasMessage::sCinemaPath operator+(const AtlasMessage::sCinemaPath& path)
+	{
+		return AtlasMessage::sCinemaPath(x + path.x, y + path.y,
+									z + path.z);
+	}
 };
 SHAREABLE_STRUCT(sCinemaPath);
 
@@ -295,38 +315,44 @@ struct sCinemaTrack
 	Shareable<std::wstring> name;
 	Shareable<float> x, y, z, timescale, duration;
 	Shareable<std::vector<AtlasMessage::sCinemaPath> > paths;
+
+public:
+	sCinemaTrack(float rx, float ry, float rz, std::wstring track) 
+				: x(rx), y(ry), z(rz), timescale(1.f), duration(0) 
+			{ name = track; }
+	sCinemaTrack() : x(0), y(0), z(0), timescale(1.f), duration(0) {} 
 };
 SHAREABLE_STRUCT(sCinemaTrack);
 
-struct eCinemaMovementMode { enum { SMOOTH, IMMEDIATE_PATH, IMMEDIATE_TRACK }; };
-
-struct sCinemaIcon
+struct eCinemaEventMode { enum { SMOOTH, SELECT, IMMEDIATE_PATH, 
+								IMMEDIATE_TRACK }; };
+struct sCameraInfo
 {
-	Shareable<std::wstring> name;
-	Shareable<std::vector<unsigned char> > imageData;
+	Shareable<float> pX, pY, pZ, rX, rY, rZ;	//position and rotation
 };
-SHAREABLE_STRUCT(sCinemaIcon);
+SHAREABLE_STRUCT(sCameraInfo);
 
 QUERY(GetCinemaTracks,
 	  , //no input
 	  ((std::vector<AtlasMessage::sCinemaTrack> , tracks))
 	  );
 
-QUERY(GetCinemaIcons,
+QUERY(GetCameraInfo,
 	  ,
-	  ((std::vector<AtlasMessage::sCinemaIcon>, images))
+	  ((AtlasMessage::sCameraInfo, info))
 	  );
 
-
-COMMAND(SetCinemaTracks, MERGE,
+COMMAND(SetCinemaTracks, NOMERGE,
 		((std::vector<AtlasMessage::sCinemaTrack>, tracks))
-		((float, timescale))
 		);
 
-MESSAGE(CinemaMovement,
+MESSAGE(CinemaEvent,
 		((std::wstring, track))
 		((int, mode))
 		((float, t))
+		((bool, drawAll))
+		((bool, drawCurrent))
+		((bool, lines))
 		);
 
 //////////////////////////////////////////////////////////////////////////

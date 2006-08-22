@@ -76,7 +76,7 @@ void RNSpline::BuildSpline()
 }
 
 // spline access function. time is 0 -> 1
-CVector3D RNSpline::GetPosition(float time)
+CVector3D RNSpline::GetPosition(float time) const
 {
   if ( NodeCount < 2 )
 	  return CVector3D(0.0f, 0.0f, 0.0f);

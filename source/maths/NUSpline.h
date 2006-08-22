@@ -21,9 +21,10 @@ class RNSpline
 public:
 	
 	RNSpline() { NodeCount = 0; }
+	virtual ~RNSpline() {}
   void AddNode(const CVector3D &pos);
   void BuildSpline();
-  CVector3D GetPosition(float time);
+  CVector3D GetPosition(float time) const;
   
   float MaxDistance;
   int NodeCount;
@@ -37,6 +38,7 @@ protected:
 class SNSpline : public RNSpline
 {
 public:
+	virtual ~SNSpline() {}
   void BuildSpline(){ RNSpline::BuildSpline(); Smooth(); Smooth(); Smooth(); }
   void Smooth();
 };
@@ -44,6 +46,7 @@ public:
 class TNSpline : public SNSpline
 {
 public:
+	virtual ~TNSpline() {}
   void AddNode(const CVector3D &pos, float timePeriod);
   void PushNode() { Node.push_back( SplineData() ); }
   void InsertNode(const int index, const CVector3D &pos, float timePeriod);

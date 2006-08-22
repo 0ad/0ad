@@ -7,31 +7,33 @@
 #include "ps/CStr.h"
 #include "ps/CLogger.h"
 #include "ps/VFSUtil.h"
-#include "lib/res/graphics/tex.h"
+#include "maths/Quaternion.h"
+#include "lib/res/graphics/ogl_tex.h"
 
 #define LOG_CATEGORY "Cinema"
 
 namespace AtlasMessage {
 
-sCinemaTrack ConstructCinemaTrack(const CCinemaTrack& _track)
+sCinemaTrack ConstructCinemaTrack(const CCinemaTrack& data)
 {
 	sCinemaTrack track;
-	const CVector3D& rotation = _track.GetRotation();
-	track.x = rotation.X;
-	track.y = rotation.Y;
-	track.z = rotation.Z;
-	track.timescale = _track.GetTimeScale();
-	track.duration = _track.GetTotalDuration();
+	const CVector3D& rotation = data.GetRotation();
+	track.x = RADTODEG(rotation.X);
+	track.y = RADTODEG(rotation.Y);
+	track.z = RADTODEG(rotation.Z);
+	track.timescale = data.GetTimescale();
+	track.duration = data.GetTotalDuration();
 	
 	return track;
 }
-sCinemaPath ConstructCinemaPath(const CCinemaData* data)
+sCinemaPath ConstructCinemaPath(const CCinemaPath* source)
 {
 	sCinemaPath path;
+	const CCinemaData* data = source->GetData();
 
-	path.x = data->m_TotalRotation.X;
-	path.y = data->m_TotalRotation.Y;
-	path.z = data->m_TotalRotation.Z;
+	path.x = RADTODEG(data->m_TotalRotation.X);
+	path.y = RADTODEG(data->m_TotalRotation.Y);
+	path.z = RADTODEG(data->m_TotalRotation.Z);
 	path.mode = data->m_Mode;
 	path.style = data->m_Style;
 	path.growth = data->m_Growth;
@@ -42,7 +44,8 @@ sCinemaPath ConstructCinemaPath(const CCinemaData* data)
 CCinemaData ConstructCinemaData(const sCinemaPath& path)
 {
 	CCinemaData data;
-	data.m_TotalRotation = CVector3D(path.x, path.y, path.z);
+	data.m_TotalRotation = CVector3D(DEGTORAD(path.x), DEGTORAD(path.y), 
+													DEGTORAD(path.z));
 	data.m_Growth = data.m_GrowthCount = path.growth;
 	data.m_Switch = path.change;
 	data.m_Mode = path.mode;
@@ -77,7 +80,7 @@ std::vector<sCinemaTrack> GetCurrentTracks()
 
 		for ( std::vector<CCinemaPath>::const_iterator it2=paths.begin(); it2!=paths.end(); it2++ )
 		{
-			sCinemaPath path = ConstructCinemaPath(it2->GetData());	//Get data part of path
+			sCinemaPath path = ConstructCinemaPath(&*it2);	
 			const std::vector<SplineData>& nodes = it2->GetAllNodes();
 
 			std::vector<sCinemaSplineNode> atlasNodes;
@@ -86,7 +89,19 @@ std::vector<sCinemaTrack> GetCurrentTracks()
 			{
 				atlasNodes.push_back( ConstructCinemaNode(nodes[i]) );
 			}
+			if ( !atlasNodes.empty() )
+			{
+				float back = atlasNodes.back().t;
+				if ( atlasNodes.size() > 2 )
+				{
+					for ( size_t i=atlasNodes.size()-2; i>0; --i )
+						atlasNodes[i].t = atlasNodes[i-1].t;
+				}
+				atlasNodes.back().t = atlasNodes.front().t;
+				atlasNodes.front().t = back;
+			}
 			path.nodes = atlasNodes;
+			path.duration = it2->GetDuration();
 			atlasPaths.push_back(path);
 		}
 		atlasTrack.paths = atlasPaths;
@@ -102,77 +117,65 @@ void SetCurrentTracks(const std::vector<sCinemaTrack>& atlasTracks)
 	{
 		CStrW trackName(*it->name);
 		tracks[trackName] = CCinemaTrack();
-		tracks[trackName].SetStartRotation( CVector3D(it->x, it->y, it->z) );
-		tracks[trackName].SetTimeScale(it->timescale);
+		tracks[trackName].SetStartRotation( CVector3D(DEGTORAD(it->x),
+									DEGTORAD(it->y), DEGTORAD(it->z)) );
+		tracks[trackName].SetTimescale(it->timescale);
 		const std::vector<sCinemaPath> paths = *it->paths;
-		
-		for ( std::vector<sCinemaPath>::const_iterator it2=paths.begin(); it2!=paths.end(); it2++ )
+		size_t i=0;
+
+		for ( std::vector<sCinemaPath>::const_iterator it2=paths.begin();
+				it2!=paths.end(); it2++, ++i )
 		{
 			const sCinemaPath& atlasPath = *it2;
 			const std::vector<sCinemaSplineNode> nodes = *atlasPath.nodes;
 			TNSpline spline;
 			CCinemaData data = ConstructCinemaData(atlasPath);
 
-			for ( size_t i=0; i<nodes.size(); ++i )
+			for ( size_t j=0; j<nodes.size(); ++j )
 			{	
-				spline.AddNode( CVector3D(nodes[i].x, nodes[i].y, nodes[i].z), nodes[i].t );
+				spline.AddNode( CVector3D(nodes[j].x, nodes[j].y, nodes[j].z), nodes[j].t );
 			}
 			tracks[trackName].AddPath(data, spline);
 		}
 	}
 	g_Game->GetView()->GetCinema()->SetAllTracks(tracks);
 }
-
-QUERYHANDLER(GetCinemaIcons)
+QUERYHANDLER(GetCameraInfo)
 {
-	VFSUtil::FileList files;
-	VFSUtil::FindFiles("art/textures/ui/session/icons/cinematic/","", files);
-	FileIOBuf buf;
-	size_t bufsize;
-	std::vector<sCinemaIcon> iconList;
+	sCameraInfo info;
+	CMatrix3D* cam = &g_Game->GetView()->GetCamera()->m_Orientation;
 
-	for ( VFSUtil::FileList::iterator it=files.begin(); it != files.end(); it++ )
-	{
-		if ( tex_is_known_extension(*it) )
-		{
-			const char* file = it->c_str();
-
-			if ( vfs_load(file, buf, bufsize) < 0 )
-			{	
-				LOG( ERROR, LOG_CATEGORY, "Failure on loading cinematic icon %s", file );
-				file_buf_free(buf);
-				continue;
-			}
-			sCinemaIcon icon;
-			std::wstring name( CStrW( *it->AfterLast("/").BeforeFirst(".").c_str() ) );
-			std::vector<unsigned char> data;
-			data.resize(sizeof(data));
-
-			//Copy the buffer to the icon
-			for ( size_t i=0; *buf++; i++ )
-			{
-				data.push_back(*buf);
-			}
-			file_buf_free(buf);
-			icon.name = name;
-			icon.imageData = data;
-			iconList.push_back(icon);
-		}
-	}
-	msg->images = iconList;
+	CQuaternion quatRot = cam->GetRotation();
+	quatRot.Normalize();
+	CVector3D rotation = quatRot.ToEulerAngles();
+	rotation.X = RADTODEG(rotation.X); 
+	rotation.Y = RADTODEG(rotation.Y);
+	rotation.Z = RADTODEG(rotation.Z);
+	CVector3D translation = cam->GetTranslation();
+	
+	info.pX = translation.X;
+	info.pY = translation.Y;
+	info.pZ = translation.Z;
+	info.rX = rotation.X;
+	info.rY = rotation.Y;
+	info.rZ = rotation.Z;
+	msg->info = info;
 }
 
-MESSAGEHANDLER(CinemaMovement)
+MESSAGEHANDLER(CinemaEvent)
 {
 	CCinemaManager* manager = g_Game->GetView()->GetCinema();
-	CCinemaTrack* track = manager->GetTrack(*msg->track);
+	manager->SetCurrentTrack(*msg->track, msg->drawAll, 
+				msg->drawCurrent, msg->lines);
 
-	if ( msg->mode == eCinemaMovementMode::SMOOTH )
+	if ( msg->mode == eCinemaEventMode::SMOOTH )
 		manager->OverrideTrack(*msg->track);	
-	else if ( msg->mode == eCinemaMovementMode::IMMEDIATE_PATH )
-		track->MoveToPointAt(msg->t);
-	else if ( msg->mode == eCinemaMovementMode::IMMEDIATE_TRACK )
-		track->MoveToPointAbsolute(msg->t);
+	else if ( msg->mode == eCinemaEventMode::IMMEDIATE_PATH )
+		manager->MoveToPointAt(msg->t);
+	else if ( msg->mode == eCinemaEventMode::IMMEDIATE_TRACK )
+		manager->MoveToPointAbsolute(msg->t);
+	else
+		manager->SetCurrentPath((int)msg->t);
 }
 			
 BEGIN_COMMAND(SetCinemaTracks)

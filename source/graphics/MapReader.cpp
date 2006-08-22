@@ -14,6 +14,7 @@
 #include "maths/MathUtil.h"
 #include "Camera.h"
 #include "graphics/Patch.h"
+#include "graphics/GameView.h"
 #include "renderer/WaterManager.h"
 #include "renderer/SkyManager.h"
 
@@ -38,7 +39,7 @@ CMapReader::CMapReader()
 // LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
 void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain_,
 						 CUnitManager *pUnitMan_, WaterManager* pWaterMan_, SkyManager* pSkyMan_,
-						 CLightEnv *pLightEnv_, CCamera *pCamera_)
+						 CLightEnv *pLightEnv_, CCamera *pCamera_, CCinemaManager* pCinema_)
 {
 	// latch parameters (held until DelayedLoadFinished)
 	pTerrain = pTerrain_;
@@ -47,6 +48,7 @@ void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain_,
 	pCamera = pCamera_;
 	pWaterMan = pWaterMan_;
 	pSkyMan = pSkyMan_;
+	pCinema = pCinema_;
 
 	// [25ms]
 	unpacker.Read(filename, "PSMP");
@@ -180,6 +182,57 @@ int CMapReader::UnpackTerrain()
 
 	return 0;
 }
+int CMapReader::UnpackCinema()
+{
+	size_t numTracks;
+	unpacker.UnpackRaw(&numTracks, (u32)sizeof(size_t));
+	
+	for ( size_t track=0; track < numTracks; ++track )
+	{
+		CCinemaTrack trackObj;
+		std::vector<CCinemaPath> paths;
+		CStr name;
+		size_t numPaths;
+		CVector3D startRotation;
+		float timescale;
+
+		unpacker.UnpackString(name);
+		unpacker.UnpackRaw(&timescale, sizeof(float));
+		unpacker.UnpackRaw(&numPaths, sizeof(size_t));
+		unpacker.UnpackRaw(&startRotation, sizeof(CVector3D));
+
+		trackObj.SetStartRotation(startRotation);
+		trackObj.SetTimescale(timescale);
+
+		for ( size_t i=0; i<numPaths; ++i )
+		{
+			TNSpline spline;
+			size_t numNodes;
+			CCinemaData data;
+			
+			if ( i != 0 )
+				unpacker.UnpackRaw(&data.m_TotalRotation, sizeof(CVector3D));
+			unpacker.UnpackRaw(&data.m_Mode, sizeof(data.m_Mode));
+			unpacker.UnpackRaw(&data.m_Style, sizeof(data.m_Style));
+			unpacker.UnpackRaw(&data.m_Growth, sizeof(data.m_Growth));
+			unpacker.UnpackRaw(&data.m_Switch, sizeof(data.m_Switch));
+			unpacker.UnpackRaw(&numNodes, sizeof(size_t));
+			data.m_GrowthCount = data.m_Growth;
+
+			for ( size_t j=0; j < numNodes; ++j )
+			{
+				CVector3D position;
+				float distance;
+				unpacker.UnpackRaw(&position, sizeof(position));
+				unpacker.UnpackRaw(&distance, sizeof(distance));
+				spline.AddNode(position, distance);
+			}
+			trackObj.AddPath(data, spline);
+		}
+		m_Tracks[CStrW(name)] = trackObj;
+	}
+	return 0;
+}
 
 // ApplyData: take all the input data, and rebuild the scene from it
 int CMapReader::ApplyData()
@@ -258,6 +311,7 @@ private:
 	CMapReader& m_MapReader;
 
 	int el_entity;
+	int el_tracks;
 	int el_template, el_player;
 	int el_position, el_orientation;
 	int el_nonentity;
@@ -279,6 +333,7 @@ private:
 
 	void ReadEnvironment(XMBElement parent);
 	void ReadCamera(XMBElement parent);
+	void ReadCinema(XMBElement parent);
 	int ReadEntities(XMBElement parent, double end_time);
 	int ReadNonEntities(XMBElement parent, double end_time);
 
@@ -301,6 +356,7 @@ void CXMLReader::Init(const CStr& xml_filename)
 #define EL(x) el_##x = xmb_file.getElementID(#x)
 #define AT(x) at_##x = xmb_file.getAttributeID(#x)
 	EL(entity);
+	EL(tracks);
 	EL(template);
 	EL(player);
 	EL(position);
@@ -480,7 +536,118 @@ void CXMLReader::ReadCamera(XMBElement parent)
 	m_MapReader.pCamera->m_Orientation.Translate(translation);
 	m_MapReader.pCamera->UpdateFrustum();
 }
+void CXMLReader::ReadCinema(XMBElement parent)
+{
+	#define EL(x) int el_##x = xmb_file.getElementID(#x)
+	#define AT(x) int at_##x = xmb_file.getAttributeID(#x)
 
+	EL(track);
+	EL(startrotation);
+	EL(path);
+	EL(rotation);
+	EL(distortion);
+	EL(node);
+	AT(name);
+	AT(timescale);
+	AT(mode);
+	AT(style);
+	AT(growth);
+	AT(switch);
+	AT(x);
+	AT(y);
+	AT(z);
+	AT(t);
+
+#undef EL
+#undef AT
+	
+	std::map<CStrW, CCinemaTrack> trackList;
+	XERO_ITER_EL(parent, element)
+	{
+		int elementName = element.getNodeName();
+			
+		if ( elementName == el_track )
+		{
+			CCinemaTrack track;
+			XMBAttributeList attrs = element.getAttributes();
+			CStrW name( CStr(attrs.getNamedItem(at_name)) );
+			float timescale = CStr(attrs.getNamedItem(at_timescale)).ToFloat();
+			track.SetTimescale(timescale);
+
+			XERO_ITER_EL(element, trackChild)
+			{
+				elementName = trackChild.getNodeName();
+
+				if ( elementName == el_startrotation )
+				{
+					attrs = trackChild.getAttributes();
+					float x = CStr(attrs.getNamedItem(at_x)).ToFloat();
+					float y = CStr(attrs.getNamedItem(at_y)).ToFloat();
+					float z = CStr(attrs.getNamedItem(at_z)).ToFloat();
+					track.SetStartRotation(CVector3D(x, y, z));
+				}
+				else if ( elementName == el_path )
+				{
+					CCinemaData pathData;
+					TNSpline spline, backwardSpline;
+
+					XERO_ITER_EL(trackChild, pathChild)
+					{
+						elementName = pathChild.getNodeName();
+						attrs = pathChild.getAttributes();
+
+						if ( elementName == el_rotation )
+						{
+							float x = CStr(attrs.getNamedItem(at_x)).ToFloat();
+							float y = CStr(attrs.getNamedItem(at_y)).ToFloat();
+							float z = CStr(attrs.getNamedItem(at_z)).ToFloat();
+							pathData.m_TotalRotation = CVector3D(x, y, z);
+						}
+						else if ( elementName == el_distortion )
+						{
+							pathData.m_Mode = CStr(attrs.getNamedItem(at_mode)).ToInt();
+							pathData.m_Style = CStr(attrs.getNamedItem(at_style)).ToInt();
+							pathData.m_Growth = CStr(attrs.getNamedItem(at_growth)).ToInt();
+							pathData.m_Switch = CStr(attrs.getNamedItem(at_switch)).ToInt();
+						}
+						else if ( elementName == el_node )
+						{
+							SplineData data;
+							data.Position.X = CStr(attrs.getNamedItem(at_x)).ToFloat();
+							data.Position.Y = CStr(attrs.getNamedItem(at_y)).ToFloat();
+							data.Position.Z = CStr(attrs.getNamedItem(at_z)).ToFloat();
+							data.Distance = CStr(attrs.getNamedItem(at_t)).ToFloat();
+							backwardSpline.AddNode(data.Position, data.Distance);
+						}
+						else
+							debug_warn("Invalid cinematic element for path child");
+					}	//node loop
+					CCinemaPath temp(pathData, backwardSpline);
+					const std::vector<SplineData>& nodes = temp.GetAllNodes();
+					if ( nodes.empty() )
+					{
+						debug_warn("Failure loading cinematics");
+						return;
+					}
+					
+					for ( std::vector<SplineData>::const_reverse_iterator 
+						it=nodes.rbegin(); it != nodes.rend(); ++it )
+					{
+						spline.AddNode(it->Position, it->Distance);
+					}
+					track.AddPath(pathData, spline);
+
+				}	// == el_path
+				else
+					debug_warn("Invalid cinematic element for track child");
+			}
+			trackList[name] = track;
+		}
+		else 
+			debug_warn("Invalid cinematic element for root track child");
+	}
+	g_Game->GetView()->GetCinema()->SetAllTracks(trackList);
+}
 
 int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 {
@@ -662,6 +829,10 @@ int CXMLReader::ProgressiveRead()
 			ret = ReadNonEntities(node, end_time);
 			if (ret != 0)	// error or timed out
 				return ret;
+		}
+		else if (name == "Tracks")
+		{
+			ReadCinema(node);
 		}
 		else
 			debug_warn("Invalid map XML data");

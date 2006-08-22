@@ -5,6 +5,7 @@
 #include "lib/res/handle.h"
 #include "ps/CStr.h"
 #include "LightEnv.h"
+#include "CinemaTrack.h"
 #include "ps/FileUnpacker.h"
 
 class CObjectEntry;
@@ -14,6 +15,7 @@ class WaterManager;
 class SkyManager;
 class CLightEnv;
 class CCamera;
+class CCinemaManager;
 
 class CXMLReader;
 
@@ -26,11 +28,13 @@ public:
 	CMapReader();
 	// LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
 	void LoadMap(const char* filename, CTerrain *pTerrain, CUnitManager *pUnitMan,
-		WaterManager* pWaterMan, SkyManager* pSkyMan, CLightEnv *pLightEnv, CCamera *pCamera);
+		WaterManager* pWaterMan, SkyManager* pSkyMan, CLightEnv *pLightEnv, CCamera *pCamera, CCinemaManager* pCinema);
 
 private:
 	// UnpackTerrain: unpack the terrain from the input stream
 	int UnpackTerrain();
+	//UnpackCinema: unpack the cinematic tracks from the input stream
+	int UnpackCinema();
 	// UnpackObjects: unpack world objects from the input stream
 	void UnpackObjects();
 	// UnpackObjects: unpack lighting parameters from the input stream
@@ -56,6 +60,8 @@ private:
 	std::vector<Handle> m_TerrainTextures;
 	// tile descriptions for each tile
 	std::vector<STileDesc> m_Tiles;
+	// cinematic tracks used by cinema manager
+	std::map<CStrW, CCinemaTrack> m_Tracks;
 	// list of object types used by map
 	std::vector<CStr> m_ObjectTypes;
 	// descriptions for each objects
@@ -71,6 +77,7 @@ private:
 	SkyManager* pSkyMan;
 	CLightEnv* pLightEnv;
 	CCamera* pCamera;
+	CCinemaManager* pCinema;
 	CStr filename_xml;
 
 	// UnpackTerrain generator state

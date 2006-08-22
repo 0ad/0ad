@@ -431,7 +431,6 @@ void CGameView::Update(float DeltaTime)
 			if(!m_TrackManager.Update(DeltaTime))
 				ResetCamera();
 		}
-		m_ViewCamera.UpdateFrustum();
 		return;
 	}
 
