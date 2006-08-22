@@ -47,9 +47,9 @@ const DrawCalls& DrawCalls::operator=(const DrawCalls&)
 // Implementations of graphical effects:
 
 
-const int TexScale1[3] = { 1, 1, 1 };
-const int TexScale2[3] = { 2, 2, 2 };
-const int TexScale4[3] = { 4, 4, 4 };
+const GLint TexScale1[3] = { 1, 1, 1 };
+const GLint TexScale2[3] = { 2, 2, 2 };
+const GLint TexScale4[3] = { 4, 4, 4 };
 
 class Effect_AddColor : public IGLState
 {
