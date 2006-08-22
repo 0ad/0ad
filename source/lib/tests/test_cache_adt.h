@@ -62,7 +62,8 @@ public:
 	}
 
 	// ensures all 3 variants of Landlord<> behave the same
-	void test_cache_policies()
+	// [PT: disabled because it's far too slow]
+	void DISABLED_test_cache_policies()
 	{
 		Cache<int, int, Landlord_Naive > c1;
 		Cache<int, int, Landlord_Cached> c2;

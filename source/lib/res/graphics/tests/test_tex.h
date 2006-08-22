@@ -113,7 +113,7 @@ public:
 		TS_ASSERT_OK(tex_wrap(2, 2, 24, 0, img, &t));
 		TS_ASSERT_OK(tex_transform_to(&t, TEX_MIPMAPS));
 		const u8* const out_img = tex_get_data(&t);
-		TS_ASSERT_EQUALS(tex_img_size(&t), 12+3);
+		TS_ASSERT_EQUALS((int)tex_img_size(&t), 12+3);
 		TS_ASSERT_SAME_DATA(out_img, img, 12);
 		TS_ASSERT_SAME_DATA(out_img+12, mipmap, 3);
 	}
@@ -124,11 +124,11 @@ public:
 
 		Tex t;
 		TS_ASSERT_OK(tex_wrap(100, 100, 32, TEX_ALPHA, dummy_img, &t));
-		TS_ASSERT_EQUALS(tex_img_size(&t), 40000);
+		TS_ASSERT_EQUALS((int)tex_img_size(&t), 40000);
 
 		// DXT rounds up to 4x4 blocks; DXT1a is 4bpp
 		Tex t2;
 		TS_ASSERT_OK(tex_wrap(97, 97, 4, DXT1A, dummy_img, &t2));
-		TS_ASSERT_EQUALS(tex_img_size(&t2),  5000);
+		TS_ASSERT_EQUALS((int)tex_img_size(&t2),  5000);
 	}
 };

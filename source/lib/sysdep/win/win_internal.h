@@ -52,9 +52,9 @@
 //#define NOVIRTUALKEYCODES // VK_*
 //#define NOWINMESSAGES     // WM_*, EM_*, LB_*, CB_*
 //#define NOWINSTYLES       // WS_*, CS_*, ES_*, LBS_*, SBS_*, CBS_*
-#define NOSYSMETRICS        // SM_*
+//#define NOSYSMETRICS      // SM_*
 #define NOMENUS             // MF_*
-#define NOICONS             // IDI_*
+//#define NOICONS           // IDI_*
 #define NOKEYSTATES         // MK_*
 //#define NOSYSCOMMANDS     // SC_*
 #define NORASTEROPS         // Binary and Tertiary raster ops
@@ -62,7 +62,7 @@
 #define OEMRESOURCE         // OEM Resource values
 #define NOATOM              // Atom Manager routines
 //#define NOCLIPBOARD       // Clipboard routines
-#define NOCOLOR             // Screen colors
+//#define NOCOLOR           // Screen colors
 //#define NOCTLMGR          // Control and Dialog routines
 #define NODRAWTEXT          // DrawText() and DT_*
 //#define NOGDI             // All GDI defines and routines
@@ -80,7 +80,7 @@
 //#define NOSOUND           // Sound driver routines
 #define NOTEXTMETRIC        // typedef TEXTMETRIC and associated routines
 //#define NOWH              // SetWindowsHook and WH_*
-#define NOWINOFFSETS        // GWL_*, GCL_*, associated routines
+//#define NOWINOFFSETS      // GWL_*, GCL_*, associated routines
 //#define NOCOMM            // COMM driver routines
 #define NOKANJI             // Kanji support stuff.
 #define NOHELP              // Help engine interface.

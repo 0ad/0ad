@@ -391,12 +391,13 @@ static const char* listCppTargets(const char* name)
 				strcat(g_buffer, "$(CC) $(CFLAGS) -MF $(OBJDIR)/$(<F:%%.c=%%.d) -o $@ -c $<\n");
 			else if (matches(ext, ".asm"))
 			{
-				char input_dir[512];						
+				char input_dir[512];
+				const char* opts;
+
 				strcpy(input_dir, path_translate(path_getdir(name) , NULL));
 				strcat(input_dir, "/");
 
-
-				const char* opts = "";
+				opts = "";
 				if (!os_is("windows"))
 					opts = "-dDONT_USE_UNDERLINE=1 ";
 				

@@ -727,6 +727,7 @@ const char* vs_filter_links(const char* name)
 void vs_list_files(const char* path, int stage)
 {
 	int i;
+	const char* pchHeader = prj_get_pch_header();
 	const char* pchSource = prj_get_pch_source();
 	const char* trimPrefix = prj_get_trimprefix();
 
@@ -807,9 +808,12 @@ void vs_list_files(const char* path, int stage)
 					tag_open("Tool");
 					tag_attr("Name=\"VCCustomBuildTool\"");
 					tag_attr("Description=\"Generating %s\"", targetname);
-					tag_attr("CommandLine=\"%s%s --part -o &quot;%s&quot; &quot;$(InputPath)&quot;\"",
+					tag_attr("CommandLine=\"%s%s --part %s%s -o &quot;%s&quot; &quot;$(InputPath)&quot;\"",
 						endsWith(prj_get_cxxtestpath(), ".pl")?"perl ":"",
-						path_translate(prj_get_cxxtestpath(), "windows"), targetname);
+						path_translate(prj_get_cxxtestpath(), "windows"),
+						pchHeader ? "--include=" : "",
+						pchHeader ? pchHeader : "",
+						targetname);
 					tag_attr("Outputs=\"%s\"", targetname);
 					tag_close("Tool", 0);
 

@@ -178,13 +178,15 @@ extern bool self_test_active;
 
 
 // for convenience, to avoid having to include all of these manually
-#include "precompiled.h"
 #include "lib_errors.h"
 #include "posix.h"
+
+#define CXXTEST_HAVE_EH
+#define CXXTEST_HAVE_STD
 
 #include <cxxtest/TestSuite.h>
 
 #define TS_ASSERT_OK(expr) TS_ASSERT_EQUALS((expr), INFO_OK)
-#define TS_ASSERT_STR_EQUALS(str1, str2) TS_ASSERT(!strcmp((str1), (str2)))
+#define TS_ASSERT_STR_EQUALS(str1, str2) TS_ASSERT_EQUALS(std::string(str1), std::string(str2))
 
 #endif	// #ifndef SELF_TEST_H__

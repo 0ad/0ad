@@ -19,7 +19,8 @@
 
 #include <cxxtest/Gui.h>
 
-#include <windows.h>
+//#include <windows.h>
+#include "lib/sysdep/win/win_internal.h"
 #include <commctrl.h>
 
 namespace CxxTest

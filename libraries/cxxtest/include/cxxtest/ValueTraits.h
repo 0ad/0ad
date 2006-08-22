@@ -276,7 +276,8 @@ namespace CxxTest
     CXXTEST_COPY_TRAITS( const unsigned char, const unsigned long int );
     
     CXXTEST_COPY_CONST_TRAITS( signed int );
-    CXXTEST_COPY_CONST_TRAITS( unsigned int );
+    //CXXTEST_COPY_CONST_TRAITS( unsigned int );
+    CXXTEST_COPY_TRAITS( size_t, const unsigned int ); // avoid /Wp64 warnings in MSVC
     CXXTEST_COPY_CONST_TRAITS( signed short int );
     CXXTEST_COPY_CONST_TRAITS( unsigned short int );
     CXXTEST_COPY_CONST_TRAITS( unsigned char );

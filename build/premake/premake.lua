@@ -603,7 +603,10 @@ function setup_tests()
 	package.files = hdr_files
 	package.rootfile = source_root .. "test_root.cpp"
 	if OS == "windows" then
-		package.rootoptions = "--gui=Win32Gui --have-eh --runner=ParenPrinter"
+		-- precompiled headers - the header is added to all generated .cpp files
+		package.pchheader = "precompiled.h"
+
+		package.rootoptions = "--gui=Win32Gui --runner=ParenPrinter --include="..package.pchheader
 	else
 		package.rootoptions = "--error-printer"
 	end
@@ -626,6 +629,12 @@ function setup_tests()
 
 		-- from "lowlevel" static lib; must be added here to be linked in
 		tinsert(package.files, source_root.."lib/sysdep/win/error_dialog.rc")
+
+		-- precompiled headers
+		pch_dir = source_root.."pch/test/"
+		package.pchheader = "precompiled.h"
+		package.pchsource = "precompiled.cpp"
+		tinsert(package.files, { pch_dir.."precompiled.cpp", pch_dir.."precompiled.h" })
 	end
 
 	tinsert(package.buildflags, "use-library-dep-inputs")
