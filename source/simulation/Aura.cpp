@@ -7,9 +7,9 @@
 
 #include <algorithm>
 
-CAura::CAura( JSContext* cx, CEntity* source, CStrW& name, float radius, size_t tickRate, JSObject* handler )
+CAura::CAura( JSContext* cx, CEntity* source, CStrW& name, float radius, size_t tickRate, const CVector4D& color, JSObject* handler )
 		: m_cx(cx), m_source(source), m_name(name), m_radius(radius), m_handler(handler),
-		m_tickRate(tickRate), m_tickCyclePos(0)
+		m_tickRate(tickRate), m_tickCyclePos(0), m_color(color)
 {
 	JS_AddRoot( m_cx, &m_handler );	// don't GC it so we can call it later
 }

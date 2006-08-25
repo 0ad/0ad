@@ -111,7 +111,15 @@ void CSelectedEntities::renderBars()
 		glDisable( GL_BLEND );
 	}*/
 }
+void CSelectedEntities::renderAuras()
+{
+	std::vector<HEntity>::iterator it;
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_BLEND);
 
+	for ( it = m_selected.begin(); it != m_selected.end(); ++it )
+		(*it)->renderAuras();
+}
 void CSelectedEntities::renderHealthBars()
 {
 	std::vector<HEntity>::iterator it;
@@ -859,7 +867,15 @@ void CMouseoverEntities::renderSelectionOutlines()
 
 	glDisable( GL_BLEND );
 }
+void CMouseoverEntities::renderAuras()
+{
+	std::vector<SMouseoverFader>::iterator it;
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_BLEND);
 
+	for ( it = m_mouseover.begin(); it != m_mouseover.end(); ++it )
+		it->entity->renderAuras();
+}
 void CMouseoverEntities::renderBars()
 {
 	std::vector<SMouseoverFader>::iterator it;

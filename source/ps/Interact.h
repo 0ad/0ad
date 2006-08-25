@@ -77,6 +77,7 @@ struct CSelectedEntities : public Singleton<CSelectedEntities>
 
 	void renderSelectionOutlines();
 	void renderOverlays();
+	void renderAuras();
 	void renderRallyPoints();
 	void renderBars();
 	void renderHealthBars();
@@ -136,6 +137,7 @@ struct CMouseoverEntities : public Singleton<CMouseoverEntities>
 	void renderSelectionOutlines();
 	void renderOverlays();
 	void renderRallyPoints();
+	void renderAuras();
 	void renderBars();
 	void renderHealthBars();
 	void renderStaminaBars();

@@ -52,7 +52,16 @@ bool CFrustum::IsPointVisible (const CVector3D &point) const
 
 	return true;
 }
-
+bool CFrustum::DoesSegmentIntersect(const CVector3D& start, const CVector3D &end)
+{
+	CVector3D intersect;
+	for ( int i = 0; i<m_NumPlanes; ++i )
+	{
+		if ( m_aPlanes[i].FindLineSegIntersection(start, end, &intersect) )
+			return true;
+	}
+	return false;
+}
 bool CFrustum::IsSphereVisible (const CVector3D &center, float radius) const
 {
 	for (int i=0; i<m_NumPlanes; i++)

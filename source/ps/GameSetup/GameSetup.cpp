@@ -53,6 +53,7 @@
 #include "simulation/EntityHandles.h"
 #include "simulation/EntityManager.h"
 #include "simulation/FormationManager.h"
+#include "simulation/TerritoryManager.h"
 #include "simulation/PathfindEngine.h"
 #include "simulation/Scheduler.h"
 #include "simulation/Projectile.h"
@@ -323,12 +324,22 @@ void Render()
 			g_EntityManager.renderAll(); // <-- collision outlines, pathing routes
 		}
 
-		PROFILE_START( "render entity outlines" );
 		glEnable( GL_DEPTH_TEST );
+		PROFILE_START( "render entity outlines" );
 		g_Mouseover.renderSelectionOutlines();
 		g_Selection.renderSelectionOutlines();
-		glDisable( GL_DEPTH_TEST );
 		PROFILE_END( "render entity outlines" );
+		
+		PROFILE_START( "render entity auras" );
+		g_Mouseover.renderAuras();
+		g_Selection.renderAuras();
+		PROFILE_END( "render entity auras" );
+
+		PROFILE_START( "render territories" );
+		g_Game->GetWorld()->GetTerritoryManager()->renderTerritories();
+		PROFILE_END( "render territories" );
+		glDisable( GL_DEPTH_TEST );
+		
 
 		PROFILE_START( "render entity bars" );
 		pglActiveTextureARB(GL_TEXTURE1_ARB);

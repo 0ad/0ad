@@ -225,6 +225,8 @@ public:
 	int m_currentRequest;	//Notification we our notifiers are sending
 
 	std::vector<bool> m_sectorValues;
+	//Slight optimization for aura rendering
+	std::vector< std::vector<CVector2D> > m_unsnappedPoints;
 
 private:
 	CEntity( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStr8>& actorSelections, const CStrW* building = 0 );
@@ -272,6 +274,7 @@ public:
 
 	// Process initialization
 	bool Initialize();
+	void initAuraData();
 
 	// Process tick.
 	void Tick();
@@ -298,6 +301,7 @@ public:
 	// Things like selection circles and debug info - possibly move to gui if/when it becomes responsible for (and capable of) it.
 	void render();
 	void renderSelectionOutline( float alpha = 1.0f );
+	void renderAuras();
 	void renderBars();
 	void renderBarBorders();
 	void renderHealthBar();

@@ -195,7 +195,25 @@ void CEntity::loadBase()
 	for ( int i=0; i<m_base->m_sectorDivs; ++i )
 		m_sectorValues[i] = false;
 }
+void CEntity::initAuraData()
+{
+	if ( m_auras.empty() )
+		return;
+	m_unsnappedPoints.resize(m_auras.size());
+	size_t i=0;
+	for ( AuraTable::iterator it=m_auras.begin(); it!=m_auras.end(); ++it, ++i )
+	{
+		m_unsnappedPoints[i].resize(SELECTION_CIRCLE_POINTS);
+		float radius = it->second->m_radius;
 
+		for ( int j=0; j<SELECTION_CIRCLE_POINTS; ++j )
+		{
+			float val = j * 2*PI / (float)SELECTION_CIRCLE_POINTS;
+			m_unsnappedPoints[i][j] = CVector2D( cosf(val)*radius, 
+											sinf(val)*radius );
+		}
+	}
+}
 void CEntity::kill()
 {
 	g_Selection.removeAll( me );
@@ -639,6 +657,7 @@ bool CEntity::Initialize()
 		kill();
 		return false;
 	}
+	initAuraData();
 	return true;
 }
 
@@ -1074,6 +1093,76 @@ void CEntity::renderSelectionOutline( float alpha )
 	}
 
 	glEnd();
+}
+void CEntity::renderAuras()
+{
+	if( !(m_bounds && m_visible && !m_auras.empty()) )
+		return;
+	
+	const SPlayerColour& col = m_player->GetColour();
+	glPushMatrix();
+	glTranslatef(m_graphics_position.X, m_graphics_position.Y, 
+										m_graphics_position.Z);
+	glBegin(GL_TRIANGLE_FAN);
+	glVertex3f(0.0f, getAnchorLevel(m_graphics_position.X, 
+			m_graphics_position.Z)-m_graphics_position.Y+.5f, 0.0f);
+	size_t i=0;
+
+	for ( AuraTable::iterator it=m_auras.begin(); it!=m_auras.end(); ++it, ++i )
+	{
+		CVector4D color = it->second->m_color;
+		glColor4f(color.m_X, color.m_Y, color.m_Z, color.m_W);
+
+#ifdef SELECTION_TERRAIN_CONFORMANCE
+		//This starts to break when the radius is bigger
+		if ( it->second->m_radius < 15.0f )
+		{
+			for ( int j=0; j<SELECTION_CIRCLE_POINTS; ++j )
+			{
+				CVector2D ypos( m_unsnappedPoints[i][j].x+m_graphics_position.X,
+							m_unsnappedPoints[i][j].y+m_graphics_position.Z );
+				CVector3D pos( m_unsnappedPoints[i][j].x, getAnchorLevel(ypos.x, ypos.y)-
+					m_graphics_position.Y+.5f, m_unsnappedPoints[i][j].y );
+				glVertex3f(pos.X, pos.Y, pos.Z);
+			}
+			//Loop around
+			CVector3D pos( m_unsnappedPoints[i][0].x, 
+					getAnchorLevel(m_unsnappedPoints[i][0].x+m_graphics_position.X, 
+					m_unsnappedPoints[i][0].y+m_graphics_position.Z)-
+					m_graphics_position.Y+.5f, m_unsnappedPoints[i][0].y );
+			glVertex3f(pos.X, pos.Y, pos.Z);
+		}
+		glEnd();
+		//Draw edges
+		glBegin(GL_LINE_LOOP);
+		glColor3f( col.r, col.g, col.b );
+		for ( int j=0; j<SELECTION_CIRCLE_POINTS; ++j )
+		{
+			CVector2D ypos( m_unsnappedPoints[i][j].x+m_graphics_position.X,
+						m_unsnappedPoints[i][j].y+m_graphics_position.Z );
+			CVector3D pos( m_unsnappedPoints[i][j].x, getAnchorLevel(ypos.x, ypos.y)-
+				m_graphics_position.Y+.5f, m_unsnappedPoints[i][j].y );
+			glVertex3f(pos.X, pos.Y, pos.Z);
+		}
+		glEnd();
+#else
+		if ( it->second->m_radius < 15.0f )
+		{
+			for ( int j=0; j<SELECTION_CIRLCE_POINTS; ++j )
+				glVertex3f(m_unsnappedPoints[i][j].x, .25f, m_unsnappedPoints[i][j].y);
+			glVertex3f(m_unsnappedPoints[i][0].x, .25f, m_unsnappedPoints[i][0].y);
+		}
+		glEnd();
+		
+		//Draw edges
+		glBegin(GL_LINE_LOOP);
+		glColor3f( col.r, col.g, col.b );
+		for ( int j=0; j<SELECTION_CIRLCE_POINTS; ++j )
+			glVertex3f(unsnappedPoints[i][j].x, .25f, m_unsnappedPoints[i][j].y);
+		glEnd();
+#endif 
+	}
+	glPopMatrix();
 }
 
 CVector2D CEntity::getScreenCoords( float height )
@@ -1915,19 +2004,24 @@ jsval CEntity::GetSpawnPoint( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 
 jsval CEntity::AddAura( JSContext* cx, uintN argc, jsval* argv )
 {
-	debug_assert( argc >= 4 );
-	debug_assert( JSVAL_IS_OBJECT(argv[3]) );
+	debug_assert( argc >= 8 );
+	debug_assert( JSVAL_IS_OBJECT(argv[7]) );
 
 	CStrW name = ToPrimitive<CStrW>( argv[0] );
 	float radius = ToPrimitive<float>( argv[1] );
 	size_t tickRate = max( 0, ToPrimitive<int>( argv[2] ) );	// since it's a size_t we don't want it to be negative
-	JSObject* handler = JSVAL_TO_OBJECT( argv[3] );
+	float r = ToPrimitive<float>( argv[3] );
+	float g = ToPrimitive<float>( argv[4] );
+	float b = ToPrimitive<float>( argv[5] );
+	float a = ToPrimitive<float>( argv[6] );
+	CVector4D color(r, g, b, a);
+	JSObject* handler = JSVAL_TO_OBJECT( argv[7] );
 
 	if( m_auras[name] )
 	{
 		delete m_auras[name];
 	}
-	m_auras[name] = new CAura( cx, this, name, radius, tickRate, handler );
+	m_auras[name] = new CAura( cx, this, name, radius, tickRate, color, handler );
 
 	return JSVAL_VOID;
 }

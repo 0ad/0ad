@@ -20,6 +20,8 @@
 class CUnit;
 class CPlayer;
 
+const float TERRITORY_PRECISION_STEP = 1.0f / 6;
+
 class CTerritory
 {
 public:
@@ -44,11 +46,12 @@ public:
 
 	void Initialize();	// initialize, called after the game is fully loaded
 	void Recalculate();	// recalculate the territory boundaries
-
+	void renderTerritories();
 	CTerritory* GetTerritory(int x, int z);			// get the territory to which the given tile belongs
 	CTerritory* GetTerritory(float x, float z);		// get the territory to which the given world-space point belongs
 
 	std::vector<CTerritory*>& GetTerritories() { return m_Territories; }
+
 private:
 	void CalculateBoundary( std::vector<CEntity*>& centres, size_t index, std::vector<CVector2D>& boundary );
 };

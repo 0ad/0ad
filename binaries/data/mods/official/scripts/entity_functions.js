@@ -7,7 +7,7 @@
 
 // To add a new generic order, do the following all within template_entity_script.js:
 
-//    * Pick a number to be its ID (add this to the "const"s directly below). 
+//    * Pick a number to be its ID (add this to the "const"s directly below). f
 
 //    * Add code in the entityInit() function below that will call setActionParams to set the action's range, speed and animation if the entity supports this action. For example this.setActionParams( ACTION_GATHER, 0.0, a.range, a.speed, "gather" ) tells the entity that the action with ID of ACTION_GATHER has min range 0, max range a.range, speed a.speed, and should play the animation called "gather" while active. 
 
@@ -471,38 +471,38 @@ function attachAuras()
 		if( this.traits.auras.courage )
 		{
 			a = this.traits.auras.courage;
-			this.addAura ( "courage", a.radius, 0, new DamageModifyAura( this, true, a.bonus ) );
+			this.addAura ( "courage", a.radius, 0, a.r, a.g, a.b, a.a, new DamageModifyAura( this, true, a.bonus ) );
 		}
 		if( this.traits.auras.fear )
 		{
 			a = this.traits.auras.fear;
-			this.addAura ( "fear", a.radius, 0, new DamageModifyAura( this, false, -a.bonus ) );
+			this.addAura ( "fear", a.radius, 0, a.r, a.g, a.b, a.a, new DamageModifyAura( this, false, -a.bonus ) );
 		}
 		if( this.traits.auras.infidelity )
 		{
 			a = this.traits.auras.infidelity;
-			this.addAura ( "infidelity", a.radius, 0, new InfidelityAura( this, a.time ) );
+			this.addAura ( "infidelity", a.radius, 0, a.r, a.g, a.b, a.a, new InfidelityAura( this, a.time ) );
 		}
 		if( this.traits.auras.dropsite )
 		{
 			a = this.traits.auras.dropsite;
-			this.addAura ( "dropsite", a.radius, 0, new DropsiteAura( this, a.types ) );
+			this.addAura ( "dropsite", a.radius, 0, a.r, a.g, a.b, a.a, new DropsiteAura( this, a.types ) );
 		}
 		if( this.traits.auras.heal )
 		{
 			a = this.traits.auras.heal;
-			this.addAura ( "heal", a.radius, a.speed, new HealAura( this ) );
+			this.addAura ( "heal", a.radius, a.speed, a.r, a.g, a.b, a.a, new HealAura( this ) );
 		}
 		if( this.traits.auras.trample )
 		{
 			a = this.traits.auras.trample;
-			this.addAura ( "trample", a.radius, a.speed, new TrampleAura( this ) );
+			this.addAura ( "trample", a.radius, a.speed, a.r, a.g, a.b, a.a, new TrampleAura( this ) );
 		}
 	}		
 	
 	if( this.hasClass("Settlement") )
 	{
-		this.addAura ( "settlement", 1.0, 0, new SettlementAura( this ) );
+		this.addAura ( "settlement", 1.0, 0, 0.0, 0.0, 0.0, 0.0, new SettlementAura( this ) );
 	}
 }
 

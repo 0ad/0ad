@@ -5,6 +5,7 @@
 #include "ps/Game.h"
 #include "ps/Player.h"
 #include "graphics/Terrain.h"
+#include "graphics/GameView.h"
 #include "Entity.h"
 #include "EntityManager.h"
 #include "graphics/Unit.h"
@@ -12,10 +13,10 @@
 #include "graphics/Model.h"
 #include "lib/allocators.h"
 #include "lib/timer.h"
+#include "lib/ogl.h"
 #include "EntityManager.h"
 
 using namespace std;
-
 
 CTerritoryManager::CTerritoryManager()
 {
@@ -205,4 +206,57 @@ void CTerritoryManager::CalculateBoundary( std::vector<CEntity*>& centres, size_
 			boundary = newBoundary;
 		}
 	}
+}
+void CTerritoryManager::renderTerritories()
+{	
+	const CTerrain* pTerrain = g_Game->GetWorld()->GetTerrain();
+	CFrustum frustum = g_Game->GetView()->GetCamera()->GetFrustum();
+	std::vector<CTerritory*>::iterator terr=m_Territories.begin();
+	glEnable(GL_LINE_SMOOTH);
+	glLineWidth(1.4f);
+
+	for ( ; terr != m_Territories.end(); ++terr )
+	{
+		std::vector<CVector2D>::iterator it=(*terr)->boundary.begin()+1;
+		const SPlayerColour& col = (*terr)->owner->GetColour();
+		glColor3f(col.r, col.g, col.b);
+		glBegin(GL_LINE_STRIP);
+	
+		for ( ; it != (*terr)->boundary.end(); ++it )
+		{
+			CVector3D front(it->x, pTerrain->getExactGroundLevel(it->x, it->y), it->y);
+			CVector3D prev((it-1)->x, pTerrain->getExactGroundLevel((it-1)->x, (it-1)->y), (it-1)->y);
+			if ( !frustum.DoesSegmentIntersect(prev, front) )
+				continue;
+			
+			float iterf = (front - prev).GetLength() / TERRITORY_PRECISION_STEP;
+			for ( float i=0; i<iterf; i+= TERRITORY_PRECISION_STEP )
+			{
+				CVector2D pos( Interpolate(prev, front, i/iterf) );
+				glVertex3f(pos.x, pTerrain->getExactGroundLevel(pos)+.25f, pos.y); 
+			}
+			glVertex3f(front.X, pTerrain->getExactGroundLevel(front.X, front.Z)+.25f, front.Z); 
+		}
+		//Loop around
+		CVector2D first2D((*terr)->boundary.front()), back2D((*terr)->boundary.back());
+		CVector3D first(first2D.x, pTerrain->getExactGroundLevel(first2D), first2D.y);
+		CVector3D back(back2D.x, pTerrain->getExactGroundLevel(back2D), back2D.y);
+
+		if ( !frustum.DoesSegmentIntersect(back, first) )
+		{
+			glEnd();
+			continue;
+		}
+		float iterf = (first - back).GetLength() / TERRITORY_PRECISION_STEP;
+		for ( float i=0; i<iterf; i+= TERRITORY_PRECISION_STEP )
+		{
+			CVector2D pos( Interpolate(back, first, i/iterf) );
+			glVertex3f(pos.x, pTerrain->getExactGroundLevel(pos)+.25f, pos.y); 
+		}
+		glVertex3f(first.X, pTerrain->getExactGroundLevel(first2D)+.25f, first.Z); 
+	
+		glEnd();
+	}
+	glDisable(GL_LINE_SMOOTH);
+	glLineWidth(1.0f);	
 }

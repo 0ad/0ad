@@ -97,7 +97,7 @@ float CPlane::DistanceToPlane (const CVector3D &point) const
 
 //calculates the intersection point of a line with this
 //plane. Returns false if there is no intersection
-bool CPlane::FindLineSegIntersection (CVector3D &start, CVector3D &end, CVector3D *intsect)
+bool CPlane::FindLineSegIntersection (const CVector3D &start, const CVector3D &end, CVector3D *intsect)
 {
 	PLANESIDE StartS, EndS;
 	CVector3D Dir;
