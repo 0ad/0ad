@@ -118,7 +118,7 @@ function worldClickHandler(event)
 	else
 		setSelectionRun();
 
-	issueCommand (selection, cmd, args[0], args[1]);
+	issueCommand (selection, isOrderQueued(), cmd, args[0], args[1]);
 }
 
 // ====================================================================
