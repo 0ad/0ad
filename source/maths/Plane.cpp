@@ -14,6 +14,7 @@
 #include "precompiled.h"
 
 #include "Plane.h"
+#include "MathUtil.h"
 
 CPlane::CPlane ()
 {
@@ -74,9 +75,11 @@ PLANESIDE CPlane::ClassifyPoint (const CVector3D &point) const
 		   m_Norm.Z * point.Z +
 		   m_Dist;
 
-	if (Dist > 0.0f)
+	const float EPS = 0.001f;
+
+	if (Dist > EPS)
 		return PS_FRONT;
-	else if (Dist < 0.0f)
+	else if (Dist < -EPS)
 		return PS_BACK;
 
 	return PS_ON;
@@ -99,31 +102,14 @@ float CPlane::DistanceToPlane (const CVector3D &point) const
 //plane. Returns false if there is no intersection
 bool CPlane::FindLineSegIntersection (const CVector3D &start, const CVector3D &end, CVector3D *intsect)
 {
-	PLANESIDE StartS, EndS;
-	CVector3D Dir;
-	float Length;
-	
-	//work out where each point is
-	StartS = ClassifyPoint (start);
-	EndS = ClassifyPoint (end);
+	float dist1 = DistanceToPlane( start );
+	float dist2 = DistanceToPlane( end );
 
-	//if they are not on opposite sides of the plane return false
-	if (StartS == EndS)
+	if( (dist1 < 0 && dist2 < 0) || (dist1 >= 0 && dist2 >= 0) )
 		return false;
 
-	//work out a normalized vector in the direction start to end
-	Dir = end - start;
-	Dir.Normalize ();
-
-	//a bit of algebra to work out how much we need to scale
-	//this direction vector to get to the plane
-	Length = -m_Norm.Dot(start)/m_Norm.Dot(Dir);
-
-	//scale it by this amount
-	Dir *= Length;
-
-	//workout actual position vector of impact
-	*intsect = start + Dir;
+	float t = (-dist1) / (dist2-dist1);
+	*intsect = Interpolate( start, end, t );
 
 	return true;
 }

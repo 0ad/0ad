@@ -20,7 +20,7 @@
 class CUnit;
 class CPlayer;
 
-const float TERRITORY_PRECISION_STEP = 1.0f / 6;
+const float TERRITORY_PRECISION_STEP = 1.0f;
 
 class CTerritory
 {

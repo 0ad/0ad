@@ -17,6 +17,7 @@
 
 #include "Frustum.h"
 #include "maths/Bound.h"
+#include "maths/MathUtil.h"
 
 CFrustum::CFrustum ()
 {
@@ -52,13 +53,22 @@ bool CFrustum::IsPointVisible (const CVector3D &point) const
 
 	return true;
 }
-bool CFrustum::DoesSegmentIntersect(const CVector3D& start, const CVector3D &end)
+bool CFrustum::DoesSegmentIntersect(const CVector3D& startRef, const CVector3D &endRef)
 {
+	CVector3D start = startRef;
+	CVector3D end = endRef;
+
+	if(IsPointVisible(start) || IsPointVisible(end))
+		return true;
+
 	CVector3D intersect;
 	for ( int i = 0; i<m_NumPlanes; ++i )
 	{
 		if ( m_aPlanes[i].FindLineSegIntersection(start, end, &intersect) )
-			return true;
+		{
+			if ( IsPointVisible( intersect ) )
+				return true;
+		}
 	}
 	return false;
 }

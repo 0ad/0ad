@@ -214,13 +214,13 @@ void CTerritoryManager::renderTerritories()
 	std::vector<CTerritory*>::iterator terr=m_Territories.begin();
 	glEnable(GL_LINE_SMOOTH);
 	glLineWidth(1.4f);
+	glColor3f(1.0f, 1.0f, 1.0f);
 
 	for ( ; terr != m_Territories.end(); ++terr )
 	{
 		std::vector<CVector2D>::iterator it=(*terr)->boundary.begin()+1;
-		const SPlayerColour& col = (*terr)->owner->GetColour();
-		glColor3f(col.r, col.g, col.b);
-		glBegin(GL_LINE_STRIP);
+		//const SPlayerColour& col = (*terr)->owner->GetColour();
+		//glColor3f(col.r, col.g, col.b);
 	
 		for ( ; it != (*terr)->boundary.end(); ++it )
 		{
@@ -229,6 +229,7 @@ void CTerritoryManager::renderTerritories()
 			if ( !frustum.DoesSegmentIntersect(prev, front) )
 				continue;
 			
+			glBegin(GL_LINE_STRIP);
 			float iterf = (front - prev).GetLength() / TERRITORY_PRECISION_STEP;
 			for ( float i=0; i<iterf; i+= TERRITORY_PRECISION_STEP )
 			{
@@ -236,6 +237,7 @@ void CTerritoryManager::renderTerritories()
 				glVertex3f(pos.x, pTerrain->getExactGroundLevel(pos)+.25f, pos.y); 
 			}
 			glVertex3f(front.X, pTerrain->getExactGroundLevel(front.X, front.Z)+.25f, front.Z); 
+			glEnd();
 		}
 		//Loop around
 		CVector2D first2D((*terr)->boundary.front()), back2D((*terr)->boundary.back());
@@ -243,10 +245,9 @@ void CTerritoryManager::renderTerritories()
 		CVector3D back(back2D.x, pTerrain->getExactGroundLevel(back2D), back2D.y);
 
 		if ( !frustum.DoesSegmentIntersect(back, first) )
-		{
-			glEnd();
 			continue;
-		}
+		
+		glBegin(GL_LINE_STRIP);
 		float iterf = (first - back).GetLength() / TERRITORY_PRECISION_STEP;
 		for ( float i=0; i<iterf; i+= TERRITORY_PRECISION_STEP )
 		{
@@ -254,9 +255,8 @@ void CTerritoryManager::renderTerritories()
 			glVertex3f(pos.x, pTerrain->getExactGroundLevel(pos)+.25f, pos.y); 
 		}
 		glVertex3f(first.X, pTerrain->getExactGroundLevel(first2D)+.25f, first.Z); 
-	
 		glEnd();
 	}
 	glDisable(GL_LINE_SMOOTH);
-	glLineWidth(1.0f);	
+	glLineWidth(1.0f);
 }
