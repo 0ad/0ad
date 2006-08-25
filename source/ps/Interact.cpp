@@ -1382,6 +1382,7 @@ void CBuildingPlacer::mouseReleased()
 	{
 		// issue a place object command accross the network
 		CPlaceObject *msg = new CPlaceObject();
+		msg->m_IsQueued = hotkeys[HOTKEY_ORDER_QUEUE];
 		msg->m_Entities = g_Selection.m_selected;
 		msg->m_Template = m_templateName;
 		msg->m_X = (u32) (clickPos.X * 1000);

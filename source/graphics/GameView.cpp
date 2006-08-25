@@ -430,8 +430,8 @@ void CGameView::Update(float DeltaTime)
 		{
 			if(!m_TrackManager.Update(DeltaTime))
 				ResetCamera();
+			return;
 		}
-		return;
 	}
 
 	float delta = powf( m_ViewSnapSmoothness, DeltaTime );

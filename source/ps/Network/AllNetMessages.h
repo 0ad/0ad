@@ -210,6 +210,7 @@ END_NMT_CLASS()
 
 START_NMT_CLASS(CNetCommand, NMT_NONE)
 	NMT_FIELD(CEntityList, m_Entities)
+	NMT_FIELD_INT(m_IsQueued, u32, 1)
 END_NMT_CLASS()
 
 DERIVE_NMT_CLASS_(NetCommand, Goto)

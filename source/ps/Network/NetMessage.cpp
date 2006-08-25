@@ -89,7 +89,7 @@ void CNetMessage::ScriptingInit()
 	def(NMT_FormationGeneric);
 }
 
-CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSContext *cx, uintN argc, jsval *argv)
+CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSContext *cx, uintN argc, jsval *argv, bool isQueued)
 {
 	debug_assert(argc >= 1);
 
@@ -160,6 +160,7 @@ CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSConte
 		case NMT_ ## _msg: \
 		{ \
 			C##_msg *msg = new C##_msg(); \
+			msg->m_IsQueued = isQueued; \
 			msg->m_Entities = entities; \
 			ReadPosition(msg, m_Target); \
 			return msg; \
@@ -169,6 +170,7 @@ CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSConte
 		case NMT_ ## _msg: \
 		{ \
 			C##_msg *msg = new C##_msg(); \
+			msg->m_IsQueued = isQueued; \
 			msg->m_Entities = entities; \
 			ReadEntity(msg, m_Target); \
 			return msg; \
@@ -178,6 +180,7 @@ CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSConte
 		case NMT_ ## _msg: \
 		{ \
 			C##_msg *msg = new C##_msg(); \
+			msg->m_IsQueued = isQueued; \
 			msg->m_Entities = entities; \
 			ReadEntity(msg, m_Target); \
 			ReadInt(msg, m_Action); \
@@ -188,6 +191,7 @@ CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSConte
 		case NMT_ ## _msg: \
 		{ \
 			C##_msg *msg = new C##_msg(); \
+			msg->m_IsQueued = isQueued; \
 			msg->m_Entities = entities; \
 			ReadInt(msg, m_Type); \
 			ReadString(msg, m_Name); \
@@ -198,6 +202,7 @@ CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSConte
 		case NMT_ ## _msg: \
 		{ \
 			C##_msg *msg = new C##_msg(); \
+			msg->m_IsQueued = isQueued; \
 			msg->m_Entities = entities; \
 			ReadString(msg, m_Template); \
 			ReadInt(msg, m_X); \

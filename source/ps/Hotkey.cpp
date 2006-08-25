@@ -620,3 +620,9 @@ bool keyRespondsTo( int hotkey, int sdlkey )
 			return true;
 	return false;
 }
+
+// Returns true if one of the key combinations for the given hotkey is pressed
+bool isKeyDown( const CStr& keyname )
+{
+	return hotkeys[getKeyCode(keyname)];
+}

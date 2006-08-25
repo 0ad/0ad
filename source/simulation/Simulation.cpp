@@ -148,7 +148,7 @@ void CSimulation::Simulate()
 // Task them all to a point within a radius of the target, radius depends upon
 // the number of units in the group.
 
-void RandomizeLocations(CEntityOrder order, const vector <HEntity> &entities, bool clearQueue)
+void RandomizeLocations(CEntityOrder order, const vector <HEntity> &entities, bool isQueued)
 {
 	vector<HEntity>::const_iterator it;
 	float radius = 2.0f * sqrt( (float)entities.size() - 1 ); 
@@ -181,14 +181,14 @@ void RandomizeLocations(CEntityOrder order, const vector <HEntity> &entities, bo
 		if( randomizedOrder.m_data[0].location.y >= mapsize )
 			randomizedOrder.m_data[0].location.y = mapsize;
 
-		if( clearQueue )
+		if( !isQueued )
 			(*it)->clearOrders();
 
 		(*it)->pushOrder( randomizedOrder );
 	}
 }
 
-void FormationLocations(CEntityOrder order, const vector <HEntity> &entities, bool clearQueue)
+void FormationLocations(CEntityOrder order, const vector <HEntity> &entities, bool isQueued)
 {
 	CVector2D upvec(0.0f, 1.0f);
 	vector<HEntity>::const_iterator it = entities.begin();
@@ -223,20 +223,20 @@ void FormationLocations(CEntityOrder order, const vector <HEntity> &entities, bo
 		if( orderCopy.m_data[0].location.y >= mapsize )
 			orderCopy.m_data[0].location.y = mapsize;
 
-		if( clearQueue )
+		if( !isQueued )
 			(*it)->clearOrders();
 
 		(*it)->pushOrder( orderCopy );
 	}
 }
 
-void QueueOrder(CEntityOrder order, const vector <HEntity> &entities, bool clearQueue)
+void QueueOrder(CEntityOrder order, const vector <HEntity> &entities, bool isQueued)
 {
 	vector<HEntity>::const_iterator it;
 
 	for (it = entities.begin(); it < entities.end(); it++)
 	{
-		if( clearQueue )
+		if( !isQueued )
 			(*it)->clearOrders();
 
 		(*it)->pushOrder( order );
@@ -246,46 +246,51 @@ void QueueOrder(CEntityOrder order, const vector <HEntity> &entities, bool clear
 uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNUSED(userdata))
 {
 	CEntityOrder order;
-	bool clearQueue = true;
+	bool isQueued = true;
 	
 #define ENTITY_POSITION(_msg, _order) do\
 	{ \
 		_msg *msg=(_msg *)pMsg; \
+		isQueued = msg->m_IsQueued != 0; \
 		order.m_type=CEntityOrder::_order; \
 		order.m_data[0].location.x=(float)msg->m_TargetX; \
 		order.m_data[0].location.y=(float)msg->m_TargetY; \
-		RandomizeLocations(order, msg->m_Entities, clearQueue); \
+		RandomizeLocations(order, msg->m_Entities, isQueued); \
 	} while(0)
 #define ENTITY_POSITION_FORM(_msg, _order) do\
 	{ \
 		_msg *msg=(_msg *)pMsg; \
+		isQueued = msg->m_IsQueued != 0; \
 		order.m_type=CEntityOrder::_order; \
 		order.m_data[0].location.x=(float)msg->m_TargetX; \
 		order.m_data[0].location.y=(float)msg->m_TargetY; \
-		FormationLocations(order, msg->m_Entities, clearQueue); \
+		FormationLocations(order, msg->m_Entities, isQueued); \
 	} while(0)
 #define ENTITY_ENTITY(_msg, _order) do\
 	{ \
 		_msg *msg=(_msg *)pMsg; \
+		isQueued = msg->m_IsQueued != 0; \
 		order.m_type=CEntityOrder::_order; \
 		order.m_data[0].entity=msg->m_Target; \
-		QueueOrder(order, msg->m_Entities, clearQueue); \
+		QueueOrder(order, msg->m_Entities, isQueued); \
 	} while(0)
 #define ENTITY_ENTITY_INT(_msg, _order) do\
 	{ \
 		_msg *msg=(_msg *)pMsg; \
+		isQueued = msg->m_IsQueued != 0; \
 		order.m_type=CEntityOrder::_order; \
 		order.m_data[0].entity=msg->m_Target; \
 		order.m_data[1].data=msg->m_Action; \
-		QueueOrder(order, msg->m_Entities, clearQueue); \
+		QueueOrder(order, msg->m_Entities, isQueued); \
 	} while(0)
 #define ENTITY_INT_STRING(_msg, _order) do\
 	{ \
 		_msg *msg=(_msg *)pMsg; \
+		isQueued = msg->m_IsQueued != 0; \
 		order.m_type=CEntityOrder::_order; \
 		order.m_data[0].string=msg->m_Name; \
 		order.m_data[1].data=msg->m_Type; \
-		QueueOrder(order, msg->m_Entities, clearQueue); \
+		QueueOrder(order, msg->m_Entities, isQueued); \
 	} while(0)
 	
 	switch (pMsg->GetType())
@@ -293,6 +298,7 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 		case NMT_AddWaypoint:
 		{
 			CAddWaypoint *msg=(CAddWaypoint *)pMsg;
+			isQueued = msg->m_IsQueued != 0;
 			order.m_type=CEntityOrder::ORDER_LAST;
 			order.m_data[0].location.x=(float)msg->m_TargetX;
 			order.m_data[0].location.y=(float)msg->m_TargetY;
@@ -351,6 +357,7 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 		case NMT_PlaceObject:
 			{
 				CPlaceObject *msg = (CPlaceObject *) pMsg;
+				isQueued = msg->m_IsQueued != 0;
 				
 				// Figure out the player
 				CPlayer* player = 0;

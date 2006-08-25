@@ -74,7 +74,7 @@ public:
 	 */
 	static void ScriptingInit();
 	
-	static CNetCommand *CommandFromJSArgs(const CEntityList &entities, JSContext* cx, uintN argc, jsval* argv);
+	static CNetCommand *CommandFromJSArgs(const CEntityList &entities, JSContext* cx, uintN argc, jsval* argv, bool isQueued);
 	
 	//These can create a net message without JS args
 	static CNetMessage *CreatePositionMessage( const CEntityList& entities, const int type, CVector2D pos );

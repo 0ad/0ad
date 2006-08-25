@@ -91,7 +91,7 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 
 	float len = delta.length();
 
-	if( len < 0.1f )
+	if( len < 0.01f )
 		return( ALREADY_AT_DESTINATION );
 
 	// Curve smoothing.
@@ -271,7 +271,7 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 	case COLLISION_OVERLAPPING_OBJECTS:
 		return( false );
 	case COLLISION_WITH_DESTINATION:
-		// We're here...
+		// We're as close as we can get...
 		m_orderQueue.pop_front();
 		//entf_clear(ENTF_IS_RUNNING);
 		//entf_clear(ENTF_SHOULD_RUN);

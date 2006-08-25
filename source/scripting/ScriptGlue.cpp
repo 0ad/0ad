@@ -26,6 +26,7 @@
 #include "ps/Network/Client.h"
 #include "ps/Network/Server.h"
 #include "ps/i18n.h"
+#include "ps/Hotkey.h"
 #include "ps/scripting/JSCollection.h"
 #include "ps/scripting/JSInterface_Console.h"
 #include "ps/scripting/JSInterface_Selection.h"
@@ -206,10 +207,10 @@ void CreateFormationMessage( std::vector<CNetMessage*>& msgList, CNetMessage* ms
 // returns: command in serialized form [string]
 JSBool issueCommand( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
-	// at least one for target object, and then 1 or more for the CommandFromJSArgs
-	JSU_REQUIRE_MIN_PARAMS(2);
+	// at least one for target object, one for isQueued, and then 1 or more for the CommandFromJSArgs
+	JSU_REQUIRE_MIN_PARAMS(3);
 
-	debug_assert(JSVAL_IS_OBJECT(argv[0]));
+	JSU_ASSERT(JSVAL_IS_OBJECT(argv[0]), "Argument 0 must be an entity collection.");
 	*rval = JSVAL_NULL;
 	
 	CEntityList entities, msgEntities;
@@ -221,6 +222,8 @@ JSBool issueCommand( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rv
 	
 	msgEntities = entities;
 	std::map<int, CEntityList> entityStore;
+
+	bool isQueued = ToPrimitive<bool>(argv[1]);
 	
 	//Destroy old notifiers if we're explicitly being reassigned
 	for ( size_t i=0; i < entities.size(); i++)
@@ -248,7 +251,7 @@ JSBool issueCommand( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rv
 		else
 			msgEntities.push_back( entities[i] );
 	}
-	CNetMessage* msg = CNetMessage::CommandFromJSArgs(msgEntities, cx, argc-1, argv+1);
+	CNetMessage* msg = CNetMessage::CommandFromJSArgs(msgEntities, cx, argc-2, argv+2, isQueued);
 	if (!msg)
 	{
 		delete msg;
@@ -310,6 +313,17 @@ JSBool isFormationLocked( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval
 	*rval = entity->GetFormation()->IsLocked() ? JS_TRUE : JS_FALSE;
 	return JS_TRUE;
 }
+
+// Get the state of a given hotkey (from the hotkeys file)
+JSBool isOrderQueued( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
+{
+	JSU_REQUIRE_NO_PARAMS();
+
+	*rval = ToJSVal(hotkeys[HOTKEY_ORDER_QUEUE]);
+	return JS_TRUE;
+}
+
+
 //-----------------------------------------------------------------------------
 // Techs
 //-----------------------------------------------------------------------------
@@ -1364,6 +1378,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC(setCursor, setCursor, 1)
 	JS_FUNC(getCursorName, getCursorName, 0)
 	JS_FUNC(getFPS, getFPS, 0)
+	JS_FUNC(isOrderQueued, isOrderQueued, 1)
 
 	// Miscellany
 	JS_FUNC(v3dist, v3dist, 2)

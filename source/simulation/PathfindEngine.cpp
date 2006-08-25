@@ -24,7 +24,7 @@ void CPathfindEngine::requestPath( HEntity entity, const CVector2D& destination 
 	entity->m_orderQueue.push_front( waypoint );
 }
 
-void CPathfindEngine::requestLowLevelPath( HEntity entity, const CVector2D& destination, bool contact, float radius )
+void CPathfindEngine::requestLowLevelPath( HEntity entity, const CVector2D& destination, bool UNUSED(contact), float radius )
 {
 	PROFILE_START("Pathfinding");
 	
@@ -35,45 +35,42 @@ void CPathfindEngine::requestLowLevelPath( HEntity entity, const CVector2D& dest
 		std::vector<CVector2D> path = mLowPathfinder.getLastPath();
 		if( path.size() > 0 )
 		{
-			std::vector<CVector2D>::iterator it;
+			// Push the path onto the front of our order queue in reverse order,
+			// so that we run through it before continuing other orders.
+
 			CEntityOrder node;
-			for( it = path.begin(); (it+1) != path.end(); it++ )
-			{
-				if ( !contact )
-				{
-					node.m_type = CEntityOrder::ORDER_GOTO_NOPATHING;
-				}
-				else
-				{
-					// TODO: Is this right?
-					node.m_type = CEntityOrder::ORDER_GOTO_NOPATHING;
-				}
-				node.m_data[0].location = *it;
-				entity->m_orderQueue.push_back(node);
-			}
+
 			// Hack to make pathfinding slightly more precise:
 			// If the radius was 0, make the final node be exactly at the destination
 			// (otherwise, go to wherever the pathfinder tells us since we just want to be in range)
-			CVector2D finalDest = (radius==0 ? destination : (*it));
-			node.m_type = CEntityOrder::ORDER_GOTO_NOPATHING;
+			CVector2D finalDest = (radius==0 ? destination : path[path.size()-1]);
+			node.m_type = CEntityOrder::ORDER_PATH_END_MARKER;	// push end marker (used as a sentinel when repathing)
 			node.m_data[0].location = finalDest;
-			entity->m_orderQueue.push_back(node);
-			node.m_type = CEntityOrder::ORDER_PATH_END_MARKER;
+			entity->m_orderQueue.push_front(node);
+			node.m_type = CEntityOrder::ORDER_GOTO_NOPATHING;	// push final goto step
 			node.m_data[0].location = finalDest;
-			entity->m_orderQueue.push_back(node);
+			entity->m_orderQueue.push_front(node);
+
+			for( int i = ((int) path.size()) - 2; i >= 0; i-- )
+			{
+				node.m_type = CEntityOrder::ORDER_GOTO_NOPATHING;	// TODO: For non-contact paths, do we want some other order type?
+				node.m_data[0].location = path[i];
+				entity->m_orderQueue.push_front(node);
+			}
 		}
 		else {
 			// Hack to make pathfinding slightly more precise:
-			// If radius = 0, we are still moving within the same tile, so add a GOTO order anyway
+			// If radius = 0, we have an empty path but the user still wants us to move 
+			// within the same tile, so add a GOTO order anyway
 			if(radius == 0)
 			{
 				CEntityOrder node;
-				node.m_type = CEntityOrder::ORDER_GOTO_NOPATHING;
-				node.m_data[0].location = destination;
-				entity->m_orderQueue.push_back(node);
 				node.m_type = CEntityOrder::ORDER_PATH_END_MARKER;
 				node.m_data[0].location = destination;
-				entity->m_orderQueue.push_back(node);
+				entity->m_orderQueue.push_front(node);
+				node.m_type = CEntityOrder::ORDER_GOTO_NOPATHING;
+				node.m_data[0].location = destination;
+				entity->m_orderQueue.push_front(node);
 			}
 		}
 	}
