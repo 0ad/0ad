@@ -2,8 +2,12 @@
 
 // "test"-specific PCH:
 
+#if HAVE_PCH
+
 #include "lib/self_test.h"
 #include <cxxtest/TestListener.h>
 #include <cxxtest/TestTracker.h>
 #include <cxxtest/TestRunner.h>
 #include <cxxtest/RealDescriptions.h>
+
+#endif // HAVE_PCH

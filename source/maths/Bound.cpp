@@ -22,8 +22,9 @@
 // operator+=: extend this bound to include given bound
 CBound& CBound::operator+=(const CBound& b)
 {
-#define CMPT(c) if (b[0].c < m_Data[0].c) m_Data[0].c = b[0].c; \
-           else if (b[1].c > m_Data[1].c) m_Data[1].c = b[1].c
+#define CMPT(c) \
+	if (b[0].c < m_Data[0].c) m_Data[0].c = b[0].c; \
+	if (b[1].c > m_Data[1].c) m_Data[1].c = b[1].c
 	CMPT(X);
 	CMPT(Y);
 	CMPT(Z);
@@ -36,8 +37,9 @@ CBound& CBound::operator+=(const CBound& b)
 // operator+=: extend this bound to include given point
 CBound& CBound::operator+=(const CVector3D& pt)
 {
-#define CMPT(c) if (pt.c < m_Data[0].c) m_Data[0].c = pt.c; \
-           else if (pt.c > m_Data[1].c) m_Data[1].c = pt.c
+#define CMPT(c) \
+	if (pt.c < m_Data[0].c) m_Data[0].c = pt.c; \
+	if (pt.c > m_Data[1].c) m_Data[1].c = pt.c
 	CMPT(X);
 	CMPT(Y);
 	CMPT(Z);

@@ -20,7 +20,7 @@ class CFrustum;
 class CBound
 {
 public:
-	CBound() {}
+	CBound() { SetEmpty(); }
 	CBound(const CVector3D& min,const CVector3D& max) {
 		m_Data[0]=min; m_Data[1]=max;
 	}
