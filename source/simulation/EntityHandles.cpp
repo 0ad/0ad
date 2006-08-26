@@ -72,7 +72,6 @@ void HEntity::addRef()
 		debug_assert( m_handle < MAX_HANDLES );
 		g_EntityManager.m_entities[m_handle].m_refcount++;
 		g_EntityManager.m_refd[m_handle] = true;
-		/*/*updatecache*/
 	}
 }
 

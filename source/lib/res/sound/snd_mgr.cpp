@@ -33,11 +33,11 @@
 #include "maths/MathUtil.h"
 
 #ifdef __APPLE__
-# include <OpenAL/alut.h>
+# include <OpenAL/al.h>
+# include <OpenAL/alc.h>
 #else
 # include <AL/al.h>
 # include <AL/alc.h>
-# include <AL/alut.h>	// alutLoadWAVMemory
 #endif
 
 // for AL_FORMAT_VORBIS_EXT decl on Linux
@@ -61,7 +61,6 @@
 
 #if MSC_VERSION
 # pragma comment(lib, "openal32.lib")
-# pragma comment(lib, "alut.lib")	// alutLoadWAVMemory
 #endif
 
 // HACK: OpenAL loads and unloads certain DLLs several times on Windows.
@@ -1081,7 +1080,6 @@ static LibError SndData_reload(SndData * sd, const char * fn, Handle hsd)
 
 	enum FileType
 	{
-		FT_WAV,
 		FT_OGG
 	}
 	file_type;
@@ -1106,13 +1104,14 @@ static LibError SndData_reload(SndData * sd, const char * fn, Handle hsd)
 
 		file_type = FT_OGG;
 	}
-	// .. WAV
-	else if(!stricmp(ext, "wav"))
-		file_type = FT_WAV;
 	// .. unknown extension
 	else
 		WARN_RETURN(ERR_UNKNOWN_FORMAT);
 
+	// note: WAV is no longer supported. writing our own loader is infeasible
+	// due to a seriously watered down spec with many incompatible variants.
+	// pulling in an external library (e.g. freealut) is deemed not worth the
+	// effort - OGG should be better in all cases.
 
 	if(sd->is_stream)
 	{
@@ -1134,13 +1133,6 @@ static LibError SndData_reload(SndData * sd, const char * fn, Handle hsd)
 
 	ALvoid * al_data = (ALvoid*)file;
 	ALsizei al_size = (ALsizei)file_size;
-
-	if(file_type == FT_WAV)
-	{
-		ALbyte * memory = (ALbyte*)file;
-		ALboolean al_loop;	// unused
-		alutLoadWAVMemory(memory, &sd->al_fmt, &al_data, &al_size, &sd->al_freq, &al_loop);
-	}
 
 #ifdef OGG_HACK
 std::vector<u8> data;
