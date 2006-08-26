@@ -8,7 +8,7 @@
 #include "Simulation.h"
 #include "ps/Game.h"
 #include "ps/Interact.h"
-#include "ps/Network/NetMessage.h"
+#include "network/NetMessage.h"
 
 CEntityFormation::CEntityFormation( CFormation*& base, size_t index )
 {

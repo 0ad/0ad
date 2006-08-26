@@ -1,7 +1,7 @@
 #include "precompiled.h"
 
 #include "Player.h"
-#include "ps/Network/NetMessage.h"
+#include "network/NetMessage.h"
 #include "simulation/Entity.h"
 #include "simulation/EntityManager.h"
 #include "ps/scripting/JSCollection.h"

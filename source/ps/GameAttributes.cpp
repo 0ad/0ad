@@ -5,7 +5,7 @@
 #include "GameAttributes.h"
 #include "Game.h"
 #include "ConfigDB.h"
-#include "ps/Network/ServerSession.h"
+#include "network/ServerSession.h"
 #include "CLogger.h"
 #include "ps/XML/Xeromyces.h"
 

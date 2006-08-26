@@ -4,7 +4,7 @@
 #include "EntityManager.h"
 #include "Entity.h"
 #include "ps/CStr.h"
-#include "ps/Network/Serialization.h"
+#include "network/Serialization.h"
 
 CHandle::CHandle()
 {

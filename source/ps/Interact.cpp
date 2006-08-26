@@ -19,7 +19,7 @@
 #include "lib/timer.h"
 #include "maths/MathUtil.h"
 #include "ps/Globals.h"
-#include "ps/Network/NetMessage.h"
+#include "network/NetMessage.h"
 #include "ps/Player.h"
 #include "ps/VFSUtil.h"
 #include "ps/World.h"

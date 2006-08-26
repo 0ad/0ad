@@ -55,6 +55,14 @@ public:
 	}
 	bool isOnMap(const CVector2D& v) const;
 
+	void clampCoordToMap(int& index) const
+	{
+		if(index < 0)
+			index = 0;
+		else if(index >= (int)m_MapSize-1)
+			index = m_MapSize - 2;
+	}
+
 	float getVertexGroundLevel(int i, int j) const;
 	float getExactGroundLevel(float x, float z) const;
 	float getExactGroundLevel(const CVector2D& v) const;

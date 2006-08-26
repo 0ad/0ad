@@ -1,8 +1,8 @@
 #include "precompiled.h"
 
 #include "TurnManager.h"
-#include "ps/Network/NetMessage.h"
-#include "ps/Network/Network.h"
+#include "network/NetMessage.h"
+#include "network/Network.h"
 #include "ps/GameRecord.h"
 #include "ps/CLogger.h"
 

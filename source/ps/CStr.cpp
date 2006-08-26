@@ -4,7 +4,7 @@
 #define CStr_CPP_FIRST
 
 #include "lib/posix.h" // for htons, ntohs
-#include "ps/Network/Serialization.h"
+#include "network/Serialization.h"
 #include <cassert>
 
 #include <sstream>

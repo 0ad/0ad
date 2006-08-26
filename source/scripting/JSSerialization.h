@@ -3,7 +3,7 @@
 // Mark Thompson (mark@wildfiregames.com / mot20@cam.ac.uk)
 // WIP, not yet functional
 
-#include "ps/Network/Serialization.h"
+#include "network/Serialization.h"
 #include "JSConversions.h"
 #include "ps/CStr.h"
 

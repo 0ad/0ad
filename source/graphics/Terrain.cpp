@@ -154,8 +154,10 @@ void CTerrain::CalcNormal(u32 i, u32 j, CVector3D& normal) const
 // out of bounds
 CPatch* CTerrain::GetPatch(i32 i, i32 j) const
 {
-	if (i<0 || i>=i32(m_MapSizePatches)) return 0;
-	if (j<0 || j>=i32(m_MapSizePatches)) return 0;
+	// range check: >= 0 and < m_MapSizePatches
+	if( (unsigned)i >= m_MapSizePatches || (unsigned)j >= m_MapSizePatches )
+		return 0;
+
 	return &m_Patches[(j*m_MapSizePatches)+i];
 }
 
@@ -165,8 +167,9 @@ CPatch* CTerrain::GetPatch(i32 i, i32 j) const
 // of bounds
 CMiniPatch* CTerrain::GetTile(i32 i, i32 j) const
 {
-	if (i<0 || i>=i32(m_MapSize)-1) return 0;
-	if (j<0 || j>=i32(m_MapSize)-1) return 0;
+	// see above
+	if( (unsigned)i >= m_MapSize-1 || (unsigned)j >= m_MapSize-1 )
+		return 0;
 
 	CPatch* patch=GetPatch(i/PATCH_SIZE, j/PATCH_SIZE);
 	return &patch->m_MiniPatches[j%PATCH_SIZE][i%PATCH_SIZE];
@@ -195,23 +198,8 @@ float CTerrain::getSlope(float x, float z) const
 	int xi = (int)floor(x);
 	int zi = (int)floor(z);
 
-	if (xi < 0)
-	{
-		xi = 0;
-	}
-	else if (xi >= (int)m_MapSize-1)
-	{
-		xi = m_MapSize - 2;
-	}
-
-	if (zi < 0)
-	{
-		zi = 0;
-	}
-	else if (zi >= (int)m_MapSize-1)
-	{
-		zi = m_MapSize - 2;
-	}
+	clampCoordToMap(xi);
+	clampCoordToMap(zi);
 
 	float h00 = m_Heightmap[zi*m_MapSize + xi];
 	float h01 = m_Heightmap[zi*m_MapSize + xi + m_MapSize];
@@ -244,14 +232,8 @@ CVector2D CTerrain::getSlopeAngleFace(float x, float y, CEntity*& entity ) const
 		side += 8;
 	
 	//Keep it in bounds
-	if (xi < 0)
-		xi = 0;
-	else if (xi >= (int)m_MapSize-1)
-		xi = m_MapSize - 2;
-	if (yi < 0)
-		yi = 0;
-	else if (yi >= (int)m_MapSize-1)
-		yi = m_MapSize - 2;
+	clampCoordToMap(xi);
+	clampCoordToMap(yi);
 	
 	float h00 = m_Heightmap[yi*m_MapSize + xi] * HEIGHT_SCALE;
 	float h01 = m_Heightmap[yi*m_MapSize + xi + m_MapSize] * HEIGHT_SCALE;
@@ -354,13 +336,6 @@ float CTerrain::getExactGroundLevel(float x, float z) const
 	{
 		zi = m_MapSize - 2; zf = 1.0f;
 	}
-
-	/*
-	debug_assert( isOnMap( x, y ) );
-
-	if( !isOnMap( x, y ) )
-		return 0.0f;
-	*/
 
 	float h00 = m_Heightmap[zi*m_MapSize + xi];
 	float h01 = m_Heightmap[zi*m_MapSize + xi + m_MapSize];

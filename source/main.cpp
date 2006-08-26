@@ -31,7 +31,7 @@ that of Atlas depending on commandline parameters.
 #include "ps/Hotkey.h"
 #include "ps/Globals.h"
 #include "ps/Interact.h"
-#include "ps/Network/SessionManager.h"
+#include "network/SessionManager.h"
 #include "graphics/GameView.h"
 #include "simulation/Scheduler.h"
 #include "sound/CMusicPlayer.h"

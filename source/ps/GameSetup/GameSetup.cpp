@@ -78,9 +78,9 @@
 #include "sound/CMusicPlayer.h"
 #include "sound/JSI_Sound.h"
 
-#include "ps/Network/SessionManager.h"
-#include "ps/Network/Server.h"
-#include "ps/Network/Client.h"
+#include "network/SessionManager.h"
+#include "network/Server.h"
+#include "network/Client.h"
 
 #include "Atlas.h"
 #include "GameSetup.h"

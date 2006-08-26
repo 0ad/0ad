@@ -20,7 +20,7 @@
 #include "ps/GameAttributes.h"
 #include "ps/Loader.h"
 #include "ps/LoaderThunks.h"
-#include "ps/Network/NetMessage.h"
+#include "network/NetMessage.h"
 #include "ps/Profile.h"
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"
