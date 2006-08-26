@@ -14,11 +14,16 @@
 //     first column is this constant, second is the config string (minus 'hotkey.') it maps to
 //     third and fourth are the default keys, used if the config file doesn't contain that string.
 // - Create an input handler for SDL_HOTKEYDOWN, SDL_HOTKEYUP, or poll the hotkeys[] array.
-//     For SDL_HOTKEYDOWN, SDL_HOTKEYUP, the constant is passed in as ev->user.code.
+//     For SDL_HOTKEYDOWN, SDL_HOTKEYUP, the constant is passed in as ev->ev.user.code.
 // - Add some bindings to the config file.
 
 #include "CStr.h"
 #include "lib/input.h"
+#include "lib/sdl.h"	// see note below
+
+// note: we need the real SDL header - it defines SDL_USEREVENT, which is
+// required for our HOTKEY event type definition. this is OK since
+// hotkey.h is not included from any headers.
 
 const int SDL_HOTKEYDOWN = SDL_USEREVENT;
 const int SDL_HOTKEYUP = SDL_USEREVENT + 1;
@@ -113,7 +118,7 @@ enum
 };
 
 extern void loadHotkeys();
-extern InReaction hotkeyInputHandler( const SDL_Event* ev );
+extern InReaction hotkeyInputHandler( const SDL_Event_* ev );
 extern void hotkeyRegisterGUIObject( const CStr& objName, const CStr& hotkeyName );
 
 extern void initKeyNameMap();

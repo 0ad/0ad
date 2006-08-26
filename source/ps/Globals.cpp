@@ -16,38 +16,38 @@ bool g_mouse_buttons[6] = {0};
 
 
 // updates the state of the above; never swallows messages.
-InReaction GlobalsInputHandler(const SDL_Event* ev)
+InReaction GlobalsInputHandler(const SDL_Event_* ev)
 {
 	uint c;
 
-	switch(ev->type)
+	switch(ev->ev.type)
 	{
 	case SDL_ACTIVEEVENT:
-		if(ev->active.state & SDL_APPACTIVE)
-			g_app_minimized = (ev->active.gain == 0);	// negated
-		if(ev->active.state & SDL_APPINPUTFOCUS)
-			g_app_has_focus = (ev->active.gain != 0);
+		if(ev->ev.active.state & SDL_APPACTIVE)
+			g_app_minimized = (ev->ev.active.gain == 0);	// negated
+		if(ev->ev.active.state & SDL_APPINPUTFOCUS)
+			g_app_has_focus = (ev->ev.active.gain != 0);
 		return IN_PASS;
 
 	case SDL_MOUSEMOTION:
-		g_mouse_x = ev->motion.x;
-		g_mouse_y = ev->motion.y;
+		g_mouse_x = ev->ev.motion.x;
+		g_mouse_y = ev->ev.motion.y;
 		return IN_PASS;
 
 	case SDL_MOUSEBUTTONDOWN:
 	case SDL_MOUSEBUTTONUP:
-		c = ev->button.button;
+		c = ev->ev.button.button;
 		if(c < ARRAY_SIZE(g_mouse_buttons))
-			g_mouse_buttons[c] = (ev->type == SDL_MOUSEBUTTONDOWN);
+			g_mouse_buttons[c] = (ev->ev.type == SDL_MOUSEBUTTONDOWN);
 		else
 			debug_warn("invalid mouse button");
 		return IN_PASS;
 
 	case SDL_KEYDOWN:
 	case SDL_KEYUP:
-		c = ev->key.keysym.sym;
+		c = ev->ev.key.keysym.sym;
 		if(c < ARRAY_SIZE(g_keys))
-			g_keys[c] = (ev->type == SDL_KEYDOWN);
+			g_keys[c] = (ev->ev.type == SDL_KEYDOWN);
 		else
 		{
 			// don't complain: this happens when the hotkey system

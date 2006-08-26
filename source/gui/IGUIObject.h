@@ -328,7 +328,7 @@ protected:
 	virtual void Draw()=0;
 
 	/**
-	 * Some objects need to handle the SDL_Event manually.
+	 * Some objects need to handle the SDL_Event_ manually.
 	 * For instance the input box.
 	 *
 	 * Only the object with focus will have this function called.
@@ -337,7 +337,7 @@ protected:
 	 * the key won't be passed on and processed by other handlers.
 	 * This is used for keys that the GUI uses.
 	 */
-	virtual InReaction ManuallyHandleEvent(const SDL_Event* UNUSED(ev)) { return IN_PASS; }
+	virtual InReaction ManuallyHandleEvent(const SDL_Event_* UNUSED(ev)) { return IN_PASS; }
 
 	/**
 	 * Loads a style.

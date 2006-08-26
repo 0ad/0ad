@@ -9,6 +9,7 @@ gee@pyro.nu
 #include "CDropDown.h"
 
 #include "lib/ogl.h"
+#include "lib/sdl.h"
 
 using namespace std;
 
@@ -183,9 +184,9 @@ void CDropDown::HandleMessage(const SGUIMessage &Message)
 	CList::HandleMessage(Message);
 }
 
-InReaction CDropDown::ManuallyHandleEvent(const SDL_Event* ev)
+InReaction CDropDown::ManuallyHandleEvent(const SDL_Event_* ev)
 {
-	int szChar = ev->key.keysym.sym;
+	int szChar = ev->ev.key.keysym.sym;
 	bool update_highlight = false;
 
 	switch (szChar)

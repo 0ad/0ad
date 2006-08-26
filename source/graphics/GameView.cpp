@@ -688,7 +688,7 @@ void CGameView::PopCameraTarget()
 	m_CameraTargets.pop_back();
 }
 
-InReaction game_view_handler(const SDL_Event* ev)
+InReaction game_view_handler(const SDL_Event_* ev)
 {
 	// put any events that must be processed even if inactive here
 
@@ -700,13 +700,13 @@ InReaction game_view_handler(const SDL_Event* ev)
 	return pView->HandleEvent(ev);
 }
 
-InReaction CGameView::HandleEvent(const SDL_Event* ev)
+InReaction CGameView::HandleEvent(const SDL_Event_* ev)
 {
-	switch(ev->type)
+	switch(ev->ev.type)
 	{
 
 	case SDL_HOTKEYDOWN:
-		switch(ev->user.code)
+		switch(ev->ev.user.code)
 		{
 		case HOTKEY_WIREFRAME:
 			if (g_Renderer.GetModelRenderMode() == SOLID)
@@ -751,10 +751,10 @@ InReaction CGameView::HandleEvent(const SDL_Event* ev)
 
 		default:
 
-			if( ( ev->user.code >= HOTKEY_CAMERA_BOOKMARK_0 ) && ( ev->user.code <= HOTKEY_CAMERA_BOOKMARK_9 ) )
+			if( ( ev->ev.user.code >= HOTKEY_CAMERA_BOOKMARK_0 ) && ( ev->ev.user.code <= HOTKEY_CAMERA_BOOKMARK_9 ) )
 			{
 				// The above test limits it to 10 bookmarks, so don't worry about overflowing
-				i8 id = (i8)( ev->user.code - HOTKEY_CAMERA_BOOKMARK_0 );
+				i8 id = (i8)( ev->ev.user.code - HOTKEY_CAMERA_BOOKMARK_0 );
 
 				if( hotkeys[HOTKEY_CAMERA_BOOKMARK_SAVE] )
 				{
@@ -779,7 +779,7 @@ InReaction CGameView::HandleEvent(const SDL_Event* ev)
 			}
 		}
 	case SDL_HOTKEYUP:
-		switch( ev->user.code )
+		switch( ev->ev.user.code )
 		{
 			case HOTKEY_CAMERA_BOOKMARK_SNAP:
 				if( currentBookmark != -1 )

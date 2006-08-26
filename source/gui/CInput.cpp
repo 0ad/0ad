@@ -52,7 +52,7 @@ CInput::~CInput()
 {
 }
 
-InReaction CInput::ManuallyHandleEvent(const SDL_Event* ev)
+InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 {
 	debug_assert(m_iBufferPos != -1);
 
@@ -61,9 +61,9 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event* ev)
 	//  pointer and edit that.
 	CStrW *pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
 
-	if (ev->type == SDL_HOTKEYDOWN)
+	if (ev->ev.type == SDL_HOTKEYDOWN)
 	{
-		if (ev->user.code == HOTKEY_CONSOLE_PASTE)
+		if (ev->ev.user.code == HOTKEY_CONSOLE_PASTE)
 		{
 			wchar_t* text = sys_clipboard_get();
 			if (text)
@@ -84,10 +84,10 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event* ev)
 			return IN_HANDLED;
 		}
 	}
-	else if (ev->type == SDL_KEYDOWN)
+	else if (ev->ev.type == SDL_KEYDOWN)
 	{
-		int szChar = ev->key.keysym.sym;
-		wchar_t cooked = (wchar_t)ev->key.keysym.unicode;
+		int szChar = ev->ev.key.keysym.sym;
+		wchar_t cooked = (wchar_t)ev->ev.key.keysym.unicode;
 
 		switch (szChar)
 		{

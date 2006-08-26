@@ -24,8 +24,8 @@
 #ifndef INPUT_H__
 #define INPUT_H__
 
-// note: cannot forward-declare SDL_Event since it is a nameless union.
-#include "sdl.h"
+
+#include "lib/sdl_fwd.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -45,14 +45,14 @@ enum InReaction
 	IN_HANDLED = 2
 };
 
-typedef InReaction (*InHandler)(const SDL_Event*);
+typedef InReaction (*InHandler)(const SDL_Event_*);
 
 // register an input handler, which will receive all subsequent events first.
 // events are passed to other handlers if handler returns IN_PASS.
 extern void in_add_handler(InHandler handler);
 
 // send event to each handler (newest first) until one returns true
-extern void in_dispatch_event(const SDL_Event* event);
+extern void in_dispatch_event(const SDL_Event_* event);
 
 extern void in_dispatch_recorded_events();
 

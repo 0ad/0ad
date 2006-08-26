@@ -12,6 +12,7 @@
 #include "graphics/UnitManager.h"
 #include "gui/MiniMap.h"
 #include "lib/ogl.h"
+#include "lib/sdl.h"
 #include "maths/Bound.h"
 #include "ps/Game.h"
 #include "ps/Interact.h"

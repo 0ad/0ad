@@ -80,7 +80,7 @@ protected:
 	/**
 	 * Handle events manually to catch keyboard inputting.
 	 */
-	virtual InReaction ManuallyHandleEvent(const SDL_Event* ev);
+	virtual InReaction ManuallyHandleEvent(const SDL_Event_* ev);
 
 //    void InsertMessage(const wchar_t* szMessage, ...);
 //	void InsertChar(const int szChar, const wchar_t cooked);

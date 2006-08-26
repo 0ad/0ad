@@ -785,21 +785,21 @@ static bool isUnprintableChar(SDL_keysym key)
 	return false;
 }
 
-InReaction conInputHandler(const SDL_Event* ev)
+InReaction conInputHandler(const SDL_Event_* ev)
 {
-	if( ev->type == SDL_HOTKEYDOWN )
+	if( ev->ev.type == SDL_HOTKEYDOWN )
 	{
-		if( ev->user.code == HOTKEY_CONSOLE_TOGGLE )
+		if( ev->ev.user.code == HOTKEY_CONSOLE_TOGGLE )
 		{
 			g_Console->ToggleVisible();
 			return IN_HANDLED;
 		}
-		else if( ev->user.code == HOTKEY_CONSOLE_COPY )
+		else if( ev->ev.user.code == HOTKEY_CONSOLE_COPY )
 		{
 			sys_clipboard_set( g_Console->GetBuffer() );
 			return IN_HANDLED;
 		}
-		else if( ev->user.code == HOTKEY_CONSOLE_PASTE )
+		else if( ev->ev.user.code == HOTKEY_CONSOLE_PASTE )
 		{
 			wchar_t* text = sys_clipboard_get();
 			if(text)
@@ -813,19 +813,19 @@ InReaction conInputHandler(const SDL_Event* ev)
 		}
 	}
 
-	if( ev->type != SDL_KEYDOWN)
+	if( ev->ev.type != SDL_KEYDOWN)
 		return IN_PASS;
 
-	SDLKey sym = ev->key.keysym.sym;
+	SDLKey sym = ev->ev.key.keysym.sym;
 
 	if(!g_Console->IsActive())
 		return IN_PASS;
 
 	// Stop unprintable characters (ctrl+, alt+ and escape),
 	// also prevent ` and/or ~ appearing in console every time it's toggled.
-	if( !isUnprintableChar(ev->key.keysym) &&
+	if( !isUnprintableChar(ev->ev.key.keysym) &&
 		!hotkeys[HOTKEY_CONSOLE_TOGGLE] )
-		g_Console->InsertChar(sym, (wchar_t)ev->key.keysym.unicode );
+		g_Console->InsertChar(sym, (wchar_t)ev->ev.key.keysym.unicode );
 
 	return IN_PASS;
 }

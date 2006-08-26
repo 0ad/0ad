@@ -23,6 +23,8 @@
 #ifndef LIB_SDL_H__
 #define LIB_SDL_H__
 
+#include "sdl_fwd.h"
+
 #if OS_WIN && !defined(CONFIG_NO_WSDL)
 # include "lib/sysdep/win/wsdl.h"
 #else
@@ -36,5 +38,11 @@
 	// another header that toggles between wsdl and SDL_endian.h.
 
 #endif
+
+// complete definition of our forward-declared SDL_Event (see sdl_fwd.h)
+struct SDL_Event_
+{
+	SDL_Event ev;
+};
 
 #endif // LIB_SDL_H__

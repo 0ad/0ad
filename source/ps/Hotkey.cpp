@@ -329,19 +329,19 @@ void hotkeyRegisterGUIObject( const CStr& objName, const CStr& hotkeyName )
 	boundTo.push_back( objName );
 }
 
-InReaction hotkeyInputHandler( const SDL_Event* ev )
+InReaction hotkeyInputHandler( const SDL_Event_* ev )
 {
 	int keycode = 0;
 
-	switch( ev->type )
+	switch( ev->ev.type )
 	{
 	case SDL_KEYDOWN:
 	case SDL_KEYUP:
-		keycode = (int)ev->key.keysym.sym;
+		keycode = (int)ev->ev.key.keysym.sym;
 		break;
 	case SDL_MOUSEBUTTONDOWN:
 	case SDL_MOUSEBUTTONUP:
-		keycode = SDLK_LAST + (int)ev->button.button;
+		keycode = SDLK_LAST + (int)ev->ev.button.button;
 		break;
 	default:
 		return( IN_PASS );
@@ -351,36 +351,36 @@ InReaction hotkeyInputHandler( const SDL_Event* ev )
 	// Create phantom 'unified-modifier' events when left- or right- modifier keys are pressed
 	// Just send them to this handler; don't let the imaginary event codes leak back to real SDL.
 
-	SDL_Event phantom;
-	phantom.type = ( ( ev->type == SDL_KEYDOWN ) || ( ev->type == SDL_MOUSEBUTTONDOWN ) ) ? SDL_KEYDOWN : SDL_KEYUP;
+	SDL_Event_ phantom;
+	phantom.ev.type = ( ( ev->ev.type == SDL_KEYDOWN ) || ( ev->ev.type == SDL_MOUSEBUTTONDOWN ) ) ? SDL_KEYDOWN : SDL_KEYUP;
 	if( ( keycode == SDLK_LSHIFT ) || ( keycode == SDLK_RSHIFT ) )
 	{
-		(int&)phantom.key.keysym.sym = UNIFIED_SHIFT;
-		unified[0] = ( phantom.type == SDL_KEYDOWN );
+		(int&)phantom.ev.key.keysym.sym = UNIFIED_SHIFT;
+		unified[0] = ( phantom.ev.type == SDL_KEYDOWN );
 		hotkeyInputHandler( &phantom );
 	}
 	else if( ( keycode == SDLK_LCTRL ) || ( keycode == SDLK_RCTRL ) )
 	{
-		(int&)phantom.key.keysym.sym = UNIFIED_CTRL;
-		unified[1] = ( phantom.type == SDL_KEYDOWN );
+		(int&)phantom.ev.key.keysym.sym = UNIFIED_CTRL;
+		unified[1] = ( phantom.ev.type == SDL_KEYDOWN );
 		hotkeyInputHandler( &phantom );
 	}
 	else if( ( keycode == SDLK_LALT ) || ( keycode == SDLK_RALT ) )
 	{
-		(int&)phantom.key.keysym.sym = UNIFIED_ALT;
-		unified[2] = ( phantom.type == SDL_KEYDOWN );
+		(int&)phantom.ev.key.keysym.sym = UNIFIED_ALT;
+		unified[2] = ( phantom.ev.type == SDL_KEYDOWN );
 		hotkeyInputHandler( &phantom );
 	}
 	else if( ( keycode == SDLK_LMETA ) || ( keycode == SDLK_RMETA ) )
 	{
-		(int&)phantom.key.keysym.sym = UNIFIED_META;
-		unified[3] = ( phantom.type == SDL_KEYDOWN );
+		(int&)phantom.ev.key.keysym.sym = UNIFIED_META;
+		unified[3] = ( phantom.ev.type == SDL_KEYDOWN );
 		hotkeyInputHandler( &phantom );
 	}
 	else if( ( keycode == SDLK_LSUPER ) || ( keycode == SDLK_RSUPER ) )
 	{
-		(int&)phantom.key.keysym.sym = UNIFIED_SUPER;
-		unified[4] = ( phantom.type == SDL_KEYDOWN );
+		(int&)phantom.ev.key.keysym.sym = UNIFIED_SUPER;
+		unified[4] = ( phantom.ev.type == SDL_KEYDOWN );
 		hotkeyInputHandler( &phantom );
 	}
 
@@ -412,7 +412,7 @@ InReaction hotkeyInputHandler( const SDL_Event* ev )
 	// matching the conditions (i.e. the event with the highest number of auxiliary
 	// keys, providing they're all down)
 
-	bool typeKeyDown = ( ev->type == SDL_KEYDOWN ) || ( ev->type == SDL_MOUSEBUTTONDOWN );
+	bool typeKeyDown = ( ev->ev.type == SDL_KEYDOWN ) || ( ev->ev.type == SDL_MOUSEBUTTONDOWN );
 	
 	// -- KEYDOWN SECTION -- 
 

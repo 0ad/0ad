@@ -9,6 +9,7 @@ gee@pyro.nu
 #include "CList.h"
 
 #include "ps/CLogger.h"
+#include "lib/sdl.h"
 
 using namespace std;
 
@@ -251,9 +252,9 @@ void CList::HandleMessage(const SGUIMessage &Message)
 	IGUITextOwner::HandleMessage(Message);
 }
 
-InReaction CList::ManuallyHandleEvent(const SDL_Event* ev)
+InReaction CList::ManuallyHandleEvent(const SDL_Event_* ev)
 {
-	int szChar = ev->key.keysym.sym;
+	int szChar = ev->ev.key.keysym.sym;
 
 	switch (szChar)
 	{

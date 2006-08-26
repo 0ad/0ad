@@ -141,7 +141,7 @@ public:
 	 * @return IN_PASS or IN_HANDLED depending on whether the event relates
 	 * to the profiling display.
 	 */
-	InReaction Input(const SDL_Event* ev);
+	InReaction Input(const SDL_Event_* ev);
 	
 	/**
 	 * AddRootTable: Add a new profile table as a root table (i.e. the
@@ -161,7 +161,7 @@ public:
 	 * This allows our input handler to be installed via in_add_handler
 	 * like a normal, global function input handler.
 	 */
-	static InReaction InputThunk(const SDL_Event* ev);
+	static InReaction InputThunk(const SDL_Event_* ev);
 
 	/**
 	 * SaveToFile: Saves the current profiler data (for all profile tables)

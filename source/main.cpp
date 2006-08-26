@@ -49,16 +49,16 @@ void kill_mainloop();
 
 
 // main app message handler
-static InReaction MainInputHandler(const SDL_Event* ev)
+static InReaction MainInputHandler(const SDL_Event_* ev)
 {
-	switch(ev->type)
+	switch(ev->ev.type)
 	{
 	case SDL_QUIT:
 		kill_mainloop();
 		break;
 
 	case SDL_HOTKEYDOWN:
-		switch(ev->user.code)
+		switch(ev->ev.user.code)
 		{
 		case HOTKEY_EXIT:
 			kill_mainloop();
@@ -87,9 +87,9 @@ static void PumpEvents()
 {
 	in_dispatch_recorded_events();
 
-	SDL_Event event;
-	while(SDL_PollEvent(&event))
-		in_dispatch_event(&event);
+	SDL_Event_ ev;
+	while(SDL_PollEvent(&ev.ev))
+		in_dispatch_event(&ev);
 }
 
 

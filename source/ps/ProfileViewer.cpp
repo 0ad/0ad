@@ -22,6 +22,7 @@
 #include "lib/res/file/file.h"
 #include "Hotkey.h"
 #include "ps/CLogger.h"
+#include "lib/sdl.h"
 
 extern int g_xres, g_yres;
 
@@ -250,16 +251,16 @@ void CProfileViewer::RenderProfile()
 
 
 // Handle input
-InReaction CProfileViewer::Input(const SDL_Event* ev)
+InReaction CProfileViewer::Input(const SDL_Event_* ev)
 {
-	switch(ev->type)
+	switch(ev->ev.type)
 	{
 	case SDL_KEYDOWN:
 	{
 		if (!m->profileVisible)
 			break;
 
-		int k = ev->key.keysym.sym - SDLK_0;
+		int k = ev->ev.key.keysym.sym - SDLK_0;
 		if (k >= 0 && k <= 9)
 		{
 			m->NavigateTree(k);
@@ -268,7 +269,7 @@ InReaction CProfileViewer::Input(const SDL_Event* ev)
 		break;
 	}
 	case SDL_HOTKEYDOWN:
-		if( ev->user.code == HOTKEY_PROFILE_TOGGLE )
+		if( ev->ev.user.code == HOTKEY_PROFILE_TOGGLE )
 		{
 			if (!m->profileVisible)
 			{
@@ -301,7 +302,7 @@ InReaction CProfileViewer::Input(const SDL_Event* ev)
 			}
 			return( IN_HANDLED );
 		}
-		else if( ev->user.code == HOTKEY_PROFILE_SAVE )
+		else if( ev->ev.user.code == HOTKEY_PROFILE_SAVE )
 		{
 			SaveToFile();
 			return( IN_HANDLED );
@@ -311,7 +312,7 @@ InReaction CProfileViewer::Input(const SDL_Event* ev)
 	return( IN_PASS );
 }
 
-InReaction CProfileViewer::InputThunk(const SDL_Event* ev)
+InReaction CProfileViewer::InputThunk(const SDL_Event_* ev)
 {
 	if (CProfileViewer::IsInitialised())
 		return g_ProfileViewer.Input(ev);

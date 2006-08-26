@@ -118,6 +118,6 @@ public:
 
 extern CConsole* g_Console;
 
-extern InReaction conInputHandler(const SDL_Event* ev);
+extern InReaction conInputHandler(const SDL_Event_* ev);
 
 #endif

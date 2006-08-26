@@ -3,7 +3,7 @@
  * File        : input.cpp
  * Project     : 0 A.D.
  * Description : SDL input redirector; dispatches to multiple handlers and
- *             : allows record/playback of events.
+ *             : allows record/playback of evs.
  *
  * @author Jan.Wassenberg@stud.uni-karlsruhe.de
  * =========================================================================
@@ -23,12 +23,12 @@
 
 #include "precompiled.h"
 
-#include "lib.h"
-#include "input.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "lib.h"
+#include "input.h"
+#include "sdl.h"
 
 const uint MAX_HANDLERS = 8;
 static InHandler handler_stack[MAX_HANDLERS];
@@ -45,13 +45,13 @@ void in_add_handler(InHandler handler)
 }
 
 
-// send event to each handler until one returns IN_HANDLED
-static void dispatch_event(const SDL_Event* event)
+// send ev to each handler until one returns IN_HANDLED
+static void dispatch_ev(const SDL_Event_* ev)
 {
 	for(int i = (int)handler_stack_top-1; i >= 0; i--)
 	{
-		debug_assert(handler_stack[i] && event);
-		InReaction ret = handler_stack[i](event);
+		debug_assert(handler_stack[i] && ev);
+		InReaction ret = handler_stack[i](ev);
 		// .. done, return
 		if(ret == IN_HANDLED)
 			return;
@@ -81,7 +81,7 @@ static FILE* f;
 u32 game_ticks;
 
 static u32 time_adjust = 0;
-static u32 next_event_time;
+static u32 next_ev_time;
 
 
 void in_stop()
@@ -130,8 +130,8 @@ LibError in_playback(const char* fn)
 	fread(&rec_start_time, sizeof(u32), 1, f);
 	time_adjust = game_ticks-rec_start_time;
 
-	fread(&next_event_time, sizeof(u32), 1, f);
-	next_event_time += time_adjust;
+	fread(&next_ev_time, sizeof(u32), 1, f);
+	next_ev_time += time_adjust;
 
 	state = PLAYBACK;
 
@@ -140,36 +140,36 @@ LibError in_playback(const char* fn)
 
 
 
-void in_dispatch_event(const SDL_Event* event)
+void in_dispatch_event(const SDL_Event_* ev)
 {
 	if(state == RECORD)
 	{
 		fwrite(&game_ticks, sizeof(u32), 1, f);
-		fwrite(event, sizeof(SDL_Event), 1, f);
+		fwrite(ev, sizeof(SDL_Event_), 1, f);
 	}
 
-	dispatch_event(event);
+	dispatch_ev(ev);
 }
 
 
 void in_dispatch_recorded_events()
 {
-	SDL_Event event;
+	SDL_Event_ ev;
 
-	while(state == PLAYBACK && next_event_time <= game_ticks)
+	while(state == PLAYBACK && next_ev_time <= game_ticks)
 	{
-		fread(&event, sizeof(SDL_Event), 1, f);
+		fread(&ev, sizeof(SDL_Event_), 1, f);
 
-		// do this before dispatch_event(),
+		// do this before dispatch_ev(),
 		// in case a handler calls in_stop() (setting f to 0)
-		if(!fread(&next_event_time, sizeof(u32), 1, f))
+		if(!fread(&next_ev_time, sizeof(u32), 1, f))
 {
 			in_stop();
 exit(0x73c07d);
 // TODO: 'disconnect'?
 }
-		next_event_time += time_adjust;			
+		next_ev_time += time_adjust;			
 
-		in_dispatch_event(&event);	
+		in_dispatch_event(&ev);	
 	}
 }

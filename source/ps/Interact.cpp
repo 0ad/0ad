@@ -1056,11 +1056,11 @@ void FireWorldClickEvent(uint button, int clicks)
 	}
 }
 
-void MouseButtonUpHandler(const SDL_Event *ev, int clicks)
+void MouseButtonUpHandler(const SDL_Event_* ev, int clicks)
 {
-	FireWorldClickEvent(ev->button.button, clicks);
+	FireWorldClickEvent(ev->ev.button.button, clicks);
 
-	switch( ev->button.button )
+	switch( ev->ev.button.button )
 	{
 	case SDL_BUTTON_LEFT:
 		if( g_BuildingPlacer.m_active )
@@ -1107,7 +1107,7 @@ void MouseButtonUpHandler(const SDL_Event *ev, int clicks)
 	}
 }
 
-InReaction interactInputHandler( const SDL_Event* ev )
+InReaction interactInputHandler( const SDL_Event_* ev )
 {
 	if (!g_app_has_focus || !g_Game)
 		return IN_PASS;
@@ -1138,13 +1138,13 @@ InReaction interactInputHandler( const SDL_Event* ev )
 	static bool button_down = false;
 	static bool right_button_down = false;
 
-	if (customSelectionMode && ev->type != SDL_MOUSEBUTTONUP)
+	if (customSelectionMode && ev->ev.type != SDL_MOUSEBUTTONUP)
 		return IN_PASS;
 
-	switch( ev->type )
+	switch( ev->ev.type )
 	{
 	case SDL_HOTKEYDOWN:
-		switch( ev->user.code )
+		switch( ev->ev.user.code )
 		{
 		case HOTKEY_HIGHLIGHTALL:
 			g_Mouseover.m_viewall = true;
@@ -1196,11 +1196,11 @@ InReaction interactInputHandler( const SDL_Event* ev )
 		}
 
 		default:
-			if( ( ev->user.code >= HOTKEY_SELECTION_GROUP_0 ) && ( ev->user.code <= HOTKEY_SELECTION_GROUP_19 ) )
+			if( ( ev->ev.user.code >= HOTKEY_SELECTION_GROUP_0 ) && ( ev->ev.user.code <= HOTKEY_SELECTION_GROUP_19 ) )
 			{
 				// The above test limits it to 20 groups, so don't worry about overflowing
 
-				i8 id = (i8)( ev->user.code - HOTKEY_SELECTION_GROUP_0 );
+				i8 id = (i8)( ev->ev.user.code - HOTKEY_SELECTION_GROUP_0 );
 
 				if( hotkeys[HOTKEY_SELECTION_GROUP_ADD] )
 				{
@@ -1230,7 +1230,7 @@ InReaction interactInputHandler( const SDL_Event* ev )
 		}
 		return( IN_HANDLED );
 	case SDL_HOTKEYUP:
-		switch( ev->user.code )
+		switch( ev->ev.user.code )
 		{
 		case HOTKEY_SELECTION_GROUP_SNAP:
 			if( g_Selection.m_group_highlight != -1 )
@@ -1245,7 +1245,7 @@ InReaction interactInputHandler( const SDL_Event* ev )
 		return( IN_HANDLED );
 	case SDL_MOUSEBUTTONUP:
 	{
-		int button = ev->button.button;
+		int button = ev->ev.button.button;
 		// Only process buttons within the range for which we have button state
 		// arrays above.
 		if (button >= 0 && button < SDL_BUTTON_INDEX_COUNT)
@@ -1263,9 +1263,9 @@ InReaction interactInputHandler( const SDL_Event* ev )
 			lastclicktime[button] = time;
 			lastclickobject[button] = g_Mouseover.m_target;
 
-			if(ev->button.button == SDL_BUTTON_LEFT )
+			if(ev->ev.button.button == SDL_BUTTON_LEFT )
 				button_down = false;
-			if(ev->button.button == SDL_BUTTON_RIGHT )
+			if(ev->ev.button.button == SDL_BUTTON_RIGHT )
 				right_button_down = false;
 
 			MouseButtonUpHandler(ev, clicks[button]);
@@ -1273,12 +1273,12 @@ InReaction interactInputHandler( const SDL_Event* ev )
 		break;
 	}
 	case SDL_MOUSEBUTTONDOWN:
-		switch( ev->button.button )
+		switch( ev->ev.button.button )
 		{
 		case SDL_BUTTON_LEFT:
 			button_down = true;
-			button_down_x = ev->button.x;
-			button_down_y = ev->button.y;
+			button_down_x = ev->ev.button.x;
+			button_down_y = ev->ev.button.y;
 			button_down_time = get_time();
 			if( g_BuildingPlacer.m_active )
 			{
@@ -1292,8 +1292,8 @@ InReaction interactInputHandler( const SDL_Event* ev )
 	case SDL_MOUSEMOTION:
 		if( !g_Mouseover.isBandbox() && button_down && !g_BuildingPlacer.m_active && !right_button_down )
 		{
-			int deltax = ev->motion.x - button_down_x;
-			int deltay = ev->motion.y - button_down_y;
+			int deltax = ev->ev.motion.x - button_down_x;
+			int deltay = ev->ev.motion.y - button_down_y;
 			if( ABS( deltax ) > 2 || ABS( deltay ) > 2 )
 				g_Mouseover.startBandbox( button_down_x, button_down_y );
 		}
@@ -1302,26 +1302,26 @@ InReaction interactInputHandler( const SDL_Event* ev )
 	return( IN_PASS );
 }
 
-bool isOnScreen( CEntity* ev, void* UNUSED(userdata) )
+bool isOnScreen( CEntity* e, void* UNUSED(userdata) )
 {
 	CCamera *pCamera=g_Game->GetView()->GetCamera();
 
 	CFrustum frustum = pCamera->GetFrustum();
 
-	if( ev->m_actor )
-		return( frustum.IsBoxVisible( CVector3D(), ev->m_actor->GetModel()->GetBounds() ) );
+	if( e->m_actor )
+		return( frustum.IsBoxVisible( CVector3D(), e->m_actor->GetModel()->GetBounds() ) );
 	else
 		// If there's no actor, just treat the entity as a point
-		return( frustum.IsBoxVisible( ev->m_graphics_position, CBound() ) );
+		return( frustum.IsBoxVisible( e->m_graphics_position, CBound() ) );
 }
 
-bool isMouseoverType( CEntity* ev, void* UNUSED(userdata) )
+bool isMouseoverType( CEntity* e, void* UNUSED(userdata) )
 {
 	std::vector<SMouseoverFader>::iterator it;
 	for( it = g_Mouseover.m_mouseover.begin(); it < g_Mouseover.m_mouseover.end(); it++ )
 	{
-		if( it->isActive && ( (CEntityTemplate*)it->entity->m_base == (CEntityTemplate*)ev->m_base )
-				&& ( it->entity->GetPlayer() == ev->GetPlayer() ) )
+		if( it->isActive && ( (CEntityTemplate*)it->entity->m_base == (CEntityTemplate*)e->m_base )
+				&& ( it->entity->GetPlayer() == e->GetPlayer() ) )
 			return( true );
 	}
 	return( false );

@@ -60,19 +60,19 @@ JSClass GUIClass = {
 //	event is passed to other handlers if false is returned.
 //	trampoline: we don't want to make the implementation (in CGUI) static
 //-------------------------------------------------------------------
-InReaction gui_handler(const SDL_Event* ev)
+InReaction gui_handler(const SDL_Event_* ev)
 {
 	return g_GUI.HandleEvent(ev);
 }
 
 
-InReaction CGUI::HandleEvent(const SDL_Event* ev)
+InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 {
 	InReaction ret = IN_PASS;
 
-	if (ev->type == SDL_GUIHOTKEYPRESS)
+	if (ev->ev.type == SDL_GUIHOTKEYPRESS)
 	{
-		const CStr& objectName = *(CStr*) ev->user.data1;
+		const CStr& objectName = *(CStr*) ev->ev.user.data1;
 		IGUIObject* object = FindObjectByName(objectName);
 		if (! object)
 		{
@@ -85,12 +85,12 @@ InReaction CGUI::HandleEvent(const SDL_Event* ev)
 		}
 	}
 
-	else if (ev->type == SDL_MOUSEMOTION)
+	else if (ev->ev.type == SDL_MOUSEMOTION)
 	{
 		// Yes the mouse position is stored as float to avoid
 		//  constant conversions when operating in a
 		//  float-based environment.
-		m_MousePos = CPos((float)ev->motion.x, (float)ev->motion.y);
+		m_MousePos = CPos((float)ev->ev.motion.x, (float)ev->ev.motion.y);
 
 		GUI<SGUIMessage>::RecurseObject(GUIRR_HIDDEN | GUIRR_GHOST, m_BaseObject, 
 										&IGUIObject::HandleMessage, 
@@ -98,14 +98,14 @@ InReaction CGUI::HandleEvent(const SDL_Event* ev)
 	}
 
 	// Update m_MouseButtons. (BUTTONUP is handled later.)
-	else if (ev->type == SDL_MOUSEBUTTONDOWN)
+	else if (ev->ev.type == SDL_MOUSEBUTTONDOWN)
 	{
-		switch (ev->button.button)
+		switch (ev->ev.button.button)
 		{
 		case SDL_BUTTON_LEFT:
 		case SDL_BUTTON_RIGHT:
 		case SDL_BUTTON_MIDDLE:
-			m_MouseButtons |= BIT(ev->button.button);
+			m_MouseButtons |= BIT(ev->ev.button.button);
 			break;
 		default:
 			break;
@@ -129,7 +129,7 @@ InReaction CGUI::HandleEvent(const SDL_Event* ev)
 										pNearest);
 
 		// Is placed in the UpdateMouseOver function
-		//if (ev->type == SDL_MOUSEMOTION && pNearest)
+		//if (ev->ev.type == SDL_MOUSEMOTION && pNearest)
 		//	pNearest->ScriptEvent("mousemove");
 
 		// Now we'll call UpdateMouseOver on *all* objects,
@@ -140,9 +140,9 @@ InReaction CGUI::HandleEvent(const SDL_Event* ev)
 										&IGUIObject::UpdateMouseOver, 
 										pNearest);
 
-		if (ev->type == SDL_MOUSEBUTTONDOWN)
+		if (ev->ev.type == SDL_MOUSEBUTTONDOWN)
 		{
-			switch (ev->button.button)
+			switch (ev->ev.button.button)
 			{
 			case SDL_BUTTON_LEFT:
 				if (pNearest)
@@ -195,9 +195,9 @@ InReaction CGUI::HandleEvent(const SDL_Event* ev)
 			}
 		}
 		else 
-		if (ev->type == SDL_MOUSEBUTTONUP)
+		if (ev->ev.type == SDL_MOUSEBUTTONUP)
 		{
-			switch (ev->button.button)
+			switch (ev->ev.button.button)
 			{
 			case SDL_BUTTON_LEFT:
 				if (pNearest)
@@ -271,14 +271,14 @@ InReaction CGUI::HandleEvent(const SDL_Event* ev)
 	// BUTTONUP's effect on m_MouseButtons is handled after
 	// everything else, so that e.g. 'press' handlers (activated
 	// on button up) see which mouse button had been pressed.
-	if (ev->type == SDL_MOUSEBUTTONUP)
+	if (ev->ev.type == SDL_MOUSEBUTTONUP)
 	{
-		switch (ev->button.button)
+		switch (ev->ev.button.button)
 		{
 		case SDL_BUTTON_LEFT:
 		case SDL_BUTTON_RIGHT:
 		case SDL_BUTTON_MIDDLE:
-			m_MouseButtons &= ~BIT(ev->button.button);
+			m_MouseButtons &= ~BIT(ev->ev.button.button);
 			break;
 		default:
 			break;
@@ -289,11 +289,11 @@ InReaction CGUI::HandleEvent(const SDL_Event* ev)
 	if (GetFocusedObject())
 	{
 		if (
-			(ev->type == SDL_KEYDOWN &&
-				ev->key.keysym.sym != SDLK_ESCAPE &&
+			(ev->ev.type == SDL_KEYDOWN &&
+				ev->ev.key.keysym.sym != SDLK_ESCAPE &&
 				!g_keys[SDLK_LCTRL] && !g_keys[SDLK_RCTRL] &&
 				!g_keys[SDLK_LALT] && !g_keys[SDLK_RALT]) 
-			|| ev->type == SDL_HOTKEYDOWN
+			|| ev->ev.type == SDL_HOTKEYDOWN
 			)
 		{
 			ret = GetFocusedObject()->ManuallyHandleEvent(ev);

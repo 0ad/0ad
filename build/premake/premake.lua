@@ -223,7 +223,6 @@ function setup_all_libs ()
 		"spidermonkey",
 		"xerces",
 		"boost",	-- dragged in via server->simulation.h->random
-		"sdl"	-- dragged in via serversession->cconsole->SDL_Event. fixable
 	}
 	setup_static_lib_package("network", source_dirs, extern_libs, {})
 

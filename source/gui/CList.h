@@ -84,7 +84,7 @@ protected:
 	/**
 	 * Handle events manually to catch keyboard inputting.
 	 */
-	virtual InReaction ManuallyHandleEvent(const SDL_Event* ev);
+	virtual InReaction ManuallyHandleEvent(const SDL_Event_* ev);
 
 	/**
 	 * Draws the List box

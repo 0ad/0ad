@@ -28,4 +28,4 @@ extern bool g_keys[SDLK_LAST];
  */
 extern bool g_mouse_buttons[6];
 
-extern InReaction GlobalsInputHandler(const SDL_Event* ev);
+extern InReaction GlobalsInputHandler(const SDL_Event_* ev);
