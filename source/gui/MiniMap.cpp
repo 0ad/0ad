@@ -22,6 +22,7 @@
 #include "renderer/WaterManager.h"
 #include "scripting/GameEvents.h"
 #include "simulation/Entity.h"
+#include "simulation/EntityTemplate.h"
 #include "simulation/LOSManager.h"
 #include "simulation/TerritoryManager.h"
 
@@ -215,8 +216,16 @@ void CMiniMap::DrawViewRect()
 	glLineWidth(1.0f);
 }
 
+struct MinimapUnitVertex
+{
+	u8 r, g, b, a;
+	float x, y;
+};
+
 void CMiniMap::Draw()
 {
+	PROFILE("minimap");
+
 	// The terrain isn't actually initialized until the map is loaded, which
 	// happens when the game is started, so abort until then.
 	if(!(GetGUI() && g_Game && g_Game->IsGameStarted()))
@@ -283,6 +292,9 @@ void CMiniMap::Draw()
 	// Shade territories by player
 	CTerritoryManager* territoryMgr = g_Game->GetWorld()->GetTerritoryManager();
 	std::vector<CTerritory*>& territories = territoryMgr->GetTerritories();
+
+	PROFILE_START("minimap territory shade");
+	
 	glDisable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -303,6 +315,8 @@ void CMiniMap::Draw()
 		glEnd();
 	}
 	glDisable(GL_BLEND);
+
+	PROFILE_END("minimap territory shade");
 
 	// Draw territory boundaries
 	glEnable(GL_LINE_SMOOTH);
@@ -352,16 +366,23 @@ void CMiniMap::Draw()
 	glEnd();
 	glDisable(GL_BLEND);
 
+	PROFILE_START("minimap units");
+
 	// Draw unit points
 	const std::vector<CUnit *> &units = m_UnitManager->GetUnits();
 	std::vector<CUnit *>::const_iterator iter = units.begin();
 	CUnit *unit = 0;
 	CVector2D pos;
 	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
-	glEnable(GL_POINT_SMOOTH);
-	glPointSize(3.0f);
-	// REMOVED: glColor3f(1.0f, 1.0f, 1.0f);
-	glBegin(GL_POINTS);
+
+	std::vector<MinimapUnitVertex> vertexArray;
+	// TODO: don't reallocate this after every frame (but don't waste memory
+	// after the number of units decreases substantially)
+
+	// Don't enable GL_POINT_SMOOTH because it's far too slow
+	// (~70msec/frame on a GF4 rendering a thousand points)
+	glPointSize(3.f);
+
 	for(; iter != units.end(); ++iter)
 	{
 		unit = (CUnit *)(*iter);
@@ -370,28 +391,54 @@ void CMiniMap::Draw()
 			CEntity* entity = unit->GetEntity();
 			CStrW& type = entity->m_base->m_minimapType;
 
+			MinimapUnitVertex v;
+
 			if(type==L"Unit" || type==L"Structure" || type==L"Hero") {
 				// Use the player colour
-				const SPlayerColour& colour = unit->GetEntity()->GetPlayer()->GetColour();
-				glColor3f(colour.r, colour.g, colour.b);
+				const SPlayerColour& colour = entity->GetPlayer()->GetColour();
+				v.r = i32_from_float(colour.r*255.f);
+				v.g = i32_from_float(colour.g*255.f);
+				v.b = i32_from_float(colour.b*255.f);
+				v.a = 255;
 			}
 			else {
-				glColor3f(entity->m_base->m_minimapR/255.0f, entity->m_base->m_minimapG/255.0f, entity->m_base->m_minimapB/255.0f);
+				CEntityTemplate* base = entity->m_base;
+				v.r = base->m_minimapR;
+				v.g = base->m_minimapG;
+				v.b = base->m_minimapB;
+				v.a = 255;
 			}
 
+			pos = GetMapSpaceCoords(entity->m_position);
 
-			pos = GetMapSpaceCoords(unit->GetEntity()->m_position);
-
-			glVertex3f(x + pos.x, y - pos.y, z);
+			v.x = x + pos.x;
+			v.y = y - pos.y;
+			vertexArray.push_back(v);
 		}
+	}	
+
+	if (vertexArray.size())
+	{
+		glPushMatrix();
+		glTranslatef(0, 0, z);
+
+		pglBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
+
+		glInterleavedArrays(GL_C4UB_V2F, sizeof(MinimapUnitVertex), &vertexArray[0]);
+		glDrawArrays(GL_POINTS, 0, (GLsizei)vertexArray.size());
+
+		glDisableClientState(GL_COLOR_ARRAY);
+		glDisableClientState(GL_VERTEX_ARRAY);
+
+		glPopMatrix();
 	}
-	glEnd();
+
+	PROFILE_END("minimap units");
 
 	DrawViewRect();
 
 	// Reset everything back to normal
 	glPointSize(1.0f);
-	glDisable(GL_POINT_SMOOTH);
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_DEPTH_TEST);
 }
