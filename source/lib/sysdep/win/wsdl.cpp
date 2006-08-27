@@ -747,6 +747,8 @@ int SDL_EnableUNICODE(int UNUSED(enable))
 //----------------------------------------------------------------------------
 // mouse
 
+// note: coords may be negative on multimonitor systems!
+
 static void queue_mouse_event(uint x, uint y)
 {
 	SDL_Event ev;
@@ -770,39 +772,50 @@ static void queue_button_event(uint button, uint state, uint x, uint y)
 }
 
 
-static uint mouse_x, mouse_y;
+static int mouse_x, mouse_y;
 
 // generate a mouse move message and update our notion of the mouse position.
-// x, y are screen pixel coordinates.
+// x, y are window pixel coordinates.
 // notes:
 // - does not actually move the OS cursor;
 // - called from mouse_update and SDL_WarpMouse.
-// - coords should never be negative - this would indicate a logic error.
 static void mouse_moved(int x, int y)
 {
+	// docs say this can happen on multi-monitor systems :/ it's unclear what
+	// we should to do fit this in SDL's Uint16.
 	debug_assert(x >= 0 && y >= 0);
-	mouse_x = (uint)x;
-	mouse_y = (uint)y;
-	queue_mouse_event(mouse_x, mouse_y);
+
+	mouse_x = x;
+	mouse_y = y;
+	queue_mouse_event(x, y);
 }
 
 
-static void mouse_update()
+// return in client coords
+static POINT mouse_pos()
 {
 	// don't use DirectInput, because we want to respect the user's mouse
-	// sensitivity settings. Windows messages are laggy, so poll instead.
+	// sensitivity settings. Windows messages are laggy, so query current
+	// position directly.
 
+	POINT pt;
+	WARN_IF_FALSE(GetCursorPos(&pt));
+	WARN_IF_FALSE(ScreenToClient(hWnd, &pt));
+	return pt;
+}
+
+static void mouse_update()
+{
 	// window not created yet or already shut down. no sense reporting
 	// mouse position, and bail now to avoid ScreenToClient failing.
 	if(hWnd == INVALID_HANDLE_VALUE)
 		return;
 
-	POINT pt;
-	WARN_IF_FALSE(GetCursorPos(&pt));
-	WARN_IF_FALSE(ScreenToClient(hWnd, &pt));
+	const POINT pt = mouse_pos();
+	const int x = pt.x, y = pt.y;
 
 	// nothing to do if it hasn't changed since last time
-	if(mouse_x == (uint)pt.x && mouse_y == (uint)pt.y)
+	if(mouse_x == x && mouse_y == y)
 		return;
 
 	// moved within window
@@ -811,7 +824,7 @@ static void mouse_update()
 	if(PtInRect(&client_rect, pt) && WindowFromPoint(pt) == hWnd)
 	{
 		active_change_state(GAIN, SDL_APPMOUSEFOCUS);
-		mouse_moved((int)pt.x, (int)pt.y);
+		mouse_moved(x, y);
 	}
 	// moved outside of window
 	else
@@ -897,9 +910,9 @@ static LRESULT OnMouseWheel(HWND UNUSED(hWnd), int xPos, int yPos, int zDelta, U
 Uint8 SDL_GetMouseState(int* x, int* y)
 {
 	if(x)
-		*x = (int)mouse_x;
+		*x = mouse_x;
 	if(y)
-		*y = (int)mouse_y;
+		*y = mouse_y;
 	return (Uint8)mouse_buttons;
 }
 
@@ -995,7 +1008,7 @@ static LRESULT CALLBACK wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 	case WM_RBUTTONUP:
 	case WM_MBUTTONDOWN:
 	case WM_MBUTTONUP:
-		return OnMouseButton(hWnd, uMsg, (int)(short)LOWORD(lParam), (int)(short)HIWORD(lParam), (UINT)(wParam));
+		return OnMouseButton(hWnd, uMsg, GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam), (UINT)wParam);
 
 	default:
 		// can't call DefWindowProc here: some messages
