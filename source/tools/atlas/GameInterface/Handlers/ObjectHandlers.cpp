@@ -7,6 +7,7 @@
 
 #include "graphics/GameView.h"
 #include "graphics/Model.h"
+#include "graphics/ObjectEntry.h"
 #include "graphics/ObjectManager.h"
 #include "graphics/Terrain.h"
 #include "graphics/Unit.h"
@@ -18,8 +19,10 @@
 #include "ps/Game.h"
 #include "ps/World.h"
 #include "simulation/EntityTemplateCollection.h"
+#include "simulation/EntityTemplate.h"
 #include "simulation/Entity.h"
 #include "simulation/EntityManager.h"
+#include "simulation/TerritoryManager.h"
 
 #define LOG_CATEGORY "editor"
 
@@ -214,7 +217,7 @@ static float flt_minus_epsilon(float f)
 static CVector3D GetUnitPos(const Position& pos)
 {
 	static CVector3D vec;
-	pos.GetWorldSpace(vec, vec); // if msg->pos is 'Unchanged', use the previous pos
+	vec = pos.GetWorldSpace(vec); // if msg->pos is 'Unchanged', use the previous pos
 
 	float xOnMap = clamp(vec.X, 0.f, flt_minus_epsilon((g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide()-1)*CELL_SIZE));
 	float zOnMap = clamp(vec.Z, 0.f, flt_minus_epsilon((g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide()-1)*CELL_SIZE));
@@ -296,8 +299,7 @@ MESSAGEHANDLER(ObjectPreview)
 		if (msg->usetarget)
 		{
 			// Aim from pos towards msg->target
-			CVector3D target;
-			msg->target->GetWorldSpace(target, pos.Y);
+			CVector3D target = msg->target->GetWorldSpace(pos.Y);
 			CVector2D dir(target.X-pos.X, target.Z-pos.Z);
 			dir = dir.normalize();
 			s = dir.x;
@@ -337,8 +339,7 @@ BEGIN_COMMAND(CreateObject)
 		if (msg->usetarget)
 		{
 			// Aim from m_Pos towards msg->target
-			CVector3D target;
-			msg->target->GetWorldSpace(target, m_Pos.Y);
+			CVector3D target = msg->target->GetWorldSpace(m_Pos.Y);
 			CVector2D dir(target.X-m_Pos.X, target.Z-m_Pos.Z);
 			m_Angle = atan2(dir.x, dir.y);
 		}
@@ -388,6 +389,9 @@ BEGIN_COMMAND(CreateObject)
 					{
 						ent->SetPlayer(g_Game->GetPlayer(m_Player));
 						ent->m_actor->SetID(m_ID);
+
+						if (ent->m_base->m_isTerritoryCentre)
+							g_Game->GetWorld()->GetTerritoryManager()->DelayedRecalculate();
 					}
 				}
 			}
@@ -424,7 +428,14 @@ BEGIN_COMMAND(CreateObject)
 		if (unit)
 		{
 			if (unit->GetEntity())
+			{
+				bool wasTerritoryCentre = unit->GetEntity()->m_base->m_isTerritoryCentre;
+
 				unit->GetEntity()->kill();
+
+				if (wasTerritoryCentre)
+					g_Game->GetWorld()->GetTerritoryManager()->DelayedRecalculate();
+			}
 			else
 			{
 				g_UnitMan.RemoveUnit(unit);
@@ -504,6 +515,9 @@ BEGIN_COMMAND(MoveObject)
 		if (unit->GetEntity())
 		{
 			unit->GetEntity()->m_position = pos;
+
+			if (unit->GetEntity()->m_base->m_isTerritoryCentre)
+				g_Game->GetWorld()->GetTerritoryManager()->DelayedRecalculate();
 		}
 		else
 		{
@@ -549,8 +563,7 @@ BEGIN_COMMAND(RotateObject)
 			if (msg->usetarget)
 			{
 				CVector3D& pos = unit->GetEntity()->m_position;
-				CVector3D target;
-				msg->target->GetWorldSpace(target, pos.Y);
+				CVector3D target = msg->target->GetWorldSpace(pos.Y);
 				CVector2D dir(target.X-pos.X, target.Z-pos.Z);
 				m_AngleNew = atan2(dir.x, dir.y);
 			}
@@ -568,8 +581,7 @@ BEGIN_COMMAND(RotateObject)
 			float s, c;
 			if (msg->usetarget)
 			{
-				CVector3D target;
-				msg->target->GetWorldSpace(target, pos.Y);
+				CVector3D target = msg->target->GetWorldSpace(pos.Y);
 				CVector2D dir(target.X-pos.X, target.Z-pos.Z);
 				dir = dir.normalize();
 				s = dir.x;
@@ -660,6 +672,10 @@ BEGIN_COMMAND(DeleteObject)
 		{
 			// HACK: I don't know the proper way of undoably deleting entities...
 			unit->GetEntity()->entf_set(ENTF_DESTROYED);
+
+			// TODO: territories don't ignore DESTROYED entities
+			if (unit->GetEntity()->m_base->m_isTerritoryCentre)
+				g_Game->GetWorld()->GetTerritoryManager()->DelayedRecalculate();
 		}
 
 		g_UnitMan.RemoveUnit(unit);
@@ -669,7 +685,12 @@ BEGIN_COMMAND(DeleteObject)
 	void Undo()
 	{
 		if (m_UnitInLimbo->GetEntity())
+		{
 			m_UnitInLimbo->GetEntity()->entf_clear(ENTF_DESTROYED);
+
+			if (m_UnitInLimbo->GetEntity()->m_base->m_isTerritoryCentre)
+				g_Game->GetWorld()->GetTerritoryManager()->DelayedRecalculate();
+		}
 
 		g_UnitMan.AddUnit(m_UnitInLimbo);
 		m_UnitInLimbo = NULL;

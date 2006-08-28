@@ -1,5 +1,8 @@
 #include "stdafx.h"
 
+/* Disabled (and should be removed if it turns out to be unnecessary)
+- see MessagePasserImpl.cpp for information
+
 #include "AtlasEventLoop.h"
 
 AtlasEventLoop::AtlasEventLoop()
@@ -36,3 +39,4 @@ bool AtlasEventLoop::Dispatch()
 
 	return wxEventLoop::Dispatch();
 }
+*/

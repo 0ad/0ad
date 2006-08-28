@@ -4,6 +4,7 @@
 
 #include "EntityOrders.h"
 #include "Entity.h"
+#include "EntityTemplate.h"
 #include "PathfindEngine.h"
 
 

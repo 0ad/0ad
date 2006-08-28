@@ -38,13 +38,8 @@
 #include "scripting/DOMEvent.h"
 #include "scripting/ScriptCustomTypes.h"
 
-// JW: must be pulled in because CEntity no longer mirrors CEntityTemplate exactly.
-// some fields have been moved out of CEntity and are accessed via m_base,
-// so CEntityTemplate must be fully defined.
-#include "EntityTemplate.h"
-
 class CAura;
-//class CEntityTemplate;	// see comment above
+class CEntityTemplate;
 class CBoundingObject;
 class CPlayer;
 class CProductionQueue;

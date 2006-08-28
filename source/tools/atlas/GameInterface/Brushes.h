@@ -1,3 +1,6 @@
+#ifndef BRUSHES_H__
+#define BRUSHES_H__
+
 #include "maths/Vector3D.h"
 
 class TerrainOverlay;
@@ -33,3 +36,5 @@ private:
 extern Brush g_CurrentBrush;
 
 }
+
+#endif // BRUSHES_H__

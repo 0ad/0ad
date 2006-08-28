@@ -24,10 +24,11 @@
 #include "EntityMessage.h"
 #include "ps/Game.h"
 #include "ps/World.h"
-#include "ps/CStr.h"
 #include "maths/Vector3D.h"
 
 class CEntityTemplate;
+class CPlayer;
+class CStrW;
 
 #define MAX_HANDLES 4096
 

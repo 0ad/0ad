@@ -35,8 +35,6 @@ extern cmdHandlers& GetCmdHandlers();
 	extern cmdHandler c##name##_create(); \
 	GetCmdHandlers().insert(std::pair<std::string, cmdHandler>("c"#name, c##name##_create()));
 
-#define FUNCTION(def)
-
 #undef SHAREABLE_STRUCT
 #define SHAREABLE_STRUCT(name)
 

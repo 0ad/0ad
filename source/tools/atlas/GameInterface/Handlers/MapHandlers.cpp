@@ -35,8 +35,6 @@ static void InitGame(std::wstring map)
 
 	// Initialise the game:
 	g_Game = new CGame();
-
-	g_GameLoop->worldloaded = true;
 }
 
 static void StartGame()

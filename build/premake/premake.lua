@@ -484,9 +484,11 @@ function setup_atlas_packages()
 	setup_atlas_package("AtlasUI", "dll",
 	{	-- src
 		"ActorEditor",
+		"ActorViewer",
 		"ArchiveViewer",
 		"ColourTester",
 		"CustomControls/Buttons",
+		"CustomControls/Canvas",
 		"CustomControls/ColourDialog",
 		"CustomControls/DraggableListCtrl",
 		"CustomControls/EditableListCtrl",

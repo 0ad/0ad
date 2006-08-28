@@ -163,7 +163,7 @@ BEGIN_COMMAND(PaintTerrain)
 	void Do()
 	{
 
-		msg->pos->GetWorldSpace(g_CurrentBrush.m_Centre);
+		g_CurrentBrush.m_Centre = msg->pos->GetWorldSpace();
 
 		int x0, y0;
 		g_CurrentBrush.GetBottomLeft(x0, y0);

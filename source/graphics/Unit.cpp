@@ -7,16 +7,35 @@
 #include "SkeletonAnim.h"
 #include "SkeletonAnimDef.h"
 
-CUnit::CUnit(CObjectEntry* object, CEntity* entity, const std::set<CStr8>& actorSelections)
+CUnit::CUnit(CObjectEntry* object, CEntity* entity, const std::set<CStr>& actorSelections)
 : m_Object(object), m_Model(object->m_Model->Clone()), m_Entity(entity),
   m_ID(-1), m_ActorSelections(actorSelections)
 {
 }
 
-
 CUnit::~CUnit()
 {
 	delete m_Model;
+}
+
+CUnit* CUnit::Create(const CStr& actorName, CEntity* entity, const std::set<CStr>& selections)
+{
+	CObjectBase* base = g_ObjMan.FindObjectBase(actorName);
+
+	if (! base)
+		return NULL;
+
+	std::set<CStr> actorSelections = base->CalculateRandomVariation(selections);
+
+	std::vector<std::set<CStr> > selectionsVec;
+	selectionsVec.push_back(actorSelections);
+
+	CObjectEntry* obj = g_ObjMan.FindObjectVariation(base, selectionsVec);
+
+	if (! obj)
+		return NULL;
+
+	return new CUnit(obj, entity, actorSelections);
 }
 
 void CUnit::ShowAmmunition()
@@ -115,9 +134,9 @@ void CUnit::SetPlayerID(int id)
 	m_Model->SetPlayerID(m_PlayerID);
 }
 
-void CUnit::SetEntitySelection(const CStrW& selection)
+void CUnit::SetEntitySelection(const CStr& selection)
 {
-	CStrW selection_lc = selection.LowerCase();
+	CStr selection_lc = selection.LowerCase();
 
 	// If we've already selected this, don't do anything
 	if (m_EntitySelections.find(selection_lc) != m_EntitySelections.end())
@@ -130,7 +149,7 @@ void CUnit::SetEntitySelection(const CStrW& selection)
 	ReloadObject();
 }
 
-void CUnit::SetActorSelections(const std::set<CStr8>& selections)
+void CUnit::SetActorSelections(const std::set<CStr>& selections)
 {
 	m_ActorSelections = selections;
 	ReloadObject();
@@ -138,7 +157,7 @@ void CUnit::SetActorSelections(const std::set<CStr8>& selections)
 
 void CUnit::ReloadObject()
 {
-	std::vector<std::set<CStr8> > selections;
+	std::vector<std::set<CStr> > selections;
 	// TODO: push world selections (seasons, etc) (and reload whenever they're changed)
 	selections.push_back(m_EntitySelections);
 	selections.push_back(m_ActorSelections);

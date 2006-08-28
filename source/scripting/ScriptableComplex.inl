@@ -52,6 +52,7 @@ linker won't find the definitions of these functions. Right now this is only
 #ifndef SCRIPTABLE_COMPLEX_INL_INCLUDED
 #define SCRIPTABLE_COMPLEX_INL_INCLUDED
 
+#include "ScriptableComplex.h"
 
 //-----------------------------------------------------------------------------
 // CJSComplexPropertyAccessor

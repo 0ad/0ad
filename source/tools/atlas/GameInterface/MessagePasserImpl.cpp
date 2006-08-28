@@ -43,12 +43,13 @@ IMessage* MessagePasserImpl::Retrieve()
 
 	m_Mutex.Unlock();
 
-//	if (m_Trace && msg) debug_printf("%8.3f retrieved message: %s\n", get_time(), msg->GetType());
+	if (m_Trace && msg)
+		debug_printf("%8.3f retrieved message: %s\n", get_time(), msg->GetName());
 
 	return msg;
 }
 
-void MessagePasserImpl::Query(QueryMessage* qry, void(*timeoutCallback)())
+void MessagePasserImpl::Query(QueryMessage* qry, void(* UNUSED(timeoutCallback) )())
 {
 	debug_assert(qry);
 	debug_assert(qry->GetType() == IMessage::Query);
@@ -74,32 +75,49 @@ void MessagePasserImpl::Query(QueryMessage* qry, void(*timeoutCallback)())
 
 	// Wait until the query handler has handled the query and called sem_post:
 
-	// At least on Win32, it is necessary for the UI thread to run its event
-	// loop to avoid deadlocking the system (particularly when the game
-	// tries to show a dialog box); so timeoutCallback is called whenever we
-	// think it's necessary for that to happen.
 
-#if OS_WIN
-	// On Win32, use MsgWaitForMultipleObjects, which waits on the semaphore
-	// but is also interrupted by incoming Windows-messages.
-	while (0 != (err = sem_msgwait_np(&sem)))
-#else
-	// TODO: On non-Win32, I have no idea whether the same problem exists; but
-	// it might do, so call the callback every few seconds just in case it helps.
-	struct timespec abs_timeout;
-	clock_gettime(CLOCK_REALTIME, &abs_timeout);
-	abs_timeout.tv_sec += 2;
-	while (0 != (err = sem_timedwait(&sem, &abs_timeout)))
-#endif
+	// The following code was necessary to avoid deadlock, but it still breaks
+	// in some cases (e.g. when Atlas issues a query before its event loop starts
+	// running) and doesn't seem to be the simplest possible solution.
+	// So currently we're trying to not do anything like that at all, and
+	// just stop the game making windows (which is what seems (from experience) to
+	// deadlock things) by overriding ah_display_error. Hopefully it'll work like
+	// that, and the redundant code below/elsewhere can be removed, but it's
+	// left in here in case it needs to be reinserted in the future to make it
+	// work.
+	// (See http://www.wildfiregames.com/forum/index.php?s=&showtopic=10236&view=findpost&p=174617)
+
+// 	// At least on Win32, it is necessary for the UI thread to run its event
+// 	// loop to avoid deadlocking the system (particularly when the game
+// 	// tries to show a dialog box); so timeoutCallback is called whenever we
+// 	// think it's necessary for that to happen.
+// 
+// #if OS_WIN
+// 	// On Win32, use MsgWaitForMultipleObjects, which waits on the semaphore
+// 	// but is also interrupted by incoming Windows-messages.
+//	// while (0 != (err = sem_msgwait_np(&sem)))
+// 	
+// 	while (0 != (err = sem_wait(&sem)))
+// #else
+// 	// TODO: On non-Win32, I have no idea whether the same problem exists; but
+// 	// it might do, so call the callback every few seconds just in case it helps.
+// 	struct timespec abs_timeout;
+// 	clock_gettime(CLOCK_REALTIME, &abs_timeout);
+// 	abs_timeout.tv_sec += 2;
+// 	while (0 != (err = sem_timedwait(&sem, &abs_timeout)))
+// #endif
+
+	while (0 != (err = sem_wait(&sem)))
 	{
 		// If timed out, call callback and try again
-		if (errno == ETIMEDOUT)
-			timeoutCallback();
+// 		if (errno == ETIMEDOUT)
+// 			timeoutCallback();
+// 		else
 		// Keep retrying while EINTR, but other errors are probably fatal
-		else if (errno != EINTR)
+		if (errno != EINTR)
 		{
 			debug_warn("Semaphore wait failed");
-			return; // (leak the semaphore)
+			return; // (leaks the semaphore)
 		}
 	}
 

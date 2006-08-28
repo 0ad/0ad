@@ -237,7 +237,7 @@ void CMapWriter::WriteXML(const char* filename,
 			CVector3D in = pCamera->m_Orientation.GetIn();
 			// Convert to spherical coordinates
 			float rotation = atan2(in.X, in.Z);
-			float declination = atan2(sqrt(in.X*in.X + in.Z*in.Z), in.Y) - M_PI_2;
+			float declination = atan2(sqrt(in.X*in.X + in.Z*in.Z), in.Y) - PI/2;
 
 			{
 				XML_Element("Rotation");

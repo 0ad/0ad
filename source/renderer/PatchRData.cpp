@@ -412,37 +412,53 @@ void CPatchRData::Update()
 
 	CTerrain* terrain=m_Patch->m_Parent;
 	int mapSize=terrain->GetVerticesPerSide();
-	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
 	int vsize=PATCH_SIZE+1;
 
-	// this is very similar to BuildVertices(), but just for color
-	for (int j=0;j<vsize;j++) {
-		for (int i=0;i<vsize;i++) {
-			int ix=px*PATCH_SIZE+i;
-			int iz=pz*PATCH_SIZE+j;
-			int v=(j*vsize)+i;
+	if (g_Game)
+	{
+		CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
 
-			const int DX[] = {1,1,0,0};
-			const int DZ[] = {0,1,1,0};
-			SColor4ub losMod(255, 255, 255, 255);
+		// this is very similar to BuildVertices(), but just for color
+		for (int j=0;j<vsize;j++) {
+			for (int i=0;i<vsize;i++) {
+				int ix=px*PATCH_SIZE+i;
+				int iz=pz*PATCH_SIZE+j;
+				int v=(j*vsize)+i;
 
-			for(int k=0; k<4; k++)
-			{
-				int tx = ix - DX[k];
-				int tz = iz - DZ[k];
+				const int DX[] = {1,1,0,0};
+				const int DZ[] = {0,1,1,0};
+				SColor4ub losMod(255, 255, 255, 255);
 
-				if(tx >= 0 && tz >= 0 && tx <= mapSize-2 && tz <= mapSize-2)
+				for(int k=0; k<4; k++)
 				{
-					ELOSStatus s = losMgr->GetStatus(tx, tz, g_Game->GetLocalPlayer());
-					if(s==LOS_EXPLORED && losMod.R > 178)
-						losMod = SColor4ub(178, 178, 178, 255);
-					else if(s==LOS_UNEXPLORED && losMod.R > 0)
-						losMod = SColor4ub(0, 0, 0, 255);
-				}
-			}
+					int tx = ix - DX[k];
+					int tz = iz - DZ[k];
 
-			m_Vertices[v].m_LOSColor = losMod;
+					if(tx >= 0 && tz >= 0 && tx <= mapSize-2 && tz <= mapSize-2)
+					{
+						ELOSStatus s = losMgr->GetStatus(tx, tz, g_Game->GetLocalPlayer());
+						if(s==LOS_EXPLORED && losMod.R > 178)
+							losMod = SColor4ub(178, 178, 178, 255);
+						else if(s==LOS_UNEXPLORED && losMod.R > 0)
+							losMod = SColor4ub(0, 0, 0, 255);
+					}
+				}
+
+				m_Vertices[v].m_LOSColor = losMod;
+			}
 		}
+	}
+	else
+	{
+		for (int j = 0; j < vsize; ++j)
+		{
+			for (int i = 0; i < vsize; ++i)
+			{
+				int v = (j*vsize)+i;
+				m_Vertices[v].m_LOSColor = SColor4ub(255, 255, 255, 255);
+			}
+		}
+
 	}
 
 	// upload base vertices into their vertex buffer

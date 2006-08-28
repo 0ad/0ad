@@ -705,9 +705,6 @@ void CRenderer::SetFastPlayerColor(bool fast)
 // BeginFrame: signal frame start
 void CRenderer::BeginFrame()
 {
-	if(!g_Game || !g_Game->IsGameStarted())
-		return;
-
 	// bump frame counter
 	m_FrameCounter++;
 
@@ -1158,9 +1155,6 @@ void CRenderer::RenderRefractions()
 // FlushFrame: force rendering of any batched objects
 void CRenderer::FlushFrame()
 {
-	if(!g_Game || !g_Game->IsGameStarted())
-		return;
-
 	oglCheck();
 
 	// Prepare model renderers
@@ -1178,7 +1172,8 @@ void CRenderer::FlushFrame()
 	m->terrainRenderer->PrepareForRendering();
 	PROFILE_END("prepare terrain");
 
-	if (m_Options.m_Shadows) {
+	if (m_Options.m_Shadows)
+	{
 		MICROLOG(L"render shadows");
 		RenderShadowMap();
 	}
@@ -1189,7 +1184,7 @@ void CRenderer::FlushFrame()
 
 	oglCheck();
 
-	if(m_WaterManager->m_RenderWater && m_Options.m_FancyWater)
+	if (m_WaterManager->m_RenderWater && m_Options.m_FancyWater)
 	{
 		// render reflected and refracted scenes, then re-clear the screen
 		RenderReflections();
@@ -1227,7 +1222,7 @@ void CRenderer::FlushFrame()
 	oglCheck();
 
 	// render water
-	if (m_WaterManager->m_RenderWater)
+	if (m_WaterManager->m_RenderWater && g_Game)
 	{
 		MICROLOG(L"render water");
 		m->terrainRenderer->RenderWater();
@@ -1246,7 +1241,6 @@ void CRenderer::FlushFrame()
 		// turning the water off. On the other hand every user will have water
 		// on all the time, so it might not be worth worrying about.
 	}
-
 
 	// Clean up texture blend mode so particles and other things render OK 
 	// (really this should be cleaned up by whoever set it)
@@ -1284,9 +1278,6 @@ void CRenderer::FlushFrame()
 // EndFrame: signal frame end
 void CRenderer::EndFrame()
 {
-	if(!g_Game || !g_Game->IsGameStarted())
-		return;
-
 	g_Renderer.SetTexture(0,0);
 
 	static bool once=false;

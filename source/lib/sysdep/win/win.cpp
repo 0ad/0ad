@@ -327,7 +327,7 @@ static inline void pre_libc_init()
 static int SEH_wrapped_entry()
 {
 	int ret;
-	//__try
+	__try
 	{
 		pre_libc_init();
 #ifdef USE_WINMAIN
@@ -336,7 +336,7 @@ static int SEH_wrapped_entry()
 		ret = mainCRTStartup();	// calls _cinit and then our main
 #endif
 	}
-	//__except(wdbg_exception_filter(GetExceptionInformation()))
+	__except(wdbg_exception_filter(GetExceptionInformation()))
 	{
 		ret = -1;
 	}

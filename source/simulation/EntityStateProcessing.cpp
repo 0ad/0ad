@@ -4,6 +4,7 @@
 
 #include "Entity.h"
 #include "EntityTemplate.h"
+#include "EventHandlers.h"
 #include "graphics/Model.h"
 #include "graphics/ObjectEntry.h"
 #include "graphics/SkeletonAnim.h"
@@ -406,7 +407,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 				popOrder();
 				entf_clear(ENTF_IS_RUNNING);
 				entf_clear(ENTF_SHOULD_RUN);
-				m_actor->SetEntitySelection( L"idle" );
+				m_actor->SetEntitySelection( "idle" );
 				m_actor->SetRandomAnimation( "idle" );
 				return( false );
 			}

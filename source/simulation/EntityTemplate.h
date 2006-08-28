@@ -21,13 +21,14 @@
 #include "graphics/ObjectEntry.h"
 
 #include "scripting/ScriptableComplex.h"
+#include "scripting/DOMEvent.h"
 #include "BoundingObjects.h"
-#include "EventHandlers.h"
 #include "EntitySupport.h"
 #include "ScriptObject.h"
-#include "ps/XML/Xeromyces.h"
 
 class CPlayer;
+class CXeromyces;
+class XMBElement;
 
 class CEntityTemplate : public CJSComplex<CEntityTemplate>, public IEventTarget
 {

@@ -161,7 +161,7 @@ public:
 
 	const wrapped_type _Unwrap() const
 	{
-		return buf ? wrapped_type(buf, buf+length-1) : wrapped_type();
+		return (buf && length) ? wrapped_type(buf, buf+length-1) : wrapped_type();
 	}
 
 	const wrapped_type operator*() const
@@ -173,7 +173,7 @@ public:
 	// without constructing a new std::basic_string then calling c_str on that
 	const C* c_str() const
 	{
-		return buf ? buf : (C*)empty_str;
+		return (buf && length) ? buf : (C*)empty_str;
 	}
 };
 

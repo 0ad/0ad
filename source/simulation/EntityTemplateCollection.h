@@ -20,16 +20,18 @@
 #include <map>
 #include "ps/CStr.h"
 #include "ps/Singleton.h"
-#include "graphics/ObjectEntry.h"
-#include "EntityTemplate.h"
 #include "ps/Game.h"
 
 #define g_EntityTemplateCollection CEntityTemplateCollection::GetSingleton()
 
 class CPlayer;
+class CEntityTemplate;
 
 class CEntityTemplateCollection : public Singleton<CEntityTemplateCollection>
 {
+	// TODO: PS_MAX_PLAYERS doesn't seem to be an upper limit -
+	//  "This may be overridden by system.cfg ("max_players")"
+	// - so we shouldn't use it here
 	static const uint NULL_PLAYER = (PS_MAX_PLAYERS+1);
 
 	typedef STL_HASH_MAP<CStrW, CEntityTemplate*, CStrW_hash_compare> TemplateMap;

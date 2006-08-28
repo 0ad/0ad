@@ -3,23 +3,30 @@
 
 #include <set>
 
+#include "ps/CStr.h"
+
 class CModel;
 class CObjectEntry;
 class CEntity;
 class CSkeletonAnim;
-class CStr8;
 class CStrW;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // CUnit: simple "actor" definition - defines a sole object within the world
 class CUnit
 {
+private:
+	// Private constructor. Needs complete list of selections for the variation.
+	CUnit(CObjectEntry* object, CEntity* entity, const std::set<CStr>& actorSelections);
+
 public:
-	CUnit(CObjectEntry* object, CEntity* entity, const std::set<CStr8>& actorSelections);
+	// Attempt to create a unit with the given actor, attached to an entity
+	// (or NULL), with a set of suggested selections (with the rest being randomised).
+	// Returns NULL on failure.
+	static CUnit* Create(const CStr& actorName, CEntity* entity, const std::set<CStr>& selections);
 
 	// destructor
 	~CUnit();
-
 
 	// get unit's template object; never NULL
 	CObjectEntry* GetObject() { return m_Object; }
@@ -34,19 +41,20 @@ public:
 
 	// Sets the animation a random one matching 'name'. If none is found,
 	// sets to idle instead. Applies recursively to props.
-	bool SetRandomAnimation(const CStr8& name, bool once = false, float speed = 0.0f);
+	// SetEntitySelection(name) should typically be used before this.
+	bool SetRandomAnimation(const CStr& name, bool once = false, float speed = 0.0f);
 
 	// Returns a random animation matching 'name'. If none is found,
 	// returns idle instead.
-	CSkeletonAnim* GetRandomAnimation(const CStr8& name);
+	CSkeletonAnim* GetRandomAnimation(const CStr& name);
 
 	// Sets the entity-selection, and updates the unit to use the new
 	// actor variation.
-	void SetEntitySelection(const CStrW& selection);
+	void SetEntitySelection(const CStr& selection);
 
 	// Returns whether the currently active animation is one of the ones
 	// matching 'name'.
-	bool IsPlayingAnimation(const CStr8& name);
+	bool IsPlayingAnimation(const CStr& name);
 
 	// Set player ID of this unit
 	void SetPlayerID(int id);
@@ -57,9 +65,9 @@ public:
 	int GetID() const { return m_ID; }
 	void SetID(int id) { m_ID = id; }
 
-	const std::set<CStr8>& GetActorSelections() const { return m_ActorSelections; }
+	const std::set<CStr>& GetActorSelections() const { return m_ActorSelections; }
 	
-	void SetActorSelections(const std::set<CStr8>& selections);
+	void SetActorSelections(const std::set<CStr>& selections);
 
 private:
 	// object from which unit was created
@@ -76,9 +84,9 @@ private:
 	int m_ID;
 
 	// actor-level selections for this unit
-	std::set<CStr8> m_ActorSelections;
+	std::set<CStr> m_ActorSelections;
 	// entity-level selections for this unit
-	std::set<CStr8> m_EntitySelections;
+	std::set<CStr> m_EntitySelections;
 
 	void ReloadObject();
 };

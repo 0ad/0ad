@@ -29,7 +29,7 @@ bool operator< (const CObjectManager::ObjectKey& a, const CObjectManager::Object
 		return a.ActorVariation < b.ActorVariation;
 }
 
-CObjectManager::CObjectManager() : m_SelectedThing(NULL)
+CObjectManager::CObjectManager()
 {
 	m_ObjectTypes.reserve(32);
 }
@@ -158,6 +158,10 @@ void CObjectManager::DeleteObject(CObjectEntry* entry)
 
 int CObjectManager::LoadObjects()
 {
+	// This is kind of useless - it should probably be removed,
+	// and UnloadObject moved into the destructor, and singletonness
+	// removed if we still want to unload the object manager and reuse it
+	// again later.
 	AddObjectType("");
 	return 0;
 }
@@ -177,9 +181,6 @@ void CObjectManager::UnloadObjects()
 		);
 	}
 	m_ObjectTypes.clear();
-
-	delete m_SelectedThing;
-	m_SelectedThing = NULL;
 }
 
 

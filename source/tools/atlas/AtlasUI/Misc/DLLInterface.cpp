@@ -5,11 +5,13 @@
 #include "General/AtlasEventLoop.h"
 
 #include "General/Datafile.h"
+
 #include "ActorEditor/ActorEditor.h"
-#include "ColourTester/ColourTester.h"
-#include "ScenarioEditor/ScenarioEditor.h"
-#include "FileConverter/FileConverter.h"
+#include "ActorViewer/ActorViewer.h"
 #include "ArchiveViewer/ArchiveViewer.h"
+#include "ColourTester/ColourTester.h"
+#include "FileConverter/FileConverter.h"
+#include "ScenarioEditor/ScenarioEditor.h"
 
 #include "GameInterface/MessagePasser.h"
 
@@ -26,7 +28,7 @@ ATLASDLLIMPEXP void* ShareableMalloc(size_t n)
 }
 ATLASDLLIMPEXP void ShareableFree(void* p)
 {
-	return free(p);
+	free(p);
 }
 // Define the function pointers that we'll use when calling those functions.
 // (The game loads the addresses of the above functions, then does the same.)
@@ -72,16 +74,30 @@ ATLASDLLIMPEXP void Atlas_SetMessagePasser(MessagePasser* passer)
 	g_MessagePasser = passer;
 }
 
-ATLASDLLIMPEXP void Atlas_StartWindow(wchar_t* type)
+ATLASDLLIMPEXP void Atlas_StartWindow(const wchar_t* type)
 {
 	g_InitialWindowType = type;
 	wxEntry(g_Module);
 }
 
+ATLASDLLIMPEXP void Atlas_DisplayError(const wchar_t* text, unsigned int WXUNUSED(flags))
+{
+	// This is called from the game thread.
+	// wxLog appears to be thread-safe, so that's okay.
+	wxLogError(L"%s", text);
 
-class wxDLLApp : public wxApp
+	// TODO: wait for user response (if possible) before returning,
+	// and return their status (break/continue/debug/etc), but only in
+	// cases where we're certain it won't deadlock (i.e. the UI event loop
+	// is still running and won't block before showing the dialog to the user)
+	// and where it matters (i.e. errors, not warnings (unless they're going to
+	// turn into errors after continuing))
+}
+
+class AtlasDLLApp : public wxApp
 {
 public:
+
 	virtual bool OnInit()
 	{
 		if (! wxIsDebuggerRunning())
@@ -99,10 +115,11 @@ public:
 		wxFrame* frame;
 #define MAYBE(t) if (g_InitialWindowType == _T(#t)) frame = new t(NULL); else
 		MAYBE(ActorEditor)
-		MAYBE(ColourTester)
-		MAYBE(ScenarioEditor)
-		MAYBE(FileConverter)
+		MAYBE(ActorViewer)
 		MAYBE(ArchiveViewer)
+		MAYBE(ColourTester)
+		MAYBE(FileConverter)
+		MAYBE(ScenarioEditor)
 #undef MAYBE
 		// else
 		{
@@ -188,6 +205,8 @@ public:
 		}
 	}
 
+/* Disabled (and should be removed if it turns out to be unnecessary)
+- see MessagePasserImpl.cpp for information
 	virtual int MainLoop()
 	{
 		// Override the default MainLoop so that we can provide our own event loop
@@ -201,6 +220,8 @@ public:
 		m_mainLoop = old;
 		return ret;
 	}
+*/
+
 };
 
-IMPLEMENT_APP_NO_MAIN(wxDLLApp)
+IMPLEMENT_APP_NO_MAIN(AtlasDLLApp)

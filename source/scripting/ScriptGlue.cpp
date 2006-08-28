@@ -40,6 +40,7 @@
 #include "simulation/EntityFormation.h"
 #include "simulation/EntityHandles.h"
 #include "simulation/EntityManager.h"
+#include "simulation/EntityTemplate.h"
 #include "simulation/FormationManager.h"
 #include "simulation/LOSManager.h"
 #include "simulation/Scheduler.h"

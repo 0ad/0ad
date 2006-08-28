@@ -27,6 +27,8 @@ public:
 
 	static AtlasWindowCommandProc& GetCommandProc();
 
+	static float GetSpeedModifier();
+
 private:
 	wxTimer m_Timer;
 

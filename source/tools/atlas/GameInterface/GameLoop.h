@@ -3,13 +3,16 @@
 
 extern void (*Atlas_GLSetCurrent)(void* context);
 
+class View;
+
 struct GameLoopState
 {
 	int argc;
 	char** argv;
-	bool running;
-	bool rendering;
-	bool worldloaded;
+
+	bool running; // whether the Atlas game loop is still running
+	View* view; // current 'view' (controls updates, rendering, etc)
+
 	const void* glContext;
 	float frameLength; // smoothed to avoid large jumps
 

@@ -10,10 +10,6 @@
 #ifndef TERRITORY_MANAGER_INCLUDED
 #define TERRITORY_MANAGER_INCLUDED
 
-#include "ps/Singleton.h"
-#include "ps/Game.h"
-#include "ps/World.h"
-#include "ps/Player.h"
 #include "ps/Vector2D.h"
 #include "EntityHandles.h"
 
@@ -39,6 +35,7 @@ class CTerritoryManager
 	CTerritory*** m_TerritoryMatrix;	// m_TerritoryMatrix[x][z] points to the territory for tile (x, z)
 
 	uint m_TilesPerSide;
+	bool m_DelayedRecalculate;
 
 public:
 	CTerritoryManager();
@@ -46,6 +43,7 @@ public:
 
 	void Initialize();	// initialize, called after the game is fully loaded
 	void Recalculate();	// recalculate the territory boundaries
+	void DelayedRecalculate();	// recalculate the territory boundaries when next rendered
 	void renderTerritories();
 	CTerritory* GetTerritory(int x, int z);			// get the territory to which the given tile belongs
 	CTerritory* GetTerritory(float x, float z);		// get the territory to which the given world-space point belongs

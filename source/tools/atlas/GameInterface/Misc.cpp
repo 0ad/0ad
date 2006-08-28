@@ -8,52 +8,50 @@
 #include "ps/Game.h"
 #include "graphics/GameView.h"
 
-void AtlasMessage::Position::GetWorldSpace(CVector3D& vec) const
+CVector3D AtlasMessage::Position::GetWorldSpace() const
 {
 	switch (type)
 	{
 	case 0:
-		vec.Set(type0.x, type0.y, type0.z);
+		return CVector3D(type0.x, type0.y, type0.z);
 		break;
 
 	case 1:
-		vec = g_Game->GetView()->GetCamera()->GetWorldCoordinates(type1.x, type1.y);
+		return g_Game->GetView()->GetCamera()->GetWorldCoordinates(type1.x, type1.y);
 		break;
 
 	case 2:
 		debug_warn("Invalid Position acquisition (unchanged without previous)");
-		vec.Set(0.f, 0.f, 0.f);
+		return CVector3D(0.f, 0.f, 0.f);
 		break;
 
 	default:
 		debug_warn("Invalid Position type");
-		vec.Set(0.f, 0.f, 0.f);
+		return CVector3D(0.f, 0.f, 0.f);
 	}
 }
 
-void AtlasMessage::Position::GetWorldSpace(CVector3D& vec, float h) const
+CVector3D AtlasMessage::Position::GetWorldSpace(float h) const
 {
 	switch (type)
 	{
 	case 1:
-		vec = g_Game->GetView()->GetCamera()->GetWorldCoordinates(type1.x, type1.y, h);
-		break;
+		return g_Game->GetView()->GetCamera()->GetWorldCoordinates(type1.x, type1.y, h);
 
 	default:
-		GetWorldSpace(vec);
+		return GetWorldSpace();
 	}
 }
 
-void AtlasMessage::Position::GetWorldSpace(CVector3D& vec, const CVector3D& prev) const
+CVector3D AtlasMessage::Position::GetWorldSpace(const CVector3D& prev) const
 {
 	switch (type)
 	{
 	case 2:
-		vec = prev;
-		break;
+		return prev;
 
 	default:
-		GetWorldSpace(vec);
+		return GetWorldSpace();
 	}
 }
 

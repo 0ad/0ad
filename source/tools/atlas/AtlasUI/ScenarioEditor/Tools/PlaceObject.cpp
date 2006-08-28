@@ -99,13 +99,7 @@ public:
 		if (wxGetKeyState(WXK_PRIOR)) --dir; // page-up key
 		if (dir)
 		{
-			float speed = M_PI/2.f; // radians per second
-			if (wxGetKeyState(WXK_SHIFT) && wxGetKeyState(WXK_CONTROL))
-				speed /= 64.f;
-			else if (wxGetKeyState(WXK_CONTROL))
-				speed /= 4.f;
-			else if (wxGetKeyState(WXK_SHIFT))
-				speed *= 4.f;
+			float speed = M_PI/2.f * ScenarioEditor::GetSpeedModifier(); // radians per second
 			g_DefaultAngle += (dir * dt * speed);
 			SendObjectMsg(true);
 		}

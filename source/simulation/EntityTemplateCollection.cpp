@@ -1,6 +1,7 @@
 #include "precompiled.h"
 
 #include "EntityTemplateCollection.h"
+#include "EntityTemplate.h"
 #include "graphics/ObjectManager.h"
 #include "graphics/Model.h"
 #include "ps/CLogger.h"

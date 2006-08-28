@@ -729,7 +729,7 @@ public:
 		m_Sizer->Add(m_Track, 0);
 		m_Sizer->Add(m_Path, 0);
 
-		m_Timer = new wxTimer(this, wxID_ANY);
+		m_Timer.SetOwner(this);
 	}
 	void Update()
 	{
@@ -744,7 +744,7 @@ public:
 	void PrepareTimers()
 	{
 		m_OldTime = m_NewTime = m_HighResTimer.GetTime();
-		m_Timer->Start(10);
+		m_Timer.Start(10);
 	}
 	void Reset()
 	{
@@ -754,7 +754,7 @@ public:
 	
 	float m_OldTime;
 	float m_NewTime;
-	wxTimer* m_Timer;
+	wxTimer m_Timer;
 private:
 	TrackSlider* m_Track;
 	HighResTimer m_HighResTimer;
@@ -771,7 +771,7 @@ END_EVENT_TABLE()
 void TrackSlider::OnScroll(wxScrollEvent& WXUNUSED(event))
 {
 	//Move path and send movement message
-	m_Sidebar->m_SliderBox->m_Timer->Stop();
+	m_Sidebar->m_SliderBox->m_Timer.Stop();
 	if ( m_Sidebar->m_SelectedTrack < 0 || m_Sidebar->m_SelectedPath < 0 )
 	{
 		SetValue(0);
@@ -792,7 +792,7 @@ void TrackSlider::OnScroll(wxScrollEvent& WXUNUSED(event))
 }
 void PathSlider::OnScroll(wxScrollEvent& WXUNUSED(event))
 {
-	m_Sidebar->m_SliderBox->m_Timer->Stop();
+	m_Sidebar->m_SliderBox->m_Timer.Stop();
 	if ( m_Sidebar->m_SelectedTrack < 0 || m_Sidebar->m_SelectedPath < 0 )
 	{
 		SetValue(0);
@@ -834,7 +834,7 @@ void TrackSlider::Update(float interval)
 	
 	if ( move == range && m_Sidebar->m_Playing )
 	{
-		m_Parent->m_Timer->Stop();
+		m_Parent->m_Timer.Stop();
 		SetValue(0);
 		m_Path->SetValue(0);
 		m_Sidebar->GotoNode(0);
@@ -859,7 +859,7 @@ public:
 	{
 		if ( m_Parent->m_SelectedTrack < 0 )
 			return;
-		m_Parent->m_SliderBox->m_Timer->Stop();
+		m_Parent->m_SliderBox->m_Timer.Stop();
 		m_Parent->m_Playing = false;
 		std::wstring name=*m_Parent->m_Tracks[m_Parent->m_SelectedTrack].name;
 
@@ -894,7 +894,7 @@ public:
 	{
 		if ( m_Parent->m_SelectedTrack < 0 || m_Parent->m_SelectedPath < 0)
 			return;
-		m_Parent->m_SliderBox->m_Timer->Stop();
+		m_Parent->m_SliderBox->m_Timer.Stop();
 		m_Parent->m_Playing = false;
 		m_Parent->m_AbsoluteTime = m_Parent->m_TimeElapsed = 0.0f;
 		m_Parent->SelectPath(0);
@@ -910,7 +910,7 @@ public:
 	{
 		if ( m_Parent->m_SelectedTrack < 0 )
 			return;
-		m_Parent->m_SliderBox->m_Timer->Stop();
+		m_Parent->m_SliderBox->m_Timer.Stop();
 		m_Parent->m_SliderBox->PrepareTimers();
 
 		POST_MESSAGE(CinemaEvent,
@@ -925,7 +925,7 @@ public:
 	{
 		if ( m_Parent->m_SelectedTrack < 0 )
 			return;
-		m_Parent->m_SliderBox->m_Timer->Stop();
+		m_Parent->m_SliderBox->m_Timer.Stop();
 		m_Parent->m_SliderBox->Reset();
 		//m_Parent->m_NodeList->Thaw();
 		m_Parent->m_Playing = false;
@@ -939,7 +939,7 @@ public:
 	//void OnForward(wxCommandEvent& event)
 	void OnNext(wxCommandEvent& WXUNUSED(event))
 	{
-		m_Parent->m_SliderBox->m_Timer->Stop();
+		m_Parent->m_SliderBox->m_Timer.Stop();
 		m_Parent->m_Playing = false;
 		std::wstring name=*m_Parent->m_Tracks[m_Parent->m_SelectedTrack].name;
 		sCinemaPath path = m_Parent->GetCurrentPath();

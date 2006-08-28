@@ -2,9 +2,6 @@
 
 #include "Interact.h"
 
-#include "ps/CConsole.h"
-#include "ps/Game.h"
-#include "ps/Hotkey.h"
 #include "graphics/GameView.h"
 #include "graphics/HFTracer.h"
 #include "graphics/Model.h"
@@ -18,22 +15,27 @@
 #include "lib/res/graphics/unifont.h"
 #include "lib/timer.h"
 #include "maths/MathUtil.h"
-#include "ps/Globals.h"
 #include "network/NetMessage.h"
+#include "ps/CConsole.h"
+#include "ps/Game.h"
+#include "ps/Globals.h"
+#include "ps/Hotkey.h"
 #include "ps/Player.h"
 #include "ps/VFSUtil.h"
 #include "ps/World.h"
 #include "renderer/Renderer.h"
 #include "scripting/GameEvents.h"
-#include "simulation/EntityTemplateCollection.h"
 #include "simulation/BoundingObjects.h"
 #include "simulation/Collision.h"
 #include "simulation/Entity.h"
 #include "simulation/EntityFormation.h"
 #include "simulation/EntityManager.h"
+#include "simulation/EntityTemplate.h"
+#include "simulation/EntityTemplateCollection.h"
+#include "simulation/EventHandlers.h"
 #include "simulation/FormationManager.h"
-#include "simulation/TerritoryManager.h"
 #include "simulation/Simulation.h"
+#include "simulation/TerritoryManager.h"
 
 #include "ps/CLogger.h"
 #define LOG_CATEGORY "world"
@@ -1294,7 +1296,7 @@ InReaction interactInputHandler( const SDL_Event_* ev )
 		{
 			int deltax = ev->ev.motion.x - button_down_x;
 			int deltay = ev->ev.motion.y - button_down_y;
-			if( ABS( deltax ) > 2 || ABS( deltay ) > 2 )
+			if( abs( deltax ) > 2 || abs( deltay ) > 2 )
 				g_Mouseover.startBandbox( button_down_x, button_down_y );
 		}
 		break;
@@ -1384,9 +1386,9 @@ bool CBuildingPlacer::activate(CStrW& templateName)
 
 void CBuildingPlacer::mousePressed()
 {
-	CCamera &g_Camera=*g_Game->GetView()->GetCamera();
+	CCamera &camera=*g_Game->GetView()->GetCamera();
 	if( m_template->m_socket == L"" )
-		clickPos = g_Camera.GetWorldCoordinates();
+		clickPos = camera.GetWorldCoordinates();
 	m_clicked = true;
 }
 
@@ -1430,8 +1432,8 @@ void CBuildingPlacer::update( float timeStep )
 	{
 		// Rotate object
 		m_timeSinceClick += timeStep;
-		CCamera &g_Camera=*g_Game->GetView()->GetCamera();
-		CVector3D mousePos = g_Camera.GetWorldCoordinates();
+		CCamera &camera = *g_Game->GetView()->GetCamera();
+		CVector3D mousePos = camera.GetWorldCoordinates();
 		CVector3D dif = mousePos - clickPos;
 		float x = dif.X, z = dif.Z;
 		if(x*x + z*z < 3*3) {
@@ -1454,8 +1456,8 @@ void CBuildingPlacer::update( float timeStep )
 	}
 	else
 	{
-		CCamera &g_Camera=*g_Game->GetView()->GetCamera();
-		pos = g_Camera.GetWorldCoordinates();
+		CCamera &camera = *g_Game->GetView()->GetCamera();
+		pos = camera.GetWorldCoordinates();
 	}
 
 	bool onSocket = false;

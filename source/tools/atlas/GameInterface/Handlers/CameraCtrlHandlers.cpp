@@ -2,6 +2,7 @@
 
 #include "MessageHandler.h"
 #include "../GameLoop.h"
+#include "../View.h"
 
 #include "maths/Vector3D.h"
 #include "maths/Quaternion.h"
@@ -16,8 +17,9 @@ namespace AtlasMessage {
 
 MESSAGEHANDLER(ScrollConstant)
 {
-	if ( g_Game->GetView()->GetCinema()->IsPlaying() )
+	if (g_Game->GetView()->GetCinema()->IsPlaying())
 		return;
+
 	if (msg->dir < 0 || msg->dir > 3)
 	{
 		debug_warn("ScrollConstant: invalid direction");
@@ -28,10 +30,14 @@ MESSAGEHANDLER(ScrollConstant)
 	}
 }
 
+// TODO: change all these g_Game->...GetCamera() bits to use the current View's
+// camera instead.
+
 MESSAGEHANDLER(Scroll)
 {
-	if ( g_Game->GetView()->GetCinema()->IsPlaying() )
+	if (g_Game->GetView()->GetCinema()->IsPlaying()) // TODO: do this better (probably a separate View class for cinematics)
 		return;
+
 	static CVector3D targetPos;
 	static float targetDistance = 0.f;
 
@@ -57,7 +63,7 @@ MESSAGEHANDLER(Scroll)
 
 	if (msg->type == eScrollType::FROM)
 	{
-		msg->pos->GetWorldSpace(targetPos);
+		targetPos = msg->pos->GetWorldSpace();
 		targetDistance = (targetPos - camera.GetTranslation()).GetLength();
 	}
 	else if (msg->type == eScrollType::TO)
@@ -79,15 +85,17 @@ MESSAGEHANDLER(Scroll)
 
 MESSAGEHANDLER(SmoothZoom)
 {
-	if ( g_Game->GetView()->GetCinema()->IsPlaying() )
+	if (g_Game->GetView()->GetCinema()->IsPlaying())
 		return;
+
 	g_GameLoop->input.zoomDelta += msg->amount;
 }
 
 MESSAGEHANDLER(RotateAround)
 {
-	if ( g_Game->GetView()->GetCinema()->IsPlaying() )
+	if (g_Game->GetView()->GetCinema()->IsPlaying())
 		return;
+
 	static CVector3D focusPos;
 	static float lastX = 0.f, lastY = 0.f;
 
@@ -96,7 +104,7 @@ MESSAGEHANDLER(RotateAround)
 	if (msg->type == eRotateAroundType::FROM)
 	{
 		msg->pos->GetScreenSpace(lastX, lastY); // get mouse position
-		msg->pos->GetWorldSpace(focusPos); // get point on terrain under mouse
+		focusPos = msg->pos->GetWorldSpace(); // get point on terrain under mouse
 	}
 	else if (msg->type == eRotateAroundType::TO)
 	{
@@ -134,6 +142,34 @@ MESSAGEHANDLER(RotateAround)
 	{
 		debug_warn("RotateAround: Invalid type");
 	}
+}
+
+MESSAGEHANDLER(LookAt)
+{
+	// TODO: different view depending on 
+	CCamera& camera = View::GetView_Actor()->GetCamera();
+
+	CVector3D tgt = msg->target->GetWorldSpace();
+	CVector3D eye = msg->pos->GetWorldSpace();
+	tgt.Y = -tgt.Y; // ??? why is this needed?
+	eye.Y = -eye.Y; // ???
+
+	// Based on http://www.opengl.org/documentation/specs/man_pages/hardcopy/GL/html/glu/lookat.html
+	CVector3D f = tgt - eye;
+	f.Normalize();
+	CVector3D s = f.Cross(CVector3D(0, 1, 0));
+	CVector3D u = s.Cross(f);
+	CMatrix3D M (
+		s[0], s[1], s[2], 0,
+		u[0], u[1], u[2], 0,
+		-f[0], -f[1], -f[2], 0,
+		0, 0, 0, 1
+	);
+
+	M.GetTranspose(camera.m_Orientation);
+	camera.m_Orientation.Translate(-eye);
+
+	camera.UpdateFrustum();
 }
 
 

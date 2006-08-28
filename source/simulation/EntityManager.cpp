@@ -3,6 +3,7 @@
 
 #include "EntityManager.h"
 #include "EntityTemplateCollection.h"
+#include "EntityTemplate.h"
 #include "ps/ConfigDB.h"
 #include "ps/Profile.h"
 #include "graphics/Terrain.h"

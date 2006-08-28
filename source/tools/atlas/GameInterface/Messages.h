@@ -13,8 +13,11 @@ MESSAGE(Init, );
 
 MESSAGE(Shutdown, );
 
+struct eRenderView { enum { NONE, GAME, ACTOR }; };
+
 MESSAGE(RenderEnable,
-		((bool, enabled)));
+		((int, view)) // eRenderView
+		);
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -108,7 +111,7 @@ SHAREABLE_STRUCT(sObjectsListItem);
 
 QUERY(GetObjectsList,
 	  , // no inputs
-	  ((std::vector<sObjectsListItem>, objects))
+	  ((std::vector<sObjectsListItem>, objects)) // sorted by .name
 	  );
 
 struct sObjectSettings
@@ -123,6 +126,8 @@ struct sObjectSettings
 };
 SHAREABLE_STRUCT(sObjectSettings);
 
+// Preview object in the game world - creates a temporary unit at the given
+// position, and removes it when the preview is next changed
 MESSAGE(ObjectPreview,
 		((std::wstring, id)) // or empty string => disable
 		((sObjectSettings, settings))
@@ -141,6 +146,13 @@ COMMAND(CreateObject, NOMERGE,
 		((float, angle))
 		);
 
+// Set an actor to be previewed on its own (i.e. without the game world).
+// (Use RenderEnable to make it visible.)
+MESSAGE(SetActorViewer,
+		((std::wstring, id))
+		((std::wstring, animation))
+		((float, speed))
+		);
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -149,27 +161,36 @@ QUERY(Exit,,); // no inputs nor outputs
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-
 struct eScrollConstantDir { enum { FORWARDS, BACKWARDS, LEFT, RIGHT }; };
 MESSAGE(ScrollConstant,
-		((int, dir))
+		((int, view)) // eRenderView
+		((int, dir)) // eScrollConstantDir
 		((float, speed)) // set speed 0.0f to stop scrolling
 		);
 
 struct eScrollType { enum { FROM, TO }; };
 MESSAGE(Scroll, // for scrolling by dragging the mouse FROM somewhere TO elsewhere
-		((int, type))
+		((int, view)) // eRenderView
+		((int, type)) // eScrollType
 		((Position, pos))
 		);
 
 MESSAGE(SmoothZoom,
+		((int, view)) // eRenderView
 		((float, amount))
 		);
 
 struct eRotateAroundType { enum { FROM, TO }; };
 MESSAGE(RotateAround,
-		((int, type))
+		((int, view)) // eRenderView
+		((int, type)) // eRotateAroundType
 		((Position, pos))
+		);
+
+MESSAGE(LookAt,
+		((int, view)) // eRenderView
+		((Position, pos))
+		((Position, target))
 		);
 
 //////////////////////////////////////////////////////////////////////////
@@ -225,15 +246,10 @@ struct ePaintTerrainPriority { enum { HIGH, LOW }; };
 COMMAND(PaintTerrain, MERGE,
 		((Position, pos))
 		((std::wstring, texture))
-		((int, priority))
+		((int, priority)) // ePaintTerrainPriority
 		);
 
 //////////////////////////////////////////////////////////////////////////
-
-typedef int ObjectID;
-FUNCTION(
-inline bool ObjectIDIsValid(ObjectID id) { return (id >= 0); }
-);
 
 QUERY(PickObject,
 	  ((Position, pos))
@@ -276,64 +292,8 @@ COMMAND(SetObjectSettings, NOMERGE,
 
 //////////////////////////////////////////////////////////////////////////
 
-struct sCinemaSplineNode
-{
-	Shareable<float> x, y, z, t;
-public:
-	sCinemaSplineNode(float px, float py, float pz) : x(px), y(py), z(pz), t(0.0f){}
-	sCinemaSplineNode() {}
-	void SetTime(float _t) { t = _t; }
-};
-SHAREABLE_STRUCT(sCinemaSplineNode);
-
-struct sCinemaPath
-{
-	Shareable<std::vector<AtlasMessage::sCinemaSplineNode> > nodes;
-	Shareable<float> duration, x, y, z;
-	Shareable<int> mode, growth, change, style;	//change == switch point
-
-	sCinemaPath(float rx, float ry, float rz) : x(rx), y(ry), z(rz),
-			mode(0), style(0), change(0), growth(0), duration(0) {}
-	sCinemaPath() : x(0), y(0), z(0), mode(0), style(0),
-								change(0), growth(0), duration(0) {}
-	
-	AtlasMessage::sCinemaPath operator-(const AtlasMessage::sCinemaPath& path)
-	{
-		return AtlasMessage::sCinemaPath(x - path.x, y - path.y,
-								z - path.z);
-	}
-	AtlasMessage::sCinemaPath operator+(const AtlasMessage::sCinemaPath& path)
-	{
-		return AtlasMessage::sCinemaPath(x + path.x, y + path.y,
-									z + path.z);
-	}
-};
-SHAREABLE_STRUCT(sCinemaPath);
-
-struct sCinemaTrack
-{
-	Shareable<std::wstring> name;
-	Shareable<float> x, y, z, timescale, duration;
-	Shareable<std::vector<AtlasMessage::sCinemaPath> > paths;
-
-public:
-	sCinemaTrack(float rx, float ry, float rz, std::wstring track) 
-				: x(rx), y(ry), z(rz), timescale(1.f), duration(0) 
-			{ name = track; }
-	sCinemaTrack() : x(0), y(0), z(0), timescale(1.f), duration(0) {} 
-};
-SHAREABLE_STRUCT(sCinemaTrack);
-
-struct eCinemaEventMode { enum { SMOOTH, SELECT, IMMEDIATE_PATH, 
-								IMMEDIATE_TRACK }; };
-struct sCameraInfo
-{
-	Shareable<float> pX, pY, pZ, rX, rY, rZ;	//position and rotation
-};
-SHAREABLE_STRUCT(sCameraInfo);
-
 QUERY(GetCinemaTracks,
-	  , //no input
+	  , // no inputs
 	  ((std::vector<AtlasMessage::sCinemaTrack> , tracks))
 	  );
 

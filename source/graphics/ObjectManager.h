@@ -14,16 +14,6 @@ class CMatrix3D;
 // access to sole CObjectManager object
 #define g_ObjMan CObjectManager::GetSingleton()
 
-// Slight hack, to allow ScEd to place either entities or objects
-class CObjectThing
-{
-public:
-	virtual ~CObjectThing() {}
-	virtual void Create(CMatrix3D& transform, int playerID)=0;
-	virtual void SetTransform(CMatrix3D& transform)=0;
-	virtual CObjectEntry* GetObjectEntry()=0;
-};
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 // CObjectManager: manager class for all possible actor types
 class CObjectManager : public Singleton<CObjectManager>
@@ -51,7 +41,6 @@ public:
 	};
 
 public:
-	CObjectThing* m_SelectedThing;
 
 	// constructor, destructor
 	CObjectManager();
@@ -68,8 +57,8 @@ public:
 	
 	CObjectBase* FindObjectBase(const char* objname);
 
-	CObjectEntry* FindObjectVariation(const char* objname, const std::vector<std::set<CStr8> >& selections);
-	CObjectEntry* FindObjectVariation(CObjectBase* base, const std::vector<std::set<CStr8> >& selections);
+	CObjectEntry* FindObjectVariation(const char* objname, const std::vector<std::set<CStr> >& selections);
+	CObjectEntry* FindObjectVariation(CObjectBase* base, const std::vector<std::set<CStr> >& selections);
 
 	// Get all names, quite slowly. (Intended only for ScEd.)
 	void GetAllObjectNames(std::vector<CStr>& names);

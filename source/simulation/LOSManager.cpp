@@ -7,6 +7,7 @@
 #include "graphics/Terrain.h"
 #include "Entity.h"
 #include "EntityManager.h"
+#include "EntityTemplate.h"
 #include "graphics/Unit.h"
 #include "maths/Bound.h"
 #include "graphics/Model.h"
@@ -209,7 +210,16 @@ ELOSStatus CLOSManager::GetStatus(float fx, float fz, CPlayer* player)
 
 EUnitLOSStatus CLOSManager::GetUnitStatus(CUnit* unit, CPlayer* player)
 {
-	CVector3D centre = unit->GetModel()->GetTransform().GetTranslation();
+	CVector3D centre;
+
+	// For entities, we must use the simulation position so that we stay synchronised
+	// (because the output of this function will presumably affect AI)
+	CEntity* entity = unit->GetEntity();
+	if (entity)
+		centre = entity->m_position;
+	else
+		centre = unit->GetModel()->GetTransform().GetTranslation();
+
 	ELOSStatus status = GetStatus(centre.X, centre.Z, player);
 
 	if(status & LOS_VISIBLE)
@@ -217,7 +227,7 @@ EUnitLOSStatus CLOSManager::GetUnitStatus(CUnit* unit, CPlayer* player)
 
 	if(status & LOS_EXPLORED)
 	{
-		if(unit->GetEntity() == 0 || unit->GetEntity()->m_base->m_visionPermanent)
+		if(!entity || entity->m_base->m_visionPermanent)
 		{
 			// both actors (which are usually for decoration) and units with the 
 			// permanent flag should be remembered

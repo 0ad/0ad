@@ -3,6 +3,8 @@
 #include "MessageHandler.h"
 #include "../GameLoop.h"
 #include "../CommandProc.h"
+#include "../ActorViewer.h"
+#include "../View.h"
 
 #include "renderer/Renderer.h"
 #include "graphics/GameView.h"
@@ -15,14 +17,12 @@
 #include "ps/GameSetup/Config.h"
 #include "ps/GameSetup/GameSetup.h"
 
-
 namespace AtlasMessage {
-
 
 MESSAGEHANDLER(Init)
 {
 	UNUSED2(msg);
-
+	
 	oglInit();
 
 	g_Quickstart = true;
@@ -45,9 +45,10 @@ MESSAGEHANDLER(Shutdown)
 	// we kill the EntityManager
 	GetCommandProc().Destroy();
 
-	Shutdown();
+	View::DestroyViews();
+	g_GameLoop->view = View::GetView_None();
 
-	g_GameLoop->rendering = false;
+	Shutdown();
 }
 
 
@@ -60,7 +61,16 @@ QUERYHANDLER(Exit)
 
 MESSAGEHANDLER(RenderEnable)
 {
-	g_GameLoop->rendering = msg->enabled;
+	if      (msg->view == eRenderView::NONE)  g_GameLoop->view = View::GetView_None();
+	else if (msg->view == eRenderView::GAME)  g_GameLoop->view = View::GetView_Game();
+	else if (msg->view == eRenderView::ACTOR) g_GameLoop->view = View::GetView_Actor();
+	else debug_warn("Invalid view type");
+}
+
+MESSAGEHANDLER(SetActorViewer)
+{
+	View::GetView_Actor()->SetSpeedMultiplier(msg->speed);
+	View::GetView_Actor()->GetActorViewer().SetActor(*msg->id, *msg->animation);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -81,17 +91,8 @@ MESSAGEHANDLER(ResizeScreen)
 
 	SViewPort vp = { 0, 0, g_xres, g_yres };
 
-	if (g_Game)
-	{
-		g_Game->GetView()->GetCamera()->SetViewPort(&vp);
-		g_Game->GetView()->GetCamera()->SetProjection (1, 5000, DEGTORAD(20));
-	}
-
 	g_Renderer.SetViewport(vp);
 	g_Renderer.Resize(g_xres, g_yres);
-
-	if (g_Game)
-		g_Game->GetView()->GetCamera()->UpdateFrustum();
 
 	g_GUI.UpdateResolution();
 

@@ -165,8 +165,6 @@ const bool NOMERGE = false;
 		QUERY_WITH_INPUTS) \
 	(name, in_vals, out_vals)
 
-#define FUNCTION(def) def
-
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
@@ -187,7 +185,6 @@ const bool NOMERGE = false;
 #undef QUERY_WITHOUT_INPUTS
 #undef QUERY_WITH_INPUTS
 #undef QUERY
-#undef FUNCTION
 
 }
 

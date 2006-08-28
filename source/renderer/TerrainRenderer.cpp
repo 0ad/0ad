@@ -132,7 +132,7 @@ void TerrainRenderer::EndFrame()
 // Query if patches have been submitted this frame
 bool TerrainRenderer::HaveSubmissions()
 {
-	return m->visiblePatches.size() > 0;
+	return !m->visiblePatches.empty();
 }
 
 
@@ -332,10 +332,10 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 	glMatrixMode(GL_MODELVIEW);
 
 	// restore OpenGL state
-	if ( shadow )
+	if (shadow)
 	{
-		if ( shadow->GetUseDepthTexture() )	
-			g_Renderer.BindTexture(2,0);	
+		if (shadow->GetUseDepthTexture())
+			g_Renderer.BindTexture(2,0);
 	}
 	g_Renderer.BindTexture(1,0);
 

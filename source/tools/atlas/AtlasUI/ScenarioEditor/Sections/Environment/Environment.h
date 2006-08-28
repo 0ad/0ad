@@ -14,5 +14,5 @@ protected:
 
 private:
 	VariableListBox* m_SkyList;
-	ObservableConnection m_Conn;
+	ObservableScopedConnection m_Conn;
 };

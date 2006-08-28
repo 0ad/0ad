@@ -4,7 +4,6 @@
 #define ENTITY_SUPPORT_INCLUDED
 
 #include "EntityHandles.h"
-#include "ScriptObject.h"
 
 class CEntityManager;
 

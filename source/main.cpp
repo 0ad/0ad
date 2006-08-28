@@ -357,6 +357,9 @@ void kill_mainloop()
 
 int main(int argc, char* argv[])
 {
+	// If you ever want to catch a particular allocation:
+	//_CrtSetBreakAlloc(7864);
+
 	// see discussion at declaration of win_pre_main_init.
 #if OS_WIN
 	win_pre_main_init();

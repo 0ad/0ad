@@ -2,7 +2,6 @@
 
 #include "ScenarioEditor.h"
 
-#include "wx/glcanvas.h"
 #include "wx/evtloop.h"
 #include "wx/tooltip.h"
 #include "wx/image.h"
@@ -11,84 +10,74 @@
 #include "General/AtlasEventLoop.h"
 #include "General/Datafile.h"
 
-#include "SnapSplitterWindow/SnapSplitterWindow.h"
 #include "HighResTimer/HighResTimer.h"
 #include "Buttons/ToolButton.h"
+#include "CustomControls/Canvas/Canvas.h"
 
 #include "GameInterface/MessagePasser.h"
 #include "GameInterface/Messages.h"
 
 #include "tools/Common/Tools.h"
 
-// #define UI_ONLY
-
 static HighResTimer g_Timer;
+
+using namespace AtlasMessage;
 
 //////////////////////////////////////////////////////////////////////////
 
-// TODO: move into another file
-class Canvas : public wxGLCanvas
+// GL functions exported from DLL, and called by game (in a separate
+// thread to the standard wx one)
+ATLASDLLIMPEXP void Atlas_GLSetCurrent(void* context)
+{
+	((wxGLContext*)context)->SetCurrent();
+}
+
+ATLASDLLIMPEXP void Atlas_GLSwapBuffers(void* context)
+{
+	((wxGLContext*)context)->SwapBuffers();
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+
+class GameCanvas : public Canvas
 {
 public:
-	Canvas(wxWindow* parent, int* attribList)
-		: wxGLCanvas(parent, -1, wxDefaultPosition, wxDefaultSize, wxWANTS_CHARS, _T("GLCanvas"), attribList),
-		m_SuppressResize(true),
-		m_MouseState(NONE), m_LastMouseState(NONE), m_MouseCaptured(false),
-		m_LastMousePos(-1, -1)
+	GameCanvas(wxWindow* parent, int* attribList)
+		: Canvas(parent, attribList, wxWANTS_CHARS),
+		m_MouseState(NONE), m_LastMouseState(NONE)
 	{
 	}
 
-	void OnResize(wxSizeEvent&)
-	{
-#ifndef UI_ONLY
-		// Be careful not to send 'resize' messages to the game before we've
-		// told it that this canvas exists
-		if (! m_SuppressResize)
-			POST_MESSAGE(ResizeScreen, (GetClientSize().GetWidth(), GetClientSize().GetHeight()));
-			// TODO: fix flashing
-#endif // UI_ONLY
-	}
-
-	void InitSize()
-	{
-		m_SuppressResize = false;
-		SetSize(320, 240);
-	}
+private:
 
 	bool KeyScroll(wxKeyEvent& evt, bool enable)
 	{
-#ifndef UI_ONLY
 		int dir;
 		switch (evt.GetKeyCode())
 		{
-		case WXK_LEFT:  dir = AtlasMessage::eScrollConstantDir::LEFT; break;
-		case WXK_RIGHT: dir = AtlasMessage::eScrollConstantDir::RIGHT; break;
-		case WXK_UP:    dir = AtlasMessage::eScrollConstantDir::FORWARDS; break;
-		case WXK_DOWN:  dir = AtlasMessage::eScrollConstantDir::BACKWARDS; break;
+		case WXK_LEFT:  dir = eScrollConstantDir::LEFT; break;
+		case WXK_RIGHT: dir = eScrollConstantDir::RIGHT; break;
+		case WXK_UP:    dir = eScrollConstantDir::FORWARDS; break;
+		case WXK_DOWN:  dir = eScrollConstantDir::BACKWARDS; break;
 		case WXK_SHIFT: case WXK_CONTROL: dir = -1; break;
 		default: return false;
 		}
 
-		float speed = 120.f;
-		if (wxGetKeyState(WXK_SHIFT) && wxGetKeyState(WXK_CONTROL))
-			speed /= 64.f;
-		else if (wxGetKeyState(WXK_CONTROL))
-			speed /= 4.f;
-		else if (wxGetKeyState(WXK_SHIFT))
-			speed *= 4.f;
+		float speed = 120.f * ScenarioEditor::GetSpeedModifier();
 
 		if (dir == -1) // changed modifier keys - update all currently-scrolling directions
 		{
-			if (wxGetKeyState(WXK_LEFT))  POST_MESSAGE(ScrollConstant, (AtlasMessage::eScrollConstantDir::LEFT, speed));
-			if (wxGetKeyState(WXK_RIGHT)) POST_MESSAGE(ScrollConstant, (AtlasMessage::eScrollConstantDir::RIGHT, speed));
-			if (wxGetKeyState(WXK_UP))    POST_MESSAGE(ScrollConstant, (AtlasMessage::eScrollConstantDir::FORWARDS, speed));
-			if (wxGetKeyState(WXK_DOWN))  POST_MESSAGE(ScrollConstant, (AtlasMessage::eScrollConstantDir::BACKWARDS, speed));
+			if (wxGetKeyState(WXK_LEFT))  POST_MESSAGE(ScrollConstant, (eRenderView::GAME, eScrollConstantDir::LEFT, speed));
+			if (wxGetKeyState(WXK_RIGHT)) POST_MESSAGE(ScrollConstant, (eRenderView::GAME, eScrollConstantDir::RIGHT, speed));
+			if (wxGetKeyState(WXK_UP))    POST_MESSAGE(ScrollConstant, (eRenderView::GAME, eScrollConstantDir::FORWARDS, speed));
+			if (wxGetKeyState(WXK_DOWN))  POST_MESSAGE(ScrollConstant, (eRenderView::GAME, eScrollConstantDir::BACKWARDS, speed));
 		}
 		else
 		{
-			POST_MESSAGE(ScrollConstant, (dir, enable ? speed : 0.0f));
+			POST_MESSAGE(ScrollConstant, (eRenderView::GAME, dir, enable ? speed : 0.0f));
 		}
-#endif // UI_ONLY
+
 		return true;
 	}
 
@@ -135,47 +124,14 @@ public:
 			float speed = 16.f;
 			if (wxGetKeyState(WXK_SHIFT))
 				speed *= 4.f;
-			POST_MESSAGE(SmoothZoom, (speed*dir));
+			POST_MESSAGE(SmoothZoom, (eRenderView::GAME, speed*dir));
 		}
 		else
 			evt.Skip();
-
 	}
 
-	void OnMouseCapture(wxMouseCaptureChangedEvent& WXUNUSED(evt))
+	virtual void HandleMouseEvent(wxMouseEvent& evt)
 	{
-		if (m_MouseCaptured)
-		{
-			// unexpected loss of capture (i.e. not through ReleaseMouse)
-			m_MouseCaptured = false;
-			
-			// (Note that this can be made to happen easily, by alt-tabbing away,
-			// and mouse events will be missed; so it is never guaranteed that e.g.
-			// two LeftDown events will be separated by a LeftUp.)
-		}
-	}
-
-	void OnMouse(wxMouseEvent& evt)
-	{
-		// Capture on button-down, so we can respond even when the mouse
-		// moves off the window
-		if (!m_MouseCaptured && evt.ButtonDown())
-		{
-			m_MouseCaptured = true;
-			CaptureMouse();
-		}
-		// Un-capture when all buttons are up
-		else if (m_MouseCaptured && evt.ButtonUp() &&
-			! (evt.ButtonIsDown(wxMOUSE_BTN_LEFT) || evt.ButtonIsDown(wxMOUSE_BTN_MIDDLE) || evt.ButtonIsDown(wxMOUSE_BTN_RIGHT))
-			)
-		{
-			m_MouseCaptured = false;
-			ReleaseMouse();
-		}
-
-		// Set focus when clicking
-		if (evt.ButtonDown())
-			SetFocus();
 
 		// TODO or at least to think about: When using other controls in the
 		// editor, it's annoying that keyboard/scrollwheel no longer navigate
@@ -188,16 +144,6 @@ public:
 		if (evt.Moving())
 			SetFocus();
 
-		// Reject motion events if the mouse has not actually moved
-		if (evt.Moving() || evt.Dragging())
-		{
-			if (m_LastMousePos == evt.GetPosition())
-				return;
-			m_LastMousePos = evt.GetPosition();
-		}
-
-#ifndef UI_ONLY
-
 		if (GetCurrentTool().OnMouse(evt))
 		{
 			// Mouse event has been handled by the tool, so don't try
@@ -209,15 +155,8 @@ public:
 
 		if (evt.GetWheelRotation())
 		{
-			float speed = 16.f;
-			if (wxGetKeyState(WXK_SHIFT) && wxGetKeyState(WXK_CONTROL))
-				speed /= 64.f;
-			else if (wxGetKeyState(WXK_CONTROL))
-				speed /= 4.f;
-			else if (wxGetKeyState(WXK_SHIFT))
-				speed *= 4.f;
-
-			POST_MESSAGE(SmoothZoom, (evt.GetWheelRotation() * speed / evt.GetWheelDelta()));
+			float speed = 16.f * ScenarioEditor::GetSpeedModifier();
+			POST_MESSAGE(SmoothZoom, (eRenderView::GAME, evt.GetWheelRotation() * speed / evt.GetWheelDelta()));
 		}
 		else
 		{
@@ -236,8 +175,8 @@ public:
 				switch (m_MouseState)
 				{
 				case NONE: break;
-				case SCROLL: POST_MESSAGE(Scroll, (AtlasMessage::eScrollType::FROM, evt.GetPosition())); break;
-				case ROTATEAROUND: POST_MESSAGE(RotateAround, (AtlasMessage::eRotateAroundType::FROM, evt.GetPosition())); break;
+				case SCROLL: POST_MESSAGE(Scroll, (eRenderView::GAME, eScrollType::FROM, evt.GetPosition())); break;
+				case ROTATEAROUND: POST_MESSAGE(RotateAround, (eRenderView::GAME, eRotateAroundType::FROM, evt.GetPosition())); break;
 				default: wxFAIL;
 				}
 				m_LastMouseState = m_MouseState;
@@ -247,58 +186,27 @@ public:
 				switch (m_MouseState)
 				{
 				case NONE: break;
-				case SCROLL: POST_MESSAGE(Scroll, (AtlasMessage::eScrollType::TO, evt.GetPosition())); break;
-				case ROTATEAROUND: POST_MESSAGE(RotateAround, (AtlasMessage::eRotateAroundType::TO, evt.GetPosition())); break;
+				case SCROLL: POST_MESSAGE(Scroll, (eRenderView::GAME, eScrollType::TO, evt.GetPosition())); break;
+				case ROTATEAROUND: POST_MESSAGE(RotateAround, (eRenderView::GAME, eRotateAroundType::TO, evt.GetPosition())); break;
 				default: wxFAIL;
 				}
 			}
 		}
-#endif // UI_ONLY
 	}
-
-private:
-	bool m_SuppressResize;
 
 	enum { NONE, SCROLL, ROTATEAROUND };
 	int m_MouseState, m_LastMouseState;
-	bool m_MouseCaptured;
-
-	wxPoint m_LastMousePos;
 
 	DECLARE_EVENT_TABLE();
 };
-BEGIN_EVENT_TABLE(Canvas, wxGLCanvas)
-	EVT_SIZE      (Canvas::OnResize)
-	EVT_KEY_DOWN  (Canvas::OnKeyDown)
-	EVT_KEY_UP    (Canvas::OnKeyUp)
-	EVT_CHAR      (Canvas::OnChar)
-	
-	EVT_LEFT_DOWN  (Canvas::OnMouse)
-	EVT_LEFT_UP    (Canvas::OnMouse)
-	EVT_RIGHT_DOWN (Canvas::OnMouse)
-	EVT_RIGHT_UP   (Canvas::OnMouse)
-	EVT_MIDDLE_DOWN(Canvas::OnMouse)
-	EVT_MIDDLE_UP  (Canvas::OnMouse)
-	EVT_MOUSEWHEEL (Canvas::OnMouse)
-	EVT_MOTION     (Canvas::OnMouse)
-	EVT_MOUSE_CAPTURE_CHANGED(Canvas::OnMouseCapture)
+
+BEGIN_EVENT_TABLE(GameCanvas, Canvas)
+	EVT_KEY_DOWN(GameCanvas::OnKeyDown)
+	EVT_KEY_UP(GameCanvas::OnKeyUp)
+	EVT_CHAR(GameCanvas::OnChar)
 END_EVENT_TABLE()
 
-// GL functions exported from DLL, and called by game (in a separate
-// thread to the standard wx one)
-ATLASDLLIMPEXP void Atlas_GLSetCurrent(void* context)
-{
-	((wxGLContext*)context)->SetCurrent();
-}
-
-ATLASDLLIMPEXP void Atlas_GLSwapBuffers(void* context)
-{
-	((wxGLContext*)context)->SwapBuffers();
-}
-
-
 //////////////////////////////////////////////////////////////////////////
-
 
 volatile bool g_FrameHasEnded;
 // Called from game thread
@@ -434,7 +342,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 		WX_GL_MIN_ALPHA, 8, // alpha bits
 		0
 	};
-	Canvas* canvas = new Canvas(m_SectionLayout.GetCanvasParent(), glAttribList);
+	Canvas* canvas = new GameCanvas(m_SectionLayout.GetCanvasParent(), glAttribList);
 	m_SectionLayout.SetCanvas(canvas);
 	// The canvas' context gets made current on creation; but it can only be
 	// current for one thread at a time, and it needs to be current for the
@@ -447,7 +355,6 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 
 	// Send setup messages to game engine:
 
-#ifndef UI_ONLY
 	POST_MESSAGE(SetContext, (canvas->GetContext()));
 
 	POST_MESSAGE(Init, ());
@@ -458,8 +365,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	// a valid map loaded)
 	POST_MESSAGE(GenerateMap, (9));
 
-	POST_MESSAGE(RenderEnable, (true));
-#endif
+	POST_MESSAGE(RenderEnable, (eRenderView::GAME));
 
 	// Set up a timer to make sure tool-updates happen frequently (in addition
 	// to the idle handler (which makes them happen more frequently if there's nothing
@@ -468,16 +374,26 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	m_Timer.Start(20);
 }
 
+float ScenarioEditor::GetSpeedModifier()
+{
+	if (wxGetKeyState(WXK_SHIFT) && wxGetKeyState(WXK_CONTROL))
+		return 1.f/64.f;
+	else if (wxGetKeyState(WXK_CONTROL))
+		return 1.f/4.f;
+	else if (wxGetKeyState(WXK_SHIFT))
+		return 4.f;
+	else
+		return 1.f;
+}
+
 
 void ScenarioEditor::OnClose(wxCloseEvent&)
 {
 	SetCurrentTool(_T(""));
 
-#ifndef UI_ONLY
 	POST_MESSAGE(Shutdown, ());
-#endif
 
-	AtlasMessage::qExit().Post();
+	qExit().Post();
 		// blocks until engine has noticed the message, so we won't be
 		// destroying the GLCanvas while it's still rendering
 
@@ -553,7 +469,7 @@ void ScenarioEditor::OnOpen(wxCommandEvent& WXUNUSED(event))
 		SetOpenFilename(dlg.GetFilename());
 
 		// Wait for it to load, while the wxBusyInfo is telling the user that we're doing that
-		AtlasMessage::qPing qry;
+		qPing qry;
 		qry.Post();
 	}
 	
@@ -576,7 +492,7 @@ void ScenarioEditor::OnSave(wxCommandEvent& event)
 		POST_MESSAGE(SaveMap, (map));
 
 		// Wait for it to finish saving
-		AtlasMessage::qPing qry;
+		qPing qry;
 		qry.Post();
 	}
 }
@@ -599,7 +515,7 @@ void ScenarioEditor::OnSaveAs(wxCommandEvent& WXUNUSED(event))
 		SetOpenFilename(dlg.GetFilename());
 
 		// Wait for it to finish saving
-		AtlasMessage::qPing qry;
+		qPing qry;
 		qry.Post();
 	}
 }
@@ -631,7 +547,7 @@ void ScenarioEditor::OnScreenshot(wxCommandEvent& WXUNUSED(event))
 
 //////////////////////////////////////////////////////////////////////////
 
-AtlasMessage::Position::Position(const wxPoint& pt)
+Position::Position(const wxPoint& pt)
 : type(1)
 {
 	type1.x = pt.x;
@@ -640,6 +556,8 @@ AtlasMessage::Position::Position(const wxPoint& pt)
 
 //////////////////////////////////////////////////////////////////////////
 
+/* Disabled (and should be removed if it turns out to be unnecessary)
+   - see MessagePasserImpl.cpp for information
 
 static void QueryCallback()
 {
@@ -669,6 +587,14 @@ static void QueryCallback()
 	// to do any message processing here at all?)
 
 	AtlasEventLoop* evtLoop = (AtlasEventLoop*)wxEventLoop::GetActive();
+
+	// evtLoop might be NULL, particularly if we're still initialising windows
+	// and haven't got into the normal event loop yet. But we'd have to process
+	// messages anyway, to avoid the deadlocks that this is for. So, don't bother
+	// with that and just crash instead.
+	// (Maybe it could be solved better by constructing/finding an event loop
+	// object here and setting it as the global one, assuming it's not overwritten
+	// later by wx.)
 
 	while (evtLoop->Pending())
 	{
@@ -712,8 +638,9 @@ static void QueryCallback()
 		}
 	}
 }
-
-void AtlasMessage::QueryMessage::Post()
+*/
+void QueryMessage::Post()
 {
-	g_MessagePasser->Query(this, &QueryCallback);
+//	g_MessagePasser->Query(this, &QueryCallback);
+	g_MessagePasser->Query(this, NULL);
 }

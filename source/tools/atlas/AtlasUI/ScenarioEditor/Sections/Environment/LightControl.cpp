@@ -8,13 +8,13 @@ class LightSphere : public wxControl
 {
 public:
 
-	LightSphere(wxWindow* parent, LightControl* lightControl)
-		: wxControl(parent, wxID_ANY, wxDefaultPosition, wxSize(150, 150)),
+	LightSphere(wxWindow* parent, const wxSize& size, LightControl* lightControl)
+		: wxControl(parent, wxID_ANY, wxDefaultPosition, size),
 		m_LightControl(lightControl)
 	{
 	}
 
-	void OnPaint(wxPaintEvent& event)
+	void OnPaint(wxPaintEvent& WXUNUSED(event))
 	{
 		// Draw a lit 3D sphere:
 
@@ -87,9 +87,16 @@ public:
 			float mz2 = 1 - mx*mx - my*my;
 			if (mz2 >= 0.f)
 			{
-				float mz = sqrt(mz2);
+ 				//float mz = sqrt(mz2);
+ 				//phi = asin(mz);
+
+				// ^^ That's giving the height of the sphere at that point, so it's
+				// matching the point the user clicked on - but that's quite inconvenient
+				// when you want to move the sun near the horizon. So just make up
+				// some formula that gives a slightly nicer-feeling result:
+				phi = asin(mz2*mz2);
+
 				theta = -atan2(mx, my);
-				phi = asin(mz);
 			}
 			else
 			{
@@ -114,12 +121,16 @@ BEGIN_EVENT_TABLE(LightSphere, wxControl)
 	EVT_LEFT_DOWN(LightSphere::OnMouse)
 END_EVENT_TABLE()
 
-LightControl::LightControl(wxWindow* parent, Observable<AtlasMessage::sEnvironmentSettings>& environment)
+LightControl::LightControl(wxWindow* parent, const wxSize& size, Observable<AtlasMessage::sEnvironmentSettings>& environment)
 : wxPanel(parent), m_Environment(environment)
 {
-	m_Sphere = new LightSphere(this, this);
+	wxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
+	sizer->SetMinSize(size);
+	m_Sphere = new LightSphere(this, size, this);
 	m_Sphere->theta = environment.sunrotation;
 	m_Sphere->phi = environment.sunelevation;
+	sizer->Add(m_Sphere, wxSizerFlags().Expand().Proportion(1));
+	SetSizer(sizer);
 
 	m_Conn = environment.RegisterObserver(0, &LightControl::OnSettingsChange, this);
 }

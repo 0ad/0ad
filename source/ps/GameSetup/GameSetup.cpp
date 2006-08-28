@@ -14,49 +14,54 @@
 #include "lib/res/graphics/tex.h"
 #include "lib/res/graphics/cursor.h"
 
+#include "ps/CConsole.h"
+#include "ps/CLogger.h"
+#include "ps/ConfigDB.h"
+#include "ps/Font.h"
+#include "ps/Game.h"
+#include "ps/Globals.h"
+#include "ps/Hotkey.h"
+#include "ps/Interact.h"
+#include "ps/Loader.h"
+#include "ps/Overlay.h"
 #include "ps/Profile.h"
 #include "ps/ProfileViewer.h"
-#include "ps/Loader.h"
-#include "ps/Font.h"
-#include "ps/CConsole.h"
-#include "ps/Game.h"
-#include "ps/Interact.h"
-#include "ps/Hotkey.h"
-#include "ps/ConfigDB.h"
-#include "ps/CLogger.h"
-#include "ps/i18n.h"
-#include "ps/Overlay.h"
 #include "ps/StringConvert.h"
-#include "ps/Globals.h"
 #include "ps/Util.h"
+#include "ps/i18n.h"
 
-#include "graphics/ParticleEngine.h"
-#include "graphics/MapReader.h"
-#include "graphics/Terrain.h"
-#include "graphics/TextureManager.h"
-#include "graphics/ObjectManager.h"
-#include "graphics/SkeletonAnimManager.h"
+#include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
-#include "graphics/Model.h"
-#include "graphics/UnitManager.h"
+#include "graphics/MapReader.h"
 #include "graphics/MaterialManager.h"
 #include "graphics/MeshManager.h"
-#include "graphics/GameView.h"
+#include "graphics/Model.h"
+#include "graphics/ObjectManager.h"
+#include "graphics/ParticleEngine.h"
+#include "graphics/SkeletonAnimManager.h"
+#include "graphics/Terrain.h"
+#include "graphics/TextureManager.h"
+#include "graphics/Unit.h"
+#include "graphics/UnitManager.h"
+
 #include "renderer/Renderer.h"
 #include "renderer/VertexBufferManager.h"
+
 #include "maths/MathUtil.h"
 
-#include "simulation/EntityTemplateCollection.h"
-#include "simulation/FormationCollection.h"
-#include "simulation/TechnologyCollection.h"
 #include "simulation/Entity.h"
 #include "simulation/EntityHandles.h"
 #include "simulation/EntityManager.h"
+#include "simulation/EntityTemplate.h"
+#include "simulation/EntityTemplateCollection.h"
+#include "simulation/EventHandlers.h"
+#include "simulation/FormationCollection.h"
 #include "simulation/FormationManager.h"
 #include "simulation/TerritoryManager.h"
 #include "simulation/PathfindEngine.h"
-#include "simulation/Scheduler.h"
 #include "simulation/Projectile.h"
+#include "simulation/Scheduler.h"
+#include "simulation/TechnologyCollection.h"
 
 #include "scripting/ScriptableComplex.inl"
 #include "scripting/ScriptingHost.h"
@@ -266,22 +271,6 @@ void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task)
 
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////
-// RenderNoCull: render absolutely everything to a blank frame to force renderer
-// to load required assets
-static void RenderNoCull()
-{
-	g_Renderer.BeginFrame();
-
-	if (g_Game)
-		g_Game->GetView()->RenderNoCull();
-
-	g_Renderer.FlushFrame();
-	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-	g_Renderer.EndFrame();
-}
-
-
 void Render()
 {
 	MICROLOG(L"begin frame");
@@ -388,12 +377,6 @@ void Render()
 		//Sets/resets renderering properties itself
 		g_Game->GetView()->GetCinema()->DrawAllSplines();
 		PROFILE_END( "render cinematic splines" );
-	}
-	else
-	{
-		PROFILE_START( "flush frame" );
-		g_Renderer.FlushFrame();
-		PROFILE_END( "flush frame" );
 	}
 
 	oglCheck();
@@ -898,9 +881,6 @@ void Init(int argc, char* argv[], uint flags)
 	// add all debug_printf "tags" that we are interested in:
 	debug_filter_add("TIMER");
 
-	// If you ever want to catch a particular allocation:
-	//_CrtSetBreakAlloc(187);
-
 	// Query CPU capabilities, possibly set some CPU-dependent flags
 	cpu_init();
 
@@ -1004,7 +984,13 @@ void Init(int argc, char* argv[], uint flags)
 	}
 
 	// (must come after SetVideoMode, since it calls oglInit)
-	const char* missing = oglHaveExtensions(0, "GL_ARB_multitexture", "GL_EXT_draw_range_elements", "GL_ARB_texture_env_combine", "GL_ARB_texture_env_dot3", "GL_ARB_texture_env_crossbar", 0);
+	const char* missing = oglHaveExtensions(0,
+		"GL_ARB_multitexture",
+		"GL_EXT_draw_range_elements",
+		"GL_ARB_texture_env_combine",
+		"GL_ARB_texture_env_dot3",
+		"GL_ARB_texture_env_crossbar",
+		0);
 	if(missing)
 	{
 		wchar_t buf[500];
@@ -1065,7 +1051,7 @@ void Init(int argc, char* argv[], uint flags)
 	// Check for heap corruption after every allocation. Very, very slowly.
 	// (And it highlights the allocation just after the one you care about,
 	// so you need to run it again and tell it to break on the one before.)
-	//debug_heap_enable(DEBUG_HEAP_ALL);
+//	debug_heap_enable(DEBUG_HEAP_ALL);
 
 	InitInput();
 
@@ -1079,27 +1065,20 @@ void Init(int argc, char* argv[], uint flags)
 	}
 #endif
 
-	{
-		TIMER("Init_renderblank");
-		MICROLOG(L"render blank");
-		// render everything to a blank frame to force renderer to load everything
-		RenderNoCull();
-	}
-
 	if (g_FixedFrameTiming) {
-		CCamera &g_Camera=*g_Game->GetView()->GetCamera();
+		CCamera &camera = *g_Game->GetView()->GetCamera();
 #if 0		// TOPDOWN
-		g_Camera.SetProjection(1.0f,10000.0f,DEGTORAD(90));
-		g_Camera.m_Orientation.SetIdentity();
-		g_Camera.m_Orientation.RotateX(DEGTORAD(90));
-		g_Camera.m_Orientation.Translate(CELL_SIZE*250*0.5, 250, CELL_SIZE*250*0.5);
+		camera.SetProjection(1.0f,10000.0f,DEGTORAD(90));
+		camera.m_Orientation.SetIdentity();
+		camera.m_Orientation.RotateX(DEGTORAD(90));
+		camera.m_Orientation.Translate(CELL_SIZE*250*0.5, 250, CELL_SIZE*250*0.5);
 #else		// std view
-		g_Camera.SetProjection(1.0f,10000.0f,DEGTORAD(20));
-		g_Camera.m_Orientation.SetXRotation(DEGTORAD(30));
-		g_Camera.m_Orientation.RotateY(DEGTORAD(-45));
-		g_Camera.m_Orientation.Translate(350, 350, -275);
+		camera.SetProjection(1.0f,10000.0f,DEGTORAD(20));
+		camera.m_Orientation.SetXRotation(DEGTORAD(30));
+		camera.m_Orientation.RotateY(DEGTORAD(-45));
+		camera.m_Orientation.Translate(350, 350, -275);
 #endif
-		g_Camera.UpdateFrustum();
+		camera.UpdateFrustum();
 	}
 
 	if (g_AutostartMap.Length())

@@ -3,6 +3,7 @@
 #include "Collision.h"
 #include "Entity.h"
 #include "EntityManager.h"
+#include "EntityTemplate.h"
 
 #include <float.h>
 

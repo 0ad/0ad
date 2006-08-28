@@ -288,7 +288,6 @@ void initKeyNameMap()
 	SKeycodeMapping* it = keycodeMapping;
 	while( it->keycode != 0 )
 	{
-		debug_printf("adding key %s\n", it->keyname);
 		keymap.insert( std::pair<CStr,int>( CStr( it->keyname ).LowerCase(), it->keycode ) );
 		if( it->altkeyname )
 			keymap.insert( std::pair<CStr,int>( CStr( it->altkeyname ).LowerCase(), it->keycode ) );

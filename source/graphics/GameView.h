@@ -141,10 +141,6 @@ public:
 	void CameraLock(CVector3D Trans, bool smooth=true);
 	void CameraLock(float x, float y, float z, bool smooth=true);
 
-	// RenderNoCull: render absolutely everything to a blank frame to force
-	// renderer to load required assets
-	void RenderNoCull();
-
 	// Camera Control Functions (used by input handler)
 	void ResetCamera();
 	void ResetCameraOrientation();

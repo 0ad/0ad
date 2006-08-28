@@ -14,7 +14,7 @@ MESSAGEHANDLER(Brush)
 MESSAGEHANDLER(BrushPreview)
 {
 	g_CurrentBrush.SetRenderEnabled(msg->enable);
-	msg->pos->GetWorldSpace(g_CurrentBrush.m_Centre);
+	g_CurrentBrush.m_Centre = msg->pos->GetWorldSpace();
 }
 
 }

@@ -102,7 +102,7 @@ BEGIN_COMMAND(AlterElevation)
 		}
 
 		static CVector3D previousPosition;
-		msg->pos->GetWorldSpace(g_CurrentBrush.m_Centre, previousPosition);
+		g_CurrentBrush.m_Centre = msg->pos->GetWorldSpace(previousPosition);
 		previousPosition = g_CurrentBrush.m_Centre;
 
 		int x0, y0;
@@ -158,7 +158,7 @@ BEGIN_COMMAND(FlattenElevation)
 		int amount = (int)msg->amount;
 
 		static CVector3D previousPosition;
-		msg->pos->GetWorldSpace(g_CurrentBrush.m_Centre, previousPosition);
+		g_CurrentBrush.m_Centre = msg->pos->GetWorldSpace(previousPosition);
 		previousPosition = g_CurrentBrush.m_Centre;
 
 		int xc, yc;

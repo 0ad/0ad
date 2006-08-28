@@ -5,6 +5,7 @@
 #include <boost/bind.hpp>
 
 typedef boost::signals::connection ObservableConnection;
+typedef boost::signals::scoped_connection ObservableScopedConnection;
 
 template <typename T> class Observable : public T
 {

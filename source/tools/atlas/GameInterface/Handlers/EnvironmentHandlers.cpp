@@ -50,7 +50,10 @@ void SetSettings(const sEnvironmentSettings& s)
 	g_LightEnv.SetRotation(s.sunrotation);
 	g_LightEnv.SetElevation(s.sunelevation);
 
-	g_Renderer.GetSkyManager()->SetSkySet(*s.skyset);
+	CStrW skySet = *s.skyset;
+	if (skySet.length() == 0)
+		skySet = L"default";
+	g_Renderer.GetSkyManager()->SetSkySet(skySet);
 
 #define COLOUR(A, B) B = RGBColor(A->r/255.f, A->g/255.f, A->b/255.f)
 	COLOUR(s.suncolour, g_LightEnv.m_SunColor);

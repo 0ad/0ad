@@ -1394,7 +1394,7 @@ static float fade_factor_exponential(float t)
 static float fade_factor_s_curve(float t)
 {
 	// cosine curve
-	float y = cos(t*M_PI + M_PI);
+	float y = cos(t*PI + PI);
 	// map [-1,1] to [0,1]
 	return (y + 1.0f) / 2.0f;
 }

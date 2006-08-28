@@ -1,6 +1,9 @@
 #ifndef ATLASEVENTLOOP_H__
 #define ATLASEVENTLOOP_H__
 
+/* Disabled (and should be removed if it turns out to be unnecessary)
+- see MessagePasserImpl.cpp for information
+
 #include "wx/evtloop.h"
 
 struct tagMSG;
@@ -20,5 +23,7 @@ public:
 
 	virtual bool Dispatch();
 };
+
+*/
 
 #endif // ATLASEVENTLOOP_H__

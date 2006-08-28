@@ -1,35 +1,35 @@
-// Last modified: May 15 2004, Mark Thompson (mark@wildfiregames.com)
-
 #include "precompiled.h"
 
-#include "ps/Profile.h"
-
-#include "Entity.h"
-#include "EntityManager.h"
-#include "EntityTemplateCollection.h"
-#include "graphics/Unit.h"
-#include "Aura.h"
-#include "ProductionQueue.h"
-#include "renderer/Renderer.h"
-#include "graphics/Model.h"
-#include "graphics/Terrain.h"
-#include "ps/Interact.h"
-#include "Collision.h"
-#include "PathfindEngine.h"
-#include "ps/Game.h"
-#include "maths/scripting/JSInterface_Vector3D.h"
-#include "maths/MathUtil.h"
-#include "ps/CConsole.h"
-#include "renderer/WaterManager.h"
-#include "EntityFormation.h"
-#include "FormationManager.h"
-#include "TerritoryManager.h"
-#include "Formation.h"
-#include "TechnologyCollection.h"
 #include "graphics/GameView.h"
+#include "graphics/Model.h"
 #include "graphics/Sprite.h"
+#include "graphics/Terrain.h"
+#include "graphics/Unit.h"
 #include "graphics/UnitManager.h"
+#include "maths/MathUtil.h"
+#include "maths/scripting/JSInterface_Vector3D.h"
+#include "ps/CConsole.h"
+#include "ps/Game.h"
+#include "ps/Interact.h"
+#include "ps/Profile.h"
+#include "renderer/Renderer.h"
+#include "renderer/WaterManager.h"
 #include "scripting/ScriptableComplex.inl"
+
+#include "Aura.h"
+#include "Collision.h"
+#include "Entity.h"
+#include "EntityFormation.h"
+#include "EntityManager.h"
+#include "EntityTemplate.h"
+#include "EntityTemplateCollection.h"
+#include "EventHandlers.h"
+#include "Formation.h"
+#include "FormationManager.h"
+#include "PathfindEngine.h"
+#include "ProductionQueue.h"
+#include "TechnologyCollection.h"
+#include "TerritoryManager.h"
 
 extern CConsole* g_Console;
 extern int g_xres, g_yres;
@@ -467,7 +467,7 @@ void CEntity::update( size_t timestep )
 		{
 			if( ( m_lastState != -1 ) || !m_actor->GetModel()->GetAnimation() )
 			{
-				m_actor->SetEntitySelection( L"idle" );
+				m_actor->SetEntitySelection( "idle" );
 				m_actor->SetRandomAnimation( "idle" );
 			}
 		}
@@ -1167,14 +1167,14 @@ void CEntity::renderAuras()
 
 CVector2D CEntity::getScreenCoords( float height )
 {
-	CCamera &g_Camera=*g_Game->GetView()->GetCamera();
+	CCamera &camera = *g_Game->GetView()->GetCamera();
 
 	float sx, sy;
 	CVector3D above;
 	above.X = m_position.X;
 	above.Z = m_position.Z;
 	above.Y = getAnchorLevel(m_position.X, m_position.Z) + height;
-	g_Camera.GetScreenCoordinates(above, sx, sy);
+	camera.GetScreenCoordinates(above, sx, sy);
 	return CVector2D( sx, sy );
 }
 
@@ -1399,14 +1399,14 @@ void CEntity::renderRank()
 	if( g_Selection.m_unitUITextures.find( m_rankName ) == g_Selection.m_unitUITextures.end() )
 		return;
 
-	CCamera *g_Camera=g_Game->GetView()->GetCamera();
+	CCamera *camera = g_Game->GetView()->GetCamera();
 
 	float sx, sy;
 	CVector3D above;
 	above.X = m_position.X;
 	above.Z = m_position.Z;
 	above.Y = getAnchorLevel(m_position.X, m_position.Z) + m_base->m_rankHeight;
-	g_Camera->GetScreenCoordinates(above, sx, sy);
+	camera->GetScreenCoordinates(above, sx, sy);
 	int size = m_base->m_rankWidth/2;
 
 	float x1 = sx + m_base->m_healthBarSize/2;
@@ -1853,7 +1853,7 @@ bool CEntity::Kill( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(arg
 
 	if( m_actor )
 	{
-		m_actor->SetEntitySelection( L"death" );	   
+		m_actor->SetEntitySelection( "death" );
 		m_actor->SetRandomAnimation( "death", true );
 	}
 

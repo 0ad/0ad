@@ -60,18 +60,13 @@ public:
 		Add(m_Slider);
 	}
 	
-	~VariableSliderBox()
-	{
-		m_Conn.disconnect();
-	}
-
 	void OnSettingsChange(const AtlasMessage::sEnvironmentSettings& WXUNUSED(env))
 	{
 		m_Slider->UpdateFromVar();
 	}
 
 private:
-	ObservableConnection m_Conn;
+	ObservableScopedConnection m_Conn;
 	VariableSlider* m_Slider;
 };
 
@@ -121,11 +116,6 @@ public:
 		m_Combo = new VariableCombo(parent, var, m_Conn);
 		Add(m_Combo);
 	}
-	
-	~VariableListBox()
-	{
-		m_Conn.disconnect();
-	}
 
 	void SetChoices(const std::vector<std::wstring>& choices)
 	{
@@ -145,7 +135,7 @@ public:
 	}
 
 private:
-	ObservableConnection m_Conn;
+	ObservableScopedConnection m_Conn;
 	VariableCombo* m_Combo;
 };
 
@@ -210,18 +200,13 @@ public:
 		Add(m_Button);
 	}
 
-	~VariableColourBox()
-	{
-		m_Conn.disconnect();
-	}
-
 	void OnSettingsChange(const AtlasMessage::sEnvironmentSettings& WXUNUSED(env))
 	{
 		m_Button->UpdateDisplay();
 	}
 
 private:
-	ObservableConnection m_Conn;
+	ObservableScopedConnection m_Conn;
 	VariableColourButton* m_Button;
 };
 
@@ -240,7 +225,7 @@ EnvironmentSidebar::EnvironmentSidebar(wxWindow* sidebarContainer, wxWindow* bot
 	m_MainSizer->Add(new VariableSliderBox(this, _("Water waviness"), g_EnvironmentSettings.waterwaviness, 0, 10.f));
 	m_MainSizer->Add(new VariableSliderBox(this, _("Sun rotation"), g_EnvironmentSettings.sunrotation, -M_PI, M_PI));
 	m_MainSizer->Add(new VariableSliderBox(this, _("Sun elevation"), g_EnvironmentSettings.sunelevation, -M_PI/2, M_PI/2));
-	m_MainSizer->Add(new LightControl(this, g_EnvironmentSettings));
+	m_MainSizer->Add(new LightControl(this, wxSize(150, 150), g_EnvironmentSettings));
 	m_MainSizer->Add(m_SkyList = new VariableListBox(this, _("Sky set"), g_EnvironmentSettings.skyset));
 	m_MainSizer->Add(new VariableColourBox(this, _("Sun colour"), g_EnvironmentSettings.suncolour));
 	m_MainSizer->Add(new VariableColourBox(this, _("Terrain ambient colour"), g_EnvironmentSettings.terraincolour));

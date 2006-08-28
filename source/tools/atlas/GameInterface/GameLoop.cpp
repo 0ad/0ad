@@ -5,44 +5,33 @@
 #include "MessagePasserImpl.h"
 #include "Messages.h"
 #include "SharedMemory.h"
-#include "Brushes.h"
 #include "Handlers/MessageHandler.h"
+#include "ActorViewer.h"
+#include "View.h"
 
 #include "InputProcessor.h"
 
+#include "lib/app_hooks.h"
 #include "lib/sdl.h"
-#include "lib/ogl.h"
 #include "lib/timer.h"
 #include "lib/res/file/vfs.h"
 #include "ps/CLogger.h"
-#include "ps/GameSetup/GameSetup.h"
-#include "ps/Game.h"
-#include "ps/World.h"
-#include "simulation/Simulation.h"
-#include "simulation/EntityManager.h"
 
 using namespace AtlasMessage;
 
 
 namespace AtlasMessage
 {
-	extern void AtlasRenderSelection();
 	extern void RegisterHandlers();
 }
 
-void AtlasRender()
-{
-	Render();
-	AtlasRenderSelection();
-}
-
-
 // Loaded from DLL:
-void (*Atlas_StartWindow)(wchar_t* type);
+void (*Atlas_StartWindow)(const wchar_t* type);
 void (*Atlas_SetMessagePasser)(MessagePasser*);
 void (*Atlas_GLSetCurrent)(void* context);
 void (*Atlas_GLSwapBuffers)(void* context);
 void (*Atlas_NotifyEndOfFrame)();
+void (*Atlas_DisplayError)(const wchar_t* text, unsigned int flags);
 namespace AtlasMessage
 {
 	void* (*ShareableMallocFptr)(size_t);
@@ -60,13 +49,33 @@ static GameLoopState state;
 GameLoopState* g_GameLoop = &state;
 
 
-static void* LaunchWindow(void*)
+static void* LaunchWindow(void* data)
 {
+	const wchar_t* windowName = reinterpret_cast<const wchar_t*>(data);
 	debug_set_thread_name("atlas_window");
-	Atlas_StartWindow(L"ScenarioEditor");
+	Atlas_StartWindow(windowName);
 	return NULL;
 }
 
+// Work out which Atlas window to launch, given the command-line arguments
+static const wchar_t* FindWindowName(int argc, char* argv[])
+{
+	for (int i = 1; i < argc; i++)
+	{
+		if (strcmp(argv[i], "-actorviewer") == 0)
+			return L"ActorViewer";
+	}
+
+	return L"ScenarioEditor";
+}
+
+static ErrorReaction AtlasDisplayError(const wchar_t* text, uint flags)
+{
+	// TODO: after Atlas has been unloaded, don't do this
+	Atlas_DisplayError(text, flags);
+
+	return ER_CONTINUE;
+}
 
 bool BeginAtlas(int argc, char* argv[], void* dll) 
 {
@@ -77,6 +86,7 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 	GET(Atlas_GLSetCurrent);
 	GET(Atlas_GLSwapBuffers);
 	GET(Atlas_NotifyEndOfFrame);
+	GET(Atlas_DisplayError);
 #undef GET
 #define GET(x) *(void**)&x##Fptr = dlsym(dll, #x); debug_assert(x##Fptr); if (! x##Fptr) return false;
 	GET(ShareableMalloc);
@@ -90,14 +100,19 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 	RegisterHandlers();
 
 	// Create a new thread, and launch the Atlas window inside that thread
-	pthread_t gameThread;
-	pthread_create(&gameThread, NULL, LaunchWindow, NULL);
+	const wchar_t* windowName = FindWindowName(argc, argv);
+	pthread_t uiThread;
+	pthread_create(&uiThread, NULL, LaunchWindow, reinterpret_cast<void*>(const_cast<wchar_t*>(windowName)));
+
+	// Override ah_display_error to pass all errors to the Atlas UI
+	AppHooks hooks = {0};
+	hooks.display_error = AtlasDisplayError;
+	app_hooks_update(&hooks);
 
 	state.argc = argc;
 	state.argv = argv;
 	state.running = true;
-	state.rendering = false;
-	state.worldloaded = false;
+	state.view = View::GetView_None();
 	state.glContext = NULL;
 
 	double last_activity = get_time();
@@ -108,13 +123,13 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 
 		//////////////////////////////////////////////////////////////////////////
 		// (TODO: Work out why these things have to be in this order (to avoid
-		// jumps when starting to move, etc)
+		// jumps when starting to move, etc))
 
 		// Calculate frame length
 		{
-			const double time = get_time();
+			double time = get_time();
 			static double last_time = time;
-			const float length = (float)(time-last_time);
+			float length = (float)(time-last_time);
 			last_time = time;
 			debug_assert(length >= 0.0f);
 			// TODO: filter out big jumps, e.g. when having done a lot of slow
@@ -181,17 +196,9 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 
 		vfs_reload_changed_files();
 		
-		if (state.worldloaded)
-		{
-			g_EntityManager.updateAll(0);
-			g_Game->GetSimulation()->Update(0.0);
-		}
+		state.view->Update(state.frameLength);
 
-		if (state.rendering)
-		{
-			AtlasRender();
-			Atlas_GLSwapBuffers((void*)state.glContext);
-		}
+		state.view->Render();
 
 		double time = get_time();
 		if (recent_activity)
@@ -199,13 +206,14 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 
 		// Be nice to the processor (by sleeping lots) if we're not doing anything
 		// useful, and nice to the user (by just yielding to other threads) if we are
-		bool yield = time - last_activity > 0.5;
-		if ( state.worldloaded )
-		{
-			if ( g_Game->GetView()->GetCinema()->IsPlaying() )
-				g_Game->GetView()->GetCinema()->Update(state.frameLength);
+		bool yield = (time - last_activity > 0.5);
+
+		// But make sure we aren't doing anything interesting right now, where
+		// the user wants to see the screen updating even though they're not
+		// interacting with it
+		if (state.view->WantsHighFramerate())
 			yield = false;
-		}
+
 		if (yield) // if there was no recent activity...
 		{
 			double sleepUntil = time + 0.5; // only redraw at 2fps
@@ -231,7 +239,11 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 
 	// TODO: delete all remaining messages, to avoid memory leak warnings
 
-	pthread_join(gameThread, NULL);
+	// Wait for the UI to exit
+	pthread_join(uiThread, NULL);
+
+	// Clean up
+	View::DestroyViews();
 
 	exit(0);
 }

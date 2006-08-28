@@ -15,6 +15,7 @@ extern void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task);
 
 
 extern void Render();
+extern void RenderActor();
 
 extern void Shutdown();
 

@@ -15,12 +15,12 @@
 #include "lib/timer.h"
 #include "lib/ogl.h"
 #include "EntityManager.h"
-
-using namespace std;
+#include "EntityTemplate.h"
 
 CTerritoryManager::CTerritoryManager()
 {
 	m_TerritoryMatrix = 0;
+	m_DelayedRecalculate = false;
 }
 
 CTerritoryManager::~CTerritoryManager() 
@@ -129,6 +129,14 @@ void CTerritoryManager::Recalculate()
 	}
 }
 
+void CTerritoryManager::DelayedRecalculate()
+{
+	// This is useful particularly for Atlas, which wants to recalculate
+	// the boundaries as you move an object around but which doesn't want
+	// to waste time recalculating multiple times per frame
+	m_DelayedRecalculate = true;
+}
+
 CTerritory* CTerritoryManager::GetTerritory(int x, int z)
 {
 	debug_assert( (uint) x < m_TilesPerSide && (uint) z < m_TilesPerSide );
@@ -208,7 +216,13 @@ void CTerritoryManager::CalculateBoundary( std::vector<CEntity*>& centres, size_
 	}
 }
 void CTerritoryManager::renderTerritories()
-{	
+{
+	if (m_DelayedRecalculate)
+	{
+		Recalculate();
+		m_DelayedRecalculate = false;
+	}
+
 	const CTerrain* pTerrain = g_Game->GetWorld()->GetTerrain();
 	CFrustum frustum = g_Game->GetView()->GetCamera()->GetFrustum();
 	std::vector<CTerritory*>::iterator terr=m_Territories.begin();
@@ -218,6 +232,9 @@ void CTerritoryManager::renderTerritories()
 
 	for ( ; terr != m_Territories.end(); ++terr )
 	{
+		if ((*terr)->boundary.empty())
+			continue;
+
 		std::vector<CVector2D>::iterator it=(*terr)->boundary.begin()+1;
 		//const SPlayerColour& col = (*terr)->owner->GetColour();
 		//glColor3f(col.r, col.g, col.b);

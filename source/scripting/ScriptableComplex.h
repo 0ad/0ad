@@ -14,14 +14,14 @@ before, 30+ files had to be recompiled because they #included Entity.h
 which #includes ScriptableComplex.h.
 */
 
+#ifndef SCRIPTABLE_COMPLEX_INCLUDED
+#define SCRIPTABLE_COMPLEX_INCLUDED
+
 #include "scripting/ScriptingHost.h"
 #include "simulation/ScriptObject.h"
 #include "JSConversions.h"
 
 #include <set>
-
-#ifndef SCRIPTABLE_COMPLEX_INCLUDED
-#define SCRIPTABLE_COMPLEX_INCLUDED
 
 class IJSComplex;
 
@@ -285,5 +285,3 @@ extern void* jscomplexproperty_suballoc();
 extern void jscomplexproperty_suballoc_free(IJSComplexProperty* p);
 
 #endif
-
-

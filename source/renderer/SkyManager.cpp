@@ -205,7 +205,7 @@ void SkyManager::RenderSky()
 
 	// Rotate so that the "left" face, which contains the brightest part of each
 	// skymap, is in the direction of the sun from our light environment
-	glRotatef( 90.0f + g_Renderer.GetLightEnv().GetRotation()*180.0f/M_PI, 0.0f, 1.0f, 0.0f );
+	glRotatef( 90.0f + RADTODEG(g_Renderer.GetLightEnv().GetRotation()), 0.0f, 1.0f, 0.0f );
 
 	// Distance to draw the faces at
 	const float D = 2000.0;

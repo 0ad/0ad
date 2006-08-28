@@ -1,3 +1,6 @@
+#ifndef COMMANDPROC_H__
+#define COMMANDPROC_H__
+
 #include <string>
 #include <list>
 #include <map>
@@ -162,3 +165,5 @@ The following macros convert that into:
 
 
 }
+
+#endif // COMMANDPROC_H__

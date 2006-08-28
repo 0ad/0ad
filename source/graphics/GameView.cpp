@@ -303,32 +303,6 @@ void CGameView::SubmitModelRecursive(CModel* model)
 	}
 }
 
-void CGameView::RenderNoCull()
-{
-	CUnitManager *pUnitMan=m_pWorld->GetUnitManager();
-	CTerrain *pTerrain=m_pWorld->GetTerrain();
-
-	if (m_LockCullCamera == false)
-		m_CullCamera = m_ViewCamera;
-	g_Renderer.SetCamera(m_ViewCamera, m_CullCamera);
-
-	CheckLightEnv();
-
-	uint i,j;
-	const std::vector<CUnit*>& units=pUnitMan->GetUnits();
-	for (i=0;i<units.size();++i) {
-		SubmitModelRecursive(units[i]->GetModel());
-	}
-
-	u32 patchesPerSide=pTerrain->GetPatchesPerSide();
-	for (j=0; j<patchesPerSide; j++) {
-		for (i=0; i<patchesPerSide; i++) {
-			CPatch* patch=pTerrain->GetPatch(i,j);
-			g_Renderer.Submit(patch);
-		}
-	}
-}
-
 static void MarkUpdateColorRecursive(CModel* model)
 {
 	model->SetDirty(RENDERDATA_UPDATE_COLOR);
