@@ -223,57 +223,75 @@ void CTerritoryManager::renderTerritories()
 		m_DelayedRecalculate = false;
 	}
 
+	glEnable(GL_LINE_SMOOTH);
+	glLineWidth(1.5f);
+
 	const CTerrain* pTerrain = g_Game->GetWorld()->GetTerrain();
 	CFrustum frustum = g_Game->GetView()->GetCamera()->GetFrustum();
 	std::vector<CTerritory*>::iterator terr=m_Territories.begin();
-	glEnable(GL_LINE_SMOOTH);
-	glLineWidth(1.4f);
-	glColor3f(1.0f, 1.0f, 1.0f);
 
 	for ( ; terr != m_Territories.end(); ++terr )
 	{
 		if ((*terr)->boundary.empty())
 			continue;
 
-		std::vector<CVector2D>::iterator it=(*terr)->boundary.begin()+1;
-		//const SPlayerColour& col = (*terr)->owner->GetColour();
-		//glColor3f(col.r, col.g, col.b);
-	
-		for ( ; it != (*terr)->boundary.end(); ++it )
+		// Tweak the boundary to shift all edges "inwards" by 0.3 units towards the territory's centre,
+		// so that boundaries for adjacent territories don't overlap
+		std::vector<CVector2D> boundary = (*terr)->boundary;
+		CVector2D centre((*terr)->centre->m_position.X, (*terr)->centre->m_position.Z);
+		for ( size_t i=0; i<boundary.size(); i++ ) 
 		{
-			CVector3D front(it->x, pTerrain->getExactGroundLevel(it->x, it->y), it->y);
-			CVector3D prev((it-1)->x, pTerrain->getExactGroundLevel((it-1)->x, (it-1)->y), (it-1)->y);
-			if ( !frustum.DoesSegmentIntersect(prev, front) )
+			size_t prevI = (i+boundary.size()-1) % boundary.size();
+			size_t nextI = (i+1) % boundary.size();
+
+			// Figure out the direction perpendicular to each of the two edges that meet at this point.
+			CVector2D dir1 = ((*terr)->boundary[i]-(*terr)->boundary[prevI]).beta().normalize();
+			CVector2D dir2 = ((*terr)->boundary[nextI]-(*terr)->boundary[i]).beta().normalize();
+
+			// If you draw a picture of what our point looks like and what the two lines 0.3 units 
+			// away from it look like, and draw a line between our point and that one as well as 
+			// drop perpendicular lines from it to the original edges, you get this formula for the
+			// length and direction we have to be moved.
+			float angle = acosf(dir1.dot(dir2));
+			boundary[i] += (dir1 + dir2).normalize() * 0.3f / cosf(angle/2);
+		}
+
+		if ( (*terr)->owner->GetPlayerID() == 0 )
+		{
+			// Use a dark gray for Gaia territories since white looks a bit weird
+			glColor3f( 0.65f, 0.65f, 0.65f );
+		}
+		else
+		{
+			// Use the player's colour
+			const SPlayerColour& col = (*terr)->owner->GetColour();
+			glColor3f(col.r, col.g, col.b);
+		}
+		
+		for ( std::vector<CVector2D>::iterator it = boundary.begin(); it != boundary.end(); it++ )
+		{
+			std::vector<CVector2D>::iterator it2 = it + 1;
+			if( it2 == boundary.end() )	// loop around if we are at the last vertex
+				it2 = boundary.begin();
+
+			CVector3D start(it->x, pTerrain->getExactGroundLevel(it->x, it->y), it->y);
+			CVector3D end(it2->x, pTerrain->getExactGroundLevel(it2->x, it2->y), it2->y);
+
+			if ( !frustum.DoesSegmentIntersect(start, end) )
 				continue;
 			
 			glBegin(GL_LINE_STRIP);
-			float iterf = (front - prev).GetLength() / TERRITORY_PRECISION_STEP;
-			for ( float i=0; i<iterf; i+= TERRITORY_PRECISION_STEP )
+			float iterf = (end - start).GetLength() / TERRITORY_PRECISION_STEP;
+			for ( float i=0; i < iterf; i += TERRITORY_PRECISION_STEP )
 			{
-				CVector2D pos( Interpolate(prev, front, i/iterf) );
+				CVector2D pos( Interpolate(start, end, i/iterf) );
 				glVertex3f(pos.x, pTerrain->getExactGroundLevel(pos)+.25f, pos.y); 
 			}
-			glVertex3f(front.X, pTerrain->getExactGroundLevel(front.X, front.Z)+.25f, front.Z); 
+			glVertex3f(end.X, pTerrain->getExactGroundLevel(end.X, end.Z)+.25f, end.Z); 
 			glEnd();
 		}
-		//Loop around
-		CVector2D first2D((*terr)->boundary.front()), back2D((*terr)->boundary.back());
-		CVector3D first(first2D.x, pTerrain->getExactGroundLevel(first2D), first2D.y);
-		CVector3D back(back2D.x, pTerrain->getExactGroundLevel(back2D), back2D.y);
-
-		if ( !frustum.DoesSegmentIntersect(back, first) )
-			continue;
-		
-		glBegin(GL_LINE_STRIP);
-		float iterf = (first - back).GetLength() / TERRITORY_PRECISION_STEP;
-		for ( float i=0; i<iterf; i+= TERRITORY_PRECISION_STEP )
-		{
-			CVector2D pos( Interpolate(back, first, i/iterf) );
-			glVertex3f(pos.x, pTerrain->getExactGroundLevel(pos)+.25f, pos.y); 
-		}
-		glVertex3f(first.X, pTerrain->getExactGroundLevel(first2D)+.25f, first.Z); 
-		glEnd();
 	}
+
 	glDisable(GL_LINE_SMOOTH);
 	glLineWidth(1.0f);
 }
