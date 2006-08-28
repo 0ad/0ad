@@ -718,7 +718,7 @@ function performGather( evt )
 
 function performHeal( evt )
 {
-	if ( evt.target.player != this.player )
+	if ( this.player.getDiplomaticStance(evt.target.player) == DIPOLMACY_ENEMY )
 	{
 		console.write( "You have a traitor!" );
 		return;
@@ -1116,7 +1116,7 @@ function entityEventTargetChanged( evt )
 	if( evt.target && this.actions )
 	{
 		if( this.actions.attack && 
-			evt.target.player != this.player &&
+			this.player.getDiplomaticStance(evt.target.player) != DIPLOMACY_ALLIED &&
 			evt.target.traits.health &&
 			evt.target.traits.health.max != 0 )
 		{
