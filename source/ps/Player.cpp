@@ -15,6 +15,16 @@ CPlayer::CPlayer(uint playerID):
 	m_UpdateCB(0)
 {
 	m_LOSToken = LOS_GetTokenFor(playerID);
+	
+	// Initialize diplomacy: we need to be neutral to Gaia and enemy to everyone else;
+	// however, if we are Gaia, we'll just be neutral to everyone; finally, everyone
+	// will be allied with themselves.
+	m_DiplomaticStance[0] = DIPLOMACY_NEUTRAL;
+	for(int i=1; i<=PS_MAX_PLAYERS; i++)
+	{
+		m_DiplomaticStance[i] = (m_PlayerID==0 ? DIPLOMACY_NEUTRAL : DIPLOMACY_ENEMY);
+	}
+	m_DiplomaticStance[m_PlayerID] = DIPLOMACY_ALLIED;
 
 	AddSynchedProperty( L"name", &m_Name );
 	AddSynchedProperty( L"civilization", &m_Civilization );
@@ -26,20 +36,41 @@ CPlayer::CPlayer(uint playerID):
 	// to CJSObject's list
 	ISynchedJSProperty *prop=new CSynchedJSProperty<SPlayerColour>(L"colour", &m_Colour, this);
 	m_SynchedProperties[L"colour"]=prop;
+
+	// HACK - maintain diplomacy synced in the same way, by adding a dummy property for each stance
+	for(int i=0; i<=PS_MAX_PLAYERS; i++)
+	{
+		CStrW name = CStrW(L"diplomaticStance_") + CStrW(i);
+		ISynchedJSProperty *prop=new CSynchedJSProperty<int>(name, (int*)&m_DiplomaticStance[i], this);
+		m_SynchedProperties[name]=prop;
+	}
 }
 
 CPlayer::~CPlayer()
 {
-	// Side-effect of HACK - since it's not passed to CJSObject's list, it
-	// doesn't get freed automatically
+	// Side-effect of HACKs - since these properties are not passed to CJSObject's list,
+	// they don't get freed automatically
+
 	delete m_SynchedProperties[L"colour"];
+	
+	for(int i=0; i<=PS_MAX_PLAYERS; i++)
+	{
+		CStrW name = CStrW(L"diplomaticStance_") + CStrW(i);
+		delete m_SynchedProperties[name];
+	}
 }
 
 void CPlayer::ScriptingInit()
 {
+	g_ScriptingHost.DefineConstant("DIPLOMACY_ENEMY", DIPLOMACY_ENEMY);
+	g_ScriptingHost.DefineConstant("DIPLOMACY_NEUTRAL", DIPLOMACY_NEUTRAL);
+	g_ScriptingHost.DefineConstant("DIPLOMACY_ALLIED", DIPLOMACY_ALLIED);
+
 	AddMethod<jsval, &CPlayer::JSI_ToString>( "toString", 0 );
 	AddMethod<jsval, &CPlayer::JSI_SetColour>( "setColour", 1);
 	AddMethod<jsval, &CPlayer::JSI_GetColour>( "getColour", 0);
+	AddMethod<jsval, &CPlayer::JSI_SetDiplomaticStance>( "setDiplomaticStance", 2);
+	AddMethod<jsval, &CPlayer::JSI_GetDiplomaticStance>( "getDiplomaticStance", 1);
 	
 	AddProperty( L"id", &CPlayer::m_PlayerID, true );
 	// MT: Work out how this fits with the Synched stuff...
@@ -115,4 +146,45 @@ jsval CPlayer::JSI_GetColour( JSContext* cx, uintN UNUSED(argc), jsval* UNUSED(a
 {
 	ISynchedJSProperty *prop=GetSynchedProperty(L"colour");
 	return prop->Get(cx, this);
+}
+
+jsval CPlayer::JSI_SetDiplomaticStance(JSContext *cx, uintN argc, jsval *argv)
+{
+	JSU_ASSERT(argc==2, "2 arguments required");
+	JSU_ASSERT( JSVAL_IS_INT(argv[1]), "Argument 2 must be a valid stance ID" );
+	try
+	{
+		CPlayer* player = ToPrimitive<CPlayer*>( argv[0] );
+		int stance = ToPrimitive<int>( argv[1] );
+		JSU_ASSERT( stance==DIPLOMACY_ENEMY || stance==DIPLOMACY_NEUTRAL || stance==DIPLOMACY_ALLIED,
+			"Argument 2 must be a valid stance ID" );
+
+		m_DiplomaticStance[player->m_PlayerID] = (EDiplomaticStance) stance;
+		
+		CStrW name = CStrW(L"diplomaticStance_") + CStrW(player->m_PlayerID);
+		ISynchedJSProperty *prop=GetSynchedProperty(name);
+		Update(name, prop);
+
+		return JSVAL_VOID;
+	}
+	catch( PSERROR_Scripting_ConversionFailed )
+	{
+		JS_ReportError( cx, "Could not convert argument 1 to a Player object" );
+		return JSVAL_VOID;
+	}
+}
+
+jsval CPlayer::JSI_GetDiplomaticStance(JSContext *cx, uintN argc, jsval *argv)
+{	
+	JSU_ASSERT(argc==1, "1 argument required");
+	try
+	{
+		CPlayer* player = ToPrimitive<CPlayer*>( argv[0] );
+		return ToJSVal( (int) m_DiplomaticStance[player->m_PlayerID] );
+	}
+	catch( PSERROR_Scripting_ConversionFailed )
+	{
+		JS_ReportError( cx, "Could not convert argument 1 to a Player object" );
+		return JSVAL_VOID;
+	}
 }

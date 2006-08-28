@@ -5,12 +5,20 @@
 #include "scripting/SynchedJSObject.h"
 #include "scripting/ScriptableObject.h"
 #include "scripting/ScriptCustomTypes.h" 
+#include "Game.h"
 
 class CNetMessage;
 class HEntity;
 class CTechnology;
 
 typedef SColour SPlayerColour;
+
+enum EDiplomaticStance 
+{
+	DIPLOMACY_ENEMY,
+	DIPLOMACY_NEUTRAL,
+	DIPLOMACY_ALLIED
+};
 
 class CPlayer : public CSynchedJSObject<CPlayer>
 {
@@ -23,11 +31,11 @@ private:
 	PS_uint m_PlayerID;
 	PS_uint m_LOSToken;
 	SPlayerColour m_Colour;
+	EDiplomaticStance m_DiplomaticStance[PS_MAX_PLAYERS+1];
+	std::vector<CTechnology*> m_ActiveTechs;
 	
 	UpdateCallback *m_UpdateCB;
 	void *m_UpdateCBData;
-	
-	std::vector<CTechnology*> m_ActiveTechs;
 
 	virtual void Update(const CStrW& name, ISynchedJSProperty *prop);
 	
@@ -55,6 +63,11 @@ public:
 	inline void SetColour(const SPlayerColour &colour)
 	{	m_Colour = colour; }
 
+	inline EDiplomaticStance GetDiplomaticStance(CPlayer* other) const
+	{	return m_DiplomaticStance[other->m_PlayerID]; }
+	inline void SetDiplomaticStance(CPlayer* other, EDiplomaticStance stance)
+	{	m_DiplomaticStance[other->m_PlayerID] = stance; }
+
 	inline void SetUpdateCallback(UpdateCallback *cb, void *userdata)
 	{
 		m_UpdateCB=cb;
@@ -80,6 +93,8 @@ public:
 	jsval JSI_GetControlledEntities( JSContext* context );
 	jsval JSI_SetColour(JSContext *context, uintN argc, jsval *argv);
 	jsval JSI_GetColour(JSContext *context, uintN argc, jsval *argv);
+	jsval JSI_SetDiplomaticStance(JSContext *context, uintN argc, jsval *argv);
+	jsval JSI_GetDiplomaticStance(JSContext *context, uintN argc, jsval *argv);
 
 	static void ScriptingInit();
 };

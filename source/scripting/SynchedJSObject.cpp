@@ -17,6 +17,18 @@ void SetFromNetString(uint &val, const CStrW& string)
 }
 
 template <>
+CStrW ToNetString(const int &val)
+{
+	return CStrW(val);
+}
+
+template <>
+void SetFromNetString(int &val, const CStrW& string)
+{
+	val=string.ToInt();
+}
+
+template <>
 CStrW ToNetString(const CStrW& data)
 {	return data; }
 

@@ -87,6 +87,8 @@ void CNetMessage::ScriptingInit()
 	def(NMT_NotifyRequest);
 	def(NMT_FormationGoto);
 	def(NMT_FormationGeneric);
+
+#undef def
 }
 
 CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSContext *cx, uintN argc, jsval *argv, bool isQueued)
