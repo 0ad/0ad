@@ -462,7 +462,7 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 								{
 									case "train":
 										// TODO: Remove this item from the production queue if right-clicked.
-										issueCommand(selection, true, NMT_Produce, PRODUCTION_TRAiN, ""+(Crd[getCrd (this.name, true)].entity));
+										issueCommand(selection, true, NMT_Produce, PRODUCTION_TRAIN, ""+(Crd[getCrd (this.name, true)].entity));
 									case "research":
 										// TODO: Remove this item from the production queue if right-clicked.
 										issueCommand(selection, true, NMT_Produce, PRODUCTION_RESEARCH, ""+(Crd[getCrd (this.name, true)].entity.name));
