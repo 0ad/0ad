@@ -238,7 +238,6 @@ void CTerritoryManager::renderTerritories()
 		// Tweak the boundary to shift all edges "inwards" by 0.3 units towards the territory's centre,
 		// so that boundaries for adjacent territories don't overlap
 		std::vector<CVector2D> boundary = (*terr)->boundary;
-		CVector2D centre((*terr)->centre->m_position.X, (*terr)->centre->m_position.Z);
 		for ( size_t i=0; i<boundary.size(); i++ ) 
 		{
 			size_t prevI = (i+boundary.size()-1) % boundary.size();
