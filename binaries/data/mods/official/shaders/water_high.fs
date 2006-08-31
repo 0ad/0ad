@@ -12,8 +12,9 @@ uniform float murkiness;
 uniform float fullDepth;
 
 varying vec3 worldPos;
-varying float waterDepth;
 varying float w;
+varying float waterDepth;
+varying float losMod;
 
 const vec3 specularColor = vec3(0.15, 0.15, 0.15);
 
@@ -53,7 +54,7 @@ void main()
 	
 	specular = pow(max(0.0, ndoth), shininess) * sunColor * specularColor;
 	
-	gl_FragColor.rgb = mix(refrColor + 0.3*specular, reflColor + specular, fresnel);
+	gl_FragColor.rgb = mix(refrColor + 0.3*specular, reflColor + specular, fresnel) * losMod;
 	
 	// Make alpha vary based on both depth (so it blends with the shore) and view angle (make it
 	// become opaque faster at lower view angles so we can't look "underneath" the water plane)
