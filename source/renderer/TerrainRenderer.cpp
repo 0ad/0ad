@@ -455,6 +455,7 @@ void TerrainRenderer::RenderWater()
 	const int DZ[] = {0,1,1,0};
 
 	GLint vertexDepth = 0;	// water depth attribute, if using fancy water
+	GLint losMultiplier = 0;	// LOS multiplier, if using fancy water
 
 	if(fancy)
 	{
@@ -504,6 +505,7 @@ void TerrainRenderer::RenderWater()
 		pglUniform3fvARB( cameraPos, 1, &camPos.X );
 
 		vertexDepth = ogl_program_get_attrib_location( m->fancyWaterShader, "vertexDepth" );
+		losMultiplier = ogl_program_get_attrib_location( m->fancyWaterShader, "losMultiplier" );
 	}
 	
 	float repeatPeriod = (fancy ? WaterMgr->m_RepeatPeriod : 16.0f);
@@ -570,6 +572,7 @@ void TerrainRenderer::RenderWater()
 					if(fancy)
 					{
 						pglVertexAttrib1fARB( vertexDepth, WaterMgr->m_WaterHeight - terrainHeight );
+						pglVertexAttrib1fARB( losMultiplier, losMod );
 					}
 					else
 					{

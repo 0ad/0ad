@@ -8,6 +8,7 @@
 #include "graphics/GameView.h"
 #include "Entity.h"
 #include "EntityManager.h"
+#include "LOSManager.h"
 #include "graphics/Unit.h"
 #include "maths/Bound.h"
 #include "graphics/Model.h"
@@ -226,6 +227,8 @@ void CTerritoryManager::renderTerritories()
 	glEnable(GL_LINE_SMOOTH);
 	glLineWidth(1.5f);
 
+	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
+
 	const CTerrain* pTerrain = g_Game->GetWorld()->GetTerrain();
 	CFrustum frustum = g_Game->GetView()->GetCamera()->GetFrustum();
 	std::vector<CTerritory*>::iterator terr=m_Territories.begin();
@@ -255,16 +258,22 @@ void CTerritoryManager::renderTerritories()
 			boundary[i] += (dir1 + dir2).normalize() * 0.3f / cosf(angle/2);
 		}
 
+		float r, g, b;
+
 		if ( (*terr)->owner->GetPlayerID() == 0 )
 		{
 			// Use a dark gray for Gaia territories since white looks a bit weird
-			glColor3f( 0.65f, 0.65f, 0.65f );
+			//glColor3f( 0.65f, 0.65f, 0.65f );
+			r = g = b = 0.65f;
 		}
 		else
 		{
 			// Use the player's colour
 			const SPlayerColour& col = (*terr)->owner->GetColour();
-			glColor3f(col.r, col.g, col.b);
+			//glColor3f(col.r, col.g, col.b);
+			r = col.r;
+			g = col.g;
+			b = col.b;
 		}
 		
 		for ( std::vector<CVector2D>::iterator it = boundary.begin(); it != boundary.end(); it++ )
@@ -280,13 +289,26 @@ void CTerritoryManager::renderTerritories()
 				continue;
 			
 			glBegin(GL_LINE_STRIP);
+
 			float iterf = (end - start).GetLength() / TERRITORY_PRECISION_STEP;
 			for ( float i=0; i < iterf; i += TERRITORY_PRECISION_STEP )
 			{
 				CVector2D pos( Interpolate(start, end, i/iterf) );
+				ELOSStatus los = losMgr->GetStatus(pos.x, pos.y, g_Game->GetLocalPlayer());
+				float m = 1.0f;
+				if(los == LOS_UNEXPLORED) m = 0.0f;
+				else if(los == LOS_EXPLORED) m = 0.7f;
+				glColor3f(m*r, m*g, m*b);
 				glVertex3f(pos.x, pTerrain->getExactGroundLevel(pos)+.25f, pos.y); 
 			}
+
+			ELOSStatus los = losMgr->GetStatus(end.X, end.Z, g_Game->GetLocalPlayer());
+			float m = 1.0f;
+			if(los == LOS_UNEXPLORED) m = 0.0f;
+			else if(los == LOS_EXPLORED) m = 0.7f;
+			glColor3f(m*r, m*g, m*b);
 			glVertex3f(end.X, pTerrain->getExactGroundLevel(end.X, end.Z)+.25f, end.Z); 
+
 			glEnd();
 		}
 	}
