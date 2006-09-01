@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <animations>
+        <animation file="biped/rider_gallop.psa" name="Idle" speed="200"/>
+        <animation file="biped/cavalryidle.psa" name="Walk" speed="20"/>
+        <animation file="biped/dudedeath_sword.psa" name="Death" speed="200"/>
+        <animation file="biped/dudedecay_sword.psa" name="Corpse" speed="100"/>
+        <animation event="0.5" file="biped/rider_spear_shield_atk_a.psa" name="Attack" speed="100"/>
+      </animations>
+      <mesh>skeletal/m_tunic_a.pmd</mesh>
+      <props>
+        <prop actor="props/units/heads/head_philip.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/spear_long.xml" attachpoint="r_hand"/>
+      </props>
+      <texture>skeletal/hele_philip.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>
