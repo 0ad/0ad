@@ -276,9 +276,9 @@ void ShadowMapInternals::CreateTexture()
 
 	// get shadow map size as next power of two up from view width and height
 	Width = g_Renderer.GetWidth();
-	Width = std::min(RoundUpToPowerOf2(Width), ogl_max_tex_size);
+	Width = std::min(RoundUpToPowerOf2(Width), (int)ogl_max_tex_size);
 	Height = g_Renderer.GetHeight();
-	Height = std::min(RoundUpToPowerOf2(Height), ogl_max_tex_size);
+	Height = std::min(RoundUpToPowerOf2(Height), (int)ogl_max_tex_size);
 
 	if (Framebuffer)
 	{

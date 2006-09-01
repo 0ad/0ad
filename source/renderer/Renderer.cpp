@@ -83,10 +83,10 @@ public:
 	// Implementation of AbstractProfileTable interface
 	CStr GetName();
 	CStr GetTitle();
-	uint GetNumberRows();
+	size_t GetNumberRows();
 	const std::vector<ProfileColumn>& GetColumns();
-	CStr GetCellText(uint row, uint col);
-	AbstractProfileTable* GetChild(uint row);
+	CStr GetCellText(size_t row, size_t col);
+	AbstractProfileTable* GetChild(size_t row);
 
 private:
 	/// Reference to the renderer singleton's stats
@@ -128,7 +128,7 @@ CStr CRendererStatsTable::GetTitle()
 	return "Renderer statistics";
 }
 
-uint CRendererStatsTable::GetNumberRows()
+size_t CRendererStatsTable::GetNumberRows()
 {
 	return NumberRows;
 }
@@ -138,7 +138,7 @@ const std::vector<ProfileColumn>& CRendererStatsTable::GetColumns()
 	return columnDescriptions;
 }
 
-CStr CRendererStatsTable::GetCellText(uint row, uint col)
+CStr CRendererStatsTable::GetCellText(size_t row, size_t col)
 {
 	char buf[256];
 
@@ -179,7 +179,7 @@ CStr CRendererStatsTable::GetCellText(uint row, uint col)
 	}
 }
 
-AbstractProfileTable* CRendererStatsTable::GetChild(uint UNUSED(row))
+AbstractProfileTable* CRendererStatsTable::GetChild(size_t UNUSED(row))
 {
 	return 0;
 }

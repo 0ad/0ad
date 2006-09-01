@@ -151,7 +151,7 @@ template<> jsval ToJSVal<double>( double& Native )
 template<> bool ToPrimitive<double>( JSContext* cx, jsval v, double& Storage )
 {
 	JSBool ok = JS_ValueToNumber(cx, v, &Storage);
-	if (ok == JS_FALSE || !isfinite( Storage ) )
+	if (ok == JS_FALSE || !std::isfinite( Storage ) )
 		return false;
 	return true;
 }
