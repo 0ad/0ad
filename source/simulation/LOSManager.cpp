@@ -242,4 +242,8 @@ EUnitLOSStatus CLOSManager::GetUnitStatus(CUnit* unit, CPlayer* player)
 	return UNIT_HIDDEN;
 }
 
+EUnitLOSStatus CLOSManager::GetUnitStatus(CEntity* entity, CPlayer* player)
+{
+	return GetUnitStatus( entity->m_actor, player );
+}
 

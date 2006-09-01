@@ -22,6 +22,7 @@
 #include "ps/Player.h"
 
 class CUnit;
+class CEntity;
 class CPlayer;
 
 #undef _2_los
@@ -76,8 +77,11 @@ public:
 	// Get LOS status for a point (in game coordinates)
 	ELOSStatus GetStatus(float fx, float fz, CPlayer* player);
 
-	// Returns whether a given entity is visible to the given player
+	// Returns whether a given actor is visible to the given player
 	EUnitLOSStatus GetUnitStatus(CUnit* unit, CPlayer* player);
+	
+	// Returns whether a given entity is visible to the given player
+	EUnitLOSStatus GetUnitStatus(CEntity* entity, CPlayer* player);
 };
 
 #endif

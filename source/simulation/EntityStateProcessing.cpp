@@ -12,9 +12,9 @@
 #include "graphics/Unit.h"
 #include "ProductionQueue.h"
 #include "maths/MathUtil.h"
-
 #include "Collision.h"
 #include "PathfindEngine.h"
+#include "LOSManager.h"
 #include "graphics/Terrain.h"
 
 #include "ps/Game.h"
@@ -351,9 +351,15 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 // Handles processing common to (at the moment) gather and melee attack actions
 bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timestep_millis), int transition, SEntityAction* action )
 {
-	if( !current->m_data[0].entity || !current->m_data[0].entity->m_extant )
+	HEntity target = current->m_data[0].entity;
+
+	if( !target || !target->m_extant )
 		return( false );
-	current->m_data[0].location = current->m_data[0].entity->m_position;
+
+	if( g_Game->GetWorld()->GetLOSManager()->GetUnitStatus( target, m_player ) == UNIT_HIDDEN )
+		return false;
+
+	current->m_data[0].location = target->m_position;
 	float Distance = (current->m_data[0].location - m_position).length();
 
 	if( Distance < action->m_MaxRange ) 
@@ -374,6 +380,8 @@ bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timeste
 }
 bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t timestep_millis, const CStr& animation, CScriptEvent* contactEvent, SEntityAction* action )
 {
+	HEntity target = current->m_data[0].entity;
+
 	if( m_fsm_cyclepos != NOT_IN_CYCLE )
 	{
 		size_t nextpos = m_fsm_cyclepos + timestep_millis * 2;
@@ -426,7 +434,8 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 	}
 
 	// Target's dead (or exhausted), or we cancelled? Then our work here is done.
-	if( !current->m_data[0].entity || !current->m_data[0].entity->m_extant )
+	if( !target || !target->m_extant
+		|| g_Game->GetWorld()->GetLOSManager()->GetUnitStatus( target, m_player ) == UNIT_HIDDEN )
 	{
 		//TODO:  eventually when stances/formations are implemented, if applicable (e.g. not 
 		//heal or if defensive stance), the unit should expand and continue the order.
@@ -437,14 +446,14 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		return( false );
 	}
 
-	CVector2D delta = current->m_data[0].entity->m_position - m_position;
+	CVector2D delta = target->m_position - m_position;
 	float deltaLength = delta.length();
 
-	float adjRange = action->m_MaxRange + m_bounds->m_radius + current->m_data[0].entity->m_bounds->m_radius;
+	float adjRange = action->m_MaxRange + m_bounds->m_radius + target->m_bounds->m_radius;
 
 	if( action->m_MinRange > 0.0f )
 	{
-		float adjMinRange = action->m_MinRange + m_bounds->m_radius + current->m_data[0].entity->m_bounds->m_radius;
+		float adjMinRange = action->m_MinRange + m_bounds->m_radius + target->m_bounds->m_radius;
 		if( delta.within( adjMinRange ) )
 		{
 			// Too close... do nothing.
@@ -463,7 +472,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 
 		processChooseMovement(deltaLength);
 	
-		current->m_data[0].location = (CVector2D)current->m_data[0].entity->m_position - delta;
+		current->m_data[0].location = (CVector2D)target->m_position - delta;
 
 		HEntity collide;	
 		switch( processGotoHelper( current, timestep_millis, collide ) )
@@ -477,7 +486,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		case NORMAL:
 			// May or may not be close enough, check...
 			// (Assuming the delta above will never take us within minimum range)
-			delta = current->m_data[0].entity->m_position - m_position;
+			delta = target->m_position - m_position;
 			if( delta.within( adjRange ) )
 				break;
 			// Otherwise, continue chasing
