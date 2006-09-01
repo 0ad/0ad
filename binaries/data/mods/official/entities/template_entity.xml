@@ -74,6 +74,12 @@
 			<Value>.1</Value>
 		</Pitch>
 		
+		<IsTerritoryCentre>false</IsTerritoryCentre>
+		
+		<Vision>
+			<Permanent>false</Permanent>
+		</Vision>
+		
 		<Display>
 			<Bars>
 				<Enabled>false</Enabled>
@@ -81,8 +87,6 @@
 				<BorderSize>0.15</BorderSize>
 			</Bars>
 		</Display>
-
-		<IsTerritoryCentre>false</IsTerritoryCentre>
 		
 	</Traits>
 
