@@ -48,10 +48,10 @@ typedef unsigned int PS_uint;
 
 // the standard only guarantees 16 bits.
 // we use this for memory offsets and ranges, so it better be big enough.
-#ifdef SIZE_MAX
-# if SIZE_MAX < 0xFFFFFFFF
-#  error "check size_t and SIZE_MAX - too small?"
-# endif
-#endif
+//#ifdef SIZE_MAX
+//# if SIZE_MAX < 0xFFFFFFFF
+//#  error "check size_t and SIZE_MAX - too small?"
+//# endif
+//#endif
 
 #endif // #ifndef __TYPES_H__

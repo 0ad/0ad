@@ -256,7 +256,7 @@ static LibError alc_init()
 		// ignore
 	}
 #else
-	alc_dev = alcOpenDevice((ALubyte*)alc_dev_name);
+	alc_dev = alcOpenDevice((ALCchar*)alc_dev_name);
 #endif
 
 	if(alc_dev)
@@ -677,7 +677,7 @@ static const char * devs;
  */
 LibError snd_dev_prepare_enum()
 {
-	if(alcIsExtensionPresent(0, (ALubyte*)"ALC_ENUMERATION_EXT") != AL_TRUE)
+	if(alcIsExtensionPresent(0, (ALCchar*)"ALC_ENUMERATION_EXT") != AL_TRUE)
 		WARN_RETURN(ERR_NO_SYS);
 
 	devs = (const char*)alcGetString(0, ALC_DEVICE_SPECIFIER);
@@ -1822,10 +1822,10 @@ static void vsrc_latch(VSrc * vs)
 #ifndef NDEBUG
 	// paranoid value checking; helps determine which parameter is
 	// the problem when the below AL_CHECK fails.
-	debug_assert(!isnan(vs->pos[0]) && !isnan(vs->pos[1]) && !isnan(vs->pos[2]));
+	debug_assert(!std::isnan(vs->pos[0]) && !std::isnan(vs->pos[1]) && !std::isnan(vs->pos[2]));
 	debug_assert(vs->relative == AL_TRUE || vs->relative == AL_FALSE);
-	debug_assert(!isnan(vs->gain));
-	debug_assert(!isnan(vs->pitch) && vs->pitch > 0.0f);
+	debug_assert(!std::isnan(vs->gain));
+	debug_assert(!std::isnan(vs->pitch) && vs->pitch > 0.0f);
 	debug_assert(vs->loop == AL_TRUE || vs->loop == AL_FALSE);
 #endif
 

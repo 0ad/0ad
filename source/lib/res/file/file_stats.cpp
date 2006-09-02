@@ -307,7 +307,7 @@ void stats_dump()
 		"Accessed files: %u (%g MB) -- %u%% of data set\n"
 		"Max. concurrent: %u; leaked: %u.\n",
 		unique_names, unique_name_len_total/1000, 
-		opened_files.size(), opened_file_size_total/MB, percent(opened_files.size(), vfs_files),
+		opened_files.size(), opened_file_size_total/MB, percent(opened_files.size(), (size_t)vfs_files),
 		open_files_max, open_files_cur
 	);
 

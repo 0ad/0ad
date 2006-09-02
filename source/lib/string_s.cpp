@@ -25,7 +25,7 @@
 #include <string.h>
 
 #include "lib.h"
-#include "posix.h"	// SIZE_MAX
+#include "posix_types.h"	// SIZE_MAX
 
 
 // written against http://std.dkuug.dk/jtc1/sc22/wg14/www/docs/n1031.pdf .
