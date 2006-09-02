@@ -382,7 +382,7 @@ trace_run("../logs/trace.txt");
 		Frame();
 #endif
 
-	Shutdown();
+	Shutdown(0);
 	MainControllerShutdown();
 
 	debug_printf("Shutdown complete, calling exit() now\n");

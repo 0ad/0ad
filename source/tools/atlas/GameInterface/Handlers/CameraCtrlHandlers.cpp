@@ -146,7 +146,7 @@ MESSAGEHANDLER(RotateAround)
 
 MESSAGEHANDLER(LookAt)
 {
-	// TODO: different view depending on 
+	// TODO: different camera depending on msg->view
 	CCamera& camera = View::GetView_Actor()->GetCamera();
 
 	CVector3D tgt = msg->target->GetWorldSpace();

@@ -17,8 +17,6 @@ extern void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task);
 extern void Render();
 extern void RenderActor();
 
-extern void Shutdown();
-
 
 enum InitFlags
 {
@@ -29,7 +27,12 @@ enum InitFlags
 
 	// skip initializing the in-game GUI.
 	// needed by map editor because it uses its own GUI.
-	INIT_NO_GUI = 2
+	INIT_NO_GUI = 2,
+
+	// skip initializing the simulation.
+	// used by actor viewer because it doesn't need the simulation code.
+	INIT_NO_SIM = 4,
 };
 
 extern void Init(int argc, char* argv[], uint flags);
+extern void Shutdown(uint flags);

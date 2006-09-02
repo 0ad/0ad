@@ -31,7 +31,7 @@ void CPathfindEngine::requestLowLevelPath( HEntity entity, const CVector2D& dest
 	
 	CVector2D source( entity->m_position.X, entity->m_position.Z );
 
-	if ( mLowPathfinder.findPath(source, destination, entity->m_player, radius) )
+	if ( mLowPathfinder.findPath(source, destination, entity->GetPlayer(), radius) )
 	{
 		std::vector<CVector2D> path = mLowPathfinder.getLastPath();
 		if( path.size() > 0 )

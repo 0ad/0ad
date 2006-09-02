@@ -711,7 +711,7 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 				LOG(ERROR, LOG_CATEGORY, "Failed to create entity of type '%ls'", TemplateName.c_str());
 			else
 			{
-				ent->SetPlayer(g_Game->GetPlayer(PlayerID));
+				ent->m_actor->SetPlayerID(PlayerID);
 
 				// TODO: save object IDs in the map file, and load them again,
 				// so that triggers have a persistent identifier for objects

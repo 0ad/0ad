@@ -8,7 +8,6 @@
 #include "graphics/UnitManager.h"
 #include "maths/MathUtil.h"
 #include "maths/scripting/JSInterface_Vector3D.h"
-#include "ps/CConsole.h"
 #include "ps/Game.h"
 #include "ps/Interact.h"
 #include "ps/Profile.h"
@@ -31,7 +30,6 @@
 #include "TechnologyCollection.h"
 #include "TerritoryManager.h"
 
-extern CConsole* g_Console;
 extern int g_xres, g_yres;
 
 #include <algorithm>
@@ -49,7 +47,7 @@ CEntity::CEntity( CEntityTemplate* base, CVector3D position, float orientation, 
 	m_ahead.y = cos( m_orientation.Y );
 	m_position_previous = m_position;
 	m_orientation_previous = m_orientation;
-	m_player = 0;
+	m_player = NULL;
 
 	m_productionQueue = new CProductionQueue( this );
 
@@ -251,9 +249,8 @@ void CEntity::SetPlayer(CPlayer *pPlayer)
 {
 	m_player = pPlayer;
 
-	// Store the ID of the player in the associated model
-	if( m_actor )
-		m_actor->SetPlayerID( m_player->GetPlayerID() );
+	// This should usually be called CUnit::SetPlayerID, so we don't need to
+	// update the actor here.
 
 	// If we're a territory centre, change the territory's owner
 	if( m_associatedTerritory )
@@ -1653,7 +1650,7 @@ JSBool CEntity::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsva
 
 	std::set<CStr8> selections; // TODO: let scripts specify selections?
 	HEntity handle = g_EntityManager.create( baseEntity, position, orientation, selections );
-	handle->SetPlayer( player );
+	handle->m_actor->SetPlayerID( player->GetPlayerID() );
 	handle->Initialize();
 
 	*rval = ToJSVal<CEntity>( *handle );
@@ -1699,17 +1696,10 @@ void CEntity::JSI_SetPlayer( jsval val )
 		(*it)->Remove( this );
 	}
 	
-	// Switch player
-	m_player = newPlayer;
-
-	// Set actor player colour
 	if( m_actor )
-		m_actor->SetPlayerID( newPlayer->GetPlayerID() );
-	
-	// If we're a territory centre, change the territory's owner
-	if( m_associatedTerritory )
-		m_associatedTerritory->owner = newPlayer;
-
+		m_actor->SetPlayerID( newPlayer->GetPlayerID() ); // calls this->SetPlayer
+	else
+		SetPlayer(newPlayer);
 }
 
 bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )

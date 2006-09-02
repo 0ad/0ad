@@ -7,9 +7,12 @@
 #include "SkeletonAnim.h"
 #include "SkeletonAnimDef.h"
 
+#include "ps/Game.h"
+#include "simulation/Entity.h"
+
 CUnit::CUnit(CObjectEntry* object, CEntity* entity, const std::set<CStr>& actorSelections)
 : m_Object(object), m_Model(object->m_Model->Clone()), m_Entity(entity),
-  m_ID(-1), m_ActorSelections(actorSelections)
+  m_ID(-1), m_ActorSelections(actorSelections), m_PlayerID(-1)
 {
 }
 
@@ -132,6 +135,9 @@ void CUnit::SetPlayerID(int id)
 {
 	m_PlayerID = id;
 	m_Model->SetPlayerID(m_PlayerID);
+
+	if (m_Entity)
+		m_Entity->SetPlayer(g_Game->GetPlayer(id));
 }
 
 void CUnit::SetEntitySelection(const CStr& selection)
@@ -166,10 +172,13 @@ void CUnit::ReloadObject()
 	CObjectEntry* newObject = g_ObjMan.FindObjectVariation(m_Object->m_Base, selections);
 	if (newObject != m_Object)
 	{
+		// Clone the base model (lacking instance-specific data)
 		CModel* newModel = newObject->m_Model->Clone();
-		// Copy old settings to the new model
-		newModel->SetPlayerID(m_PlayerID);
+
+		// Copy the old instance-specific settings to the new model
 		newModel->SetTransform(m_Model->GetTransform());
+		if (m_PlayerID != -1)
+			newModel->SetPlayerID(m_PlayerID);
 		// TODO: preserve selection of animation, anim offset, etc?
 
 		delete m_Model;

@@ -60,7 +60,7 @@ CBoundingObject* getCollisionObject( CBoundingObject* bounds, CPlayer* player, c
 
 		/* If the unit is marked to ignore ally collisions, and the player parameter 
 		   is passed in and the same player as the unit, then ignore the (potential) collision */
-		if( player && (*it)->m_base->m_passThroughAllies && (*it)->m_player == player ) continue;
+		if( player && (*it)->m_base->m_passThroughAllies && (*it)->GetPlayer() == player ) continue;
 
 		if( ignoreClass && (*it)->m_classes.IsMember( *ignoreClass ) ) continue;
 
@@ -87,7 +87,7 @@ CEntity* getCollisionEntity( CBoundingObject* bounds, CPlayer* player, const CSt
 
 		/* If the unit is marked to ignore ally collisions, and the player parameter 
 		   is passed in and the same player as the unit, then ignore the (potential) collision */
-		if( player && (*it)->m_base->m_passThroughAllies && (*it)->m_player == player ) continue;
+		if( player && (*it)->m_base->m_passThroughAllies && (*it)->GetPlayer() == player ) continue;
 
 		if( ignoreClass && (*it)->m_classes.IsMember( *ignoreClass ) ) continue;
 
@@ -117,7 +117,7 @@ HEntity getCollisionObject( CEntity* entity )
 		if( !(*it)->m_bounds ) continue;
 		if( (*it)->m_bounds == entity->m_bounds ) continue;
 		if( entity->m_base->m_passThroughAllies && (*it)->m_base->m_passThroughAllies
-			&& entity->m_player == (*it)->m_player ) continue;
+			&& entity->GetPlayer() == (*it)->GetPlayer() ) continue;
 		if( entity->m_bounds->intersects( (*it)->m_bounds ) )
 		{
 			HEntity collisionObject = HEntity((*it)->me);

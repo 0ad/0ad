@@ -357,7 +357,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 
 	POST_MESSAGE(SetContext, (canvas->GetContext()));
 
-	POST_MESSAGE(Init, ());
+	POST_MESSAGE(Init, (true));
 
 	canvas->InitSize();
 

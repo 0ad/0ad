@@ -19,14 +19,23 @@
 
 namespace AtlasMessage {
 
+static bool g_DidInitSim;
+
 MESSAGEHANDLER(Init)
 {
 	UNUSED2(msg);
-	
+
 	oglInit();
 
 	g_Quickstart = true;
-	Init(g_GameLoop->argc, g_GameLoop->argv, INIT_HAVE_VMODE|INIT_NO_GUI);
+
+	uint flags = INIT_HAVE_VMODE|INIT_NO_GUI;
+	if (! msg->initsimulation)
+		flags |= INIT_NO_SIM;
+
+	Init(g_GameLoop->argc, g_GameLoop->argv, flags);
+
+	g_DidInitSim = msg->initsimulation; // so we can shut down the right things later
 
 #if OS_WIN
 	// HACK (to stop things looking very ugly when scrolling) - should
@@ -48,7 +57,10 @@ MESSAGEHANDLER(Shutdown)
 	View::DestroyViews();
 	g_GameLoop->view = View::GetView_None();
 
-	Shutdown();
+	uint flags = 0;
+	if (! g_DidInitSim)
+		flags |= INIT_NO_SIM;
+	Shutdown(flags);
 }
 
 

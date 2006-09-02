@@ -40,7 +40,7 @@ private:
 	// allows implementing other animations than sliding, e.g. fading in/out.
 	float m_fVisibleFrac;
 	
-	std::vector<std::wstring> m_helpText;
+	CStrW m_helpText;
 	std::map<std::wstring, fptr> m_mapFuncList;
 
 	std::deque<std::wstring> m_deqMsgHistory;
@@ -74,6 +74,10 @@ private:
 
 	void InsertBuffer(void){InsertMessage(L"%ls", m_szBuffer);};
     void ProcessBuffer(const wchar_t* szLine);
+
+	// Insert message without printf-style formatting, and without
+	// length limits
+	void InsertMessageRaw(const CStrW& message);
 
 	void LoadHistory();
 	void SaveHistory();

@@ -9,7 +9,9 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-MESSAGE(Init, );
+MESSAGE(Init,
+		((bool, initsimulation)) // whether to initialise simulation/game-specific objects
+		);
 
 MESSAGE(Shutdown, );
 

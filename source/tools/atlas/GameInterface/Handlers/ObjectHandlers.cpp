@@ -36,6 +36,8 @@ static bool SortObjectsList(const sObjectsListItem& a, const sObjectsListItem& b
 QUERYHANDLER(GetObjectsList)
 {
 	std::vector<sObjectsListItem> objects;
+
+	if (CEntityTemplateCollection::IsInitialised())
 	{
 		std::vector<CStrW> names;
 		g_EntityTemplateCollection.getEntityTemplateNames(names);
@@ -184,20 +186,26 @@ BEGIN_COMMAND(SetObjectSettings)
 
 	void Redo()
 	{
-		CUnit* unit = g_UnitMan.FindByID(msg->id);
-		if (! unit) return;
-
-		unit->SetPlayerID(m_PlayerNew);
-		unit->SetActorSelections(m_SelectionsNew);
+		Set(m_PlayerNew, m_SelectionsNew);
 	}
 
 	void Undo()
 	{
+		Set(m_PlayerOld, m_SelectionsOld);
+	}
+
+private:
+	void Set(int player, const std::set<CStr>& selections)
+	{
 		CUnit* unit = g_UnitMan.FindByID(msg->id);
 		if (! unit) return;
 
-		unit->SetPlayerID(m_PlayerOld);
-		unit->SetActorSelections(m_SelectionsOld);
+		unit->SetPlayerID(player);
+
+		unit->SetActorSelections(selections);
+
+		if (m_PlayerOld != m_PlayerNew)
+			g_Game->GetWorld()->GetTerritoryManager()->DelayedRecalculate();
 	}
 };
 END_COMMAND(SetObjectSettings);
@@ -387,7 +395,7 @@ BEGIN_COMMAND(CreateObject)
 					}
 					else
 					{
-						ent->SetPlayer(g_Game->GetPlayer(m_Player));
+						ent->m_actor->SetPlayerID(m_Player);
 						ent->m_actor->SetID(m_ID);
 
 						if (ent->m_base->m_isTerritoryCentre)

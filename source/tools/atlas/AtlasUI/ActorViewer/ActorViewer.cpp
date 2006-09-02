@@ -147,7 +147,7 @@ ActorViewer::ActorViewer(wxWindow* parent)
 	wglMakeCurrent(NULL, NULL);
 	POST_MESSAGE(SetContext, (canvas->GetContext()));
 
-	POST_MESSAGE(Init, ());
+	POST_MESSAGE(Init, (false));
 
 	canvas->InitSize();
 	canvas->PostLookAt();

@@ -757,7 +757,7 @@ void EndGame()
 }
 
 
-void Shutdown()
+void Shutdown(uint flags)
 {
 	MICROLOG(L"Shutdown");
 
@@ -770,32 +770,36 @@ void Shutdown()
 	delete &g_Scheduler;
 	TIMER_END("shutdown Scheduler");
 
-	TIMER_BEGIN("shutdown SessionManager");
-	delete &g_SessionManager;
-	TIMER_END("shutdown SessionManager");
-
-	TIMER_BEGIN("shutdown mouse stuff");
-	delete &g_Mouseover;
-	delete &g_Selection;
-	delete &g_BuildingPlacer;
-	TIMER_END("shutdown mouse stuff");
-
-	TIMER_BEGIN("shutdown Pathfinder");
-	delete &g_Pathfinder;
-	TIMER_END("shutdown Pathfinder");
-
-	// Managed by CWorld
-	// delete &g_EntityManager;
-
-	TIMER_BEGIN("shutdown game scripting stuff");
-	delete &g_GameAttributes;
 	delete &g_JSGameEvents;
-	
-	delete &g_FormationManager;
-	delete &g_TechnologyCollection;
-	delete &g_EntityFormationCollection;
-	delete &g_EntityTemplateCollection;
-	TIMER_END("shutdown game scripting stuff");
+
+	if (! (flags & INIT_NO_SIM))
+	{
+		TIMER_BEGIN("shutdown SessionManager");
+		delete &g_SessionManager;
+		TIMER_END("shutdown SessionManager");
+
+		TIMER_BEGIN("shutdown mouse stuff");
+		delete &g_Mouseover;
+		delete &g_Selection;
+		delete &g_BuildingPlacer;
+		TIMER_END("shutdown mouse stuff");
+
+		TIMER_BEGIN("shutdown Pathfinder");
+		delete &g_Pathfinder;
+		TIMER_END("shutdown Pathfinder");
+
+		// Managed by CWorld
+		// delete &g_EntityManager;
+
+		TIMER_BEGIN("shutdown game scripting stuff");
+		delete &g_GameAttributes;
+
+		delete &g_FormationManager;
+		delete &g_TechnologyCollection;
+		delete &g_EntityFormationCollection;
+		delete &g_EntityTemplateCollection;
+		TIMER_END("shutdown game scripting stuff");
+	}
 
 	// destroy actor related stuff
 	TIMER_BEGIN("shutdown actor stuff");
@@ -1016,36 +1020,35 @@ void Init(int argc, char* argv[], uint flags)
 	oglCheck();
 	InitRenderer();
 
+	if (! (flags & INIT_NO_SIM))
 	{
-	TIMER("Init_entitiessection");
-	// This needs to be done after the renderer has loaded all its actors...
-	new CEntityTemplateCollection;
-	new CFormationCollection;
-	new CTechnologyCollection;
-	g_EntityFormationCollection.loadTemplates();
-	g_TechnologyCollection.loadTechnologies();
-	new CFormationManager;
+		{
+			TIMER("Init_entitiessection");
+			// This needs to be done after the renderer has loaded all its actors...
+			new CEntityTemplateCollection;
+			new CFormationCollection;
+			new CTechnologyCollection;
+			g_EntityFormationCollection.loadTemplates();
+			g_TechnologyCollection.loadTechnologies();
+			new CFormationManager;
 
-	// CEntityManager is managed by CWorld
-	//new CEntityManager;
-	new CSelectedEntities;
-	new CMouseoverEntities;
+			// CEntityManager is managed by CWorld
+			//new CEntityManager;
+			new CSelectedEntities;
+			new CMouseoverEntities;
+		}
+
+		{
+			TIMER("Init_miscgamesection");
+			new CPathfindEngine;
+			new CBuildingPlacer;
+			new CSessionManager;
+			new CGameAttributes;
+		}
+
+		// Register a few Game/Network JS globals
+		g_ScriptingHost.SetGlobal("g_GameAttributes", OBJECT_TO_JSVAL(g_GameAttributes.GetScript()));
 	}
-
-	{
-	TIMER("Init_miscgamesection");
-	new CPathfindEngine;
-	new CBuildingPlacer;
-	new CSessionManager;
-	new CGameAttributes;
-	}
-
-	{
-	TIMER("Init_misc");
-
-	// Register a few Game/Network JS globals
-	g_ScriptingHost.SetGlobal("g_GameAttributes", OBJECT_TO_JSVAL(g_GameAttributes.GetScript()));
-
 	
 	
 	// Check for heap corruption after every allocation. Very, very slowly.
@@ -1056,7 +1059,6 @@ void Init(int argc, char* argv[], uint flags)
 	InitInput();
 
 	oglCheck();
-	}
 
 #ifndef NO_GUI
 	{

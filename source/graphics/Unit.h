@@ -56,7 +56,7 @@ public:
 	// matching 'name'.
 	bool IsPlayingAnimation(const CStr& name);
 
-	// Set player ID of this unit
+	// Set player ID of this unit (and the attached entity and actor)
 	void SetPlayerID(int id);
 
 	// Get player ID of this unit
@@ -76,7 +76,7 @@ private:
 	CModel* m_Model;
 	// the entity that this actor represents, if any
 	CEntity* m_Entity;
-	// player id of this unit (only used for graphical effects)
+	// player id of this unit (only read for graphical effects), or -1 if unspecified
 	int m_PlayerID;
 
 	// unique (per map) ID number for units created in the editor, as a

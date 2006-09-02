@@ -48,18 +48,15 @@ CConsole::CConsole()
 			file_buf_free(buf);
 			return;
 		}
-		const char* text = (const char*)buf;
-		CStrW temp = CStrW( CStr(text) );
-		size_t i=0, strings = temp.Length()/1024 ;
-
-		for ( ; i<strings; ++i )
-				m_helpText.push_back( temp.substr(i*1024, 1023) );
-
-		m_helpText.push_back( temp.substr(strings*1024) );
+		// TODO: read in text mode, or at least get rid of the \r\n somehow
+		// TODO: maybe the help file should be UTF-8 - we assume it's iso-8859-1 here
+		m_helpText = CStrW(CStr( (const char*)buf ));
 		file_buf_free(buf);
 	}
 	else
+	{
 		InsertMessage(L"No help file found.");
+	}
 }
 
 CConsole::~CConsole()
@@ -528,9 +525,18 @@ void CConsole::InsertMessage(const wchar_t* szMessage, ...)
 		wcscpy(szBuffer+CONSOLE_MESSAGE_SIZE-4, L"...");
 	}
 	va_end(args);
+
+	InsertMessageRaw(CStrW(szBuffer));
+}
 	
+
+void CConsole::InsertMessageRaw(const CStrW& message)
+{
+	// (TODO: this text-wrapping is rubbish since we now use variable-width fonts)
+
 	//Insert newlines to wraparound text where needed
-	CStrW wrapAround( szBuffer ), newline(L'\n');
+	CStrW wrapAround(message);
+	CStrW newline(L'\n');
 	size_t oldNewline=0;
 	size_t distance;
 	
@@ -640,8 +646,7 @@ void CConsole::ProcessBuffer(const wchar_t* szLine){
 		{
 			InsertMessage(L"");
 			InsertMessage(L"[Help]");
-			for ( std::vector<std::wstring>::iterator it=m_helpText.begin(); it!=m_helpText.end(); it++ )
-				InsertMessage( it->c_str() );
+			InsertMessageRaw(m_helpText);
 		}
 		else
 		{

@@ -80,15 +80,13 @@ enum EntityFlags
 class CEntity : public CJSComplex<CEntity>, public IEventTarget
 {
 	friend class CEntityManager;
+	friend class CUnit;
 
 	typedef STL_HASH_MAP<CStrW, CAura*, CStrW_hash_compare> AuraTable;
 	typedef STL_HASH_MAP<int, SEntityAction> ActionTable;
 	typedef std::set<CAura*> AuraSet;
 
 public:
-	// The player that owns this entity
-	CPlayer* m_player;
-
 	// Intrinsic properties
 	CEntityTemplate* m_base;
 
@@ -274,10 +272,13 @@ public:
 	// Process tick.
 	void Tick();
 
-	// Store the player associated with this entity
-	void SetPlayer(CPlayer *pPlayer);
-
-	// Retrieve the player associated with this entity
+private:
+	// The player that owns this entity.
+	// (Player is set publicly via CUnit::SetPlayerID)
+	CPlayer* m_player;
+	void SetPlayer(CPlayer* player);
+public:
+	// Retrieve the player associated with this entity.
 	CPlayer* GetPlayer() { return m_player; }
 
 	// Update collision patch (move ourselves to a new one if necessary)

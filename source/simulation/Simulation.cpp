@@ -14,7 +14,6 @@
 #include "graphics/Unit.h"
 #include "graphics/UnitManager.h"
 #include "lib/timer.h"
-#include "ps/CConsole.h"
 #include "ps/CLogger.h"
 #include "ps/Game.h"
 #include "ps/GameAttributes.h"
@@ -32,8 +31,6 @@
 #include "gui/CGUI.h"
 
 using namespace std;
-
-extern CConsole *g_Console;
 
 CSimulation::CSimulation(CGame *pGame):
 	m_pGame(pGame),
@@ -369,7 +366,7 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 				// Create the object
 				CVector3D pos(msg->m_X/1000.0f, msg->m_Y/1000.0f, msg->m_Z/1000.0f);
 				HEntity newObj = g_EntityManager.createFoundation( msg->m_Template, player, pos, msg->m_Angle/1000.0f );
-				newObj->SetPlayer(player);
+				newObj->m_actor->SetPlayerID(player->GetPlayerID());
 				if( newObj->Initialize() )
 				{
 					// Order all the selected units to work on the new object using the given action

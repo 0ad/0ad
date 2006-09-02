@@ -248,7 +248,7 @@ static LibError alc_init()
 #if OS_WIN
 	__try
 	{
-		alc_dev = alcOpenDevice((ALubyte*)alc_dev_name);
+		alc_dev = alcOpenDevice((ALCchar*)alc_dev_name);
 	}
 	// if invalid handle, handle it; otherwise, continue handler search.
 	__except(GetExceptionCode() == EXCEPTION_INVALID_HANDLE)

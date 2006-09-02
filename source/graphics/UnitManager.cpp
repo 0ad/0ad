@@ -14,13 +14,10 @@
 #include "Model.h"
 #include "UnitManager.h"
 #include "Unit.h"
-#include "ps/CConsole.h"
 #include "ObjectManager.h"
 #include "ObjectEntry.h"
 #include "simulation/Entity.h"
 #include "simulation/LOSManager.h"
-
-extern CConsole* g_Console;
 
 #include <algorithm>
 

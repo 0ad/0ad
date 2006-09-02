@@ -16,7 +16,6 @@
 #include "lib/timer.h"
 #include "maths/MathUtil.h"
 #include "network/NetMessage.h"
-#include "ps/CConsole.h"
 #include "ps/Game.h"
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
@@ -40,7 +39,6 @@
 #include "ps/CLogger.h"
 #define LOG_CATEGORY "world"
 
-extern CConsole* g_Console;
 extern CStr g_CursorName;
 extern float g_xres, g_yres;
 

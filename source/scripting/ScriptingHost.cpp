@@ -4,7 +4,6 @@
 
 #include "ScriptingHost.h"
 #include "ScriptGlue.h"
-#include "ps/CConsole.h"
 #include "ps/Profile.h"
 #include "ps/CLogger.h"
 
@@ -20,8 +19,6 @@
 #endif
 
 #define LOG_CATEGORY "scriptinghost"
-
-extern CConsole* g_Console;
 
 namespace
 {
