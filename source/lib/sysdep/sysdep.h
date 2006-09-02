@@ -25,7 +25,7 @@
 
 #include "lib/config.h"
 #include "lib/debug.h"	// ErrorReaction
-
+#include <cmath>
 
 // some functions among the sysdep API are implemented as macros
 // that redirect to the platform-dependent version. this is done where
@@ -150,6 +150,9 @@ extern void* alloca(size_t size);
 // it doesn't already exist.
 # ifndef isfinite
 #  define isfinite std::isfinite
+#  define isnan std::isnan
+#  define isinf std::isinf
+#  define isnormal std::isnormal
 # endif
 #endif
 

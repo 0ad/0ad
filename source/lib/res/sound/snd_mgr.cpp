@@ -1822,10 +1822,10 @@ static void vsrc_latch(VSrc * vs)
 #ifndef NDEBUG
 	// paranoid value checking; helps determine which parameter is
 	// the problem when the below AL_CHECK fails.
-	debug_assert(!std::isnan(vs->pos[0]) && !std::isnan(vs->pos[1]) && !std::isnan(vs->pos[2]));
+	debug_assert(!isnan(vs->pos[0]) && !isnan(vs->pos[1]) && !isnan(vs->pos[2]));
 	debug_assert(vs->relative == AL_TRUE || vs->relative == AL_FALSE);
-	debug_assert(!std::isnan(vs->gain));
-	debug_assert(!std::isnan(vs->pitch) && vs->pitch > 0.0f);
+	debug_assert(!isnan(vs->gain));
+	debug_assert(!isnan(vs->pitch) && vs->pitch > 0.0f);
 	debug_assert(vs->loop == AL_TRUE || vs->loop == AL_FALSE);
 #endif
 
