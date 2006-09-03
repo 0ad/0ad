@@ -25,6 +25,7 @@
 
 #include "lib/config.h"
 #include "lib/debug.h"	// ErrorReaction
+#include <cmath>
 
 // some functions among the sysdep API are implemented as macros
 // that redirect to the platform-dependent version. this is done where
@@ -149,7 +150,6 @@ extern void* alloca(size_t size);
 // #ifndef and define it if it's not there.
 // Since sysdep.h will normally be included before cmath is, make sure we load
 // cmath first to let it define/undef that macro.
-# include <cmath>
 # ifndef isfinite
 #  define isfinite std::isfinite
 #  define isnan std::isnan
