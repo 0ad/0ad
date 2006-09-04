@@ -7,23 +7,23 @@
     <variant frequency="100" name="Base">
       <animations>
 		<!-- Class Specific -->
-	    <animation file="biped/fem_idle.psa" name="Idle" speed="200"/>
-        <animation file="biped/fem_walk.psa" name="Walk" speed="10"/>
+	    <animation file="infantry/support/idle/fem_01.psa" name="Idle" speed="200"/>
+        <animation file="infantry/support/move/walk/fem_01.psa" name="Walk" speed="10"/>
 		<!-- Citzen Soldier Specific -->
-        <animation file="biped/chop.psa" name="gather_wood" speed="100"/>
+        <animation file=" infantry/general/chop.psa " name="gather_wood" speed="100"/>
         <animation file="biped/hoe.psa" name="gather_grain" speed="150"/>
-        <animation file="biped/forage.psa" name="gather_fruit" speed="35"/>
-        <animation file="biped/mine.psa" name="gather_stone" speed="150"/>
-        <animation file="biped/dudebuild.psa" name="Build" speed="150"/>
+        <animation file="  infantry/general/forage.psa" name="gather_fruit" speed="35"/>
+        <animation file=" infantry/general/mine.psa" name="gather_stone" speed="150"/>
+        <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="150"/>
 		<!-- Shared  -->
-        <animation file="biped/inf_death_a.psa" name="Death" speed="200"/>
-        <animation file="biped/inf_death_b.psa" name="Death" speed="200"/>
-        <animation file="biped/inf_death_c.psa" name="Death" speed="200"/>
-        <animation file="biped/inf_death_d.psa" name="Death" speed="200"/>
-        <animation file="biped/inf_death_e.psa" name="Death" speed="200"/>
-        <animation file="biped/inf_death_f.psa" name="Death" speed="200"/>
-        <animation file="biped/inf_death_g.psa" name="Death" speed="200"/>
-        <animation file="biped/dudedecay_sword.psa" name="Corpse" speed="100"/>
+        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/death/inf_03.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/death/inf_04.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/death/inf_05.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/dude/dudedecay_sword.psa" name="Corpse" speed="100"/>
       </animations>
       <mesh>skeletal/f_dress.pmd</mesh>
       <props>

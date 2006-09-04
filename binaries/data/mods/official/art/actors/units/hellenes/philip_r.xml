@@ -8,8 +8,8 @@
       <animations>
         <animation file="biped/rider_gallop.psa" name="Idle" speed="200"/>
         <animation file="biped/cavalryidle.psa" name="Walk" speed="20"/>
-        <animation file="biped/dudedeath_sword.psa" name="Death" speed="200"/>
-        <animation file="biped/dudedecay_sword.psa" name="Corpse" speed="100"/>
+        <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/dude/dudedecay_sword.psa" name="Corpse" speed="100"/>
         <animation event="0.5" file="biped/rider_spear_shield_atk_a.psa" name="Attack" speed="100"/>
       </animations>
       <mesh>skeletal/m_tunic_a.pmd</mesh>

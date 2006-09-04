@@ -6,15 +6,15 @@
   <group>
     <variant frequency="100" name="Base">
       <animations>
-        <animation file="biped/dudeidle.psa" name="Idle" speed="200"/>
+        <animation file="infantry/general/dude/dudeidle.psa" name="Idle" speed="200"/>
         <animation file="biped/dudewalk_swordshield.psa" name="Walk" speed="20"/>
-        <animation file="biped/dudebuild.psa" name="Build" speed="150"/>
-        <animation file="biped/dudechop.psa" name="Chop" speed="150"/>
-        <animation file="biped/dudedeath_sword.psa" name="Death" speed="200"/>
-        <animation file="biped/dudedecay_sword.psa" name="Corpse" speed="100"/>
-        <animation event="0.5" file="biped/inf_sword_shield_atk_d.psa" name="Attack" speed="100"/>
-        <animation event="0.5" file="biped/inf_sword_shield_atk_e.psa" name="Attack" speed="100"/>
-        <animation event="0.5" file="biped/inf_sword_shield_atk_f.psa" name="Attack" speed="100"/>
+        <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="150"/>
+        <animation file="infantry/general/dude/dudechop.psa" name="Chop" speed="150"/>
+        <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/dude/dudedecay_sword.psa" name="Corpse" speed="100"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_em_04.psa" name="Attack" speed="100"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="Attack" speed="100"/>
+        <animation event="0.5" file=" infantry/sword/attack/isw_s_def_06.psa " name="Attack" speed="100"/>
       </animations>
       <mesh>skeletal/m_pants_c.pmd</mesh>
       <props>

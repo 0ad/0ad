@@ -6,11 +6,11 @@
   <group>
     <variant frequency="100" name="Base">
       <animations>
-        <animation file="biped/inf_sword_shield_atk_e.psa" name="Idle" speed="200"/>
+        <animation file="infantry/sword/attack/isw_s_off_05.psa" name="Idle" speed="200"/>
         <animation file="biped/inf_hoplite_walk.psa" name="Walk" speed="20"/>
         <animation file="biped/inf_hoplite_shield_run_a.psa" name="Run" speed="20"/>
-        <animation file="biped/dudedeath_sword.psa" name="Death" speed="200"/>
-        <animation file="biped/dudedecay_sword.psa" name="Corpse" speed="100"/>
+        <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/dude/dudedecay_sword.psa" name="Corpse" speed="100"/>
         <animation event="0.5" file="biped/inf_hoplite_atk_a.psa" name="Attack" speed="100"/>
       </animations>
       <mesh>skeletal/m_tunic_a.pmd</mesh>
