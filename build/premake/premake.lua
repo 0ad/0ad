@@ -325,11 +325,13 @@ function setup_all_libs ()
 	if OS == "windows" then
 		tinsert(package.files, sourcesfromdirs(source_root, {"lib/sysdep/win"}))
 		-- note: RC file must be added to main_exe package.
-	else
+	elseif OS == "linux" then
 		tinsert(package.files, sourcesfromdirs(source_root, {"lib/sysdep/unix"}))
 		-- (X11 include path isn't standard across distributions)
 		tinsert(package.includepaths, "/usr/X11R6/include/X11" )
 		tinsert(package.includepaths, "/usr/include/X11" )
+	elseif OS == "macosx" then 
+		tinsert(package.files, sourcesfromdirs(source_root, {"lib/sysdep/osx"}))
 	end
 end
 
@@ -405,7 +407,7 @@ function setup_main_exe ()
 			"/DELAY:UNLOAD"
 		}
 
-	else -- Non-Windows, = Unix
+	elseif OS == "linux" then
 
 		-- Libraries
 		tinsert(package.links, {
@@ -416,10 +418,23 @@ function setup_main_exe ()
 			"bfd", "iberty"
 		})
 		-- For debug_resolve_symbol
+		
+	
 		package.config["Debug"].linkoptions = { "-rdynamic" }
 		package.config["Testing"].linkoptions = { "-rdynamic" }
 
+	
 		tinsert(package.libpaths, "/usr/X11R6/lib")
+	elseif OS == "macosx" then
+		-- Libraries
+		tinsert(package.links, {			-- Utilities
+			"pthread"
+		})
+
+	
+		tinsert(package.libpaths, "/usr/X11R6/lib")
+
+	
 	end
 end
 

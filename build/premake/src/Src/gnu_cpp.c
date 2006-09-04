@@ -124,11 +124,18 @@ int gnu_cpp()
 			io_print(" -dynamiclib -flat_namespace");
 		// Use start-group and end-group to get around the problem with the 
 		// order of link arguments.
-		io_print(" -Xlinker --start-group");
+
+		if (!os_is("macosx"))
+			io_print(" -Xlinker --start-group");
+		
 		print_list(prj_get_linkoptions(), " ", "", "", NULL);
-		print_list(prj_get_libpaths(), " -L \"", "\"", "", NULL);
+		print_list(prj_get_libpaths(), " -L\"", "\"", "", NULL);
 		print_list(prj_get_links(), " ", "", "", filterLinks);
-		io_print(" -Xlinker --end-group\n");
+
+		if (!os_is("macosx"))
+			io_print(" -Xlinker --end-group");
+			
+		io_print("\n");
 
 		/* Build a list of libraries this target depends on */
 		io_print("  LDDEPS :=");
