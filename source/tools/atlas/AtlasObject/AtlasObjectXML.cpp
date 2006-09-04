@@ -13,7 +13,8 @@
 // Disable some warnings:
 //   "warning C4673: throwing 'blahblahException' the following types will not be considered at the catch site ..."
 //   "warning C4671: 'XMemory' : the copy constructor is inaccessible"
-# pragma warning(disable: 4673 4671)
+//   "warning C4244: 'return' : conversion from '__w64 int' to 'unsigned long', possible loss of data"
+# pragma warning(disable: 4673 4671 4244)
 
 #endif // _MSC_VER
 
@@ -85,6 +86,7 @@ AtObj AtlasObject::LoadFromXML(const wchar_t* filename)
 
 	if (parser->getErrorCount() != 0)
 	{
+		delete parser;
 		assert(! "Error while loading XML - invalid XML data?");
 		return AtObj();
 	}
@@ -99,6 +101,8 @@ AtObj AtlasObject::LoadFromXML(const wchar_t* filename)
 	char* rootName = XMLString::transcode(root->getNodeName());
 	rootObj.set(rootName, obj);
 	XMLString::release(&rootName);
+
+	delete parser;
 
 	return rootObj;
 }

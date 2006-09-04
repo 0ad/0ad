@@ -25,7 +25,8 @@
 
 #include "lib/config.h"
 #include "lib/debug.h"	// ErrorReaction
-#include <cmath>
+
+#include <cmath>	// see comments below about isfinite
 
 // some functions among the sysdep API are implemented as macros
 // that redirect to the platform-dependent version. this is done where
@@ -147,9 +148,10 @@ extern void* alloca(size_t size);
 #else
 // Some systems have C99 support but in C++ they provide only std::isfinite
 // and not isfinite. C99 specifies that isfinite is a macro, so we can use
-// #ifndef and define it if it's not there.
-// Since sysdep.h will normally be included before cmath is, make sure we load
-// cmath first to let it define/undef that macro.
+// #ifndef and define it if it's not there already.
+// Since sysdep.h will normally be included before cmath is, we need to load
+// cmath first to let it define/undef that macro. (That's awkward here inside
+// the 'extern "C"', so it's included at the top of this file.)
 # ifndef isfinite
 #  define isfinite std::isfinite
 #  define isnan std::isnan

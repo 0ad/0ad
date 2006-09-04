@@ -12,9 +12,12 @@
 # pragma warning(disable: 4127) // conditional expression is constant
 # pragma warning(disable: 4671) // the copy constructor is inaccessible
 # pragma warning(disable: 4673) // throwing 'x' the following types will not be considered at the catch site
+# pragma warning(disable: 4244) // 'return' : conversion from '__w64 int' to 'unsigned long', possible loss of data
+# pragma warning(disable: 4267) // 'argument' : conversion from 'size_t' to 'const unsigned int', possible loss of data
 #endif
 
 #include <xercesc/util/XMLString.hpp>
+#include <xercesc/util/BinInputStream.hpp>
 #include <xercesc/sax/SAXParseException.hpp>
 #include <xercesc/sax/InputSource.hpp>
 #include <xercesc/sax/ErrorHandler.hpp>

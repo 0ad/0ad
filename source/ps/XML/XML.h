@@ -29,6 +29,7 @@
 // failings) isn't W4-clean.
 #if MSC_VERSION
 #pragma warning(push, 3)
+#pragma warning(disable: 4267) // disable Wp64 warnings
 #endif
 
 #include <xercesc/util/XMLString.hpp>
