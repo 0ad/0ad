@@ -1,0 +1,125 @@
+/*
+ * Copyright 2001,2004 The Apache Software Foundation.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
+ * $Id: SubstitutionGroupComparator.hpp 176026 2004-09-08 13:57:07Z peiyongz $
+ */
+
+#if !defined(SUBSTITUTIONGROUPCOMPARATOR_HPP)
+#define SUBSTITUTIONGROUPCOMPARATOR_HPP
+
+#include <xercesc/util/StringPool.hpp>
+#include <xercesc/util/QName.hpp>
+#include <xercesc/validators/common/GrammarResolver.hpp>
+
+XERCES_CPP_NAMESPACE_BEGIN
+
+class SchemaGrammar;
+
+class VALIDATORS_EXPORT SubstitutionGroupComparator : public XMemory
+{
+public:
+
+    // -----------------------------------------------------------------------
+    //  Public Constructor
+    // -----------------------------------------------------------------------
+    /** @name Constructor. */
+    //@{
+
+    SubstitutionGroupComparator(GrammarResolver*  const pGrammarResolver
+                              , XMLStringPool*    const pStringPool);
+
+
+    //@}
+
+    // -----------------------------------------------------------------------
+    //  Public Destructor
+    // -----------------------------------------------------------------------
+    /** @name Destructor. */
+    //@{
+
+    ~SubstitutionGroupComparator();
+
+    //@}
+
+    // -----------------------------------------------------------------------
+    // Validation methods
+    // -----------------------------------------------------------------------
+    /** @name Validation Function */
+    //@{
+
+    /**
+	   * Checks that the "anElement" is within the subsitution group.
+	   *
+	   * @param  anElement   QName of the element
+	   *
+	   * @param  exeplar     QName of the head element in the group
+	   */
+    bool isEquivalentTo(QName* const anElement
+                       , QName* const exemplar);
+	 //@}
+
+    /*
+     * check whether one element or any element in its substitution group
+     * is allowed by a given wildcard uri
+     *
+     * @param pGrammar the grammar where the wildcard is declared
+     * @param element  the QName of a given element
+     * @param wuri     the uri of the wildcard
+     * @param wother   whether the uri is from ##other, so wuri is excluded
+     *
+     * @return whether the element is allowed by the wildcard
+     */
+    bool isAllowedByWildcard(SchemaGrammar* const pGrammar, QName* const element, unsigned int wuri, bool wother);
+
+private:
+    // -----------------------------------------------------------------------
+    //  Unimplemented constructors and operators
+    // -----------------------------------------------------------------------
+    SubstitutionGroupComparator();
+    SubstitutionGroupComparator(const SubstitutionGroupComparator&);
+    SubstitutionGroupComparator& operator=(const SubstitutionGroupComparator&);
+    
+    // -----------------------------------------------------------------------
+    //  Private data members
+    //
+    //
+    // -----------------------------------------------------------------------
+    GrammarResolver     *fGrammarResolver;
+    XMLStringPool       *fStringPool;
+};
+
+
+// ---------------------------------------------------------------------------
+//  SubstitutionGroupComparator: Getters
+// ---------------------------------------------------------------------------
+inline SubstitutionGroupComparator::SubstitutionGroupComparator(GrammarResolver*  const pGrammarResolver
+                                                              , XMLStringPool*    const pStringPool)
+:fGrammarResolver(pGrammarResolver)
+,fStringPool(pStringPool)
+{}
+
+inline SubstitutionGroupComparator::~SubstitutionGroupComparator()
+{}
+
+XERCES_CPP_NAMESPACE_END
+
+#endif
+
+/**
+  * End of file SubstitutionGroupComparator.hpp
+  */
+
