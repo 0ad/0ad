@@ -4,6 +4,7 @@
 
 #include "ps/Game.h"
 #include "ps/Player.h"
+#include "ps/Profile.h"
 #include "graphics/Terrain.h"
 #include "graphics/GameView.h"
 #include "Entity.h"
@@ -218,12 +219,17 @@ void CTerritoryManager::CalculateBoundary( std::vector<CEntity*>& centres, size_
 }
 void CTerritoryManager::renderTerritories()
 {
+	PROFILE( "render territories" );
+
 	if (m_DelayedRecalculate)
 	{
 		Recalculate();
 		m_DelayedRecalculate = false;
 	}
 
+	glDisable(GL_TEXTURE_2D);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_LINE_SMOOTH);
 	glLineWidth(1.5f);
 
@@ -313,6 +319,9 @@ void CTerritoryManager::renderTerritories()
 		}
 	}
 
+	glEnable(GL_TEXTURE_2D);
+	glDisable(GL_BLEND);
 	glDisable(GL_LINE_SMOOTH);
 	glLineWidth(1.0f);
+	glColor4f(1,1,1,1);
 }

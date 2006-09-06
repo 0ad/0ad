@@ -33,6 +33,7 @@
 #include "ps/World.h"
 #include "ps/Player.h"
 #include "simulation/LOSManager.h"
+#include "simulation/TerritoryManager.h"
 
 #include "graphics/Model.h"
 #include "graphics/ModelDef.h"
@@ -1209,8 +1210,12 @@ void CRenderer::FlushFrame()
 	RenderPatches();
 	oglCheck();
 
+	g_Game->GetWorld()->GetTerritoryManager()->renderTerritories();
+	oglCheck();
+
 	// render debug-related terrain overlays
 	TerrainOverlay::RenderOverlays();
+	oglCheck();
 
 	MICROLOG(L"render models");
 	RenderModels();
