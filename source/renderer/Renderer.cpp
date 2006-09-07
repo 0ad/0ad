@@ -344,6 +344,7 @@ CRenderer::CRenderer()
 	m_Options.m_NoFramebufferObject = false;
 	m_Options.m_Shadows=true;
 	m_Options.m_RenderPath = RP_DEFAULT;
+	m_Options.m_FancyWater = false;
 
 	m_ShadowZBias = 0.02f;
 
@@ -1717,6 +1718,21 @@ void CRenderer::JSI_SetHorizonHeight(JSContext* ctx, jsval newval)
 	m->skyManager.m_HorizonHeight = value;
 }
 
+jsval CRenderer::JSI_GetFancyWater(JSContext*)
+{
+	return ToJSVal(m_Options.m_FancyWater);
+}
+
+void CRenderer::JSI_SetFancyWater(JSContext* ctx, jsval newval)
+{
+	bool fast;
+
+	if (!ToPrimitive(ctx, newval, fast))
+		return;
+
+	m_Options.m_FancyWater = fast;
+}
+
 jsval CRenderer::JSI_GetWaterShininess(JSContext*)
 {
 	return ToJSVal(m->waterManager.m_Shininess);
@@ -1778,6 +1794,7 @@ void CRenderer::ScriptingInit()
 	AddProperty(L"depthTextureBits", &CRenderer::JSI_GetDepthTextureBits, &CRenderer::JSI_SetDepthTextureBits);
 	AddProperty(L"skySet", &CRenderer::JSI_GetSky, &CRenderer::JSI_SetSky);
 	AddProperty(L"horizonHeight", &CRenderer::JSI_GetHorizonHeight, &CRenderer::JSI_SetHorizonHeight);
+	AddProperty(L"fancyWater", &CRenderer::JSI_GetFancyWater, &CRenderer::JSI_SetFancyWater);
 	AddProperty(L"waterShininess", &CRenderer::JSI_GetWaterShininess, &CRenderer::JSI_SetWaterShininess);
 	AddProperty(L"waterWaviness", &CRenderer::JSI_GetWaterWaviness, &CRenderer::JSI_SetWaterWaviness);
 	AddProperty(L"waterRepeatPeriod", &CRenderer::JSI_GetWaterRepeatPeriod, &CRenderer::JSI_SetWaterRepeatPeriod);
