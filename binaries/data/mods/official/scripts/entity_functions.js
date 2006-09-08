@@ -79,6 +79,7 @@ function entityInit()
 	startXTimer(2);
 	
 	// Attach our functions to ourselves
+	this.getAttackAction = getAttackAction;		// Note: required by CEntity
 	this.performAttack = performAttack;
 	this.performAttackRanged = performAttackRanged;
 	this.performGather = performGather;
@@ -240,10 +241,6 @@ function entityInit()
 	// Build Unit Ai Stance list, and set default stance.  ---> Can eventually be done in C++, since stances will likely be implemented in C++.
 	if (this.actions && this.actions.move)
 	{
-		if ( !this.traits.ai )
-			this.traits.ai = new Object();
-		if ( !this.traits.ai.stance )
-			this.traits.ai.stance = new Object();
 		if ( !this.traits.ai.stance.list )
 			this.traits.ai.stance.list = new Object();
 		// Create standard stances that all units have.
@@ -256,12 +253,7 @@ function entityInit()
 			this.traits.ai.stance.list.defend = new Object();
 			this.traits.ai.stance.list.stand = new Object();
 			// Set default stance for combat units.
-			this.traits.ai.stance.curr = "Defend";
-		}
-		else
-		{
-			// Set default stance for non-combat units.
-			this.traits.ai.stance.curr = "Avoid";
+			this.traits.ai.stance.curr = "defend";
 		}
 	}
 	
@@ -954,19 +946,19 @@ function damage( dmg, inflictor )
 		console.write("Kill!!");
 		this.kill();
 	}
-	else if( inflictor && this.actions && this.actions.attack )
+	/*else if( inflictor && this.actions && this.actions.attack )
 	{
 		// If we're not already doing something else, take a measured response - hit 'em back.
 		// You know, I think this is quite possibly the first Ai code the Ai divlead has written
 		// for 0 A.D....
-		//When the entity changes order, we can readjust flank penalty. We must destroy the notifiers ourselves 				later,however.
+		//When the entity changes order, we can readjust flank penalty. We must destroy the notifiers ourselves later,however.
 		this.requestNotification( inflictor, NOTIFY_ORDER_CHANGE, false, true );			
 		this.registerDamage( inflictor );
 		if( this.isIdle() )
-			this.order( ORDER_GENERIC, inflictor, getAttackAction( this, inflictor ) );
-	}
+			this.order( ORDER_GENERIC, inflictor, this.getAttackAction( inflictor ) );
+	}*/
 	
-	
+	this.onDamaged( inflictor );
 }
 // ====================================================================
 
@@ -1037,11 +1029,11 @@ function entityEventNotification( evt )
 
 // ====================================================================
 
-function getAttackAction( source, target )
+function getAttackAction( target )
 {
-	if (!source.actions.attack)
+	if (!this.actions.attack)
 		return ACTION_NONE;
-	attack = source.actions.attack;
+	var attack = this.actions.attack;
 	if ( attack.melee )
 		return ACTION_ATTACK;
 	else if ( attack.ranged )
@@ -1121,11 +1113,11 @@ function entityEventTargetChanged( evt )
 			evt.target.traits.health.max != 0 )
 		{
 			evt.defaultOrder = NMT_Generic;
-			evt.defaultAction = getAttackAction( this, evt.target );
+			evt.defaultAction = this.getAttackAction( evt.target );
 			evt.defaultCursor = "action-attack";
 
 			evt.secondaryOrder = NMT_Generic;
-			evt.secondaryAction = getAttackAction( this, evt.target );
+			evt.secondaryAction = this.getAttackAction( evt.target );
 			evt.secondaryCursor = "action-attack";
 		}
 		
@@ -1248,7 +1240,7 @@ function entityEventPrepareOrder( evt )
 			{
 				case ACTION_ATTACK:
 				case ACTION_ATTACK_RANGED:
-					evt.action = getAttackAction( this, evt.target );
+					evt.action = this.getAttackAction( evt.target );
 					if ( evt.action == ACTION_NONE )
 					{
 						evt.preventDefault();
