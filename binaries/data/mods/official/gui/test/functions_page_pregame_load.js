@@ -65,7 +65,7 @@ function startLoadingScreen()
 
         // Choose random concept art for loading screen background (should depend on the selected civ later when this is specified).
 		var sprite = "";
-		var loadingBkgArray = buildFileList("art/textures/ui/loading/", "*.dds", false);
+		var loadingBkgArray = buildDirEntList("art/textures/ui/loading/", "*.dds", false);
 		if (loadingBkgArray.length == 0)
 			console.write ("ERROR: Failed to find any matching textures for the loading screen background.");
 		else

@@ -49,7 +49,7 @@ function initCellReference()
 function addCellGroupCategory(iconSheetPath)
 {
 	// Get array list of all icon sheet reference files.
-	var iconSheets = buildFileList (iconSheetPath, "*.txt", true);
+	var iconSheets = buildDirEntList (iconSheetPath, "*.txt", true);
 	// Alphabetically sort the array.
 	iconSheets.sort();
 	

@@ -43,7 +43,7 @@ function newRandomSound(soundType, soundSubType, soundPrePath)
 	// Get names of sounds (attack, command, select, hit, pain).
 	// or
 	// Get names of "peace", "menu" (theme) and "battle" tracks.
-	var soundArray = buildFileList(randomSoundPath, "*" + soundSubType + "*", false);
+	var soundArray = buildDirEntList(randomSoundPath, "*" + soundSubType + "*", false);
 	if (soundArray.length == 0)
 	{
 		console.write ("Failed to find sounds matching '*"+soundSubType+"*'");
