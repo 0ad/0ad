@@ -753,7 +753,7 @@ static void queue_mouse_event(uint x, uint y)
 {
 	SDL_Event ev;
 	ev.type = SDL_MOUSEMOTION;
-	debug_assert(x <= USHRT_MAX && y <= USHRT_MAX);
+	debug_assert((x|y) <= USHRT_MAX);
 	ev.motion.x = x;
 	ev.motion.y = y;
 	queue_event(ev);
@@ -765,25 +765,27 @@ static void queue_button_event(uint button, uint state, uint x, uint y)
 	ev.type = (state == SDL_PRESSED)? SDL_MOUSEBUTTONDOWN : SDL_MOUSEBUTTONUP;
 	ev.button.button = (u8)button;
 	ev.button.state  = (u8)state;
-	debug_assert(x <= USHRT_MAX && y <= USHRT_MAX);
+	debug_assert((x|y) <= USHRT_MAX);
 	ev.button.x = x;
 	ev.button.y = y;
 	queue_event(ev);
 }
 
 
-static int mouse_x, mouse_y;
+static uint mouse_x, mouse_y;
 
 // generate a mouse move message and update our notion of the mouse position.
-// x, y are window pixel coordinates.
+// x, y are client pixel coordinates.
 // notes:
 // - does not actually move the OS cursor;
 // - called from mouse_update and SDL_WarpMouse.
-static void mouse_moved(int x, int y)
+static void mouse_moved(uint x, uint y)
 {
-	// docs say this can happen on multi-monitor systems :/ it's unclear what
-	// we should to do fit this in SDL's Uint16.
-	debug_assert(x >= 0 && y >= 0);
+	debug_assert((x|y) <= USHRT_MAX);
+
+	// nothing to do if it hasn't changed since last time
+	if(mouse_x == x && mouse_y == y)
+		return;
 
 	mouse_x = x;
 	mouse_y = y;
@@ -791,18 +793,17 @@ static void mouse_moved(int x, int y)
 }
 
 
-// return in client coords
-static POINT mouse_pos()
+static void screen_to_client(int screen_x, int screen_y, uint& x, uint& y)
 {
-	// don't use DirectInput, because we want to respect the user's mouse
-	// sensitivity settings. Windows messages are laggy, so query current
-	// position directly.
-
 	POINT pt;
-	WARN_IF_FALSE(GetCursorPos(&pt));
+	pt.x = (LONG)screen_x;
+	pt.y = (LONG)screen_y;
 	WARN_IF_FALSE(ScreenToClient(hWnd, &pt));
-	return pt;
+	debug_assert(pt.x >= 0 && pt.y >= 0);
+	x = (uint)pt.x;
+	y = (uint)pt.y;
 }
+
 
 static void mouse_update()
 {
@@ -811,16 +812,20 @@ static void mouse_update()
 	if(hWnd == INVALID_HANDLE_VALUE)
 		return;
 
-	const POINT pt = mouse_pos();
-	const int x = pt.x, y = pt.y;
-
-	// nothing to do if it hasn't changed since last time
-	if(mouse_x == x && mouse_y == y)
-		return;
+	// don't use DirectInput, because we want to respect the user's mouse
+	// sensitivity settings. Windows messages are laggy, so query current
+	// position directly.
+	POINT screen_pt;
+	WARN_IF_FALSE(GetCursorPos(&screen_pt));
+	uint x, y;
+	screen_to_client(screen_pt.x, screen_pt.y, x, y);
 
 	// moved within window
 	RECT client_rect;
 	GetClientRect(hWnd, &client_rect);
+	POINT pt;
+	pt.x = (LONG)x;
+	pt.y = (LONG)y;
 	if(PtInRect(&client_rect, pt) && WindowFromPoint(pt) == hWnd)
 	{
 		active_change_state(GAIN, SDL_APPMOUSEFOCUS);
@@ -835,7 +840,7 @@ static uint mouse_buttons;
 
 // (we define a new function signature since the windowsx.h message crackers
 // don't provide for passing uMsg)
-static LRESULT OnMouseButton(HWND UNUSED(hWnd), UINT uMsg, int x, int y, UINT UNUSED(flags))
+static LRESULT OnMouseButton(HWND UNUSED(hWnd), UINT uMsg, int screen_x, int screen_y, UINT UNUSED(flags))
 {
 	uint button;
 	uint state;
@@ -892,17 +897,22 @@ static LRESULT OnMouseButton(HWND UNUSED(hWnd), UINT uMsg, int x, int y, UINT UN
 	else
 		mouse_buttons &= ~SDL_BUTTON(button);
 
+	uint x, y;
+	screen_to_client(screen_x, screen_y, x, y);
+
 	queue_button_event(button, state, x, y);
 	return 0;
 }
 
 
-static LRESULT OnMouseWheel(HWND UNUSED(hWnd), int xPos, int yPos, int zDelta, UINT UNUSED(fwKeys))
+static LRESULT OnMouseWheel(HWND UNUSED(hWnd), int screen_x, int screen_y, int zDelta, UINT UNUSED(fwKeys))
 {
+	uint x, y;
+	screen_to_client(screen_x, screen_y, x, y);
 	uint button = (zDelta < 0)? SDL_BUTTON_WHEELDOWN : SDL_BUTTON_WHEELUP;
 	// SDL says this sends a down message followed by up.
-	queue_button_event(button, SDL_PRESSED , xPos, yPos);
-	queue_button_event(button, SDL_RELEASED, xPos, yPos);
+	queue_button_event(button, SDL_PRESSED , x, y);
+	queue_button_event(button, SDL_RELEASED, x, y);
 	return 0;	// handled
 }
 
@@ -910,17 +920,22 @@ static LRESULT OnMouseWheel(HWND UNUSED(hWnd), int xPos, int yPos, int zDelta, U
 Uint8 SDL_GetMouseState(int* x, int* y)
 {
 	if(x)
-		*x = mouse_x;
+		*x = (int)mouse_x;
 	if(y)
-		*y = mouse_y;
+		*y = (int)mouse_y;
 	return (Uint8)mouse_buttons;
 }
 
 
 inline void SDL_WarpMouse(int x, int y)
 {
-	WARN_IF_FALSE(SetCursorPos(x, y));
-	mouse_moved(x, y);
+	mouse_moved((uint)x, (uint)y);
+
+	POINT screen_pt;
+	screen_pt.x = x;
+	screen_pt.y = y;
+	WARN_IF_FALSE(ClientToScreen(hWnd, &screen_pt));
+	WARN_IF_FALSE(SetCursorPos(screen_pt.x, screen_pt.y));
 }
 
 
