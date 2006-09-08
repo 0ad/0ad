@@ -16,14 +16,14 @@ namespace JSI_VFS
 	// Return an array of pathname strings, one for each matching entry in the
 	// specified directory.
 	//
-	// pathnames = buildFileList(start_path [, filter_string [, recursive ] ]);
+	// pathnames = buildDirEntList(start_path [, filter_string [, recursive ] ]);
 	//   directory: VFS path
 	//   filter_string: default "" matches everything; otherwise, see vfs_next_dirent.
 	//   recurse: should subdirectories be included in the search? default false.
 	//
 	// note: full pathnames of each file/subdirectory are returned,
 	// ready for use as a "filename" for the other functions.
-	JSBool BuildFileList( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
+	JSBool BuildDirEntList( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
 
 	// Return time [seconds since 1970] of the last modification to the specified file.
 	//

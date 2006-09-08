@@ -27,14 +27,14 @@
 
 
 
-// state held across multiple BuildFileListCB calls; init by BuildFileList.
-struct BuildFileListState
+// state held across multiple BuildDirEntListCB calls; init by BuildDirEntList.
+struct BuildDirEntListState
 {
 	JSContext* cx;
 	JSObject* filename_array;
 	int cur_idx;
 
-	BuildFileListState(JSContext* cx_)
+	BuildDirEntListState(JSContext* cx_)
 		: cx(cx_)
 	{
 		filename_array = JS_NewArrayObject(cx, 0, NULL);
@@ -42,16 +42,16 @@ struct BuildFileListState
 		cur_idx = 0;
 	}
 
-	~BuildFileListState()
+	~BuildDirEntListState()
 	{
 		JS_RemoveRoot(cx, &filename_array);
 	}
 };
 
 // called for each matching directory entry; add its full pathname to array.
-static void BuildFileListCB(const char* path, const DirEnt* UNUSED(ent), void* context)
+static void BuildDirEntListCB(const char* path, const DirEnt* UNUSED(ent), void* context)
 {
-	BuildFileListState* s = (BuildFileListState*)context;
+	BuildDirEntListState* s = (BuildDirEntListState*)context;
 
 	jsval val = ToJSVal( CStr ( path ) );
 		// note: <path> is already directory + name!
@@ -63,14 +63,14 @@ static void BuildFileListCB(const char* path, const DirEnt* UNUSED(ent), void* c
 // Return an array of pathname strings, one for each matching entry in the
 // specified directory.
 //
-// pathnames = buildFileList(start_path [, filter_string [, recursive ] ]);
+// pathnames = buildDirEntList(start_path [, filter_string [, recursive ] ]);
 //   directory: VFS path
 //   filter_string: default "" matches everything; otherwise, see vfs_next_dirent.
 //   recurse: should subdirectories be included in the search? default false.
 //
 // note: full pathnames of each file/subdirectory are returned,
 // ready for use as a "filename" for the other functions.
-JSBool JSI_VFS::BuildFileList( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
+JSBool JSI_VFS::BuildDirEntList( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
 {
 	//
 	// get arguments
@@ -103,8 +103,8 @@ JSBool JSI_VFS::BuildFileList( JSContext* cx, JSObject* UNUSED(obj), uintN argc,
 
 
 	// build array in the callback function
-	BuildFileListState state(cx);
-	vfs_dir_enum( path, flags, filter, BuildFileListCB, &state );
+	BuildDirEntListState state(cx);
+	vfs_dir_enum( path, flags, filter, BuildDirEntListCB, &state );
 
 	*rval = OBJECT_TO_JSVAL( state.filename_array );
 	return( JS_TRUE );
