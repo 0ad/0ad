@@ -234,36 +234,11 @@ void CTerritoryManager::renderTerritories()
 	glLineWidth(1.5f);
 
 	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
-
-	const CTerrain* pTerrain = g_Game->GetWorld()->GetTerrain();
 	CFrustum frustum = g_Game->GetView()->GetCamera()->GetFrustum();
 	std::vector<CTerritory*>::iterator terr=m_Territories.begin();
 
 	for ( ; terr != m_Territories.end(); ++terr )
 	{
-		if ((*terr)->boundary.empty())
-			continue;
-
-		// Tweak the boundary to shift all edges "inwards" by 0.3 units towards the territory's centre,
-		// so that boundaries for adjacent territories don't overlap
-		std::vector<CVector2D> boundary = (*terr)->boundary;
-		for ( size_t i=0; i<boundary.size(); i++ ) 
-		{
-			size_t prevI = (i+boundary.size()-1) % boundary.size();
-			size_t nextI = (i+1) % boundary.size();
-
-			// Figure out the direction perpendicular to each of the two edges that meet at this point.
-			CVector2D dir1 = ((*terr)->boundary[i]-(*terr)->boundary[prevI]).beta().normalize();
-			CVector2D dir2 = ((*terr)->boundary[nextI]-(*terr)->boundary[i]).beta().normalize();
-
-			// If you draw a picture of what our point looks like and what the two lines 0.3 units 
-			// away from it look like, and draw a line between our point and that one as well as 
-			// drop perpendicular lines from it to the original edges, you get this formula for the
-			// length and direction we have to be moved.
-			float angle = acosf(dir1.dot(dir2));
-			boundary[i] += (dir1 + dir2).normalize() * 0.3f / cosf(angle/2);
-		}
-
 		float r, g, b;
 
 		if ( (*terr)->owner->GetPlayerID() == 0 )
@@ -282,38 +257,26 @@ void CTerritoryManager::renderTerritories()
 			b = col.b;
 		}
 		
-		for ( std::vector<CVector2D>::iterator it = boundary.begin(); it != boundary.end(); it++ )
+		for ( size_t edge=0; edge < (*terr)->boundary.size(); edge++ )
 		{
-			std::vector<CVector2D>::iterator it2 = it + 1;
-			if( it2 == boundary.end() )	// loop around if we are at the last vertex
-				it2 = boundary.begin();
-
-			CVector3D start(it->x, pTerrain->getExactGroundLevel(it->x, it->y), it->y);
-			CVector3D end(it2->x, pTerrain->getExactGroundLevel(it2->x, it2->y), it2->y);
+			const std::vector<CVector3D>& coords = (*terr)->GetEdgeCoords(edge);
+			CVector3D start = coords[0];
+			CVector3D end = coords[coords.size() - 1];
 
 			if ( !frustum.DoesSegmentIntersect(start, end) )
 				continue;
 			
-			glBegin(GL_LINE_STRIP);
+			glBegin( GL_LINE_STRIP );
 
-			float iterf = (end - start).GetLength() / TERRITORY_PRECISION_STEP;
-			for ( float i=0; i < iterf; i += TERRITORY_PRECISION_STEP )
+			for( size_t i=0; i<coords.size(); i++ )
 			{
-				CVector2D pos( Interpolate(start, end, i/iterf) );
-				ELOSStatus los = losMgr->GetStatus(pos.x, pos.y, g_Game->GetLocalPlayer());
-				float m = 1.0f;
-				if(los == LOS_UNEXPLORED) m = 0.0f;
-				else if(los == LOS_EXPLORED) m = 0.7f;
-				glColor3f(m*r, m*g, m*b);
-				glVertex3f(pos.x, pTerrain->getExactGroundLevel(pos)+.25f, pos.y); 
+				float losScale = 0.0f;
+				ELOSStatus los = losMgr->GetStatus(coords[i].X, coords[i].Z, g_Game->GetLocalPlayer());
+				if( los & LOS_VISIBLE ) losScale = 1.0f;
+				else if( los & LOS_EXPLORED ) losScale = 0.7f;
+				glColor3f( r*losScale, g*losScale, b*losScale );
+				glVertex3f( coords[i].X, coords[i].Y, coords[i].Z );
 			}
-
-			ELOSStatus los = losMgr->GetStatus(end.X, end.Z, g_Game->GetLocalPlayer());
-			float m = 1.0f;
-			if(los == LOS_UNEXPLORED) m = 0.0f;
-			else if(los == LOS_EXPLORED) m = 0.7f;
-			glColor3f(m*r, m*g, m*b);
-			glVertex3f(end.X, pTerrain->getExactGroundLevel(end.X, end.Z)+.25f, end.Z); 
 
 			glEnd();
 		}
@@ -324,4 +287,62 @@ void CTerritoryManager::renderTerritories()
 	glDisable(GL_LINE_SMOOTH);
 	glLineWidth(1.0f);
 	glColor4f(1,1,1,1);
+}
+
+const std::vector<CVector3D>& CTerritory::GetEdgeCoords(size_t edge)
+{
+	if ( edgeCoords.size() == 0 )
+	{
+		// Edge coords have not been calculated - calculate them now
+		edgeCoords.resize( boundary.size() );
+
+		const CTerrain* pTerrain = g_Game->GetWorld()->GetTerrain();
+
+		// Tweak the boundary to shift all edges "inwards" by 0.3 units towards the territory's centre,
+		// so that boundaries for adjacent territories don't overlap
+		std::vector<CVector2D> tweakedBoundary = boundary;
+		for ( size_t i=0; i<boundary.size(); i++ ) 
+		{
+			size_t prevI = (i+boundary.size()-1) % boundary.size();
+			size_t nextI = (i+1) % boundary.size();
+
+			// Figure out the direction perpendicular to each of the two edges that meet at this point.
+			CVector2D dir1 = (boundary[i]-boundary[prevI]).beta().normalize();
+			CVector2D dir2 = (boundary[nextI]-boundary[i]).beta().normalize();
+
+			// If you draw a picture of what our point looks like and what the two lines 0.3 units 
+			// away from it look like, and draw a line between our point and that one as well as 
+			// drop perpendicular lines from it to the original edges, you get this formula for the
+			// length and direction we have to be moved.
+			float angle = acosf(dir1.dot(dir2));
+			tweakedBoundary[i] += (dir1 + dir2).normalize() * 0.3f / cosf(angle/2);
+		}
+
+		// Calculate the heights at points TERRITORY_PRECISION_STEP apart on our edges
+		// and store the final vertices in edgeCoords.
+		for ( size_t e=0; e<boundary.size(); e++ )
+		{
+			std::vector<CVector3D>& coords = edgeCoords[e];
+
+			CVector2D start = tweakedBoundary[e];
+			CVector2D end = tweakedBoundary[(e+1) % boundary.size()];
+
+			float iterf = (end - start).length() / TERRITORY_PRECISION_STEP;
+			for ( float i=0; i < iterf; i += TERRITORY_PRECISION_STEP )
+			{
+				CVector2D pos = Interpolate( start, end, i/iterf );
+				coords.push_back( CVector3D( pos.x, pTerrain->getExactGroundLevel(pos)+0.25f, pos.y ) );
+			}
+
+			coords.push_back( CVector3D( end.x, pTerrain->getExactGroundLevel(end)+0.25f, end.y ) );
+		}
+	}
+	
+	return edgeCoords[edge];
+}
+
+void CTerritory::ClearEdgeCache()
+{
+	edgeCoords.clear();
+	edgeCoords.resize( boundary.size() );
 }

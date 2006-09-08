@@ -11,6 +11,7 @@
 #define TERRITORY_MANAGER_INCLUDED
 
 #include "ps/Vector2D.h"
+#include "maths/Vector3D.h"
 #include "EntityHandles.h"
 
 class CUnit;
@@ -23,10 +24,19 @@ class CTerritory
 public:
 	CPlayer* owner;						// owner of the territory, or Gaia for none
 	HEntity centre;						// centre object of this territory
-	std::vector<CVector2D> boundary;		// boundary polygon, in map coordinates
+	std::vector<CVector2D> boundary;	// boundary polygon, in map coordinates
 
+private:
+	// cached coordinates for the polygon's edge segments (conformed to the terrain)
+	std::vector<std::vector<CVector3D> > edgeCoords;
+
+public:
 	CTerritory(CPlayer* owner_, HEntity centre_, std::vector<CVector2D> boundary_)
 		: owner(owner_), centre(centre_), boundary(boundary_) {}
+
+	const std::vector<CVector3D>& GetEdgeCoords(size_t edge);
+
+	void ClearEdgeCache();
 };
 
 class CTerritoryManager
