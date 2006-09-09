@@ -46,9 +46,8 @@ class CProductionQueue;
 class CSkeletonAnim;
 class CUnit;
 class CTerritory;
-
 class CEntityFormation;
-
+class CStance;
 
 // 
 enum EntityFlags
@@ -95,6 +94,9 @@ public:
 
 	// Production queue
 	CProductionQueue* m_productionQueue;
+
+	// Unit AI stance
+	CStance* m_stance;
 
 	// Movement properties
 	float m_speed;
@@ -153,8 +155,11 @@ public:
 	float m_healthCurr;
 	float m_healthMax;
 
-	//Rank properties
+	// Rank properties
 	CStr m_rankName;
+
+	// Stance name
+	CStr m_stanceName;
 
 	// LOS
 	int m_los;
@@ -226,7 +231,7 @@ private:
 
 	uint processGotoHelper( CEntityOrder* current, size_t timestep_milli, HEntity& collide );
 
-	bool processContactAction( CEntityOrder* current, size_t timestep_millis, int transition, SEntityAction* action );
+	bool processContactAction( CEntityOrder* current, size_t timestep_millis, CEntityOrder::EOrderType transition, SEntityAction* action );
 	bool processContactActionNoPathing( CEntityOrder* current, size_t timestep_millis, const CStr& animation, CScriptEvent* contactEvent, SEntityAction* action );
 
 	bool processGeneric( CEntityOrder* current, size_t timestep_milli );
@@ -240,7 +245,7 @@ private:
 
 	bool processPatrol( CEntityOrder* current, size_t timestep_milli );
 
-	float processChooseMovement( float distance );
+	float chooseMovementSpeed( float distance );
 	
 	bool shouldRun( float distance );		// Given our distance to a target, can we be running?
 
@@ -271,6 +276,25 @@ public:
 
 	// Process tick.
 	void Tick();
+
+	// Calculate distances along the terrain
+
+	float distance2D( float x, float z )
+	{
+		float dx = x - m_position.X;
+		float dz = z - m_position.Z;
+		return sqrt( dx*dx + dz*dz );
+	}
+
+	float distance2D( CEntity* other )
+	{
+		return distance2D( other->m_position.X, other->m_position.Z );
+	}
+
+	float distance2D( CVector2D p )
+	{
+		return distance2D( p.x, p.y );
+	}
 
 private:
 	// The player that owns this entity.
@@ -327,6 +351,7 @@ public:
 
 	void reorient(); // Orientation
 	void teleport(); // Fixes things if the position is changed by something externally.
+	void stanceChanged(); // Sets m_stance to the right CStance object when our stance property is changed through scripts
 	void checkSelection(); // In case anyone tries to select/deselect this through JavaScript.
 	void checkGroup(); // Groups
 	void checkExtant(); // Existence
@@ -382,6 +407,8 @@ public:
 	jsval SetRun( JSContext* cx, uintN argc, jsval* argv );
 	jsval IsRunning( JSContext* cx, uintN argc, jsval* argv );
 	jsval GetRunState( JSContext* cx, uintN argc, jsval* argv );
+	
+	jsval OnDamaged( JSContext* cx, uintN argc, jsval* argv );
 
 	bool RequestNotification( JSContext* cx, uintN argc, jsval* argv );
 	//Just in case we want to explicitly check the listeners without waiting for the order to be pushed
@@ -433,6 +460,9 @@ public:
 		return ToJSVal(m_position.Y);
 	}
 	static void ScriptingInit();
+
+	// Functions that call script code
+	int GetAttackAction( HEntity target );
 
 	NO_COPY_CTOR(CEntity);
 };

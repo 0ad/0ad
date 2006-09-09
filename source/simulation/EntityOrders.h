@@ -76,12 +76,12 @@ public:
 	CEntity* m_sender;
 };
 
-
 class CEntityOrder
 {
 public:
-	enum
+	enum EOrderType
 	{
+		ORDER_INVALID,
 		ORDER_GOTO_NOPATHING,
 		ORDER_GOTO_SMOOTHED,
 		ORDER_GOTO_COLLISION,
@@ -97,9 +97,22 @@ public:
 		ORDER_START_CONSTRUCTION,
 		ORDER_NOTIFY_REQUEST,
 		ORDER_LAST
-	} m_type;
+	};
 
+	enum EOrderSource
+	{
+		SOURCE_PLAYER,
+		SOURCE_UNIT_AI
+	};
+
+	EOrderType m_type;
+	EOrderSource m_source;
 	SOrderData m_data[ORDER_MAX_DATA];
+
+	CEntityOrder(): m_type(ORDER_INVALID), m_source(SOURCE_PLAYER) {}
+
+	CEntityOrder(EOrderType type, EOrderSource source=SOURCE_PLAYER)
+		: m_type(type), m_source(source) {}
 };
 
 #endif

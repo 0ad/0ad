@@ -425,6 +425,7 @@ void CEntityTemplate::ScriptingInit()
 	AddClassProperty( L"traits.rank.width", &CEntityTemplate::m_rankWidth );
 	AddClassProperty( L"traits.rank.height", &CEntityTemplate::m_rankHeight );
 	AddClassProperty( L"traits.rank.name", &CEntityTemplate::m_rankName );
+	AddClassProperty( L"traits.ai.stance.curr", &CEntityTemplate::m_stanceName );
 	AddClassProperty( L"traits.miniMap.type", &CEntityTemplate::m_minimapType );
 	AddClassProperty( L"traits.miniMap.red", &CEntityTemplate::m_minimapR );
 	AddClassProperty( L"traits.miniMap.green", &CEntityTemplate::m_minimapG );

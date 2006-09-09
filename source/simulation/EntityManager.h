@@ -108,6 +108,7 @@ public:
 	}
 	
 	void GetInRange( float x, float z, float radius, std::vector<CEntity*>& results );
+	void GetInLOS( CEntity* entity, std::vector<CEntity*>& results );
 
 	std::vector<CEntity*>* getCollisionPatch( CEntity* e );
 };

@@ -190,13 +190,18 @@ void CEntityManager::GetInRange( float x, float z, float radius, std::vector<CEn
 				CEntity* e = vec[i];
 				float dx = x - e->m_position.X;
 				float dz = z - e->m_position.Z;
-				if(dx*dx + dz*dz <= radiusSq)
+				if( dx*dx + dz*dz <= radiusSq )
 				{
 					results.push_back( e );
 				}
 			}
 		}
 	}
+}
+
+void CEntityManager::GetInLOS( CEntity* entity, std::vector<CEntity*>& results )
+{
+	GetInRange( entity->m_position.X, entity->m_position.Z, entity->m_los*CELL_SIZE, results );
 }
 
 /*

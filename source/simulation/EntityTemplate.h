@@ -100,6 +100,8 @@ public:
 	float m_rankWidth;
 	float m_rankHeight;
 	
+	// Stance name
+	CStr m_stanceName;
 
 	//Rank properties
 	CStr m_rankName;

@@ -16,6 +16,7 @@
 #include "PathfindEngine.h"
 #include "LOSManager.h"
 #include "graphics/Terrain.h"
+#include "Stance.h"
 
 #include "ps/Game.h"
 #include "ps/World.h"
@@ -29,7 +30,8 @@ enum EGotoSituation
 	COLLISION_NEAR_DESTINATION,
 	COLLISION_OVERLAPPING_OBJECTS,
 	COLLISION_OTHER,
-	WOULD_LEAVE_MAP
+	WOULD_LEAVE_MAP,
+	STANCE_DISALLOWS
 };
 
 bool CEntity::shouldRun(float distance)
@@ -51,7 +53,7 @@ bool CEntity::shouldRun(float distance)
 	return true;
 }
 
-float CEntity::processChooseMovement( float distance )
+float CEntity::chooseMovementSpeed( float distance )
 {
 	bool should_run = shouldRun(distance);
 	
@@ -98,7 +100,7 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 	// Curve smoothing.
 	// Here there be trig.
 
-	float scale = processChooseMovement( len ) * timestep;
+	float scale = chooseMovementSpeed( len ) * timestep;
 
 	// Note: Easy optimization: flag somewhere that this unit
 	// is already pointing the  way, and don't do this
@@ -245,6 +247,17 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 		return( WOULD_LEAVE_MAP );
 	}
 
+	// Does our stance not allow us to go there?
+	if( current->m_source==CEntityOrder::SOURCE_UNIT_AI && !m_stance->checkMovement( m_position ) )
+	{
+		m_position.X -= delta.x;
+		m_position.Z -= delta.y;
+		if( m_bounds )
+			m_bounds->setPosition( m_position.X, m_position.Z );
+
+		return( STANCE_DISALLOWS );
+	}
+
 	// No. I suppose it's OK to go there, then. *disappointed*
 
 	return( rc );
@@ -342,6 +355,9 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 		//entf_clear(ENTF_IS_RUNNING);
 		//entf_clear(ENTF_SHOULD_RUN);
 		return( false );
+	case STANCE_DISALLOWS:
+		return( false );		// The stance will have cleared our order queue already
+
 	default:
 		
 		return( false );
@@ -349,7 +365,7 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 }
 
 // Handles processing common to (at the moment) gather and melee attack actions
-bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timestep_millis), int transition, SEntityAction* action )
+bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timestep_millis), CEntityOrder::EOrderType transition, SEntityAction* action )
 {
 	HEntity target = current->m_data[0].entity;
 
@@ -360,23 +376,31 @@ bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timeste
 		return false;
 
 	current->m_data[0].location = target->m_position;
-	float Distance = (current->m_data[0].location - m_position).length();
+	float Distance = distance2D(current->m_data[0].location);
 
 	if( Distance < action->m_MaxRange ) 
 	{
-		(int&)current->m_type = transition;
+		current->m_type = transition;
 		entf_clear(ENTF_IS_RUNNING);
-		return( true );
+		return true;
 	}
-	
-	processChooseMovement( Distance );
+	else
+	{
+		if( current->m_source == CEntityOrder::SOURCE_UNIT_AI && !m_stance->allowsMovement() )
+		{
+			popOrder();
+			return false;		// We're not allowed to move at all by the current stance
+		}
 
-	// The pathfinder will push its result back into this unit's queue and
-	// add back the current order at the end with the transition type.
-	(int&)current->m_type = transition;
-	g_Pathfinder.requestContactPath( me, current, action->m_MaxRange );
+		chooseMovementSpeed( Distance );
 
-	return( true );
+		// The pathfinder will push its result back into this unit's queue and
+		// add back the current order at the end with the transition type.
+		current->m_type = transition;
+		g_Pathfinder.requestContactPath( me, current, action->m_MaxRange );
+
+		return true;
+	}
 }
 bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t timestep_millis, const CStr& animation, CScriptEvent* contactEvent, SEntityAction* action )
 {
@@ -446,7 +470,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		return( false );
 	}
 
-	CVector2D delta = target->m_position - m_position;
+	CVector2D delta = CVector2D(target->m_position) - CVector2D(m_position);
 	float deltaLength = delta.length();
 
 	float adjRange = action->m_MaxRange + m_bounds->m_radius + target->m_bounds->m_radius;
@@ -465,12 +489,18 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 
 	if( !delta.within( adjRange ) )
 	{
-		// Too far away at the moment, chase after the target...
+		// Too far away at the moment, chase after the target if allowed...
+		if( current->m_source == CEntityOrder::SOURCE_UNIT_AI && !m_stance->allowsMovement() )
+		{
+			popOrder();
+			return false;
+		}
+
 		// We're aiming to end up at a location just inside our maximum range
 		// (is this good enough?)
 		delta = delta.normalize() * ( adjRange - m_bounds->m_radius );
 
-		processChooseMovement(deltaLength);
+		chooseMovementSpeed(deltaLength);
 	
 		current->m_data[0].location = (CVector2D)target->m_position - delta;
 
@@ -481,6 +511,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		case REACHED_DESTINATION:
 		case COLLISION_WITH_DESTINATION:
 		case WOULD_LEAVE_MAP:
+		case STANCE_DISALLOWS:
 			// Not too far any more...
 			break;
 		case NORMAL:
@@ -618,11 +649,11 @@ bool CEntity::processGoto( CEntityOrder* current, size_t UNUSED(timestep_millis)
 		return( false );
 	}
 
-	processChooseMovement( Distance );
+	chooseMovementSpeed( Distance );
 
 	// The pathfinder will push its result back into this unit's queue.
 
-	g_Pathfinder.requestPath( me, path_to );
+	g_Pathfinder.requestPath( me, path_to, current->m_source );
 
 	return( true );
 }
@@ -642,10 +673,10 @@ bool CEntity::processGotoWaypoint( CEntityOrder* current, size_t UNUSED(timestep
 		return( false );
 	}
 
-	processChooseMovement( Distance );
+	chooseMovementSpeed( Distance );
 
 	float radius = *((float*)&current->m_data[0].data);
-	g_Pathfinder.requestLowLevelPath( me, path_to, contact, radius );
+	g_Pathfinder.requestLowLevelPath( me, path_to, contact, radius, current->m_source );
 
 	return( true );
 }

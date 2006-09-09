@@ -31,8 +31,13 @@ class CPathfindEngine : public Singleton<CPathfindEngine>
 {
 public:
 	CPathfindEngine();
-	void requestPath( HEntity entity, const CVector2D& destination );
-	void requestLowLevelPath( HEntity entity, const CVector2D& destination, bool contact, float radius );
+
+	void requestPath( HEntity entity, const CVector2D& destination, 
+		CEntityOrder::EOrderSource orderSource );
+
+	void requestLowLevelPath( HEntity entity, const CVector2D& destination, bool contact, 
+		float radius, CEntityOrder::EOrderSource orderSource );
+
 	void requestContactPath( HEntity entity, CEntityOrder* current, float range );
 private:
 	CAStarEngineLowLevel mLowPathfinder;
