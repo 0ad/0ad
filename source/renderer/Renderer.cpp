@@ -1745,6 +1745,18 @@ void CRenderer::JSI_SetWaterShininess(JSContext* ctx, jsval newval)
 	m->waterManager.m_Shininess = value;
 }
 
+jsval CRenderer::JSI_GetWaterSpecularStrength(JSContext*)
+{
+	return ToJSVal(m->waterManager.m_SpecularStrength);
+}
+
+void CRenderer::JSI_SetWaterSpecularStrength(JSContext* ctx, jsval newval)
+{
+	float value;
+	if (!ToPrimitive<float>(ctx, newval, value)) return;
+	m->waterManager.m_SpecularStrength = value;
+}
+
 jsval CRenderer::JSI_GetWaterMurkiness(JSContext*)
 {
 	return ToJSVal(m->waterManager.m_Murkiness);
@@ -1781,6 +1793,18 @@ void CRenderer::JSI_SetWaterRepeatPeriod(JSContext* ctx, jsval newval)
 	m->waterManager.m_RepeatPeriod = value;
 }
 
+void CRenderer::JSI_SetWaterReflectionTintStrength(JSContext* ctx, jsval newval)
+{
+	float value;
+	if (!ToPrimitive<float>(ctx, newval, value)) return;
+	m->waterManager.m_ReflectionTintStrength = value;
+}
+
+jsval CRenderer::JSI_GetWaterReflectionTintStrength(JSContext*)
+{
+	return ToJSVal(m->waterManager.m_ReflectionTintStrength);
+}
+
 void CRenderer::ScriptingInit()
 {
 	AddProperty(L"fastPlayerColor", &CRenderer::JSI_GetFastPlayerColor, &CRenderer::JSI_SetFastPlayerColor);
@@ -1796,9 +1820,11 @@ void CRenderer::ScriptingInit()
 	AddProperty(L"horizonHeight", &CRenderer::JSI_GetHorizonHeight, &CRenderer::JSI_SetHorizonHeight);
 	AddProperty(L"fancyWater", &CRenderer::JSI_GetFancyWater, &CRenderer::JSI_SetFancyWater);
 	AddProperty(L"waterShininess", &CRenderer::JSI_GetWaterShininess, &CRenderer::JSI_SetWaterShininess);
+	AddProperty(L"waterSpecularStrength", &CRenderer::JSI_GetWaterSpecularStrength, &CRenderer::JSI_SetWaterSpecularStrength);
 	AddProperty(L"waterWaviness", &CRenderer::JSI_GetWaterWaviness, &CRenderer::JSI_SetWaterWaviness);
 	AddProperty(L"waterRepeatPeriod", &CRenderer::JSI_GetWaterRepeatPeriod, &CRenderer::JSI_SetWaterRepeatPeriod);
 	AddProperty(L"waterMurkiness", &CRenderer::JSI_GetWaterMurkiness, &CRenderer::JSI_SetWaterMurkiness);
+	AddProperty(L"waterReflTintStrength", &CRenderer::JSI_GetWaterReflectionTintStrength, &CRenderer::JSI_SetWaterReflectionTintStrength);
 
 	CJSObject<CRenderer>::ScriptingInit("Renderer");
 }

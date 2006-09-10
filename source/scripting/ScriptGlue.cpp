@@ -1145,6 +1145,24 @@ JSBool setWaterTint( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, j
 	return( JS_TRUE );
 }
 
+// Sets the water tint (used to tint reflections in fancy water)
+JSBool setReflectionTint( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+{
+	JSU_REQUIRE_PARAMS( 3 );
+	float r,g,b;
+	if(!ToPrimitive( g_ScriptingHost.GetContext(), argv[0], r )
+		|| !ToPrimitive( g_ScriptingHost.GetContext(), argv[1], g )
+		|| !ToPrimitive( g_ScriptingHost.GetContext(), argv[2], b ))
+	{
+		JS_ReportError( cx, "Invalid arguments" );
+		*rval = JSVAL_VOID;
+		return( JS_FALSE );
+	}
+	g_Renderer.GetWaterManager()->m_ReflectionTint = CColor(r, g, b, 1.0f);
+	*rval = JSVAL_VOID;
+	return( JS_TRUE );
+}
+
 // Sets the max water alpha (achieved when it is at WaterFullDepth or deeper)
 JSBool setWaterMaxAlpha( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
@@ -1312,6 +1330,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC(getWaterHeight, getWaterHeight, 0)
 	JS_FUNC(setWaterColor, setWaterColor, 3)
 	JS_FUNC(setWaterTint, setWaterTint, 3)
+	JS_FUNC(setReflectionTint, setReflectionTint, 3)
 	JS_FUNC(setWaterMaxAlpha, setWaterMaxAlpha, 0)
 	JS_FUNC(setWaterFullDepth, setWaterFullDepth, 0)
 	JS_FUNC(setWaterAlphaOffset, setWaterAlphaOffset, 0)

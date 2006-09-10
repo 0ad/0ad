@@ -59,8 +59,11 @@ public:
 	CColor m_WaterTint;
 	float m_RepeatPeriod;
 	float m_Shininess;
+	float m_SpecularStrength;
 	float m_Waviness;
 	float m_Murkiness;
+	CColor m_ReflectionTint;
+	float m_ReflectionTintStrength;
 
 public:
 	WaterManager();

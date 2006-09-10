@@ -473,12 +473,15 @@ void TerrainRenderer::RenderWater()
 		GLint ambient = ogl_program_get_uniform_location( m->fancyWaterShader, "ambient" );
 		GLint sunDir = ogl_program_get_uniform_location( m->fancyWaterShader, "sunDir" );
 		GLint sunColor = ogl_program_get_uniform_location( m->fancyWaterShader, "sunColor" );
+		GLint cameraPos = ogl_program_get_uniform_location( m->fancyWaterShader, "cameraPos" );
 		GLint shininess = ogl_program_get_uniform_location( m->fancyWaterShader, "shininess" );
+		GLint specularStrength = ogl_program_get_uniform_location( m->fancyWaterShader, "specularStrength" );
 		GLint waviness = ogl_program_get_uniform_location( m->fancyWaterShader, "waviness" );
 		GLint murkiness = ogl_program_get_uniform_location( m->fancyWaterShader, "murkiness" );
 		GLint fullDepth = ogl_program_get_uniform_location( m->fancyWaterShader, "fullDepth" );
 		GLint tint = ogl_program_get_uniform_location( m->fancyWaterShader, "tint" );
-		GLint cameraPos = ogl_program_get_uniform_location( m->fancyWaterShader, "cameraPos" );
+		GLint reflectionTint = ogl_program_get_uniform_location( m->fancyWaterShader, "reflectionTint" );
+		GLint reflectionTintStrength = ogl_program_get_uniform_location( m->fancyWaterShader, "reflectionTintStrength" );
 		GLint reflectionMatrix = ogl_program_get_uniform_location( m->fancyWaterShader, "reflectionMatrix" );
 		GLint refractionMatrix = ogl_program_get_uniform_location( m->fancyWaterShader, "refractionMatrix" );
 		GLint normalMap = ogl_program_get_uniform_location( m->fancyWaterShader, "normalMap" );
@@ -490,10 +493,13 @@ void TerrainRenderer::RenderWater()
 		pglUniform3fvARB( sunDir, 1, &lightEnv.GetSunDir().X );
 		pglUniform3fvARB( sunColor, 1, &lightEnv.m_SunColor.X );
 		pglUniform1fARB( shininess, WaterMgr->m_Shininess );
+		pglUniform1fARB( specularStrength, WaterMgr->m_SpecularStrength );
 		pglUniform1fARB( waviness, WaterMgr->m_Waviness );
 		pglUniform1fARB( murkiness, WaterMgr->m_Murkiness );
 		pglUniform1fARB( fullDepth, WaterMgr->m_WaterFullDepth );
 		pglUniform3fvARB( tint, 1, WaterMgr->m_WaterTint.FloatArray() );
+		pglUniform1fARB( reflectionTintStrength, WaterMgr->m_ReflectionTintStrength );
+		pglUniform3fvARB( reflectionTint, 1, WaterMgr->m_ReflectionTint.FloatArray() );
 		pglUniformMatrix4fvARB( reflectionMatrix, 1, false, &WaterMgr->m_ReflectionMatrix._11 );
 		pglUniformMatrix4fvARB( refractionMatrix, 1, false, &WaterMgr->m_RefractionMatrix._11 );
 		pglUniform1iARB( normalMap, 0 );		// texture unit 0
