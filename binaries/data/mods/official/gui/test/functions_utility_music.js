@@ -57,7 +57,7 @@ function newRandomSound(soundType, soundSubType, soundPrePath)
 	// Build path to random audio file.
 	randomSoundPath = randomFileName;
 
-	console.write("Playing " + randomSoundPath + " ...");
+	//console.write("Playing " + randomSoundPath + " ...");
 
 	return new Sound(randomSoundPath);
 }
