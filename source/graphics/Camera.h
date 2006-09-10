@@ -77,8 +77,10 @@ class CCamera
 		void GetScreenCoordinates(const CVector3D& world, float& x, float& y) const;
 
 		// Get the point on the terrain corresponding to pixel (px,py) (or the mouse coordinates)
-		CVector3D GetWorldCoordinates(int px, int py);
-		CVector3D GetWorldCoordinates() { return GetWorldCoordinates(g_mouse_x, g_mouse_y); }
+		// The aboveWater parameter determines whether we want to stop at the water plane or also get underwater points
+		CVector3D GetWorldCoordinates(int px, int py, bool aboveWater=false);
+		CVector3D GetWorldCoordinates(bool aboveWater=false) 
+			{ return GetWorldCoordinates(g_mouse_x, g_mouse_y, aboveWater); }
 		// Get the point on the plane at height h corresponding to pixel (px,py)
 		CVector3D GetWorldCoordinates(int px, int py, float h);
 		// Get the point on the terrain the camera is pointing towards

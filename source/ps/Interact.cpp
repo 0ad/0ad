@@ -646,7 +646,7 @@ void CMouseoverEntities::update( float timestep )
 
 	CUnit* hit = g_UnitMan.PickUnit( origin, dir );
 
-	m_worldposition = pCamera->GetWorldCoordinates();
+	m_worldposition = pCamera->GetWorldCoordinates(true);
 
 	if( hit && hit->GetEntity() && hit->GetEntity()->m_extant )
 	{

@@ -373,7 +373,7 @@ void CGameView::ResetCameraOrientation()
 
 void CGameView::RotateAboutTarget()
 {
-	m_CameraPivot = m_ViewCamera.GetWorldCoordinates();
+	m_CameraPivot = m_ViewCamera.GetWorldCoordinates(true);
 }
 
 void CGameView::Update(float DeltaTime)

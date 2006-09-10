@@ -14,6 +14,7 @@
 
 #include "Camera.h"
 #include "renderer/Renderer.h"
+#include "renderer/WaterManager.h"
 #include "HFTracer.h"
 #include "ps/Game.h"
 #include "lib/ogl.h"
@@ -201,21 +202,63 @@ void CCamera::GetScreenCoordinates( const CVector3D& world, float& x, float& y )
 	y = ( 1 - y ) * 0.5f * g_Renderer.GetHeight();
 }
 
-CVector3D CCamera::GetWorldCoordinates( int px, int py )
+CVector3D CCamera::GetWorldCoordinates( int px, int py, bool aboveWater )
 {
 	CHFTracer tracer( g_Game->GetWorld()->GetTerrain() );
 	int x, z;
-	CVector3D origin, dir, delta, currentTarget;
+	CVector3D origin, dir, delta, terrainPoint, waterPoint;
 
 	BuildCameraRay( px, py, origin, dir );
 
-	if( tracer.RayIntersect( origin, dir, x, z, currentTarget ) )
-		return( currentTarget );
 
-	// Off the edge of the world?
-	// Work out where it /would/ hit, if the map were extended out to infinity with average height.
+	bool gotTerrain = tracer.RayIntersect( origin, dir, x, z, terrainPoint );
 
-	return( origin + dir * ( ( 50.0f - origin.Y ) / dir.Y ) );
+	if( !aboveWater )
+	{
+		if( gotTerrain ) 
+			return terrainPoint;
+
+		// Off the edge of the world?
+		// Work out where it /would/ hit, if the map were extended out to infinity with average height.
+		return GetWorldCoordinates( px, py, 50.0f );
+	}
+
+	CPlane plane;
+	plane.Set(CVector3D(0.f, 1.f, 0.f),										// upwards normal
+		CVector3D(0.f, g_Renderer.GetWaterManager()->m_WaterHeight, 0.f));	// passes through water plane
+
+	bool gotWater = plane.FindRayIntersection( origin, dir, &waterPoint );
+
+	if( gotTerrain )
+	{
+		if( gotWater )
+		{
+			// Intersecting both heightmap and water plane; choose the closest of those
+			if( (origin - terrainPoint).LengthSquared() < (origin - waterPoint).LengthSquared() )
+				return terrainPoint;
+			else
+				return waterPoint;
+		}
+		else
+		{
+			// Intersecting heightmap but parallel to water plane
+			return terrainPoint;
+		}
+	}
+	else
+	{
+		if( gotWater )
+		{
+			// Only intersecting water plane
+			return waterPoint;
+		}
+		else
+		{
+			// Not intersecting terrain or water; just return 0,0,0.
+			return CVector3D(0.f, 0.f, 0.f);
+		}
+	}
+
 }
 
 CVector3D CCamera::GetWorldCoordinates(int px, int py, float h)

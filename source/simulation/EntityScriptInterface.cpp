@@ -847,7 +847,7 @@ jsval CEntity::GetRallyPoint( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* 
 jsval CEntity::SetRallyPoint( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	entf_set(ENTF_HAS_RALLY_POINT);
-	m_rallyPoint = g_Game->GetView()->GetCamera()->GetWorldCoordinates();
+	m_rallyPoint = g_Game->GetView()->GetCamera()->GetWorldCoordinates(true);
 	return JS_TRUE;
 }
 
