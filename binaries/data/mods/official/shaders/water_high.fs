@@ -5,18 +5,19 @@ uniform vec3 cameraPos;
 uniform sampler2D normalMap;
 uniform sampler2D reflectionMap;
 uniform sampler2D refractionMap;
-uniform float shininess;
-uniform float waviness;
-uniform vec3 tint;
-uniform float murkiness;
-uniform float fullDepth;
+uniform float shininess;		// Blinn-Phong specular strength
+uniform float specularStrength;	// Scaling for specular reflection (specular color is (this,this,this))
+uniform float waviness;			// "Wildness" of the reflections and refractions; choose based on texture
+uniform vec3 tint;				// Tint for refraction (used to simulate particles in water)
+uniform float murkiness;		// Amount of tint to blend in with the refracted colour
+uniform float fullDepth;		// Depth at which to use full murkiness (shallower water will be clearer)
+uniform vec3 reflectionTint;	// Tint for reflection (used for really muddy water)
+uniform float reflectionTintStrength;	// Strength of reflection tint (how much of it to mix in)
 
 varying vec3 worldPos;
 varying float w;
 varying float waterDepth;
 varying float losMod;
-
-const vec3 specularColor = vec3(0.15, 0.15, 0.15);
 
 void main()
 {
@@ -24,8 +25,8 @@ void main()
 	float ndotl, ndoth, ndotv;
 	float fresnel;
 	float myMurkiness;		// Murkiness and tint at this pixel (tweaked based on lighting and depth)
-	vec3 myTint;
-	float t;
+	vec3 diffuse;			// Diffuse colour at this pixel (ambient + diffuse terms)
+	float t;				// Temporary variable
 	vec2 reflCoords, refrCoords;
 	vec3 reflColor, refrColor, specular;
 	
@@ -38,21 +39,25 @@ void main()
 	ndoth = dot(n, h);
 	ndotv = dot(n, v);
 	
-	fresnel = pow(1.0 - ndotv, 0.8);	// A rather random Fresnel approximation
+	diffuse = ambient + ndotl * sunColor;
 	
-	reflCoords = 0.5 * (gl_TexCoord[1].xy / gl_TexCoord[1].w) + 0.5;	// Unbias texture coords
-	reflCoords += waviness * n.xz / w;
+	myMurkiness = murkiness * min(waterDepth / fullDepth, 1.0);
+	
+	fresnel = pow(1.0 - ndotv, 0.8);	// A rather random Fresnel approximation
 	
 	refrCoords = 0.5 * (gl_TexCoord[2].xy / gl_TexCoord[2].w) + 0.5;	// Unbias texture coords
 	refrCoords -= 0.8 * waviness * n.xz / w;		// Refractions can be slightly less wavy
 	
-	reflColor = texture2D(reflectionMap, reflCoords).rgb;
+	reflCoords = 0.5 * (gl_TexCoord[1].xy / gl_TexCoord[1].w) + 0.5;	// Unbias texture coords
+	reflCoords += waviness * n.xz / w;
 	
-	myMurkiness = murkiness * min(waterDepth / fullDepth, 1.0);
-	myTint = (ambient + ndotl * sunColor) * tint;
-	refrColor = (0.6 + 0.4*ndotl) * mix(texture2D(refractionMap, refrCoords).rgb, myTint, myMurkiness);
+	reflColor = mix(texture2D(reflectionMap, reflCoords).rgb, diffuse * reflectionTint, 
+					reflectionTintStrength);
 	
-	specular = pow(max(0.0, ndoth), shininess) * sunColor * specularColor;
+	refrColor = mix((0.6 + 0.4*ndotl) * texture2D(refractionMap, refrCoords).rgb, diffuse * tint,
+					myMurkiness);
+	
+	specular = pow(max(0.0, ndoth), shininess) * sunColor * specularStrength;
 	
 	gl_FragColor.rgb = mix(refrColor + 0.3*specular, reflColor + specular, fresnel) * losMod;
 	
