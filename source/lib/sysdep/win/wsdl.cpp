@@ -748,15 +748,26 @@ int SDL_EnableUNICODE(int UNUSED(enable))
 //----------------------------------------------------------------------------
 // mouse
 
-// note: coords may be negative on multimonitor systems!
+// background: there are several types of coordinates.
+// - screen coords are relative to the primary desktop and may therefore be
+//   negative on multi-monitor systems (e.g. if secondary monitor is left of
+//   primary). they are prefixed with screen_*.
+// - "client" coords are simply relative to the parent window's origin and
+//   can also be negative (e.g. in the window's NC area).
+//   these are prefixed with client_*.
+// - "idealized" client coords are what the app sees. these are from
+//   0..window dimensions-1. they are derived from client coords that
+//   pass the is_in_window() test. unfortunately, these carry different
+//   types: we treat them exclusively as uint, while SDL API provides for
+//   passing them around as int and packages them into Uint16 in events.
 
 static void queue_mouse_event(uint x, uint y)
 {
 	SDL_Event ev;
 	ev.type = SDL_MOUSEMOTION;
 	debug_assert((x|y) <= USHRT_MAX);
-	ev.motion.x = x;
-	ev.motion.y = y;
+	ev.motion.x = (Uint16)x;
+	ev.motion.y = (Uint16)y;
 	queue_event(ev);
 }
 
@@ -767,8 +778,8 @@ static void queue_button_event(uint button, uint state, uint x, uint y)
 	ev.button.button = (u8)button;
 	ev.button.state  = (u8)state;
 	debug_assert((x|y) <= USHRT_MAX);
-	ev.button.x = x;
-	ev.button.y = y;
+	ev.button.x = (Uint16)x;
+	ev.button.y = (Uint16)y;
 	queue_event(ev);
 }
 
@@ -782,8 +793,6 @@ static uint mouse_x, mouse_y;
 // - called from mouse_update and SDL_WarpMouse.
 static void mouse_moved(uint x, uint y)
 {
-	debug_assert((x|y) <= USHRT_MAX);
-
 	// nothing to do if it hasn't changed since last time
 	if(mouse_x == x && mouse_y == y)
 		return;
@@ -794,15 +803,36 @@ static void mouse_moved(uint x, uint y)
 }
 
 
-static void screen_to_client(int screen_x, int screen_y, uint& x, uint& y)
+// convert from screen to client coords.
+static void screen_to_client(int screen_x, int screen_y, int& client_x, int& client_y)
 {
 	POINT pt;
 	pt.x = (LONG) screen_x;
 	pt.y = (LONG) screen_y;
-	WARN_IF_FALSE(ScreenToClient(hWnd, &pt));
-	//debug_assert(pt.x >= 0 && pt.y >= 0);
-	x = (uint) std::max(pt.x, (LONG) 0);
-	y = (uint) std::max(pt.y, (LONG) 0);
+	// this can fail for unknown reasons even if hWnd is still
+	// valid and !is_shutdown. don't WARN_IF_FALSE.
+	if(!ScreenToClient(hWnd, &pt))
+		pt.x = pt.y = 0;
+	client_x = (int)pt.x;
+	client_y = (int)pt.y;
+}
+
+// are the given coords in our window?
+// parameters are client coords as returned by screen_to_client.
+// postcondition: it is safe to cast coords to uint and treat them
+// as idealized client coords.
+static bool is_in_window(int client_x, int client_y)
+{
+	RECT client_rect;
+	WARN_IF_FALSE(GetClientRect(hWnd, &client_rect));
+	POINT pt;
+	pt.x = (LONG)client_x;
+	pt.y = (LONG)client_y;
+	if(!PtInRect(&client_rect, pt) || WindowFromPoint(pt) != hWnd)
+		return false;
+
+	debug_assert(client_x >= 0 && client_y >= 0);
+	return true;
 }
 
 
@@ -818,17 +848,13 @@ static void mouse_update()
 	// position directly.
 	POINT screen_pt;
 	WARN_IF_FALSE(GetCursorPos(&screen_pt));
-	uint x, y;
-	screen_to_client(screen_pt.x, screen_pt.y, x, y);
+	int client_x, client_y;
+	screen_to_client(screen_pt.x, screen_pt.y, client_x, client_y);
 
-	// moved within window
-	RECT client_rect;
-	GetClientRect(hWnd, &client_rect);
-	POINT pt;
-	pt.x = (LONG)x;
-	pt.y = (LONG)y;
-	if(PtInRect(&client_rect, pt) && WindowFromPoint(pt) == hWnd)
+	if(is_in_window(client_x, client_y))
 	{
+		const uint x = (uint)client_x, y = (uint)client_y;
+
 		active_change_state(GAIN, SDL_APPMOUSEFOCUS);
 		mouse_moved(x, y);
 	}
@@ -898,9 +924,14 @@ static LRESULT OnMouseButton(HWND UNUSED(hWnd), UINT uMsg, int screen_x, int scr
 	else
 		mouse_buttons &= ~SDL_BUTTON(button);
 
-	uint x, y;
-	screen_to_client(screen_x, screen_y, x, y);
-
+	int client_x, client_y;
+	screen_to_client(screen_x, screen_y, client_x, client_y);
+	// we may get click events from the NC area or window border where
+	// the coords are negative. unfortunately is_in_window can return
+	// false due to its window-on-top check, so we better not
+	// ignore messages based on that. it is safest to clamp coords to
+	// what the app can handle.
+	uint x = MAX(client_x, 0), y = MAX(client_y, 0);
 	queue_button_event(button, state, x, y);
 	return 0;
 }
@@ -908,12 +939,20 @@ static LRESULT OnMouseButton(HWND UNUSED(hWnd), UINT uMsg, int screen_x, int scr
 
 static LRESULT OnMouseWheel(HWND UNUSED(hWnd), int screen_x, int screen_y, int zDelta, UINT UNUSED(fwKeys))
 {
-	uint x, y;
-	screen_to_client(screen_x, screen_y, x, y);
-	uint button = (zDelta < 0)? SDL_BUTTON_WHEELDOWN : SDL_BUTTON_WHEELUP;
-	// SDL says this sends a down message followed by up.
-	queue_button_event(button, SDL_PRESSED , x, y);
-	queue_button_event(button, SDL_RELEASED, x, y);
+	int client_x, client_y;
+	screen_to_client(screen_x, screen_y, client_x, client_y);
+	// unfortunately we get mouse wheel messages even if mouse is outside
+	// our window.
+	// to prevent the app from seeing invalid coords, we ignore such messages.
+	if(is_in_window(client_x, client_y))
+	{
+		const uint x = (uint)client_x, y = (uint)client_y;
+
+		uint button = (zDelta < 0)? SDL_BUTTON_WHEELDOWN : SDL_BUTTON_WHEELUP;
+		// SDL says this sends a down message followed by up.
+		queue_button_event(button, SDL_PRESSED , x, y);
+		queue_button_event(button, SDL_RELEASED, x, y);
+	}
 	return 0;	// handled
 }
 
@@ -930,6 +969,9 @@ Uint8 SDL_GetMouseState(int* x, int* y)
 
 inline void SDL_WarpMouse(int x, int y)
 {
+	// SDL interface provides for int, but the values should be
+	// idealized client coords (>= 0)
+	debug_assert(x >= 0 && y >= 0);
 	mouse_moved((uint)x, (uint)y);
 
 	POINT screen_pt;
