@@ -426,13 +426,15 @@ void TerrainRenderer::RenderWater()
 		ogl_tex_bind(WaterMgr->m_WaterTexture[curTex], 0);
 	}
 
+	// Shift the texture coordinates by these amounts to make the water "flow"
+	float tx = -fmod(time, 54.0)/54.0;
+	float ty = -fmod(time, 23.0)/23.0;
+
 	if(!fancy)
 	{
-		// Shift the texture coordinates to make it "flow"
+		// Perform the shifting by modifying the texture matrix
 		glMatrixMode(GL_TEXTURE);
 		glLoadIdentity();
-		float tx = -fmod(time, 20.0)/20.0;
-		float ty = fmod(time, 35.0)/35.0;
 		glTranslatef(tx, ty, 0);
 
 		// Set up texture environment to multiply vertex RGB by texture RGB and use vertex alpha
@@ -482,6 +484,7 @@ void TerrainRenderer::RenderWater()
 		GLint tint = ogl_program_get_uniform_location( m->fancyWaterShader, "tint" );
 		GLint reflectionTint = ogl_program_get_uniform_location( m->fancyWaterShader, "reflectionTint" );
 		GLint reflectionTintStrength = ogl_program_get_uniform_location( m->fancyWaterShader, "reflectionTintStrength" );
+		GLint translation = ogl_program_get_uniform_location( m->fancyWaterShader, "translation" );
 		GLint reflectionMatrix = ogl_program_get_uniform_location( m->fancyWaterShader, "reflectionMatrix" );
 		GLint refractionMatrix = ogl_program_get_uniform_location( m->fancyWaterShader, "refractionMatrix" );
 		GLint normalMap = ogl_program_get_uniform_location( m->fancyWaterShader, "normalMap" );
@@ -500,6 +503,7 @@ void TerrainRenderer::RenderWater()
 		pglUniform3fvARB( tint, 1, WaterMgr->m_WaterTint.FloatArray() );
 		pglUniform1fARB( reflectionTintStrength, WaterMgr->m_ReflectionTintStrength );
 		pglUniform3fvARB( reflectionTint, 1, WaterMgr->m_ReflectionTint.FloatArray() );
+		pglUniform4fARB( translation, tx, ty, 0, 0 );
 		pglUniformMatrix4fvARB( reflectionMatrix, 1, false, &WaterMgr->m_ReflectionMatrix._11 );
 		pglUniformMatrix4fvARB( refractionMatrix, 1, false, &WaterMgr->m_RefractionMatrix._11 );
 		pglUniform1iARB( normalMap, 0 );		// texture unit 0

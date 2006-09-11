@@ -25,6 +25,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <queue>
+#include <algorithm>
 
 #include "win_internal.h"
 #include <ddraw.h>
@@ -796,12 +797,12 @@ static void mouse_moved(uint x, uint y)
 static void screen_to_client(int screen_x, int screen_y, uint& x, uint& y)
 {
 	POINT pt;
-	pt.x = (LONG)screen_x;
-	pt.y = (LONG)screen_y;
+	pt.x = (LONG) screen_x;
+	pt.y = (LONG) screen_y;
 	WARN_IF_FALSE(ScreenToClient(hWnd, &pt));
-	debug_assert(pt.x >= 0 && pt.y >= 0);
-	x = (uint)pt.x;
-	y = (uint)pt.y;
+	//debug_assert(pt.x >= 0 && pt.y >= 0);
+	x = (uint) std::max(pt.x, (LONG) 0);
+	y = (uint) std::max(pt.y, (LONG) 0);
 }
 
 
