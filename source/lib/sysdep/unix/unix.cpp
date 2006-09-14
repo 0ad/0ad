@@ -38,7 +38,7 @@ LibError sys_get_executable_name(char* n_path, size_t buf_size)
 	}
 
 	strncpy(n_path, dl_info.dli_fname, buf_size);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 extern int cpus;
@@ -141,7 +141,7 @@ LibError sys_cursor_create(uint w, uint h, void* bgra_img,
 	UNUSED2(bgra_img);
 
 	*cursor = 0;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 // creates an empty cursor
@@ -156,7 +156,7 @@ LibError sys_cursor_create_empty(void **cursor)
 	// SDL will make its own copies of data and mask
 	*cursor=SDL_CreateCursor(data, mask, 8, 1, 0, 0);
 
-	return cursor?ERR_OK:ERR_FAIL;
+	return cursor?INFO_OK:ERR_FAIL;
 }
 
 SDL_Cursor *defaultCursor=NULL;
@@ -174,7 +174,7 @@ LibError sys_cursor_set(void* cursor)
 
 	SDL_SetCursor((SDL_Cursor *)cursor);
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 // destroys the indicated cursor and frees its resources. if it is
@@ -183,7 +183,7 @@ LibError sys_cursor_free(void* cursor)
 {
 	// bail now to prevent potential confusion below; there's nothing to do.
 	if(!cursor)
-		return ERR_OK;
+		return INFO_OK;
 
 	// if the cursor being freed is active, restore the default cursor
 	// (just for safety).
@@ -192,7 +192,7 @@ LibError sys_cursor_free(void* cursor)
 
 	SDL_FreeCursor((SDL_Cursor *)cursor);
 
-	return ERR_OK;
+	return INFO_OK;
 }
 
 // note: just use the sector size: Linux aio doesn't really care about

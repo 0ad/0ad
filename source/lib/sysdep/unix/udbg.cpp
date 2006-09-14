@@ -341,7 +341,7 @@ static LibError debug_resolve_symbol_dladdr(void *ptr, char* sym_name, char* fil
 		*line=0;
 	}
 	
-	return ERR_OK;
+	return INFO_OK;
 }
 
 LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line)
@@ -406,7 +406,7 @@ LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file,
 		*line = ctx.line;
 	}
 	
-	return ERR_OK;
+	return INFO_OK;
 }
 
 void debug_puts(const char* text)

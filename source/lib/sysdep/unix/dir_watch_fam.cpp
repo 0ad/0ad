@@ -55,7 +55,7 @@ LibError dir_add_watch(const char* const n_full_path, intptr_t* const watch)
 
 	*watch = (intptr_t)req.reqnum;
 	dirs[*watch] = n_full_path;
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -69,7 +69,7 @@ LibError dir_cancel_watch(const intptr_t watch)
 	FAMRequest req;
 	req.reqnum = (int)watch;
 	RETURN_ERR(FAMCancelMonitor(&fc, &req));
-	return ERR_OK;
+	return INFO_OK;
 }
 
 int dir_get_changed_file(char* fn)
@@ -90,7 +90,7 @@ int dir_get_changed_file(char* fn)
 				const char* dir = dirs[e.fr.reqnum].c_str();
 				snprintf(n_path, PATH_MAX, "%s%c%s", dir, DIR_SEP, e.filename);
 				RETURN_ERR(file_make_portable_path(n_path, fn));
-				return ERR_OK;
+				return INFO_OK;
 			}
 		}
 	}

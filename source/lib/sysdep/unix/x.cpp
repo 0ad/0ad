@@ -59,7 +59,7 @@ LibError gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
 	if(freq)
 		*freq = 0;
 	XCloseDisplay(disp);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 
@@ -77,7 +77,7 @@ LibError gfx_get_monitor_size(int& width_mm, int& height_mm)
 	height_mm=XDisplayHeightMM(disp, screen);
 	
 	XCloseDisplay(disp);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 /*
@@ -190,7 +190,7 @@ wchar_t *sys_clipboard_get()
 LibError sys_clipboard_free(wchar_t *clip_buf)
 {
 	free(clip_buf);
-	return ERR_OK;
+	return INFO_OK;
 }
 
 /*
