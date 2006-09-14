@@ -155,7 +155,7 @@ void ActorViewer::Render()
 	camera.m_Orientation.Translate(centre.X, centre.Y, centre.Z);
 	camera.UpdateFrustum();
 	
-	g_Renderer.SetCamera(camera, camera);
+	g_Renderer.SetSceneCamera(camera, camera);
 
 	g_Renderer.Submit(m.Terrain.GetPatch(0, 0));
 

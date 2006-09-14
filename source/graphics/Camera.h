@@ -38,7 +38,8 @@ class CCamera
 		void SetProjection (CMatrix3D *proj) { m_ProjMat = *proj; }
 		void SetProjection (float nearp, float farp, float fov);
 		void SetProjectionTile (int tiles, int tile_x, int tile_y);
-		CMatrix3D GetProjection () { return m_ProjMat; }
+		CMatrix3D& GetProjection () { return m_ProjMat; }
+		const CMatrix3D& GetProjection () const { return m_ProjMat; }
 
 		// Updates the frustum planes. Should be called
 		// everytime the view or projection matrices are
@@ -47,7 +48,7 @@ class CCamera
 		CFrustum GetFrustum () { return m_ViewFrustum; }
 
 		void SetViewPort (SViewPort *viewport);
-		SViewPort GetViewPort () { return m_ViewPort; }
+		const SViewPort& GetViewPort () const { return m_ViewPort; }
 
 		// getters
 		float GetNearPlane() const { return m_NearPlane; }

@@ -83,7 +83,7 @@ CGameView::CGameView(CGame *pGame):
 	m_ViewCamera.m_Orientation.RotateY(DEGTORAD(0));
 	m_ViewCamera.m_Orientation.Translate (100, 150, -100);
 	m_CullCamera = m_ViewCamera;
-	g_Renderer.SetCamera(m_ViewCamera, m_CullCamera);
+	g_Renderer.SetSceneCamera(m_ViewCamera, m_CullCamera);
 
 	m_UnitView=NULL;
 	m_UnitAttach=NULL;
@@ -151,7 +151,7 @@ void CGameView::Render()
 {
 	if (m_LockCullCamera == false)
 		m_CullCamera = m_ViewCamera;
-	g_Renderer.SetCamera(m_ViewCamera, m_CullCamera);
+	g_Renderer.SetSceneCamera(m_ViewCamera, m_CullCamera);
 
 	CheckLightEnv();
 

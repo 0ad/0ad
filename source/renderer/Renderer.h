@@ -190,14 +190,14 @@ public:
 	int GetFrameCounter() const { return m_FrameCounter; }
 
 	/**
-	 * SetCamera: Set up the camera used for subsequent rendering operations; this includes
+	 * SetSceneCamera: Set up the camera used for the scene in this frame; this includes
 	 * setting OpenGL state like viewport, projection and modelview matrices.
 	 *
 	 * @param viewCamera this camera determines the eye position for rendering
-	 * @param culLCamera this camera determines the frustum for culling in the renderer and
+	 * @param cullCamera this camera determines the frustum for culling in the renderer and
 	 * for shadow calculations
 	 */
-	void SetCamera(const CCamera& viewCamera, const CCamera& cullCamera);
+	void SetSceneCamera(const CCamera& viewCamera, const CCamera& cullCamera);
 
 	// set the viewport
 	void SetViewport(const SViewPort &);

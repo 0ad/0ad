@@ -312,6 +312,26 @@ struct CRendererInternals
 
 		return true;
 	}
+
+	/**
+	* Load the OpenGL projection and modelview matrices and the viewport according
+	* to the given camera.
+	*/
+	void SetOpenGLCamera(const CCamera& camera)
+	{
+		CMatrix3D view;
+		camera.m_Orientation.GetInverse(view);
+		const CMatrix3D& proj = camera.GetProjection();
+
+		glMatrixMode(GL_PROJECTION);
+		glLoadMatrixf(&proj._11);
+
+		glMatrixMode(GL_MODELVIEW);
+		glLoadMatrixf(&view._11);
+
+		const SViewPort &vp = camera.GetViewPort();
+		glViewport(vp.m_X,vp.m_Y,vp.m_Width,vp.m_Height);
+	}
 };
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -716,9 +736,6 @@ void CRenderer::BeginFrame()
 	// zero out all the per-frame stats
 	m_Stats.Reset();
 
-	// init per frame stuff
-	m->shadow->SetupFrame(m_CullCamera, m_LightEnv->GetSunDir());
-
 	// choose model renderers for this frame
 	int vertexType;
 
@@ -959,7 +976,6 @@ void CRenderer::SetObliqueFrustumClipping(const CVector4D& cp, int sign)
     CVector4D q;
 
 	// First, we'll convert the given clip plane to camera space, then we'll 
-
 	// Get the view matrix and normal matrix (top 3x3 part of view matrix)
 	CMatrix3D viewMatrix;
 	m_ViewCamera.m_Orientation.GetInverse(viewMatrix);
@@ -1046,7 +1062,8 @@ void CRenderer::RenderReflections()
 	CMatrix3D scaleMat;
 	scaleMat.SetScaling(m_Height/float(std::max(1, m_Width)), 1.0f, 1.0f);
 	m_ViewCamera.m_ProjMat = scaleMat * m_ViewCamera.m_ProjMat;
-	SetCamera(m_ViewCamera, m_CullCamera);
+
+	m->SetOpenGLCamera(m_ViewCamera);
 
 	CVector4D camPlane(0, 1, 0, -wm.m_WaterHeight);
 	SetObliqueFrustumClipping(camPlane, -1);
@@ -1082,7 +1099,9 @@ void CRenderer::RenderReflections()
 		wm.m_ReflectionTextureSize, wm.m_ReflectionTextureSize);
 
 	//Reset old camera and re-enable backface culling
-	SetCamera(normalCamera, m_CullCamera);
+	m_ViewCamera = normalCamera;
+	m->SetOpenGLCamera(m_ViewCamera);
+
 	glEnable(GL_CULL_FACE);
 	//glClearDepth(1);
 	//glClear(GL_DEPTH_BUFFER_BIT);
@@ -1115,7 +1134,7 @@ void CRenderer::RenderRefractions()
 	CMatrix3D scaleMat;
 	scaleMat.SetScaling(m_Height/float(std::max(1, m_Width)), 1.0f, 1.0f);
 	m_ViewCamera.m_ProjMat = scaleMat * m_ViewCamera.m_ProjMat;
-	SetCamera(m_ViewCamera, m_CullCamera);
+	m->SetOpenGLCamera(m_ViewCamera);
 
 	CVector4D camPlane(0, 1, 0, -wm.m_WaterHeight);
 	SetObliqueFrustumClipping(camPlane, -1);
@@ -1146,7 +1165,9 @@ void CRenderer::RenderRefractions()
 		wm.m_RefractionTextureSize, wm.m_RefractionTextureSize);
 
 	//Reset old camera and re-enable backface culling
-	SetCamera(normalCamera, m_CullCamera);
+	m_ViewCamera = normalCamera;
+	m->SetOpenGLCamera(m_ViewCamera);
+
 	glEnable(GL_CULL_FACE);
 	glClearDepth(1);
 	glDepthFunc(GL_LEQUAL);
@@ -1158,6 +1179,9 @@ void CRenderer::RenderRefractions()
 void CRenderer::FlushFrame()
 {
 	oglCheck();
+
+	// Set the camera
+	m->SetOpenGLCamera(m_ViewCamera);
 
 	// Prepare model renderers
 	PROFILE_START("prepare models");
@@ -1319,24 +1343,17 @@ void CRenderer::DisplayFrustum()
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// SetCamera: setup projection and transform of camera and adjust viewport to current view
-void CRenderer::SetCamera(const CCamera& viewCamera, const CCamera& cullCamera)
+// SetSceneCamera: setup projection and transform of camera and adjust viewport to current view
+// The camera always represents the actual camera used to render a scene, not any virtual camera
+// used for shadow rendering or reflections.
+void CRenderer::SetSceneCamera(const CCamera& viewCamera, const CCamera& cullCamera)
 {
 	m_ViewCamera = viewCamera;
 	m_CullCamera = cullCamera;
 
-	CMatrix3D view;
-	m_ViewCamera.m_Orientation.GetInverse(view);
-	const CMatrix3D& proj = m_ViewCamera.GetProjection();
-
-	glMatrixMode(GL_PROJECTION);
-	glLoadMatrixf(&proj._11);
-
-	glMatrixMode(GL_MODELVIEW);
-	glLoadMatrixf(&view._11);
-
-	SetViewport(m_ViewCamera.GetViewPort());
+	m->shadow->SetupFrame(m_CullCamera, m_LightEnv->GetSunDir());
 }
+
 
 void CRenderer::SetViewport(const SViewPort &vp)
 {
