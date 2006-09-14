@@ -400,7 +400,7 @@ std::string toAscii( const XMLCh* a )
 	b.reserve(len);
 	for (uint i = 0; i < len; ++i)
 	{
-		if(iswascii(a[i]))
+		if(a[i] < 0x80)
 			b += (char) a[i];
 	}
 	return b;
