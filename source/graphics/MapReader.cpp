@@ -19,7 +19,7 @@
 #include "ps/Game.h"
 #include "ps/Loader.h"
 #include "ps/LoaderThunks.h"
-#include "ps/xml/Xeromyces.h"
+#include "ps/XML/Xeromyces.h"
 #include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
 #include "simulation/Entity.h"
