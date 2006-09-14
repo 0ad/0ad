@@ -990,7 +990,6 @@ void Init(int argc, char* argv[], uint flags)
 		"GL_EXT_draw_range_elements",
 		"GL_ARB_texture_env_combine",
 		"GL_ARB_texture_env_dot3",
-		"GL_ARB_texture_env_crossbar",
 		0);
 	if(missing)
 	{
@@ -1002,6 +1001,15 @@ void Init(int argc, char* argv[], uint flags)
 		swprintf(buf, ARRAY_SIZE(buf), fmt, missing);
 		DISPLAY_ERROR(buf);
 		// TODO: i18n
+	}
+
+	if (!oglHaveExtension("GL_ARB_texture_env_crossbar"))
+	{
+		DISPLAY_ERROR(
+			L"The GL_ARB_texture_env_crossbar extension doesn't appear to be available on your computer."
+			L"Shadows are not available and overall graphics quality might suffer."
+			L"You are advised to try installing newer drivers and/or upgrade your graphics card.");
+		g_Shadows = false;
 	}
 
 	// enable/disable VSync
