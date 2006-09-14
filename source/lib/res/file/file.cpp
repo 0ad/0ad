@@ -246,9 +246,11 @@ LibError dir_delete(const char* P_path)
 	// must happen before rmdir
 	RETURN_ERR(dir_close(&di));
 
-	errno = 0;
-	int posix_ret = rmdir(N_path);
-	return LibError_from_posix(posix_ret);
+	{
+		errno = 0;
+		int posix_ret = rmdir(N_path);
+		return LibError_from_posix(posix_ret);
+	}
 
 fail:
 	RETURN_ERR(dir_close(&di));

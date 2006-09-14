@@ -40,11 +40,6 @@
 # include <AL/alc.h>
 #endif
 
-// for AL_FORMAT_VORBIS_EXT decl on Linux
-#if OS_LINUX
-# include <AL/alexttypes.h>
-#endif
-
 // for DLL-load hack in alc_init
 #if OS_WIN
 # include "lib/sysdep/win/win_internal.h"
