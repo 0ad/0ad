@@ -253,7 +253,7 @@ function entityInit()
 			this.traits.ai.stance.list.defend = new Object();
 			this.traits.ai.stance.list.stand = new Object();
 			// Set default stance for combat units.
-			this.traits.ai.stance.curr = "defend";
+			this.traits.ai.stance.curr = "hold";
 		}
 	}
 	
