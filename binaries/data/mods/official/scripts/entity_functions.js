@@ -1049,33 +1049,14 @@ function entityComplete()
 {
 	console.write( this + " is finished building." );
 }
+
 //=====================================================================
+
 function entityEventIdle( evt )
 {
 	//Use our own data for target; we aren't affecting anyone, so listeners want to know about us
 	this.forceCheckListeners( NOTIFY_IDLE, this );
 }
-//=====================================================================
-function entityEventMovement( evt )
-{
-	var divs = this.traits.pitch.sectors;
-	var sector = this.findSector( divs, evt.slope, 3.141592, true );
-	
-	if ( divs % 2 )
-	{	
-		sector += ((divs+1)/2 - sector)*2;
-		sector -= (divs+1)/2;
-		this.actions.move.speedCurr = this.actions.move.speed;
-		this.actions.move.speedCurr += 									this.actions.move.speed*this.traits.pitch.value*sector;
-	}
-	else
-	{
-		sector += ((divs)/2 - sector)*2;
-		sector -= (divs)/2;
-		this.actions.move.speedCurr = this.actions.move.speed;
-		this.actions.move.speedCurr += 						this.actions.move.speed*this.traits.pitch.value*sector;
-	}
-}	
 
 // ====================================================================
 
