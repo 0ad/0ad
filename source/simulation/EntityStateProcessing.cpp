@@ -57,8 +57,13 @@ float CEntity::chooseMovementSpeed( float distance )
 {
 	bool should_run = shouldRun(distance);
 	
-	const float speed = should_run? m_runSpeed : m_speed;
+	float speed = should_run? m_runSpeed : m_speed;
 	const char* anim_name = should_run? "run" : "walk";
+
+	// Modify the speed based on the slope of the terrain in our direction (obtained from our x orientation)
+	float angle = m_orientation_unclamped.x;
+	int sector = ia32_rintf( angle / (PI/2) * m_base->m_pitchDivs );
+	speed -= sector * m_base->m_pitchValue;
 
 	// TODO: the animation code requires unicode for now. will be changed to
 	// 8bit later (for consistency; note that filenames etc. need not be
@@ -147,8 +152,7 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 		m_ahead = delta / len;
 		m_orientation.Y = m_targetorientation;
 	}
-	CEntity* _this = this;
-	CVector2D targetXZ = g_Game->GetWorld()->GetTerrain()->getSlopeAngleFace( m_position.X, m_position.Z, _this );
+	CVector2D targetXZ = g_Game->GetWorld()->GetTerrain()->getSlopeAngleFace(this);
 	
 	while( targetXZ.x > PI ) targetXZ.x -= 2 * PI;
 	while( targetXZ.x < -PI ) targetXZ.x += 2 * PI;
@@ -161,8 +165,8 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 	m_orientation_unclamped.x = targetXZ.x;
 	m_orientation_unclamped.y = targetXZ.y;
 
-	CMovementEvent evt( m_orientation_unclamped.x );
-	DispatchEvent(&evt);
+	//CMovementEvent evt( m_orientation_unclamped.x );
+	//DispatchEvent(&evt);
 
 	if( m_bounds && m_bounds->m_type == CBoundingObject::BOUND_OABB )
 		((CBoundingBox*)m_bounds)->setOrientation( m_ahead );
@@ -186,7 +190,11 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 	{
 		m_bounds->setPosition( m_position.X, m_position.Z );
 
-		collide = getCollisionObject( this );
+		// For now, ignore passThroughAllies for low-level movement (but leave it on for long-range
+		// pathfinding); ideally we will enable pass-through-allies only for the long-range pathing
+		// and when the unit is moving to assume its place in a formation, since it looks bad to have
+		// units stand on each other otherwise.
+		collide = getCollisionObject( this, false );
 		
 		if( collide )
 		{	

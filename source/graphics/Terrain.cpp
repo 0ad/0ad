@@ -210,102 +210,25 @@ float CTerrain::getSlope(float x, float z) const
 	return MAX(MAX(h00, h01), MAX(h10, h11)) -
 		   MIN(MIN(h00, h01), MIN(h10, h11));
 }
-CVector2D CTerrain::getSlopeAngleFace(float x, float y, CEntity*& entity ) const
+CVector2D CTerrain::getSlopeAngleFace( CEntity* entity ) const
 {
-	//side start at 0 at -180 degrees, and end up at 7 at 180 degrees
-    int side;
-	bool invert;
-	float top, bottom, topZ, bottomZ;
-	float fCell = (float)CELL_SIZE;
-	x /= fCell;
-	y /= fCell;
-	int xi = (int)floor(x);
-	int yi = (int)floor(y);
-	
-	CVector3D flat(0.0f, 0.0f, 0.0f);
-	CVector3D flatZ = flat;
 	CVector2D ret;
-	side = entity->findSector( 8, entity->m_orientation.Y, DEGTORAD(360.0f) ) - 1;
-	
-	//Wrap around
-	if ( side < 0 )
-		side += 8;
-	
-	//Keep it in bounds
-	clampCoordToMap(xi);
-	clampCoordToMap(yi);
-	
-	float h00 = m_Heightmap[yi*m_MapSize + xi] * HEIGHT_SCALE;
-	float h01 = m_Heightmap[yi*m_MapSize + xi + m_MapSize] * HEIGHT_SCALE;
-	float h10 = m_Heightmap[yi*m_MapSize + xi + 1] * HEIGHT_SCALE;
-	float h11 = m_Heightmap[yi*m_MapSize + xi + m_MapSize + 1] * HEIGHT_SCALE;
 
-	//Find heights
-	if ( side == 0 || side == 7 )
-	{
-		top = (h00 + h10)/2.0f;
-		bottom = (h01 + h11)/2.0f;
-		topZ = (h00 + h01)/2.0f;
-		bottomZ = (h10 + h11)/2.0f;
-		flat.Z = sqrtf(SQR(CELL_SIZE) - SQR(top-bottom));
-		flatZ.X = sqrtf(SQR(CELL_SIZE) - SQR(topZ-bottomZ));
-	}
-	else if ( side == 1 || side == 2 )
-	{
-		top = (h00 + h01)/2.0f;
-		bottom = (h10 + h11)/2.0f;
-		topZ = (h01 + h11)/2.0f;
-		bottomZ = (h00 + h10)/2.0f;
-		flat.X = sqrtf(SQR(CELL_SIZE) - SQR(top-bottom));
-		flatZ.Z = sqrtf(SQR(CELL_SIZE) - SQR(topZ-bottomZ));
-	}
-	else if ( side == 3 || side == 4 )
-	{
-		top = (h01 + h11)/2.0f;
-		bottom = (h00 + h10)/2.0f;
-		topZ = (h11 + h10)/2.0f;
-		bottomZ = (h00 + h01)/2.0f;
-		flat.Z = sqrtf(SQR(CELL_SIZE) - SQR(top-bottom));
-		flatZ.X = sqrtf(SQR(CELL_SIZE) - SQR(topZ-bottomZ));
-	}
-	else
-	{
-		top = (h11 + h10)/2.0f;
-		bottom = (h00 + h01)/2.0f;
-		topZ = (h00 + h10)/2.0f;
-		bottomZ = (h01 + h11)/2.0f;
-		flat.X = sqrtf(SQR(CELL_SIZE) - SQR(top-bottom));
-		flatZ.Z = sqrtf(SQR(CELL_SIZE) - SQR(topZ-bottomZ));
-	}
-	CVector3D elevated=flat;
-	elevated.Y = top-bottom;
-	if ( elevated.Y > 0.0f )
-		invert=false;
-	else
-		invert=true;
-	elevated.Y = fabs(elevated.Y);
-	elevated.Normalize();
-	flat.Normalize();
-	if ( invert )
-		ret.x = -acosf( elevated.Dot(flat) );
-	else
-		ret.x = acosf( elevated.Dot(flat) );
-	
-	//Z component
-	elevated = flatZ;
-	elevated.Y = topZ-bottomZ;
-	if ( elevated.Y > 0.0f )
-		invert=true;
-	else
-		invert=false;
-	elevated.Y = fabs(elevated.Y);
-	elevated.Normalize();
-	flatZ.Normalize();
-	if ( invert )
-		ret.y = -acosf( elevated.Dot(flatZ) );
-	else
-		ret.y = acosf( elevated.Dot(flatZ) );
-	
+	const float D = 0.1f;		// Amount to look forward to calculate the slope
+	float x = entity->m_position.X;
+	float z = entity->m_position.Z;
+	float y = getExactGroundLevel(x, z);
+
+	// Get forward slope and use it as the x angle
+	CVector2D d = entity->m_ahead.normalize() * D;
+	float dy = getExactGroundLevel(x+d.x, z+d.y) - y;
+	ret.x = atan2(dy, D);
+
+	// Get sideways slope and use it as the y angle
+	CVector2D d2(-d.y, d.x);
+	float dy2 = getExactGroundLevel(x+d2.x, z+d2.y) - y;
+	ret.y = atan2(dy2, D);
+
 	return ret;
 }
 

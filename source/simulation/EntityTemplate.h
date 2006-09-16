@@ -146,6 +146,7 @@ public:
 
 	int m_sectorDivs;
 	int m_pitchDivs;
+	float m_pitchValue;
 	float m_anchorConformX;
 	float m_anchorConformZ;
 

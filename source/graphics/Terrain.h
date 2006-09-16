@@ -69,7 +69,7 @@ public:
 
 	float getSlope(float x, float z) const ;
 	//Find the slope of in X and Z axes depending on the way the entity is facing
-	CVector2D getSlopeAngleFace(float x, float y, CEntity*& entity) const;	
+	CVector2D getSlopeAngleFace(CEntity* entity) const;	
 	// resize this terrain such that each side has given number of patches
 	void Resize(u32 size);
 

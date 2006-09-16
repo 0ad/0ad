@@ -35,7 +35,7 @@ struct rayIntersectionResults
 
 typedef std::vector<CEntity*> RayIntersects;
 
-HEntity getCollisionObject( CEntity* entity );
+HEntity getCollisionObject( CEntity* entity, bool enablePassThroughAllies=true );
 HEntity getCollisionObject( CEntity* entity, float x, float y );
 CBoundingObject* getCollisionObject( CBoundingObject* bounds, CPlayer* player=0, const CStrW* ignoreClass=0 );
 CEntity* getCollisionEntity( CBoundingObject* bounds, CPlayer* player=0, const CStrW* ignoreClass=0 );

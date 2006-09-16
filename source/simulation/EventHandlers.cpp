@@ -121,9 +121,3 @@ CIdleEvent::CIdleEvent( CEntityOrder order, int notifyType ) : CScriptEvent( L"i
 	AddLocalProperty( L"target", &m_target );
 	AddLocalProperty( L"location", &m_location );
 }
-CMovementEvent::CMovementEvent( float slope ) : CScriptEvent( L"movementEvent", EVENT_MOVEMENT, false )
-{
-	m_slope = slope;
-
-	AddLocalProperty( L"slope", &m_slope );
-}

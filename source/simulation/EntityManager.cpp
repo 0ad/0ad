@@ -296,7 +296,7 @@ void CEntityManager::conformAll()
 		if( isEntityRefd(i) )
 		{
 			CEntity* entity = m_entities[i].m_entity;
-			CVector2D targetXZ = g_Game->GetWorld()->GetTerrain()->getSlopeAngleFace( entity->m_position.X, entity->m_position.Z, entity );
+			CVector2D targetXZ = g_Game->GetWorld()->GetTerrain()->getSlopeAngleFace(entity );
 	
 			while( targetXZ.x > PI ) targetXZ.x -= 2 * PI;
 			while( targetXZ.x < -PI ) targetXZ.x += 2 * PI;

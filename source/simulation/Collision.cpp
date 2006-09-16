@@ -100,7 +100,7 @@ CEntity* getCollisionEntity( CBoundingObject* bounds, CPlayer* player, const CSt
 	return( NULL );
 }
 
-HEntity getCollisionObject( CEntity* entity )
+HEntity getCollisionObject( CEntity* entity, bool enablePassThroughAllies )
 {
 #ifndef NDEBUG
 	debug_assert( entity->m_bounds ); 
@@ -116,8 +116,13 @@ HEntity getCollisionObject( CEntity* entity )
 	{
 		if( !(*it)->m_bounds ) continue;
 		if( (*it)->m_bounds == entity->m_bounds ) continue;
-		if( entity->m_base->m_passThroughAllies && (*it)->m_base->m_passThroughAllies
-			&& entity->GetPlayer() == (*it)->GetPlayer() ) continue;
+
+		if( enablePassThroughAllies 
+				&& entity->m_base->m_passThroughAllies 
+				&& (*it)->m_base->m_passThroughAllies
+				&& entity->GetPlayer() == (*it)->GetPlayer() ) 
+			continue;
+
 		if( entity->m_bounds->intersects( (*it)->m_bounds ) )
 		{
 			HEntity collisionObject = HEntity((*it)->me);

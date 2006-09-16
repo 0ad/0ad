@@ -391,7 +391,7 @@ void CEntityTemplate::ScriptingInit()
 
 	AddClassProperty( L"traits.id.classes", (GetFn)&CEntityTemplate::getClassSet, (SetFn)&CEntityTemplate::setClassSet );
 	
-	AddClassProperty( L"actions.move.speedCurr", &CEntityTemplate::m_speed );
+	AddClassProperty( L"actions.move.speed", &CEntityTemplate::m_speed );
 	AddClassProperty( L"actions.move.turningRadius", &CEntityTemplate::m_turningRadius );
 	AddClassProperty( L"actions.move.run.speed", &CEntityTemplate::m_runSpeed );
 	AddClassProperty( L"actions.move.run.rangeMin", &CEntityTemplate::m_runMinRange );
@@ -422,6 +422,7 @@ void CEntityTemplate::ScriptingInit()
 	AddClassProperty( L"traits.rally.height", &CEntityTemplate::m_rallyHeight );
 	AddClassProperty( L"traits.flankPenalty.sectors", &CEntityTemplate::m_sectorDivs );
 	AddClassProperty( L"traits.pitch.sectors", &CEntityTemplate::m_pitchDivs );
+	AddClassProperty( L"traits.pitch.value", &CEntityTemplate::m_pitchValue );
 	AddClassProperty( L"traits.rank.width", &CEntityTemplate::m_rankWidth );
 	AddClassProperty( L"traits.rank.height", &CEntityTemplate::m_rankHeight );
 	AddClassProperty( L"traits.rank.name", &CEntityTemplate::m_rankName );
