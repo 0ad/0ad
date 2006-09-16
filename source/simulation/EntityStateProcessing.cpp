@@ -152,21 +152,8 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 		m_ahead = delta / len;
 		m_orientation.Y = m_targetorientation;
 	}
-	CVector2D targetXZ = g_Game->GetWorld()->GetTerrain()->getSlopeAngleFace(this);
 	
-	while( targetXZ.x > PI ) targetXZ.x -= 2 * PI;
-	while( targetXZ.x < -PI ) targetXZ.x += 2 * PI;
-	while( targetXZ.y > PI ) targetXZ.y -= 2 * PI;
-	while( targetXZ.y < -PI ) targetXZ.y += 2 * PI;
-	
-	float cX = m_base->m_anchorConformX, cZ = m_base->m_anchorConformZ;
-	m_orientation.X = clamp( targetXZ.x, -cX, cX );
-	m_orientation.Z = clamp( targetXZ.y, -cZ, cZ );
-	m_orientation_unclamped.x = targetXZ.x;
-	m_orientation_unclamped.y = targetXZ.y;
-
-	//CMovementEvent evt( m_orientation_unclamped.x );
-	//DispatchEvent(&evt);
+	updateXZOrientation();
 
 	if( m_bounds && m_bounds->m_type == CBoundingObject::BOUND_OABB )
 		((CBoundingBox*)m_bounds)->setOrientation( m_ahead );

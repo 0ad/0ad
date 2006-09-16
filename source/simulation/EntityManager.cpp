@@ -295,19 +295,8 @@ void CEntityManager::conformAll()
 	{
 		if( isEntityRefd(i) )
 		{
-			CEntity* entity = m_entities[i].m_entity;
-			CVector2D targetXZ = g_Game->GetWorld()->GetTerrain()->getSlopeAngleFace(entity );
-	
-			while( targetXZ.x > PI ) targetXZ.x -= 2 * PI;
-			while( targetXZ.x < -PI ) targetXZ.x += 2 * PI;
-			while( targetXZ.y > PI ) targetXZ.y -= 2 * PI;
-			while( targetXZ.y < -PI ) targetXZ.y += 2 * PI;
-	
-			entity->m_orientation.X = clamp( targetXZ.x, -entity->m_base->m_anchorConformX, entity->m_base->m_anchorConformX );
-			entity->m_orientation.Z = clamp( targetXZ.y, -entity->m_base->m_anchorConformZ, entity->m_base->m_anchorConformZ );
-			entity->m_orientation_unclamped.x = targetXZ.x;
-			entity->m_orientation_unclamped.y = targetXZ.y;
-			entity->updateActorTransforms();
+			m_entities[i].m_entity->updateXZOrientation();
+			m_entities[i].m_entity->updateActorTransforms();
 		}
 	}
 	PROFILE_END("conform all");

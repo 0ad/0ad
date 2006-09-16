@@ -36,13 +36,13 @@ public:
 };
 
 /**
- * Passive stance: Unit never attacks, not even to fight back.
+ * Hold Fire stance: Unit never attacks, not even to fight back.
  **/
-class CPassiveStance : public CStance
+class CHoldStance : public CStance
 {
 public:
-	CPassiveStance(CEntity* ent): CStance(ent) {};
-	virtual ~CPassiveStance() {};
+	CHoldStance(CEntity* ent): CStance(ent) {};
+	virtual ~CHoldStance() {};
 	virtual void onIdle() {};
 	virtual void onDamaged(CEntity* UNUSED(source)) {};
 	virtual bool allowsMovement() { return false; };

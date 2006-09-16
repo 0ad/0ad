@@ -312,6 +312,7 @@ public:
 
 	void snapToGround();
 	void updateActorTransforms();
+	void updateXZOrientation();
 
 	// Getter and setter for the class sets
 	jsval getClassSet();

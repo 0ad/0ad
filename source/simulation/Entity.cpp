@@ -51,7 +51,7 @@ CEntity::CEntity( CEntityTemplate* base, CVector3D position, float orientation, 
 	m_player = NULL;
 
 	m_productionQueue = new CProductionQueue( this );
-	m_stance = new CPassiveStance( this );
+	m_stance = new CHoldStance( this );
 
 	for( int t = 0; t < EVENT_LAST; t++ )
 	{
@@ -109,7 +109,7 @@ CEntity::CEntity( CEntityTemplate* base, CVector3D position, float orientation, 
 	m_visible = true;
 
 	m_associatedTerritory = 0;
-
+	
 	m_player = g_Game->GetPlayer( 0 );
 }
 
@@ -287,6 +287,18 @@ void CEntity::snapToGround()
 	m_graphics_position.Y = getAnchorLevel( m_graphics_position.X, m_graphics_position.Z );
 }
 
+void CEntity::updateXZOrientation()
+{
+	// Make sure m_ahead is correct
+	m_ahead.x = sin( m_orientation.Y );
+	m_ahead.y = cos( m_orientation.Y );
+
+	CVector2D targetXZ = g_Game->GetWorld()->GetTerrain()->getSlopeAngleFace(this);
+	m_orientation.X = clamp( targetXZ.x, -m_base->m_anchorConformX, m_base->m_anchorConformX );
+	m_orientation.Z = clamp( targetXZ.y, -m_base->m_anchorConformZ, m_base->m_anchorConformZ );
+	m_orientation_unclamped.x = targetXZ.x;
+	m_orientation_unclamped.y = targetXZ.y;
+}
 
 jsval CEntity::getClassSet()
 {
@@ -816,9 +828,9 @@ void CEntity::stanceChanged()
 	{
 		m_stance = new CStandStance( this );
 	}
-	else
+	else	// m_stanceName == "hold" or undefined stance
 	{
-		m_stance = new CPassiveStance( this );
+		m_stance = new CHoldStance( this );
 	}
 }
 
@@ -870,6 +882,8 @@ void CEntity::interpolate( float relativeoffset )
 		m_orientation_previous.Z -= 2 * PI;
 	while( m_orientation.Z > m_orientation_previous.Z + PI )
 		m_orientation_previous.Z += 2 * PI;
+
+	updateXZOrientation();
 
 	m_graphics_orientation = Interpolate<CVector3D>( m_orientation_previous, m_orientation, relativeoffset );
 
