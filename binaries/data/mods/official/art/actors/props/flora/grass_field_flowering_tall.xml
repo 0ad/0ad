@@ -16,16 +16,16 @@
   </group>
 
   <group>
-    <variant name="white">
+    <variant frequency="50" name="white">
       <texture>gaia/grass_field_flowering_tall_a.dds</texture>
     </variant>
-    <variant name="red">
+    <variant frequency="10" name="red">
       <texture>gaia/grass_field_flowering_tall_red.dds</texture>
     </variant>
-    <variant name="blue">
-      <texture>gaia/grass_field_flowering_tall_blue.dds</texture>
+    <variant frequency="30" name="yellow">
+      <texture>gaia/grass_field_flowering_tall_yellow.dds</texture>
     </variant>
-    <variant name="violet">
+    <variant frequency="10" name="violet">
       <texture>gaia/grass_field_flowering_tall_violet.dds</texture>
     </variant>
   </group>
