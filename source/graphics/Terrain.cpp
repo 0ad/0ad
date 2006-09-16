@@ -217,17 +217,16 @@ CVector2D CTerrain::getSlopeAngleFace( CEntity* entity ) const
 	const float D = 0.1f;		// Amount to look forward to calculate the slope
 	float x = entity->m_position.X;
 	float z = entity->m_position.Z;
-	float y = getExactGroundLevel(x, z);
 
 	// Get forward slope and use it as the x angle
 	CVector2D d = entity->m_ahead.normalize() * D;
-	float dy = getExactGroundLevel(x+d.x, z+d.y) - y;
-	ret.x = atan2(dy, D);
+	float dy = getExactGroundLevel(x+d.x, z+d.y) - getExactGroundLevel(x-d.x, z-d.y);
+	ret.x = atan2(dy, 2*D);
 
 	// Get sideways slope and use it as the y angle
 	CVector2D d2(-d.y, d.x);
-	float dy2 = getExactGroundLevel(x+d2.x, z+d2.y) - y;
-	ret.y = atan2(dy2, D);
+	float dy2 = getExactGroundLevel(x+d2.x, z+d2.y) - getExactGroundLevel(x-d2.x, z-d2.y);
+	ret.y = atan2(dy2, 2*D);
 
 	return ret;
 }
