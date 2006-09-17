@@ -221,7 +221,6 @@ JSBool issueCommand( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rv
 	else
 		entities = *EntityCollection::RetrieveSet(cx, JSVAL_TO_OBJECT(argv[0]));
 	
-	msgEntities = entities;
 	std::map<int, CEntityList> entityStore;
 
 	bool isQueued = ToPrimitive<bool>(argv[1]);

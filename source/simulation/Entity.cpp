@@ -108,7 +108,9 @@ CEntity::CEntity( CEntityTemplate* base, CVector3D position, float orientation, 
 	m_extant = true;
 	m_visible = true;
 
-	m_associatedTerritory = 0;
+	m_rallyPoint = m_position;
+
+	m_associatedTerritory = NULL;
 	
 	m_player = g_Game->GetPlayer( 0 );
 }
@@ -432,6 +434,7 @@ void CEntity::update( size_t timestep )
 				}
 				break;
 			case CEntityOrder::ORDER_PRODUCE:
+				debug_printf("calling processProduce once\n");
 				processProduce( current );
 				m_orderQueue.pop_front();
 				break;
