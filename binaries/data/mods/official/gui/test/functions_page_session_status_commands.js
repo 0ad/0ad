@@ -463,27 +463,28 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 									case "train":
 										// TODO: Remove this item from the production queue if right-clicked.
 										issueCommand(selection, true, NMT_Produce, PRODUCTION_TRAIN, ""+(Crd[getCrd (this.name, true)].entity));
+										break;
 									case "research":
 										// TODO: Remove this item from the production queue if right-clicked.
 										issueCommand(selection, true, NMT_Produce, PRODUCTION_RESEARCH, ""+(Crd[getCrd (this.name, true)].entity.name));
-									break;
+										break;
 									case "barter":
 										// Buy a quantity of this resource if left-clicked.
 										// Sell a quantity of this resource if right-clicked.
-									break;
+										break;
 									case "structCiv":
 									case "structMil":
 										// Select building placement cursor.
 										tryConstruction( Crd[getCrd (this.name, true)].entity );
-									break;
+										break;
 									case "garrison":
 										// Remove this item from the entity's garrison inventory.
-									break;
+										break;
 									case "selection":
 										// Change the selection to this unit.
-									break;
+										break;
 									default:
-									break;
+										break;
 								}
 							}									
 						break;
