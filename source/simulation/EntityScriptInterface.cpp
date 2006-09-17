@@ -559,6 +559,8 @@ jsval CEntity::AddAura( JSContext* cx, uintN argc, jsval* argv )
 	}
 	m_auras[name] = new CAura( cx, this, name, radius, tickRate, color, handler );
 
+	initAuraData();
+
 	return JSVAL_VOID;
 }
 
@@ -571,6 +573,9 @@ jsval CEntity::RemoveAura( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 		delete m_auras[name];
 		m_auras.erase(name);
 	}
+
+	initAuraData();
+
 	return JSVAL_VOID;
 }
 

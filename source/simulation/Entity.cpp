@@ -680,7 +680,6 @@ bool CEntity::Initialize()
 		kill();
 		return false;
 	}
-	initAuraData();
 	return true;
 }
 
