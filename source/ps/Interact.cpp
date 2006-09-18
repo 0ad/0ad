@@ -1503,7 +1503,7 @@ void CBuildingPlacer::update( float timeStep )
 		// Special case: If the territory has no centre unit, that means the map contains no
 		//               Settlements; for testing purposes, let us build anywhere.
 		CTerritory* territory = g_Game->GetWorld()->GetTerritoryManager()->GetTerritory( pos.X, pos.Z );
-		if( m_template->m_territoryRestriction == L"Allied" && territory->centre 
+		if( m_template->m_territoryRestriction == L"Allied" && (bool)territory->centre 
 			&& territory->owner != g_Game->GetLocalPlayer() )
 		{
 			m_valid = false;
