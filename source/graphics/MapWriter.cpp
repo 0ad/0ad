@@ -219,6 +219,20 @@ void CMapWriter::WriteXML(const char* filename,
 					XML_Setting("Height", pWaterMan->m_WaterHeight);
 					XML_Setting("Shininess", pWaterMan->m_Shininess);
 					XML_Setting("Waviness", pWaterMan->m_Waviness);
+					XML_Setting("Murkiness", pWaterMan->m_Murkiness);
+					{
+						XML_Element("Tint");
+						XML_Attribute("r", pWaterMan->m_WaterTint.r);
+						XML_Attribute("g", pWaterMan->m_WaterTint.g);
+						XML_Attribute("b", pWaterMan->m_WaterTint.b);
+					}
+					{
+						XML_Element("ReflectionTint");
+						XML_Attribute("r", pWaterMan->m_ReflectionTint.r);
+						XML_Attribute("g", pWaterMan->m_ReflectionTint.g);
+						XML_Attribute("b", pWaterMan->m_ReflectionTint.b);
+					}
+					XML_Setting("ReflectionTintStrength", pWaterMan->m_ReflectionTintStrength);
 				}
 			}
 		}

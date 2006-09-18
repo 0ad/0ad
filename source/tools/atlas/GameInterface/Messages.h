@@ -200,8 +200,14 @@ MESSAGE(LookAt,
 struct sEnvironmentSettings
 {
 	Shareable<float> waterheight; // range 0..1 corresponds to min..max terrain height; out-of-bounds values allowed
-	Shareable<float> watershininess;
-	Shareable<float> waterwaviness;
+	Shareable<float> watershininess; // range ???
+	Shareable<float> waterwaviness; // range ???
+	Shareable<float> watermurkiness; // range ???
+	
+	Shareable<Colour> watercolour;
+	Shareable<Colour> watertint;
+	Shareable<Colour> waterreflectiontint;
+	Shareable<float> waterreflectiontintstrength; // range ???
 
 	Shareable<float> sunrotation; // range -pi..+pi
 	Shareable<float> sunelevation; // range -pi/2 .. +pi/2

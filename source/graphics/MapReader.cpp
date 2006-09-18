@@ -399,6 +399,10 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 	EL(height);
 	EL(shininess);
 	EL(waviness);
+	EL(murkiness);
+	EL(tint);
+	EL(reflectiontint);
+	EL(reflectiontintstrength);
 	AT(r); AT(g); AT(b);
 #undef AT
 #undef EL
@@ -458,27 +462,36 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 					{
 						// TODO: implement this, when WaterManager supports it
 					}
-					else if (element_name == el_colour)
-					{
-						XMBAttributeList attrs = waterelement.getAttributes();
-						m_MapReader.pWaterMan->m_WaterColor = CColor(
-							CStr(attrs.getNamedItem(at_r)).ToFloat(),
-							CStr(attrs.getNamedItem(at_g)).ToFloat(),
-							CStr(attrs.getNamedItem(at_b)).ToFloat(),
-							1.f);
+
+#define READ_COLOUR(el, out) \
+					else if (element_name == el) \
+					{ \
+						XMBAttributeList attrs = waterelement.getAttributes(); \
+						out = CColor( \
+							CStr(attrs.getNamedItem(at_r)).ToFloat(), \
+							CStr(attrs.getNamedItem(at_g)).ToFloat(), \
+							CStr(attrs.getNamedItem(at_b)).ToFloat(), \
+							1.f); \
 					}
-					else if (element_name == el_height)
-					{
-						m_MapReader.pWaterMan->m_WaterHeight = CStr(waterelement.getText()).ToFloat();
-					}
-					else if (element_name == el_shininess)
-					{
-						m_MapReader.pWaterMan->m_Shininess = CStr(waterelement.getText()).ToFloat();
-					}
-					else if (element_name == el_waviness)
-					{
-						m_MapReader.pWaterMan->m_Waviness = CStr(waterelement.getText()).ToFloat();
-					}
+
+#define READ_FLOAT(el, out) \
+					else if (element_name == el) \
+					{ \
+						out = CStr(waterelement.getText()).ToFloat(); \
+					} \
+
+					READ_COLOUR(el_colour, m_MapReader.pWaterMan->m_WaterColor)
+					READ_FLOAT(el_height, m_MapReader.pWaterMan->m_WaterHeight)
+					READ_FLOAT(el_shininess, m_MapReader.pWaterMan->m_Shininess)
+					READ_FLOAT(el_waviness, m_MapReader.pWaterMan->m_Waviness)
+					READ_FLOAT(el_murkiness, m_MapReader.pWaterMan->m_Murkiness)
+					READ_COLOUR(el_tint, m_MapReader.pWaterMan->m_WaterTint)
+					READ_COLOUR(el_reflectiontint, m_MapReader.pWaterMan->m_ReflectionTint)
+					READ_FLOAT(el_reflectiontintstrength, m_MapReader.pWaterMan->m_ReflectionTintStrength)
+
+#undef READ_FLOAT
+#undef READ_COLOUR
+
 					else
 						debug_warn("Invalid map XML data");
 				}

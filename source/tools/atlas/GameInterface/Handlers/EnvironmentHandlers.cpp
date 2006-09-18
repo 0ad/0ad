@@ -22,6 +22,14 @@ sEnvironmentSettings GetSettings()
 	s.waterheight = wm->m_WaterHeight / (65536.f * HEIGHT_SCALE);
 	s.watershininess = wm->m_Shininess;
 	s.waterwaviness = wm->m_Waviness;
+	s.watermurkiness = wm->m_Murkiness;
+	s.waterreflectiontintstrength = wm->m_ReflectionTintStrength;
+
+#define COLOUR(A, B) A = Colour(B.r*255, B.g*255, B.b*255)
+	COLOUR(s.watercolour, wm->m_WaterColor);
+	COLOUR(s.watertint, wm->m_WaterTint);
+	COLOUR(s.waterreflectiontint, wm->m_ReflectionTint);
+#undef COLOUR
 
 	float sunrotation = g_LightEnv.GetRotation();
 	if (sunrotation > PI)
@@ -46,6 +54,14 @@ void SetSettings(const sEnvironmentSettings& s)
 	wm->m_WaterHeight = s.waterheight * (65536.f * HEIGHT_SCALE);
 	wm->m_Shininess = s.watershininess;
 	wm->m_Waviness = s.waterwaviness;
+	wm->m_Murkiness = s.watermurkiness;
+	wm->m_ReflectionTintStrength = s.waterreflectiontintstrength;
+
+#define COLOUR(A, B) B = CColor(A->r/255.f, A->g/255.f, A->b/255.f, 1.f)
+	COLOUR(s.watercolour, wm->m_WaterColor);
+	COLOUR(s.watertint, wm->m_WaterTint);
+	COLOUR(s.waterreflectiontint, wm->m_ReflectionTint);
+#undef COLOUR
 
 	g_LightEnv.SetRotation(s.sunrotation);
 	g_LightEnv.SetElevation(s.sunelevation);
