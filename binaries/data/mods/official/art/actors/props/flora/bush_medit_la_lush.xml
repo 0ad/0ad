@@ -4,33 +4,32 @@
   <castshadow/>
 
   <group>
-    <variant frequency="100" name="Bush Medit Large Lush">
+    <variant frequency="1" name="mesh-a">
       <mesh>gaia/bush_la_1.pmd</mesh>
-      <texture>gaia/bush_medit_a.dds</texture>
     </variant>
-    <variant frequency="100" name="B">
+    <variant frequency="1" name="mesh-b">
       <mesh>gaia/bush_la_2.pmd</mesh>
-      <texture>gaia/bush_medit_a.dds</texture>
     </variant>
-    <variant frequency="100" name="C">
+    <variant frequency="1" name="mesh-c">
       <mesh>gaia/bush_la_3.pmd</mesh>
-      <texture>gaia/bush_medit_a.dds</texture>
     </variant>
-    <variant frequency="100" name="D">
+    <variant frequency="1" name="mesh-d">
       <mesh>gaia/bush_la_4.pmd</mesh>
-      <texture>gaia/bush_medit_a.dds</texture>
     </variant>
-    <variant frequency="100" name="E">
+    <variant frequency="1" name="mesh-e">
       <mesh>gaia/bush_la_5.pmd</mesh>
-      <texture>gaia/bush_medit_a.dds</texture>
     </variant>
-    <variant frequency="100" name="F">
+    <variant frequency="1" name="mesh-f">
       <mesh>gaia/bush_la_6.pmd</mesh>
-      <texture>gaia/bush_medit_a.dds</texture>
     </variant>
-    <variant frequency="100" name="G">
+    <variant frequency="1" name="mesh-g">
       <mesh>gaia/bush_la_7.pmd</mesh>
-      <texture>gaia/bush_tempe_a.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="texture">
+      <texture>gaia/bush_medit_a.dds</texture>
     </variant>
   </group>
 

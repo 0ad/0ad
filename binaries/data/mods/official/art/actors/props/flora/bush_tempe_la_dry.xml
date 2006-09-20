@@ -4,33 +4,32 @@
   <castshadow/>
 
   <group>
-    <variant frequency="100" name="Bush Tempe Large Dry">
+    <variant frequency="2" name="A">
       <mesh>gaia/bush_la_1.pmd</mesh>
-      <texture>gaia/bush_tempe_c.dds</texture>
     </variant>
-    <variant frequency="100" name="B">
+    <variant frequency="1" name="B">
       <mesh>gaia/bush_la_2.pmd</mesh>
-      <texture>gaia/bush_tempe_c.dds</texture>
     </variant>
-    <variant frequency="100" name="C">
+    <variant frequency="2" name="C">
       <mesh>gaia/bush_la_3.pmd</mesh>
-      <texture>gaia/bush_tempe_c.dds</texture>
     </variant>
-    <variant frequency="100" name="D">
+    <variant frequency="1" name="D">
       <mesh>gaia/bush_la_4.pmd</mesh>
-      <texture>gaia/bush_tempe_c.dds</texture>
     </variant>
-    <variant frequency="100" name="E">
+    <variant frequency="2" name="E">
       <mesh>gaia/bush_la_5.pmd</mesh>
-      <texture>gaia/bush_tempe_c.dds</texture>
     </variant>
-    <variant frequency="100" name="F">
+    <variant frequency="1" name="F">
       <mesh>gaia/bush_la_6.pmd</mesh>
-      <texture>gaia/bush_tempe_c.dds</texture>
     </variant>
-    <variant frequency="100" name="G">
+    <variant frequency="2" name="G">
       <mesh>gaia/bush_la_7.pmd</mesh>
-      <texture>gaia/bush_tempe_a.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant name="texture">
+      <texture>gaia/bush_tempe_c.dds</texture>
     </variant>
   </group>
 
