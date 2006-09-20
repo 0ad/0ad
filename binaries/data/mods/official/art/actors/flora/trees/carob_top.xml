@@ -4,34 +4,34 @@
   <castshadow/>
 
   <group>
-    <variant name="a">
+    <variant frequency="1" name="canopy-mesh-a">
       <mesh>gaia/tree_carob_top_a.pmd</mesh>
     </variant>
-    <variant name="b">
+    <variant frequency="1" name="canopy-mesh-b">
       <mesh>gaia/tree_carob_top_b.pmd</mesh>
     </variant>
-    <variant name="c">
+    <variant frequency="1" name="canopy-mesh-c">
       <mesh>gaia/tree_carob_top_c.pmd</mesh>
     </variant>
-    <variant name="d">
+    <variant frequency="1" name="canopy-mesh-d">
       <mesh>gaia/tree_carob_top_d.pmd</mesh>
     </variant>
-    <variant name="e">
+    <variant frequency="1" name="canopy-mesh-e">
       <mesh>gaia/tree_carob_top_e.pmd</mesh>
     </variant>
-    <variant name="f">
+    <variant frequency="1" name="canopy-mesh-f">
       <mesh>gaia/tree_carob_top_f.pmd</mesh>
     </variant>
   </group>
 
   <group>
-    <variant name="a">
+    <variant frequency="1" name="carob-leaves-a">
       <texture>gaia/tree_carob_a.dds</texture>
     </variant>
-    <variant name="b">
+    <variant frequency="1" name="carob-leaves-b">
       <texture>gaia/tree_carob_b.dds</texture>
     </variant>
-    <variant name="c">
+    <variant frequency="1" name="carob-leaves-c">
       <texture>gaia/tree_carob_c.dds</texture>
     </variant>
   </group>

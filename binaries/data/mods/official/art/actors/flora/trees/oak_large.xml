@@ -4,29 +4,28 @@
   <castshadow/>
 
   <group>
-    <variant name="a">
+    <variant frequency="1" name="trunk-mesh-a">
       <mesh>gaia/tree_oak_large_a.pmd</mesh>
-      <props>
-        <prop actor="flora/trees/oak_large_top.xml" attachpoint="tree"/>
-      </props>
     </variant>
-    <variant name="b">
+    <variant frequency="1" name="trunk-mesh-b">
       <mesh>gaia/tree_oak_large_b.pmd</mesh>
-      <props>
-        <prop actor="flora/trees/oak_large_top.xml" attachpoint="tree"/>
-      </props>
     </variant>
-    <variant name="c">
+    <variant frequency="1" name="trunk-mesh-c">
       <mesh>gaia/tree_oak_large_c.pmd</mesh>
-      <props>
-        <prop actor="flora/trees/oak_large_top.xml" attachpoint="tree"/>
-      </props>
     </variant>
   </group>
 
   <group>
-    <variant>
+    <variant name="trunk-texture">
       <texture>gaia/trunk_deciduous_b.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant name="prop-treetop">
+      <props>
+        <prop actor="flora/trees/oak_large_top.xml" attachpoint="tree"/>
+      </props>
     </variant>
   </group>
 

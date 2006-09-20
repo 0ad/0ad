@@ -4,25 +4,25 @@
   <castshadow/>
 
   <group>
-    <variant name="a">
+    <variant frequency="1" name="canopy-mesh-a">
       <mesh>gaia/tree_oak_large_top_a.pmd</mesh>
     </variant>
-    <variant name="b">
+    <variant frequency="1" name="canopy-mesh-b">
       <mesh>gaia/tree_oak_large_top_b.pmd</mesh>
     </variant>
-    <variant name="c">
+    <variant frequency="1" name="canopy-mesh-c">
       <mesh>gaia/tree_oak_large_top_c.pmd</mesh>
     </variant>
   </group>
 
   <group>
-    <variant name="a">
+    <variant frequency="1" name="leaf-texture-a">
       <texture>gaia/tree_oak_a.dds</texture>
     </variant>
-    <variant name="b">
+    <variant frequency="1" name="leaf-texture-b">
       <texture>gaia/tree_oak_b.dds</texture>
     </variant>
-    <variant name="c">
+    <variant frequency="1" name="leaf-texture-c">
       <texture>gaia/tree_oak_c.dds</texture>
     </variant>
   </group>
