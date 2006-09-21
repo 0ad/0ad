@@ -39,7 +39,7 @@
 // default implementations
 //-----------------------------------------------------------------------------
 
-static void override_gl_upload_caps()
+static void def_override_gl_upload_caps()
 {
 	if(gfx_card[0] == '\0')
 		debug_warn("gfx_detect must be called before ogl_tex_upload");
@@ -52,7 +52,7 @@ static void override_gl_upload_caps()
 }
 
 
-static const char* get_log_dir()
+static const char* def_get_log_dir()
 {
 	static char N_log_dir[PATH_MAX];
 	ONCE(\
@@ -92,7 +92,7 @@ static void cat_atow(FILE* out, const char* in_filename)
 	fclose(in);
 }
 
-static void bundle_logs(FILE* f)
+static void def_bundle_logs(FILE* f)
 {
 	// for user convenience, bundle all logs into this file:
 	char N_path[PATH_MAX];
@@ -109,25 +109,25 @@ static void bundle_logs(FILE* f)
 }
 
 
-static const wchar_t* translate(const wchar_t* text)
+static const wchar_t* def_translate(const wchar_t* text)
 {
 	return text;
 }
 
 
-static void translate_free(const wchar_t* UNUSED(text))
+static void def_translate_free(const wchar_t* UNUSED(text))
 {
 	// no-op - translate() doesn't own the pointer.
 }
 
 
-static void log(const wchar_t* text)
+static void def_log(const wchar_t* text)
 {
 	wprintf(text);
 }
 
 
-static ErrorReaction display_error(const wchar_t* UNUSED(text), uint UNUSED(flags))
+static ErrorReaction def_display_error(const wchar_t* UNUSED(text), uint UNUSED(flags))
 {
 	return ER_NOT_IMPLEMENTED;
 }
@@ -135,7 +135,7 @@ static ErrorReaction display_error(const wchar_t* UNUSED(text), uint UNUSED(flag
 
 //-----------------------------------------------------------------------------
 
-// contains the current set of hooks. starts with the stub values and
+// contains the current set of hooks. starts with the default values and
 // may be changed via app_hooks_update.
 //
 // rationale: we don't ever need to switch "hook sets", so one global struct
@@ -143,30 +143,69 @@ static ErrorReaction display_error(const wchar_t* UNUSED(text), uint UNUSED(flag
 // if anything was registered yet.
 static AppHooks ah =
 {
-#define FUNC(ret, name, params, param_names, call_prefix) name,
-#include "app_hooks.h"
-#undef FUNC
-
-	// int dummy; used to terminate list, since last entry ended with ','.
-	0
+	def_override_gl_upload_caps,
+	def_get_log_dir,
+	def_bundle_logs,
+	def_translate,
+	def_translate_free,
+	def_log,
+	def_display_error
 };
 
 // register the specified hook function pointers. any of them that
 // are non-zero override the previous function pointer value
 // (these default to the stub hooks which are functional but basic).
-void app_hooks_update(AppHooks* ah_)
+void app_hooks_update(AppHooks* new_ah)
 {
-	debug_assert(ah_);
+	debug_assert(new_ah);
 
-	// override members in <ah> if they are non-zero in <ah_>
-	// (otherwise, we stick with the defaults set above)
-#define FUNC(ret, name, params, param_names, call_prefix) if(ah_->name) ah.name = ah_->name;
-#include "app_hooks.h"
-#undef FUNC
+#define OVERRIDE_IF_NONZERO(HOOKNAME) if(new_ah->HOOKNAME) ah.HOOKNAME = new_ah->HOOKNAME;
+	OVERRIDE_IF_NONZERO(override_gl_upload_caps)
+	OVERRIDE_IF_NONZERO(get_log_dir)
+	OVERRIDE_IF_NONZERO(bundle_logs)
+	OVERRIDE_IF_NONZERO(translate)
+	OVERRIDE_IF_NONZERO(translate_free)
+	OVERRIDE_IF_NONZERO(log)
+	OVERRIDE_IF_NONZERO(display_error)
 }
 
-// trampolines used by lib code; they call the hooks or fall back to the
-// default implementation if not set.
-#define FUNC(ret, name, params, param_names, call_prefix) ret ah_##name params { call_prefix ah.name param_names; }
-#include "app_hooks.h"
-#undef FUNC
+
+//-----------------------------------------------------------------------------
+// trampoline implementations
+// (boilerplate code; hides details of how to call the app hook)
+//-----------------------------------------------------------------------------
+
+void ah_override_gl_upload_caps(void)
+{
+	ah.override_gl_upload_caps();
+}
+
+const char* ah_get_log_dir(void)
+{
+	return ah.get_log_dir();
+}
+
+void ah_bundle_logs(FILE* f)
+{
+	ah.bundle_logs(f);
+}
+
+const wchar_t* ah_translate(const wchar_t* text)
+{
+	return ah.translate(text);
+}
+
+void ah_translate_free(const wchar_t* text)
+{
+	ah.translate_free(text);
+}
+
+void ah_log(const wchar_t* text)
+{
+	ah.log(text);
+}
+
+ErrorReaction ah_display_error(const wchar_t* text, uint flags)
+{
+	return ah.display_error(text, flags);
+}

@@ -52,30 +52,43 @@ you need to implement a new version of some hooks, fill an
 AppHooks struct with pointers to those functions (zero the rest),
 and call app_hooks_update.
 
+
+Adding New Functions
+--------------------
+
+Several steps are needed (see below for rationale):
+0) HOOKNAME is the name of the desired procedure (e.g. "bundle_logs")
+1) add a 'trampoline' (user visible function) declaration to this header
+   (typically named ah_HOOKNAME)
+2) add the corresponding implementation, i.e. call to ah.HOOKNAME
+3) add a default implementation of the new functionality
+   (typically named def_HOOKNAME)
+4) add HOOKNAME member to struct AppHooks declaration
+5) set HOOKNAME member to def_HOOKNAME in initialization of
+   'struct AppHooks ah'
+6) add HOOKNAME to list in app_hooks_update code
+
+
+Rationale
+---------
+
+While X-Macros would reduce the amount of work needed when adding new
+functions, they confuse static code analysis and VisualAssist X
+(the function definitions are not visible to them).
+We prefer convenience during usage instead of in the rare cases
+where new app hook functions are defined.
+
+note: an X-Macro would define the app hook as such:
+extern const wchar_t*, translate, (const wchar_t* text), (text), return)
+.. and in its various invocations perform the above steps automatically.
+
 */
 
-// X macros that define the individual hooks. All function pointers,
-// struct contents, trampoline functions etc. are automatically
-// generated from them to ease maintenance.
-// When adding a new hook, you need only update this and write a
-// default (stub) implementation.
-//
-// params:
-// - ret: return value type
-// - name: function name identifier
-// - params: parameter declarations, used when declaring the function;
-//   enclosed in parentheses.
-// - param_names: names of parameters, used when calling the function;
-//   enclosed in parentheses.
-// - call_prefix: precedes the call to this function.
-//   must be (without quotes) '(void)' if ret is void, else 'return'.
-//   this is to allow generating trampoline functions with or without
-//   a return value.
-#ifdef FUNC
+#ifndef APP_HOOKS_H__
+#define APP_HOOKS_H__
 
-// for convenience; less confusing than FUNC(void, [..], (void))
-#define VOID_FUNC(name, params, param_names)\
-	FUNC(void, name, params, param_names, (void))
+// trampolines for user code to call the hooks. they encapsulate
+// the details of how exactly to do this.
 
 /**
  * override default decision on using OpenGL extensions relating to
@@ -88,7 +101,7 @@ and call app_hooks_update.
  * the default implementation works but is hardwired in code and therefore
  * not expandable.
  **/
-VOID_FUNC(override_gl_upload_caps, (void), ())
+extern void ah_override_gl_upload_caps(void);
 
 /**
  * return path to directory into which crash dumps should be written.
@@ -101,7 +114,7 @@ VOID_FUNC(override_gl_upload_caps, (void), ())
  *
  * @return full native path; must end with directory separator (e.g. '/').
  **/
-FUNC(const char*, get_log_dir, (void), (), return)
+extern const char* ah_get_log_dir(void);
 
 /**
  * gather all app-related logs/information and write it to file.
@@ -113,7 +126,7 @@ FUNC(const char*, get_log_dir, (void), (), return)
  *
  * @param f file into which to write.
  **/
-VOID_FUNC(bundle_logs, (FILE* f), (f))
+extern void ah_bundle_logs(FILE* f);
 
 /**
  * translate text to the current locale.
@@ -123,7 +136,7 @@ VOID_FUNC(bundle_logs, (FILE* f), (f))
  *
  * the default implementation just returns the pointer unchanged.
  **/
-FUNC(const wchar_t*, translate, (const wchar_t* text), (text), return)
+extern const wchar_t* ah_translate(const wchar_t* text);
 
 /**
  * free text that was returned by translate.
@@ -132,7 +145,7 @@ FUNC(const wchar_t*, translate, (const wchar_t* text), (text), return)
  *
  * the default implementation does nothing.
  **/
-VOID_FUNC(translate_free, (const wchar_t* text), (text))
+extern void ah_translate_free(const wchar_t* text);
 
 /**
  * write text to the app's log.
@@ -141,7 +154,7 @@ VOID_FUNC(translate_free, (const wchar_t* text), (text))
  *
  * the default implementation uses stdout.
  **/
-VOID_FUNC(log, (const wchar_t* text), (text))
+extern void ah_log(const wchar_t* text);
 
 /**
  * display an error dialog, thus overriding sys_display_error.
@@ -153,30 +166,22 @@ VOID_FUNC(log, (const wchar_t* text), (text))
  * the default implementation just returns ER_NOT_IMPLEMENTED, which
  * causes the normal sys_display_error to be used.
  **/
-FUNC(ErrorReaction, display_error, (const wchar_t* text, uint flags), (text, flags), return)
+extern ErrorReaction ah_display_error(const wchar_t* text, uint flags);
 
-#undef VOID_FUNC
-
-#endif	// #ifdef FUNC
-
-
-//-----------------------------------------------------------------------------
-// normal header part
-
-#ifndef APP_HOOKS_H__
-#define APP_HOOKS_H__
 
 /**
- * holds a function pointer for each hook. passed to app_hooks_update.
+ * holds a function pointer (allowed to be NULL) for each hook.
+ * passed to app_hooks_update.
  **/
 struct AppHooks
 {
-#define FUNC(ret, name, params, param_names, call_prefix) ret (*name) params;
-#include "app_hooks.h"
-#undef FUNC
-
-	// used to safely terminate initializer list
-	int dummy;
+	void (*override_gl_upload_caps)(void);
+	const char* (*get_log_dir)(void);
+	void (*bundle_logs)(FILE* f);
+	const wchar_t* (*translate)(const wchar_t* text);
+	void (*translate_free)(const wchar_t* text);
+	void (*log)(const wchar_t* text);
+	ErrorReaction (*display_error)(const wchar_t* text, uint flags);
 };
 
 /**
@@ -187,12 +192,5 @@ struct AppHooks
  * (these default to the stub hooks which are functional but basic).
  **/
 extern void app_hooks_update(AppHooks* ah);
-
-
-// trampolines used by lib code to call the hooks. they encapsulate
-// the details of how exactly to do this.
-#define FUNC(ret, name, params, param_names, call_prefix) extern ret ah_##name params;
-#include "app_hooks.h"
-#undef FUNC
 
 #endif	// #ifndef APP_HOOKS_H__
