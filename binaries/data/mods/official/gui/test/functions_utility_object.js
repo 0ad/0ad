@@ -38,8 +38,8 @@ function guiToggle (objectName)
 	if (guiObject == "" || guiObject == null || guiObject == undefined || guiObject == "undefined")
 		console.write ("guiToggle(): GUI Object not found: " + objectName);
 
-        // Toggle it
-        guiObject.hidden = !guiObject.hidden;
+	// Toggle it
+	guiObject.hidden = !guiObject.hidden;
 }
 
 // ====================================================================

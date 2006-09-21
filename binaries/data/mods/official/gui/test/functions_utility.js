@@ -1,6 +1,6 @@
 /*
 	DESCRIPTION	: Generic utility functions.
-	NOTES		: 
+	NOTES	: 
 */
 
 // ====================================================================
@@ -19,50 +19,50 @@ function getRandom(randomMin, randomMax)
 
 function parseDelimiterString (parseString, delimiter) 
 { 
-        // Seeks through the delimiters in a string and populates the elements of an array with fields found between them. 
+	// Seeks through the delimiters in a string and populates the elements of an array with fields found between them. 
 
-        // Declare local variables. 
-        var parseLoop = 0; 
-        var parseElement = 0; 
-        var seekDelimiter = 0; 
-        var parseArray = new Array(); 
+	// Declare local variables. 
+	var parseLoop = 0; 
+	var parseElement = 0; 
+	var seekDelimiter = 0; 
+	var parseArray = new Array(); 
 
-        // While we're still within the bounds of the string, 
-        while (parseLoop <= parseString.length) 
-        { 
-                // Seek until we find a delimiter. 
-                seekDelimiter = parseLoop; 
-                while (parseString[seekDelimiter] != delimiter && seekDelimiter <= parseString.length) 
-                        seekDelimiter++; 
+	// While we're still within the bounds of the string, 
+	while (parseLoop <= parseString.length) 
+	{ 
+		// Seek until we find a delimiter. 
+		seekDelimiter = parseLoop; 
+		while (parseString[seekDelimiter] != delimiter && seekDelimiter <= parseString.length) 
+			seekDelimiter++; 
 
-                // If we found a delimiter within the string, 
-                if (seekDelimiter != parseString.length) 
-                { 
-                        // Store sub-string between start point and delimiter in array element. 
-                        parseArray[parseElement] = parseString.substring(parseLoop, seekDelimiter); 
-                        parseElement++; 
-                } 
+		// If we found a delimiter within the string, 
+		if (seekDelimiter != parseString.length) 
+		{ 
+			// Store sub-string between start point and delimiter in array element. 
+			parseArray[parseElement] = parseString.substring(parseLoop, seekDelimiter); 
+			parseElement++; 
+		} 
 
-                // Move to after delimiter position for next seek. 
-                parseLoop = seekDelimiter+1; 
-        } 
+		// Move to after delimiter position for next seek. 
+		parseLoop = seekDelimiter+1; 
+	} 
 
-        // Store length of array. 
-        parseArray.length = parseElement; 
+	// Store length of array. 
+	parseArray.length = parseElement; 
 
-        return parseArray; 
+	return parseArray; 
 }
 
 // ====================================================================
 
 function addArrayElement(Array) 
 { 
-        // Adds an element to an array, updates its given index, and returns the index of the element. 
+	// Adds an element to an array, updates its given index, and returns the index of the element. 
 
-        Array[Array.last] = new Object(); 
-        Array.last++; 
+	Array[Array.last] = new Object(); 
+	Array.last++; 
 
-        return (Array.last - 1); 
+	return (Array.last - 1); 
 } 
 
 // ====================================================================

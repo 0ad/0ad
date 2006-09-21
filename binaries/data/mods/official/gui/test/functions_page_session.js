@@ -35,13 +35,13 @@ function initSession()
 
 function initCellReference()
 {
-		cellGroup = new Array();
+	cellGroup = new Array();
 
-		// Define categories of cell groups by checking their reference files in the same locations as the icon sheets.
-		addCellGroupCategory ("art/textures/ui/session/icons/sheets/");
-		// (Note that we don't use this and we probably shouldn't, since the entities state which icon cell they should use; it makes it easier to remember which icon is used
-		// for which unit if we have this reference sheet, though.)
-		addCellGroupCategory ("art/textures/ui/session/portraits/sheets/");		
+	// Define categories of cell groups by checking their reference files in the same locations as the icon sheets.
+	addCellGroupCategory ("art/textures/ui/session/icons/sheets/");
+	// (Note that we don't use this and we probably shouldn't, since the entities state which icon cell they should use; it makes it easier to remember which icon is used
+	// for which unit if we have this reference sheet, though.)
+	addCellGroupCategory ("art/textures/ui/session/portraits/sheets/");		
 }
 
 // ====================================================================
@@ -120,18 +120,18 @@ function setPortrait(objectName, portraitString, portraitSuffix, portraitCell)
 		return 1;
 	}
 
-        // Set the three portraits.
+	// Set the three portraits.
 	if (portraitSuffix && portraitSuffix != "")
-	        setPortraitGUIObject.sprite = "sn" + portraitString + portraitSuffix;
+		setPortraitGUIObject.sprite = "sn" + portraitString + portraitSuffix;
 	else
-	        setPortraitGUIObject.sprite = "sn" + portraitString;
+		setPortraitGUIObject.sprite = "sn" + portraitString;
 
-        setPortraitGUIObject.sprite_over = setPortraitGUIObject.sprite + "Over";
-        setPortraitGUIObject.sprite_disabled = setPortraitGUIObject.sprite + "Disabled";
+	setPortraitGUIObject.sprite_over = setPortraitGUIObject.sprite + "Over";
+	setPortraitGUIObject.sprite_disabled = setPortraitGUIObject.sprite + "Disabled";
 
-        // If the source texture is a multi-frame image (icon sheet), specify correct cell.
-        if (portraitCell && portraitCell != "")
-                setPortraitGUIObject.cell_id = portraitCell;
+	// If the source texture is a multi-frame image (icon sheet), specify correct cell.
+	if (portraitCell && portraitCell != "")
+		setPortraitGUIObject.cell_id = portraitCell;
 	else
 		setPortraitGUIObject.cell_id = "";
 
@@ -146,25 +146,25 @@ function flipGUI (NewGUIType)
 
 	switch (NewGUIType)
 	{
-		// Set which GUI to use.
-		case rb:
-		case lb:
-		case lt:
-		case rt:
-			GUIType = NewGUIType;
+	// Set which GUI to use.
+	case rb:
+	case lb:
+	case lt:
+	case rt:
+		GUIType = NewGUIType;
 		break;
-		default:
-			// If no type specified, toggle.
-			if (GUIType == rb)
-				GUIType = lb;
-			else
-			if (GUIType == lb)
-				GUIType = lt;
-			else
-			if (GUIType == lt)
-				GUIType = rt;
-			else
-				GUIType = rb;
+	default:
+		// If no type specified, toggle.
+		if (GUIType == rb)
+			GUIType = lb;
+		else
+		if (GUIType == lb)
+			GUIType = lt;
+		else
+		if (GUIType == lt)
+			GUIType = rt;
+		else
+			GUIType = rb;
 		break;
 	}
 	// Seek through all sizes created.

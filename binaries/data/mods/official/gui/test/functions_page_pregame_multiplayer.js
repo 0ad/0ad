@@ -15,7 +15,7 @@ function initMPHost (parentWindow, gameName, welcomeMessage, profileName)
 	server.serverName = gameName;
 	// Host Name
 	server.serverPlayerName = profileName;
-                              	
+
 	// start listening
 	var success = server.open();
 	if (!success)
@@ -56,7 +56,7 @@ console.write (event.id);
 
 		messageBox(400, 200, "Client " + event.name + "(" + event.id + ") disconnected from " + event.session + ".", "Client Disconnected", 2, new Array(), new Array());
 	}	
-        
+
 	server.onChat = function (event) 
 	{
 		messageBox(400, 200, "(" + event.sender + ")" + event.message, "Host Chat Message", 2, new Array(), new Array());
