@@ -356,17 +356,17 @@ LibError sys_clipboard_set(const wchar_t* text)
 	// MSDN: passing 0 requests the current task be granted ownership;
 	// there's no need to pass our window handle.
 	if(!OpenClipboard(new_owner))
-		WARN_RETURN(ERR_FAIL);
+		WARN_RETURN(ERR::FAIL);
 	EmptyClipboard();
 
-	LibError err = ERR_FAIL;
+	LibError err  = ERR::FAIL;
 
 	{
 	const size_t len = wcslen(text);
 	HGLOBAL hMem = GlobalAlloc(GMEM_MOVEABLE, (len+1) * sizeof(wchar_t));
 	if(!hMem)
 	{
-		err = ERR_NO_MEM;
+		err  = ERR::NO_MEM;
 		goto fail;
 	}
 
@@ -378,7 +378,7 @@ LibError sys_clipboard_set(const wchar_t* text)
 		GlobalUnlock(hMem);
 
 		if(SetClipboardData(CF_UNICODETEXT, hMem) != 0)
-			err = INFO_OK;
+			err = INFO::OK;
 	}
 	}
 
@@ -432,7 +432,7 @@ wchar_t* sys_clipboard_get()
 LibError sys_clipboard_free(wchar_t* copy)
 {
 	free(copy);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -468,7 +468,7 @@ static HCURSOR HCURSOR_from_ptr(void* p)
 //   it is no longer needed and can be freed after this call returns.
 // hotspot (hx,hy) is the offset from its upper-left corner to the
 //   position where mouse clicks are registered.
-// cursor is only valid when INFO_OK is returned; in that case, it must be
+// cursor is only valid when INFO::OK is returned; in that case, it must be
 //   sys_cursor_free-ed when no longer needed.
 LibError sys_cursor_create(uint w, uint h, void* bgra_img,
 	uint hx, uint hy, void** cursor)
@@ -498,10 +498,10 @@ LibError sys_cursor_create(uint w, uint h, void* bgra_img,
 	DeleteObject(hbmColour);
 
 	if(!hIcon)	// not INVALID_HANDLE_VALUE
-		WARN_RETURN(ERR_FAIL);
+		WARN_RETURN(ERR::FAIL);
 
 	*cursor = ptr_from_HICON(hIcon);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 LibError sys_cursor_create_empty(void **cursor)
@@ -521,7 +521,7 @@ LibError sys_cursor_set(void* cursor)
 	(void)SetCursor(HCURSOR_from_ptr(cursor));
 	// return value (previous cursor) is useless.
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -531,7 +531,7 @@ LibError sys_cursor_free(void* cursor)
 {
 	// bail now to prevent potential confusion below; there's nothing to do.
 	if(!cursor)
-		return INFO_OK;
+		return INFO::OK;
 
 	// if the cursor being freed is active, restore the default arrow
 	// (just for safety).
@@ -552,7 +552,7 @@ LibError sys_error_description_r(int user_err, char* buf, size_t max_chars)
 	DWORD err = (DWORD)user_err;
 	// not in our range (Win32 error numbers are positive)
 	if(user_err < 0)
-		return ERR_FAIL;	// NOWARN
+		return ERR::FAIL;	// NOWARN
 	// user doesn't know error code; get current error state
 	if(!user_err)
 		err = GetLastError();
@@ -563,9 +563,9 @@ LibError sys_error_description_r(int user_err, char* buf, size_t max_chars)
 	DWORD chars_output = FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, source, err,
 		lang_id, buf, (DWORD)max_chars, args);
 	if(!chars_output)
-		WARN_RETURN(ERR_FAIL);
+		WARN_RETURN(ERR::FAIL);
 	debug_assert(chars_output < max_chars);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -597,7 +597,7 @@ wchar_t* sys_get_module_filename(void* addr, wchar_t* path)
 inline LibError sys_get_executable_name(char* n_path, size_t buf_size)
 {
 	DWORD nbytes = GetModuleFileName(0, n_path, (DWORD)buf_size);
-	return nbytes? INFO_OK : ERR_FAIL;
+	return nbytes? INFO::OK : ERR::FAIL;
 }
 
 

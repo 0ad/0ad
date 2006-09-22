@@ -194,7 +194,7 @@ uint rand(uint min_inclusive, uint max_exclusive)
 	// huge interval or min >= max
 	if(range == 0 || range > XRAND_MAX)
 	{
-		WARN_ERR(ERR_INVALID_PARAM);
+		WARN_ERR(ERR::INVALID_PARAM);
 		return 0;
 	}
 

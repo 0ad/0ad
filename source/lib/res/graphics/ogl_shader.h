@@ -16,6 +16,16 @@
 #include "lib/types.h"
 #include "lib/ogl.h"
 
+
+namespace ERR
+{
+	const LibError SHDR_CREATE     = -120200;
+	const LibError SHDR_COMPILE    = -120201;
+	const LibError SHDR_NO_SHADER  = -120202;
+	const LibError SHDR_LINK       = -120203;
+	const LibError SHDR_NO_PROGRAM = -120204;
+}
+
 /*
 Encapsulate shader objects into handles, which transparently enables sharing
 of shader source files between programs as well as reloading shaders at

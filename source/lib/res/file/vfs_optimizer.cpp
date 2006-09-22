@@ -170,7 +170,7 @@ public:
 			// note: use this instead of resize because FileNode doesn't have
 			// a default ctor. NB: this is how resize is implemented anyway.
 			file_nodes.erase(file_nodes.begin() + MAX_IDS, file_nodes.end());
-			WARN_ERR(ERR_LIMIT);
+			WARN_ERR(ERR::LIMIT);
 		}
 	}
 };
@@ -294,7 +294,7 @@ class ConnectionBuilder
 					// note: this happens when trace contains by now
 					// deleted or unarchivable files.
 					TFile* tf;
-					if(tree_lookup(te->atom_fn, &tf) == INFO_OK)
+					if(tree_lookup(te->atom_fn, &tf) == INFO::OK)
 						if(is_archivable(tf))
 							add_connection(connections, te->atom_fn);
 				}
@@ -320,7 +320,7 @@ public:
 
 		add_connections_from_runs(t, connections);
 
-		return INFO_OK;
+		return INFO::OK;
 	}
 };
 
@@ -578,13 +578,13 @@ static LibError vfs_opt_init(const char* trace_filename, const char* archive_fn_
 
 	// bail if we shouldn't rebuild the archive.
 	if(!force_build && !should_rebuild_main_archive(trace_filename, existing_archives))
-		return INFO_SKIPPED;
+		return INFO::SKIPPED;
 
 	// build 'graph' (nodes only) of all files that must be added.
 	FileNodes file_nodes;
 	FileGatherer gatherer(file_nodes);
 	if(file_nodes.empty())
-		WARN_RETURN(ERR_DIR_END);
+		WARN_RETURN(ERR::DIR_END);
 
 	// scan nodes and add them to filename->FileId mapping.
 	id_mgr.init(&file_nodes);
@@ -602,14 +602,14 @@ static LibError vfs_opt_init(const char* trace_filename, const char* archive_fn_
 	Filenames V_fns = &fn_vector[0];
 
 	RETURN_ERR(archive_build_init(archive_fn, V_fns, &ab));
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
 static int vfs_opt_continue()
 {
 	int ret = archive_build_continue(&ab);
-	if(ret == INFO_OK)
+	if(ret == INFO::OK)
 	{
 		// do NOT delete source files! some apps might want to
 		// keep them (e.g. for source control), or name them differently.
@@ -659,11 +659,11 @@ static bool should_build_mini_archive(const char* UNUSED(mini_archive_fn_fmt))
 static LibError build_mini_archive(const char* mini_archive_fn_fmt)
 {
 	if(!should_build_mini_archive(mini_archive_fn_fmt))
-		return INFO_SKIPPED;
+		return INFO::SKIPPED;
 
 	Filenames V_fns = (Filenames)malloc((loose_files.size()+1) * sizeof(const char*));
 	if(!V_fns)
-		WARN_RETURN(ERR_NO_MEM);
+		WARN_RETURN(ERR::NO_MEM);
 	std::copy(loose_files.begin(), loose_files.end(), &V_fns[0]);
 	V_fns[loose_files.size()] = 0;	// terminator
 
@@ -674,7 +674,7 @@ static LibError build_mini_archive(const char* mini_archive_fn_fmt)
 	next_numbered_filename(mini_archive_fn_fmt, &nfi, mini_archive_fn, use_vfs);
 
 	RETURN_ERR(archive_build(mini_archive_fn, V_fns));
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -697,11 +697,11 @@ int vfs_opt_auto_build(const char* trace_filename,
 	const char* archive_fn_fmt, const char* mini_archive_fn_fmt, bool force_build)
 {
 	if(state == NOP)
-		return INFO_ALL_COMPLETE;
+		return INFO::ALL_COMPLETE;
 
 	if(state == DECIDE_IF_BUILD)
 	{
-		if(vfs_opt_init(trace_filename, archive_fn_fmt, force_build) != INFO_SKIPPED)
+		if(vfs_opt_init(trace_filename, archive_fn_fmt, force_build) != INFO::SKIPPED)
 			state = IN_PROGRESS;
 		else
 		{
@@ -709,7 +709,7 @@ int vfs_opt_auto_build(const char* trace_filename,
 			RETURN_ERR(build_mini_archive(mini_archive_fn_fmt));
 
 			state = NOP;
-			return INFO_OK;	// "finished"
+			return INFO::OK;	// "finished"
 		}
 	}
 
@@ -717,7 +717,7 @@ int vfs_opt_auto_build(const char* trace_filename,
 	{
 		int ret = vfs_opt_continue();
 		// just finished
-		if(ret == INFO_OK)
+		if(ret == INFO::OK)
 			state = NOP;
 		return ret;
 	}
@@ -731,7 +731,7 @@ LibError vfs_opt_rebuild_main_archive(const char* trace_filename, const char* ar
 	{
 		int ret = vfs_opt_auto_build(trace_filename, archive_fn_fmt, 0, true);
 		RETURN_ERR(ret);
-		if(ret == INFO_OK)
-			return INFO_OK;
+		if(ret == INFO::OK)
+			return INFO::OK;
 	}
 }

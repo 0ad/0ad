@@ -105,6 +105,13 @@ good luck!
 #ifndef	MMGR_H__
 #define	MMGR_H__
 
+namespace ERR
+{
+	const LibError MEM_ALLOC_NOT_FOUND = -100200;
+	const LibError MEM_OVERWRITTEN     = -100201;
+}
+
+
 // provide for completely disabling the memory manager
 // (e.g. when using other debug packages)
 //
@@ -114,7 +121,6 @@ good luck!
 #if CONFIG_USE_MMGR
 
 #include "lib/types.h"
-
 
 //
 // optional additional checks, enabled via mmgr_set_options.

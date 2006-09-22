@@ -112,7 +112,7 @@ void ScriptingHost::RunScript(const CStr& filename, JSObject* globalObject)
 
 	FileIOBuf buf;
 	size_t size;
-	if(vfs_load(fn, buf, size) != INFO_OK)	// ERRTODO: translate/pass it on
+	if(vfs_load(fn, buf, size) != INFO::OK)	// ERRTODO: translate/pass it on
 		throw PSERROR_Scripting_LoadFile_OpenFailed();
 
 	const char* script = (const char*)buf;

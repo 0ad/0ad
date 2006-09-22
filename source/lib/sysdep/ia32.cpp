@@ -43,8 +43,10 @@
 #error ia32.cpp needs inline assembly support!
 #endif
 
+extern "C" {
+
 // set by ia32_init, referenced by ia32_memcpy (asm)
-extern "C" u32 ia32_memcpy_size_mask = 0;
+extern u32 ia32_memcpy_size_mask = 0;
 
 void ia32_init()
 {
@@ -616,7 +618,7 @@ void ia32_get_cpu_info()
 
 
 // checks if there is an IA-32 CALL instruction right before ret_addr.
-// returns INFO_OK if so and ERR_FAIL if not.
+// returns INFO::OK if so and ERR::FAIL if not.
 // also attempts to determine the call target. if that is possible
 // (directly addressed relative or indirect jumps), it is stored in
 // target, which is otherwise 0.
@@ -637,13 +639,13 @@ LibError ia32_get_call_target(void* ret_addr, void** target)
 	if(len >= 5 && c[-5] == 0xE8)
 	{
 		*target = (u8*)ret_addr + *(i32*)(c-4);
-		return INFO_OK;
+		return INFO::OK;
 	}
 
 	// CALL r/m32 (FF /2)
 	// .. CALL [r32 + r32*s]          => FF 14 SIB
 	if(len >= 3 && c[-3] == 0xFF && c[-2] == 0x14)
-		return INFO_OK;
+		return INFO::OK;
 	// .. CALL [disp32]               => FF 15 disp32
 	if(len >= 6 && c[-6] == 0xFF && c[-5] == 0x15)
 	{
@@ -653,26 +655,28 @@ LibError ia32_get_call_target(void* ret_addr, void** target)
 		// even if the pointer is 0, it's better to pass its value on
 		// (may help in tracking down memory corruption)
 		*target = *(void**)addr_of_target;
-		return INFO_OK;
+		return INFO::OK;
 	}
 	// .. CALL [r32]                  => FF 00-3F(!14/15)
 	if(len >= 2 && c[-2] == 0xFF && c[-1] < 0x40 && c[-1] != 0x14 && c[-1] != 0x15)
-		return INFO_OK;
+		return INFO::OK;
 	// .. CALL [r32 + r32*s + disp8]  => FF 54 SIB disp8
 	if(len >= 4 && c[-4] == 0xFF && c[-3] == 0x54)
-		return INFO_OK;
+		return INFO::OK;
 	// .. CALL [r32 + disp8]          => FF 50-57(!54) disp8
 	if(len >= 3 && c[-3] == 0xFF && (c[-2] & 0xF8) == 0x50 && c[-2] != 0x54)
-		return INFO_OK;
+		return INFO::OK;
 	// .. CALL [r32 + r32*s + disp32] => FF 94 SIB disp32
 	if(len >= 7 && c[-7] == 0xFF && c[-6] == 0x94)
-		return INFO_OK;
+		return INFO::OK;
 	// .. CALL [r32 + disp32]         => FF 90-97(!94) disp32
 	if(len >= 6 && c[-6] == 0xFF && (c[-5] & 0xF8) == 0x90 && c[-5] != 0x94)
-		return INFO_OK;
+		return INFO::OK;
 	// .. CALL r32                    => FF D0-D7                 
 	if(len >= 2 && c[-2] == 0xFF && (c[-1] & 0xF8) == 0xD0)
-		return INFO_OK;
+		return INFO::OK;
 
-	WARN_RETURN(ERR_CPU_UNKNOWN_OPCODE);
+	WARN_RETURN(ERR::CPU_UNKNOWN_OPCODE);
 }
+
+}	// extern "C"

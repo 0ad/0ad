@@ -22,6 +22,13 @@
 
 #include "precompiled.h"
 
+
+AT_STARTUP(\
+	error_setDescription(ERR::MEM_ALLOC_NOT_FOUND, "Not a valid allocated address");\
+	error_setDescription(ERR::MEM_OVERWRITTEN, "Wrote to memory outside valid allocation");\
+)
+
+
 // for easy removal in release builds, so that we don't cause any overhead.
 // note that any application calls to our functions must be removed also,
 // but this is preferable to stubbing them out here ("least surprise").
@@ -242,7 +249,7 @@ static Alloc* alloc_new()
 		freelist = (Alloc*)calloc(256, sizeof(Alloc));
 		if(!freelist)
 		{
-			debug_assert(0 && "mmgr: failed to allocate freelist (out of memory)");
+			DEBUG_WARN_ERR(ERR::NO_MEM);
 			return 0;
 		}
 
@@ -848,7 +855,7 @@ static bool alloc_is_valid(const Alloc* a)
 		else
 			log("[!] alloc_is_valid encountered an exception - something may be very wrong!\n");
 		log_this_alloc(a);
-		debug_assert(0 && "Memory over/underrun detected by mmgr");
+		DEBUG_WARN_ERR(ERR::MEM_OVERWRITTEN);
 	}
 	return intact;
 }
@@ -881,13 +888,13 @@ static bool validate_all()
 		// enable MMGR_VALIDATE_ALL, trigger this condition again,
 		// and check the log for the last successful operation. the problem
 		// will have occurred between then and now.
-		DEBUG_WARN_ERR(ERR_CORRUPTED);
+		DEBUG_WARN_ERR(ERR::CORRUPTED);
 		log("[!] Memory tracking hash table corrupt!\n");
 	}
 
 	if(params.num_invalid)
 	{
-		DEBUG_WARN_ERR(ERR_MEM_OVERWRITTEN);
+		DEBUG_WARN_ERR(ERR::MEM_OVERWRITTEN);
 		log("[!] %d allocations are corrupt\n", params.num_invalid);
 		return false;
 	}
@@ -1047,7 +1054,7 @@ void* alloc_dbg(size_t user_size, AllocType type, const char* file, int line, co
 	void* p = malloc(size);
 	if(!p)
 	{
-		DEBUG_WARN_ERR(ERR_NO_MEM);
+		DEBUG_WARN_ERR(ERR::NO_MEM);
 		log("[!] Allocation failed (out of memory)\n");
 		goto fail;
 	}
@@ -1114,9 +1121,8 @@ void free_dbg(const void* user_p, AllocType type, const char* file, int line, co
 		Alloc* a = allocs_find(user_p);
 		if(!a)
 		{
-			// you tried to free a pointer mmgr didn't allocate
-			debug_assert(0 && "mmgr tried to free a pointer mmgr didn't allocate");
 			log("[!] mmgr_free: not allocated by this memory manager\n");
+			DEBUG_WARN_ERR(ERR::ALLOC_NOT_FOUND);
 			goto fail;
 		}
 		// .. overrun? (note: alloc_is_valid already asserts if invalid)
@@ -1197,7 +1203,7 @@ void* realloc_dbg(const void* user_p, size_t user_size, AllocType type, const ch
 		{
 			// you called realloc for a pointer mmgr didn't allocate
 			log("[!] realloc: wasn't previously allocated\n");
-			debug_assert(0 && "realloc was called for a pointer mmgr didn't allocate");
+			DEBUG_WARN_ERR(ERR::MEM_ALLOC_NOT_FOUND);
 			goto fail;
 		}
 		// .. the owner wasn't compiled with mmgr.h

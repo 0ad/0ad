@@ -25,6 +25,7 @@
 #include "lib/posix.h"		// PROT_* constants for da_set_prot
 #include "lib/sysdep/cpu.h"	// CAS
 #include "byte_order.h"
+#include "lib/res/file/file_io.h"	// IO_EOF
 #include "allocators.h"
 
 
@@ -58,7 +59,7 @@ static inline size_t round_up_to_page(size_t size)
 static inline LibError LibError_from_mmap(void* ret, bool warn_if_failed = true)
 {
 	if(ret != MAP_FAILED)
-		return INFO_OK;
+		return INFO::OK;
 	return LibError_from_errno(warn_if_failed);
 }
 
@@ -91,7 +92,7 @@ static LibError mem_commit(u8* p, size_t size, int prot)
 {
 	if(prot == PROT_NONE)
 		// not allowed - it would be misinterpreted by mmap.
-		WARN_RETURN(ERR_INVALID_PARAM);
+		WARN_RETURN(ERR::INVALID_PARAM);
 
 	errno = 0;
 	void* ret = mmap(p, size, prot, mmap_flags|MAP_FIXED, -1, 0);
@@ -162,7 +163,7 @@ const int DA_NOT_OUR_MEM = 0x40000000;
 static LibError validate_da(DynArray* da)
 {
 	if(!da)
-		WARN_RETURN(ERR_INVALID_PARAM);
+		WARN_RETURN(ERR::INVALID_PARAM);
 	u8* const base           = da->base;
 	const size_t max_size_pa = da->max_size_pa;
 	const size_t cur_size    = da->cur_size;
@@ -170,21 +171,21 @@ static LibError validate_da(DynArray* da)
 	const int prot           = da->prot;
 
 	if(debug_is_pointer_bogus(base))
-		WARN_RETURN(ERR_1);
+		WARN_RETURN(ERR::_1);
 	// note: don't check if base is page-aligned -
 	// might not be true for 'wrapped' mem regions.
 //	if(!is_page_multiple((uintptr_t)base))
-//		WARN_RETURN(ERR_2);
+//		WARN_RETURN(ERR::_2);
 	if(!is_page_multiple(max_size_pa))
-		WARN_RETURN(ERR_3);
+		WARN_RETURN(ERR::_3);
 	if(cur_size > max_size_pa)
-		WARN_RETURN(ERR_4);
+		WARN_RETURN(ERR::_4);
 	if(pos > cur_size || pos > max_size_pa)
-		WARN_RETURN(ERR_5);
+		WARN_RETURN(ERR::_5);
 	if(prot & ~(PROT_READ|PROT_WRITE|PROT_EXEC|DA_NOT_OUR_MEM))
-		WARN_RETURN(ERR_6);
+		WARN_RETURN(ERR::_6);
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 #define CHECK_DA(da) RETURN_ERR(validate_da(da))
@@ -213,7 +214,7 @@ LibError da_alloc(DynArray* da, size_t max_size)
 	da->prot        = PROT_READ|PROT_WRITE;
 	da->pos         = 0;
 	CHECK_DA(da);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -238,7 +239,7 @@ LibError da_wrap_fixed(DynArray* da, u8* p, size_t size)
 	da->prot        = PROT_READ|PROT_WRITE|DA_NOT_OUR_MEM;
 	da->pos         = 0;
 	CHECK_DA(da);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -267,7 +268,7 @@ LibError da_free(DynArray* da)
 	// da_free is supposed to be called even in the above case.
 	if(!was_wrapped)
 		RETURN_ERR(mem_release(p, size));
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -285,7 +286,7 @@ LibError da_set_size(DynArray* da, size_t new_size)
 	CHECK_DA(da);
 
 	if(da->prot & DA_NOT_OUR_MEM)
-		WARN_RETURN(ERR_LOGIC);
+		WARN_RETURN(ERR::LOGIC);
 
 	// determine how much to add/remove
 	const size_t cur_size_pa = round_up_to_page(da->cur_size);
@@ -296,7 +297,7 @@ LibError da_set_size(DynArray* da, size_t new_size)
 	// note: do not complain - some allocators (e.g. file_cache)
 	// egitimately use up all available space.
 	if(new_size_pa > da->max_size_pa)
-		return ERR_LIMIT;	// NOWARN
+		return ERR::LIMIT;	// NOWARN
 
 	u8* end = da->base + cur_size_pa;
 	// expanding
@@ -310,7 +311,7 @@ LibError da_set_size(DynArray* da, size_t new_size)
 
 	da->cur_size = new_size;
 	CHECK_DA(da);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -330,7 +331,7 @@ LibError da_reserve(DynArray* da, size_t size)
 
 	if(da->pos + size > da->cur_size)
 		return da_set_size(da, da->cur_size + expand_amount);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -350,13 +351,13 @@ LibError da_set_prot(DynArray* da, int prot)
 	// somewhat more subtle: POSIX mprotect requires the memory have been
 	// mmap-ed, which it probably wasn't here.
 	if(da->prot & DA_NOT_OUR_MEM)
-		WARN_RETURN(ERR_LOGIC);
+		WARN_RETURN(ERR::LOGIC);
 
 	da->prot = prot;
 	RETURN_ERR(mem_protect(da->base, da->cur_size, prot));
 
 	CHECK_DA(da);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -373,11 +374,11 @@ LibError da_read(DynArray* da, void* data, size_t size)
 {
 	// make sure we have enough data to read
 	if(da->pos+size > da->cur_size)
-		WARN_RETURN(ERR_EOF);
+		WARN_RETURN(ERR::IO_EOF);
 
 	memcpy2(data, da->base+da->pos, size);
 	da->pos += size;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -395,7 +396,7 @@ LibError da_append(DynArray* da, const void* data, size_t size)
 	RETURN_ERR(da_reserve(da, size));
 	memcpy2(da->base+da->pos, data, size);
 	da->pos += size;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -456,7 +457,7 @@ LibError pool_create(Pool* p, size_t max_size, size_t el_size)
 		p->el_size = round_up(el_size, ALIGN);
 	p->freelist = 0;
 	RETURN_ERR(da_alloc(&p->da, max_size));
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -623,13 +624,13 @@ LibError bucket_create(Bucket* b, size_t el_size)
 		// cause next bucket_alloc to retry the allocation
 		b->pos = BUCKET_SIZE;
 		b->num_buckets = 0;
-		WARN_RETURN(ERR_NO_MEM);
+		WARN_RETURN(ERR::NO_MEM);
 	}
 
 	*(u8**)b->bucket = 0;	// terminate list
 	b->pos = round_up(sizeof(u8*), ALIGN);
 	b->num_buckets = 1;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -829,7 +830,7 @@ void* single_calloc(void* storage, volatile uintptr_t* in_use_flag, size_t size)
 		p = malloc(size);
 		if(!p)
 		{
-			WARN_ERR(ERR_NO_MEM);
+			WARN_ERR(ERR::NO_MEM);
 			return 0;
 		}
 	}

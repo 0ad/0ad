@@ -29,6 +29,13 @@
 #include "lib/allocators.h"
 #include "lib/timer.h"
 #include "compression.h"
+#include "file_io.h"	// IO_EOF
+
+
+AT_STARTUP(\
+	error_setDescription(ERR::COMPRESSION_UNKNOWN_METHOD, "Unknown/unsupported compression method");\
+)
+
 
 // provision for removing all ZLib code (all inflate calls will fail).
 // used for checking DLL dependency; might also simulate corrupt Zip files.
@@ -66,17 +73,17 @@ static LibError LibError_from_zlib(int zlib_err, bool warn_if_failed = true)
 	switch(zlib_err)
 	{
 	case Z_OK:
-		return INFO_OK;
+		return INFO::OK;
 	case Z_STREAM_END:
-		err =  ERR_EOF; break;
+		err = ERR::IO_EOF; break;
 	case Z_MEM_ERROR:
-		err =  ERR_NO_MEM; break;
+		err = ERR::NO_MEM; break;
 	case Z_DATA_ERROR:
-		err =  ERR_CORRUPTED; break;
+		err = ERR::CORRUPTED; break;
 	case Z_STREAM_ERROR:
-		err =  ERR_INVALID_PARAM; break;
+		err = ERR::INVALID_PARAM; break;
 	default:
-		err =  ERR_FAIL; break;
+		err = ERR::FAIL; break;
 	}
 
 	if(warn_if_failed)
@@ -112,7 +119,7 @@ public:
 	{
 		next_out = 0;
 		avail_out = 0;
-		return INFO_OK;
+		return INFO::OK;
 	}
 
 	virtual LibError alloc_output(size_t in_size) = 0;
@@ -186,7 +193,7 @@ public:
 				{
 					void* cdata_copy = malloc(buf.csize);
 					if(!cdata_copy)
-						 WARN_RETURN(ERR_NO_MEM);
+						 WARN_RETURN(ERR::NO_MEM);
 					memcpy2(cdata_copy, buf.cdata, buf.csize);
 					buf.cdata = (const u8*)cdata_copy;
 				}
@@ -255,7 +262,7 @@ protected:
 		// .. need to allocate anew
 		out_mem = mem_alloc(alloc_size, 32*KiB);
 		if(!out_mem)
-			WARN_RETURN(ERR_NO_MEM);
+			WARN_RETURN(ERR::NO_MEM);
 		out_mem_size = alloc_size;
 
 have_out_mem:
@@ -266,7 +273,7 @@ have_out_mem:
 		next_out  = out_mem;
 		avail_out = out_mem_size;
 
-		return INFO_OK;
+		return INFO::OK;
 	}
 
 };	// class Compressor
@@ -339,10 +346,10 @@ public:
 		{
 			size_t required_size = (size_t)deflateBound(&zs, (uLong)in_size);
 			RETURN_ERR(alloc_output_impl(required_size));
-			return INFO_OK;
+			return INFO::OK;
 		}
 		else
-			WARN_RETURN(ERR_LOGIC);
+			WARN_RETURN(ERR::LOGIC);
 	}
 
 
@@ -396,7 +403,7 @@ public:
 
 		*out = zs.next_out - zs.total_out;
 		*out_size = zs.total_out;
-		return INFO_OK;
+		return INFO::OK;
 	}
 
 
@@ -443,7 +450,7 @@ uintptr_t comp_alloc(ContextType type, CompressionMethod method)
 #endif
 	default:
 		compressor_allocator.release(c_mem);
-		WARN_ERR(ERR_UNKNOWN_CMETHOD);
+		WARN_ERR(ERR::COMPRESSION_UNKNOWN_METHOD);
 		return 0;
 
 	}

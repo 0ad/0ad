@@ -14,7 +14,7 @@ JSI_Sound::JSI_Sound( const CStr& Filename )
 	// special-case to avoid throwing exceptions if quickstart has
 	// disabled sound: set a flag queried by Construct; the object will
 	// then immediately be freed.
-	if(m_Handle == ERR_AGAIN)
+	if(m_Handle == ERR::AGAIN)
 	{
 		m_SoundDisabled = true;
 		return;

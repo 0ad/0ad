@@ -44,6 +44,12 @@
 //   uses file_* and inf_*.
 // - file mapping
 
+
+AT_STARTUP(\
+	error_setDescription(ERR::IS_COMPRESSED, "Invalid operation for a compressed file");\
+)
+
+
 ///////////////////////////////////////////////////////////////////////////////
 //
 // lookup_*: file lookup
@@ -121,7 +127,7 @@ static LibError Archive_reload(Archive* a, const char* fn, Handle)
 	RETURN_ERR(zip_populate_archive(&a->f, a));
 	a->is_loaded = 1;
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 static LibError Archive_validate(const Archive* a)
@@ -129,15 +135,15 @@ static LibError Archive_validate(const Archive* a)
 	RETURN_ERR(file_validate(&a->f));
 
 	if(debug_is_pointer_bogus(a->ents))
-		WARN_RETURN(ERR_1);
+		WARN_RETURN(ERR::_1);
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 static LibError Archive_to_string(const Archive* a, char* buf)
 {
 	snprintf(buf, H_STRING_LEN, "(%u files)", a->num_files);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -169,7 +175,7 @@ static LibError archive_get_file_info(Archive* a, const char* fn, uintptr_t meme
 	if(memento)
 	{
 		ent = (ArchiveEntry*)memento;
-		return INFO_OK;
+		return INFO::OK;
 	}
 	else
 	{
@@ -178,11 +184,11 @@ static LibError archive_get_file_info(Archive* a, const char* fn, uintptr_t meme
 			if(a->ents[i].atom_fn == atom_fn)
 			{
 				ent = &a->ents[i];
-				return INFO_OK;
+				return INFO::OK;
 			}
 	}
 
-	WARN_RETURN(ERR_TNODE_NOT_FOUND);
+	WARN_RETURN(ERR::TNODE_NOT_FOUND);
 }
 
 
@@ -207,11 +213,11 @@ LibError archive_enum(const Handle ha, const FileCB cb, const uintptr_t user)
 		s.st_mtime = ent->mtime;
 		const uintptr_t memento = (uintptr_t)ent;
 		LibError ret = cb(ent->atom_fn, &s, memento, user);
-		if(ret != INFO_CB_CONTINUE)
+		if(ret != INFO::CB_CONTINUE)
 			return ret;
 	}
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -222,8 +228,8 @@ LibError archive_allocate_entries(Archive* a, size_t num_entries)
 	debug_assert(a->ents == 0);	// must not have been allocated yet
 	a->ents = (ArchiveEntry*)mem_alloc(num_entries * sizeof(ArchiveEntry), 32);
 	if(!a->ents)
-		WARN_RETURN(ERR_NO_MEM);
-	return INFO_OK;
+		WARN_RETURN(ERR::NO_MEM);
+	return INFO::OK;
 }
 
 
@@ -235,7 +241,7 @@ LibError archive_allocate_entries(Archive* a, size_t num_entries)
 LibError archive_add_file(Archive* a, const ArchiveEntry* ent)
 {
 	a->ents[a->num_files++] = *ent;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -290,7 +296,7 @@ LibError afile_stat(Handle ha, const char* fn, struct stat* s)
 
 	s->st_size  = ent->ucsize;
 	s->st_mtime = ent->mtime;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -299,16 +305,16 @@ LibError afile_stat(Handle ha, const char* fn, struct stat* s)
 LibError afile_validate(const File* f)
 {
 	if(!f)
-		WARN_RETURN(ERR_INVALID_PARAM);
+		WARN_RETURN(ERR::INVALID_PARAM);
 	const ArchiveFile* af = (const ArchiveFile*)f->opaque;
 	UNUSED2(af);
 	// note: don't check af->ha - it may be freed at shutdown before
 	// its files. TODO: revisit once dependency support is added.
 	if(!f->size)
-		WARN_RETURN(ERR_1);
+		WARN_RETURN(ERR::_1);
 	// note: af->ctx is 0 if file is not compressed.
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 #define CHECK_AFILE(f) RETURN_ERR(afile_validate(f))
@@ -322,7 +328,7 @@ LibError afile_open(const Handle ha, const char* fn, uintptr_t memento, uint fla
 	memset(f, 0, sizeof(*f));
 
 	if(flags & FILE_WRITE)
-		WARN_RETURN(ERR_IS_COMPRESSED);
+		WARN_RETURN(ERR::IS_COMPRESSED);
 
 	H_DEREF(ha, Archive, a);
 
@@ -345,7 +351,7 @@ LibError afile_open(const Handle ha, const char* fn, uintptr_t memento, uint fla
 	{
 		ctx = comp_alloc(CT_DECOMPRESSION, ent->method);
 		if(!ctx)
-			WARN_RETURN(ERR_NO_MEM);
+			WARN_RETURN(ERR::NO_MEM);
 	}
 
 	f->flags   = flags;
@@ -359,7 +365,7 @@ LibError afile_open(const Handle ha, const char* fn, uintptr_t memento, uint fla
 	af->ctx       = ctx;
 	af->is_mapped = 0;
 	CHECK_AFILE(f);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -371,7 +377,7 @@ LibError afile_close(File* f)
 	// other File fields don't need to be freed/cleared
 	comp_free(af->ctx);
 	af->ctx = 0;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -415,7 +421,7 @@ LibError afile_io_issue(File* f, off_t user_ofs, size_t max_output_size, void* u
 	ArchiveFileIo* aio = (ArchiveFileIo*)io->opaque;
 	aio->io = io_allocator.alloc();
 	if(!aio->io)
-		WARN_RETURN(ERR_NO_MEM);
+		WARN_RETURN(ERR::NO_MEM);
 
 	// not compressed; we'll just read directly from the archive file.
 	// no need to clamp to EOF - that's done already by the VFS.
@@ -441,12 +447,12 @@ LibError afile_io_issue(File* f, off_t user_ofs, size_t max_output_size, void* u
 
 	void* cbuf = mem_alloc(csize, 4*KiB);
 	if(!cbuf)
-		WARN_RETURN(ERR_NO_MEM);
+		WARN_RETURN(ERR::NO_MEM);
 
 	RETURN_ERR(file_io_issue(&a->f, cofs, csize, cbuf, aio->io));
 
 	af->last_cofs += (off_t)csize;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -489,7 +495,7 @@ LibError afile_io_wait(FileIo* io, void*& buf, size_t& size)
 		size = raw_size;
 	}
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -507,10 +513,10 @@ LibError afile_io_validate(const FileIo* io)
 {
 	ArchiveFileIo* aio = (ArchiveFileIo*)io->opaque;
 	if(debug_is_pointer_bogus(aio->user_buf))
-		WARN_RETURN(ERR_1);
+		WARN_RETURN(ERR::_1);
 	// <ctx> and <max_output_size> have no invariants we could check.
 	RETURN_ERR(file_io_validate(aio->io));
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -544,11 +550,11 @@ public:
 		debug_assert(ucsize <= ucsize_left);
 		ucsize_left -= ucsize;
 
-		LibError ret = INFO_CB_CONTINUE;
+		LibError ret = INFO::CB_CONTINUE;
 		if(user_cb)
 			ret = user_cb(user_cb_ctx, ucblock, ucsize, bytes_processed);
 		if(ucsize_left == 0)
-			ret = INFO_OK;
+			ret = INFO::OK;
 		return ret;
 	}
 
@@ -667,7 +673,7 @@ LibError afile_map(File* f, void*& p, size_t& size)
 	// mapping compressed files doesn't make sense because the
 	// compression algorithm is unspecified - disallow it.
 	if(is_compressed(af))
-		WARN_RETURN(ERR_IS_COMPRESSED);
+		WARN_RETURN(ERR::IS_COMPRESSED);
 
 	// note: we mapped the archive in archive_open, but unmapped it
 	// in the meantime to save memory in case it wasn't going to be mapped.
@@ -681,7 +687,7 @@ LibError afile_map(File* f, void*& p, size_t& size)
 	size = f->size;
 
 	af->is_mapped = 1;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -698,7 +704,7 @@ LibError afile_unmap(File* f)
 	// make sure archive mapping refcount remains balanced:
 	// don't allow multiple|"false" unmaps.
 	if(!af->is_mapped)
-		WARN_RETURN(ERR_NOT_MAPPED);
+		WARN_RETURN(ERR::FILE_NOT_MAPPED);
 	af->is_mapped = 0;
 
 	H_DEREF(af->ha, Archive, a);

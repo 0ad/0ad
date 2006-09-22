@@ -102,6 +102,28 @@ library and IO layer. Read and write are zero-copy.
 
 #include "lib/res/handle.h"
 
+
+namespace ERR
+{
+	const LibError TEX_FMT_INVALID         = -120100;
+	const LibError TEX_INVALID_COLOR_TYPE  = -120101;
+	const LibError TEX_NOT_8BIT_PRECISION  = -120102;
+	const LibError TEX_INVALID_LAYOUT      = -120103;
+	const LibError TEX_COMPRESSED          = -120104;
+	const LibError TEX_INVALID_SIZE        = -120105;
+}
+
+namespace WARN
+{
+	const LibError TEX_INVALID_DATA        = +120106;
+}
+
+namespace INFO
+{
+	const LibError TEX_CODEC_CANNOT_HANDLE = +120107;
+}
+
+
 /**
  * flags describing the pixel format. these are to be interpreted as
  * deviations from "plain" format, i.e. uncompressed RGB.

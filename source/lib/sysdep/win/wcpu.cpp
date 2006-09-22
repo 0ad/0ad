@@ -117,7 +117,7 @@ LibError win_get_cpu_info()
 
 	check_speedstep();
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -136,11 +136,11 @@ LibError sys_on_each_cpu(void (*cb)())
 	const HANDLE hProcess = GetCurrentProcess();
 	DWORD process_affinity, system_affinity;
 	if(!GetProcessAffinityMask(hProcess, &process_affinity, &system_affinity))
-		WARN_RETURN(ERR_FAIL);
+		WARN_RETURN(ERR::FAIL);
 	// our affinity != system affinity: OS is limiting the CPUs that
 	// this process can run on. fail (cannot call back for each CPU).
 	if(process_affinity != system_affinity)
-		WARN_RETURN(ERR_CPU_RESTRICTED_AFFINITY);
+		WARN_RETURN(ERR::CPU_RESTRICTED_AFFINITY);
 
 	for(DWORD cpu_bit = 1; cpu_bit != 0 && cpu_bit <= process_affinity; cpu_bit *= 2)
 	{
@@ -150,7 +150,7 @@ LibError sys_on_each_cpu(void (*cb)())
 		// .. and do so.
 		if(!SetProcessAffinityMask(hProcess, process_affinity))
 		{
-			WARN_ERR(ERR_CPU_RESTRICTED_AFFINITY);
+			WARN_ERR(ERR::CPU_RESTRICTED_AFFINITY);
 			continue;
 		}
 
@@ -163,7 +163,7 @@ LibError sys_on_each_cpu(void (*cb)())
 	// restore to original value
 	SetProcessAffinityMask(hProcess, process_affinity);
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -309,19 +309,19 @@ LibError prof_start()
 	const DWORD access = THREAD_GET_CONTEXT|THREAD_SUSPEND_RESUME;
 	HANDLE hThread = OpenThread(access, FALSE, GetCurrentThreadId());
 	if(hThread == INVALID_HANDLE_VALUE)
-		WARN_RETURN(ERR_FAIL);
+		WARN_RETURN(ERR::FAIL);
 
 	prof_target_thread = hThread;
 
 	sem_init(&exit_flag, 0, 0);
 	pthread_create(&thread, 0, prof_thread_func, 0);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 LibError prof_shutdown()
 {
 	WARN_IF_FALSE(CloseHandle(prof_target_thread));
-	return INFO_OK;
+	return INFO::OK;
 }
 
 

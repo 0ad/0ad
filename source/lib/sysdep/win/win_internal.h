@@ -452,7 +452,7 @@ extern void win_free(void* p);
 #define WIN_RESTORE_LAST_ERROR STMT(if(last_err__ != 0 && GetLastError() == 0) SetLastError(last_err__););
 
 
-// return the LibError equivalent of GetLastError(), or ERR_FAIL if
+// return the LibError equivalent of GetLastError(), or ERR::FAIL if
 // there's no equal.
 // you should SetLastError(0) before calling whatever will set ret
 // to make sure we do not return any stale errors.

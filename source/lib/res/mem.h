@@ -27,10 +27,6 @@
 #include "handle.h"
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 typedef void (*MEM_DTOR)(void* p, size_t size, uintptr_t ctx);
 
 // mem_alloc flags
@@ -62,11 +58,5 @@ extern Handle mem_wrap(void* p, size_t size, uint flags, void* raw_p, size_t raw
 extern void mem_shutdown(void);
 
 
-
-
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif	// #ifndef MEM_H__

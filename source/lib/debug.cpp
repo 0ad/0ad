@@ -27,6 +27,7 @@
 
 #include "lib.h"
 #include "posix.h"
+#include "lib/res/file/file.h"	// FILE_ACCESS
 #include "lib/sysdep/cpu.h"	// CAS
 // some functions here are called from within mmgr; disable its hooks
 // so that our allocations don't cause infinite recursion.
@@ -35,6 +36,20 @@
 #include "lib/path_util.h"
 #include "debug_stl.h"
 #include "debug.h"
+
+
+AT_STARTUP(\
+	error_setDescription(ERR::SYM_NO_STACK_FRAMES_FOUND, "No stack frames found");\
+	error_setDescription(ERR::SYM_UNRETRIEVABLE_STATIC, "Value unretrievable (stored in external module)");\
+	error_setDescription(ERR::SYM_UNRETRIEVABLE_REG, "Value unretrievable (stored in register)");\
+	error_setDescription(ERR::SYM_TYPE_INFO_UNAVAILABLE, "Error getting type_info");\
+	error_setDescription(ERR::SYM_INTERNAL_ERROR, "Exception raised while processing a symbol");\
+	error_setDescription(ERR::SYM_UNSUPPORTED, "Symbol type not (fully) supported");\
+	error_setDescription(ERR::SYM_CHILD_NOT_FOUND, "Symbol does not have the given child");\
+	error_setDescription(ERR::SYM_NESTING_LIMIT, "Symbol nesting too deep or infinite recursion");\
+	error_setDescription(ERR::SYM_SINGLE_SYMBOL_LIMIT, "Symbol has produced too much output");\
+	error_setDescription(INFO::SYM_SUPPRESS_OUTPUT, "Symbol was suppressed");\
+)
 
 
 // needed when writing crashlog
@@ -219,7 +234,7 @@ LibError debug_write_crashlog(const wchar_t* text)
 	// avoid potential infinite loop if an error occurs here.
 	static uintptr_t in_progress;
 	if(!CAS(&in_progress, 0, 1))
-		return ERR_REENTERED;	// NOWARN
+		return ERR::REENTERED;	// NOWARN
 
 	// note: we go through some gyrations here (strcpy+strcat) to avoid
 	// dependency on file code (path_append).
@@ -230,7 +245,7 @@ LibError debug_write_crashlog(const wchar_t* text)
 	if(!f)
 	{
 		in_progress = 0;
-		WARN_RETURN(ERR_FILE_ACCESS);
+		WARN_RETURN(ERR::FILE_ACCESS);
 	}
 
 	fputwc(0xfeff, f);	// BOM
@@ -244,7 +259,7 @@ LibError debug_write_crashlog(const wchar_t* text)
 
 	fclose(f);
 	in_progress = 0;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -272,7 +287,7 @@ static const char* symbol_string_build(void* symbol, const char* name, const cha
 		string_buf = (char*)malloc(STRING_BUF_SIZE);
 		if(!string_buf)
 		{
-			WARN_ERR(ERR_NO_MEM);
+			WARN_ERR(ERR::NO_MEM);
 			return 0;
 		}
 		string_buf_pos = string_buf;
@@ -282,7 +297,7 @@ static const char* symbol_string_build(void* symbol, const char* name, const cha
 	char* string = string_buf_pos;
 	if(string + STRING_MAX >= string_buf + STRING_BUF_SIZE)
 	{
-		WARN_ERR(ERR_LIMIT);
+		WARN_ERR(ERR::LIMIT);
 		return 0;
 	}
 
@@ -402,7 +417,7 @@ static void symbol_string_add_to_cache(const char* string, void* symbol)
 	// hash table is completely full (guard against infinite loop below).
 	// if this happens, the string won't be cached - nothing serious.
 	if(total_symbols >= MAX_SYMBOLS)
-		WARN_ERR_RETURN(ERR_LIMIT);
+		WARN_ERR_RETURN(ERR::LIMIT);
 	total_symbols++;
 
 	// find Symbol slot in hash table
@@ -539,11 +554,11 @@ const wchar_t* debug_error_message_build(
 
 	char description_buf[100] = {'?'};
 	LibError errno_equiv = LibError_from_errno(false);
-	if(errno_equiv != ERR_FAIL)	// meaningful translation
+	if(errno_equiv != ERR::FAIL)	// meaningful translation
 		error_description_r(errno_equiv, description_buf, ARRAY_SIZE(description_buf));
 
 	char os_error[100];
-	if(sys_error_description_r(0, os_error, ARRAY_SIZE(os_error)) != INFO_OK)
+	if(sys_error_description_r(0, os_error, ARRAY_SIZE(os_error)) != INFO::OK)
 		strcpy_s(os_error, ARRAY_SIZE(os_error), "?");
 
 	static const wchar_t fmt[] =
@@ -568,14 +583,14 @@ const wchar_t* debug_error_message_build(
 	if(!context)
 		skip += 2;	// skip debug_error_message_build and debug_display_error
 	LibError ret = debug_dump_stack(pos, chars_left, skip, context);
-	if(ret == ERR_REENTERED)
+	if(ret == ERR::REENTERED)
 	{
 		wcscpy_s(pos, chars_left,
 			L"(cannot start a nested stack trace; what probably happened is that "
 			L"an debug_assert/debug_warn/CHECK_ERR fired during the current trace.)"
 		);
 	}
-	else if(ret != INFO_OK)
+	else if(ret != INFO::OK)
 	{
 		swprintf(pos, chars_left,
 			L"(error while dumping stack: %hs)",
@@ -719,16 +734,16 @@ static bool should_skip_this_error(LibError err)
 
 // to share code between assert and error skip mechanism, we treat the former as
 // an error. choose the code such that no one would want to warn of it.
-static const LibError assert_err = INFO_OK;
+static const LibError assert_err = INFO::OK;
 
 void debug_skip_next_assert()
 {
-	debug_skip_next_err(INFO_OK);
+	debug_skip_next_err(INFO::OK);
 }
 
 static bool should_skip_this_assert()
 {
-	return should_skip_this_error(INFO_OK);
+	return should_skip_this_error(INFO::OK);
 }
 
 

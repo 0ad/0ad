@@ -134,8 +134,8 @@ extern LibError LDR_Cancel();
 // ("" if finished) and the current progress value.
 //
 // return semantics:
-// - if the final load task just completed, return INFO_ALL_COMPLETE.
-// - if loading is in progress but didn't finish, return ERR_TIMED_OUT.
+// - if the final load task just completed, return INFO::ALL_COMPLETE.
+// - if loading is in progress but didn't finish, return ERR::TIMED_OUT.
 // - if not currently loading (no-op), return 0.
 // - any other value indicates a failure; the request has been de-queued.
 //

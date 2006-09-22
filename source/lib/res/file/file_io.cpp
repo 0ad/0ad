@@ -31,6 +31,14 @@
 #include "file_internal.h"
 
 
+AT_STARTUP(\
+	error_setDescription(ERR::IO, "Error during IO");\
+	error_setDescription(ERR::IO_EOF, "Reading beyond end of file");\
+	\
+	error_setEquivalent(ERR::IO, EIO);\
+)
+
+
 //-----------------------------------------------------------------------------
 // async I/O
 //-----------------------------------------------------------------------------
@@ -106,7 +114,7 @@ LibError file_io_issue(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 	// check params
 	CHECK_FILE(f);
 	if(!size || !p || !io)
-		WARN_RETURN(ERR_INVALID_PARAM);
+		WARN_RETURN(ERR::INVALID_PARAM);
 	const bool is_write = (f->flags & FILE_WRITE) != 0;
 
 	PosixFileIo* pio = (PosixFileIo*)io;
@@ -130,7 +138,7 @@ LibError file_io_issue(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 	aiocb* cb = aiocb_allocator.alloc();
 	pio->cb = cb;
 	if(!cb)
-		WARN_RETURN(ERR_NO_MEM);
+		WARN_RETURN(ERR::NO_MEM);
 	memset(cb, 0, sizeof(*cb));
 
 	// send off async read/write request
@@ -150,7 +158,7 @@ LibError file_io_issue(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 	const BlockId disk_pos = block_cache_make_id(f->atom_fn, ofs);
 	stats_io_check_seek(disk_pos);
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -166,7 +174,7 @@ int file_io_has_completed(FileIo* io)
 	if(ret == 0)
 		return 1;
 
-	WARN_RETURN(ERR_FAIL);
+	WARN_RETURN(ERR::FAIL);
 }
 
 
@@ -197,7 +205,7 @@ LibError file_io_wait(FileIo* io, void*& p, size_t& size)
 
 	p = (void*)cb->aio_buf;	// cast from volatile void*
 	size = bytes_transferred;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -207,7 +215,7 @@ LibError file_io_discard(FileIo* io)
 	memset(pio->cb, 0, sizeof(aiocb));	// prevent further use.
 	aiocb_allocator.free_(pio->cb);
 	pio->cb = 0;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -218,13 +226,13 @@ LibError file_io_validate(const FileIo* io)
 	// >= 0x100 is not necessarily bogus, but suspicious.
 	// this also catches negative values.
 	if((uint)cb->aio_fildes >= 0x100)
-		WARN_RETURN(ERR_1);
+		WARN_RETURN(ERR::_1);
 	if(debug_is_pointer_bogus((void*)cb->aio_buf))
-		WARN_RETURN(ERR_2);
+		WARN_RETURN(ERR::_2);
 	if(cb->aio_lio_opcode != LIO_WRITE && cb->aio_lio_opcode != LIO_READ && cb->aio_lio_opcode != LIO_NOP)
-		WARN_RETURN(ERR_3);
+		WARN_RETURN(ERR::_3);
 	// all other aiocb fields have no invariants we could check.
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -253,7 +261,7 @@ size_t file_sector_size;
 
 // helper routine used by functions that call back to a FileIOCB.
 //
-// bytes_processed is 0 if return value != { INFO_OK, INFO_CB_CONTINUE }
+// bytes_processed is 0 if return value != { INFO::OK, INFO::CB_CONTINUE }
 // note: don't abort if = 0: zip callback may not actually
 // output anything if passed very little data.
 LibError file_io_call_back(const void* block, size_t size,
@@ -266,7 +274,7 @@ LibError file_io_call_back(const void* block, size_t size,
 		stats_cb_finish();
 
 		// failed - reset byte count in case callback didn't
-		if(ret != INFO_OK && ret != INFO_CB_CONTINUE)
+		if(ret != INFO::OK && ret != INFO::CB_CONTINUE)
 			bytes_processed = 0;
 
 		CHECK_ERR(ret);	// user might not have raised a warning; make sure
@@ -276,7 +284,7 @@ LibError file_io_call_back(const void* block, size_t size,
 	else
 	{
 		bytes_processed = size;
-		return INFO_CB_CONTINUE;
+		return INFO::CB_CONTINUE;
 	}
 }
 
@@ -297,22 +305,22 @@ LibError file_io_get_buf(FileIOBuf* pbuf, size_t size,
 
 	// reading into temp buffers - ok.
 	if(!is_write && temp && cb != 0)
-		return INFO_OK;
+		return INFO::OK;
 
 	// reading and want buffer allocated.
 	if(!is_write && alloc)
 	{
 		*pbuf = file_buf_alloc(size, atom_fn, fb_flags);
 		if(!*pbuf)	// very unlikely (size totally bogus or cache hosed)
-			WARN_RETURN(ERR_NO_MEM);
-		return INFO_OK;
+			WARN_RETURN(ERR::NO_MEM);
+		return INFO::OK;
 	}
 
 	// writing from user-specified buffer - ok
 	if(is_write && user)
-		return INFO_OK;
+		return INFO::OK;
 
-	WARN_RETURN(ERR_INVALID_PARAM);
+	WARN_RETURN(ERR::INVALID_PARAM);
 }
 
 
@@ -389,7 +397,7 @@ class IOManager
 		{
 			dst_mem = malloc(size);
 			if(!dst_mem)
-				WARN_RETURN(ERR_NO_MEM);
+				WARN_RETURN(ERR::NO_MEM);
 			dst = dst_mem;
 		}
 		else
@@ -436,7 +444,7 @@ class IOManager
 			// but cut off at EOF (necessary to prevent IO error).
 			const off_t bytes_left = f->size - start_ofs;
 			if(bytes_left < 0)
-				WARN_RETURN(ERR_EOF);
+				WARN_RETURN(ERR::IO_EOF);
 			size = MIN(size, (size_t)bytes_left);
 
 			// and round back up to sector size.
@@ -446,7 +454,7 @@ class IOManager
 
 		RETURN_ERR(file_io_get_buf(pbuf, size, f->atom_fn, f->flags, cb));
 
-		return INFO_OK;
+		return INFO::OK;
 	}
 
 	void issue(IOSlot& slot)
@@ -474,7 +482,7 @@ class IOManager
 			LibError ret = file_io_issue(f, ofs, issue_size, buf, &slot.io);
 			// transfer failed - loop will now terminate after
 			// waiting for all pending transfers to complete.
-			if(ret != INFO_OK)
+			if(ret != INFO::OK)
 				err = ret;
 		}
 
@@ -529,11 +537,11 @@ class IOManager
 
 	void process(IOSlot& slot, void* block, size_t block_size, FileIOCB cb, uintptr_t ctx)
 	{
-		if(err == INFO_CB_CONTINUE)
+		if(err == INFO::CB_CONTINUE)
 		{
 			size_t bytes_processed;
 			err = file_io_call_back(block, block_size, cb, ctx, bytes_processed);
-			if(err == INFO_CB_CONTINUE || err == INFO_OK)
+			if(err == INFO::CB_CONTINUE || err == INFO::OK)
 				total_processed += bytes_processed;
 			// else: processing failed.
 			// loop will now terminate after waiting for all
@@ -558,7 +566,7 @@ again:
 		{
 			// data remaining to transfer, and no error:
 			// start transferring next block.
-			if(total_issued < size && err == INFO_CB_CONTINUE && queue.size() < MAX_PENDING_IOS)
+			if(total_issued < size && err == INFO::CB_CONTINUE && queue.size() < MAX_PENDING_IOS)
 			{
 				queue.push_back(IOSlot());
 				IOSlot& slot = queue.back();
@@ -601,7 +609,7 @@ public:
 		total_issued = 0;
 		total_transferred = 0;
 		total_processed = 0;
-		err = INFO_CB_CONTINUE;
+		err = INFO::CB_CONTINUE;
 	}
 
 	// now we read the file in 64 KiB chunks, N-buffered.
@@ -626,7 +634,7 @@ public:
 				file_buf_add_padding(org_buf, size, ofs_misalign);
 		}
 
-		if(err != INFO_CB_CONTINUE && err != INFO_OK)
+		if(err != INFO::CB_CONTINUE && err != INFO::OK)
 			return (ssize_t)err;
 		return bytes_transferred;
 	}

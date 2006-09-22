@@ -168,7 +168,7 @@ static LibError wdir_watch_shutdown()
 		delete it->second;
 	watches.clear();
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -185,7 +185,7 @@ static Watch* find_watch(intptr_t reqnum)
 // better to use a cached string from rel_chdir - secure
 LibError dir_add_watch(const char* dir, intptr_t* _reqnum)
 {
-	LibError err = ERR_FAIL;
+	LibError err  = ERR::FAIL;
 	WIN_SAVE_LAST_ERROR;	// Create*
 
 	intptr_t reqnum;
@@ -268,7 +268,7 @@ LibError dir_add_watch(const char* dir, intptr_t* _reqnum)
 	}
 
 done:
-	err = INFO_OK;
+	err = INFO::OK;
 	*_reqnum = reqnum;
 
 fail:
@@ -280,17 +280,17 @@ fail:
 LibError dir_cancel_watch(const intptr_t reqnum)
 {
 	if(reqnum <= 0)
-		WARN_RETURN(ERR_INVALID_PARAM);
+		WARN_RETURN(ERR::INVALID_PARAM);
 
 	Watch* w = find_watch(reqnum);
 	// watches[reqnum] is invalid - big trouble
 	if(!w)
-		WARN_RETURN(ERR_FAIL);
+		WARN_RETURN(ERR::FAIL);
 
 	// we're freeing a reference - done.
 	debug_assert(w->refs >= 1);
 	if(--w->refs != 0)
-		return INFO_OK;
+		return INFO::OK;
 
 	// contrary to dox, the RDC IOs do not issue a completion notification.
 	// no packet was received on the IOCP while or after cancelling in a test.
@@ -375,7 +375,7 @@ static void get_packet()
 
 
 // if a file change notification is pending, store its filename in <fn> and
-// return INFO_OK; otherwise, return ERR_AGAIN ('none currently pending') or
+// return INFO::OK; otherwise, return ERR::AGAIN ('none currently pending') or
 // a negative error code.
 // <fn> must hold at least PATH_MAX chars.
 LibError dir_get_changed_file(char* fn)
@@ -385,11 +385,11 @@ LibError dir_get_changed_file(char* fn)
 
 	// nothing to return; call again later.
 	if(pending_events.empty())
-		return ERR_AGAIN;	// NOWARN
+		return ERR::AGAIN;	// NOWARN
 
 	const std::string& fn_s = pending_events.front();
 	strcpy_s(fn, PATH_MAX, fn_s.c_str());
 	pending_events.pop_front();
 
-	return INFO_OK;
+	return INFO::OK;
 }

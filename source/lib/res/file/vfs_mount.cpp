@@ -33,6 +33,7 @@
 #include <algorithm>
 #include <ctime>
 
+
 // location of a file: either archive or a real directory.
 // not many instances => don't worry about efficiency.
 struct Mount
@@ -184,7 +185,7 @@ LibError mount_realpath(const char* V_path, const Mount* m, char* P_real_path)
 	if(P_len != 0 && P_real_path[P_len-1] == '/')
 		P_real_path[P_len-1] = '\0';
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -264,7 +265,7 @@ static LibError afile_cb(const char* atom_fn, const struct stat* s, uintptr_t me
 
 	WARN_ERR(tree_add_file(td, name, m, s->st_size, s->st_mtime, memento));
 	vfs_opt_notify_non_loose_file(atom_fn);
-	return INFO_CB_CONTINUE;
+	return INFO::CB_CONTINUE;
 }
 
 
@@ -278,7 +279,7 @@ static bool archive_less(Handle hza1, Handle hza2)
 typedef std::vector<Handle> Archives;
 typedef Archives::const_iterator ArchiveCIt;
 
-// return value is INFO_OK iff archives != 0 and the file should not be
+// return value is INFO::OK iff archives != 0 and the file should not be
 // added to VFS (e.g. because it is an archive).
 static LibError enqueue_archive(const char* name, const char* P_archive_dir, Archives* archives)
 {
@@ -286,7 +287,7 @@ static LibError enqueue_archive(const char* name, const char* P_archive_dir, Arc
 	// case in all subdirectories of the mount point, since checking for all
 	// mounted files would be slow. see mount_dir_tree.
 	if(!archives)
-		return INFO_SKIPPED;
+		return INFO::SKIPPED;
 
 	// get complete path for archive_open.
 	// this doesn't (need to) work for subdirectories of the mounted td!
@@ -301,30 +302,30 @@ static LibError enqueue_archive(const char* name, const char* P_archive_dir, Arc
 	// .. special case: <name> is recognizable as a Zip file but is
 	//    invalid and can't be opened. avoid adding it to
 	//    archive list and/or VFS.
-	if(archive == ERR_CORRUPTED)
+	if(archive == ERR::CORRUPTED)
 		goto do_not_add_to_VFS_or_list;
 	RETURN_ERR(archive);
 
 	archives->push_back(archive);
 
 	// avoid also adding the archive file itself to VFS.
-	// (when caller sees INFO_OK, they skip the file)
+	// (when caller sees INFO::OK, they skip the file)
 do_not_add_to_VFS_or_list:
-	return INFO_OK;
+	return INFO::OK;
 }
 
 static LibError mount_archive(TDir* td, const Mount& m)
 {
 	ZipCBParams params(td, &m);
 	archive_enum(m.archive, afile_cb, (uintptr_t)&params);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 static LibError mount_archives(TDir* td, Archives* archives, const Mount* mount)
 {
 	// VFS_MOUNT_ARCHIVES flag wasn't set, or no archives present
 	if(archives->empty())
-		return INFO_OK;
+		return INFO::OK;
 
 	std::sort(archives->begin(), archives->end(), archive_less);
 
@@ -339,7 +340,7 @@ static LibError mount_archives(TDir* td, Archives* archives, const Mount* mount)
 		mount_archive(td, m);
 	}
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -373,7 +374,7 @@ static LibError enqueue_dir(TDir* parent_td, const char* name,
 {
 	// caller doesn't want us to enqueue subdirectories; bail.
 	if(!dir_queue)
-		return INFO_OK;
+		return INFO::OK;
 
 	// skip versioning system directories - this avoids cluttering the
 	// VFS with hundreds of irrelevant files.
@@ -381,7 +382,7 @@ static LibError enqueue_dir(TDir* parent_td, const char* name,
 	// strstr the entire path) and it is assumed the Zip file builder
 	// will take care of it.
 	if(!strcmp(name, "CVS") || !strcmp(name, ".svn"))
-		return INFO_OK;
+		return INFO::OK;
 
 	// prepend parent path to get complete pathname.
 	char P_path[PATH_MAX];
@@ -392,7 +393,7 @@ static LibError enqueue_dir(TDir* parent_td, const char* name,
 	CHECK_ERR(tree_add_dir(parent_td, name, &td));
 	// .. and add it to the list of directories to visit.
 	dir_queue->push_back(TDirAndPath(td, P_path));
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -426,10 +427,10 @@ static LibError add_ent(TDir* td, DirEnt* ent, const char* P_parent_path, const 
 	// else: it's a file (dir_next_ent discards everything except for
 	// file and subdirectory entries).
 
-	if(enqueue_archive(name, m->P_name.c_str(), archives) == INFO_OK)
+	if(enqueue_archive(name, m->P_name.c_str(), archives) == INFO::OK)
 		// return value indicates this file shouldn't be added to VFS
 		// (see enqueue_archive)
-		return INFO_OK;
+		return INFO::OK;
 
 	// notify archive builder that this file could be archived but
 	// currently isn't; if there are too many of these, archive will be
@@ -468,7 +469,7 @@ static LibError populate_dir(TDir* td, const char* P_path, const Mount* m,
 	{
 		// don't RETURN_ERR since we need to close d.
 		err = dir_next_ent(&d, &ent);
-		if(err != INFO_OK)
+		if(err != INFO::OK)
 			break;
 
 		err = add_ent(td, &ent, P_path, m, dir_queue, archives);
@@ -476,7 +477,7 @@ static LibError populate_dir(TDir* td, const char* P_path, const Mount* m,
 	}
 
 	WARN_ERR(dir_close(&d));
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -494,7 +495,7 @@ static LibError populate_dir(TDir* td, const char* P_path, const Mount* m,
 // every single file to see if it's an archive (slow!).
 static LibError mount_dir_tree(TDir* td, const Mount& m)
 {
-	LibError err = INFO_OK;
+	LibError err = INFO::OK;
 
 	// add_ent fills these queues with dirs/archives if the corresponding
 	// flags are set.
@@ -517,7 +518,7 @@ static LibError mount_dir_tree(TDir* td, const Mount& m)
 		const char* P_path = dir_queue.front().path.c_str();
 
 		LibError ret = populate_dir(td, P_path, &m, pdir_queue, parchives, m.flags);
-		if(err == INFO_OK)
+		if(err == INFO::OK)
 			err = ret;
 
 		// prevent searching for archives in subdirectories (slow!). this
@@ -532,7 +533,7 @@ static LibError mount_dir_tree(TDir* td, const Mount& m)
 	// do not pass parchives because that has been set to 0!
 	mount_archives(td, &archives, &m);
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -605,7 +606,7 @@ static LibError remount(const Mount& m)
 	case MT_FILE:
 		return mount_dir_tree(td, m);
 	default:
-		WARN_RETURN(ERR_INVALID_MOUNT_TYPE);
+		WARN_RETURN(ERR::MOUNT_INVALID_TYPE);
 	}
 }
 
@@ -646,14 +647,14 @@ LibError vfs_mount(const char* V_mount_point, const char* P_real_path, uint flag
 	for(MountIt it = mounts.begin(); it != mounts.end(); ++it)
 	{
 		if(path_is_subpath(P_real_path, it->P_name.c_str()))
-			WARN_RETURN(ERR_ALREADY_MOUNTED);
+			WARN_RETURN(ERR::ALREADY_MOUNTED);
 	}
 
 	// disallow "." because "./" isn't supported on Windows.
 	// it would also create a loophole for the parent td check above.
 	// "./" and "/." are caught by CHECK_PATH.
 	if(!strcmp(P_real_path, "."))
-		WARN_RETURN(ERR_PATH_NON_CANONICAL);
+		WARN_RETURN(ERR::PATH_NON_CANONICAL);
 
 	// (count this as "init" to obviate a separate timer)
 	stats_vfs_init_start();
@@ -674,7 +675,7 @@ LibError mount_rebuild()
 {
 	tree_clear();
 	remount_all();
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -712,7 +713,7 @@ LibError vfs_unmount(const char* P_name)
 		std::bind2nd(Mount::equal_to(), P_name));
 	// none were removed - need to complain so that the caller notices.
 	if(last == end)
-		WARN_RETURN(ERR_TNODE_NOT_FOUND);
+		WARN_RETURN(ERR::TNODE_NOT_FOUND);
 	// trim list and actually remove 'invalidated' entries.
 	mounts.erase(last, end);
 
@@ -738,11 +739,11 @@ LibError mount_make_vfs_path(const char* P_path, char* V_path)
 		const char* remove = m.P_name.c_str();
 		const char* replace = m.V_mount_point.c_str();
 
-		if(path_replace(V_path, P_path, remove, replace) == INFO_OK)
-			return INFO_OK;
+		if(path_replace(V_path, P_path, remove, replace) == INFO::OK)
+			return INFO::OK;
 	}
 
-	WARN_RETURN(ERR_TNODE_NOT_FOUND);
+	WARN_RETURN(ERR::TNODE_NOT_FOUND);
 }
 
 
@@ -799,11 +800,11 @@ LibError vfs_set_write_target(const char* P_target_dir)
 		if(!strcmp(m.P_name.c_str(), P_target_dir))
 		{
 			write_target = &m;
-			return INFO_OK;
+			return INFO::OK;
 		}
 	}
 
-	WARN_RETURN(ERR_NOT_MOUNTED);
+	WARN_RETURN(ERR::NOT_MOUNTED);
 }
 
 
@@ -812,7 +813,7 @@ LibError vfs_set_write_target(const char* P_target_dir)
 LibError set_mount_to_write_target(TFile* tf)
 {
 	if(!write_target)
-		WARN_RETURN(ERR_NOT_MOUNTED);
+		WARN_RETURN(ERR::NOT_MOUNTED);
 
 	tfile_set_mount(tf, write_target);
 
@@ -822,7 +823,7 @@ LibError set_mount_to_write_target(TFile* tf)
 	// opened for writing, which will change these values anyway.
 	tree_update_file(tf, 0, 0);
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -866,12 +867,12 @@ LibError mount_attach_real_dir(RealDir* rd, const char* P_path, const Mount* m, 
 		// note: do not cause this function to return an error if
 		// something goes wrong - this step is basically optional.
 		char N_path[PATH_MAX];
-		if(file_make_full_native_path(P_path, N_path) == INFO_OK)
+		if(file_make_full_native_path(P_path, N_path) == INFO::OK)
 			(void)dir_add_watch(N_path, &rd->watch);
 	}
 #endif
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -892,7 +893,7 @@ LibError mount_create_real_dir(const char* V_path, const Mount* m)
 	debug_assert(VFS_PATH_IS_DIR(V_path));
 
 	if(!m || m == MULTIPLE_MOUNTINGS || m->type != MT_FILE)
-		return INFO_OK;
+		return INFO::OK;
 
 	char P_path[PATH_MAX];
 	RETURN_ERR(mount_realpath(V_path, m, P_path));
@@ -905,5 +906,5 @@ LibError mount_populate(TDir* td, RealDir* rd)
 {
 	UNUSED2(td);
 	UNUSED2(rd);
-	return INFO_OK;
+	return INFO::OK;
 }

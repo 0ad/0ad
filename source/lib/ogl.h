@@ -23,10 +23,6 @@
 #ifndef __OGL_H__
 #define __OGL_H__
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #if OS_WIN
 // wgl.h is a private header and should only be included from here.
 // if this isn't defined, it'll complain.
@@ -192,10 +188,5 @@ extern void oglSquelchError(GLenum err_to_ignore);
  * fails if OpenGL not ready for use.
  **/
 extern void oglInit(void);
-
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif	// #ifndef __OGL_H__

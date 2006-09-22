@@ -526,7 +526,7 @@ private:
 		if(da_alloc(&da, sizeof(T)) < 0)
 		{
 fail:
-			WARN_ERR(ERR_NO_MEM);
+			WARN_ERR(ERR::NO_MEM);
 			return;
 		}
 		if(da_set_size(&da, sizeof(T)) < 0)

@@ -166,7 +166,7 @@ std::vector<CStrW> SkyManager::GetSkySets() const
 		skies.push_back(CStr(entry.name));
 	}
 
-	if (err != ERR_DIR_END)
+	if (err != ERR::DIR_END)
 	{
 		LOG(ERROR, "vfs", "Error reading files from directory '%s' (%d)", dirname, err);
 		return std::vector<CStrW>(1, GetSkySet()); // just return what we currently have

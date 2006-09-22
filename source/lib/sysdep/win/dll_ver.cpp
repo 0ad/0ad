@@ -46,14 +46,14 @@ static LibError get_ver(const char* module_path, char* out_ver, size_t out_ver_l
 		wchar_t buf[1000];
 		swprintf(buf, 1000, L"path: %hs; GLE: %08X", module_path, GetLastError());
 		DISPLAY_ERROR(buf);
-		return ERR_FAIL;
-//		WARN_RETURN(ERR_FAIL);
+		return ERR::FAIL;
+//		WARN_RETURN(ERR::FAIL);
 	}
 	void* buf = malloc(ver_size);
 	if(!buf)
-		WARN_RETURN(ERR_NO_MEM);
+		WARN_RETURN(ERR::NO_MEM);
 
-	LibError ret = ERR_FAIL;	// single point of exit (for free())
+	LibError ret  = ERR::FAIL;	// single point of exit (for free())
 
 	if(GetFileVersionInfo(module_path, 0, ver_size, buf))
 	{
@@ -69,7 +69,7 @@ static LibError get_ver(const char* module_path, char* out_ver, size_t out_ver_l
 			if(VerQueryValue(buf, subblock, (void**)&in_ver, &in_ver_len))
 			{
 				strcpy_s(out_ver, out_ver_len, in_ver);
-				ret = INFO_OK;
+				ret = INFO::OK;
 			}
 		}
 	}
@@ -106,7 +106,7 @@ LibError dll_list_add(const char* name)
 {
 	// not be called before dll_list_init or after failure
 	if(!dll_list_pos)
-		WARN_RETURN(ERR_LOGIC);
+		WARN_RETURN(ERR::LOGIC);
 
 	// some driver names are stored in the registry without .dll extension.
 	// if necessary, copy to new buffer and add it there.
@@ -141,11 +141,11 @@ LibError dll_list_add(const char* name)
 	if(len > 0)
 	{
 		dll_list_pos += len;
-		return INFO_OK;
+		return INFO::OK;
 	}
 
 	// didn't fit; complain
 	sprintf(dll_list_pos, "...");	// (room was reserved above)
 	dll_list_pos = 0;	// poison pill, prevent further calls
-	WARN_RETURN(ERR_BUF_SIZE);
+	WARN_RETURN(ERR::BUF_SIZE);
 }

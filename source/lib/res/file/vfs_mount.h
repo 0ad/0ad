@@ -30,11 +30,20 @@ struct Mount;	// must come before vfs_tree.h
 #include "zip.h"
 #include "vfs_tree.h"
 
+
+namespace ERR
+{
+	const LibError ALREADY_MOUNTED      = -110700;
+	const LibError NOT_MOUNTED          = -110701;
+	const LibError MOUNT_INVALID_TYPE   = -110702;
+}
+
+
 extern void mount_init();
 extern void mount_shutdown();
 
 
-// If it was possible to forward-declare enums in gcc, this one wouldn't be in
+// If it were possible to forward-declare enums in GCC, this one wouldn't be in
 // the header. Don't use.
 enum MountType
 {
@@ -49,7 +58,7 @@ enum MountType
 
 
 //
-// accessor routines that obviate the need to access Mount fields directly:
+// accessors that obviate the need to access Mount fields directly:
 //
 
 extern bool mount_is_archivable(const Mount* m);

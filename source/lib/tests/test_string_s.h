@@ -11,7 +11,7 @@
 
 class TestString_s : public CxxTest::TestSuite 
 {
-	// note: avoid 4-byte strings - they would trigger WARN_IF_PTR_LEN.
+	// note: avoid 4-byte strings - they would trigger WARN::IF_PTR_LEN.
 
 	const char* const s0;
 	const char* const s1;
@@ -108,64 +108,64 @@ public:
 	void test_param_validation()
 	{
 	#if !HAVE_STRING_S
-		debug_skip_next_err(ERR_INVALID_PARAM);
+		debug_skip_next_err(ERR::INVALID_PARAM);
 		TEST_CPY(0 ,0,0 , EINVAL,"");	// all invalid
-		debug_skip_next_err(ERR_INVALID_PARAM);
+		debug_skip_next_err(ERR::INVALID_PARAM);
 		TEST_CPY(0 ,0,s1, EINVAL,"");	// dst = 0, max = 0
-		debug_skip_next_err(ERR_INVALID_PARAM);
+		debug_skip_next_err(ERR::INVALID_PARAM);
 		TEST_CPY(0 ,1,s1, EINVAL,"");	// dst = 0, max > 0
-		debug_skip_next_err(ERR_INVALID_PARAM);
+		debug_skip_next_err(ERR::INVALID_PARAM);
 		TEST_CPY(d1,1,0 , EINVAL,"");	// src = 0
-		debug_skip_next_err(ERR_INVALID_PARAM);
+		debug_skip_next_err(ERR::INVALID_PARAM);
 		TEST_CPY(d1,0,s1, ERANGE,"");	// max_dst_chars = 0
 
-		debug_skip_next_err(ERR_BUF_SIZE);
+		debug_skip_next_err(ERR::BUF_SIZE);
 		TEST_CPY2(d1,1, s1, ERANGE,"");
-		debug_skip_next_err(ERR_BUF_SIZE);
+		debug_skip_next_err(ERR::BUF_SIZE);
 		TEST_CPY2(d1,1, s5, ERANGE,"");
-		debug_skip_next_err(ERR_BUF_SIZE);
+		debug_skip_next_err(ERR::BUF_SIZE);
 		TEST_CPY2(d5,5, s5, ERANGE,"");
 
-		debug_skip_next_err(ERR_BUF_SIZE);
+		debug_skip_next_err(ERR::BUF_SIZE);
 		TEST_NCPY(d1,1 ,s1,1, ERANGE,"");
-		debug_skip_next_err(ERR_BUF_SIZE);
+		debug_skip_next_err(ERR::BUF_SIZE);
 		TEST_NCPY(d1,1 ,s5,1, ERANGE,"");
-		debug_skip_next_err(ERR_BUF_SIZE);
+		debug_skip_next_err(ERR::BUF_SIZE);
 		TEST_NCPY(d5,5 ,s5,5, ERANGE,"");
 
-		debug_skip_next_err(ERR_INVALID_PARAM);
+		debug_skip_next_err(ERR::INVALID_PARAM);
 		TEST_CAT(0 ,0,0 , EINVAL,"");	// all invalid
-		debug_skip_next_err(ERR_INVALID_PARAM);
+		debug_skip_next_err(ERR::INVALID_PARAM);
 		TEST_CAT(0 ,0,s1, EINVAL,"");	// dst = 0, max = 0
-		debug_skip_next_err(ERR_INVALID_PARAM);
+		debug_skip_next_err(ERR::INVALID_PARAM);
 		TEST_CAT(0 ,1,s1, EINVAL,"");	// dst = 0, max > 0
-		debug_skip_next_err(ERR_INVALID_PARAM);
+		debug_skip_next_err(ERR::INVALID_PARAM);
 		TEST_CAT(d1,1,0 , EINVAL,"");	// src = 0
-		debug_skip_next_err(ERR_INVALID_PARAM);
+		debug_skip_next_err(ERR::INVALID_PARAM);
 		TEST_CAT(d1,0,s1, ERANGE,"");	// max_dst_chars = 0
-		debug_skip_next_err(ERR_STRING_NOT_TERMINATED);
+		debug_skip_next_err(ERR::STRING_NOT_TERMINATED);
 		TEST_CAT(no_null,5,s1, ERANGE,"");	// dst not terminated
 
-		debug_skip_next_err(ERR_BUF_SIZE);
+		debug_skip_next_err(ERR::BUF_SIZE);
 		TEST_CAT2(d1,1, s1, "",ERANGE,"");
-		debug_skip_next_err(ERR_BUF_SIZE);
+		debug_skip_next_err(ERR::BUF_SIZE);
 		TEST_CAT2(d1,1, s5, "",ERANGE,"");
-		debug_skip_next_err(ERR_BUF_SIZE);
+		debug_skip_next_err(ERR::BUF_SIZE);
 		TEST_CAT2(d10,10, s10, "",ERANGE,"");		// empty, total overflow
-		debug_skip_next_err(ERR_BUF_SIZE);
+		debug_skip_next_err(ERR::BUF_SIZE);
 		TEST_CAT2(d10,10, s5, "12345",ERANGE,"");	// not empty, overflow
-		debug_skip_next_err(ERR_BUF_SIZE);
+		debug_skip_next_err(ERR::BUF_SIZE);
 		TEST_CAT2(d10,10, s10, "12345",ERANGE,"");	// not empty, total overflow
 
-		debug_skip_next_err(ERR_BUF_SIZE);
+		debug_skip_next_err(ERR::BUF_SIZE);
 		TEST_NCAT(d1,1, s1,1, "",ERANGE,"");
-		debug_skip_next_err(ERR_BUF_SIZE);
+		debug_skip_next_err(ERR::BUF_SIZE);
 		TEST_NCAT(d1,1, s5,5, "",ERANGE,"");
-		debug_skip_next_err(ERR_BUF_SIZE);
+		debug_skip_next_err(ERR::BUF_SIZE);
 		TEST_NCAT(d10,10, s10,10, "",ERANGE,"");		// empty, total overflow
-		debug_skip_next_err(ERR_BUF_SIZE);
+		debug_skip_next_err(ERR::BUF_SIZE);
 		TEST_NCAT(d10,10, s5,5, "12345",ERANGE,"");		// not empty, overflow
-		debug_skip_next_err(ERR_BUF_SIZE);
+		debug_skip_next_err(ERR::BUF_SIZE);
 		TEST_NCAT(d10,10, s10,10, "12345",ERANGE,"");	// not empty, total overflow
 	#endif
 	}

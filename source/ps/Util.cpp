@@ -230,7 +230,7 @@ void WriteBigScreenshot(const char* extension, int tiles)
 	const size_t hdr_size = tex_hdr_size(fn);
 	void* tile_data = malloc(tile_size);
 	if(!tile_data)
-		WARN_ERR_RETURN(ERR_NO_MEM);
+		WARN_ERR_RETURN(ERR::NO_MEM);
 	FileIOBuf img_buf = file_buf_alloc(hdr_size+img_size, atom_fn, FB_FROM_HEAP);
 
 	Tex t;

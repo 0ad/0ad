@@ -165,7 +165,7 @@ extern int tex_codec_register(TexCodecVTbl* c);
  * @param fn filename; only the extension (that after '.') is used.
  * case-insensitive.
  * @param c (out) vtbl of responsible codec
- * @return LibError; ERR_UNKNOWN_FORMAT (without warning, because this is
+ * @return LibError; ERR::RES_UNKNOWN_FORMAT (without warning, because this is
  * called by tex_is_known_extension) if no codec indicates they can
  * handle the given extension.
  **/
@@ -178,7 +178,7 @@ extern LibError tex_codec_for_filename(const char* fn, const TexCodecVTbl** c);
  * (first 4 bytes of) header.
  * @param data_size [bytes]
  * @param c (out) vtbl of responsible codec
- * @return LibError; ERR_UNKNOWN_FORMAT if no codec indicates they can
+ * @return LibError; ERR::RES_UNKNOWN_FORMAT if no codec indicates they can
  * handle the given format (header).
  **/
 extern LibError tex_codec_for_header(const u8* data, size_t data_size, const TexCodecVTbl** c);

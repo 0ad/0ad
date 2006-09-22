@@ -28,6 +28,10 @@
 #include "file.h"			// FileCB for afile_enum
 #include "compression.h"	// CompressionMethod
 
+namespace ERR
+{
+	const LibError IS_COMPRESSED = -110400;
+}
 
 // note: filenames are case-insensitive.
 
@@ -199,7 +203,7 @@ struct ArchiveEntry
 
 // successively called for each valid file in the archive,
 // passing the complete path and <user>.
-// return INFO_CB_CONTINUE to continue calling; anything else will cause
+// return INFO::CB_CONTINUE to continue calling; anything else will cause
 // the caller to abort and immediately return that value.
 //
 // HACK: call back with negative index the first time; its abs. value is

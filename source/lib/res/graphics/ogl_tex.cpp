@@ -409,7 +409,7 @@ static LibError OglTex_reload(OglTex* ot, const char* fn, Handle h)
 {
 	// we're reusing a freed but still in-memory OglTex object
 	if(ot->flags & OT_IS_UPLOADED)
-		return INFO_OK;
+		return INFO::OK;
 
 	// if we don't already have the texture in memory (*), load from file.
 	// * this happens if the texture is "wrapped".
@@ -424,7 +424,7 @@ static LibError OglTex_reload(OglTex* ot, const char* fn, Handle h)
 	if(ot->flags & OT_NEED_AUTO_UPLOAD)
 		(void)ogl_tex_upload(h);
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 static LibError OglTex_validate(const OglTex* ot)
@@ -438,41 +438,41 @@ static LibError OglTex_validate(const OglTex* ot)
 	GLsizei h = (GLsizei)ot->t.h;
 	// .. == 0; texture file probably not loaded successfully.
 	if(w == 0 || h == 0)
-		WARN_RETURN(ERR_11);
+		WARN_RETURN(ERR::_11);
 	// .. greater than max supported tex dimension.
 	//    no-op if oglInit not yet called
 	if(w > (GLsizei)ogl_max_tex_size || h > (GLsizei)ogl_max_tex_size)
-		WARN_RETURN(ERR_12);
+		WARN_RETURN(ERR::_12);
 	// .. not power-of-2.
 	//    note: we can't work around this because both NV_texture_rectangle
 	//    and subtexture require work for the client (changing tex coords).
 	//    TODO: ARB_texture_non_power_of_two
 	if(!is_pow2(w) || !is_pow2(h))
-		WARN_RETURN(ERR_13);
+		WARN_RETURN(ERR::_13);
 
 	// texture state
 	if(!filter_valid(ot->state.filter))
-		WARN_RETURN(ERR_14);
+		WARN_RETURN(ERR::_14);
 	if(!wrap_valid(ot->state.wrap))
-		WARN_RETURN(ERR_15);
+		WARN_RETURN(ERR::_15);
 
 	// misc
 	if(!q_flags_valid(ot->q_flags))
-		WARN_RETURN(ERR_16);
+		WARN_RETURN(ERR::_16);
 	if(ot->tmu >= 128)	// unexpected that there will ever be this many
-		WARN_RETURN(ERR_17);
+		WARN_RETURN(ERR::_17);
 	if(ot->flags > OT_ALL_FLAGS)
-		WARN_RETURN(ERR_18);
+		WARN_RETURN(ERR::_18);
 	// .. note: don't check ot->fmt and ot->int_fmt - they aren't set
 	//    until during ogl_tex_upload.
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 static LibError OglTex_to_string(const OglTex* ot, char* buf)
 {
 	snprintf(buf, H_STRING_LEN, "id=%d", ot->id);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -578,14 +578,14 @@ LibError ogl_tex_set_filter(Handle ht, GLint filter)
 	H_DEREF(ht, OglTex, ot);
 
 	if(!filter_valid(filter))
-		WARN_RETURN(ERR_INVALID_PARAM);
+		WARN_RETURN(ERR::INVALID_PARAM);
 
 	if(ot->state.filter != filter)
 	{
 		warn_if_uploaded(ht, ot);
 		ot->state.filter = filter;
 	}
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -598,14 +598,14 @@ LibError ogl_tex_set_wrap(Handle ht, GLint wrap)
 	H_DEREF(ht, OglTex, ot);
 
 	if(!wrap_valid(wrap))
-		WARN_RETURN(ERR_INVALID_PARAM);
+		WARN_RETURN(ERR::INVALID_PARAM);
 
 	if(ot->state.wrap != wrap)
 	{
 		warn_if_uploaded(ht, ot);
 		ot->state.wrap = wrap;
 	}
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -690,7 +690,7 @@ static LibError get_mipmaps(Tex* t, GLint filter, uint q_flags, int* plevels_to_
 
 	*plevels_to_skip = TEX_BASE_LEVEL_ONLY;
 	if(!need_mipmaps)
-		return INFO_OK;
+		return INFO::OK;
 
 	// image already contains pregenerated mipmaps; we need do nothing.
 	// this is the nicest case, because they are fastest to load
@@ -713,7 +713,7 @@ static LibError get_mipmaps(Tex* t, GLint filter, uint q_flags, int* plevels_to_
 	// all<->all transforms aren't implemented, it'd have to decompress
 	// from S3TC first), and DDS images ought to include mipmaps!
 	else if(is_s3tc)
-		return ERR_FAIL;	// NOWARN
+		return ERR::FAIL;	// NOWARN
 	// image is uncompressed and we're on an old OpenGL implementation;
 	// we will generate mipmaps in software.
 	else
@@ -735,7 +735,7 @@ static LibError get_mipmaps(Tex* t, GLint filter, uint q_flags, int* plevels_to_
 		*plevels_to_skip = log2(reduce);
 	}
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -806,7 +806,7 @@ LibError ogl_tex_upload(const Handle ht, GLenum fmt_ovr, uint q_flags_ovr, GLint
 	// upload already happened; no work to do.
 	// (this also happens if a cached texture is "loaded")
 	if(ot->flags & OT_IS_UPLOADED)
-		return INFO_OK;
+		return INFO::OK;
 
 	debug_assert(ot->flags & OT_TEX_VALID);
 
@@ -851,7 +851,7 @@ LibError ogl_tex_upload(const Handle ht, GLenum fmt_ovr, uint q_flags_ovr, GLint
 		ot->flags &= ~OT_TEX_VALID;
 	}
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -871,7 +871,7 @@ LibError ogl_tex_get_size(Handle ht, uint* w, uint* h, uint* bpp)
 		*h = ot->t.h;
 	if(bpp)
 		*bpp = ot->t.bpp;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -890,7 +890,7 @@ LibError ogl_tex_get_format(Handle ht, uint* flags, GLenum* fmt)
 			debug_warn("hasn't been defined yet!");
 		*fmt = ot->fmt;
 	}
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -906,7 +906,7 @@ LibError ogl_tex_get_data(Handle ht, void** p)
 	H_DEREF(ht, OglTex, ot);
 
 	*p = tex_get_data(&ot->t);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -935,7 +935,7 @@ LibError ogl_tex_bind(Handle ht, uint unit)
 	if(ht == 0)
 	{
 		glDisable(GL_TEXTURE_2D);
-		return INFO_OK;
+		return INFO::OK;
 	}
 
 	// if this fails, the texture unit's state remains unchanged.
@@ -951,7 +951,7 @@ LibError ogl_tex_bind(Handle ht, uint unit)
 
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, ot->id);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 

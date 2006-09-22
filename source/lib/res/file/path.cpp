@@ -30,6 +30,11 @@
 #include "lib/allocators.h"
 
 
+AT_STARTUP(\
+	error_setDescription(ERR::ROOT_DIR_ALREADY_SET, "Attempting to set FS root dir more than once");\
+)
+
+
 // path types:
 // p_*: posix (e.g. mount object name or for open())
 // v_*: vfs (e.g. mount point)
@@ -44,7 +49,6 @@
 // dir  ::= name/
 // file ::= name
 // name ::= [^/]
-
 
 enum Conversion
 {
@@ -69,7 +73,7 @@ static LibError convert_path(char* dst, const char* src, Conversion conv = TO_NA
 	{
 		len++;
 		if(len >= PATH_MAX)
-			WARN_RETURN(ERR_PATH_LENGTH);
+			WARN_RETURN(ERR::PATH_LENGTH);
 
 		char c = *s++;
 
@@ -80,7 +84,7 @@ static LibError convert_path(char* dst, const char* src, Conversion conv = TO_NA
 
 		// end of string - done
 		if(c == '\0')
-			return INFO_OK;
+			return INFO::OK;
 	}
 }
 
@@ -129,7 +133,7 @@ LibError file_make_full_portable_path(const char* n_full_path, char* path)
 	debug_assert(path != n_full_path);	// doesn't work in-place
 
 	if(strncmp(n_full_path, n_root_dir, n_root_dir_len) != 0)
-		WARN_RETURN(ERR_TNODE_NOT_FOUND);
+		WARN_RETURN(ERR::TNODE_NOT_FOUND);
 	return convert_path(path, n_full_path+n_root_dir_len, TO_PORTABLE);
 }
 
@@ -156,7 +160,7 @@ LibError file_set_root_dir(const char* argv0, const char* rel_path)
 	// are likely bogus.
 	static bool already_attempted;
 	if(already_attempted)
-		WARN_RETURN(ERR_ROOT_DIR_ALREADY_SET);
+		WARN_RETURN(ERR::ROOT_DIR_ALREADY_SET);
 	already_attempted = true;
 
 	// get full path to executable
@@ -185,7 +189,7 @@ LibError file_set_root_dir(const char* argv0, const char* rel_path)
 	//    (note: already 0-terminated, since it's static)
 	n_root_dir_len = strlen(n_root_dir)+1;	// +1 for trailing DIR_SEP
 	n_root_dir[n_root_dir_len-1] = DIR_SEP;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -233,7 +237,7 @@ const char* file_make_unique_fn_copy(const char* P_fn)
 	unique_fn = (const char*)pool_alloc(&atom_pool, fn_len+1);
 	if(!unique_fn)
 	{
-		DEBUG_WARN_ERR(ERR_NO_MEM);
+		DEBUG_WARN_ERR(ERR::NO_MEM);
 		return 0;
 	}
 	memcpy2((void*)unique_fn, P_fn, fn_len);

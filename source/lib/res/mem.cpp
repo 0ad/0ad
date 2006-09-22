@@ -74,7 +74,7 @@ static Handle find_alloc(void* target_raw_p, It* out_it = 0)
 {
 	Ptr2H* ptr2h = ptr2h_wrapper.get();
 	if(!ptr2h)
-		WARN_RETURN(ERR_NO_MEM);
+		WARN_RETURN(ERR::NO_MEM);
 
 	// early out optimization (don't pay for full subset check)
 	It it = ptr2h->find(target_raw_p);
@@ -182,20 +182,20 @@ static void Mem_dtor(Mem* m)
 static LibError Mem_reload(Mem* m, const char* UNUSED(fn), Handle hm)
 {
 	set_alloc(m->raw_p, hm);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 static LibError Mem_validate(const Mem* m)
 {
 	if(debug_is_pointer_bogus(m->p))
-		WARN_RETURN(ERR_1);
+		WARN_RETURN(ERR::_1);
 	if(!m->size)
-		WARN_RETURN(ERR_2);
+		WARN_RETURN(ERR::_2);
 	if(m->raw_p && m->raw_p > m->p)
-		WARN_RETURN(ERR_3);
+		WARN_RETURN(ERR::_3);
 	if(m->raw_size && m->raw_size < m->size)
-		WARN_RETURN(ERR_4);
-	return INFO_OK;
+		WARN_RETURN(ERR::_4);
+	return INFO::OK;
 }
 
 static LibError Mem_to_string(const Mem* m, char* buf)
@@ -210,7 +210,7 @@ static LibError Mem_to_string(const Mem* m, char* buf)
 	}
 
 	snprintf(buf, H_STRING_LEN, "p=%p size=%d owner=%s", m->p, m->size, owner_sym);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -253,7 +253,7 @@ LibError mem_free_h(Handle& hm)
 LibError mem_free_p(void*& p)
 {
 	if(!p)
-		return INFO_OK;
+		return INFO::OK;
 
 	Handle hm;
 	{
@@ -263,7 +263,7 @@ LibError mem_free_p(void*& p)
 
 	p = 0;
 	if(hm <= 0)
-		WARN_RETURN(ERR_ALLOC_NOT_FOUND);
+		WARN_RETURN(ERR::MEM_ALLOC_NOT_FOUND);
 	return mem_free_h(hm);
 }
 
@@ -274,7 +274,7 @@ LibError mem_free_p(void*& p)
 Handle mem_wrap(void* p, size_t size, uint flags, void* raw_p, size_t raw_size, MEM_DTOR dtor, uintptr_t ctx, void* owner)
 {
 	if(!p || !size)
-		WARN_RETURN(ERR_INVALID_PARAM);
+		WARN_RETURN(ERR::INVALID_PARAM);
 
 	SCOPED_LOCK;
 
@@ -318,7 +318,7 @@ LibError mem_assign_user(Handle hm, void* user_p, size_t user_size)
 
 	m->p = user_p;
 	m->size = user_size;
-	return INFO_OK;
+	return INFO::OK;
 }
 */
 
@@ -328,7 +328,7 @@ LibError mem_assign_user(Handle hm, void* user_p, size_t user_size)
 void* mem_alloc(size_t size, const size_t align, uint flags, Handle* phm)
 {
 	if(phm)
-		*phm = ERR_NO_MEM;
+		*phm  = ERR::NO_MEM;
 
 #ifdef NDEBUG
 	void* owner = 0;
@@ -420,7 +420,7 @@ LibError mem_get(Handle hm, u8** pp, size_t* psize)
 	if(psize)
 		*psize = m->size;
 	// leave hm locked
-	return INFO_OK;
+	return INFO::OK;
 }
 
 

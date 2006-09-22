@@ -23,10 +23,6 @@
 #ifndef WDBG_H__
 #define WDBG_H__
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #if HAVE_MS_ASM
 # define debug_break() __asm { int 3 }
 #else
@@ -35,9 +31,5 @@ extern "C" {
 
 // internal use only:
 extern void wdbg_set_thread_name(const char* name);
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif	// #ifndef WDBG_H__

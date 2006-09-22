@@ -203,9 +203,9 @@ public:
 	void test_rand()
 	{
 		// complain if huge interval or min > max
-		debug_skip_next_err(ERR_INVALID_PARAM);
+		debug_skip_next_err(ERR::INVALID_PARAM);
 		TS_ASSERT_EQUALS(rand(1, 0), 0);
-		debug_skip_next_err(ERR_INVALID_PARAM);
+		debug_skip_next_err(ERR::INVALID_PARAM);
 		TS_ASSERT_EQUALS(rand(2, ~0u), 0);
 
 		// returned number must be in [min, max)

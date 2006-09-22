@@ -88,7 +88,7 @@ static void io_flush(png_structp UNUSED(png_ptr))
 
 static LibError png_transform(Tex* UNUSED(t), uint UNUSED(transforms))
 {
-	return INFO_TEX_CODEC_CANNOT_HANDLE;
+	return INFO::TEX_CODEC_CANNOT_HANDLE;
 }
 
 
@@ -119,14 +119,14 @@ static LibError png_decode_impl(DynArray* da,
 
 	// make sure format is acceptable
 	if(bit_depth != 8)
-		WARN_RETURN(ERR_TEX_NOT_8BIT_PRECISION);
+		WARN_RETURN(ERR::TEX_NOT_8BIT_PRECISION);
 	if(colour_type & PNG_COLOR_MASK_PALETTE)
-		WARN_RETURN(ERR_TEX_INVALID_COLOR_TYPE);
+		WARN_RETURN(ERR::TEX_INVALID_COLOR_TYPE);
 
 	const size_t img_size = pitch * h;
 	u8* img = (u8*)mem_alloc(img_size, 64*KiB, 0, &img_hm);
 	if(!img)
-		WARN_RETURN(ERR_NO_MEM);
+		WARN_RETURN(ERR::NO_MEM);
 
 	RETURN_ERR(tex_codec_alloc_rows(img, h, pitch, TEX_TOP_DOWN, 0, rows));
 
@@ -146,7 +146,7 @@ static LibError png_decode_impl(DynArray* da,
 	t->bpp   = bpp;
 	t->flags = flags;
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -189,7 +189,7 @@ static LibError png_encode_impl(Tex* t,
 	png_set_rows(png_ptr, info_ptr, (png_bytepp)rows);
 	png_write_png(png_ptr, info_ptr, png_transforms, 0);
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -221,7 +221,7 @@ static LibError png_decode(DynArray* restrict da, Tex* restrict t)
 {
 TIMER_ACCRUE(tc_png_decode);
 
-	LibError err = ERR_FAIL;
+	LibError err  = ERR::FAIL;
 	// freed when ret is reached:
 	png_structp png_ptr = 0;
 	png_infop info_ptr = 0;
@@ -262,7 +262,7 @@ ret:
 // limitation: palette images aren't supported
 static LibError png_encode(Tex* restrict t, DynArray* restrict da)
 {
-	LibError err = ERR_FAIL;
+	LibError err  = ERR::FAIL;
 	// freed when ret is reached:
 	png_structp png_ptr = 0;
 	png_infop info_ptr = 0;

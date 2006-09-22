@@ -2,6 +2,7 @@
 
 #include "lib/allocators.h"
 #include "lib/byte_order.h"
+#include "lib/res/file/file_io.h"
 
 class TestAllocators : public CxxTest::TestSuite 
 {
@@ -22,7 +23,7 @@ public:
 		u8 buf[4];
 		TS_ASSERT_OK(da_read(&da, buf, 4));
 		TS_ASSERT_EQUALS(read_le32(buf), 0x78563412);	// read correct value
-		debug_skip_next_err(ERR_EOF);
+		debug_skip_next_err(ERR::IO_EOF);
 		TS_ASSERT(da_read(&da, buf, 1) < 0);		// no more data left
 		TS_ASSERT_OK(da_free(&da));
 	}

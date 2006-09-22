@@ -45,7 +45,7 @@ LibError gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
 	// dm.dmDriverExtra already set to 0 by memset
 
 	if(!EnumDisplaySettingsA(0, ENUM_CURRENT_SETTINGS, &dm))
-		WARN_RETURN(ERR_FAIL);
+		WARN_RETURN(ERR::FAIL);
 
 	if(dm.dmFields & (DWORD)DM_PELSWIDTH && xres)
 		*xres = (int)dm.dmPelsWidth;
@@ -56,7 +56,7 @@ LibError gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
 	if(dm.dmFields & (DWORD)DM_DISPLAYFREQUENCY && freq)
 		*freq = (int)dm.dmDisplayFrequency;
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -69,7 +69,7 @@ LibError gfx_get_monitor_size(int& width_mm, int& height_mm)
 	width_mm = GetDeviceCaps(dc, HORZSIZE);
 	height_mm = GetDeviceCaps(dc, VERTSIZE);
 	ReleaseDC(0, dc);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -93,7 +93,7 @@ static LibError import_EnumDisplayDevices()
 		// so this resource leak is unavoidable.
 	}
 
-	return pEnumDisplayDevicesA? INFO_OK : ERR_FAIL;
+	return pEnumDisplayDevicesA? INFO::OK : ERR::FAIL;
 }
 
 
@@ -120,12 +120,12 @@ static LibError win_get_gfx_card()
 			if(dd.StateFlags & DISPLAY_DEVICE_PRIMARY_DEVICE)
 			{
 				strcpy_s(gfx_card, ARRAY_SIZE(gfx_card), (const char*)dd.DeviceString);
-				return INFO_OK;
+				return INFO::OK;
 			}
 		}
 	}
 
-	WARN_RETURN(ERR_FAIL);
+	WARN_RETURN(ERR::FAIL);
 }
 
 
@@ -134,7 +134,7 @@ static LibError win_get_gfx_drv_ver()
 {
 	// don't overwrite existing information
 	if(gfx_drv_ver[0] != '\0')
-		return INFO_SKIPPED;
+		return INFO::SKIPPED;
 
 	// rationale:
 	// - we could easily determine the 2d driver via EnumDisplaySettings,
@@ -153,7 +153,7 @@ static LibError win_get_gfx_drv_ver()
 	//   gfx_card which one is correct; we thus avoid driver-specific
 	//   name checks and reporting incorrectly.
 
-	LibError ret = ERR_FAIL;	// single point of exit (for RegCloseKey)
+	LibError ret  = ERR::FAIL;	// single point of exit (for RegCloseKey)
 	DWORD i;
 	char drv_name[MAX_PATH+1];
 
@@ -162,7 +162,7 @@ static LibError win_get_gfx_drv_ver()
 	HKEY hkOglDrivers;
 	const char* key = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\OpenGLDrivers";
 	if(RegOpenKeyEx(HKEY_LOCAL_MACHINE, key, 0, KEY_READ, &hkOglDrivers) != 0)
-		WARN_RETURN(ERR_FAIL);
+		WARN_RETURN(ERR::FAIL);
 
 	// for each subkey (i.e. set of installed OpenGL drivers):
 	for(i = 0; ; i++)
@@ -214,5 +214,5 @@ LibError win_get_gfx_info()
 	// don't exit before trying both
 	RETURN_ERR(err1);
 	RETURN_ERR(err2);
-	return INFO_OK;
+	return INFO::OK;
 }

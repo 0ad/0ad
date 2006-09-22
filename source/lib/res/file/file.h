@@ -26,6 +26,14 @@
 
 #include "lib/posix.h"		// struct stat
 
+
+namespace ERR
+{
+	const LibError FILE_ACCESS     = -110000;
+	const LibError FILE_NOT_MAPPED = -110001;
+	const LibError DIR_END         = -110002;
+}
+
 extern LibError file_init();
 
 // used by vfs_redirector to call various file objects' methods.
@@ -37,7 +45,7 @@ struct FileProvider_VTbl;
 // for external libraries that require the real filename.
 //
 // replaces '/' with platform's directory separator and vice versa.
-// verifies path length < PATH_MAX (otherwise return ERR_PATH_LENGTH).
+// verifies path length < PATH_MAX (otherwise return ERR::PATH_LENGTH).
 //
 
 // relative paths (relative to root dir)
@@ -137,12 +145,12 @@ struct DirEnt
 #define DIRENT_IS_DIR(p_ent) ((p_ent)->size == -1)
 
 // prepare to iterate (once) over entries in the given directory.
-// if INFO_OK is returned, <d> is ready for subsequent dir_next_ent calls and
+// if INFO::OK is returned, <d> is ready for subsequent dir_next_ent calls and
 // must be freed via dir_close.
 extern LibError dir_open(const char* P_path, DirIterator* d);
 
-// return ERR_DIR_END if all entries have already been returned once,
-// another negative error code, or INFO_OK on success, in which case <ent>
+// return ERR::DIR_END if all entries have already been returned once,
+// another negative error code, or INFO::OK on success, in which case <ent>
 // describes the next (order is unspecified) directory entry.
 extern LibError dir_next_ent(DirIterator* d, DirEnt* ent);
 
@@ -170,7 +178,7 @@ extern LibError file_get_sorted_dirents(const char* P_path, DirEnts& dirents);
 
 // called by file_enum for each entry in the directory.
 // name doesn't include path!
-// return INFO_CB_CONTINUE to continue calling; anything else will cause
+// return INFO::CB_CONTINUE to continue calling; anything else will cause
 // file_enum to abort and immediately return that value.
 typedef LibError (*FileCB)(const char* name, const struct stat* s, uintptr_t memento, const uintptr_t user);
 
@@ -322,122 +330,8 @@ extern LibError file_validate(const File* f);
 extern LibError file_cache_invalidate(const char* fn);
 
 
-//
-// asynchronous IO
-//
+#include "file_io.h"
 
-// this is a thin wrapper on top of the system AIO calls.
-// IOs are carried out exactly as requested - there is no caching or
-// alignment done here. rationale: see source.
-
-// again chosen for nice alignment; each user checks if big enough.
-const size_t FILE_IO_OPAQUE_SIZE = 28;
-
-struct FileIo
-{
-	const FileProvider_VTbl* type;
-	u8 opaque[FILE_IO_OPAQUE_SIZE];
-};
-
-// queue the IO; it begins after the previous ones (if any) complete.
-//
-// rationale: this interface is more convenient than implicitly advancing a
-// file pointer because archive.cpp often accesses random offsets.
-extern LibError file_io_issue(File* f, off_t ofs, size_t size, void* buf, FileIo* io);
-
-// indicates if the given IO has completed.
-// return value: 0 if pending, 1 if complete, < 0 on error.
-extern int file_io_has_completed(FileIo* io);
-
-// wait for the given IO to complete. passes back its buffer and size.
-extern LibError file_io_wait(FileIo* io, void*& p, size_t& size);
-
-// indicates the IO's buffer is no longer needed and frees that memory.
-extern LibError file_io_discard(FileIo* io);
-
-extern LibError file_io_validate(const FileIo* io);
-
-
-//
-// synchronous IO
-//
-
-extern size_t file_sector_size;
-
-// called by file_io after a block IO has completed.
-// *bytes_processed must be set; file_io will return the sum of these values.
-// example: when reading compressed data and decompressing in the callback,
-// indicate #bytes decompressed.
-// return value: INFO_CB_CONTINUE to continue calling; anything else:
-//   abort immediately and return that.
-// note: in situations where the entire IO is not split into blocks
-// (e.g. when reading from cache or not using AIO), this is still called but
-// for the entire IO. we do not split into fake blocks because it is
-// advantageous (e.g. for decompressors) to have all data at once, if available
-// anyway.
-typedef LibError (*FileIOCB)(uintptr_t ctx, const void* block, size_t size, size_t* bytes_processed);
-
-
-typedef const u8* FileIOBuf;
-
-FileIOBuf* const FILE_BUF_TEMP = (FileIOBuf*)1;
-const FileIOBuf FILE_BUF_ALLOC = (FileIOBuf)2;
-
-
-enum FileBufFlags
-{
-	// indicates the buffer will not be freed immediately
-	// (i.e. before the next buffer alloc) as it normally should.
-	// this flag serves to suppress a warning and better avoid fragmentation.
-	// caller sets this when FILE_LONG_LIVED is specified.
-	//
-	// also used by file_cache_retrieve because it may have to
-	// 'reactivate' the buffer (transfer from cache to extant list),
-	// which requires knowing whether the buffer is long-lived or not.
-	FB_LONG_LIVED    = 1,
-
-	// statistics (e.g. # buffer allocs) should not be updated.
-	// (useful for simulation, e.g. trace_entry_causes_io)
-	FB_NO_STATS      = 2,
-
-	// file_cache_retrieve should not update item credit.
-	// (useful when just looking up buffer given atom_fn)
-	FB_NO_ACCOUNTING = 4,
-
-	// memory will be allocated from the heap, not the (limited) file cache.
-	// this makes sense for write buffers that are never used again,
-	// because we avoid having to displace some other cached items.
-	FB_FROM_HEAP     = 8
-};
-
-// allocate a new buffer of <size> bytes (possibly more due to internal
-// fragmentation). never returns 0.
-// <atom_fn>: owner filename (buffer is intended to be used for data from
-//   this file).
-extern FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, uint fb_flags = 0);
-
-// mark <buf> as no longer needed. if its reference count drops to 0,
-// it will be removed from the extant list. if it had been added to the
-// cache, it remains there until evicted in favor of another buffer.
-extern LibError file_buf_free(FileIOBuf buf, uint fb_flags = 0);
-
-
-
-// transfer <size> bytes, starting at <ofs>, to/from the given file.
-// (read or write access was chosen at file-open time).
-//
-// if non-NULL, <cb> is called for each block transferred, passing <ctx>.
-// it returns how much data was actually transferred, or a negative error
-// code (in which case we abort the transfer and return that value).
-// the callback mechanism is useful for user progress notification or
-// processing data while waiting for the next I/O to complete
-// (quasi-parallel, without the complexity of threads).
-//
-// return number of bytes transferred (see above), or a negative error code.
-extern ssize_t file_io(File* f, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb = 0, uintptr_t ctx = 0);
-
-extern ssize_t file_read_from_cache(const char* atom_fn, off_t ofs, size_t size,
-	FileIOBuf* pbuf, FileIOCB cb, uintptr_t ctx);
 
 //
 // memory mapping

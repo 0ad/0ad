@@ -26,10 +26,6 @@
 #include "lib/types.h"
 #include "SDL/SDL_keysym.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 typedef u8  Uint8;
 typedef u16 Uint16;
 typedef u32 Uint32;
@@ -303,10 +299,5 @@ extern Uint8* SDL_GetKeyState(int* num_keys);
 extern Uint8 SDL_GetMouseState(int* x, int* y);
 
 extern Uint8 SDL_GetAppState();
-
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif	// #ifndef WSDL_H__

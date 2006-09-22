@@ -34,6 +34,18 @@
 #include "tex_codec.h"
 
 
+AT_STARTUP(\
+	error_setDescription(ERR::TEX_FMT_INVALID, "Invalid/unsupported texture format");\
+	error_setDescription(ERR::TEX_INVALID_COLOR_TYPE, "Invalid color type");\
+	error_setDescription(ERR::TEX_NOT_8BIT_PRECISION, "Not 8bit channel precision");\
+	error_setDescription(ERR::TEX_INVALID_LAYOUT, "Unsupported texel layout, e.g. righttoleft");\
+	error_setDescription(ERR::TEX_COMPRESSED, "Unsupported texture compression");\
+	error_setDescription(WARN::TEX_INVALID_DATA, "Warning: invalid texel data encountered");\
+	error_setDescription(ERR::TEX_INVALID_SIZE, "Texture size is incorrect");\
+	error_setDescription(INFO::TEX_CODEC_CANNOT_HANDLE, "Texture codec cannot handle the given format");\
+)
+
+
 //-----------------------------------------------------------------------------
 // validation
 //-----------------------------------------------------------------------------
@@ -52,25 +64,25 @@ LibError tex_validate(const Tex* t)
 		// possible causes: texture file header is invalid,
 		// or file wasn't loaded completely.
 		if(tex_file_size < t->ofs + t->w*t->h*t->bpp/8)
-			WARN_RETURN(ERR_1);
+			WARN_RETURN(ERR::_1);
 	}
 
 	// bits per pixel
 	// (we don't bother checking all values; a sanity check is enough)
 	if(t->bpp % 4 || t->bpp > 32)
-		WARN_RETURN(ERR_2);
+		WARN_RETURN(ERR::_2);
 
 	// flags
 	// .. DXT value
 	const uint dxt = t->flags & TEX_DXT;
 	if(dxt != 0 && dxt != 1 && dxt != DXT1A && dxt != 3 && dxt != 5)
-		WARN_RETURN(ERR_3);
+		WARN_RETURN(ERR::_3);
 	// .. orientation
 	const uint orientation = t->flags & TEX_ORIENTATION;
 	if(orientation == (TEX_BOTTOM_UP|TEX_TOP_DOWN))
-		WARN_RETURN(ERR_4);
+		WARN_RETURN(ERR::_4);
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 #define CHECK_TEX(t) RETURN_ERR(tex_validate(t))
@@ -88,22 +100,22 @@ LibError tex_validate_plain_format(uint bpp, uint flags)
 	const bool mipmaps = (flags & TEX_MIPMAPS) != 0;
 
 	if(dxt || mipmaps)
-		WARN_RETURN(ERR_TEX_FMT_INVALID);
+		WARN_RETURN(ERR::TEX_FMT_INVALID);
 
 	// grey must be 8bpp without alpha, or it's invalid.
 	if(grey)
 	{
 		if(bpp == 8 && !alpha)
-			return INFO_OK;
-		WARN_RETURN(ERR_TEX_FMT_INVALID);
+			return INFO::OK;
+		WARN_RETURN(ERR::TEX_FMT_INVALID);
 	}
 
 	if(bpp == 24 && !alpha)
-		return INFO_OK;
+		return INFO::OK;
 	if(bpp == 32 && alpha)
-		return INFO_OK;
+		return INFO::OK;
 
-	WARN_RETURN(ERR_TEX_FMT_INVALID);
+	WARN_RETURN(ERR::TEX_FMT_INVALID);
 }
 
 
@@ -241,20 +253,20 @@ static LibError add_mipmaps(Tex* t, uint w, uint h, uint bpp,
 	// go to the trouble of implementing image scaling because
 	// the only place this is used (ogl_tex_upload) requires POT anyway.
 	if(!is_pow2(w) || !is_pow2(h))
-		WARN_RETURN(ERR_TEX_INVALID_SIZE);
+		WARN_RETURN(ERR::TEX_INVALID_SIZE);
 	t->flags |= TEX_MIPMAPS;	// must come before tex_img_size!
 	const size_t mipmap_size = tex_img_size(t);
 	Handle hm;
 	const u8* mipmap_data = (const u8*)mem_alloc(mipmap_size, 4*KiB, 0, &hm);
 	if(!mipmap_data)
-		WARN_RETURN(ERR_NO_MEM);
+		WARN_RETURN(ERR::NO_MEM);
 	CreateLevelData cld = { bpp/8, w, h, (const u8*)new_data, data_size };
 	tex_util_foreach_mipmap(w, h, bpp, mipmap_data, 0, 1, create_level, &cld);
 	mem_free_h(t->hm);
 	t->hm = hm;
 	t->ofs = 0;
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -287,12 +299,12 @@ TIMER_ACCRUE(tc_plain_transform);
 	// sanity checks (not errors, we just can't handle these cases)
 	// .. unknown transform
 	if(transforms & ~(TEX_BGR|TEX_ORIENTATION|TEX_MIPMAPS))
-		return INFO_TEX_CODEC_CANNOT_HANDLE;
+		return INFO::TEX_CODEC_CANNOT_HANDLE;
 	// .. data is not in "plain" format
 	RETURN_ERR(tex_validate_plain_format(bpp, flags));
 	// .. nothing to do
 	if(!transforms)
-		return INFO_OK;
+		return INFO::OK;
 
 	// allocate copy of the image data.
 	// rationale: L1 cache is typically A2 => swapping in-place with a
@@ -304,7 +316,7 @@ TIMER_ACCRUE(tc_plain_transform);
 	Handle hm;
 	void* new_data = mem_alloc(data_size, 4*KiB, 0, &hm);
 	if(!new_data)
-		WARN_RETURN(ERR_NO_MEM);
+		WARN_RETURN(ERR::NO_MEM);
 	memcpy2(new_data, data, data_size);
 
 	// setup row source/destination pointers (simplifies outer loop)
@@ -372,7 +384,7 @@ TIMER_ACCRUE(tc_plain_transform);
 		RETURN_ERR(add_mipmaps(t, w, h, bpp, new_data, data_size));
 
 	CHECK_TEX(t);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -392,16 +404,16 @@ LibError tex_transform(Tex* t, uint transforms)
 		remaining_transforms = target_flags ^ t->flags;
 		// we're finished (all required transforms have been done)
 		if(remaining_transforms == 0)
-			return INFO_OK;
+			return INFO::OK;
 
 		LibError ret = tex_codec_transform(t, remaining_transforms);
-		if(ret != INFO_OK)
+		if(ret != INFO::OK)
 			break;
 	}
 
 	// last chance
 	RETURN_ERR(plain_transform(t, remaining_transforms));
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -487,7 +499,7 @@ bool tex_is_known_extension(const char* filename)
 {
 	const TexCodecVTbl* dummy;
 	// found codec for it => known extension
-	if(tex_codec_for_filename(filename, &dummy) == INFO_OK)
+	if(tex_codec_for_filename(filename, &dummy) == INFO::OK)
 		return true;
 
 	return false;
@@ -527,7 +539,7 @@ LibError tex_wrap(uint w, uint h, uint bpp, uint flags, void* img, Tex* t)
 	t->ofs = (u8*)img - (u8*)reported_ptr;
 
 	CHECK_TEX(t);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -616,10 +628,10 @@ LibError tex_decode(const u8* data, size_t data_size, MEM_DTOR dtor, Tex* t)
 	// make sure the entire header is available
 	const size_t min_hdr_size = c->hdr_size(0);
 	if(data_size < min_hdr_size)
-		WARN_RETURN(ERR_INCOMPLETE_HEADER);
+		WARN_RETURN(ERR::RES_INCOMPLETE_HEADER);
 	const size_t hdr_size = c->hdr_size(data);
 	if(data_size < hdr_size)
-		WARN_RETURN(ERR_INCOMPLETE_HEADER);
+		WARN_RETURN(ERR::RES_INCOMPLETE_HEADER);
 
 	// wrap pointer into a Handle; required for Tex.hm.
 	// rationale: a Handle protects the texture memory from being
@@ -642,16 +654,16 @@ LibError tex_decode(const u8* data, size_t data_size, MEM_DTOR dtor, Tex* t)
 
 	// sanity checks
 	if(!t->w || !t->h || t->bpp > 32)
-		WARN_RETURN(ERR_TEX_FMT_INVALID);
+		WARN_RETURN(ERR::TEX_FMT_INVALID);
 	// .. note: can't use data_size - decode may have decompressed the image.
 	size_t hm_size;
 	(void)mem_get_ptr(t->hm, &hm_size);
 	if(hm_size < t->ofs + tex_img_size(t))
-		WARN_RETURN(ERR_TEX_INVALID_SIZE);
+		WARN_RETURN(ERR::TEX_INVALID_SIZE);
 
 	flip_to_global_orientation(t);
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -679,7 +691,7 @@ LibError tex_encode(Tex* t, const char* fn, DynArray* da)
 		WARN_RETURN(err);
 	}
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -709,7 +721,7 @@ LibError tex_load(const char* fn, Tex* t, uint file_flags)
 	// wasn't compressed) or was replaced by a new buffer for the image data.
 
 	CHECK_TEX(t);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -722,7 +734,7 @@ LibError tex_write(Tex* t, const char* fn)
 	RETURN_ERR(tex_encode(t, fn, &da));
 
 	// write to disk
-	LibError ret = INFO_OK;
+	LibError ret = INFO::OK;
 	{
 	const size_t sector_aligned_size = round_up(da.cur_size, file_sector_size);
 	(void)da_set_size(&da, sector_aligned_size);

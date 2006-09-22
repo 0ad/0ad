@@ -112,7 +112,7 @@ struct LFList
 };
 
 // make ready a previously unused(!) list object. if a negative error
-// code (currently only ERR_NO_MEM) is returned, the list can't be used.
+// code (currently only ERR::NO_MEM) is returned, the list can't be used.
 extern LibError lfl_init(LFList* list);
 
 // call when list is no longer needed; should no longer hold any references.
@@ -144,7 +144,7 @@ struct LFHash
 
 // make ready a previously unused(!) hash object. table size will be
 // <num_entries>; this cannot currently be expanded. if a negative error
-// code (currently only ERR_NO_MEM) is returned, the hash can't be used.
+// code (currently only ERR::NO_MEM) is returned, the hash can't be used.
 extern LibError lfh_init(LFHash* hash, size_t num_entries);
 
 // call when hash is no longer needed; should no longer hold any references.

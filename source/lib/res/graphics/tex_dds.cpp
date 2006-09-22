@@ -23,7 +23,6 @@
 #include "precompiled.h"
 
 #include "lib/byte_order.h"
-#include "lib/res/mem.h"
 #include "tex_codec.h"
 
 // NOTE: the convention is bottom-up for DDS, but there's no way to tell.
@@ -289,7 +288,7 @@ static LibError s3tc_decompress(Tex* t)
 	const size_t out_size = tex_img_size(t) * out_bpp / t->bpp;
 	void* out_data = mem_alloc(out_size, 64*KiB, 0, &hm);
 	if(!out_data)
-		WARN_RETURN(ERR_NO_MEM);
+		WARN_RETURN(ERR::NO_MEM);
 
 	const uint s3tc_block_size = (dxt == 3 || dxt == 5)? 16 : 8;
 	S3tcDecompressInfo di = { dxt, s3tc_block_size, out_bpp/8, (u8*)out_data };
@@ -301,7 +300,7 @@ static LibError s3tc_decompress(Tex* t)
 	t->ofs = 0;
 	t->bpp = out_bpp;
 	t->flags &= ~TEX_DXT;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -416,7 +415,7 @@ static LibError decode_pf(const DDPIXELFORMAT* pf, uint* bpp_, uint* flags_)
 
 	// check struct size
 	if(read_le32(&pf->dwSize) != sizeof(DDPIXELFORMAT))
-		WARN_RETURN(ERR_TEX_INVALID_SIZE);
+		WARN_RETURN(ERR::TEX_INVALID_SIZE);
 
 	// determine type
 	const u32 pf_flags = read_le32(&pf->dwFlags);
@@ -452,7 +451,7 @@ static LibError decode_pf(const DDPIXELFORMAT* pf, uint* bpp_, uint* flags_)
 			// we do not allow any weird orderings that require runtime work.
 			// instead, the artists must export with the correct settings.
 		unsupported_component_ordering:
-			WARN_RETURN(ERR_TEX_FMT_INVALID);
+			WARN_RETURN(ERR::TEX_FMT_INVALID);
 		}
 
 		RETURN_ERR(tex_validate_plain_format(bpp, flags));
@@ -483,16 +482,16 @@ static LibError decode_pf(const DDPIXELFORMAT* pf, uint* bpp_, uint* flags_)
 			break;
 
 		default:
-			WARN_RETURN(ERR_TEX_FMT_INVALID);
+			WARN_RETURN(ERR::TEX_FMT_INVALID);
 		}
 	}
 	// .. neither uncompressed nor compressed - invalid
 	else
-		WARN_RETURN(ERR_TEX_FMT_INVALID);
+		WARN_RETURN(ERR::TEX_FMT_INVALID);
 
 	*bpp_ = bpp;
 	*flags_ = flags;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -505,7 +504,7 @@ static LibError decode_sd(const DDSURFACEDESC2* sd, uint* w_, uint* h_,
 {
 	// check header size
 	if(read_le32(&sd->dwSize) != sizeof(*sd))
-		WARN_RETURN(ERR_CORRUPTED);
+		WARN_RETURN(ERR::CORRUPTED);
 
 	// flags (indicate which fields are valid)
 	const u32 sd_flags = read_le32(&sd->dwFlags);
@@ -513,14 +512,14 @@ static LibError decode_sd(const DDSURFACEDESC2* sd, uint* w_, uint* h_,
 	// note: we can't guess dimensions - the image may not be square.
 	const u32 sd_req_flags = DDSD_CAPS|DDSD_HEIGHT|DDSD_WIDTH|DDSD_PIXELFORMAT;
 	if((sd_flags & sd_req_flags) != sd_req_flags)
-		WARN_RETURN(ERR_INCOMPLETE_HEADER);
+		WARN_RETURN(ERR::RES_INCOMPLETE_HEADER);
 
 	// image dimensions
 	const u32 h = read_le32(&sd->dwHeight);
 	const u32 w = read_le32(&sd->dwWidth);
 	// .. not padded to S3TC block size
 	if(w % 4 || h % 4)
-		WARN_RETURN(ERR_TEX_INVALID_SIZE);
+		WARN_RETURN(ERR::TEX_INVALID_SIZE);
 
 	// pixel format
 	uint bpp, flags;
@@ -532,12 +531,12 @@ static LibError decode_sd(const DDSURFACEDESC2* sd, uint* w_, uint* h_,
 	if(sd_flags & DDSD_PITCH)
 	{
 		if(sd_pitch_or_size != round_up(pitch, 4))
-			WARN_RETURN(ERR_CORRUPTED);
+			WARN_RETURN(ERR::CORRUPTED);
 	}
 	if(sd_flags & DDSD_LINEARSIZE)
 	{
 		if(sd_pitch_or_size != pitch*h)
-			WARN_RETURN(ERR_CORRUPTED);
+			WARN_RETURN(ERR::CORRUPTED);
 	}
 	// note: both flags set would be invalid; no need to check for that,
 	// though, since one of the above tests would fail.
@@ -551,7 +550,7 @@ static LibError decode_sd(const DDSURFACEDESC2* sd, uint* w_, uint* h_,
 			// mipmap chain is incomplete
 			// note: DDS includes the base level in its count, hence +1.
 			if(mipmap_count != log2(MAX(w,h))+1)
-				WARN_RETURN(ERR_TEX_FMT_INVALID);
+				WARN_RETURN(ERR::TEX_FMT_INVALID);
 			flags |= TEX_MIPMAPS;
 		}
 	}
@@ -561,7 +560,7 @@ static LibError decode_sd(const DDSURFACEDESC2* sd, uint* w_, uint* h_,
 	{
 		const u32 depth = read_le32(&sd->dwDepth);
 		if(depth)
-			WARN_RETURN(ERR_NOT_IMPLEMENTED);
+			WARN_RETURN(ERR::NOT_IMPLEMENTED);
 	}
 
 	// check caps
@@ -580,7 +579,7 @@ static LibError decode_sd(const DDSURFACEDESC2* sd, uint* w_, uint* h_,
 	*h_ = h;
 	*bpp_ = bpp;
 	*flags_ = flags;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -618,15 +617,15 @@ static LibError dds_decode(DynArray* restrict da, Tex* restrict t)
 	t->h     = h;
 	t->bpp   = bpp;
 	t->flags = flags;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
 static LibError dds_encode(Tex* restrict UNUSED(t), DynArray* restrict UNUSED(da))
 {
-	// note: do not return ERR_NOT_IMPLEMENTED et al. because that would
+	// note: do not return ERR::NOT_IMPLEMENTED et al. because that would
 	// break tex_write (which assumes either this, 0 or errors are returned).
-	return INFO_TEX_CODEC_CANNOT_HANDLE;
+	return INFO::TEX_CODEC_CANNOT_HANDLE;
 }
 
 
@@ -640,13 +639,13 @@ static LibError dds_transform(Tex* t, uint transforms)
 	if(dxt && transform_dxt)
 	{
 		RETURN_ERR(s3tc_decompress(t));
-		return INFO_OK;
+		return INFO::OK;
 	}
 	// both are DXT (unsupported; there are no flags we can change while
 	// compressed) or requesting compression (not implemented) or
 	// both not DXT (nothing we can do) - bail.
 	else
-		return INFO_TEX_CODEC_CANNOT_HANDLE;
+		return INFO::TEX_CODEC_CANNOT_HANDLE;
 }
 
 

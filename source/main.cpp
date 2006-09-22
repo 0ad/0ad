@@ -98,13 +98,13 @@ static void PumpEvents()
 static bool ProgressiveBuildArchive()
 {
 	int ret = vfs_opt_auto_build("../logs/trace.txt", "mods/official/official%02d.zip", "mods/official/mini%02d.zip");
-	if(ret == INFO_ALL_COMPLETE)
+	if(ret == INFO::ALL_COMPLETE)
 	{
 		// nothing to do; will return false below
 	}
 	else if(ret < 0)
 		DISPLAY_ERROR(L"Archive build failed");
-	else if(ret == INFO_OK)
+	else if(ret == INFO::OK)
 		g_GUI.SendEventToAll("archivebuildercomplete");
 	// in progress
 	else
@@ -127,14 +127,14 @@ static int ProgressiveLoad()
 	switch(ret)
 	{
 		// no load active => no-op (skip code below)
-	case INFO_OK:
+	case INFO::OK:
 		return 0;
 		// current task didn't complete. we only care about this insofar as the
 		// load process is therefore not yet finished.
-	case ERR_TIMED_OUT:
+	case ERR::TIMED_OUT:
 		break;
 		// just finished loading
-	case INFO_ALL_COMPLETE:
+	case INFO::ALL_COMPLETE:
 		g_Game->ReallyStartGame();
 		wcscpy_s(description, ARRAY_SIZE(description), L"Game is starting..");
 		// LDR_ProgressiveLoad returns L""; set to valid text to
@@ -143,7 +143,7 @@ static int ProgressiveLoad()
 		// error!
 	default:
 		CHECK_ERR(ret);
-		// can't do this above due to legit ERR_TIMED_OUT
+		// can't do this above due to legit ERR::TIMED_OUT
 		break;
 	}
 

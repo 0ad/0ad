@@ -186,7 +186,7 @@ extern bool self_test_active;
 
 #include <cxxtest/TestSuite.h>
 
-#define TS_ASSERT_OK(expr) TS_ASSERT_EQUALS((expr), INFO_OK)
+#define TS_ASSERT_OK(expr) TS_ASSERT_EQUALS((expr), INFO::OK)
 #define TS_ASSERT_STR_EQUALS(str1, str2) TS_ASSERT_EQUALS(std::string(str1), std::string(str2))
 
 #endif	// #ifndef SELF_TEST_H__

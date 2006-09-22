@@ -28,9 +28,6 @@
 
 #include "debug.h"	// debug_printf
 
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 // high resolution (> 1 us) timestamp [s], starting at or near 0 s.
 extern double get_time(void);
@@ -115,11 +112,6 @@ extern void timer_bill_client(TimerClient* tc, TimerUnit dt);
 // display all clients' totals; does not reset them.
 // typically called at exit.
 extern void timer_display_client_totals();
-
-#ifdef __cplusplus
-}
-#endif
-
 
 
 

@@ -17,7 +17,7 @@
 #define LOG_CAT_NET "net"
 
 CNetClient *g_NetClient=NULL;
-extern "C" int fps;
+extern int fps;
 extern CConsole *g_Console;
 
 CNetClient::CServerSession::CServerSession(int sessionID, const CStrW& name):

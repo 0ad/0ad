@@ -52,6 +52,16 @@ WIN_REGISTER_FUNC(wtime_shutdown);
 #pragma data_seg()
 
 
+namespace ERR
+{
+	const LibError TIMER_NO_SAFE_IMPL = -130100;
+}
+
+AT_STARTUP(\
+	error_setDescription(ERR::TIMER_NO_SAFE_IMPL, "No safe time source available");\
+)
+
+
 // see http://www.gamedev.net/reference/programming/features/timing/ .
 
 // rationale:
@@ -199,7 +209,7 @@ static LibError choose_impl()
 			hrt_impl = HRT_TSC;
 			hrt_nominal_freq = cpu_freq;
 			hrt_res = (1.0 / hrt_nominal_freq);
-			return INFO_OK;
+			return INFO::OK;
 		}
 	}
 #endif	// TSC
@@ -258,7 +268,7 @@ static LibError choose_impl()
 			hrt_impl = HRT_QPC;
 			hrt_nominal_freq = (double)qpc_freq;
 			hrt_res = (1.0 / hrt_nominal_freq);
-			return INFO_OK;
+			return INFO::OK;
 		}
 	}
 #endif	// QPC
@@ -279,12 +289,12 @@ static LibError choose_impl()
 		DWORD timer_period;	// [hectonanoseconds]
 		if(GetSystemTimeAdjustment(&adj, &timer_period, &adj_disabled))
 			hrt_res = (timer_period / 1e7);
-		return INFO_OK;
+		return INFO::OK;
 	}
 
 	hrt_impl = HRT_NONE;
 	hrt_nominal_freq = -1.0;
-	WARN_RETURN(ERR_TIMER_NO_SAFE_IMPL);
+	WARN_RETURN(ERR::TIMER_NO_SAFE_IMPL);
 }
 
 
@@ -393,7 +403,7 @@ static LibError reset_impl_lk()
 		hrt_cal_ticks = ticks_lk();
 	}
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -462,7 +472,7 @@ static LibError hrt_override_impl(HRTOverride ovr, HRTImpl impl)
 {
 	if((ovr != HRT_DISABLE && ovr != HRT_FORCE && ovr != HRT_DEFAULT) ||
 	   (impl != HRT_TSC && impl != HRT_QPC && impl != HRT_GTC && impl != HRT_NONE))
-		WARN_RETURN(ERR_INVALID_PARAM);
+		WARN_RETURN(ERR::INVALID_PARAM);
 
 lock();
 
@@ -597,7 +607,7 @@ static inline LibError init_calibration_thread()
 {
 	sem_init(&exit_flag, 0, 0);
 	pthread_create(&thread, 0, calibration_thread, 0);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -606,7 +616,7 @@ static inline LibError shutdown_calibration_thread()
 	sem_post(&exit_flag);
 	pthread_join(thread, 0);
 	sem_destroy(&exit_flag);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -741,7 +751,7 @@ static LibError wtime_init()
 	// first call latches start times
 	time_ns();
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 

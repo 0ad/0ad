@@ -45,7 +45,7 @@ WIN_REGISTER_FUNC(wsock_shutdown);
 // These are included in the linux C libraries and in newer platform SDKs,
 // so should only be needed in VC++6 or earlier.
 const struct in6_addr in6addr_any = IN6ADDR_ANY_INIT;           // ::
-const struct in6_addr in6addr_loopback = IN6ADDR_LOOPBACK_INIT; // ::1
+const struct in6_addr in6addr_loopback = IN6ADDR_LOOPBACK_INIT; // ::_1
 
 static HMODULE hWs2_32Dll;
 static int dll_refs;
@@ -65,7 +65,7 @@ static LibError wsock_actual_init()
 			debug_warn("WSAStartup failed");
 	}
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -74,7 +74,7 @@ static LibError wsock_actual_init()
 static LibError wsock_init()
 {
 	WDLL_LOAD_NOTIFY("ws2_32", wsock_actual_init);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 static LibError wsock_shutdown()
@@ -89,7 +89,7 @@ static LibError wsock_shutdown()
 	while(dll_refs-- > 0)
 		FreeLibrary(hWs2_32Dll);
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 

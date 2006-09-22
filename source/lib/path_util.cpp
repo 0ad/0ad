@@ -29,6 +29,18 @@
 #include "path_util.h"
 
 
+AT_STARTUP(\
+	error_setDescription(ERR::PATH_LENGTH, "Path exceeds PATH_MAX characters");\
+	error_setDescription(ERR::PATH_EMPTY, "Path is an empty string");\
+	error_setDescription(ERR::PATH_NOT_RELATIVE, "Path is not relative");\
+	error_setDescription(ERR::PATH_NON_PORTABLE, "Path contains OSspecific dir separator");\
+	error_setDescription(ERR::PATH_NON_CANONICAL, "Path contains unsupported .. or ./");\
+	error_setDescription(ERR::PATH_COMPONENT_SEPARATOR, "Path component contains dir separator");\
+	\
+	error_setEquivalent(ERR::PATH_LENGTH, ENAMETOOLONG);\
+)
+
+
 static inline bool is_dir_sep(char c)
 {
 	if(c == '/' || c == DIR_SEP)
@@ -69,13 +81,13 @@ bool path_is_subpath(const char* s1, const char* s2)
 }
 
 
-// if path is invalid, return a descriptive error code, otherwise INFO_OK.
+// if path is invalid, return a descriptive error code, otherwise INFO::OK.
 LibError path_validate(const char* path)
 {
 	// disallow "/", because it would create a second 'root' (with name = "").
 	// root dir is "".
 	if(path[0] == '/')
-		WARN_RETURN(ERR_PATH_NOT_RELATIVE);
+		WARN_RETURN(ERR::PATH_NOT_RELATIVE);
 
 	// scan each char in path string; count length.
 	int c = 0;		// current char; used for .. detection
@@ -87,35 +99,35 @@ LibError path_validate(const char* path)
 
 		// whole path is too long
 		if(path_len >= PATH_MAX)
-			WARN_RETURN(ERR_PATH_LENGTH);
+			WARN_RETURN(ERR::PATH_LENGTH);
 
 		// disallow:
 		// - ".." (prevent going above the VFS root dir)
 		// - "./" (security hole when mounting and not supported on Windows).
 		// allow "/.", because CVS backup files include it.
 		if(last_c == '.' && (c == '.' || c == '/'))
-			WARN_RETURN(ERR_PATH_NON_CANONICAL);
+			WARN_RETURN(ERR::PATH_NON_CANONICAL);
 
 		// disallow OS-specific dir separators
 		if(c == '\\' || c == ':')
-			WARN_RETURN(ERR_PATH_NON_PORTABLE);
+			WARN_RETURN(ERR::PATH_NON_PORTABLE);
 
 		// end of string, no errors encountered
 		if(c == '\0')
 			break;
 	}
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
-// if name is invalid, return a descriptive error code, otherwise INFO_OK.
+// if name is invalid, return a descriptive error code, otherwise INFO::OK.
 // (name is a path component, i.e. that between directory separators)
 LibError path_component_validate(const char* name)
 {
 	// disallow empty strings
 	if(*name == '\0')
-		WARN_RETURN(ERR_PATH_EMPTY);
+		WARN_RETURN(ERR::PATH_EMPTY);
 
 	for(;;)
 	{
@@ -124,14 +136,14 @@ LibError path_component_validate(const char* name)
 		// disallow *any* dir separators (regardless of which
 		// platform we're on).
 		if(c == '\\' || c == ':' || c == '/')
-			WARN_RETURN(ERR_PATH_COMPONENT_SEPARATOR);
+			WARN_RETURN(ERR::PATH_COMPONENT_SEPARATOR);
 
 		// end of string, no errors encountered
 		if(c == '\0')
 			break;
 	}
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -175,7 +187,7 @@ LibError path_append(char* dst, const char* path1, const char* path2, uint flags
 	}
 
 	if(total_len > PATH_MAX)
-		WARN_RETURN(ERR_PATH_LENGTH);
+		WARN_RETURN(ERR::PATH_LENGTH);
 
 	strcpy(dst, path1);	// safe
 	dst += len1;
@@ -185,20 +197,20 @@ LibError path_append(char* dst, const char* path1, const char* path2, uint flags
 	if(need_terminator)
 		strcpy(dst+len2, "/");	// safe
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
 // strip <remove> from the start of <src>, prepend <replace>,
 // and write to <dst>.
-// returns ERR_FAIL (without warning!) if the beginning of <src> doesn't
+// returns ERR::FAIL (without warning!) if the beginning of <src> doesn't
 // match <remove>.
 LibError path_replace(char* dst, const char* src, const char* remove, const char* replace)
 {
 	// remove doesn't match start of <src>
 	const size_t remove_len = strlen(remove);
 	if(strncmp(src, remove, remove_len) != 0)
-		return ERR_FAIL;	// NOWARN
+		return ERR::FAIL;	// NOWARN
 
 	// if removing will leave a separator at beginning of src, remove it
 	// (example: "a/b"; removing "a" would yield "/b")
@@ -208,7 +220,7 @@ LibError path_replace(char* dst, const char* src, const char* remove, const char
 
 	// prepend replace.
 	RETURN_ERR(path_append(dst, replace, start));
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -329,7 +341,7 @@ LibError path_foreach_component(const char* path_org, PathComponentCb cb, void* 
 
 		LibError ret = cb(cur_component, is_dir, ctx);
 		// callback wants to abort - return its value.
-		if(ret != INFO_CB_CONTINUE)
+		if(ret != INFO::CB_CONTINUE)
 			return ret;
 
 		// filename is by definition the last component. abort now
@@ -344,7 +356,7 @@ LibError path_foreach_component(const char* path_org, PathComponentCb cb, void* 
 		cur_component = slash+1;
 	}
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -366,7 +378,7 @@ LibError path_package_set_dir(PathPackage* pp, const char* dir)
 	// -1 allows for trailing DIR_SEP that will be added if not
 	// already present.
 	if(strcpy_s(pp->path, ARRAY_SIZE(pp->path)-1, dir) != 0)
-		WARN_RETURN(ERR_PATH_LENGTH);
+		WARN_RETURN(ERR::PATH_LENGTH);
 	size_t len = strlen(pp->path);
 	// add directory separator if not already present
 	// .. but only check this if dir != "" (=> len-1 is safe)
@@ -386,7 +398,7 @@ LibError path_package_set_dir(PathPackage* pp, const char* dir)
 
 	pp->end = pp->path+len;
 	pp->chars_left = ARRAY_SIZE(pp->path)-len;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -395,5 +407,5 @@ LibError path_package_set_dir(PathPackage* pp, const char* dir)
 LibError path_package_append_file(PathPackage* pp, const char* path)
 {
 	CHECK_ERR(strcpy_s(pp->end, pp->chars_left, path));
-	return INFO_OK;
+	return INFO::OK;
 }

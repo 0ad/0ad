@@ -50,7 +50,7 @@ int tex_codec_register(TexCodecVTbl* c)
 
 
 // find codec that recognizes the desired output file extension,
-// or return ERR_UNKNOWN_FORMAT if unknown.
+// or return ERR::RES_UNKNOWN_FORMAT if unknown.
 // note: does not raise a warning because it is used by
 // tex_is_known_extension.
 LibError tex_codec_for_filename(const char* fn, const TexCodecVTbl** c)
@@ -60,10 +60,10 @@ LibError tex_codec_for_filename(const char* fn, const TexCodecVTbl** c)
 	{
 		// we found it
 		if((*c)->is_ext(ext))
-			return INFO_OK;
+			return INFO::OK;
 	}
 
-	return ERR_UNKNOWN_FORMAT;	// NOWARN
+	return ERR::RES_UNKNOWN_FORMAT;	// NOWARN
 }
 
 
@@ -72,16 +72,16 @@ LibError tex_codec_for_header(const u8* file, size_t file_size, const TexCodecVT
 {
 	// we guarantee at least 4 bytes for is_hdr to look at
 	if(file_size < 4)
-		WARN_RETURN(ERR_INCOMPLETE_HEADER);
+		WARN_RETURN(ERR::RES_INCOMPLETE_HEADER);
 
 	for(*c = codecs; *c; *c = (*c)->next)
 	{
 		// we found it
 		if((*c)->is_hdr(file))
-			return INFO_OK;
+			return INFO::OK;
 	}
 
-	WARN_RETURN(ERR_UNKNOWN_FORMAT);
+	WARN_RETURN(ERR::RES_UNKNOWN_FORMAT);
 }
 
 
@@ -98,17 +98,17 @@ const TexCodecVTbl* tex_codec_next(const TexCodecVTbl* prev_codec)
 
 LibError tex_codec_transform(Tex* t, uint transforms)
 {
-	LibError ret = INFO_TEX_CODEC_CANNOT_HANDLE;
+	LibError ret = INFO::TEX_CODEC_CANNOT_HANDLE;
 
 	// find codec that understands the data, and transform
 	for(const TexCodecVTbl* c = codecs; c; c = c->next)
 	{
 		LibError err = c->transform(t, transforms);
 		// success
-		if(err == INFO_OK)
-			return INFO_OK;
+		if(err == INFO::OK)
+			return INFO::OK;
 		// something went wrong
-		else if(err != INFO_TEX_CODEC_CANNOT_HANDLE)
+		else if(err != INFO::TEX_CODEC_CANNOT_HANDLE)
 		{
 			ret = err;
 			debug_warn("codec indicates error");
@@ -150,7 +150,7 @@ LibError tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
 
 	rows = (RowArray)malloc(h * sizeof(RowPtr));
 	if(!rows)
-		WARN_RETURN(ERR_NO_MEM);
+		WARN_RETURN(ERR::NO_MEM);
 
 	// determine start position and direction
 	RowPtr pos        = flip? data+pitch*(h-1) : data;
@@ -164,7 +164,7 @@ LibError tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
 	}
 
 	debug_assert(pos == end);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -175,5 +175,5 @@ LibError tex_codec_write(Tex* t, uint transforms, const void* hdr, size_t hdr_si
 	void* img_data = tex_get_data(t); const size_t img_size = tex_img_size(t);
 	RETURN_ERR(da_append(da, hdr, hdr_size));
 	RETURN_ERR(da_append(da, img_data, img_size));
-	return INFO_OK;
+	return INFO::OK;
 }

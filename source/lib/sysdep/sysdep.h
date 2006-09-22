@@ -78,11 +78,6 @@
 #endif
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-
 //-----------------------------------------------------------------------------
 // C99 / SUSv3 emulation where needed
 //-----------------------------------------------------------------------------
@@ -149,9 +144,7 @@ extern void* alloca(size_t size);
 // Some systems have C99 support but in C++ they provide only std::isfinite
 // and not isfinite. C99 specifies that isfinite is a macro, so we can use
 // #ifndef and define it if it's not there already.
-// Since sysdep.h will normally be included before cmath is, we need to load
-// cmath first to let it define/undef that macro. (That's awkward here inside
-// the 'extern "C"', so it's included at the top of this file.)
+// We've included <cmath> above to make sure it defines that macro.
 # ifndef isfinite
 #  define isfinite std::isfinite
 #  define isnan std::isnan
@@ -236,7 +229,7 @@ extern LibError sys_clipboard_free(wchar_t* copy);
 //   it is no longer needed and can be freed after this call returns.
 // hotspot (hx,hy) is the offset from its upper-left corner to the
 //   position where mouse clicks are registered.
-// cursor is only valid when INFO_OK is returned; in that case, it must be
+// cursor is only valid when INFO::OK is returned; in that case, it must be
 //   sys_cursor_free-ed when no longer needed.
 extern LibError sys_cursor_create(uint w, uint h, void* bgra_img,
 	uint hx, uint hy, void** cursor);
@@ -357,11 +350,6 @@ extern size_t sys_max_sector_size();
 # define SYS_UNREACHABLE __assume(0)
 #else
 # define SYS_UNREACHABLE
-#endif
-
-
-#ifdef __cplusplus
-}
 #endif
 
 

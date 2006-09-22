@@ -23,7 +23,7 @@
 #ifndef TEX_INTERNAL_H__
 #define TEX_INTERNAL_H__
 
-#include "../mem.h"	// MEM_DTOR
+#include "lib/res/res.h"	// error codes and mem.h
 #include "lib/allocators.h"	// DynArray
 
 /**

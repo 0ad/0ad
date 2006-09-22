@@ -34,6 +34,14 @@
 #include "file_internal.h"
 
 
+AT_STARTUP(\
+	error_setDescription(ERR::TNODE_NOT_FOUND, "File/directory not found");\
+	error_setDescription(ERR::TNODE_WRONG_TYPE, "Using a directory as file or vice versa");\
+	\
+	error_setEquivalent(ERR::TNODE_NOT_FOUND, ENOENT);\
+)
+
+
 // we add/cancel directory watches from the VFS mount code for convenience -
 // it iterates through all subdirectories anyway (*) and provides storage for
 // a key to identify the watch (obviates separate TDir -> watch mapping).
@@ -253,7 +261,7 @@ RealDir rd;	// HACK; removeme
 		// pool, but that "can't happen" and is OK because pool is big enough.
 		void* mem = node_alloc();
 		if(!mem)
-			WARN_RETURN(ERR_NO_MEM);
+			WARN_RETURN(ERR::NO_MEM);
 		TNode* node;
 #include "lib/nommgr.h"
 		if(type == NT_FILE)
@@ -265,7 +273,7 @@ RealDir rd;	// HACK; removeme
 		children.insert(name, node);
 
 		*pnode = node;
-		return INFO_OK;
+		return INFO::OK;
 	}
 
 	LibError find_and_add(const char* name, TNodeType type, TNode** pnode, const Mount* m = 0)
@@ -275,10 +283,10 @@ RealDir rd;	// HACK; removeme
 		{
 			// wrong type (dir vs. file)
 			if(node->type != type)
-				WARN_RETURN(ERR_TNODE_WRONG_TYPE);
+				WARN_RETURN(ERR::TNODE_WRONG_TYPE);
 
 			*pnode = node;
-			return INFO_ALREADY_EXISTS;
+			return INFO::ALREADY_EXISTS;
 		}
 
 		return add(name, type, pnode, m);
@@ -426,15 +434,15 @@ static LibError lookup_cb(const char* component, bool is_dir, void* ctx)
 		else
 			// complaining is left to callers; vfs_exists must be
 			// able to fail quietly.
-			return ERR_TNODE_NOT_FOUND;	// NOWARN
+			return ERR::TNODE_NOT_FOUND;	// NOWARN
 	}
 	if(p->node->type != type)
-		WARN_RETURN(ERR_TNODE_WRONG_TYPE);
+		WARN_RETURN(ERR::TNODE_WRONG_TYPE);
 
 	if(is_dir)
 		p->td = (TDir*)p->node;
 
-	return INFO_CB_CONTINUE;
+	return INFO::CB_CONTINUE;
 }
 
 static LibError lookup(TDir* td, const char* path, uint flags, TNode** pnode)
@@ -447,7 +455,7 @@ static LibError lookup(TDir* td, const char* path, uint flags, TNode** pnode)
 
 	// success.
 	*pnode = p.node;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -550,11 +558,11 @@ LibError tree_add_file(TDir* td, const char* name,
 	TNode* node;
 	LibError ret = td->find_and_add(name, NT_FILE, &node);
 	RETURN_ERR(ret);
-	if(ret == INFO_ALREADY_EXISTS)
+	if(ret == INFO::ALREADY_EXISTS)
 	{
 		TFile* tf = (TFile*)node;
 		if(!mount_should_replace(tf->m, m, tf->size, size, tf->mtime, mtime))
-			return INFO_ALREADY_EXISTS;
+			return INFO::ALREADY_EXISTS;
 
 		stats_vfs_file_remove(tf->size);
 	}
@@ -567,7 +575,7 @@ LibError tree_add_file(TDir* td, const char* name,
 	stats_vfs_file_add(size);
 
 	set_most_recent_if_newer(mtime);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -576,7 +584,7 @@ LibError tree_add_dir(TDir* td, const char* name, TDir** ptd)
 	TNode* node;
 	RETURN_ERR(td->find_and_add(name, NT_DIR, &node));
 	*ptd = (TDir*)node;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -585,14 +593,14 @@ LibError tree_lookup_dir(const char* V_path, TDir** ptd, uint flags)
 {
 	// path is not a directory; TDir::lookup might return a file node
 	if(!VFS_PATH_IS_DIR(V_path))
-		WARN_RETURN(ERR_TNODE_WRONG_TYPE);
+		WARN_RETURN(ERR::TNODE_WRONG_TYPE);
 
 	TDir* td = (flags & LF_START_DIR)? *ptd : tree_root;
 	TNode* node;
 	CHECK_ERR(lookup(td, V_path, flags, &node));
 		// directories should exist, so warn if this fails
 	*ptd = (TDir*)node;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -600,13 +608,13 @@ LibError tree_lookup(const char* V_path, TFile** pfile, uint flags)
 {
 	// path is not a file; TDir::lookup might return a directory node
 	if(VFS_PATH_IS_DIR(V_path))
-		WARN_RETURN(ERR_TNODE_WRONG_TYPE);
+		WARN_RETURN(ERR::TNODE_WRONG_TYPE);
 
 	TNode* node;
 	LibError ret = lookup(tree_root, V_path, flags, &node);
 	RETURN_ERR(ret);
 	*pfile = (TFile*)node;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -626,13 +634,13 @@ static LibError add_path_cb(const char* component, bool is_dir, void* ctx)
 
 	// should only be called for directory paths, so complain if not dir.
 	if(!is_dir)
-		WARN_RETURN(ERR_TNODE_WRONG_TYPE);
+		WARN_RETURN(ERR::TNODE_WRONG_TYPE);
 
 	TNode* node;
 	RETURN_ERR(p->td->find_and_add(component, NT_DIR, &node, p->m));
 
 	p->td = (TDir*)node;
-	return INFO_CB_CONTINUE;
+	return INFO::CB_CONTINUE;
 }
 
 // iterate over all components in V_dir_path (must reference a directory,
@@ -647,7 +655,7 @@ LibError tree_add_path(const char* V_dir_path, const Mount* m, TDir** ptd)
 	AddPathCbParams p(m);
 	RETURN_ERR(path_foreach_component(V_dir_path, add_path_cb, &p));
 	*ptd = p.td;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -682,7 +690,7 @@ LibError tree_dir_open(const char* V_dir_path, DirIterator* di)
 	// we need to prevent modifications to this directory while an iterator is
 	// active, otherwise entries may be skipped or no longer valid addresses
 	// accessed. blocking other threads is much more convenient for callers
-	// than having to check for ERR_AGAIN on every call, so we use a mutex
+	// than having to check for ERR::AGAIN on every call, so we use a mutex
 	// instead of a simple refcount. we don't bother with fine-grained locking
 	// (e.g. per directory or read/write locks) because it would result in
 	// more overhead (we have hundreds of directories) and is unnecessary.
@@ -691,7 +699,7 @@ LibError tree_dir_open(const char* V_dir_path, DirIterator* di)
 	tdi->it  = td->begin();
 	tdi->end = td->end();
 	tdi->td  = td;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -700,7 +708,7 @@ LibError tree_dir_next_ent(DirIterator* di, DirEnt* ent)
 	TreeDirIterator* tdi = (TreeDirIterator*)di->opaque;
 
 	if(tdi->it == tdi->end)
-		return ERR_DIR_END;	// NOWARN
+		return ERR::DIR_END;	// NOWARN
 
 	const TNode* node = *(tdi->it++);
 	ent->name = node->name;
@@ -725,7 +733,7 @@ LibError tree_dir_next_ent(DirIterator* di, DirEnt* ent)
 		debug_warn("invalid TNode type");
 	}
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -735,7 +743,7 @@ LibError tree_dir_close(DirIterator* UNUSED(d))
 
 	// no further cleanup needed. we could zero out d but that might
 	// hide bugs; the iterator is safe (will not go beyond end) anyway.
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -780,7 +788,7 @@ LibError tree_stat(const TFile* tf, struct stat* s)
 	s->st_size  = tf->size;
 	s->st_mtime = tf->mtime;
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 

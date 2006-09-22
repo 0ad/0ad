@@ -24,7 +24,6 @@
 #define __TYPES_H__
 
 #include "posix_types.h"
-#include "lib_errors.h"
 
 // defines instead of typedefs so we can #undef conflicting decls
 

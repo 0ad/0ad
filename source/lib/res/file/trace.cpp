@@ -28,6 +28,12 @@
 #include "lib/sysdep/cpu.h"
 #include "file_internal.h"
 
+
+AT_STARTUP(\
+	error_setDescription(ERR::TRACE_EMPTY, "No valid entries in trace");\
+)
+
+
 static uintptr_t trace_initialized;	// set via CAS
 static Pool trace_pool;
 
@@ -70,20 +76,20 @@ static LibError trace_add(TraceOp op, const char* P_fn, size_t size,
 {
 	trace_init();
 	if(!trace_enabled)
-		return INFO_OK;
+		return INFO::OK;
 
 	if(timestamp == 0.0)
 		timestamp = get_time();
 
 	TraceEntry* t = (TraceEntry*)pool_alloc(&trace_pool, 0);
 	if(!t)
-		return ERR_LIMIT;	// NOWARN
+		return ERR::LIMIT;	// NOWARN
 	t->timestamp = timestamp;
 	t->atom_fn   = file_make_unique_fn_copy(P_fn);
 	t->size      = size;
 	t->op        = op;
 	t->flags     = flags;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 static void trace_get_raw_ents(const TraceEntry*& ents, size_t& num_ents)
@@ -238,7 +244,7 @@ static void write_entry(FILE* f, const TraceEntry* ent)
 LibError trace_write_to_file(const char* trace_filename)
 {
 	if(!trace_enabled)
-		return INFO_SKIPPED;
+		return INFO::SKIPPED;
 
 	char N_fn[PATH_MAX];
 	RETURN_ERR(file_make_full_native_path(trace_filename, N_fn));
@@ -247,7 +253,7 @@ LibError trace_write_to_file(const char* trace_filename)
 	// several trace runs per file.
 	FILE* f = fopen(N_fn, "at");
 	if(!f)
-		WARN_RETURN(ERR_FILE_ACCESS);
+		WARN_RETURN(ERR::FILE_ACCESS);
 
 	write_entry(f, &delimiter_entry);
 
@@ -259,7 +265,7 @@ LibError trace_write_to_file(const char* trace_filename)
 		write_entry(f, ent);
 
 	(void)fclose(f);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -271,7 +277,7 @@ LibError trace_read_from_file(const char* trace_filename, Trace* t)
 	RETURN_ERR(file_make_full_native_path(trace_filename, N_fn));
 	FILE* f = fopen(N_fn, "rt");
 	if(!f)
-		WARN_RETURN(ERR_TNODE_NOT_FOUND);
+		WARN_RETURN(ERR::TNODE_NOT_FOUND);
 
 	// we use trace_add, which is the same mechanism called by trace_notify*;
 	// therefore, tracing needs to be enabled.
@@ -306,7 +312,7 @@ LibError trace_read_from_file(const char* trace_filename, Trace* t)
 			// storage in trace pool exhausted. must abort to avoid later
 			// adding delimiters for items that weren't actually stored
 			// into the pool.
-			if(ret == ERR_LIMIT)
+			if(ret == ERR::LIMIT)
 				break;
 		}
 	}
@@ -320,9 +326,9 @@ LibError trace_read_from_file(const char* trace_filename, Trace* t)
 	trace_enabled = false;
 
 	if(t->total_ents == 0)
-		WARN_RETURN(ERR_TRACE_EMPTY);
+		WARN_RETURN(ERR::TRACE_EMPTY);
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -346,7 +352,7 @@ void trace_gen_random(size_t num_entries)
 				struct stat s;
 				LibError ret = vfs_stat(atom_fn, &s);
 				// ought to apply due to vfs_exists above.
-				debug_assert(ret == INFO_OK && S_ISREG(s.st_mode));
+				debug_assert(ret == INFO::OK && S_ISREG(s.st_mode));
 
 				size = s.st_size;
 				break;
@@ -402,7 +408,7 @@ bool trace_entry_causes_io(const TraceEntry* ent)
 			// since TO_FREE below uses the cache to find out which
 			// buffer was allocated for atom_fn, we have to free it manually.
 			// see note above.
-			if(ret == INFO_SKIPPED)
+			if(ret == INFO::SKIPPED)
 				(void)file_buf_free(buf, fb_flags);
 			return true;
 		}
@@ -474,6 +480,6 @@ LibError trace_run(const char* trace_filename, uint flags)
 
 	trace_clear();
 
-	return INFO_OK;
+	return INFO::OK;
 }
 

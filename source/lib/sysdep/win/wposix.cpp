@@ -99,7 +99,7 @@ no_aio:
 	// warn now, so that we notice why so many are open.
 #ifndef NDEBUG
 	if(fd > 256)
-		WARN_ERR(ERR_LIMIT);
+		WARN_ERR(ERR::LIMIT);
 #endif
 
 	return fd;
@@ -626,7 +626,7 @@ static LibError mmap_mem(void* start, size_t len, int prot, int flags, int fd, v
 			*pp = 0;
 			// make sure *pp won't be misinterpreted as an error
 			cassert(MAP_FAILED != 0);
-			return INFO_OK;
+			return INFO::OK;
 		}
 	}
 
@@ -634,9 +634,9 @@ static LibError mmap_mem(void* start, size_t len, int prot, int flags, int fd, v
 	DWORD flProtect = win32_prot(prot);
 	void* p = VirtualAlloc(start, len, flAllocationType, flProtect);
 	if(!p)
-		WARN_RETURN(ERR_NO_MEM);
+		WARN_RETURN(ERR::NO_MEM);
 	*pp = p;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -669,11 +669,11 @@ static LibError mmap_file_access(int prot, int flags, DWORD& flProtect, DWORD& d
 		//    definitely illegal according to POSIX and some man pages
 		//    say exactly one must be set, so abort.
 		default:
-			WARN_RETURN(ERR_INVALID_PARAM);
+			WARN_RETURN(ERR::INVALID_PARAM);
 		}
 	}
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -686,7 +686,7 @@ static LibError mmap_file(void* start, size_t len, int prot, int flags,
 
 	HANDLE hFile = HANDLE_from_intptr(_get_osfhandle(fd));
 	if(hFile == INVALID_HANDLE_VALUE)
-		WARN_RETURN(ERR_INVALID_PARAM);
+		WARN_RETURN(ERR::INVALID_PARAM);
 
 	// MapViewOfFileEx will fail if the "suggested" base address is
 	// nonzero but cannot be honored, so wipe out <start> unless MAP_FIXED.
@@ -703,7 +703,7 @@ static LibError mmap_file(void* start, size_t len, int prot, int flags,
 	const HANDLE hMap = CreateFileMapping(hFile, 0, flProtect, 0, 0, (LPCSTR)0);
 	// .. create failed; bail now to avoid overwriting the last error value.
 	if(!hMap)
-		WARN_RETURN(ERR_NO_MEM);
+		WARN_RETURN(ERR::NO_MEM);
 	const DWORD ofs_hi = u64_hi(ofs), ofs_lo = u64_lo(ofs);
 	void* p = MapViewOfFileEx(hMap, dwAccess, ofs_hi, ofs_lo, (SIZE_T)len, start);
 	// .. make sure we got the requested address if MAP_FIXED was passed.
@@ -714,14 +714,14 @@ static LibError mmap_file(void* start, size_t len, int prot, int flags,
 	CloseHandle(hMap);
 	// .. map failed; bail now to avoid "restoring" the last error value.
 	if(!p)
-		WARN_RETURN(ERR_NO_MEM);
+		WARN_RETURN(ERR::NO_MEM);
 
 	// slap on correct (more restrictive) permissions. 
 	(void)mprotect(p, len, prot);
 
 	WIN_RESTORE_LAST_ERROR;
 	*pp = p;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 

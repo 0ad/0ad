@@ -22,7 +22,7 @@ LibError file_get_sorted_dirents(const char* P_path, DirEnts& dirents)
 	for(;;)
 	{
 		LibError ret = dir_next_ent(&d, &ent);
-		if(ret == ERR_DIR_END)
+		if(ret == ERR::DIR_END)
 			break;
 		RETURN_ERR(ret);
 
@@ -33,7 +33,7 @@ LibError file_get_sorted_dirents(const char* P_path, DirEnts& dirents)
 	std::sort(dirents.begin(), dirents.end(), dirent_less);
 
 	(void)dir_close(&d);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -55,8 +55,8 @@ LibError file_get_sorted_dirents(const char* P_path, DirEnts& dirents)
 //   of converting from/to native path (we just give 'em the dirent name).
 LibError file_enum(const char* P_path, const FileCB cb, const uintptr_t user)
 {
-	LibError stat_err = INFO_OK;	// first error encountered by stat()
-	LibError cb_err   = INFO_OK;	// first error returned by cb
+	LibError stat_err = INFO::OK;	// first error encountered by stat()
+	LibError cb_err   = INFO::OK;	// first error returned by cb
 
 	DirEnts dirents;
 	RETURN_ERR(file_get_sorted_dirents(P_path, dirents));
@@ -75,14 +75,14 @@ LibError file_enum(const char* P_path, const FileCB cb, const uintptr_t user)
 		s.st_size  = dirent.size;
 		s.st_mtime = dirent.mtime;
 		LibError ret = cb(dirent.name, &s, memento, user);
-		if(ret != INFO_CB_CONTINUE)
+		if(ret != INFO::CB_CONTINUE)
 		{
 			cb_err = ret;	// first error (since we now abort)
 			break;
 		}
 	}
 
-	if(cb_err != INFO_OK)
+	if(cb_err != INFO::OK)
 		return cb_err;
 	return stat_err;
 }
@@ -90,7 +90,7 @@ LibError file_enum(const char* P_path, const FileCB cb, const uintptr_t user)
 
 
 // retrieve the next (order is unspecified) dir entry matching <filter>.
-// return 0 on success, ERR_DIR_END if no matching entry was found,
+// return 0 on success, ERR::DIR_END if no matching entry was found,
 // or a negative error code on failure.
 // filter values:
 // - 0: anything;
@@ -99,7 +99,7 @@ LibError file_enum(const char* P_path, const FileCB cb, const uintptr_t user)
 // - <pattern>: any file whose name matches; ? and * wildcards are allowed.
 //
 // note that the directory entries are only scanned once; after the
-// end is reached (-> ERR_DIR_END returned), no further entries can
+// end is reached (-> ERR::DIR_END returned), no further entries can
 // be retrieved, even if filter changes (which shouldn't happen - see impl).
 //
 // rationale: we do not sort directory entries alphabetically here.
@@ -154,7 +154,7 @@ LibError dir_filtered_next_ent(DirIterator* di, DirEnt* ent, const char* filter)
 		}
 	}
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -234,7 +234,7 @@ LibError vfs_dir_enum(const char* start_path, uint flags, const char* user_filte
 	}
 	while(!dir_queue.empty());
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -271,7 +271,7 @@ void next_numbered_filename(const char* fn_fmt,
 			Handle hd = vfs_dir_open(dir);
 			if(hd > 0)
 			{
-				while(vfs_dir_next_ent(hd, &ent, 0) == INFO_OK)
+				while(vfs_dir_next_ent(hd, &ent, 0) == INFO::OK)
 				{
 					if(!DIRENT_IS_DIR(&ent) && sscanf(ent.name, name_fmt, &num) == 1)
 						max_num = MAX(num, max_num);
@@ -282,9 +282,9 @@ void next_numbered_filename(const char* fn_fmt,
 		else
 		{
 			DirIterator it;
-			if(dir_open(dir, &it) == INFO_OK)
+			if(dir_open(dir, &it) == INFO::OK)
 			{
-				while(dir_next_ent(&it, &ent) == INFO_OK)
+				while(dir_next_ent(&it, &ent) == INFO::OK)
 					if(!DIRENT_IS_DIR(&ent) && sscanf(ent.name, name_fmt, &num) == 1)
 						max_num = MAX(num, max_num);
 				(void)dir_close(&it);

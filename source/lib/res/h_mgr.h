@@ -137,7 +137,7 @@ static LibError Type_reload(Res1* r, const char* filename, Handle);
 
 	r->data = malloc(100);
 	if(!r->data)
-		WARN_RETURN(ERR_NO_MEM);
+		WARN_RETURN(ERR::NO_MEM);
 	// (read contents of <filename> into r->data)
 	return 0;
 }
@@ -191,9 +191,9 @@ static LibError Type_validate(const Res1* r);
 {
 	const int permissible_flags = 0x01;
 	if(debug_is_pointer_bogus(r->data))
-		WARN_RETURN(ERR_1);
+		WARN_RETURN(ERR::_1);
 	if(r->flags & ~permissible_flags)
-		WARN_RETURN(ERR_2);
+		WARN_RETURN(ERR::_2);
 	return 0;
 }
 
@@ -359,12 +359,12 @@ typedef H_VTbl* H_Type;
 // note: don't use STMT - var decl must be visible to "caller"
 #define H_DEREF(h, type, var)\
 	/* h already indicates an error - return immediately to pass back*/\
-	/* that specific error, rather than only ERR_INVALID_HANDLE*/\
+	/* that specific error, rather than only ERR::INVALID_HANDLE*/\
 	if(h < 0)\
 		WARN_RETURN((LibError)h);\
 	type* const var = H_USER_DATA(h, type);\
 	if(!var)\
-		WARN_RETURN(ERR_INVALID_HANDLE);
+		WARN_RETURN(ERR::INVALID_HANDLE);
 
 
 // all functions check the passed tag (part of the handle) and type against

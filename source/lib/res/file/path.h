@@ -25,6 +25,13 @@
 
 #include "lib/lib.h"
 
+
+namespace ERR
+{
+	const LibError ROOT_DIR_ALREADY_SET     = -110200;
+}
+
+
 #define VFS_PATH_IS_DIR(path) (*path == '\0' || path[strlen(path)-1] == '/')
 
 struct NextNumberedFilenameInfo

@@ -430,7 +430,7 @@ static inline Node* without_mark(Node* p)
 
 
 // make ready a previously unused(!) list object. if a negative error
-// code (currently only ERR_NO_MEM) is returned, the list can't be used.
+// code (currently only ERR::NO_MEM) is returned, the list can't be used.
 LibError lfl_init(LFList* list)
 {
 	// make sure a TLS slot has been allocated for this thread.
@@ -443,12 +443,12 @@ LibError lfl_init(LFList* list)
 	if(!tls)
 	{
 		list->head = (void*)-1;	// 'poison' prevents further use
-		return ERR_NO_MEM;
+		return ERR::NO_MEM;
 	}
 
 	list->head = 0;
 	atomic_add(&active_data_structures, 1);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -624,7 +624,7 @@ LibError lfl_erase(LFList* list, uintptr_t key)
 retry:
 	// not found in list - abort.
 	if(!list_lookup(list, key, pos))
-		return ERR_FAIL;
+		return ERR::FAIL;
 	// mark as removed (avoids subsequent linking to it). failure implies
 	// at least of the following happened after list_lookup; we try again.
 	// - next was removed
@@ -640,7 +640,7 @@ retry:
 	// call list_lookup to ensure # non-released nodes < # threads.
 	else
 		list_lookup(list, key, pos);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -669,7 +669,7 @@ static LFList* chain(LFHash* hash, uintptr_t key)
 
 // make ready a previously unused(!) hash object. table size will be
 // <num_entries>; this cannot currently be expanded. if a negative error
-// code (currently only ERR_NO_MEM) is returned, the hash can't be used.
+// code (currently only ERR::NO_MEM) is returned, the hash can't be used.
 LibError lfh_init(LFHash* hash, size_t num_entries)
 {
 	hash->tbl  = 0;
@@ -678,12 +678,12 @@ LibError lfh_init(LFHash* hash, size_t num_entries)
 	if(!is_pow2((long)num_entries))
 	{
 		debug_warn("lfh_init: size must be power of 2");
-		return ERR_INVALID_PARAM;
+		return ERR::INVALID_PARAM;
 	}
 
 	hash->tbl = (LFList*)malloc(sizeof(LFList) * num_entries);
 	if(!hash->tbl)
-		return ERR_NO_MEM;
+		return ERR::NO_MEM;
 	hash->mask = (uint)num_entries-1;
 
 	for(int i = 0; i < (int)num_entries; i++)
@@ -694,11 +694,11 @@ LibError lfh_init(LFHash* hash, size_t num_entries)
 			// failed - free all and bail
 			for(int j = 0; j < i; j++)
 				lfl_free(&hash->tbl[j]);
-			return ERR_NO_MEM;
+			return ERR::NO_MEM;
 		}
 	}
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 

@@ -12,13 +12,13 @@ class TestPathUtil : public CxxTest::TestSuite
 		TS_ASSERT_STR_EQUALS(dst, correct_result);
 	}
 
-	// if correct_ret is ERR_FAIL, ignore correct_result.
+	// if correct_ret is ERR::FAIL, ignore correct_result.
 	void TEST_REPLACE(const char* src, const char* remove, const char* replace,
 		LibError correct_ret, const char* correct_result)
 	{
 		char dst[PATH_MAX] = {0};
 		TS_ASSERT_EQUALS(path_replace(dst, src, remove, replace), correct_ret);
-		if(correct_ret != ERR_FAIL)
+		if(correct_ret != ERR::FAIL)
 			TS_ASSERT_STR_EQUALS(dst, correct_result);
 	}
 
@@ -108,17 +108,17 @@ public:
 	void test_replace()
 	{
 		// no match
-		TEST_REPLACE("abc/def", "/def", "xx", ERR_FAIL, 0);
+		TEST_REPLACE("abc/def", "/def", "xx", ERR::FAIL, 0);
 		// normal case: match and remove
-		TEST_REPLACE("abc/def", "abc", "ok", INFO_OK, "ok/def");
+		TEST_REPLACE("abc/def", "abc", "ok", INFO::OK, "ok/def");
 		// caller also stripping /
-		TEST_REPLACE("abc/def", "abc/", "ok", INFO_OK, "ok/def");
+		TEST_REPLACE("abc/def", "abc/", "ok", INFO::OK, "ok/def");
 		// empty remove
-		TEST_REPLACE("abc/def", "", "ok", INFO_OK, "ok/abc/def");
+		TEST_REPLACE("abc/def", "", "ok", INFO::OK, "ok/abc/def");
 		// empty replace
-		TEST_REPLACE("abc/def", "abc", "", INFO_OK, "def");
+		TEST_REPLACE("abc/def", "abc", "", INFO::OK, "def");
 		// remove entire string
-		TEST_REPLACE("abc/def", "abc/def", "", INFO_OK, "");
+		TEST_REPLACE("abc/def", "abc/def", "", INFO::OK, "");
 	}
 
 	void test_name_only()

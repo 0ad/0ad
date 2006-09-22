@@ -115,7 +115,7 @@ struct ip_mreq
 #define in6addr_loopback PS_in6addr_loopback
 
 extern const struct in6_addr in6addr_any;        /* :: */
-extern const struct in6_addr in6addr_loopback;   /* ::1 */
+extern const struct in6_addr in6addr_loopback;   /* ::_1 */
 
 #define IN6ADDR_ANY_INIT { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 } }
 #define IN6ADDR_LOOPBACK_INIT { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 } }

@@ -32,7 +32,7 @@ bool VFSUtil::FindFiles (const CStr& dirname, const char* filter, FileList& file
 		files.push_back(path);
 	}
 
-	if (err != ERR_DIR_END)
+	if (err != ERR::DIR_END)
 	{
 		LOG(ERROR, LOG_CATEGORY, "Error reading files from directory '%s' (%d)", dirname.c_str(), err);
 		return false;

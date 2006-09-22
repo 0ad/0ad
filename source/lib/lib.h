@@ -74,6 +74,16 @@ const size_t KiB = 1ul << 10;
 const size_t MiB = 1ul << 20;
 const size_t GiB = 1ul << 30;
 
+// generate a symbol containing the line number of the macro invocation.
+// used to give a unique name (per file) to types made by cassert.
+// we can't prepend __FILE__ to make it globally unique - the filename
+// may be enclosed in quotes. PASTE3_HIDDEN__ is needed to make sure
+// __LINE__ is expanded correctly.
+#define PASTE3_HIDDEN__(a, b, c) a ## b ## c
+#define PASTE3__(a, b, c) PASTE3_HIDDEN__(a, b, c)
+#define UID__  PASTE3__(LINE_, __LINE__, _)
+#define UID2__ PASTE3__(LINE_, __LINE__, _2)
+
 
 //-----------------------------------------------------------------------------
 // code-generating macros
@@ -129,6 +139,20 @@ STMT(\
 	else\
 		ONCE_code__;\
 )
+
+
+/**
+ * execute the code passed as a parameter before main is entered.
+ *
+ * WARNING: if the source file containing this is not directly referenced
+ * from anywhere, linkers may discard that object file (unless linking
+ * statically). see http://www.cbloom.com/3d/techdocs/more_coding.txt
+ **/
+#define AT_STARTUP(code__)\
+	static struct UID__\
+	{\
+		UID__() { code__; }\
+	} UID2__;\
 
 
 /**
@@ -283,15 +307,6 @@ switch(x % 2)
 
 //-----------------------------------------------------------------------------
 // cassert
-
-// generate a symbol containing the line number of the macro invocation.
-// used to give a unique name (per file) to types made by cassert.
-// we can't prepend __FILE__ to make it globally unique - the filename
-// may be enclosed in quotes. need the 2 macro expansions to make sure
-// __LINE__ is expanded correctly.
-#define MAKE_UID2__(l) LINE_ ## l
-#define MAKE_UID1__(l) MAKE_UID2__(l)
-#define UID__ MAKE_UID1__(__LINE__)
 
 /**
  * compile-time debug_assert. causes a compile error if the expression

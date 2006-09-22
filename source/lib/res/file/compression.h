@@ -24,6 +24,13 @@
 #ifndef COMPRESSION_H__
 #define COMPRESSION_H__
 
+
+namespace ERR
+{
+	const LibError COMPRESSION_UNKNOWN_METHOD = -110300;
+}
+
+
 enum ContextType
 {
 	CT_COMPRESSION,

@@ -289,11 +289,11 @@ static LibError alloc_idx(i32& idx, HDATA*& hd)
 		// add another
 		// .. too many already: IDX_BITS must be increased.
 		if(last_in_use >= hdata_cap)
-			WARN_RETURN(ERR_LIMIT);
+			WARN_RETURN(ERR::LIMIT);
 		idx = last_in_use+1;	// just incrementing idx would start it at 1
 		hd = h_data_from_idx(idx);
 		if(!hd)
-			WARN_RETURN(ERR_NO_MEM);
+			WARN_RETURN(ERR::NO_MEM);
 			// can't fail for any other reason - idx is checked above.
 		{	// VC6 goto fix
 		bool is_unused = !hd->tag;
@@ -313,7 +313,7 @@ have_idx:;
 	if(idx > last_in_use)
 		last_in_use = idx;
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -321,7 +321,7 @@ static LibError free_idx(i32 idx)
 {
 	if(first_free == -1 || idx < first_free)
 		first_free = idx;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -351,7 +351,7 @@ static Handle key_find(uintptr_t key, H_Type type, KeyRemoveFlag remove_option =
 {
 	Key2Idx* key2idx = key2idx_wrapper.get();
 	if(!key2idx)
-		WARN_RETURN(ERR_NO_MEM);
+		WARN_RETURN(ERR::NO_MEM);
 
 	// initial return value: "not found at all, or it's of the
 	// wrong type". the latter happens when called by h_alloc to
@@ -441,7 +441,7 @@ static void fn_store(HDATA* hd, const char* fn)
 		hd->fn = (const char*)malloc(size);
 		// still failed - bail (avoid strcpy to 0)
 		if(!hd->fn)
-			WARN_ERR_RETURN(ERR_NO_MEM);
+			WARN_ERR_RETURN(ERR::NO_MEM);
 	}
 
 	memcpy2((void*)hd->fn, fn, size);	// faster than strcpy
@@ -488,7 +488,7 @@ static void warn_if_invalid(HDATA* hd)
 
 	// have the resource validate its user_data
 	LibError err = vtbl->validate(hd->user);
-	debug_assert(err == INFO_OK);
+	debug_assert(err == INFO::OK);
 
 	// make sure empty space in control block isn't touched
 	// .. but only if we're not storing a filename there
@@ -509,13 +509,13 @@ static void warn_if_invalid(HDATA* hd)
 static LibError type_validate(H_Type type)
 {
 	if(!type)
-		WARN_RETURN(ERR_INVALID_PARAM);
+		WARN_RETURN(ERR::INVALID_PARAM);
 	if(type->user_size > HDATA_USER_SIZE)
-		WARN_RETURN(ERR_LIMIT);
+		WARN_RETURN(ERR::LIMIT);
 	if(type->name == 0)
-		WARN_RETURN(ERR_INVALID_PARAM);
+		WARN_RETURN(ERR::INVALID_PARAM);
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -545,7 +545,7 @@ static Handle reuse_existing_handle(uintptr_t key, H_Type type, uint flags)
 	HDATA* hd = h_data_tag_type(h, type);
 	// too many references - increase REF_BITS
 	if(hd->refs == REF_MAX)
-		WARN_RETURN(ERR_LIMIT);
+		WARN_RETURN(ERR::LIMIT);
 
 	hd->refs++;
 
@@ -567,7 +567,7 @@ static Handle reuse_existing_handle(uintptr_t key, H_Type type, uint flags)
 
 static LibError call_init_and_reload(Handle h, H_Type type, HDATA* hd, const char* fn, va_list* init_args)
 {
-	LibError err = INFO_OK;
+	LibError err = INFO::OK;
 	H_VTbl* vtbl = type;	// exact same thing but for clarity
 
 	// init
@@ -581,12 +581,12 @@ static LibError call_init_and_reload(Handle h, H_Type type, HDATA* hd, const cha
 		try
 		{
 			err = vtbl->reload(hd->user, fn, h);
-			if(err == INFO_OK)
+			if(err == INFO::OK)
 				warn_if_invalid(hd);
 		}
 		catch(std::bad_alloc)
 		{
-			err = ERR_NO_MEM;
+			err  = ERR::NO_MEM;
 		}
 	}
 
@@ -694,7 +694,7 @@ static LibError h_free_idx(i32 idx, HDATA* hd)
 
 	// still references open or caching requests it stays - do not release.
 	if(hd->refs > 0 || hd->keep_open)
-		return INFO_OK;
+		return INFO::OK;
 
 	// actually release the resource (call dtor, free control block).
 
@@ -732,7 +732,7 @@ static LibError h_free_idx(i32 idx, HDATA* hd)
 
 	free_idx(idx);
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -751,10 +751,10 @@ LibError h_free(Handle& h, H_Type type)
 		// 0-initialized or an error code; don't complain because this
 		// happens often and is harmless.
 		if(h_copy <= 0)
-			return INFO_OK;
+			return INFO::OK;
 		// this was a valid handle but was probably freed in the meantime.
 		// complain because this probably indicates a bug somewhere.
-		WARN_RETURN(ERR_INVALID_HANDLE);
+		WARN_RETURN(ERR::INVALID_HANDLE);
 	}
 
 	return h_free_idx(idx, hd);
@@ -802,7 +802,7 @@ LibError h_reload(const char* fn)
 	// must not continue - some resources not backed by files have
 	// key = 0 and reloading those would be disastrous.
 	if(!fn)
-		WARN_RETURN(ERR_INVALID_PARAM);
+		WARN_RETURN(ERR::INVALID_PARAM);
 
 	const u32 key = fnv_hash(fn);
 
@@ -818,7 +818,7 @@ LibError h_reload(const char* fn)
 		hd->type->dtor(hd->user);
 	}
 
-	LibError ret = INFO_OK;
+	LibError ret = INFO::OK;
 
 	// now reload all affected handles
 	for(i32 i = 0; i <= last_in_use; i++)
@@ -863,7 +863,7 @@ LibError h_force_free(Handle h, H_Type type)
 	// require valid index; ignore tag; type checked below.
 	HDATA* hd = h_data_no_tag(h);
 	if(!hd || hd->type != type)
-		WARN_RETURN(ERR_INVALID_HANDLE);
+		WARN_RETURN(ERR::INVALID_HANDLE);
 	u32 idx = h_idx(h);
 	hd->keep_open = 0;
 	hd->refs = 0;
@@ -904,7 +904,7 @@ int h_get_refcnt(Handle h)
 {
 	HDATA* hd = h_data_tag(h);
 	if(!hd)
-		WARN_RETURN(ERR_INVALID_PARAM);
+		WARN_RETURN(ERR::INVALID_PARAM);
 
 	// if there are no refs, how did the caller manage to keep a Handle?!
 	if(!hd->refs)

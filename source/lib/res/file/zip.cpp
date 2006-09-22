@@ -30,6 +30,7 @@
 #include "lib/allocators.h"
 #include "lib/timer.h"
 #include "file_internal.h"
+#include "lib/res/res.h"
 
 
 // safe downcasters: cast from any integral type to u32 or u16; 
@@ -127,7 +128,7 @@ static ZipCompressionMethod zip_method_for(CompressionMethod method)
 	case CM_DEFLATE:
 		return ZIP_CM_DEFLATE;
 	default:
-		WARN_ERR(ERR_UNKNOWN_CMETHOD);
+		WARN_ERR(ERR::COMPRESSION_UNKNOWN_METHOD);
 		return ZIP_CM_NONE;
 	}
 }
@@ -142,7 +143,7 @@ static CompressionMethod method_for_zip_method(ZipCompressionMethod zip_method)
 	case ZIP_CM_DEFLATE:
 		return CM_DEFLATE;
 	default:
-		WARN_ERR(ERR_UNKNOWN_CMETHOD);
+		WARN_ERR(ERR::COMPRESSION_UNKNOWN_METHOD);
 		return CM_UNSUPPORTED;
 	}
 }
@@ -366,7 +367,7 @@ static const u8* za_find_id(const u8* buf, size_t size, const void* start, u32 m
 
 // search for ECDR in the last <max_scan_amount> bytes of the file.
 // if found, fill <dst_ecdr> with a copy of the (little-endian) ECDR and
-// return INFO_OK, otherwise IO error or ERR_CORRUPTED.
+// return INFO::OK, otherwise IO error or ERR::CORRUPTED.
 static LibError za_find_ecdr(File* f, size_t max_scan_amount, ECDR* dst_ecdr_le)
 {
 	// don't scan more than the entire file
@@ -381,13 +382,13 @@ static LibError za_find_ecdr(File* f, size_t max_scan_amount, ECDR* dst_ecdr_le)
 	debug_assert(bytes_read == (ssize_t)scan_amount);
 
 	// look for ECDR in buffer
-	LibError ret = ERR_CORRUPTED;
+	LibError ret  = ERR::CORRUPTED;
 	const u8* start = (const u8*)buf;
 	const ECDR* ecdr_le = (const ECDR*)za_find_id(start, bytes_read, start, ecdr_magic, ECDR_SIZE);
 	if(ecdr_le)
 	{
 		*dst_ecdr_le = *ecdr_le;
-		ret = INFO_OK;
+		ret = INFO::OK;
 	}
 
 	file_buf_free(buf);
@@ -407,24 +408,24 @@ completely_bogus:
 		// note: the VFS blindly opens files when mounting; it needs to open
 		// all archives, but doesn't know their extension (e.g. ".pk3").
 		// therefore, do not warn user.
-		return ERR_UNKNOWN_FORMAT;	// NOWARN
+		return ERR::RES_UNKNOWN_FORMAT;	// NOWARN
 	}
 
 	ECDR ecdr_le;
 	// expected case: ECDR at EOF; no file comment (=> we only need to
 	// read 512 bytes)
 	LibError ret = za_find_ecdr(f, ECDR_SIZE, &ecdr_le);
-	if(ret == INFO_OK)
+	if(ret == INFO::OK)
 	{
 have_ecdr:
 		ecdr_decompose(&ecdr_le, cd_entries, cd_ofs, cd_size);
-		return INFO_OK;
+		return INFO::OK;
 	}
 	// last resort: scan last 66000 bytes of file
 	// (the Zip archive comment field - up to 64k - may follow ECDR).
 	// if the zip file is < 66000 bytes, scan the whole file.
 	ret = za_find_ecdr(f, 66000u, &ecdr_le);
-	if(ret == INFO_OK)
+	if(ret == INFO::OK)
 		goto have_ecdr;
 
 	// both ECDR scans failed - this is not a valid Zip file.
@@ -441,19 +442,19 @@ have_ecdr:
 	// the Zip file is mostly valid but lacking an ECDR. (can happen if
 	// user hard-exits while building an archive)
 	// notes:
-	// - return ERR_CORRUPTED so VFS will not include this file.
+	// - return ERR::CORRUPTED so VFS will not include this file.
 	// - we could work around this by scanning all LFHs, but won't bother
 	//   because it'd be slow.
 	// - do not warn - the corrupt archive will be deleted on next
 	//   successful archive builder run anyway.
-	return ERR_CORRUPTED;	// NOWARN
+	return ERR::CORRUPTED;	// NOWARN
 }
 
 
 // analyse an opened Zip file; call back into archive.cpp to
 // populate the Archive object with a list of the files it contains.
-// returns INFO_OK on success, ERR_CORRUPTED if file is recognizable as
-// a Zip file but invalid, otherwise ERR_UNKNOWN_FORMAT or IO error.
+// returns INFO::OK on success, ERR::CORRUPTED if file is recognizable as
+// a Zip file but invalid, otherwise ERR::RES_UNKNOWN_FORMAT or IO error.
 //
 // fairly slow - must read Central Directory from disk
 // (size ~= 60 bytes*num_files); observed time ~= 80ms.
@@ -472,7 +473,7 @@ LibError zip_populate_archive(File* f, Archive* a)
 	RETURN_ERR(file_io(f, cd_ofs, cd_size, &buf));
 
 	// iterate through Central Directory
-	LibError ret = INFO_OK;
+	LibError ret = INFO::OK;
 	const CDFH* cdfh = (const CDFH*)buf;
 	size_t ofs_to_next_cdfh = 0;
 	for(uint i = 0; i < cd_entries; i++)
@@ -482,7 +483,7 @@ LibError zip_populate_archive(File* f, Archive* a)
 		cdfh = (CDFH*)za_find_id((const u8*)buf, cd_size, (const u8*)cdfh, cdfh_magic, CDFH_SIZE);
 		if(!cdfh)	// no (further) CDFH found:
 		{
-			ret = ERR_CORRUPTED;
+			ret  = ERR::CORRUPTED;
 			break;
 		}
 
@@ -495,7 +496,7 @@ LibError zip_populate_archive(File* f, Archive* a)
 		if(ae.csize && ae.ucsize)
 		{
 			ret = archive_add_file(a, &ae);
-			if(ret != INFO_OK)
+			if(ret != INFO::OK)
 				break;
 		}
 	}
@@ -531,7 +532,7 @@ static LibError lfh_copier_cb(uintptr_t ctx, const void* block, size_t size, siz
 	p->lfh_bytes_remaining -= size;
 
 	*bytes_processed = size;
-	return INFO_CB_CONTINUE;
+	return INFO::CB_CONTINUE;
 }
 
 
@@ -603,10 +604,10 @@ LibError zip_archive_create(const char* zip_filename, ZipArchive** pza)
 
 	ZipArchive* za = za_mgr.alloc();
 	if(!za)
-		WARN_RETURN(ERR_NO_MEM);
+		WARN_RETURN(ERR::NO_MEM);
 	*za = za_copy;
 	*pza = za;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -639,14 +640,14 @@ LibError zip_archive_add_file(ZipArchive* za, const ArchiveEntry* ae, void* file
 	const size_t prev_pos = za->cdfhs.da.pos;
 	CDFH_Package* p = (CDFH_Package*)pool_alloc(&za->cdfhs, CDFH_SIZE+fn_len);
 	if(!p)
-		WARN_RETURN(ERR_NO_MEM);
+		WARN_RETURN(ERR::NO_MEM);
 	const size_t slack = za->cdfhs.da.pos-prev_pos - (CDFH_SIZE+fn_len);
 	cdfh_assemble(&p->cdfh, ae->method, ae->mtime, ae->crc, ae->csize, ae->ucsize, fn_len, slack, lfh_ofs);
 	memcpy2(p->fn, ae->atom_fn, fn_len);
 
 	za->cd_entries++;
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -661,7 +662,7 @@ LibError zip_archive_finish(ZipArchive* za)
 	// write out both to the archive file in one burst)
 	ECDR* ecdr = (ECDR*)pool_alloc(&za->cdfhs, ECDR_SIZE);
 	if(!ecdr)
-		WARN_RETURN(ERR_NO_MEM);
+		WARN_RETURN(ERR::NO_MEM);
 	ecdr_assemble(ecdr, za->cd_entries, za->cur_file_size, cd_size);
 
 	FileIOBuf buf = za->cdfhs.da.base;
@@ -670,5 +671,5 @@ LibError zip_archive_finish(ZipArchive* za)
 	(void)file_close(&za->f);
 	(void)pool_destroy(&za->cdfhs);
 	za_mgr.release(za);
-	return INFO_OK;
+	return INFO::OK;
 }

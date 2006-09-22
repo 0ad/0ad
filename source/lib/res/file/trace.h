@@ -24,6 +24,11 @@
 #ifndef TRACE_H__
 #define TRACE_H__
 
+namespace ERR
+{
+	const LibError TRACE_EMPTY = -110500;
+}
+
 extern void trace_enable(bool want_enabled);
 extern void trace_shutdown();
 

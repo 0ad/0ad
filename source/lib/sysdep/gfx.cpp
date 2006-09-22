@@ -32,7 +32,7 @@ char gfx_drv_ver[GFX_DRV_VER_LEN] = "";
 int gfx_mem = -1;	// [MiB]; approximate
 
 
-extern "C" LibError ogl_get_gfx_info();
+extern LibError ogl_get_gfx_info();
 
 // detect graphics card and set the above information.
 void gfx_detect()

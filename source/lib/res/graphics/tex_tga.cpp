@@ -65,7 +65,7 @@ TgaHeader;
 
 static LibError tga_transform(Tex* UNUSED(t), uint UNUSED(transforms))
 {
-	return INFO_TEX_CODEC_CANNOT_HANDLE;
+	return INFO::TEX_CODEC_CANNOT_HANDLE;
 }
 
 
@@ -132,13 +132,13 @@ static LibError tga_decode(DynArray* restrict da, Tex* restrict t)
 	// .. storing right-to-left is just stupid;
 	//    we're not going to bother converting it.
 	if(desc & TGA_RIGHT_TO_LEFT)
-		WARN_RETURN(ERR_TEX_INVALID_LAYOUT);
+		WARN_RETURN(ERR::TEX_INVALID_LAYOUT);
 
 	t->w     = w;
 	t->h     = h;
 	t->bpp   = bpp;
 	t->flags = flags;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 

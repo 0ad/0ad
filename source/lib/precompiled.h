@@ -56,6 +56,7 @@
 //
 
 #include "lib/types.h"
+#include "lib/lib_errors.h"
 #include "lib/string_s.h"	// CRT secure string
 #include "lib/sysdep/sysdep.h"
 #include "lib/debug.h"		// (sysdep.h pulls in debug.h)

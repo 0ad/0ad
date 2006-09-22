@@ -207,7 +207,7 @@ static HANDLE aio_h_get(const int fd)
 static LibError aio_h_set(const int fd, const HANDLE h)
 {
 	if(fd < 0)
-		WARN_RETURN(ERR_INVALID_PARAM);
+		WARN_RETURN(ERR::INVALID_PARAM);
 
 	lock();
 
@@ -220,7 +220,7 @@ static LibError aio_h_set(const int fd, const HANDLE h)
 		HANDLE* hs2 = (HANDLE*)realloc(aio_hs, size2*sizeof(HANDLE));
 		if(!hs2)
 		{
-			err = ERR_NO_MEM;
+			err  = ERR::NO_MEM;
 			goto fail;
 		}
 		// don't assign directly from realloc -
@@ -242,13 +242,13 @@ static LibError aio_h_set(const int fd, const HANDLE h)
 		// already set
 		if(aio_hs[fd] != INVALID_HANDLE_VALUE)
 		{
-			err = ERR_LOGIC;
+			err = ERR::LOGIC;
 			goto fail;
 		}
 		// setting invalid handle
 		if(!is_valid_file_handle(h))
 		{
-			err = ERR_TNODE_WRONG_TYPE;
+			err = ERR::INVALID_HANDLE;
 			goto fail;
 		}
 	}
@@ -256,7 +256,7 @@ static LibError aio_h_set(const int fd, const HANDLE h)
 	aio_hs[fd] = h;
 
 	unlock();
-	return INFO_OK;
+	return INFO::OK;
 
 fail:
 	unlock();
@@ -435,7 +435,7 @@ static LibError req_free(Req* r)
 {
 	debug_assert(r->cb != 0 && "req_free: not currently in use");
 	r->cb = 0;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -596,7 +596,7 @@ static int aio_rw(struct aiocb* cb)
 		ok = TRUE;
 	// .. translate from Win32 result code to POSIX
 	LibError err = LibError_from_win32(ok);
-	if(err == INFO_OK)
+	if(err == INFO::OK)
 		ret = 0;
 	LibError_set_errno(err);
 
@@ -797,7 +797,7 @@ int aio_fsync(int, struct aiocb*)
 static LibError waio_init()
 {
 	req_init();
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -805,5 +805,5 @@ static LibError waio_shutdown()
 {
 	req_cleanup();
 	aio_h_cleanup();
-	return INFO_OK;
+	return INFO::OK;
 }

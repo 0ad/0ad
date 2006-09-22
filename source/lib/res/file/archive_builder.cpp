@@ -76,7 +76,7 @@ static LibError compress_cb(uintptr_t cb_ctx, const void* block, size_t size, si
 
 	if(p->attempt_compress)
 		(void)comp_feed(p->ctx, block, size);
-	return INFO_CB_CONTINUE;
+	return INFO::CB_CONTINUE;
 }
 
 
@@ -123,7 +123,7 @@ static LibError read_and_compress_file(const char* atom_fn, uintptr_t ctx,
 	// even less safe.
 	// we thus skip 0-length files to avoid confusing them with dirs.
 	if(!ucsize)
-		return INFO_SKIPPED;
+		return INFO::SKIPPED;
 
 	const bool attempt_compress = !file_type_is_uncompressible(atom_fn);
 	if(attempt_compress)
@@ -179,7 +179,7 @@ static LibError read_and_compress_file(const char* atom_fn, uintptr_t ctx,
 	// note: no need to free cdata - it is owned by the
 	// compression context and can be reused.
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -195,7 +195,7 @@ LibError archive_build_init(const char* P_archive_filename, Filenames V_fns,
 	for(ab->num_files = 0; ab->V_fns[ab->num_files]; ab->num_files++) {}
 
 	ab->i = 0;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -210,7 +210,7 @@ int archive_build_continue(ArchiveBuildState* ab)
 			break;
 
 		ArchiveEntry ent; void* file_contents; FileIOBuf buf;
-		if(read_and_compress_file(V_fn, ab->ctx, ent, file_contents, buf) == INFO_OK)
+		if(read_and_compress_file(V_fn, ab->ctx, ent, file_contents, buf) == INFO::OK)
 		{
 			(void)zip_archive_add_file(ab->za, &ent, file_contents);
 			(void)file_buf_free(buf);
@@ -226,7 +226,7 @@ int archive_build_continue(ArchiveBuildState* ab)
 	comp_free(ab->ctx); ab->ctx = 0;
 	(void)zip_archive_finish(ab->za);
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -251,7 +251,7 @@ LibError archive_build(const char* P_archive_filename, Filenames V_fns)
 	{
 		int ret = archive_build_continue(&ab);
 		RETURN_ERR(ret);
-		if(ret == INFO_OK)
-			return INFO_OK;
+		if(ret == INFO::OK)
+			return INFO::OK;
 	}
 }

@@ -35,10 +35,22 @@
 
 #include "posix.h"	// PATH_MAX
 
+
+namespace ERR
+{
+	const LibError PATH_LENGTH              = -100300;
+	const LibError PATH_EMPTY               = -100301;
+	const LibError PATH_NOT_RELATIVE        = -100302;
+	const LibError PATH_NON_PORTABLE        = -100303;
+	const LibError PATH_NON_CANONICAL       = -100304;
+	const LibError PATH_COMPONENT_SEPARATOR = -100305;
+}
+
+
 /**
  * check if path is valid. (see source for criteria)
  *
- * @return LibError (ERR_PATH_* or INFO_OK)
+ * @return LibError (ERR::PATH_* or INFO::OK)
  **/
 extern LibError path_validate(const char* path);
 
@@ -50,7 +62,7 @@ extern LibError path_validate(const char* path);
 /**
  * check if name is valid. (see source for criteria)
  *
- * @return LibError (ERR_PATH_* or INFO_OK)
+ * @return LibError (ERR::PATH_* or INFO::OK)
  **/
 extern LibError path_component_validate(const char* name);
 
@@ -106,7 +118,7 @@ extern LibError path_append(char* dst, const char* path1, const char* path2,
  * @param remove substring to remove; must match (case-sensitive) the
  * start of src.
  * @param replace string to prepend to output after stripping <remove>.
- * @return LibError; ERR_FAIL (without warning!) if <src> doesn't
+ * @return LibError; ERR::FAIL (without warning!) if <src> doesn't
  * match <remove>.
  **/
 extern LibError path_replace(char* dst, const char* src, const char* remove, const char* replace);
@@ -170,9 +182,9 @@ extern const char* path_extension(const char* fn);
  * rationale: a bool isn't as nice as a flag or enum, but vfs_tree already
  *   has TNodeType and we don't want to expose that or create a new one.
  * @param ctx: context parameter that was passed to path_foreach_component.
- * @return LibError; INFO_CB_CONTINUE to continue operation normally;
+ * @return LibError; INFO::CB_CONTINUE to continue operation normally;
  * anything else will cause path_foreach_component to abort immediately and
- * return that. no need to 'abort' (e.g. return INFO_OK) after a filename is
+ * return that. no need to 'abort' (e.g. return INFO::OK) after a filename is
  * encountered - that's taken care of automatically.
  **/
 typedef LibError (*PathComponentCb)(const char* component, bool is_dir, void* ctx);

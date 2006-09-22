@@ -1048,7 +1048,7 @@ FileIOBuf file_buf_alloc(size_t size, const char* atom_fn, uint fb_flags)
 	{
 		buf = (FileIOBuf)page_aligned_alloc(size);
 		if(!buf)
-			WARN_ERR(ERR_NO_MEM);
+			WARN_ERR(ERR::NO_MEM);
 	}
 	else
 		buf = cache_alloc(size);
@@ -1070,7 +1070,7 @@ LibError file_buf_free(FileIOBuf buf, uint fb_flags)
 	const bool from_heap           = (fb_flags & FB_FROM_HEAP) != 0;
 
 	if(!buf)
-		return INFO_OK;
+		return INFO::OK;
 
 	size_t size; const char* atom_fn;
 	bool actually_removed = extant_bufs.find_and_remove(buf, size, atom_fn);
@@ -1107,7 +1107,7 @@ free_immediately:
 		stats_buf_free();
 	trace_notify_free(atom_fn, size);
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -1137,7 +1137,7 @@ LibError file_buf_set_real_fn(FileIOBuf buf, const char* atom_fn)
 	// note: removing and reinserting would be easiest, but would
 	// mess up the epoch field.
 	extant_bufs.replace_owner(buf, atom_fn);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -1171,7 +1171,7 @@ LibError file_cache_add(FileIOBuf buf, size_t size, const char* atom_fn,
 	debug_assert(buf);
 
 	if(!file_cache_would_add(size, atom_fn, file_flags))
-		return INFO_SKIPPED;
+		return INFO::SKIPPED;
 
 	// assign cost
 	uint cost = 1;
@@ -1182,7 +1182,7 @@ LibError file_cache_add(FileIOBuf buf, size_t size, const char* atom_fn,
 
 	file_cache.add(atom_fn, buf, size, cost);
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -1247,7 +1247,7 @@ LibError file_cache_invalidate(const char* P_fn)
 		free_padded_buf(cached_buf, size);
 	}
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 

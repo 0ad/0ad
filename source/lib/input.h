@@ -27,11 +27,6 @@
 
 #include "lib/sdl_fwd.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-
 // input handler return values.
 enum InReaction
 {
@@ -59,10 +54,5 @@ extern void in_dispatch_recorded_events();
 extern LibError in_record(const char* fn);
 extern LibError in_playback(const char* fn);
 extern void in_stop(void);
-
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif	// #ifndef INPUT_H__

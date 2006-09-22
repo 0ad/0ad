@@ -36,6 +36,14 @@
 #include <string>
 
 
+AT_STARTUP(\
+	error_setDescription(ERR::FILE_ACCESS, "Insufficient access rights to open file");\
+	error_setDescription(ERR::DIR_END, "End of directory reached (no more files)");\
+	error_setDescription(ERR::FILE_NOT_MAPPED, "File was not mapped");\
+	\
+	error_setEquivalent(ERR::FILE_ACCESS, EACCES);\
+)
+
 // rationale for aio, instead of only using mmap:
 // - parallelism: instead of just waiting for the transfer to complete,
 //   other work can be done in the meantime.
@@ -80,7 +88,7 @@ static SingleAllocator<PathPackage> pp_allocator;
 
 
 // prepare to iterate (once) over entries in the given directory.
-// if INFO_OK is returned, <d> is ready for subsequent dir_next_ent calls and
+// if INFO::OK is returned, <d> is ready for subsequent dir_next_ent calls and
 // must be freed via dir_close.
 LibError dir_open(const char* P_path, DirIterator* di)
 {
@@ -102,7 +110,7 @@ LibError dir_open(const char* P_path, DirIterator* di)
 
 	pdi->pp = pp_allocator.alloc();
 	if(!pdi->pp)
-		WARN_RETURN(ERR_NO_MEM);
+		WARN_RETURN(ERR::NO_MEM);
 
 	errno = 0;
 	pdi->os_dir = opendir(n_path);
@@ -110,12 +118,12 @@ LibError dir_open(const char* P_path, DirIterator* di)
 		return LibError_from_errno();
 
 	(void)path_package_set_dir(pdi->pp, n_path);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
-// return ERR_DIR_END if all entries have already been returned once,
-// another negative error code, or INFO_OK on success, in which case <ent>
+// return ERR::DIR_END if all entries have already been returned once,
+// another negative error code, or INFO::OK on success, in which case <ent>
 // describes the next (order is unspecified) directory entry.
 LibError dir_next_ent(DirIterator* di, DirEnt* ent)
 {
@@ -128,7 +136,7 @@ get_another_entry:
 	{
 		// no error, just no more entries to return
 		if(!errno)
-			return ERR_DIR_END;	// NOWARN
+			return ERR::DIR_END;	// NOWARN
 		return LibError_from_errno();
 	}
 
@@ -167,7 +175,7 @@ get_another_entry:
 	ent->size  = s.st_size;
 	ent->mtime = s.st_mtime;
 	ent->name  = name;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -181,7 +189,7 @@ LibError dir_close(DirIterator* di)
 	errno = 0;
 	if(closedir(pdi->os_dir) < 0)
 		return LibError_from_errno();
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -193,7 +201,7 @@ LibError dir_create(const char* P_path, mode_t mode)
 	struct stat s;
 	int ret = stat(N_path, &s);
 	if(ret == 0)
-		return INFO_ALREADY_EXISTS;
+		return INFO::ALREADY_EXISTS;
 
 	errno = 0;
 	ret = mkdir(N_path, mode);
@@ -219,27 +227,27 @@ LibError dir_delete(const char* P_path)
 	{
 		DirEnt ent;
 		ret = dir_next_ent(&di, &ent);
-		if(ret == ERR_DIR_END)
+		if(ret == ERR::DIR_END)
 			break;
-		if(ret != INFO_OK) goto fail;
+		if(ret != INFO::OK) goto fail;
 
 		if(DIRENT_IS_DIR(&ent))
 		{
 			char P_subdir[PATH_MAX];
 			ret = path_append(P_subdir, P_path, ent.name);
-			if(ret != INFO_OK) goto fail;
+			if(ret != INFO::OK) goto fail;
 			ret = dir_delete(P_subdir);
-			if(ret != INFO_OK) goto fail;
+			if(ret != INFO::OK) goto fail;
 		}
 		else
 		{
 			ret = path_package_append_file(&N_pp, ent.name);
-			if(ret != INFO_OK) goto fail;
+			if(ret != INFO::OK) goto fail;
 
 			errno = 0;
 			int posix_ret = unlink(N_pp.path);
 			ret = LibError_from_posix(posix_ret);
-			if(ret != INFO_OK) goto fail;
+			if(ret != INFO::OK) goto fail;
 		}
 	}
 
@@ -281,7 +289,7 @@ bool file_exists(const char* fn)
 {
 	struct stat s;
 	const bool warn_if_failed = false;
-	return file_stat_impl(fn, &s, warn_if_failed) == INFO_OK;
+	return file_stat_impl(fn, &s, warn_if_failed) == INFO::OK;
 }
 
 
@@ -346,17 +354,17 @@ int file_fd_from_PosixFile(File* f)
 LibError file_validate(const File* f)
 {
 	if(!f)
-		WARN_RETURN(ERR_INVALID_PARAM);
+		WARN_RETURN(ERR::INVALID_PARAM);
 	const PosixFile* pf = (PosixFile*)f->opaque;
 	if(pf->fd < 0)
-		WARN_RETURN(ERR_1);
+		WARN_RETURN(ERR::_1);
 	// mapped but refcount is invalid
 	else if((pf->mapping != 0) ^ (pf->map_refs != 0))
-		WARN_RETURN(ERR_2);
+		WARN_RETURN(ERR::_2);
 	// note: don't check atom_fn - that complains at the end of
 	// file_open if flags & FILE_DONT_SET_FN and has no benefit, really.
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -366,7 +374,7 @@ LibError file_open(const char* P_fn, uint flags, File* f)
 	memset(f, 0, sizeof(*f));
 
 	if(flags > FILE_FLAG_ALL)
-		WARN_RETURN(ERR_INVALID_PARAM);
+		WARN_RETURN(ERR::INVALID_PARAM);
 
 	char N_fn[PATH_MAX];
 	RETURN_ERR(file_make_full_native_path(P_fn, N_fn));
@@ -383,7 +391,7 @@ LibError file_open(const char* P_fn, uint flags, File* f)
 		// get file size
 		struct stat s;
 		if(stat(N_fn, &s) < 0)
-			WARN_RETURN(ERR_TNODE_NOT_FOUND);
+			WARN_RETURN(ERR::TNODE_NOT_FOUND);
 		size = s.st_size;
 
 		// note: despite increased overhead, the AIO read method is still
@@ -397,7 +405,7 @@ LibError file_open(const char* P_fn, uint flags, File* f)
 
 		// make sure <N_fn> is a regular file
 		if(!S_ISREG(s.st_mode))
-			WARN_RETURN(ERR_TNODE_WRONG_TYPE);
+			WARN_RETURN(ERR::TNODE_WRONG_TYPE);
 	}
 
 #if OS_WIN
@@ -413,7 +421,7 @@ LibError file_open(const char* P_fn, uint flags, File* f)
 
 	int fd = open(N_fn, oflag, S_IRWXO|S_IRWXU|S_IRWXG);
 	if(fd < 0)
-		WARN_RETURN(ERR_FILE_ACCESS);
+		WARN_RETURN(ERR::FILE_ACCESS);
 
 	f->flags = flags;
 	f->size  = size;
@@ -426,7 +434,7 @@ LibError file_open(const char* P_fn, uint flags, File* f)
 	pf->fd       = fd;
 	CHECK_FILE(f);
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -459,7 +467,7 @@ LibError file_close(File* f)
 	if(f->flags & FILE_WRITE)
 		file_cache_invalidate(f->atom_fn);
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -500,7 +508,7 @@ LibError file_map(File* f, void*& p, size_t& size)
 	{
 		// prevent overflow; if we have this many refs, should find out why.
 		if(pf->map_refs >= MAX_MAP_REFS)
-			WARN_RETURN(ERR_LIMIT);
+			WARN_RETURN(ERR::LIMIT);
 		pf->map_refs++;
 		goto have_mapping;
 	}
@@ -510,7 +518,7 @@ LibError file_map(File* f, void*& p, size_t& size)
 	// then again, don't complain, because this might happen when mounting
 	// a dir containing empty files; each is opened as a Zip file.
 	if(f->size == 0)
-		return ERR_FAIL;	// NOWARN
+		return ERR::FAIL;	// NOWARN
 
 	errno = 0;
 	pf->mapping = mmap(0, f->size, prot, MAP_PRIVATE, pf->fd, (off_t)0);
@@ -522,7 +530,7 @@ LibError file_map(File* f, void*& p, size_t& size)
 have_mapping:
 	p = pf->mapping;
 	size = f->size;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -539,11 +547,11 @@ LibError file_unmap(File* f)
 
 	// file is not currently mapped
 	if(pf->map_refs == 0)
-		WARN_RETURN(ERR_NOT_MAPPED);
+		WARN_RETURN(ERR::FILE_NOT_MAPPED);
 
 	// still more than one reference remaining - done.
 	if(--pf->map_refs > 0)
-		return INFO_OK;
+		return INFO::OK;
 
 	// no more references: remove the mapping
 	void* p = pf->mapping;
@@ -565,7 +573,7 @@ LibError file_init()
 	// convenience
 	file_sector_size = sys_max_sector_size();
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 LibError file_shutdown()
@@ -573,5 +581,5 @@ LibError file_shutdown()
 	stats_dump();
 	path_shutdown();
 	file_io_shutdown();
-	return INFO_OK;
+	return INFO::OK;
 }

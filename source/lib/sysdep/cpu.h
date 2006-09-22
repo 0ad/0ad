@@ -23,9 +23,13 @@
 #ifndef CPU_H__
 #define CPU_H__
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+
+namespace ERR
+{
+	const LibError CPU_FEATURE_MISSING     = -130000;
+	const LibError CPU_UNKNOWN_OPCODE      = -130001;
+	const LibError CPU_RESTRICTED_AFFINITY = -130002;
+}
 
 
 const size_t CPU_TYPE_LEN = 49;	// IA32 processor brand string is <= 48 chars
@@ -36,7 +40,7 @@ extern double cpu_freq;
 
 // -1 if detect not yet called, or cannot be determined:
 
-extern int cpus;			// # packages (i.e. sockets; > 1 => SMP system)
+extern "C" int cpus;			// # packages (i.e. sockets; > 1 => SMP system)
 extern int cpu_ht_units;	// degree of hyperthreading, typically 2
 extern int cpu_cores;		// cores per package, typically 2
 
@@ -56,7 +60,7 @@ extern void get_mem_status(void);
 // atomic "compare and swap". compare the machine word at <location> against
 // <expected>; if not equal, return false; otherwise, overwrite it with
 // <new_value> and return true.
-extern bool CAS_(uintptr_t* location, uintptr_t expected, uintptr_t new_value);
+extern "C" bool CAS_(uintptr_t* location, uintptr_t expected, uintptr_t new_value);
 
 // this is often used for pointers, so the macro coerces parameters to
 // uinptr_t. invalid usage unfortunately also goes through without warnings.
@@ -64,12 +68,12 @@ extern bool CAS_(uintptr_t* location, uintptr_t expected, uintptr_t new_value);
 // similar mishaps, the implementation verifies <location> is a valid pointer.
 #define CAS(l,o,n) CAS_((uintptr_t*)l, (uintptr_t)o, (uintptr_t)n)
 
-extern void atomic_add(intptr_t* location, intptr_t increment);
+extern "C" void atomic_add(intptr_t* location, intptr_t increment);
 
 // enforce strong memory ordering.
-extern void mfence();
+extern "C" void mfence();
 
-extern void serialize();
+extern "C" void serialize();
 
 
 // Win32 CONTEXT field abstraction
@@ -82,10 +86,6 @@ extern void serialize();
 # define PC_ Eip
 # define FP_ Ebp
 # define SP_ Esp
-#endif
-
-#ifdef __cplusplus
-}
 #endif
 
 #endif	// #ifndef CPU_H__

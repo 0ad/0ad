@@ -119,15 +119,15 @@ static LibError VDir_reload(VDir* vd, const char* V_dir_path, Handle UNUSED(hvd)
 
 	RETURN_ERR(xdir_open(V_dir_path, &vd->di));
 	vd->di_valid = 1;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 static LibError VDir_validate(const VDir* vd)
 {
 	// note: <di> is mostly opaque and cannot be validated.
 	if(vd->di.filter && !isprint(vd->di.filter[0]))
-		WARN_RETURN(ERR_1);
-	return INFO_OK;
+		WARN_RETURN(ERR::_1);
+	return INFO::OK;
 }
 
 static LibError VDir_to_string(const VDir* vd, char* buf)
@@ -138,7 +138,7 @@ static LibError VDir_to_string(const VDir* vd, char* buf)
 	if(!filter)
 		filter = "*";
 	snprintf(buf, H_STRING_LEN, "(\"%s\")", filter);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -160,7 +160,7 @@ LibError vfs_dir_close(Handle& hd)
 
 
 // retrieve the next (order is unspecified) dir entry matching <filter>.
-// return 0 on success, ERR_DIR_END if no matching entry was found,
+// return 0 on success, ERR::DIR_END if no matching entry was found,
 // or a negative error code on failure.
 // filter values:
 // - 0: anything;
@@ -169,7 +169,7 @@ LibError vfs_dir_close(Handle& hd)
 // - <pattern>: any file whose name matches; ? and * wildcards are allowed.
 //
 // note that the directory entries are only scanned once; after the
-// end is reached (-> ERR_DIR_END returned), no further entries can
+// end is reached (-> ERR::DIR_END returned), no further entries can
 // be retrieved, even if filter changes (which shouldn't happen - see impl).
 //
 // rationale: we do not sort directory entries alphabetically here.
@@ -275,7 +275,7 @@ static LibError VFile_reload(VFile* vf, const char* V_path, Handle)
 	// we're done if file is already open. need to check this because
 	// reload order (e.g. if resource opens a file) is unspecified.
 	if(xfile_is_open(&vf->f))
-		return INFO_OK;
+		return INFO::OK;
 
 	TFile* tf;
 	uint lf = (flags & FILE_WRITE)? LF_CREATE_MISSING : 0;
@@ -300,20 +300,20 @@ static LibError VFile_reload(VFile* vf, const char* V_path, Handle)
 	vf->is_valid = 1;
 	vf->tf = tf;
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 static LibError VFile_validate(const VFile* vf)
 {
 	// <ofs> doesn't have any invariant we can check.
 	RETURN_ERR(xfile_validate(&vf->f));
-	return INFO_OK;
+	return INFO::OK;
 }
 
 static LibError VFile_to_string(const VFile* UNUSED(vf), char* buf)
 {
 	strcpy(buf, "");	// safe
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -418,8 +418,8 @@ LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size,
 		// we don't care if the cb has "had enough" or whether it would
 		// accept more data - this is all it gets and we need to
 		// translate return value to avoid confusing callers.
-		if(ret == INFO_CB_CONTINUE)
-			ret = INFO_OK;
+		if(ret == INFO::CB_CONTINUE)
+			ret = INFO::OK;
 		size = actual_size;
 		return ret;
 	}
@@ -448,7 +448,7 @@ LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size,
 	stats_cache(CR_MISS, size, atom_fn);
 
 	(void)vfs_close(hf);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -519,17 +519,17 @@ static LibError VIo_reload(VIo* vio, const char* UNUSED(fn), Handle UNUSED(h))
 static LibError VIo_validate(const VIo* vio)
 {
 	if(vio->hf < 0)
-		WARN_RETURN(ERR_21);
+		WARN_RETURN(ERR::_21);
 	// <size> doesn't have any invariant we can check.
 	if(debug_is_pointer_bogus(vio->buf))
-		WARN_RETURN(ERR_22);
+		WARN_RETURN(ERR::_22);
 	return xfile_io_validate(&vio->io);
 }
 
 static LibError VIo_to_string(const VIo* vio, char* buf)
 {
 	snprintf(buf, H_STRING_LEN, "buf=%p size=%d", vio->buf, vio->size);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -621,7 +621,7 @@ static LibError reload_without_rebuild(const char* fn)
 
 	RETURN_ERR(h_reload(fn));
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -696,7 +696,7 @@ LibError vfs_reload_changed_files()
 		// get next notification
 		char N_path[PATH_MAX];
 		LibError ret = dir_get_changed_file(N_path);
-		if(ret == ERR_AGAIN)	// none available; done.
+		if(ret == ERR::AGAIN)	// none available; done.
 			break;
 		RETURN_ERR(ret);
 
@@ -726,7 +726,7 @@ LibError vfs_reload_changed_files()
 	for(uint i = 0; i < num_pending; i++)
 		RETURN_ERR(reload_without_rebuild(pending_reloads[i]));
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 

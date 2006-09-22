@@ -160,10 +160,10 @@ class TestMultithread : public CxxTest::TestSuite
 				int err;
 
 				err = lfl_erase(&this_->list, key);
-				TS_ASSERT(was_in_set == (err == INFO_OK));
+				TS_ASSERT(was_in_set == (err == INFO::OK));
 
 				err = lfh_erase(&this_->hash, key);
-				TS_ASSERT(was_in_set == (err == INFO_OK));
+				TS_ASSERT(was_in_set == (err == INFO::OK));
 			}
 			break;
 

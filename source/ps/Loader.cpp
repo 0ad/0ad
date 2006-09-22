@@ -88,11 +88,11 @@ struct DurationAdder: public std::binary_function<double, const LoadRequest&, do
 LibError LDR_BeginRegistering()
 {
 	if(state != IDLE)
-		return ERR_LOGIC;
+		return ERR::LOGIC;
 
 	state = REGISTERING;
 	load_requests.clear();
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -112,12 +112,12 @@ LibError LDR_Register(LoadFunc func, void* param, const wchar_t* description,
 		debug_warn("not called between LDR_(Begin|End)Register - why?!");
 			// warn here instead of relying on the caller to CHECK_ERR because
 			// there will be lots of call sites spread around.
-		return ERR_LOGIC;
+		return ERR::LOGIC;
 	}
 
 	const LoadRequest lr(func, param, description, estimated_duration_ms);
 	load_requests.push_back(lr);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -126,7 +126,7 @@ LibError LDR_Register(LoadFunc func, void* param, const wchar_t* description,
 LibError LDR_EndRegistering()
 {
 	if(state != REGISTERING)
-		return ERR_LOGIC;
+		return ERR::LOGIC;
 
 	if(load_requests.empty())
 		debug_warn("no LoadRequests queued");
@@ -135,7 +135,7 @@ LibError LDR_EndRegistering()
 	estimated_duration_tally = 0.0;
 	task_elapsed_time = 0.0;
 	total_estimated_duration = std::accumulate(load_requests.begin(), load_requests.end(), 0.0, DurationAdder());
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -147,13 +147,13 @@ LibError LDR_Cancel()
 	// note: calling during registering doesn't make sense - that
 	// should be an atomic sequence of begin, register [..], end.
 	if(state != LOADING)
-		return ERR_LOGIC;
+		return ERR::LOGIC;
 
 	state = IDLE;
 	// the queue doesn't need to be emptied now; that'll happen during the
 	// next LDR_StartRegistering. for now, it is sufficient to set the
 	// state, so that LDR_ProgressiveLoad is a no-op.
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -187,8 +187,8 @@ static bool HaveTimeForNextTask(double time_left, double time_budget, int estima
 // ("" if finished) and the current progress value.
 //
 // return semantics:
-// - if the final load task just completed, return INFO_ALL_COMPLETE.
-// - if loading is in progress but didn't finish, return ERR_TIMED_OUT.
+// - if the final load task just completed, return INFO::ALL_COMPLETE.
+// - if loading is in progress but didn't finish, return ERR::TIMED_OUT.
 // - if not currently loading (no-op), return 0.
 // - any other value indicates a failure; the request has been de-queued.
 //
@@ -210,7 +210,7 @@ LibError LDR_ProgressiveLoad(double time_budget, wchar_t* description,
 	{
 		state = LOADING;
 
-		ret = ERR_TIMED_OUT;	// make caller think we did something
+		ret  = ERR::TIMED_OUT;	// make caller think we did something
 		// progress already set to 0.0; that'll be passed back.
 		goto done;
 	}
@@ -218,7 +218,7 @@ LibError LDR_ProgressiveLoad(double time_budget, wchar_t* description,
 	// we're called unconditionally from the main loop, so this isn't
 	// an error; there is just nothing to do.
 	if(state != LOADING)
-		return INFO_OK;
+		return INFO::OK;
 
 	while(!load_requests.empty())
 	{
@@ -227,7 +227,7 @@ LibError LDR_ProgressiveLoad(double time_budget, wchar_t* description,
 		const double estimated_duration = lr.estimated_duration_ms*1e-3;
 		if(!HaveTimeForNextTask(time_left, time_budget, lr.estimated_duration_ms))
 		{
-			ret = ERR_TIMED_OUT;
+			ret  = ERR::TIMED_OUT;
 			goto done;
 		}
 
@@ -266,7 +266,7 @@ LibError LDR_ProgressiveLoad(double time_budget, wchar_t* description,
 		// .. function interrupted itself, i.e. timed out; abort.
 		if(timed_out)
 		{
-			ret = ERR_TIMED_OUT;
+			ret  = ERR::TIMED_OUT;
 			goto done;
 		}
 		// .. failed; abort. loading will continue when we're called in
@@ -283,7 +283,7 @@ LibError LDR_ProgressiveLoad(double time_budget, wchar_t* description,
 
 	// queue is empty, we just finished.
 	state = IDLE;
-	ret = INFO_ALL_COMPLETE;
+	ret = INFO::ALL_COMPLETE;
 
 
 	// set output params (there are several return points above)
@@ -319,12 +319,12 @@ LibError LDR_NonprogressiveLoad()
 		LibError ret = LDR_ProgressiveLoad(time_budget, description, ARRAY_SIZE(description), &progress_percent);
 		switch(ret)
 		{
-		case INFO_OK:
+		case INFO::OK:
 			debug_warn("No load in progress");
-			return INFO_OK;
-		case INFO_ALL_COMPLETE:
-			return INFO_OK;
-		case ERR_TIMED_OUT:
+			return INFO::OK;
+		case INFO::ALL_COMPLETE:
+			return INFO::OK;
+		case ERR::TIMED_OUT:
 			break;			// continue loading
 		default:
 			CHECK_ERR(ret);	// failed; complain

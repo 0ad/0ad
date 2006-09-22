@@ -10,7 +10,7 @@ extern JSPropertySpec ScriptGlobalTable[];
 
 // dependencies (moved to header to avoid L4 warnings)
 // .. from main.cpp:
-extern "C" int fps;
+extern int fps;
 extern void kill_mainloop();
 extern CStr g_CursorName;
 extern void StartGame();

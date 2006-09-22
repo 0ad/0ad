@@ -45,21 +45,22 @@ static LibError LibError_from_GLE(bool warn_if_failed = true)
 	switch(GetLastError())
 	{
 	case ERROR_OUTOFMEMORY:
-		err =  ERR_NO_MEM; break;
+		err = ERR::NO_MEM; break;
 
 	case ERROR_INVALID_PARAMETER:
-		err =  ERR_INVALID_PARAM; break;
+		err = ERR::INVALID_PARAM; break;
 	case ERROR_INSUFFICIENT_BUFFER:
-		err =  ERR_BUF_SIZE; break;
+		err = ERR::BUF_SIZE; break;
 
+/*/*
 	case ERROR_ACCESS_DENIED:
-		err =  ERR_FILE_ACCESS; break;
+		err = ERR::FILE_ACCESS; break;
 	case ERROR_FILE_NOT_FOUND:
 	case ERROR_PATH_NOT_FOUND:
-		err =  ERR_TNODE_NOT_FOUND; break;
-
+		err = ERR::TNODE_NOT_FOUND; break;
+*/
 	default:
-		err =  ERR_FAIL; break;
+		err = ERR::FAIL; break;
 	}
 
 	if(warn_if_failed)
@@ -68,14 +69,14 @@ static LibError LibError_from_GLE(bool warn_if_failed = true)
 }
 
 
-// return the LibError equivalent of GetLastError(), or ERR_FAIL if
+// return the LibError equivalent of GetLastError(), or ERR::FAIL if
 // there's no equal.
 // you should SetLastError(0) before calling whatever will set ret
 // to make sure we do not return any stale errors.
 LibError LibError_from_win32(DWORD ret, bool warn_if_failed)
 {
 	if(ret != FALSE)
-		return INFO_OK;
+		return INFO::OK;
 	return LibError_from_GLE(warn_if_failed);
 }
 

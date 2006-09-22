@@ -30,8 +30,8 @@ struct ArchiveEntry;
 
 // analyse an opened Zip file; call back into archive.cpp to
 // populate the Archive object with a list of the files it contains.
-// returns INFO_OK on success, ERR_CORRUPTED if file is recognizable as
-// a Zip file but invalid, otherwise ERR_UNKNOWN_FORMAT or IO error.
+// returns INFO::OK on success, ERR::CORRUPTED if file is recognizable as
+// a Zip file but invalid, otherwise ERR::RES_UNKNOWN_FORMAT or IO error.
 //
 // fairly slow - must read Central Directory from disk
 // (size ~= 60 bytes*num_files); observed time ~= 80ms.

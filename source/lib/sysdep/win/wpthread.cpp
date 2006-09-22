@@ -143,7 +143,7 @@ int pthread_key_create(pthread_key_t* key, void (*dtor)(void*))
 	}
 
 	// not enough slots; we have a valid key, but its dtor won't be called.
-	WARN_ERR(ERR_LIMIT);
+	WARN_ERR(ERR::LIMIT);
 	return -1;
 
 have_slot:
@@ -183,7 +183,7 @@ void* pthread_getspecific(pthread_key_t key)
 			SetLastError(last_err);
 	}
 	else
-		WARN_ERR(ERR_FAIL);
+		WARN_ERR(ERR::FAIL);
 
 	return data;
 }
@@ -382,7 +382,7 @@ static DWORD calc_timeout_length_ms(const struct timespec* abs_timeout,
 	//          that's the Win32 INFINITE value.
 	if(length_ms >= 0xffffffff)
 	{
-		WARN_ERR(ERR_LIMIT);
+		WARN_ERR(ERR::LIMIT);
 		length_ms = 0xfffffffe;
 	}
 	return (DWORD)(length_ms & 0xffffffff);
@@ -441,7 +441,7 @@ int sem_msgwait_np(sem_t* sem)
 	else
 	{
 		errno = EINVAL;
-		WARN_ERR(ERR_FAIL);
+		WARN_ERR(ERR::FAIL);
 	}
 	return -1;
 }
@@ -517,7 +517,7 @@ int pthread_create(pthread_t* thread_id, const void* UNUSED(attr), void* (*func)
 	const uintptr_t id = _beginthreadex(0, 0, thread_start, (void*)&func_and_arg, 0, 0);
 	if(!id)
 	{
-		WARN_ERR(ERR_FAIL);
+		WARN_ERR(ERR::FAIL);
 		return -1;
 	}
 
@@ -552,7 +552,7 @@ int pthread_join(pthread_t thread, void** value_ptr)
 	DWORD ret = WaitForSingleObject(hThread, INFINITE);
 	if(ret != WAIT_OBJECT_0)
 	{
-		WARN_ERR(ERR_FAIL);
+		WARN_ERR(ERR::FAIL);
 		return -1;
 	}
 
@@ -572,12 +572,12 @@ static LibError wpthread_init()
 {
 	int err = sem_init(&sem_thread_create, 0, 0);
 	debug_assert(err == 0);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 static LibError wpthread_shutdown()
 {
 	int err = sem_destroy(&sem_thread_create);
 	debug_assert(err == 0);
-	return INFO_OK;
+	return INFO::OK;
 }

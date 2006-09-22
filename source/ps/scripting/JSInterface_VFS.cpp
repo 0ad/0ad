@@ -6,6 +6,7 @@
 #include "ps/VFSUtil.h"
 #include "lib/res/res.h"
 #include "lib/res/file/vfs_optimizer.h"	// ArchiveBuilderCancel
+#include "lib/res/file/vfs_mount.h"	// TNODE_NOT_FOUND
 #include "scripting/ScriptingHost.h"
 #include "scripting/JSConversions.h"
 #include "ps/scripting/JSInterface_VFS.h"
@@ -13,7 +14,7 @@
 // shared error handling code
 #define JS_CHECK_FILE_ERR(err)\
 	/* this is liable to happen often, so don't complain */\
-	if(err == ERR_TNODE_NOT_FOUND)\
+	if(err == ERR::TNODE_NOT_FOUND)\
 	{\
 		*rval = JSVAL_NULL;\
 		return( JS_TRUE );\

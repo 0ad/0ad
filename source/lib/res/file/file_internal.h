@@ -57,7 +57,7 @@ const size_t FILE_BLOCK_SIZE = 32*KiB;
 
 // helper routine used by functions that call back to a FileIOCB.
 //
-// bytes_processed is 0 if return value != { INFO_OK, INFO_CB_CONTINUE }
+// bytes_processed is 0 if return value != { INFO::OK, INFO::CB_CONTINUE }
 // note: don't abort if = 0: zip callback may not actually
 // output anything if passed very little data.
 extern LibError file_io_call_back(const void* block, size_t size,
@@ -65,7 +65,7 @@ extern LibError file_io_call_back(const void* block, size_t size,
 
 
 // retrieve the next (order is unspecified) dir entry matching <filter>.
-// return 0 on success, ERR_DIR_END if no matching entry was found,
+// return 0 on success, ERR::DIR_END if no matching entry was found,
 // or a negative error code on failure.
 // filter values:
 // - 0: anything;
@@ -74,7 +74,7 @@ extern LibError file_io_call_back(const void* block, size_t size,
 // - <pattern>: any file whose name matches; ? and * wildcards are allowed.
 //
 // note that the directory entries are only scanned once; after the
-// end is reached (-> ERR_DIR_END returned), no further entries can
+// end is reached (-> ERR::DIR_END returned), no further entries can
 // be retrieved, even if filter changes (which shouldn't happen - see impl).
 //
 // rationale: we do not sort directory entries alphabetically here.

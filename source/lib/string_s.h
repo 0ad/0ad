@@ -26,6 +26,12 @@
 #include "posix_types.h"	// size_t
 #include "config.h"
 
+
+namespace ERR
+{
+	const LibError STRING_NOT_TERMINATED = -100600;
+}
+
 // only declare these functions if using our implementation
 // (otherwise, we risk incompatibilities)
 #if !HAVE_STRING_S

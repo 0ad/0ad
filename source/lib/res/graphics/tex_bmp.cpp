@@ -58,7 +58,7 @@ struct BmpHeader
 
 static LibError bmp_transform(Tex* UNUSED(t), uint UNUSED(transforms))
 {
-	return INFO_TEX_CODEC_CANNOT_HANDLE;
+	return INFO::TEX_CODEC_CANNOT_HANDLE;
 }
 
 
@@ -112,13 +112,13 @@ static LibError bmp_decode(DynArray* restrict da, Tex* restrict t)
 
 	// sanity checks
 	if(compress != BI_RGB)
-		WARN_RETURN(ERR_TEX_COMPRESSED);
+		WARN_RETURN(ERR::TEX_COMPRESSED);
 
 	t->w     = w;
 	t->h     = h;
 	t->bpp   = bpp;
 	t->flags = flags;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 

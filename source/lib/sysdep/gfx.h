@@ -23,10 +23,6 @@
 #ifndef GFX_H__
 #define GFX_H__
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 const size_t GFX_CARD_LEN = 128;
 /**
  * description of graphics card.
@@ -63,7 +59,7 @@ extern void gfx_detect(void);
  * @param xres, yres (optional out) resolution [pixels]
  * @param bpp (optional out) bits per pixel
  * @param freq (optional out) vertical refresh rate [Hz]
- * @return LibError; INFO_OK unless: some information was requested
+ * @return LibError; INFO::OK unless: some information was requested
  * (i.e. pointer is non-NULL) but cannot be returned.
  * on failure, the outputs are all left unchanged (they are
  * assumed initialized to defaults)
@@ -82,10 +78,5 @@ extern LibError gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq);
  * assumed initialized to defaults)
  **/
 extern LibError gfx_get_monitor_size(int& width_mm, int& height_mm);
-
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif	// #ifndef GFX_H__

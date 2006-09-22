@@ -29,6 +29,14 @@
 # include "lib/sysdep/ia32.h"
 #endif
 
+
+AT_STARTUP(\
+	error_setDescription(ERR::CPU_FEATURE_MISSING, "This CPU doesn't support a required feature");\
+	error_setDescription(ERR::CPU_UNKNOWN_OPCODE, "Disassembly failed");\
+	error_setDescription(ERR::CPU_RESTRICTED_AFFINITY, "Cannot set desired CPU affinity");\
+)
+
+
 char cpu_type[CPU_TYPE_LEN] = "";
 double cpu_freq = 0.f;
 

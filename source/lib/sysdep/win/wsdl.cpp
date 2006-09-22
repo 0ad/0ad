@@ -97,7 +97,7 @@ static LibError calc_gamma_ramp(float gamma, u16* ramp)
 	{
 		for(u16 i = 0; i < 256; i++)
 			ramp[i] = (i << 8);
-		return INFO_OK;
+		return INFO::OK;
 	}
 
 	const double inv_gamma = 1.0 / gamma;
@@ -110,7 +110,7 @@ static LibError calc_gamma_ramp(float gamma, u16* ramp)
 		ramp[i] = fp_to_u16(pow(frac, inv_gamma));
 	}
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -142,7 +142,7 @@ int SDL_SetGamma(float r, float g, float b)
 	LibError err1 = calc_gamma_ramp(r, cur_ramp[0]);
 	LibError err2 = calc_gamma_ramp(g, cur_ramp[1]);
 	LibError err3 = calc_gamma_ramp(b, cur_ramp[2]);
-	if(err1 != INFO_OK || err2 != INFO_OK || err3 != INFO_OK)
+	if(err1 != INFO::OK || err2 != INFO::OK || err3 != INFO::OK)
 		return -1;
 
 	if(!SetDeviceGammaRamp(hDC, cur_ramp))
@@ -1339,7 +1339,7 @@ static LibError wsdl_init()
 
 	enable_kbd_hook(true);
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -1357,7 +1357,7 @@ static LibError wsdl_shutdown()
 
 	enable_kbd_hook(false);
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 

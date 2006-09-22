@@ -422,7 +422,7 @@ JpgErrorMgr::JpgErrorMgr(j_common_ptr cinfo)
 
 static LibError jpg_transform(Tex* UNUSED(t), uint UNUSED(transforms))
 {
-	return INFO_TEX_CODEC_CANNOT_HANDLE;
+	return INFO::TEX_CODEC_CANNOT_HANDLE;
 }
 
 
@@ -478,7 +478,7 @@ static LibError jpg_decode_impl(DynArray* da,
 	const size_t img_size = pitch * h;	// for allow_rows
 	u8* img = (u8*)mem_alloc(img_size, 64*KiB, 0, &img_hm);
 	if(!img)
-		WARN_RETURN(ERR_NO_MEM);
+		WARN_RETURN(ERR::NO_MEM);
 
 	// read rows
 	RETURN_ERR(tex_codec_alloc_rows(img, h, pitch, TEX_TOP_DOWN, 0, rows));
@@ -499,9 +499,9 @@ static LibError jpg_decode_impl(DynArray* da,
 	// mem data source.
 	(void)jpeg_finish_decompress(cinfo);
 
-	LibError ret = INFO_OK;
+	LibError ret = INFO::OK;
 	if(cinfo->err->num_warnings != 0)
-		ret = WARN_TEX_INVALID_DATA;
+		ret = WARN::TEX_INVALID_DATA;
 
 	// store image info
 	// .. transparently switch handles - free the old (compressed)
@@ -560,9 +560,9 @@ static LibError jpg_encode_impl(Tex* t,
 
 	jpeg_finish_compress(cinfo);
 
-	LibError ret = INFO_OK;
+	LibError ret = INFO::OK;
 	if(cinfo->err->num_warnings != 0)
-		ret = WARN_TEX_INVALID_DATA;
+		ret = WARN::TEX_INVALID_DATA;
 
 	return ret;
 }
@@ -606,7 +606,7 @@ static LibError jpg_decode(DynArray* restrict da, Tex* restrict t)
 	JpgErrorMgr jerr((j_common_ptr)&cinfo);
 	if(setjmp(jerr.call_site))
 	{
-		err = ERR_FAIL;
+		err  = ERR::FAIL;
 		goto fail;
 	}
 
@@ -642,7 +642,7 @@ static LibError jpg_encode(Tex* restrict t, DynArray* restrict da)
 	JpgErrorMgr jerr((j_common_ptr)&cinfo);
 	if(setjmp(jerr.call_site))
 	{
-		err = ERR_FAIL;
+		err  = ERR::FAIL;
 		goto fail;
 	}
 

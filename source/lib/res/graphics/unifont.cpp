@@ -65,7 +65,7 @@ static LibError UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 {
 	// already loaded
 	if(f->ht > 0)
-		return INFO_OK;
+		return INFO::OK;
 
 	f->glyphs_id = new glyphmap_id;
 	f->glyphs_size = new glyphmap_size;
@@ -85,7 +85,7 @@ static LibError UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 	int Version;
 	FNTStream >> Version;
 	if (Version != 100) // Make sure this is from a recent version of the font builder
-		WARN_RETURN(ERR_UNKNOWN_FORMAT);
+		WARN_RETURN(ERR::RES_UNKNOWN_FORMAT);
 
 	int TextureWidth, TextureHeight;
 	FNTStream >> TextureWidth >> TextureHeight;
@@ -102,7 +102,7 @@ static LibError UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 
 	f->ListBase = glGenLists(NumGlyphs);
 	if (f->ListBase == 0) // My Voodoo2 drivers didn't support display lists (although I'd be surprised if they got this far)
-		WARN_RETURN(ERR_FAIL);
+		WARN_RETURN(ERR::FAIL);
 
 	// [cumulative for 12: 256ms]
 	for (int i = 0; i < NumGlyphs; ++i)
@@ -166,28 +166,28 @@ static LibError UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 
 	f->ht = ht;
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 static LibError UniFont_validate(const UniFont* f)
 {
 	if(f->ht < 0)
-		WARN_RETURN(ERR_1);
+		WARN_RETURN(ERR::_1);
 	if(debug_is_pointer_bogus(f->glyphs_id) || debug_is_pointer_bogus(f->glyphs_size))
-		WARN_RETURN(ERR_2);
+		WARN_RETURN(ERR::_2);
 	// <LineSpacing> and <Height> are read directly from font file.
 	// negative values don't make sense, but that's all we can check.
 	if(f->LineSpacing < 0 || f->Height < 0)
-		WARN_RETURN(ERR_3);
+		WARN_RETURN(ERR::_3);
 	if(f->ListBase == 0 || f->ListBase > 1000000)	// suspicious
-		WARN_RETURN(ERR_4);
-	return INFO_OK;
+		WARN_RETURN(ERR::_4);
+	return INFO::OK;
 }
 
 static LibError UniFont_to_string(const UniFont* UNUSED(f), char* buf)
 {
 	snprintf(buf, H_STRING_LEN, "");
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -211,7 +211,7 @@ LibError unifont_bind(const Handle h)
 	glListBase(f->ListBase);
 	BoundGlyphs = f->glyphs_id;
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -311,11 +311,11 @@ LibError unifont_stringsize(const Handle h, const wchar_t* text, int& width, int
 		if (it == f->glyphs_size->end()) // Missing the missing glyph symbol - give up
 		{
 			debug_warn("Missing the missing glyph in a unifont!\n");
-			return INFO_OK;
+			return INFO::OK;
 		}
 
 		width += it->second; // Add the character's advance distance
 	}
 
-	return INFO_OK;
+	return INFO::OK;
 }

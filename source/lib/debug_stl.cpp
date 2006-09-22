@@ -29,6 +29,13 @@
 #include "debug_stl.h"
 #include "lib.h"	// match_wildcard
 
+
+AT_STARTUP(\
+	error_setDescription(ERR::STL_CNT_UNKNOWN, "Unknown STL container type_name");\
+	error_setDescription(ERR::STL_CNT_INVALID, "Container type is known but contents are invalid");\
+)
+
+
 // used in debug_stl_simplify_name.
 // note: strcpy is safe because replacement happens in-place and
 // src is longer than dst (otherwise, we wouldn't be replacing).
@@ -650,7 +657,7 @@ LibError debug_stl_get_container_info(const char* type_name, const u8* p, size_t
 	// later pieces of code that try to manipulate the STL containers. Presumably
 	// it needs to be altered/rewritten to work happily with the new STL debug iterators.
 #if MSC_VERSION >= 1400
-	return ERR_FAIL;
+	return ERR::FAIL;
 #endif
 
 	bool handled = false, valid = false;
@@ -699,10 +706,10 @@ LibError debug_stl_get_container_info(const char* type_name, const u8* p, size_t
 	// note: do not raise warnings - these can happen for new
 	// STL classes or if the debuggee's memory is corrupted.
 	if(!handled)
-		return ERR_STL_CNT_UNKNOWN;	// NOWARN
+		return ERR::STL_CNT_UNKNOWN;	// NOWARN
 	if(!valid)
-		return ERR_STL_CNT_INVALID;	// NOWARN
-	return INFO_OK;
+		return ERR::STL_CNT_INVALID;	// NOWARN
+	return INFO::OK;
 }
 
 #endif
