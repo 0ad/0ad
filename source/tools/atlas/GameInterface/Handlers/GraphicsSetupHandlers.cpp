@@ -6,16 +6,17 @@
 #include "../ActorViewer.h"
 #include "../View.h"
 
-#include "renderer/Renderer.h"
 #include "graphics/GameView.h"
-#include "gui/GUIbase.h"
+#include "graphics/ObjectManager.h"
 #include "gui/CGUI.h"
+#include "gui/GUIbase.h"
+#include "lib/res/file/vfs.h"
+#include "maths/MathUtil.h"
 #include "ps/CConsole.h"
 #include "ps/Game.h"
-#include "maths/MathUtil.h"
-
 #include "ps/GameSetup/Config.h"
 #include "ps/GameSetup/GameSetup.h"
+#include "renderer/Renderer.h"
 
 namespace AtlasMessage {
 
@@ -81,6 +82,18 @@ MESSAGEHANDLER(RenderEnable)
 
 MESSAGEHANDLER(SetActorViewer)
 {
+	if (msg->flushcache)
+	{
+		// TODO EXTREME DANGER: this'll break horribly if any units remain
+		// in existence and use their actors after we've deleted all the actors.
+		// (The actor viewer currently only has one unit at a time, so it's
+		// alright.)
+		// Should replace this with proper actor hot-loading system, or something.
+
+		View::GetView_Actor()->GetActorViewer().SetActor(L"", L"");
+		g_ObjMan.UnloadObjects();
+		vfs_reload_changed_files();
+	}
 	View::GetView_Actor()->SetSpeedMultiplier(msg->speed);
 	View::GetView_Actor()->GetActorViewer().SetActor(*msg->id, *msg->animation);
 }

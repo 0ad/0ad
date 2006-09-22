@@ -29,30 +29,15 @@ public:
 
 	};
 
-	struct SObjectType
-	{
-		// name of this object type (derived from directory name)
-		CStr m_Name;
-		// index in parent array
-		int m_Index;
-		// list of objects of this type (found from the objects directory)
-		std::map<ObjectKey, CObjectEntry*> m_Objects;
-		std::map<CStr, CObjectBase*> m_ObjectBases;
-	};
-
 public:
 
 	// constructor, destructor
 	CObjectManager();
 	~CObjectManager();
 
-	int LoadObjects();
 	void UnloadObjects();
 
-	void AddObjectType(const char* name);
-
 	CObjectEntry* FindObject(const char* objname);
-	void AddObject(ObjectKey& key, CObjectEntry* entry, int type);
 	void DeleteObject(CObjectEntry* entry);
 	
 	CObjectBase* FindObjectBase(const char* objname);
@@ -64,7 +49,8 @@ public:
 	void GetAllObjectNames(std::vector<CStr>& names);
 	void GetPropObjectNames(std::vector<CStr>& names);
 
-	std::vector<SObjectType> m_ObjectTypes;
+	std::map<ObjectKey, CObjectEntry*> m_Objects;
+	std::map<CStr, CObjectBase*> m_ObjectBases;
 };
 
 

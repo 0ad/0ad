@@ -12,6 +12,8 @@
 #include "CustomControls/Canvas/Canvas.h"
 #include "CustomControls/SnapSplitterWindow/SnapSplitterWindow.h"
 
+#include "ActorEditor/ActorEditor.h"
+
 using namespace AtlasMessage;
 
 //////////////////////////////////////////////////////////////////////////
@@ -102,6 +104,7 @@ enum
 	ID_Play,
 	ID_Pause,
 	ID_Slow,
+	ID_Edit
 };
 
 BEGIN_EVENT_TABLE(ActorViewer, wxFrame)
@@ -112,6 +115,7 @@ BEGIN_EVENT_TABLE(ActorViewer, wxFrame)
 	EVT_BUTTON(ID_Play, ActorViewer::OnSpeedButton)
 	EVT_BUTTON(ID_Pause, ActorViewer::OnSpeedButton)
 	EVT_BUTTON(ID_Slow, ActorViewer::OnSpeedButton)
+	EVT_BUTTON(ID_Edit, ActorViewer::OnEditButton)
 END_EVENT_TABLE()
 
 static void SendToGame(const AtlasMessage::sEnvironmentSettings& settings)
@@ -219,7 +223,7 @@ ActorViewer::ActorViewer(wxWindow* parent)
 	m_EnvironmentSettings.terraincolour = Colour(164, 164, 164);
 	m_EnvironmentSettings.unitcolour = Colour(164, 164, 164);
 	LightControl* lightControl = new LightControl(sidePanel, wxSize(100, 100), m_EnvironmentSettings);
-	m_Conn = m_EnvironmentSettings.RegisterObserver(0, &SendToGame);
+	m_EnvConn = m_EnvironmentSettings.RegisterObserver(0, &SendToGame);
 	SendToGame(m_EnvironmentSettings);
 
 	wxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
@@ -239,6 +243,9 @@ ActorViewer::ActorViewer(wxWindow* parent)
 
 	bottomRightSizer->Add(m_AnimationBox, wxSizerFlags().Expand());
 	bottomRightSizer->Add(playButtonSizer, wxSizerFlags().Expand());
+
+	bottomRightSizer->Add(new wxButton(sidePanel, ID_Edit, _("Edit actor")), wxSizerFlags().Expand());
+
 	sidePanel->SetSizer(mainSizer);
 
 	//////////////////////////////////////////////////////////////////////////
@@ -261,9 +268,9 @@ void ActorViewer::OnClose(wxCloseEvent& WXUNUSED(event))
 	Destroy();
 }
 
-void ActorViewer::SetActorView()
+void ActorViewer::SetActorView(bool flushCache)
 {
-	POST_MESSAGE(SetActorViewer, (m_CurrentActor.c_str(), m_AnimationBox->GetValue().c_str(), m_CurrentSpeed));
+	POST_MESSAGE(SetActorViewer, (m_CurrentActor.c_str(), m_AnimationBox->GetValue().c_str(), m_CurrentSpeed, flushCache));
 }
 
 void ActorViewer::OnTreeSelection(wxTreeEvent& event)
@@ -296,4 +303,23 @@ void ActorViewer::OnSpeedButton(wxCommandEvent& event)
 	}
 
 	SetActorView();
+}
+
+void ActorViewer::OnActorEdited()
+{
+	SetActorView(true);
+}
+
+void ActorViewer::OnEditButton(wxCommandEvent& WXUNUSED(event))
+{
+	wxFileName dir (_T("mods/official/art/actors/") + m_CurrentActor, wxPATH_UNIX);
+	dir.MakeAbsolute(Datafile::GetDataDirectory());
+
+	ActorEditor* ed = new ActorEditor(NULL);
+	ed->OpenFile(dir.GetFullPath());
+	ed->Show();
+	
+	m_ActorConns.Add(ed->sig_FileSaved.connect(
+		boost::bind(std::mem_fun(&ActorViewer::OnActorEdited), this)
+	));
 }

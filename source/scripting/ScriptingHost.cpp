@@ -445,7 +445,7 @@ void* ScriptingHost::jshook_function( JSContext* cx, JSStackFrame* fp, JSBool be
 			g_Profiler.StartScript( JS_GetFunctionName( fn ) );
 		}
 		else
-			g_Profiler.StartScript( "function invokation" );
+			g_Profiler.StartScript( "function invocation" );
 	}
 	else
 		g_Profiler.Stop();

@@ -140,7 +140,6 @@ void CGameView::RegisterInit(CGameAttributes *pAttribs)
 
 	// previously done by CGameView::InitResources
 	RegMemFun(g_TexMan.GetSingletonPtr(), &CTextureManager::LoadTerrainTextures, L"LoadTerrainTextures", 60);
-	RegMemFun(g_ObjMan.GetSingletonPtr(), &CObjectManager::LoadObjects, L"LoadObjects", 1);
 	RegMemFun(g_Renderer.GetSingletonPtr(), &CRenderer::LoadAlphaMaps, L"LoadAlphaMaps", 5);
 	RegMemFun(g_Renderer.GetSingletonPtr()->GetWaterManager(), &WaterManager::LoadWaterTextures, L"LoadWaterTextures", 80);
 	RegMemFun(g_Renderer.GetSingletonPtr()->GetSkyManager(), &SkyManager::LoadSkyTextures, L"LoadSkyTextures", 15);

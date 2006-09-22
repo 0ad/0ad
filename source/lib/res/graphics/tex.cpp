@@ -37,8 +37,8 @@
 AT_STARTUP(\
 	error_setDescription(ERR::TEX_FMT_INVALID, "Invalid/unsupported texture format");\
 	error_setDescription(ERR::TEX_INVALID_COLOR_TYPE, "Invalid color type");\
-	error_setDescription(ERR::TEX_NOT_8BIT_PRECISION, "Not 8bit channel precision");\
-	error_setDescription(ERR::TEX_INVALID_LAYOUT, "Unsupported texel layout, e.g. righttoleft");\
+	error_setDescription(ERR::TEX_NOT_8BIT_PRECISION, "Not 8-bit channel precision");\
+	error_setDescription(ERR::TEX_INVALID_LAYOUT, "Unsupported texel layout, e.g. right-to-left");\
 	error_setDescription(ERR::TEX_COMPRESSED, "Unsupported texture compression");\
 	error_setDescription(WARN::TEX_INVALID_DATA, "Warning: invalid texel data encountered");\
 	error_setDescription(ERR::TEX_INVALID_SIZE, "Texture size is incorrect");\

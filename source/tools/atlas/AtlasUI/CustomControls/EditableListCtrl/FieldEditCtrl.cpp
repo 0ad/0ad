@@ -81,14 +81,14 @@ void FieldEditCtrl_List::StartEdit(wxWindow* parent, wxRect rect, long row, int 
 
 //////////////////////////////////////////////////////////////////////////
 
-FieldEditCtrl_Dialog::FieldEditCtrl_Dialog(const wxString& dialogType)
-	: m_DialogType(dialogType)
+FieldEditCtrl_Dialog::FieldEditCtrl_Dialog(AtlasDialog* (*dialogCtor)(wxWindow*))
+	: m_DialogCtor(dialogCtor)
 {
 }
 
 void FieldEditCtrl_Dialog::StartEdit(wxWindow* parent, wxRect WXUNUSED(rect), long row, int col)
 {
-	AtlasDialog* dialog = wxDynamicCast(wxCreateDynamicObject(m_DialogType), AtlasDialog);
+	AtlasDialog* dialog = m_DialogCtor(parent);
 	wxCHECK2(dialog, return);
 
 	dialog->SetParent(parent);

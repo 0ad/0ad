@@ -19,5 +19,5 @@ void main()
 	gl_TexCoord[1] = reflectionMatrix * gl_Vertex;		// projective texturing
 	gl_TexCoord[2] = reflectionMatrix * gl_Vertex;
 	w = gl_TexCoord[1].w;
-    gl_Position = ftransform();
+	gl_Position = ftransform();
 }

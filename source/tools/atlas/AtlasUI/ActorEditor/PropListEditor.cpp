@@ -7,10 +7,8 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-IMPLEMENT_DYNAMIC_CLASS(PropListEditor, AtlasDialog);
-
-PropListEditor::PropListEditor()
-	: AtlasDialog(NULL, _("Prop editor"), wxSize(400, 280))
+PropListEditor::PropListEditor(wxWindow* parent)
+	: AtlasDialog(parent, _("Prop editor"), wxSize(400, 280))
 {
 	m_MainListBox = new PropListEditorListCtrl(m_MainPanel);
 

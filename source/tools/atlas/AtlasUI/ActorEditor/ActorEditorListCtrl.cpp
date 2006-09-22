@@ -2,6 +2,9 @@
 
 #include "ActorEditorListCtrl.h"
 
+#include "AnimListEditor.h"
+#include "PropListEditor.h"
+
 #include "AtlasObject/AtlasObject.h"
 #include "EditableListCtrl/FieldEditCtrl.h"
 
@@ -26,11 +29,11 @@ ActorEditorListCtrl::ActorEditorListCtrl(wxWindow* parent)
 	#undef COLOUR
 
 	AddColumnType(_("Variant"),		90,  "@name",		new FieldEditCtrl_Text());
-	AddColumnType(_("Freq"),		50,  "@frequency",	new FieldEditCtrl_Text());
+	AddColumnType(_("Ratio"),		50,  "@frequency",	new FieldEditCtrl_Text());
 	AddColumnType(_("Model"),		140, "mesh",		new FieldEditCtrl_File(_T("art/meshes/"), _("Mesh files (*.pmd)|*.pmd|All files (*.*)|*.*")));
 	AddColumnType(_("Texture"),		140, "texture",		new FieldEditCtrl_File(_T("art/textures/skins/"), _("All files (*.*)|*.*"))); // could be dds, or tga, or png, or bmp, etc, so just allow *
-	AddColumnType(_("Animations"),	250, "animations",	new FieldEditCtrl_Dialog(_T("AnimListEditor")));
-	AddColumnType(_("Props"),		220, "props",		new FieldEditCtrl_Dialog(_T("PropListEditor")));
+	AddColumnType(_("Animations"),	250, "animations",	new FieldEditCtrl_Dialog(&AnimListEditor::Create));
+	AddColumnType(_("Props"),		220, "props",		new FieldEditCtrl_Dialog(&PropListEditor::Create));
 	AddColumnType(_("Colour"),		80,  "colour",		new FieldEditCtrl_Colour());
 }
 

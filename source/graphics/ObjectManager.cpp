@@ -19,6 +19,20 @@
 
 #define LOG_CATEGORY "graphics"
 
+template<typename T, typename S>
+static void delete_pair_2nd(std::pair<T,S> v)
+{
+	delete v.second;
+}
+
+template<typename T>
+struct second_equals
+{
+	T x;
+	second_equals(const T& x) : x(x) {}
+	template<typename S> bool operator()(const S& v) { return v.second == x; }
+};
+
 bool operator< (const CObjectManager::ObjectKey& a, const CObjectManager::ObjectKey& b)
 {
 	if (a.ActorName < b.ActorName)
@@ -31,10 +45,7 @@ bool operator< (const CObjectManager::ObjectKey& a, const CObjectManager::Object
 
 CObjectManager::CObjectManager()
 {
-	m_ObjectTypes.reserve(32);
 }
-
-template<typename T, typename S> static void delete_pair_2nd(std::pair<T,S> v) { delete v.second; }
 
 CObjectManager::~CObjectManager()
 {
@@ -42,36 +53,27 @@ CObjectManager::~CObjectManager()
 }
 
 
-// TODO (PT): Work out what the object 'types' are for, since they're not
-// doing anything obvious. (And if they're useless, remove them.)
-
 CObjectBase* CObjectManager::FindObjectBase(const char* objectname)
 {
 	debug_assert(strcmp(objectname, "") != 0);
 
 	// See if the base type has been loaded yet:
 
-	for (uint k = 0; k < m_ObjectTypes.size(); k++)
-	{
-		std::map<CStr, CObjectBase*>::iterator it = m_ObjectTypes[k].m_ObjectBases.find(objectname);
-		if (it != m_ObjectTypes[k].m_ObjectBases.end())
-			return it->second;
-	}
+	std::map<CStr, CObjectBase*>::iterator it = m_ObjectBases.find(objectname);
+	if (it != m_ObjectBases.end())
+		return it->second;
 
 	// Not already loaded, so try to load it:
 
-	for (uint k = 0; k < m_ObjectTypes.size(); k++)
-	{
-		CObjectBase* obj = new CObjectBase();
+	CObjectBase* obj = new CObjectBase();
 
-		if (obj->Load(objectname))
-		{
-			m_ObjectTypes[k].m_ObjectBases[objectname] = obj;
-			return obj;
-		}
-		else
-			delete obj;
+	if (obj->Load(objectname))
+	{
+		m_ObjectBases[objectname] = obj;
+		return obj;
 	}
+	else
+		delete obj;
 
 	LOG(ERROR, LOG_CATEGORY, "CObjectManager::FindObjectBase(): Cannot find object '%s'", objectname);
 
@@ -80,7 +82,7 @@ CObjectBase* CObjectManager::FindObjectBase(const char* objectname)
 
 CObjectEntry* CObjectManager::FindObject(const char* objname)
 {
-	std::vector<std::set<CStr8> > selections; // TODO - should this really be empty?
+	std::vector<std::set<CStr> > selections; // TODO - should this really be empty?
 	return FindObjectVariation(objname, selections);
 }
 
@@ -103,13 +105,13 @@ CObjectEntry* CObjectManager::FindObjectVariation(CObjectBase* base, const std::
 	std::vector<u8> choices = base->CalculateVariationKey(selections);
 	ObjectKey key (base->m_Name, choices);
 
-	std::map<ObjectKey, CObjectEntry*>::iterator it = m_ObjectTypes[0].m_Objects.find(key);
-	if (it != m_ObjectTypes[0].m_Objects.end())
+	std::map<ObjectKey, CObjectEntry*>::iterator it = m_Objects.find(key);
+	if (it != m_Objects.end())
 		return it->second;
 
 	// If it hasn't been loaded, load it now
 
-	CObjectEntry* obj = new CObjectEntry(0, base); // TODO: type ?
+	CObjectEntry* obj = new CObjectEntry(base); // TODO: type ?
 
 	// TODO (for some efficiency): use the pre-calculated choices for this object,
 	// which has already worked out what to do for props, instead of passing the
@@ -121,66 +123,37 @@ CObjectEntry* CObjectManager::FindObjectVariation(CObjectBase* base, const std::
 		return NULL;
 	}
 
-	m_ObjectTypes[0].m_Objects[key] = obj;
+	m_Objects[key] = obj;
 
 	return obj;
 }
 
 
-void CObjectManager::AddObjectType(const char* name)
-{
-	m_ObjectTypes.resize(m_ObjectTypes.size()+1);
-	SObjectType& type=m_ObjectTypes.back();
-	type.m_Name=name;
-	type.m_Index=(int)m_ObjectTypes.size()-1;
-}
-
-
-void CObjectManager::AddObject(ObjectKey& key, CObjectEntry* entry, int type)
-{
-	debug_assert((uint)type<m_ObjectTypes.size());
-	m_ObjectTypes[type].m_Objects.insert(std::make_pair(key, entry));
-}
-
 void CObjectManager::DeleteObject(CObjectEntry* entry)
 {
-	std::map<ObjectKey, CObjectEntry*>& objects = m_ObjectTypes[entry->m_Type].m_Objects;
-
-	for (std::map<ObjectKey, CObjectEntry*>::iterator it = objects.begin(); it != objects.end(); )
-		if (it->second == entry)
-			objects.erase(it++);
-		else
-			++it;
+	std::map<ObjectKey, CObjectEntry*>::iterator it;
+	while (m_Objects.end() != (it = find_if(m_Objects.begin(), m_Objects.end(), second_equals<CObjectEntry*>(entry))))
+		m_Objects.erase(it);
 
 	delete entry;
 }
 
 
-int CObjectManager::LoadObjects()
-{
-	// This is kind of useless - it should probably be removed,
-	// and UnloadObject moved into the destructor, and singletonness
-	// removed if we still want to unload the object manager and reuse it
-	// again later.
-	AddObjectType("");
-	return 0;
-}
-
 void CObjectManager::UnloadObjects()
 {
-	for (size_t i = 0; i < m_ObjectTypes.size(); i++) {
-		std::for_each(
-			m_ObjectTypes[i].m_Objects.begin(),
-			m_ObjectTypes[i].m_Objects.end(),
-			delete_pair_2nd<ObjectKey, CObjectEntry*>
-		);
-		std::for_each(
-			m_ObjectTypes[i].m_ObjectBases.begin(),
-			m_ObjectTypes[i].m_ObjectBases.end(),
-			delete_pair_2nd<CStr, CObjectBase*>
-		);
-	}
-	m_ObjectTypes.clear();
+	std::for_each(
+		m_Objects.begin(),
+		m_Objects.end(),
+		delete_pair_2nd<ObjectKey, CObjectEntry*>
+	);
+	m_Objects.clear();
+
+	std::for_each(
+		m_ObjectBases.begin(),
+		m_ObjectBases.end(),
+		delete_pair_2nd<CStr, CObjectBase*>
+	);
+	m_ObjectBases.clear();
 }
 
 

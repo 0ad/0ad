@@ -34,7 +34,6 @@ ActorViewer::ActorViewer()
 
 	// Set up the renderer
 	g_TexMan.LoadTerrainTextures();
-	g_ObjMan.LoadObjects();
 	g_Renderer.LoadAlphaMaps();
 	// (TODO: should these be unloaded properly some time? and what should
 	// happen if we want the actor viewer and scenario editor loaded at

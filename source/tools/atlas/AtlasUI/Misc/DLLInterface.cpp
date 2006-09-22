@@ -92,6 +92,9 @@ ATLASDLLIMPEXP void Atlas_DisplayError(const wchar_t* text, unsigned int WXUNUSE
 	// is still running and won't block before showing the dialog to the user)
 	// and where it matters (i.e. errors, not warnings (unless they're going to
 	// turn into errors after continuing))
+
+	// TODO: 'text' (or at least some copy of it) appears to get leaked when
+	// this function is called
 }
 
 class AtlasDLLApp : public wxApp
@@ -100,6 +103,8 @@ public:
 
 	virtual bool OnInit()
 	{
+// 		_CrtSetBreakAlloc(5632);
+
 		if (! wxIsDebuggerRunning())
 			wxHandleFatalExceptions();
 

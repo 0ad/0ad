@@ -1235,8 +1235,11 @@ void CRenderer::FlushFrame()
 	RenderPatches();
 	oglCheck();
 
-	g_Game->GetWorld()->GetTerritoryManager()->renderTerritories();
-	oglCheck();
+	if (g_Game)
+	{
+		g_Game->GetWorld()->GetTerritoryManager()->renderTerritories();
+		oglCheck();
+	}
 
 	// render debug-related terrain overlays
 	TerrainOverlay::RenderOverlays();

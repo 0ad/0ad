@@ -34,6 +34,8 @@ public:
 
 	AtlasWindow(wxWindow* parent, const wxString& title, const wxSize& size);
 
+	boost::signal<void ()> sig_FileSaved;
+
 private:
 
 	void OnNew(wxCommandEvent& event);
@@ -63,7 +65,7 @@ protected:
 
 	bool SaveChanges(bool forceSaveAs);
 public:
-	bool OpenFile(wxString filename);
+	bool OpenFile(const wxString& filename);
 
 private:
 	AtlasWindowCommandProc m_CommandProc;

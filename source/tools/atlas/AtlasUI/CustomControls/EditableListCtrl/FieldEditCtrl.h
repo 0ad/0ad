@@ -1,4 +1,8 @@
+#ifndef FIELDEDITCTRL_H__
+#define FIELDEDITCTRL_H__
+
 class EditableListCtrl;
+class AtlasDialog;
 
 class FieldEditCtrl
 {
@@ -47,13 +51,13 @@ private:
 class FieldEditCtrl_Dialog : public FieldEditCtrl
 {
 public:
-	FieldEditCtrl_Dialog(const wxString& dialogType);
+	FieldEditCtrl_Dialog(AtlasDialog* (*dialogCtor)(wxWindow*));
 
 protected:
 	void StartEdit(wxWindow* parent, wxRect rect, long row, int col);
 
 private:
-	wxString m_DialogType;
+	AtlasDialog* (*m_DialogCtor)(wxWindow*);
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -73,3 +77,5 @@ private:
 	wxString m_FileMask;
 	wxString m_RememberedDir;
 };
+
+#endif // FIELDEDITCTRL_H__

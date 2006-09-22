@@ -154,6 +154,7 @@ MESSAGE(SetActorViewer,
 		((std::wstring, id))
 		((std::wstring, animation))
 		((float, speed))
+		((bool, flushcache)) // true => unload all actor files before starting the preview (because we don't have proper hotloading yet)
 		);
 
 //////////////////////////////////////////////////////////////////////////

@@ -265,10 +265,12 @@ bool AtlasWindow::SaveChanges(bool forceSaveAs)
 
 	AtlasObject::SaveToXML(file, GetCurrentFilename().GetFullPath());
 
+	sig_FileSaved();
+
 	return true;
 }
 
-bool AtlasWindow::OpenFile(wxString filename)
+bool AtlasWindow::OpenFile(const wxString& filename)
 {
 	AtObj file (AtlasObject::LoadFromXML(filename));
 	// TODO: Make sure it succeeded.

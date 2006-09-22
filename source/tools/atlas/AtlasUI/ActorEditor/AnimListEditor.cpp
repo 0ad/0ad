@@ -7,10 +7,8 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-IMPLEMENT_DYNAMIC_CLASS(AnimListEditor, AtlasDialog);
-
-AnimListEditor::AnimListEditor()
-	: AtlasDialog(NULL, _("Animation editor"), wxSize(480, 280))
+AnimListEditor::AnimListEditor(wxWindow* parent)
+	: AtlasDialog(parent, _("Animation editor"), wxSize(480, 280))
 {
 	m_MainListBox = new AnimListEditorListCtrl(m_MainPanel);
 

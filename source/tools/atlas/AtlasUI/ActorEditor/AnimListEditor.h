@@ -8,10 +8,9 @@ class AnimListEditorListCtrl;
 
 class AnimListEditor : public AtlasDialog
 {
-	DECLARE_DYNAMIC_CLASS(AnimListEditor);
-
 public:
-	AnimListEditor();
+	AnimListEditor(wxWindow* parent);
+	static AtlasDialog* Create(wxWindow* parent) { return new AnimListEditor(parent); }
 
 protected:
 	AtObj FreezeData();

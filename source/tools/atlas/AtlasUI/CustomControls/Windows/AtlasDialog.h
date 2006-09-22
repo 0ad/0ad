@@ -1,3 +1,6 @@
+#ifndef ATLASDIALOG_H__
+#define ATLASDIALOG_H__
+
 #include "wx/dialog.h"
 
 #include "General/AtlasWindowCommandProc.h"
@@ -28,3 +31,5 @@ private:
 
 	DECLARE_EVENT_TABLE()
 };
+
+#endif // ATLASDIALOG_H__

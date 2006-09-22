@@ -33,7 +33,7 @@ AT_STARTUP(\
 	error_setDescription(ERR::PATH_LENGTH, "Path exceeds PATH_MAX characters");\
 	error_setDescription(ERR::PATH_EMPTY, "Path is an empty string");\
 	error_setDescription(ERR::PATH_NOT_RELATIVE, "Path is not relative");\
-	error_setDescription(ERR::PATH_NON_PORTABLE, "Path contains OSspecific dir separator");\
+	error_setDescription(ERR::PATH_NON_PORTABLE, "Path contains OS-specific dir separator");\
 	error_setDescription(ERR::PATH_NON_CANONICAL, "Path contains unsupported .. or ./");\
 	error_setDescription(ERR::PATH_COMPONENT_SEPARATOR, "Path component contains dir separator");\
 	\

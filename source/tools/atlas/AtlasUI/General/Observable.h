@@ -1,6 +1,27 @@
 #ifndef OBSERVABLE_H__
 #define OBSERVABLE_H__
 
+/*
+Wrapper around Boost.Signals to make watching objects for changes more convenient.
+
+General usage:
+
+Observable<int> variable_to_be_watched;
+...
+class Thing {
+	ObservableScopedConnection m_Conn;
+	Thing() {
+		m_Conn = variable_to_be_watched.RegisterObserver(OnChange);
+	}
+	void OnChange(const int& var) {
+		do_something_with(var);
+	}
+}
+...
+variable_to_be_watched.NotifyObservers();
+
+*/
+
 #include <boost/signals.hpp>
 #include <boost/bind.hpp>
 
@@ -57,6 +78,15 @@ public:
 
 private:
  	boost::signal<void (const T&)> m_Signal;
+};
+
+class ObservableScopedConnections
+{
+public:
+	void Add(const ObservableConnection& conn);
+	~ObservableScopedConnections();
+private:
+	std::vector<ObservableConnection> m_Conns;
 };
 
 #endif // OBSERVABLE_H__

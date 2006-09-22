@@ -8,10 +8,9 @@ class PropListEditorListCtrl;
 
 class PropListEditor : public AtlasDialog
 {
-	DECLARE_DYNAMIC_CLASS(PropListEditor);
-
 public:
-	PropListEditor();
+	PropListEditor(wxWindow* parent);
+	static AtlasDialog* Create(wxWindow* parent) { return new PropListEditor(parent); }
 
 protected:
 	AtObj FreezeData();

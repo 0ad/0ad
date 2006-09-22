@@ -1,3 +1,6 @@
+#ifndef DRAGGABLELISTCTRL_H__
+#define DRAGGABLELISTCTRL_H__
+
 /*
 	DraggableListCtrl
 
@@ -35,3 +38,5 @@ private:
 
 	DECLARE_EVENT_TABLE();
 };
+
+#endif // DRAGGABLELISTCTRL_H__

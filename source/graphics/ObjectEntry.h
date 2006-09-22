@@ -15,7 +15,7 @@ struct SPropPoint;
 class CObjectEntry
 {
 public:
-	CObjectEntry(int type, CObjectBase* base);
+	CObjectEntry(CObjectBase* base);
 	~CObjectEntry();
 
 	// Construct this actor, using the specified variation selections
@@ -45,8 +45,6 @@ public:
 
 	// corresponding model
 	CModel* m_Model;
-	// type of object; index into object managers types array
-	int m_Type;
 
 private:
 	typedef std::multimap<CStr, CSkeletonAnim*> SkeletonAnimMap;

@@ -277,12 +277,11 @@ bool AtlasObject::SaveToXML(AtObj& obj, const wchar_t* filename)
 
 	try
 	{
-		DOMDocument* doc = impl->createDocument();
-		doc->appendChild(BuildDOMNode(doc, rootName, firstChild));
+		std::auto_ptr<DOMDocument> doc (impl->createDocument());
+		doc->appendChild(BuildDOMNode(doc.get(), rootName, firstChild));
 
-		XMLFormatTarget* FormatTarget = new LocalFileFormatTarget((XMLCh*)filename);
-		writer->writeNode(FormatTarget, *doc);
-		delete FormatTarget;
+		LocalFileFormatTarget formatTarget ((XMLCh*)filename);
+		writer->writeNode(&formatTarget, *doc);
 	}
 	catch (const XMLException& e) {
 		char* message = XMLString::transcode(e.getMessage());

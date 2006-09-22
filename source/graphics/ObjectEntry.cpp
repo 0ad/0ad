@@ -22,9 +22,9 @@
 
 #define LOG_CATEGORY "graphics"
 
-CObjectEntry::CObjectEntry(int type, CObjectBase* base)
+CObjectEntry::CObjectEntry(CObjectBase* base)
 : m_Base(base), m_Color(1.0f, 1.0f, 1.0f, 1.0f),
-  m_ProjectileModel(NULL), m_AmmunitionModel(NULL), m_AmmunitionPoint(NULL), m_Model(NULL), m_Type(type)
+  m_ProjectileModel(NULL), m_AmmunitionModel(NULL), m_AmmunitionPoint(NULL), m_Model(NULL)
 {
 }
 
@@ -64,9 +64,6 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr8> >& selection
 		props.push_back(it->second);
 
 	// Build the model:
-
-	// get the root directory of this object
-	CStr dirname = g_ObjMan.m_ObjectTypes[m_Type].m_Name;
 
 	// remember the old model so we can replace any models using it later on
 	CModelDefPtr oldmodeldef = m_Model ? m_Model->GetModelDef() : CModelDefPtr();

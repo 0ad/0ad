@@ -190,7 +190,7 @@ EnvironmentSidebar::EnvironmentSidebar(wxWindow* sidebarContainer, wxWindow* bot
 	m_MainSizer->Add(waterSizer, wxSizerFlags().Expand());
 
 	waterSizer->Add(new VariableSliderBox(this, _("Water height"), g_EnvironmentSettings.waterheight, 0.f, 1.2f), wxSizerFlags().Expand());
-	waterSizer->Add(new VariableSliderBox(this, _("Water shininess"), g_EnvironmentSettings.watershininess, 0.f, 500.f), wxSizerFlags().Expand());
+	waterSizer->Add(new VariableSliderBox(this, _("Water shininess"), g_EnvironmentSettings.watershininess, 0.f, 250.f), wxSizerFlags().Expand());
 
 	waterSizer->Add(new VariableSliderBox(this, _("Water waviness"), g_EnvironmentSettings.waterwaviness, 0.f, 10.f), wxSizerFlags().Expand());
 	waterSizer->Add(new VariableSliderBox(this, _("Water murkiness"), g_EnvironmentSettings.watermurkiness, 0.f, 1.f), wxSizerFlags().Expand());
