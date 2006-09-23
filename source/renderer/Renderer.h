@@ -319,9 +319,8 @@ protected:
 	friend class TerrainRenderer;
 
 	// scripting
-	// TODO: It would be really nice to avoid having to create a function for each of these,
-	// perhaps using some new kind of property for CJSObject which points to an arbitrary value
-	// (since some of these are variables in other objects so member pointers won't work).
+	// TODO: Perhaps we could have a version of AddLocalProperty for function-driven
+	// properties? Then we could hide these function in the private implementation class.
 	static void ScriptingInit();
 	jsval JSI_GetFastPlayerColor(JSContext*);
 	void JSI_SetFastPlayerColor(JSContext* ctx, jsval newval);
@@ -333,22 +332,6 @@ protected:
 	void JSI_SetDepthTextureBits(JSContext* ctx, jsval newval);
 	jsval JSI_GetSky(JSContext*);
 	void JSI_SetSky(JSContext* ctx, jsval newval);
-	jsval JSI_GetHorizonHeight(JSContext*);
-	void JSI_SetHorizonHeight(JSContext* ctx, jsval newval);
-	jsval JSI_GetFancyWater(JSContext*);
-	void JSI_SetFancyWater(JSContext* ctx, jsval newval);
-	jsval JSI_GetWaterShininess(JSContext*);
-	void JSI_SetWaterShininess(JSContext* ctx, jsval newval);
-	jsval JSI_GetWaterSpecularStrength(JSContext*);
-	void JSI_SetWaterSpecularStrength(JSContext* ctx, jsval newval);
-	jsval JSI_GetWaterReflectionTintStrength(JSContext*);
-	void JSI_SetWaterReflectionTintStrength(JSContext* ctx, jsval newval);
-	jsval JSI_GetWaterWaviness(JSContext*);
-	void JSI_SetWaterWaviness(JSContext* ctx, jsval newval);
-	jsval JSI_GetWaterRepeatPeriod(JSContext*);
-	void JSI_SetWaterRepeatPeriod(JSContext* ctx, jsval newval);
-	jsval JSI_GetWaterMurkiness(JSContext*);
-	void JSI_SetWaterMurkiness(JSContext* ctx, jsval newval);
 
 	// patch rendering stuff
 	void RenderPatches();
