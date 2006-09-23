@@ -149,10 +149,10 @@ STMT(\
  * statically). see http://www.cbloom.com/3d/techdocs/more_coding.txt
  **/
 #define AT_STARTUP(code__)\
-	static struct UID__\
+	namespace { struct UID__\
 	{\
 		UID__() { code__; }\
-	} UID2__;\
+	} UID2__; }
 
 
 /**
