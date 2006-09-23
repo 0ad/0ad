@@ -55,6 +55,15 @@ private:
 	bool m_LockCullCamera;
 
 	/**
+	 * When @c true, culling is enabled so that only models that have a chance of
+	 * being visible are sent to the renderer.
+	 * Otherwise, the entire world is sent to the renderer.
+	 *
+	 * Exposed to JS as gameView.culling
+	 */
+	bool m_Culling;
+
+	/**
 	 * m_cachedLightEnv: Cache global lighting environment. This is used  to check whether the
 	 * environment has changed during the last frame, so that vertex data can be updated etc.
 	 */

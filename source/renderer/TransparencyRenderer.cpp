@@ -322,10 +322,13 @@ void PolygonSortModelRenderer::RenderModel(uint streamflags, CModel* model, void
 
 	// render the lot
 	size_t numFaces = mdef->GetNumFaces();
-	pglDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)mdef->GetNumVertices(),
-				(GLsizei)numFaces*3, GL_UNSIGNED_SHORT, psmdl->m_Indices);
 
-			// bump stats
+	if (!g_Renderer.m_SkipSubmit) {
+		pglDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)mdef->GetNumVertices(),
+					(GLsizei)numFaces*3, GL_UNSIGNED_SHORT, psmdl->m_Indices);
+	}
+
+	// bump stats
 	g_Renderer.m_Stats.m_DrawCalls++;
 	g_Renderer.m_Stats.m_ModelTris += numFaces;
 }

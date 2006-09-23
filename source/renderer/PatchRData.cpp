@@ -493,7 +493,12 @@ void CPatchRData::RenderBase(bool losColor)
 	for (uint i=0;i<(uint)m_Splats.size();i++) {
 		SSplat& splat=m_Splats[i];
 		ogl_tex_bind(splat.m_Texture);
-		glDrawElements(GL_QUADS,splat.m_IndexCount,GL_UNSIGNED_SHORT,&m_Indices[splat.m_IndexStart]);
+
+		if (!g_Renderer.m_SkipSubmit) {
+			glDrawElements(GL_QUADS, splat.m_IndexCount,
+				GL_UNSIGNED_SHORT, &m_Indices[splat.m_IndexStart]);
+		}
+
 		// bump stats
 		g_Renderer.m_Stats.m_DrawCalls++;
 		g_Renderer.m_Stats.m_TerrainTris+=splat.m_IndexCount/2;
@@ -520,7 +525,9 @@ void CPatchRData::RenderStreams(u32 streamflags, bool losColor)
 	}
 
 	// render all base splats at once
-	glDrawElements(GL_QUADS,(GLsizei)m_Indices.size(),GL_UNSIGNED_SHORT,&m_Indices[0]);
+	if (!g_Renderer.m_SkipSubmit) {
+		glDrawElements(GL_QUADS,(GLsizei)m_Indices.size(),GL_UNSIGNED_SHORT,&m_Indices[0]);
+	}
 
 	// bump stats
 	g_Renderer.m_Stats.m_DrawCalls++;
@@ -550,7 +557,11 @@ void CPatchRData::RenderBlends()
 	for (uint i=0;i<(uint)m_BlendSplats.size();i++) {
 		SSplat& splat=m_BlendSplats[i];
 		ogl_tex_bind(splat.m_Texture);
-		glDrawElements(GL_QUADS,splat.m_IndexCount,GL_UNSIGNED_SHORT,&m_BlendIndices[splat.m_IndexStart]);
+
+		if (!g_Renderer.m_SkipSubmit) {
+			glDrawElements(GL_QUADS, splat.m_IndexCount,
+				GL_UNSIGNED_SHORT, &m_BlendIndices[splat.m_IndexStart]);
+		}
 
 		// bump stats
 		g_Renderer.m_Stats.m_DrawCalls++;

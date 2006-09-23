@@ -57,6 +57,7 @@ CGameView::CGameView(CGame *pGame):
 	m_ViewCamera(),
 	m_CullCamera(),
 	m_LockCullCamera(false),
+	m_Culling(true),
 	m_ViewScrollSpeed(60),
 	m_ViewRotateSensitivity(0.002f),
 	m_ViewRotateSensitivityKeyboard(1.0f),
@@ -100,6 +101,7 @@ void CGameView::ScriptingInit()
 {
 	AddMethod<bool, &CGameView::JSI_StartCustomSelection>("startCustomSelection", 0);
 	AddMethod<bool, &CGameView::JSI_EndCustomSelection>("endCustomSelection", 0);
+	AddProperty(L"culling", &CGameView::m_Culling);
 	AddProperty(L"lockCullCamera", &CGameView::m_LockCullCamera);
 
 	CJSObject<CGameView>::ScriptingInit("GameView");
@@ -179,7 +181,7 @@ void CGameView::RenderTerrain(CTerrain *pTerrain)
 				bounds[1].Y = waterHeight;
 			}
 			
-			if (frustum.IsBoxVisible (CVector3D(0,0,0), bounds)) {
+			if (!m_Culling || frustum.IsBoxVisible (CVector3D(0,0,0), bounds)) {
 				g_Renderer.Submit(patch);
 			}
 		}
@@ -202,9 +204,9 @@ void CGameView::RenderModels(CUnitManager *pUnitMan, CProjectileManager *pProjec
 		CModel* model = units[i]->GetModel();
 
 		model->ValidatePosition();
-
-		if (frustum.IsBoxVisible(CVector3D(0,0,0), model->GetBounds())
-			&& status != UNIT_HIDDEN)
+		
+		if (status != UNIT_HIDDEN &&
+			(!m_Culling || frustum.IsBoxVisible(CVector3D(0,0,0), model->GetBounds())))
 		{
 			if(units[i] != g_BuildingPlacer.m_actor)
 			{
@@ -236,7 +238,7 @@ void CGameView::RenderModels(CUnitManager *pUnitMan, CProjectileManager *pProjec
 		CVector3D centre;
 		bound.GetCentre(centre);
 
-		if (frustum.IsBoxVisible(CVector3D(0,0,0), bound)
+		if ((!m_Culling || frustum.IsBoxVisible(CVector3D(0,0,0), bound))
 			&& losMgr->GetStatus(centre.X, centre.Z, g_Game->GetLocalPlayer()) & LOS_VISIBLE)
 		{
 			PROFILE( "submit projectiles" );

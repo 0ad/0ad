@@ -463,6 +463,14 @@ public:
 	 * ShadowMap uses this for matrix calculation.
 	 */
 	float m_ShadowZBias;
+
+	/**
+	 * m_SkipSubmit: Disable the actual submission of rendering commands to OpenGL.
+	 * All state setup is still performed as usual.
+	 *
+	 * Can be accessed via JS as renderer.skipSubmit
+	 */
+	bool m_SkipSubmit;
 };
 
 

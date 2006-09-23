@@ -357,6 +357,7 @@ CRenderer::CRenderer()
 	m_DisplayFrustum = false;
 	m_DisableCopyShadow = false;
 	m_FastPlayerColor = true;
+	m_SkipSubmit = false;
 
 	m_VertexShader = 0;
 
@@ -1746,6 +1747,7 @@ void CRenderer::ScriptingInit()
 	AddProperty(L"shadowZBias", &CRenderer::m_ShadowZBias);
 	AddProperty(L"disableCopyShadow", &CRenderer::m_DisableCopyShadow);
 	AddProperty(L"depthTextureBits", &CRenderer::JSI_GetDepthTextureBits, &CRenderer::JSI_SetDepthTextureBits);
+	AddProperty(L"skipSubmit", &CRenderer::m_SkipSubmit);
 	AddProperty(L"skySet", &CRenderer::JSI_GetSky, &CRenderer::JSI_SetSky);
 
 	CJSObject<CRenderer>::ScriptingInit("Renderer");

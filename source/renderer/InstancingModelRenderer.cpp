@@ -261,8 +261,11 @@ void InstancingModelRenderer::RenderModel(uint streamflags, CModel* model, void*
 
 	// render the lot
 	size_t numFaces = mdldef->GetNumFaces();
-	pglDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)mdldef->GetNumVertices(),
-			(GLsizei)numFaces*3, GL_UNSIGNED_SHORT, m->imodeldef->m_Indices);
+
+	if (!g_Renderer.m_SkipSubmit) {
+		pglDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)mdldef->GetNumVertices(),
+				(GLsizei)numFaces*3, GL_UNSIGNED_SHORT, m->imodeldef->m_Indices);
+	}
 
 	// bump stats
 	g_Renderer.m_Stats.m_DrawCalls++;
