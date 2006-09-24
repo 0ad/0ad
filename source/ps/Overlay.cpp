@@ -1,5 +1,5 @@
 /*
-COverlay
+Overlay.cpp
 by Rich Cross
 rich@0ad.wildfiregames.com
 */
@@ -46,21 +46,6 @@ bool CColor::ParseString(const CStr& Value, float DefaultAlpha)
 	return true;
 }
 
-COverlay::COverlay()
-	: m_Rect(CRect(0.f,0.f,0.f,0.f)), m_Z(0), m_Texture(""), m_Color(CColor(0,0,0,0)), m_HasBorder(false), m_BorderColor(CColor(0,0,0,0))
-{
-}
-
-
-COverlay::COverlay(const CRect& rect,int z,const CColor& color,const char* texturename,
-				   bool hasBorder,const CColor& bordercolor)
-	: m_Rect(rect), m_Z(z), m_Texture(texturename), m_Color(color), m_HasBorder(hasBorder), m_BorderColor(bordercolor)
-{
-}
-
-COverlay::~COverlay()
-{
-}
 
 /*************************************************************************/
 
