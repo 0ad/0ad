@@ -15,9 +15,10 @@
 #include "maths/MathUtil.h"
 #include "ps/GameSetup/Config.h"
 #include "renderer/Renderer.h"
+#include "renderer/Scene.h"
 #include "renderer/SkyManager.h"
 
-struct ActorViewerImpl
+struct ActorViewerImpl : public Scene
 {
 	CUnit* Unit;
 	CStrW CurrentUnitID;
@@ -25,6 +26,15 @@ struct ActorViewerImpl
 	float CurrentSpeed;
 	
 	CTerrain Terrain;
+
+	// Simplistic implementation of the Scene interface
+	void EnumerateObjects(const CFrustum& UNUSED(frustum), SceneCollector* c)
+	{
+		c->Submit(Terrain.GetPatch(0, 0));
+
+		if (Unit)
+			c->SubmitRecursive(Unit->GetModel());
+	}
 };
 
 ActorViewer::ActorViewer()
@@ -123,16 +133,6 @@ void ActorViewer::SetActor(const CStrW& id, const CStrW& animation)
 	m.CurrentUnitAnim = animation;
 }
 
-// TODO: don't have this duplicated from GameView
-void SubmitModelRecursive(CModel* model)
-{
-	g_Renderer.Submit(model);
-
-	const std::vector<CModel::Prop>& props = model->GetProps();
-	for (size_t i = 0; i < props.size(); ++i)
-		SubmitModelRecursive(props[i].m_Model);
-}
-
 void ActorViewer::Render()
 {
 	m.Terrain.MakeDirty(RENDERDATA_UPDATE_COLOR);
@@ -156,12 +156,7 @@ void ActorViewer::Render()
 	
 	g_Renderer.SetSceneCamera(camera, camera);
 
-	g_Renderer.Submit(m.Terrain.GetPatch(0, 0));
-
-	if (m.Unit)
-		SubmitModelRecursive(m.Unit->GetModel());
-
-	g_Renderer.FlushFrame();
+	g_Renderer.RenderScene(&m);
 
 	g_Renderer.EndFrame();
 

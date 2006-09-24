@@ -13,6 +13,8 @@ extern float g_YMinOffset;
 
 #include "lib/input.h"
 
+#include "renderer/Scene.h"
+
 class CGame;
 class CGameAttributes;
 class CWorld;
@@ -22,7 +24,7 @@ class CProjectileManager;
 class CModel;
 class CEntity;
 
-class CGameView: public CJSObject<CGameView>
+class CGameView : public CJSObject<CGameView>, private Scene
 {
 public:
 	static const float defaultFOV, defaultNear, defaultFar;
@@ -103,17 +105,9 @@ private:
 	// Check whether lighting environment has changed and update vertex data if necessary
 	void CheckLightEnv();
 
-	// RenderTerrain: iterate through all terrain patches and submit all patches
-	// in viewing frustum to the renderer, for terrain, water and LOS painting
-	void RenderTerrain(CTerrain *pTerrain);
-
-	// RenderModels: iterate through model list and submit all models in viewing
-	// frustum to the Renderer
-	void RenderModels(CUnitManager *pUnitMan, CProjectileManager *pProjectileManager);
-
-	// SubmitModelRecursive: recurse down given model, submitting it and all its
-	// descendents to the renderer
-	void SubmitModelRecursive(CModel *pModel);
+	//BEGIN: Implementation of Scene
+	void EnumerateObjects(const CFrustum& frustum, SceneCollector* c);
+	//END: Implementation of Scene
 
 	// InitResources(): Load all graphics resources (textures, actor objects and
 	// alpha maps) required by the game

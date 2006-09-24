@@ -1185,8 +1185,8 @@ void CRenderer::RenderRefractions()
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// FlushFrame: force rendering of any batched objects
-void CRenderer::FlushFrame()
+// RenderSubmissions: force rendering of any batched objects
+void CRenderer::RenderSubmissions()
 {
 	oglCheck();
 
@@ -1378,7 +1378,7 @@ void CRenderer::Submit(CPatch* patch)
 	m->terrainRenderer->Submit(patch);
 }
 
-void CRenderer::Submit(CModel* model)
+void CRenderer::SubmitNonRecursive(CModel* model)
 {
 	if (model->GetFlags() & MODELFLAG_CASTSHADOWS) {
 		PROFILE( "updating shadow bounds" );
@@ -1413,16 +1413,20 @@ void CRenderer::Submit(CModel* model)
 	}
 }
 
-void CRenderer::Submit(CSprite* UNUSED(sprite))
-{
-}
 
-void CRenderer::Submit(CParticleSys* UNUSED(psys))
+///////////////////////////////////////////////////////////
+// Render the given scene
+void CRenderer::RenderScene(Scene *scene)
 {
-}
+	CFrustum frustum = m_CullCamera.GetFrustum();
 
-void CRenderer::Submit(COverlay* UNUSED(overlay))
-{
+	MICROLOG(L"collect objects");
+	scene->EnumerateObjects(frustum, this);
+
+	oglCheck();
+
+	MICROLOG(L"flush objects");
+	RenderSubmissions();
 }
 
 

@@ -21,6 +21,7 @@
 #include "scripting/ScriptableObject.h"
 
 #include "renderer/ModelRenderer.h"
+#include "renderer/Scene.h"
 
 // necessary declarations
 class CPatch;
@@ -76,7 +77,10 @@ struct SVertex2D
 // CRenderer: base renderer class - primary interface to the rendering engine
 struct CRendererInternals;
 
-class CRenderer : public Singleton<CRenderer>, public CJSObject<CRenderer>
+class CRenderer :
+	public Singleton<CRenderer>,
+	public CJSObject<CRenderer>,
+	private SceneCollector
 {
 public:
 	// various enumerations and renderer related constants
@@ -178,8 +182,6 @@ public:
 
 	// signal frame start
 	void BeginFrame();
-	// render any batched objects
-	void FlushFrame();
 	// signal frame end
 	void EndFrame();
 
@@ -190,7 +192,7 @@ public:
 	int GetFrameCounter() const { return m_FrameCounter; }
 
 	/**
-	 * SetSceneCamera: Set up the camera used for the scene in this frame; this includes
+	 * Set up the camera used for rendering the next scene; this includes
 	 * setting OpenGL state like viewport, projection and modelview matrices.
 	 *
 	 * @param viewCamera this camera determines the eye position for rendering
@@ -202,13 +204,11 @@ public:
 	// set the viewport
 	void SetViewport(const SViewPort &);
 
-	// submission of objects for rendering; the passed matrix indicating the transform must be scoped such that it is valid beyond
-	// the call to frame end, as must the object itself
-	void Submit(CPatch* patch);
-	void Submit(CModel* model);
-	void Submit(CSprite* sprite);
-	void Submit(CParticleSys* psys);
-	void Submit(COverlay* overlay);
+	/**
+	 * Render the given scene immediately.
+	 * @param scene a Scene object describing what should be rendered.
+	 */
+	void RenderScene(Scene* scene);
 
 	// basic primitive rendering operations in 2 and 3D; handy for debugging stuff, but also useful in
 	// editor tools (eg for highlighting specific terrain patches)
@@ -332,6 +332,14 @@ protected:
 	void JSI_SetDepthTextureBits(JSContext* ctx, jsval newval);
 	jsval JSI_GetSky(JSContext*);
 	void JSI_SetSky(JSContext* ctx, jsval newval);
+
+	//BEGIN: Implementation of SceneCollector
+	void Submit(CPatch* patch);
+	void SubmitNonRecursive(CModel* model);
+	//END: Implementation of SceneCollector
+
+	// render any batched objects
+	void RenderSubmissions();
 
 	// patch rendering stuff
 	void RenderPatches();

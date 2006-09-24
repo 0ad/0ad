@@ -156,19 +156,16 @@ void CGameView::Render()
 
 	CheckLightEnv();
 
-	MICROLOG(L"render terrain");
-	PROFILE_START( "render terrain" );
-	RenderTerrain(m_pWorld->GetTerrain());
-	PROFILE_END( "render terrain" );
-	MICROLOG(L"render models");
-	PROFILE_START( "render models" );
-	RenderModels(m_pWorld->GetUnitManager(), m_pWorld->GetProjectileManager());
-	PROFILE_END( "render models" );
+	g_Renderer.RenderScene(this);
 }
 
-void CGameView::RenderTerrain(CTerrain *pTerrain)
+///////////////////////////////////////////////////////////
+// This callback is part of the Scene interface
+// Submit all objects visible in the given frustum
+void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 {
-	CFrustum frustum = m_CullCamera.GetFrustum();
+	PROFILE_START( "submit terrain" );
+	CTerrain* pTerrain = m_pWorld->GetTerrain();
 	u32 patchesPerSide=pTerrain->GetPatchesPerSide();
 	for (uint j=0; j<patchesPerSide; j++) {
 		for (uint i=0; i<patchesPerSide; i++) {
@@ -182,15 +179,15 @@ void CGameView::RenderTerrain(CTerrain *pTerrain)
 			}
 			
 			if (!m_Culling || frustum.IsBoxVisible (CVector3D(0,0,0), bounds)) {
-				g_Renderer.Submit(patch);
+				c->Submit(patch);
 			}
 		}
 	}
-}
+	PROFILE_END( "submit terrain" );
 
-void CGameView::RenderModels(CUnitManager *pUnitMan, CProjectileManager *pProjectileMan)
-{
-	CFrustum frustum = m_CullCamera.GetFrustum();
+	PROFILE_START( "submit models" );
+	CUnitManager* pUnitMan = m_pWorld->GetUnitManager();
+	CProjectileManager* pProjectileMan = m_pWorld->GetProjectileManager();
 	CLOSManager* losMgr = m_pWorld->GetLOSManager();
 
 	const std::vector<CUnit*>& units=pUnitMan->GetUnits();
@@ -223,7 +220,7 @@ void CGameView::RenderModels(CUnitManager *pUnitMan, CProjectileManager *pProjec
 			}
 
 			PROFILE( "submit models" );
-			SubmitModelRecursive(model);
+			c->SubmitRecursive(model);
 		}
 	}
 
@@ -242,9 +239,10 @@ void CGameView::RenderModels(CUnitManager *pUnitMan, CProjectileManager *pProjec
 			&& losMgr->GetStatus(centre.X, centre.Z, g_Game->GetLocalPlayer()) & LOS_VISIBLE)
 		{
 			PROFILE( "submit projectiles" );
-			SubmitModelRecursive(projectiles[i]->GetModel());
+			c->SubmitRecursive(projectiles[i]->GetModel());
 		}
 	}
+	PROFILE_END( "submit models" );
 }
 
 
@@ -293,16 +291,6 @@ void CGameView::CameraLock(float x, float y, float z, bool smooth)
 	}
 }
 
-
-void CGameView::SubmitModelRecursive(CModel* model)
-{
-	g_Renderer.Submit(model);
-
-	const std::vector<CModel::Prop>& props=model->GetProps();
-	for (uint i=0;i<props.size();i++) {
-		SubmitModelRecursive(props[i].m_Model);
-	}
-}
 
 static void MarkUpdateColorRecursive(CModel* model)
 {

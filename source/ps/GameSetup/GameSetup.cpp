@@ -294,13 +294,6 @@ void Render()
 	{
 		g_Game->GetView()->Render();
 
-		oglCheck();
-
-		MICROLOG(L"flush frame");
-		PROFILE_START( "flush frame" );
-		g_Renderer.FlushFrame();
-		PROFILE_END( "flush frame" );
-
 		glPushAttrib( GL_ENABLE_BIT );
 		glDisable( GL_LIGHTING );
 		glDisable( GL_TEXTURE_2D );
