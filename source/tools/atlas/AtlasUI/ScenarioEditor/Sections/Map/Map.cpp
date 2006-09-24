@@ -2,7 +2,6 @@
 
 #include "Map.h"
 
-#include "Buttons/ActionButton.h"
 #include "General/Datafile.h"
 #include "ScenarioEditor/Tools/Common/Tools.h"
 
@@ -10,15 +9,36 @@
 
 #include "wx/filename.h"
 
-static void GenerateMap(void*)
+enum
+{
+	ID_GenerateMap,
+	ID_GenerateRMS
+};
+
+MapSidebar::MapSidebar(wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
+	: Sidebar(sidebarContainer, bottomBarContainer)
+{
+	// TODO: Less ugliness
+	// TODO: Intercept arrow keys and send them to the GL window
+
+	m_MainSizer->Add(new wxButton(this, ID_GenerateMap, _("Generate empty map")));
+
+	wxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
+	m_MainSizer->Add(sizer);
+	m_RMSText = new wxTextCtrl(this, wxID_ANY, _T("cantabrian_highlands"));
+	sizer->Add(m_RMSText);
+	sizer->Add(new wxButton(this, ID_GenerateRMS, _("Generate RMS")));
+}
+
+void MapSidebar::GenerateMap(wxCommandEvent& WXUNUSED(event))
 {
 	POST_MESSAGE(GenerateMap, (9));
 }
 
-static void GenerateRMS(void* data)
+void MapSidebar::GenerateRMS(wxCommandEvent& WXUNUSED(event))
 {
 	wxChar* argv[] = { _T("rmgen.exe"), 0, _T("_atlasrm"), 0 };
-	wxString scriptName = ((wxTextCtrl*)data)->GetValue();
+	wxString scriptName = m_RMSText->GetValue();
 	argv[1] = const_cast<wxChar*>(scriptName.c_str());
 
 	wxString cwd = wxFileName::GetCwd();
@@ -29,21 +49,7 @@ static void GenerateRMS(void* data)
 	POST_MESSAGE(LoadMap, (L"_atlasrm.pmp"));
 }
 
-//////////////////////////////////////////////////////////////////////////
-
-MapSidebar::MapSidebar(wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
-	: Sidebar(sidebarContainer, bottomBarContainer)
-{
-	// TODO: Less ugliness
-	// TODO: Intercept arrow keys and send them to the GL window
-
-	m_MainSizer->Add(new ActionButton(this, _T("Generate empty map"), &GenerateMap, NULL));
-
-	{
-		wxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
-		m_MainSizer->Add(sizer);
-		wxTextCtrl* text = new wxTextCtrl(this, wxID_ANY, _T("cantabrian_highlands"));
-		sizer->Add(text);
-		sizer->Add(new ActionButton(this, _T("Generate RMS"), &GenerateRMS, text));
-	}
-}
+BEGIN_EVENT_TABLE(MapSidebar, Sidebar)
+	EVT_BUTTON(ID_GenerateMap, MapSidebar::GenerateMap)
+	EVT_BUTTON(ID_GenerateRMS, MapSidebar::GenerateRMS)
+END_EVENT_TABLE();

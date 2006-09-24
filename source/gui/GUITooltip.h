@@ -3,8 +3,8 @@
 
 class IGUIObject;
 class CGUI;
-class CStr;
 
+#include "ps/CStr.h"
 #include "ps/Overlay.h"
 
 class GUITooltip

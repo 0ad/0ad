@@ -2,7 +2,6 @@
 
 #include "Terrain.h"
 
-#include "Buttons/ActionButton.h"
 #include "Buttons/ToolButton.h"
 #include "General/Datafile.h"
 #include "ScenarioEditor/Tools/Common/Brushes.h"

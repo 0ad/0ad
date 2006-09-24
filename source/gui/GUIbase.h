@@ -28,6 +28,7 @@ gee@pyro.nu
 //  seem to be defined anywhere in the predefined header.
 #include "ps/Overlay.h"
 
+#include "ps/CStr.h"
 #include "ps/Pyrogenesis.h"	// deprecated DECLARE_ERROR
 
 //--------------------------------------------------------
@@ -94,8 +95,8 @@ enum EGUIMessageType
 struct SGUIMessage
 {
 	SGUIMessage() {}
-	SGUIMessage(const EGUIMessageType &_type) : type(_type) {}
-	SGUIMessage(const EGUIMessageType &_type, const CStr& _value) : type(_type), value(_value) {}
+	SGUIMessage(EGUIMessageType _type) : type(_type) {}
+	SGUIMessage(EGUIMessageType _type, const CStr& _value) : type(_type), value(_value) {}
 	~SGUIMessage() {}
 
 	/**

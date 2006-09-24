@@ -2,7 +2,6 @@
 
 #include "Object.h"
 
-#include "Buttons/ActionButton.h"
 #include "Buttons/ToolButton.h"
 #include "ScenarioEditor/Tools/Common/Tools.h"
 #include "ScenarioEditor/Tools/Common/ObjectSettings.h"
