@@ -98,6 +98,10 @@ JSBool JSI_Console::writeConsole( JSContext* UNUSED(context), JSObject* UNUSED(g
 		{
 		}
 	}
-	g_Console->InsertMessage( L"%ls", output.c_str() );
+
+	// TODO: What if the console has been destroyed already?
+	if (g_Console)
+		g_Console->InsertMessage( L"%ls", output.c_str() );
+
 	return( JS_TRUE );
 }

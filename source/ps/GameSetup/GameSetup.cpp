@@ -657,6 +657,7 @@ static void ShutdownPs()
 	GUI_Shutdown();
 
 	delete g_Console;
+	g_Console = 0;
 
 	// disable the special Windows cursor, or free textures for OGL cursors
 	cursor_draw(0, g_mouse_x, g_mouse_y);
