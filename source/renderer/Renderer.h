@@ -25,9 +25,6 @@
 
 // necessary declarations
 class CPatch;
-class CSprite;
-class CParticleSys;
-class COverlay;
 class CMaterial;
 class CModel;
 class CLightEnv;
@@ -393,10 +390,6 @@ protected:
 
 	// color used to clear screen in BeginFrame
 	float m_ClearColor[4];
-	// submitted object lists for batching
-	std::vector<CSprite*> m_Sprites;
-	std::vector<CParticleSys*> m_ParticleSyses;
-	std::vector<COverlay*> m_Overlays;
 	// current lighting setup
 	CLightEnv* m_LightEnv;
 	// ogl_tex handle of composite alpha map (all the alpha maps packed into one texture)
