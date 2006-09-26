@@ -16,7 +16,7 @@
 
 #include "ps/CLogger.h"
 
-#include "graphics/Color.h"
+#include "graphics/SColor.h"
 #include "graphics/Model.h"
 #include "graphics/ModelDef.h"
 

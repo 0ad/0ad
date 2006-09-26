@@ -13,8 +13,6 @@
 #include "ps/CLogger.h"
 #define LOG_CATEGORY "graphics"
 
-using namespace std;
-
 CTerrainProperties::CTerrainProperties(CTerrainPropertiesPtr parent):
 	m_pParent(parent),
 	m_BaseColor(0),
@@ -131,7 +129,7 @@ void CTerrainProperties::LoadXML(XMBElement node, CXeromyces *pFile)
 			m_Groups.clear();
 			for (size_t i=0;i<parserLine.GetArgCount();i++)
 			{
-				string value;
+				std::string value;
 				if (!parserLine.GetArgString(i, value))
 					continue;
 				CTerrainGroup *pType = g_TexMan.FindGroup(value);

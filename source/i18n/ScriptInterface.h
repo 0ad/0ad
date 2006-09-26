@@ -90,7 +90,7 @@ namespace I18n
 		jsval GetJsval(const std::vector<BufferVariable*>& vars);
 
 	private:
-    	unsigned char ID;
+		unsigned char ID;
 		void* GCVal; // something that's being garbage-collected
 	};
 }

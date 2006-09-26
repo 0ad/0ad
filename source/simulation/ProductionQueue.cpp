@@ -5,8 +5,6 @@
 #include "Entity.h"
 #include <algorithm>
 
-using namespace std;
-
 // CProductionItem
 
 CProductionItem::CProductionItem( int type, const CStrW& name, float totalTime )
@@ -21,7 +19,7 @@ CProductionItem::~CProductionItem()
 
 void CProductionItem::Update( size_t timestep )
 {
-	m_elapsedTime = min( m_totalTime, m_elapsedTime + timestep/1000.0f );
+	m_elapsedTime = std::min( m_totalTime, m_elapsedTime + timestep/1000.0f );
 }
 
 bool CProductionItem::IsComplete()

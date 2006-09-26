@@ -15,9 +15,9 @@
 
 #include <boost/shared_ptr.hpp>
 
-#include "graphics/Color.h"
 #include "graphics/MeshManager.h"
 #include "graphics/RenderableObject.h"
+#include "graphics/SColor.h"
 #include "renderer/VertexArray.h"
 
 class RenderModifier;

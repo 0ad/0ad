@@ -228,8 +228,8 @@ public:
 		Unalloc();
 		size = rhs.size;
 		array = static_cast<element_type*> (ShareableMallocFptr( sizeof(element_type)*size ));
- 		for (size_t i = 0; i < size; ++i)
- 			new (&array[i]) element_type (rhs.array[i]);
+		for (size_t i = 0; i < size; ++i)
+			new (&array[i]) element_type (rhs.array[i]);
 		return *this;
 	}
 

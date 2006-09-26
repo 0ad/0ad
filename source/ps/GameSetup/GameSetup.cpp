@@ -595,35 +595,40 @@ static void InitVfs(const char* argv0)
 
 static void InitPs(bool setup_gui)
 {
-	// console
-	{
-		TIMER("ps_console");
-
-		g_Console->UpdateScreenSize(g_xres, g_yres);
-
-		// Calculate and store the line spacing
-		CFont font("console");
-		g_Console->m_iFontHeight = font.GetLineSpacing();
-		g_Console->m_iFontWidth = font.GetCharacterWidth(L'C');
-		g_Console->m_charsPerPage = (size_t)(g_xres / g_Console->m_iFontWidth);
-		// Offset by an arbitrary amount, to make it fit more nicely
-		g_Console->m_iFontOffset = 9;
-	}
-
-	// language and hotkeys
-	{
-		TIMER("ps_lang_hotkeys");
-
-		std::string lang = "english";
-		CFG_GET_SYS_VAL("language", String, lang);
-		I18n::LoadLanguage(lang.c_str());
-
-		loadHotkeys();
-	}
-
-	// GUI uses VFS, so this must come after VFS init.
 	if (setup_gui)
+	{
+		// The things here aren't strictly GUI, but they're unnecessary when in Atlas
+		// because the game doesn't draw any text or handle keys of anything
+
+		{
+			// console
+			TIMER("ps_console");
+
+			g_Console->UpdateScreenSize(g_xres, g_yres);
+
+			// Calculate and store the line spacing
+			CFont font("console");
+			g_Console->m_iFontHeight = font.GetLineSpacing();
+			g_Console->m_iFontWidth = font.GetCharacterWidth(L'C');
+			g_Console->m_charsPerPage = (size_t)(g_xres / g_Console->m_iFontWidth);
+			// Offset by an arbitrary amount, to make it fit more nicely
+			g_Console->m_iFontOffset = 9;
+		}
+
+		// language and hotkeys
+		{
+			TIMER("ps_lang_hotkeys");
+
+			std::string lang = "english";
+			CFG_GET_SYS_VAL("language", String, lang);
+			I18n::LoadLanguage(lang.c_str());
+
+			loadHotkeys();
+		}
+
+		// GUI uses VFS, so this must come after VFS init.
 		GUI_Init();
+	}
 }
 
 

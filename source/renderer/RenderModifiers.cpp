@@ -18,7 +18,6 @@
 
 #include "ps/CLogger.h"
 
-#include "graphics/Color.h"
 #include "graphics/LightEnv.h"
 #include "graphics/Model.h"
 

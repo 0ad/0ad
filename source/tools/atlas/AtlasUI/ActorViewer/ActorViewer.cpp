@@ -5,11 +5,15 @@
 #include "wx/treectrl.h"
 
 #include "General/Datafile.h"
+
 #include "ScenarioEditor/Tools/Common/Tools.h"
 #include "ScenarioEditor/ScenarioEditor.h"
 #include "ScenarioEditor/Sections/Environment/LightControl.h"
+
 #include "GameInterface/Messages.h"
+
 #include "CustomControls/Canvas/Canvas.h"
+#include "CustomControls/ColourDialog/ColourDialog.h"
 #include "CustomControls/SnapSplitterWindow/SnapSplitterWindow.h"
 
 #include "ActorEditor/ActorEditor.h"
@@ -17,6 +21,12 @@
 using namespace AtlasMessage;
 
 //////////////////////////////////////////////////////////////////////////
+
+wxWindow* Tooltipped(wxWindow* window, const wxString& tip)
+{
+	window->SetToolTip(tip);
+	return window;
+}
 
 class ActorCanvas : public Canvas
 {
@@ -104,7 +114,10 @@ enum
 	ID_Play,
 	ID_Pause,
 	ID_Slow,
-	ID_Edit
+	ID_Edit,
+	ID_Wireframe,
+	ID_Background,
+	ID_Walking
 };
 
 BEGIN_EVENT_TABLE(ActorViewer, wxFrame)
@@ -116,6 +129,9 @@ BEGIN_EVENT_TABLE(ActorViewer, wxFrame)
 	EVT_BUTTON(ID_Pause, ActorViewer::OnSpeedButton)
 	EVT_BUTTON(ID_Slow, ActorViewer::OnSpeedButton)
 	EVT_BUTTON(ID_Edit, ActorViewer::OnEditButton)
+	EVT_BUTTON(ID_Wireframe, ActorViewer::OnWireframeButton)
+	EVT_BUTTON(ID_Background, ActorViewer::OnBackgroundButton)
+	EVT_BUTTON(ID_Walking, ActorViewer::OnWalkingButton)
 END_EVENT_TABLE()
 
 static void SendToGame(const AtlasMessage::sEnvironmentSettings& settings)
@@ -125,7 +141,8 @@ static void SendToGame(const AtlasMessage::sEnvironmentSettings& settings)
 
 ActorViewer::ActorViewer(wxWindow* parent)
 	: wxFrame(parent, wxID_ANY, _("Actor Viewer"), wxDefaultPosition, wxSize(800, 600)),
-	m_CurrentSpeed(0.f)
+	m_CurrentSpeed(0.f), m_Wireframe(false), m_BackgroundColour(wxColour(255, 255, 255)),
+	m_Walking(true)
 {
 	SetIcon(wxIcon(_T("ICON_ActorEditor")));
 
@@ -230,6 +247,7 @@ ActorViewer::ActorViewer(wxWindow* parent)
 	wxSizer* bottomSizer = new wxBoxSizer(wxHORIZONTAL);
 	wxSizer* bottomRightSizer = new wxBoxSizer(wxVERTICAL);
 	wxSizer* playButtonSizer = new wxBoxSizer(wxHORIZONTAL);
+	wxSizer* optionButtonSizer = new wxGridSizer(2);
 
 	mainSizer->Add(m_TreeCtrl, wxSizerFlags().Expand().Proportion(1));
 	mainSizer->Add(bottomSizer, wxSizerFlags().Expand());
@@ -244,7 +262,12 @@ ActorViewer::ActorViewer(wxWindow* parent)
 	bottomRightSizer->Add(m_AnimationBox, wxSizerFlags().Expand());
 	bottomRightSizer->Add(playButtonSizer, wxSizerFlags().Expand());
 
-	bottomRightSizer->Add(new wxButton(sidePanel, ID_Edit, _("Edit actor")), wxSizerFlags().Expand());
+	optionButtonSizer->Add(new wxButton(sidePanel, ID_Edit, _("Edit actor")), wxSizerFlags().Expand());
+	optionButtonSizer->Add(Tooltipped(new wxButton(sidePanel, ID_Wireframe, _("Wireframe")), _("Toggle wireframe / solid rendering")), wxSizerFlags().Expand());
+	optionButtonSizer->Add(Tooltipped(new wxButton(sidePanel, ID_Background, _("Background")), _("Change the background colour")), wxSizerFlags().Expand());
+	optionButtonSizer->Add(Tooltipped(new wxButton(sidePanel, ID_Walking, _("Move")), _("Toggle movement along ground when playing walk/run animations")), wxSizerFlags().Expand());
+
+	bottomRightSizer->Add(optionButtonSizer, wxSizerFlags().Expand().Border(wxTOP, 4));
 
 	sidePanel->SetSizer(mainSizer);
 
@@ -322,4 +345,32 @@ void ActorViewer::OnEditButton(wxCommandEvent& WXUNUSED(event))
 	m_ActorConns.Add(ed->sig_FileSaved.connect(
 		boost::bind(std::mem_fun(&ActorViewer::OnActorEdited), this)
 	));
+}
+
+void ActorViewer::OnWireframeButton(wxCommandEvent& WXUNUSED(event))
+{
+	m_Wireframe = !m_Wireframe;
+	POST_MESSAGE(SetViewParamB, (eRenderView::ACTOR, L"wireframe", m_Wireframe));
+}
+
+void ActorViewer::OnBackgroundButton(wxCommandEvent& WXUNUSED(event))
+{
+	ColourDialog dlg (this, _T("Actor Viewer/BackgroundColour"), m_BackgroundColour);
+
+	if (dlg.ShowModal() == wxID_OK)
+	{
+		wxColour& c = dlg.GetColourData().GetColour();
+		m_BackgroundColour = c;
+		POST_MESSAGE(SetViewParamC, (eRenderView::ACTOR, L"background",
+			AtlasMessage::Colour(c.Red(), c.Green(), c.Blue())));
+	}
+}
+
+void ActorViewer::OnWalkingButton(wxCommandEvent& WXUNUSED(event))
+{
+	wxToolTip::Enable(true);
+	SetToolTip(L"Hello world!");
+	SetHelpText(L"Help text");
+	m_Walking = !m_Walking;
+	POST_MESSAGE(SetViewParamB, (eRenderView::ACTOR, L"walk", m_Walking));
 }

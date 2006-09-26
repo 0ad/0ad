@@ -6,6 +6,7 @@
 #include "graphics/Terrain.h"
 #include "graphics/Unit.h"
 #include "graphics/UnitManager.h"
+#include "lib/res/graphics/ogl_tex.h"
 #include "maths/MathUtil.h"
 #include "maths/scripting/JSInterface_Vector3D.h"
 #include "ps/Game.h"
@@ -30,10 +31,9 @@
 #include "TechnologyCollection.h"
 #include "TerritoryManager.h"
 
-extern int g_xres, g_yres;
-
 #include <algorithm>
-using namespace std;
+
+extern int g_xres, g_yres;
 
 void CEntity::render()
 {

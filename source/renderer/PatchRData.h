@@ -2,7 +2,7 @@
 #define _PATCHRDATA_H
 
 #include <vector>
-#include "graphics/Color.h"
+#include "graphics/SColor.h"
 #include "maths/Vector3D.h"
 #include "graphics/RenderableObject.h"
 #include "VertexBufferManager.h"

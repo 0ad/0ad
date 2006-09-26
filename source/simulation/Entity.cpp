@@ -31,10 +31,9 @@
 #include "TechnologyCollection.h"
 #include "TerritoryManager.h"
 
-extern int g_xres, g_yres;
-
 #include <algorithm>
-using namespace std;
+
+extern int g_xres, g_yres;
 
 CEntity::CEntity( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStr8>& actorSelections, const CStrW* building )
 {
@@ -510,13 +509,13 @@ void CEntity::update( size_t timestep )
 
 void CEntity::updateCollisionPatch()
 {
-	vector<CEntity*>* newPatch = g_EntityManager.getCollisionPatch( this );
+	std::vector<CEntity*>* newPatch = g_EntityManager.getCollisionPatch( this );
 	if( newPatch != m_collisionPatch )
 	{
 		if( m_collisionPatch )
 		{
 			// remove ourselves from old patch
-			vector<CEntity*>& old = *m_collisionPatch;
+			std::vector<CEntity*>& old = *m_collisionPatch;
 			if( old.size() == 1 )
 			{
 				// we were the only ones there, just pop us
@@ -925,7 +924,7 @@ float CEntity::getAnchorLevel( float x, float z )
 	}
 	else
 	{
-		return max( groundLevel, g_Renderer.GetWaterManager()->m_WaterHeight );
+		return std::max( groundLevel, g_Renderer.GetWaterManager()->m_WaterHeight );
 	}
 }
 

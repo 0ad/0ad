@@ -4,7 +4,10 @@
 
 #include "ActorViewer.h"
 #include "GameLoop.h"
+#include "Messages.h"
 
+#include "graphics/SColor.h"
+#include "renderer/Renderer.h"
 #include "ps/Game.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "simulation/EntityManager.h"
@@ -16,16 +19,13 @@ extern int g_xres, g_yres;
 
 //////////////////////////////////////////////////////////////////////////
 
-class ViewNone : public View
+void View::SetParam(const std::wstring& UNUSED(name), bool UNUSED(value))
 {
-public:
-	virtual void Update(float) { }
-	virtual void Render() { }
-	virtual CCamera& GetCamera() { return dummyCamera; }
-	virtual bool WantsHighFramerate() { return false; }
-private:
-	CCamera dummyCamera;
-};
+}
+
+void View::SetParam(const std::wstring& UNUSED(name), const AtlasMessage::Colour& UNUSED(value))
+{
+}
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -63,7 +63,7 @@ CCamera& ViewActor::GetCamera()
 
 bool ViewActor::WantsHighFramerate()
 {
-	if (m_SpeedMultiplier != 0.f)
+	if (m_SpeedMultiplier != 0.f && m_ActorViewer->HasAnimation())
 		return true;
 
 	return false;
@@ -78,6 +78,27 @@ ActorViewer& ViewActor::GetActorViewer()
 {
 	return *m_ActorViewer;
 }
+
+void ViewActor::SetParam(const std::wstring& name, bool value)
+{
+	if (name == L"wireframe")
+	{
+		g_Renderer.SetModelRenderMode(value ? WIREFRAME : SOLID);
+	}
+	else if (name == L"walk")
+	{
+		m_ActorViewer->SetWalkEnabled(value);
+	}
+}
+
+void ViewActor::SetParam(const std::wstring& name, const AtlasMessage::Colour& value)
+{
+	if (name == L"background")
+	{
+		m_ActorViewer->SetBackgroundColour(SColor4ub(value.r, value.g, value.b, 255));
+	}
+}
+
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -134,6 +155,18 @@ ViewActor* view_Actor = NULL;
 
 View::~View()
 {
+}
+
+View* View::GetView(int /*eRenderView*/ view)
+{
+	if      (view == AtlasMessage::eRenderView::NONE)  return View::GetView_None();
+	else if (view == AtlasMessage::eRenderView::GAME)  return View::GetView_Game();
+	else if (view == AtlasMessage::eRenderView::ACTOR) return View::GetView_Actor();
+	else
+	{
+		debug_warn("Invalid view type");
+		return View::GetView_None();
+	}
 }
 
 View* View::GetView_None()

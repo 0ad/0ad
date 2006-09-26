@@ -246,5 +246,5 @@ XMBAttribute XMBAttributeList::item(const int id)
 	m_LastItemID = id;
 	m_LastPointer = Pos;
 
- 	return XMBAttribute(*(int*)Pos, utf16string( (const utf16_t*)(Pos+8) ));
+	return XMBAttribute(*(int*)Pos, utf16string( (const utf16_t*)(Pos+8) ));
 }

@@ -13,14 +13,12 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
-#include <vector>
-#include "lib/ogl.h"
 #include "graphics/Camera.h"
+#include "lib/ogl.h"
+#include "lib/res/handle.h"
 #include "ps/Singleton.h"
-
 #include "scripting/ScriptableObject.h"
 
-#include "renderer/ModelRenderer.h"
 #include "renderer/Scene.h"
 
 // necessary declarations
@@ -33,7 +31,6 @@ class CTexture;
 class RenderPathVertexShader;
 class WaterManager;
 class SkyManager;
-
 
 // rendering modes
 enum ERenderMode { WIREFRAME, SOLID, EDGED_FACES };
@@ -162,9 +159,9 @@ public:
 	void SetOptionBool(enum Option opt,bool value);
 	bool GetOptionBool(enum Option opt) const;
 	// set/get RGBA color renderer option
-	void SetOptionColor(enum Option opt,const RGBAColor& value);
+// 	void SetOptionColor(enum Option opt,const RGBAColor& value);
 	void SetOptionFloat(enum Option opt, float val);
-	const RGBAColor& GetOptionColor(enum Option opt) const;
+// 	const RGBAColor& GetOptionColor(enum Option opt) const;
 	void SetRenderPath(RenderPath rp);
 	RenderPath GetRenderPath() const { return m_Options.m_RenderPath; }
 	static CStr GetRenderPathName(RenderPath rp);

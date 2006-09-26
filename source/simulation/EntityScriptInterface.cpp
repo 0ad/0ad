@@ -31,10 +31,9 @@
 #include "TerritoryManager.h"
 #include "Stance.h"
 
-extern int g_xres, g_yres;
-
 #include <algorithm>
-using namespace std;
+
+extern int g_xres, g_yres;
 
 /*
 
@@ -545,7 +544,7 @@ jsval CEntity::AddAura( JSContext* cx, uintN argc, jsval* argv )
 
 	CStrW name = ToPrimitive<CStrW>( argv[0] );
 	float radius = ToPrimitive<float>( argv[1] );
-	size_t tickRate = max( 0, ToPrimitive<int>( argv[2] ) );	// since it's a size_t we don't want it to be negative
+	size_t tickRate = std::max( 0, ToPrimitive<int>( argv[2] ) );	// since it's a size_t we don't want it to be negative
 	float r = ToPrimitive<float>( argv[3] );
 	float g = ToPrimitive<float>( argv[4] );
 	float b = ToPrimitive<float>( argv[5] );

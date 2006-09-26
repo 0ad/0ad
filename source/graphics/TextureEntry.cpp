@@ -15,9 +15,7 @@
 
 #define LOG_CATEGORY "graphics"
 
-using namespace std;
-
-map<Handle, CTextureEntry *> CTextureEntry::m_LoadedTextures;
+std::map<Handle, CTextureEntry *> CTextureEntry::m_LoadedTextures;
 
 /////////////////////////////////////////////////////////////////////////////////////
 // CTextureEntry constructor
@@ -51,7 +49,7 @@ CTextureEntry::CTextureEntry(CTerrainPropertiesPtr props, const CStr& path):
 // CTextureEntry destructor
 CTextureEntry::~CTextureEntry()
 {
-	map<Handle,CTextureEntry *>::iterator it=m_LoadedTextures.find(m_Handle);
+	std::map<Handle,CTextureEntry *>::iterator it=m_LoadedTextures.find(m_Handle);
 	if (it != m_LoadedTextures.end())
 		m_LoadedTextures.erase(it);
 	
@@ -119,7 +117,7 @@ void CTextureEntry::BuildBaseColor()
 
 CTextureEntry *CTextureEntry::GetByHandle(Handle handle)
 {
-	map<Handle, CTextureEntry *>::iterator it=m_LoadedTextures.find(handle);
+	std::map<Handle, CTextureEntry *>::iterator it=m_LoadedTextures.find(handle);
 	if (it != m_LoadedTextures.end())
 		return it->second;
 	else

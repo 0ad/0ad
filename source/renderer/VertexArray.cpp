@@ -3,7 +3,7 @@
 #include "lib/ogl.h"
 #include "maths/Vector3D.h"
 #include "maths/Vector4D.h"
-#include "graphics/Color.h"
+#include "graphics/SColor.h"
 #include "renderer/VertexArray.h"
 #include "renderer/VertexBuffer.h"
 #include "renderer/VertexBufferManager.h"

@@ -202,7 +202,7 @@ protected:
 
 private:
 	wxSizer* m_ButtonsSizer;
- 	wxWindow* m_ContentWindow;
+	wxWindow* m_ContentWindow;
 	SnapSplitterWindow* m_Splitter;
 
 	std::vector<SidebarPage> m_Pages;
@@ -267,7 +267,7 @@ void SectionLayout::Build()
 	ADD_SIDEBAR(TerrainSidebar,     _T("terrain.png"),     _("Terrain"));
 	ADD_SIDEBAR(ObjectSidebar,      _T("object.png"),      _("Object"));
 	ADD_SIDEBAR(EnvironmentSidebar, _T("environment.png"), _("Environment"));
- 	ADD_SIDEBAR(CinematicSidebar,   _T("cinematic.png"),   _("Cinematics"));
+	ADD_SIDEBAR(CinematicSidebar,   _T("cinematic.png"),   _("Cinematics"));
 
 	#undef ADD_SIDEBAR
 

@@ -615,14 +615,14 @@ bool CRenderer::GetOptionBool(enum Option opt) const
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // SetOptionColor: set color renderer option
-void CRenderer::SetOptionColor(Option UNUSED(opt),const RGBAColor& UNUSED(value))
-{
-//	switch (opt) {
-//		default:
-			debug_warn("CRenderer::SetOptionColor: unknown option");
-//			break;
-//	}
-}
+// void CRenderer::SetOptionColor(Option UNUSED(opt),const RGBAColor& UNUSED(value))
+// {
+// //	switch (opt) {
+// //		default:
+// 			debug_warn("CRenderer::SetOptionColor: unknown option");
+// //			break;
+// //	}
+// }
 
 void CRenderer::SetOptionFloat(enum Option opt, float val)
 {
@@ -639,18 +639,18 @@ void CRenderer::SetOptionFloat(enum Option opt, float val)
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // GetOptionColor: get color renderer option
-const RGBAColor& CRenderer::GetOptionColor(Option UNUSED(opt)) const
-{
-	static const RGBAColor defaultColor(1.0f,1.0f,1.0f,1.0f);
-
-//	switch (opt) {
-//		default:
-			debug_warn("CRenderer::GetOptionColor: unknown option");
-//			break;
-//	}
-
-	return defaultColor;
-}
+// const RGBAColor& CRenderer::GetOptionColor(Option UNUSED(opt)) const
+// {
+// 	static const RGBAColor defaultColor(1.0f,1.0f,1.0f,1.0f);
+// 
+// //	switch (opt) {
+// //		default:
+// 			debug_warn("CRenderer::GetOptionColor: unknown option");
+// //			break;
+// //	}
+// 
+// 	return defaultColor;
+// }
 
 
 //////////////////////////////////////////////////////////////////////////////////////////

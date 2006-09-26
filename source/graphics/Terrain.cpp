@@ -24,7 +24,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 // CTerrain constructor
-CTerrain::CTerrain() : m_Heightmap(0), m_Patches(0), m_MapSize(0), m_MapSizePatches(0)
+CTerrain::CTerrain()
+: m_Heightmap(0), m_Patches(0), m_MapSize(0), m_MapSizePatches(0),
+m_BaseColour(255, 255, 255, 255)
 {
 }
 

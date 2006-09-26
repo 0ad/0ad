@@ -7,6 +7,8 @@
 #include "graphics/Model.h"
 #include "graphics/ObjectManager.h"
 #include "graphics/Patch.h"
+#include "graphics/SkeletonAnim.h"
+#include "graphics/SkeletonAnimDef.h"
 #include "graphics/Terrain.h"
 #include "graphics/TextureEntry.h"
 #include "graphics/TextureManager.h"
@@ -24,6 +26,9 @@ struct ActorViewerImpl : public Scene
 	CStrW CurrentUnitID;
 	CStrW CurrentUnitAnim;
 	float CurrentSpeed;
+	bool WalkEnabled;
+
+	SColor4ub Background;
 	
 	CTerrain Terrain;
 
@@ -41,10 +46,13 @@ ActorViewer::ActorViewer()
 : m(*new ActorViewerImpl())
 {
 	m.Unit = NULL;
+	m.WalkEnabled = true;
+	m.Background = SColor4ub(255, 255, 255, 255);
 
 	// Set up the renderer
 	g_TexMan.LoadTerrainTextures();
 	g_Renderer.LoadAlphaMaps();
+	g_Renderer.GetSkyManager()->m_RenderSky = false;
 	// (TODO: should these be unloaded properly some time? and what should
 	// happen if we want the actor viewer and scenario editor loaded at
 	// the same time?)
@@ -133,11 +141,22 @@ void ActorViewer::SetActor(const CStrW& id, const CStrW& animation)
 	m.CurrentUnitAnim = animation;
 }
 
+void ActorViewer::SetBackgroundColour(const SColor4ub& colour)
+{
+	m.Background = colour;
+	m.Terrain.SetBaseColour(colour);
+}
+
+void ActorViewer::SetWalkEnabled(bool enabled)
+{
+	m.WalkEnabled = enabled;
+}
+
 void ActorViewer::Render()
 {
 	m.Terrain.MakeDirty(RENDERDATA_UPDATE_COLOR);
 
-	g_Renderer.SetClearColor(0xFFFFFFFFu);
+	g_Renderer.SetClearColor(*(u32*)&m.Background);
 
 	g_Renderer.BeginFrame();
 
@@ -169,16 +188,31 @@ void ActorViewer::Update(float dt)
 	{
 		m.Unit->GetModel()->Update(dt);
 
-		// Move the model by speed*dt forwards
 		CMatrix3D mat = m.Unit->GetModel()->GetTransform();
-		float z = mat.GetTranslation().Z;
-		z -= m.CurrentSpeed*dt;
-		// Wrap at the edges, so it doesn't run off into the horizon
-		if (z < CELL_SIZE*PATCH_SIZE * 0.4f)
-			z = CELL_SIZE*PATCH_SIZE * 0.6f;
 
-		mat.Translate(0.f, 0.f, z - mat.GetTranslation().Z);
+		if (m.WalkEnabled)
+		{
+			// Move the model by speed*dt forwards
+			float z = mat.GetTranslation().Z;
+			z -= m.CurrentSpeed*dt;
+			// Wrap at the edges, so it doesn't run off into the horizon
+			if (z < CELL_SIZE*PATCH_SIZE * 0.4f)
+				z = CELL_SIZE*PATCH_SIZE * 0.6f;
+			mat.Translate(0.f, 0.f, z - mat.GetTranslation().Z);
+		}
+
 		m.Unit->GetModel()->SetTransform(mat);
 		m.Unit->GetModel()->ValidatePosition();
 	}
+}
+
+bool ActorViewer::HasAnimation() const
+{
+	if (m.Unit &&
+		m.Unit->GetModel()->GetAnimation() &&
+		m.Unit->GetModel()->GetAnimation()->m_AnimDef &&
+		m.Unit->GetModel()->GetAnimation()->m_AnimDef->GetNumFrames() > 1)
+		return true;
+
+	return false;
 }

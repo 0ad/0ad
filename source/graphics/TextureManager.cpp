@@ -17,8 +17,6 @@
 
 #define LOG_CATEGORY "graphics"
 
-using namespace std;
-
 CTextureManager::CTextureManager():
 	m_LastGroupIndex(0)
 {}
@@ -193,7 +191,7 @@ void CTerrainGroup::AddTerrain(CTextureEntry *pTerrain)
 
 void CTerrainGroup::RemoveTerrain(CTextureEntry *pTerrain)
 {
-	vector<CTextureEntry *>::iterator it;
+	std::vector<CTextureEntry *>::iterator it;
 	it=find(m_Terrains.begin(), m_Terrains.end(), pTerrain);
 	if (it != m_Terrains.end())
 		m_Terrains.erase(it);

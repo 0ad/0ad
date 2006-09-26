@@ -21,6 +21,19 @@ MESSAGE(RenderEnable,
 		((int, view)) // eRenderView
 		);
 
+// SetViewParam: used for hints to the renderer, e.g. to set wireframe mode;
+// unrecognised param names are ignored
+MESSAGE(SetViewParamB,
+		((int, view)) // eRenderView
+		((std::wstring, name))
+		((bool, value))
+		);
+MESSAGE(SetViewParamC,
+		((int, view)) // eRenderView
+		((std::wstring, name))
+		((Colour, value))
+		);
+
 //////////////////////////////////////////////////////////////////////////
 
 QUERY(Ping, , );

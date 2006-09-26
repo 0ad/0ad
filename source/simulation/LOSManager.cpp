@@ -14,8 +14,6 @@
 #include "lib/allocators.h"
 #include "lib/timer.h"
 
-using namespace std;
-
 
 CLOSManager::CLOSManager() : m_LOSSetting(0)
 {
@@ -112,7 +110,7 @@ void CLOSManager::Update()
 #endif
 
 	// Set visibility for each entity
-	vector<CEntity*> extant;
+	std::vector<CEntity*> extant;
 	g_Game->GetWorld()->GetEntityManager()->GetExtant(extant);
 	for(size_t i=0; i<extant.size(); i++) 
 	{

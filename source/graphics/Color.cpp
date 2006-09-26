@@ -1,8 +1,9 @@
 #include "precompiled.h"
 
-#include "maths/MathUtil.h"
 #include "graphics/Color.h"
 
+#include "maths/MathUtil.h"
+#include "graphics/SColor.h"
 
 static u32 fallback_ConvertRGBColorTo4ub(const RGBColor& src)
 {

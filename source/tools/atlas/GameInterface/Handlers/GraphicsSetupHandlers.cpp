@@ -74,10 +74,19 @@ QUERYHANDLER(Exit)
 
 MESSAGEHANDLER(RenderEnable)
 {
-	if      (msg->view == eRenderView::NONE)  g_GameLoop->view = View::GetView_None();
-	else if (msg->view == eRenderView::GAME)  g_GameLoop->view = View::GetView_Game();
-	else if (msg->view == eRenderView::ACTOR) g_GameLoop->view = View::GetView_Actor();
-	else debug_warn("Invalid view type");
+	g_GameLoop->view = View::GetView(msg->view);
+}
+
+MESSAGEHANDLER(SetViewParamB)
+{
+	View* view = View::GetView(msg->view);
+	view->SetParam(*msg->name, msg->value);
+}
+
+MESSAGEHANDLER(SetViewParamC)
+{
+	View* view = View::GetView(msg->view);
+	view->SetParam(*msg->name, msg->value);
 }
 
 MESSAGEHANDLER(SetActorViewer)

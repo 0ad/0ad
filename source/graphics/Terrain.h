@@ -11,6 +11,7 @@
 #define _TERRAIN_H
 
 #include "maths/Vector3D.h"
+#include "graphics/SColor.h"
 
 class CEntity;
 class CPatch;
@@ -111,6 +112,12 @@ public:
 	// mark the entire map as dirty
 	void MakeDirty(int dirtyFlags);
 
+	// get the base colour for the terrain (typically pure white - other colours
+	// will interact badly with LOS - but used by the Actor Viewer tool)
+	SColor4ub GetBaseColour() const { return m_BaseColour; }
+	// set the base colour for the terrain
+	void SetBaseColour(SColor4ub colour) { m_BaseColour = colour; }
+
 private:
 	// delete any data allocated by this terrain
 	void ReleaseData();
@@ -124,7 +131,9 @@ private:
 	// the patches comprising this terrain
 	CPatch*	m_Patches;
 	// 16-bit heightmap data
-	u16* m_Heightmap;	
+	u16* m_Heightmap;
+	// base colour (usually white)
+	SColor4ub m_BaseColour;
 };
 
 #endif

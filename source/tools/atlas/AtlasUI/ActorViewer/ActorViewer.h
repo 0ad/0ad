@@ -17,6 +17,9 @@ private:
 	void OnAnimationSelection(wxCommandEvent& event);
 	void OnSpeedButton(wxCommandEvent& event);
 	void OnEditButton(wxCommandEvent& event);
+	void OnWireframeButton(wxCommandEvent& event);
+	void OnBackgroundButton(wxCommandEvent& event);
+	void OnWalkingButton(wxCommandEvent& event);
 
 	void OnActorEdited();
 	ObservableScopedConnections m_ActorConns;
@@ -25,6 +28,10 @@ private:
 	wxComboBox* m_AnimationBox;
 	wxString m_CurrentActor;
 	float m_CurrentSpeed;
+
+	bool m_Wireframe;
+	wxColour m_BackgroundColour;
+	bool m_Walking;
 
 	Observable<AtlasMessage::sEnvironmentSettings> m_EnvironmentSettings;
 	ObservableScopedConnection m_EnvConn;

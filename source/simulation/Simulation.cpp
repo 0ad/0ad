@@ -30,8 +30,6 @@
 
 #include "gui/CGUI.h"
 
-using namespace std;
-
 CSimulation::CSimulation(CGame *pGame):
 	m_pGame(pGame),
 	m_pWorld(pGame->GetWorld()),
@@ -145,9 +143,9 @@ void CSimulation::Simulate()
 // Task them all to a point within a radius of the target, radius depends upon
 // the number of units in the group.
 
-void RandomizeLocations(CEntityOrder order, const vector <HEntity> &entities, bool isQueued)
+void RandomizeLocations(CEntityOrder order, const std::vector<HEntity> &entities, bool isQueued)
 {
-	vector<HEntity>::const_iterator it;
+	std::vector<HEntity>::const_iterator it;
 	float radius = 2.0f * sqrt( (float)entities.size() - 1 ); 
 
 	for (it = entities.begin(); it < entities.end(); it++)
@@ -185,10 +183,10 @@ void RandomizeLocations(CEntityOrder order, const vector <HEntity> &entities, bo
 	}
 }
 
-void FormationLocations(CEntityOrder order, const vector <HEntity> &entities, bool isQueued)
+void FormationLocations(CEntityOrder order, const std::vector<HEntity> &entities, bool isQueued)
 {
 	CVector2D upvec(0.0f, 1.0f);
-	vector<HEntity>::const_iterator it = entities.begin();
+	std::vector<HEntity>::const_iterator it = entities.begin();
 	CEntityFormation* formation = (*it)->GetFormation();
 
 
@@ -227,9 +225,9 @@ void FormationLocations(CEntityOrder order, const vector <HEntity> &entities, bo
 	}
 }
 
-void QueueOrder(CEntityOrder order, const vector <HEntity> &entities, bool isQueued)
+void QueueOrder(CEntityOrder order, const std::vector<HEntity> &entities, bool isQueued)
 {
-	vector<HEntity>::const_iterator it;
+	std::vector<HEntity>::const_iterator it;
 
 	for (it = entities.begin(); it < entities.end(); it++)
 	{
@@ -299,10 +297,10 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 			order.m_type=CEntityOrder::ORDER_LAST;
 			order.m_data[0].location.x=(float)msg->m_TargetX;
 			order.m_data[0].location.y=(float)msg->m_TargetY;
-			vector<HEntity>::iterator it = msg->m_Entities.begin(); 
+			std::vector<HEntity>::iterator it = msg->m_Entities.begin(); 
 			for (;it != msg->m_Entities.end(); ++it)
 			{
-				deque<CEntityOrder>::const_iterator ord_it;
+				std::deque<CEntityOrder>::const_iterator ord_it;
 				ord_it=(*it)->m_orderQueue.end() - 1;
 				for (;ord_it >= (*it)->m_orderQueue.begin();--ord_it)
 				{

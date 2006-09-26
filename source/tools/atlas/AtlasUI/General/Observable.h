@@ -48,7 +48,7 @@ public:
 
 	void NotifyObservers()
 	{
- 		m_Signal(*this);
+		m_Signal(*this);
 	}
 
 	// Use when an object is changing something that it's also observing,
@@ -77,7 +77,7 @@ public:
 	}
 
 private:
- 	boost::signal<void (const T&)> m_Signal;
+	boost::signal<void (const T&)> m_Signal;
 };
 
 class ObservableScopedConnections

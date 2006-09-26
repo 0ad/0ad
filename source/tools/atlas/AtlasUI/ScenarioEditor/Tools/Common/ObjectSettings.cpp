@@ -123,7 +123,7 @@ void ObjectSettings::OnSelectionChange(const std::vector<AtlasMessage::ObjectID>
 		m_VariantGroups.push_back(variants);
 	}
 
- 	std::vector<std::wstring> selections = *qry.settings->selections;
+	std::vector<std::wstring> selections = *qry.settings->selections;
 	for (std::vector<std::wstring>::iterator sel = selections.begin();
 		sel != selections.end();
 		++sel)

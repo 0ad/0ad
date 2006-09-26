@@ -413,6 +413,7 @@ void CPatchRData::Update()
 	CTerrain* terrain=m_Patch->m_Parent;
 	int mapSize=terrain->GetVerticesPerSide();
 	int vsize=PATCH_SIZE+1;
+	SColor4ub baseColour = terrain->GetBaseColour();
 
 	if (g_Game)
 	{
@@ -427,7 +428,7 @@ void CPatchRData::Update()
 
 				const int DX[] = {1,1,0,0};
 				const int DZ[] = {0,1,1,0};
-				SColor4ub losMod(255, 255, 255, 255);
+				SColor4ub losMod = baseColour;
 
 				for(int k=0; k<4; k++)
 				{
@@ -455,7 +456,7 @@ void CPatchRData::Update()
 			for (int i = 0; i < vsize; ++i)
 			{
 				int v = (j*vsize)+i;
-				m_Vertices[v].m_LOSColor = SColor4ub(255, 255, 255, 255);
+				m_Vertices[v].m_LOSColor = baseColour;
 			}
 		}
 

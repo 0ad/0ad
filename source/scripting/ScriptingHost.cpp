@@ -211,19 +211,15 @@ void ScriptingHost::DefineCustomObjectType(JSClass *clasp, JSNative constructor,
 									ps, fs,								// Properties, methods
 									static_ps, static_fs);				// Constructor properties, methods
 
-	if (obj != NULL)
-	{
-		CustomType type;
-		
-		type.m_Object = obj;
-		type.m_Class = clasp;
-
-		m_CustomObjectTypes[typeName] = type;
-	}
-	else
-	{
+	if (obj == NULL)
 		throw PSERROR_Scripting_DefineType_CreationFailed();
-	}
+
+	CustomType type;
+	
+	type.m_Object = obj;
+	type.m_Class = clasp;
+
+	m_CustomObjectTypes[typeName] = type;
 }
 
 JSObject * ScriptingHost::CreateCustomObject(const std::string & typeName)
