@@ -135,11 +135,6 @@ LightControl::LightControl(wxWindow* parent, const wxSize& size, Observable<Atla
 	m_Conn = environment.RegisterObserver(0, &LightControl::OnSettingsChange, this);
 }
 
-LightControl::~LightControl()
-{
-	m_Conn.disconnect();
-}
-
 void LightControl::OnSettingsChange(const AtlasMessage::sEnvironmentSettings& settings)
 {
 	m_Sphere->theta = settings.sunrotation;

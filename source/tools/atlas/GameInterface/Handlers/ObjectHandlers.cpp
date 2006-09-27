@@ -4,6 +4,7 @@
 
 #include "MessageHandler.h"
 #include "../CommandProc.h"
+#include "../View.h"
 
 #include "graphics/GameView.h"
 #include "graphics/Model.h"
@@ -112,7 +113,7 @@ MESSAGEHANDLER(SetSelectionPreview)
 
 QUERYHANDLER(GetObjectSettings)
 {
-	CUnit* unit = g_UnitMan.FindByID(msg->id);
+	CUnit* unit = View::GetView(msg->view)->GetUnit(msg->id);
 	if (! unit) return;
 
 	sObjectSettings settings;
@@ -165,7 +166,7 @@ BEGIN_COMMAND(SetObjectSettings)
 
 	void Do()
 	{
-		CUnit* unit = g_UnitMan.FindByID(msg->id);
+		CUnit* unit = View::GetView(msg->view)->GetUnit(msg->id);
 		if (! unit) return;
 
 		sObjectSettings settings = msg->settings;
@@ -197,7 +198,7 @@ BEGIN_COMMAND(SetObjectSettings)
 private:
 	void Set(int player, const std::set<CStr>& selections)
 	{
-		CUnit* unit = g_UnitMan.FindByID(msg->id);
+		CUnit* unit = View::GetView(msg->view)->GetUnit(msg->id);
 		if (! unit) return;
 
 		unit->SetPlayerID(player);

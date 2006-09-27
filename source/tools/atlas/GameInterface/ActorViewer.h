@@ -3,6 +3,7 @@
 
 struct ActorViewerImpl;
 struct SColor4ub;
+class CUnit;
 
 class ActorViewer
 {
@@ -11,6 +12,7 @@ public:
 	~ActorViewer();
 
 	void SetActor(const CStrW& id, const CStrW& animation);
+	CUnit* GetUnit();
 	void SetWalkEnabled(bool enabled);
 	void SetBackgroundColour(const SColor4ub& colour);
 	void Render();

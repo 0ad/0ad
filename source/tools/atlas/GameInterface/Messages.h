@@ -302,12 +302,14 @@ MESSAGE(SetSelectionPreview,
 		);
 
 QUERY(GetObjectSettings,
+	  ((int, view)) // eRenderView
 	  ((ObjectID, id))
 	  ,
 	  ((sObjectSettings, settings))
 	  );
 
 COMMAND(SetObjectSettings, NOMERGE,
+		((int, view)) // eRenderView
 		((ObjectID, id))
 		((sObjectSettings, settings))
 		);

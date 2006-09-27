@@ -11,7 +11,6 @@ class LightControl : public wxPanel
 {
 public:
 	LightControl(wxWindow* parent, const wxSize& size, Observable<AtlasMessage::sEnvironmentSettings>& environment);
-	~LightControl();
 
 	void OnSettingsChange(const AtlasMessage::sEnvironmentSettings& settings);
 
@@ -19,7 +18,7 @@ public:
 
 private:
 	Observable<AtlasMessage::sEnvironmentSettings>& m_Environment;
-	ObservableConnection m_Conn;
+	ObservableScopedConnection m_Conn;
 	LightSphere* m_Sphere;
 };
 

@@ -406,6 +406,23 @@ bool CModel::SetAnimation(CSkeletonAnim* anim, bool once, float speed, CSkeleton
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// CopyAnimation
+void CModel::CopyAnimationFrom(CModel* source)
+{
+	m_Anim = source->m_Anim;
+	m_NextAnim = source->m_NextAnim;
+	m_AnimTime = source->m_AnimTime;
+	m_AnimSpeed = source->m_AnimSpeed;
+
+	m_Flags &= ~MODELFLAG_CASTSHADOWS;
+	if (source->m_Flags & MODELFLAG_CASTSHADOWS)
+		m_Flags |= MODELFLAG_CASTSHADOWS;
+
+	m_ObjectBounds.SetEmpty();
+	InvalidateBounds();
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // AddProp: add a prop to the model on the given point
 void CModel::AddProp(SPropPoint* point, CModel* model, CObjectEntry* objectentry)
 {

@@ -2,6 +2,7 @@
 
 #include "GameInterface/Messages.h"
 #include "General/Observable.h"
+#include "ScenarioEditor/Tools/Common/ObjectSettings.h"
 
 class wxTreeCtrl;
 
@@ -29,6 +30,8 @@ private:
 	wxString m_CurrentActor;
 	float m_CurrentSpeed;
 
+	Observable<std::vector<AtlasMessage::ObjectID> > m_ObjectSelection;
+	Observable<ObjectSettings> m_ObjectSettings;
 	bool m_Wireframe;
 	wxColour m_BackgroundColour;
 	bool m_Walking;

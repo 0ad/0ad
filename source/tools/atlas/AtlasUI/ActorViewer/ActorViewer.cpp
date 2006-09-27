@@ -9,6 +9,7 @@
 #include "ScenarioEditor/Tools/Common/Tools.h"
 #include "ScenarioEditor/ScenarioEditor.h"
 #include "ScenarioEditor/Sections/Environment/LightControl.h"
+#include "ScenarioEditor/Sections/Object/VariationControl.h"
 
 #include "GameInterface/Messages.h"
 
@@ -28,19 +29,25 @@ wxWindow* Tooltipped(wxWindow* window, const wxString& tip)
 	return window;
 }
 
+//////////////////////////////////////////////////////////////////////////
+
 class ActorCanvas : public Canvas
 {
 public:
 	ActorCanvas(wxWindow* parent, int* attribList)
 		: Canvas(parent, attribList, wxBORDER_SUNKEN),
-		m_Distance(20.f), m_Angle(0.f), m_LastIsValid(false)
+		m_Distance(20.f), m_Angle(0.f), m_Elevation(M_PI/6.f), m_LastIsValid(false)
 	{
 	}
 
 	void PostLookAt()
 	{
+		float offset = 0.3f; // slight fudge so we turn nicely when going over the top of the unit
 		POST_MESSAGE(LookAt, (eRenderView::ACTOR,
-			Position(m_Distance*sin(m_Angle), m_Distance/2.f, m_Distance*cos(m_Angle)),
+			Position(
+				m_Distance*cos(m_Elevation)*sin(m_Angle) + offset*cos(m_Angle),
+				m_Distance*sin(m_Elevation),
+				m_Distance*cos(m_Elevation)*cos(m_Angle) - offset*sin(m_Angle)),
 			Position(0, 0, 0)));
 	}
 
@@ -58,13 +65,15 @@ protected:
 			camera_changed = true;
 		}
 
-		if (evt.ButtonDown(wxMOUSE_BTN_LEFT))
+		if (evt.ButtonDown(wxMOUSE_BTN_LEFT) || evt.ButtonDown(wxMOUSE_BTN_RIGHT))
 		{
 			m_LastX = evt.GetX();
 			m_LastY = evt.GetY();
 			m_LastIsValid = true;
 		}
-		else if (evt.Dragging() && evt.ButtonIsDown(wxMOUSE_BTN_LEFT) && m_LastIsValid)
+		else if (evt.Dragging()
+			&& (evt.ButtonIsDown(wxMOUSE_BTN_LEFT) || evt.ButtonIsDown(wxMOUSE_BTN_RIGHT))
+			&& m_LastIsValid)
 		{
 			int dx = evt.GetX() - m_LastX;
 			int dy = evt.GetY() - m_LastY;
@@ -72,16 +81,23 @@ protected:
 			m_LastY = evt.GetY();
 
 			m_Angle += dx * M_PI/256.f * ScenarioEditor::GetSpeedModifier();
-			m_Distance += dy / 8.f * ScenarioEditor::GetSpeedModifier();
+
+			if (evt.ButtonIsDown(wxMOUSE_BTN_LEFT))
+				m_Distance += dy / 8.f * ScenarioEditor::GetSpeedModifier();
+			else // evt.ButtonIsDown(wxMOUSE_BTN_RIGHT))
+				m_Elevation += dy * M_PI/256.f * ScenarioEditor::GetSpeedModifier();
+
 			camera_changed = true;
 		}
-		else if (evt.ButtonUp(wxMOUSE_BTN_ANY))
+		else if (evt.ButtonUp(wxMOUSE_BTN_ANY)
+			&& ! (evt.ButtonIsDown(wxMOUSE_BTN_LEFT) || evt.ButtonIsDown(wxMOUSE_BTN_RIGHT))
+			)
 		{
 			// In some situations (e.g. double-clicking the title bar to
 			// maximise the window) we get a dragging event without the matching
-			// buttondown; so disallow dragging when there was a buttonup since
+			// buttondown; so disallow dragging when all buttons were released since
 			// the last buttondown.
-			// (TODO: does this affect the scenario editor too?)
+			// (TODO: does this problem affect the scenario editor too?)
 			m_LastIsValid = false;
 		}
 
@@ -94,6 +110,7 @@ protected:
 private:
 	float m_Distance;
 	float m_Angle;
+	float m_Elevation;
 	int m_LastX, m_LastY;
 	bool m_LastIsValid;
 };
@@ -142,7 +159,8 @@ static void SendToGame(const AtlasMessage::sEnvironmentSettings& settings)
 ActorViewer::ActorViewer(wxWindow* parent)
 	: wxFrame(parent, wxID_ANY, _("Actor Viewer"), wxDefaultPosition, wxSize(800, 600)),
 	m_CurrentSpeed(0.f), m_Wireframe(false), m_BackgroundColour(wxColour(255, 255, 255)),
-	m_Walking(true)
+	m_Walking(true),
+	m_ObjectSettings(m_ObjectSelection, AtlasMessage::eRenderView::ACTOR)
 {
 	SetIcon(wxIcon(_T("ICON_ActorEditor")));
 
@@ -239,39 +257,47 @@ ActorViewer::ActorViewer(wxWindow* parent)
 	m_EnvironmentSettings.suncolour = Colour(255, 255, 255);
 	m_EnvironmentSettings.terraincolour = Colour(164, 164, 164);
 	m_EnvironmentSettings.unitcolour = Colour(164, 164, 164);
-	LightControl* lightControl = new LightControl(sidePanel, wxSize(100, 100), m_EnvironmentSettings);
+	LightControl* lightControl = new LightControl(sidePanel, wxSize(90, 90), m_EnvironmentSettings);
 	m_EnvConn = m_EnvironmentSettings.RegisterObserver(0, &SendToGame);
 	SendToGame(m_EnvironmentSettings);
 
 	wxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
 	wxSizer* bottomSizer = new wxBoxSizer(wxHORIZONTAL);
+	wxSizer* bottomLeftSizer = new wxBoxSizer(wxVERTICAL);
 	wxSizer* bottomRightSizer = new wxBoxSizer(wxVERTICAL);
 	wxSizer* playButtonSizer = new wxBoxSizer(wxHORIZONTAL);
-	wxSizer* optionButtonSizer = new wxGridSizer(2);
-
-	mainSizer->Add(m_TreeCtrl, wxSizerFlags().Expand().Proportion(1));
-	mainSizer->Add(bottomSizer, wxSizerFlags().Expand());
-
-	bottomSizer->Add(lightControl, wxSizerFlags().Border(wxRIGHT, 5));
-	bottomSizer->Add(bottomRightSizer, wxSizerFlags().Proportion(1));
+	wxSizer* optionButtonSizer = new wxBoxSizer(wxVERTICAL);
+	wxSizer* variationSizer = new wxStaticBoxSizer(wxVERTICAL, sidePanel, _("Variation"));
 
 	playButtonSizer->Add(new wxButton(sidePanel, ID_Play, _("Play")), wxSizerFlags().Proportion(1));
 	playButtonSizer->Add(new wxButton(sidePanel, ID_Pause, _("Pause")), wxSizerFlags().Proportion(1));
 	playButtonSizer->Add(new wxButton(sidePanel, ID_Slow, _("Slow")), wxSizerFlags().Proportion(1));
-
-	bottomRightSizer->Add(m_AnimationBox, wxSizerFlags().Expand());
-	bottomRightSizer->Add(playButtonSizer, wxSizerFlags().Expand());
 
 	optionButtonSizer->Add(new wxButton(sidePanel, ID_Edit, _("Edit actor")), wxSizerFlags().Expand());
 	optionButtonSizer->Add(Tooltipped(new wxButton(sidePanel, ID_Wireframe, _("Wireframe")), _("Toggle wireframe / solid rendering")), wxSizerFlags().Expand());
 	optionButtonSizer->Add(Tooltipped(new wxButton(sidePanel, ID_Background, _("Background")), _("Change the background colour")), wxSizerFlags().Expand());
 	optionButtonSizer->Add(Tooltipped(new wxButton(sidePanel, ID_Walking, _("Move")), _("Toggle movement along ground when playing walk/run animations")), wxSizerFlags().Expand());
 
-	bottomRightSizer->Add(optionButtonSizer, wxSizerFlags().Expand().Border(wxTOP, 4));
+	variationSizer->Add(new VariationControl(sidePanel, m_ObjectSettings), wxSizerFlags().Expand().Proportion(1));
+
+	mainSizer->Add(m_TreeCtrl, wxSizerFlags().Expand().Proportion(1));
+	mainSizer->Add(bottomSizer, wxSizerFlags().Expand());
+
+	bottomSizer->Add(bottomLeftSizer, wxSizerFlags().Expand().Border(wxRIGHT, 5));
+	bottomSizer->Add(bottomRightSizer, wxSizerFlags().Expand().Proportion(1));
+
+	bottomLeftSizer->Add(lightControl, wxSizerFlags().Expand());
+	bottomLeftSizer->Add(optionButtonSizer, wxSizerFlags().Expand().Border(wxTOP, 4));
+
+	bottomRightSizer->Add(m_AnimationBox, wxSizerFlags().Expand());
+	bottomRightSizer->Add(playButtonSizer, wxSizerFlags().Expand());
+	bottomRightSizer->Add(variationSizer, wxSizerFlags().Expand().Proportion(1));
 
 	sidePanel->SetSizer(mainSizer);
 
 	//////////////////////////////////////////////////////////////////////////
+
+	m_ObjectSelection.push_back(0);
 
 	// Start by displaying the default non-existent actor
 	m_CurrentActor = _T("structures/fndn_1x1.xml");
@@ -294,6 +320,7 @@ void ActorViewer::OnClose(wxCloseEvent& WXUNUSED(event))
 void ActorViewer::SetActorView(bool flushCache)
 {
 	POST_MESSAGE(SetActorViewer, (m_CurrentActor.c_str(), m_AnimationBox->GetValue().c_str(), m_CurrentSpeed, flushCache));
+	m_ObjectSelection.NotifyObservers();
 }
 
 void ActorViewer::OnTreeSelection(wxTreeEvent& event)

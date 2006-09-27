@@ -1,6 +1,8 @@
 #ifndef VIEW_H__
 #define VIEW_H__
 
+class CUnit;
+
 class ViewGame;
 class ViewActor;
 
@@ -8,10 +10,12 @@ class View
 {
 public:
 	virtual ~View();
-	virtual void Update(float frameLength) = 0;
-	virtual void Render() = 0;
+	virtual void Update(float UNUSED(frameLength)) { };
+	virtual void Render() { };
 	virtual CCamera& GetCamera() = 0;
-	virtual bool WantsHighFramerate() = 0;
+	virtual CUnit* GetUnit(AtlasMessage::ObjectID UNUSED(id)) { return NULL; }
+	virtual bool WantsHighFramerate() { return false; }
+
 	virtual void SetParam(const std::wstring& name, bool value);
 	virtual void SetParam(const std::wstring& name, const AtlasMessage::Colour& value);
 
@@ -30,10 +34,7 @@ public:
 class ViewNone : public View
 {
 public:
-	virtual void Update(float) { }
-	virtual void Render() { }
 	virtual CCamera& GetCamera() { return dummyCamera; }
-	virtual bool WantsHighFramerate() { return false; }
 private:
 	CCamera dummyCamera;
 };
@@ -45,6 +46,7 @@ public:
 	virtual void Update(float frameLength);
 	virtual void Render();
 	virtual CCamera& GetCamera();
+	virtual CUnit* GetUnit(AtlasMessage::ObjectID id);
 	virtual bool WantsHighFramerate();
 
 private:
@@ -61,7 +63,9 @@ public:
 	virtual void Update(float frameLength);
 	virtual void Render();
 	virtual CCamera& GetCamera();
+	virtual CUnit* GetUnit(AtlasMessage::ObjectID id);
 	virtual bool WantsHighFramerate();
+
 	virtual void SetParam(const std::wstring& name, bool value);
 	virtual void SetParam(const std::wstring& name, const AtlasMessage::Colour& value);
 

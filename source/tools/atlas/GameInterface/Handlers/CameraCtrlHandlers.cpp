@@ -151,14 +151,16 @@ MESSAGEHANDLER(LookAt)
 
 	CVector3D tgt = msg->target->GetWorldSpace();
 	CVector3D eye = msg->pos->GetWorldSpace();
-	tgt.Y = -tgt.Y; // ??? why is this needed?
-	eye.Y = -eye.Y; // ???
+ 	tgt.Y = -tgt.Y; // ??? why is this needed?
+ 	eye.Y = -eye.Y; // ???
 
 	// Based on http://www.opengl.org/documentation/specs/man_pages/hardcopy/GL/html/glu/lookat.html
 	CVector3D f = tgt - eye;
 	f.Normalize();
 	CVector3D s = f.Cross(CVector3D(0, 1, 0));
 	CVector3D u = s.Cross(f);
+	s.Normalize(); // (not in that man page, but necessary for correctness, and done by Mesa)
+	u.Normalize();
 	CMatrix3D M (
 		s[0], s[1], s[2], 0,
 		u[0], u[1], u[2], 0,

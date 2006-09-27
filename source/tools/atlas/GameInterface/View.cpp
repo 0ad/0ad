@@ -7,6 +7,7 @@
 #include "Messages.h"
 
 #include "graphics/SColor.h"
+#include "graphics/UnitManager.h"
 #include "renderer/Renderer.h"
 #include "ps/Game.h"
 #include "ps/GameSetup/GameSetup.h"
@@ -59,6 +60,11 @@ void ViewActor::Render()
 CCamera& ViewActor::GetCamera()
 {
 	return m_Camera;
+}
+
+CUnit* ViewActor::GetUnit(AtlasMessage::ObjectID UNUSED(id))
+{
+	return m_ActorViewer->GetUnit();
 }
 
 bool ViewActor::WantsHighFramerate()
@@ -137,6 +143,11 @@ void ViewGame::Render()
 CCamera& ViewGame::GetCamera()
 {
 	return *g_Game->GetView()->GetCamera();
+}
+
+CUnit* ViewGame::GetUnit(AtlasMessage::ObjectID id)
+{
+	return g_UnitMan.FindByID(id);
 }
 
 bool ViewGame::WantsHighFramerate()

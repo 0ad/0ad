@@ -16,8 +16,7 @@ namespace AtlasMessage
 class ObjectSettings
 {
 public:
-	ObjectSettings();
-	~ObjectSettings();
+	ObjectSettings(Observable<std::vector<AtlasMessage::ObjectID> >& selectedObjects, int view);
 
 	int GetPlayerID() const;
 	void SetPlayerID(int playerID);
@@ -37,6 +36,10 @@ public:
 	AtlasMessage::sObjectSettings GetSettings() const;
 
 private:
+	Observable<std::vector<AtlasMessage::ObjectID> >& m_SelectedObjects;
+
+	int m_View;
+
 	// 0 = gaia, 1..inf = normal players
 	int m_PlayerID;
 
@@ -49,7 +52,7 @@ private:
 	std::vector<wxArrayString> m_VariantGroups;
 
 	// Observe changes to unit selection
-	ObservableConnection m_Conn;
+	ObservableScopedConnection m_Conn;
 	void OnSelectionChange(const std::vector<AtlasMessage::ObjectID>& selection);
 
 	// Transfer current settings to the currently selected unit (if any)

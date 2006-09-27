@@ -5,17 +5,12 @@
 #include "GameInterface/Messages.h"
 #include "ScenarioEditor/Tools/Common/Tools.h"
 
-Observable<ObjectSettings> g_ObjectSettings;
+Observable<ObjectSettings> g_ObjectSettings(g_SelectedObjects, AtlasMessage::eRenderView::GAME);
 
-ObjectSettings::ObjectSettings()
-: m_PlayerID(0)
+ObjectSettings::ObjectSettings(Observable<std::vector<AtlasMessage::ObjectID> >& selectedObjects, int view)
+: m_PlayerID(0), m_SelectedObjects(selectedObjects), m_View(view)
 {
-	m_Conn = g_SelectedObjects.RegisterObserver(0, &ObjectSettings::OnSelectionChange, this);
-}
-
-ObjectSettings::~ObjectSettings()
-{
-	m_Conn.disconnect();
+ 	m_Conn = m_SelectedObjects.RegisterObserver(0, &ObjectSettings::OnSelectionChange, this);
 }
 
 int ObjectSettings::GetPlayerID() const
@@ -98,7 +93,7 @@ void ObjectSettings::OnSelectionChange(const std::vector<AtlasMessage::ObjectID>
 	if (selection.empty())
 		return;
 		
-	AtlasMessage::qGetObjectSettings qry (selection[0]);
+	AtlasMessage::qGetObjectSettings qry (m_View, selection[0]);
 	qry.Post();
 
 	m_PlayerID = qry.settings->player;
@@ -136,8 +131,8 @@ void ObjectSettings::OnSelectionChange(const std::vector<AtlasMessage::ObjectID>
 
 void ObjectSettings::PostToGame()
 {
-	if (g_SelectedObjects.empty())
+	if (m_SelectedObjects.empty())
 		return;
 
-	POST_COMMAND(SetObjectSettings, (g_SelectedObjects[0], GetSettings()));
+	POST_COMMAND(SetObjectSettings, (m_View, m_SelectedObjects[0], GetSettings()));
 }

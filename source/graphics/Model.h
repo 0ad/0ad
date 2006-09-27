@@ -78,6 +78,10 @@ public:
 	// get the currently playing animation, if any
 	CSkeletonAnim* GetAnimation() { return m_Anim; }
 
+	// set the animation state to be the same as from another; both models should
+	// be compatible types (same type of skeleton)
+	void CopyAnimationFrom(CModel* source);
+
 	// set object flags
 	void SetFlags(u32 flags) { m_Flags=flags; }
 	// get object flags

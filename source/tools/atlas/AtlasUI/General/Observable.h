@@ -31,6 +31,13 @@ typedef boost::signals::scoped_connection ObservableScopedConnection;
 template <typename T> class Observable : public T
 {
 public:
+	Observable() {}
+
+	template <typename T1>
+		explicit Observable(const T1& a1) : T(a1) {}
+	template <typename T1, typename T2>
+		explicit Observable(T1& a1, T2 a2) : T(a1, a2) {}
+
 	template<typename C> ObservableConnection RegisterObserver(int order, void (C::*callback) (const T&), C* obj)
 	{
 		return m_Signal.connect(order, boost::bind(std::mem_fun(callback), obj, _1));

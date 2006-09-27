@@ -172,14 +172,14 @@ void CUnit::ReloadObject()
 	CObjectEntry* newObject = g_ObjMan.FindObjectVariation(m_Object->m_Base, selections);
 	if (newObject != m_Object)
 	{
-		// Clone the base model (lacking instance-specific data)
+		// Clone the new object's base (non-instance) model
 		CModel* newModel = newObject->m_Model->Clone();
 
-		// Copy the old instance-specific settings to the new model
+		// Copy the old instance-specific settings from the old model to the new instance
 		newModel->SetTransform(m_Model->GetTransform());
 		if (m_PlayerID != -1)
 			newModel->SetPlayerID(m_PlayerID);
-		// TODO: preserve selection of animation, anim offset, etc?
+		newModel->CopyAnimationFrom(m_Model);
 
 		delete m_Model;
 		m_Model = newModel;
