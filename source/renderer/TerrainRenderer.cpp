@@ -435,8 +435,8 @@ void TerrainRenderer::RenderWater()
 	}
 
 	// Shift the texture coordinates by these amounts to make the water "flow"
-	float tx = -fmod(time, 54.0)/54.0;
-	float ty = -fmod(time, 23.0)/23.0;
+	float tx = -fmod(time, 81.0)/81.0;
+	float ty = -fmod(time, 34.0)/34.0;
 
 	if(!fancy)
 	{
