@@ -6,6 +6,7 @@
 #include "wx/tooltip.h"
 #include "wx/image.h"
 #include "wx/busyinfo.h"
+#include "wx/mediactrl.h"
 
 #include "General/AtlasEventLoop.h"
 #include "General/Datafile.h"
@@ -208,6 +209,37 @@ END_EVENT_TABLE()
 
 //////////////////////////////////////////////////////////////////////////
 
+class MediaPlayer : public wxFrame
+{
+public:
+	MediaPlayer(wxWindow* parent) : wxFrame(parent, -1, _("Media player"), wxDefaultPosition, wxDefaultSize, wxFRAME_FLOAT_ON_PARENT|wxSYSTEM_MENU|wxCAPTION|wxCLOSE_BOX|wxCLIP_CHILDREN)
+	{
+		m_MediaCtrl = new wxMediaCtrl(this, -1);
+		m_Sizer = new wxBoxSizer(wxVERTICAL);
+		m_Sizer->Add(m_MediaCtrl);
+		SetSizer(m_Sizer);
+
+		m_MediaCtrl->Load(_T("http://download.microsoft.com/download/f/3/8/f3876ac5-7e9d-47bd-a1de-6b7670162c00/Halo_Wars_Web_Version_woRating_360p30_ST_1500kbps.wmv"));
+	}
+
+	void OnLoad(wxMediaEvent&)
+	{
+		m_MediaCtrl->Play();
+		m_Sizer->SetSizeHints(this);
+	}
+
+private:
+	wxMediaCtrl* m_MediaCtrl;
+	wxSizer* m_Sizer;
+
+	DECLARE_EVENT_TABLE();
+};
+BEGIN_EVENT_TABLE(MediaPlayer, wxFrame)
+	EVT_MEDIA_LOADED(wxID_ANY, OnLoad)
+END_EVENT_TABLE()
+
+//////////////////////////////////////////////////////////////////////////
+
 volatile bool g_FrameHasEnded;
 // Called from game thread
 ATLASDLLIMPEXP void Atlas_NotifyEndOfFrame()
@@ -227,6 +259,7 @@ enum
 	ID_Wireframe,
 	ID_MessageTrace,
 	ID_Screenshot,
+	ID_MediaPlayer,
 
 	ID_Toolbar // must be last in the list
 };
@@ -247,6 +280,7 @@ BEGIN_EVENT_TABLE(ScenarioEditor, wxFrame)
 	EVT_MENU(ID_Wireframe, ScenarioEditor::OnWireframe)
 	EVT_MENU(ID_MessageTrace, ScenarioEditor::OnMessageTrace)
 	EVT_MENU(ID_Screenshot, ScenarioEditor::OnScreenshot)
+	EVT_MENU(ID_MediaPlayer, ScenarioEditor::OnMediaPlayer)
 
 	EVT_IDLE(ScenarioEditor::OnIdle)
 END_EVENT_TABLE()
@@ -309,6 +343,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 		menuMisc->AppendCheckItem(ID_Wireframe, _("&Wireframe"));
 		menuMisc->AppendCheckItem(ID_MessageTrace, _("Message debug trace"));
 		menuMisc->Append(ID_Screenshot, _("&Screenshot"));
+		menuMisc->Append(ID_MediaPlayer, _("&Media player"));
 	}
 
 
@@ -543,6 +578,12 @@ void ScenarioEditor::OnMessageTrace(wxCommandEvent& event)
 void ScenarioEditor::OnScreenshot(wxCommandEvent& WXUNUSED(event))
 {
 	POST_MESSAGE(Screenshot, (10));
+}
+
+void ScenarioEditor::OnMediaPlayer(wxCommandEvent& WXUNUSED(event))
+{
+	wxWindow* mediaPlayer = new MediaPlayer(this);
+	mediaPlayer->Show();
 }
 
 //////////////////////////////////////////////////////////////////////////
