@@ -8,49 +8,62 @@
 
 #include <time.h>
 
+CLogger* g_Logger = NULL;
+
 #include "CConsole.h"
 extern CConsole* g_Console;
 
 using namespace std;
 
 const char* html_header0 =
-	"<HTML>\n<HEAD>\n<LINK REL=StyleSheet HREF="
-	"\"style.css\" TYPE=\"text/css\">\n"
-	"</HEAD>\n<BODY>\n<P align=\"center\"><IMG src="
-	"\"0adlogo.jpg\"/></P>\n"
-	"<P><H1>";
+	"<!DOCTYPE HTML SYSTEM>\n"
+	"<title>Pyrogenesis Log</title>\n"
+	"<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n"
+	"<p align=\"center\"><img src=\"0adlogo.jpg\" alt=\"0 A.D.\"></p>\n"
+	"<h1>";
+	// (note that the html,head,body tags are optional)
 
-const char* html_header1 = "</H1></P>\n";
+const char* html_header1 = "</h1>\n";
 
-const char* html_footer = "</BODY>\n</HTML>\n";
-
-#define MEMORY_BUFFER_SIZE	1000
+const char* html_footer = "";
+	// (</body> and </html> are optional too - this way we get the same valid
+	// output even if we crash and don't close the file properly...)
 
 CLogger::CLogger()
+{
+	char N_path[PATH_MAX];
+	(void)file_make_full_native_path("../logs", N_path);
+	PathPackage pp;
+	(void)path_package_set_dir(&pp, N_path);
+
+	(void)path_package_append_file(&pp, "mainlog.html");
+	m_MainLog = new std::ofstream(pp.path, ofstream::out | ofstream::trunc);
+
+	(void)path_package_append_file(&pp, "interestinglog.html");
+	m_InterestingLog = new std::ofstream(pp.path, ofstream::out | ofstream::trunc);
+
+	Init();
+}
+
+CLogger::CLogger(std::ostream* mainLog, std::ostream* interestingLog)
+{
+	m_MainLog = mainLog;
+	m_InterestingLog = interestingLog;
+
+	Init();
+}
+
+void CLogger::Init()
 {
 	m_NumberOfMessages = 0;
 	m_NumberOfErrors = 0;
 	m_NumberOfWarnings = 0;
 	
-	m_MemoryLogBuffer = (char *)calloc(MEMORY_BUFFER_SIZE, 1);
-	m_CurrentPosition = m_MemoryLogBuffer;
-
-	char N_path[PATH_MAX];
-	(void)file_make_full_native_path("../logs", N_path);
-	PathPackage pp;
-	(void)path_package_set_dir(&pp, N_path);
-	(void)path_package_append_file(&pp, "mainlog.html");
-	m_MainLog.open       (pp.path, ofstream::out | ofstream::trunc);
-	(void)path_package_append_file(&pp, "interestinglog.html");
-	m_InterestingLog.open(pp.path, ofstream::out | ofstream::trunc);
-	(void)path_package_append_file(&pp, "memorylog.html");
-	m_MemoryLog.open     (pp.path, ofstream::out | ofstream::trunc);
-
 	//Write Headers for the HTML documents
-	m_MainLog << html_header0 << "Main log" << html_header1;
+	*m_MainLog << html_header0 << "Main log" << html_header1;
 	
 	//Write Headers for the HTML documents
-	m_InterestingLog << html_header0 << "Main log (interesting items only, as specified in system.cfg)" << html_header1;
+	*m_InterestingLog << html_header0 << "Main log (interesting items only, as specified in system.cfg)" << html_header1;
 
 }
 
@@ -69,29 +82,16 @@ CLogger::~CLogger ()
 
 	//Write closing text
 
-	m_MainLog << "<P>Engine exited successfully on " << currentDate;
-	m_MainLog << " at " << currentTime << buffer << "</P>\n";
-	m_MainLog << html_footer;
-	m_MainLog.close ();
+	*m_MainLog << "<p>Engine exited successfully on " << currentDate;
+	*m_MainLog << " at " << currentTime << buffer << "</p>\n";
+	*m_MainLog << html_footer;
 	
-	m_InterestingLog << "<P>Engine exited successfully on " << currentDate;
-	m_InterestingLog << " at " << currentTime << buffer << "</P>\n";
-	m_InterestingLog << html_footer;
-	m_InterestingLog.close ();
+	*m_InterestingLog << "<p>Engine exited successfully on " << currentDate;
+	*m_InterestingLog << " at " << currentTime << buffer << "</p>\n";
+	*m_InterestingLog << html_footer;
 
-
-	//Add end marker to logs in memory
-	*m_CurrentPosition = '\0';
-
-	m_MemoryLog << html_header0 << "Memory log" << html_header1;
-	m_MemoryLog << "<P>Memory Log started with capacity of " << \
-						MEMORY_BUFFER_SIZE << " characters.</P>\n";
-	m_MemoryLog << m_MemoryLogBuffer;
-	m_MemoryLog << html_footer;
-
-	m_MemoryLog.close ();
-
-	free(m_MemoryLogBuffer);
+	delete m_InterestingLog;
+	delete m_MainLog;
 }
 
 void CLogger::WriteMessage(const char *message, int interestedness)
@@ -101,11 +101,11 @@ void CLogger::WriteMessage(const char *message, int interestedness)
 	if (interestedness >= 2)
 	{
 		if (g_Console) g_Console->InsertMessage(L"LOG: %hs", message);
-		m_InterestingLog << "<P>" << message << "</P>\n";
-		m_InterestingLog.flush();
+		*m_InterestingLog << "<p>" << message << "</p>\n";
+		m_InterestingLog->flush();
 	}
-	m_MainLog << "<P>" << message << "</P>\n";
-	m_MainLog.flush();
+	*m_MainLog << "<p>" << message << "</p>\n";
+	m_MainLog->flush();
 	
 }
 
@@ -116,11 +116,11 @@ void CLogger::WriteError(const char *message, int interestedness)
 	if (interestedness >= 1)
 	{
 		if (g_Console) g_Console->InsertMessage(L"ERROR: %hs", message);
-		m_InterestingLog << "<P class=\"error\">ERROR: "<< message << "</P>\n";
-		m_InterestingLog.flush();
+		*m_InterestingLog << "<p class=\"error\">ERROR: "<< message << "</p>\n";
+		m_InterestingLog->flush();
 	}
-	m_MainLog << "<P class=\"error\">ERROR: "<< message << "</P>\n";
-	m_MainLog.flush();
+	*m_MainLog << "<p class=\"error\">ERROR: "<< message << "</p>\n";
+	m_MainLog->flush();
 }
 
 void CLogger::WriteWarning(const char *message, int interestedness)
@@ -129,11 +129,11 @@ void CLogger::WriteWarning(const char *message, int interestedness)
 	if (interestedness >= 1)
 	{
 		if (g_Console) g_Console->InsertMessage(L"WARNING: %hs", message);
-		m_InterestingLog << "<P class=\"warning\">WARNING: "<< message << "</P>\n";
-		m_InterestingLog.flush();
+		*m_InterestingLog << "<p class=\"warning\">WARNING: "<< message << "</p>\n";
+		m_InterestingLog->flush();
 	}
-	m_MainLog << "<P class=\"warning\">WARNING: "<< message << "</P>\n";
-	m_MainLog.flush();
+	*m_MainLog << "<p class=\"warning\">WARNING: "<< message << "</p>\n";
+	m_MainLog->flush();
 }
 
 // Sends the message to the appropriate piece of code
@@ -154,7 +154,7 @@ void CLogger::Log(ELogMethod method, const char* category, const char *fmt, ...)
 	va_list argp;
 	char buffer[512];
 
-	memset(buffer,0,sizeof(buffer));
+	memset(buffer, 0, sizeof(buffer));
 	
 	va_start(argp, fmt);
 	if (vsnprintf2(buffer, sizeof(buffer)-1, fmt, argp) == -1)
@@ -173,10 +173,10 @@ void CLogger::LogOnce(ELogMethod method, const char* category, const char *fmt, 
 	va_list argp;
 	char buffer[512];
 
-	memset(buffer,0,sizeof(buffer));
+	memset(buffer, 0, sizeof(buffer));
 
 	va_start(argp, fmt);
-	if (vsnprintf2(buffer, sizeof(buffer), fmt, argp) == -1)
+	if (vsnprintf2(buffer, sizeof(buffer)-1, fmt, argp) == -1)
 	{
 		// Buffer too small - ensure the string is nicely terminated
 		strcpy(buffer+sizeof(buffer)-4, "...");	// safe
@@ -194,41 +194,6 @@ void CLogger::LogOnce(ELogMethod method, const char* category, const char *fmt, 
 	LogUsingMethod(method, category, buffer);
 }
 
-
-void CLogger::QuickLog(const char *fmt, ...)
-{
-	va_list argp;
-	char buffer[512];
-	int count = 0;
-
-	//Start a new paragraph in HTML
-	strcpy(buffer,"<P>");	// safe
-
-	va_start(argp, fmt);
-	char *bufend=strchr(buffer, 0);
-	vsnprintf(bufend, buffer+sizeof(buffer)-bufend, fmt, argp);
-	va_end(argp);
-
-	//add some html formatting, making sure not to overrun the buffer
-	bufend=strchr(buffer, 0);
-	strncpy(bufend, "</P>", buffer+sizeof(buffer)-bufend);
-	
-	if((m_CurrentPosition - m_MemoryLogBuffer + strlen(buffer) + 1) >= MEMORY_BUFFER_SIZE)
-	{
-		//not enough room in the buffer so don't log.
-		return;
-	}
-
-	while(buffer[count] != '\0')
-	{
-		*m_CurrentPosition++ = buffer[count];
-		count++;
-	}
-	
-	*m_CurrentPosition++ = '\n';
-	
-	free(buffer);
-}
 
 int CLogger::Interestedness(const char* category)
 {

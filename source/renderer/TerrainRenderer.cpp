@@ -212,6 +212,14 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
 
 	glBlendFunc(GL_DST_COLOR, GL_ZERO);
+
+	// GL_TEXTURE_ENV_COLOR requires four floats, so we shouldn't use the RGBColor directly
+	float terrainAmbientColor[4] = {
+		lightEnv.m_TerrainAmbientColor.X,
+		lightEnv.m_TerrainAmbientColor.Y,
+		lightEnv.m_TerrainAmbientColor.Z,
+		1.f
+	};
 	
 	if (!shadow)
 	{
@@ -229,7 +237,7 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
 		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 
-		glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, &lightEnv.m_TerrainAmbientColor.X);
+		glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, terrainAmbientColor);
 		
 	}
 	else
@@ -286,7 +294,7 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
 			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 
-			glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, &lightEnv.m_TerrainAmbientColor.X);
+			glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, terrainAmbientColor);
 			
 		}
 		else
@@ -313,7 +321,7 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
 			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 
-			glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, &lightEnv.m_TerrainAmbientColor.X);
+			glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, terrainAmbientColor);
 			
 		}
 	}

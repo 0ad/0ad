@@ -446,3 +446,24 @@ void CProfileViewer::SaveToFile()
 	m->outputStream << "\n\n================================================================\n";
 	m->outputStream.flush();
 }
+
+void CProfileViewer::ShowTable(const CStr& table)
+{
+	m->path.clear();
+
+	if (table.length() > 0)
+	{
+		for (size_t i = 0; i < m->rootTables.size(); ++i)
+		{
+			if (m->rootTables[i]->GetName() == table)
+			{
+				m->path.push_back(m->rootTables[i]);
+				m->profileVisible = true;
+				return;
+			}
+		}
+	}
+
+	// No matching table found, so don't display anything
+	m->profileVisible = false;
+}

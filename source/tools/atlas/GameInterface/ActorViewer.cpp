@@ -15,7 +15,9 @@
 #include "graphics/Unit.h"
 #include "graphics/UnitManager.h"
 #include "maths/MathUtil.h"
+#include "ps/Font.h"
 #include "ps/GameSetup/Config.h"
+#include "ps/ProfileViewer.h"
 #include "renderer/Renderer.h"
 #include "renderer/Scene.h"
 #include "renderer/SkyManager.h"
@@ -27,6 +29,8 @@ struct ActorViewerImpl : public Scene
 	CStrW CurrentUnitAnim;
 	float CurrentSpeed;
 	bool WalkEnabled;
+	bool GroundEnabled;
+	bool ShadowsEnabled;
 
 	SColor4ub Background;
 	
@@ -35,7 +39,8 @@ struct ActorViewerImpl : public Scene
 	// Simplistic implementation of the Scene interface
 	void EnumerateObjects(const CFrustum& UNUSED(frustum), SceneCollector* c)
 	{
-		c->Submit(Terrain.GetPatch(0, 0));
+		if (GroundEnabled)
+			c->Submit(Terrain.GetPatch(0, 0));
 
 		if (Unit)
 			c->SubmitRecursive(Unit->GetModel());
@@ -152,9 +157,16 @@ void ActorViewer::SetBackgroundColour(const SColor4ub& colour)
 	m.Terrain.SetBaseColour(colour);
 }
 
-void ActorViewer::SetWalkEnabled(bool enabled)
+void ActorViewer::SetWalkEnabled(bool enabled)    { m.WalkEnabled = enabled; }
+void ActorViewer::SetGroundEnabled(bool enabled)  { m.GroundEnabled = enabled; }
+void ActorViewer::SetShadowsEnabled(bool enabled) { m.ShadowsEnabled = enabled; }
+
+void ActorViewer::SetStatsEnabled(bool enabled)
 {
-	m.WalkEnabled = enabled;
+	if (enabled)
+		g_ProfileViewer.ShowTable("renderer");
+	else
+		g_ProfileViewer.ShowTable("");
 }
 
 void ActorViewer::Render()
@@ -162,6 +174,10 @@ void ActorViewer::Render()
 	m.Terrain.MakeDirty(RENDERDATA_UPDATE_COLOR);
 
 	g_Renderer.SetClearColor(*(u32*)&m.Background);
+
+	// Disable shadows locally (avoid clobbering global state)
+	bool oldShadows = g_Renderer.GetOptionBool(CRenderer::OPT_SHADOWS);
+	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS, m.ShadowsEnabled);
 
 	g_Renderer.BeginFrame();
 
@@ -182,7 +198,40 @@ void ActorViewer::Render()
 
 	g_Renderer.RenderScene(&m);
 
+	// ....
+
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	glOrtho(0.f, (float)g_xres, 0.f, (float)g_yres, -1.f, 1000.f);
+
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
+
+	glPushAttrib(GL_ENABLE_BIT);
+	glEnable(GL_TEXTURE_2D);
+	glDisable(GL_CULL_FACE);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_BLEND);
+	glDisable(GL_ALPHA_TEST);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	glEnable(GL_TEXTURE_2D);
+
+	CFont font("console");
+	font.Bind();
+
+	g_ProfileViewer.RenderProfile();
+
+	glPopAttrib();
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glPopMatrix();
+
 	g_Renderer.EndFrame();
+
+	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS, oldShadows);
 
 	oglCheck();
 }
@@ -195,7 +244,7 @@ void ActorViewer::Update(float dt)
 
 		CMatrix3D mat = m.Unit->GetModel()->GetTransform();
 
-		if (m.WalkEnabled)
+		if (m.WalkEnabled && m.CurrentSpeed)
 		{
 			// Move the model by speed*dt forwards
 			float z = mat.GetTranslation().Z;
@@ -217,6 +266,9 @@ bool ActorViewer::HasAnimation() const
 		m.Unit->GetModel()->GetAnimation() &&
 		m.Unit->GetModel()->GetAnimation()->m_AnimDef &&
 		m.Unit->GetModel()->GetAnimation()->m_AnimDef->GetNumFrames() > 1)
+		return true;
+
+	if (m.Unit && m.WalkEnabled && m.CurrentSpeed)
 		return true;
 
 	return false;

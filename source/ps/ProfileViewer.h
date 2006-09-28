@@ -164,10 +164,19 @@ public:
 	static InReaction InputThunk(const SDL_Event_* ev);
 
 	/**
-	 * SaveToFile: Saves the current profiler data (for all profile tables)
+	 * SaveToFile: Save the current profiler data (for all profile tables)
 	 * to a file in the 'logs' directory.
 	 */
 	void SaveToFile();
+
+	/**
+	 * ShowTable: Set the named profile table to be the displayed one. If it
+	 * is not found, no profile is displayed.
+	 *
+	 * @param table The table name (matching AbstractProfileTable::GetName),
+	 * or the empty string to display no table.
+	 */
+	void ShowTable(const CStr& table);
 	
 private:
 	CProfileViewerInternals* m;

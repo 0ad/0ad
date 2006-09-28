@@ -146,6 +146,7 @@ void CTextureManager::RecurseDirectory(CTerrainPropertiesPtr parentProps, const 
 	// Load terrains.xml first, if it exists
 	char fn[PATH_MAX];
 	snprintf(fn, PATH_MAX, "%s%s", cur_dir_path, "terrains.xml");
+	fn[PATH_MAX-1] = '\0';
 	if (vfs_exists(fn))
 		props = GetPropertiesFromFile(parentProps, fn);
 	

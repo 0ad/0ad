@@ -165,6 +165,7 @@ void WriteScreenshot(const char* extension)
 	// note: %04d -> always 4 digits, so sorting by filename works correctly.
 	char file_format_string[PATH_MAX];
 	snprintf(file_format_string, PATH_MAX, "screenshots/screenshot%%04d.%s", extension);
+	file_format_string[PATH_MAX-1] = '\0';
 	char fn[PATH_MAX];
 	next_numbered_filename(file_format_string, &screenshot_nfi, fn);
 	const char* atom_fn = file_make_unique_fn_copy(fn);
@@ -204,6 +205,7 @@ void WriteBigScreenshot(const char* extension, int tiles)
 	// note: %04d -> always 4 digits, so sorting by filename works correctly.
 	char file_format_string[PATH_MAX];
 	snprintf(file_format_string, PATH_MAX, "screenshots/screenshot%%04d.%s", extension);
+	file_format_string[PATH_MAX-1] = '\0';
 	char fn[PATH_MAX];
 	next_numbered_filename(file_format_string, &screenshot_nfi, fn);
 	const char* atom_fn = file_make_unique_fn_copy(fn);

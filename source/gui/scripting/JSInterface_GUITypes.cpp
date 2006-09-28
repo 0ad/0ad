@@ -166,7 +166,7 @@ JSBool JSI_GUIColor::toString(JSContext* cx, JSObject* obj,
 {
 	char buffer[256];
 	// Convert to integers, to be compatible with the GUI's string SetSetting
-	snprintf(buffer, 256, "%i %i %i %i",
+	snprintf(buffer, 256, "%d %d %d %d",
 		(int)( 255.0 * *JSVAL_TO_DOUBLE(g_ScriptingHost.GetObjectProperty(obj, "r")) ),
 		(int)( 255.0 * *JSVAL_TO_DOUBLE(g_ScriptingHost.GetObjectProperty(obj, "g")) ),
 		(int)( 255.0 * *JSVAL_TO_DOUBLE(g_ScriptingHost.GetObjectProperty(obj, "b")) ),
@@ -222,7 +222,7 @@ JSBool JSI_GUIMouse::construct(JSContext* cx, JSObject* obj, uint argc, jsval* a
 JSBool JSI_GUIMouse::toString(JSContext* cx, JSObject* obj, uintN UNUSED(argc), jsval* UNUSED(argv), jsval* rval)
 {
 	char buffer[256];
-	snprintf(buffer, 256, "%i %i %i",
+	snprintf(buffer, 256, "%d %d %d",
 		JSVAL_TO_INT(g_ScriptingHost.GetObjectProperty(obj, "x")),
 		JSVAL_TO_INT(g_ScriptingHost.GetObjectProperty(obj, "y")),
 		JSVAL_TO_INT(g_ScriptingHost.GetObjectProperty(obj, "buttons")) );

@@ -92,6 +92,7 @@ CStr CProfileNodeTable::GetTitle()
 	char buf[512];
 	
 	snprintf(buf, sizeof(buf), "Profiling Information for: %s (Time in node: %.3f msec/frame)", node->GetName(), node->GetFrameTime() * 1000.0f );
+	buf[sizeof(buf)-1] = '\0';
 	
 	return buf;
 }
@@ -144,6 +145,7 @@ CStr CProfileNodeTable::GetCellText(size_t row, size_t col)
 			snprintf(buf, sizeof(buf), "%.1f", unlogged / g_Profiler.GetRoot()->GetFrameTime());
 		else
 			snprintf(buf, sizeof(buf), "%.1f", unlogged * 100.0f / g_Profiler.GetRoot()->GetFrameTime());
+		buf[sizeof(buf)-1] = '\0';
 		
 		return CStr(buf);
 	}
@@ -160,20 +162,19 @@ CStr CProfileNodeTable::GetCellText(size_t row, size_t col)
 #else
 		snprintf(buf, sizeof(buf), "%d", child->GetFrameCalls());
 #endif
-		return CStr(buf);
-	
+		break;
 	case 2:
 		snprintf(buf, sizeof(buf), "%.3f", child->GetFrameTime() * 1000.0f);
-		return CStr(buf);
-	
+		break;
 	case 3:
 		snprintf(buf, sizeof(buf), "%.1f", child->GetFrameTime() * 100.0 / g_Profiler.GetRoot()->GetFrameTime());
-		return CStr(buf);
-	
+		break;
 	case 4:
 		snprintf(buf, sizeof(buf), "%.1f", child->GetFrameTime() * 100.0 / node->GetFrameTime());
-		return CStr(buf);
+		break;
 	}
+	buf[sizeof(buf)-1] = '\0';
+	return CStr(buf);
 }
 
 // Return a pointer to the child table if the child node is expandable

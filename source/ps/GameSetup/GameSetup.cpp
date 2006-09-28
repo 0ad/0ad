@@ -387,6 +387,7 @@ void Render()
 
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
+	glLoadIdentity();
 
 	PROFILE_END( "render fonts" );
 
@@ -394,7 +395,6 @@ void Render()
 
 #ifndef NO_GUI
 	// Temp GUI message GeeTODO
-	glLoadIdentity();
 	MICROLOG(L"render GUI");
 	PROFILE_START( "render gui" );
 	g_GUI.Draw();
@@ -448,7 +448,7 @@ void Render()
 	oglCheck();
 
 	// Draw the cursor (or set the Windows cursor, on Windows)
-	CStr8 cursorName = g_BuildingPlacer.m_active ? "action-build" : g_CursorName;
+	CStr cursorName = g_BuildingPlacer.m_active ? "action-build" : g_CursorName;
 	cursor_draw(cursorName, g_mouse_x, g_mouse_y);
 
 	// restore
@@ -864,7 +864,7 @@ void Shutdown(uint flags)
 
 		// should be last, since the above use them
 		debug_shutdown();
-		delete &g_Logger;
+		SAFE_DELETE(g_Logger);
 		delete &g_Profiler;
 		delete &g_ProfileViewer;
 	TIMER_END("shutdown misc");
@@ -896,7 +896,7 @@ void Init(int argc, char* argv[], uint flags)
 
 	// This must come after VFS init, which sets the current directory
 	// (required for finding our output log files).
-	new CLogger;
+	g_Logger = new CLogger;
 
 	// Call LoadLanguage(NULL) to initialize the I18n system, but
 	// without loading an actual language file - translate() will

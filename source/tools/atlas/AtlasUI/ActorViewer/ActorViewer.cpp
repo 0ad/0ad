@@ -132,9 +132,12 @@ enum
 	ID_Pause,
 	ID_Slow,
 	ID_Edit,
-	ID_Wireframe,
 	ID_Background,
-	ID_Walking
+	ID_ToggleWireframe,
+	ID_ToggleWalking,
+	ID_ToggleGround,
+	ID_ToggleShadows,
+	ID_ToggleStats,
 };
 
 BEGIN_EVENT_TABLE(ActorViewer, wxFrame)
@@ -146,9 +149,12 @@ BEGIN_EVENT_TABLE(ActorViewer, wxFrame)
 	EVT_BUTTON(ID_Pause, ActorViewer::OnSpeedButton)
 	EVT_BUTTON(ID_Slow, ActorViewer::OnSpeedButton)
 	EVT_BUTTON(ID_Edit, ActorViewer::OnEditButton)
-	EVT_BUTTON(ID_Wireframe, ActorViewer::OnWireframeButton)
 	EVT_BUTTON(ID_Background, ActorViewer::OnBackgroundButton)
-	EVT_BUTTON(ID_Walking, ActorViewer::OnWalkingButton)
+	EVT_BUTTON(ID_ToggleWireframe, ActorViewer::OnToggleButton)
+	EVT_BUTTON(ID_ToggleWalking, ActorViewer::OnToggleButton)
+	EVT_BUTTON(ID_ToggleGround, ActorViewer::OnToggleButton)
+	EVT_BUTTON(ID_ToggleShadows, ActorViewer::OnToggleButton)
+	EVT_BUTTON(ID_ToggleStats, ActorViewer::OnToggleButton)
 END_EVENT_TABLE()
 
 static void SendToGame(const AtlasMessage::sEnvironmentSettings& settings)
@@ -158,8 +164,9 @@ static void SendToGame(const AtlasMessage::sEnvironmentSettings& settings)
 
 ActorViewer::ActorViewer(wxWindow* parent)
 	: wxFrame(parent, wxID_ANY, _("Actor Viewer"), wxDefaultPosition, wxSize(800, 600)),
-	m_CurrentSpeed(0.f), m_Wireframe(false), m_BackgroundColour(wxColour(255, 255, 255)),
-	m_Walking(true),
+	m_CurrentSpeed(0.f), m_BackgroundColour(wxColour(255, 255, 255)),
+	m_ToggledWalking(true), m_ToggledWireframe(false), m_ToggledGround(true),
+	m_ToggledShadows(true), m_ToggledStats(false),
 	m_ObjectSettings(m_ObjectSelection, AtlasMessage::eRenderView::ACTOR)
 {
 	SetIcon(wxIcon(_T("ICON_ActorEditor")));
@@ -274,9 +281,12 @@ ActorViewer::ActorViewer(wxWindow* parent)
 	playButtonSizer->Add(new wxButton(sidePanel, ID_Slow, _("Slow")), wxSizerFlags().Proportion(1));
 
 	optionButtonSizer->Add(new wxButton(sidePanel, ID_Edit, _("Edit actor")), wxSizerFlags().Expand());
-	optionButtonSizer->Add(Tooltipped(new wxButton(sidePanel, ID_Wireframe, _("Wireframe")), _("Toggle wireframe / solid rendering")), wxSizerFlags().Expand());
+	optionButtonSizer->Add(Tooltipped(new wxButton(sidePanel, ID_ToggleWireframe, _("Wireframe")), _("Toggle wireframe / solid rendering")), wxSizerFlags().Expand());
 	optionButtonSizer->Add(Tooltipped(new wxButton(sidePanel, ID_Background, _("Background")), _("Change the background colour")), wxSizerFlags().Expand());
-	optionButtonSizer->Add(Tooltipped(new wxButton(sidePanel, ID_Walking, _("Move")), _("Toggle movement along ground when playing walk/run animations")), wxSizerFlags().Expand());
+	optionButtonSizer->Add(Tooltipped(new wxButton(sidePanel, ID_ToggleWalking, _("Move")), _("Toggle movement along ground when playing walk/run animations")), wxSizerFlags().Expand());
+	optionButtonSizer->Add(Tooltipped(new wxButton(sidePanel, ID_ToggleGround, _("Ground")), _("Toggle the ground plane")), wxSizerFlags().Expand());
+	optionButtonSizer->Add(Tooltipped(new wxButton(sidePanel, ID_ToggleShadows, _("Shadows")), _("Toggle shadow rendering")), wxSizerFlags().Expand());
+	optionButtonSizer->Add(Tooltipped(new wxButton(sidePanel, ID_ToggleStats, _("Poly count")), _("Toggle polygon-count statistics - turn off ground and shadows for more useful data")), wxSizerFlags().Expand());
 
 	variationSizer->Add(new VariationControl(sidePanel, m_ObjectSettings), wxSizerFlags().Expand().Proportion(1));
 
@@ -297,6 +307,7 @@ ActorViewer::ActorViewer(wxWindow* parent)
 
 	//////////////////////////////////////////////////////////////////////////
 
+	// Pretend to have selected a unit, so the variations thing works properly
 	m_ObjectSelection.push_back(0);
 
 	// Start by displaying the default non-existent actor
@@ -374,11 +385,6 @@ void ActorViewer::OnEditButton(wxCommandEvent& WXUNUSED(event))
 	));
 }
 
-void ActorViewer::OnWireframeButton(wxCommandEvent& WXUNUSED(event))
-{
-	m_Wireframe = !m_Wireframe;
-	POST_MESSAGE(SetViewParamB, (eRenderView::ACTOR, L"wireframe", m_Wireframe));
-}
 
 void ActorViewer::OnBackgroundButton(wxCommandEvent& WXUNUSED(event))
 {
@@ -393,11 +399,22 @@ void ActorViewer::OnBackgroundButton(wxCommandEvent& WXUNUSED(event))
 	}
 }
 
-void ActorViewer::OnWalkingButton(wxCommandEvent& WXUNUSED(event))
+void ActorViewer::OnToggleButton(wxCommandEvent& event)
 {
-	wxToolTip::Enable(true);
-	SetToolTip(L"Hello world!");
-	SetHelpText(L"Help text");
-	m_Walking = !m_Walking;
-	POST_MESSAGE(SetViewParamB, (eRenderView::ACTOR, L"walk", m_Walking));
+#define CASE(name, str) \
+	case ID_Toggle##name: \
+	m_Toggled##name = !m_Toggled##name; \
+	POST_MESSAGE(SetViewParamB, (eRenderView::ACTOR, str, m_Toggled##name)); \
+	break
+
+	switch (event.GetId())
+	{
+		CASE(Wireframe, L"wireframe");
+		CASE(Walking, L"walk");
+		CASE(Ground, L"ground");
+		CASE(Shadows, L"shadows");
+		CASE(Stats, L"stats");
+	default:
+		wxFAIL_MSG(_T("Incorrect ID in OnToggleButton"));
+	}
 }

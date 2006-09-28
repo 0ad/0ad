@@ -88,13 +88,15 @@ ActorViewer& ViewActor::GetActorViewer()
 void ViewActor::SetParam(const std::wstring& name, bool value)
 {
 	if (name == L"wireframe")
-	{
 		g_Renderer.SetModelRenderMode(value ? WIREFRAME : SOLID);
-	}
 	else if (name == L"walk")
-	{
 		m_ActorViewer->SetWalkEnabled(value);
-	}
+	else if (name == L"ground")
+		m_ActorViewer->SetGroundEnabled(value);
+	else if (name == L"shadows")
+		m_ActorViewer->SetShadowsEnabled(value);
+	else if (name == L"stats")
+		m_ActorViewer->SetStatsEnabled(value);
 }
 
 void ViewActor::SetParam(const std::wstring& name, const AtlasMessage::Colour& value)

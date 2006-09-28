@@ -18,9 +18,8 @@ private:
 	void OnAnimationSelection(wxCommandEvent& event);
 	void OnSpeedButton(wxCommandEvent& event);
 	void OnEditButton(wxCommandEvent& event);
-	void OnWireframeButton(wxCommandEvent& event);
+	void OnToggleButton(wxCommandEvent& event);
 	void OnBackgroundButton(wxCommandEvent& event);
-	void OnWalkingButton(wxCommandEvent& event);
 
 	void OnActorEdited();
 	ObservableScopedConnections m_ActorConns;
@@ -32,9 +31,8 @@ private:
 
 	Observable<std::vector<AtlasMessage::ObjectID> > m_ObjectSelection;
 	Observable<ObjectSettings> m_ObjectSettings;
-	bool m_Wireframe;
 	wxColour m_BackgroundColour;
-	bool m_Walking;
+	bool m_ToggledWireframe, m_ToggledWalking, m_ToggledGround, m_ToggledShadows, m_ToggledStats;
 
 	Observable<AtlasMessage::sEnvironmentSettings> m_EnvironmentSettings;
 	ObservableScopedConnection m_EnvConn;

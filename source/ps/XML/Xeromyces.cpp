@@ -199,6 +199,7 @@ void CXeromyces::getXMBPath(const char* xmlFilename, const char* xmbFilename,
 
 	// build full name: cache, then mod name, XMB subdir, original XMB path
 	snprintf(xmbPath, PATH_MAX, "cache/mods/%s/xmb/%s", modName, xmbFilename);
+	xmbPath[PATH_MAX-1] = '\0';
 }
 
 PSRETURN CXeromyces::Load(const char* filename)

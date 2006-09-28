@@ -13,8 +13,11 @@ public:
 
 	void SetActor(const CStrW& id, const CStrW& animation);
 	CUnit* GetUnit();
-	void SetWalkEnabled(bool enabled);
 	void SetBackgroundColour(const SColor4ub& colour);
+	void SetWalkEnabled(bool enabled);
+	void SetGroundEnabled(bool enabled);
+	void SetShadowsEnabled(bool enabled);
+	void SetStatsEnabled(bool enabled);
 	void Render();
 	void Update(float dt);
 	

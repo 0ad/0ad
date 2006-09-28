@@ -156,6 +156,7 @@ static void ParseCommandLineArgs(int argc, char* argv[])
 				const char* mod_name = name+4;
 				char path[PATH_MAX];
 				snprintf(path, ARRAY_SIZE(path), "mods/%s", mod_name);
+				path[PATH_MAX-1] = '\0';
 				// note: default is 0. we should set this higher in case the
 				// mod file mtimes are actually older than the official
 				// version (*could* happen), otherwise the mod might not
