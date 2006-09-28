@@ -2,26 +2,26 @@
 
 <Scenario>
 	<Environment>
-		<SkySet>default</SkySet>
-		<SunColour r="1" g="1" b="1"/>
-		<SunElevation angle="0.757155"/>
-		<SunRotation angle="-1.48529"/>
-		<TerrainAmbientColour r="0.639216" g="0.639216" b="0.639216"/>
-		<UnitsAmbientColour r="0.639216" g="0.639216" b="0.639216"/>
+		<SkySet>cloudless</SkySet>
+		<SunColour r="1" g="0.988235" b="0.72549"/>
+		<SunElevation angle="0.576178"/>
+		<SunRotation angle="-0.919209"/>
+		<TerrainAmbientColour r="0.521569" g="0.588235" b="0.572549"/>
+		<UnitsAmbientColour r="0.521569" g="0.588235" b="0.572549"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
 				<Colour r="0.3" g="0.35" b="0.7"/>
 				<Height>20.58</Height>
 				<Shininess>500</Shininess>
-				<Waviness>2.98828</Waviness>
+				<Waviness>2.05078</Waviness>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="360.033" y="94.16" z="169.031"/>
-		<Rotation angle="-0.245113"/>
-		<Declination angle="0.517042"/>
+		<Position x="345.594" y="123.289" z="147.707"/>
+		<Rotation angle="-0.0720316"/>
+		<Declination angle="0.600641"/>
 	</Camera>
 	<Entities>
 		<Entity>
@@ -825,14 +825,14 @@
 		<Entity>
 			<Template>celt_infantry_spearman_e</Template>
 			<Player>3</Player>
-			<Position x="368.204" y="23.0186" z="306.015"/>
-			<Orientation angle="-0.597843"/>
+			<Position x="366.488" y="23.1066" z="306.446"/>
+			<Orientation angle="-1.7222"/>
 		</Entity>
 		<Entity>
 			<Template>celt_infantry_spearman_e</Template>
 			<Player>3</Player>
 			<Position x="371.357" y="24.7313" z="309.032"/>
-			<Orientation angle="-0.682789"/>
+			<Orientation angle="-1.44922"/>
 		</Entity>
 		<Entity>
 			<Template>celt_infantry_spearman_e</Template>
@@ -1006,7 +1006,7 @@
 			<Template>celt_infantry_spearman_a</Template>
 			<Player>3</Player>
 			<Position x="362.882" y="22.4" z="295.719"/>
-			<Orientation angle="-0.58406"/>
+			<Orientation angle="-1.25191"/>
 		</Entity>
 		<Entity>
 			<Template>celt_infantry_spearman_a</Template>
@@ -1060,19 +1060,19 @@
 			<Template>celt_infantry_spearman_a</Template>
 			<Player>3</Player>
 			<Position x="374.536" y="24.6844" z="307.485"/>
-			<Orientation angle="-0.439532"/>
+			<Orientation angle="-1.31743"/>
 		</Entity>
 		<Entity>
 			<Template>celt_infantry_spearman_a</Template>
 			<Player>3</Player>
 			<Position x="374.879" y="27.4559" z="311.36"/>
-			<Orientation angle="-0.844905"/>
+			<Orientation angle="-1.34004"/>
 		</Entity>
 		<Entity>
 			<Template>celt_infantry_spearman_a</Template>
 			<Player>3</Player>
-			<Position x="376.95" y="26.2776" z="308.677"/>
-			<Orientation angle="-0.717519"/>
+			<Position x="373.74" y="26.1057" z="309.866"/>
+			<Orientation angle="-1.8418"/>
 		</Entity>
 		<Entity>
 			<Template>celt_infantry_spearman_a</Template>
@@ -1089,13 +1089,13 @@
 		<Entity>
 			<Template>celt_infantry_javelinist_b</Template>
 			<Player>3</Player>
-			<Position x="320.921" y="31.6374" z="235.926"/>
+			<Position x="325.572" y="26.7981" z="241.51"/>
 			<Orientation angle="-0.705006"/>
 		</Entity>
 		<Entity>
 			<Template>celt_infantry_javelinist_b</Template>
 			<Player>3</Player>
-			<Position x="319.637" y="33.6" z="230.22"/>
+			<Position x="328.394" y="25.9788" z="240.532"/>
 			<Orientation angle="-0.405282"/>
 		</Entity>
 		<Entity>
@@ -1251,7 +1251,7 @@
 		<Entity>
 			<Template>celt_infantry_spearman_b</Template>
 			<Player>3</Player>
-			<Position x="382.533" y="22.4" z="288.161"/>
+			<Position x="376.106" y="22.4" z="276.961"/>
 			<Orientation angle="-0.314301"/>
 		</Entity>
 		<Entity>
@@ -1359,38 +1359,14 @@
 		<Entity>
 			<Template>celt_infantry_javelinist_e</Template>
 			<Player>3</Player>
-			<Position x="324.993" y="27.4801" z="240.368"/>
-			<Orientation angle="-0.453366"/>
-		</Entity>
-		<Entity>
-			<Template>celt_infantry_javelinist_e</Template>
-			<Player>3</Player>
-			<Position x="321.75" y="32.9952" z="226.261"/>
+			<Position x="325.233" y="31.2116" z="229.785"/>
 			<Orientation angle="-0.272053"/>
 		</Entity>
 		<Entity>
 			<Template>celt_infantry_javelinist_e</Template>
 			<Player>3</Player>
-			<Position x="318.61" y="34.2091" z="227.631"/>
+			<Position x="323.501" y="30.5768" z="235.422"/>
 			<Orientation angle="-0.405665"/>
-		</Entity>
-		<Entity>
-			<Template>celt_infantry_javelinist_a</Template>
-			<Player>3</Player>
-			<Position x="323.141" y="29.9826" z="237.119"/>
-			<Orientation angle="-0.392771"/>
-		</Entity>
-		<Entity>
-			<Template>celt_infantry_javelinist_a</Template>
-			<Player>3</Player>
-			<Position x="325.375" y="25.6912" z="243.577"/>
-			<Orientation angle="-0.394863"/>
-		</Entity>
-		<Entity>
-			<Template>celt_infantry_javelinist_a</Template>
-			<Player>3</Player>
-			<Position x="329.381" y="26.7665" z="237.96"/>
-			<Orientation angle="-0.492691"/>
 		</Entity>
 		<Entity>
 			<Template>celt_infantry_javelinist_a</Template>
@@ -1437,8 +1413,8 @@
 		<Entity>
 			<Template>gaia_water_lillies_a</Template>
 			<Player>0</Player>
-			<Position x="292.781" y="12.8298" z="339.363"/>
-			<Orientation angle="-2.47201"/>
+			<Position x="290.554" y="15.9621" z="341.803"/>
+			<Orientation angle="-2.90433"/>
 		</Entity>
 		<Entity>
 			<Template>gaia_water_lillies_a</Template>
@@ -1479,7 +1455,7 @@
 		<Entity>
 			<Template>gaia_water_lillies_a</Template>
 			<Player>0</Player>
-			<Position x="286.668" y="13.3859" z="322.016"/>
+			<Position x="282.675" y="10.7501" z="332.13"/>
 			<Orientation angle="0.982025"/>
 		</Entity>
 		<Entity>
@@ -1507,15 +1483,279 @@
 			<Orientation angle="1.43836"/>
 		</Entity>
 		<Entity>
-			<Template>hele_ship_bireme</Template>
-			<Player>2</Player>
-			<Position x="257.439" y="8.57072" z="364.952"/>
-			<Orientation angle="1.82806"/>
-		</Entity>
-		<Entity>
 			<Template>celt_hero_vercingetorix</Template>
 			<Player>3</Player>
 			<Position x="341.092" y="22.4" z="284.779"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="317.391" y="22.4" z="297.184"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="318.858" y="22.4" z="299.385"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="320.178" y="22.4" z="301.47"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="321.37" y="22.4" z="303.658"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="322.687" y="22.4" z="305.919"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="320.467" y="22.4" z="307.149"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="318.64" y="22.4" z="308.142"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="319.431" y="22.4" z="304.824"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="318.213" y="22.4" z="302.586"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="316.736" y="22.4" z="300.65"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="315.405" y="22.4" z="298.368"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="313.507" y="22.4" z="299.514"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="314.755" y="22.4" z="301.715"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="316.078" y="22.4" z="303.695"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="317.525" y="22.4" z="305.931"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="326.445" y="22.4" z="313.322"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="327.61" y="22.4" z="315.381"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="328.847" y="22.4738" z="317.458"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="329.971" y="22.5718" z="319.527"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="331.115" y="23.145" z="321.421"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="324.869" y="22.4" z="314.014"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="322.842" y="22.4" z="314.863"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="325.763" y="22.4" z="316.328"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="327.204" y="22.4" z="318.606"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="328.25" y="22.5642" z="320.721"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="329.39" y="23.1321" z="322.57"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="324.019" y="22.4" z="316.824"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="325.351" y="22.4" z="319.224"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="326.683" y="22.6228" z="321.781"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="327.785" y="22.8682" z="323.743"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="301.557" y="23.863" z="283.991"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="303.045" y="23.4021" z="285.871"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="304.44" y="22.9925" z="287.879"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="305.874" y="22.7612" z="290.235"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="307.11" y="22.5542" z="292.644"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="303.368" y="23.6524" z="282.899"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="305.149" y="23.4358" z="281.766"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="304.798" y="23.2101" z="284.632"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="306.61" y="23.0143" z="283.536"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="306.232" y="22.8816" z="286.787"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="307.798" y="22.7051" z="285.861"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="307.296" y="22.6382" z="289.199"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="309.103" y="22.5372" z="288.263"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="308.473" y="22.4962" z="291.568"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="310.517" y="22.469" z="290.504"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 	</Entities>
@@ -1812,11 +2052,6 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_small.xml</Actor>
-			<Position x="327.962" y="22.4" z="287.013"/>
-			<Orientation angle="2.35619"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/flora/grass_soft_small.xml</Actor>
 			<Position x="336.994" y="23.4627" z="317.885"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
@@ -2057,7 +2292,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_small.xml</Actor>
-			<Position x="380.16" y="22.4" z="293.124"/>
+			<Position x="380.632" y="22.4" z="293.641"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
@@ -2073,7 +2308,7 @@
 		<Nonentity>
 			<Actor>props/flora/grass_soft_small.xml</Actor>
 			<Position x="370.918" y="23.7479" z="306.872"/>
-			<Orientation angle="2.35619"/>
+			<Orientation angle="-1.4095"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_small.xml</Actor>
@@ -2097,21 +2332,6 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_small.xml</Actor>
-			<Position x="335.581" y="22.4" z="281.26"/>
-			<Orientation angle="-2.50571"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/flora/grass_soft_small.xml</Actor>
-			<Position x="332.521" y="22.4" z="278.199"/>
-			<Orientation angle="-2.02002"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/flora/grass_soft_small.xml</Actor>
-			<Position x="324.981" y="22.4" z="276.271"/>
-			<Orientation angle="2.35619"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/flora/grass_soft_small.xml</Actor>
 			<Position x="311.959" y="22.5152" z="275.928"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
@@ -2122,18 +2342,8 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_small.xml</Actor>
-			<Position x="325.341" y="22.4" z="288.562"/>
-			<Orientation angle="1.00134"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/flora/grass_soft_small.xml</Actor>
-			<Position x="331.982" y="22.4" z="294.094"/>
-			<Orientation angle="1.5706"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/flora/grass_soft_small.xml</Actor>
 			<Position x="341.059" y="22.4" z="297.586"/>
-			<Orientation angle="0.953198"/>
+			<Orientation angle="3.0943"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_small.xml</Actor>
@@ -2332,11 +2542,6 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_tuft_a.xml</Actor>
-			<Position x="329.617" y="26.5625" z="238.239"/>
-			<Orientation angle="-0.111114"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/flora/grass_soft_tuft_a.xml</Actor>
 			<Position x="336.801" y="24.8213" z="235.641"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
@@ -2402,7 +2607,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_tuft_a.xml</Actor>
-			<Position x="383.757" y="22.8841" z="253.458"/>
+			<Position x="384.126" y="22.9008" z="253.409"/>
 			<Orientation angle="-2.40547"/>
 		</Nonentity>
 		<Nonentity>
@@ -2417,7 +2622,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_tuft_a.xml</Actor>
-			<Position x="362.078" y="22.4" z="236.711"/>
+			<Position x="353.807" y="22.4689" z="240.107"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
@@ -2442,7 +2647,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_tuft_a.xml</Actor>
-			<Position x="338.911" y="22.4" z="292.865"/>
+			<Position x="339.093" y="22.4" z="292.947"/>
 			<Orientation angle="-0.763021"/>
 		</Nonentity>
 		<Nonentity>
@@ -2464,11 +2669,6 @@
 			<Actor>props/flora/grass_soft_small.xml</Actor>
 			<Position x="312.382" y="22.4146" z="331.249"/>
 			<Orientation angle="1.40326"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/flora/grass_soft_small.xml</Actor>
-			<Position x="335.052" y="22.4" z="289.551"/>
-			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_small_tall.xml</Actor>
@@ -2702,18 +2902,18 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_a.xml</Actor>
-			<Position x="295.585" y="20.1093" z="317.153"/>
-			<Orientation angle="0.741889"/>
+			<Position x="275.894" y="19.956" z="333.68"/>
+			<Orientation angle="2.90386"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_a.xml</Actor>
-			<Position x="295.739" y="19.9013" z="318.844"/>
-			<Orientation angle="0.828243"/>
+			<Position x="288.131" y="19.8612" z="345.189"/>
+			<Orientation angle="1.61969"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_a.xml</Actor>
-			<Position x="298.307" y="20.1319" z="319.939"/>
-			<Orientation angle="0.612788"/>
+			<Position x="273.689" y="19.5026" z="329.804"/>
+			<Orientation angle="-0.456924"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_a.xml</Actor>
@@ -2802,8 +3002,8 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/carob.xml</Actor>
-			<Position x="264.735" y="22.4" z="343.365"/>
-			<Orientation angle="2.35619"/>
+			<Position x="257.234" y="22.4" z="341.933"/>
+			<Orientation angle="-2.21966"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/carob.xml</Actor>
@@ -2832,8 +3032,8 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/carob.xml</Actor>
-			<Position x="262.734" y="24.2006" z="310.357"/>
-			<Orientation angle="-0.76087"/>
+			<Position x="313.966" y="27.0825" z="250.878"/>
+			<Orientation angle="-0.942684"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/carob.xml</Actor>
@@ -2882,7 +3082,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/carob.xml</Actor>
-			<Position x="250.646" y="24.5045" z="305.699"/>
+			<Position x="244.236" y="22.4" z="352.627"/>
 			<Orientation angle="-0.896853"/>
 		</Nonentity>
 		<Nonentity>
@@ -2892,7 +3092,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_small_tall.xml</Actor>
-			<Position x="261.7" y="22.4" z="337.008"/>
+			<Position x="261.144" y="26.0428" z="313.929"/>
 			<Orientation angle="-0.426497"/>
 		</Nonentity>
 		<Nonentity>
@@ -2902,7 +3102,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_small_tall.xml</Actor>
-			<Position x="260.533" y="22.4" z="357.134"/>
+			<Position x="254.393" y="22.4" z="372.588"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
@@ -2927,7 +3127,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_small_tall.xml</Actor>
-			<Position x="252.181" y="22.4" z="344.539"/>
+			<Position x="262.086" y="24.2588" z="310.004"/>
 			<Orientation angle="-2.63965"/>
 		</Nonentity>
 		<Nonentity>
@@ -2977,7 +3177,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_small_tall.xml</Actor>
-			<Position x="248.69" y="22.4" z="350.135"/>
+			<Position x="241.673" y="22.4" z="363.307"/>
 			<Orientation angle="-0.734838"/>
 		</Nonentity>
 		<Nonentity>
@@ -2987,17 +3187,17 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_small_tall.xml</Actor>
-			<Position x="250.305" y="22.4" z="367.069"/>
+			<Position x="246.345" y="22.4" z="378.641"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_small_tall.xml</Actor>
-			<Position x="253.252" y="22.4" z="367.346"/>
+			<Position x="250.652" y="22.4" z="384.259"/>
 			<Orientation angle="-3.02254"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_small_tall.xml</Actor>
-			<Position x="250.181" y="22.4" z="358.064"/>
+			<Position x="246.74" y="22.4" z="372.85"/>
 			<Orientation angle="-2.69837"/>
 		</Nonentity>
 		<Nonentity>
@@ -3067,8 +3267,8 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_small_tall.xml</Actor>
-			<Position x="277.629" y="19.2879" z="335.049"/>
-			<Orientation angle="2.35619"/>
+			<Position x="278.34" y="19.9822" z="336.43"/>
+			<Orientation angle="0.784393"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_small_tall.xml</Actor>
@@ -3102,7 +3302,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_small_tall.xml</Actor>
-			<Position x="253.384" y="22.4" z="367.875"/>
+			<Position x="252.521" y="22.4" z="377.023"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
@@ -3112,7 +3312,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_small_tall.xml</Actor>
-			<Position x="241.729" y="22.4" z="364.554"/>
+			<Position x="255.803" y="22.4" z="346.185"/>
 			<Orientation angle="-2.6086"/>
 		</Nonentity>
 		<Nonentity>
@@ -3122,12 +3322,12 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_small_tall.xml</Actor>
-			<Position x="283.201" y="19.4462" z="340.702"/>
+			<Position x="282.681" y="20.1667" z="340.791"/>
 			<Orientation angle="-0.692283"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_small_tall.xml</Actor>
-			<Position x="236.774" y="22.4" z="352.964"/>
+			<Position x="225.71" y="22.4" z="377.103"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
@@ -3147,12 +3347,12 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_small_tall.xml</Actor>
-			<Position x="250.673" y="22.4" z="344.084"/>
+			<Position x="257.215" y="22.4" z="335.588"/>
 			<Orientation angle="0.124193"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_small_tall.xml</Actor>
-			<Position x="257.392" y="22.4" z="367.963"/>
+			<Position x="223.736" y="22.4" z="362.359"/>
 			<Orientation angle="1.22228"/>
 		</Nonentity>
 		<Nonentity>
@@ -3200,5 +3400,71 @@
 			<Position x="268.287" y="22.4" z="370.578"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="384.433" y="22.4" z="279.37"/>
+			<Orientation angle="-1.79612"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="356.32" y="29.8294" z="324.932"/>
+			<Orientation angle="0.496982"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="262.957" y="23.6102" z="308.421"/>
+			<Orientation angle="0.903341"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="367.57" y="34.792" z="345.319"/>
+			<Orientation angle="2.97148"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/cypress_small.xml</Actor>
+			<Position x="283.52" y="22.4" z="345.47"/>
+			<Orientation angle="1.35682"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/cypress_large.xml</Actor>
+			<Position x="285.86" y="22.4724" z="348.777"/>
+			<Orientation angle="-2.92225"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/cypress_large.xml</Actor>
+			<Position x="273.633" y="21.538" z="332.852"/>
+			<Orientation angle="1.97043"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/well_woodbit.xml</Actor>
+			<Position x="290.342" y="23.8823" z="303.519"/>
+			<Orientation angle="2.01012"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="364.707" y="30.4374" z="322.919"/>
+			<Orientation angle="-2.3031"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="352.311" y="34.9408" z="351.601"/>
+			<Orientation angle="1.9617"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="359.301" y="28.8668" z="320.98"/>
+			<Orientation angle="-0.0811071"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="346.381" y="23.1549" z="236.068"/>
+			<Orientation angle="-0.289143"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/carob.xml</Actor>
+			<Position x="355.746" y="22.4629" z="234.429"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
 	</Nonentities>
+	<Tracks/>
 </Scenario>
