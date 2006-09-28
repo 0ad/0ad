@@ -4,13 +4,13 @@
   <castshadow/>
 
   <group>
-    <variant name="a">
+    <variant name="mine-mesh-a">
       <mesh>gaia/stonemine_granite_a.pmd</mesh>
     </variant>
-    <variant name="b">
+    <variant name="mine-mesh-b">
       <mesh>gaia/stonemine_granite_b.pmd</mesh>
     </variant>
-    <variant name="c">
+    <variant name="mine-mesh-c">
       <mesh>gaia/stonemine_granite_c.pmd</mesh>
     </variant>
   </group>
@@ -18,9 +18,6 @@
   <group>
     <variant name="gold">
       <texture>gaia/metal_granite_greek_g.dds</texture>
-    </variant>
-    <variant name="silver">
-      <texture>gaia/metal_granite_greek_s.dds</texture>
     </variant>
   </group>
 
