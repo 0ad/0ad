@@ -39,9 +39,9 @@ struct Position
 
 	// Only for use in the game, not the UI.
 	// Implementations in Misc.cpp.
-	CVector3D GetWorldSpace() const;
-	CVector3D GetWorldSpace(float h) const;
-	CVector3D GetWorldSpace(const CVector3D& prev) const;
+	CVector3D GetWorldSpace(bool floating = false) const;
+	CVector3D GetWorldSpace(float h, bool floating = false) const;
+	CVector3D GetWorldSpace(const CVector3D& prev, bool floating = false) const;
 	void GetScreenSpace(float& x, float& y) const;
 };
 SHAREABLE_STRUCT(Position);

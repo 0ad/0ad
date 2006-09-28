@@ -20,16 +20,11 @@ public:
 
 	enum
 	{
-		ID_Quit = 1,
-		ID_New,
 		//	ID_Import,
 		//	ID_Export,
-		ID_Open,
-		ID_Save,
-		ID_SaveAs,
 
 		// First available ID for custom window-specific menu items
-		ID_Custom
+		ID_Custom = 1
 	};
 
 	AtlasWindow(wxWindow* parent, const wxString& title, const wxSize& size);

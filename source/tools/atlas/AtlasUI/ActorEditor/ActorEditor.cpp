@@ -56,6 +56,9 @@ ActorEditor::ActorEditor(wxWindow* parent)
 	m_CastShadows = new wxCheckBox(propertiesPanel, wxID_ANY, _("Cast shadow"));
 	propertiesSizer->Add(m_CastShadows, wxSizerFlags().Border(wxALL, 5));
 
+	m_Float = new wxCheckBox(propertiesPanel, wxID_ANY, _("Float on water"));
+	propertiesSizer->Add(m_Float, wxSizerFlags().Border(wxALL, 5));
+
 	// TODO: Orientation property.
 
 	//////////////////////////////////////////////////////////////////////////
@@ -79,10 +82,6 @@ ActorEditor::ActorEditor(wxWindow* parent)
 	m_Material = new wxComboBox(materialsPanel, wxID_ANY, _T(""), wxDefaultPosition, wxDefaultSize, materials);
 	materialsSizer->Add(m_Material, wxSizerFlags().Border(wxALL, 2));
 
-	//////////////////////////////////////////////////////////////////////////
-
-//	void convert_actors();
-//	convert_actors();
 }
 
 void ActorEditor::ThawData(AtObj& in)
@@ -90,11 +89,8 @@ void ActorEditor::ThawData(AtObj& in)
 	AtObj actor (in["actor"]);
 	m_ActorEditorListCtrl->ThawData(actor);
 
-	if (actor["castshadow"].defined())
-		m_CastShadows->SetValue(true);
-	else
-		m_CastShadows->SetValue(false);
-
+	m_CastShadows->SetValue(actor["castshadow"].defined());
+	m_Float->SetValue(actor["float"].defined());
 	m_Material->SetValue(actor["material"]);
 }
 
@@ -104,6 +100,9 @@ AtObj ActorEditor::FreezeData()
 
 	if (m_CastShadows->IsChecked())
 		actor.set("castshadow", L"");
+
+	if (m_Float->IsChecked())
+		actor.set("float", L"");
 
 	if (m_Material->GetValue().length())
 		actor.set("material", m_Material->GetValue().c_str());
@@ -301,11 +300,8 @@ void ActorEditor::ImportData(AtObj& in)
 	AtObj actor (data["actor"]);
 	m_ActorEditorListCtrl->ImportData(actor);
 
-	if (actor["castshadow"].defined())
-		m_CastShadows->SetValue(true);
-	else
-		m_CastShadows->SetValue(false);
-
+	m_CastShadows->SetValue(actor["castshadow"].defined());
+	m_Float->SetValue(actor["float"].defined());
 	m_Material->SetValue(actor["material"]);
 }
 
@@ -318,6 +314,9 @@ AtObj ActorEditor::ExportData()
 
 	if (m_CastShadows->IsChecked())
 		actor.set("castshadow", L"");
+
+	if (m_Float->IsChecked())
+		actor.set("float", L"");
 
 	if (m_Material->GetValue().length())
 		actor.set("material", m_Material->GetValue().c_str());

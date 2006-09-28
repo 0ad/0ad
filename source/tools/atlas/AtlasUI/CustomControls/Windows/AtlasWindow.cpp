@@ -55,14 +55,14 @@ END_EVENT_TABLE()
 IMPLEMENT_CLASS(AtlasWindow, wxFrame);
 
 BEGIN_EVENT_TABLE(AtlasWindow, wxFrame)
-	EVT_MENU(ID_New, AtlasWindow::OnNew)
+	EVT_MENU(wxID_NEW, AtlasWindow::OnNew)
 //	EVT_MENU(ID_Import, AtlasWindow::OnImport)
 //	EVT_MENU(ID_Export, AtlasWindow::OnExport)
-	EVT_MENU(ID_Open, AtlasWindow::OnOpen)
-	EVT_MENU(ID_Save, AtlasWindow::OnSave)
-	EVT_MENU(ID_SaveAs, AtlasWindow::OnSaveAs)
+	EVT_MENU(wxID_OPEN, AtlasWindow::OnOpen)
+	EVT_MENU(wxID_SAVE, AtlasWindow::OnSave)
+	EVT_MENU(wxID_SAVEAS, AtlasWindow::OnSaveAs)
 	EVT_MENU_RANGE(wxID_FILE1, wxID_FILE9, AtlasWindow::OnMRUFile)
-	EVT_MENU(ID_Quit,  AtlasWindow::OnQuit)
+	EVT_MENU(wxID_EXIT,  AtlasWindow::OnQuit)
 
 	EVT_MENU(wxID_UNDO, AtlasWindow::OnUndo)
 	EVT_MENU(wxID_REDO, AtlasWindow::OnRedo)
@@ -81,19 +81,19 @@ AtlasWindow::AtlasWindow(wxWindow* parent, const wxString& title, const wxSize& 
 	wxMenu *menuFile = new wxMenu;
 	m_MenuBar->Append(menuFile, _("&File"));
 	{
-		menuFile->Append(ID_New, _("&New"));
+		menuFile->Append(wxID_NEW, _("&New\tCtrl+N"));
 //		menuFile->Append(ID_Import, _("&Import..."));
 //		menuFile->Append(ID_Export, _("&Export..."));
-		menuFile->Append(ID_Open, _("&Open..."));
-		menuFile->Append(ID_Save, _("&Save"));
-		menuFile->Append(ID_SaveAs, _("Save &As..."));
+		menuFile->Append(wxID_OPEN, _("&Open...\tCtrl+O"));
+		menuFile->Append(wxID_SAVE, _("&Save\tCtrl+S"));
+		menuFile->Append(wxID_SAVEAS, _("Save &As..."));
 		menuFile->AppendSeparator();//-----------
-		menuFile->Append(ID_Quit,   _("E&xit"));
+		menuFile->Append(wxID_EXIT,   _("E&xit"));
 		m_FileHistory.UseMenu(menuFile);//-------
 		m_FileHistory.AddFilesToMenu();
 	}
 
-	m_menuItem_Save = menuFile->FindItem(ID_Save); // remember this item, to let it be greyed out
+	m_menuItem_Save = menuFile->FindItem(wxID_SAVE); // remember this item, to let it be greyed out
 	wxASSERT(m_menuItem_Save);
 
 	wxMenu *menuEdit = new wxMenu;

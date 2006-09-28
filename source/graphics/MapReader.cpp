@@ -549,6 +549,7 @@ void CXMLReader::ReadCamera(XMBElement parent)
 	m_MapReader.pCamera->m_Orientation.Translate(translation);
 	m_MapReader.pCamera->UpdateFrustum();
 }
+
 void CXMLReader::ReadCinema(XMBElement parent)
 {
 	#define EL(x) int el_##x = xmb_file.getElementID(#x)

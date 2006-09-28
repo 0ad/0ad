@@ -15,6 +15,7 @@ CObjectBase::CObjectBase()
 {
 	m_Properties.m_CastShadows = true;
 	m_Properties.m_AutoFlatten = false;
+	m_Properties.m_FloatOnWater = false;
 }
 
 bool CObjectBase::Load(const char* filename)
@@ -37,7 +38,8 @@ bool CObjectBase::Load(const char* filename)
 	#define EL(x) int el_##x = XeroFile.getElementID(#x)
 	#define AT(x) int at_##x = XeroFile.getAttributeID(#x)
 	EL(actor);
-	//EL(castshadow);
+	EL(castshadow);
+	EL(float);
 	EL(material);
 	EL(group);
 	EL(variant);
@@ -200,6 +202,14 @@ bool CObjectBase::Load(const char* filename)
 			}
 
 			++currentGroup;
+		}
+		else if (child_name == el_castshadow)
+		{
+			m_Properties.m_CastShadows = true; // TODO: this is the default, so it's a bit useless
+		}
+		else if (child_name == el_float)
+		{
+			m_Properties.m_FloatOnWater = true;
 		}
 		else if (child_name == el_material)
 		{

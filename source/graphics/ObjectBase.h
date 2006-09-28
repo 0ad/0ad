@@ -90,6 +90,8 @@ public:
 		bool m_AutoFlatten;
 		// cast shadows from this object
 		bool m_CastShadows;
+		// float on top of water
+		bool m_FloatOnWater;
 	} m_Properties;
 
 	// the material file

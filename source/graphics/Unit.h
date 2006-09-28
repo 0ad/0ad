@@ -29,11 +29,11 @@ public:
 	~CUnit();
 
 	// get unit's template object; never NULL
-	CObjectEntry* GetObject() { return m_Object; }
+	CObjectEntry* GetObject() const { return m_Object; }
 	// get unit's model data; never NULL
-	CModel* GetModel() { return m_Model; }
+	CModel* GetModel() const { return m_Model; }
 	// get actor's entity; can be NULL
-	CEntity* GetEntity() { return m_Entity; }
+	CEntity* GetEntity() const { return m_Entity; }
 
 	// Put here as it conveniently references both the model and the ObjectEntry
 	void ShowAmmunition();

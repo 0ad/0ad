@@ -8,7 +8,7 @@
 #include "ps/Game.h"
 #include "graphics/GameView.h"
 
-CVector3D AtlasMessage::Position::GetWorldSpace() const
+CVector3D AtlasMessage::Position::GetWorldSpace(bool floating) const
 {
 	switch (type)
 	{
@@ -17,7 +17,7 @@ CVector3D AtlasMessage::Position::GetWorldSpace() const
 		break;
 
 	case 1:
-		return g_Game->GetView()->GetCamera()->GetWorldCoordinates(type1.x, type1.y);
+		return g_Game->GetView()->GetCamera()->GetWorldCoordinates(type1.x, type1.y, floating);
 		break;
 
 	case 2:
@@ -31,7 +31,7 @@ CVector3D AtlasMessage::Position::GetWorldSpace() const
 	}
 }
 
-CVector3D AtlasMessage::Position::GetWorldSpace(float h) const
+CVector3D AtlasMessage::Position::GetWorldSpace(float h, bool floating) const
 {
 	switch (type)
 	{
@@ -39,11 +39,11 @@ CVector3D AtlasMessage::Position::GetWorldSpace(float h) const
 		return g_Game->GetView()->GetCamera()->GetWorldCoordinates(type1.x, type1.y, h);
 
 	default:
-		return GetWorldSpace();
+		return GetWorldSpace(floating);
 	}
 }
 
-CVector3D AtlasMessage::Position::GetWorldSpace(const CVector3D& prev) const
+CVector3D AtlasMessage::Position::GetWorldSpace(const CVector3D& prev, bool floating) const
 {
 	switch (type)
 	{
@@ -51,7 +51,7 @@ CVector3D AtlasMessage::Position::GetWorldSpace(const CVector3D& prev) const
 		return prev;
 
 	default:
-		return GetWorldSpace();
+		return GetWorldSpace(floating);
 	}
 }
 

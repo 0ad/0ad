@@ -19,6 +19,8 @@
 #include "ps/CLogger.h"
 #include "ps/Game.h"
 #include "ps/World.h"
+#include "renderer/Renderer.h"
+#include "renderer/WaterManager.h"
 #include "simulation/EntityTemplateCollection.h"
 #include "simulation/EntityTemplate.h"
 #include "simulation/Entity.h"
@@ -33,6 +35,18 @@ static bool SortObjectsList(const sObjectsListItem& a, const sObjectsListItem& b
 {
 	return wcscmp(a.name.c_str(), b.name.c_str()) < 0;
 }
+
+static bool IsFloating(const CUnit* unit)
+{
+	if (! unit)
+		return false;
+
+	if (unit->GetEntity())
+		return (unit->GetEntity()->m_base->m_anchorType != L"Ground");
+	else
+		return unit->GetObject()->m_Base->m_Properties.m_FloatOnWater;
+}
+
 
 QUERYHANDLER(GetObjectsList)
 {
@@ -92,7 +106,11 @@ void AtlasRenderSelection()
 				bound.GetCentre(centre);
 				CVector3D a = (bound[0] - centre) * 1.1f + centre;
 				CVector3D b = (bound[1] - centre) * 1.1f + centre;
+
 				float h = g_Game->GetWorld()->GetTerrain()->getExactGroundLevel(centre.X, centre.Z);
+				if (IsFloating(unit))
+					h = std::max(h, g_Renderer.GetWaterManager()->m_WaterHeight);
+
 				glColor3f(0.8f, 0.8f, 0.8f);
 				glBegin(GL_LINE_LOOP);
 					glVertex3f(a.X, h, a.Z);
@@ -216,18 +234,21 @@ END_COMMAND(SetObjectSettings);
 
 static CUnit* g_PreviewUnit = NULL;
 static CStrW g_PreviewUnitID;
+static bool g_PreviewUnitFloating;
 
 // Returns roughly the largest number smaller than f (i.e. closer to zero)
+// (TODO: does this actually work correctly?)
 static float flt_minus_epsilon(float f)
 {
 	return f - (FLT_EPSILON * f);
 }
 
-static CVector3D GetUnitPos(const Position& pos)
+static CVector3D GetUnitPos(const Position& pos, bool floating)
 {
 	static CVector3D vec;
-	vec = pos.GetWorldSpace(vec); // if msg->pos is 'Unchanged', use the previous pos
+	vec = pos.GetWorldSpace(vec, floating); // if msg->pos is 'Unchanged', use the previous pos
 
+	// Check whether the position should be clamped to the edges of the world
 	float xOnMap = clamp(vec.X, 0.f, flt_minus_epsilon((g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide()-1)*CELL_SIZE));
 	float zOnMap = clamp(vec.Z, 0.f, flt_minus_epsilon((g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide()-1)*CELL_SIZE));
 	if (xOnMap != vec.X || zOnMap != vec.Z)
@@ -276,7 +297,7 @@ MESSAGEHANDLER(ObjectPreview)
 		CStrW name;
 		if (ParseObjectName(*msg->id, isEntity, name))
 		{
-			std::set<CStr8> selections; // TODO: get selections from user
+			std::set<CStr> selections; // TODO: get selections from user
 
 			// Create new unit
 			if (isEntity)
@@ -285,12 +306,14 @@ MESSAGEHANDLER(ObjectPreview)
 				if (base) // (ignore errors)
 				{
 					g_PreviewUnit = g_UnitMan.CreateUnit(base->m_actorName, NULL, selections);
+					g_PreviewUnitFloating = (base->m_anchorType != L"Ground");
 					// TODO: variations
 				}
 			}
 			else
 			{
 				g_PreviewUnit = g_UnitMan.CreateUnit(CStr(name), NULL, selections);
+				g_PreviewUnitFloating = IsFloating(g_PreviewUnit);
 			}
 		}
 
@@ -301,7 +324,7 @@ MESSAGEHANDLER(ObjectPreview)
 	{
 		// Update the unit's position and orientation:
 
-		CVector3D pos = GetUnitPos(msg->pos);
+		CVector3D pos = GetUnitPos(msg->pos, g_PreviewUnitFloating);
 
 		float s, c;
 
@@ -343,7 +366,7 @@ BEGIN_COMMAND(CreateObject)
 	{
 		// Calculate the position/orientation to create this unit with
 		
-		m_Pos = GetUnitPos(msg->pos);
+		m_Pos = GetUnitPos(msg->pos, false);
 
 		if (msg->usetarget)
 		{
@@ -372,7 +395,7 @@ BEGIN_COMMAND(CreateObject)
 		CStrW name;
 		if (ParseObjectName(*msg->id, isEntity, name))
 		{
-			std::set<CStr8> selections;
+			std::set<CStr> selections;
 
 			if (isEntity)
 			{
@@ -477,8 +500,13 @@ QUERYHANDLER(PickObject)
 		// object's model-centre, so that callers know the offset to use when
 		// working out the screen coordinates to move the object to.
 		// (TODO: http://trac.0ad.homeip.net/ticket/99)
+		
 		CVector3D centre = target->GetModel()->GetTransform().GetTranslation();
+
 		centre.Y = g_Game->GetWorld()->GetTerrain()->getExactGroundLevel(centre.X, centre.Z);
+		if (IsFloating(target))
+			centre.Y = std::max(centre.Y, g_Renderer.GetWaterManager()->m_WaterHeight);
+
 		float cx, cy;
 		g_Game->GetView()->GetCamera()->GetScreenCoordinates(centre, cx, cy);
 
@@ -501,6 +529,8 @@ BEGIN_COMMAND(MoveObject)
 		CUnit* unit = g_UnitMan.FindByID(msg->id);
 		if (! unit) return;
 
+		m_PosNew = GetUnitPos(msg->pos, IsFloating(unit));
+
 		if (unit->GetEntity())
 		{
 			m_PosOld = unit->GetEntity()->m_position;
@@ -510,8 +540,6 @@ BEGIN_COMMAND(MoveObject)
 			CMatrix3D m = unit->GetModel()->GetTransform();
 			m_PosOld = m.GetTranslation();
 		}
-
-		m_PosNew = GetUnitPos(msg->pos);
 
 		SetPos(m_PosNew);
 	}
