@@ -240,8 +240,8 @@ extern LibError snd_set_gain(Handle hs, float gain);
  * may be called at any time; fails with invalid handle return if
  * the sound has already been closed (e.g. it never played).
  *
- * @param pitch 1.0 means no change; each reduction by 50% equals a
- * pitch shift of -12 semitones (one octave). zero is invalid.
+ * @param pitch shift: 1.0 means no change; each doubling/halving equals a
+ * pitch shift of +/-12 semitones (one octave). zero is invalid.
  * @return LibError
  **/
 extern LibError snd_set_pitch(Handle hs, float pitch);

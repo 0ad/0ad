@@ -2098,15 +2098,15 @@ LibError snd_set_gain(Handle hvs, float gain)
  * the sound has already been closed (e.g. it never played).
  *
  * @param hvs Handle to VSrc
- * @param pitch shift: 1.0 means no change; each reduction by 50% equals a
- * pitch shift of -12 semitones (one octave). zero is invalid.
+ * @param pitch shift: 1.0 means no change; each doubling/halving equals a
+ * pitch shift of +/-12 semitones (one octave). zero is invalid.
  * @return LibError
  */
 LibError snd_set_pitch(Handle hvs, float pitch)
 {
 	H_DEREF(hvs, VSrc, vs);
 
-	if(!(0.0f < pitch && pitch <= 1.0f))
+	if(pitch <= 0.0f)
 		WARN_RETURN(ERR::INVALID_PARAM);
 
 	vs->pitch = pitch;
