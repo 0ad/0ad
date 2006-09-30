@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <cassert>
 
 #include <bfd.h>
 #include <cxxabi.h>
@@ -39,11 +40,11 @@
 
 // Hard-coded - yuck :P
 #if defined(TESTING)
-#define EXE_NAME "ps_test"
+#define EXE_NAME "pyrogenesis_test"
 #elif defined(NDEBUG)
-#define EXE_NAME "ps"
+#define EXE_NAME "pyrogenesis"
 #else
-#define EXE_NAME "ps_dbg"
+#define EXE_NAME "pyrogenesis_dbg"
 #endif
 
 struct symbol_file_context
@@ -159,7 +160,7 @@ LibError debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* UNUSE
 		bufpos += len;
 	}
 
-	return INFO_OK;
+	return INFO::OK;
 }
 
 static int slurp_symtab(symbol_file_context *ctx)
@@ -317,7 +318,7 @@ static LibError debug_resolve_symbol_dladdr(void *ptr, char* sym_name, char* fil
 	
 	int res=dladdr(ptr, &syminfo);
 	if (res == 0)
-		WARN_RETURN(ERR_FAIL);
+		WARN_RETURN(ERR::FAIL);
 	
 	if (sym_name)
 	{
@@ -341,7 +342,7 @@ static LibError debug_resolve_symbol_dladdr(void *ptr, char* sym_name, char* fil
 		*line=0;
 	}
 	
-	return INFO_OK;
+	return INFO::OK;
 }
 
 LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line)
@@ -406,7 +407,7 @@ LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file,
 		*line = ctx.line;
 	}
 	
-	return INFO_OK;
+	return INFO::OK;
 }
 
 void debug_puts(const char* text)

@@ -1,6 +1,10 @@
 #ifndef VIEW_H__
 #define VIEW_H__
 
+#include "graphics/Camera.h"
+
+#include "Messages.h"
+
 class CUnit;
 
 class ViewGame;

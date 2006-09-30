@@ -27,7 +27,7 @@ LibError dir_add_watch(const char* const n_full_path, intptr_t* const watch)
 {
 	// init already failed; don't try again or complain
 	if(initialized == -1)
-		return ERR_FAIL;	// NOWARN
+		return ERR::FAIL;	// NOWARN
 
 	if(!initialized)
 	{
@@ -41,7 +41,7 @@ LibError dir_add_watch(const char* const n_full_path, intptr_t* const watch)
 		{
 			initialized = -1;
 			DISPLAY_ERROR(L"Error initializing FAM; hotloading will be disabled");
-			return ERR_FAIL;	// NOWARN
+			return ERR::FAIL;	// NOWARN
 		}
 	}
 
@@ -50,34 +50,34 @@ LibError dir_add_watch(const char* const n_full_path, intptr_t* const watch)
 	{
 		*watch = -1;
 		debug_warn("res_watch_dir failed!");
-		WARN_RETURN(ERR_FAIL);	// no way of getting error code?
+		WARN_RETURN(ERR::FAIL);	// no way of getting error code?
 	}
 
 	*watch = (intptr_t)req.reqnum;
 	dirs[*watch] = n_full_path;
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
 LibError dir_cancel_watch(const intptr_t watch)
 {
 	if(initialized == -1)
-		return ERR_FAIL;	// NOWARN
+		return ERR::FAIL;	// NOWARN
 	if(!initialized)
-		WARN_RETURN(ERR_LOGIC);
+		WARN_RETURN(ERR::LOGIC);
 
 	FAMRequest req;
 	req.reqnum = (int)watch;
 	RETURN_ERR(FAMCancelMonitor(&fc, &req));
-	return INFO_OK;
+	return INFO::OK;
 }
 
 int dir_get_changed_file(char* fn)
 {
 	if(initialized == -1)
-		return ERR_FAIL;	// NOWARN
+		return ERR::FAIL;	// NOWARN
 	if(!initialized)
-		WARN_RETURN(ERR_LOGIC);
+		WARN_RETURN(ERR::LOGIC);
 
 	FAMEvent e;
 	while(FAMPending(&fc) > 0)
@@ -90,11 +90,11 @@ int dir_get_changed_file(char* fn)
 				const char* dir = dirs[e.fr.reqnum].c_str();
 				snprintf(n_path, PATH_MAX, "%s%c%s", dir, DIR_SEP, e.filename);
 				RETURN_ERR(file_make_portable_path(n_path, fn));
-				return INFO_OK;
+				return INFO::OK;
 			}
 		}
 	}
 
 	// just nothing new; try again later
-	return ERR_AGAIN;	// NOWARN
+	return ERR::AGAIN;	// NOWARN
 }

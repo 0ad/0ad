@@ -3,6 +3,8 @@
 
 #include "EntityHandles.h"
 #include "maths/Vector4D.h"
+#include "scripting/SpiderMonkey.h"
+#include "ps/CStr.h"
 
 class CEntity;
 

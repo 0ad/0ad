@@ -28,7 +28,7 @@ public:
 	CVertexBuffer::VBChunk* Allocate(size_t vertexSize,size_t numVertices,bool dynamic);
 
 	// return given chunk to it's owner
-	void CVertexBufferManager::Release(CVertexBuffer::VBChunk* chunk);
+	void Release(CVertexBuffer::VBChunk* chunk);
 
 	// empty out the batch lists of all vertex buffers
 	void ClearBatchIndices();

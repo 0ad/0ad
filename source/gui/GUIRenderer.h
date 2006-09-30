@@ -42,7 +42,7 @@ namespace GUIRenderer
 		void clear();
 		DrawCalls();
 		DrawCalls(const DrawCalls&);
-		const DrawCalls& DrawCalls::operator=(const DrawCalls&);
+		const DrawCalls& operator=(const DrawCalls&);
 		~DrawCalls();
 	};
 }

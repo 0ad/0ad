@@ -6,6 +6,7 @@
 #include "GameLoop.h"
 #include "Messages.h"
 
+#include "graphics/GameView.h"
 #include "graphics/SColor.h"
 #include "graphics/UnitManager.h"
 #include "renderer/Renderer.h"

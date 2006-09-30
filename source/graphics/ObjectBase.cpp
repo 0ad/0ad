@@ -1,6 +1,7 @@
 #include "precompiled.h"
 
 #include <algorithm>
+#include <queue>
 
 #include "ObjectBase.h"
 

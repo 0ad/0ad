@@ -3,6 +3,8 @@
 #ifndef ENTITY_SUPPORT_INCLUDED
 #define ENTITY_SUPPORT_INCLUDED
 
+#include "ps/CStr.h"
+
 #include "EntityHandles.h"
 
 class CEntityManager;

@@ -7,12 +7,14 @@
 // Mark Thompson (mot20@cam.ac.uk / mark@wildfiregames.com)
 
 #include <vector>
+#include <map>
 
 #include "Singleton.h"
 #include "simulation/EntityHandles.h"
 #include "ps/Vector2D.h"
 #include "lib/input.h"
 #include "lib/res/handle.h"
+#include "ps/CStr.h"
 
 class CVector3D;
 class CUnit;

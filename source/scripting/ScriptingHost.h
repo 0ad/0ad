@@ -91,7 +91,7 @@ public:
 
 	jsval CallFunction(const std::string & functionName, jsval * params, int numParams);
 
-	jsval ScriptingHost::ExecuteScript(const CStrW& script, const CStrW& calledFrom = CStrW( L"Console" ), JSObject* contextObject = NULL );
+	jsval ExecuteScript(const CStrW& script, const CStrW& calledFrom = CStrW( L"Console" ), JSObject* contextObject = NULL );
 
 	void RegisterFunction(const std::string & functionName, JSNative function, int numArgs);
 

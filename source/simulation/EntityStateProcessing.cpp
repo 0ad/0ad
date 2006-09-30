@@ -62,7 +62,7 @@ float CEntity::chooseMovementSpeed( float distance )
 
 	// Modify the speed based on the slope of the terrain in our direction (obtained from our x orientation)
 	float angle = m_orientation_unclamped.x;
-	int sector = ia32_rintf( angle / (PI/2) * m_base->m_pitchDivs );
+	int sector = rintf( angle / (PI/2) * m_base->m_pitchDivs );
 	speed -= sector * m_base->m_pitchValue;
 
 	// TODO: the animation code requires unicode for now. will be changed to

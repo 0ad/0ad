@@ -18,6 +18,8 @@
 #ifndef ENTITY_MANAGER_INCLUDED
 #define ENTITY_MANAGER_INCLUDED
 
+#include <set>
+
 #include "ps/Singleton.h"
 #include "EntityHandles.h"
 #include "EntityPredicate.h"

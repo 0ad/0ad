@@ -1122,7 +1122,7 @@ void free_dbg(const void* user_p, AllocType type, const char* file, int line, co
 		if(!a)
 		{
 			log("[!] mmgr_free: not allocated by this memory manager\n");
-			DEBUG_WARN_ERR(ERR::ALLOC_NOT_FOUND);
+			DEBUG_WARN_ERR(ERR::MEM_ALLOC_NOT_FOUND);
 			goto fail;
 		}
 		// .. overrun? (note: alloc_is_valid already asserts if invalid)

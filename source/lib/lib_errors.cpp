@@ -33,7 +33,7 @@
 #include <string.h>
 #include <stdlib.h>	// abs
 #include <errno.h>
-
+#include <map>
 
 struct LibErrorAssociation
 {

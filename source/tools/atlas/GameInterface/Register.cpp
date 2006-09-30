@@ -6,6 +6,8 @@
 // so cheat and undefine its include-guard
 #undef MESSAGES_H__
 
+#include <map>
+
 #include "SharedTypes.h"
 #include "Shareable.h"
 

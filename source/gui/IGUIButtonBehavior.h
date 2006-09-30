@@ -87,7 +87,7 @@ public:
 	/**
 	 * Choosing which color of the following according to 
 	 */
-	CColor IGUIButtonBehavior::ChooseColor();
+	CColor ChooseColor();
 
 
 protected:

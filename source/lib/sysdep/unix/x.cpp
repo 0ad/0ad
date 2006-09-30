@@ -35,7 +35,7 @@ LibError gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
 {
 	Display* disp = XOpenDisplay(0);
 	if(!disp)
-		WARN_RETURN(ERR_FAIL);
+		WARN_RETURN(ERR::FAIL);
 
 	int screen = XDefaultScreen(disp);
 	
@@ -59,7 +59,7 @@ LibError gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
 	if(freq)
 		*freq = 0;
 	XCloseDisplay(disp);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 
@@ -69,7 +69,7 @@ LibError gfx_get_monitor_size(int& width_mm, int& height_mm)
 {
 	Display* disp = XOpenDisplay(0);
 	if(!disp)
-		WARN_RETURN(ERR_FAIL);
+		WARN_RETURN(ERR::FAIL);
 
 	int screen = XDefaultScreen(disp);
 	
@@ -77,7 +77,7 @@ LibError gfx_get_monitor_size(int& width_mm, int& height_mm)
 	height_mm=XDisplayHeightMM(disp, screen);
 	
 	XCloseDisplay(disp);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 /*
@@ -190,7 +190,7 @@ wchar_t *sys_clipboard_get()
 LibError sys_clipboard_free(wchar_t *clip_buf)
 {
 	free(clip_buf);
-	return INFO_OK;
+	return INFO::OK;
 }
 
 /*
@@ -205,7 +205,7 @@ Setting the Selection (i.e. "copy")
 LibError sys_clipboard_set(const wchar_t *clip_str)
 {
 	// Not Implemented, see comment before clipboard_get, above
-	WARN_RETURN(ERR_FAIL);
+	WARN_RETURN(ERR::FAIL);
 }
 
 #endif	// #ifdef HAVE_X

@@ -4,6 +4,7 @@
 struct ActorViewerImpl;
 struct SColor4ub;
 class CUnit;
+class CStrW;
 
 class ActorViewer
 {

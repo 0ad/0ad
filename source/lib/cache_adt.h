@@ -27,6 +27,7 @@
 
 #include <list>
 #include <map>
+#include <queue>
 
 /*
 Cache for items of variable size and value/"cost".

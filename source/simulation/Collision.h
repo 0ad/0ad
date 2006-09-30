@@ -19,6 +19,8 @@
 
 class CEntity;
 class CPlayer;
+class CStrW;
+
 #include "EntityHandles.h"
 
 struct rayIntersectionResults
