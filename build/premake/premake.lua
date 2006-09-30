@@ -20,7 +20,7 @@ if OS == "windows" then
 	project.nasmpath = "../../build/bin/nasm.exe"
 	project.cxxtestpath = "../../build/bin/cxxtestgen.exe"
 else
-	project.cxxtestpath = "../../build/bin/cxxtestgen"
+	project.cxxtestpath = "../../build/bin/cxxtestgen.pl"
 end
 
 source_root = "../../../source/" -- default for most projects - overridden by local in others

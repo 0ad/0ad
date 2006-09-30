@@ -432,6 +432,7 @@ static const char* listCppTargets(const char* name)
 	}
 	else if (prj_is_kind("cxxtestgen"))
 	{
+		const char *cxxtestpath = prj_get_cxxtestpath(); // must be called before path_swapex because of shared buffer
 		const char *target_name=path_swapextension(name, ".h", ".cpp");
 		sprintf(g_buffer,
 		"%s: %s\n"
@@ -439,7 +440,7 @@ static const char* listCppTargets(const char* name)
 			"\t%s%s --part -o %s %s\n", target_name, name,
 		g_verbose?"":"\t@echo $(notdir $<)\n",
 		g_verbose?"":"@",
-		"cxxtestgen", target_name, name);
+		cxxtestpath, target_name, name);
 
 		return g_buffer;
 	}
