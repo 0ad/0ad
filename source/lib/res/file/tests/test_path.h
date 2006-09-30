@@ -25,7 +25,7 @@ public:
 	#else
 		// sounds strange, but correct: on non-Windows, \\ didn't
 		// get recognized as separators and weren't converted.
-		TS_ASSERT_STR_EQUALS(P_path, "a\\b\\c"));
+		TS_ASSERT_STR_EQUALS(P_path, "a\\b\\c");
 	#endif
 
 	}

@@ -259,6 +259,11 @@ const char* prj_get_cxxtest_rootoptions()
 	return my_cfg->cxxtest_rootoptions;
 }
 
+const char* prj_get_cxxtest_options()
+{
+	return my_cfg->cxxtest_options;
+}
+
 const char* prj_get_cxxtest_rootfile()
 {
 	return my_cfg->cxxtest_rootfile;

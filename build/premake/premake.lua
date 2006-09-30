@@ -609,11 +609,14 @@ function get_all_test_files(root, src_files, hdr_files)
 	for i,v in all_files do
 		-- header file in subdirectory test
 		if string.sub(v, -2) == ".h" and string.find(v, "/tests/") then
-			tinsert(hdr_files, v)
-			-- add the corresponding source file immediately, instead of
-			-- waiting for it to appear after cxxtestgen. this avoids
-			-- having to recreate workspace 2x after adding a test.
-			tinsert(src_files, string.sub(v, 1, -3) .. ".cpp")
+			-- don't include sysdep tests on the wrong sys
+			if not (string.find(v, "/sysdep/win/") and OS ~= "windows") then
+				tinsert(hdr_files, v)
+				-- add the corresponding source file immediately, instead of
+				-- waiting for it to appear after cxxtestgen. this avoids
+				-- having to recreate workspace 2x after adding a test.
+				tinsert(src_files, string.sub(v, 1, -3) .. ".cpp")
+			end
 		end
 	end
 	
@@ -635,8 +638,10 @@ function setup_tests()
 		package.pchheader = "precompiled.h"
 
 		package.rootoptions = "--gui=Win32Gui --runner=ParenPrinter --include="..package.pchheader
+		package.testoptions = "--include="..package.pchheader
 	else
-		package.rootoptions = "--error-printer"
+		package.rootoptions = "--runner=ErrorPrinter --include=pch/test/precompiled.h"
+		package.testoptions = "--include=pch/test/precompiled.h"
 	end
 
 
@@ -663,6 +668,27 @@ function setup_tests()
 		package.pchheader = "precompiled.h"
 		package.pchsource = "precompiled.cpp"
 		tinsert(package.files, { pch_dir.."precompiled.cpp", pch_dir.."precompiled.h" })
+		package.rootoptions = "--include=precompiled.h"
+
+	elseif OS == "linux" then
+
+		tinsert(package.links, {
+			"fam",
+			-- Utilities
+			"pthread", "rt",
+			-- Debugging
+			"bfd", "iberty"
+		})
+		-- For debug_resolve_symbol
+		
+	
+		package.config["Debug"].linkoptions = { "-rdynamic" }
+		package.config["Testing"].linkoptions = { "-rdynamic" }
+
+	
+		tinsert(package.libpaths, "/usr/X11R6/lib")
+	
+		package.rootoptions = "--include=precompiled.h"
 	end
 
 	tinsert(package.buildflags, "use-library-dep-inputs")

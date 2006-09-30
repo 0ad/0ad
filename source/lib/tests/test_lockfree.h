@@ -189,7 +189,7 @@ public:
 	TestMultithread()
 		: is_complete(false), num_active_threads(0),
 		  list(), hash(),
-		  mutex(0) {}
+		  mutex() {}
 
 	void disabled_due_to_failure_on_p4_test_multithread()
 	{

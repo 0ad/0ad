@@ -223,7 +223,9 @@ int gnu_cpp()
 	}
 	else
 	{
-		io_print("\t@true\n\n", prefix);
+		io_print("\t@%s --root", prj_get_cxxtestpath());
+		io_print(" %s ", prj_get_cxxtest_rootoptions());
+		io_print(" -o %s\n\n", prj_get_cxxtest_rootfile());
 	}
 
 /*
@@ -432,15 +434,20 @@ static const char* listCppTargets(const char* name)
 	}
 	else if (prj_is_kind("cxxtestgen"))
 	{
-		const char *cxxtestpath = prj_get_cxxtestpath(); // must be called before path_swapex because of shared buffer
-		const char *target_name=path_swapextension(name, ".h", ".cpp");
+		const char *cxxtestpath = strdup(prj_get_cxxtestpath());
+		const char *cxxtestoptions = strdup(prj_get_cxxtest_options());
+		const char *target_name = path_swapextension(name, ".h", ".cpp");
+
 		sprintf(g_buffer,
-		"%s: %s\n"
+			"%s: %s\n"
 			"%s"
-			"\t%s%s --part -o %s %s\n", target_name, name,
+			"\t%s%s --part %s -o %s %s\n",
+		target_name, name,
 		g_verbose?"":"\t@echo $(notdir $<)\n",
-		g_verbose?"":"@",
-		cxxtestpath, target_name, name);
+		g_verbose?"":"@", cxxtestpath, cxxtestoptions, target_name, name);
+
+		free(cxxtestpath);
+		free(cxxtestoptions);
 
 		return g_buffer;
 	}

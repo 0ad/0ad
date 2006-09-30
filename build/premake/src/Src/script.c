@@ -352,8 +352,9 @@ static int export_pkgconfig(Package* package, int tbl)
 		config->pchHeader  = export_value(tbl, obj, "pchheader");
 		config->pchSource  = export_value(tbl, obj, "pchsource");
 		config->trimprefix = export_value(tbl, obj, "trimprefix");
-		config->cxxtest_rootoptions  = export_value(tbl, obj, "rootoptions");
-		config->cxxtest_rootfile  = export_value(tbl, obj, "rootfile");
+		config->cxxtest_options     = export_value(tbl, obj, "testoptions");
+		config->cxxtest_rootoptions = export_value(tbl, obj, "rootoptions");
+		config->cxxtest_rootfile    = export_value(tbl, obj, "rootfile");
 
 		/* Assign a default target, if none specified */
 		if (config->target == NULL)
