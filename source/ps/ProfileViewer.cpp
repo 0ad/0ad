@@ -13,6 +13,7 @@
 #include "precompiled.h"
 
 #include <ctime>
+#include <algorithm>
 
 #include "ProfileViewer.h"
 #include "Profile.h"
@@ -440,8 +441,8 @@ void CProfileViewer::SaveToFile()
 	m->outputStream << "PS profiler snapshot - " << asctime(localtime(&t));
 
 	std::vector<AbstractProfileTable*> tables = m->rootTables;
-	std::sort(tables.begin(), tables.end(), SortByName);
-	std::for_each(tables.begin(), tables.end(), WriteTable(m->outputStream));
+	sort(tables.begin(), tables.end(), SortByName);
+	for_each(tables.begin(), tables.end(), WriteTable(m->outputStream));
 
 	m->outputStream << "\n\n================================================================\n";
 	m->outputStream.flush();

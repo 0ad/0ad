@@ -10,6 +10,8 @@
 */
 #include "precompiled.h"
 
+#include <algorithm>
+
 #include "SoundGroup.h"
 
 #include "ps/XML/Xeromyces.h"

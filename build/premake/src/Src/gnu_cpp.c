@@ -17,6 +17,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <malloc.h>
 #include "premake.h"
 #include "gnu.h"
 #include "os.h"
@@ -434,8 +435,8 @@ static const char* listCppTargets(const char* name)
 	}
 	else if (prj_is_kind("cxxtestgen"))
 	{
-		const char *cxxtestpath = strdup(prj_get_cxxtestpath());
-		const char *cxxtestoptions = strdup(prj_get_cxxtest_options());
+		char *cxxtestpath = strdup(prj_get_cxxtestpath());
+		char *cxxtestoptions = strdup(prj_get_cxxtest_options());
 		const char *target_name = path_swapextension(name, ".h", ".cpp");
 
 		sprintf(g_buffer,

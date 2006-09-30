@@ -10,6 +10,8 @@
 
 #include "precompiled.h"
 
+#include <algorithm>
+
 #include "lib/timer.h"
 #include "lib/res/file/vfs.h"
 #include "lib/res/graphics/tex.h"

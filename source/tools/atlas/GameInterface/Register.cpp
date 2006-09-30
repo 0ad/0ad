@@ -7,6 +7,7 @@
 #undef MESSAGES_H__
 
 #include <map>
+#include <string>
 
 #include "SharedTypes.h"
 #include "Shareable.h"

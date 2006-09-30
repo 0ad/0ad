@@ -27,7 +27,7 @@ const char* html_header1 = "</h1>\n";
 
 const char* html_footer = "";
 	// (</body> and </html> are optional too - this way we get the same valid
-	// output even if we crash and don't close the file properly...)
+	// output even if we crash and don't close the file properly)
 
 CLogger::CLogger()
 {
