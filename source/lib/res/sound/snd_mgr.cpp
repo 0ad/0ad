@@ -1636,7 +1636,7 @@ static LibError VSrc_validate(const VSrc * vs)
 	// no limitations on <pos>
 	if(!(0.0f <= vs->gain && vs->gain <= 1.0f))
 		WARN_RETURN(ERR::_2);
-	if(!(0.0f < vs->pitch && vs->pitch <= 1.0f))
+	if(!(0.0f < vs->pitch && vs->pitch <= 2.0f))
 		WARN_RETURN(ERR::_3);
 	if(*(u8*)&vs->loop > 1 || *(u8*)&vs->relative > 1)
 		WARN_RETURN(ERR::_4);
