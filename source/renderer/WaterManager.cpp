@@ -52,7 +52,7 @@ WaterManager::WaterManager()
 	m_RefractionTexture = 0;
 	m_WaterTexTimer = 0.0;
 	m_Shininess = 150.0f;
-	m_SpecularStrength = 0.45f;
+	m_SpecularStrength = 0.4f;
 	m_Waviness = 8.0f;
 	m_ReflectionTint = CColor(1.0f, 1.0f, 1.0f, 1.0f);
 	m_ReflectionTintStrength = 0.0f;

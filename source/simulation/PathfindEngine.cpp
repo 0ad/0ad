@@ -6,6 +6,8 @@
 #include "Entity.h"
 #include "EntityTemplate.h"
 #include "PathfindEngine.h"
+#include "graphics/Terrain.h"
+#include "ps/World.h"
 
 
 CPathfindEngine::CPathfindEngine()
@@ -94,8 +96,9 @@ void CPathfindEngine::requestContactPath( HEntity entity, CEntityOrder* current,
 	CEntityOrder waypoint;
 	waypoint.m_type = CEntityOrder::ORDER_GOTO_WAYPOINT_CONTACT;
 	waypoint.m_source = current->m_source;
-	waypoint.m_data[0].location = current->m_data[0].entity->m_position;
-	*((float*)&waypoint.m_data[0].data) = std::max( current->m_data[0].entity->m_bounds->m_radius, range );
+	HEntity target = current->m_data[0].entity;
+	waypoint.m_data[0].location = target->m_position;
+	*((float*)&waypoint.m_data[0].data) = std::max( target->m_bounds->m_radius, range );
 	entity->m_orderQueue.push_front( waypoint );
 
 	//pathSparse( entity, current->m_data[0].entity->m_position );
@@ -111,4 +114,35 @@ void CPathfindEngine::requestContactPath( HEntity entity, CEntityOrder* current,
 	//		*it = *current;
 	//	}
 	//}
+}
+
+bool CPathfindEngine::requestAvoidPath( HEntity entity, CEntityOrder* current, float avoidRange )
+{
+	/* TODO: Same as non-contact: need high-level planner */
+
+	// TODO: Replace this with a new type of goal which is to avoid some point or line segment
+	// (requires changes to pathfinder to support this type of goal)
+
+	CEntityOrder waypoint;
+	waypoint.m_type = CEntityOrder::ORDER_GOTO_WAYPOINT_CONTACT;
+	waypoint.m_source = current->m_source;
+
+	// Figure out a direction to move
+	HEntity target = current->m_data[0].entity;
+	CVector3D dir = entity->m_position - target->m_position;
+	if(dir.LengthSquared() == 0) // shouldn't happen, but just in case
+		dir = CVector3D(1, 0, 0);
+	float dist = dir.GetLength();
+	dir.Normalize();
+
+	waypoint.m_data[0].location = entity->m_position + dir * (avoidRange - dist);
+
+	if( !g_Game->GetWorld()->GetTerrain()->isOnMap( waypoint.m_data[0].location ) )
+	{
+		return false;
+	}
+
+	*((float*)&waypoint.m_data[0].data) = 0.0f;
+	entity->m_orderQueue.push_front( waypoint );
+	return true;
 }

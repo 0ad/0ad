@@ -39,6 +39,7 @@ public:
 		float radius, CEntityOrder::EOrderSource orderSource );
 
 	void requestContactPath( HEntity entity, CEntityOrder* current, float range );
+	bool requestAvoidPath( HEntity entity, CEntityOrder* current, float avoidRange );
 private:
 	CAStarEngineLowLevel mLowPathfinder;
 };

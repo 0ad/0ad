@@ -475,10 +475,26 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		float adjMinRange = action->m_MinRange + m_bounds->m_radius + target->m_bounds->m_radius;
 		if( delta.within( adjMinRange ) )
 		{
-			// Too close... do nothing.
-			entf_clear(ENTF_IS_RUNNING);
-			entf_clear(ENTF_SHOULD_RUN);
-			return( false );
+			// Too close... avoid it if allowed by the current stance.
+			if( current->m_source == CEntityOrder::SOURCE_UNIT_AI && !m_stance->allowsMovement() )
+			{
+				popOrder();
+				m_actor->SetRandomAnimation( "idle" );
+				return false;		// We're not allowed to move at all by the current stance
+			}
+
+			entf_set(ENTF_SHOULD_RUN);
+			chooseMovementSpeed( action->m_MinRange );
+			
+			// The pathfinder will push its result in front of the current order
+			if( !g_Pathfinder.requestAvoidPath( me, current, action->m_MinRange + 2.0f ) )
+			{
+				popOrder();			// Nothing we can do.. maybe we'll find a better target
+				m_actor->SetRandomAnimation( "idle" );
+				return false;
+			}
+
+			return true;
 		}
 	}
 
