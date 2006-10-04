@@ -625,7 +625,9 @@ function performAttackRanged( evt )
 	//  action (do nothing) is what we want.
 	// Parameters 5, 6, and 7 are all optional.
 	
-	projectile = new Projectile( this, this, evt.target, 12.0, this, projectileEventImpact )
+	projectile = new Projectile( this, this, evt.target, 
+		this.actions.attack.ranged.projectileSpeed, 
+		this, projectileEventImpact )
 	
 	// We'll attach the damage information to the projectile, just to show you can
 	// do that like you can with most other objects. Could also do this by making
