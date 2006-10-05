@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="153.29" y="135.925" z="732.162"/>
+		<Position x="144.485" y="117.454" z="727.515"/>
 		<Rotation angle="0.0145895"/>
 		<Declination angle="0.614595"/>
 	</Camera>
@@ -11001,6 +11001,30 @@
 			<Player>0</Player>
 			<Position x="651.931" y="18.2683" z="995.799"/>
 			<Orientation angle="1.4039"/>
+		</Entity>
+		<Entity>
+			<Template>hele_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="77.641" y="10.815" z="814.876"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_ship_trireme</Template>
+			<Player>2</Player>
+			<Position x="106.46" y="10.815" z="827.06"/>
+			<Orientation angle="-2.86044"/>
+		</Entity>
+		<Entity>
+			<Template>hele_ship_bireme</Template>
+			<Player>6</Player>
+			<Position x="140.844" y="10.815" z="797.585"/>
+			<Orientation angle="-2.13275"/>
+		</Entity>
+		<Entity>
+			<Template>hele_ship_bireme</Template>
+			<Player>7</Player>
+			<Position x="130.791" y="10.815" z="816.766"/>
+			<Orientation angle="-2.55083"/>
 		</Entity>
 	</Entities>
 	<Nonentities>
