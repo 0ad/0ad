@@ -69,4 +69,7 @@
 	
 	</Actions>	
 	
+	<Script File="scripts/entity_functions.js" />
+	<Event On="StartConstruction" Function="entityStartConstruction" />
+	
 </Entity>
