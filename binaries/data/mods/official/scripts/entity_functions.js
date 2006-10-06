@@ -29,7 +29,7 @@ const PRODUCTION_RESEARCH = 2;
 
 // ====================================================================
 
-function entityInit()
+function entityInit( evt )
 {
 	// Initialise an entity when it is first spawned (generate starting hitpoints, etc).
 	
@@ -69,7 +69,6 @@ function entityInit()
 		else
 		{
 			// Might happen if the player clicks to place 2 buildings really fast
-			console.write( "Could not begin construction: " + result );
 			evt.preventDefault();
 			return;
 		}
