@@ -385,11 +385,16 @@ bool CEntity::Kill( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(arg
 
 	g_EntityManager.SetDeath(true);
 
-
-	if( m_actor )
+	if( m_actor && m_actor->GetRandomAnimation( "death" ) != m_actor->GetRandomAnimation( "idle" ) )
 	{
 		m_actor->SetEntitySelection( "death" );
 		m_actor->SetRandomAnimation( "death", true );
+	}
+	else
+	{
+		g_UnitMan.RemoveUnit( m_actor );
+		delete( m_actor );
+		m_actor = NULL;
 	}
 
 	return( true );

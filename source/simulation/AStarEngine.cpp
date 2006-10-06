@@ -71,6 +71,16 @@ bool CAStarEngine::findPath(
 	mGoal->setDestination(dest);
 	mGoal->setRadius(radius);
 
+	if( !mGoal->isPassable(src, player) )
+	{
+		return false;
+	}
+
+	if( radius==0 && !mGoal->isPassable(dest, player) )
+	{
+		return false;
+	}
+
 	AStarNode *start = getFreeASNode();
 	start->coord = mGoal->getTile(src);
 	start->parent = NULL;
@@ -145,7 +155,7 @@ bool CAStarEngine::findPath(
 
 	if (mSolved && best!=NULL)
 	{
-		debug_printf("Number of nodes searched: %d\n", iterations);
+		//debug_printf("Number of nodes searched: %d\n", iterations);
 		constructPath(best);
 	}
 	

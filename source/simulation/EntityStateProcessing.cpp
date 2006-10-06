@@ -489,12 +489,11 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 			// The pathfinder will push its result in front of the current order
 			if( !g_Pathfinder.requestAvoidPath( me, current, action->m_MinRange + 2.0f ) )
 			{
-				popOrder();			// Nothing we can do.. maybe we'll find a better target
-				m_actor->SetRandomAnimation( "idle" );
-				return false;
+				m_actor->SetRandomAnimation( "idle" );	// Nothing we can do.. maybe we'll find a better target
+				popOrder();
 			}
 
-			return true;
+			return false;
 		}
 	}
 

@@ -433,7 +433,6 @@ void CEntity::update( size_t timestep )
 				}
 				break;
 			case CEntityOrder::ORDER_PRODUCE:
-				debug_printf("calling processProduce once\n");
 				processProduce( current );
 				m_orderQueue.pop_front();
 				break;
