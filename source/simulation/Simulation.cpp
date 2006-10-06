@@ -370,7 +370,7 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 					// Order all the selected units to work on the new object using the given action
 					order.m_type = CEntityOrder::ORDER_START_CONSTRUCTION;
 					order.m_data[0].entity = newObj;
-					QueueOrder(order, msg->m_Entities, false);
+					QueueOrder(order, msg->m_Entities, isQueued);
 				}
 			} while(0)
 			break;

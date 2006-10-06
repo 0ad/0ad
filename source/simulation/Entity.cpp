@@ -675,6 +675,7 @@ bool CEntity::Initialize()
     CEventInitialize evt;
     if( !DispatchEvent( &evt ) ) 
 	{
+		debug_printf("start construction failed, killing self\n");
 		kill();
 		return false;
 	}

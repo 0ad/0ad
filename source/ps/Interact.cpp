@@ -1407,6 +1407,11 @@ void CBuildingPlacer::mouseReleased()
 		msg->m_Angle = (u32) (m_angle * 1000);
 		g_Game->GetSimulation()->QueueLocalCommand(msg);
 	}
+
+	if( hotkeys[HOTKEY_ORDER_QUEUE] )
+	{
+		activate( m_templateName );		// reactivate so we can place more buildings of the same type
+	}
 }
 
 void CBuildingPlacer::deactivate()

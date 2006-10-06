@@ -12,7 +12,7 @@
 class CEventInitialize : public CScriptEvent
 {
 public:
-	CEventInitialize() : CScriptEvent( L"initialize", EVENT_INITIALIZE, false ) {}
+	CEventInitialize() : CScriptEvent( L"initialize", EVENT_INITIALIZE, true ) {}
 };
 
 class CEventDeath : public CScriptEvent
