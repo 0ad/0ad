@@ -19,4 +19,16 @@
 
 	<Actor>structures/celts/barracks.xml</Actor>
 
+	<Actions>
+		<Create>
+			<List>
+				<Train>
+					<Infantry_Spearman_B />
+					<Infantry_Javelinist_B />
+					<Cavalry_Javelinist_B />
+				</Train>
+			</List>
+		</Create>
+	</Actions>
+	
 </Entity>
