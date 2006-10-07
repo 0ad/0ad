@@ -54,10 +54,10 @@ WaterManager::WaterManager()
 	m_Shininess = 150.0f;
 	m_SpecularStrength = 0.4f;
 	m_Waviness = 8.0f;
-	m_ReflectionTint = CColor(1.0f, 1.0f, 1.0f, 1.0f);
+	m_ReflectionTint = CColor(0.28f, 0.3f, 0.59f, 1.0f);
 	m_ReflectionTintStrength = 0.0f;
-	m_WaterTint = CColor(0.25f, 0.3f, 0.55f, 1.0f);
-	m_Murkiness = 0.3f;
+	m_WaterTint = CColor(0.28f, 0.3f, 0.59f, 1.0f);
+	m_Murkiness = 0.45f;
 	m_RepeatPeriod = 16.0f;
 
 	for (uint i = 0; i < ARRAY_SIZE(m_WaterTexture); i++)
