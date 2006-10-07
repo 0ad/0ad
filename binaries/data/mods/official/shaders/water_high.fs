@@ -51,10 +51,10 @@ void main()
 	reflCoords = 0.5 * (gl_TexCoord[1].xy / gl_TexCoord[1].w) + 0.5;	// Unbias texture coords
 	reflCoords += waviness * n.xz / w;
 	
-	reflColor = mix(texture2D(reflectionMap, reflCoords).rgb, diffuse * reflectionTint, 
+	reflColor = mix(texture2D(reflectionMap, reflCoords).rgb, sunColor * reflectionTint, 
 					reflectionTintStrength);
 	
-	refrColor = mix((0.6 + 0.4*ndotl) * texture2D(refractionMap, refrCoords).rgb, diffuse * tint,
+	refrColor = (0.5 + 0.5*ndotl) * mix(texture2D(refractionMap, refrCoords).rgb, sunColor * tint,
 					myMurkiness);
 	
 	specular = pow(max(0.0, ndoth), shininess) * sunColor * specularStrength;
