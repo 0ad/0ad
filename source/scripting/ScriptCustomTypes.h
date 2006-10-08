@@ -21,6 +21,7 @@ public:
 	SColour() { SColourInit( 0.0f, 0.0f, 0.0f, 0.0f ); }
 	SColour( float r, float g, float b ) { SColourInit( r, g, b, 1.0f ); }
 	SColour( float r, float g, float b, float a ) { SColourInit( r, g, b, a ); }
+	SColour( const SColour& other ) { SColourInit( other.r, other.g, other.b, other.a ); }
 	void SColourInit( float r, float g, float b, float a );
 	
 	SColour &operator = (const SColour &o);

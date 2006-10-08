@@ -142,10 +142,12 @@ jsval CPlayer::JSI_SetColour( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 	return argv[0];
 }
 
-jsval CPlayer::JSI_GetColour( JSContext* cx, uintN UNUSED(argc), jsval* UNUSED(argv) )
+jsval CPlayer::JSI_GetColour( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-	ISynchedJSProperty *prop=GetSynchedProperty(L"colour");
-	return prop->Get(cx, this);
+	//ISynchedJSProperty *prop=GetSynchedProperty(L"colour");
+	//return prop->Get(cx, this);
+	SPlayerColour* col = &m_Colour;
+	return ToJSVal(col);
 }
 
 jsval CPlayer::JSI_SetDiplomaticStance(JSContext *cx, uintN argc, jsval *argv)

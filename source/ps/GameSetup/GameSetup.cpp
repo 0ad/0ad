@@ -478,6 +478,7 @@ static void InitScripting()
 	new CScheduler;
 
 	// Register the JavaScript interfaces with the runtime
+	SColour::ScriptingInit();
 	CEntity::ScriptingInit();
 	CEntityTemplate::ScriptingInit();
 	JSI_Sound::ScriptingInit();
@@ -489,7 +490,6 @@ static void InitScripting()
 #endif
 	JSI_Vector3D::init();
 	EntityCollection::Init( "EntityCollection" );
-	SColour::ScriptingInit();
 	CPlayer::ScriptingInit();
 
 	PlayerCollection::Init( "PlayerCollection" );
@@ -757,10 +757,10 @@ void Shutdown(uint flags)
 {
 	MICROLOG(L"Shutdown");
 
-	ShutdownPs(); // Must delete g_GUI before g_ScriptingHost
-
 	if (g_Game)
 		EndGame();
+
+	ShutdownPs(); // Must delete g_GUI before g_ScriptingHost
 
 	TIMER_BEGIN("shutdown Scheduler");
 	delete &g_Scheduler;
