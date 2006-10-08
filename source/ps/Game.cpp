@@ -19,7 +19,7 @@
 #include "graphics/GameView.h"
 
 extern CConsole* g_Console;
-extern bool g_TerrainModified;
+extern bool g_GameRestarted;
 
 CGame *g_Game=NULL;
 
@@ -101,12 +101,13 @@ PSRETURN CGame::ReallyStartGame()
 	// The call tree we've built for pregame probably isn't useful in-game.
 	g_Profiler.StructuralReset();
 
+	// Mark terrain as modified so the minimap can repaint (is there a cleaner way of handling this?)
+	g_GameRestarted = true;
+
+
 #ifndef NO_GUI
 	g_GUI.SendEventToAll("sessionstart");
 #endif
-
-	// Mark terrain as modified so the minimap can repaint (is there a cleaner way of handling this?)
-	g_TerrainModified = true;
 
 	return 0;
 }

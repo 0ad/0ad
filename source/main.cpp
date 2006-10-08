@@ -44,6 +44,7 @@ that of Atlas depending on commandline parameters.
 #define LOG_CATEGORY "main"
 
 extern bool g_TerrainModified;
+extern bool g_GameRestarted;
 
 void kill_mainloop();
 
@@ -317,6 +318,7 @@ static void Frame()
 		kill_mainloop();
 
 	g_TerrainModified = false;
+	g_GameRestarted = false;
 }
 
 

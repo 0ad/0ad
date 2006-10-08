@@ -28,6 +28,7 @@
 
 
 bool g_TerrainModified = false;
+bool g_GameRestarted = false;
 
 // used by GetMapSpaceCoords (precalculated as an optimization).
 // this was formerly access via inline asm, which required it to be
@@ -230,7 +231,7 @@ void CMiniMap::Draw()
 	// happens when the game is started, so abort until then.
 	if(!(GetGUI() && g_Game && g_Game->IsGameStarted()))
 		return;
-
+	
 	glDisable(GL_DEPTH_TEST);
 
 	// Set our globals in case they hadn't been set before
@@ -245,7 +246,7 @@ void CMiniMap::Draw()
 	m_scaleX = float(m_Width) / float(m_MapSize - 1);
 	m_scaleY = float(m_Height) / float(m_MapSize - 1);
 
-	if(!m_TerrainTexture)
+	if(!m_TerrainTexture || g_GameRestarted)
 		CreateTextures();
 
 	// do not limit this as with LOS updates below - we must update
