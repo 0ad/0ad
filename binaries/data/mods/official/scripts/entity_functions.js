@@ -547,27 +547,27 @@ function performAttack( evt )
 	{
 		console.write("" + this + " doing a charge attack!");
 		var a = this.actions.attack.charge;
-		dmg.crush = parseInt(a.damage * a.crush);
-		dmg.hack = parseInt(a.damage * a.hack);
-		dmg.pierce = parseInt(a.damage * a.pierce);
+		dmg.crush = a.damage * a.crush;
+		dmg.hack = a.damage * a.hack;
+		dmg.pierce = a.damage * a.pierce;
 		this.setRun( false );
 	}
 	else
 	{
 		var a = this.actions.attack.melee;
-		dmg.crush = parseInt(a.damage * a.crush);
-		dmg.hack = parseInt(a.damage * a.hack);
-		dmg.pierce = parseInt(a.damage * a.pierce);
+		dmg.crush = a.damage * a.crush;
+		dmg.hack = a.damage * a.hack;
+		dmg.pierce = a.damage * a.pierce;
 	}
 	
 	// Add flank penalty
+	var bonus = 1.0;
 	if(evt.target.traits.flankPenalty)
-	{
-		var flank = (evt.target.getAttackDirections()-1)*evt.target.traits.flankPenalty.value;
-		dmg.crush += dmg.crush * flank;
-		dmg.hack += dmg.hack * flank;
-		dmg.pierce += dmg.pierce * flank;
-	}
+		bonus += (evt.target.getAttackDirections()-1) * evt.target.traits.flankPenalty.value;
+	bonus += getElevationBonus(this.getHeight() - evt.target.getHeight());
+	dmg.crush *= bonus;
+	dmg.hack *= bonus;
+	dmg.pierce *= bonus;
 
 	evt.target.damage( dmg, this );
 	
@@ -582,24 +582,18 @@ function performAttackRanged( evt )
 	// Create a projectile from us, to the target, that will do some damage when it hits them.
 	dmg = new DamageType();
 	var a = this.actions.attack.ranged;
-	dmg.crush = parseInt(a.damage * a.crush);
-	dmg.hack = parseInt(a.damage * a.hack);
-	dmg.pierce = parseInt(a.damage * a.pierce);
+	dmg.crush = a.damage * a.crush;
+	dmg.hack = a.damage * a.hack;
+	dmg.pierce = a.damage * a.pierce;
 	
 	// Add flank penalty and elevation bonus
-	var elevationBonus = (this.getHeight() - evt.target.getHeight())/this.traits.elevation.rate * this.traits.elevation.value;
-	
-	dmg.crush += dmg.crush * elevationBonus;
-	dmg.hack += dmg.hack * elevationBonus;
-	dmg.pierce += dmg.pierce * elevationBonus;
-
+	var bonus = 1.0;
 	if(evt.target.traits.flankPenalty)
-	{
-		var flank = (evt.target.getAttackDirections()-1)*evt.target.traits.flankPenalty.value;
-		dmg.crush += dmg.crush * flank;
-		dmg.hack += dmg.hack * flank;
-		dmg.pierce += dmg.pierce * flank;
-	}
+		bonus += (evt.target.getAttackDirections()-1) * evt.target.traits.flankPenalty.value;
+	bonus += getElevationBonus(this.getHeight() - evt.target.getHeight());
+	dmg.crush *= bonus;
+	dmg.hack *= bonus;
+	dmg.pierce *= bonus;
 
 	// The parameters for Projectile are:	
 	// 1 - The actor to use as the projectile. There are two ways of specifying this:
@@ -846,22 +840,22 @@ function performRepair( evt )
 
 function damage( dmg, inflictor )
 {	
-	if(!this.traits.armour) return;		// corpses have no armour, everything else should
+	var arm = this.traits.armour;
+	if(!arm) return;		// corpses have no armour, everything else should
 	
 	this.lastCombatTime = getGameTime();
 	
 	// Apply armour and work out how much damage we actually take
-	crushDamage = parseInt(dmg.crush - this.traits.armour.value * this.traits.armour.crush);
+	crushDamage = dmg.crush - arm.value * arm.crush;
 	if ( crushDamage < 0 ) crushDamage = 0;
-	pierceDamage = parseInt(dmg.pierce - this.traits.armour.value * this.traits.armour.pierce);
+	pierceDamage = dmg.pierce - arm.value * arm.pierce;
 	if ( pierceDamage < 0 ) pierceDamage = 0;
-	hackDamage = parseInt(dmg.hack - this.traits.armour.value * this.traits.armour.hack);
+	hackDamage = dmg.hack - arm.value * arm.hack;
 	if ( hackDamage < 0 ) hackDamage = 0;
 
 	totalDamage = parseInt(dmg.typeless + crushDamage + pierceDamage + hackDamage);
 
 	// Minimum of 1 damage
-
 	if( totalDamage < 1 ) totalDamage = 1;
 
 	this.traits.health.curr -= totalDamage;
@@ -1733,6 +1727,18 @@ function canRepair( source, target )
 
 // ====================================================================
 
+// Get the elevation attack bonus if we are heightDif units higher than our target
+function getElevationBonus( heightDif )
+{
+	if ( heightDif > 2.0 )
+		return 0.3;	// we are significantly higher, get a positive bonus
+	else 
+		return 0.0;	// we are at roughly the same height, or below
+}
+
+// ====================================================================
+
+// DamageType class
 function DamageType()
 {
 	this.typeless = 0.0;
