@@ -46,7 +46,6 @@ function entityInit( evt )
 
 		if (result == true) // If the entry meets requirements to be added to the queue (eg sufficient resources) 
 		{
-			console.write("There");
 			// Cycle through all costs of this entry.
 			var pool = template.traits.creation.resource;
 			for ( resource in pool )
@@ -60,8 +59,8 @@ function entityInit( evt )
 						// Deduct the given quantity of resources.
 						this.player.resources[resource.toString()] -= parseInt(pool[resource]);
 
-						console.write ("Spent " + pool[resource] + " " + resource + " to build " + 
-							template.traits.id.generic);
+						//console.write ("Spent " + pool[resource] + " " + resource + " to build " + 
+						//	template.traits.id.generic);
 					break;
 				}
 			}
@@ -252,7 +251,7 @@ function entityInit( evt )
 			this.traits.ai.stance.list.defend = new Object();
 			this.traits.ai.stance.list.stand = new Object();
 			// Set default stance for combat units.
-			this.traits.ai.stance.curr = "hold";
+			this.traits.ai.stance.curr = "aggress";
 		}
 	}
 	
@@ -653,8 +652,8 @@ function projectileEventImpact( evt )
 	// aiming at. This function gets called when the projectile hits *anything*.
 	// For example:
 	
-	if( evt.impacted.player == evt.originator.player )
-		console.write( "Friendly fire!" );
+	//if( evt.impacted.player == evt.originator.player )
+	//	console.write( "Friendly fire!" );
 		
 	// The three properties of the ProjectileImpact event are:
 	// - impacted, the thing it hit
@@ -713,7 +712,7 @@ function performHeal( evt )
 {
 	if ( this.player.getDiplomaticStance(evt.target.player) == DIPOLMACY_ENEMY )
 	{
-		console.write( "You have a traitor!" );
+		//console.write( "You have a traitor!" );
 		return;
 	}
 
@@ -737,7 +736,7 @@ function performHeal( evt )
 	}
 
 	evt.target.traits.health.curr += this.actions.heal.speed;
-	console.write( this.traits.id.specific + " has performed a miracle!" );
+	//console.write( this.traits.id.specific + " has performed a miracle!" );
 	
 	if (evt.target.traits.health.curr >= evt.target.traits.health.max)
 	{		
@@ -810,6 +809,7 @@ function performRepair( evt )
 	var t = evt.target;
 	var b = this.actions.build;
 	var hp = t.traits.health;
+	var resources = t.traits.creation.resource;
 	
 	// Find the fraction of max health to repair by; this should be one build tick (i.e. longer for buildings with
 	// longer creation time) but also not so much that it causes the unit to have more than max HP
@@ -817,25 +817,28 @@ function performRepair( evt )
 		parseFloat( b.rate ) / t.traits.creation.time,
 		( hp.max - hp.curr ) / hp.max 
 	);
-	console.write("Repair fraction is " + fraction);
+	//console.write("Repair fraction is " + fraction);
 	
 	// Check if we can afford to repair
-	var resources = t.traits.creation.resource;
 	for( r in resources )
 	{
-		amount = parseInt( fraction * parseInt(resources[r]) );
-		this.player.resources[r.toString()] -= parseInt(amount);
+		var amount = parseInt( fraction * parseInt(resources[r]) );
+		if( this.player.resources[r.toString()] < amount )
+		{
+			console.write("Can't repair - not enough " + r.toString());
+			evt.preventDefault();
+			return;
+		}
 	}
 
 	// Heal the building
 	hp.curr = Math.min( hp.max, hp.curr + fraction * hp.max );
 	
 	// Deduct the resources
-	var resources = t.traits.creation.resource;
 	for( r in resources )
 	{
 		amount = parseInt( fraction * parseInt(resources[r]) );
-		this.player.resources[r.toString()] -= parseInt(amount);
+		this.player.resources[r.toString()] -= amount;
 	}
 }
 
@@ -884,19 +887,20 @@ function damage( dmg, inflictor )
 								inflictor.traits.promotion.curr = parseInt(inflictor.traits.promotion.curr) + parseInt(this.traits.loot.xp);
 
 							// Notify player.
-							if (inflictor.traits.id.specific)
+							/*if (inflictor.traits.id.specific)
 								console.write(inflictor.traits.id.specific + " has earned " + this.traits.loot.xp + " upgrade points!");
 							else
 								console.write("One of your units has earned " + this.traits.loot.xp + " upgrade points!");
+							*/
 
 							// If he now has maximum upgrade points for his rank,
 							if (inflictor.traits.promotion.curr >= inflictor.traits.promotion.req)
 							{
 								// Notify the player.
-								if (inflictor.traits.id.specific)
+								/*if (inflictor.traits.id.specific)
 									console.write(inflictor.traits.id.specific + " has gained a promotion!");
 								else
-									console.write("One of your units has gained a promotion!");
+									console.write("One of your units has gained a promotion!");*/
 								
 								// Reset his upgrade points.
 								inflictor.traits.promotion.curr = 0; 
@@ -909,7 +913,7 @@ function damage( dmg, inflictor )
 								
 								inflictor.traits.promotion.newentity = null;		// So that setupRank() can set it properly
 								inflictor.setupRank();
-								console.write("New promotion values: " + inflictor.traits.promotion.curr + " / " + inflictor.traits.promotion.req);
+								//console.write("New promotion values: " + inflictor.traits.promotion.curr + " / " + inflictor.traits.promotion.req);
 							}
 						}
 						break;
@@ -917,7 +921,7 @@ function damage( dmg, inflictor )
 						if ( inflictor.actions.loot.resources )
 						{
 							// Notify player.
-							console.write ("Spoils of war! " + this.traits.loot[loot] + " " + loot.toString() + "!");
+							//console.write ("Spoils of war! " + this.traits.loot[loot] + " " + loot.toString() + "!");
 							// Give the inflictor his resources.
 							this.player.resources[loot.toString()] -= parseInt(this.traits.loot[loot]);
 						}
@@ -944,7 +948,7 @@ function damage( dmg, inflictor )
 		}
 
 		// We've taken what we need. Kill the swine.
-		console.write("Kill!!");
+		//console.write("Kill!!");
 		this.kill();
 	}
 	/*else if( inflictor && this.actions && this.actions.attack )
@@ -1305,7 +1309,7 @@ const TECH_RESOURCES = new Array("food", "wood", "stone", "ore");
 
 function entityStartProduction( evt )
 {
-	console.write("StartProduction: " + evt.productionType + " " + evt.name);
+	//console.write("StartProduction: " + evt.productionType + " " + evt.name);
 	
 	if( evt.productionType == PRODUCTION_TRAIN ) 
 	{
@@ -1327,8 +1331,8 @@ function entityStartProduction( evt )
 						// Deduct the given quantity of resources.
 						this.player.resources[resource.toString()] -= parseInt(pool[resource]);
 
-						console.write ("Spent " + pool[resource] + " " + resource + " to purchase " + 
-							template.traits.id.generic);
+						/*console.write ("Spent " + pool[resource] + " " + resource + " to purchase " + 
+							template.traits.id.generic);*/
 					break;
 				}
 			}
@@ -1402,7 +1406,7 @@ function entityStartProduction( evt )
 
 function entityCancelProduction( evt )
 {
-	console.write("CancelProduction: " + evt.productionType + " " + evt.name);
+	//console.write("CancelProduction: " + evt.productionType + " " + evt.name);
 	
 	if( evt.productionType == PRODUCTION_TRAIN )
 	{
@@ -1450,7 +1454,7 @@ function entityCancelProduction( evt )
 
 function entityFinishProduction( evt )
 {
-	console.write("FinishProduction: " + evt.productionType + " " + evt.name);
+	//console.write("FinishProduction: " + evt.productionType + " " + evt.name);
 	
 	if( evt.productionType == PRODUCTION_TRAIN ) 
 	{
@@ -1482,7 +1486,7 @@ function entityFinishProduction( evt )
 			// Above shouldn't ever fail, but just in case...
 			if( created )
 			{
-				console.write( "Created: ", template.tag );
+				//console.write( "Created: ", template.tag );
 				var rally = this.getRallyPoint();
 				created.order( ORDER_GOTO, rally.x, rally.z );	
 			}

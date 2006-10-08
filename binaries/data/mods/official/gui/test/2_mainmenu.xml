@@ -594,13 +594,13 @@
 				</object>
 
 
-				<object name="pgSessionSetupMapFoWTxt" 
+				<object name="pgSessionSetupFoWTxt" 
 					type="text"
 					size="5 100 110 120"
 				>Fog of War:
 				</object>
 
-				<object name="pgSessionSetupMapFoWCheck"
+				<object name="pgSessionSetupFoW"
 					style="wheatCrossBox"
 					type="checkbox"
 					size="120 100 140 120"
@@ -628,7 +628,7 @@
 					<item>All Visible</item>
 
 					<action on="Load"><![CDATA[
-						getGUIObjectByName("pgSessionSetupLosSetting").selected = 2;
+						getGUIObjectByName("pgSessionSetupLosSetting").selected = 0;
 				]]></action>
 				</object>
 				
@@ -858,7 +858,7 @@ A large landmass with rivers, forests and coastal fishing grounds.
 			<object name="pgSessionSetupGrpHelpInfo"
 				style="wheatBorderBlack"
 				type="image"
-				size="67%+5 50%+30 100%-10 100%-50"
+				size="67%+5 50%+30 100%-10 100%-80"
 			>
 				<object name="pgSessionSetupInfoTxt"
 					type="text"
@@ -876,8 +876,27 @@ A large landmass with rivers, forests and coastal fishing grounds.
 				</object>
 				
 			</object>
-
-
+			
+			<!--
+			==========================================
+			- SCREENSHOT MODE CHECKBOX
+			==========================================
+			-->
+			
+			<object name="pgSessionSetupScreenshotModeTxt" 
+				type="text"
+				size="83%-125 100%-65 83%+10 100%-45"
+			>Screenshot Mode:
+			</object>
+			
+			<object name="pgSessionSetupScreenshotMode"
+				style="wheatCrossBox"
+				type="checkbox"
+				size="83%+10 100%-65 83%+30 100%-45"
+				checked="false"
+			/>
+			
+			
 			<!--
 			==========================================
 			- GAME SETUP - BUTTONS
@@ -892,9 +911,18 @@ A large landmass with rivers, forests and coastal fishing grounds.
 				tooltip="Click this button to start a new game with the current settings."
 			>Start!
 				<action on="Press"><![CDATA[
+						var losSetting = getGUIObjectByName("pgSessionSetupLosSetting").selected;
+						var fowEnabled = getGUIObjectByName("pgSessionSetupFoW").checked;
+						if(getGUIObjectByName("pgSessionSetupScreenshotMode").checked)
+						{
+							losSetting = 2;
+							fowEnabled = false;
+						}
 						startMap (
 							getCurrItemValue("pgSessionSetupMapName"),
-							getGUIObjectByName("pgSessionSetupLosSetting").selected,
+							losSetting,
+							fowEnabled,
+							getGUIObjectByName("pgSessionSetupScreenshotMode").checked,
 							"pgSessionSetup");
 				]]></action>
 			</object>

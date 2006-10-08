@@ -5,12 +5,12 @@
 
 // ====================================================================
 
-function startMap (mapName, losSetting, openWindow)
+function startMap (mapName, losSetting, fogOfWar, screenshotMode, openWindow)
 {
 	// Starts the map, closing the current window.
 	// mapName: 	.pmp to load.
 	// openWindow: 	Window group (usually parent string) of control that called the function. It'll be hidden.
-
+	
 	// Check whether we have a correct file extension, to avoid crashes
 	var extension = mapName.substring (mapName.length, mapName.length-4);
 	if (extension != ".pmp")
@@ -22,6 +22,8 @@ function startMap (mapName, losSetting, openWindow)
 	// Set up game
 	g_GameAttributes.mapFile = mapName;
 	g_GameAttributes.losSetting = losSetting;
+	g_GameAttributes.fogOfWar = fogOfWar;
+	g_GameAttributes.screenshotMode = screenshotMode;
 	
 	// Close setup window
 	closeMainMenuSubWindow (openWindow);

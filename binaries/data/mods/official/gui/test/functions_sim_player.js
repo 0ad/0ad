@@ -44,7 +44,7 @@ function addResourceCounter (index, resourceName)
 			resourceUIArray.unshift ( index );
 	}
 	
-	console.write( "Added " + resourceName /*+ " (" + resourceQty + ")"*/ );
+	//console.write( "Added " + resourceName /*+ " (" + resourceQty + ")"*/ );
 }
 
 // ====================================================================

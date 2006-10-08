@@ -13,7 +13,7 @@ function worldClickHandler(event)
 {
 	args=new Array(null, null);
 
-	console.write("worldClickHandler: button "+event.button+", clicks "+event.clicks);
+	//console.write("worldClickHandler: button "+event.button+", clicks "+event.clicks);
 
 	if (isSelecting())
 	{
@@ -29,7 +29,7 @@ function worldClickHandler(event)
 			cmd = event.order;
 		else if (event.clicks == 2)
 		{
-			console.write("Issuing secondary order");
+			//console.write("Issuing secondary order");
 			cmd = event.secondaryOrder;
 		}
 	}
@@ -84,7 +84,7 @@ function worldClickHandler(event)
 			{
 				if (!selection[i].actions)
 					continue;
-				console.write("Requesting notification for " + event.entity);
+				//console.write("Requesting notification for " + event.entity);
 				selection[i].requestNotification( event.entity, action, true, false );
 				selection[i].order( ORDER_GOTO, event.entity.position.x, event.entity.position.z -							selection[i].actions.escort.distance, true);
 			}
@@ -95,7 +95,7 @@ function worldClickHandler(event)
 			{
 				if (!selection[i].actions)
 					continue;
-				console.write("Requesting notification for " + event.entity);		
+				//console.write("Requesting notification for " + event.entity);		
 				selection[i].requestNotification( event.entity, action, true, false );
 			}
 		}	
