@@ -155,8 +155,8 @@ function endSession (closeType)
 		endGame();
 		
 		// Fade out current music and return to playing menu theme.
-		curr_music = newRandomSound("music", "menu");
-		crossFade(curr_session_playlist_1, curr_music, 1);
+		//curr_music = newRandomSound("music", "menu");
+		//crossFade(curr_session_playlist_1, curr_music, 1);
 
 		// Stop refreshing the session controls.
 		cancelInterval();

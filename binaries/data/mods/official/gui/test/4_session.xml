@@ -27,6 +27,16 @@
 			]]></action>
 		</object>
 
+		<!-- EMPTY OBJECT USED TO RETURN TO MAIN MENU. -->
+		<object name="snReturn"
+			hotkey="menu.resign"
+		>
+			<action on="Press"><![CDATA[
+				console.write("Returning to main menu!");
+				endSession("return");
+			]]></action>
+		</object>
+		
 		<!-- EMPTY OBJECT USED TO TOGGLE WATER RENDERING. -->
 		<object name="snWaterToggle"
 			hotkey="water.toggle"

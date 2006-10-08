@@ -350,6 +350,9 @@ function snRefresh()
 		
 		// Refresh handler that monitors whether property/selection has been updated.
 		resetUpdateVars();
+		
+		// Refresh resources
+		refreshResources();
 	}
 
 	if ( selectionChanged && getGUIObjectByName( "mn" ).hidden == false)
@@ -357,9 +360,6 @@ function snRefresh()
 		// Update manual if it's open.
 		refreshManual();
 	}
-	
-	// Always refresh resources
-	refreshResources();
 }
 
 // ====================================================================
