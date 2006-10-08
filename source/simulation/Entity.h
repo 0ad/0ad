@@ -477,5 +477,6 @@ public:
 extern int SELECTION_CIRCLE_POINTS;
 extern int SELECTION_BOX_POINTS;
 extern int SELECTION_SMOOTHNESS_UNIFIED;
+extern int AURA_CIRCLE_POINTS;
 
 #endif

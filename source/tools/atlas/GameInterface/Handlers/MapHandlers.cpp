@@ -32,6 +32,10 @@ static void InitGame(std::wstring map)
 
 	// Make the whole world visible
 	g_GameAttributes.m_LOSSetting = 2;
+	g_GameAttributes.m_FogOfWar = false;
+
+	// Disable unit AI (and other things that may interfere with making things look nice)
+	g_GameAttributes.m_ScreenshotMode = true;
 
 	// Initialise the game:
 	g_Game = new CGame();

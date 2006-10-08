@@ -11,12 +11,14 @@
 #include "maths/MathUtil.h"
 #include "Entity.h"
 
+int AURA_CIRCLE_POINTS;
 int SELECTION_CIRCLE_POINTS;
 int SELECTION_BOX_POINTS;
 int SELECTION_SMOOTHNESS_UNIFIED = 9;
 
 CEntityManager::CEntityManager()
 : m_collisionPatches(0)
+, m_screenshotMode(false)
 , m_entities()	// janwas: default-initialize entire array;
 				// CHandle ctor sets m_entity and m_refcount to 0
 {
@@ -31,6 +33,7 @@ CEntityManager::CEntityManager()
 	if( SELECTION_SMOOTHNESS_UNIFIED < 0 ) SELECTION_SMOOTHNESS_UNIFIED = 0;
 	SELECTION_CIRCLE_POINTS = 7 + 2 * SELECTION_SMOOTHNESS_UNIFIED;
 	SELECTION_BOX_POINTS = 1 + SELECTION_SMOOTHNESS_UNIFIED;
+	AURA_CIRCLE_POINTS = 7 + 3 * SELECTION_SMOOTHNESS_UNIFIED;
 }
 
 

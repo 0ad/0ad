@@ -64,11 +64,12 @@ public:
 	static const int ALL_VISIBLE = 2;
 
 	int m_LOSSetting;
+	bool m_FogOfWar;
 
 	CLOSManager();
 	~CLOSManager();
 
-	void Initialize(uint losSetting);	// 0 = normal, 1 = explored, 2 = all visible
+	void Initialize(uint losSetting, bool fogOfWar);	// 0 = normal, 1 = explored, 2 = all visible
 	void Update();
 
 	// Get LOS status for a tile (in tile coordinates)

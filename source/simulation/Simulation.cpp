@@ -56,10 +56,11 @@ int CSimulation::Initialize(CGameAttributes* pAttribs)
 	g_ScriptingHost.RunScript( "scripts/game_startup.js" );
 
 	// [2006-06-26 3647ms]
+	g_EntityManager.m_screenshotMode = pAttribs->m_ScreenshotMode;
 	g_EntityManager.InitializeAll();
 
 	// [2006-06-26: 61ms]
-	m_pWorld->GetLOSManager()->Initialize(pAttribs->m_LOSSetting);
+	m_pWorld->GetLOSManager()->Initialize(pAttribs->m_LOSSetting, pAttribs->m_FogOfWar);
 
 	m_pWorld->GetTerritoryManager()->Initialize();
 

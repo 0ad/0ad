@@ -20,7 +20,8 @@ void CAggressStance::onIdle()
 
 void CAggressStance::onDamaged(CEntity *source)
 {
-	if( source && m_Entity->m_orderQueue.empty() )
+	if( source && m_Entity->m_orderQueue.empty() 
+		&& m_Entity->GetPlayer()->GetDiplomaticStance(source->GetPlayer()) != DIPLOMACY_ALLIED )
 		CStanceUtils::attack( m_Entity, source );
 }
 
@@ -31,6 +32,13 @@ void CStandStance::onIdle()
 	CEntity* target = CStanceUtils::chooseTarget( m_Entity );
 	if( target )
 		CStanceUtils::attack( m_Entity, target );
+}
+
+void CStandStance::onDamaged(CEntity *source)
+{
+	if( source && m_Entity->m_orderQueue.empty() 
+		&& m_Entity->GetPlayer()->GetDiplomaticStance(source->GetPlayer()) != DIPLOMACY_ALLIED )
+		CStanceUtils::attack( m_Entity, source );
 }
 
 // DefendStance /////////////////////////////////////////////////////
@@ -46,7 +54,8 @@ void CDefendStance::onIdle()
 
 void CDefendStance::onDamaged(CEntity *source)
 {
-	if( source && m_Entity->m_orderQueue.empty() )
+	if( source && m_Entity->m_orderQueue.empty()
+		&& m_Entity->GetPlayer()->GetDiplomaticStance(source->GetPlayer()) != DIPLOMACY_ALLIED )
 	{
 		// Retaliate only if we can reach the enemy unit without walking farther than our LOS
 		// radius away from idlePos.

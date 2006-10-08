@@ -119,6 +119,8 @@ public:
 	CStrW m_ResourceLevel;
 	CStrW m_StartingPhase;
 	uint m_LOSSetting;
+	bool m_FogOfWar;
+	bool m_ScreenshotMode;
 
 	// Note: we must use the un-internationalized name of the resource level and starting phase
 

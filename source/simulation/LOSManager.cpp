@@ -15,7 +15,7 @@
 #include "lib/timer.h"
 
 
-CLOSManager::CLOSManager() : m_LOSSetting(0)
+CLOSManager::CLOSManager() : m_LOSSetting(0), m_FogOfWar(true)
 {
 #ifdef _2_los
 	m_Explored = 0;
@@ -38,10 +38,11 @@ CLOSManager::~CLOSManager()
 #endif
 }
 
-void CLOSManager::Initialize(uint losSetting) 
+void CLOSManager::Initialize(uint losSetting, bool fogOfWar) 
 {
 	// Set special LOS setting
 	m_LOSSetting = losSetting;
+	m_FogOfWar = fogOfWar;
 
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 	m_TilesPerSide = terrain->GetVerticesPerSide() - 1;
@@ -68,7 +69,7 @@ void CLOSManager::Initialize(uint losSetting)
 	u16 vis_value = 0;
 	if(m_LOSSetting == EXPLORED || m_LOSSetting == ALL_VISIBLE)
 		for(int i = 0; i < 8; i++) vis_value |= LOS_EXPLORED << (i*2);
-	if(m_LOSSetting == ALL_VISIBLE)
+	if(m_LOSSetting == ALL_VISIBLE || (m_LOSSetting == EXPLORED && !m_FogOfWar) )
 		for(int i = 0; i < 8; i++) vis_value |= LOS_VISIBLE << (i*2);
 #endif
 	for(uint x=0; x<m_TilesPerSide; x++)
@@ -96,17 +97,23 @@ void CLOSManager::Update()
 
 	// Clear the visible array
 #ifdef _2_los
-	for(int x=0; x<m_TilesPerSide; x++)
+	if( m_FogOfWar )
 	{
-		memset(m_Visible[x], 0, m_TilesPerSide*sizeof(int));
+		for(int x=0; x<m_TilesPerSide; x++)
+		{
+			memset(m_Visible[x], 0, m_TilesPerSide*sizeof(int));
+		}
 	}
 #else
-	u16 not_all_vis = 0xFFFF;
-	for(int i = 0; i < 8; i++)
-		not_all_vis &= ~(LOS_VISIBLE << (i*2));
-	for(uint y=0; y<m_TilesPerSide; y++)
-	for(uint x=0; x<m_TilesPerSide; x++)
-		m_VisibilityMatrix[y][x] &= not_all_vis;
+	if( m_FogOfWar )
+	{
+		u16 not_all_vis = 0xFFFF;
+		for(int i = 0; i < 8; i++)
+			not_all_vis &= ~(LOS_VISIBLE << (i*2));
+		for(uint y=0; y<m_TilesPerSide; y++)
+		for(uint x=0; x<m_TilesPerSide; x++)
+			m_VisibilityMatrix[y][x] &= not_all_vis;
+	}
 #endif
 
 	// Set visibility for each entity

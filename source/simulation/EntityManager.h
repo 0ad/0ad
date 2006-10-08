@@ -62,7 +62,8 @@ friend class CHandle;
 		//return m_entities[index].m_refcount && !m_entities[index].m_entity->entf_get(ENTF_DESTROYED);
 	}
 public:
-	
+	bool m_screenshotMode;
+
 	CEntityManager();
 	~CEntityManager();
 

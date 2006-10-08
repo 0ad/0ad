@@ -206,12 +206,12 @@ void CEntity::initAuraData()
 	size_t i=0;
 	for ( AuraTable::iterator it=m_auras.begin(); it!=m_auras.end(); ++it, ++i )
 	{
-		m_unsnappedPoints[i].resize(SELECTION_CIRCLE_POINTS);
+		m_unsnappedPoints[i].resize(AURA_CIRCLE_POINTS);
 		float radius = it->second->m_radius;
 
-		for ( int j=0; j<SELECTION_CIRCLE_POINTS; ++j )
+		for ( int j=0; j<AURA_CIRCLE_POINTS; ++j )
 		{
-			float val = j * 2*PI / (float)SELECTION_CIRCLE_POINTS;
+			float val = j * 2*PI / (float)AURA_CIRCLE_POINTS;
 			m_unsnappedPoints[i][j] = CVector2D( cosf(val)*radius, 
 											sinf(val)*radius );
 		}
@@ -675,10 +675,18 @@ bool CEntity::Initialize()
     CEventInitialize evt;
     if( !DispatchEvent( &evt ) ) 
 	{
-		debug_printf("start construction failed, killing self\n");
+		//debug_printf("start construction failed, killing self\n");
 		kill();
 		return false;
 	}
+
+	if( g_EntityManager.m_screenshotMode )
+	{
+		// Stay in Hold stance no matter what the init script wanted us to be
+		m_stanceName = "hold";
+		stanceChanged();
+	}
+
 	return true;
 }
 

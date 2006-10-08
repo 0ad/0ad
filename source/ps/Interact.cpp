@@ -863,7 +863,10 @@ void CMouseoverEntities::renderSelectionOutlines()
 
 	std::vector<SMouseoverFader>::iterator it;
 	for( it = m_mouseover.begin(); it < m_mouseover.end(); it++ )
-		it->entity->renderSelectionOutline( it->fade );
+	{
+		if( !g_Selection.isSelected(it->entity) )
+			it->entity->renderSelectionOutline( it->fade );
+	}
 
 	glDisable( GL_BLEND );
 }
@@ -874,13 +877,19 @@ void CMouseoverEntities::renderAuras()
 	glEnable(GL_BLEND);
 
 	for ( it = m_mouseover.begin(); it != m_mouseover.end(); ++it )
-		it->entity->renderAuras();
+	{
+		if( !g_Selection.isSelected(it->entity) )
+			it->entity->renderAuras();
+	}
 }
 void CMouseoverEntities::renderBars()
 {
 	std::vector<SMouseoverFader>::iterator it;
 	for( it = m_mouseover.begin(); it < m_mouseover.end(); it++ )
-		it->entity->renderBars();
+	{
+		if( !g_Selection.isSelected(it->entity) )
+			it->entity->renderBars();
+	}
 }
 
 void CMouseoverEntities::renderHealthBars()

@@ -72,7 +72,7 @@ public:
 	CStandStance(CEntity* ent): CStance(ent) {};
 	virtual ~CStandStance() {};
 	virtual void onIdle();
-	virtual void onDamaged(CEntity* UNUSED(source)) {};	// Empty because onIdle will ensure we're attacking stuff in LOS
+	virtual void onDamaged(CEntity* source);
 	virtual bool allowsMovement() { return false; };
 	virtual bool checkMovement(CVector2D UNUSED(proposedPos)) { return false; }
 };

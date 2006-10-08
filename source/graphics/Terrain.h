@@ -54,7 +54,10 @@ public:
 		return ((x >= 0.0f) && (x < (float)((m_MapSize-1) * CELL_SIZE))
 		     && (z >= 0.0f) && (z < (float)((m_MapSize-1) * CELL_SIZE)));
 	}
+
 	bool isOnMap(const CVector2D& v) const;
+
+	bool isPassable(const CVector2D& tileSpaceLoc) const;
 
 	void clampCoordToMap(int& index) const
 	{

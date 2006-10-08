@@ -79,14 +79,20 @@ bool CTerrain::Initialize(u32 size,const u16* data)
 
 ///////////////////////////////////////////////////////////////////////////////
 
+float CTerrain::getExactGroundLevel(const CVector2D& v) const
+{
+	return getExactGroundLevel(v.x, v.y);
+}
+
 bool CTerrain::isOnMap(const CVector2D& v) const
 {
 	return isOnMap(v.x, v.y);
 }
 
-float CTerrain::getExactGroundLevel(const CVector2D& v) const
+bool CTerrain::isPassable(const CVector2D &tileSpaceLoc) const
 {
-	return getExactGroundLevel(v.x, v.y);
+	// TODO: Take into account the terrain type at this location
+	return true;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

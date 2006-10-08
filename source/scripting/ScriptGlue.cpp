@@ -264,7 +264,7 @@ JSBool issueCommand( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rv
 	
 	for ( std::vector<CNetMessage*>::iterator it=messages.begin(); it != messages.end(); it++ )
 	{
-		g_Console->InsertMessage(L"issueCommand: %hs", (*it)->GetString().c_str());
+		//g_Console->InsertMessage(L"issueCommand: %hs", (*it)->GetString().c_str());
 		g_Game->GetSimulation()->QueueLocalCommand(*it);
 		*rval = g_ScriptingHost.UCStringToValue((*it)->GetString());
 	}

@@ -29,11 +29,27 @@ void SetFromNetString(int &val, const CStrW& string)
 }
 
 template <>
+CStrW ToNetString(const bool &val)
+{
+	return val ? CStrW("true") : CStrW("false");
+}
+
+template <>
+void SetFromNetString(bool &val, const CStrW& string)
+{
+	val = (string == CStrW("true"));
+}
+
+template <>
 CStrW ToNetString(const CStrW& data)
-{	return data; }
+{	
+	return data; 
+}
 
 template <> void SetFromNetString(CStrW& data, const CStrW& string)
-{	data=string; }
+{	
+	data=string; 
+}
 
 template <>
 CStrW ToNetString(const SColour &data)

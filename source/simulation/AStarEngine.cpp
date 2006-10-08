@@ -366,11 +366,10 @@ bool AStarGoalLowLevel::isPassable( const CVector2D &loc, CPlayer* player )
 		return false;
 	}
 
-	CVector2D wloc = TilespaceToWorldspace(loc);
-	float slope = pTerrain->getSlope(wloc.x, wloc.y);
-	if (  slope < MAXSLOPE )
+	if ( pTerrain->isPassable(loc) )
 	{
 		// If no entity blocking, return true
+		CVector2D wloc = TilespaceToWorldspace(loc);
 		CBoundingBox bounds(wloc.x, wloc.y, 0, CELL_SIZE, CELL_SIZE, 3);
 		if ( getCollisionObject(&bounds, player) == NULL )
 		{

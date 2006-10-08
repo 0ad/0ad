@@ -185,7 +185,9 @@ CGameAttributes::CGameAttributes():
 	m_MapFile("test01.pmp"),
 	m_ResourceLevel("default"),
 	m_StartingPhase("default"),
-	m_LOSSetting(2),
+	m_LOSSetting(0),
+	m_FogOfWar(true),
+	m_ScreenshotMode(false),
 	m_NumSlots(8),
 	m_UpdateCB(NULL),
 	m_PlayerUpdateCB(NULL),
@@ -204,6 +206,8 @@ CGameAttributes::CGameAttributes():
 	AddSynchedProperty(L"startingPhase", &m_StartingPhase);
 	AddSynchedProperty(L"numSlots", &m_NumSlots, &CGameAttributes::OnNumSlotsUpdate);
 	AddSynchedProperty(L"losSetting", &m_LOSSetting);
+	AddSynchedProperty(L"fogOfWar", &m_FogOfWar);
+	AddSynchedProperty(L"screenshotMode", &m_ScreenshotMode);
 
 	CXeromyces XeroFile;
 	if (XeroFile.Load("temp/players.xml") != PSRETURN_OK)

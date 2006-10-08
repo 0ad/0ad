@@ -225,13 +225,11 @@ void CEntity::renderAuras()
 	if( !(m_bounds && m_visible && !m_auras.empty()) )
 		return;
 	
-	const SPlayerColour& col = m_player->GetColour();
+	const SPlayerColour& playerCol = m_player->GetColour();
 	glPushMatrix();
 	glTranslatef(m_graphics_position.X, m_graphics_position.Y, 
 										m_graphics_position.Z);
-	glBegin(GL_TRIANGLE_FAN);
-	glVertex3f(0.0f, getAnchorLevel(m_graphics_position.X, 
-			m_graphics_position.Z)-m_graphics_position.Y+.5f, 0.0f);
+
 	size_t i=0;
 
 	for ( AuraTable::iterator it=m_auras.begin(); it!=m_auras.end(); ++it, ++i )
@@ -243,7 +241,10 @@ void CEntity::renderAuras()
 		//This starts to break when the radius is bigger
 		if ( it->second->m_radius < 15.0f )
 		{
-			for ( int j=0; j<SELECTION_CIRCLE_POINTS; ++j )
+			glBegin(GL_TRIANGLE_FAN);
+			glVertex3f(0.0f, getAnchorLevel(m_graphics_position.X, 
+					m_graphics_position.Z)-m_graphics_position.Y+.5f, 0.0f);
+			for ( int j=0; j<AURA_CIRCLE_POINTS; ++j )
 			{
 				CVector2D ypos( m_unsnappedPoints[i][j].x+m_graphics_position.X,
 							m_unsnappedPoints[i][j].y+m_graphics_position.Z );
@@ -257,12 +258,15 @@ void CEntity::renderAuras()
 					m_unsnappedPoints[i][0].y+m_graphics_position.Z)-
 					m_graphics_position.Y+.5f, m_unsnappedPoints[i][0].y );
 			glVertex3f(pos.X, pos.Y, pos.Z);
+			glEnd();	// GL_TRIANGLE_FAN
 		}
-		glEnd();
+
 		//Draw edges
+		glEnable(GL_LINE_SMOOTH);
+		glLineWidth(1.0f);
 		glBegin(GL_LINE_LOOP);
-		glColor3f( col.r, col.g, col.b );
-		for ( int j=0; j<SELECTION_CIRCLE_POINTS; ++j )
+		glColor3f( playerCol.r, playerCol.g, playerCol.b );
+		for ( int j=0; j<AURA_CIRCLE_POINTS; ++j )
 		{
 			CVector2D ypos( m_unsnappedPoints[i][j].x+m_graphics_position.X,
 						m_unsnappedPoints[i][j].y+m_graphics_position.Z );
@@ -271,6 +275,7 @@ void CEntity::renderAuras()
 			glVertex3f(pos.X, pos.Y, pos.Z);
 		}
 		glEnd();
+		glDisable(GL_LINE_SMOOTH);
 #else
 		if ( it->second->m_radius < 15.0f )
 		{
