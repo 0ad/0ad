@@ -4,7 +4,7 @@
   <castshadow/>
 
   <group>
-    <variant frequency="100" name="Base">
+    <variant frequency="1" name="Base">
       <animations>
         <animation file="infantry/support/idle/fem_01.psa" name="Idle" speed="200"/>
         <animation file="infantry/support/move/walk/fem_01.psa" name="Walk" speed="10"/>
@@ -30,16 +30,16 @@
   </group>
 
   <group>
-    <variant name="Dress-Light Brown">
+    <variant frequency="1" name="Dress-Light Brown">
       <texture>skeletal/hele_fem_a.dds</texture>
     </variant>
-    <variant name="Dress-Dark Brown">
+    <variant frequency="1" name="Dress-Dark Brown">
       <texture>skeletal/hele_fem_b.dds</texture>
     </variant>
-    <variant name="Dress-Gold">
+    <variant frequency="1" name="Dress-Gold">
       <texture>skeletal/hele_fem_c.dds</texture>
     </variant>
-    <variant name="Dress-Player Tint">
+    <variant frequency="1" name="Dress-Player Tint">
       <texture>skeletal/hele_fem_d.dds</texture>
     </variant>
   </group>

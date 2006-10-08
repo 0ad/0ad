@@ -4,7 +4,7 @@
   <castshadow/>
 
   <group>
-    <variant name="Base">
+    <variant frequency="1" name="Base">
       <animations>
         <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
         <animation file="quadraped/horse_gallop.psa" name="Run" speed="8"/>
@@ -15,19 +15,19 @@
   </group>
 
   <group>
-    <variant name="yellow">
+    <variant frequency="1" name="horse-yellow">
       <colour>254 216 0</colour>
     </variant>
-    <variant name="brown">
+    <variant frequency="1" name="horse-brown">
       <colour>126 91 10</colour>
     </variant>
-    <variant name="rust">
+    <variant frequency="1" name="horse-rust">
       <colour>241 131 0</colour>
     </variant>
   </group>
 
   <group>
-    <variant name="saddle-leopard">
+    <variant frequency="1" name="saddle-leopard-a">
       <props>
         <prop actor="units/hellenes/super_unit_4_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/hele_saddle_h1.xml" attachpoint="chest"/>
@@ -38,7 +38,7 @@
       </props>
       <texture>skeletal/horse_hele_j.dds</texture>
     </variant>
-    <variant name="saddle-leopard">
+    <variant frequency="1" name="saddle-leopard-b">
       <props>
         <prop actor="units/hellenes/super_unit_4_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/hele_saddle_h1.xml" attachpoint="chest"/>
@@ -49,7 +49,7 @@
       </props>
       <texture>skeletal/horse_hele_h.dds</texture>
     </variant>
-    <variant name="saddle-lion">
+    <variant frequency="1" name="saddle-lion-a">
       <props>
         <prop actor="units/hellenes/super_unit_4_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/hele_saddle_h2.xml" attachpoint="chest"/>
@@ -60,7 +60,7 @@
       </props>
       <texture>skeletal/horse_hele_i.dds</texture>
     </variant>
-    <variant name="saddle-lion">
+    <variant frequency="1" name="saddle-lion-b">
       <props>
         <prop actor="units/hellenes/super_unit_4_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/hele_saddle_h2.xml" attachpoint="chest"/>
