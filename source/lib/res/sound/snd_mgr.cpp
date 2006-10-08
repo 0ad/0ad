@@ -2176,6 +2176,8 @@ LibError snd_set_loop(Handle hvs, bool loop)
 LibError snd_fade(Handle hvs, float initial_gain, float final_gain,
 	float length, FadeType type)
 {
+	if(!hvs) return INFO::OK;	// TODO: What should really be done here?
+
 	H_DEREF(hvs, VSrc, vs);
 
 	if(type != FT_LINEAR && type != FT_EXPONENTIAL && type != FT_S_CURVE &&

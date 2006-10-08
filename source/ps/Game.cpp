@@ -19,6 +19,8 @@
 #include "graphics/GameView.h"
 
 extern CConsole* g_Console;
+extern bool g_TerrainModified;
+
 CGame *g_Game=NULL;
 
 // Disable "warning C4355: 'this' : used in base member initializer list".
@@ -102,6 +104,9 @@ PSRETURN CGame::ReallyStartGame()
 #ifndef NO_GUI
 	g_GUI.SendEventToAll("sessionstart");
 #endif
+
+	// Mark terrain as modified so the minimap can repaint (is there a cleaner way of handling this?)
+	g_TerrainModified = true;
 
 	return 0;
 }
