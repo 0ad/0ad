@@ -4,7 +4,7 @@
   <castshadow/>
 
   <group>
-    <variant frequency="100" name="Base">
+    <variant frequency="1" name="Base">
       <animations>
         <animation file="infantry/support/idle/fem_01.psa" name="Idle" speed="200"/>
         <animation file="infantry/support/move/walk/fem_01.psa" name="Walk" speed="10"/>
@@ -17,11 +17,17 @@
       </animations>
       <mesh>skeletal/f_dress.pmd</mesh>
       <props>
-        <prop actor="props/temp/rome_sign_female_citizen.xml" attachpoint="head_extra"/>
         <prop actor="props/units/heads/dudette_head.xml" attachpoint="head"/>
       </props>
-      <texture>skeletal/plac_rome_b.dds</texture>
     </variant>
   </group>
+
+  <group>
+    <variant frequency="1" name="Dreas-a">
+      <texture>skeletal/rome_fem_a.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
 
 </actor>
