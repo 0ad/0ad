@@ -246,8 +246,7 @@ void CEntity::kill()
 
 	updateCollisionPatch();
 
-
-me = HEntity(); // will deallocate the entity, assuming nobody else has a reference to it
+	me = HEntity(); // will deallocate the entity, assuming nobody else has a reference to it
 }
 
 void CEntity::SetPlayer(CPlayer *pPlayer)
