@@ -69,6 +69,7 @@ function entityInit( evt )
 		{
 			// Might happen if the player clicks to place 2 buildings really fast
 			evt.preventDefault();
+			stopXTimer(1);
 			return;
 		}
 	}
@@ -1008,13 +1009,13 @@ function entityEventNotification( evt )
 			break;
 		case NOTIFY_ATTACK:
 		case NOTIFY_DAMAGE:
-			this.order( ORDER_GENERIC, evt.target, ACTION_ATTACK, true );
+			this.order( ORDER_GENERIC, evt.target, ACTION_ATTACK );
 			break;
 		case NOTIFY_HEAL:
-			this.order( ORDER_GENERIC, evt.target, ACTION_HEAL, true );
+			this.order( ORDER_GENERIC, evt.target, ACTION_HEAL );
 			break;
 		case NOTIFY_GATHER:
-			this.order( ORDER_GENERIC, evt.target, ACTION_GATHER, true );
+			this.order( ORDER_GENERIC, evt.target, ACTION_GATHER );
 			break;
 		case NOTIFY_IDLE:
 			//target is the unit that has become idle.  Eventually...do something here.
@@ -1055,6 +1056,61 @@ function entityEventIdle( evt )
 {
 	//Use our own data for target; we aren't affecting anyone, so listeners want to know about us
 	this.forceCheckListeners( NOTIFY_IDLE, this );
+}
+
+// ====================================================================
+
+function entityEventTargetExhausted( evt )
+{
+	if( evt.action == ACTION_GATHER )
+	{
+		// Look for other stuff of the same kind to gather
+		var visible = this.getVisibleEntities();
+		var bestDist = 1e20;
+		var bestTarget = null;
+		for( var i=0; i<visible.length; i++ )
+		{
+			var e = visible[i];
+			if( canGather( this, e )
+				&& e.traits.supply.subType.toString() == evt.target.traits.supply.subType.toString() )
+			{
+				var dist = this.getDistance( e );
+				if( dist < bestDist )
+				{
+					bestDist = dist;
+					bestTarget = e;
+				}
+			}
+		}
+		if( bestTarget != null )
+		{
+			this.order( ORDER_GENERIC, bestTarget, ACTION_GATHER );
+		}
+	}
+	else if( evt.action == ACTION_BUILD )
+	{
+		// Look for other stuff to build
+		var visible = this.getVisibleEntities();
+		var bestDist = 1e20;
+		var bestTarget = null;
+		for( var i=0; i<visible.length; i++ )
+		{
+			var e = visible[i];
+			if( canBuild( this, e ) )
+			{
+				var dist = this.getDistance( e );
+				if( dist < bestDist )
+				{
+					bestDist = dist;
+					bestTarget = e;
+				}
+			}
+		}
+		if( bestTarget != null )
+		{
+			this.order( ORDER_GENERIC, bestTarget, ACTION_BUILD );
+		}
+	}
 }
 
 // ====================================================================
@@ -1691,7 +1747,7 @@ function checkEntityReqs( player, template )
 function canGather( source, target )
 {
 	// Checks whether we're allowed to gather from a target entity (this involves looking at both the type and subType).
-	if( !source.actions )
+	if( !source.actions || !target.traits )
 		return false;
 	g = source.actions.gather;
 	s = target.traits.supply;
@@ -1709,7 +1765,8 @@ function canBuild( source, target )
 	if( !source.actions )
 		return false;
 	b = source.actions.build;
-	return (b && target.building != "" && target.player.id == source.player.id );
+	return (b && target.building != "" && target.player.id == source.player.id
+		&& target.buildPoints.curr < target.buildPoints.max );
 }
 
 // ====================================================================

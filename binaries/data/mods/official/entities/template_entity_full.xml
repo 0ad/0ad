@@ -18,6 +18,7 @@
 
 	<Script File="scripts/entity_functions.js" />
 	<Event On="Generic" Function="entityEventGeneric" />
+	<Event On="TargetExhausted" Function="entityEventTargetExhausted" />
 	<Event On="TargetChanged" Function="entityEventTargetChanged" />
 	<Event On="Notification" Function="entityEventNotification" />
 	<Event On="Formation" Function="entityEventFormation" />
