@@ -365,10 +365,21 @@ bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timeste
 	HEntity target = current->m_data[0].entity;
 
 	if( !target || !target->m_extant )
-		return( false );
+	{
+		popOrder();
+		if( m_orderQueue.empty() && target )
+		{
+			CEventTargetExhausted evt( target, action->m_Id );
+			DispatchEvent( &evt );
+		}
+		return false;
+	}
 
 	if( g_Game->GetWorld()->GetLOSManager()->GetUnitStatus( target, m_player ) == UNIT_HIDDEN )
+	{
+		popOrder();
 		return false;
+	}
 
 	current->m_data[0].location = target->m_position;
 	float Distance = distance2D(current->m_data[0].location);
@@ -431,11 +442,16 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 			if(!DispatchEvent( contactEvent ))
 			{
 				// Cancel current order
-				popOrder();
 				entf_clear(ENTF_IS_RUNNING);
 				entf_clear(ENTF_SHOULD_RUN);
 				m_actor->SetEntitySelection( "idle" );
 				m_actor->SetRandomAnimation( "idle" );
+				popOrder();
+				if( m_orderQueue.empty() && target )
+				{
+					CEventTargetExhausted evt( target, action->m_Id );
+					DispatchEvent( &evt );
+				}
 				return( false );
 			}
 		}
@@ -456,10 +472,13 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 	if( !target || !target->m_extant
 		|| g_Game->GetWorld()->GetLOSManager()->GetUnitStatus( target, m_player ) == UNIT_HIDDEN )
 	{
-		//TODO:  eventually when stances/formations are implemented, if applicable (e.g. not 
-		//heal or if defensive stance), the unit should expand and continue the order.
-		
 		popOrder();
+		if( m_orderQueue.empty() && target )
+		{
+			CEventTargetExhausted evt( target, action->m_Id );
+			DispatchEvent( &evt );
+		}
+
 		entf_clear(ENTF_IS_RUNNING);
 		entf_clear(ENTF_SHOULD_RUN);
 		return( false );

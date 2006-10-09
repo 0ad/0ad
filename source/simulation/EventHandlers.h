@@ -35,6 +35,14 @@ public:
 	CEventGeneric( CEntity* target, int action );
 };
 
+class CEventTargetExhausted : public CScriptEvent
+{
+	CEntity* m_target;
+	int m_action;
+public:
+	CEventTargetExhausted( CEntity* target, int action );
+};
+
 class CEventStartConstruction : public CScriptEvent
 {
 	CEntity* m_target;

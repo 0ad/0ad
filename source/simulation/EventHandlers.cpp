@@ -10,6 +10,14 @@ CEventGeneric::CEventGeneric( CEntity* target, int action ) : CScriptEvent( L"ge
 	AddLocalProperty( L"action", &m_action );
 }
 
+CEventTargetExhausted::CEventTargetExhausted( CEntity* target, int action ) : CScriptEvent( L"TargetExhausted", EVENT_TARGET_EXHAUSTED, true)
+{
+	m_target = target;
+	m_action = action;
+	AddLocalProperty( L"target", &m_target );
+	AddLocalProperty( L"action", &m_action );
+}
+
 CEventStartConstruction::CEventStartConstruction( CEntity* target ) : CScriptEvent( L"startConstruction", EVENT_START_CONSTRUCTION, true)
 {
 	m_target = target;

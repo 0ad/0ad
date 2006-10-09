@@ -11,13 +11,15 @@ class CEntityManager;
 
 struct SEntityAction
 {
+	int m_Id;
 	float m_MaxRange;
 	float m_MinRange;
 	size_t m_Speed;
 	CStr8 m_Animation;
-	SEntityAction() { m_MaxRange = m_MinRange = 0.0f; m_Speed = 1000; m_Animation = "walk"; }
-	SEntityAction(float minRange, float maxRange, size_t speed, CStr8& animation)
-		: m_MinRange(minRange), m_MaxRange(maxRange), m_Speed(speed), m_Animation(animation) {}
+	SEntityAction()
+		: m_Id(0), m_MinRange(0), m_MaxRange(0), m_Speed(1000), m_Animation("walk") {}
+	SEntityAction(int id, float minRange, float maxRange, size_t speed, CStr8& animation)
+		: m_Id(id), m_MinRange(minRange), m_MaxRange(maxRange), m_Speed(speed), m_Animation(animation) {}
 };
 
 class CClassSet

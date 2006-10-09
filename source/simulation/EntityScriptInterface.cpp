@@ -14,6 +14,7 @@
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"
 #include "scripting/ScriptableComplex.inl"
+#include "ps/scripting/JSCollection.h"
 
 #include "Aura.h"
 #include "Collision.h"
@@ -80,6 +81,8 @@ void CEntity::ScriptingInit()
 	AddMethod<jsval, &CEntity::SetRallyPoint>( "setRallyPoint", 0 );
 	AddMethod<jsval, &CEntity::GetRallyPoint>( "getRallyPoint", 0 );
 	AddMethod<jsval, &CEntity::OnDamaged>( "onDamaged", 1 );
+	AddMethod<jsval, &CEntity::GetVisibleEntities>( "getVisibleEntities", 0 );
+	AddMethod<float, &CEntity::GetDistance>( "getDistance", 1 );
 
 	AddClassProperty( L"traits.id.classes", (GetFn)&CEntity::getClassSet, (SetFn)&CEntity::setClassSet );
 	AddClassProperty( L"template", (CEntityTemplate* CEntity::*)&CEntity::m_base, false, (NotifyFn)&CEntity::loadBase );
@@ -593,7 +596,7 @@ jsval CEntity::SetActionParams( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 	uint speed = ToPrimitive<uint>( argv[3] );
 	CStr8 animation = ToPrimitive<CStr8>( argv[4] );
 
-	m_actions[id] = SEntityAction( minRange, maxRange, speed, animation );
+	m_actions[id] = SEntityAction( id, minRange, maxRange, speed, animation );
 
 	return JSVAL_VOID;
 }
@@ -860,12 +863,32 @@ jsval CEntity::SetRallyPoint( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* 
 	return JS_TRUE;
 }
 
+// Called by the script when the entity is damaged, to let it retaliate
 jsval CEntity::OnDamaged( JSContext* cx, uintN argc, jsval* argv )
 {
 	JSU_REQUIRE_PARAMS_CPP(1);
 	CEntity* damageSource = ToNative<CEntity>( argv[0] );
 	m_stance->onDamaged( damageSource );
 	return JSVAL_VOID;
+}
+
+jsval CEntity::GetVisibleEntities( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+{
+	std::vector<CEntity*> pointers;
+	g_EntityManager.GetInLOS( this, pointers );
+	std::vector<HEntity> handles( pointers.size() );
+	for( size_t i=0; i<pointers.size(); i++ )
+		handles[i] = pointers[i]->me;
+	return OBJECT_TO_JSVAL( EntityCollection::Create( handles ) );
+}
+
+float CEntity::GetDistance( JSContext* cx, uintN argc, jsval* argv )
+{
+	JSU_REQUIRE_PARAMS_CPP(1);
+	CEntity* target = ToNative<CEntity>( argv[0] );
+	if( !target )
+		return -1.0f;
+	return this->distance2D( target );
 }
 
 /*

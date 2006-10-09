@@ -411,6 +411,10 @@ public:
 	
 	jsval OnDamaged( JSContext* cx, uintN argc, jsval* argv );
 
+	jsval GetVisibleEntities( JSContext* cx, uintN argc, jsval* argv );
+
+	float GetDistance( JSContext* cx, uintN argc, jsval* argv );
+
 	bool RequestNotification( JSContext* cx, uintN argc, jsval* argv );
 	//Just in case we want to explicitly check the listeners without waiting for the order to be pushed
 	bool ForceCheckListeners( JSContext* cx, uintN argc, jsval* argv );
@@ -447,6 +451,7 @@ public:
 		debug_assert( argc >= 1 );
 		return( m_classes.IsMember( ToPrimitive<CStrW>( cx, argv[0] ) ) );
 	}
+
 	jsval TerminateOrder( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 	{
 		debug_assert( argc >= 1);
@@ -456,10 +461,12 @@ public:
 			m_orderQueue.pop_front();
 		return JSVAL_VOID;
 	}
+
 	jsval GetHeight( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 	{
 		return ToJSVal(m_position.Y);
 	}
+
 	static void ScriptingInit();
 
 	// Functions that call script code
