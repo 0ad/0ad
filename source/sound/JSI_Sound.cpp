@@ -118,7 +118,8 @@ bool JSI_Sound::Loop( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(a
 // sounds are freed automatically when done playing.
 bool JSI_Sound::Free( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-	snd_free(m_Handle);	// resets it to 0
+	if(m_Handle)
+		snd_free(m_Handle);	// resets it to 0
 	return true;
 }
 

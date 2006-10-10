@@ -757,8 +757,9 @@ int CEntity::DestroyNotifier( CEntity* target )
 	std::vector<CEntity*>::iterator newEnd2 = std::remove_if(
 		m_notifiers.begin(), m_notifiers.end(),
 		bind2nd(std::equal_to<CEntity*>(), target));
-	int removed = std::distance(newEnd2, m_notifiers.end());
-	m_notifiers.erase(newEnd2, m_notifiers.end());
+	int removed = m_notifiers.end() - newEnd2;
+	//m_notifiers.erase(newEnd2, m_notifiers.end());
+	m_notifiers.resize(m_notifiers.size() - removed);
 	return removed;
 }
 void CEntity::DestroyAllNotifiers()
@@ -766,7 +767,7 @@ void CEntity::DestroyAllNotifiers()
 	debug_assert(entf_get(ENTF_DESTROY_NOTIFIERS));
 	//Make them stop listening to us
 	while ( ! m_notifiers.empty() )
-		DestroyNotifier( m_notifiers[0] );
+		DestroyNotifier( m_notifiers[m_notifiers.size()-1] );
 }
 CEntityFormation* CEntity::GetFormation()
 {

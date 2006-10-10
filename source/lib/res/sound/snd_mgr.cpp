@@ -1686,6 +1686,7 @@ Handle snd_open(const char* snd_fn, bool is_stream)
  */
 LibError snd_free(Handle& hvs)
 {
+	if(!hvs) return INFO::OK;
 	return h_free(hvs, H_VSrc);
 }
 

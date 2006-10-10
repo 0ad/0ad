@@ -191,6 +191,7 @@ void CEntityManager::GetInRange( float x, float z, float radius, std::vector<CEn
 			for( size_t i=0; i<vec.size(); i++ )
 			{
 				CEntity* e = vec[i];
+				debug_assert(e != 0);
 				float dx = x - e->m_position.X;
 				float dz = z - e->m_position.Z;
 				if( dx*dx + dz*dz <= radiusSq )
