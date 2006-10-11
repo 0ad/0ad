@@ -94,6 +94,9 @@ CGameView::CGameView(CGame *pGame):
 
 CGameView::~CGameView()
 {
+	g_Selection.clearSelection();
+	g_Mouseover.clear();
+	g_BuildingPlacer.deactivate();
 	UnloadResources();
 }
 

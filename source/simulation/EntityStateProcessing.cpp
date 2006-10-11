@@ -367,7 +367,7 @@ bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timeste
 	if( !target || !target->m_extant )
 	{
 		popOrder();
-		if( m_orderQueue.empty() && target )
+		if( m_orderQueue.empty() && target.isValid() )
 		{
 			CEventTargetExhausted evt( target, action->m_Id );
 			DispatchEvent( &evt );
@@ -447,7 +447,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 				m_actor->SetEntitySelection( "idle" );
 				m_actor->SetRandomAnimation( "idle" );
 				popOrder();
-				if( m_orderQueue.empty() && target )
+				if( m_orderQueue.empty() && target.isValid() )
 				{
 					CEventTargetExhausted evt( target, action->m_Id );
 					DispatchEvent( &evt );
@@ -473,7 +473,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		|| g_Game->GetWorld()->GetLOSManager()->GetUnitStatus( target, m_player ) == UNIT_HIDDEN )
 	{
 		popOrder();
-		if( m_orderQueue.empty() && target )
+		if( m_orderQueue.empty() && target.isValid() )
 		{
 			CEventTargetExhausted evt( target, action->m_Id );
 			DispatchEvent( &evt );

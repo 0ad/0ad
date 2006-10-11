@@ -149,6 +149,8 @@ struct CMouseoverEntities : public Singleton<CMouseoverEntities>
 	bool isBandbox() { return( m_bandbox ); }
 	void startBandbox( u16 x, u16 y );
 	void stopBandbox();
+
+	void clear() { m_mouseover.clear(); }
 };
 
 struct CBuildingPlacer : public Singleton<CBuildingPlacer>

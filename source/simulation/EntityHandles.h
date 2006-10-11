@@ -64,6 +64,8 @@ public:
 	operator bool() const;
 	bool operator!() const;
 	operator CEntity*() const;
+	// Visual C++ 2003 can't handle (bool && HEntity) expressions, so provide another alias for operator bool()
+	bool isValid() const {return this->operator bool();}
 	~HEntity();
 
 	uint GetSerializedLength() const;
