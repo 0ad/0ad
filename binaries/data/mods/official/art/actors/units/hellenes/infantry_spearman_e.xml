@@ -43,6 +43,58 @@
     </variant>
   </group>
 
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Melee">
+      <props>
+        <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/shields/hele_round_b.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant name="gather_wood">
+      <props>
+        <prop actor="props/units/tools/axe.xml" attachpoint="l_hand"/>
+        <prop attachpoint="r_hand"/>
+        <prop attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant name="gather_grain">
+      <props>
+        <prop actor="props/units/tools/hoe.xml" attachpoint="l_hand"/>
+        <prop attachpoint="r_hand"/>
+        <prop attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant name="gather_fruit">
+      <props>
+        <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
+        <prop attachpoint="r_hand"/>
+        <prop attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant name="gather_stone">
+      <props>
+        <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
+        <prop attachpoint="r_hand"/>
+        <prop attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant name="gather_ore">
+      <props>
+        <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
+        <prop attachpoint="r_hand"/>
+        <prop attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant name="Build">
+      <props>
+        <prop actor="props/units/tools/mallet.xml" attachpoint="r_hand"/>
+        <prop attachpoint="l_hand"/>
+        <prop attachpoint="shield"/>
+      </props>
+    </variant>
+  </group>
+
   <material>player_trans.xml</material>
 
 </actor>
