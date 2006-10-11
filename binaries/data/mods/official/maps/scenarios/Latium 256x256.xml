@@ -11986,6 +11986,60 @@
 			<Position x="270.94" y="23.1588" z="371.532"/>
 			<Orientation angle="0.14373"/>
 		</Entity>
+		<Entity>
+			<Template>hele_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="200.788" y="28.7984" z="904.173"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="202.492" y="28.7984" z="906.469"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_infantry_javelinist_a</Template>
+			<Player>1</Player>
+			<Position x="205.622" y="28.7984" z="923.758"/>
+			<Orientation angle="0.790789"/>
+		</Entity>
+		<Entity>
+			<Template>hele_infantry_javelinist_e</Template>
+			<Player>1</Player>
+			<Position x="207.451" y="28.7984" z="920.95"/>
+			<Orientation angle="0.464386"/>
+		</Entity>
+		<Entity>
+			<Template>hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="173.721" y="28.7984" z="889.71"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_infantry_archer_a</Template>
+			<Player>1</Player>
+			<Position x="175.925" y="28.7984" z="891.427"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_infantry_archer_e</Template>
+			<Player>1</Player>
+			<Position x="177.492" y="28.7984" z="893.603"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_cavalry_swordsman_a</Template>
+			<Player>1</Player>
+			<Position x="185.9" y="28.7984" z="933.061"/>
+			<Orientation angle="-0.800179"/>
+		</Entity>
+		<Entity>
+			<Template>hele_cavalry_swordsman_e</Template>
+			<Player>1</Player>
+			<Position x="188.072" y="28.7984" z="935.425"/>
+			<Orientation angle="-0.841289"/>
+		</Entity>
 	</Entities>
 	<Nonentities>
 		<Nonentity>
@@ -27401,6 +27455,16 @@
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_a.xml</Actor>
 			<Position x="706.334" y="12.0934" z="396.116"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>units/hellenes/infantry_javelinist_e.xml</Actor>
+			<Position x="143.255" y="27.0121" z="923.398"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>units/hellenes/cavalry_swordsman_e.xml</Actor>
+			<Position x="113.093" y="5.57629" z="963.986"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 	</Nonentities>
