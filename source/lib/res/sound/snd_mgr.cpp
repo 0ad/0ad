@@ -1534,6 +1534,11 @@ struct VSrc
 	ALboolean loop;
 	ALboolean relative;
 
+	// AL cone properties 
+	ALfloat cone_inner;
+	ALfloat cone_outer;
+	ALfloat cone_gain;
+
 	/// controls vsrc_update behavior (VSrcFlags)
 	uint flags;
 
@@ -1830,6 +1835,10 @@ static void vsrc_latch(VSrc * vs)
 	alSourcef (vs->al_src, AL_GAIN,            vs->gain);
 	alSourcef (vs->al_src, AL_PITCH,           vs->pitch);
 	alSourcei (vs->al_src, AL_LOOPING,         vs->loop);
+
+	alSourcef (vs->al_src, AL_CONE_INNER_ANGLE, vs->cone_inner);
+	alSourcef (vs->al_src, AL_CONE_OUTER_ANGLE, vs->cone_outer);
+	alSourcef (vs->al_src, AL_CONE_OUTER_GAIN, vs->cone_gain);
 
 	AL_CHECK;
 }
@@ -2200,6 +2209,43 @@ LibError snd_fade(Handle hvs, float initial_gain, float final_gain,
 
 	(void)fade(fi, cur_time, vs->gain);
 	vsrc_latch(vs);
+
+	return INFO::OK;
+}
+
+/**
+ * set sound cone information
+ *
+ * cone_inner and cone_outer should be in the range 0.0 - 360.0, 
+ * cone_gain (which is the outer cone gain) should range from 0.0 - 1.0
+ * @param cone_inner inner angle of sound cone
+ * @param cone_outer outer angle of sound cone
+ * @param cone_gain outer cone gain
+ * @return LibError
+
+**/
+LibError snd_set_cone(Handle hvs, const float cone_inner, const float cone_outer, const float cone_gain)
+{
+
+	H_DEREF(hvs, VSrc, vs);
+
+	if(cone_inner <= 0.0f || cone_inner >= 360.0f)
+		WARN_RETURN(ERR::INVALID_PARAM);
+
+	if(cone_outer <= 0.0f || cone_outer >= 360.0f)
+		WARN_RETURN(ERR::INVALID_PARAM);
+
+	if(cone_gain <= 0.0f || cone_gain >= 1.0f)
+		WARN_RETURN(ERR::INVALID_PARAM);
+
+	
+	// set parameters in vsrc
+	vs->cone_inner = cone_inner;
+	vs->cone_outer = cone_outer;
+	vs->cone_gain = cone_gain;
+
+	vsrc_latch(vs);
+
 
 	return INFO::OK;
 }
