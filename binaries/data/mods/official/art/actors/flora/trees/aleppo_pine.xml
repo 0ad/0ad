@@ -4,13 +4,19 @@
   <castshadow/>
 
   <group>
-    <variant frequency="1" name="mesh">
+    <variant frequency="1" name="mesh_a">
       <mesh>gaia/tree_pine_aleppo_1.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="mesh_b">
+      <mesh>gaia/tree_pine_aleppo_2.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="mesh_c">
+      <mesh>gaia/tree_pine_aleppo_3.pmd</mesh>
     </variant>
   </group>
 
   <group>
-    <variant frequency="1" name="branch texture 1">
+    <variant frequency="1" name="branch-texture-a">
       <texture>gaia/aleppo_pine.dds</texture>
     </variant>
   </group>
