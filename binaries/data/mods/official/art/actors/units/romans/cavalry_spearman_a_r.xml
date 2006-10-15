@@ -4,7 +4,7 @@
   <castshadow/>
 
   <group>
-    <variant frequency="100" name="Base">
+    <variant frequency="1" name="Base">
       <animations>
         <animation file="biped/cavalryidle.psa" name="Idle" speed="0"/>
         <animation file="biped/cavalryidle.psa" name="Walk" speed="20"/>
@@ -15,16 +15,22 @@
         <animation event="0.5" file="infantry/general/dude/dudeattack.psa" name="Attack" speed="100"/>
         <animation event="0.5" file="infantry/general/dude/dudeattack1.psa" name="Attack" speed="100"/>
       </animations>
-      <mesh>skeletal/m_tunic_b.pmd</mesh>
+      <mesh>skeletal/m_tunic_a.pmd</mesh>
       <props>
-        <prop actor="props/temp/rome_sign_cavalry_spearman_a.xml" attachpoint="head_extra"/>
-        <prop actor="props/temp/placeholder_helmet_a.xml" attachpoint="helmet"/>
-        <prop actor="props/units/heads/placeholder_head_rome.xml" attachpoint="head"/>
-        <prop actor="props/units/shields/test_towershield.xml" attachpoint="shield"/>
+        <prop actor="props/units/heads/rome_cav_a.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/head_hele_a.xml" attachpoint="head"/>
+        <prop actor="props/units/shields/rome_sm_9.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
       </props>
-      <texture>skeletal/plac_rome_a.dds</texture>
     </variant>
   </group>
+
+  <group>
+    <variant frequency="1" name="Texture-Body">
+      <texture>skeletal/rome_csp_a.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
 
 </actor>
