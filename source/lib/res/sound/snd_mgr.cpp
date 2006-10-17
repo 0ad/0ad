@@ -2229,13 +2229,13 @@ LibError snd_set_cone(Handle hvs, const float cone_inner, const float cone_outer
 
 	H_DEREF(hvs, VSrc, vs);
 
-	if(cone_inner <= 0.0f || cone_inner >= 360.0f)
+	if(cone_inner <= 0.0f || cone_inner > 360.0f)
 		WARN_RETURN(ERR::INVALID_PARAM);
 
-	if(cone_outer <= 0.0f || cone_outer >= 360.0f)
+	if(cone_outer <= 0.0f || cone_outer > 360.0f)
 		WARN_RETURN(ERR::INVALID_PARAM);
 
-	if(cone_gain <= 0.0f || cone_gain >= 1.0f)
+	if(cone_gain < 0.0f || cone_gain > 1.0f)
 		WARN_RETURN(ERR::INVALID_PARAM);
 
 	
