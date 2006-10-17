@@ -22,16 +22,18 @@
 
 #define LOG_CATEGORY "audio"
 
-size_t CSoundGroup::m_index = 0;
+
 
 CSoundGroup::CSoundGroup()
 {
+	m_index = 0;
 	m_Flags = 0;
 
 }
 
 CSoundGroup::CSoundGroup(const char *XMLfile)
 {
+	m_index = 0;
 	m_Flags = 0;
 	LoadSoundGroup(XMLfile);
 }
@@ -45,6 +47,12 @@ CSoundGroup::~CSoundGroup()
 
 void CSoundGroup::PlayNext()
 {
+
+	//if(this->m_intensity_threshold)
+	//for(size_t i = 0; i < m_index; i++)
+	//{
+	//		//H_USER_DATA(snd_group[i], H_Sound);
+	//}
 	//check for randomization of pitch and gain
 	if(TestFlag(eRandPitch))
 		snd_set_pitch(snd_group[m_index], (float)((rand(m_PitchLower * 100.0f, m_PitchUpper * 100.0f) / 100.0f))); 
@@ -65,9 +73,11 @@ void CSoundGroup::Reload()
 	//Reload the sounds
 	for(size_t i = 0; i < filenames.size(); i++)
 	{
+		string szTemp = m_filepath + filenames[i];
 		Handle temp = snd_open(m_filepath + filenames[i]);
 		snd_set_gain(temp, m_Gain);	
 		snd_set_pitch(temp, m_Pitch);
+		snd_set_cone(temp, m_ConeInnerAngle, m_ConeOuterAngle, m_ConeOuterGain);
 		snd_group.push_back(temp);			
 	}
 	if(TestFlag(eRandOrder))
@@ -84,8 +94,12 @@ void CSoundGroup::ReleaseGroup()
 	for(size_t i = m_index; i<snd_group.size(); i++)
 		snd_free(snd_group[i]);
 	snd_group.clear();
+	m_index = 0;
+	
 
 }
+
+
 
 bool CSoundGroup::LoadSoundGroup(const char *XMLfile)
 {
@@ -117,6 +131,8 @@ bool CSoundGroup::LoadSoundGroup(const char *XMLfile)
 	EL(pitchupper);
 	EL(pitchlower);
 	EL(path);
+	EL(threshold);
+	EL(replacement);
 	#undef AT
 	#undef EL
 
@@ -202,25 +218,33 @@ bool CSoundGroup::LoadSoundGroup(const char *XMLfile)
 
 		if(child_name == el_coneinner)
 		{
-			this->m_ConeInnerAngle = CStr(child.getText()).ToInt();
+			this->m_ConeInnerAngle = CStr(child.getText()).ToFloat();
 		}
 
 		if(child_name == el_coneouter)
 		{
-			this->m_ConeOuterAngle = CStr(child.getText()).ToInt();
+			this->m_ConeOuterAngle = CStr(child.getText()).ToFloat();
 		}
 
 		if(child_name == el_sound)
 		{
 			CStr szTemp(child.getText());
-			//Handle temp = snd_open(szTemp);
-			//this->snd_group.push_back(temp);
 			this->filenames.push_back(szTemp);	
 			
 		}
 		if(child_name == el_path)
 		{
 			m_filepath = child.getText();
+		
+		}
+		if(child_name == el_threshold)
+		{
+			m_intensity_threshold = CStr(child.getText()).ToFloat();
+		
+		}
+		if(child_name == el_replacement)
+		{
+			m_intensity_file = child.getText();
 		
 		}
 	}

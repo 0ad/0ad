@@ -57,11 +57,15 @@ enum eSndGrpFlags{ eRandOrder = 0x01, eRandGain = 0x02, eRandPitch = 0x04, eLoop
 class CSoundGroup
 {
 
-	static size_t m_index;  // index of the next sound to play
+	size_t m_index;  // index of the next sound to play
 	
 	vector<Handle> snd_group;  // we store the handles so we can load now and play later
 	vector<CStr> filenames; // we need the filenames so we can reload when necessary.
-	CStr m_filepath;
+	CStr m_filepath; // the file path for the list of sound file resources
+	CStr m_intensity_file; // this will be either the name of a new sound file or new sound group 
+
+	size_t m_intensity_threshold;
+							  
 
 	unsigned char m_Flags; // up to eight individual parameters, use with eSndGrpFlags.
 
@@ -73,8 +77,8 @@ class CSoundGroup
 	float m_PitchLower;
 	float m_GainUpper;
 	float m_GainLower;
-	int m_ConeInnerAngle;
-	int m_ConeOuterAngle;
+	float m_ConeInnerAngle;
+	float m_ConeOuterAngle;
 
 public:
 	CSoundGroup(const char *XMLfile);
