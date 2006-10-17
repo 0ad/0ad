@@ -4,20 +4,20 @@
   <castshadow/>
 
   <group>
-    <variant frequency="1" name="mesh_a">
-      <mesh>gaia/tree_pine_aleppo_1.pmd</mesh>
-    </variant>
-    <variant frequency="1" name="mesh_b">
-      <mesh>gaia/tree_pine_aleppo_2.pmd</mesh>
-    </variant>
-    <variant frequency="1" name="mesh_c">
-      <mesh>gaia/tree_pine_aleppo_3.pmd</mesh>
+    <variant frequency="1" name="Base">
+      <texture>gaia/aleppo_pine.dds</texture>
     </variant>
   </group>
 
   <group>
-    <variant frequency="1" name="branch-texture-a">
-      <texture>gaia/aleppo_pine.dds</texture>
+    <variant name="small">
+      <mesh>gaia/tree_pine_aleppo_1.pmd</mesh>
+    </variant>
+    <variant name="double">
+      <mesh>gaia/tree_pine_aleppo_2.pmd</mesh>
+    </variant>
+    <variant name="single">
+      <mesh>gaia/tree_pine_aleppo_3.pmd</mesh>
     </variant>
   </group>
 
