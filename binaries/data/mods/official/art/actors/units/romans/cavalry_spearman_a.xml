@@ -9,6 +9,8 @@
         <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
         <animation file="quadraped/horse_walk.psa" name="Walk" speed="17"/>
         <animation file="quadraped/horse_gallop.psa" name="run" speed="50"/>
+        <animation file="quadraped/horse_attack_a.psa" name="melee" speed="100"/>
+        <animation file="quadraped/horse_attack_b.psa" name="melee" speed="100"/>
       </animations>
       <mesh>skeletal/horse.pmd</mesh>
       <props>
@@ -19,13 +21,7 @@
 
   <group>
     <variant frequency="1" name="horse-texture-a">
-      <texture>skeletal/horse_rome_a.dds</texture>
-    </variant>
-    <variant frequency="1" name="horse-texture-b">
-      <texture>skeletal/horse_rome_b.dds</texture>
-    </variant>
-    <variant frequency="1" name="horse-texture-c">
-      <texture>skeletal/horse_rome_c.dds</texture>
+      <texture>skeletal/horse_rome.dds</texture>
     </variant>
   </group>
 
