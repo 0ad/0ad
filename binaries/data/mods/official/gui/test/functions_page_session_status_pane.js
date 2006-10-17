@@ -169,6 +169,11 @@ textCaption += '[font=verdana10][color="' + Math.round(selection[0].player.getCo
 function updateStat (baseName, cellSheet, cell, statistic)
 {
 	var textStat = getGUIObjectByName (baseName + statCurr);
+	if( !textStat ) 
+	{
+		console.write("No textStat for " + baseName + " " + statCurr);
+		return;
+	}
 	textStat.sprite = "snIconSheet" + cellSheet;
 	textStat.cell_id = cellGroup[cellSheet][cell].id;
 	textStat.tooltip = cellGroup[cellSheet][cell].name;

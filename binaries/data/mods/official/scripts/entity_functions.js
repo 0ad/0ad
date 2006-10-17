@@ -641,7 +641,8 @@ function performAttackRanged( evt )
 function projectileEventImpact( evt )
 {
 	//console.write( "Hit!" );
-	evt.impacted.damage( this.damage, evt.originator );
+	if(evt.impacted.damage)
+		evt.impacted.damage( this.damage, evt.originator );
 	
 	// Just so you know - there's no guarantee that evt.impacted is the thing you were
 	// aiming at. This function gets called when the projectile hits *anything*.

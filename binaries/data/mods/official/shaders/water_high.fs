@@ -25,7 +25,6 @@ void main()
 	float ndotl, ndoth, ndotv;
 	float fresnel;
 	float myMurkiness;		// Murkiness and tint at this pixel (tweaked based on lighting and depth)
-	vec3 diffuse;			// Diffuse colour at this pixel (ambient + diffuse terms)
 	float t;				// Temporary variable
 	vec2 reflCoords, refrCoords;
 	vec3 reflColor, refrColor, specular;
@@ -38,8 +37,6 @@ void main()
 	ndotl = dot(n, l);
 	ndoth = dot(n, h);
 	ndotv = dot(n, v);
-	
-	diffuse = ambient + ndotl * sunColor;
 	
 	myMurkiness = murkiness * min(waterDepth / fullDepth, 1.0);
 	
