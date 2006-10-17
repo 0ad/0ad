@@ -197,7 +197,7 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 				// Yes. Oh dear. That can't be good.
 				// This really shouldn't happen in the current build.
 
-				debug_assert( false && "Overlapping objects" );
+				//debug_assert( false && "Overlapping objects" );
 
 				// Erm... do nothing?
 				
