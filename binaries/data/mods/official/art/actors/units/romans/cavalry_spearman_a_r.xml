@@ -6,14 +6,14 @@
   <group>
     <variant frequency="1" name="Base">
       <animations>
-        <animation file="biped/cavalryidle.psa" name="Idle" speed="0"/>
+        <animation file="biped/cavalryidle.psa" name="Idle" speed="20"/>
         <animation file="biped/cavalryidle.psa" name="Walk" speed="20"/>
+        <animation file="cavalry/rider_gallop.psa" name="run" speed="18"/>
         <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="150"/>
         <animation file="infantry/general/dude/dudechop.psa" name="Chop" speed="150"/>
         <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
         <animation file="infantry/general/dude/dudedecay_sword.psa" name="Corpse" speed="100"/>
-        <animation event="0.5" file="infantry/general/dude/dudeattack.psa" name="Attack" speed="100"/>
-        <animation event="0.5" file="infantry/general/dude/dudeattack1.psa" name="Attack" speed="100"/>
+        <animation event="0.5" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="melee" speed="250"/>
       </animations>
       <mesh>skeletal/m_tunic_a.pmd</mesh>
       <props>
