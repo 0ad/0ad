@@ -12,12 +12,12 @@ CFormation::CFormation()
 }
 bool CFormation::loadXML(const CStr& filename)
 {
-    CXeromyces XeroFile;
+	CXeromyces XeroFile;
 
-    if (XeroFile.Load(filename) != PSRETURN_OK)
-        return false;
+	if (XeroFile.Load(filename) != PSRETURN_OK)
+		return false;
 
-    #define EL(x) int el_##x = XeroFile.getElementID(#x)
+	#define EL(x) int el_##x = XeroFile.getElementID(#x)
 	#define AT(x) int at_##x = XeroFile.getAttributeID(#x)
 	EL(formation);
 	EL(fl);
@@ -49,8 +49,8 @@ bool CFormation::loadXML(const CStr& filename)
 	#undef AT
 	#undef EL
 
-    XMBElement Root = XeroFile.getRoot();
-    if( Root.getNodeName() != el_formation )
+	XMBElement Root = XeroFile.getRoot();
+	if( Root.getNodeName() != el_formation )
 	{
 		LOG( ERROR, LOG_CATEGORY, "CFormation::LoadXML: XML root was not \"Formation\" in file %s. Load failed.", filename.c_str() );
 		return( false );

@@ -564,7 +564,6 @@ bool CSocketBase::ConnectError(CSocketBase *pSocket)
 	CSocketInternal *pInt=pSocket->m_pInternal;
 	uint buf;
 	int res;
-	PS_RESULT connErr;
 	
 	if (pSocket->m_State==SS_CONNECT_STARTED)
 	{
@@ -597,7 +596,7 @@ bool CSocketBase::ConnectError(CSocketBase *pSocket)
 // will be held upon return.
 void CSocketBase::SocketWritable(CSocketBase *pSock)
 {
-	CSocketInternal *pInt=pSock->m_pInternal;
+	//CSocketInternal *pInt=pSock->m_pInternal;
 	bool isConnectError=false;
 
 	if (pSock->m_State != SS_CONNECTED)

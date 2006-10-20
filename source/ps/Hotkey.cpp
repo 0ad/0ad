@@ -310,7 +310,7 @@ void loadHotkeys()
 				if( !( *j & HOTKEY_NEGATION_FLAG ) )
 					allNegated = false;
 			
-			debug_assert(it->mapsTo < ARRAY_SIZE(hotkeys));
+			debug_assert((size_t)it->mapsTo < ARRAY_SIZE(hotkeys));
 			
 			if( allNegated )
 				hotkeys[it->mapsTo] = true;
@@ -467,7 +467,7 @@ InReaction hotkeyInputHandler( const SDL_Event_* ev )
 
 		if( it->mapsTo == HOTKEY_CONSOLE_TOGGLE ) isCapturable = false; // Because that would be silly.
 
-		debug_assert(it->mapsTo < ARRAY_SIZE(hotkeys));
+		debug_assert((size_t)it->mapsTo < ARRAY_SIZE(hotkeys));
 		
 		if( accept && !( isCapturable && consoleCapture ) )
 		{
@@ -595,7 +595,7 @@ InReaction hotkeyInputHandler( const SDL_Event_* ev )
 			}
 		}
 
-		debug_assert(it->mapsTo < ARRAY_SIZE(hotkeys));
+		debug_assert((size_t)it->mapsTo < ARRAY_SIZE(hotkeys));
 		
 		if( accept )
 		{

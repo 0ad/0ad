@@ -51,8 +51,8 @@ float Noise2D::operator()(float x, float y)
 	x *= freq;
 	y *= freq;
 	
-	int ix = floor(x);
-	int iy = floor(y);
+	int ix = (int)floor(x);
+	int iy = (int)floor(y);
 	
 	float fx = x - ix;
 	float fy = y - iy;
@@ -117,9 +117,9 @@ float Noise3D::operator()(float x, float y, float z)
 	y *= freq;
 	z *= vfreq;
 	
-	int ix = floor(x);
-	int iy = floor(y);
-	int iz = floor(z);
+	int ix = (int)floor(x);
+	int iy = (int)floor(y);
+	int iz = (int)floor(z);
 	
 	float fx = x - ix;
 	float fy = y - iy;

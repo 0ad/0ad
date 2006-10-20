@@ -46,7 +46,7 @@ Example SoundGroup.xml
 
 
 #include "lib/res/handle.h"
-#include "ps/cstr.h"
+#include "ps/CStr.h"
 #include "lib/res/sound/snd_mgr.h"
 
 #include <vector>

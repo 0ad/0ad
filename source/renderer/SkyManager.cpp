@@ -127,7 +127,7 @@ void SkyManager::SetSkySet( const CStrW& newSet )
 
 		UnloadSkyTextures();
 
-		for( int i=0; i<ARRAY_SIZE(m_SkyTexture); i++ ) {
+		for( size_t i=0; i<ARRAY_SIZE(m_SkyTexture); i++ ) {
 			char filename[PATH_MAX];
 			snprintf(filename, ARRAY_SIZE(filename), "art/textures/skies/%s/%s.dds", 
 				CStr8(m_SkySet).c_str(), IMAGE_NAMES[i]);

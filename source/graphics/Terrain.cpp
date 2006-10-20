@@ -215,8 +215,8 @@ float CTerrain::getSlope(float x, float z) const
 	float h11 = m_Heightmap[zi*m_MapSize + xi + m_MapSize + 1];
 	
 	//Difference of highest point from lowest point
-	return MAX(MAX(h00, h01), MAX(h10, h11)) -
-		   MIN(MIN(h00, h01), MIN(h10, h11));
+	return std::max(std::max(h00, h01), std::max(h10, h11)) -
+	       std::min(std::min(h00, h01), std::min(h10, h11));
 }
 CVector2D CTerrain::getSlopeAngleFace( CEntity* entity ) const
 {

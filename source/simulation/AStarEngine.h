@@ -35,7 +35,7 @@ public:
 	static const size_t min_buckets = 16;
 	size_t operator() (const CVector2D& Key) const
 	{
-		return Key.x + Key.y*1024;
+		return (size_t)(Key.x + Key.y*1024.f);
 	}
 	bool operator() (const CVector2D& _Key1, const CVector2D& _Key2) const
 	{

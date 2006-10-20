@@ -823,7 +823,7 @@ jsval CEntity::RegisterOrderChange( JSContext* cx, uintN argc, jsval* argv )
 
 	float angle = acosf( up.dot(posDelta) );
 	//Find what section it is between and "deactivate" it
-	int sector = MAX( 0.0, findSector(m_base->m_sectorDivs, angle, DEGTORAD(360.0f)) );
+	int sector = std::max(0, findSector(m_base->m_sectorDivs, angle, DEGTORAD(360.0f)));
 	m_sectorValues[sector]=false;
 	return JS_TRUE;
 }
