@@ -744,7 +744,7 @@ static enum VfsInitState
 	VFS_INITIALIZED,
 	VFS_SHUTDOWN
 }
-vfs_init_state;
+vfs_init_state = VFS_BEFORE_INIT;
 
 // make the VFS tree ready for use. must be called before all other
 // functions below, barring explicit mentions to the contrary.

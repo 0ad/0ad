@@ -570,11 +570,13 @@ static LibError vfs_opt_init(const char* trace_filename, const char* archive_fn_
 	// note: this is needed by should_rebuild_main_archive and later in
 	//   vfs_opt_continue; must be done here instead of inside the former
 	//   because that is not called when force_build == true.
+	{
 	char dir[PATH_MAX];
 	path_dir_only(archive_fn_fmt, dir);
 	RETURN_ERR(file_get_sorted_dirents(dir, existing_archives));
 	DirEntIt new_end = std::remove_if(existing_archives.begin(), existing_archives.end(), IsArchive(archive_fn));
 	existing_archives.erase(new_end, existing_archives.end());
+	}
 
 	// bail if we shouldn't rebuild the archive.
 	if(!force_build && !should_rebuild_main_archive(trace_filename, existing_archives))
@@ -595,7 +597,7 @@ static LibError vfs_opt_init(const char* trace_filename, const char* archive_fn_
 	ConnectionBuilder cbuilder;
 	RETURN_ERR(cbuilder.run(trace_filename, connections));
 
-	// create output filelist by first adding the above edges (most
+	// create output filename list by first adding the above edges (most
 	// frequent first) and then adding the rest sequentially.
 	TourBuilder builder(file_nodes, connections, fn_vector);
 	fn_vector.push_back(0);	// 0-terminate for use as Filenames

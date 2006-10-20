@@ -88,20 +88,19 @@ public:
 		path_init();	// required for file_make_unique_fn_copy
 		(void)file_set_root_dir(0, ".");
 		vfs_init();
-		TS_ASSERT_OK(dir_create("archivetest", S_IRWXU|S_IRWXG|S_IRWXO));
-		TS_ASSERT_OK(vfs_mount("", "archivetest"));
 	}
 
 	void tearDown()
 	{
 		vfs_shutdown();
-		dir_delete("archivetest");
-		file_delete(archive_fn);
 		path_reset_root_dir();
 	}
 
 	void test_create_archive_with_random_files()
 	{
+		TS_ASSERT_OK(dir_create("archivetest", S_IRWXU|S_IRWXG|S_IRWXO));
+		TS_ASSERT_OK(vfs_mount("", "archivetest"));
+
 		generate_random_files();
 		TS_ASSERT_OK(archive_build(archive_fn, filenames));
 
@@ -126,13 +125,15 @@ public:
 			SAFE_ARRAY_DELETE(files[i].data);
 		}
 		TS_ASSERT_OK(archive_close(ha));
+
+		dir_delete("archivetest");
+		file_delete(archive_fn);
 	}
 
 	void test_multiple_init_shutdown()
 	{
-		vfs_init();
+		// setUp has already vfs_init-ed it and tearDown will vfs_shutdown.
 		vfs_shutdown();
 		vfs_init();
-		vfs_shutdown();
 	}
 };
