@@ -738,12 +738,13 @@ void vfs_display()
 }
 
 
-// allow init more complicated than merely calling mount_init by
-// splitting this into a separate function.
-static void vfs_init_once(void)
+static enum VfsInitState
 {
-	mount_init();
+	VFS_BEFORE_INIT,
+	VFS_INITIALIZED,
+	VFS_SHUTDOWN
 }
+vfs_init_state;
 
 // make the VFS tree ready for use. must be called before all other
 // functions below, barring explicit mentions to the contrary.
@@ -754,14 +755,21 @@ static void vfs_init_once(void)
 // is necessary anyway and this way is simpler/easier to maintain.
 void vfs_init()
 {
+	debug_assert(vfs_init_state == VFS_BEFORE_INIT || vfs_init_state == VFS_SHUTDOWN);
+
 	stats_vfs_init_start();
-	static pthread_once_t once = PTHREAD_ONCE_INIT;
-	WARN_ERR(pthread_once(&once, vfs_init_once));
+	mount_init();
 	stats_vfs_init_finish();
+
+	vfs_init_state = VFS_INITIALIZED;
 }
 
 void vfs_shutdown()
 {
+	debug_assert(vfs_init_state == VFS_INITIALIZED);
+
 	trace_shutdown();
 	mount_shutdown();
+
+	vfs_init_state = VFS_SHUTDOWN;
 }

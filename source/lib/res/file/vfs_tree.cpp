@@ -540,6 +540,8 @@ void tree_shutdown()
 	// freeing memory they hold.
 	tree_root->clearR();
 
+	tree_root_shutdown();
+
 	// free memory underlying the nodes themselves.
 	node_shutdown();
 }

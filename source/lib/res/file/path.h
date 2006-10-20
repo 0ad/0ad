@@ -58,6 +58,16 @@ extern bool path_is_atom_fn(const char* fn);
 
 extern const char* file_get_random_name();
 
+
+/**
+ * reset root directory that was previously established via file_set_root_dir.
+ *
+ * this function avoids the security complaint that would be raised if
+ * file_set_root_dir is called twice; it is provided for the
+ * legitimate application of a self-test setUp()/tearDown().
+ **/
+extern void path_reset_root_dir();
+
 // note: other functions are declared directly in the public file.h header.
 
 

@@ -97,6 +97,7 @@ public:
 		vfs_shutdown();
 		dir_delete("archivetest");
 		file_delete(archive_fn);
+		path_reset_root_dir();
 	}
 
 	void test_create_archive_with_random_files()
@@ -125,5 +126,13 @@ public:
 			SAFE_ARRAY_DELETE(files[i].data);
 		}
 		TS_ASSERT_OK(archive_close(ha));
+	}
+
+	void test_multiple_init_shutdown()
+	{
+		vfs_init();
+		vfs_shutdown();
+		vfs_init();
+		vfs_shutdown();
 	}
 };

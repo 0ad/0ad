@@ -138,6 +138,16 @@ LibError file_make_full_portable_path(const char* n_full_path, char* path)
 }
 
 
+// security check: only allow attempting to chdir once, so that malicious
+// code cannot circumvent the VFS checks that disallow access to anything
+// above the current directory (set here).
+// this routine is called early at startup, so any subsequent attempts
+// are likely bogus.
+// we provide for resetting this from the self-test to allow clean
+// re-init of the individual tests.
+static bool root_dir_established;
+
+
 // establish the root directory from <rel_path>, which is treated as
 // relative to the executable's directory (determined via argv[0]).
 // all relative file paths passed to this module will be based from
@@ -153,15 +163,9 @@ LibError file_make_full_portable_path(const char* n_full_path, char* path)
 // can only be called once, by design (see below). rel_path is trusted.
 LibError file_set_root_dir(const char* argv0, const char* rel_path)
 {
-	// security check: only allow attempting to chdir once, so that malicious
-	// code cannot circumvent the VFS checks that disallow access to anything
-	// above the current directory (set here).
-	// this routine is called early at startup, so any subsequent attempts
-	// are likely bogus.
-	static bool already_attempted;
-	if(already_attempted)
+	if(root_dir_established)
 		WARN_RETURN(ERR::ROOT_DIR_ALREADY_SET);
-	already_attempted = true;
+	root_dir_established = true;
 
 	// get full path to executable
 	char n_path[PATH_MAX];
@@ -190,6 +194,16 @@ LibError file_set_root_dir(const char* argv0, const char* rel_path)
 	n_root_dir_len = strlen(n_root_dir)+1;	// +1 for trailing DIR_SEP
 	n_root_dir[n_root_dir_len-1] = DIR_SEP;
 	return INFO::OK;
+}
+
+
+void path_reset_root_dir()
+{
+	// see comment at root_dir_established.
+	debug_assert(root_dir_established);
+	n_root_dir[0] = '\0';
+	n_root_dir_len = 0;
+	root_dir_established = false;
 }
 
 
