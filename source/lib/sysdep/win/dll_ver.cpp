@@ -33,53 +33,79 @@
 #pragma comment(lib, "version.lib")		// DLL version
 #endif
 
+// helper function that does all the work; caller wraps it and takes care of
+// undoing various operations if we fail midway.
+static LibError get_ver_impl(const char* module_path, char* out_ver, size_t out_ver_len, void*& mem)
+{
+	// determine size of and allocate memory for version information.
+	DWORD unused;
+	const DWORD ver_size = GetFileVersionInfoSize(module_path, &unused);
+	if(!ver_size)
+		WARN_RETURN(ERR::FAIL);
+	mem = malloc(ver_size);
+	if(!mem)
+		WARN_RETURN(ERR::NO_MEM);
+
+	if(!GetFileVersionInfo(module_path, 0, ver_size, mem))
+		WARN_RETURN(ERR::FAIL);
+
+	u16* lang;	// -> 16 bit language ID, 16 bit codepage
+	uint lang_len;
+	const BOOL ok = VerQueryValue(mem, "\\VarFileInfo\\Translation", (void**)&lang, &lang_len);
+	if(!ok || !lang || lang_len != 4)
+		WARN_RETURN(ERR::FAIL);
+
+	char subblock[64];
+	sprintf(subblock, "\\StringFileInfo\\%04X%04X\\FileVersion", lang[0], lang[1]);
+	const char* in_ver;
+	uint in_ver_len;
+	if(!VerQueryValue(mem, subblock, (void**)&in_ver, &in_ver_len))
+		WARN_RETURN(ERR::FAIL);
+
+	strcpy_s(out_ver, out_ver_len, in_ver);
+	return INFO::OK;
+}
+
 // get version information for the specified DLL.
 static LibError get_ver(const char* module_path, char* out_ver, size_t out_ver_len)
 {
 	WIN_SAVE_LAST_ERROR;	// GetFileVersion*, Ver*
 
-	// determine size of and allocate memory for version information.
-	DWORD unused;
-	const DWORD ver_size = GetFileVersionInfoSize(module_path, &unused);
-	if(!ver_size)
+	// WinXP x64 'helpfully' redirects all 32-bit apps' accesses of
+	// %windir\\system32\\drivers to %windir\\system32\\drivers\\SysWOW64.
+	// that's bad, because the actual drivers are not in the subdirectory.
+	// to work around this, we disable the redirection over the duration of
+	// this call. if not on a 64-bit OS (i.e. these entry points aren't
+	// found), no action need be taken.
+	HMODULE hKernel32Dll = LoadLibrary("kernel32.dll");
+	BOOL (WINAPI *pWow64DisableWow64FsRedirection)(PVOID*) = 0;
+	BOOL (WINAPI *pWow64RevertWow64FsRedirection)(PVOID) = 0;
+	*(void**)&pWow64DisableWow64FsRedirection = GetProcAddress(hKernel32Dll, "Wow64DisableWow64FsRedirection");
+	*(void**)&pWow64RevertWow64FsRedirection  = GetProcAddress(hKernel32Dll, "Wow64RevertWow64FsRedirection");
+	PVOID old_value = 0;
+	if(pWow64DisableWow64FsRedirection)
 	{
-		wchar_t buf[1000];
-		swprintf(buf, 1000, L"path: %hs; GLE: %08X", module_path, GetLastError());
-		DISPLAY_ERROR(buf);
-		return ERR::FAIL;
-//		WARN_RETURN(ERR::FAIL);
+		BOOL ok = pWow64DisableWow64FsRedirection(&old_value);
+		WARN_IF_FALSE(ok);
 	}
-	void* buf = malloc(ver_size);
-	if(!buf)
-		WARN_RETURN(ERR::NO_MEM);
 
-	LibError ret  = ERR::FAIL;	// single point of exit (for free())
+	void* mem;
+	LibError ret = get_ver_impl(module_path, out_ver, out_ver_len, mem);
+	free(mem);
 
-	if(GetFileVersionInfo(module_path, 0, ver_size, buf))
+	if(pWow64DisableWow64FsRedirection)
 	{
-		u16* lang;	// -> 16 bit language ID, 16 bit codepage
-		uint lang_len;
-		const BOOL ok = VerQueryValue(buf, "\\VarFileInfo\\Translation", (void**)&lang, &lang_len);
-		if(ok && lang && lang_len == 4)
-		{
-			char subblock[64];
-			sprintf(subblock, "\\StringFileInfo\\%04X%04X\\FileVersion", lang[0], lang[1]);
-			const char* in_ver;
-			uint in_ver_len;
-			if(VerQueryValue(buf, subblock, (void**)&in_ver, &in_ver_len))
-			{
-				strcpy_s(out_ver, out_ver_len, in_ver);
-				ret = INFO::OK;
-			}
-		}
+		BOOL ok = pWow64RevertWow64FsRedirection(old_value);
+		WARN_IF_FALSE(ok);
 	}
-	free(buf);
+	FreeLibrary(hKernel32Dll);
 
 	WIN_RESTORE_LAST_ERROR;
 
+	if(ret != INFO::OK)
+		out_ver[0] = '\0';
 	return ret;
 }
-
 
 //
 // build a string containing DLL filename(s) and their version info.
