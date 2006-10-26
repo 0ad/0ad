@@ -2,7 +2,7 @@
    
 <Tech>
    <ID>
-       <Generic>Ore Mining 1</Generic>
+       <Generic>Metal Mining 1</Generic>
        <Specific>Wedge and Mallet</Specific>
        
        <Icon>PortraitSheetTech</Icon>
@@ -20,7 +20,7 @@
                <Food>50</Food>
                <Wood>100</Wood>
                <Stone>0</Stone>
-               <Ore>0</Ore>
+               <Metal>0</Metal>
        </Resource>
    </Req>
    
@@ -30,7 +30,7 @@
        <Pair>hele_stone_1</Pair>
  
        <Modifier>
-              <Attribute>actions.gather.resource.ore</Attribute>
+              <Attribute>actions.gather.resource.Metal</Attribute>
               <Value>15%</Value>
        </Modifier>
    </Effect>

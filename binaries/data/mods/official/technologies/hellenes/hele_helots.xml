@@ -2,7 +2,7 @@
    
 <Tech>
    <ID>
-       <Generic>Ore Mining 2</Generic>
+       <Generic>Metal Mining 2</Generic>
        <Specific>Helots</Specific>
        
        <Icon>PortraitSheetTech</Icon>
@@ -20,7 +20,7 @@
                <Food>100</Food>
                <Wood>200</Wood>
                <Stone>0</Stone>
-               <Ore>0</Ore>
+               <Metal>0</Metal>
        </Resource>
 	   
 	   <Tech>hele_wedge_and_mallet</Tech>
@@ -33,7 +33,7 @@
        <Pair>hele_slaves</Pair>
  
        <Modifier>
-              <Attribute>actions.gather.resource.ore</Attribute>
+              <Attribute>actions.gather.resource.Metal</Attribute>
               <Value>15%</Value>
        </Modifier>
    </Effect>
