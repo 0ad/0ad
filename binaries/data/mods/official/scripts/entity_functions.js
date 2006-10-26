@@ -90,6 +90,7 @@ function entityInit( evt )
 	this.GotoInRange = GotoInRange;
 	this.attachAuras = attachAuras;
 	this.setupRank = setupRank;
+	this.chooseGatherTarget = chooseGatherTarget;
 	
 	// Some temp variables to speed up property access
 	var id = this.traits.id;
@@ -256,6 +257,11 @@ function entityInit( evt )
 		}
 	}
 	
+	// Set up allure counter
+	if (this.actions && this.actions.gather && this.actions.gather.affectedByAllure)
+	{
+		this.allureCount = 0;
+	}
 	
 	stopXTimer(5);
 /*	
@@ -457,40 +463,49 @@ function setupRank()
 // attached to them only when they finish construction.
 function attachAuras() 
 {
-	if( this.traits.auras )
+	// Add all auras defined in this.traits.auras
+	var t = this.traits.auras;
+	var a;
+	if( t )
 	{
-		if( this.traits.auras.courage )
+		if( t.courage )
 		{
-			a = this.traits.auras.courage;
+			a = t.courage;
 			this.addAura ( "courage", a.radius, 0, a.r, a.g, a.b, a.a, new DamageModifyAura( this, true, a.bonus ) );
 		}
-		if( this.traits.auras.fear )
+		if( t.fear )
 		{
-			a = this.traits.auras.fear;
+			a = t.fear;
 			this.addAura ( "fear", a.radius, 0, a.r, a.g, a.b, a.a, new DamageModifyAura( this, false, -a.bonus ) );
 		}
-		if( this.traits.auras.infidelity )
+		if( t.infidelity )
 		{
-			a = this.traits.auras.infidelity;
+			a = t.infidelity;
 			this.addAura ( "infidelity", a.radius, 0, a.r, a.g, a.b, a.a, new InfidelityAura( this, a.time ) );
 		}
-		if( this.traits.auras.dropsite )
+		if( t.dropsite )
 		{
-			a = this.traits.auras.dropsite;
+			a = t.dropsite;
 			this.addAura ( "dropsite", a.radius, 0, a.r, a.g, a.b, a.a, new DropsiteAura( this, a.types ) );
 		}
-		if( this.traits.auras.heal )
+		if( t.heal )
 		{
-			a = this.traits.auras.heal;
+			a = t.heal;
 			this.addAura ( "heal", a.radius, a.speed, a.r, a.g, a.b, a.a, new HealAura( this ) );
 		}
-		if( this.traits.auras.trample )
+		if( t.trample )
 		{
-			a = this.traits.auras.trample;
+			a = t.trample;
 			this.addAura ( "trample", a.radius, a.speed, a.r, a.g, a.b, a.a, new TrampleAura( this ) );
+		}
+		if( t.allure )
+		{
+			a = t.allure;
+			this.addAura ( "allure", a.radius, 0, a.r, a.g, a.b, a.a, new AllureAura( this ) );
 		}
 	}		
 	
+	// Settlements also get a special aura that will let them change player when a Civ Centre is built on top
 	if( this.hasClass("Settlement") )
 	{
 		this.addAura ( "settlement", 1.0, 0, 0.0, 0.0, 0.0, 0.0, new SettlementAura( this ) );
@@ -676,10 +691,14 @@ function performGather( evt )
 		return;
 	}
 
+	var allureMod = 1;
+	if( g.affectedByAllure && this.allureCount > 0 )
+		allureMod = 1.2;
+	
 	if( g.resource[s.type][s.subType])
-		gather_amt = parseFloat( g.resource[s.type][s.subType] );
+		gather_amt = parseFloat( g.resource[s.type][s.subType] * allureMod );
 	else
-		gather_amt = parseFloat( g.resource[s.type] );
+		gather_amt = parseFloat( g.resource[s.type] * allureMod );
 
 	if( s.max > 0 )
 	{
@@ -1065,28 +1084,8 @@ function entityEventTargetExhausted( evt )
 {
 	if( evt.action == ACTION_GATHER )
 	{
-		// Look for other stuff of the same kind to gather
-		var visible = this.getVisibleEntities();
-		var bestDist = 1e20;
-		var bestTarget = null;
-		for( var i=0; i<visible.length; i++ )
-		{
-			var e = visible[i];
-			if( canGather( this, e )
-				&& e.traits.supply.subType.toString() == evt.target.traits.supply.subType.toString() )
-			{
-				var dist = this.getDistance( e );
-				if( dist < bestDist )
-				{
-					bestDist = dist;
-					bestTarget = e;
-				}
-			}
-		}
-		if( bestTarget != null )
-		{
-			this.order( ORDER_GENERIC, bestTarget, ACTION_GATHER );
-		}
+		// Look for other resources of the same type to gather
+		this.chooseGatherTarget( evt.target.traits.supply.subType.toString() );
 	}
 	else if( evt.action == ACTION_BUILD )
 	{
@@ -1111,7 +1110,40 @@ function entityEventTargetExhausted( evt )
 		{
 			this.order( ORDER_GENERIC, bestTarget, ACTION_BUILD );
 		}
+		else if( evt.target.hasClass("Village") )
+		{
+			// Nothing to build, but try to gather any resource around us
+			this.chooseGatherTarget( null, evt.target.getVisibleEntities() );
+		}
 	}
+}
+
+function chooseGatherTarget( resourceSubType, targetList )
+{
+	if( !targetList )
+		targetList = this.getVisibleEntities();
+	var bestDist = 1e20;
+	var bestTarget = null;
+	for( var i=0; i<targetList.length; i++ )
+	{
+		var e = targetList[i];
+		if( canGather( this, e )
+			&& ( !resourceSubType || e.traits.supply.subType.toString() == resourceSubType ) )
+		{
+			var dist = this.getDistance( e );
+			if( dist < bestDist )
+			{
+				bestDist = dist;
+				bestTarget = e;
+			}
+		}
+	}
+	if( bestTarget != null )
+	{
+		this.order( ORDER_GENERIC, bestTarget, ACTION_GATHER );
+		return true;
+	}
+	return false;
 }
 
 // ====================================================================
@@ -1356,7 +1388,7 @@ function entityStartConstruction( evt )
 
 // ====================================================================
 
-const TECH_RESOURCES = new Array("food", "wood", "stone", "ore");
+const TECH_RESOURCES = new Array("food", "wood", "stone", "metal");
 
 function entityStartProduction( evt )
 {
@@ -2077,6 +2109,37 @@ function SettlementAura( source )
 			source.visible = true;
 		}
 	}
+}
+
+// ====================================================================
+
+function AllureAura( source )
+{
+	// Defines the effects of the Allure Aura. (Adjacent male units owned by the same player gather faster.)
+
+	this.source = source;
+	
+	this.affects = function( e ) 
+	{
+		return ( e.player.id == this.source.player.id && e.actions && e.actions.gather
+			&& e.actions.gather.affectedByAllure );
+	}
+	
+	this.onEnter = function( e ) 
+	{
+		if( this.affects( e ) ) 
+		{
+			e.allureCount++;
+		}
+	};
+	
+	this.onExit = function( e ) 
+	{
+		if( this.affects( e ) ) 
+		{
+			e.allureCount--;
+		}
+	};
 }
 
 // ====================================================================

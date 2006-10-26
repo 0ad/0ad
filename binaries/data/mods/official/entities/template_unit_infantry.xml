@@ -27,7 +27,7 @@
 			<Food>1</Food>
 			<Wood>1</Wood>
 			<Stone>1</Stone>
-			<Ore>1</Ore>
+			<Metal>1</Metal>
 		</Loot>		
 
 		<Population>
@@ -69,15 +69,16 @@
  		<Gather>
 			<Resource>
 				<Food>
-					<Fruit>20</Fruit>
-					<Grain>20</Grain>
-					<Fish>20</Fish>
-					<Milk>20</Milk>
+					<Fruit>10</Fruit>
+					<Grain>10</Grain>
+					<Fish>10</Fish>
+					<Milk>10</Milk>
 				</Food>
 				<Wood>10</Wood>
 				<Stone>10</Stone>
-				<Ore>10</Ore>
+				<Metal>10</Metal>
 			</Resource>
+			<AffectedByAllure>true</AffectedByAllure>
  			<Range>2.0</Range>
 			<Speed>3000</Speed>
  		</Gather>

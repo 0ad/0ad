@@ -36,7 +36,7 @@
 			<Food>1</Food>
 			<wood>1</wood>
 			<Stone>1</Stone>
-			<Ore>1</Ore>
+			<Metal>1</Metal>
 		</Loot>		
 
 		<Population>
@@ -58,9 +58,10 @@
  		<Gather>
 			<Resource>
 				<Food>
-					<Meat>2</Meat>
+					<Meat>15</Meat>
 				</Food>
 			</Resource>
+			<AffectedByAllure>true</AffectedByAllure>
  			<Range>2.0</Range>
 			<Speed>3000</Speed>
  		</Gather>

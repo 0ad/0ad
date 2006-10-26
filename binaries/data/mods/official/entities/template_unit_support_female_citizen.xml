@@ -18,13 +18,20 @@
 
 		<Auras>
 			<Infidelity>
-				<Radius>30</Radius>
+				<Radius>25</Radius>
 				<Time>10</Time>
 				<r>0.8</r>
 				<g>0.8</g>
 				<b>1.0</b>
 				<a>0.5</a>
 			</Infidelity>
+			<Allure>
+				<Radius>25</Radius>
+				<r>0.8</r>
+				<g>0.8</g>
+				<b>1.0</b>
+				<a>0.5</a>
+			</Allure>
 		</Auras>		
 		
 	</Traits>
@@ -47,11 +54,14 @@
 		<Gather>
 			<Resource>
 				<Food>
-					<Fruit>5</Fruit>
-					<Grain>5</Grain>
-					<Fish>5</Fish>
-					<Milk>5</Milk>
+					<Fruit>20</Fruit>
+					<Grain>20</Grain>
+					<Fish>20</Fish>
+					<Milk>20</Milk>
 				</Food>
+				<Wood>15</Wood>
+				<Metal>15</Metal>
+				<Stone>15</Stone>
 			</Resource>
  			<Range>2.0</Range>
 			<Speed>3000</Speed>

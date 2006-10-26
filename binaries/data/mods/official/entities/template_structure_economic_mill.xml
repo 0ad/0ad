@@ -13,9 +13,9 @@
 
 			<Icon_Cell>52</Icon_Cell>
 
-			<Classes>Village</Classes>
+			<Classes>Village, Mill</Classes>
 
-			<Rollover>A Mill must be constructed near a source of Wood, Stone or Ore in order to collect them. It also provides technologies that improve gathering of these resources.</Rollover>
+			<Rollover>A Mill must be constructed near a source of Wood, Stone or Metal in order to collect them. It also provides technologies that improve gathering of these resources.</Rollover>
 		
 		</Id>
 
@@ -40,7 +40,7 @@
 				<Types>
 					<Wood/>
 					<Stone/>
-					<Ore/>
+					<Metal/>
 				</Types>
 				<r>0.1</r>
 				<g>0.2</g>
