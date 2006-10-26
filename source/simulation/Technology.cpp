@@ -123,7 +123,7 @@ bool CTechnology::loadELReq( XMBElement Req, CXeromyces& XeroFile )
 	EL(food);
 	EL(tech);
 	EL(stone);
-	EL(ore);
+	EL(metal);
 	EL(wood);
 	EL(entity);
 	
@@ -153,8 +153,8 @@ bool CTechnology::loadELReq( XMBElement Req, CXeromyces& XeroFile )
 					m_ReqWood = resValue.ToFloat();
 				else if ( resName == el_stone )
 					m_ReqStone = resValue.ToFloat();
-				else if ( resName == el_ore )
-					m_ReqOre = resValue.ToFloat();
+				else if ( resName == el_metal )
+					m_ReqMetal = resValue.ToFloat();
 				else
 				{
 					const char* tagName = XeroFile.getElementString(name).c_str();
@@ -432,7 +432,7 @@ void CTechnology::ScriptingInit()
 	AddProperty<float>(L"food", &CTechnology::m_ReqFood);
 	AddProperty<float>(L"wood", &CTechnology::m_ReqWood);
 	AddProperty<float>(L"stone", &CTechnology::m_ReqStone);
-	AddProperty<float>(L"ore", &CTechnology::m_ReqOre);
+	AddProperty<float>(L"metal", &CTechnology::m_ReqMetal);
 	AddProperty<bool>(L"in_progress", &CTechnology::m_inProgress);
 
 	AddMethod<jsval, &CTechnology::ApplyEffects>( "applyEffects", 2 );

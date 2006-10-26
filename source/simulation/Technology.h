@@ -66,7 +66,7 @@ private:
 	float m_ReqWood;
 	float m_ReqFood;
 	float m_ReqStone;
-	float m_ReqOre;
+	float m_ReqMetal;
 
 	std::vector<CStr> m_ReqEntities;
 	std::vector<CStr> m_ReqTechs;
