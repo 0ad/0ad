@@ -171,7 +171,7 @@ function updateStat (baseName, cellSheet, cell, statistic)
 	var textStat = getGUIObjectByName (baseName + statCurr);
 	if( !textStat ) 
 	{
-		console.write("No textStat for " + baseName + " " + statCurr);
+		//console.write("No textStat for " + baseName + " " + statCurr);
 		return;
 	}
 	textStat.sprite = "snIconSheet" + cellSheet;
