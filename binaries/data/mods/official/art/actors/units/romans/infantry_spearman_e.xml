@@ -4,7 +4,7 @@
   <castshadow/>
 
   <group>
-    <variant frequency="100" name="Base">
+    <variant frequency="1" name="Base">
       <animations>
         <animation file="biped/inf_spear_shield_atk_a.psa" name="Idle" speed="200"/>
         <animation file="biped/inf_spear_shield_atk_b.psa" name="Idle" speed="200"/>
@@ -23,12 +23,20 @@
         <prop actor="props/units/shields/rome_scutum_su.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
       </props>
-      <texture>skeletal/rome_isp_e.dds</texture>
     </variant>
   </group>
 
   <group>
-    <variant frequency="100" name="Idle"/>
+    <variant frequency="2" name="armor-texture-1">
+      <texture>skeletal/rome_isp_e.dds</texture>
+    </variant>
+    <variant frequency="3" name="armor-texture-2">
+      <texture>skeletal/rome_isp_e_2.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="Idle"/>
     <variant name="Melee">
       <props>
         <prop attachpoint="l_hand"/>
