@@ -4,7 +4,7 @@
   <castshadow/>
 
   <group>
-    <variant frequency="100" name="Base">
+    <variant frequency="1" name="Base">
       <animations>
         <animation file="infantry/general/dude/dudeidle.psa" name="Idle" speed="200"/>
         <animation file="biped/dudewalk_swordshield.psa" name="Walk" speed="28"/>
@@ -27,6 +27,11 @@
         <prop actor="props/units/shields/rome_scutum_b.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/gladus.xml" attachpoint="r_hand"/>
       </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="texture-1">
       <texture>skeletal/rome_isw_b.dds</texture>
     </variant>
   </group>
