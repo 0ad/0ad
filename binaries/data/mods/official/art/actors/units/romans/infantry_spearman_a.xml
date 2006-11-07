@@ -10,11 +10,14 @@
         <animation file="biped/walk_spearshield.psa" name="Walk" speed="20"/>
         <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="8"/>
         <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="150"/>
-        <animation file="infantry/general/dude/dudechop.psa" name="Chop" speed="150"/>
+        <animation file="infantry/general/forage.psa" name="gather_fruit" speed="75"/>
+        <animation file="biped/hoe.psa" name="gather_grain" speed="300"/>
+        <animation file="infantry/general/chop.psa" name="gather_wood" speed="150"/>
+        <animation file="infantry/general/mine.psa" name="gather_stone" speed="200"/>
+        <animation file="infantry/general/mine.psa" name="gather_metal" speed="200"/>
         <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
         <animation file="infantry/general/dude/dudedecay_sword.psa" name="Corpse" speed="100"/>
-        <animation event="0.5" file="biped/inf_spear_shield_atk_a.psa" name="Attack" speed="100"/>
-        <animation event="0.5" file="biped/inf_spear_shield_atk_b.psa" name="Attack" speed="100"/>
+        <animation event="0.5" file="biped/inf_spear_shield_atk_b.psa" name="melee" speed="400"/>
       </animations>
       <mesh>skeletal/m_tunic_b.pmd</mesh>
       <props>
@@ -28,37 +31,52 @@
   </group>
 
   <group>
-    <variant frequency="100" name="Idle"/>
+    <variant frequency="1" name="Idle"/>
     <variant name="Melee">
       <props>
-        <prop attachpoint="l_hand"/>
-        <prop actor="props/units/shields/rome_scutum_b.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/gladus.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
       </props>
     </variant>
     <variant name="gather_wood">
       <props>
         <prop actor="props/units/tools/axe.xml" attachpoint="l_hand"/>
+        <prop attachpoint="r_hand"/>
+        <prop attachpoint="shield"/>
       </props>
     </variant>
     <variant name="gather_grain">
       <props>
         <prop actor="props/units/tools/hoe.xml" attachpoint="l_hand"/>
+        <prop attachpoint="r_hand"/>
+        <prop attachpoint="shield"/>
       </props>
     </variant>
     <variant name="gather_fruit">
       <props>
         <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
+        <prop attachpoint="r_hand"/>
+        <prop attachpoint="shield"/>
       </props>
     </variant>
     <variant name="gather_stone">
       <props>
         <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
+        <prop attachpoint="r_hand"/>
+        <prop attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant name="gather_metal">
+      <props>
+        <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
+        <prop attachpoint="shield"/>
+        <prop attachpoint="r_hand"/>
       </props>
     </variant>
     <variant name="Build">
       <props>
         <prop actor="props/units/tools/mallet.xml" attachpoint="r_hand"/>
+        <prop attachpoint="l_hand"/>
+        <prop attachpoint="shield"/>
       </props>
     </variant>
   </group>
