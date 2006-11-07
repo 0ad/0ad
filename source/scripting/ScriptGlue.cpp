@@ -625,11 +625,12 @@ JSBool startXTimer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval
 
 	JSU_REQUIRE_PARAMS(1);
 	uint slot = ToPrimitive<uint>(argv[0]);
-	debug_assert(slot < MAX_XTIMERS);
+	if (slot >= MAX_XTIMERS)
+		return JS_FALSE;
 
 	debug_assert(xstart_times[slot] == 0);
 	xstart_times[slot] = xtimer_impl.get_timestamp();
-	return( JS_TRUE );
+	return JS_TRUE;
 }
 
 
@@ -637,13 +638,14 @@ JSBool stopXTimer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
 	JSU_REQUIRE_PARAMS(1);
 	uint slot = ToPrimitive<uint>(argv[0]);
-	debug_assert(slot < MAX_XTIMERS);
+	if (slot >= MAX_XTIMERS)
+		return JS_FALSE;
 
 	debug_assert(xstart_times[slot] != 0);
 	XTimerImpl::unit dt = xtimer_impl.get_timestamp() - xstart_times[slot] - xoverhead;
 	xstart_times[slot] = 0;
 	timer_bill_client(&xclients[slot], dt);
-	return( JS_TRUE );
+	return JS_TRUE;
 }
 
 

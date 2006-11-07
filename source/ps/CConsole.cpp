@@ -591,7 +591,7 @@ void CConsole::SetBuffer(const wchar_t* szMessage, ...)
 	m_iBufferPos = std::min(oldBufferPos, m_iBufferLength);
 }
 
-void CConsole::UseHistoryFile( const CStr& filename, int max_history_lines )
+void CConsole::UseHistoryFile(const CStr& filename, int max_history_lines)
 {
 	m_MaxHistoryLines = max_history_lines;
 
@@ -599,7 +599,8 @@ void CConsole::UseHistoryFile( const CStr& filename, int max_history_lines )
 	LoadHistory();
 }
 
-void CConsole::ProcessBuffer(const wchar_t* szLine){
+void CConsole::ProcessBuffer(const wchar_t* szLine)
+{
 	if (szLine == NULL) return;
 	if (wcslen(szLine) <= 0) return;
 
@@ -609,14 +610,15 @@ void CConsole::ProcessBuffer(const wchar_t* szLine){
 	SaveHistory(); // Do this each line for the moment; if a script causes
 	               // a crash it's a useful record.
 
-	wchar_t szCommand[CONSOLE_BUFFER_SIZE];
-	memset(szCommand, '\0', sizeof(wchar_t) * CONSOLE_BUFFER_SIZE);
+	wchar_t szCommand[CONSOLE_BUFFER_SIZE] = { 0 };
 
 	std::map<std::wstring, fptr>::iterator Iter;
 
 	if (szLine[0] == '\\')
 	{
-		swscanf(szLine, L"\\%ls", szCommand);
+		if (swscanf(szLine, L"\\%ls", szCommand) != 1)
+			return;
+
 		Trim(szCommand);
 		ToLower(szCommand);
 

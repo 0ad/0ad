@@ -200,7 +200,11 @@ CConfigValue *CConfigDB::GetValue(EConfigNamespace ns, const CStr& name)
 
 CConfigValueSet *CConfigDB::GetValues(EConfigNamespace ns, const CStr& name )
 {
-	debug_assert(ns < CFG_LAST && ns >= 0);
+	if (ns < 0 || ns >= CFG_LAST)
+	{
+		debug_warn("CConfigDB: Invalid ns value");
+		return NULL;
+	}
 
 	TConfigMap::iterator it = m_Map[CFG_COMMAND].find( name );
 	if( it != m_Map[CFG_COMMAND].end() )
@@ -218,7 +222,11 @@ CConfigValueSet *CConfigDB::GetValues(EConfigNamespace ns, const CStr& name )
 
 CConfigValue *CConfigDB::CreateValue(EConfigNamespace ns, const CStr& name)
 {
-	debug_assert(ns < CFG_LAST && ns >= 0);
+	if (ns < 0 || ns >= CFG_LAST)
+	{
+		debug_warn("CConfigDB: Invalid ns value");
+		return NULL;
+	}
 	
 	CConfigValue *ret=GetValue(ns, name);
 	if (ret) return ret;
@@ -229,7 +237,11 @@ CConfigValue *CConfigDB::CreateValue(EConfigNamespace ns, const CStr& name)
 
 void CConfigDB::SetConfigFile(EConfigNamespace ns, bool useVFS, const CStr& path)
 {
-	debug_assert(ns < CFG_LAST && ns >= 0);
+	if (ns < 0 || ns >= CFG_LAST)
+	{
+		debug_warn("CConfigDB: Invalid ns value");
+		return;
+	}
 	
 	m_ConfigFile[ns]=path;
 	m_UseVFS[ns]=useVFS;
@@ -328,7 +340,11 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 
 bool CConfigDB::WriteFile(EConfigNamespace ns, bool useVFS, const CStr& path)
 {
-	debug_assert(ns >= 0 && ns < CFG_LAST);
+	if (ns < 0 || ns >= CFG_LAST)
+	{
+		debug_warn("CConfigDB: Invalid ns value");
+		return false;
+	}
 
 	char realpath[PATH_MAX];
 	char nativepath[PATH_MAX];

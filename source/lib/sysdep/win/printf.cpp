@@ -9,7 +9,7 @@
 /*
 	Added features (compared to MSVC's printf):
 		Positional parameters (e.g. "%1$d", where '1' means '1st in the parameter list')
-		%lld (equivalent to %I64d in MSVC)
+		%lld (equivalent to %I64d in MSVC7.1, though it's supported natively by MSVC8)
 
 	Unsupported features (compared to a perfect implementation):
 		'	<-- because MSVC doesn't support it
@@ -31,6 +31,12 @@
 #include <stdio.h>
 #include <sstream>
 #include <stdarg.h>
+
+#if MSC_VERSION < 1400
+# define USE_I64_FORMAT 1
+#else
+# define USE_I64_FORMAT 0
+#endif
 
 enum
 {
@@ -363,8 +369,8 @@ finished_reading:
 				if (s->length > 256)
 				{
 					if (s->length == 0x00006c6c)
-						#if MSC_VERSION
-						 newformat += "I64"; // MSVC compatibility
+						#if USE_I64_FORMAT
+						 newformat += "I64";
 						#else
 						 newformat += "ll";
 						#endif
@@ -464,7 +470,11 @@ finished_reading:
 
 	int ret = _vsnprintf(buffer, count, newformat.c_str(), (va_list)newstackptr);
 
+	// For consistency with GCC's vsnprintf, make sure the buffer is null-terminated
+	// and return an error if that truncates the output
+	buffer[count-1] = '\0';
+	if (ret == (int)count)
+		return -1;
+
 	return ret;
 }
-
-

@@ -188,5 +188,6 @@ extern bool self_test_active;
 
 #define TS_ASSERT_OK(expr) TS_ASSERT_EQUALS((expr), INFO::OK)
 #define TS_ASSERT_STR_EQUALS(str1, str2) TS_ASSERT_EQUALS(std::string(str1), std::string(str2))
+#define TS_ASSERT_WSTR_EQUALS(str1, str2) TS_ASSERT_EQUALS(std::wstring(str1), std::wstring(str2))
 
 #endif	// #ifndef SELF_TEST_H__

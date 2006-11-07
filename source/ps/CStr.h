@@ -105,10 +105,11 @@ public:
 		CStrW(const CStr8 &asciiStr);
 	#endif
 
-	// Conversion to/from UTF-8, encoded in a CStr8. Non-ASCII characters are
-	// handled correctly.
-	// May fail, if converting from invalid UTF-8 data; the empty string will
-	// be returned.
+	// Conversion to/from UTF-8, encoded in a CStr8.
+	// Common non-ASCII characters are handled correctly.
+	// Characters outside the BMP (above 0xFFFF) are *not* handled correctly.
+	// FromUTF8 may fail, if converting from invalid UTF-8 data - the empty
+	// string will be returned.
 	#ifdef _UNICODE
 		CStr8 ToUTF8() const;
 	#else

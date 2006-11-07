@@ -172,7 +172,7 @@ void CXeromyces::Terminate()
 
 
 // Find out write location of the XMB file corresponding to xmlFilename
-void CXeromyces::getXMBPath(const char* xmlFilename, const char* xmbFilename,
+void CXeromyces::GetXMBPath(const char* xmlFilename, const char* xmbFilename,
 	char* xmbPath)
 {
 	// rationale:
@@ -257,7 +257,7 @@ PSRETURN CXeromyces::Load(const char* filename)
 	xmbFilename += buf;
 
 	char xmbPath[PATH_MAX];
-	getXMBPath(filename, xmbFilename, xmbPath);
+	GetXMBPath(filename, xmbFilename, xmbPath);
 
 
 	// If the file exists, use it

@@ -16,19 +16,11 @@ CModelDefPtr CMeshManager::GetMesh(const char *filename)
 {
 	CStr fn(filename);
 	mesh_map::iterator iter = m_MeshMap.find(fn);
-	if (iter != m_MeshMap.end())
+	if (iter != m_MeshMap.end() && !iter->second.expired())
 	{
-		try
-		{
-			CModelDefPtr model (iter->second);
-			//LOG(MESSAGE, "mesh", "Loading mesh '%s%' (cached)...", filename);
-			return model;
-		}
-		// If the mesh has already been deleted, the weak_ptr -> shared_ptr
-		// conversion will throw bad_weak_ptr (and we need to reload the mesh)
-		catch (boost::bad_weak_ptr)
-		{
-		}
+		CModelDefPtr model (iter->second);
+		//LOG(MESSAGE, "mesh", "Loading mesh '%s%' (cached)...", filename);
+		return model;
 	}
 
 	try

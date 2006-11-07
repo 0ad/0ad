@@ -1022,7 +1022,6 @@ void CGUI::ReportParseError(const char *str, ...)
 	
 	va_start(argp, str);
 	vsnprintf2(buffer, sizeof(buffer), str, argp);
-	buffer[sizeof(buffer)-1] = '\0';
 	va_end(argp);
 
 	// Print header

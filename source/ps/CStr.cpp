@@ -38,7 +38,7 @@ CStr8 CStrW::ToUTF8() const
 {
 	CStr8 result;
 
-	for (size_t i = 0; i < Length(); ++i)
+	for (size_t i = 0; i < length(); ++i)
 	{
 		unsigned short bytesToWrite;
 		wchar_t ch = (*this)[i];
@@ -58,12 +58,14 @@ CStr8 CStrW::ToUTF8() const
 		case 2: *--target = ((ch | 0x80) & 0xBF); ch >>= 6;
 		case 1: *--target = (ch | firstByteMark[bytesToWrite]);
 		}
-		result += CStr(buf, bytesToWrite);
+		result += CStr8(buf, bytesToWrite);
 	}
+
 	return result;
 }
 
-static bool isLegalUTF8(const unsigned char *source, int length) {
+static bool isLegalUTF8(const unsigned char *source, int length)
+{
 	unsigned char a;
 	const unsigned char *srcptr = source+length;
 
@@ -92,7 +94,7 @@ CStrW CStr8::FromUTF8() const
 {
 	CStrW result;
 
-	if(empty())
+	if (empty())
 		return result;
 
 	const unsigned char* source = (const unsigned char*)&*begin();
@@ -103,12 +105,12 @@ CStrW CStr8::FromUTF8() const
 		unsigned short extraBytesToRead = trailingBytesForUTF8[*source];
 		if (source + extraBytesToRead >= sourceEnd)
 		{
-			debug_warn("Invalid UTF-8 (fell off end)");
+			//debug_warn("Invalid UTF-8 (fell off end)");
 			return L"";
 		}
 
 		if (! isLegalUTF8(source, extraBytesToRead+1)) {
-			debug_warn("Invalid UTF-8 (illegal data)");
+			//debug_warn("Invalid UTF-8 (illegal data)");
 			return L"";
 		}
 
@@ -134,7 +136,6 @@ CStrW CStr8::FromUTF8() const
 // The following code is compiled twice, as CStrW then as CStr8:
 
 #include "CStr.h"
-using namespace std;
 
 #include <sstream>
 
@@ -282,7 +283,7 @@ long CStr::ReverseFind(const CStr& Str) const
 // Lowercase and uppercase 
 CStr CStr::LowerCase() const
 {
-	tstring NewString = *this;
+	std::tstring NewString = *this;
 	for (size_t i = 0; i < length(); i++)
 		NewString[i] = (tchar)_totlower((*this)[i]);
 
@@ -291,7 +292,7 @@ CStr CStr::LowerCase() const
 
 CStr CStr::UpperCase() const
 {
-	tstring NewString = *this;
+	std::tstring NewString = *this;
 	for (size_t i = 0; i < length(); i++)
 		NewString[i] = (tchar)_totupper((*this)[i]);
 
@@ -302,7 +303,7 @@ CStr CStr::UpperCase() const
 // code duplication because return by value overhead if they were merely an alias
 CStr CStr::LCase() const
 {
-	tstring NewString = *this;
+	std::tstring NewString = *this;
 	for (size_t i = 0; i < length(); i++)
 		NewString[i] = (tchar)_totlower((*this)[i]);
 
@@ -311,7 +312,7 @@ CStr CStr::LCase() const
 
 CStr CStr::UCase() const
 {
-	tstring NewString = *this;
+	std::tstring NewString = *this;
 	for (size_t i = 0; i < length(); i++)
 		NewString[i] = (tchar)_totupper((*this)[i]);
 

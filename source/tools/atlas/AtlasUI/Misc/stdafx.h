@@ -4,6 +4,10 @@
 # define HAVE_PCH
 #endif
 
+#if defined(_MSC_VER) && _MSC_VER >= 1400
+# pragma warning(disable: 6334)
+#endif
+
 #ifdef HAVE_PCH
 
 // Exclude rarely-used stuff from Windows headers

@@ -27,6 +27,7 @@
 #include "lib/debug.h"	// ErrorReaction
 
 #include <cmath>	// see comments below about isfinite
+#include <cstdarg>	// needed for vsnprintf2
 
 // some functions among the sysdep API are implemented as macros
 // that redirect to the platform-dependent version. this is done where
@@ -82,13 +83,12 @@
 // C99 / SUSv3 emulation where needed
 //-----------------------------------------------------------------------------
 
-// vsnprintf2: handles positional parameters and %lld.
-// already available on *nix, emulated on Win32.
-#if OS_WIN
+// vsnprintf2: doesn't quite follow the standard for vsnprintf, but works
+// better across compilers:
+// - handles positional parameters and %lld
+// - always null-terminates the buffer
+// - returns -1 on overflow (if the output string (including null) does not fit in the buffer)
 extern int vsnprintf2(char* buffer, size_t count, const char* format, va_list argptr);
-#else
-#define vsnprintf2 vsnprintf
-#endif
 
 #if !MSC_VERSION
 #define stricmp strcasecmp
