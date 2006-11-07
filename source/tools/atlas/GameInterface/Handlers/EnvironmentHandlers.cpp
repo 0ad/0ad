@@ -25,7 +25,8 @@ sEnvironmentSettings GetSettings()
 	s.watermurkiness = wm->m_Murkiness;
 	s.waterreflectiontintstrength = wm->m_ReflectionTintStrength;
 
-#define COLOUR(A, B) A = Colour(B.r*255, B.g*255, B.b*255)
+	// CColor colours
+#define COLOUR(A, B) A = Colour((int)(B.r*255), (int)(B.g*255), (int)(B.b*255))
 	COLOUR(s.watercolour, wm->m_WaterColor);
 	COLOUR(s.watertint, wm->m_WaterTint);
 	COLOUR(s.waterreflectiontint, wm->m_ReflectionTint);
@@ -39,7 +40,8 @@ sEnvironmentSettings GetSettings()
 
 	s.skyset = g_Renderer.GetSkyManager()->GetSkySet();
 
-#define COLOUR(A, B) A = Colour(B.X*255, B.Y*255, B.Z*255)
+	// RGBColor (CVector3D) colours
+#define COLOUR(A, B) A = Colour((int)(B.X*255), (int)(B.Y*255), (int)(B.Z*255))
 	COLOUR(s.suncolour, g_LightEnv.m_SunColor);
 	COLOUR(s.terraincolour, g_LightEnv.m_TerrainAmbientColor);
 	COLOUR(s.unitcolour, g_LightEnv.m_UnitsAmbientColor);

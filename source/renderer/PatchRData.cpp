@@ -546,6 +546,10 @@ void CPatchRData::RenderBlends()
 
 	// setup data pointers
 	u32 stride=sizeof(SBlendVertex);
+	// ((GCC warns about offsetof: SBlendVertex contains a CVector3D which has
+	// a constructor, and so is not a POD type, and so offsetof is theoretically
+	// invalid - see http://gcc.gnu.org/ml/gcc/2003-11/msg00281.html - but it
+	// doesn't seem to be worth changing this code since it works anyway.))
 	glVertexPointer(3,GL_FLOAT,stride,base+offsetof(SBlendVertex,m_Position));
 	glColorPointer(4,GL_UNSIGNED_BYTE,stride,base+offsetof(SBlendVertex,m_LOSColor));
 

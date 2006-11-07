@@ -116,7 +116,8 @@ void CMiniMap::SetCameraPos()
 	CVector3D CamOrient=m_Camera->m_Orientation.GetTranslation();
 
 	//get center point of screen
-	int x = (int)g_Renderer.GetWidth()/2.f, y = (int)g_Renderer.GetHeight()/2.f;
+	int x = g_Renderer.GetWidth()/2;
+	int y = g_Renderer.GetHeight()/2;
 	CVector3D ScreenMiddle=m_Camera->GetWorldCoordinates(x,y);
 
 	//Get Vector required to go from camera position to ScreenMiddle
@@ -167,8 +168,8 @@ void CMiniMap::FireWorldClickEvent(uint button, int clicks)
 		NMT_Run,
 		-1, 
 		NULL,
-		Destination.x,
-		Destination.y);
+		(int)Destination.x,
+		(int)Destination.y);
 }
 
 // render view rect : John M. Mena

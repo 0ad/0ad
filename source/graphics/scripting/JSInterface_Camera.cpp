@@ -220,7 +220,7 @@ JSBool JSI_Camera::lookAt( JSContext* cx, JSObject* obj, uint argc, jsval* argv,
 	JSU_REQUIRE_PARAM_RANGE(2, 3);
 
 	cameraInfo->m_sv_Position = GETVECTOR( argv[0] );
-	cameraInfo->m_sv_Orientation = ( GETVECTOR( argv[1] ) - GETVECTOR( argv[0] ) );
+	cameraInfo->m_sv_Orientation = GETVECTOR( argv[1] ) - cameraInfo->m_sv_Position;
 	cameraInfo->m_sv_Orientation.Normalize();
 
 	if( argc == 2 )
