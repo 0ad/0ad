@@ -4,11 +4,13 @@
   <castshadow/>
 
   <group>
-    <variant name="Base">
+    <variant frequency="1" name="Base">
       <animations>
         <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
         <animation file="quadraped/horse_gallop.psa" name="Run" speed="8"/>
         <animation file="quadraped/horse_walk.psa" name="Walk" speed="28"/>
+        <animation file="quadraped/horse_attack_a.psa" name="melee" speed="250"/>
+        <animation file="quadraped/horse_attack_b.psa" name="melee" speed="250"/>
       </animations>
       <colour>0 0 0</colour>
       <mesh>skeletal/horse.pmd</mesh>
@@ -16,7 +18,7 @@
   </group>
 
   <group>
-    <variant>
+    <variant frequency="1" name="horse-texture">
       <props>
         <prop actor="units/hellenes/alexander_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/hele_saddle_h1.xml" attachpoint="chest"/>

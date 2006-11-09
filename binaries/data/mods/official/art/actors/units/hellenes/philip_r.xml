@@ -6,18 +6,19 @@
   <group>
     <variant frequency="100" name="Base">
       <animations>
-        <animation file="biped/rider_gallop.psa" name="Idle" speed="200"/>
+        <animation file="biped/cavalryidle.psa" name="Idle" speed="100"/>
         <animation file="biped/cavalryidle.psa" name="Walk" speed="20"/>
         <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
         <animation file="infantry/general/dude/dudedecay_sword.psa" name="Corpse" speed="100"/>
-        <animation event="0.5" file="biped/rider_spear_shield_atk_a.psa" name="Attack" speed="100"/>
+        <animation event="0.5" file="biped/rider_spear_shield_atk_a.psa" name="melee" speed="350"/>
+        <animation file="biped/rider_gallop.psa" name="run" speed="18"/>
       </animations>
       <mesh>skeletal/m_tunic_a.pmd</mesh>
       <props>
         <prop actor="props/units/heads/head_philip.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/spear_long.xml" attachpoint="r_hand"/>
       </props>
-      <texture>skeletal/hele_philip.dds</texture>
+      <texture>skeletal/hele_philip_2.dds</texture>
     </variant>
   </group>
 

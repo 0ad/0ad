@@ -8,9 +8,9 @@
       <animations>
         <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
         <animation file="biped/cavalryidle.psa" name="Walk" speed="50"/>
-        <animation file="biped/rider_gallop.psa" name="Run" speed="8"/>
+        <animation file="biped/rider_gallop.psa" name="Run" speed="18"/>
       </animations>
-      <mesh>skeletal/m_tunic_a.pmd</mesh>
+      <mesh>skeletal/m_tunic_b.pmd</mesh>
       <props>
         <prop actor="props/units/heads/head_hele_a.xml" attachpoint="head"/>
         <prop actor="props/units/heads/hele_straw.xml" attachpoint="helmet"/>

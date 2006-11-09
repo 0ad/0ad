@@ -6,7 +6,11 @@
   <float/>
 
   <group>
-    <variant>
+    <variant frequency="1" name="base">
+      <animations>
+        <animation file="mechanical/ship_idle.psa" name="idle" speed="100"/>
+        <animation file="mechanical/ship_move.psa" name="walk" speed="100"/>
+      </animations>
       <mesh>structural/hele_bir.pmd</mesh>
       <props>
         <prop actor="props/structures/hellenes/hele_bir1.xml" attachpoint="props_main"/>

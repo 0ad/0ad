@@ -4,10 +4,10 @@
   <castshadow/>
 
   <group>
-    <variant name="Base">
+    <variant frequency="1" name="Base">
       <animations>
         <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
-        <animation file="quadraped/horse_gallop.psa" name="Run" speed="8"/>
+        <animation file="quadraped/horse_gallop.psa" name="Run" speed="18"/>
         <animation file="quadraped/horse_walk.psa" name="Walk" speed="28"/>
         <animation event=".5" file="quadraped/horse_attack_a.psa" name="Melee" speed="20"/>
         <animation event=".5" file="quadraped/horse_attack_b.psa" name="Melee" speed="20"/>
@@ -20,25 +20,25 @@
   </group>
 
   <group>
-    <variant name="yellow">
-      <colour>254 216 0</colour>
+    <variant frequency="1" name="horse-color-dun">
+      <colour>244 122 11</colour>
     </variant>
-    <variant name="brown">
-      <colour>136 119 0</colour>
+    <variant frequency="1" name="horse-color-lightbay">
+      <colour>198 94 0</colour>
     </variant>
-    <variant name="rust">
-      <colour>241 131 0</colour>
+    <variant frequency="1" name="horse-color-darkbay">
+      <colour>85 62 6</colour>
     </variant>
   </group>
 
   <group>
-    <variant>
+    <variant frequency="1" name="horse-texture-a">
       <texture>skeletal/horse_hele_d.dds</texture>
     </variant>
-    <variant>
+    <variant frequency="3" name="horse-texture-b">
       <texture>skeletal/horse_hele_e.dds</texture>
     </variant>
-    <variant>
+    <variant frequency="1" name="horse-texture-c">
       <texture>skeletal/horse_hele_f.dds</texture>
     </variant>
   </group>
