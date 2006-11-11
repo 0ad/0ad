@@ -737,14 +737,7 @@ void vfs_display()
 	tree_display();
 }
 
-
-static enum VfsInitState
-{
-	VFS_BEFORE_INIT,
-	VFS_INITIALIZED,
-	VFS_SHUTDOWN
-}
-vfs_init_state = VFS_BEFORE_INIT;
+static ModuleInitState init_state;
 
 // make the VFS tree ready for use. must be called before all other
 // functions below, barring explicit mentions to the contrary.
@@ -755,21 +748,21 @@ vfs_init_state = VFS_BEFORE_INIT;
 // is necessary anyway and this way is simpler/easier to maintain.
 void vfs_init()
 {
-	debug_assert(vfs_init_state == VFS_BEFORE_INIT || vfs_init_state == VFS_SHUTDOWN);
+	moduleInit_assertCanInit(init_state);
 
 	stats_vfs_init_start();
 	mount_init();
 	stats_vfs_init_finish();
 
-	vfs_init_state = VFS_INITIALIZED;
+	moduleInit_markInitialized(&init_state);
 }
 
 void vfs_shutdown()
 {
-	debug_assert(vfs_init_state == VFS_INITIALIZED);
+	moduleInit_assertCanShutdown(init_state);
 
 	trace_shutdown();
 	mount_shutdown();
 
-	vfs_init_state = VFS_SHUTDOWN;
+	moduleInit_markShutdown(&init_state);
 }

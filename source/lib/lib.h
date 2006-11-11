@@ -464,10 +464,10 @@ inline bool feq(float f1, float f2)
 
 
 /**
-* return random integer in [min, max).
-* avoids several common pitfalls; see discussion at
-* http://www.azillionmonkeys.com/qed/random.html
-**/
+ * return random integer in [min, max).
+ * avoids several common pitfalls; see discussion at
+ * http://www.azillionmonkeys.com/qed/random.html
+ **/
 extern uint rand(uint min_inclusive, uint max_exclusive);
 
 
@@ -563,5 +563,29 @@ extern u64 fnv_hash64(const void* buf, size_t len = 0);
  * (useful for comparing mixed-case filenames)
  **/
 extern u32 fnv_lc_hash(const char* str, size_t len = 0);
+
+
+//-----------------------------------------------------------------------------
+// helpers for module init
+
+/**
+ * initialization state of a module (class, source file, or whatever).
+ *
+ * can be declared as a static variable => no init needed, since 0 is
+ * the correct initial value.
+ **/
+enum ModuleInitState
+{
+	MODULE_BEFORE_INIT = 0,
+	MODULE_INITIALIZED,
+	MODULE_SHUTDOWN,
+	MODULE_ERROR
+};
+
+extern void moduleInit_assertCanInit(ModuleInitState init_state);
+extern void moduleInit_assertInitialized(ModuleInitState init_state);
+extern void moduleInit_assertCanShutdown(ModuleInitState init_state);
+extern void moduleInit_markInitialized(ModuleInitState* init_state);
+extern void moduleInit_markShutdown(ModuleInitState* init_state);
 
 #endif	// #ifndef LIB_H__

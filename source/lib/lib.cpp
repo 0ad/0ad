@@ -562,3 +562,31 @@ u32 fnv_lc_hash(const char* str, size_t len)
 
 	return h;
 }
+
+//-----------------------------------------------------------------------------
+// helpers for module init
+
+void moduleInit_assertCanInit(ModuleInitState init_state)
+{
+	debug_assert(init_state == MODULE_BEFORE_INIT || init_state == MODULE_SHUTDOWN);
+}
+
+void moduleInit_assertInitialized(ModuleInitState init_state)
+{
+	debug_assert(init_state == MODULE_INITIALIZED);
+}
+
+void moduleInit_assertCanShutdown(ModuleInitState init_state)
+{
+	debug_assert(init_state == MODULE_INITIALIZED);
+}
+
+void moduleInit_markInitialized(ModuleInitState* init_state)
+{
+	*init_state = MODULE_INITIALIZED;
+}
+
+void moduleInit_markShutdown(ModuleInitState* init_state)
+{
+	*init_state = MODULE_SHUTDOWN;
+}

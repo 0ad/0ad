@@ -112,6 +112,8 @@ static inline void* node_user_data(Node* n)
 static pthread_key_t tls_key;
 static pthread_once_t tls_once = PTHREAD_ONCE_INIT;
 
+static ModuleInitState init_state;
+
 struct TLS
 {
 	TLS* next;
@@ -149,15 +151,23 @@ static void tls_retire(void* tls_)
 // (called via pthread_once from tls_get)
 static void tls_init()
 {
+	moduleInit_assertCanInit(init_state);
 	WARN_ERR(pthread_key_create(&tls_key, tls_retire));
+	moduleInit_markInitialized(&init_state);
 }
 
 
 // free all TLS info. called by smr_try_shutdown.
 static void tls_shutdown()
 {
+	// note: if tls_init is never called, i.e. noone has needed our services,
+	// there is no initialized state that needs to be undone.
+	if(init_state == MODULE_BEFORE_INIT)
+		return;
+	moduleInit_assertCanShutdown(init_state);
+
 	WARN_ERR(pthread_key_delete(tls_key));
-	tls_key = 0;
+	memset(&tls_key, 0, sizeof(tls_key));
 
 	while(tls_list)
 	{
@@ -165,6 +175,8 @@ static void tls_shutdown()
 		tls_list = tls->next;
 		free(tls);
 	}
+
+	moduleInit_markShutdown(&init_state);
 }
 
 
@@ -176,7 +188,7 @@ static TLS* tls_alloc()
 {
 	// make sure we weren't shut down in the meantime - re-init isn't
 	// possible since pthread_once (which can't be reset) calls tls_init.
-	debug_assert(tls_key != 0);
+	moduleInit_assertInitialized(init_state);
 
 	TLS* tls;
 
@@ -276,7 +288,7 @@ retry:
 	// for each participating thread:
 	for(TLS* t = tls_list; t; t = t->next)
 		// for each of its non-NULL hazard pointers:
-		for(int i = 0; i < NUM_HPS-1; i++)
+		for(int i = 0; i < NUM_HPS; i++)
 		{
 			void* hp = t->hp[i];
 			if(!hp)

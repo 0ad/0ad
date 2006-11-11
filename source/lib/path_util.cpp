@@ -43,7 +43,14 @@ AT_STARTUP(\
 
 static inline bool is_dir_sep(char c)
 {
-	if(c == '/' || c == DIR_SEP)
+	// note: ideally path strings would only contain '/' or even DIR_SEP.
+	// however, windows-specific code (e.g. the sound driver detection)
+	// uses these routines with '\\' strings. converting them all to
+	// '/' and then back before passing to WinAPI would be annoying.
+	// also, the self-tests verify correct operation of such strings.
+	// it would be error-prone to only test the platform's separator
+	// strings there. hence, we allow all separators here.
+	if(c == '/' || c == '\\')
 		return true;
 	return false;
 }
