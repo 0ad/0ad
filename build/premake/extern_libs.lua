@@ -45,6 +45,7 @@ libraries_dir = "../../../libraries/"
 --   library installation rules.
 extern_lib_defs = {
 	boost = {
+		unix_names = { "boost_signals" }
 	},
 	cxxtest = {
 	},
@@ -55,6 +56,7 @@ extern_lib_defs = {
 		dbg_suffix = "",
 	},
 	devil = {
+		unix_names = { "IL", "ILU" },
 	},
 	directx = {
 		win_names  = { "ddraw", "dsound" },
@@ -89,11 +91,16 @@ extern_lib_defs = {
 	},
 	wxwidgets = {
 		add_func = function()
-			tinsert(package.includepaths, libraries_dir.."wxwidgets/include/msvc")
-			tinsert(package.includepaths, libraries_dir.."wxwidgets/include")
-			tinsert(package.libpaths, libraries_dir.."wxwidgets/lib/vc_lib")
-			package.config["Debug"  ].links = { "wxmsw26ud_gl" }
-			package.config["Release"].links = { "wxmsw26u_gl" }
+			if OS == "windows" then
+				tinsert(package.includepaths, libraries_dir.."wxwidgets/include/msvc")
+				tinsert(package.includepaths, libraries_dir.."wxwidgets/include")
+				tinsert(package.libpaths, libraries_dir.."wxwidgets/lib/vc_lib")
+				package.config["Debug"  ].links = { "wxmsw26ud_gl" }
+				package.config["Release"].links = { "wxmsw26u_gl" }
+			else
+				tinsert(package.buildoptions, "`wx-config --cxxflags`")
+				tinsert(package.linkoptions, "`wx-config --libs std,gl,ogl,media`")
+			end
 		end,
 	},
 	xerces = {

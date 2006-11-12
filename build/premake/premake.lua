@@ -83,6 +83,13 @@ function package_set_build_flags()
 			-- non-IEEE-conformant results, but haven't noticed any trouble so far.
 			"-ffast-math",
 		}
+		package.includepaths = {
+			"/usr/X11R6/include/X11",
+			"/usr/include/X11",
+		}
+		package.libpaths = {
+			"/usr/X11R6/lib"
+		}
 		package.defines = {
 			"__STDC_VERSION__=199901L",
 			"CONFIG_USE_MMGR"
@@ -101,6 +108,8 @@ function package_create(package_name, target_type)
 	package.language = "c++"
 	package.name = package_name
 	package.kind = target_type
+
+	package.includepaths = {}
 
 	package_set_target(package_name)
 	package_set_build_flags()
@@ -124,8 +133,6 @@ function package_add_contents(source_root, rel_source_dirs, rel_include_dirs, ex
 	-- will still point to the correct filenames.
 	package.trimprefix = source_root
 	package.files = sourcesfromdirs(source_root, rel_source_dirs)
-
-	package.includepaths = {}
 
 	-- Put the project-specific PCH directory at the start of the
 	-- include path, so '#include "precompiled.h"' will look in
@@ -322,17 +329,13 @@ function setup_all_libs ()
 		"directx"
 	}
 	setup_static_lib_package("lowlevel", source_dirs, extern_libs, {})
-	if OS == "windows" then
-		tinsert(package.files, sourcesfromdirs(source_root, {"lib/sysdep/win"}))
+	sysdep_dirs = {
+		linux = { "lib/sysdep/unix" },
 		-- note: RC file must be added to main_exe package.
-	elseif OS == "linux" then
-		tinsert(package.files, sourcesfromdirs(source_root, {"lib/sysdep/unix"}))
-		-- (X11 include path isn't standard across distributions)
-		tinsert(package.includepaths, "/usr/X11R6/include/X11" )
-		tinsert(package.includepaths, "/usr/include/X11" )
-	elseif OS == "macosx" then 
-		tinsert(package.files, sourcesfromdirs(source_root, {"lib/sysdep/osx"}))
-	end
+		windows = { "lib/sysdep/win" },
+		macosx = { "lib/sysdep/osx" },
+	}
+	tinsert(package.files, sourcesfromdirs(source_root, sysdep_dirs[OS]));
 end
 
 
@@ -422,9 +425,6 @@ function setup_main_exe ()
 	
 		package.config["Debug"].linkoptions = { "-rdynamic" }
 		package.config["Testing"].linkoptions = { "-rdynamic" }
-
-	
-		tinsert(package.libpaths, "/usr/X11R6/lib")
 	elseif OS == "macosx" then
 		-- Libraries
 		tinsert(package.links, {			-- Utilities
@@ -478,7 +478,8 @@ local function setup_atlas_package(package_name, target_type, rel_source_dirs, r
 		end
 
 	else -- Non-Windows, = Unix
-		-- TODO
+		tinsert(package.buildoptions, "-rdynamic")
+		tinsert(package.linkoptions, "-rdynamic")
 	end
 
 end
@@ -492,7 +493,8 @@ function setup_atlas_packages()
 		""
 	},{	-- include
 	},{	-- extern_libs
-		"xerces"
+		"xerces",
+		"wxwidgets"
 	},{	-- extra_params
 	})
 
@@ -526,7 +528,8 @@ function setup_atlas_packages()
 		"ScenarioEditor/Tools/Common"
 	},{	-- include
 		"..",
-		"CustomControls"
+		"CustomControls",
+		"Misc"
 	},{	-- extern_libs
 		"boost",
 		"devil",
@@ -571,17 +574,21 @@ local function setup_atlas_frontend_package (package_name)
 	package.trimprefix = source_root
 	package.includepaths = { source_root .. ".." }
 
+	package_add_extern_libs(used_extern_libs)
+
 	-- Platform Specifics
 	if OS == "windows" then
 		tinsert(package.defines, "_UNICODE")
-		tinsert(package.links, "AtlasUI")
 
 		-- required to use WinMain() on Windows, otherwise will default to main()
 		tinsert(package.buildflags, "no-main")
 
 	else -- Non-Windows, = Unix
-		-- TODO
+		tinsert(package.links, "DatafileIO")
+		tinsert(package.links, "AtlasObject")
 	end
+
+	tinsert(package.links, "AtlasUI")
 
 end
 
@@ -686,6 +693,7 @@ function setup_tests()
 		package.config["Testing"].linkoptions = { "-rdynamic" }
 
 	
+		tinsert(package.includepaths, ".")
 		tinsert(package.libpaths, "/usr/X11R6/lib")
 	
 		package.rootoptions = "--include=precompiled.h"
