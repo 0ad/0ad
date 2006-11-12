@@ -1,6 +1,9 @@
 #include "precompiled.h"
 
+#include <vector>
 #include <string>
+
+#include "simulation/Entity.h"
 
 #include "TerrainProperties.h"
 #include "TextureManager.h"
@@ -12,6 +15,8 @@
 
 #include "ps/CLogger.h"
 #define LOG_CATEGORY "graphics"
+
+using namespace std;
 
 CTerrainProperties::CTerrainProperties(CTerrainPropertiesPtr parent):
 	m_pParent(parent),
@@ -61,7 +66,7 @@ CTerrainPropertiesPtr CTerrainProperties::FromXML(CTerrainPropertiesPtr parent, 
 		if (child.getNodeName() == el_terrain)
 		{
 			CTerrainPropertiesPtr ret (new CTerrainProperties(parent));
-			ret->LoadXML(child, &XeroFile);
+			ret->LoadXML(child, &XeroFile, path);
 			return ret;
 		}
 		else
@@ -77,21 +82,18 @@ CTerrainPropertiesPtr CTerrainProperties::FromXML(CTerrainPropertiesPtr parent, 
 	return CTerrainPropertiesPtr();
 }
 
-void CTerrainProperties::LoadXML(XMBElement node, CXeromyces *pFile)
+void CTerrainProperties::LoadXML(XMBElement node, CXeromyces *pFile, const char *path)
 {
 	#define ELMT(x) int elmt_##x = pFile->getElementID(#x)
 	#define ATTR(x) int attr_##x = pFile->getAttributeID(#x)
 	ELMT(doodad);
 	ELMT(passable);
+	ELMT(impassable);
 	ELMT(event);
 	// Terrain Attribs
 	ATTR(mmap);
 	ATTR(groups);
 	ATTR(properties);
-	// Passable Attribs
-	ATTR(type);
-	ATTR(speed);
-	ATTR(effect);
 	// Doodad Attribs
 	ATTR(name);
 	ATTR(max);
@@ -101,11 +103,8 @@ void CTerrainProperties::LoadXML(XMBElement node, CXeromyces *pFile)
 	#undef ATTR
 
 	// stomp on "unused" warnings
-	UNUSED2(attr_effect);
 	UNUSED2(attr_name);
-	UNUSED2(attr_type);
 	UNUSED2(attr_on);
-	UNUSED2(attr_speed);
 	UNUSED2(attr_max);
 	UNUSED2(elmt_event);
 	UNUSED2(elmt_passable);
@@ -156,8 +155,76 @@ void CTerrainProperties::LoadXML(XMBElement node, CXeromyces *pFile)
 		}
 	}
 	
-	// TODO Parse information in child nodes (doodads, passable, events) and
-	// store them somewhere
+	XMBElementList children = node.getChildNodes();
+	for (int i=0; i<children.Count; ++i)
+	{
+		XMBElement child = children.item(i);
+
+		if (child.getNodeName() == elmt_passable)
+		{
+			ReadPassability(true, child, pFile, path);
+		}
+		else if (child.getNodeName() == elmt_impassable)
+		{
+			ReadPassability(false, child, pFile, path);
+		}
+		// TODO Parse information about doodads and events and store it
+	}
+}
+
+void CTerrainProperties::ReadPassability(bool passable, XMBElement node, CXeromyces *pFile, const char *UNUSED(path))
+{
+	#define ATTR(x) int attr_##x = pFile->getAttributeID(#x)		
+	// Passable Attribs
+	ATTR(type);
+	ATTR(speed);
+	ATTR(effect);
+	ATTR(prints);
+	#undef ATTR
+
+	STerrainPassability pass(passable);
+	bool hasType;
+	bool hasSpeed;
+	XMBAttributeList attribs = node.getAttributes();
+	for (int i=0;i<attribs.Count;i++)
+	{
+		XMBAttribute attr = attribs.item(i);
+		
+		if (attr.Name == attr_type)
+		{
+			// FIXME Should handle lists of types as well!
+			pass.m_Type = attr.Value;
+			hasType = true;
+		}
+		else if (attr.Name == attr_speed)
+		{
+			CStr val=attr.Value;
+			CStr trimmedVal=val.Trim(PS_TRIM_BOTH);
+			pass.m_SpeedFactor = trimmedVal.ToDouble();
+			if (trimmedVal[trimmedVal.size()-1] == '%')
+			{
+				pass.m_SpeedFactor /= 100.0;
+			}
+			hasSpeed = true;
+		}
+		else if (attr.Name == attr_effect)
+		{
+			// TODO Parse and store list of effects
+		}
+		else if (attr.Name == attr_prints)
+		{
+			// TODO Parse and store footprint effect
+		}
+	}
+	
+	if (!hasType)
+	{
+		m_DefaultPassability = pass;
+	}
+	else
+	{	
+		m_Passabilities.push_back(pass);
+	}
 }
 
 bool CTerrainProperties::HasBaseColor()
@@ -174,4 +241,25 @@ u32 CTerrainProperties::GetBaseColor()
 	else
 		// White, full opacity.. but this value shouldn't ever be used
 		return 0xffffffff;
+}
+
+const STerrainPassability &CTerrainProperties::GetPassability(HEntity entity)
+{
+	vector<STerrainPassability>::iterator it=m_Passabilities.begin();
+	for (;it != m_Passabilities.end();++it)
+	{
+		if (entity->m_classes.IsMember(it->m_Type))
+			return *it;
+	}
+	return m_DefaultPassability;
+}
+
+bool CTerrainProperties::IsPassable(HEntity entity)
+{
+	return GetPassability(entity).m_Passable;
+}
+
+double CTerrainProperties::GetSpeedFactor(HEntity entity)
+{
+	return GetPassability(entity).m_SpeedFactor;
 }

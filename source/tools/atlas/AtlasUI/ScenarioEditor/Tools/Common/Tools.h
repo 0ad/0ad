@@ -2,7 +2,7 @@
 #define TOOLS_H__
 
 #include "ScenarioEditor/ScenarioEditor.h"
-#include "general/AtlasWindowCommand.h"
+#include "General/AtlasWindowCommand.h"
 
 class wxMouseEvent;
 class wxKeyEvent;

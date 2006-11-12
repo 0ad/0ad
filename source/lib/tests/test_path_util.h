@@ -3,15 +3,36 @@
 
 #include "lib/path_util.h"
 
-class TestPathUtil : public CxxTest::TestSuite 
-{
-	void TEST_APPEND(const char* path1, const char* path2, uint flags, const char* correct_result)
-	{
-		char dst[PATH_MAX] = {0};
-		TS_ASSERT_OK(path_append(dst, path1, path2, flags));
-		TS_ASSERT_STR_EQUALS(dst, correct_result);
+// Macros, not functions, to get proper line number reports when tests fail
+#define TEST_APPEND(path1, path2, flags, correct_result) \
+	{ \
+		char dst[PATH_MAX] = {0}; \
+		TS_ASSERT_OK(path_append(dst, path1, path2, flags)); \
+		TS_ASSERT_STR_EQUALS(dst, correct_result); \
 	}
 
+#define TEST_NAME_ONLY(path, correct_result) \
+{ \
+	const char* result = path_name_only(path); \
+	TS_ASSERT_STR_EQUALS(result, correct_result); \
+}
+
+#define TEST_LAST_COMPONENT(path, correct_result) \
+{ \
+	const char* result = path_last_component(path); \
+	TS_ASSERT_STR_EQUALS(result, correct_result); \
+}
+
+#define TEST_STRIP_FN(path_readonly, correct_result) \
+{ \
+	char path[PATH_MAX]; \
+	path_copy(path, path_readonly); \
+	path_strip_fn(path); \
+	TS_ASSERT_STR_EQUALS(path, correct_result); \
+}
+
+class TestPathUtil : public CxxTest::TestSuite 
+{
 	// if correct_ret is ERR::FAIL, ignore correct_result.
 	void TEST_REPLACE(const char* src, const char* remove, const char* replace,
 		LibError correct_ret, const char* correct_result)
@@ -20,26 +41,6 @@ class TestPathUtil : public CxxTest::TestSuite
 		TS_ASSERT_EQUALS(path_replace(dst, src, remove, replace), correct_ret);
 		if(correct_ret != ERR::FAIL)
 			TS_ASSERT_STR_EQUALS(dst, correct_result);
-	}
-
-	void TEST_NAME_ONLY(const char* path, const char* correct_result)
-	{
-		const char* result = path_name_only(path);
-		TS_ASSERT_STR_EQUALS(result, correct_result);
-	}
-
-	void TEST_LAST_COMPONENT(const char* path, const char* correct_result)
-	{
-		const char* result = path_last_component(path);
-		TS_ASSERT_STR_EQUALS(result, correct_result);
-	}
-
-	void TEST_STRIP_FN(const char* path_readonly, const char* correct_result)
-	{
-		char path[PATH_MAX];
-		path_copy(path, path_readonly);
-		path_strip_fn(path);
-		TS_ASSERT_STR_EQUALS(path, correct_result);
 	}
 
 	void TEST_PATH_EXT(const char* path, const char* correct_result)

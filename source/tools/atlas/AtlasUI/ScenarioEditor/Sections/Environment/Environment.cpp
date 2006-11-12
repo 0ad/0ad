@@ -54,7 +54,7 @@ private:
 };
 
 BEGIN_EVENT_TABLE(VariableSliderBox, wxPanel)
-	EVT_SCROLL(OnScroll)
+	EVT_SCROLL(VariableSliderBox::OnScroll)
 END_EVENT_TABLE()
 
 //////////////////////////////////////////////////////////////////////////
@@ -109,7 +109,7 @@ private:
 };
 
 BEGIN_EVENT_TABLE(VariableListBox, wxPanel)
-	EVT_COMBOBOX(wxID_ANY, OnSelect)
+	EVT_COMBOBOX(wxID_ANY, VariableListBox::OnSelect)
 END_EVENT_TABLE()
 
 //////////////////////////////////////////////////////////////////////////
@@ -173,7 +173,7 @@ private:
 };
 
 BEGIN_EVENT_TABLE(VariableColourBox, wxPanel)
-	EVT_BUTTON(wxID_ANY, OnClick)
+	EVT_BUTTON(wxID_ANY, VariableColourBox::OnClick)
 END_EVENT_TABLE()
 
 //////////////////////////////////////////////////////////////////////////

@@ -39,6 +39,7 @@
 #define PROFILE_RESOLVE_SYMBOL 0
 
 // Hard-coded - yuck :P
+// These should only be used as fallbacks
 #if defined(TESTING)
 #define EXE_NAME "pyrogenesis_test"
 #elif defined(NDEBUG)
@@ -96,6 +97,7 @@ void udbg_launch_debugger()
 	else if (ret > 0)
 	{
 		// Parent (original) fork:
+		debug_printf("Sleeping until debugger attaches.\nPlease wait.\n");
 		sleep(DEBUGGER_WAIT);
 	}
 	else // fork error, ret == -1
@@ -141,7 +143,7 @@ LibError debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* UNUSE
 		char file[DBG_FILE_LEN];
 		char symbol[DBG_SYMBOL_LEN];
 		int line;
-		uint len;
+		int len;
 		
 		if (debug_resolve_symbol(bt[i], symbol, file, &line) == 0)
 			len = swprintf(bufpos, MAX_OUT_CHARS, L"(0x%08x) %hs:%d %hs\n", bt[i], file, line, symbol);
@@ -168,7 +170,7 @@ static int slurp_symtab(symbol_file_context *ctx)
 	bfd *abfd=ctx->abfd;
 	asymbol ***syms=&ctx->syms;
 	long symcount;
-	unsigned int size=0;
+	int size=0;
 
 	if ((bfd_get_file_flags (abfd) & HAS_SYMS) == 0)
 	{
@@ -188,9 +190,9 @@ static int slurp_symtab(symbol_file_context *ctx)
 	symcount = bfd_canonicalize_symtab(abfd, *syms);
 
 	if (symcount == 0)
-		symcount = bfd_read_minisymbols (abfd, FALSE, (void **)syms, &size);
+		symcount = bfd_read_minisymbols (abfd, FALSE, (void **)syms, (uint *)&size);
 	if (symcount == 0)
-		symcount = bfd_read_minisymbols (abfd, TRUE /* dynamic */, (void **)syms, &size);
+		symcount = bfd_read_minisymbols (abfd, TRUE /* dynamic */, (void **)syms, (uint *)&size);
 
 	if (symcount < 0)
 	{
@@ -243,7 +245,17 @@ static int read_symbols(const char *file_name, symbol_file_context *ctx)
 
 void udbg_init(void)
 {
-	if (read_symbols(EXE_NAME, &ps_dbg_context)==0)
+	char n_path[PATH_MAX];
+	char *exename=n_path;
+	if (sys_get_executable_name(n_path, sizeof(n_path)) != INFO::OK)
+	{
+		debug_printf("sys_get_executable_name didn't work, using hard-coded guess %s.\n", EXE_NAME);
+		exename=EXE_NAME;
+	}
+
+	debug_printf("udbg_init: loading symbols from %s.\n", exename);
+
+	if (read_symbols(exename, &ps_dbg_context)==0)
 		udbg_initialized=true;
 
 #if PROFILE_RESOLVE_SYMBOL

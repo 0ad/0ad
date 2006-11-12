@@ -74,13 +74,13 @@ void ToolButtonBar::AddToolButton(const wxString& shortLabel, const wxString& lo
 	wxFileInputStream fstr (iconPath.GetFullPath());
 	if (! fstr.Ok())
 	{
-		wxLogError(_("Failed to open toolbar icon file '%s'"), iconPath.GetFullPath());
+		wxLogError(_("Failed to open toolbar icon file '%s'"), iconPath.GetFullPath().c_str());
 		return;
 	}
 	wxImage img (fstr, wxBITMAP_TYPE_PNG);
 	if (! img.Ok())
 	{
-		wxLogError(_("Failed to load toolbar icon image '%s'"), iconPath.GetFullPath());
+		wxLogError(_("Failed to load toolbar icon image '%s'"), iconPath.GetFullPath().c_str());
 		return;
 	}
 	

@@ -7,6 +7,7 @@
 #include "wx/image.h"
 #include "wx/busyinfo.h"
 #include "wx/mediactrl.h"
+#include "wx/filename.h"
 
 #include "General/AtlasEventLoop.h"
 #include "General/Datafile.h"
@@ -18,7 +19,7 @@
 #include "GameInterface/MessagePasser.h"
 #include "GameInterface/Messages.h"
 
-#include "tools/Common/Tools.h"
+#include "Tools/Common/Tools.h"
 
 static HighResTimer g_Timer;
 
@@ -235,7 +236,7 @@ private:
 	DECLARE_EVENT_TABLE();
 };
 BEGIN_EVENT_TABLE(MediaPlayer, wxFrame)
-	EVT_MEDIA_LOADED(wxID_ANY, OnLoad)
+	EVT_MEDIA_LOADED(wxID_ANY, MediaPlayer::OnLoad)
 END_EVENT_TABLE()
 
 //////////////////////////////////////////////////////////////////////////
@@ -379,10 +380,13 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	};
 	Canvas* canvas = new GameCanvas(m_SectionLayout.GetCanvasParent(), glAttribList);
 	m_SectionLayout.SetCanvas(canvas);
+
+#ifdef _WIN32
 	// The canvas' context gets made current on creation; but it can only be
 	// current for one thread at a time, and it needs to be current for the
 	// thread that is doing the draw calls, so disable it for this one.
 	wglMakeCurrent(NULL, NULL);
+#endif
 
 	// Set up sidebars:
 
@@ -390,7 +394,13 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 
 	// Send setup messages to game engine:
 
-	POST_MESSAGE(SetContext, (canvas->GetContext()));
+	/*canvas->Reparent(parent);
+	//canvas->SetCurrent();
+	canvas->Show(TRUE);*/
+
+	printf("posting setcontext with canvas %p\n", canvas->GetContext());
+	if (canvas->GetContext() != 0)
+		POST_MESSAGE(SetContext, (canvas->GetContext()));
 
 	POST_MESSAGE(Init, (true));
 
@@ -558,7 +568,7 @@ void ScenarioEditor::OnSaveAs(wxCommandEvent& WXUNUSED(event))
 void ScenarioEditor::SetOpenFilename(const wxString& filename)
 {
 	SetTitle(wxString::Format(_("Atlas - Scenario Editor - %s"),
-		filename.IsEmpty() ? _("(untitled)") : filename));
+		(filename.IsEmpty() ? wxString(_("(untitled)")) : filename).c_str()));
 
 	m_OpenFilename = filename;
 }
@@ -627,6 +637,7 @@ static void QueryCallback()
 	// GUI in any other way) when it's running under Atlas, so we wouldn't need
 	// to do any message processing here at all?)
 
+#ifdef _WIN32
 	AtlasEventLoop* evtLoop = (AtlasEventLoop*)wxEventLoop::GetActive();
 
 	// evtLoop might be NULL, particularly if we're still initialising windows
@@ -678,6 +689,7 @@ static void QueryCallback()
 			evtLoop->AddMessage(pMsg);
 		}
 	}
+#endif
 }
 */
 void QueryMessage::Post()

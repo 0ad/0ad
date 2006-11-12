@@ -9,6 +9,7 @@
 #include <vector>
 #include <map>
 
+#include "CStr.h"
 #include "Singleton.h"
 #include "simulation/EntityHandles.h"
 #include "ps/Vector2D.h"

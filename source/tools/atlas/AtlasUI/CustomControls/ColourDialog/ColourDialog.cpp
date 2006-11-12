@@ -1,5 +1,8 @@
 #include "stdafx.h"
 
+#include "wx/regex.h"
+#include "wx/config.h"
+
 #include "ColourDialog.h"
 
 ColourDialog::ColourDialog(wxWindow* parent, const wxString& customColourConfigPath, const wxColour& defaultColour)
@@ -17,7 +20,7 @@ ColourDialog::ColourDialog(wxWindow* parent, const wxString& customColourConfigP
 		for (int i = 0; i < 16; ++i)
 		{
 			wxString customColour;
-			if (cfg->Read(wxString::Format(_T("%s%d"), m_ConfigPath, i), &customColour)
+			if (cfg->Read(wxString::Format(_T("%s%d"), m_ConfigPath.c_str(), i), &customColour)
 				&& re.Matches(customColour))
 			{
 				long r, g, b;
@@ -42,7 +45,7 @@ int ColourDialog::ShowModal()
 		{
 			for (int i = 0; i < 16; ++i)
 			{
-				wxString name = wxString::Format(_T("%s%d"), m_ConfigPath, i);
+				wxString name = wxString::Format(_T("%s%d"), m_ConfigPath.c_str(), i);
 				wxColour colour = GetColourData().GetCustomColour(i);
 
 				wxString customColour = wxString::Format(_T("%d %d %d"), colour.Red(), colour.Green(), colour.Blue());

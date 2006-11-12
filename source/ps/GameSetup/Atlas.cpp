@@ -9,8 +9,28 @@
 //----------------------------------------------------------------------------
 
 static void* const ATLAS_SO_UNAVAILABLE = (void*)-1;
-static void* atlas_so_handle;
+static void* atlas_so_handle = NULL;
 
+// Calculate the correct AtlasUI DLL
+// TODO Use path_util instead, get the actual path to the ps_dbg exe and append
+// the library name.
+
+// note: on Linux, lib is prepended to the SO file name and we need to add ./
+// to make dlopen look in the current working directory
+#if OS_UNIX
+# define PREFIX "./lib"
+#else
+# define PREFIX ""
+#endif
+// since this SO exports a C++ interface, it is critical that
+// compiler options are the same between app and SO; therefore,
+// we need to go with the debug version in debug builds.
+// note: on Windows, the extension is replaced with .dll by dlopen.
+#ifndef NDEBUG
+static const char* so_name = PREFIX "AtlasUI_dbg.so";
+#else
+static const char* so_name = PREFIX "AtlasUI.so";
+#endif
 
 // free reference to Atlas UI SO (avoids resource leak report)
 void ATLAS_Shutdown()
@@ -31,15 +51,6 @@ static bool ATLAS_IsAvailable()
 	// postcondition: atlas_so_handle valid or == ATLAS_SO_UNAVAILABLE.
 	if(atlas_so_handle == 0)
 	{
-		// since this SO exports a C++ interface, it is critical that
-		// compiler options are the same between app and SO; therefore,
-		// we need to go with the debug version in debug builds.
-		// note: on Windows, the extension is replaced with .dll by dlopen.
-#ifndef NDEBUG
-		const char* so_name = "AtlasUI_dbg.so";
-#else
-		const char* so_name = "AtlasUI.so";
-#endif
 		// we don't really care when relocations take place, but one of
 		// {RTLD_NOW, RTLD_LAZY} must be passed. go with the former because
 		// it is safer and matches the Windows load behavior.

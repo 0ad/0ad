@@ -4,8 +4,12 @@
 
 /* For AStarGoalLowLevel isPassable/cost */
 #include "Collision.h"
+#include "Entity.h"
+
 #include "ps/Game.h"
 #include "ps/World.h"
+#include "graphics/TextureEntry.h"
+#include "graphics/TerrainProperties.h"
 #include "graphics/Patch.h"
 #include "graphics/Terrain.h"
 
@@ -63,7 +67,7 @@ CAStarEngine::~CAStarEngine()
 
 
 bool CAStarEngine::findPath( 
-	const CVector2D &src, const CVector2D &dest, CPlayer* player, float radius )
+	const CVector2D &src, const CVector2D &dest, HEntity entity, float radius )
 {
 	mSolved = false;
 	int iterations = 0;
@@ -103,7 +107,7 @@ bool CAStarEngine::findPath(
 		/* Get neighbors of the best node */
 		std::vector<CVector2D> neighbors;
 		PROFILE_START("get neighbors");
-		neighbors = mGoal->getNeighbors(best->coord, player);
+		neighbors = mGoal->getNeighbors(best->coord, entity);
 		PROFILE_END("get neighbors");
 
 		/* Update the neighbors of the best node */
@@ -356,7 +360,7 @@ float AStarGoalLowLevel::getTileCost( const CVector2D& loc1, const CVector2D& lo
 	return (loc2-loc1).length() - radius;
 }
 
-bool AStarGoalLowLevel::isPassable( const CVector2D &loc, CPlayer* player )
+bool AStarGoalLowLevel::isPassable( const CVector2D &loc, HEntity entity )
 {
 	CTerrain* pTerrain = g_Game->GetWorld()->GetTerrain();
 	int size = pTerrain->GetTilesPerSide();
@@ -366,12 +370,12 @@ bool AStarGoalLowLevel::isPassable( const CVector2D &loc, CPlayer* player )
 		return false;
 	}
 
-	if ( pTerrain->isPassable(loc) )
+	if ( pTerrain->isPassable(loc, entity) )
 	{
 		// If no entity blocking, return true
 		CVector2D wloc = TilespaceToWorldspace(loc);
 		CBoundingBox bounds(wloc.x, wloc.y, 0, CELL_SIZE, CELL_SIZE, 3);
-		if ( getCollisionObject(&bounds, player) == NULL )
+		if ( getCollisionObject(&bounds, entity->GetPlayer()) == NULL )
 		{
 			return true;
 		}
@@ -389,7 +393,7 @@ CVector2D AStarGoalLowLevel::getTile( const CVector2D &loc )
 	return WorldspaceToTilespace(loc);
 }
 
-std::vector<CVector2D> AStarGoalLowLevel::getNeighbors( const CVector2D &loc, CPlayer* player )
+std::vector<CVector2D> AStarGoalLowLevel::getNeighbors( const CVector2D &loc, HEntity entity)
 {
 	std::vector<CVector2D> vec;
 
@@ -401,7 +405,7 @@ std::vector<CVector2D> AStarGoalLowLevel::getNeighbors( const CVector2D &loc, CP
 			{
 				CVector2D c = loc;
 				c.x += xdiff;  c.y += ydiff;
-				if ( isPassable(c, player) )
+				if ( isPassable(c, entity) )
 				{
 					vec.push_back(c);
 				}

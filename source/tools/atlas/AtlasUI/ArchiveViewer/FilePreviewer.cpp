@@ -74,7 +74,7 @@ void FilePreviewer::PreviewFile(const wxString& filename, SeekableInputStream& s
 	m_MainSizer->Add(m_ContentPanel, wxSizerFlags().Expand().Proportion(1));
 
 	wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
-	wxStaticText* fileInfo = new wxStaticText(m_ContentPanel, wxID_ANY, wxString::Format(_("Filename: %s"), filename));
+	wxStaticText* fileInfo = new wxStaticText(m_ContentPanel, wxID_ANY, wxString::Format(_("Filename: %s"), filename.c_str()));
 	sizer->Add(fileInfo, wxSizerFlags().Border(wxALL, 5));
 	m_ContentPanel->SetSizer(sizer);
 
@@ -179,7 +179,7 @@ void FilePreviewer::PreviewFile(const wxString& filename, SeekableInputStream& s
 				formatString = _("unknown");
 
 			extraFileInfo = wxString::Format(_("Format: DDT texture\nSubformat: %d %d %d (%s)"),
-				file.m_Type_Usage, file.m_Type_Alpha, file.m_Type_Format, formatString);
+				file.m_Type_Usage, file.m_Type_Alpha, file.m_Type_Format, formatString.c_str());
 
 			void* buffer;
 			int width, height;

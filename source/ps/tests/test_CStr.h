@@ -37,7 +37,7 @@ public:
 		TS_ASSERT_SAME_DATA(str_utf8.data(), chr_utf8, sizeof(chr_utf8));
 
 		CStrW str_utf16b = str_utf8.FromUTF8();
-		TS_ASSERT_EQUALS(str_utf16b, str_utf16);
+		TS_ASSERT_WSTR_EQUALS(str_utf16b, str_utf16);
 	}
 
 	void test_invalid_utf8()

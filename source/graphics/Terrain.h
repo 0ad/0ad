@@ -13,6 +13,7 @@
 #include "maths/Vector3D.h"
 #include "graphics/SColor.h"
 
+class HEntity;
 class CEntity;
 class CPatch;
 class CMiniPatch;
@@ -57,7 +58,7 @@ public:
 
 	bool isOnMap(const CVector2D& v) const;
 
-	bool isPassable(const CVector2D& tileSpaceLoc) const;
+	bool isPassable(const CVector2D& tileSpaceLoc, HEntity entity) const;
 
 	void clampCoordToMap(int& index) const
 	{

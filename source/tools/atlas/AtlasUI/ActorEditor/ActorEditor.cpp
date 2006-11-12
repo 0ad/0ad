@@ -10,7 +10,7 @@
 #include "wx/file.h"
 
 BEGIN_EVENT_TABLE(ActorEditor, AtlasWindow)
-	EVT_MENU(ID_CreateEntity, OnCreateEntity)
+	EVT_MENU(ID_CreateEntity, ActorEditor::OnCreateEntity)
 END_EVENT_TABLE()
 
 
@@ -86,12 +86,12 @@ ActorEditor::ActorEditor(wxWindow* parent)
 
 void ActorEditor::ThawData(AtObj& in)
 {
-	AtObj actor (in["actor"]);
+	AtObj actor (*in["actor"]);
 	m_ActorEditorListCtrl->ThawData(actor);
 
 	m_CastShadows->SetValue(actor["castshadow"].defined());
 	m_Float->SetValue(actor["float"].defined());
-	m_Material->SetValue(actor["material"]);
+	m_Material->SetValue((wxString)actor["material"]);
 }
 
 AtObj ActorEditor::FreezeData()
@@ -111,7 +111,6 @@ AtObj ActorEditor::FreezeData()
 	out.set("actor", actor);
 	return out;
 }
-
 
 static AtObj ConvertToLatestFormat(AtObj in)
 {
@@ -297,12 +296,12 @@ void ActorEditor::ImportData(AtObj& in)
 
 	// Copy the data into the appropriate UI controls:
 
-	AtObj actor (data["actor"]);
+	AtObj actor (*data["actor"]);
 	m_ActorEditorListCtrl->ImportData(actor);
 
 	m_CastShadows->SetValue(actor["castshadow"].defined());
 	m_Float->SetValue(actor["float"].defined());
-	m_Material->SetValue(actor["material"]);
+	m_Material->SetValue((wxString)actor["material"]);
 }
 
 AtObj ActorEditor::ExportData()
@@ -398,7 +397,7 @@ void ActorEditor::OnCreateEntity(wxCommandEvent& WXUNUSED(event))
 		_T("\t<Actor>") + actorFilename.GetFullPath(wxPATH_UNIX) + _T("</Actor>\r\n")
 		_T("</Entity>\r\n");
 
-	wxFile file (outputEntityFilename.fn_str(), wxFile::write);
+	wxFile file (outputEntityFilename.c_str(), wxFile::write);
 	if (! file.IsOpened())
 	{
 		wxLogError(_("Failed to open file"));

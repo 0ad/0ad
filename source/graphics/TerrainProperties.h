@@ -10,6 +10,7 @@
 #ifndef graphics_TerrainProperties_H
 #define graphics_TerrainProperties_H
 
+#include "simulation/EntityHandles.h"
 #include "ps/CStr.h"
 #include <boost/shared_ptr.hpp>
 
@@ -17,8 +18,21 @@ class CTerrainGroup;
 class XMBElement;
 class CXeromyces;
 class CTerrainProperties;
+class CEntity;
 
 typedef boost::shared_ptr<CTerrainProperties> CTerrainPropertiesPtr;
+
+struct STerrainPassability
+{
+	explicit STerrainPassability(bool passable=true):
+		m_Type(), m_Passable(passable), m_SpeedFactor(passable?1.0:0.0)
+	{}
+	
+	CStr m_Type;
+	bool m_Passable;
+	double m_SpeedFactor;
+	// TODO Effects
+};
 
 class CTerrainProperties
 {
@@ -36,10 +50,16 @@ private:
 	u32 m_BaseColor;
 	bool m_HasBaseColor;
 	
+	STerrainPassability m_DefaultPassability;
+	
 	// All terrain type groups we're a member of
 	GroupVector m_Groups;
+	
+	// Passability definitions
+	std::vector<STerrainPassability> m_Passabilities;
 
-	void LoadXML(XMBElement node, CXeromyces *pFile);
+	void ReadPassability(bool passable, XMBElement node, CXeromyces *pFile, const char *path);
+	void LoadXML(XMBElement node, CXeromyces *pFile, const char *path);
 
 public:
 	CTerrainProperties(CTerrainPropertiesPtr parent);
@@ -63,6 +83,10 @@ public:
 	// Use HasBaseColor() to see if the value is valid.
 	// The color value is in BGRA format
 	u32 GetBaseColor();
+	
+	double GetSpeedFactor(HEntity entity);
+	bool IsPassable(HEntity entity);
+	const STerrainPassability &GetPassability(HEntity entity);
 
 	const GroupVector &GetGroups() const
 	{ return m_Groups; }

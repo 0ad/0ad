@@ -76,8 +76,8 @@ int dir_get_changed_file(char* fn)
 {
 	if(initialized == -1)
 		return ERR::FAIL;	// NOWARN
-	if(!initialized)
-		WARN_RETURN(ERR::LOGIC);
+	if(!initialized) // XXX Fix Atlas instead of supressing the warning
+		return ERR::FAIL; //WARN_RETURN(ERR::LOGIC);
 
 	FAMEvent e;
 	while(FAMPending(&fc) > 0)

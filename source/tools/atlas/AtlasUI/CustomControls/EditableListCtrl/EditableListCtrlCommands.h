@@ -2,6 +2,8 @@
 
 #include "AtlasObject/AtlasObject.h"
 
+#include <vector>
+
 class EditableListCtrl;
 
 class EditCommand_Dialog : public AtlasWindowCommand

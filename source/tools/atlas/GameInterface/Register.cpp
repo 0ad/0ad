@@ -12,6 +12,9 @@
 #include "SharedTypes.h"
 #include "Shareable.h"
 
+#include <map>
+#include <string>
+
 namespace AtlasMessage
 {
 

@@ -26,7 +26,8 @@
 
 void FieldEditCtrl_Text::StartEdit(wxWindow* parent, wxRect rect, long row, int col)
 {
-	new QuickTextCtrl(parent, rect, ListCtrlValidator((EditableListCtrl*)parent, row, col));
+	ListCtrlValidator validator((EditableListCtrl*)parent, row, col);
+	new QuickTextCtrl(parent, rect, validator);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -74,9 +75,10 @@ void FieldEditCtrl_List::StartEdit(wxWindow* parent, wxRect rect, long row, int 
 	
 	AtObj list (Datafile::ReadList(m_ListType));
 	for (AtIter it = list["item"]; it.defined(); ++it)
-		 choices.Add(it);
+		 choices.Add((wxString)it);
 
-	new QuickComboBox(parent, rect, choices, ListCtrlValidator((EditableListCtrl*)parent, row, col));
+	ListCtrlValidator validator((EditableListCtrl*)parent, row, col);
+	new QuickComboBox(parent, rect, choices, validator);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -127,5 +129,6 @@ FieldEditCtrl_File::FieldEditCtrl_File(const wxString& rootDir, const wxString& 
 
 void FieldEditCtrl_File::StartEdit(wxWindow* parent, wxRect rect, long row, int col)
 {
-	new QuickFileCtrl(parent, rect, m_RootDir, m_FileMask, m_RememberedDir, ListCtrlValidator((EditableListCtrl*)parent, row, col));
+	ListCtrlValidator validator((EditableListCtrl*)parent, row, col);
+	new QuickFileCtrl(parent, rect, m_RootDir, m_FileMask, m_RememberedDir, validator);
 }

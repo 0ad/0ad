@@ -4,6 +4,7 @@
 
 #include "Misc/Version.h"
 
+#include <set>
 #include <algorithm>
 
 #include "DatafileIO/BAR/BAR.h"
@@ -15,7 +16,9 @@ using namespace DatafileIO;
 #include "wx/confbase.h"
 #include "wx/wfstream.h"
 #include "wx/tooltip.h"
+#ifdef _WIN32
 #include "wx/msw/registry.h"
+#endif
 #include "wx/progdlg.h"
 #include "wx/regex.h"
 
@@ -102,7 +105,7 @@ END_EVENT_TABLE()
 ArchiveViewer::ArchiveViewer(wxWindow* parent)
 : wxFrame(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize(600, 371))
 , m_FileHistory(_T("Archive Viewer"))
-, m_WindowTitle(wxString::Format(_("%s - Archive Viewer"), g_ProgramNameVersion))
+, m_WindowTitle(wxString::Format(_("%s - Archive Viewer"), g_ProgramNameVersion.c_str()))
 , m_BARStream(NULL), m_BARReader(NULL), m_PreviewEnabled(false)
 {
 	SetIcon(wxIcon(_T("ICON_ArchiveViewer")));
@@ -190,7 +193,7 @@ ArchiveViewer::ArchiveViewer(wxWindow* parent)
 
 void ArchiveViewer::OnAbout(wxCommandEvent& WXUNUSED(event))
 {
-	wxMessageBox(wxString::Format(_("%s - created by Philip Taylor (philip@wildfiregames.com / philip@zaynar.demon.co.uk)"), g_ProgramNameVersion),
+	wxMessageBox(wxString::Format(_("%s - created by Philip Taylor (philip@wildfiregames.com / philip@zaynar.demon.co.uk)"), g_ProgramNameVersion.c_str()),
 		_("About"), wxOK|wxCENTRE|wxICON_INFORMATION);
 }
 
@@ -303,7 +306,7 @@ void ArchiveViewer::UpdateFileList()
 
 	for (size_t i = 0; i < files.size(); ++i)
 	{
-		m_CachedFileData[i].Name = files[i].filename.c_str();
+		m_CachedFileData[i].Name = utf16tow(files[i].filename);
 		m_CachedFileData[i].NameLower = m_CachedFileData[i].Name.Lower();
 
 		m_CachedFileData[i].Size = wxString::Format(_T("%d"), files[i].filesize);
@@ -315,7 +318,11 @@ void ArchiveViewer::UpdateFileList()
 		{
 			wxDateTime date (files[i].modified.day, (wxDateTime::Month)(wxDateTime::Jan + files[i].modified.month-1), files[i].modified.year,
 				files[i].modified.hour, files[i].modified.minute, files[i].modified.second, files[i].modified.msecond);
-			m_CachedFileData[i].Date = wxString::Format(_T("%s %s.%03d"), date.FormatISODate(), date.FormatISOTime(), date.GetMillisecond());
+			m_CachedFileData[i].Date = wxString::Format(
+				_T("%s %s.%03d"),
+				date.FormatISODate().c_str(),
+				date.FormatISOTime().c_str(),
+				date.GetMillisecond());
 		}
 	}
 }
@@ -434,7 +441,7 @@ void ArchiveViewer::ExtractFiles(bool onlySelected)
 		for (size_t sel = 0; sel < selection.size(); ++sel)
 		{
 			const BAREntry& file = files[selection[sel]];
-			wxString filename = file.filename.c_str();
+			wxString filename = utf16tow(file.filename);
 			int lastSlash = filename.Find(_T('\\'), true);
 			if (lastSlash != -1)
 				dirs.insert(filename.Mid(0, lastSlash+1).c_str());
@@ -452,7 +459,7 @@ void ArchiveViewer::ExtractFiles(bool onlySelected)
 			{
 				fullFilePath.AppendDir(filePathDirs[i]);
 				if (! wxDirExists(fullFilePath.GetPath()))
-					wxMkDir(fullFilePath.GetPath());
+					wxMkdir(fullFilePath.GetPath());
 			}
 		}
 
@@ -473,13 +480,13 @@ void ArchiveViewer::ExtractFiles(bool onlySelected)
 
 			// Append name-in-archive to target root directory, one dir
 			// at a time, calling mkdir at each step if necessary
-			wxFileName filePath (file.filename.c_str(), wxPATH_WIN);
+			wxFileName filePath (utf16tow(file.filename), wxPATH_WIN);
 			filePath.MakeAbsolute(rootDir.GetPath());
 
 			// Output to disk
 			wxFFileOutputStream outStream(filePath.GetFullPath());
 			if (! outStream.Ok())
-				wxLogError(wxString::Format(_("Error opening output file %s"), filePath.GetFullPath()));
+				wxLogError(wxString::Format(_("Error opening output file %s"), filePath.GetFullPath().c_str()));
 			else
 			{
 				SeekableOutputStreamFromWx str (outStream);
@@ -544,7 +551,7 @@ void ArchiveViewer::UpdatePreview(long item)
 
 	const BAREntry& file = m_BARReader->GetFileList()[ m_FileListCtrl->GetItemData(item) ];
 	SeekableInputStream* str = m_BARReader->GetFile(file);
-	m_PreviewWindow->PreviewFile(file.filename.c_str(), *str);
+	m_PreviewWindow->PreviewFile(utf16tow(file.filename), *str);
 	delete str;
 }
 

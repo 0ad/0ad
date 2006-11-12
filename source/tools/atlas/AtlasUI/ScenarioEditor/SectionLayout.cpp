@@ -1,5 +1,8 @@
 #include "stdafx.h"
 
+#include "wx/filename.h"
+#include "wx/wfstream.h"
+
 #include "SectionLayout.h"
 
 #include "SnapSplitterWindow/SnapSplitterWindow.h"
@@ -85,14 +88,14 @@ public:
 		wxFileInputStream fstr (iconPath.GetFullPath());
 		if (! fstr.Ok())
 		{
-			wxLogError(_("Failed to open toolbar icon file '%s'"), iconPath.GetFullPath());
+			wxLogError(_("Failed to open toolbar icon file '%s'"), iconPath.GetFullPath().c_str());
 		}
 		else
 		{
 			img = wxImage(fstr, wxBITMAP_TYPE_PNG);
 			if (! img.Ok())
 			{
-				wxLogError(_("Failed to load toolbar icon image '%s'"), iconPath.GetFullPath());
+				wxLogError(_("Failed to load toolbar icon image '%s'"), iconPath.GetFullPath().c_str());
 				img = wxImage (1, 1, true);
 			}
 		}
@@ -261,7 +264,7 @@ void SectionLayout::Build()
 		if (sidebar->GetBottomBar()) \
 			sidebar->GetBottomBar()->Show(false); \
 		m_SidebarBook->AddPage(sidebar, icon, tooltip); \
-		m_PageMappings.insert(std::make_pair(L#classname, (int)m_SidebarBook->GetPageCount()-1));
+		m_PageMappings.insert(std::make_pair(L###classname, (int)m_SidebarBook->GetPageCount()-1));
 	
 	ADD_SIDEBAR(MapSidebar,         _T("map.png"),         _("Map"));
 	ADD_SIDEBAR(TerrainSidebar,     _T("terrain.png"),     _("Terrain"));

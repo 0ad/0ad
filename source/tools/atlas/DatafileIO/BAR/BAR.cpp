@@ -48,7 +48,7 @@ bool BARReader::Initialise()
 
 	m_Stream.Seek(filetableOffset, Stream::FROM_START);
 
-	std::wstring rootName = ReadUString(m_Stream);
+	utf16string rootName = ReadUString(m_Stream);
 	uint32_t numRootFiles;
 	m_Stream.Read(&numRootFiles, 4);
 	CHECK(numRootFiles == numFiles);

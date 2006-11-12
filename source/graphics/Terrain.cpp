@@ -17,6 +17,10 @@
 #include "simulation/EntityManager.h"
 #include "simulation/Entity.h"
 
+#include "TerrainProperties.h"
+#include "TextureEntry.h"
+#include "TextureManager.h"
+
 #include <string.h>
 #include "Terrain.h"
 #include "Patch.h"
@@ -89,10 +93,13 @@ bool CTerrain::isOnMap(const CVector2D& v) const
 	return isOnMap(v.x, v.y);
 }
 
-bool CTerrain::isPassable(const CVector2D &tileSpaceLoc) const
+bool CTerrain::isPassable(const CVector2D &loc/*tile space*/, HEntity entity) const
 {
-	// TODO: Take into account the terrain type at this location
-	return true;
+	CMiniPatch *pTile = GetTile(loc.x, loc.y);
+	CTextureEntry *pTexEntry = g_TexMan.FindTexture(pTile->Tex1);
+	CTerrainPropertiesPtr pProperties = pTexEntry->GetProperties();
+
+	return pProperties->IsPassable(entity);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

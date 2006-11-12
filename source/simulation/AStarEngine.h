@@ -64,7 +64,7 @@ public:
 
 	void setGoal(AStarGoalBase* goal) { mGoal = goal; }
 
-	bool findPath( const CVector2D& src, const CVector2D& dest, CPlayer* player=0, float radius=0.0f );
+	bool findPath( const CVector2D& src, const CVector2D& dest, HEntity entity, float radius=0.0f );
 	std::vector<CVector2D> getLastPath();
 
 	// The maximum number of nodes that will be expanded before failure is declared
@@ -132,8 +132,8 @@ public:
 	virtual float distanceToGoal( const CVector2D& ) = 0;
 	virtual bool atGoal( const CVector2D& ) = 0;
 	virtual float getTileCost( const CVector2D&, const CVector2D& ) = 0;
-	virtual bool isPassable( const CVector2D&, CPlayer* player=0 ) = 0;
-	virtual std::vector<CVector2D> getNeighbors( const CVector2D&, CPlayer* player=0 ) = 0;
+	virtual bool isPassable( const CVector2D&, HEntity entity) = 0;
+	virtual std::vector<CVector2D> getNeighbors( const CVector2D&, HEntity entity) = 0;
 	virtual CVector2D getCoord( const CVector2D& ) = 0;
 	virtual CVector2D getTile( const CVector2D& ) = 0;
 	virtual float getRadius() = 0;
@@ -148,8 +148,8 @@ public:
 	float distanceToGoal( const CVector2D& loc );
 	bool atGoal( const CVector2D& loc );
 	float getTileCost( const CVector2D& loc1, const CVector2D& loc2 );
-	bool isPassable( const CVector2D& loc, CPlayer* player=0 );
-	std::vector<CVector2D> getNeighbors( const CVector2D& loc, CPlayer* player=0 );
+	bool isPassable( const CVector2D& loc, HEntity entity);
+	std::vector<CVector2D> getNeighbors( const CVector2D& loc, HEntity entity);
 	CVector2D getCoord( const CVector2D& loc);
 	CVector2D getTile( const CVector2D& loc);
 	float getRadius();

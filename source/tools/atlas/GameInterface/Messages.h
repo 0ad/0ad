@@ -5,6 +5,9 @@
 #include "MessagesSetup.h"
 #endif
 
+#include <vector>
+#include <string>
+
 // TODO: organisation, documentation, etc
 
 //////////////////////////////////////////////////////////////////////////
@@ -15,7 +18,7 @@ MESSAGE(Init,
 
 MESSAGE(Shutdown, );
 
-struct eRenderView { enum { NONE, GAME, ACTOR }; };
+struct eRenderView { enum renderViews { NONE, GAME, ACTOR }; };
 
 MESSAGE(RenderEnable,
 		((int, view)) // eRenderView

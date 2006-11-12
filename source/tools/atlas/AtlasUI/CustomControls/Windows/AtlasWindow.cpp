@@ -12,6 +12,10 @@
 
 class SaveOnExitDialog : public wxDialog
 {
+#ifndef _WIN32
+	#define EndDialog EndModal
+#endif
+
 public:
 	SaveOnExitDialog(wxWindow* parent, bool allowCancel)
 		: wxDialog(parent, wxID_ANY, (wxString) _("Save changes?"))

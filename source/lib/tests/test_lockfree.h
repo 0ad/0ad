@@ -188,8 +188,10 @@ class TestMultithread : public CxxTest::TestSuite
 public:
 	TestMultithread()
 		: is_complete(false), num_active_threads(0),
-		  list(), hash(),
-		  mutex() {}
+		  list(), hash()
+	{
+		pthread_mutex_init(&mutex, NULL);
+	}
 
 	void disabled_due_to_failure_on_p4_test_multithread()
 	{

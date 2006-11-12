@@ -23,7 +23,7 @@ AtObj Datafile::ReadList(const char* section)
 
 	AtObj lists (AtlasObject::LoadFromXML(filename.GetFullPath()));
 
-	return lists["lists"][section];
+	return *lists["lists"][section];
 }
 
 void Datafile::SetSystemDirectory(const wxString& dir)

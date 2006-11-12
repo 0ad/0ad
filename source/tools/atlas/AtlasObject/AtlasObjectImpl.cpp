@@ -41,7 +41,8 @@ AtIter::operator const wchar_t* () const
 		return L"";
 }
 
-AtIter::operator const AtObj () const
+//AtIter::operator const AtObj () const
+const AtObj AtIter::operator * () const
 {
 	if (p)
 	{
@@ -68,12 +69,12 @@ AtIter& AtIter::operator ++ ()
 
 bool AtIter::defined() const
 {
-	return (p != NULL);
+	return p;
 }
 
 bool AtIter::hasContent() const
 {
-	if (p == NULL)
+	if (!p)
 		return false;
 
 	if (! p->iter->second)

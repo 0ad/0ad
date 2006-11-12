@@ -1,6 +1,8 @@
 #ifndef COLOURDIALOG_H__
 #define COLOURDIALOG_H__
 
+#include <wx/colordlg.h>
+
 class ColourDialog : public wxColourDialog
 {
 public:

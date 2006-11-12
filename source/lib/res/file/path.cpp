@@ -189,10 +189,15 @@ LibError file_set_root_dir(const char* argv0, const char* rel_path)
 	// (slight optimization, speeds up path lookup)
 	if(!realpath(n_path, n_root_dir))
 		return LibError_from_errno();
+
 	// .. append DIR_SEP to simplify code that uses n_root_dir
-	//    (note: already 0-terminated, since it's static)
 	n_root_dir_len = strlen(n_root_dir)+1;	// +1 for trailing DIR_SEP
+	assert((n_root_dir_len+1) < sizeof(n_root_dir)); // Just checking
 	n_root_dir[n_root_dir_len-1] = DIR_SEP;
+	// You might think that n_root_dir is already 0-terminated, since it's
+	// static - but that might not be true after calling file_reset_root_dir!
+	n_root_dir[n_root_dir_len] = 0;
+	
 	return INFO::OK;
 }
 

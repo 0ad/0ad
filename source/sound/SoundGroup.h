@@ -37,13 +37,8 @@ Example SoundGroup.xml
 
 */
 
-
-
-
-
 #ifndef SOUNDGROUP_H_
 #define SOUNDGROUP_H_
-
 
 #include "lib/res/handle.h"
 #include "ps/CStr.h"
@@ -52,11 +47,16 @@ Example SoundGroup.xml
 #include <vector>
 using namespace std;
 
-enum eSndGrpFlags{ eRandOrder = 0x01, eRandGain = 0x02, eRandPitch = 0x04, eLoop = 0x08 }; 
+enum eSndGrpFlags
+{
+	eRandOrder = 0x01,
+	eRandGain = 0x02,
+	eRandPitch = 0x04,
+	eLoop = 0x08
+};
 
 class CSoundGroup
 {
-
 	size_t m_index;  // index of the next sound to play
 	
 	vector<Handle> snd_group;  // we store the handles so we can load now and play later
@@ -101,10 +101,7 @@ public:
 
 	// Test flag, returns true if flag is set.
 	inline bool TestFlag(int flag) { return (m_Flags & flag) == flag;}
-	
 
 };
-
-
 
 #endif //#ifndef SOUNDGROUP_H_

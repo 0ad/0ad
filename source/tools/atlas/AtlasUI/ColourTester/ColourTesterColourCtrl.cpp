@@ -96,7 +96,7 @@ ColourTesterColourCtrl::ColourTesterColourCtrl(wxWindow* parent, ColourTesterIma
 			s >> r >> g >> b;
 			text = wxColour(r,g,b);
 		}
-		presetColourSizer->Add(new ColouredButton(this, back, text, c["@name"], imgctrl));
+		presetColourSizer->Add(new ColouredButton(this, back, text, (wxString)c["@name"], imgctrl));
 	}
 
 	presetColourSizer->Add(new CustomColourButton(this, _("Custom"), imgctrl));

@@ -8,6 +8,8 @@
 
 #include "wx/filename.h"
 
+#include <boost/signal.hpp>
+
 class AtObj;
 
 class AtlasWindow : public wxFrame, public IAtlasSerialiser

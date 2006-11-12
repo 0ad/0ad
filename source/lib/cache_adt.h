@@ -27,7 +27,7 @@
 
 #include <list>
 #include <map>
-#include <queue>
+#include <queue> // std::priority_queue
 
 /*
 Cache for items of variable size and value/"cost".

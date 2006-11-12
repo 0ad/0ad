@@ -6,6 +6,8 @@
 #ifndef SCRIPTOBJECT_INCLUDED
 #define SCRIPTOBJECT_INCLUDED
 
+#include "scripting/SpiderMonkey.h"
+
 class CStrW;
 class CScriptEvent;
 

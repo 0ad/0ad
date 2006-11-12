@@ -18,6 +18,11 @@
 #include "simulation/Simulation.h"
 #include "graphics/GameView.h"
 
+#include "network/Client.h"
+
+class CNetServer;
+extern CNetServer *g_NetServer;
+
 extern CConsole* g_Console;
 extern bool g_GameRestarted;
 
@@ -118,8 +123,12 @@ PSRETURN CGame::StartGame(CGameAttributes *pAttribs)
 	{
 		// JW: this loop is taken from ScEd and fixes lack of player color.
 		// TODO: determine proper number of players.
-		for (int i=1; i<8; ++i) 
-			pAttribs->GetSlot(i)->AssignLocal();
+		// SB: Only do this for non-network games
+		if (!g_NetClient && !g_NetServer)
+		{
+			for (int i=1; i<8; ++i) 
+				pAttribs->GetSlot(i)->AssignLocal();
+		}
 
 		pAttribs->FinalizeSlots();
 		m_NumPlayers=pAttribs->GetSlotCount();
@@ -130,7 +139,14 @@ PSRETURN CGame::StartGame(CGameAttributes *pAttribs)
 		for (uint i=0;i <= m_NumPlayers;i++)
 			m_Players[i]=pAttribs->GetPlayer(i);
 		
-		m_pLocalPlayer=m_Players[1];
+		if (g_NetClient)
+		{
+			// TODO
+			//m_pLocalPlayer=g_NetClient->GetLocalPlayer();
+			debug_assert(m_pLocalPlayer && "Darn it! We weren't assigned to a slot!");
+		}
+		else
+			m_pLocalPlayer=m_Players[1];
 
 		RegisterInit(pAttribs);
 	}
@@ -156,7 +172,7 @@ void CGame::Update(double deltaTime)
 	// ^ Quick game over hack is implemented, no summary screen however
 	if ( m_World->GetEntityManager()->GetDeath() )
 	{
-			UpdateGameStatus();
+		UpdateGameStatus();
 		if (GameStatus != 0)
 			EndGame();
 	}

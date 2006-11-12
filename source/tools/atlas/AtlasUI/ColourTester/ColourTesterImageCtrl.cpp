@@ -39,7 +39,7 @@ void ColourTesterImageCtrl::SetImageFile(const wxFileName& fn)
 
 	ilOriginFunc(IL_ORIGIN_UPPER_LEFT);
 	ilEnable(IL_ORIGIN_SET);
-	if (! ilLoadImage((TCHAR*)fn.GetFullPath().c_str()))
+	if (! ilLoadImage((wchar_t*)fn.GetFullPath().c_str()))
 	{
 		m_Valid = false;
 		Refresh();
@@ -83,7 +83,7 @@ wxString ColourTesterImageCtrl::GetImageFiletype()
 		case IL_DXT4: fmt = _T("DXT4"); break;
 		case IL_DXT5: fmt = _T("DXT5"); break;
 	}
-	return wxString::Format(_T("%s - %dx%d"), fmt, ilGetInteger(IL_IMAGE_WIDTH), ilGetInteger(IL_IMAGE_HEIGHT));
+	return wxString::Format(_T("%s - %dx%d"), fmt.c_str(), ilGetInteger(IL_IMAGE_WIDTH), ilGetInteger(IL_IMAGE_HEIGHT));
 }
 
 void ColourTesterImageCtrl::SetColour(const wxColour& colour)

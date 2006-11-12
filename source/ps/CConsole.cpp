@@ -751,8 +751,8 @@ void CConsole::SendChatMessage(const wchar_t *szMessage)
 			g_NetClient->Push(msg);
 		else
 		{
-			msg->m_Sender=g_NetServer->GetServerPlayerName();
-			ReceivedChatMessage(msg->m_Sender.c_str(), msg->m_Message.c_str());
+			msg->m_Sender=0;
+			ReceivedChatMessage(g_NetServer->GetServerPlayerName(), msg->m_Message.c_str());
 			g_NetServer->Broadcast(msg);
 		}
 	}

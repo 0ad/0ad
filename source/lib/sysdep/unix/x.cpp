@@ -26,8 +26,17 @@
 #include "lib/lib.h"
 #include "lib/debug.h"
 #include "lib/sysdep/gfx.h"
+#include "SDL/SDL.h"
+#include "SDL/SDL_syswm.h"
 
 #include <algorithm>
+
+static Display *SDL_Display;
+static Window SDL_Window;
+static void (*Lock_Display)(void);
+static void (*Unlock_Display)(void);
+static wchar_t *selection_data=NULL;
+static size_t selection_size=0;
 
 // useful for choosing a video mode. not called by detect().
 // if we fail, outputs are unchanged (assumed initialized to defaults)
@@ -193,19 +202,132 @@ LibError sys_clipboard_free(wchar_t *clip_buf)
 	return INFO::OK;
 }
 
-/*
-Setting the Selection (i.e. "copy")
-* Would require overriding the SDL X event handler to receive other apps'
-  requests for the selection buffer
-* Step-by-step:
-	* Store the selection text in a local buffer
-	* Tell the X server that we want to own the selection
-	* Listen for Selection events and respond to them as appropriate
-*/
-LibError sys_clipboard_set(const wchar_t *clip_str)
+/**
+ * An SDL Event filter that intercepts other applications' requests for the
+ * X selection buffer.
+ *
+ * @see x11_clipboard_init
+ * @see sys_clipboard_set
+ */
+int clipboard_filter(const SDL_Event *event)
 {
-	// Not Implemented, see comment before clipboard_get, above
-	WARN_RETURN(ERR::FAIL);
+	/* Pass on all non-window manager specific events immediately */
+	/* And do nothing if we don't actually have a clip-out to send out */
+	if (event->type != SDL_SYSWMEVENT || !selection_data)
+		return 1;
+
+	/* Handle window-manager specific clipboard events */
+	switch (event->syswm.msg->event.xevent.type) {
+		/* Copy the selection from our buffer to the requested property, and
+		convert to the requested target format */
+		case SelectionRequest: {
+			XSelectionRequestEvent *req;
+			XEvent sevent;
+
+			req = &event->syswm.msg->event.xevent.xselectionrequest;
+			sevent.xselection.type = SelectionNotify;
+			sevent.xselection.display = req->display;
+			sevent.xselection.selection = req->selection;
+			sevent.xselection.target = req->target;
+			sevent.xselection.property = None;
+			sevent.xselection.requestor = req->requestor;
+			sevent.xselection.time = req->time;
+			// Simply strip all non-Latin1 characters and replace with '?'
+			// We should support XA_UTF8
+			if (req->target == XA_STRING)
+			{
+				size_t size = wcslen(selection_data);
+				u8 *buf = (u8 *)alloca(size);
+				
+				for (size_t i=0;i<size;i++)
+				{
+					buf[i] = selection_data[i]<0x100?selection_data[i]:'?';
+				}
+			
+				XChangeProperty(SDL_Display, req->requestor, req->property,
+            		sevent.xselection.target, 8, PropModeReplace,
+					buf, size);
+				sevent.xselection.property = req->property;
+			}
+			// TODO Add more target formats
+			XSendEvent(SDL_Display,req->requestor,False,0,&sevent);
+			XSync(SDL_Display, False);
+		}
+		break;
+	}
+
+	return 1;
+}
+
+/**
+ * Initialization for X clipboard handling, called on-demand by
+ * sys_clipboard_set.
+ */
+LibError x11_clipboard_init()
+{
+	SDL_SysWMinfo info;
+
+	SDL_VERSION(&info.version);
+	if ( SDL_GetWMInfo(&info) )
+	{
+		/* Save the information for later use */
+		if ( info.subsystem == SDL_SYSWM_X11 )
+		{
+			SDL_Display = info.info.x11.display;
+			SDL_Window = info.info.x11.window;
+			Lock_Display = info.info.x11.lock_func;
+			Unlock_Display = info.info.x11.unlock_func;
+
+			/* Enable the special window hook events */
+			SDL_EventState(SDL_SYSWMEVENT, SDL_ENABLE);
+			SDL_SetEventFilter(clipboard_filter);
+
+			return INFO::OK;
+		}
+		else
+		{
+			return ERR::FAIL;
+		}
+	}
+
+	return INFO::OK;
+}
+
+/**
+ * Set the Selection (i.e. "copy")
+ *
+ * Step-by-step (X11)
+ * <ul>
+ * <li>Store the selection text in a local buffer
+ * <li>Tell the X server that we want to own the selection
+ * <li>Listen for Selection events and respond to them as appropriate
+ * </ul>
+ */
+LibError sys_clipboard_set(const wchar_t *str)
+{
+	ONCE(x11_clipboard_init());
+
+	debug_printf("sys_clipboard_set: %ls\n", str);
+
+	if (selection_data)
+	{
+		free(selection_data);
+		selection_data = NULL;
+	}
+	
+	selection_size = (wcslen(str)+1)*sizeof(wchar_t);
+	selection_data = (wchar_t *)malloc(selection_size);
+	wcscpy(selection_data, str);
+
+	Lock_Display();
+	// Like for the clipboard_get code above, we rather use CLIPBOARD than
+	// PRIMARY - more windows'y behaviour there.
+	Atom clipboard_atom = XInternAtom(SDL_Display, "CLIPBOARD", False);
+	XSetSelectionOwner(SDL_Display, clipboard_atom, SDL_Window, CurrentTime);
+	XSetSelectionOwner(SDL_Display, XA_PRIMARY, SDL_Window, CurrentTime);
+	Unlock_Display();
+	
+	return INFO::OK;
 }
 
 #endif	// #ifdef HAVE_X

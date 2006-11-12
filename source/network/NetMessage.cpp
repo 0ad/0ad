@@ -15,7 +15,7 @@
 
 #define LOG_CAT_NET "net"
 
-// NEVER modify the deserializer map outside the ONCE-block in DeserializeMessage
+// Please don't modify the deserializer map outside the ONCE-block in DeserializeMessage
 typedef std::map <ENetMessageType, NetMessageDeserializer> MessageDeserializerMap;
 MessageDeserializerMap g_DeserializerMap;
 

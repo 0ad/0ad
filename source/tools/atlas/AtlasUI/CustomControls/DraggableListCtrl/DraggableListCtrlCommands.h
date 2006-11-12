@@ -2,6 +2,8 @@
 
 #include "AtlasObject/AtlasObject.h"
 
+#include <vector>
+
 class DraggableListCtrl;
 
 class DragCommand : public AtlasWindowCommand

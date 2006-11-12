@@ -3,6 +3,7 @@
 #include "ActorViewer.h"
 
 #include "wx/treectrl.h"
+#include "wx/regex.h"
 
 #include "General/Datafile.h"
 
@@ -190,7 +191,9 @@ ActorViewer::ActorViewer(wxWindow* parent)
 
 	splitter->SplitVertically(sidePanel, canvas);
 
+#if OS_WIN
 	wglMakeCurrent(NULL, NULL);
+#endif
 	POST_MESSAGE(SetContext, (canvas->GetContext()));
 
 	POST_MESSAGE(Init, (false));
@@ -255,7 +258,7 @@ ActorViewer::ActorViewer(wxWindow* parent)
 
 	AtObj animationsList (Datafile::ReadList("animations"));
 	for (AtIter it = animationsList["item"]; it.defined(); ++it)
-		animations.Add(it);
+		animations.Add((const wchar_t *)it);
 
 	m_AnimationBox = new wxComboBox(sidePanel, ID_Animations, _T("Idle"), wxDefaultPosition, wxDefaultSize, animations);
 

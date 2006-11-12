@@ -1,8 +1,12 @@
 #ifndef SECTIONLAYOUT_H__
 #define SECTIONLAYOUT_H__
 
+#include <map>
+#include <string>
+
 class SnapSplitterWindow;
 class SidebarBook;
+class wxWindow;
 
 class SectionLayout
 {

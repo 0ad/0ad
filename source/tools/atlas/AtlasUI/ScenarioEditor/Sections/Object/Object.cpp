@@ -158,7 +158,7 @@ private:
 	DECLARE_EVENT_TABLE();
 };
 BEGIN_EVENT_TABLE(PlayerComboBox, wxComboBox)
-	EVT_COMBOBOX(wxID_ANY, OnSelect)
+	EVT_COMBOBOX(wxID_ANY, PlayerComboBox::OnSelect)
 END_EVENT_TABLE();
 
 //////////////////////////////////////////////////////////////////////////

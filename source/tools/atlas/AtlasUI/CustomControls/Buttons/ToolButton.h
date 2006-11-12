@@ -1,5 +1,7 @@
 //#include "wx/tglbtn.h"
 
+#include <map>
+
 class ITool;
 class SectionLayout;
 

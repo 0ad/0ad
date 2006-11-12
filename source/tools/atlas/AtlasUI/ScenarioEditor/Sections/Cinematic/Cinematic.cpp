@@ -5,9 +5,14 @@
 #include "GameInterface/Messages.h"
 #include "CustomControls/Buttons/ActionButton.h"
 //#include "CustomControls/Buttons/FloatingSpinCtrl.h"
-#include "General/DataFile.h"
+#include "General/Datafile.h"
 #include "ScenarioEditor/Tools/Common/Tools.h"
 #include "HighResTimer/HighResTimer.h"
+
+#include "wx/spinctrl.h"
+#include "wx/filename.h"
+#include "wx/wfstream.h"
+
 #include <sstream>
 
 using namespace AtlasMessage;
@@ -683,7 +688,7 @@ private:
 	DECLARE_EVENT_TABLE();
 };
 BEGIN_EVENT_TABLE(TrackSlider, wxSlider)
-	EVT_SCROLL(OnScroll)
+	EVT_SCROLL(TrackSlider::OnScroll)
 END_EVENT_TABLE()
 
 class PathSlider : public wxSlider
@@ -710,7 +715,7 @@ private:
 	DECLARE_EVENT_TABLE();
 };
 BEGIN_EVENT_TABLE(PathSlider, wxSlider)
-	EVT_SCROLL(OnScroll)
+	EVT_SCROLL(PathSlider::OnScroll)
 END_EVENT_TABLE()
 
 class CinemaSliderBox : public wxPanel
@@ -765,7 +770,7 @@ private:
 	DECLARE_EVENT_TABLE();
 };
 BEGIN_EVENT_TABLE(CinemaSliderBox, wxPanel)
-	EVT_TIMER(wxID_ANY, OnTick)
+	EVT_TIMER(wxID_ANY, CinemaSliderBox::OnTick)
 END_EVENT_TABLE()
 
 void TrackSlider::OnScroll(wxScrollEvent& WXUNUSED(event))
@@ -1128,14 +1133,14 @@ wxImage CinematicSidebar::LoadIcon(const wxString& filename)
 	wxFileInputStream fstr (iconPath.GetFullPath());
 	if (! fstr.Ok())
 	{
-		wxLogError(_("Failed to open cinematic icon file '%s'"), iconPath.GetFullPath());
+		wxLogError(_("Failed to open cinematic icon file '%s'"), iconPath.GetFullPath().c_str());
 	}
 	else
 	{
 		img = wxImage(fstr, wxBITMAP_TYPE_BMP);
 		if (! img.Ok())
 		{
-			wxLogError(_("Failed to load cinematic icon image '%s'"), iconPath.GetFullPath());
+			wxLogError(_("Failed to load cinematic icon image '%s'"), iconPath.GetFullPath().c_str());
 			img = wxImage (1, 1, true);
 		}
 	}

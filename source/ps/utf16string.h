@@ -48,12 +48,9 @@ namespace std {
 
 		static const char_type* find(const char_type* s, size_t n, const char_type& a)
 		{
-			size_t i;
-			for (i=0;i<n;i++)
-			{
-				if (s[i] == a) return s+i;
-			}
-			return NULL;
+			const char_type *end = s+n;
+			const char_type *res = std::find(s, end, a);
+			return (res != end)?res:NULL;
 		}
 
 		static char_type* move(char_type* s1, const char_type* s2, size_t n)

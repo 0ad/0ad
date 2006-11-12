@@ -1,6 +1,8 @@
 #include <string>
 #include <vector>
 
+#include "../Util.h"
+
 namespace DatafileIO
 {
 	class SeekableInputStream;
@@ -8,7 +10,7 @@ namespace DatafileIO
 
 	struct BAREntry
 	{
-		std::wstring filename; // includes root name - e.g. "Data\tactics\warwagon.tactics.xmb"
+		utf16string filename; // includes root name - e.g. "Data\tactics\warwagon.tactics.xmb"
 		size_t filesize; // in bytes
 		struct {
 			unsigned short year, month, day, dayofweek; // 2005 etc, 1..12, 1..31, 0..6 (from Sunday)

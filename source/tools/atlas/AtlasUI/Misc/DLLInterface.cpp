@@ -41,9 +41,9 @@ namespace AtlasMessage
 
 // Global variables, to remember state between DllMain and StartWindow and OnInit
 wxString g_InitialWindowType;
-HINSTANCE g_Module;
 bool g_IsLoaded = false;
-
+#ifdef _WIN32
+HINSTANCE g_Module;
 
 BOOL APIENTRY DllMain(HINSTANCE hModule, DWORD fdwReason, LPVOID WXUNUSED(lpReserved))
 {
@@ -64,6 +64,7 @@ BOOL APIENTRY DllMain(HINSTANCE hModule, DWORD fdwReason, LPVOID WXUNUSED(lpRese
 
 	return TRUE;
 }
+#endif
 
 using namespace AtlasMessage;
 
@@ -77,7 +78,13 @@ ATLASDLLIMPEXP void Atlas_SetMessagePasser(MessagePasser* passer)
 ATLASDLLIMPEXP void Atlas_StartWindow(const wchar_t* type)
 {
 	g_InitialWindowType = type;
+#ifdef _WIN32
 	wxEntry(g_Module);
+#else
+	int argc=1;
+	char *argv[]={"atlas", NULL};
+	wxEntry(argc, argv);
+#endif
 }
 
 ATLASDLLIMPEXP void Atlas_DisplayError(const wchar_t* text, unsigned int WXUNUSED(flags))
@@ -161,6 +168,7 @@ public:
 
 	bool OpenDirectory(const wxString& dir)
 	{
+#ifdef _WIN32
 		// Code largely copied from wxLaunchDefaultBrowser:
 		// (TODO: portability)
 
@@ -193,6 +201,11 @@ public:
 		::FreeLibrary(hShellDll);
 
 		return true;
+#else
+		// Figure out what goes for "default browser" on unix/linux/whatever
+		// open an xterm perhaps? :)
+		return false;
+#endif
 	}
 
 	virtual void OnFatalException()

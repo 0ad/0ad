@@ -187,7 +187,7 @@ void EditableListCtrl::AddRow(AtObj& obj)
 
 void EditableListCtrl::AddRow(AtIter& iter)
 {
-	AtObj obj = iter;
+	AtObj obj = *iter;
 	AddRow(obj);
 }
 
@@ -221,7 +221,7 @@ wxString EditableListCtrl::GetCellString(long item, long column) const
 	if (item >= (int)m_ListData.size())
 		return _T("");
 
-	AtObj cell = m_ListData[item][m_ColumnTypes[column].key];
+	AtObj cell = *m_ListData[item][m_ColumnTypes[column].key];
 	return AtlasObject::ConvertToString(cell).c_str();
 }
 
@@ -232,7 +232,7 @@ AtObj EditableListCtrl::GetCellObject(long item, long column) const
 	if (item >= (int)m_ListData.size())
 		return AtObj();
 
-	return m_ListData[item][m_ColumnTypes[column].key];
+	return *m_ListData[item][m_ColumnTypes[column].key];
 }
 
 void EditableListCtrl::SetCellString(long item, long column, wxString& str)
@@ -280,7 +280,7 @@ void EditableListCtrl::ThawData(AtObj& in)
 {
 	m_ListData.clear();
 	for (AtIter it = in["item"]; it.defined(); ++it)
-		m_ListData.push_back(it);
+		m_ListData.push_back(*it);
 	UpdateDisplay();
 }
 

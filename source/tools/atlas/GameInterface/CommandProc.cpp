@@ -2,6 +2,7 @@
 
 #include "CommandProc.h"
 
+#include <cassert>
 #include <algorithm>
 #include <cassert>
 

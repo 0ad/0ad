@@ -1130,7 +1130,7 @@ InReaction interactInputHandler( const SDL_Event_* ev )
 	// SDL_BUTTON_* values; these are verified at compile time.
 	cassert(SDL_BUTTON_LEFT == 1 && SDL_BUTTON_MIDDLE == 2 && SDL_BUTTON_RIGHT == 3 && \
 	        SDL_BUTTON_WHEELUP == 4 && SDL_BUTTON_WHEELDOWN == 5);
-	const uint SDL_BUTTON_INDEX_COUNT = 6;
+	const int SDL_BUTTON_INDEX_COUNT = 6;
 	static double lastclicktime[SDL_BUTTON_INDEX_COUNT];
 	static HEntity lastclickobject[SDL_BUTTON_INDEX_COUNT];
 	static u8 clicks[SDL_BUTTON_INDEX_COUNT];

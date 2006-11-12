@@ -112,6 +112,7 @@ MESSAGEHANDLER(SetActorViewer)
 MESSAGEHANDLER(SetContext)
 {
 	g_GameLoop->glContext = msg->context;
+	printf("Setting gl context to %p\n", g_GameLoop->glContext);
 	Atlas_GLSetCurrent((void*)g_GameLoop->glContext);
 }
 

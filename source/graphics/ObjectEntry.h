@@ -7,6 +7,7 @@ class CObjectBase;
 struct SPropPoint;
 
 #include <map>
+#include <set>
 #include <vector>
 #include <set>
 #include "ps/CStr.h"

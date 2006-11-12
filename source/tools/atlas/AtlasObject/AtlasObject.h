@@ -8,6 +8,7 @@
 #define ATLASOBJECT_H__
 
 #include <wchar.h> // for wchar_t
+#include <wx/string.h>
 
 //////////////////////////////////////////////////////////////////////////
 // Mostly-private bits:
@@ -80,14 +81,17 @@ public:
 	const AtIter operator [] (const char* key) const;
 
 	// Return the AtObj currently pointed to by this iterator
-	operator const AtObj () const;
+	//operator const AtObj () const;
+	const AtObj operator *() const;
 
 	// Return the string value of the AtObj currently pointed to by this iterator
 	operator const wchar_t* () const;
+	//operator const wxChar* () const { return (const wchar_t*)*this; }
 
 #ifdef __WXWINDOWS__
 	// Wrapper function around 'operator wchar_t*', for convenience in wx programs
-	operator const wxString () const { return (const wchar_t*)*this; }
+	//operator wxString () const { return (const wchar_t*)*this; }
+	//wxString towxString() const { return (const wchar_t*)*this; }
 #endif
 
 	// Private implementation. (But not 'private:', because it's a waste of time

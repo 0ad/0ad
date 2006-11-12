@@ -150,7 +150,7 @@ namespace PlayerSlotArray_JS
 			return JS_FALSE;
 		uint index=ToPrimitive<uint>(id);
 		
-		if (index > pInstance->m_NumSlots)
+		if (index >= pInstance->m_NumSlots)
 			return JS_FALSE;
 
 		*vp=OBJECT_TO_JSVAL(pInstance->m_PlayerSlots[index]->GetScript());

@@ -5,6 +5,8 @@ class BrushShapeCtrl;
 class BrushSizeCtrl;
 class BrushStrengthCtrl;
 
+#include <vector>
+
 class Brush
 {
 	friend class BrushShapeCtrl;

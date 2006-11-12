@@ -222,7 +222,8 @@ public:
 		{
 			uint x = rand(1, 3);
 			// paranoia: don't use array (x might not be 1 or 2 - checked below)
-			if(x == 1) ones++; if(x == 2) twos++;
+			if(x == 1) ones++;
+			if(x == 2) twos++;
 		}
 		TS_ASSERT_EQUALS(ones+twos, 100);
 		TS_ASSERT(ones > 10 && twos > 10);

@@ -106,7 +106,7 @@ For further details, see below.
 #ifndef SELF_TEST_H__
 #define SELF_TEST_H__
 
-/*/*
+/*
 
 // a self test is enabled if at the point of its definition
 // SELF_TEST_ENABLED evaluates to 1 (non-zero).
@@ -184,6 +184,10 @@ extern bool self_test_active;
 #define CXXTEST_HAVE_EH
 #define CXXTEST_HAVE_STD
 
+// If HAVE_STD wasn't defined at the point the ValueTraits header was included
+// this header won't have been included and the default traits will be used for
+// all variables... So fix that now ;-)
+#include <cxxtest/StdValueTraits.h>
 #include <cxxtest/TestSuite.h>
 
 #define TS_ASSERT_OK(expr) TS_ASSERT_EQUALS((expr), INFO::OK)

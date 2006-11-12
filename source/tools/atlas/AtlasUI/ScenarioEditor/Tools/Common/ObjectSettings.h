@@ -1,6 +1,7 @@
 #ifndef ObjectSettings_H__
 #define ObjectSettings_H__
 
+#include <vector>
 #include <set>
 
 #include "ScenarioEditor/Tools/Common/MiscState.h"

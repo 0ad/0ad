@@ -42,6 +42,8 @@ after their definition.
 
 #include "SharedMemory.h"
 
+#include <vector>
+
 // We want to use placement new, which breaks when compiling Debug configurations
 // in the game and in wx, and they both need different workarounds.
 // (Duplicated in SharedMemory.h)

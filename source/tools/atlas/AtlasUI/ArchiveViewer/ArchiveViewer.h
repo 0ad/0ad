@@ -5,6 +5,8 @@
 #include "wx/filename.h"
 #include "wx/listctrl.h"
 
+#include <vector>
+
 namespace DatafileIO
 {
 	class BARReader;

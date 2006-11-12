@@ -3,7 +3,7 @@
 #include "Canvas.h"
 
 #include "GameInterface/Messages.h"
-#include "ScenarioEditor/tools/Common/Tools.h"
+#include "ScenarioEditor/Tools/Common/Tools.h"
 
 Canvas::Canvas(wxWindow* parent, int* attribList, long style)
 	: wxGLCanvas(parent, -1, wxDefaultPosition, wxDefaultSize, style, _T("GLCanvas"), attribList),

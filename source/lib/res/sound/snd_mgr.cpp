@@ -251,7 +251,7 @@ static LibError alc_init()
 		// ignore
 	}
 #else
-	alc_dev = alcOpenDevice((ALCchar*)alc_dev_name);
+	alc_dev = alcOpenDevice(alc_dev_name);
 #endif
 
 	if(alc_dev)
@@ -268,7 +268,12 @@ static LibError alc_init()
 	if(err != ALC_NO_ERROR || !alc_dev || !alc_ctx)
 	{
 		debug_printf("alc_init failed. alc_dev=%p alc_ctx=%p alc_dev_name=%s err=%d\n", alc_dev, alc_ctx, alc_dev_name, err);
-		ret  = ERR::FAIL;
+// FIXME Hack to get around exclusive access to the sound device
+#if OS_UNIX
+		ret = INFO::OK;
+#else
+		ret = ERR::FAIL;
+#endif
 	}
 
 	// make note of which sound device is actually being used

@@ -20,6 +20,7 @@
 #include <xercesc/util/BinInputStream.hpp>
 #include <xercesc/sax/SAXParseException.hpp>
 #include <xercesc/sax/InputSource.hpp>
+#include <xercesc/util/BinInputStream.hpp>
 #include <xercesc/sax/ErrorHandler.hpp>
 #include <xercesc/sax2/XMLReaderFactory.hpp>
 #include <xercesc/sax2/DefaultHandler.hpp>
@@ -330,11 +331,11 @@ void OutputNode(std::wstring& output, const XMLElement* node, const std::wstring
 	output += L"\n";
 	output += indent;
 	output += L"<";
-	output += node->name; // TODO: utf16->w
+	output += utf16tow(node->name);
 
 	for (size_t i = 0; i < node->attrs.size(); ++i)
 	{
-		std::wstring value = node->attrs[i].value;
+		std::wstring value = utf16tow(node->attrs[i].value);
 		// Escape funny characters
 		if (value.find_first_of(L"&<>\"") != value.npos)
 		{
@@ -345,7 +346,7 @@ void OutputNode(std::wstring& output, const XMLElement* node, const std::wstring
 		}
 
 		output += L" ";
-		output += node->attrs[i].name;
+		output += utf16tow(node->attrs[i].name);
 		output += L"=\"";
 		output += value;
 		output += L"\"";
@@ -353,9 +354,10 @@ void OutputNode(std::wstring& output, const XMLElement* node, const std::wstring
 
 	// Output the element's contents, in an attemptedly nice readable format:
 
+	std::wstring name = utf16tow(node->name);
 	if (node->text.length())
 	{
-		std::wstring text = node->text;
+		std::wstring text = utf16tow(node->text);
 
 		// Wrap text in CDATA when necessary. (Maybe we should use &lt; etc
 		// in some cases?)
@@ -392,7 +394,7 @@ void OutputNode(std::wstring& output, const XMLElement* node, const std::wstring
 			output += L"\n";
 			output += indent;
 			output += L"</";
-			output += node->name;
+			output += name;
 			output += L">";
 		}
 		else
@@ -401,7 +403,7 @@ void OutputNode(std::wstring& output, const XMLElement* node, const std::wstring
 			output += L">";
 			output += text;
 			output += L"</";
-			output += node->name;
+			output += name;
 			output += L">";
 		}
 	}
@@ -419,7 +421,7 @@ void OutputNode(std::wstring& output, const XMLElement* node, const std::wstring
 			output += L"\n";
 			output += indent;
 			output += L"</";
-			output += node->name;
+			output += name;
 			output += L">";
 		}
 		else
@@ -482,11 +484,13 @@ public:
 	utf16string getErrorText() { return errorText; }
 private:
 	bool sawErrors;
-	std::wstring errorText;
+	utf16string errorText;
 	void complain(const SAXParseException& err, const wchar_t* severity) {
 		sawErrors = true;
-		C_ASSERT(sizeof(wchar_t) == sizeof(XMLCh));
-		errorText += (std::wstring)L"XML "+severity+L": "+ (wchar_t*)err.getSystemId() + L" / " + (wchar_t*)err.getMessage();
+		C_ASSERT(sizeof(utf16_t) == sizeof(XMLCh));
+		errorText += wtoutf16(L"XML ")+wtoutf16(severity)
+					+wtoutf16(L": ")+ (utf16_t*)err.getSystemId()
+					+wtoutf16(L" / ") + (utf16_t*)err.getMessage();
 	}
 };
 
@@ -539,7 +543,8 @@ XMBFile* DatafileIO::XMLReader::LoadFromXML(InputStream& stream)
 
 
 	// Build the XMLElement tree inside the XeroHandler
-	Parser->parse(XeroInputSource(stream));
+	XeroInputSource src(stream);
+	Parser->parse(src);
 
 	delete Parser;
 

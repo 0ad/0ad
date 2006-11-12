@@ -23,3 +23,18 @@ void DatafileIO::WriteUString(OutputStream& stream, const utf16string& string)
 	stream.Write(&length, 4);
 	stream.Write((utf16_t*)&string[0], length*2);
 }
+
+#if !OS_WIN
+// TODO In reality, these two should be able to de/encode UTF-16 to/from UCS-4
+// instead of just treating UTF-16 as UCS-2
+
+std::wstring DatafileIO::utf16tow(const utf16string &str)
+{
+	return std::wstring(str.begin(), str.end());
+}
+
+utf16string DatafileIO::wtoutf16(const std::wstring &str)
+{
+	return utf16string(str.begin(), str.end());
+}
+#endif

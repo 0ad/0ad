@@ -62,8 +62,13 @@
 
 #ifndef HAVE_PCH
 // If no PCH, just include a load of common headers anyway
+# include "wx/defs.h"
+# include "wx/string.h"
 # include "wx/wx.h"
 #endif
 
-
+#ifdef _WIN32
 #define ATLASDLLIMPEXP extern "C" __declspec(dllexport)
+#else
+#define ATLASDLLIMPEXP extern "C"
+#endif

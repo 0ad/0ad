@@ -34,10 +34,12 @@ struct DDTImage
 	size_t length;
 };
 
+#ifdef USE_DEVIL_DXT
 static void LoadDXT(int dxtType, unsigned char* oldData);
 static void SaveDXT(int dxtType); // saves the currently bound image
-static void ToggleOrigin(); // urgh
 static void SwizzleAGBR();
+#endif
+static void ToggleOrigin(); // urgh
 
 bool DDTFile::Read(FileType type)
 {
@@ -110,6 +112,7 @@ bool DDTFile::Read(FileType type)
 			}
 			break;
 
+#ifdef USE_DEVIL_DXT
 		case DXT1:
 		case DXT3:
 		case NORMSPEC:
@@ -124,6 +127,7 @@ bool DDTFile::Read(FileType type)
 				delete[] oldData;
 			}
 			break;
+#endif
 
 		case GREY:
 			{
@@ -349,6 +353,7 @@ bool DDTFile::SaveFile(OutputStream& stream, FileType outputType)
 					delete[] newData;
 					break;
 				}
+#ifdef USE_DEVIL_DXT
 			case DXT1:
 				SaveDXT(1);
 				break;
@@ -359,6 +364,7 @@ bool DDTFile::SaveFile(OutputStream& stream, FileType outputType)
 				SwizzleAGBR();
 				SaveDXT(5);
 				break;
+#endif
 			}
 
 			ilDeleteImages(1, &img);
@@ -372,18 +378,6 @@ bool DDTFile::SaveFile(OutputStream& stream, FileType outputType)
 
 
 
-static void SwizzleAGBR()
-{
-	ILubyte* data = ilGetData();
-	ILint pixels = ilGetInteger(IL_IMAGE_WIDTH)*ilGetInteger(IL_IMAGE_HEIGHT);
-	for (ILint i = 0; i < pixels; ++i)
-	{
-		ILubyte t = data[i*4+0];
-		data[i*4+0] = data[i*4+3];
-		data[i*4+3] = t;
-	}
-}
-
 // Evilness:
 #include "IL/devil_internal_exports.h"
 extern "C"
@@ -392,10 +386,20 @@ extern "C"
 	extern ILboolean DecompressDXT3();
 	extern ILboolean DecompressDXT5();
 	extern ILuint Compress(ILimage* Image, ILenum DXTCFormat);
+	extern ILimage* iCurImage;
+}
+
+static void ToggleOrigin()
+{
+	iCurImage->Origin = (iCurImage->Origin == IL_ORIGIN_UPPER_LEFT ? IL_ORIGIN_LOWER_LEFT : IL_ORIGIN_UPPER_LEFT);
+}
+
+#ifdef USE_DEVIL_DXT
+extern "C"
+{
 	extern ILubyte* CompData;
 	extern ILint Depth, Width, Height;
 	extern ILimage* Image;
-	extern ILimage* iCurImage;
 }
 
 static void LoadDXT(int dxtType, unsigned char* oldData)
@@ -419,12 +423,21 @@ static void LoadDXT(int dxtType, unsigned char* oldData)
 	Image = NULL;
 }
 
+static void SwizzleAGBR()
+{
+	ILubyte* data = ilGetData();
+	ILint pixels = ilGetInteger(IL_IMAGE_WIDTH)*ilGetInteger(IL_IMAGE_HEIGHT);
+	for (ILint i = 0; i < pixels; ++i)
+	{
+		ILubyte t = data[i*4+0];
+		data[i*4+0] = data[i*4+3];
+		data[i*4+3] = t;
+	}
+}
+
 static void SaveDXT(int dxtType)
 {
 	Compress(ilGetCurImage(), dxtType==1 ? IL_DXT1 : dxtType==3 ? IL_DXT3 : IL_DXT5);
 }
 
-static void ToggleOrigin()
-{
-	iCurImage->Origin = (iCurImage->Origin == IL_ORIGIN_UPPER_LEFT ? IL_ORIGIN_LOWER_LEFT : IL_ORIGIN_UPPER_LEFT);
-}
+#endif
