@@ -127,7 +127,7 @@ bool ConvertFiles(const wxArrayString& files, wxWindow* parent)
 		wxString targetFilename;
 		FileType sourceType, targetType;
 
-		if (! progress.Update((int)i, wxString::Format(_("Converting %s"), sourceFilename)))
+		if (! progress.Update((int)i, wxString::Format(_("Converting %s"), sourceFilename.c_str())))
 			return false;
 
 		wxString sourceExtn, sourceName;
@@ -135,7 +135,7 @@ bool ConvertFiles(const wxArrayString& files, wxWindow* parent)
 			int dot = sourceFilename.Find(_T('.'), true);
 			if (dot == -1)
 			{
-				wxLogError(_("No file extension for %s - don't know how to convert"), sourceFilename);
+				wxLogError(_("No file extension for %s - don't know how to convert"), sourceFilename.c_str());
 				continue;
 			}
 			else
@@ -173,7 +173,7 @@ bool ConvertFiles(const wxArrayString& files, wxWindow* parent)
 		}
 		else
 		{
-			wxLogError(_("Unknown file extension for %s - don't know how to convert"), sourceFilename);
+			wxLogError(_("Unknown file extension for %s - don't know how to convert"), sourceFilename.c_str());
 			continue;
 		}
 
@@ -182,7 +182,7 @@ bool ConvertFiles(const wxArrayString& files, wxWindow* parent)
 		// Warn about overwriting files
 		if (wxFile::Exists(targetFilename))
 		{
-			int ret = wxMessageBox(wxString::Format(_("Output file already exists: %s\nOverwrite file?"), targetFilename), _("Overwrite?"), wxYES_NO|wxCANCEL);
+			int ret = wxMessageBox(wxString::Format(_("Output file already exists: %s\nOverwrite file?"), targetFilename.c_str()), _("Overwrite?"), wxYES_NO|wxCANCEL);
 			if (ret == wxCANCEL) return false;
 			else if (ret == wxNO) continue;
 			else /* carry on converting */;
@@ -204,7 +204,7 @@ bool ConvertFile(const wxString& sourceFilename, FileType sourceType,
 	wxFFileInputStream file (sourceFilename);
 	if (! file.Ok())
 	{
-		wxLogError(_("Failed to open input file %s"), sourceFilename);
+		wxLogError(_("Failed to open input file %s"), sourceFilename.c_str());
 		return false;
 	}
 	// Decompress input file if necessary (for any file type)
@@ -212,7 +212,7 @@ bool ConvertFile(const wxString& sourceFilename, FileType sourceType,
 	Maybel33tInputStream inStream (new SeekableInputStreamFromWx(file));
 	if (! inStream.IsOk())
 	{
-		wxLogError(_("Failed to decompress input file %s"), sourceFilename);
+		wxLogError(_("Failed to decompress input file %s"), sourceFilename.c_str());
 		return false;
 	}
 
@@ -240,7 +240,7 @@ bool ConvertFile(const wxString& sourceFilename, FileType sourceType,
 			wxFFileOutputStream out(targetFilename, _T("w")); // open in text mode
 			if (! out.Ok())
 			{
-				wxLogError(_("Failed to open output file %s"), targetFilename);
+				wxLogError(_("Failed to open output file %s"), targetFilename.c_str());
 				return false;
 			}
 
@@ -254,7 +254,7 @@ bool ConvertFile(const wxString& sourceFilename, FileType sourceType,
 			wxFFileOutputStream out (targetFilename, _T("wb"));
 			if (! out.Ok())
 			{
-				wxLogError(_("Failed to open output file %s"), targetFilename);
+				wxLogError(_("Failed to open output file %s"), targetFilename.c_str());
 				return false;
 			}
 
@@ -268,7 +268,7 @@ bool ConvertFile(const wxString& sourceFilename, FileType sourceType,
 		DDTFile ddt(inStream);
 		if (! ddt.Read(DDTFile::DDT))
 		{
-			wxLogError(_("Failed to read DDT file %s"), sourceFilename);
+			wxLogError(_("Failed to read DDT file %s"), sourceFilename.c_str());
 			return false;
 		}
 		// Stick some format-identifying data just before the extension
@@ -282,7 +282,7 @@ bool ConvertFile(const wxString& sourceFilename, FileType sourceType,
 		wxFFileOutputStream out(newFilename, _T("wb"));
 		if (! out.Ok())
 		{
-			wxLogError(_("Failed to open output file %s"), newFilename);
+			wxLogError(_("Failed to open output file %s"), newFilename.c_str());
 			return false;
 		}
 		SeekableOutputStreamFromWx out2 (out);
@@ -333,7 +333,7 @@ bool ConvertFile(const wxString& sourceFilename, FileType sourceType,
 		wxFFileOutputStream out(newFilename, _T("wb"));
 		if (! out.Ok())
 		{
-			wxLogError(_("Failed to open output file %s"), newFilename);
+			wxLogError(_("Failed to open output file %s"), newFilename.c_str());
 			return false;
 		}
 		SeekableOutputStreamFromWx out2 (out);

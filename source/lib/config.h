@@ -334,6 +334,8 @@
 // precompiled headers (affects what precompiled.h pulls in; see there)
 #if MSC_VERSION
 # define HAVE_PCH 1
+#elif defined(USING_PCH)
+# define HAVE_PCH 1
 #else
 # define HAVE_PCH 0
 #endif
