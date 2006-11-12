@@ -30,7 +30,6 @@ static const char* listCppTargets(const char* name);
 static const char* listRcTargets(const char* name);
 static const char* listLinkerDeps(const char* name);
 
-
 int gnu_cpp()
 {
 	int i;
@@ -176,6 +175,14 @@ int gnu_cpp()
 		print_list(prj_get_files(), "\t$(OBJDIR)/", " \\\n", "", listCppSources);
 	io_print("\n");
 
+	io_print("PCHS := \\\n");
+	if (prj_get_pch_header() != NULL)
+	{
+		const char *basename = path_getbasename(prj_get_pch_header());
+		io_print("\t$(OBJDIR)/%s.h.gch \\\n", basename);
+	}
+	io_print("\n");
+
 	/* Write out the list of resource files for windows targets */
 	if (os_is("windows"))
 	{
@@ -214,7 +221,7 @@ int gnu_cpp()
 		io_print("$(OUTDIR)/$(TARGET)");
 	}
 
-	io_print(": $(OBJECTS) $(LDDEPS) $(RESOURCES)\n");
+	io_print(": $(PCHS) $(OBJECTS) $(LDDEPS) $(RESOURCES)\n");
 	if (prj_is_kind("cxxtestgen"))
 	{
 		io_print("\t@%s --root", prj_get_cxxtestpath());
@@ -278,6 +285,9 @@ int gnu_cpp()
 	 * helps testing and opens the way for per-file configurations */
 	print_list(prj_get_files(), "", "\n", "", listCppTargets);
 	
+//	if (prj_get_pch_source() != NULL)
+//		listGchTarget(prj_get_pch_source());
+
 	if (os_is("windows"))
 		print_list(prj_get_files(), "", "", "", listRcTargets);
 
@@ -330,7 +340,7 @@ static const char* filterLinks(const char* name)
 
 static const char* listCppSources(const char* name)
 {
-	if (is_cpp(name))
+	if (is_cpp(name) && !matches(path_getname(name), prj_get_pch_source()))
 	{
 		strcpy(g_buffer, path_getbasename(name));
 		strcat(g_buffer, ".o");
@@ -369,7 +379,6 @@ static const char* listRcSources(const char* name)
 	return NULL;
 }
 
-
 /************************************************************************
  * Creates the makefile build rules for all source code files
  ***********************************************************************/
@@ -377,12 +386,32 @@ static const char* listRcSources(const char* name)
 static const char* listCppTargets(const char* name)
 {
 	const char* ext = path_getextension(name);
-	const char* basename = path_getbasename(name);
+	const char* pchHeader = prj_get_pch_header();
+	const char *pchSource = prj_get_pch_source();
+
+	int use_pch = pchHeader?1:0, gen_pch=0;
+
+	if (pchSource && matches(path_getname(name), pchSource))
+	{
+		gen_pch = 1;
+		use_pch = 0;
+	}
+
 	if (is_cpp(name))
 	{
-
-		sprintf(g_buffer, "$(OBJDIR)/%s.o: %s\n", basename, name);
-		strcat(g_buffer, "\t-");
+		const char* basename = path_getbasename(name);
+		sprintf(g_buffer, "$(OBJDIR)/%s.%s: %s ",
+			basename, gen_pch?"h.gch":"o", name);
+		if (use_pch)
+		{
+			basename = path_getbasename(pchHeader);
+			strcat(g_buffer, "$(OBJDIR)/");
+			strcat(g_buffer, basename);
+			strcat(g_buffer, ".h.gch");
+			// static buffer, *sigh*
+			basename = path_getbasename(name);
+		}
+		strcat(g_buffer, "\n\t-");
 		if (!g_verbose)
 			strcat(g_buffer, "@");
 		strcat(g_buffer, "$(CMD_MKOBJDIR)\n");
@@ -437,7 +466,20 @@ static const char* listCppTargets(const char* name)
 			{
 				strcat(g_buffer, "$(CXX) $(CXXFLAGS) -MF $(OBJDIR)/");
 				strcat(g_buffer, basename);
-				strcat(g_buffer, ".d -o $@ -c $<\n");
+				strcat(g_buffer, ".d -o $@ -c");
+				if (gen_pch)
+				{
+					strcat(g_buffer, " -x c++-header");
+				}
+				else if (use_pch)
+				{
+					basename = path_getbasename(pchHeader);
+					strcat(g_buffer, " -include $(OBJDIR)/");
+					strcat(g_buffer, basename);
+					strcat(g_buffer, ".h");
+					basename = NULL;
+				}
+				strcat(g_buffer, " $<\n");
 			}
 		}
 

@@ -118,20 +118,22 @@ int io_mkdir(const char* path)
 	strcpy(buffer, path);
 	path = buffer;
 
+	if (*path == '/')
+	{
+		platform_chdir("/");
+		path++;
+	}
+
 	while (path != NULL)
 	{
-		// If this is the first time through, we want to ignore a possible first
-		// slash (absolute path).
-		// If this is the N'th time around (N > 1), path will point to the slash
-		// that was found. Skip it.
-		char* ptr = strchr(path+1, '/');
+		char* ptr = strchr(path, '/');
 		if (ptr != NULL)
 			*ptr = '\0';
-
+		
 		platform_mkdir(path);
 		platform_chdir(path);
 
-		path = ptr;
+		path = ptr ? ptr+1 : NULL;
 	}
 
 	/* Restore the original working directory */

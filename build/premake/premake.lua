@@ -1,6 +1,7 @@
 addoption("atlas", "Include Atlas scenario editor packages")
 addoption("outpath", "Location for generated project files")
 addoption("without-tests", "Disable generation of test projects")
+addoption("without-pch", "Disable generation and usage of precompiled headers")
 
 dofile("functions.lua")
 dofile("extern_libs.lua")
@@ -162,6 +163,22 @@ function package_add_contents(source_root, rel_source_dirs, rel_include_dirs, ex
 
 end
 
+-- Detect and set up PCH for the current package
+function package_setup_pch(pch_dir, header, source)
+	if OS == "windows" or not options["without-pch"] then
+		package.pchheader = header -- "precompiled.h"
+		package.pchsource = source -- "precompiled.cpp"
+		if pch_dir then
+			tinsert(package.files, {
+				pch_dir..header,
+				pch_dir..source
+			})
+		end
+		for i,v in project.configs do
+			tinsert(package.config[v].defines, { "USING_PCH" })
+		end
+	end
+end
 
 --------------------------------------------------------------------------------
 -- engine static libraries
@@ -188,27 +205,21 @@ local function setup_static_lib_package (package_name, rel_source_dirs, extern_l
 
 	tinsert(static_lib_names, package_name)
 
-	if OS == "windows" then
-		-- Precompiled Headers
-		-- rationale: we need one PCH per static lib, since one global header would
-		-- increase dependencies. To that end, we can either include them as
-		-- "packagedir/precompiled.h", or add "source/PCH/packagedir" to the
-		-- include path and put the PCH there. The latter is better because
-		-- many packages contain several dirs and it's unclear where there the
-		-- PCH should be stored. This way is also a bit easier to use in that
-		-- source files always include "precompiled.h".
-		-- Notes:
-		-- * Visual Assist manages to use the project include path and can
-		--   correctly open these files from the IDE.
-		-- * precompiled.cpp (needed to "Create" the PCH) also goes in
-		--   the abovementioned dir.
-		pch_dir = source_root.."pch/"..package_name.."/"
-		package.pchheader = "precompiled.h"
-		package.pchsource = "precompiled.cpp"
-		tinsert(package.files, { pch_dir.."precompiled.cpp", pch_dir.."precompiled.h" })
-
-	end
-	
+	-- Precompiled Headers
+	-- rationale: we need one PCH per static lib, since one global header would
+	-- increase dependencies. To that end, we can either include them as
+	-- "packagedir/precompiled.h", or add "source/PCH/packagedir" to the
+	-- include path and put the PCH there. The latter is better because
+	-- many packages contain several dirs and it's unclear where there the
+	-- PCH should be stored. This way is also a bit easier to use in that
+	-- source files always include "precompiled.h".
+	-- Notes:
+	-- * Visual Assist manages to use the project include path and can
+	--   correctly open these files from the IDE.
+	-- * precompiled.cpp (needed to "Create" the PCH) also goes in
+	--   the abovementioned dir.
+	pch_dir = source_root.."pch/"..package_name.."/"
+	package_setup_pch(pch_dir, "precompiled.h", "precompiled.cpp")
 end
 
 -- this is where the source tree is chopped up into static libs.
@@ -420,9 +431,8 @@ function setup_main_exe ()
 			-- Debugging
 			"bfd", "iberty"
 		})
-		-- For debug_resolve_symbol
-		
 	
+		-- For debug_resolve_symbol
 		package.config["Debug"].linkoptions = { "-rdynamic" }
 		package.config["Testing"].linkoptions = { "-rdynamic" }
 	elseif OS == "macosx" then
@@ -431,10 +441,7 @@ function setup_main_exe ()
 			"pthread"
 		})
 
-	
 		tinsert(package.libpaths, "/usr/X11R6/lib")
-
-	
 	end
 end
 
@@ -457,6 +464,10 @@ local function setup_atlas_package(package_name, target_type, rel_source_dirs, r
 	package_add_contents(source_root, rel_source_dirs, rel_include_dirs, extra_params)
 	package_add_extern_libs(extern_libs)
 
+	if extra_params["pch"] then
+		package_setup_pch(nil, "stdafx.h", "stdafx.cpp");
+	end
+
 	-- Platform Specifics
 	if OS == "windows" then
 
@@ -467,11 +478,6 @@ local function setup_atlas_package(package_name, target_type, rel_source_dirs, r
 
 		-- required to use WinMain() on Windows, otherwise will default to main()
 		tinsert(package.buildflags, "no-main")
-
-		if extra_params["pch"] then
-			package.pchheader = "stdafx.h"
-			package.pchsource = "stdafx.cpp"
-		end
 
 		if extra_params["extra_links"] then 
 			listconcat(package.links, extra_params["extra_links"]) 
@@ -640,17 +646,18 @@ function setup_tests()
 	package_create("test_3_gen", "cxxtestgen")
 	package.files = hdr_files
 	package.rootfile = source_root .. "test_root.cpp"
+	package.testoptions = ""
 	if OS == "windows" then
-		-- precompiled headers - the header is added to all generated .cpp files
-		package.pchheader = "precompiled.h"
-
-		package.rootoptions = "--gui=Win32Gui --runner=ParenPrinter --include="..package.pchheader
-		package.testoptions = "--include="..package.pchheader
+		package.rootoptions = "--gui=Win32Gui --runner=ParenPrinter"
 	else
-		package.rootoptions = "--runner=ErrorPrinter --include=pch/test/precompiled.h"
-		package.testoptions = "--include=pch/test/precompiled.h"
+		package.rootoptions = "--runner=ErrorPrinter"
 	end
-
+	-- precompiled headers - the header is added to all generated .cpp files
+	-- note that the header isn't actually precompiled here, only #included
+	-- so that the build stage can use it as a precompiled header.
+	include = " --include=precompiled.h"
+	package.rootoptions = package.rootoptions .. include
+	package.testoptions = package.testoptions .. include
 
 	package_create("test_2_build", "winexe")
 	links = static_lib_names
@@ -670,13 +677,6 @@ function setup_tests()
 		-- from "lowlevel" static lib; must be added here to be linked in
 		tinsert(package.files, source_root.."lib/sysdep/win/error_dialog.rc")
 
-		-- precompiled headers
-		pch_dir = source_root.."pch/test/"
-		package.pchheader = "precompiled.h"
-		package.pchsource = "precompiled.cpp"
-		tinsert(package.files, { pch_dir.."precompiled.cpp", pch_dir.."precompiled.h" })
-		package.rootoptions = "--include=precompiled.h"
-
 	elseif OS == "linux" then
 
 		tinsert(package.links, {
@@ -686,18 +686,19 @@ function setup_tests()
 			-- Debugging
 			"bfd", "iberty"
 		})
+
 		-- For debug_resolve_symbol
-		
-	
 		package.config["Debug"].linkoptions = { "-rdynamic" }
 		package.config["Testing"].linkoptions = { "-rdynamic" }
-
 	
-		tinsert(package.includepaths, ".")
+		tinsert(package.includepaths, source_root .. "pch/test/")
 		tinsert(package.libpaths, "/usr/X11R6/lib")
-	
-		package.rootoptions = "--include=precompiled.h"
 	end
+
+	package_setup_pch(
+		source_root .. "pch/test/",
+		"precompiled.h",
+		"precompiled.cpp");
 
 	tinsert(package.buildflags, "use-library-dep-inputs")
 

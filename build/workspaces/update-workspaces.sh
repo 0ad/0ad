@@ -10,7 +10,6 @@ cd $premake_dir
 
 # build/premake/
 
-mkdir -p $workspace_dir
 ./premake --target gnu --outpath $workspace_dir --atlas $*
 
 # These files need to be linked; premake makefiles assume that the
