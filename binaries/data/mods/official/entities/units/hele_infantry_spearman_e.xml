@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="hele_infantry_spearman_a"
->
+<Entity Parent="hele_infantry_spearman_a">
+
+	<Traits>
+
+		<Id>
+
+			<Icon_Cell>5</Icon_Cell>
+
+		</Id>
+	
+	</Traits>
+
 
 	<Actor>units/hellenes/infantry_spearman_e.xml</Actor>
 

@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="hele_infantry_javelinist_a"
->
+<Entity Parent="hele_infantry_javelinist_a">
+
+	<Traits>
+
+		<Id>
+
+			<Icon_Cell>8</Icon_Cell>
+
+		</Id>
+	
+	</Traits>
 
 	<Actor>units/hellenes/infantry_javelinist_e.xml</Actor>
 </Entity>
