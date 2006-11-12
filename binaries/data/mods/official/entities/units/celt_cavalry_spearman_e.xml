@@ -3,5 +3,15 @@
 <Entity
 	Parent="celt_cavalry_spearman_a"
 >
+
+	<Traits>
+	
+		<Id>
+
+			<Icon_Cell>17</Icon_Cell>
+		
+		</Id>
+		
+	</Traits>
 	<Actor>units/celts/cavalry_spearman_e.xml</Actor>
 </Entity>

@@ -3,5 +3,15 @@
 <Entity
 	Parent="celt_infantry_javelinist_b"
 >
+
+	<Traits>
+	
+		<Id>
+
+			<Icon_Cell>22</Icon_Cell>
+		
+		</Id>
+		
+	</Traits>
 	<Actor>units/celts/infantry_javelinist_a.xml</Actor>
 </Entity>
