@@ -217,6 +217,8 @@ int clipboard_filter(const SDL_Event *event)
 		return 1;
 
 	/* Handle window-manager specific clipboard events */
+	/* (Note: libsdl must be compiled with X11 support (SDL_VIDEO_DRIVER_X11 in SDL_config.h) -
+	   else you'll get errors like "'struct SDL_SysWMmsg' has no member named 'xevent'") */
 	switch (event->syswm.msg->event.xevent.type) {
 		/* Copy the selection from our buffer to the requested property, and
 		convert to the requested target format */
