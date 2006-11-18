@@ -43,7 +43,7 @@ AT_STARTUP(\
 
 static inline bool is_dir_sep(char c)
 {
-	// note: ideally path strings would only contain '/' or even DIR_SEP.
+	// note: ideally path strings would only contain '/' or even SYS_DIR_SEP.
 	// however, windows-specific code (e.g. the sound driver detection)
 	// uses these routines with '\\' strings. converting them all to
 	// '/' and then back before passing to WinAPI would be annoying.
@@ -241,14 +241,14 @@ LibError path_replace(char* dst, const char* src, const char* remove, const char
 // characters up to the last dir separator, if any).
 const char* path_name_only(const char* path)
 {
-	const char* portable_slash = strrchr(path, '/');
-	const char* platform_slash = strrchr(path, DIR_SEP);
+	const char* slash1 = strrchr(path, '/');
+	const char* slash2 = strrchr(path, '\\');
 	// neither present, it's a filename only
-	if(!portable_slash && !platform_slash)
+	if(!slash1 && !slash2)
 		return path;
 
 	// return name, i.e. component after the last portable or platform slash
-	return MAX(portable_slash, platform_slash)+1;
+	return MAX(slash1, slash2)+1;
 }
 
 
@@ -258,7 +258,7 @@ const char* path_name_only(const char* path)
 const char* path_last_component(const char* path)
 {
 	// ('\0' is end of set string)
-	static const char separators[3] = { DIR_SEP, '/', '\0' };
+	static const char separators[3] = { '/', '\\', '\0' };
 
 	const char* pos = path;
 	const char* last_component = path;
@@ -334,9 +334,9 @@ LibError path_foreach_component(const char* path_org, PathComponentCb cb, void* 
 
 		// find end of cur_component
 		char* slash = (char*)strchr(cur_component, '/');
-		// .. try platform-specific separator
+		// .. try other separator
 		if(!slash)
-			slash = (char*)strchr(cur_component, DIR_SEP);
+			slash = (char*)strchr(cur_component, '\\');
 
 		// decide its type and 0-terminate
 		// .. filename (by definition)
@@ -382,7 +382,7 @@ LibError path_foreach_component(const char* path_org, PathComponentCb cb, void* 
 // does not care if paths are relative/portable/absolute.
 LibError path_package_set_dir(PathPackage* pp, const char* dir)
 {
-	// -1 allows for trailing DIR_SEP that will be added if not
+	// -1 allows for trailing '/' that will be added if not
 	// already present.
 	if(strcpy_s(pp->path, ARRAY_SIZE(pp->path)-1, dir) != 0)
 		WARN_RETURN(ERR::PATH_LENGTH);

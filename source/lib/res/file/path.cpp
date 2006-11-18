@@ -58,14 +58,14 @@ enum Conversion
 
 static LibError convert_path(char* dst, const char* src, Conversion conv = TO_NATIVE)
 {
-	// DIR_SEP is assumed to be a single character!
+	// SYS_DIR_SEP is assumed to be a single character!
 
 	const char* s = src;
 	char* d = dst;
 
-	char from = DIR_SEP, to = '/';
+	char from = SYS_DIR_SEP, to = '/';
 	if(conv == TO_NATIVE)
-		from = '/', to = DIR_SEP;
+		from = '/', to = SYS_DIR_SEP;
 
 	size_t len = 0;
 
@@ -190,10 +190,10 @@ LibError file_set_root_dir(const char* argv0, const char* rel_path)
 	if(!realpath(n_path, n_root_dir))
 		return LibError_from_errno();
 
-	// .. append DIR_SEP to simplify code that uses n_root_dir
-	n_root_dir_len = strlen(n_root_dir)+1;	// +1 for trailing DIR_SEP
+	// .. append SYS_DIR_SEP to simplify code that uses n_root_dir
+	n_root_dir_len = strlen(n_root_dir)+1;	// +1 for trailing SYS_DIR_SEP
 	debug_assert((n_root_dir_len+1) < sizeof(n_root_dir)); // Just checking
-	n_root_dir[n_root_dir_len-1] = DIR_SEP;
+	n_root_dir[n_root_dir_len-1] = SYS_DIR_SEP;
 	// You might think that n_root_dir is already 0-terminated, since it's
 	// static - but that might not be true after calling file_reset_root_dir!
 	n_root_dir[n_root_dir_len] = 0;

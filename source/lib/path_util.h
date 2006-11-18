@@ -28,7 +28,7 @@
 //   must hold at least that much.
 // - unless otherwise mentioned, all functions are intended to work with
 //   native and portable and VFS paths.
-//   when reading, both '/' and DIR_SEP are accepted; '/' is written.
+//   when reading, both '/' and SYS_DIR_SEP are accepted; '/' is written.
 
 #ifndef PATH_UTIL_H__
 #define PATH_UTIL_H__

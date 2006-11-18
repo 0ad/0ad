@@ -335,9 +335,9 @@ extern i64 i64_from_double(double);
 extern size_t sys_max_sector_size();
 
 #if OS_WIN
-#define DIR_SEP '\\'
+# define SYS_DIR_SEP '\\'
 #else
-#define DIR_SEP '/'
+# define SYS_DIR_SEP '/'
 #endif
 
 // tell the compiler that the code at/following this macro invocation is
