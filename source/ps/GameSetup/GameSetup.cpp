@@ -58,6 +58,7 @@
 #include "simulation/FormationCollection.h"
 #include "simulation/FormationManager.h"
 #include "simulation/TerritoryManager.h"
+#include "simulation/TriggerManager.h"
 #include "simulation/PathfindEngine.h"
 #include "simulation/Projectile.h"
 #include "simulation/Scheduler.h"
@@ -480,7 +481,9 @@ static void InitScripting()
 	// Register the JavaScript interfaces with the runtime
 	SColour::ScriptingInit();
 	CEntity::ScriptingInit();
+	CTrigger::ScriptingInit();
 	CEntityTemplate::ScriptingInit();
+
 	JSI_Sound::ScriptingInit();
 	CProfileNode::ScriptingInit();
 
@@ -789,7 +792,8 @@ void Shutdown(uint flags)
 
 		TIMER_BEGIN("shutdown game scripting stuff");
 		delete &g_GameAttributes;
-
+		
+		delete &g_TriggerManager;
 		delete &g_FormationManager;
 		delete &g_TechnologyCollection;
 		delete &g_EntityFormationCollection;
@@ -1035,6 +1039,9 @@ void Init(int argc, char* argv[], uint flags)
 			g_EntityFormationCollection.loadTemplates();
 			g_TechnologyCollection.loadTechnologies();
 			new CFormationManager;
+			new CTriggerManager;
+			g_TriggerManager.LoadXML(CStr("scripts/TriggerSpecs.xml"));
+			g_ScriptingHost.RunScript("scripts/trigger_functions.js");
 
 			// CEntityManager is managed by CWorld
 			//new CEntityManager;

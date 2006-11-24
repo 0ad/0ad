@@ -366,6 +366,7 @@ public:
 	void DestroyAllNotifiers();
 
 	int findSector( int divs, float angle, float maxAngle, bool negative=true );
+	jsval FlattenTerrain( JSContext* cx, uintN argc, jsval* argv );
 
 	CEntityFormation* GetFormation();
 	jsval GetFormationPenalty( JSContext* cx, uintN argc, jsval* argv );

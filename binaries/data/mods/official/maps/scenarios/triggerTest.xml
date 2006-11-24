@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<Scenario>
+	<Environment>
+		<SkySet>default</SkySet>
+		<SunColour r="1" g="1" b="1"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="5.49779"/>
+		<TerrainAmbientColour r="0.643137" g="0.643137" b="0.643137"/>
+		<UnitsAmbientColour r="0.643137" g="0.643137" b="0.643137"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.3" g="0.35" b="0.7"/>
+				<Height>5</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.28" g="0.3" b="0.59"/>
+				<ReflectionTint r="0.28" g="0.3" b="0.59"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="100" y="150" z="-100"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
+	</Camera>
+	<Entities/>
+	<Nonentities/>
+	<Tracks/>
+	<Triggers>
+		<Trigger name="Trigger 0">
+			<Active>true</Active>
+			<MaxRunCount>0</MaxRunCount>
+			<Delay>0</Delay>
+			<Conditions>
+				<Condition name="Condition 0" function="getAlwaysTrue" display="Always" not="false">
+					<LinkLogic>AND</LinkLogic>
+				</Condition>
+			</Conditions>
+			<Effects>
+				<Effect name="Effect 0" function="console.write" display="Text">
+					<parameter>"Disturbers of the human race, your bells are always ringing.  I wish the rope were 'round your neck and you upon it swinging."</parameter>
+				</Effect>
+			</Effects>
+		</Trigger>
+	</Triggers>
+</Scenario>

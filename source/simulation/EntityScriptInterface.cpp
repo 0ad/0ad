@@ -83,6 +83,7 @@ void CEntity::ScriptingInit()
 	AddMethod<jsval, &CEntity::OnDamaged>( "onDamaged", 1 );
 	AddMethod<jsval, &CEntity::GetVisibleEntities>( "getVisibleEntities", 0 );
 	AddMethod<float, &CEntity::GetDistance>( "getDistance", 1 );
+	AddMethod<jsval, &CEntity::FlattenTerrain>( "flattenTerrain", 0 );
 
 	AddClassProperty( L"traits.id.classes", (GetFn)&CEntity::getClassSet, (SetFn)&CEntity::setClassSet );
 	AddClassProperty( L"template", (CEntityTemplate* CEntity::*)&CEntity::m_base, false, (NotifyFn)&CEntity::loadBase );
@@ -921,4 +922,34 @@ int CEntity::GetAttackAction( HEntity target )
 
 	// Default return value is an invalid action ID
 	return 0;
+}
+
+jsval CEntity::FlattenTerrain( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+{
+	float xDiff, yDiff;
+	CVector3D pos = m_position;
+	CVector2D pos2D(m_position.X, m_position.Z);
+
+	if ( m_bounds->m_type == CBoundingObject::BOUND_CIRCLE )
+		xDiff = yDiff = m_bounds->m_radius;
+	else
+	{
+		CBoundingBox* box = static_cast<CBoundingBox*>( m_bounds );
+		xDiff = box->m_w;
+		yDiff = box->m_d;
+	}
+	//If we ever need to take rotated bounding boxes into account...
+	//CVector2D points[4] = { CVector2D(xDiff, yDiff), CVector2D(-xDiff, -yDiff),
+		//CVector2D(-xDiff, yDiff), CVector2D(xDiff, yDiff) };
+	//CVector3D circle = points[0].FindCircumCircle(points[1], points[2]);
+	//float cos = cosf(m_graphics_orientation.Y), sin = sinf(m_graphics_orientation.Y);
+
+	//for ( size_t i = 0; i<4; ++i )
+	//{
+	//	points[i].x *= cos*circle.Z;
+	//	points[i].y *= sin*circle.Z;
+	//}
+	g_Game->GetWorld()->GetTerrain()->FlattenArea(pos.X-xDiff, pos.X+xDiff, pos.Z-yDiff, pos.Z+yDiff);
+	snapToGround();
+	return JS_TRUE;
 }

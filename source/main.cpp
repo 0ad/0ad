@@ -32,6 +32,7 @@ that of Atlas depending on commandline parameters.
 #include "ps/Globals.h"
 #include "ps/Interact.h"
 #include "network/SessionManager.h"
+#include "simulation/TriggerManager.h"
 #include "graphics/GameView.h"
 #include "simulation/Scheduler.h"
 #include "sound/CMusicPlayer.h"
@@ -264,6 +265,10 @@ static void Frame()
 			PROFILE( "camera update" );
 			g_Game->GetView()->Update(float(TimeSinceLastFrame));
 		}
+		
+		PROFILE_START("trigger update");
+		g_TriggerManager.Update( (float)TimeSinceLastFrame );
+		PROFILE_END("trigger udpate");
 
 		PROFILE_START( "selection and interaction ui" );
 		// TODO Where does GameView end and other things begin?

@@ -16,6 +16,7 @@ class SkyManager;
 class CLightEnv;
 class CCamera;
 class CCinemaManager;
+class CTriggerManager;
 
 class CXMLReader;
 
@@ -28,7 +29,8 @@ public:
 	CMapReader();
 	// LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
 	void LoadMap(const char* filename, CTerrain *pTerrain, CUnitManager *pUnitMan,
-		WaterManager* pWaterMan, SkyManager* pSkyMan, CLightEnv *pLightEnv, CCamera *pCamera, CCinemaManager* pCinema);
+		WaterManager* pWaterMan, SkyManager* pSkyMan, CLightEnv *pLightEnv, CCamera *pCamera, 
+																CCinemaManager* pCinema);
 
 private:
 	// UnpackTerrain: unpack the terrain from the input stream
@@ -78,6 +80,7 @@ private:
 	CLightEnv* pLightEnv;
 	CCamera* pCamera;
 	CCinemaManager* pCinema;
+	CTriggerManager* pTrigMan;
 	CStr filename_xml;
 
 	// UnpackTerrain generator state

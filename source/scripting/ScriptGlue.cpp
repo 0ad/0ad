@@ -42,6 +42,7 @@
 #include "simulation/EntityManager.h"
 #include "simulation/EntityTemplate.h"
 #include "simulation/FormationManager.h"
+#include "simulation/TriggerManager.h"
 #include "simulation/LOSManager.h"
 #include "simulation/Scheduler.h"
 #include "simulation/Simulation.h"
@@ -1262,6 +1263,33 @@ JSBool getGameTime( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, js
 	}
 
 	*rval = ToJSVal(g_Game->GetTime());
+	return JS_TRUE;
+}
+
+JSBool registerTrigger( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, 
+														jsval* argv, jsval* rval )
+{
+	JSU_REQUIRE_PARAMS_CPP(1);
+	CTrigger* trigger = ToNative<CTrigger>( argv[0] );
+	debug_assert( trigger );
+
+	g_TriggerManager.AddTrigger( trigger );
+	*rval = JSVAL_NULL;
+	return JS_TRUE;
+}
+JSBool getTrigger( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, 
+													jsval* argv, jsval* rval )
+{
+	JSU_REQUIRE_PARAMS_CPP(1);
+	CStrW name = ToPrimitive<CStrW>( argv[0] );
+	
+	if ( g_TriggerManager.m_TriggerMap.find(name) != g_TriggerManager.m_TriggerMap.end() )
+		*rval = ToJSVal( g_TriggerManager.m_TriggerMap[name] );
+	else
+	{
+		debug_printf("Invalid trigger name %ws", name);
+		*rval = JSVAL_NULL;
+	}
 	return JS_TRUE;
 }
 

@@ -24,6 +24,7 @@
 #include "renderer/WaterManager.h"
 #include "simulation/Entity.h"
 #include "simulation/EntityManager.h"
+#include "simulation/TriggerManager.h"
 #include "simulation/EntityTemplate.h"
 #include "simulation/EntityTemplateCollection.h"
 
@@ -334,6 +335,8 @@ private:
 	void ReadEnvironment(XMBElement parent);
 	void ReadCamera(XMBElement parent);
 	void ReadCinema(XMBElement parent);
+	void ReadTriggers(XMBElement parent);
+	void ReadTriggerGroup(XMBElement parent, MapTriggerGroup& group);
 	int ReadEntities(XMBElement parent, double end_time);
 	int ReadNonEntities(XMBElement parent, double end_time);
 
@@ -663,6 +666,164 @@ void CXMLReader::ReadCinema(XMBElement parent)
 	g_Game->GetView()->GetCinema()->SetAllTracks(trackList);
 }
 
+void CXMLReader::ReadTriggers(XMBElement parent)
+{
+	MapTriggerGroup rootGroup( CStrW(L"Triggers"), CStrW(L"") );
+	g_TriggerManager.DestroyEngineTriggers();
+	ReadTriggerGroup(parent, rootGroup);
+}
+
+void CXMLReader::ReadTriggerGroup(XMBElement parent, MapTriggerGroup& group)
+{
+	#define EL(x) int el_##x = xmb_file.getElementID(#x)
+	#define AT(x) int at_##x = xmb_file.getAttributeID(#x)
+	
+	EL(group);
+	EL(trigger);
+	EL(active);
+	EL(delay);
+	EL(maxruncount);
+	EL(conditions);
+	EL(logicblock);
+	EL(logicblockend);
+	EL(condition);
+	EL(parameter);
+	EL(linklogic);
+	EL(effects);
+	EL(effect);
+
+	AT(name);
+	AT(function);
+	AT(display);
+	AT(not);
+	
+	#undef EL
+	#undef AT
+	
+	CStrW name = parent.getAttributes().getNamedItem(at_name), parentName = group.parentName;
+	if ( group.name == L"Triggers" )
+		name = group.name;
+	
+	MapTriggerGroup mapGroup(name, parentName);
+
+	XERO_ITER_EL(parent, groupChild)
+	{
+		int elementName = groupChild.getNodeName();
+		if ( elementName == el_group )
+			ReadTriggerGroup(groupChild, mapGroup);
+		
+		else if ( elementName == el_trigger )
+		{
+			MapTrigger mapTrigger;
+			mapTrigger.name = CStrW( groupChild.getAttributes().getNamedItem(at_name) );
+
+			//Read everything in this trigger
+			XERO_ITER_EL(groupChild, triggerChild)
+			{
+				elementName = triggerChild.getNodeName();
+				if ( elementName == el_active )
+				{
+					if ( CStr("false") == CStr( triggerChild.getText() ) )
+						mapTrigger.active = false;
+					else
+						mapTrigger.active = true;
+				}
+			
+				else if ( elementName == el_maxruncount )
+					mapTrigger.maxRunCount = CStr( triggerChild.getText() ).ToInt();
+				else if ( elementName == el_delay )
+					mapTrigger.timeValue = CStr( triggerChild.getText() ).ToFloat();
+			
+				else if ( elementName == el_conditions )
+				{
+					//Read in all conditions for this trigger
+					XERO_ITER_EL(triggerChild, condition)
+					{
+						elementName = condition.getNodeName();
+						if ( elementName == el_condition )
+						{
+							MapTriggerCondition mapCondition;
+							mapCondition.name = condition.getAttributes().getNamedItem(at_name);
+							mapCondition.functionName = condition.getAttributes().getNamedItem(at_function);
+							mapCondition.displayName = condition.getAttributes().getNamedItem(at_display);
+							
+							CStr notAtt(condition.getAttributes().getNamedItem(at_not));
+							if ( notAtt == CStr("true") )
+								mapCondition.not = true;
+
+							//Read in each condition child
+							XERO_ITER_EL(condition, conditionChild)
+							{
+								elementName = conditionChild.getNodeName();
+						
+								if ( elementName == el_parameter )
+									mapCondition.parameters.push_back( conditionChild.getText() );
+								else if ( elementName == el_linklogic )
+								{
+									CStr logic = conditionChild.getText();
+									if ( logic == CStr("AND") )
+										mapCondition.linkLogic = 1;
+									else
+										mapCondition.linkLogic = 2;
+								}
+							}
+							mapTrigger.conditions.push_back(mapCondition);
+						}	//Read all conditions
+
+						else if ( elementName == el_logicblock)
+						{
+							if ( CStr(condition.getAttributes().getNamedItem(at_not)) == CStr("true") )	
+								mapTrigger.AddLogicBlock(true);
+							else
+								mapTrigger.AddLogicBlock(false);
+						}
+						else if ( elementName == el_logicblockend)
+							mapTrigger.AddLogicBlockEnd();
+
+					}	//Read all conditions
+				}	
+
+				else if ( elementName == el_effects )
+				{
+					//Read all effects
+					XERO_ITER_EL(triggerChild, effect)
+					{
+						if ( effect.getNodeName() != el_effect )
+						{
+							debug_warn("Invalid effect tag in trigger XML file");
+							return;
+						}
+						MapTriggerEffect mapEffect;
+						mapEffect.name = effect.getAttributes().getNamedItem(at_name);
+						mapEffect.functionName = effect.getAttributes().getNamedItem(at_function);
+						mapEffect.displayName = effect.getAttributes().getNamedItem(at_display);
+						
+						//Read parameters
+						XERO_ITER_EL(effect, effectChild)
+						{
+							if ( effectChild.getNodeName() != el_parameter )
+							{
+								debug_warn("Invalid parameter tag in trigger XML file");
+								return;
+							}
+							mapEffect.parameters.push_back( effectChild.getText() );
+						}
+						mapTrigger.effects.push_back(mapEffect);
+					}
+				}
+				else
+					debug_warn("Invalid trigger node child in trigger XML file");
+
+			}	//Read trigger children
+			g_TriggerManager.AddTrigger(mapGroup, mapTrigger);
+		}	
+		else
+			debug_warn("Invalid group node child in XML file");
+	}	//Read group children
+
+	g_TriggerManager.AddGroup(mapGroup);
+}
+
 int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 {
 	XMBElementList entities = parent.getChildNodes();
@@ -847,6 +1008,10 @@ int CXMLReader::ProgressiveRead()
 		else if (name == "Tracks")
 		{
 			ReadCinema(node);
+		}
+		else if (name == "Triggers")
+		{
+			ReadTriggers(node);
 		}
 		else
 			debug_warn("Invalid map XML data");

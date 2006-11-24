@@ -90,8 +90,7 @@ public:
 		qGetCameraInfo qry;
 		qry.Post();
 		sCameraInfo info = qry.info;
-		m_Sidebar->AddTrack(info.rX, info.rY, info.rZ, msgString, 
-													GetItemCount()-1);
+		m_Sidebar->AddTrack(info.rX, info.rY, info.rZ, msgString, GetItemCount()-1);
 	}
 	void DeleteTrack()
 	{

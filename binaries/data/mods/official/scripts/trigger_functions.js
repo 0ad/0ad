@@ -1,0 +1,4 @@
+function getAlwaysTrue()
+{
+return true;
+}

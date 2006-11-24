@@ -1,5 +1,6 @@
 #include <string>
 #include <cassert>
+
 #if OS_UNIX
 #include "ps/utf16string.h"
 #include <sys/types.h>
@@ -11,7 +12,7 @@
 
 namespace DatafileIO
 {
-#if OS_WIN
+#ifdef _WIN32
 	// TODO: proper portability
 	typedef int int32_t;
 	typedef unsigned int uint32_t;

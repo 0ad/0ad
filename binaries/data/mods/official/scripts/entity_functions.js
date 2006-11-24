@@ -791,9 +791,16 @@ function performBuild( evt )
 	var hp = t.traits.health;
 	
 	var points = parseFloat( b.rate ) * parseFloat( b.speed ) / 1000.0;
+	if ( bp.curr == 0 )
+	{
+		t.flattenTerrain(); //make the terrain stable for the building
+		//t.placeBuildingFootprint(false);  //false means display regular footprint, not rubble
+	}
 	bp.curr += points;
 	hp.curr = Math.min( hp.max, hp.curr + (points/bp.max)*hp.max );
 	
+	
+
 	if( bp.curr >= bp.max )
 	{
 		// We've finished building this object; convert the foundation to a building

@@ -8,7 +8,7 @@
 #include "maths/NUSpline.h"
 
 /*
-	Andrew (aka pyrolink)
+	Andrew Decker (aka pyrolink)
 	Contact: ajdecker1022@msn.com
 	desc: contains various functions used for cinematic camera tracks
 	See also: CinemaHandler.cpp, Cinematic.h/.cpp

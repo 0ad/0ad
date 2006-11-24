@@ -306,7 +306,7 @@ void ArchiveViewer::UpdateFileList()
 
 	for (size_t i = 0; i < files.size(); ++i)
 	{
-		m_CachedFileData[i].Name = utf16tow(files[i].filename);
+		m_CachedFileData[i].Name = wxString( utf16tow(files[i].filename).c_str() );
 		m_CachedFileData[i].NameLower = m_CachedFileData[i].Name.Lower();
 
 		m_CachedFileData[i].Size = wxString::Format(_T("%d"), files[i].filesize);
@@ -441,7 +441,7 @@ void ArchiveViewer::ExtractFiles(bool onlySelected)
 		for (size_t sel = 0; sel < selection.size(); ++sel)
 		{
 			const BAREntry& file = files[selection[sel]];
-			wxString filename = utf16tow(file.filename);
+			wxString filename = wxString( utf16tow(file.filename).c_str() );
 			int lastSlash = filename.Find(_T('\\'), true);
 			if (lastSlash != -1)
 				dirs.insert(filename.Mid(0, lastSlash+1).c_str());
@@ -480,7 +480,7 @@ void ArchiveViewer::ExtractFiles(bool onlySelected)
 
 			// Append name-in-archive to target root directory, one dir
 			// at a time, calling mkdir at each step if necessary
-			wxFileName filePath (utf16tow(file.filename), wxPATH_WIN);
+			wxFileName filePath (wxString( utf16tow(file.filename).c_str() ), wxPATH_WIN);
 			filePath.MakeAbsolute(rootDir.GetPath());
 
 			// Output to disk
@@ -551,7 +551,7 @@ void ArchiveViewer::UpdatePreview(long item)
 
 	const BAREntry& file = m_BARReader->GetFileList()[ m_FileListCtrl->GetItemData(item) ];
 	SeekableInputStream* str = m_BARReader->GetFile(file);
-	m_PreviewWindow->PreviewFile(utf16tow(file.filename), *str);
+	m_PreviewWindow->PreviewFile(wxString(utf16tow(file.filename).c_str()), *str);
 	delete str;
 }
 

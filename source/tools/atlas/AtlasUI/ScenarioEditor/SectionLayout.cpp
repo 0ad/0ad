@@ -12,6 +12,7 @@
 #include "Sections/Object/Object.h"
 #include "Sections/Environment/Environment.h"
 #include "Sections/Cinematic/Cinematic.h"
+#include "Sections/Trigger/Trigger.h"
 
 #include "General/Datafile.h"
 
@@ -270,7 +271,8 @@ void SectionLayout::Build()
 	ADD_SIDEBAR(TerrainSidebar,     _T("terrain.png"),     _("Terrain"));
 	ADD_SIDEBAR(ObjectSidebar,      _T("object.png"),      _("Object"));
 	ADD_SIDEBAR(EnvironmentSidebar, _T("environment.png"), _("Environment"));
-	ADD_SIDEBAR(CinematicSidebar,   _T("cinematic.png"),   _("Cinematics"));
+	ADD_SIDEBAR(CinematicSidebar,   _T("cinematic.png"),   _("Cinema"));
+	ADD_SIDEBAR(TriggerSidebar,		_T("trigger.png"),	   _("Trigger"));
 
 	#undef ADD_SIDEBAR
 

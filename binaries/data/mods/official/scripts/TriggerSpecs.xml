@@ -1,0 +1,35 @@
+<Definitions>
+
+	<Condition name ="DisplayName" function = "something">
+		<WindowRow>
+			<Parameter name = "Random">
+				<Window type="text" position = "0,0" size = "80,20"/>
+				<InputType>int</InputType>
+				<ParameterOrder>0</ParameterOrder>
+			</Parameter>
+			<Parameter name ="something">
+				<Window type="choice" position ="0,0" size="80, 20"/>
+				<Choices>ATLAS_CINEMA_LIST</Choices>
+				<ParameterOrder>0</ParameterOrder>
+			</Parameter>
+			<Parameter name ="awesome">
+				<Window type="choice" position ="0,0" size="80, 20"/>
+				<Choices>holy, crap, comma, seperated, choices</Choices>
+				<ParameterOrder>0</ParameterOrder>
+			</Parameter>
+		</WindowRow>
+	</Condition>
+	
+	<Condition name = "Always" function = "getAlwaysTrue"/>
+	
+	<Effect name ="Text" function = "console.write">
+		<WindowRow>
+			<Parameter name = "Text to display">
+				<Window type="text" position = "0,0" size = "80,20"/>
+				<InputType>string</InputType>
+				<ParameterOrder>0</ParameterOrder>
+			</Parameter>
+		</WindowRow>
+	</Effect>
+
+</Definitions>

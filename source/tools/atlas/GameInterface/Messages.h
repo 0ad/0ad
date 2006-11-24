@@ -344,6 +344,32 @@ MESSAGE(CinemaEvent,
 
 //////////////////////////////////////////////////////////////////////////
 
+enum eTriggerListType
+{
+	CINEMA_LIST,
+	TRIGGER_LIST,
+	TRIG_GROUP_LIST	//list of trigger groups
+	// [Eventually include things like entities and areas as the editor progresses...]
+};
+
+
+QUERY(GetTriggerData,
+	  , //no inputs
+	  ((std::vector<AtlasMessage::sTriggerGroup>, groups))
+	  ((std::vector<AtlasMessage::sTriggerSpec>, conditions))
+	  ((std::vector<AtlasMessage::sTriggerSpec>, effects))
+	  );
+
+QUERY(GetTriggerChoices,
+	  ((std::wstring, name)),
+	  ((std::vector<std::wstring>, choices))
+	  );
+		
+COMMAND(SetAllTriggers, NOMERGE, 
+	  ((std::vector<AtlasMessage::sTriggerGroup>, groups))
+	  );
+
+
 #ifndef MESSAGES_SKIP_SETUP
 #include "MessagesSetup.h"
 #endif

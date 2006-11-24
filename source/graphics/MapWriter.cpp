@@ -28,6 +28,7 @@
 #include "renderer/WaterManager.h"
 #include "simulation/EntityTemplate.h"
 #include "simulation/EntityTemplateCollection.h"
+#include "simulation/TriggerManager.h"
 #include "simulation/Entity.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -395,7 +396,27 @@ void CMapWriter::WriteXML(const char* filename,
 					} 
 				}	//track data
 			}
-		}	//(Did this really happen) - I blame XML 
+		}	//(Did this really happen) - I blame XML :p
+		
+		const std::list<MapTriggerGroup>& groups = g_TriggerManager.GetAllTriggerGroups();
+		std::list<MapTriggerGroup> rootChildren;
+		std::list<MapTriggerGroup>::const_iterator root = std::find( groups.begin(), groups.end(),
+																			CStrW(L"Triggers") );
+		std::for_each(rootChildren.begin(), rootChildren.end(), copyIfRootChild(rootChildren));
+		
+		{
+			XML_Element("Triggers");
+			for ( std::list<MapTriggerGroup>::const_iterator it = rootChildren.begin(); 
+															it != rootChildren.end(); ++it )
+			{
+				WriteTriggerGroup(xml_file_, *it, groups);
+			}
+			for ( std::list<MapTrigger>::const_iterator it = root->triggers.begin();
+														it != root->triggers.end(); ++it )
+			{
+				WriteTrigger(xml_file_, *it);
+			}
+		}
 	}
 
 	if (! XML_StoreVFS(h))
@@ -405,6 +426,112 @@ void CMapWriter::WriteXML(const char* filename,
 	(void)vfs_close(h);
 }
 
+void CMapWriter::WriteTriggerGroup(XMLWriter_File& xml_file_, const MapTriggerGroup& group, const std::list<MapTriggerGroup>& groupList)
+{
+	XML_Element("Group");
+	XML_Attribute("name", group.name);
+
+	for ( std::list<CStrW>::const_iterator it = group.childGroups.begin(); 
+									it != group.childGroups.end(); ++it )
+	{
+		//Not very efficient...
+		std::list<MapTriggerGroup>::const_iterator it2 = std::find(groupList.begin(), groupList.end(), *it);
+		if ( it2 != groupList.end() )
+			WriteTriggerGroup(xml_file_, *it2, groupList);
+		else
+			debug_warn("Invalid trigger group ID while writing map");
+	}
+
+	for ( std::list<MapTrigger>::const_iterator it = group.triggers.begin(); it != group.triggers.end(); ++it )
+	{
+		WriteTrigger(xml_file_, *it);
+	}	
+}
+
+void CMapWriter::WriteTrigger(XMLWriter_File& xml_file_, const MapTrigger& trigger)
+{
+	XML_Element("Trigger");
+	XML_Attribute("name", trigger.name);
+
+	{
+		if ( trigger.active )
+			XML_Setting("Active", "true");
+		else
+			XML_Setting("Active", "false");
+		XML_Setting("MaxRunCount", trigger.maxRunCount);
+		XML_Setting("Delay", trigger.timeValue);
+	}
+		
+	{
+		XML_Element("Conditions");
+		for ( std::list<MapTriggerCondition>::const_iterator it2 = trigger.conditions.begin();
+													it2 != trigger.conditions.end(); ++it2 )
+		{
+			size_t distance = std::distance( trigger.conditions.begin(), it2 );
+			std::set<MapTriggerLogicBlock>::const_iterator logicIter;
+			
+			if ( ( logicIter = trigger.logicBlocks.find(MapTriggerLogicBlock(distance)) ) 
+														!= trigger.logicBlocks.end() )
+			{
+				XML_Element("LogicBlock");
+				if ( logicIter->not )
+					XML_Attribute("not", "true");
+				else
+					XML_Attribute("not", "false");
+			}
+			
+			{
+				XML_Element("Condition");
+				XML_Attribute("name", it2->name);
+				XML_Attribute("function", it2->functionName);
+				XML_Attribute("display", it2->displayName);
+
+				if ( it2->not )
+					XML_Attribute("not", "true");
+				else
+					XML_Attribute("not", "false");
+			
+				for ( std::list<CStrW>::const_iterator paramIter = it2->parameters.begin(); 
+											paramIter != it2->parameters.end(); ++paramIter )
+				{
+					XML_Setting("Parameter", *paramIter);
+				}
+	
+				if ( it2->linkLogic == 1 )
+				{
+					XML_Setting("LinkLogic", "AND");
+				}
+				else if ( it2->linkLogic == 2 )
+				{
+					XML_Setting("LinkLogic", "OR");
+				}
+					
+				if ( trigger.logicBlockEnds.find(distance) != trigger.logicBlockEnds.end() )
+				{
+					XML_Element("LogicBlockEnd");
+				}
+			}
+		}	//Read all conditions		
+	}	//Conditions' scope
+		
+	{
+		XML_Element("Effects");
+		for ( std::list<MapTriggerEffect>::const_iterator it2 = trigger.effects.begin(); 
+												it2 != trigger.effects.end(); ++it2 )
+		{
+			XML_Element("Effect");
+			XML_Attribute("name", it2->name);
+			XML_Attribute("function", it2->functionName);	
+			XML_Attribute("display", it2->displayName);
+
+			for ( std::list<CStrW>::const_iterator paramIter = it2->parameters.begin();
+											paramIter != it2->parameters.end(); ++paramIter )
+			{
+				XML_Setting("parameter", *paramIter);
+			}
+		}
+	}	//Effects' scope	
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // RewriteAllMaps
 void CMapWriter::RewriteAllMaps(CTerrain* pTerrain, CUnitManager* pUnitMan,
@@ -428,3 +555,5 @@ void CMapWriter::RewriteAllMaps(CTerrain* pTerrain, CUnitManager* pUnitMan,
 		writer.SaveMap(n, pTerrain, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema);
 	}
 }
+
+		
