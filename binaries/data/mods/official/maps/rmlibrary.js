@@ -250,3 +250,7 @@ function SimpleGroup(elements, avoidSelf, tileClass, x, y) {
 	this.x = x!=undefined ? x : -1;
 	this.y = x!=undefined ? y : -1;
 }
+
+function lerp(a, b, t) {
+	return a + (b-a) * t;
+}
