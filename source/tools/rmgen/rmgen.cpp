@@ -3,9 +3,12 @@
 #include "map.h"
 #include "output.h"
 #include "api.h"
+#include "scripting.h"
 #include "random.h"
+#include "noise.h"
 
 using namespace std;
+using namespace js;
 
 JSRuntime *rt = 0;
 JSContext *cx = 0;
@@ -14,6 +17,20 @@ JSObject *global = 0;
 Map* theMap = 0;
 
 // JS support functions
+
+template<typename T> JSClass Class<T>::jsClass = {
+	"T", JSCLASS_HAS_PRIVATE,
+	JS_PropertyStub, JS_PropertyStub, Class<T>::getProperty, Class<T>::setProperty,
+	JS_EnumerateStub,   JS_ResolveStub,  JS_ConvertStub, JS_FinalizeStub
+	// Note: the finalize stub should really be replaced by some function which
+	// deletes the object if it must be deleted; this requires that we use some
+	// kind of smart handles instead of just pointers though, so we don't delete
+	// objects that we actually want C++ to use (which is most objects)
+};
+template<typename T> JSNative Class<T>::constructor;
+template<typename T> vector<JSFunctionSpec> Class<T>::methodSpecs;
+template<typename T> vector<JSPropertySpec> Class<T>::propertySpecs;
+template<typename T> vector<AbstractProperty*> Class<T>::properties;
 
 void ErrorReporter(JSContext *cx, const char *message, JSErrorReport *report) {
 	string path = string(report->filename);
@@ -45,6 +62,9 @@ void InitJS() {
 	JS_InitStandardClasses(cx, global);
 
 	JS_DefineFunctions(cx, global, globalFunctions);
+	
+	Class<Noise2D>::addMethod(Method<Noise2D, float, float, float, &Noise2D::operator()>, 2, "eval");
+	Class<Noise2D>::init("Noise2D", Constructor<Noise2D, float>);
 }
 
 void Shutdown(int status) {

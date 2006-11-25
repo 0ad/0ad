@@ -51,11 +51,11 @@ Map::Map(int size, Terrain* baseTerrain, float baseHeight) {
 
 Map::Map(string fileName, int loadLevel)
 {
-	const LOAD_NOTHING = 0;
-	const LOAD_TERRAIN = 1<<0;
-	const LOAD_INTERACTIVES = 1 << 1;
-	const LOAD_NONINTERACTIVES = 1 << 2;
-	//const SOMETHINGELSE = 1 << 3;
+	const int LOAD_NOTHING = 0;
+	const int LOAD_TERRAIN = 1<<0;
+	const int LOAD_INTERACTIVES = 1 << 1;
+	const int LOAD_NONINTERACTIVES = 1 << 2;
+	//const int SOMETHINGELSE = 1 << 3;
 
 
 	// HACK, this should probably be in a struct and be shared with the code in output.cpp

@@ -32,7 +32,7 @@
 #else
 #define XP_UNIX		// TODO: Someone should actually test this on Linux
 #endif
-#include "jsapi.h"
+#include <js/jsapi.h>
 
 const float PI = acos(-1.0f);
 
