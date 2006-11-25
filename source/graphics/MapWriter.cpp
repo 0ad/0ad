@@ -402,23 +402,30 @@ void CMapWriter::WriteXML(const char* filename,
 		std::list<MapTriggerGroup> rootChildren;
 		std::list<MapTriggerGroup>::const_iterator root = std::find( groups.begin(), groups.end(),
 																			CStrW(L"Triggers") );
-		std::for_each(rootChildren.begin(), rootChildren.end(), copyIfRootChild(rootChildren));
-		
+
+		if ( root == groups.end() )
 		{
 			XML_Element("Triggers");
-			for ( std::list<MapTriggerGroup>::const_iterator it = rootChildren.begin(); 
+		}
+		else
+		{
+			std::for_each(rootChildren.begin(), rootChildren.end(), copyIfRootChild(rootChildren));
+		
+			{
+				XML_Element("Triggers");
+				for ( std::list<MapTriggerGroup>::const_iterator it = rootChildren.begin(); 
 															it != rootChildren.end(); ++it )
-			{
-				WriteTriggerGroup(xml_file_, *it, groups);
-			}
-			for ( std::list<MapTrigger>::const_iterator it = root->triggers.begin();
-														it != root->triggers.end(); ++it )
-			{
-				WriteTrigger(xml_file_, *it);
+				{
+					WriteTriggerGroup(xml_file_, *it, groups);
+				}
+				for ( std::list<MapTrigger>::const_iterator it = root->triggers.begin();
+															it != root->triggers.end(); ++it )
+				{
+					WriteTrigger(xml_file_, *it);
+				}
 			}
 		}
 	}
-
 	if (! XML_StoreVFS(h))
 	{
 		debug_warn("Failed to write map XML file");
@@ -494,7 +501,10 @@ void CMapWriter::WriteTrigger(XMLWriter_File& xml_file_, const MapTrigger& trigg
 				for ( std::list<CStrW>::const_iterator paramIter = it2->parameters.begin(); 
 											paramIter != it2->parameters.end(); ++paramIter )
 				{
-					XML_Setting("Parameter", *paramIter);
+					CStrW paramString(*paramIter);
+					paramString.Replace(CStrW(L"<"), CStrW(L"&lt;"));
+					paramString.Replace(CStrW(L">"), CStrW(L"&gt;"));
+					XML_Setting("Parameter", paramString);
 				}
 	
 				if ( it2->linkLogic == 1 )
@@ -527,7 +537,7 @@ void CMapWriter::WriteTrigger(XMLWriter_File& xml_file_, const MapTrigger& trigg
 			for ( std::list<CStrW>::const_iterator paramIter = it2->parameters.begin();
 											paramIter != it2->parameters.end(); ++paramIter )
 			{
-				XML_Setting("parameter", *paramIter);
+				XML_Setting("Parameter", *paramIter);
 			}
 		}
 	}	//Effects' scope	
