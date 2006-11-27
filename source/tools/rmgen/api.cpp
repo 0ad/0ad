@@ -29,6 +29,8 @@ JSFunctionSpec globalFunctions[] = {
 	{"createArea", createArea, 3},
 	{"createObjectGroup", createObjectGroup, 3},
 	{"createTileClass", createTileClass, 0},
+	{"addToClass", addToClass, 0},
+	{"removeFromClass", removeFromClass, 0},
 	{0, 0, 0}
 };
 
@@ -364,6 +366,42 @@ JSBool createTileClass(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, js
 	int id = theMap->createTileClass();
 
 	*rval = INT_TO_JSVAL(id);
+	return JS_TRUE;
+}
+
+JSBool addToClass(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
+{
+	CheckInit(true, cx, __FUNCTION__);
+	ValidateArgs("iii", cx, argc, argv, __FUNCTION__);
+
+	int x = JSVAL_TO_INT(argv[0]);
+	int y = JSVAL_TO_INT(argv[1]);
+	int classIndex = JSVAL_TO_INT(argv[2]) - 1;
+
+	if(!theMap->validClass(classIndex) || !theMap->validT(x, y)) {
+		JS_ReportError(cx, "addToClass: Invalid arguments for addToClass(x, y, class)");
+	}
+
+	theMap->tileClasses[classIndex]->add(x, y);
+
+	return JS_TRUE;
+}
+
+JSBool removeFromClass(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
+{
+	CheckInit(true, cx, __FUNCTION__);
+	ValidateArgs("iii", cx, argc, argv, __FUNCTION__);
+
+	int x = JSVAL_TO_INT(argv[0]);
+	int y = JSVAL_TO_INT(argv[1]);
+	int classIndex = JSVAL_TO_INT(argv[2]) - 1;
+
+	if(!theMap->validClass(classIndex) || !theMap->validT(x, y)) {
+		JS_ReportError(cx, "addToClass: Invalid arguments for removeFromClass(x, y, class)");
+	}
+
+	theMap->tileClasses[classIndex]->remove(x, y);
+
 	return JS_TRUE;
 }
 

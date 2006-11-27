@@ -71,6 +71,10 @@ function round(x) {
 	return Math.round(x);
 }
 
+function lerp(a, b, t) {
+	return a + (b-a) * t;
+}
+
 function println(x) {
 	print(x);
 	print("\n");
@@ -251,6 +255,18 @@ function SimpleGroup(elements, avoidSelf, tileClass, x, y) {
 	this.y = x!=undefined ? y : -1;
 }
 
-function lerp(a, b, t) {
-	return a + (b-a) * t;
+// Utility functions for classes
+
+// Create a painter for the given class
+function paintClass(cl) {
+	return new TileClassPainter(cl);
+}
+
+// Create an avoid constraint for the given classes by the given distances
+function avoidClasses(/*class1, dist1, class2, dist2, etc*/) {
+	var ar = new Array(arguments.length/2);
+	for(var i=0; i<arguments.length/2; i++) {
+		ar[i] = new AvoidTileClassConstraint(arguments[2*i], arguments[2*i+1]);
+	}
+	return ar;
 }

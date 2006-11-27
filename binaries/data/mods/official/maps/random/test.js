@@ -1,15 +1,36 @@
 const SIZE = 160;
-const SEA_LEVEL = 5;
 
-init(SIZE, "ocean_medit_rock_shallow", 0);
+const sand = "beach_medit_dry";
+const grass1 = "grass_temperate_a";
+const grass2 = "grass_mediterranean_green_flowers";
+const forestFloor = "forrestfloor";
+const dirt1 = "grass_sand_75";
+const dirt2 = "grass_sand_50";
+const dirt3 = "dirt_brown_e";
+const cliffBase = "cliff base a";
+const cliffBeach = "beech_cliff_a_75";
+const cliff = "cliff_face3";
+
+const oTree = "flora_tree_oak";
+const oGrass = "props/flora/grass_soft_small.xml"
+const oMine = "geology_stone_light";
+
+// Initialize
+
+init(SIZE, grass1, 0);
+
+// Create classes
+
+clImpassable = createTileClass();
+clRock = createTileClass();
+
+// Paint elevation
 
 noise0 = new Noise2D(4 * SIZE/128.0);
 noise1 = new Noise2D(8 * SIZE/128.0);
 noise2 = new Noise2D(11 * SIZE/128.0);
 noise3 = new Noise2D(30 * SIZE/128.0);
 noise4 = new Noise2D(60 * SIZE/128.0);
-
-// Paint elevation
 
 for(ix=0; ix<SIZE+1; ix++) {
 	for(iy=0; iy<SIZE+1; iy++) {
@@ -23,34 +44,20 @@ for(ix=0; ix<SIZE+1; ix++) {
 		
 		if(n < T) {
 			// Tile is underwater - just scale the height down a bit
-			h = Math.max(-60 * (T-n)/T, -30);
+			h = Math.max(-50 * (T-n)/T, -8);
 		}
 		else {
-			// Tile is above water - add some land noise depending on how far
-			// we are from the shoreline
-			u = 25*noise1.eval(x, y) + 12*noise2.eval(x,y) + 8 * noise3.eval(x,y) - 11;
+			// Tile is above water - add some land noise depending on how far we are from the shoreline
+			u = 27*noise1.eval(x, y) + 14*noise2.eval(x,y) + 9 * noise3.eval(x,y) - 14;
 			h = 8*(n-T) + Math.max(0, lerp(0, u, Math.min(.1, n-T)*10));
 			h += 0.4*noise4.eval(x, y);
 		}
-		
-		h += SEA_LEVEL;
 		
 		setHeight(ix, iy, h);
 	}
 }
 
 // Paint terrains
-
-sand = "beach_medit_dry";
-grass1 = "grass_temperate_a";
-grass2 = "grass_mediterranean_green_flowers";
-forestFloor = "forrestfloor";
-dirt1 = "grass_sand_75";
-dirt2 = "grass_sand_50";
-dirt3 = "dirt_brown_e";
-cliffBase = "cliff base a";
-cliffBeach = "beech_cliff_a_75";
-cliff = "cliff_face3";
 
 for(ix=0; ix<SIZE; ix++) {
 	for(iy=0; iy<SIZE; iy++) {
@@ -60,20 +67,21 @@ for(ix=0; ix<SIZE; ix++) {
 		h11 = getHeight(ix+1, iy+1);
 		maxH = Math.max(h00, h01, h10, h11);
 		minH = Math.min(h00, h01, h10, h11);
-		if(maxH <= SEA_LEVEL) {
+		if(maxH <= 0) {
 			setTexture(ix, iy, sand);
+			addToClass(ix, iy, clImpassable);
 		}
-		else if(maxH - minH > 3.2 && minH >= SEA_LEVEL) {
+		else if(maxH - minH > 3.2) {
 			setTexture(ix, iy, cliff);
-		}
-		else if(maxH - minH > 2.7 && minH < SEA_LEVEL) {
-			setTexture(ix, iy, cliffBeach);
+			addToClass(ix, iy, clImpassable);
 		}
 		else if(maxH - minH > 2.7) {
 			setTexture(ix, iy, cliffBase);
+			addToClass(ix, iy, clImpassable);
 		}
-		else if(minH <= SEA_LEVEL) {
+		else if(minH <= 0) {
 			setTexture(ix, iy, sand);
+			addToClass(ix, iy, clImpassable);
 		}
 		else {
 			setTexture(ix, iy, grass1);
@@ -81,12 +89,10 @@ for(ix=0; ix<SIZE; ix++) {
 	}
 }
 
-oTree = "flora_tree_oak";
-oGrass = "props/flora/grass_soft_small.xml"
+// Paint forest and dirt
 
 forestNoise1 = new Noise2D(20 * SIZE/128.0);
 forestNoise2 = new Noise2D(40 * SIZE/128.0);
-
 dirtNoise = new Noise2D(80 * SIZE/128.0);
 
 for(ix=0; ix<SIZE; ix++) {
@@ -99,7 +105,7 @@ for(ix=0; ix<SIZE; ix++) {
 		h11 = getHeight(ix+1, iy+1);
 		maxH = Math.max(h00, h01, h10, h11);
 		minH = Math.min(h00, h01, h10, h11);
-		if(maxH - minH < 1.7 && minH > SEA_LEVEL) {
+		if(maxH - minH < 1.7 && minH > 0) {
 			fn = (forestNoise1.eval(x,y) + .5*forestNoise1.eval(x,y)) / 1.5;
 			
 			if(minH > .5 && fn < .38 && dirtNoise.eval(x,y) > .55) {
@@ -113,49 +119,19 @@ for(ix=0; ix<SIZE; ix++) {
 			
 			if(fn > .6 && randFloat() < (.3 + .7 * Math.min(fn-.6, .1) / .1) ) {
 				placeObject(oTree, 0, ix+.4+.2*randFloat(), iy+.4+.2*randFloat(), randFloat()*2*Math.PI);
+				addToClass(ix, iy, clImpassable);
 				if(randFloat() < .7) {
 					setTexture(ix, iy, forestFloor);
 				}
 			}
-			else if(getTexture(ix, iy)==grass1 && maxH-minH < 1 && randFloat() < .13) {
-				placeObject(oGrass, 0, ix+.3+.4*randFloat(), iy+.3+.4*randFloat(), randFloat()*2*Math.PI);
-			}
-			else if(getTexture(ix, iy)==grass1 && randFloat() < .03) {
-				placeObject(oTree, 0, ix+.3+.4*randFloat(), iy+.3+.4*randFloat(), randFloat()*2*Math.PI);
-			}
-			
-			/*else if(getTerrain(ix, iy)==grass && fn > .5 && randFloat() < .04) {
-				placeBushClump(ix+.5, iy+.5);
-			}
-			else if(randFloat() < .04 && (maxH < .5 || randFloat() < .2)) {
-				placeRockClump(ix+.5, iy+.5);
-			}
-			else if(getTerrain(ix, iy)==grass && maxH-minH < .4 && randFloat() < .1) {
-				addSprite(new Sprite(makeGrass(), 
-					ix+.3+.4*randFloat(), iy+.3+.4*randFloat(), STATIC));
-			}
-			else if(randFloat() < .015) {
-				addSprite(new Sprite(makeSmallRock(), 
-					ix+randFloat(), iy+randFloat(), STATIC));
-			}
-			else if(getTerrain(ix, iy)==grass && randFloat() < .03) {
-				var t = new Sprite(makeOak(), 
-					ix+.3+.4*randFloat(), iy+.3+4*randFloat(), STATIC);
-				t.maxY = 4;
-				t.collidable = true;
-				addSprite(t);
-			}*/
 		}
-		
-		/*if(maxH < .5 && minH < -0.3 && minH > -2 && randFloat() < .007) {
-			var l = new Sprite(waterLog, ix+randFloat(), iy+randFloat(), STATIC);
-			l.floating = true;
-			addSprite(l);
-		}
-		else if(maxH < 0 && minH > -3 && randFloat() < .04) {
-			var l = new Sprite(lillies, ix+randFloat(), iy+randFloat(), STATIC);
-			l.floating = true;
-			addSprite(l);
-		}*/
 	}
 }
+
+println("Creating mines...");
+group = new SimpleGroup([new SimpleObject(oMine, 3,4, 0,2)], true, clRock);
+createObjectGroups(group, 0,
+	new AvoidTileClassConstraint(clImpassable, 2, clRock, 13),
+	12, 100
+);
+

@@ -33,5 +33,7 @@ JSBool createObjectGroup(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, 
 
 // Tile class functions
 JSBool createTileClass(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval);
+JSBool addToClass(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval);
+JSBool removeFromClass(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval);
 
 #endif

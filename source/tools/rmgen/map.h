@@ -29,8 +29,10 @@ public:
 
 	int getId(std::string texture);
 
-	bool validT(int x, int y);
-	bool validH(int x, int y);
+	bool validT(int x, int y) { return x>=0 && y>=0 && x<size && y<size; }
+	bool validH(int x, int y) { return x>=0 && y>=0 && x<=size && y<=size; }
+
+	bool validClass(int c) { return c>=0 && c<(int)tileClasses.size(); }
 
 	std::string getTexture(int x, int y);
 	void setTexture(int x, int y, const std::string& texture);

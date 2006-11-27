@@ -4,11 +4,15 @@
 #include "map.h"
 #include "object.h"
 #include "pmp_file.h"
+#include <iomanip>
 
 using namespace std;
 
+// Sea level elevation
+const float SEA_LEVEL = 20.0f;
+
 void OutputObject(Map* m, Object* e, ostringstream& xml) {
-	float height = m->getExactHeight(e->x, e->y);
+	float height = m->getExactHeight(e->x, e->y) + SEA_LEVEL;
 
 	if(e->isEntity()) {
 		xml << "\
@@ -52,7 +56,6 @@ void OutputXml(Map* m, FILE* f) {
 	ostringstream xml;
 	xml << "\
 <?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>\n\
-<!DOCTYPE Scenario SYSTEM \"/maps/scenario_v4.dtd\">\n\
 <Scenario>\n\
 	<Environment>\n\
 		<SunColour r=\"1\" g=\"1\" b=\"1\" />\n\
@@ -60,6 +63,7 @@ void OutputXml(Map* m, FILE* f) {
 		<SunRotation angle=\"4.712389\" />\n\
 		<TerrainAmbientColour r=\"0.5\" g=\"0.5\" b=\"0.5\" />\n\
 		<UnitsAmbientColour r=\"0.52\" g=\"0.52\" b=\"0.52\" />\n\
+		<Water><WaterBody><Height>" << SEA_LEVEL-0.1f << "</Height></WaterBody></Water>\n\
 	</Environment>\n\
 	<Entities>\n";
 	OutputObjects(xml, m, true);		// print entities
@@ -67,7 +71,8 @@ void OutputXml(Map* m, FILE* f) {
 	</Entities>\n\
 	<Nonentities>\n";
 	OutputObjects(xml, m, false);		// print nonentities
-	xml << "</Nonentities>\n\
+	xml << "\
+	</Nonentities>\n\
 </Scenario>\n";
 
 	fprintf(f, "%s", xml.str().c_str());
@@ -117,7 +122,7 @@ struct PMP {
 	u16* heightmap = new u16[(size+1)*(size+1)];
 	for(int x=0; x<size+1; x++) {
 		for(int y=0; y<size+1; y++) {
-			int intHeight = (int) (m->height[x][y] * 256.0f / 0.35f);
+			int intHeight = (int) ((m->height[x][y]+SEA_LEVEL) * 256.0f / 0.35f);
 			if(intHeight > 0xFFFF) {
 				intHeight = 0xFFFF;
 			}

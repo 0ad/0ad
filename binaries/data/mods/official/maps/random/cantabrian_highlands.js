@@ -31,24 +31,10 @@ const oRockMedium = "geology/stone_granite_med.xml";
 const oBushMedium = "props/flora/bush_tempe_me.xml";
 const oBushSmall = "props/flora/bush_tempe_sm.xml";
 
-// some utility functions to save typing
-
-function paintClass(cl) {
-	return new TileClassPainter(cl);
-}
-
-function avoidClasses(/*class1, dist1, class2, dist2, etc*/) {
-	var ar = new Array(arguments.length/2);
-	for(var i=0; i<arguments.length/2; i++) {
-		ar[i] = new AvoidTileClassConstraint(arguments[2*i], arguments[2*i+1]);
-	}
-	return ar;
-}
-
 // initialize map
 
 println("Initializing map...");
-init(SIZE, tGrass, 8);
+init(SIZE, tGrass, 3);
 
 // create tile classes
 
@@ -81,7 +67,7 @@ for(i=1; i<=NUM_PLAYERS; i++) {
 	// some constants
 	radius = 17;
 	cliffRadius = 2;
-	elevation = 20;
+	elevation = 15;
 	
 	// get the x and y in tiles
 	fx = fractionToTiles(playerX[i]);
@@ -193,7 +179,7 @@ terrainPainter = new LayeredPainter(
 	[1,1],									// widths
 	[tShoreBlend, tShore, tWater]		// terrains
 );
-elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -2, 3);
+elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -7, 3);
 createAreas(placer, [terrainPainter, elevationPainter, paintClass(clWater)], 
 	avoidClasses(clPlayer, 2, clWater, 20),
 	round(1.3 * NUM_PLAYERS)
@@ -215,7 +201,7 @@ terrainPainter = new LayeredPainter(
 	[3],					// widths
 	[tCliff, [tGrass,tGrass,tGrassDirt75]]		// terrains
 );
-elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 17, 2);
+elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 12, 2);
 createAreas(placer, [terrainPainter, elevationPainter, paintClass(clHill)], 
 	avoidClasses(clPlayer, 2, clWater, 5, clHill, 15),
 	2 * NUM_PLAYERS

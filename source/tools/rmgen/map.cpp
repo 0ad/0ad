@@ -219,14 +219,6 @@ int Map::getId(string texture) {
 	}
 }
 
-bool Map::validT(int x, int y) {
-	return x>=0 && y>=0 && x<size && y<size;
-}
-
-bool Map::validH(int x, int y) {
-	return x>=0 && y>=0 && x<size+1 && y<size+1;
-}
-
 string Map::getTexture(int x, int y) {
 	if(!validT(x,y)) JS_ReportError(cx, "getTexture: invalid tile position");
 	return idToName[texture[x][y]];
