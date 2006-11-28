@@ -59,8 +59,8 @@ void OutputXml(Map* m, FILE* f) {
 <Scenario>\n\
 	<Environment>\n\
 		<SunColour r=\"1\" g=\"1\" b=\"1\" />\n\
-		<SunElevation angle=\"0.785398\" />\n\
-		<SunRotation angle=\"4.712389\" />\n\
+		<SunElevation angle=\"0.72\" />\n\
+		<SunRotation angle=\"0.5\" />\n\
 		<TerrainAmbientColour r=\"0.5\" g=\"0.5\" b=\"0.5\" />\n\
 		<UnitsAmbientColour r=\"0.52\" g=\"0.52\" b=\"0.52\" />\n\
 		<Water><WaterBody><Height>" << SEA_LEVEL-0.1f << "</Height></WaterBody></Water>\n\
