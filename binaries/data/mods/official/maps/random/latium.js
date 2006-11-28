@@ -228,8 +228,8 @@ println("Painting terrain...");
 noise6 = new Noise2D(10 * SIZE/128);
 noise7 = new Noise2D(20 * SIZE/128);
 
-noise8 = new Noise2D(20 * SIZE/128);
-noise9 = new Noise2D(40 * SIZE/128);
+noise8 = new Noise2D(13 * SIZE/128);
+noise9 = new Noise2D(26 * SIZE/128);
 
 noise10 = new Noise2D(50 * SIZE/128);
 
@@ -323,7 +323,7 @@ for(ix=0; ix<SIZE; ix++) {
 					placeObject(oGrassDry, 0, ix+randFloat(), iy+randFloat(), randFloat()*2*Math.PI);
 				}
 			}
-			else if(grassNoise > .64) {
+			else if(grassNoise > .61) {
 				t = (maxH - minH > 1.2) ? tGrassRock : tGrassShrubs;
 			}
 			else {
@@ -347,13 +347,23 @@ createObjectGroups(group, 0,
 );
 
 // create straggler trees
-for(t in [oCarob, oBeech, oLombardyPoplar, oPine]) {
-	group = new SimpleGroup([new SimpleObject(t, 1,3, 0,2)], true, clForest);
+trees = [oCarob, oBeech, oLombardyPoplar, oLombardyPoplar, oPine]
+for(t in trees) {
+	group = new SimpleGroup([new SimpleObject(trees[t], 1,1, 0,1)], true, clForest);
 	createObjectGroups(group, 0,
-		avoidClasses(clWater, 5, clCliff, 0, clForest, 1, clSettlement, 4),
-		SIZE*SIZE/8000, 50
+		avoidClasses(clWater, 5, clCliff, 0, clForest, 1, clSettlement, 4, clPlayer, 15),
+		SIZE*SIZE/12000, 50
 	);
 }
+
+// create cypresses
+group = new SimpleGroup([
+	new SimpleObject("flora/trees/cypress2.xml", 1,3, 0,3), 
+	new SimpleObject("flora/trees/cypress1.xml", 0,2, 0,2)]);
+createObjectGroups(group, 0,
+	avoidClasses(clWater, 4, clCliff, 2, clForest, 1, clSettlement, 4, clPlayer, 15),
+	SIZE*SIZE/4000, 50
+);
 
 // create bushes
 group = new SimpleGroup([
