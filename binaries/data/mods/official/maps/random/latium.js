@@ -187,10 +187,10 @@ for(ix=0; ix<=SIZE; ix++) {
 		}
 		
 		// add some base noise
-		baseNoise = 14*noise0.eval(x,y) + 7*noise1.eval(x,y) + 4*noise2.eval(x,y) - (14+7+4)/2;
+		baseNoise = 16*noise0.eval(x,y) + 8*noise1.eval(x,y) + 4*noise2.eval(x,y) - (16+8+4)/2;
 		if( baseNoise < 0 ) {
 			baseNoise *= pn;
-			baseNoise *= Math.max(0, 1 - 8*distToWater/(0.5-WATER_WIDTH));
+			baseNoise *= Math.max(0, 1 - 9*distToWater/(0.5-WATER_WIDTH));
 		}
 		oldH = h;
 		h += baseNoise;
@@ -253,25 +253,25 @@ for(ix=0; ix<SIZE; ix++) {
 		t = tGrass;
 		
 		// water
-		if(maxH < -11) {
+		if(maxH < -10) {
 			t = tOceanDepths;
 		}
-		else if(maxH < -8) {
+		else if(maxH < -7.5) {
 			t = tOceanRockDeep;
 		}
-		else if(maxH < -5) {
+		else if(maxH < -4) {
 			t = tOceanCoral;
 		}
-		else if(maxH < -3) {
+		else if(maxH < -2.2) {
 			t = tOceanRockShallow;
 		}
-		else if(maxH < .5 && minH < -.3) {
+		else if(maxH < .9 && minH < .35) {
 			t = tBeachWet;
 		}
-		else if(maxH < .9 && minH < .4) {
+		else if(maxH < 1.5 && minH < .9) {
 			t = tBeachDry;
 		}
-		else if(maxH < 2.1 && minH < .8) {
+		else if(maxH < 2.3 && minH < 1.3) {
 			t = tBeachGrass;
 		}
 		
@@ -314,10 +314,10 @@ for(ix=0; ix<SIZE; ix++) {
 		if(t==tGrass)
 		{
 			grassNoise = (noise8.eval(x,y) + .6*noise9.eval(x,y)) / 1.6;
-			if(grassNoise < .35) {
+			if(grassNoise < .33) {
 				t = (maxH - minH > 1.2) ? tDirtCliff : tDirt;
 			}
-			else if(grassNoise < .39) {
+			else if(grassNoise < .37) {
 				t = (maxH - minH > 1.2) ? tGrassCliff : tGrassDry;
 				if(maxH - minH < .5 && randFloat() < .03) {
 					placeObject(oGrassDry, 0, ix+randFloat(), iy+randFloat(), randFloat()*2*Math.PI);
