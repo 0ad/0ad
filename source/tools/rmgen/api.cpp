@@ -25,6 +25,7 @@ JSFunctionSpec globalFunctions[] = {
 	{"getMapSize", getMapSize, 0},
 	{"randInt", randInt, 2},
 	{"randFloat", randFloat, 1},
+	{"placeTerrain", placeTerrain, 3},
 	{"placeObject", placeObject, 4},
 	{"createArea", createArea, 3},
 	{"createObjectGroup", createObjectGroup, 3},
