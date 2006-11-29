@@ -44,7 +44,7 @@ bool ConvertFile(const wxString& sourceFilename, FileType sourceType,
 				 XMLReader* io);
 
 FileConverter::FileConverter(wxWindow* parent)
-: wxFrame(parent, wxID_ANY, wxString::Format(_("%s - File Converter"), g_ProgramNameVersion))
+: wxFrame(parent, wxID_ANY, wxString::Format(_("%s - File Converter"), g_ProgramNameVersion.c_str()))
 {
 	SetIcon(wxIcon(_T("ICON_FileConverter")));
 
@@ -294,7 +294,7 @@ bool ConvertFile(const wxString& sourceFilename, FileType sourceType,
 		DDTFile ddt(inStream);
 		if (! ddt.Read(DDTFile::TGA))
 		{
-			wxLogError(_("Failed to read TGA file %s"), sourceFilename);
+			wxLogError(_("Failed to read TGA file %s"), sourceFilename.c_str());
 			return false;
 		}
 		// Extract the format-identifying data from just before the extension

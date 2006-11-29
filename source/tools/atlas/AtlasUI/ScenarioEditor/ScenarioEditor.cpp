@@ -210,6 +210,7 @@ END_EVENT_TABLE()
 
 //////////////////////////////////////////////////////////////////////////
 
+#if wxUSE_MEDIACTRL
 class MediaPlayer : public wxFrame
 {
 public:
@@ -238,6 +239,7 @@ private:
 BEGIN_EVENT_TABLE(MediaPlayer, wxFrame)
 	EVT_MEDIA_LOADED(wxID_ANY, MediaPlayer::OnLoad)
 END_EVENT_TABLE()
+#endif // wxUSE_MEDIACTRL
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -592,8 +594,12 @@ void ScenarioEditor::OnScreenshot(wxCommandEvent& WXUNUSED(event))
 
 void ScenarioEditor::OnMediaPlayer(wxCommandEvent& WXUNUSED(event))
 {
+#if wxUSE_MEDIACTRL
 	wxWindow* mediaPlayer = new MediaPlayer(this);
 	mediaPlayer->Show();
+#else
+	wxLogError(_("Sorry, media playback is not supported in this build."));
+#endif
 }
 
 //////////////////////////////////////////////////////////////////////////

@@ -55,7 +55,7 @@ public:
 					float rdotl = rx*lx + ry*ly + rz*lz;
 
 					int diffuse = (int)std::max(0.f, ndotl*128.f);
-					int specular = (int)std::min(255.f, 64.f*pow(std::max(0.f, rdotl), 16.f));
+					int specular = (int)std::min(255.f, 64.f*powf(std::max(0.f, rdotl), 16.f));
 
 					imgData[0] = std::min(64+diffuse+specular, 255);
 					imgData[1] = std::min(48+diffuse+specular, 255);

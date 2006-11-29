@@ -749,7 +749,7 @@ void CXMLReader::ReadTriggerGroup(XMBElement parent, MapTriggerGroup& group)
 							
 							CStr notAtt(condition.getAttributes().getNamedItem(at_not));
 							if ( notAtt == CStr("true") )
-								mapCondition.not = true;
+								mapCondition.negated = true;
 
 							//Read in each condition child
 							XERO_ITER_EL(condition, conditionChild)

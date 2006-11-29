@@ -15,7 +15,6 @@
 #include "ps/Vector2D.h"
 #include "lib/input.h"
 #include "lib/res/handle.h"
-#include "ps/CStr.h"
 
 class CVector3D;
 class CUnit;

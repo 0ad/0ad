@@ -10,7 +10,6 @@
 #ifndef graphics_TerrainProperties_H
 #define graphics_TerrainProperties_H
 
-#include "simulation/EntityHandles.h"
 #include "ps/CStr.h"
 #include <boost/shared_ptr.hpp>
 
@@ -18,7 +17,7 @@ class CTerrainGroup;
 class XMBElement;
 class CXeromyces;
 class CTerrainProperties;
-class CEntity;
+class HEntity;
 
 typedef boost::shared_ptr<CTerrainProperties> CTerrainPropertiesPtr;
 

@@ -68,7 +68,13 @@
 #endif
 
 #ifdef _WIN32
-#define ATLASDLLIMPEXP extern "C" __declspec(dllexport)
+# define ATLASDLLIMPEXP extern "C" __declspec(dllexport)
 #else
-#define ATLASDLLIMPEXP extern "C"
+# define ATLASDLLIMPEXP extern "C"
+#endif
+
+// Abort with an obvious message if wx isn't Unicode, instead of complaining
+// mysteriously when it first discovers wxChar != wchar_t
+#ifndef UNICODE
+# error This needs to be compiled with a Unicode version of wxWidgets.
 #endif

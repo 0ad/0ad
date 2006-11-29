@@ -146,8 +146,8 @@ SHAREABLE_STRUCT(sTriggerSpec);
 
 struct sTriggerCondition
 {
-	sTriggerCondition() : linkLogic(1), not(false) {}
-	sTriggerCondition(const std::wstring& _name) : linkLogic(1), not(false), name(_name) {}
+	sTriggerCondition() : linkLogic(1), negated(false) {}
+	sTriggerCondition(const std::wstring& _name) : linkLogic(1), negated(false), name(_name) {}
 	
 	//displayName is used for selecting choice items in Atlas
 	Shareable<std::wstring> name, functionName, displayName;	
@@ -155,7 +155,7 @@ struct sTriggerCondition
 	
 	//0 = none, 1 = and, 2 = or
 	Shareable<int> linkLogic;
-	Shareable<bool> not;
+	Shareable<bool> negated;
 
 	bool operator== ( const std::wstring& _name ) const
 	{

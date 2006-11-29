@@ -1287,7 +1287,7 @@ JSBool getTrigger( JSContext* cx, JSObject* UNUSED(globalObject), uint argc,
 		*rval = ToJSVal( g_TriggerManager.m_TriggerMap[name] );
 	else
 	{
-		debug_printf("Invalid trigger name %ws", name);
+		debug_printf("Invalid trigger name %ws", name.c_str());
 		*rval = JSVAL_NULL;
 	}
 	return JS_TRUE;

@@ -15,6 +15,7 @@ class CinemaSliderBox;
 class CinemaSpinnerBox;
 class CinemaInfoBox;
 class CinematicBottomBar;
+class CinemaButtonBox;
 class wxImage;
 
 class CinematicSidebar : public Sidebar

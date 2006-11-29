@@ -481,7 +481,7 @@ void CMapWriter::WriteTrigger(XMLWriter_File& xml_file_, const MapTrigger& trigg
 														!= trigger.logicBlocks.end() )
 			{
 				XML_Element("LogicBlock");
-				if ( logicIter->not )
+				if ( logicIter->negated )
 					XML_Attribute("not", "true");
 				else
 					XML_Attribute("not", "false");
@@ -493,7 +493,7 @@ void CMapWriter::WriteTrigger(XMLWriter_File& xml_file_, const MapTrigger& trigg
 				XML_Attribute("function", it2->functionName);
 				XML_Attribute("display", it2->displayName);
 
-				if ( it2->not )
+				if ( it2->negated )
 					XML_Attribute("not", "true");
 				else
 					XML_Attribute("not", "false");

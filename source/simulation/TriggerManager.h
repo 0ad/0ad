@@ -11,6 +11,9 @@
 #include "scripting/ScriptableObject.h"
 #include "simulation/ScriptObject.h"
 
+#include <list>
+#include <set>
+
 class CXeromyces;
 class XMBElement;
 
@@ -18,11 +21,11 @@ class XMBElement;
 
 struct MapTriggerCondition
 {
-	MapTriggerCondition() : linkLogic(0), not(false) { }
+	MapTriggerCondition() : linkLogic(0), negated(false) { }
 	CStrW name, functionName, displayName;
 	std::list<CStrW> parameters;
 	int linkLogic;	//0 = NONE, 1 = AND, 2 = OR
-	bool not;
+	bool negated;
 };
 
 struct MapTriggerEffect
@@ -33,9 +36,9 @@ struct MapTriggerEffect
 
 struct MapTriggerLogicBlock
 {
-	MapTriggerLogicBlock(size_t i, bool _not=false) : index(i), not(_not) { }
+	MapTriggerLogicBlock(size_t i, bool _not=false) : index(i), negated(_not) { }
 	size_t index;
-	bool not;
+	bool negated;
 
 	bool operator< (const MapTriggerLogicBlock& block) const { return (index < block.index); }
 	bool operator== (const MapTriggerLogicBlock& block) const { return (index == block.index); }
@@ -54,7 +57,7 @@ struct MapTrigger
 	std::list<MapTriggerCondition> conditions;
 	std::list<MapTriggerEffect> effects;
 
-	void AddLogicBlock(bool not) { logicBlocks.insert( MapTriggerLogicBlock(conditions.size(), not) ); }
+	void AddLogicBlock(bool negated) { logicBlocks.insert( MapTriggerLogicBlock(conditions.size(), negated) ); }
 	void AddLogicBlockEnd() { logicBlockEnds.insert( effects.size() ); }
 };
 

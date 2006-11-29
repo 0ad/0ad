@@ -12,6 +12,7 @@ class TriggerTreeCtrl;
 class TriggerBottomBar;
 class TriggerPage;
 class wxTreeItemId;
+class wxTreeItemData;
 
 class TriggerSidebar : public Sidebar
 {

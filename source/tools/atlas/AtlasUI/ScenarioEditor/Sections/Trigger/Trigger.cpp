@@ -4,7 +4,11 @@
 #include "GameInterface/Messages.h"
 #include "CustomControls/Buttons/ActionButton.h"
 #include "ScenarioEditor/Tools/Common/Tools.h"
+
+#include "wx/treectrl.h"
+
 #include <sstream>
+#include <list>
 
 using namespace AtlasMessage;
 
@@ -412,7 +416,7 @@ public:
 		std::vector<sTriggerCondition> conditions = *m_Sidebar->GetSelectedItemData()->conditions;
 		int condition = m_Sidebar->GetConditionCount(m_Sidebar->m_SelectedCond);
 		bool value = (evt.GetInt() == 1);
-		conditions[condition-1].not = value;
+		conditions[condition-1].negated = value;
 		
 		m_Sidebar->GetSelectedItemData()->conditions = conditions;
 		m_Sidebar->UpdateLists();
@@ -565,7 +569,7 @@ public:
 		else
 			m_LogicRadio->SetSelection(1);
 
-		m_NotCheck->SetValue(condition.not);
+		m_NotCheck->SetValue(condition.negated);
 	}
 
 	void FillEffectData()

@@ -208,12 +208,12 @@ void CTriggerManager::AddTrigger(MapTriggerGroup& group, const MapTrigger& trigg
 		std::set<MapTriggerLogicBlock>::const_iterator blockIt;
 		if ( ( blockIt = trigger.logicBlocks.find(MapTriggerLogicBlock(i)) ) != trigger.logicBlocks.end() )
 		{
-			if ( blockIt->not )
+			if ( blockIt->negated )
 				conditionBody += CStrW(L"!");
 			conditionBody += CStrW(L" (");
 		}
 		
-		if ( it->not )
+		if ( it->negated )
 			conditionBody += CStrW(L"!");
 		conditionBody += it->functionName;
 		conditionBody += CStrW(L"(");
@@ -291,7 +291,7 @@ bool CTriggerManager::LoadXML( const CStr& filename )
 		{
 			if ( !loadTriggerSpec(rootChild, XeroFile, true) )
 			{
-				LOG(ERROR, LOG_CATEGORY, "Error detected in Trigger XML <condition> tag. File: %s", filename);
+				LOG(ERROR, LOG_CATEGORY, "Error detected in Trigger XML <condition> tag. File: %s", filename.c_str());
 				return false;
 			}
 		}
@@ -299,13 +299,13 @@ bool CTriggerManager::LoadXML( const CStr& filename )
 		{
 			if ( !loadTriggerSpec(rootChild, XeroFile, false) )
 			{
-				LOG(ERROR, LOG_CATEGORY, "Error detected in Trigger XML <effect> tag. File: %s", filename);
+				LOG(ERROR, LOG_CATEGORY, "Error detected in Trigger XML <effect> tag. File: %s", filename.c_str());
 				return false;
 			}
 		}
 		else 
 		{
-			LOG(ERROR, LOG_CATEGORY, "Invalid tag in trigger XML. File: ws", filename);
+			LOG(ERROR, LOG_CATEGORY, "Invalid tag in trigger XML. File: %s", filename.c_str());
 			return false;
 		}
 	}

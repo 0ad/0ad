@@ -80,6 +80,9 @@ function package_set_build_flags()
 			"-Wno-reorder",		-- order of initialization list in constructors
 			"-Wno-non-virtual-dtor",
 
+                        -- do something (?) so that ccache can handle compilation with PCH enabled
+			"-fpch-preprocess",
+
 			-- speed up math functions by inlining. warning: this may result in
 			-- non-IEEE-conformant results, but haven't noticed any trouble so far.
 			"-ffast-math",
@@ -530,6 +533,7 @@ function setup_atlas_packages()
 		"ScenarioEditor/Sections/Map",
 		"ScenarioEditor/Sections/Object",
 		"ScenarioEditor/Sections/Terrain",
+		"ScenarioEditor/Sections/Trigger",
 		"ScenarioEditor/Tools",
 		"ScenarioEditor/Tools/Common"
 	},{	-- include

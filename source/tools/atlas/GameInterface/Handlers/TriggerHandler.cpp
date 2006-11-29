@@ -55,7 +55,7 @@ sTrigger TriggerToAtlas(const MapTrigger& trigger)
 												it != trigger.logicBlocks.end(); ++it )
 	{
 		atlasBlocks.push_back( (int)it->index );
-		atlasNots.push_back( it->not );
+		atlasNots.push_back( it->negated );
 	}
 	for ( std::set<size_t>::const_iterator it = trigger.logicBlockEnds.begin(); 
 										it != trigger.logicBlockEnds.end(); ++it )
@@ -77,7 +77,7 @@ sTrigger TriggerToAtlas(const MapTrigger& trigger)
 		atlasCondition.name = it->name;
 		atlasCondition.functionName = it->functionName;
 		atlasCondition.displayName = it->displayName;
-		atlasCondition.not = it->not;
+		atlasCondition.negated = it->negated;
 		std::vector<std::wstring> parameters;
 		
 		for ( std::list<CStrW>::const_iterator it2=it->parameters.begin(); 
@@ -145,8 +145,8 @@ MapTrigger AtlasToTrigger(const sTrigger& trigger)
 	engineTrigger.groupName = *trigger.group;
 
 	std::vector<int> blockEnds = *trigger.logicBlockEnds, blocks = *trigger.logicBlocks;
-	std::copy( blockEnds.begin(), blockEnds.end(), engineTrigger.logicBlockEnds.begin() );
-	std::copy( blocks.begin(), blocks.end(), engineTrigger.logicBlocks.begin() );
+	std::copy( blockEnds.begin(), blockEnds.end(), inserter(engineTrigger.logicBlockEnds, engineTrigger.logicBlockEnds.begin()) );
+	std::copy( blocks.begin(), blocks.end(), inserter(engineTrigger.logicBlocks, engineTrigger.logicBlocks.begin()) );
 
 	engineTrigger.maxRunCount = trigger.maxRuns;
 	engineTrigger.name = *trigger.name;
@@ -164,7 +164,7 @@ MapTrigger AtlasToTrigger(const sTrigger& trigger)
 		cond->displayName = *it->displayName;
 		cond->linkLogic = it->linkLogic;
 		cond->name = *it->name;
-		cond->not = it->not;
+		cond->negated = it->negated;
 		
 		std::vector<std::wstring> parameters = *it->parameters;
 		for ( std::vector<std::wstring>::const_iterator it2 = parameters.begin(); it2 != parameters.end(); ++it2 )
