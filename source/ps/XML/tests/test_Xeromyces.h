@@ -11,7 +11,7 @@ public:
 	void test_paths()
 	{
 		file_init();
- 		path_init();
+		path_init();
 		file_set_root_dir(0, "../data");
 		vfs_init();
 

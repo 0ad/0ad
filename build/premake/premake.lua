@@ -413,7 +413,7 @@ function setup_main_exe ()
 			"/ENTRY:entry",
 
 			-- delay loading of various Windows DLLs (not specific to any of the
-			-- external libraries; those and handled separately)
+			-- external libraries; those are handled separately)
 			"/DELAYLOAD:oleaut32.dll",
 			"/DELAYLOAD:advapi32.dll",
 			"/DELAYLOAD:user32.dll",
@@ -583,8 +583,6 @@ local function setup_atlas_frontend_package (package_name)
 	}
 	package.trimprefix = source_root
 	package.includepaths = { source_root .. ".." }
-
-	package_add_extern_libs(used_extern_libs)
 
 	-- Platform Specifics
 	if OS == "windows" then

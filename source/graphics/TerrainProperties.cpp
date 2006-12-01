@@ -183,7 +183,7 @@ void CTerrainProperties::ReadPassability(bool passable, XMBElement node, CXeromy
 	#undef ATTR
 
 	STerrainPassability pass(passable);
-	bool hasType;
+	bool hasType = false;
 	bool hasSpeed;
 	XMBAttributeList attribs = node.getAttributes();
 	for (int i=0;i<attribs.Count;i++)

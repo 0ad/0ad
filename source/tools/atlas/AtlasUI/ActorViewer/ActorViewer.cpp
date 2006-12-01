@@ -191,7 +191,7 @@ ActorViewer::ActorViewer(wxWindow* parent)
 
 	splitter->SplitVertically(sidePanel, canvas);
 
-#if OS_WIN
+#ifdef __WXMSW__
 	wglMakeCurrent(NULL, NULL);
 #endif
 	POST_MESSAGE(SetContext, (canvas->GetContext()));

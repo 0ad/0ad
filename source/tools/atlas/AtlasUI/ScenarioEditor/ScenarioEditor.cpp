@@ -383,7 +383,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	Canvas* canvas = new GameCanvas(m_SectionLayout.GetCanvasParent(), glAttribList);
 	m_SectionLayout.SetCanvas(canvas);
 
-#ifdef _WIN32
+#ifdef __WXMSW__
 	// The canvas' context gets made current on creation; but it can only be
 	// current for one thread at a time, and it needs to be current for the
 	// thread that is doing the draw calls, so disable it for this one.

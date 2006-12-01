@@ -12,10 +12,6 @@
 
 class SaveOnExitDialog : public wxDialog
 {
-#ifndef _WIN32
-	#define EndDialog EndModal
-#endif
-
 public:
 	SaveOnExitDialog(wxWindow* parent, bool allowCancel)
 		: wxDialog(parent, wxID_ANY, (wxString) _("Save changes?"))
@@ -43,8 +39,8 @@ public:
 		sizer->SetSizeHints(this);
 	}
 
-	void OnSave(wxCommandEvent& WXUNUSED(event)) { EndDialog(wxID_SAVE); }
-	void OnNo(wxCommandEvent& WXUNUSED(event)) { EndDialog(wxID_NO); }
+	void OnSave(wxCommandEvent& WXUNUSED(event)) { EndModal(wxID_SAVE); }
+	void OnNo(wxCommandEvent& WXUNUSED(event)) { EndModal(wxID_NO); }
 
 	DECLARE_EVENT_TABLE();
 };

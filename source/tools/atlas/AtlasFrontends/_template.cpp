@@ -1,4 +1,4 @@
-#if OS_WIN
+#ifdef _WIN32
 
 # define WIN32_LEAN_AND_MEAN
 # include <windows.h>
@@ -15,11 +15,12 @@
 
 #include "AtlasUI/Misc/DLLInterface.h"
 
-#if OS_WIN
-int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPTSTR, int) {
+#ifdef _WIN32
+int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 #else
-int main() {
+int main()
 #endif
+{
 	Atlas_StartWindow(L"$$WINDOW_NAME$$");
 	return 0;
 }

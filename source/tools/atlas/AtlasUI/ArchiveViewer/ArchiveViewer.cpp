@@ -16,11 +16,11 @@ using namespace DatafileIO;
 #include "wx/confbase.h"
 #include "wx/wfstream.h"
 #include "wx/tooltip.h"
-#ifdef _WIN32
-#include "wx/msw/registry.h"
-#endif
 #include "wx/progdlg.h"
 #include "wx/regex.h"
+#ifdef __WXMSW__
+# include "wx/msw/registry.h"
+#endif
 
 // Possible TODO: Remove duplication of AtlasWindow code
 

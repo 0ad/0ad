@@ -42,7 +42,8 @@ namespace AtlasMessage
 // Global variables, to remember state between DllMain and StartWindow and OnInit
 wxString g_InitialWindowType;
 bool g_IsLoaded = false;
-#ifdef _WIN32
+
+#ifdef __WXMSW__
 HINSTANCE g_Module;
 
 BOOL APIENTRY DllMain(HINSTANCE hModule, DWORD fdwReason, LPVOID WXUNUSED(lpReserved))
@@ -64,7 +65,7 @@ BOOL APIENTRY DllMain(HINSTANCE hModule, DWORD fdwReason, LPVOID WXUNUSED(lpRese
 
 	return TRUE;
 }
-#endif
+#endif // __WXMSW__
 
 using namespace AtlasMessage;
 
@@ -78,11 +79,12 @@ ATLASDLLIMPEXP void Atlas_SetMessagePasser(MessagePasser* passer)
 ATLASDLLIMPEXP void Atlas_StartWindow(const wchar_t* type)
 {
 	g_InitialWindowType = type;
-#ifdef _WIN32
+
+#ifdef __WXMSW__
 	wxEntry(g_Module);
 #else
-	int argc=1;
-	char *argv[]={"atlas", NULL};
+	int argc = 1;
+	char *argv[] = {"atlas", NULL};
 	wxEntry(argc, argv);
 #endif
 }
@@ -165,49 +167,6 @@ public:
 		return true;
 	}
 
-
-	bool OpenDirectory(const wxString& dir)
-	{
-#ifdef _WIN32
-		// Code largely copied from wxLaunchDefaultBrowser:
-		// (TODO: portability)
-
-		typedef HINSTANCE (WINAPI *LPShellExecute)(HWND hwnd, const wxChar* lpOperation,
-			const wxChar* lpFile,
-			const wxChar* lpParameters,
-			const wxChar* lpDirectory,
-			INT nShowCmd);
-
-		HINSTANCE hShellDll = ::LoadLibrary(_T("shell32.dll"));
-		if (hShellDll == NULL)
-			return false;
-
-		LPShellExecute lpShellExecute =
-			(LPShellExecute) ::GetProcAddress(hShellDll,
-			wxString(_T("ShellExecute")
-#ifdef _UNICODE
-			  _T("W")
-#else
-			  _T("A")
-#endif
-			).mb_str(wxConvLocal));
-
-		if (lpShellExecute == NULL)
-			return false;
-
-		/*HINSTANCE nResult =*/ (*lpShellExecute)(NULL, _T("explore"), dir.c_str(), NULL, NULL, SW_SHOWNORMAL);
-			// ignore return value, since we're not going to do anything if this fails
-
-		::FreeLibrary(hShellDll);
-
-		return true;
-#else
-		// Figure out what goes for "default browser" on unix/linux/whatever
-		// open an xterm perhaps? :)
-		return false;
-#endif
-	}
-
 	virtual void OnFatalException()
 	{
 		wxDebugReport report;
@@ -240,6 +199,51 @@ public:
 	}
 */
 
+private:
+
+	bool OpenDirectory(const wxString& dir)
+	{
+		// Open a directory on the filesystem - used so people can find the
+		// debug report files generated in OnFatalException easily
+
+#ifdef __WXMSW__
+		// Code largely copied from wxLaunchDefaultBrowser:
+
+		typedef HINSTANCE (WINAPI *LPShellExecute)(HWND hwnd, const wxChar* lpOperation,
+			const wxChar* lpFile,
+			const wxChar* lpParameters,
+			const wxChar* lpDirectory,
+			INT nShowCmd);
+
+		HINSTANCE hShellDll = ::LoadLibrary(_T("shell32.dll"));
+		if (hShellDll == NULL)
+			return false;
+
+		LPShellExecute lpShellExecute =
+			(LPShellExecute) ::GetProcAddress(hShellDll,
+			wxString(_T("ShellExecute")
+# ifdef _UNICODE
+			_T("W")
+# else
+			_T("A")
+# endif
+			).mb_str(wxConvLocal));
+
+		if (lpShellExecute == NULL)
+			return false;
+
+		/*HINSTANCE nResult =*/ (*lpShellExecute)(NULL, _T("explore"), dir.c_str(), NULL, NULL, SW_SHOWNORMAL);
+		// ignore return value, since we're not going to do anything if this fails
+
+		::FreeLibrary(hShellDll);
+
+		return true;
+#else
+		// Figure out what goes for "default browser" on unix/linux/whatever
+		// open an xterm perhaps? :)
+		return false;
+#endif
+	}
 };
 
 IMPLEMENT_APP_NO_MAIN(AtlasDLLApp)
