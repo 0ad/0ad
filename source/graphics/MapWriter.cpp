@@ -170,7 +170,7 @@ void CMapWriter::WriteXML(const char* filename,
 		return;
 	}
 
-	XML_Start("utf-8");
+	XML_Start();
 
 	{
 		XML_Element("Scenario");
@@ -346,57 +346,51 @@ void CMapWriter::WriteXML(const char* filename,
 				CVector3D startRotation = it->second.GetRotation();
 				float timescale = it->second.GetTimescale();
 	
+				XML_Element("Track");
+				XML_Attribute("name", name);
+				XML_Attribute("timescale", timescale);
+				
 				{
-					XML_Element("Track");
-					XML_Attribute("name", name);
-					XML_Attribute("timescale", timescale);
+					XML_Element("StartRotation");
+					XML_Attribute("x", startRotation.X);
+					XML_Attribute("y", startRotation.Y);
+					XML_Attribute("z", startRotation.Z);
+				}
 					
-					{
-						XML_Element("StartRotation");
-						XML_Attribute("x", startRotation.X);
-						XML_Attribute("y", startRotation.Y);
-						XML_Attribute("z", startRotation.Z);
+				for ( size_t i=0; i<numPaths; ++i )
+				{
+					const std::vector<SplineData>& nodes = paths[i].GetAllNodes();
+					const CCinemaData* data = paths[i].GetData();
+
+					XML_Element("Path");
+				
+					{	
+						CVector3D rot = data->m_TotalRotation;
+						XML_Element("Rotation");
+						XML_Attribute("x", rot.X);
+						XML_Attribute("y", rot.Y);
+						XML_Attribute("z", rot.Z);
 					}
-						
-					for ( size_t i=0; i<numPaths; ++i )
+				
 					{
-						const std::vector<SplineData>& nodes = 
-									paths[i].GetAllNodes();
-						const CCinemaData* data = paths[i].GetData();
-						{
-							XML_Element("Path");
-					
-							{	
-									CVector3D rot = data->m_TotalRotation;
-									XML_Element("Rotation");
-									XML_Attribute("x", rot.X);
-									XML_Attribute("y", rot.Y);
-									XML_Attribute("z", rot.Z);
-							}
-						
-							{
-								XML_Element("Distortion");
-								XML_Attribute("mode", data->m_Mode);
-								XML_Attribute("style", data->m_Style);
-								XML_Attribute("growth", data->m_Growth);
-								XML_Attribute("switch", data->m_Switch);
-							}
-		
-							for ( int j=(int)nodes.size()-1; j >= 0; --j )
-							{
-								{
-									XML_Element("Node");
-									XML_Attribute("x", nodes[j].Position.X);
-									XML_Attribute("y", nodes[j].Position.Y);
-									XML_Attribute("z", nodes[j].Position.Z);
-									XML_Attribute("t", nodes[j].Distance);
-								}
-							}	 
-						}   //path data
-					} 
-				}	//track data
+						XML_Element("Distortion");
+						XML_Attribute("mode", data->m_Mode);
+						XML_Attribute("style", data->m_Style);
+						XML_Attribute("growth", data->m_Growth);
+						XML_Attribute("switch", data->m_Switch);
+					}
+
+					for ( int j=(int)nodes.size()-1; j >= 0; --j )
+					{
+						XML_Element("Node");
+						XML_Attribute("x", nodes[j].Position.X);
+						XML_Attribute("y", nodes[j].Position.Y);
+						XML_Attribute("z", nodes[j].Position.Z);
+						XML_Attribute("t", nodes[j].Distance);
+					}
+				}
 			}
-		}	//(Did this really happen) - I blame XML :p
+		}
 		
 		const std::list<MapTriggerGroup>& groups = g_TriggerManager.GetAllTriggerGroups();
 		std::list<MapTriggerGroup> rootChildren;
@@ -411,18 +405,16 @@ void CMapWriter::WriteXML(const char* filename,
 		{
 			std::for_each(rootChildren.begin(), rootChildren.end(), copyIfRootChild(rootChildren));
 		
+			XML_Element("Triggers");
+			for ( std::list<MapTriggerGroup>::const_iterator it = rootChildren.begin(); 
+														it != rootChildren.end(); ++it )
 			{
-				XML_Element("Triggers");
-				for ( std::list<MapTriggerGroup>::const_iterator it = rootChildren.begin(); 
-															it != rootChildren.end(); ++it )
-				{
-					WriteTriggerGroup(xml_file_, *it, groups);
-				}
-				for ( std::list<MapTrigger>::const_iterator it = root->triggers.begin();
-															it != root->triggers.end(); ++it )
-				{
-					WriteTrigger(xml_file_, *it);
-				}
+				WriteTriggerGroup(xml_file_, *it, groups);
+			}
+			for ( std::list<MapTrigger>::const_iterator it = root->triggers.begin();
+														it != root->triggers.end(); ++it )
+			{
+				WriteTrigger(xml_file_, *it);
 			}
 		}
 	}

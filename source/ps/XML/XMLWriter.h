@@ -7,8 +7,7 @@ System for writing simple XML files, with human-readable formatting.
 
 Example usage:
 
-	XML_Start("utf-8");
-	XML_Doctype("Scenario", "/maps/scenario.dtd");
+	XML_Start();
 
 	{
 		XML_Element("Scenario");
@@ -51,11 +50,11 @@ end of XMLWriter.cpp.
 
 */
 
-// Encoding should usually be "iso-8859-1" or "utf-8"
-#define XML_Start(encoding) XMLWriter_File xml_file_ (encoding)
+// Encoding should usually be "utf-8" (or "iso-8859-1" to limit it to ASCII).
+#define XML_Start() XMLWriter_File xml_file_
 
-// Set the doctype/DTD (e.g. "Object", "/art/actors/object.dtd")
-#define XML_Doctype(type, dtd) xml_file_.Doctype(type, dtd)
+// Set pretty printing (newlines, tabs). Defaults to true.
+#define XML_SetPrettyPrint(enabled) xml_file_.SetPrettyPrint(false)
 
 // Add a comment to the XML file: <!-- text -->
 #define XML_Comment(text) xml_file_.Comment(text)
@@ -76,6 +75,10 @@ end of XMLWriter.cpp.
 // Returns true on success, false (and logs an error) on failure.
 #define XML_StoreVFS(handle) xml_file_.StoreVFS(handle)
 
+// Returns the contents of the XML file as a UTF-8 byte stream in a const CStr&
+// string. (Use CStr::FromUTF8 to get a Unicode string back.)
+#define XML_GetOutput() xml_file_.GetOutput()
+
 
 #include "ps/CStr.h"
 #include "lib/res/handle.h"
@@ -85,14 +88,14 @@ class XMLWriter_Element;
 class XMLWriter_File
 {
 public:
-	XMLWriter_File(const char* encoding);
+	XMLWriter_File();
 
-	void Doctype(const char* type, const char* dtd);
+	void SetPrettyPrint(bool enabled) { m_PrettyPrint = enabled; }
+
 	void Comment(const char* text);
 
 	bool StoreVFS(Handle h);
-
-	const CStr& HACK_GetData() { return m_Data; }
+	const CStr& GetOutput();
 
 private:
 
@@ -106,6 +109,8 @@ private:
 
 	CStr Indent();
 
+	bool m_PrettyPrint;
+
 	CStr m_Data;
 	int m_Indent;
 	XMLWriter_Element* m_LastElement;
@@ -117,7 +122,7 @@ public:
 	XMLWriter_Element(XMLWriter_File& file, const char* name);
 	~XMLWriter_Element();
 
-	void Text(const char* text);
+	template <typename T> void Text(T text);
 	template <typename T> void Attribute(const char* name, T value) { m_File->ElementAttribute(name, value, false); }
 	template <typename T> void Setting(const char* name, T value) { m_File->ElementAttribute(name, value, true); }
 	void Close(int type);

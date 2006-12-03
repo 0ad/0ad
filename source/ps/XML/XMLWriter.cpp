@@ -9,23 +9,57 @@
 // TODO (maybe): Write to the VFS handle frequently, instead of buffering
 // the entire file, so that large files get written faster.
 
-enum { EL_ATTR, EL_TEXT, EL_SUBEL };
-
-XMLWriter_File::XMLWriter_File(const char* encoding)
-	: m_Indent(0), m_LastElement(NULL)
+namespace
 {
-	m_Data = "<?xml version=\"1.0\" encoding=\"";
-	m_Data += encoding;
-	m_Data += "\" standalone=\"no\"?>\n";
+	CStr escapeAttributeValue(const char* input)
+	{
+		// Spec says:
+		//     AttValue ::= '"' ([^<&"] | Reference)* '"'
+		// so > is allowed in attribute values, so we don't bother escaping it.
+
+		CStr ret = input;
+		ret.Replace("&", "&amp;");
+		ret.Replace("<", "&lt;");
+		ret.Replace("\"", "&quot;");
+		return ret;
+	}
+
+	CStr escapeCharacterData(const char* input)
+	{
+		//     CharData ::= [^<&]* - ([^<&]* ']]>' [^<&]*)
+
+		CStr ret = input;
+		ret.Replace("&", "&amp;");
+		ret.Replace("<", "&lt;");
+		ret.Replace("]]>", "]]&gt;");
+		return ret;
+	}
+
+	CStr escapeComment(const char* input)
+	{
+		//     Comment ::= '<!--' ((Char - '-') | ('-' (Char - '-')))* '-->'
+		// This just avoids double-hyphens, and doesn't enforce the no-hyphen-at-end
+		// rule, since it's only used in contexts where there's already a space
+		// between this data and the -->.
+		CStr ret = input;
+		ret.Replace("--", "\xE2\x80\x90\xE2\x80\x90");
+			// replace with U+2010 HYPHEN, because it's close enough and it's
+			// probably nicer than inserting spaces or deleting hyphens or
+			// any alternative
+		return ret;
+	}
 }
 
-void XMLWriter_File::Doctype(const char* type, const char* dtd)
+enum { EL_ATTR, EL_TEXT, EL_SUBEL };
+
+XMLWriter_File::XMLWriter_File()
+	: m_Indent(0), m_LastElement(NULL),
+	m_PrettyPrint(true)
 {
-	m_Data += "<!DOCTYPE ";
-	m_Data += type;
-	m_Data += " SYSTEM \"";
-	m_Data += dtd;
-	m_Data += "\">\n";
+	// Encoding is always UTF-8 - that's one of the only two guaranteed to be
+	// supported by XML parsers (along with UTF-16), and there's not much need
+	// to let people choose another.
+	m_Data = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n";
 }
 
 bool XMLWriter_File::StoreVFS(Handle h)
@@ -42,10 +76,16 @@ bool XMLWriter_File::StoreVFS(Handle h)
 	return true;
 }
 
+const CStr& XMLWriter_File::GetOutput()
+{
+	return m_Data;
+}
+
+
 void XMLWriter_File::Comment(const char* text)
 {
 	ElementStart(NULL, "!-- ");
-	m_Data += text;
+	m_Data += escapeComment(text);
 	m_Data += " -->";
 	--m_Indent;
 }
@@ -59,8 +99,12 @@ void XMLWriter_File::ElementStart(XMLWriter_Element* element, const char* name)
 {
 	if (m_LastElement) m_LastElement->Close(EL_SUBEL);
 	m_LastElement = element;
-	m_Data += "\n";
-	m_Data += Indent();
+
+	if (m_PrettyPrint)
+	{
+		m_Data += "\n";
+		m_Data += Indent();
+	}
 	m_Data += "<";
 	m_Data += name;
 
@@ -88,8 +132,11 @@ void XMLWriter_File::ElementEnd(const char* name, int type)
 		m_Data += ">";
 		break;
 	case EL_SUBEL:
-		m_Data += "\n";
-		m_Data += Indent();
+		if (m_PrettyPrint)
+		{
+			m_Data += "\n";
+			m_Data += Indent();
+		}
 		m_Data += "</";
 		m_Data += name;
 		m_Data += ">";
@@ -101,7 +148,7 @@ void XMLWriter_File::ElementEnd(const char* name, int type)
 
 void XMLWriter_File::ElementText(const char* text)
 {
-	m_Data += text;
+	m_Data += escapeCharacterData(text);
 }
 
 
@@ -120,19 +167,30 @@ XMLWriter_Element::~XMLWriter_Element()
 
 void XMLWriter_Element::Close(int type)
 {
+	if (m_Type == type)
+		return;
+
 	m_File->ElementClose();
 	m_Type = type;
 }
 
-void XMLWriter_Element::Text(const char* text)
+
+// Template specialisations for various string types:
+
+template <> void XMLWriter_Element::Text<const char*>(const char* text)
 {
 	Close(EL_TEXT);
 	m_File->ElementText(text);
 }
 
+template <> void XMLWriter_Element::Text<const wchar_t*>(const wchar_t* text)
+{
+	Text( CStrW(text).ToUTF8().c_str() );
+}
 
+// 
 
-template <> void XMLWriter_File::ElementAttribute<CStr>(const char* name, const CStr& value, bool newelement)
+template <> void XMLWriter_File::ElementAttribute<const char*>(const char* name, const char* const& value, bool newelement)
 {
 	if (newelement)
 	{
@@ -147,7 +205,7 @@ template <> void XMLWriter_File::ElementAttribute<CStr>(const char* name, const 
 		m_Data += " ";
 		m_Data += name;
 		m_Data += "=\"";
-		m_Data += value;
+		m_Data += escapeAttributeValue(value);
 		m_Data += "\"";
 	}
 }
@@ -158,11 +216,16 @@ template <> void XMLWriter_File::ElementAttribute<CStr>(const char* name, const 
 // be converted into a basic type by whatever is making use of XMLWriter,
 // to keep game-related logic out of the not-directly-game-related code here.
 
+template <> void XMLWriter_File::ElementAttribute<CStr>(const char* name, const CStr& value, bool newelement)
+{
+	ElementAttribute(name, value.c_str(), newelement);
+}
+
 // Use CStr's conversion for most types:
 #define TYPE2(ID_T, ARG_T) \
 template <> void XMLWriter_File::ElementAttribute<ID_T>(const char* name, ARG_T value, bool newelement) \
 { \
-	ElementAttribute(name, CStr(value), newelement); \
+	ElementAttribute(name, CStr(value).c_str(), newelement); \
 }
 #define TYPE(T) TYPE2(T, const T &)
 
@@ -170,13 +233,8 @@ TYPE(int)
 TYPE(unsigned int)
 TYPE(float)
 TYPE(double)
-// This is the effect of doing const T& with T=const char* - char const* const&
-// Weird - I know ;-)
-TYPE2(const char *, char const* const&) 
 
-// Encode Unicode strings as UTF-8 (though that will only be correct if
-// the encoding was set to "utf-8"; it'll look a little odd if you store
-// Unicode strings in an iso-8859-1 file, so please don't do that)
+// Encode Unicode strings as UTF-8
 template <> void XMLWriter_File::ElementAttribute<CStrW>(const char* name, const CStrW& value, bool newelement)
 {
 	ElementAttribute(name, value.ToUTF8(), newelement);

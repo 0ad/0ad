@@ -8,11 +8,10 @@ class TestXmlWriter : public CxxTest::TestSuite
 public:
 	void test1()
 	{
-		XML_Start("utf-8");
-		XML_Doctype("Scenario", "/maps/scenario.dtd");
+		XML_Start();
 
 		{
-			XML_Element("Scenario");
+			XML_Element("Root");
 			{
 				XML_Comment("Comment test.");
 				XML_Comment("Comment test again.");
@@ -52,6 +51,162 @@ public:
 			}
 		}
 
-		// For this test to be useful, it should actually test something.
+		CStr output = XML_GetOutput();
+		TS_ASSERT_STR_EQUALS(output,
+			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"
+			"\n"
+			"<Root>\n"
+			"\t<!-- Comment test. -->\n"
+			"\t<!-- Comment test again. -->\n"
+			"\t<a one=\"1\" two=\"TWO\">b (etc)</a>\n"
+			"\t<c>d</c>\n"
+			"\t<c2>d2</c2>\n"
+			"\t<e>\n"
+			"\t\t<f>g</f>\n"
+			"\t\t<h/>\n"
+			"\t\t<i j=\"1.23\">\n"
+			"\t\t\t<k l=\"2.34\">m</k>\n"
+			"\t\t</i>\n"
+			"\t</e>\n"
+			"</Root>"		
+			);
+	}
+
+	void test_basic()
+	{
+		XML_Start();
+
+		{
+			XML_Element("Test");
+			{
+				XML_Element("example");
+				{
+					XML_Element("content");
+					XML_Text("text");
+				}
+			}
+		}
+
+		CStr output = XML_GetOutput();
+		TS_ASSERT_STR_EQUALS(output,
+			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"
+			"\n"
+			"<Test>\n"
+			"\t<example>\n"
+			"\t\t<content>text</content>\n"
+			"\t</example>\n"
+			"</Test>"
+			);
+	}
+
+	void test_nonpretty()
+	{
+		XML_Start();
+		XML_SetPrettyPrint(false);
+
+		{
+			XML_Element("Test");
+			{
+				XML_Element("example");
+				{
+					XML_Element("content");
+					XML_Text("text");
+				}
+			}
+		}
+
+		CStr output = XML_GetOutput();
+		TS_ASSERT_STR_EQUALS(output,
+			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"
+			"<Test><example><content>text</content></example></Test>"
+			);
+	}
+
+	void test_text()
+	{
+		XML_Start();
+
+		{
+			XML_Element("Test");
+			XML_Text("a");
+			XML_Text("b");
+		}
+
+		CStr output = XML_GetOutput();
+		TS_ASSERT_STR_EQUALS(output,
+			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"
+			"\n"
+			"<Test>ab</Test>"
+			);
+	}
+
+
+	void test_utf8()
+	{
+		XML_Start();
+
+		{
+			XML_Element("Test");
+			{
+				const wchar_t text[] = { 0x0251, 0 };
+				XML_Text(text);
+			}
+		}
+
+		CStr output = XML_GetOutput();
+		TS_ASSERT_STR_EQUALS(output,
+			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n\n"
+			"<Test>\xC9\x91</Test>"
+			);
+	}
+
+	void test_attr_escape()
+	{
+		XML_Start();
+
+		{
+			XML_Element("Test");
+			XML_Attribute("example", "abc > ]]> < & \"\" ");
+		}
+
+		CStr output = XML_GetOutput();
+		TS_ASSERT_STR_EQUALS(output,
+			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n\n"
+			"<Test example=\"abc > ]]> &lt; &amp; &quot;&quot; \"/>"
+			);
+	}
+
+	void test_chardata_escape()
+	{
+		XML_Start();
+
+		{
+			XML_Element("Test");
+			XML_Text("abc > ]]> < & \"\" ");
+		}
+
+		CStr output = XML_GetOutput();
+		TS_ASSERT_STR_EQUALS(output,
+			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n\n"
+			"<Test>abc > ]]&gt; &lt; &amp; \"\" </Test>"
+			);
+	}
+
+	void test_comment_escape()
+	{
+		XML_Start();
+
+		{
+			XML_Element("Test");
+			XML_Comment("test - -- --- ---- test");
+		}
+
+		CStr output = XML_GetOutput();
+		TS_ASSERT_STR_EQUALS(output,
+			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n\n"
+			"<Test>\n"
+			"\t<!-- test - \xE2\x80\x90\xE2\x80\x90 \xE2\x80\x90\xE2\x80\x90- \xE2\x80\x90\xE2\x80\x90\xE2\x80\x90\xE2\x80\x90 test -->\n"
+			"</Test>"
+			);
 	}
 };
