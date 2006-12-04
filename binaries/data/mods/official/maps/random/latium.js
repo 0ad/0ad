@@ -157,8 +157,11 @@ function playerNearness(x, y) {
 println("Painting elevation...");
 
 noise0 = new Noise2D(4 * SIZE/128);
-noise1 = new Noise2D(9 * SIZE/128);
+noise1 = new Noise2D(8 * SIZE/128);
 noise2 = new Noise2D(15 * SIZE/128);
+
+noise2a = new Noise2D(20 * SIZE/128);
+noise2b = new Noise2D(35 * SIZE/128);
 
 noise3 = new Noise2D(4 * SIZE/128);
 noise4 = new Noise2D(6 * SIZE/128);
@@ -175,10 +178,10 @@ for(ix=0; ix<=SIZE; ix++) {
 		
 		// add the rough shape of the water
 		if(x < WATER_WIDTH) {
-			h = Math.max(-15, -30*(WATER_WIDTH-x)/WATER_WIDTH);
+			h = Math.max(-16, -32*(WATER_WIDTH-x)/WATER_WIDTH);
 		}
 		else if(x > 1-WATER_WIDTH) {
-			h = Math.max(-15, -30*(x-(1-WATER_WIDTH))/WATER_WIDTH);
+			h = Math.max(-16, -32*(x-(1-WATER_WIDTH))/WATER_WIDTH);
 		}
 		else {
 			distToWater = (0.5 - WATER_WIDTH - Math.abs(x-0.5));
@@ -195,6 +198,12 @@ for(ix=0; ix<=SIZE; ix++) {
 		oldH = h;
 		h += baseNoise;
 		
+		// add some higher-frequency noise on land
+		if( oldH > 0 )
+		{
+			h += (1.5*noise2a.eval(x,y) + 0.7*noise2b.eval(x,y)) * Math.min(oldH/10.0, 1.0);
+		}
+		
 		// create cliff noise
 		if( h > -10 )
 		{
@@ -205,14 +214,14 @@ for(ix=0; ix<=SIZE; ix++) {
 			}
 			cliffNoise += .05 * distToWater / (0.5 - WATER_WIDTH);
 			if(cliffNoise > .6) {
-				u = 0.5 * (cliffNoise-.6);
+				u = 0.8 * (cliffNoise-.6);
 				cliffNoise += u * noise5.eval(x,y);
 				cliffNoise /= (1+u);
 			}
 			cliffNoise -= 0.59;
 			cliffNoise *= pn;
 			if(cliffNoise > 0) {
-				h += 20 * Math.min(cliffNoise, 0.045) / 0.045;
+				h += 19 * Math.min(cliffNoise, 0.045) / 0.045;
 			}
 		}
 		
@@ -249,20 +258,30 @@ for(ix=0; ix<SIZE; ix++) {
 		maxH = Math.max(h00, h01, h10, h11);
 		minH = Math.min(h00, h01, h10, h11);
 		
+		// figure out if we're at the top of a cliff using min adjacent height
+		minAdjHeight = minH;
+		if(maxH > 15) {
+			for(nx=Math.max(ix-1, 0); nx<=Math.min(ix+2, SIZE); nx++) {
+				for(ny=Math.max(iy-1, 0); ny<=Math.min(iy+2, SIZE); ny++) {
+					minAdjHeight = Math.min(minAdjHeight, getHeight(nx, ny));
+				}
+			}
+		}
+		
 		// choose a terrain based on elevation
 		t = tGrass;
 		
 		// water
-		if(maxH < -10) {
+		if(maxH < -12) {
 			t = tOceanDepths;
 		}
-		else if(maxH < -7.5) {
+		else if(maxH < -8.8) {
 			t = tOceanRockDeep;
 		}
-		else if(maxH < -4) {
+		else if(maxH < -4.7) {
 			t = tOceanCoral;
 		}
-		else if(maxH < -2.2) {
+		else if(maxH < -2.8) {
 			t = tOceanRockShallow;
 		}
 		else if(maxH < .9 && minH < .35) {
@@ -280,21 +299,21 @@ for(ix=0; ix<SIZE; ix++) {
 		}
 		
 		// cliffs
-		if(maxH - minH > 3) {
+		if(maxH - minH > 2.9 && minH > -7) {
 			t = tCliff;
 			addToClass(ix, iy, clCliff);
 		}
-		else if(maxH - minH > 2.4) {
+		else if((maxH - minH > 2.5 && minH > -5) || (maxH-minAdjHeight > 2.9 && minH > 0) ) {
 			if(minH < -1) t = tCliff;
 			else if(minH < .5) t = tBeachCliff;
-			else t = [tDirtCliff, tGrassCliff];
+			else t = [tDirtCliff, tGrassCliff, tGrassCliff, tGrassRock, tCliff];
 			addToClass(ix, iy, clCliff);
 		}
 		
 		// forests
 		if(maxH - minH < 1 && minH > 1) {
 			forestNoise = (noise6.eval(x,y) + 0.5*noise7.eval(x,y)) / 1.5 * pn;
-			forestNoise -= 0.6;
+			forestNoise -= 0.59;
 			if(forestNoise > 0) {
 				if(minH > 5) {
 					typeNoise = noise10.eval(x,y);
@@ -314,10 +333,10 @@ for(ix=0; ix<SIZE; ix++) {
 		if(t==tGrass)
 		{
 			grassNoise = (noise8.eval(x,y) + .6*noise9.eval(x,y)) / 1.6;
-			if(grassNoise < .33) {
+			if(grassNoise < .3) {
 				t = (maxH - minH > 1.2) ? tDirtCliff : tDirt;
 			}
-			else if(grassNoise < .37) {
+			else if(grassNoise < .34) {
 				t = (maxH - minH > 1.2) ? tGrassCliff : tGrassDry;
 				if(maxH - minH < .5 && randFloat() < .03) {
 					placeObject(oGrassDry, 0, ix+randFloat(), iy+randFloat(), randFloat()*2*Math.PI);
@@ -352,7 +371,7 @@ for(t in trees) {
 	group = new SimpleGroup([new SimpleObject(trees[t], 1,1, 0,1)], true, clForest);
 	createObjectGroups(group, 0,
 		avoidClasses(clWater, 5, clCliff, 0, clForest, 1, clSettlement, 4, clPlayer, 15),
-		SIZE*SIZE/12000, 50
+		SIZE*SIZE/7000, 50
 	);
 }
 
@@ -362,7 +381,7 @@ group = new SimpleGroup([
 	new SimpleObject("flora/trees/cypress1.xml", 0,2, 0,2)]);
 createObjectGroups(group, 0,
 	avoidClasses(clWater, 4, clCliff, 2, clForest, 1, clSettlement, 4, clPlayer, 15),
-	SIZE*SIZE/4000, 50
+	SIZE*SIZE/3500, 50
 );
 
 // create bushes
@@ -373,7 +392,7 @@ group = new SimpleGroup([
 	new SimpleObject(oBushMedDry, 0,1, 0,2)]);
 createObjectGroups(group, 0,
 	avoidClasses(clWater, 4, clCliff, 2),
-	SIZE*SIZE/2000, 50
+	SIZE*SIZE/1800, 50
 );
 
 // create rocks
@@ -383,7 +402,7 @@ group = new SimpleGroup([
 	new SimpleObject(oRockLarge, 0,1, 0,2)]);
 createObjectGroups(group, 0,
 	avoidClasses(clWater, 0, clCliff, 0),
-	SIZE*SIZE/2000, 50
+	SIZE*SIZE/1800, 50
 );
 
 // create stone
