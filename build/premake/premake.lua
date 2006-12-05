@@ -477,7 +477,7 @@ local function setup_atlas_package(package_name, target_type, rel_source_dirs, r
 		tinsert(package.defines, "_UNICODE")
 
 		-- Link to required libraries
-		package.links = { "winmm", "comctl32", "rpcrt4" }
+		package.links = { "winmm", "comctl32", "rpcrt4", "delayimp" }
 
 		-- required to use WinMain() on Windows, otherwise will default to main()
 		tinsert(package.buildflags, "no-main")
@@ -525,6 +525,7 @@ function setup_atlas_packages()
 		"CustomControls/Windows",
 		"FileConverter",
 		"General",
+		"General/VideoRecorder",
 		"Misc",
 		"ScenarioEditor",
 		"ScenarioEditor/Sections/Common",
@@ -543,8 +544,9 @@ function setup_atlas_packages()
 	},{	-- extern_libs
 		"boost",
 		"devil",
-		"xerces",
-		"wxwidgets"
+		"ffmpeg",
+		"wxwidgets",
+		"xerces"
 	},{	-- extra_params
 		pch = 1,
 		extra_links = { "AtlasObject", "DatafileIO" },

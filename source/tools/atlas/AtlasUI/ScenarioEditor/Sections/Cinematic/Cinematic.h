@@ -94,13 +94,6 @@ private:
 	CinemaInfoBox* m_InfoBox; // ^same^
 	CinematicBottomBar* m_CinemaBottomBar;
 
-	struct eCinemaButton 
-	{ 
-		enum { 
-			previous/*, rewind, reverse*/, stop, 
-			play, pause, /*forward,*/ next }; 
-	};
-
 	wxImage LoadIcon(const wxString& filename);
 	void LoadIcons();
 };

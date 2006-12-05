@@ -80,6 +80,20 @@ MESSAGE(Screenshot,
 		((int, tiles)) // the final image will be (640*tiles)x(480*tiles)
 		);
 
+struct sCinemaRecordCB
+{
+	unsigned char* buffer;
+};
+SHAREABLE_STRUCT(sCinemaRecordCB);
+
+QUERY(CinemaRecord,
+	  ((std::wstring, track))
+	  ((int, framerate))
+	  ((float, duration))
+	  ((Callback<sCinemaRecordCB>, cb))
+	  ,
+	  );
+
 //////////////////////////////////////////////////////////////////////////
 
 MESSAGE(Brush,

@@ -62,6 +62,10 @@ extern_lib_defs = {
 		win_names  = { "ddraw", "dsound" },
 		dbg_suffix = "",
 	},
+	ffmpeg = {
+		win_names  = { "avcodec-51", "avformat-51", "avutil-49" },
+		dbg_suffix = "",
+	},
 	libjpg = {
 		win_names  = { "jpeg-6b" },
 		unix_names = { "jpeg" },
@@ -95,8 +99,9 @@ extern_lib_defs = {
 				tinsert(package.includepaths, libraries_dir.."wxwidgets/include/msvc")
 				tinsert(package.includepaths, libraries_dir.."wxwidgets/include")
 				tinsert(package.libpaths, libraries_dir.."wxwidgets/lib/vc_lib")
-				package.config["Debug"  ].links = { "wxmsw26ud_gl" }
-				package.config["Release"].links = { "wxmsw26u_gl" }
+				tinsert(package.config["Debug"  ].links, "wxmsw26ud_gl")
+				tinsert(package.config["Testing"].links, "wxmsw26ud_gl")
+				tinsert(package.config["Release"].links, "wxmsw26u_gl")
 			else
 				tinsert(package.buildoptions, "`wx-config --cxxflags`")
 				tinsert(package.linkoptions, "`wx-config --libs std,gl,ogl,media`")

@@ -247,7 +247,7 @@ void WriteBigScreenshot(const char* extension, int tiles)
 		g_Renderer.Resize(tile_w, tile_h);
 		SViewPort vp = { 0, 0, tile_w, tile_h };
 		g_Game->GetView()->GetCamera()->SetViewPort(&vp);
-		g_Game->GetView()->GetCamera()->SetProjection (CGameView::defaultNear, CGameView::defaultFar, CGameView::defaultFOV);
+		g_Game->GetView()->GetCamera()->SetProjection(CGameView::defaultNear, CGameView::defaultFar, CGameView::defaultFOV);
 	}
 
 	// Temporarily move everything onto the front buffer, so the user can
@@ -290,7 +290,7 @@ void WriteBigScreenshot(const char* extension, int tiles)
 		g_Renderer.Resize(g_xres, g_yres);
 		SViewPort vp = { 0, 0, g_xres, g_yres };
 		g_Game->GetView()->GetCamera()->SetViewPort(&vp);
-		g_Game->GetView()->GetCamera()->SetProjection (1, 5000, DEGTORAD(20));
+		g_Game->GetView()->GetCamera()->SetProjection(CGameView::defaultNear, CGameView::defaultFar, CGameView::defaultFOV);
 
 		g_Game->GetView()->GetCamera()->SetProjectionTile(1, 0, 0);
 	}

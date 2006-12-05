@@ -9,6 +9,8 @@
 #include "ScenarioEditor/Tools/Common/Tools.h"
 #include "HighResTimer/HighResTimer.h"
 
+#include "General/VideoRecorder/VideoRecorder.h"
+
 #include "wx/spinctrl.h"
 #include "wx/filename.h"
 #include "wx/wfstream.h"
@@ -23,7 +25,7 @@ struct eCinemaButton
 { 
 	enum { 
 		previous/*, rewind, reverse*/, stop, 
-		play, pause, /*forward,*/ next }; 
+		play, pause, /*forward,*/ next, record }; 
 };
 
 float CinemaTextFloat(wxTextCtrl&, size_t, float, float, float);
@@ -925,6 +927,17 @@ public:
 			
 		m_Parent->m_Playing = true;
 	}
+	void OnRecord(wxCommandEvent& WXUNUSED(event))
+	{
+		if ( m_Parent->m_SelectedTrack < 0 )
+			return;
+		m_Parent->m_SliderBox->m_Timer.Stop();
+		m_Parent->m_SliderBox->PrepareTimers();
+
+		VideoRecorder::RecordCinematic(this,
+			m_Parent->m_Tracks[m_Parent->m_SelectedTrack].name.c_str(),
+			m_Parent->m_Tracks[m_Parent->m_SelectedTrack].duration);
+	}
 	void OnPause(wxCommandEvent& WXUNUSED(event))
 	{
 		if ( m_Parent->m_SelectedTrack < 0 )
@@ -980,6 +993,7 @@ BEGIN_EVENT_TABLE(CinemaButtonBox, wxPanel)
 	EVT_BUTTON(eCinemaButton::pause, CinemaButtonBox::OnPause)
 //	EVT_BUTTON(eCinemaButton::forward, CinemaButtonBox::OnForward)
 	EVT_BUTTON(eCinemaButton::next, CinemaButtonBox::OnNext)
+	EVT_BUTTON(eCinemaButton::record, CinemaButtonBox::OnRecord)
 END_EVENT_TABLE()
 //////////////////////////////////////////////////////////////////////////
 
@@ -1126,7 +1140,7 @@ wxImage CinematicSidebar::LoadIcon(const wxString& filename)
 	wxImage img (1, 1, true);
 
 	// Load the icon
-	wxFileName iconPath (_T("mods/official/art/textures/ui/session/icons/single/atlas/"));
+	wxFileName iconPath (_T("tools/atlas/buttons/"));
 	iconPath.MakeAbsolute(Datafile::GetDataDirectory());
 	iconPath.SetFullName(filename);
 	wxFileInputStream fstr (iconPath.GetFullPath());
@@ -1162,6 +1176,9 @@ void CinematicSidebar::LoadIcons()
 	wxBitmapButton* next = new wxBitmapButton(m_IconSizer, 
 			eCinemaButton::next, LoadIcon( _T("next_s.bmp") ));
 	m_IconSizer->Add(next);
+	wxBitmapButton* record = new wxBitmapButton(m_IconSizer, 
+			eCinemaButton::record, LoadIcon( _T("record_s.bmp") ));
+	m_IconSizer->Add(record);
 }
 void CinematicSidebar::AddTrack(float x, float y, float z, 
 								std::wstring& name, int count)

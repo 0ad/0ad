@@ -268,6 +268,29 @@ public:
 	}
 };
 
+
+// Shareable callbacks:
+// (TODO - this is probably not really safely shareable, due to unspecified calling conventions)
+template<typename T> struct Callback
+{
+	Callback(void (*cb) (const T*, void*), void* cbdata) : cb(cb), cbdata(cbdata) {}
+	void (*cb) (const T*, void*);
+	void* cbdata;
+};
+
+template<typename T> class Shareable<Callback<T> >
+{
+	ASSERT_TYPE_IS_SHAREABLE(T);
+public:
+	Shareable(Callback<T> cb) : cb(cb) {}
+	Callback<T> cb;
+	void Call(const T& data) const
+	{
+		cb.cb(&data, cb.cbdata);
+	}
+};
+
+
 }
 
 #ifdef SHAREABLE_USED_NOMMGR
