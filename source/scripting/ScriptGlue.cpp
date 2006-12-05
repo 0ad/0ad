@@ -1077,6 +1077,15 @@ JSBool toggleSky( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsva
 	return( JS_TRUE );
 }
 
+// Toggles drawing territory outlines
+JSBool toggleTerritoryRendering( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+{
+	JSU_REQUIRE_NO_PARAMS();
+	g_Renderer.m_RenderTerritories = !g_Renderer.m_RenderTerritories;
+	*rval = JSVAL_VOID;
+	return( JS_TRUE );
+}
+
 // Toggles drawing the water plane
 JSBool toggleWater( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
@@ -1363,6 +1372,9 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC(setWaterMaxAlpha, setWaterMaxAlpha, 0)
 	JS_FUNC(setWaterFullDepth, setWaterFullDepth, 0)
 	JS_FUNC(setWaterAlphaOffset, setWaterAlphaOffset, 0)
+
+	// Territory rendering
+	JS_FUNC(toggleTerritoryRendering, toggleTerritoryRendering, 0)
 
 	// GUI
 #ifndef NO_GUI

@@ -469,6 +469,12 @@ public:
 	 * Can be accessed via JS as renderer.skipSubmit
 	 */
 	bool m_SkipSubmit;
+
+	/**
+	 * m_RenderTerritories: 
+	 * Turn territory boundary rendering on or off.
+	 */
+	bool m_RenderTerritories;
 };
 
 

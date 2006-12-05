@@ -63,6 +63,15 @@
 				setWaterHeight( getWaterHeight() - 0.25 );
 			]]></action>
 		</object>
+			
+		<!-- EMPTY OBJECT USED TO TOGGLE TERRITORY RENDERING. -->
+		<object name="snTerritoryToggle"
+			hotkey="territory.rendering.toggle"
+		>
+			<action on="Press"><![CDATA[		
+				toggleTerritoryRendering();
+			]]></action>
+		</object>
 		
 		<!-- GROUP: MINIMAP -->
 		<object	name="snMiniMap"

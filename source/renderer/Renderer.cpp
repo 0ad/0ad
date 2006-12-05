@@ -358,6 +358,7 @@ CRenderer::CRenderer()
 	m_DisableCopyShadow = false;
 	m_FastPlayerColor = true;
 	m_SkipSubmit = false;
+	m_RenderTerritories = true;
 
 	m_VertexShader = 0;
 
@@ -1245,7 +1246,7 @@ void CRenderer::RenderSubmissions()
 	RenderPatches();
 	oglCheck();
 
-	if (g_Game)
+	if (g_Game && m_RenderTerritories)
 	{
 		g_Game->GetWorld()->GetTerritoryManager()->renderTerritories();
 		oglCheck();
