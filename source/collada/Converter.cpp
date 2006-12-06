@@ -147,7 +147,7 @@ public:
 		float* position, float* normal, float* texcoord,
 		VertexBlend* boneWeights, BoneTransform* boneTransforms)
 	{
-		static const VertexBlend noBlend = { 0xFF, 0xFF, 0xFF, 0xFF, 0, 0, 0, 0 };
+		static const VertexBlend noBlend = { { 0xFF, 0xFF, 0xFF, 0xFF }, { 0, 0, 0, 0 } };
 
 		assert(position);
 		assert(normal);

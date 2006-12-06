@@ -640,6 +640,10 @@ function setup_collada_package(package_name, target_type, rel_source_dirs, rel_i
 		end
 
 	else -- Non-Windows, = Unix
+		tinsert(package.defines, "LINUX");
+		tinsert(package.includepaths, "/usr/include/libxml2")
+		tinsert(package.links, "xml2")
+
 		tinsert(package.buildoptions, "-rdynamic")
 		tinsert(package.linkoptions, "-rdynamic")
 	end

@@ -8,9 +8,20 @@ class ColladaException : public std::exception
 {
 public:
 	ColladaException(const std::string& msg)
-		: std::exception(msg.c_str())
+		: msg(msg)
 	{
 	}
+
+	~ColladaException() throw()
+	{
+	}
+
+	virtual const char* what() const throw()
+	{
+		return msg.c_str();
+	}
+private:
+	std::string msg;
 };
 
 void ColladaToPMD(const char* input, OutputFn output, std::string& xmlErrors);
