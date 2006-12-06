@@ -62,6 +62,11 @@ extern_lib_defs = {
 		win_names  = { "ddraw", "dsound" },
 		dbg_suffix = "",
 	},
+	fcollada = {
+		win_names  = { "FColladaS" },
+		dbg_suffix = "D",
+		no_delayload = 1,
+	},
 	ffmpeg = {
 		win_names  = { "avcodec-51", "avformat-51", "avutil-49" },
 		dbg_suffix = "",

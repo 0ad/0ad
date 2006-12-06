@@ -1,4 +1,5 @@
 addoption("atlas", "Include Atlas scenario editor packages")
+addoption("collada", "Include COLLADA packages (requires FCollada library)")
 addoption("outpath", "Location for generated project files")
 addoption("without-tests", "Disable generation of test projects")
 addoption("without-pch", "Disable generation and usage of precompiled headers")
@@ -200,7 +201,7 @@ static_lib_names = {}
 -- set up one of the static libraries into which the main engine code is split.
 -- extra_params: see package_add_contents().
 -- note: rel_source_dirs and rel_include_dirs are relative to global source_root.
-local function setup_static_lib_package (package_name, rel_source_dirs, extern_libs, extra_params)
+function setup_static_lib_package (package_name, rel_source_dirs, extern_libs, extra_params)
 
 	package_create(package_name, "lib")
 	package_add_contents(source_root, rel_source_dirs, {}, extra_params)
@@ -456,7 +457,7 @@ end
 -- setup a typical Atlas component package
 -- extra_params: as in package_add_contents; also zero or more of the following:
 -- * pch: (any type) set stdafx.h and .cpp as PCH
-local function setup_atlas_package(package_name, target_type, rel_source_dirs, rel_include_dirs, extern_libs, extra_params)
+function setup_atlas_package(package_name, target_type, rel_source_dirs, rel_include_dirs, extern_libs, extra_params)
 
 	local source_root = "../../../source/tools/atlas/" .. package_name .. "/"
 	package_create(package_name, target_type)
@@ -574,7 +575,7 @@ end
 
 
 -- Atlas 'frontend' tool-launching packages
-local function setup_atlas_frontend_package (package_name)
+function setup_atlas_frontend_package (package_name)
 
 	package_create(package_name, "winexe")
 
@@ -607,6 +608,57 @@ function setup_atlas_frontends()
 	setup_atlas_frontend_package("ArchiveViewer")
 	setup_atlas_frontend_package("ColourTester")
 	setup_atlas_frontend_package("FileConverter")
+end
+
+
+--------------------------------------------------------------------------------
+-- collada
+--------------------------------------------------------------------------------
+
+function setup_collada_package(package_name, target_type, rel_source_dirs, rel_include_dirs, extern_libs, extra_params)
+
+	package_create(package_name, target_type)
+
+	-- Don't add the default 'sourceroot/pch/projectname' for finding PCH files
+	extra_params["no_default_pch"] = 1
+
+	package_add_contents(source_root, rel_source_dirs, rel_include_dirs, extra_params)
+	package_add_extern_libs(extern_libs)
+
+	if extra_params["pch"] then
+		package_setup_pch(nil, "precompiled.h", "precompiled.cpp");
+	end
+
+	-- Platform Specifics
+	if OS == "windows" then
+
+		-- required to use WinMain() on Windows, otherwise will default to main()
+		tinsert(package.buildflags, "no-main")
+
+		if extra_params["extra_links"] then 
+			listconcat(package.links, extra_params["extra_links"]) 
+		end
+
+	else -- Non-Windows, = Unix
+		tinsert(package.buildoptions, "-rdynamic")
+		tinsert(package.linkoptions, "-rdynamic")
+	end
+
+end
+
+-- build all Collada component packages
+function setup_collada_packages()
+
+	setup_collada_package("Collada", "dll",
+	{	-- src
+		"collada"
+	},{	-- include
+	},{	-- extern_libs
+		"fcollada",
+	},{	-- extra_params
+		pch = 1,
+	})
+
 end
 
 
@@ -734,6 +786,10 @@ setup_all_libs()
 if options["atlas"] then
 	setup_atlas_packages()
 	setup_atlas_frontends()
+end
+
+if options["collada"] then
+	setup_collada_packages()
 end
 
 if not options["without-tests"] then
