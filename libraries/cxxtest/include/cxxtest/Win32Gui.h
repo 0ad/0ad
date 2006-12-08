@@ -79,7 +79,8 @@ namespace CxxTest
                 showSummary();
                 WaitForSingleObject( _gui, INFINITE );
             }
-            DestroyWindow( _mainWindow );
+            SendMessage ( _mainWindow, WM_CLOSE, 0, 0 );
+            WaitForSingleObject( _gui, INFINITE );
         }
 
     private:
@@ -342,10 +343,9 @@ namespace CxxTest
 
             case WM_TIMER: updateTime(); break;
 
-            case WM_CLOSE:
             case WM_DESTROY:
-            case WM_QUIT:
-                ExitProcess( 0 );
+                PostQuitMessage(0);
+                return 0;
 
             default: return DefWindowProc( window, message, wParam, lParam );
             }
