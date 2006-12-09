@@ -552,7 +552,7 @@ static void InitScripting()
 }
 
 
-static void InitVfs(const char* argv0)
+static void InitVfs(const CmdLineArgs& args)
 {
 	TIMER("InitVfs");
 
@@ -568,7 +568,7 @@ static void InitVfs(const char* argv0)
 	// rationale for data/ being root: untrusted scripts must not be
 	// allowed to overwrite critical game (or worse, OS) files.
 	// the VFS prevents any accesses to files above this directory.
-	(void)file_set_root_dir(argv0, "../data");
+	(void)file_set_root_dir(args.GetArg0(), "../data");
 
 	vfs_init();
 
@@ -585,13 +585,28 @@ static void InitVfs(const char* argv0)
 	// [hot: 16ms]
 	vfs_mount("cache/", "cache", VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES|VFS_MOUNT_ARCHIVABLE);
 
-	// --- this belongs in a LoadMod function
-	// [hot: 150ms]
-	vfs_mount("", "mods/official", VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES|VFS_MOUNT_WATCH|VFS_MOUNT_ARCHIVABLE);
-	// ---
+	std::vector<CStr> mods = args.GetMultiple("mod");
+	if (mods.empty())
+		mods.push_back("official");
 
-	// TODO: once people can load multiple mods, set the top one to be the write target
-	vfs_set_write_target("mods/official");
+	for (size_t i = 0; i < mods.size(); ++i)
+	{
+		CStr path = "mods/" + mods[i];
+		uint priority = (uint)i;
+		uint flags = VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES|VFS_MOUNT_WATCH;
+
+		// TODO: currently only archive 'official' - probably ought to archive
+		// all mods instead?
+		if (mods[i] == "official")
+			flags |= VFS_MOUNT_ARCHIVABLE;
+
+		// [hot: 150ms for mods/official]
+		(void)vfs_mount("", path, flags, priority);
+	}
+
+	// set the top (last) mod to be the write target
+	CStr top_mod_path = "mods/" + mods.back(); // (mods is never empty)
+	vfs_set_write_target(top_mod_path);
 
 	// don't try vfs_display yet: SDL_Init hasn't yet redirected stdout
 }
@@ -893,7 +908,7 @@ void Init(const CmdLineArgs& args, uint flags)
 	// and will mess up the error reporting if anything
 	// crashes before the working directory is set.
 	MICROLOG(L"init vfs");
-	InitVfs(args.GetArg0().c_str());
+	InitVfs(args);
 
 	// This must come after VFS init, which sets the current directory
 	// (required for finding our output log files).

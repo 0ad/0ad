@@ -135,27 +135,8 @@ static void ProcessCommandLineArgs(const CmdLineArgs& args)
 	if (args.Has("listfiles"))
 		trace_enable(true);
 
-	std::vector<CStr> mods = args.GetMultiple("mod");
-	for (size_t i = 0; i < mods.size(); ++i)
-	{
-		const char* mod_name = mods[i];
-		char path[PATH_MAX];
-		snprintf(path, ARRAY_SIZE(path), "mods/%s", mod_name);
-		path[PATH_MAX-1] = '\0';
-		// note: default is 0. we should set this higher in case the
-		// mod file mtimes are actually older than the official
-		// version (*could* happen), otherwise the mod might not
-		// actually override as intended.
-		//
-		// HACK: since this is the only place where mods are added,
-		// we can get away with just setting it to 1.
-		// otherwise, add a static counter.
-		uint pri = 1;
-		(void)vfs_mount("", path, VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES|VFS_MOUNT_WATCH, pri);
-	}
-
 	if (args.Has("novbo"))
-		g_ConfigDB.CreateValue(CFG_COMMAND, "novbo")->m_String="true";
+		g_ConfigDB.CreateValue(CFG_COMMAND, "novbo")->m_String = "true";
 
 	if (args.Has("profile"))
 		g_ConfigDB.CreateValue(CFG_COMMAND, "profile")->m_String = args.Get("profile");
