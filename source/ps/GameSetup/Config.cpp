@@ -3,6 +3,7 @@
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/CConsole.h"
+#include "ps/GameSetup/CmdLineArgs.h"
 #include "lib/timer.h"
 #include "lib/res/sound/snd_mgr.h"
 #include "lib/res/file/trace.h"
@@ -89,120 +90,94 @@ static void LoadGlobals()
 }
 
 
-static void ParseCommandLineArgs(int argc, char* argv[])
+static void ProcessCommandLineArgs(const CmdLineArgs& args)
 {
-	for(int i = 1; i < argc; i++)
+	// TODO: all these options (and the ones processed elsewhere) should
+	// be documented somewhere for users.
+
+	if (args.Has("autostart"))
+		 g_AutostartMap = args.Get("autostart");
+
+	if (args.Has("buildarchive"))
 	{
-		// this arg isn't an option; skip
-		if(argv[i][0] != '-')
-			continue;
-
-		char* name = argv[i]+1;	// no leading '-'
-
-		// switch first letter of option name
-		switch(argv[i][1])
-		{
-		case 'a':
-			if(strncmp(name, "autostart=", 10) == 0)
-				 g_AutostartMap = argv[i]+11;
-			break;
-		case 'b':
-			if(!strcmp(name, "buildarchive"))
-				// note: VFS init is sure to have been completed by now
-				// (since CONFIG_Init reads from file); therefore,
-				// it is safe to call this from here directly.
-				vfs_opt_rebuild_main_archive("mods/official/official1.zip", "../logs/trace.txt");
-			break;
-		case 'c':
-			if(strcmp(name, "conf") == 0)
-			{
-				if(argc-i >= 1) // at least one arg left
-				{
-					i++;
-					char* arg = argv[i];
-					char* equ = strchr(arg, '=');
-					if(equ)
-					{
-						*equ = 0;
-						g_ConfigDB.CreateValue(CFG_COMMAND, arg)
-							->m_String = (equ+1);
-					}
-				}
-			}
-			break;
-		case 'e':
-			if(strncmp(name, "entgraph", 8) == 0)
-				g_EntGraph = true;
-			break;
-		case 'f':
-			if(strncmp(name, "fixedframe", 10) == 0)
-				g_FixedFrameTiming = true;
-			break;
-		case 'g':
-			if(strncmp(name, "g=", 2) == 0)
-			{
-				g_Gamma = (float)atof(argv[i] + 3);
-				if(g_Gamma == 0.0f)
-					g_Gamma = 1.0f;
-			}
-			break;
-		case 'l':
-			if(strncmp(name, "listfiles", 9) == 0)
-				trace_enable(true);
-			break;
-		case 'm':
-			if(strncmp(name, "mod=", 4) == 0)
-			{
-				const char* mod_name = name+4;
-				char path[PATH_MAX];
-				snprintf(path, ARRAY_SIZE(path), "mods/%s", mod_name);
-				path[PATH_MAX-1] = '\0';
-				// note: default is 0. we should set this higher in case the
-				// mod file mtimes are actually older than the official
-				// version (*could* happen), otherwise the mod might not
-				// actually override as intended.
-				//
-				// HACK: since this is the only place where mods are added,
-				// we can get away with just setting it to 1.
-				// otherwise, add a static counter.
-				uint pri = 1;
-				(void)vfs_mount("", path, VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES|VFS_MOUNT_WATCH, pri);
-			}
-			break;
-		case 'n':
-			if(strncmp(name, "novbo", 5) == 0)
-				g_ConfigDB.CreateValue(CFG_COMMAND, "novbo")->m_String="true";
-			break;
-		case 'p':
-			if(strncmp(name, "profile=", 8) == 0)
-				g_ConfigDB.CreateValue(CFG_COMMAND, "profile")->m_String = argv[i]+9;
-			break;
-		case 'q':
-			if(strncmp(name, "quickstart", 10) == 0)
-				g_Quickstart = true;
-			break;
-		case 's':
-			if(strncmp(name, "shadows", 7) == 0)
-				g_ConfigDB.CreateValue(CFG_COMMAND, "shadows")->m_String="true";
-			break;
-		case 'v':
-			if(strncmp(name, "vsync", 5) == 0)
-				g_ConfigDB.CreateValue(CFG_COMMAND, "vsync")->m_String="true";
-			break;
-		case 'x':
-			if(strncmp(name, "xres=", 5) == 0)
-				g_ConfigDB.CreateValue(CFG_COMMAND, "xres")->m_String=argv[i]+6;
-			break;
-		case 'y':
-			if(strncmp(name, "yres=", 5) == 0)
-				g_ConfigDB.CreateValue(CFG_COMMAND, "yres")->m_String=argv[i]+6;
-			break;
-		}	// switch
+		// note: VFS init is sure to have been completed by now
+		// (since CONFIG_Init reads from file); therefore,
+		// it is safe to call this from here directly.
+		vfs_opt_rebuild_main_archive("mods/official/official1.zip", "../logs/trace.txt");
 	}
+
+	// Handle "-conf=key:value" (potentially multiple times)
+	std::vector<CStr> conf = args.GetMultiple("conf");
+	for (size_t i = 0; i < conf.size(); ++i)
+	{
+		CStr name_value = conf[i];
+		if (name_value.Find(':') != -1)
+		{
+			CStr name = name_value.BeforeFirst(":");
+			CStr value = name_value.AfterFirst(":");
+			g_ConfigDB.CreateValue(CFG_COMMAND, name)->m_String = value;
+		}
+	}
+
+	if (args.Has("entgraph"))
+		g_EntGraph = true;
+
+	if (args.Has("fixedframe"))
+		g_FixedFrameTiming = true;
+
+	if (args.Has("g"))
+	{
+		g_Gamma = (float)atof(args.Get("g"));
+		if (g_Gamma == 0.0f)
+			g_Gamma = 1.0f;
+	}
+
+	if (args.Has("listfiles"))
+		trace_enable(true);
+
+	std::vector<CStr> mods = args.GetMultiple("mod");
+	for (size_t i = 0; i < mods.size(); ++i)
+	{
+		const char* mod_name = mods[i];
+		char path[PATH_MAX];
+		snprintf(path, ARRAY_SIZE(path), "mods/%s", mod_name);
+		path[PATH_MAX-1] = '\0';
+		// note: default is 0. we should set this higher in case the
+		// mod file mtimes are actually older than the official
+		// version (*could* happen), otherwise the mod might not
+		// actually override as intended.
+		//
+		// HACK: since this is the only place where mods are added,
+		// we can get away with just setting it to 1.
+		// otherwise, add a static counter.
+		uint pri = 1;
+		(void)vfs_mount("", path, VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES|VFS_MOUNT_WATCH, pri);
+	}
+
+	if (args.Has("novbo"))
+		g_ConfigDB.CreateValue(CFG_COMMAND, "novbo")->m_String="true";
+
+	if (args.Has("profile"))
+		g_ConfigDB.CreateValue(CFG_COMMAND, "profile")->m_String = args.Get("profile");
+
+	if (args.Has("quickstart"))
+		g_Quickstart = true;
+
+	if (args.Has("shadows"))
+		g_ConfigDB.CreateValue(CFG_COMMAND, "shadows")->m_String = "true";
+
+	if (args.Has("vsync"))
+		g_ConfigDB.CreateValue(CFG_COMMAND, "vsync")->m_String = "true";
+
+	if (args.Has("xres"))
+		g_ConfigDB.CreateValue(CFG_COMMAND, "xres")->m_String = args.Get("xres");
+
+	if (args.Has("yres"))
+		g_ConfigDB.CreateValue(CFG_COMMAND, "yres")->m_String = args.Get("yres");
 }
 
 
-void CONFIG_Init(int argc, char* argv[])
+void CONFIG_Init(const CmdLineArgs& args)
 {
 	TIMER("CONFIG_Init");
 	MICROLOG(L"init config");
@@ -215,7 +190,7 @@ void CONFIG_Init(int argc, char* argv[])
 	g_ConfigDB.SetConfigFile(CFG_MOD, true, "config/mod.cfg");
 	// No point in reloading mod.cfg here - we haven't mounted mods yet
 
-	ParseCommandLineArgs(argc, argv);
+	ProcessCommandLineArgs(args);
 
 	// Collect information from system.cfg, the profile file,
 	// and any command-line overrides to fill in the globals.

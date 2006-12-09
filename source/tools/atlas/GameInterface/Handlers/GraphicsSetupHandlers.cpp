@@ -34,7 +34,7 @@ MESSAGEHANDLER(Init)
 	if (! msg->initsimulation)
 		flags |= INIT_NO_SIM;
 
-	Init(g_GameLoop->argc, g_GameLoop->argv, flags);
+	Init(g_GameLoop->args, flags);
 
 	g_DidInitSim = msg->initsimulation; // so we can shut down the right things later
 

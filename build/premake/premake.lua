@@ -179,7 +179,7 @@ function package_setup_pch(pch_dir, header, source)
 			})
 		end
 		for i,v in project.configs do
-			tinsert(package.config[v].defines, { "USING_PCH" })
+			tinsert(package.config[v].defines, "USING_PCH")
 		end
 	end
 end
@@ -732,8 +732,8 @@ function setup_tests()
 	package_add_extern_libs(used_extern_libs)
 	if OS == "windows" then
 		-- required for win.cpp's init mechanism
-		tinsert(package.linkoptions, "/ENTRY:entry")
-
+		tinsert(package.linkoptions, "/ENTRY:entry_noSEH")
+		
 		-- from "lowlevel" static lib; must be added here to be linked in
 		tinsert(package.files, source_root.."lib/sysdep/win/error_dialog.rc")
 

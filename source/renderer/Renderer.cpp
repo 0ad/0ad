@@ -1437,7 +1437,7 @@ bool CRenderer::LoadTexture(CTexture* texture,u32 wrapflags)
 {
 	const Handle errorhandle = -1;
 
-	Handle h=texture->GetHandle();
+	Handle h = texture->GetHandle();
 	// already tried to load this texture
 	if (h)
 	{
@@ -1446,7 +1446,7 @@ bool CRenderer::LoadTexture(CTexture* texture,u32 wrapflags)
 		return h==errorhandle ? true : false;
 	}
 
-	h=ogl_tex_load(texture->GetName());
+	h = ogl_tex_load(texture->GetName());
 	if (h <= 0)
 	{
 		LOG(ERROR, LOG_CATEGORY, "LoadTexture failed on \"%s\"",(const char*) texture->GetName());

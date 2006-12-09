@@ -34,5 +34,6 @@ enum InitFlags
 	INIT_NO_SIM = 4,
 };
 
-extern void Init(int argc, char* argv[], uint flags);
+class CmdLineArgs;
+extern void Init(const CmdLineArgs& args, uint flags);
 extern void Shutdown(uint flags);

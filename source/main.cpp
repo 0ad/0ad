@@ -23,6 +23,7 @@ that of Atlas depending on commandline parameters.
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/GameSetup/Atlas.h"
 #include "ps/GameSetup/Config.h"
+#include "ps/GameSetup/CmdLineArgs.h"
 #include "ps/Loader.h"
 #include "ps/CConsole.h"
 #include "ps/Profile.h"
@@ -365,32 +366,35 @@ void kill_mainloop()
 int main(int argc, char* argv[])
 {
 	// If you ever want to catch a particular allocation:
-	//_CrtSetBreakAlloc(7864);
+	//_CrtSetBreakAlloc(321);
 
 	// see discussion at declaration of win_pre_main_init.
 #if OS_WIN
 	win_pre_main_init();
 #endif
 
-	ATLAS_RunIfOnCmdLine(argc, argv);
+	{ // scope for args
 
-	Init(argc, argv, 0);
-	MainControllerInit();
+		CmdLineArgs args(argc, argv);
 
-debug_filter_add("LOADER");
+		bool ran_atlas = ATLAS_RunIfOnCmdLine(args);
 
-//trace_gen_random(5000);
-//trace_write_to_file("../logs/trace.txt");
+		// Atlas handles the whole init/shutdown/etc sequence by itself,
+		// so we skip all this and just exit if Atlas was run
+		if (! ran_atlas)
+		{
+			Init(args, 0);
+			MainControllerInit();
 
-#if 0
-trace_run("../logs/trace.txt");
-#else
-	while(!quit)
-		Frame();
-#endif
+			debug_filter_add("LOADER"); // TODO: remove this?
 
-	Shutdown(0);
-	MainControllerShutdown();
+			while(!quit)
+				Frame();
+
+			Shutdown(0);
+			MainControllerShutdown();
+		}
+	}
 
 	debug_printf("Shutdown complete, calling exit() now\n");
 	

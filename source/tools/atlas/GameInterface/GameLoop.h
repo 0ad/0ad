@@ -1,14 +1,15 @@
 #ifndef GAMELOOP_H__
 #define GAMELOOP_H__
 
+#include "ps/GameSetup/CmdLineArgs.h"
+
 extern void (*Atlas_GLSetCurrent)(void* context);
 
 class View;
 
 struct GameLoopState
 {
-	int argc;
-	char** argv;
+	CmdLineArgs args;
 
 	bool running; // whether the Atlas game loop is still running
 	View* view; // current 'view' (controls updates, rendering, etc)

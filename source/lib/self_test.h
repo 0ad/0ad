@@ -190,8 +190,38 @@ extern bool self_test_active;
 #include <cxxtest/StdValueTraits.h>
 #include <cxxtest/TestSuite.h>
 
+// Perform nice printing of CStr, based on std::string
+#include "ps/CStr.h"
+namespace CxxTest
+{
+	CXXTEST_TEMPLATE_INSTANTIATION
+	class ValueTraits<const CStr8> : public ValueTraits<const CXXTEST_STD(string)>
+	{
+	public:
+		ValueTraits( const CStr8 &s ) : ValueTraits<const CXXTEST_STD(string)>( s.c_str() ) {}
+	};
+
+	CXXTEST_COPY_CONST_TRAITS( CStr8 );
+
+	CXXTEST_TEMPLATE_INSTANTIATION
+	class ValueTraits<const CStrW> : public ValueTraits<const CXXTEST_STD(wstring)>
+	{
+	public:
+		ValueTraits( const CStrW &s ) : ValueTraits<const CXXTEST_STD(wstring)>( s.c_str() ) {}
+	};
+
+	CXXTEST_COPY_CONST_TRAITS( CStrW );
+}
+
 #define TS_ASSERT_OK(expr) TS_ASSERT_EQUALS((expr), INFO::OK)
 #define TS_ASSERT_STR_EQUALS(str1, str2) TS_ASSERT_EQUALS(std::string(str1), std::string(str2))
 #define TS_ASSERT_WSTR_EQUALS(str1, str2) TS_ASSERT_EQUALS(std::wstring(str1), std::wstring(str2))
+
+template <typename T>
+std::vector<T> ts_make_vector(T* start, size_t size_bytes)
+{
+	return std::vector<T>(start, start+(size_bytes/sizeof(T)));
+}
+#define TS_ASSERT_VECTOR_EQUALS_ARRAY(vec1, array) TS_ASSERT_EQUALS(vec1, ts_make_vector((array), sizeof(array)))
 
 #endif	// #ifndef SELF_TEST_H__

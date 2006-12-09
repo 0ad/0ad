@@ -88,9 +88,10 @@
 #include "network/Server.h"
 #include "network/Client.h"
 
-#include "Atlas.h"
-#include "GameSetup.h"
-#include "Config.h"
+#include "ps/GameSetup/Atlas.h"
+#include "ps/GameSetup/GameSetup.h"
+#include "ps/GameSetup/Config.h"
+#include "ps/GameSetup/CmdLineArgs.h"
 
 ERROR_GROUP(System);
 ERROR_TYPE(System, SDLInitFailed);
@@ -875,7 +876,7 @@ void Shutdown(uint flags)
 }
 
 
-void Init(int argc, char* argv[], uint flags)
+void Init(const CmdLineArgs& args, uint flags)
 {
 	const bool setup_vmode = (flags & INIT_HAVE_VMODE) == 0;
 
@@ -892,11 +893,7 @@ void Init(int argc, char* argv[], uint flags)
 	// and will mess up the error reporting if anything
 	// crashes before the working directory is set.
 	MICROLOG(L"init vfs");
-	const char* argv0 = argc? argv[0] : NULL;
-	// ScEd doesn't have a main(argc, argv), and so it has no argv. In that
-	// case, just pass NULL to InitVfs, which will work out the current
-	// directory for itself.
-	InitVfs(argv0);
+	InitVfs(args.GetArg0().c_str());
 
 	// This must come after VFS init, which sets the current directory
 	// (required for finding our output log files).
@@ -938,7 +935,7 @@ void Init(int argc, char* argv[], uint flags)
 	InitScripting();	// before GUI
 
 	// g_ConfigDB, command line args, globals
-	CONFIG_Init(argc, argv);
+	CONFIG_Init(args);
 
 	// setup_gui must be set after CONFIG_Init, so command-line parameters can disable it
 	const bool setup_gui = ((flags & INIT_NO_GUI) == 0 && g_AutostartMap.Length() == 0);

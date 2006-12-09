@@ -58,15 +58,12 @@ static void* LaunchWindow(void* data)
 }
 
 // Work out which Atlas window to launch, given the command-line arguments
-static const wchar_t* FindWindowName(int argc, char* argv[])
+static const wchar_t* FindWindowName(const CmdLineArgs& args)
 {
-	for (int i = 1; i < argc; i++)
-	{
-		if (strcmp(argv[i], "-actorviewer") == 0)
-			return L"ActorViewer";
-	}
-
-	return L"ScenarioEditor";
+	if (args.Has("actorviewer"))
+		return L"ActorViewer";
+	else
+		return L"ScenarioEditor";
 }
 
 static ErrorReaction AtlasDisplayError(const wchar_t* text, uint flags)
@@ -77,7 +74,7 @@ static ErrorReaction AtlasDisplayError(const wchar_t* text, uint flags)
 	return ER_CONTINUE;
 }
 
-bool BeginAtlas(int argc, char* argv[], void* dll) 
+bool BeginAtlas(const CmdLineArgs& args, void* dll) 
 {
 	// Load required symbols from the DLL
 #define GET(x) *(void**)&x = dlsym(dll, #x); debug_assert(x); if (! x) return false;
@@ -100,7 +97,7 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 	RegisterHandlers();
 
 	// Create a new thread, and launch the Atlas window inside that thread
-	const wchar_t* windowName = FindWindowName(argc, argv);
+	const wchar_t* windowName = FindWindowName(args);
 	pthread_t uiThread;
 	pthread_create(&uiThread, NULL, LaunchWindow, reinterpret_cast<void*>(const_cast<wchar_t*>(windowName)));
 
@@ -109,8 +106,7 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 	hooks.display_error = AtlasDisplayError;
 	app_hooks_update(&hooks);
 
-	state.argc = argc;
-	state.argv = argv;
+	state.args = args;
 	state.running = true;
 	state.view = View::GetView_None();
 	state.glContext = NULL;
@@ -245,5 +241,5 @@ bool BeginAtlas(int argc, char* argv[], void* dll)
 	// Clean up
 	View::DestroyViews();
 
-	exit(0);
+	return true;
 }

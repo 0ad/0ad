@@ -28,5 +28,5 @@ extern CStr g_AutostartMap;
 
 extern CStr g_CursorName;
 
-
-extern void CONFIG_Init(int argc, char* argv[]);
+class CmdLineArgs;
+extern void CONFIG_Init(const CmdLineArgs& args);

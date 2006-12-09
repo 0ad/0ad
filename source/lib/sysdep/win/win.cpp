@@ -365,3 +365,18 @@ int entry()
 #endif
 	return SEH_wrapped_entry();
 }
+
+
+// Alternative entry point, for programs that don't want the SEH handler
+// (e.g. unit tests, where it's better to let the debugger handle any errors)
+int entry_noSEH()
+{
+	int ret;
+	pre_libc_init();
+#ifdef USE_WINMAIN
+	ret = WinMainCRTStartup();
+#else
+	ret = mainCRTStartup();
+#endif
+	return ret;
+}

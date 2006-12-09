@@ -2,6 +2,7 @@
 
 #include "lib/posix.h"
 #include "lib/lib.h"
+#include "ps/GameSetup/CmdLineArgs.h"
 #include "Atlas.h"
 
 //----------------------------------------------------------------------------
@@ -74,7 +75,7 @@ enum AtlasRunFlags
 };
 
 // starts the Atlas UI.
-static void ATLAS_Run(int argc, char* argv[], int flags = 0)
+static void ATLAS_Run(const CmdLineArgs& args, int flags = 0)
 {
 	// first check if we can run at all
 	if(!ATLAS_IsAvailable())
@@ -87,8 +88,8 @@ static void ATLAS_Run(int argc, char* argv[], int flags = 0)
 	}
 
 	// TODO (make nicer)
-	extern bool BeginAtlas(int argc, char* argv[], void* dll);
-	if (!BeginAtlas(argc, argv, atlas_so_handle))
+	extern bool BeginAtlas(const CmdLineArgs& args, void* dll);
+	if (!BeginAtlas(args, atlas_so_handle))
 	{
 		debug_warn("Atlas loading failed");
 		return;
@@ -103,21 +104,15 @@ static void ATLAS_Run(int argc, char* argv[], int flags = 0)
 // notes:
 // - GUI init still runs, but some GUI setup will be skipped since
 //   ATLAS_IsRunning() will return true.
-// - could be merged into CFG_ParseCommandLineArgs, because that appears
-//   to be called early enough. it's not really worth it because this
-//   code is quite simple and we thus avoid startup order dependency.
-void ATLAS_RunIfOnCmdLine(int argc, char* argv[])
+bool ATLAS_RunIfOnCmdLine(const CmdLineArgs& args)
 {
-	for(int i = 1; i < argc; i++)	// skip program name argument
+	if (args.Has("editor"))
 	{
-		if(!strcmp(argv[i], "-editor"))
-		{
-			// don't bother removing this param (unnecessary)
-
-			ATLAS_Run(argc, argv, ATLAS_NO_GUI);
-			break;
-		}
+		ATLAS_Run(args, ATLAS_NO_GUI);
+		return true;
 	}
+
+	return false;
 }
 
 

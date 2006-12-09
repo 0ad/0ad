@@ -1,5 +1,7 @@
 #include "lib/self_test.h"
 
+#include "ps/CStr.h"
+
 class TestTest : public CxxTest::TestSuite 
 {
 public:
@@ -26,5 +28,14 @@ public:
 		TS_ASSERT_STR_EQUALS(TS_AS_STRING((size_t)0), "0");
 		TS_ASSERT_STR_EQUALS(TS_AS_STRING((ssize_t)0), "0");
 		TS_ASSERT_STR_EQUALS(TS_AS_STRING((unsigned int)0), "0");
+	}
+
+	void test_cstr()
+	{
+		TS_ASSERT_STR_EQUALS(TS_AS_STRING(CStr("test")), "\"test\"");
+		TS_ASSERT_STR_EQUALS(TS_AS_STRING(std::string("test")), "\"test\"");
+
+		TS_ASSERT_STR_EQUALS(TS_AS_STRING(CStrW(L"test")), "L\"test\"");
+		TS_ASSERT_STR_EQUALS(TS_AS_STRING(std::wstring(L"test")), "L\"test\"");
 	}
 };
