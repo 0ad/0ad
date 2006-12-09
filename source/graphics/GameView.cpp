@@ -155,12 +155,13 @@ void CGameView::Render()
 {
 	if (m_LockCullCamera == false)
 	{
-		// Set up cull camera; make the FOV higher than for the default camera 
-		// as a temporary means to catch off-screen things (later, we should have
-		// separate cull cameras for shadows and reflections).
+		// Set up cull camera
 		m_CullCamera = m_ViewCamera;
-		m_CullCamera.SetProjection(1.0f, 10000.0f, DEGTORAD(30));
-		m_CullCamera.UpdateFrustum();
+
+		// This can be uncommented to try getting a bigger frustum.. 
+		// but then it makes shadow maps too low-detail.
+		//m_CullCamera.SetProjection(1.0f, 10000.0f, DEGTORAD(30));
+		//m_CullCamera.UpdateFrustum();
 	}
 	g_Renderer.SetSceneCamera(m_ViewCamera, m_CullCamera);
 
