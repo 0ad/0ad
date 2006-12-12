@@ -39,7 +39,12 @@ static void SkinPoint(const SModelVertex& vertex,const CMatrix3D* matrices,CVect
 	const SVertexBlend& blend=vertex.m_Blend;
 
 	// must have at least one valid bone if we're using SkinPoint
-	debug_assert(blend.m_Bone[0]!=0xff);
+	if (blend.m_Bone[0] == 0xff)
+	{
+		// (CModel should have already complained about this)
+		result = CVector3D(0, 0, 0);
+		return;
+	}
 
 	const CMatrix3D& m=matrices[blend.m_Bone[0]];
 	m.Transform(vertex.m_Coords,result);
@@ -60,7 +65,12 @@ static void SkinNormal(const SModelVertex& vertex, const CMatrix3D* invtranspmat
 	const SVertexBlend& blend=vertex.m_Blend;
 
 	// must have at least one valid bone if we're using SkinNormal
-	debug_assert(blend.m_Bone[0]!=0xff);
+	if (blend.m_Bone[0] == 0xff)
+	{
+		// (CModel should have already complained about this)
+		result = CVector3D(0, 0, 0);
+		return;
+	}
 
 	const CMatrix3D& m = invtranspmatrices[blend.m_Bone[0]];
 	m.Rotate(vertex.m_Norm, result);

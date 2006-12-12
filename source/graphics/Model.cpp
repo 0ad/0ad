@@ -108,22 +108,26 @@ bool CModel::InitModel(CModelDefPtr modeldef)
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // SkinPoint: skin the given point using the given blend and matrix data
-static CVector3D SkinPoint(const CVector3D& pos,const SVertexBlend& blend,
+static CVector3D SkinPoint(const CVector3D& pos, const SVertexBlend& blend,
 						   const CMatrix3D* bonestates)
 {
 	CVector3D result,tmp;
 
 	// must have at least one valid bone if we're using SkinPoint
-	debug_assert(blend.m_Bone[0]!=0xff);
+	if (blend.m_Bone[0] == 0xff)
+	{
+		ONCE( debug_warn("SkinPoint called for vertex with no bone weights") );
+		return CVector3D(0, 0, 0);
+	}
 
-	const CMatrix3D& m=bonestates[blend.m_Bone[0]];
-	m.Transform(pos,result);
-	result*=blend.m_Weight[0];
+	const CMatrix3D& m = bonestates[blend.m_Bone[0]];
+	m.Transform(pos, result);
+	result *= blend.m_Weight[0];
 
-	for (int i=1;i<SVertexBlend::SIZE && blend.m_Bone[i]!=0xff;i++) {
-		const CMatrix3D& m=bonestates[blend.m_Bone[i]];
-		m.Transform(pos,tmp);
-		result+=tmp*blend.m_Weight[i];
+	for (int i = 1; i < SVertexBlend::SIZE && blend.m_Bone[i] != 0xff; i++) {
+		const CMatrix3D& m = bonestates[blend.m_Bone[i]];
+		m.Transform(pos, tmp);
+		result += tmp*blend.m_Weight[i];
 	}
 
 	return result;
