@@ -49,8 +49,8 @@ public:
 			q.ToMatrix(m);
 			CQuaternion q2 = m.GetRotation();
 
-			// I hope there's a good reason why they're sometimes negated, and
-			// it's not just a bug...
+			// Quaternions (x,y,z,w) and (-x,-y,-z,-w) are equivalent when
+			// interpreted as rotations, so it doesn't matter which we get
 			const bool ok_oneway = 
 				feq(q2.m_W, q.m_W) &&
 				feq(q2.m_V.X, q.m_V.X) &&

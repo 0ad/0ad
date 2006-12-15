@@ -11,13 +11,12 @@
 
 #include "ps/CStr.h"
 #include "maths/Vector3D.h"
-#include "MeshManager.h"
-#include "SkeletonAnimDef.h"
+#include "maths/Quaternion.h"
 #include <map>
-#include <vector>
 
 class CMeshManager;
 class CModelDef;
+class CBoneState;
 
 ///////////////////////////////////////////////////////////////////////////////
 // SPropPoint: structure describing a prop point
@@ -89,7 +88,7 @@ class CModelDef
 	friend class CMeshManager;
 public:
 	// current file version given to saved animations
-	enum { FILE_VERSION = 2 };
+	enum { FILE_VERSION = 3 };
 	// supported file read version - files with a version less than this will be rejected
 	enum { FILE_READ_VERSION = 1 };
 
@@ -101,7 +100,7 @@ public:
 	virtual ~CModelDef();
 
 	// model I/O functions
-	static void Save(const char* filename,const CModelDef* mdef);
+ 	static void Save(const char* filename,const CModelDef* mdef);
 	
 public:
 	// accessor: get vertex data
@@ -116,7 +115,6 @@ public:
 	size_t GetNumBones() const { return (size_t)m_NumBones; }
 	CBoneState* GetBones() const { return m_Bones; }
 
-
 	// accessor: get prop data
 	int GetNumPropPoints() const { return m_NumPropPoints; }
 	SPropPoint* GetPropPoints() const { return m_PropPoints; }
@@ -126,7 +124,23 @@ public:
 	SPropPoint* FindPropPoint(const char* name) const;
 
 	/**
-	 * SetRenderData: Register renderer private data. Use the key to
+	 * Transform the given vertex's position from the bind pose into the new pose.
+	 *
+	 * @return new world-space vertex coordinates
+	 */
+	static CVector3D SkinPoint(const SModelVertex& vtx,
+		const CMatrix3D newPoseMatrices[], const CMatrix3D inverseBindMatrices[]);
+
+	/**
+	 * Transform the given vertex's normal from the bind pose into the new pose.
+	 *
+	 * @return new world-space vertex normal
+	 */
+	static CVector3D SkinNormal(const SModelVertex& vtx,
+		const CMatrix3D newPoseMatrices[], const CMatrix3D inverseBindMatrices[]);
+
+	/**
+	 * Register renderer private data. Use the key to
 	 * distinguish between private data used by different render paths.
 	 * The private data will be managed by this CModelDef object:
 	 * It will be deleted when CModelDef is destructed or when private

@@ -1,10 +1,8 @@
 #ifndef __MATRIX3D_H
 #define __MATRIX3D_H
 
-#include <math.h>
-#include "Vector3D.h"
-#include "Vector4D.h"
-
+class CVector3D;
+class CVector4D;
 class CQuaternion;
 
 /////////////////////////////////////////////////////////////////////////
@@ -97,8 +95,11 @@ public:
 	// calculate the inverse of this matrix, store in dst
 	void GetInverse(CMatrix3D& dst) const;
 
+	// return the inverse of this matrix
+	CMatrix3D GetInverse() const;
+
 	// calculate the transpose of this matrix, store in dst
-	void GetTranspose(CMatrix3D& dst) const;
+	CMatrix3D GetTranspose() const;
 
 	// return the translation component of this matrix
 	CVector3D GetTranslation() const;

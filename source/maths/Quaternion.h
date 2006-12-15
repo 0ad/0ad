@@ -22,39 +22,39 @@ public:
 	CQuaternion();
 	CQuaternion(float x, float y, float z, float w);
 	
-	//quaternion addition
+	// Quaternion addition
 	CQuaternion operator + (const CQuaternion &quat) const;
-	//quaternion addition/assignment
+	// Quaternion addition/assignment
 	CQuaternion &operator += (const CQuaternion &quat);
 
-	//quaternion multiplication
+	// Quaternion multiplication
 	CQuaternion operator * (const CQuaternion &quat) const;
-	//quaternion multiplication/assignment
+	// Quaternion multiplication/assignment
 	CQuaternion &operator *= (const CQuaternion &quat);
 	
 	void FromEulerAngles (float x, float y, float z);
 	CVector3D ToEulerAngles();
 	
-	//convert the quaternion to matrix
+	// Convert the quaternion to matrix
 	CMatrix3D ToMatrix() const;
 	void ToMatrix(CMatrix3D& result) const;
 
-	//sphere interpolation
+	// Sphere interpolation
 	void Slerp(const CQuaternion& from, const CQuaternion& to, float ratio);
 
-	// create a quaternion from axis/angle representation of a rotation
+	// Create a quaternion from axis/angle representation of a rotation
 	void FromAxisAngle(const CVector3D& axis, float angle);
 
-	// convert the quaternion to axis/angle representation of a rotation
+	// Convert the quaternion to axis/angle representation of a rotation
 	void ToAxisAngle(CVector3D& axis, float& angle);
 
-	// normalize this quaternion
+	// Normalize this quaternion
 	void Normalize();
 
-	// rotate a vector by this quaternion
+	// Rotate a vector by this quaternion. Assumes the quaternion is normalised.
 	CVector3D Rotate(const CVector3D& vec) const;
 
-	// calculate q^-1
+	// Calculate q^-1. Assumes the quaternion is normalised.
 	CQuaternion GetInverse() const;
 };
 

@@ -2,9 +2,10 @@
 #define __H_MINIMAP_H__
 
 #include "gui/GUI.h"
-#include "ps/Vector2D.h"
-#include "maths/Vector3D.h"
-#include "graphics/Camera.h"
+
+class CVector2D;
+class CVector3D;
+class CCamera;
 class CTerrain;
 class CUnitManager;
 

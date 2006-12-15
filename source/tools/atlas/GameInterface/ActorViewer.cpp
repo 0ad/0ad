@@ -51,7 +51,7 @@ ActorViewer::ActorViewer()
 : m(*new ActorViewerImpl())
 {
 	m.Unit = NULL;
-	m.WalkEnabled = true;
+	m.WalkEnabled = false;
 	m.Background = SColor4ub(255, 255, 255, 255);
 
 	// Set up the renderer

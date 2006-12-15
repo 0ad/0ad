@@ -353,7 +353,6 @@ CRenderer::CRenderer()
 	m_ClearColor[0]=m_ClearColor[1]=m_ClearColor[2]=m_ClearColor[3]=0;
 
 	m_SortAllTransparent = false;
-	m_FastNormals = true;
 	m_DisplayFrustum = false;
 	m_DisableCopyShadow = false;
 	m_FastPlayerColor = true;
@@ -1747,7 +1746,6 @@ void CRenderer::ScriptingInit()
 	AddProperty(L"renderpath", &CRenderer::JSI_GetRenderPath, &CRenderer::JSI_SetRenderPath);
 	AddProperty(L"useDepthTexture", &CRenderer::JSI_GetUseDepthTexture, &CRenderer::JSI_SetUseDepthTexture);
 	AddProperty(L"sortAllTransparent", &CRenderer::m_SortAllTransparent);
-	AddProperty(L"fastNormals", &CRenderer::m_FastNormals);
 	AddProperty(L"displayFrustum", &CRenderer::m_DisplayFrustum);
 	AddProperty(L"shadowZBias", &CRenderer::m_ShadowZBias);
 	AddProperty(L"disableCopyShadow", &CRenderer::m_DisableCopyShadow);

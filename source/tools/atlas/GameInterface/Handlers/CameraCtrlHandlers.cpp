@@ -168,7 +168,7 @@ MESSAGEHANDLER(LookAt)
 		0, 0, 0, 1
 	);
 
-	M.GetTranspose(camera.m_Orientation);
+	camera.m_Orientation = M.GetTranspose();
 	camera.m_Orientation.Translate(-eye);
 
 	camera.UpdateFrustum();

@@ -166,7 +166,7 @@ static void SendToGame(const AtlasMessage::sEnvironmentSettings& settings)
 ActorViewer::ActorViewer(wxWindow* parent)
 	: wxFrame(parent, wxID_ANY, _("Actor Viewer"), wxDefaultPosition, wxSize(800, 600)),
 	m_CurrentSpeed(0.f), m_BackgroundColour(wxColour(255, 255, 255)),
-	m_ToggledWalking(true), m_ToggledWireframe(false), m_ToggledGround(true),
+	m_ToggledWalking(false), m_ToggledWireframe(false), m_ToggledGround(true),
 	m_ToggledShadows(true), m_ToggledStats(false),
 	m_ObjectSettings(m_ObjectSelection, AtlasMessage::eRenderView::ACTOR)
 {

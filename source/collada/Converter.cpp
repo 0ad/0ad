@@ -55,7 +55,6 @@ struct BoneTransform
 {
 	float translation[3];
 	float orientation[4];
-	FMMatrix44 matrix; // not output in the PMD, but useful for calculating bone transforms
 };
 
 
@@ -146,11 +145,7 @@ public:
 			FCDGeometryPolygons* polys = GetPolysFromGeometry((FCDGeometry*)baseTarget);
 
 			// Make sure it doesn't use more bones per vertex than the game can handle
-// 			SkinReduceInfluences(skin, maxInfluences, 0.001f);
-
-			// XXX The game is broken if there's >1 influence per vertex. Until
-			// that's fixed, just limit it to 1 and put up with the ugly blending...
-			SkinReduceInfluences(skin, 1, 0.001f);
+			SkinReduceInfluences(skin, maxInfluences, 0.001f);
 
 			// Convert the bone influences into VertexBlend structures for the PMD
 
@@ -207,8 +202,7 @@ public:
 
 				BoneTransform b = {
 					{ parts.t.x, parts.t.y, parts.t.z },
-					{ parts.q.x, parts.q.y, parts.q.z, parts.q.w },
-					bindPose
+					{ parts.q.x, parts.q.y, parts.q.z, parts.q.w }
 				};
 
 				int boneId = StdSkeletons::FindStandardBoneID(joint->joint->GetName());
@@ -231,7 +225,7 @@ public:
 			assert(normal.size() == vertices*3);
 			assert(texcoord.size() == vertices*2);
 
-			TransformVertices(position, normal, blends, bones, transform);
+			TransformVertices(position, normal, bones, transform);
 
 			WritePMD(output, vertices, bones.size(), &position[0], &normal[0], &texcoord[0], &blends[0], &bones[0]);
 		}
@@ -257,7 +251,7 @@ public:
 		if (boneCount) assert(boneWeights && boneTransforms);
 
 		output("PSMD", 4);  // magic number
-		write<uint32>(output, 2); // version number
+		write<uint32>(output, 3); // version number
 		write<uint32>(output, (uint32)(
 			4 + 13*4*vertexCount + // vertices
 			4 + 6*vertexCount/3 + // faces
@@ -364,51 +358,16 @@ public:
 		}
 	}
 
-	static void TransformVertices(FloatList& position, FloatList& normal, std::vector<VertexBlend>& blends, std::vector<BoneTransform>& bones, const FMMatrix44& transform)
+	static void TransformVertices(FloatList& position, FloatList& normal, std::vector<BoneTransform>& bones, const FMMatrix44& transform)
 	{
 		for (size_t vtxId = 0; vtxId < position.size()/3; ++vtxId)
 		{
-			// Skinned vertices need to be transformed by the inverse of their
-			// rest states:
-
-			float zero16[16] = {0};
-			FMMatrix44 bindPoseTransform (zero16);
-
-			// Calculate the weighted sum of influence matrices
-			for (size_t j = 0; j < maxInfluences; ++j)
-			{
-				// Ignore unused bone influences
-				if (blends[vtxId].bones[j] == 0xff)
-					continue;
-
-				float weight = blends[vtxId].weights[j];
-				const BoneTransform& b = bones[blends[vtxId].bones[j]];
-
-				// The transformation matrix could be reconstructed with:
-				/*
-				FMMatrix44 R = QuatToMatrix(b.orientation[0], b.orientation[1], b.orientation[2], b.orientation[3]);
-				FMMatrix44 T = FMMatrix44::TranslationMatrix(FMVector3(b.translation, 0));
-				FMMatrix44 boneMatrix = T * R;
-				*/
-				// but since we generated orientation/translation from a matrix,
-				// just use that matrix directly:
-				FMMatrix44 boneMatrix = b.matrix;
-
-				bindPoseTransform = bindPoseTransform + weight * boneMatrix;
-			}
-
 			FMVector3 pos (&position[vtxId*3], 0);
 			FMVector3 norm (&normal[vtxId*3], 0);
 
-			// Apply the scene-node transforms first
+			// Apply the scene-node transforms
 			pos = transform.TransformCoordinate(pos);
 			norm = transform.TransformVector(norm).Normalize();
-
-			// Apply the inverse bind pose transform, so the model will display
-			// correctly after it's been transform back again
-			FMMatrix44 bindPoseTransformInverse = bindPoseTransform.Inverted();
-			pos = bindPoseTransformInverse.TransformCoordinate(pos);
-			norm = bindPoseTransformInverse.TransformVector(norm);
 
 			// Switch from Max's coordinate system into the game's:
 

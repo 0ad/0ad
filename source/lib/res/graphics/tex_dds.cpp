@@ -517,16 +517,28 @@ static LibError decode_sd(const DDSURFACEDESC2* sd, uint* w_, uint* h_,
 	// image dimensions
 	const u32 h = read_le32(&sd->dwHeight);
 	const u32 w = read_le32(&sd->dwWidth);
-	// .. not padded to S3TC block size
-	if(w % 4 || h % 4)
-		WARN_RETURN(ERR::TEX_INVALID_SIZE);
 
 	// pixel format
 	uint bpp, flags;
 	RETURN_ERR(decode_pf(&sd->ddpfPixelFormat, &bpp, &flags));
 
+	// if the image is not aligned with the S3TC block size, it is stored
+	// with extra pixels on the bottom left to fill up the space, so we need
+	// to account for those when calculating how big it should be
+	u32 stored_h, stored_w;
+	if(flags & TEX_DXT)
+	{
+		stored_h = round_up(h, 4);
+		stored_w = round_up(w, 4);
+	}
+	else
+	{
+		stored_h = h;
+		stored_w = w;
+	}
+
 	// verify pitch or linear size, if given
-	const size_t pitch = w*bpp/8;
+	const size_t pitch = stored_w*bpp/8;
 	const u32 sd_pitch_or_size = read_le32(&sd->dwPitchOrLinearSize);
 	if(sd_flags & DDSD_PITCH)
 	{
@@ -535,7 +547,7 @@ static LibError decode_sd(const DDSURFACEDESC2* sd, uint* w_, uint* h_,
 	}
 	if(sd_flags & DDSD_LINEARSIZE)
 	{
-		if(sd_pitch_or_size != pitch*h)
+		if(sd_pitch_or_size != pitch*stored_h)
 			WARN_RETURN(ERR::CORRUPTED);
 	}
 	// note: both flags set would be invalid; no need to check for that,

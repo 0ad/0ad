@@ -2,18 +2,17 @@
 
 #include <math.h>
 
+#include "MiniMap.h"
+
 #include "graphics/GameView.h"
 #include "graphics/MiniPatch.h"
-#include "graphics/Model.h"
 #include "graphics/Terrain.h"
 #include "graphics/TextureEntry.h"
 #include "graphics/TextureManager.h"
 #include "graphics/Unit.h"
 #include "graphics/UnitManager.h"
-#include "gui/MiniMap.h"
 #include "lib/ogl.h"
 #include "lib/sdl.h"
-#include "maths/Bound.h"
 #include "ps/Game.h"
 #include "ps/Interact.h"
 #include "network/NetMessage.h"

@@ -13,6 +13,7 @@
 
 #include "Matrix3D.h"
 #include "Quaternion.h"
+#include "Vector4D.h"
 
 CMatrix3D::CMatrix3D ()
 {
@@ -262,8 +263,10 @@ void CMatrix3D::Scale (float x_scale, float y_scale, float z_scale)
 
 //Returns the transpose of the matrix. For orthonormal
 //matrices, this is the same is the inverse matrix
-void CMatrix3D::GetTranspose(CMatrix3D& result) const
+CMatrix3D CMatrix3D::GetTranspose() const
 {
+	CMatrix3D result;
+
 	result._11 = _11;
 	result._21 = _12;
 	result._31 = _13;
@@ -283,6 +286,8 @@ void CMatrix3D::GetTranspose(CMatrix3D& result) const
 	result._24 = _42;
 	result._34 = _43;
 	result._44 = _44;
+
+	return result;
 }
 
 
@@ -472,6 +477,13 @@ void CMatrix3D::GetInverse(CMatrix3D& dst) const
 	for ( int j = 0; j < 16; j++) {
 		dst._data[j] *= det;
 	}
+}
+
+CMatrix3D CMatrix3D::GetInverse() const
+{
+	CMatrix3D r;
+	GetInverse(r);
+	return r;
 }
 
 void CMatrix3D::Rotate(const CQuaternion& quat)

@@ -130,26 +130,21 @@ CMatrix3D CQuaternion::ToMatrix () const
 
 void CQuaternion::ToMatrix(CMatrix3D& result) const
 {
-	float x2, y2, z2;
 	float wx, wy, wz, xx, xy, xz, yy, yz, zz;
 
 	// calculate coefficients
-	x2 = m_V.X + m_V.X;
-	y2 = m_V.Y + m_V.Y; 
-	z2 = m_V.Z + m_V.Z;
-
-	xx = m_V.X * x2;
-	xy = m_V.X * y2;
-	xz = m_V.X * z2;
+	xx = m_V.X * m_V.X * 2.f;
+	xy = m_V.X * m_V.Y * 2.f;
+	xz = m_V.X * m_V.Z * 2.f;
 	
-	yy = m_V.Y * y2;
-	yz = m_V.Y * z2;
+	yy = m_V.Y * m_V.Y * 2.f;
+	yz = m_V.Y * m_V.Z * 2.f;
 	
-	zz = m_V.Z * z2;
+	zz = m_V.Z * m_V.Z * 2.f;
 
-	wx = m_W * x2;
-	wy = m_W * y2;
-	wz = m_W * z2;
+	wx = m_W * m_V.X * 2.f;
+	wy = m_W * m_V.Y * 2.f;
+	wz = m_W * m_V.Z * 2.f;
 
 	result._11 = 1.0f - (yy + zz);
 	result._12 = xy - wz;
@@ -277,6 +272,8 @@ CVector3D CQuaternion::Rotate(const CVector3D& vec) const
 
 CQuaternion CQuaternion::GetInverse() const
 {
-	float lensqrd = SQR(m_V.X) + SQR(m_V.Y) + SQR(m_V.Z) + SQR(m_W);
-	return CQuaternion(-m_V.X/lensqrd, -m_V.Y/lensqrd, -m_V.Z/lensqrd, m_W/lensqrd);
+	// (x,y,z,w)^-1 = (-x/l^2, -y/l^2, -z/l^2, w/l^2) where l^2=x^2+y^2+z^2+w^2
+	// Since we're only using quaternions for rotation, they should always have unit
+	// length, so assume l=1
+	return CQuaternion(-m_V.X, -m_V.Y, -m_V.Z, m_W);
 }

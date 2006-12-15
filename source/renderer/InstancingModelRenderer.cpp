@@ -132,7 +132,7 @@ void* InstancingModelRenderer::CreateModelData(CModel* model)
 	CModelDefPtr mdef = model->GetModelDef();
 	IModelDef* imodeldef = (IModelDef*)mdef->GetRenderData(m);
 
-	debug_assert(!model->GetBoneMatrices());
+	debug_assert(!model->IsSkinned());
 
 	if (!imodeldef)
 	{

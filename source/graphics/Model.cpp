@@ -27,9 +27,9 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Constructor
 CModel::CModel() 
-	: m_Parent(0), m_Flags(0), m_Anim(0), m_AnimTime(0), 
-	m_BoneMatrices(0), m_InvTranspBoneMatrices(0),
-	m_PositionValid(false), m_InvTranspValid(false), m_ShadingColor(1,1,1,1)
+	: m_Parent(NULL), m_Flags(0), m_Anim(NULL), m_AnimTime(0), 
+	m_BoneMatrices(NULL), m_InverseBindBoneMatrices(NULL),
+	m_PositionValid(false), m_ShadingColor(1,1,1,1)
 {
 }
 
@@ -62,8 +62,9 @@ CModel::~CModel()
 void CModel::ReleaseData()
 {
 	delete[] m_BoneMatrices;
-	delete[] m_InvTranspBoneMatrices;
-	for (size_t i=0;i<m_Props.size();i++) {
+	delete[] m_InverseBindBoneMatrices;
+	for (size_t i = 0; i < m_Props.size(); ++i)
+	{
 		m_Props[i].m_Model->m_Parent = 0;
 		delete m_Props[i].m_Model;
 	}
@@ -84,19 +85,24 @@ bool CModel::InitModel(CModelDefPtr modeldef)
 
 	m_pModelDef = modeldef;
 	
-	size_t numBones=modeldef->GetNumBones();
-	if (numBones != 0) {
+	size_t numBones = modeldef->GetNumBones();
+	if (numBones != 0)
+	{
 		// allocate matrices for bone transformations
-		m_BoneMatrices=new CMatrix3D[numBones];
-		m_InvTranspBoneMatrices=new CMatrix3D[numBones];
+		m_BoneMatrices = new CMatrix3D[numBones];
+		m_InverseBindBoneMatrices = new CMatrix3D[numBones];
+
 		// store default pose until animation assigned
-		CBoneState* defpose=modeldef->GetBones();
-		for (uint i=0;i<numBones;i++) {
-			CMatrix3D& m=m_BoneMatrices[i];
-			m.SetIdentity();
-			m.Rotate(defpose[i].m_Rotation);
-			m.Translate(defpose[i].m_Translation);
-			m_InvTranspValid = false;
+		CBoneState* defpose = modeldef->GetBones();
+		for (size_t i = 0; i < numBones; ++i)
+		{
+			m_BoneMatrices[i].SetIdentity();
+			m_BoneMatrices[i].Rotate(defpose[i].m_Rotation);
+			m_BoneMatrices[i].Translate(defpose[i].m_Translation);
+
+			m_InverseBindBoneMatrices[i].SetIdentity();
+			m_InverseBindBoneMatrices[i].Translate(-defpose[i].m_Translation);
+			m_InverseBindBoneMatrices[i].Rotate(defpose[i].m_Rotation.GetInverse());
 		}
 	}
 
@@ -105,33 +111,6 @@ bool CModel::InitModel(CModelDefPtr modeldef)
 	return true;
 }
 
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// SkinPoint: skin the given point using the given blend and matrix data
-static CVector3D SkinPoint(const CVector3D& pos, const SVertexBlend& blend,
-						   const CMatrix3D* bonestates)
-{
-	CVector3D result,tmp;
-
-	// must have at least one valid bone if we're using SkinPoint
-	if (blend.m_Bone[0] == 0xff)
-	{
-		ONCE( debug_warn("SkinPoint called for vertex with no bone weights") );
-		return CVector3D(0, 0, 0);
-	}
-
-	const CMatrix3D& m = bonestates[blend.m_Bone[0]];
-	m.Transform(pos, result);
-	result *= blend.m_Weight[0];
-
-	for (int i = 1; i < SVertexBlend::SIZE && blend.m_Bone[i] != 0xff; i++) {
-		const CMatrix3D& m = bonestates[blend.m_Bone[i]];
-		m.Transform(pos, tmp);
-		result += tmp*blend.m_Weight[i];
-	}
-
-	return result;
-}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // CalcBound: calculate the world space bounds of this model
@@ -203,10 +182,10 @@ void CModel::CalcAnimatedObjectBound(CSkeletonAnimDef* anim,CBound& result)
 		ValidatePosition();
 
 		// extend bounds by vertex positions at the frame
-		for (size_t i=0;i<numverts;i++) {
-			CVector3D tmp = SkinPoint(verts[i].m_Coords,verts[i].m_Blend,GetBoneMatrices());
-			result+=tmp;
-		}		
+		for (size_t i=0;i<numverts;i++)
+		{
+			result += CModelDef::SkinPoint(verts[i], GetAnimatedBoneMatrices(), GetInverseBindBoneMatrices());
+		}
 		// advance to next frame
 		m_AnimTime += anim->GetFrameTime();
 	}
@@ -322,7 +301,6 @@ void CModel::ValidatePosition()
 	}
 	
 	m_PositionValid = true;
-	m_InvTranspValid = false;
 	
 	// re-position and validate all props
 	for (size_t j = 0; j < m_Props.size(); ++j)
@@ -340,24 +318,6 @@ void CModel::ValidatePosition()
 	}
 }
 
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// CalcInvTranspBoneMatrices
-void CModel::CalcInvTranspBoneMatrices()
-{
-	debug_assert(m_BoneMatrices);
-	
-	PROFILE( "invert transpose bone matrices" );
-	
-	CMatrix3D tmp;
-	for(size_t i = 0; i < m_pModelDef->GetNumBones(); ++i)
-	{
-		m_BoneMatrices[i].GetInverse(tmp);
-		tmp.GetTranspose(m_InvTranspBoneMatrices[i]);
-	}
-	
-	m_InvTranspValid = true;
-}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // SetAnimation: set the given animation as the current animation on this model;

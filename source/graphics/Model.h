@@ -101,24 +101,26 @@ public:
 	void CalcAnimatedObjectBound(CSkeletonAnimDef* anim,CBound& result);
 
 	/**
-	 * SetTransform: Set transform of this object.
+	 * Set transform of this object.
 	 * 
 	 * @note In order to ensure that all child props are updated properly,
 	 * you must call ValidatePosition().
 	 */
 	void SetTransform(const CMatrix3D& transform);
 	
+	/**
+	 * Return whether this is a skinned/skeletal model. If it is, Get*BoneMatrices()
+	 * will return valid non-NULL arrays.
+	 */
+	bool IsSkinned() { return (m_BoneMatrices != NULL); }
+
 	// return the models bone matrices
-	const CMatrix3D* GetBoneMatrices() { 
+	const CMatrix3D* GetAnimatedBoneMatrices() { 
 		debug_assert(m_PositionValid);
 		return m_BoneMatrices;
 	}
-	// return the models inverted transposed bone matrices for normal transformation
-	const CMatrix3D* GetInvTranspBoneMatrices() { 
-		debug_assert(m_PositionValid);
-		if (!m_InvTranspValid)
-			CalcInvTranspBoneMatrices();
-		return m_InvTranspBoneMatrices; 
+	const CMatrix3D* GetInverseBindBoneMatrices() { 
+		return m_InverseBindBoneMatrices;
 	}
 
 	// load raw animation frame animation from given file, and build a 
@@ -137,7 +139,7 @@ public:
 	CModel* Clone() const;
 
 	/**
-	 * ValidatePosition: Ensure that both the transformation and the bone
+	 * Ensure that both the transformation and the bone
 	 * matrices are correct for this model and all its props.
 	 */
 	void ValidatePosition();
@@ -147,19 +149,13 @@ private:
 	void ReleaseData();
 
 	/**
-	 * InvalidatePosition: Mark this model's position and bone matrices,
+	 * Mark this model's position and bone matrices,
 	 * and all props' positions as invalid.
 	 */
 	void InvalidatePosition();
 	
 	/**
-	 * CalcInvTranspBoneMatrices: Calc inverse transpose bone matrices 
-	 * from bone matrices.
-	 */
-	void CalcInvTranspBoneMatrices();
-	
-	/**
-	 * m_Parent: If non-null, m_Parent points to the model that we
+	 * If non-null, m_Parent points to the model that we
 	 * are attached to.
 	 */
 	CModel* m_Parent;
@@ -186,23 +182,16 @@ private:
 	float m_AnimTime;
 	// current state of all bones on this model; null if associated modeldef isn't skeletal
 	CMatrix3D* m_BoneMatrices;
-	// inverse of the transpose of the above matrices 
-	CMatrix3D* m_InvTranspBoneMatrices;
+	// inverse matrices for the bind pose's bones; null if not skeletal
+	CMatrix3D* m_InverseBindBoneMatrices;
 	// list of current props on model
 	std::vector<Prop> m_Props;
 
 	/**
-	 * m_PositionValid: true if both transform and and bone matrices
-	 * are valid.
+	 * true if both transform and and bone matrices are valid.
 	 */
 	bool m_PositionValid;
 
-	/**
-	 * m_InvTranspValid: true if m_InvTranspBoneMatrices match the current
-	 * m_BoneMatrices
-	 */
-	bool m_InvTranspValid;
-	
 	// modulating color
 	CColor m_ShadingColor;
 };

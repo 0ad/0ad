@@ -31,58 +31,6 @@
 #define LOG_CATEGORY "graphics"
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// SkinPoint: skin the vertex position using it's blend data and given bone matrices
-static void SkinPoint(const SModelVertex& vertex,const CMatrix3D* matrices,CVector3D& result)
-{
-	CVector3D tmp;
-	const SVertexBlend& blend=vertex.m_Blend;
-
-	// must have at least one valid bone if we're using SkinPoint
-	if (blend.m_Bone[0] == 0xff)
-	{
-		// (CModel should have already complained about this)
-		result = CVector3D(0, 0, 0);
-		return;
-	}
-
-	const CMatrix3D& m=matrices[blend.m_Bone[0]];
-	m.Transform(vertex.m_Coords,result);
-	result*=blend.m_Weight[0];
-
-	for (u32 i=1; i<SVertexBlend::SIZE && blend.m_Bone[i]!=0xff; i++) {
-		const CMatrix3D& m=matrices[blend.m_Bone[i]];
-		m.Transform(vertex.m_Coords,tmp);
-		result+=tmp*blend.m_Weight[i];
-	}
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// SkinPoint: skin the vertex normal using it's blend data and given bone matrices
-static void SkinNormal(const SModelVertex& vertex, const CMatrix3D* invtranspmatrices, CVector3D& result)
-{
-	CVector3D tmp;
-	const SVertexBlend& blend=vertex.m_Blend;
-
-	// must have at least one valid bone if we're using SkinNormal
-	if (blend.m_Bone[0] == 0xff)
-	{
-		// (CModel should have already complained about this)
-		result = CVector3D(0, 0, 0);
-		return;
-	}
-
-	const CMatrix3D& m = invtranspmatrices[blend.m_Bone[0]];
-	m.Rotate(vertex.m_Norm, result);
-	result*=blend.m_Weight[0];
-
-	for (u32 i=1; i<SVertexBlend::SIZE && vertex.m_Blend.m_Bone[i]!=0xff; i++) {
-		const CMatrix3D& m = invtranspmatrices[blend.m_Bone[i]];
-		m.Rotate(vertex.m_Norm,tmp);
-		result+=tmp*blend.m_Weight[i];
-	}
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // ModelRenderer implementation
 
@@ -112,27 +60,10 @@ void ModelRenderer::BuildPositionAndNormals(
 	size_t numVertices = mdef->GetNumVertices();
 	SModelVertex* vertices=mdef->GetVertices();
 
-	const CMatrix3D* bonematrices = model->GetBoneMatrices();
-	if (bonematrices)
+	if (model->IsSkinned())
 	{
 		// boned model - calculate skinned vertex positions/normals
 		PROFILE( "skinning bones" );
-		const CMatrix3D* invtranspbonematrices;
-
-		// Analytic geometry tells us that normal vectors need to be
-		// multiplied by the inverse of the transpose. However, calculating
-		// the inverse is slow, and analytic geometry also tells us that
-		// for orthogonal matrices, the inverse is equal to the transpose,
-		// so the inverse of the transpose is, in fact, the original matrix.
-		//
-		// The "fast normals" code assumes that bone transformation contain
-		// no "weird" transformations like shears or non-uniform scaling
-		// (actually, the entire code assumes no scaling) and thus gets
-		// around the slow calculation of the inverse.
-		if (g_Renderer.m_FastNormals)
-			invtranspbonematrices = bonematrices;
-		else
-			invtranspbonematrices = model->GetInvTranspBoneMatrices();
 
 		// Avoid the noisy warnings that occur inside SkinPoint/SkinNormal in
 		// some broken situations
@@ -144,8 +75,8 @@ void ModelRenderer::BuildPositionAndNormals(
 
 		for (size_t j=0; j<numVertices; j++)
 		{
-			SkinPoint(vertices[j], bonematrices, Position[j]);
-			SkinNormal(vertices[j], invtranspbonematrices, Normal[j]);
+			Position[j] = CModelDef::SkinPoint(vertices[j], model->GetAnimatedBoneMatrices(), model->GetInverseBindBoneMatrices());
+			Normal[j] = CModelDef::SkinNormal(vertices[j], model->GetAnimatedBoneMatrices(), model->GetInverseBindBoneMatrices());
 		}
 	}
 	else
