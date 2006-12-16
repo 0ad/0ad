@@ -106,7 +106,7 @@ public:
 namespace PlayerSlotArray_JS
 {
 	JSBool GetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );	
-};
+}
 
 class CGameAttributes:
 	public CSynchedJSObject<CGameAttributes>,

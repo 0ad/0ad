@@ -27,8 +27,7 @@ JSBool JSI_Selection::setSelection( JSContext* cx, JSObject* UNUSED(obj),
 	}
 	
 	JSObject* selectionArray = JSVAL_TO_OBJECT( *vp );
-	UNUSED2(selectionArray);
-	EntityCollection::CJSCollectionData* Info = (EntityCollection::CJSCollectionData*)JS_GetInstancePrivate( cx, JSVAL_TO_OBJECT( *vp ), &EntityCollection::JSI_class, NULL );
+	EntityCollection::CJSCollectionData* Info = (EntityCollection::CJSCollectionData*)JS_GetInstancePrivate( cx, selectionArray, &EntityCollection::JSI_class, NULL );
 
 	if( !Info )
 	{

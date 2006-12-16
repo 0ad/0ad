@@ -72,8 +72,8 @@ public:
 		}
 
 		wxPaintDC dc(this);
-		#if OS_WIN
-		dc.DrawBitmap(wxBitmap(img, dc), 0, 0);
+		#ifdef __WXMSW__
+		dc.DrawBitmap(wxBitmap(img, dc), 0, 0); // TODO: is this any better than the version below?
 		#else
 		dc.DrawBitmap(wxBitmap(img), 0, 0);
 		#endif

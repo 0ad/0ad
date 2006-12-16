@@ -22,6 +22,6 @@ namespace JSI_Selection
 	JSBool getContextOrder( JSContext* context, JSObject* obj, jsval id, jsval* vp );
 	JSBool setContextOrder( JSContext* context, JSObject* obj, jsval id, jsval* vp );
 	 
-};
+}
 
 #endif

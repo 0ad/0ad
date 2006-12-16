@@ -18,9 +18,9 @@
 		// mode if that ever happens, instead of just silently ignoring the error.)
 
 
-ATSMARTPTR_IMPL(AtNode);
-ATSMARTPTR_IMPL(const AtNode);
-ATSMARTPTR_IMPL(AtIterImpl);
+ATSMARTPTR_IMPL(AtNode)
+ATSMARTPTR_IMPL(const AtNode)
+ATSMARTPTR_IMPL(AtIterImpl)
 
 
 //////////////////////////////////////////////////////////////////////////

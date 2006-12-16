@@ -34,7 +34,6 @@ bool g_GameRestarted = false;
 // static data instead of a class member. that is no longer the case,
 // but we leave it because this is slightly more efficient.
 static float m_scaleX, m_scaleY;
-extern bool g_mouse_buttons[1];
 
 
 static unsigned int ScaleColor(unsigned int color, float x)

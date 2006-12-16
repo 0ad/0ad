@@ -6,7 +6,7 @@
 
 #include "simulation/TriggerManager.h"
 #include "ps/Game.h"
-//#include "../CommandProc.h"
+#include "graphics/GameView.h"
 
 
 namespace AtlasMessage {
@@ -316,6 +316,6 @@ BEGIN_COMMAND(SetAllTriggers)
 		SetCurrentTriggers(m_oldGroups);
 	}
 };
-END_COMMAND(SetAllTriggers);
+END_COMMAND(SetAllTriggers)
 
 }

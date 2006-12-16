@@ -144,6 +144,6 @@ namespace AtlasObject
 	bool SaveToXML(AtObj& obj, const wchar_t* filename);
 
 	AtObj TrimEmptyChildren(AtObj& obj);
-};
+}
 
 #endif // ATLASOBJECT_H__

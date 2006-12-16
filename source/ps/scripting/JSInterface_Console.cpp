@@ -7,8 +7,6 @@
 #include "ps/CConsole.h"
 #include "scripting/JSConversions.h"
 
-extern CConsole* g_Console;
-
 JSClass JSI_Console::JSI_class =
 {
 	"Console", 0,

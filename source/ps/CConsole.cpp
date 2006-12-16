@@ -763,10 +763,6 @@ void CConsole::ReceivedChatMessage(const wchar_t *szSender, const wchar_t *szMes
 	InsertMessage(L"%ls: %ls", szSender, szMessage);
 }
 
-extern CConsole* g_Console;
-
-extern void Die(int err, const wchar_t* fmt, ...);
-
 static bool isUnprintableChar(SDL_keysym key)
 {
 	// U+0000 to U+001F are control characters

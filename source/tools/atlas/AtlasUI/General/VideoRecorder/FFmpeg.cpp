@@ -25,6 +25,7 @@ Please complain if I forget to do those things.
 
 #include "ffmpeg/avformat.h"
 #include "ffmpeg/swscale.h"
+// (Have to use a sufficiently recent version to get swscale - it needs the ~x86 keyword on Gentoo)
 
 struct VideoEncoderImpl
 {
@@ -334,7 +335,7 @@ VideoEncoder::VideoEncoder(const wxString& filenameStr, int framerate, int bitra
 	/* open the output file, if needed */
 	if (!(m->fmt->flags & AVFMT_NOFILE)) {
 		if (url_fopen(&m->oc->pb, filename, URL_WRONLY) < 0) {
-			fprintf(stderr, "Could not open '%s'\n", filename);
+			fprintf(stderr, "Could not open '%s'\n", filename.data());
 			exit(1);
 		}
 	}

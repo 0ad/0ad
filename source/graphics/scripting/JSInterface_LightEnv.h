@@ -18,6 +18,6 @@ namespace JSI_LightEnv
 	void init();
 	JSBool getLightEnv( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
 	JSBool setLightEnv( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
-};
+}
 
 #endif

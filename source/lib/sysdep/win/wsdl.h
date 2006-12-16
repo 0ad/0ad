@@ -159,7 +159,7 @@ extern u64 SDL_Swap64(u64);
 #define SDL_LIL_ENDIAN 1234
 #define SDL_BIG_ENDIAN 4321
 
-#define SDL_BYTE_ORDER SDL_LIL_ENDIAN
+#define SDL_BYTEORDER SDL_LIL_ENDIAN
 
 //////////////////////////////////////////////////////////////////////////////
 //

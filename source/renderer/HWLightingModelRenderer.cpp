@@ -149,8 +149,6 @@ void HWLightingModelRenderer::UpdateModelData(CModel* model, void* data, u32 upd
 
 	if (updateflags & RENDERDATA_UPDATE_VERTICES)
 	{
-		CModelDefPtr mdef = model->GetModelDef();
-
 		// build vertices
 		VertexArrayIterator<CVector3D> Position = hwlmodel->m_Position.GetIterator<CVector3D>();
 		VertexArrayIterator<CVector3D> Normal = hwlmodel->m_Normal.GetIterator<CVector3D>();

@@ -5,8 +5,6 @@
 #include "ps/CLogger.h"
 #include "ps/CConsole.h"
 
-extern CConsole *g_Console;
-
 CNetServerSession::CNetServerSession(CNetServer *pServer, CSocketInternal *pInt,
 		MessageHandler *pMsgHandler):
 	CNetSession(pInt, pMsgHandler),

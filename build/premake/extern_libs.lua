@@ -70,6 +70,7 @@ extern_lib_defs = {
 	},
 	ffmpeg = {
 		win_names  = { "avcodec-51", "avformat-51", "avutil-49" },
+		unix_names = { "avcodec", "avformat", "avutil" },
 		dbg_suffix = "",
 	},
 	libjpg = {

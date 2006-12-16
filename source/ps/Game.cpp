@@ -23,7 +23,6 @@
 class CNetServer;
 extern CNetServer *g_NetServer;
 
-extern CConsole* g_Console;
 extern bool g_GameRestarted;
 
 CGame *g_Game=NULL;

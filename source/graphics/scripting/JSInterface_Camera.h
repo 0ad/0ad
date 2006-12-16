@@ -81,6 +81,6 @@ namespace JSI_Camera
 	JSBool getFocus( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval );
 
     void init();
-};
+}
 
 #endif

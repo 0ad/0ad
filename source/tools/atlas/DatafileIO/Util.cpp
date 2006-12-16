@@ -24,7 +24,7 @@ void DatafileIO::WriteUString(OutputStream& stream, const utf16string& string)
 	stream.Write((utf16_t*)&string[0], length*2);
 }
 
-#if !OS_WIN
+#ifndef _WIN32
 // TODO In reality, these two should be able to de/encode UTF-16 to/from UCS-4
 // instead of just treating UTF-16 as UCS-2
 

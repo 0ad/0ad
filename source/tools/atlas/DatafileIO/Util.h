@@ -1,11 +1,6 @@
 #include <string>
 #include <cassert>
 
-#if OS_UNIX
-#include "ps/utf16string.h"
-#include <sys/types.h>
-#endif
-
 #ifndef C_ASSERT
 #define C_ASSERT(e) typedef char __C_ASSERT__[(e)?1:-1]
 #endif
@@ -36,7 +31,7 @@ namespace DatafileIO
 	utf16string ReadUString(InputStream& stream);
 	void WriteUString(OutputStream& stream, const utf16string& string);
 
-#if OS_WIN
+#ifdef _WIN32
 # define utf16tow(_str) _str
 # define wtoutf16(_str) _str
 #else

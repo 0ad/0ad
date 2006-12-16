@@ -87,7 +87,7 @@ const bool NOMERGE = false;
 		void* CloneData() const { return SHAREABLE_NEW(d##t, (*this)); } \
 	private: \
 		const m##t& operator=(const m##t&);\
-	};
+	}
 
 
 
@@ -117,12 +117,12 @@ const bool NOMERGE = false;
 		m##name( BOOST_PP_SEQ_FOR_EACH_I(B_CONSTRUCTORARGS, ~, vals) ) \
 			: BOOST_PP_SEQ_FOR_EACH_I(B_CONSTRUCTORINIT, ~, vals) {} \
 		BOOST_PP_SEQ_FOR_EACH_I(B_CONSTMEMBERS, ~, vals) \
-	};
+	}
 
 #define MESSAGE_WITHOUT_INPUTS(name, vals) \
 	MESSAGESTRUCT(name) \
 		m##name() {} \
-	};
+	}
 
 #define MESSAGE(name, vals) \
 	BOOST_PP_IIF( \
@@ -139,7 +139,7 @@ const bool NOMERGE = false;
 			: BOOST_PP_SEQ_FOR_EACH_I(B_CONSTRUCTORINIT, ~, vals) {} \
 		BOOST_PP_SEQ_FOR_EACH_I(B_CONSTMEMBERS, ~, vals) \
 	}; \
-	COMMANDSTRUCT(name, merge);
+	COMMANDSTRUCT(name, merge)
 
 
 // Need different syntax depending on whether there are some input values in the query:
@@ -148,7 +148,7 @@ const bool NOMERGE = false;
 	QUERYSTRUCT(name) \
 		q##name() {} \
 		BOOST_PP_SEQ_FOR_EACH_I(B_MEMBERS, ~, out_vals) /* other members */ \
-	};
+	}
 
 #define QUERY_WITH_INPUTS(name, in_vals, out_vals) \
 	QUERYSTRUCT(name) \
@@ -156,7 +156,7 @@ const bool NOMERGE = false;
 			: BOOST_PP_SEQ_FOR_EACH_I(B_CONSTRUCTORINIT, ~, in_vals) {} \
 		BOOST_PP_SEQ_FOR_EACH_I(B_CONSTMEMBERS, ~, in_vals) \
 		BOOST_PP_SEQ_FOR_EACH_I(B_MEMBERS, ~, out_vals) \
-	};
+	}
 
 #define QUERY(name, in_vals, out_vals) \
 	BOOST_PP_IIF( \

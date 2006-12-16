@@ -18,7 +18,7 @@ class CTechnology : public CJSObject<CTechnology>
 {
 	friend class CTechnologyCollection;
 	
-	typedef struct Modifier
+	struct Modifier
 	{
 		CStr attribute;
 		float value;

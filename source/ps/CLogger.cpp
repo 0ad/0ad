@@ -11,7 +11,6 @@
 CLogger* g_Logger = NULL;
 
 #include "CConsole.h"
-extern CConsole* g_Console;
 
 using namespace std;
 

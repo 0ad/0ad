@@ -193,8 +193,8 @@ extern char* mmgr_getcwd_dbg(char*, size_t,            const char* file, int lin
 
 
 // .. global operator new (to catch allocs from STL/external libs)
-extern void* operator new  (size_t size);
-extern void* operator new[](size_t size);
+extern void* operator new  (size_t size) throw(std::bad_alloc);
+extern void* operator new[](size_t size) throw(std::bad_alloc);
 // .. override commonly used global operator new overload (done e.g. by MFC),
 //    in case someone hasn't included this file
 extern void* operator new  (size_t size, const char* file, int line);

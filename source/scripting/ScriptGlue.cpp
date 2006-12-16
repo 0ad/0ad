@@ -51,7 +51,6 @@
 # include "gui/scripting/JSInterface_IGUIObject.h"
 #endif
 
-extern CConsole* g_Console;
 extern bool g_TerrainModified;
 
 

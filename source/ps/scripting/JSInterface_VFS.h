@@ -53,6 +53,6 @@ namespace JSI_VFS
 	//
 	// archiveBuilderCancel();
 	JSBool ArchiveBuilderCancel(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
-};
+}
 
 #endif

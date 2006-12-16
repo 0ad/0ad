@@ -62,7 +62,7 @@ static LibErrorAssociations& associations()
 {
 	static LibErrorAssociations associations_;
 	return associations_;
-};
+}
 
 void error_setDescription(LibError err, const char* description)
 {

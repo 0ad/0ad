@@ -17,8 +17,6 @@
 
 #define LOG_CAT_NET "net"
 
-extern CConsole *g_Console;
-
 CNetServer *g_NetServer=NULL;
 
 using namespace std;

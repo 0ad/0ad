@@ -25,6 +25,6 @@ namespace JSI_Console
 	void init();
 
 	JSBool writeConsole( JSContext* context, JSObject* obj, uint argc, jsval* argv, jsval* rval );
-};
+}
 
 #endif

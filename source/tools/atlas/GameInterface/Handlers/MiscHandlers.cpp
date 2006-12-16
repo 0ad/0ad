@@ -7,6 +7,8 @@
 #include "ps/Util.h"
 
 #include "ps/Game.h"
+#include "graphics/GameView.h"
+#include "graphics/CinemaTrack.h"
 #include "renderer/Renderer.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "../GameLoop.h"

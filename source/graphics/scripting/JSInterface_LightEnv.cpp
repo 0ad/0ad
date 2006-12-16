@@ -195,7 +195,7 @@ JSFunctionSpec JSI_methods[] =
 	{ 0 }
 };
 
-}; // anonymous namespace
+} // anonymous namespace
 
 /**
  * init: called by GameSetup to register the LightEnv class with the JS engine.
@@ -234,5 +234,5 @@ JSBool setLightEnv(JSContext* cx, JSObject* UNUSED(obj), jsval UNUSED(id), jsval
 	return JS_TRUE;
 }
 
-}; // namespace JSI_LightEnv
+} // namespace JSI_LightEnv
 

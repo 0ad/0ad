@@ -22,7 +22,7 @@
 #define SDL_LIL_ENDIAN 1234
 #define SDL_BIG_ENDIAN 4321
 
-#define SDL_BYTE_ORDER SDL_LIL_ENDIAN
+#define SDL_BYTEORDER SDL_LIL_ENDIAN
 
 #include <cassert>
 #define cassert(x) extern char cassert__##__LINE__ [x]

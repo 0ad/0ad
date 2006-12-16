@@ -5,7 +5,7 @@
 #include <assert.h>
 #include "jsapi.h"
 
-#if SDL_BYTE_ORDER == SDL_BIG_ENDIAN
+#if SDL_BYTEORDER == SDL_BIG_ENDIAN
 #define ucs2le_to_wchart(ptr) (wchar_t)( (u16) ((u8*)ptr)[0] | (u16) ( ((u8*)ptr)[1] << 8) )
 #else
 #define ucs2le_to_wchart(ptr) (wchar_t)(*ptr);

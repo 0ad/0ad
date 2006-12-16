@@ -86,13 +86,13 @@ Noise3D::Noise3D(int f, int v) : freq(f), vfreq(v)
 			grads[i][j] = new CVector3D[vfreq];
 			for(int k=0; k<vfreq; k++) 
 			{
-				CVector3D v;
+				CVector3D vec;
 				do {
-					v = CVector3D(2*randFloat()-1, 2*randFloat()-1, 2*randFloat()-1);
+					vec = CVector3D(2*randFloat()-1, 2*randFloat()-1, 2*randFloat()-1);
 				}
-				while(v.LengthSquared() > 1 || v.LengthSquared() < 0.1);
-				v.Normalize();
-				grads[i][j][k] = CVector3D(v.X, v.Y, v.Z);
+				while(vec.LengthSquared() > 1 || vec.LengthSquared() < 0.1);
+				vec.Normalize();
+				grads[i][j][k] = CVector3D(vec.X, vec.Y, vec.Z);
 			}
 		}
 	}

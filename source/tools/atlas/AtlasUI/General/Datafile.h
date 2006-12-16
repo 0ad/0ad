@@ -16,4 +16,4 @@ namespace Datafile
 	// Returns a list of files matching the given wildcard (* and ?) filter
 	// inside .../binaries/data/<dir>, not recursively.
 	wxArrayString EnumerateDataFiles(const wxString& dir, const wxString& filter);
-};
+}

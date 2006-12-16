@@ -1366,12 +1366,12 @@ static void* new_common(size_t size, AllocType type,
 }
 
 
-void* operator new(size_t size)
+void* operator new(size_t size) throw(std::bad_alloc)
 {
 	return new_common(size, AT_NEW, 0,0,0);
 }
 
-void* operator new[](size_t size)
+void* operator new[](size_t size) throw(std::bad_alloc)
 {
 	return new_common(size, AT_NEW_ARRAY, 0,0,0);
 }

@@ -18,7 +18,6 @@
 
 CNetClient *g_NetClient=NULL;
 extern int fps;
-extern CConsole *g_Console;
 
 CNetClient::CServerSession::CServerSession(int sessionID, const CStrW& name):
 	m_SessionID(sessionID),
