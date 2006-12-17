@@ -61,7 +61,7 @@ enum State
 };
 
 
-/*/**/typedef void* DescList;
+/*typedef void* DescList;
 
 struct SizeClass
 {

@@ -343,8 +343,6 @@ static void get_cpu_type()
 
 	// note: cpu_type is guaranteed to hold 48+1 chars, since that's the
 	// length of the CPU brand string => we can safely copy short literals.
-	// (this macro hides us from 'unsafe string code' searches)
-#define SAFE_STRCPY str##cpy
 
 	// fall back to manual detect of CPU type because either:
 	// - CPU doesn't support brand string (we use a flag to indicate this

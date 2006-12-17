@@ -184,9 +184,9 @@ static LibError UniFont_validate(const UniFont* f)
 	return INFO::OK;
 }
 
-static LibError UniFont_to_string(const UniFont* UNUSED(f), char* buf)
+static LibError UniFont_to_string(const UniFont* f, char* buf)
 {
-	snprintf(buf, H_STRING_LEN, "");
+	snprintf(buf, H_STRING_LEN, "Font %s", h_filename(f->ht));
 	return INFO::OK;
 }
 

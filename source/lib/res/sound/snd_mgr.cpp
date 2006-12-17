@@ -64,6 +64,8 @@
 // hopefully, OpenAL doesn't rely on them actually being unloaded.
 #if OS_WIN
 # define WIN_LOADLIBRARY_HACK 0
+#else
+# define WIN_LOADLIBRARY_HACK 0
 #endif
 
 
@@ -1890,15 +1892,15 @@ static LibError vsrc_update(VSrc * vs)
 	if(!vs->al_src)
 		return INFO::OK;
 
-	FadeRet ret = fade(vs->fade, snd_update_time, vs->gain);
+	FadeRet fade_ret = fade(vs->fade, snd_update_time, vs->gain);
 	// auto-free after fadeout.
-	if(ret == FADE_TO_0_FINISHED)
+	if(fade_ret == FADE_TO_0_FINISHED)
 	{
 		vsrc_free(vs);
 		return INFO::OK;	// don't continue - <vs> has been freed.
 	}
 	// fade in progress; latch current gain value.
-	else if(ret == FADE_CHANGED)
+	else if(fade_ret == FADE_CHANGED)
 		vsrc_latch(vs);
 
 	int num_queued;
@@ -2390,7 +2392,7 @@ static bool snd_disabled = false;
  *
  * @return LibError from al_init, or ERR::AGAIN if sound disabled
  */
-static inline LibError snd_init()
+static LibError snd_init()
 {
 	// (note: each VSrc_reload and therefore snd_open will fail)
 	if(snd_disabled)

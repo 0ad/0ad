@@ -24,7 +24,7 @@
 
 #include "timer.h"
 
-/*/*
+#if 0
 
 // checked by debug_assert_failed; disables asserts if true (see above).
 // set/cleared by self_test_run.
@@ -71,4 +71,4 @@ void self_test_run_all()
 	debug_printf("-- done (elapsed time %.0f ms)\n", dt*1e3);
 }
 
-*/
+#endif

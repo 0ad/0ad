@@ -52,7 +52,7 @@ static LibError LibError_from_GLE(bool warn_if_failed = true)
 	case ERROR_INSUFFICIENT_BUFFER:
 		err = ERR::BUF_SIZE; break;
 
-/*/*
+/*
 	case ERROR_ACCESS_DENIED:
 		err = ERR::FILE_ACCESS; break;
 	case ERROR_FILE_NOT_FOUND:

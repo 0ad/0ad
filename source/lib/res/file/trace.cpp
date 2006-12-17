@@ -293,10 +293,10 @@ LibError trace_read_from_file(const char* trace_filename, Trace* t)
 	for(size_t i = 0; ; i++)
 	{
 		double timestamp; char opcode; char P_path[PATH_MAX]; size_t size; uint flags;
-		int ret = fscanf(f, fmt, &timestamp, &opcode, P_path, &size, &flags);
-		if(ret == EOF)
+		int chars_read = fscanf(f, fmt, &timestamp, &opcode, P_path, &size, &flags);
+		if(chars_read == EOF)
 			break;
-		debug_assert(ret == 5);
+		debug_assert(chars_read == 5);
 
 		TraceOp op = TO_IO;	// default in case file is garbled
 		switch(opcode)

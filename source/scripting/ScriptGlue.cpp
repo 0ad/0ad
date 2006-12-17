@@ -1311,7 +1311,7 @@ JSBool revealMap( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsva
 	{
 		newValue = 2;
 	}
-	else if(!ToPrimitive( g_ScriptingHost.GetContext(), argv[0], newValue ) || newValue > 2 || newValue < 0)
+	else if(!ToPrimitive( g_ScriptingHost.GetContext(), argv[0], newValue ) || newValue > 2)
 	{
 		JS_ReportError( cx, "Invalid argument (should be 0, 1 or 2)" );
 		*rval = JSVAL_VOID;

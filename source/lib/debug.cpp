@@ -738,12 +738,12 @@ static const LibError assert_err = INFO::OK;
 
 void debug_skip_next_assert()
 {
-	debug_skip_next_err(INFO::OK);
+	debug_skip_next_err(assert_err);
 }
 
 static bool should_skip_this_assert()
 {
-	return should_skip_this_error(INFO::OK);
+	return should_skip_this_error(assert_err);
 }
 
 

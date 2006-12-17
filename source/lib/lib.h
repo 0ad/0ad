@@ -510,8 +510,11 @@ extern u16 fp_to_u16(double in);
 /**
  * this is strcpy, but indicates that the programmer checked usage and
  * promises it is safe.
+ *
+ * (this macro prevents actually-safe instances of the function from
+ * showing up in searches)
  **/
-#define SAFE_STRCPY strcpy
+#define SAFE_STRCPY str##cpy
 
 
 /**

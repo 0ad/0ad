@@ -493,7 +493,7 @@ static LibError populate_dir(TDir* td, const char* P_path, const Mount* m,
 // note: we are only able to add archives found in the root directory,
 // due to dirent_cb implementation. that's ok - we don't want to check
 // every single file to see if it's an archive (slow!).
-static LibError mount_dir_tree(TDir* td, const Mount& m)
+static LibError mount_dir_tree(TDir* td_start, const Mount& m)
 {
 	LibError err = INFO::OK;
 
@@ -510,7 +510,7 @@ static LibError mount_dir_tree(TDir* td, const Mount& m)
 
 	// kickoff (less efficient than goto, but c_str reference requires
 	// pop to come at end of loop => this is easiest)
-	dir_queue.push_back(TDirAndPath(td, m.P_name.c_str()));
+	dir_queue.push_back(TDirAndPath(td_start, m.P_name.c_str()));
 
 	do
 	{
@@ -531,7 +531,7 @@ static LibError mount_dir_tree(TDir* td, const Mount& m)
 	while(!dir_queue.empty());
 
 	// do not pass parchives because that has been set to 0!
-	mount_archives(td, &archives, &m);
+	mount_archives(td_start, &archives, &m);
 
 	return INFO::OK;
 }

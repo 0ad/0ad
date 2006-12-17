@@ -187,7 +187,7 @@ static LibError Ogl_Shader_validate(const Ogl_Shader* UNUSED(shdr))
 
 static LibError Ogl_Shader_to_string(const Ogl_Shader* UNUSED(shdr), char* buf)
 {
-	snprintf(buf, H_STRING_LEN, "");
+	snprintf(buf, H_STRING_LEN, "-");
 	return INFO::OK;
 }
 
@@ -408,7 +408,7 @@ static LibError Ogl_Program_validate(const Ogl_Program* UNUSED(p))
 
 static LibError Ogl_Program_to_string(const Ogl_Program* UNUSED(p), char* buf)
 {
-	snprintf(buf, H_STRING_LEN, "");
+	snprintf(buf, H_STRING_LEN, "-");
 	return INFO::OK;
 }
 

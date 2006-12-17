@@ -255,23 +255,23 @@ extern void LibError_set_errno(LibError err);
 #if OS_WIN
 #define CHECK_ERR(expression)\
 STMT(\
-	i64 err64 = (i64)(expression);\
-	if(err64 < 0)\
+	i64 err64__ = (i64)(expression);\
+	if(err64__ < 0)\
 	{\
-		LibError err = (LibError)(err64 & UINT_MAX);\
-		DEBUG_WARN_ERR(err);\
-		return err;\
+		LibError err__ = (LibError)(err64__ & UINT_MAX);\
+		DEBUG_WARN_ERR(err__);\
+		return err__;\
 	}\
 )
 #else
 #define CHECK_ERR(expression)\
 STMT(\
-	i64 err64 = (i64)(expression);\
-	if(err64 < 0)\
+	i64 err64__ = (i64)(expression);\
+	if(err64__ < 0)\
 	{\
-		LibError err = (LibError)(err64 & UINT_MAX);\
-		DEBUG_WARN_ERR(err);\
-		return (LibError)(err & UINT_MAX);\
+		LibError err__ = (LibError)(err64__ & UINT_MAX);\
+		DEBUG_WARN_ERR(err__);\
+		return (LibError)(err__ & UINT_MAX);\
 	}\
 )
 #endif
@@ -280,11 +280,11 @@ STMT(\
 // (useful for functions that can legitimately fail, e.g. vfs_exists).
 #define RETURN_ERR(expression)\
 STMT(\
-	i64 err64 = (i64)(expression);\
-	if(err64 < 0)\
+	i64 err64__ = (i64)(expression);\
+	if(err64__ < 0)\
 	{\
-		LibError err = (LibError)(err64 & UINT_MAX);\
-		return err;\
+		LibError err__ = (LibError)(err64__ & UINT_MAX);\
+		return err__;\
 	}\
 )
 
@@ -299,12 +299,12 @@ STMT(\
 // throw that number.
 #define THROW_ERR(expression)\
 STMT(\
-	i64 err64 = (i64)(expression);\
-	if(err64 < 0)\
+	i64 err64__ = (i64)(expression);\
+	if(err64__ < 0)\
 	{\
-		LibError err = (LibError)(err64 & UINT_MAX);\
-		DEBUG_WARN_ERR(err);\
-		throw err;\
+		LibError err__ = (LibError)(err64__ & UINT_MAX);\
+		DEBUG_WARN_ERR(err__);\
+		throw err__;\
 	}\
 )
 
@@ -312,11 +312,11 @@ STMT(\
 // (useful for void functions that must bail and complain)
 #define WARN_ERR_RETURN(expression)\
 STMT(\
-	i64 err64 = (i64)(expression);\
-	if(err64 < 0)\
+	i64 err64__ = (i64)(expression);\
+	if(err64__ < 0)\
 	{\
-		LibError err = (LibError)(err64 & UINT_MAX);\
-		DEBUG_WARN_ERR(err);\
+		LibError err__ = (LibError)(err64__ & UINT_MAX);\
+		DEBUG_WARN_ERR(err__);\
 		return;\
 	}\
 )
@@ -325,11 +325,11 @@ STMT(\
 // (this is similar to debug_assert but also works in release mode)
 #define WARN_ERR(expression)\
 STMT(\
-	i64 err64 = (i64)(expression);\
-	if(err64 < 0)\
+	i64 err64__ = (i64)(expression);\
+	if(err64__ < 0)\
 	{\
-		LibError err = (LibError)(err64 & UINT_MAX);\
-		DEBUG_WARN_ERR(err);\
+		LibError err__ = (LibError)(err64__ & UINT_MAX);\
+		DEBUG_WARN_ERR(err__);\
 	}\
 )
 
@@ -337,8 +337,8 @@ STMT(\
 // if expression evaluates to a negative error code, return 0.
 #define RETURN0_IF_ERR(expression)\
 STMT(\
-	i64 err64 = (i64)(expression);\
-	if(err64 < 0)\
+	i64 err64__ = (i64)(expression);\
+	if(err64__ < 0)\
 		return 0;\
 )
 

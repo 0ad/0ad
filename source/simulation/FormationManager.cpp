@@ -46,7 +46,7 @@ void CFormationManager::CreateFormation( CEntityList& entities, CStrW& name )
 }
 void CFormationManager::DestroyFormation( size_t form )
 {
-	if ( form < 0 || form >= m_formations.size())
+	if ( form >= m_formations.size())
 	{
 		debug_warn("CFormationManager::DestroyFormation--invalid entity");
 		return;
