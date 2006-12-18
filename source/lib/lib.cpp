@@ -334,24 +334,27 @@ u16 fp_to_u16(double in)
 // string processing
 
 // big endian!
-void base32(const size_t len, const u8* in, u8* out)
+void base32(const size_t in_len, const u8* in, u8* out)
 {
 	u32 pool = 0;	// of bits from buffer
-	uint bits =	0;	// # bits currently in buffer
+	uint pool_bits = 0;	// # bits currently in buffer
 
 	static const u8 tbl[33] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
 
-	for(size_t i = 0; i < len; i++)
+	size_t in_bytes_left = in_len;	// to avoid overrunning input buffer
+	const size_t out_chars = (in_len*8 + 4) / 5;	// = ceil(# 5-bit blocks)
+	for(size_t i = 0; i < out_chars; i++)
 	{
-		if(bits < 5)
+		if(pool_bits < 5 && in_bytes_left)
 		{
 			pool <<= 8;
 			pool |= *in++;
-			bits += 8;
+			pool_bits += 8;
+			in_bytes_left--;
 		}
 
-		bits -= 5;
-		uint c = (pool >> bits) & 31;
+		pool_bits -= 5;
+		const uint c = (pool >> pool_bits) & 31;
 		*out++ = tbl[c];
 	}
 
