@@ -6,12 +6,6 @@
 	<Traits>
 	
 		<Id>
-		<Creation>
-				<Resource>
- 				<Food>50</Food>
-				<Metal>85</Metal>
- 			</Resource>
-		</Creation>
 			<Generic>Cavalry Swordsman</Generic>
 
 			<Icon_Cell>18</Icon_Cell>
@@ -22,6 +16,12 @@
 		
 		</Id>
 		
+		<Creation>
+				<Resource>
+ 				<Food>50</Food>
+				<Metal>85</Metal>
+ 			</Resource>
+		</Creation>
 	</Traits>
 
 </Entity>

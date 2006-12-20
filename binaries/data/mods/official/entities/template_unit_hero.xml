@@ -6,18 +6,18 @@
 	<Traits>
 	
 		<Id>
-<Creation>
-				<Resource>
- 				<Food>40</Food>
-				<Metal>60</Metal>
- 			</Resource>
-		</Creation>
-
 			<Generic>Hero</Generic>
 
 			<Classes>Hero, Military, Organic</Classes>
 		
 		</Id>
+		
+		<Creation>
+			<Resource>
+ 				<Food>40</Food>
+				<Metal>60</Metal>
+ 			</Resource>
+		</Creation>
 		
 		<Armour>
 			<Value>0</Value>

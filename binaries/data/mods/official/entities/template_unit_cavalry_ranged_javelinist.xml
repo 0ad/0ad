@@ -6,13 +6,6 @@
 	<Traits>
 	
 		<Id>
-<Creation>
-				<Resource>
- 				<Food>40</Food>
-				<Metal>60</Metal>
- 			</Resource>
-		</Creation>
-
 			<Generic>Cavalry Javelinist</Generic>
 
 			<Icon_Cell>6</Icon_Cell>
@@ -22,6 +15,13 @@
 			<Rollover>The javelins thrown from a horse's back were probably 3 at most. The idea was to quickly advance with 3 in hand, then throw them all. After you had done that it was time to switch to your secondary weapon which was usually a spear or a sword. However, in the game - these units will only have ranged attack.</Rollover>
 
 		</Id>
+		
+		<Creation>
+				<Resource>
+ 				<Food>40</Food>
+				<Metal>60</Metal>
+ 			</Resource>
+		</Creation>
 		
 	</Traits>
 	

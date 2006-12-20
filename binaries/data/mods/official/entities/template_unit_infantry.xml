@@ -6,17 +6,18 @@
 	<Traits>
 	
 		<Id>
-<Creation>
-				<Resource>
- 				<Food>80</Food>
-				<Metal>120</Metal>
- 			</Resource>
-		</Creation>
 			<Generic>Infantry</Generic>
 
 			<Classes>Military, Foot, Organic, CitizenSoldier, Worker</Classes>
 		</Id>
 
+		<Creation>
+				<Resource>
+ 				<Food>80</Food>
+				<Metal>120</Metal>
+ 			</Resource>
+		</Creation>
+		
 		<Armour>
 			<Value>4</Value>
 			<Crush>0.0</Crush>
