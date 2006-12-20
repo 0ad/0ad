@@ -1,10 +1,33 @@
-BODY { background-color: #EEEEEE; font-family: "Tahoma"; font-size: 12pt; color: #000000}
+body {
+	background-color: #eee;
+	font-family: sans-serif;
+	color: black;
+}
 
-P { background-color: #FFFFFF; font-family: "Tahoma"; font-size: 12pt; color: #000000;}
+p.logo {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
 
-P.error { background-color: #FFFFFF; font-family: "Tahoma"; font-size: 12pt; color: red}
+p {
+	margin-top: 0.2em;
+	margin-bottom: 0.2em;
+	padding: 1px;
+}
 
-P.warning { background-color: #FFFFFF; font-family: "Tahoma"; font-size: 12pt; color: #0000FF}
+h1 {
+	font-size: 1.3em;
+}
 
-H1 { background-color: #EEEEEE; font-family: "Tahoma"; font-size: 16pt; font-color: #000000 }
+p {
+	background-color: white;
+}
 
+.error {
+	color: red;
+}
+
+.warning {
+	color: blue;
+}

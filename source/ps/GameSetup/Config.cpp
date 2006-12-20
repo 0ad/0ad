@@ -135,9 +135,6 @@ static void ProcessCommandLineArgs(const CmdLineArgs& args)
 	if (args.Has("listfiles"))
 		trace_enable(true);
 
-	if (args.Has("novbo"))
-		g_ConfigDB.CreateValue(CFG_COMMAND, "novbo")->m_String = "true";
-
 	if (args.Has("profile"))
 		g_ConfigDB.CreateValue(CFG_COMMAND, "profile")->m_String = args.Get("profile");
 

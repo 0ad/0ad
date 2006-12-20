@@ -1,24 +1,33 @@
 #include "precompiled.h"
 
 #include "CLogger.h"
+#include "CConsole.h"
 #include "ConfigDB.h"
 #include "lib/lib.h"
 #include "lib/path_util.h"
 #include "lib/res/file/file.h"
 
 #include <time.h>
+#include <ostream>
 
-CLogger* g_Logger = NULL;
+// Set up a default logger that throws everything away, because that's
+// better than crashing. (This is particularly useful for unit tests which
+// don't care about any log output.)
+struct BlackHoleStreamBuf : public std::streambuf
+{
+} blackHoleStreamBuf;
+std::ostream blackHoleStream(&blackHoleStreamBuf);
+CLogger nullLogger(&blackHoleStream, &blackHoleStream, false);
 
-#include "CConsole.h"
-
-using namespace std;
+CLogger* g_Logger = &nullLogger;
 
 const char* html_header0 =
-	"<!DOCTYPE HTML SYSTEM>\n"
+	"<!DOCTYPE HTML>\n" // HTML5 doctype - triggers standards mode in current browsers
+		// (The W3C validator doesn't like it - use
+		// http://hsivonen.iki.fi/validator/html5/ instead)
 	"<title>Pyrogenesis Log</title>\n"
 	"<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n"
-	"<p align=\"center\"><img src=\"0adlogo.jpg\" alt=\"0 A.D.\"></p>\n"
+	"<p class=\"logo\"><img src=\"0adlogo.jpg\" alt=\"0 A.D.\"></p>\n"
 	"<h1>";
 	// (note that the html,head,body tags are optional)
 
@@ -36,18 +45,21 @@ CLogger::CLogger()
 	(void)path_package_set_dir(&pp, N_path);
 
 	(void)path_package_append_file(&pp, "mainlog.html");
-	m_MainLog = new std::ofstream(pp.path, ofstream::out | ofstream::trunc);
+	m_MainLog = new std::ofstream(pp.path, std::ofstream::out | std::ofstream::trunc);
 
 	(void)path_package_append_file(&pp, "interestinglog.html");
-	m_InterestingLog = new std::ofstream(pp.path, ofstream::out | ofstream::trunc);
+	m_InterestingLog = new std::ofstream(pp.path, std::ofstream::out | std::ofstream::trunc);
+
+	m_OwnsStreams = true;
 
 	Init();
 }
 
-CLogger::CLogger(std::ostream* mainLog, std::ostream* interestingLog)
+CLogger::CLogger(std::ostream* mainLog, std::ostream* interestingLog, bool takeOwnership)
 {
 	m_MainLog = mainLog;
 	m_InterestingLog = interestingLog;
+	m_OwnsStreams = takeOwnership;
 
 	Init();
 }
@@ -89,8 +101,11 @@ CLogger::~CLogger ()
 	*m_InterestingLog << " at " << currentTime << buffer << "</p>\n";
 	*m_InterestingLog << html_footer;
 
-	delete m_InterestingLog;
-	delete m_MainLog;
+	if (m_OwnsStreams)
+	{
+		delete m_InterestingLog;
+		delete m_MainLog;
+	}
 }
 
 void CLogger::WriteMessage(const char *message, int interestedness)

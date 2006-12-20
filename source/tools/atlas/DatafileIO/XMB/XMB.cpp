@@ -488,9 +488,12 @@ private:
 	void complain(const SAXParseException& err, const wchar_t* severity) {
 		sawErrors = true;
 		C_ASSERT(sizeof(utf16_t) == sizeof(XMLCh));
-		errorText += wtoutf16(L"XML ")+wtoutf16(severity)
-					+wtoutf16(L": ")+ (utf16_t*)err.getSystemId()
-					+wtoutf16(L" / ") + (utf16_t*)err.getMessage();
+		errorText += wtoutf16(L"XML ");
+		errorText += wtoutf16(severity);
+		errorText += wtoutf16(L": ");
+		errorText += (utf16_t*)err.getSystemId();
+		errorText += wtoutf16(L" / ");
+		errorText += (utf16_t*)err.getMessage();
 	}
 };
 

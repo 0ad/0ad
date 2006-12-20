@@ -16,6 +16,7 @@
 #include "lib/timer.h"
 #include "lib/res/file/vfs.h"
 #include "ps/CLogger.h"
+#include "ps/DllLoader.h"
 
 using namespace AtlasMessage;
 
@@ -74,21 +75,25 @@ static ErrorReaction AtlasDisplayError(const wchar_t* text, uint flags)
 	return ER_CONTINUE;
 }
 
-bool BeginAtlas(const CmdLineArgs& args, void* dll) 
+bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll) 
 {
 	// Load required symbols from the DLL
-#define GET(x) *(void**)&x = dlsym(dll, #x); debug_assert(x); if (! x) return false;
-	GET(Atlas_StartWindow);
-	GET(Atlas_SetMessagePasser);
-	GET(Atlas_GLSetCurrent);
-	GET(Atlas_GLSwapBuffers);
-	GET(Atlas_NotifyEndOfFrame);
-	GET(Atlas_DisplayError);
-#undef GET
-#define GET(x) *(void**)&x##Fptr = dlsym(dll, #x); debug_assert(x##Fptr); if (! x##Fptr) return false;
-	GET(ShareableMalloc);
-	GET(ShareableFree);
-#undef GET
+	try
+	{
+		dll.LoadSymbol("Atlas_StartWindow", Atlas_StartWindow);
+		dll.LoadSymbol("Atlas_SetMessagePasser", Atlas_SetMessagePasser);
+		dll.LoadSymbol("Atlas_GLSetCurrent", Atlas_GLSetCurrent);
+		dll.LoadSymbol("Atlas_GLSwapBuffers", Atlas_GLSwapBuffers);
+		dll.LoadSymbol("Atlas_NotifyEndOfFrame", Atlas_NotifyEndOfFrame);
+		dll.LoadSymbol("Atlas_DisplayError", Atlas_DisplayError);
+		dll.LoadSymbol("ShareableMalloc", ShareableMallocFptr);
+		dll.LoadSymbol("ShareableFree", ShareableFreeFptr);
+	}
+	catch (PSERROR_DllLoader&)
+	{
+		debug_warn("Failed to initialise DLL");
+		return false;
+	}
 
 	// Pass our message handler to Atlas
 	Atlas_SetMessagePasser(&msgPasser);

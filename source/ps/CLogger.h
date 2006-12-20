@@ -27,19 +27,19 @@ public:
 	CLogger();
 
 	// Special constructor (mostly for testing) - outputs to provided streams.
-	// Takes ownership of streams and will delete them in the destructor.
-	CLogger(std::ostream* mainLog, std::ostream* interestingLog);
+	// Can take ownership of streams and delete them in the destructor.
+	CLogger(std::ostream* mainLog, std::ostream* interestingLog, bool takeOwnership);
 
 	~CLogger();
 
-	//Functions to write different message types
+	// Functions to write different message types
 	void WriteMessage(const char *message, int interestedness);
 	void WriteError  (const char *message, int interestedness);
 	void WriteWarning(const char *message, int interestedness);
 	
-	//Function to log stuff to file
+	// Function to log stuff to file
 	void Log(ELogMethod method, const char* category, const char *fmt, ...);
-	//Similar to Log, but only outputs each message once no matter how many times it's called
+	// Similar to Log, but only outputs each message once no matter how many times it's called
 	void LogOnce(ELogMethod method, const char* category, const char *fmt, ...);
 	
 private:
@@ -47,11 +47,12 @@ private:
 
 	void LogUsingMethod(ELogMethod method, const char* category, const char* message);
 
-	//the output streams
+	// the output streams
 	std::ostream* m_MainLog;
 	std::ostream* m_InterestingLog;
+	bool m_OwnsStreams;
 
-	//vars to hold message counts
+	// vars to hold message counts
 	int m_NumberOfMessages;
 	int m_NumberOfErrors;
 	int m_NumberOfWarnings;

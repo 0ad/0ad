@@ -1,0 +1,63 @@
+#ifndef DLLLOADER_H__
+#define DLLLOADER_H__
+
+#include "ps/Errors.h"
+
+ERROR_GROUP(DllLoader);
+ERROR_TYPE(DllLoader, DllNotLoaded);
+ERROR_TYPE(DllLoader, SymbolNotFound);
+
+class DllLoader
+{
+public:
+	/**
+	 * Prepare the DLL loader. Does no actual work.
+	 *
+	 * @param name base name of the library (from which we'll derive
+	 *  "name.dll", "libname_dbg.so", etc). Pointer must remain valid for
+	 *  this object's lifetime (which is fine if you just use a string literal).
+	 */
+	DllLoader(const char* name);
+
+	~DllLoader();
+
+	/**
+	 * Attempt to load and initialise the library, if not already. Can be harmlessly
+	 * called multiple times. Returns false if unsuccessful.
+	 */
+	bool LoadDLL();
+
+	/**
+	 * Check whether the library has been loaded successfully. Returns false
+	 * before {@link #LoadDLL} has been called; otherwise returns the same as
+	 * LoadDLL did.
+	 */
+	bool IsLoaded() const;
+	
+	/**
+	 * Attempt to load a named symbol from the library. If {@link #IsLoaded} is
+	 * false, throws PSERROR_DllLoader_DllNotLoaded. If it cannot load the
+	 * symbol, throws PSERROR_DllLoader_SymbolNotFound. In both cases, sets fptr
+	 * to NULL. Otherwise, fptr is set to point to the loaded function.
+	 *
+	 * @throws PSERROR_DllLoader
+	 */
+	template <typename T>
+	void LoadSymbol(const char* name, T& fptr) const;
+
+private:
+	// Typeless version - the public LoadSymbol hides the slightly ugly
+	// casting from users.
+	void LoadSymbolInternal(const char* name, void** fptr) const;
+
+	const char* m_Name;
+	void* m_Handle;
+};
+
+template <typename T>
+void DllLoader::LoadSymbol(const char* name, T& fptr) const
+{
+	LoadSymbolInternal(name, (void**)&fptr);
+}
+
+#endif // DLLLOADER_H__

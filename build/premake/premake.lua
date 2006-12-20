@@ -723,7 +723,7 @@ function setup_tests()
 	links = static_lib_names
 	tinsert(links, "test_3_gen")
 	extra_params = {
-		extra_files = { "test_root.cpp" },
+		extra_files = { "test_root.cpp", "test_setup.cpp" },
 		extra_links = links,
 	}
 	package_add_contents(source_root, {}, {}, extra_params)
