@@ -78,7 +78,7 @@ void CUnitManager::DeleteAll()
 ///////////////////////////////////////////////////////////////////////////////
 // PickUnit: iterate through units testing given ray against bounds of each 
 // unit; return the closest unit, or null if everything missed
-CUnit* CUnitManager::PickUnit(const CVector3D& origin, const CVector3D& dir) const
+CUnit* CUnitManager::PickUnit(const CVector3D& origin, const CVector3D& dir, bool entitiesOnly) const
 {
 	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
 
@@ -94,6 +94,8 @@ CUnit* CUnitManager::PickUnit(const CVector3D& origin, const CVector3D& dir) con
 		float tmin, tmax;
 		
 		CEntity* ent = unit->GetEntity();
+		if( entitiesOnly && !ent )
+			continue;
 		if( ent && !ent->m_visible )
 			continue;
 		

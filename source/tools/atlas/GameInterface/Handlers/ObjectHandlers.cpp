@@ -487,7 +487,7 @@ QUERYHANDLER(PickObject)
 	CVector3D rayorigin, raydir;
 	g_Game->GetView()->GetCamera()->BuildCameraRay((int)x, (int)y, rayorigin, raydir);
 
-	CUnit* target = g_UnitMan.PickUnit(rayorigin, raydir);
+	CUnit* target = g_UnitMan.PickUnit(rayorigin, raydir, false);
 
 	if (target)
 		msg->id = target->GetID();

@@ -644,7 +644,7 @@ void CMouseoverEntities::update( float timestep )
 	CVector3D origin, dir;
 	pCamera->BuildCameraRay( origin, dir );
 
-	CUnit* hit = g_UnitMan.PickUnit( origin, dir );
+	CUnit* hit = g_UnitMan.PickUnit( origin, dir, true );
 
 	m_worldposition = pCamera->GetWorldCoordinates(true);
 

@@ -71,9 +71,10 @@ void CMiniMap::HandleMessage(const SGUIMessage &Message)
 		}
 	case GUIM_MOUSE_RELEASE_LEFT:
 		{
-		SetCameraPos();
-		m_Clicking = false;
-		break;
+			if(m_Clicking)
+				SetCameraPos();
+			m_Clicking = false;
+			break;
 		}
 	case GUIM_MOUSE_ENTER:
 		{

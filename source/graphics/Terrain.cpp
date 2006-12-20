@@ -96,6 +96,10 @@ bool CTerrain::isOnMap(const CVector2D& v) const
 bool CTerrain::isPassable(const CVector2D &loc/*tile space*/, HEntity entity) const
 {
 	CMiniPatch *pTile = GetTile(loc.x, loc.y);
+	if(!pTile->Tex1)
+	{
+		return false;		// Invalid terrain type in the scenario file
+	}
 	CTextureEntry *pTexEntry = g_TexMan.FindTexture(pTile->Tex1);
 	CTerrainPropertiesPtr pProperties = pTexEntry->GetProperties();
 
