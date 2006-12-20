@@ -302,7 +302,10 @@ RealDir rd;	// HACK; removeme
 		{
 			TNode* node = *it;
 			if(node->type == NT_DIR)
+			{
 				((TDir*)node)->clearR();
+				((TDir*)node)->~TDir();
+			}
 		}
 
 		// wipe out this directory

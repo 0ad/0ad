@@ -67,8 +67,8 @@ static LibError UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 	if(f->ht > 0)
 		return INFO::OK;
 
-	f->glyphs_id = new glyphmap_id;
-	f->glyphs_size = new glyphmap_size;
+	f->glyphs_id = new glyphmap_id();
+	f->glyphs_size = new glyphmap_size();
 
 	// fn is the base filename, e.g. "console"
 	// The font definition file is "fonts/"+fn+".fnt" and the texture is "fonts/"+fn+".tga"
@@ -186,7 +186,10 @@ static LibError UniFont_validate(const UniFont* f)
 
 static LibError UniFont_to_string(const UniFont* f, char* buf)
 {
-	snprintf(buf, H_STRING_LEN, "Font %s", h_filename(f->ht));
+	if (f->ht) // not true if this is called after dtor (which it is)
+		snprintf(buf, H_STRING_LEN, "Font %s", h_filename(f->ht));
+	else
+		snprintf(buf, H_STRING_LEN, "Font");
 	return INFO::OK;
 }
 

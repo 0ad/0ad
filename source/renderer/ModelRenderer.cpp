@@ -27,6 +27,7 @@
 #include "renderer/Renderer.h"
 #include "renderer/RenderModifiers.h"
 
+#include <boost/weak_ptr.hpp>
 
 #define LOG_CATEGORY "graphics"
 

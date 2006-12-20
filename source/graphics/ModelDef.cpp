@@ -77,7 +77,6 @@ CVector3D CModelDef::SkinNormal(const SModelVertex& vtx,
 	return result;
 }
 
-///////////////////////////////////////////////////////////////////////////////
 // CModelDef Constructor
 CModelDef::CModelDef()	
 	: m_NumVertices(0), m_pVertices(0), m_NumFaces(0), m_pFaces(0), m_NumBones(0), m_Bones(0),
@@ -85,7 +84,6 @@ CModelDef::CModelDef()
 {
 }
 
-///////////////////////////////////////////////////////////////////////////////
 // CModelDef Destructor
 CModelDef::~CModelDef()
 {
@@ -97,7 +95,6 @@ CModelDef::~CModelDef()
 	delete[] m_PropPoints;
 }
 
-///////////////////////////////////////////////////////////////////////////////
 // FindPropPoint: find and return pointer to prop point matching given name; 
 // return null if no match (case insensitive search)
 SPropPoint* CModelDef::FindPropPoint(const char* name) const
@@ -109,9 +106,8 @@ SPropPoint* CModelDef::FindPropPoint(const char* name) const
 	return 0;
 }
 
-///////////////////////////////////////////////////////////////////////////////
 // Load: read and return a new CModelDef initialised with data from given file
-CModelDef* CModelDef::Load(const char* filename)
+CModelDef* CModelDef::Load(const char* filename, const char* name)
 {
 	CFileUnpacker unpacker;
 
@@ -123,8 +119,8 @@ CModelDef* CModelDef::Load(const char* filename)
 		throw PSERROR_File_InvalidVersion();
 	}
 
-	std::auto_ptr<CModelDef> mdef (new CModelDef);
-	mdef->m_Name = filename;
+	std::auto_ptr<CModelDef> mdef (new CModelDef());
+	mdef->m_Name = name;
 
 	// now unpack everything 
 	unpacker.UnpackRaw(&mdef->m_NumVertices,sizeof(mdef->m_NumVertices));	
@@ -195,7 +191,6 @@ CModelDef* CModelDef::Load(const char* filename)
 	return mdef.release();
 }
 
-///////////////////////////////////////////////////////////////////////////////
 // Save: write the given CModelDef to the given file
 void CModelDef::Save(const char* filename,const CModelDef* mdef)
 {
@@ -227,7 +222,6 @@ void CModelDef::Save(const char* filename,const CModelDef* mdef)
 	packer.Write(filename);
 }
 
-///////////////////////////////////////////////////////////////////////////////
 // SetRenderData: Set the render data object for the given key,
 void CModelDef::SetRenderData(const void* key, CModelDefRPrivate* data)
 {
@@ -235,7 +229,6 @@ void CModelDef::SetRenderData(const void* key, CModelDefRPrivate* data)
 	m_RenderData[key] = data;
 }
 
-///////////////////////////////////////////////////////////////////////////////
 // GetRenderData: Get the render data object for the given key,
 // or 0 if no such object exists.
 // Reference count of the render data object is automatically increased.

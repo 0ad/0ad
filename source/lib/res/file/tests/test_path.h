@@ -63,5 +63,7 @@ public:
 				break;
 		}
 		TS_ASSERT(tries_left != 0);
+
+		path_shutdown();
 	}
 };

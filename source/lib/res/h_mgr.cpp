@@ -414,15 +414,22 @@ static Pool fn_pool;
 // choose this to balance internal fragmentation and accessing the heap.
 static const size_t FN_POOL_EL_SIZE = 64;
 
+static ModuleInitState init_state;
+
 static void fn_init()
 {
+	moduleInit_assertCanInit(init_state);
+
 	// (if this fails, so will subsequent fn_stores - no need to complain here)
 	(void)pool_create(&fn_pool, MAX_EXTANT_HANDLES*FN_POOL_EL_SIZE, FN_POOL_EL_SIZE);
+
+	moduleInit_markInitialized(&init_state);
 }
 
 static void fn_store(HDATA* hd, const char* fn)
 {
-	ONCE(fn_init());
+	if (init_state != MODULE_INITIALIZED)
+		fn_init();
 
 	const size_t size = strlen(fn)+1;
 
@@ -468,7 +475,15 @@ static void fn_free(HDATA* hd)
 
 static void fn_shutdown()
 {
-	pool_destroy(&fn_pool);
+	// this can be validly called even if not initialized yet,
+	// since fn_store may have never been called
+
+	if (init_state == MODULE_INITIALIZED)
+	{
+		pool_destroy(&fn_pool);
+	}
+
+	moduleInit_markShutdown(&init_state);
 }
 
 

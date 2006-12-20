@@ -38,7 +38,7 @@ void require_(int line, const FUStatus& status)
 }
 
 /** Outputs a structure, using sizeof to get the size. */
-template<typename T> void write(OutputFn output, const T& data)
+template<typename T> void write(OutputCB& output, const T& data)
 {
 	output((char*)&data, sizeof(T));
 }
@@ -83,7 +83,7 @@ public:
 	 * @param xmlErrors output - errors reported by the XML parser
 	 * @throws ColladaException on failure
 	 */
-	static void ColladaToPMD(const char* input, OutputFn output, std::string& xmlErrors)
+	static void ColladaToPMD(const char* input, OutputCB& output, std::string& xmlErrors)
 	{
 		FUStatus ret;
 
@@ -239,7 +239,8 @@ public:
 	/**
 	 * Writes the model data in the PMD format.
 	 */
-	static void WritePMD(OutputFn output, size_t vertexCount, size_t boneCount,
+	static void WritePMD(OutputCB& output,
+		size_t vertexCount, size_t boneCount,
 		float* position, float* normal, float* texcoord,
 		VertexBlend* boneWeights, BoneTransform* boneTransforms)
 	{
@@ -565,7 +566,7 @@ public:
 // with forward declarations of functions - but provide the plain function
 // interface here:
 
-void ColladaToPMD(const char* input, OutputFn output, std::string& xmlErrors)
+void ColladaToPMD(const char* input, OutputCB& output, std::string& xmlErrors)
 {
 	Converter::ColladaToPMD(input, output, xmlErrors);
 }

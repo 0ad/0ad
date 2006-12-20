@@ -46,7 +46,7 @@ static inline void trace_init()
 
 void trace_shutdown()
 {
-	if(CAS(&trace_initialized, 1, 2))
+	if(CAS(&trace_initialized, 1, 0))
 		(void)pool_destroy(&trace_pool);
 }
 

@@ -44,6 +44,9 @@ public:
 		TS_ASSERT_EQUALS(ucsize_final, data_size);	// correct amount of output
 		}
 
+		comp_free(c);
+		comp_free(d);
+
 		// verify data survived intact
 		TS_ASSERT_SAME_DATA(data, ucdata, data_size);
 	}

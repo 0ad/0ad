@@ -14,8 +14,6 @@
 #include "maths/Quaternion.h"
 #include <map>
 
-class CMeshManager;
-class CModelDef;
 class CBoneState;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -85,7 +83,6 @@ public:
 // information of a model
 class CModelDef
 {
-	friend class CMeshManager;
 public:
 	// current file version given to saved animations
 	enum { FILE_VERSION = 3 };
@@ -94,13 +91,21 @@ public:
 
 
 public:
-	// constructor
 	CModelDef();
-	// destructor
-	virtual ~CModelDef();
+	~CModelDef();
 
 	// model I/O functions
- 	static void Save(const char* filename,const CModelDef* mdef);
+
+	static void Save(const char* filename,const CModelDef* mdef);
+
+	/**
+	 * Loads a PMD file.
+	 * @param filename VFS path of .pmd file to load
+	 * @param name arbitrary name to give the model for debugging purposes
+	 * @return the model - always non-NULL
+	 * @throw PSERROR_File if it can't load the model
+	 */
+	static CModelDef* Load(const char* filename, const char* name);
 	
 public:
 	// accessor: get vertex data
@@ -183,9 +188,6 @@ private:
 	// by render path
 	typedef std::map<const void*, CModelDefRPrivate*> RenderDataMap;
 	RenderDataMap m_RenderData;
-
-protected:
-	static CModelDef* Load(const char* filename);
 };
 
 #endif

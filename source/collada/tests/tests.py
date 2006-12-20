@@ -21,11 +21,11 @@ library.set_logger(clog)
 
 def convert_dae_to_pmd(filename):
 	output = []
-	def cb(str, len):
+	def cb(cbdata, str, len):
 		output.append(string_at(str, len))
 
-	cbtype = CFUNCTYPE(None, POINTER(c_char), c_uint)
-	status = library.convert_dae_to_pmd(filename, cbtype(cb))
+	cbtype = CFUNCTYPE(None, POINTER(None), POINTER(c_char), c_uint)
+	status = library.convert_dae_to_pmd(filename, cbtype(cb), None)
 	assert(status == 0)
 	return ''.join(output)
 
@@ -64,8 +64,8 @@ test_mod = binaries + '/data/mods/_test.collada'
 clean_dir(test_mod + '/art/meshes')
 clean_dir(test_mod + '/art/actors')
 
-for test_file in ['cube', 'jav2', 'teapot_basic', 'teapot_skin', 'plane_skin', 'dude_skin']:
-#for test_file in ['dude_skin']:
+#for test_file in ['cube', 'jav2', 'teapot_basic', 'teapot_skin', 'plane_skin', 'dude_skin']:
+for test_file in ['sphere']:
 	input_filename = '%s/%s.dae' % (test_data, test_file)
 	output_filename = '%s/art/meshes/%s.pmd' % (test_mod, test_file)
 	

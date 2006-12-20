@@ -2,26 +2,28 @@
 #define __H_MESHMANAGER_H__
 
 #include "ps/Singleton.h"
-#include "ps/CStr.h"
 
 #include <boost/shared_ptr.hpp>
-#include <boost/weak_ptr.hpp>
-
-#define g_MeshManager CMeshManager::GetSingleton()
 
 class CModelDef;
 typedef boost::shared_ptr<CModelDef> CModelDefPtr;
-typedef STL_HASH_MAP<CStr, boost::weak_ptr<CModelDef>, CStr_hash_compare> mesh_map;
+
+class CStr8;
+
+#define g_MeshManager CMeshManager::GetSingleton()
+
+class CMeshManagerImpl;
 
 class CMeshManager : public Singleton<CMeshManager>
 {
 public:
-    CMeshManager();
-    ~CMeshManager();
+	CMeshManager();
+	~CMeshManager();
 
-    CModelDefPtr GetMesh(const char *filename);
+	CModelDefPtr GetMesh(const CStr8& filename);
+
 private:
-    mesh_map m_MeshMap;
+	CMeshManagerImpl* m;
 };
 
 #endif

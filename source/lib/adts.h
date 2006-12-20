@@ -117,27 +117,25 @@ public:
 	DynHashTbl()
 	{
 		tbl = 0;
-		num_entries = 0;
-		max_entries = tr.initial_entries/2;	// will be doubled in expand_tbl
-		debug_assert(is_pow2(max_entries));
-		expand_tbl();
+		clear();
 	}
 
 	~DynHashTbl()
 	{
-		clear();
+		free(tbl);
 	}
 
 	void clear()
 	{
-		// note: users might call clear() right before the dtor runs,
-		// so safely handling calling this twice.
+		// must remain usable after calling clear, so shrink the table to
+		// its initial size but don't deallocate it completely
 		SAFE_FREE(tbl);
 		num_entries = 0;
 		// rationale: must not set to 0 because expand_tbl only doubles the size.
-		// don't keep the previous size because it may have become huge and
-		// there is no provision for shrinking.
+		// don't keep the previous size when clearing because it may have become
+		// huge and there is no provision for shrinking.
 		max_entries = tr.initial_entries/2;	// will be doubled in expand_tbl
+		expand_tbl();
 	}
 
 	void insert(const Key key, const T t)

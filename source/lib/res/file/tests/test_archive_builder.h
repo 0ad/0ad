@@ -6,6 +6,8 @@
 #include "lib/res/file/vfs.h"
 #include "lib/res/file/archive.h"
 #include "lib/res/file/archive_builder.h"
+#include "lib/res/h_mgr.h"
+#include "lib/res/mem.h"
 
 class TestArchiveBuilder : public CxxTest::TestSuite 
 {
@@ -85,7 +87,6 @@ public:
 	void setUp()
 	{
 		(void)file_init();
-		path_init();	// required for file_make_unique_fn_copy
 		(void)file_set_root_dir(0, ".");
 		vfs_init();
 	}
@@ -93,12 +94,16 @@ public:
 	void tearDown()
 	{
 		vfs_shutdown();
+		file_shutdown();
+		h_mgr_shutdown();
 		path_reset_root_dir();
 	}
 
 	void test_create_archive_with_random_files()
 	{
-		TS_ASSERT_OK(dir_create("archivetest", S_IRWXU|S_IRWXG|S_IRWXO));
+		if(!file_exists("archivetest")) // don't get stuck if this test fails and never deletes the directory it created
+			TS_ASSERT_OK(dir_create("archivetest", S_IRWXU|S_IRWXG|S_IRWXO));
+
 		TS_ASSERT_OK(vfs_mount("", "archivetest"));
 
 		generate_random_files();
@@ -122,6 +127,7 @@ public:
 			TS_ASSERT_SAME_DATA(buf, files[i].data, files[i].size);
 
 			TS_ASSERT_OK(file_buf_free(buf));
+			TS_ASSERT_OK(afile_close(&f));
 			SAFE_ARRAY_DELETE(files[i].data);
 		}
 		TS_ASSERT_OK(archive_close(ha));

@@ -222,6 +222,9 @@ void path_reset_root_dir()
 // arena, which is also more memory-efficient than the heap (no headers).
 static Pool atom_pool;
 
+typedef DynHashTbl<const char*, const char*> AtomMap;
+static AtomMap atom_map;
+
 bool path_is_atom_fn(const char* fn)
 {
 	return pool_contains(&atom_pool, (void*)fn);
@@ -247,8 +250,6 @@ const char* file_make_unique_fn_copy(const char* P_fn)
 	// rationale: the entire storage could be done via container,
 	// rather than simply using it as a lookup mapping.
 	// however, DynHashTbl together with Pool (see above) is more efficient.
-	typedef DynHashTbl<const char*, const char*> AtomMap;
-	static AtomMap atom_map;
 	unique_fn = atom_map.find(P_fn);
 	if(unique_fn)
 		return unique_fn;
@@ -269,15 +270,25 @@ const char* file_make_unique_fn_copy(const char* P_fn)
 }
 
 
+static ModuleInitState init_state;
+
 void path_init()
 {
-	ONCE_NOT(return;);
+	moduleInit_assertCanInit(init_state);
+
 	pool_create(&atom_pool, 8*MiB, POOL_VARIABLE_ALLOCS);
+
+	moduleInit_markInitialized(&init_state);
 }
 
 void path_shutdown()
 {
+	moduleInit_assertCanShutdown(init_state);
+
+	atom_map.clear();
 	(void)pool_destroy(&atom_pool);
+
+	moduleInit_markShutdown(&init_state);
 }
 
 

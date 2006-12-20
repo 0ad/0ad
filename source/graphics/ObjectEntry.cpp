@@ -68,13 +68,11 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr8> >& selection
 	// remember the old model so we can replace any models using it later on
 	CModelDefPtr oldmodeldef = m_Model ? m_Model->GetModelDef() : CModelDefPtr();
 
-	const char* modelfilename = m_ModelName;
-
 	// try and create a model
-	CModelDefPtr modeldef (g_MeshManager.GetMesh(modelfilename));
+	CModelDefPtr modeldef (g_MeshManager.GetMesh(m_ModelName));
 	if (!modeldef)
 	{
-		LOG(ERROR, LOG_CATEGORY, "CObjectEntry::BuildModel(): Model %s failed to load", modelfilename);
+		LOG(ERROR, LOG_CATEGORY, "CObjectEntry::BuildModel(): Model %s failed to load", m_ModelName.c_str());
 		return false;
 	}
 
@@ -126,7 +124,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr8> >& selection
 	{
 		// start up idling
 		if (! m_Model->SetAnimation(GetRandomAnimation("idle")))
-			LOG(ERROR, LOG_CATEGORY, "Failed to set idle animation in model \"%s\"", modelfilename);
+			LOG(ERROR, LOG_CATEGORY, "Failed to set idle animation in model \"%s\"", m_ModelName.c_str());
 	}
 
 	// build props - TODO, RC - need to fix up bounds here
@@ -154,7 +152,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr8> >& selection
 			m_AmmunitionModel = oe->m_Model;
 			m_AmmunitionPoint = modeldef->FindPropPoint((const char*)ppn );
 			if( !m_AmmunitionPoint )
-				LOG(ERROR, LOG_CATEGORY, "Failed to find matching prop point called \"%s\" in model \"%s\" on actor \"%s\"", (const char*)ppn, modelfilename, (const char*)prop.m_ModelName);
+				LOG(ERROR, LOG_CATEGORY, "Failed to find matching prop point called \"%s\" in model \"%s\" on actor \"%s\"", (const char*)ppn, (const char*)m_ModelName, (const char*)prop.m_ModelName);
 		}
 		else
 		{
@@ -166,7 +164,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr8> >& selection
 				propmodel->SetAnimation(oe->GetRandomAnimation("idle"));
 			}
 			else
-				LOG(ERROR, LOG_CATEGORY, "Failed to find matching prop point called \"%s\" in model \"%s\" on actor \"%s\"", (const char*)prop.m_PropPointName, modelfilename, (const char*)prop.m_ModelName);
+				LOG(ERROR, LOG_CATEGORY, "Failed to find matching prop point called \"%s\" in model \"%s\" on actor \"%s\"", (const char*)prop.m_PropPointName, (const char*)m_ModelName, (const char*)prop.m_ModelName);
 		}
 	}
 

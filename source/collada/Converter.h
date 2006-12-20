@@ -24,6 +24,11 @@ private:
 	std::string msg;
 };
 
-void ColladaToPMD(const char* input, OutputFn output, std::string& xmlErrors);
+struct OutputCB
+{
+	virtual void operator() (const char* data, unsigned int length)=0;
+};
+
+void ColladaToPMD(const char* input, OutputCB& output, std::string& xmlErrors);
 
 #endif // CONVERTER_H__

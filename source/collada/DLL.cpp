@@ -3,6 +3,7 @@
 #include "Converter.h"
 
 #include <cstdarg>
+#include <cassert>
 
 void default_logger(int severity, const char* message)
 {
@@ -13,7 +14,10 @@ static LogFn g_Logger = &default_logger;
 
 void set_logger(LogFn logger)
 {
-	g_Logger = logger;
+	if (logger)
+		g_Logger = logger;
+	else
+		g_Logger = &default_logger;
 }
 
 void Log(int severity, const char* msg, ...)
@@ -28,14 +32,59 @@ void Log(int severity, const char* msg, ...)
 	g_Logger(severity, buffer);
 }
 
-int convert_dae_to_pmd(const char* dae, OutputFn pmd_writer)
+struct BufferedOutputCallback : public OutputCB
+{
+	static const int bufferSize = 4096;
+	char buffer[bufferSize];
+	int bufferUsed;
+
+	OutputFn fn;
+	void* cb_data;
+
+	BufferedOutputCallback(OutputFn fn, void* cb_data)
+		: fn(fn), cb_data(cb_data), bufferUsed(0)
+	{
+	}
+
+	~BufferedOutputCallback()
+	{
+		// flush the buffer if it's not empty
+		if (bufferUsed > 0)
+			fn(cb_data, buffer, bufferUsed);
+	}
+
+	virtual void operator() (const char* data, unsigned int length)
+	{
+		if (bufferUsed+length > bufferSize)
+		{
+			// will overflow buffer, so flush the buffer first
+			fn(cb_data, buffer, bufferUsed);
+			bufferUsed = 0;
+
+			if (length > bufferSize)
+			{
+				// new data won't fit in buffer, so send it out unbuffered
+				fn(cb_data, data, length);
+				return;
+			}
+		}
+
+		// append onto buffer
+		memcpy(buffer+bufferUsed, data, length);
+		bufferUsed += length;
+		assert(bufferUsed <= bufferSize);
+	}
+};
+
+int convert_dae_to_pmd(const char* dae, OutputFn pmd_writer, void* cb_data)
 {
 	Log(LOG_INFO, "Starting conversion");
 
 	std::string xmlErrors;
+	BufferedOutputCallback cb(pmd_writer, cb_data);
 	try
 	{
-		ColladaToPMD(dae, pmd_writer, xmlErrors);
+		ColladaToPMD(dae, cb, xmlErrors);
 	}
 	catch (ColladaException e)
 	{

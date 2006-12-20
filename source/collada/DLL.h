@@ -21,10 +21,12 @@ extern "C"
 #define LOG_ERROR 2
 
 typedef void (*LogFn) (int severity, const char* text);
-typedef void (*OutputFn) (const char* data, unsigned int length);
+typedef void (*OutputFn) (void* cb_data, const char* data, unsigned int length);
+
+#define COLLADA_CONVERTER_VERSION 1
 
 EXPORT void set_logger(LogFn logger);
-EXPORT int convert_dae_to_pmd(const char* dae, OutputFn pmd_writer);
+EXPORT int convert_dae_to_pmd(const char* dae, OutputFn pmd_writer, void* cb_data);
 
 #ifdef __cplusplus
 };
