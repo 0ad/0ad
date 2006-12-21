@@ -423,7 +423,11 @@ void CMiniMap::Draw()
 		glPushMatrix();
 		glTranslatef(0, 0, z);
 
-		pglBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
+		// Unbind any vertex buffer object, if our card supports VBO's
+		if (g_Renderer.GetCapabilities().m_VBO)
+		{
+			pglBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
+		}
 
 		glInterleavedArrays(GL_C4UB_V2F, sizeof(MinimapUnitVertex), &vertexArray[0]);
 		glDrawArrays(GL_POINTS, 0, (GLsizei)vertexArray.size());
