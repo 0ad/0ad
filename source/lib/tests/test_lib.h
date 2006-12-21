@@ -2,14 +2,6 @@
 
 #include "lib/lib.h"
 
-extern "C"
-int
-__stdcall
-MessageBoxA(
-			void*,
-			const char*,const char*,
-			unsigned int);
-
 class TestLib : public CxxTest::TestSuite 
 {
 public:

@@ -14,7 +14,7 @@ void* const HANDLE_UNAVAILABLE = (void*)-1;
 // note: on Linux, lib is prepended to the SO file name and we need to add ./
 // to make dlopen look in the current working directory
 #if OS_UNIX
-static const char* prefix = "./lib"
+static const char* prefix = "./lib";
 #else
 static const char* prefix = "";
 #endif
