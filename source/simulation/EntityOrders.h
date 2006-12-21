@@ -98,21 +98,51 @@ public:
 		ORDER_NOTIFY_REQUEST,
 		ORDER_LAST
 	};
+	EOrderType m_type;
 
 	enum EOrderSource
 	{
 		SOURCE_PLAYER,
 		SOURCE_UNIT_AI
 	};
-
-	EOrderType m_type;
 	EOrderSource m_source;
-	SOrderData m_data[ORDER_MAX_DATA];
+
+	// all commands involving pathfinder (i.e. all :P)
+	float m_pathfinder_radius;
+
+	// NMT_PlaceObject
+	HEntity m_new_obj;
+
+	// NMT_Goto
+	// NMT_FormationGoto
+	// NMT_Run
+	// NMT_Patrol
+	// NMT_AddWaypoint
+	CVector2D m_target_location;
+
+	// NMT_Generic
+	// NMT_FormationGeneric
+	// NMT_NotifyRequest
+	HEntity m_target_entity;
+	int m_action;
+
+	// NMT_Produce
+	CStrW m_produce_name;
+	int m_produce_type;
+
+
+	//SOrderData m_data[ORDER_MAX_DATA];
 
 	CEntityOrder(): m_type(ORDER_INVALID), m_source(SOURCE_PLAYER) {}
 
 	CEntityOrder(EOrderType type, EOrderSource source=SOURCE_PLAYER)
 		: m_type(type), m_source(source) {}
 };
+
+typedef std::deque<CEntityOrder> CEntityOrders;
+typedef CEntityOrders::iterator CEntityOrderIt;
+typedef CEntityOrders::const_iterator CEntityOrderCIt;
+typedef CEntityOrders::const_reverse_iterator CEntityOrderCRIt;
+
 
 #endif

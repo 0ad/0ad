@@ -280,8 +280,8 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 			JSU_REQUIRE_PARAMS_CPP(3);
 			try
 			{
-				newOrder.m_data[0].location.x = ToPrimitive<float>( argv[1] );
-				newOrder.m_data[0].location.y = ToPrimitive<float>( argv[2] );
+				newOrder.m_target_location.x = ToPrimitive<float>( argv[1] );
+				newOrder.m_target_location.y = ToPrimitive<float>( argv[2] );
 			}
 			catch( PSERROR_Scripting_ConversionFailed )
 			{
@@ -308,10 +308,10 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 				JS_ReportError( cx, "Invalid target" );
 				return( false );
 			}
-			newOrder.m_data[0].entity = target->me;
+			newOrder.m_target_entity = target->me;
 			try
 			{
-				newOrder.m_data[1].data = ToPrimitive<int>( argv[2] );
+				newOrder.m_action = ToPrimitive<int>( argv[2] );
 			}
 			catch( PSERROR_Scripting_ConversionFailed )
 			{
@@ -331,8 +331,8 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 		case CEntityOrder::ORDER_PRODUCE:
 			JSU_REQUIRE_PARAMS_CPP(3);
 			try {
-				newOrder.m_data[0].string = ToPrimitive<CStrW>(argv[2]);
-				newOrder.m_data[1].data = ToPrimitive<int>(argv[1]);
+				newOrder.m_produce_name = ToPrimitive<CStrW>(argv[2]);
+				newOrder.m_produce_type = ToPrimitive<int>(argv[1]);
 			}
 			catch( PSERROR_Scripting_ConversionFailed )
 			{

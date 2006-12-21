@@ -215,7 +215,7 @@ public:
 	size_t m_fsm_anipos; // the time at which we should start playing it.
 	size_t m_fsm_anipos2; // for when there are two animation-related events we need to take care of.
 
-	std::deque<CEntityOrder> m_orderQueue;
+	CEntityOrders m_orderQueue;
 	std::deque<CEntityListener> m_listeners;
 
 	std::vector<CEntity*> m_notifiers;

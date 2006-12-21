@@ -105,4 +105,7 @@ struct CEntityList:  public std::vector<HEntity>
 	operator CStr8() const;
 };
 
+typedef CEntityList::iterator CEntityIt;
+typedef CEntityList::const_iterator CEntityCIt;
+
 #endif

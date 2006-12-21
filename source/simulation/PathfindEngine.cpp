@@ -24,8 +24,8 @@ void CPathfindEngine::requestPath( HEntity entity, const CVector2D& destination,
 	CEntityOrder waypoint;
 	waypoint.m_type = CEntityOrder::ORDER_GOTO_WAYPOINT;
 	waypoint.m_source = orderSource;
-	waypoint.m_data[0].location = destination;
-	*((float*)&waypoint.m_data[0].data) = 0.0f;
+	waypoint.m_target_location = destination;
+	waypoint.m_pathfinder_radius = 0.0f;
 	entity->m_orderQueue.push_front( waypoint );
 }
 
@@ -52,16 +52,16 @@ void CPathfindEngine::requestLowLevelPath( HEntity entity, const CVector2D& dest
 			// (otherwise, go to wherever the pathfinder tells us since we just want to be in range)
 			CVector2D finalDest = (radius==0 ? destination : path[path.size()-1]);
 			node.m_type = CEntityOrder::ORDER_PATH_END_MARKER;	// push end marker (used as a sentinel when repathing)
-			node.m_data[0].location = finalDest;
+			node.m_target_location = finalDest;
 			entity->m_orderQueue.push_front(node);
 			node.m_type = CEntityOrder::ORDER_GOTO_NOPATHING;	// push final goto step
-			node.m_data[0].location = finalDest;
+			node.m_target_location = finalDest;
 			entity->m_orderQueue.push_front(node);
 
 			for( int i = ((int) path.size()) - 2; i >= 0; i-- )
 			{
 				node.m_type = CEntityOrder::ORDER_GOTO_NOPATHING;	// TODO: For non-contact paths, do we want some other order type?
-				node.m_data[0].location = path[i];
+				node.m_target_location = path[i];
 				entity->m_orderQueue.push_front(node);
 			}
 		}
@@ -73,10 +73,10 @@ void CPathfindEngine::requestLowLevelPath( HEntity entity, const CVector2D& dest
 			{
 				CEntityOrder node;
 				node.m_type = CEntityOrder::ORDER_PATH_END_MARKER;
-				node.m_data[0].location = destination;
+				node.m_target_location = destination;
 				entity->m_orderQueue.push_front(node);
 				node.m_type = CEntityOrder::ORDER_GOTO_NOPATHING;
-				node.m_data[0].location = destination;
+				node.m_target_location = destination;
 				entity->m_orderQueue.push_front(node);
 			}
 		}
@@ -96,12 +96,12 @@ void CPathfindEngine::requestContactPath( HEntity entity, CEntityOrder* current,
 	CEntityOrder waypoint;
 	waypoint.m_type = CEntityOrder::ORDER_GOTO_WAYPOINT_CONTACT;
 	waypoint.m_source = current->m_source;
-	HEntity target = current->m_data[0].entity;
-	waypoint.m_data[0].location = target->m_position;
-	*((float*)&waypoint.m_data[0].data) = std::max( target->m_bounds->m_radius, range );
+	HEntity target = current->m_target_entity;
+	waypoint.m_target_location = target->m_position;
+	waypoint.m_pathfinder_radius = std::max( target->m_bounds->m_radius, range );
 	entity->m_orderQueue.push_front( waypoint );
 
-	//pathSparse( entity, current->m_data[0].entity->m_position );
+	//pathSparse( entity, current->m_target_entity->m_position );
 	//// For attack orders, do some additional postprocessing (replace goto/nopathing 
 	//// with attack/nopathing, up until the attack order marker)
 	//std::deque<CEntityOrder>::iterator it;
@@ -128,21 +128,21 @@ bool CPathfindEngine::requestAvoidPath( HEntity entity, CEntityOrder* current, f
 	waypoint.m_source = current->m_source;
 
 	// Figure out a direction to move
-	HEntity target = current->m_data[0].entity;
+	HEntity target = current->m_target_entity;
 	CVector3D dir = entity->m_position - target->m_position;
 	if(dir.LengthSquared() == 0) // shouldn't happen, but just in case
 		dir = CVector3D(1, 0, 0);
 	float dist = dir.GetLength();
 	dir.Normalize();
 
-	waypoint.m_data[0].location = entity->m_position + dir * (avoidRange - dist);
+	waypoint.m_target_location = entity->m_position + dir * (avoidRange - dist);
 
-	if( !g_Game->GetWorld()->GetTerrain()->isOnMap( waypoint.m_data[0].location ) )
+	if( !g_Game->GetWorld()->GetTerrain()->isOnMap( waypoint.m_target_location ) )
 	{
 		return false;
 	}
 
-	*((float*)&waypoint.m_data[0].data) = 0.0f;
+	waypoint.m_pathfinder_radius = 0.0f;
 	entity->m_orderQueue.push_front( waypoint );
 	return true;
 }

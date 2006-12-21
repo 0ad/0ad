@@ -207,7 +207,7 @@ void nodePostProcess( HEntity entity, std::vector<CVector2D>& nodelist )
 	entity->m_orderQueue.push_front( node );
 
 	node.m_type = CEntityOrder::ORDER_GOTO_SMOOTHED;
-	node.m_data[0].location = next;
+	node.m_target_location = next;
 
 	entity->m_orderQueue.push_front( node );
 
@@ -223,7 +223,7 @@ void nodePostProcess( HEntity entity, std::vector<CVector2D>& nodelist )
 		CVector2D ubar = u.beta();
 		CVector2D vbar = v.beta();
 		float alpha = entity->m_turningRadius * ( ubar - vbar ).length() / ( u + v ).length();
-		node.m_data[0].location = current - u * alpha;
+		node.m_target_location = current - u * alpha;
 		entity->m_orderQueue.push_front( node );
 		next = current;
 	}
@@ -257,7 +257,7 @@ void pathSparse( HEntity entity, CVector2D destination )
 		// Try a straight line. All we can do, really.
 		CEntityOrder direct;
 		direct.m_type = CEntityOrder::ORDER_GOTO_NOPATHING;
-		direct.m_data[0].location = destination;
+		direct.m_target_location = destination;
 		entity->m_orderQueue.push_front( direct );
 	}
 }

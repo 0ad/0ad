@@ -162,20 +162,13 @@ void RandomizeLocations(CEntityOrder order, const std::vector<HEntity> &entities
 		}
 		while( ( _x * _x ) + ( _y * _y ) > 1.0f );
 
-		randomizedOrder.m_data[0].location.x += _x * radius;
-		randomizedOrder.m_data[0].location.y += _y * radius;
+		randomizedOrder.m_target_location.x += _x * radius;
+		randomizedOrder.m_target_location.y += _y * radius;
 
 		// Clamp it to within the map, just in case.
 		float mapsize = (float)g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide() * CELL_SIZE;
-
-		if( randomizedOrder.m_data[0].location.x < 0.0f )
-			randomizedOrder.m_data[0].location.x = 0.0f;
-		if( randomizedOrder.m_data[0].location.x >= mapsize )
-			randomizedOrder.m_data[0].location.x = mapsize;
-		if( randomizedOrder.m_data[0].location.y < 0.0f )
-			randomizedOrder.m_data[0].location.y = 0.0f;
-		if( randomizedOrder.m_data[0].location.y >= mapsize )
-			randomizedOrder.m_data[0].location.y = mapsize;
+		randomizedOrder.m_target_location.x = clamp(randomizedOrder.m_target_location.x, 0.0f, mapsize);
+		randomizedOrder.m_target_location.y = clamp(randomizedOrder.m_target_location.y, 0.0f, mapsize);
 
 		if( !isQueued )
 			(*it)->clearOrders();
@@ -194,7 +187,7 @@ void FormationLocations(CEntityOrder order, const std::vector<HEntity> &entities
 	for (; it != entities.end(); it++)
 	{
 		CEntityOrder orderCopy = order;
-		CVector2D posDelta = orderCopy.m_data[0].location - formation->GetPosition();
+		CVector2D posDelta = orderCopy.m_target_location - formation->GetPosition();
 		CVector2D formDelta = formation->GetSlotPosition( (*it)->m_formationSlot );
 		
 		posDelta = posDelta.normalize();
@@ -205,19 +198,12 @@ void FormationLocations(CEntityOrder order, const std::vector<HEntity> &entities
 		rotDelta.x = formDelta.x * deltaCos - formDelta.y * deltaSin;
 		rotDelta.y = formDelta.x * deltaSin + formDelta.y * deltaCos; 
 
-		orderCopy.m_data[0].location += rotDelta;
+		orderCopy.m_target_location += rotDelta;
 
 		// Clamp it to within the map, just in case.
 		float mapsize = (float)g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide() * CELL_SIZE;
-
-		if( orderCopy.m_data[0].location.x < 0.0f )
-			orderCopy.m_data[0].location.x = 0.0f;
-		if( orderCopy.m_data[0].location.x >= mapsize )
-			orderCopy.m_data[0].location.x = mapsize;
-		if( orderCopy.m_data[0].location.y < 0.0f )
-			orderCopy.m_data[0].location.y = 0.0f;
-		if( orderCopy.m_data[0].location.y >= mapsize )
-			orderCopy.m_data[0].location.y = mapsize;
+		orderCopy.m_target_location.x = clamp(orderCopy.m_target_location.x, 0.0f, mapsize);
+		orderCopy.m_target_location.y = clamp(orderCopy.m_target_location.y, 0.0f, mapsize);
 
 		if( !isQueued )
 			(*it)->clearOrders();
@@ -249,8 +235,8 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 		_msg *msg=(_msg *)pMsg; \
 		isQueued = msg->m_IsQueued != 0; \
 		order.m_type=CEntityOrder::_order; \
-		order.m_data[0].location.x=(float)msg->m_TargetX; \
-		order.m_data[0].location.y=(float)msg->m_TargetY; \
+		order.m_target_location.x=(float)msg->m_TargetX; \
+		order.m_target_location.y=(float)msg->m_TargetY; \
 		RandomizeLocations(order, msg->m_Entities, isQueued); \
 	} while(0)
 #define ENTITY_POSITION_FORM(_msg, _order) do\
@@ -258,25 +244,17 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 		_msg *msg=(_msg *)pMsg; \
 		isQueued = msg->m_IsQueued != 0; \
 		order.m_type=CEntityOrder::_order; \
-		order.m_data[0].location.x=(float)msg->m_TargetX; \
-		order.m_data[0].location.y=(float)msg->m_TargetY; \
+		order.m_target_location.x=(float)msg->m_TargetX; \
+		order.m_target_location.y=(float)msg->m_TargetY; \
 		FormationLocations(order, msg->m_Entities, isQueued); \
-	} while(0)
-#define ENTITY_ENTITY(_msg, _order) do\
-	{ \
-		_msg *msg=(_msg *)pMsg; \
-		isQueued = msg->m_IsQueued != 0; \
-		order.m_type=CEntityOrder::_order; \
-		order.m_data[0].entity=msg->m_Target; \
-		QueueOrder(order, msg->m_Entities, isQueued); \
 	} while(0)
 #define ENTITY_ENTITY_INT(_msg, _order) do\
 	{ \
 		_msg *msg=(_msg *)pMsg; \
 		isQueued = msg->m_IsQueued != 0; \
 		order.m_type=CEntityOrder::_order; \
-		order.m_data[0].entity=msg->m_Target; \
-		order.m_data[1].data=msg->m_Action; \
+		order.m_target_entity=msg->m_Target; \
+		order.m_action=msg->m_Action; \
 		QueueOrder(order, msg->m_Entities, isQueued); \
 	} while(0)
 #define ENTITY_INT_STRING(_msg, _order) do\
@@ -284,8 +262,8 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 		_msg *msg=(_msg *)pMsg; \
 		isQueued = msg->m_IsQueued != 0; \
 		order.m_type=CEntityOrder::_order; \
-		order.m_data[0].string=msg->m_Name; \
-		order.m_data[1].data=msg->m_Type; \
+		order.m_produce_name=msg->m_Name; \
+		order.m_produce_type=msg->m_Type; \
 		QueueOrder(order, msg->m_Entities, isQueued); \
 	} while(0)
 	
@@ -296,25 +274,25 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 			CAddWaypoint *msg=(CAddWaypoint *)pMsg;
 			isQueued = msg->m_IsQueued != 0;
 			order.m_type=CEntityOrder::ORDER_LAST;
-			order.m_data[0].location.x=(float)msg->m_TargetX;
-			order.m_data[0].location.y=(float)msg->m_TargetY;
-			std::vector<HEntity>::iterator it = msg->m_Entities.begin(); 
-			for (;it != msg->m_Entities.end(); ++it)
+			order.m_target_location.x=(float)msg->m_TargetX;
+			order.m_target_location.y=(float)msg->m_TargetY;
+			for(CEntityIt it = msg->m_Entities.begin(); it != msg->m_Entities.end(); ++it)
 			{
-				std::deque<CEntityOrder>::const_iterator ord_it;
-				ord_it=(*it)->m_orderQueue.end() - 1;
-				for (;ord_it >= (*it)->m_orderQueue.begin();--ord_it)
+				HEntity& hentity = *it;
+
+				CEntityOrders& order_queue = hentity->m_orderQueue;
+				for(CEntityOrderCRIt ord_it = order_queue.rbegin(); ord_it != order_queue.rend(); ++ord_it)
 				{
 					if (ord_it->m_type == CEntityOrder::ORDER_PATH_END_MARKER)
 					{
 						order.m_type = CEntityOrder::ORDER_GOTO;
-						(*it)->pushOrder(order);
+						hentity->pushOrder(order);
 						break;
 					}
 					if (ord_it->m_type == CEntityOrder::ORDER_PATROL)
 					{
 						order.m_type = ord_it->m_type;
-						(*it)->pushOrder(order);
+						hentity->pushOrder(order);
 						break;
 					}
 				}
@@ -328,27 +306,28 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 		case NMT_Goto:
 			ENTITY_POSITION(CGoto, ORDER_GOTO);
 			break;
-		case NMT_FormationGoto:
-			ENTITY_POSITION_FORM(CFormationGoto, ORDER_GOTO);
-			break;
-		//TODO: make formation move to within range of target and then attack normally
-		case NMT_FormationGeneric:
-			ENTITY_ENTITY_INT(CFormationGeneric, ORDER_GENERIC);
-			break;
 		case NMT_Run:
 			ENTITY_POSITION(CRun, ORDER_RUN);
 			break;
 		case NMT_Patrol:
 			ENTITY_POSITION(CPatrol, ORDER_PATROL);
 			break;
+		case NMT_FormationGoto:
+			ENTITY_POSITION_FORM(CFormationGoto, ORDER_GOTO);
+			break;
+
+		//TODO: make formation move to within range of target and then attack normally
 		case NMT_Generic:
 			ENTITY_ENTITY_INT(CGeneric, ORDER_GENERIC);
 			break;
-		case NMT_Produce:
-			ENTITY_INT_STRING(CProduce, ORDER_PRODUCE);
+		case NMT_FormationGeneric:
+			ENTITY_ENTITY_INT(CFormationGeneric, ORDER_GENERIC);
 			break;
 		case NMT_NotifyRequest:
 			ENTITY_ENTITY_INT(CNotifyRequest, ORDER_NOTIFY_REQUEST);
+			break;
+		case NMT_Produce:
+			ENTITY_INT_STRING(CProduce, ORDER_PRODUCE);
 			break;
 		case NMT_PlaceObject:
 			{
@@ -370,7 +349,7 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 				{
 					// Order all the selected units to work on the new object using the given action
 					order.m_type = CEntityOrder::ORDER_START_CONSTRUCTION;
-					order.m_data[0].entity = newObj;
+					order.m_new_obj = newObj;
 					QueueOrder(order, msg->m_Entities, isQueued);
 				}
 			} while(0)

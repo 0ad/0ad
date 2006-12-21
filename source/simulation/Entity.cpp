@@ -385,10 +385,10 @@ void CEntity::update( size_t timestep )
 			PROFILE( "state transition / order" );
 
 			CEntity* target = NULL;
-			if( current->m_data[0].entity )
-				target = &( *( current->m_data[0].entity ) );
+			if( current->m_target_entity )
+				target = &( *( current->m_target_entity ) );
 
-			CVector3D worldPosition = (CVector3D)current->m_data[0].location;
+			CVector3D worldPosition = (CVector3D)current->m_target_location;
 
 			CEventOrderTransition evt( m_lastState, current->m_type, target, worldPosition );
 
@@ -399,8 +399,8 @@ void CEntity::update( size_t timestep )
 			}
 			else if( target )
 			{
-				current->m_data[0].location = worldPosition;
-				current->m_data[0].entity = target->me;
+				current->m_target_location = worldPosition;
+				current->m_target_entity = target->me;
 			}
 
 			m_lastState = current->m_type;
@@ -426,7 +426,7 @@ void CEntity::update( size_t timestep )
 				return;
 			case CEntityOrder::ORDER_START_CONSTRUCTION:
 				{
-					CEventStartConstruction evt( current->m_data[0].entity );
+					CEventStartConstruction evt( current->m_new_obj );
 					m_orderQueue.pop_front();
 					DispatchEvent( &evt );
 				}
@@ -714,7 +714,7 @@ void CEntity::popOrder()
 }
 void CEntity::pushOrder( CEntityOrder& order )
 {
-	CEventPrepareOrder evt( order.m_data[0].entity, order.m_type, order.m_data[1].data, order.m_data[0].string );
+	CEventPrepareOrder evt( order.m_target_entity, order.m_type, order.m_action, order.m_produce_name );
 	if( DispatchEvent(&evt) )
 	{
 		m_orderQueue.push_back( order );
@@ -793,7 +793,7 @@ void CEntity::repath()
 			  || ( m_orderQueue.front().m_type == CEntityOrder::ORDER_GOTO_NOPATHING )
 			  || ( m_orderQueue.front().m_type == CEntityOrder::ORDER_GOTO_SMOOTHED ) ) )
 	{
-		destination = m_orderQueue.front().m_data[0].location;
+		destination = m_orderQueue.front().m_target_location;
 		orderSource = m_orderQueue.front().m_source;
 		m_orderQueue.pop_front();
 	}

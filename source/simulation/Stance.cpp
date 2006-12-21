@@ -66,8 +66,8 @@ void CDefendStance::onDamaged(CEntity *source)
 			if( ( range + m_Entity->m_los * CELL_SIZE ) >= m_Entity->distance2D( source ) )
 			{
 				CEntityOrder order( CEntityOrder::ORDER_GENERIC, CEntityOrder::SOURCE_UNIT_AI );
-				order.m_data[0].entity = source->me;
-				order.m_data[1].data = action;
+				order.m_target_entity = source->me;
+				order.m_action = action;
 				m_Entity->pushOrder( order );
 			}
 		}
@@ -119,7 +119,7 @@ bool CDefendStance::checkMovement( CVector2D proposedPos )
 		{
 			// Let's just walk back to our idle spot
 			CEntityOrder order( CEntityOrder::ORDER_GOTO, CEntityOrder::SOURCE_UNIT_AI );
-			order.m_data[0].location = idlePos;
+			order.m_target_location = idlePos;
 			m_Entity->pushOrder( order );
 		}
 	
@@ -139,8 +139,8 @@ void CStanceUtils::attack(CEntity* entity, CEntity* target)
 	if( action )
 	{
 		CEntityOrder order( CEntityOrder::ORDER_GENERIC, CEntityOrder::SOURCE_UNIT_AI );
-		order.m_data[0].entity = target->me;
-		order.m_data[1].data = action;
+		order.m_target_entity = target->me;
+		order.m_action = action;
 		entity->pushOrder( order );
 	}
 }
@@ -174,4 +174,5 @@ CEntity* CStanceUtils::chooseTarget( float x, float z, float radius, CPlayer* my
 
 	return bestTarget;
 }
+
 

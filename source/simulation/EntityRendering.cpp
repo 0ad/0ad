@@ -45,15 +45,15 @@ void CEntity::render()
 		CBoundingObject* destinationCollisionObject;
 		float x0, y0, x, y;
 
-		x = m_orderQueue.front().m_data[0].location.x;
-		y = m_orderQueue.front().m_data[0].location.y;
+		x = m_orderQueue.front().m_target_location.x;
+		y = m_orderQueue.front().m_target_location.y;
 
 		for( it = m_orderQueue.begin(); it < m_orderQueue.end(); it++ )
 		{
 			if( it->m_type == CEntityOrder::ORDER_PATROL )
 				break;
-			x = it->m_data[0].location.x;
-			y = it->m_data[0].location.y;
+			x = it->m_target_location.x;
+			y = it->m_target_location.y;
 		}
 		destinationCollisionObject = getContainingObject( CVector2D( x, y ) );
 
@@ -69,8 +69,8 @@ void CEntity::render()
 		{
 			x0 = x;
 			y0 = y;
-			x = it->m_data[0].location.x;
-			y = it->m_data[0].location.y;
+			x = it->m_target_location.x;
+			y = it->m_target_location.y;
 			rayIntersectionResults r;
 			CVector2D fwd( x - x0, y - y0 );
 			float l = fwd.length();
@@ -589,4 +589,5 @@ void CEntity::renderRallyPoint()
 	sprite.SetTranslation(rally);
 	sprite.Render();
 }
+
 

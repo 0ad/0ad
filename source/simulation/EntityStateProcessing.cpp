@@ -94,8 +94,8 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 	float timestep=timestep_millis/1000.0f;
 
 	CVector2D delta;
-	delta.x = (float)current->m_data[0].location.x - m_position.X;
-	delta.y = (float)current->m_data[0].location.y - m_position.Z;
+	delta.x = (float)current->m_target_location.x - m_position.X;
+	delta.y = (float)current->m_target_location.y - m_position.Z;
 
 	float len = delta.length();
 
@@ -205,14 +205,14 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 			}
 
 			// No. Is our destination within the obstacle?
-			if( collide->m_bounds->contains( current->m_data[0].location ) )
+			if( collide->m_bounds->contains( current->m_target_location ) )
 				return( COLLISION_WITH_DESTINATION );
 
 			// No. Are we nearing our destination, do we wish to stop there, and is it obstructed?
 
 			if( ( m_orderQueue.size() == 1 ) && ( len <= 10.0f ) )
 			{
-				CBoundingCircle destinationObs( current->m_data[0].location.x, current->m_data[0].location.y, m_bounds->m_radius, 0.0f );
+				CBoundingCircle destinationObs( current->m_target_location.x, current->m_target_location.y, m_bounds->m_radius, 0.0f );
 				if( getCollisionObject( &destinationObs ) )
 				{
 					// Yes. (Chances are a bunch of units were tasked to the same destination)
@@ -290,11 +290,11 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 	{
 		// Here's a weird idea: (I hope it works)
 		// Spiral round the destination until a free point is found.
-		CBoundingCircle destinationObs( current->m_data[0].location.x, current->m_data[0].location.y, m_bounds->m_radius, 0.0f );
+		CBoundingCircle destinationObs( current->m_target_location.x, current->m_target_location.y, m_bounds->m_radius, 0.0f );
 
 		float interval = destinationObs.m_radius;
 		float r = interval, theta = 0.0f, delta;
-		float _x = current->m_data[0].location.x, _y = current->m_data[0].location.y;
+		float _x = current->m_target_location.x, _y = current->m_target_location.y;
 		
 		while( true )
 		{
@@ -306,8 +306,8 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 		}
 		
 		// Reset our destination
-		current->m_data[0].location.x = _x + r * cosf( theta );
-		current->m_data[0].location.y = _y + r * sinf( theta );
+		current->m_target_location.x = _x + r * cosf( theta );
+		current->m_target_location.y = _y + r * sinf( theta );
 
 		return( false );
 	}
@@ -337,7 +337,7 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 
 		// Create a short path representing this detour
 
-		avoidance.m_data[0].location = avoidancePosition;
+		avoidance.m_target_location = avoidancePosition;
 		if( current->m_type == CEntityOrder::ORDER_GOTO_COLLISION )
 
 			m_orderQueue.pop_front();
@@ -362,7 +362,7 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 // Handles processing common to (at the moment) gather and melee attack actions
 bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timestep_millis), CEntityOrder::EOrderType transition, SEntityAction* action )
 {
-	HEntity target = current->m_data[0].entity;
+	HEntity target = current->m_target_entity;
 
 	if( !target || !target->m_extant )
 	{
@@ -381,8 +381,8 @@ bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timeste
 		return false;
 	}
 
-	current->m_data[0].location = target->m_position;
-	float Distance = distance2D(current->m_data[0].location);
+	current->m_target_location = target->m_position;
+	float Distance = distance2D(current->m_target_location);
 
 	if( Distance < action->m_MaxRange ) 
 	{
@@ -410,7 +410,7 @@ bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timeste
 }
 bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t timestep_millis, const CStr& animation, CScriptEvent* contactEvent, SEntityAction* action )
 {
-	HEntity target = current->m_data[0].entity;
+	HEntity target = current->m_target_entity;
 
 	if( m_fsm_cyclepos != NOT_IN_CYCLE )
 	{
@@ -531,7 +531,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 
 		chooseMovementSpeed(deltaLength);
 	
-		current->m_data[0].location = (CVector2D)target->m_position - delta;
+		current->m_target_location = (CVector2D)target->m_position - delta;
 
 		HEntity collide;	
 		switch( processGotoHelper( current, timestep_millis, collide ) )
@@ -576,7 +576,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 
 			// Create a short path representing this detour
 
-			avoidance.m_data[0].location = avoidancePosition;
+			avoidance.m_target_location = avoidancePosition;
 			if( current->m_type == CEntityOrder::ORDER_GOTO_COLLISION )
 				m_orderQueue.pop_front();
 			m_orderQueue.push_front( avoidance );
@@ -637,26 +637,24 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 
 bool CEntity::processGeneric( CEntityOrder* current, size_t timestep_millis )
 {
-	int id = current->m_data[1].data;
-	if( m_actions.find( id ) == m_actions.end() )
+	if( m_actions.find( current->m_action ) == m_actions.end() )
 	{	
 		return false;	// we've been tasked as part of a group but we can't do this action
 	}
-	SEntityAction& action = m_actions[id];
-	return( processContactAction( current, timestep_millis, CEntityOrder::ORDER_GENERIC_NOPATHING, &action ) );
+	SEntityAction& action_obj = m_actions[current->m_action];
+	return( processContactAction( current, timestep_millis, CEntityOrder::ORDER_GENERIC_NOPATHING, &action_obj ) );
 }
 
 bool CEntity::processGenericNoPathing( CEntityOrder* current, size_t timestep_millis )
 {
-	int id = current->m_data[1].data;
-	if( m_actions.find( id ) == m_actions.end() )
+	if( m_actions.find( current->m_action ) == m_actions.end() )
 	{	
 		return false;	// we've been tasked as part of a group but we can't do this action
 	}
-	SEntityAction& action = m_actions[id];
-	CEventGeneric evt( current->m_data[0].entity, id );
+	CEventGeneric evt( current->m_target_entity, current->m_action );
 	if( !m_actor ) return( false );
-	return( processContactActionNoPathing( current, timestep_millis, action.m_Animation, &evt, &action ) );
+	SEntityAction& action_obj = m_actions[current->m_action];
+	return( processContactActionNoPathing( current, timestep_millis, action_obj.m_Animation, &evt, &action_obj ) );
 }
 
 bool CEntity::processGoto( CEntityOrder* current, size_t UNUSED(timestep_millis) )
@@ -666,7 +664,7 @@ bool CEntity::processGoto( CEntityOrder* current, size_t UNUSED(timestep_millis)
 
 
 	CVector2D pos( m_position.X, m_position.Z );
-	CVector2D path_to = current->m_data[0].location;
+	CVector2D path_to = current->m_target_location;
 	m_orderQueue.pop_front();
 	float Distance = ( path_to - pos ).length();
 	
@@ -690,7 +688,7 @@ bool CEntity::processGoto( CEntityOrder* current, size_t UNUSED(timestep_millis)
 bool CEntity::processGotoWaypoint( CEntityOrder* current, size_t UNUSED(timestep_milli), bool contact )
 {
 	CVector2D pos( m_position.X, m_position.Z );
-	CVector2D path_to = current->m_data[0].location;
+	CVector2D path_to = current->m_target_location;
 	m_orderQueue.pop_front();
 	float Distance = ( path_to - pos ).length();
 	
@@ -704,8 +702,7 @@ bool CEntity::processGotoWaypoint( CEntityOrder* current, size_t UNUSED(timestep
 
 	chooseMovementSpeed( Distance );
 
-	float radius = *((float*)&current->m_data[0].data);
-	g_Pathfinder.requestLowLevelPath( me, path_to, contact, radius, current->m_source );
+	g_Pathfinder.requestLowLevelPath( me, path_to, contact, current->m_pathfinder_radius, current->m_source );
 
 	return( true );
 }
@@ -723,9 +720,9 @@ bool CEntity::processPatrol( CEntityOrder* current, size_t UNUSED(timestep_milli
 	// queue (to keep us patrolling)
 
 	this_segment.m_type = CEntityOrder::ORDER_GOTO;
-	this_segment.m_data[0] = current->m_data[0];
+	this_segment.m_pathfinder_radius = current->m_pathfinder_radius;
 	repeat_patrol.m_type = CEntityOrder::ORDER_PATROL;
-	repeat_patrol.m_data[0] = current->m_data[0];
+	repeat_patrol.m_pathfinder_radius = current->m_pathfinder_radius;
 	m_orderQueue.pop_front();
 	m_orderQueue.push_front( this_segment );
 	m_orderQueue.push_back( repeat_patrol );
@@ -734,12 +731,10 @@ bool CEntity::processPatrol( CEntityOrder* current, size_t UNUSED(timestep_milli
 
 bool CEntity::processProduce( CEntityOrder* order )
 {
-	int type = order->m_data[1].data;
-	CStrW name = order->m_data[0].string;
-	CEventStartProduction evt( type, name );
+	CEventStartProduction evt( order->m_produce_type, order->m_produce_name );
 	if( DispatchEvent( &evt ) && evt.GetTime() >= 0 )
 	{
-		m_productionQueue->AddItem( type, name, evt.GetTime() );
+		m_productionQueue->AddItem( order->m_produce_type, order->m_produce_name, evt.GetTime() );
 	}
 	return( false );
 }

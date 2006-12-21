@@ -103,8 +103,8 @@ CEventOrderTransition::CEventOrderTransition( int orderPrevious, int orderCurren
 CEventNotification::CEventNotification( CEntityOrder order, int notifyType ) : CScriptEvent( L"notification", EVENT_NOTIFICATION, true )
 {
 	m_notifyType = notifyType;
-	m_target = order.m_data[0].entity;
-	CVector3D convert( order.m_data[0].location.x, 0.0f, order.m_data[0].location.y );
+	m_target = order.m_target_entity;
+	CVector3D convert( order.m_target_location.x, 0.0f, order.m_target_location.y );
 	m_location = convert;
 	
 	AddLocalProperty( L"notifyType", &m_notifyType );
@@ -120,8 +120,8 @@ CIdleEvent::CIdleEvent( CEntityOrder order, int notifyType ) : CScriptEvent( L"i
 {
 	m_notifyType = notifyType;
 	m_orderType = order.m_type;
-	m_target = order.m_data[0].entity;
-	CVector3D convert( order.m_data[0].location.x, 0.0f, order.m_data[0].location.y );
+	m_target = order.m_target_entity;
+	CVector3D convert( order.m_target_location.x, 0.0f, order.m_target_location.y );
 	m_location = convert;
 	
 	AddLocalProperty( L"notifyType", &m_notifyType );
