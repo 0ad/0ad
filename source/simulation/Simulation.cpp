@@ -280,7 +280,7 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 			{
 				HEntity& hentity = *it;
 
-				CEntityOrders& order_queue = hentity->m_orderQueue;
+				const CEntityOrders& order_queue = hentity->m_orderQueue;
 				for(CEntityOrderCRIt ord_it = order_queue.rbegin(); ord_it != order_queue.rend(); ++ord_it)
 				{
 					if (ord_it->m_type == CEntityOrder::ORDER_PATH_END_MARKER)
