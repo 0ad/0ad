@@ -7,8 +7,8 @@
     <variant frequency="100" name="Base">
       <animations>
         <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
-        <animation file="biped/cavalryidle.psa" name="Walk" speed="50"/>
-        <animation file="biped/rider_gallop.psa" name="Run" speed="18"/>
+        <animation file="biped/cavalryidle.psa" name="Walk" speed="18"/>
+        <animation file="biped/rider_gallop.psa" name="Run" speed="8"/>
       </animations>
       <mesh>skeletal/m_tunic_b.pmd</mesh>
       <props>
