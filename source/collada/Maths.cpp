@@ -2,6 +2,8 @@
 
 #include "Maths.h"
 
+#include "FCollada.h"
+
 FMMatrix44 operator+ (const FMMatrix44& a, const FMMatrix44& b)
 {
 	FMMatrix44 r;

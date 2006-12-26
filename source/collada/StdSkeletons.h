@@ -1,6 +1,8 @@
 #ifndef STDSKELETONS_H__
 #define STDSKELETONS_H__
 
+#include <string>
+
 namespace StdSkeletons
 {
 	extern int GetBoneCount();

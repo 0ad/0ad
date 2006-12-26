@@ -2,6 +2,12 @@
 
 #include "GeomReindex.h"
 
+#include "FCollada.h"
+#include "FCDocument/FCDEntity.h"
+#include "FCDocument/FCDGeometryPolygons.h"
+#include "FCDocument/FCDGeometrySource.h"
+#include "FCDocument/FCDSkinController.h"
+
 #include <cassert>
 
 struct VertexData

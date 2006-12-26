@@ -1,6 +1,8 @@
 #include "precompiled.h"
 
-#include "Converter.h"
+#include "CommonConvert.h"
+#include "PMDConvert.h"
+#include "PSAConvert.h"
 
 #include <cstdarg>
 #include <cassert>
@@ -76,15 +78,15 @@ struct BufferedOutputCallback : public OutputCB
 	}
 };
 
-int convert_dae_to_pmd(const char* dae, OutputFn pmd_writer, void* cb_data)
+int convert_dae_to_whatever(const char* dae, OutputFn writer, void* cb_data, void(*conv)(const char*, OutputCB&, std::string&))
 {
 	Log(LOG_INFO, "Starting conversion");
 
 	std::string xmlErrors;
-	BufferedOutputCallback cb(pmd_writer, cb_data);
+	BufferedOutputCallback cb(writer, cb_data);
 	try
 	{
-		ColladaToPMD(dae, cb, xmlErrors);
+		conv(dae, cb, xmlErrors);
 	}
 	catch (ColladaException e)
 	{
@@ -104,4 +106,14 @@ int convert_dae_to_pmd(const char* dae, OutputFn pmd_writer, void* cb_data)
 	}
 
 	return 0;
+}
+
+int convert_dae_to_pmd(const char* dae, OutputFn pmd_writer, void* cb_data)
+{
+	return convert_dae_to_whatever(dae, pmd_writer, cb_data, ColladaToPMD);
+}
+
+int convert_dae_to_psa(const char* dae, OutputFn psa_writer, void* cb_data)
+{
+	return convert_dae_to_whatever(dae, psa_writer, cb_data, ColladaToPSA);
 }

@@ -11,6 +11,7 @@ extern void Log(int severity, const char* fmt, ...);
 
 #include "FCollada.h"
 #include "FCDocument/FCDocument.h"
+#include "FCDocument/FCDAnimated.h"
 #include "FCDocument/FCDController.h"
 #include "FCDocument/FCDGeometry.h"
 #include "FCDocument/FCDGeometryMesh.h"
@@ -18,3 +19,10 @@ extern void Log(int severity, const char* fmt, ...);
 #include "FCDocument/FCDGeometrySource.h"
 #include "FCDocument/FCDSceneNode.h"
 #include "FCDocument/FCDSkinController.h"
+#include <cassert>
+#include <string>
+
+// FCollada pollutes the global namespace by defining these
+// to std::{min,max}, so undo its macros
+#undef min
+#undef max
