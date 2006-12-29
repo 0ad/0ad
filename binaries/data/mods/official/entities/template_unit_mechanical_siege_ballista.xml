@@ -6,13 +6,20 @@
 	<Traits>
 	
 		<Id>
-			
+
+
 			<Icon_Cell>37</Icon_Cell>
 
 			<Classes>Ranged</Classes>
 		
 		</Id>
 
+			<Creation>
+				<Resource>
+ 				<Wood>100</Wood>
+				<Metal>100</Metal>
+ 			</Resource>
+		</Creation>
 	</Traits>
 	
 </Entity>

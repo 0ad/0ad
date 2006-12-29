@@ -18,7 +18,12 @@
 			<Rollover>Naval vessels are manufactured at this building. A Dock must be built on the shoreline of a body of water.</Rollover>
 		
 		</Id>
-
+		<Creation>
+				<Resource>
+ 				<Wood>200</Wood>
+				<Stone>100</Stone>
+ 			</Resource>
+		</Creation>
 		<Creation>
 			<Foundation>foundation_4x4</Foundation>
 		</Creation>
