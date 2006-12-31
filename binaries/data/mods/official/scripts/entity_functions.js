@@ -405,6 +405,26 @@ function entityInitQuasi()
 
 // ====================================================================
 
+// A special version of the entity init function that causes the unit to automatically start gathering
+// nearby resources, for use in gameplay cinematics before full CPU player AI is implemented.
+function entityInitGatherer( evt )
+{
+	// Call the original entityInit function
+	this.entityInit = entityInit;
+	this.entityInit( evt );
+	
+	// After initialization is complete, start gatherering the nearest thing we can;
+	// this has to be done later using setTimeout to ensure that other entities are initialized
+	setTimeout( 
+		function() {
+			this.chooseGatherTarget( null, this.getVisibleEntities() );
+		}, 
+		100, this
+	);
+}
+
+// ====================================================================
+
 // Setup entity's next rank
 function setupRank()
 {
