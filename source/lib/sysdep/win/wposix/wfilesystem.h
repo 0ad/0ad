@@ -89,8 +89,8 @@ extern char* realpath(const char*, char*);
 //    hence, the file is reported executable if it exists.
 #define X_OK 0
 
-extern _CRTIMP int access(const char*, int);
+extern "C" _CRTIMP int access(const char*, int);
 
-extern _CRTIMP int rmdir(const char*);
+extern "C" _CRTIMP int rmdir(const char*);
 
 #endif	// #ifndef INCLUDED_WFILESYSTEM

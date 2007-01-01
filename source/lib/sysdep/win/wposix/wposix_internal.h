@@ -17,7 +17,7 @@
 // is a last resort (e.g. if the regular CRT headers would conflict).
 #ifndef _CRTIMP
 # ifdef  _DLL
-#  define _CRTIMP extern "C" __declspec(dllimport)
+#  define _CRTIMP __declspec(dllimport)
 # else
 #  define _CRTIMP
 # endif 

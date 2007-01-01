@@ -326,6 +326,7 @@ function setup_all_libs ()
 
 	source_dirs = {
 		"lib",
+		"lib/posix",
 		"lib/sysdep",
 		"lib/res",
 		"lib/res/file",
@@ -347,7 +348,7 @@ function setup_all_libs ()
 	sysdep_dirs = {
 		linux = { "lib/sysdep/unix" },
 		-- note: RC file must be added to main_exe package.
-		windows = { "lib/sysdep/win" },
+		windows = { "lib/sysdep/win", "lib/sysdep/win/wposix" },
 		macosx = { "lib/sysdep/osx" },
 	}
 	tinsert(package.files, sourcesfromdirs(source_root, sysdep_dirs[OS]));
