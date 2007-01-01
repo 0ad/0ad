@@ -57,7 +57,7 @@ CTextureEntry* CTextureManager::FindTexture(CStr tag)
 			return m_TextureEntries[i];
 	}
 
-	LOG(WARNING, LOG_CATEGORY, "TextureManager: Couldn't find terrain %s\n", tag.c_str());
+	LOG(WARNING, LOG_CATEGORY, "TextureManager: Couldn't find terrain %s", tag.c_str());
 	return 0;
 }
 
@@ -126,7 +126,7 @@ void CTextureManager::LoadTextures(CTerrainPropertiesPtr props, const char* dir)
 		{
 			myprops = GetPropertiesFromFile(props, xml_name);
 			if (myprops)
-				LOG(NORMAL, LOG_CATEGORY, "CTextureManager: Successfully loaded override xml %s for texture %s\n", xml_name, texture_name);
+				LOG(NORMAL, LOG_CATEGORY, "CTextureManager: Successfully loaded override xml %s for texture %s", xml_name, texture_name);
 		}
 
 		// Error or non-existant xml file -> use parent props
