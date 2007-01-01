@@ -2,10 +2,9 @@
 
 #include "Network.h"
 #include "Serialization.h"
-#include <errno.h>
-
 #include "ps/CLogger.h"
 #include "NetLog.h"
+
 
 DEFINE_ERROR(CONFLICTING_OP_IN_PROGRESS, "A conflicting operation is already in progress");
 

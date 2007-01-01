@@ -20,8 +20,6 @@
 #ifndef ENTITY_HANDLE_INCLUDED
 #define ENTITY_HANDLE_INCLUDED
 
-#include "lib/types.h"
-
 #define INVALID_HANDLE 65535
 // The maximum numerical value of an entity handle sent over the network
 #define MAX_HANDLE 0x7fff

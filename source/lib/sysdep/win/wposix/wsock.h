@@ -20,8 +20,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-#ifndef WSOCK_H__
-#define WSOCK_H__
+#ifndef INCLUDED_WSOCK
+#define INCLUDED_WSOCK
 
 #define IMP(ret, name, param) extern "C" __declspec(dllimport) ret __stdcall name param;
 
@@ -48,7 +48,7 @@ typedef unsigned short sa_family_t;
 #define AF_INET6        23
 #define PF_INET6 AF_INET6
 
-#define SOL_SOCKET      0xffff          /* options for socket level */
+#define SOL_SOCKET      0xFFFF          /* options for socket level */
 #define TCP_NODELAY		0x0001
 
 /* This is the slightly unreadable encoded form of the windows ioctl that sets
@@ -227,4 +227,4 @@ IMP(ssize_t, recvfrom, (int, void*, size_t, int, struct sockaddr*, socklen_t*))
 
 #undef IMP
 
-#endif	// #ifndef WSOCK_H__
+#endif	// #ifndef INCLUDED_WSOCK

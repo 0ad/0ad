@@ -22,13 +22,13 @@
  */
 
 #include "precompiled.h"
+#include "compression.h"
 
 #include <deque>
 
 #include "lib/res/mem.h"
 #include "lib/allocators.h"
 #include "lib/timer.h"
-#include "compression.h"
 #include "file_io.h"	// IO_EOF
 
 

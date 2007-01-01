@@ -22,16 +22,15 @@
  */
 
 #include "precompiled.h"
-
-#include "lib/lib.h"
-#include "lib/posix.h"
-#include "h_mgr.h"
-#include "lib/allocators.h"	// OverrunProtector
 #include "mem.h"
 
 #include <stdlib.h>
-
 #include <map>
+
+#include "lib/posix/posix_pthread.h"
+#include "lib/lib.h"
+#include "lib/allocators.h"	// OverrunProtector
+#include "h_mgr.h"
 
 
 static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;

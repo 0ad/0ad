@@ -23,7 +23,7 @@
 #ifndef __TYPES_H__
 #define __TYPES_H__
 
-#include "posix_types.h"
+#include "posix/posix_types.h"
 
 // defines instead of typedefs so we can #undef conflicting decls
 

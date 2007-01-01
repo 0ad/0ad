@@ -5,8 +5,7 @@
 //  Includes / Compiler directives
 //--------------------------------------------------------
 
-#include "lib/posix.h"
-#include "lib/types.h"
+#include "lib/posix/posix_sock.h"
 #include "ps/Pyrogenesis.h"
 #include <string.h>
 #include "ps/CStr.h"

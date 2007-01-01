@@ -21,9 +21,9 @@
  */
 
 #include "precompiled.h"
+#include "snd.h"
 
 #include "lib/lib.h"
-#include "snd.h"
 
 char snd_card[SND_CARD_LEN];
 char snd_drv_ver[SND_DRV_VER_LEN];

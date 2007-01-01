@@ -22,12 +22,12 @@
  */
 
 #include "precompiled.h"
+#include "input.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 
 #include "lib.h"
-#include "input.h"
 #include "sdl.h"
 #include "lib/res/file/file.h"
 

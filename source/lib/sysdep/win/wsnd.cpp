@@ -21,18 +21,18 @@
  */
 
 #include "precompiled.h"
-
-#include <string>
-#include <set>
+#include "lib/sysdep/snd.h"
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string>
+#include <set>
 
 #include "lib/path_util.h"
-#include "lib/sysdep/snd.h"
+#include "lib/res/file/file.h"
 #include "dll_ver.h"	// dll_list_*
 #include "win_internal.h"
-#include "lib/res/file/file.h"
+
 
 // DirectSound header
 // HACK: workaround for "subwtype.h not found" errors on VC6/7 hybrid.

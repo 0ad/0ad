@@ -21,13 +21,13 @@
  */
 
 #include "precompiled.h"
+#include "dll_ver.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "win_internal.h"
 #include "lib/path_util.h"
-#include "dll_ver.h"
+#include "win_internal.h"
 
 #if MSC_VERSION
 #pragma comment(lib, "version.lib")		// DLL version

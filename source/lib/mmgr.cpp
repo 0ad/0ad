@@ -34,16 +34,15 @@ AT_STARTUP(\
 // but this is preferable to stubbing them out here ("least surprise").
 #if CONFIG_USE_MMGR
 
+#include "mmgr.h"
+
 #include <stdio.h>
 #include <stdlib.h>
-
 #include <string.h>
 #include <time.h>
 #include <stdarg.h>
-
 #include <new>
 
-#include "mmgr.h"
 #include "lib.h"
 #include "posix.h"
 #include "debug.h"

@@ -21,8 +21,8 @@
  */
 
 #include "precompiled.h"
-
 #include "res.h"
+
 
 AT_STARTUP(\
 	error_setDescription(ERR::RES_UNKNOWN_FORMAT, "Unknown file format");\

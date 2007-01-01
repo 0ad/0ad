@@ -28,18 +28,24 @@
 #include <wchar.h>
 #include <sys/types.h>
 #include <stddef.h>
+#include <limits.h>
 
 #if OS_WIN
-# include "lib/sysdep/win/wposix_types.h"
+# include "lib/sysdep/win/wposix/wposix_types.h"
 #else
+
 // unix/linux/glibc/gcc says that this macro has to be defined when including
 // stdint.h from C++ for stdint.h to define SIZE_MAX and friends
 # ifndef __STDC_LIMIT_MACROS
 #  define __STDC_LIMIT_MACROS
 # endif
 # include <stdint.h>
+
 // but sometimes it still doesn't get defined, so define it ourselves
 # ifndef SIZE_MAX
 #  define SIZE_MAX ((size_t)-1)
 # endif
-#endif	// #if OS_WIN
+
+#include <unistd.h>
+
+#endif	// #if !OS_WIN

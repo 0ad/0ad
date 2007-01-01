@@ -3,7 +3,6 @@
 
 #include "ps/Vector2D.h"
 #include "ps/Player.h"
-#include "lib/types.h"
 #include <queue>
 
 class AStarNode

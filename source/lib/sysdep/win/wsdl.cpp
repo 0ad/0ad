@@ -21,6 +21,7 @@
  */
 
 #include "precompiled.h"
+#include "lib/sdl.h"
 
 #include <stdio.h>
 #include <math.h>
@@ -32,9 +33,8 @@
 #include <process.h>	// _beginthreadex
 #include <WindowsX.h>	// message crackers
 
-#include "lib/sdl.h"
+#include "lib/posix/posix_pthread.h"
 #include "lib/lib.h"
-#include "lib/posix.h"
 #include "lib/ogl.h"		// needed to pull in the delay-loaded opengl32.dll
 
 
@@ -1201,7 +1201,7 @@ u32 SDL_Swap32(const u32 x)
 #ifndef SDL_Swap64
 u64 SDL_Swap64(const u64 x)
 {
-	const u32 lo = (u32)(x & 0xffffffff);
+	const u32 lo = (u32)(x & 0xFFFFFFFF);
 	const u32 hi = (u32)(x >> 32);
 	u64 ret = SDL_Swap32(lo);
 	ret <<= 32;

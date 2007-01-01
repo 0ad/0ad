@@ -107,7 +107,7 @@ public:
 	// this is still preferable to completely disabling the self-test.
 	void test_param_validation()
 	{
-	#if !HAVE_STRING_S
+	#if !HAVE_SECURE_CRT
 		debug_skip_next_err(ERR::INVALID_PARAM);
 		TEST_CPY(0 ,0,0 , EINVAL,"");	// all invalid
 		debug_skip_next_err(ERR::INVALID_PARAM);

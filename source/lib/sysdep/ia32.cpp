@@ -21,22 +21,21 @@
  */
 
 #include "precompiled.h"
+#include "ia32.h"
 
 #include <string.h>
 #include <stdio.h>
-
 #include <vector>
 #include <algorithm>
 
+#include "lib/posix/posix_pthread.h"
 #include "lib/lib.h"
-#include "lib/posix.h"
 #include "lib/timer.h"
-#include "ia32.h"
 #include "cpu.h"
 
 // HACK (see call to wtime_reset_impl)
 #if OS_WIN
-#include "lib/sysdep/win/wtime.h"
+#include "lib/sysdep/win/wposix/wtime_internal.h"
 #endif
 
 #if !HAVE_MS_ASM && !HAVE_GNU_ASM

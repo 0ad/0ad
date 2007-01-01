@@ -241,7 +241,7 @@ u32 CTerrainProperties::GetBaseColor()
 		return m_pParent->GetBaseColor();
 	else
 		// White, full opacity.. but this value shouldn't ever be used
-		return 0xffffffff;
+		return 0xFFFFFFFF;
 }
 
 const STerrainPassability &CTerrainProperties::GetPassability(HEntity entity)

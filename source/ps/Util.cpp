@@ -1,5 +1,7 @@
 #include "precompiled.h"
 
+#include "lib/posix/posix_utsname.h"
+#include "lib/posix/posix_sock.h"
 #include "lib/res/file/path.h"
 #include "lib/res/file/vfs.h"
 #include "lib/ogl.h"

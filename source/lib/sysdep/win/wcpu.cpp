@@ -21,12 +21,12 @@
  */
 
 #include "precompiled.h"
+#include "lib/sysdep/cpu.h"
 
 #include "lib/lib.h"
-#include "lib/posix.h"
+#include "lib/posix/posix_pthread.h"
+#include "lib/posix/posix_time.h"
 #include "win_internal.h"
-
-#include "lib/sysdep/cpu.h"
 
 // limit allows statically allocated per-CPU structures (for simplicity).
 // we're Windows-specific anyway; such systems won't foreseeably have more.

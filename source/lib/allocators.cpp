@@ -9,7 +9,7 @@
  */
 
 /*
- * Copyright (c) 2005 Jan Wassenberg
+ * Copyright (c) 2005-2006 Jan Wassenberg
  *
  * Redistribution and/or modification are also permitted under the
  * terms of the GNU General Public License as published by the
@@ -21,12 +21,13 @@
  */
 
 #include "precompiled.h"
+#include "allocators.h"
 
-#include "lib/posix.h"		// PROT_* constants for da_set_prot
+#include "lib/posix/posix_mman.h"	// PROT_* constants for da_set_prot
+#include "lib/posix/posix.h"		// sysconf
 #include "lib/sysdep/cpu.h"	// CAS
 #include "byte_order.h"
-#include "lib/res/file/file_io.h"	// IO_EOF
-#include "allocators.h"
+
 
 
 //-----------------------------------------------------------------------------
@@ -374,7 +375,7 @@ LibError da_read(DynArray* da, void* data, size_t size)
 {
 	// make sure we have enough data to read
 	if(da->pos+size > da->cur_size)
-		WARN_RETURN(ERR::IO_EOF);
+		WARN_RETURN(ERR::FAIL);
 
 	memcpy2(data, da->base+da->pos, size);
 	da->pos += size;

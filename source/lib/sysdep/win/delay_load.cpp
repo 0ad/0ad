@@ -23,10 +23,10 @@
 // modified from VC7 DelayHlp.cpp and DelayImp.h
 
 #include "precompiled.h"
+#include "delay_load.h"
 
 #include "win_internal.h"
 
-#include "delay_load.h"
 
 #define _DELAY_IMP_VER  2
 

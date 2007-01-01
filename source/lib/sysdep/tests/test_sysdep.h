@@ -1,7 +1,7 @@
 #include "lib/self_test.h"
 
 #include "lib/sysdep/sysdep.h"
-#include "lib/posix.h"	// fminf etc.
+#include "lib/posix/posix.h"	// fminf etc.
 
 class TestSysdep : public CxxTest::TestSuite 
 {

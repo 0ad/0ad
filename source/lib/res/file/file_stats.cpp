@@ -21,6 +21,7 @@
  */
 
 #include "precompiled.h"
+#include "file_stats.h"
 
 #include <set>
 
@@ -204,21 +205,23 @@ void stats_io_sync_finish(FileIOImplentation fi, FileOp fo, ssize_t user_size, d
 }
 
 
-void stats_io_check_seek(BlockId disk_pos)
+void stats_io_check_seek(const char* atom_fn, u32 block_num)
 {
-	static BlockId cur_disk_pos;
+	static const char* last_atom_fn;
+	static u32 last_block_num;
 
 	// makes debugging ("why are there seeks") a bit nicer by suppressing
 	// the first (bogus) seek.
-	if(!cur_disk_pos.atom_fn)
+	if(!last_atom_fn)
 		goto dont_count_first_seek;
 
-	if(disk_pos.atom_fn != cur_disk_pos.atom_fn ||	// different file OR
-	   disk_pos.block_num != cur_disk_pos.block_num+1)	// nonsequential
+	if(atom_fn != last_atom_fn ||		// different file OR
+	   block_num != last_block_num+1)	// nonsequential
 		io_seeks++;
 
 dont_count_first_seek:
-	cur_disk_pos = disk_pos;
+	last_atom_fn = atom_fn;
+	last_block_num = block_num;
 }
 
 

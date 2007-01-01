@@ -1,9 +1,7 @@
 // define "Handle". split out of h_mgr.h to reduce dependencies.
 
-#ifndef HANDLE_DEFINED
-#define HANDLE_DEFINED
-
-#include "lib/types.h"
+#ifndef INCLUDED_HANDLE
+#define INCLUDED_HANDLE
 
 // 0 = invalid handle value; < 0 is an error code.
 // 64 bits, because we want tags to remain unique: tag overflow may
@@ -12,4 +10,4 @@
 // not a lot.
 typedef i64 Handle;
 
-#endif	// #ifndef HANDLE_DEFINED
+#endif	// #ifndef INCLUDED_HANDLE

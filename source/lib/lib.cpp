@@ -21,16 +21,13 @@
  */
 
 #include "precompiled.h"
-
+#include "lib.h"
 
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 
-#include "lib/types.h"
-#include "lib.h"
 #include "lib/app_hooks.h"
-
 #include "lib/sysdep/sysdep.h"
 
 //-----------------------------------------------------------------------------

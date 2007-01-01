@@ -21,13 +21,15 @@
  */
 
 #include "precompiled.h"
+#include "waio.h"
 
 #include <stdlib.h>
 #include <malloc.h>		// _aligned_malloc
 
-#include "lib/lib.h"
-#include "lib/posix.h"
-#include "win_internal.h"
+#include "wposix_internal.h"
+#include "wfilesystem.h"	// mode_t
+#include "wtime.h"			// timespec
+
 
 #pragma data_seg(WIN_CALLBACK_PRE_LIBC(c))
 WIN_REGISTER_FUNC(waio_init);
@@ -333,6 +335,102 @@ fail:
 }
 
 
+
+
+// do we want to open a second AIO-capable handle?
+static bool isAioPossible(int fd, bool is_com_port, int oflag)
+{
+	// stdin/stdout/stderr
+	if(fd <= 2)
+		return false;
+
+	// COM port - we don't currently need AIO access for those, and
+	// aio_reopen's CreateFile would fail with "access denied".
+	if(is_com_port)
+		return false;
+
+	// caller is requesting we skip it (see file_open)
+	if(oflag & O_NO_AIO_NP)
+		return false;
+
+	return true;
+}
+
+int open(const char* fn, int oflag, ...)
+{
+	const bool is_com_port = strncmp(fn, "/dev/tty", 8) == 0;
+	// also used later, before aio_reopen
+
+	// translate "/dev/tty%d" to "COM%d"
+	if(is_com_port)
+	{
+		char port[] = "COM1";
+		const char digit = fn[8]+1;
+		// PCs only support COM1..COM4.
+		if(!('1' <= digit && digit <= '4'))
+			return -1;
+		port[3] = digit;
+		fn = port;
+	}
+
+	mode_t mode = 0;
+	if(oflag & O_CREAT)
+	{
+		va_list args;
+		va_start(args, oflag);
+		mode = va_arg(args, mode_t);
+		va_end(args);
+	}
+
+	WIN_SAVE_LAST_ERROR;	// CreateFile
+	int fd = _open(fn, oflag, mode);
+	WIN_RESTORE_LAST_ERROR;
+
+	// none of the above apply; now re-open the file.
+	// note: this is possible because _open defaults to DENY_NONE sharing.
+	if(isAioPossible(fd, is_com_port, oflag))
+		WARN_ERR(aio_reopen(fd, fn, oflag));
+
+	// CRT doesn't like more than 255 files open.
+	// warn now, so that we notice why so many are open.
+#ifndef NDEBUG
+	if(fd > 256)
+		WARN_ERR(ERR::LIMIT);
+#endif
+
+	return fd;
+}
+
+
+int close(int fd)
+{
+	debug_assert(3 <= fd && fd < 256);
+
+	// note: there's no good way to notify us that <fd> wasn't opened for
+	// AIO, so we could skip aio_close. storing a bit in the fd is evil and
+	// a fd -> info map is redundant (waio already has one).
+	// therefore, we require aio_close to fail gracefully.
+	WARN_ERR(aio_close(fd));
+
+	return _close(fd);
+}
+
+
+// we don't want to #define read to _read, since that's a fairly common
+// identifier. therefore, translate from MS CRT names via thunk functions.
+// efficiency is less important, and the overhead could be optimized away.
+
+int read(int fd, void* buf, size_t nbytes)
+{
+	return _read(fd, buf, nbytes);
+}
+
+int write(int fd, void* buf, size_t nbytes)
+{
+	return _write(fd, buf, nbytes);
+}
+
+
 //////////////////////////////////////////////////////////////////////////////
 //
 // Req
@@ -581,7 +679,7 @@ static int aio_rw(struct aiocb* cb)
 	r->ovl.Offset     = u64_lo(actual_ofs);
 	r->ovl.OffsetHigh = u64_hi(actual_ofs);
 
-	DWORD size32 = (DWORD)(actual_size & 0xffffffff);
+	DWORD size32 = (DWORD)(actual_size & 0xFFFFFFFF);
 	BOOL ok;
 
 	DWORD bytes_transferred;

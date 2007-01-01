@@ -24,7 +24,7 @@
 #ifndef FILE_H
 #define FILE_H
 
-#include "lib/posix.h"		// struct stat
+#include "lib/posix/posix_filesystem.h"		// struct stat
 
 
 namespace ERR

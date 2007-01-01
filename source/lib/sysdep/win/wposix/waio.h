@@ -20,10 +20,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-#ifndef WAIO_H__
-#define WAIO_H__
+#ifndef INCLUDED_WAIO
+#define INCLUDED_WAIO
 
-#include "lib/types.h"
 #include "wposix_types.h"
 
 
@@ -48,6 +47,50 @@ struct sigevent
 	union sigval sigev_value;	// signal value
 	void (*sigev_notify_function)(union sigval);
 };
+
+
+//
+// <fcntl.h>
+//
+
+// values from MS _open - do not change!
+#define O_RDONLY       0x0000  // open for reading only
+#define O_WRONLY       0x0001  // open for writing only
+#define O_RDWR         0x0002  // open for reading and writing
+#define O_APPEND       0x0008  // writes done at eof
+#define O_CREAT        0x0100  // create and open file
+#define O_TRUNC        0x0200  // open and truncate
+#define O_EXCL         0x0400  // open only if file doesn't already exist
+
+// .. Win32-only (not specified by POSIX)
+#define O_TEXT_NP      0x4000  // file mode is text (translated)
+#define O_BINARY_NP    0x8000  // file mode is binary (untranslated)
+
+// .. wposix.cpp only (bit values not used by MS _open)
+#define O_NO_AIO_NP    0x20000
+// wposix-specific: do not open a separate AIO-capable handle.
+// this is used for small files where AIO overhead isn't worth it,
+// thus speeding up loading and reducing resource usage.
+
+// .. not supported by Win32 (bit values not used by MS _open)
+#define O_NONBLOCK     0x1000000
+
+
+// redefinition error here => io.h is getting included somewhere.
+// we implement this function, so the io.h definition conflicts if
+// compiling against the DLL CRT. either rename the io.h def
+// (as with vc_stat), or don't include io.h.
+extern int open(const char* fn, int mode, ...);
+extern int close(int);
+
+
+//
+// <unistd.h>
+//
+
+extern int read (int fd, void* buf, size_t nbytes);	// thunk
+extern int write(int fd, void* buf, size_t nbytes);	// thunk
+extern _CRTIMP off_t lseek(int fd, off_t ofs, int whence);
 
 
 //
@@ -87,6 +130,7 @@ extern int aio_error(const struct aiocb*);
 extern int aio_fsync(int, struct aiocb*);
 extern int aio_read(struct aiocb*);
 extern ssize_t aio_return(struct aiocb*);
+struct timespec;
 extern int aio_suspend(const struct aiocb* const[], int, const struct timespec*);
 extern int aio_write(struct aiocb*);
 extern int lio_listio(int, struct aiocb* const[], int, struct sigevent*);
@@ -97,4 +141,4 @@ extern int aio_reopen(int fd, const char* fn, int oflag, ...);
 // allocate and return a file descriptor 
 extern int aio_assign_handle(uintptr_t handle);
 
-#endif	// #ifndef WAIO_H__
+#endif	// #ifndef INCLUDED_WAIO

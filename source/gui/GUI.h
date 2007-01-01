@@ -27,7 +27,6 @@ gee@pyro.nu
 
 #include "ps/Pyrogenesis.h"
 #include "ps/CStr.h"
-#include "lib/types.h"
 #include "lib/ogl.h"
 
 #include "GUIbase.h"

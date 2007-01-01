@@ -21,12 +21,12 @@
  */
 
 #include "precompiled.h"
+#include "string_s.h"
 
 #include <string.h>
 
 #include "lib.h"
-#include "posix.h"	// SIZE_MAX
-
+#include "posix/posix_types.h"	// SIZE_MAX
 
 // we were included from wstring_s.cpp; skip all stuff that
 // must only be done once.
@@ -91,7 +91,7 @@ STMT(                                                         \
 
 // skip our implementation if already available, but not the
 // self-test and the t* defines (needed for test).
-#if !HAVE_STRING_S
+#if !HAVE_SECURE_CRT
 
 
 // return length [in characters] of a string, not including the trailing
@@ -213,4 +213,4 @@ int tcat_s(tchar* dst, size_t max_dst_chars, const tchar* src)
 	return tncat_s(dst, max_dst_chars, src, SIZE_MAX);
 }
 
-#endif	// #if !HAVE_STRING_S
+#endif	// #if !HAVE_SECURE_CRT

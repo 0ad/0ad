@@ -21,6 +21,7 @@
  */
 
 #include "precompiled.h"
+#include "archive_builder.h"
 
 #include "lib/lib.h"
 #include "lib/timer.h"
@@ -29,6 +30,7 @@
 // un-nice dependencies:
 #include "ps/Loader.h"
 #include <zlib.h>
+
 
 static inline bool file_type_is_uncompressible(const char* fn)
 {

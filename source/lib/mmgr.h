@@ -120,8 +120,6 @@ namespace ERR
 // optimizations, so duplicate this #if.
 #if CONFIG_USE_MMGR
 
-#include "lib/types.h"
-
 //
 // optional additional checks, enabled via mmgr_set_options.
 // these slow down the application; see 'digging deeper' in documentation.
@@ -225,7 +223,13 @@ extern void operator delete[](void* p, const char* file, int line, const char* f
 
 #include "nommgr.h"
 
-// MMGR version:
+#if CONFIG_USE_MMGR || HAVE_VC_DEBUG_ALLOC
+// notify user code that they must #include "nommgr.h" in places
+// where our macro would cause breakage (e.g. placement new)
+# define REDEFINED_NEW
+#endif
+
+// mmgr version:
 // (to simplify code that may either use mmgr or the VC debug heap,
 // we support enabling/disabling both in this header)
 #if CONFIG_USE_MMGR

@@ -21,16 +21,16 @@
  */
 
 #include "precompiled.h"
-
-#include "lib/lib.h"
 #include "h_mgr.h"
-#include "lib/allocators.h"
 
 #include <limits.h>	// CHAR_BIT
 #include <string.h>
 #include <stdlib.h>
 #include <new>		// std::bad_alloc
+
+#include "lib/lib.h"
 #include "lib/allocators.h"
+
 
 static const uint MAX_EXTANT_HANDLES = 10000;
 
@@ -66,7 +66,7 @@ static const uint MAX_EXTANT_HANDLES = 10000;
 //   (field width determines maximum unambiguous resource allocs)
 #define TAG_BITS 32
 const uint TAG_SHIFT = 0;
-const u32 TAG_MASK = 0xffffffff;	// safer than (1 << 32) - 1
+const u32 TAG_MASK = 0xFFFFFFFF;	// safer than (1 << 32) - 1
 
 // - index (0-based) of control block in our array.
 //   (field width determines maximum currently open handles)

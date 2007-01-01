@@ -21,20 +21,18 @@
  */
 
 #include "precompiled.h"
+#include "wtime.h"
 
 #include <algorithm>
 #include <numeric>
 #include <cmath>
 #include <ctime>
 
-#include "win_internal.h"
-#include <process.h>	// _beginthreadex
-
-#include "lib/lib.h"
-#include "lib/posix.h"
 #include "lib/adts.h"
 #include "lib/sysdep/ia32.h"
 #include "lib/sysdep/cpu.h"
+#include "wposix_internal.h"
+#include "wpthread.h"
 
 
 // define to disable time sources (useful for simulating other systems)
@@ -671,43 +669,16 @@ static u64 u64_from_FILETIME(const FILETIME* ft)
 // convert UTC FILETIME to seconds-since-1970 UTC:
 // we just have to subtract POSIX epoch and scale down to units of seconds.
 //
+// used by wfilesystem.
+//
 // note: RtlTimeToSecondsSince1970 isn't officially documented,
 // so don't use that.
-time_t utc_filetime_to_time_t(FILETIME* ft)
+time_t wtime_utc_filetime_to_time_t(FILETIME* ft)
 {
 	u64 hns = u64_from_FILETIME(ft);
 	u64 s = (hns - posix_epoch_hns) / _1e7;
-	return (time_t)(s & 0xffffffff);
+	return (time_t)(s & 0xFFFFFFFF);
 }
-
-
-// convert local FILETIME (includes timezone bias and possibly DST bias)
-// to seconds-since-1970 UTC.
-//
-// note: splitting into month, year etc. is inefficient,
-//   but much easier than determining whether ft lies in DST,
-//   and ourselves adding the appropriate bias.
-//
-// called for FAT file times; see wposix filetime_to_time_t.
-time_t time_t_from_local_filetime(FILETIME* ft)
-{
-	SYSTEMTIME st;
-	FileTimeToSystemTime(ft, &st);
-
-	struct tm t;
-	t.tm_sec   = st.wSecond;
-	t.tm_min   = st.wMinute;
-	t.tm_hour  = st.wHour;
-	t.tm_mday  = st.wDay;
-	t.tm_mon   = st.wMonth-1;
-	t.tm_year  = st.wYear-1900;
-	t.tm_isdst = -1;
-		// let the CRT determine whether this local time
-		// falls under DST by the US rules.
-    return mktime(&t);
-}
-
-
 
 
 // return nanoseconds since posix epoch as reported by system time
@@ -789,7 +760,7 @@ int clock_gettime(clockid_t clock, struct timespec* t)
 	debug_assert(clock == CLOCK_REALTIME);
 
 	const i64 ns = time_ns();
-	t->tv_sec  = (time_t)((ns / _1e9) & 0xffffffff);
+	t->tv_sec  = (time_t)((ns / _1e9) & 0xFFFFFFFF);
 	t->tv_nsec = (long)  (ns % _1e9);
 	return 0;
 }

@@ -21,6 +21,7 @@
  */
 
 #include "precompiled.h"
+#include "cursor.h"
 
 #include <string.h>
 #include <sstream>
@@ -38,7 +39,6 @@
 #include "lib/sysdep/sysdep.h"	// sys_cursor_*
 #include "lib/res/res.h"
 #include "ogl_tex.h"
-#include "cursor.h"
 
 /*
 	This is used to create the sys cursor to use together with the OpenGL

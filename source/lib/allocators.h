@@ -9,7 +9,7 @@
  */
 
 /*
- * Copyright (c) 2005 Jan Wassenberg
+ * Copyright (c) 2005-2006 Jan Wassenberg
  *
  * Redistribution and/or modification are also permitted under the
  * terms of the GNU General Public License as published by the
@@ -25,9 +25,9 @@
 
 #include <map>
 
-#include "lib/types.h"
+#include "lib/posix/posix_mman.h"	// PROT_*
 #include "lib/sysdep/cpu.h"	// CAS
-#include "lib/posix.h"		// PROT_* constants for da_set_prot
+
 
 //
 // page aligned allocator
@@ -487,6 +487,9 @@ doSomethingWith(yc);	// read/write access
 your_class_wrapper.lock();	// disallow further access until next .get()
 ..
 **/
+#ifdef REDEFINED_NEW
+# include "lib/nommgr.h"
+#endif
 template<class T> class OverrunProtector
 {
 	DynArray da;
@@ -532,9 +535,7 @@ fail:
 		if(da_set_size(&da, sizeof(T)) < 0)
 			goto fail;
 
-#include "nommgr.h"
 		cached_ptr = new(da.base) T();
-#include "mmgr.h"
 		lock();
 	}
 
@@ -561,6 +562,9 @@ public:
 		return cached_ptr;
 	}
 };
+#ifdef REDEFINED_NEW
+# include "lib/mmgr.h"
+#endif
 
 
 //

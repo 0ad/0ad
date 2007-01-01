@@ -9,8 +9,7 @@
 #include <AL/al.h>
 #include <vorbis/vorbisfile.h>
 
-
-#include "ogghack.h"
+#include "ogghack.h"	// HACK: must be included after al.h (bad interface)
 
 #if MSC_VERSION
 # ifdef NDEBUG

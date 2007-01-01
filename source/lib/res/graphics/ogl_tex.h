@@ -144,7 +144,6 @@ the next function to fail, but real apps should check and report errors.
 #define OGL_TEX_H__
 
 #include "lib/res/handle.h"
-#include "lib/types.h"
 #include "lib/ogl.h"
 #include "tex.h"
 

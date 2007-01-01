@@ -246,7 +246,7 @@ we could switch H_DEREF to throwing an exception on error.
 
 #include "lib/lib.h"
 
-#ifndef HANDLE_DEFINED
+#ifndef INCLUDED_HANDLE
 #include "handle.h"
 #endif
 

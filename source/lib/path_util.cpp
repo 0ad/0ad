@@ -21,12 +21,11 @@
  */
 
 #include "precompiled.h"
+#include "path_util.h"
 
 #include <string.h>
 
 #include "lib.h"
-#include "posix.h"
-#include "path_util.h"
 
 
 AT_STARTUP(\

@@ -197,7 +197,7 @@ Decompression is free because it is done in parallel with IOs.
 #define __VFS_H__
 
 #include "../handle.h"	// Handle def
-#include "lib/posix.h"	// struct stat
+#include "lib/posix/posix_filesystem.h"	// struct stat
 #include "file.h"		// file open flags
 
 // upper bound on number of files; used as size of TNode pool and

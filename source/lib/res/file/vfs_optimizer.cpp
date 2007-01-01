@@ -22,6 +22,7 @@
  */
 
 #include "precompiled.h"
+#include "vfs_optimizer.h"
 
 #include <set>
 #include <map>

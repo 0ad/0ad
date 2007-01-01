@@ -9,6 +9,7 @@
  */
 
 #include "precompiled.h"
+#include "ogl_shader.h"
 
 #include "lib/lib.h"
 #include "lib/res/res.h"
@@ -17,7 +18,6 @@
 #include "ps/CLogger.h"
 #include "ps/XML/Xeromyces.h"
 
-#include "ogl_shader.h"
 
 #define LOG_CATEGORY "shaders"
 

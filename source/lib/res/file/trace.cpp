@@ -22,6 +22,7 @@
  */
 
 #include "precompiled.h"
+#include "trace.h"
 
 #include "lib/allocators.h"
 #include "lib/timer.h"

@@ -368,9 +368,9 @@
 // these are always available to users: if not provided by the CRT, we
 // implement them ourselves. this flag is only used to skip our impl.
 #if MSC_VERSION >= 1400
-# define HAVE_STRING_S 1
+# define HAVE_SECURE_CRT 1
 #else
-# define HAVE_STRING_S 0
+# define HAVE_SECURE_CRT 0
 #endif
 
 

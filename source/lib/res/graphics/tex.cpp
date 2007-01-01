@@ -21,16 +21,16 @@
  */
 
 #include "precompiled.h"
+#include "tex.h"
 
 #include <math.h>
 #include <stdlib.h>
-
 #include <algorithm>
 
 #include "lib/lib.h"
 #include "lib/timer.h"
 #include "lib/res/res.h"
-#include "tex.h"
+
 #include "tex_codec.h"
 
 

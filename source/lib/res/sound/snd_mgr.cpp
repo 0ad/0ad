@@ -22,6 +22,7 @@
   */
 
 #include "precompiled.h"
+#include "snd_mgr.h"
 
 #include <sstream>	// to extract snd_open's definition file contents
 #include <string>
@@ -46,13 +47,12 @@
 #endif
 
 #include "lib/res/res.h"
-#include "snd_mgr.h"
 #include "lib/timer.h"
 #include "lib/app_hooks.h"
 
-
 #define OGG_HACK
 #include "ogghack.h"
+
 
 #if MSC_VERSION
 # pragma comment(lib, "openal32.lib")

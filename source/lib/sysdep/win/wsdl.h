@@ -23,7 +23,6 @@
 #ifndef WSDL_H__
 #define WSDL_H__
 
-#include "lib/types.h"
 #include "SDL/SDL_keysym.h"
 
 typedef u8  Uint8;

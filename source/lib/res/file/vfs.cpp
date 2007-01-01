@@ -21,11 +21,11 @@
  */
 
 #include "precompiled.h"
+#include "vfs.h"
 
 #include <string.h>
 #include <time.h>
 #include <math.h>
-
 #include <map>
 #include <list>
 #include <deque>

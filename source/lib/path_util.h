@@ -33,7 +33,7 @@
 #ifndef PATH_UTIL_H__
 #define PATH_UTIL_H__
 
-#include "posix.h"	// PATH_MAX
+#include "posix/posix_types.h"	// PATH_MAX
 
 
 namespace ERR

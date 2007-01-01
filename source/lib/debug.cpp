@@ -21,21 +21,23 @@
  */
 
 #include "precompiled.h"
+#include "debug.h"
 
 #include <stdarg.h>
 #include <string.h>
 
+#include "lib/posix/posix_pthread.h"
 #include "lib.h"
-#include "posix.h"
-#include "lib/res/file/file.h"	// FILE_ACCESS
+#include "app_hooks.h"
+#include "path_util.h"
+#include "debug_stl.h"
 #include "lib/sysdep/cpu.h"	// CAS
+#include "lib/res/file/file.h"	// FILE_ACCESS
 // some functions here are called from within mmgr; disable its hooks
 // so that our allocations don't cause infinite recursion.
-#include "nommgr.h"
-#include "app_hooks.h"
-#include "lib/path_util.h"
-#include "debug_stl.h"
-#include "debug.h"
+#ifdef REDEFINED_NEW
+# include "lib/nommgr.h"
+#endif
 
 
 AT_STARTUP(\

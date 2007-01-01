@@ -21,9 +21,11 @@
  */
 
 #include "precompiled.h"
+#include "vfs_redirector.h"
 
-#include "file_internal.h"
 #include "lib/byte_order.h"	// FOURCC
+#include "file_internal.h"
+
 
 static const u32 vtbl_magic = FOURCC('F','P','V','T');
 

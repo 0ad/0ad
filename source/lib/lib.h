@@ -60,7 +60,6 @@ scope
 #include <math.h>	// fabsf
 
 #include "config.h"
-#include "lib/types.h"
 
 
 #if defined(__cplusplus)
@@ -456,9 +455,13 @@ extern u16 subusw(u16 x, u16 y);
  *   least-significant bit. only division, sqrt, sin/cos and other
  *   trancendental operations introduce error.
  **/
-inline bool feq(float f1, float f2)
+inline bool feq(double d1, double d2, double epsilon = 0.00001)
 {
-	const float epsilon = 0.00001f;
+	return fabs(d1 - d2) < epsilon;
+}
+
+inline bool feqf(float f1, float f2, float epsilon = 0.001f)
+{
 	return fabsf(f1 - f2) < epsilon;
 }
 

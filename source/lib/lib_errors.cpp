@@ -26,14 +26,15 @@
 // object files of the same name but in different paths.
 
 #include "precompiled.h"
-
 #include "lib_errors.h"
-#include "lib/sysdep/sysdep.h"
 
 #include <string.h>
 #include <stdlib.h>	// abs
-#include <errno.h>
 #include <map>
+
+#include "lib/posix/posix_errno.h"
+#include "lib/sysdep/sysdep.h"
+
 
 struct LibErrorAssociation
 {

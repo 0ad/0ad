@@ -21,10 +21,11 @@
  */
 
 #include "precompiled.h"
+#include "gfx.h"
 
 #include "lib/lib.h"
 #include "lib/sdl.h"
-#include "gfx.h"
+
 
 char gfx_card[GFX_CARD_LEN] = "";
 char gfx_drv_ver[GFX_DRV_VER_LEN] = "";

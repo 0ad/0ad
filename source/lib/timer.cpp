@@ -22,16 +22,15 @@
  */
 
 #include "precompiled.h"
+#include "timer.h"
 
 #include <numeric>
 #include <math.h>
 #include <stdarg.h>
 
+#include "lib/posix/posix_time.h"
 #include "lib.h"
-#include "posix.h"
-#include "timer.h"
 #include "adts.h"
-
 #include "lib/sysdep/cpu.h"
 
 // rationale for wrapping gettimeofday and clock_gettime, instead of emulating

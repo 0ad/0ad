@@ -21,15 +21,16 @@
  */
 
 #include "precompiled.h"
+#include "wpthread.h"
 
 #include <new>
-
 #include <process.h>
 
-#include "lib/lib.h"
-#include "lib/posix.h"
-#include "win_internal.h"
-#include "../cpu.h"	// CAS
+#include "lib/sysdep/cpu.h"	// CAS
+
+#include "wposix_internal.h"
+#include "wtime.h"	// timespec
+
 
 #pragma data_seg(WIN_CALLBACK_PRE_LIBC(b))
 WIN_REGISTER_FUNC(wpthread_init);
@@ -380,12 +381,12 @@ static DWORD calc_timeout_length_ms(const struct timespec* abs_timeout,
 	// .. length > 49 days => result won't fit in 32 bits. most likely bogus.
 	//    note: we're careful to avoid returning exactly -1 since
 	//          that's the Win32 INFINITE value.
-	if(length_ms >= 0xffffffff)
+	if(length_ms >= 0xFFFFFFFF)
 	{
 		WARN_ERR(ERR::LIMIT);
 		length_ms = 0xfffffffe;
 	}
-	return (DWORD)(length_ms & 0xffffffff);
+	return (DWORD)(length_ms & 0xFFFFFFFF);
 }
 
 int sem_timedwait(sem_t* sem, const struct timespec* abs_timeout)

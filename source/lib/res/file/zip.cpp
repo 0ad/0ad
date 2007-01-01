@@ -21,6 +21,7 @@
  */
 
 #include "precompiled.h"
+#include "zip.h"
 
 #include <time.h>
 #include <limits>
@@ -29,8 +30,8 @@
 #include "lib/byte_order.h"
 #include "lib/allocators.h"
 #include "lib/timer.h"
-#include "file_internal.h"
 #include "lib/res/res.h"
+#include "file_internal.h"
 
 
 // safe downcasters: cast from any integral type to u32 or u16; 

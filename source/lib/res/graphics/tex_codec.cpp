@@ -21,13 +21,13 @@
  */
 
 #include "precompiled.h"
+#include "tex_codec.h"
 
 #include <string.h>
 #include <stdlib.h>
 
-#include "tex_codec.h"
-#include "tex.h"
 #include "lib/path_util.h"
+#include "tex.h"
 
 static const TexCodecVTbl* codecs;
 

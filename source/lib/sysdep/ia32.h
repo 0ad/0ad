@@ -27,8 +27,6 @@
 #error "including ia32.h without CPU_IA32=1"
 #endif
 
-#include "lib/types.h"
-
 // some of these are implemented in asm, so make sure name mangling is
 // disabled.
 #ifdef __cplusplus

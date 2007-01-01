@@ -23,6 +23,9 @@
 #ifndef VFS_REDIRECTOR_H__
 #define VFS_REDIRECTOR_H__
 
+#include "file.h"
+struct FileIo;
+
 struct FileProvider_VTbl
 {
 	// FOURCC that is checked on each access to ensure this is a valid vtbl.

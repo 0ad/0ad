@@ -28,7 +28,6 @@
 #endif
 
 #include "lib/lib.h"	// BIT
-#include "lib/types.h"	// intptr_t
 
 
 // Win32 socket decls aren't portable (e.g. problems with socklen_t)

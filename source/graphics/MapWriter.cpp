@@ -1,6 +1,5 @@
 #include "precompiled.h"
 
-#include "lib/types.h"
 #include "lib/res/file/vfs.h"
 
 #include "Camera.h"
@@ -57,7 +56,7 @@ void CMapWriter::SaveMap(const char* filename, CTerrain* pTerrain,
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// GetHandleIndex: return the index of the given handle in the given list; or 0xffff if
+// GetHandleIndex: return the index of the given handle in the given list; or 0xFFFF if
 // handle isn't in list
 static u16 GetHandleIndex(const Handle handle, const std::vector<Handle>& handles)
 {
@@ -68,7 +67,7 @@ static u16 GetHandleIndex(const Handle handle, const std::vector<Handle>& handle
 		}
 	}
 
-	return 0xffff;
+	return 0xFFFF;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -93,13 +92,13 @@ void CMapWriter::EnumTerrainTextures(CTerrain *pTerrain,
 				for (u32 k=0;k<(u32)PATCH_SIZE;k++) {
 					CMiniPatch& mp=pTerrain->GetPatch(i,j)->m_MiniPatches[m][k];
 					u16 index=u16(GetHandleIndex(mp.Tex1,handles));
-					if (index==0xffff) {
+					if (index==0xFFFF) {
 						index=(u16)handles.size();
 						handles.push_back(mp.Tex1);
 					}
 
 					tileptr->m_Tex1Index=index;
-					tileptr->m_Tex2Index=0xffff;
+					tileptr->m_Tex2Index=0xFFFF;
 					tileptr->m_Priority=mp.Tex1Priority;
 					tileptr++;
 				}

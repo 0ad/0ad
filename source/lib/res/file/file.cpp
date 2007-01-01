@@ -22,18 +22,21 @@
  */
 
 #include "precompiled.h"
+#include "file.h"
 
+#include <vector>
+#include <algorithm>
+#include <string>
+
+#include "lib/posix/posix_filesystem.h"
+#include "lib/posix/posix_aio.h"
+#include "lib/posix/posix_mman.h"
 #include "lib/lib.h"
 #include "lib/adts.h"
 #include "lib/sysdep/sysdep.h"
 #include "lib/byte_order.h"
 #include "lib/allocators.h"
 #include "file_internal.h"
-
-#include <vector>
-#include <algorithm>
-
-#include <string>
 
 
 AT_STARTUP(\

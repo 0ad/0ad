@@ -21,19 +21,18 @@
  */
 
 #include "precompiled.h"
+#include "wdbg.h"
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <typeinfo>
 
 #include "lib/lib.h"
-#include "win_internal.h"
-#include "lib/posix.h"
-#include "lib/sysdep/cpu.h"
-#include "wdbg.h"
+#include "lib/posix/posix_pthread.h"
 #include "lib/byte_order.h"		// FOURCC
 #include "lib/app_hooks.h"
-
+#include "lib/sysdep/cpu.h"
+#include "win_internal.h"
 
 #pragma data_seg(WIN_CALLBACK_PRE_MAIN(b))
 WIN_REGISTER_FUNC(wdbg_init);
@@ -130,7 +129,7 @@ void debug_heap_check()
 // if not called, the default is DEBUG_HEAP_NONE, i.e. do nothing.
 void debug_heap_enable(DebugHeapChecks what)
 {
-	// note: if MMGR is enabled, crtdbg.h will not have been included.
+	// note: if mmgr is enabled, crtdbg.h will not have been included.
 	// in that case, we do nothing here - this interface is too basic to
 	// control mmgr; use its API instead.
 #if !CONFIG_USE_MMGR && HAVE_VC_DEBUG_ALLOC

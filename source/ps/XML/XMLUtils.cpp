@@ -3,7 +3,7 @@
 #include "XML.h"
 #include "ps/CStr.h"
 #include "ps/CLogger.h"
-#include "lib/posix.h"		// ptrdiff_t
+#include "lib/posix/posix_types.h"		// ptrdiff_t
 
 #include "lib/res/file/vfs.h"
 #include "lib/res/mem.h"

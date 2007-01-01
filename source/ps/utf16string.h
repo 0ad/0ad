@@ -9,7 +9,6 @@
 // We now use this code on Windows as well, because wchar_t is a
 // native type and distinct from utf16_t.
 #include <string>
-#include "lib/types.h"
 
 typedef uint16_t utf16_t;
 typedef std::basic_string<utf16_t> utf16string;

@@ -22,6 +22,7 @@
  */
 
 #include "precompiled.h"
+#include "archive.h"
 
 #include "lib/timer.h"
 #include "lib/allocators.h"

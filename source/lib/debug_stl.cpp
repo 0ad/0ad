@@ -21,13 +21,13 @@
  */
 
 #include "precompiled.h"
+#include "debug_stl.h"
 
 #include <deque>
 #include <map>
 #include <set>
 #include <cassert>
 
-#include "debug_stl.h"
 #include "lib.h"	// match_wildcard
 
 

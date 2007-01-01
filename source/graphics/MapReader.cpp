@@ -13,7 +13,6 @@
 #include "graphics/Unit.h"
 #include "graphics/UnitManager.h"
 #include "lib/timer.h"
-#include "lib/types.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 #include "ps/Game.h"

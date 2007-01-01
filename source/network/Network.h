@@ -45,8 +45,6 @@ MORE INFO
 //  Includes / Compiler directives
 //--------------------------------------------------------
 
-#include "lib/posix.h"
-#include "lib/types.h"
 #include "ps/Pyrogenesis.h"
 #include "ps/ThreadUtil.h"
 #include "ps/Singleton.h"

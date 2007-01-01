@@ -23,7 +23,7 @@
 #ifndef STRING_S_H__
 #define STRING_S_H__
 
-#include "posix_types.h"	// size_t
+#include "posix/posix_types.h"	// size_t
 #include "config.h"
 
 
@@ -34,7 +34,7 @@ namespace ERR
 
 // only declare these functions if using our implementation
 // (otherwise, we risk incompatibilities)
-#if !HAVE_STRING_S
+#if !HAVE_SECURE_CRT
 
 // (conflicts with glibc definitions)
 #if !OS_UNIX
@@ -82,6 +82,6 @@ extern int wcsncat_s(wchar_t* dst, size_t max_dst_chars, const wchar_t* src, siz
 extern int strcat_s(char* dst, size_t max_dst_chars, const char* src);
 extern int wcscat_s(wchar_t* dst, size_t max_dst_chars, const wchar_t* src);
 
-#endif	// #if !HAVE_STRING_S
+#endif	// #if !HAVE_SECURE_CRT
 
 #endif	// #ifndef STRING_S_H__

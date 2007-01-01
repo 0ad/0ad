@@ -1,7 +1,6 @@
 #ifndef _Simulation_H
 #define _Simulation_H
 
-#include "lib/types.h"
 #include <boost/random.hpp>
 
 class CGame;

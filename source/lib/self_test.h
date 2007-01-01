@@ -179,7 +179,7 @@ extern bool self_test_active;
 
 // for convenience, to avoid having to include all of these manually
 #include "lib_errors.h"
-#include "posix.h"
+#include "posix/posix.h"
 
 #define CXXTEST_HAVE_EH
 #define CXXTEST_HAVE_STD

@@ -21,18 +21,16 @@
  */
 
 #include "precompiled.h"
+#include "app_hooks.h"
 
 #include <string.h>
 #include <stdio.h>
 
+#include "lib/path_util.h"
 #include "lib/sysdep/gfx.h"
 #include "lib/res/graphics/ogl_tex.h"
 #include "lib/res/file/file.h"
 #include "lib/res/file/vfs.h"
-#include "lib/res/graphics/ogl_tex.h"
-#include "lib/path_util.h"
-
-#include "app_hooks.h"
 
 
 //-----------------------------------------------------------------------------

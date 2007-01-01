@@ -53,36 +53,23 @@ need only be renamed (e.g. _open, _stat).
 
 */
 
+#ifndef INCLUDED_POSIX
+#define INCLUDED_POSIX
+
 #if OS_WIN
-
-#include "lib/sysdep/win/wposix.h"
-#include "lib/sysdep/win/win.h"
-
-#else
+# include "lib/sysdep/win/wposix/wposix.h"
+# include "lib/sysdep/win/win.h"
+#endif
 
 #include "posix_types.h"
+#include "posix_aio.h"
+#include "posix_dlfcn.h"
+#include "posix_filesystem.h"
+#include "posix_mman.h"
+#include "posix_pthread.h"
+#include "posix_sock.h"
+#include "posix_terminal.h"
+#include "posix_time.h"
+#include "posix_utsname.h"
 
-#include <sys/types.h>
-#include <limits.h>
-#include <unistd.h>
-#include <sys/time.h>
-#include <fcntl.h>
-#include <sys/ioctl.h>
-#include <pthread.h>
-#include <semaphore.h>
-#include <sys/mman.h>
-#include <aio.h>
-#include <errno.h>
-#include <dirent.h>
-#include <sys/utsname.h>
-#include <dlfcn.h>
-
-#include <sys/stat.h>
-
-#include <sys/socket.h>
-#include <netdb.h>
-#include <netinet/in.h>
-#include <netinet/tcp.h>
-#include <arpa/inet.h>
-
-#endif	// #if OS_WIN
+#endif	// #ifndef INCLUDED_POSIX

@@ -21,14 +21,15 @@
  */
 
 #include "precompiled.h"
+#include "vfs_tree.h"
 
 #include <string.h>
 #include <time.h>
-
 #include <string>
 #include <vector>
 #include <algorithm>
 
+#include "lib/posix/posix_pthread.h"
 #include "lib/allocators.h"
 #include "lib/adts.h"
 #include "file_internal.h"

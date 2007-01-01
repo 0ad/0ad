@@ -366,7 +366,7 @@ uint CSimulation::GetMessageMask(CNetMessage* UNUSED(pMsg), uint UNUSED(oldMask)
 
 	// Pending a complete visibility/minimal-update implementation, we'll
 	// simply select the first 32 connected clients ;-)
-	return 0xffffffff;
+	return 0xFFFFFFFF;
 }
 
 void CSimulation::QueueLocalCommand(CNetMessage *pMsg)

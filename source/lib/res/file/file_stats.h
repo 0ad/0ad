@@ -53,7 +53,7 @@ extern void stats_buf_ref();
 extern void stats_io_user_request(size_t user_size);
 extern void stats_io_sync_start(double* start_time_storage);
 extern void stats_io_sync_finish(FileIOImplentation fi, FileOp fo, ssize_t user_size, double* start_time_storage);
-extern void stats_io_check_seek(BlockId disk_pos);
+extern void stats_io_check_seek(const char* atom_fn, u32 block_num);
 extern void stats_cb_start();
 extern void stats_cb_finish();
 
@@ -81,7 +81,7 @@ extern void stats_dump();
 #define stats_io_user_request(user_size)
 #define stats_io_sync_start(disk_pos, start_time_storage)
 #define stats_io_sync_finish(fi, fo, user_size, start_time_storage)
-#define stats_io_check_seek(disk_pos)
+#define stats_io_check_seek(atom_fn, block_num)
 #define stats_cb_start()
 #define stats_cb_finish()
 #define stats_cache(cr, size, atom_fn)

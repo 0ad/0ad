@@ -77,13 +77,4 @@ extern int nanosleep(const struct timespec* rqtp, struct timespec* rmtp);
 extern int clock_gettime(clockid_t clock, struct timespec* ts);
 extern int clock_getres(clockid_t clock, struct timespec* res);
 
-
-// HACK: on Windows, the HRT makes its final implementation choice
-// in the first calibrate call where cpu_freq is available.
-// provide a routine that makes the choice when called,
-// so app code isn't surprised by a timer change, although the HRT
-// does try to keep the timer continuous.
-extern void wtime_reset_impl(void);
-
-
 #endif	// #ifndef WTIME_H__

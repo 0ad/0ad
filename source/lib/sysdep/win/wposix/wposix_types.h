@@ -20,6 +20,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+#ifndef INCLUDED_WPOSIX_TYPES
+#define INCLUDED_WPOSIX_TYPES
+
 //
 // <inttypes.h>
 //
@@ -51,9 +54,33 @@ typedef unsigned long long uint64_t;
 // however, it's not necessary with VC7 and later, and the compiler's
 // definition squelches 'pointer-to-int truncation' warnings, so don't.
 
+#define INT16_MIN -32768
+#define INT16_MAX 32767
+#define UINT16_MIN 0u
+#define UINT16_MAX 65536u
+
 
 //
 // <sys/types.h>
 //
 
 typedef long ssize_t;
+
+
+//
+// <limits.h>
+//
+
+// Win32 MAX_PATH is 260; our number may be a bit more efficient.
+#define PATH_MAX 256
+
+#if OS_WIN
+# ifndef SIZE_MAX // VC2005 already defines this in limits.h
+#  define SIZE_MAX 0xFFFFFFFF
+# endif
+#else
+# define SIZE_MAX 0xFFFFFFFFFFFFFFFF
+#endif
+
+
+#endif	// #ifndef INCLUDED_WPOSIX_TYPES

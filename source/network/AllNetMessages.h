@@ -1,7 +1,6 @@
 #ifndef _AllNetMessages_H
 #define _AllNetMessages_H
 
-#include "lib/types.h"
 #include "ps/CStr.h"
 #include "scripting/JSSerialization.h"
 
@@ -112,7 +111,7 @@ enum
 	PS_CHAT_RCP_FIRST_SPECIAL=0xfffd,
 	PS_CHAT_RCP_ENEMIES=0xfffd,
 	PS_CHAT_RCP_ALLIES=0xfffe,
-	PS_CHAT_RCP_ALL=0xffff,
+	PS_CHAT_RCP_ALL=0xFFFF,
 };
 
 enum

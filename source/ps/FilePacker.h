@@ -10,7 +10,6 @@
 #define _FILEPACKER_H
 
 #include <vector>
-#include "lib/types.h"	// u32
 #include "CStr.h"
 
 #include "ps/Errors.h"

@@ -22,9 +22,11 @@
  */
 
 #include "precompiled.h"
+#include "file_cache.h"
 
 #include <map>
 
+#include "lib/posix/posix_mman.h"
 #include "lib/allocators.h"
 #include "lib/byte_order.h"
 #include "lib/cache_adt.h"

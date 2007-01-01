@@ -110,6 +110,17 @@ extern void debug_heap_enable(DebugHeapChecks what);
 // output
 //-----------------------------------------------------------------------------
 
+enum DebugLevel
+{
+	DEBUG_LEVEL_NONE = 0,
+	DEBUG_LEVEL_BRIEF = 2,
+	DEBUG_LEVEL_DETAILED = 5,
+	DEBUG_LEVEL_FULL = 9,
+};
+#define DEBUG_PRINTF_BRIEF    if(debug_level >= DEBUG_LEVEL_BRIEF)    debug_printf
+#define DEBUG_PRINTF_DETAILED if(debug_level >= DEBUG_LEVEL_DETAILED) debug_printf
+#define DEBUG_PRINTF_FULL     if(debug_level >= DEBUG_LEVEL_FULL    ) debug_printf
+
 /**
  * write a formatted string to the debug channel, subject to filtering
  * (see below). implemented via debug_puts - see performance note there.

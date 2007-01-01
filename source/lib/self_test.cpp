@@ -21,6 +21,7 @@
  */
 
 #include "precompiled.h"
+#include "self_test.h"
 
 #include "timer.h"
 

@@ -22,16 +22,17 @@
  */
 
 #include "precompiled.h"
-
-#include "lib/sysdep/dir_watch.h"
-#include "lib/res/h_mgr.h"
-#include "file_internal.h"
+#include "vfs_mount.h"
 
 #include <deque>
 #include <list>
 #include <string>
 #include <algorithm>
 #include <ctime>
+
+#include "lib/sysdep/dir_watch.h"
+#include "lib/res/h_mgr.h"
+#include "file_internal.h"
 
 
 // location of a file: either archive or a real directory.

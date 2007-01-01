@@ -1,7 +1,6 @@
 #ifndef _NetMessage_H
 #define _NetMessage_H
 
-#include "lib/types.h"
 #include "Serialization.h"
 #include "SocketBase.h"
 

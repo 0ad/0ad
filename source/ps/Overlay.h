@@ -12,8 +12,6 @@ by Rich Cross, rich@0ad.wildfiregames.com
 #ifndef COVERLAY_H
 #define COVERLAY_H
 
-#include "lib/types.h"
-
 class CStr8;
 
 struct CColor

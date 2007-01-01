@@ -9,16 +9,16 @@
  */
 
 #include "precompiled.h"
+#include "unifont.h"
 
+#include <stdio.h>
 #include <string>
 #include <sstream>
 #include <map>
 
-#include <stdio.h>
-
 #include "lib/lib.h"
-#include "lib/res/res.h"
 #include "lib/ogl.h"
+#include "lib/res/res.h"
 #include "ogl_tex.h"
 
 // This isn't particularly efficient - it can be improved if we
@@ -110,7 +110,7 @@ static LibError UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 		int          Codepoint, TextureX, TextureY, Width, Height, OffsetX, OffsetY, Advance;
 		FNTStream >> Codepoint>>TextureX>>TextureY>>Width>>Height>>OffsetX>>OffsetY>>Advance;
 
-		if (Codepoint > 0xffff)
+		if (Codepoint > 0xFFFF)
 		{
 			debug_warn("Invalid codepoint");
 			continue;

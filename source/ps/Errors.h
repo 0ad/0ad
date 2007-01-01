@@ -3,8 +3,6 @@
 
 #include <exception>
 
-#include "lib/types.h"
-
 typedef u32 PSRETURN;
 
 class PSERROR : public std::exception
@@ -31,7 +29,7 @@ public:
 #define ERROR_IS(a, b) ( ((a) & MASK__PSRETURN_##b) == CODE__PSRETURN_##b )
 
 const PSRETURN PSRETURN_OK = 0;
-const PSRETURN MASK__PSRETURN_OK = 0xffffffff;
+const PSRETURN MASK__PSRETURN_OK = 0xFFFFFFFF;
 const PSRETURN CODE__PSRETURN_OK = 0;
 
 const char* GetErrorString(PSRETURN code);

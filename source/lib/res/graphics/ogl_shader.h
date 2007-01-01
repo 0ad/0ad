@@ -13,7 +13,6 @@
 
 #include "lib/res/handle.h"
 
-#include "lib/types.h"
 #include "lib/ogl.h"
 
 

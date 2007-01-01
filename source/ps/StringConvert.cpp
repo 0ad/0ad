@@ -1,7 +1,6 @@
 #include "precompiled.h"
 
 #include "StringConvert.h"
-#include "lib/types.h"
 #include "lib/sdl.h"
 #include "scripting/SpiderMonkey.h"
 

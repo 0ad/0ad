@@ -512,11 +512,11 @@ void CMiniMap::RebuildTerrainTexture()
 				if(mp)
 				{
 					CTextureEntry *tex = mp->Tex1 ? g_TexMan.FindTexture(mp->Tex1) : 0;
-					color = tex ? tex->GetBaseColor() : 0xffffffff;
+					color = tex ? tex->GetBaseColor() : 0xFFFFFFFF;
 				}
 				else
 				{
-					color = 0xffffffff;
+					color = 0xFFFFFFFF;
 				}
 
 				*dataPtr++ = ScaleColor(color, float(val) / 255.0f);

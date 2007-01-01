@@ -21,12 +21,10 @@
  */
 
 #include "precompiled.h"
-
-#include "win_internal.h"
-#include "lib/lib.h"
 #include "wsock.h"
-#include "delay_load.h"
 
+#include "../delay_load.h"
+#include "wposix_internal.h"
 
 
 #if MSC_VERSION

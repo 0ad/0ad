@@ -20,6 +20,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+#ifndef INCLUDED_BYTE_ORDER
+#define INCLUDED_BYTE_ORDER
+
 #include "config.h"
 
 
@@ -83,3 +86,25 @@ extern void write_le64(void* p, u64 x);	/// see write_le16
 extern void write_be16(void* p, u16 x);
 extern void write_be32(void* p, u32 x);	/// see write_be16
 extern void write_be64(void* p, u64 x);	/// see write_be16
+
+
+// Debug-mode ICC doesn't like the intrinsics, so only use them
+// for MSVC and non-debug ICC.
+#if MSC_VERSION && !( defined(__INTEL_COMPILER) && !defined(NDEBUG) )
+extern unsigned short _byteswap_ushort(unsigned short);
+extern unsigned long _byteswap_ulong(unsigned long);
+extern unsigned __int64 _byteswap_uint64(unsigned __int64);
+#pragma intrinsic(_byteswap_ushort)
+#pragma intrinsic(_byteswap_ulong)
+#pragma intrinsic(_byteswap_uint64)
+# define swap16 _byteswap_ushort
+# define swap32 _byteswap_ulong
+# define swap64 _byteswap_uint64
+#else
+extern u16 swap16(const u16 x);
+extern u32 swap32(const u32 x);
+extern u64 swap64(const u64 x);
+#endif	// no swap intrinsics
+
+
+#endif	// #ifndef INCLUDED_BYTE_ORDER

@@ -21,14 +21,14 @@
  */
 
 #include "precompiled.h"
+#include "lockfree.h"
 
 #include <set>
 #include <algorithm>
 
+#include "lib/posix/posix_pthread.h"
 #include "lib.h"
-#include "posix.h"
 #include "lib/sysdep/cpu.h"
-#include "lockfree.h"
 #include "timer.h"
 
 /*

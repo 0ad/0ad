@@ -20,10 +20,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-#ifndef WPTHREAD_H__
-#define WPTHREAD_H__
-
-#include "wtime.h"	// sem_timedwait
+#ifndef INCLUDED_WPTHREAD
+#define INCLUDED_WPTHREAD
 
 
 //
@@ -117,4 +115,4 @@ extern int sem_destroy(sem_t*);
 // periodic timeout), or an error indication.
 extern int sem_msgwait_np(sem_t* sem);
 
-#endif	// #ifndef WPTHREAD_H__
+#endif	// #ifndef INCLUDED_WPTHREAD

@@ -21,8 +21,8 @@
  */
 
 #include "precompiled.h"
-
 #include "lib/sysdep/gfx.h"
+
 #include "dll_ver.h"	// dll_list_*
 #include "win_internal.h"
 

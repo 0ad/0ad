@@ -21,14 +21,13 @@
  */
 
 #include "precompiled.h"
+#include "lib/sysdep/sysdep.h"
 
 #include "win_internal.h"	// includes windows.h; must come before shlobj
 #include <shlobj.h>	// pick_dir
 
 #include "lib/lib.h"
-#include "lib/posix.h"
 #include "error_dialog.h"
-#include "lib/res/graphics/tex.h"
 
 
 #if MSC_VERSION

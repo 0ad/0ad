@@ -14,7 +14,7 @@ public:
 	struct STileDesc {
 		// index into the texture array of first texture on tile
 		u16 m_Tex1Index;
-		// index into the texture array of second texture; (0xffff) if none
+		// index into the texture array of second texture; (0xFFFF) if none
 		u16 m_Tex2Index;
 		// priority
 		u32 m_Priority;

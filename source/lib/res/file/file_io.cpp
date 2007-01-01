@@ -21,11 +21,12 @@
  */
 
 #include "precompiled.h"
+#include "file_io.h"
 
 #include <deque>
 
+#include "lib/posix/posix_aio.h"
 #include "lib/lib.h"
-#include "lib/posix.h"
 #include "lib/allocators.h"
 #include "lib/adts.h"
 #include "file_internal.h"
@@ -156,7 +157,7 @@ LibError file_io_issue(File* f, off_t ofs, size_t size, void* p, FileIo* io)
 	}
 
 	const BlockId disk_pos = block_cache_make_id(f->atom_fn, ofs);
-	stats_io_check_seek(disk_pos);
+	stats_io_check_seek(disk_pos.atom_fn, disk_pos.block_num);
 
 	return INFO::OK;
 }

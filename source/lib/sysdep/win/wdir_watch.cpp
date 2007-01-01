@@ -21,6 +21,7 @@
  */
 
 #include "precompiled.h"
+#include "lib/sysdep/dir_watch.h"
 
 #include <string>
 #include <map>
@@ -28,8 +29,8 @@
 
 #include "lib/lib.h"
 #include "lib/path_util.h"
-#include "win_internal.h"
 #include "lib/res/file/file.h"	// path_is_subpath
+#include "win_internal.h"
 
 
 #pragma data_seg(WIN_CALLBACK_POST_ATEXIT(x))

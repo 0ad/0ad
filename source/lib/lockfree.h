@@ -23,7 +23,7 @@
 #ifndef LOCKFREE_H__
 #define LOCKFREE_H__
 
-#include "posix_types.h"	// uintptr_t
+#include "posix/posix_types.h"	// uintptr_t
 
 /*
 

@@ -26,6 +26,7 @@
 
 struct Mount;	// must come before vfs_tree.h
 
+#include "lib/res/handle.h"
 #include "file.h"
 #include "zip.h"
 #include "vfs_tree.h"
