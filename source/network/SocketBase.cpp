@@ -14,6 +14,11 @@
 #include "ps/CLogger.h"
 #include "NetLog.h"
 
+#if !OS_WIN
+# include <fcntl.h>
+# include <sys/ioctl.h>
+#endif
+
 // Record global transfer statistics (sent/recvd bytes). This will put a lock
 // /unlock pair in all read and write operations.
 #define RECORD_GLOBAL_STATS 1

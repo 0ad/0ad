@@ -21,11 +21,11 @@
  */
 
 #include "precompiled.h"
-#include "self_test.h"
-
-#include "timer.h"
 
 #if 0
+
+#include "self_test.h"
+#include "timer.h"
 
 // checked by debug_assert_failed; disables asserts if true (see above).
 // set/cleared by self_test_run.

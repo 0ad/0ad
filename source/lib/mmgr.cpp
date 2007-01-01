@@ -44,7 +44,7 @@ AT_STARTUP(\
 #include <new>
 
 #include "lib.h"
-#include "posix.h"
+#include "posix/posix.h"
 #include "debug.h"
 
 // remove macro hooks (we need to use the actual malloc/new etc. routines)
