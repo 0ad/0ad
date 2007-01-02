@@ -1,5 +1,6 @@
 addoption("atlas", "Include Atlas scenario editor packages")
 addoption("collada", "Include COLLADA packages (requires FCollada library)")
+addoption("icc", "Use Intel C++ Compiler (Linux only; should set CXX=icpc before calling make)")
 addoption("outpath", "Location for generated project files")
 addoption("without-tests", "Disable generation of test projects")
 addoption("without-pch", "Disable generation and usage of precompiled headers")
@@ -23,6 +24,10 @@ if OS == "windows" then
 	project.cxxtestpath = "../../build/bin/cxxtestgen.exe"
 else
 	project.cxxtestpath = "../../build/bin/cxxtestgen.pl"
+end
+
+if OS == "linux" and options["icc"] then
+	options["without-pch"] = 1 -- ICC9.1 doesn't support GCC-style PCH
 end
 
 source_root = "../../../source/" -- default for most projects - overridden by local in others
@@ -56,7 +61,10 @@ end
 
 function package_set_build_flags()
 
-	package.buildflags = { "with-symbols", "no-edit-and-continue", "extra-warnings" }
+	package.buildflags = { "with-symbols", "no-edit-and-continue" }
+	if not options["icc"] then
+		tinsert(package.buildflags, "extra-warnings") -- this causes far too many warnings/remarks on ICC
+	end
 
 	-- PremakeWiki says with-symbols and optimize are automatically set for
 	-- Debug and Release builds, respectively. doesn't happen though, so do it manually.
@@ -74,30 +82,48 @@ function package_set_build_flags()
 		-- use native wchar_t type (not typedef to unsigned short)
 		tinsert(package.buildflags, "native-wchar_t")
 	else	-- *nix
-		package.buildoptions = {
-			"-Wall",
-			"-Wunused-parameter",	-- needs to be enabled explicitly
-			"-Wno-switch",		-- enumeration value not handled in switch
-			"-Wno-reorder",		-- order of initialization list in constructors
-			"-Wno-non-virtual-dtor",
-
-                        -- do something (?) so that ccache can handle compilation with PCH enabled
-			"-fpch-preprocess",
-
-			-- speed up math functions by inlining. warning: this may result in
-			-- non-IEEE-conformant results, but haven't noticed any trouble so far.
-			"-ffast-math",
-		}
+		if options["icc"] then
+			tinsert(package.buildoptions, {
+				"-w1",
+				"-Wabi",
+				-- "-Wp64", -- complains about OBJECT_TO_JSVAL which is annoying
+				"-Wpointer-arith",
+				"-Wreturn-type",
+				-- "-Wshadow",
+				"-Wuninitialized",
+				"-Wunknown-pragmas",
+				"-Wunused-function",
+			})
+			tinsert(package.config["Debug"].buildoptions, {
+				"-O0", -- ICC defaults to -O2
+			})
+		else
+			tinsert(package.buildoptions, {
+				"-Wall",
+				"-Wunused-parameter",	-- needs to be enabled explicitly
+				"-Wno-switch",		-- enumeration value not handled in switch
+				"-Wno-reorder",		-- order of initialization list in constructors
+				"-Wno-non-virtual-dtor",
+	
+				-- do something (?) so that ccache can handle compilation with PCH enabled
+				"-fpch-preprocess",
+	
+				-- speed up math functions by inlining. warning: this may result in
+				-- non-IEEE-conformant results, but haven't noticed any trouble so far.
+				"-ffast-math",
+			})
+		end
 		package.includepaths = {
 			"/usr/X11R6/include/X11",
 			"/usr/include/X11",
 		}
 		package.libpaths = {
-			"/usr/X11R6/lib"
+			"/usr/X11R6/lib",
+			"/usr/i686-pc-linux-gnu/lib", -- needed for ICC to find libbfd
 		}
 		package.defines = {
 			"__STDC_VERSION__=199901L",
-			"CONFIG_USE_MMGR"
+			"CONFIG_USE_MMGR",
 		}
 	end
 end

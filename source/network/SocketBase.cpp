@@ -16,6 +16,7 @@
 
 #if !OS_WIN
 # include <fcntl.h>
+# include <signal.h>
 # include <sys/ioctl.h>
 #endif
 

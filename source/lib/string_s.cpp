@@ -24,6 +24,7 @@
 #include "string_s.h"
 
 #include <string.h>
+#include <errno.h>
 
 #include "lib.h"
 #include "posix/posix_types.h"	// SIZE_MAX

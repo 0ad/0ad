@@ -55,7 +55,7 @@ void ViewActor::Render()
 	camera.UpdateFrustum();
 
 	m_ActorViewer->Render();
-	Atlas_GLSwapBuffers((void*)g_GameLoop->glContext);
+	Atlas_GLSwapBuffers((void*)g_GameLoop->glCanvas);
 }
 
 CCamera& ViewActor::GetCamera()
@@ -140,7 +140,7 @@ void ViewGame::Render()
 
 	::Render();
 	AtlasMessage::AtlasRenderSelection();
-	Atlas_GLSwapBuffers((void*)g_GameLoop->glContext);
+	Atlas_GLSwapBuffers((void*)g_GameLoop->glCanvas);
 }
 
 CCamera& ViewGame::GetCamera()

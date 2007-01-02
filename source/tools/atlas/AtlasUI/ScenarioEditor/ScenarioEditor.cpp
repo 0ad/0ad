@@ -29,14 +29,14 @@ using namespace AtlasMessage;
 
 // GL functions exported from DLL, and called by game (in a separate
 // thread to the standard wx one)
-ATLASDLLIMPEXP void Atlas_GLSetCurrent(void* context)
+ATLASDLLIMPEXP void Atlas_GLSetCurrent(void* canvas)
 {
-	((wxGLContext*)context)->SetCurrent();
+	static_cast<wxGLCanvas*>(canvas)->SetCurrent();
 }
 
-ATLASDLLIMPEXP void Atlas_GLSwapBuffers(void* context)
+ATLASDLLIMPEXP void Atlas_GLSwapBuffers(void* canvas)
 {
-	((wxGLContext*)context)->SwapBuffers();
+	static_cast<wxGLCanvas*>(canvas)->SwapBuffers();
 }
 
 
@@ -396,13 +396,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 
 	// Send setup messages to game engine:
 
-	/*canvas->Reparent(parent);
-	//canvas->SetCurrent();
-	canvas->Show(TRUE);*/
-
-	printf("posting setcontext with canvas %p\n", canvas->GetContext());
-	if (canvas->GetContext() != 0)
-		POST_MESSAGE(SetContext, (canvas->GetContext()));
+	POST_MESSAGE(SetCanvas, (static_cast<wxGLCanvas*>(canvas)));
 
 	POST_MESSAGE(Init, (true));
 

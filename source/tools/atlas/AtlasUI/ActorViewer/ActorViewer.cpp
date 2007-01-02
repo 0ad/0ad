@@ -194,7 +194,7 @@ ActorViewer::ActorViewer(wxWindow* parent)
 #ifdef __WXMSW__
 	wglMakeCurrent(NULL, NULL);
 #endif
-	POST_MESSAGE(SetContext, (canvas->GetContext()));
+	POST_MESSAGE(SetCanvas, (static_cast<wxGLCanvas*>(canvas)));
 
 	POST_MESSAGE(Init, (false));
 

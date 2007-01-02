@@ -24,6 +24,7 @@
 #include "path_util.h"
 
 #include <string.h>
+#include <errno.h>
 
 #include "lib.h"
 

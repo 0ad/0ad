@@ -21,13 +21,13 @@
 #define bfd_get_section_size bfd_get_section_size_before_reloc
 #endif
 
-#ifdef OS_LINUX
+#if OS_LINUX
 #define GNU_SOURCE
 #include <dlfcn.h>
 #include <execinfo.h>
 #endif
 
-#ifdef OS_LINUX
+#if OS_LINUX
 # define DEBUGGER_WAIT 3
 # define DEBUGGER_CMD "gdb"
 # define DEBUGGER_ARG_FORMAT "--pid=%d"

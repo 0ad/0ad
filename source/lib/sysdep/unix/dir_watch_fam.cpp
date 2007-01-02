@@ -5,6 +5,7 @@
 
 #include "lib/lib.h"
 #include "lib/res/file/file.h"
+#include "ps/CLogger.h"
 
 #include <fam.h>
 
@@ -40,7 +41,7 @@ LibError dir_add_watch(const char* const n_full_path, intptr_t* const watch)
 		else
 		{
 			initialized = -1;
-			DISPLAY_ERROR(L"Error initializing FAM; hotloading will be disabled");
+			LOG(ERROR, "", "Error initializing FAM; hotloading will be disabled");
 			return ERR::FAIL;	// NOWARN
 		}
 	}

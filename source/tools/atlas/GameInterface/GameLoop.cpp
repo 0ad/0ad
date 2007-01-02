@@ -29,8 +29,8 @@ namespace AtlasMessage
 // Loaded from DLL:
 void (*Atlas_StartWindow)(const wchar_t* type);
 void (*Atlas_SetMessagePasser)(MessagePasser*);
-void (*Atlas_GLSetCurrent)(void* context);
-void (*Atlas_GLSwapBuffers)(void* context);
+void (*Atlas_GLSetCurrent)(void* cavas);
+void (*Atlas_GLSwapBuffers)(void* canvas);
 void (*Atlas_NotifyEndOfFrame)();
 void (*Atlas_DisplayError)(const wchar_t* text, unsigned int flags);
 namespace AtlasMessage
@@ -114,7 +114,7 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 	state.args = args;
 	state.running = true;
 	state.view = View::GetView_None();
-	state.glContext = NULL;
+	state.glCanvas = NULL;
 
 	double last_activity = get_time();
 

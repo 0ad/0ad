@@ -43,8 +43,8 @@ QUERY(Ping, , );
 
 //////////////////////////////////////////////////////////////////////////
 
-MESSAGE(SetContext,
-		((void*, context))
+MESSAGE(SetCanvas,
+		((void*, canvas))
 		);
 
 MESSAGE(ResizeScreen,

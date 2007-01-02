@@ -14,7 +14,7 @@ struct GameLoopState
 	bool running; // whether the Atlas game loop is still running
 	View* view; // current 'view' (controls updates, rendering, etc)
 
-	const void* glContext;
+	const void* glCanvas; // the wxGlCanvas to draw on
 	float frameLength; // smoothed to avoid large jumps
 
 	struct Input

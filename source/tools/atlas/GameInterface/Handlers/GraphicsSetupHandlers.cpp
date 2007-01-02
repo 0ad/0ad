@@ -109,11 +109,11 @@ MESSAGEHANDLER(SetActorViewer)
 
 //////////////////////////////////////////////////////////////////////////
 
-MESSAGEHANDLER(SetContext)
+MESSAGEHANDLER(SetCanvas)
 {
-	g_GameLoop->glContext = msg->context;
-	printf("Setting gl context to %p\n", g_GameLoop->glContext);
-	Atlas_GLSetCurrent((void*)g_GameLoop->glContext);
+	g_GameLoop->glCanvas = msg->canvas;
+	printf("Setting gl canvas to %p\n", g_GameLoop->glCanvas);
+	Atlas_GLSetCurrent(const_cast<void*>(g_GameLoop->glCanvas));
 }
 
 

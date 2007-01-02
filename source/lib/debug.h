@@ -352,8 +352,21 @@ STMT(\
  * completely eliminate the problem; replacing 0 literals with extern
  * volatile variables fools VC7 but isn't guaranteed to be free of overhead.
  * we therefore just squelch the warning (unfortunately non-portable).
+ * this duplicates the code from debug_assert to avoid compiler warnings about
+ * constant conditions.
  **/
-#define debug_warn(str) debug_assert((str) && 0)
+#define debug_warn(expr) \
+STMT(\
+	static u8 suppress__;\
+	switch(debug_assert_failed(#expr, &suppress__, __FILE__, __LINE__, __func__))\
+	{\
+	case ER_BREAK:\
+		debug_break();\
+		break;\
+	default:\
+		break;\
+	}\
+)
 
 
 /**

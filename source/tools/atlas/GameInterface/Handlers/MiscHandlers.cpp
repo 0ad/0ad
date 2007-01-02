@@ -49,7 +49,7 @@ QUERYHANDLER(CinemaRecord)
 	{
 		manager->MoveToPointAbsolute((float)frame/msg->framerate);
 		Render();
-		Atlas_GLSwapBuffers((void*)g_GameLoop->glContext);
+		Atlas_GLSwapBuffers((void*)g_GameLoop->glCanvas);
 		glReadPixels(0, 0, w, h, GL_RGB, GL_UNSIGNED_BYTE, img);
 
 		// Swap the rows around, else the image will be upside down

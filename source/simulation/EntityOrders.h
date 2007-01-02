@@ -39,6 +39,8 @@
 #include "EntityHandles.h"
 #include "ps/Vector2D.h"
 
+#include <deque>
+
 // An order data field, which could represent different things depending on the type of order.
 struct SOrderData
 {
