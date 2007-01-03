@@ -85,7 +85,7 @@ function package_set_build_flags()
 		if options["icc"] then
 			tinsert(package.buildoptions, {
 				"-w1",
-				"-Wabi",
+				-- "-Wabi",
 				-- "-Wp64", -- complains about OBJECT_TO_JSVAL which is annoying
 				"-Wpointer-arith",
 				"-Wreturn-type",

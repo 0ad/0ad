@@ -75,9 +75,9 @@ public:
 	public: \
 		enum { TypeIsShareable = 1 }; \
 		Shareable() {} \
-		Shareable(T const& rhs) { m = rhs; } \
-		operator const T() const { return m; } \
-		const T _Unwrap() const { return m; } \
+		Shareable(T const& rhs) : m(rhs) {} \
+		operator T() const { return m; } \
+		T _Unwrap() const { return m; } \
 	}
 
 SHAREABLE_PRIMITIVE(unsigned char);

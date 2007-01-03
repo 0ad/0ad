@@ -383,16 +383,23 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	Canvas* canvas = new GameCanvas(m_SectionLayout.GetCanvasParent(), glAttribList);
 	m_SectionLayout.SetCanvas(canvas);
 
-#ifdef __WXMSW__
+	// Set up sidebars:
+
+	m_SectionLayout.Build();
+
+#if defined(__WXMSW__)
 	// The canvas' context gets made current on creation; but it can only be
 	// current for one thread at a time, and it needs to be current for the
 	// thread that is doing the draw calls, so disable it for this one.
 	wglMakeCurrent(NULL, NULL);
+#elif defined(__WXGTK__)
+	// Need to make sure the canvas is realized by GTK, so that its context is valid
+	Show(true);
+	wxSafeYield();
+
+	assert(canvas->GetContext() != NULL);
+	assert(glXGetCurrentContext() == NULL);
 #endif
-
-	// Set up sidebars:
-
-	m_SectionLayout.Build();
 
 	// Send setup messages to game engine:
 

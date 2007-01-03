@@ -11,6 +11,7 @@
 #include "gui/CGUI.h"
 #include "gui/GUIbase.h"
 #include "lib/res/file/vfs.h"
+#include "lib/sdl.h"
 #include "maths/MathUtil.h"
 #include "ps/CConsole.h"
 #include "ps/Game.h"
@@ -25,6 +26,22 @@ static bool g_DidInitSim;
 MESSAGEHANDLER(Init)
 {
 	UNUSED2(msg);
+
+#if OS_LINUX
+	// When using GLX (Linux), SDL has to load the GL library to find
+	// glXGetProcAddressARB before it can load any extensions.
+	// When running in Atlas, we skip the SDL video initialisation code
+	// which loads the library, and so SDL_GL_GetProcAddress fails (in
+	// ogl.cpp importExtensionFunctions).
+	// (TODO: I think this is meant to be context-independent, i.e. it
+	// doesn't matter that we're getting extensions from SDL-initialised
+	// GL stuff instead of from the wxWidgets-initialised GL stuff, but that
+	// should be checked.)
+	// So, make sure it's loaded:
+	SDL_InitSubSystem(SDL_INIT_VIDEO);
+	SDL_GL_LoadLibrary(NULL); // NULL = use default
+	// (it shouldn't hurt if this is called multiple times, I think)
+#endif
 
 	oglInit();
 

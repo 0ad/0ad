@@ -29,14 +29,18 @@ void SnapSplitterWindow::SetDefaultSashPosition(int sashPosition)
 		SetSashGravity(0.0);
 }
 
-bool SnapSplitterWindow::SplitVertically(wxWindow *window1, wxWindow *window2)
+bool SnapSplitterWindow::SplitVertically(wxWindow *window1, wxWindow *window2, int sashPosition)
 {
-	return wxSplitterWindow::SplitVertically(window1, window2, m_DefaultSashPosition);
+	if (sashPosition == 0)
+		sashPosition = m_DefaultSashPosition;
+	return wxSplitterWindow::SplitVertically(window1, window2, sashPosition);
 }
 
-bool SnapSplitterWindow::SplitHorizontally(wxWindow *window1, wxWindow *window2)
+bool SnapSplitterWindow::SplitHorizontally(wxWindow *window1, wxWindow *window2, int sashPosition)
 {
-	return wxSplitterWindow::SplitHorizontally(window1, window2, m_DefaultSashPosition);
+	if (sashPosition == 0)
+		sashPosition = m_DefaultSashPosition;
+	return wxSplitterWindow::SplitHorizontally(window1, window2, sashPosition);
 }
 
 void SnapSplitterWindow::OnSashPosChanging(wxSplitterEvent& evt)
