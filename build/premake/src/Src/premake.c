@@ -271,6 +271,7 @@ void showUsage()
 	puts(" --cc name         Choose a C/C++ compiler, if supported by target; one of:");
 	puts("      gcc       GNU gcc compiler");
 	puts("      dmc       Digital Mars C/C+ compiler (experimental)");
+	puts("      icc       Intel C++ Compiler (highly experimental)");
 	puts("");
 	puts(" --dotnet name     Choose a .NET compiler set, if supported by target; one of:");
 	puts("      ms        Microsoft (csc)");

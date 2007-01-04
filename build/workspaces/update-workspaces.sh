@@ -10,7 +10,7 @@ cd $premake_dir
 
 # build/premake/
 
-./premake --target gnu --outpath $workspace_dir --atlas $*
+./premake --outpath $workspace_dir --atlas $* --target gnu
 
 # These files need to be linked; premake makefiles assume that the
 # lua file is accessible from the makefile directory

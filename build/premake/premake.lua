@@ -1,6 +1,6 @@
 addoption("atlas", "Include Atlas scenario editor packages")
 addoption("collada", "Include COLLADA packages (requires FCollada library)")
-addoption("icc", "Use Intel C++ Compiler (Linux only; should set CXX=icpc before calling make)")
+addoption("icc", "Use Intel C++ Compiler (Linux only; should use either \"--cc icc\" or --without-pch too, and then set CXX=icpc before calling make)")
 addoption("outpath", "Location for generated project files")
 addoption("without-tests", "Disable generation of test projects")
 addoption("without-pch", "Disable generation and usage of precompiled headers")
@@ -24,10 +24,6 @@ if OS == "windows" then
 	project.cxxtestpath = "../../build/bin/cxxtestgen.exe"
 else
 	project.cxxtestpath = "../../build/bin/cxxtestgen.pl"
-end
-
-if OS == "linux" and options["icc"] then
-	options["without-pch"] = 1 -- ICC9.1 doesn't support GCC-style PCH
 end
 
 source_root = "../../../source/" -- default for most projects - overridden by local in others
@@ -733,11 +729,12 @@ function setup_tests()
 	package_create("test_3_gen", "cxxtestgen")
 	package.files = hdr_files
 	package.rootfile = source_root .. "test_root.cpp"
-	package.testoptions = ""
+	package.testoptions = "--have-std"
+	package.rootoptions = "--have-std"
 	if OS == "windows" then
-		package.rootoptions = "--gui=Win32Gui --runner=ParenPrinter"
+		package.rootoptions = package.rootoptions .. " --gui=Win32Gui --runner=ParenPrinter"
 	else
-		package.rootoptions = "--runner=ErrorPrinter"
+		package.rootoptions = package.rootoptions .. " --runner=ErrorPrinter"
 	end
 	-- precompiled headers - the header is added to all generated .cpp files
 	-- note that the header isn't actually precompiled here, only #included
@@ -757,6 +754,7 @@ function setup_tests()
 	-- note: these are not relative to source_root and therefore can't be included via package_add_contents.
 	listconcat(package.files, src_files)
 	package_add_extern_libs(used_extern_libs)
+
 	if OS == "windows" then
 		-- required for win.cpp's init mechanism
 		tinsert(package.linkoptions, "/ENTRY:entry_noSEH")

@@ -118,7 +118,7 @@ int gnu_cpp()
 
 		/* Write linker flags */
 		io_print("  LDFLAGS += -L$(BINDIR) -L$(LIBDIR)");
-		if (prj_is_kind("dll") && (g_cc == NULL || matches(g_cc, "gcc")))
+		if (prj_is_kind("dll") && (g_cc == NULL || matches(g_cc, "gcc") || matches(g_cc, "icc")))
 			io_print(" -shared");
 		if (prj_has_flag("no-symbols"))
 			io_print(" -s");
@@ -175,13 +175,34 @@ int gnu_cpp()
 		print_list(prj_get_files(), "\t$(OBJDIR)/", " \\\n", "", listCppSources);
 	io_print("\n");
 
-	io_print("PCHS := \\\n");
-	if (prj_get_pch_header() != NULL)
+	if (matches(g_cc, "icc"))
 	{
-		const char *basename = path_getbasename(prj_get_pch_header());
-		io_print("\t$(OBJDIR)/%s.h.gch \\\n", basename);
+		if (prj_get_pch_source() == NULL)
+		{
+			io_print("PCHS := \n");
+		}
+		else
+		{
+			io_print("PCHS := \\\n");
+			const char *basename = path_getbasename(prj_get_pch_source());
+			io_print("\t$(OBJDIR)/%s.pchi \\\n", basename);
+			io_print("\n");
+		}
 	}
-	io_print("\n");
+	else
+	{
+		if (prj_get_pch_header() == NULL)
+		{
+			io_print("PCHS := \n");
+		}
+		else
+		{
+			io_print("PCHS := \\\n");
+			const char *basename = path_getbasename(prj_get_pch_header());
+			io_print("\t$(OBJDIR)/%s.h.gch \\\n", basename);
+			io_print("\n");
+		}
+	}
 
 	/* Write out the list of resource files for windows targets */
 	if (os_is("windows"))
@@ -277,6 +298,14 @@ int gnu_cpp()
 		io_print("\t-%srm -rf $(OUTDIR)/$(TARGET) $(OBJDIR)\n", prefix);
 	}
 	io_print("\n");
+
+	/* When using ICC, the .pchi is a side-effect of compiling the .o,
+	 * so create a pattern for that rule */
+	if (matches(g_cc, "icc") && prj_get_pch_source() != NULL)
+	{
+		const char *basename = path_getbasename(prj_get_pch_source());
+		io_print("$(OBJDIR)/%s.pchi: $(OBJDIR)/%s.o\n\n", basename, basename);
+	}
 
 	/* Write static patterns for each source file. Note that in earlier
 	 * versions I used pattern rules instead of listing each file. It worked
@@ -390,6 +419,7 @@ static const char* listCppTargets(const char* name)
 	const char *pchSource = prj_get_pch_source();
 
 	int use_pch = pchHeader?1:0, gen_pch=0;
+	const char* pchExt = (matches(g_cc, "icc") ? "pchi" : "h.gch");
 
 	if (pchSource && matches(path_getname(name), pchSource))
 	{
@@ -400,14 +430,23 @@ static const char* listCppTargets(const char* name)
 	if (is_cpp(name))
 	{
 		const char* basename = path_getbasename(name);
-		sprintf(g_buffer, "$(OBJDIR)/%s.%s: %s ",
-			basename, gen_pch?"h.gch":"o", name);
+		strcpy(g_buffer, "");
+
+		strcat(g_buffer, "$(OBJDIR)/");
+		strcat(g_buffer, basename);
+		strcat(g_buffer, ".");
+		strcat(g_buffer, (gen_pch && !matches(g_cc, "icc")) ? pchExt : "o"); // we want ICC to generate the .o
+		strcat(g_buffer, ": ");
+		strcat(g_buffer, name);
+		strcat(g_buffer, " ");
+
 		if (use_pch)
 		{
 			basename = path_getbasename(pchHeader);
 			strcat(g_buffer, "$(OBJDIR)/");
 			strcat(g_buffer, basename);
-			strcat(g_buffer, ".h.gch");
+			strcat(g_buffer, ".");
+			strcat(g_buffer, pchExt);
 			// static buffer, *sigh*
 			basename = path_getbasename(name);
 		}
@@ -418,7 +457,7 @@ static const char* listCppTargets(const char* name)
 
 		if (!g_verbose)
 			strcat(g_buffer, "\t@echo $(notdir $<)\n");
-      
+
 		strcat(g_buffer, "\t");
 		if (!g_verbose)
 			strcat(g_buffer, "@");
@@ -469,15 +508,41 @@ static const char* listCppTargets(const char* name)
 				strcat(g_buffer, ".d -o $@ -c");
 				if (gen_pch)
 				{
-					strcat(g_buffer, " -x c++-header");
+					if (matches(g_cc, "icc"))
+					{
+						basename = path_getbasename(pchSource);
+						strcat(g_buffer, " -create-pch $(OBJDIR)/");
+						strcat(g_buffer, basename);
+						strcat(g_buffer, ".pchi");
+						basename = NULL;
+					}
+					else
+					{
+						strcat(g_buffer, " -x c++-header");
+					}
 				}
 				else if (use_pch)
 				{
-					basename = path_getbasename(pchHeader);
-					strcat(g_buffer, " -include $(OBJDIR)/");
-					strcat(g_buffer, basename);
-					strcat(g_buffer, ".h");
-					basename = NULL;
+					if (matches(g_cc, "icc"))
+					{
+						basename = path_getbasename(pchSource);
+						strcat(g_buffer, " -use-pch $(OBJDIR)/");
+						strcat(g_buffer, basename);
+						strcat(g_buffer, ".pchi");
+						basename = NULL;
+					}
+					else
+					{
+						// I don't think this is necessary, since we include precompiled.h
+						// manually in every source file anyway
+						/*
+						basename = path_getbasename(pchHeader);
+						strcat(g_buffer, " -include $(OBJDIR)/");
+						strcat(g_buffer, basename);
+						strcat(g_buffer, ".h");
+						basename = NULL;
+						*/
+					}
 				}
 				strcat(g_buffer, " $<\n");
 			}
