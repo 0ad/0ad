@@ -3,4 +3,15 @@
 <Entity
 	Parent="rome_infantry_slinger_b"
 >
+
+	<Traits>
+	
+		<Promotion>
+				
+			<Entity>rome_infantry_slinger_e</Entity>
+			
+		</Promotion>
+	
+	</Traits>
+	
 </Entity>

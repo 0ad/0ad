@@ -4,6 +4,16 @@
 	Parent="rome_infantry_swordsman_b"
 >
 
+	<Traits>
+	
+		<Promotion>
+				
+			<Entity>rome_infantry_swordsman_e</Entity>
+			
+		</Promotion>
+	
+	</Traits>
+
 	<Actor>units/romans/infantry_swordsman_a.xml</Actor>
 
 </Entity>

@@ -2,11 +2,18 @@
 
 <Entity Parent="hele_cavalry_swordsman_b">
 	<Traits>
+	
 		<id>
 
 			<Icon_Cell>19</Icon_Cell>
 	
 		</id>
+		
+		<Promotion>
+				
+			<Entity>hele_cavalry_swordsman_e</Entity>
+			
+		</Promotion>
 
 	</Traits>
 

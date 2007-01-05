@@ -3,4 +3,15 @@
 <Entity
 	Parent="rome_infantry_javelinist_b"
 >
+
+	<Traits>
+		
+		<Promotion>
+				
+			<Entity>rome_cavalry_javelinist_e</Entity>
+			
+		</Promotion>
+		
+	</Traits>
+
 </Entity>
