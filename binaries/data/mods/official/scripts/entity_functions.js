@@ -440,21 +440,18 @@ function setupRank()
 		case "_b":
 			// Basic. Upgrades to Advanced.
 			promotion.rank = "1";
-			nextSuffix = "_a";
 			// Set rank image to put over entity's head.
 			this.traits.rank.name = "";
 		break;
 		case "_a":
 			// Advanced. Upgrades to Elite.
 			promotion.rank = "2";
-			nextSuffix = "_e";
 			// Set rank image to put over entity's head.
 			this.traits.rank.name = "advanced.dds";				
 		break;
 		case "_e":
 			// Elite. Maximum rank.
 			promotion.rank = "3";
-			nextSuffix = "";
 			// Set rank image to put over entity's head.
 			this.traits.rank.name = "elite.dds";				
 		break;
@@ -471,10 +468,6 @@ function setupRank()
 	if (promotion.rank > "1"
 		&& actorStr.substring (actorStr.length-5, actorStr.length) != nextSuffix + ".xml")
 		this.actor = actorStr.substring (1,actorStr.length-5) + nextSuffix + ".xml";
-		
-	// The entity it should become (unless specified otherwise) is the base entity plus promotion suffix.
-	if (!promotion.newentity && nextSuffix != "" && promotion.rank != "0")
-		promotion.newentity = entityName.substring (0, entityName.length-2) + nextSuffix;
 }
 
 // ====================================================================
@@ -921,7 +914,7 @@ function damage( dmg, inflictor )
 						case "XP":
 						// If the inflictor gains promotions, and he's capable of earning more ranks,
 						if (inflictor.traits.promotion && inflictor.traits.promotion.curr && inflictor.traits.promotion.req
-								&& inflictor.traits.promotion.newentity && inflictor.traits.promotion.newentity != ""
+								&& inflictor.traits.promotion.entity && inflictor.traits.promotion.entity != ""
 								&& this.traits.loot && this.traits.loot.xp && inflictor.actions.loot.xp)
 						{
 							// Give him the fallen's upgrade points (if he has any).
@@ -951,11 +944,8 @@ function damage( dmg, inflictor )
 								inflictor.traits.id.icon_cell++; 
 
 								// Transmogrify him into his next rank.
-								inflictor.template = getEntityTemplate( inflictor.traits.promotion.newentity, inflictor.player );
-								
-								inflictor.traits.promotion.newentity = null;		// So that setupRank() can set it properly
+								inflictor.template = getEntityTemplate( inflictor.traits.promotion.entity, inflictor.player );
 								inflictor.setupRank();
-								//console.write("New promotion values: " + inflictor.traits.promotion.curr + " / " + inflictor.traits.promotion.req);
 							}
 						}
 						break;
