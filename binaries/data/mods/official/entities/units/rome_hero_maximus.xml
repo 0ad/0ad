@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_unit_hero"
+>
+	<Traits>
+	
+		<Id>
+
+		<Icon_Cell>22</Icon_Cell>
+
+			<Specific>Quintus Fabius Maximus</Specific>
+
+			<Civ>Romans</Civ>
+
+			<History>Quintus Fabius Maximus, dictator twice (most famously in 217 BC) and consul five times. Known as "Cunctator", or "Delayer", for his policy of scorched earth and harassment of Hannibal's army in Italy during the Second Punic War. He was not known as a great military man, but was extremely cautious and careful in all his decisions in a time when brash action had cost 85,000 Roman lives. For this reason he was dubbed "The Shield of Rome" as compared to Marcellus' title of "The Sword of Rome". He was an older man by the time of the Second Punic War, roughly late 50s to early 60s. 
+			</History>
+		
+		</Id>
+
+		<Auras>
+			<Courage>
+				<Radius>20</Radius>
+				<Bonus>10</Bonus>
+				<r>0.1</r>
+				<g>0.9</g>
+				<b>0.1</b>
+				<a>0.5</a>
+			</Courage>
+		</Auras>		
+		
+	</Traits>
+
+	<Actor>units/romans/hero_maximus.xml</Actor>
+
+</Entity>
