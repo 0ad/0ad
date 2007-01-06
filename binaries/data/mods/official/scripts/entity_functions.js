@@ -458,16 +458,15 @@ function setupRank()
 		default:
 			// Does not gain promotions.
 			promotion.rank = "0"
-			nextSuffix = ""
 		break;
 	}
 
 	// If entity is an additional rank and the correct actor has not been specified
 	// (it's just inherited the Basic), point it to the correct suffix. (Saves us specifying it each time.)
-	actorStr = this.actor.toString();
+	/*actorStr = this.actor.toString();
 	if (promotion.rank > "1"
 		&& actorStr.substring (actorStr.length-5, actorStr.length) != nextSuffix + ".xml")
-		this.actor = actorStr.substring (1,actorStr.length-5) + nextSuffix + ".xml";
+		this.actor = actorStr.substring (1,actorStr.length-5) + nextSuffix + ".xml";*/
 }
 
 // ====================================================================
