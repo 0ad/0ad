@@ -179,7 +179,7 @@ extern void* alloca(size_t size);
 #elif ICC_VERSION
 # define RESTRICT restrict
 // .. VC8 provides __restrict
-#elif MSC_VERSION >= 800
+#elif MSC_VERSION >= 1400
 # define RESTRICT __restrict
 // .. unsupported; remove it from code
 #else
