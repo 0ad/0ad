@@ -108,7 +108,7 @@ static size_t tga_hdr_size(const u8* file)
 
 
 // requirements: uncompressed, direct colour, bottom up
-static LibError tga_decode(DynArray* restrict da, Tex* restrict t)
+static LibError tga_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
 {
 	u8* file         = da->base;
 
@@ -142,7 +142,7 @@ static LibError tga_decode(DynArray* restrict da, Tex* restrict t)
 }
 
 
-static LibError tga_encode(Tex* restrict t, DynArray* restrict da)
+static LibError tga_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
 {
 	u8 img_desc = 0;
 	if(t->flags & TEX_TOP_DOWN)

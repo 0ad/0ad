@@ -589,7 +589,7 @@ static size_t jpg_hdr_size(const u8* UNUSED(file))
 }
 
 
-static LibError jpg_decode(DynArray* restrict da, Tex* restrict t)
+static LibError jpg_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
 {
 	LibError err;
 
@@ -628,7 +628,7 @@ fail:
 
 
 // limitation: palette images aren't supported
-static LibError jpg_encode(Tex* restrict t, DynArray* restrict da)
+static LibError jpg_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
 {
 	LibError err;
 

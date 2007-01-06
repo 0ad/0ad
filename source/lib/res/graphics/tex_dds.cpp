@@ -99,7 +99,7 @@ struct S3tcBlock
 };
 
 
-static void s3tc_precalc_alpha(uint dxt, const u8* restrict a_block, S3tcBlock* restrict b)
+static void s3tc_precalc_alpha(uint dxt, const u8* RESTRICT a_block, S3tcBlock* RESTRICT b)
 {
 	// read block contents
 	const uint a0 = a_block[0], a1 = a_block[1];
@@ -138,7 +138,7 @@ static void s3tc_precalc_alpha(uint dxt, const u8* restrict a_block, S3tcBlock* 
 }
 
 
-static void s3tc_precalc_color(uint dxt, const u8* restrict c_block, S3tcBlock* restrict b)
+static void s3tc_precalc_color(uint dxt, const u8* RESTRICT c_block, S3tcBlock* RESTRICT b)
 {
 	// read block contents
 	// .. S3TC reference colors (565 format). the color table is generated
@@ -175,7 +175,7 @@ static void s3tc_precalc_color(uint dxt, const u8* restrict c_block, S3tcBlock* 
 }
 
 
-static void s3tc_precalc_block(uint dxt, const u8* restrict block, S3tcBlock* restrict b)
+static void s3tc_precalc_block(uint dxt, const u8* RESTRICT block, S3tcBlock* RESTRICT b)
 {
 	b->dxt = dxt;
 
@@ -188,7 +188,7 @@ static void s3tc_precalc_block(uint dxt, const u8* restrict block, S3tcBlock* re
 }
 
 
-static void s3tc_write_pixel(const S3tcBlock* restrict b, uint pixel_idx, u8* restrict out)
+static void s3tc_write_pixel(const S3tcBlock* RESTRICT b, uint pixel_idx, u8* RESTRICT out)
 {
 	debug_assert(pixel_idx < 16);
 
@@ -231,7 +231,7 @@ struct S3tcDecompressInfo
 };
 
 static void s3tc_decompress_level(uint UNUSED(level), uint level_w, uint level_h,
-	const u8* restrict level_data, size_t level_data_size, void* restrict ctx)
+	const u8* RESTRICT level_data, size_t level_data_size, void* RESTRICT ctx)
 {
 	S3tcDecompressInfo* di = (S3tcDecompressInfo*)ctx;
 	const uint dxt             = di->dxt;
@@ -615,7 +615,7 @@ static size_t dds_hdr_size(const u8* UNUSED(file))
 }
 
 
-static LibError dds_decode(DynArray* restrict da, Tex* restrict t)
+static LibError dds_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
 {
 	u8* file         = da->base;
 	const DDSURFACEDESC2* sd = (const DDSURFACEDESC2*)(file+4);
@@ -633,7 +633,7 @@ static LibError dds_decode(DynArray* restrict da, Tex* restrict t)
 }
 
 
-static LibError dds_encode(Tex* restrict UNUSED(t), DynArray* restrict UNUSED(da))
+static LibError dds_encode(Tex* RESTRICT UNUSED(t), DynArray* RESTRICT UNUSED(da))
 {
 	// note: do not return ERR::NOT_IMPLEMENTED et al. because that would
 	// break tex_write (which assumes either this, 0 or errors are returned).

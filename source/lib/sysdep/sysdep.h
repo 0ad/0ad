@@ -153,17 +153,37 @@ extern void* alloca(size_t size);
 # endif
 #endif
 
-// C99 restrict
+// C99-like restrict (non-standard in C++, but widely supported in various forms).
+// Must only be used on pointers - some compilers (g++) support it on references
+// and member functions, but not all do (and we want to work on as many as possible).
+//
+// We call this "RESTRICT" to avoid conflicts with VC's __declspec(restrict),
+// and because it's not really the same as C99's restrict.
+//
+// To be safe and satisfy the compilers' stated requirements: an object accessed
+// by a restricted pointer must not be accessed by any other pointer within the
+// lifetime of the restricted pointer, if the object is modified.
+// To maximise the chance of optimisation, any pointers that could potentially
+// alias with the restricted one should be marked as restricted too.
+//
 // .. for some reason, g++-3.3 claims to support C99 (according to
 //    __STDC_VERSION__) but doesn't have the restrict keyword.
 //    use the extension __restrict__ instead.
 #if GCC_VERSION
-# define restrict __restrict__
-// .. already available; need do nothing
+# define RESTRICT __restrict__
+// .. already available as 'restrict'
 #elif HAVE_C99
+# define RESTRICT restrict
+// .. ICC provides restrict, though you have to make sure you pass /Qrestrict
+// (-restrict on Linux) in the compiler options
+#elif ICC_VERSION
+# define RESTRICT restrict
+// .. VC8 provides __restrict
+#elif MSC_VERSION >= 800
+# define RESTRICT __restrict
 // .. unsupported; remove it from code
 #else
-# define restrict
+# define RESTRICT
 #endif
 
 // C99 __func__

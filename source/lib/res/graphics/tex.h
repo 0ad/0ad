@@ -371,7 +371,7 @@ const int TEX_BASE_LEVEL_ONLY = -1;
  * @param ctx passed through from tex_util_foreach_mipmap.
  **/
 typedef void (*MipmapCB)(uint level, uint level_w, uint level_h,
-	const u8* level_data, size_t level_data_size, void* ctx);
+	const u8* RESTRICT level_data, size_t level_data_size, void* RESTRICT ctx);
 
 /**
  * for a series of mipmaps stored from base to highest, call back for
@@ -390,8 +390,8 @@ typedef void (*MipmapCB)(uint level, uint level_w, uint level_h,
  * @param cb MipmapCB to call
  * @param ctx extra data to pass to cb
  **/
-extern void tex_util_foreach_mipmap(uint w, uint h, uint bpp, const u8* restrict data,
-	int levels_to_skip, uint data_padding, MipmapCB cb, void* restrict ctx);
+extern void tex_util_foreach_mipmap(uint w, uint h, uint bpp, const u8* RESTRICT data,
+	int levels_to_skip, uint data_padding, MipmapCB cb, void* RESTRICT ctx);
 
 
 //

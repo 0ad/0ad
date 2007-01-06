@@ -123,8 +123,8 @@ LibError tex_validate_plain_format(uint bpp, uint flags)
 // mipmaps
 //-----------------------------------------------------------------------------
 
-void tex_util_foreach_mipmap(uint w, uint h, uint bpp, const u8* restrict data,
-	int levels_to_skip, uint data_padding, MipmapCB cb, void* restrict ctx)
+void tex_util_foreach_mipmap(uint w, uint h, uint bpp, const u8* RESTRICT data,
+	int levels_to_skip, uint data_padding, MipmapCB cb, void* RESTRICT ctx)
 {
 	uint level_w = w, level_h = h;
 	const u8* level_data = data;
@@ -179,7 +179,7 @@ struct CreateLevelData
 
 // uses 2x2 box filter
 static void create_level(uint level, uint level_w, uint level_h,
-	const u8* restrict level_data, size_t level_data_size, void* restrict ctx)
+	const u8* RESTRICT level_data, size_t level_data_size, void* RESTRICT ctx)
 {
 	CreateLevelData* cld = (CreateLevelData*)ctx;
 	const size_t src_w = cld->prev_level_w;
@@ -578,7 +578,7 @@ u8* tex_get_data(const Tex* t)
 
 
 static void add_level_size(uint UNUSED(level), uint UNUSED(level_w), uint UNUSED(level_h),
-	const u8* restrict UNUSED(level_data), size_t level_data_size, void* restrict ctx)
+	const u8* RESTRICT UNUSED(level_data), size_t level_data_size, void* RESTRICT ctx)
 {
 	size_t* ptotal_size = (size_t*)ctx;
 	*ptotal_size += level_data_size;

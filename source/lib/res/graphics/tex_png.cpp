@@ -217,7 +217,7 @@ static size_t png_hdr_size(const u8* UNUSED(file))
 TIMER_ADD_CLIENT(tc_png_decode);
 
 // limitation: palette images aren't supported
-static LibError png_decode(DynArray* restrict da, Tex* restrict t)
+static LibError png_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
 {
 TIMER_ACCRUE(tc_png_decode);
 
@@ -260,7 +260,7 @@ ret:
 
 
 // limitation: palette images aren't supported
-static LibError png_encode(Tex* restrict t, DynArray* restrict da)
+static LibError png_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
 {
 	LibError err  = ERR::FAIL;
 	// freed when ret is reached:

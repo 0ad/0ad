@@ -46,7 +46,7 @@ struct TexCodecVTbl
 	 * @param t output texture object
 	 * @return LibError
 	 **/
-	LibError (*decode)(DynArray * restrict da, Tex * restrict t);
+	LibError (*decode)(DynArray * RESTRICT da, Tex * RESTRICT t);
 
 
 	/**
@@ -60,7 +60,7 @@ struct TexCodecVTbl
 	 * by the caller.
 	 * @return LibError
 	 **/
-	LibError (*encode)(Tex * restrict t, DynArray * restrict da);
+	LibError (*encode)(Tex * RESTRICT t, DynArray * RESTRICT da);
 
 	/**
 	 * transform the texture's pixel format.
