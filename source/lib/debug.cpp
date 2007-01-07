@@ -155,7 +155,7 @@ void debug_filter_clear()
 		tags[i] = 0;
 }
 
-static bool filter_allows(const char* text)
+bool debug_filter_allows(const char* text)
 {
 	uint i;
 	for(i = 0; ; i++)
@@ -187,7 +187,7 @@ void debug_printf(const char* fmt, ...)
 	vsnprintf(buf, MAX_CHARS-1, fmt, ap);
 	va_end(ap);
 
-	if(filter_allows(buf))
+	if(debug_filter_allows(buf))
 		debug_puts(buf);
 }
 
@@ -224,7 +224,7 @@ void debug_wprintf(const wchar_t* fmt, ...)
 	// .. paranoia: overflow is impossible
 	debug_assert(bytes_written <= MAX_BYTES);
 
-	if(filter_allows(mbs_buf))
+	if(debug_filter_allows(mbs_buf))
 		debug_puts(mbs_buf);
 }
 

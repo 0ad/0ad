@@ -253,7 +253,7 @@ extern ErrorReaction debug_display_error(const wchar_t* description,
  * we don't want to require different LOGn() macros that are enabled
  * depending on "debug level", because changing that entails lengthy
  * compiles and it's too coarse-grained. instead, we require all
- * strings to start with "tag_string:" (exact case and no quotes;
+ * strings to start with "tag_string|" (exact case and no quotes;
  * the alphanumeric-only <tag_string> identifies output type).
  * they are then subject to filtering: only if the tag has been
  * "added" via debug_filter_add is the appendant string displayed.
@@ -284,6 +284,13 @@ extern void debug_filter_remove(const char* tag);
  * each tag that was debug_filter_add-ed.
  **/
 extern void debug_filter_clear();
+
+/**
+ * indicate if the given text would be printed.
+ * useful for a series of debug_printfs - avoids needing to add a tag to
+ * each of their format strings.
+ **/
+extern bool debug_filter_allows(const char* text);
 
 
 /**

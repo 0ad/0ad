@@ -288,6 +288,9 @@ template<typename T> int percent(T num, T divisor)
 
 void file_stats_dump()
 {
+	if(!debug_filter_allows("FILE_STATS|"))
+		return;
+
 	const double KB = 1e3; const double MB = 1e6; const double ms = 1e-3;
 
 	debug_printf("--------------------------------------------------------------------------------\n");
