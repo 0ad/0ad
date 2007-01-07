@@ -32,13 +32,6 @@
 #include "wtime.h"	// timespec
 
 
-#pragma data_seg(WIN_CALLBACK_PRE_LIBC(b))
-WIN_REGISTER_FUNC(wpthread_init);
-#pragma data_seg(WIN_CALLBACK_POST_ATEXIT(y))
-WIN_REGISTER_FUNC(wpthread_shutdown);
-#pragma data_seg()
-
-
 static HANDLE HANDLE_from_pthread(pthread_t p)
 {
 	return (HANDLE)((char*)0 + p);
@@ -463,24 +456,22 @@ int sem_msgwait_np(sem_t* sem)
 //   work. win_lock allows recursive locking, so if creating 2 threads,
 //   the parent thread may create both without being stopped and thus
 //   stomp on the first thread's func_and_arg.
-// - stashing func and arg in TLS would work, but it is a
-//   very limited resource.
-// - heap allocations are the obvious safe solution, but we're trying to
-//   minimize those here.
 // - blocking pthread_create until the trampoline has latched func_and_arg
-//   works. this seems a bit easier to understand than nonrecursive CS.
+//   would work. this is a bit easier to understand than nonrecursive CS.
+//   deadlock is impossible because thread_start allows the parent to
+//   continue before doing anything dangerous. however, this requires
+//   initializing a semaphore, which leads to init order problems.
+// - stashing func and arg in TLS would work, but it is a very limited
+//   resource and __declspec(thread) is documented as possibly
+//   interfering with delay loading.
+// - heap allocations are the obvious safe solution. we'd like to
+//   minimize them, but it's the least painful way.
 
 struct FuncAndArg
 {
 	void* (*func)(void*);
 	void* arg;
-
-	FuncAndArg(void* (*func_)(void*), void* arg_)
-		: func(func_), arg(arg_) {}
 };
-
-
-static sem_t sem_thread_create;
 
 // bridge calling conventions required by _beginthreadex and POSIX.
 static unsigned __stdcall thread_start(void* param)
@@ -488,10 +479,7 @@ static unsigned __stdcall thread_start(void* param)
 	const FuncAndArg* func_and_arg = (const FuncAndArg*)param;
 	void* (*func)(void*) = func_and_arg->func;
 	void* arg            = func_and_arg->arg;
-	// allow creator to run again.
-	// potentially pulls rug out from under <param>.
-	int err = sem_post(&sem_thread_create);
-	debug_assert(err == 0);
+	win_free(param);
 
 	void* ret = (void*)-1;
 	__try
@@ -510,22 +498,29 @@ static unsigned __stdcall thread_start(void* param)
 
 int pthread_create(pthread_t* thread_id, const void* UNUSED(attr), void* (*func)(void*), void* arg)
 {
-	const FuncAndArg func_and_arg(func, arg);
+	// notes:
+	// - use win_alloc instead of the normal heap because we /might/
+	//   potentially be called before _cinit.
+	// - placement new is more trouble than it's worth
+	//   (see REDEFINED_NEW), so we don't bother with a ctor.
+	FuncAndArg* func_and_arg = (FuncAndArg*)win_alloc(sizeof(FuncAndArg));
+	if(!func_and_arg)
+	{
+		WARN_ERR(ERR::NO_MEM);
+		return -1;
+	}
+	func_and_arg->func = func;
+	func_and_arg->arg = arg;
 
 	// _beginthreadex has more overhead and no value added vs.
 	// CreateThread, but it avoids small memory leaks in
 	// ExitThread when using the statically-linked CRT (-> MSDN).
-	const uintptr_t id = _beginthreadex(0, 0, thread_start, (void*)&func_and_arg, 0, 0);
+	const uintptr_t id = _beginthreadex(0, 0, thread_start, func_and_arg, 0, 0);
 	if(!id)
 	{
 		WARN_ERR(ERR::FAIL);
 		return -1;
 	}
-
-	// block until thread_start has latched func_and_arg.
-	// (forces thread-switch)
-	int err = sem_wait(&sem_thread_create);
-	debug_assert(err == 0);
 
 	// SUSv3 doesn't specify whether this is optional - go the safe route.
 	if(thread_id)
@@ -564,21 +559,4 @@ int pthread_join(pthread_t thread, void** value_ptr)
 
 	CloseHandle(hThread);
 	return 0;
-}
-
-
-
-
-static LibError wpthread_init()
-{
-	int err = sem_init(&sem_thread_create, 0, 0);
-	debug_assert(err == 0);
-	return INFO::OK;
-}
-
-static LibError wpthread_shutdown()
-{
-	int err = sem_destroy(&sem_thread_create);
-	debug_assert(err == 0);
-	return INFO::OK;
 }

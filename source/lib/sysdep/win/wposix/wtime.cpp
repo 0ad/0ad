@@ -42,12 +42,13 @@
 static const int CALIBRATION_FREQ = 1;
 
 
-// automatic module init (before main) and shutdown (before termination)
-#pragma data_seg(WIN_CALLBACK_PRE_LIBC(b))
+#pragma SECTION_PRE_LIBC(G)
 WIN_REGISTER_FUNC(wtime_init);
-#pragma data_seg(WIN_CALLBACK_POST_ATEXIT(b))
+#pragma FORCE_INCLUDE(wtime_init)
+#pragma SECTION_POST_ATEXIT(D)
 WIN_REGISTER_FUNC(wtime_shutdown);
-#pragma data_seg()
+#pragma FORCE_INCLUDE(wtime_shutdown)
+#pragma SECTION_RESTORE
 
 
 namespace ERR

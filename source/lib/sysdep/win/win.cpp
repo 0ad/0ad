@@ -102,72 +102,38 @@ void win_free(void* p)
 }
 
 
-///////////////////////////////////////////////////////////////////////////////
-//
-// module init and shutdown mechanism
-//
-///////////////////////////////////////////////////////////////////////////////
+//-----------------------------------------------------------------------------
+// module init and shutdown
+//-----------------------------------------------------------------------------
 
-
-// init and shutdown mechanism: register a function to be called at
-// pre-libc init, pre-main init or shutdown.
-//
-// each module has the linker add a pointer to its init or shutdown
-// function to a table (at a user-defined position).
-// zero runtime overhead, and there's no need for a central dispatcher
-// that knows about all the modules.
-//
-// disadvantage: requires compiler support (MS VC-specific).
-//
-// alternatives:
-// - initialize via constructor. however, that would leave the problem of
-//   shutdown order and timepoint, which is also taken care of here.
-// - register init/shutdown functions from a NLSO constructor:
-//   clunky, and setting order is more difficult.
-// - on-demand initialization: complicated; don't know in what order
-//   things happen. also, no way to determine how long init takes.
-//
-// the "segment name" determines when and in what order the functions are
-// called: "LIB$W{type}{group}", where {type} is C for pre-libc init,
-// I for pre-main init, or T for terminators (last of the atexit handlers).
-// {group} is [B, Y]; groups are called in alphabetical order, but
-// call order within the group itself is unspecified.
-//
-// define the segment via #pragma data_seg(name), register any functions
-// to be called via WIN_REGISTER_FUNC, and then restore the previous segment
-// with #pragma data_seg() .
-//
-// note: group must be [B, Y]. data declared in groups A or Z may
-// be placed beyond the table start/end by the linker, since the linker's
-// ordering WRT other source files' data is undefined within a segment.
-
-typedef LibError (*_PIFV)(void);
+typedef LibError (*Pfn)(void);
 
 // pointers to start and end of function tables.
 // note: COFF tosses out empty segments, so we have to put in one value
 // (zero, because call_func_tbl has to ignore NULL entries anyway).
-#pragma data_seg(WIN_CALLBACK_PRE_LIBC(a))
-_PIFV pre_libc_begin[] = { 0 };
-#pragma data_seg(WIN_CALLBACK_PRE_LIBC(z))
-_PIFV pre_libc_end[] = { 0 };
-#pragma data_seg(WIN_CALLBACK_PRE_MAIN(a))
-_PIFV pre_main_begin[] = { 0 };
-#pragma data_seg(WIN_CALLBACK_PRE_MAIN(z))
-_PIFV pre_main_end[] = { 0 };
-#pragma data_seg(WIN_CALLBACK_POST_ATEXIT(a))
-_PIFV shutdown_begin[] = { 0 };
-#pragma data_seg(WIN_CALLBACK_POST_ATEXIT(z))
-_PIFV shutdown_end[] = { 0 };
-#pragma data_seg()
+#pragma SECTION_PRE_LIBC(A)
+Pfn pre_libc_begin = 0;
+#pragma SECTION_PRE_LIBC(Z)
+Pfn pre_libc_end = 0;
+#pragma SECTION_PRE_MAIN(A)
+Pfn pre_main_begin = 0;
+#pragma SECTION_PRE_MAIN(Z)
+Pfn pre_main_end = 0;
+#pragma SECTION_POST_ATEXIT(A)
+Pfn shutdown_begin = 0;
+#pragma SECTION_POST_ATEXIT(Z)
+Pfn shutdown_end = 0;
+#pragma SECTION_RESTORE
+// note: /include is not necessary, since these are referenced below.
 
 #pragma comment(linker, "/merge:.LIB=.data")
 
 // call all non-NULL function pointers in [begin, end).
 // note: the range may be larger than expected due to section padding.
 // that (and the COFF empty section problem) is why we need to ignore zeroes.
-static void call_func_tbl(_PIFV* begin, _PIFV* end)
+static void call_func_tbl(Pfn* begin, Pfn* end)
 {
-	for(_PIFV* p = begin; p < end; p++)
+	for(Pfn* p = begin; p < end; p++)
 		if(*p)
 			(*p)();
 }
@@ -247,7 +213,7 @@ static HMODULE hUser32Dll;
 
 static void at_exit(void)
 {
-	call_func_tbl(shutdown_begin, shutdown_end);
+	call_func_tbl(&shutdown_begin, &shutdown_end);
 
 	cs_shutdown();
 
@@ -267,7 +233,7 @@ void win_pre_main_init()
 	debug_heap_enable(DEBUG_HEAP_NORMAL);
 #endif
 
-	call_func_tbl(pre_main_begin, pre_main_end);
+	call_func_tbl(&pre_main_begin, &pre_main_end);
 
 	atexit(at_exit);
 
@@ -321,7 +287,7 @@ static inline void pre_libc_init()
 	// than documenting the problem and asking it not be delay-loaded.
 	hUser32Dll = LoadLibrary("user32.dll");
 
-	call_func_tbl(pre_libc_begin, pre_libc_end);
+	call_func_tbl(&pre_libc_begin, &pre_libc_end);
 }
 
 

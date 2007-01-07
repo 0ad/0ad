@@ -29,9 +29,10 @@
 
 #include "lib/lib.h"	// BIT
 
+#pragma region WindowsHeaderAndFixes
 
-// Win32 socket decls aren't portable (e.g. problems with socklen_t)
-// => skip winsock.h; wposix wsock.h should be used instead
+// Win32 socket declarations aren't portable (e.g. problems with socklen_t)
+// => skip winsock.h; posix_sock.h should be used instead.
 #define _WINSOCKAPI_
 
 #define WIN32_LEAN_AND_MEAN
@@ -44,7 +45,6 @@
 
 // set version; needed for EnumDisplayDevices
 #define _WIN32_WINNT 0x0501
-
 
 
 #define NOGDICAPMASKS       // CC_*, LC_*, PC_*, CP_*, TC_*, RC_
@@ -338,52 +338,10 @@ enum DataKind
 	DataIsConstant
 };
 
+#pragma endregion
 
-///////////////////////////////////////////////////////////////////////////////
-
-
-#ifndef _CRTIMP
-# ifdef  _DLL
-#  define _CRTIMP __declspec(dllimport)
-# else
-#  define _CRTIMP
-# endif
-#endif
-
-extern "C" {
-extern _CRTIMP intptr_t _get_osfhandle(int);
-extern _CRTIMP int _open_osfhandle(intptr_t, int);
-extern _CRTIMP int _open(const char* fn, int mode, ...);
-extern _CRTIMP int _read (int fd, void* buf, size_t nbytes);
-extern _CRTIMP int _write(int fd, void* buf, size_t nbytes);
-extern _CRTIMP int _close(int);
-
-extern _CRTIMP char* _getcwd(char*, size_t);
-
-#ifndef NO_WINSOCK
-extern __declspec(dllimport) int __stdcall WSAStartup(unsigned short, void*);
-extern __declspec(dllimport) int __stdcall WSACleanup(void);
-extern __declspec(dllimport) int __stdcall WSAAsyncSelect(int s, HANDLE hWnd, unsigned int wMsg, long lEvent);
-extern __declspec(dllimport) int __stdcall WSAGetLastError(void);
-#endif	// #ifndef NO_WINSOCK
-
-#ifdef USE_WINMAIN
-extern int WinMainCRTStartup(void);
-#else
-extern int mainCRTStartup(void);
-#endif
-}
-
-#define FD_READ    BIT(0)
-#define FD_WRITE   BIT(1)
-#define FD_ACCEPT  BIT(3)
-#define FD_CONNECT BIT(4)
-#define FD_CLOSE   BIT(5)
-
-
-//
+//-----------------------------------------------------------------------------
 // locking
-//
 
 // critical sections used by win-specific code
 enum
@@ -397,7 +355,6 @@ enum
 	NUM_CS
 };
 
-
 extern void win_lock(uint idx);
 extern void win_unlock(uint idx);
 
@@ -405,47 +362,102 @@ extern void win_unlock(uint idx);
 extern int win_is_locked(uint idx);
 
 
+//-----------------------------------------------------------------------------
+// module init and shutdown
+
+// register functions to be called before libc init, before main,
+// or after atexit.
+//
+// overview:
+// participating modules store function pointer(s) to their init and/or
+// shutdown function in a specific COFF section. the sections are
+// grouped according to the desired notification and the order in which
+// functions are to be called (useful if one module depends on another).
+// they are then gathered by the linker and arranged in alphabetical order.
+// placeholder variables in the sections indicate where the series of
+// functions begins and ends for a given notification time.
+// at runtime, all of the function pointers between the markers are invoked.
+//
+// details:
+// the section names are of the format ".LIB${type}{group}".
+// {type} is C for pre-libc init, I for pre-main init, or
+//   T for terminators (last of the atexit handlers).
+// {group} is [B, Y]; all functions in a group are called before those of
+//   the next (alphabetically) higher group, but order within the group is
+//   undefined. this is because the linker sorts sections alphabetically,
+//   but doesn't specify the order in which object files are processed.
+//   another consequence is that groups A and Z must not be used!
+//   (data placed there might end up outside the start/end markers)
+//
+// example:
+// #pragma SECTION_PRE_LIBC(G))
+// WIN_REGISTER_FUNC(wtime_init);
+// #pragma FORCE_INCLUDE(wtime_init)
+// #pragma SECTION_POST_ATEXIT(D))
+// WIN_REGISTER_FUNC(wtime_shutdown);
+// #pragma FORCE_INCLUDE(wtime_shutdown)
+// #pragma SECTION_RESTORE
+//
+// rationale:
+// several methods of module init are possible: (see Large Scale C++ Design)
+// - on-demand initialization: each exported function would have to check
+//   if init already happened. that would be brittle and hard to verify.
+// - singleton: variant of the above, but not applicable to a
+//   procedural interface (and quite ugly to boot).
+// - registration: NLSO constructors call a central notification function.
+//   module dependencies would be quite difficult to express - this would
+//   require a graph or separate lists for each priority (clunky).
+//   worse, a fatal flaw is that other C++ constructors may depend on the
+//   modules we are initializing and already have run. there is no way
+//   to influence ctor call order between separate source files, so
+//   this is out of the question.
+// - linker-based registration: same as above, but the linker takes care
+//   of assembling various functions into one sorted table. the list of
+//   init functions is available before C++ ctors have run. incidentally,
+//   zero runtime overhead is incurred. unfortunately, this approach is
+//   MSVC-specific. however, the MS CRT uses a similar method for its
+//   init, so this is expected to remain supported.
+
+// macros to simplify usage.
+// notes:
+// - #pragma cannot be packaged in macros due to expansion rules.
+// - __declspec(allocate) would be tempting, since that could be
+//   wrapped in WIN_REGISTER_FUNC. unfortunately it inexplicably cannot
+//   cope with split string literals (e.g. "ab" "c"). that disqualifies
+//   it, since we want to hide the section name behind a macro, which
+//   would require the abovementioned merging.
+#define SECTION_PRE_LIBC(group)    data_seg(".LIB$C" #group)
+#define SECTION_PRE_MAIN(group)    data_seg(".LIB$I" #group)
+#define SECTION_POST_ATEXIT(group) data_seg(".LIB$T" #group)
+#define SECTION_RESTORE data_seg()
+// use to make sure the link-stage optimizer doesn't discard the
+// function pointers (happens on VC8)
+#define FORCE_INCLUDE(id) comment(linker, "/include:_p"#id)
+
+#define WIN_REGISTER_FUNC(func)\
+	static LibError func(void);\
+	extern "C" LibError (*p##func)(void) = func
+
+
+//-----------------------------------------------------------------------------
+// misc
+
 extern void* win_alloc(size_t size);
 extern void win_free(void* p);
 
 
-// thread safe, useable in constructors
-#define WIN_ONCE(code) \
-{ \
-	win_lock(ONCE_CS); \
-	static bool ONCE_init_;	/* avoid name conflict */ \
-	if(!ONCE_init_) \
-	{ \
-		ONCE_init_ = true; \
-		code; \
-	} \
-	win_unlock(ONCE_CS); \
+// thread safe, usable in constructors
+#define WIN_ONCE(code)\
+{\
+	win_lock(ONCE_CS);\
+	static bool ONCE_init_;	/* avoid name conflict */\
+	if(!ONCE_init_)\
+	{\
+		ONCE_init_ = true;\
+		code;\
+	}\
+	win_unlock(ONCE_CS);\
 }
-
-
-///////////////////////////////////////////////////////////////////////////////
-
-
-// init and shutdown mechanism: register a function to be called at
-// pre-main init or shutdown.
-//
-// the "segment name" determines when and in what order the functions are
-// called: "LIB$W{type}{group}", where {type} is C for pre-libc init,
-// I for pre-main init, or T for terminators (last of the atexit handlers).
-// {group} is [B, Y]; groups are called in alphabetical order, but
-// call order within the group itself is unspecified.
-//
-// define the segment via #pragma data_seg(name), register any functions
-// to be called via WIN_REGISTER_FUNC, and then restore the previous segment
-// with #pragma data_seg() .
-
-#define WIN_REGISTER_FUNC(func) static LibError func(void); static LibError (*p##func)(void) = func
-
-#define WIN_CALLBACK_PRE_LIBC(group)    ".LIB$WC" #group
-#define WIN_CALLBACK_PRE_MAIN(group)    ".LIB$WI" #group
-#define WIN_CALLBACK_POST_ATEXIT(group) ".LIB$WT" #group
-
-
 
 #define WIN_SAVE_LAST_ERROR DWORD last_err__ = GetLastError();
 #define WIN_RESTORE_LAST_ERROR STMT(if(last_err__ != 0 && GetLastError() == 0) SetLastError(last_err__););
@@ -465,5 +477,22 @@ extern char win_exe_dir[MAX_PATH+1];
 // this isn't nice (ideally we would avoid coupling win.cpp and wdbg.cpp), but
 // necessary; see rationale at function definition.
 extern LONG WINAPI wdbg_exception_filter(EXCEPTION_POINTERS* ep);
+
+
+
+
+#ifdef USE_WINMAIN
+extern "C" int WinMainCRTStartup(void);
+#else
+extern "C" int mainCRTStartup(void);
+#endif
+
+
+#define FD_READ    BIT(0)
+#define FD_WRITE   BIT(1)
+#define FD_ACCEPT  BIT(3)
+#define FD_CONNECT BIT(4)
+#define FD_CLOSE   BIT(5)
+
 
 #endif	// #ifndef WIN_INTERNAL_H

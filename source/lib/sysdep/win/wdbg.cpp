@@ -34,9 +34,12 @@
 #include "lib/sysdep/cpu.h"
 #include "win_internal.h"
 
-#pragma data_seg(WIN_CALLBACK_PRE_MAIN(b))
+
+#pragma SECTION_PRE_LIBC(D)
 WIN_REGISTER_FUNC(wdbg_init);
-#pragma data_seg()
+#pragma FORCE_INCLUDE(wdbg_init)
+#pragma SECTION_RESTORE
+
 
 // used to prevent the vectored exception handler from taking charge when
 // an exception is raised from the main thread (allows __try blocks to
@@ -731,9 +734,6 @@ static LibError wdbg_init(void)
 	PVOID (WINAPI *pAddVectoredExceptionHandler)(IN ULONG FirstHandler, IN PVECTORED_EXCEPTION_HANDLER VectoredHandler);
 	*(void**)&pAddVectoredExceptionHandler = GetProcAddress(hKernel32Dll, "AddVectoredExceptionHandler"); 
 	FreeLibrary(hKernel32Dll);
-		// make sure the reference is released so BoundsChecker
-		// doesn't complain. it won't actually be unloaded anyway -
-		// there is at least one other reference.
 	if(pAddVectoredExceptionHandler)
 		pAddVectoredExceptionHandler(TRUE, vectored_exception_handler);
 #endif
@@ -810,4 +810,5 @@ bool debug_is_stack_ptr(void* p)
 
 	return true;
 }
+
 

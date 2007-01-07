@@ -286,7 +286,7 @@ template<typename T> int percent(T num, T divisor)
 	return (int)(100*num / divisor);
 }
 
-void stats_dump()
+void file_stats_dump()
 {
 	const double KB = 1e3; const double MB = 1e6; const double ms = 1e-3;
 

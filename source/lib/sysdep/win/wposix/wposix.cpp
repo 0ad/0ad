@@ -45,9 +45,6 @@ long sysconf(int name)
 		const HMODULE hKernel32Dll = LoadLibrary("kernel32.dll");  
 		*(void**)&pGlobalMemoryStatusEx = GetProcAddress(hKernel32Dll, "GlobalMemoryStatusEx"); 
 		FreeLibrary(hKernel32Dll);
-			// make sure the reference is released so BoundsChecker
-			// doesn't complain. it won't actually be unloaded anyway -
-			// there is at least one other reference.
 	}
 	);
 

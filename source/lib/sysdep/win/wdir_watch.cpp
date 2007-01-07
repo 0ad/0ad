@@ -33,9 +33,10 @@
 #include "win_internal.h"
 
 
-#pragma data_seg(WIN_CALLBACK_POST_ATEXIT(x))
+#pragma SECTION_POST_ATEXIT(J)
 WIN_REGISTER_FUNC(wdir_watch_shutdown);
-#pragma data_seg()
+#pragma FORCE_INCLUDE(wdir_watch_shutdown)
+#pragma SECTION_RESTORE
 
 
 // rationale for polling:

@@ -25,18 +25,20 @@
 
 #include "../delay_load.h"
 #include "wposix_internal.h"
-
+#include "wsock_internal.h"
 
 #if MSC_VERSION
 #pragma comment(lib, "ws2_32.lib")
 #endif
 
 
-#pragma data_seg(WIN_CALLBACK_PRE_MAIN(k))
+#pragma SECTION_PRE_MAIN(K)
 WIN_REGISTER_FUNC(wsock_init);
-#pragma data_seg(WIN_CALLBACK_POST_ATEXIT(b))
+#pragma FORCE_INCLUDE(wsock_init)
+#pragma SECTION_POST_ATEXIT(D)
 WIN_REGISTER_FUNC(wsock_shutdown);
-#pragma data_seg()
+#pragma FORCE_INCLUDE(wsock_shutdown)
+#pragma SECTION_RESTORE
 
 
 // IPv6 globals

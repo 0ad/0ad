@@ -64,7 +64,7 @@ extern void stats_block_cache(CacheRet cr);
 // archive builder
 extern void stats_ab_connection(bool already_exists);
 
-extern void stats_dump();
+extern void file_stats_dump();
 
 #else
 
@@ -87,7 +87,7 @@ extern void stats_dump();
 #define stats_cache(cr, size, atom_fn)
 #define stats_block_cache(cr)
 #define stats_ab_connection(already_exists)
-#define stats_dump()
+#define file_stats_dump()
 
 #endif
 

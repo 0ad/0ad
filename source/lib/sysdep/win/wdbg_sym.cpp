@@ -48,11 +48,13 @@
 #endif
 
 
-#pragma data_seg(WIN_CALLBACK_PRE_LIBC(b))
+#pragma SECTION_PRE_LIBC(D)
 WIN_REGISTER_FUNC(wdbg_sym_init);
-#pragma data_seg(WIN_CALLBACK_POST_ATEXIT(b))
+#pragma FORCE_INCLUDE(wdbg_sym_init)
+#pragma SECTION_POST_ATEXIT(J)
 WIN_REGISTER_FUNC(wdbg_sym_shutdown);
-#pragma data_seg()
+#pragma FORCE_INCLUDE(wdbg_sym_shutdown)
+#pragma SECTION_RESTORE
 
 
 // note: it is safe to use debug_assert/debug_warn/CHECK_ERR even during a

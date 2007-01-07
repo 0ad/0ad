@@ -23,6 +23,18 @@
 # endif 
 #endif
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+extern _CRTIMP intptr_t _get_osfhandle(int);
+extern _CRTIMP int _open_osfhandle(intptr_t, int);
+extern _CRTIMP char* _getcwd(char*, size_t);
+
+#ifdef __cplusplus
+}
+#endif
+
 
 // cast intptr_t to HANDLE; centralized for easier changing, e.g. avoiding
 // warnings. i = -1 converts to INVALID_HANDLE_VALUE (same value).

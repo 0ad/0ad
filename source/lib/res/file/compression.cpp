@@ -52,6 +52,10 @@ AT_STARTUP(\
 #   pragma comment(lib, "zlib1d.lib")
 #  endif
 # endif
+#else
+// several switch statements are going to have all cases removed.
+// squelch the corresponding warning.
+# pragma warning(disable: 4065)
 #endif
 
 TIMER_ADD_CLIENT(tc_zip_inflate);
@@ -69,7 +73,9 @@ decompresses blocks from file_io callback.
 
 static LibError LibError_from_zlib(int zlib_err, bool warn_if_failed = true)
 {
-	LibError err;
+	LibError err = ERR::FAIL;
+	// (NB: don't just remove the cases - that raises a warning)
+#ifndef NO_ZLIB
 	switch(zlib_err)
 	{
 	case Z_OK:
@@ -85,6 +91,7 @@ static LibError LibError_from_zlib(int zlib_err, bool warn_if_failed = true)
 	default:
 		err = ERR::FAIL; break;
 	}
+#endif
 
 	if(warn_if_failed)
 		DEBUG_WARN_ERR(err);
@@ -420,6 +427,14 @@ public:
 		(void)LibError_from_zlib(ret, true);	// just warn
 	}
 };
+
+#else
+
+typedef struct
+{
+	int dummy;
+}
+ZLibCompressor;
 
 #endif	// #ifndef NO_ZLIB
 

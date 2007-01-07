@@ -931,7 +931,7 @@ int h_get_refcnt(Handle h)
 
 void h_mgr_shutdown()
 {
-	debug_printf("==h_mgr_shutdown== (all handle frees after this are leaks)\n");
+	debug_printf("H_MGR| shutdown. any handle frees after this are leaks!\n");
 
 	// forcibly close all open handles
 	for(i32 i = 0; i <= last_in_use; i++)

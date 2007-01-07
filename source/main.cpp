@@ -386,8 +386,6 @@ int main(int argc, char* argv[])
 			Init(args, 0);
 			MainControllerInit();
 
-			debug_filter_add("LOADER"); // TODO: remove this?
-
 			while(!quit)
 				Frame();
 

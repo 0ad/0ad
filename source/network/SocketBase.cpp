@@ -2,6 +2,7 @@
 
 #if OS_WIN
 #include "lib/sysdep/win/win_internal.h"
+#include "lib/sysdep/win/wposix/wsock_internal.h"
 #endif
 
 #include "Network.h"

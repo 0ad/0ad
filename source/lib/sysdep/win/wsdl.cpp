@@ -54,11 +54,14 @@
 #endif
 
 
-#pragma data_seg(WIN_CALLBACK_PRE_MAIN(b))
+
+#pragma SECTION_PRE_MAIN(K)
 WIN_REGISTER_FUNC(wsdl_init);
-#pragma data_seg(WIN_CALLBACK_POST_ATEXIT(d))
+#pragma FORCE_INCLUDE(wsdl_init)
+#pragma SECTION_POST_ATEXIT(D)
 WIN_REGISTER_FUNC(wsdl_shutdown);
-#pragma data_seg()
+#pragma FORCE_INCLUDE(wsdl_shutdown)
+#pragma SECTION_RESTORE
 
 
 // in fullscreen mode, i.e. not windowed.

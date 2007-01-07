@@ -581,7 +581,7 @@ LibError file_init()
 
 LibError file_shutdown()
 {
-	stats_dump();
+	file_stats_dump();
 	path_shutdown();
 	file_io_shutdown();
 	return INFO::OK;

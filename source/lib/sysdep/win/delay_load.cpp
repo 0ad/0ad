@@ -155,10 +155,10 @@ PfnDliHook   __pfnDliFailureHook2;
 
 
 // note: must be last, since DLLs are unloaded here
-#pragma data_seg(WIN_CALLBACK_POST_ATEXIT(y))
+#pragma SECTION_POST_ATEXIT(Y)
 WIN_REGISTER_FUNC(wdll_shutdown);
-#pragma data_seg()
-
+#pragma FORCE_INCLUDE(wdll_shutdown)
+#pragma SECTION_RESTORE
 
 
 #pragma intrinsic(strlen,memcmp,memcpy)
@@ -630,5 +630,6 @@ static FARPROC WINAPI notify_hook(unsigned dliNotify, PDelayLoadInfo pdli)
 
 EXTERN_C PfnDliHook __pfnDliNotifyHook2 = notify_hook;
 EXTERN_C PfnDliHook __pfnDliFailureHook2 = 0;
+
 
 

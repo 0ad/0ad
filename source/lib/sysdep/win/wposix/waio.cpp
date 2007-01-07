@@ -29,13 +29,17 @@
 #include "wposix_internal.h"
 #include "wfilesystem.h"	// mode_t
 #include "wtime.h"			// timespec
+#include "waio_internal.h"
 
 
-#pragma data_seg(WIN_CALLBACK_PRE_LIBC(c))
+#pragma SECTION_PRE_LIBC(J)
 WIN_REGISTER_FUNC(waio_init);
-#pragma data_seg(WIN_CALLBACK_POST_ATEXIT(x))
+#pragma FORCE_INCLUDE(waio_init)
+#pragma SECTION_POST_ATEXIT(D)
 WIN_REGISTER_FUNC(waio_shutdown);
-#pragma data_seg()
+#pragma FORCE_INCLUDE(waio_shutdown)
+#pragma SECTION_RESTORE
+
 
 #define lock() win_lock(WAIO_CS)
 #define unlock() win_unlock(WAIO_CS)
