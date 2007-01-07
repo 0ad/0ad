@@ -29,7 +29,9 @@
 
 #include "lib/lib.h"	// BIT
 
+#if MSC_VERSION >= 1400 // hide "pragma region" from VS2003
 #pragma region WindowsHeaderAndFixes
+#endif
 
 // Win32 socket declarations aren't portable (e.g. problems with socklen_t)
 // => skip winsock.h; posix_sock.h should be used instead.
@@ -338,7 +340,9 @@ enum DataKind
 	DataIsConstant
 };
 
+#if MSC_VERSION >= 1400 // hide "pragma region" from VS2003
 #pragma endregion
+#endif
 
 //-----------------------------------------------------------------------------
 // locking

@@ -154,8 +154,10 @@ extern void* alloca(size_t size);
 #endif
 
 // C99-like restrict (non-standard in C++, but widely supported in various forms).
-// Must only be used on pointers - some compilers (g++) support it on references
-// and member functions, but not all do (and we want to work on as many as possible).
+//
+// May be used on pointers. May also be used on member functions to indicate
+// that 'this' is unaliased (e.g. "void C::m() RESTRICT { ... }").
+// Must not be used on references - GCC supports that but VC doesn't.
 //
 // We call this "RESTRICT" to avoid conflicts with VC's __declspec(restrict),
 // and because it's not really the same as C99's restrict.
@@ -166,21 +168,28 @@ extern void* alloca(size_t size);
 // To maximise the chance of optimisation, any pointers that could potentially
 // alias with the restricted one should be marked as restricted too.
 //
-// .. for some reason, g++-3.3 claims to support C99 (according to
-//    __STDC_VERSION__) but doesn't have the restrict keyword.
+// It would probably be a good idea to write test cases for any code that uses
+// this in an even very slightly unclear way, in case it causes obscure problems
+// in a rare compiler due to differing semantics.
+//
+// .. we made g++ claim to support C99 by defining __STDC_VERSION__ in the
+//    makefiles, but that's wrong and it doesn't have the restrict keyword.
 //    use the extension __restrict__ instead.
 #if GCC_VERSION
 # define RESTRICT __restrict__
-// .. already available as 'restrict'
+// .. already available in C99 as 'restrict'
 #elif HAVE_C99
-# define RESTRICT restrict
-// .. ICC provides restrict, though you have to make sure you pass /Qrestrict
-// (-restrict on Linux) in the compiler options
-#elif ICC_VERSION
 # define RESTRICT restrict
 // .. VC8 provides __restrict
 #elif MSC_VERSION >= 1400
 # define RESTRICT __restrict
+// .. ICC supports the keyword 'restrict' when run with the /Qrestrict option,
+//    but it always also supports __restrict__ or __restrict to be compatible
+//    with GCC/MSVC, so we'll use the underscored version. One of {GCC,MSC}_VERSION
+//    should have been defined in addition to ICC_VERSION, so we should be using
+//    one of the above cases (unless it's an old VS7.1-emulating ICC).
+#elif ICC_VERSION
+# error ICC_VERSION defined without either GCC_VERSION or an adequate MSC_VERSION
 // .. unsupported; remove it from code
 #else
 # define RESTRICT
