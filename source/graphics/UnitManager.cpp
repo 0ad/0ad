@@ -125,7 +125,10 @@ CUnit* CUnitManager::PickUnit(const CVector3D& origin, const CVector3D& dir, boo
 // CreateUnit: create a new unit and add it to the world
 CUnit* CUnitManager::CreateUnit(const CStr& actorName, CEntity* entity, const std::set<CStr8>& selections)
 {
-	CUnit* unit = CUnit::Create(actorName, entity, selections);
+	if (! m_ObjectManager)
+		return NULL;
+
+	CUnit* unit = CUnit::Create(actorName, entity, selections, *m_ObjectManager);
 	if (unit)
 		AddUnit(unit);
 	return unit;

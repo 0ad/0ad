@@ -2,6 +2,8 @@
 
 #include "MessageHandler.h"
 #include "../CommandProc.h"
+#include "graphics/Camera.h"
+#include "graphics/CinemaTrack.h"
 #include "graphics/GameView.h"
 #include "ps/Game.h"
 #include "ps/CStr.h"

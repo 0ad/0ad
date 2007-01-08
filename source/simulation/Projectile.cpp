@@ -1,17 +1,19 @@
 #include "precompiled.h"
 
 #include "Projectile.h"
-#include "Entity.h"
+
+#include "ScriptObject.h"
+#include "graphics/GameView.h"
 #include "graphics/Model.h"
+#include "graphics/ObjectEntry.h"
+#include "graphics/ObjectManager.h"
+#include "graphics/Terrain.h"
 #include "graphics/Unit.h"
 #include "maths/Matrix3D.h"
-#include "ScriptObject.h"
-#include "ps/Game.h"
-#include "Collision.h"
-#include "graphics/ObjectManager.h"
-#include "graphics/ObjectEntry.h"
-#include "graphics/Terrain.h"
 #include "ps/CLogger.h"
+#include "ps/Game.h"
+#include "simulation/Collision.h"
+#include "simulation/Entity.h"
 
 const double GRAVITY = 0.00001;
 const double GRAVITY_2 = GRAVITY * 0.5;
@@ -45,11 +47,12 @@ CProjectile::CProjectile( const CModel* Actor, const CVector3D& Position, const 
 
 CProjectile::~CProjectile()
 {
+	CProjectileManager& projectileManager = g_Game->GetWorld()->GetProjectileManager();
 	std::vector<CProjectile*>::iterator it;
-	for( it = g_ProjectileManager.m_Projectiles.begin(); it != g_ProjectileManager.m_Projectiles.end(); ++it )
+	for( it = projectileManager.m_Projectiles.begin(); it != projectileManager.m_Projectiles.end(); ++it )
 		if( *it == this )
 		{
-			g_ProjectileManager.m_Projectiles.erase( it );
+			projectileManager.m_Projectiles.erase( it );
 			break;
 		}
 	delete( m_Actor );
@@ -149,7 +152,7 @@ JSBool CProjectile::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, 
 			goto fail;
 		}
 	}
-	else if( !ToPrimitive<CStr>( cx, argv[0], ModelString ) || NULL == ( oe = g_ObjMan.FindObject( ModelString ) ) || NULL == ( Model = oe->m_Model ) )
+	else if( !ToPrimitive<CStr>( cx, argv[0], ModelString ) || NULL == ( oe = g_Game->GetView()->GetObjectManager().FindObject( ModelString ) ) || NULL == ( Model = oe->m_Model ) )
 	{
 		err = "Invalid actor";
 		goto fail;
@@ -202,7 +205,8 @@ JSBool CProjectile::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, 
 		Miss = argv[6]; // Script to run on impact with the floor.
 
 	{
-		CProjectile* p = g_ProjectileManager.AddProjectile( Model, Here, There, Speed / 1000.0f, Originator, Impact, Miss );
+		CProjectile* p = g_Game->GetWorld()->GetProjectileManager()
+			.AddProjectile( Model, Here, There, Speed / 1000.0f, Originator, Impact, Miss );
 
 		*rval = ToJSVal<CProjectile>( *p );
 		return( JS_TRUE );
@@ -235,14 +239,12 @@ CEventProjectileMiss::CEventProjectileMiss( CEntity* Originator, const CVector3D
 CProjectileManager::CProjectileManager()
 {
 	m_LastTurnLength = 0;
-	debug_printf( "CProjectileManager CREATED\n" );
 }
 
 CProjectileManager::~CProjectileManager()
 {
 	while( m_Projectiles.size() )
 		delete( m_Projectiles[0] );
-	debug_printf( "CProjectileManager DESTROYED\n" );
 }
 	
 CProjectile* CProjectileManager::AddProjectile( const CModel* Actor, const CVector3D& Position, const CVector3D& Target, float Speed, CEntity* Originator, const CScriptObject& ImpactScript, const CScriptObject& MissScript )

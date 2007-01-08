@@ -43,7 +43,8 @@ bool operator< (const CObjectManager::ObjectKey& a, const CObjectManager::Object
 		return a.ActorVariation < b.ActorVariation;
 }
 
-CObjectManager::CObjectManager()
+CObjectManager::CObjectManager(CMeshManager& meshManager)
+: m_MeshManager(meshManager)
 {
 }
 
@@ -65,7 +66,7 @@ CObjectBase* CObjectManager::FindObjectBase(const char* objectname)
 
 	// Not already loaded, so try to load it:
 
-	CObjectBase* obj = new CObjectBase();
+	CObjectBase* obj = new CObjectBase(*this);
 
 	if (obj->Load(objectname))
 	{
@@ -117,7 +118,7 @@ CObjectEntry* CObjectManager::FindObjectVariation(CObjectBase* base, const std::
 	// which has already worked out what to do for props, instead of passing the
 	// selections into BuildVariation and having it recalculate the props' choices.
 
-	if (! obj->BuildVariation(selections, choices))
+	if (! obj->BuildVariation(selections, choices, *this))
 	{
 		DeleteObject(obj);
 		return NULL;

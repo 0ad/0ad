@@ -35,7 +35,7 @@ static void InitGame(std::wstring map)
 	g_GameAttributes.m_FogOfWar = false;
 
 	// Disable unit AI (and other things that may interfere with making things look nice)
-	g_GameAttributes.m_ScreenshotMode = true;
+	g_GameAttributes.m_ScreenshotMode = false;
 
 	// Initialise the game:
 	g_Game = new CGame();
@@ -110,7 +110,7 @@ MESSAGEHANDLER(SaveMap)
 {
 	CMapWriter writer;
 	writer.SaveMap(CStr(L"maps/scenarios/" + *msg->filename),
-		g_Game->GetWorld()->GetTerrain(), g_Game->GetWorld()->GetUnitManager(),
+		g_Game->GetWorld()->GetTerrain(), &g_Game->GetWorld()->GetUnitManager(),
 		g_Renderer.GetWaterManager(), g_Renderer.GetSkyManager(),
 		&g_LightEnv, g_Game->GetView()->GetCamera(), g_Game->GetView()->GetCinema());
 }

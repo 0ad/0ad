@@ -117,7 +117,7 @@ MESSAGEHANDLER(SetActorViewer)
 		// Should replace this with proper actor hot-loading system, or something.
 
 		View::GetView_Actor()->GetActorViewer().SetActor(L"", L"");
-		g_ObjMan.UnloadObjects();
+		g_Game->GetView()->GetObjectManager().UnloadObjects();
 		vfs_reload_changed_files();
 	}
 	View::GetView_Actor()->SetSpeedMultiplier(msg->speed);

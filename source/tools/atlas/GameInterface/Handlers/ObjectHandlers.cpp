@@ -31,22 +31,29 @@
 
 namespace AtlasMessage {
 
-static bool SortObjectsList(const sObjectsListItem& a, const sObjectsListItem& b)
+namespace
 {
-	return wcscmp(a.name.c_str(), b.name.c_str()) < 0;
+	bool SortObjectsList(const sObjectsListItem& a, const sObjectsListItem& b)
+	{
+		return wcscmp(a.name.c_str(), b.name.c_str()) < 0;
+	}
+
+	bool IsFloating(const CUnit* unit)
+	{
+		if (! unit)
+			return false;
+
+		if (unit->GetEntity())
+			return (unit->GetEntity()->m_base->m_anchorType != L"Ground");
+		else
+			return unit->GetObject()->m_Base->m_Properties.m_FloatOnWater;
+	}
+
+	CUnitManager& GetUnitManager()
+	{
+		return g_Game->GetWorld()->GetUnitManager();
+	}
 }
-
-static bool IsFloating(const CUnit* unit)
-{
-	if (! unit)
-		return false;
-
-	if (unit->GetEntity())
-		return (unit->GetEntity()->m_base->m_anchorType != L"Ground");
-	else
-		return unit->GetObject()->m_Base->m_Properties.m_FloatOnWater;
-}
-
 
 QUERYHANDLER(GetObjectsList)
 {
@@ -69,8 +76,8 @@ QUERYHANDLER(GetObjectsList)
 
 	{
 		std::vector<CStr> names;
-		//g_ObjMan.GetPropObjectNames(names);
-		g_ObjMan.GetAllObjectNames(names);
+		//CObjectManager::GetPropObjectNames(names);
+		CObjectManager::GetAllObjectNames(names);
 		for (std::vector<CStr>::iterator it = names.begin(); it != names.end(); ++it)
 		{
 			sObjectsListItem e;
@@ -91,7 +98,7 @@ void AtlasRenderSelection()
 	glDisable(GL_DEPTH_TEST);
 	for (size_t i = 0; i < g_Selection.size(); ++i)
 	{
-		CUnit* unit = g_UnitMan.FindByID(g_Selection[i]);
+		CUnit* unit = GetUnitManager().FindByID(g_Selection[i]);
 		if (unit)
 		{
 			if (unit->GetEntity())
@@ -288,7 +295,7 @@ MESSAGEHANDLER(ObjectPreview)
 		// Delete old unit
 		if (g_PreviewUnit)
 		{
-			g_UnitMan.RemoveUnit(g_PreviewUnit);
+			GetUnitManager().RemoveUnit(g_PreviewUnit);
 			delete g_PreviewUnit;
 			g_PreviewUnit = NULL;
 		}
@@ -305,14 +312,14 @@ MESSAGEHANDLER(ObjectPreview)
 				CEntityTemplate* base = g_EntityTemplateCollection.getTemplate(name);
 				if (base) // (ignore errors)
 				{
-					g_PreviewUnit = g_UnitMan.CreateUnit(base->m_actorName, NULL, selections);
+					g_PreviewUnit = GetUnitManager().CreateUnit(base->m_actorName, NULL, selections);
 					g_PreviewUnitFloating = (base->m_anchorType != L"Ground");
 					// TODO: variations
 				}
 			}
 			else
 			{
-				g_PreviewUnit = g_UnitMan.CreateUnit(CStr(name), NULL, selections);
+				g_PreviewUnit = GetUnitManager().CreateUnit(CStr(name), NULL, selections);
 				g_PreviewUnitFloating = IsFloating(g_PreviewUnit);
 			}
 		}
@@ -384,7 +391,7 @@ BEGIN_COMMAND(CreateObject)
 		m_Player = msg->settings->player;
 
 		// Get a new ID, for future reference to this unit
-		m_ID = g_UnitMan.GetNewID();
+		m_ID = GetUnitManager().GetNewID();
 
 		Redo();
 	}
@@ -429,7 +436,7 @@ BEGIN_COMMAND(CreateObject)
 			}
 			else
 			{
-				CUnit* unit = g_UnitMan.CreateUnit(CStr(name), NULL, selections);
+				CUnit* unit = GetUnitManager().CreateUnit(CStr(name), NULL, selections);
 				if (! unit)
 				{
 					LOG(ERROR, LOG_CATEGORY, "Failed to load nonentity actor '%ls'", name.c_str());
@@ -456,7 +463,7 @@ BEGIN_COMMAND(CreateObject)
 
 	void Undo()
 	{
-		CUnit* unit = g_UnitMan.FindByID(m_ID);
+		CUnit* unit = GetUnitManager().FindByID(m_ID);
 		if (unit)
 		{
 			if (unit->GetEntity())
@@ -470,7 +477,7 @@ BEGIN_COMMAND(CreateObject)
 			}
 			else
 			{
-				g_UnitMan.RemoveUnit(unit);
+				GetUnitManager().RemoveUnit(unit);
 				delete unit;
 			}
 		}
@@ -487,7 +494,7 @@ QUERYHANDLER(PickObject)
 	CVector3D rayorigin, raydir;
 	g_Game->GetView()->GetCamera()->BuildCameraRay((int)x, (int)y, rayorigin, raydir);
 
-	CUnit* target = g_UnitMan.PickUnit(rayorigin, raydir, false);
+	CUnit* target = GetUnitManager().PickUnit(rayorigin, raydir, false);
 
 	if (target)
 		msg->id = target->GetID();
@@ -526,7 +533,7 @@ BEGIN_COMMAND(MoveObject)
 
 	void Do()
 	{
-		CUnit* unit = g_UnitMan.FindByID(msg->id);
+		CUnit* unit = GetUnitManager().FindByID(msg->id);
 		if (! unit) return;
 
 		m_PosNew = GetUnitPos(msg->pos, IsFloating(unit));
@@ -546,7 +553,7 @@ BEGIN_COMMAND(MoveObject)
 
 	void SetPos(CVector3D& pos)
 	{
-		CUnit* unit = g_UnitMan.FindByID(msg->id);
+		CUnit* unit = GetUnitManager().FindByID(msg->id);
 		if (! unit) return;
 
 		if (unit->GetEntity())
@@ -591,7 +598,7 @@ BEGIN_COMMAND(RotateObject)
 
 	void Do()
 	{
-		CUnit* unit = g_UnitMan.FindByID(msg->id);
+		CUnit* unit = GetUnitManager().FindByID(msg->id);
 		if (! unit) return;
 
 		if (unit->GetEntity())
@@ -641,7 +648,7 @@ BEGIN_COMMAND(RotateObject)
 
 	void SetAngle(float angle, CMatrix3D& transform)
 	{
-		CUnit* unit = g_UnitMan.FindByID(msg->id);
+		CUnit* unit = GetUnitManager().FindByID(msg->id);
 		if (! unit) return;
 
 		if (unit->GetEntity())
@@ -702,7 +709,7 @@ BEGIN_COMMAND(DeleteObject)
 
 	void Redo()
 	{
-		CUnit* unit = g_UnitMan.FindByID(msg->id);
+		CUnit* unit = GetUnitManager().FindByID(msg->id);
 		if (! unit) return;
 
 		if (unit->GetEntity())
@@ -715,7 +722,7 @@ BEGIN_COMMAND(DeleteObject)
 				g_Game->GetWorld()->GetTerritoryManager()->DelayedRecalculate();
 		}
 
-		g_UnitMan.RemoveUnit(unit);
+		GetUnitManager().RemoveUnit(unit);
 		m_UnitInLimbo = unit;
 	}
 
@@ -729,7 +736,7 @@ BEGIN_COMMAND(DeleteObject)
 				g_Game->GetWorld()->GetTerritoryManager()->DelayedRecalculate();
 		}
 
-		g_UnitMan.AddUnit(m_UnitInLimbo);
+		GetUnitManager().AddUnit(m_UnitInLimbo);
 		m_UnitInLimbo = NULL;
 	}
 };

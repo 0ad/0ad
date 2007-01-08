@@ -7,7 +7,7 @@
 #include "simulation/TriggerManager.h"
 #include "ps/Game.h"
 #include "graphics/GameView.h"
-
+#include "graphics/CinemaTrack.h"
 
 namespace AtlasMessage {
 

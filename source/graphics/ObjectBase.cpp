@@ -12,7 +12,8 @@
 
 #define LOG_CATEGORY "graphics"
 
-CObjectBase::CObjectBase()
+CObjectBase::CObjectBase(CObjectManager& objectManager)
+: m_ObjectManager(objectManager)
 {
 	m_Properties.m_CastShadows = true;
 	m_Properties.m_AutoFlatten = false;
@@ -303,7 +304,7 @@ std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<std::set<CS
 	// Load each prop, and add their CalculateVariationKey to our key:
 	for (std::map<CStr, CStr>::iterator it = chosenProps.begin(); it != chosenProps.end(); ++it)
 	{
-		CObjectBase* prop = g_ObjMan.FindObjectBase(it->second);
+		CObjectBase* prop = m_ObjectManager.FindObjectBase(it->second);
 		if (prop)
 		{
 			std::vector<u8> propChoices = prop->CalculateVariationKey(selections);
@@ -479,7 +480,7 @@ std::set<CStr> CObjectBase::CalculateRandomVariation(const std::set<CStr>& initi
 	// Load each prop, and add their required selections to ours:
 	for (std::map<CStr, CStr>::iterator it = chosenProps.begin(); it != chosenProps.end(); ++it)
 	{
-		CObjectBase* prop = g_ObjMan.FindObjectBase(it->second);
+		CObjectBase* prop = m_ObjectManager.FindObjectBase(it->second);
 		if (prop)
 		{
 			std::set<CStr> propSelections = prop->CalculateRandomVariation(selections);
@@ -553,7 +554,7 @@ std::vector<std::vector<CStr> > CObjectBase::GetVariantGroups() const
 				{
 					if (props[k].m_ModelName.Length())
 					{
-						CObjectBase* prop = g_ObjMan.FindObjectBase(props[k].m_ModelName);
+						CObjectBase* prop = m_ObjectManager.FindObjectBase(props[k].m_ModelName);
 						if (prop)
 							objectsQueue.push(prop);
 					}

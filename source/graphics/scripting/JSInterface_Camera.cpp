@@ -1,6 +1,8 @@
 #include "precompiled.h"
 
 #include "JSInterface_Camera.h"
+
+#include "scripting/JSConversions.h"
 #include "maths/scripting/JSInterface_Vector3D.h"
 #include "graphics/Camera.h"
 #include "maths/Vector3D.h"

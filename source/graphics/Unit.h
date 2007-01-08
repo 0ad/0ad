@@ -7,6 +7,7 @@
 
 class CModel;
 class CObjectEntry;
+class CObjectManager;
 class CEntity;
 class CSkeletonAnim;
 class CStrW;
@@ -17,13 +18,15 @@ class CUnit
 {
 private:
 	// Private constructor. Needs complete list of selections for the variation.
-	CUnit(CObjectEntry* object, CEntity* entity, const std::set<CStr>& actorSelections);
+	CUnit(CObjectEntry* object, CEntity* entity, CObjectManager& objectManager,
+		const std::set<CStr>& actorSelections);
 
 public:
 	// Attempt to create a unit with the given actor, attached to an entity
 	// (or NULL), with a set of suggested selections (with the rest being randomised).
 	// Returns NULL on failure.
-	static CUnit* Create(const CStr& actorName, CEntity* entity, const std::set<CStr>& selections);
+ 	static CUnit* Create(const CStr& actorName, CEntity* entity,
+		const std::set<CStr>& selections, CObjectManager& objectManager);
 
 	// destructor
 	~CUnit();
@@ -88,7 +91,12 @@ private:
 	// entity-level selections for this unit
 	std::set<CStr> m_EntitySelections;
 
+	// object manager which looks after this unit's objectentry
+	CObjectManager& m_ObjectManager;
+
 	void ReloadObject();
+
+	NO_COPY_CTOR(CUnit);
 };
 
 #endif

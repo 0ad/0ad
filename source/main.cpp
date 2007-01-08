@@ -34,6 +34,7 @@ that of Atlas depending on commandline parameters.
 #include "ps/Interact.h"
 #include "network/SessionManager.h"
 #include "simulation/TriggerManager.h"
+#include "graphics/Camera.h"
 #include "graphics/GameView.h"
 #include "simulation/Scheduler.h"
 #include "sound/CMusicPlayer.h"

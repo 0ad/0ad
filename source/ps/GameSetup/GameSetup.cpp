@@ -714,12 +714,9 @@ static void InitRenderer()
 
 	// create the material manager
 	new CMaterialManager;
-	new CMeshManager;
 
 	// create actor related stuff
 	new CSkeletonAnimManager;
-	new CObjectManager;
-	new CUnitManager;
 
 	MICROLOG(L"init renderer");
 	g_Renderer.Open(g_xres,g_yres,g_bpp);
@@ -819,12 +816,9 @@ void Shutdown(uint flags)
 
 	// destroy actor related stuff
 	TIMER_BEGIN("shutdown actor stuff");
-	delete &g_UnitMan;
-	delete &g_ObjMan;
 	delete &g_SkelAnimMan;
 
 	delete &g_MaterialManager;
-	delete &g_MeshManager;
 	TIMER_END("shutdown actor stuff");
 
 	// destroy terrain related stuff

@@ -9,6 +9,7 @@
 #include "ps/Game.h"
 #include "renderer/Renderer.h"
 #include "graphics/GameView.h"
+#include "graphics/CinemaTrack.h"
 
 #include <assert.h>
 

@@ -3,20 +3,17 @@
 
 #include <vector>
 #include <map>
-#include "ps/Singleton.h"
 #include "ps/CStr.h"
 #include "ObjectBase.h"
 
 class CObjectEntry;
 class CEntityTemplate;
 class CMatrix3D;
-
-// access to sole CObjectManager object
-#define g_ObjMan CObjectManager::GetSingleton()
+class CMeshManager;
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 // CObjectManager: manager class for all possible actor types
-class CObjectManager : public Singleton<CObjectManager>
+class CObjectManager
 {
 public:
 	struct ObjectKey
@@ -32,8 +29,10 @@ public:
 public:
 
 	// constructor, destructor
-	CObjectManager();
+	CObjectManager(CMeshManager& meshManager);
 	~CObjectManager();
+
+	CMeshManager& GetMeshManager() const { return m_MeshManager; }
 
 	void UnloadObjects();
 
@@ -45,12 +44,17 @@ public:
 	CObjectEntry* FindObjectVariation(const char* objname, const std::vector<std::set<CStr> >& selections);
 	CObjectEntry* FindObjectVariation(CObjectBase* base, const std::vector<std::set<CStr> >& selections);
 
-	// Get all names, quite slowly. (Intended only for ScEd.)
-	void GetAllObjectNames(std::vector<CStr>& names);
-	void GetPropObjectNames(std::vector<CStr>& names);
+	// Get all names, quite slowly. (Intended only for Atlas.)
+	static void GetAllObjectNames(std::vector<CStr>& names);
+	static void GetPropObjectNames(std::vector<CStr>& names);
+
+private:
+	CMeshManager& m_MeshManager;
 
 	std::map<ObjectKey, CObjectEntry*> m_Objects;
 	std::map<CStr, CObjectBase*> m_ObjectBases;
+
+	NO_COPY_CTOR(CObjectManager);
 };
 
 

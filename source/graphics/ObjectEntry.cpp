@@ -38,7 +38,9 @@ CObjectEntry::~CObjectEntry()
 }
 
 
-bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr8> >& selections, const std::vector<u8>& variationKey)
+bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr8> >& selections,
+								  const std::vector<u8>& variationKey,
+								  CObjectManager& objectManager)
 {
 	CObjectBase::Variation variation = m_Base->BuildVariation(variationKey);
 
@@ -69,7 +71,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr8> >& selection
 	CModelDefPtr oldmodeldef = m_Model ? m_Model->GetModelDef() : CModelDefPtr();
 
 	// try and create a model
-	CModelDefPtr modeldef (g_MeshManager.GetMesh(m_ModelName));
+	CModelDefPtr modeldef (objectManager.GetMeshManager().GetMesh(m_ModelName));
 	if (!modeldef)
 	{
 		LOG(ERROR, LOG_CATEGORY, "CObjectEntry::BuildModel(): Model %s failed to load", m_ModelName.c_str());
@@ -133,7 +135,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr8> >& selection
 	{
 		const CObjectBase::Prop& prop = props[p];
 	
-		CObjectEntry* oe = g_ObjMan.FindObjectVariation(prop.m_ModelName, selections);
+		CObjectEntry* oe = objectManager.FindObjectVariation(prop.m_ModelName, selections);
 		if (!oe)
 		{
 			LOG(ERROR, LOG_CATEGORY, "Failed to build prop model \"%s\" on actor \"%s\"", (const char*)prop.m_ModelName, (const char*)m_Base->m_ShortName);

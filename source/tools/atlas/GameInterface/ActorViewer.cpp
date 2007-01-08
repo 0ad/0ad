@@ -24,6 +24,11 @@
 
 struct ActorViewerImpl : public Scene
 {
+	ActorViewerImpl()
+		: Unit(NULL), MeshManager(), ObjectManager(MeshManager)
+	{
+	}
+
 	CUnit* Unit;
 	CStrW CurrentUnitID;
 	CStrW CurrentUnitAnim;
@@ -36,6 +41,9 @@ struct ActorViewerImpl : public Scene
 	
 	CTerrain Terrain;
 
+	CMeshManager MeshManager;
+	CObjectManager ObjectManager;
+
 	// Simplistic implementation of the Scene interface
 	void EnumerateObjects(const CFrustum& UNUSED(frustum), SceneCollector* c)
 	{
@@ -45,6 +53,8 @@ struct ActorViewerImpl : public Scene
 		if (Unit)
 			c->SubmitRecursive(Unit->GetModel());
 	}
+
+	NO_COPY_CTOR(ActorViewerImpl);
 };
 
 ActorViewer::ActorViewer()
@@ -105,7 +115,7 @@ void ActorViewer::SetActor(const CStrW& id, const CStrW& animation)
 		if (id.empty())
 			return;
 
-		m.Unit = CUnit::Create((CStr)id, NULL, std::set<CStr>());
+		m.Unit = CUnit::Create((CStr)id, NULL, std::set<CStr>(), m.ObjectManager);
 
 		if (! m.Unit)
 			return;

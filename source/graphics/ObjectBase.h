@@ -3,6 +3,7 @@
 
 class CModel;
 class CSkeletonAnim;
+class CObjectManager;
 
 #include <vector>
 #include <set>
@@ -58,7 +59,7 @@ public:
 		std::multimap<CStr, CObjectBase::Anim> anims;
 	};
 
-	CObjectBase();
+	CObjectBase(CObjectManager& objectManager);
 
 	// Get the variation key (indices of chosen variants from each group)
 	// based on the selection strings
@@ -99,6 +100,9 @@ public:
 
 private:
 	std::vector< std::vector<Variant> > m_VariantGroups;
+	CObjectManager& m_ObjectManager;
+
+	NO_COPY_CTOR(CObjectBase);
 };
 
 

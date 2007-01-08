@@ -7,6 +7,7 @@
 #include "maths/Vector3D.h"
 #include "ps/Game.h"
 #include "graphics/GameView.h"
+#include "graphics/Camera.h"
 
 CVector3D AtlasMessage::Position::GetWorldSpace(bool floating) const
 {

@@ -237,7 +237,7 @@ void CMiniMap::Draw()
 	// Set our globals in case they hadn't been set before
 	m_Camera      = g_Game->GetView()->GetCamera();
 	m_Terrain     = g_Game->GetWorld()->GetTerrain();
-	m_UnitManager = g_Game->GetWorld()->GetUnitManager();
+	m_UnitManager = &g_Game->GetWorld()->GetUnitManager();
 	m_Width  = (u32)(m_CachedActualSize.right - m_CachedActualSize.left);
 	m_Height = (u32)(m_CachedActualSize.bottom - m_CachedActualSize.top);
 	m_MapSize = m_Terrain->GetVerticesPerSide();

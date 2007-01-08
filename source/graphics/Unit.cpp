@@ -10,9 +10,11 @@
 #include "ps/Game.h"
 #include "simulation/Entity.h"
 
-CUnit::CUnit(CObjectEntry* object, CEntity* entity, const std::set<CStr>& actorSelections)
+CUnit::CUnit(CObjectEntry* object, CEntity* entity, CObjectManager& objectManager,
+			 const std::set<CStr>& actorSelections)
 : m_Object(object), m_Model(object->m_Model->Clone()), m_Entity(entity),
-  m_ID(-1), m_ActorSelections(actorSelections), m_PlayerID(-1)
+  m_ID(-1), m_ActorSelections(actorSelections), m_PlayerID(-1),
+  m_ObjectManager(objectManager)
 {
 }
 
@@ -21,9 +23,10 @@ CUnit::~CUnit()
 	delete m_Model;
 }
 
-CUnit* CUnit::Create(const CStr& actorName, CEntity* entity, const std::set<CStr>& selections)
+CUnit* CUnit::Create(const CStr& actorName, CEntity* entity,
+					 const std::set<CStr>& selections, CObjectManager& objectManager)
 {
-	CObjectBase* base = g_ObjMan.FindObjectBase(actorName);
+	CObjectBase* base = objectManager.FindObjectBase(actorName);
 
 	if (! base)
 		return NULL;
@@ -33,12 +36,12 @@ CUnit* CUnit::Create(const CStr& actorName, CEntity* entity, const std::set<CStr
 	std::vector<std::set<CStr> > selectionsVec;
 	selectionsVec.push_back(actorSelections);
 
-	CObjectEntry* obj = g_ObjMan.FindObjectVariation(base, selectionsVec);
+	CObjectEntry* obj = objectManager.FindObjectVariation(base, selectionsVec);
 
 	if (! obj)
 		return NULL;
 
-	return new CUnit(obj, entity, actorSelections);
+	return new CUnit(obj, entity, objectManager, actorSelections);
 }
 
 void CUnit::ShowAmmunition()
@@ -169,7 +172,7 @@ void CUnit::ReloadObject()
 	selections.push_back(m_ActorSelections);
 
 	// If these selections give a different object, change this unit to use it
-	CObjectEntry* newObject = g_ObjMan.FindObjectVariation(m_Object->m_Base, selections);
+	CObjectEntry* newObject = m_ObjectManager.FindObjectVariation(m_Object->m_Base, selections);
 	if (newObject != m_Object)
 	{
 		// Clone the new object's base (non-instance) model

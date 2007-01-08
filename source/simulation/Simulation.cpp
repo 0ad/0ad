@@ -102,12 +102,12 @@ void CSimulation::Update(double frameTime)
 
 void CSimulation::Interpolate(double frameTime, double offset)
 {
-	const std::vector<CUnit*>& units=m_pWorld->GetUnitManager()->GetUnits();
+	const std::vector<CUnit*>& units=m_pWorld->GetUnitManager().GetUnits();
 	for (uint i=0;i<units.size();++i)
 		units[i]->GetModel()->Update((float)frameTime);
 
 	g_EntityManager.interpolateAll( (float)offset );
-	g_ProjectileManager.InterpolateAll( (float)offset );
+	m_pWorld->GetProjectileManager().InterpolateAll( (float)offset );
 	g_Renderer.GetWaterManager()->m_WaterTexTimer += frameTime;
 }
 
@@ -122,7 +122,7 @@ void CSimulation::Simulate()
 	PROFILE_END( "entity updates" );
 
 	PROFILE_START( "projectile updates" );
-	g_ProjectileManager.UpdateAll( m_pTurnManager->GetTurnLength() );
+	m_pWorld->GetProjectileManager().UpdateAll( m_pTurnManager->GetTurnLength() );
 	PROFILE_END( "projectile updates" );
 
 	PROFILE_START( "los update" );

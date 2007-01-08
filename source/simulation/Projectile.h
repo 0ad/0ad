@@ -104,6 +104,4 @@ private:
 	std::vector<CProjectile*> m_Projectiles;
 };
 
-#define g_ProjectileManager (*(g_Game->GetWorld()->GetProjectileManager()))
-
 #endif

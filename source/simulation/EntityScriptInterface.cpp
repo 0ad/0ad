@@ -405,7 +405,7 @@ bool CEntity::Kill( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(arg
 	}
 	else
 	{
-		g_UnitMan.RemoveUnit( m_actor );
+		g_Game->GetWorld()->GetUnitManager().RemoveUnit( m_actor );
 		delete( m_actor );
 		m_actor = NULL;
 	}

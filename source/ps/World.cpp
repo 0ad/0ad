@@ -34,12 +34,13 @@ CLightEnv g_LightEnv;
 CWorld::CWorld(CGame *pGame):
 	m_pGame(pGame),
 	m_Terrain(new CTerrain()),
-	m_UnitManager(&g_UnitMan),
+	m_UnitManager(new CUnitManager()),
 	m_EntityManager(new CEntityManager()),
 	m_ProjectileManager(new CProjectileManager()),
 	m_LOSManager(new CLOSManager()),
 	m_TerritoryManager(new CTerritoryManager())
-{}
+{
+}
 
 void CWorld::Initialize(CGameAttributes *pAttribs)
 {
@@ -79,6 +80,7 @@ CWorld::~CWorld()
 {
 	delete m_Terrain;
 	delete m_EntityManager;
+	delete m_UnitManager; // must come after deleting EntityManager
 	delete m_ProjectileManager;
 	delete m_LOSManager;
 	delete m_TerritoryManager;

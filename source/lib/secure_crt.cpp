@@ -5,6 +5,7 @@
 
 #include "secure_crt.h"
 
+#if !HAVE_SECURE_CRT
 
 int sprintf_s(char* buf, size_t max_chars, const char* fmt, ...)
 {
@@ -25,3 +26,5 @@ errno_t fopen_s(FILE** pfile, const char* filename, const char* mode)
 	*pfile = file;
 	return 0;
 }
+
+#endif // #if !HAVE_SECURE_CRT

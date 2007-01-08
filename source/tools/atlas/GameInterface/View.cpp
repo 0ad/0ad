@@ -6,6 +6,7 @@
 #include "GameLoop.h"
 #include "Messages.h"
 
+#include "graphics/CinemaTrack.h"
 #include "graphics/GameView.h"
 #include "graphics/SColor.h"
 #include "graphics/UnitManager.h"
@@ -150,7 +151,7 @@ CCamera& ViewGame::GetCamera()
 
 CUnit* ViewGame::GetUnit(AtlasMessage::ObjectID id)
 {
-	return g_UnitMan.FindByID(id);
+	return g_Game->GetWorld()->GetUnitManager().FindByID(id);
 }
 
 bool ViewGame::WantsHighFramerate()

@@ -46,12 +46,12 @@ public:
 
 	inline CTerrain *GetTerrain()
 	{	return m_Terrain; }
-	inline CUnitManager *GetUnitManager()
-	{	return m_UnitManager; }
+	inline CUnitManager &GetUnitManager()
+	{	return *m_UnitManager; }
 	inline CEntityManager *GetEntityManager()
 	{	return m_EntityManager; }
-	inline CProjectileManager *GetProjectileManager()
-	{	return m_ProjectileManager; }
+	inline CProjectileManager &GetProjectileManager()
+	{	return *m_ProjectileManager; }
 	inline CLOSManager *GetLOSManager()
 	{	return m_LOSManager; }
 	inline CTerritoryManager *GetTerritoryManager()

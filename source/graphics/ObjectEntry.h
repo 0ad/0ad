@@ -4,6 +4,7 @@
 class CModel;
 class CSkeletonAnim;
 class CObjectBase;
+class CMeshManager;
 struct SPropPoint;
 
 #include <map>
@@ -13,6 +14,8 @@ struct SPropPoint;
 #include "ps/CStr.h"
 #include "ps/Overlay.h"
 
+class CObjectManager;
+
 class CObjectEntry
 {
 public:
@@ -20,7 +23,8 @@ public:
 	~CObjectEntry();
 
 	// Construct this actor, using the specified variation selections
-	bool BuildVariation(const std::vector<std::set<CStr8> >& selections, const std::vector<u8>& variationKey);
+	bool BuildVariation(const std::vector<std::set<CStr> >& selections,
+		const std::vector<u8>& variationKey, CObjectManager& objectManager);
 
 	// Base actor. Contains all the things that don't change between
 	// different variations of the actor.

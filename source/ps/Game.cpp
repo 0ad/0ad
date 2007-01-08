@@ -1,24 +1,25 @@
 #include "precompiled.h"
 
 #include "Game.h"
-#include "GameAttributes.h"
-#include "CLogger.h"
+
+#include "graphics/GameView.h"
+#include "graphics/UnitManager.h"
+#include "lib/timer.h"
+#include "network/Client.h"
+#include "ps/CConsole.h"
+#include "ps/CLogger.h"
+#include "ps/CStr.h"
+#include "ps/GameAttributes.h"
+#include "ps/Loader.h"
+#include "ps/Profile.h"
+#include "ps/World.h"
+#include "simulation/Entity.h"
+#include "simulation/EntityManager.h"
+#include "simulation/Simulation.h"
+
 #ifndef NO_GUI
 #include "gui/CGUI.h"
 #endif
-#include "lib/timer.h"
-#include "Profile.h"
-#include "Loader.h"
-#include "CStr.h"
-#include "simulation/EntityManager.h"
-#include "simulation/Entity.h"
-#include "CConsole.h"
-
-#include "ps/World.h"
-#include "simulation/Simulation.h"
-#include "graphics/GameView.h"
-
-#include "network/Client.h"
 
 class CNetServer;
 extern CNetServer *g_NetServer;
@@ -48,7 +49,7 @@ CGame::CGame():
 	m_Time(0),
 	m_SimRate(1.0f)
 {
-	debug_printf("CGame::CGame(): Game object CREATED; initializing..\n");
+	m_World->GetUnitManager().SetObjectManager(m_GameView->GetObjectManager());
 }
 
 #if MSC_VERSION
@@ -63,8 +64,6 @@ CGame::~CGame()
 	delete m_GameView;
 	delete m_Simulation;
 	delete m_World;
-
-	debug_printf("CGame::~CGame(): Game object DESTROYED\n");
 }
 
 

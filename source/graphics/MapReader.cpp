@@ -62,7 +62,7 @@ void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain_,
 	g_EntityManager.deleteAll();
 	// delete all remaining non-entity units
 	pUnitMan->DeleteAll();
-	g_UnitMan.SetNextID(0);
+	pUnitMan->SetNextID(0);
 
 	// unpack the data
 	RegMemFun(this, &CMapReader::UnpackMap, L"CMapReader::UnpackMap", 1200);
@@ -269,7 +269,7 @@ int CMapReader::ApplyData()
 		}
 
 		std::set<CStr8> selections; // TODO: read from file
-		CUnit* unit = g_UnitMan.CreateUnit(m_ObjectTypes.at(m_Objects[i].m_ObjectIndex), NULL, selections);
+		CUnit* unit = pUnitMan->CreateUnit(m_ObjectTypes.at(m_Objects[i].m_ObjectIndex), NULL, selections);
 
 		if (unit)
 		{
@@ -889,7 +889,7 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 
 				// TODO: save object IDs in the map file, and load them again,
 				// so that triggers have a persistent identifier for objects
-				ent->m_actor->SetID(g_UnitMan.GetNewID());
+				ent->m_actor->SetID(m_MapReader.pUnitMan->GetNewID());
 			}
 		}
 
@@ -945,7 +945,7 @@ int CXMLReader::ReadNonEntities(XMBElement parent, double end_time)
 
 		std::set<CStr8> selections; // TODO: read from file
 
-		CUnit* unit = g_UnitMan.CreateUnit(ActorName, NULL, selections);
+		CUnit* unit = m_MapReader.pUnitMan->CreateUnit(ActorName, NULL, selections);
 
 		if (unit)
 		{
@@ -961,7 +961,7 @@ int CXMLReader::ReadNonEntities(XMBElement parent, double end_time)
 
 			// TODO: save object IDs in the map file, and load them again,
 			// so that triggers have a persistent identifier for objects
-			unit->SetID(g_UnitMan.GetNewID());
+			unit->SetID(m_MapReader.pUnitMan->GetNewID());
 		}
 
 		completed_jobs++;

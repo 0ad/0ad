@@ -644,7 +644,7 @@ void CMouseoverEntities::update( float timestep )
 	CVector3D origin, dir;
 	pCamera->BuildCameraRay( origin, dir );
 
-	CUnit* hit = g_UnitMan.PickUnit( origin, dir, true );
+	CUnit* hit = g_Game->GetWorld()->GetUnitManager().PickUnit( origin, dir, true );
 
 	m_worldposition = pCamera->GetWorldCoordinates(true);
 
@@ -1375,7 +1375,7 @@ bool CBuildingPlacer::activate(CStrW& templateName)
 	CStr actorName ( m_template->m_actorName );	// convert CStrW->CStr8
 
 	std::set<CStr8> selections;
-	m_actor = g_UnitMan.CreateUnit( actorName, 0, selections );
+	m_actor = g_Game->GetWorld()->GetUnitManager().CreateUnit( actorName, 0, selections );
 	m_actor->SetPlayerID( g_Game->GetLocalPlayer()->GetPlayerID() );
 
 	// m_bounds
@@ -1426,7 +1426,7 @@ void CBuildingPlacer::mouseReleased()
 void CBuildingPlacer::deactivate()
 {
 	m_active = false;
-	g_UnitMan.RemoveUnit( m_actor );
+	g_Game->GetWorld()->GetUnitManager().RemoveUnit( m_actor );
 	delete m_actor;
 	m_actor = 0;
 	delete m_bounds;

@@ -11,20 +11,17 @@
 
 #include <vector>
 #include <set>
-#include "ps/Singleton.h"
 
 class CUnit;
 class CModel;
 class CVector3D;
 class CEntity;
 class CStr;
-
-// access to sole CUnitManager object
-#define g_UnitMan CUnitManager::GetSingleton()
+class CObjectManager;
 
 ///////////////////////////////////////////////////////////////////////////////
 // CUnitManager: simple container class holding all units within the world
-class CUnitManager : public Singleton<CUnitManager>
+class CUnitManager
 {
 public:
 	// constructor, destructor
@@ -56,11 +53,15 @@ public:
 
 	void SetNextID(int n) { m_NextID = n; }
 
+	void SetObjectManager(CObjectManager& objectManager) { m_ObjectManager = &objectManager; }
+
 private:
 	// list of all known units
 	std::vector<CUnit*> m_Units;
 	// next ID number to be assigned to a unit created in the editor
 	int m_NextID;
+	// graphical object manager; may be NULL if not set up
+	CObjectManager* m_ObjectManager;
 };
 
 #endif

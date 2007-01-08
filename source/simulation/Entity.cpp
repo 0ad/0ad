@@ -118,7 +118,7 @@ CEntity::~CEntity()
 {
 	if( m_actor )
 	{
-		g_UnitMan.RemoveUnit( m_actor );
+		g_Game->GetWorld()->GetUnitManager().RemoveUnit( m_actor );
 		delete( m_actor );
 	}
 
@@ -150,7 +150,7 @@ void CEntity::loadBase()
 {
 	if( m_actor )
 	{
-		g_UnitMan.RemoveUnit( m_actor );
+		g_Game->GetWorld()->GetUnitManager().RemoveUnit( m_actor );
 		delete( m_actor );
 		m_actor = NULL;
 	}
@@ -162,7 +162,7 @@ void CEntity::loadBase()
 
 	CStr actorName ( m_base->m_actorName ); // convert CStrW->CStr8
 
-	m_actor = g_UnitMan.CreateUnit( actorName, this, m_actorSelections );
+	m_actor = g_Game->GetWorld()->GetUnitManager().CreateUnit( actorName, this, m_actorSelections );
 
 	// Set up our instance data
 
@@ -239,7 +239,7 @@ void CEntity::kill()
 
 	if( m_actor )
 	{
-		g_UnitMan.RemoveUnit( m_actor );
+		g_Game->GetWorld()->GetUnitManager().RemoveUnit( m_actor );
 		delete( m_actor );
 		m_actor = NULL;
 	}
