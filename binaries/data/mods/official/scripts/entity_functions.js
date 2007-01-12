@@ -886,11 +886,11 @@ function damage( dmg, inflictor )
 	this.lastCombatTime = getGameTime();
 	
 	// Apply armour and work out how much damage we actually take
-	crushDamage = dmg.crush - arm.value * arm.crush;
+	crushDamage = dmg.crush - arm.crush;
 	if ( crushDamage < 0 ) crushDamage = 0;
-	pierceDamage = dmg.pierce - arm.value * arm.pierce;
+	pierceDamage = dmg.pierce - arm.pierce;
 	if ( pierceDamage < 0 ) pierceDamage = 0;
-	hackDamage = dmg.hack - arm.value * arm.hack;
+	hackDamage = dmg.hack - arm.hack;
 	if ( hackDamage < 0 ) hackDamage = 0;
 
 	totalDamage = parseInt(dmg.typeless + crushDamage + pierceDamage + hackDamage);
