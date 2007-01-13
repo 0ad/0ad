@@ -8,13 +8,22 @@
 * Author      : Gavin Fowler
 * =========================================================================
 */
-/*
-Example usage:
 
-CSoundGroup s;
-s.LoadSoundGroup("SoundGroup.xml");  // only needs to be called once (or not at all if filename is passed to ctor)
-s.PlayNext(); // call each time you want to play another sound from the group. 
-s.ReleaseGroup();  // If you want to free up the resources early, but this happens in dtor.
+/*
+* Copyright (c) 2005-2006 Gavin Fowler
+*
+* Redistribution and/or modification are also permitted under the
+* terms of the GNU General Public License as published by the
+* Free Software Foundation (version 2 or later, at your option).
+*
+* This program is distributed in the hope that it will be useful, but
+* WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+
+/*
+Example usage: (SEE SOUNDGROUPMGR.H)
+
 
 Example SoundGroup.xml
 	<?xml version="1.0" encoding="utf-8" standalone="no" ?> 
@@ -55,20 +64,26 @@ enum eSndGrpFlags
 	eLoop = 0x08
 };
 
+
 class CSoundGroup
 {
 	size_t m_index;  // index of the next sound to play
 	
+	Handle m_hReplacement;
+	
 	vector<Handle> snd_group;  // we store the handles so we can load now and play later
 	vector<CStr> filenames; // we need the filenames so we can reload when necessary.
+	vector<float> playtimes; // it would be better to store this in with the Handles perhaps?
 	CStr m_filepath; // the file path for the list of sound file resources
-	CStr m_intensity_file; // this will be either the name of a new sound file or new sound group 
+	CStr m_intensity_file; // the replacement aggregate 'intense' sound
 
-	size_t m_intensity_threshold;
-							  
-
+	float m_CurTime; // Time elapsed since soundgroup was created
+	float m_TimeWindow; // The Intensity Threshold Window
+	size_t m_IntensityThreshold; // the allowable intensity before a sound switch	
+	size_t m_Intensity;  // our current intensity(number of sounds played since m_CurTime - m_TimeWindow) 
+	float m_Decay; // 
 	unsigned char m_Flags; // up to eight individual parameters, use with eSndGrpFlags.
-
+	
 	float m_Gain;  
 	float m_Pitch;
 	float m_Priority;
@@ -95,6 +110,9 @@ public:
 	
 	// Release all remaining loaded handles
 	void ReleaseGroup();
+
+	// Update SoundGroup, remove dead sounds from intensity count
+	void Update(float TimeSinceLastFrame);
 	
 	// Set a flag using a value from eSndGrpFlags
 	inline void SetFlag(int flag){ m_Flags |= flag; }  
