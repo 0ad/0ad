@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="10" name="c">
+      <mesh>props/shield/hex_s_f.pmd</mesh>
+      <props>
+        <prop actor="props/units/shields/hex_a_back.xml" attachpoint="back"/>
+      </props>
+      <texture>props/shield/celt_hex_e.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

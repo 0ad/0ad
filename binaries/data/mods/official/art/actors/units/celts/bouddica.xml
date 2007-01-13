@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <animations>
+        <animation file="infantry/support/idle/fem_01.psa" name="Idle" speed="200"/>
+        <animation file="infantry/support/move/walk/fem_01.psa" name="Walk" speed="10"/>
+        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/death/inf_03.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/death/inf_04.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/death/inf_05.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/dude/dudedecay_sword.psa" name="Corpse" speed="100"/>
+      </animations>
+      <mesh>skeletal/f_tunic.pmd</mesh>
+      <props>
+        <prop actor="props/units/heads/dudette_head.xml" attachpoint="head"/>
+      </props>
+      <texture>skeletal/celt_boudicca.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="Idle">
+      <props>
+        <prop attachpoint="l_hand"/>
+        <prop attachpoint="r_hand"/>
+      </props>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>
