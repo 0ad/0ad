@@ -343,7 +343,7 @@ extern LibError snd_disable(bool disabled);
 extern LibError snd_update(const float* pos, const float* dir, const float* up);
 
 
-/**
+/** added by GF
  * set sound cone information
  *
  * cone_inner and cone_outer should be in the range 0.0 - 360.0, 
@@ -355,6 +355,16 @@ extern LibError snd_update(const float* pos, const float* dir, const float* up);
 
 **/
 extern LibError snd_set_cone(Handle hvs, const float cone_inner, const float cone_outer, const float cone_gain);
+
+/** added by GF
+ * find out if a sound is still playing
+ *
+ * @param hvs - handle to the snd to check
+ * @return bool true if playing
+
+**/
+extern bool is_playing(Handle hvs);
+
 
 /**
  * free all resources and shut down the sound system.

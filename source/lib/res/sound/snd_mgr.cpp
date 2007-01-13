@@ -2257,6 +2257,34 @@ LibError snd_set_cone(Handle hvs, const float cone_inner, const float cone_outer
 	return INFO::OK;
 }
 
+/** --TODO: Test to ensure this works (not currently necessary for intensity)
+ * find out if a sound is still playing
+ *
+ * @param hvs - handle to the snd to check
+ * @return bool true if playing
+
+**/
+bool is_playing(Handle hvs)
+{		
+	VSrc * vs = H_USER_DATA(hvs, VSrc);
+	
+	int temp3;
+	if(vs != 0) // if 0, then sound has played and finished or is otherwise not loaded.
+	{
+		//H_DEREF(hvs, VSrc, vs);
+		
+		temp3 = vs->al_src;
+		if(temp3) // if non-zero the sound is still playing
+			return true;
+	}
+	return false;
+	
+	/*if(H_USER_DATA(hvs, VSrc) != 0)
+		return true;
+	else
+		return false;*/
+
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 //
