@@ -4,7 +4,7 @@
 class CModel;
 class CSkeletonAnim;
 class CObjectBase;
-class CMeshManager;
+class CObjectManager;
 struct SPropPoint;
 
 #include <map>
@@ -13,8 +13,6 @@ struct SPropPoint;
 
 #include "ps/CStr.h"
 #include "ps/Overlay.h"
-
-class CObjectManager;
 
 class CObjectEntry
 {

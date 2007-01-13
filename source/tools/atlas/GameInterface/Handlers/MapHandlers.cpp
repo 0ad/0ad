@@ -12,6 +12,7 @@
 #include "ps/Game.h"
 #include "ps/GameAttributes.h"
 #include "ps/Loader.h"
+#include "ps/World.h"
 #include "renderer/Renderer.h"
 #include "simulation/LOSManager.h"
 #include "simulation/Simulation.h"

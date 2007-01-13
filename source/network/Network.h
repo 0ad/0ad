@@ -47,7 +47,6 @@ MORE INFO
 
 #include "ps/Pyrogenesis.h"
 #include "ps/ThreadUtil.h"
-#include "ps/Singleton.h"
 
 #include "StreamSocket.h"
 

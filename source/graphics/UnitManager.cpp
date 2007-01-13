@@ -16,6 +16,8 @@
 #include "Unit.h"
 #include "ObjectManager.h"
 #include "ObjectEntry.h"
+#include "ps/Game.h"
+#include "ps/World.h"
 #include "simulation/Entity.h"
 #include "simulation/LOSManager.h"
 

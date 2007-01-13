@@ -49,6 +49,8 @@ CGame::CGame():
 	m_Time(0),
 	m_SimRate(1.0f)
 {
+	// Need to set the CObjectManager references after various objects have
+	// been initialised, so do it here rather than via the initialisers above.
 	m_World->GetUnitManager().SetObjectManager(m_GameView->GetObjectManager());
 }
 

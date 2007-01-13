@@ -1,13 +1,9 @@
 #ifndef _FONT_H
 #define _FONT_H
 
-#include "ps/Singleton.h"
-#include "ps/CStr.h"
-
 #include "lib/res/handle.h"
 
-#include <map>
-#include <string>
+class CStrW;
 
 /*
 

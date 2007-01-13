@@ -22,6 +22,7 @@
 #include "ps/Game.h"
 #include "ps/Profile.h"
 #include "ps/Pyrogenesis.h"	// MICROLOG
+#include "ps/World.h"
 
 #include "simulation/LOSManager.h"
 

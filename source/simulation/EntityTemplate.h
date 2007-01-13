@@ -36,12 +36,12 @@ public:
 	CPlayer* m_player;		// Which player this template is for, or null for the no-player template
 							// used to read unmodified values for upgrades and such.
 
-	CEntityTemplate( CPlayer* player );
+	CEntityTemplate(CPlayer* player);
 	~CEntityTemplate();
 	// Load from XML
-	bool loadXML( const CStr& filename );
+	bool loadXML(const CStr& filename);
 	// Load a tree of properties from an XML (XMB) node.
-	void XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement& Source, const CStrW& BasePropertyName );
+	void XMLLoadProperty(const CXeromyces& XeroFile, const XMBElement& Source, const CStrW& BasePropertyName);
 
 	// Base stats
 	CEntityTemplate* m_base;
@@ -64,7 +64,7 @@ public:
 	CBoundingObject::EBoundingType m_bound_type;
 
 	// Sound properties
-	typedef STL_HASH_MAP<CStr8, CStr8, CStrW_hash_compare> SoundGroupTable;
+	typedef STL_HASH_MAP<CStr, CStr, CStr_hash_compare> SoundGroupTable;
 	SoundGroupTable m_SoundGroupTable;
 	
 	//SP properties
@@ -165,9 +165,9 @@ public:
 	// Script-bound functions
 
 	// Get script execution contexts - always run in the context of the entity that fired it.
-	JSObject* GetScriptExecContext( IEventTarget* target );
+	JSObject* GetScriptExecContext(IEventTarget* target);
 
-	jsval ToString( JSContext* cx, uintN argc, jsval* argv );
+	jsval ToString(JSContext* cx, uintN argc, jsval* argv);
 
 	static void ScriptingInit();
 

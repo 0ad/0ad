@@ -9,7 +9,6 @@
 
 #include "maths/Vector3D.h"
 #include "ps/Vector2D.h"
-#include "ps/Singleton.h"
 #include "scripting/ScriptableObject.h"
 #include "scripting/DOMEvent.h"
 #include "ScriptObject.h"

@@ -11,6 +11,8 @@
 #include "AlphaMapCalculator.h"
 #include "ps/CLogger.h"
 #include "ps/Profile.h"
+#include "ps/Game.h"
+#include "ps/World.h"
 #include "maths/MathUtil.h"
 #include "simulation/LOSManager.h"
 #include "graphics/Patch.h"

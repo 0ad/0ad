@@ -16,11 +16,6 @@
 #ifndef LOS_MANAGER_INCLUDED
 #define LOS_MANAGER_INCLUDED
 
-#include "ps/Singleton.h"
-#include "ps/Game.h"
-#include "ps/World.h"
-#include "ps/Player.h"
-
 class CUnit;
 class CEntity;
 class CPlayer;
