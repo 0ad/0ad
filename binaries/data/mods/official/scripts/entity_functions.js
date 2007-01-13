@@ -575,17 +575,17 @@ function performAttack( evt )
 	{
 		console.write("" + this + " doing a charge attack!");
 		var a = this.actions.attack.charge;
-		dmg.crush = a.damage * a.crush;
-		dmg.hack = a.damage * a.hack;
-		dmg.pierce = a.damage * a.pierce;
+		dmg.crush = a.crush;
+		dmg.hack = a.hack;
+		dmg.pierce = a.pierce;
 		this.setRun( false );
 	}
 	else
 	{
 		var a = this.actions.attack.melee;
-		dmg.crush = a.damage * a.crush;
-		dmg.hack = a.damage * a.hack;
-		dmg.pierce = a.damage * a.pierce;
+		dmg.crush = a.crush;
+		dmg.hack = a.hack;
+		dmg.pierce = a.pierce;
 	}
 	
 	// Add flank penalty
@@ -610,9 +610,9 @@ function performAttackRanged( evt )
 	// Create a projectile from us, to the target, that will do some damage when it hits them.
 	dmg = new DamageType();
 	var a = this.actions.attack.ranged;
-	dmg.crush = a.damage * a.crush;
-	dmg.hack = a.damage * a.hack;
-	dmg.pierce = a.damage * a.pierce;
+	dmg.crush = a.crush;
+	dmg.hack = a.hack;
+	dmg.pierce = a.pierce;
 	
 	// Add flank penalty and elevation bonus
 	var bonus = 1.0;
@@ -1882,7 +1882,9 @@ function DamageModifyAura( source, ally, bonus )
 		if( this.affects( e ) ) 
 		{
 			//console.write( "DamageModify aura: giving " + this.bonus + " damage to " + e );
-			e.actions.attack.damage += this.bonus;
+			e.actions.attack.crush += this.bonus;
+			e.actions.attack.pierce += this.bonus;
+			e.actions.attack.hack += this.bonus;
 		}
 	};
 	
@@ -1891,7 +1893,9 @@ function DamageModifyAura( source, ally, bonus )
 		if( this.affects( e ) ) 
 		{
 			//console.write( "DamageModify aura: taking away " + this.bonus + " damage from " + e );
-			e.actions.attack.damage -= this.bonus;
+			e.actions.attack.crush -= this.bonus;
+			e.actions.attack.pierce -= this.bonus;
+			e.actions.attack.hack -= this.bonus;
 		}
 	};
 }
@@ -2075,9 +2079,9 @@ function TrampleAura( source )
 			// Set up the damage object
 			var dmg = new DamageType();
 			var a = this.source.traits.auras.trample;
-			dmg.crush = parseInt(a.damage * a.crush);
-			dmg.hack = parseInt(a.damage * a.hack);
-			dmg.pierce = parseInt(a.damage * a.pierce);
+			dmg.crush = parseInt(a.crush);
+			dmg.hack = parseInt(a.hack);
+			dmg.pierce = parseInt(a.pierce);
 
 			// Add flank bonus
 			if(e.traits.flankPenalty)

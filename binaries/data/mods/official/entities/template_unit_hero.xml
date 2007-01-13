@@ -20,10 +20,9 @@
 		</Creation>
 		
 		<Armour>
-			<Value>0</Value>
-			<Crush>0.3</Crush>
-			<Hack>0.3</Hack>
-			<Pierce>0.3</Pierce>
+			<Hack>3.0</Hack>
+			<Pierce>3.0</Pierce>
+			<Crush>1000.0</Crush>
 		</Armour>	
 
 		<Health>
@@ -47,19 +46,19 @@
 	<Actions>
 		<Attack>
 			<Melee>
-				<Damage>20.0</Damage>
-				<Crush>0.0</Crush>
-				<Hack>0.5</Hack>
-				<Pierce>0.5</Pierce>		
+				<Hack>15.0</Hack>
+				<Pierce>15.0</Pierce>
+				
+				<Crush>0.0</Crush>	
 				<Range>5.0</Range>
 				<Speed>1500</Speed>
 			</Melee>
 		
 			<Charge>
-				<Damage>40.0</Damage>
-				<Crush>0.0</Crush>
-				<Hack>0.5</Hack>
-				<Pierce>0.5</Pierce>		
+				<Hack>25.0</Hack>
+				<Pierce>25.0</Pierce>
+				
+				<Crush>0.0</Crush>		
 				<Range>5.0</Range>
 				<Speed>1500</Speed>
 			</Charge>		
