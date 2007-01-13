@@ -141,16 +141,15 @@ static void aio_h_cleanup()
 	lock();
 
 	for(int i = 0; i < aio_hs_size; i++)
+	{
 		if(aio_hs[i] != INVALID_HANDLE_VALUE)
 		{
-			if(!CloseHandle(aio_hs[i]))
-				debug_warn("CloseHandle failed");
+			WARN_IF_FALSE(CloseHandle(aio_hs[i]));
 			aio_hs[i] = INVALID_HANDLE_VALUE;
 		}
+	}
 
-	free(aio_hs);
-	aio_hs = 0;
-
+	SAFE_FREE(aio_hs);
 	aio_hs_size = 0;
 
 	unlock();
@@ -170,16 +169,9 @@ static bool is_valid_file_handle(const HANDLE h)
 // used by aio_close.
 static bool aio_h_is_set(const int fd)
 {
-	bool is_set = false;
-
 	lock();
-
-	if(0 <= fd && fd < aio_hs_size)
-		if(aio_hs[fd] != INVALID_HANDLE_VALUE)
-			is_set = true;
-
+	bool is_set = (0 <= fd && fd < aio_hs_size && aio_hs[fd] != INVALID_HANDLE_VALUE);
 	unlock();
-
 	return is_set;
 }
 

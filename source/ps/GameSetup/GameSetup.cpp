@@ -923,6 +923,8 @@ void Init(const CmdLineArgs& args, uint flags)
 	AppHooks hooks = {0};
 	hooks.translate = psTranslate;
 	hooks.translate_free = psTranslateFree;
+	hooks.bundle_logs = psBundleLogs;
+	hooks.get_log_dir = psGetLogDir;
 	app_hooks_update(&hooks);
 
 	// Set up the console early, so that debugging

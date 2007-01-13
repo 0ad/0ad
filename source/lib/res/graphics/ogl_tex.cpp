@@ -650,6 +650,10 @@ void ogl_tex_override(OglTexOverrides what, OglTexAllow allow)
 // called once from the first ogl_tex_upload.
 static void detect_gl_upload_caps()
 {
+	// make sure us and the app hook have graphics card info available
+	if(gfx_card[0] == '\0')
+		debug_warn("gfx_detect must be called before ogl_tex_upload");
+
 	// detect features, but only change the variables if they were at
 	// "undecided" (if overrides were set before this, they must remain).
 	if(have_auto_mipmap_gen == -1)
@@ -663,7 +667,23 @@ static void detect_gl_upload_caps()
 		have_s3tc = oglHaveExtensions(0, "GL_ARB_texture_compression", "GL_EXT_texture_compression_s3tc", 0) == 0;
 	}
 
-	ah_override_gl_upload_caps();
+	// allow app hook to make ogl_tex_override calls
+	if(AH_IS_DEFINED(override_gl_upload_caps))
+	{
+		ah_override_gl_upload_caps();
+	}
+	// no app hook defined - have our own crack at blacklisting some hardware.
+	else
+	{
+		// rationale: janwas's laptop's S3 card blows up if S3TC is used
+		// (oh, the irony). it'd be annoying to have to share this between all
+		// projects, hence this default implementation here.
+		if(!strcmp(gfx_card, "S3 SuperSavage/IXC 1014"))
+		{
+			if(strstr(gfx_drv_ver, "ssicdnt.dll (2.60.115)"))
+				ogl_tex_override(OGL_TEX_S3TC, OGL_TEX_DISABLE);
+		}
+	}
 
 	// warn if more-or-less essential features are missing
 	if(!have_s3tc)

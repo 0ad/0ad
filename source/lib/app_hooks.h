@@ -193,4 +193,14 @@ struct AppHooks
  **/
 extern void app_hooks_update(AppHooks* ah);
 
+/**
+ * was the app hook changed via app_hooks_update from its default value?
+ *
+ * @param offset_in_struct byte offset within AppHooks (determined via
+ * offsetof) of the app hook function pointer.
+ **/
+extern bool app_hook_was_redefined(size_t offset_in_struct);
+// name is identifier of the function pointer within AppHooks to test.
+#define AH_IS_DEFINED(name) app_hook_was_redefined(offsetof(AppHooks, name))
+
 #endif	// #ifndef APP_HOOKS_H__

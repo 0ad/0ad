@@ -26,5 +26,7 @@ DECLARE_ERROR(PS_FAIL);
 // overrides ah_translate. registered in GameSetup.cpp
 extern const wchar_t* psTranslate(const wchar_t* text);
 extern void psTranslateFree(const wchar_t* text);
+extern void psBundleLogs(FILE* f);
+extern const char* psGetLogDir();
 
 #endif

@@ -23,14 +23,7 @@
 #include "precompiled.h"
 #include "app_hooks.h"
 
-#include <string.h>
-#include <stdio.h>
-
 #include "lib/path_util.h"
-#include "lib/sysdep/gfx.h"
-#include "lib/res/graphics/ogl_tex.h"
-#include "lib/res/file/file.h"
-#include "lib/res/file/vfs.h"
 
 
 //-----------------------------------------------------------------------------
@@ -39,14 +32,6 @@
 
 static void def_override_gl_upload_caps()
 {
-	if(gfx_card[0] == '\0')
-		debug_warn("gfx_detect must be called before ogl_tex_upload");
-
-	if(!strcmp(gfx_card, "S3 SuperSavage/IXC 1014"))
-	{
-		if(strstr(gfx_drv_ver, "ssicdnt.dll (2.60.115)"))
-			ogl_tex_override(OGL_TEX_S3TC, OGL_TEX_DISABLE);
-	}
 }
 
 
@@ -54,56 +39,16 @@ static const char* def_get_log_dir()
 {
 	static char N_log_dir[PATH_MAX];
 	ONCE(\
-		char N_exe_name[PATH_MAX];\
-		(void)sys_get_executable_name(N_exe_name, ARRAY_SIZE(N_exe_name));\
+		(void)sys_get_executable_name(N_log_dir, ARRAY_SIZE(N_log_dir));\
 		/* strip app name (we only want its path) */\
-		path_strip_fn(N_exe_name);\
-		(void)path_append(N_log_dir, N_exe_name, "../logs/");
+		path_strip_fn(N_log_dir);\
 	);
 	return N_log_dir;
 }
 
 
-// convert contents of file <in_filename> from char to wchar_t and
-// append to <out> file.
-static void cat_atow(FILE* out, const char* in_filename)
+static void def_bundle_logs(FILE* UNUSED(f))
 {
-	FILE* in = fopen(in_filename, "rb");
-	if(!in)
-	{
-		fwprintf(out, L"(unavailable)");
-		return;
-	}
-
-	const size_t buf_size = 1024;
-	char buf[buf_size+1]; // include space for trailing '\0'
-
-	while(!feof(in))
-	{
-		size_t bytes_read = fread(buf, 1, buf_size, in);
-		if(!bytes_read)
-			break;
-		buf[bytes_read] = 0;	// 0-terminate
-		fwprintf(out, L"%hs", buf);
-	}
-
-	fclose(in);
-}
-
-static void def_bundle_logs(FILE* f)
-{
-	// for user convenience, bundle all logs into this file:
-	char N_path[PATH_MAX];
-
-	fwprintf(f, L"System info:\n\n");
-	(void)file_make_full_native_path("../logs/system_info.txt", N_path);
-	cat_atow(f, N_path);
-	fwprintf(f, L"\n\n====================================\n\n");
-
-	fwprintf(f, L"Main log:\n\n");
-	(void)file_make_full_native_path("../logs/mainlog.html", N_path);
-	cat_atow(f, N_path);
-	fwprintf(f, L"\n\n====================================\n\n");
 }
 
 
@@ -137,8 +82,8 @@ static ErrorReaction def_display_error(const wchar_t* UNUSED(text), uint UNUSED(
 // may be changed via app_hooks_update.
 //
 // rationale: we don't ever need to switch "hook sets", so one global struct
-// is fine. by always having one defined, we also avoid having to check
-// if anything was registered yet.
+// is fine. by always having one defined, we also avoid the trampolines
+// having to check whether their function pointer is valid.
 static AppHooks ah =
 {
 	def_override_gl_upload_caps,
@@ -149,6 +94,11 @@ static AppHooks ah =
 	def_log,
 	def_display_error
 };
+
+// separate copy of ah; used to determine if a particular hook has been
+// redefined. the additional storage needed is negligible and this is
+// easier than comparing each value against its corresponding def_ value.
+static AppHooks default_ah = ah;
 
 // register the specified hook function pointers. any of them that
 // are non-zero override the previous function pointer value
@@ -167,6 +117,16 @@ void app_hooks_update(AppHooks* new_ah)
 	OVERRIDE_IF_NONZERO(display_error)
 }
 
+bool app_hook_was_redefined(size_t offset_in_struct)
+{
+	const u8* ah_bytes = (const u8*)&ah;
+	const u8* default_ah_bytes = (const u8*)&default_ah;
+	typedef void(*FP)();	// a bit safer than comparing void* pointers
+	if(*(FP)(ah_bytes+offset_in_struct) != *(FP)(default_ah_bytes+offset_in_struct))
+		return true;
+	return false;
+}
+
 
 //-----------------------------------------------------------------------------
 // trampoline implementations
@@ -175,7 +135,8 @@ void app_hooks_update(AppHooks* new_ah)
 
 void ah_override_gl_upload_caps(void)
 {
-	ah.override_gl_upload_caps();
+	if(ah.override_gl_upload_caps)
+		ah.override_gl_upload_caps();
 }
 
 const char* ah_get_log_dir(void)
