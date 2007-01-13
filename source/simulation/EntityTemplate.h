@@ -62,6 +62,10 @@ public:
 	CBoundingCircle* m_bound_circle;
 	CBoundingBox* m_bound_box;
 	CBoundingObject::EBoundingType m_bound_type;
+
+	// Sound properties
+	typedef STL_HASH_MAP<CStr8, CStr8, CStrW_hash_compare> SoundGroupTable;
+	SoundGroupTable m_SoundGroupTable;
 	
 	//SP properties
 	float m_staminaMax;

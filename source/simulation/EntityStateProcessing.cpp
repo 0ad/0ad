@@ -439,6 +439,10 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		if( ( m_fsm_cyclepos <= action->m_Speed ) && ( nextpos > action->m_Speed ) )
 		{
 			m_actor->HideAmmunition();
+
+			// TODO: Play a sound here. Use m_base->m_SoundGroupTable[animation] to get the
+			// name of the soundgroup XML file to play.
+
 			if(!DispatchEvent( contactEvent ))
 			{
 				// Cancel current order

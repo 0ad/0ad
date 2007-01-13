@@ -13,6 +13,31 @@
 
 STL_HASH_SET<CStr, CStr_hash_compare> CEntityTemplate::scriptsLoaded;
 
+// Utility functions used in reading XML
+namespace {
+	/**
+	 * Converts the given string, consisting of underscores and letters,
+	 * to camelCase: the first letter of each underscore-separated "word"
+	 * is changed to lowercase. For example, the string MiniMap_Colour
+	 * is converted to miniMap_colour.
+	 *
+	 * @param const std::string & str The string to convert.
+	 * @return std::string The given string in camelCase.
+	 **/
+	std::string toCamelCase( const std::string& str )
+	{
+		std::string ret = str;
+		for( size_t i=0; i<ret.size(); i++ )
+		{
+			if( i==0 || ret[i-1] == '_' )
+			{
+				ret[i] = tolower( ret[i] );
+			}
+		}
+		return ret;
+	}
+}
+
 CEntityTemplate::CEntityTemplate( CPlayer* player )
 {
 	m_player = player;
@@ -61,7 +86,7 @@ CEntityTemplate::~CEntityTemplate()
 
 void CEntityTemplate::loadBase()
 { 
-	// Don't bother if we're providing a replacement.
+	// Copy the parent's bounds, unless we're providing a replacement.
 	if( m_bound_type == CBoundingObject::BOUND_NONE )
 	{
 		if( m_base->m_bound_type == CBoundingObject::BOUND_CIRCLE )
@@ -77,6 +102,13 @@ void CEntityTemplate::loadBase()
 			m_bound_box->setHeight( m_base->m_bound_box->m_height );
 		}
 		m_bound_type = m_base->m_bound_type;
+	}
+
+	// Initialize sound group table from the parent's sound group table
+	for(SoundGroupTable::iterator it = m_base->m_SoundGroupTable.begin(); 
+			it != m_base->m_SoundGroupTable.end(); ++it) 
+	{
+		m_SoundGroupTable[it->first] = it->second;
 	}
 
 	SetBase( m_base );
@@ -126,6 +158,7 @@ bool CEntityTemplate::loadXML( const CStr& filename )
 	EL(Height);
 	EL(Radius);
 	EL(Width);
+	EL(SoundGroups);
 	AT(Parent);
 	AT(On);
 	AT(File);
@@ -278,6 +311,18 @@ bool CEntityTemplate::loadXML( const CStr& filename )
 				}
 			}
 		}
+		else if( ChildName == el_SoundGroups )
+		{
+			// Read every child element's value into m_SoundGroupTable with its tag as the key
+			XMBElementList children = Child.getChildNodes();
+			for(int j = 0; j < children.Count; ++j)
+			{
+				XMBElement child = children.item(j);
+				CStr8 name = toCamelCase( XeroFile.getElementString( child.getNodeName() ) );
+				CStr8 value = child.getText();
+				m_SoundGroupTable[name] = value;
+			}
+		}
 		else
 		{
 			XMLLoadProperty( XeroFile, Child, CStrW() );
@@ -295,31 +340,6 @@ bool CEntityTemplate::loadXML( const CStr& filename )
 	}
 
 	return true;
-}
-
-/**
- * Converts the given string, consisting of underscores and letters,
- * to camelCase: the first letter of each underscore-separated "word"
- * is changed to lowercase. For example, the string MiniMap_Colour
- * is converted to miniMap_colour. This is consistent with the 
- * previous casing of entity attributes (all lowercase, with words
- * separated by underscores), while allowing us to switch over to
- * camelCase identifiers.
- *
- * @param const std::string & str The string to convert.
- * @return std::string The given string in camelCase.
- **/
-std::string toCamelCase( const std::string& str )
-{
-	std::string ret = str;
-	for( size_t i=0; i<ret.size(); i++ )
-	{
-		if( i==0 || ret[i-1] == '_' )
-		{
-			ret[i] = tolower( ret[i] );
-		}
-	}
-	return ret;
 }
 
 void CEntityTemplate::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement& Source, const CStrW& BasePropertyName )
