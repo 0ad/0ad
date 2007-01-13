@@ -99,6 +99,14 @@
 		
 	</Actions>
 
+	<SoundGroups>
+		<Walk>infantry_walk.xml</Walk>
+		<Run>infantry_run.xml</Run>
+		<Death>male_death.xml</Death>
+		<Gather_Wood>chopping.xml</Gather_Wood>
+		<Gather_Stone>mining.xml</Gather_Stone>
+	</SoundGroups>
+	
 	<Script File="scripts/entity_functions.js" />
 	<Event On="StartConstruction" Function="entityStartConstruction" />
 </Entity>
