@@ -7,6 +7,8 @@ extern float g_YMinOffset;
 
 #include "renderer/Scene.h"
 
+#include "lib/input.h" // InReaction - can't forward-declare enum
+
 class CGame;
 class CGameAttributes;
 class CObjectManager;
@@ -16,8 +18,6 @@ class CVector3D;
 class CEntity;
 
 struct JSObject;
-enum InReaction;
-struct SDL_Event_;
 
 class CGameViewImpl;
 
