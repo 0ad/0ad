@@ -577,6 +577,8 @@ extern LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char
  **/
 extern LibError debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* context);
 
+extern const char* debug_get_symbol_string(void* symbol, const char* name, const char* file, int line);
+
 
 //-----------------------------------------------------------------------------
 // helper functions (used by implementation)

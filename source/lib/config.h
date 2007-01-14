@@ -285,6 +285,14 @@
 
 // compiler support for C99
 // (this is more convenient than testing __STDC_VERSION__ directly)
+// note: we currently lie about __STDC_VERSION__ via premake on
+// MacOS X to enable support for some C99 functions. unfortunately this
+// causes the OS X system headers to use the restrict keyword, which
+// gcc doesn't actually support there.
+// TODO: we therefore need to get rid of HAVE_C99, since we're using C++,
+// which is not C99. some useful features from C99 - e.g. stdint and
+// restrict - will surely be added to C++; we should test for their
+// existence and not all of C99.
 #define HAVE_C99 0
 #ifdef __STDC_VERSION__
 # if __STDC_VERSION__ >= 199901L

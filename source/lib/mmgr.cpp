@@ -130,8 +130,6 @@ uint mmgr_set_options(uint new_options)
 // string formatting routines for log and reports
 //////////////////////////////////////////////////////////////////////////////
 
-extern const char* debug_get_symbol_string(void* symbol, const char* name, const char* file, int line);
-
 const size_t NUM_SIZE = 32;
 	// enough to cover even 64 bit numbers
 

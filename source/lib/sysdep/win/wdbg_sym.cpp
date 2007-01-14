@@ -1896,7 +1896,7 @@ LibError debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* pcont
 // examining the crash in a debugger. called by wdbg_exception_filter.
 // heavily modified from http://www.codeproject.com/debug/XCrashReportPt3.asp
 // lock must be held.
-void wdbg_write_minidump(EXCEPTION_POINTERS* exception_pointers)
+void wdbg_sym_write_minidump(EXCEPTION_POINTERS* exception_pointers)
 {
 	lock();
 

@@ -34,6 +34,8 @@
 #include "lib/sysdep/cpu.h"
 #include "win_internal.h"
 
+#include "wdbg_sym.h"
+
 
 #pragma SECTION_PRE_LIBC(D)
 WIN_REGISTER_FUNC(wdbg_init);
@@ -660,9 +662,6 @@ static void get_exception_locus(const EXCEPTION_POINTERS* ep,
 // - a new fat exception class would have to be created to hold the
 //   SEH exception information (e.g. CONTEXT for a stack trace), and
 // - this information would not be available for C++ exceptions.
-
-extern void wdbg_write_minidump(EXCEPTION_POINTERS* ep);
-
 LONG WINAPI wdbg_exception_filter(EXCEPTION_POINTERS* ep)
 {
 	// note: we risk infinite recursion if someone raises an SEH exception
@@ -687,7 +686,7 @@ LONG WINAPI wdbg_exception_filter(EXCEPTION_POINTERS* ep)
 
 	// this must happen before the error dialog because user could choose to
 	// exit immediately there.
-	wdbg_write_minidump(ep);
+	wdbg_sym_write_minidump(ep);
 
 	wchar_t buf[500];
 	const wchar_t* msg_fmt =

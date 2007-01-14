@@ -89,7 +89,7 @@ void CSoundGroup::PlayNext()
 	{
 		// try loading on the fly only when we need the sound to see if that fixes release problems...
 		if(TestFlag(eRandOrder))
-			m_index = (size_t)rand(0, filenames.size());
+			m_index = (size_t)rand(0, (uint)filenames.size());
 		Handle temp;
 		temp = snd_open(m_filepath + filenames[m_index]);
 		snd_set_gain(temp, m_Gain);	
