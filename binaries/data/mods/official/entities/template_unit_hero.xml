@@ -43,13 +43,20 @@
 
 	</Traits>
 	
+		<Armour>
+			<Hack>200.0</Hack>
+			<Pierce>130.0</Pierce>
+			<Crush>100.0</Crush>
+		</Armour>
+
+
+
 	<Actions>
 		<Attack>
 			<Melee>
-				<Hack>15.0</Hack>
-				<Pierce>15.0</Pierce>
-				
-				<Crush>0.0</Crush>	
+				<Hack>250.0</Hack>
+				<Pierce>180.0</Pierce>	
+				<Crush>90.0</Crush>	
 				<Range>5.0</Range>
 				<Speed>1500</Speed>
 			</Melee>
