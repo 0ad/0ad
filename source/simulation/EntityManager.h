@@ -52,6 +52,9 @@ friend class CHandle;
 	static bool m_extant;
 	bool m_death;
 	int m_collisionPatchesPerSide;
+	
+	//Optimized data for triggers. key = playerID, nested key = entity class, value = frequency
+	std::map<size_t, std::map<CStrW, int> > m_entityClassData;
 
 	void destroy( u16 handle );
 	void deleteAllHelper();
@@ -61,6 +64,7 @@ friend class CHandle;
 		return m_refd[index];
 		//return m_entities[index].m_refcount && !m_entities[index].m_entity->entf_get(ENTF_DESTROYED);
 	}
+	
 public:
 	bool m_screenshotMode;
 
@@ -78,6 +82,12 @@ public:
 
 	HEntity* getByHandle( u16 index );
 	CHandle *getHandle( int index );
+	
+	inline int getPlayerUnitCount( size_t player, const CStrW& name )
+	{
+		return m_entityClassData[player][name];
+	}
+	void AddEntityClassData(const HEntity& handle);
 
 	void updateAll( size_t timestep );
 	void interpolateAll( float relativeoffset );

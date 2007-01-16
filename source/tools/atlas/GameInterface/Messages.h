@@ -377,11 +377,23 @@ QUERY(GetTriggerData,
 QUERY(GetTriggerChoices,
 	  ((std::wstring, name)),
 	  ((std::vector<std::wstring>, choices))
+	  ((std::vector<std::wstring>, translations))
 	  );
 		
 COMMAND(SetAllTriggers, NOMERGE, 
 	  ((std::vector<AtlasMessage::sTriggerGroup>, groups))
 	  );
+
+QUERY(GetWorldPosition,
+	  ((int, x))
+	  ((int, y)),
+	  ((Position, position))
+	  );
+
+MESSAGE(TriggerToggleSelector,
+		((bool, enable))
+		((Position, position))
+		);
 
 
 #ifndef MESSAGES_SKIP_SETUP

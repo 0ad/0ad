@@ -277,7 +277,7 @@ void CMapWriter::WriteXML(const char* filename,
 					continue;
 
 				XML_Element("Entity");
-
+				XML_Attribute("uid", (*unit)->GetID());
 				XML_Setting("Template", entity->m_base->m_Tag);
 
 				XML_Setting("Player", entity->GetPlayer()->GetPlayerID());
@@ -481,6 +481,7 @@ void CMapWriter::WriteTrigger(XMLWriter_File& xml_file_, const MapTrigger& trigg
 			{
 				XML_Element("Condition");
 				XML_Attribute("name", it2->name);
+
 				XML_Attribute("function", it2->functionName);
 				XML_Attribute("display", it2->displayName);
 
@@ -492,24 +493,35 @@ void CMapWriter::WriteTrigger(XMLWriter_File& xml_file_, const MapTrigger& trigg
 				for ( std::list<CStrW>::const_iterator paramIter = it2->parameters.begin(); 
 											paramIter != it2->parameters.end(); ++paramIter )
 				{
-					CStrW paramString(*paramIter);
-					paramString.Replace(CStrW(L"<"), CStrW(L"&lt;"));
-					paramString.Replace(CStrW(L">"), CStrW(L"&gt;"));
-					XML_Setting("Parameter", paramString);
-				}
+					if ( it2->negated )
+						XML_Attribute("not", "true");
+					else
+						XML_Attribute("not", "false");
+				
+					XML_Setting("function", it2->functionName);
+					XML_Setting("display", it2->displayName);
+					for ( std::list<CStrW>::const_iterator paramIter = it2->parameters.begin(); 
+												paramIter != it2->parameters.end(); ++paramIter )
+					{
+						CStrW paramString(*paramIter);
+						paramString.Replace(CStrW(L"<"), CStrW(L"&lt;"));
+						paramString.Replace(CStrW(L">"), CStrW(L"&gt;"));
+						XML_Setting("Parameter", paramString);
+					}
 	
-				if ( it2->linkLogic == 1 )
-				{
-					XML_Setting("LinkLogic", "AND");
-				}
-				else if ( it2->linkLogic == 2 )
-				{
-					XML_Setting("LinkLogic", "OR");
-				}
+					if ( it2->linkLogic == 1 )
+					{
+						XML_Setting("LinkLogic", "AND");
+					}
+					else if ( it2->linkLogic == 2 )
+					{
+						XML_Setting("LinkLogic", "OR");
+					}
 					
-				if ( trigger.logicBlockEnds.find(distance) != trigger.logicBlockEnds.end() )
-				{
-					XML_Element("LogicBlockEnd");
+					if ( trigger.logicBlockEnds.find(distance) != trigger.logicBlockEnds.end() )
+					{
+						XML_Element("LogicBlockEnd");
+					}
 				}
 			}
 		}	//Read all conditions		
@@ -522,13 +534,15 @@ void CMapWriter::WriteTrigger(XMLWriter_File& xml_file_, const MapTrigger& trigg
 		{
 			XML_Element("Effect");
 			XML_Attribute("name", it2->name);
-			XML_Attribute("function", it2->functionName);	
-			XML_Attribute("display", it2->displayName);
-
-			for ( std::list<CStrW>::const_iterator paramIter = it2->parameters.begin();
-											paramIter != it2->parameters.end(); ++paramIter )
 			{
-				XML_Setting("Parameter", *paramIter);
+				XML_Setting("function", it2->functionName);	
+				XML_Setting("display", it2->displayName);
+
+				for ( std::list<CStrW>::const_iterator paramIter = it2->parameters.begin();
+											paramIter != it2->parameters.end(); ++paramIter )
+				{
+					XML_Setting("Parameter", *paramIter);
+				}
 			}
 		}
 	}	//Effects' scope	

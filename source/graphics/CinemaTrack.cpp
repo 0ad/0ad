@@ -11,6 +11,7 @@
 #include "ps/CStr.h"
 #include "maths/Vector3D.h"
 #include "maths/Vector4D.h"
+#include "maths/Quaternion.h"
 #include "lib/res/file/vfs.h"
 #include "lib/res/mem.h"
 
@@ -25,7 +26,7 @@ void CCinemaPath::DrawSpline(const CVector4D& RGBA, int smoothness, bool lines) 
 {
 	if (NodeCount < 2 || DistModePtr == NULL)
 		return;
-	if ( NodeCount == 2 )
+	if ( NodeCount == 2 && lines )
 		smoothness = 2;
 
 	float start = MaxDistance / smoothness;
@@ -38,7 +39,7 @@ void CCinemaPath::DrawSpline(const CVector4D& RGBA, int smoothness, bool lines) 
 		glEnable(GL_LINE_SMOOTH);
 		glBegin(GL_LINE_STRIP);
 
-		for (int i=0; i<smoothness; ++i)
+		for (int i=0; i<=smoothness; ++i)
 		{
 			//Find distorted time
 			time = start*i / MaxDistance;
@@ -57,7 +58,7 @@ void CCinemaPath::DrawSpline(const CVector4D& RGBA, int smoothness, bool lines) 
 		glPointSize(3.0f);
 		glBegin(GL_POINTS);
 
-		for (int i=0; i<smoothness; ++i)
+		for (int i=0; i<=smoothness; ++i)
 		{
 			//Find distorted time
 			time = (this->*DistModePtr)(start*i / MaxDistance);
@@ -78,12 +79,15 @@ void CCinemaPath::MoveToPointAt(float t, const CVector3D &startRotation)
 {
 	CCamera *Cam=g_Game->GetView()->GetCamera();
 	t = (this->*DistModePtr)(t);
-	CVector3D rot = startRotation + m_TotalRotation * t;
-	Cam->m_Orientation.SetXRotation(fmodf(rot.X, DEGTORAD(360.0f)) );
-	Cam->m_Orientation.RotateY( fmodf(rot.Y, DEGTORAD(360.0f)) );
-	Cam->m_Orientation.RotateZ( fmodf(rot.Z, DEGTORAD(360.0f)) );
 
+	CQuaternion start, end;
+	start.FromEulerAngles(startRotation.X, startRotation.Y, startRotation.Z);
+	end.FromEulerAngles(m_TotalRotation.X, m_TotalRotation.Y, m_TotalRotation.Z);
+	start.Slerp(start, end, t);
 	CVector3D pos = GetPosition(t);
+	
+	Cam->m_Orientation.SetIdentity();
+	Cam->m_Orientation.Rotate(start);
 	Cam->m_Orientation.Translate(pos);
 	Cam->UpdateFrustum();
 }
@@ -240,6 +244,8 @@ bool CCinemaTrack::ValidateRewind()
 	{
 		if (m_CPA == m_Paths.begin())			
 		{
+			m_CPA->m_TimeElapsed = 0.0f;
+			m_CPA->MoveToPointAt(0.0f, m_StartRotation);
 			return false;
 		}
 		//Make sure it's within limits of path
@@ -278,6 +284,8 @@ bool CCinemaTrack::ValidateForward()
 	{
 		if (m_CPA == m_Paths.end() - 1)			
 		{
+			if ( m_CPA->GetDuration() < .0001f )	//blank path
+				return false;
 			m_CPA->MoveToPointAt(1.f, CalculateRotation());
 			return false;
 		}
@@ -293,13 +301,16 @@ bool CCinemaTrack::ValidateForward()
 				{
 					if (m_CPA == m_Paths.end() -1)
 					{
+						 if ( m_CPA->MaxDistance < .0001f )	//blank path
+							 return false;
+						 
 						 m_CPA->m_TimeElapsed = m_CPA->MaxDistance;
 						 m_CPA->MoveToPointAt(1.0f, m_StartRotation );
 						 return false;
 					}
-						Pos -= m_CPA->MaxDistance;
-						m_CPA->m_TimeElapsed = m_CPA->MaxDistance;
-						m_CPA++; 		
+					Pos -= m_CPA->MaxDistance;
+					m_CPA->m_TimeElapsed = m_CPA->MaxDistance;
+					m_CPA++; 		
 				}		
 				else
 				{
@@ -313,12 +324,11 @@ bool CCinemaTrack::ValidateForward()
 }
 CVector3D CCinemaTrack::CalculateRotation()
 {
+	CVector3D rotation;
 	if ( m_CPA == m_Paths.begin() )
 		return m_StartRotation;
-	CVector3D startRotation(0.f, 0.f, 0.f);
-	for ( std::vector<CCinemaPath>::iterator it=m_Paths.begin(); it!=m_CPA; ++it )
-		startRotation += it->GetData()->m_TotalRotation;
-	return startRotation + m_StartRotation;
+	else
+		return (m_CPA-1)->GetData()->m_TotalRotation;
 }
 
 bool CCinemaTrack::Play(float DeltaTime)
@@ -328,8 +338,8 @@ bool CCinemaTrack::Play(float DeltaTime)
 
 	if (!Validate())
 		return false;
-	CVector3D rotation = CalculateRotation();
-	m_CPA->MoveToPointAt( m_CPA->GetElapsedTime() / m_CPA->GetDuration(), rotation);
+	
+	m_CPA->MoveToPointAt( m_CPA->GetElapsedTime() / m_CPA->GetDuration(), CalculateRotation() );
 	return true;
 }
 
@@ -447,12 +457,21 @@ void CCinemaManager::MoveToPointAbsolute(float time)
 		return;
 
 	m_CurrentTrack->m_CPA = m_CurrentTrack->m_Paths.begin();
-	m_CurrentTrack->m_AbsoluteTime = m_CurrentTrack->m_CPA->m_TimeElapsed = time;
+	//Small adjustment for blank paths at end of track (so it doesn't count the last path)
+	m_CurrentTrack->m_AbsoluteTime = m_CurrentTrack->m_CPA->m_TimeElapsed = time - .0001f;
 	
 	if (!m_CurrentTrack->ValidateForward())
 		return;
-	m_CurrentTrack->m_CPA->MoveToPointAt(m_CurrentTrack->m_CPA->m_TimeElapsed / 
-	m_CurrentTrack->m_CPA->GetDuration(), m_CurrentTrack->CalculateRotation());
+	
+	float duration = m_CurrentTrack->m_CPA->GetDuration();
+/*	if ( duration < .0001f )	//blank path, used for finishing rotation
+	{	
+		m_CurrentTrack->m_CPA->MoveToPointAt(1.0f, m_CurrentTrack->CalculateRotation());
+		return;
+	}*/
+	m_CurrentTrack->m_CPA->MoveToPointAt(m_CurrentTrack->m_CPA->m_TimeElapsed / duration, 
+													m_CurrentTrack->CalculateRotation());
+	
 }
 bool CCinemaManager::Update(float DeltaTime)
 {

@@ -5,6 +5,7 @@
 #include "EntityTemplateCollection.h"
 #include "EntityTemplate.h"
 #include "ps/ConfigDB.h"
+#include "ps/Player.h"
 #include "ps/Profile.h"
 #include "graphics/Terrain.h"
 #include "ps/Game.h"
@@ -95,7 +96,24 @@ HEntity CEntityManager::create( CEntityTemplate* base, CVector3D position, float
 	if( m_collisionPatches)
 		m_entities[m_nextalloc].m_entity->updateCollisionPatch();
 	m_entities[m_nextalloc].m_entity->me = HEntity( m_nextalloc );
+
 	return( HEntity( m_nextalloc++ ) );
+}
+
+void CEntityManager::AddEntityClassData(const HEntity& handle)
+{
+	//Add data for this particular entity and player
+	size_t playerID = handle->GetPlayer()->GetPlayerID();
+	CStrW className, classList = handle->m_classes.getMemberList();
+
+	while ( (className = classList.BeforeFirst(L" ")) != classList )
+	{
+		if ( m_entityClassData[playerID].find(className) == m_entityClassData[playerID].end() )
+			m_entityClassData[playerID][className] = 0;
+		++m_entityClassData[playerID][className];
+		classList = classList.AfterFirst(L" ");
+	}
+	++m_entityClassData[playerID][className];
 }
 
 HEntity CEntityManager::create( const CStrW& templateName, CPlayer* player, CVector3D position, float orientation, const CStrW* building )
@@ -107,7 +125,9 @@ HEntity CEntityManager::create( const CStrW& templateName, CPlayer* player, CVec
 
 	std::set<CStr8> selections;
 
-	return create( base, position, orientation, selections, building );
+	HEntity ret = create( base, position, orientation, selections, building );
+	AddEntityClassData(ret);
+	return ret;
 }
 
 HEntity CEntityManager::createFoundation( const CStrW& templateName, CPlayer* player, CVector3D position, float orientation )
@@ -316,6 +336,18 @@ void CEntityManager::invalidateAll()
 void CEntityManager::destroy( u16 handle )
 {
 	m_reaper.push_back( m_entities[handle].m_entity );
+	
+	//Remove trigger-helper data
+	size_t playerID = (size_t)m_entities[m_nextalloc].m_entity->GetPlayer()->GetPlayerID();
+	CStrW className, classList = m_entities[m_nextalloc].m_entity->m_classes.getMemberList();
+
+	while ( (className = classList.BeforeFirst(L" ")) != classList )
+	{
+		--m_entityClassData[playerID][className];
+		classList = classList.AfterFirst(L" ");
+	}
+	--m_entityClassData[playerID][className];
+
 	m_entities[handle].m_entity->me.m_handle = INVALID_HANDLE;
 }
 

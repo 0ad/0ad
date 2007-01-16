@@ -103,17 +103,17 @@ SHAREABLE_STRUCT(sCinemaPath);
 struct sCinemaTrack
 {
 	Shareable<std::wstring> name;
-	Shareable<float> x, y, z, timescale, duration;
+	Shareable<float> timescale, duration;
 	Shareable<std::vector<AtlasMessage::sCinemaPath> > paths;
 
 public:
-	sCinemaTrack(float rx, float ry, float rz, std::wstring track) 
-		: x(rx), y(ry), z(rz), timescale(1.f), duration(0), name(track) {}
-	sCinemaTrack() : x(0), y(0), z(0), timescale(1.f), duration(0) {} 
+	sCinemaTrack(std::wstring track) 
+		: timescale(1.f), duration(0), name(track) {}
+	sCinemaTrack() : timescale(1.f), duration(0) {} 
 };
 SHAREABLE_STRUCT(sCinemaTrack);
 
-struct eCinemaEventMode { enum { SMOOTH, SELECT, IMMEDIATE_PATH, IMMEDIATE_TRACK }; };
+struct eCinemaEventMode { enum { SMOOTH, SELECT, IMMEDIATE_PATH, IMMEDIATE_TRACK, RESET }; };
 struct sCameraInfo
 {
 	Shareable<float> pX, pY, pZ, rX, rY, rZ;	// position and rotation
@@ -195,7 +195,7 @@ struct sTrigger
 	Shareable<bool> active;
 
 	sTrigger() : timeValue(0), maxRuns(-1), active(0) {}
-	sTrigger(std::wstring _name) : name(_name), timeValue(0), maxRuns(0), active(0) {}
+	sTrigger(std::wstring _name) : name(_name), timeValue(0), maxRuns(0), active(true) {}
 	bool operator== (const sTrigger& trigger)
 	{
 		return (*name == *trigger.name);

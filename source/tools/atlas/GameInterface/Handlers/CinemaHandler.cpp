@@ -19,10 +19,6 @@ namespace AtlasMessage {
 sCinemaTrack ConstructCinemaTrack(const CCinemaTrack& data)
 {
 	sCinemaTrack track;
-	const CVector3D& rotation = data.GetRotation();
-	track.x = RADTODEG(rotation.X);
-	track.y = RADTODEG(rotation.Y);
-	track.z = RADTODEG(rotation.Z);
 	track.timescale = data.GetTimescale();
 	track.duration = data.GetTotalDuration();
 	
@@ -32,10 +28,6 @@ sCinemaPath ConstructCinemaPath(const CCinemaPath* source)
 {
 	sCinemaPath path;
 	const CCinemaData* data = source->GetData();
-
-	path.x = RADTODEG(data->m_TotalRotation.X);
-	path.y = RADTODEG(data->m_TotalRotation.Y);
-	path.z = RADTODEG(data->m_TotalRotation.Z);
 	path.mode = data->m_Mode;
 	path.style = data->m_Style;
 	path.growth = data->m_Growth;
@@ -46,8 +38,6 @@ sCinemaPath ConstructCinemaPath(const CCinemaPath* source)
 CCinemaData ConstructCinemaData(const sCinemaPath& path)
 {
 	CCinemaData data;
-	data.m_TotalRotation = CVector3D(DEGTORAD(path.x), DEGTORAD(path.y), 
-													DEGTORAD(path.z));
 	data.m_Growth = data.m_GrowthCount = path.growth;
 	data.m_Switch = path.change;
 	data.m_Mode = path.mode;
@@ -83,8 +73,18 @@ std::vector<sCinemaTrack> GetCurrentTracks()
 		for ( std::vector<CCinemaPath>::const_iterator it2=paths.begin(); it2!=paths.end(); it2++ )
 		{
 			sCinemaPath path = ConstructCinemaPath(&*it2);	
-			const std::vector<SplineData>& nodes = it2->GetAllNodes();
+			
+			CVector3D rotation;
+			if ( it2 == paths.begin() )
+				rotation = it->second.GetRotation();
+			else
+				rotation = (it2-1)->GetData()->m_TotalRotation;
 
+			path.x = RADTODEG(rotation.X);
+			path.y = RADTODEG(rotation.Y);
+			path.z = RADTODEG(rotation.Z);
+	
+			const std::vector<SplineData>& nodes = it2->GetAllNodes();
 			std::vector<sCinemaSplineNode> atlasNodes;
 			
 			for ( size_t i=0; i<nodes.size(); ++i )
@@ -111,6 +111,7 @@ std::vector<sCinemaTrack> GetCurrentTracks()
 	}
 	return atlasTracks;
 }
+
 void SetCurrentTracks(const std::vector<sCinemaTrack>& atlasTracks)
 {
 	std::map<CStrW, CCinemaTrack> tracks;
@@ -119,8 +120,7 @@ void SetCurrentTracks(const std::vector<sCinemaTrack>& atlasTracks)
 	{
 		CStrW trackName(*it->name);
 		tracks[trackName] = CCinemaTrack();
-		tracks[trackName].SetStartRotation( CVector3D(DEGTORAD(it->x),
-									DEGTORAD(it->y), DEGTORAD(it->z)) );
+		
 		tracks[trackName].SetTimescale(it->timescale);
 		const std::vector<sCinemaPath> paths = *it->paths;
 		size_t i=0;
@@ -133,7 +133,29 @@ void SetCurrentTracks(const std::vector<sCinemaTrack>& atlasTracks)
 			TNSpline spline;
 			CCinemaData data = ConstructCinemaData(atlasPath);
 
-			for ( size_t j=0; j<nodes.size(); ++j )
+			if ( i == 0 )
+			{
+				tracks[trackName].SetStartRotation( CVector3D(DEGTORAD(it2->x), 
+										DEGTORAD(it2->y), DEGTORAD(it2->z)) );
+				if ( paths.size() == 1 )
+				{
+					data.m_TotalRotation = CVector3D( DEGTORAD(it2->x), 
+										DEGTORAD(it2->y), DEGTORAD(it2->z) );
+				}
+			}
+			
+			if ( i < paths.size() -1 ) 
+			{
+				data.m_TotalRotation = CVector3D(CVector3D(DEGTORAD((it2+1)->x),
+									DEGTORAD((it2+1)->y), DEGTORAD((it2+1)->z)));
+			}
+			else if ( i > 0 )	//no rotation (ending path)
+			{
+				data.m_TotalRotation = CVector3D(DEGTORAD((it2)->x), 
+							DEGTORAD((it2)->y), DEGTORAD((it2)->z));
+			}
+
+ 			for ( size_t j=0; j<nodes.size(); ++j )
 			{	
 				spline.AddNode( CVector3D(nodes[j].x, nodes[j].y, nodes[j].z), nodes[j].t );
 			}
@@ -176,6 +198,8 @@ MESSAGEHANDLER(CinemaEvent)
 		manager->MoveToPointAt(msg->t);
 	else if ( msg->mode == eCinemaEventMode::IMMEDIATE_TRACK )
 		manager->MoveToPointAbsolute(msg->t);
+	else if ( msg->mode == eCinemaEventMode::RESET )
+		g_Game->GetView()->ResetCamera();
 	else
 		manager->SetCurrentPath((int)msg->t);
 }

@@ -142,6 +142,8 @@ struct TriggerParameter
 	void SetWindowData(const CStrW& _windowType, CStrW& windowPosition, CStrW& windowSize);
 	//Sort parameters in the order they will be added to a sizer in atlas
 	bool operator< ( const TriggerParameter& rhs ) const;
+	bool operator< ( const int parameter ) const { return parameterOrder < parameter; }
+	bool operator== ( const int parameter ) const { return parameterOrder == parameter; }
 	
 	CStrW name, windowType, inputType;
 	int row, column, xPos, yPos, xSize, ySize, parameterOrder;
@@ -156,7 +158,10 @@ public:
 	void AddParameter(const TriggerParameter& param) { parameters.insert(param); }
 	const std::set<TriggerParameter>& GetParameters() const { return parameters; }
 	
+	int funcParameters;
 	CStrW displayName, functionName;
+
+	bool operator== (const std::wstring& display) const { return display == displayName; }
 
 private:
 	
@@ -192,6 +197,7 @@ public:
 	const std::list<CTriggerEffect>& GetAllEffects() const { return m_EffectSpecs; }
 	const std::list<MapTriggerGroup>& GetAllTriggerGroups() const { return m_GroupList; }
 	std::vector<std::wstring> GetTriggerChoices(const std::wstring& name);
+	std::vector<std::wstring> GetTriggerTranslations(const std::wstring& name);
 
 	std::map<CStrW, CTrigger*> m_TriggerMap;	//Simulation triggers - used in engine
 	
@@ -200,11 +206,15 @@ private:
 	
 	//Contains choices for trigger choice box parameters, with key = spec.funcName+paramName
 	std::map<std::wstring, std::vector<std::wstring> > m_TriggerChoices;
+	std::map<std::wstring, std::vector<std::wstring> > m_TriggerTranslations;
 	
 	//Holds information which descibes trigger layout in atlas
 	std::list<MapTriggerGroup> m_GroupList;		
 	std::list<CTriggerCondition> m_ConditionSpecs;
 	std::list<CTriggerEffect> m_EffectSpecs;
+
+	float m_UpdateRate;	//TODO: Get this from a config setting
+	float m_UpdateTime;
 
 };
 

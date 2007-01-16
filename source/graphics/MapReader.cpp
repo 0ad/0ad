@@ -317,6 +317,7 @@ private:
 	int el_nonentity;
 	int el_actor;
 	int at_x, at_y, at_z;
+	int at_id;
 	int at_angle;
 
 	XMBElementList nodes; // children of root
@@ -690,10 +691,11 @@ void CXMLReader::ReadTriggerGroup(XMBElement parent, MapTriggerGroup& group)
 	EL(linklogic);
 	EL(effects);
 	EL(effect);
+	EL(function);
+	EL(display);
 
 	AT(name);
-	AT(function);
-	AT(display);
+	
 	AT(not);
 	
 	#undef EL
@@ -743,8 +745,6 @@ void CXMLReader::ReadTriggerGroup(XMBElement parent, MapTriggerGroup& group)
 						{
 							MapTriggerCondition mapCondition;
 							mapCondition.name = condition.getAttributes().getNamedItem(at_name);
-							mapCondition.functionName = condition.getAttributes().getNamedItem(at_function);
-							mapCondition.displayName = condition.getAttributes().getNamedItem(at_display);
 							
 							CStr notAtt(condition.getAttributes().getNamedItem(at_not));
 							if ( notAtt == CStr("true") )
@@ -755,7 +755,11 @@ void CXMLReader::ReadTriggerGroup(XMBElement parent, MapTriggerGroup& group)
 							{
 								elementName = conditionChild.getNodeName();
 						
-								if ( elementName == el_parameter )
+								if ( elementName == el_function )
+									mapCondition.functionName = CStrW(conditionChild.getText());
+								else if ( elementName == el_display )
+									mapCondition.displayName = CStrW(conditionChild.getText());
+								else if ( elementName == el_parameter )
 									mapCondition.parameters.push_back( conditionChild.getText() );
 								else if ( elementName == el_linklogic )
 								{
@@ -794,18 +798,22 @@ void CXMLReader::ReadTriggerGroup(XMBElement parent, MapTriggerGroup& group)
 						}
 						MapTriggerEffect mapEffect;
 						mapEffect.name = effect.getAttributes().getNamedItem(at_name);
-						mapEffect.functionName = effect.getAttributes().getNamedItem(at_function);
-						mapEffect.displayName = effect.getAttributes().getNamedItem(at_display);
 						
 						//Read parameters
 						XERO_ITER_EL(effect, effectChild)
 						{
-							if ( effectChild.getNodeName() != el_parameter )
+							elementName = effectChild.getNodeName();
+							if ( elementName == el_function )
+								mapEffect.functionName = effectChild.getText();
+							else if ( elementName == el_display )
+								mapEffect.displayName = effectChild.getText();
+							else if ( elementName == el_parameter )
+								mapEffect.parameters.push_back( effectChild.getText() );
+							else
 							{
 								debug_warn("Invalid parameter tag in trigger XML file");
 								return;
 							}
-							mapEffect.parameters.push_back( effectChild.getText() );
 						}
 						mapTrigger.effects.push_back(mapEffect);
 					}
@@ -825,7 +833,25 @@ void CXMLReader::ReadTriggerGroup(XMBElement parent, MapTriggerGroup& group)
 
 int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 {
+	int maxID = 0;
 	XMBElementList entities = parent.getChildNodes();
+	
+	//Iterate through and store ID numbers for proper ID addressing for undefined unit ID's
+	while (entity_idx < entities.Count)
+	{
+		XMBElement entity = entities.item(entity_idx++);
+		debug_assert(entity.getNodeName() == el_entity);
+		
+		CStr UnitIDString = CStr( entity.getAttributes().getNamedItem(xmb_file.getAttributeID("uid")) );
+		int UnitID = -1;
+		
+		if ( UnitIDString != "" )
+			UnitID = UnitIDString.ToInt();
+		maxID = std::max(maxID, UnitID);
+	}
+
+	m_MapReader.pUnitMan->SetNextID(maxID + 1);
+
 	while (entity_idx < entities.Count)
 	{
 		// all new state at this scope and below doesn't need to be
@@ -833,6 +859,11 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 
 		XMBElement entity = entities.item(entity_idx++);
 		debug_assert(entity.getNodeName() == el_entity);
+		
+		CStr UnitIDString = CStr( entity.getAttributes().getNamedItem(xmb_file.getAttributeID("uid")) );
+		int UnitID = -1;
+		if ( UnitIDString != "" )
+			UnitID = UnitIDString.ToInt();
 
 		CStrW TemplateName;
 		int PlayerID = 0;
@@ -886,10 +917,12 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 			else
 			{
 				ent->m_actor->SetPlayerID(PlayerID);
+				g_EntityManager.AddEntityClassData(ent);
 
-				// TODO: save object IDs in the map file, and load them again,
-				// so that triggers have a persistent identifier for objects
-				ent->m_actor->SetID(m_MapReader.pUnitMan->GetNewID());
+				if ( UnitID < 0 )
+					ent->m_actor->SetID(m_MapReader.pUnitMan->GetNewID());
+				else
+					ent->m_actor->SetID(UnitID);
 			}
 		}
 

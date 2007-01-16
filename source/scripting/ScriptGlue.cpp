@@ -171,6 +171,19 @@ JSBool getEntityTemplate( JSContext* cx, JSObject*, uint argc, jsval* argv, jsva
 	*rval = OBJECT_TO_JSVAL( v->GetScript() );
 	return( JS_TRUE );
 }
+
+JSBool getPlayerUnitCount( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
+{
+	JSU_REQUIRE_PARAMS(2);
+	int unitCount, playerNum = ToPrimitive<int>( argv[0] );
+	CStrW unitName = ToPrimitive<CStrW>( argv[1] );
+
+	unitCount = g_EntityManager.getPlayerUnitCount((size_t)playerNum, unitName);
+	*rval = ToJSVal<int>( unitCount );
+	return JS_TRUE;
+}
+
+
 //Used to create net messages for formations--msgList.front() is the original message. see issueCommand
 void CreateFormationMessage( std::vector<CNetMessage*>& msgList, CNetMessage* msg, CEntityList& formation )
 {
@@ -1067,6 +1080,20 @@ JSBool startPlacing( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, j
 	return( JS_TRUE );
 }
 
+/*
+//Converts given screenspace coordinates to worldspace. (CURRENTLY NOT IN USE)
+JSBool getWorldCoordinates( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+{
+	JSU_REQUIRE_PARAMS(2);
+	int x = ToPrimitive<int>( argv[0] );
+	int y = ToPrimitive<int>( argv[1] );
+
+	CVector3D world = g_Game->GetView()->GetCamera()->GetWorldCoordinates(x, y);
+	*rval = ToJSVal(world);
+	return JS_TRUE;
+}
+*/
+
 // Toggles drawing the sky
 JSBool toggleSky( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
@@ -1344,6 +1371,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 
 	// Entity
 	JS_FUNC(getEntityByHandle, getEntityByHandle, 1)
+	JS_FUNC(getPlayerUnitCount, getPlayerUnitCount, 1)
 	JS_FUNC(getEntityTemplate, getEntityTemplate, 1)
 	JS_FUNC(issueCommand, issueCommand, 2)
 	JS_FUNC(startPlacing, startPlacing, 1)

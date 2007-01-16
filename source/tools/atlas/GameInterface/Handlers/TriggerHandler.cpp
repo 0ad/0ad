@@ -252,7 +252,10 @@ QUERYHANDLER(GetTriggerData)
 
 QUERYHANDLER(GetTriggerChoices)
 {
-	std::vector<std::wstring> choices = g_TriggerManager.GetTriggerChoices( CStrW(*msg->name) );
+	CStrW selectedName(*msg->name);
+	std::vector<std::wstring> choices = g_TriggerManager.GetTriggerChoices(selectedName);
+	std::vector<std::wstring> translations = g_TriggerManager.GetTriggerTranslations(selectedName);
+
 	if ( choices.empty() )
 		return;
 	
@@ -265,7 +268,10 @@ QUERYHANDLER(GetTriggerChoices)
 			choices.clear();
 			const std::map<CStrW, CCinemaTrack>& tracks = g_Game->GetView()->GetCinema()->GetAllTracks();
 			for ( std::map<CStrW, CCinemaTrack>::const_iterator it = tracks.begin(); it != tracks.end(); ++it )
+			{
 				choices.push_back(it->first);
+				translations.push_back( L"\"" + it->first + L"\"" );	//Strings need quotes in JS
+			}
 		}
 		else if ( choices[0] == std::wstring(L"ATLAS_TRIGGER_LIST") )
 		{
@@ -278,6 +284,7 @@ QUERYHANDLER(GetTriggerChoices)
 													it2 != it->triggers.end(); ++it2 )
 				{
 					choices.push_back(it2->name);
+					translations.push_back( L"\"" + it2->name + L"\"" );
 				}
 			}
 		}
@@ -289,14 +296,25 @@ QUERYHANDLER(GetTriggerChoices)
 															it != groups.end(); ++it )
 			{
 				choices.push_back(it->name);
+				translations.push_back( L"\"" + it->name + L"\"" );
 			}
 		}
 		else
-			debug_warn("Invalid choice list for trigger specification parameter");
+			debug_warn("Invalid special choice list for trigger specification parameter");
 	}
 	msg->choices = choices;
+	msg->translations = translations;
 }
 
+QUERYHANDLER(GetWorldPosition)
+{
+	Position pos;
+	pos.type1.x = msg->x;
+	pos.type1.y = msg->y;
+	CVector3D worldPos = pos.GetWorldSpace();
+	Position ret(worldPos.X, worldPos.Y, worldPos.Z);
+	msg->position = ret;
+}
 BEGIN_COMMAND(SetAllTriggers)
 {
 	std::vector<sTriggerGroup> m_oldGroups, m_newGroups;
@@ -317,5 +335,11 @@ BEGIN_COMMAND(SetAllTriggers)
 	}
 };
 END_COMMAND(SetAllTriggers)
+
+
+MESSAGEHANDLER(TriggerToggleSelector)
+{
+	//TODO: Draw stuff
+}
 
 }

@@ -4,9 +4,9 @@
 #include "GameInterface/Messages.h"
 #include "CustomControls/Buttons/ActionButton.h"
 #include "ScenarioEditor/Tools/Common/Tools.h"
+#include "ScenarioEditor/Tools/Common/MiscState.h"
 
 #include "wx/treectrl.h"
-
 #include <sstream>
 #include <list>
 
@@ -124,18 +124,13 @@ class TriggerSpecChoice : public wxChoice
 	typedef void (*callback)(void* data, std::wstring input, int parameter);
 
 public:
-	TriggerSpecChoice(wxWindow* parent, std::wstring label, const wxPoint& pos, 
-		const wxSize& size, const wxArrayString& strings, int parameter, callback func, void* data) 
-		: wxChoice(parent, wxID_ANY, pos, size, strings), m_Callback(func), m_Data(data), m_Parameter(parameter)
-	{ 
-	}
+	TriggerSpecChoice(TriggerBottomBar* parent, std::wstring label, const wxPoint& pos, 
+		const wxSize& size, const wxArrayString& strings, int parameter, callback func, void* data);
 
-	void onChoice(wxCommandEvent& evt)
-	{
-		(*m_Callback)(m_Data, std::wstring( evt.GetString().wc_str() ), m_Parameter);
-	}
+	void onChoice(wxCommandEvent& evt);
 	
 private:
+	TriggerBottomBar* m_Parent;
 	callback m_Callback;
 	int m_Parameter;
 	void* m_Data;
@@ -146,6 +141,97 @@ private:
 BEGIN_EVENT_TABLE(TriggerSpecChoice, wxChoice)
 EVT_CHOICE(wxID_ANY, TriggerSpecChoice::onChoice)
 END_EVENT_TABLE()
+
+class TriggerBottomBar;
+
+class TriggerEntitySelector : public wxPanel
+{
+	typedef void (*callback)(void* data, std::wstring input, int parameter);
+	enum { ID_SELECTION, ID_VIEW };
+public:
+
+	TriggerEntitySelector(TriggerBottomBar* parent, std::wstring label, const wxPoint& pos, 
+		const wxSize& size, int parameter, callback func, void* data);
+	
+	void onSelectionClick(wxCommandEvent& WXUNUSED(evt))
+	{
+		std::wstring code(L"[");
+		std::wstringstream stream;
+		for ( size_t i = 0; i < g_SelectedObjects.size(); ++i )
+		{
+			stream << g_SelectedObjects[i];
+			if ( i != g_SelectedObjects.size()-1 )
+				stream << L", ";
+		}
+
+		code.append(stream.str());
+		code.append(L"]");
+		(*m_Callback)(m_Data, code, m_Parameter);
+		POST_MESSAGE(SetSelectionPreview, (g_SelectedObjects));
+	}
+	void onViewClick(wxCommandEvent& WXUNUSED(evt));
+
+private:
+	int m_Parameter;
+	callback m_Callback;
+	TriggerBottomBar* m_Parent;
+	void* m_Data;
+
+	DECLARE_EVENT_TABLE();
+};
+BEGIN_EVENT_TABLE(TriggerEntitySelector, wxPanel)
+EVT_BUTTON(TriggerEntitySelector::ID_SELECTION, TriggerEntitySelector::onSelectionClick)
+EVT_BUTTON(TriggerEntitySelector::ID_VIEW, TriggerEntitySelector::onViewClick)
+END_EVENT_TABLE()
+
+class TriggerPointPlacer : public wxPanel
+{
+	enum { ID_Set, ID_View };
+	typedef void (*callback)(void* data, std::wstring input, int parameter);
+public:
+
+	TriggerPointPlacer(wxWindow* parent, const wxPoint& pos, 
+		const wxSize& size, int parameter, callback func, void* data) : m_Callback(func),
+		wxPanel(parent, wxID_ANY, pos), m_Parameter(parameter), m_Data(data)
+	{
+		wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
+		SetSizer(mainSizer);
+		mainSizer->Add( new wxButton(this, ID_Set, L"Set point", pos, size) );
+		mainSizer->Add( new wxButton(this, ID_View, L"View", pos, size) );
+	}
+
+	
+	void onSet(wxCommandEvent& WXUNUSED(evt))
+	{
+		qGetWorldPosition query( wxGetMousePosition().x, wxGetMousePosition().y );
+		query.Post();
+		Position pos = query.position;
+		wxString wxForm = wxString::Format(L"Vector(%f, %f, %f)", pos.type0.x, pos.type0.y, pos.type0.z);
+											
+		std::wstring convert = (std::wstring)wxForm;
+		(*m_Callback)(m_Data, convert, m_Parameter);
+		POST_MESSAGE(TriggerToggleSelector, (true, pos));
+	}
+
+	void onView(wxCommandEvent& WXUNUSED(evt))
+	{
+		//POST_MESSAGE( TriggerToggleSelector, (pos) );
+	}
+
+private:
+	int m_Parameter;
+	void* m_Data;
+	callback m_Callback;
+	bool m_MouseCapture;
+
+	DECLARE_EVENT_TABLE();
+};
+
+BEGIN_EVENT_TABLE(TriggerPointPlacer, wxPanel)
+EVT_BUTTON(TriggerPointPlacer::ID_Set, TriggerPointPlacer::onSet)
+EVT_BUTTON(TriggerPointPlacer::ID_View, TriggerPointPlacer::onView)
+END_EVENT_TABLE()
+
 
 class TriggerListCtrl : public wxListCtrl
 {
@@ -188,7 +274,6 @@ public:
 	TriggerSidebar* m_Sidebar;
 	bool m_Condition;
 };
-
 
 
 class TriggerItemData : public wxTreeItemData, public sTrigger
@@ -427,9 +512,9 @@ public:
 	{
 		if ( m_Sizer->Detach(m_ParameterSizer) )
 		{
-			delete m_ParameterSizer;
-			m_Sizer->Layout();
-			Layout();
+			m_ParameterSizer->DeleteWindows();
+			//m_Sizer->Layout();
+		//	Layout();
 		}
 		
 		//m_ParameterSizer = new wxStaticBoxSizer(wxVERTICAL, this, L"Parameters");
@@ -481,7 +566,8 @@ public:
 				hRow = new wxBoxSizer(wxHORIZONTAL);
 				m_ParameterSizer->Add(hRow);
 			}
-
+			
+			
 			if ( *it->windowType == std::wstring(L"text") )
 			{
 				hRow->Add( new wxStaticText(this, wxID_ANY, wxString( (*it->name).c_str() ), 
@@ -519,13 +605,27 @@ public:
 				hRow->Add(choice);
 				choice->SetStringSelection( wxString(stringParameters[it->parameterOrder].c_str()) );
 			}
+
+			else if ( *it->windowType == std::wstring(L"entity_selector") )
+			{
+				hRow->Add( new wxStaticText(this, wxID_ANY, wxString((*it->name).c_str())) );
+				hRow->Add( new TriggerEntitySelector(this, L"Select", wxDefaultPosition, 
+					wxSize(it->xSize, it->ySize), it->parameterOrder, &onTriggerParameter, this) );
+			}
+
+			else if ( *it->windowType == std::wstring(L"point_placer") )
+			{
+				hRow->Add( new wxStaticText(this, wxID_ANY, wxString((*it->name).c_str())) );
+				hRow->Add( new TriggerPointPlacer(this, wxDefaultPosition, wxSize(it->xSize, it->ySize),
+							it->parameterOrder, &onTriggerParameter, this) );
+			}
 			else
 			{
 				wxFAIL_MSG(L"Invalid window type for trigger specification");
+				row = -1;
 				//do something else...
 			}
 		}
-	
 		
 		//(If nothing was added, it won't be automatically delted)
 		if ( row < 0 )
@@ -674,7 +774,7 @@ public:
 		m_LogicRadio = new wxRadioBox(this, ID_LogicRadio, _T("Link logic:"),
 			wxDefaultPosition, wxDefaultSize, 2, radioChoice, 2, wxRA_SPECIFY_COLS);
 
-		m_NotCheck = new wxCheckBox(this, ID_NotCheck, wxString(L"Not: "));
+		m_NotCheck = new wxCheckBox(this, ID_NotCheck, wxString(L"Not "));
 
 		wxBoxSizer* hNameHolder = new wxBoxSizer(wxHORIZONTAL);
 		wxBoxSizer* hConditionHolder = new wxBoxSizer(wxHORIZONTAL);
@@ -735,6 +835,7 @@ public:
 		DestroyChildren();
 		m_DependentStatus = NO_VIEW;
 	}
+	
 	TriggerSidebar* m_Sidebar;
 
 private:
@@ -748,6 +849,7 @@ private:
 	wxRadioBox* m_LogicRadio, *m_TimeRadio;
 
 	std::vector<sTriggerSpec> m_ConditionSpecs, m_EffectSpecs;
+	
 	int m_DependentStatus;
 
 	DECLARE_EVENT_TABLE();
@@ -804,6 +906,58 @@ void TriggerListCtrl::onClick(wxMouseEvent& evt)
 	evt.Skip();
 }
 
+
+TriggerEntitySelector::TriggerEntitySelector(TriggerBottomBar* parent, std::wstring label, 
+		const wxPoint& pos, const wxSize& size, int parameter, callback func, void* data) 
+		: wxPanel(parent), m_Parent(parent), m_Parameter(parameter), m_Callback(func), m_Data(data) 
+{
+	wxBoxSizer* MainSizer = new wxBoxSizer(wxVERTICAL);
+	SetSizer(MainSizer);
+	MainSizer->Add( new wxButton(this, ID_SELECTION, wxString(label.c_str()), pos, size) );
+	MainSizer->Add( new wxButton(this, ID_VIEW, L"View", pos, size) );
+}
+void TriggerEntitySelector::onViewClick(wxCommandEvent& WXUNUSED(evt))
+{
+	std::wstring handles;
+	if ( m_Parent->m_Sidebar->m_Notebook->GetCurrentPage() == m_Parent->m_Sidebar->m_ConditionPage )
+	{
+		std::vector<sTriggerCondition> conditions = *m_Parent->m_Sidebar->GetSelectedItemData()->conditions;
+		int condition = m_Parent->m_Sidebar->GetConditionCount(m_Parent->m_Sidebar->m_SelectedCond) - 1 ;
+		std::vector<std::wstring> parameters = *conditions[condition].parameters;
+		handles = parameters[m_Parameter];
+	}
+	else
+	{
+		std::vector<sTriggerEffect> effects = *m_Parent->m_Sidebar->GetSelectedItemData()->effects;
+		int effect = m_Parent->m_Sidebar->m_SelectedEffect;
+		std::vector<std::wstring> parameters = *effects[effect].parameters;
+		handles = parameters[m_Parameter];
+	}
+	
+	std::vector<ObjectID> IDList;
+	size_t previous = handles.find(L"[")+1, current;
+	
+	//remove "]"
+	if ( handles.size() )
+		handles.erase(handles.size()-1);
+
+	while ( (current = handles.find(L", ", previous)) != std::wstring::npos )
+	{
+		std::wstringstream toInt(handles.substr(previous, current - previous));
+		int newID;
+		toInt >> newID;
+		IDList.push_back(newID);
+		previous = current+1;
+	}
+	
+	std::wstringstream toInt( handles.substr(previous) );
+	int newID;
+	toInt >> newID;
+	IDList.push_back(newID);
+	g_SelectedObjects = IDList;
+	POST_MESSAGE(SetSelectionPreview, (g_SelectedObjects));
+}
+		
 void TriggerSpecText::onTextEnter(wxCommandEvent& WXUNUSED(evt))
 {
 	std::wstring text( GetValue().wc_str() );
@@ -814,7 +968,16 @@ void TriggerSpecText::onTextEnter(wxCommandEvent& WXUNUSED(evt))
 		wxBell();
 }
 
-
+TriggerSpecChoice::TriggerSpecChoice(TriggerBottomBar* parent, std::wstring label, const wxPoint& pos, 
+	const wxSize& size, const wxArrayString& strings, int parameter, callback func, void* data) 
+	: wxChoice(parent, wxID_ANY, pos, size, strings), m_Callback(func), m_Data(data), 
+											m_Parent(parent), m_Parameter(parameter)
+	{ 
+	}
+void TriggerSpecChoice::onChoice(wxCommandEvent& evt)
+{
+	(*m_Callback)(m_Data, std::wstring( evt.GetString().wc_str() ), m_Parameter);
+}
 void onTriggerParameter(void* data, std::wstring paramString, int parameter)
 {
 	TriggerBottomBar* bottomBar = static_cast<TriggerBottomBar*>(data);
@@ -1019,7 +1182,10 @@ void onDeleteBookPush(void* data)
 		itemData->ResetBlockIndices();
 		
 		if ( sidebar->m_SelectedCond == list->GetItemCount() )
+		{
 			sidebar->m_SelectedCond = -1;
+			sidebar->m_TriggerBottom->ToNoView();
+		}
 		else
 			sidebar->m_TriggerBottom->FillConditionData();
 	}
@@ -1034,7 +1200,10 @@ void onDeleteBookPush(void* data)
 		list->DeleteItem( sidebar->m_SelectedEffect );
 		
 		if ( itemData->effects.GetSize() == 0 || sidebar->m_SelectedEffect == list->GetItemCount() )
+		{
 			sidebar->m_SelectedEffect = -1;
+			sidebar->m_TriggerBottom->ToNoView();
+		}
 		else
 			sidebar->m_TriggerBottom->FillEffectData();
 	}
@@ -1090,7 +1259,6 @@ void onBlockEndPush(void* data)
 	sidebar->GetSelectedItemData()->AddBlockEnd(conditionCount-1, limit);
 	sidebar->UpdateLists();
 }
-
 
 
 TriggerSidebar::TriggerSidebar(wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
@@ -1211,10 +1379,12 @@ void TriggerSidebar::AddGroupTree(const sTriggerGroup& group, wxTreeItemId paren
 	
 	for ( size_t i = 0; i < group.children.GetSize(); ++i )
 		AddGroupTree( *std::find(m_TriggerGroups.begin(), m_TriggerGroups.end(), groupBuf[i]), newID );
+	
 	for ( size_t i = 0; i < group.triggers.GetSize(); ++i )
 	{
 		std::wstring trigName = *triggerBuf[i].name;
-		
+		size_t condMax = 0, effectMax = 0;
+
 		//Make triggers start where user last left off
 		if ( trigName.find(L"Trigger ") == 0 )
 		{
@@ -1230,9 +1400,52 @@ void TriggerSidebar::AddGroupTree(const sTriggerGroup& group, wxTreeItemId paren
 					m_TriggerCount = convert;
 			}
 		}
+		std::vector<sTriggerCondition> conditions = *triggerBuf[i].conditions;
+		std::vector<sTriggerEffect> effects = *triggerBuf[i].effects;
 
-		m_TriggerTree->AppendItem( newID, wxString( triggerBuf[i].name.c_str() ), -1, -1, 
-										new TriggerItemData(this, triggerBuf[i], false) );
+		for ( size_t j = 0; j < conditions.size(); ++j )
+		{
+			std::wstring condName = *conditions[j].name;
+			
+			if ( condName.find(L"Condition ") == 0 )
+			{
+				condName.erase(0, 10);
+				std::wstringstream toInt(condName);
+				size_t convert;
+				toInt >> convert;
+				++convert;
+
+				if ( !toInt.fail() )
+				{
+					if ( convert > condMax )
+						condMax = convert;
+				}
+			}
+		}
+
+		for ( size_t j = 0; j < effects.size(); ++j )
+		{
+			std::wstring effectName = *effects[j].name;
+
+			if ( effectName .find(L"Effect ") == 0 )
+			{
+				effectName.erase(0, 7);
+				std::wstringstream toInt(effectName);
+				size_t convert;
+				toInt >> convert;
+				++convert;
+
+				if ( !toInt.fail() )
+				{
+					if ( convert > effectMax )
+						effectMax = convert;
+				}
+			}
+		}
+		TriggerItemData* newTriggerData = new TriggerItemData(this, triggerBuf[i], false);
+		newTriggerData->m_CondCount = condMax;
+		newTriggerData->m_EffectCount = effectMax;
+		m_TriggerTree->AppendItem( newID, wxString( triggerBuf[i].name.c_str() ), -1, -1, newTriggerData);
 	}
 }
 
@@ -1251,7 +1464,7 @@ void TriggerSidebar::onPageChange(wxNotebookEvent& evt)
 		m_TriggerBottom->FillEffectData();
 }
 		
-void TriggerSidebar::onTreeDrag(wxTreeEvent& evt)
+void TriggerSidebar::onTreeDrag(wxTreeEvent& WXUNUSED(evt))
 {
 	//evt.Allow();
 }

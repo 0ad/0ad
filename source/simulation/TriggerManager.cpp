@@ -26,11 +26,13 @@ CTrigger::CTrigger(const CStrW& name, bool active, float delay, int maxRuns, con
 	m_runCount = 0;
 	m_maxRunCount = maxRuns;
 	
+	CStrW validName = name;
+	validName.Replace(L" ", L"_");
+
 	m_conditionFuncString = condFunc;
 	m_effectFuncString = effectFunc;
-	m_conditionFunction.Compile( L"TriggerCondition::" + m_name, condFunc );
-	m_effectFunction.Compile( L"TriggerEffect::" + m_name, effectFunc );
-
+	m_conditionFunction.Compile( L"TriggerCondition_" + validName, condFunc );
+	m_effectFunction.Compile( L"TriggerEffect_" + validName, effectFunc );
 }
 CTrigger::CTrigger(const CStrW& name, bool active, float delay, int maxRuns,
 					CScriptObject& condFunc, CScriptObject& effectFunc)
@@ -136,7 +138,7 @@ bool TriggerParameter::operator< ( const TriggerParameter& rhs ) const
 }
 //===========Trigger Manager===========
 
-CTriggerManager::CTriggerManager()
+CTriggerManager::CTriggerManager() : m_UpdateRate(.80f), m_UpdateTime(.80f)
 {
 }
 
@@ -153,13 +155,24 @@ void CTriggerManager::DestroyEngineTriggers()
 	}
 	m_TriggerMap.clear();
 }
+
 std::vector<std::wstring> CTriggerManager::GetTriggerChoices(const std::wstring& name)
 {
 	return m_TriggerChoices[name];
 }
+std::vector<std::wstring> CTriggerManager::GetTriggerTranslations(const std::wstring& name)
+{
+	return m_TriggerTranslations[name];
+}
 
 void CTriggerManager::Update(float delta)
 {
+	m_UpdateTime -= delta;
+	if ( m_UpdateTime < 0 )
+		m_UpdateTime = m_UpdateRate;
+	else
+		return;
+	
 	std::list<TriggerIter> expired;
 	for ( TriggerIter it = m_TriggerMap.begin(); it != m_TriggerMap.end(); ++it )
 	{
@@ -200,6 +213,7 @@ void CTriggerManager::AddTrigger(MapTriggerGroup& group, const MapTrigger& trigg
 	CStrW conditionBody(L"if ( ");
 	CStrW linkLogic[] = { CStrW(L""), CStrW(L" && "), CStrW(L" || ") };
 	size_t i=0;
+	bool allParameters = true;
 
 	for ( std::list<MapTriggerCondition>::const_iterator it = trigger.conditions.begin();
 												it != trigger.conditions.end(); ++it, ++i )
@@ -217,21 +231,49 @@ void CTriggerManager::AddTrigger(MapTriggerGroup& group, const MapTrigger& trigg
 			conditionBody += CStrW(L"!");
 		conditionBody += it->functionName;
 		conditionBody += CStrW(L"(");
+		
 		for ( std::list<CStrW>::const_iterator it2 = it->parameters.begin(); it2 != 
 													it->parameters.end(); ++it2 )
 		{
-			conditionBody += *it2;
-			if ( std::distance(it2, it->parameters.end()) != 1 )
+			size_t params = (size_t)std::find(m_ConditionSpecs.begin(), m_ConditionSpecs.end(), it->displayName)->funcParameters;
+			size_t distance = std::distance(it->parameters.begin(), it2);
+			
+			//Parameters end here, additional "parameters" are used directly as script
+			if ( distance == params )
+			{
+				conditionBody += CStrW(L") ");
+				allParameters = false;
+			}
+
+			//Take display parameter and translate into JS usable code...evilness
+			CTriggerSpec spec = *std::find( m_ConditionSpecs.begin(), m_ConditionSpecs.end(), it->displayName );
+			const std::set<TriggerParameter>& specParameters = spec.GetParameters();
+			
+			//Don't use specialized find, since we're searching for a different member
+			std::set<TriggerParameter>::const_iterator specParam = std::find( 
+							specParameters.begin(), specParameters.end(), (int)distance);
+			std::wstring combined = std::wstring( it->functionName + specParam->name );
+			size_t translatedIndex = std::distance( m_TriggerChoices[combined].begin(), 
+				std::find(m_TriggerChoices[combined].begin(), m_TriggerChoices[combined].end(), std::wstring(*it2)) );
+
+			if ( m_TriggerTranslations[combined].empty() )
+				conditionBody += *it2;
+			else
+				conditionBody += m_TriggerTranslations[combined][translatedIndex];	
+
+			if ( distance + 1 < params )
 				conditionBody += CStrW(L", ");
 		}
 		
-		conditionBody += CStrW(L")");
+		if ( allParameters )	//Otherwise, closed inside loop
+			conditionBody += CStrW(L")");
 		if ( trigger.logicBlockEnds.find(i) != trigger.logicBlockEnds.end() )
 			conditionBody += CStrW(L" )");
 
 		if ( std::distance(it, trigger.conditions.end()) != 1 )
 			conditionBody += linkLogic[it->linkLogic];
 	}
+
 	conditionBody += CStrW(L" )");	//closing if
 	conditionBody += CStrW(L" { return true; } ");
 	CStrW effectBody;
@@ -244,7 +286,22 @@ void CTriggerManager::AddTrigger(MapTriggerGroup& group, const MapTrigger& trigg
 		for ( std::list<CStrW>::const_iterator it2 = it->parameters.begin(); it2 != 
 													it->parameters.end(); ++it2 )
 		{
-			effectBody += *it2;
+			size_t distance = std::distance(it->parameters.begin(), it2);
+			//Take display parameter and translate into JS usable code...evilness
+			CTriggerSpec spec = *std::find( m_EffectSpecs.begin(), m_EffectSpecs.end(), it->displayName );
+			const std::set<TriggerParameter>& specParameters = spec.GetParameters();
+			
+			//Don't use specialized find, since we're searching for a different member
+			std::set<TriggerParameter>::const_iterator specParam = std::find( 
+							specParameters.begin(), specParameters.end(), (int)distance);
+			std::wstring combined = std::wstring( it->functionName + specParam->name );
+			size_t translatedIndex = std::distance( m_TriggerChoices[combined].begin(), 
+				std::find(m_TriggerChoices[combined].begin(), m_TriggerChoices[combined].end(), std::wstring(*it2)) );
+
+			if ( m_TriggerTranslations[combined].empty() )
+				effectBody += *it2;
+			else
+				effectBody += m_TriggerTranslations[combined][translatedIndex];	
 			std::list<CStrW>::const_iterator endIt = it->parameters.end();
 			if ( std::distance(it2, endIt) != 1 )
 				effectBody += CStrW(L", ");
@@ -252,6 +309,7 @@ void CTriggerManager::AddTrigger(MapTriggerGroup& group, const MapTrigger& trigg
 
 		effectBody += CStrW(L");");
 	}
+
 	group.triggers.push_back(trigger);
 	CTrigger* newTrigger = new CTrigger(trigger.name, trigger.active, trigger.timeValue,
 									trigger.maxRunCount, conditionBody, effectBody);
@@ -323,12 +381,14 @@ bool CTriggerManager::loadTriggerSpec( XMBElement condition, CXeromyces& XeroFil
 	EL(parameterorder);
 	EL(windowrow);
 	EL(choices);
+	EL(choicetranslation);
 
 	AT(type);
 	AT(position);
 	AT(name);
 	AT(size);
 	AT(function);
+	AT(funcParameters);
 
 	#undef EL
 	#undef AT
@@ -336,6 +396,7 @@ bool CTriggerManager::loadTriggerSpec( XMBElement condition, CXeromyces& XeroFil
 	CTriggerSpec specStore;
 	specStore.functionName = CStrW( condition.getAttributes().getNamedItem(at_function) );
 	specStore.displayName = CStrW( condition.getAttributes().getNamedItem(at_name) );
+	specStore.funcParameters = CStr( condition.getAttributes().getNamedItem(at_funcParameters) ).ToInt();
 	int row = -1, column = -1;
 
 	XERO_ITER_EL(condition, child)
@@ -386,6 +447,20 @@ bool CTriggerManager::loadTriggerSpec( XMBElement condition, CXeromyces& XeroFil
 
 						choices.push_back(substr);	//Last element has no comma
 						m_TriggerChoices[specStore.functionName + specParam.name] = choices;
+					}
+					else if ( childID == el_choicetranslation )
+					{
+						std::vector<std::wstring> choices;
+						CStrW comma(L","), input(parameterChild.getText());
+						CStrW substr;
+						while ( (substr = input.BeforeFirst(comma)) != input )
+						{
+							choices.push_back(substr);
+							input = input.AfterFirst(comma);
+						}
+
+						choices.push_back(substr);	//Last element has no comma
+						m_TriggerTranslations[specStore.functionName + specParam.name] = choices;
 					}
 					else
 						return false;

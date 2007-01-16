@@ -32,12 +32,11 @@ public:
 	//avoid excessive shareable->vector conversion with size paramater
 	void SelectSplineNode(ssize_t n, ssize_t size = -1);
 	
-	void AddTrack(float x, float y, float z, std::wstring& name, 
-													int count);
+	void AddTrack(std::wstring& name, int count);
 	void AddPath(int x, int y, int z, int count);
 	void AddNode(float x, float y, float z, int count);
 	void UpdateTrack(std::wstring name, float timescale); 
-	void UpdateTrack(float x, float y, float z);
+	//void UpdateTrack(float x, float y, float z);
 	void UpdatePath(int x, int y, int z, ssize_t index=-1);
 	void UpdateNode(float x, float y, float z, float t=-1);
 
@@ -52,11 +51,11 @@ public:
 	AtlasMessage::sCinemaSplineNode GetCurrentNode();
 	
 	int GetSelectedTrack() { return m_SelectedTrack; }
+	std::wstring GetSelectedTrackName() { return *m_Tracks[m_SelectedTrack].name; }
 	int GetSelectedPath() { return m_SelectedPath; }
 	int GetSelectedNode() { return m_SelectedSplineNode; }
 
 	void GotoNode(ssize_t index=-1);
-	void GetAbsoluteRotation(int& x, int& y, int& z, ssize_t index=-1);
 
 	float UpdateSelectedPath();
 	void UpdatePathInfo(int mode, int style, float growth, float change,
@@ -69,7 +68,6 @@ public:
 	float m_AbsoluteTime;	//track time
 	
 	bool m_RotationAbsolute;	//rotation display flag in spinner box
-	bool m_UpdatePathEcho;
 	bool m_Playing;
 
 protected:
