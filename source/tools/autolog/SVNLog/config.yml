@@ -8,3 +8,4 @@ cdbi:
 scp:
   command : /usr/bin/scp -i /var/www/svnlog/ssh/wfgkey
   filename: philip@wildfiregames.com:~/svnlog/public
+  filename_feed: philip@wildfiregames.com:~/svnlog/public_feed

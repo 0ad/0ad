@@ -4,8 +4,9 @@ use strict;
 use base 'Catalyst::Controller';
 
 use XML::Simple;
-use Text::ASCIITable::Wrap;
 use File::Remote;
+use XML::Atom::SimpleFeed;
+use Data::UUID;
 
 sub doupdate : Local
 {
@@ -48,6 +49,7 @@ sub doupdate : Local
 
 	my $scp = new File::Remote(rcp => $c->config->{scp}{command});
 	$scp->writefile($c->config->{scp}{filename}, generate_text()) or die $!;
+	$scp->writefile($c->config->{scp}{filename_feed}, generate_feed()) or die $!;
 
 	$c->res->body("Updated log to $max_seen.");
 }
@@ -93,7 +95,14 @@ sub createtext : Local
 {
 	my ($self, $c) = @_;
 	my $out = generate_text();
-	$c->res->body("<tt>$out</tt>");
+	$c->res->body($out);
+}
+
+sub createfeed : Local
+{
+	my ($self, $c) = @_;
+	my $out = generate_feed();
+	$c->res->body($out);
 }
 
 
@@ -123,6 +132,38 @@ EOF
 	
 	$out ||= 'Sorry, no data is available right now.';
 	return $out;
+}
+
+sub generate_feed
+{
+	my @logentries = SVNLog::Model::CDBI::Logentry->recent(7);
+	
+	my $uid_gen = new Data::UUID;
+
+	my $feed = new XML::Atom::SimpleFeed(
+		title => "0 A.D. Revision Log",
+		link => "http://www.wildfiregames.com/0ad/",
+		id => "urn:uuid:" . $uid_gen->create_from_name_str('WFG SVN feed', 'feed'),
+	);
+
+	for (@logentries)
+	{
+		my ($revision, $author, $date, $msg) = ($_->revision, $_->author, $_->date, $_->public_msg);
+		next unless defined $msg and $msg->msg;
+
+		my $uid = $uid_gen->create_from_name_str('WFG SVN feed', $revision);
+		
+		$feed->add_entry(
+			title => "Revision $revision",
+			id => "urn:uuid:$uid",
+			author => $author,
+			content => $msg->msg,
+			published => $date,
+			updated => $date,
+		);
+	}
+	
+	return $feed->as_string;
 }
 
 sub filter_copyfrom
