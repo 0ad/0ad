@@ -424,7 +424,7 @@ void TerrainRenderer::RenderWater()
 	double time = WaterMgr->m_WaterTexTimer;
 
 	double period = 1.6;
-	int curTex = (int)(time*60/period) % 60;
+	int curTex = (unsigned int)(time*60/period) % 60;
 
 	if(fancy)
 	{

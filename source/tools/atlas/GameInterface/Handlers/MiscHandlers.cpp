@@ -12,6 +12,7 @@
 #include "renderer/Renderer.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "../GameLoop.h"
+#include "../View.h"
 
 extern void (*Atlas_GLSwapBuffers)(void* context);
 
@@ -45,11 +46,19 @@ QUERYHANDLER(CinemaRecord)
 
 	int num_frames = msg->framerate * msg->duration;
 
+	View::GetView_Game()->SaveState(L"cinema_record", true);
+
+	// Set it to update the simulation at normal speed
+	View::GetView_Game()->SetSpeedMultiplier(1.f);
+
 	for (int frame = 0; frame < num_frames; ++frame)
 	{
+		View::GetView_Game()->Update(1.f / msg->framerate);
+
 		manager->MoveToPointAbsolute((float)frame/msg->framerate);
 		Render();
 		Atlas_GLSwapBuffers((void*)g_GameLoop->glCanvas);
+
 		glReadPixels(0, 0, w, h, GL_RGB, GL_UNSIGNED_BYTE, img);
 
 		// Swap the rows around, else the image will be upside down
@@ -67,6 +76,12 @@ QUERYHANDLER(CinemaRecord)
 		msg->cb.Call(cbdata);
 	}
 
+	// Pause the game once we've finished
+	View::GetView_Game()->SetSpeedMultiplier(0.f);
+
+	View::GetView_Game()->RestoreState(L"cinema_record");
+	// TODO: delete the saved state now that we don't need it any more
+
 	delete[] img;
 
 	// Restore viewport
@@ -83,5 +98,21 @@ QUERYHANDLER(Ping)
 {
 	UNUSED2(msg);
 }
+
+MESSAGEHANDLER(SimStateSave)
+{
+	View::GetView_Game()->SaveState(*msg->label, msg->onlyentities);
+}
+
+MESSAGEHANDLER(SimStateRestore)
+{
+	View::GetView_Game()->RestoreState(*msg->label);
+}
+
+MESSAGEHANDLER(SimPlay)
+{
+	View::GetView_Game()->SetSpeedMultiplier(msg->speed);
+}
+
 
 }

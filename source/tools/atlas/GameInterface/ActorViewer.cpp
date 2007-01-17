@@ -121,13 +121,9 @@ void ActorViewer::SetActor(const CStrW& id, const CStrW& animation)
 			return;
 
 		float angle = PI;
-		float s = sin(angle);
-		float c = cos(angle);
 		CMatrix3D mat;
-		mat._11 = -c;   mat._12 = 0.0f; mat._13 = -s;   mat._14 = CELL_SIZE * PATCH_SIZE/2;
-		mat._21 = 0.0f; mat._22 = 1.0f; mat._23 = 0.0f; mat._24 = 0.0f;
-		mat._31 = s;    mat._32 = 0.0f; mat._33 = -c;   mat._34 = CELL_SIZE * PATCH_SIZE/2;
-		mat._41 = 0.0f; mat._42 = 0.0f; mat._43 = 0.0f; mat._44 = 1.0f;
+		mat.SetYRotation(angle + PI);
+		mat.Translate(CELL_SIZE * PATCH_SIZE/2, 0.f, CELL_SIZE * PATCH_SIZE/2);
 		m.Unit->GetModel()->SetTransform(mat);
 		m.Unit->GetModel()->ValidatePosition();
 

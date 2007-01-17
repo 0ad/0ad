@@ -81,18 +81,17 @@ struct VideoEncoderImpl
 		// TODO: these compression parameters aren't necessarily any good
 
 		c->mb_decision = FF_MB_DECISION_RD;
-		c->gop_size = 250;
+		c->gop_size = 12;
 		c->max_b_frames = 2;
 		c->b_frame_strategy = 1;
 		c->dia_size = 4;
 
-		c->me_cmp = c->me_sub_cmp= FF_CMP_SAD;
-		c->mb_cmp= FF_CMP_SSE;
+		c->me_cmp = c->me_sub_cmp = FF_CMP_SAD;
+		c->mb_cmp = FF_CMP_SSE;
 
 		c->last_predictor_count = 3;
 
 		c->flags |= CODEC_FLAG_4MV | CODEC_FLAG_QP_RD;
-
 
 		if(!strcmp(oc->oformat->name, "mp4") || !strcmp(oc->oformat->name, "mov") || !strcmp(oc->oformat->name, "3gp"))
 			c->flags |= CODEC_FLAG_GLOBAL_HEADER;

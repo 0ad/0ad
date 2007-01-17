@@ -196,7 +196,7 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 		// Do per-frame processing:
 
 		vfs_reload_changed_files();
-		
+
 		state.view->Update(state.frameLength);
 
 		state.view->Render();

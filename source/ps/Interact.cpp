@@ -1490,12 +1490,8 @@ void CBuildingPlacer::update( float timeStep )
 	// Set position and angle to the location we decided on
 
 	CMatrix3D m;
-	float s = sin( m_angle );
-	float c = cos( m_angle );
-	m._11 = -c;		m._12 = 0.0f;	m._13 = -s;		m._14 = pos.X;
-	m._21 = 0.0f;	m._22 = 1.0f;	m._23 = 0.0f;	m._24 = pos.Y;
-	m._31 = s;		m._32 = 0.0f;	m._33 = -c;		m._34 = pos.Z;
-	m._41 = 0.0f;	m._42 = 0.0f;	m._43 = 0.0f;	m._44 = 1.0f;
+	m.SetYRotation(m_angle + PI);
+	m.Translate(pos);
 	m_actor->GetModel()->SetTransform( m );
 
 	m_bounds->setPosition(pos.X, pos.Z);
@@ -1508,7 +1504,7 @@ void CBuildingPlacer::update( float timeStep )
 
 	// Check whether the placement location is valid (look at whether we're
 	// on the map, who owns the territory, whether we are on a socket, and 
-	// whether we are coliding with anything).
+	// whether we are colliding with anything).
 	CTerrain *pTerrain=g_Game->GetWorld()->GetTerrain();
 	if( pTerrain->isOnMap( pos.X, pos.Z ) )
 	{
@@ -1526,7 +1522,7 @@ void CBuildingPlacer::update( float timeStep )
 		{
 			// It's valid to place the object here if the position is unobstructed by
 			// anything except possibly our socket (which we find out by passing an
-			// ignoreClass to getCollisionObject); also, if we are a socketted object,
+			// ignoreClass to getCollisionObject); also, if we are a socketed object,
 			// we check that we are actually on a socket, using onSocket (set above).
 			m_valid = ( m_template->m_socket == L"" || onSocket )
 					&& ( getCollisionObject( m_bounds, 0, &m_template->m_socket ) == 0 );

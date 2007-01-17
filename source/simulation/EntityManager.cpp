@@ -47,6 +47,7 @@ void CEntityManager::deleteAllHelper()
 			delete( m_entities[i].m_entity );
 			m_entities[i].m_entity = 0;
 			m_entities[i].m_refcount = 0;
+			m_refd[i] = false;
 		}
 	}
 }
@@ -64,19 +65,26 @@ CEntityManager::~CEntityManager()
 	m_reaper.clear();
 
 	delete[] m_collisionPatches;
-	m_collisionPatches = 0;
+	m_collisionPatches = NULL;
 }
 
 void CEntityManager::deleteAll()
 {
 	m_extant = false;
+	
 	deleteAllHelper();
+	
 	m_nextalloc = 0;
+
+	delete[] m_collisionPatches;
+	m_collisionPatches = NULL;
+
 	m_extant = true;
 }
 
-HEntity CEntityManager::create( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStr8>& actorSelections,
-								const CStrW* building)
+HEntity CEntityManager::create(CEntityTemplate* base, CVector3D position, float orientation,
+							   const std::set<CStr>& actorSelections,
+							   const CStrW* building)
 {
 	debug_assert( base );
 	if( !base )
@@ -123,7 +131,7 @@ HEntity CEntityManager::create( const CStrW& templateName, CPlayer* player, CVec
 	if( !base )
 		return HEntity();
 
-	std::set<CStr8> selections;
+	std::set<CStr> selections;
 
 	HEntity ret = create( base, position, orientation, selections, building );
 	AddEntityClassData(ret);
@@ -137,7 +145,7 @@ HEntity CEntityManager::createFoundation( const CStrW& templateName, CPlayer* pl
 	if( !base )
 		return HEntity();
 
-	std::set<CStr8> selections;
+	std::set<CStr> selections;
 
 	if( base->m_foundation == L"" )
 		return create( base, position, orientation, selections );	// Entity has no foundation, so just create it
@@ -246,6 +254,7 @@ void CEntityManager::InitializeAll()
 	int unitsPerSide = CELL_SIZE * ( terrain->GetVerticesPerSide() - 1 );
 	m_collisionPatchesPerSide = unitsPerSide / COLLISION_PATCH_SIZE + 1;
 
+	debug_assert(! m_collisionPatches);
 	m_collisionPatches = new std::vector<CEntity*>[m_collisionPatchesPerSide * m_collisionPatchesPerSide];
 
 	for( int i = 0; i < MAX_HANDLES; i++ )

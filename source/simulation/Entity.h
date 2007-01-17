@@ -32,7 +32,6 @@
 #include "maths/Vector3D.h"
 #include "EntityOrders.h"
 #include "EntityHandles.h"
-#include "EntityMessage.h"
 #include "ScriptObject.h"
 #include "EntitySupport.h"
 #include "scripting/DOMEvent.h"

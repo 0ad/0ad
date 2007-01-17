@@ -164,7 +164,7 @@ JSBool getEntityTemplate( JSContext* cx, JSObject*, uint argc, jsval* argv, jsva
 	CEntityTemplate* v = g_EntityTemplateCollection.getTemplate( templateName, player );
 	if( !v )
 	{
-		JS_ReportError( cx, "No such template: %s", CStr8(templateName).c_str() );
+		JS_ReportError( cx, "No such template: %s", CStr(templateName).c_str() );
 		return( JS_TRUE );
 	}
 
@@ -1485,10 +1485,9 @@ JSFunctionSpec ScriptFunctionTable[] =
 
 JSBool GetEntitySet( JSContext* UNUSED(cx), JSObject* UNUSED(obj), jsval UNUSED(argv), jsval* vp )
 {
-	std::vector<HEntity>* extant = g_EntityManager.getExtant();
+	std::auto_ptr<std::vector<HEntity> > extant = g_EntityManager.getExtant();
 
 	*vp = OBJECT_TO_JSVAL( EntityCollection::Create( *extant ) );
-	delete( extant );
 
 	return( JS_TRUE );
 }

@@ -11,8 +11,6 @@
 class CStrW;
 class CScriptEvent;
 
-#include "scripting/SpiderMonkey.h"
-
 class CScriptObject
 {
 	JSFunction* Function;

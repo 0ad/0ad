@@ -43,17 +43,26 @@ private:
 	CCamera dummyCamera;
 };
 
+struct SimState;
+
 class ViewGame : public View
 {
 public:
 	ViewGame();
+	virtual ~ViewGame();
 	virtual void Update(float frameLength);
 	virtual void Render();
 	virtual CCamera& GetCamera();
 	virtual CUnit* GetUnit(AtlasMessage::ObjectID id);
 	virtual bool WantsHighFramerate();
 
+	void SetSpeedMultiplier(float speed);
+	void SaveState(const std::wstring& label, bool onlyEntities);
+	void RestoreState(const std::wstring& label);
+
 private:
+	float m_SpeedMultiplier;
+	std::map<std::wstring, SimState*> m_SavedStates;
 };
 
 class ActorViewer;

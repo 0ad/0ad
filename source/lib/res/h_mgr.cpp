@@ -735,10 +735,14 @@ static LibError h_free_idx(i32 idx, HDATA* hd)
 	}
 
 #ifndef NDEBUG
-	char buf[H_STRING_LEN];
-	if(vtbl->to_string(hd->user, buf) < 0)
-		strcpy(buf, "(error)");	// safe
-	debug_printf("H_MGR| free %s %s accesses=%d %s\n", hd->type->name, fn, hd->num_derefs, buf);
+	// to_string is slow for some handles, so avoid calling it if unnecessary
+	if(debug_filter_allows("H_MGR|"))
+	{
+		char buf[H_STRING_LEN];
+		if(vtbl->to_string(hd->user, buf) < 0)
+			strcpy(buf, "(error)");	// safe
+		debug_printf("H_MGR| free %s %s accesses=%d %s\n", hd->type->name, fn, hd->num_derefs, buf);
+	}
 #endif
 
 	fn_free(hd);

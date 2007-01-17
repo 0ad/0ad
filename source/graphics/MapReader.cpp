@@ -268,7 +268,7 @@ int CMapReader::ApplyData()
 			// loaded on demand)
 		}
 
-		std::set<CStr8> selections; // TODO: read from file
+		std::set<CStr> selections; // TODO: read from file
 		CUnit* unit = pUnitMan->CreateUnit(m_ObjectTypes.at(m_Objects[i].m_ObjectIndex), NULL, selections);
 
 		if (unit)
@@ -319,6 +319,7 @@ private:
 	int at_x, at_y, at_z;
 	int at_id;
 	int at_angle;
+	int at_uid;
 
 	XMBElementList nodes; // children of root
 
@@ -368,6 +369,7 @@ void CXMLReader::Init(const CStr& xml_filename)
 	EL(actor);
 	AT(x); AT(y); AT(z);
 	AT(angle);
+	AT(uid);
 #undef AT
 #undef EL
 
@@ -833,24 +835,26 @@ void CXMLReader::ReadTriggerGroup(XMBElement parent, MapTriggerGroup& group)
 
 int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 {
-	int maxID = 0;
 	XMBElementList entities = parent.getChildNodes();
-	
-	//Iterate through and store ID numbers for proper ID addressing for undefined unit ID's
-	while (entity_idx < entities.Count)
-	{
-		XMBElement entity = entities.item(entity_idx++);
-		debug_assert(entity.getNodeName() == el_entity);
-		
-		CStr UnitIDString = CStr( entity.getAttributes().getNamedItem(xmb_file.getAttributeID("uid")) );
-		int UnitID = -1;
-		
-		if ( UnitIDString != "" )
-			UnitID = UnitIDString.ToInt();
-		maxID = std::max(maxID, UnitID);
-	}
 
-	m_MapReader.pUnitMan->SetNextID(maxID + 1);
+	// If this is the first time in ReadEntities, find the next free ID number
+	// in case we need to allocate new ones in the future
+	if (entity_idx == 0)
+	{
+		int maxUnitID = -1;
+
+		XERO_ITER_EL(parent, entity)
+		{
+			debug_assert(entity.getNodeName() == el_entity);
+
+			XMBAttributeList attrs = entity.getAttributes();
+			utf16string uid = attrs.getNamedItem(at_uid);
+			int UnitID = uid.empty() ? -1 : CStr(uid).ToInt();
+			maxUnitID = std::max(maxUnitID, UnitID);
+		}
+
+		m_MapReader.pUnitMan->SetNextID(maxUnitID + 1);
+	}
 
 	while (entity_idx < entities.Count)
 	{
@@ -859,11 +863,10 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 
 		XMBElement entity = entities.item(entity_idx++);
 		debug_assert(entity.getNodeName() == el_entity);
-		
-		CStr UnitIDString = CStr( entity.getAttributes().getNamedItem(xmb_file.getAttributeID("uid")) );
-		int UnitID = -1;
-		if ( UnitIDString != "" )
-			UnitID = UnitIDString.ToInt();
+
+		XMBAttributeList attrs = entity.getAttributes();
+		utf16string uid = attrs.getNamedItem(at_uid);
+		int UnitID = uid.empty() ? -1 : CStr(uid).ToInt();
 
 		CStrW TemplateName;
 		int PlayerID = 0;
@@ -903,12 +906,12 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 				debug_warn("Invalid map XML data");
 		}
 
-		CEntityTemplate* base = g_EntityTemplateCollection.getTemplate( TemplateName, g_Game->GetPlayer(PlayerID) );
+		CEntityTemplate* base = g_EntityTemplateCollection.getTemplate(TemplateName, g_Game->GetPlayer(PlayerID));
 		if (! base)
 			LOG(ERROR, LOG_CATEGORY, "Failed to load entity template '%ls'", TemplateName.c_str());
 		else
 		{
-			std::set<CStr8> selections; // TODO: read from file
+			std::set<CStr> selections; // TODO: read from file
 
 			HEntity ent = g_EntityManager.create(base, Position, Orientation, selections);
 
@@ -919,7 +922,7 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 				ent->m_actor->SetPlayerID(PlayerID);
 				g_EntityManager.AddEntityClassData(ent);
 
-				if ( UnitID < 0 )
+				if (UnitID < 0)
 					ent->m_actor->SetID(m_MapReader.pUnitMan->GetNewID());
 				else
 					ent->m_actor->SetID(UnitID);
@@ -962,7 +965,8 @@ int CXMLReader::ReadNonEntities(XMBElement parent, double end_time)
 			else if (element_name == el_position)
 			{
 				XMBAttributeList attrs = setting.getAttributes();
-				Position = CVector3D(CStr(attrs.getNamedItem(at_x)).ToFloat(),
+				Position = CVector3D(
+					CStr(attrs.getNamedItem(at_x)).ToFloat(),
 					CStr(attrs.getNamedItem(at_y)).ToFloat(),
 					CStr(attrs.getNamedItem(at_z)).ToFloat());
 			}
@@ -976,20 +980,15 @@ int CXMLReader::ReadNonEntities(XMBElement parent, double end_time)
 				debug_warn("Invalid map XML data");
 		}
 
-		std::set<CStr8> selections; // TODO: read from file
+		std::set<CStr> selections; // TODO: read from file
 
 		CUnit* unit = m_MapReader.pUnitMan->CreateUnit(ActorName, NULL, selections);
 
 		if (unit)
 		{
-			// Copied from CEntity::updateActorTransforms():
-			float s = sin(Orientation);
-			float c = cos(Orientation);
 			CMatrix3D m;
-			m._11 = -c;     m._12 = 0.0f;   m._13 = -s;     m._14 = Position.X;
-			m._21 = 0.0f;   m._22 = 1.0f;   m._23 = 0.0f;   m._24 = Position.Y;
-			m._31 = s;      m._32 = 0.0f;   m._33 = -c;     m._34 = Position.Z;
-			m._41 = 0.0f;   m._42 = 0.0f;   m._43 = 0.0f;   m._44 = 1.0f;
+			m.SetYRotation(Orientation + PI);
+			m.Translate(Position);
 			unit->GetModel()->SetTransform(m);
 
 			// TODO: save object IDs in the map file, and load them again,

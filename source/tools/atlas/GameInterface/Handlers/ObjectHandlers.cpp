@@ -239,8 +239,8 @@ END_COMMAND(SetObjectSettings);
 //////////////////////////////////////////////////////////////////////////
 
 
-static CUnit* g_PreviewUnit = NULL;
-static CStrW g_PreviewUnitID;
+static int g_PreviewUnitID = -1;
+static CStrW g_PreviewUnitName;
 static bool g_PreviewUnitFloating;
 
 // Returns roughly the largest number smaller than f (i.e. closer to zero)
@@ -290,15 +290,19 @@ static bool ParseObjectName(const CStrW& obj, bool& isEntity, CStrW& name)
 
 MESSAGEHANDLER(ObjectPreview)
 {
-	if (*msg->id != g_PreviewUnitID)
+	CUnit* previewUnit = GetUnitManager().FindByID(g_PreviewUnitID);
+
+	// Don't recreate the unit unless it's changed
+	if (*msg->id != g_PreviewUnitName)
 	{
 		// Delete old unit
-		if (g_PreviewUnit)
+		if (previewUnit)
 		{
-			GetUnitManager().RemoveUnit(g_PreviewUnit);
-			delete g_PreviewUnit;
-			g_PreviewUnit = NULL;
+			GetUnitManager().DeleteUnit(previewUnit);
+			previewUnit = NULL;
 		}
+
+		g_PreviewUnitID = -1;
 
 		bool isEntity;
 		CStrW name;
@@ -312,22 +316,32 @@ MESSAGEHANDLER(ObjectPreview)
 				CEntityTemplate* base = g_EntityTemplateCollection.getTemplate(name);
 				if (base) // (ignore errors)
 				{
-					g_PreviewUnit = GetUnitManager().CreateUnit(base->m_actorName, NULL, selections);
+					previewUnit = GetUnitManager().CreateUnit(base->m_actorName, NULL, selections);
+					if (previewUnit)
+					{
+						g_PreviewUnitID = GetUnitManager().GetNewID();
+						previewUnit->SetID(g_PreviewUnitID);
+					}
 					g_PreviewUnitFloating = (base->m_anchorType != L"Ground");
 					// TODO: variations
 				}
 			}
 			else
 			{
-				g_PreviewUnit = GetUnitManager().CreateUnit(CStr(name), NULL, selections);
-				g_PreviewUnitFloating = IsFloating(g_PreviewUnit);
+				previewUnit = GetUnitManager().CreateUnit(CStr(name), NULL, selections);
+				if (previewUnit)
+				{
+					g_PreviewUnitID = GetUnitManager().GetNewID();
+					previewUnit->SetID(g_PreviewUnitID);
+				}
+				g_PreviewUnitFloating = IsFloating(previewUnit);
 			}
 		}
 
-		g_PreviewUnitID = *msg->id;
+		g_PreviewUnitName = *msg->id;
 	}
 
-	if (g_PreviewUnit)
+	if (previewUnit)
 	{
 		// Update the unit's position and orientation:
 
@@ -355,10 +369,10 @@ MESSAGEHANDLER(ObjectPreview)
 		m._21 = 0.0f;   m._22 = 1.0f;   m._23 = 0.0f;   m._24 = pos.Y;
 		m._31 = s;      m._32 = 0.0f;   m._33 = -c;     m._34 = pos.Z;
 		m._41 = 0.0f;   m._42 = 0.0f;   m._43 = 0.0f;   m._44 = 1.0f;
-		g_PreviewUnit->GetModel()->SetTransform(m);
+		previewUnit->GetModel()->SetTransform(m);
 
 		// Update the unit's player colour:
-		g_PreviewUnit->SetPlayerID(msg->settings->player);
+		previewUnit->SetPlayerID(msg->settings->player);
 	}
 }
 
@@ -431,6 +445,8 @@ BEGIN_COMMAND(CreateObject)
 
 						if (ent->m_base->m_isTerritoryCentre)
 							g_Game->GetWorld()->GetTerritoryManager()->DelayedRecalculate();
+
+						ent->Initialize();
 					}
 				}
 			}
@@ -700,6 +716,12 @@ BEGIN_COMMAND(DeleteObject)
 			else
 				delete m_UnitInLimbo;
 		}
+
+		// TODO (IMPORTANT): this can crash when interacting with simulation
+		// playing/resetting because the entity gets deleted while we still
+		// think we have a reference to it. This system should probably be
+		// replaced by something like SimState::Entity to safely serialise
+		// units while they're in limbo.
 	}
 
 	void Do()

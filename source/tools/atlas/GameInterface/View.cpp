@@ -8,12 +8,19 @@
 
 #include "graphics/CinemaTrack.h"
 #include "graphics/GameView.h"
+#include "graphics/Model.h"
+#include "graphics/ObjectBase.h"
 #include "graphics/SColor.h"
+#include "graphics/Unit.h"
 #include "graphics/UnitManager.h"
-#include "renderer/Renderer.h"
 #include "ps/Game.h"
 #include "ps/GameSetup/GameSetup.h"
+#include "ps/Player.h"
+#include "renderer/Renderer.h"
+#include "simulation/Entity.h"
 #include "simulation/EntityManager.h"
+#include "simulation/EntityTemplate.h"
+#include "simulation/EntityTemplateCollection.h"
 #include "simulation/Simulation.h"
 
 extern void (*Atlas_GLSwapBuffers)(void* context);
@@ -117,18 +124,66 @@ namespace AtlasMessage
 	extern void AtlasRenderSelection();
 }
 
+struct SimState
+{
+	struct Entity
+	{
+		CStrW templateName;
+		int unitID;
+		std::set<CStr> selections;
+		int playerID;
+		CVector3D position;
+		float angle;
+	};
+
+	struct Nonentity
+	{
+		CStrW actorName;
+		int unitID;
+		std::set<CStr> selections;
+		CVector3D position;
+		float angle;
+	};
+
+	bool onlyEntities;
+	std::vector<Entity> entities;
+	std::vector<Nonentity> nonentities;
+};
+
+template<typename T, typename S>
+static void delete_pair_2nd(std::pair<T,S> v)
+{
+	delete v.second;
+}
+
 ViewGame::ViewGame()
+: m_SpeedMultiplier(0.f)
 {
 	debug_assert(g_Game);
 }
 
+ViewGame::~ViewGame()
+{
+	std::for_each(m_SavedStates.begin(), m_SavedStates.end(), delete_pair_2nd<std::wstring, SimState*>);
+}
+
 void ViewGame::Update(float frameLength)
 {
-	g_EntityManager.updateAll(0);
-	g_Game->GetSimulation()->Update(0.0);
+	if (m_SpeedMultiplier == 0.f)
+	{
+		// TODO: I don't think this line is necessary, but I'm not positive...
+// 		g_EntityManager.updateAll(0);
+		// Update unit interpolation
+		g_Game->GetSimulation()->Update(0.0);
+	}
+	else
+	{
+		// Update the whole world
+		g_Game->Update(m_SpeedMultiplier * frameLength);
 
-	if (g_Game->GetView()->GetCinema()->IsPlaying())
-		g_Game->GetView()->GetCinema()->Update(frameLength);
+		if (g_Game->GetView()->GetCinema()->IsPlaying())
+			g_Game->GetView()->GetCinema()->Update(m_SpeedMultiplier * frameLength);
+	}
 }
 
 void ViewGame::Render()
@@ -159,7 +214,127 @@ bool ViewGame::WantsHighFramerate()
 	if (g_Game->GetView()->GetCinema()->IsPlaying())
 		return true;
 
+	if (m_SpeedMultiplier != 0.f)
+		return true;
+
 	return false;
+}
+
+void ViewGame::SetSpeedMultiplier(float speed)
+{
+	m_SpeedMultiplier = speed;
+}
+
+void ViewGame::SaveState(const std::wstring& label, bool onlyEntities)
+{
+	SimState* simState = new SimState();
+	simState->onlyEntities = onlyEntities;
+
+	CUnitManager& unitMan = g_Game->GetWorld()->GetUnitManager();
+	const std::vector<CUnit*>& units = unitMan.GetUnits();
+
+	for (std::vector<CUnit*>::const_iterator unit = units.begin(); unit != units.end(); ++unit)
+	{
+		CEntity* entity = (*unit)->GetEntity();
+
+		// Ignore objects that aren't entities
+		if (! entity)
+			continue;
+
+		SimState::Entity e;
+		e.templateName = entity->m_base->m_Tag;
+		e.unitID = (*unit)->GetID();
+		e.selections = (*unit)->GetActorSelections();
+		e.playerID = entity->GetPlayer()->GetPlayerID();
+		e.position = entity->m_position;
+		e.angle = entity->m_orientation.Y;
+
+		// TODO: preserve random actor variations
+		// TODO: preserve IDs
+
+		simState->entities.push_back(e);
+	}
+
+	if (! onlyEntities)
+	{
+		for (std::vector<CUnit*>::const_iterator unit = units.begin(); unit != units.end(); ++unit) {
+
+			// Ignore objects that are entities
+			if ((*unit)->GetEntity())
+				continue;
+
+			SimState::Nonentity n;
+			n.actorName = (*unit)->GetObject()->m_Base->m_Name;
+			n.unitID = (*unit)->GetID();
+			n.selections = (*unit)->GetActorSelections();
+			n.position = (*unit)->GetModel()->GetTransform().GetTranslation();
+			CVector3D orient = (*unit)->GetModel()->GetTransform().GetIn();
+			n.angle = atan2(-orient.X, -orient.Z);
+
+			simState->nonentities.push_back(n);
+		}
+	}
+
+	delete m_SavedStates[label]; // in case it already exists
+	m_SavedStates[label] = simState;
+}
+
+void ViewGame::RestoreState(const std::wstring& label)
+{
+	SimState* simState = m_SavedStates[label];
+	if (! simState)
+		return;
+
+	CUnitManager& unitMan = g_Game->GetWorld()->GetUnitManager();
+
+	// delete all existing entities
+	g_EntityManager.deleteAll();
+
+	if (! simState->onlyEntities)
+	{
+		// delete all remaining non-entity units
+		unitMan.DeleteAll();
+		// don't reset the unitID counter - there's no need, since it'll work alright anyway
+	}
+
+	for (size_t i = 0; i < simState->entities.size(); ++i)
+	{
+		SimState::Entity& e = simState->entities[i];
+
+		CEntityTemplate* base = g_EntityTemplateCollection.getTemplate(e.templateName, g_Game->GetPlayer(e.playerID));
+		if (base)
+		{
+			HEntity ent = g_EntityManager.create(base, e.position, e.angle, e.selections);
+
+			if (ent)
+			{
+				ent->m_actor->SetPlayerID(e.playerID);
+				ent->m_actor->SetID(e.unitID);
+			}
+		}
+	}
+
+	g_EntityManager.InitializeAll();
+
+	if (simState->onlyEntities)
+		return;
+
+	for (size_t i = 0; i < simState->nonentities.size(); ++i)
+	{
+		SimState::Nonentity& n = simState->nonentities[i];
+
+		CUnit* unit = unitMan.CreateUnit(n.actorName, NULL, n.selections);
+
+		if (unit)
+		{
+ 			CMatrix3D m;
+			m.SetYRotation(n.angle + PI);
+			m.Translate(n.position);
+			unit->GetModel()->SetTransform(m);
+
+			unit->SetID(n.unitID);
+		}
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////

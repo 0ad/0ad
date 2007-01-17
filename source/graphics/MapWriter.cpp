@@ -263,10 +263,11 @@ void CMapWriter::WriteXML(const char* filename,
 			}
 		}
 
+		const std::vector<CUnit*>& units = pUnitMan->GetUnits();
+
 		{
 			XML_Element("Entities");
 
-			const std::vector<CUnit*>& units = pUnitMan->GetUnits();
 			for (std::vector<CUnit*>::const_iterator unit = units.begin(); unit != units.end(); ++unit)
 			{
 
@@ -302,7 +303,6 @@ void CMapWriter::WriteXML(const char* filename,
 		{
 			XML_Element("Nonentities");
 
-			const std::vector<CUnit*>& units = pUnitMan->GetUnits();
 			for (std::vector<CUnit*>::const_iterator unit = units.begin(); unit != units.end(); ++unit) {
 
 				// Ignore objects that are entities
@@ -331,6 +331,7 @@ void CMapWriter::WriteXML(const char* filename,
 				}
 			}
 		}
+
 		const std::map<CStrW, CCinemaTrack>& tracks = pCinema->GetAllTracks();
 		std::map<CStrW, CCinemaTrack>::const_iterator it = tracks.begin();
 		

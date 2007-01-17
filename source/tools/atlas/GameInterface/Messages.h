@@ -39,6 +39,21 @@ MESSAGE(SetViewParamC,
 
 //////////////////////////////////////////////////////////////////////////
 
+MESSAGE(SimStateSave,
+		((std::wstring, label)) // named slot to store saved data
+		((bool, onlyentities)) // if true, ignore nonentities
+		);
+
+MESSAGE(SimStateRestore,
+		((std::wstring, label)) // named slot to find saved data
+		);
+
+MESSAGE(SimPlay,
+		((float, speed)) // 0 for pause, 1 for normal speed
+		);
+
+//////////////////////////////////////////////////////////////////////////
+
 QUERY(Ping, , );
 
 //////////////////////////////////////////////////////////////////////////

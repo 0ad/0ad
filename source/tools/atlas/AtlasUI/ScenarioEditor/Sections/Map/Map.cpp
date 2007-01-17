@@ -12,22 +12,43 @@
 enum
 {
 	ID_GenerateMap,
-	ID_GenerateRMS
+	ID_GenerateRMS,
+	ID_SimPlay,
+	ID_SimPause,
+	ID_SimReset
+};
+
+enum
+{
+	SimInactive,
+	SimPlaying,
+	SimPaused
 };
 
 MapSidebar::MapSidebar(wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
-	: Sidebar(sidebarContainer, bottomBarContainer)
+	: Sidebar(sidebarContainer, bottomBarContainer), m_SimState(SimInactive)
 {
 	// TODO: Less ugliness
 	// TODO: Intercept arrow keys and send them to the GL window
 
 	m_MainSizer->Add(new wxButton(this, ID_GenerateMap, _("Generate empty map")));
 
-	wxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
-	m_MainSizer->Add(sizer);
-	m_RMSText = new wxTextCtrl(this, wxID_ANY, _T("cantabrian_highlands"));
-	sizer->Add(m_RMSText);
-	sizer->Add(new wxButton(this, ID_GenerateRMS, _("Generate RMS")));
+	{
+		wxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
+		m_RMSText = new wxTextCtrl(this, wxID_ANY, _T("cantabrian_highlands"));
+		sizer->Add(m_RMSText);
+		sizer->Add(new wxButton(this, ID_GenerateRMS, _("Generate RMS")));
+		m_MainSizer->Add(sizer);
+	}
+
+	{
+		wxStaticBoxSizer* sizer = new wxStaticBoxSizer(wxHORIZONTAL, this, _("Simulation test"));
+		sizer->Add(new wxButton(this, ID_SimPlay, _("Play")), wxSizerFlags().Proportion(1));
+		sizer->Add(new wxButton(this, ID_SimPause, _("Pause")), wxSizerFlags().Proportion(1));
+		sizer->Add(new wxButton(this, ID_SimReset, _("Reset")), wxSizerFlags().Proportion(1));
+		UpdateSimButtons();
+		m_MainSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 16));
+	}
 }
 
 void MapSidebar::GenerateMap(wxCommandEvent& WXUNUSED(event))
@@ -49,7 +70,69 @@ void MapSidebar::GenerateRMS(wxCommandEvent& WXUNUSED(event))
 	POST_MESSAGE(LoadMap, (L"_atlasrm.pmp"));
 }
 
+void MapSidebar::UpdateSimButtons()
+{
+	wxButton* button;
+
+	button = wxDynamicCast(FindWindow(ID_SimPlay), wxButton);
+	wxCHECK(button, );
+	button->Enable(m_SimState != SimPlaying);
+
+	button = wxDynamicCast(FindWindow(ID_SimPause), wxButton);
+	wxCHECK(button, );
+	button->Enable(m_SimState == SimPlaying);
+
+	button = wxDynamicCast(FindWindow(ID_SimReset), wxButton);
+	wxCHECK(button, );
+	button->Enable(m_SimState != SimInactive);
+}
+
+void MapSidebar::OnSimPlay(wxCommandEvent& WXUNUSED(event))
+{
+	if (m_SimState == SimInactive)
+	{
+		POST_MESSAGE(SimStateSave, (L"default", true));
+		POST_MESSAGE(SimPlay, (1.f));
+		m_SimState = SimPlaying;
+	}
+	else if (m_SimState == SimPaused)
+	{
+		POST_MESSAGE(SimPlay, (1.f));
+		m_SimState = SimPlaying;
+	}
+	UpdateSimButtons();
+}
+
+void MapSidebar::OnSimPause(wxCommandEvent& WXUNUSED(event))
+{
+	if (m_SimState == SimPlaying)
+	{
+		POST_MESSAGE(SimPlay, (0.f));
+		m_SimState = SimPaused;
+	}
+	UpdateSimButtons();
+}
+
+void MapSidebar::OnSimReset(wxCommandEvent& WXUNUSED(event))
+{
+	if (m_SimState == SimPlaying)
+	{
+		POST_MESSAGE(SimPlay, (0.f));
+		POST_MESSAGE(SimStateRestore, (L"default"));
+		m_SimState = SimInactive;
+	}
+	else if (m_SimState == SimPaused)
+	{
+		POST_MESSAGE(SimStateRestore, (L"default"));
+		m_SimState = SimInactive;
+	}
+	UpdateSimButtons();
+}
+
 BEGIN_EVENT_TABLE(MapSidebar, Sidebar)
 	EVT_BUTTON(ID_GenerateMap, MapSidebar::GenerateMap)
 	EVT_BUTTON(ID_GenerateRMS, MapSidebar::GenerateRMS)
+	EVT_BUTTON(ID_SimPlay, MapSidebar::OnSimPlay)
+	EVT_BUTTON(ID_SimPause, MapSidebar::OnSimPause)
+	EVT_BUTTON(ID_SimReset, MapSidebar::OnSimReset)
 END_EVENT_TABLE();
