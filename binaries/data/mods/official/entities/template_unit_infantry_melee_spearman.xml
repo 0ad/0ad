@@ -23,20 +23,22 @@
 				<Metal>25</Metal>
  			</Resource>
 		</Creation>
-		
-	</Traits>
-	
 		<Armour>
 			<Hack>0.0</Hack>
 			<Pierce>20.0</Pierce>
 			<Crush>5.0</Crush>
-		</Armour>
+		</Armour>		
+	</Traits>
+	
+
 
 	<Actions>
  		<Attack>
- 			<Hack>0.0</Hack>
- 			<Pierce>20.0</Pierce>
- 			<Crush>10.0</Crush>
+			<Melee>
+ 				<Hack>0.0</Hack>
+ 				<Pierce>20.0</Pierce>
+ 				<Crush>10.0</Crush>
+			</Melee>
  		</Attack>
 	</Actions>
 

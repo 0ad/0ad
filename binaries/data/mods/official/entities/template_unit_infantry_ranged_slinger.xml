@@ -23,21 +23,23 @@
 				<Stone>20</Stone>
  			</Resource>
 		</Creation>
-		
-	</Traits>
-
-
 		<Armour>
 			<Hack>0.0</Hack>
 			<Pierce>10.0</Pierce>
 			<Crush>20.0</Crush>
-		</Armour>
+		</Armour>		
+	</Traits>
+
+
+
 
 	<Actions>
  		<Attack>
- 			<Hack>0.0</Hack>
- 			<Pierce>0.0</Pierce>
- 			<Crush>20.0</Crush>
+			<Ranged>
+ 				<Hack>0.0</Hack>
+ 				<Pierce>0.0</Pierce>
+ 				<Crush>20.0</Crush>
+			</Ranged>
  		</Attack>
 	</Actions>
 	

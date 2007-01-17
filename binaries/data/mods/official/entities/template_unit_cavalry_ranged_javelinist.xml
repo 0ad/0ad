@@ -22,20 +22,22 @@
 				<Wood>25</Wood>
  			</Resource>
 		</Creation>
-		
-	</Traits>
-
 		<Armour>
 			<Hack>0.0</Hack>
 			<Pierce>50.0</Pierce>
 			<Crush>0.0</Crush>
 		</Armour>
+	</Traits>
+
+
 
 	<Actions>
  		<Attack>
- 			<Hack>0.0</Hack>
- 			<Pierce>50.0</Pierce>
- 			<Crush>10.0</Crush>
+			<Ranged>
+ 				<Hack>0.0</Hack>
+ 				<Pierce>50.0</Pierce>
+ 				<Crush>10.0</Crush>
+			</Ranged>
  		</Attack>
 	</Actions>
 	

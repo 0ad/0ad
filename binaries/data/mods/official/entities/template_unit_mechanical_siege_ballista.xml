@@ -20,19 +20,22 @@
 				<Metal>100</Metal>
  			</Resource>
 		</Creation>
-	</Traits>
-	
 		<Armour>
 			<Hack>120.0</Hack>
 			<Pierce>150.0</Pierce>
 			<Crush>60.0</Crush>
 		</Armour>
+	</Traits>
+	
+
 
 	<Actions>
  		<Attack>
- 			<Hack>0.0</Hack>
- 			<Pierce>150.0</Pierce>
- 			<Crush>20.0</Crush>
+			<Ranged>
+ 				<Hack>0.0</Hack>
+ 				<Pierce>150.0</Pierce>
+ 				<Crush>20.0</Crush>
+			</Ranged>
  		</Attack>
 	</Actions>
 
