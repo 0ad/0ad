@@ -553,54 +553,66 @@ const wchar_t* debug_error_message_build(
 	wchar_t* buf = alloc_mem(emm->alloca_buf, emm->alloca_buf_size, emm->heap_mem, max_chars);
 	if(!buf)
 		return L"(insufficient memory to generate error message)";
+	wchar_t* pos = buf; size_t chars_left = max_chars; int len;
 
-	char description_buf[100] = {'?'};
-	LibError errno_equiv = LibError_from_errno(false);
-	if(errno_equiv != ERR::FAIL)	// meaningful translation
-		error_description_r(errno_equiv, description_buf, ARRAY_SIZE(description_buf));
-
-	char os_error[100];
-	if(sys_error_description_r(0, os_error, ARRAY_SIZE(os_error)) != INFO::OK)
-		strcpy_s(os_error, ARRAY_SIZE(os_error), "?");
-
-	static const wchar_t fmt[] =
+	// header
+	len = swprintf(pos, chars_left,
 		L"%ls\r\n"
 		L"Location: %hs:%d (%hs)\r\n"
-		L"errno = %d (%hs)\r\n"
-		L"OS error = %hs\r\n"
 		L"\r\n"
 		L"Call stack:\r\n"
-		L"\r\n";
-	int len = swprintf(buf,max_chars,fmt,
-		description,
-		fn_only, line, func,
-		errno, description_buf,
-		os_error
-	);
-	if(len < 0)
-		return L"(error while formatting error message)";
+		L"\r\n",
+		description, fn_only, line, func);
+	if(len < 0) goto fail; pos += len; chars_left -= len;
 
-	// add stack trace to end of message
-	wchar_t* pos = buf+len; const size_t chars_left = max_chars-len;
+	// append stack trace
 	if(!context)
 		skip += 2;	// skip debug_error_message_build and debug_display_error
 	LibError ret = debug_dump_stack(pos, chars_left, skip, context);
 	if(ret == ERR::REENTERED)
 	{
-		wcscpy_s(pos, chars_left,
+		len = swprintf(pos, chars_left,
 			L"(cannot start a nested stack trace; what probably happened is that "
 			L"an debug_assert/debug_warn/CHECK_ERR fired during the current trace.)"
 		);
+		if(len < 0) goto fail; pos += len; chars_left -= len;
 	}
 	else if(ret != INFO::OK)
 	{
-		swprintf(pos, chars_left,
+		char description_buf[100] = {'?'};
+		len = swprintf(pos, chars_left,
 			L"(error while dumping stack: %hs)",
 			error_description_r(ret, description_buf, ARRAY_SIZE(description_buf))
 		);
+		if(len < 0) goto fail; pos += len; chars_left -= len;
+	}
+	else	// success
+	{
+		len = (int)wcslen(buf);
+		pos = buf+len; chars_left = max_chars-len;
 	}
 
+	// append OS error (just in case it happens to be relevant -
+	// it's usually still set from unrelated operations)
+	char description_buf[100] = {'?'};
+	LibError errno_equiv = LibError_from_errno(false);
+	if(errno_equiv != ERR::FAIL)	// meaningful translation
+		error_description_r(errno_equiv, description_buf, ARRAY_SIZE(description_buf));
+	char os_error[100];
+	if(sys_error_description_r(0, os_error, ARRAY_SIZE(os_error)) != INFO::OK)
+		strcpy_s(os_error, ARRAY_SIZE(os_error), "?");
+	len = swprintf(pos, chars_left,
+		L"\r\n"
+		L"errno = %d (%hs)\r\n"
+		L"OS error = %hs\r\n",
+		errno, description_buf, os_error
+	);
+	if(len < 0) goto fail; pos += len; chars_left -= len;
+
 	return buf;
+
+fail:
+	return L"(error while formatting error message)";
 }
 
 static ErrorReaction call_display_error(const wchar_t* text, uint flags)

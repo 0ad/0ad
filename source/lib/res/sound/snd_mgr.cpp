@@ -1070,12 +1070,16 @@ if(sd->o) ogg_release(sd->o);
 #endif
 }
 
+// note: try not call this until SndData_reload is known to have succeeded.
+// came up in topic#10719, "Problem freeing sounds loaded by JavaScript".
+// irrespective of the h_force_free problem documented in hsd_free_all, we
+// do not want to pollute hsd_list with handles that end up being freed
+// (e.g. the handle was established in preparation for loading from file,
+// but that load failed).
 static void hsd_list_add(Handle hsd);
 
 static LibError SndData_reload(SndData * sd, const char * fn, Handle hsd)
 {
-	hsd_list_add(hsd);
-
 	//
 	// detect sound format by checking file extension
 	//
@@ -1123,7 +1127,9 @@ static LibError SndData_reload(SndData * sd, const char * fn, Handle hsd)
 			WARN_RETURN(ERR::NOT_SUPPORTED);
 
 		RETURN_ERR(stream_open(&sd->s, fn));
+
 		sd->is_valid = 1;
+		hsd_list_add(hsd);
 		return INFO::OK;
 	}
 
@@ -1164,11 +1170,12 @@ else
 }
 #endif
 
-	sd->al_buf = al_buf_alloc(al_data, al_size, sd->al_fmt, sd->al_freq);
-	sd->is_valid = 1;
-
 	(void)file_buf_free(file);
 
+	sd->al_buf = al_buf_alloc(al_data, al_size, sd->al_fmt, sd->al_freq);
+
+	sd->is_valid = 1;
+	hsd_list_add(hsd);
 	return INFO::OK;
 }
 
@@ -1280,6 +1287,19 @@ static void hsd_list_free_all()
 		// freed (list_free_all would free the source; it then releases
 		// its SndData reference, which closes the instance because it's
 		// RES_UNIQUE).
+		//
+		// NB: re-initializing the sound library (e.g. after changing
+		// HW settings) requires all handles to be freed, even if cached.
+		// hence, we use h_force_free. unfortunately this causes the
+		// handle's tag to be ignored. it is conceivable that the wrong
+		// handle could be freed here.
+		//
+		// we rule this out with the following argument. either we're
+		// called when re-initializing sound or at exit. in the former
+		// case, h_force_free does check the handle type: only sounds are
+		// ever freed. we don't care if the wrong one is closed since all
+		// must be stomped upon. in the latter case, it definitely doesn't
+		// matter what we free. hence, no problem.
 	}
 
 	// leave its memory intact, so we don't have to reallocate it later
