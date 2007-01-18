@@ -102,6 +102,11 @@ CUnit* ActorViewer::GetUnit()
 	return m.Unit;
 }
 
+void ActorViewer::UnloadObjects()
+{
+	m.ObjectManager.UnloadObjects();
+}
+
 void ActorViewer::SetActor(const CStrW& id, const CStrW& animation)
 {
 	bool needsAnimReload = false;

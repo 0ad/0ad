@@ -13,6 +13,7 @@ public:
 	~ActorViewer();
 
 	void SetActor(const CStrW& id, const CStrW& animation);
+	void UnloadObjects();
 	CUnit* GetUnit();
 	void SetBackgroundColour(const SColor4ub& colour);
 	void SetWalkEnabled(bool enabled);
