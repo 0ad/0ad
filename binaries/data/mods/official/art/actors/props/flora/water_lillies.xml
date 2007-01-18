@@ -6,14 +6,17 @@
   <float/>
 
   <group>
-    <variant>
+    <variant name="mesh">
       <mesh>gaia/water_lillies.pmd</mesh>
     </variant>
   </group>
 
   <group>
-    <variant>
+    <variant name="lillies-a">
       <texture>gaia/water_lillies.dds</texture>
+    </variant>
+    <variant name="lillies-b">
+      <texture>gaia/water_lillies_b.dds</texture>
     </variant>
   </group>
 

@@ -4,19 +4,19 @@
   <castshadow/>
 
   <group>
-    <variant name="a">
+    <variant name="cattails-a">
       <mesh>gaia/cross_large_short.pmd</mesh>
     </variant>
-    <variant name="b">
+    <variant name="cattails-b">
       <mesh>gaia/cross_large_tall.pmd</mesh>
     </variant>
-    <variant name="c">
+    <variant name="cattails-c">
       <mesh>gaia/cross_angledfromtop.pmd</mesh>
     </variant>
   </group>
 
   <group>
-    <variant>
+    <variant name="texture: reeds_pond_lush_b">
       <texture>gaia/reeds_pond_lush_b.dds</texture>
     </variant>
   </group>
