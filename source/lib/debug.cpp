@@ -563,13 +563,17 @@ const wchar_t* debug_error_message_build(
 		L"Call stack:\r\n"
 		L"\r\n",
 		description, fn_only, line, func);
-	if(len < 0) goto fail; pos += len; chars_left -= len;
+	if(len < 0)
+	{
+fail:
+		return L"(error while formatting error message)";
+	}
+	pos += len; chars_left -= len;
 
 	// append stack trace
 	if(!context)
 		skip += 2;	// skip debug_error_message_build and debug_display_error
-	LibError ret;
-	ret = debug_dump_stack(pos, chars_left, skip, context);
+	LibError ret = debug_dump_stack(pos, chars_left, skip, context);
 	if(ret == ERR::REENTERED)
 	{
 		len = swprintf(pos, chars_left,
@@ -595,10 +599,8 @@ const wchar_t* debug_error_message_build(
 
 	// append OS error (just in case it happens to be relevant -
 	// it's usually still set from unrelated operations)
-	char description_buf[100];
-	strcpy(description_buf, "?"); // can't use an initialiser in the declaration, because goto is not allowed to jump over them
-	LibError errno_equiv;
-	errno_equiv = LibError_from_errno(false);
+	char description_buf[100] = { '?' };
+	LibError errno_equiv = LibError_from_errno(false);
 	if(errno_equiv != ERR::FAIL)	// meaningful translation
 		error_description_r(errno_equiv, description_buf, ARRAY_SIZE(description_buf));
 	char os_error[100];
@@ -613,9 +615,6 @@ const wchar_t* debug_error_message_build(
 	if(len < 0) goto fail; pos += len; chars_left -= len;
 
 	return buf;
-
-fail:
-	return L"(error while formatting error message)";
 }
 
 static ErrorReaction call_display_error(const wchar_t* text, uint flags)
