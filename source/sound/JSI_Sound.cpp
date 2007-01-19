@@ -24,7 +24,7 @@ JSI_Sound::JSI_Sound(const CStr& Filename)
 	// report errors, since we're in the ctor and don't want to move
 	// the open call elsewhere (by requiring an explicit open() call).
 	if (m_Handle < 0)
-		throw std::exception("sound load failed"); // caught by JSI_Sound::Construct.
+		throw std::exception(); // caught by JSI_Sound::Construct.
 
 	snd_set_pos(m_Handle, 0,0,0, true);
 }
