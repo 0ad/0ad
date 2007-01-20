@@ -566,8 +566,10 @@ function performAttack( evt )
 {
 	this.lastCombatTime = getGameTime();
 	
-	var curr_hit = getGUIGlobal().newRandomSound("voice", "hit", this.traits.audio.path);
-	curr_hit.play();
+	if(getGUIGlobal().newRandomSound) {
+		var curr_hit = getGUIGlobal().newRandomSound("voice", "hit", this.traits.audio.path);
+		curr_hit.play();
+	}
 
 	// Attack logic.
 	var dmg = new DamageType();
@@ -970,8 +972,11 @@ function damage( dmg, inflictor )
 		// Make him cry out in pain.
 		if (this.traits.audio && this.traits.audio.path)
 		{
-			curr_pain = getGUIGlobal().newRandomSound("voice", "pain", this.traits.audio.path);
-			if (curr_pain) curr_pain.play();
+			if(getGUIGlobal().newRandomSound) {
+				curr_pain = getGUIGlobal().newRandomSound(
+					"voice", "pain", this.traits.audio.path);
+				if (curr_pain) curr_pain.play();
+			}
 		}
 		else
 		{
