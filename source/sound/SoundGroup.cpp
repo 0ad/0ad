@@ -77,9 +77,9 @@ void CSoundGroup::PlayNext()
 
 			//check for randomization of pitch and gain
 			if(TestFlag(eRandPitch))
-				snd_set_pitch(snd_group[m_index], (float)((rand(m_PitchLower * 100.0f, m_PitchUpper * 100.0f) / 100.0f))); 
+				snd_set_pitch(m_hReplacement, (float)((rand(m_PitchLower * 100.0f, m_PitchUpper * 100.0f) / 100.0f))); 
 			if(TestFlag(eRandGain))
-				snd_set_gain(snd_group[m_index], (float)((rand(m_GainLower * 100.0f, m_GainUpper * 100.0f) / 100.0f)));	
+				snd_set_gain(m_hReplacement, (float)((rand(m_GainLower * 100.0f, m_GainUpper * 100.0f) / 100.0f)));	
 		
 			snd_play(m_hReplacement, m_Priority);
 			
