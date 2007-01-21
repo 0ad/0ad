@@ -14,23 +14,18 @@
       </animations>
       <colour>0 0 0</colour>
       <mesh>skeletal/horse.pmd</mesh>
+      <props>
+        <prop actor="units/hellenes/alexander_r.xml" attachpoint="rider"/>
+      </props>
     </variant>
   </group>
 
   <group>
     <variant frequency="1" name="horse-texture">
-      <props>
-        <prop actor="units/hellenes/alexander_r.xml" attachpoint="rider"/>
-        <prop actor="props/units/horse/hele_saddle_h1.xml" attachpoint="chest"/>
-        <prop actor="props/units/horse/hele_saddle_fr1.xml" attachpoint="fr_quarter"/>
-        <prop actor="props/units/horse/hele_saddle_fl1.xml" attachpoint="fl_quarter"/>
-        <prop actor="props/units/horse/hele_saddle_rr1.xml" attachpoint="rr_quarter"/>
-        <prop actor="props/units/horse/hele_saddle_rl1.xml" attachpoint="rl_quarter"/>
-      </props>
-      <texture>skeletal/horse_hele_h.dds</texture>
+      <texture>skeletal/horse_hele_alex.dds</texture>
     </variant>
   </group>
 
-  <material>objectcolor.xml</material>
+  <material>player_trans.xml</material>
 
 </actor>
