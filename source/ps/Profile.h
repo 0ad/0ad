@@ -14,7 +14,6 @@
 #include <vector>
 #include "Singleton.h"
 #include "scripting/ScriptableObject.h"
-#include "lib/timer.h"
 
 
 #define PROFILE_AMORTIZE
@@ -29,6 +28,7 @@ class CProfileNode : public CJSObject<CProfileNode, true>
 	friend class CProfileNodeTable;
 	
 	const char* name;
+
 	int calls_total;
 	int calls_frame_current;
 #ifdef PROFILE_AMORTIZE
@@ -38,6 +38,7 @@ class CProfileNode : public CJSObject<CProfileNode, true>
 #else
 	int calls_frame_last;
 #endif
+
 	double time_total;
 	double time_frame_current;
 #ifdef PROFILE_AMORTIZE
@@ -48,7 +49,12 @@ class CProfileNode : public CJSObject<CProfileNode, true>
 	double time_frame_last;
 #endif
 
+	long mallocs_total;
+	long mallocs_frame_current;
+	long mallocs_frame_last;
+
 	double start;
+	long start_mallocs;
 	int recursion;
 
 	CProfileNode* parent;
@@ -74,6 +80,7 @@ public:
 	int GetFrameCalls() const { return( calls_frame_last ); }
 	double GetFrameTime() const { return( time_frame_last ); }
 #endif
+	long GetFrameMallocs() const { return( mallocs_frame_last ); }
 
 	const CProfileNode* GetChild( const char* name ) const;
 	const CProfileNode* GetScriptChild( const char* name ) const;

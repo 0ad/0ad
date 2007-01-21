@@ -11,6 +11,7 @@
 #include "ps/Game.h"
 #include "maths/MathUtil.h"
 #include "Entity.h"
+#include "lib/timer.h"
 
 int AURA_CIRCLE_POINTS;
 int SELECTION_CIRCLE_POINTS;

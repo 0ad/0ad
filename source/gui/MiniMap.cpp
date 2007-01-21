@@ -13,6 +13,7 @@
 #include "graphics/UnitManager.h"
 #include "lib/ogl.h"
 #include "lib/sdl.h"
+#include "lib/timer.h"
 #include "network/NetMessage.h"
 #include "ps/Game.h"
 #include "ps/Interact.h"

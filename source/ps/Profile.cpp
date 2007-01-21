@@ -13,7 +13,7 @@
 
 #include "Profile.h"
 #include "ProfileViewer.h"
-
+#include "lib/timer.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // CProfileNodeTable
@@ -57,6 +57,7 @@ private:
 			columns.push_back(ProfileColumn("msec/frame", 100));
 			columns.push_back(ProfileColumn("%/frame", 100));
 			columns.push_back(ProfileColumn("%/parent", 100));
+			columns.push_back(ProfileColumn("mem allocs", 100));
 		}
 	};
 	
@@ -115,7 +116,7 @@ CStr CProfileNodeTable::GetCellText(size_t row, size_t col)
 	CProfileNode* child;
 	size_t nrchildren = node->GetChildren()->size();
 	size_t nrscriptchildren = node->GetScriptChildren()->size();
-	char buf[256];
+	char buf[256] = "?";
 	
 	if (row < nrchildren)
 		child = (*node->GetChildren())[row];
@@ -132,19 +133,28 @@ CStr CProfileNodeTable::GetCellText(size_t row, size_t col)
 			return "";
 		
 		float unlogged = node->GetFrameTime();
+		long unlogged_mallocs = node->GetFrameMallocs();
 		CProfileNode::const_profile_iterator it;
 
-		for(it = node->GetChildren()->begin(); it != node->GetChildren()->end(); ++it)
+		for (it = node->GetChildren()->begin(); it != node->GetChildren()->end(); ++it)
+		{
 			unlogged -= (*it)->GetFrameTime();
-		for(it = node->GetScriptChildren()->begin(); it != node->GetScriptChildren()->end(); ++it)
+			unlogged_mallocs -= (*it)->GetFrameMallocs();
+		}
+		for (it = node->GetScriptChildren()->begin(); it != node->GetScriptChildren()->end(); ++it)
+		{
 			unlogged -= (*it)->GetFrameTime();
+			unlogged_mallocs -= (*it)->GetFrameMallocs();
+		}
 		
 		if (col == 2)
 			snprintf(buf, sizeof(buf), "%.3f", unlogged * 1000.0f);
 		else if (col == 3)
 			snprintf(buf, sizeof(buf), "%.1f", unlogged / g_Profiler.GetRoot()->GetFrameTime());
-		else
+		else if (col == 4)
 			snprintf(buf, sizeof(buf), "%.1f", unlogged * 100.0f / g_Profiler.GetRoot()->GetFrameTime());
+		else if (col == 5)
+			snprintf(buf, sizeof(buf), "%d", unlogged_mallocs);
 		buf[sizeof(buf)-1] = '\0';
 		
 		return CStr(buf);
@@ -171,6 +181,9 @@ CStr CProfileNodeTable::GetCellText(size_t row, size_t col)
 		break;
 	case 4:
 		snprintf(buf, sizeof(buf), "%.1f", child->GetFrameTime() * 100.0 / node->GetFrameTime());
+		break;
+	case 5:
+		snprintf(buf, sizeof(buf), "%d", child->GetFrameMallocs());
 		break;
 	}
 	buf[sizeof(buf)-1] = '\0';
@@ -215,28 +228,9 @@ CProfileNode::CProfileNode( const char* _name, CProfileNode* _parent )
 {
 	name = _name;
 	recursion = 0;
-	calls_total = 0;
-	calls_frame_current = 0;
-#ifdef PROFILE_AMORTIZE
-	int i;
-	for( i = 0; i < PROFILE_AMORTIZE_FRAMES; i++ )
-	{
-		calls_frame_buffer[i] = 0;
-		time_frame_buffer[i] = 0.0;
-	}
-	calls_frame_last = calls_frame_buffer;
-	calls_frame_amortized = 0.0f;
-#else
-	calls_frame_last = 0;
-#endif
-	time_total = 0.0;
-	time_frame_current = 0.0;
-#ifdef PROFILE_AMORTIZE
-	time_frame_last = time_frame_buffer;
-	time_frame_amortized = 0.0;
-#else
-	time_frame_last = 0.0;
-#endif
+
+	Reset();
+
 	parent = _parent;
 
 	display_table = new CProfileNodeTable(this);
@@ -320,6 +314,7 @@ void CProfileNode::Reset()
 #else
 	calls_frame_last = 0;
 #endif
+
 	time_total = 0.0;
 	time_frame_current = 0.0;
 #ifdef PROFILE_AMORTIZE
@@ -328,7 +323,11 @@ void CProfileNode::Reset()
 #else
 	time_frame_last = 0.0;
 #endif
-	
+
+	mallocs_total = 0;
+	mallocs_frame_current = 0;
+	mallocs_frame_last = 0;
+
 	profile_iterator it;
 	for( it = children.begin(); it != children.end(); it++ )
 		(*it)->Reset();
@@ -340,6 +339,7 @@ void CProfileNode::Frame()
 {
 	calls_total += calls_frame_current;
 	time_total += time_frame_current;
+	mallocs_total += mallocs_frame_current;
 
 #ifdef PROFILE_AMORTIZE
 	calls_frame_amortized -= *calls_frame_last;
@@ -356,9 +356,11 @@ void CProfileNode::Frame()
 	calls_frame_last = calls_frame_current;
 	time_frame_last = time_frame_current;
 #endif
+	mallocs_frame_last = mallocs_frame_current;
 
 	calls_frame_current = 0;
 	time_frame_current = 0.0;
+	mallocs_frame_current = 0;
 	
 	profile_iterator it;
 	for( it = children.begin(); it != children.end(); it++ )
@@ -367,11 +369,30 @@ void CProfileNode::Frame()
 		(*it)->Frame();
 }
 
+static long get_memory_alloc_count()
+{
+#if HAVE_VC_DEBUG_ALLOC
+	static long bias = 0; // so we can subtract the allocations caused by this function
+	void* p = malloc(1);
+	long requestNumber = 0;
+	int ok = _CrtIsMemoryBlock(p, 1, &requestNumber, NULL, NULL);
+	UNUSED2(ok);
+	free(p);
+	++bias;
+	return requestNumber - bias;
+#else
+	return 0;
+#endif
+}
+
 void CProfileNode::Call()
 {
 	calls_frame_current++;
 	if( recursion++ == 0 )
+	{
 		start = get_time();
+		start_mallocs = get_memory_alloc_count();
+	}
 }
 
 bool CProfileNode::Return()
@@ -379,7 +400,10 @@ bool CProfileNode::Return()
 	if( !parent ) return( false );
 
 	if( ( --recursion == 0 ) && ( calls_frame_current != 0 ) )
+	{
 		time_frame_current += ( get_time() - start );
+		mallocs_frame_current += ( get_memory_alloc_count() - start_mallocs );
+	}
 	return( recursion == 0 );
 }
 

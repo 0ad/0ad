@@ -7,6 +7,17 @@
 
 #include <algorithm>
 
+namespace
+{
+	// Avoid creating strings at runtime
+#define ACTION(n) \
+	const char n##Name[] = "on" #n; \
+	utf16string n##Name16(n##Name, n##Name + ARRAY_SIZE(n##Name)-1)
+	ACTION(Enter);
+	ACTION(Exit);
+	ACTION(Tick);
+}
+
 CAura::CAura( JSContext* cx, CEntity* source, CStrW& name, float radius, size_t tickRate, const CVector4D& color, JSObject* handler )
 		: m_cx(cx), m_source(source), m_name(name), m_radius(radius), m_handler(handler),
 		m_tickRate(tickRate), m_tickCyclePos(0), m_color(color)
@@ -26,6 +37,9 @@ void CAura::Update( size_t timestep )
 	g_EntityManager.GetInRange( pos.X, pos.Z, m_radius, inRange );
 
 	std::vector<CEntity*> prevInfluenced, curInfluenced, entered, exited;
+
+	prevInfluenced.reserve(m_influenced.size());
+	curInfluenced.reserve(m_influenced.size());
 
 	for( std::vector<HEntity>::iterator it = m_influenced.begin(); it != m_influenced.end(); it++ )
 	{
@@ -55,10 +69,8 @@ void CAura::Update( size_t timestep )
 	jsval argv[1];
 
 	// Call onEnter on any new unit that has entered the aura
-	CStrW enterName = L"onEnter";
 	jsval enterFunction;
-	utf16string enterName16 = enterName.utf16();
-	if( JS_GetUCProperty( m_cx, m_handler, enterName16.c_str(), enterName16.length(), &enterFunction )
+	if( JS_GetUCProperty( m_cx, m_handler, EnterName16.c_str(), EnterName16.length(), &enterFunction )
 		&& enterFunction != JSVAL_VOID)
 	{
 		std::back_insert_iterator<std::vector<CEntity*> > ins( entered );
@@ -74,10 +86,8 @@ void CAura::Update( size_t timestep )
 	}
 	
 	// Call onExit on any unit that has exited the aura
-	CStrW exitName = L"onExit";
 	jsval exitFunction;
-	utf16string exitName16 = exitName.utf16();
-	if( JS_GetUCProperty( m_cx, m_handler, exitName16.c_str(), exitName16.length(), &exitFunction )
+	if( JS_GetUCProperty( m_cx, m_handler, ExitName16.c_str(), ExitName16.length(), &exitFunction )
 		&& exitFunction != JSVAL_VOID )
 	{
 		std::back_insert_iterator<std::vector<CEntity*> > ins( exited );
@@ -97,10 +107,8 @@ void CAura::Update( size_t timestep )
 	if( m_tickRate > 0 && m_tickCyclePos > m_tickRate )
 	{
 		// It's time to tick; call OnTick on any unit that is in the aura
-		CStrW tickName = L"onTick";
 		jsval tickFunction;
-		utf16string tickName16 = tickName.utf16();
-		if( JS_GetUCProperty( m_cx, m_handler, tickName16.c_str(), tickName16.length(), &tickFunction )
+		if( JS_GetUCProperty( m_cx, m_handler, TickName16.c_str(), TickName16.length(), &tickFunction )
 			&& tickFunction != JSVAL_VOID )
 		{
 			for( std::vector<CEntity*>::iterator it = curInfluenced.begin(); it != curInfluenced.end(); it++ )
@@ -119,10 +127,8 @@ void CAura::RemoveAll()
 {
 	jsval rval;
 	jsval argv[1];
-	CStrW exitName = L"onExit";
 	jsval exitFunction;
-	utf16string exitName16 = exitName.utf16();
-	if( JS_GetUCProperty( m_cx, m_handler, exitName16.c_str(), exitName16.length(), &exitFunction )
+	if( JS_GetUCProperty( m_cx, m_handler, ExitName16.c_str(), ExitName16.length(), &exitFunction )
 		&& exitFunction != JSVAL_VOID )
 	{
 		// Call the exit function on everything in our influence
@@ -144,10 +150,8 @@ void CAura::Remove( CEntity* ent )
 {
 	jsval rval;
 	jsval argv[1];
-	CStrW exitName = L"onExit";
 	jsval exitFunction;
-	utf16string exitName16 = exitName.utf16();
-	if( JS_GetUCProperty( m_cx, m_handler, exitName16.c_str(), exitName16.length(), &exitFunction )
+	if( JS_GetUCProperty( m_cx, m_handler, ExitName16.c_str(), ExitName16.length(), &exitFunction )
 		&& exitFunction != JSVAL_VOID )
 	{
 		// Call the exit function on it
