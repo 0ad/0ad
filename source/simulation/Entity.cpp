@@ -328,7 +328,7 @@ void CEntity::update( size_t timestep )
 
 	m_position_previous = m_position;
 	m_orientation_previous = m_orientation;
-	
+
 	CalculateRegen( timestep );
 
 	if ( entf_get(ENTF_TRIGGER_RUN) )
@@ -658,7 +658,7 @@ void UpdateAuras_Normal( SAura& aura, CEntity* e )
 			return( false );
 		return( true );
 	}
-
+}
 #endif
 
 bool CEntity::Initialize()
@@ -689,11 +689,13 @@ bool CEntity::Initialize()
 	return true;
 }
 
+/*
 void CEntity::Tick()
 {
 	CEventTick evt;
 	DispatchEvent( &evt );
 }
+*/
 
 void CEntity::clearOrders()
 {
@@ -868,6 +870,8 @@ void CEntity::interpolate( float relativeoffset )
 {
 	CVector3D old_graphics_position = m_graphics_position;
 	CVector3D old_graphics_orientation = m_graphics_orientation;
+
+	relativeoffset = clamp( relativeoffset, 0.f, 1.f );
 
 	m_graphics_position = Interpolate<CVector3D>( m_position_previous, m_position, relativeoffset );
 

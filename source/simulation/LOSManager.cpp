@@ -118,7 +118,7 @@ void CLOSManager::Update()
 
 	// Set visibility for each entity
 	std::vector<CEntity*> extant;
-	g_Game->GetWorld()->GetEntityManager()->GetExtant(extant);
+	g_EntityManager.GetExtant(extant);
 	for(size_t i=0; i<extant.size(); i++) 
 	{
 		CEntity* e = extant[i];

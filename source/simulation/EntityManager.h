@@ -20,24 +20,21 @@
 
 #include <set>
 
-#include "ps/Singleton.h"
 #include "EntityHandles.h"
-#include "EntityPredicate.h"
-#include "EntityMessage.h"
 #include "ps/Game.h"
 #include "ps/World.h"
-#include "maths/Vector3D.h"
 
 class CEntityTemplate;
 class CPlayer;
 class CStrW;
+class CVector3D;
 
 #define MAX_HANDLES 4096
 
 // collision patch size, in graphics units, not tiles (1 tile = 4 units)
 #define COLLISION_PATCH_SIZE 8
 
-#define g_EntityManager (*(g_Game->GetWorld()->GetEntityManager()))
+#define g_EntityManager g_Game->GetWorld()->GetEntityManager()
 
 class CEntityManager
 {
@@ -92,7 +89,7 @@ public:
 	void updateAll( size_t timestep );
 	void interpolateAll( float relativeoffset );
 	void InitializeAll();
-	void TickAll();
+// 	void TickAll();
 	void renderAll();
 	void conformAll();
 	void invalidateAll();

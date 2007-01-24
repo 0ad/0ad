@@ -10,9 +10,12 @@
 #include "graphics/GameView.h"
 #include "graphics/Model.h"
 #include "graphics/ObjectBase.h"
+#include "graphics/ObjectEntry.h"
 #include "graphics/SColor.h"
 #include "graphics/Unit.h"
 #include "graphics/UnitManager.h"
+#include "lib/timer.h"
+#include "maths/MathUtil.h"
 #include "ps/Game.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/Player.h"
@@ -169,20 +172,36 @@ ViewGame::~ViewGame()
 
 void ViewGame::Update(float frameLength)
 {
+	float actualFrameLength = frameLength * m_SpeedMultiplier;
+
 	if (m_SpeedMultiplier == 0.f)
 	{
-		// TODO: I don't think this line is necessary, but I'm not positive...
-// 		g_EntityManager.updateAll(0);
 		// Update unit interpolation
-		g_Game->GetSimulation()->Update(0.0);
+		g_Game->GetSimulation()->Interpolate(0.0);
 	}
 	else
 	{
 		// Update the whole world
-		g_Game->Update(m_SpeedMultiplier * frameLength);
+		// (Tell the game update not to interpolate graphics - we'll do that
+		// ourselves)
+		bool ok = g_Game->Update(actualFrameLength, false);
+		if (! ok)
+		{
+			// Whoops, we're trying to go faster than the simulation can manage.
+			// It's probably better to run at the right sim rate, at the expense
+			// of framerate, so let's try simulating a few more times.
+			double t = get_time();
+			while (!ok && get_time() < t + 0.1) // don't go much worse than 10fps
+			{
+				ok = g_Game->Update(0.0, false); // don't add on any extra sim time
+			}
+		}
+		// Interpolate the graphics - we only want to do it once per visual frame,
+		// not in every call to g_Game->Update
+		g_Game->GetSimulation()->Interpolate(actualFrameLength);
 
 		if (g_Game->GetView()->GetCinema()->IsPlaying())
-			g_Game->GetView()->GetCinema()->Update(m_SpeedMultiplier * frameLength);
+			g_Game->GetView()->GetCinema()->Update(actualFrameLength);
 	}
 }
 
@@ -316,23 +335,23 @@ void ViewGame::RestoreState(const std::wstring& label)
 
 	g_EntityManager.InitializeAll();
 
-	if (simState->onlyEntities)
-		return;
-
-	for (size_t i = 0; i < simState->nonentities.size(); ++i)
+	if (! simState->onlyEntities)
 	{
-		SimState::Nonentity& n = simState->nonentities[i];
-
-		CUnit* unit = unitMan.CreateUnit(n.actorName, NULL, n.selections);
-
-		if (unit)
+		for (size_t i = 0; i < simState->nonentities.size(); ++i)
 		{
- 			CMatrix3D m;
-			m.SetYRotation(n.angle + PI);
-			m.Translate(n.position);
-			unit->GetModel()->SetTransform(m);
+			SimState::Nonentity& n = simState->nonentities[i];
 
-			unit->SetID(n.unitID);
+			CUnit* unit = unitMan.CreateUnit(n.actorName, NULL, n.selections);
+
+			if (unit)
+			{
+				CMatrix3D m;
+				m.SetYRotation(n.angle + PI);
+				m.Translate(n.position);
+				unit->GetModel()->SetTransform(m);
+
+				unit->SetID(n.unitID);
+			}
 		}
 	}
 }

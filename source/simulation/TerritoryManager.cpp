@@ -12,6 +12,7 @@
 #include "lib/ogl.h"
 #include "lib/timer.h"
 #include "maths/Bound.h"
+#include "maths/MathUtil.h"
 #include "ps/Game.h"
 #include "ps/Player.h"
 #include "ps/Profile.h"

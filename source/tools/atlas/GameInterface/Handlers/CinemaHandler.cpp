@@ -9,6 +9,7 @@
 #include "ps/CStr.h"
 #include "ps/CLogger.h"
 #include "ps/VFSUtil.h"
+#include "maths/MathUtil.h"
 #include "maths/Quaternion.h"
 #include "lib/res/graphics/ogl_tex.h"
 

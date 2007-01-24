@@ -272,12 +272,14 @@ void CEntityManager::InitializeAll()
 	}
 }
 
+/*
 void CEntityManager::TickAll()
 {
 	for( int i = 0; i < MAX_HANDLES; i++ )
 		if( isEntityRefd(i) && m_entities[i].m_entity->m_extant )
 			m_entities[i].m_entity->Tick();
 }
+*/
 
 void CEntityManager::updateAll( size_t timestep )
 {

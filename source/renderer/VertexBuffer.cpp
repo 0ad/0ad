@@ -49,14 +49,19 @@ CVertexBuffer::CVertexBuffer(size_t vertexSize,bool dynamic)
 		// (and copy all old VBOs into there, because it needs to be
 		// consistent).
 
-		glGetError(); // clear the error state
+		// (PT: Disabled the VBOFailed test because it's not very useful at the
+		// moment (it'll just cause the program to terminate, and I don't think
+		// it has ever helped to discover any problems, and a later oglCheck()
+		// will tell us if there were any VBO issues anyway), and so it's a
+		// waste of time to call glGetError so frequently.)
+		// glGetError(); // clear the error state
 
 		pglGenBuffersARB(1,&m_Handle);
 		pglBindBufferARB(GL_ARRAY_BUFFER_ARB,m_Handle);
-		if (glGetError() != GL_NO_ERROR) throw PSERROR_Renderer_VBOFailed();
+		// if (glGetError() != GL_NO_ERROR) throw PSERROR_Renderer_VBOFailed();
 
 		pglBufferDataARB(GL_ARRAY_BUFFER_ARB,size,0,m_Dynamic ? GL_DYNAMIC_DRAW_ARB : GL_STATIC_DRAW_ARB);
-		if (glGetError() != GL_NO_ERROR) throw PSERROR_Renderer_VBOFailed();
+		// if (glGetError() != GL_NO_ERROR) throw PSERROR_Renderer_VBOFailed();
 
 	} else {
 		m_SysMem=new u8[size];
@@ -198,10 +203,10 @@ void CVertexBuffer::UpdateChunkVertices(VBChunk* chunk,void* data)
 {
 	if (g_Renderer.m_Caps.m_VBO) {
 		debug_assert(m_Handle);
-		glGetError(); // clear the error state
+		// glGetError(); // clear the error state
 		pglBindBufferARB(GL_ARRAY_BUFFER_ARB,m_Handle);
 		pglBufferSubDataARB(GL_ARRAY_BUFFER_ARB,chunk->m_Index*m_VertexSize,chunk->m_Count*m_VertexSize,data);
-		if (glGetError() != GL_NO_ERROR) throw PSERROR_Renderer_VBOFailed();
+		// if (glGetError() != GL_NO_ERROR) throw PSERROR_Renderer_VBOFailed();
 	} else {
 		debug_assert(m_SysMem);
 		memcpy2(m_SysMem+chunk->m_Index*m_VertexSize,data,chunk->m_Count*m_VertexSize);

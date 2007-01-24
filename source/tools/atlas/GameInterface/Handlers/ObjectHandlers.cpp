@@ -574,7 +574,11 @@ BEGIN_COMMAND(MoveObject)
 
 		if (unit->GetEntity())
 		{
+			// Set the current position, and also set the previous position so
+			// CEntity::interpolate puts the entity in the right place (without
+			// having to call CEntity::update before it'll look right)
 			unit->GetEntity()->m_position = pos;
+			unit->GetEntity()->m_position_previous = pos;
 
 			if (unit->GetEntity()->m_base->m_isTerritoryCentre)
 				g_Game->GetWorld()->GetTerritoryManager()->DelayedRecalculate();

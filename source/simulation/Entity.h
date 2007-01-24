@@ -140,8 +140,8 @@ public:
 
 	int m_frameCheck;	//counts the frame
 
-	float m_lastCombatTime;
-	float m_lastRunTime;
+	double m_lastCombatTime;
+	double m_lastRunTime;
 
 	// Building to convert to if this is a foundation, or "" otherwise
 	CStrW m_building;
@@ -256,7 +256,9 @@ public:
 
 	// Updates gameplay information for the specified timestep
 	void update( size_t timestep_millis );
-	// Updates graphical information for a point between the last and current simulation frame; 0 < relativeoffset < 1.
+	// Updates graphical information for a point between the last and current
+	// simulation frame; should be 0 <= relativeoffset <= 1 (else it'll be
+	// clamped)
 	void interpolate( float relativeoffset );
 
 	// Forces update of actor information during next call to 'interpolate'.
@@ -274,7 +276,7 @@ public:
 	void initAuraData();
 
 	// Process tick.
-	void Tick();
+// 	void Tick(); // (see comment in CEntityManager::updateAll)
 
 	// Calculate distances along the terrain
 

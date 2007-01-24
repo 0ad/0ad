@@ -18,7 +18,6 @@
 #define BASE_ENTITY_INCLUDED
 
 #include "ps/CStr.h"
-#include "graphics/ObjectEntry.h"
 
 #include "scripting/ScriptableComplex.h"
 #include "scripting/DOMEvent.h"

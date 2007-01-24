@@ -21,11 +21,13 @@ public:
 	CEventDeath() : CScriptEvent( L"death", EVENT_DEATH, false ) {}
 };
 
+/*
 class CEventTick : public CScriptEvent
 {
 public:
 	CEventTick() : CScriptEvent( L"tick", EVENT_TICK, false ) {}
 };
+*/
 
 class CEventGeneric : public CScriptEvent
 {

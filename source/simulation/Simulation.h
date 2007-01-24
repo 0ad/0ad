@@ -39,10 +39,13 @@ public:
 	void RegisterInit(CGameAttributes *pGameAttributes);
 	int Initialize(CGameAttributes *pGameAttributes);
 
-	// Perform all CSimulation updates for the specified elapsed time.
-	// (If frameTime=0, no simulation updates are done, but the graphics
-	// are interpolated.)
-	void Update(double frameTime);
+	// Perform simulation updates for the specified elapsed time. If it is
+	// shorter than the time until the next simulation turn, nothing happens.
+	// Returns false if it can't keep up with the desired simulation rate.
+	bool Update(double frameTime);
+
+	// Update the graphical representations of the simulation by the given time.
+	void Interpolate(double frameTime);
 
 	// Calculate the message mask of a message to be queued
 	static uint GetMessageMask(CNetMessage *, uint oldMask, void *userdata);

@@ -7,13 +7,13 @@
 #ifndef ENTITYFORMATION_INCLUDED
 #define ENTITYFORMATION_INCLUDED
 
-#include "Formation.h"
 #include "ps/Vector2D.h"
 
 class CVector2D;
 class CEntity;
 struct CEntityList;
 class CClassSet;
+class CFormation;
 
 class CEntityFormation
 {
@@ -24,7 +24,7 @@ public:
 
 	int GetEntityCount() { return m_numEntities; }
 	float GetSpeed() { return m_speed; }
-	int GetSlotCount() { return m_base->m_numSlots; }
+	int GetSlotCount();
 
 	CEntityList GetEntityList();
 	CVector2D GetSlotPosition( int order );
@@ -38,7 +38,7 @@ public:
 	inline bool IsDuplication() { return m_duplication; }
 	inline void SetLock( bool lock ){ m_locked=lock; }
 	inline bool IsLocked() { return m_locked; }
-	inline bool IsValidOrder(int order) { return ( order >= 0 && order < m_base->m_numSlots ); }
+	inline bool IsValidOrder(int order) { return ( order >= 0 && order < GetSlotCount() ); }
 
 private:
 	int m_numEntities;

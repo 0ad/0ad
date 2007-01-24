@@ -8,6 +8,8 @@ use File::Remote;
 use XML::Atom::SimpleFeed;
 use Data::UUID;
 
+my $feed_url = 'http://www.wildfiregames.com/~philip/svnlog.xml';
+
 sub doupdate : Local
 {
 	my ($self, $c) = @_;
@@ -110,7 +112,7 @@ sub generate_text
 {
 	my @logentries = SVNLog::Model::CDBI::Logentry->recent(7);
 	
-	my $out = '';
+	my $out = qq{<a href="$feed_url"><img alt="Atom feed" title="Subscribe to feed of revision log (Atom 1.0 format)" src="/images/feed-icon-16x16.png" style="float: right"></a>};
 	for (@logentries)
 	{
 		my ($revision, $author, $date, $msg) = ($_->revision, $_->author, $_->date, $_->public_msg);
@@ -143,7 +145,7 @@ sub generate_feed
 	my $feed = new XML::Atom::SimpleFeed(
 		title => "0 A.D. Revision Log",
 		link => "http://www.wildfiregames.com/0ad/",
-		link => { rel => 'self', href => 'http://www.wildfiregames.com/~philip/svnlog.xml' },
+		link => { rel => 'self', href => $feed_url },
 		id => "urn:uuid:" . $uid_gen->create_from_name_str('WFG SVN feed', 'feed'),
 	);
 

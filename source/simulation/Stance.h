@@ -1,7 +1,6 @@
 #ifndef __STANCE_H__
 #define __STANCE_H__
 
-#include "EntityHandles.h"
 #include "ps/Vector2D.h"
 
 class CEntity;

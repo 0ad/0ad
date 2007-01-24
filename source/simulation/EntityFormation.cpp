@@ -26,6 +26,7 @@ CEntityFormation::CEntityFormation( CFormation*& base, size_t index )
 
 	m_index = (int)index;
 }
+
 CEntityFormation::~CEntityFormation()
 {
 	for ( int i=0; i<m_base->m_numSlots; ++i )
@@ -38,6 +39,12 @@ CEntityFormation::~CEntityFormation()
 		}
 	}
 }
+
+int CEntityFormation::GetSlotCount()
+{
+	return m_base->m_numSlots;
+}
+
 void CEntityFormation::SwitchBase( CFormation*& base )
 {
 	std::vector<CEntity*> copy;

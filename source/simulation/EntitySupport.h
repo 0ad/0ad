@@ -5,10 +5,6 @@
 
 #include "ps/CStr.h"
 
-#include "EntityHandles.h"
-
-class CEntityManager;
-
 struct SEntityAction
 {
 	int m_Id;
@@ -33,11 +29,11 @@ class CClassSet
 public:
 	CClassSet() : m_Parent(NULL) {}
 
-	bool IsMember( const CStrW& Test );
+	bool IsMember(const CStrW& Test);
 	
 	void Rebuild();
 
-	inline void SetParent( CClassSet* Parent )
+	inline void SetParent(CClassSet* Parent)
 		{ m_Parent = Parent; Rebuild(); }
 
 	CStrW getMemberList();

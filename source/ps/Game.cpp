@@ -157,27 +157,30 @@ PSRETURN CGame::StartGame(CGameAttributes *pAttribs)
 	return 0;
 }
 
-void CGame::Update(double deltaTime)
+bool CGame::Update(double deltaTime, bool doInterpolate)
 {
-	if( m_Paused )
-	{
-		return;
-	}
+	if (m_Paused)
+		return true;
+
 	deltaTime *= m_SimRate;
 	m_Time += deltaTime;
 	
-	m_Simulation->Update(deltaTime);
+	bool ok = m_Simulation->Update(deltaTime);
+	if (doInterpolate)
+		m_Simulation->Interpolate(deltaTime);
 	
 	// TODO Detect game over and bring up the summary screen or something
 	// ^ Quick game over hack is implemented, no summary screen however
-	if ( m_World->GetEntityManager()->GetDeath() )
+	if (m_World->GetEntityManager().GetDeath())
 	{
 		UpdateGameStatus();
 		if (GameStatus != 0)
 			EndGame();
 	}
 	//reset death event flag
-	m_World->GetEntityManager()->SetDeath(false);
+	m_World->GetEntityManager().SetDeath(false);
+
+	return ok;
 }
 
 void CGame::UpdateGameStatus()
@@ -188,7 +191,7 @@ void CGame::UpdateGameStatus()
 
 	for (int i=0; i<MAX_HANDLES; i++)
 	{	
-		CHandle *handle = m_World->GetEntityManager()->getHandle(i);
+		CHandle *handle = m_World->GetEntityManager().getHandle(i);
 		if ( !handle )
 			continue;
 		CPlayer *tmpPlayer = handle->m_entity->GetPlayer();

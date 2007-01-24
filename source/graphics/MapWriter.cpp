@@ -9,6 +9,7 @@
 #include "MapWriter.h"
 #include "Model.h"
 #include "ObjectBase.h"
+#include "ObjectEntry.h"
 #include "ObjectManager.h"
 #include "Patch.h"
 #include "Terrain.h"
@@ -571,5 +572,3 @@ void CMapWriter::RewriteAllMaps(CTerrain* pTerrain, CUnitManager* pUnitMan,
 		writer.SaveMap(n, pTerrain, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema);
 	}
 }
-
-		

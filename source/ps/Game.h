@@ -2,7 +2,6 @@
 #define _ps_Game_H
 
 #include "ps/Errors.h"
-#include "maths/MathUtil.h"
 #include <vector>
 
 class CWorld;
@@ -28,7 +27,7 @@ class CGame
 
 	bool m_GameStarted;
 
-	float m_Time;
+	double m_Time; // needs to be double to get enough precision
 	float m_SimRate;
 
 	enum EOG
@@ -58,7 +57,14 @@ public:
 	/*
 		Perform all per-frame updates
 	*/
-	void Update(double deltaTime);
+
+	// Returns false if it can't keep up with the desired simulation rate
+	// (indicating that you might want to render less frequently, or something).
+	// TODO: doInterpolate is optional because Atlas interpolates explicitly,
+	// so that it has more control over the update rate. The game might want to
+	// do the same, and then doInterpolate should be redundant and removed.
+	bool Update(double deltaTime, bool doInterpolate = true);
+
 	void UpdateGameStatus();
 	void EndGame();
 
@@ -90,11 +96,11 @@ public:
 	inline CSimulation *GetSimulation()
 	{	return m_Simulation; }
 	
-	inline float GetTime()
+	inline double GetTime()
 	{	return m_Time; }
 
 	inline void SetSimRate(float simRate)
-	{	 m_SimRate=clamp(simRate, 0.0f, simRate); }
+	{	 m_SimRate = std::max(simRate, 0.0f); }
 	inline float GetSimRate()
 	{	return m_SimRate;  }
 

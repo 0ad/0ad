@@ -14,7 +14,6 @@
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"
 
-#include "simulation/EntityManager.h"
 #include "simulation/Entity.h"
 
 #include "TerrainProperties.h"

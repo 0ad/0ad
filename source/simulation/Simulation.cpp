@@ -2,33 +2,30 @@
 
 #include <vector>
 
-#include "EntityFormation.h"
-#include "EntityManager.h"
-#include "LOSManager.h"
-#include "Projectile.h"
-#include "Scheduler.h"
-#include "Simulation.h"
-#include "TurnManager.h"
 #include "graphics/Model.h"
 #include "graphics/Terrain.h"
 #include "graphics/Unit.h"
 #include "graphics/UnitManager.h"
-#include "lib/timer.h"
+#include "maths/MathUtil.h"
+#include "network/NetMessage.h"
 #include "ps/CLogger.h"
 #include "ps/Game.h"
 #include "ps/GameAttributes.h"
 #include "ps/Loader.h"
 #include "ps/LoaderThunks.h"
-#include "network/NetMessage.h"
 #include "ps/Profile.h"
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"
 #include "simulation/Entity.h"
-#include "simulation/LOSManager.h"
-#include "simulation/TerritoryManager.h"
+#include "simulation/EntityFormation.h"
+#include "simulation/EntityManager.h"
 #include "simulation/EntityTemplateCollection.h"
-
-#include "gui/CGUI.h"
+#include "simulation/LOSManager.h"
+#include "simulation/Projectile.h"
+#include "simulation/Scheduler.h"
+#include "simulation/Simulation.h"
+#include "simulation/TerritoryManager.h"
+#include "simulation/TurnManager.h"
 
 CSimulation::CSimulation(CGame *pGame):
 	m_pGame(pGame),
@@ -75,39 +72,59 @@ void CSimulation::RegisterInit(CGameAttributes *pAttribs)
 
 
 
-void CSimulation::Update(double frameTime)
+bool CSimulation::Update(double frameTime)
 {
+	bool ok = true;
+
 	m_DeltaTime += frameTime;
 	
-	if( m_DeltaTime >= 0.0 && frameTime )
+	if (m_DeltaTime >= 0.0)
 	{
-		PROFILE( "simulation turn" );
 		// A new simulation frame is required.
-		MICROLOG( L"calculate simulation" );
+
+		PROFILE( "simulation turn" );
 		Simulate();
-		m_DeltaTime -= (m_pTurnManager->GetTurnLength()/1000.0);
-		if( m_DeltaTime >= 0.0 )
+		double turnLength = m_pTurnManager->GetTurnLength() / 1000.0;
+		m_DeltaTime -= turnLength;
+		if (m_DeltaTime >= 0.0)
 		{
-			// The desired sim frame rate can't be achieved. Settle for process & render
-			// frames as fast as possible.
-			frameTime -= m_DeltaTime; // so the animation stays in sync with the sim
-			m_DeltaTime = 0.0;
+			// The desired sim frame rate can't be achieved - we're being called
+			// with average(frameTime) > turnLength.
+			// Let the caller know we can't go fast enough - they should try
+			// cutting down on Interpolate and rendering, and call us a few times
+			// with frameTime == 0 to give us a chance to catch up.
+			ok = false;
 		}
 	}
 
-	PROFILE_START( "simulation interpolation" );
-	Interpolate(frameTime, ((1000.0*m_DeltaTime) / (float)m_pTurnManager->GetTurnLength()) + 1.0);
-	PROFILE_END( "simulation interpolation" );
+	return ok;
+}
+
+void CSimulation::Interpolate(double frameTime)
+{
+	double turnLength = m_pTurnManager->GetTurnLength()/1000.0;
+
+	// 'offset' should be how far we are between the previous and next
+	// simulation frames.
+	// m_DeltaTime/turnLength will usually be between -1 and 0, indicating
+	// the time until the next frame, so we can use that easily.
+	// If the simulation is going too slowly and hasn't been giving a chance
+	// to catch up before Interpolate is called, then m_DeltaTime > 0, and
+	// we'll just end up being clamped to offset=1 inside CEntity::interpolate,
+	// which is alright.
+	Interpolate(frameTime, m_DeltaTime / turnLength + 1.0);
 }
 
 void CSimulation::Interpolate(double frameTime, double offset)
 {
-	const std::vector<CUnit*>& units=m_pWorld->GetUnitManager().GetUnits();
-	for (uint i=0;i<units.size();++i)
+	PROFILE( "simulation interpolation" );
+
+	const std::vector<CUnit*>& units = m_pWorld->GetUnitManager().GetUnits();
+	for (size_t i = 0; i < units.size(); ++i)
 		units[i]->GetModel()->Update((float)frameTime);
 
-	g_EntityManager.interpolateAll( (float)offset );
-	m_pWorld->GetProjectileManager().InterpolateAll( (float)offset );
+	g_EntityManager.interpolateAll(offset);
+	m_pWorld->GetProjectileManager().InterpolateAll(frameTime);
 	g_Renderer.GetWaterManager()->m_WaterTexTimer += frameTime;
 }
 
