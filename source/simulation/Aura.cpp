@@ -135,6 +135,9 @@ void CAura::RemoveAll()
 	m_influenced.clear();
 }
 
+// Remove an entity from the aura, but does not remove the aura from its
+// m_aurasInfluencingMe. (Used when the entity is asking to be removed from
+// the aura and will clear its own m_aurasInfluencingMe list afterwards).
 void CAura::Remove( CEntity* ent )
 {
 	jsval rval;

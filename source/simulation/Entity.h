@@ -268,8 +268,14 @@ public:
 	// Updates auras
 	void UpdateAuras( size_t timestep_millis );
 
+	// Exit auras we're currently in (useful for example when we change state)
+	void ExitAuras();
+
 	// Removes entity from the gameworld and deallocates it, but not necessarily immediately.
-	void kill();
+	// The keepActor parameter specifies whether to remove the unit's actor immediately (for
+	// units we want removed immediately, e.g. in Atkas) or to keep it and play the death
+	// animation (for units that die of "natural causes").
+	void kill(bool keepActor = false);
 
 	// Process initialization
 	bool Initialize();

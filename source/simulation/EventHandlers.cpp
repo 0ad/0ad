@@ -88,17 +88,25 @@ CEventPrepareOrder::CEventPrepareOrder( CEntity* target, int orderType, int acti
 	AddLocalProperty( L"notifySource", &m_notifySource );
 }
 
-CEventOrderTransition::CEventOrderTransition( int orderPrevious, int orderCurrent, CEntity*& target, CVector3D& worldPosition ) 
+CEventOrderTransition::CEventOrderTransition( int orderPrevious, int orderCurrent, CEntity* target, CVector3D& worldPosition ) 
 	: CScriptEvent( L"orderTransition", EVENT_ORDER_TRANSITION, true )
 {
 	m_orderPrevious = orderPrevious;
 	m_orderCurrent = orderCurrent;
-	m_target = &target;
-	m_worldPosition = &worldPosition;
+
+	if(target) {
+		m_target = target->me;
+	}
+	else {
+		m_target = HEntity();
+	}
+
+	m_worldPosition = worldPosition;
+
 	AddLocalProperty( L"orderPrevious", &m_orderPrevious, true );
 	AddLocalProperty( L"orderCurrent", &m_orderCurrent );
-	AddLocalProperty( L"target", m_target );
-	AddLocalProperty( L"position", m_worldPosition );
+	AddLocalProperty( L"target", &m_target );
+	AddLocalProperty( L"position", &m_worldPosition );
 }
 CEventNotification::CEventNotification( CEntityOrder order, int notifyType ) : CScriptEvent( L"notification", EVENT_NOTIFICATION, true )
 {

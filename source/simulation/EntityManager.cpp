@@ -350,8 +350,9 @@ void CEntityManager::destroy( u16 handle )
 	m_reaper.push_back( m_entities[handle].m_entity );
 	
 	//Remove trigger-helper data
-	size_t playerID = (size_t)m_entities[m_nextalloc].m_entity->GetPlayer()->GetPlayerID();
-	CStrW className, classList = m_entities[m_nextalloc].m_entity->m_classes.getMemberList();
+	CEntity* ent = m_entities[handle].m_entity;
+	size_t playerID = (size_t)ent->GetPlayer()->GetPlayerID();
+	CStrW className, classList = ent->m_classes.getMemberList();
 
 	while ( (className = classList.BeforeFirst(L" ")) != classList )
 	{
@@ -360,7 +361,7 @@ void CEntityManager::destroy( u16 handle )
 	}
 	--m_entityClassData[playerID][className];
 
-	m_entities[handle].m_entity->me.m_handle = INVALID_HANDLE;
+	ent->me.m_handle = INVALID_HANDLE;
 }
 
 bool CEntityManager::m_extant = false;

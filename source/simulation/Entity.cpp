@@ -140,6 +140,7 @@ CEntity::~CEntity()
 	entf_set(ENTF_DESTROY_NOTIFIERS);
 	for ( size_t i=0; i<m_listeners.size(); i++ )
 		m_listeners[i].m_sender->DestroyNotifier( this );
+	m_listeners.clear();
 	DestroyAllNotifiers();
 
 	CEntity* remove = this;
@@ -188,16 +189,14 @@ void CEntity::loadBase()
 	}
 
 	// Re-enter all our auras so they can take into account our new traits
-	for( AuraSet::iterator it = m_aurasInfluencingMe.begin(); it != m_aurasInfluencingMe.end(); it++ )
-	{
-		(*it)->Remove( this );
-	}
+	ExitAuras();
 
 	// Resize sectors array	
 	m_sectorValues.resize(m_base->m_sectorDivs);
 	for ( int i=0; i<m_base->m_sectorDivs; ++i )
 		m_sectorValues[i] = false;
 }
+
 void CEntity::initAuraData()
 {
 	if ( m_auras.empty() )
@@ -217,36 +216,71 @@ void CEntity::initAuraData()
 		}
 	}
 }
-void CEntity::kill()
+
+void CEntity::kill(bool keepActor)
 {
-	g_Selection.removeAll( me );
+	if( entf_get( ENTF_DESTROYED ) )
+	{
+		return;		// We were already killed this frame
+	}
 
-	CEntity* remove = this;
-	g_FormationManager.RemoveUnit(remove);
-
+	g_FormationManager.RemoveUnit(this);
+	
 	entf_set(ENTF_DESTROY_NOTIFIERS);
 	for ( size_t i=0; i<m_listeners.size(); i++ )
 		m_listeners[i].m_sender->DestroyNotifier( this );
+	m_listeners.clear();
 	DestroyAllNotifiers();
+
+	for( AuraTable::iterator it = m_auras.begin(); it != m_auras.end(); it++ )
+	{
+		it->second->RemoveAll();
+		delete it->second;
+	}
+	m_auras.clear();
+
+	ExitAuras();
+
+	clearOrders();
 
 	SAFE_DELETE(m_bounds);
 
 	m_extant = false;
 
-	entf_set(ENTF_DESTROYED);
-	g_EntityManager.m_refd[me.m_handle] = false;
-	//Shutdown(); // PT: tentatively removed - this seems to be called by ~CJSComplex, and we don't want to do it twice
+	updateCollisionPatch();
 
-	if( m_actor )
+	g_Selection.removeAll( me );
+
+	// If we have a death animation and want to keep the actor, play that animation
+	if( keepActor && m_actor && 
+		m_actor->GetRandomAnimation( "death" ) != m_actor->GetRandomAnimation( "idle" ) )
+	{
+		// Prevent "wiggling" as we try to interpolate between here and our death position (if we were moving)
+		m_graphics_position = m_position;
+		m_position_previous = m_position;
+		m_graphics_orientation = m_orientation;
+		m_orientation_previous = m_orientation;
+		updateActorTransforms();
+
+		// Play death animation and keep the actor in the game in a dead state 
+		// (TODO: remove the actor after some time through some kind of fading mechanism)
+		m_actor->SetEntitySelection( "death" );
+		m_actor->SetRandomAnimation( "death", true );
+	}
+	else
 	{
 		g_Game->GetWorld()->GetUnitManager().RemoveUnit( m_actor );
 		delete( m_actor );
 		m_actor = NULL;
 	}
 
-	updateCollisionPatch();
+	entf_set(ENTF_DESTROYED);
 
-	me = HEntity(); // will deallocate the entity, assuming nobody else has a reference to it
+	g_EntityManager.m_refd[me.m_handle] = false;
+
+	g_EntityManager.SetDeath(true);		// remember that a unit died this frame
+
+	me = HEntity(); // Will deallocate the entity, assuming nobody else has a reference to it
 }
 
 void CEntity::SetPlayer(CPlayer *pPlayer)
@@ -496,9 +530,8 @@ void CEntity::update( size_t timestep )
 	if( m_lastState != -1 )
 	{
 		PROFILE( "state transition event" );
-		CEntity* d0;
-		CVector3D d1;
-		CEventOrderTransition evt( m_lastState, -1, d0, d1 );
+		CVector3D vec(0, 0, 0);
+		CEventOrderTransition evt( m_lastState, -1, 0, vec );
 		DispatchEvent( &evt );
 
 		m_lastState = -1;
@@ -534,7 +567,7 @@ void CEntity::updateCollisionPatch()
 			}
 		}
 
-		if( m_extant )
+		if( newPatch )
 		{
 			// add ourselves to new patch
 			newPatch->push_back( this );
@@ -745,8 +778,6 @@ struct isListenerSender
 
 int CEntity::DestroyNotifier( CEntity* target )
 {
-	if ( target->m_listeners.empty() )
-		return 0;
 	//Stop listening
 	// (Don't just loop and use 'erase', because modifying the deque while
 	// looping over it is a bit dangerous)
@@ -1004,4 +1035,13 @@ void CEntity::CalculateRegen(float timestep)
 		else if(m_orderQueue.empty())
 			m_staminaCurr = regen(m_staminaCurr, m_staminaMax, timestep, m_runRegenRate);
 	}
+}
+
+void CEntity::ExitAuras() 
+{
+	for( AuraSet::iterator it = m_aurasInfluencingMe.begin(); it != m_aurasInfluencingMe.end(); it++ )
+	{
+		(*it)->Remove( this );
+	}
+	m_aurasInfluencingMe.clear();
 }

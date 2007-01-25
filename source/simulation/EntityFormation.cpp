@@ -63,7 +63,7 @@ void CEntityFormation::SwitchBase( CFormation*& base )
 	for ( std::vector<CEntity*>::iterator it=copy.begin(); it != copy.end(); it++ )
 		g_FormationManager.AddUnit(*it, m_index);
 }
-bool CEntityFormation::AddUnit( CEntity*& entity )
+bool CEntityFormation::AddUnit( CEntity* entity )
 {
 	debug_assert( entity );
 	//Add the unit to the most appropriate slot
@@ -89,7 +89,7 @@ bool CEntityFormation::AddUnit( CEntity*& entity )
 	}
 	return false;
 }
-void CEntityFormation::RemoveUnit( CEntity*& entity )
+void CEntityFormation::RemoveUnit( CEntity* entity )
 {
 	if ( !(IsValidOrder(entity->m_formationSlot) && entity) )
 		return;

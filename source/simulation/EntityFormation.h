@@ -58,8 +58,8 @@ private:
 	std::vector<bool> m_angleDivs;	//attack direction penalty-true=being attacked from sector
 	std::vector<float> m_angleVals;
 
-	bool AddUnit( CEntity*& entity );
-	void RemoveUnit( CEntity*& entity );
+	bool AddUnit( CEntity* entity );
+	void RemoveUnit( CEntity* entity );
 	bool IsSlotAppropriate( int order, CEntity* entity );   //If empty, can we use this slot?
 	bool IsBetterUnit( int order, CEntity* entity );
 

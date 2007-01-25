@@ -107,10 +107,10 @@ class CEventOrderTransition : public CScriptEvent
 {
 	int m_orderPrevious;
 	int m_orderCurrent;
-	CEntity** m_target;
-	CVector3D* m_worldPosition;
+	HEntity m_target;
+	CVector3D m_worldPosition;
 public:
-	CEventOrderTransition( int orderPrevious, int orderCurrent, CEntity*& target, CVector3D& worldPosition );
+	CEventOrderTransition( int orderPrevious, int orderCurrent, CEntity* target, CVector3D& worldPosition );
 };
 class CEventNotification : public CScriptEvent
 {

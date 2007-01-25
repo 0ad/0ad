@@ -239,10 +239,7 @@ void CEntity::JSI_SetPlayer( jsval val )
 	m_productionQueue->CancelAll();
 
 	// Exit all our auras so we can re-enter them as the new player
-	for( AuraSet::iterator it = m_aurasInfluencingMe.begin(); it != m_aurasInfluencingMe.end(); it++ )
-	{
-		(*it)->Remove( this );
-	}
+	ExitAuras();
 	
 	if( m_actor )
 		m_actor->SetPlayerID( newPlayer->GetPlayerID() ); // calls this->SetPlayer
@@ -357,58 +354,7 @@ bool CEntity::Kill( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(arg
 	CEventDeath evt;
 	DispatchEvent( &evt );
 
-	for( AuraTable::iterator it = m_auras.begin(); it != m_auras.end(); it++ )
-	{
-		it->second->RemoveAll();
-		delete it->second;
-	}
-	m_auras.clear();
-
-	for( AuraSet::iterator it = m_aurasInfluencingMe.begin(); it != m_aurasInfluencingMe.end(); it++ )
-	{
-		(*it)->Remove( this );
-	}
-	m_aurasInfluencingMe.clear();
-
-	if( m_bounds )
-	{
-		delete( m_bounds );
-		m_bounds = NULL;
-	}
-
-	if( m_extant )
-	{
-		m_extant = false;
-	}
-
-	updateCollisionPatch();
-
-	g_Selection.removeAll( me );
-
-	clearOrders();
-
-	g_EntityManager.SetDeath(true);
-
-	if( m_actor && m_actor->GetRandomAnimation( "death" ) != m_actor->GetRandomAnimation( "idle" ) )
-	{
-		// Prevent "wiggling" as we try to interpolate between here and our death position (if we were moving)
-		m_graphics_position = m_position;
-		m_position_previous = m_position;
-		m_graphics_orientation = m_orientation;
-		m_orientation_previous = m_orientation;
-		updateActorTransforms();
-
-		// Play death animation and keep the actor in the game in a dead state 
-		// (TODO: remove the actor after some time through some kind of fading mechanism)
-		m_actor->SetEntitySelection( "death" );
-		m_actor->SetRandomAnimation( "death", true );
-	}
-	else
-	{
-		g_Game->GetWorld()->GetUnitManager().RemoveUnit( m_actor );
-		delete( m_actor );
-		m_actor = NULL;
-	}
+	kill(true);
 
 	return( true );
 }

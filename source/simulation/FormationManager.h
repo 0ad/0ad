@@ -33,11 +33,11 @@ public:
 	{
 		return ((size_t)index < m_formations.size() && index >= 0);
 	}
-	bool AddUnit( CEntity*& entity, int& form );
+	bool AddUnit( CEntity* entity, int& form );
 	CEntityList AddUnitList( CEntityList& entities, int form );
 
 	//Returns false if the formation is destroyed
-	bool RemoveUnit( CEntity*& entity );
+	bool RemoveUnit( CEntity* entity );
 	bool RemoveUnitList( CEntityList& entities );
 	CEntityFormation* GetFormation(int form);
 	void UpdateIndexes( size_t update );

@@ -65,7 +65,7 @@ void CFormationManager::DestroyFormation( size_t form )
 	m_formations.erase( it );
 	UpdateIndexes( form );
 }
-bool CFormationManager::AddUnit( CEntity*& entity, int& form )
+bool CFormationManager::AddUnit( CEntity* entity, int& form )
 {
 	if ( !IsValidFormation(form) )
 		return false;
@@ -101,7 +101,7 @@ CEntityList CFormationManager::AddUnitList( CEntityList& entities, int form )
 	}
 	return accepted;
 }
-bool CFormationManager::RemoveUnit( CEntity*& entity )
+bool CFormationManager::RemoveUnit( CEntity* entity )
 {
 	if ( !IsValidFormation(entity->m_formation) )
 		return true;
