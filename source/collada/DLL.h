@@ -8,12 +8,16 @@ extern "C"
 
 #ifdef _WIN32
 # ifdef COLLADA_DLL
-#  define EXPORT extern __declspec(dllexport)
+#  define EXPORT extern "C" __declspec(dllexport)
 # else
-#  define EXPORT extern __declspec(dllimport)
+#  define EXPORT extern "C" __declspec(dllimport)
 # endif
 #else
-# define EXPORT extern
+# if __GNUC__ >= 4
+#  define EXPORT extern "C" __attribute__ ((visibility ("default")))
+# else
+#  define EXPORT extern "C"
+# endif
 #endif
 
 #define LOG_INFO 0

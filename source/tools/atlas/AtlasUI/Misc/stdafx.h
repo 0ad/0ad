@@ -70,7 +70,11 @@
 #ifdef _WIN32
 # define ATLASDLLIMPEXP extern "C" __declspec(dllexport)
 #else
-# define ATLASDLLIMPEXP extern "C"
+# if __GNUC__ >= 4
+#  define ATLASDLLIMPEXP extern "C" __attribute__ ((visibility ("default")))
+# else
+#  define ATLASDLLIMPEXP extern "C"
+# endif
 #endif
 
 // Abort with an obvious message if wx isn't Unicode, instead of complaining

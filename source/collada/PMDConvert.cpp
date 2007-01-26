@@ -21,7 +21,7 @@
 #include <cassert>
 #include <vector>
 
-const int maxInfluences = 4;
+const size_t maxInfluences = 4;
 struct VertexBlend
 {
 	uint8 bones[maxInfluences];

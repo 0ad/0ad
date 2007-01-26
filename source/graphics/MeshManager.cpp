@@ -89,6 +89,7 @@ public:
 			catch (PSERROR_DllLoader&)
 			{
 				LOG(ERROR, LOG_CATEGORY, "Failed to load symbols from COLLADA conversion DLL");
+				dll.Unload();
 				return CModelDefPtr();
 			}
 			

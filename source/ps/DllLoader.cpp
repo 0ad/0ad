@@ -72,6 +72,15 @@ bool DllLoader::LoadDLL()
 	return (m_Handle != HANDLE_UNAVAILABLE);
 }
 
+void DllLoader::Unload()
+{
+	if (! IsLoaded())
+		return;
+
+	dlclose(m_Handle);
+	m_Handle = 0;
+}
+
 void DllLoader::LoadSymbolInternal(const char* name, void** fptr) const
 {
 	if (! IsLoaded())

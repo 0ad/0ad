@@ -151,7 +151,7 @@ public:
 		CModelDefPtr modeldef1 = meshManager->GetMesh(testPMD);
 		CModelDefPtr modeldef2 = meshManager->GetMesh(testPMD);
 		TS_ASSERT(modeldef1 && modeldef2);
-		TS_ASSERT_EQUALS(modeldef1.get(), modeldef2.get());
+		if (modeldef1 && modeldef2) TS_ASSERT_EQUALS(modeldef1.get(), modeldef2.get());
 	}
 
 	void test_load_dae()

@@ -14,7 +14,7 @@ void default_logger(int severity, const char* message)
 
 static LogFn g_Logger = &default_logger;
 
-void set_logger(LogFn logger)
+EXPORT void set_logger(LogFn logger)
 {
 	if (logger)
 		g_Logger = logger;
@@ -108,12 +108,12 @@ int convert_dae_to_whatever(const char* dae, OutputFn writer, void* cb_data, voi
 	return 0;
 }
 
-int convert_dae_to_pmd(const char* dae, OutputFn pmd_writer, void* cb_data)
+EXPORT int convert_dae_to_pmd(const char* dae, OutputFn pmd_writer, void* cb_data)
 {
 	return convert_dae_to_whatever(dae, pmd_writer, cb_data, ColladaToPMD);
 }
 
-int convert_dae_to_psa(const char* dae, OutputFn psa_writer, void* cb_data)
+EXPORT int convert_dae_to_psa(const char* dae, OutputFn psa_writer, void* cb_data)
 {
 	return convert_dae_to_whatever(dae, psa_writer, cb_data, ColladaToPSA);
 }

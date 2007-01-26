@@ -33,6 +33,12 @@ public:
 	 * LoadDLL did.
 	 */
 	bool IsLoaded() const;
+
+	/**
+	 * Unload the library, if it has been loaded already. (Usually not needed,
+	 * since the destructor will unload it.)
+	 */
+	void Unload();
 	
 	/**
 	 * Attempt to load a named symbol from the library. If {@link #IsLoaded} is

@@ -78,7 +78,7 @@ struct InserterWithoutDuplicates
 
 	size_t add(const T& val)
 	{
-		std::map<T, size_t>::iterator it = btree.find(val);
+		typename std::map<T, size_t>::iterator it = btree.find(val);
 		if (it != btree.end())
 			return it->second;
 

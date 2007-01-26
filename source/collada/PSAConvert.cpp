@@ -73,7 +73,8 @@ public:
 			FCDSkinController* skin = controller->GetSkinController();
 
 			// Find the first and last times which have animations
-			float timeStart = FLT_MAX, timeEnd = -FLT_MAX;
+			float timeStart = std::numeric_limits<float>::max();
+			float timeEnd = -std::numeric_limits<float>::max();
 			for (size_t i = 0; i < skin->GetJointCount(); ++i)
 			{
 				FCDJointMatrixPair* joint = skin->GetJoint(i);

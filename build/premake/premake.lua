@@ -109,6 +109,14 @@ function package_set_build_flags()
 				"-ffast-math",
 			})
 		end
+
+		tinsert(package.buildoptions, {
+			-- Hide symbols in dynamic shared objects by default, for efficiency and for equivalence with
+			-- Windows - they should be exported explicitly with __attribute__ ((visibility ("default")))
+			"-fvisibility=hidden",
+			"-fvisibility-inlines-hidden",
+		})
+
 		package.includepaths = {
 			"/usr/X11R6/include/X11",
 			"/usr/include/X11",
