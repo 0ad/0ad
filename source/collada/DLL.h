@@ -1,11 +1,6 @@
 #ifndef COLLADA_DLL_H__
 #define COLLADA_DLL_H__
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif
-
 #ifdef _WIN32
 # ifdef COLLADA_DLL
 #  define EXPORT extern "C" __declspec(dllexport)
@@ -32,9 +27,5 @@ typedef void (*OutputFn) (void* cb_data, const char* data, unsigned int length);
 EXPORT void set_logger(LogFn logger);
 EXPORT int convert_dae_to_pmd(const char* dae, OutputFn pmd_writer, void* cb_data);
 EXPORT int convert_dae_to_psa(const char* dae, OutputFn psa_writer, void* cb_data);
-
-#ifdef __cplusplus
-};
-#endif
 
 #endif /* COLLADA_DLL_H__ */

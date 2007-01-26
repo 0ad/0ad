@@ -1,3 +1,6 @@
+#ifndef PRECOMPILED_H__
+#define PRECOMPILED_H__
+
 #define COLLADA_DLL
 #include "DLL.h"
 
@@ -12,7 +15,7 @@ extern void Log(int severity, const char* fmt, ...);
 #include "FCollada.h"
 #include "FCDocument/FCDocument.h"
 #include "FCDocument/FCDAnimated.h"
-#include "FCDocument/FCDAnimatedCurve.h"
+#include "FCDocument/FCDAnimationCurve.h"
 #include "FCDocument/FCDController.h"
 #include "FCDocument/FCDControllerInstance.h"
 #include "FCDocument/FCDGeometry.h"
@@ -28,3 +31,5 @@ extern void Log(int severity, const char* fmt, ...);
 // to std::{min,max}, so undo its macros
 #undef min
 #undef max
+
+#endif // PRECOMPILED_H__

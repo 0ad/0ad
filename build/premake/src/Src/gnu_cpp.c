@@ -36,6 +36,9 @@ int gnu_cpp()
 
 	const char* prefix = (g_verbose) ? "" : "@";
 
+	const char* pchExt = (matches(g_cc, "icc") ? "pchi" : "h.gch");
+	const char* pchOrigin;
+
 	/* Open package makefile and write the header */
 	if (gnu_pkgOwnsPath())
 		strcpy(g_buffer, path_join(prj_get_pkgpath(), "Makefile", ""));
@@ -175,33 +178,18 @@ int gnu_cpp()
 		print_list(prj_get_files(), "\t$(OBJDIR)/", " \\\n", "", listCppSources);
 	io_print("\n");
 
-	if (matches(g_cc, "icc"))
+
+	pchOrigin = (matches(g_cc, "icc") ? prj_get_pch_source() : prj_get_pch_header());
+	if (pchOrigin == NULL)
 	{
-		if (prj_get_pch_source() == NULL)
-		{
-			io_print("PCHS := \n");
-		}
-		else
-		{
-			io_print("PCHS := \\\n");
-			const char *basename = path_getbasename(prj_get_pch_source());
-			io_print("\t$(OBJDIR)/%s.pchi \\\n", basename);
-			io_print("\n");
-		}
+		io_print("PCHS := \n");
 	}
 	else
 	{
-		if (prj_get_pch_header() == NULL)
-		{
-			io_print("PCHS := \n");
-		}
-		else
-		{
-			io_print("PCHS := \\\n");
-			const char *basename = path_getbasename(prj_get_pch_header());
-			io_print("\t$(OBJDIR)/%s.h.gch \\\n", basename);
-			io_print("\n");
-		}
+		io_print("PCHS := \\\n");
+		const char *basename = path_getbasename(pchOrigin);
+		io_print("\t$(OBJDIR)/%s.%s \\\n", basename, pchExt);
+		io_print("\n");
 	}
 
 	/* Write out the list of resource files for windows targets */
@@ -321,8 +309,11 @@ int gnu_cpp()
 		print_list(prj_get_files(), "", "", "", listRcTargets);
 
 	if (!prj_is_kind("cxxtestgen"))
+	{
 		/* Include the automatically generated dependency lists */
 		io_print("-include $(OBJECTS:%%.o=%%.d)\n\n");
+		io_print("-include $(PCHS:%%.%s=%%.d)\n\n", pchExt);
+	}
 
 	io_closefile();
 	return 1;
@@ -533,15 +524,13 @@ static const char* listCppTargets(const char* name)
 					}
 					else
 					{
-						// I don't think this is necessary, since we include precompiled.h
-						// manually in every source file anyway
-						/*
+						/* Since we compile the .gch into $OBJDIR, which is not in the normal
+						   include path, tell GCC to look there */
 						basename = path_getbasename(pchHeader);
 						strcat(g_buffer, " -include $(OBJDIR)/");
 						strcat(g_buffer, basename);
 						strcat(g_buffer, ".h");
 						basename = NULL;
-						*/
 					}
 				}
 				strcat(g_buffer, " $<\n");
