@@ -247,8 +247,8 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 	CEntityOrder order;
 	bool isQueued = true;
 	
-#define ENTITY_POSITION(_msg, _order) do\
-	{ \
+#define ENTITY_POSITION(_msg, _order) \
+	do { \
 		_msg *msg=(_msg *)pMsg; \
 		isQueued = msg->m_IsQueued != 0; \
 		order.m_type=CEntityOrder::_order; \
@@ -256,8 +256,8 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 		order.m_target_location.y=(float)msg->m_TargetY; \
 		RandomizeLocations(order, msg->m_Entities, isQueued); \
 	} while(0)
-#define ENTITY_POSITION_FORM(_msg, _order) do\
-	{ \
+#define ENTITY_POSITION_FORM(_msg, _order) \
+	do { \
 		_msg *msg=(_msg *)pMsg; \
 		isQueued = msg->m_IsQueued != 0; \
 		order.m_type=CEntityOrder::_order; \
@@ -265,8 +265,8 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 		order.m_target_location.y=(float)msg->m_TargetY; \
 		FormationLocations(order, msg->m_Entities, isQueued); \
 	} while(0)
-#define ENTITY_ENTITY_INT(_msg, _order) do\
-	{ \
+#define ENTITY_ENTITY_INT(_msg, _order) \
+	do { \
 		_msg *msg=(_msg *)pMsg; \
 		isQueued = msg->m_IsQueued != 0; \
 		order.m_type=CEntityOrder::_order; \
@@ -274,8 +274,8 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 		order.m_action=msg->m_Action; \
 		QueueOrder(order, msg->m_Entities, isQueued); \
 	} while(0)
-#define ENTITY_INT_STRING(_msg, _order) do\
-	{ \
+#define ENTITY_INT_STRING(_msg, _order) \
+	do { \
 		_msg *msg=(_msg *)pMsg; \
 		isQueued = msg->m_IsQueued != 0; \
 		order.m_type=CEntityOrder::_order; \
@@ -369,7 +369,7 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 					order.m_new_obj = newObj;
 					QueueOrder(order, msg->m_Entities, isQueued);
 				}
-			} while(0)
+			}
 			break;
 		
 	}

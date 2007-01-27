@@ -149,8 +149,11 @@ CEntity::~CEntity()
 
 void CEntity::loadBase()
 {
+	int previous_unit_id = -1;
+
 	if( m_actor )
 	{
+		previous_unit_id = m_actor->GetID();
 		g_Game->GetWorld()->GetUnitManager().RemoveUnit( m_actor );
 		delete( m_actor );
 		m_actor = NULL;
@@ -164,6 +167,8 @@ void CEntity::loadBase()
 	CStr actorName ( m_base->m_actorName ); // convert CStrW->CStr8
 
 	m_actor = g_Game->GetWorld()->GetUnitManager().CreateUnit( actorName, this, m_actorSelections );
+	if( m_actor )
+		m_actor->SetID( previous_unit_id );
 
 	// Set up our instance data
 

@@ -65,6 +65,9 @@ public:
 	// Get player ID of this unit
 	int GetPlayerID() { return m_PlayerID; }
 
+	// Most units have a hopefully-unique ID number, so they can be referred to
+	// persistently despite saving/loading maps. Default for new units is -1; should
+	// usually be set to CUnitManager::GetNewID() after creation.
 	int GetID() const { return m_ID; }
 	void SetID(int id) { m_ID = id; }
 

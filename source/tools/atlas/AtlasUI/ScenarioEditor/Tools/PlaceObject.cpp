@@ -76,9 +76,9 @@ public:
 		return false;
 	}
 
-	bool OnKeyOverride(wxKeyEvent& evt, KeyEventType dir)
+	bool OnKeyOverride(wxKeyEvent& evt, KeyEventType type)
 	{
-		switch (dir)
+		switch (type)
 		{
 		case KEY_CHAR:
 			int key = evt.GetKeyCode();
@@ -129,9 +129,18 @@ public:
 			else
 				return false;
 		}
-		bool OnKey(PlaceObject* obj, wxKeyEvent& evt, KeyEventType dir)
+		bool OnKey(PlaceObject* obj, wxKeyEvent& evt, KeyEventType type)
 		{
-			return obj->OnKeyOverride(evt, dir);
+			if (type == KEY_CHAR && (evt.GetKeyCode() >= '0' && evt.GetKeyCode() <= '9'))
+			{
+				int playerID = evt.GetKeyCode() - '0';
+				g_ObjectSettings.SetPlayerID(playerID);
+				g_ObjectSettings.NotifyObservers();
+				obj->SendObjectMsg(true);
+				return true;
+			}
+			else
+				return obj->OnKeyOverride(evt, type);
 		}
 		void OnTick(PlaceObject* obj, float dt)
 		{
@@ -166,9 +175,9 @@ public:
 			else
 				return false;
 		}
-		bool OnKey(PlaceObject* obj, wxKeyEvent& evt, KeyEventType dir)
+		bool OnKey(PlaceObject* obj, wxKeyEvent& evt, KeyEventType type)
 		{
-			return obj->OnKeyOverride(evt, dir);
+			return obj->OnKeyOverride(evt, type);
 		}
 		void OnTick(PlaceObject* obj, float dt)
 		{

@@ -209,11 +209,8 @@ JSBool CEntity::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsva
 
 jsval CEntity::ToString( JSContext* cx, uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-	wchar_t buffer[256];
-	swprintf( buffer, 256, L"[object Entity: %ls]", m_base->m_Tag.c_str() );
-	buffer[255] = 0;
-	utf16string str16(buffer, buffer+wcslen(buffer));
-	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, str16.c_str() ) ) );
+	CStrW name( L"[object Entity: " + m_base->m_Tag + L"]" );
+	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, name.utf16().c_str() ) ) );
 }
 
 jsval CEntity::JSI_GetPlayer()

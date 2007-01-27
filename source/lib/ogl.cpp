@@ -240,6 +240,8 @@ static void importExtensionFunctions()
 	// It should be safe to load the ARB function pointers even if the
 	// extension isn't advertised, since we won't actually use them without
 	// checking for the extension.
+	// (TODO: this calls oglHaveVersion far more times than is necessary -
+	// we should probably use the have_* variables instead)
 #define FUNC(ret, name, params) *(void**)&p##name = SDL_GL_GetProcAddress(#name);
 #define FUNC2(ret, nameARB, nameCore, version, params) \
 	p##nameARB = NULL; \
@@ -280,6 +282,7 @@ void oglCheck()
 	// glGetError may return multiple errors, so we poll it in a loop.
 	// the debug_warn should only happen once (if this is set), though.
 	bool error_enountered = false;
+	GLenum first_error = 0;
 
 	for(;;)
 	{
@@ -287,12 +290,19 @@ void oglCheck()
 		if(err == GL_NO_ERROR)
 			break;
 
+		if(!error_enountered)
+			first_error = err;
+
 		error_enountered = true;
 		dump_gl_error(err);
 	}
 
 	if(error_enountered)
-		debug_warn("OpenGL error(s) occurred");
+	{
+		char msg[64];
+		snprintf(msg, ARRAY_SIZE(msg), "OpenGL error(s) occurred: %04x", (int)first_error);
+		debug_warn(msg);
+	}
 }
 #endif
 
@@ -308,6 +318,7 @@ void oglSquelchError(GLenum err_to_ignore)
 	// glGetError may return multiple errors, so we poll it in a loop.
 	// the debug_warn should only happen once (if this is set), though.
 	bool error_enountered = false;
+	GLenum first_error = 0;
 
 	for(;;)
 	{
@@ -318,12 +329,19 @@ void oglSquelchError(GLenum err_to_ignore)
 		if(err == err_to_ignore)
 			continue;
 
+		if(!error_enountered)
+			first_error = err;
+
 		error_enountered = true;
 		dump_gl_error(err);
 	}
 
 	if(error_enountered)
-		debug_warn("OpenGL error(s) occurred");
+	{
+		char msg[64];
+		snprintf(msg, ARRAY_SIZE(msg), "OpenGL error(s) occurred: %04x", (int)first_error);
+		debug_warn(msg);
+	}
 }
 
 

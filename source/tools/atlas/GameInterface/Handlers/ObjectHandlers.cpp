@@ -243,21 +243,23 @@ static int g_PreviewUnitID = -1;
 static CStrW g_PreviewUnitName;
 static bool g_PreviewUnitFloating;
 
-// Returns roughly the largest number smaller than f (i.e. closer to zero)
-// (TODO: does this actually work correctly?)
-static float flt_minus_epsilon(float f)
-{
-	return f - (FLT_EPSILON * f);
-}
-
 static CVector3D GetUnitPos(const Position& pos, bool floating)
 {
 	static CVector3D vec;
 	vec = pos.GetWorldSpace(vec, floating); // if msg->pos is 'Unchanged', use the previous pos
 
-	// Check whether the position should be clamped to the edges of the world
-	float xOnMap = clamp(vec.X, 0.f, flt_minus_epsilon((g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide()-1)*CELL_SIZE));
-	float zOnMap = clamp(vec.Z, 0.f, flt_minus_epsilon((g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide()-1)*CELL_SIZE));
+	// Clamp the position to the edges of the world:
+
+	// Use 'clamp' with a value slightly less than the width, so that converting
+	// to integer (rounding towards zero) will put it on the tile inside the edge
+	// instead of just outside
+	float mapWidth = (g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide()-1)*CELL_SIZE;
+	float delta = 1e-8f; // fraction of map width (which is around 1e+4 world-space units)
+
+	float xOnMap = clamp(vec.X, 0.f, mapWidth * (1.f - delta));
+	float zOnMap = clamp(vec.Z, 0.f, mapWidth * (1.f - delta));
+
+	// Don't waste time with getExactGroundLevel unless we've changed
 	if (xOnMap != vec.X || zOnMap != vec.Z)
 	{
 		vec.X = xOnMap;

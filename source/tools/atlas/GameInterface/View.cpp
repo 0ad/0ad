@@ -268,9 +268,6 @@ void ViewGame::SaveState(const std::wstring& label, bool onlyEntities)
 		e.position = entity->m_position;
 		e.angle = entity->m_orientation.Y;
 
-		// TODO: preserve random actor variations
-		// TODO: preserve IDs
-
 		simState->entities.push_back(e);
 	}
 
@@ -368,11 +365,12 @@ View::~View()
 
 View* View::GetView(int /*eRenderView*/ view)
 {
-	if      (view == AtlasMessage::eRenderView::NONE)  return View::GetView_None();
-	else if (view == AtlasMessage::eRenderView::GAME)  return View::GetView_Game();
-	else if (view == AtlasMessage::eRenderView::ACTOR) return View::GetView_Actor();
-	else
+	switch (view)
 	{
+	case AtlasMessage::eRenderView::NONE:  return View::GetView_None();
+	case AtlasMessage::eRenderView::GAME:  return View::GetView_Game();
+	case AtlasMessage::eRenderView::ACTOR: return View::GetView_Actor();
+	default:
 		debug_warn("Invalid view type");
 		return View::GetView_None();
 	}

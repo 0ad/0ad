@@ -365,7 +365,7 @@ STMT(\
 #define debug_warn(expr) \
 STMT(\
 	static u8 suppress__;\
-	switch(debug_assert_failed(#expr, &suppress__, __FILE__, __LINE__, __func__))\
+	switch(debug_assert_failed(expr, &suppress__, __FILE__, __LINE__, __func__))\
 	{\
 	case ER_BREAK:\
 		debug_break();\
