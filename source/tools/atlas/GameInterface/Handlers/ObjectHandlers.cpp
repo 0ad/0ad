@@ -254,7 +254,7 @@ static CVector3D GetUnitPos(const Position& pos, bool floating)
 	// to integer (rounding towards zero) will put it on the tile inside the edge
 	// instead of just outside
 	float mapWidth = (g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide()-1)*CELL_SIZE;
-	float delta = 1e-8f; // fraction of map width (which is around 1e+4 world-space units)
+	float delta = 1e-6f; // fraction of map width - must be > FLT_EPSILON
 
 	float xOnMap = clamp(vec.X, 0.f, mapWidth * (1.f - delta));
 	float zOnMap = clamp(vec.Z, 0.f, mapWidth * (1.f - delta));
