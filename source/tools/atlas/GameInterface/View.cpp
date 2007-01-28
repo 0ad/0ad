@@ -199,10 +199,12 @@ void ViewGame::Update(float frameLength)
 		// Interpolate the graphics - we only want to do it once per visual frame,
 		// not in every call to g_Game->Update
 		g_Game->GetSimulation()->Interpolate(actualFrameLength);
-
-		if (g_Game->GetView()->GetCinema()->IsPlaying())
-			g_Game->GetView()->GetCinema()->Update(actualFrameLength);
 	}
+
+	// Cinematic motion should be independent of simulation update, so we can
+	// preview the cinematics by themselves
+	if (g_Game->GetView()->GetCinema()->IsPlaying())
+		g_Game->GetView()->GetCinema()->Update(frameLength);
 }
 
 void ViewGame::Render()
