@@ -1006,9 +1006,9 @@ void Init(const CmdLineArgs& args, uint flags)
 	{
 		wchar_t buf[500];
 		const wchar_t* fmt =
-			L"The %hs extension doesn't appear to be available on your computer. "
-			L"The game may still work, though - you are welcome to try at your own risk. "
-			L"If not or it doesn't look right, upgrade your graphics card.";
+			L"The %hs extension doesn't appear to be available on your computer."
+			L" The game may still work, though - you are welcome to try at your own risk."
+			L" If not or it doesn't look right, upgrade your graphics card.";
 		swprintf(buf, ARRAY_SIZE(buf), fmt, missing);
 		DISPLAY_ERROR(buf);
 		// TODO: i18n
@@ -1018,8 +1018,8 @@ void Init(const CmdLineArgs& args, uint flags)
 	{
 		DISPLAY_ERROR(
 			L"The GL_ARB_texture_env_crossbar extension doesn't appear to be available on your computer."
-			L"Shadows are not available and overall graphics quality might suffer."
-			L"You are advised to try installing newer drivers and/or upgrade your graphics card.");
+			L" Shadows are not available and overall graphics quality might suffer."
+			L" You are advised to try installing newer drivers and/or upgrade your graphics card.");
 		g_Shadows = false;
 	}
 

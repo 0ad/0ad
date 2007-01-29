@@ -89,7 +89,7 @@ static LibError get_ver(const char* module_path, char* out_ver, size_t out_ver_l
 		WARN_IF_FALSE(ok);
 	}
 
-	void* mem;
+	void* mem = NULL;
 	LibError ret = get_ver_impl(module_path, out_ver, out_ver_len, mem);
 	free(mem);
 

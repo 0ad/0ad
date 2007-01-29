@@ -381,6 +381,13 @@ void CCinemaManager::OverrideTrack(const CStrW& name)
 void CCinemaManager::SetAllTracks( const std::map<CStrW, CCinemaTrack>& tracks)
 {
 	m_Tracks = tracks;
+
+	// TODO: this just assumes that if you had any track selected, it was the
+	// first. (We need to change m_CurrentTrack because it was pointing into
+	// the old m_Tracks.)
+	if (m_CurrentTrack)
+		m_CurrentTrack = (tracks.empty() ? NULL : &m_Tracks.begin()->second);
+
 	for ( std::map<CStrW, CCinemaTrack>::iterator it=m_Tracks.begin();
 			it != m_Tracks.end(); ++it )
 	{
@@ -409,7 +416,7 @@ bool CCinemaManager::HasTrack(const CStrW& name) const
 
 void CCinemaManager::DrawAllSplines() const
 {
-	if ( !(m_DrawAllSplines || m_DrawCurrentSpline) )
+	if ( !(m_DrawAllSplines || m_DrawCurrentSpline) || !m_CurrentTrack )
 		return;
 	static const int smoothness = 200;
 	
