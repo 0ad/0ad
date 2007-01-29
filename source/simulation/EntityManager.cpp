@@ -85,28 +85,47 @@ void CEntityManager::deleteAll()
 
 HEntity CEntityManager::create(CEntityTemplate* base, CVector3D position, float orientation,
 							   const std::set<CStr>& actorSelections,
-							   const CStrW* building)
+							   const CStrW* building, int desiredHandle)
 {
 	debug_assert( base );
 	if( !base )
 		return HEntity();
 
-	while( m_entities[m_nextalloc].m_refcount )
+	int pos = 0;
+
+	if(desiredHandle >= 0) 
 	{
-		m_nextalloc++;
-		if(m_nextalloc >= MAX_HANDLES)
+		if( m_entities[desiredHandle].m_refcount )
 		{
-			debug_warn("Ran out of entity handles!");
+			debug_warn("Tried to create an entity at index %d, which is already taken.", desiredHandle);
 			return HEntity();
 		}
+		else
+		{
+			pos = desiredHandle;
+		}
+	}
+	else 
+	{
+		while( m_entities[m_nextalloc].m_refcount )
+		{
+			m_nextalloc++;
+			if(m_nextalloc >= MAX_HANDLES)
+			{
+				debug_warn("Ran out of entity handles!");
+				return HEntity();
+			}
+		}
+		pos = m_nextalloc;
+		m_nextalloc++;
 	}
 
-	m_entities[m_nextalloc].m_entity = new CEntity( base, position, orientation, actorSelections, building );
+	m_entities[pos].m_entity = new CEntity( base, position, orientation, actorSelections, building );
 	if( m_collisionPatches)
-		m_entities[m_nextalloc].m_entity->updateCollisionPatch();
-	m_entities[m_nextalloc].m_entity->me = HEntity( m_nextalloc );
+		m_entities[pos].m_entity->updateCollisionPatch();
+	m_entities[pos].m_entity->me = HEntity( pos );
 
-	return( HEntity( m_nextalloc++ ) );
+	return( HEntity( pos ) );
 }
 
 void CEntityManager::AddEntityClassData(const HEntity& handle)

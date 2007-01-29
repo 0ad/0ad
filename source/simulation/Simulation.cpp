@@ -26,6 +26,7 @@
 #include "simulation/Simulation.h"
 #include "simulation/TerritoryManager.h"
 #include "simulation/TurnManager.h"
+#include "simulation/TriggerManager.h"
 
 CSimulation::CSimulation(CGame *pGame):
 	m_pGame(pGame),
@@ -145,6 +146,10 @@ void CSimulation::Simulate()
 	PROFILE_START( "los update" );
 	m_pWorld->GetLOSManager()->Update();
 	PROFILE_END( "los update" );
+
+	PROFILE_START("trigger update");
+	g_TriggerManager.Update( m_pTurnManager->GetTurnLength() );
+	PROFILE_END("trigger udpate");
 
 	PROFILE_START( "turn manager update" );
 	m_pTurnManager->NewTurn();

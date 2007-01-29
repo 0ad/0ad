@@ -375,7 +375,8 @@ bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timeste
 		return false;
 	}
 
-	if( g_Game->GetWorld()->GetLOSManager()->GetUnitStatus( target, m_player ) == UNIT_HIDDEN )
+	if( current->m_source != CEntityOrder::SOURCE_TRIGGERS &&
+		g_Game->GetWorld()->GetLOSManager()->GetUnitStatus( target, m_player ) == UNIT_HIDDEN )
 	{
 		popOrder();
 		return false;

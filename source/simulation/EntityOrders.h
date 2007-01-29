@@ -23,7 +23,8 @@
 //											order queue after it's executed. In this way, the entity will
 //											circle round a list of patrol points.
 //											Create this order when a standard patrol order is required.
-//					  ORDER_ATTACK_MELEE:	Move towards target entity; start bashing it when close enough.
+//					  ORDER_GENERIC:		Generic ranged action. Move towards target entity, then start
+//											performing an action (call a JS event handler every few seconds).
 //											If we collide with something (=> line-of-sight tracking no longer
 //											sufficient) spawns a ORDER_GOTO to target's location and pushes it
 //											immediately in front of this order.
@@ -105,7 +106,8 @@ public:
 	enum EOrderSource
 	{
 		SOURCE_PLAYER,
-		SOURCE_UNIT_AI
+		SOURCE_UNIT_AI,
+		SOURCE_TRIGGERS
 	};
 	EOrderSource m_source;
 

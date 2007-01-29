@@ -210,72 +210,79 @@ void CTriggerManager::SetAllGroups(const std::list<MapTriggerGroup>& groups)
 
 void CTriggerManager::AddTrigger(MapTriggerGroup& group, const MapTrigger& trigger)
 {
-	CStrW conditionBody(L"if ( ");
+	CStrW conditionBody;
 	CStrW linkLogic[] = { CStrW(L""), CStrW(L" && "), CStrW(L" || ") };
 	size_t i=0;
 	bool allParameters = true;
 
-	for ( std::list<MapTriggerCondition>::const_iterator it = trigger.conditions.begin();
-												it != trigger.conditions.end(); ++it, ++i )
-	{
-		//Opening parenthesis here?
-		std::set<MapTriggerLogicBlock>::const_iterator blockIt;
-		if ( ( blockIt = trigger.logicBlocks.find(MapTriggerLogicBlock(i)) ) != trigger.logicBlocks.end() )
+	if(trigger.conditions.size() == 0) {
+		conditionBody = CStrW(L"return ( true );");
+	}
+	else {
+		conditionBody = CStrW(L"return ( ");
+
+		for ( std::list<MapTriggerCondition>::const_iterator it = trigger.conditions.begin();
+													it != trigger.conditions.end(); ++it, ++i )
 		{
-			if ( blockIt->negated )
-				conditionBody += CStrW(L"!");
-			conditionBody += CStrW(L" (");
-		}
-		
-		if ( it->negated )
-			conditionBody += CStrW(L"!");
-		conditionBody += it->functionName;
-		conditionBody += CStrW(L"(");
-		
-		for ( std::list<CStrW>::const_iterator it2 = it->parameters.begin(); it2 != 
-													it->parameters.end(); ++it2 )
-		{
-			size_t params = (size_t)std::find(m_ConditionSpecs.begin(), m_ConditionSpecs.end(), it->displayName)->funcParameters;
-			size_t distance = std::distance(it->parameters.begin(), it2);
-			
-			//Parameters end here, additional "parameters" are used directly as script
-			if ( distance == params )
+			//Opening parenthesis here?
+			std::set<MapTriggerLogicBlock>::const_iterator blockIt;
+			if ( ( blockIt = trigger.logicBlocks.find(MapTriggerLogicBlock(i)) ) != trigger.logicBlocks.end() )
 			{
-				conditionBody += CStrW(L") ");
-				allParameters = false;
+				if ( blockIt->negated )
+					conditionBody += CStrW(L"!");
+				conditionBody += CStrW(L" (");
 			}
-
-			//Take display parameter and translate into JS usable code...evilness
-			CTriggerSpec spec = *std::find( m_ConditionSpecs.begin(), m_ConditionSpecs.end(), it->displayName );
-			const std::set<TriggerParameter>& specParameters = spec.GetParameters();
 			
-			//Don't use specialized find, since we're searching for a different member
-			std::set<TriggerParameter>::const_iterator specParam = std::find( 
-							specParameters.begin(), specParameters.end(), (int)distance);
-			std::wstring combined = std::wstring( it->functionName + specParam->name );
-			size_t translatedIndex = std::distance( m_TriggerChoices[combined].begin(), 
-				std::find(m_TriggerChoices[combined].begin(), m_TriggerChoices[combined].end(), std::wstring(*it2)) );
+			if ( it->negated )
+				conditionBody += CStrW(L"!");
+			conditionBody += it->functionName;
+			conditionBody += CStrW(L"(");
+			
+			for ( std::list<CStrW>::const_iterator it2 = it->parameters.begin(); it2 != 
+														it->parameters.end(); ++it2 )
+			{
+				size_t params = (size_t)std::find(m_ConditionSpecs.begin(), m_ConditionSpecs.end(), it->displayName)->funcParameters;
+				size_t distance = std::distance(it->parameters.begin(), it2);
+				
+				//Parameters end here, additional "parameters" are used directly as script
+				if ( distance == params )
+				{
+					conditionBody += CStrW(L") ");
+					allParameters = false;
+				}
 
-			if ( m_TriggerTranslations[combined].empty() )
-				conditionBody += *it2;
-			else
-				conditionBody += m_TriggerTranslations[combined][translatedIndex];	
+				//Take display parameter and translate into JS usable code...evilness
+				CTriggerSpec spec = *std::find( m_ConditionSpecs.begin(), m_ConditionSpecs.end(), it->displayName );
+				const std::set<TriggerParameter>& specParameters = spec.GetParameters();
+				
+				//Don't use specialized find, since we're searching for a different member
+				std::set<TriggerParameter>::const_iterator specParam = std::find( 
+								specParameters.begin(), specParameters.end(), (int)distance);
+				std::wstring combined = std::wstring( it->functionName + specParam->name );
+				size_t translatedIndex = std::distance( m_TriggerChoices[combined].begin(), 
+					std::find(m_TriggerChoices[combined].begin(), m_TriggerChoices[combined].end(), std::wstring(*it2)) );
 
-			if ( distance + 1 < params )
-				conditionBody += CStrW(L", ");
+				if ( m_TriggerTranslations[combined].empty() )
+					conditionBody += *it2;
+				else
+					conditionBody += m_TriggerTranslations[combined][translatedIndex];	
+
+				if ( distance + 1 < params )
+					conditionBody += CStrW(L", ");
+			}
+			
+			if ( allParameters )	//Otherwise, closed inside loop
+				conditionBody += CStrW(L")");
+			if ( trigger.logicBlockEnds.find(i) != trigger.logicBlockEnds.end() )
+				conditionBody += CStrW(L" )");
+
+			if ( std::distance(it, trigger.conditions.end()) != 1 )
+				conditionBody += linkLogic[it->linkLogic];
 		}
-		
-		if ( allParameters )	//Otherwise, closed inside loop
-			conditionBody += CStrW(L")");
-		if ( trigger.logicBlockEnds.find(i) != trigger.logicBlockEnds.end() )
-			conditionBody += CStrW(L" )");
 
-		if ( std::distance(it, trigger.conditions.end()) != 1 )
-			conditionBody += linkLogic[it->linkLogic];
+		conditionBody += CStrW(L" );");
 	}
 
-	conditionBody += CStrW(L" )");	//closing if
-	conditionBody += CStrW(L" { return true; } ");
 	CStrW effectBody;
 	
 	for ( std::list<MapTriggerEffect>::const_iterator it = trigger.effects.begin();

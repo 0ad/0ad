@@ -1,6 +1,6 @@
 <Definitions>
 
-	<Condition name ="DisplayName" function = "something" funcParameter = "0">
+	<Condition name ="DisplayName" function = "something" funcParameters = "0">
 		<WindowRow>
 			<Parameter name = "Random">
 				<Window type="text" position = "0,0" size = "80,20"/>
@@ -20,7 +20,7 @@
 		</WindowRow>
 	</Condition>
 	
-	<Condition name = "Always" function = "trigGetAlwaysTrue" funcParameter = "0"/>
+	<Condition name = "Always" function = "trigGetAlwaysTrue" funcParameters = "0"/>
 	
 	<Condition name = "Player resource" function = "trigPlayerResourceCount" funcParameters = "2">
 		<WindowRow>

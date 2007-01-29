@@ -49,6 +49,7 @@ void CEntity::ScriptingInit()
 	AddMethod<jsval, &CEntity::ToString>( "toString", 0 );
 	AddMethod<bool, &CEntity::OrderSingle>( "order", 1 );
 	AddMethod<bool, &CEntity::OrderQueued>( "orderQueued", 1 );
+	AddMethod<bool, &CEntity::OrderFromTriggers>( "orderFromTriggers", 1 );
 	AddMethod<jsval, &CEntity::TerminateOrder>( "terminateOrder", 1 );
 	AddMethod<bool, &CEntity::Kill>( "kill", 0 );
 	AddMethod<bool, &CEntity::IsIdle>( "isIdle", 0 );
@@ -244,7 +245,7 @@ void CEntity::JSI_SetPlayer( jsval val )
 		SetPlayer(newPlayer);
 }
 
-bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
+bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, CEntityOrder::EOrderSource source, bool Queued )
 {
 	// This needs to be sorted (uses Scheduler rather than network messaging)
 
@@ -261,7 +262,9 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, bool Queued )
 	}
 
 	CEntityOrder newOrder;
-	newOrder.m_source = CEntityOrder::SOURCE_PLAYER;
+
+	newOrder.m_source = source;
+
 	CEntity* target;
 
 	(int&)newOrder.m_type = orderCode;

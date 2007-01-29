@@ -697,7 +697,8 @@ void CXMLReader::ReadTriggerGroup(XMBElement parent, MapTriggerGroup& group)
 	EL(display);
 
 	AT(name);
-	
+	AT(function);
+	AT(display);
 	AT(not);
 	
 	#undef EL
@@ -747,6 +748,8 @@ void CXMLReader::ReadTriggerGroup(XMBElement parent, MapTriggerGroup& group)
 						{
 							MapTriggerCondition mapCondition;
 							mapCondition.name = condition.getAttributes().getNamedItem(at_name);
+							mapCondition.functionName = condition.getAttributes().getNamedItem(at_function);
+							mapCondition.displayName = condition.getAttributes().getNamedItem(at_display);
 							
 							CStr notAtt(condition.getAttributes().getNamedItem(at_not));
 							if ( notAtt == CStr("true") )
@@ -849,8 +852,8 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 
 			XMBAttributeList attrs = entity.getAttributes();
 			utf16string uid = attrs.getNamedItem(at_uid);
-			int UnitID = uid.empty() ? -1 : CStr(uid).ToInt();
-			maxUnitID = std::max(maxUnitID, UnitID);
+			int unitId = uid.empty() ? -1 : CStr(uid).ToInt();
+			maxUnitID = std::max(maxUnitID, unitId);
 		}
 
 		m_MapReader.pUnitMan->SetNextID(maxUnitID + 1);
@@ -866,7 +869,7 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 
 		XMBAttributeList attrs = entity.getAttributes();
 		utf16string uid = attrs.getNamedItem(at_uid);
-		int UnitID = uid.empty() ? -1 : CStr(uid).ToInt();
+		int unitId = uid.empty() ? -1 : CStr(uid).ToInt();
 
 		CStrW TemplateName;
 		int PlayerID = 0;
@@ -913,7 +916,7 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 		{
 			std::set<CStr> selections; // TODO: read from file
 
-			HEntity ent = g_EntityManager.create(base, Position, Orientation, selections);
+			HEntity ent = g_EntityManager.create(base, Position, Orientation, selections, 0, unitId);
 
 			if (! ent)
 				LOG(ERROR, LOG_CATEGORY, "Failed to create entity of type '%ls'", TemplateName.c_str());
@@ -922,10 +925,10 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 				ent->m_actor->SetPlayerID(PlayerID);
 				g_EntityManager.AddEntityClassData(ent);
 
-				if (UnitID < 0)
+				if (unitId < 0)
 					ent->m_actor->SetID(m_MapReader.pUnitMan->GetNewID());
 				else
-					ent->m_actor->SetID(UnitID);
+					ent->m_actor->SetID(unitId);
 			}
 		}
 

@@ -439,14 +439,20 @@ public:
 		return ( m_formation != 0 ? true : false );
 	}
 
-	bool Order( JSContext* cx, uintN argc, jsval* argv, bool Queued );
+	bool Order( JSContext* cx, uintN argc, jsval* argv, CEntityOrder::EOrderSource source, bool Queued );
+
+	// TODO: Replace these variants of order() with a single function, and update scripts accordingly.
 	inline bool OrderSingle( JSContext* cx, uintN argc, jsval* argv )
 	{
-		return( Order( cx, argc, argv, false ) );
+		return( Order( cx, argc, argv, CEntityOrder::SOURCE_PLAYER, false ) );
 	}
 	inline bool OrderQueued( JSContext* cx, uintN argc, jsval* argv )
 	{
-		return( Order( cx, argc, argv, true ) );
+		return( Order( cx, argc, argv, CEntityOrder::SOURCE_PLAYER, true ) );
+	}
+	inline bool OrderFromTriggers( JSContext* cx, uintN argc, jsval* argv )
+	{
+		return( Order( cx, argc, argv, CEntityOrder::SOURCE_TRIGGERS, true ) );
 	}
 
 	bool IsIdle( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
