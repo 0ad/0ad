@@ -19,13 +19,13 @@ function trigPlayerUnitCount(player, unit)
 function trigObjectTask(subjects, target, task)
 {
 	for ( var i = 0; i < subjects.length; ++i )
-		getEntityByHandle(subjects[i]).orderFromTriggers(
-			ORDER_GENERIC, getEntityByHandle(target[0]), task);
+		getEntityByUnitID(subjects[i]).orderFromTriggers(
+			ORDER_GENERIC, getEntityByUnitID(target[0]), task);
 }
 
 function trigObjectGoto(subjects, destination)
 {
 	for ( var i = 0; i < subjects.length; ++i )
-		getEntityByHandle(subjects[i]).orderFromTriggers(
+		getEntityByUnitID(subjects[i]).orderFromTriggers(
 			ORDER_GOTO, destination.x, destination.y);
 }

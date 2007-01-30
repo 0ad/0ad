@@ -34,6 +34,8 @@
 #include "renderer/Renderer.h"
 #include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
+#include "graphics/Unit.h"
+#include "graphics/UnitManager.h"
 #include "simulation/EntityTemplateCollection.h"
 #include "simulation/TechnologyCollection.h"
 #include "simulation/Entity.h"
@@ -108,30 +110,30 @@ JSBool WriteLog(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 // Retrieve the entity currently occupying the specified handle.
 // params: handle [int]
 // returns: entity
-JSBool getEntityByHandle( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
+JSBool getEntityByUnitID( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_PARAMS(1);
 	*rval = JSVAL_NULL;
 
-	i32 handle;
+	int uid;
 	try
 	{
-		handle = ToPrimitive<int>( argv[0] );
+		uid = ToPrimitive<int>( argv[0] );
 	}
 	catch( PSERROR_Scripting_ConversionFailed )
 	{
-		JS_ReportError( cx, "Invalid handle" );
+		JS_ReportError( cx, "Invalid parameter" );
 		return( JS_TRUE );
 	}
-	HEntity* v = g_EntityManager.getByHandle( (u16)handle );
-	if( !v )
-	{
-		JS_ReportError( cx, "No entity occupying handle: %d", handle );
-		return( JS_TRUE );
-	}
-	JSObject* entity = (*v)->GetScript();
 
-	*rval = OBJECT_TO_JSVAL( entity );
+	CUnit* unit = g_Game->GetWorld()->GetUnitManager().FindByID( uid );
+	if( !unit || !unit->GetEntity() )
+	{
+		*rval = JSVAL_NULL;
+		return( JS_TRUE );
+	}
+
+	*rval = OBJECT_TO_JSVAL( unit->GetEntity()->GetScript() );
 	return( JS_TRUE );
 }
 
@@ -1370,7 +1372,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC(writeConsole, JSI_Console::writeConsole, 1)	// external
 
 	// Entity
-	JS_FUNC(getEntityByHandle, getEntityByHandle, 1)
+	JS_FUNC(getEntityByUnitID, getEntityByUnitID, 1)
 	JS_FUNC(getPlayerUnitCount, getPlayerUnitCount, 1)
 	JS_FUNC(getEntityTemplate, getEntityTemplate, 1)
 	JS_FUNC(issueCommand, issueCommand, 2)

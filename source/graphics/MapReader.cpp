@@ -916,7 +916,7 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 		{
 			std::set<CStr> selections; // TODO: read from file
 
-			HEntity ent = g_EntityManager.create(base, Position, Orientation, selections, 0, unitId);
+			HEntity ent = g_EntityManager.create(base, Position, Orientation, selections);
 
 			if (! ent)
 				LOG(ERROR, LOG_CATEGORY, "Failed to create entity of type '%ls'", TemplateName.c_str());
