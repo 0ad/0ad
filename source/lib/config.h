@@ -295,7 +295,8 @@
 //
 // rationale: lying about __STDC_VERSION__ via Premake so as to enable support
 // for some C99 functions doesn't work. Mac OS X headers would then use the
-// restrict keyword, which is not actually supported on older GCC.
+// restrict keyword, which is never supported by g++ (because that might
+// end up breaking valid C++98 programs).
 #define HAVE_C99 0
 #ifdef __STDC_VERSION__
 # if __STDC_VERSION__ >= 199901L
