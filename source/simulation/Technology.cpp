@@ -268,15 +268,15 @@ bool CTechnology::loadELEffect( XMBElement effect, CXeromyces& XeroFile, const C
 		else if ( name == el_script )
 		{
 			CStr Include = element.getAttributes().getNamedItem( at_file );
-			if( Include.Length() && m_scriptsLoaded.find( Include ) == m_scriptsLoaded.end() )
+			if( !Include.empty() && m_scriptsLoaded.find( Include ) == m_scriptsLoaded.end() )
 			{
 				m_scriptsLoaded.insert( Include );
 				g_ScriptingHost.RunScript( Include );
 			}
 			CStr Inline = element.getText();
-			if( Inline.Length() )
+			if( !Inline.empty() )
 			{
-				g_ScriptingHost.RunMemScript( Inline.c_str(), Inline.Length(), filename, element.getLineNumber() );
+				g_ScriptingHost.RunMemScript( Inline.c_str(), Inline.length(), filename, element.getLineNumber() );
 			}
 		}
 		else if ( name == el_function )

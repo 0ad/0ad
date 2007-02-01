@@ -21,13 +21,13 @@ static SMaterialColor ParseColor(CStr colorStr)
     CStr tmp;
     int idx = 0;
     long pos = colorStr.Find(' ');
-    while(colorStr.Length())
+    while(colorStr.length())
     {
         if(pos == -1)
-            pos = (long)colorStr.Length();
+            pos = (long)colorStr.length();
 
-        tmp = colorStr.GetSubstring(0, pos);
-        colorStr = colorStr.GetSubstring(pos, colorStr.Length() - pos);
+        tmp = colorStr.substr(0, pos);
+        colorStr = colorStr.substr(pos);
         colorStr = colorStr.Trim(PS_TRIM_LEFT);
         pos = colorStr.Find(' ');
 
@@ -80,10 +80,10 @@ static SMaterialColor ParseColor(CStr colorStr)
 
 static bool ParseUsage(CStr temp)
 {
-    temp = temp.LCase().Trim(PS_TRIM_BOTH);
-    if(temp == CStr("blend") ||
-        temp == CStr("true") ||
-        temp == CStr("yes") ||
+    temp = temp.LowerCase().Trim(PS_TRIM_BOTH);
+    if(temp == "blend" ||
+        temp == "true" ||
+        temp == "yes" ||
         temp.ToInt() > 0)
         return true;
 
@@ -93,8 +93,8 @@ static bool ParseUsage(CStr temp)
 #if 0 // unused
 static GLenum ParseAlphaFunc(CStr temp)
 {
-    temp = temp.LCase().Trim(PS_TRIM_BOTH);
-    if(!temp.Length())
+    temp = temp.LowerCase().Trim(PS_TRIM_BOTH);
+    if(temp.empty())
         return GL_NONE;
 
     if(temp == CStr("never"))
@@ -119,8 +119,8 @@ static GLenum ParseAlphaFunc(CStr temp)
 
 static GLenum ParseBlendFunc(CStr temp)
 {
-    temp = temp.LCase().Trim(PS_TRIM_BOTH);
-    if(!temp.Length())
+    temp = temp.LowerCase().Trim(PS_TRIM_BOTH);
+    if(temp.empty())
         return GL_NONE;
 
     if(temp == CStr("zero"))
@@ -232,19 +232,19 @@ CMaterial &CMaterialManager::LoadMaterial(const char *file)
 			else if(token == el_colors)
 			{
 				temp = (CStr)attrs.getNamedItem(at_diffuse);
-				if(temp.Length() > 0)
+				if(! temp.empty())
 					material->SetDiffuse(ParseColor(temp));
 
 				temp = (CStr)attrs.getNamedItem(at_ambient);
-				if(temp.Length() > 0)
+				if(! temp.empty())
 					material->SetAmbient(ParseColor(temp));
 
 				temp = (CStr)attrs.getNamedItem(at_specular);
-				if(temp.Length() > 0)
+				if(! temp.empty())
 					material->SetSpecular(ParseColor(temp));
 
 				temp = (CStr)attrs.getNamedItem(at_specularpower);
-				if(temp.Length() > 0)
+				if(! temp.empty())
 					material->SetSpecularPower(ClampFloat(temp.ToFloat(), 0.0f, 1.0f));
 			}
 			else if(token == el_alpha)

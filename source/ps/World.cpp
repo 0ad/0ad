@@ -67,7 +67,7 @@ void CWorld::Initialize(CGameAttributes *pAttribs)
 	ONCE(RegMemFun(CEntityTemplateCollection::GetSingletonPtr(), &CEntityTemplateCollection::loadTemplates, L"loadTemplates", 15));
 
 	// Load the map, if one was specified
-	if (pAttribs->m_MapFile.Length())
+	if (pAttribs->m_MapFile.length())
 	{
 		CStr mapfilename("maps/scenarios/");
 

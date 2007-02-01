@@ -49,7 +49,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	m_TextureName = variation.texture;
 	m_ModelName = variation.model;
 
-	if (variation.color.Length())
+	if (! variation.color.empty())
 	{
 		std::stringstream str;
 		str << variation.color;
@@ -100,7 +100,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 		else if (name == "chop") name = "gather";
 		else if (name == "decay") name = "corpse";
 
-		if (it->second.m_FileName.Length())
+		if (! it->second.m_FileName.empty())
 		{
 			CSkeletonAnim* anim = m_Model->BuildAnimation(it->second.m_FileName, name, it->second.m_Speed, it->second.m_ActionPos, it->second.m_ActionPos2);
 			if (anim)
@@ -143,17 +143,17 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 		}
 
 		// Pluck out the special attachpoint 'projectile'
-		if( prop.m_PropPointName == "projectile" )
+		if (prop.m_PropPointName == "projectile")
 		{
 			m_ProjectileModel = oe->m_Model;
 		}
 		// Also the other special attachpoint 'loaded-<proppoint>'
-		else if( ( prop.m_PropPointName.Length() > 7 ) && ( prop.m_PropPointName.Left( 7 ) == "loaded-" ) )
+		else if (prop.m_PropPointName.length() > 7 && prop.m_PropPointName.Left(7) == "loaded-")
 		{
-			CStr ppn = prop.m_PropPointName.GetSubstring( 7, prop.m_PropPointName.Length() - 7 );
+			CStr ppn = prop.m_PropPointName.substr(7);
 			m_AmmunitionModel = oe->m_Model;
 			m_AmmunitionPoint = modeldef->FindPropPoint((const char*)ppn );
-			if( !m_AmmunitionPoint )
+			if (! m_AmmunitionPoint)
 				LOG(ERROR, LOG_CATEGORY, "Failed to find matching prop point called \"%s\" in model \"%s\" on actor \"%s\"", (const char*)ppn, (const char*)m_ModelName, (const char*)prop.m_ModelName);
 		}
 		else

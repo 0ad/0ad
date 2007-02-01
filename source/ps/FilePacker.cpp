@@ -54,7 +54,7 @@ void CFilePacker::PackRaw(const void* rawdata,u32 rawdatalen)
 // PackString: pack a string onto the end of the data stream
 void CFilePacker::PackString(const CStr& str)
 {
-	u32 len=(u32)str.Length();
+	u32 len=(u32)str.length();
 	PackRaw(&len,sizeof(len));
 	PackRaw((const char*) str,len);
 }

@@ -181,7 +181,7 @@ bool CEntityTemplate::loadXML( const CStr& filename )
 	m_Base_Name = Root.getAttributes().getNamedItem( at_Parent );
 
 	// Load our parent, if we have one
-	if( m_Base_Name.Length() )
+	if( ! m_Base_Name.empty() )
 	{
 		CEntityTemplate* base = g_EntityTemplateCollection.getTemplate( m_Base_Name, m_player );
 		if( base )
@@ -206,16 +206,16 @@ bool CEntityTemplate::loadXML( const CStr& filename )
 		{
 			CStr Include = Child.getAttributes().getNamedItem( at_File );
 
-			if( Include.Length() && scriptsLoaded.find( Include ) == scriptsLoaded.end() )
+			if( !Include.empty() && scriptsLoaded.find( Include ) == scriptsLoaded.end() )
 			{
 				scriptsLoaded.insert( Include );
 				g_ScriptingHost.RunScript( Include );
 			}
 
 			CStr Inline = Child.getText();
-			if( Inline.Length() )
+			if( !Inline.empty() )
 			{
-				g_ScriptingHost.RunMemScript( Inline.c_str(), Inline.Length(), filename.c_str(), Child.getLineNumber() );
+				g_ScriptingHost.RunMemScript( Inline.c_str(), Inline.length(), filename.c_str(), Child.getLineNumber() );
 			}
 		}
 		else if (ChildName == el_Traits)

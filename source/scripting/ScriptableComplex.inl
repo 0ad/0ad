@@ -131,12 +131,12 @@ public:
 
 				if( Instance )
 				{
-					size_t rlen = Instance->m_PropertyRoot.Length();
+					size_t rlen = Instance->m_PropertyRoot.length();
 
 					IJSComplex::PropertyTable::iterator iit;
 					for( iit = T::m_IntrinsicProperties.begin(); iit != T::m_IntrinsicProperties.end(); iit++ )
-						if( ( iit->first.Length() > rlen ) && ( iit->first.Left( rlen ) == Instance->m_PropertyRoot ) && ( iit->first[rlen] == '.' ) )
-							it->first.insert( iit->first.GetSubstring( rlen + 1, iit->first.Length() - rlen - 1 ).BeforeFirst( L"." ) );
+						if( ( iit->first.length() > rlen ) && ( iit->first.Left( rlen ) == Instance->m_PropertyRoot ) && ( iit->first[rlen] == '.' ) )
+							it->first.insert( iit->first.BeforeFirst( L".", rlen + 1 ) );
 
 
 					Instance->m_Owner->FillEnumerateSet( it, &( Instance->m_PropertyRoot ) );
@@ -919,10 +919,10 @@ void CJSComplex<T, ReadOnly>::FillEnumerateSet( IteratorState* it, CStrW* Proper
 	PropertyTable::iterator iit;
 	if( PropertyRoot )
 	{
-		size_t rlen = PropertyRoot->Length();
+		size_t rlen = PropertyRoot->length();
 		for( iit = m_Properties.begin(); iit != m_Properties.end(); iit++ )
-			if( ( iit->first.Length() > rlen ) && ( iit->first.Left( rlen ) == *PropertyRoot ) && ( iit->first[rlen] == '.' ) )
-				it->first.insert( iit->first.GetSubstring( rlen + 1, iit->first.Length() - rlen - 1 ).BeforeFirst( L"." ) );
+			if( ( iit->first.length() > rlen ) && ( iit->first.Left( rlen ) == *PropertyRoot ) && ( iit->first[rlen] == '.' ) )
+				it->first.insert( iit->first.BeforeFirst( L".", rlen + 1 ) );
 	}
 	else
 	{

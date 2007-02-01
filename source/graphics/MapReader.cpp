@@ -70,7 +70,7 @@ void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain_,
 	if (unpacker.GetVersion() >= 3) {
 		// read the corresponding XML file
 		filename_xml = filename;
-		filename_xml = filename_xml.Left(filename_xml.Length()-4) + ".xml";
+		filename_xml = filename_xml.Left(filename_xml.length()-4) + ".xml";
 		RegMemFun(this, &CMapReader::ReadXML, L"CMapReader::ReadXML", 5800);
 	}
 

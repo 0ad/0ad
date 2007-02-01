@@ -386,7 +386,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr& SpriteName, CRect 
 
 		Call.m_Vertices = ObjectSize;
 
-		if (cit->m_TextureName.Length())
+		if (! cit->m_TextureName.empty())
 		{
 			Handle h = ogl_tex_load(cit->m_TextureName);
 			if (h <= 0)

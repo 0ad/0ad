@@ -24,10 +24,10 @@ Examples:
 */
 
 // history:
-// 19 May 04, Mark Thompson (mot20@cam.ac.uk / mark@wildfiregames.com)
+// 2004-05-19 Mark Thompson (mot20@cam.ac.uk / mark@wildfiregames.com)
 // 2004-06-18 janwas: replaced conversion buffer with stringstream
 // 2004-10-31 Philip: Changed to inherit from std::[w]string
-// 2007-1-26 greybeard(joe@wildfiregames.com): added comments for doc generation
+// 2007-01-26 greybeard(joe@wildfiregames.com): added comments for doc generation
 
 #ifndef CSTR_H_FIRST
 #define CSTR_H_FIRST
@@ -81,43 +81,42 @@ public:
 
 	// CONSTRUCTORS
 
-/**
- * Constructor
- *
- **/
+	/**
+	 * Constructor
+	 *
+	 **/
 	CStr() {}
-/**
- * Alternate Constructor
- *
- * @param const CStr & String reference to another CStr object to be used for initialization
- **/
-	CStr(const CStr& String)	: std::tstring(String) {}
-/**
- * Alternate Constructor
- *
- * @param const tchar * String pointer to an array of tchar to be used for initialization
- **/
-	CStr(const tchar* String)	: std::tstring(String) {}
-/**
- * Alternate Constructor
- *
- * @param const tchar * String pointer to first tchar to be used for initialization
- * @param size_t Length number of tchar to be used from first tchar
- **/
-	CStr(const tchar* String, size_t Length)
-								: std::tstring(String, Length) {}
-/**
- * Alternate Constructor
- *
- * @param const tchar Char tchar to be used for initialization
- **/
-	CStr(const tchar Char)		: std::tstring(1, Char) {} // std::string's constructor is (repeats, chr)
-/**
- * Alternate Constructor
- *
- * @param std::tstring String reference to basic string object to be used for inititalization
- **/
-	CStr(std::tstring String)	: std::tstring(String) {}
+	/**
+	 * Alternate Constructor
+	 *
+	 * @param const CStr & String reference to another CStr object to be used for initialization
+	 **/
+	CStr(const CStr& String) : std::tstring(String) {}
+	/**
+	 * Alternate Constructor
+	 *
+	 * @param const tchar * String pointer to an array of tchar to be used for initialization
+	 **/
+	CStr(const tchar* String) : std::tstring(String) {}
+	/**
+	 * Alternate Constructor
+	 *
+	 * @param const tchar * String pointer to first tchar to be used for initialization
+	 * @param size_t Length number of tchar to be used from first tchar
+	 **/
+	CStr(const tchar* String, size_t Length) : std::tstring(String, Length) {}
+	/**
+	 * Alternate Constructor
+	 *
+	 * @param const tchar Char tchar to be used for initialization
+	 **/
+	CStr(tchar Char) : std::tstring(1, Char) {} // std::string's constructor is (repeats, chr)
+	/**
+	 * Alternate Constructor
+	 *
+	 * @param std::tstring String reference to basic string object to be used for inititalization
+	 **/
+	CStr(const std::tstring& String) : std::tstring(String) {}
 
 	/**
 	 * Repeat: Named constructor, to avoid overload overload.
@@ -128,21 +127,21 @@ public:
 	 **/
 	static CStr Repeat(const CStr& String, size_t Reps);
 
-/**
- * Construction from utf16strings.
- * allowed on MSVC as of 2006-02-03 because utf16string is
- * now distinct from CStrW.
- *
- * @param utf16string String utf16string to be used for initialization.
- **/
-	CStr(utf16string String) : std::tstring(String.begin(), String.end()) {}
+	/**
+	 * Construction from utf16strings.
+	 * allowed on MSVC as of 2006-02-03 because utf16string is
+	 * now distinct from CStrW.
+	 *
+	 * @param utf16string String utf16string to be used for initialization.
+	 **/
+	CStr(const utf16string& String) : std::tstring(String.begin(), String.end()) {}
 
 	// Transparent CStrW/8 conversion. Non-ASCII characters are not
 	// handled correctly.
 	#ifndef _UNICODE
 		CStr8(const CStrW& wideStr);
 	#else
-		CStrW(const CStr8 &asciiStr);
+		CStrW(const CStr8& asciiStr);
 	#endif
 
 	// Conversion to/from UTF-8, encoded in a CStr8.
@@ -156,108 +155,93 @@ public:
 		CStrW FromUTF8() const;
 	#endif
 
-/**
- * Alternate Constructor
- *
- * @param int Number integer to be used for initialization
- **/
+	/**
+	 * Alternate Constructor
+	 *
+	 * @param int Number integer to be used for initialization
+	 **/
 	CStr(int Number);
-/**
- * Alternate Constructor
- *
- * @param unsigned int Number unsigned integer to be used for initialization
- **/
+	/**
+	 * Alternate Constructor
+	 *
+	 * @param unsigned int Number unsigned integer to be used for initialization
+	 **/
 	CStr(unsigned int Number);
-/**
- * Alternate Constructor
- *
- * @param long Number long to be used for initialization
- **/
+	/**
+	 * Alternate Constructor
+	 *
+	 * @param long Number long to be used for initialization
+	 **/
 	CStr(long Number);
-/**
- * Alternate Constructor
- *
- * @param unsigned long Number unsigned long to be used for initialization
- **/
+	/**
+	 * Alternate Constructor
+	 *
+	 * @param unsigned long Number unsigned long to be used for initialization
+	 **/
 	CStr(unsigned long Number);
-/**
- * Alternate Constructor
- *
- * @param float Number float to be used for initialization
- **/
+	/**
+	 * Alternate Constructor
+	 *
+	 * @param float Number float to be used for initialization
+	 **/
 	CStr(float Number);
-/**
- * Alternate Constructor
- *
- * @param double Number double to be used for initialization
- **/
+	/**
+	 * Alternate Constructor
+	 *
+	 * @param double Number double to be used for initialization
+	 **/
 	CStr(double Number);
 
-/**
- * Destructor
- *
- **/
+	/**
+	 * Destructor
+	 *
+	 **/
 	~CStr() {};
 
-	// Conversions
+	// Conversions:
+
 	/**
 	 * Return CStr as Integer.
 	 * Conversion is from the beginning of CStr.
 	 *
 	 * @return int CStr represented as an integer.
 	 **/
-	int				ToInt() const;
+	int ToInt() const;
 	/**
 	 * Return CStr as Unsigned Integer.
 	 * Conversion is from the beginning of CStr.
 	 *
 	 * @return unsigned int CStr represented as an unsigned integer.
 	 **/
-	unsigned int	ToUInt() const;
+	unsigned int ToUInt() const;
 	/**
 	 * Return CStr as Long.
 	 * Conversion is from the beginning of CStr.
 	 *
 	 * @return long CStr represented as a long.
 	 **/
-	long			ToLong() const;
+	long ToLong() const;
 	/**
 	 * Return CStr as Unsigned Long.
 	 * Conversion is from the beginning of CStr.
 	 *
 	 * @return unsigned long CStr represented as an unsigned long.
 	 **/
-	unsigned long	ToULong() const;
+	unsigned long ToULong() const;
 	/**
 	 * Return CStr as Float.
 	 * Conversion is from the beginning of CStr.
 	 *
 	 * @return float CStr represented as a float.
 	 **/
-	float			ToFloat() const;
+	float ToFloat() const;
 	/**
 	 * Return CStr as Double.
 	 * Conversion is from the beginning of CStr.
 	 *
 	 * @return double CStr represented as a double.
 	 **/
-	double			ToDouble() const;
-
-	/**
-	 * Return the length of the CStr in characters.
-	 *
-	 * @return size_t character count
-	 **/
-	size_t Length() const { return length(); }
-
-	/**
-	 * Retrieve the substring within the CStr.
-	 *
-	 * @param size_t start starting character position in CStr
-	 * @param size_t len number of characters to retrieve in CStr
-	 * @return CStr substring
-	 **/
-	CStr GetSubstring(size_t start, size_t len) const;
+	double ToDouble() const;
 
 	/**
 	 * Search the CStr for another string.
@@ -276,7 +260,7 @@ public:
 	 * @return long offset into the CStr of the first occurrence of the search string
 	 *				-1 if the search string is not found
 	 **/
-	long Find(const tchar &chr) const;
+	long Find(const tchar chr) const;
 	/**
 	 * Search the CStr for another string with starting offset.
 	 * The search is case-sensitive.
@@ -286,7 +270,7 @@ public:
 	 * @return long offset into the CStr of the first occurrence of the search string
 	 *				-1 if the search string is not found
 	 **/
-	long Find(const int &start, const tchar &chr) const;
+	long Find(const int start, const tchar chr) const;
 
 	/**
 	 * Search the CStr for another string.
@@ -305,7 +289,7 @@ public:
 	 * @return long offset into the CStr of the first occurrence of the search string
 	 *				-1 if the search string is not found
 	 **/
-	long FindInsensitive(const tchar &chr) const;
+	long FindInsensitive(const tchar chr) const;
 	/**
 	 * Search the CStr for another string with starting offset.
 	 * The search is case-insensitive.
@@ -315,7 +299,7 @@ public:
 	 * @return long offset into the CStr of the first occurrence of the search string
 	 *				-1 if the search string is not found
 	 **/
-	long FindInsensitive(const int &start, const tchar &chr) const;
+	long FindInsensitive(const int start, const tchar chr) const;
 
 	/**
 	 * Search the CStr for another string.
@@ -339,8 +323,6 @@ public:
 	 * @return CStr converted copy of CStr.
 	 **/
 	CStr UpperCase() const;
-	CStr LCase() const;
-	CStr UCase() const;
 
 	/**
 	 * Retrieve first n characters of the CStr.
@@ -363,40 +345,44 @@ public:
 	 * Return substring of the CStr after the last occurrence of the search string.
 	 *
 	 * @param const CStr & Str reference to search string
+	 * @param size_t startPos character position to start searching from
 	 * @return CStr substring remaining after match
 	 *					 the CStr if no match is found
 	 **/
-	CStr AfterLast(const CStr& Str) const;
+	CStr AfterLast(const CStr& Str, size_t startPos = npos) const;
 
 	/**
 	 * Retrieve substring of the CStr preceding last occurrence of a string.
 	 * Return substring of the CStr preceding the last occurrence of the search string.
 	 *
 	 * @param const CStr & Str reference to search string
+	 * @param size_t startPos character position to start searching from
 	 * @return CStr substring preceding before match
 	 *					 the CStr if no match is found
 	 **/
-	CStr BeforeLast(const CStr& Str) const;
+	CStr BeforeLast(const CStr& Str, size_t startPos = npos) const;
 
 	/**
 	 * Retrieve substring of the CStr after first occurrence of a string.
 	 * Return substring of the CStr after the first occurrence of the search string.
 	 *
 	 * @param const CStr & Str reference to search string
+	 * @param size_t startPos character position to start searching from
 	 * @return CStr substring remaining after match
 	 *					 the CStr if no match is found
 	 **/
-	CStr AfterFirst(const CStr& Str) const;
+	CStr AfterFirst(const CStr& Str, size_t startPos = 0) const;
 
 	/**
 	 * Retrieve substring of the CStr preceding first occurrence of a string.
 	 * Return substring of the CStr preceding the first occurrence of the search string.
 	 *
 	 * @param const CStr & Str reference to search string
+	 * @param size_t startPos character position to start searching from
 	 * @return CStr substring preceding before match
 	 *					 the CStr if no match is found
 	 **/
-	CStr BeforeFirst(const CStr& Str) const;
+	CStr BeforeFirst(const CStr& Str, size_t startPos = 0) const;
 
 	/**
 	 * Remove all occurrences of a string from the CStr.
@@ -418,7 +404,7 @@ public:
 	 *
 	 * @return CStr converted copy of CStr.
 	 **/
-	CStr UnescapeBackslashes();
+	CStr UnescapeBackslashes() const;
 
 	/**
 	 * Return a trimmed copy of the CStr.
@@ -492,13 +478,11 @@ public:
 
 	operator const tchar*() const;
 
-	// Do some range checking in debug builds
-	tchar& operator[](size_t n)	{ debug_assert(n < length()); return this->std::tstring::operator[](n); }
-	tchar& operator[](int n)	{ debug_assert((size_t)n < length()); return this->std::tstring::operator[](n); }
+	tchar& operator[](size_t n)	{ return this->std::tstring::operator[](n); }
+	tchar& operator[](int n)	{ return this->std::tstring::operator[](n); }
 
 	// Conversion to utf16string
-	inline utf16string utf16() const
-	{	return utf16string(begin(), end()); }
+	utf16string utf16() const { return utf16string(begin(), end()); }
 
 	// Calculates a hash of the string's contents
 	size_t GetHashCode() const;
@@ -507,8 +491,8 @@ public:
 	// (These are not virtual or inherited from ISerializable, to avoid
 	// adding a vtable and making the strings larger than std::string)
 	uint GetSerializedLength() const;
-	u8 *Serialize(u8 *buffer) const;
-	const u8 *Deserialize(const u8 *buffer, const u8 *bufferend);
+	u8* Serialize(u8* buffer) const;
+	const u8* Deserialize(const u8* buffer, const u8* bufferend);
 };
 
 // Hash function (for STL_HASH_MAP, etc)

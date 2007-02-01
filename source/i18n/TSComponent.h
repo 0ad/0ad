@@ -19,7 +19,7 @@ namespace I18n
 {
 	class CLocale;
 
-	class TSComponent : boost::noncopyable
+	class TSComponent
 	{
 	public:
 		virtual const StrImW ToString(CLocale* locale, std::vector<BufferVariable*>& vars) const = 0;
@@ -27,9 +27,10 @@ namespace I18n
 	};
 
 	
-	class TSComponentString : public TSComponent {
+	class TSComponentString : public TSComponent, boost::noncopyable
+	{
 	public:
-		TSComponentString(const wchar_t* s) : String(s) {};
+		TSComponentString(const wchar_t* s) : String(s) {}
 
 		const StrImW ToString(CLocale* locale, std::vector<BufferVariable*>& vars) const;
 
@@ -38,9 +39,10 @@ namespace I18n
 	};
 
 
-	class TSComponentVariable : public TSComponent {
+	class TSComponentVariable : public TSComponent, boost::noncopyable
+	{
 	public:
-		TSComponentVariable(unsigned char id) : ID(id) {};
+		TSComponentVariable(unsigned char id) : ID(id) {}
 
 		const StrImW ToString(CLocale* locale, std::vector<BufferVariable*>& vars) const;
 
@@ -49,10 +51,10 @@ namespace I18n
 	};
 
 
-
-	class TSComponentFunction : public TSComponent {
+	class TSComponentFunction : public TSComponent, boost::noncopyable
+	{
 	public:
-		TSComponentFunction(const char* name) : Name(name) {};
+		TSComponentFunction(const char* name) : Name(name) {}
 		~TSComponentFunction();
 
 		const StrImW ToString(CLocale* locale, std::vector<BufferVariable*>& vars) const;
@@ -65,7 +67,6 @@ namespace I18n
 		const std::string Name;
 		std::vector<ScriptValue*> Params;
 	};
-
 
 
 }

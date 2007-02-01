@@ -49,7 +49,7 @@ CTextureEntry* CTextureManager::FindTexture(CStr tag)
 	long pos=tag.ReverseFind(".");
 	if (pos != -1)
 	{
-		tag = tag.GetSubstring(0, pos);
+		tag = tag.substr(0, pos);
 	}
 	for (uint i=0;i<m_TextureEntries.size();i++)
 	{

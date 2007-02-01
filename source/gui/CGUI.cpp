@@ -1243,7 +1243,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	if (m_Styles.count("default") == 1)
 		object->LoadStyle(*this, "default");
 
-    if (argStyle.Length())
+	if (! argStyle.empty())
 	{
 		// additional check
 		if (m_Styles.count(argStyle) == 0)
@@ -1308,11 +1308,11 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	}
 
 	// Attempt to register the hotkey tag, if one was provided
-	if (hotkeyTag.Length())
+	if (! hotkeyTag.empty())
 		hotkeyRegisterGUIObject(object->GetName(), hotkeyTag);
 
 	CStrW caption (Element.getText());
-	if (caption.Length())
+	if (! caption.empty())
 	{
 		// Set the setting caption to this
 		object->SetSetting("caption", caption, true);
@@ -1351,7 +1351,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			CStr code;
 
 			// If there is a file, open it and use it as the code
-			if (file.Length())
+			if (! file.empty())
 			{
 				CVFSFile scriptfile;
 				if (scriptfile.Load(file) != PSRETURN_OK)
@@ -1434,13 +1434,13 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile)
 	CStr file (Element.getAttributes().getNamedItem( pFile->getAttributeID("file") ));
 
 	// If there is a file specified, open and execute it
-	if (file.Length())
+	if (! file.empty())
 		g_ScriptingHost.RunScript(file, m_ScriptObject);
 
 	// Execute inline scripts
 	CStr code (Element.getText());
-	if (code.Length())
-		g_ScriptingHost.RunMemScript(code.c_str(), code.Length(), "Some XML file", Element.getLineNumber(), m_ScriptObject);
+	if (! code.empty())
+		g_ScriptingHost.RunMemScript(code.c_str(), code.length(), "Some XML file", Element.getLineNumber(), m_ScriptObject);
 }
 
 void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
@@ -1878,7 +1878,7 @@ void CGUI::Xeromyces_ReadColor(XMBElement Element, CXeromyces* pFile)
 
 	// Try parsing value 
 	CStr value (Element.getText());
-	if (value.Length())
+	if (! value.empty())
 	{
 		// Try setting color to value
 		if (!color.ParseString(value, 255.f))

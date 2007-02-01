@@ -222,9 +222,10 @@ CSkeletonAnim* CModel::BuildAnimation(const char* filename, const char* name, fl
 // Update: update this model by the given time, in seconds
 void CModel::Update(float time)
 {
-	if (m_Anim && m_Anim->m_AnimDef && m_BoneMatrices) {
+	if (m_Anim && m_Anim->m_AnimDef && m_BoneMatrices)
+	{
 		// adjust for animation speed
-		float animtime=time*m_AnimSpeed;
+		float animtime = time*m_AnimSpeed;
 
 		// update animation time, but don't calculate bone matrices - do that (lazily) when
 		// something requests them; that saves some calculation work for offscreen models,
@@ -233,12 +234,13 @@ void CModel::Update(float time)
 		m_AnimTime += animtime;
 		
 
-		float duration=m_Anim->m_AnimDef->GetDuration();
-		if (m_AnimTime > duration) {
+		float duration = m_Anim->m_AnimDef->GetDuration();
+		if (m_AnimTime > duration)
+		{
 			if (m_Flags & MODELFLAG_NOLOOPANIMATION)
 				SetAnimation(m_NextAnim);
 			else
-				m_AnimTime = (float) fmod(m_AnimTime, duration);
+				m_AnimTime = fmod(m_AnimTime, duration);
 		}
 		
 		// mark vertices as dirty
@@ -249,10 +251,8 @@ void CModel::Update(float time)
 	}
 
 	// update props
-	for (uint i=0; i<m_Props.size(); i++)
-	{
+	for (size_t i = 0; i < m_Props.size(); ++i)
 		m_Props[i].m_Model->Update(time);
-	}
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -462,8 +462,9 @@ void CModel::SetTransform(const CMatrix3D& transform)
 void CModel::SetMaterial(const CMaterial &material)
 {
 	m_Material = material;
-	if(m_Material.GetTexture().Trim(PS_TRIM_BOTH).Length() > 0)
+	if(m_Material.GetTexture().Trim(PS_TRIM_BOTH).length() > 0)
 	{
+		// [TODO: uh, shouldn't this be doing something?]
 	}
 }
 

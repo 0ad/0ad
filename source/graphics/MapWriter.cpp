@@ -52,7 +52,7 @@ void CMapWriter::SaveMap(const char* filename, CTerrain* pTerrain,
 	packer.Write(filename);
 
 	CStr filename_xml (filename);
-	filename_xml = filename_xml.Left(filename_xml.Length()-4) + ".xml";
+	filename_xml = filename_xml.Left(filename_xml.length()-4) + ".xml";
 	WriteXML(filename_xml, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema);
 }
 

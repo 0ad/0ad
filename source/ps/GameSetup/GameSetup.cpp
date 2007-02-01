@@ -949,7 +949,7 @@ void Init(const CmdLineArgs& args, uint flags)
 	CONFIG_Init(args);
 
 	// setup_gui must be set after CONFIG_Init, so command-line parameters can disable it
-	const bool setup_gui = ((flags & INIT_NO_GUI) == 0 && g_AutostartMap.Length() == 0);
+	const bool setup_gui = ((flags & INIT_NO_GUI) == 0 && g_AutostartMap.empty());
 
 	// GUI is notified in SetVideoMode, so this must come before that.
 #ifndef NO_GUI
@@ -1102,7 +1102,7 @@ void Init(const CmdLineArgs& args, uint flags)
 		camera.UpdateFrustum();
 	}
 
-	if (g_AutostartMap.Length())
+	if (! g_AutostartMap.empty())
 	{
 		// Code copied mostly from atlas/GameInterface/Handlers/Map.cpp -
 		// maybe should be refactored to avoid duplication

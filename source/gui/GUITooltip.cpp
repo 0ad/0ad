@@ -72,13 +72,13 @@ static bool GetTooltip(IGUIObject* obj, CStr&style)
 		CStr text;
 		if (GUI<CStr>::GetSetting(obj, "tooltip", text) == PS_OK)
 		{
-			if (text.Length() == 0)
+			if (text.empty())
 			{
 				// No tooltip
 				return false;
 			}
 
-			if (style.Length() == 0)
+			if (style.empty())
 				// Text, but no style - use default
 				style = "default";
 
@@ -94,7 +94,7 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, CPos pos, const CStr& style, CGUI*
 	debug_assert(obj);
 
 	// Ignore attempts to use tooltip ""
-	if (style.Length() == 0)
+	if (style.empty())
 		return;
 
 	// Get the object referenced by 'tooltip_style'
@@ -109,7 +109,7 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, CPos pos, const CStr& style, CGUI*
 
 	CStr usedObjectName;
 	if (GUI<CStr>::GetSetting(tooltipobj, "use_object", usedObjectName) == PS_OK
-		&& usedObjectName.Length())
+		&& !usedObjectName.empty())
 	{
 		usedobj = gui->FindObjectByName(usedObjectName);
 		if (! usedobj)
@@ -151,7 +151,7 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, CPos pos, const CStr& style, CGUI*
 void GUITooltip::HideTooltip(const CStr& style, CGUI* gui)
 {
 	// Ignore attempts to use tooltip ""
-	if (style.Length() == 0)
+	if (style.empty())
 		return;
 
 	IGUIObject* tooltipobj = gui->FindObjectByName("__tooltip_"+style);
@@ -163,7 +163,7 @@ void GUITooltip::HideTooltip(const CStr& style, CGUI* gui)
 
 	CStr usedObjectName;
 	if (GUI<CStr>::GetSetting(tooltipobj, "use_object", usedObjectName) == PS_OK
-		&& usedObjectName.Length())
+		&& !usedObjectName.empty())
 	{
 		IGUIObject* usedobj = gui->FindObjectByName(usedObjectName);
 		if (! usedobj)

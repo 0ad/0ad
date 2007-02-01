@@ -68,11 +68,11 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 			wchar_t* text = sys_clipboard_get();
 			if (text)
 			{
-				if (m_iBufferPos == (int)pCaption->Length())
+				if (m_iBufferPos == (int)pCaption->length())
 					*pCaption += text;
 				else
 					*pCaption = pCaption->Left(m_iBufferPos) + text + 
-					pCaption->Right((long) pCaption->Length()-m_iBufferPos);
+					pCaption->Right((long) pCaption->length()-m_iBufferPos);
 
 				UpdateText(m_iBufferPos, m_iBufferPos, m_iBufferPos+1);
 
@@ -105,15 +105,15 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 				{
 					m_iBufferPos_Tail = -1;
 
-					if (pCaption->Length() == 0 ||
+					if (pCaption->empty() ||
 						m_iBufferPos == 0)
 						break;
 
-					if (m_iBufferPos == (int)pCaption->Length())
-						*pCaption = pCaption->Left( (long) pCaption->Length()-1);
+					if (m_iBufferPos == (int)pCaption->length())
+						*pCaption = pCaption->Left( (long) pCaption->length()-1);
 					else
 						*pCaption = pCaption->Left( m_iBufferPos-1 ) + 
-									pCaption->Right( (long) pCaption->Length()-m_iBufferPos );
+									pCaption->Right( (long) pCaption->length()-m_iBufferPos );
 
 					UpdateText(m_iBufferPos-1, m_iBufferPos, m_iBufferPos-1);
 					
@@ -132,12 +132,12 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 				}
 				else
 				{
-					if (pCaption->Length() == 0 ||
-						m_iBufferPos == (int)pCaption->Length())
+					if (pCaption->empty() ||
+						m_iBufferPos == (int)pCaption->length())
 						break;
 
 					*pCaption = pCaption->Left( m_iBufferPos ) + 
-								pCaption->Right( (long) pCaption->Length()-(m_iBufferPos+1) );
+								pCaption->Right( (long) pCaption->length()-(m_iBufferPos+1) );
 
 					UpdateText(m_iBufferPos, m_iBufferPos+1, m_iBufferPos);
 				}
@@ -177,7 +177,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 					m_iBufferPos_Tail = m_iBufferPos;
 				}
 
-				m_iBufferPos = (long) pCaption->Length();
+				m_iBufferPos = (long) pCaption->length();
 				m_WantedX=0.f;
 
 				UpdateAutoScroll();
@@ -257,7 +257,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 					}
 
 
-					if (m_iBufferPos != (int)pCaption->Length())
+					if (m_iBufferPos != (int)pCaption->length())
 						++m_iBufferPos;
 				}
 				else
@@ -417,7 +417,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 				// check max length
 				int max_length;
 				GUI<int>::GetSetting(this, "max_length", max_length);
-				if (max_length != 0 && (int)pCaption->Length() >= max_length)
+				if (max_length != 0 && (int)pCaption->length() >= max_length)
 					break;
 
 				m_WantedX=0.f;
@@ -426,11 +426,11 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 					DeleteCurSelection();
 				m_iBufferPos_Tail = -1;
 
-				if (m_iBufferPos == (int)pCaption->Length())
+				if (m_iBufferPos == (int)pCaption->length())
 					*pCaption += cooked;
 				else
 					*pCaption = pCaption->Left(m_iBufferPos) + CStrW(cooked) + 
-								pCaption->Right((long) pCaption->Length()-m_iBufferPos);
+								pCaption->Right((long) pCaption->length()-m_iBufferPos);
 
 				UpdateText(m_iBufferPos, m_iBufferPos, m_iBufferPos+1);
 
@@ -1029,7 +1029,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 	int to = 0;	// make sure it's initialized
 
 	if (to_before == -1)
-		to = (int)caption.Length();
+		to = (int)caption.length();
 
 	CFont font(font_name);
 
@@ -1143,7 +1143,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 		if (destroy_row_to != m_CharacterPositions.end())
             to = destroy_row_to->m_ListStart; // notice it will iterate [from, to), so it will never reach to.
 		else
-			to = (int)caption.Length();
+			to = (int)caption.length();
 
 
 		// Setup the first row
@@ -1157,7 +1157,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 		list<SRow>::iterator temp_it = destroy_row_to;
 		--temp_it;
 
-		CStr c_caption1(caption.GetSubstring(destroy_row_from->m_ListStart, (temp_it->m_ListStart + temp_it->m_ListOfX.size()) -destroy_row_from->m_ListStart));
+		CStr c_caption1(caption.substr(destroy_row_from->m_ListStart, (temp_it->m_ListStart + temp_it->m_ListOfX.size()) -destroy_row_from->m_ListStart));
 
 		m_CharacterPositions.erase(destroy_row_from, destroy_row_to);
 		
@@ -1179,7 +1179,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 			check_point_row_start += delta;
 			check_point_row_end += delta;
 
-			if (to != (int)caption.Length())
+			if (to != (int)caption.length())
 				to += delta;
 		}
 	}
@@ -1195,10 +1195,10 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 	{
 		if (caption[i] == L'\n' && multiline)
 		{
-			if (i==to-1 && to != (int)caption.Length())
+			if (i==to-1 && to != (int)caption.length())
 				break; // it will be added outside
 			
-			CStr c_caption1(caption.GetSubstring(row.m_ListStart, row.m_ListOfX.size()));
+			CStr c_caption1(caption.substr(row.m_ListStart, row.m_ListOfX.size()));
 
 			current_line = m_CharacterPositions.insert( current_line, row );
 			++current_line;
@@ -1241,7 +1241,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 				//  both before and after that character, being on different
 				//  rows. With automatic word-wrapping, that is not possible. Which
 				//  is intuitively correct.
-				CStr c_caption1(caption.GetSubstring(row.m_ListStart, row.m_ListOfX.size()));
+				CStr c_caption1(caption.substr(row.m_ListStart, row.m_ListOfX.size()));
 
 				current_line = m_CharacterPositions.insert( current_line, row );
 				++current_line;
@@ -1348,7 +1348,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 				if (destroy_row_to != m_CharacterPositions.end())
 					to = destroy_row_to->m_ListStart; // notice it will iterate [from, to[, so it will never reach to.
 				else
-					to = (int)caption.Length();
+					to = (int)caption.length();
 
 
 				// Set current line, new rows will be added before current_line, so
@@ -1366,7 +1366,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 
 				m_CharacterPositions.erase(destroy_row_from, destroy_row_to);
 
-				CStr c_caption(caption.GetSubstring(from, to-from));
+				CStr c_caption(caption.substr(from, to-from));
 			}
 			// else, the for loop will end naturally.
 		}
@@ -1527,7 +1527,7 @@ void CInput::DeleteCurSelection()
 	}
 
 	*pCaption = pCaption->Left( VirtualFrom ) + 
-				pCaption->Right( (long) pCaption->Length()-(VirtualTo) );
+				pCaption->Right( (long) pCaption->length()-(VirtualTo) );
 
 	UpdateText(VirtualFrom, VirtualTo, VirtualFrom);
 

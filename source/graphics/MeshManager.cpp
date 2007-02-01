@@ -142,8 +142,8 @@ CModelDefPtr CMeshManager::GetMesh(const CStr& filename)
 {
 	// Strip a three-letter file extension (if there is one) from the filename
 	CStr name;
-	if (filename.Length() > 4 && filename[filename.Length()-4] == '.')
-		name = filename.GetSubstring(0, filename.Length()-4);
+	if (filename.length() > 4 && filename[filename.length()-4] == '.')
+		name = filename.substr(0, filename.length()-4);
 	else
 		name = filename;
 
@@ -216,7 +216,7 @@ CModelDefPtr CMeshManager::GetMesh(const CStr& filename)
 		CStr cachedPmdVfsPath = "cache/";
 		cachedPmdVfsPath += realDaePath;
 		// Remove the .dae extension (which will certainly be there)
-		cachedPmdVfsPath = cachedPmdVfsPath.GetSubstring(0, cachedPmdVfsPath.Length()-4);
+		cachedPmdVfsPath = cachedPmdVfsPath.substr(0, cachedPmdVfsPath.length()-4);
 		// Add a _hash.pmd extension
 		cachedPmdVfsPath += "_";
 		cachedPmdVfsPath += hashString;

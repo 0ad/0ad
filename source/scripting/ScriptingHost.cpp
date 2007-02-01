@@ -137,16 +137,8 @@ jsval ScriptingHost::ExecuteScript(const CStrW& script, const CStrW& calledFrom,
 {
 	jsval rval; 
 
-	/* Unicode->ASCII conversion (mostly) for calledFrom */
-
-	size_t len = wcstombs( NULL, calledFrom, 0 );
-	debug_assert( len != (size_t)-1 );
-	char* asciiName = new char[len + 1];
-	wcstombs( asciiName, calledFrom, len + 1 );
-
-	JSBool ok = JS_EvaluateUCScript(m_Context, contextObject ? contextObject : m_GlobalObject, script.utf16().c_str(), (int)script.Length(), asciiName, 1, &rval); 
-
-	delete[]( asciiName );
+	JSBool ok = JS_EvaluateUCScript(m_Context, contextObject ? contextObject : m_GlobalObject,
+		script.utf16().c_str(), (int)script.length(), CStr(calledFrom), 1, &rval); 
 
 	if (!ok) return JSVAL_NULL;
 

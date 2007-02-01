@@ -319,9 +319,9 @@ CStr _nm::GetStringRaw() const \
 
 #define NMT_END_ARRAY() \
 		++it; \
-		ret=ret.GetSubstring(0, ret.Length()-2)+_T(" }, "); \
+		ret=ret.substr(0, ret.length()-2)+_T(" }, "); \
 	} \
-	ret=ret.GetSubstring(0, ret.Length()-2)+_T(" }, ");
+	ret=ret.substr(0, ret.length()-2)+_T(" }, ");
 
 #define NMT_FIELD_INT(_nm, _hosttp, _netsz) \
 	ret += #_nm _T(": "); \
@@ -334,7 +334,7 @@ CStr _nm::GetStringRaw() const \
 	ret += _T(", ");
 
 #define END_NMT_CLASS() \
-	return ret.GetSubstring(0, ret.Length()-2); \
+	return ret.substr(0, ret.length()-2); \
 }
 
 #include "NMTCreator.h"

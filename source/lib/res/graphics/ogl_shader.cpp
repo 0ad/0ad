@@ -257,7 +257,7 @@ static LibError do_load_shader(
 	
 	CStr Type = Shader.getAttributes().getNamedItem(at_type);
 
-	if (!Type.Length())
+	if (Type.empty())
 	{
 		LOG(ERROR, LOG_CATEGORY, "%hs: Missing attribute \"type\" in element \"Shader\".",
 		    filename);
@@ -275,7 +275,7 @@ static LibError do_load_shader(
 
 	CStr Name = Shader.getText();
 	
-	if (!Name.Length())
+	if (Name.empty())
 	{
 		LOG(ERROR, LOG_CATEGORY, "%hs: Missing shader name.", filename);
 		WARN_RETURN(ERR::CORRUPTED);

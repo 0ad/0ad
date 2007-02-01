@@ -294,7 +294,7 @@ std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<std::set<CS
 		CObjectBase::Variant& var ((*grp)[match]);
 		for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
 		{
-			if (it->m_ModelName.Length())
+			if (! it->m_ModelName.empty())
 				chosenProps[it->m_PropPointName] = it->m_ModelName;
 			else
 				chosenProps.erase(it->m_PropPointName);
@@ -347,18 +347,18 @@ const CObjectBase::Variation CObjectBase::BuildVariation(const std::vector<u8>& 
 
 		// Apply its data:
 
-		if (var.m_TextureFilename.Length())
+		if (! var.m_TextureFilename.empty())
 			variation.texture = var.m_TextureFilename;
 
-		if (var.m_ModelFilename.Length())
+		if (! var.m_ModelFilename.empty())
 			variation.model = var.m_ModelFilename;
 
-		if (var.m_Color.Length())
+		if (! var.m_Color.empty())
 			variation.color = var.m_Color;
 
 		for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
 		{
-			if (it->m_ModelName.Length())
+			if (! it->m_ModelName.empty())
 				variation.props[it->m_PropPointName] = *it;
 			else
 				variation.props.erase(it->m_PropPointName);
@@ -470,7 +470,7 @@ std::set<CStr> CObjectBase::CalculateRandomVariation(const std::set<CStr>& initi
 		CObjectBase::Variant& var ((*grp)[match]);
 		for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
 		{
-			if (it->m_ModelName.Length())
+			if (! it->m_ModelName.empty())
 				chosenProps[it->m_PropPointName] = it->m_ModelName;
 			else
 				chosenProps.erase(it->m_PropPointName);
@@ -552,7 +552,7 @@ std::vector<std::vector<CStr> > CObjectBase::GetVariantGroups() const
 				const std::vector<Prop>& props = obj->m_VariantGroups[i][j].m_Props;
 				for (size_t k = 0; k < props.size(); ++k)
 				{
-					if (props[k].m_ModelName.Length())
+					if (! props[k].m_ModelName.empty())
 					{
 						CObjectBase* prop = m_ObjectManager.FindObjectBase(props[k].m_ModelName);
 						if (prop)

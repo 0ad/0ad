@@ -67,7 +67,7 @@ CFormation* CFormationCollection::getTemplate( const CStrW& name )
 void CFormationCollection::getFormationNames( std::vector<CStrW>& names )
 {
 	for( templateFilenameMap::iterator it = m_templateFilenames.begin(); it != m_templateFilenames.end(); ++it )
-		if( ! (it->first.Length() > 8 && it->first.Left(8) == L"template"))
+		if( ! (it->first.length() > 8 && it->first.Left(8) == L"template"))
 			names.push_back( it->first );
 }
 

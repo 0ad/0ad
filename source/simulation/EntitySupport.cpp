@@ -92,23 +92,23 @@ void CClassSet::setFromMemberList(const CStrW& list)
 		}
 		else
 		{
-			entry = temp.GetSubstring( 0, brk );
-			temp = temp.GetSubstring( brk + 1, temp.Length() );
+			entry = temp.substr( 0, brk );
+			temp = temp.substr( brk + 1 );
 		}
 
 		if( brk != 0 )
 		{
 			if( entry[0] == '-' )
 			{
-				entry = entry.GetSubstring( 1, entry.Length() );
-				if( entry.Length() )
+				entry = entry.substr( 1 );
+				if( ! entry.empty() )
 					m_RemovedMembers.push_back( entry );
 			}
 			else
 			{
 				if( entry[0] == '+' )
-					entry = entry.GetSubstring( 1, entry.Length() );
-				if( entry.Length() )
+					entry = entry.substr( 1 );
+				if( ! entry.empty() )
 					m_AddedMembers.push_back( entry );
 			}
 		}

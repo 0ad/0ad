@@ -180,7 +180,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 			TextCall.m_UseCustomColor = false;
 
 			// Extract substring from RawString.
-			TextCall.m_String = GetRawString().GetSubstring(_from, _to-_from);
+			TextCall.m_String = GetRawString().substr(_from, _to-_from);
 			
 			// Go through tags and apply changes.
 			vector<CGUIString::TextChunk::Tag>::const_iterator it2;
@@ -226,7 +226,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 			// These are also needed later
 			TextCall.m_Size = size;
 
-			if (TextCall.m_String.Length() >= 1)
+			if (! TextCall.m_String.empty())
 			{
 				if (TextCall.m_String[0] == '\n')
 				{
@@ -320,12 +320,12 @@ void CGUIString::SetValue(const CStrW& str)
 
 		if (curpos == -1)
 		{
-			m_RawString += str.GetSubstring(position, str.Length()-position);
+			m_RawString += str.substr(position);
 
-			if (from != (long)m_RawString.Length())
+			if (from != (long)m_RawString.length())
 			{
 				CurrentTextChunk.m_From = from;
-				CurrentTextChunk.m_To = (int)m_RawString.Length();
+				CurrentTextChunk.m_To = (int)m_RawString.length();
 				m_TextChunks.push_back(CurrentTextChunk);
 			}
 
@@ -340,23 +340,23 @@ void CGUIString::SetValue(const CStrW& str)
 
 			if (pos_right == -1)
 			{
-				m_RawString += str.GetSubstring(position, curpos-position+1);
+				m_RawString += str.substr(position, curpos-position+1);
 				continue;
 			}
 			else
 			if (pos_left != -1 && pos_left < pos_right)
 			{
-				m_RawString += str.GetSubstring(position, pos_left-position);
+				m_RawString += str.substr(position, pos_left-position);
 				continue;
 			}
 			else
 			{
-				m_RawString += str.GetSubstring(position, curpos-position);
+				m_RawString += str.substr(position, curpos-position);
 
 				// Okay we've found a TagStart and TagEnd, positioned
 				//  at pos and pos_right. Now let's extract the
 				//  interior and try parsing.
-				CStr tagstr = str.GetSubstring(curpos+1, pos_right-curpos-1);
+				CStr tagstr = str.substr(curpos+1, pos_right-curpos-1);
 
 				CParserLine Line;
 				Line.ParseString(Parser, (const char*)tagstr);
@@ -493,7 +493,7 @@ void CGUIString::SetValue(const CStrW& str)
 				{
 					// What was within the tags could not be interpreted
 					//  so we'll assume it's just text.
-					m_RawString += str.GetSubstring(curpos, pos_right-curpos+1);
+					m_RawString += str.substr(curpos, pos_right-curpos+1);
 				}
 
 				curpos = pos_right;
@@ -508,7 +508,7 @@ void CGUIString::SetValue(const CStrW& str)
 	//  those cases.
 	// We'll sort later.
 	m_Words.push_back(0);
-	m_Words.push_back((int)m_RawString.Length());
+	m_Words.push_back((int)m_RawString.length());
 
 	// Space: ' '
 	for (position=0, curpos=0;;position = curpos+1)

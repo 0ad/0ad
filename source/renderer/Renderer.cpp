@@ -198,7 +198,7 @@ enum {
  * Struct CRendererInternals: Truly hide data that is supposed to be hidden
  * in this structure so it won't even appear in header files.
  */
-struct CRendererInternals
+struct CRendererInternals : public boost::noncopyable
 {
 	/// true if CRenderer::Open has been called
 	bool IsOpen;

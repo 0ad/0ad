@@ -87,7 +87,7 @@ CEntityTemplate* CEntityTemplateCollection::getTemplate( const CStrW& name, CPla
 void CEntityTemplateCollection::getEntityTemplateNames( std::vector<CStrW>& names )
 {
 	for( TemplateFilenameMap::iterator it = m_templateFilenames.begin(); it != m_templateFilenames.end(); ++it )
-		if( ! (it->first.Length() > 8 && it->first.Left(8) == L"template"))
+		if( ! (it->first.length() > 8 && it->first.Left(8) == L"template"))
 			names.push_back( it->first );
 }
 

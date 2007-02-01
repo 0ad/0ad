@@ -195,7 +195,7 @@ CStrW CStr8::FromUTF8() const
 CStr CStr::Repeat(const CStr& String, size_t Reps)
 {
 	CStr ret;
-	ret.reserve(String.Length() * Reps);
+	ret.reserve(String.length() * Reps);
 	while (Reps--) ret += String;
 	return ret;
 }
@@ -259,12 +259,6 @@ double CStr::ToDouble() const
 	return _tstod(c_str(), NULL);
 }
 
-// Retrieves at most 'len' characters, starting at 'start'
-CStr CStr::GetSubstring(size_t start, size_t len) const
-{
-	return substr(start, len);
-}
-
 
 // Search the string for another string 
 long CStr::Find(const CStr& Str) const
@@ -278,7 +272,7 @@ long CStr::Find(const CStr& Str) const
 }
 
 // Search the string for another string 
-long CStr::Find(const tchar &chr) const
+long CStr::Find(const tchar chr) const
 {
 	size_t Pos = find(chr, 0);
 
@@ -289,7 +283,7 @@ long CStr::Find(const tchar &chr) const
 }
 
 // Search the string for another string 
-long CStr::Find(const int &start, const tchar &chr) const
+long CStr::Find(const int start, const tchar chr) const
 {
 	size_t Pos = find(chr, start);
 
@@ -299,9 +293,9 @@ long CStr::Find(const int &start, const tchar &chr) const
 	return -1;
 }
 
-long CStr::FindInsensitive(const int &start, const tchar &chr) const { return LCase().Find(start, _totlower(chr)); }
-long CStr::FindInsensitive(const tchar &chr) const { return LCase().Find(_totlower(chr)); }
-long CStr::FindInsensitive(const CStr& Str) const { return LCase().Find(Str.LCase()); }
+long CStr::FindInsensitive(const int start, const tchar chr) const { return LowerCase().Find(start, _totlower(chr)); }
+long CStr::FindInsensitive(const tchar chr) const { return LowerCase().Find(_totlower(chr)); }
+long CStr::FindInsensitive(const CStr& Str) const { return LowerCase().Find(Str.LowerCase()); }
 
 
 long CStr::ReverseFind(const CStr& Str) const
@@ -334,25 +328,6 @@ CStr CStr::UpperCase() const
 	return NewString;
 }
 
-// Lazy versions
-// code duplication because return by value overhead if they were merely an alias
-CStr CStr::LCase() const
-{
-	std::tstring NewString = *this;
-	for (size_t i = 0; i < length(); i++)
-		NewString[i] = (tchar)_totlower((*this)[i]);
-
-	return NewString;
-}
-
-CStr CStr::UCase() const
-{
-	std::tstring NewString = *this;
-	for (size_t i = 0; i < length(); i++)
-		NewString[i] = (tchar)_totupper((*this)[i]);
-
-	return NewString;
-}
 
 // Retrieve the substring of the first n characters 
 CStr CStr::Left(size_t len) const
@@ -370,10 +345,10 @@ CStr CStr::Right(size_t len) const
 
 // Retrieve the substring following the last occurrence of Str
 // (or the whole string if it doesn't contain Str)
-CStr CStr::AfterLast(const CStr& Str) const
+CStr CStr::AfterLast(const CStr& Str, size_t startPos) const
 {
-	long pos = ReverseFind(Str);
-	if (pos == -1)
+	size_t pos = rfind(Str, startPos);
+	if (pos == npos)
 		return *this;
 	else
 		return substr(pos + Str.length());
@@ -381,10 +356,10 @@ CStr CStr::AfterLast(const CStr& Str) const
 
 // Retrieve the substring preceding the last occurrence of Str
 // (or the whole string if it doesn't contain Str)
-CStr CStr::BeforeLast(const CStr& Str) const
+CStr CStr::BeforeLast(const CStr& Str, size_t startPos) const
 {
-	long pos = ReverseFind(Str);
-	if (pos == -1)
+	size_t pos = rfind(Str, startPos);
+	if (pos == npos)
 		return *this;
 	else
 		return substr(0, pos);
@@ -392,10 +367,10 @@ CStr CStr::BeforeLast(const CStr& Str) const
 
 // Retrieve the substring following the first occurrence of Str
 // (or the whole string if it doesn't contain Str)
-CStr CStr::AfterFirst(const CStr& Str) const
+CStr CStr::AfterFirst(const CStr& Str, size_t startPos) const
 {
-	long pos = Find(Str);
-	if (pos == -1)
+	size_t pos = find(Str, startPos);
+	if (pos == npos)
 		return *this;
 	else
 		return substr(pos + Str.length());
@@ -403,10 +378,10 @@ CStr CStr::AfterFirst(const CStr& Str) const
 
 // Retrieve the substring preceding the first occurrence of Str
 // (or the whole string if it doesn't contain Str)
-CStr CStr::BeforeFirst(const CStr& Str) const
+CStr CStr::BeforeFirst(const CStr& Str, size_t startPos) const
 {
-	long pos = Find(Str);
-	if (pos == -1)
+	size_t pos = find(Str, startPos);
+	if (pos == npos)
 		return *this;
 	else
 		return substr(0, pos);
@@ -442,7 +417,7 @@ void CStr::Replace(const CStr& ToReplace, const CStr& ReplaceWith)
 	}
 }
 
-CStr CStr::UnescapeBackslashes()
+CStr CStr::UnescapeBackslashes() const
 {
 	// Currently only handle \n and \\, because they're the only interesting ones
 	CStr NewString;
@@ -587,17 +562,17 @@ size_t CStr::GetHashCode() const
 	CStrW is always serialized to/from UTF-16
 */
 
-u8 *CStrW::Serialize(u8 *buffer) const
+u8* CStrW::Serialize(u8* buffer) const
 {
 	size_t len = length();
 	size_t i = 0;
 	for (i = 0; i < len; i++)
 		*(u16 *)(buffer + i*2) = htons((*this)[i]); // convert to network order (big-endian)
-	*(u16 *)(buffer+i*2) = 0;
-	return buffer+len*2+2;
+	*(u16 *)(buffer + i*2) = 0;
+	return buffer + len*2 + 2;
 }
 
-const u8 *CStrW::Deserialize(const u8 *buffer, const u8 *bufferend)
+const u8* CStrW::Deserialize(const u8* buffer, const u8* bufferend)
 {
 	const u16 *strend = (const u16 *)buffer;
 	while ((const u8 *)strend < bufferend && *strend) strend++;
@@ -624,7 +599,7 @@ uint CStr::GetSerializedLength() const
 	in the CStr)
 */
 
-u8 *CStr8::Serialize(u8 *buffer) const
+u8* CStr8::Serialize(u8* buffer) const
 {
 	size_t len = length();
 	size_t i = 0;
@@ -634,7 +609,7 @@ u8 *CStr8::Serialize(u8 *buffer) const
 	return buffer+len+1;
 }
 
-const u8 *CStr8::Deserialize(const u8 *buffer, const u8 *bufferend)
+const u8* CStr8::Deserialize(const u8* buffer, const u8* bufferend)
 {
 	const u8 *strend = buffer;
 	while (strend < bufferend && *strend) strend++;

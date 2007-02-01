@@ -130,7 +130,7 @@ void IGUIObject::AddToPointersMap(map_pObjects &ObjectMap)
 	// Now actually add this one
 	//  notice we won't add it if it's doesn't have any parent
 	//  (i.e. being the base object)
-	if (m_Name.Length() == 0)
+	if (m_Name.empty())
 	{
 		throw PS_NEEDS_NAME;
 	}
@@ -428,7 +428,8 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 	char buf[64];
 	sprintf(buf, "__eventhandler%d", x++);
 
-	JSFunction* func = JS_CompileFunction(g_ScriptingHost.getContext(), pGUI->m_ScriptObject, buf, paramCount, paramNames, (const char*)Code, Code.Length(), CodeName, 0);
+	JSFunction* func = JS_CompileFunction(g_ScriptingHost.getContext(), pGUI->m_ScriptObject,
+		buf, paramCount, paramNames, (const char*)Code, Code.length(), CodeName, 0);
 	debug_assert(func); // TODO: Handle errors
 	if (func)
 		SetScriptHandler(Action, JS_GetFunctionObject(func));
@@ -500,10 +501,10 @@ CStr IGUIObject::GetPresentableName() const
 {
 	// __internal(), must be at least 13 letters to be able to be
 	//  an internal name
-	if (m_Name.Length() <= 12)
+	if (m_Name.length() <= 12)
 		return m_Name;
 
-	if (m_Name.GetSubstring(0, 10) == "__internal")
+	if (m_Name.substr(0, 10) == "__internal")
 		return CStr("[unnamed object]");
 	else
 		return m_Name;

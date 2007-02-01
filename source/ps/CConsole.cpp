@@ -700,29 +700,29 @@ void CConsole::LoadHistory()
 	// just don't load anything in that case.
 
 	// do this before vfs_load to avoid an error message if file not found.
-	if(!vfs_exists(m_sHistoryFile))
+	if (!vfs_exists(m_sHistoryFile))
 		return;
 
 	FileIOBuf buf; size_t buflen;
-	if(vfs_load( m_sHistoryFile, buf, buflen ) < 0)
+	if (vfs_load(m_sHistoryFile, buf, buflen) < 0)
 		return;
 
-	CStr bytes( (char*)buf, buflen );
+	CStr bytes ((char*)buf, buflen);
 	(void)file_buf_free(buf);
 
-	CStrW str( bytes.FromUTF8() );
+	CStrW str (bytes.FromUTF8());
 	size_t pos = 0;
-	while( pos != CStrW::npos )
+	while (pos != CStrW::npos)
 	{
-		pos = str.find( '\n' );
-		if( pos != CStrW::npos )
+		pos = str.find('\n');
+		if (pos != CStrW::npos)
 		{
-			if( pos > 0 )
-				m_deqBufHistory.push_front( str.Left( str[pos-1] == '\r' ? pos - 1 : pos ) );
-			str = str.GetSubstring( pos + 1, str.npos );
+			if (pos > 0)
+				m_deqBufHistory.push_front(str.Left(str[pos-1] == '\r' ? pos - 1 : pos));
+			str = str.substr(pos + 1);
 		}
-		else if( str.Length() > 0 )
-			m_deqBufHistory.push_front( str );
+		else if (str.length() > 0)
+			m_deqBufHistory.push_front(str);
 	}
 }
 
@@ -731,13 +731,13 @@ void CConsole::SaveHistory()
 	CStr buffer;
 	std::deque<std::wstring>::iterator it;
 	int line_count = 0;
-	for( it = m_deqBufHistory.begin(); it != m_deqBufHistory.end(); ++it )
+	for (it = m_deqBufHistory.begin(); it != m_deqBufHistory.end(); ++it)
 	{
-		if(line_count++ >= m_MaxHistoryLines)
+		if (line_count++ >= m_MaxHistoryLines)
 			break;
-		buffer = CStrW( *it ).ToUTF8() + "\n" + buffer;
+		buffer = CStrW(*it).ToUTF8() + "\n" + buffer;
 	}
-	vfs_store( m_sHistoryFile, (const void*)buffer.c_str(), buffer.Length(), FILE_NO_AIO );
+	vfs_store(m_sHistoryFile, (const void*)buffer.c_str(), buffer.length(), FILE_NO_AIO);
 }
 
 void CConsole::SendChatMessage(const wchar_t *szMessage)
