@@ -556,7 +556,7 @@ static void out(const wchar_t* fmt, ...)
 {
 	va_list args;
 	va_start(args, fmt);
-	int len = _vsnwprintf(out_pos, out_chars_left, fmt, args);
+	int len = vswprintf(out_pos, out_chars_left, fmt, args);
 	va_end(args);
 
 	// success
@@ -575,7 +575,7 @@ static void out(const wchar_t* fmt, ...)
 	else
 	{
 		// the buffer really is full yet out_chars_left may not be 0
-		// (since it isn't updated if _vsnwprintf returns -1).
+		// (since it isn't updated if vswprintf returns -1).
 		// must be set so subsequent calls don't try to squeeze stuff in.
 		out_chars_left = 0;
 

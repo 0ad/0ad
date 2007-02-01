@@ -22,7 +22,7 @@
 #include "renderer/Scene.h"
 #include "renderer/SkyManager.h"
 
-struct ActorViewerImpl : public Scene
+struct ActorViewerImpl : public Scene, boost::noncopyable
 {
 	ActorViewerImpl()
 		: Unit(NULL), MeshManager(), ObjectManager(MeshManager)
@@ -53,8 +53,6 @@ struct ActorViewerImpl : public Scene
 		if (Unit)
 			c->SubmitRecursive(Unit->GetModel());
 	}
-
-	NO_COPY_CTOR(ActorViewerImpl);
 };
 
 ActorViewer::ActorViewer()

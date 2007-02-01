@@ -138,7 +138,7 @@ public:
 // CScopeLock
 // ---------------------------------------------------------------------| Class
 // Locks a CMutex over the objects lifetime
-class CScopeLock
+class CScopeLock : boost::noncopyable
 {
 public:
 	inline CScopeLock(pthread_mutex_t &mutex): m_Mutex(mutex)
@@ -158,8 +158,6 @@ public:
 
 private:
 	pthread_mutex_t &m_Mutex;
-
-	NO_COPY_CTOR(CScopeLock);
 };
 
 // CLocker

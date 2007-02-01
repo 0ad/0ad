@@ -285,20 +285,37 @@
 
 // compiler support for C99
 // (this is more convenient than testing __STDC_VERSION__ directly)
-// note: we currently lie about __STDC_VERSION__ via premake on
-// MacOS X to enable support for some C99 functions. unfortunately this
-// causes the OS X system headers to use the restrict keyword, which
-// gcc doesn't actually support there.
-// TODO: we therefore need to get rid of HAVE_C99, since we're using C++,
-// which is not C99. some useful features from C99 - e.g. stdint and
-// restrict - will surely be added to C++; we should test for their
-// existence and not all of C99.
+//
+// note: C99 provides several useful but disjunct bits of functionality.
+// unfortunately, most C++ compilers do not offer a complete C99
+// implementation. however, many of these features are likely to be added to
+// C++, and/or are already available as extensions. what we'll do is add a
+// HAVE_ macro for each and test those instead. they are set if HAVE_C99, or
+// also if the compiler happens to support something compatible.
+//
+// rationale: lying about __STDC_VERSION__ via Premake so as to enable support
+// for some C99 functions doesn't work. Mac OS X headers would then use the
+// restrict keyword, which is not actually supported on older GCC.
 #define HAVE_C99 0
 #ifdef __STDC_VERSION__
 # if __STDC_VERSION__ >= 199901L
-#  undef HAVE_C99
+#  undef  HAVE_C99
 #  define HAVE_C99 1
 # endif
+#endif
+
+// snprintf, swprintf, etc.
+#define HAVE_NPRINTF 0
+#if HAVE_C99
+# undef  HAVE_NPRINTF
+# define HAVE_NPRINTF 1
+#endif
+
+// rint*, fminf, fpclassify (too few/diverse to make separate HAVE_ for each)
+#define HAVE_C99_MATH 0
+#if HAVE_C99
+# undef  HAVE_C99_MATH
+# define HAVE_C99_MATH 1
 #endif
 
 // gettimeofday()

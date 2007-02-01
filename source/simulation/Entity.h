@@ -75,7 +75,7 @@ enum EntityFlags
 
 // TODO MT: Put this is /some/ sort of order...
 
-class CEntity : public CJSComplex<CEntity>, public IEventTarget
+class CEntity : public CJSComplex<CEntity>, public IEventTarget, boost::noncopyable
 {
 	friend class CEntityManager;
 	friend class CUnit;
@@ -485,8 +485,6 @@ public:
 
 	// Functions that call script code
 	int GetAttackAction( HEntity target );
-
-	NO_COPY_CTOR(CEntity);
 };
 
 // General entity globals

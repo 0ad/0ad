@@ -10,7 +10,7 @@ class CObjectManager;
 #include <map>
 #include "ps/CStr.h"
 
-class CObjectBase
+class CObjectBase : boost::noncopyable
 {
 public:
 
@@ -101,8 +101,6 @@ public:
 private:
 	std::vector< std::vector<Variant> > m_VariantGroups;
 	CObjectManager& m_ObjectManager;
-
-	NO_COPY_CTOR(CObjectBase);
 };
 
 

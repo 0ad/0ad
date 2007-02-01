@@ -1,3 +1,9 @@
+/**
+ * File        : World.cpp
+ * Project     : engine
+ * Description : Contains the CWorld Class implementation.
+ *
+ **/
 #include "precompiled.h"
 
 #include "graphics/GameView.h"
@@ -26,11 +32,19 @@
 
 #define LOG_CATEGORY "world"
 
-// global light settings. this is not a member of CWorld because it is
-// passed to the renderer before CWorld exists.
+/**
+ * Global light settings.
+ * It is not a member of CWorld because it is passed
+ * to the renderer before CWorld exists.
+ **/
 CLightEnv g_LightEnv;
 
 
+/**
+ * Constructor.
+ *
+ * @param CGame * pGame pointer to the container game object.
+ **/
 CWorld::CWorld(CGame *pGame):
 	m_pGame(pGame),
 	m_Terrain(new CTerrain()),
@@ -42,6 +56,11 @@ CWorld::CWorld(CGame *pGame):
 {
 }
 
+/**
+ * Sets up the game world and loads required world resources.
+ *
+ * @param CGameAttributes * pGameAttributes pointer to the game attribute values.
+ **/
 void CWorld::Initialize(CGameAttributes *pAttribs)
 {
 	// TODO: Find a better way of handling these global things
@@ -70,12 +89,21 @@ void CWorld::Initialize(CGameAttributes *pAttribs)
 }
 
 
+/**
+ * Initializes the game world with the attributes provided.
+ *
+ * @param CGameAttributes * pGameAttributes pointer to the game attribute values.
+ **/
 void CWorld::RegisterInit(CGameAttributes *pAttribs)
 {
 	Initialize(pAttribs);
 }
 
 
+/**
+ * Destructor.
+ *
+ **/
 CWorld::~CWorld()
 {
 	delete m_Terrain;
@@ -87,6 +115,11 @@ CWorld::~CWorld()
 }
 
 
+/**
+ * Redraw the world.
+ * Provided for JS _rewritemaps function.
+ *
+ **/
 void CWorld::RewriteMap()
 {
 	CMapWriter::RewriteAllMaps(m_Terrain, m_UnitManager,

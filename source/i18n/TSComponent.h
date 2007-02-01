@@ -19,7 +19,7 @@ namespace I18n
 {
 	class CLocale;
 
-	class TSComponent
+	class TSComponent : boost::noncopyable
 	{
 	public:
 		virtual const StrImW ToString(CLocale* locale, std::vector<BufferVariable*>& vars) const = 0;
@@ -35,8 +35,6 @@ namespace I18n
 
 	private:
 		const StrImW String;
-
-		NO_COPY_CTOR(TSComponentString);
 	};
 
 
@@ -66,8 +64,6 @@ namespace I18n
 	private:
 		const std::string Name;
 		std::vector<ScriptValue*> Params;
-
-		NO_COPY_CTOR(TSComponentFunction);
 	};
 
 

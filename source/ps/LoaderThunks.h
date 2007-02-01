@@ -24,14 +24,12 @@ static bool ldr_was_interrupted(int ret)
 	return (0 < ret && ret <= 100);
 }
 
-template<class T> struct MemFun_t
+template<class T> struct MemFun_t : boost::noncopyable
 {
 	T* const this_;
 	int (T::*func)(void);
 	MemFun_t(T* this__, int(T::*func_)(void))
 		: this_(this__), func(func_) {}
-
-	NO_COPY_CTOR(MemFun_t);
 };
 
 template<class T> static int MemFunThunk(void* param, double UNUSED(time_left))
@@ -55,15 +53,13 @@ template<class T> void RegMemFun(T* this_, int(T::*func)(void),
 ////////////////////////////////////////////////////////
 
 
-template<class T, class Arg> struct MemFun1_t
+template<class T, class Arg> struct MemFun1_t : boost::noncopyable
 {
 	T* const this_;
 	Arg arg;
 	int (T::*func)(Arg);
 	MemFun1_t(T* this__, int(T::*func_)(Arg), Arg arg_)
 		: this_(this__), func(func_), arg(arg_) {}
-
-	NO_COPY_CTOR(MemFun1_t);
 };
 
 template<class T, class Arg> static int MemFun1Thunk(void* param, double UNUSED(time_left))

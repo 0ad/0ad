@@ -1,3 +1,12 @@
+/**
+ * File        : CStr.cpp
+ * Project     : engine
+ * Description : Controls compilation of CStr class and
+ *             : includes some function implementations.
+ *
+ * @author Caecus
+ * Caecus@0ad.wildfiregames.com
+ **/
 #include "precompiled.h"
 
 #ifndef CStr_CPP_FIRST
@@ -20,7 +29,13 @@ CStr8::CStr8(const CStrW& wideStr) : std:: string(wideStr.begin(), wideStr.end()
 
 // UTF conversion code adapted from http://www.unicode.org/Public/PROGRAMS/CVTUTF/ConvertUTF.c
 
+/**
+ * Used by ToUTF8
+ **/
 static const unsigned char firstByteMark[7] = { 0x00, 0x00, 0xC0, 0xE0, 0xF0, 0xF8, 0xFC };
+/**
+ * Used by FromUTF8
+ **/
 static const char trailingBytesForUTF8[256] = {
 	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -30,10 +45,18 @@ static const char trailingBytesForUTF8[256] = {
 	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1, 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 	2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 3,3,3,3,3,3,3,3,4,4,4,4,5,5,5,5 };
+/**
+ * Used by FromUTF8
+ **/
 static const u32 offsetsFromUTF8[6] = {
 	0x00000000UL, 0x00003080UL, 0x000E2080UL,
 	0x03C82080UL, 0xFA082080UL, 0x82082080UL };
 
+/**
+ * Convert CStr to UTF-8
+ *
+ * @return CStr8 converted string
+ **/
 CStr8 CStrW::ToUTF8() const
 {
 	CStr8 result;
@@ -64,6 +87,14 @@ CStr8 CStrW::ToUTF8() const
 	return result;
 }
 
+/**
+ * Test for valid UTF-8 string
+ *
+ * @param const unsigned char * source pointer to string to test.
+ * @param int length of string to test.
+ * @return bool true if source string is legal UTF-8,
+ *				false if not.
+ **/
 static bool isLegalUTF8(const unsigned char *source, int length)
 {
 	unsigned char a;
@@ -90,6 +121,11 @@ static bool isLegalUTF8(const unsigned char *source, int length)
 }
 
 
+/**
+ * Convert UTF-8 to CStr
+ *
+ * @return CStrW converted string
+ **/
 CStrW CStr8::FromUTF8() const
 {
 	CStrW result;
@@ -129,7 +165,6 @@ CStrW CStr8::FromUTF8() const
 	}
 	return result;
 }
-
 
 #else
 

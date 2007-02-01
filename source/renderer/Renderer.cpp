@@ -76,7 +76,7 @@
  * Accesses CRenderer::m_Stats by keeping the reference passed to the
  * constructor.
  */
-class CRendererStatsTable : public AbstractProfileTable
+class CRendererStatsTable : public AbstractProfileTable, boost::noncopyable
 {
 public:
 	CRendererStatsTable(const CRenderer::Stats& st);
@@ -106,8 +106,6 @@ private:
 		// Must be last to count number of rows
 		NumberRows
 	};
-
-	NO_COPY_CTOR(CRendererStatsTable);
 };
 
 // Construction

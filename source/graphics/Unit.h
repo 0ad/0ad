@@ -14,7 +14,7 @@ class CStrW;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // CUnit: simple "actor" definition - defines a sole object within the world
-class CUnit
+class CUnit : boost::noncopyable
 {
 private:
 	// Private constructor. Needs complete list of selections for the variation.
@@ -98,8 +98,6 @@ private:
 	CObjectManager& m_ObjectManager;
 
 	void ReloadObject();
-
-	NO_COPY_CTOR(CUnit);
 };
 
 #endif

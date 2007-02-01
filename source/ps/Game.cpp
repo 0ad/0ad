@@ -1,3 +1,9 @@
+/**
+ * File        : Game.cpp
+ * Project     : engine
+ * Description : Contains the CGame Class implementation.
+ *
+ **/
 #include "precompiled.h"
 
 #include "Game.h"
@@ -26,6 +32,9 @@ extern CNetServer *g_NetServer;
 
 extern bool g_GameRestarted;
 
+/**
+ * Globally accessible pointer to the CGame object.
+ **/
 CGame *g_Game=NULL;
 
 // Disable "warning C4355: 'this' : used in base member initializer list".
@@ -39,6 +48,10 @@ CGame *g_Game=NULL;
 # pragma warning (disable: 4355)
 #endif
 
+/**
+ * Constructor
+ *
+ **/
 CGame::CGame():
 	m_World(new CWorld(this)),
 	m_Simulation(new CSimulation(this)),
@@ -58,6 +71,10 @@ CGame::CGame():
 # pragma warning (default: 4355)
 #endif
 
+/**
+ * Destructor
+ *
+ **/
 CGame::~CGame()
 {
 	// Again, the in-game call tree is going to be different to the main menu one.
@@ -70,14 +87,22 @@ CGame::~CGame()
 
 
 
+/**
+ * Initializes the game with the set of attributes provided.
+ * Makes calls to initialize the game view, world, and simulation objects.
+ * Calls are made to facilitate progress reporting of the initialization.
+ *
+ * @param CGameAttributes * pAttribs pointer to the game attribute values
+ * @return PSRETURN 0
+ **/
 PSRETURN CGame::RegisterInit(CGameAttributes* pAttribs)
 {
 	LDR_BeginRegistering();
 
-	// RC, 040804 - GameView needs to be initialised before World, otherwise GameView initialisation
+	// RC, 040804 - GameView needs to be initialized before World, otherwise GameView initialization
 	// overwrites anything stored in the map file that gets loaded by CWorld::Initialize with default
 	// values.  At the minute, it's just lighting settings, but could be extended to store camera position.  
-	// Storing lighting settings in the gameview seems a little odd, but it's no big deal; maybe move it at 
+	// Storing lighting settings in the game view seems a little odd, but it's no big deal; maybe move it at 
 	// some point to be stored in the world object?
 	m_GameView->RegisterInit(pAttribs);
 	m_World->RegisterInit(pAttribs);
@@ -85,6 +110,11 @@ PSRETURN CGame::RegisterInit(CGameAttributes* pAttribs)
 	LDR_EndRegistering();
 	return 0;
 }
+/**
+ * Game initialization has been completed. Set game started flag and start the session.
+ *
+ * @return PSRETURN 0
+ **/
 PSRETURN CGame::ReallyStartGame()
 {
 #ifndef NO_GUI
@@ -117,6 +147,14 @@ PSRETURN CGame::ReallyStartGame()
 	return 0;
 }
 
+/**
+ * Prepare to start the game.
+ * Set up the players list then call RegisterInit that initializes the game and is used to report progress.
+ *
+ * @param CGameAttributes * pGameAttributes game attributes for initialization.
+ * @return PSRETURN 0 if successful,
+ *					error information if not.
+ **/
 PSRETURN CGame::StartGame(CGameAttributes *pAttribs)
 {
 	try
@@ -157,6 +195,20 @@ PSRETURN CGame::StartGame(CGameAttributes *pAttribs)
 	return 0;
 }
 
+
+// TODO: doInterpolate is optional because Atlas interpolates explicitly,
+// so that it has more control over the update rate. The game might want to
+// do the same, and then doInterpolate should be redundant and removed.
+
+/**
+ * Periodic heartbeat that controls the process.
+ * Simulation update is called and game status update is called.
+ *
+ * @param double deltaTime elapsed time since last beat in seconds.
+ * @param bool doInterpolate perform interpolation if true.
+ * @return bool false if it can't keep up with the desired simulation rate
+ *	indicating that you might want to render less frequently.
+ **/
 bool CGame::Update(double deltaTime, bool doInterpolate)
 {
 	if (m_Paused)
@@ -183,6 +235,10 @@ bool CGame::Update(double deltaTime, bool doInterpolate)
 	return ok;
 }
 
+/**
+ * Test player statistics and update game status as required.
+ *
+ **/
 void CGame::UpdateGameStatus()
 {
 	bool EOG_lose = true;
@@ -221,6 +277,10 @@ void CGame::UpdateGameStatus()
 		GameStatus = EOG_NEUTRAL;
 }
 
+/**
+ * End of game console message creation.
+ *
+ **/
 void CGame::EndGame()
 {
 	g_Console->InsertMessage( L"It's the end of the game as we know it!");
@@ -242,6 +302,12 @@ void CGame::EndGame()
 		break;
 	}
 }
+/**
+ * Get the player object from the players list at the provided index.
+ *
+ * @param PS_uint idx sequential position in the list.
+ * @return CPlayer * pointer to player requested.
+ **/
 CPlayer *CGame::GetPlayer(uint idx)
 {
 	if (idx > m_NumPlayers)

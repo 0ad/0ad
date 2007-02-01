@@ -19,7 +19,7 @@ enum ELogMethod
 	WARNING
 };
 
-class CLogger
+class CLogger : boost::noncopyable
 {
 public:
 	
@@ -63,8 +63,6 @@ private:
 
 	// Used to remember LogOnce messages
 	std::set<std::string> m_LoggedOnce;
-
-	NO_COPY_CTOR(CLogger);
 };
 
 #endif

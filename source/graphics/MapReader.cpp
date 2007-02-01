@@ -293,7 +293,7 @@ int CMapReader::ApplyData()
 
 // Holds various state data while reading maps, so that loading can be
 // interrupted (e.g. to update the progress display) then later resumed.
-class CXMLReader
+class CXMLReader : boost::noncopyable
 {
 public:
 	CXMLReader(const CStr& xml_filename, CMapReader& mapReader)
@@ -340,8 +340,6 @@ private:
 	void ReadTriggerGroup(XMBElement parent, MapTriggerGroup& group);
 	int ReadEntities(XMBElement parent, double end_time);
 	int ReadNonEntities(XMBElement parent, double end_time);
-
-	NO_COPY_CTOR(CXMLReader);
 };
 
 

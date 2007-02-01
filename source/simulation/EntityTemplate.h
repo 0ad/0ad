@@ -29,7 +29,7 @@ class CPlayer;
 class CXeromyces;
 class XMBElement;
 
-class CEntityTemplate : public CJSComplex<CEntityTemplate>, public IEventTarget
+class CEntityTemplate : public CJSComplex<CEntityTemplate>, public IEventTarget, boost::noncopyable
 {
 public:
 	CPlayer* m_player;		// Which player this template is for, or null for the no-player template
@@ -172,8 +172,6 @@ public:
 
 private:
 	static STL_HASH_SET<CStr, CStr_hash_compare> scriptsLoaded;
-
-	NO_COPY_CTOR(CEntityTemplate);
 };
 
 #endif

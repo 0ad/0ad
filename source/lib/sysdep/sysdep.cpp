@@ -25,7 +25,7 @@
 
 
 // emulate C99 functionality
-#if !HAVE_C99
+#if !HAVE_C99_MATH
 
 // fallback versions in case ia32 optimized versions are unavailable.
 #if !HAVE_MS_ASM
@@ -67,7 +67,7 @@ uint fpclassifyf(float f)
 
 #endif
 
-#endif	// #if !HAVE_C99
+#endif	// #if !HAVE_C99_MATH
 
 
 // float->int conversion: not using the ia32 version; just implement as a

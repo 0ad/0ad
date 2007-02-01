@@ -13,7 +13,7 @@ class CMeshManager;
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 // CObjectManager: manager class for all possible actor types
-class CObjectManager
+class CObjectManager : boost::noncopyable
 {
 public:
 	struct ObjectKey
@@ -53,8 +53,6 @@ private:
 
 	std::map<ObjectKey, CObjectEntry*> m_Objects;
 	std::map<CStr, CObjectBase*> m_ObjectBases;
-
-	NO_COPY_CTOR(CObjectManager);
 };
 
 

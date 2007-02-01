@@ -33,11 +33,11 @@
 
 // provide C99 *snprintf functions if compiler doesn't already
 // (MinGW does, VC7.1 doesn't).
-#if !HAVE_C99
+#if !HAVE_NPRINTF
 # define snprintf _snprintf
 # define swprintf _snwprintf
 # define vsnprintf _vsnprintf
-# define vsnwprintf _vsnwprintf
+# define vswprintf _vsnwprintf
 #endif
 
 #include <stddef.h>	// wchar_t

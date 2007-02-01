@@ -6,7 +6,7 @@ struct SColor4ub;
 class CUnit;
 class CStrW;
 
-class ActorViewer
+class ActorViewer : boost::noncopyable
 {
 public:
 	ActorViewer();
@@ -29,8 +29,6 @@ public:
 
 private:
 	ActorViewerImpl& m;
-
-	NO_COPY_CTOR(ActorViewer);
 };
 
 #endif // ACTORVIEWER_H__

@@ -323,7 +323,8 @@ function setup_all_libs ()
 		"i18n"
 	}
 	extern_libs = {
-		"spidermonkey"
+		"spidermonkey",
+		"boost"
 	}
 	setup_static_lib_package("i18n", source_dirs, extern_libs, {})
 
@@ -364,6 +365,7 @@ function setup_all_libs ()
 		"lib/res/sound"
 	}
 	extern_libs = {
+		"boost",
 		"sdl",
 		"opengl",
 		"libpng",

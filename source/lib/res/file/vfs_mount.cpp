@@ -201,7 +201,7 @@ static const Mount& add_mount(const char* V_mount_point, const char* P_real_path
 	uint flags, uint pri);
 
 // passed through dirent_cb's afile_enum to afile_cb
-struct ZipCBParams
+struct ZipCBParams : boost::noncopyable
 {
 	// tree directory into which we are adding the archive's files
 	TDir* const td;
@@ -220,8 +220,6 @@ struct ZipCBParams
 		last_path = 0;
 		last_td = 0;
 	}
-
-	NO_COPY_CTOR(ZipCBParams);
 };
 
 // called by add_ent's afile_enum for each file in the archive.
@@ -361,7 +359,7 @@ struct TDirAndPath
 
 	// can't implement or generate assignment operator because of the
 	// const member. just disallow its use.
-	// NB: can't use NO_COPY_CTOR because we need one for STL.
+	// NB: can't use boost::noncopyable because STL requires a copy ctor.
 private:
 	TDirAndPath& operator=(const TDirAndPath& rhs);
 };

@@ -1,48 +1,46 @@
+/**
+ * File        : CStr.h
+ * Project     : engine
+ * Description : Contains CStr class which is a versatile class for making string use easy.
+ *			   : The class implements a series of string manipulation/formatting functions.
+ *
+ * @author Caecus
+ * Caecus@0ad.wildfiregames.com
+ **/
 /*
-CStr.h
-by Caecus
-Caecus@0ad.wildfiregames.com
+Examples:
+	Generic text mapping is simply the ability to compile the final game in both UNICODE and ANSI.
+	These are the ways in which we deal with strings.
+	UNICODE uses 16 bits per character, whereas ANSI uses the traditional 8 bit character.
+	In order to use both, most of the standard library functions come in T form.
+	The following shows several examples of traditional ANSI vs UNICODE.
+		// ANSI
+		LPCSTR str = "PI";
+		printf( "%s = %fn", str, 3.1459f );
 
-Overview:
-
-	Contains CStr class which is a versatile class for making string use easy.
-	Basic functionality implemented via STL string, so performance is limited
-	based on the STL implementation we use.
-
-Example:
-	
-	CStr MyString = _T("Hello, World.");
-	int MyNum = 126;
-	MyString += _T(" I'm the number ") += CStr(MyNumber);
-	
-	// Prints "Hello, World. I'm the number 126"
-
-	_tcout << (LPCTSTR)MyString << endl;
-
-	MyString = _("2341");
-	MyNum = MyString.ToInt();
-	
-	// Prints "2341"
-	_tcout << MyNum << endl;	
-
-More Info:
-	http://wildfiregames.com/0ad/codepit/TDD/CStr.html
-
-
-[[ This documentation is out of date; CStr is always 8 bits, and CStrW is always
-sizeof(wchar_t) (16 or 32). Don't use _T; CStrW constants are just L"string". ]]
-
+		// UNICODE
+		LPCWSTR str = L"PI";
+		wprintf( L"%s = %fn", str, 3.1459f );
 */
 
 // history:
 // 19 May 04, Mark Thompson (mot20@cam.ac.uk / mark@wildfiregames.com)
 // 2004-06-18 janwas: replaced conversion buffer with stringstream
 // 2004-10-31 Philip: Changed to inherit from std::[w]string
+// 2007-1-26 greybeard(joe@wildfiregames.com): added comments for doc generation
 
 #ifndef CSTR_H_FIRST
 #define CSTR_H_FIRST
 
-enum PS_TRIM_MODE { PS_TRIM_LEFT, PS_TRIM_RIGHT, PS_TRIM_BOTH };
+/**
+ * Whitespace trim identifier for Trim and Pad functions
+ **/
+enum PS_TRIM_MODE
+{
+	PS_TRIM_LEFT,	/// Trim all white space from the beginning of the string
+	PS_TRIM_RIGHT,	/// Trim all white space from the end of the string
+	PS_TRIM_BOTH	/// Trim all white space from the beginning and end of the string
+};
 
 #ifndef IN_UNIDOUBLER
  #define UNIDOUBLER_HEADER "CStr.h"
@@ -67,7 +65,9 @@ enum PS_TRIM_MODE { PS_TRIM_LEFT, PS_TRIM_RIGHT, PS_TRIM_BOTH };
 class CStr8;
 class CStrW;
 
-// CStr class, the mother of all strings
+/**
+ * The base class of all strings
+ **/
 class CStr: public std::tstring
 {
 	// The two variations must be friends with each other
@@ -81,20 +81,60 @@ public:
 
 	// CONSTRUCTORS
 
+/**
+ * Constructor
+ *
+ **/
 	CStr() {}
+/**
+ * Alternate Constructor
+ *
+ * @param const CStr & String reference to another CStr object to be used for initialization
+ **/
 	CStr(const CStr& String)	: std::tstring(String) {}
+/**
+ * Alternate Constructor
+ *
+ * @param const tchar * String pointer to an array of tchar to be used for initialization
+ **/
 	CStr(const tchar* String)	: std::tstring(String) {}
+/**
+ * Alternate Constructor
+ *
+ * @param const tchar * String pointer to first tchar to be used for initialization
+ * @param size_t Length number of tchar to be used from first tchar
+ **/
 	CStr(const tchar* String, size_t Length)
 								: std::tstring(String, Length) {}
+/**
+ * Alternate Constructor
+ *
+ * @param const tchar Char tchar to be used for initialization
+ **/
 	CStr(const tchar Char)		: std::tstring(1, Char) {} // std::string's constructor is (repeats, chr)
+/**
+ * Alternate Constructor
+ *
+ * @param std::tstring String reference to basic string object to be used for inititalization
+ **/
 	CStr(std::tstring String)	: std::tstring(String) {}
 
-	// Named constructor, to avoid overload overload.
+	/**
+	 * Repeat: Named constructor, to avoid overload overload.
+	 *
+	 * @param const CStr & String reference to another CStr object to be repeated for initialization
+	 * @param size_t Reps number of times to repeat the initialization
+	 * @return CStr new CStr object
+	 **/
 	static CStr Repeat(const CStr& String, size_t Reps);
-	
-	// CStr(8|W) construction from utf16strings.
-	// allowed on MSVC as of 2006-02-03 because utf16string is
-	// now distinct from CStrW.
+
+/**
+ * Construction from utf16strings.
+ * allowed on MSVC as of 2006-02-03 because utf16string is
+ * now distinct from CStrW.
+ *
+ * @param utf16string String utf16string to be used for initialization.
+ **/
 	CStr(utf16string String) : std::tstring(String.begin(), String.end()) {}
 
 	// Transparent CStrW/8 conversion. Non-ASCII characters are not
@@ -116,93 +156,330 @@ public:
 		CStrW FromUTF8() const;
 	#endif
 
-	CStr(int Number);			// Creates CStr from a int
-	CStr(unsigned int Number);	// Creates CStr from a uint
-	CStr(long Number);			// Creates CStr from a long 
-	CStr(unsigned long Number);	// Creates CStr from a ulong 
-	CStr(float Number);			// Creates CStr from a float
-	CStr(double Number);		// Creates CStr from a double
+/**
+ * Alternate Constructor
+ *
+ * @param int Number integer to be used for initialization
+ **/
+	CStr(int Number);
+/**
+ * Alternate Constructor
+ *
+ * @param unsigned int Number unsigned integer to be used for initialization
+ **/
+	CStr(unsigned int Number);
+/**
+ * Alternate Constructor
+ *
+ * @param long Number long to be used for initialization
+ **/
+	CStr(long Number);
+/**
+ * Alternate Constructor
+ *
+ * @param unsigned long Number unsigned long to be used for initialization
+ **/
+	CStr(unsigned long Number);
+/**
+ * Alternate Constructor
+ *
+ * @param float Number float to be used for initialization
+ **/
+	CStr(float Number);
+/**
+ * Alternate Constructor
+ *
+ * @param double Number double to be used for initialization
+ **/
+	CStr(double Number);
 
-	~CStr() {};					// Destructor
+/**
+ * Destructor
+ *
+ **/
+	~CStr() {};
 
 	// Conversions
+	/**
+	 * Return CStr as Integer.
+	 * Conversion is from the beginning of CStr.
+	 *
+	 * @return int CStr represented as an integer.
+	 **/
 	int				ToInt() const;
+	/**
+	 * Return CStr as Unsigned Integer.
+	 * Conversion is from the beginning of CStr.
+	 *
+	 * @return unsigned int CStr represented as an unsigned integer.
+	 **/
 	unsigned int	ToUInt() const;
+	/**
+	 * Return CStr as Long.
+	 * Conversion is from the beginning of CStr.
+	 *
+	 * @return long CStr represented as a long.
+	 **/
 	long			ToLong() const;
+	/**
+	 * Return CStr as Unsigned Long.
+	 * Conversion is from the beginning of CStr.
+	 *
+	 * @return unsigned long CStr represented as an unsigned long.
+	 **/
 	unsigned long	ToULong() const;
+	/**
+	 * Return CStr as Float.
+	 * Conversion is from the beginning of CStr.
+	 *
+	 * @return float CStr represented as a float.
+	 **/
 	float			ToFloat() const;
+	/**
+	 * Return CStr as Double.
+	 * Conversion is from the beginning of CStr.
+	 *
+	 * @return double CStr represented as a double.
+	 **/
 	double			ToDouble() const;
 
-	// Returns the length of the string in characters
+	/**
+	 * Return the length of the CStr in characters.
+	 *
+	 * @return size_t character count
+	 **/
 	size_t Length() const { return length(); }
 
-	// Retrieves the substring within the string 
+	/**
+	 * Retrieve the substring within the CStr.
+	 *
+	 * @param size_t start starting character position in CStr
+	 * @param size_t len number of characters to retrieve in CStr
+	 * @return CStr substring
+	 **/
 	CStr GetSubstring(size_t start, size_t len) const;
 
-	// Search the string for another string. Returns the offset of the first
-	// match, or -1 if no matches are found.
+	/**
+	 * Search the CStr for another string.
+	 * The search is case-sensitive.
+	 *
+	 * @param const CStr & Str reference to the search string
+	 * @return long offset into the CStr of the first occurrence of the search string
+	 *				-1 if the search string is not found
+	 **/
 	long Find(const CStr& Str) const;
+	/**
+	 * Search the CStr for another string.
+	 * The search is case-sensitive.
+	 *
+	 * @param const {t|w}char_t & chr reference to the search string
+	 * @return long offset into the CStr of the first occurrence of the search string
+	 *				-1 if the search string is not found
+	 **/
 	long Find(const tchar &chr) const;
+	/**
+	 * Search the CStr for another string with starting offset.
+	 * The search is case-sensitive.
+	 *
+	 * @param const int & start character offset into CStr to begin search
+	 * @param const {t|w}char_t & chr reference to the search string
+	 * @return long offset into the CStr of the first occurrence of the search string
+	 *				-1 if the search string is not found
+	 **/
 	long Find(const int &start, const tchar &chr) const;
 
-	// Case-insensitive versions of Find
+	/**
+	 * Search the CStr for another string.
+	 * The search is case-insensitive.
+	 *
+	 * @param const CStr & Str reference to the search string
+	 * @return long offset into the CStr of the first occurrence of the search string
+	 *				-1 if the search string is not found
+	 **/
 	long FindInsensitive(const CStr& Str) const;
+	/**
+	 * Search the CStr for another string.
+	 * The search is case-insensitive.
+	 *
+	 * @param const {t|w}char_t & chr reference to the search string
+	 * @return long offset into the CStr of the first occurrence of the search string
+	 *				-1 if the search string is not found
+	 **/
 	long FindInsensitive(const tchar &chr) const;
+	/**
+	 * Search the CStr for another string with starting offset.
+	 * The search is case-insensitive.
+	 *
+	 * @param const int & start character offset into CStr to begin search
+	 * @param const {t|w}char_t & chr reference to the search string
+	 * @return long offset into the CStr of the first occurrence of the search string
+	 *				-1 if the search string is not found
+	 **/
 	long FindInsensitive(const int &start, const tchar &chr) const;
 
-	// You can also do a "ReverseFind" - i.e. search starting from the end 
+	/**
+	 * Search the CStr for another string.
+	 * The search is case-sensitive.
+	 *
+	 * @param const CStr & Str reference to the search string
+	 * @return long offset into the CStr of the last occurrence of the search string
+	 *				-1 if the search string is not found
+	 **/
 	long ReverseFind(const CStr& Str) const;
 
-	// Lowercase and uppercase 
+	/**
+	 * Make a copy of the CStr in lower-case.
+	 *
+	 * @return CStr converted copy of CStr.
+	 **/
 	CStr LowerCase() const;
+	/**
+	 * Make a copy of the CStr in upper-case.
+	 *
+	 * @return CStr converted copy of CStr.
+	 **/
 	CStr UpperCase() const;
 	CStr LCase() const;
 	CStr UCase() const;
 
-	// Retrieve the substring of the first n characters 
+	/**
+	 * Retrieve first n characters of the CStr.
+	 *
+	 * @param size_t len the number of characters to retrieve.
+	 * @return CStr retrieved substring.
+	 **/
 	CStr Left(size_t len) const;
 
-	// Retrieve the substring of the last n characters
+	/**
+	 * Retrieve last n characters of the CStr.
+	 *
+	 * @param size_t len the number of characters to retrieve.
+	 * @return CStr retrieved substring.
+	 **/
 	CStr Right(size_t len) const;
 
-	// Retrieve the substring following the last occurrence of Str
-	// (or the whole string if it doesn't contain Str)
+	/**
+	 * Retrieve substring of the CStr after last occurrence of a string.
+	 * Return substring of the CStr after the last occurrence of the search string.
+	 *
+	 * @param const CStr & Str reference to search string
+	 * @return CStr substring remaining after match
+	 *					 the CStr if no match is found
+	 **/
 	CStr AfterLast(const CStr& Str) const;
-	
-	// Retrieve the substring preceding the last occurrence of Str
-	// (or the whole string if it doesn't contain Str)
+
+	/**
+	 * Retrieve substring of the CStr preceding last occurrence of a string.
+	 * Return substring of the CStr preceding the last occurrence of the search string.
+	 *
+	 * @param const CStr & Str reference to search string
+	 * @return CStr substring preceding before match
+	 *					 the CStr if no match is found
+	 **/
 	CStr BeforeLast(const CStr& Str) const;
 
-	// Retrieve the substring following the first occurrence of Str
-	// (or the whole string if it doesn't contain Str)
+	/**
+	 * Retrieve substring of the CStr after first occurrence of a string.
+	 * Return substring of the CStr after the first occurrence of the search string.
+	 *
+	 * @param const CStr & Str reference to search string
+	 * @return CStr substring remaining after match
+	 *					 the CStr if no match is found
+	 **/
 	CStr AfterFirst(const CStr& Str) const;
 
-	// Retrieve the substring preceding the first occurrence of Str
-	// (or the whole string if it doesn't contain Str)
+	/**
+	 * Retrieve substring of the CStr preceding first occurrence of a string.
+	 * Return substring of the CStr preceding the first occurrence of the search string.
+	 *
+	 * @param const CStr & Str reference to search string
+	 * @return CStr substring preceding before match
+	 *					 the CStr if no match is found
+	 **/
 	CStr BeforeFirst(const CStr& Str) const;
 
-	// Remove all occurrences of some character or substring 
+	/**
+	 * Remove all occurrences of a string from the CStr.
+	 *
+	 * @param const CStr & Str reference to search string to remove.
+	 **/
 	void Remove(const CStr& Str);
 
-	// Replace all occurrences of some substring by another 
+	/**
+	 * Replace all occurrences of one string by another string in the CStr.
+	 *
+	 * @param const CStr & StrToReplace reference to search string.
+	 * @param const CStr & ReplaceWith reference to replace string.
+	 **/
 	void Replace(const CStr& StrToReplace, const CStr& ReplaceWith);
 
-	// Convert strings like  \\\n  into <backslash><newline>
+	/**
+	 * Convert strings like  \\\n  into <backslash><newline>
+	 *
+	 * @return CStr converted copy of CStr.
+	 **/
 	CStr UnescapeBackslashes();
 
-	// Returns a trimmed string, removes whitespace from the left/right/both
+	/**
+	 * Return a trimmed copy of the CStr.
+	 *
+	 * @param PS_TRIM_MODE Mode value from trim mode enumeration.
+	 * @return CStr copy of trimmed CStr.
+	 **/
 	CStr Trim(PS_TRIM_MODE Mode) const;
 
-	// Returns a padded string, adding spaces to the left/right/both
+	/**
+	 * Return a space padded copy of the CStr.
+	 *
+	 * @param PS_TRIM_MODE Mode value from trim mode enumeration.
+	 * @param size_t Length number of pad spaces to add
+	 * @return CStr copy of padded CStr.
+	 **/
 	CStr Pad(PS_TRIM_MODE Mode, size_t Length) const;
 
 	// Overloaded operations
 
+	/**
+	 * Set the CStr equal to an integer.
+	 *
+	 * @param int Number integer to convert to a CStr.
+	 * @return CStr
+	 **/
 	CStr& operator=(int Number);
+	/**
+	 * Set the CStr equal to a long.
+	 *
+	 * @param long Number long to convert to a CStr.
+	 * @return CStr
+	 **/
 	CStr& operator=(long Number);
+	/**
+	 * Set the CStr equal to an unsigned integer.
+	 *
+	 * @param unsigned int Number unsigned int to convert to a CStr.
+	 * @return CStr
+	 **/
 	CStr& operator=(unsigned int Number);
+	/**
+	 * Set the CStr equal to an unsigned long.
+	 *
+	 * @param unsigned long Number unsigned long to convert to a CStr.
+	 * @return CStr
+	 **/
 	CStr& operator=(unsigned long Number);
+	/**
+	 * Set the CStr equal to a float.
+	 *
+	 * @param float Number float to convert to a CStr.
+	 * @return CStr
+	 **/
 	CStr& operator=(float Number);
+	/**
+	 * Set the CStr equal to a double.
+	 *
+	 * @param double Number double to convert to a CStr.
+	 * @return CStr
+	 **/
 	CStr& operator=(double Number);
 
 	CStr  operator+(const CStr& Str);
@@ -218,7 +495,7 @@ public:
 	// Do some range checking in debug builds
 	tchar& operator[](size_t n)	{ debug_assert(n < length()); return this->std::tstring::operator[](n); }
 	tchar& operator[](int n)	{ debug_assert((size_t)n < length()); return this->std::tstring::operator[](n); }
-	
+
 	// Conversion to utf16string
 	inline utf16string utf16() const
 	{	return utf16string(begin(), end()); }

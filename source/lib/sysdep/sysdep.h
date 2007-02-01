@@ -106,7 +106,7 @@ extern void* alloca(size_t size);
 //   rint: round float to nearest integral value, according to
 //     current rounding mode.
 //   fminf/fmaxf: return minimum/maximum of two floats.
-#if !HAVE_C99
+#if !HAVE_C99_MATH
 // .. fast IA-32 versions
 # if CPU_IA32
 #  define rintf ia32_rintf
@@ -140,7 +140,7 @@ extern void* alloca(size_t size);
 # define isinf(d) (fpclassify(d) == FP_NAN|FP_NORMAL)
 # define isnormal(d) (fpclassify(d) == FP_NORMAL)
 //# define signbit
-#else
+#else	// HAVE_C99_MATH
 // Some systems have C99 support but in C++ they provide only std::isfinite
 // and not isfinite. C99 specifies that isfinite is a macro, so we can use
 // #ifndef and define it if it's not there already.
@@ -151,7 +151,7 @@ extern void* alloca(size_t size);
 #  define isinf std::isinf
 #  define isnormal std::isnormal
 # endif
-#endif
+#endif	// HAVE_C99_MATH
 
 // C99-like restrict (non-standard in C++, but widely supported in various forms).
 //

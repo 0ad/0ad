@@ -407,7 +407,7 @@ static void displayR(TDir* td, int indent_level)
 }
 
 
-struct LookupCbParams
+struct LookupCbParams : boost::noncopyable
 {
 	const bool create_missing;
 	TDir* td;		// current dir; assigned from node
@@ -419,8 +419,6 @@ struct LookupCbParams
 		// this works because TDir is derived from TNode.
 		node = (TNode*)td;
 	}
-
-	NO_COPY_CTOR(LookupCbParams);
 };
 
 static LibError lookup_cb(const char* component, bool is_dir, void* ctx)
@@ -624,14 +622,12 @@ LibError tree_lookup(const char* V_path, TFile** pfile, uint flags)
 }
 
 
-struct AddPathCbParams
+struct AddPathCbParams : boost::noncopyable
 {
 	const Mount* const m;
 	TDir* td;
 	AddPathCbParams(const Mount* m_)
 		: m(m_), td(tree_root) {}
-
-	NO_COPY_CTOR(AddPathCbParams);
 };
 
 static LibError add_path_cb(const char* component, bool is_dir, void* ctx)
