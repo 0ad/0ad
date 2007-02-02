@@ -908,57 +908,62 @@ function damage( dmg, inflictor )
 		if (this.traits.loot && inflictor.actions && inflictor.actions.loot)
 		{
 			// Cycle through all loot on this entry.
-			for( loot in this.traits.loot )
+			const LOOTS = ["food", "wood", "metal", "stone", "xp"]
+			for( i in LOOTS )
 			{
-				switch( loot.toString().toUpperCase() )
-				{
-						case "XP":
-						// If the inflictor gains promotions, and he's capable of earning more ranks,
-						if (inflictor.traits.promotion && inflictor.traits.promotion.curr && inflictor.traits.promotion.req
-								&& inflictor.traits.promotion.entity && inflictor.traits.promotion.entity != ""
-								&& this.traits.loot && this.traits.loot.xp && inflictor.actions.loot.xp)
-						{
-							// Give him the fallen's upgrade points (if he has any).
-							if (this.traits.loot.xp)
-								inflictor.traits.promotion.curr = parseInt(inflictor.traits.promotion.curr) + parseInt(this.traits.loot.xp);
-
-							// Notify player.
-							/*if (inflictor.traits.id.specific)
-								console.write(inflictor.traits.id.specific + " has earned " + this.traits.loot.xp + " upgrade points!");
-							else
-								console.write("One of your units has earned " + this.traits.loot.xp + " upgrade points!");
-							*/
-
-							// If he now has maximum upgrade points for his rank,
-							if (inflictor.traits.promotion.curr >= inflictor.traits.promotion.req)
+				var loot = LOOTS[i];
+				if(this.traits.loot[loot]) {
+					switch( loot )
+					{
+							case "xp":
+							// If the inflictor gains promotions, and he's capable of earning more ranks,
+							if (inflictor.traits.promotion && inflictor.traits.promotion.curr 
+									&& inflictor.traits.promotion.req
+									&& inflictor.traits.promotion.entity 
+									&& inflictor.traits.promotion.entity != ""
+									&& this.traits.loot && this.traits.loot.xp 
+									&& inflictor.actions.loot.xp)
 							{
-								// Notify the player.
+								// Give him the fallen's upgrade points (if he has any).
+								if (this.traits.loot.xp)
+									inflictor.traits.promotion.curr = parseInt(inflictor.traits.promotion.curr) + parseInt(this.traits.loot.xp);
+
+								// Notify player.
 								/*if (inflictor.traits.id.specific)
-									console.write(inflictor.traits.id.specific + " has gained a promotion!");
+									console.write(inflictor.traits.id.specific + " has earned " + this.traits.loot.xp + " upgrade points!");
 								else
-									console.write("One of your units has gained a promotion!");*/
-								
-								// Reset his upgrade points.
-								inflictor.traits.promotion.curr = 0; 
+									console.write("One of your units has earned " + this.traits.loot.xp + " upgrade points!");
+								*/
 
-								// Upgrade his portrait to the next level.
-								inflictor.traits.id.icon_cell++; 
+								// If he now has maximum upgrade points for his rank,
+								if (inflictor.traits.promotion.curr >= inflictor.traits.promotion.req)
+								{
+									// Notify the player.
+									/*if (inflictor.traits.id.specific)
+										console.write(inflictor.traits.id.specific + " has gained a promotion!");
+									else
+										console.write("One of your units has gained a promotion!");*/
+									
+									// Reset his upgrade points.
+									inflictor.traits.promotion.curr = 0; 
 
-								// Transmogrify him into his next rank.
-								inflictor.template = getEntityTemplate( inflictor.traits.promotion.entity, inflictor.player );
-								inflictor.setupRank();
+									// Upgrade his portrait to the next level.
+									inflictor.traits.id.icon_cell++; 
+
+									// Transmogrify him into his next rank.
+									inflictor.template = getEntityTemplate( inflictor.traits.promotion.entity, inflictor.player );
+									inflictor.setupRank();
+								}
 							}
-						}
-						break;
-					default:
-						if ( inflictor.actions.loot.resources )
-						{
-							// Notify player.
-							//console.write ("Spoils of war! " + this.traits.loot[loot] + " " + loot.toString() + "!");
-							// Give the inflictor his resources.
-							this.player.resources[loot.toString()] -= parseInt(this.traits.loot[loot]);
-						}
-						break;
+							break;
+						default:
+							if ( inflictor.actions.loot.resources )
+							{
+								// Give the inflictor his resources.
+								this.player.resources[loot.toString()] -= parseInt(this.traits.loot[loot.toString()]);
+							}
+							break;
+					}
 				}
 			}
 		}

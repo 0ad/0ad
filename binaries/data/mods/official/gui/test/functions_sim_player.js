@@ -110,6 +110,7 @@ function refreshResource (resourceName, resourceIndex)
 	// The Population counter also lists the amount of available housing.		
 	if (resourceName == "Population")
 		caption	+= "/" + localPlayer.resources["housing"];	
+	
 	resourceObject.caption = caption;
 	
 	// Update counter tooltip.

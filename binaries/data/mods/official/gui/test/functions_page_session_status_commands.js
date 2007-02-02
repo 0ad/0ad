@@ -345,14 +345,24 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 					{
 						case "pick":
 							// Set tooltip.
-							if (arrayCells == true)	// Check a .sheet property for each item in the list to know its cellsheet.
+							if (arrayCells == true) {	// Check a .sheet property for each item in the list to know its cellsheet.
 								listObject.tooltip = cellGroup[listArray[createLoop].sheet][listArray[createLoop]].name;
-							else	// Assume each item uses the same cell sheet as the tab.
-								listObject.tooltip = cellGroup[cellSheet][listArray[createLoop]].name;
+							}
+							else {	// Assume each item uses the same cell sheet as the tab.
+								if(cellGroup[cellSheet][listArray[createLoop]]) {
+									listObject.tooltip = cellGroup[cellSheet][listArray[createLoop]].name;
+								}
+								else {
+									listObject.tooltip = "(no name)";
+								}
+							}
 							
 							// Set portrait.
-							setPortrait (listObject.name, 
-								"IconSheet", cellSheet + "Button", cellGroup[cellSheet][listArray[createLoop]].id);							
+							if(cellGroup[cellSheet][listArray[createLoop]]) {
+								setPortrait (listObject.name, 
+									"IconSheet", cellSheet + "Button", cellGroup[cellSheet][listArray[createLoop]].id);	
+							}
+							
 							// Store properties which we will need when doing the press event as a comma-delimited string.
 							// * 0 Name of variable that contains the ".curr" value.
 							// * 1 String name of current button's content.
