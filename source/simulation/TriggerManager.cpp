@@ -138,7 +138,7 @@ bool TriggerParameter::operator< ( const TriggerParameter& rhs ) const
 }
 //===========Trigger Manager===========
 
-CTriggerManager::CTriggerManager() : m_UpdateRate(.80f), m_UpdateTime(.80f)
+CTriggerManager::CTriggerManager() : m_UpdateRate(.20f), m_UpdateTime(.20f)
 {
 }
 
@@ -165,11 +165,12 @@ std::vector<std::wstring> CTriggerManager::GetTriggerTranslations(const std::wst
 	return m_TriggerTranslations[name];
 }
 
-void CTriggerManager::Update(float delta)
+void CTriggerManager::Update(float delta_ms)
 {
+	float delta = delta_ms / 1000.f;
 	m_UpdateTime -= delta;
 	if ( m_UpdateTime < 0 )
-		m_UpdateTime = m_UpdateRate;
+		m_UpdateTime += m_UpdateRate;
 	else
 		return;
 	
@@ -178,7 +179,7 @@ void CTriggerManager::Update(float delta)
 	{
 		if ( it->second->ShouldFire() )
 		{
-			it->second->m_timeLeft -= delta;
+			it->second->m_timeLeft -= m_UpdateRate;
 			if ( it->second->m_timeLeft < 0 )
 			{
 				if ( !it->second->Fire() )

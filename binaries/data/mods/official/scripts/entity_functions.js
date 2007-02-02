@@ -973,7 +973,7 @@ function damage( dmg, inflictor )
 		if (this.traits.audio && this.traits.audio.path)
 		{
 			if(getGUIGlobal().newRandomSound) {
-				curr_pain = getGUIGlobal().newRandomSound(
+				var curr_pain = getGUIGlobal().newRandomSound(
 					"voice", "pain", this.traits.audio.path);
 				if (curr_pain) curr_pain.play();
 			}

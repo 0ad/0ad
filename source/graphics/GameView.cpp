@@ -53,7 +53,7 @@ const float CGameView::defaultFOV = DEGTORAD(20.f);
 const float CGameView::defaultNear = 1.f;
 const float CGameView::defaultFar = 5000.f;
 
-class CGameViewImpl : public CJSObject<CGameViewImpl>
+class CGameViewImpl : public CJSObject<CGameViewImpl>, boost::noncopyable
 {
 public:
 	CGameViewImpl(CGame* game)

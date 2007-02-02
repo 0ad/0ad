@@ -263,6 +263,7 @@ enum
 	ID_MessageTrace,
 	ID_Screenshot,
 	ID_MediaPlayer,
+	ID_JavaScript,
 
 	ID_Toolbar // must be last in the list
 };
@@ -284,6 +285,7 @@ BEGIN_EVENT_TABLE(ScenarioEditor, wxFrame)
 	EVT_MENU(ID_MessageTrace, ScenarioEditor::OnMessageTrace)
 	EVT_MENU(ID_Screenshot, ScenarioEditor::OnScreenshot)
 	EVT_MENU(ID_MediaPlayer, ScenarioEditor::OnMediaPlayer)
+	EVT_MENU(ID_JavaScript, ScenarioEditor::OnJavaScript)
 
 	EVT_IDLE(ScenarioEditor::OnIdle)
 END_EVENT_TABLE()
@@ -347,6 +349,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 		menuMisc->AppendCheckItem(ID_MessageTrace, _("Message debug trace"));
 		menuMisc->Append(ID_Screenshot, _("&Screenshot"));
 		menuMisc->Append(ID_MediaPlayer, _("&Media player"));
+		menuMisc->Append(ID_JavaScript, _("&JS console"));
 	}
 
 
@@ -601,6 +604,14 @@ void ScenarioEditor::OnMediaPlayer(wxCommandEvent& WXUNUSED(event))
 #else
 	wxLogError(_("Sorry, media playback is not supported in this build."));
 #endif
+}
+
+void ScenarioEditor::OnJavaScript(wxCommandEvent& WXUNUSED(event))
+{
+	wxString cmd = ::wxGetTextFromUser(_T(""), _("JS command"), _T(""), this);
+	if (cmd.IsEmpty())
+		return;
+	POST_MESSAGE(JavaScript, (cmd.c_str()));
 }
 
 //////////////////////////////////////////////////////////////////////////

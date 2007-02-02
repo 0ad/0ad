@@ -37,6 +37,10 @@ MESSAGE(SetViewParamC,
 		((Colour, value))
 		);
 
+MESSAGE(JavaScript,
+		((std::wstring, command))
+		);
+
 //////////////////////////////////////////////////////////////////////////
 
 MESSAGE(SimStateSave,

@@ -23,9 +23,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="277.633" y="76.8821" z="126.885"/>
-		<Rotation angle="0.00806971"/>
-		<Declination angle="0.612015"/>
+		<Position x="98.9176" y="60.9727" z="176.899"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<Entities>
 		<Entity uid="0">
@@ -503,19 +503,19 @@
 			<Orientation angle="-0.974507"/>
 		</Entity>
 		<Entity uid="80">
-			<Template>celt_support_female_citizen</Template>
+			<Template>temp_celt_support_female_citizen_gatherer</Template>
 			<Player>3</Player>
 			<Position x="124.183" y="22.4" z="184.258"/>
 			<Orientation angle="-0.239674"/>
 		</Entity>
 		<Entity uid="81">
-			<Template>celt_support_female_citizen</Template>
+			<Template>temp_celt_support_female_citizen_gatherer</Template>
 			<Player>3</Player>
 			<Position x="127.282" y="22.4" z="191.839"/>
 			<Orientation angle="-0.744668"/>
 		</Entity>
 		<Entity uid="82">
-			<Template>celt_support_female_citizen</Template>
+			<Template>temp_celt_support_female_citizen_gatherer</Template>
 			<Player>3</Player>
 			<Position x="129.607" y="22.4" z="197.058"/>
 			<Orientation angle="-2.91191"/>
@@ -1367,25 +1367,25 @@
 			<Orientation angle="-2.42317"/>
 		</Entity>
 		<Entity uid="224">
-			<Template>celt_infantry_spearman_a</Template>
+			<Template>temp_celt_infantry_spearman_a_gatherer</Template>
 			<Player>3</Player>
 			<Position x="87.1198" y="22.4" z="225.978"/>
 			<Orientation angle="-2.0838"/>
 		</Entity>
 		<Entity uid="225">
-			<Template>celt_infantry_spearman_a</Template>
+			<Template>temp_celt_infantry_spearman_a_gatherer</Template>
 			<Player>3</Player>
 			<Position x="88.597" y="22.4" z="231.086"/>
 			<Orientation angle="-2.27835"/>
 		</Entity>
 		<Entity uid="226">
-			<Template>celt_infantry_spearman_a</Template>
+			<Template>temp_celt_infantry_spearman_a_gatherer</Template>
 			<Player>3</Player>
 			<Position x="130.627" y="21.6197" z="183.044"/>
 			<Orientation angle="0.304966"/>
 		</Entity>
 		<Entity uid="227">
-			<Template>celt_infantry_spearman_b</Template>
+			<Template>temp_celt_infantry_spearman_b_gatherer</Template>
 			<Player>3</Player>
 			<Position x="145.519" y="21.7976" z="183.11"/>
 			<Orientation angle="-1.06658"/>
@@ -1397,7 +1397,7 @@
 			<Orientation angle="-0.261573"/>
 		</Entity>
 		<Entity uid="229">
-			<Template>celt_infantry_spearman_b</Template>
+			<Template>temp_celt_infantry_spearman_b_gatherer</Template>
 			<Player>3</Player>
 			<Position x="120.527" y="22.4" z="184.196"/>
 			<Orientation angle="0.554886"/>
@@ -1427,13 +1427,13 @@
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="234">
-			<Template>celt_infantry_spearman_b</Template>
+			<Template>temp_celt_infantry_spearman_b_gatherer</Template>
 			<Player>3</Player>
 			<Position x="71.493" y="21.8795" z="175.851"/>
 			<Orientation angle="-1.16564"/>
 		</Entity>
 		<Entity uid="235">
-			<Template>celt_infantry_spearman_b</Template>
+			<Template>temp_celt_infantry_spearman_b_gatherer</Template>
 			<Player>3</Player>
 			<Position x="69.974" y="22.3871" z="181.887"/>
 			<Orientation angle="-2.83532"/>
@@ -1499,19 +1499,19 @@
 			<Orientation angle="-2.45119"/>
 		</Entity>
 		<Entity uid="246">
-			<Template>celt_infantry_spearman_b</Template>
+			<Template>temp_celt_infantry_spearman_b_gatherer</Template>
 			<Player>3</Player>
 			<Position x="224.287" y="22.4" z="148.138"/>
 			<Orientation angle="0.326852"/>
 		</Entity>
 		<Entity uid="247">
-			<Template>celt_infantry_spearman_b</Template>
+			<Template>temp_celt_infantry_spearman_b_gatherer</Template>
 			<Player>3</Player>
 			<Position x="120.41" y="22.4" z="199.476"/>
 			<Orientation angle="-2.3212"/>
 		</Entity>
 		<Entity uid="248">
-			<Template>celt_infantry_spearman_b</Template>
+			<Template>temp_celt_infantry_spearman_b_gatherer</Template>
 			<Player>3</Player>
 			<Position x="111.261" y="22.4" z="195.953"/>
 			<Orientation angle="0.780045"/>
@@ -1820,6 +1820,12 @@
 			<Template>hele_infantry_spearman_e</Template>
 			<Player>2</Player>
 			<Position x="250.51" y="22.4" z="193.655"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="3865">
+			<Template>skeleton</Template>
+			<Player>6</Player>
+			<Position x="151.472" y="22.4" z="34.569"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 	</Entities>
@@ -2742,7 +2748,7 @@
 		<Nonentity>
 			<Actor>props/flora/grass_medit_flowering_tall.xml</Actor>
 			<Position x="263.56" y="22.3698" z="205.105"/>
-			<Orientation angle="0.0258018"/>
+			<Orientation angle="0.025802"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_medit_flowering_tall.xml</Actor>
@@ -5875,6 +5881,11 @@
 			<Orientation angle="-2.50676"/>
 		</Nonentity>
 		<Nonentity>
+			<Actor>flora/trees/oak_large.xml</Actor>
+			<Position x="127.049" y="22.3709" z="144.717"/>
+			<Orientation angle="-0.453995"/>
+		</Nonentity>
+		<Nonentity>
 			<Actor>flora/trees/oak.xml</Actor>
 			<Position x="172.627" y="22.4" z="298.327"/>
 			<Orientation angle="-1.96169"/>
@@ -6890,11 +6901,6 @@
 			<Orientation angle="1.90025"/>
 		</Nonentity>
 		<Nonentity>
-			<Actor>flora/trees/oak_large.xml</Actor>
-			<Position x="127.049" y="22.3709" z="144.717"/>
-			<Orientation angle="-0.453995"/>
-		</Nonentity>
-		<Nonentity>
 			<Actor>flora/trees/oak_large_top.xml</Actor>
 			<Position x="82.514" y="22.4" z="286.306"/>
 			<Orientation angle="2.35619"/>
@@ -7700,6 +7706,109 @@
 			<Orientation angle="-0.252031"/>
 		</Nonentity>
 	</Nonentities>
-	<Tracks/>
-	<Triggers/>
+	<Tracks>
+		<Track name="Track 0" timescale="1">
+			<StartRotation x="0.523599" y="0" z="0"/>
+			<Path>
+				<Rotation x="0.523599" y="0" z="0"/>
+				<Distortion mode="0" style="0" growth="0" switch="0"/>
+				<Node x="294.999" y="51.0002" z="158" t="0"/>
+				<Node x="295" y="51" z="158" t="1"/>
+				<Node x="276" y="65" z="149" t="5"/>
+				<Node x="263" y="100" z="100" t="5"/>
+				<Node x="224" y="100" z="98" t="3"/>
+				<Node x="190" y="100" z="36" t="5"/>
+				<Node x="121" y="100" z="62" t="8"/>
+				<Node x="98" y="74" z="136" t="5"/>
+				<Node x="98.9175" y="60.9729" z="176.898" t="5"/>
+			</Path>
+		</Track>
+	</Tracks>
+	<Triggers>
+		<Trigger name="Village walk 0">
+			<Active>true</Active>
+			<MaxRunCount>1</MaxRunCount>
+			<Delay>5</Delay>
+			<Conditions>
+				<Condition name="Condition 0" function="trigGetAlwaysTrue" display="Always" not="false"/>
+			</Conditions>
+			<Effects>
+				<Effect name="Effect 0">
+					<function>trigObjectTask</function>
+					<display>Object task</display>
+					<Parameter>[66]</Parameter>
+					<Parameter>[3865]</Parameter>
+					<Parameter>Attack</Parameter>
+				</Effect>
+			</Effects>
+		</Trigger>
+		<Trigger name="Village walk 1">
+			<Active>true</Active>
+			<MaxRunCount>1</MaxRunCount>
+			<Delay>5.5</Delay>
+			<Conditions>
+				<Condition name="Condition 0" function="trigGetAlwaysTrue" display="Always" not="false"/>
+			</Conditions>
+			<Effects>
+				<Effect name="Effect 1">
+					<function>trigObjectTask</function>
+					<display>Object task</display>
+					<Parameter>[231]</Parameter>
+					<Parameter>[3865]</Parameter>
+					<Parameter>Attack</Parameter>
+				</Effect>
+			</Effects>
+		</Trigger>
+		<Trigger name="Village walk 2">
+			<Active>true</Active>
+			<MaxRunCount>1</MaxRunCount>
+			<Delay>5.7</Delay>
+			<Conditions>
+				<Condition name="Condition 0" function="trigGetAlwaysTrue" display="Always" not="false"/>
+			</Conditions>
+			<Effects>
+				<Effect name="Effect 1">
+					<function>trigObjectTask</function>
+					<display>Object task</display>
+					<Parameter>[230]</Parameter>
+					<Parameter>[3865]</Parameter>
+					<Parameter>Attack</Parameter>
+				</Effect>
+			</Effects>
+		</Trigger>
+		<Trigger name="Village walk 3">
+			<Active>true</Active>
+			<MaxRunCount>1</MaxRunCount>
+			<Delay>5.9</Delay>
+			<Conditions>
+				<Condition name="Condition 0" function="trigGetAlwaysTrue" display="Always" not="false"/>
+			</Conditions>
+			<Effects>
+				<Effect name="Effect 1">
+					<function>trigObjectTask</function>
+					<display>Object task</display>
+					<Parameter>[232]</Parameter>
+					<Parameter>[3865]</Parameter>
+					<Parameter>Attack</Parameter>
+				</Effect>
+			</Effects>
+		</Trigger>
+		<Trigger name="Village walk 4">
+			<Active>true</Active>
+			<MaxRunCount>1</MaxRunCount>
+			<Delay>6.1</Delay>
+			<Conditions>
+				<Condition name="Condition 0" function="trigGetAlwaysTrue" display="Always" not="false"/>
+			</Conditions>
+			<Effects>
+				<Effect name="Effect 1">
+					<function>trigObjectTask</function>
+					<display>Object task</display>
+					<Parameter>[233]</Parameter>
+					<Parameter>[3865]</Parameter>
+					<Parameter>Attack</Parameter>
+				</Effect>
+			</Effects>
+		</Trigger>
+	</Triggers>
 </Scenario>

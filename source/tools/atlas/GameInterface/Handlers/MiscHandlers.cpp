@@ -35,6 +35,7 @@ QUERYHANDLER(CinemaRecord)
 	manager->SetCurrentTrack(*msg->track, false, false, false);
 
 	const int w = 640, h = 480;
+
 	{
 		g_Renderer.Resize(w, h);
 		SViewPort vp = { 0, 0, w, h };
@@ -112,6 +113,11 @@ MESSAGEHANDLER(SimStateRestore)
 MESSAGEHANDLER(SimPlay)
 {
 	View::GetView_Game()->SetSpeedMultiplier(msg->speed);
+}
+
+MESSAGEHANDLER(JavaScript)
+{
+	g_ScriptingHost.ExecuteScript(*msg->command, L"Atlas");
 }
 
 

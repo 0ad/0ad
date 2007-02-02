@@ -25,6 +25,7 @@ public:
 	void OnMessageTrace(wxCommandEvent& event);
 	void OnScreenshot(wxCommandEvent& event);
 	void OnMediaPlayer(wxCommandEvent& event);
+	void OnJavaScript(wxCommandEvent& event);
 
 	static AtlasWindowCommandProc& GetCommandProc();
 
