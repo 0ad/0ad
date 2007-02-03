@@ -36,8 +36,11 @@
   </group>
 
   <group>
-    <variant name="armor-tunic">
+    <variant frequency="2" name="tunic-a">
       <texture>skeletal/hele_isp_b.dds</texture>
+    </variant>
+    <variant frequency="1" name="tunic-b">
+      <texture>skeletal/hele_iar_b.dds</texture>
     </variant>
   </group>
 
