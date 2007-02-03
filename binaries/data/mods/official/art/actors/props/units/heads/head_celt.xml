@@ -2,40 +2,40 @@
 <actor version="1">
 
   <group>
-    <variant>
+    <variant name="Mesh">
       <mesh>props/head_longhair.pmd</mesh>
     </variant>
   </group>
 
   <group>
-    <variant name="a">
+    <variant frequency="1" name="texture-a">
       <texture>props/head/celt_a.dds</texture>
     </variant>
-    <variant name="b">
+    <variant frequency="1" name="texture-b">
       <texture>props/head/celt_b.dds</texture>
     </variant>
-    <variant name="c">
+    <variant frequency="1" name="texture-c">
       <texture>props/head/celt_c.dds</texture>
     </variant>
-    <variant name="d">
+    <variant frequency="1" name="texture-d">
       <texture>props/head/celt_d.dds</texture>
     </variant>
   </group>
 
   <group>
-    <variant name="dark brown">
+    <variant frequency="1" name="hair-dark brown">
       <colour>75 61 38</colour>
     </variant>
-    <variant name="brown">
+    <variant frequency="1" name="hair-brown">
       <colour>99 82 53</colour>
     </variant>
-    <variant name="medium brown">
+    <variant frequency="1" name="hair-medium brown">
       <colour>138 110 61</colour>
     </variant>
-    <variant name="dark blonde">
+    <variant frequency="1" name="hair-dark blonde">
       <colour>186 154 92</colour>
     </variant>
-    <variant name="blonde">
+    <variant frequency="1" name="hair-blonde">
       <colour>255 194 78</colour>
     </variant>
   </group>
