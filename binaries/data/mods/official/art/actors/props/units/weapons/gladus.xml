@@ -4,28 +4,28 @@
   <castshadow/>
 
   <group>
-    <variant frequency="100" name="Base">
+    <variant frequency="1" name="Base">
       <texture>props/prop_weap.dds</texture>
     </variant>
   </group>
 
   <group>
-    <variant name="plain">
+    <variant frequency="1" name="gladius-plain">
       <mesh>props/weap_gladus_c.pmd</mesh>
     </variant>
-    <variant name="blood">
+    <variant frequency="1" name="gladius-bloody">
       <mesh>props/weap_gladus_d.pmd</mesh>
     </variant>
-    <variant name="curve">
+    <variant frequency="1" name="gladius-curve">
       <mesh>props/weap_gladus_e.pmd</mesh>
     </variant>
-    <variant name="curveblood">
+    <variant frequency="1" name="gladius-curveblood">
       <mesh>props/weap_gladus_f.pmd</mesh>
     </variant>
-    <variant name="pommelblood">
+    <variant frequency="1" name="gladius-pommelblood">
       <mesh>props/weap_gladus_g.pmd</mesh>
     </variant>
-    <variant name="pommel">
+    <variant frequency="1" name="gladius-pommel">
       <mesh>props/weap_gladus_h.pmd</mesh>
     </variant>
   </group>

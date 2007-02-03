@@ -2,22 +2,22 @@
 <actor version="1">
 
   <group>
-    <variant name="Mesh">
+    <variant name="mesh">
       <mesh>props/head_longhair.pmd</mesh>
     </variant>
   </group>
 
   <group>
-    <variant frequency="1" name="texture-a">
+    <variant frequency="1" name="face-a">
       <texture>props/head/celt_a.dds</texture>
     </variant>
-    <variant frequency="1" name="texture-b">
+    <variant frequency="1" name="face-b">
       <texture>props/head/celt_b.dds</texture>
     </variant>
-    <variant frequency="1" name="texture-c">
+    <variant frequency="1" name="face-c">
       <texture>props/head/celt_c.dds</texture>
     </variant>
-    <variant frequency="1" name="texture-d">
+    <variant frequency="1" name="face-d">
       <texture>props/head/celt_d.dds</texture>
     </variant>
   </group>
