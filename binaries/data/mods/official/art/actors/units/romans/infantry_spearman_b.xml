@@ -19,14 +19,14 @@
         <animation file="infantry/general/dude/dudedecay_sword.psa" name="Corpse" speed="100"/>
         <animation event="0.5" file="biped/inf_spear_shield_atk_a.psa" name="melee" speed="150"/>
       </animations>
-      <mesh>skeletal/m_tunic_b.pmd</mesh>
+      <mesh>skeletal/m_tunic_a.pmd</mesh>
       <props>
         <prop actor="props/units/heads/rome_monte_b.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/shields/rome_scutum_b.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
       </props>
-      <texture>skeletal/rome_isp_b.dds</texture>
+      <texture>skeletal/rome_isw_e.dds</texture>
     </variant>
   </group>
 
