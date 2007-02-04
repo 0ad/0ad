@@ -2,6 +2,7 @@
 
 #include "Unit.h"
 #include "Model.h"
+#include "ObjectBase.h"
 #include "ObjectEntry.h"
 #include "ObjectManager.h"
 #include "SkeletonAnim.h"
