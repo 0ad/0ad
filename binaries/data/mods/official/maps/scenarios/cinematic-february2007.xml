@@ -373,7 +373,7 @@
 		<Entity uid="66">
 			<Template>celt_hero_vercingetorix</Template>
 			<Player>3</Player>
-			<Position x="79.1107" y="21.1535" z="184.021"/>
+			<Position x="84.1075" y="21.0588" z="178.789"/>
 			<Orientation angle="2.21968"/>
 		</Entity>
 		<Entity uid="67">
@@ -1345,25 +1345,25 @@
 		<Entity uid="230">
 			<Template>celt_infantry_spearman_e</Template>
 			<Player>3</Player>
-			<Position x="76.1875" y="21.4219" z="184.04"/>
+			<Position x="80.198" y="21.0631" z="178.022"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="231">
 			<Template>celt_infantry_spearman_e</Template>
 			<Player>3</Player>
-			<Position x="74.4862" y="22.074" z="185.143"/>
+			<Position x="75.9842" y="21.0684" z="177.38"/>
 			<Orientation angle="1.98232"/>
 		</Entity>
 		<Entity uid="232">
 			<Template>celt_infantry_spearman_e</Template>
 			<Player>3</Player>
-			<Position x="77.1969" y="21.9227" z="186.495"/>
+			<Position x="79.8748" y="21.0684" z="181.399"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="233">
 			<Template>celt_infantry_spearman_e</Template>
 			<Player>3</Player>
-			<Position x="75.3602" y="22.4" z="187.789"/>
+			<Position x="75.7431" y="21.1934" z="180.862"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="234">
@@ -1711,7 +1711,7 @@
 		<Entity uid="3865">
 			<Template>skeleton</Template>
 			<Player>6</Player>
-			<Position x="151.472" y="22.4" z="34.569"/>
+			<Position x="183.386" y="23.2627" z="188.896"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="5087">
@@ -8396,15 +8396,15 @@
 			<Path>
 				<Rotation x="0.523599" y="0" z="0"/>
 				<Distortion mode="0" style="0" growth="0" switch="0"/>
-				<Node x="294.999" y="51.0002" z="158" t="0"/>
-				<Node x="295" y="51" z="158" t="1"/>
-				<Node x="276" y="65" z="149" t="5"/>
-				<Node x="263" y="100" z="100" t="5"/>
-				<Node x="224" y="100" z="98" t="3"/>
-				<Node x="190" y="100" z="36" t="5"/>
+				<Node x="296" y="43" z="166" t="0"/>
+				<Node x="288" y="43" z="169" t="10"/>
+				<Node x="275" y="72" z="135" t="5"/>
+				<Node x="262" y="99" z="82" t="5"/>
+				<Node x="223" y="84" z="112" t="3"/>
+				<Node x="190" y="100" z="36" t="6"/>
 				<Node x="121" y="100" z="62" t="8"/>
 				<Node x="98" y="74" z="136" t="5"/>
-				<Node x="98.9175" y="60.9729" z="176.898" t="5"/>
+				<Node x="98" y="60" z="204" t="10"/>
 			</Path>
 		</Track>
 	</Tracks>
@@ -8412,7 +8412,7 @@
 		<Trigger name="Village walk 0">
 			<Active>true</Active>
 			<MaxRunCount>1</MaxRunCount>
-			<Delay>5</Delay>
+			<Delay>9</Delay>
 			<Conditions>
 				<Condition name="Condition 0" function="trigGetAlwaysTrue" display="Always" not="false"/>
 			</Conditions>
@@ -8429,7 +8429,7 @@
 		<Trigger name="Village walk 1">
 			<Active>true</Active>
 			<MaxRunCount>1</MaxRunCount>
-			<Delay>5.5</Delay>
+			<Delay>9.5</Delay>
 			<Conditions>
 				<Condition name="Condition 0" function="trigGetAlwaysTrue" display="Always" not="false"/>
 			</Conditions>
@@ -8446,7 +8446,7 @@
 		<Trigger name="Village walk 2">
 			<Active>true</Active>
 			<MaxRunCount>1</MaxRunCount>
-			<Delay>5.7</Delay>
+			<Delay>9.7</Delay>
 			<Conditions>
 				<Condition name="Condition 0" function="trigGetAlwaysTrue" display="Always" not="false"/>
 			</Conditions>
@@ -8463,7 +8463,7 @@
 		<Trigger name="Village walk 3">
 			<Active>true</Active>
 			<MaxRunCount>1</MaxRunCount>
-			<Delay>5.9</Delay>
+			<Delay>9.9</Delay>
 			<Conditions>
 				<Condition name="Condition 0" function="trigGetAlwaysTrue" display="Always" not="false"/>
 			</Conditions>
@@ -8480,7 +8480,7 @@
 		<Trigger name="Village walk 4">
 			<Active>true</Active>
 			<MaxRunCount>1</MaxRunCount>
-			<Delay>6.1</Delay>
+			<Delay>10.1</Delay>
 			<Conditions>
 				<Condition name="Condition 0" function="trigGetAlwaysTrue" display="Always" not="false"/>
 			</Conditions>
