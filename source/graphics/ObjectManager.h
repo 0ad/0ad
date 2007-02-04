@@ -4,12 +4,12 @@
 #include <vector>
 #include <map>
 #include "ps/CStr.h"
-#include "ObjectBase.h"
 
-class CObjectEntry;
 class CEntityTemplate;
 class CMatrix3D;
 class CMeshManager;
+class CObjectBase;
+class CObjectEntry;
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 // CObjectManager: manager class for all possible actor types
@@ -23,7 +23,6 @@ public:
 
 		CStr ActorName;
 		std::vector<u8> ActorVariation;
-
 	};
 
 public:

@@ -6,7 +6,6 @@
 #include <boost/shared_ptr.hpp>
 
 #include "lib/res/handle.h"
-
 #include "ps/CStr.h"
 #include "ps/Singleton.h"
 
@@ -99,10 +98,6 @@ public:
 	// Find or create a new texture group. All terrain groups are owned by the
 	// texturemanager (TerrainTypeManager)
 	CTerrainGroup *FindGroup(const CStr& name);
-	// Use the default group for all terrain types that don't have their own
-	// ScEd currently relies on every texture having one group (and is happy ignorant of any
-	// extra groups that might exist)
-	CTerrainGroup *GetDefaultGroup();
 
 	const TerrainGroupMap &GetGroups() const
 	{ return m_TerrainGroups; }

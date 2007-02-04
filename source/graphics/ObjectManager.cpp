@@ -1,21 +1,12 @@
 #include "precompiled.h"
 
 #include "ObjectManager.h"
-#include <algorithm>
+
+#include "graphics/ObjectBase.h"
+#include "graphics/ObjectEntry.h"
 #include "ps/CLogger.h"
-#include "lib/res/res.h"
-#include "lib/timer.h"
-#include "ps/VFSUtil.h"
-#include "ObjectBase.h"
-#include "ObjectEntry.h"
-#include "simulation/Entity.h"
-#include "simulation/EntityManager.h"
-#include "simulation/EntityTemplate.h"
-#include "ps/Game.h"
-#include "Model.h"
-#include "Unit.h"
-#include "maths/Matrix3D.h"
 #include "ps/Profile.h"
+#include "ps/VFSUtil.h"
 
 #define LOG_CATEGORY "graphics"
 

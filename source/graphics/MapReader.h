@@ -62,8 +62,6 @@ private:
 	std::vector<Handle> m_TerrainTextures;
 	// tile descriptions for each tile
 	std::vector<STileDesc> m_Tiles;
-	// cinematic tracks used by cinema manager
-	std::map<CStrW, CCinemaTrack> m_Tracks;
 	// list of object types used by map
 	std::vector<CStr> m_ObjectTypes;
 	// descriptions for each objects

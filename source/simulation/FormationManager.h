@@ -6,7 +6,6 @@
 #define FORMATIONMANAGER_INCLUDED
 
 #include "ps/Singleton.h"
-#include "FormationCollection.h"
 #include "scripting/DOMEvent.h"
 
 #define g_FormationManager CFormationManager::GetSingleton()

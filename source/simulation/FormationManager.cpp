@@ -1,6 +1,7 @@
 #include "precompiled.h"
 
 #include "FormationManager.h"
+#include "FormationCollection.h"
 #include "Entity.h"
 #include "ps/CStr.h"
 #include "Formation.h"

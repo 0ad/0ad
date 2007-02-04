@@ -539,6 +539,11 @@ void ScenarioEditor::OnSave(wxCommandEvent& event)
 	{
 		wxBusyInfo busy(_("Saving map"));
 
+		// Deactivate tools, so things like unit previews don't get saved.
+		// (TODO: Would be nicer to leave the tools active, and just not save
+		// the preview units.)
+		SetCurrentTool(_T(""));
+
 		std::wstring map = m_OpenFilename.c_str();
 		POST_MESSAGE(SaveMap, (map));
 
@@ -558,6 +563,8 @@ void ScenarioEditor::OnSaveAs(wxCommandEvent& WXUNUSED(event))
 	if (dlg.ShowModal() == wxID_OK)
 	{
 		wxBusyInfo busy(_("Saving map"));
+
+		SetCurrentTool(_T(""));
 
 		// TODO: Work when the map is not in .../maps/scenarios/
 		std::wstring map = dlg.GetFilename().c_str();

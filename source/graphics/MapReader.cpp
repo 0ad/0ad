@@ -182,57 +182,6 @@ int CMapReader::UnpackTerrain()
 
 	return 0;
 }
-int CMapReader::UnpackCinema()
-{
-	size_t numTracks;
-	unpacker.UnpackRaw(&numTracks, (u32)sizeof(size_t));
-	
-	for ( size_t track=0; track < numTracks; ++track )
-	{
-		CCinemaTrack trackObj;
-		std::vector<CCinemaPath> paths;
-		CStr name;
-		size_t numPaths;
-		CVector3D startRotation;
-		float timescale;
-
-		unpacker.UnpackString(name);
-		unpacker.UnpackRaw(&timescale, sizeof(float));
-		unpacker.UnpackRaw(&numPaths, sizeof(size_t));
-		unpacker.UnpackRaw(&startRotation, sizeof(CVector3D));
-
-		trackObj.SetStartRotation(startRotation);
-		trackObj.SetTimescale(timescale);
-
-		for ( size_t i=0; i<numPaths; ++i )
-		{
-			TNSpline spline;
-			size_t numNodes;
-			CCinemaData data;
-			
-			if ( i != 0 )
-				unpacker.UnpackRaw(&data.m_TotalRotation, sizeof(CVector3D));
-			unpacker.UnpackRaw(&data.m_Mode, sizeof(data.m_Mode));
-			unpacker.UnpackRaw(&data.m_Style, sizeof(data.m_Style));
-			unpacker.UnpackRaw(&data.m_Growth, sizeof(data.m_Growth));
-			unpacker.UnpackRaw(&data.m_Switch, sizeof(data.m_Switch));
-			unpacker.UnpackRaw(&numNodes, sizeof(size_t));
-			data.m_GrowthCount = data.m_Growth;
-
-			for ( size_t j=0; j < numNodes; ++j )
-			{
-				CVector3D position;
-				float distance;
-				unpacker.UnpackRaw(&position, sizeof(position));
-				unpacker.UnpackRaw(&distance, sizeof(distance));
-				spline.AddNode(position, distance);
-			}
-			trackObj.AddPath(data, spline);
-		}
-		m_Tracks[CStrW(name)] = trackObj;
-	}
-	return 0;
-}
 
 // ApplyData: take all the input data, and rebuild the scene from it
 int CMapReader::ApplyData()

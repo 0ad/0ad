@@ -8,6 +8,7 @@
 
 #include "graphics/GameView.h"
 #include "graphics/Model.h"
+#include "graphics/ObjectBase.h"
 #include "graphics/ObjectEntry.h"
 #include "graphics/ObjectManager.h"
 #include "graphics/Terrain.h"
