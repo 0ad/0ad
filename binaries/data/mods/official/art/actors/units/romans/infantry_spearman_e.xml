@@ -19,7 +19,6 @@
         <animation file="infantry/general/dude/dudedecay_sword.psa" name="Corpse" speed="100"/>
         <animation event="0.5" file="biped/inf_spear_shield_atk_b.psa" name="melee" speed="150"/>
       </animations>
-      <mesh>skeletal/m_tunic_b.pmd</mesh>
       <props>
         <prop actor="props/units/heads/rome_monte_e.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
@@ -30,7 +29,8 @@
   </group>
 
   <group>
-    <variant frequency="2" name="armor-texture-1">
+    <variant frequency="1" name="armor-texture-1">
+      <mesh>skeletal/m_tunic_b.pmd</mesh>
       <texture>skeletal/rome_isp_e.dds</texture>
     </variant>
   </group>

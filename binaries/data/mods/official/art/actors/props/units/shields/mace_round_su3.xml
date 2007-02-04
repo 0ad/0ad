@@ -2,7 +2,7 @@
 <actor version="1">
 
   <group>
-    <variant name="base">
+    <variant frequency="1" name="base">
       <mesh>props/shield/round_m_f.pmd</mesh>
       <props>
         <prop actor="props/units/shields/mace_round_back.xml" attachpoint="back"/>
@@ -11,13 +11,13 @@
   </group>
 
   <group>
-    <variant name="b">
+    <variant frequency="1" name="shield-b">
       <texture>props/shield/hele_round_b.dds</texture>
     </variant>
-    <variant name="v">
+    <variant frequency="1" name="shield-v">
       <texture>props/shield/hele_round_v.dds</texture>
     </variant>
-    <variant name="w">
+    <variant frequency="1" name="shield-w">
       <texture>props/shield/hele_round_w.dds</texture>
     </variant>
   </group>
